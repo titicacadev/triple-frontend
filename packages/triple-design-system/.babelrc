@@ -1,0 +1,9 @@
+{
+  "presets": [
+    ["@babel/env", { "targets": { "node": "6" } }],
+    "@babel/react"
+  ],
+  "plugins": [
+    ["styled-components", { "ssr": true, "displayName": true, "preprocess": false }]
+  ],
+}

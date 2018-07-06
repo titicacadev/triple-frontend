@@ -1,0 +1,33 @@
+{
+  "name": "triple-design-system",
+  "version": "0.0.1",
+  "description": "Triple Design System Library",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel src --out-dir lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-design-system.git"
+  },
+  "keywords": [
+    "triple",
+    "design",
+    "system",
+    "library",
+    "styled-components"
+  ],
+  "author": "Inbeom Hwang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-design-system/issues"
+  },
+  "homepage": "https://github.com/titicacadev/triple-design-system#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.52",
+    "@babel/core": "^7.0.0-beta.52",
+    "@babel/preset-env": "^7.0.0-beta.52",
+    "@babel/preset-react": "^7.0.0-beta.52",
+    "babel-plugin-styled-components": "^1.5.1"
+  }
+}
