@@ -6,6 +6,9 @@
   "scripts": {
     "build": "babel src --out-dir lib"
   },
+  "files": [
+    "lib/"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-design-system.git"
