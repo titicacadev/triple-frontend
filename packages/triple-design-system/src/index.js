@@ -1,7 +1,2 @@
-import Article from './article'
-import ContentElements from './content-elements'
-
-export default {
-  ...ContentElements,
-  Article
-}
+export { default as Article } from './article'
+export * from './content-elements'
