@@ -76,7 +76,7 @@ function Compact (Component) {
   return (props) => <Component compact {...props} />
 }
 
-function Images ({ value: { images } }) {
+export function Images ({ value: { images } }) {
   return (
     <Carousel>
       {
@@ -94,7 +94,7 @@ function EmbeddedImages ({ value: { images: [image] } }) {
   return null
 }
 
-function Pois ({ value: { display, pois } }) {
+export function Pois ({ value: { display, pois } }) {
   const Container = display === 'list' ? ListContainer : PoiCarousel
   const Element = display === 'list' ? PoiListElement : PoiCarouselElement
 
@@ -119,7 +119,7 @@ const LinksContainer = styled.div`
   }
 `
 
-function Links ({ value: { links }, ...props }) {
+export function Links ({ value: { links }, ...props }) {
   return (
     <LinksContainer {...props}>
       {
@@ -129,7 +129,7 @@ function Links ({ value: { links }, ...props }) {
   )
 }
 
-function Embedded ({ value: { entries } }) {
+export function Embedded ({ value: { entries } }) {
   return (
     <Carousel>
       {
