@@ -1,5 +1,6 @@
 {
   "name": "@titicaca/triple-design-system",
+  "private": true,
   "version": "0.0.1-rc.0",
   "description": "Triple Design System Library",
   "main": "lib/index.js",
@@ -21,7 +22,7 @@
     "styled-components"
   ],
   "author": "Inbeom Hwang",
-  "license": "ISC",
+  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/titicacadev/triple-design-system/issues"
   },
