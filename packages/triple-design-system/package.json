@@ -32,5 +32,11 @@
     "@babel/preset-env": "^7.0.0-beta.52",
     "@babel/preset-react": "^7.0.0-beta.52",
     "babel-plugin-styled-components": "^1.5.1"
+  },
+  "dependencies": {
+    "styled-components": "^3.3.3"
+  },
+  "peerDependencies": {
+    "react": "*"
   }
 }
