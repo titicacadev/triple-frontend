@@ -183,6 +183,16 @@ export const SquareImage = styled.img`
   border-radius: 6px;
 `
 
+export const FluidSquareImage = styled.div`
+  width: 100%;
+  background-color: #efefef;
+  padding-bottom: 100%;
+  height: 0;
+  background-image: url(${({ src }) => src});
+  background-size: cover;
+  background-position: center center;
+`
+
 const PoiCarouselName = styled.div`
   font-size: 16px;
   font-weight: bold;
