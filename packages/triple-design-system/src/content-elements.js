@@ -1,6 +1,26 @@
 import React from 'react'
 import styled from 'styled-components'
 
+export const Title = styled.h1`
+  font-size: 24px;
+  font-weight: bold;
+  color: #3a3a3a;
+  font-family: sans-serif;
+  margin: 40px 30px;
+`
+
+export function LineBreak ({ children }) {
+  const Line = ({ children }) => <>{children}<br /></>
+
+  return (
+    <>
+      {
+        children.split("\n").map((text, i) => <Line key={i}>{text}</Line>)
+      }
+    </>
+  )
+}
+
 export const TextComponent = styled.div`
   margin: ${({ compact }) => compact ? '0' : '0 30px'};
   font-family: sans-serif;
