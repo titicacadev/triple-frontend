@@ -43,7 +43,7 @@ const EMBEDDED_ELEMENTS = {
   images: EmbeddedImages,
 }
 
-export default function Adapter ({ children }) {
+export function Article ({ children }) {
   return <>
     {
       children.map(({ type, value }, i) => {
