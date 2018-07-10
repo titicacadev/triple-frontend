@@ -15,7 +15,7 @@ export function LineBreak ({ children }) {
   return (
     <>
       {
-        children.split("\n").map((text, i) => <Line key={i}>{text}</Line>)
+        (children || '').split("\n").map((text, i) => <Line key={i}>{text}</Line>)
       }
     </>
   )
