@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import {
+  LineBreak,
   H1,
   H2,
   H3,
@@ -58,8 +59,10 @@ export function Article ({ children }) {
 function Heading (Component) {
   return ({ value: { text, emphasize, headline }, ...props }) => (
     <Component emphasize={emphasize} {...props}>
-      {headline && <small>{headline}</small>}
-      {text}
+      {headline && <small><LineBreak>{headline}</LineBreak></small>}
+      <LineBreak>
+        {text}
+      </LineBreak>
     </Component>
   )
 }
@@ -67,7 +70,9 @@ function Heading (Component) {
 function Text ({ value: { text }, ...props }) {
   return (
     <Paragraph {...props}>
-      {text}
+      <LineBreak>
+        {text}
+      </LineBreak>
     </Paragraph>
   )
 }
