@@ -198,6 +198,8 @@ const PoiCarouselName = styled.div`
   font-weight: bold;
   color: #3a3a3a;
   margin-top: 8px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `
 
 const PoiCarouselDescription = styled.div`
