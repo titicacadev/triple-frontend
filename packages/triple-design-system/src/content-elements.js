@@ -244,3 +244,17 @@ export const SimpleLink = styled.a`
   color: #2987f0;
   text-decoration: underline;
 `
+
+export const NoteTitle = styled.div`
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.43;
+  color: #3a3a3a;
+`
+
+export const NoteDescription = styled.div`
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43;
+  color: rgba(58, 58, 58, 0.7);
+`

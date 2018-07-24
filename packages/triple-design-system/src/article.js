@@ -20,6 +20,8 @@ import {
   PoiCarouselElement,
   SimpleLink,
   SquareImage,
+  NoteTitle,
+  NoteDescription,
 } from './content-elements'
 
 const ELEMENTS = {
@@ -35,6 +37,7 @@ const ELEMENTS = {
   pois: Pois,
   links: Links,
   embedded: Embedded,
+  note: Note,
 }
 
 const EMBEDDED_ELEMENTS = {
@@ -151,5 +154,21 @@ export function Embedded ({ value: { entries } }) {
         ))
       }
     </Carousel>
+  )
+}
+
+const NoteContainer = styled.div`
+  margin: 20px 30px 0 30px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fafafa;
+`
+
+export function Note ({ value: { title, body } }) {
+  return (
+    <NoteContainer>
+      <NoteTitle>{title}</NoteTitle>
+      <NoteDescription><LineBreak>{body}</LineBreak></NoteDescription>
+    </NoteContainer>
   )
 }
