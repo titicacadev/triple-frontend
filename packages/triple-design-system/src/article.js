@@ -22,6 +22,7 @@ import {
   SquareImage,
   NoteTitle,
   NoteDescription,
+  LinkButton,
 } from './content-elements'
 
 const ELEMENTS = {
@@ -38,6 +39,7 @@ const ELEMENTS = {
   links: Links,
   embedded: Embedded,
   note: Note,
+  regions: RegionButtons,
 }
 
 const EMBEDDED_ELEMENTS = {
@@ -170,5 +172,27 @@ export function Note ({ value: { title, body } }) {
       <NoteTitle>{title}</NoteTitle>
       <NoteDescription><LineBreak>{body}</LineBreak></NoteDescription>
     </NoteContainer>
+  )
+}
+
+const RegionButtonsContainer = styled.div`
+  a {
+    display: table;
+    margin: 50px auto;
+  }
+`
+
+export function RegionButtons ({ value: { regions } }) {
+  return (
+    <RegionButtonsContainer>
+      {regions.map(({ label, href, source: { id } }) => (
+        <LinkButton
+          key={`region-link-${id}`}
+          href={href}
+        >
+          {label}
+        </LinkButton>
+      ))}
+    </RegionButtonsContainer>
   )
 }
