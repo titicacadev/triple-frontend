@@ -72,11 +72,40 @@ export const Paragraph = styled(TextComponent)`
   color: rgba(58, 58, 58, 0.7);
 `
 
-export const Image = styled.img`
+export const ImageFrame = styled.div`
+  position: relative;
   width: 100%;
-  min-height: 140px;
-  height: auto;
+  padding-top: ${({ frame }) => ({ small: '60%', medium: '75%', large: '100%' }[frame || 'small'])};
+  overflow: hidden;
+`
+
+export const Image = styled.img`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 6px;
+  object-fit: cover;
+`
+
+export const ImageCarousel = styled.div`
+  white-space: nowrap;
+  overflow-x: scroll;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`
+
+export const ImageCarouselElementContainer = styled.div`
+  display: inline-block;
+  width: calc(100% - 40px);
+
+  margin-left: 10px;
+
+  &:first-child {
+    margin-left: 20px;
+  }
 `
 
 export const Carousel = styled.div`

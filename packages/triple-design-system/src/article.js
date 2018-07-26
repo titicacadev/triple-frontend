@@ -11,9 +11,12 @@ import {
   HR2,
   HR3,
   Paragraph,
-  Image,
   Carousel,
   CarouselElementContainer,
+  Image,
+  ImageFrame,
+  ImageCarousel,
+  ImageCarouselElementContainer,
   ListContainer,
   PoiListElement,
   PoiCarousel,
@@ -88,11 +91,17 @@ function Compact (Component) {
 
 export function Images ({ value: { images } }) {
   return (
-    <Carousel>
+    <ImageCarousel>
       {
-        images.map((image, i) => <Image key={i} src={image.sizes.large.url} />)
+        images.map(({ frame, sizes }, i) => (
+          <ImageCarouselElementContainer key={i}>
+            <ImageFrame frame={frame}>
+              <Image src={sizes.large.url} />
+            </ImageFrame>
+          </ImageCarouselElementContainer>
+        ))
       }
-    </Carousel>
+    </ImageCarousel>
   )
 }
 
