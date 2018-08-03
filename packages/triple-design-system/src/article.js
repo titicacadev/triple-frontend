@@ -17,6 +17,7 @@ import {
   ImageFrame,
   ImageCarousel,
   ImageCarouselElementContainer,
+  ImageCaption,
   ListContainer,
   PoiListElement,
   PoiCarousel,
@@ -95,11 +96,12 @@ export function Images ({ value: { images } }) {
   return (
     <ImageCarousel>
       {
-        images.map(({ frame, sizes }, i) => (
+        images.map(({ frame, title, sizes }, i) => (
           <ImageCarouselElementContainer key={i}>
             <ImageFrame frame={frame}>
               <Image src={sizes.large.url} />
             </ImageFrame>
+            <ImageCaption>{title}</ImageCaption>
           </ImageCarouselElementContainer>
         ))
       }

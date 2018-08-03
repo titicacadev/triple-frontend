@@ -108,6 +108,15 @@ export const ImageCarouselElementContainer = styled.div`
   }
 `
 
+export const ImageCaption = styled(TextComponent)`
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  color: #3a3a3a;
+  opacity: 0.7;
+`
+
 export const Carousel = styled.div`
   overflow-x: scroll;
 
