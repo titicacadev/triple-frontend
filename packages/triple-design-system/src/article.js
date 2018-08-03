@@ -25,7 +25,7 @@ import {
   SquareImage,
   NoteTitle,
   NoteDescription,
-  LinkButton,
+  Button,
 } from './content-elements'
 
 const ELEMENTS = {
@@ -42,7 +42,7 @@ const ELEMENTS = {
   links: Links,
   embedded: Embedded,
   note: Note,
-  regions: RegionButtons,
+  buttons: Buttons,
 }
 
 const EMBEDDED_ELEMENTS = {
@@ -184,24 +184,19 @@ export function Note ({ value: { title, body } }) {
   )
 }
 
-const RegionButtonsContainer = styled.div`
-  a {
-    display: table;
-    margin: 50px auto;
-  }
+const ButtonsContainer = styled.div`
+  margin: 50px auto;
+  text-align: center;
 `
 
-export function RegionButtons ({ value: { regions } }) {
+export function Buttons ({ value: { buttons } }) {
   return (
-    <RegionButtonsContainer>
-      {regions.map(({ label, href, source: { id } }) => (
-        <LinkButton
-          key={`region-link-${id}`}
-          href={href}
-        >
+    <ButtonsContainer>
+      {buttons.map(({ label, href }, index) => (
+        <Button key={index} href={href} >
           {label}
-        </LinkButton>
+        </Button>
       ))}
-    </RegionButtonsContainer>
+    </ButtonsContainer>
   )
 }

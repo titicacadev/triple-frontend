@@ -288,11 +288,12 @@ export const NoteDescription = styled.div`
   color: rgba(58, 58, 58, 0.7);
 `
 
-export const LinkButton = styled.a`
+export const Button = styled.a`
+  display: inline-block;
+  padding-top: 13px;
+  padding-bottom: 13px;
   padding-left: 25px;
   padding-right: 25px;
-  height: 42px;
-  line-height: 42px;
   font-size: 13px;
   font-weight: bold;
   text-align: center;
