@@ -334,15 +334,15 @@ const ListActionCell = styled.div`
 
 const ListActionLabel = styled.div`
   display: inline-block;
-  padding-top: 6px;
-  padding-bottom: 5px;
+  padding-top: 8px;
+  padding-bottom: 7px;
   padding-left: 17px;
   padding-right: 17px;
   text-align: center;
   font-size: 12px;
   font-weight: bold;
   color: #3a3a3a;
-  border-radius: 15px;
+  border-radius: 17px;
   background-color: #fafafa;
 `
 
