@@ -26,6 +26,7 @@ import {
   NoteTitle,
   NoteDescription,
   Button,
+  RegionElement,
 } from './content-elements'
 
 const ELEMENTS = {
@@ -43,6 +44,7 @@ const ELEMENTS = {
   embedded: Embedded,
   note: Note,
   buttons: Buttons,
+  regions: Regions,
 }
 
 const EMBEDDED_ELEMENTS = {
@@ -198,5 +200,13 @@ export function Buttons ({ value: { buttons } }) {
         </Button>
       ))}
     </ButtonsContainer>
+  )
+}
+
+export function Regions ({ value: { regions } }) {
+  return (
+    <ListContainer>
+      {regions.map((region, index) => <RegionElement key={index} value={region} />)}
+    </ListContainer>
   )
 }

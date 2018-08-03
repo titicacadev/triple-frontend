@@ -157,6 +157,25 @@ const Thumbnail = styled.img`
   border-radius: 2px;
 `
 
+const RoundThumbnail = styled.img`
+  width: 40px;
+  height: 40px;
+  float: left;
+  background-color: #efefef;
+  border-radius: 20px;
+`
+
+const ListLabel = styled.div`
+  float: left;
+  margin-left: 10px;
+  height: 40px;
+  line-height: 40px;
+  text-align: left center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #3a3a3a;
+`
+
 const ListHeader = styled.div`
   font-size: 16px;
   font-weight: 500;
@@ -301,3 +320,52 @@ export const Button = styled.a`
   border-radius: 21px;
   background-color: #368fff;
 `
+
+const ListActions = styled.div`
+  float: right;
+`
+
+const ListActionCell = styled.div`
+  height: 40px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+`
+
+const ListActionLabel = styled.div`
+  display: inline-block;
+  padding-top: 6px;
+  padding-bottom: 5px;
+  padding-left: 17px;
+  padding-right: 17px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: #3a3a3a;
+  border-radius: 15px;
+  background-color: #fafafa;
+`
+
+function ListAction ({ children }) {
+  return <ListActions>
+      <ListActionCell>
+        <ListActionLabel>{children}</ListActionLabel>
+      </ListActionCell>
+    </ListActions>
+}
+
+export function RegionElement ({ value }) {
+  if (value) {
+    const { source: { id, names, style } } = value
+
+    return (
+      <ListItem>
+        <RoundThumbnail src={style && style.backgroundImageUrl} />
+        <ListLabel>{names.ko || names.en || names.local}</ListLabel>
+        <ListAction>바로가기</ListAction>
+      </ListItem>
+    )
+  }
+
+  return null
+}
