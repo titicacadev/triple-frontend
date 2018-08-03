@@ -133,7 +133,7 @@ export function Pois ({ value: { display, pois } }) {
 }
 
 const LinksContainer = styled.div`
-  margin: 20px 30px 0 30px;
+  margin: 0px 30px 0 30px;
 
   a {
     display: inline-block;

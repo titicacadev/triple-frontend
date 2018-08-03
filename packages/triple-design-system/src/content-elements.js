@@ -89,6 +89,7 @@ export const Image = styled.img`
 `
 
 export const ImageCarousel = styled.div`
+  margin-top: 30px;
   white-space: nowrap;
   overflow-x: scroll;
 
@@ -179,12 +180,14 @@ const ListLabel = styled.div`
   height: 40px;
   line-height: 40px;
   text-align: left center;
+  font-family: sans-serif;
   font-size: 16px;
   font-weight: 500;
   color: #3a3a3a;
 `
 
 const ListHeader = styled.div`
+  font-family: sans-serif;
   font-size: 16px;
   font-weight: 500;
   color: #3a3a3a;
@@ -192,6 +195,7 @@ const ListHeader = styled.div`
 `
 
 const ListDescription = styled.div`
+  font-family: sans-serif;
   font-size: 13px;
   font-weight: 500;
   color: rgba(58, 58, 58, 0.7);
@@ -250,6 +254,7 @@ export const FluidSquareImage = styled.div`
 `
 
 const PoiCarouselName = styled.div`
+  font-family: sans-serif;
   font-size: 16px;
   font-weight: bold;
   color: #3a3a3a;
@@ -259,6 +264,7 @@ const PoiCarouselName = styled.div`
 `
 
 const PoiCarouselDescription = styled.div`
+  font-family: sans-serif;
   font-size: 13px;
   font-weight: 500;
   color: rgba(58, 58, 58, 0.7);
@@ -284,6 +290,7 @@ export function PoiCarouselElement ({ value }) {
 }
 
 export const PoiCarousel = styled.div`
+  margin-top: 20px;
   padding-right: 30px;
   white-space: nowrap;
   overflow-x: scroll;
@@ -302,6 +309,7 @@ export const SimpleLink = styled.a`
 `
 
 export const NoteTitle = styled.div`
+  font-family: sans-serif;
   font-size: 14px;
   font-weight: bold;
   line-height: 1.43;
@@ -309,6 +317,7 @@ export const NoteTitle = styled.div`
 `
 
 export const NoteDescription = styled.div`
+  font-family: sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 1.43;
@@ -321,12 +330,14 @@ export const Button = styled.a`
   padding-bottom: 13px;
   padding-left: 25px;
   padding-right: 25px;
+  font-family: sans-serif;
   font-size: 13px;
   font-weight: bold;
   text-align: center;
   color: #ffffff;
   border-radius: 21px;
   background-color: #368fff;
+  text-decoration: none;
 `
 
 const ListActions = styled.div`
@@ -347,6 +358,7 @@ const ListActionLabel = styled.div`
   padding-left: 17px;
   padding-right: 17px;
   text-align: center;
+  font-family: sans-serif;
   font-size: 12px;
   font-weight: bold;
   color: #3a3a3a;
