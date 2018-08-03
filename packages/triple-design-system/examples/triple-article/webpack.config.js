@@ -6,7 +6,6 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        // include: (p) => { console.log(p); return true },
         include: [
           path.resolve(__dirname, 'src'),
           path.resolve(__dirname, '../../src')
