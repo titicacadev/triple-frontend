@@ -347,11 +347,13 @@ const ListActionLabel = styled.div`
 `
 
 function ListAction ({ children }) {
-  return <ListActions>
+  return (
+    <ListActions>
       <ListActionCell>
         <ListActionLabel>{children}</ListActionLabel>
       </ListActionCell>
     </ListActions>
+  )
 }
 
 export function RegionElement ({ value }) {
