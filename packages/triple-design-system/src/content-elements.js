@@ -247,7 +247,7 @@ export const ListContainer = styled.div`
 
 export function PoiListElement ({ value }) {
   if (value) {
-    const { type, source, scrapped } = value
+    const { type, source, scraped } = value
 
     return (
       <ListItem>
@@ -256,7 +256,7 @@ export function PoiListElement ({ value }) {
         <ListDescription>
           <PoiType>{type}</PoiType>
         </ListDescription>
-        <PoiListScrapButton pressed={scrapped} />
+        <PoiListScrapButton pressed={scraped} />
       </ListItem>
     )
   }
@@ -313,7 +313,7 @@ const PoiCarouselScrapButton = styled.div`
 
 export function PoiCarouselElement ({ value }) {
   if (value) {
-    const { type, source, scrapped } = value
+    const { type, source, scraped } = value
 
     return (
       <CarouselElementContainer size='small'>
@@ -322,7 +322,7 @@ export function PoiCarouselElement ({ value }) {
         <PoiCarouselDescription>
           <PoiType>{type}</PoiType>
         </PoiCarouselDescription>
-        <PoiCarouselScrapButton pressed={scrapped} />
+        <PoiCarouselScrapButton pressed={scraped} />
       </CarouselElementContainer>
     )
   }
