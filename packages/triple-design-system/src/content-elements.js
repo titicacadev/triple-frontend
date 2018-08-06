@@ -322,7 +322,7 @@ export function PoiCarouselElement ({ value }) {
         <PoiCarouselDescription>
           <PoiType>{type}</PoiType>
         </PoiCarouselDescription>
-        <PoiCarouselScrapButton pressed={!scrapped} />
+        <PoiCarouselScrapButton pressed={scrapped} />
       </CarouselElementContainer>
     )
   }
