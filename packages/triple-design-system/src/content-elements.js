@@ -142,6 +142,7 @@ export const Carousel = styled.div`
 
 export const CarouselElementContainer = styled.div`
   display: inline-block;
+  position: relative;
   width: ${({ size }) => ({ small: '140px', medium: '200px' }[size || 'small'])};
   font-family: sans-serif;
   vertical-align: top;
@@ -220,6 +221,19 @@ const ListItem = styled.div`
   height: 40px;
   clear: both;
   margin: 20px 0;
+  position: relative;
+`
+
+const PoiListScrapButton = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 34px;
+  height: 34px;
+  background-image: url(http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/${
+    ({ pressed }) => pressed ? 'btn-content-scrap-list-on@2x.png' : 'btn-content-scrap-list-off@2x.png'
+  });
+  background-size: 34px 34px;
 `
 
 function PoiType ({ children }) {
@@ -233,7 +247,7 @@ export const ListContainer = styled.div`
 
 export function PoiListElement ({ value }) {
   if (value) {
-    const { type, source } = value
+    const { type, source, scrapped } = value
 
     return (
       <ListItem>
@@ -242,6 +256,7 @@ export function PoiListElement ({ value }) {
         <ListDescription>
           <PoiType>{type}</PoiType>
         </ListDescription>
+        <PoiListScrapButton pressed={scrapped} />
       </ListItem>
     )
   }
@@ -284,9 +299,21 @@ const PoiCarouselDescription = styled.div`
   margin-top: 2px;
 `
 
+const PoiCarouselScrapButton = styled.div`
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 36px;
+  height: 36px;
+  background-image: url(http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/${
+    ({ pressed }) => pressed ? 'btn-content-scrap-overlay-on@2x.png' : 'btn-content-scrap-overlay-off@2x.png'
+  });
+  background-size: 36px 36px;
+`
+
 export function PoiCarouselElement ({ value }) {
   if (value) {
-    const { type, source } = value
+    const { type, source, scrapped } = value
 
     return (
       <CarouselElementContainer size='small'>
@@ -295,6 +322,7 @@ export function PoiCarouselElement ({ value }) {
         <PoiCarouselDescription>
           <PoiType>{type}</PoiType>
         </PoiCarouselDescription>
+        <PoiCarouselScrapButton pressed={!scrapped} />
       </CarouselElementContainer>
     )
   }
