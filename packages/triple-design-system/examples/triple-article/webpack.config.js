@@ -18,7 +18,8 @@ module.exports = {
               "@babel/react"
             ],
             plugins: [
-              ["styled-components", { "ssr": true, "displayName": true, "preprocess": false }]
+              ["styled-components", { "ssr": true, "displayName": true, "preprocess": false }],
+              ["module-resolver", { "alias": { "@titicaca/triple-design-system": "../.." } }]
             ]
           }
         }
