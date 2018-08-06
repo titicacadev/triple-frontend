@@ -96,9 +96,9 @@ export function Images ({ value: { images } }) {
   return (
     <ImageCarousel>
       {
-        images.map(({ frame, title, sizes }, i) => (
+        images.map(({ frame, title, sourceUrl, sizes }, i) => (
           <ImageCarouselElementContainer key={i}>
-            <ImageFrame frame={frame}>
+            <ImageFrame frame={frame} sourceUrl={sourceUrl}>
               <Image src={sizes.large.url} />
             </ImageFrame>
             <ImageCaption>{title}</ImageCaption>

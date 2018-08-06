@@ -77,6 +77,19 @@ export const ImageFrame = styled.div`
   width: 100%;
   padding-top: ${({ frame }) => ({ small: '60%', medium: '75%', large: '100%' }[frame || 'small'])};
   overflow: hidden;
+
+  &::after {
+    content: '${({ sourceUrl }) => sourceUrl}';
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: sans-serif;
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.9);
+  }
 `
 
 export const Image = styled.img`
