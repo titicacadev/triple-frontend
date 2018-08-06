@@ -74,3 +74,4 @@ typings/
 
 # Project-specific
 lib
+.DS_Store
