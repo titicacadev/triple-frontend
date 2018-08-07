@@ -337,7 +337,7 @@ export const NoteDescription = styled.div`
   color: rgba(58, 58, 58, 0.7);
 `
 
-export const Button = styled.a`
+export const SimpleButton = styled.a`
   display: inline-block;
   padding-top: 13px;
   padding-bottom: 13px;

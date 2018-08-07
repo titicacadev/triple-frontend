@@ -23,10 +23,10 @@ import {
   PoiCarousel,
   PoiCarouselElement,
   SimpleLink,
+  SimpleButton,
   SquareImage,
   NoteTitle,
   NoteDescription,
-  Button,
   RegionElement,
 } from './content-elements'
 
@@ -44,7 +44,6 @@ const ELEMENTS = {
   links: Links,
   embedded: Embedded,
   note: Note,
-  buttons: Buttons,
   regions: Regions,
 }
 
@@ -142,13 +141,21 @@ const LinksContainer = styled.div`
   }
 `
 
-export function Links ({ value: { links }, ...props }) {
+const ButtonsContainer = styled.div`
+  margin: 50px auto;
+  text-align: center;
+`
+
+export function Links ({ value: { display, links }, ...props }) {
+  const Container = display === 'button' ? ButtonsContainer : LinksContainer
+  const Element = display === 'button' ? SimpleButton : SimpleLink
+
   return (
-    <LinksContainer {...props}>
+    <Container {...props}>
       {
-        links.map(({ label, href }, i) => <SimpleLink key={i} href={href}>{label}</SimpleLink>)
+        links.map(({ label, href }, i) => <Element key={i} href={href}>{label}</Element>)
       }
-    </LinksContainer>
+    </Container>
   )
 }
 
@@ -185,23 +192,6 @@ export function Note ({ value: { title, body } }) {
       <NoteTitle>{title}</NoteTitle>
       <NoteDescription><LineBreak>{body}</LineBreak></NoteDescription>
     </NoteContainer>
-  )
-}
-
-const ButtonsContainer = styled.div`
-  margin: 50px auto;
-  text-align: center;
-`
-
-export function Buttons ({ value: { buttons } }) {
-  return (
-    <ButtonsContainer>
-      {buttons.map(({ label, href }, index) => (
-        <Button key={index} href={href} >
-          {label}
-        </Button>
-      ))}
-    </ButtonsContainer>
   )
 }
 
