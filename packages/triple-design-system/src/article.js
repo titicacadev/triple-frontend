@@ -58,6 +58,7 @@ const EMBEDDED_ELEMENTS = {
 export function Article ({
   children,
   onResourceClick,
+  onResourceScrapedChange,
   onImageClick,
   onLinkClick,
   imageSourceComponent,
@@ -74,6 +75,7 @@ export function Article ({
             onResourceClick={onResourceClick}
             onImageClick={onImageClick}
             onLinkClick={onLinkClick}
+            onResourceScrapedChange={onResourceScrapedChange}
             ImageSource={imageSourceComponent}
           />
         )
@@ -144,7 +146,7 @@ function EmbeddedImages ({ value: { images: [image] } }) {
   return null
 }
 
-export function Pois ({ value: { display, pois }, onResourceClick }) {
+export function Pois ({ value: { display, pois }, onResourceClick, onResourceScrapedChange }) {
   const Container = display === 'list' ? ListContainer : PoiCarousel
   const Element = display === 'list' ? PoiListElement : PoiCarouselElement
 
@@ -152,7 +154,12 @@ export function Pois ({ value: { display, pois }, onResourceClick }) {
     <Container>
       {
         pois.map((poi) => (
-          <Element key={poi.id} value={poi} onClick={onResourceClick && ((e) => onResourceClick(e, poi))} />
+          <Element
+            key={poi.id}
+            value={poi}
+            onClick={onResourceClick && ((e) => onResourceClick(e, poi))}
+            onScrapedChange={onResourceScrapedChange}
+          />
         ))
       }
     </Container>

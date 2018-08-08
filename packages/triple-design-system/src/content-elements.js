@@ -244,7 +244,7 @@ export const ListContainer = styled.div`
   font-family: sans-serif;
 `
 
-export function PoiListElement ({ value, onClick }) {
+export function PoiListElement ({ value, onClick, onScrapedChange }) {
   if (value) {
     const { type, nameOverride, source: { image, names }, scraped } = value
 
@@ -255,7 +255,17 @@ export function PoiListElement ({ value, onClick }) {
         <ListDescription>
           <PoiType>{type}</PoiType>
         </ListDescription>
-        <PoiListScrapButton pressed={scraped} />
+        <PoiListScrapButton
+          pressed={scraped}
+          onClick={
+            onScrapedChange && (
+              (e) => {
+                e.stopPropagation()
+                onScrapedChange(e, { ...value, scraped: !scraped })
+              }
+            )
+          }
+        />
       </ListItem>
     )
   }
@@ -310,7 +320,7 @@ const PoiCarouselScrapButton = styled.div`
   background-size: 36px 36px;
 `
 
-export function PoiCarouselElement ({ value, onClick }) {
+export function PoiCarouselElement ({ value, onClick, onScrapedChange }) {
   if (value) {
     const { type, nameOverride, source: { image, names }, scraped } = value
 
@@ -321,7 +331,17 @@ export function PoiCarouselElement ({ value, onClick }) {
         <PoiCarouselDescription>
           <PoiType>{type}</PoiType>
         </PoiCarouselDescription>
-        <PoiCarouselScrapButton pressed={scraped} />
+        <PoiCarouselScrapButton
+          pressed={scraped}
+          onClick={
+            onScrapedChange && (
+              (e) => {
+                e.stopPropagation()
+                onScrapedChange(e, { ...value, scraped: !scraped })
+              }
+            )
+          }
+        />
       </CarouselElementContainer>
     )
   }
