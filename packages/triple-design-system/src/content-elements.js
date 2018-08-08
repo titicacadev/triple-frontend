@@ -247,12 +247,12 @@ export const ListContainer = styled.div`
 
 export function PoiListElement ({ value }) {
   if (value) {
-    const { type, source, scraped } = value
+    const { type, nameOverride, source: { image, names }, scraped } = value
 
     return (
       <ListItem>
-        <Thumbnail src={source.image && source.image.sizes.large.url} />
-        <ListHeader>{source.names.ko || source.names.en || source.names.local}</ListHeader>
+        <Thumbnail src={image && image.sizes.large.url} />
+        <ListHeader>{nameOverride || names.ko || names.en || names.local}</ListHeader>
         <ListDescription>
           <PoiType>{type}</PoiType>
         </ListDescription>
@@ -313,12 +313,12 @@ const PoiCarouselScrapButton = styled.div`
 
 export function PoiCarouselElement ({ value }) {
   if (value) {
-    const { type, source, scraped } = value
+    const { type, nameOverride, source: { image, names }, scraped } = value
 
     return (
       <CarouselElementContainer size='small'>
-        <SquareImage size='small' src={source.image && source.image.sizes.large.url} />
-        <PoiCarouselName>{source.names.ko || source.names.en || source.names.local}</PoiCarouselName>
+        <SquareImage size='small' src={image && image.sizes.large.url} />
+        <PoiCarouselName>{nameOverride || names.ko || names.en || names.local}</PoiCarouselName>
         <PoiCarouselDescription>
           <PoiType>{type}</PoiType>
         </PoiCarouselDescription>
@@ -419,12 +419,12 @@ function ListAction ({ children }) {
 
 export function RegionElement ({ value }) {
   if (value) {
-    const { source: { id, names, style } } = value
+    const { nameOverride, source: { id, names, style } } = value
 
     return (
       <ListItem>
         <RoundThumbnail src={style && style.backgroundImageUrl} />
-        <ListLabel>{names.ko || names.en || names.local}</ListLabel>
+        <ListLabel>{nameOverride || names.ko || names.en || names.local}</ListLabel>
         <ListAction>바로가기</ListAction>
       </ListItem>
     )

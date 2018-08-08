@@ -123,8 +123,8 @@ export function Pois ({ value: { display, pois } }) {
   return (
     <Container>
       {
-        pois.map(({ id, type, source }) => (
-          <Element key={id} value={{ id, type, source }} />
+        pois.map(({ id, type, nameOverride, source }) => (
+          <Element key={id} value={{ id, type, nameOverride, source }} />
         ))
       }
     </Container>
