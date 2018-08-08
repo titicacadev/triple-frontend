@@ -14,6 +14,7 @@ import {
   Carousel,
   CarouselElementContainer,
   Image,
+  SourceUrl,
   ImageFrame,
   ImageCarousel,
   ImageCarouselElementContainer,
@@ -54,13 +55,28 @@ const EMBEDDED_ELEMENTS = {
   images: EmbeddedImages,
 }
 
-export function Article ({ children }) {
+export function Article ({
+  children,
+  onResourceClick,
+  onImageClick,
+  onLinkClick,
+  imageSourceComponent,
+}) {
   return <>
     {
       children.map(({ type, value }, i) => {
         const Element = ELEMENTS[type]
 
-        return Element && <Element key={i} value={value} />
+        return Element && (
+          <Element
+            key={i}
+            value={value}
+            onResourceClick={onResourceClick}
+            onImageClick={onImageClick}
+            onLinkClick={onLinkClick}
+            ImageSource={imageSourceComponent}
+          />
+        )
       })
     }
   </>
@@ -91,16 +107,28 @@ function Compact (Component) {
   return (props) => <Component compact {...props} />
 }
 
-export function Images ({ value: { images } }) {
+export function Images ({ value: { images }, onImageClick, ImageSource }) {
   return (
     <ImageCarousel>
       {
-        images.map(({ frame, title, sourceUrl, sizes }, i) => (
-          <ImageCarouselElementContainer key={i}>
-            <ImageFrame frame={frame} sourceUrl={sourceUrl}>
-              <Image src={sizes.large.url} />
+        images.map((image, i) => (
+          <ImageCarouselElementContainer
+            key={i}
+            onClick={onImageClick && ((e) => onImageClick(e, image))}
+          >
+            <ImageFrame frame={image.frame}>
+              <Image src={image.sizes.large.url} />
+              {image.sourceUrl && (
+                <SourceUrl>
+                  {
+                    ImageSource
+                      ? <ImageSource>{image.sourceUrl}</ImageSource>
+                      : image.sourceUrl
+                  }
+                </SourceUrl>
+              )}
             </ImageFrame>
-            <ImageCaption>{title}</ImageCaption>
+            <ImageCaption>{image.title}</ImageCaption>
           </ImageCarouselElementContainer>
         ))
       }
@@ -116,15 +144,15 @@ function EmbeddedImages ({ value: { images: [image] } }) {
   return null
 }
 
-export function Pois ({ value: { display, pois } }) {
+export function Pois ({ value: { display, pois }, onResourceClick }) {
   const Container = display === 'list' ? ListContainer : PoiCarousel
   const Element = display === 'list' ? PoiListElement : PoiCarouselElement
 
   return (
     <Container>
       {
-        pois.map(({ id, type, nameOverride, source }) => (
-          <Element key={id} value={{ id, type, nameOverride, source }} />
+        pois.map((poi) => (
+          <Element key={poi.id} value={poi} onClick={onResourceClick && ((e) => onResourceClick(e, poi))} />
         ))
       }
     </Container>
@@ -146,14 +174,14 @@ const ButtonsContainer = styled.div`
   text-align: center;
 `
 
-export function Links ({ value: { display, links }, ...props }) {
+export function Links ({ value: { display, links }, onLinkClick, ...props }) {
   const Container = display === 'button' ? ButtonsContainer : LinksContainer
   const Element = display === 'button' ? SimpleButton : SimpleLink
 
   return (
     <Container {...props}>
       {
-        links.map(({ label, href }, i) => <Element key={i} href={href}>{label}</Element>)
+        links.map(({ label, href }, i) => <Element key={i} href={href} onClick={onLinkClick && ((e) => onLinkClick(e))}>{label}</Element>)
       }
     </Container>
   )
@@ -195,10 +223,12 @@ export function Note ({ value: { title, body } }) {
   )
 }
 
-export function Regions ({ value: { regions } }) {
+export function Regions ({ value: { regions }, onResourceClick }) {
   return (
     <ListContainer>
-      {regions.map((region, index) => <RegionElement key={index} value={region} />)}
+      {regions.map((region, index) => (
+        <RegionElement key={index} value={region} onClick={onResourceClick && ((e) => onResourceClick(e, region))} />)
+      )}
     </ListContainer>
   )
 }

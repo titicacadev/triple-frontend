@@ -77,19 +77,6 @@ export const ImageFrame = styled.div`
   width: 100%;
   padding-top: ${({ frame }) => ({ small: '60%', medium: '75%', large: '100%' }[frame || 'small'])};
   overflow: hidden;
-
-  &::after {
-    content: '${({ sourceUrl }) => sourceUrl}';
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    max-width: 150px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-family: sans-serif;
-    font-size: 9px;
-    color: rgba(255, 255, 255, 0.9);
-  }
 `
 
 export const Image = styled.img`
@@ -99,6 +86,18 @@ export const Image = styled.img`
   height: 100%;
   border-radius: 6px;
   object-fit: cover;
+`
+
+export const SourceUrl = styled.div`
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: sans-serif;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.9);
 `
 
 export const ImageCarousel = styled.div`
@@ -245,12 +244,12 @@ export const ListContainer = styled.div`
   font-family: sans-serif;
 `
 
-export function PoiListElement ({ value }) {
+export function PoiListElement ({ value, onClick }) {
   if (value) {
     const { type, nameOverride, source: { image, names }, scraped } = value
 
     return (
-      <ListItem>
+      <ListItem onClick={onClick}>
         <Thumbnail src={image && image.sizes.large.url} />
         <ListHeader>{nameOverride || names.ko || names.en || names.local}</ListHeader>
         <ListDescription>
@@ -311,12 +310,12 @@ const PoiCarouselScrapButton = styled.div`
   background-size: 36px 36px;
 `
 
-export function PoiCarouselElement ({ value }) {
+export function PoiCarouselElement ({ value, onClick }) {
   if (value) {
     const { type, nameOverride, source: { image, names }, scraped } = value
 
     return (
-      <CarouselElementContainer size='small'>
+      <CarouselElementContainer size='small' onClick={onClick}>
         <SquareImage size='small' src={image && image.sizes.large.url} />
         <PoiCarouselName>{nameOverride || names.ko || names.en || names.local}</PoiCarouselName>
         <PoiCarouselDescription>
@@ -417,12 +416,12 @@ function ListAction ({ children }) {
   )
 }
 
-export function RegionElement ({ value }) {
+export function RegionElement ({ value, onClick }) {
   if (value) {
     const { nameOverride, source: { id, names, style } } = value
 
     return (
-      <ListItem>
+      <ListItem key={id} onClick={onClick}>
         <RoundThumbnail src={style && style.backgroundImageUrl} />
         <ListLabel>{nameOverride || names.ko || names.en || names.local}</ListLabel>
         <ListAction>바로가기</ListAction>
