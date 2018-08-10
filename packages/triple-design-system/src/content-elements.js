@@ -102,8 +102,10 @@ export const SourceUrl = styled.div`
 
 export const ImageCarousel = styled.div`
   margin-top: 30px;
+  padding-right: 20px;
   white-space: nowrap;
   overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
 
   ::-webkit-scrollbar {
     display: none;
@@ -131,6 +133,7 @@ export const ImageCaption = styled(TextComponent)`
 
 export const Carousel = styled.div`
   overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
 
   ::-webkit-scrollbar {
     display: none;
@@ -354,6 +357,7 @@ export const PoiCarousel = styled.div`
   padding-right: 30px;
   white-space: nowrap;
   overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
 
   ::-webkit-scrollbar {
     display: none;
