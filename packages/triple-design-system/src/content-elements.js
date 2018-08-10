@@ -278,7 +278,7 @@ export function PoiListElement ({ value, onClick, onScrapedChange }) {
 
 export const SquareImage = styled.img`
   width: ${({ size }) => ({ small: '140px', medium: '200px' }[size || 'small'])};
-  height: 140px;
+  height: ${({ size }) => ({ small: '140px', medium: '200px' }[size || 'small'])};
   background-color: #efefef;
   border-radius: 6px;
 `
