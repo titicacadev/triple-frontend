@@ -199,7 +199,7 @@ export function Embedded ({ value: { entries } }) {
     <Carousel>
       {
         entries.map((elements, i) => (
-          <CarouselElementContainer key={i}>
+          <CarouselElementContainer key={i} size='medium'>
             {
               elements.map(({ type, value }, j) => {
                 const Element = EMBEDDED_ELEMENTS[type]
