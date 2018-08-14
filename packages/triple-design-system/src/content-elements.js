@@ -102,7 +102,6 @@ export const SourceUrl = styled.div`
 
 export const ImageCarousel = styled.div`
   margin-top: 30px;
-  padding-right: 20px;
   white-space: nowrap;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
@@ -120,6 +119,9 @@ export const ImageCarouselElementContainer = styled.div`
 
   &:first-child {
     margin-left: 20px;
+  }
+  &:last-child {
+    margin-right: 20px;
   }
 `
 
