@@ -113,15 +113,15 @@ export const ImageCarousel = styled.div`
 
 export const ImageCarouselElementContainer = styled.div`
   display: inline-block;
-  width: calc(100% - 40px);
+  width: calc(100% - 60px);
 
-  margin-left: 10px;
+  margin-left: 15px;
 
   &:first-child {
-    margin-left: 20px;
+    margin-left: 30px;
   }
   &:last-child {
-    margin-right: 20px;
+    margin-right: 30px;
   }
 `
 
@@ -159,7 +159,7 @@ export const CarouselElementContainer = styled.div`
 `
 
 export const HR1 = styled.div`
-  margin: 50px 20px;
+  margin: 50px 30px;
   height: 1px;
   background-color: #efefef;
 `
