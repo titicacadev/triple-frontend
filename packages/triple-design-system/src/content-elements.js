@@ -283,6 +283,7 @@ export const SquareImage = styled.img`
   height: ${({ size }) => ({ small: '140px', medium: '200px' }[size || 'small'])};
   background-color: #efefef;
   border-radius: 6px;
+  object-fit: cover;
 `
 
 export const FluidSquareImage = styled.div`
