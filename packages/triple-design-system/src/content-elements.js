@@ -240,8 +240,48 @@ const PoiListScrapButton = styled.div`
   background-size: 34px 34px;
 `
 
+const PoiPrice = styled.div`
+  position: absolute;
+  top: 3px;
+  right: 0;
+  padding-top: 8px;
+  padding-bottom: 7px;
+  padding-left: 17px;
+  padding-right: 17px;
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  color: #3a3a3a;
+  border-radius: 17px;
+  background-color: #fafafa;
+`
+
 function PoiType ({ children }) {
   return { attraction: '관광명소', restaurant: '음식점', hotel: '호텔' }[children]
+}
+
+function PoiListButton ({ value, onScrapedChange }) {
+  const { type, source: { pricing }, scraped } = value
+  const { nightlyPrice } = pricing || {}
+
+  if (nightlyPrice) {
+    return <PoiPrice>{`₩${nightlyPrice.toLocaleString()}`}</PoiPrice>
+  }
+
+  if (type === 'hotel') {
+    return <PoiPrice>보기</PoiPrice>
+  }
+
+  return (
+    <PoiListScrapButton
+      pressed={scraped}
+      onClick={onScrapedChange && ((e) => {
+        e.stopPropagation()
+        onScrapedChange(e, { ...value, scraped: !scraped })
+      })}
+    />
+  )
 }
 
 export const ListContainer = styled.div`
@@ -251,7 +291,7 @@ export const ListContainer = styled.div`
 
 export function PoiListElement ({ value, onClick, onScrapedChange }) {
   if (value) {
-    const { type, nameOverride, source: { image, names }, scraped } = value
+    const { type, nameOverride, source: { image, names } } = value
 
     return (
       <ListItem onClick={onClick}>
@@ -260,17 +300,7 @@ export function PoiListElement ({ value, onClick, onScrapedChange }) {
         <ListDescription>
           <PoiType>{type}</PoiType>
         </ListDescription>
-        <PoiListScrapButton
-          pressed={scraped}
-          onClick={
-            onScrapedChange && (
-              (e) => {
-                e.stopPropagation()
-                onScrapedChange(e, { ...value, scraped: !scraped })
-              }
-            )
-          }
-        />
+        <PoiListButton value={value} onScrapedChange={onScrapedChange} />
       </ListItem>
     )
   }
