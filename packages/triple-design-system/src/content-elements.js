@@ -205,6 +205,7 @@ const ListLabel = styled.div`
 `
 
 const ListHeader = styled.div`
+  line-height: 19px;
   font-family: sans-serif;
   font-size: 16px;
   font-weight: 500;
