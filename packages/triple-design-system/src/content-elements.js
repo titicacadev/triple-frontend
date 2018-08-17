@@ -211,6 +211,10 @@ const ListHeader = styled.div`
   font-weight: 500;
   color: #3a3a3a;
   margin-left: 50px;
+  margin-right: ${({ priced }) => priced ? 80 : 34}px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `
 
 const ListDescription = styled.div`
@@ -245,10 +249,9 @@ const PoiPrice = styled.div`
   position: absolute;
   top: 3px;
   right: 0;
+  width: 80px;
   padding-top: 8px;
   padding-bottom: 7px;
-  padding-left: 17px;
-  padding-right: 17px;
   text-align: center;
   font-family: sans-serif;
   font-size: 12px;
@@ -262,19 +265,30 @@ function PoiType ({ children }) {
   return { attraction: '관광명소', restaurant: '음식점', hotel: '호텔' }[children]
 }
 
-function PoiListButton ({ value, onScrapedChange }) {
-  const { type, source: { pricing }, scraped } = value
-  const { nightlyPrice } = pricing || {}
+function PoiListContent ({ value, onScrapedChange }) {
+  const { type, nameOverride, source: { names, pricing }, scraped } = value
 
-  if (nightlyPrice) {
-    return <PoiPrice>{`₩${nightlyPrice.toLocaleString()}`}</PoiPrice>
+  if (pricing) {
+    return <>
+      <ListHeader priced>{nameOverride || names.ko || names.en || names.local}</ListHeader>
+      <ListDescription>
+        <PoiType>{type}</PoiType>
+      </ListDescription>
+      <PoiPrice>
+        {
+          pricing.nightlyPrice
+          ? `₩${pricing.nightlyPrice.toLocaleString()}`
+          : '보기'
+        }
+      </PoiPrice>
+    </>
   }
 
-  if (type === 'hotel') {
-    return <PoiPrice>보기</PoiPrice>
-  }
-
-  return (
+  return <>
+    <ListHeader>{nameOverride || names.ko || names.en || names.local}</ListHeader>
+    <ListDescription>
+      <PoiType>{type}</PoiType>
+    </ListDescription>
     <PoiListScrapButton
       pressed={scraped}
       onClick={onScrapedChange && ((e) => {
@@ -282,7 +296,7 @@ function PoiListButton ({ value, onScrapedChange }) {
         onScrapedChange(e, { ...value, scraped: !scraped })
       })}
     />
-  )
+  </>
 }
 
 export const ListContainer = styled.div`
@@ -291,17 +305,13 @@ export const ListContainer = styled.div`
 `
 
 export function PoiListElement ({ value, onClick, onScrapedChange }) {
-  if (value) {
-    const { type, nameOverride, source: { image, names } } = value
+  const { source: { image } } = value
 
+  if (value) {
     return (
       <ListItem onClick={onClick}>
         <Thumbnail src={image && image.sizes.large.url} />
-        <ListHeader>{nameOverride || names.ko || names.en || names.local}</ListHeader>
-        <ListDescription>
-          <PoiType>{type}</PoiType>
-        </ListDescription>
-        <PoiListButton value={value} onScrapedChange={onScrapedChange} />
+        <PoiListContent value={value} onScrapedChange={onScrapedChange} />
       </ListItem>
     )
   }
