@@ -400,6 +400,7 @@ export function PoiCarouselElement ({ value, onClick, onScrapedChange }) {
 export const PoiCarousel = styled.div`
   margin-top: 20px;
   padding-right: 30px;
+  padding-bottom: 10px;
   white-space: nowrap;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
