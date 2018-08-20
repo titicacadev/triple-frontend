@@ -200,7 +200,7 @@ const ListLabel = styled.div`
   text-align: left center;
   font-family: sans-serif;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: bold;
   color: #3a3a3a;
 `
 
@@ -208,7 +208,7 @@ const ListHeader = styled.div`
   line-height: 19px;
   font-family: sans-serif;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: bold;
   color: #3a3a3a;
   margin-left: 50px;
   margin-right: ${({ priced }) => priced ? 80 : 34}px;
@@ -442,6 +442,7 @@ export const SimpleButton = styled.a`
   padding-right: 25px;
   font-family: sans-serif;
   font-size: 13px;
+  line-height: 13px;
   font-weight: bold;
   text-align: center;
   color: #ffffff;
