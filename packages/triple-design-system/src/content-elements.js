@@ -30,7 +30,7 @@ export const H1 = styled(TextComponent)`
   font-size: 21px;
   font-weight: bold;
   color: ${({ emphasize }) => emphasize ? '#2987f0' : '#3a3a3a'};
-  margin-top: 30px;
+  margin-top: 25px;
   margin-bottom: 20px;
 
   small {
