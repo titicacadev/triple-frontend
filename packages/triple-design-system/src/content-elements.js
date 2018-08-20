@@ -328,6 +328,7 @@ export const SquareImage = styled.img`
 `
 
 export const FluidSquareImage = styled.div`
+  position: relative;
   width: 100%;
   background-color: #efefef;
   padding-bottom: 100%;
