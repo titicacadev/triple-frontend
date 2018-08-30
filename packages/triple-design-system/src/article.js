@@ -21,11 +21,10 @@ import {
   ImageCaption,
   ListContainer,
   PoiListElement,
-  PoiCarousel,
   PoiCarouselElement,
   SimpleLink,
   SimpleButton,
-  SquareImage,
+  FluidSquareImage,
   NoteTitle,
   NoteDescription,
   RegionElement,
@@ -140,14 +139,14 @@ export function Images ({ value: { images }, onImageClick, ImageSource }) {
 
 function EmbeddedImages ({ value: { images: [image] } }) {
   if (image) {
-    return <SquareImage size='medium' src={image.sizes.large.url} />
+    return <FluidSquareImage ratio={1.35} borderRadius={6} src={image.sizes.large.url} />
   }
 
   return null
 }
 
 export function Pois ({ value: { display, pois }, onResourceClick, onResourceScrapedChange }) {
-  const Container = display === 'list' ? ListContainer : PoiCarousel
+  const Container = display === 'list' ? ListContainer : Carousel
   const Element = display === 'list' ? PoiListElement : PoiCarouselElement
 
   return (

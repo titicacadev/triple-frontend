@@ -134,22 +134,25 @@ export const ImageCaption = styled(TextComponent)`
 `
 
 export const Carousel = styled.div`
+  margin-top: 20px;
+  padding-right: 30px;
+  padding-bottom: 10px;
+  white-space: nowrap;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
 
   ::-webkit-scrollbar {
     display: none;
   }
-
-  margin: 30px 20px;
 `
 
 export const CarouselElementContainer = styled.div`
   display: inline-block;
   position: relative;
-  width: ${({ size }) => ({ small: '140px', medium: '200px' }[size || 'small'])};
+  width: ${({ size }) => ({ small: '140px', medium: '270px' }[size || 'small'])};
   font-family: sans-serif;
   vertical-align: top;
+  white-space: normal;
 
   margin-left: ${({ size }) => ({ small: '10px', medium: '15px' }[size || 'small'])};
 
@@ -331,14 +334,16 @@ export const FluidSquareImage = styled.div`
   position: relative;
   width: 100%;
   background-color: #efefef;
-  padding-bottom: 100%;
+  padding-bottom: ${({ ratio }) => 100 * 1 / (ratio || 1)}%;
   height: 0;
+  border-radius: ${({ borderRadius }) => borderRadius || 0}px;
   background-image: url(${({ src }) => src});
   background-size: cover;
   background-position: center center;
 `
 
 const PoiCarouselName = styled.div`
+  white-space: nowrap;
   font-family: sans-serif;
   font-size: 16px;
   font-weight: bold;
@@ -396,19 +401,6 @@ export function PoiCarouselElement ({ value, onClick, onScrapedChange }) {
 
   return null
 }
-
-export const PoiCarousel = styled.div`
-  margin-top: 20px;
-  padding-right: 30px;
-  padding-bottom: 10px;
-  white-space: nowrap;
-  overflow-x: scroll;
-  -webkit-overflow-scrolling: touch;
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`
 
 export const SimpleLink = styled.a`
   font-family: sans-serif;
