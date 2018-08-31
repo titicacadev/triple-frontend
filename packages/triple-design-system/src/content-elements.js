@@ -54,7 +54,7 @@ export const H3 = styled(TextComponent)`
   font-size: 16px;
   font-weight: bold;
   color: #3a3a3a;
-  margin-top: 20px;
+  margin-top: ${({ compact }) => compact ? '13px' : '20px'};
 `
 
 export const H4 = styled(TextComponent)`
@@ -68,7 +68,7 @@ export const Paragraph = styled(TextComponent)`
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
-  margin-top: 10px;
+  margin-top: ${({ compact }) => compact ? '4px' : '10px'};
   color: rgba(58, 58, 58, 0.7);
 `
 

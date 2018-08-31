@@ -166,17 +166,17 @@ export function Pois ({ value: { display, pois }, onResourceClick, onResourceScr
 }
 
 const LinksContainer = styled.div`
-  margin: 0px 30px 0 30px;
+  margin: ${({ compact }) => compact ? '0' : '0 30px'};
 
   a {
     display: inline-block;
-    margin-top: 20px;
-    margin-right: 20px;
+    margin-top: ${({ compact }) => compact ? '10px' : '20px'};
+    margin-right: ${({ compact }) => compact ? '10px' : '20px'};
   }
 `
 
 const ButtonsContainer = styled.div`
-  margin: 50px auto;
+  margin: ${({ compact }) => compact ? '0' : '50px auto'};
   text-align: center;
 `
 
