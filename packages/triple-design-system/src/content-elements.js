@@ -75,7 +75,17 @@ export const Paragraph = styled(TextComponent)`
 export const ImageFrame = styled.div`
   position: relative;
   width: 100%;
-  padding-top: ${({ frame }) => ({ small: '60%', medium: '75%', large: '100%' }[frame || 'small'])};
+  padding-top: ${({ ratio, frame }) => {
+    if (ratio) {
+      return `${100 * 1 / (ratio || 1)}%`
+    }
+
+    return {
+      small: '60%',
+      medium: '75%',
+      large: '100%'
+    }[frame || 'small']
+  }};
   overflow: hidden;
 `
 
@@ -334,9 +344,8 @@ export const FluidSquareImage = styled.div`
   position: relative;
   width: 100%;
   background-color: #efefef;
-  padding-bottom: ${({ ratio }) => 100 * 1 / (ratio || 1)}%;
+  padding-bottom: 100%;
   height: 0;
-  border-radius: ${({ borderRadius }) => borderRadius || 0}px;
   background-image: url(${({ src }) => src});
   background-size: cover;
   background-position: center center;

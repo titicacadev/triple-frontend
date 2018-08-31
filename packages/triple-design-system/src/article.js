@@ -24,7 +24,6 @@ import {
   PoiCarouselElement,
   SimpleLink,
   SimpleButton,
-  FluidSquareImage,
   NoteTitle,
   NoteDescription,
   RegionElement,
@@ -137,9 +136,25 @@ export function Images ({ value: { images }, onImageClick, ImageSource }) {
   )
 }
 
-function EmbeddedImages ({ value: { images: [image] } }) {
+function EmbeddedImages ({ value: { images: [image] }, onImageClick, ImageSource }) {
   if (image) {
-    return <FluidSquareImage ratio={1.35} borderRadius={6} src={image.sizes.large.url} />
+    return (
+      <ImageFrame
+        ratio={1.35}
+        onClick={onImageClick && ((e) => onImageClick(e, image))}
+      >
+        <Image src={image.sizes.large.url} />
+        {image.sourceUrl && (
+          <SourceUrl>
+            {
+              ImageSource
+                ? <ImageSource>{image.sourceUrl}</ImageSource>
+                : image.sourceUrl
+            }
+          </SourceUrl>
+        )}
+      </ImageFrame>
+    )
   }
 
   return null
@@ -193,7 +208,7 @@ export function Links ({ value: { display, links }, onLinkClick, ...props }) {
   )
 }
 
-export function Embedded ({ value: { entries } }) {
+export function Embedded ({ value: { entries }, onImageClick, ImageSource }) {
   return (
     <Carousel>
       {
@@ -203,7 +218,14 @@ export function Embedded ({ value: { entries } }) {
               elements.map(({ type, value }, j) => {
                 const Element = EMBEDDED_ELEMENTS[type]
 
-                return Element ? <Element key={j} value={value} /> : null
+                return Element && (
+                  <Element
+                    key={j}
+                    value={value}
+                    onImageClick={onImageClick}
+                    ImageSource={ImageSource}
+                  />
+                )
               })
             }
           </CarouselElementContainer>
