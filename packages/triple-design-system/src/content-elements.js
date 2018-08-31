@@ -9,27 +9,32 @@ export const Title = styled.h1`
   margin: 40px 30px;
 `
 
-export function LineBreak ({ children }) {
-  const Line = ({ children }) => <>{children}<br /></>
+export function LineBreak({ children }) {
+  const Line = ({ children }) => (
+    <>
+      {children}
+      <br />
+    </>
+  )
 
   return (
     <>
-      {
-        (children || '').split("\n").map((text, i) => <Line key={i}>{text}</Line>)
-      }
+      {(children || '').split('\n').map((text, i) => (
+        <Line key={i}>{text}</Line>
+      ))}
     </>
   )
 }
 
 export const TextComponent = styled.div`
-  margin: ${({ compact }) => compact ? '0' : '0 30px'};
+  margin: ${({ compact }) => (compact ? '0' : '0 30px')};
   font-family: sans-serif;
 `
 
 export const H1 = styled(TextComponent)`
   font-size: 21px;
   font-weight: bold;
-  color: ${({ emphasize }) => emphasize ? '#2987f0' : '#3a3a3a'};
+  color: ${({ emphasize }) => (emphasize ? '#2987f0' : '#3a3a3a')};
   margin-top: 25px;
   margin-bottom: 20px;
 
@@ -54,7 +59,7 @@ export const H3 = styled(TextComponent)`
   font-size: 16px;
   font-weight: bold;
   color: #3a3a3a;
-  margin-top: ${({ compact }) => compact ? '13px' : '20px'};
+  margin-top: ${({ compact }) => (compact ? '13px' : '20px')};
 `
 
 export const H4 = styled(TextComponent)`
@@ -68,7 +73,7 @@ export const Paragraph = styled(TextComponent)`
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
-  margin-top: ${({ compact }) => compact ? '4px' : '10px'};
+  margin-top: ${({ compact }) => (compact ? '4px' : '10px')};
   color: rgba(58, 58, 58, 0.7);
 `
 
@@ -77,13 +82,13 @@ export const ImageFrame = styled.div`
   width: 100%;
   padding-top: ${({ ratio, frame }) => {
     if (ratio) {
-      return `${100 * 1 / (ratio || 1)}%`
+      return `${(100 * 1) / (ratio || 1)}%`
     }
 
     return {
       small: '60%',
       medium: '75%',
-      large: '100%'
+      large: '100%',
     }[frame || 'small']
   }};
   overflow: hidden;
@@ -159,12 +164,14 @@ export const Carousel = styled.div`
 export const CarouselElementContainer = styled.div`
   display: inline-block;
   position: relative;
-  width: ${({ size }) => ({ small: '140px', medium: '270px' }[size || 'small'])};
+  width: ${({ size }) =>
+    ({ small: '140px', medium: '270px' }[size || 'small'])};
   font-family: sans-serif;
   vertical-align: top;
   white-space: normal;
 
-  margin-left: ${({ size }) => ({ small: '10px', medium: '15px' }[size || 'small'])};
+  margin-left: ${({ size }) =>
+    ({ small: '10px', medium: '15px' }[size || 'small'])};
 
   &:first-child {
     margin-left: 30px;
@@ -224,7 +231,7 @@ const ListHeader = styled.div`
   font-weight: bold;
   color: #3a3a3a;
   margin-left: 50px;
-  margin-right: ${({ priced }) => priced ? 80 : 34}px;
+  margin-right: ${({ priced }) => (priced ? 80 : 34)}px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -252,9 +259,7 @@ const PoiListScrapButton = styled.div`
   right: 0;
   width: 34px;
   height: 34px;
-  background-image: url(https://assets.triple.guide/images/${
-    ({ pressed }) => pressed ? 'btn-content-scrap-list-on@2x.png' : 'btn-content-scrap-list-off@2x.png'
-  });
+  background-image: url(https://assets.triple.guide/images/${({ pressed }) => (pressed ? 'btn-content-scrap-list-on@2x.png' : 'btn-content-scrap-list-off@2x.png')});
   background-size: 34px 34px;
 `
 
@@ -274,42 +279,58 @@ const PoiPrice = styled.div`
   background-color: #fafafa;
 `
 
-function PoiType ({ children }) {
-  return { attraction: '관광명소', restaurant: '음식점', hotel: '호텔' }[children]
+function PoiType({ children }) {
+  return { attraction: '관광명소', restaurant: '음식점', hotel: '호텔' }[
+    children
+  ]
 }
 
-function PoiListContent ({ value, onScrapedChange }) {
-  const { type, nameOverride, source: { names, pricing }, scraped } = value
+function PoiListContent({ value, onScrapedChange }) {
+  const {
+    type,
+    nameOverride,
+    source: { names, pricing },
+    scraped,
+  } = value
 
   if (pricing) {
-    return <>
-      <ListHeader priced>{nameOverride || names.ko || names.en || names.local}</ListHeader>
+    return (
+      <>
+        <ListHeader priced>
+          {nameOverride || names.ko || names.en || names.local}
+        </ListHeader>
+        <ListDescription>
+          <PoiType>{type}</PoiType>
+        </ListDescription>
+        <PoiPrice>
+          {pricing.nightlyPrice
+            ? `₩${pricing.nightlyPrice.toLocaleString()}`
+            : '보기'}
+        </PoiPrice>
+      </>
+    )
+  }
+
+  return (
+    <>
+      <ListHeader>
+        {nameOverride || names.ko || names.en || names.local}
+      </ListHeader>
       <ListDescription>
         <PoiType>{type}</PoiType>
       </ListDescription>
-      <PoiPrice>
-        {
-          pricing.nightlyPrice
-          ? `₩${pricing.nightlyPrice.toLocaleString()}`
-          : '보기'
+      <PoiListScrapButton
+        pressed={scraped}
+        onClick={
+          onScrapedChange &&
+          ((e) => {
+            e.stopPropagation()
+            onScrapedChange(e, { ...value, scraped: !scraped })
+          })
         }
-      </PoiPrice>
+      />
     </>
-  }
-
-  return <>
-    <ListHeader>{nameOverride || names.ko || names.en || names.local}</ListHeader>
-    <ListDescription>
-      <PoiType>{type}</PoiType>
-    </ListDescription>
-    <PoiListScrapButton
-      pressed={scraped}
-      onClick={onScrapedChange && ((e) => {
-        e.stopPropagation()
-        onScrapedChange(e, { ...value, scraped: !scraped })
-      })}
-    />
-  </>
+  )
 }
 
 export const ListContainer = styled.div`
@@ -317,8 +338,10 @@ export const ListContainer = styled.div`
   font-family: sans-serif;
 `
 
-export function PoiListElement ({ value, onClick, onScrapedChange }) {
-  const { source: { image } } = value
+export function PoiListElement({ value, onClick, onScrapedChange }) {
+  const {
+    source: { image },
+  } = value
 
   if (value) {
     return (
@@ -333,8 +356,10 @@ export function PoiListElement ({ value, onClick, onScrapedChange }) {
 }
 
 export const SquareImage = styled.img`
-  width: ${({ size }) => ({ small: '140px', medium: '200px' }[size || 'small'])};
-  height: ${({ size }) => ({ small: '140px', medium: '200px' }[size || 'small'])};
+  width: ${({ size }) =>
+    ({ small: '140px', medium: '200px' }[size || 'small'])};
+  height: ${({ size }) =>
+    ({ small: '140px', medium: '200px' }[size || 'small'])};
   background-color: #efefef;
   border-radius: 6px;
   object-fit: cover;
@@ -376,32 +401,36 @@ const PoiCarouselScrapButton = styled.div`
   right: 3px;
   width: 36px;
   height: 36px;
-  background-image: url(https://assets.triple.guide/images/${
-    ({ pressed }) => pressed ? 'btn-content-scrap-overlay-on@2x.png' : 'btn-content-scrap-overlay-off@2x.png'
-  });
+  background-image: url(https://assets.triple.guide/images/${({ pressed }) => (pressed ? 'btn-content-scrap-overlay-on@2x.png' : 'btn-content-scrap-overlay-off@2x.png')});
   background-size: 36px 36px;
 `
 
-export function PoiCarouselElement ({ value, onClick, onScrapedChange }) {
+export function PoiCarouselElement({ value, onClick, onScrapedChange }) {
   if (value) {
-    const { type, nameOverride, source: { image, names }, scraped } = value
+    const {
+      type,
+      nameOverride,
+      source: { image, names },
+      scraped,
+    } = value
 
     return (
-      <CarouselElementContainer size='small' onClick={onClick}>
-        <SquareImage size='small' src={image && image.sizes.large.url} />
-        <PoiCarouselName>{nameOverride || names.ko || names.en || names.local}</PoiCarouselName>
+      <CarouselElementContainer size="small" onClick={onClick}>
+        <SquareImage size="small" src={image && image.sizes.large.url} />
+        <PoiCarouselName>
+          {nameOverride || names.ko || names.en || names.local}
+        </PoiCarouselName>
         <PoiCarouselDescription>
           <PoiType>{type}</PoiType>
         </PoiCarouselDescription>
         <PoiCarouselScrapButton
           pressed={scraped}
           onClick={
-            onScrapedChange && (
-              (e) => {
-                e.stopPropagation()
-                onScrapedChange(e, { ...value, scraped: !scraped })
-              }
-            )
+            onScrapedChange &&
+            ((e) => {
+              e.stopPropagation()
+              onScrapedChange(e, { ...value, scraped: !scraped })
+            })
           }
         />
       </CarouselElementContainer>
@@ -478,7 +507,7 @@ const ListActionLabel = styled.div`
   background-color: #fafafa;
 `
 
-function ListAction ({ children }) {
+function ListAction({ children }) {
   return (
     <ListActions>
       <ListActionCell>
@@ -488,14 +517,19 @@ function ListAction ({ children }) {
   )
 }
 
-export function RegionElement ({ value, onClick }) {
+export function RegionElement({ value, onClick }) {
   if (value) {
-    const { nameOverride, source: { id, names, style } } = value
+    const {
+      nameOverride,
+      source: { id, names, style },
+    } = value
 
     return (
       <ListItem key={id} onClick={onClick}>
         <RoundThumbnail src={style && style.backgroundImageUrl} />
-        <ListLabel>{nameOverride || names.ko || names.en || names.local}</ListLabel>
+        <ListLabel>
+          {nameOverride || names.ko || names.en || names.local}
+        </ListLabel>
         <ListAction>바로가기</ListAction>
       </ListItem>
     )

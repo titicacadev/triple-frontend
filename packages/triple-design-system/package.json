@@ -4,7 +4,9 @@
   "description": "Triple Design System Library",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel src --out-dir lib"
+    "build": "babel src --out-dir lib",
+    "prettier": "prettier --write \"**/*.{js,json}\"",
+    "lint": "npm run prettier && eslint 'src/**/*.js'"
   },
   "files": [
     "lib/"
@@ -32,6 +34,7 @@
     "@babel/preset-env": "^7.0.0-beta.52",
     "@babel/preset-react": "^7.0.0-beta.52",
     "babel-plugin-styled-components": "^1.5.1",
+    "prettier": "^1.14.2",
     "react": "^16.4.2"
   },
   "dependencies": {
@@ -39,5 +42,11 @@
   },
   "peerDependencies": {
     "react": "*"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "always"
   }
 }

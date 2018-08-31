@@ -53,7 +53,7 @@ const EMBEDDED_ELEMENTS = {
   images: EmbeddedImages,
 }
 
-export function Article ({
+export function Article({
   children,
   onResourceClick,
   onResourceScrapedChange,
@@ -61,82 +61,88 @@ export function Article ({
   onLinkClick,
   imageSourceComponent,
 }) {
-  return <>
-    {
-      children.map(({ type, value }, i) => {
+  return (
+    <>
+      {children.map(({ type, value }, i) => {
         const Element = ELEMENTS[type]
 
-        return Element && (
-          <Element
-            key={i}
-            value={value}
-            onResourceClick={onResourceClick}
-            onImageClick={onImageClick}
-            onLinkClick={onLinkClick}
-            onResourceScrapedChange={onResourceScrapedChange}
-            ImageSource={imageSourceComponent}
-          />
+        return (
+          Element && (
+            <Element
+              key={i}
+              value={value}
+              onResourceClick={onResourceClick}
+              onImageClick={onImageClick}
+              onLinkClick={onLinkClick}
+              onResourceScrapedChange={onResourceScrapedChange}
+              ImageSource={imageSourceComponent}
+            />
+          )
         )
-      })
-    }
-  </>
+      })}
+    </>
+  )
 }
 
-function Heading (Component) {
+function Heading(Component) {
   return ({ value: { text, emphasize, headline }, ...props }) => (
     <Component emphasize={emphasize} {...props}>
-      {headline && <small><LineBreak>{headline}</LineBreak></small>}
-      <LineBreak>
-        {text}
-      </LineBreak>
+      {headline && (
+        <small>
+          <LineBreak>{headline}</LineBreak>
+        </small>
+      )}
+      <LineBreak>{text}</LineBreak>
     </Component>
   )
 }
 
-function Text ({ value: { text }, ...props }) {
+function Text({ value: { text }, ...props }) {
   return (
     <Paragraph {...props}>
-      <LineBreak>
-        {text}
-      </LineBreak>
+      <LineBreak>{text}</LineBreak>
     </Paragraph>
   )
 }
 
-function Compact (Component) {
+function Compact(Component) {
   return (props) => <Component compact {...props} />
 }
 
-export function Images ({ value: { images }, onImageClick, ImageSource }) {
+export function Images({ value: { images }, onImageClick, ImageSource }) {
   return (
     <ImageCarousel>
-      {
-        images.map((image, i) => (
-          <ImageCarouselElementContainer
-            key={i}
-            onClick={onImageClick && ((e) => onImageClick(e, image))}
-          >
-            <ImageFrame frame={image.frame}>
-              <Image src={image.sizes.large.url} />
-              {image.sourceUrl && (
-                <SourceUrl>
-                  {
-                    ImageSource
-                      ? <ImageSource>{image.sourceUrl}</ImageSource>
-                      : image.sourceUrl
-                  }
-                </SourceUrl>
-              )}
-            </ImageFrame>
-            <ImageCaption>{image.title}</ImageCaption>
-          </ImageCarouselElementContainer>
-        ))
-      }
+      {images.map((image, i) => (
+        <ImageCarouselElementContainer
+          key={i}
+          onClick={onImageClick && ((e) => onImageClick(e, image))}
+        >
+          <ImageFrame frame={image.frame}>
+            <Image src={image.sizes.large.url} />
+            {image.sourceUrl && (
+              <SourceUrl>
+                {ImageSource ? (
+                  <ImageSource>{image.sourceUrl}</ImageSource>
+                ) : (
+                  image.sourceUrl
+                )}
+              </SourceUrl>
+            )}
+          </ImageFrame>
+          <ImageCaption>{image.title}</ImageCaption>
+        </ImageCarouselElementContainer>
+      ))}
     </ImageCarousel>
   )
 }
 
-function EmbeddedImages ({ value: { images: [image] }, onImageClick, ImageSource }) {
+function EmbeddedImages({
+  value: {
+    images: [image],
+  },
+  onImageClick,
+  ImageSource,
+}) {
   if (image) {
     return (
       <ImageFrame
@@ -146,11 +152,11 @@ function EmbeddedImages ({ value: { images: [image] }, onImageClick, ImageSource
         <Image src={image.sizes.large.url} />
         {image.sourceUrl && (
           <SourceUrl>
-            {
-              ImageSource
-                ? <ImageSource>{image.sourceUrl}</ImageSource>
-                : image.sourceUrl
-            }
+            {ImageSource ? (
+              <ImageSource>{image.sourceUrl}</ImageSource>
+            ) : (
+              image.sourceUrl
+            )}
           </SourceUrl>
         )}
       </ImageFrame>
@@ -160,77 +166,83 @@ function EmbeddedImages ({ value: { images: [image] }, onImageClick, ImageSource
   return null
 }
 
-export function Pois ({ value: { display, pois }, onResourceClick, onResourceScrapedChange }) {
+export function Pois({
+  value: { display, pois },
+  onResourceClick,
+  onResourceScrapedChange,
+}) {
   const Container = display === 'list' ? ListContainer : Carousel
   const Element = display === 'list' ? PoiListElement : PoiCarouselElement
 
   return (
     <Container>
-      {
-        pois.map((poi) => (
-          <Element
-            key={poi.id}
-            value={poi}
-            onClick={onResourceClick && ((e) => onResourceClick(e, poi))}
-            onScrapedChange={onResourceScrapedChange}
-          />
-        ))
-      }
+      {pois.map((poi) => (
+        <Element
+          key={poi.id}
+          value={poi}
+          onClick={onResourceClick && ((e) => onResourceClick(e, poi))}
+          onScrapedChange={onResourceScrapedChange}
+        />
+      ))}
     </Container>
   )
 }
 
 const LinksContainer = styled.div`
-  margin: ${({ compact }) => compact ? '0' : '0 30px'};
+  margin: ${({ compact }) => (compact ? '0' : '0 30px')};
 
   a {
     display: inline-block;
-    margin-top: ${({ compact }) => compact ? '10px' : '20px'};
-    margin-right: ${({ compact }) => compact ? '10px' : '20px'};
+    margin-top: ${({ compact }) => (compact ? '10px' : '20px')};
+    margin-right: ${({ compact }) => (compact ? '10px' : '20px')};
   }
 `
 
 const ButtonsContainer = styled.div`
-  margin: ${({ compact }) => compact ? '0' : '50px auto'};
+  margin: ${({ compact }) => (compact ? '0' : '50px auto')};
   text-align: center;
 `
 
-export function Links ({ value: { display, links }, onLinkClick, ...props }) {
+export function Links({ value: { display, links }, onLinkClick, ...props }) {
   const Container = display === 'button' ? ButtonsContainer : LinksContainer
   const Element = display === 'button' ? SimpleButton : SimpleLink
 
   return (
     <Container {...props}>
-      {
-        links.map(({ label, href }, i) => <Element key={i} href={href} onClick={onLinkClick && ((e) => onLinkClick(e))}>{label}</Element>)
-      }
+      {links.map(({ label, href }, i) => (
+        <Element
+          key={i}
+          href={href}
+          onClick={onLinkClick && ((e) => onLinkClick(e))}
+        >
+          {label}
+        </Element>
+      ))}
     </Container>
   )
 }
 
-export function Embedded ({ value: { entries }, onImageClick, ImageSource }) {
+export function Embedded({ value: { entries }, onImageClick, ImageSource }) {
   return (
     <Carousel>
-      {
-        entries.map((elements, i) => (
-          <CarouselElementContainer key={i} size='medium'>
-            {
-              elements.map(({ type, value }, j) => {
-                const Element = EMBEDDED_ELEMENTS[type]
+      {entries.map((elements, i) => (
+        <CarouselElementContainer key={i} size="medium">
+          {elements.map(({ type, value }, j) => {
+            const Element = EMBEDDED_ELEMENTS[type]
 
-                return Element && (
-                  <Element
-                    key={j}
-                    value={value}
-                    onImageClick={onImageClick}
-                    ImageSource={ImageSource}
-                  />
-                )
-              })
-            }
-          </CarouselElementContainer>
-        ))
-      }
+            return (
+              Element && (
+                <Element
+                  key={j}
+                  value={value}
+                  onImageClick={onImageClick}
+                  ImageSource={ImageSource}
+                />
+              )
+            )
+          })}
+        </CarouselElementContainer>
+      ))}
     </Carousel>
   )
 }
@@ -242,21 +254,27 @@ const NoteContainer = styled.div`
   background-color: #fafafa;
 `
 
-export function Note ({ value: { title, body } }) {
+export function Note({ value: { title, body } }) {
   return (
     <NoteContainer>
       <NoteTitle>{title}</NoteTitle>
-      <NoteDescription><LineBreak>{body}</LineBreak></NoteDescription>
+      <NoteDescription>
+        <LineBreak>{body}</LineBreak>
+      </NoteDescription>
     </NoteContainer>
   )
 }
 
-export function Regions ({ value: { regions }, onResourceClick }) {
+export function Regions({ value: { regions }, onResourceClick }) {
   return (
     <ListContainer>
       {regions.map((region, index) => (
-        <RegionElement key={index} value={region} onClick={onResourceClick && ((e) => onResourceClick(e, region))} />)
-      )}
+        <RegionElement
+          key={index}
+          value={region}
+          onClick={onResourceClick && ((e) => onResourceClick(e, region))}
+        />
+      ))}
     </ListContainer>
   )
 }
