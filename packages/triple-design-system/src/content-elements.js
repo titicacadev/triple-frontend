@@ -109,6 +109,7 @@ export const SourceUrl = styled.div`
   bottom: 10px;
   max-width: 150px;
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
   font-family: sans-serif;
   font-size: 9px;
