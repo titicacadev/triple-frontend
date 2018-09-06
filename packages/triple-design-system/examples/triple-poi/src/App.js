@@ -7,7 +7,7 @@ export default class App extends Component {
     return (
       <div>
         <Article>
-          {sample}
+          {sample.featuredContent}
         </Article>
       </div>
     )
