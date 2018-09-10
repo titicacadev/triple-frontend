@@ -19,15 +19,14 @@ import {
   ImageCarousel,
   ImageCarouselElementContainer,
   ImageCaption,
-  ListContainer,
+  ResourceList,
   PoiListElement,
   PoiCarouselElement,
   SimpleLink,
-  SimpleButton,
-  NoteTitle,
-  NoteDescription,
+  Segment,
   RegionElement,
-} from './content-elements'
+} from '../elements/content-elements'
+import Button from '../elements/button'
 
 const ELEMENTS = {
   heading1: Heading(H1),
@@ -113,22 +112,12 @@ export function Images({ value: { images }, onImageClick, ImageSource }) {
   return (
     <ImageCarousel>
       {images.map((image, i) => (
-        <ImageCarouselElementContainer
-          key={i}
-          onClick={onImageClick && ((e) => onImageClick(e, image))}
-        >
-          <ImageFrame frame={image.frame}>
-            <Image src={image.sizes.large.url} />
-            {image.sourceUrl && (
-              <SourceUrl>
-                {ImageSource ? (
-                  <ImageSource>{image.sourceUrl}</ImageSource>
-                ) : (
-                  image.sourceUrl
-                )}
-              </SourceUrl>
-            )}
-          </ImageFrame>
+        <ImageCarouselElementContainer key={i}>
+          <ImageFrame
+            image={image}
+            onClick={onImageClick && ((e) => onImageClick(e, image))}
+            ImageSource={ImageSource}
+          />
           <ImageCaption>{image.title}</ImageCaption>
         </ImageCarouselElementContainer>
       ))}
@@ -143,27 +132,16 @@ function EmbeddedImages({
   onImageClick,
   ImageSource,
 }) {
-  if (image) {
-    return (
+  return (
+    image && (
       <ImageFrame
         ratio={1.35}
         onClick={onImageClick && ((e) => onImageClick(e, image))}
-      >
-        <Image src={image.sizes.large.url} />
-        {image.sourceUrl && (
-          <SourceUrl>
-            {ImageSource ? (
-              <ImageSource>{image.sourceUrl}</ImageSource>
-            ) : (
-              image.sourceUrl
-            )}
-          </SourceUrl>
-        )}
-      </ImageFrame>
+        image={image}
+        ImageSource={ImageSource}
+      />
     )
-  }
-
-  return null
+  )
 }
 
 export function Pois({
@@ -171,7 +149,7 @@ export function Pois({
   onResourceClick,
   onResourceScrapedChange,
 }) {
-  const Container = display === 'list' ? ListContainer : Carousel
+  const Container = display === 'list' ? ResourceList : Carousel
   const Element = display === 'list' ? PoiListElement : PoiCarouselElement
 
   return (
@@ -198,14 +176,14 @@ const LinksContainer = styled.div`
   }
 `
 
-const ButtonsContainer = styled.div`
-  margin: ${({ compact }) => (compact ? '0' : '50px auto')};
-  text-align: center;
+const ArticleButtonContainer = styled(Button.Container)`
+  padding: 50px 0;
 `
 
 export function Links({ value: { display, links }, onLinkClick, ...props }) {
-  const Container = display === 'button' ? ButtonsContainer : LinksContainer
-  const Element = display === 'button' ? SimpleButton : SimpleLink
+  const Container =
+    display === 'button' ? ArticleButtonContainer : LinksContainer
+  const Element = display === 'button' ? Button : SimpleLink
 
   return (
     <Container {...props}>
@@ -247,27 +225,36 @@ export function Embedded({ value: { entries }, onImageClick, ImageSource }) {
   )
 }
 
-const NoteContainer = styled.div`
-  margin: 20px 30px 0 30px;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: #fafafa;
+const NoteTitle = styled.div`
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.43;
+  color: #3a3a3a;
+`
+
+const NoteDescription = styled.div`
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43;
+  color: rgba(58, 58, 58, 0.7);
 `
 
 export function Note({ value: { title, body } }) {
   return (
-    <NoteContainer>
+    <Segment>
       <NoteTitle>{title}</NoteTitle>
       <NoteDescription>
         <LineBreak>{body}</LineBreak>
       </NoteDescription>
-    </NoteContainer>
+    </Segment>
   )
 }
 
 export function Regions({ value: { regions }, onResourceClick }) {
   return (
-    <ListContainer>
+    <ResourceList>
       {regions.map((region, index) => (
         <RegionElement
           key={index}
@@ -275,6 +262,6 @@ export function Regions({ value: { regions }, onResourceClick }) {
           onClick={onResourceClick && ((e) => onResourceClick(e, region))}
         />
       ))}
-    </ListContainer>
+    </ResourceList>
   )
 }

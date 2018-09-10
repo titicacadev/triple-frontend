@@ -1,2 +1,6 @@
-export * from './article'
-export * from './content-elements'
+export * from './models/article'
+export * from './elements/content-elements'
+export { default as Icon } from './elements/icon'
+export { default as List } from './elements/list'
+export { default as Button } from './elements/button'
+export { default as Accordion } from './elements/accordion'

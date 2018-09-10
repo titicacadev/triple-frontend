@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import PagerCarousel from 'nuka-carousel'
+import List from './list'
 
 export const Title = styled.h1`
   font-size: 24px;
@@ -77,9 +79,64 @@ export const Paragraph = styled(TextComponent)`
   color: rgba(58, 58, 58, 0.7);
 `
 
-export const ImageFrame = styled.div`
+const IMAGE_HEIGHT_OPTIONS = {
+  small: '200px',
+}
+
+const ImageFrameContent = ({ imageUrl, sourceUrl, ImageSource }) => (
+  <>
+    <Image src={imageUrl} />
+    {sourceUrl && (
+      <SourceUrl>
+        {ImageSource ? <ImageSource>{sourceUrl}</ImageSource> : sourceUrl}
+      </SourceUrl>
+    )}
+  </>
+)
+
+export function ImageFrame({
+  image: { height, frame, sizes, sourceUrl },
+  ratio,
+  ImageSource,
+  onClick,
+}) {
+  if (ratio || frame) {
+    return (
+      <ImageFrameWithFixedRatio ratio={ratio} frame={frame} onClick={onClick}>
+        <ImageFrameContent
+          imageUrl={sizes.large.url}
+          sourceUrl={sourceUrl}
+          ImageSource={ImageSource}
+        />
+      </ImageFrameWithFixedRatio>
+    )
+  }
+
+  return (
+    <ImageFrameWithFixedHeight
+      height={IMAGE_HEIGHT_OPTIONS[height || 'small']}
+      onClick={onClick}
+    >
+      <ImageFrameContent
+        imageUrl={sizes.large.url}
+        sourceUrl={sourceUrl}
+        ImageSource={ImageSource}
+      />
+    </ImageFrameWithFixedHeight>
+  )
+}
+
+const ImageFrameBase = styled.div`
   position: relative;
   width: 100%;
+  overflow: hidden;
+`
+
+const ImageFrameWithFixedHeight = styled(ImageFrameBase)`
+  height: ${({ height }) => height};
+`
+
+const ImageFrameWithFixedRatio = styled(ImageFrameBase)`
   padding-top: ${({ ratio, frame }) => {
     if (ratio) {
       return `${(100 * 1) / (ratio || 1)}%`
@@ -91,7 +148,6 @@ export const ImageFrame = styled.div`
       large: '100%',
     }[frame || 'small']
   }};
-  overflow: hidden;
 `
 
 export const Image = styled.img`
@@ -247,13 +303,6 @@ const ListDescription = styled.div`
   margin-left: 50px;
 `
 
-const ListItem = styled.div`
-  height: 40px;
-  clear: both;
-  margin: 20px 0;
-  position: relative;
-`
-
 const PoiListScrapButton = styled.div`
   position: absolute;
   top: 0;
@@ -334,9 +383,13 @@ function PoiListContent({ value, onScrapedChange }) {
   )
 }
 
-export const ListContainer = styled.div`
+export const ResourceList = styled(List)`
   margin: 20px 30px 0 30px;
-  font-family: sans-serif;
+`
+
+const ResourceListItem = styled(List.Item)`
+  height: 40px;
+  margin: 20px 0;
 `
 
 export function PoiListElement({ value, onClick, onScrapedChange }) {
@@ -346,10 +399,10 @@ export function PoiListElement({ value, onClick, onScrapedChange }) {
 
   if (value) {
     return (
-      <ListItem onClick={onClick}>
+      <ResourceListItem onClick={onClick}>
         <Thumbnail src={image && image.sizes.large.url} />
         <PoiListContent value={value} onScrapedChange={onScrapedChange} />
-      </ListItem>
+      </ResourceListItem>
     )
   }
 
@@ -449,72 +502,99 @@ export const SimpleLink = styled.a`
   text-decoration: underline;
 `
 
-export const NoteTitle = styled.div`
-  font-family: sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 1.43;
-  color: #3a3a3a;
-`
-
-export const NoteDescription = styled.div`
-  font-family: sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.43;
-  color: rgba(58, 58, 58, 0.7);
-`
-
-export const SimpleButton = styled.a`
-  display: inline-block;
-  padding-top: 13px;
-  padding-bottom: 13px;
-  padding-left: 25px;
-  padding-right: 25px;
-  font-family: sans-serif;
-  font-size: 13px;
-  line-height: 13px;
-  font-weight: bold;
-  text-align: center;
-  color: #ffffff;
-  border-radius: 21px;
-  background-color: #368fff;
-  text-decoration: none;
-`
-
-const ListActions = styled.div`
-  float: right;
-`
-
-const ListActionCell = styled.div`
-  height: 40px;
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-`
-
-const ListActionLabel = styled.div`
-  display: inline-block;
-  padding-top: 8px;
-  padding-bottom: 7px;
-  padding-left: 17px;
-  padding-right: 17px;
-  text-align: center;
-  font-family: sans-serif;
-  font-size: 12px;
-  font-weight: bold;
-  color: #3a3a3a;
-  border-radius: 17px;
+export const Segment = styled.div`
+  margin: 20px 30px 0 30px;
+  padding: 20px;
+  border-radius: 10px;
   background-color: #fafafa;
 `
 
-function ListAction({ children }) {
+const CurrentPage = styled.div`
+  margin: 10px;
+  padding: 5px 7px;
+  font-size: 11px;
+  line-height: 11px;
+  font-weight: bold;
+  color: #ffffff;
+  border-radius: 11px;
+  background-color: rgba(0, 0, 0, 0.2);
+`
+
+const ImagePagerContainer = styled.div``
+
+export function ImagePager({ images, onImageClick, ImageSource }) {
   return (
-    <ListActions>
-      <ListActionCell>
-        <ListActionLabel>{children}</ListActionLabel>
-      </ListActionCell>
-    </ListActions>
+    <ImagePagerContainer>
+      <PagerCarousel
+        afterSlide={(index) => {}}
+        renderTopRightControls={({ currentSlide }) => (
+          <CurrentPage>{`${currentSlide + 1} / ${images.length}`}</CurrentPage>
+        )}
+        renderBottomCenterControls={null}
+        renderCenterLeftControls={null}
+        renderCenterRightControls={null}
+      >
+        {images.map((image, i) => (
+          <ImageFrame
+            key={i}
+            image={image}
+            ImageSource={ImageSource}
+            onClick={onImageClick && ((e) => onImageClick(e, image))}
+          />
+        ))}
+      </PagerCarousel>
+    </ImagePagerContainer>
+  )
+}
+
+const LabelContent = styled.div`
+  display: inline;
+
+  * {
+    vertical-align: middle;
+  }
+`
+
+export function Label({ children }) {
+  return <LabelContent>{children}</LabelContent>
+}
+
+const RatingStar = styled.span`
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background-size: 16px 16px;
+  background-image: url(http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/${({
+      full,
+      half,
+    }) => {
+      if (full) {
+        return 'img-review-star-full@2x.png'
+      } else if (half) {
+        return 'img-review-star-half@2x.png'
+      }
+
+      return 'img-review-star-empty@2x.png'
+    }});
+`
+
+export function Rating({ score }) {
+  const full = Math.floor(score)
+  const half = Math.floor((score - full) * 2)
+  const empty = 5 - full - half
+
+  return (
+    <>
+      {[...Array(full)].map((_, i) => (
+        <RatingStar key={`full-${i}`} full />
+      ))}
+      {[...Array(half)].map((_, i) => (
+        <RatingStar key={`half-${i}`} half />
+      ))}
+      {[...Array(empty)].map((_, i) => (
+        <RatingStar key={`empty-${i}`} />
+      ))}
+    </>
   )
 }
 
@@ -526,13 +606,13 @@ export function RegionElement({ value, onClick }) {
     } = value
 
     return (
-      <ListItem key={id} onClick={onClick}>
+      <ResourceListItem key={id} onClick={onClick}>
         <RoundThumbnail src={style && style.backgroundImageUrl} />
         <ListLabel>
           {nameOverride || names.ko || names.en || names.local}
         </ListLabel>
-        <ListAction>바로가기</ListAction>
-      </ListItem>
+        <List.Action>바로가기</List.Action>
+      </ResourceListItem>
     )
   }
 
