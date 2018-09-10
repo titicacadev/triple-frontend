@@ -77,6 +77,14 @@ export const Paragraph = styled(TextComponent)`
   line-height: 1.5;
   margin-top: ${({ compact }) => (compact ? '4px' : '10px')};
   color: rgba(58, 58, 58, 0.7);
+
+  p {
+    margin-top: 1.5rem;
+  }
+
+  p:first {
+    margin: 0;
+  }
 `
 
 const IMAGE_HEIGHT_OPTIONS = {
