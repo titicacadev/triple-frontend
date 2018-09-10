@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
-import { Article } from '@titicaca/triple-design-system/src'
+import { TripleDocument } from '@titicaca/triple-design-system/src'
 import sample from './sample.json'
 
 export default class App extends Component {
   render() {
     return (
       <div>
-        <Article>
-          {sample.body}
-        </Article>
+        <TripleDocument>{sample.body}</TripleDocument>
       </div>
     )
   }

@@ -13,7 +13,7 @@ import {
   Accordion,
   Segment,
   List,
-  Article,
+  TripleDocument,
 } from '@titicaca/triple-design-system/src'
 import sample from './sample.json'
 import humps from 'humps'
@@ -187,7 +187,7 @@ export default class App extends Component {
         <Paragraph>
           <LineBreak>{feeComment}</LineBreak>
         </Paragraph>
-        <Article>{featuredContent}</Article>
+        <TripleDocument>{featuredContent}</TripleDocument>
       </div>
     )
   }

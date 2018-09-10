@@ -52,7 +52,7 @@ const EMBEDDED_ELEMENTS = {
   images: EmbeddedImages,
 }
 
-export function Article({
+function TripleDocument({
   children,
   onResourceClick,
   onResourceScrapedChange,
@@ -108,7 +108,7 @@ function Compact(Component) {
   return (props) => <Component compact {...props} />
 }
 
-export function Images({ value: { images }, onImageClick, ImageSource }) {
+function Images({ value: { images }, onImageClick, ImageSource }) {
   return (
     <ImageCarousel>
       {images.map((image, i) => (
@@ -144,7 +144,7 @@ function EmbeddedImages({
   )
 }
 
-export function Pois({
+function Pois({
   value: { display, pois },
   onResourceClick,
   onResourceScrapedChange,
@@ -176,13 +176,13 @@ const LinksContainer = styled.div`
   }
 `
 
-const ArticleButtonContainer = styled(Button.Container)`
+const DocumentButtonContainer = styled(Button.Container)`
   padding: 50px 0;
 `
 
-export function Links({ value: { display, links }, onLinkClick, ...props }) {
+function Links({ value: { display, links }, onLinkClick, ...props }) {
   const Container =
-    display === 'button' ? ArticleButtonContainer : LinksContainer
+    display === 'button' ? DocumentButtonContainer : LinksContainer
   const Element = display === 'button' ? Button : SimpleLink
 
   return (
@@ -200,7 +200,7 @@ export function Links({ value: { display, links }, onLinkClick, ...props }) {
   )
 }
 
-export function Embedded({ value: { entries }, onImageClick, ImageSource }) {
+function Embedded({ value: { entries }, onImageClick, ImageSource }) {
   return (
     <Carousel>
       {entries.map((elements, i) => (
@@ -241,7 +241,7 @@ const NoteDescription = styled.div`
   color: rgba(58, 58, 58, 0.7);
 `
 
-export function Note({ value: { title, body } }) {
+function Note({ value: { title, body } }) {
   return (
     <Segment>
       <NoteTitle>{title}</NoteTitle>
@@ -252,7 +252,7 @@ export function Note({ value: { title, body } }) {
   )
 }
 
-export function Regions({ value: { regions }, onResourceClick }) {
+function Regions({ value: { regions }, onResourceClick }) {
   return (
     <ResourceList>
       {regions.map((region, index) => (
@@ -265,3 +265,12 @@ export function Regions({ value: { regions }, onResourceClick }) {
     </ResourceList>
   )
 }
+
+TripleDocument.Pois = Pois
+TripleDocument.Images = Images
+TripleDocument.Regions = Regions
+TripleDocument.Links = Links
+TripleDocument.Embedded = Embedded
+TripleDocument.Note = Note
+
+export default TripleDocument
