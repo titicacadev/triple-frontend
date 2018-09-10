@@ -34,6 +34,7 @@
     "@babel/preset-env": "^7.0.0-beta.52",
     "@babel/preset-react": "^7.0.0-beta.52",
     "babel-plugin-styled-components": "^1.5.1",
+    "eslint-plugin-react": "^7.11.1",
     "prettier": "^1.14.2",
     "react": "^16.4.2"
   },
