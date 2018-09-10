@@ -526,7 +526,6 @@ export function ImagePager({ images, onImageClick, ImageSource }) {
   return (
     <ImagePagerContainer>
       <PagerCarousel
-        afterSlide={(index) => {}}
         renderTopRightControls={({ currentSlide }) => (
           <CurrentPage>{`${currentSlide + 1} / ${images.length}`}</CurrentPage>
         )}

@@ -13,8 +13,6 @@ import {
   Paragraph,
   Carousel,
   CarouselElementContainer,
-  Image,
-  SourceUrl,
   ImageFrame,
   ImageCarousel,
   ImageCarouselElementContainer,
