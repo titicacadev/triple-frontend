@@ -85,6 +85,13 @@ export const Paragraph = styled(TextComponent)`
   p:first {
     margin: 0;
   }
+
+  a {
+    font-size: 15px;
+    font-weight: bold;
+    color: #2987f0;
+    text-decoration: underline;
+  }
 `
 
 const IMAGE_HEIGHT_OPTIONS = {
