@@ -94,7 +94,13 @@ function Heading(Component) {
   )
 }
 
-function Text({ value: { text }, ...props }) {
+function Text({ value: { text, rawHTML }, ...props }) {
+  if (rawHTML) {
+    return (
+      <Paragraph {...props} dangerouslySetInnerHTML={{ __html: rawHTML }} />
+    )
+  }
+
   return (
     <Paragraph {...props}>
       <LineBreak>{text}</LineBreak>
