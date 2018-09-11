@@ -11,89 +11,6 @@ export const Title = styled.h1`
   margin: 40px 30px;
 `
 
-export function LineBreak({ children }) {
-  const Line = ({ children }) => (
-    <>
-      {children}
-      <br />
-    </>
-  )
-
-  return (
-    <>
-      {(children || '').split('\n').map((text, i) => (
-        <Line key={i}>{text}</Line>
-      ))}
-    </>
-  )
-}
-
-export const TextComponent = styled.div`
-  margin: ${({ compact }) => (compact ? '0' : '0 30px')};
-  font-family: sans-serif;
-`
-
-export const H1 = styled(TextComponent)`
-  font-size: 21px;
-  font-weight: bold;
-  color: ${({ emphasize }) => (emphasize ? '#2987f0' : '#3a3a3a')};
-  margin-top: 25px;
-  margin-bottom: 20px;
-
-  small {
-    display: block;
-    font-size: 13px;
-    font-weight: bold;
-    color: #2987f0;
-    margin-bottom: 3px;
-  }
-`
-
-export const H2 = styled(TextComponent)`
-  font-size: 19px;
-  font-weight: 500;
-  color: #3a3a3a;
-  margin-top: 20px;
-  margin-bottom: 20px;
-`
-
-export const H3 = styled(TextComponent)`
-  font-size: 16px;
-  font-weight: bold;
-  color: #3a3a3a;
-  margin-top: ${({ compact }) => (compact ? '13px' : '20px')};
-`
-
-export const H4 = styled(TextComponent)`
-  font-size: 16px;
-  font-weight: bold;
-  color: #2987f0;
-  margin-top: 20px;
-`
-
-export const Paragraph = styled(TextComponent)`
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.5;
-  margin-top: ${({ compact }) => (compact ? '4px' : '10px')};
-  color: rgba(58, 58, 58, 0.7);
-
-  p {
-    margin: 1.5rem 0 0 0;
-  }
-
-  p:first-of-type {
-    margin-top: 0;
-  }
-
-  a {
-    font-size: 15px;
-    font-weight: bold;
-    color: #2987f0;
-    text-decoration: underline;
-  }
-`
-
 const IMAGE_HEIGHT_OPTIONS = {
   small: '200px',
 }
@@ -212,8 +129,9 @@ export const ImageCarouselElementContainer = styled.div`
   }
 `
 
-export const ImageCaption = styled(TextComponent)`
+export const ImageCaption = styled.div`
   margin-top: 8px;
+  font-family: sans-serif;
   font-size: 13px;
   font-weight: 500;
   text-align: center;

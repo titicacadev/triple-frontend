@@ -2,15 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 
 import {
-  LineBreak,
-  H1,
-  H2,
-  H3,
-  H4,
   HR1,
   HR2,
   HR3,
-  Paragraph,
   Carousel,
   CarouselElementContainer,
   ImageFrame,
@@ -25,13 +19,43 @@ import {
   RegionElement,
 } from '../elements/content-elements'
 import Button from '../elements/button'
+import Text from '../elements/text'
+import { H1, H2, H3, H4, Paragraph } from './text'
+
+const MH1 = ({ children, ...props }) => (
+  <H1 margin={{ top: 25, bottom: 20, left: 30, right: 30 }} {...props}>
+    {children}
+  </H1>
+)
+
+const MH2 = ({ children, ...props }) => (
+  <H2 margin={{ top: 20, bottom: 20, left: 30, right: 30 }} {...props}>
+    {children}
+  </H2>
+)
+
+const MH3 = ({ compact, children, ...props }) => (
+  <H3
+    margin={compact ? { top: 13 } : { top: 20, left: 30, right: 30 }}
+    compact={compact}
+    {...props}
+  >
+    {children}
+  </H3>
+)
+
+const MH4 = ({ children, ...props }) => (
+  <H4 margin={{ top: 20, left: 30, right: 30 }} {...props}>
+    {children}
+  </H4>
+)
 
 const ELEMENTS = {
-  heading1: Heading(H1),
-  heading2: Heading(H2),
-  heading3: Heading(H3),
-  heading4: Heading(H4),
-  text: Text,
+  heading1: Heading(MH1),
+  heading2: Heading(MH2),
+  heading3: Heading(MH3),
+  heading4: Heading(MH4),
+  text: TextElement,
   images: Images,
   hr1: HR1,
   hr2: HR2,
@@ -44,13 +68,13 @@ const ELEMENTS = {
 }
 
 const EMBEDDED_ELEMENTS = {
-  heading3: Compact(Heading(H3)),
-  text: Compact(Text),
+  heading3: Compact(Heading(MH3)),
+  text: Compact(TextElement),
   links: Compact(Links),
   images: EmbeddedImages,
 }
 
-function TripleDocument({
+export function TripleDocument({
   children,
   onResourceClick,
   onResourceScrapedChange,
@@ -83,27 +107,29 @@ function TripleDocument({
 
 function Heading(Component) {
   return ({ value: { text, emphasize, headline }, ...props }) => (
-    <Component emphasize={emphasize} {...props}>
-      {headline && (
-        <small>
-          <LineBreak>{headline}</LineBreak>
-        </small>
-      )}
-      <LineBreak>{text}</LineBreak>
+    <Component emphasize={emphasize} headline={headline} {...props}>
+      {text}
     </Component>
   )
 }
 
-function Text({ value: { text, rawHTML }, ...props }) {
+function TextElement({ value: { text, rawHTML }, compact, ...props }) {
   if (rawHTML) {
     return (
-      <Paragraph {...props} dangerouslySetInnerHTML={{ __html: rawHTML }} />
+      <Text.Html
+        margin={compact ? { top: 4 } : { top: 10, left: 30, right: 30 }}
+        dangerouslySetInnerHTML={{ __html: rawHTML }}
+        {...props}
+      />
     )
   }
 
   return (
-    <Paragraph {...props}>
-      <LineBreak>{text}</LineBreak>
+    <Paragraph
+      margin={compact ? { top: 4 } : { top: 10, left: 30, right: 30 }}
+      {...props}
+    >
+      {text}
     </Paragraph>
   )
 }
@@ -148,7 +174,7 @@ function EmbeddedImages({
   )
 }
 
-function Pois({
+export function Pois({
   value: { display, pois },
   onResourceClick,
   onResourceScrapedChange,
@@ -229,29 +255,15 @@ function Embedded({ value: { entries }, onImageClick, ImageSource }) {
   )
 }
 
-const NoteTitle = styled.div`
-  font-family: sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 1.43;
-  color: #3a3a3a;
-`
-
-const NoteDescription = styled.div`
-  font-family: sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.43;
-  color: rgba(58, 58, 58, 0.7);
-`
-
 function Note({ value: { title, body } }) {
   return (
     <Segment>
-      <NoteTitle>{title}</NoteTitle>
-      <NoteDescription>
-        <LineBreak>{body}</LineBreak>
-      </NoteDescription>
+      <Text bold size="small" color="gray" alpha={1} lineHeight={1.43}>
+        {title}
+      </Text>
+      <Text size="small" color="gray" alpha={0.7} lineHeight={1.43}>
+        {body}
+      </Text>
     </Segment>
   )
 }
@@ -269,12 +281,3 @@ function Regions({ value: { regions }, onResourceClick }) {
     </ResourceList>
   )
 }
-
-TripleDocument.Pois = Pois
-TripleDocument.Images = Images
-TripleDocument.Regions = Regions
-TripleDocument.Links = Links
-TripleDocument.Embedded = Embedded
-TripleDocument.Note = Note
-
-export default TripleDocument

@@ -68,11 +68,7 @@ function WeeklyBusinessHours({ readableBusinessHours }) {
     .join('\n')
     .value()
 
-  return (
-    <Paragraph>
-      <LineBreak>{description}</LineBreak>
-    </Paragraph>
-  )
+  return <Paragraph>{description}</Paragraph>
 }
 
 class BusinessHours extends Component {
@@ -184,9 +180,7 @@ export default class App extends Component {
         />
         <H3>이용료</H3>
         <H4>{fee ? '유료' : '무료'}</H4>
-        <Paragraph>
-          <LineBreak>{feeComment}</LineBreak>
-        </Paragraph>
+        <Paragraph>{feeComment}</Paragraph>
         <TripleDocument>{featuredContent}</TripleDocument>
       </div>
     )
