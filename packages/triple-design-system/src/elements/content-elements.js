@@ -79,11 +79,11 @@ export const Paragraph = styled(TextComponent)`
   color: rgba(58, 58, 58, 0.7);
 
   p {
-    margin-top: 1.5rem;
+    margin: 1.5rem 0 0 0;
   }
 
-  p:first {
-    margin: 0;
+  p:first-of-type {
+    margin-top: 0;
   }
 
   a {
