@@ -1,18 +1,36 @@
 import React from 'react'
+import styled, { css } from 'styled-components'
 import Text from '../elements/text'
 
-export function H1({ headline, emphasize, children, ...props }) {
+const Margin = styled.div`
+  ${({ margin }) =>
+    margin &&
+    css`
+      margin-top: ${margin.top || 0}px;
+      margin-bottom: ${margin.bottom || 0}px;
+      margin-left: ${margin.left || 0}px;
+      margin-right: ${margin.right || 0}px;
+    `};
+`
+
+export function H1({ headline, emphasize, margin, children, ...props }) {
   return (
-    <>
+    <Margin margin={margin}>
       {headline && (
         <Text bold size="tiny" color="blue" alpha={1} margin={{ bottom: 3 }}>
           {headline}
         </Text>
       )}
-      <Text bold size="huge" color={emphasize ? 'blue' : 'gray'} {...props}>
+      <Text
+        bold
+        size="huge"
+        color={emphasize ? 'blue' : 'gray'}
+        alpha={1}
+        {...props}
+      >
         {children}
       </Text>
-    </>
+    </Margin>
   )
 }
 
