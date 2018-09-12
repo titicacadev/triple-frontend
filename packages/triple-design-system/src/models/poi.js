@@ -13,13 +13,9 @@ const TYPE_NAMES = {
 }
 
 export class PoiListElement extends PureComponent {
-  constructor() {
-    super()
+  state = { actionButtonWidth: 0 }
 
-    this.state = { actionButtonWidth: 0 }
-  }
-
-  setActionButtonRef(ref) {
+  setActionButtonRef = (ref) => {
     if (ref && ref.children[0]) {
       const {
         state: { actionButtonWidth },
@@ -65,9 +61,7 @@ export class PoiListElement extends PureComponent {
           {TYPE_NAMES[type]}
         </Text>
         {actionButtonElement && (
-          <div ref={(ref) => this.setActionButtonRef(ref)}>
-            {actionButtonElement}
-          </div>
+          <div ref={this.setActionButtonRef}>{actionButtonElement}</div>
         )}
       </ResourceListItem>
     )

@@ -72,11 +72,7 @@ function WeeklyBusinessHours({ readableBusinessHours }) {
 }
 
 class BusinessHours extends Component {
-  constructor() {
-    super()
-
-    this.state = { open: false }
-  }
+  state = { open: false }
 
   render() {
     const {
