@@ -57,6 +57,14 @@ const TextBase = styled.div`
       margin-left: ${margin.left || 0}px;
       margin-right: ${margin.right || 0}px;
     `};
+
+  ${({ ellipsis }) =>
+    ellipsis &&
+    css`
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    `};
 `
 
 function Text({ children, ...props }) {

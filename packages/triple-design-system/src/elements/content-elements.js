@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import PagerCarousel from 'nuka-carousel'
 import List from './list'
 
@@ -186,14 +186,6 @@ export const HR3 = styled.div`
   background-color: transparent;
 `
 
-const Thumbnail = styled.img`
-  width: 40px;
-  height: 40px;
-  float: left;
-  background-color: #efefef;
-  border-radius: 2px;
-`
-
 const RoundThumbnail = styled.img`
   width: 40px;
   height: 40px;
@@ -214,142 +206,34 @@ const ListLabel = styled.div`
   color: #3a3a3a;
 `
 
-const ListHeader = styled.div`
-  line-height: 19px;
-  font-family: sans-serif;
-  font-size: 16px;
-  font-weight: bold;
-  color: #3a3a3a;
-  margin-left: 50px;
-  margin-right: ${({ priced }) => (priced ? 80 : 34)}px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-`
-
-const ListDescription = styled.div`
-  font-family: sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(58, 58, 58, 0.7);
-  margin-top: 4px;
-  margin-left: 50px;
-`
-
-const PoiListScrapButton = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 34px;
-  height: 34px;
-  background-image: url(https://assets.triple.guide/images/${({ pressed }) => (pressed ? 'btn-content-scrap-list-on@2x.png' : 'btn-content-scrap-list-off@2x.png')});
-  background-size: 34px 34px;
-`
-
-const PoiPrice = styled.div`
-  position: absolute;
-  top: 3px;
-  right: 0;
-  width: 80px;
-  padding-top: 8px;
-  padding-bottom: 7px;
-  text-align: center;
-  font-family: sans-serif;
-  font-size: 12px;
-  font-weight: bold;
-  color: #3a3a3a;
-  border-radius: 17px;
-  background-color: #fafafa;
-`
-
-function PoiType({ children }) {
-  return { attraction: '관광명소', restaurant: '음식점', hotel: '호텔' }[
-    children
-  ]
-}
-
-function PoiListContent({ value, onScrapedChange }) {
-  const {
-    type,
-    nameOverride,
-    source: { names, pricing },
-    scraped,
-  } = value
-
-  if (pricing) {
-    return (
-      <>
-        <ListHeader priced>
-          {nameOverride || names.ko || names.en || names.local}
-        </ListHeader>
-        <ListDescription>
-          <PoiType>{type}</PoiType>
-        </ListDescription>
-        <PoiPrice>
-          {pricing.nightlyPrice
-            ? `₩${pricing.nightlyPrice.toLocaleString()}`
-            : '보기'}
-        </PoiPrice>
-      </>
-    )
-  }
-
-  return (
-    <>
-      <ListHeader>
-        {nameOverride || names.ko || names.en || names.local}
-      </ListHeader>
-      <ListDescription>
-        <PoiType>{type}</PoiType>
-      </ListDescription>
-      <PoiListScrapButton
-        pressed={scraped}
-        onClick={
-          onScrapedChange &&
-          ((e) => {
-            e.stopPropagation()
-            onScrapedChange(e, { ...value, scraped: !scraped })
-          })
-        }
-      />
-    </>
-  )
-}
-
 export const ResourceList = styled(List)`
   margin: 20px 30px 0 30px;
 `
 
-const ResourceListItem = styled(List.Item)`
+export const ResourceListItem = styled(List.Item)`
   height: 40px;
   margin: 20px 0;
 `
 
-export function PoiListElement({ value, onClick, onScrapedChange }) {
-  const {
-    source: { image },
-  } = value
-
-  if (value) {
-    return (
-      <ResourceListItem onClick={onClick}>
-        <Thumbnail src={image && image.sizes.large.url} />
-        <PoiListContent value={value} onScrapedChange={onScrapedChange} />
-      </ResourceListItem>
-    )
-  }
-
-  return null
-}
-
 export const SquareImage = styled.img`
-  width: ${({ size }) =>
-    ({ small: '140px', medium: '200px' }[size || 'small'])};
-  height: ${({ size }) =>
-    ({ small: '140px', medium: '200px' }[size || 'small'])};
+  width: ${({ size = 'medium' }) => ({ small: 40, medium: 140 }[size])}px;
+  height: ${({ size = 'medium' }) => ({ small: 40, medium: 140 }[size])}px;
+  border-radius: ${({ size = 'medium' }) => ({ small: 2, medium: 6 }[size])}px;
+
   background-color: #efefef;
-  border-radius: 6px;
   object-fit: cover;
+
+  ${({ borderRadius }) =>
+    borderRadius &&
+    css`
+      border-radius: ${borderRadius}px;
+    `};
+
+  ${({ floated }) =>
+    floated &&
+    css`
+      float: ${floated};
+    `};
 `
 
 export const FluidSquareImage = styled.div`
@@ -362,70 +246,6 @@ export const FluidSquareImage = styled.div`
   background-size: cover;
   background-position: center center;
 `
-
-const PoiCarouselName = styled.div`
-  white-space: nowrap;
-  font-family: sans-serif;
-  font-size: 16px;
-  font-weight: bold;
-  color: #3a3a3a;
-  margin-top: 8px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-`
-
-const PoiCarouselDescription = styled.div`
-  font-family: sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(58, 58, 58, 0.7);
-  margin-top: 2px;
-`
-
-const PoiCarouselScrapButton = styled.div`
-  position: absolute;
-  top: 3px;
-  right: 3px;
-  width: 36px;
-  height: 36px;
-  background-image: url(https://assets.triple.guide/images/${({ pressed }) => (pressed ? 'btn-content-scrap-overlay-on@2x.png' : 'btn-content-scrap-overlay-off@2x.png')});
-  background-size: 36px 36px;
-`
-
-export function PoiCarouselElement({ value, onClick, onScrapedChange }) {
-  if (value) {
-    const {
-      type,
-      nameOverride,
-      source: { image, names },
-      scraped,
-    } = value
-
-    return (
-      <CarouselElementContainer size="small" onClick={onClick}>
-        <SquareImage size="small" src={image && image.sizes.large.url} />
-        <PoiCarouselName>
-          {nameOverride || names.ko || names.en || names.local}
-        </PoiCarouselName>
-        <PoiCarouselDescription>
-          <PoiType>{type}</PoiType>
-        </PoiCarouselDescription>
-        <PoiCarouselScrapButton
-          pressed={scraped}
-          onClick={
-            onScrapedChange &&
-            ((e) => {
-              e.stopPropagation()
-              onScrapedChange(e, { ...value, scraped: !scraped })
-            })
-          }
-        />
-      </CarouselElementContainer>
-    )
-  }
-
-  return null
-}
 
 export const SimpleLink = styled.a`
   font-family: sans-serif;

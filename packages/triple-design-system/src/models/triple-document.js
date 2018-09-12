@@ -12,8 +12,6 @@ import {
   ImageCarouselElementContainer,
   ImageCaption,
   ResourceList,
-  PoiListElement,
-  PoiCarouselElement,
   SimpleLink,
   Segment,
   RegionElement,
@@ -21,6 +19,7 @@ import {
 import Button from '../elements/button'
 import Text from '../elements/text'
 import { H1, H2, H3, H4, Paragraph } from './text'
+import { PoiListElement, PoiCarouselElement } from './poi'
 
 const MH1 = ({ children, ...props }) => (
   <H1 margin={{ top: 25, bottom: 20, left: 30, right: 30 }} {...props}>
@@ -174,22 +173,116 @@ function EmbeddedImages({
   )
 }
 
+const PoiListScrapButton = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 34px;
+  height: 34px;
+  background-image: url(https://assets.triple.guide/images/${({ pressed }) => (pressed ? 'btn-content-scrap-list-on@2x.png' : 'btn-content-scrap-list-off@2x.png')});
+  background-size: 34px 34px;
+`
+
+const PoiPrice = styled.div`
+  position: absolute;
+  top: 3px;
+  right: 0;
+  width: 80px;
+  padding-top: 8px;
+  padding-bottom: 7px;
+  text-align: center;
+  border-radius: 17px;
+  background-color: #fafafa;
+`
+
+function PoiListActionButton({ poi, onScrapedChange }) {
+  const {
+    source: { pricing },
+    scraped,
+  } = poi
+
+  if (pricing) {
+    const { nightlyPrice } = pricing
+
+    return (
+      <PoiPrice>
+        <Text bold size="mini" alpha={1}>
+          {nightlyPrice ? `₩${nightlyPrice.toLocaleString()}` : '보기'}
+        </Text>
+      </PoiPrice>
+    )
+  }
+
+  return (
+    <PoiListScrapButton
+      pressed={scraped}
+      onClick={
+        onScrapedChange &&
+        ((e) => {
+          e.stopPropagation()
+          onScrapedChange(e, { ...poi, scraped: !scraped })
+        })
+      }
+    />
+  )
+}
+
+const PoiCarouselScrapButton = styled.div`
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 36px;
+  height: 36px;
+  background-image: url(https://assets.triple.guide/images/${({ pressed }) => (pressed ? 'btn-content-scrap-overlay-on@2x.png' : 'btn-content-scrap-overlay-off@2x.png')});
+  background-size: 36px 36px;
+`
+
+function PoiCarouselActionButton({
+  poi: { scraped, ...poi },
+  onScrapedChange,
+}) {
+  return (
+    <PoiCarouselScrapButton
+      pressed={scraped}
+      onClick={
+        onScrapedChange &&
+        ((e) => {
+          e.stopPropagation()
+          onScrapedChange(e, { ...poi, scraped: !scraped })
+        })
+      }
+    />
+  )
+}
+
 export function Pois({
   value: { display, pois },
+  actionButtonElement,
   onResourceClick,
   onResourceScrapedChange,
 }) {
   const Container = display === 'list' ? ResourceList : Carousel
   const Element = display === 'list' ? PoiListElement : PoiCarouselElement
+  const ActionButton =
+    display === 'list' ? PoiListActionButton : PoiCarouselActionButton
 
   return (
     <Container>
       {pois.map((poi) => (
         <Element
           key={poi.id}
-          value={poi}
+          poi={poi}
           onClick={onResourceClick && ((e) => onResourceClick(e, poi))}
-          onScrapedChange={onResourceScrapedChange}
+          actionButtonElement={
+            actionButtonElement || actionButtonElement === null ? (
+              actionButtonElement
+            ) : (
+              <ActionButton
+                poi={poi}
+                onScrapedChange={onResourceScrapedChange}
+              />
+            )
+          }
         />
       ))}
     </Container>
