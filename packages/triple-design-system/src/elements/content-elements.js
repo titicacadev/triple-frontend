@@ -3,14 +3,6 @@ import styled, { css } from 'styled-components'
 import PagerCarousel from 'nuka-carousel'
 import List from './list'
 
-export const Title = styled.h1`
-  font-size: 24px;
-  font-weight: bold;
-  color: #3a3a3a;
-  font-family: sans-serif;
-  margin: 40px 30px;
-`
-
 const IMAGE_HEIGHT_OPTIONS = {
   small: '200px',
 }

@@ -9,6 +9,7 @@ const SIZES = {
   large: '16px',
   big: '19px',
   huge: '21px',
+  massive: '24px',
 }
 
 const COLORS = {
@@ -75,20 +76,8 @@ function Text({ children, ...props }) {
   )
 }
 
-const Html = styled.div`
-  font-size: 16px;
-  font-weight: 500;
+const Html = styled(TextBase)`
   line-height: 1.5;
-  color: rgba(58, 58, 58, 0.7);
-
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
-    `};
 
   p {
     margin: 1.5rem 0 0 0;
@@ -106,6 +95,15 @@ const Html = styled.div`
   }
 `
 
+function Title({ children, ...props }) {
+  return (
+    <Text as="h1" bold size="massive" alpha={1} {...props}>
+      {children}
+    </Text>
+  )
+}
+
 Text.Html = Html
+Text.Title = Title
 
 export default Text

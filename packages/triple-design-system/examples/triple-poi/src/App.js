@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import {
-  Title,
   H3,
   H4,
   Paragraph,
-  LineBreak,
   Rating,
+  Text,
   Icon,
   Label,
   ImagePager,
@@ -148,7 +147,7 @@ export default class App extends Component {
 
     return (
       <div>
-        <Title>{names.ko}</Title>
+        <Text.Title>{names.ko}</Text.Title>
         <div>{names.local}</div>
         <Label>
           <Rating score={reviewPoint} />
