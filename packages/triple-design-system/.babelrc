@@ -3,8 +3,8 @@
   "plugins": [
     [
       "styled-components",
-      { "ssr": true, "displayName": true, "preprocess": false },
-      "@babel/plugin-proposal-class-properties"
-    ]
+      { "ssr": true, "displayName": true, "preprocess": false }
+    ],
+    ["@babel/plugin-proposal-class-properties"]
   ]
 }

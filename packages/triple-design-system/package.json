@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-design-system",
-  "version": "0.1.4",
+  "version": "0.2.0-rc.1",
   "description": "Triple Design System Library",
   "main": "lib/index.js",
   "scripts": {
