@@ -95,13 +95,21 @@ const Html = styled(TextBase)`
   }
 `
 
-function Title({ children, ...props }) {
-  return (
-    <Text as="h1" bold size="massive" alpha={1} {...props}>
-      {children}
-    </Text>
-  )
-}
+const Title = styled.h1`
+  font-size: 24px;
+  font-weight: bold;
+  color: #3a3a3a;
+  font-family: sans-serif;
+
+  ${({ margin }) =>
+    margin &&
+    css`
+      margin-top: ${margin.top || 0}px;
+      margin-bottom: ${margin.bottom || 0}px;
+      margin-left: ${margin.left || 0}px;
+      margin-right: ${margin.right || 0}px;
+    `};
+`
 
 Text.Html = Html
 Text.Title = Title
