@@ -247,13 +247,6 @@ export const SimpleLink = styled.a`
   text-decoration: underline;
 `
 
-export const Segment = styled.div`
-  margin: 20px 30px 0 30px;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: #fafafa;
-`
-
 const CurrentPage = styled.div`
   margin: 10px;
   padding: 5px 7px;

@@ -13,9 +13,9 @@ import {
   ImageCaption,
   ResourceList,
   SimpleLink,
-  Segment,
   RegionElement,
 } from '../elements/content-elements'
+import Segment from '../elements/segment'
 import Button from '../elements/button'
 import Text from '../elements/text'
 import { H1, H2, H3, H4, Paragraph } from './text'
@@ -350,7 +350,7 @@ function Embedded({ value: { entries }, onImageClick, ImageSource }) {
 
 function Note({ value: { title, body } }) {
   return (
-    <Segment>
+    <Segment margin={{ top: 20, left: 30, right: 30 }}>
       <Text bold size="small" color="gray" alpha={1} lineHeight={1.43}>
         {title}
       </Text>

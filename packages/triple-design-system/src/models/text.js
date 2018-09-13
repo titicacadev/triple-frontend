@@ -1,21 +1,10 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import Container from '../elements/container'
 import Text from '../elements/text'
-
-const Margin = styled.div`
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
-    `};
-`
 
 export function H1({ headline, emphasize, margin, children, ...props }) {
   return (
-    <Margin margin={margin}>
+    <Container margin={margin}>
       {headline && (
         <Text bold size="tiny" color="blue" alpha={1} margin={{ bottom: 3 }}>
           {headline}
@@ -30,7 +19,7 @@ export function H1({ headline, emphasize, margin, children, ...props }) {
       >
         {children}
       </Text>
-    </Margin>
+    </Container>
   )
 }
 

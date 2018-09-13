@@ -4,6 +4,7 @@ import {
   H4,
   Paragraph,
   Rating,
+  Container,
   Text,
   Icon,
   Label,
@@ -147,16 +148,28 @@ export default class App extends Component {
 
     return (
       <div>
-        <Text.Title>{names.ko}</Text.Title>
-        <div>{names.local}</div>
-        <Label>
-          <Rating score={reviewPoint} />
-          {reviewsCount}
-        </Label>
-        <Label>
-          <Icon name="save" size="tiny" />
-          {scrapsCount}
-        </Label>
+        <Container margin={{ top: 20, left: 30, right: 30 }}>
+          <Text.Title>{names.ko}</Text.Title>
+          <Text size="tiny" alpha={0.5}>
+            {names.local}
+          </Text>
+          {(reviewsCount > 0 || scrapsCount > 0) && (
+            <Container margin={{ top: 4 }}>
+              {reviewsCount > 0 && (
+                <Label>
+                  <Rating score={reviewPoint} />
+                  {reviewsCount}
+                </Label>
+              )}
+              {scrapsCount > 0 && (
+                <Label>
+                  <Icon name="save" size="tiny" />
+                  {scrapsCount}
+                </Label>
+              )}
+            </Container>
+          )}
+        </Container>
         <ImagePager images={[image, image]} />
         <Button.Group>
           <Button icon="save">저장하기</Button>
