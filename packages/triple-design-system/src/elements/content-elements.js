@@ -1,6 +1,5 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import PagerCarousel from 'nuka-carousel'
 import List from './list'
 
 const IMAGE_HEIGHT_OPTIONS = {
@@ -164,6 +163,20 @@ export const HR1 = styled.div`
   margin: 50px 30px;
   height: 1px;
   background-color: #efefef;
+
+  ${({ compact }) =>
+    css`
+      margin: 0 30px;
+    `};
+
+  ${({ margin }) =>
+    margin &&
+    css`
+      margin-top: ${margin.top || 0}px;
+      margin-bottom: ${margin.bottom || 0}px;
+      margin-left: ${margin.left || 0}px;
+      margin-right: ${margin.right || 0}px;
+    `};
 `
 
 export const HR2 = styled.div`
@@ -246,43 +259,6 @@ export const SimpleLink = styled.a`
   color: #2987f0;
   text-decoration: underline;
 `
-
-const CurrentPage = styled.div`
-  margin: 10px;
-  padding: 5px 7px;
-  font-size: 11px;
-  line-height: 11px;
-  font-weight: bold;
-  color: #ffffff;
-  border-radius: 11px;
-  background-color: rgba(0, 0, 0, 0.2);
-`
-
-const ImagePagerContainer = styled.div``
-
-export function ImagePager({ images, onImageClick, ImageSource }) {
-  return (
-    <ImagePagerContainer>
-      <PagerCarousel
-        renderTopRightControls={({ currentSlide }) => (
-          <CurrentPage>{`${currentSlide + 1} / ${images.length}`}</CurrentPage>
-        )}
-        renderBottomCenterControls={null}
-        renderCenterLeftControls={null}
-        renderCenterRightControls={null}
-      >
-        {images.map((image, i) => (
-          <ImageFrame
-            key={i}
-            image={image}
-            ImageSource={ImageSource}
-            onClick={onImageClick && ((e) => onImageClick(e, image))}
-          />
-        ))}
-      </PagerCarousel>
-    </ImagePagerContainer>
-  )
-}
 
 const LabelContent = styled.div`
   display: inline;

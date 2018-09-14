@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import {
+  H1,
   H3,
   H4,
+  HR1,
   Paragraph,
   Rating,
   Container,
@@ -130,18 +132,20 @@ function LocationSegment({ address, phone, url }) {
 export default class App extends Component {
   render() {
     const {
-      names,
-      addresses,
-      phoneNumber,
-      officialSiteUrl,
-      reviewPoint,
-      reviewsCount,
-      scrapsCount,
-      image,
-      featuredContent,
-      readableBusinessHours,
-      fee,
-      feeComment,
+      source: {
+        names,
+        addresses,
+        phoneNumber,
+        officialSiteUrl,
+        reviewsRating,
+        reviewsCount,
+        scrapsCount,
+        images,
+        featuredContent,
+        readableBusinessHours,
+        fee,
+        feeComment,
+      },
     } = humps.camelizeKeys(sample)
 
     const timeZone = 'Asia/Tokyo'
@@ -157,7 +161,7 @@ export default class App extends Component {
             <Container margin={{ top: 4 }}>
               {reviewsCount > 0 && (
                 <Label>
-                  <Rating score={reviewPoint} />
+                  <Rating score={reviewsRating} />
                   {reviewsCount}
                 </Label>
               )}
@@ -170,25 +174,37 @@ export default class App extends Component {
             </Container>
           )}
         </Container>
-        <ImagePager images={[image, image]} />
-        <Button.Group>
-          <Button icon="save">저장하기</Button>
-          <Button icon="star">리뷰·별점</Button>
-          <Button icon="map">위치보기</Button>
-          <Button icon="share">공유하기</Button>
-        </Button.Group>
-        <LocationSegment
-          address={addresses.ko || addresses.en || addresses.local}
-          phone={phoneNumber}
-          url={officialSiteUrl}
-        />
+
+        <Container margin={{ top: 20, left: 20, right: 20 }}>
+          <ImagePager images={images} />
+          <Button.Group>
+            <Button icon="save">저장하기</Button>
+            <Button icon="schedule">일정추가</Button>
+            <Button icon="star">리뷰·별점</Button>
+            <Button icon="share">공유하기</Button>
+          </Button.Group>
+        </Container>
+
+        <HR1 margin={{ top: 8, left: 30, right: 30 }} />
+
+        <Container margin={{ top: 50, left: 30, right: 30 }}>
+          <H1>기본정보</H1>
+          <LocationSegment
+            address={addresses.ko || addresses.en || addresses.local}
+            phone={phoneNumber}
+            url={officialSiteUrl}
+          />
+        </Container>
+
         <BusinessHours
           timeZone={timeZone}
           readableBusinessHours={readableBusinessHours}
         />
+
         <H3>이용료</H3>
         <H4>{fee ? '유료' : '무료'}</H4>
         <Paragraph>{feeComment}</Paragraph>
+
         <TripleDocument>{featuredContent}</TripleDocument>
       </div>
     )
