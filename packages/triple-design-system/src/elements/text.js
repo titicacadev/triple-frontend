@@ -95,7 +95,7 @@ const Html = styled(TextBase)`
   }
 `
 
-const Title = styled.h1`
+const TitleBase = styled.h1`
   font-size: 24px;
   font-weight: bold;
   color: #3a3a3a;
@@ -110,6 +110,14 @@ const Title = styled.h1`
       margin-right: ${margin.right || 0}px;
     `};
 `
+
+function Title({ children, ...props }) {
+  return (
+    <TitleBase {...props}>
+      <LineBreak>{children}</LineBreak>
+    </TitleBase>
+  )
+}
 
 Text.Html = Html
 Text.Title = Title
