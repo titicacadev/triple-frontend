@@ -161,8 +161,8 @@ function EmbeddedImages({
   onImageClick,
   ImageSource,
 }) {
-  return (
-    image && (
+  if (image) {
+    return (
       <ImageFrame
         ratio={1.35}
         onClick={onImageClick && ((e) => onImageClick(e, image))}
@@ -170,7 +170,9 @@ function EmbeddedImages({
         ImageSource={ImageSource}
       />
     )
-  )
+  }
+
+  return null
 }
 
 const PoiListScrapButton = styled.div`
