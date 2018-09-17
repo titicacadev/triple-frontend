@@ -121,7 +121,7 @@ class BusinessHours extends PureComponent {
 function LocationSegment({ address, phone, url }) {
   return (
     <Segment margin={{ top: 10 }}>
-      <List verticalMargin={10}>
+      <List verticalGap={10}>
         <List.Item>
           <List.Icon name="map" size="small" />
           <List.Content>
@@ -162,7 +162,7 @@ function OptionalBasicInfoSection({
 }) {
   return (
     <Container margin={{ top: 30 }}>
-      <List divided verticalMargin={40}>
+      <List divided verticalGap={40}>
         {estimatedDuration && (
           <List.Item>
             <H3>권장체류시간</H3>

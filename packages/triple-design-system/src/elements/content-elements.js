@@ -119,10 +119,6 @@ const ListLabel = styled.div`
   color: #3a3a3a;
 `
 
-export const ResourceList = styled(List)`
-  margin: 20px 30px 0 30px;
-`
-
 export const ResourceListItem = styled(List.Item)`
   height: 40px;
   margin: 20px 0;

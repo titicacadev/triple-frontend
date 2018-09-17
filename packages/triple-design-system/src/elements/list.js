@@ -4,17 +4,26 @@ import Icon from './icon'
 import { HR1, HR3 } from './content-elements'
 
 const ListBase = styled.ul`
+  ${({ margin }) =>
+    margin &&
+    css`
+      margin-top: ${margin.top || 0}px;
+      margin-bottom: ${margin.bottom || 0}px;
+      margin-left: ${margin.left || 0}px;
+      margin-right: ${margin.right || 0}px;
+    `};
+
   li:not(:first-child) {
-    ${({ verticalMargin }) => css`
-      margin-top: ${verticalMargin || 0}px;
+    ${({ verticalGap }) => css`
+      margin-top: ${verticalGap || 0}px;
     `};
   }
 `
 
-function List({ divided, verticalMargin, children }) {
+function List({ margin, divided, verticalGap, children }) {
   if (divided) {
     return (
-      <ListBase>
+      <ListBase margin={margin}>
         {children
           .reduce(
             (array, child) => [
@@ -22,7 +31,7 @@ function List({ divided, verticalMargin, children }) {
               child,
               <HR1
                 key={array.length + 1}
-                margin={{ top: verticalMargin / 2, bottom: verticalMargin / 2 }}
+                margin={{ top: verticalGap / 2, bottom: verticalGap / 2 }}
               />,
             ],
             [],
@@ -30,15 +39,15 @@ function List({ divided, verticalMargin, children }) {
           .slice(0, -1)}
       </ListBase>
     )
-  } else if (verticalMargin) {
+  } else if (verticalGap) {
     return (
-      <ListBase>
+      <ListBase margin={margin}>
         {children
           .reduce(
             (array, child) => [
               ...array,
               child,
-              <HR3 key={array.length + 1} height={verticalMargin} />,
+              <HR3 key={array.length + 1} height={verticalGap} />,
             ],
             [],
           )
@@ -47,7 +56,7 @@ function List({ divided, verticalMargin, children }) {
     )
   }
 
-  return <ListBase>{children}</ListBase>
+  return <ListBase margin={margin}>{children}</ListBase>
 }
 
 const ListIcon = styled(Icon)`

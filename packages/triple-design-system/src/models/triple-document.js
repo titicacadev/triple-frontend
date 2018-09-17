@@ -10,7 +10,6 @@ import {
   ImageCarousel,
   ImageCarouselElementContainer,
   ImageCaption,
-  ResourceList,
   SimpleLink,
   RegionElement,
 } from '../elements/content-elements'
@@ -18,6 +17,7 @@ import Segment from '../elements/segment'
 import Button from '../elements/button'
 import Text from '../elements/text'
 import Image from '../elements/image'
+import List from '../elements/list'
 import { H1, H2, H3, H4, Paragraph } from './text'
 import { PoiListElement, PoiCarouselElement } from './poi'
 
@@ -265,6 +265,10 @@ function PoiCarouselActionButton({
     />
   )
 }
+
+const ResourceList = ({ children }) => (
+  <List margin={{ top: 20, left: 30, right: 30 }}>{children}</List>
+)
 
 export function Pois({
   value: { display, pois },
