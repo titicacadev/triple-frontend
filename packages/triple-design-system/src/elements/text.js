@@ -105,6 +105,7 @@ const Html = styled(TextBase)`
 `
 
 const TitleBase = styled.h1`
+  margin: 0;
   font-size: 24px;
   font-weight: bold;
   color: #3a3a3a;
