@@ -70,6 +70,12 @@ const ListItem = styled.li`
   clear: both;
   position: relative;
   list-style-type: none;
+
+  ${({ minHeight }) =>
+    minHeight &&
+    css`
+      min-height: ${minHeight}px;
+    `};
 `
 
 const ListContent = styled.div`

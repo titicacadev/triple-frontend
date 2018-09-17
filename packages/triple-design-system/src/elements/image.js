@@ -50,9 +50,15 @@ const ImageFrameWithFixedHeight = styled(ImageFrameBase)`
   height: ${({ height }) => height};
 `
 
+const IMAGE_FRAME_OPTIONS = {
+  small: '60%',
+  medium: '75%',
+  large: '100%',
+  big: '110%',
+}
+
 const ImageFrameWithFixedRatio = styled(ImageFrameBase)`
-  padding-top: ${({ frame }) =>
-    ({ small: '60%', medium: '75%', large: '100%' }[frame || 'small'])};
+  padding-top: ${({ frame }) => IMAGE_FRAME_OPTIONS[frame || 'small']};
 `
 
 const IMAGE_HEIGHT_OPTIONS = {

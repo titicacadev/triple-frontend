@@ -4,6 +4,7 @@ import {
   H3,
   H4,
   HR1,
+  HR2,
   Image,
   Paragraph,
   Rating,
@@ -226,6 +227,7 @@ export default class App extends PureComponent {
       feeComment,
       estimatedDuration,
       tips,
+      externalLinks,
       pointGeolocation: {
         coordinates: [lng, lat],
       },
@@ -282,6 +284,27 @@ export default class App extends PureComponent {
             url={officialSiteUrl}
           />
           <OptionalBasicInfoSection poi={poi} timeZone={timeZone} />
+        </Container>
+
+        <HR2 compact />
+
+        <Container margin={{ top: 50, bottom: 30, left: 30, right: 30 }}>
+          <H1 margin={{ bottom: 10 }}>소셜 리뷰</H1>
+          <List divided>
+            {externalLinks.map(({ imageUrl, publisher, title, url }, i) => (
+              <List.Item key={`external-link-${i}`} minHeight={106}>
+                <Container floated="right" width="60" margin={{ top: 20 }}>
+                  <Image src={imageUrl} frame="big" borderRadius={4} />
+                </Container>
+                <List.Content>
+                  <H3 margin={{ top: 20 }}>{title}</H3>
+                  <Text size="small" alpha={0.5} margin={{ top: 8 }}>
+                    {publisher}
+                  </Text>
+                </List.Content>
+              </List.Item>
+            ))}
+          </List>
         </Container>
 
         <TripleDocument>{featuredContent}</TripleDocument>

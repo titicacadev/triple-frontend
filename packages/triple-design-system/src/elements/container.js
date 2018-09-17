@@ -18,6 +18,14 @@ const Container = styled.div`
       padding-left: ${padding.left || 0}px;
       padding-right: ${padding.right || 0}px;
     `};
+
+  ${({ width }) =>
+    width &&
+    css`
+      width: ${width}px;
+    `};
+
+  float: ${({ floated }) => floated || 'none'};
 `
 
 export default Container
