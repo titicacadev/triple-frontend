@@ -2,99 +2,6 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import List from './list'
 
-const IMAGE_HEIGHT_OPTIONS = {
-  small: '200px',
-}
-
-const ImageFrameContent = ({ imageUrl, sourceUrl, ImageSource }) => (
-  <>
-    <Image src={imageUrl} />
-    {sourceUrl && (
-      <SourceUrl>
-        {ImageSource ? <ImageSource>{sourceUrl}</ImageSource> : sourceUrl}
-      </SourceUrl>
-    )}
-  </>
-)
-
-export function ImageFrame({
-  image: { height, frame, sizes, sourceUrl },
-  ratio,
-  ImageSource,
-  onClick,
-}) {
-  if (ratio || frame) {
-    return (
-      <ImageFrameWithFixedRatio ratio={ratio} frame={frame} onClick={onClick}>
-        <ImageFrameContent
-          imageUrl={sizes.large.url}
-          sourceUrl={sourceUrl}
-          ImageSource={ImageSource}
-        />
-      </ImageFrameWithFixedRatio>
-    )
-  }
-
-  return (
-    <ImageFrameWithFixedHeight
-      height={IMAGE_HEIGHT_OPTIONS[height || 'small']}
-      onClick={onClick}
-    >
-      <ImageFrameContent
-        imageUrl={sizes.large.url}
-        sourceUrl={sourceUrl}
-        ImageSource={ImageSource}
-      />
-    </ImageFrameWithFixedHeight>
-  )
-}
-
-const ImageFrameBase = styled.div`
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-`
-
-const ImageFrameWithFixedHeight = styled(ImageFrameBase)`
-  height: ${({ height }) => height};
-`
-
-const ImageFrameWithFixedRatio = styled(ImageFrameBase)`
-  padding-top: ${({ ratio, frame }) => {
-    if (ratio) {
-      return `${(100 * 1) / (ratio || 1)}%`
-    }
-
-    return {
-      small: '60%',
-      medium: '75%',
-      large: '100%',
-    }[frame || 'small']
-  }};
-`
-
-export const Image = styled.img`
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 6px;
-  object-fit: cover;
-`
-
-export const SourceUrl = styled.div`
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  max-width: 150px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-family: sans-serif;
-  font-size: 9px;
-  color: rgba(255, 255, 255, 0.9);
-`
-
 export const ImageCarousel = styled.div`
   margin-top: 30px;
   white-space: nowrap;
@@ -165,8 +72,9 @@ export const HR1 = styled.div`
   background-color: #efefef;
 
   ${({ compact }) =>
+    compact &&
     css`
-      margin: 0 30px;
+      margin: 0;
     `};
 
   ${({ margin }) =>
@@ -187,7 +95,7 @@ export const HR2 = styled.div`
 
 export const HR3 = styled.div`
   margin: 0;
-  height: 10px;
+  height: ${({ height }) => height || 10}px;
   background-color: transparent;
 `
 

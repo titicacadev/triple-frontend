@@ -25,11 +25,14 @@ export function LineBreak({ children }) {
     </>
   )
 
+  const texts = (children || '').split('\n')
+
   return (
     <>
-      {(children || '').split('\n').map((text, i) => (
-        <Line key={i}>{text}</Line>
-      ))}
+      {texts.map(
+        (text, i) =>
+          i === texts.length - 1 ? text : <Line key={i}>{text}</Line>,
+      )}
     </>
   )
 }
@@ -43,6 +46,12 @@ const TextBase = styled.div`
   font-size: ${({ size = 'large' }) => SIZES[size]};
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
   color: ${({ color = 'gray', alpha = 0.7 }) => rgba({ color, alpha })};
+
+  ${({ inline }) =>
+    inline &&
+    css`
+      display: inline;
+    `};
 
   ${({ lineHeight }) =>
     lineHeight &&

@@ -1,10 +1,54 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import Icon from './icon'
+import { HR1, HR3 } from './content-elements'
 
-const List = styled.ul`
-  padding: 0;
+const ListBase = styled.ul`
+  li:not(:first-child) {
+    ${({ verticalMargin }) => css`
+      margin-top: ${verticalMargin || 0}px;
+    `};
+  }
 `
+
+function List({ divided, verticalMargin, children }) {
+  if (divided) {
+    return (
+      <ListBase>
+        {children
+          .reduce(
+            (array, child) => [
+              ...array,
+              child,
+              <HR1
+                key={array.length + 1}
+                margin={{ top: verticalMargin / 2, bottom: verticalMargin / 2 }}
+              />,
+            ],
+            [],
+          )
+          .slice(0, -1)}
+      </ListBase>
+    )
+  } else if (verticalMargin) {
+    return (
+      <ListBase>
+        {children
+          .reduce(
+            (array, child) => [
+              ...array,
+              child,
+              <HR3 key={array.length + 1} height={verticalMargin} />,
+            ],
+            [],
+          )
+          .slice(0, -1)}
+      </ListBase>
+    )
+  }
+
+  return <ListBase>{children}</ListBase>
+}
 
 const ListIcon = styled(Icon)`
   display: table-cell;

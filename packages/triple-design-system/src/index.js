@@ -1,5 +1,6 @@
 export * from './elements/content-elements'
 export { default as Text } from './elements/text'
+export { default as Image } from './elements/image'
 export { default as Icon } from './elements/icon'
 export { default as List } from './elements/list'
 export { default as Button } from './elements/button'

@@ -7,7 +7,6 @@ import {
   HR3,
   Carousel,
   CarouselElementContainer,
-  ImageFrame,
   ImageCarousel,
   ImageCarouselElementContainer,
   ImageCaption,
@@ -18,6 +17,7 @@ import {
 import Segment from '../elements/segment'
 import Button from '../elements/button'
 import Text from '../elements/text'
+import Image from '../elements/image'
 import { H1, H2, H3, H4, Paragraph } from './text'
 import { PoiListElement, PoiCarouselElement } from './poi'
 
@@ -140,16 +140,22 @@ function Compact(Component) {
 function Images({ value: { images }, onImageClick, ImageSource }) {
   return (
     <ImageCarousel>
-      {images.map((image, i) => (
-        <ImageCarouselElementContainer key={i}>
-          <ImageFrame
-            image={image}
-            onClick={onImageClick && ((e) => onImageClick(e, image))}
-            ImageSource={ImageSource}
-          />
-          <ImageCaption>{image.title}</ImageCaption>
-        </ImageCarouselElementContainer>
-      ))}
+      {images.map((image, i) => {
+        const { frame, sizes, sourceUrl } = image
+
+        return (
+          <ImageCarouselElementContainer key={i}>
+            <Image
+              src={sizes.large.url}
+              sourceUrl={sourceUrl}
+              frame={frame}
+              onClick={onImageClick && ((e) => onImageClick(e, image))}
+              ImageSource={ImageSource}
+            />
+            <ImageCaption>{image.title}</ImageCaption>
+          </ImageCarouselElementContainer>
+        )
+      })}
     </ImageCarousel>
   )
 }
@@ -162,11 +168,14 @@ function EmbeddedImages({
   ImageSource,
 }) {
   if (image) {
+    const { sizes, sourceUrl } = image
+
     return (
-      <ImageFrame
-        ratio={1.35}
+      <Image
+        size="small"
+        src={sizes.large.url}
+        sourceUrl={sourceUrl}
         onClick={onImageClick && ((e) => onImageClick(e, image))}
-        image={image}
         ImageSource={ImageSource}
       />
     )

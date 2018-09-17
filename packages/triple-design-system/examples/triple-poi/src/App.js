@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import {
   H1,
   H3,
   H4,
   HR1,
+  Image,
   Paragraph,
   Rating,
   Container,
@@ -45,35 +46,45 @@ function TodayBusinessHours({ timeZone, readableBusinessHours }) {
       .join(' / ')
       .value() || '휴무일'
 
-  return <H3>{`오늘 ${hours}`}</H3>
+  return (
+    <Text bold color="blue" alpha={1} lineHeight={1.5}>{`오늘 ${hours}`}</Text>
+  )
 }
 
-function WeeklyBusinessHours({ readableBusinessHours }) {
-  const hoursNotations = _.chain(readableBusinessHours)
+function WeeklyBusinessHours({ timeZone, readableBusinessHours }) {
+  const today = moment()
+    .tz(timeZone)
+    .day()
+
+  const hours = _.chain(readableBusinessHours)
     .groupBy('dayOfWeek')
-    .mapValues((hoursArray) =>
-      _.chain(hoursArray)
-        .sortBy('from')
-        .map(({ from, to }) => `${from} - ${to}`)
-        .join(' / ')
-        .value(),
+    .mapValues(
+      (hoursArray) =>
+        _.chain(hoursArray)
+          .sortBy('from')
+          .map(({ from, to }) => `${from} - ${to}`)
+          .join(' / ')
+          .value() || '휴무일',
     )
     .value()
 
-  const description = _.chain(DAY_OF_WEEK_NAMES)
+  const notations = _.chain(DAY_OF_WEEK_NAMES)
     .keys()
-    .map(
-      (dayOfWeek) =>
-        `${DAY_OF_WEEK_NAMES[dayOfWeek]} ${hoursNotations[dayOfWeek] ||
-          '휴무일'}`,
-    )
-    .join('\n')
+    .map((dayOfWeek) => ((parseInt(dayOfWeek) + today) % 7) + 1)
+    .map((dayOfWeek) => `${DAY_OF_WEEK_NAMES[dayOfWeek]} ${hours[dayOfWeek]}`)
     .value()
 
-  return <Paragraph>{description}</Paragraph>
+  return (
+    <>
+      <Text bold color="blue" alpha={1} lineHeight={1.5}>
+        {notations[notations.length - 1]}
+      </Text>
+      <Paragraph>{notations.slice(0, -1).join('\n')}</Paragraph>
+    </>
+  )
 }
 
-class BusinessHours extends Component {
+class BusinessHours extends PureComponent {
   state = { open: false }
 
   render() {
@@ -88,7 +99,7 @@ class BusinessHours extends Component {
           active={open}
           onClick={() => this.setState({ open: !open })}
         >
-          이용가능시간, 휴무일
+          <H3>이용가능시간, 휴무일</H3>
         </Accordion.Title>
         <Accordion.Folded active={open}>
           <TodayBusinessHours
@@ -97,7 +108,10 @@ class BusinessHours extends Component {
           />
         </Accordion.Folded>
         <Accordion.Content active={open}>
-          <WeeklyBusinessHours readableBusinessHours={readableBusinessHours} />
+          <WeeklyBusinessHours
+            timeZone={timeZone}
+            readableBusinessHours={readableBusinessHours}
+          />
         </Accordion.Content>
       </Accordion>
     )
@@ -106,21 +120,27 @@ class BusinessHours extends Component {
 
 function LocationSegment({ address, phone, url }) {
   return (
-    <Segment>
-      <List>
+    <Segment margin={{ top: 10 }}>
+      <List verticalMargin={10}>
         <List.Item>
           <List.Icon name="map" size="small" />
-          <List.Content>{address}</List.Content>
+          <List.Content>
+            <Text size="small">{address}</Text>
+          </List.Content>
         </List.Item>
         <List.Item>
           <List.Icon name="call" size="small" />
-          <List.Content>{phone}</List.Content>
+          <List.Content>
+            <Text size="small">{phone}</Text>
+          </List.Content>
         </List.Item>
         <List.Item>
           <List.Icon name="web" size="small" />
-          <List.Content>{url}</List.Content>
+          <List.Content>
+            <Text size="small">{url}</Text>
+          </List.Content>
         </List.Item>
-        <Button.Container floated="right">
+        <Button.Container floated="right" margin={{ top: 15 }}>
           <Button compact>현지에서 길묻기</Button>
           <Button compact>길찾기</Button>
         </Button.Container>
@@ -129,24 +149,87 @@ function LocationSegment({ address, phone, url }) {
   )
 }
 
-export default class App extends Component {
+function OptionalBasicInfoSection({
+  poi: {
+    directions,
+    readableBusinessHours,
+    fee,
+    feeComment,
+    estimatedDuration,
+    tips,
+  },
+  timeZone,
+}) {
+  return (
+    <Container margin={{ top: 30 }}>
+      <List divided verticalMargin={40}>
+        {estimatedDuration && (
+          <List.Item>
+            <H3>권장체류시간</H3>
+            <Paragraph margin={{ top: 5 }}>{estimatedDuration}</Paragraph>
+          </List.Item>
+        )}
+        {directions && (
+          <List.Item>
+            <H3>가는방법</H3>
+            <Paragraph margin={{ top: 5 }}>{directions}</Paragraph>
+          </List.Item>
+        )}
+        {(readableBusinessHours || []).length > 0 && (
+          <List.Item>
+            <BusinessHours
+              timeZone={timeZone}
+              readableBusinessHours={readableBusinessHours}
+            />
+          </List.Item>
+        )}
+        {fee && (
+          <List.Item>
+            <H3 inline>이용료</H3>
+            <H4 inline margin={{ left: 3 }}>
+              {fee ? '유료' : '무료'}
+            </H4>
+            <Paragraph margin={{ top: 5 }}>{feeComment}</Paragraph>
+          </List.Item>
+        )}
+        {(tips || []).length > 0 && (
+          <List.Item>
+            <H3>이곳의 이용팁</H3>
+            {tips.map((tip, i) => (
+              <Paragraph key={i} margin={{ top: 5 }}>
+                {tip}
+              </Paragraph>
+            ))}
+          </List.Item>
+        )}
+      </List>
+    </Container>
+  )
+}
+
+export default class App extends PureComponent {
   render() {
+    const { source: poi } = humps.camelizeKeys(sample)
     const {
-      source: {
-        names,
-        addresses,
-        phoneNumber,
-        officialSiteUrl,
-        reviewsRating,
-        reviewsCount,
-        scrapsCount,
-        images,
-        featuredContent,
-        readableBusinessHours,
-        fee,
-        feeComment,
+      names,
+      addresses,
+      phoneNumber,
+      officialSiteUrl,
+      reviewsRating,
+      reviewsCount,
+      scrapsCount,
+      images,
+      featuredContent,
+      readableBusinessHours,
+      directions,
+      fee,
+      feeComment,
+      estimatedDuration,
+      tips,
+      pointGeolocation: {
+        coordinates: [lng, lat],
       },
-    } = humps.camelizeKeys(sample)
+    } = poi
 
     const timeZone = 'Asia/Tokyo'
 
@@ -187,23 +270,19 @@ export default class App extends Component {
 
         <HR1 margin={{ top: 8, left: 30, right: 30 }} />
 
-        <Container margin={{ top: 50, left: 30, right: 30 }}>
-          <H1>기본정보</H1>
+        <Container margin={{ top: 50, bottom: 30, left: 30, right: 30 }}>
+          <H1 margin={{ bottom: 20 }}>기본정보</H1>
+          <Image
+            size="mini"
+            src={`https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyB3tu84Pfb6F7zW16YughzMYtWGJKmJmFU&size=320x120&scale=2&center=${lat}%2C${lng}&zoom=16`}
+          />
           <LocationSegment
             address={addresses.ko || addresses.en || addresses.local}
             phone={phoneNumber}
             url={officialSiteUrl}
           />
+          <OptionalBasicInfoSection poi={poi} timeZone={timeZone} />
         </Container>
-
-        <BusinessHours
-          timeZone={timeZone}
-          readableBusinessHours={readableBusinessHours}
-        />
-
-        <H3>이용료</H3>
-        <H4>{fee ? '유료' : '무료'}</H4>
-        <Paragraph>{feeComment}</Paragraph>
 
         <TripleDocument>{featuredContent}</TripleDocument>
       </div>

@@ -1,4 +1,6 @@
+import React from 'react'
 import styled from 'styled-components'
+import Container from './container'
 
 const Accordion = styled.div``
 
@@ -7,10 +9,11 @@ const TITLE_ICONS = {
   unfolded: 'ico-header-expand-more@2x.png',
 }
 
-const Title = styled.div`
+const Title = styled(Container)`
   &:after {
-    float: right;
-    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 20px;
     height: 20px;
     background-image: url(${({ active }) =>
@@ -25,11 +28,11 @@ const Title = styled.div`
 `
 
 function Content({ active, children }) {
-  return active && children
+  return active && <Container margin={{ top: 5 }}>{children}</Container>
 }
 
 function Folded({ active, children }) {
-  return !active && children
+  return !active && <Container margin={{ top: 5 }}>{children}</Container>
 }
 
 Accordion.Title = Title

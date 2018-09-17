@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import styled, { css } from 'styled-components'
+import Container from './container'
 
 const SIZES = {
   tiny: '13px',
@@ -131,7 +132,7 @@ class Button extends PureComponent {
   }
 }
 
-const ButtonContainer = styled.div`
+const ButtonContainer = styled(Container)`
   text-align: center;
 
   a {
@@ -139,9 +140,31 @@ const ButtonContainer = styled.div`
     display: inline-block;
     margin: 0 5px;
   }
+
+  a:first-child {
+    ${({ floated }) => {
+      if (floated === 'left') {
+        return css`
+          margin-left: 0;
+          margin-right: 5px;
+        `
+      } else if (floated === 'right') {
+        return css`
+          margin-left: 5px;
+          margin-right: 0;
+        `
+      }
+    }};
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
 `
 
-const ButtonGroup = styled.div`
+const ButtonGroup = styled(Container)`
   width: 100%;
 
   a {
