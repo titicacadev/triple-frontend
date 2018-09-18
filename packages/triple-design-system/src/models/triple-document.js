@@ -316,6 +316,7 @@ const LinksContainer = styled.div`
 
 const ButtonContainer = styled.div`
   padding: ${({ compact }) => (compact ? '12px 0 0 0' : '50px 0 0 0')};
+  text-align: center;
 `
 
 const LINK_CONTAINERS = {
