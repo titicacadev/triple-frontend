@@ -4,39 +4,12 @@ import Container from './container'
 
 const SIZES = {
   tiny: '13px',
-}
-
-const BORDER_RADIUSES = {
-  tiny: '21px',
-}
-
-const ROUND_PADDINGS = {
-  tiny: { top: 13, bottom: 13, left: 25, right: 25 },
-}
-
-const COMPACT_PADDINGS = {
-  tiny: { top: 9, bottom: 9, left: 15, right: 15 },
-}
-
-const ICON_PADDINGS = {
-  tiny: { top: 12, bottom: 12, left: 12, right: 12 },
-}
-
-const TEXT_COLORS = {
-  blue: '41, 135, 240',
-  gray: '58, 58, 58',
+  small: '14px',
 }
 
 const BUTTON_COLORS = {
   blue: '54, 143, 255',
-}
-
-const ICON_BUTTON_NAMES = {
-  save: 'btn-end-save-off@2x.png',
-  star: 'btn-end-review@2x.png',
-  map: 'btn-end-search-place@2x.png',
-  share: 'btn-com-share@2x.png',
-  schedule: 'btn-end-schedule@2x.png',
+  gray: '58, 58, 58',
 }
 
 const ButtonBase = styled.a`
@@ -48,23 +21,45 @@ const ButtonBase = styled.a`
   text-decoration: none;
   box-sizing: border-box;
 
-  color: ${({ color = 'gray', alpha = 0.7 }) =>
-    `rgba(${TEXT_COLORS[color]}, ${alpha})`};
+  ${({ fluid }) =>
+    fluid &&
+    css`
+      width: 100%;
+      display: block;
+    `};
 `
+
+const ICON_BUTTON_NAMES = {
+  save: 'btn-end-save-off@2x.png',
+  star: 'btn-end-review@2x.png',
+  map: 'btn-end-search-place@2x.png',
+  share: 'btn-com-share@2x.png',
+  schedule: 'btn-end-schedule@2x.png',
+}
+
+const TEXT_COLORS = {
+  blue: '41, 135, 240',
+  gray: '58, 58, 58',
+}
+
+const ICON_PADDINGS = {
+  tiny: { top: 12, bottom: 12, left: 12, right: 12 },
+}
 
 const IconButton = styled(ButtonBase)`
   &:before {
     display: block;
     height: 30px;
     background-image: url(${({ name }) =>
-      `https://assets.triple.guide/images/${
-        ICON_BUTTON_NAMES[name]
-      }`});
+      `https://assets.triple.guide/images/${ICON_BUTTON_NAMES[name]}`});
     background-size: 30px 30px;
     background-position: center center;
     background-repeat: no-repeat;
     content: '';
   }
+
+  color: ${({ color = 'gray', alpha = 0.5 }) =>
+    `rgba(${TEXT_COLORS[color]}, ${alpha})`};
 
   ${({ size = 'tiny' }) => {
     const padding = ICON_PADDINGS[size]
@@ -78,13 +73,22 @@ const IconButton = styled(ButtonBase)`
   }};
 `
 
-const RoundButton = styled(ButtonBase)`
-  line-height: ${({ size = 'tiny' }) => SIZES[size]};
-  border-radius: ${({ size = 'tiny' }) => BORDER_RADIUSES[size]};
-  color: #ffffff;
+const BASIC_PADDINGS = {
+  small: { top: 7, bottom: 7, left: 15, right: 15 },
+}
 
-  ${({ compact, size = 'tiny' }) => {
-    const padding = (compact ? COMPACT_PADDINGS : ROUND_PADDINGS)[size]
+const BasicButton = styled(ButtonBase)`
+  color: #3a3a3a;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+
+  background-color: transparent;
+  border-color: ${({ color = 'gray', alpha = 0.2 }) =>
+    `rgba(${BUTTON_COLORS[color]}, ${alpha})`};
+
+  ${({ size = 'small' }) => {
+    const padding = BASIC_PADDINGS[size]
 
     return css`
       padding-top: ${padding.top || 0}px;
@@ -93,26 +97,64 @@ const RoundButton = styled(ButtonBase)`
       padding-right: ${padding.right || 0}px;
     `
   }};
+`
+
+const BORDER_RADIUSES = {
+  tiny: '21px',
+}
+
+const ROUND_PADDINGS = {
+  tiny: { top: 13, bottom: 13, left: 25, right: 25 },
+}
+
+const COMPACT_ROUND_PADDINGS = {
+  tiny: { top: 9, bottom: 9, left: 15, right: 15 },
+}
+
+const RoundButton = styled(ButtonBase)`
+  border-radius: ${({ size = 'tiny' }) => BORDER_RADIUSES[size]};
+  color: #ffffff;
 
   background-color: ${({ color = 'blue', alpha = 1 }) =>
     `rgba(${BUTTON_COLORS[color]}, ${alpha})`};
+
+  ${({ compact, size = 'tiny' }) => {
+    const padding = (compact ? COMPACT_ROUND_PADDINGS : ROUND_PADDINGS)[size]
+
+    return css`
+      padding-top: ${padding.top || 0}px;
+      padding-bottom: ${padding.bottom || 0}px;
+      padding-left: ${padding.left || 0}px;
+      padding-right: ${padding.right || 0}px;
+    `
+  }};
 `
 
 class Button extends PureComponent {
   render() {
     const {
-      props: { bold, compact, icon, color, alpha, children, ...props },
+      props: { basic, fluid, compact, icon, color, alpha, children, ...props },
     } = this
+
+    if (basic) {
+      return (
+        <BasicButton
+          bold
+          compact={compact}
+          fluid={fluid}
+          name={icon}
+          color={color}
+          alpha={alpha}
+          {...props}
+        >
+          {children}
+        </BasicButton>
+      )
+    }
 
     if (icon) {
       return (
-        <IconButton
-          bold={bold}
-          name={icon}
-          color={color || 'gray'}
-          alpha={alpha || '0.5'}
-          {...props}
-        >
+        <IconButton name={icon} color={color} alpha={alpha} {...props}>
           {children}
         </IconButton>
       )
@@ -120,10 +162,11 @@ class Button extends PureComponent {
 
     return (
       <RoundButton
-        bold={bold || true}
+        bold
         compact={compact}
-        color={color || 'blue'}
-        alpha={alpha || 1}
+        fluid={fluid}
+        color={color}
+        alpha={alpha}
         {...props}
       >
         {children}

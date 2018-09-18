@@ -314,14 +314,41 @@ const LinksContainer = styled.div`
   }
 `
 
-const DocumentButtonContainer = styled(Button.Container)`
-  padding: 50px 0;
+const ButtonContainer = styled.div`
+  padding: ${({ compact }) => (compact ? '12px 0 0 0' : '50px 0 0 0')};
 `
 
+const LINK_CONTAINERS = {
+  button: ButtonContainer,
+  block: ButtonContainer,
+  default: LinksContainer,
+}
+
+function ButtonLink({ children, ...props }) {
+  return (
+    <Button bold color="blue" alpha={1} {...props}>
+      {children}
+    </Button>
+  )
+}
+
+function BlockLink({ children, ...props }) {
+  return (
+    <Button basic fluid bold color="gray" alpha={0.2} {...props}>
+      {children}
+    </Button>
+  )
+}
+
+const LINK_ELEMENTS = {
+  button: ButtonLink,
+  block: BlockLink,
+  default: SimpleLink,
+}
+
 function Links({ value: { display, links }, onLinkClick, ...props }) {
-  const Container =
-    display === 'button' ? DocumentButtonContainer : LinksContainer
-  const Element = display === 'button' ? Button : SimpleLink
+  const Container = LINK_CONTAINERS[display] || LinksContainer
+  const Element = LINK_ELEMENTS[display] || SimpleLink
 
   return (
     <Container {...props}>
