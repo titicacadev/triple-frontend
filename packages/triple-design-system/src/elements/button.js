@@ -57,7 +57,7 @@ const IconButton = styled(ButtonBase)`
     display: block;
     height: 30px;
     background-image: url(${({ name }) =>
-      `http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/${
+      `https://assets.triple.guide/images/${
         ICON_BUTTON_NAMES[name]
       }`});
     background-size: 30px 30px;

@@ -196,7 +196,7 @@ const RatingStar = styled.span`
   height: 16px;
   display: inline-block;
   background-size: 16px 16px;
-  background-image: url(http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/${({
+  background-image: url(https://assets.triple.guide/images/${({
       full,
       half,
     }) => {

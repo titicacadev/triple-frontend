@@ -17,7 +17,7 @@ const Title = styled(Container)`
     width: 20px;
     height: 20px;
     background-image: url(${({ active }) =>
-      `http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/${
+      `https://assets.triple.guide/images/${
         TITLE_ICONS[active ? 'unfolded' : 'folded']
       }`});
     background-size: 20px 20px;

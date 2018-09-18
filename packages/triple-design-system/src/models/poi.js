@@ -13,7 +13,7 @@ const TYPE_NAMES = {
 }
 
 const POI_IMAGE_PLACEHOLDER =
-  'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/ico-blank-see@2x.png'
+  'https://assets.triple.guide/images/ico-blank-see@2x.png'
 
 export class PoiListElement extends PureComponent {
   state = { actionButtonWidth: 0 }
