@@ -4,6 +4,7 @@ import Icon from './icon'
 import { HR1, HR3 } from './content-elements'
 
 const ListBase = styled.ul`
+  margin: 0;
   padding: 0;
 
   ${({ margin }) =>

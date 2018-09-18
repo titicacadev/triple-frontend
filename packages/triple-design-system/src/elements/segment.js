@@ -22,6 +22,12 @@ export const Segment = styled.div`
       padding-left: ${padding.left || 0}px;
       padding-right: ${padding.right || 0}px;
     `};
+
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
 `
 
 export default Segment

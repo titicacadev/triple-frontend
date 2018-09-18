@@ -157,7 +157,7 @@ const ButtonContainer = styled(Container)`
     }};
   }
 
-  &::after {
+  &:after {
     content: '';
     display: block;
     clear: both;

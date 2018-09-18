@@ -141,11 +141,11 @@ function LocationSegment({ address, phone, url }) {
             <Text size="small">{url}</Text>
           </List.Content>
         </List.Item>
-        <Button.Container floated="right" margin={{ top: 15 }}>
-          <Button compact>현지에서 길묻기</Button>
-          <Button compact>길찾기</Button>
-        </Button.Container>
       </List>
+      <Button.Container floated="right" margin={{ top: 15 }}>
+        <Button compact>현지에서 길묻기</Button>
+        <Button compact>길찾기</Button>
+      </Button.Container>
     </Segment>
   )
 }
