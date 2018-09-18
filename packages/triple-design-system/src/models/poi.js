@@ -12,6 +12,9 @@ const TYPE_NAMES = {
   hotel: '호텔',
 }
 
+const POI_IMAGE_PLACEHOLDER =
+  'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/ico-blank-see@2x.png'
+
 export class PoiListElement extends PureComponent {
   state = { actionButtonWidth: 0 }
 
@@ -47,7 +50,7 @@ export class PoiListElement extends PureComponent {
         <SquareImage
           floated="left"
           size="small"
-          src={image && image.sizes.large.url}
+          src={(image && image.sizes.large.url) || POI_IMAGE_PLACEHOLDER}
         />
         <Text
           bold
@@ -78,7 +81,9 @@ export function PoiCarouselElement({ poi, onClick, actionButtonElement }) {
 
     return (
       <CarouselElementContainer size="small" onClick={onClick}>
-        <SquareImage src={image && image.sizes.large.url} />
+        <SquareImage
+          src={(image && image.sizes.large.url) || POI_IMAGE_PLACEHOLDER}
+        />
         <Text bold ellipsis alpha={1} margin={{ top: 8 }}>
           {nameOverride || names.ko || names.en || names.local}
         </Text>
