@@ -96,6 +96,10 @@ const Html = styled(TextBase)`
     margin-top: 0;
   }
 
+  strong {
+    color: ${({ color = 'gray' }) => rgba({ color, alpha: 1 })};
+  }
+
   a {
     font-size: 15px;
     font-weight: bold;
