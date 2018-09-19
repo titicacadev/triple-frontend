@@ -16,7 +16,8 @@ const Icon = styled.div`
   display: inline-block;
   width: ${({ size }) => SIZES[size || 'small']};
   height: ${({ size }) => SIZES[size || 'small']};
-  background-image: url(https://assets.triple.guide/images/${({ name }) => NAMES[name]});
+  background-image: ${({ src, name }) =>
+    `url(${src ? src : `https://assets.triple.guide/images/${NAMES[name]}`})`};
   background-size: ${({ size }) =>
     `${SIZES[size || 'small']} ${SIZES[size || 'small']}`};
   background-repeat: no-repeat;
