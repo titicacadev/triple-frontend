@@ -24,11 +24,30 @@ const SourceUrl = styled.div`
   color: rgba(255, 255, 255, 0.9);
 `
 
+const ImageOverlay = styled.div`
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0)
+  );
+  padding: 16px 60px 16px 20px;
+  border-radius: ${({ borderRadius }) =>
+    borderRadius === 0 ? 0 : borderRadius || 6}px;
+`
+
 const ImageFrameContent = ({
   imageUrl,
   borderRadius,
   sourceUrl,
   ImageSource,
+  text,
+  icon,
+  overlay,
 }) => (
   <>
     <RawImage src={imageUrl} borderRadius={borderRadius} />
@@ -36,6 +55,9 @@ const ImageFrameContent = ({
       <SourceUrl>
         {ImageSource ? <ImageSource>{sourceUrl}</ImageSource> : sourceUrl}
       </SourceUrl>
+    )}
+    {overlay && (
+      <ImageOverlay borderRadius={borderRadius}>{overlay}</ImageOverlay>
     )}
   </>
 )
@@ -73,6 +95,7 @@ function Image({
   frame,
   size,
   ImageSource,
+  overlay,
   onClick,
 }) {
   if (size) {
@@ -86,6 +109,7 @@ function Image({
           borderRadius={borderRadius}
           sourceUrl={sourceUrl}
           ImageSource={ImageSource}
+          overlay={overlay}
         />
       </ImageFrameWithFixedHeight>
     )
@@ -98,6 +122,7 @@ function Image({
         borderRadius={borderRadius}
         sourceUrl={sourceUrl}
         ImageSource={ImageSource}
+        overlay={overlay}
       />
     </ImageFrameWithFixedRatio>
   )
