@@ -10,6 +10,7 @@ const URL_BY_NAMES = {
 const SIZES = {
   tiny: '16px',
   small: '18px',
+  medium: '20px',
 }
 
 const Icon = styled.div`
