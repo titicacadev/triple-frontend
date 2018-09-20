@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Icon from './icon'
 
 const RawImage = styled.img`
   position: absolute;
@@ -40,6 +41,14 @@ const ImageOverlay = styled.div`
     borderRadius === 0 ? 0 : borderRadius || 6}px;
 `
 
+const IconContainer = styled.div`
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+`
+
 const ImageFrameContent = ({
   imageUrl,
   borderRadius,
@@ -48,6 +57,7 @@ const ImageFrameContent = ({
   text,
   icon,
   overlay,
+  withLinkIndicator,
 }) => (
   <>
     <RawImage src={imageUrl} borderRadius={borderRadius} />
@@ -58,6 +68,11 @@ const ImageFrameContent = ({
     )}
     {overlay && (
       <ImageOverlay borderRadius={borderRadius}>{overlay}</ImageOverlay>
+    )}
+    {withLinkIndicator && (
+      <IconContainer>
+        <Icon size="medium" name="arrowRight" />
+      </IconContainer>
     )}
   </>
 )
@@ -96,6 +111,7 @@ function Image({
   size,
   ImageSource,
   overlay,
+  withLinkIndicator,
   onClick,
 }) {
   if (size) {
@@ -110,6 +126,7 @@ function Image({
           sourceUrl={sourceUrl}
           ImageSource={ImageSource}
           overlay={overlay}
+          withLinkIndicator={withLinkIndicator}
         />
       </ImageFrameWithFixedHeight>
     )
@@ -123,6 +140,7 @@ function Image({
         sourceUrl={sourceUrl}
         ImageSource={ImageSource}
         overlay={overlay}
+        withLinkIndicator={withLinkIndicator}
       />
     </ImageFrameWithFixedRatio>
   )
