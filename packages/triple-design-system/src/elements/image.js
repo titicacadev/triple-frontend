@@ -117,7 +117,7 @@ function Image({
   if (size) {
     return (
       <ImageFrameWithFixedHeight
-        height={IMAGE_HEIGHT_OPTIONS[size || 'small']}
+        height={IMAGE_HEIGHT_OPTIONS[size]}
         onClick={onClick}
       >
         <ImageFrameContent
