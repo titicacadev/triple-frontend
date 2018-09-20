@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Children } from 'react'
 import styled, { css } from 'styled-components'
 import Icon from './icon'
 import { HR1, HR3 } from './content-elements'
@@ -27,7 +27,7 @@ function List({ margin, divided, verticalGap, children }) {
   if (divided) {
     return (
       <ListBase margin={margin}>
-        {children
+        {Children.toArray(children)
           .reduce(
             (array, child) => [
               ...array,
@@ -45,7 +45,7 @@ function List({ margin, divided, verticalGap, children }) {
   } else if (verticalGap) {
     return (
       <ListBase margin={margin}>
-        {children
+        {Children.toArray(children)
           .reduce(
             (array, child) => [
               ...array,
