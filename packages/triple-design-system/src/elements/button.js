@@ -15,7 +15,7 @@ const BUTTON_COLORS = {
 const ButtonBase = styled.a`
   display: inline-block;
   font-family: sans-serif;
-  font-size: ${({ size = 'tiny' }) => SIZES[size]};
+  font-size: ${({ size }) => SIZES[size]};
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
   text-align: center;
   text-decoration: none;
@@ -133,20 +133,12 @@ const RoundButton = styled(ButtonBase)`
 class Button extends PureComponent {
   render() {
     const {
-      props: { basic, fluid, compact, icon, color, alpha, children, ...props },
+      props: { basic, icon, size, children, ...props },
     } = this
 
     if (basic) {
       return (
-        <BasicButton
-          bold
-          compact={compact}
-          fluid={fluid}
-          name={icon}
-          color={color}
-          alpha={alpha}
-          {...props}
-        >
+        <BasicButton bold size={size || 'small'} {...props}>
           {children}
         </BasicButton>
       )
@@ -154,21 +146,14 @@ class Button extends PureComponent {
 
     if (icon) {
       return (
-        <IconButton name={icon} color={color} alpha={alpha} {...props}>
+        <IconButton name={icon} size={size || 'tiny'} {...props}>
           {children}
         </IconButton>
       )
     }
 
     return (
-      <RoundButton
-        bold
-        compact={compact}
-        fluid={fluid}
-        color={color}
-        alpha={alpha}
-        {...props}
-      >
+      <RoundButton bold size={size || 'tiny'} {...props}>
         {children}
       </RoundButton>
     )
