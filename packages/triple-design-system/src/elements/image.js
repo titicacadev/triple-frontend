@@ -54,7 +54,6 @@ const ImageFrameContent = ({
   borderRadius,
   sourceUrl,
   ImageSource,
-  text,
   icon,
   overlay,
   withLinkIndicator,
