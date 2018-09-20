@@ -114,26 +114,23 @@ function Image({
   withLinkIndicator,
   onClick,
 }) {
-  if (size) {
-    return (
-      <ImageFrameWithFixedHeight
-        height={IMAGE_HEIGHT_OPTIONS[size]}
-        onClick={onClick}
-      >
-        <ImageFrameContent
-          imageUrl={src}
-          borderRadius={borderRadius}
-          sourceUrl={sourceUrl}
-          ImageSource={ImageSource}
-          overlay={overlay}
-          withLinkIndicator={withLinkIndicator}
-        />
-      </ImageFrameWithFixedHeight>
-    )
-  }
+  const Frame = size
+    ? ({ children }) => (
+        <ImageFrameWithFixedHeight
+          height={IMAGE_HEIGHT_OPTIONS[size]}
+          onClick={onClick}
+        >
+          {children}
+        </ImageFrameWithFixedHeight>
+      )
+    : ({ children }) => (
+        <ImageFrameWithFixedRatio frame={frame} onClick={onClick}>
+          {children}
+        </ImageFrameWithFixedRatio>
+      )
 
   return (
-    <ImageFrameWithFixedRatio frame={frame} onClick={onClick}>
+    <Frame>
       <ImageFrameContent
         imageUrl={src}
         borderRadius={borderRadius}
@@ -142,7 +139,7 @@ function Image({
         overlay={overlay}
         withLinkIndicator={withLinkIndicator}
       />
-    </ImageFrameWithFixedRatio>
+    </Frame>
   )
 }
 
