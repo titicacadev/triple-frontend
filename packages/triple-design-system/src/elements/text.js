@@ -15,6 +15,7 @@ const SIZES = {
 const COLORS = {
   blue: '41, 135, 240',
   gray: '58, 58, 58',
+  white: '255, 255, 255',
 }
 
 export function LineBreak({ children }) {
