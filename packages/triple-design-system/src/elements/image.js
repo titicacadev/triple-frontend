@@ -90,7 +90,7 @@ const ImageFrameBase = styled.div`
     `};
 `
 
-const ImageFrameWithFixedHeight = styled(ImageFrameBase)`
+const ImageFrameWithFixedDimensions = styled(ImageFrameBase)`
   height: ${({ height }) => height};
   width: ${({ width }) => (width && `${width}px`) || '100%'};
 `
@@ -129,7 +129,7 @@ function Image({
 }) {
   const Frame = size
     ? ({ children }) => (
-        <ImageFrameWithFixedHeight
+        <ImageFrameWithFixedDimensions
           height={IMAGE_HEIGHT_OPTIONS[size]}
           onClick={onClick}
           floated={floated}
@@ -137,7 +137,7 @@ function Image({
           margin={margin}
         >
           {children}
-        </ImageFrameWithFixedHeight>
+        </ImageFrameWithFixedDimensions>
       )
     : ({ children }) => (
         <ImageFrameWithFixedRatio
