@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import Icon from './icon'
 
 const RawImage = styled.img`
@@ -78,6 +78,16 @@ const ImageFrameContent = ({
 const ImageFrameBase = styled.div`
   position: relative;
   overflow: hidden;
+  float: ${({ floated }) => floated || 'none'};
+
+  ${({ margin }) =>
+    margin &&
+    css`
+      margin-top: ${margin.top || 0}px;
+      margin-bottom: ${margin.bottom || 0}px;
+      margin-left: ${margin.left || 0}px;
+      margin-right: ${margin.right || 0}px;
+    `};
 `
 
 const ImageFrameWithFixedHeight = styled(ImageFrameBase)`
@@ -113,18 +123,30 @@ function Image({
   overlay,
   withLinkIndicator,
   onClick,
+  floated,
+  width,
+  margin,
 }) {
   const Frame = size
     ? ({ children }) => (
         <ImageFrameWithFixedHeight
           height={IMAGE_HEIGHT_OPTIONS[size]}
           onClick={onClick}
+          floated={floated}
+          width={width}
+          margin={margin}
         >
           {children}
         </ImageFrameWithFixedHeight>
       )
     : ({ children }) => (
-        <ImageFrameWithFixedRatio frame={frame} onClick={onClick}>
+        <ImageFrameWithFixedRatio
+          frame={frame}
+          onClick={onClick}
+          floated={floated}
+          width={width}
+          margin={margin}
+        >
           {children}
         </ImageFrameWithFixedRatio>
       )
