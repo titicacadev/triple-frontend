@@ -191,45 +191,6 @@ export function Label({ children }) {
   return <LabelContent>{children}</LabelContent>
 }
 
-const RatingStar = styled.span`
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-  background-size: 16px 16px;
-  background-image: url(https://assets.triple.guide/images/${({
-      full,
-      half,
-    }) => {
-      if (full) {
-        return 'img-review-star-full@2x.png'
-      } else if (half) {
-        return 'img-review-star-half@2x.png'
-      }
-
-      return 'img-review-star-empty@2x.png'
-    }});
-`
-
-export function Rating({ score }) {
-  const full = Math.floor(score)
-  const half = Math.floor((score - full) * 2)
-  const empty = 5 - full - half
-
-  return (
-    <>
-      {[...Array(full)].map((_, i) => (
-        <RatingStar key={`full-${i}`} full />
-      ))}
-      {[...Array(half)].map((_, i) => (
-        <RatingStar key={`half-${i}`} half />
-      ))}
-      {[...Array(empty)].map((_, i) => (
-        <RatingStar key={`empty-${i}`} />
-      ))}
-    </>
-  )
-}
-
 export function RegionElement({ value, onClick }) {
   if (value) {
     const {
