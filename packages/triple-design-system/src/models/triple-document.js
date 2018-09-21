@@ -277,7 +277,10 @@ export function Pois({
   onResourceScrapedChange,
 }) {
   const Container = display === 'list' ? ResourceList : Carousel
-  const Element = display === 'list' ? PoiListElement : PoiCarouselElement
+  const Element =
+    display === 'list'
+      ? (props) => <PoiListElement compact {...props} />
+      : PoiCarouselElement
   const ActionButton =
     display === 'list' ? PoiListActionButton : PoiCarouselActionButton
 

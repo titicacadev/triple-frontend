@@ -15,7 +15,7 @@ const TYPE_NAMES = {
 const POI_IMAGE_PLACEHOLDER =
   'https://assets.triple.guide/images/ico-blank-see@2x.png'
 
-export class PoiListElement extends PureComponent {
+class CompactPoiListElement extends PureComponent {
   state = { actionButtonWidth: 0 }
 
   setActionButtonRef = (ref) => {
@@ -69,6 +69,83 @@ export class PoiListElement extends PureComponent {
       </ResourceListItem>
     )
   }
+}
+
+class ExtendedPoiListElement extends PureComponent {
+  render() {
+    const {
+      props: {
+        poi: {
+          type,
+          nameOverride,
+          scraped,
+          source: {
+            names,
+            image,
+            areas: [area],
+            categories: [category],
+            comment,
+            reviewsCount,
+            scrapsCount,
+            reviewsRating,
+          },
+          distance,
+        },
+        onClick,
+      },
+    } = this
+
+    return (
+      <ResourceListItem onClick={onClick}>
+        <Text bold ellipsis alpha={1} size="large">
+          {nameOverride || names.ko || names.en || names.local}
+        </Text>
+        <Text alpha={0.7} size="small">
+          {comment}
+        </Text>
+        <div>
+          {scrapsCount && (
+            <Text size="small">
+              저장
+              {scrapsCount}
+            </Text>
+          )}
+        </div>
+        <div>
+          {distance && (
+            <Text color="blue" size="small">
+              {distance}m
+            </Text>
+          )}
+          {category && (
+            <Text size="small" alpha={0.4}>
+              {category.name}
+            </Text>
+          )}
+          {category &&
+            area && (
+              <Text size="small" alpha={0.4}>
+                {' '}
+                ·{' '}
+              </Text>
+            )}
+          {area && (
+            <Text size="small" alpha={0.4}>
+              {area.name}
+            </Text>
+          )}
+        </div>
+      </ResourceListItem>
+    )
+  }
+}
+
+export function PoiListElement({ compact, ...props }) {
+  return compact ? (
+    <CompactPoiListElement {...props} />
+  ) : (
+    <ExtendedPoiListElement {...props} />
+  )
 }
 
 export function PoiCarouselElement({ poi, onClick, actionButtonElement }) {
