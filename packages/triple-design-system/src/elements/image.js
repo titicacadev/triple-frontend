@@ -99,7 +99,8 @@ const ImageFrameWithFixedRatio = styled(ImageFrameBase)`
 
 const IMAGE_HEIGHT_OPTIONS = {
   mini: '80px',
-  small: '200px',
+  small: '110px',
+  medium: '200px',
 }
 
 function Image({
