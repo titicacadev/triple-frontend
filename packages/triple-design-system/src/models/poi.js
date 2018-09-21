@@ -1,5 +1,8 @@
 import React, { PureComponent } from 'react'
+import Container from '../elements/container'
 import Text from '../elements/text'
+import Rating from '../elements/rating'
+import Image from '../elements/image'
 import {
   SquareImage,
   CarouselElementContainer,
@@ -97,44 +100,61 @@ class ExtendedPoiListElement extends PureComponent {
 
     return (
       <ResourceListItem onClick={onClick}>
+        <Image
+          floated="right"
+          size="small"
+          width={100}
+          src={(image && image.sizes.large.url) || POI_IMAGE_PLACEHOLDER}
+          margin={{ left: 20 }}
+        />
         <Text bold ellipsis alpha={1} size="large">
           {nameOverride || names.ko || names.en || names.local}
         </Text>
-        <Text alpha={0.7} size="small">
+        <Text alpha={0.7} size="small" margin={{ top: 5 }}>
           {comment}
         </Text>
-        <div>
-          {scrapsCount && (
-            <Text size="small">
-              저장
-              {scrapsCount}
-            </Text>
+        <Container margin={{ top: 5 }}>
+          {reviewsCount && (
+            <>
+              <Rating size="small" score={reviewsRating} />
+              <Text inline size="small" alpha={0.4}>
+                {` (${reviewsCount})`}
+              </Text>
+            </>
           )}
-        </div>
-        <div>
+          {reviewsCount &&
+            scrapsCount && (
+              <Text inline size="small" alpha={0.4}>
+                {' · '}
+              </Text>
+            )}
+          {scrapsCount && (
+            <Text inline size="small" alpha={0.4}>{`저장${scrapsCount}`}</Text>
+          )}
+        </Container>
+        <Container margin={{ top: 3 }}>
           {distance && (
-            <Text color="blue" size="small">
+            <Text inline color="blue" size="small">
               {distance}m
             </Text>
           )}
           {category && (
-            <Text size="small" alpha={0.4}>
+            <Text inline size="small" alpha={0.4}>
               {category.name}
             </Text>
           )}
           {category &&
             area && (
-              <Text size="small" alpha={0.4}>
-                {' '}
-                ·{' '}
+              <Text inline size="small" alpha={0.4}>
+                {' · '}
               </Text>
             )}
           {area && (
-            <Text size="small" alpha={0.4}>
+            <Text inline size="small" alpha={0.4}>
               {area.name}
             </Text>
           )}
-        </div>
+        </Container>
       </ResourceListItem>
     )
   }
