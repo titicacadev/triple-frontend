@@ -21,7 +21,7 @@ const IMAGE_PREFIXES = {
 
 const RatingStar = styled.span`
   display: inline-block;
-  vertical-align: text-top;
+  vertical-align: text-bottom;
 
   ${({ size = 'small', full, half }) => css`
     width: ${SIZES[size]};
