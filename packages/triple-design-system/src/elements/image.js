@@ -77,12 +77,12 @@ const ImageFrameContent = ({
 
 const ImageFrameBase = styled.div`
   position: relative;
-  width: 100%;
   overflow: hidden;
 `
 
 const ImageFrameWithFixedHeight = styled(ImageFrameBase)`
   height: ${({ height }) => height};
+  width: ${({ width }) => (width && `${width}px`) || '100%'};
 `
 
 const IMAGE_FRAME_OPTIONS = {
@@ -94,6 +94,7 @@ const IMAGE_FRAME_OPTIONS = {
 
 const ImageFrameWithFixedRatio = styled(ImageFrameBase)`
   padding-top: ${({ frame }) => IMAGE_FRAME_OPTIONS[frame || 'small']};
+  width: 100%;
 `
 
 const IMAGE_HEIGHT_OPTIONS = {
