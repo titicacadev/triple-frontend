@@ -105,6 +105,16 @@ const ExtendedPoiListItem = styled(List.Item)`
   box-sizing: border-box;
 `
 
+const PoiCarouselScrapButton = styled.div`
+  position: absolute;
+  top: ${({ top }) => top || 3}px;
+  right: ${({ right }) => right || 3}px;
+  width: 36px;
+  height: 36px;
+  background-image: url(https://assets.triple.guide/images/${({ pressed }) => (pressed ? 'btn-content-scrap-overlay-on@2x.png' : 'btn-content-scrap-overlay-off@2x.png')});
+  background-size: 36px 36px;
+`
+
 class ExtendedPoiListElement extends PureComponent {
   render() {
     const {
@@ -210,16 +220,6 @@ export function PoiListElement({ compact, ...props }) {
     <ExtendedPoiListElement {...props} />
   )
 }
-
-const PoiCarouselScrapButton = styled.div`
-  position: absolute;
-  top: ${({ top }) => top || 3}px;
-  right: ${({ right }) => right || 3}px;
-  width: 36px;
-  height: 36px;
-  background-image: url(https://assets.triple.guide/images/${({ pressed }) => (pressed ? 'btn-content-scrap-overlay-on@2x.png' : 'btn-content-scrap-overlay-off@2x.png')});
-  background-size: 36px 36px;
-`
 
 export function PoiCarouselElement({ poi, onClick, actionButtonElement }) {
   if (poi) {
