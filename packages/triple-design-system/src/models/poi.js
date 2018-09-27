@@ -126,6 +126,7 @@ class ExtendedPoiListElement extends PureComponent {
           distance,
         },
         onClick,
+        onScrapedChange,
       },
     } = this
 
@@ -186,6 +187,17 @@ class ExtendedPoiListElement extends PureComponent {
             </Text>
           )}
         </Container>
+        <PoiCarouselScrapButton
+          top={23}
+          scraped={scraped}
+          onClick={
+            onScrapedChange &&
+            ((e) => {
+              e.stopPropagation()
+              onScrapedChange(e, { ...poi, scraped: !scraped })
+            })
+          }
+        />
       </ExtendedPoiListItem>
     )
   }
@@ -201,8 +213,8 @@ export function PoiListElement({ compact, ...props }) {
 
 const PoiCarouselScrapButton = styled.div`
   position: absolute;
-  top: 3px;
-  right: 3px;
+  top: ${({ top }) => top || 3}px;
+  right: ${({ right }) => right || 3}px;
   width: 36px;
   height: 36px;
   background-image: url(https://assets.triple.guide/images/${({ pressed }) => (pressed ? 'btn-content-scrap-overlay-on@2x.png' : 'btn-content-scrap-overlay-off@2x.png')});
