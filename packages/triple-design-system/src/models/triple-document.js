@@ -199,6 +199,8 @@ const PoiPrice = styled.div`
 function renderPoiListActionButton({ actionButtonElement, display, poi }) {
   if (actionButtonElement === null) {
     return <span />
+  } else if (actionButtonElement) {
+    return actionButtonElement
   }
 
   const {
