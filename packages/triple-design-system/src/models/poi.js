@@ -3,6 +3,7 @@ import Container from '../elements/container'
 import Text from '../elements/text'
 import Rating from '../elements/rating'
 import Image from '../elements/image'
+import List from '../elements/list'
 import {
   SquareImage,
   CarouselElementContainer,
@@ -99,7 +100,7 @@ class ExtendedPoiListElement extends PureComponent {
     } = this
 
     return (
-      <ResourceListItem onClick={onClick}>
+      <List.Item onClick={onClick}>
         <Image
           floated="right"
           size="small"
@@ -155,7 +156,7 @@ class ExtendedPoiListElement extends PureComponent {
             </Text>
           )}
         </Container>
-      </ResourceListItem>
+      </List.Item>
     )
   }
 }
