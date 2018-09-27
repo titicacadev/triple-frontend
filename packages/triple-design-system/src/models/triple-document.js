@@ -184,16 +184,6 @@ function EmbeddedImages({
   return null
 }
 
-const PoiListScrapButton = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 34px;
-  height: 34px;
-  background-image: url(https://assets.triple.guide/images/${({ pressed }) => (pressed ? 'btn-content-scrap-list-on@2x.png' : 'btn-content-scrap-list-off@2x.png')});
-  background-size: 34px 34px;
-`
-
 const PoiPrice = styled.div`
   position: absolute;
   top: 3px;
@@ -206,13 +196,16 @@ const PoiPrice = styled.div`
   background-color: #fafafa;
 `
 
-function PoiListActionButton({ poi, onScrapedChange }) {
+function renderPoiListActionButton({ actionButtonElement, display, poi }) {
+  if (actionButtonElement === null) {
+    return <span />
+  }
+
   const {
     source: { pricing },
-    scraped,
   } = poi
 
-  if (pricing) {
+  if (display === 'list' && pricing) {
     const { nightlyPrice } = pricing
 
     return (
@@ -224,46 +217,7 @@ function PoiListActionButton({ poi, onScrapedChange }) {
     )
   }
 
-  return (
-    <PoiListScrapButton
-      pressed={scraped}
-      onClick={
-        onScrapedChange &&
-        ((e) => {
-          e.stopPropagation()
-          onScrapedChange(e, { ...poi, scraped: !scraped })
-        })
-      }
-    />
-  )
-}
-
-const PoiCarouselScrapButton = styled.div`
-  position: absolute;
-  top: 3px;
-  right: 3px;
-  width: 36px;
-  height: 36px;
-  background-image: url(https://assets.triple.guide/images/${({ pressed }) => (pressed ? 'btn-content-scrap-overlay-on@2x.png' : 'btn-content-scrap-overlay-off@2x.png')});
-  background-size: 36px 36px;
-`
-
-function PoiCarouselActionButton({
-  poi: { scraped, ...poi },
-  onScrapedChange,
-}) {
-  return (
-    <PoiCarouselScrapButton
-      pressed={scraped}
-      onClick={
-        onScrapedChange &&
-        ((e) => {
-          e.stopPropagation()
-          onScrapedChange(e, { ...poi, scraped: !scraped })
-        })
-      }
-    />
-  )
+  return undefined
 }
 
 const ResourceList = ({ children }) => (
@@ -281,8 +235,6 @@ export function Pois({
     display === 'list'
       ? (props) => <PoiListElement compact {...props} />
       : PoiCarouselElement
-  const ActionButton =
-    display === 'list' ? PoiListActionButton : PoiCarouselActionButton
 
   return (
     <Container>
@@ -291,16 +243,12 @@ export function Pois({
           key={poi.id}
           poi={poi}
           onClick={onResourceClick && ((e) => onResourceClick(e, poi))}
-          actionButtonElement={
-            actionButtonElement || actionButtonElement === null ? (
-              actionButtonElement
-            ) : (
-              <ActionButton
-                poi={poi}
-                onScrapedChange={onResourceScrapedChange}
-              />
-            )
-          }
+          onScrapedChange={onResourceScrapedChange}
+          actionButtonElement={renderPoiListActionButton({
+            actionButtonElement,
+            display,
+            poi,
+          })}
         />
       ))}
     </Container>
