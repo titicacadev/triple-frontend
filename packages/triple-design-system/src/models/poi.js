@@ -20,6 +20,16 @@ const TYPE_NAMES = {
 const POI_IMAGE_PLACEHOLDER =
   'https://assets.triple.guide/images/ico-blank-see@2x.png'
 
+const PoiCompactListScrapButton = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 34px;
+  height: 34px;
+  background-image: url(https://assets.triple.guide/images/${({ pressed }) => (pressed ? 'btn-content-scrap-list-on@2x.png' : 'btn-content-scrap-list-off@2x.png')});
+  background-size: 34px 34px;
+`
+
 class CompactPoiListElement extends PureComponent {
   state = { actionButtonWidth: 0 }
 
@@ -42,6 +52,7 @@ class CompactPoiListElement extends PureComponent {
         poi: {
           type,
           nameOverride,
+          scraped,
           source: { names, image },
         },
         onClick,
@@ -68,8 +79,19 @@ class CompactPoiListElement extends PureComponent {
         <Text size="tiny" margin={{ top: 4, left: 50 }}>
           {TYPE_NAMES[type]}
         </Text>
-        {actionButtonElement && (
+        {actionButtonElement ? (
           <div ref={this.setActionButtonRef}>{actionButtonElement}</div>
+        ) : (
+          <PoiCompactListScrapButton
+            pressed={scraped}
+            onClick={
+              onScrapedChange &&
+              ((e) => {
+                e.stopPropagation()
+                onScrapedChange(e, { ...poi, scraped: !scraped })
+              })
+            }
+          />
         )}
       </ResourceListItem>
     )
@@ -176,12 +198,24 @@ export function PoiListElement({ compact, ...props }) {
   )
 }
 
+const PoiCarouselScrapButton = styled.div`
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 36px;
+  height: 36px;
+  background-image: url(https://assets.triple.guide/images/${({ pressed }) => (pressed ? 'btn-content-scrap-overlay-on@2x.png' : 'btn-content-scrap-overlay-off@2x.png')});
+  background-size: 36px 36px;
+`
+
 export function PoiCarouselElement({ poi, onClick, actionButtonElement }) {
   if (poi) {
     const {
       type,
       nameOverride,
+      scraped,
       source: { image, names },
+      onScrapedChange,
     } = poi
 
     return (
@@ -195,7 +229,20 @@ export function PoiCarouselElement({ poi, onClick, actionButtonElement }) {
         <Text size="tiny" margin={{ top: 2 }}>
           {TYPE_NAMES[type]}
         </Text>
-        {actionButtonElement}
+        {actionButtonElement ? (
+          actionButtonElement
+        ) : (
+          <PoiCarouselScrapButton
+            pressed={scraped}
+            onClick={
+              onScrapedChange &&
+              ((e) => {
+                e.stopPropagation()
+                onScrapedChange(e, { ...poi, scraped: !scraped })
+              })
+            }
+          />
+        )}
       </CarouselElementContainer>
     )
   }
