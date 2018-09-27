@@ -31,7 +31,7 @@ const PoiCompactListScrapButton = styled.div`
 `
 
 class CompactPoiListElement extends PureComponent {
-  state = { actionButtonWidth: 0 }
+  state = { actionButtonWidth: 34 }
 
   setActionButtonRef = (ref) => {
     if (ref && ref.children[0]) {
