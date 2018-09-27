@@ -96,7 +96,6 @@ class ExtendedPoiListElement extends PureComponent {
     const {
       props: {
         poi: {
-          type,
           nameOverride,
           scraped,
           source: {
