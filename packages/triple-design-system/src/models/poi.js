@@ -49,6 +49,7 @@ class CompactPoiListElement extends PureComponent {
   render() {
     const {
       props: {
+        actionButtonElement,
         poi: {
           type,
           nameOverride,
@@ -56,7 +57,7 @@ class CompactPoiListElement extends PureComponent {
           source: { names, image },
         },
         onClick,
-        actionButtonElement,
+        onScrapedChange,
       },
       state: { actionButtonWidth },
     } = this
