@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import styled from 'styled-components'
 import Container from '../elements/container'
 import Text from '../elements/text'
 import Rating from '../elements/rating'
@@ -75,6 +76,13 @@ class CompactPoiListElement extends PureComponent {
   }
 }
 
+const ExtendedPoiListItem = styled(List.Item)`
+  margin: 0 30px;
+  min-height: 150px;
+  padding: 20px 0;
+  box-sizing: border-box;
+`
+
 class ExtendedPoiListElement extends PureComponent {
   render() {
     const {
@@ -100,7 +108,7 @@ class ExtendedPoiListElement extends PureComponent {
     } = this
 
     return (
-      <List.Item onClick={onClick}>
+      <ExtendedPoiListItem onClick={onClick}>
         <Image
           floated="right"
           size="small"
@@ -156,7 +164,7 @@ class ExtendedPoiListElement extends PureComponent {
             </Text>
           )}
         </Container>
-      </List.Item>
+      </ExtendedPoiListItem>
     )
   }
 }
