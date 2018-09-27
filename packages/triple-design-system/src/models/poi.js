@@ -77,7 +77,6 @@ class CompactPoiListElement extends PureComponent {
 }
 
 const ExtendedPoiListItem = styled(List.Item)`
-  margin: 0 30px;
   min-height: 150px;
   padding: 20px 0;
   box-sizing: border-box;
