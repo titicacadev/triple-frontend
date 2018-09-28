@@ -101,8 +101,8 @@ class ExtendedPoiListElement extends PureComponent {
           source: {
             names,
             image,
-            areas: [area],
-            categories: [category],
+            areas,
+            categories,
             comment,
             reviewsCount,
             scrapsCount,
@@ -114,6 +114,9 @@ class ExtendedPoiListElement extends PureComponent {
         onScrapedChange,
       },
     } = this
+
+    const [area] = areas || []
+    const [category] = categories || []
 
     return (
       <ExtendedPoiListItem onClick={onClick}>
