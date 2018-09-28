@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Children } from 'react'
 import styled, { css } from 'styled-components'
 
 const SIZES = {
@@ -81,7 +81,14 @@ const TextBase = styled.div`
 function Text({ children, ...props }) {
   return (
     <TextBase {...props}>
-      <LineBreak>{children}</LineBreak>
+      {Children.toArray(children).map(
+        (child, i) =>
+          typeof child === 'string' ? (
+            <LineBreak key={i}>{child}</LineBreak>
+          ) : (
+            child
+          ),
+      )}
     </TextBase>
   )
 }
@@ -129,7 +136,14 @@ const TitleBase = styled.h1`
 function Title({ children, ...props }) {
   return (
     <TitleBase {...props}>
-      <LineBreak>{children}</LineBreak>
+      {Children.toArray(children).map(
+        (child, i) =>
+          typeof child === 'string' ? (
+            <LineBreak key={i}>{child}</LineBreak>
+          ) : (
+            child
+          ),
+      )}
     </TitleBase>
   )
 }
