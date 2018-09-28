@@ -26,6 +26,22 @@ const Container = styled.div`
     `};
 
   float: ${({ floated }) => floated || 'none'};
+
+  ${({ textAlign }) =>
+    textAlign &&
+    css`
+      text-align: ${textAlign};
+    `};
+
+  ${({ clearing }) =>
+    clearing &&
+    css`
+      &:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+    `};
 `
 
 export default Container

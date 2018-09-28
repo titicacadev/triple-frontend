@@ -48,6 +48,12 @@ const TextBase = styled.div`
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
   color: ${({ color = 'gray', alpha = 0.7 }) => rgba({ color, alpha })};
 
+  ${({ center }) =>
+    center &&
+    css`
+      text-align: center;
+    `};
+
   ${({ inline }) =>
     inline &&
     css`

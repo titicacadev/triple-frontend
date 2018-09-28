@@ -21,11 +21,25 @@ const ButtonBase = styled.a`
   text-decoration: none;
   box-sizing: border-box;
 
+  color: ${({ textColor = 'gray', textAlpha = 1 }) =>
+    `rgba(${TEXT_COLORS[textColor]}, ${textAlpha})`};
+
+  float: ${({ floated }) => floated || 'none'};
+
   ${({ fluid }) =>
     fluid &&
     css`
       width: 100%;
       display: block;
+    `};
+
+  ${({ margin }) =>
+    margin &&
+    css`
+      margin-top: ${margin.top || 0}px;
+      margin-bottom: ${margin.bottom || 0}px;
+      margin-left: ${margin.left || 0}px;
+      margin-right: ${margin.right || 0}px;
     `};
 `
 
@@ -40,6 +54,7 @@ const ICON_BUTTON_NAMES = {
 const TEXT_COLORS = {
   blue: '41, 135, 240',
   gray: '58, 58, 58',
+  white: '255, 255, 255',
 }
 
 const ICON_PADDINGS = {
@@ -58,9 +73,6 @@ const IconButton = styled(ButtonBase)`
     content: '';
   }
 
-  color: ${({ color = 'gray', alpha = 0.5 }) =>
-    `rgba(${TEXT_COLORS[color]}, ${alpha})`};
-
   ${({ size = 'tiny' }) => {
     const padding = ICON_PADDINGS[size]
 
@@ -74,11 +86,11 @@ const IconButton = styled(ButtonBase)`
 `
 
 const BASIC_PADDINGS = {
+  tiny: { top: 7, bottom: 7, left: 12, right: 12 },
   small: { top: 7, bottom: 7, left: 15, right: 15 },
 }
 
 const BasicButton = styled(ButtonBase)`
-  color: #3a3a3a;
   border-style: solid;
   border-width: 1px;
   border-radius: 4px;
@@ -133,12 +145,18 @@ const RoundButton = styled(ButtonBase)`
 class Button extends PureComponent {
   render() {
     const {
-      props: { basic, icon, size, children, ...props },
+      props: { basic, icon, size, textColor, textAlpha, children, ...props },
     } = this
 
     if (basic) {
       return (
-        <BasicButton bold size={size || 'small'} {...props}>
+        <BasicButton
+          bold
+          size={size || 'small'}
+          textColor={textColor || 'gray'}
+          textAlpha={textAlpha}
+          {...props}
+        >
           {children}
         </BasicButton>
       )
@@ -146,14 +164,26 @@ class Button extends PureComponent {
 
     if (icon) {
       return (
-        <IconButton name={icon} size={size || 'tiny'} {...props}>
+        <IconButton
+          name={icon}
+          size={size || 'tiny'}
+          textColor={textColor || 'gray'}
+          textAlpha={textAlpha || 0.5}
+          {...props}
+        >
           {children}
         </IconButton>
       )
     }
 
     return (
-      <RoundButton bold size={size || 'tiny'} {...props}>
+      <RoundButton
+        bold
+        size={size || 'tiny'}
+        textColor={textColor || 'white'}
+        textAlpha={textAlpha}
+        {...props}
+      >
         {children}
       </RoundButton>
     )
