@@ -10,6 +10,7 @@ const RawImage = styled.img`
   border-radius: ${({ borderRadius }) =>
     borderRadius === 0 ? 0 : borderRadius || 6}px;
   object-fit: cover;
+  opacity: ${({ overlay }) => (overlay ? 80 : 100)}%;
 `
 
 const SourceUrl = styled.div`
@@ -58,7 +59,7 @@ const ImageFrameContent = ({
   withLinkIndicator,
 }) => (
   <>
-    <RawImage src={imageUrl} borderRadius={borderRadius} />
+    <RawImage overlay={!!overlay} src={imageUrl} borderRadius={borderRadius} />
     {sourceUrl && (
       <SourceUrl>
         {ImageSource ? <ImageSource>{sourceUrl}</ImageSource> : sourceUrl}
