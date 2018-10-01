@@ -35,6 +35,18 @@ const Container = styled.div`
       width: ${width}px;
     `};
 
+  ${({ minWidth }) =>
+    minWidth &&
+    css`
+      min-width: ${minWidth}px;
+    `};
+
+  ${({ maxWidth }) =>
+    maxWidth &&
+    css`
+      max-width: ${maxWidth}px;
+    `};
+
   float: ${({ floated }) => floated || 'none'};
 
   ${({ textAlign }) =>
