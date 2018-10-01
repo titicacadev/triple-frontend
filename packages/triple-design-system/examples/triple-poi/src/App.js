@@ -237,7 +237,12 @@ export default class App extends PureComponent {
 
     return (
       <div>
-        <Container margin={{ top: 20, left: 30, right: 30 }}>
+        <Container
+          centered
+          minWidth={375}
+          maxWidth={600}
+          padding={{ top: 20, left: 30, right: 30 }}
+        >
           <Text.Title>{names.ko}</Text.Title>
           <Text size="tiny" alpha={0.5}>
             {names.local}
@@ -260,7 +265,12 @@ export default class App extends PureComponent {
           )}
         </Container>
 
-        <Container margin={{ top: 20, left: 20, right: 20 }}>
+        <Container
+          centered
+          minWidth={375}
+          maxWidth={600}
+          padding={{ top: 20, left: 20, right: 20 }}
+        >
           <ImagePager images={images} />
           <Button.Group>
             <Button icon="save">저장하기</Button>
@@ -272,7 +282,21 @@ export default class App extends PureComponent {
 
         <HR1 margin={{ top: 8, left: 30, right: 30 }} />
 
-        <Container margin={{ top: 50, bottom: 30, left: 30, right: 30 }}>
+        <Container
+          centered
+          minWidth={375}
+          maxWidth={600}
+          padding={{ top: 50, bottom: 30, left: 30, right: 30 }}
+        >
+          <TripleDocument>{featuredContent}</TripleDocument>
+        </Container>
+
+        <Container
+          centered
+          minWidth={375}
+          maxWidth={600}
+          padding={{ top: 50, bottom: 30, left: 30, right: 30 }}
+        >
           <H1 margin={{ bottom: 20 }}>기본정보</H1>
           <Image
             size="mini"
@@ -288,7 +312,12 @@ export default class App extends PureComponent {
 
         <HR2 compact />
 
-        <Container margin={{ top: 50, bottom: 30, left: 30, right: 30 }}>
+        <Container
+          centered
+          minWidth={375}
+          maxWidth={600}
+          padding={{ top: 50, bottom: 30, left: 30, right: 30 }}
+        >
           <H1 margin={{ bottom: 10 }}>소셜 리뷰</H1>
           <List divided>
             {externalLinks.map(({ imageUrl, publisher, title, url }, i) => (
@@ -306,8 +335,6 @@ export default class App extends PureComponent {
             ))}
           </List>
         </Container>
-
-        <TripleDocument>{featuredContent}</TripleDocument>
       </div>
     )
   }
