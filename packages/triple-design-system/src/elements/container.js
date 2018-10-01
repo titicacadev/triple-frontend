@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components'
 
 const Container = styled.div`
+  box-sizing: border-box;
+
   ${({ centered, margin }) =>
     margin &&
     css`
