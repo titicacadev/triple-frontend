@@ -1,13 +1,21 @@
 import styled, { css } from 'styled-components'
 
 const Container = styled.div`
-  ${({ margin }) =>
+  ${({ centered, margin }) =>
     margin &&
     css`
       margin-top: ${margin.top || 0}px;
       margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
+      margin-left: ${centered
+        ? 'auto'
+        : margin.left
+          ? `${margin.left}px`
+          : '0px'};
+      margin-right: ${centered
+        ? 'auto'
+        : margin.right
+          ? `${margin.right}px`
+          : '0px'};
     `};
 
   ${({ padding }) =>
