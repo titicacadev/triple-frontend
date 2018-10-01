@@ -4,10 +4,10 @@ const Container = styled.div`
   box-sizing: border-box;
 
   ${({ centered, margin }) =>
-    margin &&
+    (margin || centered) &&
     css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
+      margin-top: ${(margin || {}).top || 0}px;
+      margin-bottom: ${(margin || {}).bottom || 0}px;
       margin-left: ${centered
         ? 'auto'
         : margin.left
