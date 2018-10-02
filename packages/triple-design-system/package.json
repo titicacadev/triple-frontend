@@ -6,7 +6,8 @@
   "scripts": {
     "build": "babel src --out-dir lib",
     "prettier": "prettier --write \"**/*.{js,json}\"",
-    "lint": "npm run prettier && eslint 'src/**/*.js'"
+    "lint": "npm run prettier && eslint '{src,test/src}/**/*.js'",
+    "test": "cd test && npm test"
   },
   "files": [
     "lib/"
@@ -29,13 +30,14 @@
   "homepage": "https://github.com/titicacadev/triple-design-system#readme",
   "devDependencies": {
     "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
+    "@babel/core": "^7.1.2",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.0",
     "babel-plugin-styled-components": "^1.7.0",
     "eslint": "^5.6.0",
+    "eslint-plugin-cypress": "^2.0.1",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "^7.11.1",
     "prettier": "^1.14.2",

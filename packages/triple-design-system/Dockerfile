@@ -2,17 +2,28 @@
 FROM node:10 AS base
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm install
+RUN npm ci
 
 # lint
-FROM base as build
+FROM base AS lint
 WORKDIR /app
 COPY . .
 RUN npm run lint
 
-# build
-FROM node:10 AS build
+# test
+FROM cypress/base:10 AS test
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm install --only=production
+COPY . .
+# by setting CI environment variable we switch the Cypress install messages
+# to small "started / finished" and avoid 1000s of lines of progress messages
+# https://github.com/cypress-io/cypress/issues/1243
+ENV CI=true
+RUN npm ci
+RUN cd test && npm ci && cd ..
+RUN npm test
+
+# build
+FROM base AS build
+WORKDIR /app
+COPY . .
 RUN npm run build

@@ -5,6 +5,8 @@ steps:
   - '-c'
   - |
     docker pull gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/base || true
+    docker pull gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/lint || true
+    docker pull gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/test || true
     docker pull gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/build || true
 - name: 'gcr.io/cloud-builders/docker'
   args: [
@@ -18,6 +20,27 @@ steps:
   args: [
     'build',
     '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/base',
+    '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/lint',
+    '--tag', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/lint',
+    '--target', 'lint',
+    '.'
+  ]
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'build',
+    '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/base',
+    '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/lint',
+    '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/test',
+    '--tag', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/test',
+    '--target', 'test',
+    '.'
+  ]
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'build',
+    '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/base',
+    '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/lint',
+    '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/test',
     '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/build',
     '--tag', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/build',
     '--target', 'build',

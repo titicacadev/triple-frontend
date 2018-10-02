@@ -1,0 +1,6 @@
+# Cypress
+cypress/videos
+cypress/screenshots
+
+# Webpack build
+dist
