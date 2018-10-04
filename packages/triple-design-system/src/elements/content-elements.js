@@ -1,6 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import List from './list'
+import Image from './image'
 
 export const ImageCarousel = styled.div`
   margin-top: 30px;
@@ -114,14 +115,6 @@ export const HR3 = styled.div`
   background-color: transparent;
 `
 
-const RoundThumbnail = styled.img`
-  width: 40px;
-  height: 40px;
-  float: left;
-  background-color: #efefef;
-  border-radius: 20px;
-`
-
 const ListLabel = styled.div`
   float: left;
   margin-left: 10px;
@@ -200,7 +193,12 @@ export function RegionElement({ value, onClick }) {
 
     return (
       <ResourceListItem key={id} onClick={onClick}>
-        <RoundThumbnail src={style && style.backgroundImageUrl} />
+        <Image
+          circular
+          size="small"
+          floated="left"
+          src={style && style.backgroundImageUrl}
+        />
         <ListLabel>
           {nameOverride || names.ko || names.en || names.local}
         </ListLabel>

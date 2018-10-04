@@ -114,9 +114,24 @@ const IMAGE_HEIGHT_OPTIONS = {
   medium: '200px',
 }
 
+const ROUND_SIZES = {
+  small: 40,
+  medium: 60,
+}
+
+const RoundImage = styled.img`
+  width: ${({ size }) => ROUND_SIZES[size || 'small']}px;
+  height: ${({ size }) => ROUND_SIZES[size || 'small']}px;
+  border-radius: ${({ size }) => ROUND_SIZES[size || 'small'] / 2}px;
+  background-color: #efefef;
+
+  float: ${({ floated }) => floated || 'none'};
+`
+
 function Image({
   src,
   borderRadius,
+  circular,
   sourceUrl,
   frame,
   size,
@@ -128,6 +143,10 @@ function Image({
   width,
   margin,
 }) {
+  if (circular) {
+    return <RoundImage src={src} floated={floated} size={size} />
+  }
+
   const Frame = size
     ? ({ children }) => (
         <ImageFrameWithFixedDimensions
