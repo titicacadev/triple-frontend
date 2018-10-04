@@ -11,7 +11,14 @@ export function Author({ name, bio, image }) {
       <Text bold size="large" color="gray" alpha={1} margin={{ top: 15 }}>
         {name}
       </Text>
-      <Text center size="small" color="gray" alpha={0.5} margin={{ top: 5 }}>
+      <Text
+        center
+        size="small"
+        color="gray"
+        alpha={0.5}
+        lineHeight={1.43}
+        margin={{ top: 5 }}
+      >
         {bio}
       </Text>
     </Container>
