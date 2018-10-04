@@ -6,6 +6,10 @@ module.exports = {
   entry: {
     text: [path.resolve(__dirname, '../src'), './src/elements/text'],
     author: [path.resolve(__dirname, '../src'), './src/models/author'],
+    responsive: [
+      path.resolve(__dirname, '../src'),
+      './src/elements/responsive',
+    ],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
