@@ -97,6 +97,7 @@ const ImageFrameWithFixedDimensions = styled(ImageFrameBase)`
 `
 
 const IMAGE_FRAME_OPTIONS = {
+  mini: '25%',
   small: '60%',
   medium: '75%',
   large: '100%',
