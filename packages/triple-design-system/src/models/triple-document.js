@@ -5,8 +5,6 @@ import {
   HR1,
   HR2,
   HR3,
-  Carousel,
-  CarouselElementContainer,
   ImageCarousel,
   ImageCarouselElementContainer,
   ImageCaption,
@@ -18,6 +16,7 @@ import Button from '../elements/button'
 import Text from '../elements/text'
 import Image from '../elements/image'
 import List from '../elements/list'
+import Carousel from '../elements/carousel'
 import { H1, H2, H3, H4, Paragraph } from './text'
 import { PoiListElement, PoiCarouselElement } from './poi'
 
@@ -226,13 +225,19 @@ const ResourceList = ({ children }) => (
   <List margin={{ top: 20, left: 30, right: 30 }}>{children}</List>
 )
 
+const DocumentCarousel = ({ children }) => (
+  <Carousel margin={{ top: 20 }} containerPadding={{ left: 30, right: 30 }}>
+    {children}
+  </Carousel>
+)
+
 export function Pois({
   value: { display, pois },
   actionButtonElement,
   onResourceClick,
   onResourceScrapedChange,
 }) {
-  const Container = display === 'list' ? ResourceList : Carousel
+  const Container = display === 'list' ? ResourceList : DocumentCarousel
   const Element =
     display === 'list'
       ? (props) => <PoiListElement compact {...props} />
@@ -321,9 +326,9 @@ function Links({ value: { display, links }, onLinkClick, ...props }) {
 
 function Embedded({ value: { entries }, onImageClick, ImageSource }) {
   return (
-    <Carousel>
+    <DocumentCarousel>
       {entries.map((elements, i) => (
-        <CarouselElementContainer key={i} size="medium">
+        <Carousel.Item key={i} size="medium">
           {elements.map(({ type, value }, j) => {
             const Element = EMBEDDED_ELEMENTS[type]
 
@@ -338,9 +343,9 @@ function Embedded({ value: { entries }, onImageClick, ImageSource }) {
               )
             )
           })}
-        </CarouselElementContainer>
+        </Carousel.Item>
       ))}
-    </Carousel>
+    </DocumentCarousel>
   )
 }
 

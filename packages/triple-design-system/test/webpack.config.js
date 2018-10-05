@@ -10,6 +10,7 @@ module.exports = {
       path.resolve(__dirname, '../src'),
       './src/elements/responsive',
     ],
+    carousel: [path.resolve(__dirname, '../src'), './src/elements/carousel'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

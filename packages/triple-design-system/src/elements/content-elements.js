@@ -37,36 +37,6 @@ export const ImageCaption = styled.div`
   color: rgba(58, 58, 58, 0.7);
 `
 
-export const Carousel = styled.div`
-  margin-top: 20px;
-  padding-right: 30px;
-  padding-bottom: 10px;
-  white-space: nowrap;
-  overflow-x: scroll;
-  -webkit-overflow-scrolling: touch;
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`
-
-export const CarouselElementContainer = styled.div`
-  display: inline-block;
-  position: relative;
-  width: ${({ size }) =>
-    ({ small: '140px', medium: '270px' }[size || 'small'])};
-  font-family: sans-serif;
-  vertical-align: top;
-  white-space: normal;
-
-  margin-left: ${({ size }) =>
-    ({ small: '10px', medium: '15px' }[size || 'small'])};
-
-  &:first-child {
-    margin-left: 30px;
-  }
-`
-
 export const HR1 = styled.div`
   margin: 50px 30px;
   height: 1px;

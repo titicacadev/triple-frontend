@@ -5,11 +5,8 @@ import Text from '../elements/text'
 import Rating from '../elements/rating'
 import Image from '../elements/image'
 import List from '../elements/list'
-import {
-  SquareImage,
-  CarouselElementContainer,
-  ResourceListItem,
-} from '../elements/content-elements'
+import Carousel from '../elements/carousel'
+import { SquareImage, ResourceListItem } from '../elements/content-elements'
 
 const TYPE_NAMES = {
   attraction: '관광명소',
@@ -205,7 +202,7 @@ export function PoiCarouselElement({ poi, onClick, actionButtonElement }) {
     } = poi
 
     return (
-      <CarouselElementContainer size="small" onClick={onClick}>
+      <Carousel.Item size="small" onClick={onClick}>
         <SquareImage
           src={(image && image.sizes.large.url) || POI_IMAGE_PLACEHOLDER}
         />
@@ -224,7 +221,7 @@ export function PoiCarouselElement({ poi, onClick, actionButtonElement }) {
             onScrapedChange={onScrapedChange}
           />
         )}
-      </CarouselElementContainer>
+      </Carousel.Item>
     )
   }
 }
