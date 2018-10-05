@@ -126,6 +126,7 @@ const RoundImage = styled.img`
   height: ${({ size }) => ROUND_SIZES[size || 'small']}px;
   border-radius: ${({ size }) => ROUND_SIZES[size || 'small'] / 2}px;
   background-color: #efefef;
+  object-fit: cover;
 
   float: ${({ floated }) => floated || 'none'};
 `
