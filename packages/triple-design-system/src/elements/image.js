@@ -113,6 +113,7 @@ const IMAGE_HEIGHT_OPTIONS = {
   mini: '80px',
   small: '110px',
   medium: '200px',
+  large: '400px',
 }
 
 const ROUND_SIZES = {
