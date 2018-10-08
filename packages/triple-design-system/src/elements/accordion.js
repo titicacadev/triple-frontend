@@ -18,7 +18,7 @@ const Title = styled(Container)`
     height: 20px;
     background-image: url(${({ active }) =>
       `https://assets.triple.guide/images/${
-        TITLE_ICONS[active ? 'unfolded' : 'folded']
+        TITLE_ICONS[active ? 'folded' : 'unfolded']
       }`});
     background-size: 20px 20px;
     background-position: center center;
