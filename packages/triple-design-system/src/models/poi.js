@@ -151,7 +151,7 @@ class ExtendedPoiListElement extends PureComponent {
         </Container>
         <Container margin={{ top: 3 }}>
           {distance || distance === 0 ? (
-            <Text inline color="blue" size="small">
+            <Text inline color="blue" size="small" alpha={1}>
               {`${distance}m `}
             </Text>
           ) : null}

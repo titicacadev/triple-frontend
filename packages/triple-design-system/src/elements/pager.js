@@ -6,7 +6,7 @@ import Container from './container'
 const CurrentPage = styled.div`
   margin: 10px;
   padding: 5px 7px;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 11px;
   font-weight: bold;
   color: #ffffff;
