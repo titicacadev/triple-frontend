@@ -66,6 +66,7 @@ const ELEMENTS = {
 }
 
 const EMBEDDED_ELEMENTS = {
+  heading2: Compact(Heading(MH3)), // POI의 featuredContent에서 embedded entry의 제목이 heading2로 옵니다.
   heading3: Compact(Heading(MH3)),
   text: Compact(TextElement),
   links: Compact(Links),
