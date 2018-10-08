@@ -142,18 +142,6 @@ export const SimpleLink = styled.a`
   text-decoration: underline;
 `
 
-const LabelContent = styled.div`
-  display: inline;
-
-  * {
-    vertical-align: middle;
-  }
-`
-
-export function Label({ children }) {
-  return <LabelContent>{children}</LabelContent>
-}
-
 export function RegionElement({ value, onClick }) {
   if (value) {
     const {

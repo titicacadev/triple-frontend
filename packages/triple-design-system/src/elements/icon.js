@@ -24,6 +24,7 @@ const Icon = styled.div`
   background-size: ${({ size }) =>
     `${SIZES[size || 'small']} ${SIZES[size || 'small']}`};
   background-repeat: no-repeat;
+  vertical-align: text-bottom;
 `
 
 export default Icon
