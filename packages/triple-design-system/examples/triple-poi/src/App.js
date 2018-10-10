@@ -11,7 +11,6 @@ import {
   Container,
   Text,
   Icon,
-  Label,
   ImagePager,
   Button,
   Accordion,
@@ -250,16 +249,16 @@ export default class App extends PureComponent {
           {(reviewsCount > 0 || scrapsCount > 0) && (
             <Container margin={{ top: 4 }}>
               {reviewsCount > 0 && (
-                <Label>
+                <>
                   <Rating score={reviewsRating} />
-                  {reviewsCount}
-                </Label>
+                  {` ${reviewsCount} `}
+                </>
               )}
               {scrapsCount > 0 && (
-                <Label>
+                <>
                   <Icon name="save" size="tiny" />
-                  {scrapsCount}
-                </Label>
+                  {` ${scrapsCount}`}
+                </>
               )}
             </Container>
           )}
