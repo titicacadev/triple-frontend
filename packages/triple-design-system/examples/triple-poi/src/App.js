@@ -18,6 +18,7 @@ import {
   List,
   TripleDocument,
   Navbar,
+  Footer,
 } from '@titicaca/triple-design-system/src'
 import sample from './sample.json'
 import humps from 'humps'
@@ -340,6 +341,8 @@ export default class App extends PureComponent {
             ))}
           </List>
         </Container>
+
+        <Footer />
       </div>
     )
   }
