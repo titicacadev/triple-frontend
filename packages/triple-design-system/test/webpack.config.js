@@ -11,6 +11,7 @@ module.exports = {
       './src/elements/responsive',
     ],
     carousel: [path.resolve(__dirname, '../src'), './src/elements/carousel'],
+    navbar: [path.resolve(__dirname, '../src'), './src/elements/navbar'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
