@@ -17,6 +17,7 @@ import {
   Segment,
   List,
   TripleDocument,
+  Navbar,
 } from '@titicaca/triple-design-system/src'
 import sample from './sample.json'
 import humps from 'humps'
@@ -236,6 +237,11 @@ export default class App extends PureComponent {
 
     return (
       <div>
+        <Navbar title={'POI'}>
+          <Navbar.Item icon="back" floated="left" />
+          <Navbar.Item icon="more" floated="right" />
+          <Navbar.Item icon="map" floated="right" />
+        </Navbar>
         <Container
           centered
           minWidth={375}
