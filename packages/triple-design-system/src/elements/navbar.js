@@ -49,10 +49,8 @@ const NavbarItem = styled.div`
 function Navbar({ title, children }) {
   return (
     <NavbarFrame>
-      <>
-        {title && <TitleContainer>{title}</TitleContainer>}
-        {children}
-      </>
+      {title && <TitleContainer>{title}</TitleContainer>}
+      {children}
     </NavbarFrame>
   )
 }
