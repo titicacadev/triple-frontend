@@ -59,7 +59,13 @@ const ImageFrameContent = ({
   withLinkIndicator,
 }) => (
   <>
-    <RawImage overlay={!!overlay} src={imageUrl} borderRadius={borderRadius} />
+    {imageUrl && (
+      <RawImage
+        overlay={!!overlay}
+        src={imageUrl}
+        borderRadius={borderRadius}
+      />
+    )}
     {sourceUrl && (
       <SourceUrl>
         {ImageSource ? <ImageSource>{sourceUrl}</ImageSource> : sourceUrl}
@@ -80,6 +86,7 @@ const ImageFrameBase = styled.div`
   position: relative;
   overflow: hidden;
   float: ${({ floated }) => floated || 'none'};
+  background-color: #f5f5f5;
 
   ${({ margin }) =>
     margin &&
@@ -89,6 +96,9 @@ const ImageFrameBase = styled.div`
       margin-left: ${margin.left || 0}px;
       margin-right: ${margin.right || 0}px;
     `};
+
+  border-radius: ${({ borderRadius }) =>
+    borderRadius === 0 ? 0 : borderRadius || 6}px;
 `
 
 const ImageFrameWithFixedDimensions = styled(ImageFrameBase)`
@@ -158,6 +168,7 @@ function Image({
           floated={floated}
           width={width}
           margin={margin}
+          borderRadius={borderRadius}
         >
           {children}
         </ImageFrameWithFixedDimensions>
@@ -169,6 +180,7 @@ function Image({
           floated={floated}
           width={width}
           margin={margin}
+          borderRadius={borderRadius}
         >
           {children}
         </ImageFrameWithFixedRatio>

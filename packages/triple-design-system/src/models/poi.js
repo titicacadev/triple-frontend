@@ -121,7 +121,7 @@ class ExtendedPoiListElement extends PureComponent {
           floated="right"
           size="small"
           width={100}
-          src={(image && image.sizes.large.url) || POI_IMAGE_PLACEHOLDER}
+          src={image && image.sizes.large.url}
           margin={{ left: 20 }}
         />
         <Text bold ellipsis alpha={1} size="large">
