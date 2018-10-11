@@ -12,6 +12,10 @@ module.exports = {
     ],
     carousel: [path.resolve(__dirname, '../src'), './src/elements/carousel'],
     navbar: [path.resolve(__dirname, '../src'), './src/elements/navbar'],
+    'action-sheet': [
+      path.resolve(__dirname, '../src'),
+      './src/elements/action-sheet',
+    ],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
