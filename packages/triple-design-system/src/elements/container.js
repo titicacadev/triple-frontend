@@ -3,6 +3,12 @@ import styled, { css } from 'styled-components'
 const Container = styled.div`
   box-sizing: border-box;
 
+  ${({ position }) =>
+    position &&
+    css`
+      position: ${position};
+    `};
+
   ${({ centered, margin }) =>
     (margin || centered) &&
     css`
