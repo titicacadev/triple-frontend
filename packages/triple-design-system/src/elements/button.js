@@ -226,7 +226,26 @@ const ButtonGroup = styled(Container)`
   width: 100%;
 
   a {
-    width: ${({ children }) => 100 / children.length}%;
+    ${({ horizontalGap, children }) =>
+      horizontalGap
+        ? css`
+            width: calc(
+              (100% - ${(children.length - 1) * horizontalGap}px) /
+                ${children.length}
+            );
+          `
+        : css`
+            width: ${100 / children.length}%;
+          `};
+
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  a:not(:first-child) {
+    ${({ horizontalGap }) => css`
+      margin-left: ${horizontalGap || 0}px;
+    `};
   }
 `
 

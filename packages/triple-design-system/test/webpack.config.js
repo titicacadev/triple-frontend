@@ -5,6 +5,7 @@ const path = require('path')
 module.exports = {
   entry: {
     text: [path.resolve(__dirname, '../src'), './src/elements/text'],
+    button: [path.resolve(__dirname, '../src'), './src/elements/button'],
     author: [path.resolve(__dirname, '../src'), './src/models/author'],
     responsive: [
       path.resolve(__dirname, '../src'),
