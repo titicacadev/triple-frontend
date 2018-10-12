@@ -120,7 +120,7 @@ class ExtendedPoiListElement extends PureComponent {
         <Image
           floated="right"
           size="small"
-          width={100}
+          width={90}
           src={image && image.sizes.large.url}
           margin={{ left: 20 }}
         />
