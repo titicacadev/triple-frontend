@@ -7,10 +7,10 @@ const CurrentPage = styled.div`
   margin: 10px;
   padding: 5px 7px;
   font-size: 12px;
-  line-height: 11px;
+  line-height: 12px;
   font-weight: bold;
   color: #ffffff;
-  border-radius: 11px;
+  border-radius: 12px;
   background-color: rgba(0, 0, 0, 0.2);
 `
 
