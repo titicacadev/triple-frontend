@@ -329,7 +329,7 @@ function Embedded({ value: { entries }, onImageClick, ImageSource }) {
   return (
     <DocumentCarousel>
       {entries.map((elements, i) => (
-        <Carousel.Item key={i} size="medium">
+        <Carousel.Item key={i} size="large">
           {elements.map(({ type, value }, j) => {
             const Element = EMBEDDED_ELEMENTS[type]
 

@@ -37,9 +37,17 @@ const ImageOverlay = styled.div`
     rgba(0, 0, 0, 0.6),
     rgba(0, 0, 0, 0)
   );
-  padding: 16px 60px 16px 20px;
   border-radius: ${({ borderRadius }) =>
     borderRadius === 0 ? 0 : borderRadius || 6}px;
+
+  ${({ overlayPadding }) =>
+    overlayPadding &&
+    css`
+      padding-top: ${overlayPadding.top || 0}px;
+      padding-bottom: ${overlayPadding.bottom || 0}px;
+      padding-left: ${overlayPadding.left || 0}px;
+      padding-right: ${overlayPadding.right || 0}px;
+    `};
 `
 
 const IconContainer = styled.div`
@@ -56,6 +64,7 @@ const ImageFrameContent = ({
   sourceUrl,
   ImageSource,
   overlay,
+  overlayPadding,
   withLinkIndicator,
 }) => (
   <>
@@ -72,7 +81,9 @@ const ImageFrameContent = ({
       </SourceUrl>
     )}
     {overlay && (
-      <ImageOverlay borderRadius={borderRadius}>{overlay}</ImageOverlay>
+      <ImageOverlay borderRadius={borderRadius} overlayPadding={overlayPadding}>
+        {overlay}
+      </ImageOverlay>
     )}
     {withLinkIndicator && (
       <IconContainer>
@@ -112,6 +123,7 @@ const IMAGE_FRAME_OPTIONS = {
   medium: '75%',
   large: '100%',
   big: '110%',
+  huge: '160%',
 }
 
 const ImageFrameWithFixedRatio = styled(ImageFrameBase)`
@@ -150,6 +162,7 @@ function Image({
   size,
   ImageSource,
   overlay,
+  overlayPadding,
   withLinkIndicator,
   onClick,
   floated,
@@ -194,6 +207,7 @@ function Image({
         sourceUrl={sourceUrl}
         ImageSource={ImageSource}
         overlay={overlay}
+        overlayPadding={overlayPadding}
         withLinkIndicator={withLinkIndicator}
       />
     </Frame>

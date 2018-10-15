@@ -48,6 +48,14 @@ const TextBase = styled.div`
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
   color: ${({ color = 'gray', alpha = 0.7 }) => rgba({ color, alpha })};
 
+  float: ${({ floated }) => floated || 'none'};
+
+  ${({ underline }) =>
+    underline &&
+    css`
+      text-decoration: underline;
+    `};
+
   ${({ center }) =>
     center &&
     css`
