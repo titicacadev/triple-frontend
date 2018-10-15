@@ -41,6 +41,12 @@ const ButtonBase = styled.a`
       margin-left: ${margin.left || 0}px;
       margin-right: ${margin.right || 0}px;
     `};
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      opacity: 0.3;
+    `};
 `
 
 const ICON_BUTTON_NAMES = {
