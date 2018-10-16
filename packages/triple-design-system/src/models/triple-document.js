@@ -117,6 +117,7 @@ function TextElement({ value: { text, rawHTML }, compact, ...props }) {
     return (
       <Text.Html
         margin={compact ? { top: 4 } : { top: 10, left: 30, right: 30 }}
+        alpha={0.8}
         dangerouslySetInnerHTML={{ __html: rawHTML }}
         {...props}
       />
@@ -212,7 +213,7 @@ function renderPoiListActionButton({ actionButtonElement, display, poi }) {
 
     return (
       <PoiPrice>
-        <Text bold size="mini" alpha={1}>
+        <Text bold size="mini">
           {nightlyPrice ? `₩${nightlyPrice.toLocaleString()}` : '보기'}
         </Text>
       </PoiPrice>
@@ -286,7 +287,7 @@ const LINK_CONTAINERS = {
 
 function ButtonLink({ children, ...props }) {
   return (
-    <Button bold color="blue" alpha={1} {...props}>
+    <Button bold color="blue" {...props}>
       {children}
     </Button>
   )
@@ -353,10 +354,10 @@ function Embedded({ value: { entries }, onImageClick, ImageSource }) {
 function Note({ value: { title, body } }) {
   return (
     <Segment margin={{ top: 20, left: 30, right: 30 }}>
-      <Text bold size="small" color="gray" alpha={1} lineHeight={1.43}>
+      <Text bold size="small" color="gray" lineHeight={1.57}>
         {title}
       </Text>
-      <Text size="small" color="gray" alpha={0.7} lineHeight={1.43}>
+      <Text size="small" color="gray" alpha={0.8} lineHeight={1.57}>
         {body}
       </Text>
     </Segment>

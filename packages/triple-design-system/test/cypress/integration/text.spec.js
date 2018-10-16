@@ -31,7 +31,7 @@ describe('Text', () => {
     it('should have default color', () => {
       cy.get('@text')
         .should('have.css', 'color')
-        .and('eq', 'rgba(58, 58, 58, 0.7)')
+        .and('eq', 'rgb(58, 58, 58)')
     })
   })
 })

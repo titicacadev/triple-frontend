@@ -8,7 +8,7 @@ export function Author({ name, bio, image }) {
   return (
     <Container centered textAlign="center">
       {image && <Image size="medium" circular src={image.sizes.large.url} />}
-      <Text bold size="large" color="gray" alpha={1} margin={{ top: 15 }}>
+      <Text bold size="large" color="gray" margin={{ top: 15 }}>
         {name}
       </Text>
       <Text

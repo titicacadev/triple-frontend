@@ -64,7 +64,7 @@ class CompactPoiListElement extends PureComponent {
         >
           {nameOverride || names.ko || names.en || names.local}
         </Text>
-        <Text size="tiny" margin={{ top: 4, left: 50 }}>
+        <Text size="tiny" alpha={0.7} margin={{ top: 4, left: 50 }}>
           {TYPE_NAMES[type]}
         </Text>
         {actionButtonElement ? (
@@ -124,7 +124,7 @@ class ExtendedPoiListElement extends PureComponent {
           src={image && image.sizes.large.url}
           margin={{ left: 20 }}
         />
-        <Text bold ellipsis alpha={1} size="large">
+        <Text bold ellipsis size="large">
           {nameOverride || names.ko || names.en || names.local}
         </Text>
         <Text alpha={0.7} size="small" margin={{ top: 5 }}>
@@ -209,7 +209,7 @@ export function PoiCarouselElement({ poi, onClick, actionButtonElement }) {
         <Text bold ellipsis alpha={1} margin={{ top: 8 }}>
           {nameOverride || names.ko || names.en || names.local}
         </Text>
-        <Text size="tiny" margin={{ top: 2 }}>
+        <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
           {TYPE_NAMES[type]}
         </Text>
         {actionButtonElement ? (

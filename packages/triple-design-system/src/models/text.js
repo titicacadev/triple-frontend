@@ -6,17 +6,11 @@ export function H1({ headline, emphasize, margin, children, ...props }) {
   return (
     <Container margin={margin}>
       {headline && (
-        <Text bold size="tiny" color="blue" alpha={1} margin={{ bottom: 3 }}>
+        <Text bold size="tiny" color="blue" margin={{ bottom: 3 }}>
           {headline}
         </Text>
       )}
-      <Text
-        bold
-        size="huge"
-        color={emphasize ? 'blue' : 'gray'}
-        alpha={1}
-        {...props}
-      >
+      <Text bold size="huge" color={emphasize ? 'blue' : 'gray'} {...props}>
         {children}
       </Text>
     </Container>
@@ -25,7 +19,7 @@ export function H1({ headline, emphasize, margin, children, ...props }) {
 
 export function H2({ children, ...props }) {
   return (
-    <Text size="big" color="gray" alpha={1} {...props}>
+    <Text size="big" color="gray" {...props}>
       {children}
     </Text>
   )
@@ -33,7 +27,7 @@ export function H2({ children, ...props }) {
 
 export function H3({ children, ...props }) {
   return (
-    <Text bold size="large" color="gray" alpha={1} {...props}>
+    <Text bold size="large" color="gray" {...props}>
       {children}
     </Text>
   )
@@ -41,7 +35,7 @@ export function H3({ children, ...props }) {
 
 export function H4({ children, ...props }) {
   return (
-    <Text bold size="large" color="blue" alpha={1} {...props}>
+    <Text bold size="large" color="blue" {...props}>
       {children}
     </Text>
   )
@@ -49,7 +43,7 @@ export function H4({ children, ...props }) {
 
 export function Paragraph({ children, ...props }) {
   return (
-    <Text lineHeight={1.5} {...props}>
+    <Text lineHeight={1.63} alpha={0.8} {...props}>
       {children}
     </Text>
   )

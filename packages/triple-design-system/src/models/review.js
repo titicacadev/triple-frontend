@@ -34,7 +34,7 @@ const MoreIcon = styled.img`
 
 function Name({ children }) {
   return (
-    <Text bold size="large" color="gray" alpha={1}>
+    <Text bold size="large" color="gray">
       {children}
     </Text>
   )

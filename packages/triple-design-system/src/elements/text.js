@@ -38,15 +38,15 @@ export function LineBreak({ children }) {
   )
 }
 
-function rgba({ color = 'gray', alpha = 1 }) {
-  return `rgba(${COLORS[color]}, ${alpha})`
+function rgba({ color, alpha }) {
+  return `rgba(${COLORS[color || 'gray']}, ${alpha || 1})`
 }
 
 const TextBase = styled.div`
   font-family: sans-serif;
   font-size: ${({ size = 'large' }) => SIZES[size]};
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
-  color: ${({ color = 'gray', alpha = 0.7 }) => rgba({ color, alpha })};
+  color: ${({ color = 'gray', alpha }) => rgba({ color, alpha })};
 
   float: ${({ floated }) => floated || 'none'};
 
@@ -108,7 +108,7 @@ function Text({ children, ...props }) {
 }
 
 const Html = styled(TextBase)`
-  line-height: 1.5;
+  line-height: 1.63;
 
   p {
     margin: 1.5rem 0 0 0;
