@@ -90,6 +90,16 @@ const TextBase = styled.div`
       text-overflow: ellipsis;
       overflow: hidden;
     `};
+
+  ${({ maxLines }) =>
+    maxLines &&
+    css`
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: ${maxLines};
+      text-overflow: ellipsis;
+      overflow: hidden;
+    `};
 `
 
 function Text({ children, ...props }) {
