@@ -32,17 +32,24 @@ const MoreIcon = styled.img`
   vertical-align: middle;
 `
 
-function Name({ children }) {
+function Name({ onClick, children }) {
   return (
-    <Text bold size="large" color="gray">
+    <Text bold size="large" color="gray" onClick={onClick}>
       {children}
     </Text>
   )
 }
 
-function UserExtra({ children }) {
+function UserExtra({ onClick, children }) {
   return (
-    <Text margin={{ top: 4 }} bold size="mini" color="gray" alpha={0.3}>
+    <Text
+      margin={{ top: 4 }}
+      bold
+      size="mini"
+      color="gray"
+      alpha={0.3}
+      onClick={onClick}
+    >
       {children}
     </Text>
   )
@@ -115,8 +122,8 @@ const LikeButton = styled.a`
   `};
 `
 
-function Date({ children }) {
-  return <Container floated="right">{children}</Container>
+function Date({ floated, children }) {
+  return <Container floated={floated}>{children}</Container>
 }
 
 const ItemContainer = styled(Container)`
@@ -152,7 +159,16 @@ class Review extends PureComponent {
 }
 
 function ReviewElement({
-  review: {
+  review,
+  onUserClick,
+  onLikeButtonClick,
+  onLikesCountClick,
+  onMenuClick,
+  likeVisible,
+  menuVisible,
+  DateFormatter,
+}) {
+  const {
     user: {
       photo,
       name,
@@ -165,21 +181,21 @@ function ReviewElement({
     createdAt,
     rating,
     attachments,
-  },
-  DateFormatter,
-}) {
+  } = review
   const badge = mileage && mileage.badges && mileage.badges[0]
 
   return (
     <ReviewItem>
       <Container>
-        <UserPhoto src={photo} />
+        <UserPhoto src={photo} onClick={(e) => onUserClick(e, review)} />
         {badge && <Badge src={badge.icon.imageUrl} />}
-        <Name>{name}</Name>
+        <Name onClick={(e) => onUserClick(e, review)}>{name}</Name>
         <UserExtra>
-          {badge
-            ? `${badge.label} / ${reviewsCount}개의 리뷰`
-            : `${reviewsCount}개의 리뷰`}
+          <span onClick={(e) => onUserClick(e, review)}>
+            {badge
+              ? `${badge.label} / ${reviewsCount}개의 리뷰`
+              : `${reviewsCount}개의 리뷰`}
+          </span>
           <Score score={rating} />
         </UserExtra>
       </Container>
@@ -192,26 +208,62 @@ function ReviewElement({
         </Images>
       </Content>
       <Meta>
-        <LikeButton liked={liked}>Thanks</LikeButton>
-        {thanks}명
-        <Date>
+        {likeVisible !== false && (
+          <>
+            <LikeButton
+              liked={liked}
+              onClick={(e) => onLikeButtonClick(e, review)}
+            >
+              Thanks
+            </LikeButton>
+            <span onClick={(e) => onLikesCountClick(e, review)}>
+              {thanks}명
+            </span>
+          </>
+        )}
+        <Date floated={likeVisible !== false && 'right'}>
           {DateFormatter ? (
             <DateFormatter>{createdAt}</DateFormatter>
           ) : (
             createdAt
           )}
-          <MoreIcon src="http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-review-more@2x.png" />
+          {menuVisible !== false && (
+            <MoreIcon
+              src="http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-review-more@2x.png"
+              onClick={(e) => onMenuClick(e, review)}
+            />
+          )}
         </Date>
       </Meta>
     </ReviewItem>
   )
 }
 
-export function ReviewsList({ margin, reviews = [], DateFormatter }) {
+export function ReviewsList({
+  margin,
+  reviews,
+  onUserClick,
+  onLikeButtonClick,
+  onLikesCountClick,
+  onMenuClick,
+  likeVisible,
+  menuVisible,
+  DateFormatter,
+}) {
   return (
     <Review margin={margin} divided verticalGap={60}>
-      {reviews.map((review, i) => (
-        <ReviewElement key={i} review={review} DateFormatter={DateFormatter} />
+      {(reviews || []).map((review) => (
+        <ReviewElement
+          key={review.id}
+          review={review}
+          onUserClick={onUserClick}
+          onLikeButtonClick={onLikeButtonClick}
+          onLikesCountClick={onLikesCountClick}
+          onMenuClick={onMenuClick}
+          likeVisible={likeVisible}
+          menuVisible={menuVisible}
+          DateFormatter={DateFormatter}
+        />
       ))}
     </Review>
   )
