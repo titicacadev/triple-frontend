@@ -130,25 +130,21 @@ class ExtendedPoiListElement extends PureComponent {
         <Text alpha={0.7} size="small" margin={{ top: 5 }}>
           {comment}
         </Text>
-        <Container margin={{ top: 5 }}>
-          {reviewsCount && (
+        {(reviewsCount || scrapsCount) && (
+          <Container margin={{ top: 5 }}>
             <>
-              <Rating size="small" score={reviewsRating} />
+              {reviewsCount && <Rating size="small" score={reviewsRating} />}
               <Text inline size="small" alpha={0.4}>
-                {` (${reviewsCount})`}
+                {[
+                  reviewsCount && ` (${reviewsCount})`,
+                  scrapsCount && `저장${scrapsCount}`,
+                ]
+                  .filter((count) => count)
+                  .join(' . ')}
               </Text>
             </>
-          )}
-          {reviewsCount &&
-            scrapsCount && (
-              <Text inline size="small" alpha={0.4}>
-                {' · '}
-              </Text>
-            )}
-          {scrapsCount && (
-            <Text inline size="small" alpha={0.4}>{`저장${scrapsCount}`}</Text>
-          )}
-        </Container>
+          </Container>
+        )}
         <Container margin={{ top: 3 }}>
           {distance || distance === 0 ? (
             <Text inline color="blue" size="small" alpha={1}>
