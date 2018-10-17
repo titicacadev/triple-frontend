@@ -186,7 +186,7 @@ function ReviewElement({
       <Content>
         {comment}
         <Images>
-          {(attachments || []).slice(0, 3).map(({ smallThumbnail }, i) => (
+          {(attachments || []).map(({ smallThumbnail }, i) => (
             <img key={i} src={smallThumbnail} />
           ))}
         </Images>
