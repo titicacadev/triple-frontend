@@ -279,9 +279,9 @@ export default class App extends PureComponent {
         >
           <ImagePager images={images} />
           <Button.Group>
-            <Button icon="save">저장하기</Button>
+            <Button icon="saveEmpty">저장하기</Button>
             <Button icon="schedule">일정추가</Button>
-            <Button icon="star">리뷰·별점</Button>
+            <Button icon="starEmpty">리뷰·별점</Button>
             <Button icon="share">공유하기</Button>
           </Button.Group>
         </Container>
