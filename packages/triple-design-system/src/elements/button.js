@@ -50,8 +50,10 @@ const ButtonBase = styled.a`
 `
 
 const ICON_BUTTON_NAMES = {
-  save: 'btn-end-save-off@2x.png',
-  star: 'btn-end-review@2x.png',
+  saveEmpty: 'btn-end-save-off@2x.png',
+  saveFilled: 'btn-end-save-on@2x.png',
+  starEmpty: 'btn-end-review@2x.png',
+  starFilled: 'btn-end-review-on@2x.png',
   map: 'btn-end-search-place@2x.png',
   share: 'btn-com-share@2x.png',
   schedule: 'btn-end-schedule@2x.png',
