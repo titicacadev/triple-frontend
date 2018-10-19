@@ -61,6 +61,13 @@ const Container = styled.div`
       text-align: ${textAlign};
     `};
 
+  ${({ borderRadius }) =>
+    borderRadius &&
+    css`
+      border-radius: ${borderRadius}px;
+      overflow: hidden;
+    `};
+
   ${({ clearing }) =>
     clearing &&
     css`

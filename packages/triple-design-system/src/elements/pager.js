@@ -25,8 +25,8 @@ function CurrentPage({ children }) {
   )
 }
 
-const Pager = ({ margin, children }) => (
-  <Container margin={margin}>
+const Pager = ({ margin, borderRadius, children }) => (
+  <Container margin={margin} borderRadius={borderRadius}>
     <PagerCarousel
       renderTopRightControls={({ currentSlide }) => (
         <CurrentPage>{`${currentSlide + 1} / ${children.length}`}</CurrentPage>
