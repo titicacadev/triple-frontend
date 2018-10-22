@@ -384,6 +384,8 @@ const VideoContainer = styled.div`
   margin: 0 30px;
   height: 0;
   padding-bottom: 56.25%;
+  border-radius: 6px;
+  overflow: hidden;
 `
 
 const VideoPlayer = styled.iframe`
