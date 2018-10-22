@@ -63,6 +63,7 @@ const ELEMENTS = {
   embedded: Embedded,
   note: Note,
   regions: Regions,
+  video: Video,
 }
 
 const EMBEDDED_ELEMENTS = {
@@ -376,4 +377,32 @@ function Regions({ value: { regions }, onResourceClick }) {
       ))}
     </ResourceList>
   )
+}
+
+const VideoContainer = styled.div`
+  position: relative;
+  margin: 0 30px;
+  height: 0;
+  padding-bottom: 56.25%;
+`
+
+const VideoPlayer = styled.iframe`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`
+
+function Video({ value: { provider, identifier } }) {
+  return provider === 'youtube' ? (
+    <VideoContainer>
+      <VideoPlayer
+        src={`https://www.youtube.com/embed/${identifier}?rel=0&amp;showinfo=0`}
+        frameBorder="0"
+        allow="autoplay; encrypted-media"
+        allowFullScreen
+      />
+    </VideoContainer>
+  ) : null
 }
