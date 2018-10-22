@@ -37,6 +37,13 @@
   },
   "body": [
     {
+      "type": "video",
+      "value": {
+        "provider": "youtube",
+        "identifier": "Aciy9wmHT_4"
+      }
+    },
+    {
       "type": "embedded",
       "value": {
         "entries": [
