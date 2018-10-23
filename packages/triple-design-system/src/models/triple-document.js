@@ -381,11 +381,12 @@ function Regions({ value: { regions }, onResourceClick }) {
 
 const VideoContainer = styled.div`
   position: relative;
-  margin: 0 30px;
+  margin: 30px 30px 0 30px;
   height: 0;
   padding-bottom: 56.25%;
   border-radius: 6px;
   overflow: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 `
 
 const VideoPlayer = styled.iframe`
