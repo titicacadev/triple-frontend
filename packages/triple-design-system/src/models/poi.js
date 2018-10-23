@@ -187,14 +187,18 @@ export function PoiListElement({ compact, ...props }) {
   )
 }
 
-export function PoiCarouselElement({ poi, onClick, actionButtonElement }) {
+export function PoiCarouselElement({
+  poi,
+  onClick,
+  actionButtonElement,
+  onScrapedChange,
+}) {
   if (poi) {
     const {
       type,
       nameOverride,
       scraped,
       source: { image, names },
-      onScrapedChange,
     } = poi
 
     return (
