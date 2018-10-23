@@ -21,12 +21,24 @@ const ListBase = styled.ul`
       margin-top: ${verticalGap || 0}px;
     `};
   }
+
+  ${({ clearing }) =>
+    clearing &&
+    css`
+      li {
+        &:after {
+          content: '';
+          display: block;
+          clear: both;
+        }
+      }
+    `};
 `
 
-function List({ margin, divided, verticalGap, children }) {
+function List({ divided, verticalGap, children, ...props }) {
   if (divided) {
     return (
-      <ListBase margin={margin}>
+      <ListBase {...props}>
         {Children.toArray(children)
           .reduce(
             (array, child) => [
@@ -44,7 +56,7 @@ function List({ margin, divided, verticalGap, children }) {
     )
   } else if (verticalGap) {
     return (
-      <ListBase margin={margin}>
+      <ListBase {...props}>
         {Children.toArray(children)
           .reduce(
             (array, child) => [
@@ -59,7 +71,7 @@ function List({ margin, divided, verticalGap, children }) {
     )
   }
 
-  return <ListBase margin={margin}>{children}</ListBase>
+  return <ListBase {...props}>{children}</ListBase>
 }
 
 const ListIcon = styled(Icon)`
