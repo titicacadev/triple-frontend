@@ -81,6 +81,7 @@ export function TripleDocument({
   onImageClick,
   onLinkClick,
   imageSourceComponent,
+  resourceScraps,
 }) {
   return (
     <>
@@ -97,6 +98,7 @@ export function TripleDocument({
               onLinkClick={onLinkClick}
               onResourceScrapedChange={onResourceScrapedChange}
               ImageSource={imageSourceComponent}
+              resourceScraps={resourceScraps}
             />
           )
         )
@@ -239,6 +241,7 @@ export function Pois({
   actionButtonElement,
   onResourceClick,
   onResourceScrapedChange,
+  resourceScraps,
 }) {
   const Container = display === 'list' ? ResourceList : DocumentCarousel
   const Element =
@@ -251,7 +254,11 @@ export function Pois({
       {pois.map((poi) => (
         <Element
           key={poi.id}
-          poi={poi}
+          poi={
+            (resourceScraps || {})[poi.id]
+              ? { ...poi, scraped: resourceScraps[poi.id] }
+              : poi
+          }
           onClick={onResourceClick && ((e) => onResourceClick(e, poi))}
           onScrapedChange={onResourceScrapedChange}
           actionButtonElement={renderPoiListActionButton({
