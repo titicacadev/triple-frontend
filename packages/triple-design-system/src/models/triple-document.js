@@ -19,6 +19,7 @@ import List from '../elements/list'
 import Carousel from '../elements/carousel'
 import { H1, H2, H3, H4, Paragraph } from './text'
 import { PoiListElement, PoiCarouselElement } from './poi'
+import { TnaProductsList } from './tna'
 
 const MH1 = ({ children, ...props }) => (
   <H1 margin={{ top: 25, bottom: 20, left: 30, right: 30 }} {...props}>
@@ -48,6 +49,15 @@ const MH4 = ({ children, ...props }) => (
   </H4>
 )
 
+const DocumentTnaProducts = ({ onTNAProductClick, value, ...props }) => (
+  <TnaProductsList
+    margin={{ top: 30, left: 30, right: 30 }}
+    onProductClick={onTNAProductClick}
+    {...value}
+    {...props}
+  />
+)
+
 const ELEMENTS = {
   heading1: Heading(MH1),
   heading2: Heading(MH2),
@@ -64,6 +74,7 @@ const ELEMENTS = {
   note: Note,
   regions: Regions,
   video: Video,
+  tnaProducts: DocumentTnaProducts,
 }
 
 const EMBEDDED_ELEMENTS = {
@@ -80,6 +91,8 @@ export function TripleDocument({
   onResourceScrapedChange,
   onImageClick,
   onLinkClick,
+  onTNAProductClick,
+  onTNAProductsFetch,
   imageSourceComponent,
   resourceScraps,
 }) {
@@ -97,6 +110,8 @@ export function TripleDocument({
               onImageClick={onImageClick}
               onLinkClick={onLinkClick}
               onResourceScrapedChange={onResourceScrapedChange}
+              onTNAProductClick={onTNAProductClick}
+              onTNAProductsFetch={onTNAProductsFetch}
               ImageSource={imageSourceComponent}
               resourceScraps={resourceScraps}
             />
