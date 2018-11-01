@@ -34,6 +34,8 @@ const ICON_URL_BY_NAMES = {
     'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-com-more@2x.png',
   map:
     'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/ico-search-place@2x.png',
+  write:
+    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-com-write@2x.png',
 }
 
 const NavbarItem = styled.div`
