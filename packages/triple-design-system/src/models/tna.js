@@ -3,6 +3,7 @@ import numeral from 'numeral'
 import List from '../elements/list'
 import Text from '../elements/text'
 import Tag from '../elements/tag'
+import Button from '../elements/button'
 import Container from '../elements/container'
 import { H1 } from './text'
 import { SquareImage } from '../elements/content-elements'
@@ -31,7 +32,7 @@ function Product({ heroImage, title, tags, salePrice }) {
 }
 
 export class TnaProductsList extends PureComponent {
-  state = { products: [] }
+  state = { products: [], showMore: false }
 
   componentDidMount() {
     this.fetchProducts()
@@ -54,7 +55,7 @@ export class TnaProductsList extends PureComponent {
   render() {
     const {
       props: { onProductClick, margin },
-      state: { title, products },
+      state: { title, products, showMore },
     } = this
 
     return (
@@ -62,7 +63,7 @@ export class TnaProductsList extends PureComponent {
         <H1 margin={{ bottom: 20 }}>{title}</H1>
 
         <List clearing verticalGap={20}>
-          {(products || []).map((product, i) => (
+          {(showMore ? products : products.slice(0, 3)).map((product, i) => (
             <List.Item
               key={i}
               onClick={onProductClick && ((e) => onProductClick(e, product))}
@@ -70,6 +71,17 @@ export class TnaProductsList extends PureComponent {
               <Product {...product} />
             </List.Item>
           ))}
+          {!showMore &&
+            products.length > 3 && (
+              <Button
+                basic
+                fluid
+                margin={{ top: 10 }}
+                onClick={() => this.setState({ showMore: true })}
+              >
+                더보기
+              </Button>
+            )}
         </List>
       </Container>
     )
