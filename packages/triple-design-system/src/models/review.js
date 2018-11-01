@@ -248,6 +248,7 @@ export function ReviewsList({
   onMenuClick,
   likeVisible,
   menuVisible,
+  likes,
   DateFormatter,
 }) {
   return (
@@ -255,7 +256,18 @@ export function ReviewsList({
       {(reviews || []).map((review) => (
         <ReviewElement
           key={review.id}
-          review={review}
+          review={
+            typeof (likes || {})[review.id] === 'boolean'
+              ? {
+                  ...review,
+                  liked: likes[review.id],
+                  thanks:
+                    review.liked === likes[review.id]
+                      ? review.thanks
+                      : review.thanks + (likes[review.id] ? 1 : -1),
+                }
+              : review
+          }
           onUserClick={onUserClick}
           onLikeButtonClick={onLikeButtonClick}
           onLikesCountClick={onLikesCountClick}
