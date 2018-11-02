@@ -19,7 +19,7 @@ function Product({ heroImage, title, tags, salePrice }) {
         <Container margin={{ top: 7, left: 150 }}>
           {tags.map(({ text, ...styles }, i) => (
             <Tag key={i} {...styles} margin={{ left: i === 0 ? 0 : 4 }}>
-              {`#${text}`}
+              {text}
             </Tag>
           ))}
         </Container>
