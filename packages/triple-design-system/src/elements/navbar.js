@@ -36,6 +36,12 @@ const ICON_URL_BY_NAMES = {
     'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/ico-search-place@2x.png',
   write:
     'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-com-write@2x.png',
+  scraped:
+    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-com-bookmark-on@2x.png',
+  unscraped:
+    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-com-bookmark-off@2x.png',
+  share:
+    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-com-share@2x.png',
 }
 
 const NavbarItem = styled.div`
