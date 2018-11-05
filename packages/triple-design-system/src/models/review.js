@@ -175,6 +175,7 @@ function ReviewElement({
       userBoard: { reviews: reviewsCount },
       mileage,
     },
+    blind,
     thanks,
     liked,
     comment,
@@ -196,45 +197,49 @@ function ReviewElement({
               ? `${badge.label} / ${reviewsCount}개의 리뷰`
               : `${reviewsCount}개의 리뷰`}
           </span>
-          <Score score={rating} />
+          {!blind && <Score score={rating} />}
         </UserExtra>
       </Container>
       <Content>
-        {comment}
-        <Images>
-          {(attachments || []).map(({ smallThumbnail }, i) => (
-            <img key={i} src={smallThumbnail} />
-          ))}
-        </Images>
-      </Content>
-      <Meta>
-        {likeVisible !== false && (
-          <>
-            <LikeButton
-              liked={liked}
-              onClick={(e) => onLikeButtonClick(e, review)}
-            >
-              Thanks
-            </LikeButton>
-            <span onClick={(e) => onLikesCountClick(e, review)}>
-              {thanks}명
-            </span>
-          </>
+        {blind ? '신고가 접수되어 블라인드 처리되었습니다.' : comment}
+        {!blind && (
+          <Images>
+            {(attachments || []).map(({ smallThumbnail }, i) => (
+              <img key={i} src={smallThumbnail} />
+            ))}
+          </Images>
         )}
-        <Date floated={likeVisible !== false && 'right'}>
-          {DateFormatter ? (
-            <DateFormatter>{createdAt}</DateFormatter>
-          ) : (
-            createdAt
+      </Content>
+      {!blind && (
+        <Meta>
+          {likeVisible !== false && (
+            <>
+              <LikeButton
+                liked={liked}
+                onClick={(e) => onLikeButtonClick(e, review)}
+              >
+                Thanks
+              </LikeButton>
+              <span onClick={(e) => onLikesCountClick(e, review)}>
+                {thanks}명
+              </span>
+            </>
           )}
-          {menuVisible !== false && (
-            <MoreIcon
-              src="http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-review-more@2x.png"
-              onClick={(e) => onMenuClick(e, review)}
-            />
-          )}
-        </Date>
-      </Meta>
+          <Date floated={likeVisible !== false && 'right'}>
+            {DateFormatter ? (
+              <DateFormatter>{createdAt}</DateFormatter>
+            ) : (
+              createdAt
+            )}
+            {menuVisible !== false && (
+              <MoreIcon
+                src="http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-review-more@2x.png"
+                onClick={(e) => onMenuClick(e, review)}
+              />
+            )}
+          </Date>
+        </Meta>
+      )}
     </ReviewItem>
   )
 }
