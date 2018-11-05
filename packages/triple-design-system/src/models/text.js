@@ -2,9 +2,9 @@ import React from 'react'
 import Container from '../elements/container'
 import Text from '../elements/text'
 
-export function H1({ headline, emphasize, margin, children, ...props }) {
+export function H1({ href, headline, emphasize, margin, children, ...props }) {
   return (
-    <Container margin={margin}>
+    <Container id={href} margin={margin}>
       {headline && (
         <Text bold size="tiny" color="blue" margin={{ bottom: 3 }}>
           {headline}

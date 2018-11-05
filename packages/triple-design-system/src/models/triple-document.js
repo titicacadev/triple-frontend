@@ -123,8 +123,8 @@ export function TripleDocument({
 }
 
 function Heading(Component) {
-  return ({ value: { text, emphasize, headline }, ...props }) => (
-    <Component emphasize={emphasize} headline={headline} {...props}>
+  return ({ value: { text, href, emphasize, headline }, ...props }) => (
+    <Component href={href} emphasize={emphasize} headline={headline} {...props}>
       {text}
     </Component>
   )
