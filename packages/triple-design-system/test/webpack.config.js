@@ -18,6 +18,7 @@ module.exports = {
       path.resolve(__dirname, '../src'),
       './src/elements/action-sheet',
     ],
+    modal: [path.resolve(__dirname, '../src'), './src/elements/modal'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

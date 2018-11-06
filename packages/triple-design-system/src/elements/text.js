@@ -83,6 +83,15 @@ const TextBase = styled.div`
       margin-right: ${margin.right || 0}px;
     `};
 
+  ${({ padding }) =>
+    padding &&
+    css`
+      padding-top: ${padding.top || 0}px;
+      padding-bottom: ${padding.bottom || 0}px;
+      padding-left: ${padding.left || 0}px;
+      padding-right: ${padding.right || 0}px;
+    `};
+
   ${({ ellipsis }) =>
     ellipsis &&
     css`
