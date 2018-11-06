@@ -18,12 +18,18 @@ describe('ActionSheet', () => {
   it('should close when overlay is clicked', () => {
     cy.get('@overlay').click()
 
-    cy.get('.action-sheet-container').should('be.empty')
+    cy.get('.action-sheet-container')
+      .find('span')
+      .first()
+      .should('be.empty')
   })
 
   it('should not close when sheet area is clicked', () => {
     cy.get('@sheet').click()
 
-    cy.get('.action-sheet-container').should('not.be.empty')
+    cy.get('.action-sheet-container')
+      .find('span')
+      .first()
+      .should('not.be.empty')
   })
 })

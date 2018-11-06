@@ -48,7 +48,9 @@
   },
   "dependencies": {
     "nuka-carousel": "4.4.1",
-    "numeral": "^2.0.6"
+    "numeral": "^2.0.6",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-dom": "^16.6.0"
   },
   "peerDependencies": {
     "react": "*",

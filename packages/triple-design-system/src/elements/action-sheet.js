@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 const Overlay = styled.div`
   position: fixed;
@@ -9,6 +10,42 @@ const Overlay = styled.div`
   right: 0;
   background-color: rgba(58, 58, 58, 0.5);
   z-index: 10;
+
+  &.fade-enter {
+    opacity: 0.01;
+
+    & > div {
+      margin-bottom: -100px;
+    }
+  }
+
+  &.fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+
+    & > div {
+      margin-bottom: 0;
+      transition: margin-bottom 250ms ease-in;
+    }
+  }
+
+  &.fade-leave {
+    opacity: 1;
+
+    & > div {
+      margin-bottom: 0;
+    }
+  }
+
+  &.fade-leave.fade-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+
+    & > div {
+      margin-bottom: -100px;
+      transition: margin-bottom 250ms ease-in;
+    }
+  }
 `
 
 const Sheet = styled.div`
@@ -44,11 +81,21 @@ const ActionItem = styled.a`
 `
 
 export default function ActionSheet({ open, onClose, children }) {
-  return open ? (
-    <Overlay onClick={onClose}>
-      <Sheet onClick={silenceEvent}>{children}</Sheet>
-    </Overlay>
-  ) : null
+  return (
+    <ReactCSSTransitionGroup
+      transitionName="fade"
+      transitionEnter={true}
+      transitionEnterTimeout={500}
+      transitionLeave={true}
+      transitionLeaveTimeout={500}
+    >
+      {open ? (
+        <Overlay onClick={onClose}>
+          <Sheet onClick={silenceEvent}>{children}</Sheet>
+        </Overlay>
+      ) : null}
+    </ReactCSSTransitionGroup>
+  )
 }
 
 function silenceEvent(e) {
