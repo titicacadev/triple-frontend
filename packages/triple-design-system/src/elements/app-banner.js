@@ -75,7 +75,7 @@ export default function AppBanner({ title, description, href }) {
         <ContentTitle>{title}</ContentTitle>
         <ContentDescription>{description}</ContentDescription>
       </ContentContainer>
-      <CallToAction>앱에서 보기</CallToAction>
+      <CallToAction href={href}>앱에서 보기</CallToAction>
     </AppBannerFrame>
   )
 }
