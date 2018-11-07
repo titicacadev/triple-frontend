@@ -31,10 +31,41 @@ const InventoryContainer = styled.div`
   bottom: 0;
 `
 
-export default function PublicHeader({ children }) {
+const MarketLinksContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 142px;
+  margin-top: -12px;
+  height: 24px;
+`
+
+const MARKET_LINK_BUTTON_ICON_URLS = {
+  appStore:
+    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-app-store-on@2x.png',
+  playStore:
+    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-play-store-on@2x.png',
+}
+
+const MarketLink = styled.a`
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  background-image: url(${({ marketType }) =>
+    MARKET_LINK_BUTTON_ICON_URLS[marketType]});
+  width: 24px;
+  height: 24px;
+  margin: 0 5px 0 0;
+  padding: 0;
+`
+
+export default function PublicHeader({ playStoreUrl, appStoreUrl, children }) {
   return (
     <HeaderFrame>
       <Logo>TRIPLE</Logo>
+      <MarketLinksContainer>
+        <MarketLink marketType="playStore" href={playStoreUrl} />
+        <MarketLink marketType="appStore" href={appStoreUrl} />
+      </MarketLinksContainer>
       <InventoryContainer>{children}</InventoryContainer>
     </HeaderFrame>
   )
