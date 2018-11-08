@@ -164,6 +164,7 @@ function ReviewElement({
   onLikeButtonClick,
   onLikesCountClick,
   onMenuClick,
+  onImageClick,
   likeVisible,
   menuVisible,
   DateFormatter,
@@ -204,8 +205,12 @@ function ReviewElement({
         {blind ? '신고가 접수되어 블라인드 처리되었습니다.' : comment}
         {!blind && (
           <Images>
-            {(attachments || []).map(({ smallThumbnail }, i) => (
-              <img key={i} src={smallThumbnail} />
+            {(attachments || []).map((attachment, i) => (
+              <img
+                key={i}
+                src={attachment.smallThumbnail}
+                onClick={(e) => onImageClick(e, review, attachment)}
+              />
             ))}
           </Images>
         )}
@@ -251,6 +256,7 @@ export function ReviewsList({
   onLikeButtonClick,
   onLikesCountClick,
   onMenuClick,
+  onImageClick,
   likeVisible,
   menuVisible,
   likes,
@@ -277,6 +283,7 @@ export function ReviewsList({
           onLikeButtonClick={onLikeButtonClick}
           onLikesCountClick={onLikesCountClick}
           onMenuClick={onMenuClick}
+          onImageClick={onImageClick}
           likeVisible={likeVisible}
           menuVisible={menuVisible}
           DateFormatter={DateFormatter}
