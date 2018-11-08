@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Text from './text'
 
 const AppBannerFrame = styled.div`
   background-color: #ffffff;
@@ -31,25 +32,6 @@ const ContentContainer = styled.div`
   height: 31px;
 `
 
-const ContentTitle = styled.h1`
-  margin: 0 0 1px 0;
-  padding: 0;
-  font-size: 12px;
-  font-weight: bold;
-  color: #3a3a3a;
-  height: 15px;
-  line-height: 15px;
-`
-
-const ContentDescription = styled.div`
-  margin: 0;
-  padding: 0;
-  font-size: 12px;
-  color: rgba(58, 58, 58, 0.7);
-  height: 15px;
-  line-height: 15px;
-`
-
 const CallToAction = styled.a`
   box-sizing: border-box;
   position: absolute;
@@ -72,8 +54,18 @@ export default function AppBanner({ title, description, href }) {
     <AppBannerFrame>
       <Logo />
       <ContentContainer>
-        <ContentTitle>{title}</ContentTitle>
-        <ContentDescription>{description}</ContentDescription>
+        <Text
+          bold
+          size="mini"
+          lineHeight={15}
+          color="gray"
+          margin={{ bottom: 1 }}
+        >
+          {title}
+        </Text>
+        <Text size="mini" lineHeight={15} color="gray" alpha={0.7}>
+          {description}
+        </Text>
       </ContentContainer>
       <CallToAction href={href}>앱에서 보기</CallToAction>
     </AppBannerFrame>
