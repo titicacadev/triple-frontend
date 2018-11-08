@@ -39,7 +39,6 @@ const CallToAction = styled.a`
   top: 50%;
   margin-top: -15px;
   padding: 9px 15px 8px 15px;
-  width: 82px;
   height: 30px;
   border-radius: 15px;
   line-height: 13px;
@@ -47,6 +46,7 @@ const CallToAction = styled.a`
   font-weight: bold;
   color: #3a3a3a;
   background-color: #efefef;
+  font-family: sans-serif;
 `
 
 export default function AppBanner({ title, description, href }) {
