@@ -57,13 +57,13 @@ export default function AppBanner({ title, description, href }) {
         <Text
           bold
           size="mini"
-          lineHeight={15}
+          lineHeight="15px"
           color="gray"
           margin={{ bottom: 1 }}
         >
           {title}
         </Text>
-        <Text size="mini" lineHeight={15} color="gray" alpha={0.7}>
+        <Text size="mini" lineHeight="15px" color="gray" alpha={0.7}>
           {description}
         </Text>
       </ContentContainer>
