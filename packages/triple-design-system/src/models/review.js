@@ -198,7 +198,7 @@ function ReviewElement({
               ? `${badge.label} / ${reviewsCount}개의 리뷰`
               : `${reviewsCount}개의 리뷰`}
           </span>
-          {!blind && <Score score={rating} />}
+          {!blind && !!rating ? <Score score={rating} /> : null}
         </UserExtra>
       </Container>
       <Content>
