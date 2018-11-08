@@ -45,7 +45,7 @@ const ContentDescription = styled.div`
   margin: 0;
   padding: 0;
   font-size: 12px;
-  color: rgba(46, 46, 46, 0.7);
+  color: rgba(58, 58, 58, 0.7);
   height: 15px;
   line-height: 15px;
 `
