@@ -16,9 +16,14 @@ function Product({ heroImage, title, tags, salePrice }) {
         {title}
       </Text>
       {(tags || []).length > 0 && (
-        <Container margin={{ top: 7, left: 150 }}>
-          {tags.map(({ text, ...styles }, i) => (
-            <Tag key={i} {...styles} margin={{ left: i === 0 ? 0 : 4 }}>
+        <Container margin={{ top: 3, left: 150 }}>
+          {tags.map(({ text, type, style }, i) => (
+            <Tag
+              key={i}
+              type={type}
+              style={style}
+              margin={{ top: 4, right: i < tags.length - 1 ? 4 : 0 }}
+            >
               {text}
             </Tag>
           ))}

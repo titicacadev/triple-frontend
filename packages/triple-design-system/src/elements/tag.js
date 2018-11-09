@@ -1,13 +1,23 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
+const COLORS = {
+  special: '#fd2e69',
+  default: 'rgba(58, 58, 58, 0.8)',
+}
+
+const BG_COLORS = {
+  special: 'rgba(253, 46, 105, 0.1)',
+  default: '#f5f5f5',
+}
+
 const TagBase = styled.div`
-  display: inline;
+  display: inline-block;
   font-family: sans-serif;
   font-size: 12px;
   font-weight: 500;
-  color: ${({ color }) => color || 'rgba(58, 58, 58, 0.8)'};
-  background-color: ${({ backgroundColor }) => backgroundColor || '#f5f5f5'};
+  color: ${({ type }) => COLORS[type || 'default']};
+  background-color: ${({ type }) => BG_COLORS[type || 'default']};
   padding: 4px 6px;
   border-radius: 4px;
 
@@ -19,10 +29,18 @@ const TagBase = styled.div`
       margin-left: ${margin.left || 0}px;
       margin-right: ${margin.right || 0}px;
     `};
+
+  ${({ style }) =>
+    style &&
+    css`
+      ${Object.entries(style)
+        .map((key, value) => `${key}: ${value};`)
+        .join('\n')};
+    `};
 `
 
-const Tag = function({ children, ...style }) {
-  return <TagBase {...style}>{children}</TagBase>
+const Tag = function({ children, ...props }) {
+  return <TagBase {...props}>{children}</TagBase>
 }
 
 export default Tag
