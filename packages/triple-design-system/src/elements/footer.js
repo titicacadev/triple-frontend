@@ -31,7 +31,8 @@ const LinksContainer = styled.div`
 const Footer = () => (
   <FooterFrame>
     <Container
-      minWidth={375}
+      whiteSpace="nowrap"
+      minWidth={320}
       maxWidth={600}
       centered
       padding={{ top: 50, left: 30, right: 30, bottom: 50 }}

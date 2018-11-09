@@ -78,6 +78,12 @@ const Container = styled.div`
         clear: both;
       }
     `};
+
+  ${({ whiteSpace }) =>
+    whiteSpace &&
+    css`
+      white-space: ${whiteSpace};
+    `};
 `
 
 export default Container
