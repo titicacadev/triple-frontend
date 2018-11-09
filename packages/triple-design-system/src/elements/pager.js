@@ -1,36 +1,20 @@
 import React from 'react'
-import styled from 'styled-components'
 import PagerCarousel from 'nuka-carousel'
 import Container from './container'
 
-const CurrentPageContent = styled.div`
-  font-size: 12px;
-  font-weight: bold;
-  font-family: sans-serif;
-`
-
-const CurrentPageContainer = styled.div`
-  margin: 10px;
-  padding: 5px 7px;
-  color: #ffffff;
-  border-radius: 12px;
-  background-color: rgba(0, 0, 0, 0.2);
-`
-
-function CurrentPage({ children }) {
-  return (
-    <CurrentPageContainer>
-      <CurrentPageContent>{children}</CurrentPageContent>
-    </CurrentPageContainer>
-  )
-}
-
-const Pager = ({ margin, borderRadius, children }) => (
+const Pager = ({
+  margin,
+  borderRadius,
+  currentPage,
+  onPageChange,
+  pageLabelComponent,
+  children,
+}) => (
   <Container margin={margin} borderRadius={borderRadius}>
     <PagerCarousel
-      renderTopRightControls={({ currentSlide }) => (
-        <CurrentPage>{`${currentSlide + 1} / ${children.length}`}</CurrentPage>
-      )}
+      slideIndex={currentPage}
+      afterSlide={onPageChange}
+      renderTopRightControls={pageLabelComponent}
       renderBottomCenterControls={null}
       renderCenterLeftControls={null}
       renderCenterRightControls={null}
