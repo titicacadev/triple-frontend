@@ -54,12 +54,12 @@ export class TnaProductsList extends PureComponent {
 
   render() {
     const {
-      props: { onProductClick, margin },
+      props: { onProductClick, margin, slotId },
       state: { title, products, showMore },
     } = this
 
     return (
-      <Container margin={margin}>
+      <Container id={`tna-slot-${slotId}`} margin={margin}>
         <H1 margin={{ bottom: 20 }}>{title}</H1>
 
         <List clearing verticalGap={20}>
