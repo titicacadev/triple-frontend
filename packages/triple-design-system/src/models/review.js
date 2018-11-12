@@ -66,7 +66,7 @@ function Score({ score }) {
 function Content({ children }) {
   return (
     <Container margin={{ top: 17 }}>
-      <Text size="large" color="gray" alpha={0.7}>
+      <Text size="large" color="gray" alpha={0.8} lineHeight={1.5}>
         {children}
       </Text>
     </Container>
