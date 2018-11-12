@@ -217,7 +217,7 @@ function ReviewElement({
       </Content>
       {!blind && (
         <Meta>
-          {likeVisible !== false && (
+          {likeVisible !== false ? (
             <>
               <LikeButton
                 liked={liked}
@@ -225,11 +225,13 @@ function ReviewElement({
               >
                 Thanks
               </LikeButton>
-              <span onClick={(e) => onLikesCountClick(e, review)}>
-                {thanks}명
-              </span>
+              {thanks && thanks > 0 ? (
+                <span onClick={(e) => onLikesCountClick(e, review)}>
+                  {thanks}명
+                </span>
+              ) : null}
             </>
-          )}
+          ) : null}
           <Date floated={likeVisible !== false && 'right'}>
             {DateFormatter ? (
               <DateFormatter>{createdAt}</DateFormatter>
