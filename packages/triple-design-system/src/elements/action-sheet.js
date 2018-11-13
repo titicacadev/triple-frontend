@@ -110,13 +110,13 @@ const ItemButton = styled.a`
   color: #3a3a3a;
 `
 
-function ActionItem({ textWidth, children }) {
+function ActionItem({ onTextClick, textWidth, children }) {
   return (
     <ActionItemContainer>
       {Children.toArray(children).map(
         (child, i) =>
           typeof child === 'string' ? (
-            <ItemText key={i} width={textWidth}>
+            <ItemText key={i} width={textWidth} onClick={onTextClick}>
               {child}
             </ItemText>
           ) : (
