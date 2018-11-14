@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { createContext } from 'react'
 import styled from 'styled-components'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+
+const { Provider, Consumer } = createContext()
 
 const Overlay = styled.div`
   position: fixed;
@@ -135,7 +137,7 @@ const ItemIcon = styled.img`
   margin-right: 9px;
 `
 
-function ActionItem({ buttonLabel, icon, onClose, onClick, children }) {
+function ActionItem({ buttonLabel, icon, onClick, children }) {
   let textWidth = '100%'
   if (buttonLabel && icon) {
     textWidth = 'calc(100% - 100px)'
@@ -146,32 +148,36 @@ function ActionItem({ buttonLabel, icon, onClose, onClick, children }) {
   }
 
   return (
-    <ActionItemContainer>
-      {icon ? <ItemIcon src={URL_BY_NAMES[icon]} /> : null}
-      <ItemText
-        width={textWidth}
-        onClick={
-          buttonLabel
-            ? onClose
-            : () => {
+    <Consumer>
+      {({ onClose }) => (
+        <ActionItemContainer>
+          {icon ? <ItemIcon src={URL_BY_NAMES[icon]} /> : null}
+          <ItemText
+            width={textWidth}
+            onClick={
+              buttonLabel
+                ? null
+                : () => {
+                    onClick && onClick()
+                    onClose && onClose()
+                  }
+            }
+          >
+            {children}
+          </ItemText>
+          {buttonLabel ? (
+            <ItemButton
+              onClick={() => {
                 onClick && onClick()
                 onClose && onClose()
-              }
-        }
-      >
-        {children}
-      </ItemText>
-      {buttonLabel ? (
-        <ItemButton
-          onClick={() => {
-            onClick && onClick()
-            onClose && onClose()
-          }}
-        >
-          {buttonLabel}
-        </ItemButton>
-      ) : null}
-    </ActionItemContainer>
+              }}
+            >
+              {buttonLabel}
+            </ItemButton>
+          ) : null}
+        </ActionItemContainer>
+      )}
+    </Consumer>
   )
 }
 
@@ -187,11 +193,7 @@ export default function ActionSheet({ open, onClose, children }) {
       {open ? (
         <Overlay onClick={onClose}>
           <Sheet onClick={silenceEvent}>
-            {onClose
-              ? React.Children.map(children, (child) =>
-                  React.cloneElement(child, { onClose }),
-                )
-              : children}
+            <Provider value={{ onClose }}>{children}</Provider>
           </Sheet>
         </Overlay>
       ) : null}
