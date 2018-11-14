@@ -14,7 +14,15 @@ export default class App extends PureComponent {
         <ActionSheet
           open={this.state.open}
           onClose={() => this.setState({ open: false })}
-        />
+        >
+          <ActionSheet.Item
+            icon="save"
+            buttonLabel="버튼"
+            onClick={() => this.setState({ open: false })}
+          >
+            아이템
+          </ActionSheet.Item>
+        </ActionSheet>
       </div>
     )
   }

@@ -1,4 +1,4 @@
-import React, { Children } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
@@ -8,7 +8,7 @@ const Overlay = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(58, 58, 58, 0.5);
+  background-color: rgba(58, 58, 58, 0.7);
   z-index: 10;
 
   &.fade-enter {
@@ -98,7 +98,7 @@ const ItemButton = styled.a`
   float: right;
   height: 30px;
   line-height: 30px;
-  margin-top: 12px;
+  margin-top: 11px;
   padding: 0 17px;
   text-align: center;
   border-radius: 15px;
@@ -110,19 +110,48 @@ const ItemButton = styled.a`
   color: #3a3a3a;
 `
 
-function ActionItem({ onTextClick, textWidth, children }) {
+const URL_BY_NAMES = {
+  save:
+    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/img-action-save@2x.png',
+  schedule:
+    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/img-action-schedule@2x.png',
+  share:
+    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/img-action-share@2x.png',
+  suggest:
+    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/img-action-suggest@2x.png',
+  review:
+    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/img-action-review@2x.png',
+  report:
+    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/img-action-report@2x.png',
+}
+
+const ItemIcon = styled.img`
+  float: left;
+  margin-top: 11px;
+  width: 30px;
+  height: 30px;
+  margin-right: 9px;
+`
+
+function ActionItem({ buttonLabel, icon, onClick, children }) {
+  let textWidth = '100%'
+  if (buttonLabel && icon) {
+    textWidth = 'calc(100% - 100px)'
+  } else if (buttonLabel) {
+    textWidth = 'calc(100% - 60px)'
+  } else if (icon) {
+    textWidth = 'calc(100% - 40px)'
+  }
+
   return (
     <ActionItemContainer>
-      {Children.toArray(children).map(
-        (child, i) =>
-          typeof child === 'string' ? (
-            <ItemText key={i} width={textWidth} onClick={onTextClick}>
-              {child}
-            </ItemText>
-          ) : (
-            child
-          ),
-      )}
+      {icon ? <ItemIcon src={URL_BY_NAMES[icon]} /> : null}
+      <ItemText width={textWidth} onClick={buttonLabel ? null : onClick}>
+        {children}
+      </ItemText>
+      {buttonLabel ? (
+        <ItemButton onClick={onClick}>{buttonLabel}</ItemButton>
+      ) : null}
     </ActionItemContainer>
   )
 }
@@ -151,4 +180,3 @@ function silenceEvent(e) {
 
 ActionSheet.Title = Title
 ActionSheet.Item = ActionItem
-ActionSheet.Button = ItemButton
