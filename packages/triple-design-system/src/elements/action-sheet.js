@@ -123,6 +123,8 @@ const URL_BY_NAMES = {
     'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/img-action-review@2x.png',
   report:
     'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/img-action-report@2x.png',
+  delete:
+    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/img-action-delete@2x.png',
 }
 
 const ItemIcon = styled.img`
@@ -133,7 +135,7 @@ const ItemIcon = styled.img`
   margin-right: 9px;
 `
 
-function ActionItem({ buttonLabel, icon, onClick, children }) {
+function ActionItem({ buttonLabel, icon, onClose, onClick, children }) {
   let textWidth = '100%'
   if (buttonLabel && icon) {
     textWidth = 'calc(100% - 100px)'
@@ -146,11 +148,28 @@ function ActionItem({ buttonLabel, icon, onClick, children }) {
   return (
     <ActionItemContainer>
       {icon ? <ItemIcon src={URL_BY_NAMES[icon]} /> : null}
-      <ItemText width={textWidth} onClick={buttonLabel ? null : onClick}>
+      <ItemText
+        width={textWidth}
+        onClick={
+          buttonLabel
+            ? onClose
+            : () => {
+                onClick && onClick()
+                onClose && onClose()
+              }
+        }
+      >
         {children}
       </ItemText>
       {buttonLabel ? (
-        <ItemButton onClick={onClick}>{buttonLabel}</ItemButton>
+        <ItemButton
+          onClick={() => {
+            onClick && onClick()
+            onClose && onClose()
+          }}
+        >
+          {buttonLabel}
+        </ItemButton>
       ) : null}
     </ActionItemContainer>
   )
@@ -167,7 +186,13 @@ export default function ActionSheet({ open, onClose, children }) {
     >
       {open ? (
         <Overlay onClick={onClose}>
-          <Sheet onClick={silenceEvent}>{children}</Sheet>
+          <Sheet onClick={silenceEvent}>
+            {onClose
+              ? React.Children.map(children, (child) =>
+                  React.cloneElement(child, { onClose }),
+                )
+              : children}
+          </Sheet>
         </Overlay>
       ) : null}
     </ReactCSSTransitionGroup>

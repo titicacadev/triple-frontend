@@ -13,6 +13,11 @@ describe('ActionSheet', () => {
       .find('div')
       .first()
       .as('sheet')
+
+    cy.get('@sheet')
+      .find('div')
+      .first()
+      .as('item')
   })
 
   it('should close when overlay is clicked', () => {
@@ -31,5 +36,14 @@ describe('ActionSheet', () => {
       .find('span')
       .first()
       .should('not.be.empty')
+  })
+
+  it('should close when an item is clicked', () => {
+    cy.get('@item').click()
+
+    cy.get('.action-sheet-container')
+      .find('span')
+      .first()
+      .should('be.empty')
   })
 })
