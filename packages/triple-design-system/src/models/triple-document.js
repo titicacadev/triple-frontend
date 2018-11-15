@@ -349,7 +349,12 @@ function Links({ value: { display, links }, onLinkClick, ...props }) {
   )
 }
 
-function Embedded({ value: { entries }, onImageClick, ImageSource }) {
+function Embedded({
+  value: { entries },
+  onLinkClick,
+  onImageClick,
+  ImageSource,
+}) {
   return (
     <DocumentCarousel>
       {entries.map((elements, i) => (
@@ -362,6 +367,7 @@ function Embedded({ value: { entries }, onImageClick, ImageSource }) {
                 <Element
                   key={j}
                   value={value}
+                  onLinkClick={onLinkClick}
                   onImageClick={onImageClick}
                   ImageSource={ImageSource}
                 />
