@@ -47,6 +47,7 @@ const CallToAction = styled.a`
   color: #3a3a3a;
   background-color: #efefef;
   font-family: sans-serif;
+  text-decoration: none;
 `
 
 export default function AppBanner({ title, description, href }) {
