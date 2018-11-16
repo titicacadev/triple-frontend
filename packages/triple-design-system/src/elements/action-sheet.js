@@ -74,6 +74,7 @@ const Title = styled.div`
 
 const ActionItemContainer = styled.div`
   width: 100%;
+  height: 54px;
 
   &:after {
     content: '';
