@@ -59,7 +59,7 @@ const Sheet = styled.div`
   border-radius: 12px 12px 0 0;
   background-color: #fff;
   box-sizing: border-box;
-  padding: 30px 25px 13px 25px;
+  padding-top: 30px;
   margin: 0;
   font-family: sans-serif;
 `
@@ -69,7 +69,17 @@ const Title = styled.div`
   font-size: 13px;
   font-weight: bold;
   color: rgba(73, 73, 73, 0.7);
-  margin: 0 0 10px 2px;
+  margin: 0 0 10px 27px;
+`
+
+const ContentContainer = styled.div`
+  max-height: 324px;
+  overflow: auto;
+  padding: 0 25px 13px 25px;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `
 
 const ActionItemContainer = styled.div`
@@ -182,7 +192,7 @@ function ActionItem({ buttonLabel, icon, onClick, children }) {
   )
 }
 
-export default function ActionSheet({ open, onClose, children }) {
+export default function ActionSheet({ open, onClose, title, children }) {
   return (
     <ReactCSSTransitionGroup
       transitionName="fade"
@@ -194,7 +204,10 @@ export default function ActionSheet({ open, onClose, children }) {
       {open ? (
         <Overlay onClick={onClose}>
           <Sheet onClick={silenceEvent}>
-            <Provider value={{ onClose }}>{children}</Provider>
+            {title ? <Title>{title}</Title> : null}
+            <Provider value={{ onClose }}>
+              <ContentContainer>{children}</ContentContainer>
+            </Provider>
           </Sheet>
         </Overlay>
       ) : null}
@@ -206,5 +219,4 @@ function silenceEvent(e) {
   return e.stopPropagation()
 }
 
-ActionSheet.Title = Title
 ActionSheet.Item = ActionItem
