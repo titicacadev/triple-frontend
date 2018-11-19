@@ -38,16 +38,24 @@ class CompactPoiListElement extends PureComponent {
       props: {
         actionButtonElement,
         poi: {
+          id,
           type,
           nameOverride,
-          scraped,
+          scraped: initialScraped,
           source: { names, image },
         },
         onClick,
         onScrapedChange,
+        resourceScraps,
       },
       state: { actionButtonWidth },
     } = this
+
+    const { state: scraped } = deriveCurrentStateAndCount({
+      initialState: initialScraped,
+      initialCount: 0,
+      currentState: resourceScraps[id],
+    })
 
     return (
       <ResourceListItem onClick={onClick}>
@@ -218,14 +226,22 @@ export function PoiCarouselElement({
   onClick,
   actionButtonElement,
   onScrapedChange,
+  resourceScraps,
 }) {
   if (poi) {
     const {
+      id,
       type,
       nameOverride,
-      scraped,
+      scraped: initialScraped,
       source: { image, names },
     } = poi
+
+    const { state: scraped } = deriveCurrentStateAndCount({
+      initialState: initialScraped,
+      initialCount: 0,
+      currentState: resourceScraps[id],
+    })
 
     return (
       <Carousel.Item size="small" onClick={onClick}>
