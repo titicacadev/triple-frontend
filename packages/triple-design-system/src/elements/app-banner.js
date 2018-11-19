@@ -6,15 +6,14 @@ const AppBannerFrame = styled.div`
   background-color: #ffffff;
   border-bottom: 1px solid #efefef;
   height: 60px;
+  position: sticky;
+  position: -webkit-sticky;
+  z-index: 1;
   ${({ fixed }) =>
-    fixed
-      ? css`
-          position: fixed;
-        `
-      : css`
-          position: sticky;
-          position: -webkit-sticky;
-        `};
+    fixed &&
+    css`
+      top: 0;
+    `};
 `
 
 const Logo = styled.h1`

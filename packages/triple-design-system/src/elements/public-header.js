@@ -5,15 +5,14 @@ const HeaderFrame = styled.div`
   background-color: #ffffff;
   height: 80px;
   border-bottom: 1px solid #efefef;
+  position: sticky;
+  position: -webkit-sticky;
+  z-index: 1;
   ${({ fixed }) =>
-    fixed
-      ? css`
-          position: fixed;
-        `
-      : css`
-          position: sticky;
-          position: -webkit-sticky;
-        `};
+    fixed &&
+    css`
+      top: 0;
+    `};
 `
 
 const Logo = styled.h1`
