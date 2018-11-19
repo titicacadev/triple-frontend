@@ -242,14 +242,14 @@ export default class App extends PureComponent {
     return (
       <div>
         <Fragment>
-          <Responsive maxWidth={599}>
+          <Responsive inline maxWidth={599}>
             <AppBanner
               fixed
               title="트리플 - 해외여행 가이드"
               description="가이드북, 일정짜기, 길찾기, 맛집"
             />
           </Responsive>
-          <Responsive minWidth={600}>
+          <Responsive inline minWidth={600}>
             <PublicHeader fixed />
           </Responsive>
         </Fragment>
