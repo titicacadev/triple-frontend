@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Fragment, PureComponent } from 'react'
 import {
   H1,
   H3,
@@ -17,8 +17,11 @@ import {
   Segment,
   List,
   TripleDocument,
+  Responsive,
   Navbar,
   Footer,
+  AppBanner,
+  PublicHeader,
 } from '@titicaca/triple-design-system/src'
 import sample from './sample.json'
 import humps from 'humps'
@@ -238,11 +241,18 @@ export default class App extends PureComponent {
 
     return (
       <div>
-        <Navbar title={'POI'}>
-          <Navbar.Item icon="back" floated="left" />
-          <Navbar.Item icon="more" floated="right" />
-          <Navbar.Item icon="map" floated="right" />
-        </Navbar>
+        <Fragment>
+          <Responsive maxWidth={599}>
+            <AppBanner
+              fixed
+              title="트리플 - 해외여행 가이드"
+              description="가이드북, 일정짜기, 길찾기, 맛집"
+            />
+          </Responsive>
+          <Responsive minWidth={600}>
+            <PublicHeader fixed />
+          </Responsive>
+        </Fragment>
         <Container
           centered
           minWidth={375}
