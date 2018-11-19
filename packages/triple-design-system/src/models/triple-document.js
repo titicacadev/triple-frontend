@@ -269,11 +269,8 @@ export function Pois({
       {pois.map((poi) => (
         <Element
           key={poi.id}
-          poi={
-            (resourceScraps || {})[poi.id]
-              ? { ...poi, scraped: resourceScraps[poi.id] }
-              : poi
-          }
+          poi={poi}
+          resourceScraps={resourceScraps}
           onClick={onResourceClick && ((e) => onResourceClick(e, poi))}
           onScrapedChange={onResourceScrapedChange}
           actionButtonElement={renderPoiListActionButton({

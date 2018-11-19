@@ -93,8 +93,9 @@ class ExtendedPoiListElement extends PureComponent {
     const {
       props: {
         poi: {
+          id,
           nameOverride,
-          scraped,
+          scraped: initialScraped,
           source: {
             names,
             image,
@@ -102,18 +103,24 @@ class ExtendedPoiListElement extends PureComponent {
             categories,
             comment,
             reviewsCount,
-            scrapsCount,
+            scrapsCount: initialScrapsCount,
             reviewsRating,
           },
           distance,
         },
         onClick,
         onScrapedChange,
+        resourceScraps,
       },
     } = this
 
     const [area] = areas || []
     const [category] = categories || []
+    const { state: scraped, count: scrapsCount } = deriveCurrentStateAndCount({
+      initialState: initialScraped,
+      initialCount: initialScrapsCount,
+      currentState: resourceScraps[id],
+    })
 
     return (
       <ExtendedPoiListItem onClick={onClick}>
@@ -176,6 +183,25 @@ class ExtendedPoiListElement extends PureComponent {
         />
       </ExtendedPoiListItem>
     )
+  }
+}
+
+function deriveCurrentStateAndCount({
+  initialState,
+  initialCount,
+  currentState,
+}) {
+  if (typeof initialState !== 'boolean' || typeof currentState !== 'boolean') {
+    /* At least one of the status are unknown: Reduces to a bitwise OR operation */
+    return { state: !!initialState || !!currentState, count: initialCount }
+  }
+
+  return {
+    state: currentState,
+    count:
+      initialState === currentState
+        ? initialCount
+        : initialCount + (currentState ? 1 : -1),
   }
 }
 
