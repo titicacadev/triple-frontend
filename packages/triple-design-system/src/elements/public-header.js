@@ -1,12 +1,19 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const HeaderFrame = styled.div`
   background-color: #ffffff;
-  position: sticky;
-  position: -webkit-sticky;
   height: 80px;
   border-bottom: 1px solid #efefef;
+  ${({ fixed }) =>
+    fixed
+      ? css`
+          position: fixed;
+        `
+      : css`
+          position: sticky;
+          position: -webkit-sticky;
+        `};
 `
 
 const Logo = styled.h1`
@@ -58,9 +65,14 @@ const MarketLink = styled.a`
   padding: 0;
 `
 
-export default function PublicHeader({ playStoreUrl, appStoreUrl, children }) {
+export default function PublicHeader({
+  playStoreUrl,
+  appStoreUrl,
+  children,
+  ...props
+}) {
   return (
-    <HeaderFrame>
+    <HeaderFrame {...props}>
       <Logo>TRIPLE</Logo>
       <MarketLinksContainer>
         <MarketLink marketType="playStore" href={playStoreUrl} />

@@ -1,13 +1,20 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import Text from './text'
 
 const AppBannerFrame = styled.div`
   background-color: #ffffff;
-  position: sticky;
-  position: -webkit-sticky;
-  height: 60px;
   border-bottom: 1px solid #efefef;
+  height: 60px;
+  ${({ fixed }) =>
+    fixed
+      ? css`
+          position: fixed;
+        `
+      : css`
+          position: sticky;
+          position: -webkit-sticky;
+        `};
 `
 
 const Logo = styled.h1`
@@ -50,9 +57,9 @@ const CallToAction = styled.a`
   text-decoration: none;
 `
 
-export default function AppBanner({ title, description, href }) {
+export default function AppBanner({ title, description, href, ...props }) {
   return (
-    <AppBannerFrame>
+    <AppBannerFrame {...props}>
       <Logo />
       <ContentContainer>
         <Text
