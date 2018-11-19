@@ -42,6 +42,8 @@ const ICON_URL_BY_NAMES = {
     'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-com-bookmark-off@2x.png',
   share:
     'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-com-share@2x.png',
+  route:
+    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-com-route@2x.png',
 }
 
 const NavbarItem = styled.div`
