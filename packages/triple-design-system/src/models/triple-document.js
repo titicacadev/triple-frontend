@@ -113,7 +113,7 @@ export function TripleDocument({
               onTNAProductClick={onTNAProductClick}
               onTNAProductsFetch={onTNAProductsFetch}
               ImageSource={imageSourceComponent}
-              resourceScraps={resourceScraps}
+              resourceScraps={resourceScraps || {}}
             />
           )
         )
