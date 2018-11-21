@@ -209,7 +209,9 @@ function deriveCurrentStateAndCount({
     count:
       initialState === currentState
         ? initialCount
-        : initialCount + (currentState ? 1 : -1),
+        : currentState
+          ? Number(initialCount) + 1
+          : Number(initialCount) - 1,
   }
 }
 
