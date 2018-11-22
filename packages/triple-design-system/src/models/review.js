@@ -115,10 +115,10 @@ const LikeButton = styled.a`
   margin-right: 8px;
   padding: 5px 7px;
   border-radius: 3px;
-  background-color: #fafafa;
 
   ${({ liked }) => css`
-    color: ${liked ? '#368fff' : 'rgba(58, 58, 58, 0.2)'};
+    color: ${liked ? '#ffffff' : 'rgba(58, 58, 58, 0.8)'};
+    background-color: ${liked ? '#368fff' : '#fafafa'};
   `};
 `
 
