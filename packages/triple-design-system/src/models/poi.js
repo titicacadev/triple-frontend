@@ -155,7 +155,7 @@ class ExtendedPoiListElement extends PureComponent {
                   scrapsCount && `저장${scrapsCount}`,
                 ]
                   .filter((count) => count)
-                  .join(' . ')}
+                  .join(' · ')}
               </Text>
             </>
           </Container>
