@@ -63,12 +63,18 @@ function Score({ score }) {
   )
 }
 
+function Comment({ children }) {
+  return (
+    <Text size="large" color="gray" alpha={0.8} lineHeight={1.5}>
+      {children}
+    </Text>
+  )
+}
+
 function Content({ children }) {
   return (
-    <Container margin={{ top: 17 }}>
-      <Text size="large" color="gray" alpha={0.8} lineHeight={1.5}>
-        {children}
-      </Text>
+    <Container margin={{ top: 17 }} clearing>
+      <Comment>{children}</Comment>
     </Container>
   )
 }
@@ -158,97 +164,170 @@ class Review extends PureComponent {
   }
 }
 
-function ReviewElement({
-  review,
-  onUserClick,
-  onLikeButtonClick,
-  onLikesCountClick,
-  onMenuClick,
-  onImageClick,
-  likeVisible,
-  menuVisible,
-  DateFormatter,
-}) {
-  const {
-    user: {
-      photo,
-      name,
-      userBoard: { reviews: reviewsCount },
-      mileage,
-    },
-    blind,
-    thanks,
-    liked,
-    comment,
-    createdAt,
-    rating,
-    attachments,
-  } = review
-  const badge = mileage && mileage.badges && mileage.badges[0]
+const MAX_COMMENT_LINES = 6
+const CHARACTERS_PER_LINE = 25
 
+function findFoldedPosition(comment) {
+  const lines = comment.split('\n')
+
+  let linesCount = 0
+  let foldedIndex = 0
+  for (const line of lines) {
+    const rest = (MAX_COMMENT_LINES - linesCount) * CHARACTERS_PER_LINE
+
+    if (line.length > rest) {
+      return foldedIndex + rest
+    }
+
+    foldedIndex = foldedIndex + line.length
+    linesCount = linesCount + 1 + Math.floor(line.length / CHARACTERS_PER_LINE)
+  }
+
+  return null
+}
+
+const Unfold = styled.a`
+  display: inline-block;
+  color: #2987f0;
+  text-decoration: none;
+`
+
+function FoldedComment({ children, onUnfoldButtonClick }) {
   return (
-    <ReviewItem>
-      <Container>
-        <UserPhoto src={photo} onClick={(e) => onUserClick(e, review)} />
-        {badge && <Badge src={badge.icon.imageUrl} />}
-        <Name onClick={(e) => onUserClick(e, review)}>{name}</Name>
-        <UserExtra>
-          <span onClick={(e) => onUserClick(e, review)}>
-            {badge
-              ? `${badge.label} / ${reviewsCount}개의 리뷰`
-              : `${reviewsCount}개의 리뷰`}
-          </span>
-          {!blind && !!rating ? <Score score={rating} /> : null}
-        </UserExtra>
-      </Container>
-      <Content>
-        {blind ? '신고가 접수되어 블라인드 처리되었습니다.' : comment}
-        {!blind && (
-          <Images>
-            {(attachments || []).map((attachment, i) => (
-              <img
-                key={i}
-                src={attachment.smallThumbnail}
-                onClick={(e) => onImageClick(e, review, attachment)}
-              />
-            ))}
-          </Images>
-        )}
-      </Content>
-      {!blind && (
-        <Meta>
-          {likeVisible !== false ? (
-            <>
-              <LikeButton
-                liked={liked}
-                onClick={(e) => onLikeButtonClick(e, review)}
-              >
-                Thanks
-              </LikeButton>
-              {thanks && thanks > 0 ? (
-                <span onClick={(e) => onLikesCountClick(e, review)}>
-                  {thanks}명
-                </span>
-              ) : null}
-            </>
-          ) : null}
-          <Date floated={likeVisible !== false && 'right'}>
-            {DateFormatter ? (
-              <DateFormatter>{createdAt}</DateFormatter>
-            ) : (
-              createdAt
-            )}
-            {menuVisible !== false && (
-              <MoreIcon
-                src="http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-review-more@2x.png"
-                onClick={(e) => onMenuClick(e, review)}
-              />
-            )}
-          </Date>
-        </Meta>
-      )}
-    </ReviewItem>
+    <Comment>
+      {`${children} …`}
+      <Unfold onClick={onUnfoldButtonClick}>더보기</Unfold>
+    </Comment>
   )
+}
+
+function FoldableComment({ children, onUnfoldButtonClick }) {
+  const foldedPosition = findFoldedPosition(children)
+
+  return foldedPosition ? (
+    <FoldedComment onUnfoldButtonClick={onUnfoldButtonClick}>
+      {children.slice(0, foldedPosition)}
+    </FoldedComment>
+  ) : (
+    <Comment>{children}</Comment>
+  )
+}
+
+class ReviewElement extends PureComponent {
+  state = { unfolded: false }
+
+  render() {
+    const {
+      props: {
+        review,
+        onUserClick,
+        onUnfoldButtonClick,
+        onLikeButtonClick,
+        onLikesCountClick,
+        onMenuClick,
+        onImageClick,
+        likeVisible,
+        menuVisible,
+        DateFormatter,
+      },
+      state: { unfolded },
+    } = this
+
+    const {
+      user: {
+        photo,
+        name,
+        userBoard: { reviews: reviewsCount },
+        mileage,
+      },
+      blind,
+      thanks,
+      liked,
+      comment,
+      createdAt,
+      rating,
+      attachments,
+    } = review
+    const badge = mileage && mileage.badges && mileage.badges[0]
+
+    return (
+      <ReviewItem>
+        <Container>
+          <UserPhoto src={photo} onClick={(e) => onUserClick(e, review)} />
+          {badge && <Badge src={badge.icon.imageUrl} />}
+          <Name onClick={(e) => onUserClick(e, review)}>{name}</Name>
+          <UserExtra>
+            <span onClick={(e) => onUserClick(e, review)}>
+              {badge
+                ? `${badge.label} / ${reviewsCount}개의 리뷰`
+                : `${reviewsCount}개의 리뷰`}
+            </span>
+            {!blind && !!rating ? <Score score={rating} /> : null}
+          </UserExtra>
+        </Container>
+        <Content>
+          {blind ? (
+            '신고가 접수되어 블라인드 처리되었습니다.'
+          ) : unfolded ? (
+            comment
+          ) : (
+            <FoldableComment
+              onUnfoldButtonClick={(e) => {
+                this.setState({ unfolded: true })
+
+                onUnfoldButtonClick && onUnfoldButtonClick(e, review)
+              }}
+            >
+              {comment}
+            </FoldableComment>
+          )}
+          {!blind && (
+            <Images>
+              {(attachments || []).map((attachment, i) => (
+                <img
+                  key={i}
+                  src={attachment.smallThumbnail}
+                  onClick={(e) => onImageClick(e, review, attachment)}
+                />
+              ))}
+            </Images>
+          )}
+        </Content>
+        {!blind && (
+          <Meta>
+            {likeVisible !== false ? (
+              <>
+                <LikeButton
+                  liked={liked}
+                  onClick={(e) => onLikeButtonClick(e, review)}
+                >
+                  Thanks
+                </LikeButton>
+                {thanks && thanks > 0 ? (
+                  <span onClick={(e) => onLikesCountClick(e, review)}>
+                    {thanks}명
+                  </span>
+                ) : null}
+              </>
+            ) : null}
+            <Date floated={likeVisible !== false && 'right'}>
+              {DateFormatter ? (
+                <DateFormatter>{createdAt}</DateFormatter>
+              ) : (
+                createdAt
+              )}
+              {menuVisible !== false && (
+                <MoreIcon
+                  src="http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-review-more@2x.png"
+                  onClick={(e) => onMenuClick(e, review)}
+                />
+              )}
+            </Date>
+          </Meta>
+        )}
+      </ReviewItem>
+    )
+  }
 }
 
 export function ReviewsList({
