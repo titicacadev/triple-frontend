@@ -100,8 +100,7 @@ export function TripleDocument({
   return (
     <>
       {children.map(({ type, value }, i) => {
-        const Element =
-          (customElements && customElements(type)) || ELEMENTS[type]
+        const Element = (customElements || {})[type] || ELEMENTS[type]
 
         return (
           Element && (
