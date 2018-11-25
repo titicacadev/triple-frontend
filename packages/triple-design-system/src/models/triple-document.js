@@ -95,11 +95,13 @@ export function TripleDocument({
   onTNAProductsFetch,
   imageSourceComponent,
   resourceScraps,
+  customElements,
 }) {
   return (
     <>
       {children.map(({ type, value }, i) => {
-        const Element = ELEMENTS[type]
+        const Element =
+          (customElements && customElements(type)) || ELEMENTS[type]
 
         return (
           Element && (

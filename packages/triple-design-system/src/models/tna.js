@@ -8,7 +8,7 @@ import Container from '../elements/container'
 import { H1 } from './text'
 import { SquareImage } from '../elements/content-elements'
 
-function Product({ heroImage, title, tags, salePrice }) {
+export function TnaProduct({ heroImage, title, tags, salePrice }) {
   return (
     <>
       <SquareImage size="medium" floated="left" src={heroImage} />
@@ -59,12 +59,12 @@ export class TnaProductsList extends PureComponent {
 
   render() {
     const {
-      props: { onProductClick, margin, slotId },
+      props: { onProductClick, margin },
       state: { title, products, showMore },
     } = this
 
     return (
-      <Container id={`tna-slot-${slotId}`} margin={margin}>
+      <Container margin={margin}>
         <H1 margin={{ bottom: 20 }}>{title}</H1>
 
         <List clearing verticalGap={20}>
@@ -73,7 +73,7 @@ export class TnaProductsList extends PureComponent {
               key={i}
               onClick={onProductClick && ((e) => onProductClick(e, product))}
             >
-              <Product {...product} />
+              <TnaProduct {...product} />
             </List.Item>
           ))}
           {!showMore &&
