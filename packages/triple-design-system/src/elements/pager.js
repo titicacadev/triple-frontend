@@ -14,6 +14,7 @@ const Pager = ({
     <PagerCarousel
       slideIndex={currentPage}
       afterSlide={onPageChange}
+      speed={100}
       renderTopRightControls={pageLabelComponent}
       renderBottomCenterControls={null}
       renderCenterLeftControls={null}
