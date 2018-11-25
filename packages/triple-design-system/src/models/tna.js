@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react'
-import numeral from 'numeral'
 import List from '../elements/list'
 import Text from '../elements/text'
 import Tag from '../elements/tag'
@@ -7,6 +6,18 @@ import Button from '../elements/button'
 import Container from '../elements/container'
 import { H1 } from './text'
 import { SquareImage } from '../elements/content-elements'
+
+function insertCommas(price) {
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+}
+
+function Price({ children }) {
+  return (
+    <Text bold size="large" color="gray" margin={{ top: 13, left: 150 }}>
+      {`${insertCommas(children)}원`}
+    </Text>
+  )
+}
 
 export function TnaProduct({ heroImage, title, tags, salePrice }) {
   return (
@@ -29,9 +40,7 @@ export function TnaProduct({ heroImage, title, tags, salePrice }) {
           ))}
         </Container>
       )}
-      <Text bold size="large" color="gray" margin={{ top: 13, left: 150 }}>
-        {numeral(salePrice).format('0,0')}원
-      </Text>
+      <Price>{salePrice}</Price>
     </>
   )
 }
