@@ -45,7 +45,7 @@ export function TransitionModal({ open, messageType, onCancel, onConfirm }) {
           취소
         </Modal.Action>
         <Modal.Action color="blue" onClick={onConfirm}>
-          열기
+          트리플가기
         </Modal.Action>
       </Modal.Actions>
     </Modal>
