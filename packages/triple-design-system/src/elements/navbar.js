@@ -28,7 +28,7 @@ const TitleContainer = styled.div`
   line-height: 18px;
   color: #1e1e1e;
   white-space: nowrap;
-  overflow: hidden;
+  overflow-x: hidden;
   text-overflow: ellipsis;
 `
 
