@@ -15,7 +15,7 @@ const HeaderFrame = styled.div`
     `};
 `
 
-const Logo = styled.h1`
+const Logo = styled.a`
   background-repeat: no-repeat;
   background-size: 68px 24px;
   background-image: url(https://triple.guide/images/img-intro-logo-dark@2x.png);
@@ -28,6 +28,7 @@ const Logo = styled.h1`
   left: 50px;
   margin-top: -12px;
   position: absolute;
+  text-decoration: none;
 `
 
 const InventoryContainer = styled.div`
@@ -65,6 +66,7 @@ const MarketLink = styled.a`
 `
 
 export default function PublicHeader({
+  href,
   playStoreUrl,
   appStoreUrl,
   children,
@@ -72,7 +74,7 @@ export default function PublicHeader({
 }) {
   return (
     <HeaderFrame {...props}>
-      <Logo>TRIPLE</Logo>
+      <Logo href={href}>TRIPLE</Logo>
       <MarketLinksContainer>
         <MarketLink marketType="playStore" href={playStoreUrl} />
         <MarketLink marketType="appStore" href={appStoreUrl} />
