@@ -47,10 +47,8 @@ const MarketLinksContainer = styled.div`
 `
 
 const MARKET_LINK_BUTTON_ICON_URLS = {
-  appStore:
-    'https://assets.triple.guide/images/btn-app-store-on@2x.png',
-  playStore:
-    'https://assets.triple.guide/images/btn-play-store-on@2x.png',
+  appStore: 'https://assets.triple.guide/images/btn-app-store-on@2x.png',
+  playStore: 'https://assets.triple.guide/images/btn-play-store-on@2x.png',
 }
 
 const MarketLink = styled.a`
