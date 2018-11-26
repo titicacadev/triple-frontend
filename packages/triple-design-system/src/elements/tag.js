@@ -33,8 +33,8 @@ const TagBase = styled.div`
   ${({ style }) =>
     style &&
     css`
-      ${Object.entries(style)
-        .map((key, value) => `${key}: ${value};`)
+      ${Object.keys(style)
+        .map((key) => `${key}: ${style[key]};`)
         .join('\n')};
     `};
 `
