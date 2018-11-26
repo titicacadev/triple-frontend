@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Children } from 'react'
 import styled from 'styled-components'
 
 const NavbarFrame = styled.div`
@@ -20,9 +20,16 @@ const TitleContainer = styled.div`
   position: absolute;
   top: 17.5px;
   left: 52px;
+  right: ${({ childrenCount }) => {
+    const count = childrenCount || 0
+    return 6 + 40 * Math.max(count - 1, 0)
+  }}px;
   font-size: 18px;
   line-height: 18px;
   color: #1e1e1e;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 const ICON_URL_BY_NAMES = {
@@ -57,9 +64,13 @@ const NavbarItem = styled.div`
 `
 
 function Navbar({ title, children }) {
+  const childrenCount = Children.count(children)
+
   return (
     <NavbarFrame>
-      {title && <TitleContainer>{title}</TitleContainer>}
+      {title && (
+        <TitleContainer childrenCount={childrenCount}>{title}</TitleContainer>
+      )}
       {children}
     </NavbarFrame>
   )
