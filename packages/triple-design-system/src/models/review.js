@@ -168,7 +168,7 @@ const MAX_COMMENT_LINES = 6
 const CHARACTERS_PER_LINE = 25
 
 function findFoldedPosition(comment) {
-  const lines = comment.split('\n')
+  const lines = (comment || '').split('\n')
 
   let linesCount = 0
   let foldedIndex = 0
