@@ -52,10 +52,10 @@ const ButtonBase = styled.a`
 const ICON_BUTTON_URLS = {
   saveEmpty: 'https://assets.triple.guide/images/btn-end-save-off@2x.png',
   saveFilled:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-end-save-on@2x.png',
+    'https://assets.triple.guide/images/btn-end-save-on@2x.png',
   starEmpty: 'https://assets.triple.guide/images/btn-end-review@2x.png',
   starFilled:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-end-review-on@2x.png',
+    'https://assets.triple.guide/images/btn-end-review-on@2x.png',
   map: 'https://assets.triple.guide/images/btn-end-search-place@2x.png',
   share: 'https://assets.triple.guide/images/btn-com-share@2x.png',
   schedule: 'https://assets.triple.guide/images/btn-end-schedule@2x.png',

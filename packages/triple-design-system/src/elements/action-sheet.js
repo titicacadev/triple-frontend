@@ -125,19 +125,19 @@ const ItemButton = styled.a`
 
 const URL_BY_NAMES = {
   save:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/img-action-save@2x.png',
+    'https://assets.triple.guide/images/img-action-save@2x.png',
   schedule:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/img-action-schedule@2x.png',
+    'https://assets.triple.guide/images/img-action-schedule@2x.png',
   share:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/img-action-share@2x.png',
+    'https://assets.triple.guide/images/img-action-share@2x.png',
   suggest:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/img-action-suggest@2x.png',
+    'https://assets.triple.guide/images/img-action-suggest@2x.png',
   review:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/img-action-review@2x.png',
+    'https://assets.triple.guide/images/img-action-review@2x.png',
   report:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/img-action-report@2x.png',
+    'https://assets.triple.guide/images/img-action-report@2x.png',
   delete:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/img-action-delete@2x.png',
+    'https://assets.triple.guide/images/img-action-delete@2x.png',
 }
 
 const ItemIcon = styled.img`

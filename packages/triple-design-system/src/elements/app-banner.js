@@ -19,7 +19,7 @@ const AppBannerFrame = styled.div`
 const Logo = styled.h1`
   background-repeat: no-repeat;
   background-size: 34px 34px;
-  background-image: url(http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/app-download@2x.png);
+  background-image: url(https://assets.triple.guide/images/app-download@2x.png);
   width: 34px;
   height: 34px;
   margin: 0;

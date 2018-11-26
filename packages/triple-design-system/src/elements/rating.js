@@ -16,7 +16,7 @@ const IMAGE_PREFIXES = {
   tiny: 'https://assets.triple.guide/images/img-review-star',
   small: 'https://assets.triple.guide/images/img-review-star',
   medium:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/img-review-star-medium',
+    'https://assets.triple.guide/images/img-review-star-medium',
 }
 
 const RatingStar = styled.span`

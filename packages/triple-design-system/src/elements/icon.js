@@ -6,7 +6,7 @@ const URL_BY_NAMES = {
   call: 'https://assets.triple.guide/images/ico-end-call@2x.png',
   map: 'https://assets.triple.guide/images/ico-end-poi@2x.png',
   arrowRight:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/ico-arrow-right@2x.png',
+    'https://assets.triple.guide/images/ico-arrow-right@2x.png',
 }
 
 const SIZES = {

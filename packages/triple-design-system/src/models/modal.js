@@ -19,7 +19,7 @@ const MESSAGES_BY_TYPES = {
 
 const ICONS = {
   scrap:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/img-heart@2x.png',
+    'https://assets.triple.guide/images/img-heart@2x.png',
 }
 
 export function TransitionModal({ open, messageType, onCancel, onConfirm }) {

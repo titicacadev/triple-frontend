@@ -34,23 +34,23 @@ const TitleContainer = styled.div`
 
 const ICON_URL_BY_NAMES = {
   back:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-com-back@2x.png',
+    'https://assets.triple.guide/images/btn-com-back@2x.png',
   close:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-com-close@2x.png',
+    'https://assets.triple.guide/images/btn-com-close@2x.png',
   more:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-com-more@2x.png',
+    'https://assets.triple.guide/images/btn-com-more@2x.png',
   map:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/ico-search-place@2x.png',
+    'https://assets.triple.guide/images/ico-search-place@2x.png',
   write:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-com-write@2x.png',
+    'https://assets.triple.guide/images/btn-com-write@2x.png',
   scraped:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-com-bookmark-on@2x.png',
+    'https://assets.triple.guide/images/btn-com-bookmark-on@2x.png',
   unscraped:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-com-bookmark-off@2x.png',
+    'https://assets.triple.guide/images/btn-com-bookmark-off@2x.png',
   share:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-com-share@2x.png',
+    'https://assets.triple.guide/images/btn-com-share@2x.png',
   route:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-com-route@2x.png',
+    'https://assets.triple.guide/images/btn-com-route@2x.png',
 }
 
 const NavbarItem = styled.div`

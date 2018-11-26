@@ -47,9 +47,9 @@ const MarketLinksContainer = styled.div`
 
 const MARKET_LINK_BUTTON_ICON_URLS = {
   appStore:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-app-store-on@2x.png',
+    'https://assets.triple.guide/images/btn-app-store-on@2x.png',
   playStore:
-    'http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/btn-play-store-on@2x.png',
+    'https://assets.triple.guide/images/btn-play-store-on@2x.png',
 }
 
 const MarketLink = styled.a`
