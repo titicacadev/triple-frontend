@@ -33,24 +33,15 @@ const TitleContainer = styled.div`
 `
 
 const ICON_URL_BY_NAMES = {
-  back:
-    'https://assets.triple.guide/images/btn-com-back@2x.png',
-  close:
-    'https://assets.triple.guide/images/btn-com-close@2x.png',
-  more:
-    'https://assets.triple.guide/images/btn-com-more@2x.png',
-  map:
-    'https://assets.triple.guide/images/ico-search-place@2x.png',
-  write:
-    'https://assets.triple.guide/images/btn-com-write@2x.png',
-  scraped:
-    'https://assets.triple.guide/images/btn-com-bookmark-on@2x.png',
-  unscraped:
-    'https://assets.triple.guide/images/btn-com-bookmark-off@2x.png',
-  share:
-    'https://assets.triple.guide/images/btn-com-share@2x.png',
-  route:
-    'https://assets.triple.guide/images/btn-com-route@2x.png',
+  back: 'https://assets.triple.guide/images/btn-com-back@2x.png',
+  close: 'https://assets.triple.guide/images/btn-com-close@2x.png',
+  more: 'https://assets.triple.guide/images/btn-com-more@2x.png',
+  map: 'https://assets.triple.guide/images/ico-search-place@2x.png',
+  write: 'https://assets.triple.guide/images/btn-com-write@2x.png',
+  scraped: 'https://assets.triple.guide/images/btn-com-bookmark-on@2x.png',
+  unscraped: 'https://assets.triple.guide/images/btn-com-bookmark-off@2x.png',
+  share: 'https://assets.triple.guide/images/btn-com-share@2x.png',
+  route: 'https://assets.triple.guide/images/btn-com-route@2x.png',
 }
 
 const NavbarItem = styled.div`
