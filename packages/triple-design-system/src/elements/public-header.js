@@ -74,7 +74,7 @@ export default function PublicHeader({
 }) {
   return (
     <HeaderFrame {...props}>
-      <Logo href={href}>TRIPLE</Logo>
+      <Logo href={href || 'https://triple.guide'}>TRIPLE</Logo>
       <MarketLinksContainer>
         <MarketLink marketType="playStore" href={playStoreUrl} />
         <MarketLink marketType="appStore" href={appStoreUrl} />
