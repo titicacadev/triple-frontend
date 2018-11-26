@@ -22,7 +22,7 @@ const TitleContainer = styled.div`
   left: 52px;
   right: ${({ childrenCount }) => {
     const count = childrenCount || 0
-    return 6 + 40 * Math.max(count - 1, 0)
+    return 26 + 40 * Math.max(count - 1, 0)
   }}px;
   font-size: 18px;
   line-height: 18px;
