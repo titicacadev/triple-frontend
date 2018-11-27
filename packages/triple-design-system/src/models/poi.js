@@ -146,43 +146,44 @@ class ExtendedPoiListElement extends PureComponent {
         <Text alpha={0.7} size="small" margin={{ top: 5 }}>
           {comment}
         </Text>
-        {(reviewsCount || scrapsCount) && (
+        {reviewsCount || scrapsCount ? (
           <Container margin={{ top: 5 }}>
             <>
-              {reviewsCount && <Rating size="small" score={reviewsRating} />}
+              {reviewsCount ? (
+                <Rating size="small" score={reviewsRating} />
+              ) : null}
               <Text inline size="small" alpha={0.4}>
                 {[
-                  reviewsCount && ` (${reviewsCount})`,
-                  scrapsCount && `저장${scrapsCount}`,
+                  reviewsCount ? ` (${reviewsCount})` : null,
+                  scrapsCount ? `저장${scrapsCount}` : null,
                 ]
                   .filter((count) => count)
                   .join(' · ')}
               </Text>
             </>
           </Container>
-        )}
+        ) : null}
         <Container margin={{ top: 3 }}>
           {distance || distance === 0 ? (
             <Text inline color="blue" size="small" alpha={1}>
               {`${distance}m `}
             </Text>
           ) : null}
-          {category && (
+          {category ? (
             <Text inline size="small" alpha={0.4}>
               {category.name}
             </Text>
-          )}
-          {category &&
-            area && (
-              <Text inline size="small" alpha={0.4}>
-                {' · '}
-              </Text>
-            )}
-          {area && (
+          ) : null}
+          {category && area ? (
+            <Text inline size="small" alpha={0.4}>
+              {' · '}
+            </Text>
+          ) : null}
+          {area ? (
             <Text inline size="small" alpha={0.4}>
               {area.name}
             </Text>
-          )}
+          ) : null}
         </Container>
         <ScrapButton
           top={23}
