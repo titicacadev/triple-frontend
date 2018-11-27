@@ -110,7 +110,7 @@ class ExtendedPoiListElement extends PureComponent {
             areas,
             categories,
             comment,
-            reviewsCount,
+            reviewsCount: rawReviewsCount,
             scrapsCount: initialScrapsCount,
             reviewsRating,
           },
@@ -129,6 +129,7 @@ class ExtendedPoiListElement extends PureComponent {
       initialCount: initialScrapsCount,
       currentState: resourceScraps[id],
     })
+    const reviewsCount = Number(rawReviewsCount || 0)
 
     return (
       <ExtendedPoiListItem onClick={onClick}>
@@ -201,7 +202,10 @@ function deriveCurrentStateAndCount({
 }) {
   if (typeof initialState !== 'boolean' || typeof currentState !== 'boolean') {
     /* At least one of the status are unknown: Reduces to a bitwise OR operation */
-    return { state: !!initialState || !!currentState, count: initialCount }
+    return {
+      state: !!initialState || !!currentState,
+      count: Number(initialCount || 0),
+    }
   }
 
   return {
