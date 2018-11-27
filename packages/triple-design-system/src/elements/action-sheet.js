@@ -154,21 +154,18 @@ function ActionItem({ buttonLabel, icon, onClick, children }) {
   return (
     <Consumer>
       {({ onClose }) => (
-        <ActionItemContainer>
+        <ActionItemContainer
+          onClick={
+            buttonLabel
+              ? null
+              : () => {
+                  onClick && onClick()
+                  onClose && onClose()
+                }
+          }
+        >
           {icon ? <ItemIcon src={URL_BY_NAMES[icon]} /> : null}
-          <ItemText
-            width={textWidth}
-            onClick={
-              buttonLabel
-                ? null
-                : () => {
-                    onClick && onClick()
-                    onClose && onClose()
-                  }
-            }
-          >
-            {children}
-          </ItemText>
+          <ItemText width={textWidth}>{children}</ItemText>
           {buttonLabel ? (
             <ItemButton
               onClick={() => {
