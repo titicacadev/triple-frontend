@@ -318,7 +318,7 @@ class ReviewElement extends PureComponent {
               )}
               {menuVisible !== false && (
                 <MoreIcon
-                  src="https://assets.triple.guide/images/btn-review-more@2x.png"
+                  src="https://assets.triple.guide/images/btn-review-more@4x.png"
                   onClick={(e) => onMenuClick(e, review)}
                 />
               )}

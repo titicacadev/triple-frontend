@@ -5,8 +5,8 @@ import Container from './container'
 const Accordion = styled.div``
 
 const TITLE_ICONS = {
-  folded: 'ico-header-expand-fold@2x.png',
-  unfolded: 'ico-header-expand-more@2x.png',
+  folded: 'ico-header-expand-fold@4x.png',
+  unfolded: 'ico-header-expand-more@4x.png',
 }
 
 const Title = styled(Container)`

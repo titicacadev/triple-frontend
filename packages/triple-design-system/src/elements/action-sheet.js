@@ -124,20 +124,13 @@ const ItemButton = styled.a`
 `
 
 const URL_BY_NAMES = {
-  save:
-    'https://assets.triple.guide/images/img-action-save@2x.png',
-  schedule:
-    'https://assets.triple.guide/images/img-action-schedule@2x.png',
-  share:
-    'https://assets.triple.guide/images/img-action-share@2x.png',
-  suggest:
-    'https://assets.triple.guide/images/img-action-suggest@2x.png',
-  review:
-    'https://assets.triple.guide/images/img-action-review@2x.png',
-  report:
-    'https://assets.triple.guide/images/img-action-report@2x.png',
-  delete:
-    'https://assets.triple.guide/images/img-action-delete@2x.png',
+  save: 'https://assets.triple.guide/images/img-action-save@4x.png',
+  schedule: 'https://assets.triple.guide/images/img-action-schedule@4x.png',
+  share: 'https://assets.triple.guide/images/img-action-share@4x.png',
+  suggest: 'https://assets.triple.guide/images/img-action-suggest@4x.png',
+  review: 'https://assets.triple.guide/images/img-action-review@4x.png',
+  report: 'https://assets.triple.guide/images/img-action-report@4x.png',
+  delete: 'https://assets.triple.guide/images/img-action-delete@4x.png',
 }
 
 const ItemIcon = styled.img`

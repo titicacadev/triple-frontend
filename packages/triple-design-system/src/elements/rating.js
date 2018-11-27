@@ -15,8 +15,7 @@ const MARGINS = {
 const IMAGE_PREFIXES = {
   tiny: 'https://assets.triple.guide/images/img-review-star',
   small: 'https://assets.triple.guide/images/img-review-star',
-  medium:
-    'https://assets.triple.guide/images/img-review-star-medium',
+  medium: 'https://assets.triple.guide/images/img-review-star-medium',
 }
 
 const RatingStar = styled.span`
@@ -33,7 +32,7 @@ const RatingStar = styled.span`
         ? 'full'
         : half
           ? 'half'
-          : 'empty'}@2x.png);
+          : 'empty'}@4x.png);
   `};
 `
 

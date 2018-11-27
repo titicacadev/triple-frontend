@@ -1,12 +1,11 @@
 import styled from 'styled-components'
 
 const URL_BY_NAMES = {
-  save: 'https://assets.triple.guide/images/ico-save@2x.png',
-  web: 'https://assets.triple.guide/images/ico-end-web@2x.png',
-  call: 'https://assets.triple.guide/images/ico-end-call@2x.png',
-  map: 'https://assets.triple.guide/images/ico-end-poi@2x.png',
-  arrowRight:
-    'https://assets.triple.guide/images/ico-arrow-right@2x.png',
+  save: 'https://assets.triple.guide/images/ico-save@4x.png',
+  web: 'https://assets.triple.guide/images/ico-end-web@4x.png',
+  call: 'https://assets.triple.guide/images/ico-end-call@4x.png',
+  map: 'https://assets.triple.guide/images/ico-end-poi@4x.png',
+  arrowRight: 'https://assets.triple.guide/images/ico-arrow@4x.png',
 }
 
 const SIZES = {
