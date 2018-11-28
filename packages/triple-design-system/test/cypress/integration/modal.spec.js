@@ -10,13 +10,24 @@ describe('Modal', () => {
       .as('overlay')
 
     cy.get('@overlay')
+      .find('div')
+      .first()
+      .as('box')
+
+    cy.get('@overlay')
       .find('a')
       .first()
       .as('button')
   })
 
-  it('should not close when overlay is clicked', () => {
-    cy.get('@overlay').click()
+  it('should close when overlay is clicked', () => {
+    cy.get('@overlay').click('top')
+
+    cy.get('.modal-container').should('be.empty')
+  })
+
+  it('should not close when box area is clicked', () => {
+    cy.get('@box').click()
 
     cy.get('.modal-container').should('not.be.empty')
   })

@@ -66,12 +66,16 @@ const Action = styled.a`
   color: ${({ color }) => ACTION_COLORS[color || 'gray']};
 `
 
-export default function Modal({ open, children }) {
+export default function Modal({ open, onClose, children }) {
   return open ? (
-    <Overlay>
-      <Box>{children}</Box>
+    <Overlay onClick={onClose}>
+      <Box onClick={silenceEvent}>{children}</Box>
     </Overlay>
   ) : null
+}
+
+function silenceEvent(e) {
+  return e.stopPropagation()
 }
 
 Modal.Actions = Actions

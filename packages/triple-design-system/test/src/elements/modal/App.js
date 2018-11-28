@@ -11,7 +11,10 @@ export default class App extends PureComponent {
   render() {
     return (
       <div className="modal-container">
-        <Modal open={this.state.open}>
+        <Modal
+          open={this.state.open}
+          onClose={() => this.setState({ open: false })}
+        >
           <Text
             center
             size="large"

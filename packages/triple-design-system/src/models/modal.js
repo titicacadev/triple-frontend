@@ -18,15 +18,20 @@ const MESSAGES_BY_TYPES = {
 }
 
 const ICONS = {
-  scrap:
-    'https://assets.triple.guide/images/img-heart@2x.png',
+  scrap: 'https://assets.triple.guide/images/img-heart@2x.png',
 }
 
-export function TransitionModal({ open, messageType, onCancel, onConfirm }) {
+export function TransitionModal({
+  open,
+  messageType,
+  onClose,
+  onCancel,
+  onConfirm,
+}) {
   const { title, description } = MESSAGES_BY_TYPES[messageType] || {}
 
   return title ? (
-    <Modal open={open}>
+    <Modal open={open} onClose={onClose}>
       <IconImage src={ICONS[messageType]} />
       <Text bold center size="big" color="gray">
         {title}
@@ -41,10 +46,22 @@ export function TransitionModal({ open, messageType, onCancel, onConfirm }) {
       </Text>
 
       <Modal.Actions>
-        <Modal.Action color="gray" onClick={onCancel}>
+        <Modal.Action
+          color="gray"
+          onClick={() => {
+            onCancel && onCancel()
+            onClose && onClose()
+          }}
+        >
           취소
         </Modal.Action>
-        <Modal.Action color="blue" onClick={onConfirm}>
+        <Modal.Action
+          color="blue"
+          onClick={() => {
+            onConfirm && onConfirm()
+            onClose && onClose()
+          }}
+        >
           트리플가기
         </Modal.Action>
       </Modal.Actions>
