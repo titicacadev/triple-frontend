@@ -18,7 +18,7 @@ const MESSAGES_BY_TYPES = {
 }
 
 const ICONS = {
-  scrap: 'https://assets.triple.guide/images/img-heart@2x.png',
+  scrap: 'https://assets.triple.guide/images/img-heart@4x.png',
 }
 
 export function TransitionModal({
