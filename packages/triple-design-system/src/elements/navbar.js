@@ -30,6 +30,7 @@ const TitleContainer = styled.div`
   white-space: nowrap;
   overflow-x: hidden;
   text-overflow: ellipsis;
+  bottom: 0px;
 `
 
 const ICON_URL_BY_NAMES = {
