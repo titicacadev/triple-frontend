@@ -8,7 +8,11 @@ import { H1 } from './text'
 import { SquareImage } from '../elements/content-elements'
 
 function insertCommas(price) {
-  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  if (price) {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  }
+
+  return ''
 }
 
 function Price({ children }) {
@@ -72,7 +76,7 @@ export class TnaProductsList extends PureComponent {
       state: { title, products, showMore },
     } = this
 
-    return (
+    return (products || []).length > 0 ? (
       <Container margin={margin}>
         <H1 margin={{ bottom: 20 }}>{title}</H1>
 
@@ -98,6 +102,6 @@ export class TnaProductsList extends PureComponent {
             )}
         </List>
       </Container>
-    )
+    ) : null
   }
 }
