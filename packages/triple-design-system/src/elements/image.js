@@ -113,7 +113,8 @@ const ImageFrameBase = styled.div`
 `
 
 const ImageFrameWithFixedDimensions = styled(ImageFrameBase)`
-  height: ${({ height }) => height};
+  height: ${({ height, size }) =>
+    (height && `${height}px`) || IMAGE_HEIGHT_OPTIONS[size]};
   width: ${({ width }) => (width && `${width}px`) || '100%'};
 `
 
@@ -167,37 +168,40 @@ function Image({
   onClick,
   floated,
   width,
+  height,
   margin,
 }) {
   if (circular) {
     return <RoundImage src={src} floated={floated} size={size} />
   }
 
-  const Frame = size
-    ? ({ children }) => (
-        <ImageFrameWithFixedDimensions
-          height={IMAGE_HEIGHT_OPTIONS[size]}
-          onClick={onClick}
-          floated={floated}
-          width={width}
-          margin={margin}
-          borderRadius={borderRadius}
-        >
-          {children}
-        </ImageFrameWithFixedDimensions>
-      )
-    : ({ children }) => (
-        <ImageFrameWithFixedRatio
-          frame={frame}
-          onClick={onClick}
-          floated={floated}
-          width={width}
-          margin={margin}
-          borderRadius={borderRadius}
-        >
-          {children}
-        </ImageFrameWithFixedRatio>
-      )
+  const Frame =
+    size || height
+      ? ({ children }) => (
+          <ImageFrameWithFixedDimensions
+            size={size}
+            onClick={onClick}
+            floated={floated}
+            width={width}
+            height={height}
+            margin={margin}
+            borderRadius={borderRadius}
+          >
+            {children}
+          </ImageFrameWithFixedDimensions>
+        )
+      : ({ children }) => (
+          <ImageFrameWithFixedRatio
+            frame={frame}
+            onClick={onClick}
+            floated={floated}
+            width={width}
+            margin={margin}
+            borderRadius={borderRadius}
+          >
+            {children}
+          </ImageFrameWithFixedRatio>
+        )
 
   return (
     <Frame>
