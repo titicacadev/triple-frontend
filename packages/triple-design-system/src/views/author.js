@@ -4,9 +4,9 @@ import Container from '../elements/container'
 import Text from '../elements/text'
 import Image from '../elements/image'
 
-export function Author({ name, bio, image }) {
+export function Author({ name, bio, image, onClick }) {
   return (
-    <Container centered textAlign="center">
+    <Container centered textAlign="center" onClick={onClick}>
       {image && <Image size="medium" circular src={image.sizes.large.url} />}
       <Text bold size="large" color="gray" margin={{ top: 15 }}>
         {name}
