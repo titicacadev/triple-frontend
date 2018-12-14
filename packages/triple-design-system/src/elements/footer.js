@@ -45,16 +45,16 @@ const Footer = () => (
       <br />
       경기도 성남시 분당구 판교역로 14번길 16, 3층
       <br />
-      호텔예약문의 02-2222-6625 ｜ 투어/티켓문의 1588-2539
+      호텔 예약 및 투어/티켓 문의 1588-2539
       <br />
       help@triple-corp.com
       <LinksContainer>
         <a href="/pages/tos.html" target="_blank">
-          이용약관
+          서비스 이용약관
         </a>
         {' | '}
         <a href="/pages/privacy-policy.html" target="_blank">
-          개인정보 처리 방침
+          개인정보 처리방침
         </a>
       </LinksContainer>
       (주)트리플은 통신판매중개자로서 통신판매의 당사자가 아니며
