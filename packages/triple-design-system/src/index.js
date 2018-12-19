@@ -1,4 +1,5 @@
 export * from './elements/content-elements'
+export * from './elements/hr'
 export { default as Text } from './elements/text'
 export { default as Tag } from './elements/tag'
 export { default as Image } from './elements/image'

@@ -2,15 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 
 import {
-  HR1,
-  HR2,
-  HR3,
   ImageCarousel,
   ImageCarouselElementContainer,
   ImageCaption,
   SimpleLink,
   RegionElement,
 } from '../elements/content-elements'
+import { HR1, HR2, HR3, HR4, HR5, HR6 } from '../elements/hr'
 import Segment from '../elements/segment'
 import Button from '../elements/button'
 import Text from '../elements/text'
@@ -68,6 +66,9 @@ const ELEMENTS = {
   hr1: HR1,
   hr2: HR2,
   hr3: HR3,
+  hr4: HR4,
+  hr5: HR5,
+  hr6: HR6,
   pois: Pois,
   links: Links,
   embedded: Embedded,

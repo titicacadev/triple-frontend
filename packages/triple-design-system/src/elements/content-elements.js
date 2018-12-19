@@ -38,54 +38,6 @@ export const ImageCaption = styled.div`
   color: rgba(58, 58, 58, 0.7);
 `
 
-export const HR1 = styled.div`
-  margin: 50px 30px;
-  height: 1px;
-  background-color: #efefef;
-
-  ${({ compact }) =>
-    compact &&
-    css`
-      margin: 0;
-    `};
-
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
-    `};
-`
-
-export const HR2 = styled.div`
-  margin: 50px 0;
-  height: 10px;
-  background-color: #efefef;
-
-  ${({ compact }) =>
-    compact &&
-    css`
-      margin: 0;
-    `};
-
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
-    `};
-`
-
-export const HR3 = styled.div`
-  margin: 0;
-  height: ${({ height }) => height || 10}px;
-  background-color: transparent;
-`
-
 const ListLabel = styled.div`
   float: left;
   margin-left: 10px;
