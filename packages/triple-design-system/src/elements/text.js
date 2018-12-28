@@ -110,6 +110,22 @@ const TextBase = styled.div`
       text-overflow: ellipsis;
       overflow: hidden;
     `};
+
+  ${({ strikethrough }) =>
+    strikethrough &&
+    css`
+      position: relative;
+      &:after {
+        position: absolute;
+        left: 0;
+        top: 45%;
+        height: 1px;
+        background: ${({ color = 'gray', alpha }) => rgba({ color, alpha })};
+        content: '';
+        width: 100%;
+        display: block;
+      }
+    `};
 `
 
 function Text({ children, ...props }) {

@@ -12,6 +12,8 @@ const SIZES = {
   tiny: '16px',
   small: '18px',
   medium: '20px',
+  large: '22px',
+  big: '24px',
 }
 
 const Icon = styled.div`

@@ -20,7 +20,8 @@ const IMAGE_PREFIXES = {
 
 const RatingStar = styled.span`
   display: inline-block;
-  vertical-align: text-bottom;
+  vertical-align: ${({ verticalAlign }) =>
+    verticalAlign ? verticalAlign : 'text-bottom'};
 
   ${({ size = 'small', full, half }) => css`
     width: ${SIZES[size]};
@@ -36,7 +37,7 @@ const RatingStar = styled.span`
   `};
 `
 
-export default function Rating({ size, score = 0 }) {
+export default function Rating({ size, score = 0, verticalAlign }) {
   const full = Math.floor(score)
   const half = Math.floor((score - full) * 2)
   const empty = 5 - full - half
@@ -44,13 +45,27 @@ export default function Rating({ size, score = 0 }) {
   return (
     <>
       {[...Array(full)].map((_, i) => (
-        <RatingStar key={`full-${i}`} size={size} full />
+        <RatingStar
+          key={`full-${i}`}
+          size={size}
+          verticalAlign={verticalAlign}
+          full
+        />
       ))}
       {[...Array(half)].map((_, i) => (
-        <RatingStar key={`half-${i}`} size={size} half />
+        <RatingStar
+          key={`half-${i}`}
+          size={size}
+          verticalAlign={verticalAlign}
+          half
+        />
       ))}
       {[...Array(empty)].map((_, i) => (
-        <RatingStar key={`empty-${i}`} size={size} />
+        <RatingStar
+          key={`empty-${i}`}
+          size={size}
+          verticalAlign={verticalAlign}
+        />
       ))}
     </>
   )

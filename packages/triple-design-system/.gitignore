@@ -75,3 +75,6 @@ typings/
 # Project-specific
 lib
 .DS_Store
+
+# Ide config file 
+.vscode
