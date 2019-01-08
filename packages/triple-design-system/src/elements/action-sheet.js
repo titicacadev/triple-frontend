@@ -135,7 +135,7 @@ const URL_BY_NAMES = {
 
 const ItemIcon = styled.img`
   float: left;
-  margin-top: 11px;
+  margin-top: 12px;
   width: 30px;
   height: 30px;
   margin-right: 9px;
