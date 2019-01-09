@@ -1,7 +1,7 @@
 import React, { Children } from 'react'
 import styled, { css } from 'styled-components'
 import Icon from './icon'
-import { HR1, HR3 } from './content-elements'
+import { HR1, HR3 } from './hr'
 
 const ListBase = styled.ul`
   margin: 0;
