@@ -50,8 +50,8 @@ const CallToAction = styled.a`
   line-height: 13px;
   font-size: 11px;
   font-weight: bold;
-  color: #3a3a3a;
-  background-color: #efefef;
+  color: #ffffff;
+  background-color: #0bd0af;
   font-family: sans-serif;
   text-decoration: none;
 `
