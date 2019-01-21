@@ -37,8 +37,8 @@ const TestingButton1 = styled.Button`
   width: calc(50% - 5px);
   margin-right: 10px;
   border-radius: 5px;
-  background-color: rgb(54, 143, 255);
-  color: white;
+  background-color: white;
+  color: black;
 `
 const TestingButton2 = styled.Button`
   padding-top: 14px;
