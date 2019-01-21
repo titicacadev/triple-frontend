@@ -163,7 +163,6 @@ function LocationSegment({ address, phone, url }) {
       <Button.Group horizontalGap={10} margin={{ top: 15 }}>
         <Button
           basic
-          light
           size="smallBold"
           padding={{ top: 14, bottom: 14 }}
           textColor="#3a3a3a"
@@ -172,7 +171,6 @@ function LocationSegment({ address, phone, url }) {
         </Button>
         <Button
           basic
-          light
           size="smallBold"
           padding={{ top: 14, bottom: 14 }}
           bgColor="blue"
