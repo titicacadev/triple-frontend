@@ -94,7 +94,9 @@ const IconButton = styled(ButtonBase)`
 
 const BASIC_PADDINGS = {
   tiny: { top: 7, bottom: 7, left: 12, right: 12 },
+  tinyBold: { top: 14, bottom: 14, left: 15, right: 15 },
   small: { top: 7, bottom: 7, left: 15, right: 15 },
+  smallBold: { top: 14, bottom: 14, left: 15, right: 15 },
 }
 
 const BasicButton = styled(ButtonBase)`
@@ -103,13 +105,16 @@ const BasicButton = styled(ButtonBase)`
   border-radius: 4px;
 
   background-color: transparent;
-  border-color: ${({ color = 'gray', alpha = 0.2 }) =>
+  border-color: ${({ color = color || 'gray', alpha = 0.2 }) =>
     `rgba(${BUTTON_COLORS[color]}, ${alpha})`};
 
-  ${({ size = 'small' }) => {
+  ${({ size, bgColor, textColor }) => {
     const padding = BASIC_PADDINGS[size]
+    const BASIC_BACKGROUND = { white: '#ffffff', blue: '#368fff' }
 
     return css`
+      color: ${textColor};
+      background-color: ${BASIC_BACKGROUND[bgColor]};
       padding-top: ${padding.top || 0}px;
       padding-bottom: ${padding.bottom || 0}px;
       padding-left: ${padding.left || 0}px;
@@ -152,7 +157,16 @@ const RoundButton = styled(ButtonBase)`
 class Button extends PureComponent {
   render() {
     const {
-      props: { basic, icon, size, textColor, textAlpha, children, ...props },
+      props: {
+        basic,
+        icon,
+        size,
+        textColor,
+        textAlpha,
+        children,
+        bgColor,
+        ...props
+      },
     } = this
 
     if (basic) {
@@ -160,8 +174,9 @@ class Button extends PureComponent {
         <BasicButton
           bold
           size={size || 'small'}
-          textColor={textColor || 'gray'}
+          textColor={textColor || 'black'}
           textAlpha={textAlpha}
+          bgColor={bgColor || 'white'}
           {...props}
         >
           {children}

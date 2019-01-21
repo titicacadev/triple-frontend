@@ -28,26 +28,6 @@ import humps from 'humps'
 import moment from 'moment-timezone'
 import _ from 'lodash'
 
-import styled, { css } from 'styled-components'
-
-//임의로 추가한 스타일
-const TestingButton1 = styled.Button`
-  padding-top: 14px;
-  padding-bottom: 14px;
-  width: calc(50% - 5px);
-  margin-right: 10px;
-  border-radius: 5px;
-  background-color: white;
-  color: black;
-`
-const TestingButton2 = styled.Button`
-  padding-top: 14px;
-  padding-bottom: 14px;
-  width: calc(50% - 5px);
-  border-radius: 5px;
-  background-color: rgb(54, 143, 255);
-  color: white;
-`
 const DAY_OF_WEEK_NAMES = {
   1: '월',
   2: '화',
@@ -181,8 +161,19 @@ function LocationSegment({ address, phone, url }) {
         </List>
       </Segment>
       <Button.Group horizontalGap={10} margin={{ top: 15 }}>
-        <TestingButton1>현지에서 길묻기</TestingButton1>
-        <TestingButton2>길찾기</TestingButton2>
+        <Button basic size="smallBold" padding={{ top: 14, bottom: 14 }}>
+          현지에서 길묻기
+        </Button>
+        <Button
+          basic
+          size="smallBold"
+          padding={{ top: 14, bottom: 14 }}
+          bgColor="blue"
+          color="blue"
+          textColor="white"
+        >
+          길찾기
+        </Button>
       </Button.Group>
     </div>
   )
