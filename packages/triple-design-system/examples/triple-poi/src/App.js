@@ -28,6 +28,26 @@ import humps from 'humps'
 import moment from 'moment-timezone'
 import _ from 'lodash'
 
+import styled, { css } from 'styled-components'
+
+//임의로 추가한 스타일
+const TestingButton1 = styled.Button`
+  padding-top: 14px;
+  padding-bottom: 14px;
+  width: calc(50% - 5px);
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color: rgb(54, 143, 255);
+  color: white;
+`
+const TestingButton2 = styled.Button`
+  padding-top: 14px;
+  padding-bottom: 14px;
+  width: calc(50% - 5px);
+  border-radius: 5px;
+  background-color: rgb(54, 143, 255);
+  color: white;
+`
 const DAY_OF_WEEK_NAMES = {
   1: '월',
   2: '화',
@@ -125,32 +145,46 @@ class BusinessHours extends PureComponent {
 
 function LocationSegment({ address, phone, url }) {
   return (
-    <Segment margin={{ top: 10 }}>
-      <List verticalGap={10}>
-        <List.Item>
-          <List.Icon name="map" size="small" />
-          <List.Content>
-            <Text size="small">{address}</Text>
-          </List.Content>
-        </List.Item>
-        <List.Item>
-          <List.Icon name="call" size="small" />
-          <List.Content>
-            <Text size="small">{phone}</Text>
-          </List.Content>
-        </List.Item>
-        <List.Item>
-          <List.Icon name="web" size="small" />
-          <List.Content>
-            <Text size="small">{url}</Text>
-          </List.Content>
-        </List.Item>
-      </List>
-      <Button.Container floated="right" margin={{ top: 15 }}>
-        <Button compact>현지에서 길묻기</Button>
-        <Button compact>길찾기</Button>
-      </Button.Container>
-    </Segment>
+    <div>
+      <Segment margin={{ top: 10 }}>
+        <List verticalGap={10}>
+          <List.Item>
+            <List.Content>
+              <Text bold size="midium" margin={{ right: 10 }}>
+                지도
+              </Text>
+            </List.Content>
+            <List.Content>
+              <Text size="small">{address}</Text>
+            </List.Content>
+          </List.Item>
+          <List.Item>
+            <List.Content>
+              <Text bold size="midium" margin={{ right: 10 }}>
+                전화
+              </Text>
+            </List.Content>
+            <List.Content>
+              <Text size="small">{phone}</Text>
+            </List.Content>
+          </List.Item>
+          <List.Item>
+            <List.Content>
+              <Text bold size="midium" margin={{ right: 10 }}>
+                홈페이지
+              </Text>
+            </List.Content>
+            <List.Content>
+              <Text size="small">{url}</Text>
+            </List.Content>
+          </List.Item>
+        </List>
+      </Segment>
+      <Button.Group horizontalGap={10} margin={{ top: 15 }}>
+        <TestingButton1>현지에서 길묻기</TestingButton1>
+        <TestingButton2>길찾기</TestingButton2>
+      </Button.Group>
+    </div>
   )
 }
 
@@ -240,7 +274,7 @@ export default class App extends PureComponent {
     const timeZone = 'Asia/Tokyo'
 
     return (
-      <div>
+      <>
         <Fragment>
           <Responsive inline maxWidth={599}>
             <AppBanner
@@ -353,7 +387,7 @@ export default class App extends PureComponent {
         </Container>
 
         <Footer />
-      </div>
+      </>
     )
   }
 }
