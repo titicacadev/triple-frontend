@@ -16,7 +16,7 @@ const ButtonBase = styled.a`
   display: inline-block;
   font-family: sans-serif;
   font-size: ${({ size }) => SIZES[size]};
-  font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
+  font-weight: ${({ light, bold }) => (light ? 500 : bold ? 'bold' : 500)};
   text-align: center;
   text-decoration: none;
   box-sizing: border-box;
@@ -103,9 +103,8 @@ const BasicButton = styled(ButtonBase)`
   border-style: solid;
   border-width: 1px;
   border-radius: 4px;
-
   background-color: transparent;
-  border-color: ${({ color = color || 'gray', alpha = 0.2 }) =>
+  border-color: ${({ color = 'gray', alpha = 0.2 }) =>
     `rgba(${BUTTON_COLORS[color]}, ${alpha})`};
 
   ${({ size, bgColor, textColor }) => {
@@ -174,7 +173,7 @@ class Button extends PureComponent {
         <BasicButton
           bold
           size={size || 'small'}
-          textColor={textColor || 'black'}
+          textColor={textColor || 'gray'}
           textAlpha={textAlpha}
           bgColor={bgColor || 'white'}
           {...props}
