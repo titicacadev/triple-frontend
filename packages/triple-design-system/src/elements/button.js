@@ -102,17 +102,14 @@ const BasicButton = styled(ButtonBase)`
   border-style: solid;
   border-width: 1px;
   border-radius: 4px;
-  background-color: transparent;
   border-color: ${({ color = 'gray', alpha = 0.2 }) =>
     `rgba(${BUTTON_COLORS[color]}, ${alpha})`};
+  background-color: transparent;
 
-  ${({ size, bgColor, textColor }) => {
+  ${({ size }) => {
     const padding = BASIC_PADDINGS[size]
-    const BASIC_BACKGROUND = { white: '#ffffff', blue: '#368fff' }
 
     return css`
-      color: ${textColor};
-      background-color: ${BASIC_BACKGROUND[bgColor]};
       padding-top: ${padding.top || 0}px;
       padding-bottom: ${padding.bottom || 0}px;
       padding-left: ${padding.left || 0}px;
@@ -152,17 +149,51 @@ const RoundButton = styled(ButtonBase)`
   }};
 `
 
+const COLORFUL_BACKGROUND = { white: '#ffffff', blue: '#368fff' }
+
+const COLORFUL_PADDINGS = {
+  tiny: { top: 7, bottom: 7, left: 12, right: 12 },
+  small: { top: 7, bottom: 7, left: 15, right: 15 },
+  large: { top: 14, bottom: 14, left: 15, right: 15 },
+}
+
+const Colorful_Button = styled(ButtonBase)`
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  border-color: ${({ color = 'gray', alpha = 0.2 }) =>
+    `rgba(${BUTTON_COLORS[color]}, ${alpha})`};
+
+  ${({ size }) => {
+    const padding = COLORFUL_PADDINGS[size]
+
+    return css`
+      padding-top: ${padding.top || 0}px;
+      padding-bottom: ${padding.bottom || 0}px;
+      padding-left: ${padding.left || 0}px;
+      padding-right: ${padding.right || 0}px;
+    `
+  }};
+
+  ${({ bgColor }) =>
+    bgColor &&
+    css`
+      background-color: ${COLORFUL_BACKGROUND[bgColor]};
+    `};
+`
+
 class Button extends PureComponent {
   render() {
     const {
       props: {
         basic,
         icon,
+        colorful,
+        bgColor,
         size,
         textColor,
         textAlpha,
         children,
-        bgColor,
         ...props
       },
     } = this
@@ -174,7 +205,6 @@ class Button extends PureComponent {
           size={size || 'small'}
           textColor={textColor || 'gray'}
           textAlpha={textAlpha}
-          bgColor={bgColor || 'white'}
           {...props}
         >
           {children}
@@ -193,6 +223,20 @@ class Button extends PureComponent {
         >
           {children}
         </IconButton>
+      )
+    }
+
+    if (colorful) {
+      return (
+        <Colorful_Button
+          size={size || 'small'}
+          textColor={textColor || 'gray'}
+          textAlpha={textAlpha}
+          bgColor={bgColor}
+          {...props}
+        >
+          {children}
+        </Colorful_Button>
       )
     }
 

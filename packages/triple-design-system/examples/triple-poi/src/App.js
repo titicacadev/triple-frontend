@@ -125,62 +125,64 @@ class BusinessHours extends PureComponent {
 
 function LocationSegment({ address, phone, url }) {
   return (
-    <div>
-      <Segment margin={{ top: 10 }}>
-        <List verticalGap={10}>
-          <List.Item>
-            <List.Content>
-              <Text bold size="midium" margin={{ right: 10 }}>
-                지도
-              </Text>
-            </List.Content>
-            <List.Content maxWidth="240">
-              <Text size="small">{address}</Text>
-            </List.Content>
-          </List.Item>
-          <List.Item>
-            <List.Content>
-              <Text bold size="midium" margin={{ right: 10 }}>
-                전화
-              </Text>
-            </List.Content>
-            <List.Content>
-              <Text size="small">{phone}</Text>
-            </List.Content>
-          </List.Item>
-          <List.Item>
-            <List.Content>
-              <Text bold size="midium" margin={{ right: 10 }}>
-                홈페이지
-              </Text>
-            </List.Content>
-            <List.Content>
-              <Text size="small">{url}</Text>
-            </List.Content>
-          </List.Item>
-        </List>
-      </Segment>
-      <Button.Group horizontalGap={10} margin={{ top: 15 }}>
-        <Button
-          basic
-          size="large"
-          padding={{ top: 14, bottom: 14 }}
-          textColor="#3a3a3a"
-        >
-          현지에서 길묻기
-        </Button>
-        <Button
-          basic
-          size="large"
-          padding={{ top: 14, bottom: 14 }}
-          bgColor="blue"
-          color="blue"
-          textColor="white"
-        >
-          길찾기
-        </Button>
-      </Button.Group>
-    </div>
+    <Segment margin={{ top: 10 }}>
+      <List verticalGap={10}>
+        <List.Item>
+          <List.Content>
+            <Text bold size="midium" margin={{ right: 10 }}>
+              지도
+            </Text>
+          </List.Content>
+          <List.Content maxWidth="240">
+            <Text size="small">{address}</Text>
+          </List.Content>
+        </List.Item>
+        <List.Item>
+          <List.Content>
+            <Text bold size="midium" margin={{ right: 10 }}>
+              전화
+            </Text>
+          </List.Content>
+          <List.Content>
+            <Text size="small">{phone}</Text>
+          </List.Content>
+        </List.Item>
+        <List.Item>
+          <List.Content>
+            <Text bold size="midium" margin={{ right: 10 }}>
+              홈페이지
+            </Text>
+          </List.Content>
+          <List.Content>
+            <Text size="small">{url}</Text>
+          </List.Content>
+        </List.Item>
+      </List>
+    </Segment>
+  )
+}
+
+function LocationButtonGroup() {
+  return (
+    <Button.Group horizontalGap={10} margin={{ top: 15 }}>
+      <Button
+        basic
+        size="large"
+        padding={{ top: 14, bottom: 14 }}
+        textColor="gray"
+      >
+        현지에서 길묻기
+      </Button>
+      <Button
+        colorful
+        size="large"
+        padding={{ top: 14, bottom: 14 }}
+        bgColor="blue"
+        textColor="white"
+      >
+        길찾기
+      </Button>
+    </Button.Group>
   )
 }
 
@@ -353,6 +355,7 @@ export default class App extends PureComponent {
             phone={phoneNumber}
             url={officialSiteUrl}
           />
+          <LocationButtonGroup />
           <OptionalBasicInfoSection poi={poi} timeZone={timeZone} />
         </Container>
 
