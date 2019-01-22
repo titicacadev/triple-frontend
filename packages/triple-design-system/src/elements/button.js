@@ -16,7 +16,7 @@ const ButtonBase = styled.a`
   display: inline-block;
   font-family: sans-serif;
   font-size: ${({ size }) => SIZES[size]};
-  font-weight: ${({ light, bold }) => (light ? 500 : bold ? 'bold' : 500)};
+  font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
   text-align: center;
   text-decoration: none;
   box-sizing: border-box;
@@ -96,7 +96,6 @@ const BASIC_PADDINGS = {
   tiny: { top: 7, bottom: 7, left: 12, right: 12 },
   small: { top: 7, bottom: 7, left: 15, right: 15 },
   large: { top: 14, bottom: 14, left: 15, right: 15 },
-  big: { top: 14, bottom: 14, left: 15, right: 15 },
 }
 
 const BasicButton = styled(ButtonBase)`

@@ -134,7 +134,7 @@ function LocationSegment({ address, phone, url }) {
                 지도
               </Text>
             </List.Content>
-            <List.Content maxWidth="240px">
+            <List.Content maxWidth="240">
               <Text size="small">{address}</Text>
             </List.Content>
           </List.Item>
@@ -163,7 +163,7 @@ function LocationSegment({ address, phone, url }) {
       <Button.Group horizontalGap={10} margin={{ top: 15 }}>
         <Button
           basic
-          size="smallBold"
+          size="large"
           padding={{ top: 14, bottom: 14 }}
           textColor="#3a3a3a"
         >
@@ -171,7 +171,7 @@ function LocationSegment({ address, phone, url }) {
         </Button>
         <Button
           basic
-          size="smallBold"
+          size="large"
           padding={{ top: 14, bottom: 14 }}
           bgColor="blue"
           color="blue"
