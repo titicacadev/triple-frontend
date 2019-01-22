@@ -173,15 +173,7 @@ function LocationButtonGroup() {
       >
         현지에서 길묻기
       </Button>
-      <Button
-        colorful
-        size="large"
-        padding={{ top: 14, bottom: 14 }}
-        bgColor="blue"
-        textColor="white"
-      >
-        길찾기
-      </Button>
+      <Button size="small">길찾기</Button>
     </Button.Group>
   )
 }

@@ -15,7 +15,7 @@ const BUTTON_COLORS = {
 const ButtonBase = styled.a`
   display: inline-block;
   font-family: sans-serif;
-  font-size: ${({ size }) => SIZES[size]};
+  font-size: ${({ fontSize }) => SIZES[fontSize]};
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
   text-align: center;
   text-decoration: none;
@@ -124,13 +124,14 @@ const BORDER_RADIUSES = {
 
 const ROUND_PADDINGS = {
   tiny: { top: 13, bottom: 13, left: 25, right: 25 },
+  small: { top: 14, bottom: 14, left: 25, right: 25 },
 }
 
 const COMPACT_ROUND_PADDINGS = {
   tiny: { top: 9, bottom: 9, left: 15, right: 15 },
 }
 
-const RoundButton = styled(ButtonBase)`
+const RegularButton = styled(ButtonBase)`
   border-radius: ${({ size = 'tiny' }) => BORDER_RADIUSES[size]};
   color: #ffffff;
 
@@ -149,51 +150,17 @@ const RoundButton = styled(ButtonBase)`
   }};
 `
 
-const COLORFUL_BACKGROUND = { white: '#ffffff', blue: '#368fff' }
-
-const COLORFUL_PADDINGS = {
-  tiny: { top: 7, bottom: 7, left: 12, right: 12 },
-  small: { top: 7, bottom: 7, left: 15, right: 15 },
-  large: { top: 14, bottom: 14, left: 15, right: 15 },
-}
-
-const Colorful_Button = styled(ButtonBase)`
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 4px;
-  border-color: ${({ color = 'gray', alpha = 0.2 }) =>
-    `rgba(${BUTTON_COLORS[color]}, ${alpha})`};
-
-  ${({ size }) => {
-    const padding = COLORFUL_PADDINGS[size]
-
-    return css`
-      padding-top: ${padding.top || 0}px;
-      padding-bottom: ${padding.bottom || 0}px;
-      padding-left: ${padding.left || 0}px;
-      padding-right: ${padding.right || 0}px;
-    `
-  }};
-
-  ${({ bgColor }) =>
-    bgColor &&
-    css`
-      background-color: ${COLORFUL_BACKGROUND[bgColor]};
-    `};
-`
-
 class Button extends PureComponent {
   render() {
     const {
       props: {
         basic,
         icon,
-        colorful,
-        bgColor,
         size,
         textColor,
         textAlpha,
         children,
+        fontSize,
         ...props
       },
     } = this
@@ -203,6 +170,7 @@ class Button extends PureComponent {
         <BasicButton
           bold
           size={size || 'small'}
+          fontSize={fontSize || 'small'}
           textColor={textColor || 'gray'}
           textAlpha={textAlpha}
           {...props}
@@ -226,30 +194,17 @@ class Button extends PureComponent {
       )
     }
 
-    if (colorful) {
-      return (
-        <Colorful_Button
-          size={size || 'small'}
-          textColor={textColor || 'gray'}
-          textAlpha={textAlpha}
-          bgColor={bgColor}
-          {...props}
-        >
-          {children}
-        </Colorful_Button>
-      )
-    }
-
     return (
-      <RoundButton
+      <RegularButton
         bold
         size={size || 'tiny'}
+        fontSize={fontSize || 'small'}
         textColor={textColor || 'white'}
         textAlpha={textAlpha}
         {...props}
       >
         {children}
-      </RoundButton>
+      </RegularButton>
     )
   }
 }
