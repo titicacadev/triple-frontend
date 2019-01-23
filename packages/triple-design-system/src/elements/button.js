@@ -203,7 +203,7 @@ class Button extends PureComponent {
         fontSize={fontSize || size || 'small'}
         textColor={textColor || 'white'}
         textAlpha={textAlpha}
-        borderRadius={borderRadius || '21'}
+        borderRadius={borderRadius || 21}
         {...props}
       >
         {children}

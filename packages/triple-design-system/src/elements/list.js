@@ -93,11 +93,6 @@ const ListItem = styled.li`
 
 const ListContent = styled.div`
   display: table-cell;
-  ${({ maxWidth }) =>
-    maxWidth &&
-    css`
-      max-width: ${maxWidth}px;
-    `};
 `
 
 const ListActions = styled.div`

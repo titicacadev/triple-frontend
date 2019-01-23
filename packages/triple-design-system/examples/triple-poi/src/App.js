@@ -133,7 +133,7 @@ function LocationSegment({ address, phone, url }) {
               지도
             </Text>
           </List.Content>
-          <List.Content maxWidth="240">
+          <List.Content>
             <Text size="small">{address}</Text>
           </List.Content>
         </List.Item>
@@ -168,7 +168,7 @@ function LocationButtonGroup() {
       <Button basic size="large" fontSize="small" textColor="gray">
         현지에서 길묻기
       </Button>
-      <Button size="small" borderRadius="4">
+      <Button size="small" borderRadius={4}>
         길찾기
       </Button>
     </Button.Group>
