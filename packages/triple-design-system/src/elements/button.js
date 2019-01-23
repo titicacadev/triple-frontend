@@ -120,12 +120,12 @@ const BasicButton = styled(ButtonBase)`
   }};
 `
 
-const ROUND_PADDINGS = {
+const NORMAL_PADDINGS = {
   tiny: { top: 13, bottom: 13, left: 25, right: 25 },
   small: { top: 14, bottom: 14, left: 25, right: 25 },
 }
 
-const COMPACT_ROUND_PADDINGS = {
+const COMPACT_NORMAL_PADDINGS = {
   tiny: { top: 9, bottom: 9, left: 15, right: 15 },
 }
 
@@ -140,7 +140,7 @@ const NormalButton = styled(ButtonBase)`
     `rgba(${BUTTON_COLORS[color]}, ${alpha})`};
 
   ${({ compact, size = 'tiny' }) => {
-    const padding = (compact ? COMPACT_ROUND_PADDINGS : ROUND_PADDINGS)[size]
+    const padding = (compact ? COMPACT_NORMAL_PADDINGS : NORMAL_PADDINGS)[size]
 
     return css`
       padding-top: ${padding.top || 0}px;
