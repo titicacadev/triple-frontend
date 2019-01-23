@@ -5,7 +5,6 @@ import Container from './container'
 const SIZES = {
   tiny: '13px',
   small: '14px',
-  medium: '15px',
   large: '16px',
 }
 
