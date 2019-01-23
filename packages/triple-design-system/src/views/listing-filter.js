@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const FilterEntryBase = styled.div`
   display: inline-block;
@@ -32,7 +32,13 @@ const ExpandingFilterEntry = styled(FilterEntryBase)`
 const RegularFilterEntry = styled(FilterEntryBase)`
   padding: 8px 9px 8px 34px;
   background-size: 24px 24px;
-  background-position: 5px 8px;
+  background-position: 7px 4px;
+  ${({ iconImage }) =>
+    iconImage
+      ? css`
+          background-image: url(${iconImage});
+        `
+      : ''};
 `
 
 export const ListingFilter = styled.div`
