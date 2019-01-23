@@ -31,7 +31,7 @@ export default class App extends PureComponent {
 
     return (
       <Container>
-        <Navbar title="도쿄 투어, 패스">
+        <Navbar title="도쿄 투어, 패스" borderless>
           <Navbar.Item floated="left" icon="back" />
           <Navbar.Item floated="right" icon="search" />
         </Navbar>
