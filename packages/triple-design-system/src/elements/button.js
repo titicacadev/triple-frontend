@@ -129,7 +129,7 @@ const COMPACT_ROUND_PADDINGS = {
   tiny: { top: 9, bottom: 9, left: 15, right: 15 },
 }
 
-const RegularButton = styled(ButtonBase)`
+const NormalButton = styled(ButtonBase)`
   border-radius: ${({ borderRadius }) =>
     css`
       ${borderRadius}px;
@@ -197,7 +197,7 @@ class Button extends PureComponent {
     }
 
     return (
-      <RegularButton
+      <NormalButton
         bold
         size={size || 'tiny'}
         fontSize={fontSize || size || 'small'}
@@ -207,7 +207,7 @@ class Button extends PureComponent {
         {...props}
       >
         {children}
-      </RegularButton>
+      </NormalButton>
     )
   }
 }
