@@ -31,46 +31,36 @@ export default class App extends PureComponent {
 
     return (
       <Container>
-        <Navbar height="100%">
-          <Container>
-            <Navbar.Item floated="left">
-              <Icon src="/images/btn-com-back@3x.png" size="big" />
-            </Navbar.Item>
-            <Navbar.Item floated="right">
-              <Icon src="/images/ico-search-place@3x.png" size="big" />
-            </Navbar.Item>
-            <Navbar.Item floated="right">
-              <Icon src="/images/btn-com-search@3x.png" size="big" />
-            </Navbar.Item>
-            <Text padding={{ top: 10, left: 30 }}> 도쿄 투어, 패스</Text>
-          </Container>
-          <ButtonScrollGroup padding={{ top: 14, bottom: 5, left: 7 }}>
-            <Button basic margin={{ right: 6 }}>
-              <Icon src="/images/ico-category-toursight@3x.png" />
-              <Text inline size="tiny">
-                어트랙션
-              </Text>
-            </Button>
-            <Button basic margin={{ right: 6 }}>
-              <Icon src="/images/ico-category-toursight@3x.png" />
-              <Text inline size="tiny">
-                어트랙션
-              </Text>
-            </Button>
-            <Button basic margin={{ right: 6 }}>
-              <Icon src="/images/ico-category-toursight@3x.png" />
-              <Text inline size="tiny">
-                어트랙션
-              </Text>
-            </Button>
-            <Button basic margin={{ right: 6 }}>
-              <Icon src="/images/ico-category-toursight@3x.png" />
-              <Text inline size="tiny">
-                어트랙션
-              </Text>
-            </Button>
-          </ButtonScrollGroup>
+        <Navbar title="도쿄 투어, 패스">
+          <Navbar.Item floated="left" icon="back" />
+          <Navbar.Item floated="right" icon="search" />
         </Navbar>
+        <ButtonScrollGroup padding={{ top: 14, bottom: 5, left: 7 }}>
+          <Button basic margin={{ right: 6 }}>
+            <Icon src="/images/ico-category-toursight@3x.png" />
+            <Text inline size="tiny">
+              어트랙션
+            </Text>
+          </Button>
+          <Button basic margin={{ right: 6 }}>
+            <Icon src="/images/ico-category-toursight@3x.png" />
+            <Text inline size="tiny">
+              어트랙션
+            </Text>
+          </Button>
+          <Button basic margin={{ right: 6 }}>
+            <Icon src="/images/ico-category-toursight@3x.png" />
+            <Text inline size="tiny">
+              어트랙션
+            </Text>
+          </Button>
+          <Button basic margin={{ right: 6 }}>
+            <Icon src="/images/ico-category-toursight@3x.png" />
+            <Text inline size="tiny">
+              어트랙션
+            </Text>
+          </Button>
+        </ButtonScrollGroup>
         <Container padding={{ top: 20, bottom: 25, left: 20, right: 20 }}>
           <Image
             src={image.sizes.small.url}
