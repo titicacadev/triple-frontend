@@ -102,9 +102,10 @@ const BASIC_PADDINGS = {
 const BasicButton = styled(ButtonBase)`
   border-style: solid;
   border-width: 1px;
-  border-radius: ${({ borderRadius }) =>
+  ${({ borderRadius }) =>
+    borderRadius &&
     css`
-      ${borderRadius}px;
+      border-radius: ${borderRadius}px;
     `};
   border-color: ${({ color = 'gray', alpha = 0.2 }) =>
     `rgba(${BUTTON_COLORS[color]}, ${alpha})`};
@@ -132,9 +133,10 @@ const COMPACT_NORMAL_PADDINGS = {
 }
 
 const NormalButton = styled(ButtonBase)`
-  border-radius: ${({ borderRadius }) =>
+  ${({ borderRadius }) =>
+    borderRadius &&
     css`
-      ${borderRadius}px;
+      border-radius: ${borderRadius}px;
     `};
   color: #ffffff;
 
