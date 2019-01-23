@@ -28,9 +28,24 @@ export default class App extends PureComponent {
             <ListingFilter.FilterEntry expanding active>
               전 지역
             </ListingFilter.FilterEntry>
-            <ListingFilter.FilterEntry>투어·관광</ListingFilter.FilterEntry>
-            <ListingFilter.FilterEntry>현지체험</ListingFilter.FilterEntry>
-            <ListingFilter.FilterEntry>액티비티</ListingFilter.FilterEntry>
+            <ListingFilter.FilterEntry
+              activeIconImage={'/images/ico-category-toursight@3x.png'}
+              inactiveIconImage={'/images/ico-category-toursight@3x.png'}
+            >
+              투어·관광
+            </ListingFilter.FilterEntry>
+            <ListingFilter.FilterEntry
+              activeIconImage={'/images/ico-category-toursight@3x.png'}
+              inactiveIconImage={'/images/ico-category-toursight@3x.png'}
+            >
+              현지체험
+            </ListingFilter.FilterEntry>
+            <ListingFilter.FilterEntry
+              activeIconImage={'/images/ico-category-toursight@3x.png'}
+              inactiveIconImage={'/images/ico-category-toursight@3x.png'}
+            >
+              액티비티
+            </ListingFilter.FilterEntry>
           </ListingFilter>
         </Navbar.Secondary>
 
