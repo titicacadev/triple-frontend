@@ -1,5 +1,5 @@
 import React, { Children } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const NavbarFrame = styled.div`
   background-color: #ffffff;
@@ -10,7 +10,12 @@ const NavbarFrame = styled.div`
   right: 0;
   height: 52px;
   z-index: 2;
-  box-shadow: 0 1px 0 0 #efefef;
+  ${({ borderless }) =>
+    borderless
+      ? ''
+      : css`
+          box-shadow: 0 1px 0 0 #efefef;
+        `};
   box-sizing: border-box;
   padding: 9px 12px;
 `
@@ -43,6 +48,8 @@ const ICON_URL_BY_NAMES = {
   unscraped: 'https://assets.triple.guide/images/btn-com-bookmark-off@4x.png',
   share: 'https://assets.triple.guide/images/btn-com-share@4x.png',
   route: 'https://assets.triple.guide/images/btn-com-route@4x.png',
+  search:
+    'https://assets.triple-dev.titicaca-corp.com/images/btn-com-search@2x.png',
 }
 
 const NavbarItem = styled.div`
@@ -55,11 +62,11 @@ const NavbarItem = styled.div`
   margin-right: ${({ floated }) => (floated === 'right' ? 0 : '6px')};
 `
 
-function Navbar({ title, children }) {
+function Navbar({ title, children, borderless }) {
   const childrenCount = Children.count(children)
 
   return (
-    <NavbarFrame>
+    <NavbarFrame borderless={borderless}>
       {title && (
         <TitleContainer childrenCount={childrenCount}>{title}</TitleContainer>
       )}
