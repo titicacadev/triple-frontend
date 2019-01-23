@@ -3,12 +3,19 @@ import styled, { css } from 'styled-components'
 
 const COLORS = {
   special: '#fd2e69',
+  pink: '#fff',
   default: 'rgba(58, 58, 58, 0.8)',
 }
 
 const BG_COLORS = {
   special: 'rgba(253, 46, 105, 0.1)',
+  pink: '#fd2e69',
   default: '#f5f5f5',
+}
+
+const PADDING_SIZE = {
+  tiny: { top: 4, right: 6, bottom: 4, left: 6 },
+  mini: { top: 4, right: 10, bottom: 4, left: 10 },
 }
 
 const TagBase = styled.div`
@@ -18,7 +25,6 @@ const TagBase = styled.div`
   font-weight: 500;
   color: ${({ type }) => COLORS[type || 'default']};
   background-color: ${({ type }) => BG_COLORS[type || 'default']};
-  padding: 4px 6px;
   border-radius: 4px;
 
   ${({ margin }) =>
@@ -29,6 +35,16 @@ const TagBase = styled.div`
       margin-left: ${margin.left || 0}px;
       margin-right: ${margin.right || 0}px;
     `};
+
+  ${({ size = 'tiny' }) => {
+    const padding = PADDING_SIZE[size]
+    return css`
+      padding-top: ${padding.top || 0}px;
+      padding-bottom: ${padding.bottom || 0}px;
+      padding-left: ${padding.left || 0}px;
+      padding-right: ${padding.right || 0}px;
+    `
+  }};
 
   ${({ style }) =>
     style &&
