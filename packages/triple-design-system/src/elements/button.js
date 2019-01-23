@@ -5,6 +5,8 @@ import Container from './container'
 const SIZES = {
   tiny: '13px',
   small: '14px',
+  medium: '15px',
+  large: '16px',
 }
 
 const BUTTON_COLORS = {
@@ -118,10 +120,6 @@ const BasicButton = styled(ButtonBase)`
   }};
 `
 
-const BORDER_RADIUSES = {
-  tiny: '21px',
-}
-
 const ROUND_PADDINGS = {
   tiny: { top: 13, bottom: 13, left: 25, right: 25 },
   small: { top: 14, bottom: 14, left: 25, right: 25 },
@@ -132,7 +130,10 @@ const COMPACT_ROUND_PADDINGS = {
 }
 
 const RegularButton = styled(ButtonBase)`
-  border-radius: ${({ size = 'tiny' }) => BORDER_RADIUSES[size]};
+  border-radius: ${({ borderRadius }) =>
+    css`
+      ${borderRadius}px;
+    `};
   color: #ffffff;
 
   background-color: ${({ color = 'blue', alpha = 1 }) =>
@@ -161,6 +162,7 @@ class Button extends PureComponent {
         textAlpha,
         children,
         fontSize,
+        borderRadius,
         ...props
       },
     } = this
@@ -170,7 +172,7 @@ class Button extends PureComponent {
         <BasicButton
           bold
           size={size || 'small'}
-          fontSize={fontSize || 'small'}
+          fontSize={fontSize || size || 'small'}
           textColor={textColor || 'gray'}
           textAlpha={textAlpha}
           {...props}
@@ -198,9 +200,10 @@ class Button extends PureComponent {
       <RegularButton
         bold
         size={size || 'tiny'}
-        fontSize={fontSize || 'small'}
+        fontSize={fontSize || size || 'small'}
         textColor={textColor || 'white'}
         textAlpha={textAlpha}
+        borderRadius={borderRadius || '21'}
         {...props}
       >
         {children}
