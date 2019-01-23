@@ -5,22 +5,9 @@ import {
   Container,
   Text,
   Navbar,
-  Icon,
-  Button,
+  ListingFilter,
 } from '@titicaca/triple-design-system/src'
 import sample from './sample.json'
-import styled from 'styled-components'
-
-/* 가로스크롤을 만들 Container 가 필요 */
-const ButtonScrollGroup = styled(Container)`
-  overflow-x: scroll;
-  white-space: nowrap;
-`
-/* TODO */
-/* Nav 필터부분 overflow hidden 이 필요 */
-/* 가로스크롤을 만들수 있는 Container 가 필요 */
-/* Text vertical 조절 */
-/* Navi 영역 icon -> navi item 으로 변경  */
 
 export default class App extends PureComponent {
   render() {
@@ -35,32 +22,18 @@ export default class App extends PureComponent {
           <Navbar.Item floated="left" icon="back" />
           <Navbar.Item floated="right" icon="search" />
         </Navbar>
-        <ButtonScrollGroup padding={{ top: 14, bottom: 5, left: 7 }}>
-          <Button basic margin={{ right: 6 }}>
-            <Icon src="/images/ico-category-toursight@3x.png" />
-            <Text inline size="tiny">
-              어트랙션
-            </Text>
-          </Button>
-          <Button basic margin={{ right: 6 }}>
-            <Icon src="/images/ico-category-toursight@3x.png" />
-            <Text inline size="tiny">
-              어트랙션
-            </Text>
-          </Button>
-          <Button basic margin={{ right: 6 }}>
-            <Icon src="/images/ico-category-toursight@3x.png" />
-            <Text inline size="tiny">
-              어트랙션
-            </Text>
-          </Button>
-          <Button basic margin={{ right: 6 }}>
-            <Icon src="/images/ico-category-toursight@3x.png" />
-            <Text inline size="tiny">
-              어트랙션
-            </Text>
-          </Button>
-        </ButtonScrollGroup>
+
+        <Navbar.Secondary>
+          <ListingFilter>
+            <ListingFilter.FilterEntry expanding active>
+              전 지역
+            </ListingFilter.FilterEntry>
+            <ListingFilter.FilterEntry>투어·관광</ListingFilter.FilterEntry>
+            <ListingFilter.FilterEntry>현지체험</ListingFilter.FilterEntry>
+            <ListingFilter.FilterEntry>액티비티</ListingFilter.FilterEntry>
+          </ListingFilter>
+        </Navbar.Secondary>
+
         <Container padding={{ top: 20, bottom: 25, left: 20, right: 20 }}>
           <Image
             src={image.sizes.small.url}
