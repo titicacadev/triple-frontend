@@ -93,6 +93,11 @@ const ListItem = styled.li`
 
 const ListContent = styled.div`
   display: table-cell;
+  ${({ minWidth }) =>
+    minWidth &&
+    css`
+      min-width: ${minWidth}px;
+    `};
 `
 
 const ListActions = styled.div`
