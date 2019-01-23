@@ -102,7 +102,10 @@ const BASIC_PADDINGS = {
 const BasicButton = styled(ButtonBase)`
   border-style: solid;
   border-width: 1px;
-  border-radius: 4px;
+  border-radius: ${({ borderRadius }) =>
+    css`
+      ${borderRadius}px;
+    `};
   border-color: ${({ color = 'gray', alpha = 0.2 }) =>
     `rgba(${BUTTON_COLORS[color]}, ${alpha})`};
   background-color: transparent;
@@ -174,6 +177,7 @@ class Button extends PureComponent {
           fontSize={fontSize || size || 'small'}
           textColor={textColor || 'gray'}
           textAlpha={textAlpha}
+          borderRadius={borderRadius || 4}
           {...props}
         >
           {children}
