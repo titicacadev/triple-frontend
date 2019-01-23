@@ -62,6 +62,19 @@ const NavbarItem = styled.div`
   margin-right: ${({ floated }) => (floated === 'right' ? 0 : '6px')};
 `
 
+const SecondaryNavbar = styled.div`
+  background-color: #ffffff;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 53px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  box-sizing: border-box;
+  padding: 0 0 16px 0;
+  overflow: hidden;
+`
+
 function Navbar({ title, children, borderless }) {
   const childrenCount = Children.count(children)
 
@@ -76,5 +89,6 @@ function Navbar({ title, children, borderless }) {
 }
 
 Navbar.Item = NavbarItem
+Navbar.Secondary = SecondaryNavbar
 
 export default Navbar
