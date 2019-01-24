@@ -97,7 +97,6 @@ const ImageFrameBase = styled.div`
   position: relative;
   overflow: hidden;
   float: ${({ floated }) => floated || 'none'};
-  background-color: #f5f5f5;
 
   ${({ margin }) =>
     margin &&
@@ -110,6 +109,19 @@ const ImageFrameBase = styled.div`
 
   border-radius: ${({ borderRadius }) =>
     borderRadius === 0 ? 0 : borderRadius || 6}px;
+
+  ${({ placeholder }) =>
+    placeholder
+      ? css`
+          background-color: #efefef;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 40px 40px;
+          background-image: url(${({ src }) => src});
+        `
+      : css`
+          background-color: #f5f5f5;
+        `};
 `
 
 const ImageFrameWithFixedDimensions = styled(ImageFrameBase)`
@@ -170,6 +182,7 @@ function Image({
   width,
   height,
   margin,
+  placeholder,
 }) {
   if (circular) {
     return <RoundImage src={src} floated={floated} size={size} />
@@ -186,6 +199,7 @@ function Image({
             height={height}
             margin={margin}
             borderRadius={borderRadius}
+            placeholder={placeholder}
           >
             {children}
           </ImageFrameWithFixedDimensions>
@@ -198,6 +212,7 @@ function Image({
             width={width}
             margin={margin}
             borderRadius={borderRadius}
+            placeholder={placeholder}
           >
             {children}
           </ImageFrameWithFixedRatio>

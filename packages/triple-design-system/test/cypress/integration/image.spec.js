@@ -8,6 +8,11 @@ describe('Image', () => {
       .find('div')
       .first()
       .as('image')
+
+    cy.get('.placeholder')
+      .find('div')
+      .first()
+      .as('placeholderImage')
   })
 
   it('should have fixed dimension with specified width and height', () => {
@@ -18,5 +23,19 @@ describe('Image', () => {
     cy.get('@image')
       .should('have.css', 'height')
       .and('eq', '100px')
+
+    cy.get('@image')
+      .should('have.css', 'background-color')
+      .and('eq', 'rgb(245, 245, 245)')
+  })
+
+  it('should render a placeholder image', () => {
+    cy.get('@placeholderImage')
+      .should('have.css', 'background-color')
+      .and('eq', 'rgb(239, 239, 239)')
+
+    cy.get('@placeholderImage')
+      .should('have.css', 'background-size')
+      .and('eq', '40px 40px')
   })
 })
