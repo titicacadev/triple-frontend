@@ -1,23 +1,17 @@
 import React, { PureComponent } from 'react'
 import {
-  Image,
-  Rating,
   Container,
-  Text,
   Navbar,
   ListingFilter,
+  List,
+  ProductListElement,
 } from '@titicaca/triple-design-system/src'
 import sample from './sample.json'
 
 export default class App extends PureComponent {
   render() {
-    const {
-      title,
-      display: { image, pricing, subtitle },
-    } = sample
-
     return (
-      <Container>
+      <>
         <Navbar title="도쿄 투어, 패스" borderless>
           <Navbar.Item floated="left" icon="back" />
           <Navbar.Item floated="right" icon="search" />
@@ -49,32 +43,17 @@ export default class App extends PureComponent {
           </ListingFilter>
         </Navbar.Secondary>
 
-        <Container padding={{ top: 20, bottom: 25, left: 20, right: 20 }}>
-          <Image
-            src={image.sizes.small.url}
-            height={140}
-            margin={{ bottom: 20 }}
-          />
-          <Text size="big" margin={{ bottom: 6 }}>
-            {title}
-          </Text>
-          <Text size="small" margin={{ bottom: 5 }}>
-            {subtitle}
-          </Text>
-          <Container margin={{ bottom: 13 }}>
-            <Rating size="tiny" score={3} vertical="text-top" />
-            <Text inline alpha={0.5} size="small">
-              · 티켓
-            </Text>
-          </Container>
-          <Text size="big" margin={{ right: 4 }} inline>
-            {pricing.basePrice}원
-          </Text>
-          <Text size="tiny" alpha={0.3} inline strikethrough>
-            {pricing.salePrice}원
-          </Text>
+        <Container padding={{ left: 20, right: 20 }}>
+          <List divided margin={{ top: 10 }}>
+            <ProductListElement
+              product={sample}
+              scrapsCount={120}
+              reviewsCount={10}
+              reviewsRating={4.3}
+            />
+          </List>
         </Container>
-      </Container>
+      </>
     )
   }
 }
