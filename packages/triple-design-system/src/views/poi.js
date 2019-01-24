@@ -6,6 +6,7 @@ import Rating from '../elements/rating'
 import Image from '../elements/image'
 import List from '../elements/list'
 import Carousel from '../elements/carousel'
+import ScrapButton from '../elements/scrap-button'
 import { SquareImage, ResourceListItem } from '../elements/content-elements'
 
 const TYPE_NAMES = {
@@ -84,7 +85,7 @@ class CompactPoiListElement extends PureComponent {
           <ScrapButton
             compact
             scraped={scraped}
-            poi={this.props.poi}
+            resource={this.props.poi}
             onScrapedChange={onScrapedChange}
           />
         )}
@@ -211,7 +212,7 @@ class ExtendedPoiListElement extends PureComponent {
         <ScrapButton
           top={23}
           scraped={scraped}
-          poi={this.props.poi}
+          resource={this.props.poi}
           onScrapedChange={onScrapedChange}
         />
       </ExtendedPoiListItem>
@@ -302,43 +303,11 @@ export function PoiCarouselElement({
         ) : (
           <ScrapButton
             scraped={scraped}
-            poi={poi}
+            resource={poi}
             onScrapedChange={onScrapedChange}
           />
         )}
       </Carousel.Item>
     )
   }
-}
-
-const CompactScrapButton = styled.div`
-  position: absolute;
-  top: ${({ top }) => (top === 0 ? 0 : top || 0)}px;
-  right: ${({ right }) => (right === 0 ? 0 : right || 0)}px;
-  width: 34px;
-  height: 34px;
-  background-image: url(https://assets.triple.guide/images/${({ pressed }) => (pressed ? 'btn-content-scrap-list-on@2x.png' : 'btn-content-scrap-list-off@2x.png')});
-  background-size: 34px 34px;
-`
-
-const RegularScrapButton = styled.div`
-  position: absolute;
-  top: ${({ top }) => (top === 0 ? 0 : top || 3)}px;
-  right: ${({ right }) => (right === 0 ? 0 : right || 3)}px;
-  width: 36px;
-  height: 36px;
-  background-image: url(https://assets.triple.guide/images/${({ pressed }) => (pressed ? 'btn-content-scrap-overlay-on@2x.png' : 'btn-content-scrap-overlay-off@2x.png')});
-  background-size: 36px 36px;
-`
-
-function ScrapButton({ compact, poi, scraped, onScrapedChange, ...props }) {
-  const ButtonElement = compact ? CompactScrapButton : RegularScrapButton
-  const handleClick =
-    onScrapedChange &&
-    ((e) => {
-      e.stopPropagation()
-      onScrapedChange(e, { ...poi, scraped: !scraped })
-    })
-
-  return <ButtonElement pressed={scraped} onClick={handleClick} {...props} />
 }
