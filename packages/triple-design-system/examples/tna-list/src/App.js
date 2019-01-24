@@ -44,7 +44,7 @@ export default class App extends PureComponent {
         </Navbar.Secondary>
 
         <Container padding={{ left: 20, right: 20 }}>
-          <List divided margin={{ top: 10 }}>
+          <List divided>
             <ProductListElement
               product={sample}
               scrapsCount={120}
