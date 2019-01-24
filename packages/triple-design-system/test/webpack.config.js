@@ -20,6 +20,10 @@ module.exports = {
       './src/elements/action-sheet',
     ],
     modal: [path.resolve(__dirname, '../src'), './src/elements/modal'],
+    'scrap-button': [
+      path.resolve(__dirname, '../src'),
+      './src/elements/scrap-button',
+    ],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
