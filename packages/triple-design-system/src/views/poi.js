@@ -21,6 +21,62 @@ const POI_IMAGE_PLACEHOLDERS = {
   hotel: 'https://assets.triple.guide/images/ico-blank-hotel@2x.png',
 }
 
+export function PoiListElement({ compact, ...props }) {
+  return compact ? (
+    <CompactPoiListElement {...props} />
+  ) : (
+    <ExtendedPoiListElement {...props} />
+  )
+}
+
+export function PoiCarouselElement({
+  poi,
+  onClick,
+  actionButtonElement,
+  onScrapedChange,
+  resourceScraps,
+}) {
+  if (poi) {
+    const {
+      id,
+      type,
+      nameOverride,
+      scraped: initialScraped,
+      source: { image, names },
+    } = poi
+
+    const { state: scraped } = deriveCurrentStateAndCount({
+      initialState: initialScraped,
+      initialCount: 0,
+      currentState: resourceScraps[id],
+    })
+
+    return (
+      <Carousel.Item size="small" onClick={onClick}>
+        <SquareImage
+          placeholder={!image}
+          src={image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS[type]}
+        />
+        <Text bold ellipsis alpha={1} margin={{ top: 8 }}>
+          {nameOverride || names.ko || names.en || names.local}
+        </Text>
+        <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
+          {TYPE_NAMES[type]}
+        </Text>
+        {actionButtonElement ? (
+          actionButtonElement
+        ) : (
+          <ScrapButton
+            scraped={scraped}
+            resource={poi}
+            onScrapedChange={onScrapedChange}
+          />
+        )}
+      </Carousel.Item>
+    )
+  }
+}
+
 class CompactPoiListElement extends PureComponent {
   state = { actionButtonWidth: 34 }
 
@@ -223,61 +279,5 @@ function deriveCurrentStateAndCount({
         : currentState
           ? Number(initialCount || 0) + 1
           : Number(initialCount || 0) - 1,
-  }
-}
-
-export function PoiListElement({ compact, ...props }) {
-  return compact ? (
-    <CompactPoiListElement {...props} />
-  ) : (
-    <ExtendedPoiListElement {...props} />
-  )
-}
-
-export function PoiCarouselElement({
-  poi,
-  onClick,
-  actionButtonElement,
-  onScrapedChange,
-  resourceScraps,
-}) {
-  if (poi) {
-    const {
-      id,
-      type,
-      nameOverride,
-      scraped: initialScraped,
-      source: { image, names },
-    } = poi
-
-    const { state: scraped } = deriveCurrentStateAndCount({
-      initialState: initialScraped,
-      initialCount: 0,
-      currentState: resourceScraps[id],
-    })
-
-    return (
-      <Carousel.Item size="small" onClick={onClick}>
-        <SquareImage
-          placeholder={!image}
-          src={image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS[type]}
-        />
-        <Text bold ellipsis alpha={1} margin={{ top: 8 }}>
-          {nameOverride || names.ko || names.en || names.local}
-        </Text>
-        <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
-          {TYPE_NAMES[type]}
-        </Text>
-        {actionButtonElement ? (
-          actionButtonElement
-        ) : (
-          <ScrapButton
-            scraped={scraped}
-            resource={poi}
-            onScrapedChange={onScrapedChange}
-          />
-        )}
-      </Carousel.Item>
-    )
   }
 }
