@@ -27,4 +27,8 @@ export * from './views/poi'
 export * from './views/tna'
 export * from './views/author'
 export * from './views/modal'
+<<<<<<< HEAD
 export * from './views/listing-filter'
+=======
+export * from './views/product'
+>>>>>>> Add Product listing item component
