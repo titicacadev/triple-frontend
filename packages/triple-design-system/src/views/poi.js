@@ -8,6 +8,7 @@ import List from '../elements/list'
 import Carousel from '../elements/carousel'
 import ScrapButton from '../elements/scrap-button'
 import { SquareImage, ResourceListItem } from '../elements/content-elements'
+import { deriveCurrentStateAndCount } from '../utilities'
 
 const TYPE_NAMES = {
   attraction: '관광명소',
@@ -255,29 +256,5 @@ class ExtendedPoiListElement extends PureComponent {
         />
       </ExtendedPoiListItem>
     )
-  }
-}
-
-function deriveCurrentStateAndCount({
-  initialState,
-  initialCount,
-  currentState,
-}) {
-  if (typeof initialState !== 'boolean' || typeof currentState !== 'boolean') {
-    /* At least one of the status are unknown: Reduces to a bitwise OR operation */
-    return {
-      state: !!initialState || !!currentState,
-      count: Number(initialCount || 0),
-    }
-  }
-
-  return {
-    state: currentState,
-    count:
-      initialState === currentState
-        ? initialCount
-        : currentState
-          ? Number(initialCount || 0) + 1
-          : Number(initialCount || 0) - 1,
   }
 }

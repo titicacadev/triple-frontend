@@ -7,6 +7,7 @@ import Image from '../elements/image'
 import List from '../elements/list'
 import ScrapButton from '../elements/scrap-button'
 import Pricing from '../elements/pricing'
+import { deriveCurrentStateAndCount } from '../utilities'
 
 const ProductListItem = styled(List.Item)`
   min-height: 150px;
@@ -81,29 +82,5 @@ export class ProductListElement extends PureComponent {
         <Pricing {...pricing} />
       </ProductListItem>
     )
-  }
-}
-
-function deriveCurrentStateAndCount({
-  initialState,
-  initialCount,
-  currentState,
-}) {
-  if (typeof initialState !== 'boolean' || typeof currentState !== 'boolean') {
-    /* At least one of the status are unknown: Reduces to a bitwise OR operation */
-    return {
-      state: !!initialState || !!currentState,
-      count: Number(initialCount || 0),
-    }
-  }
-
-  return {
-    state: currentState,
-    count:
-      initialState === currentState
-        ? initialCount
-        : currentState
-          ? Number(initialCount || 0) + 1
-          : Number(initialCount || 0) - 1,
   }
 }
