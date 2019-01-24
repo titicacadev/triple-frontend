@@ -100,21 +100,6 @@ const ExtendedPoiListItem = styled(List.Item)`
   box-sizing: border-box;
 `
 
-const ExtendedPoiListImagePlaceholder = styled.div`
-  position: relative;
-  overflow: hidden;
-  border-radius: 6px;
-  width: 90px;
-  height: 110px;
-  background-position: center;
-  background-size: 40px 40px;
-  background-image: url(${({ type }) => POI_IMAGE_PLACEHOLDERS[type]});
-  background-color: #efefef;
-  background-repeat: no-repeat;
-  float: right;
-  margin-left: 20px;
-`
-
 class ExtendedPoiListElement extends PureComponent {
   render() {
     const {
@@ -153,17 +138,14 @@ class ExtendedPoiListElement extends PureComponent {
 
     return (
       <ExtendedPoiListItem onClick={onClick}>
-        {image ? (
-          <Image
-            floated="right"
-            size="small"
-            width={90}
-            src={image.sizes.large.url}
-            margin={{ left: 20 }}
-          />
-        ) : (
-          <ExtendedPoiListImagePlaceholder type={type} />
-        )}
+        <Image
+          floated="right"
+          size="small"
+          width={90}
+          src={image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS[type]}
+          placeholder={!image}
+          margin={{ left: 20 }}
+        />
         <Text bold ellipsis size="large">
           {nameOverride || names.ko || names.en || names.local}
         </Text>
@@ -252,17 +234,6 @@ export function PoiListElement({ compact, ...props }) {
   )
 }
 
-const PoiCarouselImagePlaceholder = styled.div`
-  border-radius: 6px;
-  width: 140px;
-  height: 140px;
-  background-position: center;
-  background-size: 40px 40px;
-  background-image: url(${({ type }) => POI_IMAGE_PLACEHOLDERS[type]});
-  background-color: #efefef;
-  background-repeat: no-repeat;
-`
-
 export function PoiCarouselElement({
   poi,
   onClick,
@@ -287,11 +258,10 @@ export function PoiCarouselElement({
 
     return (
       <Carousel.Item size="small" onClick={onClick}>
-        {image ? (
-          <SquareImage src={image.sizes.large.url} />
-        ) : (
-          <PoiCarouselImagePlaceholder type={type} />
-        )}
+        <SquareImage
+          placeholder={!image}
+          src={image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS[type]}
+        />
         <Text bold ellipsis alpha={1} margin={{ top: 8 }}>
           {nameOverride || names.ko || names.en || names.local}
         </Text>
