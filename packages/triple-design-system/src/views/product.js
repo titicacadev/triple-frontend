@@ -6,30 +6,12 @@ import Rating from '../elements/rating'
 import Image from '../elements/image'
 import List from '../elements/list'
 import ScrapButton from '../elements/scrap-button'
+import Pricing from '../elements/pricing'
 
 const ProductListItem = styled(List.Item)`
   min-height: 150px;
   padding: 20px 0;
   box-sizing: border-box;
-`
-
-const PricingContainer = styled.div`
-  font-family: sans-serif;
-  clear: both;
-  text-align: right;
-  font-size: 18px;
-  font-weight: bold;
-  color: #3a3a3a;
-  padding-top: 18px;
-
-  small {
-    color: rgba(58, 58, 58, 0.3);
-    font-weight: normal;
-    font-size: 12px;
-    display: inline-block;
-    text-decoration: line-through;
-    margin-right: 6px;
-  }
 `
 
 export class ProductListElement extends PureComponent {
@@ -96,10 +78,7 @@ export class ProductListElement extends PureComponent {
           resource={this.props.product}
           onScrapedChange={onScrapedChange}
         />
-        <PricingContainer>
-          <small>{pricing.basePrice}</small>
-          {pricing.salePrice}원
-        </PricingContainer>
+        <Pricing {...pricing} />
       </ProductListItem>
     )
   }
