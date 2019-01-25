@@ -7,7 +7,7 @@ import Image from '../elements/image'
 import List from '../elements/list'
 import ScrapButton from '../elements/scrap-button'
 import Pricing from '../elements/pricing'
-import { deriveCurrentStateAndCount } from '../utilities'
+import { deriveCurrentStateAndCount, formatNumber } from '../utilities'
 
 const ProductListItem = styled(List.Item)`
   min-height: 150px;
@@ -64,8 +64,8 @@ export class ProductListElement extends PureComponent {
               ) : null}
               <Text inline size="small" alpha={0.4}>
                 {[
-                  reviewsCount ? ` (${reviewsCount})` : null,
-                  scrapsCount ? `저장${scrapsCount}` : null,
+                  reviewsCount ? ` (${formatNumber(reviewsCount)})` : null,
+                  scrapsCount ? `저장${formatNumber(scrapsCount)}` : null,
                 ]
                   .filter((count) => count)
                   .join(' · ')}

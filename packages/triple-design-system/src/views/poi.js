@@ -8,7 +8,7 @@ import List from '../elements/list'
 import Carousel from '../elements/carousel'
 import ScrapButton from '../elements/scrap-button'
 import { SquareImage, ResourceListItem } from '../elements/content-elements'
-import { deriveCurrentStateAndCount } from '../utilities'
+import { deriveCurrentStateAndCount, formatNumber } from '../utilities'
 
 const TYPE_NAMES = {
   attraction: '관광명소',
@@ -217,10 +217,10 @@ class ExtendedPoiListElement extends PureComponent {
               ) : null}
               <Text inline size="small" alpha={0.4}>
                 {[
-                  reviewsCount ? ` (${reviewsCount})` : null,
-                  scrapsCount ? `저장${scrapsCount}` : null,
+                  reviewsCount ? ` (${formatNumber(reviewsCount)})` : null,
+                  scrapsCount ? `저장${formatNumber(scrapsCount)}` : null,
                 ]
-                  .filter((count) => count)
+                  .filter((counterFragment) => counterFragment)
                   .join(' · ')}
               </Text>
             </>
