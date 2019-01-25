@@ -165,8 +165,6 @@ export default class DayPicker extends PureComponent {
     const { numberOfMonths, date, ...props } = this.props
     const { startDate, endDate, blockDates } = this.state
 
-    console.log(this.props)
-
     return (
       <Container>
         <Container margin={{ bottom: 10 }}>
