@@ -146,29 +146,26 @@ function ScheduleText({ date }) {
 }
 
 export default class DayPicker extends PureComponent {
-  state = {
-    startDate: moment(),
-    endDate: null,
-  }
+  constructor(props) {
+    super(props)
+    const { startDate, endDate, blockDates } = this.props
 
-  static getDerivedStateFromProps(props, state) {
-    if (!state.endDate) {
-      return {
-        endDate: props.endDate
-          ? props.endDate
-          : state.startDate.clone().add(3, 'month'),
-      }
+    this.state = {
+      startDate: moment.isMoment(startDate) ? startDate : moment(startDate),
+      endDate: moment.isMoment(endDate) ? endDate : moment(endDate),
+      blockDates: blockDates.map((date) => moment(date)),
     }
-    return null
   }
 
-  onDateChange = (date) => {
-    this.props.handleDate(date)
+  handleDateChange = (date) => {
+    this.props.onDateChange(date)
   }
 
   render() {
-    const { numberOfMonths, blockDates, date, ...props } = this.props
-    const { startDate, endDate } = this.state
+    const { numberOfMonths, date, ...props } = this.props
+    const { startDate, endDate, blockDates } = this.state
+
+    console.log(this.props)
 
     return (
       <Container>
@@ -182,9 +179,9 @@ export default class DayPicker extends PureComponent {
         <DayPickerWrapper {...props}>
           <DayPickerSingleDateController
             initialVisibleMonth={() => startDate}
-            numberOfMonths={numberOfMonths ? numberOfMonths : 4}
+            numberOfMonths={numberOfMonths}
             date={date}
-            onDateChange={this.onDateChange}
+            onDateChange={this.handleDateChange}
             orientation="verticalScrollable"
             isOutsideRange={(day) => {
               return isBlockDate(blockDates, startDate, endDate, day)
@@ -197,4 +194,13 @@ export default class DayPicker extends PureComponent {
       </Container>
     )
   }
+}
+
+DayPicker.defaultProps = {
+  startDate: moment(),
+  endDate: moment()
+    .clone()
+    .add(3, 'month'),
+  blockDates: [],
+  numberOfMonths: 4,
 }
