@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { formatNumber } from '../utilities'
 
 const PricingContainer = styled.div`
   font-family: sans-serif;
@@ -23,8 +24,8 @@ const PricingContainer = styled.div`
 export default function Pricing({ basePrice, salePrice }) {
   return (
     <PricingContainer>
-      <small>{salePrice}</small>
-      {basePrice}원
+      <small>{formatNumber(salePrice)}</small>
+      {formatNumber(basePrice)}원
     </PricingContainer>
   )
 }
