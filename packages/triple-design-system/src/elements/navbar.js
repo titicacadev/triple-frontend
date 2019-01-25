@@ -66,7 +66,7 @@ const SecondaryNavbar = styled.div`
   background-color: #ffffff;
   position: sticky;
   position: -webkit-sticky;
-  top: 53px;
+  top: 52px;
   left: 0;
   right: 0;
   z-index: 2;
