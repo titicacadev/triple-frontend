@@ -5,10 +5,14 @@ describe('DayPicker', () => {
 
   it('class and color check after click', () => {
     cy.get('.CalendarDay__today')
+      .screenshot()
       .click()
       .should('have.class', 'CalendarDay__selected')
-      .should('have.css', 'background')
-      .and('include', 'rgb(54, 143, 255)')
+
+    cy.get('.CalendarDay__selected')
+      .screenshot()
+      .should('have.css', 'background-color')
+      .and('eq', 'rgb(54, 143, 255)')
   })
 
   it('end Day block check (2019-04-29)', () => {
@@ -19,7 +23,7 @@ describe('DayPicker', () => {
       .should('have.class', 'CalendarDay__blocked_out_of_range')
   })
 
-  it('block day click check (2019-04-29)', () => {
+  it('block day active click check (2019-04-29)', () => {
     cy.get('.CalendarMonth_table')
       .last()
       .find('.CalendarDay')

@@ -11,6 +11,7 @@ moment.locale('ko')
 const COLORS = {
   blue: '54, 143, 255',
   gray: '58, 58, 58',
+  white: '255,255,255',
 }
 
 const DayPickerWrapper = styled(Container)`
@@ -40,7 +41,7 @@ const DayPickerWrapper = styled(Container)`
   }
 
   .DayPicker_focusRegion {
-    height: 265px;
+    height: ${({ height }) => (height ? height : 265)}px;
     overflow: scroll;
   }
 
@@ -66,7 +67,7 @@ const DayPickerWrapper = styled(Container)`
   }
 
   .CalendarDay__today {
-    color: rgba(${({ color }) => COLORS[color || 'blue']});
+    color: rgb(${COLORS.blue});
   }
 
   .CalendarDay__today:after {
@@ -77,17 +78,17 @@ const DayPickerWrapper = styled(Container)`
     top: 26px;
     left: 0px;
     width: 100%;
-    color: rgba(${({ color }) => COLORS[color || 'blue']});
+    color: rgb(${COLORS.blue});
   }
 
   .CalendarDay__selected {
     border-radius: 100%;
-    color: #fff;
-    background-color: rgba(${({ color }) => COLORS[color || 'blue']});
+    color: rgb(255, 255, 255);
+    background-color: rgb(${COLORS.blue});
   }
 
   .CalendarDay__blocked_out_of_range {
-    color: rgba(${COLORS['gray']}, 0.3);
+    color: rgba(${COLORS.gray}, 0.3);
   }
 
   .DayPickerNavigation,
@@ -166,7 +167,7 @@ export default class DayPicker extends PureComponent {
   }
 
   render() {
-    const { numberOfMonths, blockDates, date } = this.props
+    const { numberOfMonths, blockDates, date, ...props } = this.props
     const { startDate, endDate } = this.state
 
     return (
@@ -178,7 +179,7 @@ export default class DayPicker extends PureComponent {
           {date ? <ScheduleText date={date} /> : null}
         </Container>
 
-        <DayPickerWrapper>
+        <DayPickerWrapper {...props}>
           <DayPickerSingleDateController
             initialVisibleMonth={() => startDate}
             numberOfMonths={numberOfMonths ? numberOfMonths : 4}
