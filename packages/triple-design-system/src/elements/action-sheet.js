@@ -1,4 +1,4 @@
-import React, { createContext } from 'react'
+import React, { PureComponent, createContext } from 'react'
 import styled from 'styled-components'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
@@ -182,27 +182,57 @@ function ActionItem({ buttonLabel, icon, onClick, children }) {
   )
 }
 
-export default function ActionSheet({ open, onClose, title, children }) {
-  return (
-    <ReactCSSTransitionGroup
-      transitionName="fade"
-      transitionEnter={true}
-      transitionEnterTimeout={500}
-      transitionLeave={true}
-      transitionLeaveTimeout={500}
-    >
-      {open ? (
-        <Overlay onClick={onClose}>
-          <Sheet onClick={silenceEvent}>
-            {title ? <Title>{title}</Title> : null}
-            <Provider value={{ onClose }}>
-              <ContentContainer>{children}</ContentContainer>
-            </Provider>
-          </Sheet>
-        </Overlay>
-      ) : null}
-    </ReactCSSTransitionGroup>
-  )
+export default class ActionSheet extends PureComponent {
+  componentDidMount() {
+    this.updateBodyStyle()
+  }
+
+  componentDidUpdate() {
+    this.updateBodyStyle()
+  }
+
+  updateBodyStyle = () => {
+    const {
+      props: { open },
+    } = this
+
+    const bodyScrollDisabled = [...document.body.classList].includes(
+      'scroll-disabled',
+    )
+
+    if (open && !bodyScrollDisabled) {
+      document.body.classList.add('scroll-disabled')
+    } else if (!open && bodyScrollDisabled) {
+      document.body.classList.remove('scroll-disabled')
+    }
+  }
+
+  render() {
+    const {
+      props: { open, onClose, title, children },
+    } = this
+
+    return (
+      <ReactCSSTransitionGroup
+        transitionName="fade"
+        transitionEnter={true}
+        transitionEnterTimeout={500}
+        transitionLeave={true}
+        transitionLeaveTimeout={500}
+      >
+        {open ? (
+          <Overlay onClick={onClose}>
+            <Sheet onClick={silenceEvent}>
+              {title ? <Title>{title}</Title> : null}
+              <Provider value={{ onClose }}>
+                <ContentContainer>{children}</ContentContainer>
+              </Provider>
+            </Sheet>
+          </Overlay>
+        ) : null}
+      </ReactCSSTransitionGroup>
+    )
+  }
 }
 
 function silenceEvent(e) {

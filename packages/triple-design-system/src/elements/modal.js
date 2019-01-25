@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import styled, { css } from 'styled-components'
 
 const Overlay = styled.div`
@@ -66,12 +66,42 @@ const Action = styled.a`
   color: ${({ color }) => ACTION_COLORS[color || 'gray']};
 `
 
-export default function Modal({ open, onClose, children }) {
-  return open ? (
-    <Overlay onClick={onClose}>
-      <Box onClick={silenceEvent}>{children}</Box>
-    </Overlay>
-  ) : null
+export default class Modal extends PureComponent {
+  componentDidMount() {
+    this.updateBodyStyle()
+  }
+
+  componentDidUpdate() {
+    this.updateBodyStyle()
+  }
+
+  updateBodyStyle = () => {
+    const {
+      props: { open },
+    } = this
+
+    const bodyScrollDisabled = [...document.body.classList].includes(
+      'scroll-disabled',
+    )
+
+    if (open && !bodyScrollDisabled) {
+      document.body.classList.add('scroll-disabled')
+    } else if (!open && bodyScrollDisabled) {
+      document.body.classList.remove('scroll-disabled')
+    }
+  }
+
+  render() {
+    const {
+      props: { open, onClose, children },
+    } = this
+
+    return open ? (
+      <Overlay onClick={onClose}>
+        <Box onClick={silenceEvent}>{children}</Box>
+      </Overlay>
+    ) : null
+  }
 }
 
 function silenceEvent(e) {

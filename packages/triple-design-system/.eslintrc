@@ -5,6 +5,9 @@
   "parser": "babel-eslint",
   "plugins": ["prettier", "react"],
   "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "globals": {
+    "document": false
+  },
   "rules": {
     "prettier/prettier": "error",
     "no-unused-vars": ["error", { "ignoreRestSiblings": true }],

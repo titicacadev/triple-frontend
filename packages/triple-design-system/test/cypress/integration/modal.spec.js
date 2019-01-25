@@ -20,6 +20,22 @@ describe('Modal', () => {
       .as('button')
   })
 
+  it('should prevent body from being scrolled', () => {
+    cy.get('body')
+      .should('have.css', 'overflow')
+      .and('eq', 'hidden')
+
+    cy.get('body').should('have.class', 'scroll-disabled')
+
+    cy.get('@button').click()
+
+    cy.get('body')
+      .should('have.css', 'overflow')
+      .and('not.eq', 'hidden')
+
+    cy.get('body').should('not.have.class', 'scroll-disabled')
+  })
+
   it('should close when overlay is clicked', () => {
     cy.get('@overlay').click('top')
 
