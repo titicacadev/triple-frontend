@@ -21,3 +21,7 @@ export function deriveCurrentStateAndCount({
           : Number(initialCount || 0) - 1,
   }
 }
+
+export function formatNumber(number) {
+  return number && number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+}
