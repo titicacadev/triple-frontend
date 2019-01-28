@@ -126,6 +126,20 @@ const TextBase = styled.div`
         display: block;
       }
     `};
+
+  ${({ wordBreak }) => {
+    wordBreak &&
+      css`
+        word-break: break-all;
+      `
+  }};
+
+  ${({ noWrap }) => {
+    noWrap &&
+      css`
+        white-space: nowrap;
+      `
+  }};
 `
 
 function Text({ children, ...props }) {
