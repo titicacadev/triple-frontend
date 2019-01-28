@@ -129,36 +129,36 @@ function LocationSegment({ address, phone, url }) {
       <List verticalGap={10}>
         <List.Item>
           <List.Content minWidth={35}>
-            <Text noWrap bold size="small" margin={{ right: 10 }}>
+            <Text whiteSpace="nowrap" bold size="small" margin={{ right: 10 }}>
               지도
             </Text>
           </List.Content>
           <List.Content>
-            <Text wordBreak size="small">
+            <Text wordBreak="break-all" size="small">
               {address}
             </Text>
           </List.Content>
         </List.Item>
         <List.Item>
           <List.Content>
-            <Text noWrap bold size="small" margin={{ right: 10 }}>
+            <Text whiteSpace="nowrap" bold size="small" margin={{ right: 10 }}>
               전화
             </Text>
           </List.Content>
           <List.Content>
-            <Text wordBreak size="small">
+            <Text wordBreak="break-all" size="small">
               {phone}
             </Text>
           </List.Content>
         </List.Item>
         <List.Item>
           <List.Content>
-            <Text noWrap bold size="small" margin={{ right: 10 }}>
+            <Text whiteSpace="nowrap" bold size="small" margin={{ right: 10 }}>
               홈페이지
             </Text>
           </List.Content>
           <List.Content>
-            <Text wordBreak size="small">
+            <Text wordBreak="break-all" size="small">
               {url}
             </Text>
           </List.Content>
