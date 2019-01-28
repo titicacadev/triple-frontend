@@ -3,8 +3,8 @@ import styled from 'styled-components'
 
 const CompactScrapButton = styled.div`
   position: absolute;
-  top: ${({ top }) => (top === 0 ? 0 : top || 0)}px;
-  right: ${({ right }) => (right === 0 ? 0 : right || 0)}px;
+  top: ${({ top }) => top || 0}px;
+  right: ${({ right }) => right || 0}px;
   width: 34px;
   height: 34px;
   background-image: url(https://assets.triple.guide/images/${({ pressed }) => (pressed ? 'btn-content-scrap-list-on@2x.png' : 'btn-content-scrap-list-off@2x.png')});
