@@ -127,13 +127,13 @@ const TextBase = styled.div`
       }
     `};
 
-  ${({ wordBreak = null }) =>
+  ${({ wordBreak }) =>
     wordBreak &&
     css`
       word-break: ${wordBreak};
     `};
 
-  ${({ whiteSpace = null }) =>
+  ${({ whiteSpace }) =>
     whiteSpace &&
     css`
       white-space: ${whiteSpace};
