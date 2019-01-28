@@ -71,8 +71,14 @@ export default class Modal extends PureComponent {
     this.updateBodyStyle()
   }
 
-  componentDidUpdate() {
-    this.updateBodyStyle()
+  componentDidUpdate({ open: prevOpen }) {
+    const {
+      props: { open },
+    } = this
+
+    if (prevOpen !== open) {
+      this.updateBodyStyle()
+    }
   }
 
   updateBodyStyle = () => {

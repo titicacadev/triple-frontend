@@ -187,8 +187,14 @@ export default class ActionSheet extends PureComponent {
     this.updateBodyStyle()
   }
 
-  componentDidUpdate() {
-    this.updateBodyStyle()
+  componentDidUpdate({ open: prevOpen }) {
+    const {
+      props: { open },
+    } = this
+
+    if (prevOpen !== open) {
+      this.updateBodyStyle()
+    }
   }
 
   updateBodyStyle = () => {
