@@ -127,10 +127,10 @@ function isAfterDay(a, b) {
   return !isBeforeDay(a, b) && !isSameDay(a, b)
 }
 
-function isBlockDate(blockDates = [], startDate, endDate, day) {
-  if (blockDates.findIndex((date) => isSameDay(date, day)) > -1) return true
-  if (isBeforeDay(day, startDate)) return true
-  if (isAfterDay(day, endDate)) return true
+function isBlockDate(blockedDates = [], from, to, day) {
+  if (blockedDates.find((date) => isSameDay(date, day))) return true
+  if (isBeforeDay(day, from)) return true
+  if (isAfterDay(day, to)) return true
 
   return false
 }
@@ -148,12 +148,12 @@ function ScheduleText({ date }) {
 export default class DayPicker extends PureComponent {
   constructor(props) {
     super(props)
-    const { startDate, endDate, blockDates } = this.props
+    const { from, to, blockedDates } = this.props
 
     this.state = {
-      startDate: moment.isMoment(startDate) ? startDate : moment(startDate),
-      endDate: moment.isMoment(endDate) ? endDate : moment(endDate),
-      blockDates: blockDates.map((date) => moment(date)),
+      from: moment(from),
+      to: moment(to),
+      blockedDates: blockedDates.map((date) => moment(date)),
     }
   }
 
@@ -163,7 +163,7 @@ export default class DayPicker extends PureComponent {
 
   render() {
     const { numberOfMonths, date, ...props } = this.props
-    const { startDate, endDate, blockDates } = this.state
+    const { from, to, blockedDates } = this.state
 
     return (
       <Container>
@@ -176,13 +176,13 @@ export default class DayPicker extends PureComponent {
 
         <DayPickerWrapper {...props}>
           <DayPickerSingleDateController
-            initialVisibleMonth={() => startDate}
+            initialVisibleMonth={() => from}
             numberOfMonths={numberOfMonths}
             date={date}
             onDateChange={this.handleDateChange}
             orientation="verticalScrollable"
             isOutsideRange={(day) => {
-              return isBlockDate(blockDates, startDate, endDate, day)
+              return isBlockDate(blockedDates, from, to, day)
             }}
             renderMonthElement={({ month }) =>
               moment(month).format('YYYY년 MMMM')
@@ -195,10 +195,10 @@ export default class DayPicker extends PureComponent {
 }
 
 DayPicker.defaultProps = {
-  startDate: moment(),
-  endDate: moment()
+  from: moment(),
+  to: moment()
     .clone()
     .add(3, 'month'),
-  blockDates: [],
+  blockedDates: [],
   numberOfMonths: 4,
 }
