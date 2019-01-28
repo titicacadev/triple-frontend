@@ -24,6 +24,7 @@ module.exports = {
       path.resolve(__dirname, '../src'),
       './src/elements/scrap-button',
     ],
+    pricing: [path.resolve(__dirname, '../src'), './src/elements/pricing'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
