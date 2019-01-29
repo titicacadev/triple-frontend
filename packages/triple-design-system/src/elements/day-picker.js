@@ -98,9 +98,7 @@ const DayPickerWrapper = styled(Container)`
   }
 `
 
-const initializeUnderDay = (date) => date.startOf('day')
-
-function isBlockDate(from, to, blockedDates = [], day) {
+function isBlockDate({ from, to, blockedDates = [], day }) {
   if (blockedDates.find((date) => date.isSame(day))) return true
   if (day.isBefore(from)) return true
   if (day.isAfter(to)) return true
@@ -109,11 +107,9 @@ function isBlockDate(from, to, blockedDates = [], day) {
 }
 
 function ScheduleText({ date }) {
-  const schedule = date.format('YYYY-MM-DD')
-
   return (
     <Text inline bold color="blue" margin={{ left: 6 }}>
-      {schedule.replace(/-/g, '.')} ({date.format('ddd')})
+      {date.format('YYYY.MM.DD (ddd)')}
     </Text>
   )
 }
@@ -124,11 +120,9 @@ export default class DayPicker extends PureComponent {
     const { from, to, blockedDates } = this.props
 
     this.state = {
-      from: initializeUnderDay(moment(from)),
-      to: initializeUnderDay(moment(to)),
-      blockedDates: blockedDates.map((date) =>
-        initializeUnderDay(moment(date)),
-      ),
+      from: moment(from).startOf('day'),
+      to: moment(to).startOf('day'),
+      blockedDates: blockedDates.map((date) => moment(date).startOf('day')),
     }
   }
 
@@ -157,12 +151,12 @@ export default class DayPicker extends PureComponent {
             onDateChange={this.handleDateChange}
             orientation="verticalScrollable"
             isOutsideRange={(day) => {
-              return isBlockDate(
+              return isBlockDate({
                 from,
                 to,
                 blockedDates,
-                initializeUnderDay(day),
-              )
+                day: day.startOf('day'),
+              })
             }}
             renderMonthElement={({ month }) =>
               moment(month).format('YYYY년 MMMM')
