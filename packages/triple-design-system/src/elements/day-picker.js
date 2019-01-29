@@ -98,7 +98,7 @@ const DayPickerWrapper = styled(Container)`
   }
 `
 
-function isBlockDate({ from, to, blockedDates = [], day }) {
+function isBlocked({ from, to, blockedDates = [], day }) {
   return (
     day.isBefore(from) ||
     day.isAfter(to) ||
@@ -126,13 +126,11 @@ export default class DayPicker extends PureComponent {
     }
   }
 
-  handleDateChange = (date) => {
-    this.props.onDateChange(date)
-  }
-
   render() {
-    const { numberOfMonths, date, ...props } = this.props
-    const { from, to, blockedDates } = this.state
+    const {
+      props: { numberOfMonths, date, onDateChange, ...props },
+      state: { from, to, blockedDates },
+    } = this
 
     return (
       <Container padding={{ left: 21, right: 21 }}>
@@ -148,16 +146,16 @@ export default class DayPicker extends PureComponent {
             initialVisibleMonth={() => from}
             numberOfMonths={numberOfMonths}
             date={date}
-            onDateChange={this.handleDateChange}
+            onDateChange={(date) => onDateChange(date)}
             orientation="verticalScrollable"
-            isOutsideRange={(day) => {
-              return isBlockDate({
+            isOutsideRange={(day) =>
+              isBlocked({
                 from,
                 to,
                 blockedDates,
                 day: day.startOf('day'),
               })
-            }}
+            }
             renderMonthElement={({ month }) =>
               moment(month).format('YYYY년 MMMM')
             }
