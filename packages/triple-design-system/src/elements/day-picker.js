@@ -99,11 +99,11 @@ const DayPickerWrapper = styled(Container)`
 `
 
 function isBlockDate({ from, to, blockedDates = [], day }) {
-  if (blockedDates.find((date) => date.isSame(day))) return true
-  if (day.isBefore(from)) return true
-  if (day.isAfter(to)) return true
-
-  return false
+  return (
+    day.isBefore(from) ||
+    day.isAfter(to) ||
+    blockedDates.some((date) => date.isSame(day))
+  )
 }
 
 function ScheduleText({ date }) {
