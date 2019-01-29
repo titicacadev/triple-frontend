@@ -54,22 +54,12 @@ const Price = styled.span`
       text-decoration: line-through;
     `};
 
-  ${({ absolute }) =>
-    absolute &&
+  ${({ absolutePosition }) =>
+    absolutePosition &&
     css`
       position: absolute;
-      top: ${absolute.top
-        ? `${absolute.top === 0 ? 0 : absolute.top}px`
-        : 'auto'};
-      right: ${absolute.right
-        ? `${absolute.right === 0 ? 0 : absolute.right}px`
-        : 'auto'};
-      bottom: ${absolute.bottom
-        ? `${absolute.bottom === 0 ? 0 : absolute.bottom}px`
-        : 'auto'};
-      left: ${absolute.left
-        ? `${absolute.left === 0 ? 0 : absolute.left}px`
-        : 'auto'};
+      top: 5px;
+      right: 0;
     `};
 
   ${({ margin }) =>
@@ -94,20 +84,22 @@ function discountRate(basePrice, salePrice) {
   return `${Math.floor(((basePrice - salePrice) / basePrice) * 100)}%`
 }
 
-const LabelPricing = ({ basePrice, salePrice, label }) => (
-  <PricingContainer padding={{ top: 22 }}>
-    <Label> {label} </Label>
-    <Price color="gray" lineThrough absolute={{ right: 0, top: 5 }}>
-      {formatNumber(salePrice)}
-    </Price>
-    <Price color="pink" size="big" margin={{ right: 5 }} bold>
-      {discountRate(basePrice, salePrice)}
-    </Price>
-    <Price size="big" bold>
-      {formatNumber(basePrice)}원
-    </Price>
-  </PricingContainer>
-)
+function RichPricing({ basePrice, salePrice, label }) {
+  return (
+    <PricingContainer padding={{ top: 22 }}>
+      <Label> {label} </Label>
+      <Price color="gray" lineThrough absolutePosition>
+        {formatNumber(salePrice)}
+      </Price>
+      <Price color="pink" size="big" margin={{ right: 5 }} bold>
+        {discountRate(basePrice, salePrice)}
+      </Price>
+      <Price size="big" bold>
+        {formatNumber(basePrice)}원
+      </Price>
+    </PricingContainer>
+  )
+}
 
 const RegularPricing = ({ basePrice, salePrice }) => (
   <PricingContainer padding={{ top: 18 }}>
@@ -120,6 +112,6 @@ const RegularPricing = ({ basePrice, salePrice }) => (
   </PricingContainer>
 )
 
-export default function Pricing({ listing, ...props }) {
-  return listing ? <LabelPricing {...props} /> : <RegularPricing {...props} />
+export default function Pricing({ rich, ...props }) {
+  return rich ? <RichPricing {...props} /> : <RegularPricing {...props} />
 }
