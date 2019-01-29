@@ -194,6 +194,7 @@ class Button extends PureComponent {
           size={size || 'tiny'}
           textColor={textColor || 'gray'}
           textAlpha={textAlpha || 0.5}
+          fontSize={fontSize || size || 'tiny'}
           {...props}
         >
           {children}
