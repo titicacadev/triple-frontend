@@ -41,7 +41,7 @@ const DayPickerWrapper = styled(Container)`
   }
 
   .DayPicker_focusRegion {
-    height: ${({ height }) => (height ? height : 265)}px;
+    height: ${({ height }) => height || 265}px;
     overflow: scroll;
     outline: none;
   }
@@ -98,12 +98,7 @@ const DayPickerWrapper = styled(Container)`
   }
 `
 
-const initializeUnderDay = (date) =>
-  date
-    .hours(0)
-    .minutes(0)
-    .seconds(0)
-    .milliseconds(0)
+const initializeUnderDay = (date) => date.startOf('day')
 
 function isBlockDate(from, to, blockedDates = [], day) {
   if (blockedDates.find((date) => date.isSame(day))) return true
@@ -118,7 +113,7 @@ function ScheduleText({ date }) {
 
   return (
     <Text inline bold color="blue" margin={{ left: 6 }}>
-      {schedule.replace(/-/g, '.')} ({moment(schedule).format('ddd')})
+      {schedule.replace(/-/g, '.')} ({date.format('ddd')})
     </Text>
   )
 }
