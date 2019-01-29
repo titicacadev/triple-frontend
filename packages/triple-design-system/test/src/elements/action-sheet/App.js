@@ -1,4 +1,4 @@
-import '@titicaca/triple-design-system/global'
+import '@titicaca/triple-design-system/global-style'
 import React, { PureComponent } from 'react'
 import ActionSheet from '@titicaca/triple-design-system/elements/action-sheet'
 

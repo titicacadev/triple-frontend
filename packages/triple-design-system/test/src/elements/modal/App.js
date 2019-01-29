@@ -1,4 +1,4 @@
-import '@titicaca/triple-design-system/global'
+import '@titicaca/triple-design-system/global-style'
 import React, { PureComponent } from 'react'
 import { Modal, Text } from '@titicaca/triple-design-system'
 
