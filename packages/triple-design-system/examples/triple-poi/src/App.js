@@ -130,7 +130,7 @@ function LocationSegment({ address, phone, url }) {
         <List.Item>
           <List.Content minWidth={35}>
             <Text whiteSpace="nowrap" bold size="small" margin={{ right: 10 }}>
-              지도
+              주소
             </Text>
           </List.Content>
           <List.Content>
