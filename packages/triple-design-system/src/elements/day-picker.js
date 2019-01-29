@@ -43,6 +43,7 @@ const DayPickerWrapper = styled(Container)`
   .DayPicker_focusRegion {
     height: ${({ height }) => (height ? height : 265)}px;
     overflow: scroll;
+    outline: none;
   }
 
   .CalendarMonth_table {
@@ -97,40 +98,17 @@ const DayPickerWrapper = styled(Container)`
   }
 `
 
-function isSameDay(a, b) {
-  if (!moment.isMoment(a) || !moment.isMoment(b)) return false
+const initializeUnderDay = (date) =>
+  date
+    .hours(0)
+    .minutes(0)
+    .seconds(0)
+    .milliseconds(0)
 
-  return (
-    a.date() === b.date() && a.month() === b.month() && a.year() === b.year()
-  )
-}
-
-function isBeforeDay(a, b) {
-  if (!moment.isMoment(a) || !moment.isMoment(b)) return false
-
-  const aYear = a.year()
-  const aMonth = a.month()
-
-  const bYear = b.year()
-  const bMonth = b.month()
-
-  const isSameYear = aYear === bYear
-  const isSameMonth = aMonth === bMonth
-
-  if (isSameYear && isSameMonth) return a.date() < b.date()
-  if (isSameYear) return aMonth < bMonth
-  return aYear < bYear
-}
-
-function isAfterDay(a, b) {
-  if (!moment.isMoment(a) || !moment.isMoment(b)) return false
-  return !isBeforeDay(a, b) && !isSameDay(a, b)
-}
-
-function isBlockDate(blockedDates = [], from, to, day) {
-  if (blockedDates.find((date) => isSameDay(date, day))) return true
-  if (isBeforeDay(day, from)) return true
-  if (isAfterDay(day, to)) return true
+function isBlockDate(from, to, blockedDates = [], day) {
+  if (blockedDates.find((date) => date.isSame(day))) return true
+  if (day.isBefore(from)) return true
+  if (day.isAfter(to)) return true
 
   return false
 }
@@ -151,9 +129,11 @@ export default class DayPicker extends PureComponent {
     const { from, to, blockedDates } = this.props
 
     this.state = {
-      from: moment(from),
-      to: moment(to),
-      blockedDates: blockedDates.map((date) => moment(date)),
+      from: initializeUnderDay(moment(from)),
+      to: initializeUnderDay(moment(to)),
+      blockedDates: blockedDates.map((date) =>
+        initializeUnderDay(moment(date)),
+      ),
     }
   }
 
@@ -166,7 +146,7 @@ export default class DayPicker extends PureComponent {
     const { from, to, blockedDates } = this.state
 
     return (
-      <Container>
+      <Container padding={{ left: 21, right: 21 }}>
         <Container margin={{ bottom: 10 }}>
           <Text bold inline>
             날짜선택
@@ -182,7 +162,12 @@ export default class DayPicker extends PureComponent {
             onDateChange={this.handleDateChange}
             orientation="verticalScrollable"
             isOutsideRange={(day) => {
-              return isBlockDate(blockedDates, from, to, day)
+              return isBlockDate(
+                from,
+                to,
+                blockedDates,
+                initializeUnderDay(day),
+              )
             }}
             renderMonthElement={({ month }) =>
               moment(month).format('YYYY년 MMMM')

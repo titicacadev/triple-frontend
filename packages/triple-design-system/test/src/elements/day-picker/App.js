@@ -15,7 +15,7 @@ export default class App extends PureComponent {
       <div>
         <DayPicker
           from={new Date()}
-          to="2019-04-29"
+          to="2019-03-21"
           blockedDates={['2019-01-30', '2019-02-02']}
           onDateChange={this.onDateChange}
           date={this.state.date}
