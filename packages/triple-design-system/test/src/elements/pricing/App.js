@@ -9,8 +9,8 @@ export default class App extends PureComponent {
     }
     return (
       <div>
-        <div className="listing-pressed">
-          <Pricing {...sample} listing label="트리플가" />
+        <div className="rich-pressed">
+          <Pricing {...sample} label="트리플가" rich />
         </div>
         <div className="regular-pressed">
           <Pricing {...sample} />

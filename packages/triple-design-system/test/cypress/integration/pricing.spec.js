@@ -4,14 +4,14 @@ describe('Pricing', () => {
   })
 
   context('when using listing layout', () => {
-    it('listing have padding 22px', () => {
-      cy.get('.listing-pressed > div')
+    it('rich have padding 22px', () => {
+      cy.get('.rich-pressed > div')
         .should('have.css', 'padding')
         .and('eq', '22px 0px 0px')
     })
 
     it('DescountRate Text have pink color', () => {
-      cy.get('.listing-pressed > div')
+      cy.get('.rich-pressed > div')
         .find('span')
         .contains('16%')
         .should('have.css', 'color')
@@ -19,7 +19,7 @@ describe('Pricing', () => {
     })
 
     it('Price Text have font-size 20px', () => {
-      cy.get('.listing-pressed > div')
+      cy.get('.rich-pressed > div')
         .find('span')
         .contains('30,000원')
         .should('have.css', 'font-size')
@@ -27,7 +27,7 @@ describe('Pricing', () => {
     })
 
     it('BasePrice Text have absolute', () => {
-      cy.get('.listing-pressed > div')
+      cy.get('.rich-pressed > div')
         .find('span')
         .contains('25,000')
         .should('have.css', 'position')
