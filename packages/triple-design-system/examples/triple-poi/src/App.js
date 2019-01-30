@@ -329,6 +329,33 @@ export default class App extends PureComponent {
             <Button icon="share">공유하기</Button>
           </Button.Group>
         </Container>
+        <Button.Container>
+          <Button bold mixed="poiSave" gap={5} fontSize="tiny">
+            저장하기
+          </Button>
+        </Button.Container>
+        <Container>
+          <Button bold mixed="poiSave" gap={5} fontSize="tiny">
+            저장하기
+          </Button>
+        </Container>
+        <Container>
+          <Button
+            bold
+            mixed="guidIndex"
+            fluid
+            gap={7}
+            fontSize="large"
+            borderRadius={4}
+            textColor="black"
+            color="white"
+            borderColor="gray"
+            borderAlpha={0.1}
+            borderWidth={1}
+          >
+            목차
+          </Button>
+        </Container>
 
         <HR1 margin={{ top: 8, left: 30, right: 30 }} />
 
