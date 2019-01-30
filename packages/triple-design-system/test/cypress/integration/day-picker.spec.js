@@ -5,12 +5,10 @@ describe('DayPicker', () => {
 
   it('class and color check after click', () => {
     cy.get('.CalendarDay__today')
-      .screenshot()
       .click()
       .should('have.class', 'CalendarDay__selected')
 
     cy.get('.CalendarDay__selected')
-      .screenshot()
       .should('have.css', 'background-color')
       .and('eq', 'rgb(54, 143, 255)')
   })
