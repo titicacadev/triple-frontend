@@ -21,11 +21,14 @@ import {
   Footer,
   AppBanner,
   PublicHeader,
+  TransitionModal,
 } from '@titicaca/triple-design-system/src'
 import sample from './sample.json'
 import humps from 'humps'
 import moment from 'moment-timezone'
 import _ from 'lodash'
+
+import '@titicaca/triple-design-system/src/global-style'
 
 const DAY_OF_WEEK_NAMES = {
   1: '월',
@@ -239,7 +242,13 @@ function OptionalBasicInfoSection({
 }
 
 export default class App extends PureComponent {
+  state = { open: false }
+
   render() {
+    const {
+      state: { open },
+    } = this
+
     const { source: poi } = humps.camelizeKeys(sample)
     const {
       names,
@@ -309,7 +318,12 @@ export default class App extends PureComponent {
         >
           <ImagePager images={images} />
           <Button.Group>
-            <Button icon="saveEmpty">저장하기</Button>
+            <Button
+              icon="saveEmpty"
+              onClick={() => this.setState({ open: true })}
+            >
+              저장하기
+            </Button>
             <Button icon="schedule">일정추가</Button>
             <Button icon="starEmpty">리뷰·별점</Button>
             <Button icon="share">공유하기</Button>
@@ -374,6 +388,12 @@ export default class App extends PureComponent {
         </Container>
 
         <Footer />
+        <TransitionModal
+          open={open}
+          messageType="scrap"
+          onClose={() => this.setState({ open: false })}
+          onConfirm={() => this.setState({ open: false })}
+        />
       </>
     )
   }
