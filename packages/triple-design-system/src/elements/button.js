@@ -155,12 +155,72 @@ const NormalButton = styled(ButtonBase)`
   }};
 `
 
+const MIXED_BUTTON_ICON_INFO = {
+  save: {
+    url:
+      'https://s3-ap-northeast-1.amazonaws.com/triple-web-assets-dev/images/save@3x.png',
+    size: '14px 12px',
+    side: '14',
+    padding: {
+      top: 10.5,
+      bottom: 9.5,
+      left: 14.2,
+      right: 15.2,
+    },
+  },
+}
+
+const MixedButton = styled(ButtonBase)`
+  &:before {
+    display: inline-block;
+    background-image: url(${({ name }) => MIXED_BUTTON_ICON_INFO[name].url});
+    ${({ name }) => {
+      return css`
+        width: ${MIXED_BUTTON_ICON_INFO[name].side}px;
+        height: ${MIXED_BUTTON_ICON_INFO[name].side}px;
+      `
+    }}
+    background-size: ${({ name }) => MIXED_BUTTON_ICON_INFO[name].size};
+    background-repeat: no-repeat;
+    margin-top: 1px;
+    ${({ gap }) =>
+      gap &&
+      css`
+        margin-right: ${gap}px;
+      `};
+    content: '';
+    vertical-align: middle;
+  }
+
+  background-color: ${({ color = 'blue', alpha = 1 }) =>
+    css`rgba(${BUTTON_COLORS[color]}, ${alpha})`};
+  ${({ borderRadius }) =>
+    borderRadius &&
+    css`
+      border-radius: ${borderRadius}px;
+    `};
+  ${({ name }) => {
+    const padding = MIXED_BUTTON_ICON_INFO[name].padding
+
+    return (
+      padding &&
+      css`
+        padding-top: ${padding.top || 0}px;
+        padding-bottom: ${padding.bottom || 0}px;
+        padding-left: ${padding.left || 0}px;
+        padding-right: ${padding.right || 0}px;
+      `
+    )
+  }};
+`
+
 class Button extends PureComponent {
   render() {
     const {
       props: {
         basic,
         icon,
+        mixed,
         size,
         textColor,
         textAlpha,
@@ -199,6 +259,22 @@ class Button extends PureComponent {
         >
           {children}
         </IconButton>
+      )
+    }
+
+    if (mixed) {
+      return (
+        <MixedButton
+          name={mixed}
+          bold
+          fontSize={fontSize || size || 'small'}
+          textColor={textColor || 'white'}
+          textAlpha={textAlpha}
+          borderRadius={borderRadius || 21}
+          {...props}
+        >
+          {children}
+        </MixedButton>
       )
     }
 
