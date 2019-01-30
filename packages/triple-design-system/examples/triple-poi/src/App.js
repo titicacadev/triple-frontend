@@ -18,7 +18,6 @@ import {
   List,
   TripleDocument,
   Responsive,
-  Navbar,
   Footer,
   AppBanner,
   PublicHeader,
@@ -252,12 +251,6 @@ export default class App extends PureComponent {
       scrapsCount,
       images,
       featuredContent,
-      readableBusinessHours,
-      directions,
-      fee,
-      feeComment,
-      estimatedDuration,
-      tips,
       externalLinks,
       pointGeolocation: {
         coordinates: [lng, lat],
@@ -364,7 +357,7 @@ export default class App extends PureComponent {
         >
           <H1 margin={{ bottom: 10 }}>소셜 리뷰</H1>
           <List divided>
-            {externalLinks.map(({ imageUrl, publisher, title, url }, i) => (
+            {externalLinks.map(({ imageUrl, publisher, title }, i) => (
               <List.Item key={`external-link-${i}`} minHeight={106}>
                 <Container floated="right" width="60" margin={{ top: 20 }}>
                   <Image src={imageUrl} frame="big" borderRadius={4} />
