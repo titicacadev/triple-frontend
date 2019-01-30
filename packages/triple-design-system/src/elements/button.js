@@ -156,104 +156,18 @@ const NormalButton = styled(ButtonBase)`
   }};
 `
 
-const MIXED_BUTTON_ICON_INFO = {
-  poiSave: {
-    url:
-      'https://s3-ap-northeast-1.amazonaws.com/triple-web-assets-dev/images/save@3x.png',
-    size: '14px 12px',
-    side: '14',
-    padding: {
-      top: 10.5,
-      bottom: 9.5,
-      left: 14.2,
-      right: 15.2,
-    },
-  },
-  guidIndex: {
-    url:
-      'https://s3-ap-northeast-1.amazonaws.com/triple-web-assets-dev/images/index@3x.png',
-    size: '13px 10px',
-    side: '17',
-    padding: {
-      top: 8,
-      bottom: 7,
-      left: 146,
-      right: 146,
-    },
-  },
-}
-
-const MixedButton = styled(ButtonBase)`
-  &:before {
-    display: inline-block;
-    background-image: url(${({ name }) => MIXED_BUTTON_ICON_INFO[name].url});
-    ${({ name }) => {
-      return css`
-        width: ${MIXED_BUTTON_ICON_INFO[name].side}px;
-        height: ${MIXED_BUTTON_ICON_INFO[name].side}px;
-      `
-    }}
-    background-size: ${({ name }) => MIXED_BUTTON_ICON_INFO[name].size};
-    background-repeat: no-repeat;
-    margin-top: 1px;
-    ${({ gap }) =>
-      gap &&
-      css`
-        margin-right: ${gap}px;
-      `};
-    content: '';
-    vertical-align: middle;
-  }
-  
-  background-color: ${({ color = 'blue', alpha = 1 }) =>
-    css`rgba(${BUTTON_COLORS[color]}, ${alpha})`};
-  border-style: solid;
-  ${({ borderRadius }) =>
-    borderRadius &&
-    css`
-      border-radius: ${borderRadius}px;
-    `};
-  ${({ name }) => {
-    const padding = MIXED_BUTTON_ICON_INFO[name].padding
-
-    return (
-      padding &&
-      css`
-        padding-top: ${padding.top || 0}px;
-        padding-bottom: ${padding.bottom || 0}px;
-        padding-left: ${padding.left || 0}px;
-        padding-right: ${padding.right || 0}px;
-      `
-    )
-  }};
-  ${({ borderColor, borderAlpha = 1 }) =>
-    borderColor &&
-    css`
-      border-color: rgba(${BUTTON_COLORS[borderColor]}, ${borderAlpha});
-    `}
-  ${({ borderWidth }) =>
-    borderWidth &&
-    css`
-      border-width: ${borderWidth}px;
-    `}
-`
-
 class Button extends PureComponent {
   render() {
     const {
       props: {
         basic,
         icon,
-        mixed,
         size,
         textColor,
         textAlpha,
         children,
         fontSize,
         borderRadius,
-        borderWidth,
-        borderColor,
-        borderAlpha,
         ...props
       },
     } = this
@@ -286,26 +200,6 @@ class Button extends PureComponent {
         >
           {children}
         </IconButton>
-      )
-    }
-
-    if (mixed) {
-      return (
-        <MixedButton
-          name={mixed}
-          bold
-          border
-          fontSize={fontSize || size || 'small'}
-          textColor={textColor || 'white'}
-          textAlpha={textAlpha}
-          borderRadius={borderRadius || 21}
-          borderWidth={borderWidth}
-          borderColor={borderColor}
-          borderAlpha={borderAlpha}
-          {...props}
-        >
-          {children}
-        </MixedButton>
       )
     }
 
@@ -384,7 +278,29 @@ const ButtonGroup = styled(Container)`
   }
 `
 
+const ButtonIcon = styled.span`
+  display: inline-block;
+    background-image: url(${({ url }) => url});
+    ${({ width, height }) => {
+      return css`
+        width: ${width}px;
+        height: ${height}px;
+      `
+    }}
+    background-size: ${({ size }) => size};
+    background-repeat: no-repeat;
+    margin-top: 1px;
+    ${({ gap }) =>
+      gap &&
+      css`
+        margin-right: ${gap}px;
+      `};
+    content: '';
+    vertical-align: middle;
+`
+
 Button.Container = ButtonContainer
 Button.Group = ButtonGroup
+Button.Icon = ButtonIcon
 
 export default Button
