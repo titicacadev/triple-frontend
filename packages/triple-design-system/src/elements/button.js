@@ -11,6 +11,7 @@ const SIZES = {
 const BUTTON_COLORS = {
   blue: '54, 143, 255',
   gray: '58, 58, 58',
+  white: '255, 255, 255',
 }
 
 const ButtonBase = styled.a`
@@ -156,7 +157,7 @@ const NormalButton = styled(ButtonBase)`
 `
 
 const MIXED_BUTTON_ICON_INFO = {
-  save: {
+  poiSave: {
     url:
       'https://s3-ap-northeast-1.amazonaws.com/triple-web-assets-dev/images/save@3x.png',
     size: '14px 12px',
@@ -166,6 +167,18 @@ const MIXED_BUTTON_ICON_INFO = {
       bottom: 9.5,
       left: 14.2,
       right: 15.2,
+    },
+  },
+  guidIndex: {
+    url:
+      'https://s3-ap-northeast-1.amazonaws.com/triple-web-assets-dev/images/index@3x.png',
+    size: '13px 10px',
+    side: '17',
+    padding: {
+      top: 8,
+      bottom: 7,
+      left: 146,
+      right: 146,
     },
   },
 }
@@ -191,9 +204,10 @@ const MixedButton = styled(ButtonBase)`
     content: '';
     vertical-align: middle;
   }
-
+  
   background-color: ${({ color = 'blue', alpha = 1 }) =>
     css`rgba(${BUTTON_COLORS[color]}, ${alpha})`};
+  border-style: solid;
   ${({ borderRadius }) =>
     borderRadius &&
     css`
@@ -212,6 +226,16 @@ const MixedButton = styled(ButtonBase)`
       `
     )
   }};
+  ${({ borderColor, borderAlpha = 1 }) =>
+    borderColor &&
+    css`
+      border-color: rgba(${BUTTON_COLORS[borderColor]}, ${borderAlpha});
+    `}
+  ${({ borderWidth }) =>
+    borderWidth &&
+    css`
+      border-width: ${borderWidth}px;
+    `}
 `
 
 class Button extends PureComponent {
@@ -227,6 +251,9 @@ class Button extends PureComponent {
         children,
         fontSize,
         borderRadius,
+        borderWidth,
+        borderColor,
+        borderAlpha,
         ...props
       },
     } = this
@@ -267,10 +294,14 @@ class Button extends PureComponent {
         <MixedButton
           name={mixed}
           bold
+          border
           fontSize={fontSize || size || 'small'}
           textColor={textColor || 'white'}
           textAlpha={textAlpha}
           borderRadius={borderRadius || 21}
+          borderWidth={borderWidth}
+          borderColor={borderColor}
+          borderAlpha={borderAlpha}
           {...props}
         >
           {children}
