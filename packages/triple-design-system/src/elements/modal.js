@@ -71,12 +71,6 @@ export default class Modal extends PureComponent {
     this.updateBodyStyle()
   }
 
-  componentWillUnmount() {
-    document.body.removeEventListener('touchmove', this.preventDefault, {
-      passive: false,
-    })
-  }
-
   componentDidUpdate({ open: prevOpen }) {
     const {
       props: { open },
@@ -98,18 +92,10 @@ export default class Modal extends PureComponent {
 
     if (open && !bodyScrollDisabled) {
       document.body.classList.add('scroll-disabled')
-      document.body.addEventListener('touchmove', this.preventDefault, {
-        passive: false,
-      })
     } else if (!open && bodyScrollDisabled) {
       document.body.classList.remove('scroll-disabled')
-      document.body.removeEventListener('touchmove', this.preventDefault, {
-        passive: false,
-      })
     }
   }
-
-  preventDefault = (e) => e.preventDefault()
 
   render() {
     const {
