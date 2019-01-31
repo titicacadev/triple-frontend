@@ -11,7 +11,6 @@ const SIZES = {
 const BUTTON_COLORS = {
   blue: '54, 143, 255',
   gray: '58, 58, 58',
-  white: '255, 255, 255',
 }
 
 const ButtonBase = styled.a`
