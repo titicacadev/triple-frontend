@@ -288,14 +288,16 @@ const ButtonIcon = styled.span`
         height: ${height}px;
       `
     }}
-    background-size: ${({ size }) => size};
+    background-size: ${({ imageSize }) => css`
+      ${imageSize.width}px ${imageSize.height}px;
+    `};
     background-repeat: no-repeat;
-    margin-top: 1px;
-    ${({ gap }) =>
-      gap &&
-      css`
-        margin-right: ${gap}px;
-      `};
+    ${({ margin }) => css`
+      margin-top: ${margin.top || 0}px;
+      margin-bottom: ${margin.bottom || 0}px;
+      margin-left: ${margin.left || 0}px;
+      margin-right: ${margin.right || 0}px;
+    `}
     content: '';
     vertical-align: middle;
 `
