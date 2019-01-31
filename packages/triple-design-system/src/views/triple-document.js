@@ -6,7 +6,6 @@ import {
   ImageCarouselElementContainer,
   ImageCaption,
   SimpleLink,
-  RegionElement,
 } from '../elements/content-elements'
 import { HR1, HR2, HR3, HR4, HR5, HR6 } from '../elements/hr'
 import Segment from '../elements/segment'
@@ -16,6 +15,7 @@ import Image from '../elements/image'
 import List from '../elements/list'
 import Carousel from '../elements/carousel'
 import { H1, H2, H3, H4, Paragraph } from './text'
+import { RegionListElement } from './region'
 import { PoiListElement, PoiCarouselElement } from './poi'
 import { TnaProductsList } from './tna'
 
@@ -396,7 +396,7 @@ function Regions({ value: { regions }, onResourceClick }) {
   return (
     <ResourceList>
       {regions.map((region, index) => (
-        <RegionElement
+        <RegionListElement
           key={index}
           value={region}
           onClick={onResourceClick && ((e) => onResourceClick(e, region))}
