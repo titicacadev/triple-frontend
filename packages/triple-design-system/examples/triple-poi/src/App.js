@@ -329,7 +329,7 @@ export default class App extends PureComponent {
             <Button icon="share">공유하기</Button>
           </Button.Group>
         </Container>
-        <Button.Label padding={{ top: 20, left: 20 }}>
+        <Container full fullAElement padding={{ top: 20, left: 20 }}>
           <Button basic bold fontSize="small" size="small">
             <Button.Icon
               width={15}
@@ -340,7 +340,7 @@ export default class App extends PureComponent {
             />
             목차
           </Button>
-        </Button.Label>
+        </Container>
 
         <HR1 margin={{ top: 8, left: 30, rigt: 30 }} />
 
