@@ -332,11 +332,11 @@ export default class App extends PureComponent {
         <Button.Label padding={{ top: 20, left: 20 }}>
           <Button basic bold fontSize="small" size="small">
             <Button.Icon
-              width={13}
-              height={10}
-              imageSize={{ width: 13, height: 10 }}
-              margin={{ top: 2, bottom: 3, right: 7 }}
-              url="https://s3-ap-northeast-1.amazonaws.com/triple-web-assets-dev/images/index@3x.png"
+              width={15}
+              height={12}
+              imageSize={{ width: 15, height: 12 }}
+              margin={{ top: 2, bottom: 3, right: 5 }}
+              url="https://s3-ap-northeast-1.amazonaws.com/triple-web-assets-dev/images/index@4x.png"
             />
             목차
           </Button>
