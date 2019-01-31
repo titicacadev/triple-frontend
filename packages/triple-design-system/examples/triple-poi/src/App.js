@@ -336,7 +336,7 @@ export default class App extends PureComponent {
               height={12}
               imageSize={{ width: 15, height: 12 }}
               margin={{ top: 2, bottom: 3, right: 5 }}
-              url="https://s3-ap-northeast-1.amazonaws.com/triple-web-assets-dev/images/index@4x.png"
+              url="https://assets.triple-dev.titicaca-corp.com/images/index@4x.png"
             />
             목차
           </Button>
