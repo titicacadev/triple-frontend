@@ -329,8 +329,8 @@ export default class App extends PureComponent {
             <Button icon="share">공유하기</Button>
           </Button.Group>
         </Container>
-        <Container full fullAElement padding={{ top: 20, left: 20 }}>
-          <Button basic bold fontSize="small" size="small">
+        <Container padding={{ top: 20, left: 20 }}>
+          <Button basic fluid bold fontSize="small" size="small">
             <Button.Icon
               width={15}
               height={12}
