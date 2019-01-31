@@ -279,25 +279,28 @@ const ButtonGroup = styled(Container)`
 
 const ButtonIcon = styled.div`
   display: inline-block;
-    background-image: url(${({ src }) => src});
-    ${({ width, height }) => {
-      return css`
-        width: ${width}px;
-        height: ${height}px;
-      `
-    }}
-    background-size: ${({ imageSize }) => css`
-      ${imageSize.width}px ${imageSize.height}px;
-    `};
-    background-repeat: no-repeat;
-    ${({ margin }) => css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
-    `}
-    content: '';
-    vertical-align: top;
+
+  background-image: url(${({ src }) => src});
+
+  ${({ width }) => css`
+    width: ${width}px;
+  `};
+
+  ${({ height }) => css`
+    height: ${height}px;
+  `};
+
+  background-size: ${({ width }) => width}px ${({ height }) => height}px;
+
+  background-repeat: no-repeat;
+
+  ${({ margin }) => css`
+    margin-top: ${margin.top || 0}px;
+    margin-bottom: ${margin.bottom || 0}px;
+    margin-left: ${margin.left || 0}px;
+    margin-right: ${margin.right || 0}px;
+  `} content: '';
+  vertical-align: top;
 `
 
 Button.Container = ButtonContainer

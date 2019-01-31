@@ -340,7 +340,6 @@ export default class App extends PureComponent {
             <Button.Icon
               width={15}
               height={12}
-              imageSize={{ width: 15, height: 12 }}
               margin={{ top: 2, bottom: 3, right: 5 }}
               src="https://assets.triple-dev.titicaca-corp.com/images/index@4x.png"
             />
