@@ -69,6 +69,12 @@ const TextBase = styled.div`
       display: inline;
     `};
 
+  ${({ inlineBlock }) =>
+    inlineBlock &&
+    css`
+      display: inline-block;
+    `};
+
   ${({ lineHeight }) =>
     lineHeight &&
     css`
