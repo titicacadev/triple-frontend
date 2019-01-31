@@ -329,35 +329,20 @@ export default class App extends PureComponent {
             <Button icon="share">공유하기</Button>
           </Button.Group>
         </Container>
-        <Button.Container>
-          <Button bold mixed="poiSave" gap={5} fontSize="tiny">
-            저장하기
-          </Button>
-        </Button.Container>
-        <Container>
-          <Button bold mixed="poiSave" gap={5} fontSize="tiny">
-            저장하기
-          </Button>
-        </Container>
-        <Container>
-          <Button
-            bold
-            mixed="guidIndex"
-            fluid
-            gap={7}
-            fontSize="large"
-            borderRadius={4}
-            textColor="black"
-            color="white"
-            borderColor="gray"
-            borderAlpha={0.1}
-            borderWidth={1}
-          >
+        <Button.Label padding={{ top: 20, left: 20 }}>
+          <Button basic bold fontSize="small" size="small">
+            <Button.Icon
+              width={13}
+              height={10}
+              imageSize={{ width: 13, height: 10 }}
+              margin={{ top: 2, bottom: 3, right: 7 }}
+              url="https://s3-ap-northeast-1.amazonaws.com/triple-web-assets-dev/images/index@3x.png"
+            />
             목차
           </Button>
-        </Container>
+        </Button.Label>
 
-        <HR1 margin={{ top: 8, left: 30, right: 30 }} />
+        <HR1 margin={{ top: 8, left: 30, rigt: 30 }} />
 
         <Container
           centered
