@@ -35,6 +35,12 @@ const Container = styled.div`
       padding-right: ${padding.right || 0}px;
     `};
 
+  ${({ full }) =>
+    full &&
+    css`
+      width: 100%;
+    `};
+
   ${({ width }) =>
     width &&
     css`
@@ -83,6 +89,14 @@ const Container = styled.div`
     whiteSpace &&
     css`
       white-space: ${whiteSpace};
+    `};
+
+  ${({ fullAElement }) =>
+    fullAElement &&
+    css`
+      a {
+        width: 100%;
+      }
     `};
 `
 
