@@ -302,17 +302,8 @@ const ButtonIcon = styled.div`
     vertical-align: middle;
 `
 
-const ButtonLabel = styled(Container)`
-  width: 100%;
-  text-align: center;
-  a {
-    width: 100%;
-  }
-`
-
 Button.Container = ButtonContainer
 Button.Group = ButtonGroup
 Button.Icon = ButtonIcon
-Button.Label = ButtonLabel
 
 export default Button
