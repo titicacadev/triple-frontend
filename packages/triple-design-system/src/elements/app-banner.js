@@ -41,7 +41,7 @@ const ContentContainer = styled.div`
 const CallToAction = styled.a`
   box-sizing: border-box;
   position: absolute;
-  right: 30px;
+  right: 20px;
   top: 50%;
   margin-top: -15px;
   padding: 9px 15px 8px 15px;
