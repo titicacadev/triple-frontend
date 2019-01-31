@@ -278,7 +278,7 @@ const ButtonGroup = styled(Container)`
   }
 `
 
-const ButtonIcon = styled.span`
+const ButtonIcon = styled.div`
   display: inline-block;
     background-image: url(${({ url }) => url});
     ${({ width, height }) => {
@@ -290,6 +290,7 @@ const ButtonIcon = styled.span`
     background-size: ${({ imageSize }) => css`
       ${imageSize.width}px ${imageSize.height}px;
     `};
+    background-position: center;
     background-repeat: no-repeat;
     ${({ margin }) => css`
       margin-top: ${margin.top || 0}px;
@@ -301,8 +302,17 @@ const ButtonIcon = styled.span`
     vertical-align: middle;
 `
 
+const ButtonLabel = styled(Container)`
+  width: 100%;
+  text-align: center;
+  a {
+    width: 100%;
+  }
+`
+
 Button.Container = ButtonContainer
 Button.Group = ButtonGroup
 Button.Icon = ButtonIcon
+Button.Label = ButtonLabel
 
 export default Button
