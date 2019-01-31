@@ -280,7 +280,7 @@ const ButtonGroup = styled(Container)`
 
 const ButtonIcon = styled.div`
   display: inline-block;
-    background-image: url(${({ url }) => url});
+    background-image: url(${({ src }) => src});
     ${({ width, height }) => {
       return css`
         width: ${width}px;
