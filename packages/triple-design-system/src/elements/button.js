@@ -125,7 +125,7 @@ const BasicButton = styled(ButtonBase)`
 `
 
 const NORMAL_PADDINGS = {
-  overTiny: { top: 11, bottom: 9, left: 13, right: 16 },
+  overTiny: { top: 11, bottom: 9, left: 16, right: 16 },
   tiny: { top: 13, bottom: 13, left: 25, right: 25 },
   small: { top: 14, bottom: 14, left: 25, right: 25 },
 }
