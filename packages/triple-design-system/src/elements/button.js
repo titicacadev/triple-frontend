@@ -290,7 +290,6 @@ const ButtonIcon = styled.div`
     background-size: ${({ imageSize }) => css`
       ${imageSize.width}px ${imageSize.height}px;
     `};
-    background-position: center;
     background-repeat: no-repeat;
     ${({ margin }) => css`
       margin-top: ${margin.top || 0}px;
@@ -299,7 +298,7 @@ const ButtonIcon = styled.div`
       margin-right: ${margin.right || 0}px;
     `}
     content: '';
-    vertical-align: middle;
+    vertical-align: top;
 `
 
 Button.Container = ButtonContainer
