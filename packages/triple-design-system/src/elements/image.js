@@ -110,8 +110,8 @@ const ImageFrameBase = styled.div`
   border-radius: ${({ borderRadius }) =>
     borderRadius === 0 ? 0 : borderRadius || 6}px;
 
-  ${({ placeholder }) =>
-    placeholder
+  ${({ asPlaceholder }) =>
+    asPlaceholder
       ? css`
           background-color: #efefef;
           background-repeat: no-repeat;
