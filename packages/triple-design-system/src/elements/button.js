@@ -94,8 +94,7 @@ const IconButton = styled(ButtonBase)`
 `
 
 const BASIC_PADDINGS = {
-  tiny: { top: 7, bottom: 7, left: 12, right: 12 },
-  small: { top: 8, bottom: 7, left: 15, right: 15 },
+  tiny: { top: 8, bottom: 7, left: 12, right: 12 },
   large: { top: 14, bottom: 14, left: 15, right: 15 },
 }
 
