@@ -10,7 +10,7 @@ export default class App extends PureComponent {
         </div>
 
         <div className="placeholder">
-          <Image placeholder width="200" height="100" />
+          <Image asPlaceholder width="200" height="100" />
         </div>
       </div>
     )
