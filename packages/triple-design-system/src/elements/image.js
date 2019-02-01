@@ -182,7 +182,7 @@ function Image({
   width,
   height,
   margin,
-  placeholder,
+  asPlaceholder,
 }) {
   if (circular) {
     return <RoundImage src={src} floated={floated} size={size} />
@@ -199,7 +199,7 @@ function Image({
             height={height}
             margin={margin}
             borderRadius={borderRadius}
-            placeholder={placeholder}
+            asPlaceholder={asPlaceholder}
           >
             {children}
           </ImageFrameWithFixedDimensions>
@@ -212,7 +212,7 @@ function Image({
             width={width}
             margin={margin}
             borderRadius={borderRadius}
-            placeholder={placeholder}
+            asPlaceholder={asPlaceholder}
           >
             {children}
           </ImageFrameWithFixedRatio>

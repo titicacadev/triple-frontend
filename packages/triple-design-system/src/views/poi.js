@@ -55,7 +55,7 @@ export function PoiCarouselElement({
     return (
       <Carousel.Item size="small" onClick={onClick}>
         <SquareImage
-          placeholder={!image}
+          asPlaceholder={!image}
           src={image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS[type]}
         />
         <Text bold ellipsis alpha={1} margin={{ top: 8 }}>
@@ -200,7 +200,7 @@ class ExtendedPoiListElement extends PureComponent {
           size="small"
           width={90}
           src={image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS[type]}
-          placeholder={!image}
+          asPlaceholder={!image}
           margin={{ left: 20 }}
         />
         <Text bold ellipsis size="large">

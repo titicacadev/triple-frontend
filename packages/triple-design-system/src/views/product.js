@@ -47,7 +47,7 @@ export class ProductListElement extends PureComponent {
           size="small"
           width={90}
           src={image ? image.sizes.large.url : null}
-          placeholder={!image}
+          asPlaceholder={!image}
           margin={{ left: 20 }}
         />
         <Text bold ellipsis size="large">
