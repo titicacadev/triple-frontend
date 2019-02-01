@@ -51,6 +51,24 @@ const TextBase = styled.div`
 
   float: ${({ floated }) => floated || 'none'};
 
+  ${({ lineHeight }) =>
+    lineHeight &&
+    css`
+      line-height: ${lineHeight};
+    `};
+
+  ${({ wordBreak }) =>
+    wordBreak &&
+    css`
+      word-break: ${wordBreak};
+    `};
+
+  ${({ whiteSpace }) =>
+    whiteSpace &&
+    css`
+      white-space: ${whiteSpace};
+    `};
+
   ${({ underline }) =>
     underline &&
     css`
@@ -73,12 +91,6 @@ const TextBase = styled.div`
     inlineBlock &&
     css`
       display: inline-block;
-    `};
-
-  ${({ lineHeight }) =>
-    lineHeight &&
-    css`
-      line-height: ${lineHeight};
     `};
 
   ${({ margin }) =>
@@ -131,18 +143,6 @@ const TextBase = styled.div`
         width: 100%;
         display: block;
       }
-    `};
-
-  ${({ wordBreak }) =>
-    wordBreak &&
-    css`
-      word-break: ${wordBreak};
-    `};
-
-  ${({ whiteSpace }) =>
-    whiteSpace &&
-    css`
-      white-space: ${whiteSpace};
     `};
 `
 
