@@ -330,23 +330,6 @@ export default class App extends PureComponent {
           </Button.Group>
         </Container>
 
-        <Container
-          centered
-          padding={{ top: 20, left: 20, right: 20 }}
-          minWidth={375}
-          maxWidth={600}
-        >
-          <Button basic fluid bold fontSize="small" size="small">
-            <Button.Icon
-              width={15}
-              height={12}
-              margin={{ top: 2, bottom: 3, right: 5 }}
-              src="https://assets.triple-dev.titicaca-corp.com/images/index@4x.png"
-            />
-            목차
-          </Button>
-        </Container>
-
         <HR1 margin={{ top: 8, left: 30, right: 30 }} />
 
         <Container

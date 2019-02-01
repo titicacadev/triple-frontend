@@ -1,7 +1,11 @@
 /* global fetch */
 
 import React, { Component } from 'react'
-import { TripleDocument } from '@titicaca/triple-design-system/src'
+import {
+  TripleDocument,
+  Button,
+  Container,
+} from '@titicaca/triple-design-system/src'
 
 export default class App extends Component {
   state = { content: [], scraps: {} }
@@ -39,6 +43,22 @@ export default class App extends Component {
 
     return (
       <div>
+        <Container
+          centered
+          padding={{ top: 20, left: 20, right: 20 }}
+          minWidth={375}
+          maxWidth={600}
+        >
+          <Button basic fluid bold fontSize="small" size="tiny">
+            <Button.Icon
+              width={15}
+              height={12}
+              margin={{ top: 2, bottom: 3, right: 5 }}
+              src="https://assets.triple-dev.titicaca-corp.com/images/index@4x.png"
+            />
+            목차
+          </Button>
+        </Container>
         <TripleDocument
           resourceScraps={scraps}
           onResourceScrapedChange={this.handleScrapedChange}
