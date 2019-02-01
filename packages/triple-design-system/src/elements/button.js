@@ -299,7 +299,8 @@ const ButtonIcon = styled.div`
     margin-bottom: ${margin.bottom || 0}px;
     margin-left: ${margin.left || 0}px;
     margin-right: ${margin.right || 0}px;
-  `} content: '';
+  `};
+  content: '';
   vertical-align: top;
 `
 
