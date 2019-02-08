@@ -301,7 +301,7 @@ const ButtonIcon = styled.div`
     margin-right: ${margin.right || 0}px;
   `};
   content: '';
-  vertical-align: top;
+  vertical-align: middle;
 `
 
 Button.Container = ButtonContainer
