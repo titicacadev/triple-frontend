@@ -294,14 +294,16 @@ const ButtonIcon = styled.div`
 
   background-repeat: no-repeat;
 
-  ${({ margin }) => css`
-    margin-top: ${margin.top || 0}px;
-    margin-bottom: ${margin.bottom || 0}px;
-    margin-left: ${margin.left || 0}px;
-    margin-right: ${margin.right || 0}px;
-  `};
+  ${({ margin }) =>
+    margin &&
+    css`
+      margin-top: ${margin.top || 0}px;
+      margin-bottom: ${margin.bottom || 0}px;
+      margin-left: ${margin.left || 0}px;
+      margin-right: ${margin.right || 0}px;
+    `};
   content: '';
-  vertical-align: middle;
+  vertical-align: sub;
 `
 
 Button.Container = ButtonContainer

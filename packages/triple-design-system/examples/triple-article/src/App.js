@@ -53,7 +53,7 @@ export default class App extends Component {
             <Button.Icon
               width={15}
               height={12}
-              margin={{ top: 2, bottom: 3, right: 5 }}
+              margin={{ top: 2, bottom: 2, right: 5 }}
               src="https://assets.triple-dev.titicaca-corp.com/images/index@4x.png"
             />
             목차
