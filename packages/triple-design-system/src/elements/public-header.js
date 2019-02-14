@@ -58,6 +58,42 @@ const InventoryContainer = styled.div`
   bottom: 0;
 `
 
+const ExtraActionsContainer = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
+    padding-right: 50px;
+  }
+
+  @media (max-width: ${MAX_PHONE_WIDTH}px) {
+    padding-right: 14px;
+  }
+`
+
+const ExtraActionItem = styled.a`
+  text-decoration: none;
+  font-family: sans-serif;
+  display: inline-block;
+  color: rgba(58, 58, 58, 0.8);
+
+  @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
+    line-height: 80px;
+    font-size: 17px;
+    margin: 0 0 0 34px;
+    height: 80px;
+  }
+
+  @media (max-width: ${MAX_PHONE_WIDTH}px) {
+    line-height: 50px;
+    font-size: 12px;
+    margin: 0 0 0 12px;
+    height: 50px;
+  }
+`
+
 const MarketLinksContainer = styled.div`
   position: absolute;
   top: 50%;
@@ -101,7 +137,11 @@ export default function PublicHeader({
           <MarketLink marketType="appStore" href={appStoreUrl} />
         ) : null}
       </MarketLinksContainer>
-      <InventoryContainer>{children}</InventoryContainer>
+      {children}
     </HeaderFrame>
   )
 }
+
+PublicHeader.InventoryContainer = InventoryContainer
+PublicHeader.ExtraActionsContainer = ExtraActionsContainer
+PublicHeader.ExtraActionItem = ExtraActionItem
