@@ -376,12 +376,12 @@ export default class App extends PureComponent {
                 <Container floated="right" width="60" margin={{ top: 20 }}>
                   <Image src={imageUrl} frame="big" borderRadius={4} />
                 </Container>
-                <List.Content>
+                <Container padding={{ top: 20 }}>
                   <H3 margin={{ top: 20 }}>{title}</H3>
                   <Text size="small" alpha={0.5} margin={{ top: 8 }}>
                     {publisher}
                   </Text>
-                </List.Content>
+                </Container>
               </List.Item>
             ))}
           </List>
