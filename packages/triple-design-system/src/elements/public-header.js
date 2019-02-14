@@ -94,8 +94,12 @@ export default function PublicHeader({
     <HeaderFrame {...props}>
       <Logo href={href || 'https://triple.guide'}>TRIPLE</Logo>
       <MarketLinksContainer>
-        <MarketLink marketType="playStore" href={playStoreUrl} />
-        <MarketLink marketType="appStore" href={appStoreUrl} />
+        {playStoreUrl ? (
+          <MarketLink marketType="playStore" href={playStoreUrl} />
+        ) : null}
+        {appStoreUrl ? (
+          <MarketLink marketType="appStore" href={appStoreUrl} />
+        ) : null}
       </MarketLinksContainer>
       <InventoryContainer>{children}</InventoryContainer>
     </HeaderFrame>
