@@ -1,9 +1,11 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
+const MIN_DESKTOP_WIDTH = 1142
+const MAX_PHONE_WIDTH = 1141
+
 const HeaderFrame = styled.div`
   background-color: #ffffff;
-  height: 80px;
   border-bottom: 1px solid #efefef;
   position: sticky;
   position: -webkit-sticky;
@@ -13,22 +15,40 @@ const HeaderFrame = styled.div`
     css`
       top: 0;
     `};
+
+  @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
+    height: 80px;
+  }
+
+  @media (max-width: ${MAX_PHONE_WIDTH}px) {
+    height: 50px;
+  }
 `
 
 const Logo = styled.a`
   background-repeat: no-repeat;
-  background-size: 68px 24px;
   background-image: url(https://triple.guide/images/img-intro-logo-dark@2x.png);
   text-indent: -9999px;
-  width: 68px;
-  height: 24px;
   margin: 0;
   padding: 0;
   top: 50%;
-  left: 50px;
   margin-top: -12px;
   position: absolute;
   text-decoration: none;
+
+  @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
+    left: 50px;
+    width: 68px;
+    height: 24px;
+    background-size: 68px 24px;
+  }
+
+  @media (max-width: ${MAX_PHONE_WIDTH}px) {
+    left: 14px;
+    width: 56px;
+    height: 18px;
+    background-size: 56px 18px;
+  }
 `
 
 const InventoryContainer = styled.div`
