@@ -292,7 +292,16 @@ export default class App extends PureComponent {
             />
           </Responsive>
           <Responsive inline minWidth={600}>
-            <PublicHeader fixed />
+            <PublicHeader fixed>
+              <PublicHeader.ExtraActionsContainer>
+                <PublicHeader.ExtraActionItem href="/">
+                  Triple Team
+                </PublicHeader.ExtraActionItem>
+                <PublicHeader.ExtraActionItem href="/">
+                  Contact
+                </PublicHeader.ExtraActionItem>
+              </PublicHeader.ExtraActionsContainer>
+            </PublicHeader>
           </Responsive>
         </Fragment>
         <Container
