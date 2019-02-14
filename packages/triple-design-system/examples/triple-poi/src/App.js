@@ -26,6 +26,7 @@ import {
 import sample from './sample.json'
 import humps from 'humps'
 import moment from 'moment-timezone'
+import styled, { css } from 'styled-components'
 import _ from 'lodash'
 
 import '@titicaca/triple-design-system/src/global-style'
@@ -125,45 +126,57 @@ class BusinessHours extends PureComponent {
   }
 }
 
+const InfoContainer = styled.div`
+  white-space: nowrap;
+  * {
+    vertical-align: top;
+    line-height: 1.43;
+  }
+`
+
+const InfoTextContainer = styled.div`
+  display: inline-block;
+  ${({ width }) =>
+    width &&
+    css`
+      width: ${width};
+    `};
+`
+
+function Info({ title, width, children, ...props }) {
+  return (
+    <InfoContainer>
+      <Text inlineBlock whiteSpace="nowrap" bold size="small">
+        {title}
+      </Text>
+      <InfoTextContainer width={width}>
+        <Text
+          margin={{ left: 10, right: 20 }}
+          size="small"
+          alpha={0.7}
+          wordBreak="break-all"
+          whiteSpace="normal"
+          {...props}
+        >
+          {children}
+        </Text>
+      </InfoTextContainer>
+    </InfoContainer>
+  )
+}
+
 function LocationSegment({ address, phone, url }) {
   return (
     <Segment margin={{ top: 10 }}>
       <List verticalGap={10}>
         <List.Item>
-          <List.Content minWidth={35}>
-            <Text whiteSpace="nowrap" bold size="small" margin={{ right: 10 }}>
-              주소
-            </Text>
-          </List.Content>
-          <List.Content>
-            <Text wordBreak="break-all" size="small">
-              {address}
-            </Text>
-          </List.Content>
+          <Info title="주소">{address}</Info>
         </List.Item>
         <List.Item>
-          <List.Content>
-            <Text whiteSpace="nowrap" bold size="small" margin={{ right: 10 }}>
-              전화
-            </Text>
-          </List.Content>
-          <List.Content>
-            <Text wordBreak="break-all" size="small">
-              {phone}
-            </Text>
-          </List.Content>
+          <Info title="전화번호">{phone}</Info>
         </List.Item>
         <List.Item>
-          <List.Content>
-            <Text whiteSpace="nowrap" bold size="small" margin={{ right: 10 }}>
-              홈페이지
-            </Text>
-          </List.Content>
-          <List.Content>
-            <Text wordBreak="break-all" size="small">
-              {url}
-            </Text>
-          </List.Content>
+          <Info title="홈페이지">{url}</Info>
         </List.Item>
       </List>
     </Segment>
