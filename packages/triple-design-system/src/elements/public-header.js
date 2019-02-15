@@ -32,7 +32,6 @@ const Logo = styled.a`
   margin: 0;
   padding: 0;
   top: 50%;
-  margin-top: -12px;
   position: absolute;
   text-decoration: none;
 
@@ -41,6 +40,7 @@ const Logo = styled.a`
     width: 68px;
     height: 24px;
     background-size: 68px 24px;
+    margin-top: -12px;
   }
 
   @media (max-width: ${MAX_PHONE_WIDTH}px) {
@@ -48,6 +48,7 @@ const Logo = styled.a`
     width: 56px;
     height: 18px;
     background-size: 56px 18px;
+    margin-top: -9px;
   }
 `
 
