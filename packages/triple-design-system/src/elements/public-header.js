@@ -89,8 +89,8 @@ const ExtraActionItem = styled.a`
 
   @media (max-width: ${MAX_PHONE_WIDTH}px) {
     line-height: 50px;
-    font-size: 12px;
-    margin: 0 0 0 12px;
+    font-size: 14px;
+    margin: 0 0 0 14px;
     height: 50px;
   }
 `
