@@ -34,10 +34,11 @@ const DayPickerWrapper = styled(Container)`
   .DayPicker_weekHeader_li {
     display: table-cell;
     width: auto !important;
+    font-size: 13px;
   }
 
   .CalendarMonth {
-    padding: 0 !important;
+    padding: 0 10px !important;
   }
 
   .DayPicker_focusRegion {
@@ -65,6 +66,9 @@ const DayPickerWrapper = styled(Container)`
 
   .CalendarDay {
     position: relative;
+    vertical-align: middle;
+    padding: 1px;
+    font-size: 14px;
   }
 
   .CalendarDay__today {
@@ -120,20 +124,28 @@ export default class DayPicker extends PureComponent {
     const { from, to, blockedDates } = this.props
 
     this.state = {
+      date: null,
       from: moment(from).startOf('day'),
       to: moment(to).startOf('day'),
       blockedDates: blockedDates.map((date) => moment(date).startOf('day')),
     }
   }
 
+  handleDateChange = (date) => {
+    this.setState({
+      date,
+    })
+    this.props.onDateChange(date.format('YYYY-MM-DD'))
+  }
+
   render() {
     const {
-      props: { numberOfMonths, date, onDateChange, ...props },
-      state: { from, to, blockedDates },
+      props: { numberOfMonths, onDateChange, ...props },
+      state: { from, to, blockedDates, date },
     } = this
 
     return (
-      <Container padding={{ left: 21, right: 21 }}>
+      <Container padding={{ left: 20, right: 20 }}>
         <Container margin={{ bottom: 10 }}>
           <Text bold inline>
             날짜선택
@@ -146,7 +158,7 @@ export default class DayPicker extends PureComponent {
             initialVisibleMonth={() => from}
             numberOfMonths={numberOfMonths}
             date={date}
-            onDateChange={(date) => onDateChange(date)}
+            onDateChange={this.handleDateChange}
             orientation="verticalScrollable"
             isOutsideRange={(day) =>
               isBlocked({
