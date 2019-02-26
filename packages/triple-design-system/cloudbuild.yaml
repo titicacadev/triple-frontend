@@ -48,7 +48,7 @@ steps:
   ]
 
 substitutions:
-  _SLACK_NOTIFY_CHANNEL: '#distribution-triple'
+  _SLACK_NOTIFY_CHANNEL: '#triple-design-system'
   _SVC_BASENAME: triple-design-system
 
 images:
