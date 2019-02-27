@@ -124,25 +124,18 @@ export default class DayPicker extends PureComponent {
     const { from, to, blockedDates } = this.props
 
     this.state = {
-      date: null,
       from: moment(from).startOf('day'),
       to: moment(to).startOf('day'),
       blockedDates: blockedDates.map((date) => moment(date).startOf('day')),
     }
   }
 
-  handleDateChange = (date) => {
-    this.setState({
-      date,
-    })
-    this.props.onDateChange(date.format('YYYY-MM-DD'))
-  }
-
   render() {
     const {
-      props: { numberOfMonths, onDateChange, ...props },
-      state: { from, to, blockedDates, date },
+      props: { numberOfMonths, onDateChange, date, ...props },
+      state: { from, to, blockedDates },
     } = this
+    const selectedDate = date ? moment(date) : null
 
     return (
       <Container padding={{ left: 20, right: 20 }}>
@@ -150,15 +143,15 @@ export default class DayPicker extends PureComponent {
           <Text bold inline>
             날짜선택
           </Text>
-          {date ? <ScheduleText date={date} /> : null}
+          {selectedDate ? <ScheduleText date={selectedDate} /> : null}
         </Container>
 
         <DayPickerWrapper {...props}>
           <DayPickerSingleDateController
             initialVisibleMonth={() => from}
             numberOfMonths={numberOfMonths}
-            date={date}
-            onDateChange={this.handleDateChange}
+            date={selectedDate}
+            onDateChange={(date) => onDateChange(date.format('YYYY-MM-DD'))}
             orientation="verticalScrollable"
             isOutsideRange={(day) =>
               isBlocked({
