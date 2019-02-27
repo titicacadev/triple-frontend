@@ -87,9 +87,23 @@ const DayPickerWrapper = styled(Container)`
   }
 
   .CalendarDay__selected {
-    border-radius: 100%;
+    z-index: 0;
     color: rgb(255, 255, 255);
+  }
+
+  .CalendarDay__selected:before {
+    z-index: -1;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 100%;
     background-color: rgb(${COLORS.blue});
+    content: '';
   }
 
   .CalendarDay__blocked_out_of_range {
