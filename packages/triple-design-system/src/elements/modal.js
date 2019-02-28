@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Children } from 'react'
 import styled, { css } from 'styled-components'
 
 const Overlay = styled.div`
@@ -32,12 +32,13 @@ const Actions = styled.div`
   border-color: #f5f5f5;
 
   a {
-    ${({ children }) =>
-      css`
-        width: calc(
-          (100% - ${(children.length - 1) * 1}px) / ${children.length}
-        );
-      `};
+    ${({ children }) => {
+      const childrenCount = Children.count(children)
+
+      return css`
+        width: calc((100% - ${childrenCount - 1}px) / ${childrenCount});
+      `
+    }};
 
     padding-left: 0;
     padding-right: 0;
