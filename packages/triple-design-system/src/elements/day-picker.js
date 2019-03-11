@@ -93,7 +93,7 @@ const DayPickerWrapper = styled(Container)`
 
   .CalendarDay__selected:before {
     z-index: -1;
-    display: inline-block;
+    display: block;
     width: 40px;
     height: 40px;
     position: absolute;
