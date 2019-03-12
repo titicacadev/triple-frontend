@@ -309,7 +309,7 @@ const LINK_CONTAINERS = {
 
 function ButtonLink({ children, ...props }) {
   return (
-    <Button bold color="blue" {...props}>
+    <Button bold color="blue" spacing={5} {...props}>
       {children}
     </Button>
   )

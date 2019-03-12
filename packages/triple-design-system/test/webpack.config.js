@@ -29,6 +29,10 @@ module.exports = {
       path.resolve(__dirname, '../src'),
       './src/elements/day-picker',
     ],
+    'document-link-button': [
+      path.resolve(__dirname, '../src'),
+      './src/elements/document-link-button',
+    ],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
