@@ -27,12 +27,12 @@ const twoLinks = [
         {
           href:
             'https://tna-web.dev.triple.zone/regions/23c5965b-01ad-486b-a694-a2ced15f245c/tnas/1f6957a7-ec3c-3dde-b409-757894d697a8',
-          label: '여기서 알아보기',
+          label: '카톡으로  빠르게 초대',
         },
         {
           href:
             'https://tna-web.dev.triple.zone/regions/23c5965b-01ad-486b-a694-a2ced15f245c/tnas/1f6957a7-ec3c-3dde-b409-757894d697a8',
-          label: '여기서 알아보기',
+          label: '초대링크 공유하기',
         },
       ],
     },

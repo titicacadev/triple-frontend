@@ -299,17 +299,36 @@ const LinksContainer = styled.div`
 const ButtonContainer = styled.div`
   padding: ${({ compact }) => (compact ? '12px 0 4px 0' : '50px 30px 0 30px')};
   text-align: center;
+
+  a {
+    margin-top: 5px;
+  }
+
+  a:not(:first-child) {
+    margin-left: 5px;
+  }
+
+  @media (max-width: 360px) {
+    a:not(:first-child) {
+      margin-left: 0;
+    }
+  }
+`
+
+const BlockContainer = styled.div`
+  padding: ${({ compact }) => (compact ? '7px 0 4px 0' : '45px 30px 0 30px')};
+  text-align: center;
 `
 
 const LINK_CONTAINERS = {
   button: ButtonContainer,
-  block: ButtonContainer,
+  block: BlockContainer,
   default: LinksContainer,
 }
 
 function ButtonLink({ children, ...props }) {
   return (
-    <Button bold color="blue" spacing={5} {...props}>
+    <Button bold color="blue" {...props}>
       {children}
     </Button>
   )

@@ -153,14 +153,6 @@ const NormalButton = styled(ButtonBase)`
       padding-right: ${padding.right || 0}px;
     `
   }};
-
-  ${({ spacing }) =>
-    spacing &&
-    css`
-      &:not(:last-child) {
-        margin-right: ${spacing}px;
-      }
-    `};
 `
 
 class Button extends PureComponent {

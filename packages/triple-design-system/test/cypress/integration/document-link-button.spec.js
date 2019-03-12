@@ -8,7 +8,7 @@ describe('Triple Document Link Button spacing', () => {
       .find('a')
       .first()
       .should('have.css', 'margin')
-      .and('eq', '0px')
+      .and('eq', '5px 0px 0px')
   })
 
   it('two buttons should have margins', () => {
@@ -16,12 +16,12 @@ describe('Triple Document Link Button spacing', () => {
       .find('a')
       .first()
       .should('have.css', 'margin')
-      .and('eq', '0px 5px 0px 0px')
+      .and('eq', '5px 0px 0px')
 
     cy.get('#two-button')
       .find('a')
       .last()
       .should('have.css', 'margin')
-      .and('eq', '0px')
+      .and('eq', '5px 0px 0px 5px')
   })
 })
