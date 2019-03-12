@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Children, PureComponent } from 'react'
 import styled, { css } from 'styled-components'
 import Container from './container'
 
@@ -258,12 +258,12 @@ const ButtonGroup = styled(Container)`
       horizontalGap
         ? css`
             width: calc(
-              (100% - ${(children.length - 1) * horizontalGap}px) /
-                ${children.length}
+              (100% - ${(Children.count(children) - 1) * horizontalGap}px) /
+                ${Children.count(children)}
             );
           `
         : css`
-            width: ${100 / children.length}%;
+            width: ${100 / Children.count(children)}%;
           `};
 
     padding-left: 0;
