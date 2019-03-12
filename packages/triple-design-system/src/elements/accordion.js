@@ -2,7 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import Container from './container'
 
-const Accordion = styled.div``
+const Accordion = styled.div`
+  position: relative;
+`
 
 const TITLE_ICONS = {
   folded: 'ico-header-expand-fold@4x.png',
