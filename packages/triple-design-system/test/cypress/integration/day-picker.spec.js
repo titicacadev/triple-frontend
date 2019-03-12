@@ -9,8 +9,8 @@ describe('DayPicker', () => {
       .should('have.class', 'CalendarDay__selected')
 
     cy.get('.CalendarDay__selected')
-      .should('have.css', 'background-color')
-      .and('eq', 'rgb(54, 143, 255)')
+      .should('have.css', 'color')
+      .and('eq', 'rgb(255, 255, 255)')
   })
 
   it('end Day block check (2019-04-29)', () => {

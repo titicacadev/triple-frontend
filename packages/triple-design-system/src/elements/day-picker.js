@@ -162,6 +162,7 @@ export default class DayPicker extends PureComponent {
 
         <DayPickerWrapper {...props}>
           <DayPickerSingleDateController
+            focused={true}
             initialVisibleMonth={() => from}
             numberOfMonths={numberOfMonths}
             date={selectedDate}
