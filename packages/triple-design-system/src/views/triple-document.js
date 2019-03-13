@@ -354,13 +354,13 @@ function Links({ value: { display, links }, onLinkClick, ...props }) {
 
   return (
     <Container {...props}>
-      {links.map(({ label, href }, i) => (
+      {links.map((link, i) => (
         <Element
           key={i}
-          href={href}
-          onClick={onLinkClick && ((e) => onLinkClick(e))}
+          href={link.href}
+          onClick={onLinkClick && ((e) => onLinkClick(e, link))}
         >
-          {label}
+          {link.label}
         </Element>
       ))}
     </Container>
