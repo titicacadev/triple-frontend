@@ -17,6 +17,16 @@ storiesOf('Button', module)
       {text('버튼 레이블', '안녕')}
     </Button>
   ))
+  .add('컴팩트', () => (
+    <Button
+      compact
+      size={select('버튼 크기', ['tiny'], 'tiny')}
+      fontSize={select('폰트 크기', ['tiny', 'small', 'large'], 'tiny')}
+      onClick={action('clicked')}
+    >
+      {text('버튼 레이블', '안녕')}
+    </Button>
+  ))
   .add('일반 (채움형)', () => (
     <Button
       fluid
@@ -83,16 +93,17 @@ storiesOf('Button', module)
       {text('버튼 레이블', '저장하기')}
     </Button>
   ))
-
-storiesOf('Button.Group', module)
-  .addDecorator(withKnobs)
-  .add('일반', () => (
+  .add('버튼 그룹', () => (
     <Button.Group horizontalGap={number('버튼 간격', 10)}>
-      <Button>현지에서 길묻기</Button>
-      <Button>길찾기</Button>
+      <Button basic size="large" fontSize="small">
+        현지에서 길묻기
+      </Button>
+      <Button borderRadius={4} size="small" fontSize="small">
+        길찾기
+      </Button>
     </Button.Group>
   ))
-  .add('아이콘 있는', () => (
+  .add('아이콘 버튼 그룹', () => (
     <Button.Group horizontalGap={number('버튼 간격', 22)}>
       <Button icon="saveEmpty">저장하기</Button>
       <Button icon="schedule">일정추가</Button>
