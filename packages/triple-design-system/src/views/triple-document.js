@@ -56,7 +56,7 @@ const DocumentTnaProducts = ({ onTNAProductClick, value, ...props }) => (
   />
 )
 
-const ELEMENTS = {
+export const ELEMENTS = {
   heading1: Heading(MH1),
   heading2: Heading(MH2),
   heading3: Heading(MH3),
