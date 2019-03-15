@@ -15,12 +15,15 @@ export default class App extends PureComponent {
   render() {
     const { date } = this.state
 
+    const fromDate = new Date()
+    const toDate = new Date(fromDate.getFullYear(), fromDate.getMonth() + 3, 1)
+
     return (
       <div>
         <DayPicker
           date={date}
-          from="2019-01-01"
-          to="2019-03-14"
+          from={fromDate.toISOString().slice(0, 10)}
+          to={toDate.toISOString().slice(0, 10)}
           onDateChange={this.onDateChange}
         />
       </div>

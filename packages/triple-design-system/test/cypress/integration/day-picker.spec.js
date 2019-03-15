@@ -13,19 +13,19 @@ describe('DayPicker', () => {
       .and('eq', 'rgb(255, 255, 255)')
   })
 
-  it('end Day block check (2019-04-29)', () => {
+  it('end Day block check', () => {
     cy.get('.CalendarMonth_table')
       .last()
       .find('.CalendarDay')
-      .contains('30')
+      .contains('28')
       .should('have.class', 'CalendarDay__blocked_out_of_range')
   })
 
-  it('block day active click check (2019-04-29)', () => {
+  it('block day active click check', () => {
     cy.get('.CalendarMonth_table')
       .last()
       .find('.CalendarDay')
-      .contains('30')
+      .contains('28')
       .click()
       .should('have.class', 'CalendarDay__blocked_out_of_range')
   })
