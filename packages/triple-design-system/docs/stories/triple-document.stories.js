@@ -1,6 +1,5 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { withKnobs, select } from '@storybook/addon-knobs'
 
 import { TripleDocument, ELEMENTS } from '@titicaca/triple-design-system'
 
@@ -10,18 +9,13 @@ const {
   heading3: Heading3,
   heading4: Heading4,
   text: Text,
-  images: Images,
   hr1: HR1,
   hr2: HR2,
   hr3: HR3,
   hr4: HR4,
   hr5: HR5,
   hr6: HR6,
-  pois: Pois,
-  links: Links,
-  embedded: Embedded,
   note: Note,
-  regions: Regions,
   video: Video,
 } = ELEMENTS
 
@@ -113,92 +107,20 @@ storiesOf('TripleDocument', module)
       <HR6 />
     </>
   ))
-
-storiesOf('TripleDocument.이미지', module)
-  .addDecorator(withKnobs)
-  .add('1개', () => (
-    <Images
+  .add('노트', () => (
+    <Note
       value={{
-        images: [
-          {
-            id: '07f5ed9c-1102-4ec0-b07c-7b1b098311b2',
-            frame: select(
-              '크기',
-              ['mini', 'small', 'medium', 'large', 'big', 'huge'],
-              'small',
-            ),
-            sizes: {
-              full: {
-                url:
-                  'https://res.cloudinary.com/triple-entry/image/upload/w_2048,h_2048,c_limit,f_auto/07f5ed9c-1102-4ec0-b07c-7b1b098311b2.jpg',
-              },
-              large: {
-                url:
-                  'https://res.cloudinary.com/triple-entry/image/upload/w_1024,h_1024,c_limit,f_auto/07f5ed9c-1102-4ec0-b07c-7b1b098311b2.jpg',
-              },
-              small_square: {
-                url:
-                  'https://res.cloudinary.com/triple-entry/image/upload/w_256,h_256,c_fill,f_auto/07f5ed9c-1102-4ec0-b07c-7b1b098311b2.jpg',
-              },
-            },
-            title: '',
-            width: 1024,
-            height: 1544,
-            description: '',
-          },
-        ],
+        body:
+          '목적지로 바로 가지 않고, 중간 지점에서 잠시 머무는 단기 체류를 뜻한다. 보통 경유 시간인 3-4시간 정도가 아니라 24시간 이상을 뜻하기 때문에 관광과 숙박이 가능한 것이 특징. 일부 항공사는 스탑오버시 무료 관광을 제공하니 참고할것!',
+        title: '잠깐! 스탑오버(Stopover)란?',
       }}
     />
   ))
-  .add('2개', () => (
-    <Images
+  .add('비디오', () => (
+    <Video
       value={{
-        images: [
-          {
-            id: '07f5ed9c-1102-4ec0-b07c-7b1b098311b2',
-            frame: 'small',
-            sizes: {
-              full: {
-                url:
-                  'https://res.cloudinary.com/triple-entry/image/upload/w_2048,h_2048,c_limit,f_auto/07f5ed9c-1102-4ec0-b07c-7b1b098311b2.jpg',
-              },
-              large: {
-                url:
-                  'https://res.cloudinary.com/triple-entry/image/upload/w_1024,h_1024,c_limit,f_auto/07f5ed9c-1102-4ec0-b07c-7b1b098311b2.jpg',
-              },
-              small_square: {
-                url:
-                  'https://res.cloudinary.com/triple-entry/image/upload/w_256,h_256,c_fill,f_auto/07f5ed9c-1102-4ec0-b07c-7b1b098311b2.jpg',
-              },
-            },
-            title: '',
-            width: 1024,
-            height: 1544,
-            description: '',
-          },
-          {
-            id: '9163f25c-edb5-4321-82d8-e28f797908d5',
-            frame: 'small',
-            sizes: {
-              full: {
-                url:
-                  'https://res.cloudinary.com/triple-entry/image/upload/w_2048,h_2048,c_limit,f_auto/9163f25c-edb5-4321-82d8-e28f797908d5.jpg',
-              },
-              large: {
-                url:
-                  'https://res.cloudinary.com/triple-entry/image/upload/w_1024,h_1024,c_limit,f_auto/9163f25c-edb5-4321-82d8-e28f797908d5.jpg',
-              },
-              small_square: {
-                url:
-                  'https://res.cloudinary.com/triple-entry/image/upload/w_256,h_256,c_fill,f_auto/9163f25c-edb5-4321-82d8-e28f797908d5.jpg',
-              },
-            },
-            title: '',
-            width: 1024,
-            height: 1544,
-            description: '',
-          },
-        ],
+        provider: 'youtube',
+        identifier: 'hYIe4VrfHoA',
       }}
     />
   ))
