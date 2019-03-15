@@ -14,6 +14,7 @@ module.exports = {
     carousel: [path.resolve(__dirname, '../src'), './src/elements/carousel'],
     container: [path.resolve(__dirname, '../src'), './src/elements/container'],
     image: [path.resolve(__dirname, '../src'), './src/elements/image'],
+    label: [path.resolve(__dirname, '../src'), './src/elements/label'],
     navbar: [path.resolve(__dirname, '../src'), './src/elements/navbar'],
     'action-sheet': [
       path.resolve(__dirname, '../src'),
