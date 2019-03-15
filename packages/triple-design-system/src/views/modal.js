@@ -81,7 +81,7 @@ export function TransitionModal({
   ) : null
 }
 
-export function BasicModal({
+export function Confirm({
   children,
   open,
   onClose,
