@@ -21,6 +21,22 @@ const ICONS = {
   scrap: 'https://assets.triple.guide/images/img-heart@4x.png',
 }
 
+function Actions({
+  negative: { text: negativeText, onClick: onNegativeClick },
+  positive: { text: positiveText, onClick: onPositiveClick },
+}) {
+  return (
+    <Modal.Actions>
+      <Modal.Action color="gray" onClick={onNegativeClick}>
+        {negativeText}
+      </Modal.Action>
+      <Modal.Action color="blue" onClick={onPositiveClick}>
+        {positiveText}
+      </Modal.Action>
+    </Modal.Actions>
+  )
+}
+
 export function TransitionModal({
   open,
   messageType,
@@ -45,26 +61,63 @@ export function TransitionModal({
         {description}
       </Text>
 
-      <Modal.Actions>
-        <Modal.Action
-          color="gray"
-          onClick={() => {
+      <Actions
+        negative={{
+          text: '취소',
+          onClick: () => {
             onCancel && onCancel()
             onClose && onClose()
-          }}
-        >
-          취소
-        </Modal.Action>
-        <Modal.Action
-          color="blue"
-          onClick={() => {
-            onConfirm && onConfirm()
+          },
+        }}
+        positive={{
+          text: '트리플가기',
+          onClick: () => {
+            onCancel && onConfirm()
             onClose && onClose()
-          }}
-        >
-          트리플가기
-        </Modal.Action>
-      </Modal.Actions>
+          },
+        }}
+      />
     </Modal>
   ) : null
+}
+
+export function BasicModal({
+  children,
+  open,
+  onClose,
+  cancelText,
+  onCancel,
+  confirmText,
+  onConfirm,
+}) {
+  return (
+    <Modal open={open} onClose={onClose}>
+      <Text
+        center
+        size="large"
+        lineHeight={1.38}
+        color="gray"
+        padding={{ top: 40, bottom: 40, left: 30, right: 30 }}
+      >
+        {children}
+      </Text>
+
+      <Actions
+        negative={{
+          text: cancelText || '취소',
+          onClick: () => {
+            onCancel && onCancel()
+            onClose && onClose()
+          },
+        }}
+        positive={{
+          text: confirmText || '확인',
+          onClick: () => {
+            onCancel && onConfirm()
+            onClose && onClose()
+          },
+        }}
+      />
+    </Modal>
+  )
 }
