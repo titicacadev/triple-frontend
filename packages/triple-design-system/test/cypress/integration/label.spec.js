@@ -20,7 +20,7 @@ describe('Label', () => {
       .should('have.css', 'background-image')
       .and(
         'eq',
-        'url("http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/img-search-select-off@4x.png")',
+        'url("https://assets.triple.guide/images/img-search-select-off@4x.png")',
       )
 
     cy.get('@unselectedRadio')
@@ -45,7 +45,7 @@ describe('Label', () => {
       .should('have.css', 'background-image')
       .and(
         'eq',
-        'url("http://triple-web-assets-dev.s3-website-ap-northeast-1.amazonaws.com/images/img-search-select-on@4x.png")',
+        'url("https://assets.triple.guide/images/img-search-select-on@4x.png")',
       )
 
     cy.get('@selectedRadio')
