@@ -2,7 +2,7 @@ import React, { Children } from 'react'
 import Container from '../elements/container'
 import { HR2 } from '../elements/hr'
 
-export default function Section({
+export function Section({
   minWidth,
   maxWidth,
   padding,
