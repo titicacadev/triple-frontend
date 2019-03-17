@@ -75,6 +75,7 @@ typings/
 # Project-specific
 lib
 .DS_Store
+docs/storybook-static
 
 # Ide config file 
 .vscode
