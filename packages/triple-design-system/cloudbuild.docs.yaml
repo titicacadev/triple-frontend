@@ -1,0 +1,26 @@
+steps:
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['install']
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['install']
+  dir: 'docs'
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['run-script', 'build']
+  dir: 'docs'
+## AWS S3 sync
+- name: 'mesosphere/aws-cli'
+  entrypoint: 'sh'
+  args:
+    - '-c'
+    - |
+      aws s3 sync --exclude .git --acl public-read --cache-control max-age=31536000 docs/storybook-static s3://design.triple.systems
+  env:
+    - 'AWS_ACCESS_KEY_ID=AKIAIUP24J62HYKCFQZQ'
+  secretEnv:
+    - 'AWS_SECRET_ACCESS_KEY'
+
+## AWS credentials
+secrets:
+  - kmsKeyName: projects/titicaca-ci/locations/global/keyRings/aws/cryptoKeys/travis_secret_access_key
+    secretEnv:
+      AWS_SECRET_ACCESS_KEY: CiQArwjw2HE8LGUFMmmPxysOe37UXk2qxMUcYHMe3ugYyWpfNQ0SUQAb9IKs7CqeDXJsaRAYbrgs3RFO0pkWw1HlGxzojVjepEN9Iq+M/EVNIiRl5jsO0OQ4LR3YbtWk8jQkPDquMFJrcLxOgW3tMHpp9El1KeT0bA==
