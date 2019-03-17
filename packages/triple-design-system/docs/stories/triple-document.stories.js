@@ -2,6 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 
 import { TripleDocument, ELEMENTS } from '@titicaca/triple-design-system'
+import SAMPLE from './triple-document.sample.json'
 
 const {
   heading1: Heading1,
@@ -18,59 +19,6 @@ const {
   note: Note,
   video: Video,
 } = ELEMENTS
-
-const SAMPLE = [
-  {
-    type: 'text',
-    value: {
-      text:
-        '이민자들이 모여 건설한 곳답게 뉴욕 자체의 역사는 그리 길지 않다. 뉴욕은 짧은 역사를 비웃듯 급속도로 발전했고, 지금도 세계에서 가장 앞서나가는 도시다. 짧지만 알찬 뉴욕의 역사를 간단히 짚어봤다.',
-    },
-  },
-  {
-    type: 'hr1',
-    value: {},
-  },
-  {
-    type: 'heading1',
-    value: {
-      text: '미리 알고 갑시다! 뉴욕 역사 이야기',
-      href: 'miri-algo-gabsida-nyuyog-yeogsa-iyagi',
-    },
-  },
-  {
-    type: 'heading3',
-    value: {
-      text: '뉴욕을 처음 발견한 사람은 누구?',
-    },
-  },
-  {
-    type: 'text',
-    value: {
-      text:
-        '대항해시대 콜럼버스가 신대륙을 발견한 이후 남북 아메리카로의 항로 개척이 불이 붙었다. 카를 5세의 명을 받은 스페인 제독 에스티방 고메스는 1524년, 뉴욕을 처음 방문한다. 이후 네덜란드 동인도 회사의 헨리 허드슨이 지금의 뉴욕을 찾아 항로를 개척했다.',
-    },
-  },
-  {
-    type: 'heading3',
-    value: {
-      text: '인구 절반 이상이 흑인이었다고요?',
-    },
-  },
-  {
-    type: 'text',
-    value: {
-      text:
-        '유럽 대륙의 아프리카 노예 운송 사업 때문에 17세기 후반까지 뉴욕 정착민 가운데 절반 정도가 흑인이었다. 1789년 조지 워싱턴이 미국의 초대 대통령이 된 뒤 1790년까지 뉴욕은 미국의 수도였다. 당시 의회는 17세기 초반, 노예 제도를 폐지했고 흑인들은 비로소 자유를 얻는다.',
-    },
-  },
-  {
-    type: 'heading3',
-    value: {
-      text: '이민자들의 도시, 세계 최고가 되다!',
-    },
-  },
-]
 
 storiesOf('TripleDocument', module)
   .add('샘플', () => <TripleDocument>{SAMPLE}</TripleDocument>)
