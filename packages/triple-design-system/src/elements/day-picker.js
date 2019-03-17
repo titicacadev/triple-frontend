@@ -16,6 +16,7 @@ const COLORS = {
 
 const DayPickerWrapper = styled(Container)`
   border: 1px solid #efefef;
+  font-family: sans-serif;
 
   .DayPicker_weekHeader {
     padding: 15px 0 !important;
