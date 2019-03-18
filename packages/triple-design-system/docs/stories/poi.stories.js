@@ -11,15 +11,7 @@ import POI from './poi.sample.json'
 
 storiesOf('POI', module)
   .addDecorator(withKnobs)
-  .add('일반', () => (
-    <PoiCarouselElement
-      poi={POI}
-      resourceScraps={{
-        [POI.id]: boolean('저장', false),
-      }}
-    />
-  ))
-  .add('리스트', () => (
+  .add('POI 리스트', () => (
     <PoiListElement
       poi={POI}
       resourceScraps={{
@@ -27,7 +19,15 @@ storiesOf('POI', module)
       }}
     />
   ))
-  .add('리스트 (컴팩트)', () => (
+  .add('TripleDocument', () => (
+    <PoiCarouselElement
+      poi={POI}
+      resourceScraps={{
+        [POI.id]: boolean('저장', false),
+      }}
+    />
+  ))
+  .add('TripleDocument 리스트', () => (
     <PoiListElement
       compact
       poi={POI}

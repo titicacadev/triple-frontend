@@ -4,4 +4,4 @@ import { storiesOf } from '@storybook/react'
 
 import { Footer } from '@titicaca/triple-design-system'
 
-storiesOf('Footer', module).add('일반', () => <Footer />)
+storiesOf('Footer', module).add('공통', () => <Footer />)

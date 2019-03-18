@@ -7,7 +7,7 @@ import { withKnobs, text, boolean, select } from '@storybook/addon-knobs'
 
 storiesOf('Navbar', module)
   .addDecorator(withKnobs)
-  .add('좌1+우1', () => (
+  .add('버튼 2개 (좌1+우1)', () => (
     <Navbar
       title={text('제목', '도쿄 관광지')}
       borderless={boolean('Border 생략', true)}
@@ -32,7 +32,7 @@ storiesOf('Navbar', module)
       />
     </Navbar>
   ))
-  .add('좌1+우2', () => (
+  .add('버튼 3개 (좌1+우2)', () => (
     <Navbar
       title={text('제목', '도쿄 관광지')}
       borderless={boolean('Border 생략', true)}
@@ -74,7 +74,7 @@ storiesOf('Navbar', module)
       />
     </Navbar>
   ))
-  .add('일반 + 보조', () => (
+  .add('보조 Navbar (리스트 필터링)', () => (
     <>
       <Navbar title={text('제목', '도쿄 관광지')} borderless>
         <Navbar.Item icon={'back'} />

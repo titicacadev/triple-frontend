@@ -6,7 +6,7 @@ import { AppBanner } from '@titicaca/triple-design-system'
 
 storiesOf('AppBanner', module)
   .addDecorator(withKnobs)
-  .add('일반', () => (
+  .add('공유페이지', () => (
     <AppBanner
       fixed={boolean('상단고정', false)}
       title={text('제목', '트리플 - 해외여행 가이드')}
