@@ -64,17 +64,17 @@ export function TransitionModal({
       <Actions
         negative={{
           text: '취소',
-          onClick: () => {
-            onCancel && onCancel()
-            onClose && onClose()
-          },
+          onClick: () =>
+            onCancel
+              ? !onCancel() && onClose && onClose()
+              : onClose && onClose(),
         }}
         positive={{
           text: '트리플가기',
-          onClick: () => {
-            onCancel && onConfirm()
-            onClose && onClose()
-          },
+          onClick: () =>
+            onConfirm
+              ? !onConfirm() && onClose && onClose()
+              : onClose && onClose(),
         }}
       />
     </Modal>
@@ -105,17 +105,17 @@ export function Confirm({
       <Actions
         negative={{
           text: cancelText || '취소',
-          onClick: () => {
-            onCancel && onCancel()
-            onClose && onClose()
-          },
+          onClick: () =>
+            onCancel
+              ? !onCancel() && onClose && onClose()
+              : onClose && onClose(),
         }}
         positive={{
           text: confirmText || '확인',
-          onClick: () => {
-            onCancel && onConfirm()
-            onClose && onClose()
-          },
+          onClick: () =>
+            onConfirm
+              ? !onConfirm() && onClose && onClose()
+              : onClose && onClose(),
         }}
       />
     </Modal>
