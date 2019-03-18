@@ -1,0 +1,14 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "standard",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "no-unused-vars": ["error", { "ignoreRestSiblings": true }],
+    "react/prop-types": ["off"],
+    "react/no-unused-state": ["error"]
+  }
+}

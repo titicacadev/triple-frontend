@@ -1,0 +1,15 @@
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "targets": {
+          "ie": "11",
+          "ios": "10"
+        }
+      }
+    ],
+    "@babel/react"
+  ],
+  "plugins": ["@babel/plugin-proposal-class-properties"]
+}

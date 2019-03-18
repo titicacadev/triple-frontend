@@ -1,0 +1,48 @@
+{
+  "name": "triple-react-contexts",
+  "version": "0.1.0",
+  "description": "React context modules for triple web applications",
+  "main": "lib/index.js",
+  "files": [
+    "lib/*"
+  ],
+  "scripts": {
+    "prepublishOnly": "babel ./src --out-dir ./lib -s inline",
+    "lint": "eslint . --ignore-pattern lib"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@titicaca/triple-web-to-native-interfaces": "0.0.13",
+    "humps": "^2.0.1",
+    "isomorphic-fetch": "^2.2.1",
+    "query-string": "^6.4.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.15.2",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-standard": "^4.0.0",
+    "prettier": "^1.16.4"
+  },
+  "peerDependencies": {
+    "react": ">=16.3.0"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "always"
+  }
+}
