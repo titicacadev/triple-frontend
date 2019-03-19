@@ -5,7 +5,6 @@ import {
   notifyScraped,
   notifyUnscraped,
 } from '@titicaca/triple-web-to-native-interfaces'
-import { scrape, unscrape } from '../triple-api-client'
 
 const { Provider, Consumer } = createContext()
 
@@ -26,6 +25,7 @@ export class ScrapsProvider extends PureComponent {
 
   scrape = async ({ id, type }) => {
     const {
+      props: { scrape },
       state: { updating },
     } = this
 
@@ -45,6 +45,7 @@ export class ScrapsProvider extends PureComponent {
 
   unscrape = async ({ id, type }) => {
     const {
+      props: { unscrape },
       state: { updating },
     } = this
 

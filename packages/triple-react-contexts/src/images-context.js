@@ -1,5 +1,4 @@
 import React, { createContext, PureComponent } from 'react'
-import { fetchImages } from '../triple-api-client'
 
 const { Provider, Consumer } = createContext()
 
@@ -20,6 +19,7 @@ export class ImagesProvider extends PureComponent {
   sendFetchRequest = async (size = 15) => {
     const {
       props: {
+        fetchImages,
         source: { id, type },
       },
       state: { images },
