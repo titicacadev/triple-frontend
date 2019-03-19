@@ -13,7 +13,7 @@ steps:
   args:
     - '-c'
     - |
-      aws s3 sync --exclude .git --acl public-read max-age=31536000 docs/storybook-static s3://design.triple.systems
+      aws s3 sync --exclude .git --acl public-read docs/storybook-static s3://design.triple.systems
   env:
     - 'AWS_ACCESS_KEY_ID=AKIAIUP24J62HYKCFQZQ'
   secretEnv:
