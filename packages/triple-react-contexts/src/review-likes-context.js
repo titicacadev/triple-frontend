@@ -4,7 +4,6 @@ import {
   notifyReviewLiked,
   notifyReviewUnliked,
 } from '@titicaca/triple-web-to-native-interfaces'
-import { likeReview, unlikeReview } from '../triple-api-client'
 
 const { Provider, Consumer } = createContext()
 
@@ -16,7 +15,7 @@ export class ReviewLikesProvider extends PureComponent {
   }
 
   like = async (contentId, reviewId) => {
-    const response = await likeReview({ id: reviewId })
+    const response = await this.props.likeReview({ id: reviewId })
 
     if (response.ok) {
       notifyReviewLiked(contentId, reviewId)
@@ -26,7 +25,7 @@ export class ReviewLikesProvider extends PureComponent {
   }
 
   unlike = async (contentId, reviewId) => {
-    const response = await unlikeReview({ id: reviewId })
+    const response = await this.props.unlikeReview({ id: reviewId })
 
     if (response.ok) {
       notifyReviewUnliked(contentId, reviewId)

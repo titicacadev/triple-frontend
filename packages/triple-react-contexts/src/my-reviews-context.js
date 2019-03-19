@@ -1,7 +1,6 @@
 import React, { createContext, PureComponent } from 'react'
 import { subscribeReviewUpdateEvent } from '@titicaca/triple-web-to-native-interfaces'
 import humps from 'humps'
-import { fetchMyReview } from '../triple-api-client'
 
 const { Provider, Consumer } = createContext()
 
@@ -14,7 +13,7 @@ export class MyReviewsProvider extends PureComponent {
     }))
 
   handleFetch = async ({ id }) => {
-    const { type } = this.props
+    const { fetchMyReview, type } = this.props
     const response = await fetchMyReview({ id, type })
 
     if (response.ok) {
