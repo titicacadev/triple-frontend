@@ -9,20 +9,7 @@ import {
 
 import POIS from './pois.sample.json'
 
-const { id, type, ...rest } = POIS[0]
-
-const POI = {
-  id,
-  type,
-  source: {
-    id,
-    type,
-    reviewsRating: 3.5,
-    reviewsCount: 10,
-    scrapsCount: 50,
-    ...rest,
-  },
-}
+const [POI] = POIS
 
 storiesOf('POI', module)
   .addDecorator(withKnobs)
