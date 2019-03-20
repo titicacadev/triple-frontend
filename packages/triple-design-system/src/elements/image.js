@@ -200,6 +200,7 @@ function Image({
             margin={margin}
             borderRadius={borderRadius}
             asPlaceholder={asPlaceholder}
+            src={src}
           >
             {children}
           </ImageFrameWithFixedDimensions>
@@ -213,6 +214,7 @@ function Image({
             margin={margin}
             borderRadius={borderRadius}
             asPlaceholder={asPlaceholder}
+            src={src}
           >
             {children}
           </ImageFrameWithFixedRatio>
@@ -220,15 +222,17 @@ function Image({
 
   return (
     <Frame>
-      <ImageFrameContent
-        imageUrl={src}
-        borderRadius={borderRadius}
-        sourceUrl={sourceUrl}
-        ImageSource={ImageSource}
-        overlay={overlay}
-        overlayPadding={overlayPadding}
-        withLinkIndicator={withLinkIndicator}
-      />
+      {asPlaceholder ? null : (
+        <ImageFrameContent
+          imageUrl={src}
+          borderRadius={borderRadius}
+          sourceUrl={sourceUrl}
+          ImageSource={ImageSource}
+          overlay={overlay}
+          overlayPadding={overlayPadding}
+          withLinkIndicator={withLinkIndicator}
+        />
+      )}
     </Frame>
   )
 }
