@@ -17,11 +17,35 @@ storiesOf('TripleDocument.POI', module)
       }}
     />
   ))
+  .add('일반 w/ 이미지 Placeholder', () => (
+    <Pois
+      resourceScraps={{}}
+      value={{
+        pois: POIS.map(({ source: { image, ...source }, ...rest }) => ({
+          source,
+          ...rest,
+        })),
+        display: 'default',
+      }}
+    />
+  ))
   .add('리스트', () => (
     <Pois
       resourceScraps={{}}
       value={{
-        pois: POIS.slice(0, 2),
+        pois: POIS,
+        display: 'list',
+      }}
+    />
+  ))
+  .add('리스트 w/ 이미지 Placeholder', () => (
+    <Pois
+      resourceScraps={{}}
+      value={{
+        pois: POIS.map(({ source: { image, ...source }, ...rest }) => ({
+          source,
+          ...rest,
+        })),
         display: 'list',
       }}
     />
