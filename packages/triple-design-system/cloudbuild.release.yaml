@@ -15,6 +15,6 @@ steps:
   secretEnv: ['NPM_TOKEN']
 
 secrets:
-- kmsKeyName: projects/titicaca-ci/locations/global/keyRings/aws/cryptoKeys/travis_secret_access_key
+- kmsKeyName: projects/titicaca-ci/locations/global/keyRings/npm/cryptoKeys/publish_token
   secretEnv:
-    NPM_TOKEN: CiQArwjw2KoTD/vMepw3iNpQuMVc4DnfhUfU9oGiEHfCl+tnx3oSTQCezYmzcloE/oKQG3jCnd7VEW9PQLHcJ2lrkEvXkKlxaTI7aUWYPAkHNDrQjhO3/MSY+YsvucSyeiZjpqha+tf6TGt6oDbmEcLWoAsA
+    NPM_TOKEN: CiQA4RDOWTcz2ld8l+Hi+PW5GA+fjljAWhRqn8/oedjwj6QQEdYSTQC6A7iWkK11ed6DKaVLLigQ8teK52clDV8zrEG915YJOfukpa+sjEeQMegtm+tE07VMs+ads8wP0K2cbdqJRYhxNQ1Zcry3qjyEVrLi
