@@ -1,18 +1,12 @@
 import React, { createContext, PureComponent } from 'react'
 
-import {
-  subscribeScrapedChangeEvent,
-  notifyScraped,
-  notifyUnscraped,
-} from '@titicaca/triple-web-to-native-interfaces'
-
 const { Provider, Consumer } = createContext()
 
 export class ScrapsProvider extends PureComponent {
   state = { scraps: this.props.scraps || {}, updating: {} }
 
   componentDidMount() {
-    subscribeScrapedChangeEvent(({ scraped, id }) =>
+    this.props.subscribeScrapedChangeEvent(({ scraped, id }) =>
       this.insert({ [id]: scraped }),
     )
   }
@@ -25,7 +19,7 @@ export class ScrapsProvider extends PureComponent {
 
   scrape = async ({ id, type }) => {
     const {
-      props: { scrape },
+      props: { scrape, notifyScraped },
       state: { updating },
     } = this
 
@@ -45,7 +39,7 @@ export class ScrapsProvider extends PureComponent {
 
   unscrape = async ({ id, type }) => {
     const {
-      props: { unscrape },
+      props: { unscrape, notifyUnscraped },
       state: { updating },
     } = this
 

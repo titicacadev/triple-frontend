@@ -1,9 +1,4 @@
 import React, { createContext, PureComponent } from 'react'
-import {
-  subscribeLikedChangeEvent,
-  notifyReviewLiked,
-  notifyReviewUnliked,
-} from '@titicaca/triple-web-to-native-interfaces'
 
 const { Provider, Consumer } = createContext()
 
@@ -11,26 +6,38 @@ export class ReviewLikesProvider extends PureComponent {
   state = { likes: this.props.likes || {} }
 
   componentDidMount() {
-    subscribeLikedChangeEvent(({ id, liked }) => this.insert({ [id]: liked }))
+    this.props.subscribeLikedChangeEvent(({ id, liked }) =>
+      this.insert({ [id]: liked }),
+    )
   }
 
   like = async (contentId, reviewId) => {
-    const response = await this.props.likeReview({ id: reviewId })
+    const {
+      props: { likeReview, notifyReviewLiked },
+      state: { likes },
+    } = this
+
+    const response = await likeReview({ id: reviewId })
 
     if (response.ok) {
       notifyReviewLiked(contentId, reviewId)
 
-      this.setState({ likes: { ...this.state.likes, [reviewId]: true } })
+      this.setState({ likes: { ...likes, [reviewId]: true } })
     }
   }
 
   unlike = async (contentId, reviewId) => {
-    const response = await this.props.unlikeReview({ id: reviewId })
+    const {
+      props: { unlikeReview, notifyReviewUnliked },
+      state: { likes },
+    } = this
+
+    const response = await unlikeReview({ id: reviewId })
 
     if (response.ok) {
       notifyReviewUnliked(contentId, reviewId)
 
-      this.setState({ likes: { ...this.state.likes, [reviewId]: false } })
+      this.setState({ likes: { ...likes, [reviewId]: false } })
     }
   }
 

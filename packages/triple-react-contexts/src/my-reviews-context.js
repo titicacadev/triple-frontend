@@ -1,5 +1,4 @@
 import React, { createContext, PureComponent } from 'react'
-import { subscribeReviewUpdateEvent } from '@titicaca/triple-web-to-native-interfaces'
 import humps from 'humps'
 
 const { Provider, Consumer } = createContext()
@@ -57,7 +56,7 @@ export class MyReviewsProvider extends PureComponent {
   }
 
   componentDidMount() {
-    subscribeReviewUpdateEvent(this.handleFetch)
+    this.props.subscribeReviewUpdateEvent(this.handleFetch)
   }
 
   render() {
