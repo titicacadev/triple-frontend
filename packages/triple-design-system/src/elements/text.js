@@ -7,6 +7,7 @@ const SIZES = {
   small: '14px',
   medium: '15px',
   large: '16px',
+  larger: '18px',
   big: '19px',
   huge: '21px',
   massive: '24px',
