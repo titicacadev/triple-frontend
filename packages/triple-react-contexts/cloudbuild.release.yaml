@@ -1,8 +1,8 @@
 steps:
   - name: 'gcr.io/cloud-builders/npm'
-    args: ['install']
+    args: ['ci']
   - name: 'gcr.io/cloud-builders/npm'
-    args: ['run-script', 'build']
+    args: ['run', 'build']
   - name: 'gcr.io/cloud-builders/npm'
     entrypoint: 'bash'
     args:
