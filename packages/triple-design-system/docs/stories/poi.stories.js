@@ -7,7 +7,22 @@ import {
   PoiListElement,
 } from '@titicaca/triple-design-system'
 
-import POI from './poi.sample.json'
+import POIS from './pois.sample.json'
+
+const { id, type, ...rest } = POIS[0]
+
+const POI = {
+  id,
+  type,
+  source: {
+    id,
+    type,
+    reviewsRating: 3.5,
+    reviewsCount: 10,
+    scrapsCount: 50,
+    ...rest,
+  },
+}
 
 storiesOf('POI', module)
   .addDecorator(withKnobs)

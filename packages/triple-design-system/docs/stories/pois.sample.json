@@ -1,0 +1,761 @@
+[
+  {
+    "id": "f72d2f50-2efb-4469-a903-47ad6b0c0740",
+    "source": {
+      "image": {
+        "sourceUrl": "http://www.our-thailand-vacations.com/reclining-buddha-bangkok.html",
+        "sizes": {
+          "large": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/large/f9ff3ed6-990e-4270-a810-d9409befa31f.jpg"
+          },
+          "small_square": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/small_square/f9ff3ed6-990e-4270-a810-d9409befa31f.jpg"
+          },
+          "full": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/full/f9ff3ed6-990e-4270-a810-d9409befa31f.jpg"
+          }
+        },
+        "description": null,
+        "id": "f9ff3ed6-990e-4270-a810-d9409befa31f",
+        "title": null
+      },
+      "scrapsCount": 4,
+      "areas": [
+        {
+          "name": "올드시티"
+        }
+      ],
+      "reviewsCount": 6,
+      "hasTnaProducts": false,
+      "type": "attraction",
+      "pointGeolocation": {
+        "coordinates": [
+          100.493298,
+          13.746523
+        ],
+        "type": "Point"
+      },
+      "names": {
+        "ko": "왓 포 사원",
+        "en": "Temple of the Reclining Buddha (Wat Pho)",
+        "local": "วัดโพธิ์"
+      },
+      "regionId": "edf1982d-c835-43a7-b06b-af43acbb6f38",
+      "grade": 10,
+      "comment": "아유타야 양식으로 지어진 방콕 최대 규모의 유서깊은 사원",
+      "location": [
+        100.493298,
+        13.746523
+      ],
+      "categories": [
+        {
+          "name": "관광명소"
+        }
+      ],
+      "id": "f72d2f50-2efb-4469-a903-47ad6b0c0740"
+    },
+    "type": "attraction",
+    "reviewed": false,
+    "scraped": false
+  },
+  {
+    "id": "0b436475-eead-4a82-8486-5b1c659c90ba",
+    "source": {
+      "image": {
+        "sourceUrl": null,
+        "sizes": {
+          "large": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/large/d9705590-7480-4ed5-adee-34c01463d1d2.jpg"
+          },
+          "small_square": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/small_square/d9705590-7480-4ed5-adee-34c01463d1d2.jpg"
+          },
+          "full": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/full/d9705590-7480-4ed5-adee-34c01463d1d2.jpg"
+          }
+        },
+        "description": null,
+        "id": "d9705590-7480-4ed5-adee-34c01463d1d2",
+        "title": null
+      },
+      "scrapsCount": "19",
+      "areas": [
+        {
+          "name": "셩완, 센트럴, 빅토리아피크"
+        }
+      ],
+      "reviewsCount": "12",
+      "hasTnaProducts": false,
+      "type": "attraction",
+      "pointGeolocation": {
+        "coordinates": [
+          114.145457,
+          22.275908
+        ],
+        "type": "Point"
+      },
+      "reviewsRating": "4.5",
+      "names": {
+        "ko": "빅토리아 피크",
+        "en": "Victoria Peak (The Peak)",
+        "local": "太平山山頂"
+      },
+      "regionId": "84685a5a-a0ee-47b5-b84c-4d76dffad76d",
+      "grade": 10,
+      "comment": "파노라마 뷰로 즐기는 홍콩 야경의 하이라이트",
+      "location": [
+        114.145457,
+        22.275908
+      ],
+      "categories": [
+        {
+          "name": "관광명소"
+        }
+      ],
+      "id": "0b436475-eead-4a82-8486-5b1c659c90ba"
+    },
+    "type": "attraction",
+    "reviewed": false,
+    "scraped": false
+  },
+  {
+    "id": "3d32908d-72e3-4db1-8376-dc707c3d5112",
+    "source": {
+      "image": {
+        "sourceUrl": "http://kindcandy.blog.me/220863061922",
+        "sizes": {
+          "large": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/large/1a89e821-c22e-4ba5-ae02-b3e2059f1b67.jpg"
+          },
+          "small_square": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/small_square/1a89e821-c22e-4ba5-ae02-b3e2059f1b67.jpg"
+          },
+          "full": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/full/1a89e821-c22e-4ba5-ae02-b3e2059f1b67.jpg"
+          }
+        },
+        "description": null,
+        "id": "1a89e821-c22e-4ba5-ae02-b3e2059f1b67",
+        "title": null
+      },
+      "names": {
+        "ko": "카오산 로드",
+        "en": "Khao San Road",
+        "local": "ถนนข้าวสาร"
+      },
+      "regionId": "edf1982d-c835-43a7-b06b-af43acbb6f38",
+      "grade": 10,
+      "areas": [
+        {
+          "name": "올드시티"
+        }
+      ],
+      "comment": "방콕  배낭 여행의 중심지",
+      "location": [
+        100.497176,
+        13.758948
+      ],
+      "categories": [
+        {
+          "name": "관광명소"
+        }
+      ],
+      "id": "3d32908d-72e3-4db1-8376-dc707c3d5112",
+      "hasTnaProducts": false,
+      "type": "attraction",
+      "pointGeolocation": {
+        "coordinates": [
+          100.497176,
+          13.758948
+        ],
+        "type": "Point"
+      }
+    },
+    "type": "attraction",
+    "reviewed": false,
+    "scraped": false
+  },
+  {
+    "id": "6ca7e0ad-acec-4d32-9107-b77f2516681e",
+    "source": {
+      "image": {
+        "sourceUrl": "http://www.laservision.com.au/portfolio/symphony-of-lights/",
+        "sizes": {
+          "large": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/large/85eb8700-d8a4-4a0b-a7ef-a78ec5104269.jpg"
+          },
+          "small_square": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/small_square/85eb8700-d8a4-4a0b-a7ef-a78ec5104269.jpg"
+          },
+          "full": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/full/85eb8700-d8a4-4a0b-a7ef-a78ec5104269.jpg"
+          }
+        },
+        "description": null,
+        "id": "85eb8700-d8a4-4a0b-a7ef-a78ec5104269",
+        "title": null
+      },
+      "scrapsCount": "9",
+      "areas": [
+        {
+          "name": "침사추이"
+        }
+      ],
+      "reviewsCount": "6",
+      "hasTnaProducts": false,
+      "type": "attraction",
+      "pointGeolocation": {
+        "coordinates": [
+          114.174771,
+          22.293186
+        ],
+        "type": "Point"
+      },
+      "reviewsRating": "4.333333333333333",
+      "names": {
+        "ko": "심포니 오브 라이트",
+        "en": "Symphony of Lights",
+        "local": "幻彩詠香江燈光錶演"
+      },
+      "regionId": "84685a5a-a0ee-47b5-b84c-4d76dffad76d",
+      "grade": 10,
+      "comment": "매일 밤 8시에 펼쳐지는 환상의 레이저 쇼",
+      "location": [
+        114.174771,
+        22.293186
+      ],
+      "categories": [
+        {
+          "name": "테마/체험"
+        }
+      ],
+      "id": "6ca7e0ad-acec-4d32-9107-b77f2516681e"
+    },
+    "type": "attraction",
+    "reviewed": false,
+    "scraped": false
+  },
+  {
+    "id": "fe700d6a-2066-4c31-ab64-75da86acb756",
+    "source": {
+      "image": {
+        "sourceUrl": "http://www.lifebeyondtourism.org/puntointeresse/2285/Wat-Arun-",
+        "sizes": {
+          "large": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/large/65fcb462-bfdf-447b-a815-21d4f34bff5d.jpg"
+          },
+          "small_square": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/small_square/65fcb462-bfdf-447b-a815-21d4f34bff5d.jpg"
+          },
+          "full": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/full/65fcb462-bfdf-447b-a815-21d4f34bff5d.jpg"
+          }
+        },
+        "description": null,
+        "id": "65fcb462-bfdf-447b-a815-21d4f34bff5d",
+        "title": null
+      },
+      "names": {
+        "ko": "왓 아룬",
+        "en": "Temple of Dawn (Wat Arun)",
+        "local": "วัดอรุณ"
+      },
+      "regionId": "edf1982d-c835-43a7-b06b-af43acbb6f38",
+      "grade": 10,
+      "areas": [
+        {
+          "name": "올드시티"
+        }
+      ],
+      "comment": "방콕의 새벽을 밝히는 사원",
+      "location": [
+        100.489006,
+        13.743707
+      ],
+      "categories": [
+        {
+          "name": "관광명소"
+        }
+      ],
+      "id": "fe700d6a-2066-4c31-ab64-75da86acb756",
+      "hasTnaProducts": true,
+      "type": "attraction",
+      "pointGeolocation": {
+        "coordinates": [
+          100.489006,
+          13.743707
+        ],
+        "type": "Point"
+      }
+    },
+    "type": "attraction",
+    "reviewed": false,
+    "scraped": false
+  },
+  {
+    "id": "9a21b2ac-cc5f-48c0-bd62-58f88b577a14",
+    "source": {
+      "image": {
+        "sourceUrl": "http://blog.naver.com/lioooolioooo/220812572460 ",
+        "sizes": {
+          "large": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/large/56b8ace0-a8ef-46c8-8cf8-3ea5f80f7903.jpg"
+          },
+          "small_square": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/small_square/56b8ace0-a8ef-46c8-8cf8-3ea5f80f7903.jpg"
+          },
+          "full": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/full/56b8ace0-a8ef-46c8-8cf8-3ea5f80f7903.jpg"
+          }
+        },
+        "description": null,
+        "id": "56b8ace0-a8ef-46c8-8cf8-3ea5f80f7903",
+        "title": null
+      },
+      "scrapsCount": "7",
+      "areas": [
+        {
+          "name": "셩완, 센트럴, 빅토리아피크"
+        }
+      ],
+      "reviewsCount": "7",
+      "hasTnaProducts": true,
+      "type": "attraction",
+      "pointGeolocation": {
+        "coordinates": [
+          114.152844,
+          22.281572
+        ],
+        "type": "Point"
+      },
+      "reviewsRating": "4.571428571428571",
+      "names": {
+        "ko": "소호",
+        "en": "Soho Test",
+        "local": "蘇豪區"
+      },
+      "regionId": "84685a5a-a0ee-47b5-b84c-4d76dffad76d",
+      "grade": 10,
+      "comment": "홍콩 제일의 트렌디한 거리에서 즐기는 낮과 밤",
+      "location": [
+        114.152844,
+        22.281572
+      ],
+      "categories": [
+        {
+          "name": "관광명소"
+        }
+      ],
+      "id": "9a21b2ac-cc5f-48c0-bd62-58f88b577a14"
+    },
+    "type": "attraction",
+    "reviewed": false,
+    "scraped": false
+  },
+  {
+    "id": "cd9b3a6e-7034-4d8d-9005-dfb1b1accbcd",
+    "source": {
+      "image": {
+        "sourceUrl": "http://blog.naver.com/yeontech/220815008594",
+        "sizes": {
+          "large": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/large/54e4fbf9-239f-4294-bfba-cb72003397a2.jpg"
+          },
+          "small_square": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/small_square/54e4fbf9-239f-4294-bfba-cb72003397a2.jpg"
+          },
+          "full": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/full/54e4fbf9-239f-4294-bfba-cb72003397a2.jpg"
+          }
+        },
+        "description": null,
+        "id": "54e4fbf9-239f-4294-bfba-cb72003397a2",
+        "title": null
+      },
+      "scrapsCount": "2",
+      "areas": [
+        {
+          "name": "올드시티"
+        }
+      ],
+      "reviewsCount": "5",
+      "hasTnaProducts": false,
+      "type": "attraction",
+      "pointGeolocation": {
+        "coordinates": [
+          100.491253,
+          13.749977
+        ],
+        "type": "Point"
+      },
+      "reviewsRating": "3.4",
+      "names": {
+        "ko": "왕궁",
+        "en": "The Grand Palace",
+        "local": "พระบรมมหาราชวัง"
+      },
+      "regionId": "edf1982d-c835-43a7-b06b-af43acbb6f38",
+      "grade": 10,
+      "comment": "230년 짜끄리 왕조과 함께 해온 방콕의 대표 명소",
+      "location": [
+        100.491253,
+        13.749977
+      ],
+      "categories": [
+        {
+          "name": "관광명소"
+        }
+      ],
+      "id": "cd9b3a6e-7034-4d8d-9005-dfb1b1accbcd"
+    },
+    "type": "attraction",
+    "reviewed": false,
+    "scraped": false
+  },
+  {
+    "id": "c95c117f-f1ee-4261-badd-2ea8e32e088f",
+    "source": {
+      "image": {
+        "sourceUrl": "http://blog.naver.com/qkrtmdqja/220762393209",
+        "sizes": {
+          "large": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/large/0c784694-59a4-4b3b-9a01-e0cbd3090a4e.jpg"
+          },
+          "small_square": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/small_square/0c784694-59a4-4b3b-9a01-e0cbd3090a4e.jpg"
+          },
+          "full": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/full/0c784694-59a4-4b3b-9a01-e0cbd3090a4e.jpg"
+          }
+        },
+        "description": null,
+        "id": "0c784694-59a4-4b3b-9a01-e0cbd3090a4e",
+        "title": null
+      },
+      "names": {
+        "ko": "짜뚜짝 주말시장",
+        "en": "Chatuchak Weekend Market",
+        "local": null
+      },
+      "regionId": "edf1982d-c835-43a7-b06b-af43acbb6f38",
+      "grade": 10,
+      "comment": "보는 재미, 먹는 재미로 활기찬 주말시장",
+      "location": [
+        100.550899,
+        13.799974
+      ],
+      "categories": [
+        {
+          "name": "쇼핑"
+        }
+      ],
+      "id": "c95c117f-f1ee-4261-badd-2ea8e32e088f",
+      "hasTnaProducts": false,
+      "type": "attraction",
+      "pointGeolocation": {
+        "coordinates": [
+          100.550899,
+          13.799974
+        ],
+        "type": "Point"
+      }
+    },
+    "type": "attraction",
+    "reviewed": false,
+    "scraped": false
+  },
+  {
+    "id": "ffec5c01-ad40-4817-8732-5e11e1216f34",
+    "source": {
+      "image": {
+        "sourceUrl": "https://utrip.com/plan-travel/china/hong-kong/hong-kong-lan-kwai-fong/",
+        "sizes": {
+          "large": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/large/cb3b1eb2-ca99-418d-a2ad-6cf19fdee88b.jpg"
+          },
+          "small_square": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/small_square/cb3b1eb2-ca99-418d-a2ad-6cf19fdee88b.jpg"
+          },
+          "full": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/full/cb3b1eb2-ca99-418d-a2ad-6cf19fdee88b.jpg"
+          }
+        },
+        "description": null,
+        "id": "cb3b1eb2-ca99-418d-a2ad-6cf19fdee88b",
+        "title": null
+      },
+      "scrapsCount": "3",
+      "areas": [
+        {
+          "name": "셩완, 센트럴, 빅토리아피크"
+        }
+      ],
+      "reviewsCount": "6",
+      "hasTnaProducts": false,
+      "type": "attraction",
+      "pointGeolocation": {
+        "coordinates": [
+          114.15567,
+          22.280837
+        ],
+        "type": "Point"
+      },
+      "reviewsRating": "4.5",
+      "names": {
+        "ko": "란콰이퐁",
+        "en": "Lan Kwai Fong",
+        "local": "蘭桂坊"
+      },
+      "regionId": "84685a5a-a0ee-47b5-b84c-4d76dffad76d",
+      "grade": 10,
+      "comment": "핫한 나이트 라이프로 유명한 거리",
+      "location": [
+        114.15567,
+        22.280837
+      ],
+      "categories": [
+        {
+          "name": "관광명소"
+        }
+      ],
+      "id": "ffec5c01-ad40-4817-8732-5e11e1216f34"
+    },
+    "type": "attraction",
+    "reviewed": false,
+    "scraped": false
+  },
+  {
+    "id": "a8f8d4e5-c4b0-4d00-829a-db4378a51e1d",
+    "source": {
+      "image": {
+        "sourceUrl": "http://blog.naver.com/superkbh/220957368617",
+        "sizes": {
+          "large": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/large/02e405f4-e2a9-40cc-934b-0751e3e640c5.jpg"
+          },
+          "small_square": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/small_square/02e405f4-e2a9-40cc-934b-0751e3e640c5.jpg"
+          },
+          "full": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/full/02e405f4-e2a9-40cc-934b-0751e3e640c5.jpg"
+          }
+        },
+        "description": null,
+        "id": "02e405f4-e2a9-40cc-934b-0751e3e640c5",
+        "title": null
+      },
+      "names": {
+        "ko": "씨암 스퀘어",
+        "en": "Siam Square",
+        "local": "สยามสแควร์"
+      },
+      "regionId": "edf1982d-c835-43a7-b06b-af43acbb6f38",
+      "grade": 10,
+      "areas": [
+        {
+          "name": "씨암, 칫롬"
+        }
+      ],
+      "comment": "방콕 유행을 선도하는 핫플레이스",
+      "location": [
+        100.53433877546308,
+        13.745084118890189
+      ],
+      "categories": [
+        {
+          "name": "쇼핑"
+        }
+      ],
+      "id": "a8f8d4e5-c4b0-4d00-829a-db4378a51e1d",
+      "hasTnaProducts": false,
+      "type": "attraction",
+      "pointGeolocation": {
+        "coordinates": [
+          100.53433877546308,
+          13.745084118890189
+        ],
+        "type": "Point"
+      }
+    },
+    "type": "attraction",
+    "reviewed": false,
+    "scraped": false
+  },
+  {
+    "id": "07f9a261-d3c3-43a6-b014-f057b59ec879",
+    "source": {
+      "image": {
+        "sourceUrl": "http://www.camemberu.com/2013/06/hong-kong-disneyland-park-attractions.html",
+        "sizes": {
+          "large": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/large/95cb40a3-78c3-430b-8d04-894ecbbb2a89.jpg"
+          },
+          "small_square": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/small_square/95cb40a3-78c3-430b-8d04-894ecbbb2a89.jpg"
+          },
+          "full": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/full/95cb40a3-78c3-430b-8d04-894ecbbb2a89.jpg"
+          }
+        },
+        "description": null,
+        "id": "95cb40a3-78c3-430b-8d04-894ecbbb2a89",
+        "title": null
+      },
+      "scrapsCount": "7",
+      "areas": [
+        {
+          "name": "란타우섬"
+        }
+      ],
+      "reviewsCount": "7",
+      "hasTnaProducts": true,
+      "type": "attraction",
+      "pointGeolocation": {
+        "coordinates": [
+          114.041281,
+          22.312962
+        ],
+        "type": "Point"
+      },
+      "reviewsRating": "4.571428571428571",
+      "names": {
+        "ko": "홍콩 디즈니랜드",
+        "en": "Hong Kong Disneyland",
+        "local": "香港迪士尼樂園"
+      },
+      "regionId": "84685a5a-a0ee-47b5-b84c-4d76dffad76d",
+      "grade": 10,
+      "comment": "홍콩 여행에서 빼 놓을 수 없는 테마파크",
+      "location": [
+        114.041281,
+        22.312962
+      ],
+      "categories": [
+        {
+          "name": "테마/체험"
+        }
+      ],
+      "id": "07f9a261-d3c3-43a6-b014-f057b59ec879"
+    },
+    "type": "attraction",
+    "reviewed": false,
+    "scraped": false
+  },
+  {
+    "id": "e43610f5-2345-4a48-a905-1eb5f66892ef",
+    "source": {
+      "image": {
+        "sourceUrl": "http://vietravelasia.com/en/news/top-5-things-to-do-in-bangkok-292.html",
+        "sizes": {
+          "large": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/large/f7ba0e55-5c7b-479f-a44b-acb3396311cc.jpg"
+          },
+          "small_square": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/small_square/f7ba0e55-5c7b-479f-a44b-acb3396311cc.jpg"
+          },
+          "full": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/full/f7ba0e55-5c7b-479f-a44b-acb3396311cc.jpg"
+          }
+        },
+        "description": null,
+        "id": "f7ba0e55-5c7b-479f-a44b-acb3396311cc",
+        "title": null
+      },
+      "names": {
+        "ko": "짐 톰슨 하우스",
+        "en": "The Jim Thompson House",
+        "local": "บ้านจิมทอมป์สัน"
+      },
+      "regionId": "edf1982d-c835-43a7-b06b-af43acbb6f38",
+      "grade": 10,
+      "areas": [
+        {
+          "name": "씨암, 칫롬"
+        }
+      ],
+      "comment": "태국 최고의 실크 브랜드를 만든 짐 톰슨의 집",
+      "location": [
+        100.528324,
+        13.749251
+      ],
+      "categories": [
+        {
+          "name": "관광명소"
+        }
+      ],
+      "id": "e43610f5-2345-4a48-a905-1eb5f66892ef",
+      "hasTnaProducts": false,
+      "type": "attraction",
+      "pointGeolocation": {
+        "coordinates": [
+          100.528324,
+          13.749251
+        ],
+        "type": "Point"
+      }
+    },
+    "type": "attraction",
+    "reviewed": false,
+    "scraped": false
+  },
+  {
+    "id": "d6269a4c-c7cd-4786-89d3-756e9ae76d7c",
+    "source": {
+      "image": {
+        "sourceUrl": "http://cafe.naver.com/hkmyhome/19590",
+        "sizes": {
+          "large": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/large/635446f3-235f-4e06-b504-b8db1244918a.jpg"
+          },
+          "small_square": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/small_square/635446f3-235f-4e06-b504-b8db1244918a.jpg"
+          },
+          "full": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/full/635446f3-235f-4e06-b504-b8db1244918a.jpg"
+          }
+        },
+        "description": null,
+        "id": "635446f3-235f-4e06-b504-b8db1244918a",
+        "title": null
+      },
+      "scrapsCount": "4",
+      "areas": [
+        {
+          "name": "셩완, 센트럴, 빅토리아피크"
+        }
+      ],
+      "reviewsCount": "4",
+      "hasTnaProducts": false,
+      "type": "attraction",
+      "pointGeolocation": {
+        "coordinates": [
+          114.158127,
+          22.285878
+        ],
+        "type": "Point"
+      },
+      "reviewsRating": "4.0",
+      "names": {
+        "ko": "IFC 몰",
+        "en": "IFC mall",
+        "local": "國際金融中心商場"
+      },
+      "regionId": "84685a5a-a0ee-47b5-b84c-4d76dffad76d",
+      "grade": 10,
+      "comment": "홍콩의 중심에서 홍콩의 모든것을 즐길 수 있는 쇼핑몰",
+      "location": [
+        114.158127,
+        22.285878
+      ],
+      "categories": [
+        {
+          "name": "쇼핑"
+        }
+      ],
+      "id": "d6269a4c-c7cd-4786-89d3-756e9ae76d7c"
+    },
+    "type": "attraction",
+    "reviewed": false,
+    "scraped": false
+  }
+]
