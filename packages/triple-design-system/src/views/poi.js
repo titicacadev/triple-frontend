@@ -54,7 +54,8 @@ export function PoiCarouselElement({
 
     return (
       <Carousel.Item size="small" onClick={onClick}>
-        <SquareImage
+        <Image
+          frame="large"
           asPlaceholder={!image}
           src={image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS[type]}
         />
