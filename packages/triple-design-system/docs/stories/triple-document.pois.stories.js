@@ -30,7 +30,7 @@ storiesOf('TripleDocument.POI', module)
     <Pois
       resourceScraps={{}}
       value={{
-        pois: POIS.slice(2, 3),
+        pois: [HOTEL],
         display: 'list',
       }}
     />
