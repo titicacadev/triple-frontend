@@ -34,6 +34,7 @@ export const ImageCaption = styled.div`
   font-weight: 500;
   text-align: center;
   color: rgba(58, 58, 58, 0.7);
+  white-space: pre-wrap;
 `
 
 export const ResourceListItem = styled(List.Item)`
