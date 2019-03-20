@@ -13,7 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@titicaca/triple-web-to-native-interfaces": "0.0.13",
     "humps": "^2.0.1",
     "query-string": "^6.4.0"
   },

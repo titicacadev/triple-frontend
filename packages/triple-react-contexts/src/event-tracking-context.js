@@ -1,9 +1,4 @@
 import React, { PureComponent, createContext } from 'react'
-import {
-  trackEvent as nativeTrackEvent,
-  trackScreen as nativeTraskScreen,
-  viewItem,
-} from '@titicaca/triple-web-to-native-interfaces'
 
 const EventTrackingContext = createContext({ pageLabel: 'Unknown' })
 
@@ -13,15 +8,20 @@ export class EventTrackingProvider extends PureComponent {
   state = { pageLabel: this.props.pageLabel || 'Unknown' }
 
   trackScreen = (path) => {
+    const {
+      props: { trackScreen: nativeTrackScreen },
+    } = this
+
     if (window.ga) {
       window.ga('send', 'pageview')
     } else {
-      nativeTraskScreen(path)
+      nativeTrackScreen(path)
     }
   }
 
   trackEvent = ({ ga, fa }) => {
     const {
+      props: { trackEvent: nativeTrackEvent },
       state: { pageLabel },
     } = this
 
@@ -42,6 +42,7 @@ export class EventTrackingProvider extends PureComponent {
 
   trackSimpleEvent = ({ action, label, ...rest }) => {
     const {
+      props: { trackEvent: nativeTrackEvent },
       state: { pageLabel },
     } = this
 
@@ -62,7 +63,7 @@ export class EventTrackingProvider extends PureComponent {
 
   render() {
     const {
-      props: { children },
+      props: { viewItem, children },
     } = this
 
     return (
@@ -84,7 +85,7 @@ export function withEventTracking(Component) {
   return function EventTrackingComponent(props) {
     return (
       <EventTrackingContext.Consumer>
-        {({ trackScreen, trackEvent, trackSimpleEvent }) => (
+        {({ trackScreen, trackEvent, trackSimpleEvent, viewItem }) => (
           <Component
             trackScreen={trackScreen}
             trackEvent={trackEvent}
