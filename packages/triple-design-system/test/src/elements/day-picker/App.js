@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import DayPicker from '@titicaca/triple-design-system/elements/day-picker'
+import { DayPicker } from '@titicaca/triple-design-system/elements/date-picker'
 
 export default class App extends PureComponent {
   state = {

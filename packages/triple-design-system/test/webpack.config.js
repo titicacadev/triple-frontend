@@ -30,6 +30,10 @@ module.exports = {
       path.resolve(__dirname, '../src'),
       './src/elements/day-picker',
     ],
+    'range-picker': [
+      path.resolve(__dirname, '../src'),
+      './src/elements/range-picker',
+    ],
     'document-link-button': [
       path.resolve(__dirname, '../src'),
       './src/elements/document-link-button',
