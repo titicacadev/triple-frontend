@@ -18,7 +18,7 @@ export default class App extends PureComponent {
     const { startDate, endDate } = this.state
 
     const fromDate = new Date()
-    const toDate = new Date(fromDate.getFullYear(), fromDate.getMonth() + 6, 1)
+    const toDate = new Date(fromDate.getFullYear(), fromDate.getMonth() + 5, 1)
 
     return (
       <div>
