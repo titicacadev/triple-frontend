@@ -90,7 +90,7 @@ const DatePickerContainer = styled(Container)`
 `
 
 const DayPickerContainer = styled.div`
-  border: 1px solid #efefef;
+  border: 1px solid rgba(${COLORS.gray}, 0.1);
 
   .CalendarDay__today {
     color: rgb(${COLORS.blue});
@@ -151,7 +151,7 @@ const RangePickerContainer = styled.div`
   }
 
   .DayPicker_weekHeader {
-    border-bottom: 1px solid rgb(${COLORS.gray});
+    border-bottom: 1px solid rgba(${COLORS.gray}, 0.1);
   }
 
   .DayPicker_weekHeader_li {
