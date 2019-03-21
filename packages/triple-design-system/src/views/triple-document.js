@@ -173,7 +173,7 @@ function Images({ value: { images }, onImageClick, ImageSource }) {
               onClick={onImageClick && ((e) => onImageClick(e, image))}
               ImageSource={ImageSource}
             />
-            <ImageCaption>{image.title}</ImageCaption>
+            {image.title ? <ImageCaption>{image.title}</ImageCaption> : null}
           </ImageCarouselElementContainer>
         )
       })}
