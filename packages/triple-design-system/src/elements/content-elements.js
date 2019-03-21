@@ -3,6 +3,7 @@ import List from './list'
 
 export const ImageCarousel = styled.div`
   margin-top: 30px;
+  ${({ marginBottom }) => marginBottom && `margin-bottom: ${marginBottom}px`};
   white-space: nowrap;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
