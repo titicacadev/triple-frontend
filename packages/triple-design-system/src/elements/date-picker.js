@@ -76,7 +76,7 @@ const DatePickerContainer = styled(Container)`
 
   .CalendarDay__selected {
     z-index: 0;
-    color: rgb(255, 255, 255);
+    color: rgb(${COLORS.white});
   }
 
   .CalendarDay__blocked_out_of_range {
@@ -151,7 +151,7 @@ const RangePickerContainer = styled.div`
   }
 
   .DayPicker_weekHeader {
-    border-bottom: 1px solid #efefef;
+    border-bottom: 1px solid rgb(${COLORS.gray});
   }
 
   .DayPicker_weekHeader_li {
@@ -173,7 +173,7 @@ const RangePickerContainer = styled.div`
   }
 
   .CalendarDay__selected_span {
-    background: rgba(54, 143, 255, 0.3) !important;
+    background: rgba(${COLORS.blue}, 0.3) !important;
     box-sizing: border-box;
   }
 
@@ -186,7 +186,7 @@ const RangePickerContainer = styled.div`
     top: 0;
     bottom: 0;
     right: 0;
-    background-color: rgba(54, 143, 255, 0.3) !important;
+    background-color: rgba(${COLORS.blue}, 0.3) !important;
   }
 
   .CalendarDay__selected:after {
