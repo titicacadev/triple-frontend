@@ -1,18 +1,6 @@
 import styled, { css } from 'styled-components'
 import List from './list'
 
-export const ImageCarousel = styled.div`
-  margin-top: 30px;
-  margin-bottom: 20px;
-  white-space: nowrap;
-  overflow-x: scroll;
-  -webkit-overflow-scrolling: touch;
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`
-
 export const ImageCarouselElementContainer = styled.div`
   display: inline-block;
   vertical-align: top;

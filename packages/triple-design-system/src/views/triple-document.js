@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 
 import {
-  ImageCarousel,
   ImageCarouselElementContainer,
   ImageCaption,
   SimpleLink,
@@ -160,7 +159,7 @@ function Compact(Component) {
 
 function Images({ value: { images }, onImageClick, ImageSource }) {
   return (
-    <ImageCarousel>
+    <DocumentCarousel margin={{ top: 30, bottom: 10 }}>
       {images.map((image, i) => {
         const { frame, sizes, sourceUrl } = image
 
@@ -177,7 +176,7 @@ function Images({ value: { images }, onImageClick, ImageSource }) {
           </ImageCarouselElementContainer>
         )
       })}
-    </ImageCarousel>
+    </DocumentCarousel>
   )
 }
 
@@ -247,8 +246,8 @@ const ResourceList = ({ children }) => (
   <List margin={{ top: 20, left: 30, right: 30 }}>{children}</List>
 )
 
-const DocumentCarousel = ({ children }) => (
-  <Carousel margin={{ top: 20 }} containerPadding={{ left: 30, right: 30 }}>
+const DocumentCarousel = ({ margin, children }) => (
+  <Carousel margin={margin} containerPadding={{ left: 30, right: 30 }}>
     {children}
   </Carousel>
 )
@@ -261,13 +260,15 @@ export function Pois({
   resourceScraps,
 }) {
   const Container = display === 'list' ? ResourceList : DocumentCarousel
+  const margin =
+    display === 'list' ? { top: 20, left: 30, right: 30 } : { top: 20 }
   const Element =
     display === 'list'
       ? (props) => <PoiListElement compact {...props} />
       : PoiCarouselElement
 
   return (
-    <Container>
+    <Container margin={margin}>
       {pois.map((poi) => (
         <Element
           key={poi.id}
@@ -374,7 +375,7 @@ function Embedded({
   ImageSource,
 }) {
   return (
-    <DocumentCarousel>
+    <DocumentCarousel margin={{ top: 20 }}>
       {entries.map((elements, i) => (
         <Carousel.Item key={i} size="large">
           {elements.map(({ type, value }, j) => {
