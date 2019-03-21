@@ -160,7 +160,7 @@ function Compact(Component) {
 
 function Images({ value: { images }, onImageClick, ImageSource }) {
   return (
-    <ImageCarousel marginBottom={20}>
+    <ImageCarousel>
       {images.map((image, i) => {
         const { frame, sizes, sourceUrl } = image
 
