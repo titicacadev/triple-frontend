@@ -22,6 +22,12 @@ const POI_IMAGE_PLACEHOLDERS = {
   hotel: 'https://assets.triple.guide/images/ico-blank-hotel@2x.png',
 }
 
+const POI_IMAGE_PLACEHOLDERS_SMALL = {
+  attraction: 'https://assets.triple.guide/images/ico-blank-see-small@2x.png',
+  restaurant: 'https://assets.triple.guide/images/ico-blank-eat-small@2x.png',
+  hotel: 'https://assets.triple.guide/images/ico-blank-hotel-small@2x.png',
+}
+
 export function PoiListElement({ compact, ...props }) {
   return compact ? (
     <CompactPoiListElement {...props} />
@@ -124,7 +130,10 @@ class CompactPoiListElement extends PureComponent {
         <SquareImage
           floated="left"
           size="small"
-          src={(image && image.sizes.large.url) || POI_IMAGE_PLACEHOLDERS[type]}
+          src={
+            (image && image.sizes.large.url) ||
+            POI_IMAGE_PLACEHOLDERS_SMALL[type]
+          }
         />
         <Text
           bold
