@@ -19,11 +19,7 @@ export const ImageCarouselElementContainer = styled.div`
 export const ImageBlockElementContainer = styled.div`
   display: block;
   vertical-align: top;
-  width: calc(100% - 60px);
-
-  margin-left: 30px;
-
-  margin-top: 10px;
+  margin: 10px 30px 0 30px;
 `
 
 export const ImageCaption = styled.div`
