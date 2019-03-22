@@ -43,7 +43,7 @@ storiesOf('TripleDocument.이미지', module)
   .add('2개, 캡션', () => (
     <Images
       value={{
-        images: IMAGES.map((value) => value),
+        images: IMAGES,
       }}
     />
   ))
@@ -58,7 +58,7 @@ storiesOf('TripleDocument.이미지', module)
   .add('2개, 블록, 캡션', () => (
     <Images
       value={{
-        images: IMAGES.map((value) => value),
+        images: IMAGES,
         display: 'block',
       }}
     />
