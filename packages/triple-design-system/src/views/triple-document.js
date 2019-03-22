@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import {
   ImageCarouselElementContainer,
+  ImageBlockElementContainer,
   ImageCaption,
   SimpleLink,
 } from '../elements/content-elements'
@@ -157,14 +158,18 @@ function Compact(Component) {
   return (props) => <Component compact {...props} />
 }
 
-function Images({ value: { images }, onImageClick, ImageSource }) {
+function Images({ value: { images, display }, onImageClick, ImageSource }) {
+  const Container =
+    display === 'block'
+      ? ImageBlockElementContainer
+      : ImageCarouselElementContainer
+
   return (
     <DocumentCarousel margin={{ top: 30, bottom: 10 }}>
       {images.map((image, i) => {
         const { frame, sizes, sourceUrl } = image
-
         return (
-          <ImageCarouselElementContainer key={i}>
+          <Container key={i}>
             <Image
               src={sizes.large.url}
               sourceUrl={sourceUrl}
@@ -173,7 +178,7 @@ function Images({ value: { images }, onImageClick, ImageSource }) {
               ImageSource={ImageSource}
             />
             {image.title ? <ImageCaption>{image.title}</ImageCaption> : null}
-          </ImageCarouselElementContainer>
+          </Container>
         )
       })}
     </DocumentCarousel>
