@@ -17,8 +17,6 @@ export const ImageCarouselElementContainer = styled.div`
 `
 
 export const ImageBlockElementContainer = styled.div`
-  display: block;
-  vertical-align: top;
   margin: 10px 30px 0 30px;
 `
 
