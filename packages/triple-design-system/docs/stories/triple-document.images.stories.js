@@ -49,7 +49,7 @@ storiesOf('TripleDocument.이미지', module)
         images: IMAGES.map(
           ({ id, frame, sizes, width, height, description, sourceUrl }) => ({
             id,
-            frame: frame,
+            frame,
             sizes,
             title: '',
             width,
@@ -76,7 +76,7 @@ storiesOf('TripleDocument.이미지', module)
             sourceUrl,
           }) => ({
             id,
-            frame: frame,
+            frame,
             sizes,
             title,
             width,
@@ -94,7 +94,7 @@ storiesOf('TripleDocument.이미지', module)
         images: IMAGES.map(
           ({ id, frame, sizes, width, height, description, sourceUrl }) => ({
             id,
-            frame: frame,
+            frame,
             sizes,
             title: '',
             width,
