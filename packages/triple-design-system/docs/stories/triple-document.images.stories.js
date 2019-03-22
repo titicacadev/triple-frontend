@@ -10,7 +10,7 @@ const { images: Images } = ELEMENTS
 storiesOf('TripleDocument.이미지', module)
   .addDecorator(withKnobs)
   .add('1개', () => {
-    const [{ ...image }] = IMAGES
+    const [image] = IMAGES
     return (
       <Images
         value={{
