@@ -223,7 +223,13 @@ function withBaseInfo(WrappedComponent) {
   return class Wrapper extends PureComponent {
     constructor(props) {
       super(props)
-      const { from, to, blockedDates = [] } = this.props
+      const {
+        from = moment(),
+        to = moment()
+          .clone()
+          .add(3, 'month'),
+        blockedDates = [],
+      } = this.props
 
       this.state = {
         from: moment(from).startOf('day'),
@@ -250,7 +256,7 @@ class DayPickerComponent extends PureComponent {
   render() {
     const {
       date,
-      numberOfMonths,
+      numberOfMonths = 4,
       onDateChange,
       dates: { from, to, blockedDates },
     } = this.props
@@ -305,7 +311,7 @@ class RangePickerComponent extends PureComponent {
       props: {
         startDate,
         endDate,
-        numberOfMonths,
+        numberOfMonths = 6,
         onDateChange,
         dates: { from, to, blockedDates },
       },
@@ -353,24 +359,6 @@ class RangePickerComponent extends PureComponent {
       </DatePickerContainer>
     )
   }
-}
-
-DayPickerComponent.defaultProps = {
-  from: moment(),
-  to: moment()
-    .clone()
-    .add(3, 'month'),
-  blockedDates: [],
-  numberOfMonths: 4,
-}
-
-RangePickerComponent.defaultProps = {
-  from: moment(),
-  to: moment()
-    .clone()
-    .add(6, 'month'),
-  blockedDates: [],
-  numberOfMonths: 6,
 }
 
 export const RangePicker = withBaseInfo(RangePickerComponent)
