@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import { Pricing } from '@titicaca/triple-design-system'
-import { FiexdPricing } from '@titicaca/triple-design-system'
 
 export default class App extends PureComponent {
   render() {
