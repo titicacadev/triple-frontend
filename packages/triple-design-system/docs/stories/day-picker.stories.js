@@ -2,7 +2,7 @@ import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 
-import DayPicker from '@titicaca/triple-design-system/elements/day-picker'
+import { DayPicker } from '@titicaca/triple-design-system/elements/date-picker'
 
 storiesOf('DayPicker', module)
   .add('일반', () => <DayPicker />)
