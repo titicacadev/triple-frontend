@@ -1,0 +1,180 @@
+{
+  "two-normal": {
+    "images": [
+      {
+        "id": "07f5ed9c-1102-4ec0-b07c-{7b1b098311b2",
+        "frame": "small",
+        "sizes": {
+          "full": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_2048,h_2048,c_limit,f_auto/07f5ed9c-1102-4ec0-b07c-7b1b098311b2.jpg"
+          },
+          "large": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_1024,h_1024,c_limit,f_auto/07f5ed9c-1102-4ec0-b07c-7b1b098311b2.jpg"
+          },
+          "small_square": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_256,h_256,c_fill,f_auto/07f5ed9c-1102-4ec0-b07c-7b1b098311b2.jpg"
+          }
+        },
+        "title": "",
+        "width": 1024,
+        "height": 1544,
+        "description": "",
+        "sourceUrl": "https://triple.guide"
+      },
+      {
+        "id": "07f5ed9c-1102-4ec0-b07c-{7b1b098311b2",
+        "frame": "small",
+        "sizes": {
+          "full": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_2048,h_2048,c_fill,f_auto/9163f25c-edb5-4321-82d8-e28f797908d5.jpg"
+          },
+          "large": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_1024,h_1024,c_fill,f_auto/9163f25c-edb5-4321-82d8-e28f797908d5.jpg"
+          },
+          "small_square": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_256,h_256,c_fill,f_auto/9163f25c-edb5-4321-82d8-e28f797908d5.jpg"
+          }
+        },
+        "title": "",
+        "width": 1024,
+        "height": 1544,
+        "description": "",
+        "sourceUrl": "https://triple.guide"
+      }
+    ]
+  },
+  "two-normal-caption": {
+    "images": [
+      {
+        "id": "07f5ed9c-1102-4ec0-b07c-{7b1b098311b2",
+        "frame": "small",
+        "sizes": {
+          "full": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_2048,h_2048,c_limit,f_auto/07f5ed9c-1102-4ec0-b07c-7b1b098311b2.jpg"
+          },
+          "large": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_1024,h_1024,c_limit,f_auto/07f5ed9c-1102-4ec0-b07c-7b1b098311b2.jpg"
+          },
+          "small_square": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_256,h_256,c_fill,f_auto/07f5ed9c-1102-4ec0-b07c-7b1b098311b2.jpg"
+          }
+        },
+        "title": "TripleDocument 샘플",
+        "width": 1024,
+        "height": 1544,
+        "description": "",
+        "sourceUrl": "https://triple.guide"
+      },
+      {
+        "id": "07f5ed9c-1102-4ec0-b07c-{7b1b098311b2",
+        "frame": "small",
+        "sizes": {
+          "full": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_2048,h_2048,c_fill,f_auto/9163f25c-edb5-4321-82d8-e28f797908d5.jpg"
+          },
+          "large": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_1024,h_1024,c_fill,f_auto/9163f25c-edb5-4321-82d8-e28f797908d5.jpg"
+          },
+          "small_square": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_256,h_256,c_fill,f_auto/9163f25c-edb5-4321-82d8-e28f797908d5.jpg"
+          }
+        },
+        "title": "TripleDocument 샘플",
+        "width": 1024,
+        "height": 1544,
+        "description": "",
+        "sourceUrl": "https://triple.guide"
+      }
+    ]
+  },
+  "two-block": {
+    "images": [
+      {
+        "id": "07f5ed9c-1102-4ec0-b07c-{7b1b098311b2",
+        "frame": "small",
+        "sizes": {
+          "full": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_2048,h_2048,c_limit,f_auto/07f5ed9c-1102-4ec0-b07c-7b1b098311b2.jpg"
+          },
+          "large": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_1024,h_1024,c_limit,f_auto/07f5ed9c-1102-4ec0-b07c-7b1b098311b2.jpg"
+          },
+          "small_square": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_256,h_256,c_fill,f_auto/07f5ed9c-1102-4ec0-b07c-7b1b098311b2.jpg"
+          }
+        },
+        "title": "",
+        "width": 1024,
+        "height": 1544,
+        "description": "",
+        "sourceUrl": "https://triple.guide"
+      },
+      {
+        "id": "07f5ed9c-1102-4ec0-b07c-{7b1b098311b2",
+        "frame": "small",
+        "sizes": {
+          "full": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_2048,h_2048,c_fill,f_auto/9163f25c-edb5-4321-82d8-e28f797908d5.jpg"
+          },
+          "large": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_1024,h_1024,c_fill,f_auto/9163f25c-edb5-4321-82d8-e28f797908d5.jpg"
+          },
+          "small_square": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_256,h_256,c_fill,f_auto/9163f25c-edb5-4321-82d8-e28f797908d5.jpg"
+          }
+        },
+        "title": "",
+        "width": 1024,
+        "height": 1544,
+        "description": "",
+        "sourceUrl": "https://triple.guide"
+      }
+    ],
+    "display": "block"
+  },
+  "two-block-caption": {
+    "images": [
+      {
+        "id": "07f5ed9c-1102-4ec0-b07c-{7b1b098311b2",
+        "frame": "small",
+        "sizes": {
+          "full": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_2048,h_2048,c_limit,f_auto/07f5ed9c-1102-4ec0-b07c-7b1b098311b2.jpg"
+          },
+          "large": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_1024,h_1024,c_limit,f_auto/07f5ed9c-1102-4ec0-b07c-7b1b098311b2.jpg"
+          },
+          "small_square": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_256,h_256,c_fill,f_auto/07f5ed9c-1102-4ec0-b07c-7b1b098311b2.jpg"
+          }
+        },
+        "title": "TripleDocument 샘플",
+        "width": 1024,
+        "height": 1544,
+        "description": "",
+        "sourceUrl": "https://triple.guide"
+      },
+      {
+        "id": "07f5ed9c-1102-4ec0-b07c-{7b1b098311b2",
+        "frame": "small",
+        "sizes": {
+          "full": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_2048,h_2048,c_fill,f_auto/9163f25c-edb5-4321-82d8-e28f797908d5.jpg"
+          },
+          "large": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_1024,h_1024,c_fill,f_auto/9163f25c-edb5-4321-82d8-e28f797908d5.jpg"
+          },
+          "small_square": {
+            "url": "https://res.cloudinary.com/triple-entry/image/upload/w_256,h_256,c_fill,f_auto/9163f25c-edb5-4321-82d8-e28f797908d5.jpg"
+          }
+        },
+        "title": "TripleDocument 샘플",
+        "width": 1024,
+        "height": 1544,
+        "description": "",
+        "sourceUrl": "https://triple.guide"
+      }
+    ],
+    "display": "block"
+  }
+}
