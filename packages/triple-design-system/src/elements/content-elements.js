@@ -16,6 +16,16 @@ export const ImageCarouselElementContainer = styled.div`
   }
 `
 
+export const ImageBlockElementContainer = styled.div`
+  display: block;
+  vertical-align: top;
+  width: calc(100% - 60px);
+
+  margin-left: 30px;
+
+  margin-top: 10px;
+`
+
 export const ImageCaption = styled.div`
   margin-top: 8px;
   font-family: sans-serif;
