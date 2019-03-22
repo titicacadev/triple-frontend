@@ -75,14 +75,18 @@ const SecondaryNavbar = styled.div`
   overflow: hidden;
 `
 
-function Navbar({ title, children, borderless }) {
+function Navbar({ title, renderTitle, children, borderless }) {
   const childrenCount = Children.count(children)
 
   return (
     <NavbarFrame borderless={borderless}>
-      {title && (
-        <TitleContainer childrenCount={childrenCount}>{title}</TitleContainer>
-      )}
+      {renderTitle
+        ? renderTitle()
+        : title && (
+            <TitleContainer childrenCount={childrenCount}>
+              {title}
+            </TitleContainer>
+          )}
       {children}
     </NavbarFrame>
   )

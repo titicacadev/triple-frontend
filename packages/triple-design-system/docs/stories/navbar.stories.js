@@ -2,8 +2,14 @@ import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 
-import { Navbar, ListingFilter } from '@titicaca/triple-design-system'
+import { Navbar, ListingFilter, Text } from '@titicaca/triple-design-system'
 import { withKnobs, text, boolean, select } from '@storybook/addon-knobs'
+import styled from 'styled-components'
+
+const TOC = styled.div`
+  position: absolute;
+  left: 52px;
+`
 
 storiesOf('Navbar', module)
   .addDecorator(withKnobs)
@@ -88,4 +94,22 @@ storiesOf('Navbar', module)
         </ListingFilter>
       </Navbar.Secondary>
     </>
+  ))
+  .add('목차', () => (
+    <Navbar
+      renderTitle={() => (
+        <TOC>
+          <Text size="small" bold alpha={1}>
+            도쿄에서 반드시 먹어봐야 할 음식
+          </Text>
+
+          <Text size="mini" alpha={0.5} margin={{ top: 1 }}>
+            라멘
+          </Text>
+        </TOC>
+      )}
+    >
+      <Navbar.Item icon={'back'} />
+      <Navbar.Item floated="right" icon={'more'} />
+    </Navbar>
   ))
