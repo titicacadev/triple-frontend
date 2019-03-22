@@ -151,12 +151,12 @@ const RegularPricing = ({ basePrice, salePrice }) => (
   </PricingContainer>
 )
 
-function FiexdPricing({
+function FixedPricing({
   active,
   label,
   buttonText,
   salePrice,
-  subFix,
+  suffix,
   onClick,
 }) {
   return (
@@ -167,9 +167,9 @@ function FiexdPricing({
         </Text>
         <Text size="large" bold>
           {formatNumber(salePrice)}원
-          {subFix ? (
+          {suffix ? (
             <SubFixText inline size="small" margin={{ left: 4 }} alpha={0.6}>
-              /{subFix}
+              /{suffix}
             </SubFixText>
           ) : null}
         </Text>
@@ -181,19 +181,7 @@ function FiexdPricing({
   )
 }
 
-export default class Pricing extends PureComponent {
-  render() {
-    const {
-      props: { rich, fiexd, ...props },
-    } = this
-
-    if (rich) {
-      return <RichPricing {...props} />
-    }
-    if (fiexd) {
-      return <FiexdPricing {...props} />
-    }
-
-    return <RegularPricing {...props} />
-  }
+export default function Pricing({ rich, fixed, ...props }) {
+  const Container = rich ? RichPricing : fixed ? FixedPricing : RegularPricing
+  return <Container {...props} />
 }

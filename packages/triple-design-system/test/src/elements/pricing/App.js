@@ -17,7 +17,7 @@ export default class App extends PureComponent {
         </div>
         <div className="fixed-pressed">
           <Pricing
-            fiexd
+            fixed
             active={true}
             label="트리플 클럽가"
             buttonText="객실예약"
