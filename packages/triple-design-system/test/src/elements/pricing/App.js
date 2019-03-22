@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Pricing } from '@titicaca/triple-design-system'
+import { FiexdPricing } from '@titicaca/triple-design-system'
 
 export default class App extends PureComponent {
   render() {
@@ -14,6 +15,16 @@ export default class App extends PureComponent {
         </div>
         <div className="regular-pressed">
           <Pricing {...sample} />
+        </div>
+        <div className="fixed-pressed">
+          <Pricing
+            fiexd
+            active={true}
+            label="트리플 클럽가"
+            buttonText="객실예약"
+            subFix="박"
+            {...sample}
+          />
         </div>
       </div>
     )

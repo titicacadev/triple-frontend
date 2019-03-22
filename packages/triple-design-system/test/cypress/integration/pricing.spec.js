@@ -58,4 +58,25 @@ describe('Pricing', () => {
         .and('eq', 'inline-block')
     })
   })
+
+  context('when using regular layout fixed layout', () => {
+    it('Fixed Container have fixed position', () => {
+      cy.get('.fixed-pressed > div')
+        .should('have.css', 'position')
+        .and('eq', 'fixed')
+    })
+
+    it('Label Text have props Text', () => {
+      cy.get('.fixed-pressed > div')
+        .find('div')
+        .first()
+        .contains('트리플 클럽가')
+    })
+
+    it('Fixed Button Text have prop Text', () => {
+      cy.get('.fixed-pressed')
+        .find('button')
+        .contains('객실예약')
+    })
+  })
 })

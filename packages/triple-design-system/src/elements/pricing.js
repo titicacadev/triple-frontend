@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import styled, { css } from 'styled-components'
 import { formatNumber } from '../utilities'
+import Container from './container'
+import Text from './text'
 
 const FONT_SIZE = {
-  tiny: '12px',
+  mini: '12px',
+  tiny: '13px',
+  small: '14px',
   large: '18px',
   big: '20px',
 }
@@ -11,6 +15,8 @@ const FONT_SIZE = {
 const COLORS = {
   pink: 'rgba(253, 46, 105, 1)',
   gray: 'rgba(58, 58, 58, 0.3)',
+  blue: 'rgba(54, 143, 255)',
+  white: 'rgba(255, 255, 255, 1)',
   default: 'rgba(58, 58, 58, 1)',
 }
 
@@ -19,7 +25,7 @@ const PricingContainer = styled.div`
   clear: both;
   position: relative;
   text-align: right;
-  font-size: 18px;
+  font-size: ${FONT_SIZE.large};
   font-weight: bold;
   color: #3a3a3a;
 
@@ -35,17 +41,36 @@ const PricingContainer = styled.div`
   small {
     color: rgba(58, 58, 58, 0.3);
     font-weight: normal;
-    font-size: 12px;
+    font-size: ${FONT_SIZE.mini};
     display: inline-block;
     text-decoration: line-through;
     margin-right: 6px;
   }
 `
 
+const FixedCotainer = styled.div`
+  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  padding: 10px 25px 10px 30px;
+  background: ${COLORS.white};
+  transform: translateY(100%);
+
+  ${({ active }) =>
+    active &&
+    css`
+      transform: translateY(0%);
+      transition: all 300ms ease-in-out;
+    `};
+`
+
 const Price = styled.span`
   font-weight: normal;
   display: inline-block;
-  font-size: ${({ size = 'tiny' }) => FONT_SIZE[size]};
+  font-size: ${({ size = 'mini' }) => FONT_SIZE[size]};
   color: ${({ color = 'default' }) => COLORS[color]};
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
   ${({ lineThrough }) =>
@@ -76,8 +101,22 @@ const Label = styled.div`
   position: absolute;
   left: 0;
   bottom: 0;
-  color: #368fff;
-  font-size: 13px;
+  color: ${COLORS.blue};
+  font-size: ${({ size }) => FONT_SIZE[size || 'tiny']};
+`
+
+const ReservationButton = styled.button`
+  padding: 17px 58px 17px 58px;
+  border-radius: 4px;
+  background: ${COLORS.blue};
+  color: ${COLORS.white};
+  font-size: ${FONT_SIZE.small};
+  border: none;
+`
+
+const SubFixText = styled(Text)`
+  letter-spacing: 2px;
+  vertical-align: top;
 `
 
 function discountRate(basePrice, salePrice) {
@@ -112,6 +151,49 @@ const RegularPricing = ({ basePrice, salePrice }) => (
   </PricingContainer>
 )
 
-export default function Pricing({ rich, ...props }) {
-  return rich ? <RichPricing {...props} /> : <RegularPricing {...props} />
+function FiexdPricing({
+  active,
+  label,
+  buttonText,
+  salePrice,
+  subFix,
+  onClick,
+}) {
+  return (
+    <FixedCotainer active={active}>
+      <Container floated="left">
+        <Text color="blue" size="mini" margin={{ top: 7, bottom: 4 }}>
+          {label}
+        </Text>
+        <Text size="large" bold>
+          {formatNumber(salePrice)}원
+          {subFix ? (
+            <SubFixText inline size="small" margin={{ left: 4 }} alpha={0.6}>
+              /{subFix}
+            </SubFixText>
+          ) : null}
+        </Text>
+      </Container>
+      <Container floated="right">
+        <ReservationButton onClick={onClick}>{buttonText}</ReservationButton>
+      </Container>
+    </FixedCotainer>
+  )
+}
+
+export default class Pricing extends PureComponent {
+  render() {
+    const {
+      props: { rich, fiexd, ...props },
+    } = this
+
+    if (rich) {
+      return <RichPricing {...props} />
+    }
+    if (fiexd) {
+      return <FiexdPricing {...props} />
+    }
+
+    return <RegularPricing {...props} />
+  }
 }
