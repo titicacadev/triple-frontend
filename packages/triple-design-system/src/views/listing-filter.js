@@ -15,9 +15,9 @@ const FilterEntryBase = styled.div`
 `
 
 const ACTIVE_EXPANDER_ICON_URL =
-  'https://assets.triple-dev.titicaca-corp.com/images/ico-category-select-on.svg'
+  'https://assets.triple.guide/images/ico-category-select-on.svg'
 const INACTIVE_EXPANDER_ICON_URL =
-  'https://assets.triple-dev.titicaca-corp.com/images/ico-category-select.svg'
+  'https://assets.triple.guide/images/ico-category-select.svg'
 
 const ExpandingFilterEntry = styled(FilterEntryBase)`
   padding: 8px 24px 8px 11px;
