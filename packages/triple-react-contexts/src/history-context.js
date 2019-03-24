@@ -23,14 +23,14 @@ export class HistoryProvider extends PureComponent {
   state = { hashHistories: [] }
 
   componentDidMount() {
-    if (this.props.appContext.os.name === 'Android') {
+    if (this.props.isAndroid) {
       Router.events.on('routeChangeStart', this.onHashChange)
       Router.events.on('hashChangeStart', this.onHashChange)
     }
   }
 
   componentWillUnmount() {
-    if (this.props.appContext.os.name === 'Android') {
+    if (this.props.isAndroid) {
       Router.events.off('routeChangeStart', this.onHashChange)
       Router.events.off('hashChangeStart', this.onHashChange)
     }
@@ -51,57 +51,50 @@ export class HistoryProvider extends PureComponent {
 
   replace = (hash) => {
     const {
-      props: {
-        appContext: { os },
-      },
+      props: { isAndroid },
     } = this
 
     this.setState(({ hashHistories }) => ({
       hashHistories: [...hashHistories.slice(0, -1), hash],
     }))
 
-    if (os.name === 'Android') {
+    if (isAndroid) {
       Router.replace(pathWithHash(hash))
     }
   }
 
   push = (hash) => {
     const {
-      props: {
-        appContext: { os },
-      },
+      props: { isAndroid },
     } = this
 
     this.setState(({ hashHistories }) => ({
       hashHistories: [...hashHistories, hash],
     }))
 
-    if (os.name === 'Android') {
+    if (isAndroid) {
       Router.push(pathWithHash(hash))
     }
   }
 
   back = () => {
     const {
-      props: {
-        appContext: { os },
-      },
+      props: { isAndroid },
     } = this
 
     this.setState(({ hashHistories }) => ({
       hashHistories: hashHistories.slice(0, -1),
     }))
 
-    if (os.name === 'Android') {
+    if (isAndroid) {
       Router.back()
     }
   }
 
   navigate = (href, params) => {
     const {
-      props: { appContext },
+      props: { appUrlScheme, isPublic },
     } = this
-    const { appUrlScheme, isPublic } = appContext
 
     let url = {}
 
@@ -123,35 +116,32 @@ export class HistoryProvider extends PureComponent {
     } else if (isPublic) {
       return this.navigateOnPublic(
         { href, protocol, host, path, query },
-        appContext,
         params,
       )
     } else {
-      return this.navigateInApp(
-        { href, protocol, host, path, query },
-        appContext,
-        params,
-      )
+      return this.navigateInApp({ href, protocol, host, path, query }, params)
     }
   }
 
-  navigateOnPublic = ({ href, protocol, path }, { webUrlBase }) => {
+  navigateOnPublic = ({ href, protocol, path }) => {
+    const {
+      props: { webUrlBase, transitionModalHash: hash },
+    } = this
+
     if (protocol === 'http:' || protocol === 'https:') {
       window.location = href
     } else if (targetPageAvailable(path)) {
       window.location = `${webUrlBase}${path}`
     } else {
-      const { transitionModalHash: hash } = this.props
-
       hash && this.push(hash)
     }
   }
 
-  navigateInApp = (
-    { href, protocol, host, path },
-    { appUrlScheme },
-    params,
-  ) => {
+  navigateInApp = ({ href, protocol, host, path }, params) => {
+    const {
+      props: { appUrlScheme },
+    } = this
+
     if (protocol === `${appUrlScheme}:`) {
       window.location = href
     } else if (protocol === 'http:' || protocol === 'https:') {
