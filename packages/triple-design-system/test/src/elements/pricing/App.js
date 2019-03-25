@@ -21,7 +21,7 @@ export default class App extends PureComponent {
             active={true}
             label="트리플 클럽가"
             buttonText="객실예약"
-            subFix="박"
+            suffix="박"
             {...sample}
           />
         </div>
