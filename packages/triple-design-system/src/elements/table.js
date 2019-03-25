@@ -2,7 +2,7 @@ import React, { Children } from 'react'
 import styled, { css } from 'styled-components'
 import Text from './text'
 
-const COLORS_SET = {
+const BACKGROUND_COLORS = {
   header: '234, 234, 234',
   body: '245, 245, 245',
 }
@@ -21,7 +21,7 @@ const Container = styled.div`
     borderLine &&
     css`
       & > div:not(:last-child) {
-        border-bottom: 1px solid rgb(${COLORS_SET.header});
+        border-bottom: 1px solid rgb(${BACKGROUND_COLORS.header});
       }
     `};
 `
@@ -37,7 +37,7 @@ const Row = styled.div`
       overflow: hidden;
     `};
 
-  ${({ verticalGap, children }) =>
+  ${({ verticalGap, children = [] }) =>
     verticalGap
       ? css`
           &:not(:last-child) {
@@ -58,10 +58,10 @@ const Column = styled.div`
   text-align: ${({ textAlign }) => textAlign || 'center'};
   box-sizing: border-box;
 
-  ${({ color }) =>
-    color &&
+  ${({ type }) =>
+    type &&
     css`
-      background-color: rgb(${COLORS_SET[color || 'body']});
+      background-color: rgb(${BACKGROUND_COLORS[type || 'body']});
     `};
 
   ${({ padding }) =>
@@ -81,7 +81,7 @@ function HorizontalTable({ head, body }) {
         {head.map((text, idx) => (
           <Column
             key={idx}
-            color="header"
+            type="header"
             padding={{ top: 12, bottom: 12, left: 15, right: 15 }}
           >
             <Text bold size="small">
@@ -96,7 +96,7 @@ function HorizontalTable({ head, body }) {
           {texts.map((text, idx) => (
             <Column
               key={idx}
-              color="body"
+              type="body"
               padding={{ top: 12, bottom: 12, left: 15, right: 15 }}
             >
               <Text size="small">{text}</Text>
@@ -115,7 +115,7 @@ function VerticalTable({ head, body }) {
         <Row key={idx} verticalGap={10} borderRadius={6}>
           <Column
             width="25"
-            color="header"
+            type="header"
             padding={{
               top: 13,
               bottom: 13,
@@ -130,7 +130,7 @@ function VerticalTable({ head, body }) {
           </Column>
           <Column
             width="75"
-            color="body"
+            type="body"
             padding={{
               top: 13,
               bottom: 13,
