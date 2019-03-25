@@ -56,6 +56,7 @@ const Column = styled.div`
   display: table-cell;
   vertical-align: middle;
   text-align: ${({ textAlign }) => textAlign || 'center'};
+  box-sizing: border-box;
 
   ${({ color }) =>
     color &&
@@ -78,7 +79,11 @@ function HorizontalTable({ head, body }) {
     <Container borderLine borderRadius={6}>
       <Row>
         {head.map((text, idx) => (
-          <Column key={idx} color="header" padding={{ top: 12, bottom: 12 }}>
+          <Column
+            key={idx}
+            color="header"
+            padding={{ top: 12, bottom: 12, left: 15, right: 15 }}
+          >
             <Text bold size="small">
               {text}
             </Text>
@@ -89,7 +94,11 @@ function HorizontalTable({ head, body }) {
       {body.map((texts, idx) => (
         <Row key={idx}>
           {texts.map((text, idx) => (
-            <Column key={idx} color="body" padding={{ top: 12, bottom: 12 }}>
+            <Column
+              key={idx}
+              color="body"
+              padding={{ top: 12, bottom: 12, left: 15, right: 15 }}
+            >
               <Text size="small">{text}</Text>
             </Column>
           ))}
@@ -105,7 +114,7 @@ function VerticalTable({ head, body }) {
       {head.map((text, idx) => (
         <Row key={idx} verticalGap={10} borderRadius={6}>
           <Column
-            width="20"
+            width="25"
             color="header"
             padding={{
               top: 13,
@@ -120,7 +129,7 @@ function VerticalTable({ head, body }) {
             </Text>
           </Column>
           <Column
-            width="80"
+            width="75"
             color="body"
             padding={{
               top: 13,
