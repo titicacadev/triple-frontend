@@ -58,6 +58,7 @@ const FixedCotainer = styled.div`
   padding: 10px 25px 10px 30px;
   background: ${COLORS.white};
   transform: translateY(100%);
+  transition: all 300ms ease-in-out;
 
   ${({ active }) =>
     active &&
