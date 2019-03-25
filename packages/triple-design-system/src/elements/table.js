@@ -78,7 +78,7 @@ function HorizontalTable({ head, body }) {
   return (
     <Container borderLine borderRadius={6}>
       <Row>
-        {head.map((text, idx) => (
+        {head.map(({ text }, idx) => (
           <Column
             key={idx}
             type="header"
@@ -91,9 +91,9 @@ function HorizontalTable({ head, body }) {
         ))}
       </Row>
 
-      {body.map((texts, idx) => (
+      {body.map((columns, idx) => (
         <Row key={idx}>
-          {texts.map((text, idx) => (
+          {columns.map(({ text }, idx) => (
             <Column
               key={idx}
               type="body"
@@ -111,7 +111,7 @@ function HorizontalTable({ head, body }) {
 function VerticalTable({ head, body }) {
   return (
     <Container>
-      {head.map((text, idx) => (
+      {head.map(({ text }, idx) => (
         <Row key={idx} verticalGap={10} borderRadius={6}>
           <Column
             width="25"
@@ -128,19 +128,22 @@ function VerticalTable({ head, body }) {
               {text}
             </Text>
           </Column>
-          <Column
-            width="75"
-            type="body"
-            padding={{
-              top: 13,
-              bottom: 13,
-              left: 15,
-              right: 15,
-            }}
-            textAlign="left"
-          >
-            <Text size="small">{body[idx]}</Text>
-          </Column>
+          {(body[idx] || []).map(({ text: columnText }, idx) => (
+            <Column
+              key={idx}
+              width="75"
+              type="body"
+              padding={{
+                top: 13,
+                bottom: 13,
+                left: 15,
+                right: 15,
+              }}
+              textAlign="left"
+            >
+              <Text size="small">{columnText}</Text>
+            </Column>
+          ))}
         </Row>
       ))}
     </Container>
