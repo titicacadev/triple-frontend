@@ -51,7 +51,7 @@ export function H4({ children, ...props }) {
 
 export function Paragraph({ children, ...props }) {
   return (
-    <Text lineHeight={1.63} alpha={0.8} {...props}>
+    <Text lineHeight={1.63} alpha={0.9} {...props}>
       {children}
     </Text>
   )

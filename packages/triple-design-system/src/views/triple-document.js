@@ -137,7 +137,7 @@ function TextElement({ value: { text, rawHTML }, compact, ...props }) {
     return (
       <Text.Html
         margin={compact ? { top: 4 } : { top: 10, left: 30, right: 30 }}
-        alpha={0.8}
+        alpha={0.9}
         dangerouslySetInnerHTML={{ __html: rawHTML }}
         {...props}
       />
