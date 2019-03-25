@@ -115,7 +115,7 @@ const ReservationButton = styled.button`
   border: none;
 `
 
-const SubFixText = styled(Text)`
+const SuffixText = styled(Text)`
   letter-spacing: 2px;
   vertical-align: top;
 `
@@ -169,9 +169,9 @@ function FixedPricing({
         <Text size="large" bold>
           {formatNumber(salePrice)}원
           {suffix ? (
-            <SubFixText inline size="small" margin={{ left: 4 }} alpha={0.6}>
+            <SuffixText inline size="small" margin={{ left: 4 }} alpha={0.6}>
               /{suffix}
-            </SubFixText>
+            </SuffixText>
           ) : null}
         </Text>
       </Container>
