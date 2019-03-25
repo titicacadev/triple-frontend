@@ -26,6 +26,7 @@ module.exports = {
       './src/elements/scrap-button',
     ],
     pricing: [path.resolve(__dirname, '../src'), './src/elements/pricing'],
+    spinner: [path.resolve(__dirname, '../src'), './src/elements/spinner'],
     'day-picker': [
       path.resolve(__dirname, '../src'),
       './src/elements/day-picker',
