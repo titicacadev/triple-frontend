@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { withKnobs, select, text } from '@storybook/addon-knobs'
+import { select, text } from '@storybook/addon-knobs'
 
 import { ELEMENTS } from '@titicaca/triple-design-system'
 import IMAGES from './images.sample.json'
@@ -8,7 +8,6 @@ import IMAGES from './images.sample.json'
 const { images: Images } = ELEMENTS
 
 storiesOf('TripleDocument.이미지', module)
-  .addDecorator(withKnobs)
   .add('1개', () => {
     const [image] = IMAGES
     return (

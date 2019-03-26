@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { withKnobs, boolean } from '@storybook/addon-knobs'
+import { boolean } from '@storybook/addon-knobs'
 
 import {
   PoiCarouselElement,
@@ -12,7 +12,6 @@ import POIS from './pois.sample.json'
 const [POI] = POIS
 
 storiesOf('POI', module)
-  .addDecorator(withKnobs)
   .add('POI 리스트', () => (
     <PoiListElement
       poi={POI}

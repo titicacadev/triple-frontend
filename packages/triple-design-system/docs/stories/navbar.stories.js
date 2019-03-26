@@ -3,7 +3,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 
 import { Navbar, ListingFilter, Text } from '@titicaca/triple-design-system'
-import { withKnobs, text, boolean, select } from '@storybook/addon-knobs'
+import { text, boolean, select } from '@storybook/addon-knobs'
 import styled from 'styled-components'
 
 const TOC = styled.div`
@@ -12,7 +12,6 @@ const TOC = styled.div`
 `
 
 storiesOf('Navbar', module)
-  .addDecorator(withKnobs)
   .add('버튼 2개 (좌1+우1)', () => (
     <Navbar
       title={text('제목', '도쿄 관광지')}

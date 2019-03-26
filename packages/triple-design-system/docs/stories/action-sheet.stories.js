@@ -1,11 +1,10 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { withKnobs, text, boolean, select } from '@storybook/addon-knobs'
+import { text, boolean, select } from '@storybook/addon-knobs'
 
 import ActionSheet from '@titicaca/triple-design-system/elements/action-sheet'
 
 storiesOf('ActionSheet', module)
-  .addDecorator(withKnobs)
   .add('텍스트 메뉴', () => (
     <ActionSheet
       open={boolean('열림', true)}
