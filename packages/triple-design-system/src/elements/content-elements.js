@@ -17,7 +17,7 @@ export const ImageCarouselElementContainer = styled.div`
 `
 
 export const ImageBlockElementContainer = styled.div`
-  margin: 10px 30px 0 30px;
+  margin: 0 30px 0 30px;
 `
 
 export const ImageCaption = styled.div`
