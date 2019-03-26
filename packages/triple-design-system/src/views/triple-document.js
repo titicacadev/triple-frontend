@@ -164,17 +164,15 @@ function Images({ value: { images, display }, onImageClick, ImageSource }) {
       ? ImageBlockElementContainer
       : ImageCarouselElementContainer
 
-  const childMargin = display === 'block' && { top: 10 }
-
   return (
-    <DocumentCarousel
-      margin={{ top: 30, bottom: 10 }}
-      childMargin={childMargin}
-    >
+    <DocumentCarousel margin={{ top: 30, bottom: 10 }}>
       {images.map((image, i) => {
         const { frame, sizes, sourceUrl } = image
         return (
-          <Container key={i}>
+          <Container
+            key={i}
+            margin={display === 'block' && i != 0 && { top: 10 }}
+          >
             <Image
               src={sizes.large.url}
               sourceUrl={sourceUrl}
@@ -256,12 +254,8 @@ const ResourceList = ({ children }) => (
   <List margin={{ top: 20, left: 30, right: 30 }}>{children}</List>
 )
 
-const DocumentCarousel = ({ margin, children, childMargin }) => (
-  <Carousel
-    margin={margin}
-    containerPadding={{ left: 30, right: 30 }}
-    childMargin={childMargin}
-  >
+const DocumentCarousel = ({ margin, children }) => (
+  <Carousel margin={margin} containerPadding={{ left: 30, right: 30 }}>
     {children}
   </Carousel>
 )

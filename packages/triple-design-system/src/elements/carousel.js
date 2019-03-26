@@ -15,24 +15,6 @@ const Carousel = styled.ul`
       margin-right: ${margin.right || 0}px;
     `};
 
-  ${({ childMargin }) => {
-    return (
-      childMargin &&
-      (childMargin.isFirst
-        ? css`
-            > div {
-              margin-top: ${childMargin.top || 0}px;
-              margin-bottom: ${childMargin.bottom || 0}px;
-            }
-          `
-        : css`
-            > div:not(:first-child) {
-              margin-top: ${childMargin.top || 0}px;
-              margin-bottom: ${childMargin.bottom || 0}px;
-            }
-          `)
-    )
-  }};
   white-space: nowrap;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
