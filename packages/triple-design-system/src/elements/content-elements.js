@@ -18,13 +18,9 @@ export const ImageCarouselElementContainer = styled.div`
 
 export const ImageBlockElementContainer = styled.div`
   margin: 0 30px 0 30px;
-
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-    `};
+  &:not(:first-child) {
+    margin-top: 10px;
+  }
 `
 
 export const ImageCaption = styled.div`
