@@ -165,7 +165,7 @@ function Images({ value: { images, display }, onImageClick, ImageSource }) {
       : ImageCarouselElementContainer
 
   return (
-    <DocumentCarousel margin={{ top: 30, bottom: 10 }}>
+    <DocumentCarousel margin={{ top: 40, bottom: 30 }}>
       {images.map((image, i) => {
         const { frame, sizes, sourceUrl } = image
         return (
