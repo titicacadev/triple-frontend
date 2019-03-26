@@ -37,9 +37,9 @@ const Icon = styled.div`
   animation: ${loadingAnimation} 1s steps(30) infinite;
 `
 
-export default function Spinner({ ...props }) {
+export default function Spinner({ full }) {
   return (
-    <Container {...props}>
+    <Container full={full}>
       <Wrapper>
         <Icon />
       </Wrapper>
