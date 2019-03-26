@@ -1,4 +1,7 @@
-import { addParameters, configure } from '@storybook/react'
+import { addParameters, addDecorator, configure } from '@storybook/react'
+import { jsxDecorator } from 'storybook-addon-jsx'
+
+addDecorator(jsxDecorator)
 
 addParameters({
   viewport: {
