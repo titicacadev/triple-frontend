@@ -169,10 +169,7 @@ function Images({ value: { images, display }, onImageClick, ImageSource }) {
       {images.map((image, i) => {
         const { frame, sizes, sourceUrl } = image
         return (
-          <Container
-            key={i}
-            margin={display === 'block' && i != 0 && { top: 10 }}
-          >
+          <Container key={i}>
             <Image
               src={sizes.large.url}
               sourceUrl={sourceUrl}
