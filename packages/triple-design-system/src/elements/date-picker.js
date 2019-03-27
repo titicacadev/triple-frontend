@@ -15,6 +15,7 @@ const COLORS = {
   blue: '54, 143, 255',
   gray: '58, 58, 58',
   white: '255,255,255',
+  red: '255,64,64',
 }
 
 const DatePickerContainer = styled(Container)`
@@ -79,6 +80,11 @@ const DatePickerContainer = styled(Container)`
     color: rgb(${COLORS.white});
   }
 
+  .CalendarDay__firstDayOfWeek,
+  .CalendarDay__lastDayOfWeek {
+    color: rgb(${COLORS.red});
+  }
+
   .CalendarDay__blocked_out_of_range {
     color: rgba(${COLORS.gray}, 0.3);
   }
@@ -109,7 +115,7 @@ const DayPickerContainer = styled.div`
 
   .CalendarDay__selected {
     z-index: 0;
-    color: rgb(255, 255, 255);
+    color: rgb(${COLORS.white});
   }
 
   .CalendarDay__selected:before {
