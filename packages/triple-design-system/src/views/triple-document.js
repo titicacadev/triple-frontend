@@ -14,6 +14,7 @@ import Text from '../elements/text'
 import Image from '../elements/image'
 import List from '../elements/list'
 import Carousel from '../elements/carousel'
+import Container from '../elements/container'
 import { H1, H2, H3, H4, Paragraph } from './text'
 import { RegionListElement } from './region'
 import { PoiListElement, PoiCarouselElement } from './poi'
@@ -159,17 +160,18 @@ function Compact(Component) {
 }
 
 function Images({ value: { images, display }, onImageClick, ImageSource }) {
-  const Container =
+  const ImagesContainer = display === 'block' ? Container : DocumentCarousel
+  const ElementContainer =
     display === 'block'
       ? ImageBlockElementContainer
       : ImageCarouselElementContainer
 
   return (
-    <DocumentCarousel margin={{ top: 40, bottom: 30 }}>
+    <ImagesContainer margin={{ top: 40, bottom: 30 }}>
       {images.map((image, i) => {
         const { frame, sizes, sourceUrl } = image
         return (
-          <Container key={i}>
+          <ElementContainer key={i}>
             <Image
               src={sizes.large.url}
               sourceUrl={sourceUrl}
@@ -178,10 +180,10 @@ function Images({ value: { images, display }, onImageClick, ImageSource }) {
               ImageSource={ImageSource}
             />
             {image.title ? <ImageCaption>{image.title}</ImageCaption> : null}
-          </Container>
+          </ElementContainer>
         )
       })}
-    </DocumentCarousel>
+    </ImagesContainer>
   )
 }
 
