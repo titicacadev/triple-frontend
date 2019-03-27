@@ -54,11 +54,3 @@ storiesOf('TripleDocument.이미지', module)
       }}
     />
   ))
-  .add('2개, 블록, 캡션', () => (
-    <Images
-      value={{
-        images: IMAGES,
-        display: 'block',
-      }}
-    />
-  ))
