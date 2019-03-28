@@ -2,3 +2,5 @@ node_modules
 lib
 examples
 package-lock.json
+
+test/dist/*
