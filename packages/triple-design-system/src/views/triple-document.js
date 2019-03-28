@@ -296,10 +296,12 @@ export function Pois({
 
 const LinksContainer = styled.div`
   margin: ${({ compact }) => (compact ? '0' : '0 30px')};
+  margin-top: ${({ compact }) => (compact ? '10px' : '20px')};
+  margin-bottom: ${({ compact }) => (compact ? '-10px' : '-20px')};
 
   a {
     display: inline-block;
-    margin-top: ${({ compact }) => (compact ? '10px' : '20px')};
+    margin-bottom: ${({ compact }) => (compact ? '10px' : '20px')};
     margin-right: ${({ compact }) => (compact ? '10px' : '20px')};
   }
 `

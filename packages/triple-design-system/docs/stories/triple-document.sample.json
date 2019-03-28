@@ -414,6 +414,17 @@
     }
   },
   {
+    "type": "links",
+    "value": {
+      "links": [
+        {
+          "href": "https://triple-dev.titicaca-corp.com/entry/posts/f4ce0a73-10e0-406c-ae07-f812eb11e0fe?_triple_no_navbar",
+          "label": "다른포스트"
+        }
+      ]
+    }
+  },
+  {
     "type": "heading1",
     "value": {
       "text": "방콕",
