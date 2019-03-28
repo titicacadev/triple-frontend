@@ -45,7 +45,8 @@ function rgba({ color, alpha }) {
 
 const TextBase = styled.div`
   font-family: sans-serif;
-  font-size: ${({ size = 'large' }) => SIZES[size]};
+  font-size: ${({ size = 'large' }) =>
+    typeof size === 'string' ? SIZES[size] : `${size}px`};
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
   color: ${({ color = 'gray', alpha }) => rgba({ color, alpha })};
   word-wrap: break-word;
