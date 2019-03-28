@@ -19,11 +19,7 @@ export class ProductListElement extends PureComponent {
   render() {
     const {
       props: {
-        product: {
-          id,
-          title,
-          display: { image, subtitle, pricing },
-        },
+        product: { id, title, image, subtitle, pricing },
         scraped: initialScraped,
         scrapsCount: initialScrapsCount,
         reviewsCount,
