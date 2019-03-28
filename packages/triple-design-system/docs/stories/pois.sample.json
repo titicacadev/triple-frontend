@@ -29,10 +29,7 @@
       "hasTnaProducts": false,
       "type": "attraction",
       "pointGeolocation": {
-        "coordinates": [
-          100.493298,
-          13.746523
-        ],
+        "coordinates": [100.493298, 13.746523],
         "type": "Point"
       },
       "names": {
@@ -43,10 +40,7 @@
       "regionId": "edf1982d-c835-43a7-b06b-af43acbb6f38",
       "grade": 10,
       "comment": "아유타야 양식으로 지어진 방콕 최대 규모의 유서깊은 사원",
-      "location": [
-        100.493298,
-        13.746523
-      ],
+      "location": [100.493298, 13.746523],
       "categories": [
         {
           "name": "관광명소"
@@ -88,10 +82,7 @@
       "hasTnaProducts": false,
       "type": "attraction",
       "pointGeolocation": {
-        "coordinates": [
-          114.145457,
-          22.275908
-        ],
+        "coordinates": [114.145457, 22.275908],
         "type": "Point"
       },
       "reviewsRating": "4.5",
@@ -103,10 +94,7 @@
       "regionId": "84685a5a-a0ee-47b5-b84c-4d76dffad76d",
       "grade": 10,
       "comment": "파노라마 뷰로 즐기는 홍콩 야경의 하이라이트",
-      "location": [
-        114.145457,
-        22.275908
-      ],
+      "location": [114.145457, 22.275908],
       "categories": [
         {
           "name": "관광명소"
@@ -151,10 +139,7 @@
         }
       ],
       "comment": "방콕  배낭 여행의 중심지",
-      "location": [
-        100.497176,
-        13.758948
-      ],
+      "location": [100.497176, 13.758948],
       "categories": [
         {
           "name": "관광명소"
@@ -164,10 +149,7 @@
       "hasTnaProducts": false,
       "type": "attraction",
       "pointGeolocation": {
-        "coordinates": [
-          100.497176,
-          13.758948
-        ],
+        "coordinates": [100.497176, 13.758948],
         "type": "Point"
       }
     },
@@ -205,10 +187,7 @@
       "hasTnaProducts": false,
       "type": "attraction",
       "pointGeolocation": {
-        "coordinates": [
-          114.174771,
-          22.293186
-        ],
+        "coordinates": [114.174771, 22.293186],
         "type": "Point"
       },
       "reviewsRating": "4.333333333333333",
@@ -220,10 +199,7 @@
       "regionId": "84685a5a-a0ee-47b5-b84c-4d76dffad76d",
       "grade": 10,
       "comment": "매일 밤 8시에 펼쳐지는 환상의 레이저 쇼",
-      "location": [
-        114.174771,
-        22.293186
-      ],
+      "location": [114.174771, 22.293186],
       "categories": [
         {
           "name": "테마/체험"
@@ -268,10 +244,7 @@
         }
       ],
       "comment": "방콕의 새벽을 밝히는 사원",
-      "location": [
-        100.489006,
-        13.743707
-      ],
+      "location": [100.489006, 13.743707],
       "categories": [
         {
           "name": "관광명소"
@@ -281,10 +254,7 @@
       "hasTnaProducts": true,
       "type": "attraction",
       "pointGeolocation": {
-        "coordinates": [
-          100.489006,
-          13.743707
-        ],
+        "coordinates": [100.489006, 13.743707],
         "type": "Point"
       }
     },
@@ -322,10 +292,7 @@
       "hasTnaProducts": true,
       "type": "attraction",
       "pointGeolocation": {
-        "coordinates": [
-          114.152844,
-          22.281572
-        ],
+        "coordinates": [114.152844, 22.281572],
         "type": "Point"
       },
       "reviewsRating": "4.571428571428571",
@@ -337,10 +304,7 @@
       "regionId": "84685a5a-a0ee-47b5-b84c-4d76dffad76d",
       "grade": 10,
       "comment": "홍콩 제일의 트렌디한 거리에서 즐기는 낮과 밤",
-      "location": [
-        114.152844,
-        22.281572
-      ],
+      "location": [114.152844, 22.281572],
       "categories": [
         {
           "name": "관광명소"
@@ -382,10 +346,7 @@
       "hasTnaProducts": false,
       "type": "attraction",
       "pointGeolocation": {
-        "coordinates": [
-          100.491253,
-          13.749977
-        ],
+        "coordinates": [100.491253, 13.749977],
         "type": "Point"
       },
       "reviewsRating": "3.4",
@@ -397,10 +358,7 @@
       "regionId": "edf1982d-c835-43a7-b06b-af43acbb6f38",
       "grade": 10,
       "comment": "230년 짜끄리 왕조과 함께 해온 방콕의 대표 명소",
-      "location": [
-        100.491253,
-        13.749977
-      ],
+      "location": [100.491253, 13.749977],
       "categories": [
         {
           "name": "관광명소"
@@ -440,10 +398,7 @@
       "regionId": "edf1982d-c835-43a7-b06b-af43acbb6f38",
       "grade": 10,
       "comment": "보는 재미, 먹는 재미로 활기찬 주말시장",
-      "location": [
-        100.550899,
-        13.799974
-      ],
+      "location": [100.550899, 13.799974],
       "categories": [
         {
           "name": "쇼핑"
@@ -453,10 +408,7 @@
       "hasTnaProducts": false,
       "type": "attraction",
       "pointGeolocation": {
-        "coordinates": [
-          100.550899,
-          13.799974
-        ],
+        "coordinates": [100.550899, 13.799974],
         "type": "Point"
       }
     },
@@ -494,10 +446,7 @@
       "hasTnaProducts": false,
       "type": "attraction",
       "pointGeolocation": {
-        "coordinates": [
-          114.15567,
-          22.280837
-        ],
+        "coordinates": [114.15567, 22.280837],
         "type": "Point"
       },
       "reviewsRating": "4.5",
@@ -509,10 +458,7 @@
       "regionId": "84685a5a-a0ee-47b5-b84c-4d76dffad76d",
       "grade": 10,
       "comment": "핫한 나이트 라이프로 유명한 거리",
-      "location": [
-        114.15567,
-        22.280837
-      ],
+      "location": [114.15567, 22.280837],
       "categories": [
         {
           "name": "관광명소"
@@ -557,10 +503,7 @@
         }
       ],
       "comment": "방콕 유행을 선도하는 핫플레이스",
-      "location": [
-        100.53433877546308,
-        13.745084118890189
-      ],
+      "location": [100.53433877546308, 13.745084118890189],
       "categories": [
         {
           "name": "쇼핑"
@@ -570,10 +513,7 @@
       "hasTnaProducts": false,
       "type": "attraction",
       "pointGeolocation": {
-        "coordinates": [
-          100.53433877546308,
-          13.745084118890189
-        ],
+        "coordinates": [100.53433877546308, 13.745084118890189],
         "type": "Point"
       }
     },
@@ -611,10 +551,7 @@
       "hasTnaProducts": true,
       "type": "attraction",
       "pointGeolocation": {
-        "coordinates": [
-          114.041281,
-          22.312962
-        ],
+        "coordinates": [114.041281, 22.312962],
         "type": "Point"
       },
       "reviewsRating": "4.571428571428571",
@@ -626,10 +563,7 @@
       "regionId": "84685a5a-a0ee-47b5-b84c-4d76dffad76d",
       "grade": 10,
       "comment": "홍콩 여행에서 빼 놓을 수 없는 테마파크",
-      "location": [
-        114.041281,
-        22.312962
-      ],
+      "location": [114.041281, 22.312962],
       "categories": [
         {
           "name": "테마/체험"
@@ -674,10 +608,7 @@
         }
       ],
       "comment": "태국 최고의 실크 브랜드를 만든 짐 톰슨의 집",
-      "location": [
-        100.528324,
-        13.749251
-      ],
+      "location": [100.528324, 13.749251],
       "categories": [
         {
           "name": "관광명소"
@@ -687,10 +618,7 @@
       "hasTnaProducts": false,
       "type": "attraction",
       "pointGeolocation": {
-        "coordinates": [
-          100.528324,
-          13.749251
-        ],
+        "coordinates": [100.528324, 13.749251],
         "type": "Point"
       }
     },
@@ -728,10 +656,7 @@
       "hasTnaProducts": false,
       "type": "attraction",
       "pointGeolocation": {
-        "coordinates": [
-          114.158127,
-          22.285878
-        ],
+        "coordinates": [114.158127, 22.285878],
         "type": "Point"
       },
       "reviewsRating": "4.0",
@@ -743,10 +668,7 @@
       "regionId": "84685a5a-a0ee-47b5-b84c-4d76dffad76d",
       "grade": 10,
       "comment": "홍콩의 중심에서 홍콩의 모든것을 즐길 수 있는 쇼핑몰",
-      "location": [
-        114.158127,
-        22.285878
-      ],
+      "location": [114.158127, 22.285878],
       "categories": [
         {
           "name": "쇼핑"

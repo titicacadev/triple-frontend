@@ -52,4 +52,48 @@ describe('Label', () => {
       .should('have.css', 'cursor')
       .and('eq', 'pointer')
   })
+
+  it('should have correct styles of small promo', () => {
+    cy.get('.promo-small')
+      .first()
+      .as('smallPromo')
+
+    cy.get('@smallPromo')
+      .should('have.css', 'font-size')
+      .and('eq', '11px')
+
+    cy.get('@smallPromo')
+      .should('have.css', 'border-radius')
+      .and('eq', '1px')
+
+    cy.get('@smallPromo')
+      .should('have.css', 'height')
+      .and('eq', '20px')
+
+    cy.get('@smallPromo')
+      .should('have.css', 'padding')
+      .and('eq', '0px 6px')
+  })
+
+  it('should have correct styles of medium promo', () => {
+    cy.get('.promo-medium')
+      .first()
+      .as('mediumPromo')
+
+    cy.get('@mediumPromo')
+      .should('have.css', 'font-size')
+      .and('eq', '12px')
+
+    cy.get('@mediumPromo')
+      .should('have.css', 'border-radius')
+      .and('eq', '2px')
+
+    cy.get('@mediumPromo')
+      .should('have.css', 'height')
+      .and('eq', '26px')
+
+    cy.get('@mediumPromo')
+      .should('have.css', 'padding')
+      .and('eq', '0px 10px')
+  })
 })

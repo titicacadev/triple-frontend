@@ -170,10 +170,7 @@
               "local": "博多名代 吉塚うなぎ屋"
             },
             "comment": "140년 전통을 잇는 장어덮밥을 맛볼 수 있는 곳",
-            "location": [
-              130.408868,
-              33.592528
-            ],
+            "location": [130.408868, 33.592528],
             "regionId": "92ba56af-a93e-4877-a46a-3b84cf1af0cf",
             "categories": [
               {
@@ -182,10 +179,7 @@
             ],
             "pointGeolocation": {
               "type": "Point",
-              "coordinates": [
-                130.408868,
-                33.592528
-              ]
+              "coordinates": [130.408868, 33.592528]
             }
           },
           "buttonType": "price",
@@ -234,18 +228,12 @@
               "local": "Alta Vista De Boracay"
             },
             "comment": "수상스포츠의 천국 야팍 지역에 위치한 실용적인 객실을 갖춘 리조트",
-            "location": [
-              121.91238,
-              11.98796
-            ],
+            "location": [121.91238, 11.98796],
             "regionId": "22d7cfbd-2210-4ccb-94c4-cf1d97614dfe",
             "starRating": 4,
             "pointGeolocation": {
               "type": "Point",
-              "coordinates": [
-                121.91238,
-                11.98796
-              ]
+              "coordinates": [121.91238, 11.98796]
             }
           }
         },
@@ -286,18 +274,12 @@
               "clubPromotionRate": 3,
               "nightlyPriceHotelPromotionApplied": 260500
             },
-            "location": [
-              -118.16585,
-              33.96587
-            ],
+            "location": [-118.16585, 33.96587],
             "regionId": "25f11d9d-7267-43da-a3ae-cb12b1042380",
             "starRating": 4,
             "pointGeolocation": {
               "type": "Point",
-              "coordinates": [
-                -118.16585,
-                33.96587
-              ]
+              "coordinates": [-118.16585, 33.96587]
             }
           }
         }
@@ -577,10 +559,7 @@
                     "local": "ท่าอากาศยานสุวรรณภูมิ"
                   },
                   "comment": null,
-                  "location": [
-                    100.7501124,
-                    13.6899991
-                  ],
+                  "location": [100.7501124, 13.6899991],
                   "regionId": "edf1982d-c835-43a7-b06b-af43acbb6f38",
                   "categories": [
                     {
@@ -589,10 +568,7 @@
                   ],
                   "pointGeolocation": {
                     "type": "Point",
-                    "coordinates": [
-                      100.7501124,
-                      13.6899991
-                    ]
+                    "coordinates": [100.7501124, 13.6899991]
                   }
                 }
               },
@@ -626,10 +602,7 @@
                     "local": "ท่าอากาศยานดอนเมือง"
                   },
                   "comment": null,
-                  "location": [
-                    100.6041987,
-                    13.9132602
-                  ],
+                  "location": [100.6041987, 13.9132602],
                   "regionId": "edf1982d-c835-43a7-b06b-af43acbb6f38",
                   "categories": [
                     {
@@ -638,20 +611,14 @@
                   ],
                   "pointGeolocation": {
                     "type": "Point",
-                    "coordinates": [
-                      100.6041987,
-                      13.9132602
-                    ]
+                    "coordinates": [100.6041987, 13.9132602]
                   }
                 }
               }
             ],
             "preferences": {
               "time_zone": "Asia/Bangkok",
-              "currencies": [
-                "THB",
-                "USD"
-              ],
+              "currencies": ["THB", "USD"],
               "recommended_duration": 3,
               "default_search_radius": 1000
             },
@@ -711,10 +678,7 @@
                 "name": "방콕",
                 "geolocation": {
                   "type": "Point",
-                  "coordinates": [
-                    100.4930274,
-                    13.7248946
-                  ]
+                  "coordinates": [100.4930274, 13.7248946]
                 }
               },
               {
@@ -722,10 +686,7 @@
                 "name": "파타야",
                 "geolocation": {
                   "type": "Point",
-                  "coordinates": [
-                    100.90927999859616,
-                    12.940290614215169
-                  ]
+                  "coordinates": [100.90927999859616, 12.940290614215169]
                 }
               }
             ],
@@ -1108,10 +1069,7 @@
               "local": "Morning Glory Restaurant"
             },
             "comment": "호이안의 분위기가 물씬 느껴지는 로컬 레스토랑",
-            "location": [
-              108.32762500305842,
-              15.876622855227817
-            ],
+            "location": [108.32762500305842, 15.876622855227817],
             "regionId": "22b60e7e-afc7-40e1-9237-8f31ed8a842d",
             "categories": [
               {
@@ -1120,10 +1078,7 @@
             ],
             "pointGeolocation": {
               "type": "Point",
-              "coordinates": [
-                108.32762500305842,
-                15.876622855227817
-              ]
+              "coordinates": [108.32762500305842, 15.876622855227817]
             }
           }
         },
@@ -1162,10 +1117,7 @@
               "local": "Ya Kun Kaya Toast Far East Square"
             },
             "comment": "싱가포르 국민 간식인 카야 토스트의 원조를 맛볼 수 있는 레스토랑",
-            "location": [
-              103.84793527116392,
-              1.283797277525225
-            ],
+            "location": [103.84793527116392, 1.283797277525225],
             "regionId": "5119daab-5538-433b-b593-1b96978ed7ca",
             "categories": [
               {
@@ -1174,10 +1126,7 @@
             ],
             "pointGeolocation": {
               "type": "Point",
-              "coordinates": [
-                103.84793527116392,
-                1.283797277525225
-              ]
+              "coordinates": [103.84793527116392, 1.283797277525225]
             }
           }
         },
@@ -1216,10 +1165,7 @@
               "local": "梅丘寿司の美登利 渋谷店"
             },
             "comment": "가성비 최고의 유명 초밥집",
-            "location": [
-              139.698986,
-              35.658345
-            ],
+            "location": [139.698986, 35.658345],
             "regionId": "23c5965b-01ad-486b-a694-a2ced15f245c",
             "categories": [
               {
@@ -1228,10 +1174,7 @@
             ],
             "pointGeolocation": {
               "type": "Point",
-              "coordinates": [
-                139.698986,
-                35.658345
-              ]
+              "coordinates": [139.698986, 35.658345]
             }
           }
         }
@@ -1487,18 +1430,12 @@
               "clubPromotionRate": 3,
               "nightlyPriceHotelPromotionApplied": 243800
             },
-            "location": [
-              2.169573,
-              41.389972
-            ],
+            "location": [2.169573, 41.389972],
             "regionId": "c883cd34-f5c2-4f0a-9960-5f963f9b2dbb",
             "starRating": 3,
             "pointGeolocation": {
               "type": "Point",
-              "coordinates": [
-                2.169573,
-                41.389972
-              ]
+              "coordinates": [2.169573, 41.389972]
             }
           }
         },
@@ -1532,10 +1469,7 @@
               "local": "マリカー"
             },
             "comment": "슈퍼 마리오 게임 속 복장을 하고 체험하는 도쿄 도심 드라이빙",
-            "location": [
-              139.74154911073924,
-              35.620995000000015
-            ],
+            "location": [139.74154911073924, 35.620995000000015],
             "regionId": "23c5965b-01ad-486b-a694-a2ced15f245c",
             "categories": [
               {
@@ -1544,10 +1478,7 @@
             ],
             "pointGeolocation": {
               "type": "Point",
-              "coordinates": [
-                139.74154911073924,
-                35.620995000000015
-              ]
+              "coordinates": [139.74154911073924, 35.620995000000015]
             }
           }
         }
