@@ -51,6 +51,7 @@ const DatePickerContainer = styled(Container)`
     outline: none;
   }
 
+  .CalendarMonth_verticalSpacing,
   .CalendarMonth_table {
     width: 100%;
     text-align: center;
@@ -121,23 +122,8 @@ const DayPickerContainer = styled.div`
   .CalendarDay__selected:before {
     z-index: -1;
     display: block;
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 100%;
-    background-color: rgb(${COLORS.blue});
-    content: '';
-  }
-
-  .CalendarDay__selected:after {
-    z-index: -1;
-    display: block;
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -300,6 +286,7 @@ class DayPickerComponent extends PureComponent {
             renderMonthElement={({ month }) =>
               moment(month).format('YYYY년 MMMM')
             }
+            verticalBorderSpacing={20}
           />
         </DayPickerContainer>
       </DatePickerContainer>
