@@ -10,17 +10,7 @@ storiesOf('Text', module).add('일반', () => (
   <Text
     size={select(
       '크기',
-      [
-        'mini',
-        'tiny',
-        'small',
-        'medium',
-        'large',
-        'larger',
-        'big',
-        'huge',
-        'massive',
-      ],
+      ['mini', 'tiny', 'small', 'medium', 'large', 'big', 'huge', 'massive'],
       'tiny',
     )}
     color={select('색깔', ['blue', 'gray', 'white'], 'gray')}
