@@ -48,7 +48,7 @@ const PricingContainer = styled.div`
   }
 `
 
-const FixedCotainer = styled.div`
+const FixedContainer = styled.div`
   z-index: 1;
   position: fixed;
   bottom: 0;
@@ -161,7 +161,7 @@ function FixedPricing({
   onClick,
 }) {
   return (
-    <FixedCotainer active={active}>
+    <FixedContainer active={active}>
       <Container floated="left">
         <Text color="blue" size="mini" margin={{ top: 7, bottom: 4 }}>
           {label}
@@ -178,7 +178,7 @@ function FixedPricing({
       <Container floated="right">
         <ReservationButton onClick={onClick}>{buttonText}</ReservationButton>
       </Container>
-    </FixedCotainer>
+    </FixedContainer>
   )
 }
 
