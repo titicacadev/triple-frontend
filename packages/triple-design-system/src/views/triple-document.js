@@ -168,7 +168,7 @@ function Images({ value: { images, display }, onImageClick, ImageSource }) {
 
   return (
     <ImagesContainer
-      margin={{ top: 40, bottom: images.some(({ title }) => title) ? 20 : 30 }}
+      margin={{ top: 40, bottom: images.some(({ title }) => title) ? 10 : 30 }}
     >
       {images.map((image, i) => {
         const { frame, sizes, sourceUrl } = image
