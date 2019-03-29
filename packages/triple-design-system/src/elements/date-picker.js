@@ -125,13 +125,17 @@ const DayPickerContainer = styled.div`
     width: 32px;
     height: 32px;
     position: absolute;
-    top: 0;
+    top: 50%;
     bottom: 0;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     border-radius: 100%;
     background-color: rgb(${COLORS.blue});
     content: '';
+  }
+
+  .CalendarDay__selected:after {
+    content: none;
   }
 `
 
