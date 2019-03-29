@@ -284,12 +284,23 @@ const ButtonGroup = styled(Container)`
   }
 `
 
+const BUTTON_ICON_SIZES = {
+  mobile: '16px',
+}
+
 const ButtonIcon = styled.div`
   display: inline-block;
   width: 15px;
   height: 12px;
   background-size: 15px 12px;
   margin: 2px 5px 0 0;
+  ${({ size }) =>
+    size &&
+    `width: ${BUTTON_ICON_SIZES[size]};
+    height: ${BUTTON_ICON_SIZES[size]};
+    background-size: ${BUTTON_ICON_SIZES[size]} ${BUTTON_ICON_SIZES[size]};
+    `};
+
   vertical-align: text-top;
 
   background-image: url(${({ src }) => src});
