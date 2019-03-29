@@ -46,10 +46,7 @@ storiesOf('Button', module)
       color={select('버튼 색', ['gray', 'blue'])}
     >
       <Button.Icon
-        src="https://assets.triple-dev.titicaca-corp.com/images/save@4x.png"
-        width={16}
-        height={16}
-        margin={{ right: 5 }}
+        src="https://assets.triple-dev.titicaca-corp.com/images/save@4x.png"]\
       />
       {text('버튼 레이블', '저장하기')}
     </Button>

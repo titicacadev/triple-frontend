@@ -286,17 +286,10 @@ const ButtonGroup = styled(Container)`
 
 const ButtonIcon = styled.div`
   display: inline-block;
-  ${({ width = 15, height = 12 }) => `
-    width: ${width}px;
-    height: ${height}px;
-    background-size: ${width}px ${height}px;
-  `};
-
-  ${({ margin = { top: 2, right: 5 } }) => `
-    margin: ${margin.top || 0}px ${margin.right || 0}px ${margin.bottom ||
-    0}px ${margin.left || 0}px;
-  `};
-
+  width: 15px;
+  height: 12px;
+  background-size: 15px 12px;
+  margin: 2px 5px 0 0;
   vertical-align: text-top;
 
   background-image: url(${({ src }) => src});
