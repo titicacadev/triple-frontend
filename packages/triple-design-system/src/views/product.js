@@ -19,7 +19,7 @@ export class ProductListElement extends PureComponent {
   render() {
     const {
       props: {
-        product: { id, title, image, subtitle, pricing },
+        product: { id, title, image, subtitle, basePrice, salePrice },
         scraped: initialScraped,
         scrapsCount: initialScrapsCount,
         reviewsCount,
@@ -75,7 +75,7 @@ export class ProductListElement extends PureComponent {
           resource={this.props.product}
           onScrapedChange={onScrapedChange}
         />
-        <Pricing {...pricing} />
+        <Pricing basePrice={basePrice} salePrice={salePrice} />
       </ProductListItem>
     )
   }
