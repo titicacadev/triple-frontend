@@ -25,6 +25,10 @@ const DatePickerContainer = styled(Container)`
     padding: 15px 0 !important;
   }
 
+  .DayPicker_weekHeaders {
+    display: none;
+  }
+
   .DayPicker_weekHeader_ul {
     list-style: none;
     padding: 0;
@@ -42,7 +46,7 @@ const DatePickerContainer = styled(Container)`
   }
 
   .CalendarMonth {
-    padding: 0 10px !important;
+    padding: 30px 20px 0 !important;
   }
 
   .DayPicker_focusRegion {
@@ -65,7 +69,6 @@ const DatePickerContainer = styled(Container)`
   }
 
   .CalendarMonth_caption {
-    padding: 20px 0 5px 15px;
     font-weight: 500;
   }
 
@@ -215,6 +218,31 @@ const RangePickerContainer = styled.div`
     `};
 `
 
+const WeekContainer = styled(Container)`
+  display: table;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(${COLORS.gray}, 0.3);
+`
+
+const WeekText = styled.span`
+  display: table-cell;
+`
+
+function WeekComponent(month) {
+  return (
+    <Container>
+      <Text margin={{ bottom: 28 }}>{month}</Text>
+      <WeekContainer>
+        {['일', '월', '화', '수', '목', '금', '토'].map((text, idx) => (
+          <WeekText key={idx}>{text}</WeekText>
+        ))}
+      </WeekContainer>
+    </Container>
+  )
+}
+
 function withBaseInfo(WrappedComponent) {
   return class Wrapper extends PureComponent {
     constructor(props) {
@@ -288,7 +316,7 @@ class DayPickerComponent extends PureComponent {
               })
             }
             renderMonthElement={({ month }) =>
-              moment(month).format('YYYY년 MMMM')
+              WeekComponent(moment(month).format('YYYY년 MMMM'))
             }
             verticalBorderSpacing={20}
           />
