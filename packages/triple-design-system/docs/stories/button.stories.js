@@ -47,7 +47,7 @@ storiesOf('Button', module)
     >
       <Button.Icon
         src="https://assets.triple-dev.titicaca-corp.com/images/save@4x.png"
-        size={select('아이콘 크기', ['mobile'], 'mobile')}
+        size={select('아이콘 크기', ['tiny', 'small', 'large'], 'tiny')}
       />
       {text('버튼 레이블', '저장하기')}
     </Button>
