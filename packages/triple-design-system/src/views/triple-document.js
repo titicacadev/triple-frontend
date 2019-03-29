@@ -167,7 +167,9 @@ function Images({ value: { images, display }, onImageClick, ImageSource }) {
       : ImageCarouselElementContainer
 
   return (
-    <ImagesContainer margin={{ top: 40, bottom: 30 }}>
+    <ImagesContainer
+      margin={{ top: 40, bottom: images.some(({ title }) => title) ? 20 : 30 }}
+    >
       {images.map((image, i) => {
         const { frame, sizes, sourceUrl } = image
         return (
