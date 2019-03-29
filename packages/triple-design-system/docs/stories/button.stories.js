@@ -36,6 +36,24 @@ storiesOf('Button', module)
       {text('버튼 레이블', '안녕')}
     </Button>
   ))
+  .add('컴팩트 (아이콘)', () => (
+    <Button
+      compact
+      bold
+      size={select('버튼 크기', ['tiny', 'small', 'large'], 'tiny')}
+      fontSize={select('폰트 크기', ['tiny', 'small', 'large'], 'small')}
+      onClick={action('clicked')}
+      color={select('버튼 색', ['gray', 'blue'])}
+    >
+      <Button.Icon
+        src="https://assets.triple-dev.titicaca-corp.com/images/save@4x.png"
+        width={16}
+        height={16}
+        margin={{ right: 5 }}
+      />
+      {text('버튼 레이블', '저장하기')}
+    </Button>
+  ))
   .add('베이직', () => (
     <Button
       basic
