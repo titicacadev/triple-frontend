@@ -377,7 +377,7 @@ class RangePickerComponent extends PureComponent {
               })
             }
             renderMonthElement={({ month }) =>
-              moment(month).format('YYYY년 MMMM')
+              WeekComponent(moment(month).format('YYYY년 MMMM'))
             }
           />
         </RangePickerContainer>
