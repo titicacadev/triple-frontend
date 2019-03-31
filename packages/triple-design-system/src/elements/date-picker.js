@@ -79,11 +79,6 @@ const DatePickerContainer = styled(Container)`
     font-size: 14px;
   }
 
-  .CalendarDay__selected {
-    z-index: 0;
-    color: rgb(${COLORS.white});
-  }
-
   .CalendarDay__firstDayOfWeek,
   .CalendarDay__lastDayOfWeek {
     color: rgb(${COLORS.red});
@@ -92,15 +87,6 @@ const DatePickerContainer = styled(Container)`
   .CalendarDay__blocked_out_of_range {
     color: rgba(${COLORS.gray}, 0.3);
   }
-
-  .DayPickerNavigation,
-  .DayPickerKeyboardShortcuts_buttonReset {
-    display: none;
-  }
-`
-
-const DayPickerContainer = styled.div`
-  border: 1px solid rgba(${COLORS.gray}, 0.1);
 
   .CalendarDay__today {
     color: rgb(${COLORS.blue});
@@ -121,6 +107,15 @@ const DayPickerContainer = styled.div`
     z-index: 0;
     color: rgb(${COLORS.white});
   }
+
+  .DayPickerNavigation,
+  .DayPickerKeyboardShortcuts_buttonReset {
+    display: none;
+  }
+`
+
+const DayPickerContainer = styled.div`
+  border: 1px solid rgba(${COLORS.gray}, 0.1);
 
   .CalendarDay__selected:before {
     z-index: -1;
@@ -149,6 +144,10 @@ const RangePickerContainer = styled.div`
     font-weight: normal;
   }
 
+  .CalendarMonth {
+    padding: 30px 0 0 !important;
+  }
+
   .DayPicker_weekHeader {
     border-bottom: 1px solid rgba(${COLORS.gray}, 0.1);
   }
@@ -157,47 +156,43 @@ const RangePickerContainer = styled.div`
     font-size: 14px;
   }
 
-  .CalendarDay {
-    width: 46px !important;
-    height: 46px !important;
-    position: relative;
-    vertical-align: middle;
-    padding: 1px;
-    font-size: 16px;
+  .CalendarDay__selected_span:before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: block;
+    width: 100%;
+    height: 32px !important;
+    background: rgba(${COLORS.blue}, 0.1) !important;
     box-sizing: border-box;
+    content: '';
   }
 
-  .CalendarMonth {
-    padding: 0 !important;
-  }
-
-  .CalendarDay__selected_span {
-    background: rgba(${COLORS.blue}, 0.3) !important;
-    box-sizing: border-box;
-  }
-
-  .CalendarDay__selected:before {
+  .CalendarDay.CalendarDay__selected:before {
     z-index: -1;
     display: block;
     width: 50%;
-    height: 46px;
+    height: 32px;
     position: absolute;
-    top: 0;
+    top: 50%;
     bottom: 0;
     right: 0;
-    background-color: rgba(${COLORS.blue}, 0.3) !important;
+    transform: translateY(-50%);
+    background-color: rgba(${COLORS.blue}, 0.1) !important;
   }
 
   .CalendarDay__selected:after {
     z-index: -1;
     display: block;
-    width: 46px;
-    height: 46px;
+    width: 32px;
+    height: 32px;
     position: absolute;
-    top: 0;
+    top: 50%;
     bottom: 0;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     border-radius: 100%;
     background-color: rgb(${COLORS.blue});
     content: '';
@@ -346,7 +341,7 @@ class RangePickerComponent extends PureComponent {
     const eDate = endDate && moment(endDate)
 
     return (
-      <DatePickerContainer>
+      <DatePickerContainer height={355}>
         <RangePickerContainer
           selectedAll={sDate && eDate && !sDate.isSame(eDate)}
         >
@@ -379,6 +374,7 @@ class RangePickerComponent extends PureComponent {
             renderMonthElement={({ month }) =>
               WeekComponent(moment(month).format('YYYY년 MMMM'))
             }
+            verticalBorderSpacing={20}
           />
         </RangePickerContainer>
       </DatePickerContainer>
