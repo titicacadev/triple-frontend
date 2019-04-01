@@ -354,6 +354,8 @@ class RangePickerComponent extends PureComponent {
               onDateChange({
                 startDate: startDate && startDate.format('YYYY-MM-DD'),
                 endDate: endDate && endDate.format('YYYY-MM-DD'),
+                nights:
+                  startDate && endDate ? endDate.diff(startDate, 'days') : 0,
               })
             }}
             onFocusChange={(focusedInput) =>
