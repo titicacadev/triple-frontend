@@ -12,6 +12,7 @@ const FilterEntryBase = styled.div`
   border-radius: 2px;
   box-sizing: border-box;
   margin-right: 6px;
+  vertical-align: top;
 `
 
 const ACTIVE_EXPANDER_ICON_URL =
