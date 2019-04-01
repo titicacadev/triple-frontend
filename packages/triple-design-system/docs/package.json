@@ -4,8 +4,8 @@
   "description": "Documentation project for triple-design-system",
   "main": "index.js",
   "scripts": {
-    "dev": "start-storybook -p 6006",
-    "build": "build-storybook"
+    "dev": "start-storybook -p 6006 -s ./public",
+    "build": "build-storybook -s ./public"
   },
   "author": "",
   "license": "ISC",

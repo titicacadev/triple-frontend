@@ -19,8 +19,13 @@ storiesOf('ListingFilter', module)
   ))
   .add('타입1', () => (
     <ListingFilter>
-      <ListingFilter.FilterEntry withIcon active={boolean('active', true)}>
-        {text('레이블', '관광명소')}
+      <ListingFilter.FilterEntry
+        withIcon
+        active={boolean('active', true)}
+        activeIconImage="/ico-category-food-on.svg"
+        inactiveIconImage="/ico-category-food.svg"
+      >
+        {text('레이블', '음식점')}
       </ListingFilter.FilterEntry>
     </ListingFilter>
   ))
