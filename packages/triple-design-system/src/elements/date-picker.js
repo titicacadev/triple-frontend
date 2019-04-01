@@ -84,6 +84,14 @@ const DatePickerContainer = styled(Container)`
     color: rgb(${COLORS.red});
   }
 
+  .CalendarDay__firstDayOfWeek {
+    padding-left: 10px;
+  }
+
+  .CalendarDay__lastDayOfWeek {
+    padding-right: 10px;
+  }
+
   .CalendarDay__blocked_out_of_range {
     color: rgba(${COLORS.gray}, 0.3);
   }
@@ -138,18 +146,8 @@ const DayPickerContainer = styled.div`
 `
 
 const RangePickerContainer = styled.div`
-  .CalendarMonth_table {
-    border-spacing: 0 2px;
-    font-size: 16px;
-    font-weight: normal;
-  }
-
   .DayPicker_weekHeader {
     border-bottom: 1px solid rgba(${COLORS.gray}, 0.1);
-  }
-
-  .DayPicker_weekHeader_li {
-    font-size: 14px;
   }
 
   .CalendarDay__selected_span:before {
@@ -219,12 +217,23 @@ const WeekContainer = styled(Container)`
 
 const WeekText = styled.span`
   display: table-cell;
+  width: 40px;
+
+  &:first-child {
+    padding-left: 9px;
+  }
+
+  &:last-child {
+    padding-right: 9px;
+  }
 `
 
 function WeekHeaderComponent(month) {
   return (
     <Container>
-      <Text padding={{ top: 30, bottom: 28, left: 20 }}>{month}</Text>
+      <Text padding={{ top: 30, bottom: 28, left: 20 }} size="small">
+        {month}
+      </Text>
       <WeekContainer>
         {['일', '월', '화', '수', '목', '금', '토'].map((text, idx) => (
           <WeekText key={idx}>{text}</WeekText>
