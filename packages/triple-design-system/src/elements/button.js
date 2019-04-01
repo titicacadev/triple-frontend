@@ -284,20 +284,31 @@ const ButtonGroup = styled(Container)`
   }
 `
 
-const BUTTON_ICON_SIZES = {
-  tiny: '16px',
+const BUTTON_ICON_STYLES = {
+  compact: {
+    width: '15px',
+    height: '12px',
+    margin: '2px 5px 0 0',
+  },
+  small: {
+    width: '16px',
+    height: '16px',
+    margin: '0 5px 0 0',
+  },
 }
 
 const ButtonIcon = styled.div`
   display: inline-block;
-  margin-right: 5px;
 
-  ${({ size = 'tiny' }) =>
-    BUTTON_ICON_SIZES[size] &&
+  ${({ size = 'compact' }) =>
+    BUTTON_ICON_STYLES[size] &&
     `
-    width: ${BUTTON_ICON_SIZES[size]};
-    height: ${BUTTON_ICON_SIZES[size]};
-    background-size: ${BUTTON_ICON_SIZES[size]} ${BUTTON_ICON_SIZES[size]};
+    width: ${BUTTON_ICON_STYLES[size].width};
+    height: ${BUTTON_ICON_STYLES[size].height};
+    background-size: ${BUTTON_ICON_STYLES[size].width} ${
+      BUTTON_ICON_STYLES[size].height
+    };
+    margin: ${BUTTON_ICON_STYLES[size].margin};
     `};
 
   vertical-align: text-top;
