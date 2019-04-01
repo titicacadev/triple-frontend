@@ -295,7 +295,7 @@ const BUTTON_ICON_STYLES = {
     width: 16px;
     height: 16px;
     background-size: 16px 16px;
-    margin: 0 5px 0 0;
+    margin: 0 3px 0 -2px;
   `,
 }
 
