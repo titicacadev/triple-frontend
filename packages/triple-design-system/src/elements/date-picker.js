@@ -92,10 +92,6 @@ const DatePickerContainer = styled(Container)`
     padding-right: 10px;
   }
 
-  .CalendarDay__blocked_out_of_range {
-    color: rgba(${COLORS.gray}, 0.3);
-  }
-
   .CalendarDay__today {
     color: rgb(${COLORS.blue});
   }
@@ -116,16 +112,7 @@ const DatePickerContainer = styled(Container)`
     color: rgb(${COLORS.white});
   }
 
-  .DayPickerNavigation,
-  .DayPickerKeyboardShortcuts_buttonReset {
-    display: none;
-  }
-`
-
-const DayPickerContainer = styled.div`
-  border: 1px solid rgba(${COLORS.gray}, 0.1);
-
-  .CalendarDay__selected:before {
+  .CalendarDay__selected:after {
     z-index: -1;
     display: block;
     width: 32px;
@@ -140,9 +127,28 @@ const DayPickerContainer = styled.div`
     content: '';
   }
 
-  .CalendarDay__selected:after {
-    content: none;
+  .CalendarDay__firstDayOfWeek.CalendarDay__selected:after {
+    left: calc(50%);
+    transform: translate(calc(-50% + 5px), -50%);
   }
+
+  .CalendarDay__lastDayOfWeek.CalendarDay__selected:after {
+    left: calc(50%);
+    transform: translate(calc(-50% - 5px), -50%);
+  }
+
+  .CalendarDay__blocked_out_of_range {
+    color: rgba(${COLORS.gray}, 0.3);
+  }
+
+  .DayPickerNavigation,
+  .DayPickerKeyboardShortcuts_buttonReset {
+    display: none;
+  }
+`
+
+const DayPickerContainer = styled.div`
+  border: 1px solid rgba(${COLORS.gray}, 0.1);
 `
 
 const RangePickerContainer = styled.div`
@@ -175,21 +181,6 @@ const RangePickerContainer = styled.div`
     right: 0;
     transform: translateY(-50%);
     background-color: rgba(${COLORS.blue}, 0.1) !important;
-  }
-
-  .CalendarDay__selected:after {
-    z-index: -1;
-    display: block;
-    width: 32px;
-    height: 32px;
-    position: absolute;
-    top: 50%;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 100%;
-    background-color: rgb(${COLORS.blue});
-    content: '';
   }
 
   ${({ selectedAll }) =>
@@ -231,7 +222,7 @@ const WeekText = styled.span`
 function WeekHeaderComponent(month) {
   return (
     <Container>
-      <Text padding={{ top: 30, bottom: 28, left: 20 }} size="small">
+      <Text padding={{ top: 30, bottom: 28, left: 20 }} size="small" bold>
         {month}
       </Text>
       <WeekContainer>
