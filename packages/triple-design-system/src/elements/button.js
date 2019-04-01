@@ -16,7 +16,7 @@ const BUTTON_COLORS = {
 const ButtonBase = styled.a`
   display: inline-block;
   font-family: sans-serif;
-  font-size: ${({ fontSize }) => SIZES[fontSize]};
+  font-size: ${({ size }) => SIZES[size]};
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
   text-align: center;
   text-decoration: none;
@@ -93,33 +93,45 @@ const IconButton = styled(ButtonBase)`
   }};
 `
 
-const BASIC_PADDINGS = {
-  tiny: { top: 8, bottom: 7, left: 12, right: 12 },
-  small: { top: 7, bottom: 7, left: 15, right: 15 },
-  large: { top: 14, bottom: 14, left: 15, right: 15 },
+const BASIC_COLORS = {
+  gray: {
+    border: 'rgba(58, 58, 58, 0.2)',
+    text: '#3a3a3a',
+  },
+}
+
+const BASIC_INVERTED_COLORS = {
+  blue: '#368fff',
 }
 
 const BasicButton = styled(ButtonBase)`
   border-style: solid;
-  border-width: 1px;
-  ${({ borderRadius }) =>
-    borderRadius &&
-    css`
-      border-radius: ${borderRadius}px;
-    `};
-  border-color: ${({ color = 'gray', alpha = 0.2 }) =>
-    `rgba(${BUTTON_COLORS[color]}, ${alpha})`};
-  background-color: transparent;
+  border-radius: 4px;
 
-  ${({ size }) => {
-    const padding = BASIC_PADDINGS[size]
+  ${({ compact }) =>
+    compact
+      ? css`
+          padding: 7px 12px 7px 12px;
+        `
+      : css`
+          padding: 14px 12px 14px 12px;
+        `};
 
-    return css`
-      padding-top: ${padding.top || 0}px;
-      padding-bottom: ${padding.bottom || 0}px;
-      padding-left: ${padding.left || 0}px;
-      padding-right: ${padding.right || 0}px;
-    `
+  ${({ inverted, color }) => {
+    if (inverted) {
+      return css`
+        background-color: ${BASIC_INVERTED_COLORS[color || 'blue']};
+        border-width: 0;
+        color: white;
+      `
+    } else {
+      return css`
+        background-color: transparent;
+        border-width: 1px;
+        border-color: ${BASIC_COLORS[color || 'gray'].border};
+        color: ${BASIC_COLORS[color || 'gray'].text};
+      `
+    }
   }};
 `
 
@@ -165,7 +177,6 @@ class Button extends PureComponent {
         textColor,
         textAlpha,
         children,
-        fontSize,
         borderRadius,
         ...props
       },
@@ -176,10 +187,8 @@ class Button extends PureComponent {
         <BasicButton
           bold
           size={size || 'small'}
-          fontSize={fontSize || size || 'small'}
           textColor={textColor || 'gray'}
           textAlpha={textAlpha}
-          borderRadius={borderRadius || 4}
           {...props}
         >
           {children}
@@ -194,7 +203,6 @@ class Button extends PureComponent {
           size={size || 'tiny'}
           textColor={textColor || 'gray'}
           textAlpha={textAlpha || 0.5}
-          fontSize={fontSize || size || 'tiny'}
           {...props}
         >
           {children}
@@ -206,7 +214,6 @@ class Button extends PureComponent {
       <NormalButton
         bold
         size={size || 'tiny'}
-        fontSize={fontSize || size || 'small'}
         textColor={textColor || 'white'}
         textAlpha={textAlpha}
         borderRadius={borderRadius || 21}
@@ -265,9 +272,6 @@ const ButtonGroup = styled(Container)`
         : css`
             width: ${100 / Children.count(children)}%;
           `};
-
-    padding-left: 0;
-    padding-right: 0;
   }
 
   a:not(:first-child) {

@@ -348,7 +348,7 @@ function ButtonLink({ children, ...props }) {
 
 function BlockLink({ children, ...props }) {
   return (
-    <Button basic fluid bold color="gray" alpha={0.2} {...props}>
+    <Button basic fluid compact color="gray" {...props}>
       {children}
     </Button>
   )

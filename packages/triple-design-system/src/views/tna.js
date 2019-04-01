@@ -94,6 +94,7 @@ export class TnaProductsList extends PureComponent {
               <Button
                 basic
                 fluid
+                compact
                 margin={{ top: 10 }}
                 onClick={() => this.setState({ showMore: true })}
               >

@@ -186,10 +186,10 @@ function LocationSegment({ address, phone, url }) {
 function LocationButtonGroup() {
   return (
     <Button.Group horizontalGap={10} margin={{ top: 15 }}>
-      <Button basic size="large" fontSize="small" textColor="gray">
+      <Button basic color="gray" size="small">
         현지에서 길묻기
       </Button>
-      <Button size="small" borderRadius={4}>
+      <Button basic inverted color="blue" size="small">
         길찾기
       </Button>
     </Button.Group>

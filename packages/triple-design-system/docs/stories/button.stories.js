@@ -2,7 +2,7 @@ import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import { text, number, select } from '@storybook/addon-knobs'
+import { text, number, select, boolean } from '@storybook/addon-knobs'
 
 import { Button } from '@titicaca/triple-design-system'
 
@@ -39,36 +39,16 @@ storiesOf('Button', module)
   .add('베이직', () => (
     <Button
       basic
-      size={select('버튼 크기', ['tiny', 'small', 'large'], 'tiny')}
-      fontSize={select('폰트 크기', ['tiny', 'small', 'large'], 'tiny')}
+      fluid={boolean('채움', false)}
+      compact={boolean('콤팩트', false)}
+      inverted={boolean('색반전', false)}
       onClick={action('clicked')}
-      color={select('버튼 색', ['gray', 'blue'])}
     >
       {text('버튼 레이블', '안녕')}
     </Button>
   ))
-  .add('베이직 (채움형)', () => (
-    <Button
-      basic
-      fluid
-      size={select('버튼 크기', ['tiny', 'small', 'large'], 'tiny')}
-      fontSize={select('폰트 크기', ['tiny', 'small', 'large'], 'tiny')}
-      onClick={action('clicked')}
-      color={select('버튼 색', ['gray', 'blue'])}
-    >
-      {text('버튼 레이블', '안녕')}
-    </Button>
-  ))
-  .add('베이직 (채움형 + 아이콘)', () => (
-    <Button
-      basic
-      bold
-      fluid
-      size={select('버튼 크기', ['tiny', 'small', 'large'], 'tiny')}
-      fontSize={select('폰트 크기', ['tiny', 'small', 'large'], 'small')}
-      onClick={action('clicked')}
-      color={select('버튼 색', ['gray', 'blue'])}
-    >
+  .add('베이직 (아이콘)', () => (
+    <Button basic fluid compact onClick={action('clicked')}>
       <Button.Icon src="https://triple-dev.titicaca-corp.com/content/static/images/index@4x.png" />
       {text('버튼 레이블', '목차')}
     </Button>
@@ -94,10 +74,10 @@ storiesOf('Button', module)
   ))
   .add('버튼 그룹', () => (
     <Button.Group horizontalGap={number('버튼 간격', 10)}>
-      <Button basic size="large" fontSize="small">
+      <Button basic color="gray" size="small">
         현지에서 길묻기
       </Button>
-      <Button borderRadius={4} size="small" fontSize="small">
+      <Button basic inverted color="blue" size="small">
         길찾기
       </Button>
     </Button.Group>

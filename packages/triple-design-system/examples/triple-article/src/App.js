@@ -49,7 +49,7 @@ export default class App extends Component {
           minWidth={375}
           maxWidth={600}
         >
-          <Button basic fluid bold fontSize="small" size="tiny">
+          <Button basic compact fluid>
             <Button.Icon
               width={15}
               height={12}
