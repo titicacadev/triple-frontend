@@ -290,8 +290,6 @@ const BUTTON_ICON_SIZES = {
 
 const ButtonIcon = styled.div`
   display: inline-block;
-  width: 15px;
-  height: 12px;
   margin-right: 5px;
 
   ${({ size = 'tiny' }) =>
