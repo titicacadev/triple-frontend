@@ -14,7 +14,7 @@ describe('DayPicker', () => {
   })
 
   it('end Day block check', () => {
-    cy.get('.CalendarMonth_table')
+    cy.get('.CalendarMonth_verticalSpacing')
       .last()
       .find('.CalendarDay')
       .contains('28')
@@ -22,7 +22,7 @@ describe('DayPicker', () => {
   })
 
   it('block day active click check', () => {
-    cy.get('.CalendarMonth_table')
+    cy.get('.CalendarMonth_verticalSpacing')
       .last()
       .find('.CalendarDay')
       .contains('28')
