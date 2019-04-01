@@ -79,16 +79,9 @@ export const ListingFilter = styled.div`
   }
 `
 
-function FilterEntry({
-  withIcon,
-  active,
-  activeIconImage,
-  inactiveIconImage,
-  ...props
-}) {
+function FilterEntry({ active, activeIconImage, inactiveIconImage, ...props }) {
   return (
     <RegularFilterEntry
-      withIcon={withIcon}
       active={active}
       iconImage={active ? activeIconImage : inactiveIconImage}
       {...props}
