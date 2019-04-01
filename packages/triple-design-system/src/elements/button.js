@@ -285,31 +285,24 @@ const ButtonGroup = styled(Container)`
 `
 
 const BUTTON_ICON_STYLES = {
-  compact: {
-    width: '15px',
-    height: '12px',
-    margin: '2px 5px 0 0',
-  },
-  small: {
-    width: '16px',
-    height: '16px',
-    margin: '0 5px 0 0',
-  },
+  compact: css`
+    width: 15px;
+    height: 12px;
+    background-size: 15px 12px;
+    margin: 2px 5px 0 0;
+  `,
+  small: css`
+    width: 16px;
+    height: 16px;
+    background-size: 16px 16px;
+    margin: 0 5px 0 0;
+  `,
 }
 
 const ButtonIcon = styled.div`
   display: inline-block;
 
-  ${({ size = 'compact' }) =>
-    BUTTON_ICON_STYLES[size] &&
-    `
-    width: ${BUTTON_ICON_STYLES[size].width};
-    height: ${BUTTON_ICON_STYLES[size].height};
-    background-size: ${BUTTON_ICON_STYLES[size].width} ${
-      BUTTON_ICON_STYLES[size].height
-    };
-    margin: ${BUTTON_ICON_STYLES[size].margin};
-    `};
+  ${({ size = 'compact' }) => BUTTON_ICON_STYLES[size]};
 
   vertical-align: text-top;
 
