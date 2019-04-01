@@ -45,14 +45,14 @@ const DatePickerContainer = styled(Container)`
     font-size: 13px;
   }
 
-  .CalendarMonth {
-    padding: 30px 20px 0 !important;
-  }
-
   .DayPicker_focusRegion {
     height: ${({ height }) => height || 265}px;
     overflow: scroll;
     outline: none;
+  }
+
+  .CalendarMonth {
+    padding: 0 !important;
   }
 
   .CalendarMonth_verticalSpacing,
@@ -97,7 +97,7 @@ const DatePickerContainer = styled(Container)`
     position: absolute;
     display: inline-block;
     font-size: 11px;
-    top: 26px;
+    top: 35px;
     left: 0px;
     width: 100%;
     color: rgb(${COLORS.blue});
@@ -142,10 +142,6 @@ const RangePickerContainer = styled.div`
     border-spacing: 0 2px;
     font-size: 16px;
     font-weight: normal;
-  }
-
-  .CalendarMonth {
-    padding: 30px 0 0 !important;
   }
 
   .DayPicker_weekHeader {
@@ -225,10 +221,10 @@ const WeekText = styled.span`
   display: table-cell;
 `
 
-function WeekComponent(month) {
+function WeekHeaderComponent(month) {
   return (
     <Container>
-      <Text margin={{ bottom: 28 }}>{month}</Text>
+      <Text padding={{ top: 30, bottom: 28, left: 20 }}>{month}</Text>
       <WeekContainer>
         {['일', '월', '화', '수', '목', '금', '토'].map((text, idx) => (
           <WeekText key={idx}>{text}</WeekText>
@@ -311,7 +307,7 @@ class DayPickerComponent extends PureComponent {
               })
             }
             renderMonthElement={({ month }) =>
-              WeekComponent(moment(month).format('YYYY년 MMMM'))
+              WeekHeaderComponent(moment(month).format('YYYY년 MMMM'))
             }
             verticalBorderSpacing={20}
           />
@@ -372,7 +368,7 @@ class RangePickerComponent extends PureComponent {
               })
             }
             renderMonthElement={({ month }) =>
-              WeekComponent(moment(month).format('YYYY년 MMMM'))
+              WeekHeaderComponent(moment(month).format('YYYY년 MMMM'))
             }
             verticalBorderSpacing={20}
           />
