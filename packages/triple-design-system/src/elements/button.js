@@ -294,7 +294,8 @@ const ButtonIcon = styled.div`
 
   ${({ size = 'tiny' }) =>
     BUTTON_ICON_SIZES[size] &&
-    `width: ${BUTTON_ICON_SIZES[size]};
+    `
+    width: ${BUTTON_ICON_SIZES[size]};
     height: ${BUTTON_ICON_SIZES[size]};
     background-size: ${BUTTON_ICON_SIZES[size]} ${BUTTON_ICON_SIZES[size]};
     `};
