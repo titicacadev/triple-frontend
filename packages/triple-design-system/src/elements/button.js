@@ -261,17 +261,16 @@ const ButtonGroup = styled(Container)`
   width: 100%;
 
   a {
-    ${({ horizontalGap, children }) =>
-      horizontalGap
-        ? css`
-            width: calc(
-              (100% - ${(Children.count(children) - 1) * horizontalGap}px) /
-                ${Children.count(children)}
-            );
-          `
-        : css`
-            width: ${100 / Children.count(children)}%;
-          `};
+    ${({ horizontalGap, children }) => {
+      const childrenCount = Children.count(children)
+
+      return css`
+        width: ${childrenCount > 0
+          ? `calc((100% - ${(childrenCount - 1) *
+              horizontalGap}px) / ${childrenCount})`
+          : '100%'};
+      `
+    }};
   }
 
   a:not(:first-child) {
