@@ -6,6 +6,17 @@ import { text, boolean } from '@storybook/addon-knobs'
 import { ListingFilter } from '@titicaca/triple-design-system'
 
 storiesOf('ListingFilter', module)
+  .add('전체', () => (
+    <ListingFilter>
+      <ListingFilter.PrimaryFilterEntry>
+        5.17-5.20, 3명
+      </ListingFilter.PrimaryFilterEntry>
+      <ListingFilter.ExpandingFilterEntry>
+        침대타입
+      </ListingFilter.ExpandingFilterEntry>
+      <ListingFilter.FilterEntry>무료취소</ListingFilter.FilterEntry>
+    </ListingFilter>
+  ))
   .add('타입1', () => (
     <ListingFilter>
       <ListingFilter.FilterEntry withIcon active={boolean('active', true)}>
