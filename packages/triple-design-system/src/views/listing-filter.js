@@ -56,6 +56,19 @@ const RegularFilterEntry = styled(FilterEntryBase)`
   border-radius: 2px;
 `
 
+const PrimaryFilterEntry = styled(FilterEntryBase)`
+  padding: 10px 14px 8px 38px;
+  background-image: url(${PRIMARY_ICON_URL});
+  background-size: 24px 24px;
+  background-position: top 5px left 10px;
+  border: none;
+  border-radius: 2px;
+  background-color: #368fff;
+  font-size: 13px;
+  font-weight: bold;
+  color: #fff;
+`
+
 export const ListingFilter = styled.div`
   white-space: nowrap;
   overflow-x: scroll;
@@ -82,19 +95,6 @@ function FilterEntry({
     />
   )
 }
-
-const PrimaryFilterEntry = styled(FilterEntryBase)`
-  padding: 10px 14px 8px 38px;
-  background-image: url(${PRIMARY_ICON_URL});
-  background-size: 24px 24px;
-  background-position: top 5px left 10px;
-  border: none;
-  border-radius: 2px;
-  background-color: #368fff;
-  font-size: 13px;
-  font-weight: bold;
-  color: #fff;
-`
 
 ListingFilter.FilterEntry = FilterEntry
 ListingFilter.ExpandingFilterEntry = ExpandingFilterEntry
