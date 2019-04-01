@@ -21,7 +21,7 @@ const INACTIVE_EXPANDER_ICON_URL =
 const PRIMARY_ICON_URL =
   'https://assets.triple-dev.titicaca-corp.com/images/ico-filter-cal.svg'
 
-const ExpandingFilterEntry = styled(FilterEntryBase)`
+const ExpandingFilterEntryContainer = styled(FilterEntryBase)`
   padding: 8px 24px 8px 11px;
   background-image: ${({ active }) =>
     active
@@ -30,6 +30,35 @@ const ExpandingFilterEntry = styled(FilterEntryBase)`
   background-size: 10px 24px;
   background-position: top 4px right 10px;
 `
+
+const ExpandingFilterEntryBadge = styled.div`
+  display: inline-block;
+  font-family: sans-serif;
+  height: 18px;
+  width: 18px;
+  line-height: 18px;
+  background-color: #368fff;
+  color: #fff;
+  vertical-align: top;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: bold;
+  padding-left: 5px;
+  box-sizing: border-box;
+  margin-left: 2px;
+  margin-top: -2px;
+`
+
+function ExpandingFilterEntry({ badge, children, ...props }) {
+  return (
+    <ExpandingFilterEntryContainer {...props}>
+      {children}
+      {badge ? (
+        <ExpandingFilterEntryBadge>{badge}</ExpandingFilterEntryBadge>
+      ) : null}
+    </ExpandingFilterEntryContainer>
+  )
+}
 
 const RegularFilterEntry = styled(FilterEntryBase)`
   ${({ withIcon, iconImage }) =>

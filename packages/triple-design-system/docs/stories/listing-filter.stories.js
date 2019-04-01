@@ -22,7 +22,10 @@ storiesOf('ListingFilter', module)
   ))
   .add('타입3', () => (
     <ListingFilter>
-      <ListingFilter.ExpandingFilterEntry active={boolean('active', true)}>
+      <ListingFilter.ExpandingFilterEntry
+        active={boolean('active', true)}
+        badge={text('badge', 0)}
+      >
         {text('레이블', '성급 및 필터')}
       </ListingFilter.ExpandingFilterEntry>
     </ListingFilter>
