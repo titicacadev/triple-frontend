@@ -264,12 +264,16 @@ const ButtonGroup = styled(Container)`
     ${({ horizontalGap, children }) => {
       const childrenCount = Children.count(children)
 
-      return css`
-        width: ${childrenCount > 0
-          ? `calc((100% - ${(childrenCount - 1) *
-              horizontalGap}px) / ${childrenCount})`
-          : '100%'};
-      `
+      return (horizontalGap || 0) > 0
+        ? css`
+            width: ${childrenCount > 0
+              ? `calc((100% - ${(childrenCount - 1) *
+                  horizontalGap}px) / ${childrenCount})`
+              : '100%'};
+          `
+        : css`
+            width: ${100 / childrenCount}%;
+          `
     }};
   }
 
