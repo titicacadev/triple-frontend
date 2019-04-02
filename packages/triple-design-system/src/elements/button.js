@@ -107,6 +107,7 @@ const BASIC_INVERTED_COLORS = {
 const BasicButton = styled(ButtonBase)`
   border-style: solid;
   border-radius: 4px;
+  border-width: 1px;
 
   ${({ compact }) =>
     compact
@@ -121,13 +122,12 @@ const BasicButton = styled(ButtonBase)`
     if (inverted) {
       return css`
         background-color: ${BASIC_INVERTED_COLORS[color || 'blue']};
-        border-width: 0;
+        border-color: ${BASIC_INVERTED_COLORS[color || 'blue']};
         color: white;
       `
     } else {
       return css`
         background-color: transparent;
-        border-width: 1px;
         border-color: ${BASIC_COLORS[color || 'gray'].border};
         color: ${BASIC_COLORS[color || 'gray'].text};
       `
