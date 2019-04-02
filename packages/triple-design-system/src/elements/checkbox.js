@@ -2,6 +2,12 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import Container from './container'
 
+const COLORS = {
+  blue: '54, 143, 255',
+  red: '255, 33, 60',
+  gray: '58, 58, 58',
+}
+
 const ConfirmFrame = styled.div`
   width: ${({ width }) => width || 100}%;
   border: 1px solid #efefef;
@@ -14,8 +20,8 @@ const ConfirmFrame = styled.div`
   ${({ checked }) =>
     checked &&
     css`
-      border-color: rgb(54, 143, 255);
-      color: rgb(54, 143, 255);
+      border-color: rgb(${COLORS.blue});
+      color: rgb(${COLORS.blue});
 
       & span {
         background-image: url('https://assets.triple.guide/images/btn-web-check-on@2x.png');

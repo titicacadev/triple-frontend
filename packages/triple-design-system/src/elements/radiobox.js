@@ -2,16 +2,21 @@ import React from 'react'
 import Container from './container'
 import styled, { css } from 'styled-components'
 
+const COLORS = {
+  blud: '54,143,255',
+  gray: '58, 58, 58',
+}
+
 const GenderBox = styled.div`
   width: 50%;
   display: inline-block;
   padding: 16px 0;
-  border: 1px solid rgb(239, 239, 239);
+  border: 1px solid rgba(${COLORS.gray}, 0.1);
   border-radius: 2px;
   box-sizing: border-box;
   text-align: center;
   font-size: 14px;
-  color: rgba(58, 58, 58, 0.3);
+  color: rgba(${COLORS.gray}, 0.3);
 
   &:last-child {
     border-left: none;
@@ -20,11 +25,11 @@ const GenderBox = styled.div`
   ${({ selected }) =>
     selected &&
     css`
-      color: #368fff;
-      border: 1px solid #368fff;
+      color: rgb(${COLORS.blud});
+      border: 1px solid rgb(${COLORS.blud});
 
       &:last-child {
-        border: 1px solid #368fff;
+        border: 1px solid rgb(${COLORS.blud});
       }
     `};
 `
