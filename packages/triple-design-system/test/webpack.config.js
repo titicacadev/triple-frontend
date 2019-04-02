@@ -28,6 +28,7 @@ module.exports = {
     pricing: [path.resolve(__dirname, '../src'), './src/elements/pricing'],
     spinner: [path.resolve(__dirname, '../src'), './src/elements/spinner'],
     table: [path.resolve(__dirname, '../src'), './src/elements/table'],
+    form: [path.resolve(__dirname, '../src'), './src/elements/form'],
     'day-picker': [
       path.resolve(__dirname, '../src'),
       './src/elements/day-picker',
