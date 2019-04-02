@@ -34,14 +34,14 @@ const GenderBox = styled.div`
     `};
 `
 
-function GenderRadio({ name, value, setFieldValue }) {
+function GenderRadio({ name, value, onClick }) {
   return (
     <Container>
       <GenderBox
         value="MALE"
         selected={value === 'MALE' ? true : false}
         onClick={() => {
-          setFieldValue(name, 'MALE')
+          onClick(name, 'MALE')
         }}
       >
         남자
@@ -50,7 +50,7 @@ function GenderRadio({ name, value, setFieldValue }) {
         value="FEMALE"
         selected={value === 'FEMALE' ? true : false}
         onClick={() => {
-          setFieldValue(name, 'FEMALE')
+          onClick(name, 'FEMALE')
         }}
       >
         여자

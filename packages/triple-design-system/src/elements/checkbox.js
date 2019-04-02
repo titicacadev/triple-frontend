@@ -59,11 +59,11 @@ const Icon = styled.span`
   background-image: url('https://assets.triple.guide/images/btn-web-check-off@2x.png');
 `
 
-function ConfirmBox({ name, value, placeholder, setFieldValue, ...props }) {
+function ConfirmBox({ name, value, placeholder, onClick, ...props }) {
   return (
     <ConfirmFrame
       onClick={() => {
-        setFieldValue(name, !value)
+        onClick(name, !value)
       }}
       checked={value}
       {...props}
