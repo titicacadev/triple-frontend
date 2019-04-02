@@ -17,7 +17,7 @@ export default class App extends PureComponent {
     return (
       <div className="modal-container">
         <Container margin={{ bottom: 10 }}>
-          <Input placeholder="이름을 입력해주세요" />
+          <Input name="name" placeholder="이름을 입력해주세요" />
         </Container>
         <Container margin={{ bottom: 10 }}>
           <Input placeholder="이름을 입력해주세요" focus={focus} />

@@ -19,14 +19,21 @@ const Input = styled(InputMask)`
     css`
       border-color: rgb(54, 143, 255);
     `};
+
+  ${({ error }) =>
+    error &&
+    css`
+      border-color: rgb(255, 33, 60);
+    `};
 `
 
-export default ({ name, value, placeholder, mask, ...props }) => {
+export default ({ name, value, placeholder, mask, onChange, ...props }) => {
   return (
     <Input
       name={name}
       mask={mask}
       maskChar={null}
+      onChange={({ target: { name, value } }) => onChange(name, value)}
       placeholder={placeholder}
       {...props}
     />
