@@ -1,14 +1,13 @@
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
-import Container from '../elements/container'
 import Text from '../elements/text'
-import Rating from '../elements/rating'
 import Image from '../elements/image'
 import List from '../elements/list'
 import Carousel from '../elements/carousel'
 import ScrapButton from '../elements/scrap-button'
 import { SquareImage, ResourceListItem } from '../elements/content-elements'
-import { deriveCurrentStateAndCount, formatNumber } from '../utilities'
+import { deriveCurrentStateAndCount } from '../utilities'
+import { ExtendedResourceListElement } from './common/resource-list-element'
 
 const TYPE_NAMES = {
   attraction: '관광명소',
@@ -161,12 +160,6 @@ class CompactPoiListElement extends PureComponent {
   }
 }
 
-const ExtendedPoiListItem = styled(List.Item)`
-  min-height: 150px;
-  padding: 20px 0;
-  box-sizing: border-box;
-`
-
 class ExtendedPoiListElement extends PureComponent {
   render() {
     const {
@@ -202,69 +195,27 @@ class ExtendedPoiListElement extends PureComponent {
       currentState: resourceScraps[id],
     })
     const reviewsCount = Number(rawReviewsCount || 0)
+    const note = [category, area]
+      .filter((v) => v)
+      .map(({ name }) => name)
+      .join(' · ')
 
     return (
-      <ExtendedPoiListItem onClick={onClick}>
-        <Image
-          floated="right"
-          size="small"
-          width={90}
-          src={image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS[type]}
-          asPlaceholder={!image}
-          margin={{ left: 20 }}
-        />
-        <Text bold ellipsis size="large">
-          {nameOverride || names.ko || names.en || names.local}
-        </Text>
-        <Text alpha={0.7} size="small" margin={{ top: 5 }}>
-          {comment}
-        </Text>
-        {reviewsCount || scrapsCount ? (
-          <Container margin={{ top: 5 }}>
-            <>
-              {reviewsCount ? (
-                <Rating size="small" score={reviewsRating} />
-              ) : null}
-              <Text inline size="small" alpha={0.4}>
-                {[
-                  reviewsCount ? ` (${formatNumber(reviewsCount)})` : null,
-                  scrapsCount ? `저장${formatNumber(scrapsCount)}` : null,
-                ]
-                  .filter((counterFragment) => counterFragment)
-                  .join(' · ')}
-              </Text>
-            </>
-          </Container>
-        ) : null}
-        <Container margin={{ top: 3 }}>
-          {distance || distance === 0 ? (
-            <Text inline color="blue" size="small" alpha={1}>
-              {`${distance}m `}
-            </Text>
-          ) : null}
-          {category ? (
-            <Text inline size="small" alpha={0.4}>
-              {category.name}
-            </Text>
-          ) : null}
-          {category && area ? (
-            <Text inline size="small" alpha={0.4}>
-              {' · '}
-            </Text>
-          ) : null}
-          {area ? (
-            <Text inline size="small" alpha={0.4}>
-              {area.name}
-            </Text>
-          ) : null}
-        </Container>
-        <ScrapButton
-          top={23}
-          scraped={scraped}
-          resource={this.props.poi}
-          onScrapedChange={onScrapedChange}
-        />
-      </ExtendedPoiListItem>
+      <ExtendedResourceListElement
+        resource={this.props.poi}
+        image={image}
+        imagePlaceholder={POI_IMAGE_PLACEHOLDERS[type]}
+        name={nameOverride || names.ko || names.en || names.local}
+        comment={comment}
+        distance={distance}
+        note={note}
+        reviewsCount={reviewsCount}
+        reviewsRating={reviewsRating}
+        scraped={scraped}
+        scrapsCount={scrapsCount}
+        onScrapedChange={onScrapedChange}
+        onClick={onClick}
+      />
     )
   }
 }

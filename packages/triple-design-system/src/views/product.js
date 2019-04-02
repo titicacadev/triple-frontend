@@ -1,19 +1,6 @@
 import React, { PureComponent } from 'react'
-import styled from 'styled-components'
-import Container from '../elements/container'
-import Text from '../elements/text'
-import Rating from '../elements/rating'
-import Image from '../elements/image'
-import List from '../elements/list'
-import ScrapButton from '../elements/scrap-button'
-import Pricing from '../elements/pricing'
-import { deriveCurrentStateAndCount, formatNumber } from '../utilities'
-
-const ProductListItem = styled(List.Item)`
-  min-height: 150px;
-  padding: 20px 0;
-  box-sizing: border-box;
-`
+import { deriveCurrentStateAndCount } from '../utilities'
+import { ExtendedResourceListElement } from './common/resource-list-element'
 
 export class ProductListElement extends PureComponent {
   render() {
@@ -37,46 +24,20 @@ export class ProductListElement extends PureComponent {
     })
 
     return (
-      <ProductListItem onClick={onClick}>
-        <Image
-          floated="right"
-          size="small"
-          width={90}
-          src={image ? image.sizes.large.url : null}
-          asPlaceholder={!image}
-          margin={{ left: 20 }}
-        />
-        <Text bold ellipsis size="large">
-          {title}
-        </Text>
-        <Text alpha={0.7} size="small" margin={{ top: 5 }}>
-          {subtitle}
-        </Text>
-        {reviewsCount || scrapsCount ? (
-          <Container margin={{ top: 5 }}>
-            <>
-              {reviewsCount ? (
-                <Rating size="small" score={reviewsRating} />
-              ) : null}
-              <Text inline size="small" alpha={0.4}>
-                {[
-                  reviewsCount ? ` (${formatNumber(reviewsCount)})` : null,
-                  scrapsCount ? `저장${formatNumber(scrapsCount)}` : null,
-                ]
-                  .filter((count) => count)
-                  .join(' · ')}
-              </Text>
-            </>
-          </Container>
-        ) : null}
-        <ScrapButton
-          top={23}
-          scraped={scraped}
-          resource={this.props.product}
-          onScrapedChange={onScrapedChange}
-        />
-        <Pricing basePrice={basePrice} salePrice={salePrice} />
-      </ProductListItem>
+      <ExtendedResourceListElement
+        resource={this.props.product}
+        image={image}
+        name={title}
+        comment={subtitle}
+        basePrice={basePrice}
+        salePrice={salePrice}
+        reviewsCount={reviewsCount}
+        reviewsRating={reviewsRating}
+        scraped={scraped}
+        scrapsCount={scrapsCount}
+        onScrapedChange={onScrapedChange}
+        onClick={onClick}
+      />
     )
   }
 }
