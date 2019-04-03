@@ -285,7 +285,7 @@ const ButtonGroup = styled(Container)`
 `
 
 const BUTTON_ICON_STYLES = {
-  compact: css`
+  tiny: css`
     width: 15px;
     height: 12px;
     background-size: 15px 12px;
@@ -302,7 +302,7 @@ const BUTTON_ICON_STYLES = {
 const ButtonIcon = styled.div`
   display: inline-block;
 
-  ${({ size = 'compact' }) => BUTTON_ICON_STYLES[size]};
+  ${({ size = 'tiny' }) => BUTTON_ICON_STYLES[size]};
 
   vertical-align: text-top;
 
