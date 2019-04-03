@@ -1,5 +1,24 @@
 ## 0.2.8 (2019-04-03)
 
+- `ListingFilter` 컴포넌트 개편
+
+  ```
+  <ListingFilter.PrimaryFilterEntry>
+    5.17-5.20, 3명
+  </ListingFilter.PrimaryFilterEntry>
+  <ListingFilter.ExpandingFilterEntry>
+    침대타입
+  </ListingFilter.ExpandingFilterEntry>
+  <ListingFilter.FilterEntry>
+    무료취소
+  </ListingFilter.FilterEntry>
+  <ListingFilter.FilterEntry withIcon active>
+    음식점
+  </ListingFilter.FilterEntry>
+  ```
+
+- `Tabs` 컴포넌트 추가
+
 - `Section` 컴포넌트에 default prop 추가
 
   ```
