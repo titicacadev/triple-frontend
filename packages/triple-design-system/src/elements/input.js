@@ -1,6 +1,7 @@
 import React from 'react'
 import InputMask from 'react-input-mask'
 import styled, { css } from 'styled-components'
+import withField from '../utils/form-field'
 
 const COLORS = {
   blue: '54, 143, 255',
@@ -8,7 +9,7 @@ const COLORS = {
   gray: '58, 58, 58',
 }
 
-const Input = styled(InputMask)`
+const InputBase = styled(InputMask)`
   padding: 0;
   margin: 0;
   outline: none;
@@ -19,7 +20,18 @@ const Input = styled(InputMask)`
   border-radius: 2px;
   box-sizing: border-box;
   width: 100%;
-  color: rgba(${COLORS.gray}, 0.3);
+
+  ::placeholder {
+    color: rgba(${COLORS.gray}, 0.3);
+  }
+
+  :-ms-input-placeholder {
+    color: rgba(${COLORS.gray}, 0.3);
+  }
+
+  ::-ms-input-placeholder {
+    color: rgba(${COLORS.gray}, 0.3);
+  }
 
   ${({ focus }) =>
     focus &&
@@ -34,9 +46,9 @@ const Input = styled(InputMask)`
     `};
 `
 
-export default ({ name, value, placeholder, mask, onChange, focus, error }) => {
+function Input({ name, value, mask, focus, error, onChange, placeholder }) {
   return (
-    <Input
+    <InputBase
       name={name}
       value={value}
       mask={mask}
@@ -48,3 +60,5 @@ export default ({ name, value, placeholder, mask, onChange, focus, error }) => {
     />
   )
 }
+
+export default withField(Input)
