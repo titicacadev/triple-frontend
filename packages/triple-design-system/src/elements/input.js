@@ -46,7 +46,16 @@ const InputBase = styled(InputMask)`
     `};
 `
 
-function Input({ name, value, mask, focus, error, onChange, placeholder }) {
+function Input({
+  name,
+  value,
+  mask,
+  focus,
+  error,
+  onChange,
+  placeholder,
+  ...props
+}) {
   return (
     <InputBase
       name={name}
@@ -55,8 +64,9 @@ function Input({ name, value, mask, focus, error, onChange, placeholder }) {
       maskChar={null}
       focus={focus}
       error={error}
-      onChange={({ target: { name, value } }) => onChange(name, value)}
+      onChange={onChange}
       placeholder={placeholder}
+      {...props}
     />
   )
 }

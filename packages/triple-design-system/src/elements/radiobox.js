@@ -2,6 +2,7 @@ import React from 'react'
 import Container from './container'
 import Text from './text'
 import styled, { css } from 'styled-components'
+import withField from '../utils/form-field'
 
 const COLORS = {
   blud: '54,143,255',
@@ -104,6 +105,8 @@ function GenderRadio({ name, value, onClick }) {
   )
 }
 
-export default function RadioBox({ gender, ...props }) {
+function RadioBox({ gender, ...props }) {
   return gender ? <GenderRadio {...props} /> : <Radio {...props} />
 }
+
+export default withField(RadioBox)

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import Container from './container'
+import withField from '../utils/form-field'
 
 const COLORS = {
   blue: '54, 143, 255',
@@ -76,6 +77,8 @@ function ConfirmBox({ name, value, placeholder, onClick, ...props }) {
   )
 }
 
-export default function CheckBox({ confirm, ...props }) {
+function CheckBox({ confirm, ...props }) {
   return confirm ? <ConfirmBox {...props} /> : null
 }
+
+export default withField(CheckBox)
