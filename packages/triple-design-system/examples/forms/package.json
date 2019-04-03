@@ -1,0 +1,36 @@
+{
+  "name": "tna-list",
+  "version": "1.0.0",
+  "description": "Triple Design Systems Example - TNA list",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "prettier": "prettier --write \"**/*.{js,json}\""
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.55",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/polyfill": "^7.4.3",
+    "@babel/preset-env": "^7.0.0-beta.55",
+    "@babel/preset-react": "^7.0.0-beta.55",
+    "babel-loader": "^8.0.0-beta.4",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-styled-components": "^1.5.1",
+    "prettier": "^1.16.4",
+    "webpack": "^4.16.4",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  },
+  "dependencies": {
+    "formik": "^1.5.2",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "styled-components": "^3.4.6"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "always"
+  }
+}
