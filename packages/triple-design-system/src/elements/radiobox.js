@@ -1,11 +1,47 @@
 import React from 'react'
 import Container from './container'
+import Text from './text'
 import styled, { css } from 'styled-components'
 
 const COLORS = {
   blud: '54,143,255',
   gray: '58, 58, 58',
 }
+
+const RadioFrame = styled.div`
+  position: relative;
+  padding: 15px 35px 15px 45px;
+  border: 1px solid rgba(${COLORS.gray}, 0.1);
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`
+
+const Icon = styled.span`
+  position: absolute;
+  left: 15px;
+  top: 0;
+  transform: translateY(50%);
+  opacity: 0.5;
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background-size: 22px 22px;
+  background-repeat: no-repeat;
+  background-position: -1px -1px;
+  background-image: url('https://assets.triple.guide/images/radio-off@2x.png');
+
+  ${({ selected }) =>
+    selected &&
+    css`
+      opacity: 1;
+      background-image: url('https://assets.triple.guide/images/radio-on@2x.png');
+      transition: all 0.3s ease;
+      transform: scale(1.1) translateY(50%);
+    `};
+`
 
 const GenderBox = styled.div`
   width: 50%;
@@ -34,6 +70,15 @@ const GenderBox = styled.div`
     `};
 `
 
+function Radio({ selected, name, onSelect }) {
+  return (
+    <RadioFrame onClick={() => onSelect(name)}>
+      <Icon selected={selected} />
+      <Text size="small">{name}</Text>
+    </RadioFrame>
+  )
+}
+
 function GenderRadio({ name, value, onClick }) {
   return (
     <Container>
@@ -60,5 +105,5 @@ function GenderRadio({ name, value, onClick }) {
 }
 
 export default function RadioBox({ gender, ...props }) {
-  return gender ? <GenderRadio {...props} /> : null
+  return gender ? <GenderRadio {...props} /> : <Radio {...props} />
 }

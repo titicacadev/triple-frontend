@@ -35,6 +35,11 @@ export default class App extends PureComponent {
           />
         </Container>
         <Container margin={{ bottom: 10 }}>
+          <RadioBox name="아이템1" selected={true} />
+          <RadioBox name="아이템2" />
+          <RadioBox name="아이템3" />
+        </Container>
+        <Container margin={{ bottom: 10 }}>
           <RadioBox gender value="MALE" />
         </Container>
         <Container margin={{ bottom: 10 }}>
