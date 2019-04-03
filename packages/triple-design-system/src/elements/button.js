@@ -21,6 +21,11 @@ const ButtonBase = styled.a`
   text-align: center;
   text-decoration: none;
   box-sizing: border-box;
+  ${({ lineHeight }) =>
+    lineHeight &&
+    css`
+      line-height: ${lineHeight};
+    `}
 
   color: ${({ textColor = 'gray', textAlpha = 1 }) =>
     `rgba(${TEXT_COLORS[textColor]}, ${textAlpha})`};
