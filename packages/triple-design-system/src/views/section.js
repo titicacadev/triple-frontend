@@ -3,9 +3,9 @@ import Container from '../elements/container'
 import { HR2 } from '../elements/hr'
 
 export function Section({
-  minWidth,
-  maxWidth,
-  padding,
+  minWidth = 320,
+  maxWidth = 760,
+  padding = { left: 30, right: 30 },
   margin,
   divider,
   anchor,
