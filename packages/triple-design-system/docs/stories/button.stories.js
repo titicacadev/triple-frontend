@@ -41,7 +41,7 @@ storiesOf('Button', module)
       compact
       bold
       size={select('버튼 크기', ['tiny', 'small', 'large'], 'tiny')}
-      fontSize={select('폰트 크기', ['tiny', 'small', 'large'], 'small')}
+      fontSize={select('폰트 크기', ['tiny', 'small', 'large'], 'tiny')}
       onClick={action('clicked')}
       color={select('버튼 색', ['gray', 'blue'])}
     >
