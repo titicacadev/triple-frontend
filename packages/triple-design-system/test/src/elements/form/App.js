@@ -7,23 +7,17 @@ import {
 } from '@titicaca/triple-design-system'
 
 export default class App extends PureComponent {
-  state = {
-    focus: true,
-  }
-
   render() {
-    const { focus } = this.state
-
     return (
       <div className="modal-container">
         <Container margin={{ bottom: 10 }}>
           <Input name="name" placeholder="이름을 입력해주세요" />
         </Container>
         <Container margin={{ bottom: 10 }}>
-          <Input placeholder="이름을 입력해주세요" focus={focus} />
+          <Input placeholder="이름을 입력해주세요" focus="true" />
         </Container>
         <Container margin={{ bottom: 10 }}>
-          <Input placeholder="이름을 입력해주세요" focus={focus} error />
+          <Input placeholder="이름을 입력해주세요" error="true" />
         </Container>
         <Container margin={{ bottom: 10 }}>
           <Input placeholder="생년월일을 입력해주세요" mask="9999-99-99" />

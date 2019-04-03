@@ -34,15 +34,17 @@ const Input = styled(InputMask)`
     `};
 `
 
-export default ({ name, value, placeholder, mask, onChange, ...props }) => {
+export default ({ name, value, placeholder, mask, onChange, focus, error }) => {
   return (
     <Input
       name={name}
+      value={value}
       mask={mask}
       maskChar={null}
+      focus={focus}
+      error={error}
       onChange={({ target: { name, value } }) => onChange(name, value)}
       placeholder={placeholder}
-      {...props}
     />
   )
 }
