@@ -10,8 +10,12 @@ storiesOf('ActionSheet', module)
       open={boolean('열림', true)}
       title={text('제목', '샘플 액션 시트')}
     >
-      <ActionSheet.Item>메뉴 1</ActionSheet.Item>
-      <ActionSheet.Item>메뉴 2</ActionSheet.Item>
+      <ActionSheet.Item checked={boolean('메뉴 1 선택', true)}>
+        메뉴 1
+      </ActionSheet.Item>
+      <ActionSheet.Item checked={boolean('메뉴 2 선택', false)}>
+        메뉴 2
+      </ActionSheet.Item>
     </ActionSheet>
   ))
   .add('텍스트 + 아이콘 메뉴', () => (
