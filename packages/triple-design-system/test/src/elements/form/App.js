@@ -4,6 +4,7 @@ import {
   Radio,
   Checkbox,
   Container,
+  Textarea,
 } from '@titicaca/triple-design-system'
 
 export default class App extends PureComponent {
@@ -64,6 +65,12 @@ export default class App extends PureComponent {
             placeholder="예약자와 투숙자가 다릅니다"
             value={true}
           />
+        </Container>
+        <Container margin={{ bottom: 10 }}>
+          <Textarea placeholder="핸드폰 번호를 입력해주세요" />
+        </Container>
+        <Container margin={{ bottom: 10 }}>
+          <Textarea label="유의사항" placeholder="핸드폰 번호를 입력해주세요" />
         </Container>
       </div>
     )

@@ -7,6 +7,7 @@ import {
   Radio,
   Button,
   Checkbox,
+  Textarea,
 } from '@titicaca/triple-design-system/src'
 
 class Form extends PureComponent {
@@ -139,6 +140,22 @@ class Form extends PureComponent {
                     />
                   ))}
                 </>
+              )}
+            />
+          </Container>
+          <Container margin={{ bottom: 10 }}>
+            <Field
+              name="extra"
+              render={({ field: { name, onBlur } }) => (
+                <Textarea
+                  label="추가정보"
+                  placeholder="추가정보를 입력해주세요"
+                  name={name}
+                  onBlur={onBlur}
+                  value={values.extra}
+                  onChange={handleChange}
+                  error={touched.extra && errors.extra}
+                />
               )}
             />
           </Container>
