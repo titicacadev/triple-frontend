@@ -39,7 +39,7 @@ storiesOf('Button', module)
       bold
       size={select('버튼 크기', ['tiny', 'small', 'large'], 'tiny')}
       onClick={action('clicked')}
-      color={select('버튼 색', ['gray', 'blue'])}
+      color={select('버튼 색', ['gray', 'blue'], 'blue')}
     >
       <Button.Icon
         src="https://assets.triple-dev.titicaca-corp.com/images/save@4x.png"
