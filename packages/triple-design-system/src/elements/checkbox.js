@@ -9,7 +9,7 @@ const COLORS = {
 }
 
 const ConfirmFrame = styled.div`
-  width: ${({ width }) => width || 100}%;
+  width: 100%;
   border: 1px solid #efefef;
   box-sizing: border-box;
   padding: 16px 59px 16px 16px;

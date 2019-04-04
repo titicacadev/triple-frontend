@@ -89,7 +89,7 @@ export const GenderSelector = withField(({ name, value, onClick }) => {
     <Container>
       <GenderContainer
         value="MALE"
-        selected={value === 'MALE' ? true : false}
+        selected={value === 'MALE'}
         onClick={() => {
           onClick(name, 'MALE')
         }}
@@ -98,7 +98,7 @@ export const GenderSelector = withField(({ name, value, onClick }) => {
       </GenderContainer>
       <GenderContainer
         value="FEMALE"
-        selected={value === 'FEMALE' ? true : false}
+        selected={value === 'FEMALE'}
         onClick={() => {
           onClick(name, 'FEMALE')
         }}
