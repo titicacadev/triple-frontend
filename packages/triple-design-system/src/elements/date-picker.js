@@ -20,6 +20,7 @@ const COLORS = {
 
 const DatePickerContainer = styled(Container)`
   font-family: sans-serif;
+  color: rgb(${COLORS.gray});
 
   .DayPicker_weekHeader {
     padding: 15px 0 !important;
@@ -167,6 +168,14 @@ const RangePickerContainer = styled.div`
     height: 32px !important;
     background: rgba(${COLORS.blue}, 0.1) !important;
     box-sizing: border-box;
+    content: '';
+  }
+
+  .CalendarDay__selected_span.CalendarDay__today {
+    color: rgb(${COLORS.gray});
+  }
+
+  .CalendarDay__selected_span.CalendarDay__today:after {
     content: '';
   }
 
