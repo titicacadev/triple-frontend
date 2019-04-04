@@ -9,7 +9,7 @@ const COLORS = {
   gray: '58, 58, 58',
 }
 
-const RadioFrame = styled.div`
+const RadioContainer = styled.div`
   position: relative;
   padding: 15px 35px 15px 45px;
   border: 1px solid rgba(${COLORS.gray}, 0.1);
@@ -71,12 +71,16 @@ const GenderBox = styled.div`
     `};
 `
 
-function Radio({ selected, name, value, onSelect }) {
+function Radio({ name, value, onSelect, options }) {
   return (
-    <RadioFrame onClick={() => onSelect(name, value)}>
-      <Icon selected={selected} />
-      <Text size="small">{value}</Text>
-    </RadioFrame>
+    <>
+      {options.map((option, idx) => (
+        <RadioContainer key={idx} onClick={() => onSelect(name, option)}>
+          <Icon selected={option === value} />
+          <Text size="small">{option}</Text>
+        </RadioContainer>
+      ))}
+    </>
   )
 }
 

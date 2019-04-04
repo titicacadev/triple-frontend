@@ -133,17 +133,12 @@ class Form extends PureComponent {
               name="item"
               validate={(value) => !value && '필수 입력 값 입니다'}
               render={({ field: { name } }) => (
-                <>
-                  {['item1', 'item2', 'item3'].map((item, idx) => (
-                    <Radio
-                      name={name}
-                      value={item}
-                      selected={values.item === item}
-                      onSelect={setFieldValue}
-                      key={idx}
-                    />
-                  ))}
-                </>
+                <Radio
+                  name={name}
+                  value={values.item}
+                  onSelect={setFieldValue}
+                  options={['item1', 'item2', 'item3']}
+                />
               )}
             />
           </Container>
@@ -176,7 +171,7 @@ class Form extends PureComponent {
                   onChange={setFieldValue}
                   onBlur={onBlur}
                   error={touched.time && errors.time}
-                  options={["12:00", "12:10", "12:20"]}
+                  options={['12:00', '12:10', '12:20']}
                 />
               )}
             />
