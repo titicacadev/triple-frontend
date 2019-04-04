@@ -100,7 +100,8 @@ const ItemText = styled.div`
   line-height: 54px;
   font-size: 16px;
   font-weight: 500;
-  color: #3a3a3a;
+  color: ${({ checked }) => (checked ? '#368fff' : '#3a3a3a')};
+  font-weight: ${({ checked }) => (checked ? 'bold' : 'normal')};
   font-family: sans-serif;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -133,6 +134,9 @@ const URL_BY_NAMES = {
   delete: 'https://assets.triple.guide/images/img-action-delete@4x.png',
 }
 
+const CHECKED_ICON_URL =
+  'https://assets.triple-dev.titicaca-corp.com/images/checkbox-on.svg'
+
 const ItemIcon = styled.img`
   float: left;
   margin-top: 12px;
@@ -141,11 +145,21 @@ const ItemIcon = styled.img`
   margin-right: 9px;
 `
 
-function ActionItem({ buttonLabel, icon, onClick, children }) {
+const CheckedIcon = styled.div`
+  float: right;
+  margin-top: 12px;
+  width: 25px;
+  height: 25px;
+  background-size: 25px 25px;
+  background-image: url(${CHECKED_ICON_URL});
+  background-repeat: none;
+`
+
+function ActionItem({ buttonLabel, icon, checked, onClick, children }) {
   let textWidth = '100%'
   if (buttonLabel && icon) {
     textWidth = 'calc(100% - 100px)'
-  } else if (buttonLabel) {
+  } else if (buttonLabel || checked) {
     textWidth = 'calc(100% - 60px)'
   } else if (icon) {
     textWidth = 'calc(100% - 40px)'
@@ -165,7 +179,9 @@ function ActionItem({ buttonLabel, icon, onClick, children }) {
           }
         >
           {icon ? <ItemIcon src={URL_BY_NAMES[icon]} /> : null}
-          <ItemText width={textWidth}>{children}</ItemText>
+          <ItemText width={textWidth} checked={checked}>
+            {children}
+          </ItemText>
           {buttonLabel ? (
             <ItemButton
               onClick={() =>
@@ -177,6 +193,7 @@ function ActionItem({ buttonLabel, icon, onClick, children }) {
               {buttonLabel}
             </ItemButton>
           ) : null}
+          {checked ? <CheckedIcon /> : null}
         </ActionItemContainer>
       )}
     </Consumer>
