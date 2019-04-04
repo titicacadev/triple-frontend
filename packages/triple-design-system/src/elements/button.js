@@ -3,9 +3,17 @@ import styled, { css } from 'styled-components'
 import Container from './container'
 
 const SIZES = {
-  tiny: '13px',
-  small: '14px',
-  large: '16px',
+  tiny: css`
+    font-size: 13px;
+    line-height: 16px;
+  `,
+  small: css`
+    font-size: 14px;
+    line-height: 17px;
+  `,
+  large: css`
+    font-size: 16px;
+  `,
 }
 
 const BUTTON_COLORS = {
@@ -16,16 +24,11 @@ const BUTTON_COLORS = {
 const ButtonBase = styled.a`
   display: inline-block;
   font-family: sans-serif;
-  font-size: ${({ size }) => SIZES[size]};
+  ${({ size }) => SIZES[size]}
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
   text-align: center;
   text-decoration: none;
   box-sizing: border-box;
-  ${({ lineHeight }) =>
-    lineHeight &&
-    css`
-      line-height: ${lineHeight};
-    `}
 
   color: ${({ textColor = 'gray', textAlpha = 1 }) =>
     `rgba(${TEXT_COLORS[textColor]}, ${textAlpha})`};
