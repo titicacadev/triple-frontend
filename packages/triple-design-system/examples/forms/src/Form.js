@@ -5,6 +5,7 @@ import {
   Container,
   Input,
   Radio,
+  GenderSelector,
   Button,
   Checkbox,
   Textarea,
@@ -53,7 +54,7 @@ class Form extends PureComponent {
               name="gender"
               validate={(value) => !value && '필수 입력 값 입니다'}
               render={({ field: { name, onBlur } }) => (
-                <Radio
+                <GenderSelector
                   gender
                   label="성별"
                   name={name}

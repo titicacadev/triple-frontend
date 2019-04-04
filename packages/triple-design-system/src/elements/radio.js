@@ -44,7 +44,7 @@ const Icon = styled.span`
     `};
 `
 
-const GenderBox = styled.div`
+const GenderContainer = styled.div`
   width: 50%;
   display: inline-block;
   padding: 16px 0;
@@ -71,7 +71,7 @@ const GenderBox = styled.div`
     `};
 `
 
-function Radio({ name, value, onSelect, options }) {
+export const Radio = withField(({ name, value, onSelect, options }) => {
   return (
     <>
       {options.map((option, idx) => (
@@ -82,12 +82,12 @@ function Radio({ name, value, onSelect, options }) {
       ))}
     </>
   )
-}
+})
 
-function GenderRadio({ name, value, onClick }) {
+export const GenderSelector = withField(({ name, value, onClick }) => {
   return (
     <Container>
-      <GenderBox
+      <GenderContainer
         value="MALE"
         selected={value === 'MALE' ? true : false}
         onClick={() => {
@@ -95,8 +95,8 @@ function GenderRadio({ name, value, onClick }) {
         }}
       >
         남자
-      </GenderBox>
-      <GenderBox
+      </GenderContainer>
+      <GenderContainer
         value="FEMALE"
         selected={value === 'FEMALE' ? true : false}
         onClick={() => {
@@ -104,13 +104,7 @@ function GenderRadio({ name, value, onClick }) {
         }}
       >
         여자
-      </GenderBox>
+      </GenderContainer>
     </Container>
   )
-}
-
-function RadioBox({ gender, ...props }) {
-  return gender ? <GenderRadio {...props} /> : <Radio {...props} />
-}
-
-export default withField(RadioBox)
+})

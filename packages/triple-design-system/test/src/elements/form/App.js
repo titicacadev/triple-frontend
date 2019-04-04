@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import {
   Input,
   Radio,
+  GenderSelector,
   Checkbox,
   Container,
   Textarea,
@@ -51,7 +52,7 @@ export default class App extends PureComponent {
           />
         </Container>
         <Container margin={{ bottom: 10 }}>
-          <Radio gender value="MALE" />
+          <GenderSelector label="성별" value="MALE" />
         </Container>
         <Container margin={{ bottom: 10 }}>
           <Checkbox
