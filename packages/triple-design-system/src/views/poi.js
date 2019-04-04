@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react'
-import styled from 'styled-components'
 import Text from '../elements/text'
 import Image from '../elements/image'
-import List from '../elements/list'
 import Carousel from '../elements/carousel'
 import ScrapButton from '../elements/scrap-button'
 import { SquareImage, ResourceListItem } from '../elements/content-elements'
