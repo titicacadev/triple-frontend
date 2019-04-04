@@ -1,6 +1,5 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import Container from './container'
 import withField from '../utils/form-field'
 
 const COLORS = {
@@ -30,12 +29,16 @@ const ConfirmFrame = styled.div`
     centered &&
     css`
       text-align: center;
+    `};
+`
 
-      & > div {
-        position: relative;
-        display: inline-block;
-        padding-left: 32px;
-      }
+const ConfirmContainer = styled.div`
+  ${({ centered }) =>
+    centered &&
+    css`
+      position: relative;
+      display: inline-block;
+      padding-left: 32px;
 
       & span {
         left: 0;
@@ -63,24 +66,21 @@ const Icon = styled.span`
     `};
 `
 
-function ConfirmBox({ name, value, placeholder, onClick }) {
-  return (
-    <ConfirmFrame
-      onClick={() => {
-        onClick(name, !value)
-      }}
-      checked={value}
-    >
-      <Container>
-        {placeholder}
-        <Icon checked={value} />
-      </Container>
-    </ConfirmFrame>
-  )
-}
-
-function CheckBox({ confirm, ...props }) {
-  return confirm ? <ConfirmBox {...props} /> : null
-}
-
-export default withField(CheckBox)
+export const ConfirmSelector = withField(
+  ({ name, value, placeholder, onClick, centered }) => {
+    return (
+      <ConfirmFrame
+        onClick={() => {
+          onClick(name, !value)
+        }}
+        checked={value}
+        centered={centered}
+      >
+        <ConfirmContainer centered={centered}>
+          {placeholder}
+          <Icon checked={value} />
+        </ConfirmContainer>
+      </ConfirmFrame>
+    )
+  },
+)

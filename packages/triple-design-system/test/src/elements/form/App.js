@@ -3,7 +3,7 @@ import {
   Input,
   Radio,
   GenderSelector,
-  Checkbox,
+  ConfirmSelector,
   Container,
   Textarea,
 } from '@titicaca/triple-design-system'
@@ -55,16 +55,14 @@ export default class App extends PureComponent {
           <GenderSelector label="성별" value="MALE" />
         </Container>
         <Container margin={{ bottom: 10 }}>
-          <Checkbox
-            confirm
+          <ConfirmSelector
             placeholder="예약자와 투숙자가 다릅니다"
-            value={true}
+            value={false}
           />
         </Container>
         <Container margin={{ bottom: 10 }}>
-          <Checkbox
+          <ConfirmSelector
             centered
-            confirm
             placeholder="예약자와 투숙자가 다릅니다"
             value={true}
           />

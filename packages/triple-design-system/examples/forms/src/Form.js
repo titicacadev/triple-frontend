@@ -7,7 +7,7 @@ import {
   Radio,
   GenderSelector,
   Button,
-  Checkbox,
+  ConfirmSelector,
   Textarea,
   Select,
 } from '@titicaca/triple-design-system/src'
@@ -55,7 +55,6 @@ class Form extends PureComponent {
               validate={(value) => !value && '필수 입력 값 입니다'}
               render={({ field: { name, onBlur } }) => (
                 <GenderSelector
-                  gender
                   label="성별"
                   name={name}
                   onBlur={onBlur}
@@ -116,8 +115,7 @@ class Form extends PureComponent {
               name="check"
               validate={(value) => !value && '필수 입력 값 입니다'}
               render={({ field: { name } }) => (
-                <Checkbox
-                  confirm
+                <ConfirmSelector
                   name={name}
                   placeholder="예약자와 투숙자가 다릅니다"
                   value={values.check}
