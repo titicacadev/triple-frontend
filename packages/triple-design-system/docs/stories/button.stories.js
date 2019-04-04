@@ -44,7 +44,6 @@ storiesOf('Button', module)
       fontSize={select('폰트 크기', ['tiny', 'small', 'large'], 'tiny')}
       onClick={action('clicked')}
       color={select('버튼 색', ['gray', 'blue'])}
-      lineHeight={number('줄 높이', 1.4)}
     >
       <Button.Icon
         src="https://assets.triple-dev.titicaca-corp.com/images/save@4x.png"
