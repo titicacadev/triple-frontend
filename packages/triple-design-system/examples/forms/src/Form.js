@@ -4,9 +4,9 @@ import { withFormik, Field } from 'formik'
 import {
   Container,
   Input,
-  RadioBox,
+  Radio,
   Button,
-  CheckBox,
+  Checkbox,
 } from '@titicaca/triple-design-system/src'
 
 class Form extends PureComponent {
@@ -51,7 +51,7 @@ class Form extends PureComponent {
               name="gender"
               validate={(value) => !value && '필수 입력 값 입니다'}
               render={({ field: { name, onBlur } }) => (
-                <RadioBox
+                <Radio
                   gender
                   label="성별"
                   name={name}
@@ -113,7 +113,7 @@ class Form extends PureComponent {
               name="check"
               validate={(value) => !value && '필수 입력 값 입니다'}
               render={({ field: { name } }) => (
-                <CheckBox
+                <Checkbox
                   confirm
                   name={name}
                   placeholder="예약자와 투숙자가 다릅니다"
@@ -130,7 +130,7 @@ class Form extends PureComponent {
               render={({ field: { name } }) => (
                 <>
                   {['item1', 'item2', 'item3'].map((item, idx) => (
-                    <RadioBox
+                    <Radio
                       name={name}
                       value={item}
                       selected={values.item === item}

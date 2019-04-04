@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
 import {
   Input,
-  RadioBox,
-  CheckBox,
+  Radio,
+  Checkbox,
   Container,
 } from '@titicaca/triple-design-system'
 
@@ -43,22 +43,22 @@ export default class App extends PureComponent {
           />
         </Container>
         <Container margin={{ bottom: 10 }}>
-          <RadioBox value="아이템1" selected={true} />
-          <RadioBox value="아이템2" />
-          <RadioBox value="아이템3" />
+          <Radio value="아이템1" selected={true} />
+          <Radio value="아이템2" />
+          <Radio value="아이템3" />
         </Container>
         <Container margin={{ bottom: 10 }}>
-          <RadioBox gender value="MALE" />
+          <Radio gender value="MALE" />
         </Container>
         <Container margin={{ bottom: 10 }}>
-          <CheckBox
+          <Checkbox
             confirm
             placeholder="예약자와 투숙자가 다릅니다"
             value={true}
           />
         </Container>
         <Container margin={{ bottom: 10 }}>
-          <CheckBox
+          <Checkbox
             centered
             confirm
             placeholder="예약자와 투숙자가 다릅니다"
