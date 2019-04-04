@@ -1,3 +1,15 @@
+- `DatePicker` Style 변경
+
+  ```
+  1. selcted class size 변경 40px -> 32px
+  2. 평일 주말 color 구분
+  3. week header 를 top 고정이 아닌 달마다 보이도록 변경
+  4. range picker 의 경우 nights (end - start) value 를 넘겨주도록 추가
+  5. table border spacing 추가
+  ```
+
+  _Olaf_
+
 - `Table` 컴포넌트 추가
 
   ```
