@@ -8,6 +8,7 @@ import {
   Button,
   Checkbox,
   Textarea,
+  Select,
 } from '@titicaca/triple-design-system/src'
 
 class Form extends PureComponent {
@@ -24,6 +25,9 @@ class Form extends PureComponent {
       handleChange,
       isSubmitting,
     } = this.props
+
+    console.log('values ', values)
+    console.log('touched', touched)
 
     const disableButton = isSubmitting || Object.keys(errors).length > 0
 
@@ -155,6 +159,24 @@ class Form extends PureComponent {
                   value={values.extra}
                   onChange={handleChange}
                   error={touched.extra && errors.extra}
+                />
+              )}
+            />
+          </Container>
+          <Container margin={{ bottom: 10 }}>
+            <Field
+              name="time"
+              validate={(value) => !value && '필수 입력 값 입니다'}
+              render={({ field: { name, onBlur } }) => (
+                <Select
+                  label="예약시간"
+                  placeholder="시간을 선택해주세요"
+                  name={name}
+                  value={values.time}
+                  onChange={setFieldValue}
+                  onBlur={onBlur}
+                  error={touched.time && errors.time}
+                  options={["12:00", "12:10", "12:20"]}
                 />
               )}
             />

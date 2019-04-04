@@ -16,6 +16,7 @@ export default class App extends PureComponent {
           check: false,
           item: '',
           extra: '',
+          time: '',
         }}
       />
     )
