@@ -64,6 +64,10 @@
 
   _Olaf_
 
+- `ActionSheet.Item` 에 `checked` 상태 추가
+
+  _Eeyore_
+
 ## 0.2.8 (2019-04-03)
 
 - `ListingFilter` 컴포넌트 개편
