@@ -72,7 +72,6 @@ const GenderBox = styled.div`
 `
 
 function Radio({ selected, name, value, onSelect }) {
-  console.log('value', value)
   return (
     <RadioFrame onClick={() => onSelect(name, value)}>
       <Icon selected={selected} />
