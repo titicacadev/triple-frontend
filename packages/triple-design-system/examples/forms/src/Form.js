@@ -26,9 +26,6 @@ class Form extends PureComponent {
       isSubmitting,
     } = this.props
 
-    console.log('values ', values)
-    console.log('touched', touched)
-
     const disableButton = isSubmitting || Object.keys(errors).length > 0
 
     return (

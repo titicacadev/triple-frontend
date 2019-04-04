@@ -1,4 +1,3 @@
-import React from 'react'
 import styled, { css } from 'styled-components'
 import withField from '../utils/form-field'
 
@@ -48,28 +47,4 @@ const BaseTextarea = styled.textarea`
     `};
 `
 
-function Textarea({
-  name,
-  value,
-  mask,
-  focus,
-  error,
-  onChange,
-  placeholder,
-  onBlur,
-}) {
-  return (
-    <BaseTextarea
-      name={name}
-      value={value}
-      mask={mask}
-      focus={focus}
-      error={error}
-      onChange={onChange}
-      placeholder={placeholder}
-      onBlur={onBlur}
-    />
-  )
-}
-
-export default withField(Textarea)
+export default withField(BaseTextarea)
