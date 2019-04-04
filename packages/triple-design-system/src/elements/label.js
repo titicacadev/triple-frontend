@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { Children } from 'react'
 import styled, { css } from 'styled-components'
+
+import Container from './container'
 
 const COLORS = {
   blue: '55, 168, 255',
@@ -68,7 +70,7 @@ export const PromoLabel = styled.div`
         `};
 `
 
-export default function Label({ radio, promo, children, ...props }) {
+function Label({ radio, promo, children, ...props }) {
   if (radio) {
     return <RadioLabel {...props}>{children}</RadioLabel>
   } else if (promo) {
@@ -77,3 +79,15 @@ export default function Label({ radio, promo, children, ...props }) {
 
   return children
 }
+
+const LabelGroup = styled(Container)`
+  div:not(:first-child) {
+    ${({ horizontalGap }) => css`
+      margin-left: ${horizontalGap || 0}px;
+    `};
+  }
+`
+
+Label.Group = LabelGroup
+
+export default Label
