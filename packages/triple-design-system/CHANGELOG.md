@@ -1,3 +1,12 @@
+- `Table` 컴포넌트 추가
+
+  ```
+  <Table type="horizontal"}
+  <Table type="vertical"}
+  ```
+
+  _Olaf_
+
 ## 0.2.8 (2019-04-03)
 
 - `ListingFilter` 컴포넌트 개편
