@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Container from '../../elements/container'
+import Label from '../../elements/label'
 import Text from '../../elements/text'
 import Rating from '../../elements/rating'
 import Image from '../../elements/image'
@@ -23,6 +24,7 @@ export function ExtendedResourceListElement({
   comment,
   distance,
   note,
+  tags,
   basePrice,
   salePrice,
   scraped,
@@ -82,6 +84,16 @@ export function ExtendedResourceListElement({
             </Text>
           ) : null}
         </Container>
+      ) : null}
+
+      {(tags || []).length > 0 ? (
+        <Label.Group margin={{ top: 12 }} horizontalGap={5}>
+          {tags.map(({ text, color, emphasized }, index) => (
+            <Label key={index} promo color={color} emphasized={emphasized}>
+              {text}
+            </Label>
+          ))}
+        </Label.Group>
       ) : null}
 
       <ScrapButton
