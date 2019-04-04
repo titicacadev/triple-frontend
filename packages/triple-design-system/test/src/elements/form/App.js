@@ -44,9 +44,11 @@ export default class App extends PureComponent {
           />
         </Container>
         <Container margin={{ bottom: 10 }}>
-          <Radio value="아이템1" selected={true} />
-          <Radio value="아이템2" />
-          <Radio value="아이템3" />
+          <Radio
+            name={name}
+            value={'item1'}
+            options={['item1', 'item2', 'item3']}
+          />
         </Container>
         <Container margin={{ bottom: 10 }}>
           <Radio gender value="MALE" />
