@@ -17,6 +17,7 @@ const ConfirmFrame = styled.div`
   position: relative;
   font-size: 14px;
   font-weight: bold;
+  color: rgba(${COLORS.gray}, 0.5);
 
   ${({ checked }) =>
     checked &&
