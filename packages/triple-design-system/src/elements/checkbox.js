@@ -24,10 +24,6 @@ const ConfirmFrame = styled.div`
     css`
       border-color: rgb(${COLORS.blue});
       color: rgb(${COLORS.blue});
-
-      & span {
-        background-image: url('https://assets.triple.guide/images/btn-web-check-on@2x.png');
-      }
     `};
 
   ${({ centered }) =>
@@ -59,6 +55,12 @@ const Icon = styled.span`
   background-size: 29px 29px;
   background-repeat: no-repeat;
   background-image: url('https://assets.triple.guide/images/btn-web-check-off@2x.png');
+
+  ${({ checked }) =>
+    checked &&
+    css`
+      background-image: url('https://assets.triple.guide/images/btn-web-check-on@2x.png');
+    `};
 `
 
 function ConfirmBox({ name, value, placeholder, onClick, ...props }) {
@@ -72,7 +74,7 @@ function ConfirmBox({ name, value, placeholder, onClick, ...props }) {
     >
       <Container>
         {placeholder}
-        <Icon />
+        <Icon checked={value} />
       </Container>
     </ConfirmFrame>
   )
