@@ -54,7 +54,7 @@ function Input({
   error,
   onChange,
   placeholder,
-  ...props
+  onBlur,
 }) {
   return (
     <InputBase
@@ -66,7 +66,7 @@ function Input({
       error={error}
       onChange={onChange}
       placeholder={placeholder}
-      {...props}
+      onBlur={onBlur}
     />
   )
 }

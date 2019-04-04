@@ -1,118 +1,167 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { withFormik, Field } from 'formik'
+
 import {
   Container,
   Input,
   RadioBox,
   Button,
+  CheckBox,
 } from '@titicaca/triple-design-system/src'
 
-const Form = ({
-  setFieldValue,
-  values,
-  handleSubmit,
-  touched,
-  errors,
-  handleChange,
-}) => {
-  return (
-    <Container padding={{ top: 40, left: 30, right: 30 }}>
-      <form onSubmit={handleSubmit}>
-        <Container margin={{ bottom: 10 }}>
-          <Field
-            name="name"
-            validate={(value) => !value && '필수 입력 값 입니다'}
-            render={({ field }) => (
-              <Input
-                value={values.name}
-                onChange={handleChange}
-                label="이름"
-                placeholder="이름을 입력해주세요"
-                error={touched.name && errors.name}
-                {...field}
-              />
-            )}
-          />
-        </Container>
-        <Container margin={{ bottom: 10 }}>
-          <Field
-            name="gender"
-            validate={(value) => !value && '필수 입력 값 입니다'}
-            render={({ field }) => (
-              <RadioBox
-                gender
-                label="성별"
-                value={values.gender}
-                onClick={setFieldValue}
-                error={touched.gender && errors.gender}
-                {...field}
-              />
-            )}
-          />
-        </Container>
-        <Container>
-          <Container>
+class Form extends PureComponent {
+  componentDidMount() {
+    this.props.validateForm()
+  }
+  render() {
+    const {
+      setFieldValue,
+      values,
+      handleSubmit,
+      touched,
+      errors,
+      handleChange,
+      isSubmitting,
+    } = this.props
+
+    const disableButton = isSubmitting || Object.keys(errors).length > 0
+
+    return (
+      <Container padding={{ top: 40, left: 30, right: 30 }}>
+        <form onSubmit={handleSubmit}>
+          <Container margin={{ bottom: 10 }}>
             <Field
-              name="passport.firstname"
+              name="name"
               validate={(value) => !value && '필수 입력 값 입니다'}
-              render={({ field }) => (
+              render={({ field: { name, onBlur } }) => (
                 <Input
-                  value={values.passport.firstname}
+                  label="이름"
+                  placeholder="이름을 입력해주세요"
+                  name={name}
+                  onBlur={onBlur}
+                  value={values.name}
                   onChange={handleChange}
-                  label="영문성"
-                  placeholder="HONG"
-                  error={
-                    touched.passport &&
-                    touched.passport.firstname &&
-                    errors.passport &&
-                    errors.passport.firstname
-                  }
-                  {...field}
+                  error={touched.name && errors.name}
+                />
+              )}
+            />
+          </Container>
+          <Container margin={{ bottom: 10 }}>
+            <Field
+              name="gender"
+              validate={(value) => !value && '필수 입력 값 입니다'}
+              render={({ field: { name, onBlur } }) => (
+                <RadioBox
+                  gender
+                  label="성별"
+                  name={name}
+                  onBlur={onBlur}
+                  value={values.gender}
+                  onClick={setFieldValue}
+                  error={touched.gender && errors.gender}
                 />
               )}
             />
           </Container>
           <Container>
+            <Container>
+              <Field
+                name="passport.firstname"
+                validate={(value) => !value && '필수 입력 값 입니다'}
+                render={({ field: { name, onBlur } }) => (
+                  <Input
+                    label="영문성"
+                    placeholder="HONG"
+                    name={name}
+                    onBlur={onBlur}
+                    value={values.passport.firstname}
+                    onChange={handleChange}
+                    error={
+                      touched.passport &&
+                      touched.passport.firstname &&
+                      errors.passport &&
+                      errors.passport.firstname
+                    }
+                  />
+                )}
+              />
+            </Container>
+            <Container>
+              <Field
+                name="passport.lastname"
+                validate={(value) => !value && '필수 입력 값 입니다'}
+                render={({ field }) => (
+                  <Input
+                    label="영문이름"
+                    placeholder="GILDONG"
+                    value={values.passport.firstname}
+                    onChange={handleChange}
+                    error={
+                      touched.passport &&
+                      touched.passport.lastname &&
+                      errors.passport &&
+                      errors.passport.lastname
+                    }
+                    {...field}
+                  />
+                )}
+              />
+            </Container>
+          </Container>
+          <Container margin={{ bottom: 10 }}>
             <Field
-              name="passport.lastname"
+              name="check"
               validate={(value) => !value && '필수 입력 값 입니다'}
-              render={({ field }) => (
-                <Input
-                  value={values.passport.firstname}
-                  onChange={handleChange}
-                  label="영문이름"
-                  placeholder="GILDONG"
-                  error={
-                    touched.passport &&
-                    touched.passport.lastname &&
-                    errors.passport &&
-                    errors.passport.lastname
-                  }
-                  {...field}
+              render={({ field: { name } }) => (
+                <CheckBox
+                  confirm
+                  name={name}
+                  placeholder="예약자와 투숙자가 다릅니다"
+                  value={values.check}
+                  onClick={setFieldValue}
                 />
               )}
             />
           </Container>
-        </Container>
-        <Button
-          fluid
-          borderRadius={4}
-          color="blue"
-          margin={{ bottom: 140 }}
-          onClick={handleSubmit}
-        >
-          예약하기
-        </Button>
-      </form>
-    </Container>
-  )
+          <Container margin={{ bottom: 10 }}>
+            <Field
+              name="item"
+              validate={(value) => !value && '필수 입력 값 입니다'}
+              render={({ field: { name } }) => (
+                <>
+                  {['item1', 'item2', 'item3'].map((item, idx) => (
+                    <RadioBox
+                      name={name}
+                      value={item}
+                      selected={values.item === item}
+                      onSelect={setFieldValue}
+                      key={idx}
+                    />
+                  ))}
+                </>
+              )}
+            />
+          </Container>
+          <Button
+            fluid
+            borderRadius={4}
+            color="blue"
+            margin={{ bottom: 140 }}
+            disabled={disableButton}
+            onClick={!disableButton ? handleSubmit : null}
+          >
+            예약하기
+          </Button>
+        </form>
+      </Container>
+    )
+  }
 }
 
 export default withFormik({
   mapPropsToValues: ({ initialValues }) => initialValues,
   validateOnChange: true,
   enableReinitialize: true,
-  isInitialValid: true,
   handleSubmit: async (
     values,
     { props: { onSubmit }, setErrors, setSubmitting },

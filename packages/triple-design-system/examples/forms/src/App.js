@@ -7,12 +7,14 @@ export default class App extends PureComponent {
     return (
       <Form
         initialValues={{
-          name: '',
+          name: 'aaaaaa',
           gender: 'MALE',
           passport: {
-            firstname: '',
+            firstname: 'asdasd',
             lastname: '',
           },
+          check: false,
+          item: '',
         }}
       />
     )
