@@ -63,14 +63,13 @@ const Icon = styled.span`
     `};
 `
 
-function ConfirmBox({ name, value, placeholder, onClick, ...props }) {
+function ConfirmBox({ name, value, placeholder, onClick }) {
   return (
     <ConfirmFrame
       onClick={() => {
         onClick(name, !value)
       }}
       checked={value}
-      {...props}
     >
       <Container>
         {placeholder}
