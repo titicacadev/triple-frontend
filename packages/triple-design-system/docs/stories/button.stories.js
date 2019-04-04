@@ -10,7 +10,6 @@ storiesOf('Button', module)
   .add('일반', () => (
     <Button
       size={select('버튼 크기', ['tiny', 'small'], 'tiny')}
-      fontSize={select('폰트 크기', ['tiny', 'small', 'large'], 'tiny')}
       onClick={action('clicked')}
     >
       {text('버튼 레이블', '안녕')}
@@ -20,7 +19,6 @@ storiesOf('Button', module)
     <Button
       compact
       size={select('버튼 크기', ['tiny'], 'tiny')}
-      fontSize={select('폰트 크기', ['tiny', 'small', 'large'], 'tiny')}
       onClick={action('clicked')}
     >
       {text('버튼 레이블', '안녕')}
@@ -30,7 +28,6 @@ storiesOf('Button', module)
     <Button
       fluid
       size={select('버튼 크기', ['tiny', 'small'], 'tiny')}
-      fontSize={select('폰트 크기', ['tiny', 'small', 'large'], 'tiny')}
       onClick={action('clicked')}
     >
       {text('버튼 레이블', '안녕')}
@@ -41,7 +38,6 @@ storiesOf('Button', module)
       compact
       bold
       size={select('버튼 크기', ['tiny', 'small', 'large'], 'tiny')}
-      fontSize={select('폰트 크기', ['tiny', 'small', 'large'], 'tiny')}
       onClick={action('clicked')}
       color={select('버튼 색', ['gray', 'blue'])}
     >
