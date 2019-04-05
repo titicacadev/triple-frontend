@@ -1,3 +1,7 @@
+- `PoiListElement`에서 `prices`와 `starRating` 처리 (호텔 관련 필드)
+
+  _Royd_
+
 - `Forms` 컴포넌트 추가
 
   ```
