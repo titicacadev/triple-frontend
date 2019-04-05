@@ -1,6 +1,7 @@
 import { addParameters, addDecorator, configure } from '@storybook/react'
 import { jsxDecorator } from 'storybook-addon-jsx'
 import { withKnobs } from '@storybook/addon-knobs'
+import '@titicaca/triple-design-system/global-style'
 
 addDecorator(jsxDecorator)
 addDecorator(withKnobs)
