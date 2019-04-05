@@ -196,8 +196,7 @@ class ExtendedPoiListElement extends PureComponent {
     })
     const reviewsCount = Number(rawReviewsCount || 0)
     const note = [
-      starRating ? `${starRating}성급` : null,
-      category ? category.name : null,
+      starRating ? `${starRating}성급` : category ? category.name : null,
       area ? area.name : null,
     ]
       .filter((v) => v)
