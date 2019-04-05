@@ -8,8 +8,10 @@ import {
 } from '@titicaca/triple-design-system'
 
 import POIS from './pois.sample.json'
+import HOTELS from './hotels.sample.json'
 
 const [POI] = POIS
+const [HOTEL] = HOTELS
 
 storiesOf('POI', module)
   .add('POI 리스트', () => (
@@ -17,6 +19,14 @@ storiesOf('POI', module)
       poi={POI}
       resourceScraps={{
         [POI.id]: boolean('저장', false),
+      }}
+    />
+  ))
+  .add('호텔 리스트', () => (
+    <PoiListElement
+      poi={HOTEL}
+      resourceScraps={{
+        [HOTEL.id]: boolean('저장', false),
       }}
     />
   ))

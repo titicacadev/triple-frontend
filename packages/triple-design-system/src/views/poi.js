@@ -176,8 +176,10 @@ class ExtendedPoiListElement extends PureComponent {
             reviewsCount: rawReviewsCount,
             scrapsCount: initialScrapsCount,
             reviewsRating,
+            starRating,
           },
           distance,
+          prices,
         },
         onClick,
         onScrapedChange,
@@ -193,10 +195,19 @@ class ExtendedPoiListElement extends PureComponent {
       currentState: resourceScraps[id],
     })
     const reviewsCount = Number(rawReviewsCount || 0)
-    const note = [category, area]
+    const note = [
+      starRating ? `${starRating}성급` : null,
+      category ? category.name : null,
+      area ? area.name : null,
+    ]
       .filter((v) => v)
-      .map(({ name }) => name)
       .join(' · ')
+
+    const {
+      nightlyBasePrice,
+      nightlyPrice,
+      nightlyPriceHotelPromotionApplied,
+    } = prices
 
     return (
       <ExtendedResourceListElement
@@ -211,6 +222,12 @@ class ExtendedPoiListElement extends PureComponent {
         reviewsRating={reviewsRating}
         scraped={scraped}
         scrapsCount={scrapsCount}
+        basePrice={nightlyBasePrice}
+        salePrice={
+          nightlyPriceHotelPromotionApplied && nightlyPrice
+            ? Math.min(nightlyPriceHotelPromotionApplied, nightlyPrice)
+            : nightlyPriceHotelPromotionApplied || nightlyPrice
+        }
         onScrapedChange={onScrapedChange}
         onClick={onClick}
       />

@@ -1,0 +1,263 @@
+[
+  {
+    "id": "d74ad4ef-cc99-47e7-8fed-f115c41e17ea",
+    "source": {
+      "image": {
+        "sourceUrl": "http://blog.naver.com/kakoi77/220935596068",
+        "sizes": {
+          "large": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/large/883a655b-adf0-4dd5-a350-3dd12852dd52.jpg"
+          },
+          "small_square": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/small_square/883a655b-adf0-4dd5-a350-3dd12852dd52.jpg"
+          },
+          "full": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/full/883a655b-adf0-4dd5-a350-3dd12852dd52.jpg"
+          }
+        },
+        "description": null,
+        "id": "883a655b-adf0-4dd5-a350-3dd12852dd52",
+        "title": null
+      },
+      "scrapsCount": "0",
+      "areas": [{ "name": "셩완, 센트럴, 빅토리아피크" }],
+      "reviewsCount": "1",
+      "type": "hotel",
+      "pointGeolocation": {
+        "coordinates": [114.14238, 22.28804],
+        "type": "Point"
+      },
+      "tags": [{ "name": "야경이 멋진" }, { "name": "교통이 편리한" }],
+      "reviewsRating": "5.0",
+      "names": {
+        "ko": "아일랜드 퍼시픽 호텔",
+        "en": "Island Pacific Hotel",
+        "local": "港岛太平洋饭店"
+      },
+      "regionId": "84685a5a-a0ee-47b5-b84c-4d76dffad76d",
+      "grade": 50,
+      "comment": "아시아부터 서양 요리까지 준비된 가성비 좋은 호텔",
+      "location": [114.14238, 22.28804],
+      "id": "d74ad4ef-cc99-47e7-8fed-f115c41e17ea",
+      "starRating": 4,
+      "pricing": {
+        "promoText": "최대 26%",
+        "nightlyPrice": 120094,
+        "clubPromotionTarget": true,
+        "nightlyPriceHotelPromotionApplied": 121443,
+        "clubPromotionRate": 1,
+        "clubMemberOnly": true,
+        "nightlyBasePrice": 163519,
+        "clubPromotionType": "STATIC"
+      }
+    },
+    "type": "hotel",
+    "prices": {
+      "nightlyBasePrice": 427432,
+      "nightlyPrice": 355695,
+      "promoText": "최대 16%",
+      "nightlyPriceHotelPromotionApplied": 359691,
+      "clubPromotionRate": 1,
+      "clubPromotionType": "STATIC",
+      "clubMemberOnly": false,
+      "clubPromotionTarget": true
+    },
+    "reviewed": false,
+    "scraped": false
+  },
+  {
+    "id": "ee94fc9a-4ebb-4a89-b2c4-1987cc2a0ba9",
+    "source": {
+      "image": {
+        "sourceUrl": "https://www.expedia.com/",
+        "sizes": {
+          "large": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/large/a9b2fffc-fc99-42ef-8341-27784859d7e8.jpg"
+          },
+          "small_square": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/small_square/a9b2fffc-fc99-42ef-8341-27784859d7e8.jpg"
+          },
+          "full": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/full/a9b2fffc-fc99-42ef-8341-27784859d7e8.jpg"
+          }
+        },
+        "description": null,
+        "id": "a9b2fffc-fc99-42ef-8341-27784859d7e8",
+        "title": null
+      },
+      "areas": [{ "name": "침사추이" }],
+      "type": "hotel",
+      "pointGeolocation": {
+        "coordinates": [114.17816, 22.29867],
+        "type": "Point"
+      },
+      "tags": [{ "name": "아이와 함께" }, { "name": "야경이 멋진" }],
+      "names": {
+        "ko": "리갈 카오룽 호텔",
+        "en": "Regal Kowloon Hotel",
+        "local": "富豪九龙酒店"
+      },
+      "regionId": "84685a5a-a0ee-47b5-b84c-4d76dffad76d",
+      "grade": 50,
+      "comment": "무료 셔틀버스로 유명 명소를 관광할 수 있는 호텔",
+      "location": [114.17816, 22.29867],
+      "id": "ee94fc9a-4ebb-4a89-b2c4-1987cc2a0ba9",
+      "starRating": 4,
+      "pricing": {
+        "promoText": "최대 26%",
+        "nightlyPrice": 158207,
+        "clubPromotionTarget": true,
+        "nightlyPriceHotelPromotionApplied": 159984,
+        "clubPromotionRate": 1,
+        "clubMemberOnly": false,
+        "nightlyBasePrice": 215534,
+        "clubPromotionType": "STATIC"
+      }
+    },
+    "type": "hotel",
+    "prices": {
+      "nightlyBasePrice": 319665,
+      "nightlyPrice": 244096,
+      "promoText": "최대 23%",
+      "nightlyPriceHotelPromotionApplied": 246839,
+      "clubPromotionRate": 1,
+      "clubPromotionType": "STATIC",
+      "clubMemberOnly": false,
+      "clubPromotionTarget": true
+    },
+    "reviewed": false,
+    "scraped": false
+  },
+  {
+    "id": "36354ba4-aa58-4205-a197-6250072e1441",
+    "source": {
+      "image": {
+        "sourceUrl": "https://www.expedia.com/",
+        "sizes": {
+          "large": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/large/214a63a6-3ead-4342-ab10-e1a2a5d84649.jpg"
+          },
+          "small_square": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/small_square/214a63a6-3ead-4342-ab10-e1a2a5d84649.jpg"
+          },
+          "full": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/full/214a63a6-3ead-4342-ab10-e1a2a5d84649.jpg"
+          }
+        },
+        "description": null,
+        "id": "214a63a6-3ead-4342-ab10-e1a2a5d84649",
+        "title": null
+      },
+      "scrapsCount": "1",
+      "areas": [{ "name": "마카오" }],
+      "reviewsCount": "0",
+      "type": "hotel",
+      "pointGeolocation": {
+        "coordinates": [113.55321, 22.19266],
+        "type": "Point"
+      },
+      "tags": [{ "name": "아이와 함께" }],
+      "names": {
+        "ko": "그랜드 라파, 마카오",
+        "en": "Grand Lapa, Macau",
+        "local": "澳门金丽华酒店"
+      },
+      "regionId": "84685a5a-a0ee-47b5-b84c-4d76dffad76d",
+      "grade": 50,
+      "comment": "분위기 좋은 수영장, 교통 편의성을 갖춘 5성급 호텔",
+      "location": [113.55321, 22.19266],
+      "id": "36354ba4-aa58-4205-a197-6250072e1441",
+      "starRating": 4,
+      "pricing": {
+        "promoText": "최대 23%",
+        "nightlyPrice": 114071,
+        "clubPromotionTarget": true,
+        "nightlyPriceHotelPromotionApplied": 115353,
+        "clubPromotionRate": 1,
+        "clubMemberOnly": false,
+        "nightlyBasePrice": 148672,
+        "clubPromotionType": "STATIC"
+      }
+    },
+    "type": "hotel",
+    "prices": {
+      "nightlyBasePrice": 255732,
+      "nightlyPrice": 235557,
+      "promoText": "최대 7%",
+      "nightlyPriceHotelPromotionApplied": 238203,
+      "clubPromotionRate": 1,
+      "clubPromotionType": "STATIC",
+      "clubMemberOnly": false,
+      "clubPromotionTarget": true
+    },
+    "reviewed": false,
+    "scraped": false
+  },
+  {
+    "id": "8e4dfc60-fba7-404b-87b6-0cf0838cbcae",
+    "source": {
+      "image": {
+        "sourceUrl": "https://www.expedia.com/",
+        "sizes": {
+          "large": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/large/dca48743-85a6-4423-ba05-6590c89cec60.jpg"
+          },
+          "small_square": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/small_square/dca48743-85a6-4423-ba05-6590c89cec60.jpg"
+          },
+          "full": {
+            "url": "https://triple-cms-development.s3-ap-northeast-1.amazonaws.com/pictures/full/dca48743-85a6-4423-ba05-6590c89cec60.jpg"
+          }
+        },
+        "description": null,
+        "id": "dca48743-85a6-4423-ba05-6590c89cec60",
+        "title": null
+      },
+      "areas": [{ "name": "침사추이" }],
+      "type": "hotel",
+      "pointGeolocation": {
+        "coordinates": [114.1741, 22.30076],
+        "type": "Point"
+      },
+      "tags": [
+        { "name": "아이와 함께" },
+        { "name": "부티크 호텔" },
+        { "name": "쇼핑하기 편한" }
+      ],
+      "names": {
+        "ko": "럭스 매너",
+        "en": "The Luxe Manor",
+        "local": "香港帝乐文娜公馆"
+      },
+      "regionId": "84685a5a-a0ee-47b5-b84c-4d76dffad76d",
+      "grade": 50,
+      "comment": "홍콩에서 느끼는 북유럽 감성의 부티크 호텔",
+      "location": [114.1741, 22.30076],
+      "id": "8e4dfc60-fba7-404b-87b6-0cf0838cbcae",
+      "starRating": 4,
+      "pricing": {
+        "promoText": "최대 36%",
+        "nightlyPrice": 160814,
+        "clubPromotionTarget": true,
+        "nightlyPriceHotelPromotionApplied": 162621,
+        "clubPromotionRate": 1,
+        "clubMemberOnly": true,
+        "nightlyBasePrice": 252601,
+        "clubPromotionType": "STATIC"
+      }
+    },
+    "type": "hotel",
+    "prices": {
+      "nightlyBasePrice": 812292,
+      "nightlyPrice": 715704,
+      "promoText": "최대 11%",
+      "nightlyPriceHotelPromotionApplied": 723746,
+      "clubPromotionRate": 1,
+      "clubPromotionType": "STATIC",
+      "clubMemberOnly": true,
+      "clubPromotionTarget": true
+    },
+    "reviewed": false,
+    "scraped": false
+  }
+]
