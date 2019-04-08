@@ -1,3 +1,7 @@
+- `Button`에서 `ButtonIcon`에 `size` props 추가
+
+	_Torres_
+
 - `PoiListElement`에서 `prices`와 `starRating` 처리 (호텔 관련 필드)
 
   _Royd_
