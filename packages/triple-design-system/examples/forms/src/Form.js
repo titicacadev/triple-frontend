@@ -59,7 +59,7 @@ class Form extends PureComponent {
                   name={name}
                   onBlur={onBlur}
                   value={values.gender}
-                  onClick={setFieldValue}
+                  handleChange={setFieldValue}
                   error={touched.gender && errors.gender}
                 />
               )}
@@ -119,7 +119,7 @@ class Form extends PureComponent {
                   name={name}
                   placeholder="예약자와 투숙자가 다릅니다"
                   value={values.check}
-                  onClick={setFieldValue}
+                  handleChange={setFieldValue}
                 />
               )}
             />
@@ -132,7 +132,7 @@ class Form extends PureComponent {
                 <Radio
                   name={name}
                   value={values.item}
-                  onSelect={setFieldValue}
+                  handleChange={setFieldValue}
                   options={['item1', 'item2', 'item3']}
                 />
               )}
@@ -164,7 +164,7 @@ class Form extends PureComponent {
                   placeholder="시간을 선택해주세요"
                   name={name}
                   value={values.time}
-                  onChange={setFieldValue}
+                  handleChange={setFieldValue}
                   onBlur={onBlur}
                   error={touched.time && errors.time}
                   options={['12:00', '12:10', '12:20']}
