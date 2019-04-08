@@ -179,7 +179,7 @@ class ExtendedPoiListElement extends PureComponent {
             starRating,
           },
           distance,
-          prices,
+          prices = {},
         },
         onClick,
         onScrapedChange,
