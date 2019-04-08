@@ -179,7 +179,7 @@ class ExtendedPoiListElement extends PureComponent {
             starRating,
           },
           distance,
-          prices = {},
+          prices,
         },
         onClick,
         onScrapedChange,
@@ -206,7 +206,7 @@ class ExtendedPoiListElement extends PureComponent {
       nightlyBasePrice,
       nightlyPrice,
       nightlyPriceHotelPromotionApplied,
-    } = prices
+    } = prices || {}
 
     return (
       <ExtendedResourceListElement
