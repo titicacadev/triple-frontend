@@ -29,6 +29,10 @@ module.exports = {
     spinner: [path.resolve(__dirname, '../src'), './src/elements/spinner'],
     table: [path.resolve(__dirname, '../src'), './src/elements/table'],
     form: [path.resolve(__dirname, '../src'), './src/elements/form'],
+    'numeric-spinner': [
+      path.resolve(__dirname, '../src'),
+      './src/elements/numeric-spinner',
+    ],
     'day-picker': [
       path.resolve(__dirname, '../src'),
       './src/elements/day-picker',
