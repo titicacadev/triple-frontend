@@ -21,7 +21,7 @@ export default class App extends PureComponent {
 
   render() {
     return (
-      <div className="modal-container">
+      <div className="numeric-container">
         {this.state.amount.map(({ name, value, min, max }, idx) => (
           <NumericSpinner
             label={name}
@@ -32,10 +32,7 @@ export default class App extends PureComponent {
             onChange={(value) => {
               this.setState({
                 amount: this.state.amount.map((item) => {
-                  if (item.name === name) {
-                    return { ...item, value }
-                  }
-                  return item
+                  return item.name === name ? { ...item, value } : item
                 }),
               })
             }}
