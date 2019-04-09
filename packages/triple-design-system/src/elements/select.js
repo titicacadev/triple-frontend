@@ -52,7 +52,7 @@ const Icon = styled.span`
 function Select({
   name,
   value,
-  handleChange,
+  onChange,
   placeholder,
   options = [],
   focus,
@@ -62,7 +62,7 @@ function Select({
   return (
     <SelectFrame focus={focus} error={error}>
       <BaseSelect
-        onChange={({ target: { value } }) => handleChange(name, value)}
+        onChange={(e) => onChange(e)}
         onBlur={onBlur}
         value={value}
         selected={value}

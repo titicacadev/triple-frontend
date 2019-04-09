@@ -43,7 +43,7 @@ class Form extends PureComponent {
                   name={name}
                   onBlur={onBlur}
                   value={values.name}
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                   error={touched.name && errors.name}
                 />
               )}
@@ -59,7 +59,7 @@ class Form extends PureComponent {
                   name={name}
                   onBlur={onBlur}
                   value={values.gender}
-                  handleChange={setFieldValue}
+                  onChange={(e, value) => setFieldValue(name, value)}
                   error={touched.gender && errors.gender}
                 />
               )}
@@ -77,7 +77,7 @@ class Form extends PureComponent {
                     name={name}
                     onBlur={onBlur}
                     value={values.passport.firstname}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange(e)}
                     error={
                       touched.passport &&
                       touched.passport.firstname &&
@@ -97,7 +97,7 @@ class Form extends PureComponent {
                     label="영문이름"
                     placeholder="GILDONG"
                     value={values.passport.firstname}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange(e)}
                     error={
                       touched.passport &&
                       touched.passport.lastname &&
@@ -119,7 +119,7 @@ class Form extends PureComponent {
                   name={name}
                   placeholder="예약자와 투숙자가 다릅니다"
                   value={values.check}
-                  handleChange={setFieldValue}
+                  onChange={(_, value) => setFieldValue(name, value)}
                 />
               )}
             />
@@ -132,7 +132,7 @@ class Form extends PureComponent {
                 <Radio
                   name={name}
                   value={values.item}
-                  handleChange={setFieldValue}
+                  onChange={(_, value) => setFieldValue(name, value)}
                   options={['item1', 'item2', 'item3']}
                 />
               )}
@@ -148,7 +148,7 @@ class Form extends PureComponent {
                   name={name}
                   onBlur={onBlur}
                   value={values.extra}
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                   error={touched.extra && errors.extra}
                 />
               )}
@@ -164,7 +164,7 @@ class Form extends PureComponent {
                   placeholder="시간을 선택해주세요"
                   name={name}
                   value={values.time}
-                  handleChange={setFieldValue}
+                  onChange={(e) => handleChange(e)}
                   onBlur={onBlur}
                   error={touched.time && errors.time}
                   options={['12:00', '12:10', '12:20']}

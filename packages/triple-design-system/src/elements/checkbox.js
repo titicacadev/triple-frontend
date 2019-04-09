@@ -67,12 +67,11 @@ const Icon = styled.span`
 `
 
 export const ConfirmSelector = withField(
-  ({ name, value, placeholder, handleChange, centered }) => {
+  ({ name, value, placeholder, onChange, centered }) => {
     return (
       <ConfirmFrame
-        onClick={() => {
-          handleChange(name, !value)
-        }}
+        name={name}
+        onClick={(e) => onChange(e, !value)}
         checked={value}
         centered={centered}
       >

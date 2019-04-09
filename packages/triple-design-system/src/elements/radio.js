@@ -71,11 +71,15 @@ const GenderContainer = styled.div`
     `};
 `
 
-export const Radio = withField(({ name, value, handleChange, options }) => {
+export const Radio = withField(({ name, value, onChange, options }) => {
   return (
     <>
       {options.map((option, idx) => (
-        <RadioContainer key={idx} onClick={() => handleChange(name, option)}>
+        <RadioContainer
+          key={idx}
+          name={name}
+          onClick={(e) => onChange(e, option)}
+        >
           <Icon selected={option === value} />
           <Text size="small">{option}</Text>
         </RadioContainer>
@@ -84,24 +88,22 @@ export const Radio = withField(({ name, value, handleChange, options }) => {
   )
 })
 
-export const GenderSelector = withField(({ name, value, handleChange }) => {
+export const GenderSelector = withField(({ name, value, onChange }) => {
   return (
     <Container>
       <GenderContainer
+        name={name}
         value="MALE"
         selected={value === 'MALE'}
-        onClick={() => {
-          handleChange(name, 'MALE')
-        }}
+        onClick={(e) => onChange(e, 'MALE')}
       >
         남자
       </GenderContainer>
       <GenderContainer
+        name={name}
         value="FEMALE"
         selected={value === 'FEMALE'}
-        onClick={() => {
-          handleChange(name, 'FEMALE')
-        }}
+        onClick={(e) => onChange(e, 'FEMALE')}
       >
         여자
       </GenderContainer>
