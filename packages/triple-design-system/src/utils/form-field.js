@@ -22,6 +22,35 @@ const Label = styled(Text)`
     css`
       color: rgb(${COLORS.red});
     `};
+
+  ${({ absolute }) =>
+    absolute &&
+    css`
+      position: absolute;
+      bottom: 5px;
+    `};
+`
+
+const FieldFrame = styled.div`
+  position: relative;
+
+  ${({ padding }) =>
+    padding &&
+    css`
+      padding-top: ${padding.top}px;
+      padding-right: ${padding.right}px;
+      padding-bottom: ${padding.bottom}px;
+      padding-left: ${padding.left}px;
+    `};
+
+  ${({ margin }) =>
+    margin &&
+    css`
+      margin-top: ${margin.top}px;
+      margin-right: ${margin.right}px;
+      margin-bottom: ${margin.bottom}px;
+      margin-left: ${margin.left}px;
+    `};
 `
 
 export default function withField(WrappedComponent) {
@@ -33,13 +62,14 @@ export default function withField(WrappedComponent) {
     render() {
       const {
         state: { focus },
-        props: { label, error, help },
+        props: { label, error, help, ...props },
       } = this
 
       return (
-        <Container
+        <FieldFrame
           onFocus={() => this.setState({ focus: true })}
           onBlur={() => this.setState({ focus: false })}
+          {...props}
         >
           {label ? (
             <>
@@ -56,7 +86,9 @@ export default function withField(WrappedComponent) {
               />
               <Container padding={{ top: 10 }}>
                 {error ? (
-                  <Label error={error}>{error}</Label>
+                  <Label absolute={!help} error={error}>
+                    {error}
+                  </Label>
                 ) : help ? (
                   <Label alpha={0.5}>{help}</Label>
                 ) : null}
@@ -68,7 +100,7 @@ export default function withField(WrappedComponent) {
               {...this.props}
             />
           )}
-        </Container>
+        </FieldFrame>
       )
     }
   }
