@@ -1,6 +1,14 @@
+- `Form` 요소들 Change EvnetHandler 동작 방식 통일
+
+  ```js
+  onChange={(e) => onChange(e, e.target.value)}
+  ```
+
+  _Olaf_
+
 - `Button`에서 `ButtonIcon`에 `size` props 추가
 
-	_Torres_
+  _Torres_
 
 - `PoiListElement`에서 `prices`와 `starRating` 처리 (호텔 관련 필드)
 
