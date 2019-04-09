@@ -129,13 +129,13 @@ function RichPricing({ basePrice, salePrice, label }) {
     <PricingContainer padding={{ top: 22 }}>
       <Label> {label} </Label>
       <Price color="gray" lineThrough absolutePosition>
-        {formatNumber(salePrice)}
+        {formatNumber(basePrice)}
       </Price>
       <Price color="pink" size="big" margin={{ right: 5 }} bold>
         {discountRate(basePrice, salePrice)}
       </Price>
       <Price size="big" bold>
-        {formatNumber(basePrice)}원
+        {formatNumber(salePrice)}원
       </Price>
     </PricingContainer>
   )
@@ -144,10 +144,10 @@ function RichPricing({ basePrice, salePrice, label }) {
 const RegularPricing = ({ basePrice, salePrice }) => (
   <PricingContainer padding={{ top: 18 }}>
     <Price color="gray" lineThrough margin={{ right: 5 }}>
-      {formatNumber(salePrice)}
+      {formatNumber(basePrice)}
     </Price>
     <Price size="large" bold>
-      {formatNumber(basePrice)}원
+      {formatNumber(salePrice)}원
     </Price>
   </PricingContainer>
 )
