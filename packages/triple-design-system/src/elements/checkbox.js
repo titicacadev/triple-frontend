@@ -30,6 +30,13 @@ const ConfirmFrame = styled.div`
     css`
       text-align: center;
     `};
+
+  ${({ borderless }) =>
+    borderless &&
+    css`
+      padding: 16px 59px 16px 0;
+      border: none;
+    `};
 `
 
 const ConfirmContainer = styled.div`
@@ -50,7 +57,7 @@ const ConfirmContainer = styled.div`
 const Icon = styled.span`
   position: absolute;
   top: 50%;
-  right: 16px;
+  right: ${({ borderless }) => (borderless ? 0 : 16)}px;
   transform: translateY(-50%);
   display: inline-block;
   width: 29px;
@@ -67,17 +74,18 @@ const Icon = styled.span`
 `
 
 export const ConfirmSelector = withField(
-  ({ name, value, placeholder, onChange, centered }) => {
+  ({ name, value, placeholder, onChange, centered, borderless }) => {
     return (
       <ConfirmFrame
         name={name}
         onClick={(e) => onChange(e, !value)}
         checked={value}
         centered={centered}
+        borderless={borderless}
       >
         <ConfirmContainer centered={centered}>
           {placeholder}
-          <Icon checked={value} />
+          <Icon checked={value} borderless={borderless} />
         </ConfirmContainer>
       </ConfirmFrame>
     )
