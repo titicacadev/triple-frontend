@@ -62,7 +62,7 @@ function Select({
   return (
     <SelectFrame focus={focus} error={error}>
       <BaseSelect
-        onChange={(e) => onChange(e)}
+        onChange={(e) => onChange(e, e.target.value)}
         onBlur={onBlur}
         value={value}
         selected={value}

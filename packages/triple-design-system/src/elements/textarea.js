@@ -1,3 +1,4 @@
+import React from 'react'
 import styled, { css } from 'styled-components'
 import withField from '../utils/form-field'
 
@@ -47,4 +48,10 @@ const BaseTextarea = styled.textarea`
     `};
 `
 
-export default withField(BaseTextarea)
+function Textarea({ onChange, ...props }) {
+  return (
+    <BaseTextarea onChange={(e) => onChange(e, e.target.value)} {...props} />
+  )
+}
+
+export default withField(Textarea)

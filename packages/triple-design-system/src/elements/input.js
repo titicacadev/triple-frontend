@@ -1,3 +1,4 @@
+import React from 'react'
 import InputMask from 'react-input-mask'
 import styled, { css } from 'styled-components'
 import withField from '../utils/form-field'
@@ -45,4 +46,8 @@ const BaseInput = styled(InputMask)`
     `};
 `
 
-export default withField(BaseInput)
+function Input({ onChange, ...props }) {
+  return <BaseInput onChange={(e) => onChange(e, e.target.value)} {...props} />
+}
+
+export default withField(Input)

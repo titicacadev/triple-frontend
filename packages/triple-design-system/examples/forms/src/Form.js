@@ -164,7 +164,7 @@ class Form extends PureComponent {
                   placeholder="시간을 선택해주세요"
                   name={name}
                   value={values.time}
-                  onChange={(e) => handleChange(e)}
+                  onChange={(e, value) => handleChange(e)}
                   onBlur={onBlur}
                   error={touched.time && errors.time}
                   options={['12:00', '12:10', '12:20']}
