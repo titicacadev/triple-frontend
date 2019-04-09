@@ -2,7 +2,7 @@
 
   _Olaf_
 
-- `Form` 요소들 Change EvnetHandler 동작 방식 통일
+- `Form` 요소들 Change EventHandler 동작 방식 통일
 
   ```js
   onChange={(e) => onChange(e, e.target.value)}
