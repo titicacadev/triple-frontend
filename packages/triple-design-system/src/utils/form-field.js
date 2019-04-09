@@ -27,7 +27,7 @@ const Label = styled(Text)`
     absolute &&
     css`
       position: absolute;
-      bottom: 5px;
+      bottom: 9px;
     `};
 `
 
@@ -84,7 +84,7 @@ export default function withField(WrappedComponent) {
                 focus={focus ? 'true' : undefined}
                 {...this.props}
               />
-              <Container padding={{ top: 10 }}>
+              <Container padding={{ top: 6 }}>
                 {error ? (
                   <Label absolute={!help} error={error}>
                     {error}
