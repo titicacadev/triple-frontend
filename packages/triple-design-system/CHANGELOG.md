@@ -1,3 +1,7 @@
+- `Pricing` 잘못된 base <--> sale 순서 바로잡음
+
+  _Eeyore_
+
 - `Form Field` margin, padding option 추가 및 error message absolute style 추가
 
   _Olaf_
