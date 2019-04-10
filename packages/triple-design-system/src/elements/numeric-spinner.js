@@ -1,15 +1,24 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import Text from './text'
+
+const SIZES = {}
 
 const NumricFrame = styled.div`
   position: relative;
   padding: 15px;
   margin-bottom: 10px;
   border: 1px solid #efefef;
+
   &:last-child {
     margin-bottom: 0;
   }
+
+  ${({ borderless }) =>
+    borderless &&
+    css`
+      border: none;
+    `};
 `
 
 const NumericContainer = styled.div`
@@ -34,11 +43,13 @@ const Icon = styled.span`
 
 export default function NumricSpinner({
   label,
-  subText,
+  sublabel,
+  strikeLabel,
   value,
   max,
   min = 1,
   onChange,
+  ...props
 }) {
   const increment = () => {
     setQuantity(value + 1)
@@ -55,11 +66,27 @@ export default function NumricSpinner({
   }
 
   return (
-    <NumricFrame>
-      <Text size="small" margin={{ bottom: 5 }}>
-        {label}
-      </Text>
-      {subText ? <Text inline>{subText}</Text> : null}
+    <NumricFrame {...props}>
+      <Text size="small">{label}</Text>
+
+      {sublabel ? (
+        <Text size="mini" color="blue" inline>
+          {sublabel}
+        </Text>
+      ) : null}
+
+      {strikeLabel ? (
+        <Text
+          size="mini"
+          color="gray"
+          alpha="0.3"
+          inline
+          strikethrough
+          margin={{ left: 2 }}
+        >
+          {strikeLabel}
+        </Text>
+      ) : null}
 
       <NumericContainer>
         <Icon

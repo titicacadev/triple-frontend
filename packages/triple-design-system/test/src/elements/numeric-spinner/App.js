@@ -21,24 +21,46 @@ export default class App extends PureComponent {
 
   render() {
     return (
-      <div className="numeric-container">
-        {this.state.amount.map(({ name, value, min, max }, idx) => (
+      <>
+        <div className="numeric-container">
+          {this.state.amount.map(({ name, value, min, max }, idx) => (
+            <NumericSpinner
+              label={name}
+              value={value}
+              min={min}
+              max={max}
+              key={idx}
+              onChange={(value) => {
+                this.setState({
+                  amount: this.state.amount.map((item) => {
+                    return item.name === name ? { ...item, value } : item
+                  }),
+                })
+              }}
+            />
+          ))}
+        </div>
+        <div>
           <NumericSpinner
-            label={name}
-            value={value}
-            min={min}
-            max={max}
-            key={idx}
-            onChange={(value) => {
-              this.setState({
-                amount: this.state.amount.map((item) => {
-                  return item.name === name ? { ...item, value } : item
-                }),
-              })
-            }}
+            label="성인 1 일권"
+            sublabel="20,000원"
+            strikeLabel="23,000원"
+            min={1}
+            max={10}
+            value={0}
           />
-        ))}
-      </div>
+
+          <NumericSpinner
+            borderless
+            label="성인 1 일권"
+            sublabel="20,000원"
+            strikeLabel="23,000원"
+            min={1}
+            max={10}
+            value={0}
+          />
+        </div>
+      </>
     )
   }
 }
