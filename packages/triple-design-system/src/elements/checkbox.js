@@ -8,6 +8,19 @@ const COLORS = {
   gray: '58, 58, 58',
 }
 
+const FILLTYPES = {
+  full: css`
+    border-color: rgb(${COLORS.blue});
+    color: rgb(${COLORS.blue});
+  `,
+  border: css`
+    border-color: rgb(${COLORS.blue});
+  `,
+  text: css`
+    color: rgb(${COLORS.blue});
+  `,
+}
+
 const ConfirmFrame = styled.div`
   width: 100%;
   border: 1px solid #efefef;
@@ -17,13 +30,6 @@ const ConfirmFrame = styled.div`
   font-size: 14px;
   font-weight: bold;
   color: rgba(${COLORS.gray}, 0.5);
-
-  ${({ checked }) =>
-    checked &&
-    css`
-      border-color: rgb(${COLORS.blue});
-      color: rgb(${COLORS.blue});
-    `};
 
   ${({ centered }) =>
     centered &&
@@ -37,6 +43,8 @@ const ConfirmFrame = styled.div`
       padding: 16px 59px 16px 0;
       border: none;
     `};
+
+  ${({ checked, fillType }) => checked && fillType && FILLTYPES[fillType]};
 `
 
 const ConfirmContainer = styled.div`
@@ -74,7 +82,7 @@ const Icon = styled.span`
 `
 
 export const ConfirmSelector = withField(
-  ({ name, value, placeholder, onChange, centered, borderless }) => {
+  ({ name, value, placeholder, onChange, centered, borderless, fillType }) => {
     return (
       <ConfirmFrame
         name={name}
@@ -82,6 +90,7 @@ export const ConfirmSelector = withField(
         checked={value}
         centered={centered}
         borderless={borderless}
+        fillType={fillType}
       >
         <ConfirmContainer centered={centered}>
           {placeholder}

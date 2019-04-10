@@ -118,6 +118,7 @@ class Form extends PureComponent {
               render={({ field: { name } }) => (
                 <ConfirmSelector
                   name={name}
+                  fillType="full"
                   placeholder="예약자와 투숙자가 다릅니다"
                   value={values.check}
                   onChange={(_, value) => setFieldValue(name, value)}
@@ -132,6 +133,7 @@ class Form extends PureComponent {
               render={({ field: { name } }) => (
                 <ConfirmSelector
                   borderless
+                  fillType="text"
                   name={name}
                   placeholder="예약자와 투숙자가 다릅니다"
                   value={values.check}
