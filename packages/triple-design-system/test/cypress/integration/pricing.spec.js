@@ -21,7 +21,7 @@ describe('Pricing', () => {
     it('Price Text have font-size 20px', () => {
       cy.get('.rich-pressed > div')
         .find('span')
-        .contains('30,000원')
+        .contains('25,000원')
         .should('have.css', 'font-size')
         .and('eq', '20px')
     })
@@ -29,7 +29,7 @@ describe('Pricing', () => {
     it('BasePrice Text have absolute', () => {
       cy.get('.rich-pressed > div')
         .find('span')
-        .contains('25,000')
+        .contains('30,000')
         .should('have.css', 'position')
         .and('eq', 'absolute')
     })
@@ -45,7 +45,7 @@ describe('Pricing', () => {
     it('Price Text have font-size 18px', () => {
       cy.get('.regular-pressed > div')
         .find('span')
-        .contains('30,000원')
+        .contains('25,000원')
         .should('have.css', 'font-size')
         .and('eq', '18px')
     })
@@ -53,7 +53,7 @@ describe('Pricing', () => {
     it('BasePrice Text have absolute', () => {
       cy.get('.regular-pressed > div')
         .find('span')
-        .contains('25,000')
+        .contains('30,000')
         .should('have.css', 'display')
         .and('eq', 'inline-block')
     })
