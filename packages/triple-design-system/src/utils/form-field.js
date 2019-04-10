@@ -8,6 +8,10 @@ const COLORS = {
   red: '255, 33, 60',
 }
 
+const FieldFrame = styled.div`
+  position: relative;
+`
+
 const Label = styled(Text)`
   font-size: 13px;
 
@@ -27,29 +31,7 @@ const Label = styled(Text)`
     absolute &&
     css`
       position: absolute;
-      bottom: 9px;
-    `};
-`
-
-const FieldFrame = styled.div`
-  position: relative;
-
-  ${({ padding }) =>
-    padding &&
-    css`
-      padding-top: ${padding.top}px;
-      padding-right: ${padding.right}px;
-      padding-bottom: ${padding.bottom}px;
-      padding-left: ${padding.left}px;
-    `};
-
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin.top}px;
-      margin-right: ${margin.right}px;
-      margin-bottom: ${margin.bottom}px;
-      margin-left: ${margin.left}px;
+      bottom: -15px;
     `};
 `
 
@@ -84,9 +66,11 @@ export default function withField(WrappedComponent) {
                 error={error}
                 {...props}
               />
-              <Container padding={{ top: 6 }}>
+              <Container padding={{ top: 10 }}>
                 {error ? (
-                  <Label error={error}>{error}</Label>
+                  <Label absolute={!help} error={error}>
+                    {error}
+                  </Label>
                 ) : help ? (
                   <Label alpha={0.5}>{help}</Label>
                 ) : null}
