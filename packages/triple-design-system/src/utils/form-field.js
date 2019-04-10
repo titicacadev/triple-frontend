@@ -69,7 +69,6 @@ export default function withField(WrappedComponent) {
         <FieldFrame
           onFocus={() => this.setState({ focus: true })}
           onBlur={() => this.setState({ focus: false })}
-          {...props}
         >
           {label ? (
             <>
@@ -82,13 +81,12 @@ export default function withField(WrappedComponent) {
               </Label>
               <WrappedComponent
                 focus={focus ? 'true' : undefined}
-                {...this.props}
+                error={error}
+                {...props}
               />
               <Container padding={{ top: 6 }}>
                 {error ? (
-                  <Label absolute={!help} error={error}>
-                    {error}
-                  </Label>
+                  <Label error={error}>{error}</Label>
                 ) : help ? (
                   <Label alpha={0.5}>{help}</Label>
                 ) : null}
@@ -97,7 +95,8 @@ export default function withField(WrappedComponent) {
           ) : (
             <WrappedComponent
               focus={focus ? 'true' : undefined}
-              {...this.props}
+              error={error}
+              {...props}
             />
           )}
         </FieldFrame>

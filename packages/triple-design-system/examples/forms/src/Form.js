@@ -23,9 +23,10 @@ class Form extends PureComponent {
       handleSubmit,
       touched,
       errors,
-      handleChange,
       isSubmitting,
     } = this.props
+
+    console.log('values', values)
 
     const disableButton = isSubmitting || Object.keys(errors).length > 0
 
@@ -42,8 +43,8 @@ class Form extends PureComponent {
                   placeholder="이름을 입력해주세요"
                   name={name}
                   onBlur={onBlur}
-                  value={values.name}
-                  onChange={(e) => handleChange(e)}
+                  value={values[name]}
+                  onChange={(e, value) => setFieldValue(name, value)}
                   error={touched.name && errors.name}
                   padding={{ top: 20, bottom: 20 }}
                 />
@@ -79,7 +80,7 @@ class Form extends PureComponent {
                     name={name}
                     onBlur={onBlur}
                     value={values.passport.firstname}
-                    onChange={(e) => handleChange(e)}
+                    onChange={(e, value) => setFieldValue(name, value)}
                     error={
                       touched.passport &&
                       touched.passport.firstname &&
@@ -100,7 +101,7 @@ class Form extends PureComponent {
                     label="영문이름"
                     placeholder="GILDONG"
                     value={values.passport.firstname}
-                    onChange={(e) => handleChange(e)}
+                    onChange={(e, value) => setFieldValue(name, value)}
                     error={
                       touched.passport &&
                       touched.passport.lastname &&
@@ -171,7 +172,7 @@ class Form extends PureComponent {
                   name={name}
                   onBlur={onBlur}
                   value={values.extra}
-                  onChange={(e) => handleChange(e)}
+                  onChange={(e, value) => setFieldValue(name, value)}
                   error={touched.extra && errors.extra}
                   padding={{ top: 20, bottom: 20 }}
                 />
@@ -188,7 +189,7 @@ class Form extends PureComponent {
                   placeholder="시간을 선택해주세요"
                   name={name}
                   value={values.time}
-                  onChange={(e) => handleChange(e)}
+                  onChange={(e, value) => setFieldValue(name, value)}
                   onBlur={onBlur}
                   error={touched.time && errors.time}
                   options={['12:00', '12:10', '12:20']}
