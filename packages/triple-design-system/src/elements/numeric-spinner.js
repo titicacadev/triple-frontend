@@ -2,8 +2,6 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import Text from './text'
 
-const SIZES = {}
-
 const NumricFrame = styled.div`
   position: relative;
   padding: 15px;
@@ -19,6 +17,14 @@ const NumricFrame = styled.div`
     css`
       border: none;
     `};
+
+  ${({ big }) =>
+    big &&
+    css`
+      & div {
+        font-size: 19px;
+      }
+    `};
 `
 
 const NumericContainer = styled.div`
@@ -31,9 +37,9 @@ const NumericContainer = styled.div`
 
 const Icon = styled.span`
   display: inline-block;
-  width: 34px;
-  height: 34px;
-  background-size: 34px 34px;
+  width: 36px;
+  height: 36px;
+  background-size: 36px 36px;
   background-repeat: no-repeat;
   background-position: -1px -1px;
   float: left;
@@ -94,7 +100,12 @@ export default function NumricSpinner({
           onClick={value <= min ? () => setQuantity(0) : decrement}
           backgroundImageSrc="https://assets.triple.guide/images/btn-web-minus@2x.png"
         />
-        <Text floated="left" lineHeight="34px" margin={{ left: 5, right: 5 }}>
+        <Text
+          floated="left"
+          size="medium"
+          lineHeight="36px"
+          margin={{ left: 5, right: 5 }}
+        >
           {value}
         </Text>
         <Icon

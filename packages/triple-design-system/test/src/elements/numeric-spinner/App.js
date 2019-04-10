@@ -25,6 +25,7 @@ export default class App extends PureComponent {
         <div className="numeric-container">
           {this.state.amount.map(({ name, value, min, max }, idx) => (
             <NumericSpinner
+              big
               label={name}
               value={value}
               min={min}
@@ -39,26 +40,6 @@ export default class App extends PureComponent {
               }}
             />
           ))}
-        </div>
-        <div>
-          <NumericSpinner
-            label="성인 1 일권"
-            sublabel="20,000원"
-            strikeLabel="23,000원"
-            min={1}
-            max={10}
-            value={0}
-          />
-
-          <NumericSpinner
-            borderless
-            label="성인 1 일권"
-            sublabel="20,000원"
-            strikeLabel="23,000원"
-            min={1}
-            max={10}
-            value={0}
-          />
         </div>
       </>
     )
