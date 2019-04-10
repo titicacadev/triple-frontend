@@ -1,3 +1,13 @@
+- `Form` option 추가 및 style 변경
+
+  ```
+  1. onChange event 중첩 해결
+  2. form field padding, margin option 제거
+  3. confirmbox filltype option 추가
+  ```
+
+  _Olaf_
+
 - `Pricing` 잘못된 base <--> sale 순서 바로잡음
 
   _Eeyore_
