@@ -109,7 +109,7 @@ export function ExtendedResourceListElement({
           <Pricing basePrice={basePrice} salePrice={salePrice} />
           {pricingNote ? (
             <Container textAlign="right">
-              <Text size="mini" color="gray" alpha={0.4} margin={{ top: 3 }}>
+              <Text size="mini" color="gray" alpha={0.5} margin={{ top: 2 }}>
                 세금 및 기타 요금 포함
               </Text>
             </Container>
