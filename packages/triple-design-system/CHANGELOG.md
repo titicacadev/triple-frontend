@@ -1,3 +1,7 @@
+- `ExtendedResourceListElement`에 `pricingNote` 추가
+
+  _Eeyore_
+
 - `Form` option 추가 및 style 변경
 
   ```
