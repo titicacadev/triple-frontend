@@ -27,6 +27,7 @@ export function ExtendedResourceListElement({
   tags,
   basePrice,
   salePrice,
+  pricingNote,
   scraped,
   scrapsCount,
   reviewsCount,
@@ -104,7 +105,16 @@ export function ExtendedResourceListElement({
       />
 
       {salePrice ? (
-        <Pricing basePrice={basePrice} salePrice={salePrice} />
+        <>
+          <Pricing basePrice={basePrice} salePrice={salePrice} />
+          {pricingNote ? (
+            <Container textAlign="right">
+              <Text size="mini" color="gray" alpha={0.4} margin={{ top: 3 }}>
+                세금 및 기타 요금 포함
+              </Text>
+            </Container>
+          ) : null}
+        </>
       ) : null}
     </ResourceListItem>
   )
