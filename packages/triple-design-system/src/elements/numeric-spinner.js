@@ -4,7 +4,6 @@ import Text from './text'
 
 const NumricFrame = styled.div`
   position: relative;
-  padding: 15px;
   margin-bottom: 10px;
   border: 1px solid #efefef;
 
@@ -18,18 +17,28 @@ const NumricFrame = styled.div`
       border: none;
     `};
 
-  ${({ big }) =>
-    big &&
+  ${({ padding }) =>
+    padding &&
     css`
-      & div {
-        font-size: 19px;
-      }
+      padding-top: ${padding.top}px;
+      padding-right: ${padding.right}px;
+      padding-bottom: ${padding.bottom}px;
+      padding-left: ${padding.left}px;
+    `};
+
+  ${({ margin }) =>
+    margin &&
+    css`
+      padding-top: ${margin.top}px;
+      padding-right: ${margin.right}px;
+      padding-bottom: ${margin.bottom}px;
+      padding-left: ${margin.left}px;
     `};
 `
 
 const NumericContainer = styled.div`
   position: absolute;
-  right: 16px;
+  right: 0;
   top: 50%;
   transform: translateY(-50%);
   overflow: hidden;
@@ -55,7 +64,8 @@ export default function NumricSpinner({
   max,
   min = 1,
   onChange,
-  ...props
+  borderless,
+  padding,
 }) {
   const increment = () => {
     setQuantity(value + 1)
@@ -72,7 +82,7 @@ export default function NumricSpinner({
   }
 
   return (
-    <NumricFrame {...props}>
+    <NumricFrame borderless={borderless} padding={padding}>
       <Text size="small">{label}</Text>
 
       {sublabel ? (
