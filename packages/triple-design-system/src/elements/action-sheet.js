@@ -147,10 +147,11 @@ const ItemIcon = styled.img`
 
 const CheckedIcon = styled.div`
   float: right;
-  margin-top: 12px;
-  width: 25px;
-  height: 25px;
-  background-size: 25px 25px;
+  margin-top: 9px;
+  margin-right: -5px;
+  width: 36px;
+  height: 36px;
+  background-size: 36px 36px;
   background-image: url(${CHECKED_ICON_URL});
   background-repeat: none;
 `
