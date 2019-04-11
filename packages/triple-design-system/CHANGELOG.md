@@ -1,3 +1,5 @@
+## 0.3.0 (2019-04-11)
+
 - `ExtendedResourceListElement`에 `pricingNote` 추가
 
   _Eeyore_
