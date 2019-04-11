@@ -4,35 +4,12 @@ import Text from './text'
 
 const NumricFrame = styled.div`
   position: relative;
-  margin-bottom: 10px;
   border: 1px solid #efefef;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 
   ${({ borderless }) =>
     borderless &&
     css`
       border: none;
-    `};
-
-  ${({ padding }) =>
-    padding &&
-    css`
-      padding-top: ${padding.top}px;
-      padding-right: ${padding.right}px;
-      padding-bottom: ${padding.bottom}px;
-      padding-left: ${padding.left}px;
-    `};
-
-  ${({ margin }) =>
-    margin &&
-    css`
-      padding-top: ${margin.top}px;
-      padding-right: ${margin.right}px;
-      padding-bottom: ${margin.bottom}px;
-      padding-left: ${margin.left}px;
     `};
 `
 
@@ -42,6 +19,10 @@ const NumericContainer = styled.div`
   top: 50%;
   transform: translateY(-50%);
   overflow: hidden;
+`
+
+const InnerContainer = styled.div`
+  position: relative;
 `
 
 const Icon = styled.span`
