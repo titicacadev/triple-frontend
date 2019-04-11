@@ -19,10 +19,16 @@ const NumericContainer = styled.div`
   top: 50%;
   transform: translateY(-50%);
   overflow: hidden;
+  display: table;
+  width: 30%;
 `
 
 const InnerContainer = styled.div`
   position: relative;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  width: ${({ width }) => (width ? width : 100)}%;
 `
 
 const Icon = styled.span`
@@ -87,24 +93,23 @@ export default function NumricSpinner({
       ) : null}
 
       <NumericContainer>
-        <Icon
-          active={value > 0}
-          onClick={value <= min ? () => setQuantity(0) : decrement}
-          backgroundImageSrc="https://assets.triple.guide/images/btn-web-minus@2x.png"
-        />
-        <Text
-          floated="left"
-          size={size || 'medium'}
-          lineHeight="36px"
-          margin={{ left: 5, right: 5 }}
-        >
-          {value}
-        </Text>
-        <Icon
-          active={value < max}
-          onClick={value === 0 ? () => setQuantity(min) : increment}
-          backgroundImageSrc="https://assets.triple.guide/images/btn-web-plus@2x.png"
-        />
+        <InnerContainer width={20}>
+          <Icon
+            active={value > 0}
+            onClick={value <= min ? () => setQuantity(0) : decrement}
+            backgroundImageSrc="https://assets.triple.guide/images/btn-web-minus@2x.png"
+          />
+        </InnerContainer>
+        <InnerContainer width={60}>
+          <Text size={size || 'medium'}>{value}</Text>
+        </InnerContainer>
+        <InnerContainer width={20}>
+          <Icon
+            active={value < max}
+            onClick={value === 0 ? () => setQuantity(min) : increment}
+            backgroundImageSrc="https://assets.triple.guide/images/btn-web-plus@2x.png"
+          />
+        </InnerContainer>
       </NumericContainer>
     </NumricFrame>
   )
