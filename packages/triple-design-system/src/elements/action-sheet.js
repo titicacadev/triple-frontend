@@ -134,8 +134,7 @@ const URL_BY_NAMES = {
   delete: 'https://assets.triple.guide/images/img-action-delete@4x.png',
 }
 
-const CHECKED_ICON_URL =
-  'https://assets.triple-dev.titicaca-corp.com/images/checkbox-on.svg'
+const CHECKED_ICON_URL = 'https://assets.triple.guide/images/checkbox-on.svg'
 
 const ItemIcon = styled.img`
   float: left;
