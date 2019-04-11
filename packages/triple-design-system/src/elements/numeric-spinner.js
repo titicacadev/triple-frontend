@@ -66,6 +66,7 @@ export default function NumricSpinner({
   onChange,
   borderless,
   padding,
+  size,
 }) {
   const increment = () => {
     setQuantity(value + 1)
@@ -83,7 +84,7 @@ export default function NumricSpinner({
 
   return (
     <NumricFrame borderless={borderless} padding={padding}>
-      <Text size="small">{label}</Text>
+      <Text size={size || 'small'}>{label}</Text>
 
       {sublabel ? (
         <Text size="mini" color="blue" inline>
@@ -112,7 +113,7 @@ export default function NumricSpinner({
         />
         <Text
           floated="left"
-          size="medium"
+          size={size || 'medium'}
           lineHeight="36px"
           margin={{ left: 5, right: 5 }}
         >

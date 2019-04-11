@@ -19,6 +19,7 @@ export default class App extends PureComponent {
             min={1}
             max={10}
             borderless
+            size="big"
             onChange={(value) => {
               this.setState({
                 item1: value,
