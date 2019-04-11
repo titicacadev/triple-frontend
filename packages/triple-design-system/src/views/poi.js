@@ -227,6 +227,7 @@ class ExtendedPoiListElement extends PureComponent {
             ? Math.min(nightlyPriceHotelPromotionApplied, nightlyPrice)
             : nightlyPriceHotelPromotionApplied || nightlyPrice
         }
+        pricingNote={nightlyPrice ? '세금 및 기타 요금 포함' : null}
         onScrapedChange={onScrapedChange}
         onClick={onClick}
       />
