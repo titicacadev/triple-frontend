@@ -20,7 +20,6 @@
 
   _Olaf_
 
-- `Form` 요소들 Change EventHandler 동작 방식 통일
 - `Numeric Spinner` 추가
 
   _Olaf_
