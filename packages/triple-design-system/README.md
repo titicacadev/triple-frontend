@@ -82,6 +82,6 @@ NPM의 [`@titicaca/triple-design-system`](https://www.npmjs.com/package/@titicac
 
   - 1주에 한 번 정기 릴리즈합니다.
   - 릴리즈시마다 릴리즈 매니저를 정합니다.
-  - PR 머지 후 개별 서비스에서 바로 이용하고자 할 때 다음 예상 버전에 rc를 붙여 버저닝합니다.
-    - `0.2.9-rc.9`
   - [Semantic versioning](https://semver.org/)에 따라 릴리즈 매니저가 버전명을 결정합니다.
+  - 정기 릴리즈 외에 PR 머지 후 개별 서비스에서 바로 이용하고자 할 때는 다음 예상 버전에 rc를 붙여 버저닝합니다.
+    - `0.2.9-rc.9`
