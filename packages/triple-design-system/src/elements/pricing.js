@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 import { formatNumber } from '../utilities'
 import Container from './container'
 import Text from './text'
+import Drawer from './drawer'
 
 const FONT_SIZE = {
   mini: '12px',
@@ -46,26 +47,6 @@ const PricingContainer = styled.div`
     text-decoration: line-through;
     margin-right: 6px;
   }
-`
-
-const FixedContainer = styled.div`
-  z-index: 1;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow: hidden;
-  padding: 10px 25px 10px 30px;
-  background: ${COLORS.white};
-  transform: translateY(100%);
-  transition: all 300ms ease-in-out;
-
-  ${({ active }) =>
-    active &&
-    css`
-      transform: translateY(0%);
-      transition: all 300ms ease-in-out;
-    `};
 `
 
 const Price = styled.span`
@@ -161,24 +142,29 @@ function FixedPricing({
   onClick,
 }) {
   return (
-    <FixedContainer active={active}>
-      <Container floated="left">
-        <Text color="blue" size="mini" margin={{ top: 7, bottom: 4 }}>
-          {label}
-        </Text>
-        <Text size="large" bold>
-          {formatNumber(salePrice)}원
-          {suffix ? (
-            <SuffixText inline size="small" margin={{ left: 4 }} alpha={0.6}>
-              /{suffix}
-            </SuffixText>
-          ) : null}
-        </Text>
+    <Drawer active={active}>
+      <Container
+        clearing
+        padding={{ top: 10, right: 25, bottom: 10, left: 30 }}
+      >
+        <Container floated="left">
+          <Text color="blue" size="mini" margin={{ top: 7, bottom: 4 }}>
+            {label}
+          </Text>
+          <Text size="large" bold>
+            {formatNumber(salePrice)}원
+            {suffix ? (
+              <SuffixText inline size="small" margin={{ left: 4 }} alpha={0.6}>
+                /{suffix}
+              </SuffixText>
+            ) : null}
+          </Text>
+        </Container>
+        <Container floated="right">
+          <ReservationButton onClick={onClick}>{buttonText}</ReservationButton>
+        </Container>
       </Container>
-      <Container floated="right">
-        <ReservationButton onClick={onClick}>{buttonText}</ReservationButton>
-      </Container>
-    </FixedContainer>
+    </Drawer>
   )
 }
 
