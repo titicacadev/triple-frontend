@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 
 const DrawerContainer = styled.div`
-  z-index: 1;
+  z-index: 20;
   position: fixed;
   bottom: 0;
   left: 0;
