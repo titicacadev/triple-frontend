@@ -15,6 +15,7 @@ storiesOf('TripleDocument.이미지', module)
         value={{
           images: [
             {
+              ...image,
               frame: select(
                 '크기',
                 ['mini', 'small', 'medium', 'large', 'big', 'huge'],
@@ -22,7 +23,6 @@ storiesOf('TripleDocument.이미지', module)
               ),
               title: text('캡션', 'TripleDocument 샘플 1'),
               sourceUrl: text('출처', 'https://triple.guide'),
-              ...image,
             },
           ],
         }}
