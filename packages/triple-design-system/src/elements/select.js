@@ -70,9 +70,9 @@ function Select({
         name={name}
       >
         <option value="">{placeholder}</option>
-        {options.map((option, idx) => (
-          <option key={idx} value={option}>
-            {option}
+        {options.map(({ label, value }, idx) => (
+          <option key={idx} value={value}>
+            {label}
           </option>
         ))}
       </BaseSelect>

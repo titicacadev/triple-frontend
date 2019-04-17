@@ -185,7 +185,20 @@ class Form extends PureComponent {
                   onChange={(e, value) => setFieldValue(name, value)}
                   onBlur={onBlur}
                   error={touched.time && errors.time}
-                  options={['12:00', '12:10', '12:20']}
+                  options={[
+                    {
+                      label: '12:00',
+                      value: '12:00',
+                    },
+                    {
+                      label: '13:00',
+                      value: '13:00',
+                    },
+                    {
+                      label: '14:00',
+                      value: '14:00',
+                    },
+                  ]}
                   help="고객님의 요청사항은 해당 호텔에 전달됩니다만 호텔 사정에 따라 필요하신 내용이 이루어지지 않을 수 있으니 많은 양해 바랍니다."
                 />
               )}
