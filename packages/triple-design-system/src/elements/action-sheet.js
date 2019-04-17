@@ -73,7 +73,8 @@ const Title = styled.div`
 `
 
 const ContentContainer = styled.div`
-  max-height: 324px;
+  box-sizing: border-box;
+  max-height: calc(100vh - 256px);
   overflow: auto;
   padding: 0 25px 13px 25px;
 
