@@ -65,7 +65,6 @@ function Select({
         onChange={(e) => onChange(e, e.target.value)}
         onBlur={onBlur}
         value={value}
-        selected={value}
         error={error}
         name={name}
       >
