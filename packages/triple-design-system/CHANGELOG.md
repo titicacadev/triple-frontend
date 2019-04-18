@@ -1,3 +1,7 @@
+- global-style 에 `select` 태그를 위한 reset 스타일 추가
+
+  _Royd_
+
 - `ActionSheet` 최대 높이 수정
 
   _Eeyore_
