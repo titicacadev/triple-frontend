@@ -67,7 +67,7 @@ export default function Rating({ size, score = 0, verticalAlign, onClick }) {
               key={`empty-${i}`}
               size={size}
               verticalAlign={verticalAlign}
-              onClick={onClick}
+              onClick={() => onClick(i + 1)}
             />
           ) : (
             <RatingStar
