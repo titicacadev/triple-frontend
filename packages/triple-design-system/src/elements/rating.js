@@ -41,7 +41,6 @@ export default function Rating({ size, score = 0, verticalAlign, onClick }) {
   const full = Math.floor(score)
   const half = Math.floor((score - full) * 2)
   const empty = 5 - full - half
-
   return (
     <>
       {[...Array(full)].map((_, i) => (
@@ -59,7 +58,7 @@ export default function Rating({ size, score = 0, verticalAlign, onClick }) {
           size={size}
           verticalAlign={verticalAlign}
           half
-          onClick={onClick ? (e) => onClick(e, i + 1) : undefined}
+          onClick={onClick ? (e) => onClick(e, full + i + 1) : undefined}
         />
       ))}
       {[...Array(empty)].map((_, i) => (
@@ -67,7 +66,7 @@ export default function Rating({ size, score = 0, verticalAlign, onClick }) {
           key={`empty-${i}`}
           size={size}
           verticalAlign={verticalAlign}
-          onClick={onClick ? (e) => onClick(e, i + 1) : undefined}
+          onClick={onClick ? (e) => onClick(e, full + half + i + 1) : undefined}
         />
       ))}
     </>
