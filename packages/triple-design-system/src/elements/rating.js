@@ -60,23 +60,14 @@ export default function Rating({ size, score = 0, verticalAlign, onClick }) {
           half
         />
       ))}
-      {[...Array(empty)].map(
-        (_, i) =>
-          onClick ? (
-            <RatingStar
-              key={`empty-${i}`}
-              size={size}
-              verticalAlign={verticalAlign}
-              onClick={() => onClick(i + 1)}
-            />
-          ) : (
-            <RatingStar
-              key={`empty-${i}`}
-              size={size}
-              verticalAlign={verticalAlign}
-            />
-          ),
-      )}
+      {[...Array(empty)].map((_, i) => (
+        <RatingStar
+          key={`empty-${i}`}
+          size={size}
+          verticalAlign={verticalAlign}
+          onClick={onClick ? (e) => onClick(e, i + 1) : undefined}
+        />
+      ))}
     </>
   )
 }
