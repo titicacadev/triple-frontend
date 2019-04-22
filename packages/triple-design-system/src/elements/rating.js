@@ -50,6 +50,7 @@ export default function Rating({ size, score = 0, verticalAlign, onClick }) {
           size={size}
           verticalAlign={verticalAlign}
           full
+          onClick={onClick ? (e) => onClick(e, i + 1) : undefined}
         />
       ))}
       {[...Array(half)].map((_, i) => (
@@ -58,6 +59,7 @@ export default function Rating({ size, score = 0, verticalAlign, onClick }) {
           size={size}
           verticalAlign={verticalAlign}
           half
+          onClick={onClick ? (e) => onClick(e, i + 1) : undefined}
         />
       ))}
       {[...Array(empty)].map((_, i) => (
