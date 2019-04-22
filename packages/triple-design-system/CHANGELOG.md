@@ -1,6 +1,6 @@
 - `Rating` 에 `onClick` 추가
 
-	_Torres_
+  _Torres_
 
 - `text` red color 추가
 
