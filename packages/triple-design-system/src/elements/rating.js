@@ -37,7 +37,7 @@ const RatingStar = styled.span`
   `};
 `
 
-export default function Rating({ size, score = 0, verticalAlign }) {
+export default function Rating({ size, score = 0, verticalAlign, onClick }) {
   const full = Math.floor(score)
   const half = Math.floor((score - full) * 2)
   const empty = 5 - full - half
@@ -60,13 +60,23 @@ export default function Rating({ size, score = 0, verticalAlign }) {
           half
         />
       ))}
-      {[...Array(empty)].map((_, i) => (
-        <RatingStar
-          key={`empty-${i}`}
-          size={size}
-          verticalAlign={verticalAlign}
-        />
-      ))}
+      {[...Array(empty)].map(
+        (_, i) =>
+          onClick ? (
+            <RatingStar
+              key={`empty-${i}`}
+              size={size}
+              verticalAlign={verticalAlign}
+              onClick={onClick}
+            />
+          ) : (
+            <RatingStar
+              key={`empty-${i}`}
+              size={size}
+              verticalAlign={verticalAlign}
+            />
+          ),
+      )}
     </>
   )
 }
