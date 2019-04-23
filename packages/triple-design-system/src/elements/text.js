@@ -53,11 +53,7 @@ const TextBase = styled.div`
 
   float: ${({ floated }) => floated || 'none'};
 
-  ${({ lineHeight }) =>
-    lineHeight &&
-    css`
-      line-height: ${lineHeight};
-    `};
+  line-height: ${({ lineHeight }) => lineHeight || 1.2};
 
   ${({ wordBreak }) =>
     wordBreak &&
