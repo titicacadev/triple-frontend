@@ -121,3 +121,31 @@ export function Confirm({
     </Modal>
   )
 }
+
+export function Alert({ children, open, onClose, confirmText, onConfirm }) {
+  return (
+    <Modal open={open} onClose={onClose}>
+      <Text
+        center
+        size="large"
+        lineHeight={1.38}
+        color="gray"
+        padding={{ top: 40, bottom: 40, left: 30, right: 30 }}
+      >
+        {children}
+      </Text>
+      <Modal.Actions>
+        <Modal.Action
+          color="blue"
+          onClick={() =>
+            onConfirm
+              ? !onConfirm() && onClose && onClose()
+              : onClose && onClose()
+          }
+        >
+          {confirmText || '확인'}
+        </Modal.Action>
+      </Modal.Actions>
+    </Modal>
+  )
+}

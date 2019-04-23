@@ -2,10 +2,10 @@ import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 
-import { Text, Modal, Confirm } from '@titicaca/triple-design-system'
+import { Text, Modal, Confirm, Alert } from '@titicaca/triple-design-system'
 
 storiesOf('Modal', module)
-  .add('일반', () => (
+  .add('Basic', () => (
     <Modal open>
       <Text
         center
@@ -18,8 +18,13 @@ storiesOf('Modal', module)
       </Text>
     </Modal>
   ))
-  .add('컨펌', () => (
+  .add('Confirm', () => (
     <Confirm open>
       삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.
     </Confirm>
+  ))
+  .add('Alert', () => (
+    <Alert open>
+      삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.
+    </Alert>
   ))
