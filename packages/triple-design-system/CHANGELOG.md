@@ -1,3 +1,7 @@
+- `Text` line-height 디폴트 값을 1.2 로 설정
+
+  _Royd_
+
 - `Rating` 에 `onClick` 추가
 
   _Torres_
