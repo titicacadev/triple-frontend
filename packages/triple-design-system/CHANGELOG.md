@@ -1,3 +1,7 @@
+- `Modal` Alert Modal 추가
+
+  _Olaf_
+
 - `Text` line-height 디폴트 값을 1.2 로 설정
 
   _Royd_
