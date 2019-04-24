@@ -24,7 +24,11 @@ storiesOf('Modal', module)
     </Confirm>
   ))
   .add('Alert', () => (
-    <Alert open>
-      삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.
+    <Alert
+      title="장애공지
+    타이틀이 두줄일수도"
+      open
+    >
+      실시간 객실정보가 변경되어 안내드려요.
     </Alert>
   ))

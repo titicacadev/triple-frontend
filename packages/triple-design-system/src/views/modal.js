@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Text from '../elements/text'
 import Modal from '../elements/modal'
+import Container from '../elements/container'
 
 const IconImage = styled.img`
   display: block;
@@ -21,10 +22,10 @@ const ICONS = {
   scrap: 'https://assets.triple.guide/images/img-heart@4x.png',
 }
 
-function Actions({
-  negative: { text: negativeText, onClick: onNegativeClick },
-  positive: { text: positiveText, onClick: onPositiveClick },
-}) {
+function Actions({ negative, positive }) {
+  const { text: negativeText, onClick: onNegativeClick } = negative || {}
+  const { text: positiveText, onClick: onPositiveClick } = positive
+
   return (
     <Modal.Actions>
       <Modal.Action color="gray" onClick={onNegativeClick}>
@@ -34,6 +35,21 @@ function Actions({
         {positiveText}
       </Modal.Action>
     </Modal.Actions>
+  )
+}
+
+function ModalBody({ title, description }) {
+  return (
+    <Container padding={{ top: 40, bottom: 40, left: 30, right: 30 }}>
+      {title ? (
+        <Text bold center size="big" color="gray" margin={{ bottom: 10 }}>
+          {title}
+        </Text>
+      ) : null}
+      <Text center size="large" lineHeight={1.38} color="gray">
+        {description}
+      </Text>
+    </Container>
   )
 }
 
@@ -49,17 +65,7 @@ export function TransitionModal({
   return title ? (
     <Modal open={open} onClose={onClose}>
       <IconImage src={ICONS[messageType]} />
-      <Text bold center size="big" color="gray">
-        {title}
-      </Text>
-      <Text
-        center
-        alpha={0.7}
-        size="small"
-        margin={{ top: 10, bottom: 40, left: 30, right: 30 }}
-      >
-        {description}
-      </Text>
+      <ModalBody title={title} description={children} />
 
       <Actions
         negative={{
@@ -83,6 +89,7 @@ export function TransitionModal({
 
 export function Confirm({
   children,
+  title,
   open,
   onClose,
   cancelText,
@@ -92,16 +99,7 @@ export function Confirm({
 }) {
   return (
     <Modal open={open} onClose={onClose}>
-      <Text
-        center
-        size="large"
-        lineHeight={1.38}
-        color="gray"
-        padding={{ top: 40, bottom: 40, left: 30, right: 30 }}
-      >
-        {children}
-      </Text>
-
+      <ModalBody title={title} description={children} />
       <Actions
         negative={{
           text: cancelText || '취소',
@@ -122,18 +120,17 @@ export function Confirm({
   )
 }
 
-export function Alert({ children, open, onClose, confirmText, onConfirm }) {
+export function Alert({
+  title,
+  children,
+  open,
+  onClose,
+  confirmText,
+  onConfirm,
+}) {
   return (
     <Modal open={open} onClose={onClose}>
-      <Text
-        center
-        size="large"
-        lineHeight={1.38}
-        color="gray"
-        padding={{ top: 40, bottom: 40, left: 30, right: 30 }}
-      >
-        {children}
-      </Text>
+      <ModalBody title={title} description={children} />
       <Modal.Actions>
         <Modal.Action
           color="blue"
