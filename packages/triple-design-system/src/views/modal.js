@@ -22,10 +22,10 @@ const ICONS = {
   scrap: 'https://assets.triple.guide/images/img-heart@4x.png',
 }
 
-function Actions({ negative, positive }) {
-  const { text: negativeText, onClick: onNegativeClick } = negative || {}
-  const { text: positiveText, onClick: onPositiveClick } = positive
-
+function Actions({
+  negative: { text: negativeText, onClick: onNegativeClick },
+  positive: { text: positiveText, onClick: onPositiveClick },
+}) {
   return (
     <Modal.Actions>
       <Modal.Action color="gray" onClick={onNegativeClick}>
@@ -65,7 +65,17 @@ export function TransitionModal({
   return title ? (
     <Modal open={open} onClose={onClose}>
       <IconImage src={ICONS[messageType]} />
-      <ModalBody title={title} description={children} />
+      <Text bold center size="big" color="gray">
+        {title}
+      </Text>
+      <Text
+        center
+        alpha={0.7}
+        size="small"
+        margin={{ top: 10, bottom: 40, left: 30, right: 30 }}
+      >
+        {description}
+      </Text>
 
       <Actions
         negative={{
