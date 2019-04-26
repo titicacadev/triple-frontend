@@ -64,13 +64,7 @@ const Container = styled.div`
     css`
       max-height: ${maxHeight}px;
     `};
-  
-  ${({ overflow }) =>
-    overflow &&
-    css`
-      overflow: ${overflow};
-    `}
-   
+
   float: ${({ floated }) => floated || 'none'};
 
   ${({ textAlign }) =>
