@@ -102,7 +102,9 @@ const PrimaryFilterEntry = styled(FilterEntryBase)`
 export const ListingFilter = styled.div`
   white-space: nowrap;
   overflow-x: scroll;
-  padding: 0 20px;
+  -webkit-overflow-scrolling: touch;
+
+  padding: 0 20px 10px 20px;
 
   ::-webkit-scrollbar {
     display: none;
