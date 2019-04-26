@@ -20,9 +20,7 @@ const {
   video: Video,
 } = ELEMENTS
 
-function ProxyCall({ sample }) {
-  return <TripleDocument>{sample}</TripleDocument>
-}
+const ProxyCall = ({ sample }) => <TripleDocument>{sample}</TripleDocument>
 
 storiesOf('TripleDocument', module)
   .add('샘플', () => <ProxyCall sample={SAMPLE} />)
