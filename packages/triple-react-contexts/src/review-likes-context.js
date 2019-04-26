@@ -1,6 +1,6 @@
-import React, { createContext, PureComponent } from 'react'
+import React, { PureComponent, createContext, useContext } from 'react'
 
-const { Provider, Consumer } = createContext()
+const Context = createContext()
 
 export class ReviewLikesProvider extends PureComponent {
   state = { likes: this.props.likes || {} }
@@ -51,7 +51,7 @@ export class ReviewLikesProvider extends PureComponent {
     } = this
 
     return (
-      <Provider
+      <Context.Provider
         value={{
           likes,
           actions: {
@@ -62,19 +62,23 @@ export class ReviewLikesProvider extends PureComponent {
         }}
       >
         {children}
-      </Provider>
+      </Context.Provider>
     )
   }
+}
+
+export function useReviewLikesContext() {
+  return useContext(Context)
 }
 
 export function withReviewLikes(Component) {
   return function ReviewLikesComponent(props) {
     return (
-      <Consumer>
+      <Context.Consumer>
         {({ likes, actions }) => (
           <Component likes={likes} likeActions={actions} {...props} />
         )}
-      </Consumer>
+      </Context.Consumer>
     )
   }
 }

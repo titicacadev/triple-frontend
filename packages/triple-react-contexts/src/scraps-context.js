@@ -1,6 +1,6 @@
-import React, { createContext, PureComponent } from 'react'
+import React, { PureComponent, createContext, useContext } from 'react'
 
-const { Provider, Consumer } = createContext()
+const Context = createContext()
 
 export class ScrapsProvider extends PureComponent {
   state = { scraps: this.props.scraps || {}, updating: {} }
@@ -103,7 +103,7 @@ export class ScrapsProvider extends PureComponent {
     } = this
 
     return (
-      <Provider
+      <Context.Provider
         value={{
           deriveCurrentStateAndCount,
           scraps,
@@ -119,15 +119,19 @@ export class ScrapsProvider extends PureComponent {
         }}
       >
         {children}
-      </Provider>
+      </Context.Provider>
     )
   }
+}
+
+export function useScrapsContext() {
+  return useContext(Context)
 }
 
 export function withScraps(Component) {
   return function ScrapsComponent(props) {
     return (
-      <Consumer>
+      <Context.Consumer>
         {({ deriveCurrentStateAndCount, scraps, actions }) => (
           <Component
             deriveCurrentScrapedStateAndCount={deriveCurrentStateAndCount}
@@ -136,7 +140,7 @@ export function withScraps(Component) {
             {...props}
           />
         )}
-      </Consumer>
+      </Context.Consumer>
     )
   }
 }

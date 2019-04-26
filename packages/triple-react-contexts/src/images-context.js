@@ -1,6 +1,6 @@
-import React, { createContext, PureComponent } from 'react'
+import React, { createContext, PureComponent, useContext } from 'react'
 
-const { Provider, Consumer } = createContext()
+const Context = createContext()
 
 const TYPE_MAPPING = {
   attraction: 'poi',
@@ -91,7 +91,7 @@ export class ImagesProvider extends PureComponent {
     } = this
 
     return (
-      <Provider
+      <Context.Provider
         value={{
           images,
           total,
@@ -102,15 +102,19 @@ export class ImagesProvider extends PureComponent {
         }}
       >
         {children}
-      </Provider>
+      </Context.Provider>
     )
   }
+}
+
+export function useImagesContext() {
+  return useContext(Context)
 }
 
 export function withImages(Component) {
   return function ImagesComponent(props) {
     return (
-      <Consumer>
+      <Context.Consumer>
         {({ images, total, actions }) => (
           <Component
             images={images}
@@ -119,7 +123,7 @@ export function withImages(Component) {
             {...props}
           />
         )}
-      </Consumer>
+      </Context.Consumer>
     )
   }
 }
