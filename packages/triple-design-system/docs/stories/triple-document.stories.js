@@ -20,10 +20,10 @@ const {
   video: Video,
 } = ELEMENTS
 
-const ProxyCall = ({ sample }) => <TripleDocument>{sample}</TripleDocument>
+const Proxy = ({ sample }) => <TripleDocument>{sample}</TripleDocument>
 
 storiesOf('TripleDocument', module)
-  .add('샘플', () => <ProxyCall sample={SAMPLE} />)
+  .add('샘플', () => <Proxy sample={SAMPLE} />)
   .add('텍스트', () => (
     <>
       <Heading1 value={{ emphasize: true, text: '제목0: bold 21 #2987F0' }} />
