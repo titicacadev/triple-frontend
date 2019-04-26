@@ -20,6 +20,7 @@ const {
   video: Video,
 } = ELEMENTS
 
+//storybook의 jsxDecoration에는 Object를 표현하는 기능이 없어 Proxy를 호출 하게 해두었습니다.
 const Proxy = ({ sample }) => <TripleDocument>{sample}</TripleDocument>
 
 storiesOf('TripleDocument', module)
