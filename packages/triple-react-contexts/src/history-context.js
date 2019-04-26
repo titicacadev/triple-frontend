@@ -1,8 +1,8 @@
-import React, { createContext, PureComponent } from 'react'
+import React, { createContext, PureComponent, useContext } from 'react'
 import Router from 'next/router'
 import queryString from 'query-string'
 
-const { Provider, Consumer } = createContext()
+const Context = createContext()
 
 const EXTERNAL_BROWSER_HOSTS = ['play.google.com', 'itunes.apple.com']
 
@@ -166,7 +166,7 @@ export class HistoryProvider extends PureComponent {
     } = this
 
     return (
-      <Provider
+      <Context.Provider
         value={{
           uriHash: hashHistories[hashHistories.length - 1],
           actions: {
@@ -178,19 +178,23 @@ export class HistoryProvider extends PureComponent {
         }}
       >
         {children}
-      </Provider>
+      </Context.Provider>
     )
   }
+}
+
+export function useHistoryContext() {
+  return useContext(Context)
 }
 
 export function withHistory(Component) {
   return function HistoryComponent(props) {
     return (
-      <Consumer>
+      <Context.Consumer>
         {({ uriHash, actions }) => (
           <Component uriHash={uriHash} historyActions={actions} {...props} />
         )}
-      </Consumer>
+      </Context.Consumer>
     )
   }
 }

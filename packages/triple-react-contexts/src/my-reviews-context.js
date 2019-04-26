@@ -1,7 +1,7 @@
-import React, { createContext, PureComponent } from 'react'
+import React, { PureComponent, createContext, useContext } from 'react'
 import humps from 'humps'
 
-const { Provider, Consumer } = createContext()
+const Context = createContext()
 
 export class MyReviewsProvider extends PureComponent {
   state = { myReviews: this.props.myReviews || {} }
@@ -66,7 +66,7 @@ export class MyReviewsProvider extends PureComponent {
     } = this
 
     return (
-      <Provider
+      <Context.Provider
         value={{
           myReviews,
           deriveCurrentStateAndCount: this.deriveCurrentStateAndCount,
@@ -77,15 +77,19 @@ export class MyReviewsProvider extends PureComponent {
         }}
       >
         {children}
-      </Provider>
+      </Context.Provider>
     )
   }
+}
+
+export function useMyReviewsContext() {
+  return useContext(Context)
 }
 
 export function withMyReviews(Component) {
   return function MyReviewsComponent(props) {
     return (
-      <Consumer>
+      <Context.Consumer>
         {({ myReviews, actions, deriveCurrentStateAndCount }) => (
           <Component
             myReviews={myReviews}
@@ -94,7 +98,7 @@ export function withMyReviews(Component) {
             {...props}
           />
         )}
-      </Consumer>
+      </Context.Consumer>
     )
   }
 }

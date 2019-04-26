@@ -1,6 +1,6 @@
-import React, { PureComponent, createContext } from 'react'
+import React, { PureComponent, createContext, useContext } from 'react'
 
-const EventTrackingContext = createContext({ pageLabel: 'Unknown' })
+const Context = createContext({ pageLabel: 'Unknown' })
 
 const DEFAULT_EVENT_NAME = 'user_interaction'
 
@@ -67,7 +67,7 @@ export class EventTrackingProvider extends PureComponent {
     } = this
 
     return (
-      <EventTrackingContext.Provider
+      <Context.Provider
         value={{
           trackScreen: this.trackScreen,
           trackEvent: this.trackEvent,
@@ -76,15 +76,19 @@ export class EventTrackingProvider extends PureComponent {
         }}
       >
         {children}
-      </EventTrackingContext.Provider>
+      </Context.Provider>
     )
   }
+}
+
+export function useEventTrackingContext() {
+  return useContext(Context)
 }
 
 export function withEventTracking(Component) {
   return function EventTrackingComponent(props) {
     return (
-      <EventTrackingContext.Consumer>
+      <Context.Consumer>
         {({ trackScreen, trackEvent, trackSimpleEvent, viewItem }) => (
           <Component
             trackScreen={trackScreen}
@@ -94,7 +98,7 @@ export function withEventTracking(Component) {
             {...props}
           />
         )}
-      </EventTrackingContext.Consumer>
+      </Context.Consumer>
     )
   }
 }
