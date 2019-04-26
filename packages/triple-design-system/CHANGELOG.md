@@ -1,3 +1,7 @@
+- `ListingFilter` iOS 모바일에서 터치 스크롤 이슈 해결 [#465](https://github.com/titicacadev/triple-design-system/pull/465)
+
+  _Royd_
+
 ## 0.3.1 (2019-04-24)
 
 - `Modal` Alert Modal 추가
