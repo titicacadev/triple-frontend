@@ -91,7 +91,7 @@ const PrimaryFilterEntry = styled(FilterEntryBase)`
   padding: 10px 14px 8px 38px;
   background-image: url(${PRIMARY_ICON_URL});
   background-size: 24px 24px;
-  background-position: top 5px left 10px;
+  background-position: top 4px left 10px;
   border: none;
   border-radius: 2px;
   background-color: #368fff;
