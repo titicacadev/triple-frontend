@@ -1,3 +1,11 @@
+- `Label`에 `margin` prop 추가
+
+  _Royd_
+
+- `ListingFilter` line-height 디폴트 값을 1.2 로 설정
+
+  _Royd_
+
 - `Container` min Height , max Height option 추가
 
   _Olaf_
