@@ -1,3 +1,7 @@
+- `Container` min Height , max Height option 추가
+
+  _Olaf_
+
 - `ListingFilter` iOS 모바일에서 터치 스크롤 이슈 해결 [#465](https://github.com/titicacadev/triple-design-system/pull/465)
 
   _Royd_
