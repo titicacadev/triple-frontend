@@ -27,6 +27,15 @@ const RadioLabel = styled.div`
   background-position: left center;
   background-repeat: no-repeat;
   cursor: pointer;
+
+  ${({ margin }) =>
+    margin &&
+    css`
+      margin-top: ${margin.top || 0}px;
+      margin-bottom: ${margin.bottom || 0}px;
+      margin-left: ${margin.left || 0}px;
+      margin-right: ${margin.right || 0}px;
+    `};
 `
 
 const PROMO_SIZES = {
@@ -68,6 +77,15 @@ export const PromoLabel = styled.div`
             rgba({ color, alpha: 0.1 })};
           color: ${({ color = 'purple' }) => rgba({ color, alpha: 1 })};
         `};
+
+  ${({ margin }) =>
+    margin &&
+    css`
+      margin-top: ${margin.top || 0}px;
+      margin-bottom: ${margin.bottom || 0}px;
+      margin-left: ${margin.left || 0}px;
+      margin-right: ${margin.right || 0}px;
+    `};
 `
 
 function Label({ radio, promo, children, ...props }) {
