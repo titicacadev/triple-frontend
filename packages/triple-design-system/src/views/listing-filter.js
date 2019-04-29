@@ -5,6 +5,7 @@ const FilterEntryBase = styled.div`
   display: inline-block;
   font-family: sans-serif;
   font-size: 13px;
+  line-height: 1.2;
   border: 1px solid
     ${({ active }) => (active ? '#368fff' : 'rgba(58, 58, 58, 0.2)')};
   color: ${({ active }) => (active ? '#368fff' : 'rgba(58, 58, 58, 0.2)')};
