@@ -70,7 +70,7 @@ const SecondaryNavbar = styled.div`
   right: 0;
   z-index: 2;
   box-sizing: border-box;
-  padding: 0 0 16px 0;
+  padding: 0 0 5px 0;
   overflow: hidden;
 `
 
