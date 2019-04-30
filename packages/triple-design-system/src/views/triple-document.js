@@ -412,7 +412,7 @@ function Embedded({
 
 function Note({ value: { title, body } }) {
   return (
-    <Segment margin={{ top: 20, left: 30, right: 30 }}>
+    <Segment margin={{ top: 30, bottom: 30, left: 30, right: 30 }}>
       <Text bold size="small" color="gray" lineHeight={1.57}>
         {title}
       </Text>
