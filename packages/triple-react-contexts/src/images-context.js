@@ -2,33 +2,22 @@ import React, { createContext, PureComponent, useContext } from 'react'
 
 const Context = createContext()
 
-const TYPE_MAPPING = {
-  attraction: 'poi',
-  restaurant: 'poi',
-  hotel: 'poi',
-}
-
 export class ImagesProvider extends PureComponent {
   state = {
+    resourceId: null,
+    resourceType: null,
     images: this.props.images || [],
     total: null,
     loading: false,
     hasMore: true,
   }
 
-  sendFetchRequest = async (size = 15) => {
+  sendFetchRequest = async ({ id, type, from, size = 15 }) => {
     const {
-      props: {
-        fetchImages,
-        source: { id, type },
-      },
-      state: { images },
+      props: { fetchImages },
     } = this
 
-    const response = await fetchImages(
-      { type: TYPE_MAPPING[type] || type, id },
-      { from: images.length, size },
-    )
+    const response = await fetchImages({ id, type }, { from, size })
 
     if (response.ok) {
       const result = await response.json()
@@ -39,9 +28,9 @@ export class ImagesProvider extends PureComponent {
     return null
   }
 
-  fetch = async (cb) => {
+  fetch = async ({ id, type }, cb) => {
     const {
-      state: { loading, hasMore },
+      state: { resourceId, resourceType, images, loading, hasMore },
     } = this
 
     if (loading || !hasMore) {
@@ -50,12 +39,20 @@ export class ImagesProvider extends PureComponent {
 
     this.setState({ loading: true })
 
-    const { data: fetchedImages, total } = await this.sendFetchRequest()
+    const refresh = id !== resourceId || type !== resourceType
+
+    const { data: fetchedImages, total } = await this.sendFetchRequest({
+      id,
+      type,
+      from: refresh ? 0 : images.length,
+    })
 
     if (fetchedImages) {
       this.setState(
         ({ images }) => ({
-          images: [...images, ...fetchedImages],
+          resourceId: id,
+          resourceType: type,
+          images: refresh ? fetchedImages : [...images, ...fetchedImages],
           total,
           loading: false,
           hasMore: fetchedImages.length > 0,
@@ -69,7 +66,7 @@ export class ImagesProvider extends PureComponent {
 
   indexOf = async ({ id: targetId }) => {
     const {
-      state: { images },
+      state: { resourceId, resourceType, images },
     } = this
 
     const index = images.findIndex(({ id }) => id === targetId)
@@ -79,7 +76,12 @@ export class ImagesProvider extends PureComponent {
 
     // Just fetch 30 more images to check index of clicked image.
     // Ignore the case of unfindable image in these 45(15 + 30) images.
-    const { data: fetchedImages } = await this.sendFetchRequest(30)
+    const { data: fetchedImages } = await this.sendFetchRequest({
+      id: resourceId,
+      type: resourceType,
+      from: images.length,
+      size: 30,
+    })
 
     return [...images, ...fetchedImages].findIndex(({ id }) => id === targetId)
   }
@@ -87,12 +89,14 @@ export class ImagesProvider extends PureComponent {
   render() {
     const {
       props: { children },
-      state: { images, total },
+      state: { resourceId, resourceType, images, total },
     } = this
 
     return (
       <Context.Provider
         value={{
+          resourceId,
+          resourceType,
           images,
           total,
           actions: {
