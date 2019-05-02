@@ -1,3 +1,7 @@
+- `Note` 의 `margin` 값 조정
+
+  _Torres_
+
 - `Label`에 `margin` prop 추가
 
   _Royd_
