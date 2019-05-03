@@ -185,7 +185,7 @@ function Images({
               frame={frame}
               onClick={
                 link
-                  ? onLinkClick
+                  ? onLinkClick && ((e) => onLinkClick(e, link))
                   : onImageClick && ((e) => onImageClick(e, image))
               }
               ImageSource={ImageSource}
