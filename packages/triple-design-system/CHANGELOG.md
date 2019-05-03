@@ -1,3 +1,7 @@
+- `TripleDocument` 의 `Images` 에서 `onLinkClick` 지원
+
+  _Torres_
+
 - `Note` 의 `margin` 값 조정
 
   _Torres_
