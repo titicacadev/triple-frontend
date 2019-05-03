@@ -159,7 +159,12 @@ function Compact(Component) {
   return (props) => <Component compact {...props} />
 }
 
-function Images({ value: { images, display }, onImageClick, ImageSource }) {
+function Images({
+  value: { images, display },
+  onImageClick,
+  onLinkClick,
+  ImageSource,
+}) {
   const ImagesContainer = display === 'block' ? Container : DocumentCarousel
   const ElementContainer =
     display === 'block'
@@ -171,14 +176,18 @@ function Images({ value: { images, display }, onImageClick, ImageSource }) {
       margin={{ top: 40, bottom: images.some(({ title }) => title) ? 10 : 30 }}
     >
       {images.map((image, i) => {
-        const { frame, sizes, sourceUrl } = image
+        const { frame, sizes, sourceUrl, link } = image
         return (
           <ElementContainer key={i}>
             <Image
               src={sizes.large.url}
               sourceUrl={sourceUrl}
               frame={frame}
-              onClick={onImageClick && ((e) => onImageClick(e, image))}
+              onClick={
+                link
+                  ? onLinkClick
+                  : onImageClick && ((e) => onImageClick(e, image))
+              }
               ImageSource={ImageSource}
             />
             {image.title ? <ImageCaption>{image.title}</ImageCaption> : null}
