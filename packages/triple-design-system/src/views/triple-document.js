@@ -171,15 +171,15 @@ function Images({
       ? ImageBlockElementContainer
       : ImageCarouselElementContainer
 
-  const onClick = (e, link, image) =>
-    link ? onLinkClick(e, link) : onImageClick(e, image)
+  const onClick = (e, image) =>
+    image.link ? onLinkClick(e, image.link) : onImageClick(e, image)
 
   return (
     <ImagesContainer
       margin={{ top: 40, bottom: images.some(({ title }) => title) ? 10 : 30 }}
     >
       {images.map((image, i) => {
-        const { frame, sizes, sourceUrl, link } = image
+        const { frame, sizes, sourceUrl } = image
 
         return (
           <ElementContainer key={i}>
@@ -187,7 +187,7 @@ function Images({
               src={sizes.large.url}
               sourceUrl={sourceUrl}
               frame={frame}
-              onClick={(e) => onClick(e, link, image)}
+              onClick={(e) => onClick(e, image)}
               ImageSource={ImageSource}
             />
             {image.title ? <ImageCaption>{image.title}</ImageCaption> : null}
