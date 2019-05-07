@@ -1,7 +1,3 @@
-- `TripleDocument Images` 의 `onClick` 로직 수정
-
-  _Torres_
-
 - `TripleDocument` 의 `Images` 에서 `onLinkClick` 지원
 
   _Torres_
