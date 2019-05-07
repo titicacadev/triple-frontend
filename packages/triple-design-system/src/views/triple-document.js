@@ -177,7 +177,9 @@ function Images({
     >
       {images.map((image, i) => {
         const { frame, sizes, sourceUrl, link } = image
-        const onClick = link ? onLinkClick : onImageClick
+        const onClick = link
+          ? (e) => onLinkClick(e, link)
+          : (e) => onImageClick(e, image)
 
         return (
           <ElementContainer key={i}>
@@ -185,7 +187,7 @@ function Images({
               src={sizes.large.url}
               sourceUrl={sourceUrl}
               frame={frame}
-              onClick={(e) => onClick(e, link || image)}
+              onClick={onClick}
               ImageSource={ImageSource}
             />
             {image.title ? <ImageCaption>{image.title}</ImageCaption> : null}
