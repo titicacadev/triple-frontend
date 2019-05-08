@@ -1,3 +1,7 @@
+- `ExtendedResourceListElement`의 `pricingNote` 값을 '세금 포함'으로 변경
+
+  _Eeyore_
+
 - `TripleDocument` 의 `Images` 에서 `onLinkClick` 지원
 
   _Torres_
