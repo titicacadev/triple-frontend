@@ -179,7 +179,7 @@ function Images({
       margin={{ top: 40, bottom: images.some(({ title }) => title) ? 10 : 30 }}
     >
       {images.map((image, i) => {
-        const { frame, sizes, sourceUrl, link } = image
+        const { frame, sizes, sourceUrl } = image
 
         return (
           <ElementContainer key={i}>
@@ -187,7 +187,6 @@ function Images({
               src={sizes.large.url}
               sourceUrl={sourceUrl}
               frame={frame}
-              href={(link || {}).href}
               onClick={(e) => onClick(e, image)}
               ImageSource={ImageSource}
             />
