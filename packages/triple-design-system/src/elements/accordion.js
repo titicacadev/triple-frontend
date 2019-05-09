@@ -7,8 +7,8 @@ const Accordion = styled.div`
 `
 
 const TITLE_ICONS = {
-  folded: 'ico-header-expand-fold@4x.png',
-  unfolded: 'ico-header-expand-more@4x.png',
+  folded: 'ico-accordion-expand-fold@4x.png',
+  unfolded: 'ico-accordion-expand-more@4x.png',
 }
 
 const Title = styled(Container)`
@@ -16,14 +16,14 @@ const Title = styled(Container)`
     position: absolute;
     top: 0;
     right: 0;
-    width: 20px;
-    height: 20px;
+    width: 34px;
+    height: 34px;
     background-image: url(${({ active }) =>
       `https://assets.triple.guide/images/${
         TITLE_ICONS[active ? 'folded' : 'unfolded']
       }`});
-    background-size: 20px 20px;
-    background-position: center center;
+    background-size: 34px 34px;
+    background-position: 0 -7px;
     background-repeat: no-repeat;
     content: '';
   }
