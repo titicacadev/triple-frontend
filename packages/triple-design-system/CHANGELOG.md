@@ -1,3 +1,7 @@
+- global-style 에 font-family 적용 및 각 element 에서 font-family 스타일 제거
+
+  _Royd_
+
 - `Text.Title` line-height 값을 1.2 로 설정
 
   _Royd_
