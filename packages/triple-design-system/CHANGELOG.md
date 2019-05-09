@@ -1,3 +1,7 @@
+- `Text.Title` line-height 값을 1.2 로 설정
+
+  _Royd_
+
 - `ExtendedResourceListElement`의 `pricingNote` 값을 '세금 포함'으로 변경
 
   _Eeyore_
