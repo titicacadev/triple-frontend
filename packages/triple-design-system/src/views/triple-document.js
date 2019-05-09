@@ -216,7 +216,6 @@ function EmbeddedImages({
         size="medium"
         src={sizes.large.url}
         sourceUrl={sourceUrl}
-        href={(link || {}).href}
         onClick={(e) => onClick(e, link || image)}
         ImageSource={ImageSource}
       />
