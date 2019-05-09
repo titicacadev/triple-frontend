@@ -61,7 +61,6 @@ const Action = styled.a`
   height: 50px;
   line-height: 50px;
   font-size: 14px;
-  font-family: sans-serif;
   font-weight: bold;
   text-align: center;
   color: ${({ color }) => ACTION_COLORS[color || 'gray']};

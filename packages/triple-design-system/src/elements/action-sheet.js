@@ -61,7 +61,6 @@ const Sheet = styled.div`
   box-sizing: border-box;
   padding-top: 30px;
   margin: 0;
-  font-family: sans-serif;
 `
 
 const Title = styled.div`
@@ -103,7 +102,6 @@ const ItemText = styled.div`
   font-weight: 500;
   color: ${({ checked }) => (checked ? '#368fff' : '#3a3a3a')};
   font-weight: ${({ checked }) => (checked ? 'bold' : 'normal')};
-  font-family: sans-serif;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -121,7 +119,6 @@ const ItemButton = styled.a`
   font-size: 12px;
   font-weight: bold;
   text-align: center;
-  font-family: sans-serif;
   color: #3a3a3a;
 `
 

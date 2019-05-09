@@ -25,7 +25,6 @@ export const ImageBlockElementContainer = styled.div`
 
 export const ImageCaption = styled.div`
   margin-top: 8px;
-  font-family: sans-serif;
   font-size: 13px;
   font-weight: 500;
   text-align: center;
@@ -71,7 +70,6 @@ export const FluidSquareImage = styled.div`
 `
 
 export const SimpleLink = styled.a`
-  font-family: sans-serif;
   font-size: 15px;
   font-weight: bold;
   color: #2987f0;

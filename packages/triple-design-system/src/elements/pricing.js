@@ -22,7 +22,6 @@ const COLORS = {
 }
 
 const PricingContainer = styled.div`
-  font-family: sans-serif;
   clear: both;
   position: relative;
   text-align: right;

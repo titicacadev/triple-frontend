@@ -44,7 +44,6 @@ function rgba({ color, alpha }) {
 }
 
 const TextBase = styled.div`
-  font-family: sans-serif;
   font-size: ${({ size = 'large' }) =>
     typeof size === 'string' ? SIZES[size] : `${size}px`};
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
@@ -188,7 +187,6 @@ const TitleBase = styled.h1`
   font-size: 24px;
   font-weight: bold;
   color: #3a3a3a;
-  font-family: sans-serif;
 
   ${({ margin }) =>
     margin &&

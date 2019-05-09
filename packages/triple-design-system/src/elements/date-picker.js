@@ -19,7 +19,6 @@ const COLORS = {
 }
 
 const DatePickerContainer = styled(Container)`
-  font-family: sans-serif;
   color: rgb(${COLORS.gray});
 
   .DayPicker_weekHeader {

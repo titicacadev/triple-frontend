@@ -9,7 +9,6 @@ const FooterFrame = styled.div`
   font-style: normal;
   font-stretch: normal;
   line-height: 1.55;
-  font-family: sans-serif;
   background-color: #fafafa;
 `
 

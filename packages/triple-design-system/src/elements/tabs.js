@@ -9,7 +9,6 @@ const TabsContainer = styled.div`
 `
 
 const Tab = styled.div`
-  font-family: sans-serif;
   display: inline-block;
   box-sizing: border-box;
   width: ${({ widthPercent }) => widthPercent}%;

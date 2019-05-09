@@ -46,10 +46,6 @@ describe('Author', () => {
 
   it('should have correct name style', () => {
     cy.get('@name')
-      .should('have.css', 'font-family')
-      .and('eq', 'sans-serif')
-
-    cy.get('@name')
       .should('have.css', 'font-size')
       .and('eq', '16px')
 
@@ -63,10 +59,6 @@ describe('Author', () => {
   })
 
   it('should have correct bio style', () => {
-    cy.get('@bio')
-      .should('have.css', 'font-family')
-      .and('eq', 'sans-serif')
-
     cy.get('@bio')
       .should('have.css', 'font-size')
       .and('eq', '14px')

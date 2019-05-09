@@ -52,7 +52,6 @@ const CallToAction = styled.a`
   font-weight: bold;
   color: #ffffff;
   background-color: #0bd0af;
-  font-family: sans-serif;
   text-decoration: none;
 `
 

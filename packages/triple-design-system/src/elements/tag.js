@@ -24,7 +24,6 @@ const PADDING_SIZE = {
 
 const TagBase = styled.div`
   display: inline-block;
-  font-family: sans-serif;
   font-size: 12px;
   font-weight: 500;
   color: ${({ type }) => COLORS[type || 'default']};

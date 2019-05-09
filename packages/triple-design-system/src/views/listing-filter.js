@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components'
 
 const FilterEntryBase = styled.div`
   display: inline-block;
-  font-family: sans-serif;
   font-size: 13px;
   line-height: 1.2;
   border: 1px solid
@@ -35,7 +34,6 @@ const ExpandingFilterEntryContainer = styled(FilterEntryBase)`
 
 const ExpandingFilterEntryBadge = styled.div`
   display: inline-block;
-  font-family: sans-serif;
   height: 18px;
   width: 18px;
   line-height: 18px;

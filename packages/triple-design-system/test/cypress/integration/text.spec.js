@@ -10,12 +10,6 @@ describe('Text', () => {
   })
 
   context('when not specifying props', () => {
-    it('should have default font-family', () => {
-      cy.get('@text')
-        .should('have.css', 'font-family')
-        .and('eq', 'sans-serif')
-    })
-
     it('should have default font-size', () => {
       cy.get('@text')
         .should('have.css', 'font-size')

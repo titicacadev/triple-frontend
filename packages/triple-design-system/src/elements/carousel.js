@@ -40,7 +40,6 @@ const CarouselItem = styled.li`
   position: relative;
   width: ${({ size }) =>
     ({ small: '140px', medium: '153px', large: '270px' }[size || 'small'])};
-  font-family: sans-serif;
   vertical-align: top;
   white-space: normal;
 

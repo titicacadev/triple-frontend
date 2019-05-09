@@ -9,7 +9,6 @@ const Name = styled.div`
   height: 40px;
   line-height: 40px;
   text-align: left center;
-  font-family: sans-serif;
   font-size: 16px;
   font-weight: bold;
   color: #3a3a3a;
@@ -24,7 +23,6 @@ const Action = styled.div`
   padding-left: 17px;
   padding-right: 17px;
   text-align: center;
-  font-family: sans-serif;
   font-size: 12px;
   font-weight: bold;
   color: #3a3a3a;

@@ -111,7 +111,6 @@ function Meta({ children }) {
 
 const LikeButton = styled.a`
   display: inline-block;
-  font-family: sans-serif;
   font-size: 12px;
   font-weight: bold;
   text-align: center;

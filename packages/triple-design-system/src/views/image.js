@@ -6,7 +6,6 @@ import Image from '../elements/image'
 const PageLabelText = styled.div`
   font-size: 12px;
   font-weight: bold;
-  font-family: sans-serif;
 `
 
 const PageLabelContainer = styled.div`

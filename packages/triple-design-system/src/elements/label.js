@@ -61,7 +61,6 @@ export const PromoLabel = styled.div`
   line-height: ${({ size }) => PROMO_SIZES[size || 'small'].height}px;
   height: ${({ size }) => PROMO_SIZES[size || 'small'].height}px;
   font-size: ${({ size }) => PROMO_SIZES[size || 'small'].fontSize}px;
-  font-family: sans-serif;
 
   ${({ emphasized }) =>
     emphasized

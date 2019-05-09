@@ -21,7 +21,6 @@ const SourceUrl = styled.div`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  font-family: sans-serif;
   font-size: 9px;
   color: rgba(255, 255, 255, 0.9);
 `

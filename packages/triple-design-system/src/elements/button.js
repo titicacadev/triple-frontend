@@ -23,7 +23,6 @@ const BUTTON_COLORS = {
 
 const ButtonBase = styled.a`
   display: inline-block;
-  font-family: sans-serif;
   ${({ size }) => SIZES[size]}
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
   text-align: center;

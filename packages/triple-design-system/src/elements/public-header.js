@@ -76,7 +76,6 @@ const ExtraActionsContainer = styled.div`
 
 const ExtraActionItem = styled.a`
   text-decoration: none;
-  font-family: sans-serif;
   display: inline-block;
   color: rgba(58, 58, 58, 0.8);
 

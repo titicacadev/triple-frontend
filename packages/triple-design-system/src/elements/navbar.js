@@ -21,7 +21,6 @@ const NavbarFrame = styled.div`
 `
 
 const TitleContainer = styled.div`
-  font-family: sans-serif;
   position: absolute;
   top: 17.5px;
   left: 52px;
