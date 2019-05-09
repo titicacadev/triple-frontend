@@ -63,7 +63,7 @@ export function ExtendedResourceListElement({
             <Text inline size="small" alpha={0.4}>
               {[
                 reviewsCount ? ` (${formatNumber(reviewsCount)})` : null,
-                scrapsCount ? `저장${formatNumber(scrapsCount)}` : null,
+                scrapsCount ? `저장 ${formatNumber(scrapsCount)}` : null,
               ]
                 .filter((count) => count)
                 .join(' · ')}
