@@ -33,9 +33,9 @@ const InnerContainer = styled.div`
 
 const Icon = styled.span`
   display: inline-block;
-  width: 36px;
-  height: 36px;
-  background-size: 36px 36px;
+  width: 34px;
+  height: 34px;
+  background-size: 34px 34px;
   background-repeat: no-repeat;
   background-position: -1px -1px;
   float: left;
@@ -97,7 +97,7 @@ export default function NumricSpinner({
           <Icon
             active={value > 0}
             onClick={value <= min ? () => setQuantity(0) : decrement}
-            backgroundImageSrc="https://assets.triple.guide/images/btn-web-minus@2x.png"
+            backgroundImageSrc="https://assets.triple.guide/images/btn-numeric-minus@4x.png"
           />
         </InnerContainer>
         <InnerContainer width={60}>
@@ -107,7 +107,7 @@ export default function NumricSpinner({
           <Icon
             active={value < max}
             onClick={value === 0 ? () => setQuantity(min) : increment}
-            backgroundImageSrc="https://assets.triple.guide/images/btn-web-plus@2x.png"
+            backgroundImageSrc="https://assets.triple.guide/images/btn-numeric-plus@4x.png"
           />
         </InnerContainer>
       </NumericContainer>
