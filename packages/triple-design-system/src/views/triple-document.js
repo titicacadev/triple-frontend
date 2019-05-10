@@ -171,7 +171,7 @@ function Images({
       ? ImageBlockElementContainer
       : ImageCarouselElementContainer
 
-  const handleClick = devideOnClick(onLinkClick, onImageClick)
+  const handleClick = generateClickHandler(onLinkClick, onImageClick)
 
   return (
     <ImagesContainer
@@ -208,7 +208,7 @@ function EmbeddedImage({
   if (image) {
     const { sizes, sourceUrl } = image
 
-    const handleClick = devideOnClick(onLinkClick, onImageClick)
+    const handleClick = generateClickHandler(onLinkClick, onImageClick)
 
     return (
       <Image
@@ -479,7 +479,7 @@ function Video({ value: { provider, identifier } }) {
   ) : null
 }
 
-function devideOnClick(onLinkClick, onImageClick) {
+function generateClickHandler(onLinkClick, onImageClick) {
   return (e, image) =>
     (image.link || {}).href
       ? onLinkClick && onLinkClick(e, image.link)
