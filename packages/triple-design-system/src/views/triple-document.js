@@ -172,7 +172,9 @@ function Images({
       : ImageCarouselElementContainer
 
   const onClick = (e, image) =>
-    image.link ? onLinkClick(e, image.link) : onImageClick(e, image)
+    (image.link || {}).href
+      ? onLinkClick(e, image.link)
+      : onImageClick(e, image)
 
   return (
     <ImagesContainer
@@ -209,7 +211,7 @@ function EmbeddedImages({
   if (image) {
     const { sizes, sourceUrl, link } = image
 
-    const onClick = link ? onLinkClick : onImageClick
+    const onClick = (link || {}).href ? onLinkClick : onImageClick
 
     return (
       <Image
