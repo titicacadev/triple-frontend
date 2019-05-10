@@ -171,20 +171,12 @@ function Images({
       ? ImageBlockElementContainer
       : ImageCarouselElementContainer
 
-  const getHandleClick = (isLink, image) => {
-    return isLink
-      ? (e) => onImageClick && onImageClick(e, image.link)
-      : (e) => onLinkClick && onLinkClick(e, image)
-  }
-
   return (
     <ImagesContainer
       margin={{ top: 40, bottom: images.some(({ title }) => title) ? 10 : 30 }}
     >
       {images.map((image, i) => {
-        const { frame, sizes, sourceUrl, link } = image
-
-        const proxy = (isLink) => getHandleClick(isLink, image)
+        const { frame, sizes, sourceUrl } = image
 
         return (
           <ElementContainer key={i}>
@@ -192,7 +184,7 @@ function Images({
               src={sizes.large.url}
               sourceUrl={sourceUrl}
               frame={frame}
-              onClick={devideOnClick(link, proxy)}
+              onClick={devideOnClick(onLinkClick, onImageClick)(image)}
               ImageSource={ImageSource}
             />
             {image.title ? <ImageCaption>{image.title}</ImageCaption> : null}
@@ -212,20 +204,14 @@ function EmbeddedImage({
   ImageSource,
 }) {
   if (image) {
-    const { sizes, sourceUrl, link } = image
-
-    const getHandleClick = (isLink) => {
-      return isLink
-        ? (e) => onLinkClick && onLinkClick(e, link)
-        : (e) => onImageClick && onImageClick(e, image)
-    }
+    const { sizes, sourceUrl } = image
 
     return (
       <Image
         size="medium"
         src={sizes.large.url}
         sourceUrl={sourceUrl}
-        onClick={devideOnClick(link, getHandleClick)}
+        onClick={devideOnClick(onLinkClick, onImageClick)(image)}
         ImageSource={ImageSource}
       />
     )
@@ -489,6 +475,11 @@ function Video({ value: { provider, identifier } }) {
   ) : null
 }
 
-function devideOnClick(link, getHandleClick) {
-  return getHandleClick((link || {}).href)
+function devideOnClick(onLinkClick, onImageClick) {
+  return function(image) {
+    return (e) =>
+      (image.link || {}).href
+        ? onLinkClick && onLinkClick(e, image.link)
+        : onImageClick && onImageClick(e, image)
+  }
 }
