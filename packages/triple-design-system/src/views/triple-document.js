@@ -171,11 +171,6 @@ function Images({
       ? ImageBlockElementContainer
       : ImageCarouselElementContainer
 
-  const onClick = (e, image) =>
-    (image.link || {}).href
-      ? onLinkClick(e, image.link)
-      : onImageClick(e, image)
-
   return (
     <ImagesContainer
       margin={{ top: 40, bottom: images.some(({ title }) => title) ? 10 : 30 }}
@@ -189,7 +184,9 @@ function Images({
               src={sizes.large.url}
               sourceUrl={sourceUrl}
               frame={frame}
-              onClick={(e) => onClick(e, image)}
+              onClick={(e) =>
+                devideOnClick(e, onLinkClick, onImageClick, image)
+              }
               ImageSource={ImageSource}
             />
             {image.title ? <ImageCaption>{image.title}</ImageCaption> : null}
@@ -209,16 +206,14 @@ function EmbeddedImage({
   ImageSource,
 }) {
   if (image) {
-    const { sizes, sourceUrl, link } = image
+    const { sizes, sourceUrl } = image
 
     return (
       <Image
         size="medium"
         src={sizes.large.url}
         sourceUrl={sourceUrl}
-        onClick={(e) =>
-          (link || {}).href ? onLinkClick(e, link) : onImageClick(e, image)
-        }
+        onClick={(e) => devideOnClick(e, onLinkClick, onImageClick, image)}
         ImageSource={ImageSource}
       />
     )
@@ -480,4 +475,14 @@ function Video({ value: { provider, identifier } }) {
       />
     </VideoContainer>
   ) : null
+}
+
+function devideOnClick(
+  e,
+  onLinkClick = () => {},
+  onImageClick = () => {},
+  image,
+) {
+  const { link } = image
+  return (link || {}).href ? onLinkClick(e, link) : onImageClick(e, image)
 }
