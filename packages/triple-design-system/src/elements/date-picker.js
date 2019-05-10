@@ -11,6 +11,7 @@ import {
 
 moment.locale('ko')
 
+const CACHE = {}
 const COLORS = {
   blue: '54, 143, 255',
   gray: '58, 58, 58',
@@ -275,6 +276,25 @@ function isBlocked({ from, to, blockedDates = [], day }) {
   )
 }
 
+const handleBlockedDay = ({ from, to, blockedDates, day }) => {
+  const key = day.format('YYYYMMDD')
+
+  if (CACHE[key]) {
+    return CACHE[key].status
+  }
+
+  CACHE[key] = {
+    status: isBlocked({
+      from,
+      to,
+      blockedDates,
+      day: day.startOf('day'),
+    }),
+  }
+
+  return CACHE[key].status
+}
+
 class DayPickerComponent extends PureComponent {
   render() {
     const {
@@ -307,11 +327,11 @@ class DayPickerComponent extends PureComponent {
             onDateChange={(date) => onDateChange(date.format('YYYY-MM-DD'))}
             orientation="verticalScrollable"
             isOutsideRange={(day) =>
-              isBlocked({
+              handleBlockedDay({
                 from,
                 to,
                 blockedDates,
-                day: day.startOf('day'),
+                day,
               })
             }
             renderMonthElement={({ month }) =>
@@ -370,11 +390,11 @@ class RangePickerComponent extends PureComponent {
               this.setState({ focusedInput: focusedInput || 'startDate' })
             }
             isOutsideRange={(day) =>
-              isBlocked({
+              handleBlockedDay({
                 from,
                 to,
                 blockedDates,
-                day: day.startOf('day'),
+                day,
               })
             }
             renderMonthElement={({ month }) =>
