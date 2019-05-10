@@ -211,14 +211,14 @@ function EmbeddedImages({
   if (image) {
     const { sizes, sourceUrl, link } = image
 
-    const onClick = (link || {}).href ? onLinkClick : onImageClick
-
     return (
       <Image
         size="medium"
         src={sizes.large.url}
         sourceUrl={sourceUrl}
-        onClick={(e) => onClick(e, (link || {}).href || image)}
+        onClick={(e) =>
+          (link || {}).href ? onLinkClick(e, link) : onImageClick(e, image)
+        }
         ImageSource={ImageSource}
       />
     )
