@@ -84,7 +84,7 @@ const EMBEDDED_ELEMENTS = {
   heading3: Compact(Heading(MH3)),
   text: Compact(TextElement),
   links: Compact(Links),
-  images: EmbeddedImages,
+  images: EmbeddedImage,
 }
 
 export function TripleDocument({
@@ -200,7 +200,7 @@ function Images({
   )
 }
 
-function EmbeddedImages({
+function EmbeddedImage({
   value: {
     images: [image],
   },
