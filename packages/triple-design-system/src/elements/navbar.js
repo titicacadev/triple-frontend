@@ -48,6 +48,7 @@ const ICON_URL_BY_NAMES = {
   share: 'https://assets.triple.guide/images/btn-com-share@4x.png',
   route: 'https://assets.triple.guide/images/btn-com-route@4x.png',
   search: 'https://assets.triple.guide/images/btn-com-search@2x.png',
+  cs: 'https://assets.triple.guide/images/btn-com-cs@2x.png',
 }
 
 const NavbarItem = styled.div`
