@@ -171,12 +171,20 @@ function Images({
       ? ImageBlockElementContainer
       : ImageCarouselElementContainer
 
+  const getHandleClick = (isLink, image) => {
+    return isLink
+      ? (e) => onImageClick && onImageClick(e, image.link)
+      : (e) => onLinkClick && onLinkClick(e, image)
+  }
+
   return (
     <ImagesContainer
       margin={{ top: 40, bottom: images.some(({ title }) => title) ? 10 : 30 }}
     >
       {images.map((image, i) => {
-        const { frame, sizes, sourceUrl } = image
+        const { frame, sizes, sourceUrl, link } = image
+
+        const proxy = (isLink) => getHandleClick(isLink, image)
 
         return (
           <ElementContainer key={i}>
@@ -184,9 +192,7 @@ function Images({
               src={sizes.large.url}
               sourceUrl={sourceUrl}
               frame={frame}
-              onClick={(e) =>
-                devideOnClick(e, onLinkClick, onImageClick, image)
-              }
+              onClick={devideOnClick(link, proxy)}
               ImageSource={ImageSource}
             />
             {image.title ? <ImageCaption>{image.title}</ImageCaption> : null}
@@ -206,14 +212,20 @@ function EmbeddedImage({
   ImageSource,
 }) {
   if (image) {
-    const { sizes, sourceUrl } = image
+    const { sizes, sourceUrl, link } = image
+
+    const getHandleClick = (isLink) => {
+      return isLink
+        ? (e) => onLinkClick && onLinkClick(e, link)
+        : (e) => onImageClick && onImageClick(e, image)
+    }
 
     return (
       <Image
         size="medium"
         src={sizes.large.url}
         sourceUrl={sourceUrl}
-        onClick={(e) => devideOnClick(e, onLinkClick, onImageClick, image)}
+        onClick={devideOnClick(link, getHandleClick)}
         ImageSource={ImageSource}
       />
     )
@@ -477,12 +489,6 @@ function Video({ value: { provider, identifier } }) {
   ) : null
 }
 
-function devideOnClick(
-  e,
-  onLinkClick = () => {},
-  onImageClick = () => {},
-  image,
-) {
-  const { link } = image
-  return (link || {}).href ? onLinkClick(e, link) : onImageClick(e, image)
+function devideOnClick(link, getHandleClick) {
+  return getHandleClick((link || {}).href)
 }
