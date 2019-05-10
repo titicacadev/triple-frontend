@@ -476,10 +476,8 @@ function Video({ value: { provider, identifier } }) {
 }
 
 function devideOnClick(onLinkClick, onImageClick) {
-  return function(image) {
-    return (e) =>
-      (image.link || {}).href
-        ? onLinkClick && onLinkClick(e, image.link)
-        : onImageClick && onImageClick(e, image)
-  }
+  return (image) => (e) =>
+    (image.link || {}).href
+      ? onLinkClick && onLinkClick(e, image.link)
+      : onImageClick && onImageClick(e, image)
 }
