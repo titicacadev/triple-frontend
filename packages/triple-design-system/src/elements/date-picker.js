@@ -346,7 +346,7 @@ class RangePickerComponent extends PureComponent {
         startDate,
         endDate,
         numberOfMonths = 6,
-        onDateChange,
+        onDatesChange,
         dates: { from, to, blockedDates },
       },
     } = this
@@ -369,7 +369,16 @@ class RangePickerComponent extends PureComponent {
             focusedInput={focusedInput}
             minimumNights={0}
             onDatesChange={({ startDate, endDate }) => {
-              onDateChange({
+              if (sDate && eDate) {
+                onDatesChange({
+                  startDate: startDate && startDate.format('YYYY-MM-DD'),
+                  endDate: null,
+                  nights: 0,
+                })
+                return
+              }
+
+              onDatesChange({
                 startDate: startDate && startDate.format('YYYY-MM-DD'),
                 endDate: endDate && endDate.format('YYYY-MM-DD'),
                 nights:
