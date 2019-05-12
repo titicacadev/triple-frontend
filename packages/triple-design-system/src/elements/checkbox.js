@@ -34,6 +34,7 @@ const ConfirmFrame = styled.div`
   ${({ centered }) =>
     centered &&
     css`
+      padding: 16px 0;
       text-align: center;
     `};
 

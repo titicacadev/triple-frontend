@@ -30,6 +30,13 @@ storiesOf('Form', module)
   .add('ConfirmSelector(Check)', () => (
     <ConfirmSelector value={true} placeholder="예약자와 투숙자가 다릅니다" />
   ))
+  .add('ConfirmSelector(Centered)', () => (
+    <ConfirmSelector
+      value={true}
+      placeholder="예약자와 투숙자가 다릅니다"
+      centered
+    />
+  ))
   .add('Radio', () => (
     <Radio value={'item1'} options={['item1', 'item2', 'item3']} />
   ))
