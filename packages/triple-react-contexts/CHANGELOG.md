@@ -1,3 +1,7 @@
+- `HistoryContext`에서 제공하는 함수 `replace`, `push`, `back`에 browser history를 조작할 수 있게 하는 파라미터 추가.
+
+  _Royd_
+
 ## 0.3.0 (2019-05-03)
 
 - `ImagesContext`에서 multiple resource 처리 로직 제거. (버전 0.2.0 롤백)
