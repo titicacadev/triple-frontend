@@ -27,7 +27,7 @@ export default class App extends PureComponent {
           to={toDate.toISOString().slice(0, 10)}
           startDate={startDate}
           endDate={endDate}
-          onDateChange={this.onDateChange}
+          onDatesChange={this.onDatesChange}
           blockedDates={['2019-05-23', '2019-05-25']}
         />
       </div>
