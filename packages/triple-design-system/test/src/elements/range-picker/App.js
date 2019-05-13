@@ -28,6 +28,7 @@ export default class App extends PureComponent {
           startDate={startDate}
           endDate={endDate}
           onDateChange={this.onDateChange}
+          blockedDates={['2019-05-23', '2019-05-25']}
         />
       </div>
     )

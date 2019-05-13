@@ -8,10 +8,10 @@ import {
   DayPickerSingleDateController,
   DayPickerRangeController,
 } from 'react-dates'
+import memoizee from 'memoizee'
 
 moment.locale('ko')
 
-const CACHE = {}
 const COLORS = {
   blue: '54, 143, 255',
   gray: '58, 58, 58',
@@ -228,6 +228,21 @@ const WeekText = styled.span`
   }
 `
 
+const isBlocked = memoizee((params) => {
+  const { from, to, blockedDates = [], day } = JSON.parse(params)
+  const targetDay = moment(day)
+
+  return (
+    targetDay.isBefore(moment(from)) ||
+    targetDay.isAfter(moment(to)) ||
+    blockedDates.some((date) =>
+      moment(date)
+        .startOf('day')
+        .isSame(targetDay),
+    )
+  )
+})
+
 function WeekHeaderComponent(month) {
   return (
     <Container>
@@ -258,7 +273,7 @@ function withBaseInfo(WrappedComponent) {
       this.state = {
         from: moment(from).startOf('day'),
         to: moment(to).startOf('day'),
-        blockedDates: blockedDates.map((date) => moment(date).startOf('day')),
+        blockedDates,
       }
     }
 
@@ -266,33 +281,6 @@ function withBaseInfo(WrappedComponent) {
       return <WrappedComponent dates={this.state} {...this.props} />
     }
   }
-}
-
-function isBlocked({ from, to, blockedDates = [], day }) {
-  return (
-    day.isBefore(from) ||
-    day.isAfter(to) ||
-    blockedDates.some((date) => date.isSame(day))
-  )
-}
-
-const handleBlockedDay = ({ from, to, blockedDates, day }) => {
-  const key = day.format('YYYYMMDD')
-
-  if (CACHE[key]) {
-    return CACHE[key].status
-  }
-
-  CACHE[key] = {
-    status: isBlocked({
-      from,
-      to,
-      blockedDates,
-      day: day.startOf('day'),
-    }),
-  }
-
-  return CACHE[key].status
 }
 
 class DayPickerComponent extends PureComponent {
@@ -327,12 +315,14 @@ class DayPickerComponent extends PureComponent {
             onDateChange={(date) => onDateChange(date.format('YYYY-MM-DD'))}
             orientation="verticalScrollable"
             isOutsideRange={(day) =>
-              handleBlockedDay({
-                from,
-                to,
-                blockedDates,
-                day,
-              })
+              isBlocked(
+                JSON.stringify({
+                  from,
+                  to,
+                  blockedDates,
+                  day: day.startOf('day'),
+                }),
+              )
             }
             renderMonthElement={({ month }) =>
               WeekHeaderComponent(moment(month).format('YYYY년 MMMM'))
@@ -390,12 +380,14 @@ class RangePickerComponent extends PureComponent {
               this.setState({ focusedInput: focusedInput || 'startDate' })
             }
             isOutsideRange={(day) =>
-              handleBlockedDay({
-                from,
-                to,
-                blockedDates,
-                day,
-              })
+              isBlocked(
+                JSON.stringify({
+                  from,
+                  to,
+                  blockedDates,
+                  day: day.startOf('day'),
+                }),
+              )
             }
             renderMonthElement={({ month }) =>
               WeekHeaderComponent(moment(month).format('YYYY년 MMMM'))
