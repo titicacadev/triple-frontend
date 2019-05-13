@@ -370,12 +370,11 @@ class RangePickerComponent extends PureComponent {
             minimumNights={0}
             onDatesChange={({ startDate, endDate }) => {
               if (sDate && eDate) {
-                onDatesChange({
+                return onDatesChange({
                   startDate: startDate && startDate.format('YYYY-MM-DD'),
                   endDate: null,
                   nights: 0,
                 })
-                return
               }
 
               onDatesChange({
