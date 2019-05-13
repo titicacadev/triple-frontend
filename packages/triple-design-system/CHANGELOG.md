@@ -2,6 +2,10 @@
 
   _Olaf_
 
+- `RangeDatePicker` isBlocked function 에 memoize 적용
+
+  _Olaf_
+
 - `RangeDatePicker` onChange Event 이름 변경 및 두 날짜 모두 선택된 후 날짜 선택시 date 가 reset 되도록 변경
 
   _Olaf_
