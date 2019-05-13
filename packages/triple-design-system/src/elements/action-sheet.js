@@ -23,11 +23,11 @@ const Overlay = styled.div`
 
   &.fade-enter.fade-enter-active {
     opacity: 1;
-    transition: opacity 300ms ease-in;
+    transition: opacity 10ms;
 
     & > div {
       margin-bottom: 0;
-      transition: margin-bottom 250ms ease-in;
+      transition: margin-bottom 120ms ease-in;
     }
   }
 
@@ -41,11 +41,11 @@ const Overlay = styled.div`
 
   &.fade-leave.fade-leave-active {
     opacity: 0.01;
-    transition: opacity 300ms ease-in;
+    transition: opacity 10ms;
 
     & > div {
       margin-bottom: -100px;
-      transition: margin-bottom 250ms ease-in;
+      transition: margin-bottom 120ms ease-in;
     }
   }
 `
