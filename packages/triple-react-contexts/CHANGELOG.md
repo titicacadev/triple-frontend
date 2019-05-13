@@ -1,3 +1,5 @@
+## 0.3.1 (2019-05-13)
+
 - `HistoryContext`에서 제공하는 함수 `replace`, `push`, `back`에 browser history를 조작할 수 있게 하는 파라미터 추가.
 
   _Royd_
