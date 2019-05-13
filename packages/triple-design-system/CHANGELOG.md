@@ -1,3 +1,7 @@
+- `Confirm Box 의 centered option 시 padding 제거`
+
+  _Olaf_
+
 - global-style 에 font-family 적용 및 각 element 에서 font-family 스타일 제거
 
   _Royd_
