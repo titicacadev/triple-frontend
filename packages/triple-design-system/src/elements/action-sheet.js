@@ -75,7 +75,17 @@ const ContentContainer = styled.div`
   box-sizing: border-box;
   max-height: calc(100vh - 256px);
   overflow: auto;
-  padding: 0 25px 13px 25px;
+  padding: 0 25px ${({ bottomSpacing }) => bottomSpacing || 13}px 25px;
+
+  @supports (padding: max(0px)) and (padding: env(safe-area-inset-bottom)) {
+    padding-bottom: max(
+      ${({ bottomSpacing }) => bottomSpacing || 13}px,
+      calc(
+        env(safe-area-inset-bottom) +
+          ${({ bottomSpacing }) => (bottomSpacing ? bottomSpacing + 4 : 13)}px
+      )
+    );
+  }
 
   ::-webkit-scrollbar {
     display: none;
@@ -198,7 +208,13 @@ function ActionItem({ buttonLabel, icon, checked, onClick, children }) {
   )
 }
 
-export default function ActionSheet({ open, onClose, title, children }) {
+export default function ActionSheet({
+  open,
+  onClose,
+  title,
+  children,
+  bottomSpacing,
+}) {
   return (
     <ReactCSSTransitionGroup
       transitionName="fade"
@@ -212,7 +228,9 @@ export default function ActionSheet({ open, onClose, title, children }) {
           <Sheet onClick={silenceEvent}>
             {title ? <Title>{title}</Title> : null}
             <Provider value={{ onClose }}>
-              <ContentContainer>{children}</ContentContainer>
+              <ContentContainer bottomSpacing={bottomSpacing}>
+                {children}
+              </ContentContainer>
             </Provider>
           </Sheet>
         </Overlay>
