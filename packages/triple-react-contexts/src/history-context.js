@@ -23,17 +23,13 @@ export class HistoryProvider extends PureComponent {
   state = { hashHistories: [] }
 
   componentDidMount() {
-    if (this.props.isAndroid) {
-      Router.events.on('routeChangeStart', this.onHashChange)
-      Router.events.on('hashChangeStart', this.onHashChange)
-    }
+    Router.events.on('routeChangeStart', this.onHashChange)
+    Router.events.on('hashChangeStart', this.onHashChange)
   }
 
   componentWillUnmount() {
-    if (this.props.isAndroid) {
-      Router.events.off('routeChangeStart', this.onHashChange)
-      Router.events.off('hashChangeStart', this.onHashChange)
-    }
+    Router.events.off('routeChangeStart', this.onHashChange)
+    Router.events.off('hashChangeStart', this.onHashChange)
   }
 
   onHashChange = (url) => {
