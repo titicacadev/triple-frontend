@@ -49,44 +49,32 @@ export class HistoryProvider extends PureComponent {
     })
   }
 
-  replace = (hash) => {
-    const {
-      props: { isAndroid },
-    } = this
-
+  replace = (hash, useRouter = this.props.isAndroid) => {
     this.setState(({ hashHistories }) => ({
       hashHistories: [...hashHistories.slice(0, -1), hash],
     }))
 
-    if (isAndroid) {
+    if (useRouter) {
       Router.replace(pathWithHash(hash))
     }
   }
 
-  push = (hash) => {
-    const {
-      props: { isAndroid },
-    } = this
-
+  push = (hash, useRouter = this.props.isAndroid) => {
     this.setState(({ hashHistories }) => ({
       hashHistories: [...hashHistories, hash],
     }))
 
-    if (isAndroid) {
+    if (useRouter) {
       Router.push(pathWithHash(hash))
     }
   }
 
-  back = () => {
-    const {
-      props: { isAndroid },
-    } = this
-
+  back = (useRouter = this.props.isAndroid) => {
     this.setState(({ hashHistories }) => ({
       hashHistories: hashHistories.slice(0, -1),
     }))
 
-    if (isAndroid) {
+    if (useRouter) {
       Router.back()
     }
   }
