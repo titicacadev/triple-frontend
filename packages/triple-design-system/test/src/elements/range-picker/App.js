@@ -7,7 +7,7 @@ export default class App extends PureComponent {
     endDate: null,
   }
 
-  onDateChange = ({ startDate, endDate }) => {
+  onDatesChange = ({ startDate, endDate }) => {
     this.setState({
       startDate,
       endDate,
