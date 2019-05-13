@@ -1,6 +1,14 @@
+- `HistoryContext`에서 제공하는 `replace` 함수를 `replace(hash: string, options: { useRouter: boolean })`으로 변경
+- `HistoryContext`에서 제공하는 `push` 함수를 `push(hash: string, options: { useRouter: boolean })`으로 변경
+- `HistoryContext`에서 제공하는 `back` 함수를 `back(options: { useRouter: boolean })`으로 변경
+
+  _Royd_
+
 ## 0.3.1 (2019-05-13)
 
-- `HistoryContext`에서 제공하는 함수 `replace`, `push`, `back`에 browser history를 조작할 수 있게 하는 파라미터 추가.
+- `HistoryContext`에서 제공하는 `replace` 함수를 `replace(hash: string, useRouter: boolean)`으로 변경
+- `HistoryContext`에서 제공하는 `push` 함수를 `push(hash: string, useRouter: boolean)`으로 변경
+- `HistoryContext`에서 제공하는 `back` 함수를 `back(useRouter: boolean)`으로 변경
 
   _Royd_
 

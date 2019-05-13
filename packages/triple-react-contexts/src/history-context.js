@@ -45,7 +45,7 @@ export class HistoryProvider extends PureComponent {
     })
   }
 
-  replace = (hash, useRouter = this.props.isAndroid) => {
+  replace = (hash, { useRouter = this.props.isAndroid } = {}) => {
     this.setState(({ hashHistories }) => ({
       hashHistories: [...hashHistories.slice(0, -1), hash],
     }))
@@ -55,7 +55,7 @@ export class HistoryProvider extends PureComponent {
     }
   }
 
-  push = (hash, useRouter = this.props.isAndroid) => {
+  push = (hash, { useRouter = this.props.isAndroid } = {}) => {
     this.setState(({ hashHistories }) => ({
       hashHistories: [...hashHistories, hash],
     }))
@@ -65,7 +65,7 @@ export class HistoryProvider extends PureComponent {
     }
   }
 
-  back = (useRouter = this.props.isAndroid) => {
+  back = ({ useRouter = this.props.isAndroid } = {}) => {
     this.setState(({ hashHistories }) => ({
       hashHistories: hashHistories.slice(0, -1),
     }))
