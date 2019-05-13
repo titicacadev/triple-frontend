@@ -1,3 +1,5 @@
+## 0.3.2 (2019-05-13)
+
 - `HistoryContext`에서 제공하는 `replace` 함수를 `replace(hash: string, options: { useRouter: boolean })`으로 변경
 - `HistoryContext`에서 제공하는 `push` 함수를 `push(hash: string, options: { useRouter: boolean })`으로 변경
 - `HistoryContext`에서 제공하는 `back` 함수를 `back(options: { useRouter: boolean })`으로 변경

@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-react-contexts",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "React context modules for triple web applications",
   "main": "lib/index.js",
   "files": [
