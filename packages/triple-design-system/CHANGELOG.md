@@ -1,4 +1,12 @@
-- `Confirm Box 의 centered option 시 padding 제거`
+- `Global-style` 의 b, strong 에 bold 추가
+
+  _Royd_
+
+- `Form` message 부분 2 줄시 style 깨지는 문제 해결
+
+  _Olaf_
+
+- `Confirm Box` 의 centered option 시 padding 제거
 
   _Olaf_
 
