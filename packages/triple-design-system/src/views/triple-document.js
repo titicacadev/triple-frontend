@@ -320,7 +320,7 @@ const LinksContainer = styled.div`
 `
 
 const ButtonContainer = styled.div`
-  padding: ${({ compact }) => (compact ? '12px 0 4px 0' : '50px 30px 0 30px')};
+  margin: ${({ compact }) => (compact ? '12px 0 4px 0' : '50px 30px 0 30px')};
   text-align: center;
 
   a {
@@ -339,7 +339,7 @@ const ButtonContainer = styled.div`
 `
 
 const BlockContainer = styled.div`
-  padding: ${({ compact }) => (compact ? '7px 0 4px 0' : '45px 30px 0 30px')};
+  margin: ${({ compact }) => (compact ? '7px 0 4px 0' : '45px 30px 0 30px')};
   text-align: center;
 `
 
