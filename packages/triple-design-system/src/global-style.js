@@ -138,4 +138,8 @@ injectGlobal`
     -webkit-appearance: none;
     -moz-appearance: none;
   }
+  b,
+  strong {
+    font-weight: bold;
+  }
 `
