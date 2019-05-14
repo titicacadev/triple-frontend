@@ -1,3 +1,11 @@
+- `Date Picker` border-collapse 추가
+
+  _Olaf_
+
+- `Poi List` tags props 와 default tags 추가
+
+  _Olaf_
+
 - `TripleDocument`내의 links 요소의 스타일에서 `padding` 대신에 `margin` 사용
 
   _Royd_
