@@ -58,6 +58,7 @@ const DatePickerContainer = styled(Container)`
 
   .CalendarMonth_verticalSpacing,
   .CalendarMonth_table {
+    border-collapse: separate;
     width: 100%;
     text-align: center;
     font-weight: bold;
