@@ -8,7 +8,7 @@ const COLORS = {
   red: '255, 33, 60',
 }
 
-const FieldFrame = styled.div`
+const MessageContainer = styled(Container)`
   position: relative;
 `
 
@@ -31,7 +31,7 @@ const Label = styled(Text)`
     absolute &&
     css`
       position: absolute;
-      bottom: -15px;
+      top: 6px;
     `};
 `
 
@@ -48,7 +48,7 @@ export default function withField(WrappedComponent) {
       } = this
 
       return (
-        <FieldFrame
+        <Container
           onFocus={() => this.setState({ focus: true })}
           onBlur={() => this.setState({ focus: false })}
         >
@@ -66,7 +66,7 @@ export default function withField(WrappedComponent) {
                 error={error}
                 {...props}
               />
-              <Container padding={{ top: 10 }}>
+              <MessageContainer padding={{ top: 6 }}>
                 {error ? (
                   <Label absolute={!help} error={error}>
                     {error}
@@ -74,7 +74,7 @@ export default function withField(WrappedComponent) {
                 ) : help ? (
                   <Label alpha={0.5}>{help}</Label>
                 ) : null}
-              </Container>
+              </MessageContainer>
             </>
           ) : (
             <WrappedComponent
@@ -83,7 +83,7 @@ export default function withField(WrappedComponent) {
               {...props}
             />
           )}
-        </FieldFrame>
+        </Container>
       )
     }
   }
