@@ -184,6 +184,7 @@ class ExtendedPoiListElement extends PureComponent {
         onClick,
         onScrapedChange,
         resourceScraps,
+        tags,
       },
     } = this
 
@@ -230,6 +231,7 @@ class ExtendedPoiListElement extends PureComponent {
         pricingNote={nightlyPrice ? '세금 포함' : null}
         onScrapedChange={onScrapedChange}
         onClick={onClick}
+        tags={tags}
       />
     )
   }

@@ -28,6 +28,7 @@ storiesOf('POI', module)
       resourceScraps={{
         [HOTEL.id]: boolean('저장', false),
       }}
+      tags={[{ text: '최대 17 %' }]}
     />
   ))
   .add('TripleDocument', () => (
