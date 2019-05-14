@@ -207,6 +207,7 @@ class ExtendedPoiListElement extends PureComponent {
       nightlyBasePrice,
       nightlyPrice,
       nightlyPriceHotelPromotionApplied,
+      promoText,
     } = prices || {}
 
     return (
@@ -231,7 +232,7 @@ class ExtendedPoiListElement extends PureComponent {
         pricingNote={nightlyPrice ? '세금 포함' : null}
         onScrapedChange={onScrapedChange}
         onClick={onClick}
-        tags={tags}
+        tags={tags || [{ text: promoText, emphasized: true }]}
       />
     )
   }
