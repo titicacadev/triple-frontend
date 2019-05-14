@@ -1,3 +1,7 @@
+- `TripleDocument`내의 links 요소의 스타일에서 `padding` 대신에 `margin` 사용
+
+  _Royd_
+
 - `Global-style` 의 b, strong 에 bold 추가
 
   _Royd_
