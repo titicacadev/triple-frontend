@@ -138,6 +138,11 @@ injectGlobal`
     -webkit-appearance: none;
     -moz-appearance: none;
   }
+  input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
   b,
   strong {
     font-weight: bold;
