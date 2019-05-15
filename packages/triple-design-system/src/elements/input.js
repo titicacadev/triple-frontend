@@ -10,6 +10,9 @@ const COLORS = {
 }
 
 const BaseInput = styled(InputMask)`
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   padding: 0;
   margin: 0;
   outline: none;
