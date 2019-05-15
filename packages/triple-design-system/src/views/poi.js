@@ -232,7 +232,9 @@ class ExtendedPoiListElement extends PureComponent {
         pricingNote={nightlyPrice ? '세금 포함' : null}
         onScrapedChange={onScrapedChange}
         onClick={onClick}
-        tags={tags || (prices && [{ text: promoText, emphasized: true }])}
+        tags={
+          tags || (prices ? [{ text: promoText, emphasized: true }] : undefined)
+        }
       />
     )
   }
