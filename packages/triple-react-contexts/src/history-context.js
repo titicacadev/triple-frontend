@@ -32,6 +32,8 @@ export function HistoryProvider({
   appUrlScheme,
   webUrlBase,
   transitionModalHash,
+  isAndroid,
+  isPublic,
   children,
 }) {
   const [uriHash, setUriHash] = useState([])
@@ -60,7 +62,7 @@ export function HistoryProvider({
   }, [onHashChange])
 
   const replace = useCallback(
-    (hash, { useRouter = this.props.isAndroid } = {}) => {
+    (hash, { useRouter = isAndroid } = {}) => {
       HASH_HISTORIES.pop()
       HASH_HISTORIES.push(hash)
 
@@ -70,11 +72,11 @@ export function HistoryProvider({
         Router.replace(pathWithHash(hash))
       }
     },
-    [],
+    [isAndroid],
   )
 
   const push = useCallback(
-    (hash, { useRouter = this.props.isAndroid } = {}) => {
+    (hash, { useRouter = isAndroid } = {}) => {
       HASH_HISTORIES.push(hash)
 
       setUriHash(hash)
@@ -83,18 +85,21 @@ export function HistoryProvider({
         Router.push(pathWithHash(hash))
       }
     },
-    [],
+    [isAndroid],
   )
 
-  const back = useCallback(({ useRouter = this.props.isAndroid } = {}) => {
-    HASH_HISTORIES.pop()
+  const back = useCallback(
+    ({ useRouter = isAndroid } = {}) => {
+      HASH_HISTORIES.pop()
 
-    setUriHash(HASH_HISTORIES[HASH_HISTORIES.length - 1])
+      setUriHash(HASH_HISTORIES[HASH_HISTORIES.length - 1])
 
-    if (useRouter) {
-      Router.back()
-    }
-  }, [])
+      if (useRouter) {
+        Router.back()
+      }
+    },
+    [isAndroid],
+  )
 
   const navigateOnPublic = useCallback(
     ({ href, protocol, path }) => {
@@ -103,10 +108,10 @@ export function HistoryProvider({
       } else if (targetPageAvailable(path)) {
         window.location = `${webUrlBase}${path}`
       } else {
-        transitionModalHash && this.push(transitionModalHash)
+        transitionModalHash && push(transitionModalHash)
       }
     },
-    [transitionModalHash, webUrlBase],
+    [push, transitionModalHash, webUrlBase],
   )
 
   const navigateInApp = useCallback(
@@ -132,10 +137,6 @@ export function HistoryProvider({
 
   const navigate = useCallback(
     (href, params) => {
-      const {
-        props: { appUrlScheme, isPublic },
-      } = this
-
       let url = {}
 
       try {
@@ -159,7 +160,7 @@ export function HistoryProvider({
         return navigateInApp({ href, protocol, host, path, query }, params)
       }
     },
-    [navigateInApp, navigateOnPublic],
+    [appUrlScheme, isPublic, navigateInApp, navigateOnPublic],
   )
 
   const value = useMemo(
