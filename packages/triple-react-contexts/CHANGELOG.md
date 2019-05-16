@@ -1,3 +1,9 @@
+## 0.3.3 (2019-05-16)
+
+- `HistoryContext`에서 `useHistoryContext`로 제공하는 value를 `{ uriHash, actions: { push, replace, back, navigate } }`에서 `{ uriHash, push, replace, back, navigate }`으로 변경
+
+  _Royd_
+
 ## 0.3.2 (2019-05-13)
 
 - `HistoryContext`에서 제공하는 `replace` 함수를 `replace(hash: string, options: { useRouter: boolean })`으로 변경
