@@ -1,4 +1,11 @@
-import React, { createContext, PureComponent, useContext } from 'react'
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+} from 'react'
 import Router from 'next/router'
 import queryString from 'query-string'
 
@@ -19,152 +26,154 @@ function targetPageAvailable(path) {
   )
 }
 
-export class HistoryProvider extends PureComponent {
-  state = { hashHistories: [] }
+const HASH_HISTORIES = []
 
-  componentDidMount() {
-    Router.events.on('routeChangeStart', this.onHashChange)
-    Router.events.on('hashChangeStart', this.onHashChange)
-  }
+export function HistoryProvider({
+  appUrlScheme,
+  webUrlBase,
+  transitionModalHash,
+  children,
+}) {
+  const [uriHash, setUriHash] = useState([])
 
-  componentWillUnmount() {
-    Router.events.off('routeChangeStart', this.onHashChange)
-    Router.events.off('hashChangeStart', this.onHashChange)
-  }
-
-  onHashChange = (url) => {
+  const onHashChange = useCallback((url) => {
     const hash = new URL(url, 'https://triple.guide').hash.replace(/^#/, '')
 
-    // We only need to check if onHashChange is triggered by back button.
-    this.setState(({ hashHistories }) => {
-      const previousHash = hashHistories[hashHistories.length - 2]
+    // We only need to check if onHashChange is triggered by native action.
+    const previousHash = HASH_HISTORIES[HASH_HISTORIES.length - 2]
 
-      return (previousHash || '') === hash
-        ? { hashHistories: hashHistories.slice(0, -1) }
-        : {}
-    })
-  }
+    if ((previousHash || '') === hash) {
+      HASH_HISTORIES.pop()
 
-  replace = (hash, { useRouter = this.props.isAndroid } = {}) => {
-    this.setState(({ hashHistories }) => ({
-      hashHistories: [...hashHistories.slice(0, -1), hash],
-    }))
-
-    if (useRouter) {
-      Router.replace(pathWithHash(hash))
+      setUriHash(previousHash)
     }
-  }
+  }, [])
 
-  push = (hash, { useRouter = this.props.isAndroid } = {}) => {
-    this.setState(({ hashHistories }) => ({
-      hashHistories: [...hashHistories, hash],
-    }))
+  useEffect(() => {
+    Router.events.on('routeChangeStart', onHashChange)
+    Router.events.on('hashChangeStart', onHashChange)
 
-    if (useRouter) {
-      Router.push(pathWithHash(hash))
+    return () => {
+      Router.events.off('routeChangeStart', onHashChange)
+      Router.events.off('hashChangeStart', onHashChange)
     }
-  }
+  }, [onHashChange])
 
-  back = ({ useRouter = this.props.isAndroid } = {}) => {
-    this.setState(({ hashHistories }) => ({
-      hashHistories: hashHistories.slice(0, -1),
-    }))
+  const replace = useCallback(
+    (hash, { useRouter = this.props.isAndroid } = {}) => {
+      HASH_HISTORIES.pop()
+      HASH_HISTORIES.push(hash)
+
+      setUriHash(hash)
+
+      if (useRouter) {
+        Router.replace(pathWithHash(hash))
+      }
+    },
+    [],
+  )
+
+  const push = useCallback(
+    (hash, { useRouter = this.props.isAndroid } = {}) => {
+      HASH_HISTORIES.push(hash)
+
+      setUriHash(hash)
+
+      if (useRouter) {
+        Router.push(pathWithHash(hash))
+      }
+    },
+    [],
+  )
+
+  const back = useCallback(({ useRouter = this.props.isAndroid } = {}) => {
+    HASH_HISTORIES.pop()
+
+    setUriHash(HASH_HISTORIES[HASH_HISTORIES.length - 1])
 
     if (useRouter) {
       Router.back()
     }
-  }
+  }, [])
 
-  navigate = (href, params) => {
-    const {
-      props: { appUrlScheme, isPublic },
-    } = this
+  const navigateOnPublic = useCallback(
+    ({ href, protocol, path }) => {
+      if (protocol === 'http:' || protocol === 'https:') {
+        window.location = href
+      } else if (targetPageAvailable(path)) {
+        window.location = `${webUrlBase}${path}`
+      } else {
+        transitionModalHash && this.push(transitionModalHash)
+      }
+    },
+    [transitionModalHash, webUrlBase],
+  )
 
-    let url = {}
+  const navigateInApp = useCallback(
+    ({ href, protocol, host, path }, params) => {
+      if (protocol === `${appUrlScheme}:`) {
+        window.location = href
+      } else if (protocol === 'http:' || protocol === 'https:') {
+        const outlinkParams = queryString.stringify({
+          url: href,
+          ...(params || {}),
+          target:
+            (params || {}).target ||
+            (EXTERNAL_BROWSER_HOSTS.includes(host) ? 'browser' : 'default'),
+        })
 
-    try {
-      url = new URL(href)
-    } catch {
-      // Do nothing
-    }
+        window.location = `${appUrlScheme}:///outlink?${outlinkParams}`
+      } else {
+        window.location = `${appUrlScheme}://${path}`
+      }
+    },
+    [appUrlScheme],
+  )
 
-    const protocol = url.protocol
-    const host = url.host
-    const [, , path] = (url.pathname || href).match(/(^\/\/)?(\/.*)/) || []
-    const query = (url.search || '').substring(1)
+  const navigate = useCallback(
+    (href, params) => {
+      const {
+        props: { appUrlScheme, isPublic },
+      } = this
 
-    if (protocol === `${appUrlScheme}:` && (path || '').match(/^\/outlink/)) {
-      const { url: targetUrl } = queryString.parse(query)
+      let url = {}
 
-      return this.navigate(targetUrl, params)
-    } else if (isPublic) {
-      return this.navigateOnPublic(
-        { href, protocol, host, path, query },
-        params,
-      )
-    } else {
-      return this.navigateInApp({ href, protocol, host, path, query }, params)
-    }
-  }
+      try {
+        url = new URL(href)
+      } catch {
+        // Do nothing
+      }
 
-  navigateOnPublic = ({ href, protocol, path }) => {
-    const {
-      props: { webUrlBase, transitionModalHash: hash },
-    } = this
+      const protocol = url.protocol
+      const host = url.host
+      const [, , path] = (url.pathname || href).match(/(^\/\/)?(\/.*)/) || []
+      const query = (url.search || '').substring(1)
 
-    if (protocol === 'http:' || protocol === 'https:') {
-      window.location = href
-    } else if (targetPageAvailable(path)) {
-      window.location = `${webUrlBase}${path}`
-    } else {
-      hash && this.push(hash)
-    }
-  }
+      if (protocol === `${appUrlScheme}:` && (path || '').match(/^\/outlink/)) {
+        const { url: targetUrl } = queryString.parse(query)
 
-  navigateInApp = ({ href, protocol, host, path }, params) => {
-    const {
-      props: { appUrlScheme },
-    } = this
+        return navigate(targetUrl, params)
+      } else if (isPublic) {
+        return navigateOnPublic({ href, protocol, host, path, query }, params)
+      } else {
+        return navigateInApp({ href, protocol, host, path, query }, params)
+      }
+    },
+    [navigateInApp, navigateOnPublic],
+  )
 
-    if (protocol === `${appUrlScheme}:`) {
-      window.location = href
-    } else if (protocol === 'http:' || protocol === 'https:') {
-      const outlinkParams = queryString.stringify({
-        url: href,
-        ...(params || {}),
-        target:
-          (params || {}).target ||
-          (EXTERNAL_BROWSER_HOSTS.includes(host) ? 'browser' : 'default'),
-      })
+  const value = useMemo(
+    () => ({
+      uriHash,
+      push,
+      replace,
+      back,
+      navigate,
+    }),
+    [back, navigate, push, replace, uriHash],
+  )
 
-      window.location = `${appUrlScheme}:///outlink?${outlinkParams}`
-    } else {
-      window.location = `${appUrlScheme}://${path}`
-    }
-  }
-
-  render() {
-    const {
-      props: { children },
-      state: { hashHistories },
-    } = this
-
-    return (
-      <Context.Provider
-        value={{
-          uriHash: hashHistories[hashHistories.length - 1],
-          actions: {
-            push: this.push,
-            replace: this.replace,
-            back: this.back,
-            navigate: this.navigate,
-          },
-        }}
-      >
-        {children}
-      </Context.Provider>
-    )
-  }
+  return <Context.Provider value={value}>{children}</Context.Provider>
 }
 
 export function useHistoryContext() {
@@ -175,8 +184,17 @@ export function withHistory(Component) {
   return function HistoryComponent(props) {
     return (
       <Context.Consumer>
-        {({ uriHash, actions }) => (
-          <Component uriHash={uriHash} historyActions={actions} {...props} />
+        {({ uriHash, push, replace, back, navigate }) => (
+          <Component
+            uriHash={uriHash}
+            historyActions={{
+              push,
+              replace,
+              back,
+              navigate,
+            }}
+            {...props}
+          />
         )}
       </Context.Consumer>
     )
