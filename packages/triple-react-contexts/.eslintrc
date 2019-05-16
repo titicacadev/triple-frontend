@@ -5,10 +5,13 @@
     "plugin:react/recommended",
     "plugin:prettier/recommended"
   ],
+  "plugins": ["react-hooks"],
   "rules": {
     "prettier/prettier": "error",
     "no-unused-vars": ["error", { "ignoreRestSiblings": true }],
     "react/prop-types": ["off"],
-    "react/no-unused-state": ["error"]
+    "react/no-unused-state": ["error"],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error"
   }
 }
