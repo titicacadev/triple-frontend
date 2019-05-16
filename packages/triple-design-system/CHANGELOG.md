@@ -1,3 +1,15 @@
+- `Icon` 에 margin, padding option 을 추가합니다.
+
+  _Olaf_
+
+- `input` 의 reset css 를 추가합니다.
+
+  _Olaf_
+
+- `poi element` 의 tag 를 노출 할 수 있도록 변경
+
+  _Olaf_
+
 - `block` 타입의 `links`의 margin-top 을 45px 에서 30px 로 변경
 
   _Royd_
