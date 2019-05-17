@@ -132,6 +132,12 @@ const RegularPricing = ({ basePrice, salePrice }) => (
   </PricingContainer>
 )
 
+const FloatedContainer = styled(Container)`
+  @supports (padding: max(0px)) and (padding: env(safe-area-inset-bottom)) {
+    padding-bottom: max(10px, env(safe-area-inset-bottom, 10px));
+  }
+`
+
 function FixedPricing({
   active,
   label,
@@ -142,7 +148,7 @@ function FixedPricing({
 }) {
   return (
     <Drawer active={active}>
-      <Container
+      <FloatedContainer
         clearing
         padding={{ top: 10, right: 25, bottom: 10, left: 30 }}
       >
@@ -153,7 +159,12 @@ function FixedPricing({
           <Text size="large" bold>
             {formatNumber(salePrice)}원
             {suffix ? (
-              <SuffixText inline size="small" margin={{ left: 4 }} alpha={0.6}>
+              <SuffixText
+                inline
+                size="small"
+                margin={{ top: 1, left: 4 }}
+                alpha={0.6}
+              >
                 /{suffix}
               </SuffixText>
             ) : null}
@@ -162,7 +173,7 @@ function FixedPricing({
         <Container floated="right">
           <ReservationButton onClick={onClick}>{buttonText}</ReservationButton>
         </Container>
-      </Container>
+      </FloatedContainer>
     </Drawer>
   )
 }
