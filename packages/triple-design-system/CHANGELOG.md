@@ -1,3 +1,7 @@
+- `Pricing` IphoneX 대응 css 추가
+
+  _Olaf_
+
 - `Icon` 에 margin, padding option 을 추가합니다.
 
   _Olaf_
