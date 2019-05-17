@@ -9,6 +9,9 @@ const COLORS = {
 }
 
 const BaseTextarea = styled.textarea`
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   overflow: hidden;
   padding: 0;
   margin: 0;
