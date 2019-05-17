@@ -55,12 +55,10 @@ export function ExtendedResourceListElement({
       </Text>
 
       {reviewsCount || scrapsCount ? (
-        <Container margin={{ top: 5 }}>
+        <Container margin={{ top: 4 }}>
           <>
-            {reviewsCount ? (
-              <Rating size="small" score={reviewsRating} />
-            ) : null}
-            <Text inline size="small" alpha={0.4}>
+            {reviewsCount ? <Rating size="tiny" score={reviewsRating} /> : null}
+            <Text inline size="tiny" alpha={0.4}>
               {[
                 reviewsCount ? ` (${formatNumber(reviewsCount)})` : null,
                 scrapsCount ? `저장 ${formatNumber(scrapsCount)}` : null,
