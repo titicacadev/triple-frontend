@@ -1,3 +1,7 @@
+- `Textarea` reset style 추가
+
+  _Olaf_
+
 - `Pricing` IphoneX 대응 css 추가
 
   _Olaf_
