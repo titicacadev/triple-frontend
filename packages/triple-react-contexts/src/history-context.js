@@ -36,7 +36,7 @@ export function HistoryProvider({
   isPublic,
   children,
 }) {
-  const [uriHash, setUriHash] = useState([])
+  const [uriHash, setUriHash] = useState(null)
 
   const onHashChange = useCallback((url) => {
     const hash = new URL(url, 'https://triple.guide').hash.replace(/^#/, '')
