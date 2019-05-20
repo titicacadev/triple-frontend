@@ -1,4 +1,4 @@
-- `Button` padding size 추가
+- `Button` padding large size 추가
 
   _Olaf_
 
