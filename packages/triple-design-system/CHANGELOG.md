@@ -1,3 +1,7 @@
+- `Button` padding size 추가
+
+  _Olaf_
+
 - `Textarea` reset style 추가
 
   _Olaf_
