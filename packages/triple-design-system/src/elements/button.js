@@ -145,6 +145,7 @@ const BasicButton = styled(ButtonBase)`
 const NORMAL_PADDINGS = {
   tiny: { top: 13, bottom: 13, left: 25, right: 25 },
   small: { top: 14, bottom: 14, left: 25, right: 25 },
+  large: { top: 16, bottom: 16, left: 25, right: 25 },
 }
 
 const COMPACT_NORMAL_PADDINGS = {
