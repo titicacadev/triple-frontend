@@ -42,7 +42,8 @@ export function HistoryProvider({
     const hash = new URL(url, 'https://triple.guide').hash.replace(/^#/, '')
 
     // We only need to check if onHashChange is triggered by native action.
-    const previousHash = HASH_HISTORIES[HASH_HISTORIES.length - 2]
+    const { hash: previousHash } =
+      HASH_HISTORIES[HASH_HISTORIES.length - 2] || {}
 
     if ((previousHash || '') === hash) {
       HASH_HISTORIES.pop()
@@ -64,7 +65,7 @@ export function HistoryProvider({
   const replace = useCallback(
     (hash, { useRouter = isAndroid } = {}) => {
       HASH_HISTORIES.pop()
-      HASH_HISTORIES.push(hash)
+      HASH_HISTORIES.push({ hash, useRouter })
 
       setUriHash(hash)
 
@@ -77,7 +78,7 @@ export function HistoryProvider({
 
   const push = useCallback(
     (hash, { useRouter = isAndroid } = {}) => {
-      HASH_HISTORIES.push(hash)
+      HASH_HISTORIES.push({ hash, useRouter })
 
       setUriHash(hash)
 
@@ -88,18 +89,15 @@ export function HistoryProvider({
     [isAndroid],
   )
 
-  const back = useCallback(
-    ({ useRouter = isAndroid } = {}) => {
-      HASH_HISTORIES.pop()
+  const back = useCallback(() => {
+    const { useRouter } = HASH_HISTORIES.pop() || {}
 
-      setUriHash(HASH_HISTORIES[HASH_HISTORIES.length - 1])
+    setUriHash((HASH_HISTORIES[HASH_HISTORIES.length - 1] || {}).hash)
 
-      if (useRouter) {
-        Router.back()
-      }
-    },
-    [isAndroid],
-  )
+    if (useRouter) {
+      Router.back()
+    }
+  }, [])
 
   const navigateOnPublic = useCallback(
     ({ href, protocol, path }) => {
