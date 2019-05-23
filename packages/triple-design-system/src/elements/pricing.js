@@ -130,7 +130,7 @@ const FloatedFrame = styled(Container)`
 `
 
 const FloatedPricingContainer = styled(Container)`
-  width: ${({ width }) => width || 100}%;
+  width: 50%;
 `
 
 const ReservationButton = styled.button`
@@ -157,7 +157,7 @@ function FixedPricing({
         clearing
         padding={{ top: 10, right: 25, bottom: 10, left: 30 }}
       >
-        <FloatedPricingContainer width={50} floated="left">
+        <FloatedPricingContainer floated="left">
           <Text color="blue" size="mini" margin={{ top: 7, bottom: 4 }}>
             {label}
           </Text>
@@ -175,7 +175,7 @@ function FixedPricing({
             ) : null}
           </Text>
         </FloatedPricingContainer>
-        <FloatedPricingContainer width={50} floated="right">
+        <FloatedPricingContainer floated="right">
           <ReservationButton onClick={onClick}>{buttonText}</ReservationButton>
         </FloatedPricingContainer>
       </FloatedFrame>
