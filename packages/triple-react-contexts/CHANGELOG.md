@@ -1,3 +1,7 @@
+- `HistoryContext`에서 제공하는 `back` 함수를 `back()`으로 변경 (`useRouter` 옵션 제거)
+
+  _Royd_
+
 ## 0.4.0 (2019-05-16)
 
 - `HistoryContext`에서 `useHistoryContext`로 제공하는 value를 `{ uriHash, actions: { push, replace, back, navigate } }`에서 `{ uriHash, push, replace, back, navigate }`으로 변경
