@@ -1,3 +1,7 @@
+- `Pricing` floated container 를 % 로 나두도록 조절
+
+  _Olaf_
+
 - `Button` padding large size 추가
 
   _Olaf_
