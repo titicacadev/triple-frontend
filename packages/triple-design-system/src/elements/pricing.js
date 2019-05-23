@@ -86,15 +86,6 @@ const Label = styled.div`
   font-size: ${({ size }) => FONT_SIZE[size || 'tiny']};
 `
 
-const ReservationButton = styled.button`
-  padding: 17px 58px 17px 58px;
-  border-radius: 4px;
-  background: ${COLORS.blue};
-  color: ${COLORS.white};
-  font-size: ${FONT_SIZE.small};
-  border: none;
-`
-
 const SuffixText = styled(Text)`
   letter-spacing: 2px;
   vertical-align: top;
@@ -132,10 +123,24 @@ const RegularPricing = ({ basePrice, salePrice }) => (
   </PricingContainer>
 )
 
-const FloatedContainer = styled(Container)`
+const FloatedFrame = styled(Container)`
   @supports (padding: max(0px)) and (padding: env(safe-area-inset-bottom)) {
     padding-bottom: max(10px, env(safe-area-inset-bottom, 10px));
   }
+`
+
+const FloatedPricingContainer = styled(Container)`
+  width: ${({ width }) => width || 100}%;
+`
+
+const ReservationButton = styled.button`
+  width: 100%;
+  padding: 17px 0;
+  border-radius: 4px;
+  background: ${COLORS.blue};
+  color: ${COLORS.white};
+  font-size: ${FONT_SIZE.small};
+  border: none;
 `
 
 function FixedPricing({
@@ -148,11 +153,11 @@ function FixedPricing({
 }) {
   return (
     <Drawer active={active}>
-      <FloatedContainer
+      <FloatedFrame
         clearing
         padding={{ top: 10, right: 25, bottom: 10, left: 30 }}
       >
-        <Container floated="left">
+        <FloatedPricingContainer width={50} floated="left">
           <Text color="blue" size="mini" margin={{ top: 7, bottom: 4 }}>
             {label}
           </Text>
@@ -169,11 +174,11 @@ function FixedPricing({
               </SuffixText>
             ) : null}
           </Text>
-        </Container>
-        <Container floated="right">
+        </FloatedPricingContainer>
+        <FloatedPricingContainer width={50} floated="right">
           <ReservationButton onClick={onClick}>{buttonText}</ReservationButton>
-        </Container>
-      </FloatedContainer>
+        </FloatedPricingContainer>
+      </FloatedFrame>
     </Drawer>
   )
 }
