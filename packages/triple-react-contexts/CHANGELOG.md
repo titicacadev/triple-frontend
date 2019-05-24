@@ -1,6 +1,14 @@
+## 0.4.2 (2019-05-24)
+
 - `HistoryContext`에서 제공하는 `back` 함수를 `back()`으로 변경 (`useRouter` 옵션 제거)
 
   _Royd_
+
+## 0.4.1 (2019-05-20)
+
+- `HistoryContext`에서 제공하는 `uriHash` 기본값 버그 수정
+
+  _Eeyore_
 
 ## 0.4.0 (2019-05-16)
 
