@@ -1,3 +1,5 @@
+## 0.4.0 (2019-05-27)
+
 - `Pricing` floated container 를 % 로 나두도록 조절
 
   _Olaf_
