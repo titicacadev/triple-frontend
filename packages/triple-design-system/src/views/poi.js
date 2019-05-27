@@ -233,7 +233,8 @@ class ExtendedPoiListElement extends PureComponent {
         onScrapedChange={onScrapedChange}
         onClick={onClick}
         tags={
-          tags || (prices ? [{ text: promoText, emphasized: true }] : undefined)
+          tags ||
+          (promoText ? [{ text: promoText, emphasized: true }] : undefined)
         }
       />
     )
