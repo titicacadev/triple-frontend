@@ -16,7 +16,7 @@ const FONT_SIZE = {
 const COLORS = {
   pink: 'rgba(253, 46, 105, 1)',
   gray: 'rgba(58, 58, 58, 0.3)',
-  blue: 'rgba(54, 143, 255)',
+  blue: 'rgba(54, 143, 255, 1)',
   white: 'rgba(255, 255, 255, 1)',
   default: 'rgba(58, 58, 58, 1)',
 }
