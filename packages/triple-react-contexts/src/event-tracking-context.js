@@ -27,7 +27,7 @@ export class EventTrackingProvider extends PureComponent {
 
     if (window.ga && ga) {
       const [action, label] = ga
-      window.ga('send', pageLabel, action, label)
+      window.ga('send', 'event', pageLabel, action, label)
     } else {
       nativeTrackEvent({
         ga: ga && [pageLabel, ...ga],
@@ -47,7 +47,7 @@ export class EventTrackingProvider extends PureComponent {
     } = this
 
     if (window.ga) {
-      window.ga('send', pageLabel, action, label)
+      window.ga('send', 'event', pageLabel, action, label)
     } else {
       nativeTrackEvent({
         ga: [pageLabel, action, label].filter((v) => v),
