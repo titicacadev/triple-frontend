@@ -1,3 +1,7 @@
+## 0.4.1 (2019-05-27)
+
+- `poi` Promotion tag condition 조건 변경
+
 ## 0.4.0 (2019-05-27)
 
 - `Pricing` floated container 를 % 로 나두도록 조절
