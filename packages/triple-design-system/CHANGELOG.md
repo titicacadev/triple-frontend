@@ -1,3 +1,7 @@
+## 0.4.2 (2019-06-03)
+
+- `ExtendedResourceListElement` text name 한 줄 말줄임에서 두 줄 말줄임으로 변경
+
 ## 0.4.1 (2019-05-27)
 
 - `poi` Promotion tag condition 조건 변경
