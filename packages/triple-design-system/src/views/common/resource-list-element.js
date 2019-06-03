@@ -46,7 +46,7 @@ export function ExtendedResourceListElement({
         margin={{ left: 20 }}
       />
 
-      <Text bold ellipsis size="large">
+      <Text bold maxLines={2} size="large">
         {name}
       </Text>
 
