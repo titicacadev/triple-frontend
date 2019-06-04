@@ -1,127 +1,158 @@
-import React, { PureComponent, createContext, useContext } from 'react'
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+  createContext,
+  useContext,
+} from 'react'
 
 const Context = createContext()
 
-export class ScrapsProvider extends PureComponent {
-  state = { scraps: this.props.scraps || {}, updating: {} }
+export function ScrapsProvider({
+  scrape: nativeScrape,
+  unscrape: nativeUnscrape,
+  notifyScraped,
+  notifyUnscraped,
+  subscribeScrapedChangeEvent,
+  unsubscribeScrapedChangeEvent,
+  children,
+}) {
+  const [scraps, setScraps] = useState({})
+  const [updating, setUpdating] = useState()
 
-  componentDidMount() {
-    this.props.subscribeScrapedChangeEvent(({ scraped, id }) =>
-      this.insert({ [id]: scraped }),
-    )
-  }
+  const deriveCurrentStateAndCount = useCallback(
+    ({ id, scraped, scrapsCount: originalScrapsCount }) => {
+      const currentState =
+        typeof updating[id] !== 'undefined' ? updating[id] : scraps[id]
+      const scrapsCount = Number(originalScrapsCount || 0)
 
-  scrapeArticle = (id) => this.scrape({ id, type: 'article' })
-  unscrapeArticle = (id) => this.unscrape({ id, type: 'article' })
+      if (typeof scraped !== 'boolean' || typeof currentState !== 'boolean') {
+        /* At least one of the status are unknown: Reduces to a bitwise OR operation */
+        return {
+          scraped: !!scraped || !!currentState,
+          scrapsCount: scrapsCount,
+        }
+      }
 
-  scrapePoi = (id) => this.scrape({ id, type: 'poi' })
-  unscrapePoi = (id) => this.unscrape({ id, type: 'poi' })
+      return {
+        scraped: currentState,
+        scrapsCount:
+          scraped === currentState
+            ? scrapsCount
+            : currentState
+            ? scrapsCount + 1
+            : scrapsCount - 1,
+      }
+    },
+    [scraps, updating],
+  )
 
-  scrape = async ({ id, type }) => {
-    const {
-      props: { scrape, notifyScraped },
-      state: { updating },
-    } = this
-
-    if (typeof updating[id] !== 'undefined') {
-      return
-    }
-
-    this.setState({ updating: { [id]: true } })
-
-    const response = await scrape({ id, type })
-    if (response.ok) {
-      notifyScraped(id)
-
-      this.insert({ [id]: true })
-    }
-  }
-
-  unscrape = async ({ id, type }) => {
-    const {
-      props: { unscrape, notifyUnscraped },
-      state: { updating },
-    } = this
-
-    if (typeof updating[id] !== 'undefined') {
-      return
-    }
-
-    this.setState({ updating: { [id]: false } })
-
-    const response = await unscrape({ id, type })
-    if (response.ok) {
-      notifyUnscraped(id)
-
-      this.insert({ [id]: false })
-    }
-  }
-
-  insert = (newScraps) =>
-    this.setState(({ scraps, updating }) => {
+  const insert = useCallback(
+    (newScraps) => {
       const updated = { ...updating }
 
       Object.keys(newScraps).forEach((id) => delete updated[id])
 
-      return {
-        scraps: { ...scraps, ...newScraps },
-        updating: updated,
+      setScraps({ ...scraps, ...newScraps })
+      setUpdating(updated)
+    },
+    [scraps, updating],
+  )
+
+  const scrape = useCallback(
+    async ({ id, type }) => {
+      if (typeof updating[id] !== 'undefined') {
+        return
       }
-    })
 
-  deriveCurrentStateAndCount = ({
-    id,
-    scraped,
-    scrapsCount: originalScrapsCount,
-  }) => {
-    const { scraps, updating } = this.state
-    const currentState =
-      typeof updating[id] !== 'undefined' ? updating[id] : scraps[id]
-    const scrapsCount = Number(originalScrapsCount || 0)
+      setUpdating({ [id]: true })
 
-    if (typeof scraped !== 'boolean' || typeof currentState !== 'boolean') {
-      /* At least one of the status are unknown: Reduces to a bitwise OR operation */
-      return { scraped: !!scraped || !!currentState, scrapsCount: scrapsCount }
-    }
+      const response = await nativeScrape({ id, type })
 
-    return {
-      scraped: currentState,
-      scrapsCount:
-        scraped === currentState
-          ? scrapsCount
-          : currentState
-          ? scrapsCount + 1
-          : scrapsCount - 1,
-    }
-  }
+      if (response.ok) {
+        notifyScraped(id)
 
-  render() {
-    const {
+        insert({ [id]: true })
+      }
+    },
+    [insert, nativeScrape, notifyScraped, updating],
+  )
+
+  const unscrape = useCallback(
+    async ({ id, type }) => {
+      if (typeof updating[id] !== 'undefined') {
+        return
+      }
+
+      setUpdating({ [id]: false })
+
+      const response = await nativeUnscrape({ id, type })
+
+      if (response.ok) {
+        notifyUnscraped(id)
+
+        insert({ [id]: false })
+      }
+    },
+    [insert, nativeUnscrape, notifyUnscraped, updating],
+  )
+
+  const handleSubscribeEvent = useCallback(
+    ({ scraped, id }) => insert({ [id]: scraped }),
+    [insert],
+  )
+
+  useEffect(() => {
+    subscribeScrapedChangeEvent(handleSubscribeEvent)
+
+    return () => unsubscribeScrapedChangeEvent(handleSubscribeEvent)
+  }, [
+    handleSubscribeEvent,
+    insert,
+    subscribeScrapedChangeEvent,
+    unsubscribeScrapedChangeEvent,
+  ])
+
+  const scrapeArticle = useCallback((id) => scrape({ id, type: 'article' }), [
+    scrape,
+  ])
+  const unscrapeArticle = useCallback(
+    (id) => unscrape({ id, type: 'article' }),
+    [unscrape],
+  )
+
+  const scrapePoi = useCallback((id) => scrape({ id, type: 'poi' }), [scrape])
+  const unscrapePoi = useCallback((id) => unscrape({ id, type: 'poi' }), [
+    unscrape,
+  ])
+
+  const value = useMemo(
+    () => ({
       deriveCurrentStateAndCount,
-      props: { children },
-      state: { scraps },
-    } = this
+      scraps,
+      scrape,
+      unscrape,
+      scrapeArticle,
+      unscrapeArticle,
+      scrapePoi,
+      unscrapePoi,
+      insert,
+    }),
+    [
+      deriveCurrentStateAndCount,
+      insert,
+      scrape,
+      scrapeArticle,
+      scrapePoi,
+      scraps,
+      unscrape,
+      unscrapeArticle,
+      unscrapePoi,
+    ],
+  )
 
-    return (
-      <Context.Provider
-        value={{
-          deriveCurrentStateAndCount,
-          scraps,
-          actions: {
-            scrape: this.scrape,
-            unscrape: this.unscrape,
-            scrapeArticle: this.scrapeArticle,
-            unscrapeArticle: this.unscrapeArticle,
-            scrapePoi: this.scrapePoi,
-            unscrapePoi: this.unscrapePoi,
-            insert: this.insert,
-          },
-        }}
-      >
-        {children}
-      </Context.Provider>
-    )
-  }
+  return <Context.Provider value={value}>{children}</Context.Provider>
 }
 
 export function useScrapsContext() {
@@ -132,7 +163,7 @@ export function withScraps(Component) {
   return function ScrapsComponent(props) {
     return (
       <Context.Consumer>
-        {({ deriveCurrentStateAndCount, scraps, actions }) => (
+        {({ deriveCurrentStateAndCount, scraps, ...actions }) => (
           <Component
             deriveCurrentScrapedStateAndCount={deriveCurrentStateAndCount}
             scraps={scraps}
