@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import withField from '../utils/form-field'
+import { withField } from '../utils/form-field'
 
 const COLORS = {
   blue: '54, 143, 255',

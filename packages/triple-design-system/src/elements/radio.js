@@ -2,7 +2,7 @@ import React from 'react'
 import Container from './container'
 import Text from './text'
 import styled, { css } from 'styled-components'
-import withField from '../utils/form-field'
+import { withField } from '../utils/form-field'
 
 const COLORS = {
   blud: '54,143,255',

@@ -35,7 +35,7 @@ const Label = styled(Text)`
     `};
 `
 
-export default function withField(WrappedComponent) {
+export function withField(WrappedComponent) {
   return class Wrapper extends PureComponent {
     state = {
       focus: false,
