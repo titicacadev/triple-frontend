@@ -1,5 +1,5 @@
 import React, {
-  useState,
+  useReducer,
   useEffect,
   useCallback,
   useMemo,
@@ -8,6 +8,42 @@ import React, {
 } from 'react'
 
 const Context = createContext()
+
+const reducer = ({ scraps, updating }, action) => {
+  const { [action.id]: _, ...restUpdating } = updating
+
+  switch (action.type) {
+    case 'START_SCRAPE':
+      return {
+        scraps,
+        updating: { ...updating, [action.id]: true },
+      }
+
+    case 'SCRAPE':
+      return {
+        scraps: { ...scraps, [action.id]: true },
+        updating: restUpdating,
+      }
+
+    case 'SCRAPE_FAILED':
+      return { scraps, updating: restUpdating }
+
+    case 'START_UNSCRAPE':
+      return {
+        scraps,
+        updating: { ...updating, [action.id]: false },
+      }
+
+    case 'UNSCRAPE':
+      return {
+        scraps: { ...scraps, [action.id]: false },
+        updating: restUpdating,
+      }
+
+    case 'UNSCRAPE_FAILED':
+      return { scraps, updating: restUpdating }
+  }
+}
 
 export function ScrapsProvider({
   scrape: nativeScrape,
@@ -18,8 +54,10 @@ export function ScrapsProvider({
   unsubscribeScrapedChangeEvent,
   children,
 }) {
-  const [scraps, setScraps] = useState({})
-  const [updating, setUpdating] = useState()
+  const [{ scraps, updating }, dispatch] = useReducer(reducer, {
+    scraps: {},
+    updating: {},
+  })
 
   const deriveCurrentStateAndCount = useCallback(
     ({ id, scraped, scrapsCount: originalScrapsCount }) => {
@@ -48,35 +86,25 @@ export function ScrapsProvider({
     [scraps, updating],
   )
 
-  const insert = useCallback(
-    (newScraps) => {
-      const updated = { ...updating }
-
-      Object.keys(newScraps).forEach((id) => delete updated[id])
-
-      setScraps({ ...scraps, ...newScraps })
-      setUpdating(updated)
-    },
-    [scraps, updating],
-  )
-
   const scrape = useCallback(
     async ({ id, type }) => {
       if (typeof updating[id] !== 'undefined') {
         return
       }
 
-      setUpdating({ [id]: true })
+      dispatch({ type: 'START_SCRAPE', id })
 
       const response = await nativeScrape({ id, type })
 
       if (response.ok) {
         notifyScraped(id)
 
-        insert({ [id]: true })
+        dispatch({ type: 'SCRAPE', id })
+      } else {
+        dispatch({ type: 'SCRAPE_FAILED', id })
       }
     },
-    [insert, nativeScrape, notifyScraped, updating],
+    [nativeScrape, notifyScraped, updating],
   )
 
   const unscrape = useCallback(
@@ -85,22 +113,25 @@ export function ScrapsProvider({
         return
       }
 
-      setUpdating({ [id]: false })
+      dispatch({ type: 'START_UNSCRAPE', id })
 
       const response = await nativeUnscrape({ id, type })
 
       if (response.ok) {
         notifyUnscraped(id)
 
-        insert({ [id]: false })
+        dispatch({ type: 'UNSCRAPE', id })
+      } else {
+        dispatch({ type: 'UNSCRAPE_FAILED', id })
       }
     },
-    [insert, nativeUnscrape, notifyUnscraped, updating],
+    [nativeUnscrape, notifyUnscraped, updating],
   )
 
   const handleSubscribeEvent = useCallback(
-    ({ scraped, id }) => insert({ [id]: scraped }),
-    [insert],
+    ({ scraped, id }) =>
+      dispatch({ type: scraped ? 'SCRAPE' : 'UNSCRAPE', id }),
+    [],
   )
 
   useEffect(() => {
@@ -109,7 +140,6 @@ export function ScrapsProvider({
     return () => unsubscribeScrapedChangeEvent(handleSubscribeEvent)
   }, [
     handleSubscribeEvent,
-    insert,
     subscribeScrapedChangeEvent,
     unsubscribeScrapedChangeEvent,
   ])
@@ -130,18 +160,16 @@ export function ScrapsProvider({
   const value = useMemo(
     () => ({
       deriveCurrentStateAndCount,
-      scraps,
       scrape,
-      unscrape,
       scrapeArticle,
-      unscrapeArticle,
       scrapePoi,
+      scraps,
+      unscrape,
+      unscrapeArticle,
       unscrapePoi,
-      insert,
     }),
     [
       deriveCurrentStateAndCount,
-      insert,
       scrape,
       scrapeArticle,
       scrapePoi,
