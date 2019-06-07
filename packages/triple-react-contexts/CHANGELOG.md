@@ -1,3 +1,9 @@
+## 0.4.4 (2019-06-07)
+
+- url 쿼리스트링을 핸들링하는 라이브러리를 `query-string`에서 `qs`로 교체
+
+  _Luffy_
+
 ## 0.4.2 (2019-05-24)
 
 - `HistoryContext`에서 제공하는 `back` 함수를 `back()`으로 변경 (`useRouter` 옵션 제거)

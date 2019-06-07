@@ -7,7 +7,7 @@ import React, {
   useMemo,
 } from 'react'
 import Router from 'next/router'
-import queryString from 'query-string'
+import qs from 'qs'
 
 const Context = createContext()
 
@@ -117,7 +117,7 @@ export function HistoryProvider({
       if (protocol === `${appUrlScheme}:`) {
         window.location = href
       } else if (protocol === 'http:' || protocol === 'https:') {
-        const outlinkParams = queryString.stringify({
+        const outlinkParams = qs.stringify({
           url: href,
           ...(params || {}),
           target:
@@ -149,7 +149,7 @@ export function HistoryProvider({
       const query = (url.search || '').substring(1)
 
       if (protocol === `${appUrlScheme}:` && (path || '').match(/^\/outlink/)) {
-        const { url: targetUrl } = queryString.parse(query)
+        const { url: targetUrl } = qs.parse(query)
 
         return navigate(targetUrl, params)
       } else if (isPublic) {

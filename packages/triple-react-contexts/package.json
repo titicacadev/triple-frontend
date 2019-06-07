@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-react-contexts",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "React context modules for triple web applications",
   "main": "lib/index.js",
   "files": [
@@ -16,7 +16,7 @@
   "dependencies": {
     "@babel/runtime": "^7.4.0",
     "humps": "^2.0.1",
-    "query-string": "^6.4.0"
+    "qs": "^6.7.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
