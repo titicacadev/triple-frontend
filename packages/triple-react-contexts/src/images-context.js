@@ -36,7 +36,7 @@ export class ImagesProvider extends PureComponent {
       return result
     }
 
-    return null
+    return {}
   }
 
   fetch = async (cb) => {
@@ -81,7 +81,9 @@ export class ImagesProvider extends PureComponent {
     // Ignore the case of unfindable image in these 45(15 + 30) images.
     const { data: fetchedImages } = await this.sendFetchRequest(30)
 
-    return [...images, ...fetchedImages].findIndex(({ id }) => id === targetId)
+    return fetchedImages
+      ? [...images, ...fetchedImages].findIndex(({ id }) => id === targetId)
+      : -1
   }
 
   render() {
