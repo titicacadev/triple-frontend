@@ -1,3 +1,7 @@
+- `ScrapsContext`에서 `useScrapsContext`로 제공하는 value에서 `scrapActions`로 묶여있던 함수들를 `scrapActions` 없이 펼쳐서 보내도록 수정
+
+  _Royd_
+
 ## 0.4.4 (2019-06-07)
 
 - url 쿼리스트링을 핸들링하는 라이브러리를 `query-string`에서 `qs`로 교체
