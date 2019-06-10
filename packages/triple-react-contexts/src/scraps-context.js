@@ -9,38 +9,45 @@ import React, {
 
 const Context = createContext()
 
+const START_SCRAPE = 'START_SCRAPE'
+const SCRAPE = 'SCRAPE'
+const SCRAPE_FAILED = 'SCRAPE_FAILED'
+const START_UNSCRAPE = 'START_UNSCRAPE'
+const UNSCRAPE = 'UNSCRAPE'
+const UNSCRAPE_FAILED = 'UNSCRAPE_FAILED'
+
 const reducer = ({ scraps, updating }, action) => {
   const { [action.id]: _, ...restUpdating } = updating
 
   switch (action.type) {
-    case 'START_SCRAPE':
+    case START_SCRAPE:
       return {
         scraps,
         updating: { ...updating, [action.id]: true },
       }
 
-    case 'SCRAPE':
+    case SCRAPE:
       return {
         scraps: { ...scraps, [action.id]: true },
         updating: restUpdating,
       }
 
-    case 'SCRAPE_FAILED':
+    case SCRAPE_FAILED:
       return { scraps, updating: restUpdating }
 
-    case 'START_UNSCRAPE':
+    case START_UNSCRAPE:
       return {
         scraps,
         updating: { ...updating, [action.id]: false },
       }
 
-    case 'UNSCRAPE':
+    case UNSCRAPE:
       return {
         scraps: { ...scraps, [action.id]: false },
         updating: restUpdating,
       }
 
-    case 'UNSCRAPE_FAILED':
+    case UNSCRAPE_FAILED:
       return { scraps, updating: restUpdating }
   }
 }
@@ -92,16 +99,16 @@ export function ScrapsProvider({
         return
       }
 
-      dispatch({ type: 'START_SCRAPE', id })
+      dispatch({ type: START_SCRAPE, id })
 
       const response = await nativeScrape({ id, type })
 
       if (response.ok) {
         notifyScraped(id)
 
-        dispatch({ type: 'SCRAPE', id })
+        dispatch({ type: SCRAPE, id })
       } else {
-        dispatch({ type: 'SCRAPE_FAILED', id })
+        dispatch({ type: SCRAPE_FAILED, id })
       }
     },
     [nativeScrape, notifyScraped, updating],
@@ -113,24 +120,23 @@ export function ScrapsProvider({
         return
       }
 
-      dispatch({ type: 'START_UNSCRAPE', id })
+      dispatch({ type: START_UNSCRAPE, id })
 
       const response = await nativeUnscrape({ id, type })
 
       if (response.ok) {
         notifyUnscraped(id)
 
-        dispatch({ type: 'UNSCRAPE', id })
+        dispatch({ type: UNSCRAPE, id })
       } else {
-        dispatch({ type: 'UNSCRAPE_FAILED', id })
+        dispatch({ type: UNSCRAPE_FAILED, id })
       }
     },
     [nativeUnscrape, notifyUnscraped, updating],
   )
 
   const handleSubscribeEvent = useCallback(
-    ({ scraped, id }) =>
-      dispatch({ type: scraped ? 'SCRAPE' : 'UNSCRAPE', id }),
+    ({ scraped, id }) => dispatch({ type: scraped ? SCRAPE : UNSCRAPE, id }),
     [],
   )
 
