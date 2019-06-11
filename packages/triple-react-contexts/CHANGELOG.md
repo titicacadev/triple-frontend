@@ -1,3 +1,9 @@
+## 0.4.6 (2019-06-11)
+
+- 이미지 조회 API 실패했을 때 unhandled exception 방지
+
+  _Eeyore_
+
 ## 0.4.5 (2019-06-10)
 
 - `ScrapsContext`에서 `useScrapsContext`로 제공하는 value에서 `scrapActions`로 묶여있던 함수들를 `scrapActions` 없이 펼쳐서 보내도록 수정
