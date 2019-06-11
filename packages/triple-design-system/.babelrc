@@ -9,12 +9,17 @@
         }
       }
     ],
-    "@babel/react"
+    "@babel/react",
+    "@babel/typescript"
   ],
   "plugins": [
     [
       "styled-components",
-      { "ssr": true, "displayName": true, "preprocess": false }
+      {
+        "ssr": true,
+        "displayName": true,
+        "preprocess": false
+      }
     ],
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-object-rest-spread",
