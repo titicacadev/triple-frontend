@@ -1,3 +1,8 @@
+## 0.4.5 (2019-06-11)
+- typescript 지원을 위하여 webpack, babel 설정 변경
+
+_jayg_
+
 ## 0.4.4 (2019-06-04)
 
 - `form-field` export 방식 변경
