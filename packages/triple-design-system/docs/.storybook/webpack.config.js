@@ -5,11 +5,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|ts|tsx)$/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/env', '@babel/react'],
+            presets: ['@babel/env', '@babel/react', '@babel/typescript'],
             plugins: [
               [
                 'styled-components',
@@ -29,6 +29,9 @@ module.exports = {
               ],
             ],
           },
+        },
+        resolve: {
+          extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },
       },
     ],
