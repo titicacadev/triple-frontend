@@ -23,6 +23,14 @@ const HeaderFrame = styled.div`
   @media (max-width: ${MAX_PHONE_WIDTH}px) {
     height: 50px;
   }
+
+  ${({ minWidth }) =>
+    minWidth &&
+    css`
+      @media (max-width: ${minWidth}px) {
+        display: none;
+      }
+    `};
 `
 
 const Logo = styled.a`

@@ -14,6 +14,13 @@ const AppBannerFrame = styled.div`
     css`
       top: 0;
     `};
+  ${({ maxWidth }) =>
+    maxWidth &&
+    css`
+      @media (min-width: ${maxWidth}px) {
+        display: none;
+      }
+    `};
 `
 
 const Logo = styled.h1`
