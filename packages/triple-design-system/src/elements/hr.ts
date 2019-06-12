@@ -1,13 +1,9 @@
 import styled, { css } from 'styled-components'
+import { MarginPadding } from '../common/common-types'
 
 type HRProp = {
   compact?: boolean
-  margin?: {
-    top?: number
-    bottom?: number
-    left?: number
-    right?: number
-  }
+  margin?: MarginPadding
 }
 
 export const HR1 = styled.div<HRProp>`

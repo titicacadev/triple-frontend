@@ -1,7 +1,18 @@
-import React, { Children } from 'react'
+import * as React from 'react'
 import styled, { css } from 'styled-components'
+import { MarginPadding } from '../common/common-types'
 
-const SIZES = {
+type SizeNames =
+  | 'mini'
+  | 'tiny'
+  | 'small'
+  | 'medium'
+  | 'large'
+  | 'big'
+  | 'huge'
+  | 'massive'
+
+const SIZES: { [key in SizeNames]: string } = {
   mini: '12px',
   tiny: '13px',
   small: '14px',
@@ -12,14 +23,16 @@ const SIZES = {
   massive: '24px',
 }
 
-const COLORS = {
+type ColorNames = 'blue' | 'gray' | 'white' | 'red'
+
+const COLORS: { [key in ColorNames]: string } = {
   blue: '41, 135, 240',
   gray: '58, 58, 58',
   white: '255, 255, 255',
   red: '255, 33, 60',
 }
 
-export function LineBreak({ children }) {
+export function LineBreak({ children }: { children?: string }) {
   const Line = ({ children }) => (
     <>
       {children}
@@ -32,18 +45,36 @@ export function LineBreak({ children }) {
   return (
     <>
       {texts.map(
-        (text, i) =>
+        (text: string, i: number) =>
           i === texts.length - 1 ? text : <Line key={i}>{text}</Line>,
       )}
     </>
   )
 }
 
-function rgba({ color, alpha }) {
+function rgba({ color, alpha }: { color?: ColorNames; alpha?: number }) {
   return `rgba(${COLORS[color || 'gray']}, ${alpha || 1})`
 }
 
-const TextBase = styled.div`
+const TextBase = styled.div<{
+  size?: SizeNames | number
+  bold?: boolean
+  alpha?: number
+  color?: ColorNames
+  floated?: string
+  lineHeight?: number
+  wordBreak?: string
+  whiteSpace?: string
+  center?: boolean
+  underline?: boolean
+  inline?: boolean
+  inlineBlock?: boolean
+  margin?: MarginPadding
+  padding?: MarginPadding
+  ellipsis?: boolean
+  maxLines?: number
+  strikethrough?: boolean
+}>`
   font-size: ${({ size = 'large' }) =>
     typeof size === 'string' ? SIZES[size] : `${size}px`};
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
@@ -135,7 +166,8 @@ const TextBase = styled.div`
         left: 0;
         top: 45%;
         height: 1px;
-        background: ${({ color = 'gray', alpha }) => rgba({ color, alpha })};
+        background: ${({ color = 'gray' as ColorNames, alpha }) =>
+          rgba({ color, alpha })};
         content: '';
         width: 100%;
         display: block;
@@ -146,7 +178,7 @@ const TextBase = styled.div`
 function Text({ children, ...props }) {
   return (
     <TextBase {...props}>
-      {Children.toArray(children).map(
+      {React.Children.toArray(children).map(
         (child, i) =>
           typeof child === 'string' ? (
             <LineBreak key={i}>{child}</LineBreak>
@@ -181,7 +213,9 @@ const Html = styled(TextBase)`
   }
 `
 
-const TitleBase = styled.h1`
+const TitleBase = styled.h1<{
+  margin?: MarginPadding
+}>`
   margin: 0;
   line-height: 1.2;
   font-size: 24px;
@@ -201,7 +235,7 @@ const TitleBase = styled.h1`
 function Title({ children, ...props }) {
   return (
     <TitleBase {...props}>
-      {Children.toArray(children).map(
+      {React.Children.toArray(children).map(
         (child, i) =>
           typeof child === 'string' ? (
             <LineBreak key={i}>{child}</LineBreak>

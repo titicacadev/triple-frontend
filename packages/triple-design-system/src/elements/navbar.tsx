@@ -1,7 +1,7 @@
-import React, { Children } from 'react'
+import * as React from 'react'
 import styled, { css } from 'styled-components'
 
-const NavbarFrame = styled.div`
+const NavbarFrame = styled.div<{ borderless?: boolean }>`
   background-color: #ffffff;
   position: sticky;
   position: -webkit-sticky;
@@ -20,7 +20,7 @@ const NavbarFrame = styled.div`
   padding: 9px 12px;
 `
 
-const TitleContainer = styled.div`
+const TitleContainer = styled.div<{ childrenCount?: number }>`
   position: absolute;
   top: 17.5px;
   left: 52px;
@@ -37,7 +37,20 @@ const TitleContainer = styled.div`
   bottom: 0px;
 `
 
-const ICON_URL_BY_NAMES = {
+type IconNames =
+  | 'back'
+  | 'close'
+  | 'more'
+  | 'map'
+  | 'write'
+  | 'scraped'
+  | 'unscraped'
+  | 'share'
+  | 'route'
+  | 'search'
+  | 'cs'
+
+const ICON_URL_BY_NAMES: { [key in IconNames]: string } = {
   back: 'https://assets.triple.guide/images/btn-com-back@4x.png',
   close: 'https://assets.triple.guide/images/btn-com-close@2x.png',
   more: 'https://assets.triple.guide/images/btn-com-more@4x.png',
@@ -51,7 +64,7 @@ const ICON_URL_BY_NAMES = {
   cs: 'https://assets.triple.guide/images/btn-com-cs@2x.png',
 }
 
-const NavbarItem = styled.div`
+const NavbarItem = styled.div<{ floated?: string; icon?: IconNames }>`
   float: ${({ floated }) => floated || 'left'};
   background-image: url(${({ icon }) => ICON_URL_BY_NAMES[icon]});
   background-size: cover;
@@ -74,8 +87,18 @@ const SecondaryNavbar = styled.div`
   overflow: hidden;
 `
 
-function Navbar({ title, renderTitle, children, borderless }) {
-  const childrenCount = Children.count(children)
+function Navbar({
+  title,
+  renderTitle,
+  children,
+  borderless,
+}: {
+  title?: string
+  renderTitle?: Function
+  children?: React.ReactNode
+  borderless?: boolean
+}) {
+  const childrenCount = React.Children.count(children)
 
   return (
     <NavbarFrame borderless={borderless}>
