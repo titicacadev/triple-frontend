@@ -3,11 +3,14 @@
   "version": "0.4.5",
   "description": "Triple Design System Library",
   "main": "lib/index.js",
+  "types": "lib/main.d.ts",
   "scripts": {
-    "build": "babel src --out-dir lib --extensions '.ts,.tsx,.js'",
-    "prettier": "prettier --write \"**/*.{js,json}\"",
+    "build": "npm run build-declaration && npm run build-resources",
+    "prettier": "prettier --write \"**/*.{ts,tsx,js,json}\"",
     "lint": "npm run prettier && eslint '{src,test/src}/**/*.js'",
-    "test": "cd test && npm test"
+    "test": "cd test && npm test",
+    "build-resources": "babel src --out-dir lib --extensions '.ts,.tsx,.js'",
+    "build-declaration": "tsc --jsx react --declaration --emitDeclarationOnly --alwaysStrict ./src/main.ts --outDir ./lib"
   },
   "files": [
     "lib/"
@@ -37,6 +40,8 @@
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
+    "@types/node": "^12.0.7",
+    "@types/react": "^16.8.19",
     "babel-eslint": "^10.0.1",
     "babel-plugin-styled-components": "^1.7.0",
     "eslint": "^5.16.0",
