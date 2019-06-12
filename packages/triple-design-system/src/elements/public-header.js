@@ -27,7 +27,7 @@ const HeaderFrame = styled.div`
   ${({ minWidth }) =>
     minWidth &&
     css`
-      @media (max-width: ${minWidth}px) {
+      @media (max-width: ${minWidth - 1}px) {
         display: none;
       }
     `};

@@ -17,7 +17,7 @@ const AppBannerFrame = styled.div`
   ${({ maxWidth }) =>
     maxWidth &&
     css`
-      @media (min-width: ${maxWidth}px) {
+      @media (min-width: ${maxWidth + 1}px) {
         display: none;
       }
     `};
