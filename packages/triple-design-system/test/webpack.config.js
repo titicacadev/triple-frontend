@@ -54,7 +54,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|ts|tsx)$/,
         include: [
           path.resolve(__dirname, 'src'),
           path.resolve(__dirname, '../src'),
@@ -62,7 +62,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/env', '@babel/react'],
+            presets: ['@babel/env', '@babel/react', '@babel/typescript'],
             plugins: [
               [
                 'styled-components',
@@ -71,6 +71,9 @@ module.exports = {
               ['@babel/plugin-proposal-class-properties'],
             ],
           },
+        },
+        resolve: {
+          extensions: ['.js', '.ts', '.tsx'],
         },
       },
     ],
