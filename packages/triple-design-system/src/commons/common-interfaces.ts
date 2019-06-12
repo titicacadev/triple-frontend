@@ -1,4 +1,4 @@
-export type MarginPadding = {
+export interface MarginPadding {
   top?: number
   bottom?: number
   left?: number

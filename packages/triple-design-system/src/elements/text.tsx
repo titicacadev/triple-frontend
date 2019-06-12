@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { MarginPadding } from '../common/common-types'
+import { MarginPadding } from '../commons/common-interfaces'
 
 type SizeNames =
   | 'mini'

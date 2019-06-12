@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
-import { MarginPadding } from '../common/common-types'
+import { MarginPadding } from '../commons/common-interfaces'
 
-type HRProp = {
+interface HRProp {
   compact?: boolean
   margin?: MarginPadding
 }
