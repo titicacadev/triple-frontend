@@ -1,6 +1,11 @@
+## 0.4.7 (2019-06-12)
+- `navbar`, `text` 를 ts로 변환
+
+_jayg_
+
 ## 0.4.6 (2019-06-12)
 - typescript declaration 생성 및 빌드 과정에 포함
-- `hr.js`를 `hr.ts`로 변환
+- `hr`를 ts로 변환
 
 _jayg_
 
