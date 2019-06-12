@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { MarginPadding } from '../commons/common-interfaces'
+import { MarginPadding } from '../commons'
 
 interface HRProp {
   compact?: boolean

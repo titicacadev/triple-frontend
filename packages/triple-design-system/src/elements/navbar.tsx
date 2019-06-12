@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
+import { JsxAttribute } from 'typescript'
 
 const NavbarFrame = styled.div<{ borderless?: boolean }>`
   background-color: #ffffff;
@@ -94,7 +95,7 @@ function Navbar({
   borderless,
 }: {
   title?: string
-  renderTitle?: Function
+  renderTitle?: (props?: any) => JSX.Element
   children?: React.ReactNode
   borderless?: boolean
 }) {
