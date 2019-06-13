@@ -1,4 +1,12 @@
 ## 0.4.7 (2019-06-12)
+- `AppBanner` 에 `maxWidth` props 추가
+
+  _Torres_
+
+- `PublicHeader`에 `minWidth` props 추가
+
+  _Torres_
+
 - `navbar`, `text` 를 ts로 변환
 
 _jayg_
