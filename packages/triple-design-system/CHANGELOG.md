@@ -9,42 +9,42 @@
 
 - `navbar`, `text` 를 ts로 변환
 
-_jayg_
+  _jayg_
 
 ## 0.4.6 (2019-06-12)
 - typescript declaration 생성 및 빌드 과정에 포함
 - `hr`를 ts로 변환
 
-_jayg_
+  _jayg_
 
 ## 0.4.5 (2019-06-11)
 - typescript 지원을 위하여 webpack, babel 설정 변경
 
-_jayg_
+  _jayg_
 
 ## 0.4.4 (2019-06-04)
 
 - `form-field` export 방식 변경
 
-_Olaf_
+  _Olaf_
 
 ## 0.4.3 (2019-06-04)
 
 - `form-field` hoc 를 외부로 내보내도록 변경
 
-_Olaf_
+  _Olaf_
 
 ## 0.4.2 (2019-06-03)
 
 - `ExtendedResourceListElement` text name 한 줄 말줄임에서 두 줄 말줄임으로 변경
 
-_Olaf_
+  _Olaf_
 
 ## 0.4.1 (2019-05-27)
 
 - `poi` Promotion tag condition 조건 변경
 
-_Olaf_
+  _Olaf_
 
 ## 0.4.0 (2019-05-27)
 
