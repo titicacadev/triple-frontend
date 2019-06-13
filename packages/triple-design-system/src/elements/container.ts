@@ -1,6 +1,23 @@
 import styled, { css } from 'styled-components'
+import * as CSS from 'csstype'
+import { MarginPadding } from '../commons'
 
-const Container = styled.div`
+const Container = styled.div<{
+  position?: CSS.PositionProperty
+  centered?: boolean
+  margin?: MarginPadding
+  padding?: MarginPadding
+  width?: number
+  minWidth?: number
+  maxWidth?: number
+  minHeight?: number
+  maxHeight?: number
+  floated?: CSS.FloatProperty
+  textAlign?: CSS.TextAlignProperty
+  borderRadius?: number
+  clearing?: boolean
+  whiteSpace?: CSS.WhiteSpaceProperty
+}>`
   box-sizing: border-box;
 
   ${({ position }) =>

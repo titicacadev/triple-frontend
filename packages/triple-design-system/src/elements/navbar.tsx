@@ -1,6 +1,6 @@
 import * as React from 'react'
+import * as CSS from 'csstype'
 import styled, { css } from 'styled-components'
-import { JsxAttribute } from 'typescript'
 
 const NavbarFrame = styled.div<{ borderless?: boolean }>`
   background-color: #ffffff;
@@ -65,7 +65,10 @@ const ICON_URL_BY_NAMES: { [key in IconNames]: string } = {
   cs: 'https://assets.triple.guide/images/btn-com-cs@2x.png',
 }
 
-const NavbarItem = styled.div<{ floated?: string; icon?: IconNames }>`
+const NavbarItem = styled.div<{
+  floated?: CSS.FloatProperty
+  icon?: IconNames
+}>`
   float: ${({ floated }) => floated || 'left'};
   background-image: url(${({ icon }) => ICON_URL_BY_NAMES[icon]});
   background-size: cover;

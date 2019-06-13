@@ -1,18 +1,14 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { MarginPadding } from '../commons'
+import * as CSS from 'csstype'
+import {
+  MarginPadding,
+  GlobalSizes,
+  SetGlobalColor,
+  GlobalColors,
+} from '../commons'
 
-type SizeNames =
-  | 'mini'
-  | 'tiny'
-  | 'small'
-  | 'medium'
-  | 'large'
-  | 'big'
-  | 'huge'
-  | 'massive'
-
-const SIZES: { [key in SizeNames]: string } = {
+const SIZES: { [key in GlobalSizes]: string } = {
   mini: '12px',
   tiny: '13px',
   small: '14px',
@@ -21,15 +17,6 @@ const SIZES: { [key in SizeNames]: string } = {
   big: '19px',
   huge: '21px',
   massive: '24px',
-}
-
-type ColorNames = 'blue' | 'gray' | 'white' | 'red'
-
-const COLORS: { [key in ColorNames]: string } = {
-  blue: '41, 135, 240',
-  gray: '58, 58, 58',
-  white: '255, 255, 255',
-  red: '255, 33, 60',
 }
 
 export function LineBreak({ children }: { children?: string }) {
@@ -52,19 +39,19 @@ export function LineBreak({ children }: { children?: string }) {
   )
 }
 
-function rgba({ color, alpha }: { color?: ColorNames; alpha?: number }) {
-  return `rgba(${COLORS[color || 'gray']}, ${alpha || 1})`
+function rgba({ color, alpha }: { color?: string; alpha?: number }) {
+  return `rgba(${SetGlobalColor(color || 'gray')}, ${alpha || 1})`
 }
 
 const TextBase = styled.div<{
-  size?: SizeNames | number
+  size?: GlobalSizes | number
   bold?: boolean
   alpha?: number
-  color?: ColorNames
-  floated?: string
+  color?: string
+  floated?: CSS.FloatProperty
   lineHeight?: number
-  wordBreak?: string
-  whiteSpace?: string
+  wordBreak?: CSS.WordBreakProperty
+  whiteSpace?: CSS.WhiteSpaceProperty
   center?: boolean
   underline?: boolean
   inline?: boolean
@@ -166,7 +153,7 @@ const TextBase = styled.div<{
         left: 0;
         top: 45%;
         height: 1px;
-        background: ${({ color = 'gray' as ColorNames, alpha }) =>
+        background: ${({ color = 'gray' as GlobalColors, alpha }) =>
           rgba({ color, alpha })};
         content: '';
         width: 100%;
