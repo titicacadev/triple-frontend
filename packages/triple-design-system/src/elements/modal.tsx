@@ -78,7 +78,9 @@ export default function Modal({
 }) {
   return open ? (
     <Overlay onClick={onClose}>
-      <Box onClick={(e: React.SyntheticEvent) => silenceEvent}>{children}</Box>
+      <Box onClick={(e: React.SyntheticEvent) => silenceEvent(e)}>
+        {children}
+      </Box>
     </Overlay>
   ) : null
 }
