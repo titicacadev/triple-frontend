@@ -1,3 +1,9 @@
+## 0.4.9 (2019-06-14)
+- `container` 오타 수정
+- `button`을 ts로 변환
+
+  _jayg_
+
 ## 0.4.8 (2019-06-14)
 - global color, size를 별도로 관리
 - csstype 패키지 추가
