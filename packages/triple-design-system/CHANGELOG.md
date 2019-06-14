@@ -1,4 +1,8 @@
 ## 0.4.9 (2019-06-14)
+- `AppBanner` onCTAClick props 추가
+
+  _Torres_
+
 - `container` 오타 수정
 - `button`을 ts로 변환
 
