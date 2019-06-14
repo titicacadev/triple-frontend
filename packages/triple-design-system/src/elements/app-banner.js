@@ -62,7 +62,14 @@ const CallToAction = styled.a`
   text-decoration: none;
 `
 
-export default function AppBanner({ title, description, cta, href, ...props }) {
+export default function AppBanner({
+  title,
+  description,
+  cta,
+  href,
+  handleClick,
+  ...props
+}) {
   return (
     <AppBannerFrame {...props}>
       <Logo />
@@ -80,7 +87,9 @@ export default function AppBanner({ title, description, cta, href, ...props }) {
           {description}
         </Text>
       </ContentContainer>
-      <CallToAction href={href}>{cta || '앱에서 보기'}</CallToAction>
+      <CallToAction href={href} onClick={handleClick}>
+        {cta || '앱에서 보기'}
+      </CallToAction>
     </AppBannerFrame>
   )
 }
