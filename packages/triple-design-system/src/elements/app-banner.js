@@ -67,7 +67,7 @@ export default function AppBanner({
   description,
   cta,
   href,
-  handleClick,
+  onCTAClick,
   ...props
 }) {
   return (
@@ -87,7 +87,7 @@ export default function AppBanner({
           {description}
         </Text>
       </ContentContainer>
-      <CallToAction href={href} onClick={handleClick}>
+      <CallToAction href={href} onClick={onCTAClick}>
         {cta || '앱에서 보기'}
       </CallToAction>
     </AppBannerFrame>
