@@ -96,14 +96,14 @@ export function TransitionModal({
       <Actions
         negative={{
           text: '취소',
-          onClick: (e: any) =>
+          onClick: (e: React.SyntheticEvent) =>
             onCancel instanceof Event
               ? !onCancel(e) && onClose instanceof Event && onClose(e)
               : onClose instanceof Event && onClose(e),
         }}
         positive={{
           text: '트리플가기',
-          onClick: (e: any) =>
+          onClick: (e: React.SyntheticEvent) =>
             onConfirm instanceof Event
               ? !onConfirm(e) && onClose instanceof Event && onClose(e)
               : onClose instanceof Event && onClose(e),
@@ -139,14 +139,14 @@ export function Confirm({
       <Actions
         negative={{
           text: cancelText || '취소',
-          onClick: (e: any) =>
+          onClick: (e: React.SyntheticEvent) =>
             onCancel instanceof Event
               ? !onCancel(e) && onClose instanceof Event && onClose(e)
               : onClose && onClose(e),
         }}
         positive={{
           text: confirmText || '확인',
-          onClick: (e: any) =>
+          onClick: (e: React.SyntheticEvent) =>
             onConfirm instanceof Event
               ? !onConfirm(e) && onClose instanceof Event && onClose(e)
               : onClose instanceof Event && onClose(e),
@@ -179,7 +179,7 @@ export function Alert({
       <Modal.Actions>
         <Modal.Action
           color="blue"
-          onClick={(e: any) =>
+          onClick={(e: React.SyntheticEvent) =>
             onConfirm instanceof Event
               ? !onConfirm(e) && onClose instanceof Event && onClose(e)
               : onClose instanceof Event && onClose(e)
