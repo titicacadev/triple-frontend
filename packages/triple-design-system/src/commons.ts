@@ -22,20 +22,9 @@ enum GlobalColorSet {
   gray = '58, 58, 58',
   white = '255, 255, 255',
   red = '255, 33, 60',
-  black = '245, 245, 245',
-  pink = '253, 46, 105',
-  orange = '255, 91, 47',
 }
 
-export type GlobalColors =
-  | 'blue'
-  | 'gray'
-  | 'white'
-  | 'red'
-  | 'black'
-  | 'pink'
-  | 'orange'
-  | 'purple'
+export type GlobalColors = 'blue' | 'gray' | 'white' | 'red'
 
 export function SetGlobalColor(colorString: string) {
   return GlobalColorSet[colorString] || colorString
