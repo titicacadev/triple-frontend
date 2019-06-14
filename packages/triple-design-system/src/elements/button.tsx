@@ -1,8 +1,15 @@
-import React, { Children, PureComponent } from 'react'
-import styled, { css } from 'styled-components'
+import * as React from 'react'
+import styled, { css, InterpolationValue } from 'styled-components'
+import * as CSS from 'csstype'
 import Container from './container'
+import {
+  GlobalSizes,
+  GlobalColors,
+  MarginPadding,
+  SetGlobalColor,
+} from '../commons'
 
-const SIZES = {
+const SIZES: Partial<Record<GlobalSizes, InterpolationValue[]>> = {
   tiny: css`
     font-size: 13px;
     line-height: 16px;
@@ -16,12 +23,18 @@ const SIZES = {
   `,
 }
 
-const BUTTON_COLORS = {
-  blue: '54, 143, 255',
-  gray: '58, 58, 58',
+interface IButtonBaseProp {
+  size?: GlobalSizes
+  bold?: boolean
+  textColor?: string
+  textAlpha?: number
+  floated?: CSS.FloatProperty
+  fluid?: boolean
+  margin?: MarginPadding
+  disabled?: boolean
 }
 
-const ButtonBase = styled.a`
+const ButtonBase = styled.a<IButtonBaseProp>`
   display: inline-block;
   ${({ size }) => SIZES[size]}
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
@@ -30,7 +43,7 @@ const ButtonBase = styled.a`
   box-sizing: border-box;
 
   color: ${({ textColor = 'gray', textAlpha = 1 }) =>
-    `rgba(${TEXT_COLORS[textColor]}, ${textAlpha})`};
+    `rgba(${SetGlobalColor(textColor)}, ${textAlpha})`};
 
   float: ${({ floated }) => floated || 'none'};
 
@@ -57,7 +70,7 @@ const ButtonBase = styled.a`
     `};
 `
 
-const ICON_BUTTON_URLS = {
+const ICON_BUTTON_URLS: { [key: string]: string } = {
   saveEmpty: 'https://assets.triple.guide/images/btn-end-save-off@4x.png',
   saveFilled: 'https://assets.triple.guide/images/btn-end-save-on@4x.png',
   starEmpty: 'https://assets.triple.guide/images/btn-end-review@4x.png',
@@ -67,17 +80,11 @@ const ICON_BUTTON_URLS = {
   schedule: 'https://assets.triple.guide/images/btn-end-schedule@4x.png',
 }
 
-const TEXT_COLORS = {
-  blue: '41, 135, 240',
-  gray: '58, 58, 58',
-  white: '255, 255, 255',
-}
-
-const ICON_PADDINGS = {
+const ICON_PADDINGS: Partial<Record<GlobalSizes, MarginPadding>> = {
   tiny: { top: 12, bottom: 12, left: 12, right: 12 },
 }
 
-const IconButton = styled(ButtonBase)`
+const IconButton = styled(ButtonBase)<{ name?: string }>`
   &:before {
     display: block;
     height: 30px;
@@ -100,18 +107,26 @@ const IconButton = styled(ButtonBase)`
   }};
 `
 
-const BASIC_COLORS = {
+const BASIC_COLORS: Partial<
+  Record<GlobalColors, { border: string; text: string }>
+> = {
   gray: {
     border: 'rgba(58, 58, 58, 0.2)',
     text: '#3a3a3a',
   },
 }
 
-const BASIC_INVERTED_COLORS = {
+const BASIC_INVERTED_COLORS: Partial<Record<GlobalColors, string>> = {
   blue: '#368fff',
 }
 
-const BasicButton = styled(ButtonBase)`
+interface IBasicButtonProp {
+  compact?: boolean
+  inverted?: boolean
+  color?: GlobalColors
+}
+
+const BasicButton = styled(ButtonBase)<IBasicButtonProp>`
   border-style: solid;
   border-radius: 4px;
   border-width: 1px;
@@ -142,17 +157,22 @@ const BasicButton = styled(ButtonBase)`
   }};
 `
 
-const NORMAL_PADDINGS = {
+const NORMAL_PADDINGS: Partial<Record<GlobalSizes, MarginPadding>> = {
   tiny: { top: 13, bottom: 13, left: 25, right: 25 },
   small: { top: 14, bottom: 14, left: 25, right: 25 },
   large: { top: 16, bottom: 16, left: 25, right: 25 },
 }
 
-const COMPACT_NORMAL_PADDINGS = {
+const COMPACT_NORMAL_PADDINGS: Partial<Record<GlobalSizes, MarginPadding>> = {
   tiny: { top: 9, bottom: 9, left: 15, right: 15 },
 }
 
-const NormalButton = styled(ButtonBase)`
+const NormalButton = styled(ButtonBase)<{
+  borderRadius?: number
+  color?: string
+  alpha?: number
+  compact?: boolean
+}>`
   ${({ borderRadius }) =>
     borderRadius &&
     css`
@@ -161,7 +181,7 @@ const NormalButton = styled(ButtonBase)`
   color: #ffffff;
 
   background-color: ${({ color = 'blue', alpha = 1 }) =>
-    `rgba(${BUTTON_COLORS[color]}, ${alpha})`};
+    `rgba(${SetGlobalColor(color)}, ${alpha})`};
 
   ${({ compact, size = 'tiny' }) => {
     const padding = (compact ? COMPACT_NORMAL_PADDINGS : NORMAL_PADDINGS)[size]
@@ -175,65 +195,7 @@ const NormalButton = styled(ButtonBase)`
   }};
 `
 
-class Button extends PureComponent {
-  render() {
-    const {
-      props: {
-        basic,
-        icon,
-        size,
-        textColor,
-        textAlpha,
-        children,
-        borderRadius,
-        ...props
-      },
-    } = this
-
-    if (basic) {
-      return (
-        <BasicButton
-          bold
-          size={size || 'small'}
-          textColor={textColor || 'gray'}
-          textAlpha={textAlpha}
-          {...props}
-        >
-          {children}
-        </BasicButton>
-      )
-    }
-
-    if (icon) {
-      return (
-        <IconButton
-          name={icon}
-          size={size || 'tiny'}
-          textColor={textColor || 'gray'}
-          textAlpha={textAlpha || 0.5}
-          {...props}
-        >
-          {children}
-        </IconButton>
-      )
-    }
-
-    return (
-      <NormalButton
-        bold
-        size={size || 'tiny'}
-        textColor={textColor || 'white'}
-        textAlpha={textAlpha}
-        borderRadius={borderRadius || 21}
-        {...props}
-      >
-        {children}
-      </NormalButton>
-    )
-  }
-}
-
-const ButtonContainer = styled(Container)`
+const ButtonContainer = styled(Container)<{ floated?: CSS.FloatProperty }>`
   text-align: center;
 
   a {
@@ -265,12 +227,15 @@ const ButtonContainer = styled(Container)`
   }
 `
 
-const ButtonGroup = styled(Container)`
+const ButtonGroup = styled(Container)<{
+  horizontalGap?: number
+  children?: React.ReactNode
+}>`
   width: 100%;
 
   a {
     ${({ horizontalGap, children }) => {
-      const childrenCount = Children.count(children)
+      const childrenCount = React.Children.count(children)
 
       return (horizontalGap || 0) > 0
         ? css`
@@ -292,7 +257,7 @@ const ButtonGroup = styled(Container)`
   }
 `
 
-const BUTTON_ICON_STYLES = {
+const BUTTON_ICON_STYLES: Partial<Record<GlobalSizes, InterpolationValue[]>> = {
   tiny: css`
     width: 15px;
     height: 12px;
@@ -307,7 +272,7 @@ const BUTTON_ICON_STYLES = {
   `,
 }
 
-const ButtonIcon = styled.div`
+const ButtonIcon = styled.div<{ size?: GlobalSizes; src?: string }>`
   display: inline-block;
 
   ${({ size = 'tiny' }) => BUTTON_ICON_STYLES[size]};
@@ -317,8 +282,77 @@ const ButtonIcon = styled.div`
   background-image: url(${({ src }) => src});
 `
 
-Button.Container = ButtonContainer
-Button.Group = ButtonGroup
-Button.Icon = ButtonIcon
+interface IButton extends IBasicButtonProp, IButtonBaseProp {
+  basic?: boolean
+  icon?: string
+  borderRadius?: number
+  onClick: (e: React.SyntheticEvent) => any
+}
+
+class Button extends React.PureComponent<IButton> {
+  static Container = ButtonContainer
+  static Group = ButtonGroup
+  static Icon = ButtonIcon
+
+  render() {
+    const {
+      props: {
+        basic,
+        icon,
+        size,
+        textColor,
+        textAlpha,
+        children,
+        borderRadius,
+        onClick,
+        ...props
+      },
+    } = this
+
+    if (basic) {
+      return (
+        <BasicButton
+          bold
+          size={size || 'small'}
+          textColor={textColor || 'gray'}
+          textAlpha={textAlpha}
+          onClick={onClick}
+          {...props}
+        >
+          {children}
+        </BasicButton>
+      )
+    }
+
+    if (icon) {
+      return (
+        <IconButton
+          name={icon}
+          size={size || 'tiny'}
+          textColor={textColor || 'gray'}
+          textAlpha={textAlpha || 0.5}
+          onClick={onClick}
+          {...props}
+        >
+          {children}
+        </IconButton>
+      )
+    }
+
+    return (
+      <NormalButton
+        bold
+        size={size || 'tiny'}
+        textColor={textColor || 'white'}
+        textAlpha={textAlpha}
+        borderRadius={borderRadius || 21}
+        onClick={onClick}
+        {...props}
+      >
+        {children}
+      </NormalButton>
+    )
+  }
+}
 
 export default Button
