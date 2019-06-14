@@ -1,5 +1,6 @@
-import React, { Children } from 'react'
+import * as React from 'react'
 import styled, { css } from 'styled-components'
+import { GlobalColors } from '../commons'
 
 const Overlay = styled.div`
   position: fixed;
@@ -23,7 +24,7 @@ const Box = styled.div`
   margin: 0;
 `
 
-const Actions = styled.div`
+const Actions = styled.div<{ children?: any }>`
   display: block;
   width: 100%;
   height: 50px;
@@ -33,7 +34,7 @@ const Actions = styled.div`
 
   a {
     ${({ children }) => {
-      const childrenCount = Children.count(children)
+      const childrenCount = React.Children.count(children)
 
       return css`
         width: calc((100% - ${childrenCount - 1}px) / ${childrenCount});
@@ -51,12 +52,12 @@ const Actions = styled.div`
   }
 `
 
-const ACTION_COLORS = {
+const ACTION_COLORS: Partial<Record<GlobalColors, string>> = {
   gray: 'rgba(58, 58, 58, 0.5)',
   blue: '#368fff',
 }
 
-const Action = styled.a`
+const Action = styled.a<{ color?: GlobalColors }>`
   display: inline-block;
   height: 50px;
   line-height: 50px;
@@ -66,16 +67,25 @@ const Action = styled.a`
   color: ${({ color }) => ACTION_COLORS[color || 'gray']};
 `
 
-export default function Modal({ open, onClose, children }) {
+export default function Modal({
+  open,
+  onClose,
+  children,
+}: {
+  open?: boolean
+  onClose?: (e: React.SyntheticEvent) => any
+  children?: React.ReactNode
+}) {
   return open ? (
     <Overlay onClick={onClose}>
-      <Box onClick={silenceEvent}>{children}</Box>
+      <Box onClick={(e: React.SyntheticEvent) => silenceEvent}>{children}</Box>
     </Overlay>
   ) : null
 }
 
-function silenceEvent(e) {
-  return e.stopPropagation()
+function silenceEvent(e: React.SyntheticEvent) {
+  e.stopPropagation()
+  e.nativeEvent.stopImmediatePropagation()
 }
 
 Modal.Actions = Actions

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import styled from 'styled-components'
 import Text from '../elements/text'
 import Modal from '../elements/modal'
@@ -11,20 +11,23 @@ const IconImage = styled.img`
   margin: 40px auto 10px auto;
 `
 
-const MESSAGES_BY_TYPES = {
+const MESSAGES_BY_TYPES: { scrap: { title: string; description: string } } = {
   scrap: {
     title: '저장은 앱에서만 가능해요',
     description: '가고 싶은 장소를 저장하고, 여행할 때 실시간으로 꺼내 보세요.',
   },
 }
 
-const ICONS = {
+const ICONS: { scrap: string } = {
   scrap: 'https://assets.triple.guide/images/img-heart@4x.png',
 }
 
 function Actions({
   negative: { text: negativeText, onClick: onNegativeClick },
   positive: { text: positiveText, onClick: onPositiveClick },
+}: {
+  negative: { text?: string; onClick?: (e: React.SyntheticEvent) => any }
+  positive: { text?: string; onClick?: (e: React.SyntheticEvent) => any }
 }) {
   return (
     <Modal.Actions>
@@ -38,7 +41,13 @@ function Actions({
   )
 }
 
-function ModalBody({ title, description }) {
+function ModalBody({
+  title,
+  description,
+}: {
+  title?: string
+  description: string
+}) {
   return (
     <Container padding={{ top: 40, bottom: 40, left: 30, right: 30 }}>
       {title ? (
@@ -59,8 +68,15 @@ export function TransitionModal({
   onClose,
   onCancel,
   onConfirm,
+}: {
+  open?: boolean
+  messageType?: string
+  onClose?: (e: React.SyntheticEvent) => any
+  onCancel?: (e: React.SyntheticEvent) => any
+  onConfirm?: (e: React.SyntheticEvent) => any
 }) {
-  const { title, description } = MESSAGES_BY_TYPES[messageType] || {}
+  const { title, description }: { title?: string; description?: string } =
+    MESSAGES_BY_TYPES[messageType] || {}
 
   return title ? (
     <Modal open={open} onClose={onClose}>
@@ -80,17 +96,17 @@ export function TransitionModal({
       <Actions
         negative={{
           text: '취소',
-          onClick: () =>
-            onCancel
-              ? !onCancel() && onClose && onClose()
-              : onClose && onClose(),
+          onClick: (e: any) =>
+            onCancel instanceof Event
+              ? !onCancel(e) && onClose instanceof Event && onClose(e)
+              : onClose instanceof Event && onClose(e),
         }}
         positive={{
           text: '트리플가기',
-          onClick: () =>
-            onConfirm
-              ? !onConfirm() && onClose && onClose()
-              : onClose && onClose(),
+          onClick: (e: any) =>
+            onConfirm instanceof Event
+              ? !onConfirm(e) && onClose instanceof Event && onClose(e)
+              : onClose instanceof Event && onClose(e),
         }}
       />
     </Modal>
@@ -106,6 +122,16 @@ export function Confirm({
   onCancel,
   confirmText,
   onConfirm,
+}: {
+  children?: string
+  title?: string
+  open?: boolean
+  cancelText?: string
+  confirmText?: string
+  messageType?: string
+  onClose?: (e: React.SyntheticEvent) => any
+  onCancel?: (e: React.SyntheticEvent) => any
+  onConfirm?: (e: React.SyntheticEvent) => any
 }) {
   return (
     <Modal open={open} onClose={onClose}>
@@ -113,17 +139,17 @@ export function Confirm({
       <Actions
         negative={{
           text: cancelText || '취소',
-          onClick: () =>
-            onCancel
-              ? !onCancel() && onClose && onClose()
-              : onClose && onClose(),
+          onClick: (e: any) =>
+            onCancel instanceof Event
+              ? !onCancel(e) && onClose instanceof Event && onClose(e)
+              : onClose && onClose(e),
         }}
         positive={{
           text: confirmText || '확인',
-          onClick: () =>
-            onConfirm
-              ? !onConfirm() && onClose && onClose()
-              : onClose && onClose(),
+          onClick: (e: any) =>
+            onConfirm instanceof Event
+              ? !onConfirm(e) && onClose instanceof Event && onClose(e)
+              : onClose instanceof Event && onClose(e),
         }}
       />
     </Modal>
@@ -137,6 +163,15 @@ export function Alert({
   onClose,
   confirmText,
   onConfirm,
+}: {
+  children?: string
+  title?: string
+  open?: boolean
+  confirmText?: string
+  messageType?: string
+  onClose?: (e: React.SyntheticEvent) => any
+  onCancel?: (e: React.SyntheticEvent) => any
+  onConfirm?: (e: React.SyntheticEvent) => any
 }) {
   return (
     <Modal open={open} onClose={onClose}>
@@ -144,10 +179,10 @@ export function Alert({
       <Modal.Actions>
         <Modal.Action
           color="blue"
-          onClick={() =>
-            onConfirm
-              ? !onConfirm() && onClose && onClose()
-              : onClose && onClose()
+          onClick={(e: any) =>
+            onConfirm instanceof Event
+              ? !onConfirm(e) && onClose instanceof Event && onClose(e)
+              : onClose instanceof Event && onClose(e)
           }
         >
           {confirmText || '확인'}
