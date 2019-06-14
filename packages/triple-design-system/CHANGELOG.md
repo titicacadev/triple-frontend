@@ -1,3 +1,10 @@
+## 0.4.8 (2019-06-14)
+- global color, size를 별도로 관리
+- csstype 패키지 추가
+- `Container`를 ts로 변환
+
+  _jayg_
+
 ## 0.4.7 (2019-06-12)
 - `AppBanner` 에 `maxWidth` props 추가
 
