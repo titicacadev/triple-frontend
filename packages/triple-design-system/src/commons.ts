@@ -26,6 +26,6 @@ enum GlobalColorSet {
 
 export type GlobalColors = 'blue' | 'gray' | 'white' | 'red'
 
-export function SetGlobalColor(colorString: string) {
+export function SetGlobalColor(colorString: GlobalColors | string) {
   return GlobalColorSet[colorString] || colorString
 }
