@@ -78,16 +78,16 @@ export default function Modal({
 }) {
   return open ? (
     <Overlay onClick={onClose}>
-      <Box onClick={(e: React.SyntheticEvent) => silenceEvent(e)}>
+      <Box onClick={(e?: React.SyntheticEvent) => silenceEvent(e)}>
         {children}
       </Box>
     </Overlay>
   ) : null
 }
 
-function silenceEvent(e: React.SyntheticEvent) {
-  e.stopPropagation()
-  e.nativeEvent.stopImmediatePropagation()
+function silenceEvent(e?: React.SyntheticEvent) {
+  e && e.stopPropagation()
+  e && e.nativeEvent && e.nativeEvent.stopImmediatePropagation()
 }
 
 Modal.Actions = Actions

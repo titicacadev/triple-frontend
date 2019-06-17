@@ -26,8 +26,8 @@ function Actions({
   negative: { text: negativeText, onClick: onNegativeClick },
   positive: { text: positiveText, onClick: onPositiveClick },
 }: {
-  negative: { text?: string; onClick?: (e: React.SyntheticEvent) => any }
-  positive: { text?: string; onClick?: (e: React.SyntheticEvent) => any }
+  negative: { text?: string; onClick?: (e?: React.SyntheticEvent) => any }
+  positive: { text?: string; onClick?: (e?: React.SyntheticEvent) => any }
 }) {
   return (
     <Modal.Actions>
@@ -71,9 +71,9 @@ export function TransitionModal({
 }: {
   open?: boolean
   messageType?: string
-  onClose?: (e: React.SyntheticEvent) => any
-  onCancel?: (e: React.SyntheticEvent) => any
-  onConfirm?: (e: React.SyntheticEvent) => any
+  onClose?: (e?: React.SyntheticEvent) => any
+  onCancel?: (e?: React.SyntheticEvent) => any
+  onConfirm?: (e?: React.SyntheticEvent) => any
 }) {
   const { title, description }: { title?: string; description?: string } =
     MESSAGES_BY_TYPES[messageType] || {}
@@ -96,14 +96,14 @@ export function TransitionModal({
       <Actions
         negative={{
           text: '취소',
-          onClick: (e: React.SyntheticEvent) =>
+          onClick: (e?: React.SyntheticEvent) =>
             onCancel
               ? !onCancel(e) && onClose && onClose(e)
               : onClose && onClose(e),
         }}
         positive={{
           text: '트리플가기',
-          onClick: (e: React.SyntheticEvent) =>
+          onClick: (e?: React.SyntheticEvent) =>
             onConfirm
               ? !onConfirm(e) && onClose && onClose(e)
               : onClose && onClose(e),
@@ -129,9 +129,9 @@ export function Confirm({
   cancelText?: string
   confirmText?: string
   messageType?: string
-  onClose?: (e: React.SyntheticEvent) => any
-  onCancel?: (e: React.SyntheticEvent) => any
-  onConfirm?: (e: React.SyntheticEvent) => any
+  onClose?: (e?: React.SyntheticEvent) => any
+  onCancel?: (e?: React.SyntheticEvent) => any
+  onConfirm?: (e?: React.SyntheticEvent) => any
 }) {
   return (
     <Modal open={open} onClose={onClose}>
@@ -139,14 +139,14 @@ export function Confirm({
       <Actions
         negative={{
           text: cancelText || '취소',
-          onClick: (e: React.SyntheticEvent) =>
+          onClick: (e?: React.SyntheticEvent) =>
             onCancel
               ? !onCancel(e) && onClose && onClose(e)
               : onClose && onClose(e),
         }}
         positive={{
           text: confirmText || '확인',
-          onClick: (e: React.SyntheticEvent) =>
+          onClick: (e?: React.SyntheticEvent) =>
             onConfirm
               ? !onConfirm(e) && onClose && onClose(e)
               : onClose && onClose(e),
@@ -169,9 +169,9 @@ export function Alert({
   open?: boolean
   confirmText?: string
   messageType?: string
-  onClose?: (e: React.SyntheticEvent) => any
-  onCancel?: (e: React.SyntheticEvent) => any
-  onConfirm?: (e: React.SyntheticEvent) => any
+  onClose?: (e?: React.SyntheticEvent) => any
+  onCancel?: (e?: React.SyntheticEvent) => any
+  onConfirm?: (e?: React.SyntheticEvent) => any
 }) {
   return (
     <Modal open={open} onClose={onClose}>
@@ -179,7 +179,7 @@ export function Alert({
       <Modal.Actions>
         <Modal.Action
           color="blue"
-          onClick={(e: React.SyntheticEvent) =>
+          onClick={(e?: React.SyntheticEvent) =>
             onConfirm
               ? !onConfirm(e) && onClose && onClose(e)
               : onClose && onClose(e)
