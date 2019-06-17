@@ -337,6 +337,7 @@ export function ReviewsList({
   onLikesCountClick,
   onMenuClick,
   onImageClick,
+  onUnfoldButtonClick,
   likeVisible,
   menuVisible,
   likes,
@@ -364,6 +365,7 @@ export function ReviewsList({
           onLikesCountClick={onLikesCountClick}
           onMenuClick={onMenuClick}
           onImageClick={onImageClick}
+          onUnfoldButtonClick={onUnfoldButtonClick}
           likeVisible={likeVisible}
           menuVisible={menuVisible}
           DateFormatter={DateFormatter}
