@@ -18,7 +18,7 @@ export type GlobalSizes =
   | 'massive'
 
 enum GlobalColorSet {
-  blue = '41, 135, 240',
+  blue = '54, 143, 255',
   gray = '58, 58, 58',
   white = '255, 255, 255',
   red = '255, 33, 60',
