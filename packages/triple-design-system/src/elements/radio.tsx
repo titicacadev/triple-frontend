@@ -5,22 +5,31 @@ import styled, { css } from 'styled-components'
 import { withField } from '../utils/form-field'
 import { SetGlobalColor } from '../commons'
 
-const RadioContainer = styled.div.attrs<{ name?: string }>({})`
+const RadioFrame = styled.div.attrs<{ name?: string }>({})`
   position: relative;
-  padding: 15px 35px 15px 45px;
+  padding: 15px 35px 15px 12px;
   border: 1px solid rgba(${SetGlobalColor('gray')}, 0.1);
   margin-bottom: 10px;
+  box-sizing: border-box;
 
   &:last-child {
     margin-bottom: 0;
   }
 `
 
+const RadioContainer = styled.div.attrs<{ name?: string }>({})`
+  display: table;
+  width: 100%;
+`
+
+const Cell = styled.div<{ width: number }>`
+  width: ${({ width }) => width || 100}%;
+  display: table-cell;
+  vertical-align: middle;
+  word-break: break-all;
+`
+
 const Icon = styled.span<{ selected?: boolean }>`
-  position: absolute;
-  left: 15px;
-  top: 0;
-  transform: translateY(50%);
   opacity: 0.5;
   display: inline-block;
   width: 22px;
@@ -29,6 +38,7 @@ const Icon = styled.span<{ selected?: boolean }>`
   background-repeat: no-repeat;
   background-position: -1px -1px;
   background-image: url('https://assets.triple.guide/images/radio-off@2x.png');
+  vertical-align: bottom;
 
   ${({ selected }) =>
     selected &&
@@ -36,7 +46,7 @@ const Icon = styled.span<{ selected?: boolean }>`
       opacity: 1;
       background-image: url('https://assets.triple.guide/images/radio-on@2x.png');
       transition: all 0.3s ease;
-      transform: scale(1.1) translateY(50%);
+      transform: scale(1.1);
     `};
 `
 
@@ -86,16 +96,21 @@ export const Radio = withField(
     return (
       <>
         {options.map((option, idx) => (
-          <RadioContainer
-            key={idx}
-            name={name}
-            onClick={(e?: React.SyntheticEvent) =>
-              onChange && onChange(e, option)
-            }
-          >
-            <Icon selected={option === value} />
-            <Text size="small">{option}</Text>
-          </RadioContainer>
+          <RadioFrame key={idx}>
+            <RadioContainer
+              name={name}
+              onClick={(e?: React.SyntheticEvent) =>
+                onChange && onChange(e, option)
+              }
+            >
+              <Cell width={10}>
+                <Icon selected={option === value} />
+              </Cell>
+              <Cell width={90}>
+                <Text size="small">{option}</Text>
+              </Cell>
+            </RadioContainer>
+          </RadioFrame>
         ))}
       </>
     )
