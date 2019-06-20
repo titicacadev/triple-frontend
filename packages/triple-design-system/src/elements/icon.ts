@@ -1,6 +1,10 @@
+import { MarginPadding } from './../commons'
 import styled, { css } from 'styled-components'
+import { GlobalSizes } from '../commons'
 
-const URL_BY_NAMES = {
+type Icons = 'save' | 'web' | 'call' | 'map' | 'arrowRight'
+
+const URL_BY_NAMES: { [key in Icons]: string } = {
   save: 'https://assets.triple.guide/images/ico-save@4x.png',
   web: 'https://assets.triple.guide/images/ico-end-web@4x.png',
   call: 'https://assets.triple.guide/images/ico-end-call@4x.png',
@@ -8,7 +12,7 @@ const URL_BY_NAMES = {
   arrowRight: 'https://assets.triple.guide/images/ico-arrow@4x.png',
 }
 
-const SIZES = {
+const SIZES: Partial<Record<GlobalSizes, string>> = {
   tiny: '16px',
   small: '18px',
   medium: '20px',
@@ -16,7 +20,13 @@ const SIZES = {
   big: '24px',
 }
 
-const Icon = styled.div`
+const Icon = styled.div<{
+  size?: GlobalSizes
+  src?: string
+  name?: Icons
+  padding?: MarginPadding
+  margin?: MarginPadding
+}>`
   display: inline-block;
   width: ${({ size }) => SIZES[size || 'small']};
   height: ${({ size }) => SIZES[size || 'small']};
