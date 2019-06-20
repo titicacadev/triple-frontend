@@ -1,24 +1,31 @@
-import React from 'react'
+import * as React from 'react'
 import styled, { css } from 'styled-components'
+import * as CSS from 'csstype'
+import { GlobalSizes } from '../commons'
 
-const SIZES = {
+const SIZES: Partial<Record<GlobalSizes, string>> = {
   tiny: '14px',
   small: '16px',
   medium: '30px',
 }
 
-const MARGINS = {
+const MARGINS: Partial<Record<GlobalSizes, string>> = {
   small: '0',
   medium: '3.5px',
 }
 
-const IMAGE_PREFIXES = {
+const IMAGE_PREFIXES: Partial<Record<GlobalSizes, string>> = {
   tiny: 'https://assets.triple.guide/images/img-review-star',
   small: 'https://assets.triple.guide/images/img-review-star',
   medium: 'https://assets.triple.guide/images/img-review-star-medium',
 }
 
-const RatingStar = styled.span`
+const RatingStar = styled.span<{
+  verticalAlign?: CSS.VerticalAlignProperty<string>
+  size?: GlobalSizes
+  full?: boolean
+  half?: boolean
+}>`
   display: inline-block;
   vertical-align: ${({ verticalAlign }) =>
     verticalAlign ? verticalAlign : 'text-bottom'};
@@ -37,14 +44,24 @@ const RatingStar = styled.span`
   `};
 `
 
-export default function Rating({ size, score = 0, verticalAlign, onClick }) {
+export default function Rating({
+  size,
+  score = 0,
+  verticalAlign,
+  onClick,
+}: {
+  size?: GlobalSizes
+  score?: number
+  verticalAlign?: CSS.VerticalAlignProperty<string>
+  onClick?: (event: React.SyntheticEvent, rating: number) => any
+}) {
   const full = Math.floor(score)
   const half = Math.floor((score - full) * 2)
   const empty = 5 - full - half
 
   return (
     <>
-      {[...Array(full)].map((_, i) => (
+      {[...Array(full)].map((_, i: number) => (
         <RatingStar
           key={`full-${i}`}
           size={size}
