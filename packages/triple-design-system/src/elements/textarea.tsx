@@ -1,14 +1,15 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { withField } from '../utils/form-field'
+import { GlobalColors } from '../commons'
 
-const COLORS = {
+const COLORS: Partial<Record<GlobalColors, string>> = {
   blue: '54, 143, 255',
   red: '255, 33, 60',
   gray: '58, 58, 58',
 }
 
-const BaseTextarea = styled.textarea`
+const BaseTextarea = styled.textarea<{ focus?: boolean; error?: boolean }>`
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -53,7 +54,12 @@ const BaseTextarea = styled.textarea`
 
 function Textarea({ onChange, ...props }) {
   return (
-    <BaseTextarea onChange={(e) => onChange(e, e.target.value)} {...props} />
+    <BaseTextarea
+      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+        onChange(e, e.target.value)
+      }
+      {...props}
+    />
   )
 }
 

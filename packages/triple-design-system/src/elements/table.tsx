@@ -1,13 +1,15 @@
-import React, { Children } from 'react'
+import * as React from 'react'
 import styled, { css } from 'styled-components'
 import Text from './text'
+import * as CSS from 'csstype'
+import { MarginPadding } from '../commons'
 
-const BACKGROUND_COLORS = {
+const BACKGROUND_COLORS: { [key: string]: string } = {
   header: '234, 234, 234',
   body: '245, 245, 245',
 }
 
-const Container = styled.div`
+const Container = styled.div<{ borderRadius?: number; borderLine?: number }>`
   overflow: hidden;
   box-sizing: border-box;
 
@@ -26,7 +28,11 @@ const Container = styled.div`
     `};
 `
 
-const Row = styled.div`
+const Row = styled.div<{
+  borderRadius?: number
+  verticalGap?: number
+  children?: React.ReactNode
+}>`
   width: 100%;
   display: table;
 
@@ -46,12 +52,17 @@ const Row = styled.div`
         `
       : css`
           & > div {
-            width: ${100 / Children.count(children)}%;
+            width: ${100 / React.Children.count(children)}%;
           }
         `};
 `
 
-const Column = styled.div`
+const Column = styled.div<{
+  width?: number
+  textAlign?: CSS.TextAlignProperty
+  type?: 'header' | 'body'
+  padding?: MarginPadding
+}>`
   width: ${({ width }) => width || '100'}%;
   display: table-cell;
   vertical-align: middle;
@@ -76,7 +87,7 @@ const Column = styled.div`
 
 function HorizontalTable({ head, body }) {
   return (
-    <Container borderLine borderRadius={6}>
+    <Container borderRadius={6}>
       <Row>
         {head.map(({ text }, idx) => (
           <Column
@@ -114,7 +125,7 @@ function VerticalTable({ head, body }) {
       {head.map(({ text }, idx) => (
         <Row key={idx} verticalGap={10} borderRadius={6}>
           <Column
-            width="25"
+            width={25}
             type="header"
             padding={{
               top: 13,
@@ -131,7 +142,7 @@ function VerticalTable({ head, body }) {
           {(body[idx] || []).map(({ text: columnText }, idx) => (
             <Column
               key={idx}
-              width="75"
+              width={75}
               type="body"
               padding={{
                 top: 13,
@@ -150,7 +161,7 @@ function VerticalTable({ head, body }) {
   )
 }
 
-export default function Table({ type, ...props }) {
+export default function Table({ head, body, type, ...props }) {
   const Container = type === 'vertical' ? VerticalTable : HorizontalTable
-  return <Container {...props} />
+  return <Container head={head} body={body} {...props} />
 }
