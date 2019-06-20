@@ -1,8 +1,14 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import Text from './text'
+import { MarginPadding } from '../commons'
 
-const NumricFrame = styled.div`
+interface NumericProp {
+  borderless?: boolean
+  padding?: MarginPadding
+}
+
+const NumericFrame = styled.div<NumericProp>`
   position: relative;
   border: 1px solid #efefef;
 
@@ -10,6 +16,15 @@ const NumricFrame = styled.div`
     borderless &&
     css`
       border: none;
+    `};
+
+  ${({ padding }) =>
+    padding &&
+    css`
+      padding-top: ${padding.top}px;
+      padding-right: ${padding.right}px;
+      padding-bottom: ${padding.bottom}px;
+      padding-left: ${padding.left}px;
     `};
 `
 
@@ -23,7 +38,7 @@ const NumericContainer = styled.div`
   width: 30%;
 `
 
-const InnerContainer = styled.div`
+const InnerContainer = styled.div<{ width?: number }>`
   position: relative;
   display: table-cell;
   vertical-align: middle;
@@ -31,7 +46,7 @@ const InnerContainer = styled.div`
   width: ${({ width }) => (width ? width : 100)}%;
 `
 
-const Icon = styled.span`
+const Icon = styled.span<{ active?: boolean; backgroundImageSrc?: string }>`
   display: inline-block;
   width: 34px;
   height: 34px;
@@ -54,23 +69,34 @@ export default function NumricSpinner({
   borderless,
   padding,
   size,
+}: {
+  label?: string
+  sublabel?: string
+  strikeLabel?: string
+  value?: number
+  max?: number
+  min?: number
+  onChange?: (arg1: number) => any
+  borderless?: boolean
+  padding?: MarginPadding
+  size?: string
 }) {
-  const increment = () => {
+  const increment = (): void => {
     setQuantity(value + 1)
   }
 
-  const decrement = () => {
+  const decrement = (): void => {
     setQuantity(value - 1)
   }
 
-  const setQuantity = (value) => {
+  const setQuantity = (value: number): void => {
     if (value >= 0 && value <= max) {
       onChange(value)
     }
   }
 
   return (
-    <NumricFrame borderless={borderless} padding={padding}>
+    <NumericFrame borderless={borderless} padding={padding}>
       <Text size={size || 'small'}>{label}</Text>
 
       {sublabel ? (
@@ -111,6 +137,6 @@ export default function NumricSpinner({
           />
         </InnerContainer>
       </NumericContainer>
-    </NumricFrame>
+    </NumericFrame>
   )
 }
