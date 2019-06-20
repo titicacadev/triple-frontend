@@ -1,27 +1,36 @@
+## 0.4.11 (2019-06-20)
+
+- `Radio` style 변경
+- `Numeric Spinner` 를 ts 로 변환
+
 ## 0.4.10 (2019-06-14)
-- `ReviewsList` onUnfoldButtonClick을 받음
+
+- `ReviewsList` onUnfoldButtonClick 을 받음
 - `AppBanner` onCTAClick props 추가
 
   _Torres_
 
-- `radio`, `modal`을 ts로 변환
+- `radio`, `modal`을 ts 로 변환
 
   _jayg_
 
 ## 0.4.9 (2019-06-14)
+
 - `container` 오타 수정
-- `button`을 ts로 변환
+- `button`을 ts 로 변환
 
   _jayg_
 
 ## 0.4.8 (2019-06-14)
-- global color, size를 별도로 관리
+
+- global color, size 를 별도로 관리
 - csstype 패키지 추가
-- `Container`를 ts로 변환
+- `Container`를 ts 로 변환
 
   _jayg_
 
 ## 0.4.7 (2019-06-12)
+
 - `AppBanner` 에 `maxWidth` props 추가
 
   _Torres_
@@ -30,17 +39,19 @@
 
   _Torres_
 
-- `navbar`, `text` 를 ts로 변환
+- `navbar`, `text` 를 ts 로 변환
 
   _jayg_
 
 ## 0.4.6 (2019-06-12)
+
 - typescript declaration 생성 및 빌드 과정에 포함
-- `hr`를 ts로 변환
+- `hr`를 ts 로 변환
 
   _jayg_
 
 ## 0.4.5 (2019-06-11)
+
 - typescript 지원을 위하여 webpack, babel 설정 변경
 
   _jayg_
