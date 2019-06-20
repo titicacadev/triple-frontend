@@ -9,7 +9,7 @@ const BACKGROUND_COLORS: { [key: string]: string } = {
   body: '245, 245, 245',
 }
 
-const Container = styled.div<{ borderRadius?: number; borderLine?: number }>`
+const Container = styled.div<{ borderRadius?: number; borderLine?: boolean }>`
   overflow: hidden;
   box-sizing: border-box;
 
@@ -87,7 +87,7 @@ const Column = styled.div<{
 
 function HorizontalTable({ head, body }) {
   return (
-    <Container borderRadius={6}>
+    <Container borderLine borderRadius={6}>
       <Row>
         {head.map(({ text }, idx) => (
           <Column
