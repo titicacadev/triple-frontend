@@ -1,17 +1,19 @@
-import React from 'react'
+import * as React from 'react'
 import styled from 'styled-components'
 import Container from './container'
 
-const Accordion = styled.div`
+type AccordionIcons = 'folded' | 'unfolded'
+
+const AccordionBase = styled.div`
   position: relative;
 `
 
-const TITLE_ICONS = {
+const TITLE_ICONS: { [key in AccordionIcons]: string } = {
   folded: 'ico-accordion-expand-fold@4x.png',
   unfolded: 'ico-accordion-expand-more@4x.png',
 }
 
-const Title = styled(Container)`
+const Title = styled(Container)<{ active?: boolean }>`
   &:after {
     position: absolute;
     top: 0;
@@ -37,8 +39,15 @@ function Folded({ active, children }) {
   return !active && <Container margin={{ top: 5 }}>{children}</Container>
 }
 
-Accordion.Title = Title
-Accordion.Content = Content
-Accordion.Folded = Folded
+export default class Accordion extends React.PureComponent {
+  static Title = Title
+  static Content = Content
+  static Folded = Folded
 
-export default Accordion
+  render() {
+    const {
+      props: { children, ...props },
+    } = this
+    return <AccordionBase>{children}</AccordionBase>
+  }
+}
