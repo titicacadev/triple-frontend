@@ -1,27 +1,29 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
+import * as React from 'react'
+import styled, { css, InterpolationValue } from 'styled-components'
 import { withField } from '../utils/form-field'
+import { SetGlobalColor } from '../commons'
 
-const COLORS = {
-  blue: '54, 143, 255',
-  red: '255, 33, 60',
-  gray: '58, 58, 58',
-}
+type FillType = 'full' | 'border' | 'text'
 
-const FILLTYPES = {
+const FillTypes: { [key in FillType]: InterpolationValue[] } = {
   full: css`
-    border-color: rgb(${COLORS.blue});
-    color: rgb(${COLORS.blue});
+    border-color: rgb(${SetGlobalColor('blue')});
+    color: rgb(${SetGlobalColor('blue')});
   `,
   border: css`
-    border-color: rgb(${COLORS.blue});
+    border-color: rgb(${SetGlobalColor('blue')});
   `,
   text: css`
-    color: rgb(${COLORS.blue});
+    color: rgb(${SetGlobalColor('blue')});
   `,
 }
 
-const ConfirmFrame = styled.div`
+const ConfirmFrame = styled.div.attrs<{ name?: string }>({})<{
+  centered?: boolean
+  borderless?: boolean
+  checked?: boolean
+  fillType?: FillType
+}>`
   width: 100%;
   border: 1px solid #efefef;
   box-sizing: border-box;
@@ -29,7 +31,7 @@ const ConfirmFrame = styled.div`
   position: relative;
   font-size: 14px;
   font-weight: bold;
-  color: rgba(${COLORS.gray}, 0.5);
+  color: rgba(${SetGlobalColor('gray')}, 0.5);
 
   ${({ centered }) =>
     centered &&
@@ -45,10 +47,10 @@ const ConfirmFrame = styled.div`
       border: none;
     `};
 
-  ${({ checked, fillType }) => checked && fillType && FILLTYPES[fillType]};
+  ${({ checked, fillType }) => checked && fillType && FillTypes[fillType]};
 `
 
-const ConfirmContainer = styled.div`
+const ConfirmContainer = styled.div<{ centered?: boolean }>`
   ${({ centered }) =>
     centered &&
     css`
@@ -63,7 +65,7 @@ const ConfirmContainer = styled.div`
     `};
 `
 
-const Icon = styled.span`
+const Icon = styled.span<{ borderless?: boolean; checked?: boolean }>`
   position: absolute;
   top: 50%;
   right: ${({ borderless }) => (borderless ? 0 : 16)}px;

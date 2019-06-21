@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import List from './list'
+import * as CSS from 'csstype'
 
 export const ImageCarouselElementContainer = styled.div`
   display: inline-block;
@@ -37,7 +38,11 @@ export const ResourceListItem = styled(List.Item)`
   margin: 20px 0;
 `
 
-export const SquareImage = styled.img`
+export const SquareImage = styled.img<{
+  size?: string
+  borderRadius?: number
+  floated?: CSS.FloatProperty
+}>`
   width: ${({ size = 'medium' }) => ({ small: 40, medium: 140 }[size])}px;
   height: ${({ size = 'medium' }) => ({ small: 40, medium: 140 }[size])}px;
   border-radius: ${({ size = 'medium' }) => ({ small: 2, medium: 6 }[size])}px;
@@ -58,7 +63,7 @@ export const SquareImage = styled.img`
     `};
 `
 
-export const FluidSquareImage = styled.div`
+export const FluidSquareImage = styled.div<{ src?: string }>`
   position: relative;
   width: 100%;
   background-color: #efefef;

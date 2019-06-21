@@ -1,6 +1,13 @@
 import styled, { css } from 'styled-components'
+import { MarginPadding, GlobalSizes } from '../commons'
+import * as React from 'react'
 
-const Carousel = styled.ul`
+interface CarouselBaseProps {
+  margin?: MarginPadding
+  containerPadding?: { left: number; right: number }
+}
+
+const CarouselBase = styled.ul<CarouselBaseProps>`
   margin: 0;
   padding: 0;
 
@@ -35,7 +42,7 @@ const Carousel = styled.ul`
     `};
 `
 
-const CarouselItem = styled.li`
+const CarouselItem = styled.li<{ size?: GlobalSizes }>`
   display: inline-block;
   position: relative;
   width: ${({ size }) =>
@@ -47,6 +54,18 @@ const CarouselItem = styled.li`
     ({ small: '10px', medium: '10px', large: '15px' }[size || 'small'])};
 `
 
-Carousel.Item = CarouselItem
+export default class Carousel extends React.PureComponent<CarouselBaseProps> {
+  static Item = CarouselItem
 
-export default Carousel
+  render() {
+    const {
+      props: { margin, containerPadding, children, ...props },
+    } = this
+
+    return (
+      <CarouselBase margin={margin} containerPadding={containerPadding}>
+        {children}
+      </CarouselBase>
+    )
+  }
+}

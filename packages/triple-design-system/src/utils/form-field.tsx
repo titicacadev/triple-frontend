@@ -1,30 +1,30 @@
-import React, { PureComponent } from 'react'
+import * as React from 'react'
 import Container from '../elements/container'
 import Text from '../elements/text'
 import styled, { css } from 'styled-components'
-
-const COLORS = {
-  blue: '54, 143, 255',
-  red: '255, 33, 60',
-}
+import { SetGlobalColor } from '../commons'
 
 const MessageContainer = styled(Container)`
   position: relative;
 `
 
-const Label = styled(Text)`
+const Label = styled(Text)<{
+  focus?: boolean
+  error?: string
+  absolute?: boolean
+}>`
   font-size: 13px;
 
   ${({ focus }) =>
     focus &&
     css`
-      color: rgb(${COLORS.blue});
+      color: rgb(${SetGlobalColor('blue')});
     `};
 
   ${({ error }) =>
     error &&
     css`
-      color: rgb(${COLORS.red});
+      color: rgb(${SetGlobalColor('red')});
     `};
 
   ${({ absolute }) =>
@@ -36,7 +36,11 @@ const Label = styled(Text)`
 `
 
 export function withField(WrappedComponent) {
-  return class Wrapper extends PureComponent {
+  return class Wrapper extends React.PureComponent<{
+    label?: string
+    error?: string
+    help?: string
+  }> {
     state = {
       focus: false,
     }
@@ -54,18 +58,10 @@ export function withField(WrappedComponent) {
         >
           {label ? (
             <>
-              <Label
-                focus={focus ? 'true' : undefined}
-                error={error}
-                margin={{ bottom: 6 }}
-              >
+              <Label focus={focus} error={error} margin={{ bottom: 6 }}>
                 {label}
               </Label>
-              <WrappedComponent
-                focus={focus ? 'true' : undefined}
-                error={error}
-                {...props}
-              />
+              <WrappedComponent focus={focus} error={error} {...props} />
               <MessageContainer padding={{ top: 6 }}>
                 {error ? (
                   <Label absolute={!help} error={error}>
@@ -77,11 +73,7 @@ export function withField(WrappedComponent) {
               </MessageContainer>
             </>
           ) : (
-            <WrappedComponent
-              focus={focus ? 'true' : undefined}
-              error={error}
-              {...props}
-            />
+            <WrappedComponent focus={focus} error={error} {...props} />
           )}
         </Container>
       )

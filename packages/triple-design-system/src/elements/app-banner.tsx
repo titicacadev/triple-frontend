@@ -1,8 +1,8 @@
-import React from 'react'
+import * as React from 'react'
 import styled, { css } from 'styled-components'
 import Text from './text'
 
-const AppBannerFrame = styled.div`
+const AppBannerFrame = styled.div<{ fixed?: boolean; maxWidth?: number }>`
   background-color: #ffffff;
   border-bottom: 1px solid #efefef;
   height: 60px;
@@ -69,6 +69,12 @@ export default function AppBanner({
   href,
   onCTAClick,
   ...props
+}: {
+  title?: string
+  description?: string
+  cta?: string
+  href?: string
+  onCTAClick?: (e?: React.SyntheticEvent) => any
 }) {
   return (
     <AppBannerFrame {...props}>
