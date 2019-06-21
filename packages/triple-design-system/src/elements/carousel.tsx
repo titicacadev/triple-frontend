@@ -5,6 +5,7 @@ import * as React from 'react'
 interface CarouselBaseProps {
   margin?: MarginPadding
   containerPadding?: { left: number; right: number }
+  className?: string
 }
 
 const CarouselBase = styled.ul<CarouselBaseProps>`
@@ -59,11 +60,15 @@ export default class Carousel extends React.PureComponent<CarouselBaseProps> {
 
   render() {
     const {
-      props: { margin, containerPadding, children, ...props },
+      props: { margin, containerPadding, children, className, ...props },
     } = this
 
     return (
-      <CarouselBase margin={margin} containerPadding={containerPadding}>
+      <CarouselBase
+        className={className}
+        margin={margin}
+        containerPadding={containerPadding}
+      >
         {children}
       </CarouselBase>
     )
