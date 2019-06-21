@@ -1,3 +1,9 @@
+## 0.4.12 (2019-06-21)
+
+-  `table`, `textarea`, `icon`, `tag`, `rating`, `drawer`, `footer`, `segment` ts로 변환
+
+  _jayg_
+
 ## 0.4.11 (2019-06-20)
 
 - `Radio` style 변경
