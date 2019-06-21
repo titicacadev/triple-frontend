@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import Container from './container'
 import styled from 'styled-components'
 

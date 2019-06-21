@@ -1,7 +1,7 @@
-import React from 'react'
+import * as React from 'react'
 import styled, { css } from 'styled-components'
 
-const DrawerContainer = styled.div`
+const DrawerContainer = styled.div<{ active?: boolean }>`
   z-index: 20;
   position: fixed;
   bottom: 0;

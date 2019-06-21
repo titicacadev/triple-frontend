@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components'
+import { MarginPadding } from '../commons'
 
-export const Segment = styled.div`
+export const Segment = styled.div<{
+  margin?: MarginPadding
+  padding?: MarginPadding
+}>`
   padding: 20px;
   border-radius: 6px;
   background-color: #fafafa;
