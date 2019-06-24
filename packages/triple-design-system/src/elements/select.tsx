@@ -1,40 +1,38 @@
-import React from 'react'
+import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { withField } from '../utils/form-field'
+import { SetGlobalColor } from '../commons'
 
-const COLORS = {
-  gray: '58, 58, 58',
-  blue: '54, 143, 255',
-  red: '255, 33, 60',
-}
-
-const SelectFrame = styled.div`
+const SelectFrame = styled.div<{ focus?: boolean; error?: boolean }>`
   padding: 15px;
-  border: 1px solid rgba(${COLORS.gray}, 0.1);
+  border: 1px solid rgba(${SetGlobalColor('gray')}, 0.1);
   position: relative;
 
   ${({ focus }) =>
     focus &&
     css`
-      border-color: rgb(${COLORS.blue});
+      border-color: rgb(${SetGlobalColor('blue')});
     `};
 
   ${({ error }) =>
     error &&
     css`
-      border-color: rgb(${COLORS.red});
+      border-color: rgb(${SetGlobalColor('red')});
     `};
 `
 
-const BaseSelect = styled.select`
+const BaseSelect = styled.select<{ selected?: boolean; error?: boolean }>`
   width: 100%;
   font-size: 16px;
-  color: rgba(${COLORS.gray}, ${({ selected }) => (selected ? 1 : 0.3)});
+  color: rgba(
+    ${SetGlobalColor('gray')},
+    ${({ selected }) => (selected ? 1 : 0.3)}
+  );
 
   ${({ error }) =>
     error &&
     css`
-      color: rgb(${COLORS.red});
+      color: rgb(${SetGlobalColor('red')});
     `};
 `
 
@@ -54,10 +52,19 @@ function Select({
   value,
   onChange,
   placeholder,
-  options = [],
+  options,
   focus,
   error,
   onBlur,
+}: {
+  name?: string
+  value?: any
+  onChange?: (e?: React.SyntheticEvent, value?: any) => any
+  placeholder?: string
+  options?: [{ label: string; value: any }]
+  focus?: boolean
+  error?: boolean
+  onBlur?: (e?: React.SyntheticEvent) => any
 }) {
   return (
     <SelectFrame focus={focus} error={error}>

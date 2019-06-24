@@ -1,10 +1,10 @@
-import React from 'react'
+import * as React from 'react'
 import styled, { css } from 'styled-components'
 
 const MIN_DESKTOP_WIDTH = 1142
 const MAX_PHONE_WIDTH = 1141
 
-const HeaderFrame = styled.div`
+const HeaderFrame = styled.div<{ fixed?: boolean; minWidth?: number }>`
   background-color: #ffffff;
   border-bottom: 1px solid #efefef;
   position: sticky;
@@ -110,12 +110,12 @@ const MarketLinksContainer = styled.div`
   height: 24px;
 `
 
-const MARKET_LINK_BUTTON_ICON_URLS = {
+const MARKET_LINK_BUTTON_ICON_URLS: { [key: string]: string } = {
   appStore: 'https://assets.triple.guide/images/btn-app-store-on@2x.png',
   playStore: 'https://assets.triple.guide/images/btn-play-store-on@2x.png',
 }
 
-const MarketLink = styled.a`
+const MarketLink = styled.a<{ marketType?: string }>`
   display: inline-block;
   background-repeat: no-repeat;
   background-size: 24px 24px;
@@ -133,6 +133,11 @@ export default function PublicHeader({
   appStoreUrl,
   children,
   ...props
+}: {
+  href?: string
+  playStoreUrl?: string
+  appStoreUrl?: string
+  children?: React.ReactNode
 }) {
   return (
     <HeaderFrame {...props}>

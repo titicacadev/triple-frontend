@@ -1,19 +1,26 @@
-import React from 'react'
+import * as React from 'react'
 import styled, { css } from 'styled-components'
-
 import Container from './container'
+import {
+  SetGlobalColor,
+  GlobalColors,
+  MarginPadding,
+  GlobalSizes,
+} from '../commons'
 
-const COLORS = {
-  blue: '55, 168, 255',
+type labelColor = GlobalColors | 'purple'
+
+const SetLabelColors: Partial<Record<labelColor, string>> = {
+  blue: SetGlobalColor('blue'),
+  red: SetGlobalColor('red'),
   purple: '151, 95, 255',
-  red: '235, 46, 105',
 }
 
-function rgba({ color, alpha }) {
-  return `rgba(${COLORS[color || 'purple']}, ${alpha || 1})`
+function rgba({ color, alpha }: { color?: labelColor; alpha?: number }) {
+  return `rgba(${SetLabelColors[color || 'purple']}, ${alpha || 1})`
 }
 
-const RadioLabel = styled.div`
+const RadioLabel = styled.div<{ selected?: boolean; margin?: MarginPadding }>`
   display: inline-block;
   padding-left: 9px;
   font-size: 14px;
@@ -38,7 +45,12 @@ const RadioLabel = styled.div`
     `};
 `
 
-const PROMO_SIZES = {
+const PROMO_SIZES: Partial<
+  Record<
+    GlobalSizes,
+    { fontSize: number; borderRadius: number; height: number; padding: string }
+  >
+> = {
   small: {
     fontSize: 11,
     borderRadius: 1,
@@ -53,7 +65,12 @@ const PROMO_SIZES = {
   },
 }
 
-export const PromoLabel = styled.div`
+export const PromoLabel = styled.div<{
+  size?: GlobalSizes
+  emphasized?: boolean
+  color?: labelColor
+  margin?: MarginPadding
+}>`
   display: inline-block;
 
   padding: ${({ size }) => PROMO_SIZES[size || 'small'].padding};
@@ -66,15 +83,13 @@ export const PromoLabel = styled.div`
     emphasized
       ? css`
           font-weight: bold;
-          background-color: ${({ color = 'purple' }) =>
-            rgba({ color, alpha: 1 })};
+          background-color: ${({ color }) => rgba({ color, alpha: 1 })};
           color: white;
         `
       : css`
           font-weight: normal;
-          background-color: ${({ color = 'purple' }) =>
-            rgba({ color, alpha: 0.1 })};
-          color: ${({ color = 'purple' }) => rgba({ color, alpha: 1 })};
+          background-color: ${({ color }) => rgba({ color, alpha: 0.1 })};
+          color: ${({ color }) => rgba({ color, alpha: 1 })};
         `};
 
   ${({ margin }) =>
@@ -87,7 +102,16 @@ export const PromoLabel = styled.div`
     `};
 `
 
-function Label({ radio, promo, children, ...props }) {
+function Label({
+  radio,
+  promo,
+  children,
+  ...props
+}: {
+  radio?: boolean
+  promo?: boolean
+  children?: React.ReactNode
+}) {
   if (radio) {
     return <RadioLabel {...props}>{children}</RadioLabel>
   } else if (promo) {
@@ -97,7 +121,7 @@ function Label({ radio, promo, children, ...props }) {
   return children
 }
 
-const LabelGroup = styled(Container)`
+const LabelGroup = styled(Container)<{ horizontalGap?: number }>`
   div:not(:first-child) {
     ${({ horizontalGap }) => css`
       margin-left: ${horizontalGap || 0}px;

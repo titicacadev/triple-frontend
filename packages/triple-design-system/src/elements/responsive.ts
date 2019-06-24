@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components'
 
-const Responsive = styled.div`
+const Responsive = styled.div<{
+  inline?: boolean
+  maxWidth?: number
+  minWidth?: number
+}>`
   display: ${({ inline }) => (inline ? 'inline' : 'block')};
   ${({ maxWidth, minWidth }) =>
     minWidth && maxWidth

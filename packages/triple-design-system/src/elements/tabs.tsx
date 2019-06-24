@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import styled from 'styled-components'
 
 const TabsContainer = styled.div`
@@ -8,7 +8,7 @@ const TabsContainer = styled.div`
   white-space: nowrap;
 `
 
-const Tab = styled.div`
+const Tab = styled.div<{ widthPercent?: number; active?: boolean }>`
   display: inline-block;
   box-sizing: border-box;
   width: ${({ widthPercent }) => widthPercent}%;
@@ -22,7 +22,15 @@ const Tab = styled.div`
   font-weight: bold;
 `
 
-export default function Tabs({ value: currentValue, options, onChange }) {
+export default function Tabs({
+  value: currentValue,
+  options,
+  onChange,
+}: {
+  value?: any
+  options?: [{ label: string; value: any }]
+  onChange?: (e?: React.SyntheticEvent, value?: any) => any
+}) {
   return (
     <TabsContainer>
       {options.map(({ label, value }, i) => (

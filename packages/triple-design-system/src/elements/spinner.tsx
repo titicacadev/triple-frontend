@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import styled, { css, keyframes } from 'styled-components'
 
 const loadingAnimation = keyframes`
@@ -7,7 +7,7 @@ const loadingAnimation = keyframes`
   }
 `
 
-const Container = styled.div`
+const Container = styled.div<{ full?: boolean }>`
   width: 100%;
   height: 100%;
   position: fixed;
@@ -37,7 +37,7 @@ const Icon = styled.div`
   animation: ${loadingAnimation} 1s steps(30) infinite;
 `
 
-export default function Spinner({ full }) {
+export default function Spinner({ full }: { full?: boolean }) {
   return (
     <Container full={full}>
       <Wrapper>

@@ -1,11 +1,12 @@
-import React from 'react'
+import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { formatNumber } from '../utilities'
 import Container from './container'
 import Text from './text'
 import Drawer from './drawer'
+import { GlobalSizes, GlobalColors, MarginPadding } from '../commons'
 
-const FONT_SIZE = {
+const FONT_SIZE: Partial<Record<GlobalSizes, string>> = {
   mini: '12px',
   tiny: '13px',
   small: '14px',
@@ -13,7 +14,9 @@ const FONT_SIZE = {
   big: '20px',
 }
 
-const COLORS = {
+type PricingColors = GlobalColors | 'pink' | 'default'
+
+const COLORS: Partial<Record<PricingColors, string>> = {
   pink: 'rgba(253, 46, 105, 1)',
   gray: 'rgba(58, 58, 58, 0.3)',
   blue: 'rgba(54, 143, 255, 1)',
@@ -21,7 +24,7 @@ const COLORS = {
   default: 'rgba(58, 58, 58, 1)',
 }
 
-const PricingContainer = styled.div`
+const PricingContainer = styled.div<{ padding?: MarginPadding }>`
   clear: both;
   position: relative;
   text-align: right;
@@ -48,7 +51,14 @@ const PricingContainer = styled.div`
   }
 `
 
-const Price = styled.span`
+const Price = styled.span<{
+  size?: GlobalSizes
+  bold?: boolean
+  lineThrough?: boolean
+  absolutePosition?: boolean
+  margin?: MarginPadding
+  color?: PricingColors
+}>`
   font-weight: normal;
   display: inline-block;
   font-size: ${({ size = 'mini' }) => FONT_SIZE[size]};
@@ -78,7 +88,7 @@ const Price = styled.span`
     `};
 `
 
-const Label = styled.div`
+const Label = styled.div<{ size?: GlobalSizes }>`
   position: absolute;
   left: 0;
   bottom: 0;
@@ -91,11 +101,19 @@ const SuffixText = styled(Text)`
   vertical-align: top;
 `
 
-function discountRate(basePrice, salePrice) {
+function discountRate(basePrice: number, salePrice: number) {
   return `${Math.floor(((basePrice - salePrice) / basePrice) * 100)}%`
 }
 
-function RichPricing({ basePrice, salePrice, label }) {
+function RichPricing({
+  basePrice,
+  salePrice,
+  label,
+}: {
+  basePrice: number
+  salePrice: number
+  label: string
+}) {
   return (
     <PricingContainer padding={{ top: 22 }}>
       <Label> {label} </Label>
@@ -112,7 +130,13 @@ function RichPricing({ basePrice, salePrice, label }) {
   )
 }
 
-const RegularPricing = ({ basePrice, salePrice }) => (
+const RegularPricing = ({
+  basePrice,
+  salePrice,
+}: {
+  basePrice: number
+  salePrice: number
+}) => (
   <PricingContainer padding={{ top: 18 }}>
     <Price color="gray" lineThrough margin={{ right: 5 }}>
       {formatNumber(basePrice)}
@@ -150,6 +174,13 @@ function FixedPricing({
   salePrice,
   suffix,
   onClick,
+}: {
+  active?: boolean
+  label?: string
+  buttonText?: string
+  salePrice?: number
+  suffix?: string
+  onClick?: (e?: React.SyntheticEvent) => any
 }) {
   return (
     <Drawer active={active}>
@@ -183,7 +214,43 @@ function FixedPricing({
   )
 }
 
-export default function Pricing({ rich, fixed, ...props }) {
-  const Container = rich ? RichPricing : fixed ? FixedPricing : RegularPricing
-  return <Container {...props} />
+export default function Pricing({
+  basePrice,
+  salePrice,
+  label,
+  active,
+  buttonText,
+  suffix,
+  onClick,
+  rich,
+  fixed,
+}: {
+  basePrice?: number
+  salePrice?: number
+  label?: string
+  active?: boolean
+  buttonText?: string
+  suffix?: string
+  onClick?: (e?: React.SyntheticEvent) => any
+  rich?: boolean
+  fixed?: boolean
+}) {
+  if (rich) {
+    return (
+      <RichPricing basePrice={basePrice} salePrice={salePrice} label={label} />
+    )
+  } else if (fixed) {
+    return (
+      <FixedPricing
+        active={active}
+        label={label}
+        buttonText={buttonText}
+        salePrice={salePrice}
+        suffix={suffix}
+        onClick={onClick}
+      />
+    )
+  } else {
+    return <RegularPricing basePrice={basePrice} salePrice={salePrice} />
+  }
 }

@@ -1,7 +1,11 @@
-import React from 'react'
+import * as React from 'react'
 import styled from 'styled-components'
 
-const CompactScrapButton = styled.div`
+const CompactScrapButton = styled.div<{
+  top?: number
+  right?: number
+  pressed?: boolean
+}>`
   position: absolute;
   top: ${({ top }) => top || 0}px;
   right: ${({ right }) => right || 0}px;
@@ -11,7 +15,11 @@ const CompactScrapButton = styled.div`
   background-size: 34px 34px;
 `
 
-const RegularScrapButton = styled.div`
+const RegularScrapButton = styled.div<{
+  top?: number
+  right?: number
+  pressed?: boolean
+}>`
   position: absolute;
   top: ${({ top }) => (top === 0 ? 0 : top || 3)}px;
   right: ${({ right }) => (right === 0 ? 0 : right || 3)}px;

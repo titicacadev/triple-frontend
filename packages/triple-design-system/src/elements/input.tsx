@@ -1,15 +1,10 @@
-import React from 'react'
+import * as React from 'react'
 import InputMask from 'react-input-mask'
 import styled, { css } from 'styled-components'
 import { withField } from '../utils/form-field'
+import { SetGlobalColor } from '../commons'
 
-const COLORS = {
-  blue: '54, 143, 255',
-  red: '255, 33, 60',
-  gray: '58, 58, 58',
-}
-
-const BaseInput = styled(InputMask)`
+const BaseInput = styled(InputMask)<{ focus?: boolean; error?: boolean }>`
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -19,33 +14,33 @@ const BaseInput = styled(InputMask)`
   padding: 14px 16px;
   font-size: 16px;
   font-weight: 500;
-  border: 1px solid rgba(${COLORS.gray}, 0.1);
+  border: 1px solid rgba(${SetGlobalColor('gray')}, 0.1);
   border-radius: 2px;
   box-sizing: border-box;
   width: 100%;
 
   ::placeholder {
-    color: rgba(${COLORS.gray}, 0.3);
+    color: rgba(${SetGlobalColor('gray')}, 0.3);
   }
 
   :-ms-input-placeholder {
-    color: rgba(${COLORS.gray}, 0.3);
+    color: rgba(${SetGlobalColor('gray')}, 0.3);
   }
 
   ::-ms-input-placeholder {
-    color: rgba(${COLORS.gray}, 0.3);
+    color: rgba(${SetGlobalColor('gray')}, 0.3);
   }
 
   ${({ focus }) =>
     focus &&
     css`
-      border-color: rgb(${COLORS.blue});
+      border-color: rgb(${SetGlobalColor('blue')});
     `};
 
   ${({ error }) =>
     error &&
     css`
-      border-color: rgb(${COLORS.red});
+      border-color: rgb(${SetGlobalColor('red')});
     `};
 `
 

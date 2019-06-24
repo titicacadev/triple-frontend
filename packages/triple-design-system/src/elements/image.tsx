@@ -1,8 +1,31 @@
-import React from 'react'
+import * as React from 'react'
 import styled, { css } from 'styled-components'
 import Icon from './icon'
+import { MarginPadding, GlobalSizes } from '../commons'
+import * as CSS from 'csstype'
 
-const RawImage = styled.img`
+const IMAGE_HEIGHT_OPTIONS: Partial<Record<GlobalSizes, string>> = {
+  mini: '80px',
+  small: '110px',
+  medium: '200px',
+  large: '400px',
+}
+
+const ROUND_SIZES: Partial<Record<GlobalSizes, number>> = {
+  small: 40,
+  medium: 60,
+}
+
+const IMAGE_FRAME_OPTIONS: Partial<Record<GlobalSizes, string>> = {
+  mini: '25%',
+  small: '60%',
+  medium: '75%',
+  large: '100%',
+  big: '110%',
+  huge: '160%',
+}
+
+const RawImage = styled.img<{ borderRadius?: number; overlay?: boolean }>`
   position: absolute;
   top: 0;
   width: 100%;
@@ -25,7 +48,10 @@ const SourceUrl = styled.div`
   color: rgba(255, 255, 255, 0.9);
 `
 
-const ImageOverlay = styled.div`
+const ImageOverlay = styled.div<{
+  borderRadius?: number
+  overlayPadding?: MarginPadding
+}>`
   box-sizing: border-box;
   position: absolute;
   top: 0;
@@ -65,6 +91,14 @@ const ImageFrameContent = ({
   overlay,
   overlayPadding,
   withLinkIndicator,
+}: {
+  imageUrl?: string
+  borderRadius?: number
+  sourceUrl?: string
+  ImageSource?: any
+  overlay?: boolean
+  overlayPadding?: MarginPadding
+  withLinkIndicator?: boolean
 }) => (
   <>
     {imageUrl && (
@@ -92,7 +126,13 @@ const ImageFrameContent = ({
   </>
 )
 
-const ImageFrameBase = styled.div`
+const ImageFrameBase = styled.div<{
+  floated?: CSS.FloatProperty
+  margin?: MarginPadding
+  borderRadius?: number
+  asPlaceholder?: boolean
+  src?: string
+}>`
   position: relative;
   overflow: hidden;
   float: ${({ floated }) => floated || 'none'};
@@ -123,39 +163,27 @@ const ImageFrameBase = styled.div`
         `};
 `
 
-const ImageFrameWithFixedDimensions = styled(ImageFrameBase)`
+const ImageFrameWithFixedDimensions = styled(ImageFrameBase)<{
+  height?: number
+  size?: GlobalSizes
+  width?: number
+}>`
   height: ${({ height, size }) =>
     (height && `${height}px`) || IMAGE_HEIGHT_OPTIONS[size]};
   width: ${({ width }) => (width && `${width}px`) || '100%'};
 `
 
-const IMAGE_FRAME_OPTIONS = {
-  mini: '25%',
-  small: '60%',
-  medium: '75%',
-  large: '100%',
-  big: '110%',
-  huge: '160%',
-}
-
-const ImageFrameWithFixedRatio = styled(ImageFrameBase)`
+const ImageFrameWithFixedRatio = styled(ImageFrameBase)<{
+  frame?: GlobalSizes
+}>`
   padding-top: ${({ frame }) => IMAGE_FRAME_OPTIONS[frame || 'small']};
   width: 100%;
 `
 
-const IMAGE_HEIGHT_OPTIONS = {
-  mini: '80px',
-  small: '110px',
-  medium: '200px',
-  large: '400px',
-}
-
-const ROUND_SIZES = {
-  small: 40,
-  medium: 60,
-}
-
-const RoundImage = styled.img`
+const RoundImage = styled.img<{
+  size?: GlobalSizes
+  floated?: CSS.FloatProperty
+}>`
   width: ${({ size }) => ROUND_SIZES[size || 'small']}px;
   height: ${({ size }) => ROUND_SIZES[size || 'small']}px;
   border-radius: ${({ size }) => ROUND_SIZES[size || 'small'] / 2}px;
@@ -182,6 +210,25 @@ function Image({
   height,
   margin,
   asPlaceholder,
+  children,
+}: {
+  src?: string
+  borderRadius?: number
+  circular?: boolean
+  sourceUrl?: string
+  frame?: GlobalSizes
+  size?: GlobalSizes
+  ImageSource?: any
+  overlay?: boolean
+  overlayPadding?: MarginPadding
+  withLinkIndicator?: boolean
+  onClick?: (e?: React.SyntheticEvent) => any
+  floated?: CSS.FloatProperty
+  width?: number
+  height?: number
+  margin?: MarginPadding
+  asPlaceholder?: boolean
+  children?: React.ReactNode
 }) {
   if (circular) {
     return <RoundImage src={src} floated={floated} size={size} />
@@ -189,7 +236,7 @@ function Image({
 
   const Frame =
     size || height
-      ? ({ children }) => (
+      ? ({ children }: { children?: React.ReactNode }) => (
           <ImageFrameWithFixedDimensions
             size={size}
             onClick={onClick}
@@ -204,12 +251,11 @@ function Image({
             {children}
           </ImageFrameWithFixedDimensions>
         )
-      : ({ children }) => (
+      : ({ children }: { children?: React.ReactNode }) => (
           <ImageFrameWithFixedRatio
             frame={frame}
             onClick={onClick}
             floated={floated}
-            width={width}
             margin={margin}
             borderRadius={borderRadius}
             asPlaceholder={asPlaceholder}
