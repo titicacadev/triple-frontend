@@ -4,7 +4,7 @@ import Container from '../elements/container'
 import Text from '../elements/text'
 import Image from '../elements/image'
 
-export function Author({ name, bio, image, onClick }) {
+export function Author({ source: { name, bio, image }, bioOverride, onClick }) {
   return (
     <Container centered textAlign="center" onClick={onClick}>
       {image && <Image size="medium" circular src={image.sizes.large.url} />}
@@ -19,7 +19,7 @@ export function Author({ name, bio, image, onClick }) {
         lineHeight={1.43}
         margin={{ top: 5 }}
       >
-        {bio}
+        {bioOverride || bio}
       </Text>
     </Container>
   )
