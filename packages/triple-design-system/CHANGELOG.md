@@ -27,6 +27,8 @@
 - `Radio` style 변경
 - `Numeric Spinner` 를 ts 로 변환
 
+  _Olaf_
+
 ## 0.4.10 (2019-06-14)
 
 - `ReviewsList` onUnfoldButtonClick 을 받음
