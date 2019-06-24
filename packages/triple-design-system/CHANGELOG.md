@@ -1,3 +1,8 @@
+- `Author`에 `bioOverride` 추가 및 새로운 모델 스펙에 맞춰서 props 변경
+- `Author` ts 로 변환
+
+  _Royd_
+
 ## 0.4.13 (2019-06-24)
 
 -  `accordion`, `app-banner`, `carousel`, `checkbox`, `content-elements`, `list`, `form-filed` ts로 변환
