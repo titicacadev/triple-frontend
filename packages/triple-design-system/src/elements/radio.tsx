@@ -3,12 +3,12 @@ import Container from './container'
 import Text from './text'
 import styled, { css } from 'styled-components'
 import { withField } from '../utils/form-field'
-import { SetGlobalColor } from '../commons'
+import { GetGlobalColor } from '../commons'
 
 const RadioFrame = styled.div.attrs<{ name?: string }>({})`
   position: relative;
   padding: 15px 35px 15px 12px;
-  border: 1px solid rgba(${SetGlobalColor('gray')}, 0.1);
+  border: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
   margin-bottom: 10px;
   box-sizing: border-box;
 
@@ -58,12 +58,12 @@ const GenderContainer = styled.div.attrs<{ name?: string; value?: string }>(
   width: 50%;
   display: inline-block;
   padding: 16px 0;
-  border: 1px solid rgba(${SetGlobalColor('gray')}, 0.1);
+  border: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
   border-radius: 2px;
   box-sizing: border-box;
   text-align: center;
   font-size: 14px;
-  color: rgba(${SetGlobalColor('gray')}, 0.3);
+  color: rgba(${GetGlobalColor('gray')}, 0.3);
 
   &:last-child {
     border-left: none;
@@ -72,11 +72,11 @@ const GenderContainer = styled.div.attrs<{ name?: string; value?: string }>(
   ${({ selected }) =>
     selected &&
     css`
-      color: rgb(${SetGlobalColor('blue')});
-      border: 1px solid rgb(${SetGlobalColor('blue')});
+      color: rgb(${GetGlobalColor('blue')});
+      border: 1px solid rgb(${GetGlobalColor('blue')});
 
       &:last-child {
-        border: 1px solid rgb(${SetGlobalColor('blue')});
+        border: 1px solid rgb(${GetGlobalColor('blue')});
       }
     `};
 `

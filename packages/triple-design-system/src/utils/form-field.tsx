@@ -2,7 +2,7 @@ import * as React from 'react'
 import Container from '../elements/container'
 import Text from '../elements/text'
 import styled, { css } from 'styled-components'
-import { SetGlobalColor } from '../commons'
+import { GetGlobalColor } from '../commons'
 
 const MessageContainer = styled(Container)`
   position: relative;
@@ -18,13 +18,13 @@ const Label = styled(Text)<{
   ${({ focus }) =>
     focus &&
     css`
-      color: rgb(${SetGlobalColor('blue')});
+      color: rgb(${GetGlobalColor('blue')});
     `};
 
   ${({ error }) =>
     error &&
     css`
-      color: rgb(${SetGlobalColor('red')});
+      color: rgb(${GetGlobalColor('red')});
     `};
 
   ${({ absolute }) =>

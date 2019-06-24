@@ -1,20 +1,20 @@
 import * as React from 'react'
 import styled, { css, InterpolationValue } from 'styled-components'
 import { withField } from '../utils/form-field'
-import { SetGlobalColor } from '../commons'
+import { GetGlobalColor } from '../commons'
 
 type FillType = 'full' | 'border' | 'text'
 
 const FillTypes: { [key in FillType]: InterpolationValue[] } = {
   full: css`
-    border-color: rgb(${SetGlobalColor('blue')});
-    color: rgb(${SetGlobalColor('blue')});
+    border-color: rgb(${GetGlobalColor('blue')});
+    color: rgb(${GetGlobalColor('blue')});
   `,
   border: css`
-    border-color: rgb(${SetGlobalColor('blue')});
+    border-color: rgb(${GetGlobalColor('blue')});
   `,
   text: css`
-    color: rgb(${SetGlobalColor('blue')});
+    color: rgb(${GetGlobalColor('blue')});
   `,
 }
 
@@ -31,7 +31,7 @@ const ConfirmFrame = styled.div.attrs<{ name?: string }>({})<{
   position: relative;
   font-size: 14px;
   font-weight: bold;
-  color: rgba(${SetGlobalColor('gray')}, 0.5);
+  color: rgba(${GetGlobalColor('gray')}, 0.5);
 
   ${({ centered }) =>
     centered &&

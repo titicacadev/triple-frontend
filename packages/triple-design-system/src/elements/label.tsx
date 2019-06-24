@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled, { css } from 'styled-components'
 import Container from './container'
 import {
-  SetGlobalColor,
+  GetGlobalColor,
   GlobalColors,
   MarginPadding,
   GlobalSizes,
@@ -10,14 +10,14 @@ import {
 
 type labelColor = GlobalColors | 'purple'
 
-const SetLabelColors: Partial<Record<labelColor, string>> = {
-  blue: SetGlobalColor('blue'),
-  red: SetGlobalColor('red'),
+const GetLabelColors: Partial<Record<labelColor, string>> = {
+  blue: GetGlobalColor('blue'),
+  red: GetGlobalColor('red'),
   purple: '151, 95, 255',
 }
 
 function rgba({ color, alpha }: { color?: labelColor; alpha?: number }) {
-  return `rgba(${SetLabelColors[color || 'purple']}, ${alpha || 1})`
+  return `rgba(${GetLabelColors[color || 'purple']}, ${alpha || 1})`
 }
 
 const RadioLabel = styled.div<{ selected?: boolean; margin?: MarginPadding }>`

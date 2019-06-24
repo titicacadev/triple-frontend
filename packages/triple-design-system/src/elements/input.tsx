@@ -2,7 +2,7 @@ import * as React from 'react'
 import InputMask from 'react-input-mask'
 import styled, { css } from 'styled-components'
 import { withField } from '../utils/form-field'
-import { SetGlobalColor } from '../commons'
+import { GetGlobalColor } from '../commons'
 
 const BaseInput = styled(InputMask)<{ focus?: boolean; error?: boolean }>`
   appearance: none;
@@ -14,33 +14,33 @@ const BaseInput = styled(InputMask)<{ focus?: boolean; error?: boolean }>`
   padding: 14px 16px;
   font-size: 16px;
   font-weight: 500;
-  border: 1px solid rgba(${SetGlobalColor('gray')}, 0.1);
+  border: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
   border-radius: 2px;
   box-sizing: border-box;
   width: 100%;
 
   ::placeholder {
-    color: rgba(${SetGlobalColor('gray')}, 0.3);
+    color: rgba(${GetGlobalColor('gray')}, 0.3);
   }
 
   :-ms-input-placeholder {
-    color: rgba(${SetGlobalColor('gray')}, 0.3);
+    color: rgba(${GetGlobalColor('gray')}, 0.3);
   }
 
   ::-ms-input-placeholder {
-    color: rgba(${SetGlobalColor('gray')}, 0.3);
+    color: rgba(${GetGlobalColor('gray')}, 0.3);
   }
 
   ${({ focus }) =>
     focus &&
     css`
-      border-color: rgb(${SetGlobalColor('blue')});
+      border-color: rgb(${GetGlobalColor('blue')});
     `};
 
   ${({ error }) =>
     error &&
     css`
-      border-color: rgb(${SetGlobalColor('red')});
+      border-color: rgb(${GetGlobalColor('red')});
     `};
 `
 

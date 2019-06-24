@@ -6,7 +6,7 @@ import {
   GlobalSizes,
   GlobalColors,
   MarginPadding,
-  SetGlobalColor,
+  GetGlobalColor,
 } from '../commons'
 
 const SIZES: Partial<Record<GlobalSizes, InterpolationValue[]>> = {
@@ -43,7 +43,7 @@ const ButtonBase = styled.a<IButtonBaseProp>`
   box-sizing: border-box;
 
   color: ${({ textColor = 'gray', textAlpha = 1 }) =>
-    `rgba(${SetGlobalColor(textColor)}, ${textAlpha})`};
+    `rgba(${GetGlobalColor(textColor)}, ${textAlpha})`};
 
   float: ${({ floated }) => floated || 'none'};
 
@@ -181,7 +181,7 @@ const NormalButton = styled(ButtonBase)<{
   color: #ffffff;
 
   background-color: ${({ color = 'blue', alpha = 1 }) =>
-    `rgba(${SetGlobalColor(color)}, ${alpha})`};
+    `rgba(${GetGlobalColor(color)}, ${alpha})`};
 
   ${({ compact, size = 'tiny' }) => {
     const padding = (compact ? COMPACT_NORMAL_PADDINGS : NORMAL_PADDINGS)[size]

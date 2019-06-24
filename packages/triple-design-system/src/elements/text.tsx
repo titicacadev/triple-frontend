@@ -4,7 +4,7 @@ import * as CSS from 'csstype'
 import {
   MarginPadding,
   GlobalSizes,
-  SetGlobalColor,
+  GetGlobalColor,
   GlobalColors,
 } from '../commons'
 
@@ -40,7 +40,7 @@ export function LineBreak({ children }: { children?: string }) {
 }
 
 function rgba({ color, alpha }: { color?: string; alpha?: number }) {
-  return `rgba(${SetGlobalColor(color || 'gray')}, ${alpha || 1})`
+  return `rgba(${GetGlobalColor(color || 'gray')}, ${alpha || 1})`
 }
 
 const TextBase = styled.div<{

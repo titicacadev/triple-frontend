@@ -1,23 +1,23 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { withField } from '../utils/form-field'
-import { SetGlobalColor } from '../commons'
+import { GetGlobalColor } from '../commons'
 
 const SelectFrame = styled.div<{ focus?: boolean; error?: boolean }>`
   padding: 15px;
-  border: 1px solid rgba(${SetGlobalColor('gray')}, 0.1);
+  border: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
   position: relative;
 
   ${({ focus }) =>
     focus &&
     css`
-      border-color: rgb(${SetGlobalColor('blue')});
+      border-color: rgb(${GetGlobalColor('blue')});
     `};
 
   ${({ error }) =>
     error &&
     css`
-      border-color: rgb(${SetGlobalColor('red')});
+      border-color: rgb(${GetGlobalColor('red')});
     `};
 `
 
@@ -25,14 +25,14 @@ const BaseSelect = styled.select<{ selected?: boolean; error?: boolean }>`
   width: 100%;
   font-size: 16px;
   color: rgba(
-    ${SetGlobalColor('gray')},
+    ${GetGlobalColor('gray')},
     ${({ selected }) => (selected ? 1 : 0.3)}
   );
 
   ${({ error }) =>
     error &&
     css`
-      color: rgb(${SetGlobalColor('red')});
+      color: rgb(${GetGlobalColor('red')});
     `};
 `
 
