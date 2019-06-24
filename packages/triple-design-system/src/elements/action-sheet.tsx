@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import * as CSS from 'csstype'
 
-const { Provider, Consumer } = React.createContext(null) // onClose 기본값
+const { Provider, Consumer } = React.createContext(undefined)
 
 const Overlay = styled.div`
   position: fixed;
