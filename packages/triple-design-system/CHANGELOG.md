@@ -1,7 +1,13 @@
+## 0.5.0-rc.1 (2019-06-24)
+
 - `Author`에 `bioOverride` 추가 및 새로운 모델 스펙에 맞춰서 props 변경
 - `Author` ts 로 변환
-
+  
   _Royd_
+
+- `action-sheet`, `image`, `input`, `label`, `pager`, `pricing`, `public-header`, `responsive`, `scrap-button`, `select`, `spinner`, `tabs` ts로 변환
+
+  _jayg_
 
 ## 0.4.13 (2019-06-24)
 
