@@ -1,8 +1,15 @@
+## 0.4.13 (2019-06-24)
+
+-  `accordion`, `app-banner`, `carousel`, `checkbox`, `content-elements`, `list`, `form-filed` ts로 변환
+-  javascript dot notation을 typescript에 맞춰 `React.PureComponent`의 static 멤버로 변경
+
+    _jayg_
+
 ## 0.4.12 (2019-06-21)
 
 -  `table`, `textarea`, `icon`, `tag`, `rating`, `drawer`, `footer`, `segment` ts로 변환
 
-  _jayg_
+    _jayg_
 
 ## 0.4.11 (2019-06-20)
 
