@@ -1,8 +1,9 @@
-import React, { createContext } from 'react'
+import * as React from 'react'
 import styled from 'styled-components'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import * as CSS from 'csstype'
 
-const { Provider, Consumer } = createContext()
+const { Provider, Consumer } = React.createContext(null) // onClose 기본값
 
 const Overlay = styled.div`
   position: fixed;
@@ -71,7 +72,7 @@ const Title = styled.div`
   margin: 0 0 10px 27px;
 `
 
-const ContentContainer = styled.div`
+const ContentContainer = styled.div<{ bottomSpacing?: number }>`
   box-sizing: border-box;
   max-height: calc(100vh - 256px);
   overflow: auto;
@@ -103,7 +104,10 @@ const ActionItemContainer = styled.div`
   }
 `
 
-const ItemText = styled.div`
+const ItemText = styled.div<{
+  width?: CSS.WidthProperty<string | number>
+  checked?: boolean
+}>`
   display: inline-block;
   width: ${({ width }) => width || '100%'};
   height: 54px;
@@ -132,7 +136,7 @@ const ItemButton = styled.a`
   color: #3a3a3a;
 `
 
-const URL_BY_NAMES = {
+const URL_BY_NAMES: { [key: string]: string } = {
   save: 'https://assets.triple.guide/images/img-action-save@4x.png',
   schedule: 'https://assets.triple.guide/images/img-action-schedule@4x.png',
   share: 'https://assets.triple.guide/images/img-action-share@4x.png',
@@ -163,7 +167,19 @@ const CheckedIcon = styled.div`
   background-repeat: none;
 `
 
-function ActionItem({ buttonLabel, icon, checked, onClick, children }) {
+function ActionItem({
+  buttonLabel,
+  icon,
+  checked,
+  onClick,
+  children,
+}: {
+  buttonLabel?: string
+  icon?: string
+  checked?: boolean
+  onClick?: (e?: React.SyntheticEvent) => any
+  children?: React.ReactNode
+}) {
   let textWidth = '100%'
   if (buttonLabel && icon) {
     textWidth = 'calc(100% - 100px)'
@@ -175,7 +191,7 @@ function ActionItem({ buttonLabel, icon, checked, onClick, children }) {
 
   return (
     <Consumer>
-      {({ onClose }) => (
+      {({ onClose }: { onClose?: (e?: React.SyntheticEvent) => any }) => (
         <ActionItemContainer
           onClick={
             buttonLabel
@@ -214,6 +230,12 @@ export default function ActionSheet({
   title,
   children,
   bottomSpacing,
+}: {
+  open?: boolean
+  onClose?: (e?: React.SyntheticEvent) => any
+  title?: string
+  children?: React.ReactNode
+  bottomSpacing?: number
 }) {
   return (
     <ReactCSSTransitionGroup
