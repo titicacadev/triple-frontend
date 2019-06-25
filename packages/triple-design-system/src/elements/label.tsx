@@ -109,10 +109,7 @@ export const PromoLabel = styled.div<PromoLabelProps>`
     `};
 `
 
-interface LabelProps
-  extends PromoLabelProps,
-    RadioLabelProps,
-    React.HTMLAttributes<HTMLDivElement> {
+interface LabelProps extends PromoLabelProps, RadioLabelProps {
   radio?: boolean
   promo?: boolean
   children?: React.ReactNode
