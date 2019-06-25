@@ -1,6 +1,8 @@
-import React from 'react'
+import * as React from 'react'
 import Container from '../elements/container'
 import Text from '../elements/text'
+import { MarginPadding } from '../commons'
+import * as CSS from 'csstype'
 
 export function H1({
   href,
@@ -10,6 +12,13 @@ export function H1({
   textAlign,
   children,
   ...props
+}: {
+  href?: string
+  headline?: string
+  emphasize?: boolean
+  margin?: MarginPadding
+  textAlign?: CSS.TextAlignProperty
+  children?: string
 }) {
   return (
     <Container id={href} margin={margin} textAlign={textAlign}>

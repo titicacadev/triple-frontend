@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Container from '../../elements/container'
-import Label from '../../elements/label'
+import Label, { labelColor } from '../../elements/label'
 import Text from '../../elements/text'
 import Rating from '../../elements/rating'
 import Image from '../../elements/image'
@@ -34,6 +34,24 @@ export function ExtendedResourceListElement({
   reviewsRating,
   onClick,
   onScrapedChange,
+}: {
+  resource?: any
+  image?: any
+  imagePlaceholder?: string
+  name?: string
+  comment?: string
+  distance?: number
+  note?: string
+  tags?: [{ text: string; color: labelColor; emphasized: boolean }]
+  basePrice?: number
+  salePrice?: number
+  pricingNote?: string
+  scraped?: any
+  scrapsCount?: number
+  reviewsCount?: number
+  reviewsRating?: number
+  onClick?: (e?: React.SyntheticEvent) => any
+  onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
 }) {
   return (
     <ResourceListItem onClick={onClick}>
@@ -87,11 +105,20 @@ export function ExtendedResourceListElement({
 
       {(tags || []).length > 0 ? (
         <Label.Group margin={{ top: 12 }} horizontalGap={5}>
-          {tags.map(({ text, color, emphasized }, index) => (
-            <Label key={index} promo color={color} emphasized={emphasized}>
-              {text}
-            </Label>
-          ))}
+          {tags.map(
+            (
+              {
+                text,
+                color,
+                emphasized,
+              }: { text: string; color: labelColor; emphasized: boolean },
+              index,
+            ) => (
+              <Label key={index} promo color={color} emphasized={emphasized}>
+                {text}
+              </Label>
+            ),
+          )}
         </Label.Group>
       ) : null}
 

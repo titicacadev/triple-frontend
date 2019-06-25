@@ -8,7 +8,7 @@ import {
   GlobalSizes,
 } from '../commons'
 
-type labelColor = GlobalColors | 'purple'
+export type labelColor = GlobalColors | 'purple'
 
 const GetLabelColors: Partial<Record<labelColor, string>> = {
   blue: GetGlobalColor('blue'),
@@ -20,7 +20,12 @@ function rgba({ color, alpha }: { color?: labelColor; alpha?: number }) {
   return `rgba(${GetLabelColors[color || 'purple']}, ${alpha || 1})`
 }
 
-const RadioLabel = styled.div<{ selected?: boolean; margin?: MarginPadding }>`
+interface RadioLabelProps {
+  selected?: boolean
+  margin?: MarginPadding
+}
+
+const RadioLabel = styled.div<RadioLabelProps>`
   display: inline-block;
   padding-left: 9px;
   font-size: 14px;
@@ -65,12 +70,14 @@ const PROMO_SIZES: Partial<
   },
 }
 
-export const PromoLabel = styled.div<{
+interface PromoLabelProps {
   size?: GlobalSizes
   emphasized?: boolean
   color?: labelColor
   margin?: MarginPadding
-}>`
+}
+
+export const PromoLabel = styled.div<PromoLabelProps>`
   display: inline-block;
 
   padding: ${({ size }) => PROMO_SIZES[size || 'small'].padding};
@@ -102,23 +109,13 @@ export const PromoLabel = styled.div<{
     `};
 `
 
-function Label({
-  radio,
-  promo,
-  children,
-  ...props
-}: {
+interface LabelProps
+  extends PromoLabelProps,
+    RadioLabelProps,
+    React.HTMLAttributes<HTMLDivElement> {
   radio?: boolean
   promo?: boolean
   children?: React.ReactNode
-}) {
-  if (radio) {
-    return <RadioLabel {...props}>{children}</RadioLabel>
-  } else if (promo) {
-    return <PromoLabel {...props}>{children}</PromoLabel>
-  }
-
-  return children
 }
 
 const LabelGroup = styled(Container)<{ horizontalGap?: number }>`
@@ -128,7 +125,47 @@ const LabelGroup = styled(Container)<{ horizontalGap?: number }>`
     `};
   }
 `
+export default class Label extends React.PureComponent<
+  LabelProps,
+  React.HTMLAttributes<HTMLElement>
+> {
+  static Group = LabelGroup
 
-Label.Group = LabelGroup
+  render() {
+    const {
+      props: {
+        radio,
+        selected,
+        margin,
+        children,
+        promo,
+        size,
+        emphasized,
+        color,
+        ...props
+      },
+    } = this
 
-export default Label
+    if (radio) {
+      return (
+        <RadioLabel {...props} selected={selected} margin={margin}>
+          {children}
+        </RadioLabel>
+      )
+    } else if (promo) {
+      return (
+        <PromoLabel
+          {...props}
+          size={size}
+          emphasized={emphasized}
+          color={color}
+          margin={margin}
+        >
+          {children}
+        </PromoLabel>
+      )
+    } else {
+      return children
+    }
+  }
+}

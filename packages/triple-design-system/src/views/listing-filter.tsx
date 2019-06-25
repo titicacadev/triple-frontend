@@ -1,7 +1,7 @@
-import React from 'react'
+import * as React from 'react'
 import styled, { css } from 'styled-components'
 
-const FilterEntryBase = styled.div`
+const FilterEntryBase = styled.div<{ active?: boolean }>`
   display: inline-block;
   font-size: 13px;
   line-height: 1.2;
@@ -49,7 +49,14 @@ const ExpandingFilterEntryBadge = styled.div`
   margin-top: -2px;
 `
 
-function ExpandingFilterEntry({ badge, children, ...props }) {
+function ExpandingFilterEntry({
+  badge,
+  children,
+  ...props
+}: {
+  badge?: React.ReactNode
+  children?: React.ReactNode
+}) {
   return (
     <ExpandingFilterEntryContainer {...props}>
       {children}
@@ -60,7 +67,10 @@ function ExpandingFilterEntry({ badge, children, ...props }) {
   )
 }
 
-const RegularFilterEntry = styled(FilterEntryBase)`
+const RegularFilterEntry = styled(FilterEntryBase)<{
+  withIcon?: boolean
+  iconImage?: string
+}>`
   ${({ withIcon, iconImage }) =>
     withIcon
       ? css`
@@ -98,7 +108,17 @@ const PrimaryFilterEntry = styled(FilterEntryBase)`
   color: #fff;
 `
 
-export const ListingFilter = styled.div`
+function FilterEntry({ active, activeIconImage, inactiveIconImage, ...props }) {
+  return (
+    <RegularFilterEntry
+      active={active}
+      iconImage={active ? activeIconImage : inactiveIconImage}
+      {...props}
+    />
+  )
+}
+
+export const ListingFilterBase = styled.div`
   white-space: nowrap;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
@@ -110,16 +130,16 @@ export const ListingFilter = styled.div`
   }
 `
 
-function FilterEntry({ active, activeIconImage, inactiveIconImage, ...props }) {
-  return (
-    <RegularFilterEntry
-      active={active}
-      iconImage={active ? activeIconImage : inactiveIconImage}
-      {...props}
-    />
-  )
-}
+export class ListingFilter extends React.PureComponent {
+  static FilterEntry = FilterEntry
+  static ExpandingFilterEntry = ExpandingFilterEntry
+  static PrimaryFilterEntry = PrimaryFilterEntry
 
-ListingFilter.FilterEntry = FilterEntry
-ListingFilter.ExpandingFilterEntry = ExpandingFilterEntry
-ListingFilter.PrimaryFilterEntry = PrimaryFilterEntry
+  render() {
+    const {
+      props: { children, ...props },
+    } = this
+
+    return <ListingFilterBase>{children}</ListingFilterBase>
+  }
+}

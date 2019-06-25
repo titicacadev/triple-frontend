@@ -1,6 +1,8 @@
 import * as React from 'react'
 import PagerCarousel from 'nuka-carousel'
 import Container from './container'
+import { MarginPadding } from '../commons'
+import * as PropTypes from 'prop-types'
 
 const Pager = ({
   margin,
@@ -9,6 +11,13 @@ const Pager = ({
   onPageChange,
   pageLabelComponent,
   children,
+}: {
+  margin?: MarginPadding
+  borderRadius?: number
+  currentPage?: number
+  onPageChange?: (e?: React.SyntheticEvent) => any
+  pageLabelComponent?: React.ReactNode
+  children?: React.ReactNode
 }) => (
   <Container margin={margin} borderRadius={borderRadius}>
     <PagerCarousel

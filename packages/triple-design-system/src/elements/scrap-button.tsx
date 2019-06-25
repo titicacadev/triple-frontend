@@ -34,7 +34,17 @@ export default function ScrapButton({
   resource,
   scraped,
   onScrapedChange,
+  top,
+  right,
   ...props
+}: {
+  compact?: boolean
+  resource?: any
+  scraped?: boolean
+  onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
+  top?: number
+  right?: number
+  pressed?: boolean
 }) {
   const ButtonElement = compact ? CompactScrapButton : RegularScrapButton
   const handleClick =
