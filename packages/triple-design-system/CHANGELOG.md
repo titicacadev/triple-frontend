@@ -1,5 +1,11 @@
 ## 0.6.0 (2019-06-26)
 
+- `Footer` 회사 소개( triple-corp.com 링크 )  추가
+
+  _Torres_
+
+## 0.6.0 (2019-06-26)
+
 - `tsconfig.json` 추가
 
   _Olaf_
