@@ -55,6 +55,10 @@ const Footer = () => (
         <a href="/pages/privacy-policy.html" target="_blank">
           개인정보 처리방침
         </a>
+        {' | '}
+        <a href="https://triple-corp.com" target="_blank">
+          회사 소개
+        </a>
       </LinksContainer>
       (주)트리플은 통신판매중개자로서 통신판매의 당사자가 아니며
       <br />

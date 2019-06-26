@@ -1,26 +1,32 @@
+## 0.6.0 (2019-06-26)
+
+- `tsconfig.json` 추가
+
+  _Olaf_
+
 ## 0.5.0 (2019-06-24)
 
 - `Author`에 `bioOverride` 추가 및 새로운 모델 스펙에 맞춰서 props 변경
 - `Author` ts 로 변환
-  
+
   _Royd_
 
-- `action-sheet`, `image`, `input`, `label`, `pager`, `pricing`, `public-header`, `responsive`, `scrap-button`, `select`, `spinner`, `tabs` ts로 변환
+- `action-sheet`, `image`, `input`, `label`, `pager`, `pricing`, `public-header`, `responsive`, `scrap-button`, `select`, `spinner`, `tabs` ts 로 변환
 
   _jayg_
 
 ## 0.4.13 (2019-06-24)
 
--  `accordion`, `app-banner`, `carousel`, `checkbox`, `content-elements`, `list`, `form-filed` ts로 변환
--  javascript dot notation을 typescript에 맞춰 `React.PureComponent`의 static 멤버로 변경
+- `accordion`, `app-banner`, `carousel`, `checkbox`, `content-elements`, `list`, `form-filed` ts 로 변환
+- javascript dot notation 을 typescript 에 맞춰 `React.PureComponent`의 static 멤버로 변경
 
-    _jayg_
+  _jayg_
 
 ## 0.4.12 (2019-06-21)
 
--  `table`, `textarea`, `icon`, `tag`, `rating`, `drawer`, `footer`, `segment` ts로 변환
+- `table`, `textarea`, `icon`, `tag`, `rating`, `drawer`, `footer`, `segment` ts 로 변환
 
-    _jayg_
+  _jayg_
 
 ## 0.4.11 (2019-06-20)
 
