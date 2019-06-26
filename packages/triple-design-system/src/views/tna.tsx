@@ -1,11 +1,12 @@
-import React, { PureComponent } from 'react'
+import * as React from 'react'
 import List from '../elements/list'
 import Text from '../elements/text'
-import Tag from '../elements/tag'
+import Tag, { TagColors } from '../elements/tag'
 import Button from '../elements/button'
 import Container from '../elements/container'
 import { H1 } from './text'
 import { SquareImage } from '../elements/content-elements'
+import { MarginPadding } from '../commons'
 
 function insertCommas(price) {
   if (price) {
@@ -23,7 +24,17 @@ function Price({ children }) {
   )
 }
 
-export function TnaProduct({ heroImage, title, tags, salePrice }) {
+export function TnaProduct({
+  heroImage,
+  title,
+  tags,
+  salePrice,
+}: {
+  heroImage?: string
+  title?: string
+  tags?: [{ text: string; type: TagColors; style: React.CSSProperties }]
+  salePrice?: string | number
+}) {
   return (
     <>
       <SquareImage size="medium" floated="left" src={heroImage} />
@@ -49,8 +60,14 @@ export function TnaProduct({ heroImage, title, tags, salePrice }) {
   )
 }
 
-export class TnaProductsList extends PureComponent {
-  state = { products: [], showMore: false }
+export class TnaProductsList extends React.PureComponent<{
+  slotId?: number
+  onTNAProductsFetch?: (slotId?: number) => any
+  onProductClick?: (e?: React.SyntheticEvent, product?: any) => any
+  margin?: MarginPadding
+  title?: string
+}> {
+  state = { products: [], showMore: false, title: '' }
 
   componentDidMount() {
     this.fetchProducts()

@@ -3,11 +3,13 @@ import styled, { css } from 'styled-components'
 import { HR1, HR3 } from './hr'
 import { MarginPadding } from '../commons'
 
-const ListBase = styled.ul<{
+interface ListBaseProp {
   margin?: MarginPadding
   verticalGap?: number
   clearing?: boolean
-}>`
+}
+
+const ListBase = styled.ul<ListBaseProp>`
   margin: 0;
   padding: 0;
 
@@ -51,11 +53,13 @@ const ListItem = styled.li<{ minHeight?: number }>`
     `};
 `
 
-export default class List extends React.PureComponent<{
-  divided?: boolean
-  verticalGap?: number
-  children?: any
-}> {
+export default class List extends React.PureComponent<
+  {
+    divided?: boolean
+    verticalGap?: number
+    children?: any
+  } & ListBaseProp
+> {
   static Item = ListItem
 
   render() {

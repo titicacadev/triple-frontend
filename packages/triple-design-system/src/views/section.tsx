@@ -1,6 +1,7 @@
-import React, { Children } from 'react'
+import * as React from 'react'
 import Container from '../elements/container'
 import { HR2 } from '../elements/hr'
+import { MarginPadding } from '../commons'
 
 export function Section({
   minWidth = 320,
@@ -11,8 +12,16 @@ export function Section({
   anchor,
   children,
   ...props
+}: {
+  minWidth?: number
+  maxWidth?: number
+  padding?: MarginPadding
+  margin?: MarginPadding
+  divider?: string
+  anchor?: string
+  children?: React.ReactNode
 }) {
-  if (Children.toArray(children).length > 0) {
+  if (React.Children.toArray(children).length > 0) {
     return (
       <>
         {divider === 'top' && <HR2 compact />}

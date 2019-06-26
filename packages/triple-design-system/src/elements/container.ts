@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import { MarginPadding } from '../commons'
 
-const Container = styled.div<{
+const Container = styled.div.attrs<{ id?: string }>({})<{
   position?: CSS.PositionProperty
   centered?: boolean
   margin?: MarginPadding

@@ -1,7 +1,8 @@
-import React from 'react'
+import * as React from 'react'
 import styled from 'styled-components'
 import Pager from '../elements/pager'
 import Image from '../elements/image'
+import { MarginPadding, GlobalSizes } from '../commons'
 
 const PageLabelText = styled.div`
   font-size: 12px;
@@ -16,7 +17,7 @@ const PageLabelContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
 `
 
-function PageLabel({ current, total }) {
+function PageLabel({ current, total }: { current: number; total: number }) {
   return (
     <PageLabelContainer>
       <PageLabelText>{`${current + 1} / ${total}`}</PageLabelText>
@@ -35,6 +36,17 @@ export const ImagePager = ({
   onImageClick,
   onPageChange,
   ImageSource,
+}: {
+  margin?: MarginPadding
+  borderRadius?: number
+  currentPage?: number
+  size?: GlobalSizes
+  frame?: GlobalSizes
+  images?: any[]
+  totalPageCount?: number
+  onImageClick?: (e?: React.SyntheticEvent, image?: any) => any
+  onPageChange?: (e?: React.SyntheticEvent) => any
+  ImageSource?: any
 }) => (
   <Pager
     margin={margin}

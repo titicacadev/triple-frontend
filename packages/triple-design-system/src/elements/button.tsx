@@ -286,7 +286,7 @@ interface IButton extends IBasicButtonProp, IButtonBaseProp {
   basic?: boolean
   icon?: string
   borderRadius?: number
-  onClick: (e: React.SyntheticEvent) => any
+  onClick?: (e: React.SyntheticEvent) => any
 }
 
 class Button extends React.PureComponent<IButton> {

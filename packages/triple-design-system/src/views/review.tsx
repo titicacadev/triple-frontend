@@ -1,10 +1,11 @@
-import React, { PureComponent } from 'react'
+import * as React from 'react'
 import styled, { css } from 'styled-components'
 
 import List from '../elements/list'
 import Container from '../elements/container'
 import Text from '../elements/text'
 import Rating from '../elements/rating'
+import { MarginPadding } from '../commons'
 
 const UserPhoto = styled.img`
   margin-right: 9px;
@@ -40,7 +41,13 @@ function Name({ onClick, children }) {
   )
 }
 
-function UserExtra({ onClick, children }) {
+function UserExtra({
+  onClick,
+  children,
+}: {
+  onClick?: (e?: React.SyntheticEvent) => any
+  children?: React.ReactNode
+}) {
   return (
     <Text
       margin={{ top: 4 }}
@@ -109,7 +116,7 @@ function Meta({ children }) {
   )
 }
 
-const LikeButton = styled.a`
+const LikeButton = styled.a<{ liked?: boolean }>`
   display: inline-block;
   font-size: 12px;
   font-weight: bold;
@@ -135,7 +142,7 @@ const ItemContainer = styled(Container)`
   padding-bottom: 2px;
 `
 
-class ReviewItem extends PureComponent {
+class ReviewItem extends React.PureComponent {
   render() {
     const {
       props: { children },
@@ -149,7 +156,11 @@ class ReviewItem extends PureComponent {
   }
 }
 
-class Review extends PureComponent {
+class Review extends React.PureComponent<{
+  margin?: MarginPadding
+  divided?: boolean
+  verticalGap?: number
+}> {
   render() {
     const {
       props: { children, ...props },
@@ -212,7 +223,22 @@ function FoldableComment({ children, onUnfoldButtonClick }) {
   )
 }
 
-class ReviewElement extends PureComponent {
+class ReviewElement extends React.PureComponent<{
+  review?: any
+  onUserClick?: (e?: React.SyntheticEvent, review?: any) => any
+  onUnfoldButtonClick?: (e?: React.SyntheticEvent, review?: any) => any
+  onLikeButtonClick?: (e?: React.SyntheticEvent, review?: any) => any
+  onLikesCountClick?: (e?: React.SyntheticEvent, review?: any) => any
+  onMenuClick?: (e?: React.SyntheticEvent, review?: any) => any
+  onImageClick?: (
+    e?: React.SyntheticEvent,
+    review?: any,
+    attachment?: any,
+  ) => any
+  likeVisible?: boolean
+  menuVisible?: boolean
+  DateFormatter?: React.ComponentClass
+}> {
   state = { unfolded: false }
 
   render() {

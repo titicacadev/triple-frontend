@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import styled from 'styled-components'
 import { ResourceListItem } from '../elements/content-elements'
 import Image from '../elements/image'

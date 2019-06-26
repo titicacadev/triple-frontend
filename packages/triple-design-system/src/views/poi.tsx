@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import * as React from 'react'
 import Text from '../elements/text'
 import Image from '../elements/image'
 import Carousel from '../elements/carousel'
@@ -6,20 +6,23 @@ import ScrapButton from '../elements/scrap-button'
 import { SquareImage, ResourceListItem } from '../elements/content-elements'
 import { deriveCurrentStateAndCount } from '../utilities'
 import { ExtendedResourceListElement } from './common/resource-list-element'
+import { labelColor } from '../elements/label'
 
-const TYPE_NAMES = {
+type PoiTypes = 'attraction' | 'restaurant' | 'hotel'
+
+const TYPE_NAMES: { [key in PoiTypes]: string } = {
   attraction: '관광명소',
   restaurant: '음식점',
   hotel: '호텔',
 }
 
-const POI_IMAGE_PLACEHOLDERS = {
+const POI_IMAGE_PLACEHOLDERS: { [key in PoiTypes]: string } = {
   attraction: 'https://assets.triple.guide/images/ico-blank-see@2x.png',
   restaurant: 'https://assets.triple.guide/images/ico-blank-eat@2x.png',
   hotel: 'https://assets.triple.guide/images/ico-blank-hotel@2x.png',
 }
 
-const POI_IMAGE_PLACEHOLDERS_SMALL = {
+const POI_IMAGE_PLACEHOLDERS_SMALL: { [key in PoiTypes]: string } = {
   attraction: 'https://assets.triple.guide/images/ico-blank-see-small@2x.png',
   restaurant: 'https://assets.triple.guide/images/ico-blank-eat-small@2x.png',
   hotel: 'https://assets.triple.guide/images/ico-blank-hotel-small@2x.png',
@@ -39,6 +42,12 @@ export function PoiCarouselElement({
   actionButtonElement,
   onScrapedChange,
   resourceScraps,
+}: {
+  poi?: any
+  onClick?: (e?: React.SyntheticEvent) => any
+  actionButtonElement?: React.ReactElement
+  onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
+  resourceScraps?: any
 }) {
   if (poi) {
     const {
@@ -82,7 +91,13 @@ export function PoiCarouselElement({
   }
 }
 
-class CompactPoiListElement extends PureComponent {
+class CompactPoiListElement extends React.PureComponent<{
+  actionButtonElement?: any
+  poi?: any
+  onClick?: (e?: React.SyntheticEvent) => any
+  onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
+  resourceScraps?: any
+}> {
   state = { actionButtonWidth: 34 }
 
   setActionButtonRef = (ref) => {
@@ -158,7 +173,13 @@ class CompactPoiListElement extends PureComponent {
   }
 }
 
-class ExtendedPoiListElement extends PureComponent {
+class ExtendedPoiListElement extends React.PureComponent<{
+  poi?: any
+  onClick?: (e?: React.SyntheticEvent) => any
+  onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
+  resourceScraps?: any
+  tags?: [{ text: string; color: labelColor; emphasized: boolean }]
+}> {
   render() {
     const {
       props: {
@@ -188,8 +209,8 @@ class ExtendedPoiListElement extends PureComponent {
       },
     } = this
 
-    const [area] = areas || []
-    const [category] = categories || []
+    const [area] = areas || [undefined]
+    const [category] = categories || [undefined]
     const { state: scraped, count: scrapsCount } = deriveCurrentStateAndCount({
       initialState: initialScraped,
       initialCount: initialScrapsCount,
@@ -208,7 +229,12 @@ class ExtendedPoiListElement extends PureComponent {
       nightlyPrice,
       nightlyPriceHotelPromotionApplied,
       promoText,
-    } = prices || {}
+    } = prices || {
+      nightlyBasePrice: 0,
+      nightlyPrice: 0,
+      nightlyPriceHotelPromotionApplied: 0,
+      promoText: '',
+    }
 
     return (
       <ExtendedResourceListElement

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import styled from 'styled-components'
 
 import {
@@ -57,7 +57,7 @@ const DocumentTnaProducts = ({ onTNAProductClick, value, ...props }) => (
   />
 )
 
-export const ELEMENTS = {
+export const ELEMENTS: { [key: string]: any } = {
   heading1: Heading(MH1),
   heading2: Heading(MH2),
   heading3: Heading(MH3),
@@ -307,7 +307,7 @@ export function Pois({
   )
 }
 
-const LinksContainer = styled.div`
+const LinksContainer = styled.div<{ compact?: boolean }>`
   margin: ${({ compact }) => (compact ? '0' : '0 30px')};
   margin-top: ${({ compact }) => (compact ? '10px' : '20px')};
   margin-bottom: ${({ compact }) => (compact ? '-10px' : '-20px')};
@@ -319,7 +319,7 @@ const LinksContainer = styled.div`
   }
 `
 
-const ButtonContainer = styled.div`
+const ButtonContainer = styled.div<{ compact?: boolean }>`
   margin: ${({ compact }) => (compact ? '12px 0 4px 0' : '50px 30px 0 30px')};
   text-align: center;
 
@@ -338,7 +338,7 @@ const ButtonContainer = styled.div`
   }
 `
 
-const BlockContainer = styled.div`
+const BlockContainer = styled.div<{ compact?: boolean }>`
   margin: ${({ compact }) => (compact ? '7px 0 4px 0' : '30px 30px 0 30px')};
   text-align: center;
 `

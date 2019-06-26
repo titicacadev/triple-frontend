@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import styled from 'styled-components'
 import Container from '../../elements/container'
 import Label, { labelColor } from '../../elements/label'
@@ -42,7 +42,7 @@ export function ExtendedResourceListElement({
   comment?: string
   distance?: number
   note?: string
-  tags?: [{ text: string; color: labelColor; emphasized: boolean }]
+  tags?: [{ text?: string; color?: labelColor; emphasized?: boolean }]
   basePrice?: number
   salePrice?: number
   pricingNote?: string

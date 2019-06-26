@@ -1,8 +1,8 @@
-import React from 'react'
+import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { GlobalSizes, MarginPadding } from '../commons'
 
-type TagColors = 'special' | 'pink' | 'purple' | 'default'
+export type TagColors = 'special' | 'pink' | 'purple' | 'default'
 
 const COLORS: { [key in TagColors]: string } = {
   special: '#fd2e69',

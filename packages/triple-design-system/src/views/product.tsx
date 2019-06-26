@@ -1,8 +1,17 @@
-import React, { PureComponent } from 'react'
+import * as React from 'react'
 import { deriveCurrentStateAndCount } from '../utilities'
 import { ExtendedResourceListElement } from './common/resource-list-element'
 
-export class ProductListElement extends PureComponent {
+export class ProductListElement extends React.PureComponent<{
+  product?: { id; title; image; subtitle; basePrice; salePrice }
+  scraped?: any
+  scrapsCount?: number
+  reviewsCount?: number
+  reviewsRating?: number
+  onClick?: (e?: React.SyntheticEvent) => any
+  onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
+  resourceScraps?: any
+}> {
   render() {
     const {
       props: {
