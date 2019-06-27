@@ -1,6 +1,6 @@
-## 0.6.0 (2019-06-26)
+## 0.6.1 (2019-06-27)
 
-- `Footer` 회사 소개( triple-corp.com 링크 )  추가
+- `Footer` 회사 소개(triple-corp.com 링크) 추가
 
   _Torres_
 
