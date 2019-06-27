@@ -219,7 +219,7 @@ const TitleBase = styled.h1<{
     `};
 `
 
-function Title({ children, ...props }) {
+function TextTitle({ children, ...props }) {
   return (
     <TitleBase {...props}>
       {React.Children.toArray(children).map(
@@ -235,6 +235,6 @@ function Title({ children, ...props }) {
 }
 
 Text.Html = Html
-Text.Title = Title
+Text.Title = TextTitle
 
 export default Text
