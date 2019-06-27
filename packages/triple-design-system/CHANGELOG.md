@@ -1,3 +1,9 @@
+## 0.6.3 (2019-06-27)
+
+- `text` declare 에러를 없애기 위해 title component 의 이름을 변경합니다.
+
+  _Olaf_
+
 ## 0.6.2 (2019-06-27)
 
 - `commons` 를 export 하도록 변경
