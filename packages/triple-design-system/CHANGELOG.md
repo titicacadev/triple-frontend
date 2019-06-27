@@ -22,6 +22,10 @@
 
   _Torres_
 
+- `utilities`, `resource-list-element`, `image`, `poi`, `product`, `region`, `review`, `section`, `tna`, `trieple-document` ts 로 변환
+
+  _jayg_
+  
 ## 0.6.0 (2019-06-26)
 
 - `tsconfig.json` 추가
