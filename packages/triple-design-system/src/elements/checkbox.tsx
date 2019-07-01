@@ -99,7 +99,7 @@ export const ConfirmSelector = withField(
     fontSize = 'small',
     color,
   }: {
-    name: string
+    name?: string
     value: any
     placeholder: string
     onChange?: (e?: React.SyntheticEvent, value?: any) => any
