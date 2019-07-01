@@ -236,6 +236,16 @@ class ExtendedPoiListElement extends React.PureComponent<{
       promoText: '',
     }
 
+    const salePrice =
+      nightlyPriceHotelPromotionApplied && nightlyPrice
+        ? Math.min(nightlyPriceHotelPromotionApplied, nightlyPrice)
+        : nightlyPriceHotelPromotionApplied || nightlyPrice
+
+    const basePrice =
+      nightlyBasePrice && salePrice && nightlyBasePrice - salePrice > 0
+        ? nightlyBasePrice
+        : null
+
     return (
       <ExtendedResourceListElement
         resource={this.props.poi}
@@ -249,12 +259,8 @@ class ExtendedPoiListElement extends React.PureComponent<{
         reviewsRating={reviewsRating}
         scraped={scraped}
         scrapsCount={scrapsCount}
-        basePrice={nightlyBasePrice}
-        salePrice={
-          nightlyPriceHotelPromotionApplied && nightlyPrice
-            ? Math.min(nightlyPriceHotelPromotionApplied, nightlyPrice)
-            : nightlyPriceHotelPromotionApplied || nightlyPrice
-        }
+        basePrice={basePrice}
+        salePrice={salePrice}
         pricingNote={nightlyPrice ? '세금포함' : null}
         onScrapedChange={onScrapedChange}
         onClick={onClick}
