@@ -2,8 +2,10 @@ import * as React from 'react'
 import styled, { css, InterpolationValue } from 'styled-components'
 import { withField } from '../utils/form-field'
 import { GetGlobalColor } from '../commons'
+import Text from './text'
 
 type FillType = 'full' | 'border' | 'text'
+type AlignType = 'left' | 'center' | 'right'
 
 const FillTypes: { [key in FillType]: InterpolationValue[] } = {
   full: css`
@@ -18,8 +20,31 @@ const FillTypes: { [key in FillType]: InterpolationValue[] } = {
   `,
 }
 
+const TextAligns: { [key in AlignType]: InterpolationValue[] } = {
+  left: css`
+    text-align: left;
+  `,
+  right: css`
+    text-align: right;
+  `,
+  center: css`
+    text-align: center;
+    padding: 16px;
+
+    & > div {
+      position: relative;
+      display: inline-block;
+      padding-left: 35px;
+
+      & > span {
+        left: 0;
+      }
+    }
+  `,
+}
+
 const ConfirmFrame = styled.div.attrs<{ name?: string }>({})<{
-  centered?: boolean
+  textAlign?: string
   borderless?: boolean
   checked?: boolean
   fillType?: FillType
@@ -27,18 +52,10 @@ const ConfirmFrame = styled.div.attrs<{ name?: string }>({})<{
   width: 100%;
   border: 1px solid #efefef;
   box-sizing: border-box;
-  padding: 16px 59px 16px 16px;
+  padding: 16px 54px 16px 16px;
   position: relative;
-  font-size: 14px;
   font-weight: bold;
   color: rgba(${GetGlobalColor('gray')}, 0.5);
-
-  ${({ centered }) =>
-    centered &&
-    css`
-      padding: 16px 0;
-      text-align: center;
-    `};
 
   ${({ borderless }) =>
     borderless &&
@@ -48,21 +65,7 @@ const ConfirmFrame = styled.div.attrs<{ name?: string }>({})<{
     `};
 
   ${({ checked, fillType }) => checked && fillType && FillTypes[fillType]};
-`
-
-const ConfirmContainer = styled.div<{ centered?: boolean }>`
-  ${({ centered }) =>
-    centered &&
-    css`
-      position: relative;
-      display: inline-block;
-      padding-left: 32px;
-
-      & span {
-        left: 0;
-        right: auto;
-      }
-    `};
+  ${({ textAlign }) => textAlign && TextAligns[textAlign]};
 `
 
 const Icon = styled.span<{ borderless?: boolean; checked?: boolean }>`
@@ -85,20 +88,40 @@ const Icon = styled.span<{ borderless?: boolean; checked?: boolean }>`
 `
 
 export const ConfirmSelector = withField(
-  ({ name, value, placeholder, onChange, centered, borderless, fillType }) => {
+  ({
+    name,
+    value,
+    placeholder,
+    onChange,
+    textAlign = 'left',
+    borderless,
+    fillType,
+    fontSize = 'small',
+    color,
+  }: {
+    name: string
+    value: any
+    placeholder: string
+    onChange?: (e?: React.SyntheticEvent, value?: any) => any
+    textAlign?: string
+    borderless?: boolean
+    fillType?: FillType
+    fontSize?: string
+    color?: string
+  }) => {
     return (
       <ConfirmFrame
         name={name}
         onClick={(e) => onChange(e, !value)}
         checked={value}
-        centered={centered}
+        textAlign={textAlign}
         borderless={borderless}
         fillType={fillType}
       >
-        <ConfirmContainer centered={centered}>
-          {placeholder}
+        <Text size={fontSize} color={color}>
           <Icon checked={value} borderless={borderless} />
-        </ConfirmContainer>
+          {placeholder}
+        </Text>
       </ConfirmFrame>
     )
   },
