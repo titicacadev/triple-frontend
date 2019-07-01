@@ -59,7 +59,7 @@ export function ExtendedResourceListElement({
         floated="right"
         size="small"
         width={90}
-        src={image ? image.sizes.large.url : imagePlaceholder}
+        src={image ? (image.sizes.smallSquare || image.sizes.small_square).url : imagePlaceholder}
         asPlaceholder={!image}
         margin={{ left: 20 }}
       />
