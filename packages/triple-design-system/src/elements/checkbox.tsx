@@ -100,6 +100,8 @@ export const ConfirmSelector = withField(
     fillType,
     fontSize = 'small',
     color,
+    alpha = 0.5,
+    bold = true,
   }: {
     name?: string
     value: any
@@ -110,6 +112,8 @@ export const ConfirmSelector = withField(
     fillType?: FillType
     fontSize?: string
     color?: string
+    alpha?: number
+    bold?: boolean
   }) => {
     return (
       <ConfirmFrame
@@ -120,7 +124,7 @@ export const ConfirmSelector = withField(
         borderless={borderless}
         fillType={fillType}
       >
-        <Text size={fontSize} color={color}>
+        <Text size={fontSize} color={color} alpha={alpha} bold={bold}>
           <Icon checked={value} borderless={borderless} />
           {placeholder}
         </Text>
