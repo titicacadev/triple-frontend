@@ -3,9 +3,9 @@ import styled, { css, InterpolationValue } from 'styled-components'
 import { withField } from '../utils/form-field'
 import { GetGlobalColor } from '../commons'
 import Text from './text'
+import * as CSS from 'csstype'
 
 type FillType = 'full' | 'border' | 'text'
-type AlignType = 'left' | 'center' | 'right'
 
 const FillTypes: { [key in FillType]: InterpolationValue[] } = {
   full: css`
@@ -20,7 +20,9 @@ const FillTypes: { [key in FillType]: InterpolationValue[] } = {
   `,
 }
 
-const TextAligns: { [key in AlignType]: InterpolationValue[] } = {
+const TextAligns: Partial<
+  Record<CSS.TextAlignLastProperty, InterpolationValue[]>
+> = {
   left: css`
     text-align: left;
   `,
@@ -103,7 +105,7 @@ export const ConfirmSelector = withField(
     value: any
     placeholder: string
     onChange?: (e?: React.SyntheticEvent, value?: any) => any
-    textAlign?: string
+    textAlign?: CSS.TextAlignProperty
     borderless?: boolean
     fillType?: FillType
     fontSize?: string
