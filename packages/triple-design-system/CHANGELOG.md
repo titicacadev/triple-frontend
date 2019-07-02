@@ -1,3 +1,9 @@
+## 0.6.6 (2019-07-02)
+
+- `poi` 에 base price 가 없을 경우 그어진 가격을 미노출하도록 변경
+
+  _Olaf_
+
 ## 0.6.5 (2019-07-02)
 
 - `scrap-button`이 올바르게 `top`, `right` 속성 적용할 수 있도록 수정
@@ -31,7 +37,7 @@
 - `utilities`, `resource-list-element`, `image`, `poi`, `product`, `region`, `review`, `section`, `tna`, `trieple-document` ts 로 변환
 
   _jayg_
-  
+
 ## 0.6.0 (2019-06-26)
 
 - `tsconfig.json` 추가
