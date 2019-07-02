@@ -1,3 +1,9 @@
+## 0.6.5 (2019-07-02)
+
+- `scrap-button`이 올바르게 `top`, `right` 속성 적용할 수 있도록 수정
+
+  _jayg_
+
 ## 0.6.4 (2019-06-27)
 
 - `commons` index.js 에서 export 하도록 변경
