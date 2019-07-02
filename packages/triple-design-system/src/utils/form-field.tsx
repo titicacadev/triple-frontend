@@ -62,8 +62,8 @@ export function withField(WrappedComponent) {
                 {label}
               </Label>
               <WrappedComponent
-                focus={focus ? 1 : 0}
-                error={error ? 1 : 0}
+                focus={focus ? 'true' : undefined}
+                error={error ? 'true' : undefined}
                 {...props}
               />
               <MessageContainer padding={{ top: 6 }}>
