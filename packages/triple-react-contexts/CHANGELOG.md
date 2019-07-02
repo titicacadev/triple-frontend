@@ -1,3 +1,5 @@
+## 0.4.7 (2019-07-02)
+
 - `ScrapsProvider`에 초기 scraps 정보를 받는 `scraps` prop 추가.
 
   _Royd_
