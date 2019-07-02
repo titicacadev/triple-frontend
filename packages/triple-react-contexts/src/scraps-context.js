@@ -53,6 +53,7 @@ const reducer = ({ scraps, updating }, action) => {
 }
 
 export function ScrapsProvider({
+  scraps: initialScraps,
   scrape: nativeScrape,
   unscrape: nativeUnscrape,
   notifyScraped,
@@ -62,7 +63,7 @@ export function ScrapsProvider({
   children,
 }) {
   const [{ scraps, updating }, dispatch] = useReducer(reducer, {
-    scraps: {},
+    scraps: initialScraps || {},
     updating: {},
   })
 
