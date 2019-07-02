@@ -1,3 +1,7 @@
+- `ScrapsProvider`에 초기 scraps 정보를 받는 `scraps` prop 추가.
+
+  _Royd_
+
 ## 0.4.6 (2019-06-11)
 
 - 이미지 조회 API 실패했을 때 unhandled exception 방지
