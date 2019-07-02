@@ -54,5 +54,5 @@ export default function ScrapButton({
       onScrapedChange(e, { ...resource, scraped: !scraped })
     })
 
-  return <ButtonElement pressed={scraped} onClick={handleClick} {...props} />
+  return <ButtonElement pressed={scraped} onClick={handleClick} top={top} right={right} {...props} />
 }
