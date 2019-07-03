@@ -1,3 +1,9 @@
+## 0.6.7 (2019-07-03)
+
+- `withField`의 `WrappedComponent` 처리 변경
+
+  _jayg_
+
 ## 0.6.6 (2019-07-02)
 
 - `poi` 에 base price 가 없을 경우 그어진 가격을 미노출하도록 변경
