@@ -1,8 +1,12 @@
 ## 0.6.7 (2019-07-03)
 
-- `withField`의 `WrappedComponent` 처리 변경
+- `WrappedComponent`에서 발생하는 DOM attribute warning 제거
 
   _jayg_
+
+- `ExtendedPoiListElement`에서 `small_square` 사이즈 이미지 사용하도록 변경
+
+  _Eeyore_
 
 ## 0.6.6 (2019-07-02)
 
