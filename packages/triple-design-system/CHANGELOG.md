@@ -1,3 +1,9 @@
+## 0.6.8 (2019-07-04)
+
+- `ConfirmSelector` 에 Align option 을 추가합니다.
+
+  _Olaf_
+
 ## 0.6.7 (2019-07-03)
 
 - `WrappedComponent`에서 발생하는 DOM attribute warning 제거
