@@ -19,6 +19,7 @@ import { H1, H2, H3, H4, Paragraph } from './text'
 import { RegionListElement } from './region'
 import { PoiListElement, PoiCarouselElement } from './poi'
 import { TnaProductsList } from './tna'
+import {GetGlobalColor} from "../commons";
 
 const MH1 = ({ children, ...props }) => (
   <H1 margin={{ top: 25, bottom: 20, left: 30, right: 30 }} {...props}>
@@ -74,6 +75,7 @@ export const ELEMENTS: { [key: string]: any } = {
   links: Links,
   embedded: Embedded,
   note: Note,
+  list: ListElement,
   regions: Regions,
   video: Video,
   tnaProducts: DocumentTnaProducts,
@@ -98,6 +100,7 @@ export function TripleDocument({
   imageSourceComponent,
   resourceScraps,
   customElements,
+  bulletType,
 }) {
   return (
     <>
@@ -117,6 +120,7 @@ export function TripleDocument({
               onTNAProductsFetch={onTNAProductsFetch}
               ImageSource={imageSourceComponent}
               resourceScraps={resourceScraps || {}}
+              bulletType={bulletType}
             />
           )
         )
@@ -319,6 +323,18 @@ const LinksContainer = styled.div<{ compact?: boolean }>`
   }
 `
 
+const ListLinkContainer = styled.div`
+  display:inline;
+  margin-left:8px;
+  line-height:1.63;
+`
+
+const ListLink = styled.a`
+  text-decoration: underline;
+  color: rgba(${GetGlobalColor('gray')}, 0.9);
+  font-weight: 500;
+`
+
 const ButtonContainer = styled.div<{ compact?: boolean }>`
   margin: ${({ compact }) => (compact ? '12px 0 4px 0' : '50px 30px 0 30px')};
   text-align: center;
@@ -346,6 +362,7 @@ const BlockContainer = styled.div<{ compact?: boolean }>`
 const LINK_CONTAINERS = {
   button: ButtonContainer,
   block: BlockContainer,
+  list: ListLinkContainer,
   default: LinksContainer,
 }
 
@@ -368,6 +385,7 @@ function BlockLink({ children, ...props }) {
 const LINK_ELEMENTS = {
   button: ButtonLink,
   block: BlockLink,
+  list: ListLink,
   default: SimpleLink,
 }
 
@@ -479,9 +497,48 @@ function Video({ value: { provider, identifier } }) {
   ) : null
 }
 
+const BULLET_ICON_URLS: { [key: string]: string } = {
+  oval: 'https://assets.triple.guide/images/img-bullet-oval@3x.png',
+  check: 'https://assets.triple.guide/images/img-bullet-check@3x.png',
+}
+
+const ListItemContainer = styled.li<{ bulletType?: string }>`
+  padding-left:18px;
+  text-indent:-18px; 
+  &:before {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-image: url(${({ bulletType: name }) => BULLET_ICON_URLS[(name || 'oval')]});
+    background-size: 10px 10px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    content: '';
+  }`
+
+function ListElement({ value: { items }, bulletType, onLinkClick, ...props }) {
+  return (
+      <Container {...props}>
+        <ul>
+          {items.map((item, index) => (
+              <ListItemContainer bulletType={bulletType} key={index}>
+                {item.type === 'text' ? (
+                    <TextElement value={item.value} size={16} margin={{left: 8}} style={{display: 'inline'}} compact={true} />
+                ) : null}
+                {item.type === 'links' ? (
+                    <Links value={{display: 'list', links: item.value.links}} onLinkClick={onLinkClick} />
+                ) : null}
+              </ListItemContainer>
+          ))}
+        </ul>
+      </Container>
+  )
+}
+
 function generateClickHandler(onLinkClick, onImageClick) {
   return (e, image) =>
     (image.link || {}).href
       ? onLinkClick && onLinkClick(e, image.link)
       : onImageClick && onImageClick(e, image)
 }
+
