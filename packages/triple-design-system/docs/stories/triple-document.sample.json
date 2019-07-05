@@ -1489,6 +1489,7 @@
   {
     "type" : "list",
     "value" : {
+      "bulletType":  "check",
       "items" : [
         {
           "type" : "text",

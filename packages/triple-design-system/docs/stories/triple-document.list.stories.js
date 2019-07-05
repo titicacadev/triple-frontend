@@ -8,8 +8,8 @@ const { list: ListElement } = ELEMENTS
 storiesOf('TripleDocument.리스트', module)
   .add('점', () => (
     <ListElement
-      bulletType="oval"
       value={{
+        bulletType: 'oval',
         items: [
           {
             type: 'text',
@@ -61,8 +61,8 @@ storiesOf('TripleDocument.리스트', module)
   ))
   .add('체크', () => (
     <ListElement
-      bulletType="check"
       value={{
+        bulletType: 'check',
         items: [
           {
             type: 'text',
