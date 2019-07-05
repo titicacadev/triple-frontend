@@ -515,6 +515,12 @@ const ListItemContainer = styled.li<{ bulletType?: string }>`
     content: '';
   }`
 
+const ListTextElement = styled(TextElement)`
+  font-size:16px;
+  margin-left:8px;
+  display:inline;
+`
+
 function ListElement({ value: { bulletType, items }, onLinkClick, ...props }) {
   return (
       <Container {...props}>
@@ -522,7 +528,7 @@ function ListElement({ value: { bulletType, items }, onLinkClick, ...props }) {
           {items.map((item, index) => (
               <ListItemContainer bulletType={bulletType} key={index}>
                 {item.type === 'text' ? (
-                    <TextElement value={item.value} size={16} margin={{left: 8}} style={{display: 'inline'}} compact={true} />
+                    <ListTextElement value={item.value} compact={true} />
                 ) : null}
                 {item.type === 'links' ? (
                     <Links value={{display: 'list', links: item.value.links}} onLinkClick={onLinkClick} />
