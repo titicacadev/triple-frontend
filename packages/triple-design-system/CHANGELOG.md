@@ -1,3 +1,9 @@
+## 0.6.9 (2019-07-05)
+
+- `Accordion`에서 `{...props}`를 넘기지 않는 버그 수정
+
+  _jayg_
+
 ## 0.6.8 (2019-07-04)
 
 - `ConfirmSelector` 에 Align option 을 추가합니다.
