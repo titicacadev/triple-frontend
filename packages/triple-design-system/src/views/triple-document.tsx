@@ -19,7 +19,7 @@ import { H1, H2, H3, H4, Paragraph } from './text'
 import { RegionListElement } from './region'
 import { PoiListElement, PoiCarouselElement } from './poi'
 import { TnaProductsList } from './tna'
-import {GetGlobalColor} from "../commons";
+import { GetGlobalColor } from '../commons'
 
 const MH1 = ({ children, ...props }) => (
   <H1 margin={{ top: 25, bottom: 20, left: 30, right: 30 }} {...props}>
@@ -28,8 +28,7 @@ const MH1 = ({ children, ...props }) => (
 )
 
 const MH2 = ({ children, ...props }) => (
-  <H2 margin={{ top: 20, bottom: 20, left: 30, right: 30 }}
-      {...props}>
+  <H2 margin={{ top: 20, bottom: 20, left: 30, right: 30 }} {...props}>
     {children}
   </H2>
 )
@@ -323,9 +322,9 @@ const LinksContainer = styled.div<{ compact?: boolean }>`
 `
 
 const ListLinkContainer = styled.div`
-  display:inline;
-  margin-left:8px;
-  line-height:1.63;
+  display: inline;
+  margin-left: 8px;
+  line-height: 1.63;
 `
 
 const ListLink = styled.a`
@@ -502,41 +501,46 @@ const BULLET_ICON_URLS: { [key: string]: string } = {
 }
 
 const ListItemContainer = styled.li<{ bulletType?: string }>`
-  padding-left:18px;
-  text-indent:-18px; 
+  padding-left: 18px;
+  text-indent: -18px;
   &:before {
     display: inline-block;
     width: 10px;
     height: 10px;
-    background-image: url(${({ bulletType: name }) => BULLET_ICON_URLS[(name || 'oval')]});
+    background-image: url(${({ bulletType: name }) =>
+      BULLET_ICON_URLS[name || 'oval']});
     background-size: 10px 10px;
     background-position: center center;
     background-repeat: no-repeat;
     content: '';
-  }`
+  }
+`
 
 const ListTextElement = styled(TextElement)`
-  font-size:16px;
-  margin-left:8px;
-  display:inline;
+  font-size: 16px;
+  margin-left: 8px;
+  display: inline;
 `
 
 function ListElement({ value: { bulletType, items }, onLinkClick, ...props }) {
   return (
-      <Container {...props}>
-        <ul>
-          {items.map((item, index) => (
-              <ListItemContainer bulletType={bulletType} key={index}>
-                {item.type === 'text' ? (
-                    <ListTextElement value={item.value} compact={true} />
-                ) : null}
-                {item.type === 'links' ? (
-                    <Links value={{display: 'list', links: item.value.links}} onLinkClick={onLinkClick} />
-                ) : null}
-              </ListItemContainer>
-          ))}
-        </ul>
-      </Container>
+    <Container {...props}>
+      <ul>
+        {items.map((item, index) => (
+          <ListItemContainer bulletType={bulletType} key={index}>
+            {item.type === 'text' ? (
+              <ListTextElement value={item.value} compact={true} />
+            ) : null}
+            {item.type === 'links' ? (
+              <Links
+                value={{ display: 'list', links: item.value.links }}
+                onLinkClick={onLinkClick}
+              />
+            ) : null}
+          </ListItemContainer>
+        ))}
+      </ul>
+    </Container>
   )
 }
 
@@ -546,4 +550,3 @@ function generateClickHandler(onLinkClick, onImageClick) {
       ? onLinkClick && onLinkClick(e, image.link)
       : onImageClick && onImageClick(e, image)
 }
-
