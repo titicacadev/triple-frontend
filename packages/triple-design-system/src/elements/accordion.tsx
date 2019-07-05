@@ -48,6 +48,6 @@ export default class Accordion extends React.PureComponent {
     const {
       props: { children, ...props },
     } = this
-    return <AccordionBase>{children}</AccordionBase>
+    return <AccordionBase {...props}>{children}</AccordionBase>
   }
 }
