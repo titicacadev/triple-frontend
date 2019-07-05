@@ -28,7 +28,8 @@ const MH1 = ({ children, ...props }) => (
 )
 
 const MH2 = ({ children, ...props }) => (
-  <H2 margin={{ top: 20, bottom: 20, left: 30, right: 30 }} {...props}>
+  <H2 margin={{ top: 20, bottom: 20, left: 30, right: 30 }}
+      {...props}>
     {children}
   </H2>
 )
@@ -100,7 +101,6 @@ export function TripleDocument({
   imageSourceComponent,
   resourceScraps,
   customElements,
-  bulletType,
 }) {
   return (
     <>
@@ -120,7 +120,6 @@ export function TripleDocument({
               onTNAProductsFetch={onTNAProductsFetch}
               ImageSource={imageSourceComponent}
               resourceScraps={resourceScraps || {}}
-              bulletType={bulletType}
             />
           )
         )
@@ -516,7 +515,7 @@ const ListItemContainer = styled.li<{ bulletType?: string }>`
     content: '';
   }`
 
-function ListElement({ value: { items }, bulletType, onLinkClick, ...props }) {
+function ListElement({ value: { bulletType, items }, onLinkClick, ...props }) {
   return (
       <Container {...props}>
         <ul>
