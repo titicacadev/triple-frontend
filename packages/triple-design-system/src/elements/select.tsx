@@ -74,6 +74,7 @@ function Select({
         value={value}
         error={error}
         name={name}
+        selected={value !== null && value !== undefined && value !== ''}
       >
         {placeholder ? <option value="">{placeholder}</option> : null}
         {options.map(({ label, value }, idx) => (

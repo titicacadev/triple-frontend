@@ -56,7 +56,21 @@ storiesOf('Form', module)
   .add('Select', () => (
     <Select
       placeholder="시간을 선택해주세요"
-      options={['12:00', '12:10', '12:20']}
+      value="12:00"
+      options={[
+        {
+          label: '12:00',
+          value: '12:00',
+        },
+        {
+          label: '12:10',
+          value: '12:10',
+        },
+        {
+          label: '12:20',
+          value: '12:20',
+        },
+      ]}
     />
   ))
   .add('GenderSelector', () => <GenderSelector value="MALE" />)
