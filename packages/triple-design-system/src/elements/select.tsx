@@ -75,7 +75,7 @@ function Select({
         error={error}
         name={name}
       >
-        <option value="">{placeholder}</option>
+        {placeholder ? <option value="">{placeholder}</option> : null}
         {options.map(({ label, value }, idx) => (
           <option key={idx} value={value}>
             {label}
