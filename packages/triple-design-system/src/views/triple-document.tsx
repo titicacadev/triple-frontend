@@ -520,6 +520,7 @@ const ListTextElement = styled(TextElement)`
   font-size: 16px;
   margin-left: 8px;
   display: inline;
+  div, p, pre {display: inline}
 `
 
 function ListElement({ value: { bulletType, items }, onLinkClick, ...props }) {
