@@ -44,6 +44,16 @@ storiesOf('TripleDocument.리스트', module)
             },
           },
           {
+            type: 'text',
+            value: {
+              rich: true,
+              text: '오사카 여행에 주유패스가 빠질 수 없겠죠?\n',
+              rawHTML:
+                '<p>오사카 여행에 <strong>주유패스가</strong> 빠질 수 없겠죠?</p>\n',
+              markdownText: '오사카 여행에 **주유패스가** 빠질 수 없겠죠?\n',
+            },
+          },
+          {
             type: 'links',
             value: {
               display: 'default',
