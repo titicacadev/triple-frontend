@@ -34,6 +34,7 @@ export function ExtendedResourceListElement({
   reviewsRating,
   onClick,
   onScrapedChange,
+  hideScrapButton,
 }: {
   resource?: any
   image?: any
@@ -52,6 +53,7 @@ export function ExtendedResourceListElement({
   reviewsRating?: number
   onClick?: (e?: React.SyntheticEvent) => any
   onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
+  hideScrapButton?: boolean
 }) {
   return (
     <ResourceListItem onClick={onClick}>
@@ -126,12 +128,14 @@ export function ExtendedResourceListElement({
         </Label.Group>
       ) : null}
 
-      <ScrapButton
-        top={23}
-        scraped={scraped}
-        resource={resource}
-        onScrapedChange={onScrapedChange}
-      />
+      {!hideScrapButton ? (
+        <ScrapButton
+          top={23}
+          scraped={scraped}
+          resource={resource}
+          onScrapedChange={onScrapedChange}
+        />
+      ) : null}
 
       {salePrice ? (
         <>
