@@ -1,3 +1,9 @@
+## 0.6.11 (2019-07-10)
+
+- `TripleDocument`에 `list`타입에 `rawHTML` 형태의 Text 인입 시 버그 수정.
+
+  _luffy_
+
 ## 0.6.10 (2019-07-09)
 
 - `TripleDocument`에 `list`타입을 추가합니다.
