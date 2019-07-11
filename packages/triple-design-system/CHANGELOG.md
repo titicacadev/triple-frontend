@@ -1,8 +1,10 @@
 ## 0.6.12 (2019-07-11)
 
 - `Select`에 placeholder condition 을 추가한다.
-
   _Olaf_
+
+- `ExtendedResourceListElement` 에 `hideScrapButton` props 추가
+  _luffy_
 
 ## 0.6.11 (2019-07-10)
 
