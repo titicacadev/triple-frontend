@@ -1,3 +1,9 @@
+## 0.6.12 (2019-07-11)
+
+- `Select`에 placeholder condition 을 추가한다.
+
+  _Olaf_
+
 ## 0.6.11 (2019-07-10)
 
 - `TripleDocument`에 `list`타입에 `rawHTML` 형태의 Text 인입 시 버그 수정.
