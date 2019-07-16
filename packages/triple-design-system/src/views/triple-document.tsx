@@ -529,7 +529,7 @@ const ListTextElement = styled(TextElement)`
 
 function ListElement({ value: { bulletType, items }, onLinkClick, ...props }) {
   return (
-    <Container {...props}>
+    <Container margin={{ top: 10, left: 30, right: 30 }} {...props}>
       <ul>
         {items.map((item, index) => (
           <ListItemContainer bulletType={bulletType} key={index}>
