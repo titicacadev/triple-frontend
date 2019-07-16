@@ -1,3 +1,8 @@
+## 0.6.13 (2019-07-17)
+
+- `TripleDocument`의 `list`타입에 기본 margin 추가 ({top: 10, left: 30, right: 30})
+  _Luffy_
+
 ## 0.6.12 (2019-07-11)
 
 - `Select`에 placeholder condition 을 추가한다.
