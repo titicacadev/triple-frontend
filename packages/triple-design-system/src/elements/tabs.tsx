@@ -20,6 +20,7 @@ const Tab = styled.div<{ widthPercent?: number; active?: boolean }>`
   border-radius: 2px;
   font-size: 14px;
   font-weight: bold;
+  cursor: pointer;
 `
 
 export default function Tabs({

@@ -14,6 +14,7 @@ const ResourceListItem = styled(List.Item)`
   min-height: 150px;
   padding: 20px 0;
   box-sizing: border-box;
+  cursor: pointer;
 `
 
 export function ExtendedResourceListElement({

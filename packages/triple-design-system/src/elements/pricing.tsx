@@ -165,6 +165,7 @@ const ReservationButton = styled.button`
   color: ${COLORS.white};
   font-size: ${FONT_SIZE.small};
   border: none;
+  cursor: pointer;
 `
 
 function FixedPricing({

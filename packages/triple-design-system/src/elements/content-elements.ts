@@ -36,6 +36,7 @@ export const ImageCaption = styled.div`
 export const ResourceListItem = styled(List.Item)`
   height: 40px;
   margin: 20px 0;
+  cursor: pointer;
 `
 
 export const SquareImage = styled.img<{
@@ -79,4 +80,5 @@ export const SimpleLink = styled.a`
   font-weight: bold;
   color: #2987f0;
   text-decoration: underline;
+  cursor: pointer;
 `

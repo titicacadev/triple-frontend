@@ -56,6 +56,7 @@ const Icon = styled.span<{ active?: boolean; backgroundImageSrc?: string }>`
   float: left;
   background-image: url(${({ backgroundImageSrc }) => backgroundImageSrc});
   opacity: ${({ active }) => (active ? 1 : 0.2)};
+  cursor: pointer;
 `
 
 export default function NumricSpinner({

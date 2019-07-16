@@ -76,6 +76,7 @@ const NavbarItem = styled.div<{
   width: 34px;
   margin-left: ${({ floated }) => (!floated || floated === 'left' ? 0 : '6px')};
   margin-right: ${({ floated }) => (floated === 'right' ? 0 : '6px')};
+  cursor: pointer;
 `
 
 const SecondaryNavbar = styled.div`

@@ -28,6 +28,7 @@ const Title = styled(Container)<{ active?: boolean }>`
     background-position: 0 -7px;
     background-repeat: no-repeat;
     content: '';
+    cursor: pointer;
   }
 `
 

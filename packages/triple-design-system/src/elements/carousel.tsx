@@ -50,6 +50,7 @@ const CarouselItem = styled.li<{ size?: GlobalSizes }>`
     ({ small: '140px', medium: '153px', large: '270px' }[size || 'small'])};
   vertical-align: top;
   white-space: normal;
+  cursor: pointer;
 
   margin-left: ${({ size }) =>
     ({ small: '10px', medium: '10px', large: '15px' }[size || 'small'])};

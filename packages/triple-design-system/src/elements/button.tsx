@@ -41,6 +41,7 @@ const ButtonBase = styled.a<IButtonBaseProp>`
   text-align: center;
   text-decoration: none;
   box-sizing: border-box;
+  cursor: pointer;
 
   color: ${({ textColor = 'gray', textAlpha = 1 }) =>
     `rgba(${GetGlobalColor(textColor)}, ${textAlpha})`};

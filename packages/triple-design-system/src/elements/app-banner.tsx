@@ -60,6 +60,7 @@ const CallToAction = styled.a`
   color: #ffffff;
   background-color: #0bd0af;
   text-decoration: none;
+  cursor: pointer;
 `
 
 export default function AppBanner({

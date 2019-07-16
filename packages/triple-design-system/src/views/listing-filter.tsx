@@ -122,6 +122,7 @@ export const ListingFilterBase = styled.div`
   white-space: nowrap;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
+  cursor: pointer;
 
   padding: 0 20px 10px 20px;
 

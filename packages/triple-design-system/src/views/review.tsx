@@ -31,6 +31,7 @@ const MoreIcon = styled.img`
   width: 30px;
   height: 30px;
   vertical-align: middle;
+  cursor: pointer;
 `
 
 function Name({ onClick, children }) {
@@ -123,6 +124,7 @@ const LikeButton = styled.a<{ liked?: boolean }>`
   text-align: center;
   text-decoration: none;
   box-sizing: border-box;
+  cursor: pointer;
 
   margin-right: 8px;
   padding: 5px 7px;
@@ -200,6 +202,7 @@ const Unfold = styled.a`
   display: inline-block;
   color: #2987f0;
   text-decoration: none;
+  cursor: pointer;
 `
 
 function FoldedComment({ children, onUnfoldButtonClick }) {
