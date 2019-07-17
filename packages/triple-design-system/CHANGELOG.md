@@ -1,3 +1,9 @@
+## 0.6.14 (2019-07-17)
+
+- `Clickable Components`의 style에 `cursor: pointer` 추가
+
+  _Torres_
+
 ## 0.6.13 (2019-07-17)
 
 - `TripleDocument`의 `list`타입에 기본 margin 추가 ({top: 10, left: 30, right: 30})
