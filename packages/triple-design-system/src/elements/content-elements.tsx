@@ -120,9 +120,9 @@ export const RelatedContent = styled.li<{
 
   ${({ img }) =>
     css`
-      background: url(${img}) rgba(0,0,0,0.3);
+      background: linear-gradient(0deg,rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url(${img});
     `};
   background-repeat: no-repeat;
-  background-size: cover;
-  background-blend-mode: multiply;
+  background-size: 100% 100%;
+  
 `
