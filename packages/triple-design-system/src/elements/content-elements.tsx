@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import List from './list'
 import * as CSS from 'csstype'
+import { MarginPadding } from '../commons'
 
 export const ImageCarouselElementContainer = styled.div`
   display: inline-block;
@@ -81,4 +82,46 @@ export const SimpleLink = styled.a`
   color: #2987f0;
   text-decoration: underline;
   cursor: pointer;
+`
+
+export const RelatedContentsList = styled.ul<{
+  margin?: MarginPadding
+  centered?: boolean
+}>`
+  ${({ margin }) =>
+    margin &&
+    css`
+      margin-top: ${margin.top || 0}px;
+      margin-bottom: ${margin.bottom || 0}px;
+      margin-left: ${margin.left || 0}px;
+      margin-right: ${margin.right || 0}px;
+    `};
+`
+
+export const RelatedContent = styled.li<{
+  img: string
+}>`
+  display: inline-block;
+  vertical-align: top;
+  width: 120px;
+  height: 130px;
+  padding: 20px 15px 0 15px;
+  margin: 0 15px 15px 0;
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  ${({ img }) =>
+    css`
+      background: rgba(0, 0, 0, 0.3) url(${img});
+    `};
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 `
