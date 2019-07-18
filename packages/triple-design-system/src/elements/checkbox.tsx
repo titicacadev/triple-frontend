@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled, { css, InterpolationValue } from 'styled-components'
 import { withField } from '../utils/form-field'
 import { GetGlobalColor } from '../commons'
-import Text from './text'
+import { MarginPadding } from '../commons'
 import * as CSS from 'csstype'
 
 type FillType = 'full' | 'border' | 'text'
@@ -29,20 +29,6 @@ const TextAligns: Partial<
   right: css`
     text-align: right;
   `,
-  center: css`
-    text-align: center;
-    padding: 16px;
-
-    & > div {
-      position: relative;
-      display: inline-block;
-      padding-left: 35px;
-
-      & > span {
-        left: 0;
-      }
-    }
-  `,
 }
 
 const ConfirmFrame = styled.div.attrs<{ name?: string }>({})<{
@@ -50,24 +36,32 @@ const ConfirmFrame = styled.div.attrs<{ name?: string }>({})<{
   borderless?: boolean
   checked?: boolean
   fillType?: FillType
+  padding?: MarginPadding
 }>`
   width: 100%;
   border: 1px solid #efefef;
   box-sizing: border-box;
-  padding: 16px 54px 16px 16px;
   position: relative;
   font-weight: bold;
   color: rgba(${GetGlobalColor('gray')}, 0.5);
 
+  ${({ checked, fillType }) => checked && fillType && FillTypes[fillType]};
+  ${({ textAlign }) => textAlign && TextAligns[textAlign]};
+
   ${({ borderless }) =>
     borderless &&
     css`
-      padding: 16px 59px 16px 0;
       border: none;
     `};
 
-  ${({ checked, fillType }) => checked && fillType && FillTypes[fillType]};
-  ${({ textAlign }) => textAlign && TextAligns[textAlign]};
+  ${({ padding }) =>
+    padding &&
+    css`
+      padding-top: ${padding.top}px;
+      padding-right: ${padding.right}px;
+      padding-bottom: ${padding.bottom}px;
+      padding-left: ${padding.left}px;
+    `};
 `
 
 const Icon = styled.span<{ borderless?: boolean; checked?: boolean }>`
@@ -93,15 +87,12 @@ export const ConfirmSelector = withField(
   ({
     name,
     value,
-    placeholder,
+    children,
     onChange,
     textAlign = 'left',
     borderless,
     fillType,
-    fontSize = 'small',
-    color,
-    alpha = 0.5,
-    bold = true,
+    padding,
   }: {
     name?: string
     value: any
@@ -110,10 +101,8 @@ export const ConfirmSelector = withField(
     textAlign?: CSS.TextAlignProperty
     borderless?: boolean
     fillType?: FillType
-    fontSize?: string
-    color?: string
-    alpha?: number
-    bold?: boolean
+    children?: React.ReactNode
+    padding?: MarginPadding
   }) => {
     return (
       <ConfirmFrame
@@ -123,11 +112,10 @@ export const ConfirmSelector = withField(
         textAlign={textAlign}
         borderless={borderless}
         fillType={fillType}
+        padding={padding}
       >
-        <Text size={fontSize} color={color} alpha={alpha} bold={bold}>
-          <Icon checked={value} borderless={borderless} />
-          {placeholder}
-        </Text>
+        {children}
+        <Icon checked={value} borderless={borderless} />
       </ConfirmFrame>
     )
   },

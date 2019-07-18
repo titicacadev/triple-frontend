@@ -7,6 +7,7 @@ import {
   Select,
   GenderSelector,
   Radio,
+  Text,
 } from '@titicaca/triple-design-system'
 
 storiesOf('Form', module)
@@ -31,23 +32,30 @@ storiesOf('Form', module)
   .add('ConfirmSelector', () => (
     <ConfirmSelector
       value={false}
-      placeholder="예약자와 투숙자가 다릅니다"
       textAlign="left"
-    />
+      padding={{ top: 16, left: 16, bottom: 16 }}
+    >
+      <Text>예약자 정보를 업데이트 합니다.</Text>
+    </ConfirmSelector>
   ))
   .add('ConfirmSelector(Check)', () => (
     <ConfirmSelector
       value={true}
-      placeholder="예약자와 투숙자가 다릅니다"
       textAlign="right"
-    />
+      padding={{ top: 16, right: 50, left: 16, bottom: 16 }}
+    >
+      <Text>예약자 정보를 업데이트 합니다.</Text>
+    </ConfirmSelector>
   ))
-  .add('ConfirmSelector(Centered)', () => (
+  .add('ConfirmSelector(Borderless)', () => (
     <ConfirmSelector
       value={true}
-      placeholder="예약자와 투숙자가 다릅니다"
-      textAlign="center"
-    />
+      textAlign="right"
+      borderless
+      padding={{ top: 16, right: 50, left: 16, bottom: 16 }}
+    >
+      <Text>예약자 정보를 업데이트 합니다.</Text>
+    </ConfirmSelector>
   ))
   .add('Radio', () => (
     <Radio value={'item1'} options={['item1', 'item2', 'item3']} />
