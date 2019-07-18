@@ -125,5 +125,21 @@ export const RelatedContent = styled.li<{
     `};
   background-repeat: no-repeat;
   background-size: cover;
-  
+
+  @media (min-width: 760px) {
+    width: calc(50% - 45px);
+    height: 130px;
+
+    &: after {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 20px;
+      background-image: url('https://assets.triple.guide/images/ico-arrow@4x.png');
+      background-size: 100% 100%;
+      position: sticky;
+      top: 42.5px;
+      left: calc(100% - 15px);
+    }
+  }
 `
