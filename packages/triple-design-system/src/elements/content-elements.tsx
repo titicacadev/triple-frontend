@@ -130,16 +130,17 @@ export const RelatedContent = styled.li<{
     width: calc(50% - 45px);
     height: 130px;
 
-    &:after {
+    &:before {
       content: '';
-      display: block;
       width: 20px;
       height: 20px;
+      background-size: 20px 20px;
       background-image: url('https://assets.triple.guide/images/ico-arrow@4x.png');
-      background-size: 100% 100%;
-      position: sticky;
-      top: 42.5px;
-      left: calc(100% - 15px);
+      float: right;
+      margin-right: -20px;
+      position: relative;
+      right: 20px;
+      top: 45px;
     }
   }
 `
