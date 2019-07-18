@@ -99,7 +99,7 @@ export const RelatedContentsList = styled.ul<{
 `
 
 export const RelatedContent = styled.li<{
-  img: string
+  backgroundImageURl: string
 }>`
   display: inline-block;
   vertical-align: top;
@@ -118,10 +118,10 @@ export const RelatedContent = styled.li<{
   text-overflow: ellipsis;
   white-space: nowrap;
 
-  ${({ img }) =>
+  ${({ backgroundImageURl }) =>
     css`
       background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-        url(${img});
+        url(${backgroundImageURl});
     `};
   background-repeat: no-repeat;
   background-size: cover;
