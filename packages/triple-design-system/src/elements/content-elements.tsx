@@ -130,7 +130,7 @@ export const RelatedContent = styled.li<{
     width: calc(50% - 45px);
     height: 130px;
 
-    &: after {
+    &:after {
       content: '';
       display: block;
       width: 20px;
