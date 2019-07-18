@@ -86,7 +86,6 @@ export const SimpleLink = styled.a`
 
 export const RelatedContentsList = styled.ul<{
   margin?: MarginPadding
-  centered?: boolean
 }>`
   ${({ margin }) =>
     margin &&
