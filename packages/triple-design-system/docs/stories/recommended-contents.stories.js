@@ -1,8 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { Container, Text } from '@titicaca/triple-design-system'
-import { contents } from './contents-list.sample.json'
-import RecommendedContents from '../../src/views/recommended-contents-list'
+import { contents } from './recommended-contents.sample.json'
+import RecommendedContents from '../../src/views/recommended-contents'
 
 storiesOf('RecommendedContents', module).add('추천 컨텐츠', () => (
   <Container margin={{ top: 50, left: 30, right: 30 }}>
