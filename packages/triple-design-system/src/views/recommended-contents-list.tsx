@@ -66,11 +66,19 @@ export default function RecommendedContentsList({
   contents,
   margin,
   onContentClick,
+}: {
+  contents: Array<{
+    backgroundImageUrl: string
+    title: string
+  }>
+  margin?: MarginPadding
+  onContentClick?: any
 }) {
   return (
     <RecommendedContentsContainer {...{ margin }}>
-      {(contents || []).map((content) => (
+      {contents.map((content, index) => (
         <RecommendedContent
+          key={index}
           backgroundImageUrl={content.backgroundImageUrl}
           dangerouslySetInnerHTML={{ __html: content.title }}
           onClick={() => onContentClick && onContentClick(content)}
