@@ -1,6 +1,12 @@
+## 0.6.15 (2019-07-19)
+
+- `Confirm Selector` 구조 변경
+
+  _Olaf_
+
 ## 0.6.14 (2019-07-17)
 
-- `Clickable Components`의 style에 `cursor: pointer` 추가
+- `Clickable Components`의 style 에 `cursor: pointer` 추가
 
   _Torres_
 
