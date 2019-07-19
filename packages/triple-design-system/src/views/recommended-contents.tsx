@@ -72,7 +72,7 @@ export default function RecommendedContents({
     title: string
   }>
   margin?: MarginPadding
-  onContentClick?: any
+  onContentClick?: (e, content) => any
 }) {
   return (
     <RecommendedContentsContainer {...{ margin }}>
@@ -81,7 +81,7 @@ export default function RecommendedContents({
           key={index}
           backgroundImageUrl={content.backgroundImageUrl}
           dangerouslySetInnerHTML={{ __html: content.title }}
-          onClick={() => onContentClick && onContentClick(content)}
+          onClick={onContentClick && ((e) => onContentClick(e, content))}
         />
       ))}
     </RecommendedContentsContainer>
