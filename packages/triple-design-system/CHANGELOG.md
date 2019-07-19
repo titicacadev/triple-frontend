@@ -1,3 +1,9 @@
+## 0.6.16 (2019-07-19)
+
+- `Recommended Contents` 추가
+
+  _Torres_
+
 ## 0.6.15 (2019-07-19)
 
 - `Confirm Selector` 구조 변경
