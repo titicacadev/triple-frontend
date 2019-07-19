@@ -62,7 +62,7 @@ const RecommendedContent = styled.li<{
   }
 `
 
-export default function RecommendedContents({
+export function RecommendedContents({
   contents,
   margin,
   onContentClick,
@@ -78,7 +78,7 @@ export default function RecommendedContents({
   ) => any
 }) {
   return (
-    <RecommendedContentsContainer margin={margin} >
+    <RecommendedContentsContainer margin={margin}>
       {contents.map((content, index) => (
         <RecommendedContent
           key={index}
