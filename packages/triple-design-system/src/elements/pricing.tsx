@@ -164,6 +164,7 @@ const ReservationButton = styled.button`
   background: ${COLORS.blue};
   color: ${COLORS.white};
   font-size: ${FONT_SIZE.small};
+  font-weight: bold;
   border: none;
   cursor: pointer;
 `
