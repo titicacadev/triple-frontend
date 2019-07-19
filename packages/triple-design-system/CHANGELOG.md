@@ -1,3 +1,9 @@
+## 0.6.17 (2019-07-19)
+
+- `Pricing` 컴포넌트의 버튼 font-weight:bold 처리
+
+  _Torres_
+
 ## 0.6.16 (2019-07-19)
 
 - `RecommendedContents` 컴포넌트 추가
