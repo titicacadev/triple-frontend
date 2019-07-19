@@ -1,6 +1,6 @@
 ## 0.6.16 (2019-07-19)
 
-- `Recommended Contents` 추가
+- `RecommendedContents` 컴포넌트 추가
 
   _Torres_
 
