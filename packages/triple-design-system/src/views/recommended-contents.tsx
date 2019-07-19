@@ -78,7 +78,7 @@ export default function RecommendedContents({
   ) => any
 }) {
   return (
-    <RecommendedContentsContainer {...{ margin }}>
+    <RecommendedContentsContainer margin={margin} >
       {contents.map((content, index) => (
         <RecommendedContent
           key={index}

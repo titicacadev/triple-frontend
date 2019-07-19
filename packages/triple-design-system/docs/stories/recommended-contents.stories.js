@@ -9,6 +9,6 @@ storiesOf('RecommendedContents', module).add('추천 컨텐츠', () => (
     <Text size="big" bold>
       다른 컨텐츠 더보기
     </Text>
-    <RecommendedContents {...{ contents }} margin={{ top: 30 }} />
+    <RecommendedContents contents={contents} margin={{ top: 30 }} />
   </Container>
 ))
