@@ -62,7 +62,7 @@ const RecommendedContent = styled.li<{
   }
 `
 
-export default function RecommendedContentsList({
+export default function RecommendedContents({
   contents,
   margin,
   onContentClick,
