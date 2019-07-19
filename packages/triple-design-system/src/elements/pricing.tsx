@@ -157,7 +157,7 @@ const FloatedPricingContainer = styled(Container)`
   width: 50%;
 `
 
-const ReservationButton = styled.button`
+const PurchaseButton = styled.button`
   width: 100%;
   padding: 17px 0;
   border-radius: 4px;
@@ -209,7 +209,7 @@ function FixedPricing({
           </Text>
         </FloatedPricingContainer>
         <FloatedPricingContainer floated="right">
-          <ReservationButton onClick={onClick}>{buttonText}</ReservationButton>
+          <PurchaseButton onClick={onClick}>{buttonText}</PurchaseButton>
         </FloatedPricingContainer>
       </FloatedFrame>
     </Drawer>
