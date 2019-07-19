@@ -72,7 +72,10 @@ export default function RecommendedContents({
     title: string
   }>
   margin?: MarginPadding
-  onContentClick?: (e, content) => any
+  onContentClick?: (
+    e?: React.SyntheticEvent,
+    content?: { backgroundImageUrl: string; title: string },
+  ) => any
 }) {
   return (
     <RecommendedContentsContainer {...{ margin }}>
