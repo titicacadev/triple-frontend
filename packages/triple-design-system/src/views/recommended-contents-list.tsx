@@ -69,11 +69,11 @@ export default function RecommendedContentsList({
 }) {
   return (
     <RecommendedContentsContainer {...{ margin }}>
-      {(contents || []).map(({ title, backgroundImageUrl, url }) => (
+      {(contents || []).map((content) => (
         <RecommendedContent
-          {...{ backgroundImageUrl }}
-          dangerouslySetInnerHTML={{ __html: title }}
-          onClick={() => onContentClick && onContentClick(url)}
+          backgroundImageUrl={content.backgroundImageUrl}
+          dangerouslySetInnerHTML={{ __html: content.title }}
+          onClick={() => onContentClick && onContentClick(content)}
         />
       ))}
     </RecommendedContentsContainer>
