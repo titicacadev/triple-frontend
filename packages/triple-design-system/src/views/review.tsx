@@ -102,6 +102,7 @@ const Images = styled.div`
     height: 80px;
     border-radius: 3px;
     object-fit: cover;
+    cursor: pointer;
 
     &:not(:first-child) {
       margin-left: 9px;
