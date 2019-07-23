@@ -1,3 +1,9 @@
+## 0.6.19 (2019-07-23)
+
+- `Form` 요소들에게 border radius 2px 추가
+
+  _Olaf_
+
 ## 0.6.18 (2019-07-23)
 
 - `Radio, Select` padding 값 수정, `Listing Filter` 버튼 사이즈 조절
