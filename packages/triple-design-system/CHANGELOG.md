@@ -1,3 +1,9 @@
+## 0.6.18 (2019-07-23)
+
+- `Radio, Select` padding 값 수정, `Listing Filter` 버튼 사이즈 조절
+
+  _Olaf_
+
 ## 0.6.17 (2019-07-19)
 
 - `Pricing` 컴포넌트의 버튼 font-weight:bold 처리
