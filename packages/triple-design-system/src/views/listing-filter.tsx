@@ -74,13 +74,13 @@ const RegularFilterEntry = styled(FilterEntryBase)<{
   ${({ withIcon, iconImage }) =>
     withIcon
       ? css`
-          padding: 8px 9px 8px 31px;
+          padding: 8px 10px 8px 32px;
           background-size: 24px 24px;
-          background-position: top 4px left 7px;
+          background-position: top 5px left 8px;
           background-image: url(${iconImage});
         `
       : css`
-          padding: 8px 15px;
+          padding: 8px 16px;
         `};
   ${({ active }) =>
     active
