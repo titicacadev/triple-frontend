@@ -7,8 +7,8 @@ import { GetGlobalColor } from '../commons'
 
 const RadioFrame = styled.div.attrs<{ name?: string }>({})`
   position: relative;
-  padding: 15px 35px 15px 12px;
-  border: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
+  padding: 11px 35px 11px 16px;
+  border: 2px solid rgba(${GetGlobalColor('gray')}, 0.1);
   margin-bottom: 10px;
   box-sizing: border-box;
 
@@ -46,7 +46,7 @@ const Icon = styled.span<{ selected?: boolean }>`
       opacity: 1;
       background-image: url('https://assets.triple.guide/images/radio-on@2x.png');
       transition: all 0.3s ease;
-      transform: scale(1.1);
+      transform: scale(1);
     `};
 `
 
@@ -57,12 +57,12 @@ const GenderContainer = styled.div.attrs<{ name?: string; value?: string }>(
 }>`
   width: 50%;
   display: inline-block;
-  padding: 16px 0;
+  padding: 15px 0;
   border: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
   border-radius: 2px;
   box-sizing: border-box;
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
   color: rgba(${GetGlobalColor('gray')}, 0.3);
 
   &:last-child {

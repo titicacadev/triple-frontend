@@ -4,7 +4,7 @@ import { withField } from '../utils/form-field'
 import { GetGlobalColor } from '../commons'
 
 const SelectFrame = styled.div<{ focus?: boolean; error?: boolean }>`
-  padding: 15px;
+  padding: 14px 16px;
   border: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
   position: relative;
 
