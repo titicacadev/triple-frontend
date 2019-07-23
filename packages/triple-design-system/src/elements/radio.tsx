@@ -46,7 +46,6 @@ const Icon = styled.span<{ selected?: boolean }>`
       opacity: 1;
       background-image: url('https://assets.triple.guide/images/radio-on@2x.png');
       transition: all 0.3s ease;
-      transform: scale(1);
     `};
 `
 
