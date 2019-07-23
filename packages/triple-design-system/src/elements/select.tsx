@@ -6,6 +6,7 @@ import { GetGlobalColor } from '../commons'
 const SelectFrame = styled.div<{ focus?: boolean; error?: boolean }>`
   padding: 14px 16px;
   border: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
+  border-radius: 2px;
   position: relative;
 
   ${({ focus }) =>

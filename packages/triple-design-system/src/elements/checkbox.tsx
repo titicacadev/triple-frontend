@@ -40,6 +40,7 @@ const ConfirmFrame = styled.div.attrs<{ name?: string }>({})<{
 }>`
   width: 100%;
   border: 1px solid #efefef;
+  border-radius: 2px;
   box-sizing: border-box;
   position: relative;
   font-weight: bold;
