@@ -1,3 +1,9 @@
+## 0.6.20 (2019-07-24)
+
+- `ReviewsList` 이미지에 `cursor: pointer` 추가
+
+  _Torres_
+
 ## 0.6.19 (2019-07-23)
 
 - `Form` 요소들에게 border radius 2px 추가
