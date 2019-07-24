@@ -1,3 +1,9 @@
+## 0.6.21 (2019-07-24)
+
+- `Global Style` body 에 style 추가
+
+  _Olaf_
+
 ## 0.6.20 (2019-07-24)
 
 - `ReviewsList` 이미지에 `cursor: pointer` 추가
