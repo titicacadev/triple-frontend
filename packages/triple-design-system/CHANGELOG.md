@@ -1,3 +1,9 @@
+## 0.6.22 (2019-07-24)
+
+- `RecommendedContent` 에 `background-position: center` 스타일 적용
+
+  _Torres_
+
 ## 0.6.21 (2019-07-24)
 
 - `Global Style` body 에 style 추가
