@@ -1,3 +1,9 @@
+## 0.6.23 (2019-07-24)
+
+- `Radio` 의 line Height 를 수정한다.
+
+  _Olaf_
+
 ## 0.6.22 (2019-07-24)
 
 - `RecommendedContent` 에 `background-position: center` 스타일 적용
