@@ -42,6 +42,7 @@ const RecommendedContent = styled.li<{
     `};
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 
   @media (min-width: 760px) {
     width: calc(50% - 45px);
