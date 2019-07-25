@@ -1,3 +1,11 @@
+## 0.6.24 (2019-07-25)
+
+- `ListingFilter` 버튼의 height 변경
+- `Label` 의 red color를 Global Color를 쓰지 않는 것으로 변경 
+- `ExtendedResourceListElement` 를 외부에 export 하면서 컴포넌트 디렉토리 위치 변경
+ 
+  _Luffy_
+  
 ## 0.6.23 (2019-07-24)
 
 - `Radio` 의 line Height 를 수정한다.
