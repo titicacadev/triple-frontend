@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { deriveCurrentStateAndCount } from '../utilities'
-import { ExtendedResourceListElement } from './common/resource-list-element'
+import { ExtendedResourceListElement } from './resource-list-element'
 
 export class ProductListElement extends React.PureComponent<{
   product?: { id; title; image; subtitle; basePrice; salePrice }

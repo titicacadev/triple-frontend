@@ -1,14 +1,14 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import Container from '../../elements/container'
-import Label, { labelColor } from '../../elements/label'
-import Text from '../../elements/text'
-import Rating from '../../elements/rating'
-import Image from '../../elements/image'
-import List from '../../elements/list'
-import ScrapButton from '../../elements/scrap-button'
-import Pricing from '../../elements/pricing'
-import { formatNumber } from '../../utilities'
+import Container from '../elements/container'
+import Label, { labelColor } from '../elements/label'
+import Text from '../elements/text'
+import Rating from '../elements/rating'
+import Image from '../elements/image'
+import List from '../elements/list'
+import ScrapButton from '../elements/scrap-button'
+import Pricing from '../elements/pricing'
+import { formatNumber } from '../utilities'
 
 const ResourceListItem = styled(List.Item)`
   min-height: 150px;

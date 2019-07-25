@@ -5,7 +5,7 @@ import Carousel from '../elements/carousel'
 import ScrapButton from '../elements/scrap-button'
 import { SquareImage, ResourceListItem } from '../elements/content-elements'
 import { deriveCurrentStateAndCount } from '../utilities'
-import { ExtendedResourceListElement } from './common/resource-list-element'
+import { ExtendedResourceListElement } from './resource-list-element'
 import { labelColor } from '../elements/label'
 
 type PoiTypes = 'attraction' | 'restaurant' | 'hotel'
