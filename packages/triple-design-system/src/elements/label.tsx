@@ -12,7 +12,7 @@ export type labelColor = GlobalColors | 'purple'
 
 const GetLabelColors: Partial<Record<labelColor, string>> = {
   blue: GetGlobalColor('blue'),
-  red: GetGlobalColor('red'),
+  red: '253, 46, 105',
   purple: '151, 95, 255',
 }
 
