@@ -1,17 +1,24 @@
+## 0.6.26 (2019-07-26)
+
+- `Nummeric Spinner` padding 값 수정
+- `Radio` border radius 수정
+
+  _Olaf_
+
 ## 0.6.25 (2019-07-26)
 
 - `ListingFilter` 버튼 타입의 height 통일
- 
+
   _Luffy_
-  
-  ## 0.6.24 (2019-07-25)
+
+## 0.6.24 (2019-07-25)
 
 - `ListingFilter` 버튼의 height 변경
-- `Label` 의 red color를 Global Color를 쓰지 않는 것으로 변경 
+- `Label` 의 red color 를 Global Color 를 쓰지 않는 것으로 변경
 - `ExtendedResourceListElement` 를 외부에 export 하면서 컴포넌트 디렉토리 위치 변경
- 
+
   _Luffy_
-  
+
 ## 0.6.23 (2019-07-24)
 
 - `Radio` 의 line Height 를 수정한다.
