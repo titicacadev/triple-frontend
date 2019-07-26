@@ -15,6 +15,14 @@ storiesOf('ListingFilter', module)
         침대타입
       </ListingFilter.ExpandingFilterEntry>
       <ListingFilter.FilterEntry>무료취소</ListingFilter.FilterEntry>
+      <ListingFilter.FilterEntry
+        withIcon
+        active={false}
+        activeIconImage="/ico-category-food-on.svg"
+        inactiveIconImage="/ico-category-food.svg"
+      >
+        {text('레이블', '음식점')}
+      </ListingFilter.FilterEntry>
     </ListingFilter>
   ))
   .add('타입1', () => (
