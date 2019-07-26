@@ -11,6 +11,7 @@ interface NumericProp {
 const NumericFrame = styled.div<NumericProp>`
   position: relative;
   border: 1px solid #efefef;
+  border-radius: 2px;
 
   ${({ borderless }) =>
     borderless &&

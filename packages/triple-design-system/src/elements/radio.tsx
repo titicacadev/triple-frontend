@@ -7,7 +7,7 @@ import { GetGlobalColor } from '../commons'
 
 const RadioFrame = styled.div.attrs<{ name?: string }>({})`
   position: relative;
-  padding: 12px 35px 12px 16px;
+  padding: 11px 35px 11px 16px;
   border: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
   border-radius: 2px;
   margin-bottom: 10px;
@@ -35,6 +35,7 @@ const Icon = styled.span<{ selected?: boolean }>`
   display: inline-block;
   width: 22px;
   height: 22px;
+  margin-top: 2px;
   background-size: 22px 22px;
   background-repeat: no-repeat;
   background-position: -1px -1px;
