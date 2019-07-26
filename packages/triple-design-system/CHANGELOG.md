@@ -1,4 +1,10 @@
-## 0.6.24 (2019-07-25)
+## 0.6.25 (2019-07-26)
+
+- `ListingFilter` 버튼 타입의 height 통일
+ 
+  _Luffy_
+  
+  ## 0.6.24 (2019-07-25)
 
 - `ListingFilter` 버튼의 height 변경
 - `Label` 의 red color를 Global Color를 쓰지 않는 것으로 변경 
