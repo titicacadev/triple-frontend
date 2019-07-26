@@ -23,7 +23,7 @@ const PRIMARY_ICON_URL =
   'https://assets.triple-dev.titicaca-corp.com/images/ico-filter-cal.svg'
 
 const ExpandingFilterEntryContainer = styled(FilterEntryBase)`
-  padding: 8px 24px 8px 11px;
+  padding: 9px 24px 9px 11px;
   background-image: ${({ active }) =>
     active
       ? `url(${ACTIVE_EXPANDER_ICON_URL})`
@@ -96,10 +96,10 @@ const RegularFilterEntry = styled(FilterEntryBase)<{
 `
 
 const PrimaryFilterEntry = styled(FilterEntryBase)`
-  padding: 10px 14px 8px 38px;
+  padding: 10px 14px 9px 38px;
   background-image: url(${PRIMARY_ICON_URL});
   background-size: 24px 24px;
-  background-position: top 4px left 10px;
+  background-position: top 5px left 10px;
   border: none;
   border-radius: 2px;
   background-color: #368fff;
