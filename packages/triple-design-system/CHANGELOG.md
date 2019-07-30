@@ -1,3 +1,9 @@
+## 0.6.27 (2019-07-30)
+
+- `Nummeric Spinner` 요소들이 고정 width 를 가지도록 변경
+
+  _Olaf_
+
 ## 0.6.26 (2019-07-26)
 
 - `Nummeric Spinner` padding 값 수정
