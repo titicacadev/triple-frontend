@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+import Text from '../elements/text'
 import { MarginPadding } from '../commons'
 
 const RecommendedContentsContainer = styled.ul<{
@@ -56,17 +57,6 @@ const RecommendedContent = styled.li<{
   }
 `
 
-const RecommendedContentTitle = styled.div`
-  display: -webkit-box;
-  font-size: 16px;
-  font-weight: bold;
-  color: #ffffff;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  text-overflow: ellipsis;
-  overflow: hidden;
-`
-
 export function RecommendedContents({
   contents,
   margin,
@@ -90,7 +80,9 @@ export function RecommendedContents({
           backgroundImageUrl={content.backgroundImageUrl}
           onClick={onContentClick && ((e) => onContentClick(e, content))}
         >
-          <RecommendedContentTitle>{content.title}</RecommendedContentTitle>
+          <Text lineHeight="20px" color="white" bold maxLines={2}>
+            {content.title}
+          </Text>
         </RecommendedContent>
       ))}
     </RecommendedContentsContainer>
