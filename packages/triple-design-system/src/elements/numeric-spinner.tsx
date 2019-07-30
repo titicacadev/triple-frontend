@@ -31,12 +31,11 @@ const NumericFrame = styled.div<NumericProp>`
 
 const NumericContainer = styled.div`
   position: absolute;
-  right: 0;
+  right: 15px;
   top: 50%;
   transform: translateY(-50%);
   overflow: hidden;
   display: table;
-  width: 30%;
 `
 
 const InnerContainer = styled.div<{ width?: number }>`
@@ -44,7 +43,7 @@ const InnerContainer = styled.div<{ width?: number }>`
   display: table-cell;
   vertical-align: middle;
   text-align: center;
-  width: ${({ width }) => (width ? width : 100)}%;
+  width: ${({ width }) => width}px;
 `
 
 const Icon = styled.span<{ active?: boolean; backgroundImageSrc?: string }>`
@@ -121,17 +120,17 @@ export default function NumricSpinner({
       ) : null}
 
       <NumericContainer>
-        <InnerContainer width={20}>
+        <InnerContainer width={36}>
           <Icon
             active={value > 0}
             onClick={value <= min ? () => setQuantity(0) : decrement}
             backgroundImageSrc="https://assets.triple.guide/images/btn-numeric-minus@4x.png"
           />
         </InnerContainer>
-        <InnerContainer width={60}>
+        <InnerContainer width={30}>
           <Text size={size || 'medium'}>{value}</Text>
         </InnerContainer>
-        <InnerContainer width={20}>
+        <InnerContainer width={36}>
           <Icon
             active={value < max}
             onClick={value === 0 ? () => setQuantity(min) : increment}
