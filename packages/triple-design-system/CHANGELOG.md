@@ -1,3 +1,9 @@
+## 0.6.28 (2019-07-30)
+
+- `Recommended Content`의 제목, `Text`의 `maxLines`를 써서 두 줄 표시 후 말 줄임
+
+  _Torres_
+
 ## 0.6.27 (2019-07-30)
 
 - `Nummeric Spinner` 요소들이 고정 width 를 가지도록 변경
