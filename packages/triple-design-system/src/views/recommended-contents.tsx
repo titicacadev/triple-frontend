@@ -28,13 +28,6 @@ const RecommendedContent = styled.li<{
 
   cursor: pointer;
 
-  font-size: 16px;
-  font-weight: bold;
-  color: #ffffff;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-
   ${({ backgroundImageUrl }) =>
     css`
       background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
@@ -63,6 +56,17 @@ const RecommendedContent = styled.li<{
   }
 `
 
+const RecommendedContentTitle = styled.div`
+  display: -webkit-box;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+`
+
 export function RecommendedContents({
   contents,
   margin,
@@ -84,9 +88,10 @@ export function RecommendedContents({
         <RecommendedContent
           key={index}
           backgroundImageUrl={content.backgroundImageUrl}
-          dangerouslySetInnerHTML={{ __html: content.title }}
           onClick={onContentClick && ((e) => onContentClick(e, content))}
-        />
+        >
+          <RecommendedContentTitle>{content.title}</RecommendedContentTitle>
+        </RecommendedContent>
       ))}
     </RecommendedContentsContainer>
   )
