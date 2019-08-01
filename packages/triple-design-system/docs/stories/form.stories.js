@@ -42,6 +42,7 @@ storiesOf('Form', module)
     <ConfirmSelector
       value={true}
       textAlign="right"
+      fillType="full"
       padding={{ top: 16, right: 50, left: 16, bottom: 16 }}
     >
       <Text>예약자 정보를 업데이트 합니다.</Text>
@@ -52,6 +53,7 @@ storiesOf('Form', module)
       value={true}
       textAlign="right"
       borderless
+      fillType="text"
       padding={{ top: 16, right: 50, left: 16, bottom: 16 }}
     >
       <Text>예약자 정보를 업데이트 합니다.</Text>

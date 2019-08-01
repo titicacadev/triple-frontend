@@ -10,13 +10,19 @@ type FillType = 'full' | 'border' | 'text'
 const FillTypes: { [key in FillType]: InterpolationValue[] } = {
   full: css`
     border-color: rgb(${GetGlobalColor('blue')});
-    color: rgb(${GetGlobalColor('blue')});
+    & > * {
+      color: rgb(${GetGlobalColor('blue')});
+      font-weight: bold;
+    }
   `,
   border: css`
     border-color: rgb(${GetGlobalColor('blue')});
   `,
   text: css`
-    color: rgb(${GetGlobalColor('blue')});
+    & > * {
+      color: rgb(${GetGlobalColor('blue')});
+      font-weight: bold;
+    }
   `,
 }
 
