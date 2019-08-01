@@ -8,7 +8,7 @@ import {
 import { contents } from './recommended-contents.sample.json'
 
 storiesOf('RecommendedContents', module).add('추천 컨텐츠', () => (
-  <Container margin={{ top: 50, left: 30, right: 30 }}>
+  <Container margin={{ top: 50, left: 30, right: 15 }}>
     <Text size="big" bold>
       다른 컨텐츠 더보기
     </Text>
