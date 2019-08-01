@@ -1,3 +1,9 @@
+## 0.6.29 (2019-08-01)
+
+- `Confirm Selector`의 스타일 적용 범위를 수정
+
+  _Olaf_
+
 ## 0.6.28 (2019-07-30)
 
 - `Recommended Content`의 제목, `Text`의 `maxLines`를 써서 두 줄 표시 후 말 줄임
