@@ -1,3 +1,9 @@
+## 0.6.29 (2019-08-02)
+
+- `Recommended Contents` 모바일 뷰에서 `Recommended Content`를 1층에 2개씩 표시
+
+  _Torres_
+
 ## 0.6.29 (2019-08-01)
 
 - `Confirm Selector`의 스타일 적용 범위를 수정
