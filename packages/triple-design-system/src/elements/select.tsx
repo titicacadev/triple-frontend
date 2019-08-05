@@ -4,7 +4,7 @@ import { withField } from '../utils/form-field'
 import { GetGlobalColor } from '../commons'
 
 const SelectFrame = styled.div<{ focus?: boolean; error?: boolean }>`
-  padding: 14px 16px;
+  padding: 13px 16px 14px;
   border: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
   border-radius: 2px;
   position: relative;
@@ -39,6 +39,8 @@ const BaseSelect = styled.select<{ selected?: boolean; error?: boolean }>`
 
 const Icon = styled.span`
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   right: 16px;
   display: inline-block;
   width: 10px;

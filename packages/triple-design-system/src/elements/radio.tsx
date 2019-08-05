@@ -7,7 +7,7 @@ import { GetGlobalColor } from '../commons'
 
 const RadioFrame = styled.div.attrs<{ name?: string }>({})`
   position: relative;
-  padding: 11px 35px 11px 16px;
+  padding: 12px 35px 12px 16px;
   border: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
   border-radius: 2px;
   margin-bottom: 10px;
