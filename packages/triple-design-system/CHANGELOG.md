@@ -1,3 +1,9 @@
+## 0.7.1 (2019-08-05)
+
+- `Select, Radio` padding 값 수정
+
+  _Olaf_
+
 ## 0.6.31 (2019-08-05)
 
 - `Numeric` padding 값 수정
