@@ -1,3 +1,9 @@
+## 0.7.1 (2019-08-05)
+
+- `Radio Text` line Height 수정
+
+  _Olaf_
+
 ## 0.7.0 (2019-08-05)
 
 - `Select, Radio` padding 값 수정
