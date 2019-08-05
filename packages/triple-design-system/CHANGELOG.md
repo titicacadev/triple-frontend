@@ -1,6 +1,12 @@
+## 0.6.31 (2019-08-05)
+
+- `Numeric` padding 값 수정
+
+  _Olaf_
+
 ## 0.6.30 (2019-08-02)
 
-- `Recommended Contents` 모바일 뷰에서 `Recommended Content`를 1층에 2개씩 표시
+- `Recommended Contents` 모바일 뷰에서 `Recommended Content`를 1 층에 2 개씩 표시
 
   _Torres_
 
