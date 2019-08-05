@@ -31,7 +31,7 @@ const NumericFrame = styled.div<NumericProp>`
 
 const NumericContainer = styled.div`
   position: absolute;
-  right: 15px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   overflow: hidden;
@@ -127,8 +127,10 @@ export default function NumricSpinner({
             backgroundImageSrc="https://assets.triple.guide/images/btn-numeric-minus@4x.png"
           />
         </InnerContainer>
-        <InnerContainer width={30}>
-          <Text size={size || 'medium'}>{value}</Text>
+        <InnerContainer>
+          <Text size={size || 'medium'} padding={{ left: 10, right: 10 }}>
+            {value}
+          </Text>
         </InnerContainer>
         <InnerContainer width={36}>
           <Icon
