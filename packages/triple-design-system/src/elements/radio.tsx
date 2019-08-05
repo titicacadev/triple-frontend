@@ -108,7 +108,7 @@ export const Radio = withField(
                 <Icon selected={option === value} />
               </Cell>
               <Cell width={90}>
-                <Text size="small" lineHeight={1.4}>
+                <Text size="small" lineHeight={1.45}>
                   {option}
                 </Text>
               </Cell>
