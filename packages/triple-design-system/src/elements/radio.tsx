@@ -6,7 +6,7 @@ import { withField } from '../utils/form-field'
 import { GetGlobalColor } from '../commons'
 
 type Option = {
-  name: string
+  text: string
   value: string
 }
 
@@ -101,7 +101,7 @@ export const Radio = withField(
   }) => {
     return (
       <>
-        {options.map(({ name: optionName, value: optionValue }, idx) => (
+        {options.map(({ text, value: optionValue }, idx) => (
           <RadioFrame key={idx}>
             <RadioContainer
               name={name}
@@ -114,7 +114,7 @@ export const Radio = withField(
               </Cell>
               <Cell width={90}>
                 <Text size="small" lineHeight={1.45}>
-                  {optionName}
+                  {text}
                 </Text>
               </Cell>
             </RadioContainer>

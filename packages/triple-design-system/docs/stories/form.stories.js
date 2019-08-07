@@ -64,15 +64,15 @@ storiesOf('Form', module)
       value={'item2'}
       options={[
         {
-          name: 'item1',
+          text: 'item1',
           value: 'item1',
         },
         {
-          name: 'item2',
+          text: 'item2',
           value: 'item2',
         },
         {
-          name: 'item3',
+          text: 'item3',
           value: 'item3',
         },
       ]}
