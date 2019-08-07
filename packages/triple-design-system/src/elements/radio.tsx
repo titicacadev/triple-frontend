@@ -5,6 +5,11 @@ import styled, { css } from 'styled-components'
 import { withField } from '../utils/form-field'
 import { GetGlobalColor } from '../commons'
 
+type Option = {
+  name: string
+  value: string
+}
+
 const RadioFrame = styled.div.attrs<{ name?: string }>({})`
   position: relative;
   padding: 11px 35px 11px 12px;
@@ -92,24 +97,24 @@ export const Radio = withField(
     name?: string
     value?: string
     onChange?: (e: React.SyntheticEvent, arg1: string) => any
-    options: string[]
+    options: Option[]
   }) => {
     return (
       <>
-        {options.map((option, idx) => (
+        {options.map(({ name: optionName, value: optionValue }, idx) => (
           <RadioFrame key={idx}>
             <RadioContainer
               name={name}
               onClick={(e?: React.SyntheticEvent) =>
-                onChange && onChange(e, option)
+                onChange && onChange(e, value)
               }
             >
               <Cell width={10}>
-                <Icon selected={option === value} />
+                <Icon selected={value === optionValue} />
               </Cell>
               <Cell width={90}>
                 <Text size="small" lineHeight={1.45}>
-                  {option}
+                  {optionName}
                 </Text>
               </Cell>
             </RadioContainer>

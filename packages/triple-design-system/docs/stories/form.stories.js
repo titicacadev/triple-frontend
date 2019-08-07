@@ -60,7 +60,23 @@ storiesOf('Form', module)
     </ConfirmSelector>
   ))
   .add('Radio', () => (
-    <Radio value={'item1'} options={['item1', 'item2', 'item3']} />
+    <Radio
+      value={'item2'}
+      options={[
+        {
+          name: 'item1',
+          value: 'item1',
+        },
+        {
+          name: 'item2',
+          value: 'item2',
+        },
+        {
+          name: 'item3',
+          value: 'item3',
+        },
+      ]}
+    />
   ))
   .add('Textarea', () => <Textarea placeholder="추가정보를 입력해주세요" />)
   .add('Select', () => (
