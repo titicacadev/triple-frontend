@@ -106,7 +106,7 @@ export const Radio = withField(
             <RadioContainer
               name={name}
               onClick={(e?: React.SyntheticEvent) =>
-                onChange && onChange(e, value)
+                onChange && onChange(e, optionValue)
               }
             >
               <Cell width={10}>
