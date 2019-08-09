@@ -4,7 +4,10 @@
   "scripts": {
     "build-resources": "lerna exec --parallel 'BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --delete-dir-on-start --no-comments'",
     "build-declarations": "lerna exec --parallel tsc",
-    "build": "npm run build-resources && npm run build-declarations"
+    "build": "npm run build-resources && npm run build-declarations",
+    "prettier": "prettier --write \"**/*.{ts,tsx,js,json}\"",
+    "lint": "npm run prettier && eslint '{src,test/src}/**/*.js'",
+    "test": "cd test && npm test"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
@@ -25,5 +28,11 @@
     "lerna": "^3.16.4",
     "prettier": "^1.18.2",
     "typescript": "^3.5.3"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "always"
   }
 }

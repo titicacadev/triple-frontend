@@ -4,14 +4,6 @@
   "description": "Triple Design System Library",
   "main": "lib/index.js",
   "types": "lib/main.d.ts",
-  "scripts": {
-    "build": "npm run build-declaration && npm run build-resources",
-    "prettier": "prettier --write \"**/*.{ts,tsx,js,json}\"",
-    "lint": "npm run prettier && eslint '{src,test/src}/**/*.js'",
-    "test": "cd test && npm test",
-    "build-resources": "babel src --out-dir lib --extensions '.ts,.tsx,.js'",
-    "build-declaration": "tsc"
-  },
   "files": [
     "lib/"
   ],
@@ -32,46 +24,17 @@
   },
   "homepage": "https://github.com/titicacadev/triple-design-system#readme",
   "devDependencies": {
-    "@babel/cli": "^7.4.3",
-    "@babel/core": "^7.4.3",
-    "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
-    "@babel/plugin-transform-runtime": "^7.1.0",
-    "@babel/preset-env": "^7.4.3",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/preset-typescript": "^7.3.3",
-    "@types/node": "^12.0.7",
-    "@types/react": "^16.8.19",
-    "babel-eslint": "^10.0.1",
-    "babel-plugin-styled-components": "^1.7.0",
-    "csstype": "^2.6.5",
-    "eslint": "^5.16.0",
-    "eslint-plugin-cypress": "^2.0.1",
-    "eslint-plugin-prettier": "^2.6.2",
-    "eslint-plugin-react": "^7.11.1",
-    "prettier": "^1.14.2",
-    "react": "^16.4.2",
-    "react-dom": "^16.8.6",
-    "styled-components": "^3.4.6",
     "typescript": "^3.3.3"
   },
   "dependencies": {
-    "memoizee": "^0.4.14",
     "moment": "^2.24.0",
     "nuka-carousel": "4.4.1",
     "react-addons-css-transition-group": "^15.6.2",
-    "react-dates": "^18.4.1",
     "react-input-mask": "^2.0.4"
   },
   "peerDependencies": {
     "react": "*",
     "react-dom": "*",
     "styled-components": "^3.4.6"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "all",
-    "arrowParens": "always"
   }
 }
