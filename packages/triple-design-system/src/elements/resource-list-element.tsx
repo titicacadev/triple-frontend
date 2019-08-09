@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import Container from '../elements/container'
-import Label, { labelColor } from '../elements/label'
+import Label, { LabelColor } from '../elements/label'
 import Text from '../elements/text'
 import Rating from '../elements/rating'
 import Image from '../elements/image'
@@ -44,7 +44,7 @@ export function ExtendedResourceListElement({
   comment?: string
   distance?: number
   note?: string
-  tags?: [{ text?: string; color?: labelColor; emphasized?: boolean }]
+  tags?: [{ text?: string; color?: LabelColor; emphasized?: boolean }]
   basePrice?: number
   salePrice?: number
   pricingNote?: string
@@ -118,7 +118,7 @@ export function ExtendedResourceListElement({
                 text,
                 color,
                 emphasized,
-              }: { text: string; color: labelColor; emphasized: boolean },
+              }: { text: string; color: LabelColor; emphasized: boolean },
               index,
             ) => (
               <Label key={index} promo color={color} emphasized={emphasized}>
