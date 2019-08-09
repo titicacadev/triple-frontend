@@ -1,17 +1,10 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./lib",
     "baseUrl": ".",
-    "module": "commonjs",
-    "target": "es6",
-    "lib": ["es6", "dom"],
-    "sourceMap": true,
-    "jsx": "react",
-    "moduleResolution": "node",
     "rootDir": "src",
-    "declaration": true,
     "emitDeclarationOnly": true,
-    "alwaysStrict": true
   },
   "include": ["./src/main.ts"],
   "exclude": ["node_modules", "lib"]
