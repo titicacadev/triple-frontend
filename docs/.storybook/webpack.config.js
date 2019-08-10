@@ -22,7 +22,7 @@ module.exports = {
                   alias: {
                     '@titicaca/triple-design-system': path.resolve(
                       __dirname,
-                      '../../src',
+                      '../../packages/triple-design-system/src',
                     ),
                   },
                 },

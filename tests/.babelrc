@@ -4,7 +4,7 @@
       "module-resolver",
       {
         "alias": {
-          "@titicaca/triple-design-system": "../src"
+          "@titicaca/triple-design-system": "../packages/triple-design-system/src"
         }
       }
     ]
