@@ -1,0 +1,24 @@
+{
+  "name": "@titicaca/triple-document",
+  "version": "0.8.1",
+  "description": "TripleDocument: Formatted Content System",
+  "main": "lib/index.js",
+  "files": [
+    "lib/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "devDependencies": {
+    "typescript": "^3.3.3"
+  },
+  "dependencies": {
+    "@titicaca/triple-design-system": "^0.8.1",
+    "@titicaca/triple-poi": "^0.8.1"
+  }
+}

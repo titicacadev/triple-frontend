@@ -1,12 +1,15 @@
 import * as React from 'react'
-import List from '../elements/list'
-import Text from '../elements/text'
-import Tag, { TagColors } from '../elements/tag'
-import Button from '../elements/button'
-import Container from '../elements/container'
+import {
+  List,
+  Text,
+  Tag,
+  TagColors,
+  Button,
+  Container,
+  SquareImage,
+  MarginPadding,
+} from '@titicaca/triple-design-system'
 import { H1 } from './text'
-import { SquareImage } from '../elements/content-elements'
-import { MarginPadding } from '../commons'
 
 function insertCommas(price) {
   if (price) {
@@ -106,18 +109,17 @@ export class TnaProductsList extends React.PureComponent<{
               <TnaProduct {...product} />
             </List.Item>
           ))}
-          {!showMore &&
-            products.length > 3 && (
-              <Button
-                basic
-                fluid
-                compact
-                margin={{ top: 10 }}
-                onClick={() => this.setState({ showMore: true })}
-              >
-                더보기
-              </Button>
-            )}
+          {!showMore && products.length > 3 && (
+            <Button
+              basic
+              fluid
+              compact
+              margin={{ top: 10 }}
+              onClick={() => this.setState({ showMore: true })}
+            >
+              더보기
+            </Button>
+          )}
         </List>
       </Container>
     ) : null

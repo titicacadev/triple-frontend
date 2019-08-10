@@ -1,7 +1,5 @@
 import * as React from 'react'
-import Container from '../elements/container'
-import Text from '../elements/text'
-import { MarginPadding } from '../commons'
+import { Container, Text, MarginPadding } from '@titicaca/triple-design-system'
 import * as CSS from 'csstype'
 
 export function H1({

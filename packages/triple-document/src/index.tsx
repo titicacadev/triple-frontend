@@ -6,20 +6,26 @@ import {
   ImageBlockElementContainer,
   ImageCaption,
   SimpleLink,
-} from '../elements/content-elements'
-import { HR1, HR2, HR3, HR4, HR5, HR6 } from '../elements/hr'
-import Segment from '../elements/segment'
-import Button from '../elements/button'
-import Text from '../elements/text'
-import Image from '../elements/image'
-import List from '../elements/list'
-import Carousel from '../elements/carousel'
-import Container from '../elements/container'
+  HR1,
+  HR2,
+  HR3,
+  HR4,
+  HR5,
+  HR6,
+  Segment,
+  Button,
+  Text,
+  Image,
+  List,
+  Carousel,
+  Container,
+  GetGlobalColor,
+} from '@titicaca/triple-design-system'
+import { PoiListElement, PoiCarouselElement } from '@titicaca/triple-poi'
+
 import { H1, H2, H3, H4, Paragraph } from './text'
 import { RegionListElement } from './region'
-import { PoiListElement, PoiCarouselElement } from './poi'
 import { TnaProductsList } from './tna'
-import { GetGlobalColor } from '../commons'
 
 const MH1 = ({ children, ...props }) => (
   <H1 margin={{ top: 25, bottom: 20, left: 30, right: 30 }} {...props}>
