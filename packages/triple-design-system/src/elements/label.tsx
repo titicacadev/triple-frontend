@@ -8,15 +8,15 @@ import {
   GlobalSizes,
 } from '../commons'
 
-export type labelColor = GlobalColors | 'purple'
+export type LabelColor = GlobalColors | 'purple'
 
-const GetLabelColors: Partial<Record<labelColor, string>> = {
+const GetLabelColors: Partial<Record<LabelColor, string>> = {
   blue: GetGlobalColor('blue'),
   red: '253, 46, 105',
   purple: '151, 95, 255',
 }
 
-function rgba({ color, alpha }: { color?: labelColor; alpha?: number }) {
+function rgba({ color, alpha }: { color?: LabelColor; alpha?: number }) {
   return `rgba(${GetLabelColors[color || 'purple']}, ${alpha || 1})`
 }
 
@@ -73,7 +73,7 @@ const PROMO_SIZES: Partial<
 interface PromoLabelProps {
   size?: GlobalSizes
   emphasized?: boolean
-  color?: labelColor
+  color?: LabelColor
   margin?: MarginPadding
 }
 
