@@ -48,15 +48,23 @@ const Footer = () => (
       <br />
       help@triple-corp.com
       <LinksContainer>
-        <a href="/pages/tos.html" target="_blank">
+        <a href="/pages/tos.html" target="_blank" rel="noopener noreferrer">
           서비스 이용약관
         </a>
         {' | '}
-        <a href="/pages/privacy-policy.html" target="_blank">
+        <a
+          href="/pages/privacy-policy.html"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           개인정보 처리방침
         </a>
         {' | '}
-        <a href="https://triple-corp.com" target="_blank">
+        <a
+          href="https://triple-corp.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           회사 소개
         </a>
       </LinksContainer>

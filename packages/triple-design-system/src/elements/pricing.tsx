@@ -51,6 +51,7 @@ const PricingContainer = styled.div<{ padding?: MarginPadding }>`
   }
 `
 
+// eslint-disable-next-line no-unexpected-multiline
 const Price = styled.span<{
   size?: GlobalSizes
   bold?: boolean

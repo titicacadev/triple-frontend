@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components'
 import { withField } from '../utils/form-field'
 import { GetGlobalColor } from '../commons'
 
-type Option = {
+interface Option {
   text: string
   value: string
 }
@@ -56,6 +56,7 @@ const Icon = styled.span<{ selected?: boolean }>`
     `};
 `
 
+// eslint-disable-next-line no-unexpected-multiline
 const GenderContainer = styled.div.attrs<{ name?: string; value?: string }>(
   {},
 )<{

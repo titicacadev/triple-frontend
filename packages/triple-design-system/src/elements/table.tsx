@@ -28,6 +28,7 @@ const Container = styled.div<{ borderRadius?: number; borderLine?: boolean }>`
     `};
 `
 
+// eslint-disable-next-line no-unexpected-multiline
 const Row = styled.div<{
   borderRadius?: number
   verticalGap?: number
@@ -57,6 +58,7 @@ const Row = styled.div<{
         `};
 `
 
+// eslint-disable-next-line no-unexpected-multiline
 const Column = styled.div<{
   width?: number
   textAlign?: CSS.TextAlignProperty

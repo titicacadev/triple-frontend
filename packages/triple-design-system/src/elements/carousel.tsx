@@ -61,7 +61,7 @@ export default class Carousel extends React.PureComponent<CarouselBaseProps> {
 
   render() {
     const {
-      props: { margin, containerPadding, children, className, ...props },
+      props: { margin, containerPadding, children, className },
     } = this
 
     return (

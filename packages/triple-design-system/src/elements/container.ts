@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import { MarginPadding } from '../commons'
 
+// eslint-disable-next-line no-unexpected-multiline
 const Container = styled.div<{
   position?: CSS.PositionProperty
   centered?: boolean
@@ -34,13 +35,13 @@ const Container = styled.div<{
       margin-left: ${centered
         ? 'auto'
         : margin.left
-          ? `${margin.left}px`
-          : '0px'};
+        ? `${margin.left}px`
+        : '0px'};
       margin-right: ${centered
         ? 'auto'
         : margin.right
-          ? `${margin.right}px`
-          : '0px'};
+        ? `${margin.right}px`
+        : '0px'};
     `};
 
   ${({ padding }) =>

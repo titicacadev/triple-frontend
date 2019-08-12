@@ -31,9 +31,8 @@ export function LineBreak({ children }: { children?: string }) {
 
   return (
     <>
-      {texts.map(
-        (text: string, i: number) =>
-          i === texts.length - 1 ? text : <Line key={i}>{text}</Line>,
+      {texts.map((text: string, i: number) =>
+        i === texts.length - 1 ? text : <Line key={i}>{text}</Line>,
       )}
     </>
   )
@@ -43,6 +42,7 @@ function rgba({ color, alpha }: { color?: string; alpha?: number }) {
   return `rgba(${GetGlobalColor(color || 'gray')}, ${alpha || 1})`
 }
 
+// eslint-disable-next-line no-unexpected-multiline
 const TextBase = styled.div<{
   size?: GlobalSizes | number
   bold?: boolean
@@ -165,13 +165,12 @@ const TextBase = styled.div<{
 function Text({ children, ...props }) {
   return (
     <TextBase {...props}>
-      {React.Children.toArray(children).map(
-        (child, i) =>
-          typeof child === 'string' ? (
-            <LineBreak key={i}>{child}</LineBreak>
-          ) : (
-            child
-          ),
+      {React.Children.toArray(children).map((child, i) =>
+        typeof child === 'string' ? (
+          <LineBreak key={i}>{child}</LineBreak>
+        ) : (
+          child
+        ),
       )}
     </TextBase>
   )
@@ -200,6 +199,7 @@ const Html = styled(TextBase)`
   }
 `
 
+// eslint-disable-next-line no-unexpected-multiline
 const TitleBase = styled.h1<{
   margin?: MarginPadding
 }>`
@@ -222,13 +222,12 @@ const TitleBase = styled.h1<{
 function TextTitle({ children, ...props }) {
   return (
     <TitleBase {...props}>
-      {React.Children.toArray(children).map(
-        (child, i) =>
-          typeof child === 'string' ? (
-            <LineBreak key={i}>{child}</LineBreak>
-          ) : (
-            child
-          ),
+      {React.Children.toArray(children).map((child, i) =>
+        typeof child === 'string' ? (
+          <LineBreak key={i}>{child}</LineBreak>
+        ) : (
+          child
+        ),
       )}
     </TitleBase>
   )

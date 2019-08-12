@@ -1,6 +1,11 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Pager, Image, MarginPadding, GlobalSizes } from '@titicaca/triple-design-system'
+import {
+  Pager,
+  Image,
+  MarginPadding,
+  GlobalSizes,
+} from '@titicaca/triple-design-system'
 
 const PageLabelText = styled.div`
   font-size: 12px;

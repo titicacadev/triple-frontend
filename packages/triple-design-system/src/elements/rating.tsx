@@ -20,6 +20,7 @@ const IMAGE_PREFIXES: Partial<Record<GlobalSizes, string>> = {
   medium: 'https://assets.triple.guide/images/img-review-star-medium',
 }
 
+// eslint-disable-next-line no-unexpected-multiline
 const RatingStar = styled.span<{
   verticalAlign?: CSS.VerticalAlignProperty<string>
   size?: GlobalSizes
@@ -39,8 +40,8 @@ const RatingStar = styled.span<{
     background-image: url(${IMAGE_PREFIXES[size]}-${full
         ? 'full'
         : half
-          ? 'half'
-          : 'empty'}@4x.png);
+        ? 'half'
+        : 'empty'}@4x.png);
   `};
 `
 

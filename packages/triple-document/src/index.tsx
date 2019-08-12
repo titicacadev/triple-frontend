@@ -167,6 +167,12 @@ function Compact(Component) {
   return (props) => <Component compact {...props} />
 }
 
+const DocumentCarousel = ({ margin, children }) => (
+  <Carousel margin={margin} containerPadding={{ left: 30, right: 30 }}>
+    {children}
+  </Carousel>
+)
+
 function Images({
   value: { images, display },
   onImageClick,
@@ -272,12 +278,6 @@ function renderPoiListActionButton({ actionButtonElement, display, poi }) {
 
 const ResourceList = ({ children }) => (
   <List margin={{ top: 20, left: 30, right: 30 }}>{children}</List>
-)
-
-const DocumentCarousel = ({ margin, children }) => (
-  <Carousel margin={margin} containerPadding={{ left: 30, right: 30 }}>
-    {children}
-  </Carousel>
 )
 
 export function Pois({

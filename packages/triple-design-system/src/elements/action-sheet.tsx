@@ -104,6 +104,7 @@ const ActionItemContainer = styled.div`
   }
 `
 
+// eslint-disable-next-line no-unexpected-multiline
 const ItemText = styled.div<{
   width?: CSS.WidthProperty<string | number>
   checked?: boolean

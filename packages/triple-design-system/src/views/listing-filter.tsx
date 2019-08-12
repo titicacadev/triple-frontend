@@ -67,6 +67,7 @@ function ExpandingFilterEntry({
   )
 }
 
+// eslint-disable-next-line no-unexpected-multiline
 const RegularFilterEntry = styled(FilterEntryBase)<{
   withIcon?: boolean
   iconImage?: string
@@ -138,7 +139,7 @@ export class ListingFilter extends React.PureComponent {
 
   render() {
     const {
-      props: { children, ...props },
+      props: { children },
     } = this
 
     return <ListingFilterBase>{children}</ListingFilterBase>

@@ -65,6 +65,7 @@ const ICON_URL_BY_NAMES: { [key in IconNames]: string } = {
   cs: 'https://assets.triple.guide/images/btn-com-cs@2x.png',
 }
 
+// eslint-disable-next-line no-unexpected-multiline
 const NavbarItem = styled.div<{
   floated?: CSS.FloatProperty
   icon?: IconNames

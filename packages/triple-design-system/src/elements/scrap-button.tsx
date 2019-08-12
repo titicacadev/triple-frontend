@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
+// eslint-disable-next-line no-unexpected-multiline
 const CompactScrapButton = styled.div<{
   top?: number
   right?: number
@@ -15,6 +16,7 @@ const CompactScrapButton = styled.div<{
   background-size: 34px 34px;
 `
 
+// eslint-disable-next-line no-unexpected-multiline
 const RegularScrapButton = styled.div<{
   top?: number
   right?: number
@@ -54,5 +56,13 @@ export default function ScrapButton({
       onScrapedChange(e, { ...resource, scraped: !scraped })
     })
 
-  return <ButtonElement pressed={scraped} onClick={handleClick} top={top} right={right} {...props} />
+  return (
+    <ButtonElement
+      pressed={scraped}
+      onClick={handleClick}
+      top={top}
+      right={right}
+      {...props}
+    />
+  )
 }

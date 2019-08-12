@@ -25,6 +25,7 @@ const PADDING_SIZE: Partial<Record<GlobalSizes, MarginPadding>> = {
   medium: { top: 6, right: 10, bottom: 6, left: 10 },
 }
 
+// eslint-disable-next-line no-unexpected-multiline
 const TagBase = styled.div<{
   type?: TagColors
   margin?: MarginPadding

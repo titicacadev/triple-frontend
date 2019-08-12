@@ -2,7 +2,6 @@ import * as React from 'react'
 import PagerCarousel from 'nuka-carousel'
 import Container from './container'
 import { MarginPadding } from '../commons'
-import * as PropTypes from 'prop-types'
 
 const Pager = ({
   margin,

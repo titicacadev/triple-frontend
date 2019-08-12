@@ -1,8 +1,9 @@
-import React from 'react'
+import * as React from 'react'
 import styled, { css } from 'styled-components'
 import Text from '../elements/text'
 import { MarginPadding } from '../commons'
 
+// eslint-disable-next-line no-unexpected-multiline
 const RecommendedContentsContainer = styled.ul<{
   margin?: MarginPadding
 }>`
@@ -16,6 +17,7 @@ const RecommendedContentsContainer = styled.ul<{
     `};
 `
 
+// eslint-disable-next-line no-unexpected-multiline
 const RecommendedContent = styled.li<{
   backgroundImageUrl: string
 }>`
@@ -38,7 +40,7 @@ const RecommendedContent = styled.li<{
 
   cursor: pointer;
 
-  @media(max-width: 759px) {
+  @media (max-width: 759px) {
     display: none;
   }
 
@@ -74,7 +76,7 @@ const RecommendedContentWithFixedRatio = styled.li`
   background-size: cover;
   background-position: center;
 
-  @media(min-width: 760px) {
+  @media (min-width: 760px) {
     display: none;
   }
 
@@ -96,15 +98,17 @@ const ImageColorOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.3);
 `
 
+interface ContentElement {
+  backgroundImageUrl: string
+  title: string
+}
+
 export function RecommendedContents({
   contents,
   margin,
   onContentClick,
 }: {
-  contents: Array<{
-    backgroundImageUrl: string
-    title: string
-  }>
+  contents: ContentElement[]
   margin?: MarginPadding
   onContentClick?: (
     e?: React.SyntheticEvent,
@@ -112,7 +116,6 @@ export function RecommendedContents({
   ) => any
 }) {
   return (
-    
     <RecommendedContentsContainer margin={margin}>
       {contents.map((content, index) => (
         <RecommendedContentWithFixedRatio
@@ -121,7 +124,13 @@ export function RecommendedContents({
         >
           <Image src={content.backgroundImageUrl} />
           <ImageColorOverlay />
-          <Text lineHeight="20px" color="white" bold maxLines={2} padding={{top: 20, left: 15, right: 15}}>
+          <Text
+            lineHeight="20px"
+            color="white"
+            bold
+            maxLines={2}
+            padding={{ top: 20, left: 15, right: 15 }}
+          >
             {content.title}
           </Text>
         </RecommendedContentWithFixedRatio>

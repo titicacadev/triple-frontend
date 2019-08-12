@@ -48,6 +48,7 @@ const SourceUrl = styled.div`
   color: rgba(255, 255, 255, 0.9);
 `
 
+// eslint-disable-next-line no-unexpected-multiline
 const ImageOverlay = styled.div<{
   borderRadius?: number
   overlayPadding?: MarginPadding
@@ -126,6 +127,7 @@ const ImageFrameContent = ({
   </>
 )
 
+// eslint-disable-next-line no-unexpected-multiline
 const ImageFrameBase = styled.div<{
   floated?: CSS.FloatProperty
   margin?: MarginPadding
@@ -163,6 +165,7 @@ const ImageFrameBase = styled.div<{
         `};
 `
 
+// eslint-disable-next-line no-unexpected-multiline
 const ImageFrameWithFixedDimensions = styled(ImageFrameBase)<{
   height?: number
   size?: GlobalSizes
@@ -173,6 +176,7 @@ const ImageFrameWithFixedDimensions = styled(ImageFrameBase)<{
   width: ${({ width }) => (width && `${width}px`) || '100%'};
 `
 
+// eslint-disable-next-line no-unexpected-multiline
 const ImageFrameWithFixedRatio = styled(ImageFrameBase)<{
   frame?: GlobalSizes
 }>`
@@ -180,6 +184,7 @@ const ImageFrameWithFixedRatio = styled(ImageFrameBase)<{
   width: 100%;
 `
 
+// eslint-disable-next-line no-unexpected-multiline
 const RoundImage = styled.img<{
   size?: GlobalSizes
   floated?: CSS.FloatProperty
@@ -210,7 +215,6 @@ function Image({
   height,
   margin,
   asPlaceholder,
-  children,
 }: {
   src?: string
   borderRadius?: number
@@ -228,7 +232,6 @@ function Image({
   height?: number
   margin?: MarginPadding
   asPlaceholder?: boolean
-  children?: React.ReactNode
 }) {
   if (circular) {
     return <RoundImage src={src} floated={floated} size={size} />

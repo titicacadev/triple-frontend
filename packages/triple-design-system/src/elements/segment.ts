@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import { MarginPadding } from '../commons'
 
+// eslint-disable-next-line no-unexpected-multiline
 export const Segment = styled.div<{
   margin?: MarginPadding
   padding?: MarginPadding

@@ -82,18 +82,18 @@ export default function NumricSpinner({
   padding?: MarginPadding
   size?: string
 }) {
+  const setQuantity = (value: number): void => {
+    if (value >= 0 && value <= max) {
+      onChange(value)
+    }
+  }
+
   const increment = (): void => {
     setQuantity(value + 1)
   }
 
   const decrement = (): void => {
     setQuantity(value - 1)
-  }
-
-  const setQuantity = (value: number): void => {
-    if (value >= 0 && value <= max) {
-      onChange(value)
-    }
   }
 
   return (

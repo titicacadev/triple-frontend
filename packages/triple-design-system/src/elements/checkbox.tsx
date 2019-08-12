@@ -37,6 +37,7 @@ const TextAligns: Partial<
   `,
 }
 
+// eslint-disable-next-line no-unexpected-multiline
 const ConfirmFrame = styled.div.attrs<{ name?: string }>({})<{
   textAlign?: string
   borderless?: boolean

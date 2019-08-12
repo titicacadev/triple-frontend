@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components'
 import List from './list'
 import * as CSS from 'csstype'
-import { MarginPadding } from '../commons'
 
 export const ImageCarouselElementContainer = styled.div`
   display: inline-block;
@@ -40,6 +39,7 @@ export const ResourceListItem = styled(List.Item)`
   cursor: pointer;
 `
 
+// eslint-disable-next-line no-unexpected-multiline
 export const SquareImage = styled.img<{
   size?: string
   borderRadius?: number

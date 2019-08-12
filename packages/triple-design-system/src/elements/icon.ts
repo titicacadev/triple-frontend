@@ -20,6 +20,7 @@ const SIZES: Partial<Record<GlobalSizes, string>> = {
   big: '24px',
 }
 
+// eslint-disable-next-line no-unexpected-multiline
 const Icon = styled.div<{
   size?: GlobalSizes
   src?: string

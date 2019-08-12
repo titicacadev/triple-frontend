@@ -23,7 +23,7 @@ const SIZES: Partial<Record<GlobalSizes, InterpolationValue[]>> = {
   `,
 }
 
-interface IButtonBaseProp {
+interface ButtonBaseProp {
   size?: GlobalSizes
   bold?: boolean
   textColor?: string
@@ -34,7 +34,7 @@ interface IButtonBaseProp {
   disabled?: boolean
 }
 
-const ButtonBase = styled.a<IButtonBaseProp>`
+const ButtonBase = styled.a<ButtonBaseProp>`
   display: inline-block;
   ${({ size }) => SIZES[size]}
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
@@ -121,13 +121,13 @@ const BASIC_INVERTED_COLORS: Partial<Record<GlobalColors, string>> = {
   blue: '#368fff',
 }
 
-interface IBasicButtonProp {
+interface BasicButtonProp {
   compact?: boolean
   inverted?: boolean
   color?: GlobalColors
 }
 
-const BasicButton = styled(ButtonBase)<IBasicButtonProp>`
+const BasicButton = styled(ButtonBase)<BasicButtonProp>`
   border-style: solid;
   border-radius: 4px;
   border-width: 1px;
@@ -168,6 +168,7 @@ const COMPACT_NORMAL_PADDINGS: Partial<Record<GlobalSizes, MarginPadding>> = {
   tiny: { top: 9, bottom: 9, left: 15, right: 15 },
 }
 
+// eslint-disable-next-line no-unexpected-multiline
 const NormalButton = styled(ButtonBase)<{
   borderRadius?: number
   color?: string
@@ -228,6 +229,7 @@ const ButtonContainer = styled(Container)<{ floated?: CSS.FloatProperty }>`
   }
 `
 
+// eslint-disable-next-line no-unexpected-multiline
 const ButtonGroup = styled(Container)<{
   horizontalGap?: number
   children?: React.ReactNode
@@ -283,14 +285,14 @@ const ButtonIcon = styled.div<{ size?: GlobalSizes; src?: string }>`
   background-image: url(${({ src }) => src});
 `
 
-interface IButton extends IBasicButtonProp, IButtonBaseProp {
+interface ButtonProps extends BasicButtonProp, ButtonBaseProp {
   basic?: boolean
   icon?: string
   borderRadius?: number
   onClick?: (e: React.SyntheticEvent) => any
 }
 
-class Button extends React.PureComponent<IButton> {
+class Button extends React.PureComponent<ButtonProps> {
   static Container = ButtonContainer
   static Group = ButtonGroup
   static Icon = ButtonIcon

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Table, Container } from '@titicaca/triple-design-system'
 
-const horizontal_sample = {
+const HORIZONTAL_SAMPLE = {
   type: 'horizontal',
   head: [{ text: '목적지' }, { text: '요금 / 소요시간' }, { text: '운행간격' }],
   body: [
@@ -13,7 +13,7 @@ const horizontal_sample = {
   ],
 }
 
-const vertical_sample = {
+const VERTICAL_SAMPLE = {
   type: 'vertical',
   head: [
     { text: '루트' },
@@ -37,11 +37,11 @@ export default class App extends PureComponent {
           className="wrap_horizontal"
           padding={{ left: 30, right: 30 }}
         >
-          <Table {...horizontal_sample} />
+          <Table {...HORIZONTAL_SAMPLE} />
         </Container>
         <br />
         <Container className="wrap_vertical" padding={{ left: 30, right: 30 }}>
-          <Table {...vertical_sample} />
+          <Table {...VERTICAL_SAMPLE} />
         </Container>
       </div>
     )
