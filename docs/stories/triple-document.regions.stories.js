@@ -1,10 +1,11 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import { ELEMENTS } from '@titicaca/triple-design-system'
+import { ELEMENTS } from '@titicaca/triple-document'
 
 const { regions: Regions } = ELEMENTS
 
+/* eslint-disable */
 const REGIONS = [
   {
     id: 'edf1982d-c835-43a7-b06b-af43acbb6f38',
@@ -567,6 +568,7 @@ const REGIONS = [
     nameOverride: null,
   },
 ]
+/* eslint-enable */
 
 storiesOf('TripleDocument', module).add('도시', () => (
   <Regions value={{ regions: REGIONS }} />

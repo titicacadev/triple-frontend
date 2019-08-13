@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import { ELEMENTS } from '@titicaca/triple-design-system'
+import { ELEMENTS } from '@titicaca/triple-document'
 
 const { embedded: Embedded } = ELEMENTS
 
@@ -26,6 +26,7 @@ storiesOf('TripleDocument', module).add('임베딩', () => (
                       url:
                         'https://res.cloudinary.com/triple-dev/image/upload/w_1024,h_1024,c_limit/578bbb87-9ed3-443a-8cb3-b0b4a2b3e1ea.jpg',
                     },
+                    // eslint-disable-next-line @typescript-eslint/camelcase
                     small_square: {
                       url:
                         'https://res.cloudinary.com/triple-dev/image/upload/w_256,h_256,c_fill/578bbb87-9ed3-443a-8cb3-b0b4a2b3e1ea.jpg',
@@ -89,6 +90,7 @@ storiesOf('TripleDocument', module).add('임베딩', () => (
                       url:
                         'https://res.cloudinary.com/triple-dev/image/upload/w_1024,h_1024,c_limit/bfb5dd63-696c-4f1c-b98c-8e7f86fe069f.jpg',
                     },
+                    // eslint-disable-next-line @typescript-eslint/camelcase
                     small_square: {
                       url:
                         'https://res.cloudinary.com/triple-dev/image/upload/w_256,h_256,c_fill/bfb5dd63-696c-4f1c-b98c-8e7f86fe069f.jpg',

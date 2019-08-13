@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import { ELEMENTS } from '@titicaca/triple-design-system'
+import { ELEMENTS } from '@titicaca/triple-document'
 import POIS from './pois.sample.json'
 import HOTEL from './hotel.sample.json'
 
@@ -21,6 +21,7 @@ storiesOf('TripleDocument.POI', module)
     <Pois
       resourceScraps={{}}
       value={{
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         pois: POIS.map(({ source: { image, ...source }, ...rest }) => ({
           source,
           ...rest,
@@ -42,6 +43,7 @@ storiesOf('TripleDocument.POI', module)
     <Pois
       resourceScraps={{}}
       value={{
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         pois: POIS.map(({ source: { image, ...source }, ...rest }) => ({
           source,
           ...rest,

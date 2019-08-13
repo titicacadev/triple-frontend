@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { select, text } from '@storybook/addon-knobs'
 
-import { ELEMENTS } from '@titicaca/triple-design-system'
+import { ELEMENTS } from '@titicaca/triple-document'
 import IMAGES from './images.sample.json'
 
 const { images: Images } = ELEMENTS

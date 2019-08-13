@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import { TripleDocument, ELEMENTS } from '@titicaca/triple-design-system'
+import TripleDocument, { ELEMENTS } from '@titicaca/triple-document'
 import SAMPLE from './triple-document.sample.json'
 
 const {
