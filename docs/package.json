@@ -1,27 +1,23 @@
 {
-  "name": "triple-design-system-docs",
-  "version": "0.1.0",
-  "description": "Documentation project for triple-design-system",
-  "main": "index.js",
+  "name": "@titicaca/triple-frontend-docs",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Documentation project for triple-frontend packages",
   "scripts": {
     "dev": "start-storybook -p 6006 -s ./public",
     "build": "build-storybook -s ./public"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4"
+    "@titicaca/triple-design-system": "^1.0.0-alpha.0",
+    "@titicaca/triple-document": "^1.0.0-alpha.0",
+    "@titicaca/triple-poi": "^1.0.0-alpha.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
     "@storybook/addon-actions": "^5.0.3",
     "@storybook/addon-knobs": "^5.0.3",
     "@storybook/addon-viewport": "^5.0.3",
     "@storybook/addons": "^5.0.3",
     "@storybook/react": "^5.0.3",
-    "babel-loader": "^8.0.5",
-    "babel-plugin-module-resolver": "^3.2.0",
     "storybook-addon-jsx": "^7.1.0"
   }
 }

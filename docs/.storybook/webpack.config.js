@@ -9,24 +9,13 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/env', '@babel/react', '@babel/typescript'],
+            presets: ['@babel/env', '@babel/react'],
             plugins: [
               [
                 'styled-components',
                 { ssr: true, displayName: true, preprocess: false },
               ],
               ['@babel/plugin-proposal-class-properties'],
-              [
-                'module-resolver',
-                {
-                  alias: {
-                    '@titicaca/triple-design-system': path.resolve(
-                      __dirname,
-                      '../../packages/triple-design-system/src',
-                    ),
-                  },
-                },
-              ],
             ],
           },
         },
