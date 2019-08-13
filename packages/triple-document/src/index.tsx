@@ -95,7 +95,7 @@ const EMBEDDED_ELEMENTS = {
   images: EmbeddedImage,
 }
 
-export function TripleDocument({
+export default function TripleDocument({
   children,
   onResourceClick,
   onResourceScrapedChange,
