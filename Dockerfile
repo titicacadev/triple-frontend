@@ -20,7 +20,6 @@ COPY . .
 ENV CI=true
 RUN npm ci
 RUN cd test && npm ci && cd ..
-RUN npm install react-dom@16
 RUN npm test
 
 # build
