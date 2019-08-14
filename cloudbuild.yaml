@@ -37,9 +37,9 @@ steps:
   ]
 
 substitutions:
-  _AUTO_TAGGING_RULE: 'master=release-docs'
   _SLACK_NOTIFY_CHANNEL: '#triple-web-dev'
   _SVC_BASENAME: triple-frontend
+  _AUTO_TAGGING_ENABLED: 'false'
 
 images:
 - 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/base'
