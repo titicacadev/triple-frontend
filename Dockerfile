@@ -20,8 +20,8 @@ RUN npm run build
 # release
 FROM build AS release
 
-ARG npm_token
-ENV NPM_TOKEN=${npm_token}
+ARG NPM_TOKEN
+ENV NPM_TOKEN=${NPM_TOKEN}
 
 RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 RUN npm run publish -- --yes --dist-tag next
