@@ -24,4 +24,5 @@ ARG npm_token
 ENV NPM_TOKEN=${npm_token}
 
 RUN echo //registry.npmjs.org/:_authToken=$NPM_TOKEN > .npmrc
+RUN git update-index --assume-unchanged package-lock.json
 RUN npm run publish -- --yes
