@@ -1,18 +1,28 @@
 steps:
-  - name: 'gcr.io/cloud-builders/npm'
-    args: ['ci']
-  - name: 'gcr.io/cloud-builders/npm'
-    args: ['run-script', 'build']
-  - name: 'gcr.io/cloud-builders/npm'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        if [[ "${TAG_NAME}" =~ ^release-prod-v[0-9]+$ ]]; then
-          echo //registry.npmjs.org/:_authToken=$$NPM_TOKEN > .npmrc
-          npm publish
-        fi
-    secretEnv: ['NPM_TOKEN']
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    docker pull gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/base || true
+    docker pull gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/lint || true
+    docker pull gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/build || true
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'build',
+    '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/base',
+    '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/build',
+    '--build-arg npm_token=$$NPM_TOKEN',
+    '--target', 'release',
+    '.'
+  ]
+  secretEnv:
+    - 'NPM_TOKEN'
+
+substitutions:
+  _SLACK_NOTIFY_CHANNEL: '#triple-web-dev'
+  _SVC_BASENAME: triple-frontend
+  _AUTO_TAGGING_ENABLED: 'false'
 
 secrets:
   - kmsKeyName: projects/titicaca-ci/locations/global/keyRings/npm/cryptoKeys/publish_token
