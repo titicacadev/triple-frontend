@@ -10,7 +10,7 @@
     "lint": "eslint '{packages,tests/src}/**/*.{ts,tsx,js}'",
     "test": "cd tests && npm test",
     "dev-docs": "lerna exec --scope @titicaca/triple-frontend-docs npm run dev",
-    "publish": "lerna publish from-package"
+    "publish": "lerna publish from-git"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
