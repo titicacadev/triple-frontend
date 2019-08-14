@@ -23,4 +23,4 @@ FROM build AS release
 ARG npm_token
 ENV NPM_TOKEN=${npm_token}
 
-RUN npm run publish -- --yes --registry //registry.npmjs.org/:_authToken=$NPM_TOKEN
+RUN npm run publish -- --yes --registry https://registry.npmjs.org/:_authToken=$NPM_TOKEN
