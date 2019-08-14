@@ -1,7 +1,7 @@
 # base
 FROM node:10 AS base
 WORKDIR /app
-COPY package.json package-lock.json ./
+COPY package.json package-lock.json lerna.json ./
 RUN npm ci
 RUN npm run bootstrap
 
