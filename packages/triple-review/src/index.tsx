@@ -1,11 +1,13 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 
-import List from '../elements/list'
-import Container from '../elements/container'
-import Text from '../elements/text'
-import Rating from '../elements/rating'
-import { MarginPadding } from '../commons'
+import {
+  List,
+  Container,
+  Text,
+  Rating,
+  MarginPadding,
+} from '@titicaca/triple-design-system'
 
 const UserPhoto = styled.img`
   margin-right: 9px;
