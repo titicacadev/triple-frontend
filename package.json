@@ -10,6 +10,7 @@
     "lint": "eslint '{packages,tests/src}/**/*.{ts,tsx,js}'",
     "test": "cd tests && npm test",
     "dev-docs": "lerna exec --scope @titicaca/triple-frontend-docs npm run dev",
+    "version": "lerna version --no-push",
     "publish": "lerna publish from-package"
   },
   "devDependencies": {
