@@ -1,0 +1,126 @@
+# Triple Frontend
+
+트리플 프론트엔드 공용 컴포넌트 및 라이브러리의 [Monorepo](https://en.wikipedia.org/wiki/Monorepo)입니다.
+
+[Lerna](https://lerna.js.org/)를 이용해서 작업하고 있습니다.
+
+## 소개
+
+프론트엔드 관련 프로젝트 중 애플리케이션 프로젝트에 속하지 않는 공용 컴포넌트 및
+라이브러리 프로젝트를 이 저장소에 모아서 관리합니다. 애플리케이션 프로젝트들은
+유연한 비즈니스 요구사항 대응을 위해 별도 저장소로 운영해서, 버전 충돌을 피하고
+비교적 단순한 배포 주기를 가져갈 수 있도록 합니다.
+
+이 저장소에 속한 패키지들은 npm의 `@titicaca` 조직이 포함합니다.
+
+### 기능 요청 및 문의
+
+Slack `@frontend` 그룹, `#triple-web-dev` 채널 및 GitHub `@frontend` 팀
+
+### Project Structure
+
+  - `docs/`: [Storybook](https://storybook.js.org)으로 생성하는 Documentation page
+  - `packages/`: npm에 배포하는 트리플 프론트엔드 패키지
+  - `tests/`: [Cypress](https://www.cypress.io)를 이용한 end-to-end 테스팅 환경
+
+### Package Versioning
+
+모든 패키지를 동시에 같은 버전으로 릴리즈합니다. 버저닝 방식은 하위 패키지 전체를
+아우르는 [Semantic Versioning](https://semver.org)을 사용합니다: `MAJOR.MINOR.PATCH`로
+버저닝하며, 아래 설명을 참고하여 해당하는 버전을 올립니다.
+
+  1. `MAJOR` version when you make incompatible API changes,
+  2. `MINOR` version when you add functionality in a backwards compatible manner, and
+  3. `PATCH` version when you make backwards compatible bug fixes.
+
+### Documentation
+
+[Triple Frontend Documentation](https://design.triple.systems) 페이지에서 컴포넌트
+목록과 뷰, 동작을 볼 수 있습니다. `master` 브랜치에 변경 사항을 푸시할 때마다
+페이지를 업데이트합니다.
+
+### CI/CD
+
+TBD
+
+### History
+
+많은 1.0 버전 이전의 변경사항은 [triple-design-system](https://github.com/titicacadev/triple-design-system)
+저장소의 PR 및 코멘트를 참조해야 할 수 있습니다.
+
+## 기여
+
+프로젝트 기여자들이 작업하는데 필요한 준비 및 작업 과정을 설명합니다.
+
+### Prerequisites
+
+  - NodeJS 10 이상 (12 이상 및 최신 버전 추천)
+  - Lerna (`npm install -g lerna`)
+
+### Setup
+
+프로젝트를 클론합니다:
+
+```sh
+$ git clone git@github.com:titicacadev/triple-frontend.git && cd triple-frontend
+```
+
+디펜던시를 설치합니다:
+
+```sh
+$ npm install
+```
+
+[Lerna bootstrap](https://github.com/lerna/lerna/tree/master/commands/bootstrap)
+커맨드로 Monorepo 개발 환경을 구성합니다:
+
+```sh
+$ lerna bootstrap
+```
+
+### Workflow
+
+#### 기능 추가 및 버전업
+
+  1. 작업자가 코드 기여
+  2. 커밋 & 푸시
+  3. PR 생성 & 리뷰
+  4. 버전 생성: `npm run version` (경우에 따라 PR과 함께 혹은 별도로 생성)
+  5. master 머지
+  6. /release 커맨드로 배포
+  7. CD에서 패키지 publish
+
+#### 패키지 추가
+
+  1. `lerna create [패키지명]` 커맨드로 패키지 추가
+  2. 적절한 `package.json` 및 `tsconfig.json` 수정 및 생성
+  3. `src`에 코드 작성
+  4. 기존 패키지에서 분리가 일어나서 API 인터페이스에 변경이 있었다면 MAJOR,
+     기존 패키지와 관련 없는 패키지 추가라면 MINOR 버전 올림
+     - `npm run version -- major`
+     - `npm run version -- minor`
+  5. 커밋 & 푸시
+  6. PR 생성 & 리뷰
+  7. master 머지
+  8. /release 커맨드로 배포
+  9. CD에서 패키지 publish
+
+### Testing
+
+TBD
+
+### Review
+
+  - 모든 PR 리뷰눈 GitHub의 `@frontend` 팀에게 자동으로 할당됩니다.
+  - 팀 멤버 2인 이상 승인해야 머지할 수 있습니다.
+  - 머지 전 머지 체크리스트를 모두 확인해야 합니다.
+
+### 주의사항
+
+  - 새로운 패키지를 추가하거나 패키지 간 의존성 그래프가 바뀌면 반드시
+    `lerna bootstrap` 커맨드로 의존성을 바로잡아야 합니다.
+  - Docs를 비롯한 패키지 내에서 다른 패키지를 import하는 경우, 대상 패키지를
+    빌드한 이후에만 의도한 동작을 수행할 수 있습니다.
+  - 뷰 및 기능에 변경이 있는 기여인 경우, docs 페이지도 그에 준하게 업데이트해야
+    합니다.
+  - CHANGELOG 반영이 필요한 경우, PR에 포함하여 CHANGELOG를 작성해야 합니다.
