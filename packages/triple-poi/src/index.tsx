@@ -7,7 +7,7 @@ import {
   SquareImage,
   ResourceListItem,
   ExtendedResourceListElement,
-  labelColor,
+  LabelColor,
 } from '@titicaca/triple-design-system'
 
 type PoiTypes = 'attraction' | 'restaurant' | 'hotel'
