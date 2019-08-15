@@ -27,6 +27,7 @@
     "typescript": "^3.3.3"
   },
   "dependencies": {
+    "@titicaca/triple-view-utilities": "^1.0.0-alpha.1",
     "moment": "^2.24.0",
     "nuka-carousel": "4.4.1",
     "react-addons-css-transition-group": "^15.6.2",
