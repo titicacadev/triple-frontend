@@ -9,6 +9,7 @@ import {
   ExtendedResourceListElement,
   LabelColor,
 } from '@titicaca/triple-design-system'
+import { deriveCurrentStateAndCount } from '@titicaca/triple-view-utilities'
 
 type PoiTypes = 'attraction' | 'restaurant' | 'hotel'
 
@@ -180,7 +181,7 @@ class ExtendedPoiListElement extends React.PureComponent<{
   onClick?: (e?: React.SyntheticEvent) => any
   onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
   resourceScraps?: any
-  tags?: [{ text: string; color: labelColor; emphasized: boolean }]
+  tags?: [{ text: string; color: LabelColor; emphasized: boolean }]
 }> {
   render() {
     const {
@@ -272,28 +273,5 @@ class ExtendedPoiListElement extends React.PureComponent<{
         }
       />
     )
-  }
-}
-
-function deriveCurrentStateAndCount({
-  initialState,
-  initialCount,
-  currentState,
-}) {
-  if (typeof initialState !== 'boolean' || typeof currentState !== 'boolean') {
-    /* At least one of the status are unknown: Reduces to a bitwise OR operation */ return {
-      state: !!initialState || !!currentState,
-      count: Number(initialCount || 0),
-    }
-  }
-
-  return {
-    state: currentState,
-    count:
-      initialState === currentState
-        ? initialCount
-        : currentState
-        ? Number(initialCount || 0) + 1
-        : Number(initialCount || 0) - 1,
   }
 }
