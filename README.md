@@ -1,4 +1,4 @@
-# Triple Frontend
+# Triple Frontend Monorepo
 
 트리플 프론트엔드 공용 컴포넌트 및 라이브러리의 [Monorepo](https://en.wikipedia.org/wiki/Monorepo)입니다.
 
@@ -33,8 +33,7 @@ Slack `@frontend` 그룹, `#triple-web-dev` 채널 및 GitHub `@frontend` 팀
   2. `MINOR` version when you add functionality in a backwards compatible manner, and
   3. `PATCH` version when you make backwards compatible bug fixes.
 
-### Documentation
-
+### Documentation 
 [Triple Frontend Documentation](https://design.triple.systems) 페이지에서 컴포넌트
 목록과 뷰, 동작을 볼 수 있습니다. `master` 브랜치에 변경 사항을 푸시할 때마다
 페이지를 업데이트합니다.
@@ -87,8 +86,8 @@ $ lerna bootstrap
   3. PR 생성 & 리뷰
   4. 버전 생성: `npm run version` (경우에 따라 PR과 함께 혹은 별도로 생성)
   5. master 머지
-  6. /release 커맨드로 배포
-  7. CD에서 패키지 publish
+  6. `/release` 커맨드로 배포
+  7. CD에서 패키지 publish, npm 페이지 통해서 확인
 
 #### 패키지 추가
 
@@ -102,8 +101,8 @@ $ lerna bootstrap
   5. 커밋 & 푸시
   6. PR 생성 & 리뷰
   7. master 머지
-  8. /release 커맨드로 배포
-  9. CD에서 패키지 publish
+  8. `/release` 커맨드로 배포
+  9. CD에서 패키지 publish, npm 페이지 통해서 확인
 
 ### Testing
 
@@ -112,8 +111,8 @@ TBD
 ### Review
 
   - 모든 PR 리뷰는 GitHub의 `@frontend` 팀에게 자동으로 할당됩니다.
-  - 팀 멤버 2인 이상 승인해야 머지할 수 있습니다.
-  - 머지 전 머지 체크리스트를 모두 확인해야 합니다.
+  - 팀 멤버 2인 이상이 승인해야 머지할 수 있습니다.
+  - 머지 전 머지 체크리스트를 모두 확인해야 합니다. (TBD: `PULL_REQUEST_TEMPLATE.md` 작성 필요)
 
 ### 주의사항
 
