@@ -29,9 +29,9 @@ Slack `@frontend` 그룹, `#triple-web-dev` 채널 및 GitHub `@frontend` 팀
 아우르는 [Semantic Versioning](https://semver.org)을 사용합니다: `MAJOR.MINOR.PATCH`로
 버저닝하며, 아래 설명을 참고하여 해당하는 버전을 올립니다.
 
-  1. `MAJOR` version when you make incompatible API changes,
-  2. `MINOR` version when you add functionality in a backwards compatible manner, and
-  3. `PATCH` version when you make backwards compatible bug fixes.
+>  1. `MAJOR` version when you make incompatible API changes,
+>  2. `MINOR` version when you add functionality in a backwards compatible manner, and
+>  3. `PATCH` version when you make backwards compatible bug fixes.
 
 ### Documentation
 
