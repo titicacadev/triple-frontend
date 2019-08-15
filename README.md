@@ -33,7 +33,8 @@ Slack `@frontend` 그룹, `#triple-web-dev` 채널 및 GitHub `@frontend` 팀
   2. `MINOR` version when you add functionality in a backwards compatible manner, and
   3. `PATCH` version when you make backwards compatible bug fixes.
 
-### Documentation 
+### Documentation
+
 [Triple Frontend Documentation](https://design.triple.systems) 페이지에서 컴포넌트
 목록과 뷰, 동작을 볼 수 있습니다. `master` 브랜치에 변경 사항을 푸시할 때마다
 페이지를 업데이트합니다.
@@ -79,9 +80,10 @@ $ lerna bootstrap
 
 ### Workflow
 
-#### 기능 추가 및 버전업
+#### 기능 추가
 
   1. 작업자가 코드 기여
+    - 디펜던시에 변경이 있는 경우 `lerna bootstrap` 실행 필요
   2. 커밋 & 푸시
   3. PR 생성 & 리뷰
   4. 버전 생성: `npm run version` (경우에 따라 PR과 함께 혹은 별도로 생성)
@@ -93,16 +95,17 @@ $ lerna bootstrap
 
   1. `lerna create [패키지명]` 커맨드로 패키지 추가
   2. 적절한 `package.json` 및 `tsconfig.json` 수정 및 생성
-  3. `src`에 코드 작성
-  4. 기존 패키지에서 분리가 일어나서 API 인터페이스에 변경이 있었다면 MAJOR,
-     기존 패키지와 관련 없는 패키지 추가라면 MINOR 버전 올림
+  3. 프로젝트 루트에서 `lerna bootstrap` 커맨드 실행으로 디펜던시 링크
+  4. `src`에 코드 작성
+  5. 버전 생성: 기존 패키지에서 분리가 일어나서 API 인터페이스에 변경이
+     있었다면 MAJOR, 기존 패키지와 관련 없는 패키지 추가라면 MINOR 버전 올림
      - `npm run version -- major`
      - `npm run version -- minor`
-  5. 커밋 & 푸시
-  6. PR 생성 & 리뷰
-  7. master 머지
-  8. `/release` 커맨드로 배포
-  9. CD에서 패키지 publish, npm 페이지 통해서 확인
+  6. 커밋 & 푸시
+  7. PR 생성 & 리뷰
+  8. master 머지
+  9. `/release` 커맨드로 배포
+  10. CD에서 패키지 publish, npm 페이지 통해서 확인
 
 ### Testing
 
