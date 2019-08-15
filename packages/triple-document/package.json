@@ -14,9 +14,6 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
-  "devDependencies": {
-    "typescript": "^3.3.3"
-  },
   "dependencies": {
     "@titicaca/triple-design-system": "^1.0.0-alpha.1",
     "@titicaca/triple-poi": "^1.0.0-alpha.1"

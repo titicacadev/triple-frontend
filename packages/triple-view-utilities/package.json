@@ -13,8 +13,5 @@
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
-  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
-  "devDependencies": {
-    "typescript": "^3.3.3"
-  }
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme"
 }

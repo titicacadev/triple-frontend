@@ -23,9 +23,6 @@
     "url": "https://github.com/titicacadev/triple-design-system/issues"
   },
   "homepage": "https://github.com/titicacadev/triple-design-system#readme",
-  "devDependencies": {
-    "typescript": "^3.3.3"
-  },
   "dependencies": {
     "@titicaca/triple-view-utilities": "^1.0.0-alpha.1",
     "moment": "^2.24.0",
