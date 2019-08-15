@@ -1,0 +1,24 @@
+{
+  "name": "@titicaca/triple-product",
+  "version": "1.0.0-alpha.1",
+  "description": "Triple Product UI Elements",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "devDependencies": {
+    "typescript": "^3.3.3"
+  },
+  "dependencies": {
+    "@titicaca/triple-design-system": "^1.0.0-alpha.1",
+    "@titicaca/triple-view-utilities": "^1.0.0-alpha.1"
+  }
+}

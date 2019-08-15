@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { deriveCurrentStateAndCount } from '../utilities'
-import { ExtendedResourceListElement } from '../elements/resource-list-element'
+import { ExtendedResourceListElement } from '@titicaca/triple-design-system'
+import { deriveCurrentStateAndCount } from '@titicaca/triple-view-utilities'
 
 export class ProductListElement extends React.PureComponent<{
   product?: { id; title; image; subtitle; basePrice; salePrice }
