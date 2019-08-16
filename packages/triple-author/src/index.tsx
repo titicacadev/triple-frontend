@@ -1,10 +1,8 @@
 import * as React from 'react'
 
-import Container from '../elements/container'
-import Text from '../elements/text'
-import Image from '../elements/image'
+import { Container, Text, Image } from '@titicaca/triple-design-system'
 
-export function Author({
+export default function Author({
   source: { name, bio, image },
   bioOverride,
   onClick,

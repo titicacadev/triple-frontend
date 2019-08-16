@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { text } from '@storybook/addon-knobs'
 
-import { Author } from '@titicaca/triple-design-system'
+import Author from '@titicaca/triple-author'
 
 storiesOf('Author', module).add('일반', () => (
   <Author
