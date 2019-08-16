@@ -35,7 +35,6 @@ export { default as Select } from './elements/select'
 export { default as NumericSpinner } from './elements/numeric-spinner'
 export { default as Drawer } from './elements/drawer'
 
-export * from './views/author'
 export * from './views/modal'
 export * from './views/listing-filter'
 export * from './views/section'
