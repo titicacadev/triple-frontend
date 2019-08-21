@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Author } from '@titicaca/triple-design-system'
+import Author from '@titicaca/triple-author'
 
 export default class App extends PureComponent {
   render() {
