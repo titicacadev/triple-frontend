@@ -1,2 +1,13 @@
-FROM gcr.io/titicaca-ci/triple-frontend/build AS test
+FROM cypress/base:10 AS test
+WORKDIR /app
+
+ENV CI=true
+
+COPY package.json package-lock.json lerna.json .
+COPY docs ./
+COPY tests ./
+COPY --from=gcr.io/titicaca-ci/triple-frontend/build packages ./
+
+RUN npm ci
+RUN npm run bootstrap
 RUN npm test
