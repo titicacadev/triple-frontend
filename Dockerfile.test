@@ -4,8 +4,8 @@ WORKDIR /app
 COPY package.json package-lock.json lerna.json ./
 RUN npm ci
 
-COPY tests ./
-COPY --from=gcr.io/titicaca-ci/triple-frontend/build /app/packages ./
+COPY tests ./tests
+COPY --from=gcr.io/titicaca-ci/triple-frontend/build /app/packages ./packages
 
 RUN npm run bootstrap -- --scope @titicaca/triple-frontend-tests
 
