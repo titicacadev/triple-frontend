@@ -43,5 +43,3 @@ export * from './views/listing-filter'
 
 export * from './utils/image-source'
 export * from './utils/form-field'
-
-export * from './global-style'
