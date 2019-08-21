@@ -1,2 +1,2 @@
-FROM gcr.io/titicaca-ci/triple_frontend/build AS test
+FROM gcr.io/titicaca-ci/triple-frontend/build AS test
 RUN npm test
