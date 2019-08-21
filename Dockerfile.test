@@ -6,7 +6,7 @@ ENV CI=true
 COPY package.json package-lock.json lerna.json ./
 COPY docs ./
 COPY tests ./
-COPY --from=gcr.io/titicaca-ci/triple-frontend/build packages ./
+COPY --from=gcr.io/titicaca-ci/triple-frontend/build /app/packages ./
 
 RUN npm ci
 RUN npm run bootstrap
