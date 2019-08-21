@@ -7,7 +7,7 @@ RUN npm ci
 COPY tests ./tests
 COPY --from=gcr.io/titicaca-ci/triple-frontend/build /app/packages ./packages
 
-RUN npm run bootstrap -- --scope @titicaca/triple-frontend-tests
+RUN npm run bootstrap
 
 ENV CI=true
 RUN npm test
