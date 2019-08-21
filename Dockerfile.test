@@ -3,7 +3,7 @@ WORKDIR /app
 
 ENV CI=true
 
-COPY package.json package-lock.json lerna.json .
+COPY package.json package-lock.json lerna.json ./
 COPY docs ./
 COPY tests ./
 COPY --from=gcr.io/titicaca-ci/triple-frontend/build packages ./
