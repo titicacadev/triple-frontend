@@ -23,6 +23,9 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
+    "@titicaca/triple-author": "^1.0.0-alpha.1",
+    "@titicaca/triple-design-system": "^1.0.0-alpha.1",
+    "@titicaca/triple-document": "^1.0.0-alpha.1",
     "koa": "^2.5.3",
     "koa-static": "^5.0.0",
     "react": "^16.4.2",
