@@ -65,7 +65,7 @@ const TextBase = styled.div<{
   font-size: ${({ size = 'large' }) =>
     typeof size === 'string' ? SIZES[size] : `${size}px`};
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
-  color: ${({ color = 'blue', alpha }) => rgba({ color, alpha })};
+  color: ${({ color = 'gray', alpha }) => rgba({ color, alpha })};
   word-wrap: break-word;
 
   float: ${({ floated }) => floated || 'none'};
