@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-author",
-  "version": "1.1.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "Triple Author UI elements",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,6 +15,6 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/triple-design-system": "^1.1.0-alpha.0"
+    "@titicaca/triple-design-system": "^1.0.0-alpha.1"
   }
 }
