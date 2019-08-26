@@ -11,7 +11,8 @@ RUN npm run lint
 
 # build
 FROM base AS build
-COPY . .
+COPY babel.config.js lerna.json ./
+COPY packages ./packages
 RUN npm run bootstrap
 RUN npm run build
 
