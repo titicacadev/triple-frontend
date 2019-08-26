@@ -1,0 +1,21 @@
+{
+  "name": "@titicaca/triple-image-carousel",
+  "version": "1.0.0-alpha.2",
+  "description": "Triple Image Carousel",
+  "main": "lib/index.js",
+  "files": [
+    "lib/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "dependencies": {
+    "@titicaca/triple-design-system": "^1.0.0-alpha.2",
+    "nuka-carousel": "4.4.1"
+  }
+}
