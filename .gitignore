@@ -92,3 +92,4 @@ packages/*/lib
 # Triple environment
 .npmrc
 packages/*/package-lock.json
+.DS_Store
