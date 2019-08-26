@@ -1,24 +1,14 @@
+/* eslint-disable-next-line @typescript-eslint/no-var-requires */
+const glob = require('glob')
+
 module.exports = {
-  entry: {
-    text: './src/elements/text',
-    button: './src/elements/button',
-    author: './src/models/author',
-    responsive: './src/elements/responsive',
-    carousel: './src/elements/carousel',
-    container: './src/elements/container',
-    image: './src/elements/image',
-    label: './src/elements/label',
-    navbar: './src/elements/navbar',
-    'action-sheet': './src/elements/action-sheet',
-    modal: './src/elements/modal',
-    'scrap-button': './src/elements/scrap-button',
-    pricing: './src/elements/pricing',
-    spinner: './src/elements/spinner',
-    table: './src/elements/table',
-    form: './src/elements/form',
-    'numeric-spinner': './src/elements/numeric-spinner',
-    'document-link-button': './src/elements/document-link-button',
-  },
+  entry: glob
+    .sync('./src/*')
+    .reduce(
+      (index, path) =>
+        Object.assign(index, { [path.match(/[^/]+$/)[0]]: path }, {}),
+      {},
+    ),
   mode: 'development',
   module: {
     rules: [
