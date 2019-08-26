@@ -6,13 +6,11 @@ RUN npm ci
 
 # lint
 FROM base AS lint
-WORKDIR /app
 COPY . .
 RUN npm run lint
 
 # build
 FROM base AS build
-WORKDIR /app
 COPY . .
 RUN npm run bootstrap
 RUN npm run build
