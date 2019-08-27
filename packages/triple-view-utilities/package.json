@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-view-utilities",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.1-alpha.0",
   "description": "Utilities for Triple view libraries and applications",
   "main": "lib/index.js",
   "files": [
@@ -13,6 +13,5 @@
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
-  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
-  "dependencies": {}
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme"
 }
