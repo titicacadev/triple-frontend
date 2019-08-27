@@ -1,10 +1,23 @@
 import * as React from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css, InterpolationValue } from 'styled-components'
 import Icon from './icon'
 import { MarginPadding, GlobalSizes } from '../commons'
 import * as CSS from 'csstype'
 
 type OverlayType = 'gradient' | 'dark'
+
+const OverlayStyle: { [key in OverlayType]: InterpolationValue[] } = {
+  gradient: css`
+    background-color: rgba(0, 0, 0, 0.8);
+  `,
+  dark: css`
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0)
+    );
+  `,
+}
 
 const IMAGE_HEIGHT_OPTIONS: Partial<Record<GlobalSizes, string>> = {
   mini: '80px',
@@ -65,6 +78,8 @@ const ImageOverlay = styled.div<{
   border-radius: ${({ borderRadius }) =>
     borderRadius === 0 ? 0 : borderRadius || 6}px;
 
+  ${({ overlayType = 'gradient' }) => OverlayStyle[overlayType]}
+
   ${({ overlayPadding }) =>
     overlayPadding &&
     css`
@@ -72,23 +87,6 @@ const ImageOverlay = styled.div<{
       padding-bottom: ${overlayPadding.bottom || 0}px;
       padding-left: ${overlayPadding.left || 0}px;
       padding-right: ${overlayPadding.right || 0}px;
-    `};
-
-  ${({ overlayType = 'gradient' }) =>
-    overlayType === 'gradient' &&
-    css`
-      background-image: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.6),
-        rgba(0, 0, 0, 0)
-      );
-    `};
-
-  ${({ overlayType }) =>
-    overlayType &&
-    overlayType === 'dark' &&
-    css`
-      background-color: rgba(0, 0, 0, 0.8);
     `};
 `
 
