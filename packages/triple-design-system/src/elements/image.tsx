@@ -4,6 +4,8 @@ import Icon from './icon'
 import { MarginPadding, GlobalSizes } from '../commons'
 import * as CSS from 'csstype'
 
+type OverlayType = 'gradient' | 'dark'
+
 const IMAGE_HEIGHT_OPTIONS: Partial<Record<GlobalSizes, string>> = {
   mini: '80px',
   small: '110px',
@@ -52,17 +54,14 @@ const SourceUrl = styled.div`
 const ImageOverlay = styled.div<{
   borderRadius?: number
   overlayPadding?: MarginPadding
+  overlayType?: OverlayType
 }>`
   box-sizing: border-box;
   position: absolute;
   top: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.6),
-    rgba(0, 0, 0, 0)
-  );
+
   border-radius: ${({ borderRadius }) =>
     borderRadius === 0 ? 0 : borderRadius || 6}px;
 
@@ -73,6 +72,22 @@ const ImageOverlay = styled.div<{
       padding-bottom: ${overlayPadding.bottom || 0}px;
       padding-left: ${overlayPadding.left || 0}px;
       padding-right: ${overlayPadding.right || 0}px;
+    `};
+
+  ${({ overlayType = 'gradient' }) =>
+    overlayType == 'gradient' &&
+    css`
+      background-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0)
+      );
+    `};
+
+  ${({ overlayType }) =>
+    overlayType == 'dark' &&
+    css`
+      background-color: rgba(0, 0, 0, 0.8);
     `};
 `
 
@@ -91,14 +106,16 @@ const ImageFrameContent = ({
   ImageSource,
   overlay,
   overlayPadding,
+  overlayType,
   withLinkIndicator,
 }: {
   imageUrl?: string
   borderRadius?: number
   sourceUrl?: string
   ImageSource?: any
-  overlay?: boolean
+  overlay?: React.ReactNode
   overlayPadding?: MarginPadding
+  overlayType?: OverlayType
   withLinkIndicator?: boolean
 }) => (
   <>
@@ -115,7 +132,11 @@ const ImageFrameContent = ({
       </SourceUrl>
     )}
     {overlay && (
-      <ImageOverlay borderRadius={borderRadius} overlayPadding={overlayPadding}>
+      <ImageOverlay
+        borderRadius={borderRadius}
+        overlayPadding={overlayPadding}
+        overlayType={overlayType}
+      >
         {overlay}
       </ImageOverlay>
     )}
@@ -208,6 +229,7 @@ function Image({
   ImageSource,
   overlay,
   overlayPadding,
+  overlayType,
   withLinkIndicator,
   onClick,
   floated,
@@ -223,8 +245,9 @@ function Image({
   frame?: GlobalSizes
   size?: GlobalSizes
   ImageSource?: any
-  overlay?: boolean
+  overlay?: React.ReactNode
   overlayPadding?: MarginPadding
+  overlayType?: OverlayType
   withLinkIndicator?: boolean
   onClick?: (e?: React.SyntheticEvent) => any
   floated?: CSS.FloatProperty
@@ -278,6 +301,7 @@ function Image({
           ImageSource={ImageSource}
           overlay={overlay}
           overlayPadding={overlayPadding}
+          overlayType={overlayType}
           withLinkIndicator={withLinkIndicator}
         />
       )}
