@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-poi",
-  "version": "1.0.1-alpha.0",
+  "version": "1.0.0-alpha.3",
   "description": "Triple POI UI Elements",
   "main": "lib/index.js",
   "files": [
@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
-    "@titicaca/triple-design-system": "^1.0.1-alpha.0",
-    "@titicaca/triple-view-utilities": "^1.0.1-alpha.0"
+    "@titicaca/triple-design-system": "^1.0.0-alpha.3",
+    "@titicaca/triple-view-utilities": "^1.0.0-alpha.3"
   }
 }
