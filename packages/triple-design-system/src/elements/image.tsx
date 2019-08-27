@@ -75,7 +75,7 @@ const ImageOverlay = styled.div<{
     `};
 
   ${({ overlayType = 'gradient' }) =>
-    overlayType == 'gradient' &&
+    overlayType === 'gradient' &&
     css`
       background-image: linear-gradient(
         to bottom,
@@ -85,7 +85,8 @@ const ImageOverlay = styled.div<{
     `};
 
   ${({ overlayType }) =>
-    overlayType == 'dark' &&
+    overlayType &&
+    overlayType === 'dark' &&
     css`
       background-color: rgba(0, 0, 0, 0.8);
     `};
