@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-document",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "TripleDocument: Formatted Content System",
   "main": "lib/index.js",
   "files": [
@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
-    "@titicaca/triple-design-system": "^1.0.0-alpha.1",
-    "@titicaca/triple-poi": "^1.0.0-alpha.1"
+    "@titicaca/triple-design-system": "^1.0.0-alpha.2",
+    "@titicaca/triple-poi": "^1.0.0-alpha.2"
   }
 }

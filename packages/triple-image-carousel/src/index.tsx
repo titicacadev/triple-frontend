@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import Pager from './pager'
 import {
-  Pager,
   Image,
   MarginPadding,
   GlobalSizes,
