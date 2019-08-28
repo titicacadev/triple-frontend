@@ -41,7 +41,6 @@ export const ImagePager = ({
   ImageSource,
   maxPageNum,
   maxPageContent,
-  moreOverLayClick,
 }: {
   margin?: MarginPadding
   borderRadius?: number
@@ -55,7 +54,6 @@ export const ImagePager = ({
   ImageSource?: any
   maxPageNum?: number
   maxPageContent?: React.ReactNode
-  moreOverLayClick?: (e?: React.SyntheticEvent) => any
 }) => {
   if (!totalPageCount) totalPageCount = images.length
   images = maxPageNum ? images.slice(0, maxPageNum) : images
