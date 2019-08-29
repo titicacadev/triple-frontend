@@ -39,8 +39,7 @@ export const ImagePager = ({
   onImageClick,
   onPageChange,
   ImageSource,
-  maxPageNum,
-  maxPageContent,
+  lastPageOverlayContent,
 }: {
   margin?: MarginPadding
   borderRadius?: number
@@ -52,44 +51,36 @@ export const ImagePager = ({
   onImageClick?: (e?: React.SyntheticEvent, image?: any) => any
   onPageChange?: (e?: React.SyntheticEvent) => any
   ImageSource?: any
-  maxPageNum?: number
-  maxPageContent?: React.ReactNode
-}) => {
-  if (!totalPageCount) totalPageCount = images.length
-  images = maxPageNum ? images.slice(0, maxPageNum) : images
+  lastPageOverlayContent?: React.ReactNode
+}) => (
+  <Pager
+    margin={margin}
+    borderRadius={borderRadius}
+    currentPage={currentPage}
+    onPageChange={onPageChange}
+    pageLabelComponent={({ currentSlide }) => (
+      <PageLabel current={currentSlide} total={totalPageCount} />
+    )}
+  >
+    {images.map((image, i) => {
+      const { frame: imageFrame, size: imageSize, sizes, sourceUrl } = image
+      const size = globalSize || imageSize
+      const frame = size ? undefined : globalFrame || imageFrame
 
-  return (
-    <Pager
-      margin={margin}
-      borderRadius={borderRadius}
-      currentPage={currentPage}
-      onPageChange={onPageChange}
-      pageLabelComponent={({ currentSlide }) => (
-        <PageLabel current={currentSlide} total={totalPageCount} />
-      )}
-    >
-      {images.map((image, i) => {
-        const { frame: imageFrame, size: imageSize, sizes, sourceUrl } = image
-        const size = globalSize || imageSize
-        const frame = size ? undefined : globalFrame || imageFrame
-
-        return (
-          <Image
-            key={i}
-            src={sizes.large.url}
-            sourceUrl={sourceUrl}
-            size={size}
-            frame={frame}
-            ImageSource={ImageSource}
-            borderRadius={0}
-            onClick={onImageClick && ((e) => onImageClick(e, image))}
-            overlay={
-              maxPageNum && i === maxPageNum - 1 ? { maxPageContent } : null
-            }
-            overlayType="dark"
-          />
-        )
-      })}
-    </Pager>
-  )
-}
+      return (
+        <Image
+          key={i}
+          src={sizes.large.url}
+          sourceUrl={sourceUrl}
+          size={size}
+          frame={frame}
+          ImageSource={ImageSource}
+          borderRadius={0}
+          onClick={onImageClick && ((e) => onImageClick(e, image))}
+          overlay={i === images.length - 1 ? { lastPageOverlayContent } : null}
+          overlayType='dark'
+        />
+      )
+    })}
+  </Pager>
+)
