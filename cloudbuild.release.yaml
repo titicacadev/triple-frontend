@@ -21,7 +21,7 @@ steps:
     - 'NPM_TOKEN'
 
 substitutions:
-  _SLACK_NOTIFY_CHANNEL: '#triple-web-dev'
+  _SLACK_NOTIFY_CHANNEL: '#triple-web-dev-notifications'
   _SVC_BASENAME: triple-frontend
   _AUTO_TAGGING_ENABLED: 'false'
 
