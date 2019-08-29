@@ -39,6 +39,7 @@ export const ImagePager = ({
   onImageClick,
   onPageChange,
   ImageSource,
+  lastPageOverlayContent,
 }: {
   margin?: MarginPadding
   borderRadius?: number
@@ -50,6 +51,7 @@ export const ImagePager = ({
   onImageClick?: (e?: React.SyntheticEvent, image?: any) => any
   onPageChange?: (e?: React.SyntheticEvent) => any
   ImageSource?: any
+  lastPageOverlayContent?: React.ReactNode
 }) => (
   <Pager
     margin={margin}
@@ -78,6 +80,8 @@ export const ImagePager = ({
           ImageSource={ImageSource}
           borderRadius={0}
           onClick={onImageClick && ((e) => onImageClick(e, image))}
+          overlay={i === images.length - 1 ? { lastPageOverlayContent } : null}
+          overlayType="dark"
         />
       )
     })}
