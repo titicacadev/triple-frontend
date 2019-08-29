@@ -59,7 +59,10 @@ export const ImagePager = ({
     currentPage={currentPage}
     onPageChange={onPageChange}
     pageLabelComponent={({ currentSlide }) => (
-      <PageLabel current={currentSlide} total={totalPageCount} />
+      <PageLabel
+        current={currentSlide}
+        total={totalPageCount || images.length}
+      />
     )}
   >
     {images.map((image, i) => {
