@@ -1,5 +1,5 @@
 {
-  "name": "@titicaca/triple-product",
+  "name": "@titicaca/product-list-elements",
   "version": "1.0.0-alpha.5",
   "description": "Triple Product UI Elements",
   "main": "lib/index.js",
