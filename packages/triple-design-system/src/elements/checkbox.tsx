@@ -7,23 +7,42 @@ import * as CSS from 'csstype'
 
 type FillType = 'full' | 'border' | 'text'
 
-const FillTypes: { [key in FillType]: InterpolationValue[] } = {
-  full: css`
-    border-color: rgb(${GetGlobalColor('blue')});
-    & > * {
-      color: rgb(${GetGlobalColor('blue')});
-      font-weight: bold;
-    }
-  `,
-  border: css`
-    border-color: rgb(${GetGlobalColor('blue')});
-  `,
-  text: css`
-    & > * {
-      color: rgb(${GetGlobalColor('blue')});
-      font-weight: bold;
-    }
-  `,
+const generateFillStyles = ({
+  fillType,
+  checked,
+  error,
+}: {
+  fillType: FillType
+  checked: boolean
+  error: boolean
+}) => {
+  if (!checked && !error) {
+    return
+  }
+
+  const color = GetGlobalColor(checked ? 'blue' : 'red')
+
+  switch (fillType) {
+    case 'full':
+      return css`
+        border-color: rgba(${color}, 1);
+        & > * {
+          color: rgba(${color}, 1);
+          font-weight: bold;
+        }
+      `
+    case 'border':
+      return css`
+        border-color: rgba(${color}, 1);
+      `
+    case 'text':
+      return css`
+        & > * {
+          color: rgba(${color}, 1);
+          font-weight: bold;
+        }
+      `
+  }
 }
 
 const TextAligns: Partial<
@@ -44,6 +63,7 @@ const ConfirmFrame = styled.div.attrs<{ name?: string }>({})<{
   checked?: boolean
   fillType?: FillType
   padding?: MarginPadding
+  error?: boolean
 }>`
   width: 100%;
   border: 1px solid #efefef;
@@ -53,7 +73,9 @@ const ConfirmFrame = styled.div.attrs<{ name?: string }>({})<{
   font-weight: bold;
   color: rgba(${GetGlobalColor('gray')}, 0.5);
 
-  ${({ checked, fillType }) => checked && fillType && FillTypes[fillType]};
+  ${({ checked, error, fillType = 'full' }) =>
+    generateFillStyles({ checked, error, fillType })};
+
   ${({ textAlign }) => textAlign && TextAligns[textAlign]};
 
   ${({ borderless }) =>
@@ -101,6 +123,7 @@ export const ConfirmSelector = withField(
     borderless,
     fillType,
     padding,
+    error,
   }: {
     name?: string
     value: any
@@ -111,6 +134,7 @@ export const ConfirmSelector = withField(
     fillType?: FillType
     children?: React.ReactNode
     padding?: MarginPadding
+    error?: boolean
   }) => {
     return (
       <ConfirmFrame
@@ -121,6 +145,7 @@ export const ConfirmSelector = withField(
         borderless={borderless}
         fillType={fillType}
         padding={padding}
+        error={error}
       >
         {children}
         <Icon checked={value} borderless={borderless} />
