@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { formatNumber } from '@titicaca/triple-view-utilities'
+import { formatNumber } from '@titicaca/view-utilities'
 
 import Container from '../elements/container'
 import Label, { LabelColor } from '../elements/label'

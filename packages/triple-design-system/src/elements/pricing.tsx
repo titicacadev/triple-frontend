@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { formatNumber } from '@titicaca/triple-view-utilities'
+import { formatNumber } from '@titicaca/view-utilities'
 
 import Container from './container'
 import Text from './text'
