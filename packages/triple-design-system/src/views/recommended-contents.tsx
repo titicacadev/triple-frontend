@@ -23,10 +23,10 @@ const RecommendedContent = styled.li<{
 }>`
   display: inline-block;
   vertical-align: top;
-  width: calc(50% - 45px);
+  width: calc(50% - 37.5px);
   height: 130px;
   padding: 20px 15px 0 15px;
-  margin: 0 15px 15px 0;
+  margin-bottom: 15px;
   border-radius: 6px;
 
   ${({ backgroundImageUrl }) =>
@@ -56,15 +56,19 @@ const RecommendedContent = styled.li<{
     right: 20px;
     top: 45px;
   }
+
+  &: nth-child(odd) {
+    margin-right: 15px;
+  }
 `
 
 const RecommendedContentWithFixedRatio = styled.li`
   display: inline-block;
   vertical-align: top;
-  width: calc(50% - 15px);
+  width: calc(50% - 7.5px);
   height: 0;
   padding-top: calc(50% - 15px);
-  margin: 0 15px 15px 0;
+  margin-bottom: 15px;
   border-radius: 6px;
   position: relative;
 
@@ -83,6 +87,10 @@ const RecommendedContentWithFixedRatio = styled.li`
   & > * {
     position: absolute;
     top: 0;
+  }
+
+  &: nth-child(odd) {
+    margin-right: 15px;
   }
 `
 
