@@ -98,11 +98,6 @@ const Label = styled.div<{ size?: GlobalSizes }>`
   font-size: ${({ size }) => FONT_SIZE[size || 'tiny']};
 `
 
-const SuffixText = styled(Text)`
-  letter-spacing: 2px;
-  vertical-align: top;
-`
-
 function discountRate(basePrice: number, salePrice: number) {
   return `${Math.floor(((basePrice - salePrice) / basePrice) * 100)}%`
 }
@@ -185,7 +180,6 @@ function FixedPricing({
   buttonText,
   description,
   salePrice,
-  suffix,
   onClick,
 }: {
   active?: boolean
@@ -193,7 +187,6 @@ function FixedPricing({
   description?: string
   buttonText?: string
   salePrice?: number
-  suffix?: string
   onClick?: (e?: React.SyntheticEvent) => any
 }) {
   const pricingLabel = label ? (
@@ -218,18 +211,8 @@ function FixedPricing({
       >
         <FloatedPricingContainer floated="left">
           {pricingLabel}
-          <Text size="large" bold>
+          <Text size="huge" bold>
             {formatNumber(salePrice)}원
-            {suffix ? (
-              <SuffixText
-                inline
-                size="small"
-                margin={{ top: 1, left: 4 }}
-                alpha={0.6}
-              >
-                /{suffix}
-              </SuffixText>
-            ) : null}
           </Text>
           {description ? (
             <Text color="blue" size="tiny" bold>
@@ -251,7 +234,6 @@ export default function Pricing({
   label,
   active,
   buttonText,
-  suffix,
   onClick,
   rich,
   fixed,
@@ -262,7 +244,6 @@ export default function Pricing({
   label?: React.ReactNode
   active?: boolean
   buttonText?: string
-  suffix?: string
   onClick?: (e?: React.SyntheticEvent) => any
   rich?: boolean
   fixed?: boolean
@@ -280,7 +261,6 @@ export default function Pricing({
         buttonText={buttonText}
         salePrice={salePrice}
         description={description}
-        suffix={suffix}
         onClick={onClick}
       />
     )
