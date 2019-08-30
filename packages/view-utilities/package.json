@@ -1,5 +1,5 @@
 {
-  "name": "@titicaca/triple-view-utilities",
+  "name": "@titicaca/view-utilities",
   "version": "1.0.0-alpha.5",
   "description": "Utilities for Triple view libraries and applications",
   "main": "lib/index.js",
