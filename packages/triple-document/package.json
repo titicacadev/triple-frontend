@@ -16,6 +16,6 @@
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
     "@titicaca/triple-design-system": "^1.0.0-alpha.5",
-    "@titicaca/triple-poi": "^1.0.0-alpha.5"
+    "@titicaca/poi-list-elements": "^1.0.0-alpha.5"
   }
 }
