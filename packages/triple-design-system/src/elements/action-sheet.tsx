@@ -234,10 +234,18 @@ export default function ActionSheet({
 }: {
   open?: boolean
   onClose?: (e?: React.SyntheticEvent) => any
-  title?: string
+  title?: React.ReactNode
   children?: React.ReactNode
   bottomSpacing?: number
 }) {
+  const actionSheetTitle = title ? (
+    typeof title === 'string' ? (
+      <Title>{title}</Title>
+    ) : (
+      title
+    )
+  ) : null
+
   return (
     <ReactCSSTransitionGroup
       transitionName="fade"
@@ -249,7 +257,7 @@ export default function ActionSheet({
       {open ? (
         <Overlay onClick={onClose}>
           <Sheet onClick={silenceEvent}>
-            {title ? <Title>{title}</Title> : null}
+            {actionSheetTitle}
             <Provider value={{ onClose }}>
               <ContentContainer bottomSpacing={bottomSpacing}>
                 {children}
