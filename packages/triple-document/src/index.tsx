@@ -21,7 +21,7 @@ import {
   Container,
   GetGlobalColor,
 } from '@titicaca/triple-design-system'
-import { PoiListElement, PoiCarouselElement } from '@titicaca/triple-poi'
+import { PoiListElement, PoiCarouselElement } from '@titicaca/poi-list-elements'
 
 import { H1, H2, H3, H4, Paragraph } from './text'
 import { RegionListElement } from './region'

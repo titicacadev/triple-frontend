@@ -9,7 +9,7 @@ import {
   ExtendedResourceListElement,
   LabelColor,
 } from '@titicaca/triple-design-system'
-import { deriveCurrentStateAndCount } from '@titicaca/triple-view-utilities'
+import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
 
 type PoiTypes = 'attraction' | 'restaurant' | 'hotel'
 
