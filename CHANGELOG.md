@@ -1,3 +1,9 @@
+## 0.11.1 (2019-08-20)
+
+- `RecommendedContents` title에 개행이 들어가있으면 띄워쓰기로 대체
+
+  _Torres_
+
 ## 0.11.0 (2019-08-19)
 
 - `Pricing` suffix 제거, price text size 21px 로 변경
