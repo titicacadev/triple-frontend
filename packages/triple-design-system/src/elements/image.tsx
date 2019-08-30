@@ -7,10 +7,10 @@ import * as CSS from 'csstype'
 type OverlayType = 'gradient' | 'dark'
 
 const OverlayStyle: { [key in OverlayType]: InterpolationValue[] } = {
-  gradient: css`
+  dark: css`
     background-color: rgba(0, 0, 0, 0.8);
   `,
-  dark: css`
+  gradient: css`
     background-image: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.6),
