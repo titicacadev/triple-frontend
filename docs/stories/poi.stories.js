@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { boolean } from '@storybook/addon-knobs'
 
-import { PoiCarouselElement, PoiListElement } from '@titicaca/triple-poi'
+import { PoiCarouselElement, PoiListElement } from '@titicaca/poi-list-elements'
 
 import POIS from './pois.sample.json'
 import HOTELS from './hotels.sample.json'
