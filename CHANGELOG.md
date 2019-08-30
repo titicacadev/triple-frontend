@@ -1,3 +1,9 @@
+## 0.11.0 (2019-08-19)
+
+- `Pricing` suffix 제거, price text size 21px 로 변경
+
+  _Olaf_
+
 ## 0.10.0 (2019-08-16)
 
 - `Pricing`에 custom label, description 추가
