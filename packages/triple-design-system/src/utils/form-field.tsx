@@ -11,7 +11,7 @@ const MessageContainer = styled(Container)`
 // eslint-disable-next-line no-unexpected-multiline
 const Label = styled(Text)<{
   focus?: boolean
-  error?: string
+  error?: boolean
   absolute?: boolean
 }>`
   font-size: 13px;
@@ -57,29 +57,23 @@ export function withField(WrappedComponent) {
           onFocus={() => this.setState({ focus: true })}
           onBlur={() => this.setState({ focus: false })}
         >
-          {label ? (
-            <>
-              <Label focus={focus} error={error} margin={{ bottom: 6 }}>
-                {label}
-              </Label>
-              <WrappedComponent
-                focus={focus ? 'true' : undefined}
-                error={error ? 'true' : undefined}
-                {...props}
-              />
-              <MessageContainer padding={{ top: 6 }}>
-                {error ? (
-                  <Label absolute={!help} error={error}>
-                    {error}
-                  </Label>
-                ) : help ? (
-                  <Label alpha={0.5}>{help}</Label>
-                ) : null}
-              </MessageContainer>
-            </>
-          ) : (
-            <WrappedComponent focus={focus} error={error} {...props} />
+          {label && (
+            <Label focus={focus} error={!!error} margin={{ bottom: 6 }}>
+              {label}
+            </Label>
           )}
+          <WrappedComponent focus={focus} error={!!error} {...props} />
+          {error ? (
+            <MessageContainer padding={{ top: 6 }}>
+              <Label absolute={!help} error={!!error}>
+                {error}
+              </Label>
+            </MessageContainer>
+          ) : help ? (
+            <MessageContainer padding={{ top: 6 }}>
+              <Label alpha={0.5}>{help}</Label>
+            </MessageContainer>
+          ) : null}
         </Container>
       )
     }
