@@ -1,3 +1,9 @@
+## 0.11.2 (2019-08-28)
+
+- `RecommendedContents` 두번째 컨텐츠의 우측 마진 제거
+
+  _Torres_
+
 ## 0.11.1 (2019-08-20)
 
 - `RecommendedContents` title에 개행이 들어가있으면 띄워쓰기로 대체
