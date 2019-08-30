@@ -80,11 +80,7 @@ export const ImagePager = ({
           ImageSource={ImageSource}
           borderRadius={0}
           onClick={onImageClick && ((e) => onImageClick(e, image))}
-          overlay={
-            lastPageOverlayContent && i === images.length - 1
-              ? lastPageOverlayContent
-              : null
-          }
+          overlay={(i === images.length - 1 && lastPageOverlayContent) || null}
           overlayType="dark"
         />
       )
