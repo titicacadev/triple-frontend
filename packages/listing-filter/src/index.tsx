@@ -119,7 +119,7 @@ function FilterEntry({ active, activeIconImage, inactiveIconImage, ...props }) {
   )
 }
 
-export const ListingFilterBase = styled.div`
+const ListingFilterBase = styled.div`
   white-space: nowrap;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
@@ -132,7 +132,7 @@ export const ListingFilterBase = styled.div`
   }
 `
 
-export class ListingFilter extends React.PureComponent {
+export default class ListingFilter extends React.PureComponent {
   static FilterEntry = FilterEntry
   static ExpandingFilterEntry = ExpandingFilterEntry
   static PrimaryFilterEntry = PrimaryFilterEntry
