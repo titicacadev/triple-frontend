@@ -60,6 +60,7 @@ const SourceUrl = styled.div`
   white-space: nowrap;
   text-overflow: ellipsis;
   font-size: 9px;
+  line-height: 1.2;
   color: rgba(255, 255, 255, 0.9);
 `
 
