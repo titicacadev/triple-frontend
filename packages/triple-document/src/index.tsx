@@ -15,6 +15,7 @@ import {
   Segment,
   Button,
   Text,
+  Table,
   Image,
   List,
   Carousel,
@@ -85,6 +86,7 @@ export const ELEMENTS: { [key: string]: any } = {
   regions: Regions,
   video: Video,
   tnaProducts: DocumentTnaProducts,
+  table: TableElement,
 }
 
 const EMBEDDED_ELEMENTS = {
@@ -553,6 +555,10 @@ function ListElement({ value: { bulletType, items }, onLinkClick, ...props }) {
       </ul>
     </Container>
   )
+}
+
+function TableElement({ value, ...props }) {
+  return <Table {...value} {...props} />
 }
 
 function generateClickHandler(onLinkClick, onImageClick) {

@@ -1,3 +1,15 @@
+## 0.9.0 (2019-08-14)
+
+- `ActionSheet` React.ReactNode type 의 title 도 받을 수 있도록 변경
+
+  _Olaf_
+
+## 0.8.2 (2019-08-13)
+
+- `Image` 의 `SourceUrl` line-height를 1.2로 변경
+
+  _Torres_
+
 ## 0.8.1 (2019-08-07)
 
 - `Radio` onChange 인자 값 수정
