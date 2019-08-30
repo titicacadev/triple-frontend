@@ -1,3 +1,13 @@
+## 0.10.0 (2019-08-16)
+
+- `Pricing`에 custom label, description 추가
+
+  _Olaf_
+
+- `TripleDocument`에 `Table`요소 추가
+
+  _Torres_
+
 ## 0.9.0 (2019-08-14)
 
 - `ActionSheet` React.ReactNode type 의 title 도 받을 수 있도록 변경
