@@ -104,7 +104,7 @@ interface ContentElement {
 }
 
 export function RecommendedContents({
-  contents,
+  contents: contentsData,
   margin,
   onContentClick,
 }: {
@@ -115,6 +115,11 @@ export function RecommendedContents({
     content?: { backgroundImageUrl: string; title: string },
   ) => any
 }) {
+  const contents = contentsData.map(({ title, ...content }) => ({
+    title: title.replace('\n', ' '),
+    ...content,
+  }))
+
   return (
     <RecommendedContentsContainer margin={margin}>
       {contents.map((content, index) => (
