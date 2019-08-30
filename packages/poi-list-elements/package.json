@@ -1,5 +1,5 @@
 {
-  "name": "@titicaca/triple-poi",
+  "name": "@titicaca/poi-list-elements",
   "version": "1.0.0-alpha.5",
   "description": "Triple POI UI Elements",
   "main": "lib/index.js",
