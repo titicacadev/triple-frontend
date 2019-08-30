@@ -18,6 +18,5 @@ storiesOf('Pricing', module)
       salePrice={25000}
       label="트리플 클럽가"
       buttonText="객실예약"
-      suffix="박"
     />
   ))
