@@ -114,11 +114,19 @@ function RichPricing({
 }: {
   basePrice: number
   salePrice: number
-  label: string
+  label: React.ReactNode
 }) {
+  const pricingLabel = label ? (
+    typeof label === 'string' ? (
+      <Label> {label} </Label>
+    ) : (
+      label
+    )
+  ) : null
+
   return (
     <PricingContainer padding={{ top: 22 }}>
-      <Label> {label} </Label>
+      {pricingLabel}
       <Price color="gray" lineThrough absolutePosition>
         {formatNumber(basePrice)}
       </Price>
@@ -161,7 +169,7 @@ const FloatedPricingContainer = styled(Container)`
 
 const PurchaseButton = styled.button`
   width: 100%;
-  padding: 17px 0;
+  padding: 16px 0;
   border-radius: 4px;
   background: ${COLORS.blue};
   color: ${COLORS.white};
@@ -175,27 +183,41 @@ function FixedPricing({
   active,
   label,
   buttonText,
+  description,
   salePrice,
   suffix,
   onClick,
 }: {
   active?: boolean
-  label?: string
+  label?: React.ReactNode
+  description?: string
   buttonText?: string
   salePrice?: number
   suffix?: string
   onClick?: (e?: React.SyntheticEvent) => any
 }) {
+  const pricingLabel = label ? (
+    typeof label === 'string' ? (
+      <Text
+        color="blue"
+        size="mini"
+        margin={{ top: description ? 0 : 7, bottom: 2 }}
+      >
+        {label}
+      </Text>
+    ) : (
+      label
+    )
+  ) : null
+
   return (
     <Drawer active={active}>
       <FloatedFrame
         clearing
-        padding={{ top: 10, right: 25, bottom: 10, left: 30 }}
+        padding={{ top: 18, right: 20, bottom: 18, left: 20 }}
       >
         <FloatedPricingContainer floated="left">
-          <Text color="blue" size="mini" margin={{ top: 7, bottom: 4 }}>
-            {label}
-          </Text>
+          {pricingLabel}
           <Text size="large" bold>
             {formatNumber(salePrice)}원
             {suffix ? (
@@ -209,6 +231,11 @@ function FixedPricing({
               </SuffixText>
             ) : null}
           </Text>
+          {description ? (
+            <Text color="blue" size="tiny" bold>
+              {description}
+            </Text>
+          ) : null}
         </FloatedPricingContainer>
         <FloatedPricingContainer floated="right">
           <PurchaseButton onClick={onClick}>{buttonText}</PurchaseButton>
@@ -228,16 +255,18 @@ export default function Pricing({
   onClick,
   rich,
   fixed,
+  description,
 }: {
   basePrice?: number
   salePrice?: number
-  label?: string
+  label?: React.ReactNode
   active?: boolean
   buttonText?: string
   suffix?: string
   onClick?: (e?: React.SyntheticEvent) => any
   rich?: boolean
   fixed?: boolean
+  description?: string
 }) {
   if (rich) {
     return (
@@ -250,6 +279,7 @@ export default function Pricing({
         label={label}
         buttonText={buttonText}
         salePrice={salePrice}
+        description={description}
         suffix={suffix}
         onClick={onClick}
       />
