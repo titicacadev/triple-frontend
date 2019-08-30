@@ -1,5 +1,5 @@
 {
-  "name": "@titicaca/triple-image-carousel",
+  "name": "@titicaca/image-carousel",
   "version": "1.0.0-alpha.5",
   "description": "Triple Image Carousel",
   "main": "lib/index.js",
