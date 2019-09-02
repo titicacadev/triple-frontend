@@ -5,12 +5,11 @@ import { FlickingEvent } from '@egjs/flicking'
 import Flicking from '@egjs/react-flicking'
 import { Container, MarginPadding } from '@titicaca/triple-design-system'
 
-export interface PageChangeEvent extends FlickingEvent {}
 export interface FlickingProps {
   margin?: MarginPadding
   borderRadius?: number
   currentPage?: number
-  onPageChange?: (e?: PageChangeEvent) => void
+  onPageChange?: (e?: FlickingEvent) => void
   pageLabelComponent?: (props: any) => JSX.Element
   children?: React.ReactNode
 }
