@@ -21,14 +21,6 @@ const PageLabelContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
 `
 
-function PageLabel({ current, total }: { current: number; total: number }) {
-  return (
-    <PageLabelContainer>
-      <PageLabelText>{`${current + 1} / ${total}`}</PageLabelText>
-    </PageLabelContainer>
-  )
-}
-
 interface ImagePagerProps {
   margin?: MarginPadding
   borderRadius?: number
@@ -45,65 +37,69 @@ interface ImagePagerProps {
   lastPageOverlayContent?: React.ReactNode
 }
 
-export class ImagePager extends React.PureComponent<ImagePagerProps> {
-  render() {
-    const {
-      margin,
-      borderRadius,
-      size: globalSize,
-      frame: globalFrame,
-      images,
-      currentPage,
-      totalPageCount,
-      onImageClick,
-      onBeforePageChange,
-      onPageMove,
-      onPageChange,
-      ImageSource,
-      lastPageOverlayContent,
-    } = this.props
+export function ImagePager({
+  margin,
+  borderRadius,
+  size: globalSize,
+  frame: globalFrame,
+  images,
+  currentPage,
+  totalPageCount,
+  onImageClick,
+  onBeforePageChange,
+  onPageMove,
+  onPageChange,
+  ImageSource,
+  lastPageOverlayContent,
+}: ImagePagerProps) {
+  return (
+    <Flicking
+      margin={margin}
+      borderRadius={borderRadius}
+      currentPage={currentPage}
+      onBeforePageChange={onBeforePageChange}
+      onPageMove={onPageMove}
+      onPageChange={onPageChange}
+      totalCount={totalPageCount || images.length}
+      pageLabelComponent={({ currentSlide }: any) => (
+        <PageLabel
+          current={currentSlide}
+          total={totalPageCount || images.length}
+        />
+      )}
+    >
+      {images.map((image, i) => {
+        const { frame: imageFrame, size: imageSize, sizes, sourceUrl } = image
+        const size = globalSize || imageSize
+        const frame = size ? undefined : globalFrame || imageFrame
 
-    return (
-      <Flicking
-        margin={margin}
-        borderRadius={borderRadius}
-        currentPage={currentPage}
-        onBeforePageChange={onBeforePageChange}
-        onPageMove={onPageMove}
-        onPageChange={onPageChange}
-        totalCount={totalPageCount || images.length}
-        pageLabelComponent={({ currentSlide }: any) => (
-          <PageLabel
-            current={currentSlide}
-            total={totalPageCount || images.length}
+        return (
+          <Image
+            key={i}
+            src={sizes.large.url}
+            sourceUrl={sourceUrl}
+            size={size}
+            frame={frame}
+            ImageSource={ImageSource}
+            borderRadius={0}
+            onClick={onImageClick && ((e) => onImageClick(e, image))}
+            overlay={
+              (i === images.length - 1 && lastPageOverlayContent) || null
+            }
+            overlayType="dark"
           />
-        )}
-      >
-        {images.map((image, i) => {
-          const { frame: imageFrame, size: imageSize, sizes, sourceUrl } = image
-          const size = globalSize || imageSize
-          const frame = size ? undefined : globalFrame || imageFrame
+        )
+      })}
+    </Flicking>
+  )
+}
 
-          return (
-            <Image
-              key={i}
-              src={sizes.large.url}
-              sourceUrl={sourceUrl}
-              size={size}
-              frame={frame}
-              ImageSource={ImageSource}
-              borderRadius={0}
-              onClick={onImageClick && ((e) => onImageClick(e, image))}
-              overlay={
-                (i === images.length - 1 && lastPageOverlayContent) || null
-              }
-              overlayType="dark"
-            />
-          )
-        })}
-      </Flicking>
-    )
-  }
+function PageLabel({ current, total }: { current: number; total: number }) {
+  return (
+    <PageLabelContainer>
+      <PageLabelText>{`${current + 1} / ${total}`}</PageLabelText>
+    </PageLabelContainer>
+  )
 }
 
 export default ImagePager
