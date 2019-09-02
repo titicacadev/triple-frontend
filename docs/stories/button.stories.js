@@ -5,6 +5,7 @@ import { action } from '@storybook/addon-actions'
 import { text, number, select, boolean } from '@storybook/addon-knobs'
 
 import { Button } from '@titicaca/triple-design-system'
+import FloatingInstallButton from '@titicaca/floating-install-button'
 
 storiesOf('Button', module)
   .add('일반', () => (
@@ -101,4 +102,10 @@ storiesOf('Button', module)
       <Button icon="starEmpty">리뷰쓰기</Button>
       <Button icon="share">공유하기</Button>
     </Button.Group>
+  ))
+  .add('플로팅 설치 버튼 (모바일 only)', () => (
+    <FloatingInstallButton
+      isPublic={true}
+      appInstallLink="https://triple.guide"
+    />
   ))

@@ -12,6 +12,7 @@
     "@titicaca/listing-filter": "^1.0.0-alpha.6",
     "@titicaca/poi-list-elements": "^1.0.0-alpha.6",
     "@titicaca/triple-design-system": "^1.0.0-alpha.6",
+    "@titicaca/floating-install-button": "^1.0.0-alpha.6",
     "@titicaca/triple-document": "^1.0.0-alpha.6"
   },
   "devDependencies": {
