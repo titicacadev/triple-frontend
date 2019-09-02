@@ -3,17 +3,17 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
+    "dev": "npm run build-resources && concurrently 'npm run watch-build-resources' 'npm run watch-build-declarations' 'npm run dev-docs'",
+    "watch-build-resources": "lerna exec --ignore @titicaca/triple-frontend-docs --ignore @titicaca/triple-frontend-tests --parallel 'babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments --watch'",
+    "version": "lerna version --no-push",
+    "build": "npm run build-resources && npm run build-declarations",
     "build-resources": "lerna exec --ignore @titicaca/triple-frontend-docs --ignore @titicaca/triple-frontend-tests --concurrency 4 'BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --delete-dir-on-start --no-comments'",
     "build-declarations": "lerna exec --ignore @titicaca/triple-frontend-docs --ignore @titicaca/triple-frontend-tests --parallel tsc",
-    "dev": "npm run build-resources && concurrently 'npm run watch-build' 'npm run dev-docs'",
-    "watch-build": "lerna exec --ignore @titicaca/triple-frontend-docs --ignore @titicaca/triple-frontend-tests --parallel 'babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments --watch'",
-    "build": "npm run build-resources && npm run build-declarations",
+    "publish": "lerna publish from-package",
+    "dev-docs": "lerna exec --scope @titicaca/triple-frontend-docs npm run dev",
     "prettier": "prettier --write \"**/*.{ts,tsx,js,json}\"",
     "lint": "eslint '{packages,tests/src}/**/*.{ts,tsx,js}'",
-    "test": "cd tests && npm test",
-    "dev-docs": "lerna exec --scope @titicaca/triple-frontend-docs npm run dev",
-    "version": "lerna version --no-push",
-    "publish": "lerna publish from-package"
+    "test": "cd tests && npm test"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
