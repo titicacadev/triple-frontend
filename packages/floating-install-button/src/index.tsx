@@ -1,6 +1,6 @@
 declare var window: any
 
-import React, { useState, useEffect } from 'react'
+import * as React from 'react'
 import styled from 'styled-components'
 import { GetGlobalColor, Text, Container } from '@titicaca/triple-design-system'
 
@@ -67,13 +67,13 @@ export default function FloatingInstallButton({
     onClose?: any
   }
 }) {
-  const [buttonVisibility, setButtonVisibility] = useState(false)
+  const [buttonVisibility, setButtonVisibility] = React.useState(false)
 
   const sendTrackEventRequest = (param) => {
     trackEvent && param && trackEvent(param)
   }
 
-  useEffect(() => {
+  React.useEffect(() => {
     const visitedPages = window.sessionStorage.getItem(CLOSE_INSTALL_BUTTON_KEY)
     if (!visitedPages) {
       setButtonVisibility(true)
