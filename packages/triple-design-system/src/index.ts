@@ -35,6 +35,9 @@ export { default as Textarea } from './elements/textarea'
 export { default as Select } from './elements/select'
 export { default as NumericSpinner } from './elements/numeric-spinner'
 export { default as Drawer } from './elements/drawer'
+export {
+  default as FloatingInstallButton,
+} from './elements/floating-install-button'
 
 export * from './views/modal'
 export * from './views/listing-filter'
