@@ -32,15 +32,6 @@ const InstallDescription = styled(Text)`
   color: rgb(${GetGlobalColor('white')});
 `
 
-const InstallAnchor = styled.a`
-  &,
-  &:visited,
-  &:hover,
-  &:active {
-    color: inherit;
-  }
-`
-
 const Description = styled(Text)`
   width: 200px;
   height: 15px;
@@ -61,7 +52,7 @@ const CloseButton = styled.img`
   margin: 27px 16px 27px 0;
 `
 
-export const FloatingInstallButton = ({
+export default function FloatingInstallButton({
   appInstallLink,
   isPublic,
   trackEvent,
@@ -75,35 +66,39 @@ export const FloatingInstallButton = ({
     onSelect?: any
     onClose?: any
   }
-}) => {
+}) {
   const [buttonVisibility, setButtonVisibility] = useState(false)
+
+  const sendTrackEventRequest = (param) => {
+    trackEvent && param && trackEvent(param)
+  }
 
   useEffect(() => {
     const visitedPages = window.sessionStorage.getItem(CLOSE_INSTALL_BUTTON_KEY)
     if (!visitedPages) {
       setButtonVisibility(true)
-      trackEvent && trackEvent(trackEventParams.onShow)
+      sendTrackEventRequest(trackEventParams && trackEventParams.onShow)
     }
   })
 
   const onClose = () => {
     setButtonVisibility(false)
     window.sessionStorage.setItem(CLOSE_INSTALL_BUTTON_KEY, 'true')
-    trackEvent && trackEvent(trackEventParams.onClose)
+    sendTrackEventRequest(trackEventParams && trackEventParams.onClose)
   }
 
   const onSelect = () => {
-    trackEvent && trackEvent(trackEventParams.onSelect)
+    sendTrackEventRequest(trackEventParams && trackEventParams.onSelect)
   }
 
   return buttonVisibility && isPublic ? (
     <FloatingButton>
       <Container floated="left">
         <InstallDescription>
-          <InstallAnchor href={appInstallLink} onClick={onSelect}>
+          <a href={appInstallLink} onClick={onSelect}>
             <Container floated="left">트리플 앱 설치하기</Container>
             <GoAppButton src="https://assets.triple.guide/images/ico-arrow@4x.png" />
-          </InstallAnchor>
+          </a>
         </InstallDescription>
         <Description>가이드북, 일정짜기, 길찾기, 맛집</Description>
       </Container>
