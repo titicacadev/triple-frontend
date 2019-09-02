@@ -29,19 +29,7 @@ function PageLabel({ current, total }: { current: number; total: number }) {
   )
 }
 
-export const ImagePager = ({
-  margin,
-  borderRadius,
-  size: globalSize,
-  frame: globalFrame,
-  images,
-  currentPage,
-  totalPageCount,
-  onImageClick,
-  onPageChange,
-  ImageSource,
-  lastPageOverlayContent,
-}: {
+interface ImagePagerProps {
   margin?: MarginPadding
   borderRadius?: number
   currentPage?: number
@@ -50,43 +38,72 @@ export const ImagePager = ({
   images?: any[]
   totalPageCount?: number
   onImageClick?: (e?: React.SyntheticEvent, image?: any) => void
+  onBeforePageChange?: (e?: FlickingEvent) => void
+  onPageMove?: (e?: FlickingEvent) => void
   onPageChange?: (e?: FlickingEvent) => void
   ImageSource?: any
   lastPageOverlayContent?: React.ReactNode
-}) => (
-  <Flicking
-    margin={margin}
-    borderRadius={borderRadius}
-    currentPage={currentPage}
-    onPageChange={onPageChange}
-    pageLabelComponent={({ currentSlide }) => (
-      <PageLabel
-        current={currentSlide}
-        total={totalPageCount || images.length}
-      />
-    )}
-  >
-    {images.map((image, i) => {
-      const { frame: imageFrame, size: imageSize, sizes, sourceUrl } = image
-      const size = globalSize || imageSize
-      const frame = size ? undefined : globalFrame || imageFrame
+}
 
-      return (
-        <Image
-          key={i}
-          src={sizes.large.url}
-          sourceUrl={sourceUrl}
-          size={size}
-          frame={frame}
-          ImageSource={ImageSource}
-          borderRadius={0}
-          onClick={onImageClick && ((e) => onImageClick(e, image))}
-          overlay={(i === images.length - 1 && lastPageOverlayContent) || null}
-          overlayType="dark"
-        />
-      )
-    })}
-  </Flicking>
-)
+export class ImagePager extends React.PureComponent<ImagePagerProps> {
+  render() {
+    const {
+      margin,
+      borderRadius,
+      size: globalSize,
+      frame: globalFrame,
+      images,
+      currentPage,
+      totalPageCount,
+      onImageClick,
+      onBeforePageChange,
+      onPageMove,
+      onPageChange,
+      ImageSource,
+      lastPageOverlayContent,
+    } = this.props
+
+    return (
+      <Flicking
+        margin={margin}
+        borderRadius={borderRadius}
+        currentPage={currentPage}
+        onBeforePageChange={onBeforePageChange}
+        onPageMove={onPageMove}
+        onPageChange={onPageChange}
+        totalCount={totalPageCount || images.length}
+        pageLabelComponent={({ currentSlide }: any) => (
+          <PageLabel
+            current={currentSlide}
+            total={totalPageCount || images.length}
+          />
+        )}
+      >
+        {images.map((image, i) => {
+          const { frame: imageFrame, size: imageSize, sizes, sourceUrl } = image
+          const size = globalSize || imageSize
+          const frame = size ? undefined : globalFrame || imageFrame
+
+          return (
+            <Image
+              key={i}
+              src={sizes.large.url}
+              sourceUrl={sourceUrl}
+              size={size}
+              frame={frame}
+              ImageSource={ImageSource}
+              borderRadius={0}
+              onClick={onImageClick && ((e) => onImageClick(e, image))}
+              overlay={
+                (i === images.length - 1 && lastPageOverlayContent) || null
+              }
+              overlayType="dark"
+            />
+          )
+        })}
+      </Flicking>
+    )
+  }
+}
 
 export default ImagePager
