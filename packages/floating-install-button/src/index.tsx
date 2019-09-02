@@ -33,7 +33,6 @@ const InstallDescription = styled(Text)`
 `
 
 const InstallAnchor = styled.a`
-  &,
   &:visited,
   &:hover,
   &:active {
@@ -84,7 +83,7 @@ export default function FloatingInstallButton({
 
   React.useEffect(() => {
     const visitedPages = window.sessionStorage.getItem(CLOSE_INSTALL_BUTTON_KEY)
-    if (!visitedPages) {
+    if (!visitedPages && !buttonVisibility) {
       setButtonVisibility(true)
       sendTrackEventRequest(trackEventParams && trackEventParams.onShow)
     }
@@ -98,6 +97,7 @@ export default function FloatingInstallButton({
 
   const onSelect = () => {
     sendTrackEventRequest(trackEventParams && trackEventParams.onSelect)
+    return true
   }
 
   return buttonVisibility && isPublic ? (
