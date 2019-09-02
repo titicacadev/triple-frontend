@@ -104,6 +104,7 @@ export class Pager extends React.PureComponent<FlickingProps> {
           defaultIndex={currentPage || 0}
           autoResize={true}
           horizontal={true}
+          bounce={[0, 0]}
           onMoveStart={this.handleMoveStart}
           onMove={this.handleMove}
           onMoveEnd={this.handleMoveEnd}
