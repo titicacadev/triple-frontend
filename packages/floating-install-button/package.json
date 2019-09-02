@@ -1,0 +1,28 @@
+{
+  "name": "@titicaca/floating-install-button",
+  "version": "1.0.0-alpha.5",
+  "description": "floating triple install button",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-design-system.git"
+  },
+  "keywords": [
+    "triple",
+    "floating",
+    "install",
+    "button"
+  ],
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "dependencies": {
+    "@titicaca/triple-design-system": "^1.0.0-alpha.5"
+  }
+}
