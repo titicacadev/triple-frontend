@@ -33,7 +33,6 @@ export class Pager extends React.PureComponent<FlickingProps> {
 
   componentDidMount() {
     this.setState({
-      ...this.state,
       currentSlide: this.props.currentPage || 0,
     })
   }

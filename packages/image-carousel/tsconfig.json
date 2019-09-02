@@ -4,8 +4,7 @@
     "outDir": "./lib",
     "baseUrl": ".",
     "rootDir": "src",
-    "emitDeclarationOnly": true,
-    "esModuleInterop": true
+    "emitDeclarationOnly": true
   },
   "include": ["./src"],
   "exclude": ["node_modules", "lib"]
