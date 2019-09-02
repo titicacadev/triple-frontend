@@ -5,6 +5,7 @@
     "bootstrap": "lerna bootstrap",
     "dev": "npm run build-resources && concurrently 'npm run watch-build-resources' 'npm run watch-build-declarations' 'npm run dev-docs'",
     "watch-build-resources": "lerna exec --ignore @titicaca/triple-frontend-docs --ignore @titicaca/triple-frontend-tests --parallel 'babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments --watch'",
+    "watch-build-declarations": "lerna exec --ignore @titicaca/triple-frontend-docs --ignore @titicaca/triple-frontend-tests --parallel 'tsc --watch'",
     "version": "lerna version --no-push",
     "build": "npm run build-resources && npm run build-declarations",
     "build-resources": "lerna exec --ignore @titicaca/triple-frontend-docs --ignore @titicaca/triple-frontend-tests --concurrency 4 'BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --delete-dir-on-start --no-comments'",
