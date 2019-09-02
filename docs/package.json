@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-frontend-docs",
-  "version": "1.0.0-alpha.6",
+  "version": "1.0.0-alpha.7",
   "private": true,
   "description": "Documentation project for triple-frontend packages",
   "scripts": {
@@ -8,11 +8,12 @@
     "build": "build-storybook -s ./public"
   },
   "dependencies": {
-    "@titicaca/author": "^1.0.0-alpha.6",
-    "@titicaca/listing-filter": "^1.0.0-alpha.6",
-    "@titicaca/poi-list-elements": "^1.0.0-alpha.6",
-    "@titicaca/triple-design-system": "^1.0.0-alpha.6",
-    "@titicaca/triple-document": "^1.0.0-alpha.6"
+    "@titicaca/author": "^1.0.0-alpha.7",
+    "@titicaca/floating-install-button": "^1.0.0-alpha.7",
+    "@titicaca/listing-filter": "^1.0.0-alpha.7",
+    "@titicaca/poi-list-elements": "^1.0.0-alpha.7",
+    "@titicaca/triple-design-system": "^1.0.0-alpha.7",
+    "@titicaca/triple-document": "^1.0.0-alpha.7"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.0.3",

@@ -32,6 +32,14 @@ const InstallDescription = styled(Text)`
   color: rgb(${GetGlobalColor('white')});
 `
 
+const InstallAnchor = styled.a`
+  &:visited,
+  &:hover,
+  &:active {
+    color: inherit;
+  }
+`
+
 const Description = styled(Text)`
   width: 200px;
   height: 15px;
@@ -75,7 +83,7 @@ export default function FloatingInstallButton({
 
   React.useEffect(() => {
     const visitedPages = window.sessionStorage.getItem(CLOSE_INSTALL_BUTTON_KEY)
-    if (!visitedPages) {
+    if (!visitedPages && !buttonVisibility) {
       setButtonVisibility(true)
       sendTrackEventRequest(trackEventParams && trackEventParams.onShow)
     }
@@ -89,16 +97,17 @@ export default function FloatingInstallButton({
 
   const onSelect = () => {
     sendTrackEventRequest(trackEventParams && trackEventParams.onSelect)
+    return true
   }
 
   return buttonVisibility && isPublic ? (
     <FloatingButton>
       <Container floated="left">
         <InstallDescription>
-          <a href={appInstallLink} onClick={onSelect}>
+          <InstallAnchor href={appInstallLink} onClick={onSelect}>
             <Container floated="left">트리플 앱 설치하기</Container>
             <GoAppButton src="https://assets.triple.guide/images/ico-arrow@4x.png" />
-          </a>
+          </InstallAnchor>
         </InstallDescription>
         <Description>가이드북, 일정짜기, 길찾기, 맛집</Description>
       </Container>
