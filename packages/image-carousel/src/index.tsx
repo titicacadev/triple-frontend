@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import Pager from './pager'
+import { FlickingEvent } from '@egjs/flicking'
+import Flicking from './flicking'
 import {
   Image,
   MarginPadding,
@@ -48,16 +49,16 @@ export const ImagePager = ({
   frame?: GlobalSizes
   images?: any[]
   totalPageCount?: number
-  onImageClick?: (e?: React.SyntheticEvent, image?: any) => any
-  onPageChange?: (e?: React.SyntheticEvent) => any
+  onImageClick?: (e?: React.SyntheticEvent, image?: any) => void
+  onPageChange?: (e?: FlickingEvent) => void
   ImageSource?: any
   lastPageOverlayContent?: React.ReactNode
 }) => (
-  <Pager
+  <Flicking
     margin={margin}
     borderRadius={borderRadius}
     currentPage={currentPage}
-    onPageChange={onPageChange}
+    onPageChange={(e) => onPageChange()}
     pageLabelComponent={({ currentSlide }) => (
       <PageLabel
         current={currentSlide}
@@ -85,5 +86,7 @@ export const ImagePager = ({
         />
       )
     })}
-  </Pager>
+  </Flicking>
 )
+
+export default ImagePager
