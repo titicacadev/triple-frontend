@@ -40,18 +40,10 @@ export class Pager extends React.PureComponent<FlickingProps> {
   handleMoveStart = (e: FlickingEvent) => {
     const { index, direction } = e
     const { onBeforePageChange, totalCount } = this.props
-    let { pageVisibility } = this.state
 
-    if (
-      (index === totalCount - 2 && direction === DIRECTION_NEXT) ||
-      index === totalCount - 1
-    ) {
-      pageVisibility = false
-    } else {
-      pageVisibility = true
-    }
-
-    this.setState({ pageVisibility })
+    this.setState({
+      pageVisibility: index < totalCount - 2 || direction !== DIRECTION_NEXT,
+    })
 
     onBeforePageChange && onBeforePageChange(e)
   }
