@@ -52,10 +52,7 @@ export class Pager extends React.PureComponent<FlickingProps> {
       pageVisibility = true
     }
 
-    this.setState({
-      ...this.state,
-      pageVisibility,
-    })
+    this.setState({ pageVisibility })
 
     onBeforePageChange && onBeforePageChange(e)
   }
