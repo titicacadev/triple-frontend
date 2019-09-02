@@ -1,9 +1,10 @@
-// import React, { useState } from "react";
 import * as React from 'react'
 import styled from 'styled-components'
-import { FlickingEvent } from '@egjs/flicking'
+import EGFlicking, { FlickingEvent } from '@egjs/flicking'
 import Flicking from '@egjs/react-flicking'
 import { Container, MarginPadding } from '@titicaca/triple-design-system'
+
+const { NEXT: DIRECTION_NEXT } = EGFlicking.DIRECTION
 
 export interface FlickingProps {
   margin?: MarginPadding
@@ -43,7 +44,7 @@ export class Pager extends React.PureComponent<FlickingProps> {
     let { pageVisibility } = this.state
 
     if (
-      (index === totalCount - 2 && direction === 'NEXT') ||
+      (index === totalCount - 2 && direction === DIRECTION_NEXT) ||
       index === totalCount - 1
     ) {
       pageVisibility = false
