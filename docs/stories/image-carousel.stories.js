@@ -24,7 +24,7 @@ const MoreImageOverlayLinkIcon = styled.img`
 `
 const OverlayContent = () => {
   return (
-    <MoreImageOverlayLink>
+    <MoreImageOverlayLink href="https://triple.guide">
       트리플 앱에서 더보기
       <MoreImageOverlayLinkIcon
         src={'https://assets.triple.guide/images/ico-arrow@4x.png'}
