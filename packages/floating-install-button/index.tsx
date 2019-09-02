@@ -1,3 +1,5 @@
+declare var window: any
+
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { GetGlobalColor, Text, Container } from '@titicaca/triple-design-system'
