@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
+import { ImagePager } from '@titicaca/image-carousel'
 
 import IMAGES from './image-carousel.sample.json'
-import { ImagePager } from '@titicaca/image-carousel'
 
 const MoreImageOverlayLink = styled.a`
   width: 100%;
@@ -39,22 +40,10 @@ storiesOf('ImagePager', module).add('일반', () => {
       images={IMAGES}
       currentPage={0}
       borderRadius={6}
-      onImageClick={(e) => {
-        console.log(e)
-      }}
-      onBeforePageChange={(e) => {
-        console.log(
-          `onBeforePageChange: index(${e.index}), direction(${e.direction})`,
-        )
-      }}
-      onPageMove={(e) => {
-        console.log(`onPageMove: index(${e.index}), direction(${e.direction})`)
-      }}
-      onPageChange={(e) => {
-        console.log(
-          `onPageChange: index(${e.index}), direction(${e.direction})`,
-        )
-      }}
+      onImageClick={action('image-click')}
+      onBeforePageChange={action('before-page-change')}
+      onPageMove={action('page-move')}
+      onPageChange={action('page-change')}
       ImageSource={({ children }) =>
         `출처 ${children.replace(/^https?:\/\//, '')}`
       }
