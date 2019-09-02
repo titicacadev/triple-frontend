@@ -58,7 +58,7 @@ export const ImagePager = ({
     margin={margin}
     borderRadius={borderRadius}
     currentPage={currentPage}
-    onPageChange={(e) => onPageChange()}
+    onPageChange={onPageChange}
     pageLabelComponent={({ currentSlide }) => (
       <PageLabel
         current={currentSlide}
