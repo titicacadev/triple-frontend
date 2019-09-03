@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import ActionSheet from '@titicaca/triple-design-system/lib/elements/action-sheet'
+import ActionSheet from '@titicaca/action-sheet'
 
 export default class App extends PureComponent {
   constructor() {
