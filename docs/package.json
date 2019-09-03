@@ -8,6 +8,7 @@
     "build": "build-storybook -s ./public"
   },
   "dependencies": {
+    "@titicaca/action-sheet": "^1.0.0-alpha.7",
     "@titicaca/author": "^1.0.0-alpha.7",
     "@titicaca/floating-install-button": "^1.0.0-alpha.7",
     "@titicaca/listing-filter": "^1.0.0-alpha.7",

@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { text, boolean, select } from '@storybook/addon-knobs'
 
-import ActionSheet from '@titicaca/triple-design-system/lib/elements/action-sheet'
+import ActionSheet from '@titicaca/action-sheet'
 
 storiesOf('ActionSheet', module)
   .add('텍스트 메뉴', () => (
