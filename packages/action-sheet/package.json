@@ -1,0 +1,24 @@
+{
+  "name": "@titicaca/action-sheet",
+  "version": "1.0.0-alpha.6",
+  "description": "Action sheet component",
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "styled-components": "^3.4.6"
+  },
+  "dependencies": {
+    "react-transition-group": "^4.2.2"
+  }
+}
