@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { CSSTransition } from 'react-transition-group'
 import * as CSS from 'csstype'
 
 const { Provider, Consumer } = React.createContext(undefined)
@@ -11,28 +11,28 @@ const Overlay = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(58, 58, 58, 0.7);
   z-index: 10;
+  background-color: rgba(58, 58, 58, 0.7);
 
   &.fade-enter {
-    opacity: 0.01;
+    opacity: 0;
 
     & > div {
-      margin-bottom: -100px;
+      margin-bottom: -120px;
     }
   }
 
-  &.fade-enter.fade-enter-active {
+  &.fade-enter-active {
     opacity: 1;
     transition: opacity 10ms;
 
     & > div {
-      margin-bottom: 0;
       transition: margin-bottom 120ms ease-in;
+      margin-bottom: 0;
     }
   }
 
-  &.fade-leave {
+  &.fade-exit {
     opacity: 1;
 
     & > div {
@@ -40,14 +40,18 @@ const Overlay = styled.div`
     }
   }
 
-  &.fade-leave.fade-leave-active {
-    opacity: 0.01;
-    transition: opacity 10ms;
+  &.fade-exit-active {
+    opacity: 0;
+    transition: opacity 120ms;
 
     & > div {
-      margin-bottom: -100px;
       transition: margin-bottom 120ms ease-in;
+      margin-bottom: -120px;
     }
+  }
+
+  &.fade-exit-done {
+    display: none;
   }
 `
 
@@ -247,26 +251,18 @@ export default function ActionSheet({
   ) : null
 
   return (
-    <ReactCSSTransitionGroup
-      transitionName="fade"
-      transitionEnter={true}
-      transitionEnterTimeout={500}
-      transitionLeave={true}
-      transitionLeaveTimeout={500}
-    >
-      {open ? (
-        <Overlay onClick={onClose}>
-          <Sheet onClick={silenceEvent}>
-            {actionSheetTitle}
-            <Provider value={{ onClose }}>
-              <ContentContainer bottomSpacing={bottomSpacing}>
-                {children}
-              </ContentContainer>
-            </Provider>
-          </Sheet>
-        </Overlay>
-      ) : null}
-    </ReactCSSTransitionGroup>
+    <CSSTransition in={open} classNames="fade" timeout={500}>
+      <Overlay onClick={onClose}>
+        <Sheet onClick={silenceEvent}>
+          {actionSheetTitle}
+          <Provider value={{ onClose }}>
+            <ContentContainer bottomSpacing={bottomSpacing}>
+              {children}
+            </ContentContainer>
+          </Provider>
+        </Sheet>
+      </Overlay>
+    </CSSTransition>
   )
 }
 
