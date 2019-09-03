@@ -23,27 +23,24 @@ describe('ActionSheet', () => {
   it('should close when overlay is clicked', () => {
     cy.get('@overlay').click()
 
-    cy.get('.action-sheet-container')
-      .find('span')
-      .first()
-      .should('be.empty')
+    cy.get('@overlay')
+      .should('have.css', 'display')
+      .and('eq', 'none')
   })
 
   it('should not close when sheet area is clicked', () => {
-    cy.get('@sheet').click()
+    cy.get('@sheet').click(15, 15)
 
-    cy.get('.action-sheet-container')
-      .find('span')
-      .first()
-      .should('not.be.empty')
+    cy.get('@overlay')
+      .should('have.css', 'display')
+      .and('eq', 'block')
   })
 
   it('should close when an item is clicked', () => {
     cy.get('@item').click()
 
-    cy.get('.action-sheet-container')
-      .find('span')
-      .first()
-      .should('be.empty')
+    cy.get('@overlay')
+      .should('have.css', 'display')
+      .and('eq', 'none')
   })
 })
