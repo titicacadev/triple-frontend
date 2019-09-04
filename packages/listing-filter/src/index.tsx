@@ -22,7 +22,10 @@ const INACTIVE_EXPANDER_ICON_URL =
 const PRIMARY_ICON_URL =
   'https://assets.triple-dev.titicaca-corp.com/images/ico-filter-cal.svg'
 
-const ExpandingFilterEntryContainer = styled(FilterEntryBase)`
+// eslint-disable-next-line no-unexpected-multiline
+const ExpandingFilterEntryContainer = styled(FilterEntryBase)<{
+  active?: boolean
+}>`
   padding: 9px 24px 9px 11px;
   background-image: ${({ active }) =>
     active
@@ -54,6 +57,7 @@ function ExpandingFilterEntry({
   children,
   ...props
 }: {
+  active?: boolean
   badge?: React.ReactNode
   children?: React.ReactNode
 }) {
@@ -69,6 +73,7 @@ function ExpandingFilterEntry({
 
 // eslint-disable-next-line no-unexpected-multiline
 const RegularFilterEntry = styled(FilterEntryBase)<{
+  active?: boolean
   withIcon?: boolean
   iconImage?: string
 }>`
@@ -109,11 +114,22 @@ const PrimaryFilterEntry = styled(FilterEntryBase)`
   color: #fff;
 `
 
-function FilterEntry({ active, activeIconImage, inactiveIconImage, ...props }) {
+function FilterEntry({
+  active,
+  activeIconImage,
+  inactiveIconImage,
+  ...props
+}: {
+  active?: boolean
+  activeIconImage?: string
+  inactiveIconImage?: string
+  children: React.ReactNode
+}) {
   return (
     <RegularFilterEntry
       active={active}
       iconImage={active ? activeIconImage : inactiveIconImage}
+      withIcon={!!(activeIconImage && inactiveIconImage)}
       {...props}
     />
   )
