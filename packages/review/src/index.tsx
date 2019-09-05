@@ -361,7 +361,7 @@ class ReviewElement extends React.PureComponent<{
   }
 }
 
-export function ReviewsList({
+export default function ReviewsList({
   margin,
   reviews,
   onUserClick,
