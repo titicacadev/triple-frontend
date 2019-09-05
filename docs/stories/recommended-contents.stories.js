@@ -1,10 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import {
-  Container,
-  Text,
-  RecommendedContents,
-} from '@titicaca/triple-design-system'
+import { Container, Text } from '@titicaca/triple-design-system'
+import RecommendedContents from '@titicaca/recommended-contents'
+
 import { contents } from './recommended-contents.sample.json'
 
 storiesOf('RecommendedContents', module).add('추천 컨텐츠', () => (
