@@ -162,15 +162,15 @@ const FloatedFrame = styled(Container)`
 `
 
 const FloatedPricingContainer = styled(Container)`
-  width: 40%;
+  width: 50%;
 `
 
 const PurchaseButton = styled.button`
   position: absolute;
   right: 20px;
   top: 18px;
-  width: 44%;
-  height: 48px;
+  width: 41%;
+  height: 45px;
   border-radius: 4px;
   background: ${COLORS.blue};
   color: ${COLORS.white};
@@ -210,9 +210,9 @@ function FixedPricing({
       <FloatedFrame
         clearing
         padding={{
-          top: description ? 15 : 22,
+          top: description ? 12 : 20,
           right: 20,
-          bottom: description ? 14 : 22,
+          bottom: description ? 13 : 20,
           left: 20,
         }}
       >
