@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { ScrapButton } from '@titicaca/triple-design-system'
+import ScrapButton from '@titicaca/scrap-button'
 
 export default class App extends PureComponent {
   render() {
