@@ -1,9 +1,9 @@
 import * as React from 'react'
-import Container from '../elements/container'
-import { HR2 } from '../elements/hr'
+import Container from './container'
+import { HR2 } from './hr'
 import { MarginPadding } from '../commons'
 
-export function Section({
+export default function Section({
   minWidth = 320,
   maxWidth = 760,
   padding = { left: 30, right: 30 },
