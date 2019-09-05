@@ -153,18 +153,24 @@ const RegularPricing = ({
 )
 
 const FloatedFrame = styled(Container)`
+  position: relative;
+  border-top: 1px solid #efefef;
+
   @supports (padding: max(0px)) and (padding: env(safe-area-inset-bottom)) {
     padding-bottom: max(10px, env(safe-area-inset-bottom, 10px));
   }
 `
 
 const FloatedPricingContainer = styled(Container)`
-  width: 50%;
+  width: 40%;
 `
 
 const PurchaseButton = styled.button`
-  width: 100%;
-  padding: 16px 0;
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  width: 44%;
+  height: 48px;
   border-radius: 4px;
   background: ${COLORS.blue};
   color: ${COLORS.white};
@@ -191,11 +197,7 @@ function FixedPricing({
 }) {
   const pricingLabel = label ? (
     typeof label === 'string' ? (
-      <Text
-        color="blue"
-        size="mini"
-        margin={{ top: description ? 0 : 7, bottom: 2 }}
-      >
+      <Text color="blue" size="mini">
         {label}
       </Text>
     ) : (
@@ -207,7 +209,12 @@ function FixedPricing({
     <Drawer active={active}>
       <FloatedFrame
         clearing
-        padding={{ top: 18, right: 20, bottom: 18, left: 20 }}
+        padding={{
+          top: description ? 15 : 22,
+          right: 20,
+          bottom: description ? 14 : 22,
+          left: 20,
+        }}
       >
         <FloatedPricingContainer floated="left">
           {pricingLabel}
@@ -220,9 +227,7 @@ function FixedPricing({
             </Text>
           ) : null}
         </FloatedPricingContainer>
-        <FloatedPricingContainer floated="right">
-          <PurchaseButton onClick={onClick}>{buttonText}</PurchaseButton>
-        </FloatedPricingContainer>
+        <PurchaseButton onClick={onClick}>{buttonText}</PurchaseButton>
       </FloatedFrame>
     </Drawer>
   )
