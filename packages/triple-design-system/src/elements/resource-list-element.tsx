@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import ScrapButton from '@titicaca/scrap-button'
 import { formatNumber } from '@titicaca/view-utilities'
 
 import Container from '../elements/container'
@@ -8,7 +9,6 @@ import Text from '../elements/text'
 import Rating from '../elements/rating'
 import Image from '../elements/image'
 import List from '../elements/list'
-import ScrapButton from '../elements/scrap-button'
 import Pricing from '../elements/pricing'
 
 const ResourceListItem = styled(List.Item)`

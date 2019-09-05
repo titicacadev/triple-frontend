@@ -24,6 +24,7 @@
   "homepage": "https://github.com/titicacadev/triple-design-system#readme",
   "dependencies": {
     "@titicaca/view-utilities": "^1.0.0-alpha.7",
+    "@titicaca/scrap-button": "^1.0.0-alpha.7",
     "nuka-carousel": "4.4.1",
     "react-input-mask": "^2.0.4"
   },
