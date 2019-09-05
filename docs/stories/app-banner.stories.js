@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { text, boolean } from '@storybook/addon-knobs'
 
-import { AppBanner } from '@titicaca/triple-design-system'
+import AppBanner from '@titicaca/app-banner'
 
 storiesOf('AppBanner', module).add('공유페이지', () => (
   <AppBanner
