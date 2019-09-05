@@ -110,7 +110,7 @@ interface ContentElement {
   title: string
 }
 
-export function RecommendedContents({
+export default function RecommendedContents({
   contents: contentsData,
   margin,
   onContentClick,
