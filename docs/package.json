@@ -9,10 +9,13 @@
   },
   "dependencies": {
     "@titicaca/action-sheet": "^1.0.0-alpha.7",
+    "@titicaca/app-banner": "^1.0.0-alpha.7",
     "@titicaca/author": "^1.0.0-alpha.7",
     "@titicaca/floating-install-button": "^1.0.0-alpha.7",
+    "@titicaca/footer": "^1.0.0-alpha.7",
     "@titicaca/listing-filter": "^1.0.0-alpha.7",
     "@titicaca/poi-list-elements": "^1.0.0-alpha.7",
+    "@titicaca/public-header": "^1.0.0-alpha.7",
     "@titicaca/triple-design-system": "^1.0.0-alpha.7",
     "@titicaca/triple-document": "^1.0.0-alpha.7"
   },
