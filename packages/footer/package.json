@@ -1,7 +1,7 @@
 {
   "name": "@titicaca/footer",
   "version": "1.0.0-alpha.7",
-  "description": "Triple Author UI elements",
+  "description": "Common Footer for Public Pages",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
   "files": [
