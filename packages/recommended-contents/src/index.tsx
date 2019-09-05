@@ -1,7 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import Text from '../elements/text'
-import { MarginPadding } from '../commons'
+import { Text, MarginPadding } from '@titicaca/triple-design-system'
 
 // eslint-disable-next-line no-unexpected-multiline
 const RecommendedContentsContainer = styled.ul<{

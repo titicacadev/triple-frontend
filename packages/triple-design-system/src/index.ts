@@ -33,7 +33,6 @@ export { default as NumericSpinner } from './elements/numeric-spinner'
 export { default as Drawer } from './elements/drawer'
 
 export * from './views/modal'
-export * from './views/recommended-contents'
 
 export * from './utils/image-source'
 export * from './utils/form-field'
