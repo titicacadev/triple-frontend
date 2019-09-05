@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ReviewsList } from '@titicaca/triple-design-system'
+import ReviewsList from '@titicaca/review'
 
 import { storiesOf } from '@storybook/react'
 
