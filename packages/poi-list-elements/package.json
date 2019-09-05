@@ -16,6 +16,7 @@
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
     "@titicaca/triple-design-system": "^1.0.0-alpha.7",
+    "@titicaca/scrap-button": "^1.0.0-alpha.7",
     "@titicaca/view-utilities": "^1.0.0-alpha.7"
   }
 }

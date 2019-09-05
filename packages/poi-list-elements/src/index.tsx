@@ -3,12 +3,12 @@ import {
   Text,
   Image,
   Carousel,
-  ScrapButton,
   SquareImage,
   ResourceListItem,
   ExtendedResourceListElement,
   LabelColor,
 } from '@titicaca/triple-design-system'
+import ScrapButton from '@titicaca/scrap-button'
 import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
 
 type PoiTypes = 'attraction' | 'restaurant' | 'hotel'
