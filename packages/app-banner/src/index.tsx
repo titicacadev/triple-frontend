@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import Text from './text'
+import { Text } from '@titicaca/triple-design-system'
 
 const AppBannerFrame = styled.div<{ fixed?: boolean; maxWidth?: number }>`
   background-color: #ffffff;
