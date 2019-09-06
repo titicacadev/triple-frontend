@@ -222,7 +222,7 @@ function FixedPricing({
             {formatNumber(salePrice)}원
           </Text>
           {description ? (
-            <Text color="blue" size="tiny" bold>
+            <Text size="tiny" alpha={0.8}>
               {description}
             </Text>
           ) : null}
