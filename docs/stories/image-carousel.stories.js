@@ -47,10 +47,7 @@ storiesOf('Image Carousel', module).add('일반', () => {
       ImageSource={({ children }) =>
         `출처 ${children.replace(/^https?:\/\//, '')}`
       }
-      lastPageOverlayContent={<OverlayContent />}
-      showMoreComponent={(index) =>
-        IMAGES.length > 5 && index === IMAGES.length - 4 && <OverlayContent />
-      }
+      showMoreComponent={(index) => index === 4 && <OverlayContent />}
     ></ImageCarousel>
   )
 })
