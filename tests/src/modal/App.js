@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
-import { Modal, Text } from '@titicaca/triple-design-system'
+import { Text } from '@titicaca/triple-design-system'
+import { Modal } from '@titicaca/modals'
 
 export default class App extends PureComponent {
   constructor() {
