@@ -2,7 +2,8 @@ import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 
-import { Text, Modal, Confirm, Alert } from '@titicaca/triple-design-system'
+import { Text } from '@titicaca/triple-design-system'
+import { Modal, Confirm, Alert } from '@titicaca/modals'
 
 storiesOf('Modal', module)
   .add('Basic', () => (
