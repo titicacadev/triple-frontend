@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { GlobalColors } from '../commons'
+import { GlobalColors } from '@titicaca/triple-design-system'
 
 const Overlay = styled.div`
   position: fixed;
@@ -68,7 +68,7 @@ const Action = styled.a<{ color?: GlobalColors }>`
   cursor: pointer;
 `
 
-export default function Modal({
+export default function ModalBase({
   open,
   onClose,
   children,
@@ -91,5 +91,5 @@ function silenceEvent(e?: React.SyntheticEvent) {
   e && e.nativeEvent && e.nativeEvent.stopImmediatePropagation()
 }
 
-Modal.Actions = Actions
-Modal.Action = Action
+ModalBase.Actions = Actions
+ModalBase.Action = Action

@@ -1,0 +1,20 @@
+{
+  "name": "@titicaca/modals",
+  "version": "1.0.0-alpha.7",
+  "description": "Triple modal dialog components",
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "dependencies": {
+    "@titicaca/triple-design-system": "^1.0.0-alpha.7"
+  }
+}
