@@ -89,7 +89,9 @@ export function ImageCarousel({
             borderRadius={0}
             onClick={onImageClick && ((e) => onImageClick(e, image))}
             overlay={
-              (i === images.length - 1 && lastPageOverlayContent) || null
+              typeof showMoreComponent === 'function'
+                ? showMoreComponent(i)
+                : showMoreComponent
             }
             overlayType="dark"
           />
