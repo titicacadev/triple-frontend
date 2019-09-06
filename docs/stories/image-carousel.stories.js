@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import { ImagePager } from '@titicaca/image-carousel'
+import ImageCarousel from '@titicaca/image-carousel'
 
 import IMAGES from './image-carousel.sample.json'
 
@@ -33,21 +33,24 @@ const OverlayContent = () => {
   )
 }
 
-storiesOf('ImagePager', module).add('일반', () => {
+storiesOf('Image Carousel', module).add('일반', () => {
   return (
-    <ImagePager
+    <ImageCarousel
       size="medium"
       images={IMAGES}
       currentPage={0}
       borderRadius={6}
       onImageClick={action('image-click')}
-      onBeforePageChange={action('before-page-change')}
-      onPageMove={action('page-move')}
-      onPageChange={action('page-change')}
+      onMoveStart={action('move-start')}
+      onMove={action('move')}
+      onMoveEnd={action('move-end')}
       ImageSource={({ children }) =>
         `출처 ${children.replace(/^https?:\/\//, '')}`
       }
       lastPageOverlayContent={<OverlayContent />}
-    ></ImagePager>
+      showMoreComponent={(index) =>
+        IMAGES.length > 5 && index === IMAGES.length - 4 && <OverlayContent />
+      }
+    ></ImageCarousel>
   )
 })
