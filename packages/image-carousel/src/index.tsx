@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { FlickingEvent } from '@egjs/flicking'
-import Flicking from './flicking'
+import { FlickingOptions, FlickingEvent } from '@egjs/flicking'
+import Carousel, { CarouselProps } from './carousel'
 import {
   Image,
   MarginPadding,
@@ -21,52 +21,57 @@ const PageLabelContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
 `
 
-interface ImagePagerProps {
-  margin?: MarginPadding
-  borderRadius?: number
-  currentPage?: number
-  size?: GlobalSizes
-  frame?: GlobalSizes
-  images?: any[]
-  totalPageCount?: number
-  onImageClick?: (e?: React.SyntheticEvent, image?: any) => void
-  onBeforePageChange?: (e?: FlickingEvent) => void
-  onPageMove?: (e?: FlickingEvent) => void
-  onPageChange?: (e?: FlickingEvent) => void
-  ImageSource?: any
-  lastPageOverlayContent?: React.ReactNode
+interface ImagePagerProps extends Partial<CarouselProps> {
+  size: GlobalSizes
+  frame: GlobalSizes
+  images: any[]
+  totalPageCount: number
+  onImageClick: (e?: React.SyntheticEvent, image?: any) => void
+  ImageSource: any
+  lastPageOverlayContent: React.ReactNode
+  showMoreComponent: (index: number) => React.ReactNode | React.ReactNode
 }
 
-export function ImagePager({
+export function ImageCarousel({
   margin,
   borderRadius,
   size: globalSize,
   frame: globalFrame,
   images,
-  currentPage,
+  defaultIndex = 0,
   totalPageCount,
   onImageClick,
-  onBeforePageChange,
-  onPageMove,
-  onPageChange,
+  onMoveStart,
+  onMove,
+  onMoveEnd,
   ImageSource,
   lastPageOverlayContent,
-}: ImagePagerProps) {
+  showMoreComponent,
+}: Partial<ImagePagerProps>) {
   return (
-    <Flicking
+    <Carousel
       margin={margin}
       borderRadius={borderRadius}
-      currentPage={currentPage}
-      onBeforePageChange={onBeforePageChange}
-      onPageMove={onPageMove}
-      onPageChange={onPageChange}
+      defaultIndex={defaultIndex}
+      onMoveStart={onMoveStart}
+      onMove={onMove}
+      onMoveEnd={onMoveEnd}
       totalCount={totalPageCount || images.length}
-      pageLabelComponent={({ currentSlide }: any) => (
+      pageLabelComponent={({ currentIndex }: any) => (
         <PageLabel
-          current={currentSlide}
+          current={currentIndex}
           total={totalPageCount || images.length}
         />
       )}
+      showMoreComponentHandler={(function() {
+        if (typeof showMoreComponent !== 'function') {
+          return function(index?: number) {
+            return showMoreComponent
+          }
+        } else {
+          return showMoreComponent
+        }
+      })()}
     >
       {images.map((image, i) => {
         const { frame: imageFrame, size: imageSize, sizes, sourceUrl } = image
@@ -90,7 +95,7 @@ export function ImagePager({
           />
         )
       })}
-    </Flicking>
+    </Carousel>
   )
 }
 
@@ -102,4 +107,4 @@ function PageLabel({ current, total }: { current: number; total: number }) {
   )
 }
 
-export default ImagePager
+export default ImageCarousel
