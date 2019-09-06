@@ -1,8 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import Text from '../elements/text'
-import Modal from '../elements/modal'
-import Container from '../elements/container'
+import { Container, Text } from '@titicaca/triple-design-system'
+import Modal from './modal-base'
 
 const IconImage = styled.img`
   display: block;
