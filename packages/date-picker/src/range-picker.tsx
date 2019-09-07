@@ -95,7 +95,7 @@ function RangePicker({
   endDate,
   onDatesChange,
   numberOfMonths = 25,
-  disabledDays,
+  disabledDays = [],
   beforeBlock,
   afterBlock,
 }: {
