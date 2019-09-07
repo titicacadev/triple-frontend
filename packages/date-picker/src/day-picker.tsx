@@ -19,6 +19,10 @@ const DayContainer = styled.div`
     padding: 40px 0 0 0;
     border-spacing: 0 15px;
   }
+  .DayPicker-Day--today:before {
+    top: 30px;
+    left: 0px;
+  }
   .DayPicker-Day--selected {
     z-index: 0;
     color: rgb(${GetGlobalColor('white')}) !important;
@@ -37,13 +41,20 @@ const DayContainer = styled.div`
     content: '';
     border-radius: 100%;
   }
-  .DayPicker-Day--sunday:before,
-  .DayPicker-Day--sunday:after {
+  .DayPicker-Day--sunday:before {
+    padding-left: 6px;
+  }
+  .DayPicker-Day--saturday:before {
+    box-sizing: border-box;
+    padding-right: 9px;
+  }
+  .DayPicker-Day--selected.DayPicker-Day--sunday:before,
+  .DayPicker-Day--selected.DayPicker-Day--sunday:after {
     left: calc(50%);
     transform: translate(calc(-50% + 5px), -50%);
   }
-  .DayPicker-Day--saturday:before,
-  .DayPicker-Day--saturday:after {
+  .DayPicker-Day--selected.DayPicker-Day--saturday:before,
+  .DayPicker-Day--selected.DayPicker-Day--saturday:after {
     left: calc(50%);
     transform: translate(calc(-50% - 5px), -50%);
   }

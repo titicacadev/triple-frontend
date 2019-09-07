@@ -25,7 +25,7 @@ storiesOf('DayPicker', module)
   ))
   .add('RangePicker - 일반', () => <RangePicker />)
   .add('RangePicker - 선택됨', () => (
-    <RangePicker startDate={today.toString()} endDate={endDate} />
+    <RangePicker startDate={today.toString()} endDate={endDate.toString()} />
   ))
   .add('RangePicker - 선택불가', () => (
     <RangePicker

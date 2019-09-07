@@ -73,14 +73,11 @@ const PickerFrame = styled.div`
     position: absolute;
     display: inline-block;
     font-size: 11px;
-    top: 30px;
-    left: 0px;
     width: 100%;
     color: rgb(${GetGlobalColor('blue')});
   }
   .DayPicker-Day--saturday.DayPicker-Day--today:before,
   .DayPicker-Day--sunday.DayPicker-Day--today:before {
-    top: 36px;
     color: rgb(${GetGlobalColor('red')});
   }
   .DayPicker-Day--disabled {
