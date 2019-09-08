@@ -1,18 +1,14 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import EGFlicking, { FlickingEvent } from '@egjs/flicking'
+import { FlickingEvent } from '@egjs/flicking'
 import Flicking, { FlickingProps } from '@egjs/react-flicking'
 import { Container, MarginPadding } from '@titicaca/triple-design-system'
-
-const { NEXT: DIRECTION_NEXT } = EGFlicking.DIRECTION
 
 export interface CarouselProps extends Partial<FlickingProps> {
   margin: MarginPadding
   borderRadius: number
-  pageLabelComponent: (props: any) => JSX.Element
+  pageLabelRenderer: (props: { index: number }) => React.ReactNode
   children: React.ReactNode
-  showMoreComponentHandler: (index: number) => React.ReactNode
-  [key: string]: any
 }
 
 const TopRightControl = styled.div`
@@ -32,10 +28,7 @@ export class Carousel extends React.PureComponent<Partial<CarouselProps>> {
     duration: 100,
   }
 
-  state = {
-    currentIndex: 0,
-    pageVisibility: true,
-  }
+  state = { currentIndex: 0 }
 
   componentDidMount() {
     this.setState({
@@ -44,13 +37,7 @@ export class Carousel extends React.PureComponent<Partial<CarouselProps>> {
   }
 
   handleMoveStart = (e: FlickingEvent) => {
-    const { index, direction } = e
-    const { onMoveStart, showMoreComponentHandler } = this.props
-    const newIndex = index + (direction === DIRECTION_NEXT ? 1 : -1)
-
-    this.setState({
-      pageVisibility: !showMoreComponentHandler(newIndex),
-    })
+    const { onMoveStart } = this.props
 
     onMoveStart && onMoveStart(e)
   }
@@ -62,11 +49,9 @@ export class Carousel extends React.PureComponent<Partial<CarouselProps>> {
   }
 
   handleMoveEnd = (e: FlickingEvent) => {
-    const { index } = e
-    const { onMoveEnd, showMoreComponentHandler } = this.props
+    const { onMoveEnd } = this.props
 
     this.setState({
-      pageVisibility: !showMoreComponentHandler(index),
       currentIndex: e.index,
     })
 
@@ -84,8 +69,11 @@ export class Carousel extends React.PureComponent<Partial<CarouselProps>> {
   }
 
   render() {
-    const { margin, borderRadius, children, pageLabelComponent } = this.props
-    const { currentIndex, pageVisibility } = this.state
+    const { margin, borderRadius, pageLabelRenderer, children } = this.props
+    const { currentIndex } = this.state
+    const PageLabel = pageLabelRenderer({
+      index: currentIndex,
+    })
 
     return (
       <Container
@@ -95,11 +83,7 @@ export class Carousel extends React.PureComponent<Partial<CarouselProps>> {
       >
         <Flicking {...this.flickingProps}>{children}</Flicking>
 
-        {pageVisibility && pageLabelComponent && (
-          <TopRightControl>
-            {pageLabelComponent({ currentIndex })}
-          </TopRightControl>
-        )}
+        {!!PageLabel && <TopRightControl>{PageLabel}</TopRightControl>}
       </Container>
     )
   }

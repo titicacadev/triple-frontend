@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import ImageCarousel from '@titicaca/image-carousel'
+import ImageCarousel, { PageLabel } from '@titicaca/image-carousel'
 
 import IMAGES from './image-carousel.sample.json'
 
@@ -47,7 +47,14 @@ storiesOf('Image Carousel', module).add('일반', () => {
       ImageSource={({ children }) =>
         `출처 ${children.replace(/^https?:\/\//, '')}`
       }
-      showMoreComponent={(index) => index === 4 && <OverlayContent />}
+      showMoreRenderer={({ index, totalCount }) =>
+        totalCount > 5 && index === totalCount - 1 && <OverlayContent />
+      }
+      pageLabelRenderer={({ index, totalCount }) => {
+        return totalCount <= 5 || index < totalCount - 1
+          ? PageLabel({ index, totalCount })
+          : null
+      }}
     ></ImageCarousel>
   )
 })
