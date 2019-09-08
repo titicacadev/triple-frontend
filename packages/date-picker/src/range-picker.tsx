@@ -95,19 +95,26 @@ function RangePicker({
   endDate,
   onDatesChange,
   numberOfMonths = 25,
+  disabledDays,
+  beforeBlock,
+  afterBlock,
 }: {
   startDate: string
   endDate: string
+  beforeBlock: Date
+  afterBlock: Date
   onDatesChange: Function
   numberOfMonths: number
+  disabledDays: Array<string>
 }) {
   const from = startDate && moment(startDate).toDate()
   const to = endDate && moment(endDate).toDate()
-
-  const INITIALFROM = moment()
+  const initialMonth = moment()
     .add(1, 'day')
     .startOf('day')
     .toDate()
+
+  console.log('afterBlock', afterBlock)
 
   return (
     <PickerFrame>
@@ -116,7 +123,7 @@ function RangePicker({
           locale="ko"
           weekdaysShort={['일', '월', '화', '수', '목', '금', '토']}
           localeUtils={{ ...MomentLocaleUtils, formatMonthTitle }}
-          initialMonth={INITIALFROM}
+          initialMonth={initialMonth}
           selectedDays={[from, { from, to }]}
           onDayClick={(day: Date, modifiers: DayModifiers) => {
             if (modifiers.disabled) {
@@ -165,8 +172,12 @@ function RangePicker({
             'included-range': from && to ? generatePaddedRange(from, to) : [],
           }}
           disabledDays={[
+            ...(disabledDays.length > 0
+              ? disabledDays.map((date) => moment(date).toDate())
+              : []),
             {
-              before: INITIALFROM,
+              before: beforeBlock,
+              after: afterBlock,
             },
           ]}
         />
