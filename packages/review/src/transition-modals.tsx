@@ -31,12 +31,6 @@ const TYPES_BY_HASH = {
   [HASH_REVIEW_WRITE_TRANSITION_MODAL]: 'reviewWrite',
 }
 
-const EVENT_LABELS_BY_HASH = {
-  [HASH_REVIEW_TRANSITION_MODAL]: '리뷰_리뷰글더보기',
-  [HASH_REVIEW_WRITE_TRANSITION_MODAL]: '리뷰_리뷰쓰기',
-  [HASH_REVIEW_THUMBNAIL_TRANSITION_MODAL]: '리뷰_리뷰사진썸네일',
-}
-
 const IconImage = styled.img`
   display: block;
   width: 48px;
@@ -45,7 +39,6 @@ const IconImage = styled.img`
 `
 
 export function TransitionModal({ source }: { source: any }) {
-
   const href = generateDeepLink({ source }) //
   const { popup, setPopup }: any = useReviewContext()
   const type = TYPES_BY_HASH[popup]
@@ -73,7 +66,7 @@ export function TransitionModal({ source }: { source: any }) {
         <Modal.Action
           color="blue"
           onClick={() => {
-            location.href = href
+            window.location.href = href
 
             closePopup()
           }}

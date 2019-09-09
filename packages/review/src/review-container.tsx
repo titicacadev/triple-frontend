@@ -117,10 +117,6 @@ export function ReviewContainer({
     reviewed: reviewed,
   })
 
-  React.useEffect(() => {
-    fetchReviews()
-  }, [setReviews])
-
   const fetchReviews = async () => {
     const { key: orderKey } = orders.find(({ selected }) => selected)
     setOrders(
@@ -155,7 +151,7 @@ export function ReviewContainer({
     e.stopPropagation()
 
     if (!isPublic) {
-      location.href = `${APP_URL_SCHEME}:///reviews/new?region_id=${regionId}&resource_type=${type}&resource_id=${id}&rating=${rating}`
+      window.location.href = `${APP_URL_SCHEME}:///reviews/new?region_id=${regionId}&resource_type=${type}&resource_id=${id}&rating=${rating}`
     }
   }
 
@@ -172,6 +168,10 @@ export function ReviewContainer({
   if (isPublic && !Number(reviewsCount)) {
     return null
   }
+
+  React.useEffect(() => {
+    fetchReviews()
+  }, [setReviews])
 
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
@@ -192,7 +192,7 @@ export function ReviewContainer({
 
       {(reviewsCount || 0) > 1 ? (
         <Container margin={{ top: 23 }} clearing>
-          <Options floated="right" data={orders} onSelect={handleOrderSelect}/>
+          <Options floated="right" data={orders} onSelect={handleOrderSelect} />
         </Container>
       ) : null}
 
