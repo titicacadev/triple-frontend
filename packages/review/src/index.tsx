@@ -1,10 +1,4 @@
 import * as React from 'react'
-import {
-  subscribeLikedChangeEvent,
-  subscribeReviewUpdateEvent,
-  notifyReviewLiked,
-  notifyReviewUnliked,
-} from '@titicaca/triple-web-to-native-interfaces'
 import { likeReview, unlikeReview, fetchMyReviews } from './review-api-clients'
 import { ReviewProvider } from './review-context'
 import { ReviewContainer } from './review-container'
@@ -20,6 +14,12 @@ export default function Reviews({
   reviewsCount,
   onFullListButtonClick,
   APP_URL_SCHEME,
+  subscribeLikedChangeEvent,
+  subscribeReviewUpdateEvent,
+  notifyReviewLiked,
+  notifyReviewUnliked,
+  notifyReviewDeleted,
+  showToast,
 }: {
   shortened?: boolean
   regionId: string
@@ -31,6 +31,12 @@ export default function Reviews({
   reviewsCount: number
   onFullListButtonClick?: any
   APP_URL_SCHEME: string
+  subscribeLikedChangeEvent: any
+  subscribeReviewUpdateEvent: any
+  notifyReviewLiked: any
+  notifyReviewUnliked: any
+  notifyReviewDeleted: any
+  showToast: any
 }) {
   return (
     <ReviewProvider
@@ -53,6 +59,8 @@ export default function Reviews({
         type={type}
         reviewed={reviewed}
         onFullListButtonClick={onFullListButtonClick}
+        notifyReviewDeleted={notifyReviewDeleted}
+        showToast={showToast}
       />
       <TransitionModal source={source} />
     </ReviewProvider>

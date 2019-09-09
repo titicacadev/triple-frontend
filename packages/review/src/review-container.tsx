@@ -91,6 +91,8 @@ export function ReviewContainer({
   type,
   reviewed,
   onFullListButtonClick,
+  notifyReviewDeleted,
+  showToast,
   children,
 }: {
   shortened: boolean
@@ -103,6 +105,8 @@ export function ReviewContainer({
   type: string
   reviewed: boolean
   onFullListButtonClick?: any
+  notifyReviewDeleted: any
+  showToast: any
   children?: React.ReactNode
 }) {
   const [reviews, setReviews] = React.useState([])
@@ -214,6 +218,8 @@ export function ReviewContainer({
           myReview={myReview}
           onMyReviewDeleted={() => setMyReview(null)}
           source={source}
+          notifyReviewDeleted={notifyReviewDeleted}
+          showToast={showToast}
         />
       )}
 
