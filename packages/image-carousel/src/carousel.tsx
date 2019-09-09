@@ -18,7 +18,9 @@ const TopRightControl = styled.div`
   z-index: 2;
 `
 
-export class Carousel extends React.PureComponent<Partial<CarouselProps>> {
+export default class Carousel extends React.PureComponent<
+  Partial<CarouselProps>
+> {
   static defaultProps: Partial<CarouselProps> = {
     zIndex: 1,
     defaultIndex: 0,
@@ -89,5 +91,3 @@ export class Carousel extends React.PureComponent<Partial<CarouselProps>> {
     )
   }
 }
-
-export default Carousel

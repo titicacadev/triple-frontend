@@ -31,7 +31,7 @@ interface ImageCarouselProps extends Partial<CarouselProps> {
   pageLabelRenderer: (props: RendererProps) => JSX.Element
 }
 
-export class ImageCarousel extends React.PureComponent<
+export default class ImageCarousel extends React.PureComponent<
   Partial<ImageCarouselProps>
 > {
   static defaultProps = {
@@ -115,5 +115,3 @@ export function PageLabel({ currentIndex, totalCount }: RendererProps) {
     </PageLabelContainer>
   )
 }
-
-export default ImageCarousel
