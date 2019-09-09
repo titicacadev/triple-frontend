@@ -29,12 +29,9 @@ export function ReviewProvider({
   const [reviewLikes, setReviewLikes] = React.useState(initLikes || {})
   const [myReviews, setMyReviews] = React.useState(initMyReview || {})
   const [popup, setPopup] = React.useState(undefined)
-<<<<<<< HEAD
   const insertLike = (likes) => {
     setReviewLikes({ ...reviewLikes, ...likes })
   }
-=======
->>>>>>> 리뷰 관련 context
 
   React.useEffect(() => {
     subscribeLikedChangeEvent(({ id, liked }) => insertLike({ [id]: liked }))
@@ -60,16 +57,9 @@ export function ReviewProvider({
     }
   }
 
-<<<<<<< HEAD
   const insertMyReview = (newReviews) => {
     setMyReviews({ ...myReviews, ...newReviews })
   }
-=======
-  const insertLike = (likes) => setReviewLikes({ ...reviewLikes, ...likes })
-
-  const insertMyReview = (newReviews) =>
-    setMyReviews({ ...myReviews, ...newReviews })
->>>>>>> 리뷰 관련 context
 
   const handleMyReviewFetch = async ({ id }) => {
     const response = await fetchMyReviews({ id })
@@ -77,31 +67,19 @@ export function ReviewProvider({
     if (response.ok) {
       const myReview = humps.camelizeKeys(await response.json())
 
-<<<<<<< HEAD
       insertMyReview({ [id]: myReview })
 
       return myReview
     } else if (response.status === 404) {
       insertMyReview({ [id]: null })
-=======
-      this.insertMyReview({ [id]: myReview })
-
-      return myReview
-    } else if (response.status === 404) {
-      this.insert({ [id]: null })
->>>>>>> 리뷰 관련 context
 
       return null
     }
   }
 
-<<<<<<< HEAD
   const handleDeleteMyReview = ({ id }) => {
     insertMyReview({ [id]: null })
   }
-=======
-  const handleDeleteMyReview = ({ id }) => insertMyReview({ [id]: null })
->>>>>>> 리뷰 관련 context
 
   const deriveCurrentStateAndCount = ({
     id,
