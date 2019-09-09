@@ -1,11 +1,13 @@
 import * as React from 'react'
 import moment from 'moment-timezone'
+import {
+  notifyReviewDeleted,
+  showToast,
+} from '@titicaca/triple-web-to-native-interfaces'
 import { Confirm } from '@titicaca/modals'
 import ActionSheet from '@titicaca/action-sheet'
-import { MarginPadding } from '@titicaca/triple-design-system'
 import ReviewsListView from './review-element'
-import { withReviewLikes } from './review-likes-context'
-import { withMyReviews } from './my-review-context'
+import { useReviewContext } from './review-context'
 import { deleteReview as deleteReviewApi } from './review-api-clients'
 moment.updateLocale('ko', {
   relativeTime: {
@@ -42,104 +44,78 @@ const HASH_MY_REVIEW_ACTION_SHEET = 'common.reviews-list.my-review-action-sheet'
 const HASH_REVIEW_ACTION_SHEET = 'common.reviews-list.review-action-sheet'
 const HASH_DELETION_MODAL = 'common.reviews-list.deletion-modal'
 
-class ReviewsList extends React.PureComponent<{
+export function ReviewsList({
+  isPublic,
+  APP_URL_SCHEME,
+  margin,
+  reviews,
+  myReview,
+  type,
+  regionId,
+  onMyReviewDeleted,
+  source,
+}: {
   isPublic: boolean
-  appUrlScheme: string
-  margin: MarginPadding
+  APP_URL_SCHEME: string
+  margin: any
   reviews: any
   myReview: any
-  resourceType: string
+  type: string
   regionId: string
   onMyReviewDeleted: any
-  resourceId: string
-  notifyReviewDeleted: any
-  showToast: any
-  likeActions?: any
-  likes?: any
-  myReviewActions?: any
-  historyActions?: any
-}> {
-  state = { selectedReview: undefined }
-
-  handleUserClick = (e, { user }) => {
+  source: any
+}) {
+  const [selectedReview, setSelectedReview] = React.useState(undefined)
+  const { like, unlike, popup, setPopup, reviewLikes }: any = useReviewContext()
+  const handleUserClick = (e, { user }) => {
     const { uid: userId, unregister } = user
-    const {
-      props: { isPublic, showToast, appUrlScheme },
-    } = this
     if (!isPublic) {
       if (unregister) {
         showToast('탈퇴한 사용자입니다.')
       } else {
-        window.location.href = `${appUrlScheme}:///users/${userId}`
+        location.href = `${APP_URL_SCHEME}:///users/${userId}`
       }
     }
   }
 
-  handleLikeButtonClick = async (e, { id, liked }) => {
-    const {
-      props: {
-        isPublic,
-        resourceId,
-        likeActions: { like, unlike },
-      },
-    } = this
-
+  const handleLikeButtonClick = async (e, { id, liked }) => {
+    const { contentId } = source
     if (!isPublic) {
-      liked ? await unlike(resourceId, id) : await like(resourceId, id)
+      liked ? await unlike(contentId, id) : await like(contentId, id)
     }
   }
 
-  handleLikesCountClick = (e, { id }) => {
-    const {
-      props: { isPublic, regionId, resourceType, appUrlScheme, resourceId },
-    } = this
-
+  const handleLikesCountClick = (e, { id }) => {
     if (!isPublic) {
       //@TODO 졸아요 클릭
-      window.location.href = `${appUrlScheme}:///regions/${regionId}/${resourceType}/${resourceId}/reviews/${id}/thanks`
+      // location.href = `${APP_URL_SCHEME}:///regions/${regionId}/${contentType}s/${contentId}/reviews/${id}/thanks`
     }
   }
 
-  handleMenuClick = (e, review) => {
-    const {
-      props: {
-        isPublic,
-        myReview,
-        historyActions: { push },
-      },
-    } = this
+  const handleMenuClick = (e, review) => {
     if (!isPublic) {
       if (review.id === (myReview || {}).id) {
-        push(HASH_MY_REVIEW_ACTION_SHEET)
+        setPopup(HASH_MY_REVIEW_ACTION_SHEET)
       } else {
-        this.setState({ selectedReview: review })
-        push(HASH_REVIEW_ACTION_SHEET)
+        setSelectedReview(review)
+        setPopup(HASH_REVIEW_ACTION_SHEET)
       }
     }
   }
 
-  handleEditMenuClick = () => {
-    const {
-      props: { appUrlScheme, regionId, resourceType, resourceId },
-    } = this
-
-    window.location.href = `${appUrlScheme}:////reviews/edit?region_id=${regionId}&resource_type=${resourceType}&resource_id=${resourceId}`
+  const handleEditMenuClick = () => {
+    location.href = `${APP_URL_SCHEME}:////reviews/edit?region_id=${regionId}&resource_type=${type}&resource_id=${myReview.id}`
   }
 
-  handleDeleteMenuClick = () => {
-    const {
-      props: {
-        historyActions: { push },
-      },
-    } = this
-    push(HASH_DELETION_MODAL)
+  const handleDeleteMenuClick = () => {
+    setPopup(HASH_DELETION_MODAL)
 
     return true
   }
 
-  handleImageClick = (e, review) => {
+  const handleImageClick = (e, review) => {
     const {
-      props: { isPublic, appUrlScheme },
+      props: { isPublic, APP_URL_SCHEME },
     } = this
     const { attachments } = review
 
@@ -147,97 +123,77 @@ class ReviewsList extends React.PureComponent<{
       return
     }
 
-    window.location.href = `${appUrlScheme}:///images?${attachments}`
+    location.href = `${APP_URL_SCHEME}:///images?${attachments}`
   }
 
-  deleteReview = async () => {
-    const {
-      props: {
-        notifyReviewDeleted,
-        onMyReviewDeleted,
-        myReview: { id: reviewId },
-        myReviewActions: { deleteMyReview },
-        resourceId,
-      },
-    } = this
+  const deleteReview = async () => {
+    const { deleteMyReview }: any = useReviewContext()
+    const reviewId = myReview.id
+    const sourceId = source.id
     const response = await deleteReviewApi({ id: reviewId })
 
     if (response.ok) {
-      notifyReviewDeleted(resourceId, reviewId)
+      notifyReviewDeleted(sourceId, reviewId)
       onMyReviewDeleted()
 
       deleteMyReview({ id: reviewId })
     }
   }
 
-  handleReportClick = () => {
-    const {
-      props: { appUrlScheme },
-      state: {
-        selectedReview: { id },
-      },
-    } = this
-    window.location.href = `${appUrlScheme}:///reviews/${id}/report`
+  const handleReportClick = () => {
+    location.href = `${APP_URL_SCHEME}:///reviews/${selectedReview.id}/report`
   }
 
-  render() {
-    const {
-      props: {
-        likes,
-        myReview,
-        reviews,
-        margin,
-        isPublic,
-        historyActions: { uriHash, back },
-      },
-    } = this
-    const renderedReviews = myReview
-      ? [myReview, ...(reviews || []).filter(({ id }) => id !== myReview.id)]
-      : reviews || []
-    return (
-      <>
-        <ReviewsListView
-          margin={margin}
-          reviews={renderedReviews}
-          likes={likes}
-          onUserClick={this.handleUserClick}
-          onLikeButtonClick={this.handleLikeButtonClick}
-          onLikesCountClick={this.handleLikesCountClick}
-          onMenuClick={this.handleMenuClick}
-          DateFormatter={ReviewTimestamp}
-          menuVisible={!isPublic}
-          likeVisible={!isPublic}
-          onImageClick={this.handleImageClick}
-        />
+  const closePopup = () => setPopup(undefined)
 
-        <ActionSheet open={uriHash === HASH_REVIEW_ACTION_SHEET} onClose={back}>
-          <ActionSheet.Item icon="report" onClick={this.handleReportClick}>
-            신고하기
-          </ActionSheet.Item>
-        </ActionSheet>
+  const renderedReviews = myReview
+    ? [myReview, ...(reviews || []).filter(({ id }) => id !== myReview.id)]
+    : reviews || []
 
-        <ActionSheet
-          open={uriHash === HASH_MY_REVIEW_ACTION_SHEET}
-          onClose={back}
-        >
-          <ActionSheet.Item icon="review" onClick={this.handleEditMenuClick}>
-            수정하기
-          </ActionSheet.Item>
-          <ActionSheet.Item icon="delete" onClick={this.handleDeleteMenuClick}>
-            삭제하기
-          </ActionSheet.Item>
-        </ActionSheet>
+  return (
+    <>
+      <ReviewsListView
+        margin={margin}
+        reviews={renderedReviews}
+        likes={reviewLikes}
+        onUserClick={handleUserClick}
+        onLikeButtonClick={handleLikeButtonClick}
+        onLikesCountClick={handleLikesCountClick}
+        onMenuClick={handleMenuClick}
+        DateFormatter={ReviewTimestamp}
+        menuVisible={!isPublic}
+        likeVisible={!isPublic}
+        onImageClick={handleImageClick}
+      />
 
-        <Confirm
-          open={uriHash === HASH_DELETION_MODAL}
-          onClose={back}
-          onConfirm={this.deleteReview}
-        >
-          삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.
-        </Confirm>
-      </>
-    )
-  }
+      <ActionSheet
+        open={popup === HASH_REVIEW_ACTION_SHEET}
+        onClose={closePopup}
+      >
+        <ActionSheet.Item icon="report" onClick={handleReportClick}>
+          신고하기
+        </ActionSheet.Item>
+      </ActionSheet>
+
+      <ActionSheet
+        open={popup === HASH_MY_REVIEW_ACTION_SHEET}
+        onClose={closePopup}
+      >
+        <ActionSheet.Item icon="review" onClick={handleEditMenuClick}>
+          수정하기
+        </ActionSheet.Item>
+        <ActionSheet.Item icon="delete" onClick={handleDeleteMenuClick}>
+          삭제하기
+        </ActionSheet.Item>
+      </ActionSheet>
+
+      <Confirm
+        open={popup === HASH_DELETION_MODAL}
+        onClose={closePopup}
+        onConfirm={deleteReview}
+      >
+        삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.
+      </Confirm>
+    </>
+  )
 }
-
-export default withReviewLikes(withMyReviews(ReviewsList))

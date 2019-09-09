@@ -1,34 +1,36 @@
 import * as React from 'react'
+import {
+  subscribeLikedChangeEvent,
+  subscribeReviewUpdateEvent,
+  notifyReviewLiked,
+  notifyReviewUnliked,
+} from '@titicaca/triple-web-to-native-interfaces'
 import { likeReview, unlikeReview, fetchMyReviews } from './review-api-clients'
-import { MyReviewsProvider } from './my-review-context'
+import { ReviewProvider } from './review-context'
 import { ReviewContainer } from './review-container'
-import { ReviewLikesProvider } from './review-likes-context'
 import { TransitionModal } from './transition-modals'
-export * from './review-placeholder-with-rating'
-export function Reviews({
-  resourceId,
-  resourceType,
-  regionId,
-  reviewsCount,
-  reviewed,
+export default function Reviews({
   shortened,
-  onFullListButtonClick,
+  regionId,
+  source,
+  withRating,
+  type,
+  reviewed,
   isPublic,
-  appUrlScheme,
-  appNativeActions,
-  historyActions,
+  reviewsCount,
+  onFullListButtonClick,
+  APP_URL_SCHEME,
 }: {
-  resourceId: string
-  resourceType: string
-  regionId: string
-  reviewsCount: number
   shortened?: boolean
-  reviewed?: boolean
+  regionId: string
+  source: any
+  withRating?: any
+  type: string
+  reviewed?: any
   isPublic: boolean
+  reviewsCount: number
   onFullListButtonClick?: any
-  appUrlScheme: string
-  appNativeActions: any
-  historyActions: any //@TODO triple-react-context 주입하면서 삭제
+  APP_URL_SCHEME: string
 }) {
   const {
     subscribeLikedChangeEvent,
@@ -37,38 +39,28 @@ export function Reviews({
     notifyReviewUnliked,
   } = appNativeActions
   return (
-    //@TODO triple-react-context 주입시 재사용 가능한지 검토
-    <MyReviewsProvider
-      fetchMyReview={fetchMyReviews}
+    <ReviewProvider
+      likeReview={likeReview}
+      unlikeReview={unlikeReview}
+      fetchMyReviews={fetchMyReviews}
+      notifyReviewLiked={notifyReviewLiked}
+      notifyReviewUnliked={notifyReviewUnliked}
+      subscribeLikedChangeEvent={subscribeLikedChangeEvent}
       subscribeReviewUpdateEvent={subscribeReviewUpdateEvent}
     >
-      <ReviewLikesProvider
-        likeReview={likeReview}
-        unlikeReview={unlikeReview}
-        subscribeLikedChangeEvent={subscribeLikedChangeEvent}
-        notifyReviewLiked={notifyReviewLiked}
-        notifyReviewUnliked={notifyReviewUnliked}
-      >
-        <ReviewContainer
-          shortened={shortened}
-          regionId={regionId}
-          isPublic={isPublic}
-          appUrlScheme={appUrlScheme}
-          reviewsCount={reviewsCount}
-          resourceId={resourceId}
-          resourceType={resourceType}
-          reviewed={reviewed}
-          onFullListButtonClick={onFullListButtonClick}
-          appNativeActions={appNativeActions}
-          historyActions={historyActions}
-        />
-        <TransitionModal
-          historyActions={historyActions}
-          regionId={regionId}
-          resourceId={resourceId}
-        />
-      </ReviewLikesProvider>
-      s
-    </MyReviewsProvider>
+      <ReviewContainer
+        shortened={shortened}
+        regionId={regionId}
+        isPublic={isPublic}
+        APP_URL_SCHEME={APP_URL_SCHEME}
+        reviewsCount={reviewsCount}
+        withRating={withRating}
+        source={source}
+        type={type}
+        reviewed={reviewed}
+        onFullListButtonClick={onFullListButtonClick}
+      />
+      <TransitionModal source={source} />
+    </ReviewProvider>
   )
 }
