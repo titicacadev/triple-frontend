@@ -17,7 +17,7 @@ const PageLabelContainer = styled.div`
 `
 
 export interface RendererProps {
-  index: number
+  currentIndex: number
   totalCount: number
 }
 
@@ -27,8 +27,8 @@ interface ImageCarouselProps extends Partial<CarouselProps> {
   images: any[]
   ImageSource: string
   onImageClick: (e?: React.SyntheticEvent, image?: any) => void
-  showMoreRenderer: (props: RendererProps) => React.ReactNode | React.ReactNode
-  pageLabelRenderer: (props: RendererProps) => React.ReactNode
+  showMoreRenderer: (props: RendererProps) => JSX.Element
+  pageLabelRenderer: (props: RendererProps) => JSX.Element
 }
 
 export class ImageCarousel extends React.PureComponent<
@@ -57,11 +57,8 @@ export class ImageCarousel extends React.PureComponent<
       onMoveStart,
       onMove,
       onMoveEnd,
-      pageLabelRenderer: ({ index }) =>
-        pageLabelRenderer({
-          index,
-          totalCount: images.length,
-        }),
+      pageLabelRenderer: ({ currentIndex }) =>
+        pageLabelRenderer({ currentIndex, totalCount: images.length }) || null,
     }
   }
 
@@ -95,11 +92,12 @@ export class ImageCarousel extends React.PureComponent<
               borderRadius={0}
               onClick={onImageClick && ((e) => onImageClick(e, image))}
               overlay={
-                showMoreRenderer &&
-                showMoreRenderer({
-                  index: i,
-                  totalCount: images.length,
-                })
+                showMoreRenderer
+                  ? showMoreRenderer({
+                      currentIndex: i,
+                      totalCount: images.length,
+                    })
+                  : null
               }
               overlayType="dark"
             />
@@ -110,10 +108,10 @@ export class ImageCarousel extends React.PureComponent<
   }
 }
 
-export function PageLabel({ index, totalCount }: RendererProps) {
+export function PageLabel({ currentIndex, totalCount }: RendererProps) {
   return (
     <PageLabelContainer>
-      <PageLabelText>{`${index + 1} / ${totalCount}`}</PageLabelText>
+      <PageLabelText>{`${currentIndex + 1} / ${totalCount}`}</PageLabelText>
     </PageLabelContainer>
   )
 }

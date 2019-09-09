@@ -7,7 +7,7 @@ import { Container, MarginPadding } from '@titicaca/triple-design-system'
 export interface CarouselProps extends Partial<FlickingProps> {
   margin: MarginPadding
   borderRadius: number
-  pageLabelRenderer: (props: { index: number }) => React.ReactNode
+  pageLabelRenderer: (props: { currentIndex: number }) => JSX.Element
   children: React.ReactNode
 }
 
@@ -70,10 +70,11 @@ export class Carousel extends React.PureComponent<Partial<CarouselProps>> {
 
   render() {
     const { margin, borderRadius, pageLabelRenderer, children } = this.props
-    const { currentIndex } = this.state
-    const PageLabel = pageLabelRenderer({
-      index: currentIndex,
-    })
+    const PageLabel = ({ currentIndex }) => {
+      const Label = pageLabelRenderer({ currentIndex })
+
+      return Label ? <TopRightControl>{Label}</TopRightControl> : null
+    }
 
     return (
       <Container
@@ -83,7 +84,7 @@ export class Carousel extends React.PureComponent<Partial<CarouselProps>> {
       >
         <Flicking {...this.flickingProps}>{children}</Flicking>
 
-        {!!PageLabel && <TopRightControl>{PageLabel}</TopRightControl>}
+        <PageLabel currentIndex={this.state.currentIndex} />
       </Container>
     )
   }
