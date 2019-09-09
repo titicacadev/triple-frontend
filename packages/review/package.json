@@ -19,7 +19,6 @@
     "@titicaca/modals": "^1.0.0-alpha.7",
     "@titicaca/action-sheet": "^1.0.0-alpha.7",
     "@titicaca/view-utilities": "^1.0.0-alpha.7",
-    "@titicaca/triple-web-to-native-interfaces": "0.0.18",
     "moment": "^2.23.0",
     "moment-timezone": "^0.5.26",
     "isomorphic-fetch": "^2.2.1",
