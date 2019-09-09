@@ -29,6 +29,7 @@ export function ReviewProvider({
   const [reviewLikes, setReviewLikes] = React.useState(initLikes || {})
   const [myReviews, setMyReviews] = React.useState(initMyReview || {})
   const [popup, setPopup] = React.useState(undefined)
+  const insertLike = (likes) => setReviewLikes({ ...reviewLikes, ...likes })
 
   React.useEffect(() => {
     subscribeLikedChangeEvent(({ id, liked }) => insertLike({ [id]: liked }))
@@ -53,8 +54,6 @@ export function ReviewProvider({
       setReviewLikes({ ...reviewLikes, [reviewId]: false })
     }
   }
-
-  const insertLike = (likes) => setReviewLikes({ ...reviewLikes, ...likes })
 
   const insertMyReview = (newReviews) =>
     setMyReviews({ ...myReviews, ...newReviews })
