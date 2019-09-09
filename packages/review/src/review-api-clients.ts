@@ -15,19 +15,19 @@ export function unlikeReview({ id }: { id: string }) {
 }
 
 export function fetchReviews({
-  resourceId,
-  resourceType,
+  id,
+  type,
   order = '',
   from = 0,
   size = 30,
 }: {
-  resourceId: string
-  resourceType: string
+  id: string
+  type: string
   order: string
   from: number
   size: number
 }) {
-  const url = `/api/reviews/v2?resource_id=${resourceId}&resource_type=${resourceType}&from=${from}&size=${size}&order=${order}`
+  const url = `/api/reviews/v2?resource_id=${id}&resource_type=${type}&from=${from}&size=${size}&order=${order}`
   return fetch(url, { credentials: 'same-origin' })
 }
 
