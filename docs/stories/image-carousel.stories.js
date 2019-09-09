@@ -47,14 +47,18 @@ storiesOf('Image Carousel', module).add('일반', () => {
       ImageSource={({ children }) =>
         `출처 ${children.replace(/^https?:\/\//, '')}`
       }
-      showMoreRenderer={({ index, totalCount }) =>
-        totalCount > 5 && index === totalCount - 1 && <OverlayContent />
-      }
-      pageLabelRenderer={({ index, totalCount }) => {
-        return totalCount <= 5 || index < totalCount - 1
-          ? PageLabel({ index, totalCount })
-          : null
+      showMoreRenderer={({ currentIndex, totalCount }) => {
+        const result =
+          totalCount > 5 && currentIndex === totalCount - 1 ? (
+            <OverlayContent />
+          ) : null
+        return result
       }}
+      pageLabelRenderer={({ currentIndex, totalCount }) =>
+        totalCount <= 5 || currentIndex < totalCount - 1 ? (
+          <PageLabel currentIndex={currentIndex} totalCount={totalCount} />
+        ) : null
+      }
     ></ImageCarousel>
   )
 })
