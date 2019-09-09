@@ -13,6 +13,7 @@
     "@titicaca/author": "^1.0.0-alpha.8",
     "@titicaca/floating-install-button": "^1.0.0-alpha.8",
     "@titicaca/footer": "^1.0.0-alpha.8",
+    "@titicaca/image-carousel": "^1.0.0-alpha.8",
     "@titicaca/listing-filter": "^1.0.0-alpha.8",
     "@titicaca/modals": "^1.0.0-alpha.8",
     "@titicaca/poi-list-elements": "^1.0.0-alpha.8",
