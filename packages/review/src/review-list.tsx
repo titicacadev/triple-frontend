@@ -73,7 +73,7 @@ export function ReviewsList({
       if (unregister) {
         showToast('탈퇴한 사용자입니다.')
       } else {
-        location.href = `${APP_URL_SCHEME}:///users/${userId}`
+        window.location.href = `${APP_URL_SCHEME}:///users/${userId}`
       }
     }
   }
@@ -88,7 +88,7 @@ export function ReviewsList({
   const handleLikesCountClick = (e, { id }) => {
     if (!isPublic) {
       //@TODO 졸아요 클릭
-      // location.href = `${APP_URL_SCHEME}:///regions/${regionId}/${contentType}s/${contentId}/reviews/${id}/thanks`
+      window.location.href = `${APP_URL_SCHEME}:///regions/${regionId}/${type}/${source.id}/reviews/${id}/thanks`
     }
   }
 
@@ -104,7 +104,7 @@ export function ReviewsList({
   }
 
   const handleEditMenuClick = () => {
-    location.href = `${APP_URL_SCHEME}:////reviews/edit?region_id=${regionId}&resource_type=${type}&resource_id=${myReview.id}`
+    window.location.href = `${APP_URL_SCHEME}:////reviews/edit?region_id=${regionId}&resource_type=${type}&resource_id=${myReview.id}`
   }
 
   const handleDeleteMenuClick = () => {
@@ -123,7 +123,7 @@ export function ReviewsList({
       return
     }
 
-    location.href = `${APP_URL_SCHEME}:///images?${attachments}`
+    window.location.href = `${APP_URL_SCHEME}:///images?${attachments}`
   }
 
   const deleteReview = async () => {
@@ -141,7 +141,7 @@ export function ReviewsList({
   }
 
   const handleReportClick = () => {
-    location.href = `${APP_URL_SCHEME}:///reviews/${selectedReview.id}/report`
+    window.location.href = `${APP_URL_SCHEME}:///reviews/${selectedReview.id}/report`
   }
 
   const closePopup = () => setPopup(undefined)
