@@ -1,9 +1,5 @@
 import * as React from 'react'
 import moment from 'moment-timezone'
-import {
-  notifyReviewDeleted,
-  showToast,
-} from '@titicaca/triple-web-to-native-interfaces'
 import { Confirm } from '@titicaca/modals'
 import ActionSheet from '@titicaca/action-sheet'
 import ReviewsListView from './review-element'
@@ -54,6 +50,8 @@ export function ReviewsList({
   regionId,
   onMyReviewDeleted,
   source,
+  notifyReviewDeleted,
+  showToast,
 }: {
   isPublic: boolean
   APP_URL_SCHEME: string
@@ -64,6 +62,8 @@ export function ReviewsList({
   regionId: string
   onMyReviewDeleted: any
   source: any
+  notifyReviewDeleted: any
+  showToast: any
 }) {
   const [selectedReview, setSelectedReview] = React.useState(undefined)
   const { like, unlike, popup, setPopup, reviewLikes }: any = useReviewContext()
