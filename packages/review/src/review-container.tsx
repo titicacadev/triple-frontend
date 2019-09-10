@@ -88,7 +88,7 @@ export function ReviewContainer({
   reviewsCount: initialReviewsCount,
   source,
   withRating,
-  type,
+  resourceType,
   reviewed,
   onFullListButtonClick,
   notifyReviewDeleted,
@@ -102,7 +102,7 @@ export function ReviewContainer({
   reviewsCount: number
   source: any
   withRating: boolean
-  type: string
+  resourceType: string
   reviewed: boolean
   onFullListButtonClick?: any
   notifyReviewDeleted: any
@@ -134,7 +134,7 @@ export function ReviewContainer({
     const { from, size } = filterOptions
     const response = await fetchReviewsApi({
       id,
-      type,
+      resourceType,
       from,
       order: orderKey,
       size,
@@ -155,7 +155,7 @@ export function ReviewContainer({
     e.stopPropagation()
 
     if (!isPublic) {
-      window.location.href = `${APP_URL_SCHEME}:///reviews/new?region_id=${regionId}&resource_type=${type}&resource_id=${id}&rating=${rating}`
+      window.location.href = `${APP_URL_SCHEME}:///reviews/new?region_id=${regionId}&resource_type=${resourceType}&resource_id=${id}&rating=${rating}`
     }
   }
 
@@ -210,7 +210,7 @@ export function ReviewContainer({
       {((reviews || []).length > 0 || myReview) && (
         <ReviewsList
           isPublic={isPublic}
-          type={type}
+          resourceType={resourceType}
           regionId={regionId}
           APP_URL_SCHEME={APP_URL_SCHEME}
           margin={{ top: (reviewsCount || 0) > 1 ? 18 : 30 }}
