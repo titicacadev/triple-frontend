@@ -13,13 +13,10 @@ const Overlay = styled.div`
   right: 0;
   z-index: 10;
   background-color: rgba(58, 58, 58, 0.7);
+  opacity: 0;
 
-  &.fade-enter {
-    opacity: 0;
-
-    & > div {
-      margin-bottom: -120px;
-    }
+  & > div {
+    margin-bottom: -120px;
   }
 
   &.fade-enter-active {
@@ -28,6 +25,15 @@ const Overlay = styled.div`
 
     & > div {
       transition: margin-bottom 120ms ease-in;
+      margin-bottom: 0;
+    }
+  }
+
+  &.fade-appear,
+  &.fade-enter-done {
+    opacity: 1;
+
+    & > div {
       margin-bottom: 0;
     }
   }
@@ -251,7 +257,7 @@ export default function ActionSheet({
   ) : null
 
   return (
-    <CSSTransition in={open} classNames="fade" timeout={500}>
+    <CSSTransition in={open} appear classNames="fade" timeout={500}>
       <Overlay onClick={onClose}>
         <Sheet onClick={silenceEvent}>
           {actionSheetTitle}
