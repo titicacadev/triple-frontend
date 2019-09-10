@@ -1,7 +1,7 @@
 import * as React from 'react'
 import humps from 'humps'
 
-const Context = React.createContext(undefined)
+const Context = React.createContext('')
 
 export function ReviewProvider({
   likes: initLikes,
@@ -29,7 +29,9 @@ export function ReviewProvider({
   const [reviewLikes, setReviewLikes] = React.useState(initLikes || {})
   const [myReviews, setMyReviews] = React.useState(initMyReview || {})
   const [popup, setPopup] = React.useState(undefined)
-  const insertLike = (likes) => setReviewLikes({ ...reviewLikes, ...likes })
+  const insertLike = (likes) => {
+    setReviewLikes({ ...reviewLikes, ...likes })
+  }
 
   React.useEffect(() => {
     subscribeLikedChangeEvent(({ id, liked }) => insertLike({ [id]: liked }))
@@ -55,8 +57,9 @@ export function ReviewProvider({
     }
   }
 
-  const insertMyReview = (newReviews) =>
+  const insertMyReview = (newReviews) => {
     setMyReviews({ ...myReviews, ...newReviews })
+  }
 
   const handleMyReviewFetch = async ({ id }) => {
     const response = await fetchMyReviews({ id })
@@ -64,17 +67,19 @@ export function ReviewProvider({
     if (response.ok) {
       const myReview = humps.camelizeKeys(await response.json())
 
-      this.insertMyReview({ [id]: myReview })
+      insertMyReview({ [id]: myReview })
 
       return myReview
     } else if (response.status === 404) {
-      this.insert({ [id]: null })
+      insertMyReview({ [id]: null })
 
       return null
     }
   }
 
-  const handleDeleteMyReview = ({ id }) => insertMyReview({ [id]: null })
+  const handleDeleteMyReview = ({ id }) => {
+    insertMyReview({ [id]: null })
+  }
 
   const deriveCurrentStateAndCount = ({
     id,

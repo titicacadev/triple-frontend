@@ -46,7 +46,7 @@ export function ReviewsList({
   margin,
   reviews,
   myReview,
-  type,
+  resourceType,
   regionId,
   onMyReviewDeleted,
   source,
@@ -58,7 +58,7 @@ export function ReviewsList({
   margin: any
   reviews: any
   myReview: any
-  type: string
+  resourceType: string
   regionId: string
   onMyReviewDeleted: any
   source: any
@@ -88,7 +88,7 @@ export function ReviewsList({
   const handleLikesCountClick = (e, { id }) => {
     if (!isPublic) {
       //@TODO 졸아요 클릭
-      window.location.href = `${APP_URL_SCHEME}:///regions/${regionId}/${type}/${source.id}/reviews/${id}/thanks`
+      window.location.href = `${APP_URL_SCHEME}:///regions/${regionId}/${resourceType}/${source.id}/reviews/${id}/thanks`
     }
   }
 
@@ -104,7 +104,7 @@ export function ReviewsList({
   }
 
   const handleEditMenuClick = () => {
-    window.location.href = `${APP_URL_SCHEME}:////reviews/edit?region_id=${regionId}&resource_type=${type}&resource_id=${myReview.id}`
+    window.location.href = `${APP_URL_SCHEME}:////reviews/edit?region_id=${regionId}&resource_type=${resourceType}&resource_id=${myReview.id}`
   }
 
   const handleDeleteMenuClick = () => {
