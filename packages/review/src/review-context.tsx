@@ -1,7 +1,7 @@
 import * as React from 'react'
 import humps from 'humps'
 
-const Context = React.createContext(undefined)
+const Context = React.createContext('')
 
 export function ReviewProvider({
   likes: initLikes,

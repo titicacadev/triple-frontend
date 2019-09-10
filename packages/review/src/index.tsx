@@ -8,7 +8,7 @@ export default function Reviews({
   regionId,
   source,
   withRating,
-  type,
+  resourceType,
   reviewed,
   isPublic,
   reviewsCount,
@@ -25,7 +25,7 @@ export default function Reviews({
   regionId: string
   source: any
   withRating?: any
-  type: string
+  resourceType: string
   reviewed?: any
   isPublic: boolean
   reviewsCount: number
@@ -62,7 +62,7 @@ export default function Reviews({
         reviewsCount={reviewsCount}
         withRating={withRating}
         source={source}
-        type={type}
+        resourceType={resourceType}
         reviewed={reviewed}
         onFullListButtonClick={onFullListButtonClick}
         notifyReviewDeleted={notifyReviewDeleted}
