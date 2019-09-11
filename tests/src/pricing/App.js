@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Pricing } from '@titicaca/triple-design-system'
+import Pricing from '@titicaca/pricing'
 
 export default class App extends PureComponent {
   render() {
