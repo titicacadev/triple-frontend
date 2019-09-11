@@ -14,11 +14,5 @@
   },
   "peerDependencies": {
     "react": ">=16.8.0"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "all",
-    "arrowParens": "always"
   }
 }
