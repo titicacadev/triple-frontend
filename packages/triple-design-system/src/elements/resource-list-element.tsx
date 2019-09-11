@@ -9,7 +9,7 @@ import Text from '../elements/text'
 import Rating from '../elements/rating'
 import Image from '../elements/image'
 import List from '../elements/list'
-import Pricing from '../elements/pricing'
+import Pricing from '@titicaca/pricing'
 
 const ResourceListItem = styled(List.Item)`
   min-height: 150px;
