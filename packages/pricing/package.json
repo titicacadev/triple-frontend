@@ -1,0 +1,21 @@
+{
+  "name": "@titicaca/pricing",
+  "version": "1.0.0-alpha.9",
+  "description": "Triple - pricing",
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "dependencies": {
+    "@titicaca/triple-design-system": "^1.0.0-alpha.9",
+    "@titicaca/view-utilities": "^1.0.0-alpha.9"
+  }
+}
