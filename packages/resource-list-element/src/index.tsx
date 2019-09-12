@@ -20,7 +20,7 @@ const ResourceListItem = styled(List.Item)`
   cursor: pointer;
 `
 
-export function ExtendedResourceListElement({
+export default function ExtendedResourceListElement({
   resource,
   image,
   imagePlaceholder,
