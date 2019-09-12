@@ -1,8 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { withKnobs, boolean } from '@storybook/addon-knobs'
-
-import { Pricing, Text } from '@titicaca/triple-design-system'
+import { Text } from '@titicaca/triple-design-system'
+import Pricing from '@titicaca/pricing'
 
 storiesOf('Pricing', module)
   .addDecorator(withKnobs)
