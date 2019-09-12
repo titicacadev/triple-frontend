@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ExtendedResourceListElement } from '@titicaca/triple-design-system'
+import ExtendedResourceListElement from '@titicaca/resource-list-element'
 import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
 
 export class ProductListElement extends React.PureComponent<{

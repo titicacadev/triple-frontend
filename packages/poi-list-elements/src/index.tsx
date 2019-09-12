@@ -5,9 +5,9 @@ import {
   Carousel,
   SquareImage,
   ResourceListItem,
-  ExtendedResourceListElement,
   LabelColor,
 } from '@titicaca/triple-design-system'
+import ExtendedResourceListElement from '@titicaca/resource-list-element'
 import ScrapButton from '@titicaca/scrap-button'
 import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
 
