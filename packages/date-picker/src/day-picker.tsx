@@ -73,7 +73,7 @@ function DatePicker({
   afterBlock: Date
   numberOfMonths: number
   onDateChange: Function
-  disabledDays: Array<string>
+  disabledDays?: string[]
 }) {
   const selectedDay = day && moment(day).toDate()
 

@@ -116,7 +116,7 @@ function RangePicker({
   afterBlock: Date
   onDatesChange: Function
   numberOfMonths: number
-  disabledDays: Array<string>
+  disabledDays?: string[]
 }) {
   const from = startDate && moment(startDate).toDate()
   const to = endDate && moment(endDate).toDate()
