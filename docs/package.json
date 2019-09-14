@@ -21,7 +21,8 @@
     "@titicaca/review": "^1.0.0-alpha.9",
     "@titicaca/triple-design-system": "^1.0.0-alpha.9",
     "@titicaca/triple-document": "^1.0.0-alpha.9",
-    "@titicaca/image-carousel": "^1.0.0-alpha.8"
+    "@titicaca/image-carousel": "^1.0.0-alpha.9",
+    "@titicaca/date-picker": "^1.0.0-alpha.9"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.0.3",
