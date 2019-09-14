@@ -1,13 +1,12 @@
 import * as React from 'react'
 import { likeReview, unlikeReview, fetchMyReviews } from './review-api-clients'
-import { ReviewProvider } from './review-context'
+import { MyReviewsProvider } from './my-review-context'
 import { ReviewContainer } from './review-container'
-import { TransitionModal } from './transition-modals'
+import { ReviewLikesProvider } from './review-likes-context'
 export default function Reviews({
   shortened,
   regionId,
   source,
-  withRating,
   resourceType,
   reviewed,
   isPublic,
@@ -24,7 +23,6 @@ export default function Reviews({
   shortened?: boolean
   regionId: string
   source: any
-  withRating?: any
   resourceType: string
   reviewed?: any
   isPublic: boolean
@@ -45,30 +43,31 @@ export default function Reviews({
     notifyReviewUnliked,
   } = appNativeActions
   return (
-    <ReviewProvider
-      likeReview={likeReview}
-      unlikeReview={unlikeReview}
-      fetchMyReviews={fetchMyReviews}
-      notifyReviewLiked={notifyReviewLiked}
-      notifyReviewUnliked={notifyReviewUnliked}
-      subscribeLikedChangeEvent={subscribeLikedChangeEvent}
+    <MyReviewsProvider
+      fetchMyReview={fetchMyReviews}
       subscribeReviewUpdateEvent={subscribeReviewUpdateEvent}
     >
-      <ReviewContainer
-        shortened={shortened}
-        regionId={regionId}
-        isPublic={isPublic}
-        APP_URL_SCHEME={APP_URL_SCHEME}
-        reviewsCount={reviewsCount}
-        withRating={withRating}
-        source={source}
-        resourceType={resourceType}
-        reviewed={reviewed}
-        onFullListButtonClick={onFullListButtonClick}
-        notifyReviewDeleted={notifyReviewDeleted}
-        showToast={showToast}
-      />
-      <TransitionModal source={source} />
-    </ReviewProvider>
+      <ReviewLikesProvider
+        likeReview={likeReview}
+        unlikeReview={unlikeReview}
+        subscribeLikedChangeEvent={subscribeLikedChangeEvent}
+        notifyReviewLiked={notifyReviewLiked}
+        notifyReviewUnliked={notifyReviewUnliked}
+      >
+        <ReviewContainer
+          shortened={shortened}
+          regionId={regionId}
+          isPublic={isPublic}
+          APP_URL_SCHEME={APP_URL_SCHEME}
+          reviewsCount={reviewsCount}
+          source={source}
+          resourceType={resourceType}
+          reviewed={reviewed}
+          onFullListButtonClick={onFullListButtonClick}
+          notifyReviewDeleted={notifyReviewDeleted}
+          showToast={showToast}
+        />
+      </ReviewLikesProvider>
+    </MyReviewsProvider>
   )
 }
