@@ -1,4 +1,4 @@
-import * as moment from 'moment'
+import moment from 'moment'
 
 export function formatMonthTitle(d: Date): string {
   return `${d.getFullYear()}년 ${[d.getMonth() + 1]}월`

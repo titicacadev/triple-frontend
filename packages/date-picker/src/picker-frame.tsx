@@ -69,6 +69,8 @@ const PickerFrame = styled.div`
     color: rgb(${GetGlobalColor('red')});
   }
   .DayPicker-Day--today:before {
+    top: 30px;
+    left: 0;
     content: '오늘';
     position: absolute;
     display: inline-block;
