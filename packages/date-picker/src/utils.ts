@@ -8,7 +8,7 @@ export function isValidDate(d: Date): boolean {
   return d instanceof Date && !isNaN(d.getTime())
 }
 
-export function generatePaddedRange(from: Date, to: Date): Array<Date> {
+export function generatePaddedRange(from: Date, to: Date): Date[] {
   if (from.getMonth() === to.getMonth()) {
     return []
   }
