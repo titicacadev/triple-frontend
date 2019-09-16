@@ -64,6 +64,7 @@ const CouponDescriptionContainer = styled(Text)`
   color: rgba(${GetGlobalColor('gray')}, 0.5);
 `
 
+// eslint-disable-next-line no-unexpected-multiline
 const CouponDownloadButton = styled(Button)<{
   isDownloaded?: boolean
 }>`
