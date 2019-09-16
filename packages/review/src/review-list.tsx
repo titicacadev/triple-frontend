@@ -1,7 +1,7 @@
 import * as React from 'react'
 import moment from 'moment-timezone'
 import { Confirm } from '@titicaca/modals'
-import ActionSheet from '@titicaca/action-sheet'
+// import ActionSheet from '@titicaca/action-sheet'
 import { MarginPadding } from '@titicaca/triple-design-system'
 import ReviewsListView from './review-element'
 import { withReviewLikes } from './review-likes-context'
@@ -38,8 +38,8 @@ function ReviewTimestamp({ children }) {
   return createdAt.format('YYYY.M.D')
 }
 
-const HASH_MY_REVIEW_ACTION_SHEET = 'common.reviews-list.my-review-action-sheet'
-const HASH_REVIEW_ACTION_SHEET = 'common.reviews-list.review-action-sheet'
+// const HASH_MY_REVIEW_ACTION_SHEET = 'common.reviews-list.my-review-action-sheet'
+// const HASH_REVIEW_ACTION_SHEET = 'common.reviews-list.review-action-sheet'
 const HASH_DELETION_MODAL = 'common.reviews-list.deletion-modal'
 
 class ReviewsList extends React.PureComponent<{
@@ -51,12 +51,13 @@ class ReviewsList extends React.PureComponent<{
   resourceType: string
   regionId: string
   onMyReviewDeleted: any
-  source: any
+  resourceId: string
   notifyReviewDeleted: any
   showToast: any
   likeActions?: any
   likes?: any
   myReviewActions?: any
+  historyActions?: any
 }> {
   state = { selectedReview: undefined }
 
@@ -78,25 +79,24 @@ class ReviewsList extends React.PureComponent<{
     const {
       props: {
         isPublic,
-        source,
+        resourceId,
         likeActions: { like, unlike },
       },
     } = this
-    const { contentId } = source
 
     if (!isPublic) {
-      liked ? await unlike(contentId, id) : await like(contentId, id)
+      liked ? await unlike(resourceId, id) : await like(resourceId, id)
     }
   }
 
   handleLikesCountClick = (e, { id }) => {
     const {
-      props: { isPublic, regionId, resourceType, APP_URL_SCHEME, source },
+      props: { isPublic, regionId, resourceType, APP_URL_SCHEME, resourceId },
     } = this
 
     if (!isPublic) {
       //@TODO 졸아요 클릭
-      window.location.href = `${APP_URL_SCHEME}:///regions/${regionId}/${resourceType}/${source.id}/reviews/${id}/thanks`
+      window.location.href = `${APP_URL_SCHEME}:///regions/${regionId}/${resourceType}/${resourceId}/reviews/${id}/thanks`
     }
   }
 
@@ -120,10 +120,11 @@ class ReviewsList extends React.PureComponent<{
         APP_URL_SCHEME,
         regionId,
         resourceType,
-        myReview: { id },
+        resourceId,
       },
     } = this
-    window.location.href = `${APP_URL_SCHEME}:////reviews/edit?region_id=${regionId}&resource_type=${resourceType}&resource_id=${id}`
+
+    window.location.href = `${APP_URL_SCHEME}:////reviews/edit?region_id=${regionId}&resource_type=${resourceType}&resource_id=${resourceId}`
   }
 
   handleDeleteMenuClick = () => {
@@ -152,13 +153,13 @@ class ReviewsList extends React.PureComponent<{
         onMyReviewDeleted,
         myReview: { id: reviewId },
         myReviewActions: { deleteMyReview },
-        source: { id: sourceId },
+        resourceId,
       },
     } = this
     const response = await deleteReviewApi({ id: reviewId })
 
     if (response.ok) {
-      notifyReviewDeleted(sourceId, reviewId)
+      notifyReviewDeleted(resourceId, reviewId)
       onMyReviewDeleted()
 
       deleteMyReview({ id: reviewId })
@@ -177,13 +178,18 @@ class ReviewsList extends React.PureComponent<{
 
   render() {
     const {
-      props: {likes, myReview, reviews, margin, isPublic },
+      props: {
+        likes,
+        myReview,
+        reviews,
+        margin,
+        isPublic,
+        historyActions: { uriHash, back },
+      },
     } = this
     const renderedReviews = myReview
       ? [myReview, ...(reviews || []).filter(({ id }) => id !== myReview.id)]
       : reviews || []
-    const popup = undefined
-    const closePopup = undefined
     return (
       <>
         <ReviewsListView
@@ -200,30 +206,30 @@ class ReviewsList extends React.PureComponent<{
           onImageClick={this.handleImageClick}
         />
 
-        <ActionSheet
-          open={popup === HASH_REVIEW_ACTION_SHEET}
-          onClose={closePopup}
-        >
-          <ActionSheet.Item icon="report" onClick={this.handleReportClick}>
-            신고하기
-          </ActionSheet.Item>
-        </ActionSheet>
+        {/*<ActionSheet*/}
+        {/*  open={popup === HASH_REVIEW_ACTION_SHEET}*/}
+        {/*  onClose={closePopup}*/}
+        {/*>*/}
+        {/*  <ActionSheet.Item icon="report" onClick={this.handleReportClick}>*/}
+        {/*    신고하기*/}
+        {/*  </ActionSheet.Item>*/}
+        {/*</ActionSheet>*/}
 
-        <ActionSheet
-          open={popup === HASH_MY_REVIEW_ACTION_SHEET}
-          onClose={closePopup}
-        >
-          <ActionSheet.Item icon="review" onClick={this.handleEditMenuClick}>
-            수정하기
-          </ActionSheet.Item>
-          <ActionSheet.Item icon="delete" onClick={this.handleDeleteMenuClick}>
-            삭제하기a
-          </ActionSheet.Item>
-        </ActionSheet>
+        {/*<ActionSheet*/}
+        {/*  open={popup === HASH_MY_REVIEW_ACTION_SHEET}*/}
+        {/*  onClose={closePopup}*/}
+        {/*>*/}
+        {/*  <ActionSheet.Item icon="review" onClick={this.handleEditMenuClick}>*/}
+        {/*    수정하기*/}
+        {/*  </ActionSheet.Item>*/}
+        {/*  <ActionSheet.Item icon="delete" onClick={this.handleDeleteMenuClick}>*/}
+        {/*    삭제하기*/}
+        {/*  </ActionSheet.Item>*/}
+        {/*</ActionSheet>*/}
 
         <Confirm
-          open={popup === HASH_DELETION_MODAL}
-          onClose={closePopup}
+          open={uriHash === HASH_DELETION_MODAL}
+          onClose={back}
           onConfirm={this.deleteReview}
         >
           삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.
