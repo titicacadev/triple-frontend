@@ -3,7 +3,7 @@ import { likeReview, unlikeReview, fetchMyReviews } from './review-api-clients'
 import { MyReviewsProvider } from './my-review-context'
 import { ReviewContainer } from './review-container'
 import { ReviewLikesProvider } from './review-likes-context'
-import { TransitionModal } from '@titicaca/modals'
+import { TransitionModal } from './transition-modals'
 export * from './review-placeholder-with-rating'
 export function Reviews({
   resourceId,
@@ -63,8 +63,13 @@ export function Reviews({
           appNativeActions={appNativeActions}
           historyActions={historyActions}
         />
-        <TransitionModal onClose={back} />
+        <TransitionModal
+          historyActions={historyActions}
+          regionId={regionId}
+          resourceId={resourceId}
+        />
       </ReviewLikesProvider>
+      s
     </MyReviewsProvider>
   )
 }
