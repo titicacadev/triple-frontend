@@ -1,5 +1,5 @@
-import * as React from 'react'
-import * as humps from 'humps'
+import React from 'react'
+import humps from 'humps'
 
 const Context = React.createContext(undefined)
 
