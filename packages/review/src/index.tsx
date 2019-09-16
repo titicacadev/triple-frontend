@@ -30,7 +30,6 @@ export function Reviews({
   appNativeActions: any
   historyActions: any //@TODO triple-react-context 주입하면서 삭제
 }) {
-  const { back } = historyActions
   const {
     subscribeLikedChangeEvent,
     subscribeReviewUpdateEvent,
