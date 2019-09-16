@@ -4,12 +4,13 @@ import humps from 'humps'
 import {
   Section,
   Container,
-  Rating,
   Text,
   Button,
   Label,
+  HR1,
 } from '@titicaca/triple-design-system'
 import { formatNumber } from '@titicaca/view-utilities'
+import ReviewsPlaceholder from './review-placeholder-with-rating'
 import { fetchReviews as fetchReviewsApi } from './review-api-clients'
 import ReviewsList from './review-list'
 const REVIEWS_SECTION_ID = 'reviews'
@@ -17,32 +18,12 @@ const ORDER_BY_RECOMMENDATION = 'recommendation'
 const ORDER_BY_RECENCY = 'recency'
 const DEFAULT_SIZE = 30
 
-const PlaceholderContainer = styled(Container)`
-  width: 100%;
-  text-align: center;
-`
 const WriteIcon = styled.img`
   margin-top: -5px;
   width: 34px;
   height: 34px;
   float: right;
 `
-function ReviewsPlaceholder({ children, onClick }) {
-  return (
-    <PlaceholderContainer margin={{ top: 20 }} onClick={onClick}>
-      <Rating size="medium" onClick={onClick} />
-      <Text
-        margin={{ top: 12 }}
-        size="large"
-        color="gray"
-        alpha={1}
-        lineHeight={1.5}
-      >
-        {children}
-      </Text>
-    </PlaceholderContainer>
-  )
-}
 
 const OptionsContainer = styled.div<{ floated?: string }>`
   float: ${({ floated }) => floated || 'none'};
@@ -85,12 +66,13 @@ export class ReviewContainer extends React.PureComponent<{
   isPublic: boolean
   APP_URL_SCHEME: string
   reviewsCount: number
-  source: any
+  resourceId: string
   resourceType: string
   reviewed: boolean
   onFullListButtonClick?: any
   notifyReviewDeleted: any
   showToast: any
+  historyActions: any
   children?: React.ReactNode
 }> {
   state = {
@@ -107,10 +89,7 @@ export class ReviewContainer extends React.PureComponent<{
   fetchReviews = async () => {
     const {
       state: { orders },
-      props: {
-        source: { id },
-        resourceType,
-      },
+      props: { resourceId, resourceType },
     } = this
 
     const { key: orderKey } = orders.find(({ selected }) => selected)
@@ -124,7 +103,7 @@ export class ReviewContainer extends React.PureComponent<{
     //@TODO pagination 처리 필요
     const { from, size } = this.state.filterOptions
     const response = await fetchReviewsApi({
-      id,
+      resourceId,
       resourceType,
       from,
       order: orderKey,
@@ -133,8 +112,6 @@ export class ReviewContainer extends React.PureComponent<{
 
     if (response.ok) {
       const reviewData = humps.camelizeKeys(await response.json()).reviews
-
-      console.log('reviews', reviewData)
       this.setState({ reviews: reviewData })
     }
   }
@@ -142,17 +119,11 @@ export class ReviewContainer extends React.PureComponent<{
   handleWriteButtonClick = (e: React.SyntheticEvent, rating: number = 0) => {
     e.stopPropagation()
     const {
-      props: {
-        isPublic,
-        APP_URL_SCHEME,
-        regionId,
-        resourceType,
-        source: { id },
-      },
+      props: { isPublic, APP_URL_SCHEME, regionId, resourceType, resourceId },
     } = this
 
     if (!isPublic) {
-      window.location.href = `${APP_URL_SCHEME}:///reviews/new?region_id=${regionId}&resource_type=${resourceType}&resource_id=${id}&rating=${rating}`
+      window.location.href = `${APP_URL_SCHEME}:///reviews/new?region_id=${regionId}&resource_type=${resourceType}&resource_id=${resourceId}&rating=${rating}`
     }
   }
 
@@ -175,15 +146,15 @@ export class ReviewContainer extends React.PureComponent<{
       props: {
         reviewsCount,
         isPublic,
-        children,
         resourceType,
         regionId,
         APP_URL_SCHEME,
-        source,
+        resourceId,
         notifyReviewDeleted,
         showToast,
         shortened,
         onFullListButtonClick,
+        historyActions,
       },
     } = this
 
@@ -193,34 +164,45 @@ export class ReviewContainer extends React.PureComponent<{
 
     return (
       <Section anchor={REVIEWS_SECTION_ID}>
-        <WriteIcon
-          src="https://assets.triple.guide/images/btn-com-write@2x.png"
-          onClick={this.handleWriteButtonClick}
-        />
+        <Container>
+          <WriteIcon
+            src="https://assets.triple.guide/images/btn-com-write@2x.png"
+            onClick={this.handleWriteButtonClick}
+          />
 
-        <Text bold size="huge" color="gray" alpha={1} inline>
-          리뷰
-        </Text>
-
-        {(reviewsCount || 0) > 0 ? (
-          <Text bold size="huge" color="blue" alpha={1} inline>
-            {` ${formatNumber(reviewsCount)}`}
+          <Text
+            bold
+            size="huge"
+            ReviewsPlaceholdercolor="gray"
+            alpha={1}
+            inline
+          >
+            리뷰
           </Text>
-        ) : null}
 
-        {(reviewsCount || 0) > 1 ? (
-          <Container margin={{ top: 23 }} clearing>
-            <Options
-              floated="right"
-              data={orders}
-              onSelect={this.handleOrderSelect}
-            />
-          </Container>
-        ) : null}
+          {(reviewsCount || 0) > 0 ? (
+            <Text bold size="huge" color="blue" alpha={1} inline>
+              {` ${formatNumber(reviewsCount)}`}
+            </Text>
+          ) : null}
+        </Container>
 
         <ReviewsPlaceholder onClick={this.handleWriteButtonClick}>
-          {children}
+          이곳에 다녀오셨나요?
         </ReviewsPlaceholder>
+
+        {(reviewsCount || 0) > 1 ? (
+          <>
+            <HR1 />
+            <Container margin={{ top: 23 }} clearing>
+              <Options
+                floated="right"
+                data={orders}
+                onSelect={this.handleOrderSelect}
+              />
+            </Container>
+          </>
+        ) : null}
 
         {((reviews || []).length > 0 || myReview) && (
           <ReviewsList
@@ -232,12 +214,12 @@ export class ReviewContainer extends React.PureComponent<{
             reviews={reviews.slice(0, myReview ? 2 : 3)}
             myReview={myReview}
             onMyReviewDeleted={() => this.setState({ myReview: null })}
-            source={source}
+            resourceId={resourceId}
             notifyReviewDeleted={notifyReviewDeleted}
             showToast={showToast}
+            historyActions={historyActions}
           />
         )}
-
         {reviewsCount > 3 && shortened && (
           <Container margin={{ top: 50 }}>
             <Button
