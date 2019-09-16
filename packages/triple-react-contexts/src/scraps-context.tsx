@@ -21,6 +21,7 @@ const UNSCRAPE = 'UNSCRAPE'
 const UNSCRAPE_FAILED = 'UNSCRAPE_FAILED'
 
 const reducer = ({ scraps, updating }, action) => {
+  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
   const { [action.id]: _, ...restUpdating } = updating
 
   switch (action.type) {
