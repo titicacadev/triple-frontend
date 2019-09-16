@@ -27,6 +27,7 @@ import { PoiListElement, PoiCarouselElement } from '@titicaca/poi-list-elements'
 import { H1, H2, H3, H4, Paragraph } from './text'
 import { RegionListElement } from './region'
 import { TnaProductsList } from './tna'
+import DownloadCoupon from './coupon'
 
 const MH1 = ({ children, ...props }) => (
   <H1 margin={{ top: 25, bottom: 20, left: 30, right: 30 }} {...props}>
@@ -87,6 +88,7 @@ export const ELEMENTS: { [key: string]: any } = {
   video: Video,
   tnaProducts: DocumentTnaProducts,
   table: TableElement,
+  downloadCoupon: DownloadCoupon,
 }
 
 const EMBEDDED_ELEMENTS = {
@@ -108,6 +110,8 @@ export default function TripleDocument({
   imageSourceComponent,
   resourceScraps,
   customElements,
+  onCouponDownload,
+  onCouponModalConfirm,
 }) {
   return (
     <>
@@ -126,6 +130,8 @@ export default function TripleDocument({
               onTNAProductClick={onTNAProductClick}
               onTNAProductsFetch={onTNAProductsFetch}
               ImageSource={imageSourceComponent}
+              onCouponDownload={onCouponDownload}
+              onCouponModalConfirm={onCouponModalConfirm}
               resourceScraps={resourceScraps || {}}
             />
           )
