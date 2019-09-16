@@ -1,5 +1,5 @@
 {
-  "name": "@titicaca/triple-react-contexts",
+  "name": "@titicaca/react-contexts",
   "version": "1.0.0-alpha.10",
   "description": "React context modules for triple web applications",
   "main": "lib/index.js",
