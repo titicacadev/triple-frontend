@@ -1,3 +1,5 @@
+declare var window: any
+
 import React from 'react'
 
 interface EventTrackingContextValue {
@@ -60,6 +62,7 @@ export class EventTrackingProvider extends React.PureComponent<
         ga: ga && [pageLabel, ...ga],
         fa: fa && {
           category: pageLabel,
+          /* eslint-disable-next-line @typescript-eslint/camelcase */
           event_name: DEFAULT_EVENT_NAME,
           ...fa,
         },
@@ -80,6 +83,7 @@ export class EventTrackingProvider extends React.PureComponent<
         ga: [pageLabel, action, label].filter((v) => v),
         fa: {
           category: pageLabel,
+          /* eslint-disable-next-line @typescript-eslint/camelcase */
           event_name: DEFAULT_EVENT_NAME,
           action,
           ...rest,
