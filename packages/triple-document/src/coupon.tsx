@@ -1,12 +1,7 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { Modal } from '@titicaca/modals'
-import {
-  Button,
-  GetGlobalColor,
-  Image,
-  Text,
-} from '@titicaca/triple-design-system'
+import { Button, GetGlobalColor, Text } from '@titicaca/triple-design-system'
 
 const ModalCouponDownloadDescription = styled(Text)`
   color: rgb(${GetGlobalColor('gray')}, 0.7);
