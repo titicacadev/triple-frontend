@@ -110,8 +110,13 @@ export default function TripleDocument({
   imageSourceComponent,
   resourceScraps,
   customElements,
+  // 쿠폰
   onCouponDownload,
   onCouponModalConfirm,
+  downloadMessage,
+  downloadCompleteMessage,
+  downloadDescription,
+  isDownloaded,
 }) {
   return (
     <>
@@ -130,9 +135,14 @@ export default function TripleDocument({
               onTNAProductClick={onTNAProductClick}
               onTNAProductsFetch={onTNAProductsFetch}
               ImageSource={imageSourceComponent}
+              resourceScraps={resourceScraps || {}}
+              // 쿠폰
               onCouponDownload={onCouponDownload}
               onCouponModalConfirm={onCouponModalConfirm}
-              resourceScraps={resourceScraps || {}}
+              downloadMessage={downloadMessage}
+              downloadCompleteMessage={downloadCompleteMessage}
+              downloadDescription={downloadDescription}
+              isDownloaded={isDownloaded}
             />
           )
         )
