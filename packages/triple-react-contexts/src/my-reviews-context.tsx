@@ -1,9 +1,23 @@
-import React, { PureComponent, createContext, useContext } from 'react'
-import humps from 'humps'
+import * as React from 'react'
+import * as humps from 'humps'
 
-const Context = createContext()
+const Context = React.createContext(undefined)
 
-export class MyReviewsProvider extends PureComponent {
+interface MyReviewsProviderProps {
+  myReviews: { [key: string]: boolean }
+  fetchMyReview: Function
+  type: string
+  subscribeReviewUpdateEvent: Function
+}
+
+interface MyReviewsProviderState {
+  myReviews: { [key: string]: boolean }
+}
+
+export class MyReviewsProvider extends React.PureComponent<
+  MyReviewsProviderProps,
+  MyReviewsProviderState
+> {
   state = { myReviews: this.props.myReviews || {} }
 
   insert = (newReviews) =>
@@ -83,7 +97,7 @@ export class MyReviewsProvider extends PureComponent {
 }
 
 export function useMyReviewsContext() {
-  return useContext(Context)
+  return React.useContext(Context)
 }
 
 export function withMyReviews(Component) {

@@ -13,6 +13,10 @@
     "qs": "^6.7.0"
   },
   "peerDependencies": {
+    "next": "*",
     "react": ">=16.8.0"
+  },
+  "devDependencies": {
+    "next": "^9.0.5"
   }
 }

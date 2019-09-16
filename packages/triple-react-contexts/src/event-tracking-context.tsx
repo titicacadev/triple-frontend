@@ -1,10 +1,37 @@
-import React, { PureComponent, createContext, useContext } from 'react'
+import * as React from 'react'
 
-const Context = createContext({ pageLabel: 'Unknown' })
+interface EventTrackingContextValue {
+  trackScreen: Function
+  trackEvent: Function
+  trackSimpleEvent: Function
+  viewItem: Function
+}
+
+const Context = React.createContext<EventTrackingContextValue>(undefined)
 
 const DEFAULT_EVENT_NAME = 'user_interaction'
 
-export class EventTrackingProvider extends PureComponent {
+interface EventTrackingProviderProps {
+  pageLabel: string
+  trackScreen: Function
+  trackEvent: Function
+  viewItem: Function
+}
+
+interface EventTrackingProviderState {
+  pageLabel: string
+}
+
+declare global {
+  interface Window {
+    ga: Function
+  }
+}
+
+export class EventTrackingProvider extends React.PureComponent<
+  EventTrackingProviderProps,
+  EventTrackingProviderState
+> {
   state = { pageLabel: this.props.pageLabel || 'Unknown' }
 
   trackScreen = (path) => {
@@ -82,7 +109,7 @@ export class EventTrackingProvider extends PureComponent {
 }
 
 export function useEventTrackingContext() {
-  return useContext(Context)
+  return React.useContext(Context)
 }
 
 export function withEventTracking(Component) {

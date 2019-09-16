@@ -1,8 +1,33 @@
-import React, { PureComponent, createContext, useContext } from 'react'
+import * as React from 'react'
 
-const Context = createContext()
+interface ReviewLikesContextProps {
+  likes: { [key: string]: boolean }
+  actions: {
+    like: Function
+    unlike: Function
+    insert: Function
+  }
+}
 
-export class ReviewLikesProvider extends PureComponent {
+const Context = React.createContext<ReviewLikesContextProps>(undefined)
+
+interface ReviewLikesProviderProps {
+  likes: { [key: string]: boolean }
+  subscribeLikedChangeEvent: Function
+  likeReview: Function
+  notifyReviewLiked: Function
+  unlikeReview: Function
+  notifyReviewUnliked: Function
+}
+
+interface ReviewLikesProviderState {
+  likes: { [key: string]: boolean }
+}
+
+export class ReviewLikesProvider extends React.PureComponent<
+  ReviewLikesProviderProps,
+  ReviewLikesProviderState
+> {
   state = { likes: this.props.likes || {} }
 
   componentDidMount() {
@@ -68,7 +93,7 @@ export class ReviewLikesProvider extends PureComponent {
 }
 
 export function useReviewLikesContext() {
-  return useContext(Context)
+  return React.useContext(Context)
 }
 
 export function withReviewLikes(Component) {
