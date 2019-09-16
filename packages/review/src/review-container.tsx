@@ -64,14 +64,13 @@ export class ReviewContainer extends React.PureComponent<{
   shortened: boolean
   regionId: string
   isPublic: boolean
-  APP_URL_SCHEME: string
+  appUrlScheme: string
   reviewsCount: number
   resourceId: string
   resourceType: string
   reviewed: boolean
   onFullListButtonClick?: any
-  notifyReviewDeleted: any
-  showToast: any
+  appNativeActions: any
   historyActions: any
   children?: React.ReactNode
 }> {
@@ -119,11 +118,11 @@ export class ReviewContainer extends React.PureComponent<{
   handleWriteButtonClick = (e: React.SyntheticEvent, rating: number = 0) => {
     e.stopPropagation()
     const {
-      props: { isPublic, APP_URL_SCHEME, regionId, resourceType, resourceId },
+      props: { isPublic, appUrlScheme, regionId, resourceType, resourceId },
     } = this
 
     if (!isPublic) {
-      window.location.href = `${APP_URL_SCHEME}:///reviews/new?region_id=${regionId}&resource_type=${resourceType}&resource_id=${resourceId}&rating=${rating}`
+      window.location.href = `${appUrlScheme}:///reviews/new?region_id=${regionId}&resource_type=${resourceType}&resource_id=${resourceId}&rating=${rating}`
     }
   }
 
@@ -148,10 +147,9 @@ export class ReviewContainer extends React.PureComponent<{
         isPublic,
         resourceType,
         regionId,
-        APP_URL_SCHEME,
+        appUrlScheme,
         resourceId,
-        notifyReviewDeleted,
-        showToast,
+        appNativeActions: { notifyReviewDeleted, showToast },
         shortened,
         onFullListButtonClick,
         historyActions,
@@ -165,10 +163,12 @@ export class ReviewContainer extends React.PureComponent<{
     return (
       <Section anchor={REVIEWS_SECTION_ID}>
         <Container>
-          <WriteIcon
-            src="https://assets.triple.guide/images/btn-com-write@2x.png"
-            onClick={this.handleWriteButtonClick}
-          />
+          {shortened && (
+            <WriteIcon
+              src="https://assets.triple.guide/images/btn-com-write@2x.png"
+              onClick={this.handleWriteButtonClick}
+            />
+          )}
 
           <Text
             bold
@@ -186,10 +186,11 @@ export class ReviewContainer extends React.PureComponent<{
             </Text>
           ) : null}
         </Container>
-
-        <ReviewsPlaceholder onClick={this.handleWriteButtonClick}>
-          이곳에 다녀오셨나요?
-        </ReviewsPlaceholder>
+        {shortened && (
+          <ReviewsPlaceholder onClick={this.handleWriteButtonClick}>
+            이곳에 다녀오셨나요?
+          </ReviewsPlaceholder>
+        )}
 
         {(reviewsCount || 0) > 1 ? (
           <>
@@ -209,7 +210,7 @@ export class ReviewContainer extends React.PureComponent<{
             isPublic={isPublic}
             resourceType={resourceType}
             regionId={regionId}
-            APP_URL_SCHEME={APP_URL_SCHEME}
+            appUrlScheme={appUrlScheme}
             margin={{ top: (reviewsCount || 0) > 1 ? 18 : 30 }}
             reviews={reviews.slice(0, myReview ? 2 : 3)}
             myReview={myReview}

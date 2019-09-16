@@ -4,43 +4,41 @@ import { MyReviewsProvider } from './my-review-context'
 import { ReviewContainer } from './review-container'
 import { ReviewLikesProvider } from './review-likes-context'
 import { TransitionModal } from '@titicaca/modals'
-export default function Reviews({
-  shortened,
-  regionId,
+export * from './review-placeholder-with-rating'
+export function Reviews({
   resourceId,
   resourceType,
-  reviewed,
-  isPublic,
+  regionId,
   reviewsCount,
+  reviewed,
+  shortened,
   onFullListButtonClick,
-  APP_URL_SCHEME,
-  subscribeLikedChangeEvent,
-  subscribeReviewUpdateEvent,
-  notifyReviewLiked,
-  notifyReviewUnliked,
-  notifyReviewDeleted,
-  showToast,
+  isPublic,
+  appUrlScheme,
+  appNativeActions,
   historyActions,
 }: {
-  shortened?: boolean
-  regionId: string
   resourceId: string
   resourceType: string
-  reviewed?: any
-  isPublic: boolean
+  regionId: string
   reviewsCount: number
+  shortened?: boolean
+  reviewed?: boolean
+  isPublic: boolean
   onFullListButtonClick?: any
-  APP_URL_SCHEME: string
-  subscribeLikedChangeEvent: any
-  subscribeReviewUpdateEvent: any
-  notifyReviewLiked: any
-  notifyReviewUnliked: any
-  notifyReviewDeleted: any
-  showToast: any
+  appUrlScheme: string
+  appNativeActions: any
   historyActions: any //@TODO triple-react-context 주입하면서 삭제
 }) {
   const { back } = historyActions
+  const {
+    subscribeLikedChangeEvent,
+    subscribeReviewUpdateEvent,
+    notifyReviewLiked,
+    notifyReviewUnliked,
+  } = appNativeActions
   return (
+    //@TODO triple-react-context 주입시 재사용 가능한지 검토
     <MyReviewsProvider
       fetchMyReview={fetchMyReviews}
       subscribeReviewUpdateEvent={subscribeReviewUpdateEvent}
@@ -56,14 +54,13 @@ export default function Reviews({
           shortened={shortened}
           regionId={regionId}
           isPublic={isPublic}
-          APP_URL_SCHEME={APP_URL_SCHEME}
+          appUrlScheme={appUrlScheme}
           reviewsCount={reviewsCount}
           resourceId={resourceId}
           resourceType={resourceType}
           reviewed={reviewed}
           onFullListButtonClick={onFullListButtonClick}
-          notifyReviewDeleted={notifyReviewDeleted}
-          showToast={showToast}
+          appNativeActions={appNativeActions}
           historyActions={historyActions}
         />
         <TransitionModal onClose={back} />
