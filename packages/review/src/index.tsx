@@ -3,10 +3,11 @@ import { likeReview, unlikeReview, fetchMyReviews } from './review-api-clients'
 import { MyReviewsProvider } from './my-review-context'
 import { ReviewContainer } from './review-container'
 import { ReviewLikesProvider } from './review-likes-context'
+import { TransitionModal } from '@titicaca/modals'
 export default function Reviews({
   shortened,
   regionId,
-  source,
+  resourceId,
   resourceType,
   reviewed,
   isPublic,
@@ -19,10 +20,11 @@ export default function Reviews({
   notifyReviewUnliked,
   notifyReviewDeleted,
   showToast,
+  historyActions,
 }: {
   shortened?: boolean
   regionId: string
-  source: any
+  resourceId: string
   resourceType: string
   reviewed?: any
   isPublic: boolean
@@ -35,13 +37,9 @@ export default function Reviews({
   notifyReviewUnliked: any
   notifyReviewDeleted: any
   showToast: any
+  historyActions: any //@TODO triple-react-context 주입하면서 삭제
 }) {
-  const {
-    subscribeLikedChangeEvent,
-    subscribeReviewUpdateEvent,
-    notifyReviewLiked,
-    notifyReviewUnliked,
-  } = appNativeActions
+  const { back } = historyActions
   return (
     <MyReviewsProvider
       fetchMyReview={fetchMyReviews}
@@ -60,13 +58,15 @@ export default function Reviews({
           isPublic={isPublic}
           APP_URL_SCHEME={APP_URL_SCHEME}
           reviewsCount={reviewsCount}
-          source={source}
+          resourceId={resourceId}
           resourceType={resourceType}
           reviewed={reviewed}
           onFullListButtonClick={onFullListButtonClick}
           notifyReviewDeleted={notifyReviewDeleted}
           showToast={showToast}
+          historyActions={historyActions}
         />
+        <TransitionModal onClose={back} />
       </ReviewLikesProvider>
     </MyReviewsProvider>
   )
