@@ -44,7 +44,7 @@ const HASH_DELETION_MODAL = 'common.reviews-list.deletion-modal'
 
 class ReviewsList extends React.PureComponent<{
   isPublic: boolean
-  APP_URL_SCHEME: string
+  appUrlScheme: string
   margin: MarginPadding
   reviews: any
   myReview: any
@@ -64,13 +64,13 @@ class ReviewsList extends React.PureComponent<{
   handleUserClick = (e, { user }) => {
     const { uid: userId, unregister } = user
     const {
-      props: { isPublic, showToast, APP_URL_SCHEME },
+      props: { isPublic, showToast, appUrlScheme },
     } = this
     if (!isPublic) {
       if (unregister) {
         showToast('탈퇴한 사용자입니다.')
       } else {
-        window.location.href = `${APP_URL_SCHEME}:///users/${userId}`
+        window.location.href = `${appUrlScheme}:///users/${userId}`
       }
     }
   }
@@ -91,12 +91,12 @@ class ReviewsList extends React.PureComponent<{
 
   handleLikesCountClick = (e, { id }) => {
     const {
-      props: { isPublic, regionId, resourceType, APP_URL_SCHEME, resourceId },
+      props: { isPublic, regionId, resourceType, appUrlScheme, resourceId },
     } = this
 
     if (!isPublic) {
       //@TODO 졸아요 클릭
-      window.location.href = `${APP_URL_SCHEME}:///regions/${regionId}/${resourceType}/${resourceId}/reviews/${id}/thanks`
+      window.location.href = `${appUrlScheme}:///regions/${regionId}/${resourceType}/${resourceId}/reviews/${id}/thanks`
     }
   }
 
@@ -117,14 +117,14 @@ class ReviewsList extends React.PureComponent<{
   handleEditMenuClick = () => {
     const {
       props: {
-        APP_URL_SCHEME,
+        appUrlScheme,
         regionId,
         resourceType,
         resourceId,
       },
     } = this
 
-    window.location.href = `${APP_URL_SCHEME}:////reviews/edit?region_id=${regionId}&resource_type=${resourceType}&resource_id=${resourceId}`
+    window.location.href = `${appUrlScheme}:////reviews/edit?region_id=${regionId}&resource_type=${resourceType}&resource_id=${resourceId}`
   }
 
   handleDeleteMenuClick = () => {
@@ -135,7 +135,7 @@ class ReviewsList extends React.PureComponent<{
 
   handleImageClick = (e, review) => {
     const {
-      props: { isPublic, APP_URL_SCHEME },
+      props: { isPublic, appUrlScheme },
     } = this
     const { attachments } = review
 
@@ -143,7 +143,7 @@ class ReviewsList extends React.PureComponent<{
       return
     }
 
-    window.location.href = `${APP_URL_SCHEME}:///images?${attachments}`
+    window.location.href = `${appUrlScheme}:///images?${attachments}`
   }
 
   deleteReview = async () => {
@@ -168,12 +168,12 @@ class ReviewsList extends React.PureComponent<{
 
   handleReportClick = () => {
     const {
-      props: { APP_URL_SCHEME },
+      props: { appUrlScheme },
       state: {
         selectedReview: { id },
       },
     } = this
-    window.location.href = `${APP_URL_SCHEME}:///reviews/${id}/report`
+    window.location.href = `${appUrlScheme}:///reviews/${id}/report`
   }
 
   render() {
