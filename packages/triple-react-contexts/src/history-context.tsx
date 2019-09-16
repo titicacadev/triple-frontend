@@ -1,15 +1,8 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useCallback,
-  useMemo,
-} from 'react'
+import * as React from 'react'
 import Router from 'next/router'
 import qs from 'qs'
 
-const Context = createContext()
+const Context = React.createContext(undefined)
 
 const EXTERNAL_BROWSER_HOSTS = ['play.google.com', 'itunes.apple.com']
 
@@ -26,7 +19,12 @@ function targetPageAvailable(path) {
   )
 }
 
-const HASH_HISTORIES = []
+interface HashHistory {
+  hash?: string
+  useRouter?: boolean
+}
+
+const HASH_HISTORIES: HashHistory[] = []
 
 export function HistoryProvider({
   appUrlScheme,
@@ -36,14 +34,15 @@ export function HistoryProvider({
   isPublic,
   children,
 }) {
-  const [uriHash, setUriHash] = useState(null)
+  const [uriHash, setUriHash] = React.useState(null)
 
-  const onHashChange = useCallback((url) => {
+  const onHashChange = React.useCallback((url) => {
     const hash = new URL(url, 'https://triple.guide').hash.replace(/^#/, '')
 
     // We only need to check if onHashChange is triggered by native action.
-    const { hash: previousHash } =
-      HASH_HISTORIES[HASH_HISTORIES.length - 2] || {}
+    const { hash: previousHash } = HASH_HISTORIES[
+      HASH_HISTORIES.length - 2
+    ] || { hash: undefined }
 
     if ((previousHash || '') === hash) {
       HASH_HISTORIES.pop()
@@ -52,7 +51,7 @@ export function HistoryProvider({
     }
   }, [])
 
-  useEffect(() => {
+  React.useEffect(() => {
     Router.events.on('routeChangeStart', onHashChange)
     Router.events.on('hashChangeStart', onHashChange)
 
@@ -62,7 +61,7 @@ export function HistoryProvider({
     }
   }, [onHashChange])
 
-  const replace = useCallback(
+  const replace = React.useCallback(
     (hash, { useRouter = isAndroid } = {}) => {
       HASH_HISTORIES.pop()
       HASH_HISTORIES.push({ hash, useRouter })
@@ -76,7 +75,7 @@ export function HistoryProvider({
     [isAndroid],
   )
 
-  const push = useCallback(
+  const push = React.useCallback(
     (hash, { useRouter = isAndroid } = {}) => {
       HASH_HISTORIES.push({ hash, useRouter })
 
@@ -89,8 +88,8 @@ export function HistoryProvider({
     [isAndroid],
   )
 
-  const back = useCallback(() => {
-    const { useRouter } = HASH_HISTORIES.pop() || {}
+  const back = React.useCallback(() => {
+    const { useRouter } = HASH_HISTORIES.pop() || { useRouter: false }
 
     setUriHash((HASH_HISTORIES[HASH_HISTORIES.length - 1] || {}).hash)
 
@@ -99,12 +98,12 @@ export function HistoryProvider({
     }
   }, [])
 
-  const navigateOnPublic = useCallback(
+  const navigateOnPublic = React.useCallback(
     ({ href, protocol, path }) => {
       if (protocol === 'http:' || protocol === 'https:') {
         window.location = href
       } else if (targetPageAvailable(path)) {
-        window.location = `${webUrlBase}${path}`
+        window.location = (`${webUrlBase}${path}` as unknown) as Location
       } else {
         transitionModalHash && push(transitionModalHash)
       }
@@ -112,7 +111,7 @@ export function HistoryProvider({
     [push, transitionModalHash, webUrlBase],
   )
 
-  const navigateInApp = useCallback(
+  const navigateInApp = React.useCallback(
     ({ href, protocol, host, path }, params) => {
       if (protocol === `${appUrlScheme}:`) {
         window.location = href
@@ -125,17 +124,17 @@ export function HistoryProvider({
             (EXTERNAL_BROWSER_HOSTS.includes(host) ? 'browser' : 'default'),
         })
 
-        window.location = `${appUrlScheme}:///outlink?${outlinkParams}`
+        window.location = (`${appUrlScheme}:///outlink?${outlinkParams}` as unknown) as Location
       } else {
-        window.location = `${appUrlScheme}://${path}`
+        window.location = (`${appUrlScheme}://${path}` as unknown) as Location
       }
     },
     [appUrlScheme],
   )
 
-  const navigate = useCallback(
+  const navigate = React.useCallback(
     (href, params) => {
-      let url = {}
+      let url: Partial<URL> = {}
 
       try {
         url = new URL(href)
@@ -145,7 +144,11 @@ export function HistoryProvider({
 
       const protocol = url.protocol
       const host = url.host
-      const [, , path] = (url.pathname || href).match(/(^\/\/)?(\/.*)/) || []
+      const [, , path] = (url.pathname || href).match(/(^\/\/)?(\/.*)/) || [
+        undefined,
+        undefined,
+        undefined,
+      ]
       const query = (url.search || '').substring(1)
 
       if (protocol === `${appUrlScheme}:` && (path || '').match(/^\/outlink/)) {
@@ -153,7 +156,7 @@ export function HistoryProvider({
 
         return navigate(targetUrl, params)
       } else if (isPublic) {
-        return navigateOnPublic({ href, protocol, host, path, query }, params)
+        return navigateOnPublic({ href, protocol, host, path, query })
       } else {
         return navigateInApp({ href, protocol, host, path, query }, params)
       }
@@ -161,7 +164,7 @@ export function HistoryProvider({
     [appUrlScheme, isPublic, navigateInApp, navigateOnPublic],
   )
 
-  const value = useMemo(
+  const value = React.useMemo(
     () => ({
       uriHash,
       push,
@@ -176,7 +179,7 @@ export function HistoryProvider({
 }
 
 export function useHistoryContext() {
-  return useContext(Context)
+  return React.useContext(Context)
 }
 
 export function withHistory(Component) {

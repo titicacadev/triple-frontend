@@ -1,6 +1,6 @@
-import React, { createContext, PureComponent, useContext } from 'react'
+import * as React from 'react'
 
-const Context = createContext()
+const Context = React.createContext(undefined)
 
 const TYPE_MAPPING = {
   attraction: 'poi',
@@ -8,7 +8,36 @@ const TYPE_MAPPING = {
   hotel: 'poi',
 }
 
-export class ImagesProvider extends PureComponent {
+interface Image {
+  id: string
+  sizes: {
+    [key: string]: {
+      url: string
+    }
+  }
+}
+
+interface ImagesProviderProps {
+  fetchImages: Function
+  source: {
+    id: string
+    type: string
+  }
+  children: React.ReactNode
+  images?: Image[]
+}
+
+interface ImagesProviderState {
+  images: Image[]
+  total: null | number
+  loading: boolean
+  hasMore: boolean
+}
+
+export class ImagesProvider extends React.PureComponent<
+  ImagesProviderProps,
+  ImagesProviderState
+> {
   state = {
     images: this.props.images || [],
     total: null,
@@ -110,7 +139,7 @@ export class ImagesProvider extends PureComponent {
 }
 
 export function useImagesContext() {
-  return useContext(Context)
+  return React.useContext(Context)
 }
 
 export function withImages(Component) {
