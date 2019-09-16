@@ -68,7 +68,6 @@ export function Reviews({
           resourceId={resourceId}
         />
       </ReviewLikesProvider>
-      s
     </MyReviewsProvider>
   )
 }
