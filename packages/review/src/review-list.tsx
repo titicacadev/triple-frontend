@@ -1,7 +1,7 @@
 import * as React from 'react'
 import moment from 'moment-timezone'
 import { Confirm } from '@titicaca/modals'
-// import ActionSheet from '@titicaca/action-sheet'
+import ActionSheet from '@titicaca/action-sheet'
 import { MarginPadding } from '@titicaca/triple-design-system'
 import ReviewsListView from './review-element'
 import { withReviewLikes } from './review-likes-context'
@@ -38,8 +38,8 @@ function ReviewTimestamp({ children }) {
   return createdAt.format('YYYY.M.D')
 }
 
-// const HASH_MY_REVIEW_ACTION_SHEET = 'common.reviews-list.my-review-action-sheet'
-// const HASH_REVIEW_ACTION_SHEET = 'common.reviews-list.review-action-sheet'
+const HASH_MY_REVIEW_ACTION_SHEET = 'common.reviews-list.my-review-action-sheet'
+const HASH_REVIEW_ACTION_SHEET = 'common.reviews-list.review-action-sheet'
 const HASH_DELETION_MODAL = 'common.reviews-list.deletion-modal'
 
 class ReviewsList extends React.PureComponent<{
@@ -102,33 +102,37 @@ class ReviewsList extends React.PureComponent<{
 
   handleMenuClick = (e, review) => {
     const {
-      props: { isPublic, myReview },
+      props: {
+        isPublic,
+        myReview,
+        historyActions: { push },
+      },
     } = this
     if (!isPublic) {
       if (review.id === (myReview || {}).id) {
-        // setPopup(HASH_MY_REVIEW_ACTION_SHEET)
+        push(HASH_MY_REVIEW_ACTION_SHEET)
       } else {
         this.setState({ selectedReview: review })
-        // setPopup(HASH_REVIEW_ACTION_SHEET)
+        push(HASH_REVIEW_ACTION_SHEET)
       }
     }
   }
 
   handleEditMenuClick = () => {
     const {
-      props: {
-        appUrlScheme,
-        regionId,
-        resourceType,
-        resourceId,
-      },
+      props: { appUrlScheme, regionId, resourceType, resourceId },
     } = this
 
     window.location.href = `${appUrlScheme}:////reviews/edit?region_id=${regionId}&resource_type=${resourceType}&resource_id=${resourceId}`
   }
 
   handleDeleteMenuClick = () => {
-    // setPopup(HASH_DELETION_MODAL)
+    const {
+      props: {
+        historyActions: { push },
+      },
+    } = this
+    push(HASH_DELETION_MODAL)
 
     return true
   }
@@ -206,26 +210,23 @@ class ReviewsList extends React.PureComponent<{
           onImageClick={this.handleImageClick}
         />
 
-        {/*<ActionSheet*/}
-        {/*  open={popup === HASH_REVIEW_ACTION_SHEET}*/}
-        {/*  onClose={closePopup}*/}
-        {/*>*/}
-        {/*  <ActionSheet.Item icon="report" onClick={this.handleReportClick}>*/}
-        {/*    신고하기*/}
-        {/*  </ActionSheet.Item>*/}
-        {/*</ActionSheet>*/}
+        <ActionSheet open={uriHash === HASH_REVIEW_ACTION_SHEET} onClose={back}>
+          <ActionSheet.Item icon="report" onClick={this.handleReportClick}>
+            신고하기
+          </ActionSheet.Item>
+        </ActionSheet>
 
-        {/*<ActionSheet*/}
-        {/*  open={popup === HASH_MY_REVIEW_ACTION_SHEET}*/}
-        {/*  onClose={closePopup}*/}
-        {/*>*/}
-        {/*  <ActionSheet.Item icon="review" onClick={this.handleEditMenuClick}>*/}
-        {/*    수정하기*/}
-        {/*  </ActionSheet.Item>*/}
-        {/*  <ActionSheet.Item icon="delete" onClick={this.handleDeleteMenuClick}>*/}
-        {/*    삭제하기*/}
-        {/*  </ActionSheet.Item>*/}
-        {/*</ActionSheet>*/}
+        <ActionSheet
+          open={uriHash === HASH_MY_REVIEW_ACTION_SHEET}
+          onClose={back}
+        >
+          <ActionSheet.Item icon="review" onClick={this.handleEditMenuClick}>
+            수정하기
+          </ActionSheet.Item>
+          <ActionSheet.Item icon="delete" onClick={this.handleDeleteMenuClick}>
+            삭제하기
+          </ActionSheet.Item>
+        </ActionSheet>
 
         <Confirm
           open={uriHash === HASH_DELETION_MODAL}
