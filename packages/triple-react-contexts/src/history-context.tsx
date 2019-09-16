@@ -1,5 +1,3 @@
-declare var window: any
-
 import React from 'react'
 import Router from 'next/router'
 import qs from 'qs'

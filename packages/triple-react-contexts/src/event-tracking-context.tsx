@@ -1,5 +1,3 @@
-declare var window: any
-
 import React from 'react'
 
 interface EventTrackingContextValue {
