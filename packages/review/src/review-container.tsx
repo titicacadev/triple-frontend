@@ -66,7 +66,7 @@ export class ReviewContainer extends React.PureComponent<ReviewProps> {
     reviews: [],
     myReview: undefined,
     orders: getDefaultReviewOrders(),
-    filterOptions: { from: 0, size: DEFAULT_SIZE },
+    reviewFrom: 0,
   }
 
   componentDidMount() {
@@ -88,13 +88,13 @@ export class ReviewContainer extends React.PureComponent<ReviewProps> {
     })
 
     //@TODO pagination 처리 필요
-    const { from, size } = this.state.filterOptions
+    const { state: {reviewFrom: from} } = this
     const params:FetchReviewsInterface = {
       resourceId,
       resourceType,
       from,
       order: orderKey,
-      size,
+      size: DEFAULT_SIZE,
     }
     const response = await fetchReviewsApi(params)
 
