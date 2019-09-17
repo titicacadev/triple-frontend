@@ -103,7 +103,7 @@ export default function Coupon({ value: { identifier: slugId, description } }) {
       })
 
       if (response.ok) {
-        const { downloaded } = response.json()
+        const { downloaded } = await response.json()
         changeDownloadStatus(downloaded)
       }
     } catch (e) {
@@ -127,7 +127,7 @@ export default function Coupon({ value: { identifier: slugId, description } }) {
         )
 
         if (response.ok) {
-          const { downloaded } = response.json()
+          const { downloaded } = await response.json()
           changeDownloadStatus(downloaded)
         } else {
           changeAlertMessage(response.statusText)
