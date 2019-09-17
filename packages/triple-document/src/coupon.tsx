@@ -1,7 +1,12 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { Modal } from '@titicaca/modals'
-import { Button, GetGlobalColor, Text } from '@titicaca/triple-design-system'
+import {
+  Button,
+  GetGlobalColor,
+  Text,
+  Container,
+} from '@titicaca/triple-design-system'
 
 const ModalCouponDownloadDescription = styled(Text)`
   color: rgb(${GetGlobalColor('gray')}, 0.7);
@@ -103,7 +108,7 @@ export default function DownloadCoupon({
   }
 
   return (
-    <>
+    <Container margin={{ top: 44, right: 30, left: 30, bottom: 42 }}>
       <CouponDownloadButton
         onClick={onDownloadButtonClick}
         isDownloaded={isDownloaded}
@@ -125,6 +130,6 @@ export default function DownloadCoupon({
         onClose={() => changeModalVisibility(false)}
         onConfirm={onCouponDownloadConfirmClick}
       />
-    </>
+    </Container>
   )
 }
