@@ -3,7 +3,7 @@ import { likeReview, unlikeReview, fetchMyReviews } from './review-api-clients'
 import { MyReviewsProvider } from './my-review-context'
 import { ReviewContainer } from './review-container'
 import { ReviewLikesProvider } from './review-likes-context'
-import { TransitionModal } from './transition-modals'
+import { TransitionModals } from './transition-modals'
 
 export interface ReviewProps {
   resourceId: string
@@ -72,7 +72,7 @@ export default function Reviews({
           appNativeActions={appNativeActions}
           historyActions={historyActions}
         />
-        <TransitionModal
+        <TransitionModals
           historyActions={historyActions}
           regionId={regionId}
           resourceId={resourceId}

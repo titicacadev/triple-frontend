@@ -14,7 +14,7 @@ const TYPES_BY_HASH = {
   [HASH_REVIEW_WRITE_TRANSITION_MODAL]: 'reviewWrite',
 }
 
-export function TransitionModal({
+export function TransitionModals({
   historyActions,
   regionId,
   resourceId,
