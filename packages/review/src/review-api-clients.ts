@@ -20,13 +20,7 @@ export function fetchReviews({
   order = '',
   from = 0,
   size = 30,
-}: {
-  resourceId: string
-  resourceType: string
-  order: string
-  from: number
-  size: number
-}) {
+}: FetchReviewsInterface) {
   const url = `/api/reviews/v2?resource_id=${resourceId}&resource_type=${resourceType}&from=${from}&size=${size}&order=${order}`
   return fetch(url, { credentials: 'same-origin' })
 }
@@ -40,4 +34,12 @@ export function deleteReview({ id }: { id: string }) {
     method: 'DELETE',
     credentials: 'same-origin',
   })
+}
+
+export interface FetchReviewsInterface {
+  resourceId: string
+  resourceType: string
+  order: string
+  from: number
+  size: number
 }

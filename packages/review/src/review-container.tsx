@@ -11,7 +11,7 @@ import {
 } from '@titicaca/triple-design-system'
 import { formatNumber } from '@titicaca/view-utilities'
 import ReviewsPlaceholder from './review-placeholder-with-rating'
-import { fetchReviews as fetchReviewsApi } from './review-api-clients'
+import { fetchReviews as fetchReviewsApi, FetchReviewsInterface } from './review-api-clients'
 import ReviewsList from './review-list'
 import { ReviewProps } from './index'
 const REVIEWS_SECTION_ID = 'reviews'
@@ -89,13 +89,14 @@ export class ReviewContainer extends React.PureComponent<ReviewProps> {
 
     //@TODO pagination 처리 필요
     const { from, size } = this.state.filterOptions
-    const response = await fetchReviewsApi({
+    const params:FetchReviewsInterface = {
       resourceId,
       resourceType,
       from,
       order: orderKey,
       size,
-    })
+    }
+    const response = await fetchReviewsApi(params)
 
     if (response.ok) {
       const reviewData = humps.camelizeKeys(await response.json()).reviews
