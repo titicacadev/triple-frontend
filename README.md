@@ -86,10 +86,10 @@ $ lerna bootstrap
     - 디펜던시에 변경이 있는 경우 `lerna bootstrap` 실행 필요
   2. 커밋 & 푸시
   3. PR 생성 & 리뷰
-  4. 버전 생성: `npm run version` (경우에 따라 PR과 함께 혹은 별도로 생성)
+  4. 버전 생성 (Optional): `npm run version` (경우에 따라 PR과 함께 혹은 별도로 생성)
   5. master 머지
   6. `/release` 커맨드로 배포
-  7. CD에서 패키지 publish, npm 페이지 통해서 확인
+  7. 배포 (Optional): CD에서 패키지 publish, npm 페이지 통해서 확인
 
 #### 패키지 추가
 
@@ -97,15 +97,16 @@ $ lerna bootstrap
   2. 적절한 `package.json` 및 `tsconfig.json` 수정 및 생성
   3. 프로젝트 루트에서 `lerna bootstrap` 커맨드 실행으로 디펜던시 링크
   4. `src`에 코드 작성
-  5. 버전 생성: 기존 패키지에서 분리가 일어나서 API 인터페이스에 변경이
-     있었다면 MAJOR, 기존 패키지와 관련 없는 패키지 추가라면 MINOR 버전 올림
+  5. 버전 생성 (Optional): 기존 패키지에서 분리가 일어나서 API 인터페이스에
+     변경이 있었다면 MAJOR, 기존 패키지와 관련 없는 패키지 추가라면 MINOR 버전
+     올림
      - `npm run version -- major`
      - `npm run version -- minor`
   6. 커밋 & 푸시
   7. PR 생성 & 리뷰
   8. master 머지
   9. `/release` 커맨드로 배포
-  10. CD에서 패키지 publish, npm 페이지 통해서 확인
+  10. 배포 (Optional): CD에서 패키지 publish, npm 페이지 통해서 확인
 
 ### Testing
 
