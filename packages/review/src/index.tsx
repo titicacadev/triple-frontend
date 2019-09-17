@@ -18,7 +18,6 @@ export interface ReviewProps {
   appNativeActions: AppNativeActionProps
   historyActions: any //@TODO triple-react-context 주입하면서 삭제
 }
-
 export interface AppNativeActionProps {
   subscribeLikedChangeEvent?: Function
   subscribeReviewUpdateEvent?: Function
@@ -27,7 +26,6 @@ export interface AppNativeActionProps {
   showToast?: Function
   notifyReviewDeleted?: Function
 }
-
 export * from './review-placeholder-with-rating'
 export default function Reviews({
   resourceId,
