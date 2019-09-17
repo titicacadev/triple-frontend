@@ -81,9 +81,6 @@ const CouponDownloadButton = styled(Button)<{
 export default function DownloadCoupon({
   onCouponDownload,
   onCouponModalConfirm,
-  downloadMessage,
-  downloadCompleteMessage,
-  downloadDescription,
   isDownloaded,
 }: {
   onCouponDownload?: (e: React.SyntheticEvent) => any
@@ -111,9 +108,7 @@ export default function DownloadCoupon({
         onClick={onDownloadButtonClick}
         isDownloaded={isDownloaded}
       >
-        {isDownloaded
-          ? downloadCompleteMessage || '받기 완료'
-          : downloadMessage || '쿠폰 받기'}
+        {isDownloaded ? '받기 완료' : '쿠폰 받기'}
       </CouponDownloadButton>
 
       <CouponDescriptionContainer
@@ -121,8 +116,8 @@ export default function DownloadCoupon({
         lineHeight={1.46}
         size="tiny"
       >
-        {downloadDescription ||
-          '본 쿠폰은 결제액에 대한 제한 없이 현금처럼 사용할 수 있는 쿠폰이며, 트리플 내 호텔 예약에 이용 가능합니다.'}
+        본 쿠폰은 결제액에 대한 제한 없이 현금처럼 사용할 수 있는 쿠폰이며,
+        트리플 내 호텔 예약에 이용 가능합니다.
       </CouponDescriptionContainer>
 
       <DownloadedCouponModal

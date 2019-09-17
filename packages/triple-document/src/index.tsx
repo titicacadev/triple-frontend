@@ -113,9 +113,6 @@ export default function TripleDocument({
   // 쿠폰
   onCouponDownload,
   onCouponModalConfirm,
-  downloadMessage,
-  downloadCompleteMessage,
-  downloadDescription,
   isDownloaded,
 }) {
   return (
@@ -139,9 +136,6 @@ export default function TripleDocument({
               // 쿠폰
               onCouponDownload={onCouponDownload}
               onCouponModalConfirm={onCouponModalConfirm}
-              downloadMessage={downloadMessage}
-              downloadCompleteMessage={downloadCompleteMessage}
-              downloadDescription={downloadDescription}
               isDownloaded={isDownloaded}
             />
           )
