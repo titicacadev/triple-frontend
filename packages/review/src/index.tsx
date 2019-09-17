@@ -4,8 +4,32 @@ import { MyReviewsProvider } from './my-review-context'
 import { ReviewContainer } from './review-container'
 import { ReviewLikesProvider } from './review-likes-context'
 import { TransitionModal } from './transition-modals'
+
+export interface ReviewProps {
+  resourceId: string
+  resourceType: string
+  regionId: string
+  reviewsCount: number
+  shortened?: boolean
+  reviewed?: boolean
+  isPublic?: boolean
+  onFullListButtonClick?: any
+  appUrlScheme: string
+  appNativeActions: AppNativeActionProps
+  historyActions: any //@TODO triple-react-context 주입하면서 삭제
+}
+
+export interface AppNativeActionProps {
+  subscribeLikedChangeEvent?: Function
+  subscribeReviewUpdateEvent?: Function
+  notifyReviewLiked?: Function
+  notifyReviewUnliked?: Function
+  showToast?: Function
+  notifyReviewDeleted?: Function
+}
+
 export * from './review-placeholder-with-rating'
-export function Reviews({
+export default function Reviews({
   resourceId,
   resourceType,
   regionId,
@@ -17,19 +41,7 @@ export function Reviews({
   appUrlScheme,
   appNativeActions,
   historyActions,
-}: {
-  resourceId: string
-  resourceType: string
-  regionId: string
-  reviewsCount: number
-  shortened?: boolean
-  reviewed?: boolean
-  isPublic: boolean
-  onFullListButtonClick?: any
-  appUrlScheme: string
-  appNativeActions: any
-  historyActions: any //@TODO triple-react-context 주입하면서 삭제
-}) {
+}: ReviewProps) {
   const {
     subscribeLikedChangeEvent,
     subscribeReviewUpdateEvent,

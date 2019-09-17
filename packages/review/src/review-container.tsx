@@ -13,6 +13,7 @@ import { formatNumber } from '@titicaca/view-utilities'
 import ReviewsPlaceholder from './review-placeholder-with-rating'
 import { fetchReviews as fetchReviewsApi } from './review-api-clients'
 import ReviewsList from './review-list'
+import { ReviewProps } from './index'
 const REVIEWS_SECTION_ID = 'reviews'
 const ORDER_BY_RECOMMENDATION = 'recommendation'
 const ORDER_BY_RECENCY = 'recency'
@@ -60,20 +61,7 @@ function getDefaultReviewOrders(selectedKey = ORDER_BY_RECOMMENDATION) {
   }))
 }
 
-export class ReviewContainer extends React.PureComponent<{
-  shortened: boolean
-  regionId: string
-  isPublic: boolean
-  appUrlScheme: string
-  reviewsCount: number
-  resourceId: string
-  resourceType: string
-  reviewed: boolean
-  onFullListButtonClick?: any
-  appNativeActions: any
-  historyActions: any
-  children?: React.ReactNode
-}> {
+export class ReviewContainer extends React.PureComponent<ReviewProps> {
   state = {
     reviews: [],
     myReview: undefined,
