@@ -1,0 +1,16 @@
+{
+    "id": "7197e4b3-5748-491b-a3a2-6730d839d989",
+    "name": "500만 축하 10,000원 할인 쿠폰",
+    "description": "호텔 예약시 10,000원 할인",
+    "publicationPeriod": {
+        "startAt": "2019-09-16T00:00:00Z",
+        "endAt": "2020-09-21T00:00:00Z"
+    },
+    "maxDiscountAmount": 10000,
+    "discountPolicy": {
+        "type": "AMOUNT",
+        "value": 10000.0
+    },
+    "useConditions": [],
+    "downloaded": true
+}

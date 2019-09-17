@@ -15,7 +15,11 @@
   },
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
+    "@titicaca/modals": "^1.0.0-alpha.11",
+    "@titicaca/react-contexts": "^1.0.0-alpha.11",
     "@titicaca/poi-list-elements": "^1.0.0-alpha.11",
-    "@titicaca/triple-design-system": "^1.0.0-alpha.11"
+    "@titicaca/triple-design-system": "^1.0.0-alpha.11",
+    "isomorphic-fetch": "^2.2.1",
+    "universal-cookie": "^4.0.2"
   }
 }
