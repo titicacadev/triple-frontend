@@ -103,16 +103,15 @@ export default function Coupon({ value: { identifier: slugId, description } }) {
       })
 
       if (response.ok) {
-        const {
-          downloaded,
-          publicationPeriod: { startAt, endAt },
-        } = response
+        const { downloaded } = response
         changeDownloadStatus(downloaded)
       }
-    } catch (e) {}
+    } catch (e) {
+      //nothing to do
+    }
   })
 
-  async function onDownloadButtonClick(e) {
+  async function onDownloadButtonClick() {
     if (!isDownloaded) {
       try {
         const sessionId = new Cookies(document.cookie).get('x-soto-session')
@@ -133,14 +132,16 @@ export default function Coupon({ value: { identifier: slugId, description } }) {
         } else {
           changeAlertMessage(response.statusText)
         }
-      } catch (e) {}
+      } catch (e) {
+        //nothing to do
+      }
     }
   }
 
   return (
     <Container margin={{ top: 44, right: 30, left: 30, bottom: 42 }}>
       <CouponDownloadButton
-        onClick={(e) => onDownloadButtonClick}
+        onClick={() => onDownloadButtonClick}
         isDownloaded={isDownloaded}
       >
         {isDownloaded ? '받기 완료' : '쿠폰 받기'}
