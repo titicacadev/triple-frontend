@@ -33,6 +33,19 @@ Slack `@frontend` 그룹, `#triple-web-dev` 채널 및 GitHub `@frontend` 팀
 >  2. `MINOR` version when you add functionality in a backwards compatible manner, and
 >  3. `PATCH` version when you make backwards compatible bug fixes.
 
+#### Versioning by Examples
+
+  - 특정 패키지에 기능 추가: 인터페이스 변경 없이 특정 패키지의 기능이
+    추가되었다면 `MINOR` 버전을 올립니다.
+  - 패키지 추가: 다른 패키지에 영향이 없는 범위에서 패키지가 추가되었다면 기능
+    추가로 볼 수 있고, `MINOR` 버전을 올립니다.
+  - 패키지 분리: 분리 대상인 패키지의 인터페이스에 변경이 일어납니다. 해당
+    패키지를 이용하는 프로젝트들에 코드 변경이 필요하기 때문에 `MAJOR` 버전
+    올림에 해당합니다.
+  - 인터페이스 개선: 인터페이스 변경이 하위 호환을 보장하는지 여부에 따라서
+    `MAJOR` 혹은 `MINOR` 버전 올림에 해당합니다.
+  - 버그 수정: 인터페이스 변경이 없는 버그 수정은 `PATCH` 버전 올림입니다.
+
 ### Documentation
 
 [Triple Frontend Documentation](https://design.triple.systems) 페이지에서 컴포넌트
