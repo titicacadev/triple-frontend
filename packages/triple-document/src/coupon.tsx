@@ -97,13 +97,13 @@ export default function Coupon({ value: { identifier: slugId, description } }) {
       const response = await fetch(`/api/benefit/coupons/${slugId}`, {
         headers: {
           'Content-Type': 'application/json',
-          ...(sessionId ? { 'X-Soto-Session': sessionId } : {}),
+          ...(sessionId && { 'X-Soto-Session': sessionId }),
         },
         credentials: 'same-origin',
       })
 
       if (response.ok) {
-        const { downloaded } = response
+        const { downloaded } = response.json()
         changeDownloadStatus(downloaded)
       }
     } catch (e) {
@@ -120,7 +120,7 @@ export default function Coupon({ value: { identifier: slugId, description } }) {
           {
             headers: {
               'Content-Type': 'application/json',
-              ...(sessionId ? { 'X-Soto-Session': sessionId } : {}),
+              ...(sessionId && { 'X-Soto-Session': sessionId }),
             },
             credentials: 'same-origin',
           },
