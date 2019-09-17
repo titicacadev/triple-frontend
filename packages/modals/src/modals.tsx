@@ -10,23 +10,44 @@ const IconImage = styled.img`
   margin: 40px auto 10px auto;
 `
 
-const MESSAGES_BY_TYPES: { scrap: { title: string; description: string } } = {
+const MESSAGES_BY_TYPES: {
+  scrap: {
+    title: string
+    description: string
+  }
+  review: { title: string }
+  reviewWrite: { title: string }
+} = {
   scrap: {
     title: '저장은 앱에서만 가능해요',
     description: '가고 싶은 장소를 저장하고, 여행할 때 실시간으로 꺼내 보세요.',
   },
+  review: { title: '리뷰는 앱에서 더 편리하게\n확인할 수 있어요.' },
+  reviewWrite: { title: '리뷰는 앱에서 작성할 수 있어요.' },
 }
 
-const ICONS: { scrap: string } = {
+const ICONS: {
+  scrap: string
+  review: string
+  reviewWrite: string
+} = {
   scrap: 'https://assets.triple.guide/images/img-heart@4x.png',
+  review: 'https://assets.triple.guide/images/ico-popup-review@4x.png',
+  reviewWrite: 'https://assets.triple.guide/images/ico-popup-review@4x.png',
 }
 
 function Actions({
   negative: { text: negativeText, onClick: onNegativeClick },
   positive: { text: positiveText, onClick: onPositiveClick },
 }: {
-  negative: { text?: string; onClick?: (e?: React.SyntheticEvent) => any }
-  positive: { text?: string; onClick?: (e?: React.SyntheticEvent) => any }
+  negative: {
+    text?: string
+    onClick?: (e?: React.SyntheticEvent) => any
+  }
+  positive: {
+    text?: string
+    onClick?: (e?: React.SyntheticEvent) => any
+  }
 }) {
   return (
     <Modal.Actions>
@@ -74,8 +95,13 @@ export function TransitionModal({
   onCancel?: (e?: React.SyntheticEvent) => any
   onConfirm?: (e?: React.SyntheticEvent) => any
 }) {
-  const { title, description }: { title?: string; description?: string } =
-    MESSAGES_BY_TYPES[messageType] || {}
+  const {
+    title,
+    description,
+  }: {
+    title?: string
+    description?: string
+  } = MESSAGES_BY_TYPES[messageType] || {}
 
   return title ? (
     <Modal open={open} onClose={onClose}>
