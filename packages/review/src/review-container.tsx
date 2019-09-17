@@ -11,7 +11,10 @@ import {
 } from '@titicaca/triple-design-system'
 import { formatNumber } from '@titicaca/view-utilities'
 import ReviewsPlaceholder from './review-placeholder-with-rating'
-import { fetchReviews as fetchReviewsApi, FetchReviewsInterface } from './review-api-clients'
+import {
+  fetchReviews as fetchReviewsApi,
+  FetchReviewsInterface,
+} from './review-api-clients'
 import ReviewsList from './review-list'
 import { ReviewProps } from './index'
 const REVIEWS_SECTION_ID = 'reviews'
@@ -88,8 +91,10 @@ export class ReviewContainer extends React.PureComponent<ReviewProps> {
     })
 
     //@TODO pagination 처리 필요
-    const { state: {reviewFrom: from} } = this
-    const params:FetchReviewsInterface = {
+    const {
+      state: { reviewFrom: from },
+    } = this
+    const params: FetchReviewsInterface = {
       resourceId,
       resourceType,
       from,
