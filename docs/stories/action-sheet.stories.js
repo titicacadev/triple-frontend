@@ -52,3 +52,13 @@ storiesOf('ActionSheet', module)
       </ActionSheet.Item>
     </ActionSheet>
   ))
+  .add('닫힌 텍스트 + 버튼 메뉴', () => (
+    <ActionSheet
+      open={boolean('열림', false)}
+      title={text('제목', '샘플 액션 시트')}
+    >
+      <ActionSheet.Item buttonLabel={text('버튼 레이블', '액션')}>
+        {text('메뉴 텍스트', '샘플 메뉴')}
+      </ActionSheet.Item>
+    </ActionSheet>
+  ))
