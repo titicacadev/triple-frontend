@@ -11,6 +11,7 @@
     "build-resources": "lerna exec --ignore @titicaca/triple-frontend-docs --ignore @titicaca/triple-frontend-tests 'BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --delete-dir-on-start --no-comments'",
     "build-declarations": "lerna exec --ignore @titicaca/triple-frontend-docs --ignore @titicaca/triple-frontend-tests tsc",
     "publish": "lerna publish from-package",
+    "canary-publish": "lerna publish --canary",
     "dev-docs": "lerna exec --scope @titicaca/triple-frontend-docs npm run dev",
     "prettier": "prettier --write \"**/*.{ts,tsx,js,json}\"",
     "lint": "eslint '{packages,tests/src}/**/*.{ts,tsx,js}'",
