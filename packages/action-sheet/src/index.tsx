@@ -269,7 +269,9 @@ export default function ActionSheet({
             </Provider>
           </Sheet>
         </Overlay>
-      ) : (<React.Fragment></React.Fragment>)}
+      ) : (
+        <React.Fragment></React.Fragment>
+      )}
     </CSSTransition>
   )
 }
