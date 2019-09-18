@@ -258,16 +258,18 @@ export default function ActionSheet({
 
   return (
     <CSSTransition in={open} appear classNames="fade" timeout={500}>
-      <Overlay onClick={onClose}>
-        <Sheet onClick={silenceEvent}>
-          {actionSheetTitle}
-          <Provider value={{ onClose }}>
-            <ContentContainer bottomSpacing={bottomSpacing}>
-              {children}
-            </ContentContainer>
-          </Provider>
-        </Sheet>
-      </Overlay>
+      {open ? (
+        <Overlay onClick={onClose}>
+          <Sheet onClick={silenceEvent}>
+            {actionSheetTitle}
+            <Provider value={{ onClose }}>
+              <ContentContainer bottomSpacing={bottomSpacing}>
+                {children}
+              </ContentContainer>
+            </Provider>
+          </Sheet>
+        </Overlay>
+      ) : (<React.Fragment></React.Fragment>)}
     </CSSTransition>
   )
 }
