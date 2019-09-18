@@ -20,6 +20,7 @@ RUN npm run build
 FROM build AS release
 
 ARG NPM_TOKEN
+ARG PUBLISH_COMMAND
 
 RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-RUN npm run publish -- --yes
+RUN ["sh", "-c", "npm run $PUBLISH_COMMAND -- --yes"]
