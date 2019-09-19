@@ -14,6 +14,7 @@ const Overlay = styled.div`
   z-index: 10;
   background-color: rgba(58, 58, 58, 0.7);
   opacity: 0;
+  pointer-events: none;
 
   & > div {
     margin-bottom: -120px;
@@ -22,6 +23,7 @@ const Overlay = styled.div`
   &.fade-enter-active {
     opacity: 1;
     transition: opacity 10ms;
+    pointer-events: auto;
 
     & > div {
       transition: margin-bottom 120ms ease-in;
@@ -32,6 +34,7 @@ const Overlay = styled.div`
   &.fade-appear,
   &.fade-enter-done {
     opacity: 1;
+    pointer-events: auto;
 
     & > div {
       margin-bottom: 0;
