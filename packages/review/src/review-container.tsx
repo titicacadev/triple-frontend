@@ -181,9 +181,11 @@ export class ReviewContainer extends React.PureComponent<ReviewProps> {
           ) : null}
         </Container>
         {shortened && (
-          <ReviewsPlaceholder onClick={this.handleWriteButtonClick}>
-            이곳에 다녀오셨나요?
-          </ReviewsPlaceholder>
+          <ReviewsPlaceholder
+            resourceType="tna"
+            appUrlScheme={appUrlScheme}
+            onClick={this.handleWriteButtonClick}
+          />
         )}
 
         {(reviewsCount || 0) > 1 ? (
