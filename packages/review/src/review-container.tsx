@@ -182,7 +182,7 @@ export class ReviewContainer extends React.PureComponent<ReviewProps> {
         </Container>
         {shortened && (
           <ReviewsPlaceholder
-            resourceType="tna"
+            resourceType={resourceType}
             appUrlScheme={appUrlScheme}
             onClick={this.handleWriteButtonClick}
           />
