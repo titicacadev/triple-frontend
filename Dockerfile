@@ -20,6 +20,7 @@ RUN npm run build
 FROM build AS release
 
 ARG NPM_TOKEN
+ARG VERSION="0.0.0-${SHORT_SHA} --dist-tag canary"
 
 RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-RUN npm run publish -- --yes --dist-tag next
+RUN ["sh", "-c", "npm run publish -- --yes ${VERSION}"]
