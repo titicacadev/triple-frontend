@@ -14,6 +14,7 @@ steps:
     '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/lint',
     '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/build',
     '--build-arg', 'NPM_TOKEN',
+    '--build-arg', 'VERSION="from-package --dist-tag next"',
     '--target', 'release',
     '.'
   ]
