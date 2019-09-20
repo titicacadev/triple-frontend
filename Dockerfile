@@ -25,4 +25,4 @@ ARG GIT_HEAD
 ARG DIST_TAG=canary
 
 RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-RUN ["sh", "-c", "npm run publish -- --yes ${VERSION} --dist-tag ${DIST_TAG}"]
+RUN ["sh", "-c", "npm run publish -- --yes ${VERSION} --dist-tag ${DIST_TAG} --no-git-tag-version --no-push"]
