@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/react-contexts",
-  "version": "1.0.0-alpha.12",
+  "version": "1.0.0-alpha.13",
   "description": "React context modules for triple web applications",
   "main": "lib/index.js",
   "files": [
