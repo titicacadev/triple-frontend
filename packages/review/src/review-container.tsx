@@ -18,8 +18,8 @@ import {
 import ReviewsList from './review-list'
 import { ReviewProps } from './index'
 const REVIEWS_SECTION_ID = 'reviews'
-const ORDER_BY_RECOMMENDATION = 'recommendation'
-const ORDER_BY_RECENCY = 'recency'
+const ORDER_BY_RECOMMENDATION = ''
+const ORDER_BY_RECENCY = 'latest'
 const DEFAULT_SIZE = 30
 
 const WriteIcon = styled.img`

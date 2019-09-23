@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-frontend-docs",
-  "version": "1.0.0-alpha.14",
+  "version": "1.0.0-alpha.15",
   "private": true,
   "description": "Documentation project for triple-frontend packages",
   "scripts": {
@@ -8,22 +8,22 @@
     "build": "build-storybook -s ./public"
   },
   "dependencies": {
-    "@titicaca/action-sheet": "^1.0.0-alpha.14",
-    "@titicaca/app-banner": "^1.0.0-alpha.14",
-    "@titicaca/author": "^1.0.0-alpha.14",
-    "@titicaca/date-picker": "^1.0.0-alpha.14",
-    "@titicaca/floating-install-button": "^1.0.0-alpha.14",
-    "@titicaca/footer": "^1.0.0-alpha.14",
-    "@titicaca/image-carousel": "^1.0.0-alpha.14",
-    "@titicaca/listing-filter": "^1.0.0-alpha.14",
-    "@titicaca/modals": "^1.0.0-alpha.14",
-    "@titicaca/poi-list-elements": "^1.0.0-alpha.14",
-    "@titicaca/pricing": "^1.0.0-alpha.14",
-    "@titicaca/public-header": "^1.0.0-alpha.14",
-    "@titicaca/recommended-contents": "^1.0.0-alpha.14",
-    "@titicaca/review": "^1.0.0-alpha.14",
-    "@titicaca/triple-design-system": "^1.0.0-alpha.14",
-    "@titicaca/triple-document": "^1.0.0-alpha.14"
+    "@titicaca/action-sheet": "^1.0.0-alpha.15",
+    "@titicaca/app-banner": "^1.0.0-alpha.15",
+    "@titicaca/author": "^1.0.0-alpha.15",
+    "@titicaca/date-picker": "^1.0.0-alpha.15",
+    "@titicaca/floating-install-button": "^1.0.0-alpha.15",
+    "@titicaca/footer": "^1.0.0-alpha.15",
+    "@titicaca/image-carousel": "^1.0.0-alpha.15",
+    "@titicaca/listing-filter": "^1.0.0-alpha.15",
+    "@titicaca/modals": "^1.0.0-alpha.15",
+    "@titicaca/poi-list-elements": "^1.0.0-alpha.15",
+    "@titicaca/pricing": "^1.0.0-alpha.15",
+    "@titicaca/public-header": "^1.0.0-alpha.15",
+    "@titicaca/recommended-contents": "^1.0.0-alpha.15",
+    "@titicaca/review": "^1.0.0-alpha.15",
+    "@titicaca/triple-design-system": "^1.0.0-alpha.15",
+    "@titicaca/triple-document": "^1.0.0-alpha.15"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.0.3",
