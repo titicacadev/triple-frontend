@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/date-picker",
-  "version": "1.0.0-alpha.13",
+  "version": "1.0.0-alpha.14",
   "description": "Triple - Date Picker",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,7 +15,7 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/triple-design-system": "^1.0.0-alpha.13",
+    "@titicaca/triple-design-system": "^1.0.0-alpha.14",
     "moment": "^2.24.0",
     "react-day-picker": "^7.3.0"
   }
