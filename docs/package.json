@@ -8,6 +8,7 @@
     "build": "build-storybook -s ./public"
   },
   "dependencies": {
+    "@titicaca/action-sheet": "^1.0.0-alpha.13",
     "@titicaca/app-banner": "^1.0.0-alpha.13",
     "@titicaca/author": "^1.0.0-alpha.13",
     "@titicaca/date-picker": "^1.0.0-alpha.13",
@@ -24,3 +25,13 @@
     "@titicaca/triple-design-system": "^1.0.0-alpha.13",
     "@titicaca/triple-document": "^1.0.0-alpha.13"
   },
+  "devDependencies": {
+    "@storybook/addon-actions": "^5.0.3",
+    "@storybook/addon-knobs": "^5.0.3",
+    "@storybook/addon-viewport": "^5.0.3",
+    "@storybook/addons": "^5.0.3",
+    "@storybook/react": "^5.0.3",
+    "storybook-addon-jsx": "^7.1.0"
+  }
+}
+
