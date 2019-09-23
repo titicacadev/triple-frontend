@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import { NumericSpinner } from '@titicaca/triple-design-system'
+import { NumericSpinner } from '@titicaca/core-elements'
 
 storiesOf('NumericSpinner', module).add('숙박 인원', () => (
   <NumericSpinner

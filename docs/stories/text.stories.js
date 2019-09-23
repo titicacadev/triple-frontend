@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { text, select } from '@storybook/addon-knobs'
 
-import { Text } from '@titicaca/triple-design-system'
+import { Text } from '@titicaca/core-elements'
 
 storiesOf('Text', module).add('일반', () => (
   <Text

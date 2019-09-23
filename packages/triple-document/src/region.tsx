@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { ResourceListItem, Image } from '@titicaca/triple-design-system'
+import { ResourceListItem, Image } from '@titicaca/core-elements'
 
 const Name = styled.div`
   float: left;

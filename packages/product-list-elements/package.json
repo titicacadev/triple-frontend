@@ -16,7 +16,7 @@
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
     "@titicaca/resource-list-element": "^1.0.0-alpha.15",
-    "@titicaca/triple-design-system": "^1.0.0-alpha.15",
+    "@titicaca/core-elements": "^1.0.0-alpha.15",
     "@titicaca/view-utilities": "^1.0.0-alpha.15"
   }
 }

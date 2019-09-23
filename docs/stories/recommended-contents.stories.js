@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { Container, Text } from '@titicaca/triple-design-system'
+import { Container, Text } from '@titicaca/core-elements'
 import RecommendedContents from '@titicaca/recommended-contents'
 
 import { contents } from './recommended-contents.sample.json'

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Container } from '@titicaca/triple-design-system'
+import { Container } from '@titicaca/core-elements'
 import styled from 'styled-components'
 
 const FooterFrame = styled.div`

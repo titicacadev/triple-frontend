@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Responsive } from '@titicaca/triple-design-system'
+import { Responsive } from '@titicaca/core-elements'
 
 export default class App extends PureComponent {
   render() {

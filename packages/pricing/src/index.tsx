@@ -8,7 +8,7 @@ import {
   GlobalSizes,
   GlobalColors,
   MarginPadding,
-} from '@titicaca/triple-design-system'
+} from '@titicaca/core-elements'
 
 const FONT_SIZE: Partial<Record<GlobalSizes, string>> = {
   mini: '12px',

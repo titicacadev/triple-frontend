@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Table, Container } from '@titicaca/triple-design-system'
+import { Table, Container } from '@titicaca/core-elements'
 
 const HORIZONTAL_SAMPLE = {
   type: 'horizontal',

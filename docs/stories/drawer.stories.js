@@ -3,7 +3,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { boolean } from '@storybook/addon-knobs'
 
-import { Button, Container, Drawer, Text } from '@titicaca/triple-design-system'
+import { Button, Container, Drawer, Text } from '@titicaca/core-elements'
 
 storiesOf('Drawer', module)
   .add('버튼', () => (

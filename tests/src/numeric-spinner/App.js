@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { NumericSpinner } from '@titicaca/triple-design-system'
+import { NumericSpinner } from '@titicaca/core-elements'
 
 export default class App extends PureComponent {
   state = {

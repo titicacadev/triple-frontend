@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { select } from '@storybook/addon-knobs'
 
-import { Section, Text } from '@titicaca/triple-design-system'
+import { Section, Text } from '@titicaca/core-elements'
 
 storiesOf('Section', module).add('일반', () => (
   <Section divider={select('구분선', ['none', 'top', 'bottom'], 'none')}>

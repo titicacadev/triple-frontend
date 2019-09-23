@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { FlickingEvent } from '@egjs/flicking'
 import Flicking, { FlickingProps } from '@egjs/react-flicking'
-import { Container, MarginPadding } from '@titicaca/triple-design-system'
+import { Container, MarginPadding } from '@titicaca/core-elements'
 
 export interface CarouselProps extends Partial<FlickingProps> {
   margin: MarginPadding

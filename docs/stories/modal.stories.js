@@ -2,7 +2,7 @@ import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 
-import { Text } from '@titicaca/triple-design-system'
+import { Text } from '@titicaca/core-elements'
 import { Modal, Confirm, Alert } from '@titicaca/modals'
 
 storiesOf('Modal', module)

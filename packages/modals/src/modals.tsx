@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Container, Text } from '@titicaca/triple-design-system'
+import { Container, Text } from '@titicaca/core-elements'
 import Modal from './modal-base'
 
 const IconImage = styled.img`

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Container, Rating, Text } from '@titicaca/triple-design-system'
+import { Container, Rating, Text } from '@titicaca/core-elements'
 
 const CommentByTypes = new Map()
 CommentByTypes.set('tna', '이 상품이 어떠셨나요?')

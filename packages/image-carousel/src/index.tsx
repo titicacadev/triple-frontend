@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import Carousel, { CarouselProps } from './carousel'
-import { Image, GlobalSizes } from '@titicaca/triple-design-system'
+import { Image, GlobalSizes } from '@titicaca/core-elements'
 
 const PageLabelText = styled.div`
   font-size: 12px;

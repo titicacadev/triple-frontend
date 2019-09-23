@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Button } from '@titicaca/triple-design-system'
+import { Button } from '@titicaca/core-elements'
 
 export default class App extends PureComponent {
   render() {

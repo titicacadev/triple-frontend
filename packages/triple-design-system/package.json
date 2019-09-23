@@ -1,5 +1,5 @@
 {
-  "name": "@titicaca/triple-design-system",
+  "name": "@titicaca/core-elements",
   "version": "1.0.0-alpha.15",
   "description": "Triple Design System Library",
   "main": "lib/index.js",

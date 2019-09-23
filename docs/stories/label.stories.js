@@ -3,7 +3,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { text, select, boolean } from '@storybook/addon-knobs'
 
-import { Label } from '@titicaca/triple-design-system'
+import { Label } from '@titicaca/core-elements'
 
 storiesOf('Label', module)
   .add('라디오', () => (

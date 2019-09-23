@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Navbar } from '@titicaca/triple-design-system'
+import { Navbar } from '@titicaca/core-elements'
 
 export default class App extends PureComponent {
   render() {
