@@ -30,7 +30,7 @@
     "@titicaca/modals": "^1.0.0-alpha.15",
     "@titicaca/pricing": "^1.0.0-alpha.15",
     "@titicaca/scrap-button": "^1.0.0-alpha.15",
-    "@titicaca/triple-design-system": "^1.0.0-alpha.15",
+    "@titicaca/core-elements": "^1.0.0-alpha.15",
     "@titicaca/triple-document": "^1.0.0-alpha.15",
     "koa": "^2.5.3",
     "koa-static": "^5.0.0",
