@@ -22,7 +22,7 @@
     "@titicaca/public-header": "^1.0.0-alpha.15",
     "@titicaca/recommended-contents": "^1.0.0-alpha.15",
     "@titicaca/review": "^1.0.0-alpha.15",
-    "@titicaca/triple-design-system": "^1.0.0-alpha.15",
+    "@titicaca/core-elements": "^1.0.0-alpha.15",
     "@titicaca/triple-document": "^1.0.0-alpha.15"
   },
   "devDependencies": {

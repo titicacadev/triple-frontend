@@ -8,7 +8,7 @@ import {
   GenderSelector,
   Radio,
   Text,
-} from '@titicaca/triple-design-system'
+} from '@titicaca/core-elements'
 
 storiesOf('Form', module)
   .add('Input', () => <Input placeholder="이름을 입력해주세요" />)

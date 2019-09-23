@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { text, number, select, boolean } from '@storybook/addon-knobs'
 
-import { Button } from '@titicaca/triple-design-system'
+import { Button } from '@titicaca/core-elements'
 import FloatingInstallButton from '@titicaca/floating-install-button'
 
 storiesOf('Button', module)

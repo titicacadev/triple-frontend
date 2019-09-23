@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { GlobalColors } from '@titicaca/triple-design-system'
+import { GlobalColors } from '@titicaca/core-elements'
 
 const Overlay = styled.div`
   position: fixed;

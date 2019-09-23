@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { text, boolean } from '@storybook/addon-knobs'
 
-import { Text, Accordion } from '@titicaca/triple-design-system'
+import { Text, Accordion } from '@titicaca/core-elements'
 
 storiesOf('Accordion', module).add('영업시간', () => (
   <Accordion>

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Spinner } from '@titicaca/triple-design-system'
+import { Spinner } from '@titicaca/core-elements'
 
 export default class App extends PureComponent {
   render() {

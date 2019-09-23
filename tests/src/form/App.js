@@ -6,7 +6,7 @@ import {
   ConfirmSelector,
   Container,
   Textarea,
-} from '@titicaca/triple-design-system'
+} from '@titicaca/core-elements'
 
 export default class App extends PureComponent {
   render() {

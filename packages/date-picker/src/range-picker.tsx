@@ -5,7 +5,7 @@ import DayPicker, { DayModifiers } from 'react-day-picker'
 
 import 'moment/locale/ko'
 import MomentLocaleUtils from 'react-day-picker/moment'
-import { GetGlobalColor } from '@titicaca/triple-design-system'
+import { GetGlobalColor } from '@titicaca/core-elements'
 import { formatMonthTitle, isValidDate, generatePaddedRange } from './utils'
 
 import PickerFrame from './picker-frame'

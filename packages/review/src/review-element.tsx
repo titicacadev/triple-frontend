@@ -7,7 +7,7 @@ import {
   Text,
   Rating,
   MarginPadding,
-} from '@titicaca/triple-design-system'
+} from '@titicaca/core-elements'
 
 const UserPhoto = styled.img`
   margin-right: 9px;

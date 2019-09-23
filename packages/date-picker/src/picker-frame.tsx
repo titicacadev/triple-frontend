@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { GetGlobalColor } from '@titicaca/triple-design-system'
+import { GetGlobalColor } from '@titicaca/core-elements'
 
 const PickerFrame = styled.div`
   .DayPicker {

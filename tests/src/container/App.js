@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Container } from '@titicaca/triple-design-system'
+import { Container } from '@titicaca/core-elements'
 
 export default class App extends PureComponent {
   render() {

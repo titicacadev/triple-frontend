@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import { Table } from '@titicaca/triple-design-system'
+import { Table } from '@titicaca/core-elements'
 import SAMPLE from './table.sample.json'
 
 storiesOf('Table', module)

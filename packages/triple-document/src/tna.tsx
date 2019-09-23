@@ -8,7 +8,7 @@ import {
   Container,
   SquareImage,
   MarginPadding,
-} from '@titicaca/triple-design-system'
+} from '@titicaca/core-elements'
 import { H1 } from './text'
 
 function insertCommas(price) {

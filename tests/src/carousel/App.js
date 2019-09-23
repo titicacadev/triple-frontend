@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Carousel } from '@titicaca/triple-design-system'
+import { Carousel } from '@titicaca/core-elements'
 
 export default class App extends PureComponent {
   render() {

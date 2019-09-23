@@ -2,7 +2,7 @@ import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 
-import { Rating } from '@titicaca/triple-design-system'
+import { Rating } from '@titicaca/core-elements'
 import { number, select } from '@storybook/addon-knobs'
 
 storiesOf('Rating', module).add('리뷰점수', () => (

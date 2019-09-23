@@ -8,7 +8,7 @@ import {
   Button,
   Label,
   HR1,
-} from '@titicaca/triple-design-system'
+} from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import ReviewsPlaceholder from './review-placeholder-with-rating'
 import {

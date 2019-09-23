@@ -2,7 +2,7 @@ import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 
-import { Navbar, ListingFilter, Text } from '@titicaca/triple-design-system'
+import { Navbar, ListingFilter, Text } from '@titicaca/core-elements'
 import { text, boolean, select } from '@storybook/addon-knobs'
 import styled from 'styled-components'
 

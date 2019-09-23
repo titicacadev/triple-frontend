@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import '@titicaca/triple-design-system/lib/global-style'
+import '@titicaca/core-elements/lib/global-style'
 import TripleDocument from '@titicaca/triple-document'
 
 const oneLinks = [

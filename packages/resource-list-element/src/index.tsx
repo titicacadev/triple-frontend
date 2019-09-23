@@ -10,7 +10,7 @@ import {
   Rating,
   Image,
   List,
-} from '@titicaca/triple-design-system'
+} from '@titicaca/core-elements'
 import Pricing from '@titicaca/pricing'
 
 const ResourceListItem = styled(List.Item)`

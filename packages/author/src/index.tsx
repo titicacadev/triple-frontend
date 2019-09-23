@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Container, Text, Image } from '@titicaca/triple-design-system'
+import { Container, Text, Image } from '@titicaca/core-elements'
 
 export default function Author({
   source: { name, bio, image },

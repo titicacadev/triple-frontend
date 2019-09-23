@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Label } from '@titicaca/triple-design-system'
+import { Label } from '@titicaca/core-elements'
 
 export default class App extends PureComponent {
   render() {
