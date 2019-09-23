@@ -16,6 +16,7 @@ export interface ReviewProps {
   onFullListButtonClick?: any
   appUrlScheme: string
   appNativeActions: AppNativeActionProps
+  uriHash: string
   historyActions: any //@TODO triple-react-context 주입하면서 삭제
 }
 export interface AppNativeActionProps {
@@ -39,6 +40,7 @@ export default function Reviews({
   appUrlScheme,
   appNativeActions,
   historyActions,
+  uriHash,
 }: ReviewProps) {
   const {
     subscribeLikedChangeEvent,
@@ -71,6 +73,7 @@ export default function Reviews({
           onFullListButtonClick={onFullListButtonClick}
           appNativeActions={appNativeActions}
           historyActions={historyActions}
+          uriHash={uriHash}
         />
         <TransitionModals
           historyActions={historyActions}
