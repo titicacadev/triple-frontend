@@ -21,12 +21,12 @@ export function fetchReviews({
   from = 0,
   size = 30,
 }: FetchReviewsInterface) {
-  const url = `/api/reviews/v2?resource_id=${resourceId}&resource_type=${resourceType}&from=${from}&size=${size}&order=${order}`
+  const url = `/api/reviews/v2${order ? '/'+order : ''}?resource_id=${resourceId}&resource_type=${resourceType}&from=${from}&size=${size}`
   return fetch(url, { credentials: 'same-origin' })
 }
 
-export function fetchMyReviews() {
-  return fetch(`/api/reviews/v2/me`, { credentials: 'same-origin' })
+export function fetchMyReviews({resourceType, resourceId}) {
+  return fetch(`/api/reviews/v2/me?resourceType=${resourceType}&resourceId=${resourceId}`, { credentials: 'same-origin' })
 }
 
 export function deleteReview({ id }: { id: string }) {
