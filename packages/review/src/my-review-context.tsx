@@ -6,7 +6,7 @@ const Context = React.createContext(undefined)
 export class MyReviewsProvider extends React.PureComponent<{
   myReviews?: any[]
   fetchMyReview?: any
-  type?: string
+  resourceType?: string
   subscribeReviewUpdateEvent?: any
 }> {
   state = { myReviews: this.props.myReviews || {} }
@@ -15,11 +15,11 @@ export class MyReviewsProvider extends React.PureComponent<{
     this.setState({ myReviews: { ...this.state.myReviews, ...newReviews } })
 
   handleFetch = async ({ id }) => {
-    const { fetchMyReview, type } = this.props
-    const response = await fetchMyReview({ id, type })
+    const { fetchMyReview, resourceType } = this.props
+    const response = await fetchMyReview({ resourceId: id, resourceType })
 
     if (response.ok) {
-      const myReview = humps.camelizeKeys(await response.json())
+      const myReview = (humps.camelizeKeys(await response.json()) || {}).review
 
       this.insert({ [id]: myReview })
 
