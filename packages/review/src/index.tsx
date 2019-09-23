@@ -51,6 +51,7 @@ export default function Reviews({
   return (
     //@TODO triple-react-context 주입시 재사용 가능한지 검토
     <MyReviewsProvider
+      resourceType={resourceType}
       fetchMyReview={fetchMyReviews}
       subscribeReviewUpdateEvent={subscribeReviewUpdateEvent}
     >
