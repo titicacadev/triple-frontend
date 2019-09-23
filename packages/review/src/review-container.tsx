@@ -147,6 +147,7 @@ export class ReviewContainer extends React.PureComponent<ReviewProps> {
         shortened,
         onFullListButtonClick,
         historyActions,
+        uriHash,
       },
     } = this
 
@@ -214,6 +215,7 @@ export class ReviewContainer extends React.PureComponent<ReviewProps> {
             resourceId={resourceId}
             notifyReviewDeleted={notifyReviewDeleted}
             showToast={showToast}
+            uriHash={uriHash}
             historyActions={historyActions}
           />
         )}

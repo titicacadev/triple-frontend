@@ -58,6 +58,7 @@ class ReviewsList extends React.PureComponent<{
   likes?: any
   myReviewActions?: any
   historyActions?: any
+  uriHash?: string
 }> {
   state = { selectedReview: undefined }
 
@@ -188,7 +189,8 @@ class ReviewsList extends React.PureComponent<{
         reviews,
         margin,
         isPublic,
-        historyActions: { uriHash, back },
+        uriHash,
+        historyActions: { back },
       },
     } = this
     const renderedReviews = myReview
