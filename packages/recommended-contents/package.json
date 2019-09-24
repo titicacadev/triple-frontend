@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/recommended-contents",
-  "version": "1.0.0-alpha.15",
+  "version": "1.0.0-alpha.16",
   "description": "Recommended contents list",
   "main": "lib/index.js",
   "files": [
@@ -15,6 +15,6 @@
   },
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
-    "@titicaca/core-elements": "^1.0.0-alpha.15"
+    "@titicaca/core-elements": "^1.0.0-alpha.16"
   }
 }
