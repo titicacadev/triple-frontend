@@ -33,11 +33,25 @@
     "concurrently": "^4.1.2",
     "csstype": "^2.6.6",
     "eslint-plugin-cypress": "^2.6.1",
+    "husky": "^3.0.5",
     "lerna": "^3.16.4",
+    "lint-staged": "^9.3.0",
     "prettier": "^1.18.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "styled-components": "^3.4.10",
     "typescript": "^3.5.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,ts,tsx}": [
+      "eslint '{docs,packages,tests/src}/**/*.{ts,tsx,js}' --fix",
+      "prettier --write \"**/*.{ts,tsx,js,json}\"",
+      "git add"
+    ]
   }
 }
