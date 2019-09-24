@@ -52,7 +52,7 @@ function Options({ floated, data, onSelect }) {
   )
 }
 
-//@TODO 리뷰마다 ordering 기준 다를 수 있는지 확인
+// @TODO 리뷰마다 ordering 기준 다를 수 있는지 확인
 function getDefaultReviewOrders(selectedKey = ORDER_BY_RECOMMENDATION) {
   return [
     { key: ORDER_BY_RECOMMENDATION, text: '추천순' },
@@ -90,7 +90,7 @@ export class ReviewContainer extends React.PureComponent<ReviewProps> {
       })),
     })
 
-    //@TODO pagination 처리 필요
+    // @TODO pagination 처리 필요
     const {
       state: { reviewFrom: from },
     } = this

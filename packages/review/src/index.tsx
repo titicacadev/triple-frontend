@@ -17,7 +17,7 @@ export interface ReviewProps {
   appUrlScheme: string
   appNativeActions: AppNativeActionProps
   uriHash: string
-  historyActions: any //@TODO triple-react-context 주입하면서 삭제
+  historyActions: any // @TODO triple-react-context 주입하면서 삭제
 }
 export interface AppNativeActionProps {
   subscribeLikedChangeEvent?: Function
@@ -49,7 +49,7 @@ export default function Reviews({
     notifyReviewUnliked,
   } = appNativeActions
   return (
-    //@TODO triple-react-context 주입시 재사용 가능한지 검토
+    // @TODO triple-react-context 주입시 재사용 가능한지 검토
     <MyReviewsProvider
       resourceType={resourceType}
       fetchMyReview={fetchMyReviews}

@@ -80,9 +80,7 @@ export function PoiCarouselElement({
         <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
           {TYPE_NAMES[type]}
         </Text>
-        {actionButtonElement ? (
-          actionButtonElement
-        ) : (
+        {actionButtonElement || (
           <ScrapButton
             scraped={scraped}
             resource={poi}

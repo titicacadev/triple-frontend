@@ -96,7 +96,7 @@ class ReviewsList extends React.PureComponent<{
     } = this
 
     if (!isPublic) {
-      //@TODO 졸아요 클릭
+      // @TODO 졸아요 클릭
       window.location.href = `${appUrlScheme}:///regions/${regionId}/${resourceType}/${resourceId}/reviews/${id}/thanks`
     }
   }
