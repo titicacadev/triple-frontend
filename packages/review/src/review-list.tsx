@@ -142,13 +142,13 @@ class ReviewsList extends React.PureComponent<{
     const {
       props: { isPublic, appUrlScheme },
     } = this
-    const { attachments } = review
+    const { media } = review
 
     if (isPublic) {
       return
     }
 
-    window.location.href = `${appUrlScheme}:///images?${attachments}`
+    window.location.href = `${appUrlScheme}:///images?${media}`
   }
 
   deleteReview = async () => {
