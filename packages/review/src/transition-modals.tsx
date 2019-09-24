@@ -24,7 +24,7 @@ export function TransitionModals({
   resourceId: string
 }) {
   const { uriHash, back } = historyActions
-  const href = generateDeepLink({ regionId, resourceId }) //@TODO
+  const href = generateDeepLink({ regionId, resourceId }) // @TODO
   return (
     <TransitionModalElement
       open={HASHES.includes(uriHash)}
@@ -38,6 +38,6 @@ export function TransitionModals({
 }
 
 function generateDeepLink({ regionId, resourceId }) {
-  //@TODO 링크 만들어야함
+  // @TODO 링크 만들어야함
   return regionId + resourceId
 }

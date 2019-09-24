@@ -1,8 +1,8 @@
 import * as React from 'react'
 import styled, { css, InterpolationValue } from 'styled-components'
 import { withField } from '../utils/form-field'
-import { GetGlobalColor } from '../commons'
-import { MarginPadding } from '../commons'
+import { GetGlobalColor, MarginPadding } from '../commons'
+
 import * as CSS from 'csstype'
 
 type FillType = 'full' | 'border' | 'text'

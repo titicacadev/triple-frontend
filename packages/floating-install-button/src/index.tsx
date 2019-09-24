@@ -1,8 +1,8 @@
-declare var window: any
-
 import * as React from 'react'
 import styled from 'styled-components'
 import { GetGlobalColor, Text, Container } from '@titicaca/core-elements'
+
+declare var window: any
 
 const MIN_DESKTOP_WIDTH = 1142
 const CLOSE_INSTALL_BUTTON_KEY = 'close_install_button'

@@ -42,7 +42,9 @@ function Folded({ active, children }) {
 
 export default class Accordion extends React.PureComponent {
   static Title = Title
+
   static Content = Content
+
   static Folded = Folded
 
   render() {

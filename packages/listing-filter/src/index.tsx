@@ -150,7 +150,9 @@ const ListingFilterBase = styled.div`
 
 export default class ListingFilter extends React.PureComponent {
   static FilterEntry = FilterEntry
+
   static ExpandingFilterEntry = ExpandingFilterEntry
+
   static PrimaryFilterEntry = PrimaryFilterEntry
 
   render() {

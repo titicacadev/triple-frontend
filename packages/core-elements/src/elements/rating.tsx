@@ -28,8 +28,7 @@ const RatingStar = styled.span<{
   half?: boolean
 }>`
   display: inline-block;
-  vertical-align: ${({ verticalAlign }) =>
-    verticalAlign ? verticalAlign : 'text-bottom'};
+  vertical-align: ${({ verticalAlign }) => verticalAlign || 'text-bottom'};
 
   ${({ size = 'small', full, half }) => css`
     width: ${SIZES[size]};

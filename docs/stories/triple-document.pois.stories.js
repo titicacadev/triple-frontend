@@ -21,7 +21,6 @@ storiesOf('TripleDocument.POI', module)
     <Pois
       resourceScraps={{}}
       value={{
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         pois: POIS.map(({ source: { image, ...source }, ...rest }) => ({
           source,
           ...rest,
@@ -43,7 +42,6 @@ storiesOf('TripleDocument.POI', module)
     <Pois
       resourceScraps={{}}
       value={{
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         pois: POIS.map(({ source: { image, ...source }, ...rest }) => ({
           source,
           ...rest,
