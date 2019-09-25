@@ -236,11 +236,7 @@ class ReviewElement extends React.PureComponent<{
   onLikeButtonClick?: (e?: React.SyntheticEvent, review?: any) => any
   onLikesCountClick?: (e?: React.SyntheticEvent, review?: any) => any
   onMenuClick?: (e?: React.SyntheticEvent, review?: any) => any
-  onImageClick?: (
-    e?: React.SyntheticEvent,
-    review?: any,
-    attachment?: any,
-  ) => any
+  onImageClick?: (e?: React.SyntheticEvent, review?: any, image?: any) => any
   likeVisible?: boolean
   menuVisible?: boolean
   DateFormatter?: React.ComponentClass
@@ -277,7 +273,7 @@ class ReviewElement extends React.PureComponent<{
       comment,
       createdAt,
       rating,
-      attachments,
+      media,
     } = review
     const badge = mileage && mileage.badges && mileage.badges[0]
 
@@ -314,11 +310,11 @@ class ReviewElement extends React.PureComponent<{
           )}
           {!blindedAt && (
             <Images>
-              {(attachments || []).map((attachment, i) => (
+              {(media || []).map((image, i) => (
                 <img
                   key={i}
-                  src={attachment.sizes.small_square.url}
-                  onClick={(e) => onImageClick(e, review, attachment)}
+                  src={image.sizes.smallSquare.url}
+                  onClick={(e) => onImageClick(e, review, image)}
                 />
               ))}
             </Images>
