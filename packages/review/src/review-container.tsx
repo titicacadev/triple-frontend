@@ -182,16 +182,18 @@ export class ReviewContainer extends React.PureComponent<ReviewProps> {
           ) : null}
         </Container>
         {shortened && (
-          <ReviewsPlaceholder
-            resourceType={resourceType}
-            appUrlScheme={appUrlScheme}
-            onClick={this.handleWriteButtonClick}
-          />
+          <>
+            <ReviewsPlaceholder
+              resourceType={resourceType}
+              appUrlScheme={appUrlScheme}
+              onClick={this.handleWriteButtonClick}
+            />
+            {(reviewsCount || 0) > 0 && <HR1 />}
+          </>
         )}
 
         {(reviewsCount || 0) > 1 ? (
           <>
-            <HR1 />
             <Container margin={{ top: 23 }} clearing>
               <Options
                 floated="right"
@@ -209,7 +211,7 @@ export class ReviewContainer extends React.PureComponent<ReviewProps> {
             regionId={regionId}
             appUrlScheme={appUrlScheme}
             margin={{ top: (reviewsCount || 0) > 1 ? 18 : 30 }}
-            reviews={reviews.slice(0, myReview ? 2 : 3)}
+            reviews={shortened ? reviews.slice(0, myReview ? 2 : 3) : reviews}
             myReview={myReview}
             onMyReviewDeleted={() => this.setState({ myReview: null })}
             resourceId={resourceId}
