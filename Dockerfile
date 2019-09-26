@@ -4,6 +4,7 @@ WORKDIR /app
 
 ARG npm_token
 ENV NPM_TOKEN=${npm_token}
+COPY npmrc.template ./.npmrc
 
 COPY package.json package-lock.json ./
 RUN npm ci
@@ -25,5 +26,6 @@ FROM build AS release
 
 ARG npm_token
 ENV NPM_TOKEN=${npm_token}
+COPY npmrc.template ./.npmrc
 
 RUN npm run publish -- --yes --dist-tag next
