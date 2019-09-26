@@ -17,7 +17,7 @@ RUN npm run lint
 FROM base AS build
 
 ARG NPM_TOKEN
-RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/
+RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 
 COPY babel.config.js lerna.json tsconfig.base.json ./
 COPY packages ./packages
