@@ -2,9 +2,8 @@
 FROM node:10 AS base
 WORKDIR /app
 
-ARG npm_token
-ENV NPM_TOKEN=${npm_token}
-COPY npmrc.template ./.npmrc
+ARG NPM_TOKEN
+RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 
 COPY package.json package-lock.json ./
 RUN npm ci
@@ -24,8 +23,7 @@ RUN npm run build
 # release
 FROM build AS release
 
-ARG npm_token
-ENV NPM_TOKEN=${npm_token}
-COPY npmrc.template ./.npmrc
+ARG NPM_TOKEN
+RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 
 RUN npm run publish -- --yes --dist-tag next
