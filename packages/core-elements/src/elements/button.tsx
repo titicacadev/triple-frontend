@@ -294,7 +294,9 @@ interface ButtonProps extends BasicButtonProp, ButtonBaseProp {
 
 class Button extends React.PureComponent<ButtonProps> {
   static Container = ButtonContainer
+
   static Group = ButtonGroup
+
   static Icon = ButtonIcon
 
   render() {

@@ -9,5 +9,5 @@
     "declaration": true,
     "alwaysStrict": true,
     "esModuleInterop": true
-  },
+  }
 }

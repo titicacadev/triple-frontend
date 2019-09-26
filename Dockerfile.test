@@ -1,6 +1,9 @@
 FROM cypress/base:10 AS test
 WORKDIR /app
 
+ARG NPM_TOKEN
+RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+
 COPY package.json package-lock.json lerna.json ./
 RUN npm ci
 

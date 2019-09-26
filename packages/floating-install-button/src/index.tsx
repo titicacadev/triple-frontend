@@ -1,8 +1,8 @@
-declare var window: any
-
 import * as React from 'react'
 import styled from 'styled-components'
 import { GetGlobalColor, Text, Container } from '@titicaca/core-elements'
+
+declare var window: any
 
 const MIN_DESKTOP_WIDTH = 1142
 const CLOSE_INSTALL_BUTTON_KEY = 'close_install_button'
@@ -77,9 +77,12 @@ export default function FloatingInstallButton({
 }) {
   const [buttonVisibility, setButtonVisibility] = React.useState(false)
 
-  const sendTrackEventRequest = (param) => {
-    trackEvent && param && trackEvent(param)
-  }
+  const sendTrackEventRequest = React.useCallback(
+    (param) => {
+      trackEvent && param && trackEvent(param)
+    },
+    [trackEvent],
+  )
 
   React.useEffect(() => {
     const visitedPages = window.sessionStorage.getItem(CLOSE_INSTALL_BUTTON_KEY)
@@ -87,7 +90,7 @@ export default function FloatingInstallButton({
       setButtonVisibility(true)
       sendTrackEventRequest(trackEventParams && trackEventParams.onShow)
     }
-  })
+  }, [buttonVisibility, sendTrackEventRequest, trackEventParams])
 
   const onClose = () => {
     setButtonVisibility(false)

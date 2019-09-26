@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions'
 storiesOf('ReviewsList', module).add('플레이스홀더', () => (
   <ReviewsPlaceholder
     resourceType="article"
-    appUrlScheme='triple'
+    appUrlScheme="triple"
     onClick={action('clicked')}
   />
 ))

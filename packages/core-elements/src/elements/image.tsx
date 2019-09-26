@@ -262,34 +262,38 @@ function Image({
 
   const Frame =
     size || height
-      ? ({ children }: { children?: React.ReactNode }) => (
-          <ImageFrameWithFixedDimensions
-            size={size}
-            onClick={onClick}
-            floated={floated}
-            width={width}
-            height={height}
-            margin={margin}
-            borderRadius={borderRadius}
-            asPlaceholder={asPlaceholder}
-            src={src}
-          >
-            {children}
-          </ImageFrameWithFixedDimensions>
-        )
-      : ({ children }: { children?: React.ReactNode }) => (
-          <ImageFrameWithFixedRatio
-            frame={frame}
-            onClick={onClick}
-            floated={floated}
-            margin={margin}
-            borderRadius={borderRadius}
-            asPlaceholder={asPlaceholder}
-            src={src}
-          >
-            {children}
-          </ImageFrameWithFixedRatio>
-        )
+      ? function WrappedImage({ children }: { children?: React.ReactNode }) {
+          return (
+            <ImageFrameWithFixedDimensions
+              size={size}
+              onClick={onClick}
+              floated={floated}
+              width={width}
+              height={height}
+              margin={margin}
+              borderRadius={borderRadius}
+              asPlaceholder={asPlaceholder}
+              src={src}
+            >
+              {children}
+            </ImageFrameWithFixedDimensions>
+          )
+        }
+      : function WrappedImage({ children }: { children?: React.ReactNode }) {
+          return (
+            <ImageFrameWithFixedRatio
+              frame={frame}
+              onClick={onClick}
+              floated={floated}
+              margin={margin}
+              borderRadius={borderRadius}
+              asPlaceholder={asPlaceholder}
+              src={src}
+            >
+              {children}
+            </ImageFrameWithFixedRatio>
+          )
+        }
 
   return (
     <Frame>

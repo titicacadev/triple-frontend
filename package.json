@@ -13,7 +13,7 @@
     "publish": "lerna publish from-package",
     "dev-docs": "lerna exec --scope @titicaca/triple-frontend-docs npm run dev",
     "prettier": "prettier --write \"**/*.{ts,tsx,js,json}\"",
-    "lint": "eslint '{packages,tests/src}/**/*.{ts,tsx,js}'",
+    "lint": "eslint '{docs,packages,tests/src}/**/*.{ts,tsx,js}'",
     "test": "cd tests && npm test"
   },
   "devDependencies": {
@@ -25,31 +25,33 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
     "@babel/runtime": "^7.5.5",
+    "@titicaca/eslint-config-triple": "^0.3.0",
     "@types/node": "^12.7.1",
     "@types/react": "^16.9.1",
     "@types/react-dom": "^16.9.0",
-    "@typescript-eslint/eslint-plugin": "^1.13.0",
-    "@typescript-eslint/parser": "^1.13.0",
-    "babel-eslint": "^10.0.2",
     "babel-plugin-styled-components": "^1.10.6",
     "concurrently": "^4.1.2",
     "csstype": "^2.6.6",
-    "eslint": "^6.1.0",
-    "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-cypress": "^2.6.1",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-react": "^7.14.3",
+    "husky": "^3.0.5",
     "lerna": "^3.16.4",
+    "lint-staged": "^9.3.0",
     "prettier": "^1.18.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "styled-components": "^3.4.10",
     "typescript": "^3.5.3"
   },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "all",
-    "arrowParens": "always"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,ts,tsx}": [
+      "eslint '{docs,packages,tests/src}/**/*.{ts,tsx,js}' --fix",
+      "prettier --write \"**/*.{ts,tsx,js,json}\"",
+      "git add"
+    ]
   }
 }
