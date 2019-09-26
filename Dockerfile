@@ -15,6 +15,10 @@ RUN npm run lint
 
 # build
 FROM base AS build
+
+ARG NPM_TOKEN
+RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/
+
 COPY babel.config.js lerna.json tsconfig.base.json ./
 COPY packages ./packages
 RUN npm run bootstrap
