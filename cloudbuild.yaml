@@ -8,16 +8,22 @@ steps:
     docker pull gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/lint || true
     docker pull gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/build || true
 - name: 'gcr.io/cloud-builders/docker'
+  secretEnv:
+    - 'NPM_TOKEN'
   args: [
     'build',
+    '--build-arg', 'NPM_TOKEN',
     '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/base',
     '--tag', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/base',
     '--target', 'base',
     '.'
   ]
 - name: 'gcr.io/cloud-builders/docker'
+  secretEnv:
+    - 'NPM_TOKEN'
   args: [
     'build',
+    '--build-arg', 'NPM_TOKEN',
     '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/base',
     '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/lint',
     '--tag', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/lint',
@@ -25,8 +31,11 @@ steps:
     '.'
   ]
 - name: 'gcr.io/cloud-builders/docker'
+  secretEnv:
+    - 'NPM_TOKEN'
   args: [
     'build',
+    '--build-arg', 'NPM_TOKEN',
     '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/base',
     '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/lint',
     '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/build',
@@ -35,8 +44,11 @@ steps:
     '.'
   ]
 - name: 'gcr.io/cloud-builders/docker'
+  secretEnv:
+    - 'NPM_TOKEN'
   args: [
     'build',
+    '--build-arg', 'NPM_TOKEN',
     '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/build',
     '--cache-from', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/test',
     '--tag', 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/test',
@@ -56,3 +68,9 @@ images:
 - 'gcr.io/${PROJECT_ID}/${_SVC_BASENAME}/test'
 
 timeout: 1200s
+
+
+secrets:
+  - kmsKeyName: projects/titicaca-ci/locations/global/keyRings/npm/cryptoKeys/read_only_token
+    secretEnv:
+      NPM_TOKEN: CiQAcBjweQp70fQdHefg3+1XUiV+kwWJc/usCYSnHK6/kceVvDISTQCQlPnJ+dwlsKOmOB5j6Wp7QkXs/zeZahCylb7nvnGgUa/1h1qlK2IppruD5XdRLmO0OzujWNDfvmjfNNtZ46CQMrPf58T1ZV0hgP/P
