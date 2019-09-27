@@ -88,18 +88,15 @@ const GenderContainer = styled.div.attrs<{ name?: string; value?: string }>(
     `};
 `
 
+interface RadioProps {
+  name?: string
+  value?: string
+  onChange?: (e: React.SyntheticEvent, arg1: string) => any
+  options: Option[]
+}
+
 export const Radio = withField(
-  ({
-    name,
-    value,
-    onChange,
-    options,
-  }: {
-    name?: string
-    value?: string
-    onChange?: (e: React.SyntheticEvent, arg1: string) => any
-    options: Option[]
-  }) => {
+  ({ name, value, onChange, options }: RadioProps) => {
     return (
       <>
         {options.map(({ text, value: optionValue }, idx) => (
@@ -126,16 +123,14 @@ export const Radio = withField(
   },
 )
 
+interface GenderSelectorProps {
+  name?: string
+  value?: string
+  onChange?: (e: React.SyntheticEvent, arg1: string) => any
+}
+
 export const GenderSelector = withField(
-  ({
-    name,
-    value,
-    onChange,
-  }: {
-    name?: string
-    value?: string
-    onChange?: (e: React.SyntheticEvent, arg1: string) => any
-  }) => {
+  ({ name, value, onChange }: GenderSelectorProps) => {
     return (
       <Container>
         <GenderContainer

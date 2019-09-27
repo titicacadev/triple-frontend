@@ -50,6 +50,17 @@ const Icon = styled.span`
   background-image: url('https://assets.triple.guide/images/ico-category-select@3x.png');
 `
 
+interface SelectProps {
+  name?: string
+  value?: any
+  onChange?: (e?: React.SyntheticEvent, value?: any) => any
+  placeholder?: string
+  options?: [{ label: string; value: any }]
+  focus?: boolean
+  error?: boolean
+  onBlur?: (e?: React.SyntheticEvent) => any
+}
+
 function Select({
   name,
   value,
@@ -59,16 +70,7 @@ function Select({
   focus,
   error,
   onBlur,
-}: {
-  name?: string
-  value?: any
-  onChange?: (e?: React.SyntheticEvent, value?: any) => any
-  placeholder?: string
-  options?: [{ label: string; value: any }]
-  focus?: boolean
-  error?: boolean
-  onBlur?: (e?: React.SyntheticEvent) => any
-}) {
+}: SelectProps) {
   return (
     <SelectFrame focus={focus} error={error}>
       <BaseSelect

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import InputMask from 'react-input-mask'
+import InputMask, { InputState, MaskOptions } from 'react-input-mask'
 import styled, { css } from 'styled-components'
 import { withField } from '../utils/form-field'
 import { GetGlobalColor } from '../commons'
@@ -44,7 +44,11 @@ const BaseInput = styled(InputMask)<{ focus?: boolean; error?: boolean }>`
     `};
 `
 
-function Input({ onChange, ...props }) {
+interface InputProps {
+  onChange?: (e: React.SyntheticEvent, value: string) => any
+}
+
+function Input({ onChange, ...props }: InputProps & InputState & MaskOptions) {
   return <BaseInput onChange={(e) => onChange(e, e.target.value)} {...props} />
 }
 

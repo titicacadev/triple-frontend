@@ -52,7 +52,17 @@ const BaseTextarea = styled.textarea<{ focus?: boolean; error?: boolean }>`
     `};
 `
 
-function Textarea({ onChange, ...props }) {
+interface TextareaProps extends RemainTextarea {
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>, value: string) => any
+}
+
+type HTMLTextAreaElementProps = React.TextareaHTMLAttributes<
+  HTMLTextAreaElement
+>
+
+type RemainTextarea = Omit<HTMLTextAreaElementProps, 'onChange'>
+
+function Textarea({ onChange, ...props }: TextareaProps) {
   return (
     <BaseTextarea
       onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
