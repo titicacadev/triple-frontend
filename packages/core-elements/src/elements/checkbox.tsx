@@ -14,7 +14,7 @@ const generateFillStyles = ({
 }: {
   fillType: FillType
   checked: boolean
-  error: boolean
+  error: string
 }) => {
   if (!checked && !error) {
     return
@@ -63,7 +63,7 @@ const ConfirmFrame = styled.div.attrs<{ name?: string }>({})<{
   checked?: boolean
   fillType?: FillType
   padding?: MarginPadding
-  error?: boolean
+  error?: string
 }>`
   width: 100%;
   border: 1px solid #efefef;
@@ -74,7 +74,7 @@ const ConfirmFrame = styled.div.attrs<{ name?: string }>({})<{
   color: rgba(${GetGlobalColor('gray')}, 0.5);
 
   ${({ checked, error, fillType = 'full' }) =>
-    generateFillStyles({ checked, error, fillType })};
+    fillType && generateFillStyles({ checked, error, fillType })};
 
   ${({ textAlign }) => textAlign && TextAligns[textAlign]};
 
@@ -113,6 +113,19 @@ const Icon = styled.span<{ borderless?: boolean; checked?: boolean }>`
     `};
 `
 
+interface ConfirmSelectorProps {
+  name?: string
+  value: any
+  placeholder: string
+  onChange?: (e?: React.SyntheticEvent, value?: any) => any
+  textAlign?: CSS.TextAlignProperty
+  borderless?: boolean
+  fillType?: FillType
+  children?: React.ReactNode
+  padding?: MarginPadding
+  error?: string
+}
+
 export const ConfirmSelector = withField(
   ({
     name,
@@ -124,18 +137,7 @@ export const ConfirmSelector = withField(
     fillType,
     padding,
     error,
-  }: {
-    name?: string
-    value: any
-    placeholder: string
-    onChange?: (e?: React.SyntheticEvent, value?: any) => any
-    textAlign?: CSS.TextAlignProperty
-    borderless?: boolean
-    fillType?: FillType
-    children?: React.ReactNode
-    padding?: MarginPadding
-    error?: boolean
-  }) => {
+  }: ConfirmSelectorProps) => {
     return (
       <ConfirmFrame
         name={name}

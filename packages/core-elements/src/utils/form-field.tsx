@@ -36,12 +36,16 @@ const Label = styled(Text)<{
     `};
 `
 
-export function withField(WrappedComponent) {
-  return class Wrapper extends React.PureComponent<{
-    label?: string
-    error?: string
-    help?: string
-  }> {
+export function withField<T>(
+  WrappedComponent: React.ComponentType<T & { focus?: string; error?: string }>,
+) {
+  return class Wrapper extends React.PureComponent<
+    {
+      label?: string
+      error?: string
+      help?: string
+    } & T
+  > {
     state = {
       focus: false,
     }
@@ -62,7 +66,7 @@ export function withField(WrappedComponent) {
               {label}
             </Label>
           )}
-          <WrappedComponent focus={focus} error={!!error} {...props} />
+          <WrappedComponent focus={focus} error={!!error} {...(props as T)} />
           {error ? (
             <MessageContainer padding={{ top: 6 }}>
               <Label absolute={!help} error={!!error}>
