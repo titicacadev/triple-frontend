@@ -136,11 +136,21 @@ export default function TripleDocument({
 }
 
 function Heading(Component) {
-  return ({ value: { text, href, emphasize, headline }, ...props }) => (
-    <Component href={href} emphasize={emphasize} headline={headline} {...props}>
-      {text}
-    </Component>
-  )
+  return function WrappedHeading({
+    value: { text, href, emphasize, headline },
+    ...props
+  }) {
+    return (
+      <Component
+        href={href}
+        emphasize={emphasize}
+        headline={headline}
+        {...props}
+      >
+        {text}
+      </Component>
+    )
+  }
 }
 
 function TextElement({ value: { text, rawHTML }, compact, ...props }) {
@@ -166,7 +176,9 @@ function TextElement({ value: { text, rawHTML }, compact, ...props }) {
 }
 
 function Compact(Component) {
-  return (props) => <Component compact {...props} />
+  return function CompactedComponent(props) {
+    return <Component compact {...props} />
+  }
 }
 
 const DocumentCarousel = ({ margin, children }) => (
@@ -294,7 +306,9 @@ export function Pois({
     display === 'list' ? { top: 20, left: 30, right: 30 } : { top: 20 }
   const Element =
     display === 'list'
-      ? (props) => <PoiListElement compact {...props} />
+      ? function WrappedPoiListElment(props) {
+          return <PoiListElement compact {...props} />
+        }
       : PoiCarouselElement
 
   return (
