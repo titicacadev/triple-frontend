@@ -14,7 +14,6 @@ export interface ReviewProps {
   appUrlScheme: string
   appNativeActions: AppNativeActionProps
   uriHash: string
-  historyActions: any // @TODO triple-react-context 주입하면서 삭제
 }
 
 export interface AppNativeActionProps {
@@ -41,7 +40,6 @@ export default function Reviews({
   isPublic,
   appUrlScheme,
   appNativeActions,
-  historyActions,
   uriHash,
 }: ReviewProps) {
   return (
@@ -57,14 +55,9 @@ export default function Reviews({
         reviewed={reviewed}
         onFullListButtonClick={onFullListButtonClick}
         appNativeActions={appNativeActions}
-        historyActions={historyActions}
         uriHash={uriHash}
       />
-      <TransitionModals
-        historyActions={historyActions}
-        regionId={regionId}
-        resourceId={resourceId}
-      />
+      <TransitionModals regionId={regionId} resourceId={resourceId} />
     </>
   )
 }

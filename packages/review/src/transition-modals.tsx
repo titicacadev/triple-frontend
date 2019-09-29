@@ -1,5 +1,7 @@
 import * as React from 'react'
 import { TransitionModal as TransitionModalElement } from '@titicaca/modals'
+import { useHistoryContext } from '@titicaca/react-contexts'
+
 export const HASH_REVIEW_TRANSITION_MODAL = 'poi.modal.review-transition'
 export const HASH_REVIEW_WRITE_TRANSITION_MODAL =
   'poi.modal.review-write-transition'
@@ -15,15 +17,14 @@ const TYPES_BY_HASH = {
 }
 
 export function TransitionModals({
-  historyActions,
   regionId,
   resourceId,
 }: {
-  historyActions: any
   regionId: string
   resourceId: string
 }) {
-  const { uriHash, back } = historyActions
+  const { uriHash, back } = useHistoryContext()
+
   const href = generateDeepLink({ regionId, resourceId }) // @TODO
   return (
     <TransitionModalElement
