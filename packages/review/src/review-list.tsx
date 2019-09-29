@@ -3,9 +3,8 @@ import moment from 'moment-timezone'
 import { Confirm } from '@titicaca/modals'
 import ActionSheet from '@titicaca/action-sheet'
 import { MarginPadding } from '@titicaca/core-elements'
+import { withReviewLikes, withMyReviews } from '@titicaca/react-contexts'
 import ReviewsListView from './review-element'
-import { withReviewLikes } from './review-likes-context'
-import { withMyReviews } from './my-review-context'
 import { deleteReview as deleteReviewApi } from './review-api-clients'
 moment.updateLocale('ko', {
   relativeTime: {
