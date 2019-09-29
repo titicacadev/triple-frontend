@@ -3,7 +3,11 @@ import moment from 'moment-timezone'
 import { Confirm } from '@titicaca/modals'
 import ActionSheet from '@titicaca/action-sheet'
 import { MarginPadding } from '@titicaca/core-elements'
-import { withReviewLikes, withMyReviews } from '@titicaca/react-contexts'
+import {
+  withReviewLikes,
+  withMyReviews,
+  withHistory,
+} from '@titicaca/react-contexts'
 import ReviewsListView from './review-element'
 import { deleteReview as deleteReviewApi } from './review-api-clients'
 moment.updateLocale('ko', {
@@ -241,4 +245,4 @@ class ReviewsList extends React.PureComponent<{
   }
 }
 
-export default withReviewLikes(withMyReviews(ReviewsList))
+export default withReviewLikes(withMyReviews(withHistory(ReviewsList)))
