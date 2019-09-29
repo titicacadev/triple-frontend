@@ -5,8 +5,14 @@ const Context = React.createContext(undefined)
 
 interface MyReviewsProviderProps {
   myReviews: { [key: string]: boolean }
-  fetchMyReview: Function
-  type: string
+  fetchMyReview: ({
+    resourceId,
+    resourceType,
+  }: {
+    resourceId: string
+    resourceType: string
+  }) => Promise<any>
+  resourceType: string
   subscribeReviewUpdateEvent: Function
 }
 
@@ -26,8 +32,8 @@ export class MyReviewsProvider extends React.PureComponent<
     }))
 
   handleFetch = async ({ id }) => {
-    const { fetchMyReview, type } = this.props
-    const response = await fetchMyReview({ id, type })
+    const { fetchMyReview, resourceType } = this.props
+    const response = await fetchMyReview({ resourceId: id, resourceType })
 
     if (response.ok) {
       const myReview = humps.camelizeKeys(await response.json())
