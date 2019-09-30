@@ -12,6 +12,7 @@ import {
 import { formatNumber } from '@titicaca/view-utilities'
 import ReviewsPlaceholder from './review-placeholder-with-rating'
 import {
+  writeReview,
   fetchReviews as fetchReviewsApi,
   FetchReviewsInterface,
 } from './review-api-clients'
@@ -116,7 +117,13 @@ export class ReviewContainer extends React.PureComponent<ReviewProps> {
     } = this
 
     if (!isPublic) {
-      window.location.href = `${appUrlScheme}:///reviews/new?region_id=${regionId}&resource_type=${resourceType}&resource_id=${resourceId}&rating=${rating}`
+      writeReview({
+        appUrlScheme,
+        resourceType,
+        resourceId,
+        regionId,
+        rating,
+      })
     }
   }
 
