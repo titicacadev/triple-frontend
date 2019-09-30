@@ -1,5 +1,7 @@
 import React from 'react'
 
+const NOOP = () => {}
+
 interface ReviewLikesContextProps {
   likes: { [key: string]: boolean }
   actions: {
@@ -9,7 +11,14 @@ interface ReviewLikesContextProps {
   }
 }
 
-const Context = React.createContext<ReviewLikesContextProps>(undefined)
+const Context = React.createContext<ReviewLikesContextProps>({
+  likes: {},
+  actions: {
+    like: NOOP,
+    unlike: NOOP,
+    insert: NOOP,
+  },
+})
 
 interface ReviewLikesProviderProps {
   likes: { [key: string]: boolean }

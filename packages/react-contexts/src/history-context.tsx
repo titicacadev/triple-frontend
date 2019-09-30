@@ -2,7 +2,21 @@ import React from 'react'
 import Router from 'next/router'
 import qs from 'qs'
 
-const Context = React.createContext(undefined)
+const NOOP: Function = () => {}
+
+const Context = React.createContext<{
+  uriHash: string
+  push: Function
+  replace: Function
+  back: Function
+  navigate: Function
+}>({
+  uriHash: '',
+  push: NOOP,
+  replace: NOOP,
+  back: NOOP,
+  navigate: NOOP,
+})
 
 const EXTERNAL_BROWSER_HOSTS = ['play.google.com', 'itunes.apple.com']
 

@@ -1,17 +1,51 @@
 import React from 'react'
 import humps from 'humps'
 
-const Context = React.createContext(undefined)
+type FetchReview = ({
+  resourceId,
+  resourceType,
+}: {
+  resourceId: string
+  resourceType: string
+}) => Promise<any>
+
+type StateAndCount = {
+  reviewed: boolean
+  reviewsCount: number
+}
+
+type DeriveCurrentStateAndCount = ({
+  id,
+  reviewed,
+  reviewsCount,
+}: { id: string } & StateAndCount) => StateAndCount
+
+const NOOP = () => {}
+
+interface MyReviewsContextProps {
+  myReviews: { [key: string]: boolean }
+  actions: {
+    deleteMyReview: Function
+    fetchMyReview: ({ id: string }) => Promise<any>
+  }
+  deriveCurrentStateAndCount: DeriveCurrentStateAndCount
+}
+
+const Context = React.createContext<MyReviewsContextProps>({
+  myReviews: {},
+  actions: {
+    deleteMyReview: NOOP,
+    fetchMyReview: () => Promise.resolve(null),
+  },
+  deriveCurrentStateAndCount: ({ reviewed, reviewsCount }) => ({
+    reviewed,
+    reviewsCount,
+  }),
+})
 
 interface MyReviewsProviderProps {
   myReviews: { [key: string]: boolean }
-  fetchMyReview: ({
-    resourceId,
-    resourceType,
-  }: {
-    resourceId: string
-    resourceType: string
-  }) => Promise<any>
+  fetchMyReview: FetchReview
   resourceType: string
   subscribeReviewUpdateEvent: Function
 }
