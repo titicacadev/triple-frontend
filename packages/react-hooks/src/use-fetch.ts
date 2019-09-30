@@ -12,7 +12,7 @@ interface FetchStatus {
   error?: Error
 }
 
-const createFetchError = (response: ResponseInit): Error => {
+const createFetchError = (response: Response): Error => {
   const err = new Error(`${response.status} ${response.statusText}`)
   err.name = 'FetchError'
   return err
