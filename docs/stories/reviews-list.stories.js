@@ -1,4 +1,5 @@
 import React from 'react'
+import { text, select } from '@storybook/addon-knobs'
 
 import ReviewsList from '@titicaca/review'
 
@@ -7,7 +8,7 @@ import { storiesOf } from '@storybook/react'
 storiesOf('ReviewsList', module).add('일반', () => (
   <ReviewsList
     appNativeActions={{}}
-    resourceType="poi"
-    resourceId="a86a3f55-9f89-4540-a124-f8c4db07ab34"
+    resourceId={text('Resource ID', 'f939b4cb-ea3b-34b6-b430-eb5d28fbf467')}
+    resourceType={select('Resource Type', ['poi', 'tna', 'article'], 'tna')}
   />
 ))
