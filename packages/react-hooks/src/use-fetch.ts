@@ -16,10 +16,7 @@ const createFetchError = (response: ResponseInit): Error => {
   return err
 }
 
-export default function useFetch(
-  url: string,
-  options: RequestInit = {},
-): ResultFetch {
+export function useFetch(url: string, options: RequestInit = {}): ResultFetch {
   const [response, setResponse] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
