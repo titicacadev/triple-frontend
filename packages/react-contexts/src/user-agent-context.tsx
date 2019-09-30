@@ -1,7 +1,18 @@
 import React, { createContext, useContext } from 'react'
 import { UAParser } from 'ua-parser-js'
 
-const Context = createContext('')
+interface UserAgentProps {
+  isPublic: boolean
+  os: {
+    name: string
+    version: string
+  }
+}
+
+const Context = createContext({
+  isPublic: false,
+  os: { name: '', version: '' },
+})
 const { Provider, Consumer } = Context
 
 function isPublic(userAgent: string): boolean {
@@ -12,7 +23,9 @@ export function withUserAgent(Component: React.ElementType) {
   return function UserAgentComponent(props: any) {
     return (
       <Consumer>
-        {(values: any) => <Component userAgent={values} {...props} />}
+        {(values: UserAgentProps) => (
+          <Component userAgent={values} {...props} />
+        )}
       </Consumer>
     )
   }
