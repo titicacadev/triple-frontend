@@ -153,7 +153,6 @@ export class ReviewContainer extends React.PureComponent<ReviewProps> {
         appNativeActions: { notifyReviewDeleted, showToast },
         shortened,
         onFullListButtonClick,
-        uriHash,
       },
     } = this
 
@@ -223,7 +222,6 @@ export class ReviewContainer extends React.PureComponent<ReviewProps> {
             resourceId={resourceId}
             notifyReviewDeleted={notifyReviewDeleted}
             showToast={showToast}
-            uriHash={uriHash}
           />
         )}
         {reviewsCount > 3 && shortened && (

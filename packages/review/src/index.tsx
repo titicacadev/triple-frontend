@@ -13,7 +13,6 @@ export interface ReviewProps {
   onFullListButtonClick?: any
   appUrlScheme: string
   appNativeActions: AppNativeActionProps
-  uriHash: string
 }
 
 export interface AppNativeActionProps {
@@ -40,7 +39,6 @@ export default function Reviews({
   isPublic,
   appUrlScheme,
   appNativeActions,
-  uriHash,
 }: ReviewProps) {
   return (
     <>
@@ -55,7 +53,6 @@ export default function Reviews({
         reviewed={reviewed}
         onFullListButtonClick={onFullListButtonClick}
         appNativeActions={appNativeActions}
-        uriHash={uriHash}
       />
       <TransitionModals regionId={regionId} resourceId={resourceId} />
     </>
