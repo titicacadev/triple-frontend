@@ -1,10 +1,6 @@
 import { useEffect, useState } from 'react'
 import fetch from 'isomorphic-fetch'
 
-interface Response extends ResponseInit {
-  ok: boolean
-}
-
 interface FetchStatus {
   data: any
   response: Response
@@ -18,7 +14,7 @@ const createFetchError = (response: Response): Error => {
   return err
 }
 
-export function useFetch(url: string, options: RequestInit = {}): FetchStatus {
+export function useFetch(url: string, options?: Request): FetchStatus {
   const [fetchResponse, setFetchResponse] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
