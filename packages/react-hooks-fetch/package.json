@@ -1,0 +1,25 @@
+{
+  "name": "react-hooks-fetch",
+  "version": "1.0.0-alpha.18",
+  "description": "> TODO: description",
+  "author": "appear <appear.ko@gmail.com>",
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "license": "ISC",
+  "main": "lib/react-hooks-fetch.js",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1"
+  }
+}
