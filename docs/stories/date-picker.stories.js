@@ -21,6 +21,7 @@ storiesOf('DayPicker', module)
       beforeBlock={today}
       afterBlock={afterDate}
       disabledDays={[specificDate.toString()]}
+      height={400}
     />
   ))
   .add('RangePicker - 일반', () => <RangePicker />)
