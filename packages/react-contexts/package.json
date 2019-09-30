@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "humps": "^2.0.1",
-    "qs": "^6.7.0"
+    "qs": "^6.7.0",
+    "ua-parser-js": "^0.7.20"
   },
   "peerDependencies": {
     "next": "*",
