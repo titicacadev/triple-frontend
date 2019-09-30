@@ -1,13 +1,12 @@
 {
-  "name": "react-hooks-fetch",
+  "name": "@titicaca/react-hooks",
   "version": "1.0.0-alpha.18",
   "description": "> TODO: description",
-  "author": "appear <appear.ko@gmail.com>",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "license": "ISC",
-  "main": "lib/react-hooks-fetch.js",
+  "main": "lib/index.js",
   "files": [
-    "lib"
+    "lib/*"
   ],
   "repository": {
     "type": "git",
