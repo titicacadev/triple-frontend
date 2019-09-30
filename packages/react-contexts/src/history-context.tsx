@@ -6,10 +6,10 @@ const NOOP: Function = () => {}
 
 const Context = React.createContext<{
   uriHash: string
-  push: Function
-  replace: Function
-  back: Function
-  navigate: Function
+  push: any
+  replace: any
+  back: any
+  navigate: any
 }>({
   uriHash: '',
   push: NOOP,
