@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import fetch from 'isomorphic-fetch'
 
-interface ResultFetch {
-  response: {
-    data: any
-    response: any
-  }
+interface Response extends ResponseInit {
+  ok: boolean
+}
+
+interface FetchStatus {
+  data: any
+  response: Response
   loading: boolean
   error?: Error
 }
@@ -16,8 +18,8 @@ const createFetchError = (response: ResponseInit): Error => {
   return err
 }
 
-export function useFetch(url: string, options: RequestInit = {}): ResultFetch {
-  const [response, setResponse] = useState(null)
+export function useFetch(url: string, options: RequestInit = {}): FetchStatus {
+  const [fetchResponse, setFetchResponse] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
@@ -33,7 +35,7 @@ export function useFetch(url: string, options: RequestInit = {}): ResultFetch {
         if (response.ok) {
           const data = await response.json()
 
-          setResponse({
+          setFetchResponse({
             data,
             response,
           })
@@ -48,5 +50,5 @@ export function useFetch(url: string, options: RequestInit = {}): ResultFetch {
     fetchData()
   }, [url, options])
 
-  return { response, loading, error }
+  return { ...fetchResponse, loading, error }
 }
