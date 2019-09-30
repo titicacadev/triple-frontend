@@ -1,5 +1,21 @@
 import fetch from 'isomorphic-fetch'
 
+export function writeReview({
+  appUrlScheme,
+  resourceType,
+  resourceId,
+  regionId,
+  rating = 0,
+}: {
+  appUrlScheme: string
+  resourceType: string
+  resourceId: string
+  regionId: string
+  rating: number
+}) {
+  window.location.href = `${appUrlScheme}:///reviews/new?region_id=${regionId}&resource_type=${resourceType}&resource_id=${resourceId}&rating=${rating}`
+}
+
 export function likeReview({ id }: { id: string }) {
   return fetch(`/api/reviews/v2/${id}/like`, {
     method: 'POST',
