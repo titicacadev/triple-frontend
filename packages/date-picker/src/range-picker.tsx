@@ -109,6 +109,7 @@ function RangePicker({
   disabledDays = [],
   beforeBlock,
   afterBlock,
+  height,
 }: {
   startDate: string
   endDate: string
@@ -117,6 +118,7 @@ function RangePicker({
   onDatesChange: Function
   numberOfMonths: number
   disabledDays?: string[]
+  height?: number | string
 }) {
   const from = startDate && moment(startDate).toDate()
   const to = endDate && moment(endDate).toDate()
@@ -126,7 +128,7 @@ function RangePicker({
     .toDate()
 
   return (
-    <PickerFrame>
+    <PickerFrame height={height}>
       <RangeContainer selectedAll={!!(startDate && endDate)}>
         <DayPicker
           locale="ko"

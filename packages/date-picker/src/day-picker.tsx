@@ -12,9 +12,7 @@ import PickerFrame from './picker-frame'
 
 const DayContainer = styled.div`
   border: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
-  .DayPicker {
-    height: 256px;
-  }
+
   .DayPicker-Month {
     padding: 40px 0 0 0;
     border-spacing: 0 15px;
@@ -67,6 +65,7 @@ function DatePicker({
   numberOfMonths = 3,
   onDateChange,
   disabledDays = [],
+  height,
 }: {
   day: string
   beforeBlock: Date
@@ -74,11 +73,12 @@ function DatePicker({
   numberOfMonths: number
   onDateChange: Function
   disabledDays?: string[]
+  height?: number | string
 }) {
   const selectedDay = day && moment(day).toDate()
 
   return (
-    <PickerFrame>
+    <PickerFrame height={height}>
       <DayContainer>
         <DayPicker
           locale="ko"
