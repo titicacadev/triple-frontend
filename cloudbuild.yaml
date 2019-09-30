@@ -55,6 +55,8 @@ steps:
     '--file', './Dockerfile.test',
     '.'
   ]
+  options:
+    machineType: 'N1_HIGHCPU_8'
 
 substitutions:
   _SLACK_NOTIFY_CHANNEL: '#triple-web-dev-notifications'
