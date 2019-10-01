@@ -1,3 +1,7 @@
+- `triple-document` 패키지에서 텍스트 요소(`Paragraph`, `H1`, `H2`, ...)를
+  인터페이스로 노출합니다.
+- `MyReviewsProvider`의 props 중 `type`을 `resourceType`으로 변경합니다.
+
 ## 0.12.0 (2019-08-30)
 
 - `Checkbox` 에서도 error style 을 이용 할 수 있도록 변경
