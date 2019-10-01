@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Button, Container } from '@titicaca/core-elements'
+import { Text } from '@titicaca/core-elements'
 import { Modal, Alert } from '@titicaca/modals'
 import styled from 'styled-components'
 import { useHistoryContext } from '@titicaca/react-contexts'
