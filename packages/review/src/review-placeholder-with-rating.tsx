@@ -7,7 +7,7 @@ CommentByTypes.set('tna', '이 투어티켓 어떠셨나요?')
 CommentByTypes.set('poi', '이곳에 다녀오셨나요?')
 CommentByTypes.set('article', '이 가이드 어떠셨나요?')
 CommentByTypes.set('hotel', '이 호텔 어떠셨나요?')
-CommentByTypes.set('default', '이 곳의 첫번째 리뷰를 남겨주세요.')
+CommentByTypes.set('default', '이 곳의 첫 번째 리뷰를 남겨주세요.')
 const PlaceholderContainer = styled(Container)`
   width: 100%;
   text-align: center;
