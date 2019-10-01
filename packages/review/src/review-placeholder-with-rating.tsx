@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Container, Rating, Text } from '@titicaca/core-elements'
 
 const CommentByTypes = new Map()
-CommentByTypes.set('tna', '이 상품이 어떠셨나요?')
+CommentByTypes.set('tna', '이 투어티켓 어떠셨나요?')
 CommentByTypes.set('poi', '이곳에 다녀오셨나요?')
 CommentByTypes.set('article', '이 가이드 어떠셨나요?')
 CommentByTypes.set('hotel', '이 호텔 어떠셨나요?')
