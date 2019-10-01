@@ -25,11 +25,11 @@
   "dependencies": {
     "@titicaca/scrap-button": "^1.0.0-alpha.19",
     "@titicaca/view-utilities": "^1.0.0-alpha.19",
-    "@types/react-input-mask": "^2.0.3",
     "nuka-carousel": "4.4.1",
     "react-input-mask": "^2.0.4"
   },
   "peerDependencies": {
+    "@types/react-input-mask": "^2.0.3",
     "react": "*",
     "react-dom": "*",
     "styled-components": "^3.4.6"
