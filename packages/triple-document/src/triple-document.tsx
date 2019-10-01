@@ -110,7 +110,7 @@ export function TripleDocument({
   imageSourceComponent,
   resourceScraps,
   customElements,
-  WEB_URL_BASE,
+  webUrlBase,
   deepLink,
 }) {
   return (
@@ -132,7 +132,7 @@ export function TripleDocument({
               ImageSource={imageSourceComponent}
               resourceScraps={resourceScraps || {}}
               deepLink={deepLink}
-              WEB_URL_BASE={WEB_URL_BASE}
+              webUrlBase={webUrlBase}
             />
           )
         )
