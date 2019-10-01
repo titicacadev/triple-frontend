@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/review",
-  "version": "1.0.0-alpha.19",
+  "version": "1.0.0-alpha.20",
   "description": "UI Components for User Reviews from Triple Service",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,11 +15,11 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/action-sheet": "^1.0.0-alpha.19",
-    "@titicaca/core-elements": "^1.0.0-alpha.19",
-    "@titicaca/modals": "^1.0.0-alpha.19",
-    "@titicaca/react-contexts": "^1.0.0-alpha.19",
-    "@titicaca/view-utilities": "^1.0.0-alpha.19",
+    "@titicaca/action-sheet": "^1.0.0-alpha.20",
+    "@titicaca/core-elements": "^1.0.0-alpha.20",
+    "@titicaca/modals": "^1.0.0-alpha.20",
+    "@titicaca/react-contexts": "^1.0.0-alpha.20",
+    "@titicaca/view-utilities": "^1.0.0-alpha.20",
     "humps": "^2.0.1",
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.24.0",
