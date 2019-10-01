@@ -108,7 +108,7 @@ const InAppCouponDownloadButton = ({ slugId }) => {
 
 export default function Coupon({
   value: { identifier: slugId, description },
-  WEB_URL_BASE,
+  webUrlBase,
   deepLink,
 }) {
   const { isPublic } = useUserAgentContext()
@@ -133,7 +133,7 @@ export default function Coupon({
         </Text>
       ) : null}
 
-      <CouponModal WEB_URL_BASE={WEB_URL_BASE} />
+      <CouponModal webUrlBase={webUrlBase} />
       <CouponTransitionModal deepLink={deepLink} />
     </Container>
   )
