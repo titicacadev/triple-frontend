@@ -21,6 +21,9 @@
     "@titicaca/react-contexts": "^1.0.0-alpha.19"
   },
   "peerDependencies": {
+    "@sentry/browser": ">= 5.4.3 < 6"
+  },
+  "devDependencies": {
     "@sentry/browser": "^5.4.3"
   }
 }
