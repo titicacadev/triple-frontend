@@ -42,7 +42,7 @@ const CouponIcon = styled.img`
   margin: 40px auto 10px auto;
 `
 
-export function CouponModal({ WEB_URL_BASE }) {
+export function CouponModal({ webUrlBase }) {
   const { uriHash, back, navigate } = useHistoryContext()
 
   return (
@@ -87,7 +87,7 @@ export function CouponModal({ WEB_URL_BASE }) {
           color="blue"
           onClick={() => {
             back()
-            navigate(`${WEB_URL_BASE}/benefit/coupons/my?_triple_no_navbar`)
+            navigate(`${webUrlBase}/benefit/coupons/my?_triple_no_navbar`)
           }}
         >
           {CONFIRM_MESSAGE_TYPES[uriHash]}
