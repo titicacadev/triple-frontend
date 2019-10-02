@@ -1,0 +1,21 @@
+{
+  "name": "@titicaca/intersection-observer",
+  "version": "1.0.0-alpha.21",
+  "description": "Shared IntersecionObserver component",
+  "main": "lib/index.js",
+  "files": [
+    "lib/*"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "@researchgate/react-intersection-observer": "^1.0.1",
+    "intersection-observer": "^0.7.0"
+  },
+  "peerDependencies": {
+    "next": "*",
+    "react": ">=16.8.0"
+  },
+  "devDependencies": {
+    "next": "^9.0.5"
+  }
+}
