@@ -11,15 +11,12 @@ import { formatMonthTitle } from './utils'
 import PickerFrame from './picker-frame'
 
 const DayContainer = styled.div<{ height?: string }>`
-  border: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
-
   .DayPicker {
     height: ${({ height }) => height || '300px'};
   }
 
   .DayPicker-Month {
     padding: 40px 0 0 0;
-    border-spacing: 0 15px;
   }
   .DayPicker-Day--today:before {
     top: 30px;

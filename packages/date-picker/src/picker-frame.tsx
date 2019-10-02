@@ -2,6 +2,9 @@ import styled from 'styled-components'
 import { GetGlobalColor } from '@titicaca/core-elements'
 
 const PickerFrame = styled.div`
+  border-top: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
+  border-bottom: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
+
   .DayPicker {
     overflow: auto;
     color: #3a3a3a;
@@ -11,7 +14,7 @@ const PickerFrame = styled.div`
   }
   .DayPicker-Caption {
     position: absolute;
-    top: 30px;
+    top: 25px;
     left: 20px;
     color: #222;
   }
