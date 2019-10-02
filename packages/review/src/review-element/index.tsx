@@ -1,34 +1,11 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
+import User from './user'
 
-import {
-  List,
-  Container,
-  Text,
-  Rating,
-  MarginPadding,
-} from '@titicaca/core-elements'
+import { List, Container, Text, Rating } from '@titicaca/core-elements'
 
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
-
-const UserPhoto = styled.img`
-  margin-right: 9px;
-  width: 38px;
-  height: 38px;
-  float: left;
-  background-color: #efefef;
-  border-radius: 19px;
-  object-fit: cover;
-`
-
-const Badge = styled.img`
-  position: absolute;
-  top: 22px;
-  left: 25px;
-  width: 18px;
-  height: 18px;
-`
 
 const MoreIcon = styled.img`
   margin-top: -3px;
@@ -38,51 +15,6 @@ const MoreIcon = styled.img`
   vertical-align: middle;
   cursor: pointer;
 `
-
-function Name({ onClick, children }) {
-  return (
-    <Text bold size="large" color="gray" onClick={onClick}>
-      {children}
-    </Text>
-  )
-}
-
-function UserExtra({
-  onClick,
-  children,
-}: {
-  onClick?: (e?: React.SyntheticEvent) => any
-  children?: React.ReactNode
-}) {
-  return (
-    <Text
-      margin={{ top: 4 }}
-      bold
-      size="mini"
-      color="gray"
-      alpha={0.3}
-      onClick={onClick}
-    >
-      {children}
-    </Text>
-  )
-}
-
-function Score({ score }) {
-  return (
-    <Container floated="right">
-      <Rating size="tiny" score={score} />
-    </Container>
-  )
-}
-
-function Content({ children }) {
-  return (
-    <Container margin={{ top: 17 }} clearing>
-      <Comment>{children}</Comment>
-    </Container>
-  )
-}
 
 const Images = styled.div`
   margin-top: 17px;
@@ -107,14 +39,6 @@ const Images = styled.div`
   }
 `
 
-function Meta({ children }) {
-  return (
-    <Text margin={{ top: 20 }} bold size="mini" color="gray" alpha={0.3}>
-      {children}
-    </Text>
-  )
-}
-
 const LikeButton = styled.a<{ liked?: boolean }>`
   display: inline-block;
   font-size: 12px;
@@ -134,11 +58,7 @@ const LikeButton = styled.a<{ liked?: boolean }>`
   `};
 `
 
-function Date({ floated, children }) {
-  return <Container floated={floated}>{children}</Container>
-}
-
-class ReviewElement extends React.PureComponent<{
+export default class ReviewElement extends React.PureComponent<{
   review?: any
   onUserClick?: (e?: React.SyntheticEvent, review?: any) => any
   onUnfoldButtonClick?: (e?: React.SyntheticEvent, review?: any) => any
@@ -148,7 +68,7 @@ class ReviewElement extends React.PureComponent<{
   onImageClick?: (e?: React.SyntheticEvent, review?: any, image?: any) => any
   likeVisible?: boolean
   menuVisible?: boolean
-  DateFormatter?: React.ComponentClass
+  DateFormatter?: React.ComponentClass | React.FunctionComponent
 }> {
   state = { unfolded: false }
 
@@ -170,12 +90,7 @@ class ReviewElement extends React.PureComponent<{
     } = this
 
     const {
-      user: {
-        photo,
-        name,
-        userBoard: { reviews: reviewsCount },
-        mileage,
-      },
+      user,
       blindedAt,
       likeCount,
       liked,
@@ -184,23 +99,12 @@ class ReviewElement extends React.PureComponent<{
       rating,
       media,
     } = review
-    const badge = mileage && mileage.badges && mileage.badges[0]
 
     return (
       <List.Item>
-        <Container padding={{ bottom: 2 }}>
-          <UserPhoto src={photo} onClick={(e) => onUserClick(e, review)} />
-          {badge && <Badge src={badge.icon.imageUrl} />}
-          <Name onClick={(e) => onUserClick(e, review)}>{name}</Name>
-          <UserExtra>
-            <span onClick={(e) => onUserClick(e, review)}>
-              {badge
-                ? `${badge.label} / ${reviewsCount}개의 리뷰`
-                : `${reviewsCount}개의 리뷰`}
-            </span>
-            {!blindedAt && !!rating ? <Score score={rating} /> : null}
-          </UserExtra>
-        </Container>
+        <User user={user} onClick={(e) => onUserClick(e, review)}>
+          {!blindedAt && !!rating ? <Score score={rating} /> : null}
+        </User>
         <Content>
           {blindedAt ? (
             '신고가 접수되어 블라인드 처리되었습니다.'
@@ -266,61 +170,30 @@ class ReviewElement extends React.PureComponent<{
   }
 }
 
-export default function ReviewsList({
-  margin,
-  reviews,
-  onUserClick,
-  onLikeButtonClick,
-  onLikesCountClick,
-  onMenuClick,
-  onImageClick,
-  onUnfoldButtonClick,
-  likeVisible,
-  menuVisible,
-  likes,
-  DateFormatter,
-}: {
-  margin: MarginPadding
-  reviews: any[]
-  onUserClick?: (e?: React.SyntheticEvent, review?: any) => any
-  onLikeButtonClick?: (e?: React.SyntheticEvent, review?: any) => any
-  onLikesCountClick?: (e?: React.SyntheticEvent, review?: any) => any
-  onMenuClick?: (e?: React.SyntheticEvent, review?: any) => any
-  onImageClick?: (e?: React.SyntheticEvent, review?: any) => any
-  onUnfoldButtonClick?: (e?: React.SyntheticEvent, review?: any) => any
-  likeVisible?: boolean
-  menuVisible?: boolean
-  likes: any
-  DateFormatter?: any
-}) {
+function Score({ score }) {
   return (
-    <List margin={margin} divided verticalGap={60}>
-      {(reviews || []).map((review) => (
-        <ReviewElement
-          key={review.id}
-          review={
-            typeof (likes || {})[review.id] === 'boolean'
-              ? {
-                  ...review,
-                  liked: likes[review.id],
-                  likeCount:
-                    review.liked === likes[review.id]
-                      ? review.likeCount
-                      : review.likeCount + (likes[review.id] ? 1 : -1),
-                }
-              : review
-          }
-          onUserClick={onUserClick}
-          onLikeButtonClick={onLikeButtonClick}
-          onLikesCountClick={onLikesCountClick}
-          onMenuClick={onMenuClick}
-          onImageClick={onImageClick}
-          onUnfoldButtonClick={onUnfoldButtonClick}
-          likeVisible={likeVisible}
-          menuVisible={menuVisible}
-          DateFormatter={DateFormatter}
-        />
-      ))}
-    </List>
+    <Container floated="right">
+      <Rating size="tiny" score={score} />
+    </Container>
   )
+}
+
+function Content({ children }) {
+  return (
+    <Container margin={{ top: 17 }} clearing>
+      <Comment>{children}</Comment>
+    </Container>
+  )
+}
+
+function Meta({ children }) {
+  return (
+    <Text margin={{ top: 20 }} bold size="mini" color="gray" alpha={0.3}>
+      {children}
+    </Text>
+  )
+}
+
+function Date({ floated, children }) {
+  return <Container floated={floated}>{children}</Container>
 }
