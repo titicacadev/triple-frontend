@@ -2,13 +2,13 @@ import * as React from 'react'
 import moment from 'moment-timezone'
 import { Confirm } from '@titicaca/modals'
 import ActionSheet from '@titicaca/action-sheet'
-import { MarginPadding } from '@titicaca/core-elements'
+import { List, MarginPadding } from '@titicaca/core-elements'
 import {
   withReviewLikes,
   withMyReviews,
   withHistory,
 } from '@titicaca/react-contexts'
-import ReviewsListView from './review-element'
+import ReviewElement from './review-element'
 import { deleteReview as deleteReviewApi } from './review-api-clients'
 moment.updateLocale('ko', {
   relativeTime: {
@@ -199,21 +199,36 @@ class ReviewsList extends React.PureComponent<{
     const renderedReviews = myReview
       ? [myReview, ...(reviews || []).filter(({ id }) => id !== myReview.id)]
       : reviews || []
+
     return (
       <>
-        <ReviewsListView
-          margin={margin}
-          reviews={renderedReviews}
-          likes={likes}
-          onUserClick={this.handleUserClick}
-          onLikeButtonClick={this.handleLikeButtonClick}
-          onLikesCountClick={this.handleLikesCountClick}
-          onMenuClick={this.handleMenuClick}
-          DateFormatter={ReviewTimestamp}
-          menuVisible={!isPublic}
-          likeVisible={!isPublic}
-          onImageClick={this.handleImageClick}
-        />
+        <List margin={margin} divided verticalGap={60}>
+          {(renderedReviews || []).map((review) => (
+            <ReviewElement
+              key={review.id}
+              review={
+                typeof (likes || {})[review.id] === 'boolean'
+                  ? {
+                      ...review,
+                      liked: likes[review.id],
+                      likeCount:
+                        review.liked === likes[review.id]
+                          ? review.likeCount
+                          : review.likeCount + (likes[review.id] ? 1 : -1),
+                    }
+                  : review
+              }
+              onUserClick={this.handleUserClick}
+              onLikeButtonClick={this.handleLikeButtonClick}
+              onLikesCountClick={this.handleLikesCountClick}
+              onMenuClick={this.handleMenuClick}
+              onImageClick={this.handleImageClick}
+              likeVisible={!isPublic}
+              menuVisible={!isPublic}
+              DateFormatter={ReviewTimestamp}
+            />
+          ))}
+        </List>
 
         <ActionSheet open={uriHash === HASH_REVIEW_ACTION_SHEET} onClose={back}>
           <ActionSheet.Item icon="report" onClick={this.handleReportClick}>
