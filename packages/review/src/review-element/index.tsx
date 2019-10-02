@@ -9,6 +9,9 @@ import {
   MarginPadding,
 } from '@titicaca/core-elements'
 
+import Comment from './comment'
+import FoldableComment from './foldable-comment'
+
 const UserPhoto = styled.img`
   margin-right: 9px;
   width: 38px;
@@ -70,14 +73,6 @@ function Score({ score }) {
     <Container floated="right">
       <Rating size="tiny" score={score} />
     </Container>
-  )
-}
-
-function Comment({ children }) {
-  return (
-    <Text size="large" color="gray" alpha={0.8} lineHeight={1.5}>
-      {children}
-    </Text>
   )
 }
 
@@ -143,92 +138,6 @@ function Date({ floated, children }) {
   return <Container floated={floated}>{children}</Container>
 }
 
-const ItemContainer = styled(Container)`
-  padding-bottom: 2px;
-`
-
-class ReviewItem extends React.PureComponent {
-  render() {
-    const {
-      props: { children },
-    } = this
-
-    return (
-      <List.Item>
-        <ItemContainer>{children}</ItemContainer>
-      </List.Item>
-    )
-  }
-}
-
-class Review extends React.PureComponent<{
-  margin?: MarginPadding
-  divided?: boolean
-  verticalGap?: number
-}> {
-  render() {
-    const {
-      props: { children, ...props },
-    } = this
-
-    return (
-      <List divided verticalGap={60} {...props}>
-        {children}
-      </List>
-    )
-  }
-}
-
-const MAX_COMMENT_LINES = 6
-const CHARACTERS_PER_LINE = 25
-
-function findFoldedPosition(comment) {
-  const lines = (comment || '').split('\n')
-
-  let linesCount = 0
-  let foldedIndex = 0
-  for (const line of lines) {
-    const rest = (MAX_COMMENT_LINES - linesCount) * CHARACTERS_PER_LINE
-
-    if (line.length > rest) {
-      return foldedIndex + rest
-    }
-
-    foldedIndex = foldedIndex + line.length
-    linesCount = linesCount + 1 + Math.floor(line.length / CHARACTERS_PER_LINE)
-  }
-
-  return null
-}
-
-const Unfold = styled.a`
-  display: inline-block;
-  color: #2987f0;
-  text-decoration: none;
-  cursor: pointer;
-`
-
-function FoldedComment({ children, onUnfoldButtonClick }) {
-  return (
-    <Comment>
-      {`${children} …`}
-      <Unfold onClick={onUnfoldButtonClick}>더보기</Unfold>
-    </Comment>
-  )
-}
-
-function FoldableComment({ children, onUnfoldButtonClick }) {
-  const foldedPosition = findFoldedPosition(children)
-
-  return foldedPosition ? (
-    <FoldedComment onUnfoldButtonClick={onUnfoldButtonClick}>
-      {children.slice(0, foldedPosition)}
-    </FoldedComment>
-  ) : (
-    <Comment>{children}</Comment>
-  )
-}
-
 class ReviewElement extends React.PureComponent<{
   review?: any
   onUserClick?: (e?: React.SyntheticEvent, review?: any) => any
@@ -278,8 +187,8 @@ class ReviewElement extends React.PureComponent<{
     const badge = mileage && mileage.badges && mileage.badges[0]
 
     return (
-      <ReviewItem>
-        <Container>
+      <List.Item>
+        <Container padding={{ bottom: 2 }}>
           <UserPhoto src={photo} onClick={(e) => onUserClick(e, review)} />
           {badge && <Badge src={badge.icon.imageUrl} />}
           <Name onClick={(e) => onUserClick(e, review)}>{name}</Name>
@@ -352,7 +261,7 @@ class ReviewElement extends React.PureComponent<{
             </Date>
           </Meta>
         )}
-      </ReviewItem>
+      </List.Item>
     )
   }
 }
@@ -385,7 +294,7 @@ export default function ReviewsList({
   DateFormatter?: any
 }) {
   return (
-    <Review margin={margin} divided verticalGap={60}>
+    <List margin={margin} divided verticalGap={60}>
       {(reviews || []).map((review) => (
         <ReviewElement
           key={review.id}
@@ -412,6 +321,6 @@ export default function ReviewsList({
           DateFormatter={DateFormatter}
         />
       ))}
-    </Review>
+    </List>
   )
 }
