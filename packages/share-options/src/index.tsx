@@ -12,12 +12,12 @@ const ShareIcon = styled.img`
 
 export default function ShareOptions({
   onKakaoClick,
-  onClibBoardClick,
+  onClipBoardClick,
   onOtherClick,
   title,
 }: {
   onKakaoClick: (e?: React.SyntheticEvent) => void
-  onClibBoardClick: (e?: React.SyntheticEvent) => void
+  onClipBoardClick: (e?: React.SyntheticEvent) => void
   onOtherClick: (e?: React.SyntheticEvent) => void
   title: string
 }) {
@@ -29,7 +29,7 @@ export default function ShareOptions({
       />
       <ShareIcon
         src="http://assets.triple.guide/images/btn-end-invite-copy@3x.png"
-        onClick={onClibBoardClick}
+        onClick={onClipBoardClick}
       />
       <ShareIcon
         src="http://assets.triple.guide/images/btn-end-invite-more@3x.png"
