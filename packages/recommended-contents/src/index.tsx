@@ -108,19 +108,22 @@ const ImageColorOverlay = styled.div`
 interface ContentElement {
   backgroundImageUrl: string
   title: string
+  [keys: string]: string
 }
 
 export default function RecommendedContents({
   contents: contentsData,
   margin,
   onContentClick,
+  contentWrapperComponent: ContentWrapperComponent,
 }: {
-  contents: ContentElement[]
+  contents: Array<ContentElement>
   margin?: MarginPadding
   onContentClick?: (
     e?: React.SyntheticEvent,
     content?: { backgroundImageUrl: string; title: string },
   ) => any
+  contentWrapperComponent?: any
 }) {
   const contents = contentsData.map(({ title, ...content }) => ({
     title: title.replace('\n', ' '),
@@ -130,33 +133,39 @@ export default function RecommendedContents({
   return (
     <RecommendedContentsContainer margin={margin}>
       {contents.map((content, index) => (
-        <RecommendedContentWithFixedRatio
-          key={index}
-          onClick={onContentClick && ((e) => onContentClick(e, content))}
-        >
-          <Image src={content.backgroundImageUrl} />
-          <ImageColorOverlay />
-          <Text
-            lineHeight="20px"
-            color="white"
-            bold
-            maxLines={2}
-            padding={{ top: 20, left: 15, right: 15 }}
-          >
-            {content.title}
-          </Text>
-        </RecommendedContentWithFixedRatio>
+        <div key={index}>
+          <ContentWrapperComponent {...content}>
+            <RecommendedContentWithFixedRatio
+              onClick={onContentClick && ((e) => onContentClick(e, content))}
+            >
+              <Image src={content.backgroundImageUrl} />
+              <ImageColorOverlay />
+              <Text
+                lineHeight="20px"
+                color="white"
+                bold
+                maxLines={2}
+                padding={{ top: 20, left: 15, right: 15 }}
+              >
+                {content.title}
+              </Text>
+            </RecommendedContentWithFixedRatio>
+          </ContentWrapperComponent>
+        </div>
       ))}
       {contents.map((content, index) => (
-        <RecommendedContent
-          key={index}
-          backgroundImageUrl={content.backgroundImageUrl}
-          onClick={onContentClick && ((e) => onContentClick(e, content))}
-        >
-          <Text lineHeight="20px" color="white" bold maxLines={2}>
-            {content.title}
-          </Text>
-        </RecommendedContent>
+        <div key={index}>
+          <ContentWrapperComponent {...content}>
+            <RecommendedContent
+              backgroundImageUrl={content.backgroundImageUrl}
+              onClick={onContentClick && ((e) => onContentClick(e, content))}
+            >
+              <Text lineHeight="20px" color="white" bold maxLines={2}>
+                {content.title}
+              </Text>
+            </RecommendedContent>
+          </ContentWrapperComponent>
+        </div>
       ))}
     </RecommendedContentsContainer>
   )
