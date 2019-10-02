@@ -17,7 +17,8 @@ import {
   FetchReviewsInterface,
 } from './review-api-clients'
 import ReviewsList from './review-list'
-import { ReviewProps } from './index'
+import { ReviewProps } from './types'
+
 const REVIEWS_SECTION_ID = 'reviews'
 const ORDER_BY_RECOMMENDATION = ''
 const ORDER_BY_RECENCY = 'latest'
