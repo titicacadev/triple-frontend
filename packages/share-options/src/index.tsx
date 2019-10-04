@@ -11,29 +11,27 @@ const ShareIcon = styled.img`
 `
 
 export default function ShareOptions({
-  onKakaoClick,
-  onClipBoardClick,
-  onOtherClick,
+  onShareIconClick,
   title,
 }: {
-  onKakaoClick: (e?: React.SyntheticEvent) => void
-  onClipBoardClick: (e?: React.SyntheticEvent) => void
-  onOtherClick: (e?: React.SyntheticEvent) => void
+  onShareIconClick: ({ method: string }) => any
   title: string
+  userAgent: { isPublic: boolean }
+  source: any
 }) {
   return (
     <Container textAlign="center" margin={{ top: 50, bottom: 50 }}>
       <ShareIcon
         src="http://assets.triple.guide/images/btn-end-invite-kakao@3x.png"
-        onClick={onKakaoClick}
+        onClick={() => onShareIconClick({ method: 'kakao' })}
       />
       <ShareIcon
         src="http://assets.triple.guide/images/btn-end-invite-copy@3x.png"
-        onClick={onClipBoardClick}
+        onClick={() => onShareIconClick({ method: 'clipboard' })}
       />
       <ShareIcon
         src="http://assets.triple.guide/images/btn-end-invite-more@3x.png"
-        onClick={onOtherClick}
+        onClick={() => onShareIconClick({ method: 'other' })}
       />
       <Text margin={{ top: 19 }} center alpha={1}>
         {title}
