@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { List, MarginPadding } from '@titicaca/core-elements'
 import {
   useReviewLikesContext,
   useHistoryContext,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
+import IntersectionObserver from '@titicaca/intersection-observer'
 import ReviewElement from './review-element'
-import { fetchReviews, fetchMyReviews } from './review-api-clients'
+import { fetchMyReviews } from './review-api-clients'
 import ReviewTimestamp from './review-timestamp'
 import MyReviewActionSheet, {
   HASH_MY_REVIEW_ACTION_SHEET,
@@ -14,6 +15,7 @@ import MyReviewActionSheet, {
 import OthersReviewActionSheet, {
   HASH_REVIEW_ACTION_SHEET,
 } from './others-review-action-sheet'
+import usePaging from './use-paging'
 
 export default function ReviewsList({
   appUrlScheme,
@@ -33,7 +35,6 @@ export default function ReviewsList({
   showToast: Function
 }) {
   const [selectedReview, setSelectedReview] = useState(undefined)
-  const [reviews, setReviews] = useState([])
   const [myReview, setMyReview] = useState(undefined)
   const { isPublic } = useUserAgentContext()
   const {
@@ -41,28 +42,27 @@ export default function ReviewsList({
     actions: { like, unlike },
   } = useReviewLikesContext()
   const { push } = useHistoryContext()
-
-  useEffect(() => {
-    const fetchAndSetReviews = async () => {
-      const newReviews = await fetchReviews({
-        resourceId,
-        resourceType,
-      })
-
-      setReviews((oldReviews) => [...oldReviews, ...newReviews])
-    }
-
-    fetchAndSetReviews()
-  }, [resourceId, resourceType, setReviews])
+  const { reviews, fetchNext } = usePaging({
+    order: '',
+    resourceId,
+    resourceType,
+    perPage: 20,
+  })
 
   useEffect(() => {
     const fetchAndSetMyReview = async () => {
-      const [fetchedMyReview] = await fetchMyReviews({
-        resourceId,
-        resourceType,
-      })
+      try {
+        const [fetchedMyReview] = await fetchMyReviews({
+          resourceId,
+          resourceType,
+        })
 
-      setMyReview(fetchedMyReview)
+        if (fetchedMyReview) {
+          setMyReview(fetchedMyReview)
+        }
+      } catch (e) {
+        // do nothing
+      }
     }
 
     fetchAndSetMyReview()
@@ -102,56 +102,72 @@ export default function ReviewsList({
     window.location.href = `${appUrlScheme}:///images?${media}`
   }
 
-  const renderedReviews = myReview
-    ? [myReview, ...(reviews || []).filter(({ id }) => id !== myReview.id)]
-    : reviews
-
-  return (
-    <>
-      <List margin={margin} divided verticalGap={60}>
-        {(renderedReviews || []).map((review) => (
-          <ReviewElement
-            key={review.id}
-            review={
-              typeof (likes || {})[review.id] === 'boolean'
-                ? {
-                    ...review,
-                    liked: likes[review.id],
-                    likeCount:
-                      review.liked === likes[review.id]
-                        ? review.likeCount
-                        : review.likeCount + (likes[review.id] ? 1 : -1),
+  return useMemo(
+    () => (
+      <>
+        <List margin={margin} divided verticalGap={60}>
+          {(myReview
+            ? [
+                myReview,
+                ...(reviews || []).filter(({ id }) => id !== myReview.id),
+              ]
+            : reviews
+          ).map((review, i) => (
+            <IntersectionObserver
+              key={review.id}
+              onChange={({ isIntersecting }) => {
+                if (isIntersecting && reviews.length - 3 < i) {
+                  fetchNext()
+                }
+              }}
+            >
+              <div>
+                <ReviewElement
+                  review={
+                    typeof (likes || {})[review.id] === 'boolean'
+                      ? {
+                          ...review,
+                          liked: likes[review.id],
+                          likeCount:
+                            review.liked === likes[review.id]
+                              ? review.likeCount
+                              : review.likeCount + (likes[review.id] ? 1 : -1),
+                        }
+                      : review
                   }
-                : review
-            }
-            onUserClick={handleUserClick}
-            onLikeButtonClick={handleLikeButtonClick}
-            onLikesCountClick={handleLikesCountClick}
-            onMenuClick={handleMenuClick}
-            onImageClick={handleImageClick}
-            likeVisible={!isPublic}
-            menuVisible={!isPublic}
-            DateFormatter={ReviewTimestamp}
-          />
-        ))}
-      </List>
+                  onUserClick={handleUserClick}
+                  onLikeButtonClick={handleLikeButtonClick}
+                  onLikesCountClick={handleLikesCountClick}
+                  onMenuClick={handleMenuClick}
+                  onImageClick={handleImageClick}
+                  likeVisible={!isPublic}
+                  menuVisible={!isPublic}
+                  DateFormatter={ReviewTimestamp}
+                />
+              </div>
+            </IntersectionObserver>
+          ))}
+        </List>
 
-      <MyReviewActionSheet
-        myReview={myReview}
-        appUrlScheme={appUrlScheme}
-        regionId={regionId}
-        resourceType={resourceType}
-        resourceId={resourceId}
-        notifyReviewDeleted={(resourceId, reviewId) => {
-          notifyReviewDeleted(resourceId, reviewId)
-          myReview && reviewId === myReview.id && setMyReview(null)
-        }}
-      />
+        <MyReviewActionSheet
+          myReview={myReview}
+          appUrlScheme={appUrlScheme}
+          regionId={regionId}
+          resourceType={resourceType}
+          resourceId={resourceId}
+          notifyReviewDeleted={(resourceId, reviewId) => {
+            notifyReviewDeleted(resourceId, reviewId)
+            myReview && reviewId === myReview.id && setMyReview(null)
+          }}
+        />
 
-      <OthersReviewActionSheet
-        appUrlScheme={appUrlScheme}
-        selectedReview={selectedReview}
-      />
-    </>
+        <OthersReviewActionSheet
+          appUrlScheme={appUrlScheme}
+          selectedReview={selectedReview}
+        />
+      </>
+    ),
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
+    [resourceId, resourceType, reviews, myReview],
   )
 }

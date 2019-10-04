@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-fetch'
-import humps from 'humps'
 
 export function writeReview({
   appUrlScheme,
@@ -31,33 +30,19 @@ export function unlikeReview({ id }: { id: string }) {
   })
 }
 
-export async function fetchReviews({
-  resourceId,
-  resourceType,
-  order = '',
-  from = 0,
-  size = 30,
-}: FetchReviewsInterface) {
-  const url = `/api/reviews/v2${
-    order ? '/' + order : ''
-  }?resource_id=${resourceId}&resource_type=${resourceType}&from=${from}&size=${size}`
-
-  const response = await fetch(url, { credentials: 'same-origin' })
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch reviews: ${response.status} ${url}`)
-  }
-
-  const { reviews } = humps.camelizeKeys(await response.json())
-
-  return reviews
-}
-
-export function fetchMyReviews({ resourceType, resourceId }) {
-  return fetch(
+export async function fetchMyReviews({ resourceType, resourceId }) {
+  const response = await fetch(
     `/api/reviews/v2/me?resourceType=${resourceType}&resourceId=${resourceId}`,
     { credentials: 'same-origin' },
   )
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch my reviews: ${response.status}`)
+  }
+
+  const { data: reviews } = await response.json()
+
+  return reviews
 }
 
 export function deleteReview({ id }: { id: string }) {
