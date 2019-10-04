@@ -11,10 +11,10 @@ const ShareIcon = styled.img`
 
 export default function ContentSharing({
   onShareClick,
-  title,
+  label,
 }: {
   onShareClick: ({ method: string }) => any
-  title: string
+  label: string
 }) {
   return (
     <Container textAlign="center" margin={{ top: 50, bottom: 50 }}>
@@ -31,7 +31,7 @@ export default function ContentSharing({
         onClick={() => onShareClick({ method: 'other' })}
       />
       <Text margin={{ top: 19 }} center alpha={1}>
-        {title}
+        {label}
       </Text>
     </Container>
   )
