@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from 'react'
 import { useFetch } from '@titicaca/react-hooks'
 
 export default function usePaging({
-  order,
+  sortingOption,
   resourceId,
   resourceType,
   perPage,
@@ -12,7 +12,7 @@ export default function usePaging({
   const [reviews, setReviews] = useState([])
   const { error, loading, data } = useFetch(
     `/api/reviews/v2${
-      order ? `/${order}` : '/'
+      sortingOption ? `/${sortingOption}` : '/'
     }?resource_id=${resourceId}&resource_type=${resourceType}&from=${(currentPage -
       1) *
       perPage}&size=${perPage}`,
@@ -25,7 +25,7 @@ export default function usePaging({
   useEffect(() => {
     setCurrentPage(1)
     setReviews([])
-  }, [resourceId])
+  }, [sortingOption, resourceId])
 
   useEffect(() => {
     if (!error && !loading && data) {
