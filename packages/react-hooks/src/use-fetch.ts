@@ -16,16 +16,12 @@ const createFetchError = (response: Response): Error => {
 
 export function useFetch(url: string, options?: Request): FetchStatus {
   const [fetchResponse, setFetchResponse] = useState(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
 
   useEffect(() => {
-    setLoading(true)
-
     async function fetchData() {
-      const response = await fetch(url, options)
+      setFetchResponse(null)
 
-      setLoading(false)
+      const response = await fetch(url, options)
 
       try {
         if (response.ok) {
@@ -36,15 +32,18 @@ export function useFetch(url: string, options?: Request): FetchStatus {
             response,
           })
         } else {
-          setError(createFetchError(response))
+          setFetchResponse({ error: createFetchError(response) })
         }
-      } catch (e) {
-        setError(e)
+      } catch (error) {
+        setFetchResponse({ error })
       }
     }
 
     fetchData()
   }, [url, options])
 
-  return { ...fetchResponse, loading, error }
+  return {
+    loading: fetchResponse === null,
+    ...fetchResponse,
+  }
 }
