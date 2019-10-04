@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useMemo } from 'react'
 import { List, MarginPadding } from '@titicaca/core-elements'
 import {
   useReviewLikesContext,
@@ -6,7 +6,6 @@ import {
   useUserAgentContext,
 } from '@titicaca/react-contexts'
 import ReviewElement from './review-element'
-import { fetchMyReviews } from './review-api-clients'
 import ReviewTimestamp from './review-timestamp'
 import MyReviewActionSheet, {
   HASH_MY_REVIEW_ACTION_SHEET,
@@ -14,9 +13,11 @@ import MyReviewActionSheet, {
 import OthersReviewActionSheet, {
   HASH_REVIEW_ACTION_SHEET,
 } from './others-review-action-sheet'
-import usePaging from './use-paging'
 
 export default function ReviewsList({
+  myReview,
+  reviews,
+  fetchNext,
   appUrlScheme,
   margin,
   resourceType,
@@ -24,9 +25,10 @@ export default function ReviewsList({
   regionId,
   notifyReviewDeleted,
   showToast,
-  perPage,
-  withPaging,
 }: {
+  myReview?: any
+  reviews: any[]
+  fetchNext?: Function
   appUrlScheme: string
   margin: MarginPadding
   resourceType: string
@@ -35,41 +37,14 @@ export default function ReviewsList({
   notifyReviewDeleted: Function
   showToast: Function
   perPage?: number
-  withPaging?: boolean
 }) {
   const [selectedReview, setSelectedReview] = useState(undefined)
-  const [myReview, setMyReview] = useState(undefined)
   const { isPublic } = useUserAgentContext()
   const {
     likes,
     actions: { like, unlike },
   } = useReviewLikesContext()
   const { push } = useHistoryContext()
-  const { reviews, fetchNext } = usePaging({
-    order: '',
-    resourceId,
-    resourceType,
-    perPage: perPage || 20,
-  })
-
-  useEffect(() => {
-    const fetchAndSetMyReview = async () => {
-      try {
-        const [fetchedMyReview] = await fetchMyReviews({
-          resourceId,
-          resourceType,
-        })
-
-        if (fetchedMyReview) {
-          setMyReview(fetchedMyReview)
-        }
-      } catch (e) {
-        // do nothing
-      }
-    }
-
-    fetchAndSetMyReview()
-  }, [resourceId, resourceType, setMyReview])
 
   const handleUserClick = (e, { user: { uid, unregister } }) => {
     if (unregister) {
@@ -105,7 +80,7 @@ export default function ReviewsList({
     window.location.href = `${appUrlScheme}:///images?${media}`
   }
 
-  const handleShow = withPaging
+  const handleShow = fetchNext
     ? (index) => index > reviews.length - 3 && fetchNext()
     : null
 
@@ -154,10 +129,7 @@ export default function ReviewsList({
           regionId={regionId}
           resourceType={resourceType}
           resourceId={resourceId}
-          notifyReviewDeleted={(resourceId, reviewId) => {
-            notifyReviewDeleted(resourceId, reviewId)
-            myReview && reviewId === myReview.id && setMyReview(null)
-          }}
+          notifyReviewDeleted={notifyReviewDeleted}
         />
 
         <OthersReviewActionSheet
