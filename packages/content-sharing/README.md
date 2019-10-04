@@ -7,14 +7,14 @@
 ## Usage
 
 ```javascript
-import ContentSharing from '@titicaca/content-sharing'
+import ContentSharing, { Method } from '@titicaca/content-sharing'
 ```
 
-```jsx harmony
+```tsx harmony
 <ContentSharing
-  onShareClick={({ method: string }) => {
+  onShareClick={({ method }: { method: keyof typeof Method }) => {
     // something
   }}
-  title="title"
+  labbel="label"
 />
 ```
