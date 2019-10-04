@@ -11,10 +11,10 @@ const ShareIcon = styled.img`
 `
 
 export default function ContentSharing({
-  onShareIconClick,
+  onShareClick,
   title,
 }: {
-  onShareIconClick: ({ method: string }) => any
+  onShareClick: ({ method: string }) => any
   title: string
   userAgent: { isPublic: boolean }
   source: any
@@ -23,15 +23,15 @@ export default function ContentSharing({
     <Container textAlign="center" margin={{ top: 50, bottom: 50 }}>
       <ShareIcon
         src="http://assets.triple.guide/images/btn-end-invite-kakao@3x.png"
-        onClick={() => onShareIconClick({ method: 'kakao' })}
+        onClick={() => onShareClick({ method: 'kakao' })}
       />
       <ShareIcon
         src="http://assets.triple.guide/images/btn-end-invite-copy@3x.png"
-        onClick={() => onShareIconClick({ method: 'clipboard' })}
+        onClick={() => onShareClick({ method: 'clipboard' })}
       />
       <ShareIcon
         src="http://assets.triple.guide/images/btn-end-invite-more@3x.png"
-        onClick={() => onShareIconClick({ method: 'other' })}
+        onClick={() => onShareClick({ method: 'other' })}
       />
       <Text margin={{ top: 19 }} center alpha={1}>
         {title}
