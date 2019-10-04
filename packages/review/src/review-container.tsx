@@ -132,7 +132,7 @@ export default function ReviewContainer({
           notifyReviewDeleted(resourceId, reviewId)
         }}
         showToast={showToast}
-        fetchNext={fetchNext}
+        fetchNext={!shortened && fetchNext}
       />
 
       {reviewsCount > 3 && shortened ? (
