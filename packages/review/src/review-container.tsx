@@ -1,22 +1,14 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import {
-  Section,
-  Container,
-  Text,
-  Button,
-  Label,
-  HR1,
-} from '@titicaca/core-elements'
+import { Section, Container, Text, Button, HR1 } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import ReviewsPlaceholder from './review-placeholder-with-rating'
 import { writeReview } from './review-api-clients'
 import ReviewsList from './review-list'
 import { ReviewProps } from './types'
+import SortingOptions, { DEFAULT_SORTING_OPTION } from './sorting-options'
 
 const REVIEWS_SECTION_ID = 'reviews'
-const ORDER_BY_RECOMMENDATION = ''
-const ORDER_BY_RECENCY = 'latest'
 
 const WriteIcon = styled.img`
   margin-top: -5px;
@@ -25,45 +17,8 @@ const WriteIcon = styled.img`
   float: right;
 `
 
-const OptionsContainer = styled.div<{ floated?: string }>`
-  float: ${({ floated }) => floated || 'none'};
-  margin: 0;
-  padding: 0;
-
-  div:not(:first-child) {
-    margin-left: 12px;
-  }
-`
-function Options({ floated, data, onSelect }) {
-  return (
-    <OptionsContainer floated={floated}>
-      {data.map((item) => (
-        <Label key={item.key} radio selected={item.selected}>
-          <span onClick={onSelect && ((e) => onSelect(e, item))}>
-            {item.text}
-          </span>
-        </Label>
-      ))}
-    </OptionsContainer>
-  )
-}
-
-// @TODO 리뷰마다 ordering 기준 다를 수 있는지 확인
-function getDefaultReviewOrders(selectedKey = ORDER_BY_RECOMMENDATION) {
-  return [
-    { key: ORDER_BY_RECOMMENDATION, text: '추천순' },
-    { key: ORDER_BY_RECENCY, text: '최신순' },
-  ].map(({ key, ...rest }) => ({
-    key,
-    ...rest,
-    selected: key === selectedKey,
-  }))
-}
-
 export class ReviewContainer extends React.PureComponent<ReviewProps> {
-  state = {
-    orders: getDefaultReviewOrders(),
-  }
+  state = { sortingOption: DEFAULT_SORTING_OPTION }
 
   handleWriteButtonClick = (e: React.SyntheticEvent, rating: number = 0) => {
     e.stopPropagation()
@@ -82,21 +37,12 @@ export class ReviewContainer extends React.PureComponent<ReviewProps> {
     }
   }
 
-  handleOrderSelect = (_, { key }) => {
-    const {
-      state: { orders },
-    } = this
-    this.setState({
-      orders: orders.map((order) => ({
-        ...order,
-        selected: order.key === key,
-      })),
-    })
-  }
+  handleSortingOptionSelect = (_, sortingOption) =>
+    this.setState({ sortingOption })
 
   render() {
     const {
-      state: { orders },
+      state: { sortingOption },
       props: {
         reviewsCount,
         isPublic,
@@ -148,10 +94,9 @@ export class ReviewContainer extends React.PureComponent<ReviewProps> {
         {(reviewsCount || 0) > 1 ? (
           <>
             <Container margin={{ top: 23 }} clearing>
-              <Options
-                floated="right"
-                data={orders}
-                onSelect={this.handleOrderSelect}
+              <SortingOptions
+                selected={sortingOption}
+                onSelect={this.handleSortingOptionSelect}
               />
             </Container>
           </>
