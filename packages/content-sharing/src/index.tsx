@@ -5,7 +5,6 @@ import { Container, Text } from '@titicaca/core-elements'
 
 const ShareIcon = styled.img`
   margin: 0 5px;
-  display: inline;
   width: 46px;
   height: 46px;
 `
