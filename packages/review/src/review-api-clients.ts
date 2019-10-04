@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import humps from 'humps'
 
 export function writeReview({
   appUrlScheme,
@@ -30,7 +31,7 @@ export function unlikeReview({ id }: { id: string }) {
   })
 }
 
-export function fetchReviews({
+export async function fetchReviews({
   resourceId,
   resourceType,
   order = '',
@@ -40,7 +41,16 @@ export function fetchReviews({
   const url = `/api/reviews/v2${
     order ? '/' + order : ''
   }?resource_id=${resourceId}&resource_type=${resourceType}&from=${from}&size=${size}`
-  return fetch(url, { credentials: 'same-origin' })
+
+  const response = await fetch(url, { credentials: 'same-origin' })
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch reviews: ${response.status} ${url}`)
+  }
+
+  const { reviews } = humps.camelizeKeys(await response.json())
+
+  return reviews
 }
 
 export function fetchMyReviews({ resourceType, resourceId }) {
@@ -60,7 +70,7 @@ export function deleteReview({ id }: { id: string }) {
 export interface FetchReviewsInterface {
   resourceId: string
   resourceType: string
-  order: string
-  from: number
-  size: number
+  order?: string
+  from?: number
+  size?: number
 }
