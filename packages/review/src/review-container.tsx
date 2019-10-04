@@ -124,13 +124,7 @@ export class ReviewContainer extends React.PureComponent<ReviewProps> {
             />
           )}
 
-          <Text
-            bold
-            size="huge"
-            ReviewsPlaceholdercolor="gray"
-            alpha={1}
-            inline
-          >
+          <Text bold size="huge" color="gray" alpha={1} inline>
             리뷰
           </Text>
 
