@@ -16,8 +16,6 @@ export default function ContentSharing({
 }: {
   onShareClick: ({ method: string }) => any
   title: string
-  userAgent: { isPublic: boolean }
-  source: any
 }) {
   return (
     <Container textAlign="center" margin={{ top: 50, bottom: 50 }}>
