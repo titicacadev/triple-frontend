@@ -1,24 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { Confirm } from '@titicaca/modals'
-import ActionSheet from '@titicaca/action-sheet'
 import { List, MarginPadding } from '@titicaca/core-elements'
 import {
   useReviewLikesContext,
-  useMyReviewsContext,
   useHistoryContext,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
 import ReviewElement from './review-element'
-import {
-  fetchReviews,
-  fetchMyReviews,
-  deleteReview as deleteReviewApi,
-} from './review-api-clients'
+import { fetchReviews, fetchMyReviews } from './review-api-clients'
 import ReviewTimestamp from './review-timestamp'
-
-const HASH_MY_REVIEW_ACTION_SHEET = 'common.reviews-list.my-review-action-sheet'
-const HASH_REVIEW_ACTION_SHEET = 'common.reviews-list.review-action-sheet'
-const HASH_DELETION_MODAL = 'common.reviews-list.deletion-modal'
+import MyReviewActionSheet, {
+  HASH_MY_REVIEW_ACTION_SHEET,
+} from './my-review-action-sheet'
+import OthersReviewActionSheet, {
+  HASH_REVIEW_ACTION_SHEET,
+} from './others-review-action-sheet'
 
 export default function ReviewsList({
   appUrlScheme,
@@ -42,13 +37,10 @@ export default function ReviewsList({
   const [myReview, setMyReview] = useState(undefined)
   const { isPublic } = useUserAgentContext()
   const {
-    actions: { deleteMyReview },
-  } = useMyReviewsContext()
-  const {
     likes,
     actions: { like, unlike },
   } = useReviewLikesContext()
-  const { uriHash, push, back } = useHistoryContext()
+  const { push } = useHistoryContext()
 
   useEffect(() => {
     const fetchAndSetReviews = async () => {
@@ -102,28 +94,6 @@ export default function ReviewsList({
     }
   }
 
-  const handleEditMenuClick = () => {
-    window.location.href = `${appUrlScheme}:////reviews/edit?region_id=${regionId}&resource_type=${resourceType}&resource_id=${resourceId}`
-  }
-
-  const handleDeleteMenuClick = () => {
-    push(HASH_DELETION_MODAL)
-
-    return true
-  }
-
-  const deleteReview = async () => {
-    const response = await deleteReviewApi({ id: myReview.id })
-
-    if (response.ok) {
-      notifyReviewDeleted(resourceId, myReview.id)
-
-      deleteMyReview({ id: myReview.id })
-
-      setMyReview(null)
-    }
-  }
-
   const handleImageClick = (e, { media }) => {
     if (isPublic) {
       return
@@ -135,10 +105,6 @@ export default function ReviewsList({
   const renderedReviews = myReview
     ? [myReview, ...(reviews || []).filter(({ id }) => id !== myReview.id)]
     : reviews
-
-  const handleReportClick = () => {
-    window.location.href = `${appUrlScheme}:///reviews/${selectedReview.id}/report`
-  }
 
   return (
     <>
@@ -170,31 +136,22 @@ export default function ReviewsList({
         ))}
       </List>
 
-      <ActionSheet open={uriHash === HASH_REVIEW_ACTION_SHEET} onClose={back}>
-        <ActionSheet.Item icon="report" onClick={handleReportClick}>
-          신고하기
-        </ActionSheet.Item>
-      </ActionSheet>
+      <MyReviewActionSheet
+        myReview={myReview}
+        appUrlScheme={appUrlScheme}
+        regionId={regionId}
+        resourceType={resourceType}
+        resourceId={resourceId}
+        notifyReviewDeleted={(resourceId, reviewId) => {
+          notifyReviewDeleted(resourceId, reviewId)
+          myReview && reviewId === myReview.id && setMyReview(null)
+        }}
+      />
 
-      <ActionSheet
-        open={uriHash === HASH_MY_REVIEW_ACTION_SHEET}
-        onClose={back}
-      >
-        <ActionSheet.Item icon="review" onClick={handleEditMenuClick}>
-          수정하기
-        </ActionSheet.Item>
-        <ActionSheet.Item icon="delete" onClick={handleDeleteMenuClick}>
-          삭제하기
-        </ActionSheet.Item>
-      </ActionSheet>
-
-      <Confirm
-        open={uriHash === HASH_DELETION_MODAL}
-        onClose={back}
-        onConfirm={deleteReview}
-      >
-        삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.
-      </Confirm>
+      <OthersReviewActionSheet
+        appUrlScheme={appUrlScheme}
+        selectedReview={selectedReview}
+      />
     </>
   )
 }
