@@ -37,6 +37,5 @@ export default function usePaging({
     }
   }, [error, loading, data, setReviews])
 
-  console.log(reviews.length)
   return { loading, reviews, fetchNext }
 }
