@@ -5,7 +5,6 @@ export interface ReviewProps {
   reviewsCount: number
   shortened?: boolean
   reviewed?: boolean
-  isPublic?: boolean
   onFullListButtonClick?: any
   appUrlScheme: string
   appNativeActions: AppNativeActionProps

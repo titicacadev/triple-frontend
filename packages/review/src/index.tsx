@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ReviewContainer } from './review-container'
+import ReviewContainer from './review-container'
 import { TransitionModals } from './transition-modals'
 import { ReviewProps } from './types'
 
