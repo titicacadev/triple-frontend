@@ -5,7 +5,7 @@ import { storiesOf } from '@storybook/react'
 import { select } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
-storiesOf('ReviewsList', module).add('플레이스홀더', () => (
+storiesOf('Reviews', module).add('플레이스홀더', () => (
   <ReviewsPlaceholder
     resourceType={select(
       'Resource Type',
