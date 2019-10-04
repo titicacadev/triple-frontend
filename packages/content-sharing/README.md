@@ -1,4 +1,4 @@
-# `share-options`
+# `content-sharing`
 
 콘텐츠 하단에 들어가는 공유 영역입니다.
 
@@ -7,14 +7,14 @@
 ## Usage
 
 ```javascript
-import ShareOptions from '@titicaca/share-options'
+import ContentSharing from '@titicaca/content-sharing'
 ```
 
 ```jsx harmony
-<ShareOptions
-  onKakaoClick={'any callback'}
-  onClipBoardClick={'any callback'}
-  onOtherClick={'any callback'}
+<ContentSharing
+  onShareClick={({ method: string }) => {
+    // something
+  }}
   title="title"
 />
 ```
