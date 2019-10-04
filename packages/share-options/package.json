@@ -2,7 +2,6 @@
   "name": "@titicaca/share-options",
   "version": "1.0.0-alpha.21",
   "description": "Share Options",
-  "author": "torres-triple <torres@triple-corp.com>",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "license": "ISC",
   "main": "lib/index.js",
