@@ -99,7 +99,7 @@ export default function ReviewContainer({
         ) : null}
       </Container>
 
-      {shortened && (
+      {!isPublic && shortened && (
         <>
           <ReviewsPlaceholder
             resourceType={resourceType}
