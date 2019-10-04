@@ -25,7 +25,7 @@ export default function usePaging({
   useEffect(() => {
     setCurrentPage(1)
     setReviews([])
-  }, [sortingOption, resourceId])
+  }, [sortingOption, resourceId, perPage])
 
   useEffect(() => {
     if (!error && !loading && data) {
