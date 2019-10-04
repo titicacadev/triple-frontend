@@ -13,7 +13,7 @@ export default function usePaging({
   const { error, loading, data } = useFetch(
     `/api/reviews/v2${
       order ? `/${order}` : '/'
-    }?page=${currentPage}&resource_id=${resourceId}&resource_type=${resourceType}&from=${(currentPage -
+    }?resource_id=${resourceId}&resource_type=${resourceType}&from=${(currentPage -
       1) *
       perPage}&size=${perPage}`,
   )
