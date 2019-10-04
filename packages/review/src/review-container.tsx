@@ -1,6 +1,5 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import humps from 'humps'
 import {
   Section,
   Container,
@@ -11,18 +10,13 @@ import {
 } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import ReviewsPlaceholder from './review-placeholder-with-rating'
-import {
-  writeReview,
-  fetchReviews as fetchReviewsApi,
-  FetchReviewsInterface,
-} from './review-api-clients'
+import { writeReview } from './review-api-clients'
 import ReviewsList from './review-list'
 import { ReviewProps } from './types'
 
 const REVIEWS_SECTION_ID = 'reviews'
 const ORDER_BY_RECOMMENDATION = ''
 const ORDER_BY_RECENCY = 'latest'
-const DEFAULT_SIZE = 30
 
 const WriteIcon = styled.img`
   margin-top: -5px;
@@ -68,47 +62,7 @@ function getDefaultReviewOrders(selectedKey = ORDER_BY_RECOMMENDATION) {
 
 export class ReviewContainer extends React.PureComponent<ReviewProps> {
   state = {
-    reviews: [],
-    myReview: undefined,
     orders: getDefaultReviewOrders(),
-    reviewFrom: 0,
-  }
-
-  componentDidMount() {
-    this.fetchReviews()
-  }
-
-  fetchReviews = async () => {
-    const {
-      state: { orders },
-      props: { resourceId, resourceType },
-    } = this
-
-    const { key: orderKey } = orders.find(({ selected }) => selected)
-    this.setState({
-      orders: orders.map((order) => ({
-        ...order,
-        selected: order.key === orderKey,
-      })),
-    })
-
-    // @TODO pagination 처리 필요
-    const {
-      state: { reviewFrom: from },
-    } = this
-    const params: FetchReviewsInterface = {
-      resourceId,
-      resourceType,
-      from,
-      order: orderKey,
-      size: DEFAULT_SIZE,
-    }
-    const response = await fetchReviewsApi(params)
-
-    if (response.ok) {
-      const reviewData = humps.camelizeKeys(await response.json()).reviews
-      this.setState({ reviews: reviewData })
-    }
   }
 
   handleWriteButtonClick = (e: React.SyntheticEvent, rating: number = 0) => {
@@ -138,12 +92,11 @@ export class ReviewContainer extends React.PureComponent<ReviewProps> {
         selected: order.key === key,
       })),
     })
-    this.fetchReviews()
   }
 
   render() {
     const {
-      state: { orders, reviews, myReview },
+      state: { orders },
       props: {
         reviewsCount,
         isPublic,
@@ -210,22 +163,17 @@ export class ReviewContainer extends React.PureComponent<ReviewProps> {
           </>
         ) : null}
 
-        {((reviews || []).length > 0 || myReview) && (
-          <ReviewsList
-            isPublic={isPublic}
-            resourceType={resourceType}
-            regionId={regionId}
-            appUrlScheme={appUrlScheme}
-            margin={{ top: (reviewsCount || 0) > 1 ? 18 : 30 }}
-            reviews={shortened ? reviews.slice(0, myReview ? 2 : 3) : reviews}
-            myReview={myReview}
-            onMyReviewDeleted={() => this.setState({ myReview: null })}
-            resourceId={resourceId}
-            notifyReviewDeleted={notifyReviewDeleted}
-            showToast={showToast}
-          />
-        )}
-        {reviewsCount > 3 && shortened && (
+        <ReviewsList
+          resourceType={resourceType}
+          regionId={regionId}
+          appUrlScheme={appUrlScheme}
+          margin={{ top: (reviewsCount || 0) > 1 ? 18 : 30 }}
+          resourceId={resourceId}
+          notifyReviewDeleted={notifyReviewDeleted}
+          showToast={showToast}
+        />
+
+        {reviewsCount > 3 && shortened ? (
           <Container margin={{ top: 50 }}>
             <Button
               basic
@@ -237,7 +185,7 @@ export class ReviewContainer extends React.PureComponent<ReviewProps> {
               {reviewsCount - 3}개 리뷰 더보기
             </Button>
           </Container>
-        )}
+        ) : null}
       </Section>
     )
   }
