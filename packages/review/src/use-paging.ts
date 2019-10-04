@@ -37,5 +37,5 @@ export default function usePaging({
     }
   }, [error, loading, data, setReviews])
 
-  return { loading, reviews, fetchNext }
+  return { loading, reviews, fetchNext, endOfList }
 }
