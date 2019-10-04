@@ -1,7 +1,7 @@
 {
-  "name": "@titicaca/share-options",
+  "name": "@titicaca/content-sharing",
   "version": "1.0.0-alpha.21",
-  "description": "Share Options",
+  "description": "Content Sharing",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "license": "ISC",
   "main": "lib/index.js",

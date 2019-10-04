@@ -10,7 +10,7 @@ const ShareIcon = styled.img`
   height: 46px;
 `
 
-export default function ShareOptions({
+export default function ContentSharing({
   onShareIconClick,
   title,
 }: {
