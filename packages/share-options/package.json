@@ -1,5 +1,5 @@
 {
-  "name": "share-options",
+  "name": "@titicaca/share-options",
   "version": "1.0.0-alpha.21",
   "description": "Share Options",
   "author": "torres-triple <torres@triple-corp.com>",
@@ -7,8 +7,7 @@
   "license": "ISC",
   "main": "lib/index.js",
   "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+    "lib": "lib"
   },
   "files": [
     "lib"
@@ -16,9 +15,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
-  },
-  "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
