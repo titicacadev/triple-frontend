@@ -24,6 +24,7 @@
     "@titicaca/recommended-contents": "^1.0.0-alpha.21",
     "@titicaca/review": "^1.0.0-alpha.21",
     "@titicaca/triple-document": "^1.0.0-alpha.21",
+    "@titicaca/content-sharing": "1.0.0-alpha.21",
     "http-proxy-middleware": "^0.20.0"
   },
   "devDependencies": {
