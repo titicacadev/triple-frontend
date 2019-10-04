@@ -22,7 +22,7 @@ const OptionsContainer = styled.div`
 
 export default function SortingOptions({
   onSelect,
-  selected = ORDER_BY_RECOMMENDATION,
+  selected,
 }: {
   onSelect: (e: React.SyntheticEvent, key: string) => any
   selected: string
