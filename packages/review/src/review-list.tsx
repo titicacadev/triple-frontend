@@ -5,7 +5,6 @@ import {
   useHistoryContext,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
-import IntersectionObserver from '@titicaca/intersection-observer'
 import ReviewElement from './review-element'
 import { fetchMyReviews } from './review-api-clients'
 import ReviewTimestamp from './review-timestamp'
@@ -25,6 +24,8 @@ export default function ReviewsList({
   regionId,
   notifyReviewDeleted,
   showToast,
+  perPage,
+  withPaging,
 }: {
   appUrlScheme: string
   margin: MarginPadding
@@ -33,6 +34,8 @@ export default function ReviewsList({
   regionId: string
   notifyReviewDeleted: Function
   showToast: Function
+  perPage?: number
+  withPaging?: boolean
 }) {
   const [selectedReview, setSelectedReview] = useState(undefined)
   const [myReview, setMyReview] = useState(undefined)
@@ -46,7 +49,7 @@ export default function ReviewsList({
     order: '',
     resourceId,
     resourceType,
-    perPage: 20,
+    perPage: perPage || 20,
   })
 
   useEffect(() => {
@@ -102,6 +105,10 @@ export default function ReviewsList({
     window.location.href = `${appUrlScheme}:///images?${media}`
   }
 
+  const handleShow = withPaging
+    ? (index) => index > reviews.length - 3 && fetchNext()
+    : null
+
   return useMemo(
     () => (
       <>
@@ -113,39 +120,31 @@ export default function ReviewsList({
               ]
             : reviews
           ).map((review, i) => (
-            <IntersectionObserver
+            <ReviewElement
               key={review.id}
-              onChange={({ isIntersecting }) => {
-                if (isIntersecting && reviews.length - 3 < i) {
-                  fetchNext()
-                }
-              }}
-            >
-              <div>
-                <ReviewElement
-                  review={
-                    typeof (likes || {})[review.id] === 'boolean'
-                      ? {
-                          ...review,
-                          liked: likes[review.id],
-                          likeCount:
-                            review.liked === likes[review.id]
-                              ? review.likeCount
-                              : review.likeCount + (likes[review.id] ? 1 : -1),
-                        }
-                      : review
-                  }
-                  onUserClick={handleUserClick}
-                  onLikeButtonClick={handleLikeButtonClick}
-                  onLikesCountClick={handleLikesCountClick}
-                  onMenuClick={handleMenuClick}
-                  onImageClick={handleImageClick}
-                  likeVisible={!isPublic}
-                  menuVisible={!isPublic}
-                  DateFormatter={ReviewTimestamp}
-                />
-              </div>
-            </IntersectionObserver>
+              index={i}
+              review={
+                typeof (likes || {})[review.id] === 'boolean'
+                  ? {
+                      ...review,
+                      liked: likes[review.id],
+                      likeCount:
+                        review.liked === likes[review.id]
+                          ? review.likeCount
+                          : review.likeCount + (likes[review.id] ? 1 : -1),
+                    }
+                  : review
+              }
+              onUserClick={handleUserClick}
+              onLikeButtonClick={handleLikeButtonClick}
+              onLikesCountClick={handleLikesCountClick}
+              onMenuClick={handleMenuClick}
+              onImageClick={handleImageClick}
+              likeVisible={!isPublic}
+              menuVisible={!isPublic}
+              DateFormatter={ReviewTimestamp}
+              onShow={handleShow}
+            />
           ))}
         </List>
 
