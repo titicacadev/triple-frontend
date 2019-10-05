@@ -10,9 +10,9 @@ import { formatMonthTitle, isValidDate, generatePaddedRange } from './utils'
 
 import PickerFrame from './picker-frame'
 
-const RangeContainer = styled.div<{ height?: string }>`
+const RangeContainer = styled.div<{ height?: string; selectedAll: boolean }>`
   .DayPicker {
-    height: ${({ height }) => height || '395'}px;
+    height: ${({ height }) => height || '395px'};
   }
 
   .DayPicker-Day--sunday {
@@ -83,7 +83,8 @@ const RangeContainer = styled.div<{ height?: string }>`
     left: calc(50%);
     transform: translate(calc(-50% - 3px), -50%);
   }
-  ${({ selectedAll }: { selectedAll: boolean }) =>
+
+  ${({ selectedAll }) =>
     selectedAll &&
     css`
       .DayPicker-Day--from:before,
