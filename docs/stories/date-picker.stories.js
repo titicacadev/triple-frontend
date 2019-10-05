@@ -12,7 +12,7 @@ endDate.setDate(today.getDate() + 5)
 afterDate.setDate(today.getDate() + 20)
 specificDate.setDate(today.getDate() + 3)
 
-storiesOf('DayPicker', module)
+storiesOf('DatePicker', module)
   .add('DayPicker - 일반', () => <DayPicker />)
   .add('DayPicker - 선택됨', () => <DayPicker day={today.toString()} />)
   .add('DayPicker - 선택불가', () => (
@@ -21,7 +21,7 @@ storiesOf('DayPicker', module)
       beforeBlock={today}
       afterBlock={afterDate}
       disabledDays={[specificDate.toString()]}
-      height={400}
+      height="300px"
     />
   ))
   .add('RangePicker - 일반', () => <RangePicker />)
