@@ -10,7 +10,11 @@ import { formatMonthTitle, isValidDate, generatePaddedRange } from './utils'
 
 import PickerFrame from './picker-frame'
 
-const RangeContainer = styled.div`
+const RangeContainer = styled.div<{ height?: string }>`
+  .DayPicker {
+    height: ${({ height }) => height || '395'}px;
+  }
+
   .DayPicker-Day--sunday {
     padding-left: 6px !important;
   }
@@ -128,8 +132,8 @@ function RangePicker({
     .toDate()
 
   return (
-    <PickerFrame height={height}>
-      <RangeContainer selectedAll={!!(startDate && endDate)}>
+    <PickerFrame>
+      <RangeContainer selectedAll={!!(startDate && endDate)} height={height}>
         <DayPicker
           locale="ko"
           weekdaysShort={['일', '월', '화', '수', '목', '금', '토']}

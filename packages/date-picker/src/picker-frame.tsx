@@ -1,9 +1,8 @@
 import styled from 'styled-components'
 import { GetGlobalColor } from '@titicaca/core-elements'
 
-const PickerFrame = styled.div<{ height?: string }>`
+const PickerFrame = styled.div`
   .DayPicker {
-    height: ${({ height }) => height || '100%'};
     overflow: auto;
     color: #3a3a3a;
     font-weight: bold;

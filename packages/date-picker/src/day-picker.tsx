@@ -10,8 +10,12 @@ import { formatMonthTitle } from './utils'
 
 import PickerFrame from './picker-frame'
 
-const DayContainer = styled.div`
+const DayContainer = styled.div<{ height?: string }>`
   border: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
+
+  .DayPicker {
+    height: ${({ height }) => height || '300px'};
+  }
 
   .DayPicker-Month {
     padding: 40px 0 0 0;
@@ -80,8 +84,8 @@ function DatePicker({
   const selectedDay = day && moment(day).toDate()
 
   return (
-    <PickerFrame height={height}>
-      <DayContainer>
+    <PickerFrame>
+      <DayContainer height={height}>
         <DayPicker
           locale="ko"
           weekdaysShort={['일', '월', '화', '수', '목', '금', '토']}
