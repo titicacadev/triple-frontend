@@ -48,11 +48,13 @@ const DayContainer = styled.div`
   }
   .DayPicker-Day--selected.DayPicker-Day--sunday:before,
   .DayPicker-Day--selected.DayPicker-Day--sunday:after {
+    padding-left: 0px;
     left: calc(50%);
     transform: translate(calc(-50% + 5px), -50%);
   }
   .DayPicker-Day--selected.DayPicker-Day--saturday:before,
   .DayPicker-Day--selected.DayPicker-Day--saturday:after {
+    padding-right: 0px;
     left: calc(50%);
     transform: translate(calc(-50% - 5px), -50%);
   }
@@ -73,7 +75,7 @@ function DatePicker({
   numberOfMonths: number
   onDateChange: Function
   disabledDays?: string[]
-  height?: number | string
+  height?: string
 }) {
   const selectedDay = day && moment(day).toDate()
 
