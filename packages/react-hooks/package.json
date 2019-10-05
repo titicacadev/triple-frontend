@@ -1,7 +1,7 @@
 {
   "name": "@titicaca/react-hooks",
   "version": "1.0.0-alpha.18",
-  "description": "> TODO: description",
+  "description": "triple frontend custom hooks",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "license": "ISC",
   "main": "lib/index.js",
