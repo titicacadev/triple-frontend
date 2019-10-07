@@ -14,7 +14,7 @@ storiesOf('RecommendedContents', module).add('추천 컨텐츠', () => (
     <RecommendedContents
       contents={contents}
       margin={{ top: 30 }}
-      onContentIntersecting={action('onContentIntersecting')}
+      onContentIntersect={action('onContentIntersect')}
     />
   </Container>
 ))

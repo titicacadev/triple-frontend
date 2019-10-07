@@ -116,7 +116,7 @@ export default function RecommendedContents({
   contents: contentsData,
   margin,
   onContentClick,
-  onContentIntersecting,
+  onContentIntersect,
 }: {
   contents: ContentElement[]
   margin?: MarginPadding
@@ -124,7 +124,7 @@ export default function RecommendedContents({
     e?: React.SyntheticEvent,
     content?: { backgroundImageUrl: string; title: string },
   ) => any
-  onContentIntersecting: (content: any) => any
+  onContentIntersect: (content: any) => any
 }) {
   const contents = contentsData.map(({ title, ...content }) => ({
     title: title.replace('\n', ' '),
@@ -137,7 +137,7 @@ export default function RecommendedContents({
         <IntersectionObserver
           key={index}
           onChange={({ isIntersecting }) =>
-            isIntersecting && onContentIntersecting(content)
+            isIntersecting && onContentIntersect(content)
           }
         >
           <RecommendedContentWithFixedRatio
@@ -161,7 +161,7 @@ export default function RecommendedContents({
         <IntersectionObserver
           key={index}
           onChange={({ isIntersecting }) =>
-            isIntersecting && onContentIntersecting(content)
+            isIntersecting && onContentIntersect(content)
           }
         >
           <RecommendedContent
