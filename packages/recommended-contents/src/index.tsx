@@ -1,6 +1,11 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { Text, MarginPadding } from '@titicaca/core-elements'
+import {
+  Text,
+  MarginPadding,
+  Responsive,
+  Container,
+} from '@titicaca/core-elements'
 import IntersectionObserver from '@titicaca/intersection-observer'
 
 // eslint-disable-next-line no-unexpected-multiline
@@ -18,7 +23,7 @@ const RecommendedContentsContainer = styled.ul<{
 `
 
 // eslint-disable-next-line no-unexpected-multiline
-const RecommendedContent = styled.li<{
+const RecommendedContentWithDesktopResolution = styled.li<{
   backgroundImageUrl: string
 }>`
   display: inline-block;
@@ -40,10 +45,6 @@ const RecommendedContent = styled.li<{
 
   cursor: pointer;
 
-  @media (max-width: 759px) {
-    display: none;
-  }
-
   &:before {
     content: '';
     width: 20px;
@@ -62,12 +63,12 @@ const RecommendedContent = styled.li<{
   }
 `
 
-const RecommendedContentWithFixedRatio = styled.li`
+const RecommendedContentWithMobileResolution = styled.li`
   display: inline-block;
   vertical-align: top;
-  width: calc(50% - 7.5px);
+  width: calc(50%);
   height: 0;
-  padding-top: calc(50% - 15px);
+  padding-top: calc(50%);
   margin-bottom: 15px;
   border-radius: 6px;
   position: relative;
@@ -80,17 +81,13 @@ const RecommendedContentWithFixedRatio = styled.li`
   background-size: cover;
   background-position: center;
 
-  @media (min-width: 760px) {
-    display: none;
-  }
-
   & > * {
     position: absolute;
     top: 0;
   }
 
-  &: nth-child(odd) {
-    margin-right: 15px;
+  &: nth-child(even) {
+    left: 15px;
   }
 `
 
@@ -133,47 +130,53 @@ export default function RecommendedContents({
 
   return (
     <RecommendedContentsContainer margin={margin}>
-      {contents.map((content, index) => (
-        <IntersectionObserver
-          key={index}
-          onChange={({ isIntersecting }) =>
-            isIntersecting && onContentIntersect(content)
-          }
-        >
-          <RecommendedContentWithFixedRatio
-            onClick={onContentClick && ((e) => onContentClick(e, content))}
-          >
-            <Image src={content.backgroundImageUrl} />
-            <ImageColorOverlay />
-            <Text
-              lineHeight="20px"
-              color="white"
-              bold
-              maxLines={2}
-              padding={{ top: 20, left: 15, right: 15 }}
+      <Responsive maxWidth={759}>
+        <Container padding={{ right: 15 }}>
+          {contents.map((content, index) => (
+            <IntersectionObserver
+              key={index}
+              onChange={({ isIntersecting }) =>
+                isIntersecting && onContentIntersect(content)
+              }
             >
-              {content.title}
-            </Text>
-          </RecommendedContentWithFixedRatio>
-        </IntersectionObserver>
-      ))}
-      {contents.map((content, index) => (
-        <IntersectionObserver
-          key={index}
-          onChange={({ isIntersecting }) =>
-            isIntersecting && onContentIntersect(content)
-          }
-        >
-          <RecommendedContent
-            backgroundImageUrl={content.backgroundImageUrl}
-            onClick={onContentClick && ((e) => onContentClick(e, content))}
+              <RecommendedContentWithMobileResolution
+                onClick={onContentClick && ((e) => onContentClick(e, content))}
+              >
+                <Image src={content.backgroundImageUrl} />
+                <ImageColorOverlay />
+                <Text
+                  lineHeight="20px"
+                  color="white"
+                  bold
+                  maxLines={3}
+                  padding={{ top: 20, left: 15, right: 15 }}
+                >
+                  {content.title}
+                </Text>
+              </RecommendedContentWithMobileResolution>
+            </IntersectionObserver>
+          ))}
+        </Container>
+      </Responsive>
+      <Responsive minWidth={760}>
+        {contents.map((content, index) => (
+          <IntersectionObserver
+            key={index}
+            onChange={({ isIntersecting }) =>
+              isIntersecting && onContentIntersect(content)
+            }
           >
-            <Text lineHeight="20px" color="white" bold maxLines={2}>
-              {content.title}
-            </Text>
-          </RecommendedContent>
-        </IntersectionObserver>
-      ))}
+            <RecommendedContentWithDesktopResolution
+              backgroundImageUrl={content.backgroundImageUrl}
+              onClick={onContentClick && ((e) => onContentClick(e, content))}
+            >
+              <Text lineHeight="20px" color="white" bold maxLines={3}>
+                {content.title}
+              </Text>
+            </RecommendedContentWithDesktopResolution>
+          </IntersectionObserver>
+        ))}
+      </Responsive>
     </RecommendedContentsContainer>
   )
 }
