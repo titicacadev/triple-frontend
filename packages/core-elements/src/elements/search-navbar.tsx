@@ -17,33 +17,31 @@ const DeleteIcon = styled(Navbar.Item)<{ showDeleteButton: boolean }>`
 `
 
 export default function SearchNavbar({
-  inputPlaceHolder,
-  showDeleteButton,
+  inputPlaceholder,
   onBackClick,
   onDeleteClick,
-  onInputKeyUp,
+  onInputChange,
   ...props
 }: {
   inputPlaceHolder: string
-  showDeleteButton: boolean
   onBackClick: (event: React.SyntheticEvent) => any
   onDeleteClick?: (event: React.SyntheticEvent) => any
-  onInputKeyUp?: (e: React.SyntheticEvent, value: string) => any
+  onInputChange?: (e: React.SyntheticEvent, value: string) => any
 } & InputState &
   MaskOptions) {
   return (
     <Navbar>
       <Navbar.Item floated="left" icon="back" onClick={onBackClick} />
       <InputText
-        placeholder={inputPlaceHolder}
-        onKeyUp={(e) => onInputKeyUp(e, e.target.value)}
+        placeholder={inputPlaceholder}
+        onChange={(e) => onInputChange(e, e.target.value)}
         {...props}
       />
       <DeleteIcon
         floated="right"
         icon="delete"
         onClick={onDeleteClick}
-        showDeleteButton={showDeleteButton}
+        showDeleteButton={!!props.value}
       />
     </Navbar>
   )
