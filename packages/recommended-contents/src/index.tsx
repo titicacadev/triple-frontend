@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { Text, MarginPadding } from '@titicaca/core-elements'
+import IntersectionObserver from '@titicaca/intersection-observer'
 
 // eslint-disable-next-line no-unexpected-multiline
 const RecommendedContentsContainer = styled.ul<{
@@ -111,13 +112,11 @@ interface ContentElement {
   [keys: string]: string
 }
 
-const noop = ({ children }) => children
-
 export default function RecommendedContents({
   contents: contentsData,
   margin,
   onContentClick,
-  contentWrapperComponent,
+  onContentIntersecting,
 }: {
   contents: Array<ContentElement>
   margin?: MarginPadding
@@ -125,19 +124,22 @@ export default function RecommendedContents({
     e?: React.SyntheticEvent,
     content?: { backgroundImageUrl: string; title: string },
   ) => any
-  contentWrapperComponent?: any
+  onContentIntersecting: (content: any) => any
 }) {
   const contents = contentsData.map(({ title, ...content }) => ({
     title: title.replace('\n', ' '),
     ...content,
   }))
 
-  const ContentWrapperComponent = contentWrapperComponent || noop
-
   return (
     <RecommendedContentsContainer margin={margin}>
       {contents.map((content, index) => (
-        <ContentWrapperComponent key={index} {...content}>
+        <IntersectionObserver
+          key={index}
+          onChange={({ isIntersecting }) =>
+            isIntersecting && onContentIntersecting(content)
+          }
+        >
           <RecommendedContentWithFixedRatio
             onClick={onContentClick && ((e) => onContentClick(e, content))}
           >
@@ -153,10 +155,15 @@ export default function RecommendedContents({
               {content.title}
             </Text>
           </RecommendedContentWithFixedRatio>
-        </ContentWrapperComponent>
+        </IntersectionObserver>
       ))}
       {contents.map((content, index) => (
-        <ContentWrapperComponent key={index} {...content}>
+        <IntersectionObserver
+          key={index}
+          onChange={({ isIntersecting }) =>
+            isIntersecting && onContentIntersecting(content)
+          }
+        >
           <RecommendedContent
             backgroundImageUrl={content.backgroundImageUrl}
             onClick={onContentClick && ((e) => onContentClick(e, content))}
@@ -165,7 +172,7 @@ export default function RecommendedContents({
               {content.title}
             </Text>
           </RecommendedContent>
-        </ContentWrapperComponent>
+        </IntersectionObserver>
       ))}
     </RecommendedContentsContainer>
   )
