@@ -118,7 +118,7 @@ export default function RecommendedContents({
   onContentClick,
   onContentIntersecting,
 }: {
-  contents: Array<ContentElement>
+  contents: ContentElement[]
   margin?: MarginPadding
   onContentClick?: (
     e?: React.SyntheticEvent,
