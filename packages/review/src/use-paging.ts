@@ -16,6 +16,7 @@ export default function usePaging({
     }?resource_id=${resourceId}&resource_type=${resourceType}&from=${(currentPage -
       1) *
       perPage}&size=${perPage}`,
+    { credentials: 'same-origin' },
   )
   const fetchNext = useCallback(
     () => !endOfList && !loading && setCurrentPage(currentPage + 1),

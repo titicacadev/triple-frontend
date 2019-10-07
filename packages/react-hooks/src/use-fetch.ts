@@ -14,7 +14,10 @@ const createFetchError = (response: Response): Error => {
   return err
 }
 
-export function useFetch(url: string, options?: Request): FetchStatus {
+export function useFetch(
+  url: string,
+  options?: any,
+): FetchStatus {
   const [fetchResponse, setFetchResponse] = useState(null)
 
   useEffect(() => {

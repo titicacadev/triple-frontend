@@ -46,7 +46,9 @@ const InAppCouponDownloadButton = ({ slugId }) => {
   useEffect(() => {
     async function fetchCoupon() {
       try {
-        const response = await fetch(`/api/benefit/coupons/${slugId}`)
+        const response = await fetch(`/api/benefit/coupons/${slugId}`, {
+          credentials: 'same-origin',
+        })
 
         if (response.ok) {
           const { downloaded } = await response.json()
