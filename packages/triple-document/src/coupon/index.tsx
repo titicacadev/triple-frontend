@@ -69,7 +69,9 @@ const InAppCouponDownloadButton = ({ slugId }) => {
   const pushHashDownloaded = () => push(HASH_ALREADY_DOWNLOAD_COUPON)
   const downloadCoupon = useCallback(async () => {
     try {
-      const response = await fetch(`/api/benefit/coupons/${slugId}/download`)
+      const response = await fetch(`/api/benefit/coupons/${slugId}/download`, {
+        credentials: 'same-origin',
+      })
       const { id, message } = await response.json()
 
       if (response.ok) {
