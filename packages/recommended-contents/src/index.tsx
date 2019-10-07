@@ -66,9 +66,9 @@ const RecommendedContentWithDesktopResolution = styled.li<{
 const RecommendedContentWithMobileResolution = styled.li`
   display: inline-block;
   vertical-align: top;
-  width: calc(50%);
+  width: 50%;
   height: 0;
-  padding-top: calc(50%);
+  padding-top: 60%;
   margin-bottom: 15px;
   border-radius: 6px;
   position: relative;
