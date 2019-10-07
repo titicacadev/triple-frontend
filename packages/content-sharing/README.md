@@ -12,9 +12,9 @@ import ContentSharing, { Method } from '@titicaca/content-sharing'
 
 ```tsx harmony
 <ContentSharing
-  onShareClick={({ method }: { method: keyof typeof Method }) => {
+  onShareClick={({ method }: { method: Method }) => {
     // something
   }}
-  labbel="label"
+  label="label"
 />
 ```
