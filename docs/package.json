@@ -25,6 +25,7 @@
     "@titicaca/recommended-contents": "^1.0.0-alpha.23",
     "@titicaca/review": "^1.0.0-alpha.23",
     "@titicaca/triple-document": "^1.0.0-alpha.23",
+    "@titicaca/react-contexts": "^1.0.0-alpha.23",
     "http-proxy-middleware": "^0.20.0"
   },
   "devDependencies": {
