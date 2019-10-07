@@ -12,8 +12,8 @@ const InputText = styled(InputMask)`
   border-style: none;
 `
 
-const DeleteIcon = styled(Navbar.Item)<{ showDeleteButton: boolean }>`
-  display: ${({ showDeleteButton }) => (showDeleteButton ? 'block' : 'none')};
+const DeleteIcon = styled(Navbar.Item)<{ visibleDeleteIcon: boolean }>`
+  display: ${({ visibleDeleteIcon }) => (visibleDeleteIcon ? 'block' : 'none')};
 `
 
 export default function SearchNavbar({
@@ -41,7 +41,7 @@ export default function SearchNavbar({
         floated="right"
         icon="delete"
         onClick={onDeleteClick}
-        showDeleteButton={!!props.value}
+        visibleDeleteIcon={!!props.value}
       />
     </Navbar>
   )
