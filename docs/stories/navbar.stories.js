@@ -120,7 +120,6 @@ storiesOf('Navbar', module)
   ))
   .add('검색', () => (
     <SearchNavbar
-      showDeleteButton={false}
       inputPlaceholder={'“호텔예약” 도시이름으로 검색'}
       onBackClick={action('onBackClick')}
       onDeleteClick={action('onDeleteClick')}
