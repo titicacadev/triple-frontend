@@ -19,22 +19,22 @@ export default function ContentSharing({
   onShareClick,
   label,
 }: {
-  onShareClick: ({ methodType }: { methodType: Method }) => any
+  onShareClick: ({ method }: { method: Method }) => any
   label: string
 }) {
   return (
     <Container textAlign="center" margin={{ top: 50, bottom: 50 }}>
       <ShareIcon
         src="http://assets.triple.guide/images/btn-end-invite-kakao@3x.png"
-        onClick={() => onShareClick({ methodType: Method.Kakao })}
+        onClick={() => onShareClick({ method: Method.Kakao })}
       />
       <ShareIcon
         src="http://assets.triple.guide/images/btn-end-invite-copy@3x.png"
-        onClick={() => onShareClick({ methodType: Method.Clipboard })}
+        onClick={() => onShareClick({ method: Method.Clipboard })}
       />
       <ShareIcon
         src="http://assets.triple.guide/images/btn-end-invite-more@3x.png"
-        onClick={() => onShareClick({ methodType: Method.Other })}
+        onClick={() => onShareClick({ method: Method.Other })}
       />
       <Text margin={{ top: 19 }} center alpha={1}>
         {label}
