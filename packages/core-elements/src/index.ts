@@ -28,7 +28,7 @@ export { default as Textarea } from './elements/textarea'
 export { default as Select } from './elements/select'
 export { default as NumericSpinner } from './elements/numeric-spinner'
 export { default as Drawer } from './elements/drawer'
-export { default as SearchNavBar } from './elements/search-navbar'
+export { default as SearchNavbar } from './elements/search-navbar'
 
 export * from './utils/image-source'
 export * from './utils/form-field'

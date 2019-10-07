@@ -1,12 +1,13 @@
 import React from 'react'
 
 import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
 
 import {
   Navbar,
   ListingFilter,
   Text,
-  SearchNavBar,
+  SearchNavbar,
 } from '@titicaca/core-elements'
 import { text, boolean, select } from '@storybook/addon-knobs'
 import styled from 'styled-components'
@@ -118,8 +119,11 @@ storiesOf('Navbar', module)
     </Navbar>
   ))
   .add('검색', () => (
-    <SearchNavBar
-      showDeleteButton={true}
+    <SearchNavbar
+      showDeleteButton={false}
       inputPlaceHolder={'“호텔예약” 도시이름으로 검색'}
+      onBackClick={action('back button click')}
+      onDeleteClick={action('delete button click')}
+      onInputKeyUp={action('onKeyUp')}
     />
   ))
