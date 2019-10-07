@@ -2,7 +2,12 @@ import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 
-import { Navbar, ListingFilter, Text } from '@titicaca/core-elements'
+import {
+  Navbar,
+  ListingFilter,
+  Text,
+  SearchNavBar,
+} from '@titicaca/core-elements'
 import { text, boolean, select } from '@storybook/addon-knobs'
 import styled from 'styled-components'
 
@@ -111,4 +116,10 @@ storiesOf('Navbar', module)
       <Navbar.Item icon={'back'} />
       <Navbar.Item floated="right" icon={'more'} />
     </Navbar>
+  ))
+  .add('검색', () => (
+    <SearchNavBar
+      showDeleteButton={true}
+      inputPlaceHolder={'“호텔예약” 도시이름으로 검색'}
+    />
   ))
