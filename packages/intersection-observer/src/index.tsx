@@ -16,18 +16,16 @@ const OriginalObserver = dynamic(
         await import('intersection-observer')
       }
 
-      const component = await import(
+      return import(
+        /* eslint-disable-next-line comma-dangle */
         '@researchgate/react-intersection-observer'
       )
-
-      return component
     } catch (e) {
-      return ({ children }) => children || null
+      return Promise.resolve(({ children }) => children || null)
     }
   },
   {
-    loading: ({ children }) => children || null,
-    ssr: ({ children }) => children || null,
+    ssr: false,
   },
 )
 
