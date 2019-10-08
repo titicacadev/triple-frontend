@@ -108,24 +108,24 @@ export interface ContentElementProps {
   title: string
 }
 
-export default function RecommendedContents<T>({
+export default function RecommendedContents<T extends ContentElementProps>({
   contents: contentsData,
   margin,
   onContentClick,
   onContentIntersect,
 }: {
-  contents: (ContentElementProps & T)[]
+  contents: T[]
   margin?: MarginPadding
-  onContentClick?: (
-    e?: React.SyntheticEvent,
-    content?: ContentElementProps & T,
-  ) => any
-  onContentIntersect?: (content: ContentElementProps & T) => any
+  onContentClick?: (e?: React.SyntheticEvent, content?: T) => any
+  onContentIntersect?: (content: T) => any
 }) {
-  const contents = contentsData.map(({ title, ...content }) => ({
-    title: title.replace('\n', ' '),
-    ...content,
-  }))
+  const contents = contentsData.map(
+    ({ title, ...content }) =>
+      ({
+        title: title.replace('\n', ' '),
+        ...content,
+      } as T),
+  )
 
   return (
     <RecommendedContentsContainer margin={margin}>
@@ -137,14 +137,11 @@ export default function RecommendedContents<T>({
               onChange={({ isIntersecting }) =>
                 isIntersecting &&
                 onContentIntersect &&
-                onContentIntersect(content as ContentElementProps & T)
+                onContentIntersect(content)
               }
             >
               <RecommendedContentWithMobileResolution
-                onClick={
-                  onContentClick &&
-                  ((e) => onContentClick(e, content as ContentElementProps & T))
-                }
+                onClick={onContentClick && ((e) => onContentClick(e, content))}
               >
                 <Image src={content.backgroundImageUrl} />
                 <ImageColorOverlay />
@@ -187,5 +184,33 @@ export default function RecommendedContents<T>({
         ))}
       </Responsive>
     </RecommendedContentsContainer>
+  )
+}
+
+function Test() {
+  return (
+    <RecommendedContents
+      contents={[
+        {
+          title: '두줄이ㅁㄴㅇㄹㅁㄴ\n강제로ㅁㄴㅇㄹㅁ',
+          backgroundImageUrl:
+            'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/4984852d-61df-4fab-95f9-da24d257a829.jpeg',
+          url: 'https://triple.guide',
+        },
+        {
+          title: '두줄이ㅁㄴㅇㄹㅁㄴ\n강제로ㅁㄴㅇㄹㅁ',
+          backgroundImageUrl:
+            'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/4984852d-61df-4fab-95f9-da24d257a829.jpeg',
+          url: 'https://triple.guide',
+        },
+        {
+          title: '두줄이ㅁㄴㅇㄹㅁㄴ\n강제로ㅁㄴㅇㄹㅁ',
+          backgroundImageUrl:
+            'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/4984852d-61df-4fab-95f9-da24d257a829.jpeg',
+          url: 'https://triple.guide',
+        },
+      ]}
+      onContentIntersect={(content) => content}
+    />
   )
 }
