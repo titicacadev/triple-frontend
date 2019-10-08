@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
-    "@titicaca/core-elements": "^1.0.0-alpha.23"
+    "@titicaca/core-elements": "^1.0.0-alpha.23",
     "@titicaca/intersection-observer": "^1.0.0-alpha.23"
   }
 }
