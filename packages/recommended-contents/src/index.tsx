@@ -86,7 +86,7 @@ const RecommendedContentWithMobileResolution = styled.li`
     top: 0;
   }
 
-  &: nth-child(even) {
+  &:nth-child(even) {
     left: 15px;
   }
 `
