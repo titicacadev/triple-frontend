@@ -121,7 +121,7 @@ export default function RecommendedContents({
     e?: React.SyntheticEvent,
     content?: { backgroundImageUrl: string; title: string },
   ) => any
-  onContentIntersect: (content: any) => any
+  onContentIntersect?: (content: any) => any
 }) {
   const contents = contentsData.map(({ title, ...content }) => ({
     title: title.replace('\n', ' '),
