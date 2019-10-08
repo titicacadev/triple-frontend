@@ -103,24 +103,24 @@ const ImageColorOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.3);
 `
 
-interface ContentElement {
+export interface ContentElementProps {
   backgroundImageUrl: string
   title: string
 }
 
-export default function RecommendedContents({
+export default function RecommendedContents<T>({
   contents: contentsData,
   margin,
   onContentClick,
   onContentIntersect,
 }: {
-  contents: ContentElement[]
+  contents: (ContentElementProps & T)[]
   margin?: MarginPadding
   onContentClick?: (
     e?: React.SyntheticEvent,
-    content?: { backgroundImageUrl: string; title: string },
+    content?: ContentElementProps & T,
   ) => any
-  onContentIntersect?: (content: ContentElement) => any
+  onContentIntersect?: (content: ContentElementProps & T) => any
 }) {
   const contents = contentsData.map(({ title, ...content }) => ({
     title: title.replace('\n', ' '),
@@ -137,11 +137,14 @@ export default function RecommendedContents({
               onChange={({ isIntersecting }) =>
                 isIntersecting &&
                 onContentIntersect &&
-                onContentIntersect(content)
+                onContentIntersect(content as ContentElementProps & T)
               }
             >
               <RecommendedContentWithMobileResolution
-                onClick={onContentClick && ((e) => onContentClick(e, content))}
+                onClick={
+                  onContentClick &&
+                  ((e) => onContentClick(e, content as ContentElementProps & T))
+                }
               >
                 <Image src={content.backgroundImageUrl} />
                 <ImageColorOverlay />
@@ -166,12 +169,15 @@ export default function RecommendedContents({
             onChange={({ isIntersecting }) =>
               isIntersecting &&
               onContentIntersect &&
-              onContentIntersect(content)
+              onContentIntersect(content as ContentElementProps & T)
             }
           >
             <RecommendedContentWithDesktopResolution
               backgroundImageUrl={content.backgroundImageUrl}
-              onClick={onContentClick && ((e) => onContentClick(e, content))}
+              onClick={
+                onContentClick &&
+                ((e) => onContentClick(e, content as ContentElementProps & T))
+              }
             >
               <Text lineHeight="20px" color="white" bold maxLines={3}>
                 {content.title}
