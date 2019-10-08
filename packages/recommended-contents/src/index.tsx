@@ -135,7 +135,9 @@ export default function RecommendedContents({
             <IntersectionObserver
               key={index}
               onChange={({ isIntersecting }) =>
-                isIntersecting && onContentIntersect(content)
+                isIntersecting &&
+                onContentIntersect &&
+                onContentIntersect(content)
               }
             >
               <RecommendedContentWithMobileResolution
