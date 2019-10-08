@@ -186,31 +186,3 @@ export default function RecommendedContents<T extends ContentElementProps>({
     </RecommendedContentsContainer>
   )
 }
-
-function Test() {
-  return (
-    <RecommendedContents
-      contents={[
-        {
-          title: '두줄이ㅁㄴㅇㄹㅁㄴ\n강제로ㅁㄴㅇㄹㅁ',
-          backgroundImageUrl:
-            'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/4984852d-61df-4fab-95f9-da24d257a829.jpeg',
-          url: 'https://triple.guide',
-        },
-        {
-          title: '두줄이ㅁㄴㅇㄹㅁㄴ\n강제로ㅁㄴㅇㄹㅁ',
-          backgroundImageUrl:
-            'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/4984852d-61df-4fab-95f9-da24d257a829.jpeg',
-          url: 'https://triple.guide',
-        },
-        {
-          title: '두줄이ㅁㄴㅇㄹㅁㄴ\n강제로ㅁㄴㅇㄹㅁ',
-          backgroundImageUrl:
-            'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/4984852d-61df-4fab-95f9-da24d257a829.jpeg',
-          url: 'https://triple.guide',
-        },
-      ]}
-      onContentIntersect={(content) => content}
-    />
-  )
-}
