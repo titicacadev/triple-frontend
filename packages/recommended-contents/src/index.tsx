@@ -117,7 +117,7 @@ export default function RecommendedContents<T extends ContentElementProps>({
   contents: T[]
   margin?: MarginPadding
   onContentClick?: (e: React.SyntheticEvent, content: T) => any
-  onContentIntersect?: (content?: T) => any
+  onContentIntersect?: (content: T) => any
 }) {
   const contents = contentsData.map(({ title, ...content }) => ({
     title: title.replace('\n', ' '),
