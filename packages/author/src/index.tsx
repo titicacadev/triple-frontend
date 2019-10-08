@@ -13,7 +13,7 @@ export default function Author({
 }) {
   return (
     <Container centered textAlign="center" onClick={onClick}>
-      {image && <Image size="medium" circular src={image.sizes.large.url} />}
+      {image && <Image circular diameter={45} src={image.sizes.large.url} />}
       <Text bold size="large" color="gray" margin={{ top: 15 }}>
         {name}
       </Text>
