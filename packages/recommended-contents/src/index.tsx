@@ -106,7 +106,6 @@ const ImageColorOverlay = styled.div`
 interface ContentElement {
   backgroundImageUrl: string
   title: string
-  [keys: string]: string
 }
 
 export default function RecommendedContents({
