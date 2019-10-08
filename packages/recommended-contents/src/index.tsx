@@ -58,7 +58,7 @@ const RecommendedContentWithDesktopResolution = styled.li<{
     top: 45px;
   }
 
-  &: nth-child(odd) {
+  &:nth-child(odd) {
     margin-right: 15px;
   }
 `
