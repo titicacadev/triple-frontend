@@ -117,15 +117,12 @@ export default function RecommendedContents<T extends ContentElementProps>({
   contents: T[]
   margin?: MarginPadding
   onContentClick?: (e?: React.SyntheticEvent, content?: T) => any
-  onContentIntersect?: (content: T) => any
+  onContentIntersect?: (content?: T) => any
 }) {
-  const contents = contentsData.map(
-    ({ title, ...content }) =>
-      ({
-        title: title.replace('\n', ' '),
-        ...content,
-      } as T),
-  )
+  const contents = contentsData.map(({ title, ...content }) => ({
+    title: title.replace('\n', ' '),
+    ...content,
+  })) as T[]
 
   return (
     <RecommendedContentsContainer margin={margin}>
@@ -166,15 +163,12 @@ export default function RecommendedContents<T extends ContentElementProps>({
             onChange={({ isIntersecting }) =>
               isIntersecting &&
               onContentIntersect &&
-              onContentIntersect(content as ContentElementProps & T)
+              onContentIntersect(content)
             }
           >
             <RecommendedContentWithDesktopResolution
               backgroundImageUrl={content.backgroundImageUrl}
-              onClick={
-                onContentClick &&
-                ((e) => onContentClick(e, content as ContentElementProps & T))
-              }
+              onClick={onContentClick && ((e) => onContentClick(e, content))}
             >
               <Text lineHeight="20px" color="white" bold maxLines={3}>
                 {content.title}
