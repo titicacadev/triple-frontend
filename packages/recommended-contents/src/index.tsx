@@ -103,7 +103,7 @@ const ImageColorOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.3);
 `
 
-export interface ContentElementProps {
+interface ContentElementProps {
   backgroundImageUrl: string
   title: string
 }
