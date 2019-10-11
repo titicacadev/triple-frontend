@@ -25,7 +25,12 @@ export default function ReviewContainer({
   regionId,
   appUrlScheme,
   resourceId,
-  appNativeActions: { notifyReviewDeleted, showToast },
+  appNativeActions: {
+    notifyReviewDeleted,
+    showToast,
+    subscribeReviewUpdateEvent,
+    unsubscribeReviewUpdateEvent,
+  },
   shortened,
   onFullListButtonClick,
 }: ReviewProps) {
@@ -34,23 +39,24 @@ export default function ReviewContainer({
   const [myReview, setMyReview] = useState(undefined)
 
   useEffect(() => {
-    const fetchAndSetMyReview = async () => {
-      try {
-        const fetchedMyReview = await fetchMyReview({
-          resourceId,
-          resourceType,
-        })
+    const refreshMyReview = async ({ id }: { id: string }) =>
+      id &&
+      id === resourceId &&
+      setMyReview(await fetchMyReview({ resourceType, resourceId }))
 
-        if (fetchedMyReview) {
-          setMyReview(fetchedMyReview)
-        }
-      } catch (e) {
-        // do nothing
-      }
-    }
+    refreshMyReview({ id: resourceId })
+    subscribeReviewUpdateEvent && subscribeReviewUpdateEvent(refreshMyReview)
 
-    fetchAndSetMyReview()
-  }, [resourceId, resourceType, setMyReview])
+    return () =>
+      unsubscribeReviewUpdateEvent &&
+      unsubscribeReviewUpdateEvent(refreshMyReview)
+  }, [
+    resourceType,
+    resourceId,
+    setMyReview,
+    subscribeReviewUpdateEvent,
+    unsubscribeReviewUpdateEvent,
+  ])
 
   const handleWriteButtonClick = (
     e: React.SyntheticEvent,
