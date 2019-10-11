@@ -9,13 +9,13 @@ export interface Content {
 }
 
 export default function Author({
-  source: { name, bio, image },
+  source: { name, bio, image, intro },
   bioOverride,
   onClick,
   authorContents,
   onAuthorContentClick,
 }: {
-  source: { name: string; bio?: string; image?: any }
+  source: { name: string; bio?: string; image?: any; intro: string }
   bioOverride?: string
   onClick?: (e?: React.SyntheticEvent) => any
   authorContents?: Content[]
@@ -37,7 +37,7 @@ export default function Author({
             {name}
           </Text>
           <Text size="tiny" color="gray" alpha={0.3}>
-            평범한 회사원이자 찰나의 셔터 기록자.
+            {bioOverride || bio}
           </Text>
         </Container>
         <Text
@@ -47,7 +47,7 @@ export default function Author({
           lineHeight={1.43}
           margin={{ top: 21 }}
         >
-          {bioOverride || bio}
+          {intro}
         </Text>
       </div>
 
