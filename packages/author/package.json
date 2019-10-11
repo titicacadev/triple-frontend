@@ -17,5 +17,9 @@
   "dependencies": {
     "@titicaca/core-elements": "^1.0.0-alpha.29",
     "@titicaca/triple-document": "^1.0.0-alpha.29"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "styled-components": "^3.4.6"
   }
 }
