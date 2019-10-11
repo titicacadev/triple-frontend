@@ -25,7 +25,7 @@ export default function AuthorContent({
         inlineBlock
         color="gray"
         size="small"
-        opacity={0.7}
+        alpha={0.7}
         padding={{ top: 10, bottom: 10 }}
         lineHeight={1.22}
       >
