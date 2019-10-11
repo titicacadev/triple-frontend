@@ -159,7 +159,7 @@ function Heading(Component) {
   }
 }
 
-function TextElement({ value: { text, rawHTML }, compact, ...props }) {
+export function TextElement({ value: { text, rawHTML }, compact, ...props }) {
   if (rawHTML) {
     return (
       <Text.Html
