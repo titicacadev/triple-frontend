@@ -10,8 +10,6 @@ export default function Author({
   source: { name: string; bio?: string; image?: any; intro: string }
   bioOverride?: string
   onClick?: (e?: React.SyntheticEvent) => any
-  authorContents?: { title: string }[]
-  onAuthorContentClick?: ({ content: AuthorContent }) => any
 }) {
   return (
     <Container
