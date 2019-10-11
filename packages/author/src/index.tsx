@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Container, Text, Image } from '@titicaca/core-elements'
+import { Container, Text, Image, HR7 } from '@titicaca/core-elements'
 
 import AuthorContent from './author-content'
 
@@ -53,7 +53,8 @@ export default function Author({
       </Text>
 
       {(authorContents || {}).length > 0 ? (
-        <Container margin={{ top: 51 }}>
+        <Container>
+          <HR7 margin={{ top: 30, bottom: 20 }} />
           {authorContents.map((articleContent, index) => (
             <AuthorContent
               key={index}
