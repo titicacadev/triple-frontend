@@ -42,16 +42,7 @@ export async function fetchMyReview({ resourceType, resourceId }) {
 
   const { review } = await response.json()
 
-  if (review) {
-    const user = await (await fetch('/api/users/me')).json()
-
-    return {
-      ...review,
-      user,
-    }
-  }
-
-  return null
+  return review
 }
 
 export function deleteReview({ id }: { id: string }) {
