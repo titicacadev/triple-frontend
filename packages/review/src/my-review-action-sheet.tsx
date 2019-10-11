@@ -20,7 +20,7 @@ export default function MyReviewActionSheet({
   resourceId,
   notifyReviewDeleted,
 }) {
-  const { uriHash, push, back } = useHistoryContext()
+  const { uriHash, replace, back } = useHistoryContext()
   const {
     actions: { deleteMyReview },
   } = useMyReviewsContext()
@@ -30,7 +30,7 @@ export default function MyReviewActionSheet({
   }
 
   const handleDeleteMenuClick = () => {
-    push(HASH_DELETION_MODAL)
+    replace(HASH_DELETION_MODAL)
 
     return true
   }
@@ -43,6 +43,8 @@ export default function MyReviewActionSheet({
 
       deleteMyReview({ id: myReview.id })
     }
+
+    back()
   }
 
   return (
