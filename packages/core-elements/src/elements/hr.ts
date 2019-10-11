@@ -80,3 +80,23 @@ export const HR6 = styled.div`
   background-size: 130px 37px;
   background-image: url(https://assets.triple.guide/images/img-line3@2x.png);
 `
+
+export const HR7 = styled.div<HRProp>`
+  margin: 30px auto;
+  ${({ compact }) =>
+    compact &&
+    css`
+      margin: 0;
+    `};
+
+  ${({ margin }) =>
+    margin &&
+    css`
+      margin-top: ${margin.top || 0}px;
+      margin-bottom: ${margin.bottom || 0}px;
+      margin-left: ${margin.left || 0}px;
+      margin-right: ${margin.right || 0}px;
+    `};
+  width: 100%;
+  border-bottom: dashed 1px #efefef;
+`
