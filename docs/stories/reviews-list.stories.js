@@ -31,6 +31,7 @@ storiesOf('Reviews', module).add('일반', () => (
         appNativeActions={{
           subscribeLikedChangeEvent: action('subscribeLikedChangeEvent'),
           subscribeReviewUpdateEvent: action('subscribeReviewUpdateEvent'),
+          unsubscribeReviewUpdateEvent: action('unsubscribeReviewUpdateEvent'),
           notifyReviewDeleted: action('notifyReviewDeleted'),
           notifyReviewLiked: action('notifyReviewLiked'),
           notifyReviewUnliked: action('notifyReviewUnliked'),
