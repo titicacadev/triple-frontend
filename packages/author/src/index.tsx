@@ -1,9 +1,7 @@
 import React, { useMemo } from 'react'
 
 import { Container, Text, Image } from '@titicaca/core-elements'
-import { ELEMENTS } from '@titicaca/triple-document'
-
-const { text: TextElement } = ELEMENTS
+import { TextElement } from '@titicaca/triple-document'
 
 export default function Author({
   source: { name, bio, image, intro },
