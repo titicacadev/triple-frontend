@@ -15,6 +15,7 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^1.0.0-alpha.29"
+    "@titicaca/core-elements": "^1.0.0-alpha.29",
+    "@titicaca/triple-document": "^1.0.0-alpha.29"
   }
 }
