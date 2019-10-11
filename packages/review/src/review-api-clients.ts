@@ -30,7 +30,7 @@ export function unlikeReview({ id }: { id: string }) {
   })
 }
 
-export async function fetchMyReviews({ resourceType, resourceId }) {
+export async function fetchMyReview({ resourceType, resourceId }) {
   const response = await fetch(
     `/api/reviews/v2/me?resource_type=${resourceType}&resource_id=${resourceId}`,
     { credentials: 'same-origin' },
@@ -40,13 +40,22 @@ export async function fetchMyReviews({ resourceType, resourceId }) {
     throw new Error(`Failed to fetch my reviews: ${response.status}`)
   }
 
-  const { data: reviews } = await response.json()
+  const { review } = await response.json()
 
-  return reviews
+  if (review) {
+    const user = await (await fetch('/api/users/me')).json()
+
+    return {
+      ...review,
+      user,
+    }
+  }
+
+  return null
 }
 
 export function deleteReview({ id }: { id: string }) {
-  return fetch(`/api/reviews/${id}`, {
+  return fetch(`/api/reviews/v2/${id}`, {
     method: 'DELETE',
     credentials: 'same-origin',
   })
