@@ -51,7 +51,7 @@ export default function Author({
         </Text>
       </div>
 
-      {(authorContents || {}).length > 0 ? (
+      {(authorContents || []).length > 0 ? (
         <Container>
           <HR7 margin={{ top: 30, bottom: 20 }} />
           {authorContents.map((articleContent, index) => (
