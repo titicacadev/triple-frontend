@@ -6,8 +6,6 @@ import { action } from '@storybook/addon-actions'
 import Author from '@titicaca/author'
 import { HR2 } from '@titicaca/core-elements'
 
-import Sample from './author.sample.json'
-
 storiesOf('Author', module).add('일반', () => (
   <>
     <HR2 margin={{ top: 30 }} />
@@ -40,9 +38,7 @@ storiesOf('Author', module).add('일반', () => (
         intro: '자주 여행을 꿈꾸고, 이따금씩 순간을 톺아보려 합니다.',
       }}
       bioOverride={text('소개 덮어쓰기', '')}
-      authorContents={Sample.authorContents}
       onClick={action('onClick')}
-      onAuthorContentClick={action('onAuthorContentClick')}
     />
   </>
 ))
