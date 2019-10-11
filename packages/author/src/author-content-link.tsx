@@ -12,7 +12,7 @@ const Icon = styled.img`
   padding: 10px 0 10px 0;
 `
 
-export default function AuthorContent({
+export default function AuthorContentLink({
   content,
   onClick,
 }: {

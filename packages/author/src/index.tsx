@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { Container, Text, Image, HR7 } from '@titicaca/core-elements'
 
-import AuthorContent from './author-content'
+import AuthorContentLink from './author-content-link'
 
 export interface Content {
   title: string
@@ -55,7 +55,7 @@ export default function Author({
         <Container>
           <HR7 margin={{ top: 30, bottom: 20 }} />
           {authorContents.map((articleContent, index) => (
-            <AuthorContent
+            <AuthorContentLink
               key={index}
               content={articleContent}
               onClick={onAuthorContentClick}
