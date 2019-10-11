@@ -39,10 +39,17 @@ export default function ReviewContainer({
   const [myReview, setMyReview] = useState(undefined)
 
   useEffect(() => {
-    const refreshMyReview = async ({ id }: { id: string }) =>
+    const refreshMyReview = async (params?: { id: string }) => {
+      if (!params) {
+        return
+      }
+
+      const { id } = params
+
       id &&
-      id === resourceId &&
-      setMyReview(await fetchMyReview({ resourceType, resourceId }))
+        id === resourceId &&
+        setMyReview(await fetchMyReview({ resourceType, resourceId }))
+    }
 
     refreshMyReview({ id: resourceId })
     subscribeReviewUpdateEvent && subscribeReviewUpdateEvent(refreshMyReview)
