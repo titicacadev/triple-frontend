@@ -26,7 +26,7 @@ export default function MyReviewActionSheet({
   } = useMyReviewsContext()
 
   const handleEditMenuClick = () => {
-    window.location.href = `${appUrlScheme}:////reviews/edit?region_id=${regionId}&resource_type=${resourceType}&resource_id=${resourceId}`
+    window.location.href = `${appUrlScheme}:///regions/${regionId}/reviews/edit?resource_type=${resourceType}&resource_id=${resourceId}`
   }
 
   const handleDeleteMenuClick = () => {
