@@ -40,6 +40,7 @@ storiesOf('Author', module).add('일반', () => (
       }}
       bioOverride={text('소개 덮어쓰기', '')}
       authorContents={Sample.authorContents}
+      onClick={action('onClick')}
       onAuthorContentClick={action('onAuthorContentClick')}
     />
   </>
