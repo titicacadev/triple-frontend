@@ -28,10 +28,17 @@ storiesOf('Reviews', module).add('일반', () => (
       <Reviews
         shortened={boolean('Shortened', false)}
         reviewsCount={number('Review count', 120)}
-        appNativeActions={{}}
+        appNativeActions={{
+          subscribeLikedChangeEvent: action('subscribeLikedChangeEvent'),
+          subscribeReviewUpdateEvent: action('subscribeReviewUpdateEvent'),
+          notifyReviewDeleted: action('notifyReviewDeleted'),
+          notifyReviewLiked: action('notifyReviewLiked'),
+          notifyReviewUnliked: action('notifyReviewUnliked'),
+          showToast: action('showToast'),
+        }}
         resourceId={text('Resource ID', 'f939b4cb-ea3b-34b6-b430-eb5d28fbf467')}
         resourceType={select('Resource Type', ['poi', 'tna', 'article'], 'tna')}
-        onFullListButtonClick={action('Show full list')}
+        onFullListButtonClick={action('onFullListButtonClick')}
       />
     </HistoryProvider>
   </UserAgentProvider>
