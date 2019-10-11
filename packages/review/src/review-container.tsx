@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Section, Container, Text, Button, HR1 } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import { useUserAgentContext } from '@titicaca/react-contexts'
-import { fetchMyReviews, writeReview } from './review-api-clients'
+import { fetchMyReview, writeReview } from './review-api-clients'
 import ReviewsPlaceholder from './review-placeholder-with-rating'
 import ReviewsList from './review-list'
 import { ReviewProps } from './types'
@@ -36,7 +36,7 @@ export default function ReviewContainer({
   useEffect(() => {
     const fetchAndSetMyReview = async () => {
       try {
-        const [fetchedMyReview] = await fetchMyReviews({
+        const fetchedMyReview = await fetchMyReview({
           resourceId,
           resourceType,
         })
