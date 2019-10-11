@@ -52,12 +52,17 @@ export default function ReviewContainer({
     }
 
     refreshMyReview({ id: resourceId })
-    subscribeReviewUpdateEvent && subscribeReviewUpdateEvent(refreshMyReview)
+
+    !isPublic &&
+      subscribeReviewUpdateEvent &&
+      subscribeReviewUpdateEvent(refreshMyReview)
 
     return () =>
+      !isPublic &&
       unsubscribeReviewUpdateEvent &&
       unsubscribeReviewUpdateEvent(refreshMyReview)
   }, [
+    isPublic,
     resourceType,
     resourceId,
     setMyReview,
