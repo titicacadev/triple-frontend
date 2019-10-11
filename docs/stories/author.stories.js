@@ -35,7 +35,8 @@ storiesOf('Author', module).add('일반', () => (
           width: 640,
           height: 427,
         },
-        intro: '자주 여행을 꿈꾸고, 이따금씩 순간을 톺아보려 합니다.',
+        intro:
+          '자주 여행을 꿈꾸고, 이따금씩 순간을 톺아보려 합니다.<br><a>test</a>',
       }}
       bioOverride={text('소개 덮어쓰기', '')}
       onClick={action('onClick')}
