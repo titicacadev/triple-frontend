@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import humps from 'humps'
 
 export function writeReview({
   appUrlScheme,
@@ -42,7 +43,7 @@ export async function fetchMyReview({ resourceType, resourceId }) {
 
   const { review } = await response.json()
 
-  return review
+  return humps.camelizeKeys(review)
 }
 
 export function deleteReview({ id }: { id: string }) {

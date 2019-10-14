@@ -36,7 +36,7 @@ export default function usePaging({
       if (data.reviews.length > 0) {
         setReviews((currentReviews) => [
           ...currentReviews,
-          ...humps.camelize(data.reviews),
+          ...humps.camelizeKeys(data.reviews),
         ])
       } else {
         setEndOfList(true)
