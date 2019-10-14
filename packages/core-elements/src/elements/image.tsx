@@ -209,12 +209,14 @@ const ImageFrameWithFixedRatio = styled(ImageFrameBase)<{
 const RoundImage = styled.img<{
   size?: GlobalSizes
   floated?: CSS.FloatProperty
-  diameter?: number
+  width?: number
 }>`
-  width: ${({ size, diameter }) => diameter || ROUND_SIZES[size || 'small']}px;
-  height: ${({ size, diameter }) => diameter || ROUND_SIZES[size || 'small']}px;
-  border-radius: ${({ size, diameter }) =>
-    (diameter || ROUND_SIZES[size || 'small']) / 2}px;
+  width: ${({ size, width }) =>
+    ROUND_SIZES[size] || width || ROUND_SIZES['small']}px;
+  height: ${({ size, width }) =>
+    ROUND_SIZES[size] || width || ROUND_SIZES['small']}px;
+  border-radius: ${({ size, width }) =>
+    (ROUND_SIZES[size] || width || ROUND_SIZES['small']) / 2}px;
   background-color: #efefef;
   object-fit: cover;
 
@@ -239,7 +241,6 @@ function Image({
   height,
   margin,
   asPlaceholder,
-  diameter,
 }: {
   src?: string
   borderRadius?: number
@@ -258,12 +259,9 @@ function Image({
   height?: number
   margin?: MarginPadding
   asPlaceholder?: boolean
-  diameter?: number
 }) {
   if (circular) {
-    return (
-      <RoundImage src={src} floated={floated} size={size} diameter={diameter} />
-    )
+    return <RoundImage src={src} floated={floated} size={size} width={width} />
   }
 
   const Frame =

@@ -36,7 +36,7 @@ export default function Author({
         <Image
           floated="right"
           circular
-          diameter={45}
+          width={45}
           src={image.sizes.large.url}
         />
       )}
