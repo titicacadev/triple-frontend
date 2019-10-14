@@ -69,7 +69,7 @@ const PROMO_SIZES: Partial<
     height: 26,
     padding: '0 10px',
   },
-  big: {
+  large: {
     fontSize: 13,
     borderRadius: 4,
     height: 30,
