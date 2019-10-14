@@ -1,4 +1,6 @@
 import React, { useState, useMemo } from 'react'
+import qs from 'qs'
+import moment from 'moment'
 import { List, MarginPadding } from '@titicaca/core-elements'
 import {
   useReviewLikesContext,
@@ -72,12 +74,34 @@ export default function ReviewsList({
     }
   }
 
-  const handleImageClick = (e, { media }) => {
+  const handleImageClick = (
+    e,
+    { user: { name }, comment, media, createdAt },
+    image,
+  ) => {
     if (isPublic) {
       return
     }
 
-    window.location.href = `${appUrlScheme}:///images?${media}`
+    const convertImage = (convertingImage) => ({
+      id: convertingImage.id,
+      title: '',
+      description: (comment || '').replace(/\n\s*\n/g, '\n'),
+      width: convertingImage.width,
+      height: convertingImage.height,
+      sourceUrl: `${name} / ${moment(createdAt).format('YYYY.M.D')}`,
+      sizes: {
+        full: convertingImage.sizes.full,
+        large: convertingImage.sizes.large,
+        /* eslint-disable-next-line @typescript-eslint/camelcase */
+        small_square: convertingImage.sizes.smallSquare,
+      },
+    })
+
+    window.location.href = `${appUrlScheme}:///images?${qs.stringify({
+      images: JSON.stringify(media.map(convertImage)),
+      index: media.findIndex(({ id }) => id === image.id),
+    })}`
   }
 
   const handleShow = fetchNext
