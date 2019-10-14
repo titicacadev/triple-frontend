@@ -13,6 +13,8 @@ export default function OthersReviewActionSheet({
 
   const handleReportClick = () => {
     window.location.href = `${appUrlScheme}:///reviews/${selectedReview.id}/report`
+
+    back()
   }
 
   return (
