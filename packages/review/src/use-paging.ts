@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from 'react'
+import humps from 'humps'
 import { useFetch } from '@titicaca/react-hooks'
 
 const OPTIONS = { credentials: 'same-origin' }
@@ -33,7 +34,10 @@ export default function usePaging({
   useEffect(() => {
     if (!error && !loading && data) {
       if (data.reviews.length > 0) {
-        setReviews((currentReviews) => [...currentReviews, ...data.reviews])
+        setReviews((currentReviews) => [
+          ...currentReviews,
+          ...humps.camelize(data.reviews),
+        ])
       } else {
         setEndOfList(true)
       }
