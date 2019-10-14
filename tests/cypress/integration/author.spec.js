@@ -24,12 +24,6 @@ describe('Author', () => {
       .as('bio')
   })
 
-  it('should have correct container style', () => {
-    cy.get('@author')
-      .should('have.css', 'text-align')
-      .and('eq', 'center')
-  })
-
   it('should have correct image style', () => {
     cy.get('@image')
       .should('have.css', 'width')
