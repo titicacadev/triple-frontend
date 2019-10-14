@@ -139,6 +139,6 @@ export default function ReviewsList({
       </>
     ),
     /* eslint-disable-next-line react-hooks/exhaustive-deps */
-    [resourceId, resourceType, reviews, myReview],
+    [regionId, resourceId, resourceType, reviews, myReview, selectedReview],
   )
 }
