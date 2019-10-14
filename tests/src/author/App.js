@@ -14,9 +14,10 @@ export default class App extends PureComponent {
           },
         },
         name: '에디터가있을때',
-        description:
-          '여행이 좋아 디지털 노마드로 전세계를 떠돌며\n일을하고 있습니다. budim@gmail.com',
       },
+      bio: '하안줄소오개애',
+      intro:
+        '여행이 좋아 디지털 노마드로 전세계를 떠돌며\n일을하고 있습니다. budim@gmail.com',
     }
 
     return <Author {...author} />
