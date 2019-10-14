@@ -34,7 +34,7 @@ storiesOf('Author', module).add('일반', () => (
       },
       intro: {
         rawHTML:
-          '자주 여행을 꿈꾸고, 이따금씩 순간을 톺아보려 합니다.<br><a>test</a>',
+          '자주 여행을 꿈꾸고, 이따금씩 순간을 톺아보려 합니다.<br><a>www.instagram.com/romi1403</a>',
       },
     }}
     bioOverride={text('소개 덮어쓰기', '')}
