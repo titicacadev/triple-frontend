@@ -1,7 +1,15 @@
 import React from 'react'
+import styled from 'styled-components'
 
-import { Container, Text, Image } from '@titicaca/core-elements'
-import { TextElement } from '@titicaca/triple-document'
+import { Container, Text, Image, GetGlobalColor } from '@titicaca/core-elements'
+import { TextElement as OriginTextElement } from '@titicaca/triple-document'
+
+const TextElement = styled(OriginTextElement)`
+  & > a {
+    font-weight: 500;
+    color: rgba(${GetGlobalColor('gray')}, 0.5);
+  }
+`
 
 export default function Author({
   source: { name, bio, image, intro },
