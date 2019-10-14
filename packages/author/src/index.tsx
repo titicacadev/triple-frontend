@@ -15,7 +15,6 @@ export default function Author({
   source: { name, bio, image, intro },
   bioOverride,
   introOverride,
-  onClick,
 }: {
   source: {
     name: string
@@ -25,13 +24,9 @@ export default function Author({
   }
   bioOverride?: string
   introOverride?: string
-  onClick?: (e?: React.SyntheticEvent) => any
 }) {
   return (
-    <Container
-      margin={{ top: 41, left: 30, right: 30, bottom: 50 }}
-      onClick={onClick}
-    >
+    <Container margin={{ top: 41, left: 30, right: 30, bottom: 50 }}>
       {image && (
         <Image
           floated="right"
