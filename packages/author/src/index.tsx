@@ -46,7 +46,7 @@ export default function Author({
         alpha={0.5}
         lineHeight={1.43}
         margin={{ top: 21 }}
-        value={{ rawHTML: introOverride || intro }}
+        value={introOverride || intro}
       />
     </Container>
   )
