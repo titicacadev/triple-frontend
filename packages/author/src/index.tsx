@@ -1,7 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Container, Text, Image, GetGlobalColor } from '@titicaca/core-elements'
+import {
+  Container,
+  Text,
+  Image,
+  GetGlobalColor,
+  MarginPadding,
+} from '@titicaca/core-elements'
 import { TextElement as OriginTextElement } from '@titicaca/triple-document'
 
 const TextElement = styled(OriginTextElement)`
@@ -15,6 +21,7 @@ export default function Author({
   source: { name, bio, image, intro },
   bioOverride,
   introOverride,
+  margin,
 }: {
   source: {
     name: string
@@ -24,9 +31,10 @@ export default function Author({
   }
   bioOverride?: string
   introOverride?: string
+  margin: MarginPadding
 }) {
   return (
-    <Container margin={{ top: 41, left: 30, right: 30, bottom: 50 }}>
+    <Container margin={margin}>
       {image && (
         <Image
           floated="right"
