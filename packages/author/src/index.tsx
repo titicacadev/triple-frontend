@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 
 import { Container, Text, Image } from '@titicaca/core-elements'
 import { TextElement } from '@titicaca/triple-document'
@@ -19,11 +19,6 @@ export default function Author({
   introOverride?: string
   onClick?: (e?: React.SyntheticEvent) => any
 }) {
-  const bioText = useMemo(() => (bioOverride || bio).replace('\n', ''), [
-    bioOverride,
-    bio,
-  ])
-
   return (
     <Container
       margin={{ top: 41, left: 30, right: 30, bottom: 50 }}
@@ -42,7 +37,7 @@ export default function Author({
           {name}
         </Text>
         <Text size="tiny" color="gray" alpha={0.3} maxLines={1}>
-          {bioText}
+          {(bioOverride || bio || '').replace('\n', '')}
         </Text>
       </Container>
       <TextElement
