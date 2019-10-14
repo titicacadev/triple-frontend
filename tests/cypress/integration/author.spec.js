@@ -27,15 +27,11 @@ describe('Author', () => {
   it('should have correct image style', () => {
     cy.get('@image')
       .should('have.css', 'width')
-      .and('eq', '60px')
+      .and('eq', '45px')
 
     cy.get('@image')
       .should('have.css', 'height')
-      .and('eq', '60px')
-
-    cy.get('@image')
-      .should('have.css', 'border-radius')
-      .and('eq', '30px')
+      .and('eq', '45px')
   })
 
   it('should have correct name style', () => {
