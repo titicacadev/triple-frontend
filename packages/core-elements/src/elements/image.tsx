@@ -214,7 +214,7 @@ const RoundImage = styled.img<{
   width: ${({ size, diameter }) => diameter || ROUND_SIZES[size || 'small']}px;
   height: ${({ size, diameter }) => diameter || ROUND_SIZES[size || 'small']}px;
   border-radius: ${({ size, diameter }) =>
-    diameter || ROUND_SIZES[size || 'small'] / 2}px;
+    (diameter || ROUND_SIZES[size || 'small']) / 2}px;
   background-color: #efefef;
   object-fit: cover;
 
