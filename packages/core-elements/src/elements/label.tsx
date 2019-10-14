@@ -14,6 +14,7 @@ const GetLabelColors: Partial<Record<LabelColor, string>> = {
   blue: GetGlobalColor('blue'),
   red: '253, 46, 105',
   purple: '151, 95, 255',
+  gray: '245, 245, 245',
 }
 
 function rgba({ color, alpha }: { color?: LabelColor; alpha?: number }) {
@@ -68,6 +69,12 @@ const PROMO_SIZES: Partial<
     height: 26,
     padding: '0 10px',
   },
+  big: {
+    fontSize: 13,
+    borderRadius: 4,
+    height: 30,
+    padding: '0 13px',
+  },
 }
 
 interface PromoLabelProps {
@@ -75,6 +82,7 @@ interface PromoLabelProps {
   emphasized?: boolean
   color?: LabelColor
   margin?: MarginPadding
+  fontColor?: GlobalColors
 }
 
 export const PromoLabel = styled.div<PromoLabelProps>`
@@ -91,7 +99,8 @@ export const PromoLabel = styled.div<PromoLabelProps>`
       ? css`
           font-weight: bold;
           background-color: ${({ color }) => rgba({ color, alpha: 1 })};
-          color: white;
+          color: ${({ fontColor }) =>
+            fontColor ? `rgba(${GetGlobalColor(fontColor)}, 0.7)` : 'white'};
         `
       : css`
           font-weight: normal;
@@ -139,6 +148,7 @@ export default class Label extends React.PureComponent<
         size,
         emphasized,
         color,
+        fontColor,
         ...props
       },
     } = this
@@ -156,6 +166,7 @@ export default class Label extends React.PureComponent<
           size={size}
           emphasized={emphasized}
           color={color}
+          fontColor={fontColor}
           margin={margin}
         >
           {children}
