@@ -1,7 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { text } from '@storybook/addon-knobs'
-import { action } from '@storybook/addon-actions'
 
 import Author from '@titicaca/author'
 
@@ -38,6 +37,5 @@ storiesOf('Author', module).add('일반', () => (
       },
     }}
     bioOverride={text('소개 덮어쓰기', '')}
-    onClick={action('onClick')}
   />
 ))
