@@ -3,29 +3,22 @@ import React from 'react'
 const NOOP = () => {}
 
 interface ReviewLikesContextProps {
-  likes: { [key: string]: boolean }
-  actions: {
-    like: Function
-    unlike: Function
-    insert: Function
-  }
+  deriveCurrentStateAndCount: Function
+  updateLikedStatus: Function
 }
 
 const Context = React.createContext<ReviewLikesContextProps>({
-  likes: {},
-  actions: {
-    like: NOOP,
-    unlike: NOOP,
-    insert: NOOP,
-  },
+  deriveCurrentStateAndCount: ({ liked, likesCount }) => ({
+    liked,
+    likesCount,
+  }),
+  updateLikedStatus: NOOP,
 })
 
 interface ReviewLikesProviderProps {
-  likes: { [key: string]: boolean }
+  likes: { [key: string]: boolean | null }
   subscribeLikedChangeEvent: Function
-  likeReview: Function
   notifyReviewLiked: Function
-  unlikeReview: Function
   notifyReviewUnliked: Function
 }
 
@@ -40,59 +33,49 @@ export class ReviewLikesProvider extends React.PureComponent<
   state = { likes: this.props.likes || {} }
 
   componentDidMount() {
-    this.props.subscribeLikedChangeEvent(({ id, liked }) =>
-      this.insert({ [id]: liked }),
-    )
+    const { subscribeLikedChangeEvent } = this.props
+
+    subscribeLikedChangeEvent &&
+      subscribeLikedChangeEvent(({ id, liked }) =>
+        this.updateLikedStatus({ [id]: liked }),
+      )
   }
 
-  like = async (contentId, reviewId) => {
-    const {
-      props: { likeReview, notifyReviewLiked },
-      state: { likes },
-    } = this
+  updateLikedStatus = (newLikes) =>
+    this.setState(({ likes }) => ({ likes: { ...likes, ...newLikes } }))
 
-    const response = await likeReview({ id: reviewId })
+  deriveCurrentStateAndCount = ({
+    resourceId,
+    liked: initialLiked,
+    likesCount: initialLikesCount,
+  }: {
+    resourceId: string
+    liked: boolean
+    likesCount: number
+  }) => {
+    const currentState = this.state.likes[resourceId]
 
-    if (response.ok) {
-      notifyReviewLiked(contentId, reviewId)
-
-      this.setState({ likes: { ...likes, [reviewId]: true } })
+    return {
+      liked: typeof currentState === 'undefined' ? initialLiked : currentState,
+      likesCount:
+        initialLiked === currentState
+          ? initialLikesCount
+          : currentState
+          ? initialLikesCount + 1
+          : initialLikesCount - 1,
     }
   }
-
-  unlike = async (contentId, reviewId) => {
-    const {
-      props: { unlikeReview, notifyReviewUnliked },
-      state: { likes },
-    } = this
-
-    const response = await unlikeReview({ id: reviewId })
-
-    if (response.ok) {
-      notifyReviewUnliked(contentId, reviewId)
-
-      this.setState({ likes: { ...likes, [reviewId]: false } })
-    }
-  }
-
-  insert = (likes) =>
-    this.setState({ likes: { ...this.state.likes, ...likes } })
 
   render() {
     const {
       props: { children },
-      state: { likes },
     } = this
 
     return (
       <Context.Provider
         value={{
-          likes,
-          actions: {
-            like: this.like,
-            unlike: this.unlike,
-            insert: this.insert,
-          },
+          deriveCurrentStateAndCount: this.deriveCurrentStateAndCount,
+          updateLikedStatus: this.updateLikedStatus,
         }}
       >
         {children}
@@ -109,8 +92,12 @@ export function withReviewLikes(Component) {
   return function ReviewLikesComponent(props) {
     return (
       <Context.Consumer>
-        {({ likes, actions }) => (
-          <Component likes={likes} likeActions={actions} {...props} />
+        {({ deriveCurrentStateAndCount, updateLikedStatus }) => (
+          <Component
+            deriveCurrentLikedStateAndCount={deriveCurrentStateAndCount}
+            updateLikedStatus={updateLikedStatus}
+            {...props}
+          />
         )}
       </Context.Consumer>
     )
