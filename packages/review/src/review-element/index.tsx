@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import User from './user'
 import IntersectionObserver from '@titicaca/intersection-observer'
@@ -59,7 +59,20 @@ const LikeButton = styled.a<{ liked?: boolean }>`
   `};
 `
 
-export default class ReviewElement extends React.PureComponent<{
+export default function ReviewElement({
+  review,
+  index,
+  onUserClick,
+  onUnfoldButtonClick,
+  onLikeButtonClick,
+  onLikesCountClick,
+  onMenuClick,
+  onImageClick,
+  onShow,
+  likeVisible,
+  menuVisible,
+  DateFormatter,
+}: {
   review?: any
   index?: number
   onUserClick?: (e?: React.SyntheticEvent, review?: any) => any
@@ -72,113 +85,93 @@ export default class ReviewElement extends React.PureComponent<{
   likeVisible?: boolean
   menuVisible?: boolean
   DateFormatter?: React.ComponentClass | React.FunctionComponent
-}> {
-  state = { unfolded: false }
+}) {
+  const [unfolded, setUnfolded] = useState(false)
 
-  render() {
-    const {
-      props: {
-        index,
-        review,
-        onUserClick,
-        onUnfoldButtonClick,
-        onLikeButtonClick,
-        onLikesCountClick,
-        onMenuClick,
-        onImageClick,
-        onShow,
-        likeVisible,
-        menuVisible,
-        DateFormatter,
-      },
-      state: { unfolded },
-    } = this
+  const {
+    user,
+    blindedAt,
+    likeCount,
+    liked,
+    comment,
+    createdAt,
+    rating,
+    media,
+  } = review
 
-    const {
-      user,
-      blindedAt,
-      likeCount,
-      liked,
-      comment,
-      createdAt,
-      rating,
-      media,
-    } = review
+  return (
+    <IntersectionObserver
+      onChange={({ isIntersecting }) =>
+        isIntersecting && onShow && onShow(index)
+      }
+    >
+      <List.Item>
+        <User user={user} onClick={(e) => onUserClick(e, review)}>
+          {!blindedAt && !!rating ? <Score score={rating} /> : null}
+        </User>
+        <Content>
+          {blindedAt ? (
+            '신고가 접수되어 블라인드 처리되었습니다.'
+          ) : unfolded ? (
+            comment
+          ) : (
+            <FoldableComment
+              onUnfoldButtonClick={(e) => {
+                setUnfolded(true)
 
-    return (
-      <IntersectionObserver
-        onChange={({ isIntersecting }) =>
-          isIntersecting && onShow && onShow(index)
-        }
-      >
-        <List.Item>
-          <User user={user} onClick={(e) => onUserClick(e, review)}>
-            {!blindedAt && !!rating ? <Score score={rating} /> : null}
-          </User>
-          <Content>
-            {blindedAt ? (
-              '신고가 접수되어 블라인드 처리되었습니다.'
-            ) : unfolded ? (
-              comment
-            ) : (
-              <FoldableComment
-                onUnfoldButtonClick={(e) => {
-                  this.setState({ unfolded: true })
-
-                  onUnfoldButtonClick && onUnfoldButtonClick(e, review)
-                }}
-              >
-                {comment}
-              </FoldableComment>
-            )}
-            {!blindedAt && (
-              <Images>
-                {(media || []).map((image, i) => (
-                  <img
-                    key={i}
-                    src={image.sizes.smallSquare.url}
-                    onClick={(e) => onImageClick(e, review, image)}
-                  />
-                ))}
-              </Images>
-            )}
-          </Content>
-          {!blindedAt && (
-            <Meta>
-              {likeVisible !== false ? (
-                <>
-                  <LikeButton
-                    liked={liked}
-                    onClick={(e) => onLikeButtonClick(e, review)}
-                  >
-                    Thanks
-                  </LikeButton>
-                  {likeCount && likeCount > 0 ? (
-                    <span onClick={(e) => onLikesCountClick(e, review)}>
-                      {likeCount}명
-                    </span>
-                  ) : null}
-                </>
-              ) : null}
-              <Date floated={likeVisible !== false && 'right'}>
-                {DateFormatter ? (
-                  <DateFormatter>{createdAt}</DateFormatter>
-                ) : (
-                  createdAt
-                )}
-                {menuVisible !== false && (
-                  <MoreIcon
-                    src="https://assets.triple.guide/images/btn-review-more@4x.png"
-                    onClick={(e) => onMenuClick(e, review)}
-                  />
-                )}
-              </Date>
-            </Meta>
+                onUnfoldButtonClick && onUnfoldButtonClick(e, review)
+              }}
+            >
+              {comment}
+            </FoldableComment>
           )}
-        </List.Item>
-      </IntersectionObserver>
-    )
-  }
+          {!blindedAt && (
+            <Images>
+              {(media || []).map((image, i) => (
+                <img
+                  key={i}
+                  src={image.sizes.smallSquare.url}
+                  onClick={(e) => onImageClick(e, review, image)}
+                />
+              ))}
+            </Images>
+          )}
+        </Content>
+        {!blindedAt && (
+          <Meta>
+            {likeVisible !== false ? (
+              <>
+                <LikeButton
+                  liked={liked}
+                  onClick={(e) => onLikeButtonClick(e, review)}
+                >
+                  Thanks
+                </LikeButton>
+                {likeCount && likeCount > 0 ? (
+                  <span onClick={(e) => onLikesCountClick(e, review)}>
+                    {likeCount}명
+                  </span>
+                ) : null}
+              </>
+            ) : null}
+            <Date floated={likeVisible !== false && 'right'}>
+              {DateFormatter ? (
+                <DateFormatter>{createdAt}</DateFormatter>
+              ) : (
+                createdAt
+              )}
+              {menuVisible !== false && (
+                <MoreIcon
+                  src="https://assets.triple.guide/images/btn-review-more@4x.png"
+                  onClick={(e) => onMenuClick(e, review)}
+                />
+              )}
+            </Date>
+          </Meta>
+        )}
+      </List.Item>
+    </IntersectionObserver>
+  )
 }
 
 function Score({ score }) {
