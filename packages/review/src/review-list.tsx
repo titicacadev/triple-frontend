@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState } from 'react'
 import qs from 'qs'
 import moment from 'moment'
 import { List, MarginPadding } from '@titicaca/core-elements'
