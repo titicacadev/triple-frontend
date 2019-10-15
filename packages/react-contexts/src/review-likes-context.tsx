@@ -3,8 +3,12 @@ import React, { useState, useEffect, useCallback, createContext } from 'react'
 const NOOP = () => {}
 
 interface ReviewLikesContextProps {
-  deriveCurrentStateAndCount: Function
-  updateLikedStatus: Function
+  deriveCurrentStateAndCount: (currentState: {
+    reviewId: any
+    liked: boolean
+    likesCount: number
+  }) => { liked: boolean; likesCount: number }
+  updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
 }
 
 const Context = createContext<ReviewLikesContextProps>({
