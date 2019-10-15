@@ -100,7 +100,7 @@ export const PromoLabel = styled.div<PromoLabelProps>`
           font-weight: bold;
           background-color: ${({ color }) => rgba({ color, alpha: 1 })};
           color: ${({ fontColor }) =>
-            fontColor ? rgba({ color: fontColor, alpha: 0.7 }) : 'white'};
+            fontColor ? `rgba(${GetGlobalColor(fontColor)}, 0.7)` : 'white'};
         `
       : css`
           font-weight: normal;
