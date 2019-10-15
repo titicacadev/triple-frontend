@@ -108,61 +108,46 @@ export default function ReviewsList({
     ? (index) => index > reviews.length - 3 && fetchNext()
     : null
 
-  return useMemo(
-    () => (
-      <>
-        <List margin={margin} divided verticalGap={60}>
-          {(myReview
-            ? [
-                myReview,
-                ...(reviews || []).filter(({ id }) => id !== myReview.id),
-              ]
-            : reviews
-          ).map((review, i) => (
-            <ReviewElement
-              key={review.id}
-              index={i}
-              review={
-                typeof (likes || {})[review.id] === 'boolean'
-                  ? {
-                      ...review,
-                      liked: likes[review.id],
-                      likeCount:
-                        review.liked === likes[review.id]
-                          ? review.likeCount
-                          : review.likeCount + (likes[review.id] ? 1 : -1),
-                    }
-                  : review
-              }
-              onUserClick={handleUserClick}
-              onLikeButtonClick={handleLikeButtonClick}
-              onLikesCountClick={handleLikesCountClick}
-              onMenuClick={handleMenuClick}
-              onImageClick={handleImageClick}
-              likeVisible={!isPublic}
-              menuVisible={!isPublic}
-              DateFormatter={ReviewTimestamp}
-              onShow={handleShow}
-            />
-          ))}
-        </List>
+  return (
+    <>
+      <List margin={margin} divided verticalGap={60}>
+        {(myReview
+          ? [
+              myReview,
+              ...(reviews || []).filter(({ id }) => id !== myReview.id),
+            ]
+          : reviews
+        ).map((review, i) => (
+          <ReviewElement
+            key={review.id}
+            index={i}
+            review={review}
+            onUserClick={handleUserClick}
+            onLikeButtonClick={handleLikeButtonClick}
+            onLikesCountClick={handleLikesCountClick}
+            onMenuClick={handleMenuClick}
+            onImageClick={handleImageClick}
+            likeVisible={!isPublic}
+            menuVisible={!isPublic}
+            DateFormatter={ReviewTimestamp}
+            onShow={handleShow}
+          />
+        ))}
+      </List>
 
-        <MyReviewActionSheet
-          myReview={myReview}
-          appUrlScheme={appUrlScheme}
-          regionId={regionId}
-          resourceType={resourceType}
-          resourceId={resourceId}
-          notifyReviewDeleted={notifyReviewDeleted}
-        />
+      <MyReviewActionSheet
+        myReview={myReview}
+        appUrlScheme={appUrlScheme}
+        regionId={regionId}
+        resourceType={resourceType}
+        resourceId={resourceId}
+        notifyReviewDeleted={notifyReviewDeleted}
+      />
 
-        <OthersReviewActionSheet
-          appUrlScheme={appUrlScheme}
-          selectedReview={selectedReview}
-        />
-      </>
-    ),
-    /* eslint-disable-next-line react-hooks/exhaustive-deps */
-    [regionId, resourceId, resourceType, reviews, myReview, selectedReview],
+      <OthersReviewActionSheet
+        appUrlScheme={appUrlScheme}
+        selectedReview={selectedReview}
+      />
+    </>
   )
 }
