@@ -1,6 +1,17 @@
 - `triple-document` 패키지에서 텍스트 요소(`Paragraph`, `H1`, `H2`, ...)를
   인터페이스로 노출합니다.
 - `MyReviewsProvider`의 props 중 `type`을 `resourceType`으로 변경합니다.
+- `ReviewLikesContext`가 노출하는 인터페이스를 다음과 같이 변경합니다:
+    ```
+    interface ReviewLikesContextProps {
+      deriveCurrentStateAndCount: (currentState: {
+        reviewId: any
+        liked: boolean
+        likesCount: number
+      }) => { liked: boolean; likesCount: number }
+      updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+    }
+    ```
 
 ## 0.12.0 (2019-08-30)
 
