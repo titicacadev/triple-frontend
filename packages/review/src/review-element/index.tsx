@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
-import User from './user'
 import IntersectionObserver from '@titicaca/intersection-observer'
-
+import { useReviewLikesContext } from '@titicaca/react-contexts'
 import { List, Container, Text, Rating } from '@titicaca/core-elements'
 
+import User from './user'
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
 
@@ -87,17 +87,14 @@ export default function ReviewElement({
   DateFormatter?: React.ComponentClass | React.FunctionComponent
 }) {
   const [unfolded, setUnfolded] = useState(false)
+  const { deriveCurrentStateAndCount } = useReviewLikesContext()
+  const { user, blindedAt, comment, createdAt, rating, media } = review
 
-  const {
-    user,
-    blindedAt,
-    likeCount,
-    liked,
-    comment,
-    createdAt,
-    rating,
-    media,
-  } = review
+  const { liked, likesCount } = deriveCurrentStateAndCount({
+    reviewId: review.id,
+    liked: review.liked,
+    likesCount: review.likesCount,
+  })
 
   return (
     <IntersectionObserver
@@ -143,13 +140,13 @@ export default function ReviewElement({
               <>
                 <LikeButton
                   liked={liked}
-                  onClick={(e) => onLikeButtonClick(e, review)}
+                  onClick={(e) => onLikeButtonClick(e, { ...review, liked })}
                 >
                   Thanks
                 </LikeButton>
-                {likeCount && likeCount > 0 ? (
+                {likesCount && likesCount > 0 ? (
                   <span onClick={(e) => onLikesCountClick(e, review)}>
-                    {likeCount}명
+                    {likesCount}명
                   </span>
                 ) : null}
               </>
