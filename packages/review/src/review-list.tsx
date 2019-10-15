@@ -15,6 +15,7 @@ import MyReviewActionSheet, {
 import OthersReviewActionSheet, {
   HASH_REVIEW_ACTION_SHEET,
 } from './others-review-action-sheet'
+import { likeReview, unlikeReview } from './review-api-clients'
 
 export default function ReviewsList({
   myReview,
@@ -42,10 +43,7 @@ export default function ReviewsList({
 }) {
   const [selectedReview, setSelectedReview] = useState(undefined)
   const { isPublic } = useUserAgentContext()
-  const {
-    likes,
-    actions: { like, unlike },
-  } = useReviewLikesContext()
+  const { updateLikedStatus } = useReviewLikesContext()
   const { push } = useHistoryContext()
 
   const handleUserClick = (e, { user: { uid, unregister } }) => {
@@ -56,8 +54,13 @@ export default function ReviewsList({
     }
   }
 
-  const handleLikeButtonClick = (e, { id, liked }) =>
-    liked ? unlike(resourceId, id) : like(resourceId, id)
+  const handleLikeButtonClick = async (e, { id, liked }) => {
+    const response = await (liked ? unlikeReview({ id }) : likeReview({ id }))
+
+    if (response.ok) {
+      updateLikedStatus({ [id]: liked })
+    }
+  }
 
   const handleLikesCountClick = (e, { id }) => {
     window.location.href = `${appUrlScheme}:///regions/${regionId}/${resourceType}/${resourceId}/reviews/${id}/thanks`
