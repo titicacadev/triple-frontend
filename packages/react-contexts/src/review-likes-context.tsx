@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, useCallback, createContext } from 'react'
 
 const NOOP = () => {}
 
@@ -7,7 +7,7 @@ interface ReviewLikesContextProps {
   updateLikedStatus: Function
 }
 
-const Context = React.createContext<ReviewLikesContextProps>({
+const Context = createContext<ReviewLikesContextProps>({
   deriveCurrentStateAndCount: ({ liked, likesCount }) => ({
     liked,
     likesCount,
@@ -20,68 +20,75 @@ interface ReviewLikesProviderProps {
   subscribeLikedChangeEvent: Function
   notifyReviewLiked: Function
   notifyReviewUnliked: Function
+  children: React.ReactChildren
 }
 
 interface ReviewLikesProviderState {
   likes: { [key: string]: boolean }
 }
 
-export class ReviewLikesProvider extends React.PureComponent<
-  ReviewLikesProviderProps,
-  ReviewLikesProviderState
-> {
-  state = { likes: this.props.likes || {} }
+export function ReviewLikesProvider({
+  children,
+  subscribeLikedChangeEvent,
+  likes: initialLikes,
+}: ReviewLikesProviderProps) {
+  const [likes, setLikes] = useState(initialLikes || {})
 
-  componentDidMount() {
-    const { subscribeLikedChangeEvent } = this.props
-
+  useEffect(() => {
     subscribeLikedChangeEvent &&
       subscribeLikedChangeEvent(({ id, liked }) =>
-        this.updateLikedStatus({ [id]: liked }),
+        setLikes((currentLikes) => ({ ...currentLikes, [id]: liked })),
       )
-  }
+  }, [setLikes, subscribeLikedChangeEvent])
 
-  updateLikedStatus = (newLikes) =>
-    this.setState(({ likes }) => ({ likes: { ...likes, ...newLikes } }))
+  const updateLikedStatus = useCallback(
+    (newLikes) =>
+      setLikes((currentLikes) => ({ ...currentLikes, ...newLikes })),
+    [setLikes],
+  )
 
-  deriveCurrentStateAndCount = ({
-    resourceId,
-    liked: initialLiked,
-    likesCount: initialLikesCount,
-  }: {
-    resourceId: string
-    liked: boolean
-    likesCount: number
-  }) => {
-    const currentState = this.state.likes[resourceId]
+  const deriveCurrentStateAndCount = useCallback(
+    ({
+      reviewId,
+      liked: initialLiked,
+      likesCount: initialLikesCount,
+    }: {
+      reviewId: string
+      liked: boolean
+      likesCount: number
+    }) => {
+      const currentState = likes[reviewId]
 
-    return {
-      liked: typeof currentState === 'undefined' ? initialLiked : currentState,
-      likesCount:
-        initialLiked === currentState
-          ? initialLikesCount
-          : currentState
-          ? initialLikesCount + 1
-          : initialLikesCount - 1,
-    }
-  }
+      if (typeof currentState === 'undefined') {
+        return {
+          liked: initialLiked,
+          likesCount: initialLikesCount || 0,
+        }
+      }
 
-  render() {
-    const {
-      props: { children },
-    } = this
+      return {
+        liked: currentState,
+        likesCount:
+          initialLiked === currentState
+            ? initialLikesCount || 0
+            : currentState
+            ? (initialLikesCount || 0) + 1
+            : (initialLikesCount || 1) - 1,
+      }
+    },
+    [likes],
+  )
 
-    return (
-      <Context.Provider
-        value={{
-          deriveCurrentStateAndCount: this.deriveCurrentStateAndCount,
-          updateLikedStatus: this.updateLikedStatus,
-        }}
-      >
-        {children}
-      </Context.Provider>
-    )
-  }
+  return (
+    <Context.Provider
+      value={{
+        deriveCurrentStateAndCount,
+        updateLikedStatus,
+      }}
+    >
+      {children}
+    </Context.Provider>
+  )
 }
 
 export function useReviewLikesContext() {
