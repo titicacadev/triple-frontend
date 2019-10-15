@@ -83,6 +83,7 @@ interface PromoLabelProps {
   color?: LabelColor
   margin?: MarginPadding
   fontColor?: GlobalColors
+  fontAlpha?: number
 }
 
 export const PromoLabel = styled.div<PromoLabelProps>`
@@ -99,8 +100,10 @@ export const PromoLabel = styled.div<PromoLabelProps>`
       ? css`
           font-weight: bold;
           background-color: ${({ color }) => rgba({ color, alpha: 1 })};
-          color: ${({ fontColor }) =>
-            fontColor ? `rgba(${GetGlobalColor(fontColor)}, 0.7)` : 'white'};
+          color: ${({ fontColor, fontAlpha }) =>
+            fontColor
+              ? `rgba(${GetGlobalColor(fontColor)}, ${fontAlpha || 1})`
+              : 'white'};
         `
       : css`
           font-weight: normal;
@@ -149,6 +152,7 @@ export default class Label extends React.PureComponent<
         emphasized,
         color,
         fontColor,
+        fontAlpha,
         ...props
       },
     } = this
@@ -168,6 +172,7 @@ export default class Label extends React.PureComponent<
           color={color}
           fontColor={fontColor}
           margin={margin}
+          fontAlpha={fontAlpha}
         >
           {children}
         </PromoLabel>

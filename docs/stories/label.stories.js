@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { storiesOf } from '@storybook/react'
-import { text, select, boolean } from '@storybook/addon-knobs'
+import { text, select, boolean, number } from '@storybook/addon-knobs'
 
 import { Label } from '@titicaca/core-elements'
 
@@ -17,6 +17,7 @@ storiesOf('Label', module)
       size={select('크기', ['small', 'medium', 'big'], 'medium')}
       color={select('색깔', ['purple', 'blue', 'red', 'gray'], 'purple')}
       fontColor={select('글자 색깔', ['white', 'gray'], 'gray')}
+      fontAlpha={number('fontAlpha', 1)}
       emphasized={boolean('강조', true)}
     >
       {text('텍스트', '최대 24%')}
