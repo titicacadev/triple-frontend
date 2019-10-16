@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import IntersectionObserver from '@titicaca/intersection-observer'
-import { useReviewLikesContext } from '@titicaca/react-contexts'
 import { List, Container, Text, Rating } from '@titicaca/core-elements'
 
+import { useReviewLikesContext } from '../review-likes-context'
 import User from './user'
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
