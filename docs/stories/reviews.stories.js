@@ -2,12 +2,11 @@ import React from 'react'
 import { number, text, select, boolean } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
-import Reviews from '@titicaca/review'
+import { Reviews, ReviewLikesProvider } from '@titicaca/review'
 import {
   UserAgentProvider,
   generateUserAgentValues,
   HistoryProvider,
-  ReviewLikesProvider,
 } from '@titicaca/react-contexts'
 
 import { storiesOf } from '@storybook/react'
