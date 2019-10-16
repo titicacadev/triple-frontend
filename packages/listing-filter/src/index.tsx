@@ -52,15 +52,15 @@ const ExpandingFilterEntryBadge = styled.div`
   margin-top: -2px;
 `
 
+interface ExpandingFilterEntryProps extends React.HTMLAttributes<HTMLElement> {
+  active?: boolean
+  badge?: React.ReactNode
+}
 function ExpandingFilterEntry({
   badge,
   children,
   ...props
-}: {
-  active?: boolean
-  badge?: React.ReactNode
-  children?: React.ReactNode
-}) {
+}: ExpandingFilterEntryProps) {
   return (
     <ExpandingFilterEntryContainer {...props}>
       {children}
@@ -114,17 +114,18 @@ const PrimaryFilterEntry = styled(FilterEntryBase)`
   color: #fff;
 `
 
+interface FilterEntryProps extends React.HTMLAttributes<HTMLElement> {
+  active?: boolean
+  activeIconImage?: string
+  inactiveIconImage?: string
+}
+
 function FilterEntry({
   active,
   activeIconImage,
   inactiveIconImage,
   ...props
-}: {
-  active?: boolean
-  activeIconImage?: string
-  inactiveIconImage?: string
-  children: React.ReactNode
-}) {
+}: FilterEntryProps) {
   return (
     <RegularFilterEntry
       active={active}
