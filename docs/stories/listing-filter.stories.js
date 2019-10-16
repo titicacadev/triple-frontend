@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
 import { text, boolean } from '@storybook/addon-knobs'
 
 import ListingFilter from '@titicaca/listing-filter'
@@ -8,13 +9,23 @@ import ListingFilter from '@titicaca/listing-filter'
 storiesOf('ListingFilter', module)
   .add('전체', () => (
     <ListingFilter>
-      <ListingFilter.PrimaryFilterEntry>
+      <ListingFilter.PrimaryFilterEntry
+        onClick={action('click:PrimaryFilterEntry')}
+      >
         5.17-5.20, 3명
       </ListingFilter.PrimaryFilterEntry>
-      <ListingFilter.ExpandingFilterEntry>
+      <ListingFilter.ExpandingFilterEntry
+        onClick={action('click:ExpandingFilterEntry')}
+        onMouseUp={action('mouseUp:ExpandingFilterEntry')}
+      >
         침대타입
       </ListingFilter.ExpandingFilterEntry>
-      <ListingFilter.FilterEntry>무료취소</ListingFilter.FilterEntry>
+      <ListingFilter.FilterEntry
+        onClick={action('click:FilterEntry')}
+        onMouseDown={action('mouseDown:FilterEntry')}
+      >
+        무료취소
+      </ListingFilter.FilterEntry>
       <ListingFilter.FilterEntry
         withIcon
         active={false}
