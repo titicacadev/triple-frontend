@@ -12,6 +12,7 @@
       updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
     }
     ```
+- `ReviewLikesContext`의 위치를 `@titicaca/review` 패키지로 옮깁니다.
 
 ## 0.12.0 (2019-08-30)
 
