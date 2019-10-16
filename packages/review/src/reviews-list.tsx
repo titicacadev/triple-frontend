@@ -3,7 +3,6 @@ import qs from 'qs'
 import moment from 'moment'
 import { List, MarginPadding } from '@titicaca/core-elements'
 import {
-  useReviewLikesContext,
   useHistoryContext,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
@@ -16,6 +15,7 @@ import OthersReviewActionSheet, {
   HASH_REVIEW_ACTION_SHEET,
 } from './others-review-action-sheet'
 import { likeReview, unlikeReview } from './review-api-clients'
+import { useReviewLikesContext } from './review-likes-context'
 
 export default function ReviewsList({
   myReview,
