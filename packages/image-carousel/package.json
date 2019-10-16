@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/image-carousel",
-  "version": "1.0.0-alpha.30",
+  "version": "1.0.0-alpha.31",
   "description": "Triple Image Carousel",
   "main": "lib/index.js",
   "files": [
@@ -16,6 +16,6 @@
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
     "@egjs/react-flicking": "^3.0.0",
-    "@titicaca/core-elements": "^1.0.0-alpha.30"
+    "@titicaca/core-elements": "^1.0.0-alpha.31"
   }
 }
