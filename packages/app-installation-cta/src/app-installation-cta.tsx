@@ -33,16 +33,6 @@ const BottomFixedContainer = styled.div`
   }
 `
 
-const TopFixedContainer = styled.div<{ isVisible: boolean }>`
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  z-index: 11;
-  transition: all ease 0.1s;
-  ${({ isVisible }) => (isVisible ? 'opacity: 1' : 'opacity: 0')};
-`
-
 const AppInstallationCTA: FC<AppInstallationCTAProps> = ({
   imgUrl,
   installUrl,
