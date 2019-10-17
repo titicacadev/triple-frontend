@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
 
-interface BannerProps {
+interface ImageBannerProps {
   imgUrl: string
   installUrl: string
   onDismiss: () => void
@@ -10,7 +10,7 @@ interface BannerProps {
 const CONTENT_MIN_WIDTH = 320
 const CONTNET_MAX_WIDTH = 760
 
-const BannerWrapper = styled.div`
+const ImageBannerWrapper = styled.div`
   box-sizing: border-box;
   max-width: ${CONTNET_MAX_WIDTH}px;
   min-width: ${CONTENT_MIN_WIDTH}px;
@@ -68,9 +68,13 @@ const DismissButton = styled.button`
   cursor: pointer;
 `
 
-const Banner: FC<BannerProps> = ({ imgUrl, installUrl, onDismiss }) => {
+const ImageBanner: FC<ImageBannerProps> = ({
+  imgUrl,
+  installUrl,
+  onDismiss,
+}) => {
   return (
-    <BannerWrapper>
+    <ImageBannerWrapper>
       <ImageWrapper>
         <BannerImage src={imgUrl} />
       </ImageWrapper>
@@ -80,8 +84,8 @@ const Banner: FC<BannerProps> = ({ imgUrl, installUrl, onDismiss }) => {
       <DismissButton onClick={onDismiss}>
         아깝지만 나중에 받을게요
       </DismissButton>
-    </BannerWrapper>
+    </ImageBannerWrapper>
   )
 }
 
-export default Banner
+export default ImageBanner

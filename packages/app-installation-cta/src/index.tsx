@@ -1,3 +1,3 @@
-import Banner from './banner'
+import ImageBanner from './image-banner'
 
-export { Banner }
+export { ImageBanner }
