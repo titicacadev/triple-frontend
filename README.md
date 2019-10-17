@@ -122,6 +122,8 @@ $ lerna bootstrap
   10. 배포 (Optional): CD에서 패키지 publish, npm 페이지 통해서 확인
 
 ### Testing
+#### 전체 테스트 수행하기
+
 ```sh
 $ npm test
 ```
