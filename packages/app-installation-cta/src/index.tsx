@@ -1,3 +1,4 @@
 import ImageBanner from './image-banner'
+import TextBanner from './text-banner'
 
-export { ImageBanner }
+export { ImageBanner, TextBanner }
