@@ -1,0 +1,32 @@
+{
+  "name": "@titicaca/app-installation-cta",
+  "version": "1.0.0-alpha.33",
+  "description": "Call to action components for app installation",
+  "keywords": [
+    "cta",
+    "component",
+    "react",
+    "triple",
+    "frontend"
+  ],
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "scripts": {},
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  }
+}
