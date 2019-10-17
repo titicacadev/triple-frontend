@@ -1,7 +1,3 @@
-import React, { FC } from 'react'
+import Banner from './banner'
 
-const AppInstallationCTA: FC = () => {
-  return <div>Hello, world</div>
-}
-
-export default AppInstallationCTA
+export { Banner }
