@@ -127,21 +127,27 @@ $ npm test
 ```
 
 #### 테스트 상세히 보기
-  1. `/tests` 폴더로 이동합니다
+  1. `/tests` 디렉토리로 이동합니다
   2. 서버를 실행합니다
 
-  ```sh
-  $ npm install
-  ```
-  3. `cypress`을 창 띄웁니다
+    ```sh
+    $ npm start
+    ```
+  3. `cypress` 창을 띄웁니다
 
-  ```sh
-  $ npm run cypress:open
-  ```
+    ```sh
+    $ npm run cypress:open
+    ```
 
-#### 테스트 수정
-  - Test case 수정은 `/cypress/integration/*.spec.js` 파일에서 합니다.
-  - Testing app 수정은 `/src/*/App.js` 파일에서 합니다.
+#### 테스트 추가 및 수정하기
+  - 테스트 추가
+    1. `/tests` 디렉토리로 이동합니다
+    2. 테스트를 추가할 패키지를 설치합니다
+    3. `/src` 디렉토리에 새로운 디렉토리를 추가하고 테스팅 앱을 작성합니다.
+    4. `/cypress/integration` 디렉토리에 `*.spec.js` 파일을 생성하고 테스트 케이스를 작성합니다.
+  - 테스트 수정
+    - 테스트 케이스 수정은 `/cypress/integration/*.spec.js` 파일에서 합니다.
+    - 테스팅 앱 수정은 `/src/*/App.js` 파일에서 합니다.
 
 ### Review
 
