@@ -3,9 +3,11 @@ import styled from 'styled-components'
 
 interface TextBannerProps {
   message: string
+  installUrl: string
 }
 
-const TextBannerWrapper = styled.div`
+const TextBannerWrapper = styled.a`
+  display: block;
   box-sizing: border-box;
   width: 100%;
   height: 54px;
@@ -18,6 +20,8 @@ const TextBannerWrapper = styled.div`
   font-size: 14px;
   font-weight: bold;
   text-align: center;
+  cursor: pointer;
+  text-decoration: none;
 `
 
 const DownloadIcon = styled.img`
@@ -28,9 +32,9 @@ const DownloadIcon = styled.img`
   transform: translateY(-1px); /* HACK: 아래로 가있는 이미지 위로 끌어 올림 */
 `
 
-const TextBanner: FC<TextBannerProps> = ({ message }) => {
+const TextBanner: FC<TextBannerProps> = ({ message, installUrl }) => {
   return (
-    <TextBannerWrapper>
+    <TextBannerWrapper href={installUrl}>
       {message}
       <DownloadIcon src="https://assets.triple-dev.titicaca-corp.com/images/m-banner-top-dw@3x.png" />
     </TextBannerWrapper>

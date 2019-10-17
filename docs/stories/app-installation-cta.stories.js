@@ -16,5 +16,6 @@ storiesOf('AppInstallationCTA', module)
   .add('텍스트 배너', () => (
     <TextBanner
       message={text('표시할 메시지', '앱 다운로드시 가이드북 무료')}
+      installUrl={text('설치 URL', 'https://triple-dev.titicaca-corp.com')}
     />
   ))
