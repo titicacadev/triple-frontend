@@ -122,12 +122,22 @@ $ lerna bootstrap
   10. 배포 (Optional): CD에서 패키지 publish, npm 페이지 통해서 확인
 
 ### Testing
-  - `npm test` 커맨드로 테스트
+```sh
+$ npm test
+```
 
 #### 테스트 상세히 보기
-  1. `/tests` 폴더로 이동
-  2. `npm start` 커맨드로 서버 실행
-  3. `npm run cypress:open` 커맨드로 `cypress` 창 띄우기
+  1. `/tests` 폴더로 이동합니다
+  2. 서버를 실행합니다
+
+  ```sh
+  $ npm install
+  ```
+  3. `cypress`을 창 띄웁니다
+
+  ```sh
+  $ npm run cypress:open
+  ```
 
 #### 테스트 수정
   - Test case 수정은 `/cypress/integration/*.spec.js` 파일에서 합니다.
