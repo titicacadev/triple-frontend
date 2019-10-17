@@ -123,7 +123,18 @@ $ lerna bootstrap
 
 ### Testing
 
-TBD
+#### 테스트 방법
+  - `npm test` 커맨드로 테스트
+
+#### 성공 시
+  - 커밋 푸시
+
+#### 실패 시
+  1. `cd tests` 커맨드로 `/tests` 폴더로 이동
+  2. `npm start` 커맨드로 서버 실행
+  3. `npm run cypress:open` 커맨드로 cypress 창 띄우기
+  4. 실패 원인 확인
+  5. 실패 원인, 변경 사항에 따라 `/cypress/integration/*.spec.js` 파일 혹은 `/src/*/App.js` 파일을 손봅니다
 
 ### Review
 
