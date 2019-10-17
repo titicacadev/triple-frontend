@@ -10,6 +10,7 @@
   "dependencies": {
     "@titicaca/action-sheet": "^1.0.0-alpha.33",
     "@titicaca/app-banner": "^1.0.0-alpha.33",
+    "@titicaca/app-installation-cta": "^1.0.0-alpha.33",
     "@titicaca/author": "^1.0.0-alpha.33",
     "@titicaca/content-sharing": "^1.0.0-alpha.33",
     "@titicaca/core-elements": "^1.0.0-alpha.33",
