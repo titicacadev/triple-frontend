@@ -582,7 +582,11 @@ function ListElement({ value: { bulletType, items }, onLinkClick, ...props }) {
 }
 
 function TableElement({ value, ...props }) {
-  return <Table {...value} {...props} />
+  return (
+    <Container margin={{ top: 20, bottom: 20, left: 30, right: 30 }} {...props}>
+      <Table {...value} />
+    </Container>
+  )
 }
 
 function generateClickHandler(onLinkClick, onImageClick) {
