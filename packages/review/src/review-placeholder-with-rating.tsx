@@ -14,7 +14,7 @@ const PlaceholderContainer = styled(Container)`
 `
 const Link = styled.a`
   display: block;
-  margin-top: 17px;
+  margin-top: 14px;
   font-size: 13px;
   color: #2987f0;
   text-decoration: underline;
@@ -41,7 +41,7 @@ export default function ReviewsPlaceholder({
         <Rating size="medium" onClick={onClick} />
       )}
       <Text
-        margin={{ top: 12 }}
+        margin={{ top: 8 }}
         size="large"
         color="gray"
         alpha={1}
@@ -54,9 +54,9 @@ export default function ReviewsPlaceholder({
       </Text>
       <Link
         onClick={(e) => e.stopPropagation()}
-        href={appUrlScheme + `:///my/mileage`}
+        href={`${appUrlScheme}:///my/mileage`}
       >
-        여행자 클럽 혜텍보기
+        여행자 클럽 혜택보기
       </Link>
     </PlaceholderContainer>
   )

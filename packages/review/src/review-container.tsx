@@ -124,7 +124,9 @@ export default function ReviewContainer({
             appUrlScheme={appUrlScheme}
             onClick={handleWriteButtonClick}
           />
-          {(reviewsCount || 0) > 0 && <HR1 />}
+          {(reviewsCount || 0) > 0 && (
+            <HR1 compact margin={{ top: 32, bottom: 27 }} />
+          )}
         </>
       )}
 
