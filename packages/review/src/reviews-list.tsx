@@ -47,6 +47,10 @@ export default function ReviewsList({
   const { push } = useHistoryContext()
 
   const handleUserClick = (e, { user: { uid, unregister } }) => {
+    if (isPublic) {
+      return
+    }
+
     if (unregister) {
       showToast('탈퇴한 사용자입니다.')
     } else {
@@ -63,6 +67,10 @@ export default function ReviewsList({
   }
 
   const handleLikesCountClick = (e, { id }) => {
+    if (isPublic) {
+      return
+    }
+
     window.location.href = `${appUrlScheme}:///regions/${regionId}/${resourceType}/${resourceId}/reviews/${id}/thanks`
   }
 
