@@ -11,11 +11,8 @@ export interface ReviewProps {
 }
 
 export interface AppNativeActionProps {
-  subscribeLikedChangeEvent?: Function
   subscribeReviewUpdateEvent?: Function
   unsubscribeReviewUpdateEvent?: Function
-  notifyReviewLiked?: Function
-  notifyReviewUnliked?: Function
   showToast?: Function
   notifyReviewDeleted?: Function
 }
