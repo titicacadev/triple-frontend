@@ -58,7 +58,7 @@ export default function ReviewsList({
     const response = await (liked ? unlikeReview({ id }) : likeReview({ id }))
 
     if (response.ok) {
-      updateLikedStatus({ [id]: !liked })
+      updateLikedStatus({ [id]: !liked }, resourceId)
     }
   }
 
