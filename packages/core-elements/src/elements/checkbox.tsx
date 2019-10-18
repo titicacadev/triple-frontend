@@ -73,7 +73,7 @@ const ConfirmFrame = styled.div.attrs<{ name?: string }>({})<{
   font-weight: bold;
   color: rgba(${GetGlobalColor('gray')}, 0.5);
 
-  ${({ checked, error, fillType = 'full' }) =>
+  ${({ checked, error, fillType }) =>
     fillType && generateFillStyles({ checked, error, fillType })};
 
   ${({ textAlign }) => textAlign && TextAligns[textAlign]};
