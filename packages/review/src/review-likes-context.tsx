@@ -8,7 +8,10 @@ interface ReviewLikesContextProps {
     liked: boolean
     likesCount: number
   }) => { liked: boolean; likesCount: number }
-  updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+  updateLikedStatus: (
+    newLikes: { [reviewId: string]: boolean },
+    resourceId?: string,
+  ) => void
 }
 
 const Context = createContext<ReviewLikesContextProps>({
@@ -20,7 +23,7 @@ const Context = createContext<ReviewLikesContextProps>({
 })
 
 interface ReviewLikesProviderProps {
-  likes: { [key: string]: boolean | null }
+  likes?: { [key: string]: boolean | null }
   subscribeLikedChangeEvent: Function
   notifyReviewLiked: Function
   notifyReviewUnliked: Function
@@ -35,6 +38,8 @@ export function ReviewLikesProvider({
   children,
   subscribeLikedChangeEvent,
   likes: initialLikes,
+  notifyReviewLiked,
+  notifyReviewUnliked,
 }: ReviewLikesProviderProps) {
   const [likes, setLikes] = useState(initialLikes || {})
 
@@ -46,9 +51,19 @@ export function ReviewLikesProvider({
   }, [setLikes, subscribeLikedChangeEvent])
 
   const updateLikedStatus = useCallback(
-    (newLikes) =>
-      setLikes((currentLikes) => ({ ...currentLikes, ...newLikes })),
-    [setLikes],
+    (newLikes, resourceId) => {
+      setLikes((currentLikes) => ({ ...currentLikes, ...newLikes }))
+
+      resourceId &&
+        Object.keys(newLikes).forEach((reviewId) => {
+          const notifier = newLikes[reviewId]
+            ? notifyReviewLiked
+            : notifyReviewUnliked
+
+          notifier({ id: resourceId, reviewId })
+        })
+    },
+    [setLikes, notifyReviewLiked, notifyReviewUnliked],
   )
 
   const deriveCurrentStateAndCount = useCallback(
