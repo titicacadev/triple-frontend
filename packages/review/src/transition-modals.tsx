@@ -16,29 +16,17 @@ const TYPES_BY_HASH = {
   [HASH_REVIEW_WRITE_TRANSITION_MODAL]: 'reviewWrite',
 }
 
-export function TransitionModals({
-  regionId,
-  resourceId,
-}: {
-  regionId: string
-  resourceId: string
-}) {
+export function TransitionModals({ deepLink }: { deepLink: string }) {
   const { uriHash, back } = useHistoryContext()
 
-  const href = generateDeepLink({ regionId, resourceId }) // @TODO
   return (
     <TransitionModalElement
       open={HASHES.includes(uriHash)}
       messageType={TYPES_BY_HASH[uriHash]}
       onClose={back}
       onConfirm={() => {
-        window.location.href = href
+        window.location.href = deepLink
       }}
     />
   )
-}
-
-function generateDeepLink({ regionId, resourceId }) {
-  // @TODO 링크 만들어야함
-  return regionId + resourceId
 }

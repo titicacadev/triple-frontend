@@ -7,11 +7,16 @@ export * from './review-likes-context'
 export * from './review-placeholder-with-rating'
 export * from './review-api-clients'
 
-export function Reviews({ resourceId, regionId, ...props }: ReviewProps) {
+export function Reviews({
+  resourceId,
+  regionId,
+  deepLink,
+  ...props
+}: ReviewProps) {
   return (
     <>
       <ReviewContainer regionId={regionId} resourceId={resourceId} {...props} />
-      <TransitionModals regionId={regionId} resourceId={resourceId} />
+      <TransitionModals deepLink={deepLink} />
     </>
   )
 }
