@@ -5,8 +5,8 @@ export interface ReviewProps {
   reviewsCount: number
   shortened?: boolean
   reviewed?: boolean
-  onFullListButtonClick?: any
   appUrlScheme: string
+  deepLink?: string
   appNativeActions: AppNativeActionProps
 }
 
