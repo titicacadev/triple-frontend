@@ -52,7 +52,12 @@ export default function ReviewsPlaceholder({
       <Text size="tiny" style={{ opacity: '0.5' }}>
         리뷰를 남겨주시면, 여행자 클럽 포인트를 드려요!
       </Text>
-      <Link href={appUrlScheme + `:///my/mileage`}>여행자 클럽 혜텍보기</Link>
+      <Link
+        onClick={(e) => e.stopPropagation()}
+        href={appUrlScheme + `:///my/mileage`}
+      >
+        여행자 클럽 혜텍보기
+      </Link>
     </PlaceholderContainer>
   )
 }
