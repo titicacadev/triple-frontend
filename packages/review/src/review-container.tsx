@@ -2,13 +2,20 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Section, Container, Text, Button, HR1 } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
-import { useUserAgentContext } from '@titicaca/react-contexts'
+import {
+  useUserAgentContext,
+  useHistoryContext,
+} from '@titicaca/react-contexts'
 import { fetchMyReview, writeReview } from './review-api-clients'
 import ReviewsPlaceholder from './review-placeholder-with-rating'
 import ReviewsList from './reviews-list'
 import { ReviewProps } from './types'
 import SortingOptions, { DEFAULT_SORTING_OPTION } from './sorting-options'
 import usePaging from './use-paging'
+import {
+  HASH_REVIEW_TRANSITION_MODAL,
+  HASH_REVIEW_WRITE_TRANSITION_MODAL,
+} from './transition-modals'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
@@ -32,11 +39,11 @@ export default function ReviewContainer({
     unsubscribeReviewUpdateEvent,
   },
   shortened,
-  onFullListButtonClick,
 }: ReviewProps) {
   const [sortingOption, setSortingOption] = useState(DEFAULT_SORTING_OPTION)
   const { isPublic } = useUserAgentContext()
   const [myReview, setMyReview] = useState(undefined)
+  const { navigate, push } = useHistoryContext()
 
   useEffect(() => {
     const refreshMyReview = async (params?: { id: string }) => {
@@ -76,15 +83,31 @@ export default function ReviewContainer({
   ) => {
     e.stopPropagation()
 
-    if (!isPublic) {
-      writeReview({
-        appUrlScheme,
-        resourceType,
-        resourceId,
-        regionId,
-        rating,
-      })
+    if (isPublic) {
+      return push(HASH_REVIEW_WRITE_TRANSITION_MODAL)
     }
+
+    writeReview({
+      appUrlScheme,
+      resourceType,
+      resourceId,
+      regionId,
+      rating,
+    })
+  }
+
+  const handleFullListButtonClick = (e: React.SyntheticEvent) => {
+    e.stopPropagation()
+
+    if (isPublic) {
+      return push(HASH_REVIEW_TRANSITION_MODAL)
+    }
+
+    navigate(
+      `${appUrlScheme}:///inlink?url=${encodeURIComponent(
+        `/reviews/all?resource_id=${resourceId}&resource_type=${resourceType}`,
+      )}`,
+    )
   }
 
   const handleSortingOptionSelect = (_, sortingOption) =>
@@ -100,12 +123,10 @@ export default function ReviewContainer({
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
       <Container>
-        {isPublic ? null : (
-          <WriteIcon
-            src="https://assets.triple.guide/images/btn-com-write@2x.png"
-            onClick={handleWriteButtonClick}
-          />
-        )}
+        <WriteIcon
+          src="https://assets.triple.guide/images/btn-com-write@2x.png"
+          onClick={handleWriteButtonClick}
+        />
         <Text bold size="huge" color="gray" alpha={1} inline>
           리뷰
         </Text>
@@ -162,7 +183,7 @@ export default function ReviewContainer({
             fluid
             compact
             size="small"
-            onClick={() => onFullListButtonClick()}
+            onClick={handleFullListButtonClick}
           >
             {reviewsCount - 3}개 리뷰 더보기
           </Button>
