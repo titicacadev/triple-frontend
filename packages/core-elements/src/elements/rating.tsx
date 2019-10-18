@@ -11,7 +11,7 @@ const SIZES: Partial<Record<GlobalSizes, string>> = {
 
 const MARGINS: Partial<Record<GlobalSizes, string>> = {
   small: '0',
-  medium: '0.5px',
+  medium: '2px',
 }
 
 const IMAGE_PREFIXES: Partial<Record<GlobalSizes, string>> = {
