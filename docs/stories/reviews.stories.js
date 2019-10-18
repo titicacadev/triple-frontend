@@ -12,7 +12,11 @@ import {
 import { storiesOf } from '@storybook/react'
 
 storiesOf('Reviews', module).add('일반', () => (
-  <ReviewLikesProvider>
+  <ReviewLikesProvider
+    subscribeLikedChangeEvent={action('subscribeLikedChangeEvent')}
+    notifyReviewLiked={action('notifyReviewLiked')}
+    notifyReviewUnliked={action('notifyReviewUnliked')}
+  >
     <UserAgentProvider
       value={generateUserAgentValues(
         select(
@@ -30,14 +34,11 @@ storiesOf('Reviews', module).add('일반', () => (
           shortened={boolean('Shortened', false)}
           reviewsCount={number('Review count', 120)}
           appNativeActions={{
-            subscribeLikedChangeEvent: action('subscribeLikedChangeEvent'),
             subscribeReviewUpdateEvent: action('subscribeReviewUpdateEvent'),
             unsubscribeReviewUpdateEvent: action(
               'unsubscribeReviewUpdateEvent',
             ),
             notifyReviewDeleted: action('notifyReviewDeleted'),
-            notifyReviewLiked: action('notifyReviewLiked'),
-            notifyReviewUnliked: action('notifyReviewUnliked'),
             showToast: action('showToast'),
           }}
           resourceId={text(
