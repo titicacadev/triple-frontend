@@ -41,7 +41,11 @@ export default function User({
   }
   children: React.ReactNode
 }) {
-  const badge = mileage && mileage.badges && mileage.badges[0]
+  const {
+    badges: [badge],
+    level,
+    point,
+  } = mileage || { badges: [undefined], level: 0, point: 0 }
 
   return (
     <Container padding={{ bottom: 2 }}>
@@ -50,9 +54,7 @@ export default function User({
       <Name onClick={onClick}>{name}</Name>
       <UserExtra>
         <span onClick={onClick}>
-          {badge
-            ? `${badge.label} / ${reviewsCount}개의 리뷰`
-            : `${reviewsCount}개의 리뷰`}
+          {level ? `LEVEL ${level} / ${point}P` : `${point}P`}
         </span>
         {children}
       </UserExtra>
