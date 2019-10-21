@@ -1,9 +1,10 @@
 import * as React from 'react'
 import moment from 'moment'
 import styled, { css } from 'styled-components'
-import DayPicker, { LocaleUtils, DayModifiers } from 'react-day-picker'
+import DayPicker, { DayModifiers } from 'react-day-picker'
 
 import 'moment/locale/ko'
+import MomentLocaleUtils from 'react-day-picker/moment'
 import { GetGlobalColor } from '@titicaca/core-elements'
 import { formatMonthTitle, isValidDate, generatePaddedRange } from './utils'
 
@@ -137,7 +138,7 @@ function RangePicker({
         <DayPicker
           locale="ko"
           weekdaysShort={['일', '월', '화', '수', '목', '금', '토']}
-          localeUtils={{ ...LocaleUtils, formatMonthTitle }}
+          localeUtils={{ ...MomentLocaleUtils, formatMonthTitle }}
           initialMonth={initialMonth}
           selectedDays={[from, { from, to }]}
           onDayClick={(day: Date, modifiers: DayModifiers) => {
