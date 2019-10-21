@@ -49,7 +49,7 @@ export default function User({
       <Name onClick={onClick}>{name}</Name>
       <UserExtra>
         <span onClick={onClick}>
-          {level ? `LEVEL ${level} / ${point}P` : `${point}P`}
+          {level ? `LEVEL ${level} / ${point}포인트` : `${point}포인트`}
         </span>
         {children}
       </UserExtra>
