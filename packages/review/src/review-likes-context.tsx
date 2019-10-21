@@ -27,7 +27,7 @@ interface ReviewLikesProviderProps {
   subscribeLikedChangeEvent: Function
   notifyReviewLiked: Function
   notifyReviewUnliked: Function
-  children: React.ReactChildren
+  children: React.ReactNode
 }
 
 interface ReviewLikesProviderState {
