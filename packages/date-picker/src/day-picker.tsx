@@ -1,10 +1,9 @@
 import * as React from 'react'
 import moment from 'moment'
 import styled from 'styled-components'
-import DayPicker, { DayModifiers } from 'react-day-picker'
+import DayPicker, { DayModifiers, LocaleUtils } from 'react-day-picker'
 
 import 'moment/locale/ko'
-import MomentLocaleUtils from 'react-day-picker/moment'
 import { GetGlobalColor } from '@titicaca/core-elements'
 import { formatMonthTitle } from './utils'
 
@@ -86,7 +85,7 @@ function DatePicker({
         <DayPicker
           locale="ko"
           weekdaysShort={['일', '월', '화', '수', '목', '금', '토']}
-          localeUtils={{ ...MomentLocaleUtils, formatMonthTitle }}
+          localeUtils={{ ...LocaleUtils, formatMonthTitle }}
           selectedDays={selectedDay}
           onDayClick={(day: Date, modifiers: DayModifiers): void => {
             if (modifiers.disabled) {
