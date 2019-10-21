@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Section, Container, Text, Button, HR1 } from '@titicaca/core-elements'
+import { Section, Container, Text, Button } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import {
   useUserAgentContext,
@@ -138,19 +138,6 @@ export default function ReviewContainer({
         ) : null}
       </Container>
 
-      {!isPublic && shortened && !myReview && (
-        <>
-          <ReviewsPlaceholder
-            resourceType={resourceType}
-            appUrlScheme={appUrlScheme}
-            onClick={handleWriteButtonClick}
-          />
-          {(reviewsCount || 0) > 0 && (
-            <HR1 compact margin={{ top: 32, bottom: 27 }} />
-          )}
-        </>
-      )}
-
       {(reviewsCount || 0) > 1 ? (
         <Container margin={{ top: 23 }} clearing>
           <SortingOptions
@@ -158,7 +145,12 @@ export default function ReviewContainer({
             onSelect={handleSortingOptionSelect}
           />
         </Container>
-      ) : null}
+      ) : (
+        <ReviewsPlaceholder
+          resourceType={resourceType}
+          onClick={handleWriteButtonClick}
+        />
+      )}
 
       <ReviewsList
         myReview={myReview}
