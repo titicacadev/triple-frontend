@@ -139,34 +139,36 @@ export default function ReviewContainer({
       </Container>
 
       {(reviewsCount || 0) > 1 ? (
-        <Container margin={{ top: 23 }} clearing>
-          <SortingOptions
-            selected={sortingOption}
-            onSelect={handleSortingOptionSelect}
+        <>
+          <Container margin={{ top: 23 }} clearing>
+            <SortingOptions
+              selected={sortingOption}
+              onSelect={handleSortingOptionSelect}
+            />
+          </Container>
+
+          <ReviewsList
+            myReview={myReview}
+            reviews={reviews}
+            resourceType={resourceType}
+            regionId={regionId}
+            appUrlScheme={appUrlScheme}
+            margin={{ top: (reviewsCount || 0) > 1 ? 18 : 30 }}
+            resourceId={resourceId}
+            notifyReviewDeleted={(resourceId, reviewId) => {
+              myReview && reviewId === myReview.id && setMyReview(null)
+              notifyReviewDeleted(resourceId, reviewId)
+            }}
+            showToast={showToast}
+            fetchNext={!shortened && fetchNext}
           />
-        </Container>
+        </>
       ) : (
         <ReviewsPlaceholder
           resourceType={resourceType}
           onClick={handleWriteButtonClick}
         />
       )}
-
-      <ReviewsList
-        myReview={myReview}
-        reviews={reviews}
-        resourceType={resourceType}
-        regionId={regionId}
-        appUrlScheme={appUrlScheme}
-        margin={{ top: (reviewsCount || 0) > 1 ? 18 : 30 }}
-        resourceId={resourceId}
-        notifyReviewDeleted={(resourceId, reviewId) => {
-          myReview && reviewId === myReview.id && setMyReview(null)
-          notifyReviewDeleted(resourceId, reviewId)
-        }}
-        showToast={showToast}
-        fetchNext={!shortened && fetchNext}
-      />
 
       {reviewsCount > 3 && shortened ? (
         <Container margin={{ top: 50 }}>
