@@ -21,12 +21,7 @@ const Badge = styled.img`
 `
 
 export default function User({
-  user: {
-    photo,
-    name,
-    mileage,
-    userBoard: { reviews: reviewsCount },
-  },
+  user: { photo, name, mileage },
   onClick,
   children,
 }: {
