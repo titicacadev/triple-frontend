@@ -17,6 +17,6 @@
   "dependencies": {
     "@titicaca/core-elements": "^1.0.0-alpha.33",
     "moment": "^2.24.0",
-    "react-day-picker": "^7.3.0"
+    "react-day-picker": "7.3.0"
   }
 }
