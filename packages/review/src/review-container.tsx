@@ -104,8 +104,8 @@ export default function ReviewContainer({
     }
 
     navigate(
-      `${appUrlScheme}:///inlink?url=${encodeURIComponent(
-        `/reviews/all?resource_id=${resourceId}&resource_type=${resourceType}`,
+      `${appUrlScheme}:///inlink?path=${encodeURIComponent(
+        `/reviews/list?region_id=${regionId}&resource_id=${resourceId}&resource_type=${resourceType}`,
       )}`,
     )
   }

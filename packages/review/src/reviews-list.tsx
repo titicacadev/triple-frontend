@@ -44,7 +44,7 @@ export default function ReviewsList({
   const [selectedReview, setSelectedReview] = useState(undefined)
   const { isPublic } = useUserAgentContext()
   const { updateLikedStatus } = useReviewLikesContext()
-  const { push } = useHistoryContext()
+  const { navigate, push } = useHistoryContext()
 
   const handleUserClick = (e, { user: { uid, unregister } }) => {
     if (isPublic) {
@@ -71,7 +71,11 @@ export default function ReviewsList({
       return
     }
 
-    window.location.href = `${appUrlScheme}:///regions/${regionId}/${resourceType}/${resourceId}/reviews/${id}/thanks`
+    navigate(
+      `${appUrlScheme}:///inlink?path=${encodeURIComponent(
+        `/reviews/thanks?region_id=${regionId}&resource_id=${resourceId}&resource_type=${resourceType}&review_id=${id}`,
+      )}`,
+    )
   }
 
   const handleMenuClick = (e, review) => {
