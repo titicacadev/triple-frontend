@@ -123,19 +123,34 @@ export default function ReviewContainer({
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
       <Container>
-        <WriteIcon
-          src="https://assets.triple.guide/images/btn-com-write@2x.png"
-          onClick={handleWriteButtonClick}
-        />
-        <Text bold size="huge" color="gray" alpha={1} inline>
-          리뷰
-        </Text>
-
-        {(reviewsCount || 0) > 0 ? (
-          <Text bold size="huge" color="blue" alpha={1} inline>
-            {` ${formatNumber(reviewsCount)}`}
-          </Text>
+        {shortened ? (
+          <WriteIcon
+            src="https://assets.triple.guide/images/btn-com-write@2x.png"
+            onClick={handleWriteButtonClick}
+          />
         ) : null}
+
+        {shortened ? (
+          <>
+            <Text bold size="huge" color="gray" alpha={1} inline>
+              리뷰
+            </Text>
+            {(reviewsCount || 0) > 0 ? (
+              <Text bold size="huge" color="blue" alpha={1} inline>
+                {` ${formatNumber(reviewsCount)}`}
+              </Text>
+            ) : null}
+          </>
+        ) : (
+          <>
+            <Text bold size="huge" color="blue" alpha={1} inline>
+              {` ${formatNumber(reviewsCount)}`}
+            </Text>
+            <Text bold size="huge" color="gray" alpha={1} inline>
+              개의 리뷰
+            </Text>
+          </>
+        )}
       </Container>
 
       {(reviewsCount || 0) > 1 ? (
