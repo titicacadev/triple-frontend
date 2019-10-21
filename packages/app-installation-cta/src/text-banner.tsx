@@ -35,7 +35,7 @@ const TextBanner: FC<TextBannerProps> = ({ message, installUrl }) => {
   return (
     <TextBannerWrapper href={installUrl}>
       {message}
-      <DownloadIcon src="https://assets.triple-dev.titicaca-corp.com/images/m-banner-top-dw@3x.png" />
+      <DownloadIcon src="https://assets.triple.guide/images/m-banner-top-dw@3x.png" />
     </TextBannerWrapper>
   )
 }
