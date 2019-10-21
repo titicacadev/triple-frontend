@@ -16,7 +16,6 @@ const TextBannerWrapper = styled.a`
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
   background-color: #0179ff;
   color: white;
-  font-family: SFUIText;
   font-size: 14px;
   font-weight: bold;
   text-align: center;
