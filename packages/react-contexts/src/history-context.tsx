@@ -21,10 +21,13 @@ const Context = React.createContext<{
 
 const EXTERNAL_BROWSER_HOSTS = ['play.google.com', 'itunes.apple.com']
 
-function targetPageAvailable(path) {
-  return path.match(
+function targetPageAvailable(path: string) {
+  const regexes = [
     /^\/regions\/.+\/(attractions|restaurants|hotels|articles)\/.+/,
-  )
+    /^\/articles\/.+/,
+  ]
+
+  return regexes.some((regex) => path.match(regex))
 }
 
 interface HashHistory {
@@ -109,15 +112,43 @@ export function HistoryProvider({
   const navigateOnPublic = React.useCallback(
     ({ href, scheme, path, query, hash }, _) => {
       if (scheme === 'http' || scheme === 'https') {
-        window.location = href
+        return (window.location = href)
+      } else if (path === '/outlink') {
+        const { url: encodedUrl } = qs.parse(query || '')
+        const {
+          path: targetPath,
+          query: targetQuery,
+          hash: targetHash,
+        } = parseUrl(decodeURIComponent(encodedUrl))
+
+        if (targetPath && targetPageAvailable(targetPath)) {
+          return (window.location = (generateUrl(
+            { path: targetPath, query: targetQuery, hash: targetHash },
+            webUrlBase,
+          ) as unknown) as Location)
+        }
+      } else if (path === '/inlink') {
+        const { path: encodedPath } = qs.parse(query || '')
+        const {
+          path: targetPath,
+          query: targetQuery,
+          hash: targetHash,
+        } = parseUrl(decodeURIComponent(encodedPath))
+
+        if (targetPath && targetPageAvailable(targetPath)) {
+          return (window.location = (generateUrl(
+            { path: targetPath, query: targetQuery, hash: targetHash },
+            webUrlBase,
+          ) as unknown) as Location)
+        }
       } else if (targetPageAvailable(path)) {
-        window.location = (generateUrl(
+        return (window.location = (generateUrl(
           { path, query, hash },
           webUrlBase,
-        ) as unknown) as Location
-      } else {
-        transitionModalHash && push(transitionModalHash)
+        ) as unknown) as Location)
       }
+
+      transitionModalHash && push(transitionModalHash)
     },
     [push, transitionModalHash, webUrlBase],
   )
@@ -147,29 +178,14 @@ export function HistoryProvider({
   const navigate = React.useCallback(
     (rawHref, params) => {
       const urlElements = parseUrl(rawHref)
-      const { scheme, path, query } = urlElements
 
-      if (
-        (scheme === appUrlScheme || !scheme) &&
-        (path || '').match(/^\/outlink/)
-      ) {
-        const { url: targetUrl } = qs.parse(query || '')
-
-        return navigate(targetUrl, params)
-      } else if (
-        (scheme === appUrlScheme || !scheme) &&
-        (path || '').match(/^\/inlink/)
-      ) {
-        const { path: targetPath } = qs.parse(query || '')
-
-        return navigate(`${webUrlBase}${targetPath}`, params)
-      } else if (isPublic) {
+      if (isPublic) {
         return navigateOnPublic(urlElements, params)
       } else {
         return navigateInApp(urlElements, params)
       }
     },
-    [appUrlScheme, isPublic, navigateInApp, navigateOnPublic, webUrlBase],
+    [isPublic, navigateInApp, navigateOnPublic],
   )
 
   const value = React.useMemo(
