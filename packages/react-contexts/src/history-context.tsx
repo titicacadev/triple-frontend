@@ -151,13 +151,20 @@ export function HistoryProvider({
         const { url: targetUrl } = qs.parse(query || '')
 
         return navigate(targetUrl, params)
+      } else if (
+        (scheme === appUrlScheme || !scheme) &&
+        (path || '').match(/^\/inlink/)
+      ) {
+        const { path: targetPath } = qs.parse(query || '')
+
+        return navigate(`${webUrlBase}${targetPath}`, params)
       } else if (isPublic) {
         return navigateOnPublic({ href, scheme, host, path, query })
       } else {
         return navigateInApp({ href, scheme, host, path, query }, params)
       }
     },
-    [appUrlScheme, isPublic, navigateInApp, navigateOnPublic],
+    [appUrlScheme, isPublic, navigateInApp, navigateOnPublic, webUrlBase],
   )
 
   const value = React.useMemo(
