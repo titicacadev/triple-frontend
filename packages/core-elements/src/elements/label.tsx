@@ -79,8 +79,10 @@ const PROMO_SIZES: Partial<
 
 interface PromoLabelProps {
   size?: GlobalSizes
+  bold?: boolean
   emphasized?: boolean
   color?: LabelColor
+  manualed?: boolean
   margin?: MarginPadding
   fontColor?: GlobalColors
   fontAlpha?: number
@@ -95,15 +97,19 @@ export const PromoLabel = styled.div<PromoLabelProps>`
   height: ${({ size }) => PROMO_SIZES[size || 'small'].height}px;
   font-size: ${({ size }) => PROMO_SIZES[size || 'small'].fontSize}px;
 
-  ${({ emphasized }) =>
-    emphasized
+  ${({ emphasized, manualed }) =>
+    manualed
+      ? css`
+          font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
+          background-color: ${({ color }) => rgba({ color, alpha: 1 })};
+          color: ${({ fontColor, fontAlpha }) =>
+            css`rgba(${GetGlobalColor(fontColor)}, ${fontAlpha})`};
+        `
+      : emphasized
       ? css`
           font-weight: bold;
           background-color: ${({ color }) => rgba({ color, alpha: 1 })};
-          color: ${({ fontColor, fontAlpha }) =>
-            fontColor
-              ? `rgba(${GetGlobalColor(fontColor)}, ${fontAlpha || 1})`
-              : 'white'};
+          color: white;
         `
       : css`
           font-weight: normal;
@@ -153,6 +159,7 @@ export default class Label extends React.PureComponent<
         color,
         fontColor,
         fontAlpha,
+        manualed,
         ...props
       },
     } = this
@@ -173,6 +180,7 @@ export default class Label extends React.PureComponent<
           fontColor={fontColor}
           margin={margin}
           fontAlpha={fontAlpha}
+          manualed={manualed}
         >
           {children}
         </PromoLabel>
