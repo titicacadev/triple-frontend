@@ -16,10 +16,9 @@ storiesOf('Label', module)
       promo
       size={select('크기', ['small', 'medium', 'big'], 'medium')}
       color={select('색깔', ['purple', 'blue', 'red', 'gray'], 'purple')}
-      fontColor={select('글자 색깔', ['white', 'gray'], 'gray')}
+      fontColor={select('글자 색깔', ['white', 'gray', ''], '')}
       fontAlpha={number('fontAlpha', 1)}
       emphasized={boolean('강조', true)}
-      manualed={boolean('수동 설정', false)}
       bold={boolean('bold', false)}
     >
       {text('텍스트', '최대 24%')}
