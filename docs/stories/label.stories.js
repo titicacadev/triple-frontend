@@ -19,6 +19,8 @@ storiesOf('Label', module)
       fontColor={select('글자 색깔', ['white', 'gray'], 'gray')}
       fontAlpha={number('fontAlpha', 1)}
       emphasized={boolean('강조', true)}
+      manualed={boolean('수동 설정', false)}
+      bold={boolean('bold', false)}
     >
       {text('텍스트', '최대 24%')}
     </Label>
