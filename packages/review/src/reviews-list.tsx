@@ -73,7 +73,7 @@ export default function ReviewsList({
 
     navigate(
       `${appUrlScheme}:///inlink?path=${encodeURIComponent(
-        `/reviews/thanks?region_id=${regionId}&resource_id=${resourceId}&resource_type=${resourceType}&review_id=${id}`,
+        `/reviews/thanks?_triple_no_navbar&region_id=${regionId}&resource_id=${resourceId}&resource_type=${resourceType}&review_id=${id}`,
       )}`,
     )
   }
