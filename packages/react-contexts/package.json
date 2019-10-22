@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@titicaca/view-utilities": "^1.0.0-alpha.34",
     "humps": "^2.0.1",
     "qs": "^6.7.0",
     "ua-parser-js": "^0.7.20"

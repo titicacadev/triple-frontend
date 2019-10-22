@@ -1,6 +1,7 @@
 import React from 'react'
 import Router from 'next/router'
 import qs from 'qs'
+import { parseUrl, generateUrl } from '@titicaca/view-utilities'
 
 const NOOP: Function = () => {}
 
@@ -19,13 +20,6 @@ const Context = React.createContext<{
 })
 
 const EXTERNAL_BROWSER_HOSTS = ['play.google.com', 'itunes.apple.com']
-
-function pathWithHash(hash) {
-  const url = new URL(Router.asPath, 'https://triple.guide')
-  url.hash = hash && `#${hash}`
-
-  return `${url.pathname}${url.search}${hash ? url.hash : ''}`
-}
 
 function targetPageAvailable(path) {
   return path.match(
@@ -83,7 +77,7 @@ export function HistoryProvider({
       setUriHash(hash)
 
       if (useRouter) {
-        Router.replace(pathWithHash(hash))
+        Router.replace(generateUrl({ hash }, Router.asPath))
       }
     },
     [isAndroid],
@@ -96,7 +90,7 @@ export function HistoryProvider({
       setUriHash(hash)
 
       if (useRouter) {
-        Router.push(pathWithHash(hash))
+        Router.push(generateUrl({ hash }, Router.asPath))
       }
     },
     [isAndroid],
@@ -113,8 +107,8 @@ export function HistoryProvider({
   }, [])
 
   const navigateOnPublic = React.useCallback(
-    ({ href, protocol, path }) => {
-      if (protocol === 'http:' || protocol === 'https:') {
+    ({ href, scheme, path }) => {
+      if (scheme === 'http' || scheme === 'https') {
         window.location = href
       } else if (targetPageAvailable(path)) {
         window.location = (`${webUrlBase}${path}` as unknown) as Location
@@ -126,10 +120,10 @@ export function HistoryProvider({
   )
 
   const navigateInApp = React.useCallback(
-    ({ href, protocol, host, path }, params) => {
-      if (protocol === `${appUrlScheme}:`) {
+    ({ href, scheme, host, path }, params) => {
+      if (scheme === appUrlScheme) {
         window.location = href
-      } else if (protocol === 'http:' || protocol === 'https:') {
+      } else if (scheme === 'http' || scheme === 'https') {
         const outlinkParams = qs.stringify({
           url: href,
           ...(params || {}),
@@ -147,32 +141,17 @@ export function HistoryProvider({
   )
 
   const navigate = React.useCallback(
-    (href, params) => {
-      let url: Partial<URL> = {}
+    (rawHref, params) => {
+      const { href, scheme, host, path, query } = parseUrl(rawHref)
 
-      try {
-        url = new URL(href)
-      } catch {
-        // Do nothing
-      }
-
-      const protocol = url.protocol
-      const host = url.host
-      const [, , path] = (url.pathname || href).match(/(^\/\/)?(\/.*)/) || [
-        undefined,
-        undefined,
-        undefined,
-      ]
-      const query = (url.search || '').substring(1)
-
-      if (protocol === `${appUrlScheme}:` && (path || '').match(/^\/outlink/)) {
+      if (scheme === appUrlScheme && path.match(/^\/outlink/)) {
         const { url: targetUrl } = qs.parse(query)
 
         return navigate(targetUrl, params)
       } else if (isPublic) {
-        return navigateOnPublic({ href, protocol, host, path, query })
+        return navigateOnPublic({ href, scheme, host, path, query })
       } else {
-        return navigateInApp({ href, protocol, host, path, query }, params)
+        return navigateInApp({ href, scheme, host, path, query }, params)
       }
     },
     [appUrlScheme, isPublic, navigateInApp, navigateOnPublic],
