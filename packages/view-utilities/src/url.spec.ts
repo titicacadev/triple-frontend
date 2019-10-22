@@ -1,7 +1,7 @@
 import { describe, it } from 'mocha'
 import assert from 'assert'
 
-import { parseUrl } from '../src/url'
+import { parseUrl, generateUrl } from './url'
 
 describe('parseUrl', function() {
   it('should parse http url', function() {
@@ -184,6 +184,56 @@ describe('parseUrl', function() {
           'url=https%3A%2F%2Ftriple.guide%2Farticles%2F68dc3c17-01e9-45d2-aa04-a2891d5c7b69%3F_triple_no_navbar%26_triple_swipe_to_close',
         hash: '',
       },
+    )
+  })
+})
+
+describe('generateUrl', function() {
+  it('should generate url with scheme and host only', function() {
+    assert.strictEqual(
+      generateUrl({ scheme: 'https', host: 'triple.guide' }),
+      'https://triple.guide',
+    )
+  })
+
+  it('should generate url with scheme, host and path only', function() {
+    assert.strictEqual(
+      generateUrl({
+        scheme: 'https',
+        host: 'triple.guide',
+        path: '/announcements',
+      }),
+      'https://triple.guide/announcements',
+    )
+  })
+
+  it('should generate url with scheme and path only', function() {
+    assert.strictEqual(
+      generateUrl({ scheme: 'triple', path: '/announcements' }),
+      'triple:///announcements',
+    )
+  })
+
+  it('should generate url with all elements', function() {
+    assert.strictEqual(
+      generateUrl({
+        scheme: 'https',
+        host: 'triple.guide',
+        path: '/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
+        query: 'in_region=true',
+        hash: 'reviews',
+      }),
+      'https://triple.guide/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3?in_region=true#reviews',
+    )
+  })
+
+  it('should generate url with base url', function() {
+    assert.strictEqual(
+      generateUrl(
+        { query: 'in_region=true', hash: 'reviews' },
+        'https://triple.guide/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3#nearby',
+      ),
+      'https://triple.guide/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3?in_region=true#reviews',
     )
   })
 })
