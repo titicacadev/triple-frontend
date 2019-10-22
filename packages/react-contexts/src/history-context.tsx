@@ -144,8 +144,11 @@ export function HistoryProvider({
     (rawHref, params) => {
       const { href, scheme, host, path, query } = parseUrl(rawHref)
 
-      if (scheme === appUrlScheme && path.match(/^\/outlink/)) {
-        const { url: targetUrl } = qs.parse(query)
+      if (
+        (scheme === appUrlScheme || !scheme) &&
+        (path || '').match(/^\/outlink/)
+      ) {
+        const { url: targetUrl } = qs.parse(query || '')
 
         return navigate(targetUrl, params)
       } else if (isPublic) {
