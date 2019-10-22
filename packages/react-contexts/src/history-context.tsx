@@ -107,11 +107,14 @@ export function HistoryProvider({
   }, [])
 
   const navigateOnPublic = React.useCallback(
-    ({ href, scheme, path }) => {
+    ({ href, scheme, path, query, hash }, _) => {
       if (scheme === 'http' || scheme === 'https') {
         window.location = href
       } else if (targetPageAvailable(path)) {
-        window.location = (`${webUrlBase}${path}` as unknown) as Location
+        window.location = (generateUrl(
+          { path, query, hash },
+          webUrlBase,
+        ) as unknown) as Location
       } else {
         transitionModalHash && push(transitionModalHash)
       }
@@ -120,10 +123,8 @@ export function HistoryProvider({
   )
 
   const navigateInApp = React.useCallback(
-    ({ href, scheme, host, path }, params) => {
-      if (scheme === appUrlScheme) {
-        window.location = href
-      } else if (scheme === 'http' || scheme === 'https') {
+    ({ href, scheme, host }, params) => {
+      if (scheme === 'http' || scheme === 'https') {
         const outlinkParams = qs.stringify({
           url: href,
           ...(params || {}),
@@ -134,7 +135,10 @@ export function HistoryProvider({
 
         window.location = (`${appUrlScheme}:///outlink?${outlinkParams}` as unknown) as Location
       } else {
-        window.location = (`${appUrlScheme}://${path}` as unknown) as Location
+        window.location = (generateUrl(
+          { scheme: appUrlScheme },
+          href,
+        ) as unknown) as Location
       }
     },
     [appUrlScheme],
@@ -142,7 +146,8 @@ export function HistoryProvider({
 
   const navigate = React.useCallback(
     (rawHref, params) => {
-      const { href, scheme, host, path, query } = parseUrl(rawHref)
+      const urlElements = parseUrl(rawHref)
+      const { scheme, path, query } = urlElements
 
       if (
         (scheme === appUrlScheme || !scheme) &&
@@ -159,9 +164,9 @@ export function HistoryProvider({
 
         return navigate(`${webUrlBase}${targetPath}`, params)
       } else if (isPublic) {
-        return navigateOnPublic({ href, scheme, host, path, query })
+        return navigateOnPublic(urlElements, params)
       } else {
-        return navigateInApp({ href, scheme, host, path, query }, params)
+        return navigateInApp(urlElements, params)
       }
     },
     [appUrlScheme, isPublic, navigateInApp, navigateOnPublic, webUrlBase],
