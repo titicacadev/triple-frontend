@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-document",
-  "version": "1.0.0-alpha.34",
+  "version": "1.0.0-alpha.35",
   "description": "TripleDocument: Formatted Content System",
   "main": "lib/index.js",
   "files": [
@@ -15,10 +15,10 @@
   },
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
-    "@titicaca/core-elements": "^1.0.0-alpha.34",
-    "@titicaca/modals": "^1.0.0-alpha.34",
-    "@titicaca/poi-list-elements": "^1.0.0-alpha.34",
-    "@titicaca/react-contexts": "^1.0.0-alpha.34"
+    "@titicaca/core-elements": "^1.0.0-alpha.35",
+    "@titicaca/modals": "^1.0.0-alpha.35",
+    "@titicaca/poi-list-elements": "^1.0.0-alpha.35",
+    "@titicaca/react-contexts": "^1.0.0-alpha.35"
   },
   "peerDependencies": {
     "@sentry/browser": "^5.4.3"
