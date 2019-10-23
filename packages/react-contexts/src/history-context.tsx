@@ -112,7 +112,7 @@ export function HistoryProvider({
   const navigateOnPublic = React.useCallback(
     ({ href, scheme, path, query, hash }, _) => {
       if (scheme === 'http' || scheme === 'https') {
-        return (window.location = href)
+        return (window.location.href = href)
       } else if (path === '/outlink') {
         const { url: encodedUrl } = qs.parse(query || '')
         const {
@@ -122,10 +122,10 @@ export function HistoryProvider({
         } = parseUrl(decodeURIComponent(encodedUrl))
 
         if (targetPath && targetPageAvailable(targetPath)) {
-          return (window.location = (generateUrl(
+          return (window.location.href = generateUrl(
             { path: targetPath, query: targetQuery, hash: targetHash },
             webUrlBase,
-          ) as unknown) as Location)
+          ))
         }
       } else if (path === '/inlink') {
         const { path: encodedPath } = qs.parse(query || '')
@@ -136,16 +136,16 @@ export function HistoryProvider({
         } = parseUrl(decodeURIComponent(encodedPath))
 
         if (targetPath && targetPageAvailable(targetPath)) {
-          return (window.location = (generateUrl(
+          return (window.location.href = generateUrl(
             { path: targetPath, query: targetQuery, hash: targetHash },
             webUrlBase,
-          ) as unknown) as Location)
+          ))
         }
       } else if (targetPageAvailable(path)) {
-        return (window.location = (generateUrl(
+        return (window.location.href = generateUrl(
           { path, query, hash },
           webUrlBase,
-        ) as unknown) as Location)
+        ))
       }
 
       transitionModalHash && push(transitionModalHash)
@@ -164,9 +164,9 @@ export function HistoryProvider({
             (EXTERNAL_BROWSER_HOSTS.includes(host) ? 'browser' : 'default'),
         })
 
-        window.location = (`${appUrlScheme}:///outlink?${outlinkParams}` as unknown) as Location
+        window.location.href = `${appUrlScheme}:///outlink?${outlinkParams}`
       } else {
-        window.location = generateUrl({ scheme: appUrlScheme }, href)
+        window.location.href = generateUrl({ scheme: appUrlScheme }, href)
       }
     },
     [appUrlScheme],
