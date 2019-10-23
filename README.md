@@ -132,14 +132,14 @@ $ npm test
   1. `/tests` 디렉토리로 이동합니다.
   2. 서버를 실행합니다.
 
-    ```sh
-    $ npm start
-    ```
+```sh
+$ npm start
+```
   3. `cypress` 창을 띄웁니다.
 
-    ```sh
-    $ npm run cypress:open
-    ```
+```sh
+$ npm run cypress:open
+```
 
 #### 테스트 추가 및 수정하기
   1. `/tests` 디렉토리로 이동합니다.
