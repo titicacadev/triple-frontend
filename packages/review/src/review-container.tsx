@@ -153,7 +153,7 @@ export default function ReviewContainer({
         )}
       </Container>
 
-      {(reviewsCount || 0) > 1 ? (
+      {(reviewsCount || 0) > 1 || myReview ? (
         <>
           <Container margin={{ top: 23 }} clearing>
             <SortingOptions
@@ -168,7 +168,7 @@ export default function ReviewContainer({
             resourceType={resourceType}
             regionId={regionId}
             appUrlScheme={appUrlScheme}
-            margin={{ top: (reviewsCount || 0) > 1 ? 18 : 30 }}
+            margin={{ top: 30 }}
             resourceId={resourceId}
             notifyReviewDeleted={(resourceId, reviewId) => {
               myReview && reviewId === myReview.id && setMyReview(null)
