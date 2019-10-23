@@ -6,43 +6,13 @@ interface DeviceContextValue {
   longitude: number | null
 }
 
-interface DeviceProviderProps {
-  initialInRegion: boolean
-  initialLatitude: number | undefined
-  initialLongitude: number | undefined
-}
-
-interface DeviceProviderState {
-  value: DeviceContextValue
-}
-
 const Context = createContext<DeviceContextValue>({
   inRegion: false,
   latitude: null,
   longitude: null,
 })
 
-export class DeviceProvider extends React.PureComponent<
-  DeviceProviderProps,
-  DeviceProviderState
-> {
-  readonly state: Readonly<DeviceProviderState> = {
-    value: {
-      inRegion: this.props.initialInRegion || false,
-      latitude: this.props.initialLatitude || null,
-      longitude: this.props.initialLongitude || null,
-    },
-  }
-
-  render() {
-    const {
-      props: { children },
-      state: { value },
-    } = this
-
-    return <Context.Provider value={value}>{children}</Context.Provider>
-  }
-}
+export const DeviceProvider = Context.Provider
 
 export function withDeviceContext<
   P extends { deviceContext: DeviceContextValue }
