@@ -166,25 +166,15 @@ export function HistoryProvider({
 
         window.location = (`${appUrlScheme}:///outlink?${outlinkParams}` as unknown) as Location
       } else {
-        window.location = (generateUrl(
-          { scheme: appUrlScheme },
-          href,
-        ) as unknown) as Location
+        window.location = generateUrl({ scheme: appUrlScheme }, href)
       }
     },
     [appUrlScheme],
   )
 
   const navigate = React.useCallback(
-    (rawHref, params) => {
-      const urlElements = parseUrl(rawHref)
-
-      if (isPublic) {
-        return navigateOnPublic(urlElements, params)
-      } else {
-        return navigateInApp(urlElements, params)
-      }
-    },
+    (rawHref, params) =>
+      (isPublic ? navigateOnPublic : navigateInApp)(parseUrl(rawHref), params),
     [isPublic, navigateInApp, navigateOnPublic],
   )
 
