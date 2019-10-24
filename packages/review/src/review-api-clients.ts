@@ -60,3 +60,23 @@ export interface FetchReviewsInterface {
   from?: number
   size?: number
 }
+
+export async function fetchReviewsCount({
+  resourceId,
+  resourceType,
+}: {
+  resourceId: string
+  resourceType: string
+}) {
+  const response = await fetch(
+    `/api/reviews/v2/count?resource_id=${resourceId}&resource_type=${resourceType}`,
+  )
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch reviews count: ${response.status}`)
+  }
+
+  const { reviewCount } = await response.json()
+
+  return reviewCount
+}
