@@ -164,7 +164,7 @@ export default function ReviewContainer({
         )}
       </Container>
 
-      {(reviewsCount || 0) > 1 || myReview ? (
+      {(reviewsCount || 0) > 1 ? (
         <>
           <Container margin={{ top: 23 }} clearing>
             <SortingOptions
