@@ -11,7 +11,7 @@ import {
 import { TextElement as OriginTextElement } from '@titicaca/triple-document'
 
 const TextElement = styled(OriginTextElement)`
-  & > a {
+  a {
     font-weight: 500;
     color: rgba(${GetGlobalColor('gray')}, 0.5);
   }
