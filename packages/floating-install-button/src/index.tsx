@@ -108,7 +108,9 @@ export default function FloatingInstallButton({
       <Container floated="left">
         <InstallDescription>
           <InstallAnchor href={appInstallLink} onClick={onSelect}>
-            <Container floated="left">트리플 앱 설치하기</Container>
+            <Text floated="left" color="white">
+              트리플 앱 설치하기
+            </Text>
             <GoAppButton src="https://assets.triple.guide/images/ico-arrow@4x.png" />
           </InstallAnchor>
         </InstallDescription>
