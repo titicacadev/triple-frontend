@@ -6,7 +6,11 @@ import {
   useUserAgentContext,
   useHistoryContext,
 } from '@titicaca/react-contexts'
-import { fetchMyReview, writeReview } from './review-api-clients'
+import {
+  fetchMyReview,
+  writeReview,
+  fetchReviewsCount,
+} from './review-api-clients'
 import ReviewsPlaceholder from './review-placeholder-with-rating'
 import ReviewsList from './reviews-list'
 import { ReviewProps } from './types'
@@ -27,7 +31,7 @@ const WriteIcon = styled.img`
 `
 
 export default function ReviewContainer({
-  reviewsCount,
+  reviewsCount: initialReviewsCount,
   resourceType,
   regionId,
   appUrlScheme,
@@ -43,6 +47,7 @@ export default function ReviewContainer({
   const [sortingOption, setSortingOption] = useState(DEFAULT_SORTING_OPTION)
   const { isPublic } = useUserAgentContext()
   const [myReview, setMyReview] = useState(undefined)
+  const [reviewsCount, setReviewsCount] = useState(initialReviewsCount)
   const { navigate, push } = useHistoryContext()
 
   useEffect(() => {
@@ -53,9 +58,15 @@ export default function ReviewContainer({
 
       const { id } = params
 
-      id &&
-        id === resourceId &&
-        setMyReview(await fetchMyReview({ resourceType, resourceId }))
+      if (id && id === resourceId) {
+        const [fetchedMyReview, fetchedReviewsCount] = await Promise.all([
+          fetchMyReview({ resourceType, resourceId }),
+          fetchReviewsCount({ resourceType, resourceId }),
+        ])
+
+        setMyReview(fetchedMyReview)
+        setReviewsCount(fetchedReviewsCount)
+      }
     }
 
     refreshMyReview({ id: resourceId })
