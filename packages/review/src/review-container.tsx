@@ -117,7 +117,7 @@ export default function ReviewContainer({
 
     navigate(
       `${appUrlScheme}:///inlink?path=${encodeURIComponent(
-        `/reviews/list?_triple_no_navbar&region_id=${regionId}&resource_id=${resourceId}&resource_type=${resourceType}`,
+        `/reviews/list?_triple_no_navbar&region_id=${regionId}&resource_id=${resourceId}&resource_type=${resourceType}&sorting_option=${sortingOption}`,
       )}`,
     )
   }
