@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { storiesOf } from '@storybook/react'
-import { text, select, boolean, number } from '@storybook/addon-knobs'
+import { text, select, boolean } from '@storybook/addon-knobs'
 
 import { Label } from '@titicaca/core-elements'
 
@@ -14,12 +14,9 @@ storiesOf('Label', module)
   .add('프로모', () => (
     <Label
       promo
-      size={select('크기', ['small', 'medium', 'big'], 'medium')}
+      size={select('크기', ['small', 'medium', 'large'], 'medium')}
       color={select('색깔', ['purple', 'blue', 'red', 'gray'], 'purple')}
-      fontColor={select('글자 색깔', ['white', 'gray', ''], '')}
-      fontAlpha={number('fontAlpha', 1)}
       emphasized={boolean('강조', true)}
-      bold={boolean('bold', false)}
     >
       {text('텍스트', '최대 24%')}
     </Label>
