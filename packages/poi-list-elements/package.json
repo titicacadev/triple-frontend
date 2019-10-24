@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/poi-list-elements",
-  "version": "1.0.0-alpha.38",
+  "version": "1.0.0-alpha.39",
   "description": "Triple POI UI Elements",
   "main": "lib/index.js",
   "files": [
@@ -15,9 +15,9 @@
   },
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
-    "@titicaca/core-elements": "^1.0.0-alpha.38",
-    "@titicaca/resource-list-element": "^1.0.0-alpha.38",
-    "@titicaca/scrap-button": "^1.0.0-alpha.38",
-    "@titicaca/view-utilities": "^1.0.0-alpha.38"
+    "@titicaca/core-elements": "^1.0.0-alpha.39",
+    "@titicaca/resource-list-element": "^1.0.0-alpha.39",
+    "@titicaca/scrap-button": "^1.0.0-alpha.39",
+    "@titicaca/view-utilities": "^1.0.0-alpha.39"
   }
 }
