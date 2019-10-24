@@ -10,15 +10,27 @@ import {
 
 export type LabelColor = GlobalColors | 'purple'
 
-const GetLabelColors: Partial<Record<LabelColor, string>> = {
-  blue: GetGlobalColor('blue'),
-  red: '253, 46, 105',
-  purple: '151, 95, 255',
-  gray: '245, 245, 245',
-}
+type Color = { rgb: string; a: number }
 
-function rgba({ color, alpha }: { color?: LabelColor; alpha?: number }) {
-  return `rgba(${GetLabelColors[color || 'purple']}, ${alpha || 1})`
+const GetLabelColors: Partial<
+  Record<LabelColor, { background: Color; text: Color }>
+> = {
+  blue: {
+    background: { rgb: GetGlobalColor('blue'), a: 0.1 },
+    text: { rgb: GetGlobalColor('blue'), a: 1 },
+  },
+  red: {
+    background: { rgb: '253, 46, 105', a: 0.1 },
+    text: { rgb: '253, 46, 105', a: 1 },
+  },
+  purple: {
+    background: { rgb: '151, 95, 255', a: 0.1 },
+    text: { rgb: '151, 95, 255', a: 1 },
+  },
+  gray: {
+    background: { rgb: '58, 58, 58', a: 0.05 },
+    text: { rgb: '58, 58, 58', a: 0.7 },
+  },
 }
 
 interface RadioLabelProps {
@@ -79,12 +91,9 @@ const PROMO_SIZES: Partial<
 
 interface PromoLabelProps {
   size?: GlobalSizes
-  bold?: boolean
   emphasized?: boolean
   color?: LabelColor
   margin?: MarginPadding
-  fontColor?: GlobalColors
-  fontAlpha?: number
 }
 
 export const PromoLabel = styled.div<PromoLabelProps>`
@@ -96,26 +105,30 @@ export const PromoLabel = styled.div<PromoLabelProps>`
   height: ${({ size }) => PROMO_SIZES[size || 'small'].height}px;
   font-size: ${({ size }) => PROMO_SIZES[size || 'small'].fontSize}px;
 
-  ${({ emphasized, fontColor }) =>
-    fontColor
-      ? css`
-          font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
-          background-color: ${({ color }) => rgba({ color, alpha: 1 })};
-          color: rgba(
-            ${GetGlobalColor(fontColor)},
-            ${({ fontAlpha }) => fontAlpha || 1}
-          );
-        `
-      : emphasized
+  ${({ emphasized }) =>
+    emphasized
       ? css`
           font-weight: bold;
-          background-color: ${({ color }) => rgba({ color, alpha: 1 })};
+          background-color: rgba(
+            ${({ color }) => GetLabelColors[color].background.rgb},
+            1
+          );
           color: white;
         `
       : css`
           font-weight: normal;
-          background-color: ${({ color }) => rgba({ color, alpha: 0.1 })};
-          color: ${({ color }) => rgba({ color, alpha: 1 })};
+          ${({ color }) => {
+            const {
+              [color]: {
+                background: { rgb: backgroundRgb, a: backgroundA },
+                text: { rgb: textRgb, a: textA },
+              },
+            } = GetLabelColors
+            return css`
+              background-color: rgba(${backgroundRgb}, ${backgroundA});
+              color: rgba(${textRgb}, ${textA});
+            `
+          }}
         `};
 
   ${({ margin }) =>
@@ -158,8 +171,6 @@ export default class Label extends React.PureComponent<
         size,
         emphasized,
         color,
-        fontColor,
-        fontAlpha,
         ...props
       },
     } = this
@@ -176,10 +187,8 @@ export default class Label extends React.PureComponent<
           {...props}
           size={size}
           emphasized={emphasized}
-          color={color}
-          fontColor={fontColor}
+          color={color || 'purple'}
           margin={margin}
-          fontAlpha={fontAlpha}
         >
           {children}
         </PromoLabel>
