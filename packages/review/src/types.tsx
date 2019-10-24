@@ -8,6 +8,7 @@ export interface ReviewProps {
   appUrlScheme: string
   deepLink?: string
   appNativeActions: AppNativeActionProps
+  sortingOption?: string
 }
 
 export interface AppNativeActionProps {
