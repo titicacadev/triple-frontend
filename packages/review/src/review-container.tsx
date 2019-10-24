@@ -43,8 +43,9 @@ export default function ReviewContainer({
     unsubscribeReviewUpdateEvent,
   },
   shortened,
+  sortingOption: initialSortingOption = DEFAULT_SORTING_OPTION,
 }: ReviewProps) {
-  const [sortingOption, setSortingOption] = useState(DEFAULT_SORTING_OPTION)
+  const [sortingOption, setSortingOption] = useState(initialSortingOption)
   const { isPublic } = useUserAgentContext()
   const [myReview, setMyReview] = useState(undefined)
   const [reviewsCount, setReviewsCount] = useState(initialReviewsCount)
