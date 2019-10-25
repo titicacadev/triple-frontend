@@ -74,6 +74,7 @@ const MODAL_CONTENT: {
   [TransitionType.Hotel]: {
     icon: 'https://assets.triple.guide/images/ico-popup-hotel@4x.png',
     description: '호텔 예약은\n앱에서 더 편리하게 할 수 있어요.',
+    eventLabel: '호텔_선택',
   },
   [TransitionType.View]: {
     icon: 'https://assets.triple.guide/images/ico-popup-app@4x.png',
