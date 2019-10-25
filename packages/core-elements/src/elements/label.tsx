@@ -10,26 +10,30 @@ import {
 
 export type LabelColor = GlobalColors | 'purple'
 
-type Color = { rgb: string; a: number }
+type Color = (number | string)[]
 
 const LABEL_COLORS: Partial<
   Record<LabelColor, { background: Color; text: Color }>
 > = {
   blue: {
-    background: { rgb: GetGlobalColor('blue'), a: 0.1 },
-    text: { rgb: GetGlobalColor('blue'), a: 1 },
+    background: GetGlobalColor('blue')
+      .split(', ')
+      .concat('0.1'),
+    text: GetGlobalColor('blue')
+      .split(', ')
+      .concat('1'),
   },
   red: {
-    background: { rgb: '253, 46, 105', a: 0.1 },
-    text: { rgb: '253, 46, 105', a: 1 },
+    background: [253, 46, 105, 0.1],
+    text: [253, 46, 105, 1],
   },
   purple: {
-    background: { rgb: '151, 95, 255', a: 0.1 },
-    text: { rgb: '151, 95, 255', a: 1 },
+    background: [151, 95, 255, 0.1],
+    text: [151, 95, 255, 1],
   },
   gray: {
-    background: { rgb: '58, 58, 58', a: 0.05 },
-    text: { rgb: '58, 58, 58', a: 0.7 },
+    background: [58, 58, 58, 0.05],
+    text: [58, 58, 58, 0.7],
   },
 }
 
@@ -110,7 +114,8 @@ export const PromoLabel = styled.div<PromoLabelProps>`
       ? css`
           font-weight: bold;
           background-color: rgba(
-            ${({ color }) => LABEL_COLORS[color].background.rgb},
+            ${({ color }) =>
+              LABEL_COLORS[color].background.slice(0, 3).join(',')},
             1
           );
           color: white;
@@ -119,14 +124,11 @@ export const PromoLabel = styled.div<PromoLabelProps>`
           font-weight: normal;
           ${({ color }) => {
             const {
-              [color]: {
-                background: { rgb: backgroundRgb, a: backgroundA },
-                text: { rgb: textRgb, a: textA },
-              },
+              [color]: { background, text },
             } = LABEL_COLORS
             return css`
-              background-color: rgba(${backgroundRgb}, ${backgroundA});
-              color: rgba(${textRgb}, ${textA});
+              background-color: rgba(${background.join(',')});
+              color: rgba(${text.join(',')});
             `
           }}
         `};
