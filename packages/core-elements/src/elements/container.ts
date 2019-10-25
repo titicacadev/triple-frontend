@@ -95,6 +95,7 @@ const Container = styled.div<{
     borderRadius &&
     css`
       border-radius: ${borderRadius}px;
+      overflow: hidden;
       -webkit-mask-image: -webkit-radial-gradient(white, black);
     `};
 
