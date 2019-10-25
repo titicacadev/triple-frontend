@@ -2,6 +2,5 @@ node_modules
 lib
 examples
 package-lock.json
-lerna.json
 
 test/dist/*
