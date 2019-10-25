@@ -34,9 +34,8 @@ export function injectUTMContext({
   const adProvider = source && medium ? `${source}_${medium}` : undefined
 
   return {
-    campaign,
-    adSet: adProvider,
-    ad: term,
-    channel: adProvider,
+    ...(campaign ? { campaign } : {}),
+    ...(adProvider ? { adSet: adProvider, channel: adProvider } : {}),
+    ...(term ? { ad: term } : {}),
   }
 }
