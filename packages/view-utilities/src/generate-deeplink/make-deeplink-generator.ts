@@ -16,10 +16,10 @@ interface GeneratorParams {
   path: string
 
   // one link parameter에 들어가는 값
-  campaign: string
-  adSet: string
-  ad: string
-  channel: string
+  campaign?: string
+  adSet?: string
+  ad?: string
+  channel?: string
 }
 
 type DeepLinkGenerator = (params: GeneratorParams) => string
@@ -55,7 +55,7 @@ export function makeDeepLinkGenerator({
     return generateUrl({
       scheme: 'https',
       host: `${subdomain}.onelink.me`, // AF_ONELINK_SUBDOMAIN
-      path: id,
+      path: `/${id}`,
       query,
     })
   }
