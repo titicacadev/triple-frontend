@@ -136,3 +136,9 @@ export function TransitionModal({ deepLink }: { deepLink: string }) {
 
   return null
 }
+
+export function useTransitionModal() {
+  const { push } = useHistoryContext()
+
+  return { show: (type: TransitionType) => push(`transition.${type}`) }
+}
