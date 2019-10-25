@@ -1,18 +1,38 @@
 import * as React from 'react'
 import InputMask, { InputState, MaskOptions } from 'react-input-mask'
 import styled from 'styled-components'
+
 import Navbar from './navbar'
 
 const InputText = styled(InputMask)`
-  margin-left: 4px;
-  margin-top: 6px;
-  height: 19px;
-  font-size: 16px;
-  width: calc(100vw - 130px);
   border-style: none;
+  font-size: 17px;
+  height: 19px;
+  margin: 6px 34px 0 34px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: calc(100% - 68px);
+`
+
+const MainNavbarFrame = styled(Navbar.NavbarFrame)`
+  height: 58px;
+  padding: 12px;
+  position: relative;
+`
+
+const Back = styled(Navbar.Item)`
+  float: none;
+  margin-right: 0px;
+  position: absolute;
 `
 
 const DeleteIcon = styled(Navbar.Item)<{ visible: boolean }>`
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  margin-right: 0px;
+  float: none;
   display: ${({ visible }) => (visible ? 'block' : 'none')};
 `
 
@@ -30,19 +50,18 @@ export default function SearchNavbar({
 } & InputState &
   MaskOptions) {
   return (
-    <Navbar>
-      <Navbar.Item floated="left" icon="back" onClick={onBackClick} />
+    <MainNavbarFrame>
+      <Back icon="back" onClick={onBackClick} />
       <InputText
         placeholder={inputPlaceholder}
         onChange={(e) => onInputChange(e, e.target.value)}
         {...props}
       />
       <DeleteIcon
-        floated="right"
         icon="delete"
         onClick={onDeleteClick}
         visible={!!props.value}
       />
-    </Navbar>
+    </MainNavbarFrame>
   )
 }
