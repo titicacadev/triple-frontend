@@ -12,7 +12,7 @@ export type LabelColor = GlobalColors | 'purple'
 
 type Color = { rgb: string; a: number }
 
-const GetLabelColors: Partial<
+const LABEL_COLORS: Partial<
   Record<LabelColor, { background: Color; text: Color }>
 > = {
   blue: {
@@ -110,7 +110,7 @@ export const PromoLabel = styled.div<PromoLabelProps>`
       ? css`
           font-weight: bold;
           background-color: rgba(
-            ${({ color }) => GetLabelColors[color].background.rgb},
+            ${({ color }) => LABEL_COLORS[color].background.rgb},
             1
           );
           color: white;
@@ -123,7 +123,7 @@ export const PromoLabel = styled.div<PromoLabelProps>`
                 background: { rgb: backgroundRgb, a: backgroundA },
                 text: { rgb: textRgb, a: textA },
               },
-            } = GetLabelColors
+            } = LABEL_COLORS
             return css`
               background-color: rgba(${backgroundRgb}, ${backgroundA});
               color: rgba(${textRgb}, ${textA});
