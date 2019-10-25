@@ -83,9 +83,16 @@ export default function ExtendedResourceListElement({
       </Text>
 
       {reviewsCount || scrapsCount ? (
-        <Container margin={{ top: 4 }}>
+        <Container margin={{ top: 5 }}>
           <>
-            {reviewsCount ? <Rating size="tiny" score={reviewsRating} /> : null}
+            {reviewsCount ? (
+              <Rating
+                verticalAlign="middle"
+                size="tiny"
+                score={reviewsRating}
+              />
+            ) : null}
+
             <Text inline size="tiny" alpha={0.4}>
               {[
                 reviewsCount ? ` (${formatNumber(reviewsCount)})` : null,
