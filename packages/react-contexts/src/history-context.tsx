@@ -110,7 +110,7 @@ export function HistoryProvider({
   }, [])
 
   const navigateOnPublic = React.useCallback(
-    ({ href, scheme, path, query, hash }, _) => {
+    ({ href, scheme, path, query, hash }) => {
       if (scheme === 'http' || scheme === 'https') {
         return (window.location.href = href)
       } else if (path === '/outlink') {
