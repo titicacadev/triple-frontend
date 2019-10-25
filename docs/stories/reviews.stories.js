@@ -2,6 +2,7 @@ import React from 'react'
 import { number, text, select, boolean } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
+import { TransitionModal } from '@titicaca/modals'
 import { Reviews, ReviewLikesProvider } from '@titicaca/review'
 import {
   UserAgentProvider,
@@ -30,6 +31,7 @@ storiesOf('Reviews', module).add('일반', () => (
       )}
     >
       <HistoryProvider>
+        <TransitionModal deepLink="/" />
         <Reviews
           shortened={boolean('Shortened', false)}
           reviewsCount={number('Review count', 120)}
