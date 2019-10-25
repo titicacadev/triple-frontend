@@ -45,12 +45,6 @@ export function extractUTMContextFromQuery({
   const term = utm_term || utmTerm
   const content = utm_content || utmContent
 
-  if ((source || medium || campaign) && (!source || !medium || !campaign)) {
-    console.warn(
-      'utm 파라미터를 사용할 때 source, medium, campaign을 모두 추가하는 것을 권장합니다.',
-    )
-  }
-
   return {
     source,
     medium,
