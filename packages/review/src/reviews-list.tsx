@@ -6,6 +6,7 @@ import {
   useHistoryContext,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
+import { useTransitionModal, TransitionType } from '@titicaca/modals'
 import ReviewElement from './review-element'
 import ReviewTimestamp from './review-timestamp'
 import MyReviewActionSheet, {
@@ -45,6 +46,7 @@ export default function ReviewsList({
   const { isPublic } = useUserAgentContext()
   const { updateLikedStatus } = useReviewLikesContext()
   const { navigate, push } = useHistoryContext()
+  const { show } = useTransitionModal()
 
   const handleUserClick = (e, { user: { uid, unregister } }) => {
     if (isPublic) {
@@ -95,7 +97,7 @@ export default function ReviewsList({
     image,
   ) => {
     if (isPublic) {
-      return
+      return show(TransitionType.Gallery)
     }
 
     const convertImage = (convertingImage) => ({
