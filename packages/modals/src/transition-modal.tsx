@@ -142,3 +142,18 @@ export function useTransitionModal() {
 
   return { show: (type: TransitionType) => push(`transition.${type}`) }
 }
+
+export function withTransitionModal(Component) {
+  return function TransitionModalComponent(props) {
+    const { push } = useHistoryContext()
+
+    return (
+      <Component
+        {...props}
+        showTransitionModal={(type: TransitionType) =>
+          push(`transition.${type}`)
+        }
+      />
+    )
+  }
+}
