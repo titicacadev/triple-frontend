@@ -10,17 +10,7 @@ storiesOf('Modal.TransitionModal', module).add('Basic', () => (
     <UriHashHistoryManipulator
       uriHash={select(
         'Hash',
-        [
-          TransitionType.General,
-          TransitionType.Gallery,
-          TransitionType.Scrap,
-          TransitionType.Review,
-          TransitionType.ReviewWrite,
-          TransitionType.Article,
-          TransitionType.Tna,
-          TransitionType.Hotel,
-          TransitionType.View,
-        ],
+        Object.keys(TransitionType).map((key) => TransitionType[key]),
         TransitionType.General,
       )}
     />
