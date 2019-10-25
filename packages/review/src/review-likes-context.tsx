@@ -60,7 +60,7 @@ export function ReviewLikesProvider({
             ? notifyReviewLiked
             : notifyReviewUnliked
 
-          notifier({ id: resourceId, reviewId })
+          notifier(resourceId, reviewId)
         })
     },
     [setLikes, notifyReviewLiked, notifyReviewUnliked],
