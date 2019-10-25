@@ -124,5 +124,6 @@ function Navbar({
 
 Navbar.Item = NavbarItem
 Navbar.Secondary = SecondaryNavbar
+Navbar.NavbarFrame = NavbarFrame
 
 export default Navbar
