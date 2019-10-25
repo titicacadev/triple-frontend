@@ -1,4 +1,4 @@
-# generate-deeplink
+# generate-deep-link
 
 ## 사용 방법
 
