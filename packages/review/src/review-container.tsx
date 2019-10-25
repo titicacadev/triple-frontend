@@ -6,6 +6,7 @@ import {
   useUserAgentContext,
   useHistoryContext,
 } from '@titicaca/react-contexts'
+import { TransitionType, useTransitionModal } from '@titicaca/modals'
 import {
   fetchMyReview,
   writeReview,
@@ -16,10 +17,6 @@ import ReviewsList from './reviews-list'
 import { ReviewProps } from './types'
 import SortingOptions, { DEFAULT_SORTING_OPTION } from './sorting-options'
 import usePaging from './use-paging'
-import {
-  HASH_REVIEW_TRANSITION_MODAL,
-  HASH_REVIEW_WRITE_TRANSITION_MODAL,
-} from './transition-modals'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
@@ -49,7 +46,8 @@ export default function ReviewContainer({
   const { isPublic } = useUserAgentContext()
   const [myReview, setMyReview] = useState(undefined)
   const [reviewsCount, setReviewsCount] = useState(initialReviewsCount)
-  const { navigate, push } = useHistoryContext()
+  const { navigate } = useHistoryContext()
+  const { show } = useTransitionModal()
 
   useEffect(() => {
     const refreshMyReview = async (params?: { id: string }) => {
@@ -96,7 +94,7 @@ export default function ReviewContainer({
     e.stopPropagation()
 
     if (isPublic) {
-      return push(HASH_REVIEW_WRITE_TRANSITION_MODAL)
+      return show(TransitionType.ReviewWrite)
     }
 
     writeReview({
@@ -112,7 +110,7 @@ export default function ReviewContainer({
     e.stopPropagation()
 
     if (isPublic) {
-      return push(HASH_REVIEW_TRANSITION_MODAL)
+      return show(TransitionType.Review)
     }
 
     navigate(
