@@ -1,7 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Text } from '@titicaca/core-elements'
-import { useHistoryContext } from '@titicaca/react-contexts'
+import {
+  useHistoryContext,
+  useEventTrackingContext,
+} from '@titicaca/react-contexts'
 
 import Actions from './actions'
 import Modal from './modal-base'
@@ -81,18 +84,12 @@ const MODAL_CONTENT: {
 
 export function TransitionModal({ deepLink }: { deepLink: string }) {
   const { uriHash, back } = useHistoryContext()
+  const { trackEvent } = useEventTrackingContext()
   const matchData = (uriHash || '').match(/^transition\.(.+)$/)
 
   if (matchData && Object.keys(MODAL_CONTENT).includes(matchData[1])) {
-    const {
-      icon,
-      title,
-      description,
-    }: {
-      icon?: string
-      title?: string
-      description?: string
-    } = MODAL_CONTENT[matchData[1]] || {}
+    const { icon, title, description, eventLabel } =
+      MODAL_CONTENT[matchData[1]] || {}
 
     return (
       <Modal open onClose={back}>
@@ -121,6 +118,13 @@ export function TransitionModal({ deepLink }: { deepLink: string }) {
           positive={{
             text: '트리플가기',
             onClick: () => {
+              trackEvent({
+                ga: [
+                  '설치유도팝업',
+                  ['선택_트리플가기', eventLabel].filter((v) => v).join('_'),
+                ],
+              })
+
               window.location = deepLink as any
             },
           }}
