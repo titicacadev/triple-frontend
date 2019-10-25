@@ -12,6 +12,8 @@ export interface CarouselProps extends Partial<FlickingProps> {
 }
 
 const CarouselContainer = styled(Container)`
+  overflow: visible;
+
   img {
     pointer-events: none;
   }
