@@ -1,5 +1,7 @@
 import React from 'react'
 
+const NOOP = () => {}
+
 interface EventTrackingContextValue {
   trackScreen: Function
   trackEvent: Function
@@ -7,7 +9,12 @@ interface EventTrackingContextValue {
   viewItem: Function
 }
 
-const Context = React.createContext<EventTrackingContextValue>(undefined)
+const Context = React.createContext<EventTrackingContextValue>({
+  trackScreen: NOOP,
+  trackEvent: NOOP,
+  trackSimpleEvent: NOOP,
+  viewItem: NOOP,
+})
 
 const DEFAULT_EVENT_NAME = 'user_interaction'
 
