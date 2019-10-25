@@ -1,11 +1,15 @@
 import React from 'react'
 
 import { storiesOf } from '@storybook/react'
-import { HistoryProvider, useHistoryContext } from '@titicaca/react-contexts'
-import { TransitionModal, TransitionType } from '@titicaca/modals'
+import { HistoryProvider } from '@titicaca/react-contexts'
+import {
+  TransitionModal,
+  TransitionType,
+  useTransitionModal,
+} from '@titicaca/modals'
 import { select } from '@storybook/addon-knobs'
 
-storiesOf('Modal.TransitionModal', module).add('Basic', () => (
+storiesOf('Modal', module).add('TransitionModal', () => (
   <HistoryProvider>
     <UriHashHistoryManipulator
       uriHash={select(
@@ -19,11 +23,11 @@ storiesOf('Modal.TransitionModal', module).add('Basic', () => (
 ))
 
 function UriHashHistoryManipulator({ uriHash }) {
-  const { push } = useHistoryContext()
+  const { show } = useTransitionModal()
 
   return (
-    <button onClick={() => uriHash && push(`transition.${uriHash}`)}>
-      Show
+    <button onClick={() => uriHash && show(uriHash)}>
+      Show [{uriHash}] type
     </button>
   )
 }
