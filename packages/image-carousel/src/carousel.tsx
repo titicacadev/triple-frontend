@@ -11,6 +11,11 @@ export interface CarouselProps extends Partial<FlickingProps> {
   children: React.ReactNode
 }
 
+const CarouselContainer = styled(Container)`
+  img {
+    pointer-events: none;
+  }
+`
 const TopRightControl = styled.div`
   position: absolute;
   top: 0;
@@ -61,8 +66,22 @@ export default class Carousel extends React.PureComponent<
   }
 
   get flickingProps() {
+    const {
+      zIndex,
+      defaultIndex,
+      autoResize,
+      horizontal,
+      bounce,
+      duration,
+    } = this.props
+
     return {
-      ...this.props,
+      zIndex,
+      defaultIndex,
+      autoResize,
+      horizontal,
+      bounce,
+      duration,
       collectStatistics: false,
       onMoveStart: this.handleMoveStart,
       onMove: this.handleMove,
@@ -79,7 +98,7 @@ export default class Carousel extends React.PureComponent<
     }
 
     return (
-      <Container
+      <CarouselContainer
         position="relative"
         margin={margin}
         borderRadius={borderRadius}
@@ -87,7 +106,7 @@ export default class Carousel extends React.PureComponent<
         <Flicking {...this.flickingProps}>{children}</Flicking>
 
         <PageLabel currentIndex={this.state.currentIndex} />
-      </Container>
+      </CarouselContainer>
     )
   }
 }
