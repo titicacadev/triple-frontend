@@ -23,6 +23,7 @@ export function injectContentSource({ regionId, type, id }: ContentSource) {
 
 /**
  * utm 콘텍스트를 generator parameter 값으로 변환합니다.
+ *
  * @param utmContext
  */
 export function injectUTMContext({
