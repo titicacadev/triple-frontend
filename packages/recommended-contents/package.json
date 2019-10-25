@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/recommended-contents",
-  "version": "1.0.0-alpha.40",
+  "version": "1.0.0-alpha.41",
   "description": "Recommended contents list",
   "main": "lib/index.js",
   "files": [
@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
-    "@titicaca/core-elements": "^1.0.0-alpha.40",
-    "@titicaca/intersection-observer": "^1.0.0-alpha.40"
+    "@titicaca/core-elements": "^1.0.0-alpha.41",
+    "@titicaca/intersection-observer": "^1.0.0-alpha.41"
   }
 }
