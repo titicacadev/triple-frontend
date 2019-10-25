@@ -1,4 +1,3 @@
-/* eslint-disable-next-line @typescript-eslint/no-var-requires */
 const glob = require('glob')
 
 module.exports = {
@@ -13,22 +12,24 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|ts|tsx)$/,
+        test: /\.js$/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/env', '@babel/react', '@babel/typescript'],
+            presets: ['@babel/env', '@babel/react'],
             plugins: [
               [
                 'styled-components',
                 { ssr: true, displayName: true, preprocess: false },
               ],
-              ['@babel/plugin-proposal-class-properties'],
+              '@babel/plugin-proposal-class-properties',
+              '@babel/plugin-transform-runtime',
             ],
           },
         },
         resolve: {
-          extensions: ['.js', '.ts', '.tsx'],
+          extensions: ['.js'],
         },
       },
     ],
