@@ -27,10 +27,10 @@ export default function Author({
     name: string
     bio?: string
     image?: any
-    intro?: string
+    intro?: { text?: string; rawHTML?: string }
   }
   bioOverride?: string
-  introOverride?: string
+  introOverride?: { text?: string; rawHTML?: string }
   margin: MarginPadding
 }) {
   return (
