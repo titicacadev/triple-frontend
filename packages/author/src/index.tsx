@@ -33,6 +33,9 @@ export default function Author({
   introOverride?: { text?: string; rawHTML?: string }
   margin: MarginPadding
 }) {
+  const displayedBio = (bioOverride || bio || '').replace('\n', '')
+  const displayedIntro = introOverride || intro
+
   return (
     <Container margin={margin}>
       {image && (
@@ -48,17 +51,20 @@ export default function Author({
           {name}
         </Text>
         <Text size="tiny" color="gray" alpha={0.3} maxLines={1}>
-          {(bioOverride || bio || '').replace('\n', '')}
+          {displayedBio}
         </Text>
       </Container>
-      <TextElement
-        size="small"
-        color="gray"
-        alpha={0.5}
-        lineHeight={1.43}
-        margin={{ top: 21 }}
-        value={introOverride || intro}
-      />
+
+      {displayedIntro && (
+        <TextElement
+          size="small"
+          color="gray"
+          alpha={0.5}
+          lineHeight={1.43}
+          margin={{ top: 21 }}
+          value={displayedIntro}
+        />
+      )}
     </Container>
   )
 }
