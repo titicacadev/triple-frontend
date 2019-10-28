@@ -27,6 +27,7 @@ export default function ReviewsList({
   resourceType,
   resourceId,
   regionId,
+  maxLength,
   notifyReviewDeleted,
   showToast,
 }: {
@@ -38,6 +39,7 @@ export default function ReviewsList({
   resourceType: string
   resourceId: string
   regionId: string
+  maxLength?: number
   notifyReviewDeleted: Function
   showToast: Function
   perPage?: number
@@ -125,31 +127,31 @@ export default function ReviewsList({
     ? (index) => index > reviews.length - 3 && fetchNext()
     : null
 
+  const allReviews = myReview
+    ? [myReview, ...(reviews || []).filter(({ id }) => id !== myReview.id)]
+    : reviews
+
   return (
     <>
       <List margin={margin} divided verticalGap={60}>
-        {(myReview
-          ? [
-              myReview,
-              ...(reviews || []).filter(({ id }) => id !== myReview.id),
-            ]
-          : reviews
-        ).map((review, i) => (
-          <ReviewElement
-            key={review.id}
-            index={i}
-            review={review}
-            onUserClick={handleUserClick}
-            onLikeButtonClick={handleLikeButtonClick}
-            onLikesCountClick={handleLikesCountClick}
-            onMenuClick={handleMenuClick}
-            onImageClick={handleImageClick}
-            likeVisible={!isPublic}
-            menuVisible={!isPublic}
-            DateFormatter={ReviewTimestamp}
-            onShow={handleShow}
-          />
-        ))}
+        {(maxLength ? allReviews.slice(0, maxLength) : allReviews).map(
+          (review, i) => (
+            <ReviewElement
+              key={review.id}
+              index={i}
+              review={review}
+              onUserClick={handleUserClick}
+              onLikeButtonClick={handleLikeButtonClick}
+              onLikesCountClick={handleLikesCountClick}
+              onMenuClick={handleMenuClick}
+              onImageClick={handleImageClick}
+              likeVisible={!isPublic}
+              menuVisible={!isPublic}
+              DateFormatter={ReviewTimestamp}
+              onShow={handleShow}
+            />
+          ),
+        )}
       </List>
 
       <MyReviewActionSheet

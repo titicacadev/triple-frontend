@@ -173,6 +173,7 @@ export default function ReviewContainer({
           </Container>
 
           <ReviewsList
+            maxLength={shortened ? 3 : null}
             myReview={myReview}
             reviews={reviews}
             resourceType={resourceType}
