@@ -4,3 +4,5 @@ export interface Banner {
   image: string
   target: string
 }
+
+export type ContentType = 'article' | 'attraction' | 'hotel' | 'restaurant'
