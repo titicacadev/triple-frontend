@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import fetch from 'isomorphic-fetch'
+import deepEqual from 'deep-equal'
 
 interface FetchStatus {
   data: any
@@ -16,12 +17,22 @@ const createFetchError = (response: Response): Error => {
 
 export function useFetch(url: string, options?: any): FetchStatus {
   const [fetchResponse, setFetchResponse] = useState(null)
+  const [fetchOptions, setFetchOptions] = useState(options)
+
+  useEffect(() => {
+    if (!deepEqual(fetchOptions, options)) {
+      setFetchOptions(options)
+    }
+  }, [options, fetchOptions])
 
   useEffect(() => {
     async function fetchData() {
       setFetchResponse(null)
 
-      const response = await fetch(url, options)
+      const response = await fetch(
+        url,
+        ...(fetchOptions ? [{ ...fetchOptions }] : []),
+      )
 
       try {
         if (response.ok) {
@@ -40,7 +51,7 @@ export function useFetch(url: string, options?: any): FetchStatus {
     }
 
     fetchData()
-  }, [url, options])
+  }, [url, fetchOptions])
 
   return {
     loading: fetchResponse === null,
