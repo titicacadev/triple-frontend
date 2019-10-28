@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@titicaca/action-sheet": "^1.0.0-alpha.46",
+    "@titicaca/ad-banners": "^1.0.0-alpha.46",
     "@titicaca/app-banner": "^1.0.0-alpha.46",
     "@titicaca/app-installation-cta": "^1.0.0-alpha.46",
     "@titicaca/author": "^1.0.0-alpha.46",
