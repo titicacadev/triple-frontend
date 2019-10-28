@@ -19,6 +19,7 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
+    "deep-equal": "^1.1.0",
     "isomorphic-fetch": "^2.2.1"
   }
 }
