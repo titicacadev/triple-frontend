@@ -1,3 +1,5 @@
+import React from 'react'
+
 export interface ReviewProps {
   resourceId: string
   resourceType: string
@@ -9,6 +11,7 @@ export interface ReviewProps {
   deepLink?: string
   appNativeActions: AppNativeActionProps
   sortingOption?: string
+  onReviewWrite?: (e: React.SyntheticEvent, rating?: number) => any
 }
 
 export interface AppNativeActionProps {

@@ -41,6 +41,7 @@ export default function ReviewContainer({
   },
   shortened,
   sortingOption: initialSortingOption = DEFAULT_SORTING_OPTION,
+  onReviewWrite,
 }: ReviewProps) {
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
   const { isPublic } = useUserAgentContext()
@@ -136,7 +137,7 @@ export default function ReviewContainer({
         {shortened ? (
           <WriteIcon
             src="https://assets.triple.guide/images/btn-com-write@2x.png"
-            onClick={handleWriteButtonClick}
+            onClick={onReviewWrite || handleWriteButtonClick}
           />
         ) : null}
 
@@ -163,7 +164,7 @@ export default function ReviewContainer({
         )}
       </Container>
 
-      {(reviewsCount || 0) > 0 ? (
+      {(reviewsCount || 0) > 0 || myReview ? (
         <>
           <Container margin={{ top: 23 }} clearing>
             <SortingOptions
@@ -192,7 +193,7 @@ export default function ReviewContainer({
       ) : (
         <ReviewsPlaceholder
           resourceType={resourceType}
-          onClick={handleWriteButtonClick}
+          onClick={onReviewWrite || handleWriteButtonClick}
         />
       )}
 
