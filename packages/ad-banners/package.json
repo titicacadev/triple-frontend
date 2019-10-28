@@ -1,0 +1,25 @@
+{
+  "name": "@titicaca/ad-banners",
+  "version": "1.0.0-alpha.42",
+  "description": "Image banner list section for POI, hotel, article",
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "scripts": {},
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  }
+}
