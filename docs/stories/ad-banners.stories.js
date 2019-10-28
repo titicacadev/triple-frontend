@@ -1,8 +1,9 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { number } from '@storybook/addon-knobs'
+import { action } from '@storybook/addon-actions'
 
-import AdBanners from '@titicaca/ad-banners'
+import AdBanners from '@titicaca/ad-banners/lib/ad-banners-view'
 
 const banners = [
   {
@@ -32,5 +33,7 @@ storiesOf('AdBanners', module).add('광고 배너 목록', () => (
       top: number('배너 위쪽 마진'),
       bottom: number('배너 아래쪽 마진'),
     }}
+    onClickBanner={action('onClick banner')}
+    onIntersectingBanner={action('onIntersecting banner')}
   />
 ))

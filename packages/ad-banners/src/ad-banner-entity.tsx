@@ -7,8 +7,8 @@ import { Banner } from './typing'
 
 interface AdBannerEntityProps {
   banner: Banner
-  onClick: () => void
-  onChangeIsIntersecting: (isIntersecting: boolean) => void
+  onClick: (banner: Banner) => void
+  onChangeIsIntersecting: (isIntersecting: boolean, banner: Banner) => void
   margin?: MarginPadding
 }
 
@@ -25,10 +25,17 @@ const AdBannerEntity: FC<AdBannerEntityProps> = ({
   onChangeIsIntersecting,
   margin,
 }) => {
+  const handleIntersectionChange = (isIntersecting: boolean) => {
+    onChangeIsIntersecting(isIntersecting, banner)
+  }
+  const handleBannerClick = () => {
+    onClick(banner)
+  }
+
   return (
-    <IntersectionObserver threshold={0.5} onChange={onChangeIsIntersecting}>
+    <IntersectionObserver threshold={0.5} onChange={handleIntersectionChange}>
       <Container margin={margin}>
-        <BannerImage src={banner.image} onClick={onClick} />
+        <BannerImage src={banner.image} onClick={handleBannerClick} />
       </Container>
     </IntersectionObserver>
   )
