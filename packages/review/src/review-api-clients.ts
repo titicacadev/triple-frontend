@@ -37,6 +37,10 @@ export async function fetchMyReview({ resourceType, resourceId }) {
     { credentials: 'same-origin' },
   )
 
+  if (response.status === 401) {
+    return null
+  }
+
   if (!response.ok) {
     throw new Error(`Failed to fetch my reviews: ${response.status}`)
   }
