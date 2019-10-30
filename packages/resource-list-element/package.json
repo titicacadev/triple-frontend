@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/resource-list-element",
-  "version": "1.0.0-alpha.45",
+  "version": "1.0.0-alpha.46",
   "description": "Triple - resource-list-element",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,9 +15,9 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^1.0.0-alpha.45",
-    "@titicaca/pricing": "^1.0.0-alpha.45",
-    "@titicaca/scrap-button": "^1.0.0-alpha.45",
-    "@titicaca/view-utilities": "^1.0.0-alpha.45"
+    "@titicaca/core-elements": "^1.0.0-alpha.46",
+    "@titicaca/pricing": "^1.0.0-alpha.46",
+    "@titicaca/scrap-button": "^1.0.0-alpha.46",
+    "@titicaca/view-utilities": "^1.0.0-alpha.46"
   }
 }
