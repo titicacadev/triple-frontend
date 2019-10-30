@@ -86,8 +86,7 @@ const AdBanners: FC<AdBannersProps> = ({
       }
     }
     // HACK: 최초 한 번만 실행
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleBannerIntersecting = (
     isIntersecting: boolean,
