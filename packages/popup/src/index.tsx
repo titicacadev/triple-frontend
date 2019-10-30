@@ -37,14 +37,14 @@ export default function Popup({
   onClose,
   children,
   title,
-  isIOS = false,
+  isIOS,
 }: {
   open: boolean
   borderless?: boolean
   onClose: (e: SyntheticEvent) => void
   children: ReactNode
   title?: string
-  isIOS?: boolean
+  isIOS: boolean
 }) {
   const lockedContainer = createRef()
 
