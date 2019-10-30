@@ -7,10 +7,11 @@
 ```typescript
 import Popup from '@titicaca/popup'
 
-return
-<Popup open={open} onClose={onClose} borderless osName="window">
-  {children}
-</Popup>
+return (
+  <Popup open={open} onClose={onClose} borderless osName="window">
+    {children}
+  </Popup>
+)
 ```
 
 ## Parameter
