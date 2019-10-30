@@ -16,6 +16,7 @@ interface GeneratorParams {
   path: string
 
   // one link parameter에 들어가는 값
+  pid?: string
   campaign?: string
   adSet?: string
   ad?: string
@@ -32,18 +33,18 @@ type DeepLinkGenerator = (params: GeneratorParams) => string
  * @param webURLBase
  */
 export function makeDeepLinkGenerator({
-  oneLinkParams: { subdomain, id, pid },
+  oneLinkParams: { subdomain, id, pid: defaultPID },
   appScheme,
   webURLBase,
 }: FactoryParams): DeepLinkGenerator {
-  return ({ path, campaign, adSet, ad, channel }) => {
+  return ({ path, pid, campaign, adSet, ad, channel }) => {
     const appLink = generateUrl({ scheme: appScheme, path })
 
     /* eslint-disable @typescript-eslint/camelcase */
     const query = qs.stringify({
       af_dp: appLink,
       af_web_dp: webURLBase || appLink,
-      pid,
+      pid: pid || defaultPID,
 
       c: campaign,
       f_adset: adSet,
