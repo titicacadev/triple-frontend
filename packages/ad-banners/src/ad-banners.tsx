@@ -18,10 +18,7 @@ type TrackEvent = (banner: Banner, index: number) => void
 interface AdBannersProps {
   contentType: ContentType
   contentId: string
-  regionId: string
-
-  contentTitle: string
-  poiId: string
+  regionId?: string
 
   padding?: MarginPadding
   bannerMargin?: MarginPadding
