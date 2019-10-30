@@ -20,4 +20,4 @@ return
 - onClose: 닫기 버튼을 눌렀을 때의 이벤트 입니다. (required)
 - children: 팝업에서 그릴 `ReactNode`입니다. (required)
 - title: Navbar의 제목입니다. (optional, default: undefined)
-- isIOS: `userAgentContext`에서 가져온 osName이 `iOS` 인지 여부를 넘겨주면 됩니다. (optional, default: false)
+- isIOS: `userAgentContext`에서 가져온 osName이 `iOS` 인지 여부를 넘겨주면 됩니다. (required)
