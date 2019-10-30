@@ -21,6 +21,7 @@ interface GeneratorParams {
   adSet?: string
   ad?: string
   channel?: string
+  partner?: string
 }
 
 type DeepLinkGenerator = (params: GeneratorParams) => string
@@ -37,7 +38,7 @@ export function makeDeepLinkGenerator({
   appScheme,
   webURLBase,
 }: FactoryParams): DeepLinkGenerator {
-  return ({ path, pid, campaign, adSet, ad, channel }) => {
+  return ({ path, pid, campaign, adSet, ad, channel, partner }) => {
     const appLink = generateUrl({ scheme: appScheme, path })
 
     /* eslint-disable @typescript-eslint/camelcase */
@@ -50,6 +51,7 @@ export function makeDeepLinkGenerator({
       f_adset: adSet,
       af_ad: ad,
       af_channel: channel,
+      af_prt: partner,
     })
     /* eslint-enable @typescript-eslint/camelcase */
 
