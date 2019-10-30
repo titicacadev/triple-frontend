@@ -17,6 +17,11 @@ declare global {
   }
 }
 
+interface EventAttributes {
+  title?: string
+  poiId?: string
+}
+
 interface AdBannersProps {
   contentType: ContentType
   contentId: string
@@ -24,8 +29,7 @@ interface AdBannersProps {
 
   padding?: MarginPadding
 
-  contentTitle?: string
-  poiId?: string
+  eventAttributes?: EventAttributes
 }
 
 const AdBanners: FC<AdBannersProps> = ({
@@ -33,10 +37,9 @@ const AdBanners: FC<AdBannersProps> = ({
   contentId,
   regionId,
 
-  contentTitle,
-  poiId,
-
   padding,
+
+  eventAttributes: { title, poiId } = {},
 }) => {
   const { latitude, longitude } = useDeviceContext()
   const { trackEvent } = useEventTrackingContext()
@@ -126,7 +129,7 @@ const AdBanners: FC<AdBannersProps> = ({
       },
       ga: [
         'V0_배너선택',
-        `${contentTitle}_${poiId}_${banner.id}_${banner.desc}_${banner.target}`,
+        `${title}_${poiId}_${banner.id}_${banner.desc}_${banner.target}`,
       ],
     })
     /* eslint-enable @typescript-eslint/camelcase */
