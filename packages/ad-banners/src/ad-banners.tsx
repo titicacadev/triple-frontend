@@ -21,7 +21,6 @@ interface AdBannersProps {
   regionId?: string
 
   padding?: MarginPadding
-  bannerMargin?: MarginPadding
 
   trackEvent?: {
     onImpress?: TrackEvent
@@ -37,7 +36,6 @@ const AdBanners: FC<AdBannersProps> = ({
   regionId,
 
   padding,
-  bannerMargin,
 
   trackEvent: { onImpress, onClick } = {
     onImpress: NOOP,
@@ -119,7 +117,6 @@ const AdBanners: FC<AdBannersProps> = ({
     <AdBannersView
       banners={banners}
       padding={padding}
-      bannerMargin={bannerMargin}
       onClickBanner={handleBannerClick}
       onIntersectingBanner={handleBannerIntersecting}
     />
