@@ -10,6 +10,9 @@ interface UTMContext {
   campaign: string
   term?: string
   content?: string
+
+  // utm 명세가 아닌 custom 속성
+  prt?: string
 }
 
 /**
@@ -31,6 +34,7 @@ export function injectUTMContext({
   medium,
   campaign,
   term,
+  prt,
 }: Partial<UTMContext> = {}) {
   const adProvider = source && medium ? `${source}_${medium}` : undefined
 
@@ -38,5 +42,6 @@ export function injectUTMContext({
     ...(campaign ? { campaign } : {}),
     ...(adProvider ? { adSet: adProvider, channel: adProvider } : {}),
     ...(term ? { ad: term } : {}),
+    ...(prt ? { partner: prt } : {}),
   }
 }
