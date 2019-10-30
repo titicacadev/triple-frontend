@@ -1,6 +1,10 @@
 import React, { FC, useState, useEffect } from 'react'
 import { MarginPadding } from '@titicaca/core-elements'
-import { useDeviceContext, useHistoryContext } from '@titicaca/react-contexts'
+import {
+  useDeviceContext,
+  useEventTrackingContext,
+  useHistoryContext,
+} from '@titicaca/react-contexts'
 
 import AdBannersView from './ad-banners-view'
 import { postAdBannerEvent, getAdBanners } from './api'
@@ -13,8 +17,6 @@ declare global {
   }
 }
 
-type TrackEvent = (banner: Banner, index: number) => void
-
 interface AdBannersProps {
   contentType: ContentType
   contentId: string
@@ -22,27 +24,22 @@ interface AdBannersProps {
 
   padding?: MarginPadding
 
-  trackEvent?: {
-    onImpress?: TrackEvent
-    onClick?: TrackEvent
-  }
+  contentTitle?: string
+  poiId?: string
 }
-
-const NOOP = () => {}
 
 const AdBanners: FC<AdBannersProps> = ({
   contentType,
   contentId,
   regionId,
 
-  padding,
+  contentTitle,
+  poiId,
 
-  trackEvent: { onImpress, onClick } = {
-    onImpress: NOOP,
-    onClick: NOOP,
-  },
+  padding,
 }) => {
   const { latitude, longitude } = useDeviceContext()
+  const { trackEvent } = useEventTrackingContext()
   const { navigate } = useHistoryContext()
   const [banners, setBanners] = useState([])
 
@@ -98,7 +95,17 @@ const AdBanners: FC<AdBannersProps> = ({
       ...baseEventParams,
     })
 
-    onImpress(banner, index)
+    /* eslint-disable @typescript-eslint/camelcase */
+    trackEvent({
+      fa: {
+        action: 'V0_배너노출',
+        banner_id: banner.id,
+        banner_position: index,
+        url: banner.target,
+        poi_id: poiId,
+      },
+    })
+    /* eslint-enable @typescript-eslint/camelcase */
   }
 
   const handleBannerClick = (banner: Banner, index: number) => {
@@ -108,7 +115,21 @@ const AdBanners: FC<AdBannersProps> = ({
       ...baseEventParams,
     })
 
-    onClick(banner, index)
+    /* eslint-disable @typescript-eslint/camelcase */
+    trackEvent({
+      fa: {
+        action: 'V0_배너선택',
+        banner_id: banner.id,
+        banner_position: index,
+        url: banner.target,
+        poi_id: poiId,
+      },
+      ga: [
+        'V0_배너선택',
+        `${contentTitle}_${poiId}_${banner.id}_${banner.desc}_${banner.target}`,
+      ],
+    })
+    /* eslint-enable @typescript-eslint/camelcase */
 
     navigate(banner.target)
   }
