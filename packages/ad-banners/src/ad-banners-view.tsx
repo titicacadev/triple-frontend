@@ -7,7 +7,6 @@ import { Banner } from './typing'
 interface AdBannersViewProps {
   banners: Banner[]
   padding?: MarginPadding
-  bannerMargin?: MarginPadding
   onClickBanner: (banner: Banner, index: number) => void
   onIntersectingBanner: (
     isIntersecting: boolean,
@@ -19,7 +18,6 @@ interface AdBannersViewProps {
 const AdBannersView: FC<AdBannersViewProps> = ({
   banners,
   padding,
-  bannerMargin,
   onIntersectingBanner,
   onClickBanner,
 }) => {
@@ -46,7 +44,6 @@ const AdBannersView: FC<AdBannersViewProps> = ({
           banner={banner}
           onClick={makeBannerClickHandler(index)}
           onChangeIsIntersecting={makeBannerIntersectingHandler(index)}
-          margin={bannerMargin}
         />
       ))}
     </Section>

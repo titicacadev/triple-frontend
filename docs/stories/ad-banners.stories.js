@@ -29,10 +29,6 @@ storiesOf('AdBanners', module).add('광고 배너 목록', () => (
       left: number('섹션 왼쪽 패딩'),
       right: number('섹션 오른쪽 패딩'),
     }}
-    bannerMargin={{
-      top: number('배너 위쪽 마진'),
-      bottom: number('배너 아래쪽 마진'),
-    }}
     onClickBanner={action('onClick banner')}
     onIntersectingBanner={action('onIntersecting banner')}
   />
