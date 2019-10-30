@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import fetch from 'isomorphic-fetch'
-import deepEqual from 'deep-equal'
+import isEqual from 'react-fast-compare'
 
 interface FetchStatus {
   data: any
@@ -20,7 +20,7 @@ export function useFetch(url: string, options?: any): FetchStatus {
   const [fetchOptions, setFetchOptions] = useState(options)
 
   useEffect(() => {
-    if (!deepEqual(fetchOptions, options)) {
+    if (!isEqual(fetchOptions, options)) {
       setFetchOptions(options)
     }
   }, [options, fetchOptions])
