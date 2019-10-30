@@ -12,7 +12,8 @@ const InputText = styled(InputMask)`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: calc(100% - 68px);
+  width: calc(100% - 80px);
+  outline: none;
 `
 
 const MainNavbarFrame = styled(Navbar.NavbarFrame)`
