@@ -13,6 +13,9 @@ interface UTMQuery {
   utmCampaign?: string
   utmTerm?: string
   utmContent?: string
+
+  // utm parameter 명세가 아닌 custom query
+  prt?: string
 }
 
 interface UTMContextValue {
@@ -21,6 +24,7 @@ interface UTMContextValue {
   campaign: string
   term?: string
   content?: string
+  partner?: string
 }
 
 /**
@@ -38,6 +42,7 @@ export function extractUTMContextFromQuery({
   utmCampaign,
   utmTerm,
   utmContent,
+  prt,
 }: UTMQuery): UTMContextValue {
   const source = utm_source || utmSource || ''
   const medium = utm_medium || utmMedium || ''
@@ -51,6 +56,7 @@ export function extractUTMContextFromQuery({
     campaign,
     term,
     content,
+    partner: prt,
   }
 }
 /* eslint-enable @typescript-eslint/camelcase */
