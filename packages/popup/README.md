@@ -8,7 +8,7 @@
 import Popup from '@titicaca/popup'
 
 return
-;<Popup open={open} onClose={onClose} borderless osName="window">
+<Popup open={open} onClose={onClose} borderless osName="window">
   {children}
 </Popup>
 ```
