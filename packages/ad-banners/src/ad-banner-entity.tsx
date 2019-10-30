@@ -14,7 +14,6 @@ interface AdBannerEntityProps {
 const BannerImage = styled.img`
   border-radius: 6px;
   width: 100%;
-  margin-top: 10px;
   vertical-align: top;
 `
 
@@ -32,7 +31,7 @@ const AdBannerEntity: FC<AdBannerEntityProps> = ({
 
   return (
     <IntersectionObserver threshold={0.5} onChange={handleIntersectionChange}>
-      <Container>
+      <Container margin={{ top: 10 }}>
         <BannerImage src={banner.image} onClick={handleBannerClick} />
       </Container>
     </IntersectionObserver>
