@@ -3,7 +3,7 @@ import qs from 'querystring'
 
 export type ContentType = 'article' | 'attraction' | 'hotel' | 'restaurant'
 
-interface GetAdBannersParams {
+interface AdBannersFetchingParams {
   contentType: ContentType
   contentId: string
   regionId?: string
@@ -13,7 +13,7 @@ interface GetAdBannersParams {
   }
 }
 
-interface PostAdBannerEventParams {
+interface AdBannerEventPostingParams {
   contentType: ContentType
   contentId: string
   itemId: string
@@ -38,7 +38,7 @@ export async function getAdBanners({
   contentId,
   regionId,
   userLocation: { latitude, longitude } = {},
-}: GetAdBannersParams) {
+}: AdBannersFetchingParams) {
   /* eslint-disable @typescript-eslint/camelcase */
   const search = qs.stringify({
     ...(regionId ? { region_id: regionId } : {}),
@@ -80,7 +80,7 @@ export async function postAdBannerEvent({
   eventType,
   regionId,
   userLocation: { latitude, longitude },
-}: PostAdBannerEventParams) {
+}: AdBannerEventPostingParams) {
   const payload = {
     eventType,
     regionId,
