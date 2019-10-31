@@ -50,12 +50,17 @@ const Icon = styled.span`
   background-image: url('https://assets.triple.guide/images/ico-category-select@3x.png');
 `
 
+interface SelectOption {
+  label: string
+  value: any
+}
+
 interface SelectProps {
   name?: string
   value?: any
   onChange?: (e?: React.SyntheticEvent, value?: any) => any
   placeholder?: string
-  options?: [{ label: string; value: any }]
+  options?: SelectOption[]
   focus?: boolean
   error?: boolean
   onBlur?: (e?: React.SyntheticEvent) => any
