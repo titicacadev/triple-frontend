@@ -7,17 +7,18 @@ interface UserAgentProps {
     name: string
     version: string
   }
+  app: {
+    name: string
+    version: string
+  } | null
 }
 
 const Context = createContext({
   isPublic: false,
   os: { name: '', version: '' },
+  app: { name: '', version: '' },
 })
 const { Provider, Consumer } = Context
-
-function isPublic(userAgent: string): boolean {
-  return !userAgent || !userAgent.match(/Triple-(iOS|Android)/i)
-}
 
 export function withUserAgent(Component: React.ElementType) {
   return function UserAgentComponent(props: any) {
@@ -38,8 +39,28 @@ export function useUserAgentContext() {
 }
 
 export function generateUserAgentValues(userAgent: string) {
+  const app = parseApp(userAgent)
   return {
-    isPublic: isPublic(userAgent),
+    isPublic: !app,
     os: new UAParser(userAgent).getOS(),
+    app,
   }
+}
+
+function parseApp(
+  userAgent: string,
+): {
+  name: 'Triple-iOS' | 'Triple-Android'
+  version: string
+} | null {
+  const matchData = userAgent.match(/Triple-(iOS|Android)\/([^ ]+)/i)
+
+  if (matchData) {
+    return {
+      name: `Triple-${matchData[1]}` as any,
+      version: matchData[2] || 'unknown',
+    }
+  }
+
+  return null
 }
