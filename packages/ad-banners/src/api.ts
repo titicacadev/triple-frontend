@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import qs from 'querystring'
 
-import { ContentType } from './typing'
+export type ContentType = 'article' | 'attraction' | 'hotel' | 'restaurant'
 
 interface GetAdBannersParams {
   contentType: ContentType

@@ -7,8 +7,8 @@ import {
 } from '@titicaca/react-contexts'
 
 import AdBannersView from './ad-banners-view'
-import { postAdBannerEvent, getAdBanners } from './api'
-import { ContentType, Banner } from './typing'
+import { ContentType, postAdBannerEvent, getAdBanners } from './api'
+import { Banner } from './typing'
 
 declare global {
   interface Window {
