@@ -43,6 +43,7 @@ export default function ReviewContainer({
   shortened,
   sortingOption: initialSortingOption = DEFAULT_SORTING_OPTION,
   onReviewWrite,
+  onReviewDelete,
   onFullListButtonClick,
 }: ReviewProps) {
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
@@ -223,6 +224,7 @@ export default function ReviewContainer({
           myReview && reviewId === myReview.id && setMyReview(null)
           notifyReviewDeleted(resourceId, reviewId)
         }}
+        onReviewDelete={onReviewDelete}
       />
     </Section>
   )
