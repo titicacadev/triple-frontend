@@ -9,9 +9,7 @@ import {
 import { useTransitionModal, TransitionType } from '@titicaca/modals'
 import ReviewElement from './review-element'
 import ReviewTimestamp from './review-timestamp'
-import MyReviewActionSheet, {
-  HASH_MY_REVIEW_ACTION_SHEET,
-} from './my-review-action-sheet'
+import { HASH_MY_REVIEW_ACTION_SHEET } from './my-review-action-sheet'
 import OthersReviewActionSheet, {
   HASH_REVIEW_ACTION_SHEET,
 } from './others-review-action-sheet'
@@ -28,7 +26,6 @@ export default function ReviewsList({
   resourceId,
   regionId,
   maxLength,
-  notifyReviewDeleted,
   showToast,
 }: {
   myReview?: any
@@ -40,7 +37,6 @@ export default function ReviewsList({
   resourceId: string
   regionId: string
   maxLength?: number
-  notifyReviewDeleted: Function
   showToast: Function
   perPage?: number
 }) {
@@ -153,15 +149,6 @@ export default function ReviewsList({
           ),
         )}
       </List>
-
-      <MyReviewActionSheet
-        myReview={myReview}
-        appUrlScheme={appUrlScheme}
-        regionId={regionId}
-        resourceType={resourceType}
-        resourceId={resourceId}
-        notifyReviewDeleted={notifyReviewDeleted}
-      />
 
       <OthersReviewActionSheet
         appUrlScheme={appUrlScheme}
