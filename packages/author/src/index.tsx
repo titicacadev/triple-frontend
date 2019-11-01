@@ -14,6 +14,7 @@ const TextElement = styled(OriginTextElement)`
   a {
     font-weight: 500;
     color: rgba(${GetGlobalColor('gray')}, 0.5);
+    font-size: inherit;
   }
 `
 
