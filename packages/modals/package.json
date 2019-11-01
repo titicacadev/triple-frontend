@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/modals",
-  "version": "1.0.0-alpha.47",
+  "version": "1.0.0-alpha.48",
   "description": "Triple modal dialog components",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,7 +15,7 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^1.0.0-alpha.47",
-    "@titicaca/react-contexts": "^1.0.0-alpha.47"
+    "@titicaca/core-elements": "^1.0.0-alpha.48",
+    "@titicaca/react-contexts": "^1.0.0-alpha.48"
   }
 }
