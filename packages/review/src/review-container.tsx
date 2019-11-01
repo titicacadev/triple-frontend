@@ -17,6 +17,7 @@ import ReviewsList from './reviews-list'
 import { ReviewProps } from './types'
 import SortingOptions, { DEFAULT_SORTING_OPTION } from './sorting-options'
 import usePaging from './use-paging'
+import MyReviewActionSheet from './my-review-action-sheet'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
@@ -183,10 +184,6 @@ export default function ReviewContainer({
             appUrlScheme={appUrlScheme}
             margin={{ top: 30 }}
             resourceId={resourceId}
-            notifyReviewDeleted={(resourceId, reviewId) => {
-              myReview && reviewId === myReview.id && setMyReview(null)
-              notifyReviewDeleted(resourceId, reviewId)
-            }}
             showToast={showToast}
             fetchNext={!shortened && fetchNext}
           />
@@ -215,6 +212,18 @@ export default function ReviewContainer({
           </Button>
         </Container>
       ) : null}
+
+      <MyReviewActionSheet
+        myReview={myReview}
+        appUrlScheme={appUrlScheme}
+        regionId={regionId}
+        resourceType={resourceType}
+        resourceId={resourceId}
+        notifyReviewDeleted={(resourceId, reviewId) => {
+          myReview && reviewId === myReview.id && setMyReview(null)
+          notifyReviewDeleted(resourceId, reviewId)
+        }}
+      />
     </Section>
   )
 }
