@@ -12,7 +12,10 @@ export interface ReviewProps {
   appNativeActions: AppNativeActionProps
   sortingOption?: string
   onReviewWrite?: (e: React.SyntheticEvent, rating?: number) => any
-  onFullListButtonClick?: (e: React.SyntheticEvent) => void
+  onFullListButtonClick?: (
+    e: React.SyntheticEvent,
+    sortingOption?: string,
+  ) => void
 }
 
 export interface AppNativeActionProps {

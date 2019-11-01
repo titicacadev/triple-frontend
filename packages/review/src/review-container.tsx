@@ -205,7 +205,11 @@ export default function ReviewContainer({
             fluid
             compact
             size="small"
-            onClick={onFullListButtonClick || handleFullListButtonClick}
+            onClick={
+              onFullListButtonClick
+                ? (e) => onFullListButtonClick(e, sortingOption)
+                : handleFullListButtonClick
+            }
           >
             {reviewsCount - 3}개 리뷰 더보기
           </Button>
