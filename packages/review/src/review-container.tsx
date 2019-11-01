@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import styled from 'styled-components'
 import { Section, Container, Text, Button } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
@@ -48,10 +48,21 @@ export default function ReviewContainer({
 }: ReviewProps) {
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
   const { isPublic } = useUserAgentContext()
-  const [myReview, setMyReview] = useState(undefined)
+  const [[myReview, myReviewIds], setMyReviewStatus] = useState<
+    [any, Set<string>]
+  >([undefined, new Set([])])
   const [reviewsCount, setReviewsCount] = useState(initialReviewsCount)
   const { navigate } = useHistoryContext()
   const { show } = useTransitionModal()
+
+  const setMyReview = useCallback(
+    (review) =>
+      setMyReviewStatus(([, ids]) => [
+        review,
+        review ? new Set<string>([String(review.id), ...ids]) : ids,
+      ]),
+    [setMyReviewStatus],
+  )
 
   useEffect(() => {
     const refreshMyReview = async (params?: { id: string }) => {
@@ -131,7 +142,7 @@ export default function ReviewContainer({
     sortingOption,
     resourceId,
     resourceType,
-    perPage: shortened ? 3 : 20,
+    perPage: shortened ? 4 : 20,
   })
 
   return (
@@ -179,7 +190,7 @@ export default function ReviewContainer({
           <ReviewsList
             maxLength={shortened ? 3 : null}
             myReview={myReview}
-            reviews={reviews}
+            reviews={reviews.filter((review) => !myReviewIds.has(review.id))}
             resourceType={resourceType}
             regionId={regionId}
             appUrlScheme={appUrlScheme}

@@ -123,9 +123,7 @@ export default function ReviewsList({
     ? (index) => index > reviews.length - 3 && fetchNext()
     : null
 
-  const allReviews = myReview
-    ? [myReview, ...(reviews || []).filter(({ id }) => id !== myReview.id)]
-    : reviews
+  const allReviews = myReview ? [myReview, ...(reviews || [])] : reviews
 
   return (
     <>
