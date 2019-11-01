@@ -42,6 +42,7 @@ export default function ReviewContainer({
   shortened,
   sortingOption: initialSortingOption = DEFAULT_SORTING_OPTION,
   onReviewWrite,
+  onFullListButtonClick,
 }: ReviewProps) {
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
   const { isPublic } = useUserAgentContext()
@@ -204,7 +205,7 @@ export default function ReviewContainer({
             fluid
             compact
             size="small"
-            onClick={handleFullListButtonClick}
+            onClick={onFullListButtonClick || handleFullListButtonClick}
           >
             {reviewsCount - 3}개 리뷰 더보기
           </Button>
