@@ -19,6 +19,7 @@ export default function MyReviewActionSheet({
   resourceType,
   resourceId,
   notifyReviewDeleted,
+  onReviewEdit,
   onReviewDelete,
 }) {
   const { uriHash, replace, back } = useHistoryContext()
@@ -54,7 +55,10 @@ export default function MyReviewActionSheet({
         open={uriHash === HASH_MY_REVIEW_ACTION_SHEET}
         onClose={back}
       >
-        <ActionSheet.Item icon="review" onClick={handleEditMenuClick}>
+        <ActionSheet.Item
+          icon="review"
+          onClick={onReviewEdit || handleEditMenuClick}
+        >
           수정하기
         </ActionSheet.Item>
         <ActionSheet.Item icon="delete" onClick={handleDeleteMenuClick}>
