@@ -69,7 +69,9 @@ export default function MyReviewActionSheet({
       <Confirm
         open={uriHash === HASH_DELETION_MODAL}
         onClose={back}
-        onConfirm={(e) => onReviewDelete(e, myReview.id) || deleteReview}
+        onConfirm={
+          onReviewDelete ? (e) => onReviewDelete(e, myReview.id) : deleteReview
+        }
       >
         삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.
       </Confirm>
