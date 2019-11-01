@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/react-contexts",
-  "version": "1.0.0-alpha.48",
+  "version": "1.0.0-alpha.49",
   "description": "React context modules for triple web applications",
   "main": "lib/index.js",
   "files": [
@@ -12,7 +12,7 @@
     "test": "mocha --require ts-node/register ./src/**/*.spec.ts"
   },
   "dependencies": {
-    "@titicaca/view-utilities": "^1.0.0-alpha.48",
+    "@titicaca/view-utilities": "^1.0.0-alpha.49",
     "humps": "^2.0.1",
     "qs": "^6.7.0",
     "ua-parser-js": "^0.7.20"
