@@ -100,6 +100,14 @@ interface PromoLabelProps {
   margin?: MarginPadding
 }
 
+function getRGB(rgba: string[] | number[]) {
+  return rgba.slice(0, 3).join(',')
+}
+
+function getRGBA(rgba: string[] | number[]) {
+  return rgba.join(',')
+}
+
 export const PromoLabel = styled.div<PromoLabelProps>`
   display: inline-block;
 
@@ -113,11 +121,14 @@ export const PromoLabel = styled.div<PromoLabelProps>`
     emphasized
       ? css`
           font-weight: bold;
-          background-color: rgba(
-            ${({ color }) =>
-              LABEL_COLORS[color].background.slice(0, 3).join(',')},
-            1
-          );
+            ${({ color }) => {
+              const {
+                [color]: { background },
+              } = LABEL_COLORS
+              return css`
+                background-color: rgba(${getRGB(background)}, 1);
+              `
+            }}
           color: rgba(${GetGlobalColor('white')}, 1);
         `
       : css`
@@ -127,8 +138,8 @@ export const PromoLabel = styled.div<PromoLabelProps>`
               [color]: { background, text },
             } = LABEL_COLORS
             return css`
-              background-color: rgba(${background.join(',')});
-              color: rgba(${text.join(',')});
+              background-color: rgba(${getRGBA(background)});
+              color: rgba(${getRGBA(text)});
             `
           }}
         `};
