@@ -8,7 +8,7 @@ const InputText = styled(InputMask)`
   border-style: none;
   font-size: 17px;
   height: 19px;
-  margin: 6px 34px 0 38px;
+  margin: 6px 34px 0 40px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -25,7 +25,7 @@ const MainNavbarFrame = styled(Navbar.NavbarFrame)`
 
 const Back = styled(Navbar.Item)`
   float: none;
-  margin-right: 4px;
+  margin-right: 6px;
   position: absolute;
 `
 
