@@ -8,7 +8,7 @@ const InputText = styled(InputMask)`
   border-style: none;
   font-size: 17px;
   height: 19px;
-  margin: 6px 34px 0 34px;
+  margin: 6px 34px 0 38px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -25,7 +25,7 @@ const MainNavbarFrame = styled(Navbar.NavbarFrame)`
 
 const Back = styled(Navbar.Item)`
   float: none;
-  margin-right: 0px;
+  margin-right: 4px;
   position: absolute;
 `
 
@@ -52,7 +52,7 @@ export default function SearchNavbar({
 } & InputState &
   MaskOptions) {
   return (
-    <MainNavbarFrame>
+    <MainNavbarFrame borderless>
       <Back icon="back" onClick={onBackClick} />
       <InputText
         placeholder={inputPlaceholder}
