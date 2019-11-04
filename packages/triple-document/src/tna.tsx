@@ -73,7 +73,7 @@ export class TnaProductsList extends React.PureComponent<{
   state = { products: [], showMore: false, title: '' }
 
   componentDidMount() {
-    this.fetchProducts()
+    this.props.onTNAProductsFetch && this.fetchProducts()
   }
 
   fetchProducts = async () => {
