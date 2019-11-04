@@ -13,9 +13,11 @@ export function parseUrl(rawHref?: string): UrlElements {
   }
 
   const [href = '', scheme = '', host = '', path = '', query = '', hash = ''] =
-    rawHref.match(
-      /^(?:([^:/?#]*):\/\/)?([^/?#]*)(\/[^?#]*)?(?:\?([^#]*))?(?:#(.*))?/,
-    ) || []
+    rawHref
+      .trim()
+      .match(
+        /^(?:([^:/?#]*):\/\/)?([^/?#]*)(\/[^?#]*)?(?:\?([^#]*))?(?:#(.*))?/,
+      ) || []
 
   return { href, scheme, host, path, query, hash }
 }
