@@ -1,22 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
-
-import {
-  Container,
-  Text,
-  Image,
-  GetGlobalColor,
-  MarginPadding,
-} from '@titicaca/core-elements'
-import { TextElement as OriginTextElement } from '@titicaca/triple-document'
-
-const TextElement = styled(OriginTextElement)`
-  a {
-    font-weight: 500;
-    color: rgba(${GetGlobalColor('gray')}, 0.5);
-    font-size: inherit;
-  }
-`
+import { Container, Text, Image, MarginPadding } from '@titicaca/core-elements'
+import TextElement from './text-element'
 
 export default function Author({
   source: { name, bio, image, intro },
@@ -56,16 +40,7 @@ export default function Author({
         </Text>
       </Container>
 
-      {displayedIntro && (
-        <TextElement
-          size="small"
-          color="gray"
-          alpha={0.5}
-          lineHeight={1.43}
-          margin={{ top: 21 }}
-          value={displayedIntro}
-        />
-      )}
+      {displayedIntro && <TextElement value={displayedIntro} />}
     </Container>
   )
 }
