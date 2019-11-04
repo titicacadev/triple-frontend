@@ -10,7 +10,7 @@ import {
 
 export type LabelColor = GlobalColors | 'purple'
 
-type Color = (number | string)[]
+type Color = number[] | string[]
 
 const LABEL_COLORS: Partial<
   Record<LabelColor, { background: Color; text: Color }>
