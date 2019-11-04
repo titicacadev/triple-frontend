@@ -13,7 +13,11 @@ const Html = styled.div`
   }
 `
 
-export default function AuthorIntro({ value: { rawHTML, text } }: any) {
+export default function AuthorIntro({
+  value: { rawHTML, text },
+}: {
+  value: { text?: string; rawHTML?: string }
+}) {
   if (rawHTML) {
     return <Html dangerouslySetInnerHTML={{ __html: rawHTML }} />
   }
