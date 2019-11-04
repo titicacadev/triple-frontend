@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Text, Image, MarginPadding } from '@titicaca/core-elements'
-import TextElement from './text-element'
+import AuthorIntro from './author-intro'
 
 export default function Author({
   source: { name, bio, image, intro },
@@ -40,7 +40,7 @@ export default function Author({
         </Text>
       </Container>
 
-      {displayedIntro && <TextElement value={displayedIntro} />}
+      {displayedIntro && <AuthorIntro value={displayedIntro} />}
     </Container>
   )
 }
