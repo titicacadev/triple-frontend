@@ -21,5 +21,9 @@ export default function TextElement(props: any) {
   if (rawHTML) {
     return <AuthorIntro dangerouslySetInnerHTML={{ __html: rawHTML }} />
   }
-  return <Text>{text}</Text>
+  return (
+    <Text alpha={0.5} size={14} line-height={1.43} margin={{ top: 21 }}>
+      {text}
+    </Text>
+  )
 }
