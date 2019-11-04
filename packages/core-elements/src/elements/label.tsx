@@ -118,7 +118,7 @@ export const PromoLabel = styled.div<PromoLabelProps>`
               LABEL_COLORS[color].background.slice(0, 3).join(',')},
             1
           );
-          color: white;
+          color: rgba(${GetGlobalColor('white')}, 1);
         `
       : css`
           font-weight: normal;
