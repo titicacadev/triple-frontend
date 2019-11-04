@@ -186,6 +186,23 @@ describe('parseUrl', function() {
       },
     )
   })
+
+  it('should trim passed url before parsing', function() {
+    assert.deepStrictEqual(
+      parseUrl(
+        ' https://triple.guide/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3\t ',
+      ),
+      {
+        href:
+          'https://triple.guide/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
+        scheme: 'https',
+        host: 'triple.guide',
+        path: '/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
+        query: '',
+        hash: '',
+      },
+    )
+  })
 })
 
 describe('generateUrl', function() {
