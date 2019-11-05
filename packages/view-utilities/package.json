@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/view-utilities",
-  "version": "1.0.0-alpha.52",
+  "version": "1.0.0-alpha.53",
   "description": "Utilities for Triple view libraries and applications",
   "main": "lib/index.js",
   "files": [
