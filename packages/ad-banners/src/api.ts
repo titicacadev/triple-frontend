@@ -51,7 +51,7 @@ export async function getAdBanners({
   /* eslint-enable @typescript-eslint/camelcase */
 
   const response = await fetch(
-    `/api/inventories/content_details_ad_v0/items${search ? `?${search}` : ''}`,
+    `/api/inventories/content_details_ad_v0/items?${search}`,
     {
       credentials: 'same-origin',
     },
