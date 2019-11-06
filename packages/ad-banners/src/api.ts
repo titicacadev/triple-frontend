@@ -41,7 +41,9 @@ export async function getAdBanners({
 }: AdBannersFetchingParams) {
   /* eslint-disable @typescript-eslint/camelcase */
   const search = qs.stringify({
-    ...(regionId ? { region_id: regionId } : {}),
+    ...(contentType ? { content_type: contentType } : {}),
+    ...(contentId ? { content_id: contentId } : {}),
+    ...(regionId ? { content_region_id: regionId } : {}),
     ...(latitude && longitude
       ? { user_location: `${longitude},${latitude}` }
       : {}),
@@ -49,9 +51,7 @@ export async function getAdBanners({
   /* eslint-enable @typescript-eslint/camelcase */
 
   const response = await fetch(
-    `/api/inventories/content_details_${contentType}_${contentId}/items${
-      search ? `?${search}` : ''
-    }`,
+    `/api/inventories/content_details_ad_v0/items${search ? `?${search}` : ''}`,
     {
       credentials: 'same-origin',
     },
@@ -82,20 +82,21 @@ export async function postAdBannerEvent({
   userLocation: { latitude, longitude },
 }: AdBannerEventPostingParams) {
   const payload = {
+    content: {
+      id: contentId,
+      type: contentType,
+      regionId,
+    },
     eventType,
-    regionId,
     userLocation: latitude && longitude ? [longitude, latitude] : undefined,
   }
 
-  await fetch(
-    `/api/inventories/content_details_${contentType}_${contentId}/items/${itemId}/events`,
-    {
-      credentials: 'same-origin',
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify(payload),
+  await fetch(`/api/inventories/content_details_ad_v0/items/${itemId}/events`, {
+    credentials: 'same-origin',
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
     },
-  )
+    body: JSON.stringify(payload),
+  })
 }
