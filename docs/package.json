@@ -22,6 +22,7 @@
     "@titicaca/listing-filter": "^1.0.0-alpha.53",
     "@titicaca/modals": "^1.0.0-alpha.53",
     "@titicaca/poi-list-elements": "^1.0.0-alpha.53",
+    "@titicaca/popup": "^1.0.0-alpha.53",
     "@titicaca/pricing": "^1.0.0-alpha.53",
     "@titicaca/public-header": "^1.0.0-alpha.53",
     "@titicaca/react-contexts": "^1.0.0-alpha.53",
