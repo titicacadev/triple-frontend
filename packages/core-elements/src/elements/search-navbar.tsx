@@ -55,7 +55,6 @@ export default function SearchNavbar({
     <MainNavbarFrame borderless>
       <Back icon="back" onClick={onBackClick} />
       <InputText
-        type="search"
         placeholder={inputPlaceholder}
         onChange={(e) => onInputChange(e, e.target.value)}
         {...props}
