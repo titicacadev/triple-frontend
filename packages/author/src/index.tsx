@@ -32,10 +32,16 @@ export default function Author({
         />
       )}
       <Container>
-        <Text bold size="large" color="gray" padding={{ top: 7, bottom: 4 }}>
+        <Text bold size="large" color="gray" padding={{ top: 4, bottom: 4 }}>
           {name}
         </Text>
-        <Text size="tiny" color="gray" alpha={0.3} maxLines={1}>
+        <Text
+          size="tiny"
+          color="gray"
+          alpha={0.3}
+          maxLines={1}
+          padding={{ right: 15 }}
+        >
           {displayedBio}
         </Text>
       </Container>
