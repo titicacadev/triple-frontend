@@ -7,7 +7,7 @@ import Navbar from './navbar'
 const InputText = styled(InputMask)`
   border-style: none;
   font-size: 17px;
-  height: 19px;
+  height: 20px;
   margin: 6px 34px 0 40px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -20,7 +20,7 @@ const InputText = styled(InputMask)`
 const MainNavbarFrame = styled(Navbar.NavbarFrame)`
   height: 58px;
   padding: 12px;
-  position: relative;
+  position: fixed;
 `
 
 const Back = styled(Navbar.Item)`
@@ -55,6 +55,7 @@ export default function SearchNavbar({
     <MainNavbarFrame borderless>
       <Back icon="back" onClick={onBackClick} />
       <InputText
+        type="search"
         placeholder={inputPlaceholder}
         onChange={(e) => onInputChange(e, e.target.value)}
         {...props}
