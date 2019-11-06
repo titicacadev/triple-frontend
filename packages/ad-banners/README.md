@@ -19,6 +19,7 @@
 다음 콘텍스트의 Provider가 컴포넌트 상위에 존재해야 합니다.
 
 - Device context
+- Event tracking context
 - History context
 
 ### 예시
