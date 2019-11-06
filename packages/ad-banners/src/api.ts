@@ -41,8 +41,8 @@ export async function getAdBanners({
 }: AdBannersFetchingParams) {
   /* eslint-disable @typescript-eslint/camelcase */
   const search = qs.stringify({
-    ...(contentType ? { content_type: contentType } : {}),
-    ...(contentId ? { content_id: contentId } : {}),
+    content_type: contentType,
+    content_id: contentId,
     ...(regionId ? { content_region_id: regionId } : {}),
     ...(latitude && longitude
       ? { user_location: `${longitude},${latitude}` }
