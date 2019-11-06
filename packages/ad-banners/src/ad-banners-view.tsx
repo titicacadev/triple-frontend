@@ -37,7 +37,7 @@ const AdBannersView: FC<AdBannersViewProps> = ({
   }
 
   return (
-    <Section padding={padding}>
+    <Section minWidth={0} padding={padding}>
       {banners.map((banner, index) => (
         <AdBannerEntity
           key={banner.id}
