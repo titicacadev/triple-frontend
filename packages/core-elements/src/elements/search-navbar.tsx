@@ -7,7 +7,7 @@ import Navbar from './navbar'
 const InputText = styled(InputMask)`
   border-style: none;
   font-size: 17px;
-  height: 20px;
+  height: 21px;
   margin: 6px 34px 0 40px;
   overflow: hidden;
   text-overflow: ellipsis;
