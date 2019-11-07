@@ -14,12 +14,7 @@ const EmptyScroll = styled.div`
 
 storiesOf('Popup', module).add('일반', () => (
   <>
-    <Popup
-      title="테스트"
-      borderless
-      open={boolean('팝업 열기', false)}
-      isIOS={false}
-    >
+    <Popup title="테스트" borderless open={boolean('팝업 열기', false)}>
       <EmptyScroll>Scroll........</EmptyScroll>
     </Popup>
     <ActionSheet open={boolean('액션시트 열림', false)} title="메뉴 액션시트">
