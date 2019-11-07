@@ -1,5 +1,4 @@
-import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock'
-import React, { createRef, ReactNode, SyntheticEvent, useEffect } from 'react'
+import React, { ReactNode, SyntheticEvent } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import styled from 'styled-components'
 
@@ -37,29 +36,17 @@ export default function Popup({
   onClose,
   children,
   title,
-  isIOS,
 }: {
   open: boolean
   borderless?: boolean
   onClose: (e: SyntheticEvent) => void
   children: ReactNode
   title?: string
-  isIOS: boolean
 }) {
-  const lockedContainer = createRef()
-
-  useEffect(() => {
-    if (open && lockedContainer.current && !isIOS) {
-      setTimeout(() => disableBodyScroll(lockedContainer.current), 0)
-    } else if (!open && !isIOS) {
-      clearAllBodyScrollLocks()
-    }
-  }, [isIOS, open, lockedContainer])
-
   return (
     <CSSTransition timeout={0} in={open} classNames="fade" appear>
       {/* https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451 */}
-      <PopupContainer ref={lockedContainer as any}>
+      <PopupContainer>
         <Navbar borderless={borderless} title={title}>
           <Navbar.Item floated="left" icon="close" onClick={onClose} />
         </Navbar>
