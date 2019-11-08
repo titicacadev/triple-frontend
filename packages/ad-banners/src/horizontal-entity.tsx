@@ -27,11 +27,14 @@ const HorizontalEntity: FC<HorizontalEntityProps> = ({
   onLoad,
   onClick,
 }) => {
-  const handleClick = () => {
-    onClick(banner)
-  }
   return (
-    <BannerItem onClick={handleClick}>
+    <BannerItem
+      onClick={(e) => {
+        e.preventDefault()
+
+        onClick(banner)
+      }}
+    >
       <img src={banner.image} alt={banner.desc} onLoad={onLoad} />
     </BannerItem>
   )
