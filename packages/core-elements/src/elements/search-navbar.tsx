@@ -8,8 +8,8 @@ const InputText = styled(InputMask)`
   border-style: none;
   font-size: 17px;
   height: 21px;
+  line-height: 21px;
   margin: 6px 34px 0 40px;
-  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   width: calc(100% - 80px);
