@@ -30,7 +30,7 @@ const AdBannersView: FC<AdBannersViewProps> = ({
   const [visibleIndex, setVisibleIndex] = useState(FLICKING_DEFAULT_INDEX)
   const flickingRef = useRef<Flicking | null>(null)
 
-  const handleLoad = () => {
+  const resizeFlicking = () => {
     if (!flickingRef.current) {
       return
     }
@@ -50,6 +50,18 @@ const AdBannersView: FC<AdBannersViewProps> = ({
   }
 
   useEffect(() => {
+    resizeFlicking()
+
+    window.addEventListener('orientationchange', resizeFlicking)
+    window.addEventListener('resize', resizeFlicking)
+
+    return () => {
+      window.removeEventListener('orientationchange', resizeFlicking)
+      window.removeEventListener('resize', resizeFlicking)
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
     if (banners.length > 0) {
       onIntersectingBanner(
         true,
@@ -57,8 +69,6 @@ const AdBannersView: FC<AdBannersViewProps> = ({
         FLICKING_DEFAULT_INDEX,
       )
     }
-
-    // HACK: 최초 한 번만 실행
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   if (banners.length === 0) {
@@ -106,7 +116,7 @@ const AdBannersView: FC<AdBannersViewProps> = ({
                   key={banner.id}
                   banner={banner}
                   onClick={makeBannerClickHandler(index)}
-                  onLoad={handleLoad}
+                  onLoad={resizeFlicking}
                 />
               )
             })}
