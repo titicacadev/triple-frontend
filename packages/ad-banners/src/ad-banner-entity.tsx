@@ -22,7 +22,9 @@ const AdBannerEntity: FC<AdBannerEntityProps> = ({
   onClick,
   onChangeIsIntersecting,
 }) => {
-  const handleIntersectionChange = (isIntersecting: boolean) => {
+  const handleIntersectionChange = ({
+    isIntersecting,
+  }: IntersectionObserverEntry) => {
     onChangeIsIntersecting(isIntersecting, banner)
   }
   const handleBannerClick = () => {
