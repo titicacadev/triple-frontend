@@ -1,10 +1,10 @@
 import React, { FC, useRef } from 'react'
-import styled from 'styled-components'
 import { Section, MarginPadding } from '@titicaca/core-elements'
 import Flicking from '@egjs/react-flicking'
 
 import AdBannerEntity from './ad-banner-entity'
 import { Banner, ListDirection } from './typing'
+import HorizontalEntity from './horizontal-entity'
 
 interface AdBannersViewProps {
   banners: Banner[]
@@ -17,19 +17,6 @@ interface AdBannersViewProps {
     index: number,
   ) => void
 }
-
-const BannerItem = styled.a`
-  position: absolute;
-  left: -10000px;
-  display: block;
-  width: calc(100% - 50px);
-
-  > img {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-  }
-`
 
 const AdBannersView: FC<AdBannersViewProps> = ({
   banners,
@@ -83,11 +70,14 @@ const AdBannersView: FC<AdBannersViewProps> = ({
             duration={100}
             gap={10}
           >
-            {banners.map((banner) => {
+            {banners.map((banner, index) => {
               return (
-                <BannerItem key={banner.id}>
-                  <img src={banner.image} alt={banner.desc} />
-                </BannerItem>
+                <HorizontalEntity
+                  key={banner.id}
+                  banner={banner}
+                  onClick={makeBannerClickHandler(index)}
+                  onChangeIsIntersecting={makeBannerIntersectingHandler(index)}
+                />
               )
             })}
           </Flicking>
