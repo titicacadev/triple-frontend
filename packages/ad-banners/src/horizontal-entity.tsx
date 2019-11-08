@@ -22,9 +22,16 @@ const BannerItem = styled.a`
   }
 `
 
-const HorizontalEntity: FC<HorizontalEntityProps> = ({ banner, onLoad }) => {
+const HorizontalEntity: FC<HorizontalEntityProps> = ({
+  banner,
+  onLoad,
+  onClick,
+}) => {
+  const handleClick = () => {
+    onClick(banner)
+  }
   return (
-    <BannerItem>
+    <BannerItem onClick={handleClick}>
       <img src={banner.image} alt={banner.desc} onLoad={onLoad} />
     </BannerItem>
   )
