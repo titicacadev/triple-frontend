@@ -27,7 +27,7 @@ storiesOf('Tabs', module)
 
     return (
       <Tabs
-        line
+        type="pointing"
         options={options}
         value={select('버튼 크기', values, values[0])}
       />
