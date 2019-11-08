@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
-import { Banner } from './typing'
 import styled from 'styled-components'
+
+import { Banner } from './typing'
 
 interface HorizontalEntityProps {
   banner: Banner
   onClick: (banner: Banner) => void
-  onChangeIsIntersecting: (isIntersecting: boolean, banner: Banner) => void
   onLoad: () => void
 }
 
@@ -22,10 +22,10 @@ const BannerItem = styled.a`
   }
 `
 
-const HorizontalEntity: FC<HorizontalEntityProps> = ({ banner }) => {
+const HorizontalEntity: FC<HorizontalEntityProps> = ({ banner, onLoad }) => {
   return (
     <BannerItem>
-      <img src={banner.image} alt={banner.desc} />
+      <img src={banner.image} alt={banner.desc} onLoad={onLoad} />
     </BannerItem>
   )
 }
