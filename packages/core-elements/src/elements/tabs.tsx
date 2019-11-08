@@ -3,60 +3,79 @@ import styled, { css } from 'styled-components'
 import Container from './container'
 import { GetGlobalColor } from '../commons'
 
-interface TabProps {
-  value?: any
-  options?: [{ label: string; value: any }]
-  onChange?: (e?: React.SyntheticEvent, value?: any) => any
-  line?: boolean
+interface TabTypeSet<T> {
+  basic: T
+  pointing: T
 }
 
-const TabContainer = styled.div<{ line?: boolean }>`
+type TabType = keyof TabTypeSet<any>
+
+interface Option {
+  label: string
+  value: any
+}
+
+interface TabProps {
+  value?: any
+  options?: Option[]
+  onChange?: (e?: React.SyntheticEvent, value?: any) => any
+  type?: TabType
+}
+
+const TAB_TYPE: { [key in TabType]: React.ElementType } = {
+  basic: BasicTab,
+  pointing: PointingTab,
+}
+
+const TabContainer = styled.div`
   white-space: nowrap;
   display: table;
   width: 100%;
   table-layout: fixed;
-
-  ${({ line }) =>
-    line
-      ? css`
-          border-bottom: 1px solid rgba(${GetGlobalColor('gray')}, 0.05);
-        `
-      : css`
-          background-color: #efefef;
-          border-radius: 4px;
-          padding: 2px;
-        `}
 `
 
-const TabLabel = styled.div<{ line?: boolean; active?: boolean }>`
+const TabLabel = styled.div<{ active?: boolean }>`
   display: table-cell;
   box-sizing: border-box;
   text-align: center;
   padding: 11px 0;
   cursor: pointer;
-
-  ${({ line, active }) =>
-    line
-      ? css`
-          font-size: 15px;
-          color: ${active
-            ? `rgba(${GetGlobalColor('gray')}, 1)`
-            : `rgba(${GetGlobalColor('gray')}, 0.3)`};
-        `
-      : css`
-          color: ${active ? '#3a3a3a' : 'rgba(46, 46, 46, 0.3)'};
-          background-color: ${active ? '#ffffff' : 'transparent'};
-          border-radius: 2px;
-          font-size: 14px;
-          font-weight: bold;
-        `}
 `
 
-const Line = styled.div<{ size: number; position: number }>`
+const BasicContainer = styled(TabContainer)`
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 2px;
+`
+
+const PointingContainer = styled(TabContainer)`
+  border-bottom: 1px solid rgba(${GetGlobalColor('gray')}, 0.05);
+`
+
+const BasicLabel = styled(TabLabel)`
+  ${({ active }) => css`
+    color: ${active ? '#3a3a3a' : 'rgba(46, 46, 46, 0.3)'};
+    background-color: ${active ? '#ffffff' : 'transparent'};
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: bold;
+  `}
+`
+
+const PointingLabel = styled(TabLabel)`
+  ${({ active }) => css`
+    font-size: 15px;
+    color: ${active
+      ? `rgba(${GetGlobalColor('gray')}, 1)`
+      : `rgba(${GetGlobalColor('gray')}, 0.3)`};
+  `}
+`
+
+const Line = styled.div<{ size: number; left: number }>`
   position: absolute;
   bottom: 0;
   width: ${({ size }) => size}%;
-  left: ${({ position }) => position}%;
+  left: ${({ left }) => left}%;
   height: 2px;
   background: rgba(${GetGlobalColor('blue')}, 1);
   transition: all 0.2s;
@@ -64,40 +83,39 @@ const Line = styled.div<{ size: number; position: number }>`
 
 function BasicTab({ options, value: currentValue, onChange }: TabProps) {
   return (
-    <TabContainer>
+    <BasicContainer>
       {options.map(({ label, value }, i) => (
-        <TabLabel
+        <BasicLabel
           active={currentValue === value}
           key={i}
           onClick={(e) => onChange(e, value)}
         >
           {label}
-        </TabLabel>
+        </BasicLabel>
       ))}
-    </TabContainer>
+    </BasicContainer>
   )
 }
 
-function LineTab({ options, value: currentValue, onChange, line }: TabProps) {
+function PointingTab({ options, value: currentValue, onChange }: TabProps) {
   const size = 100 / options.length
   const activeIdx = options.findIndex(({ value }) => value === currentValue)
-  const linePosition = activeIdx > -1 ? activeIdx * size : -100
+  const left = activeIdx > -1 ? activeIdx * size : -100
 
   return (
     <Container position="relative">
-      <TabContainer line={line}>
+      <PointingContainer>
         {options.map(({ label, value }, idx) => (
-          <TabLabel
+          <PointingLabel
             key={idx}
             active={value === currentValue}
             onClick={(e) => onChange(e, value)}
-            line={line}
           >
             {label}
-          </TabLabel>
+          </PointingLabel>
         ))}
-      </TabContainer>
-      <Line size={size} position={linePosition} />
+      </PointingContainer>
+      <Line size={size} left={left} />
     </Container>
   )
 }
@@ -106,16 +124,11 @@ export default function Tabs({
   value: currentValue,
   options,
   onChange,
-  line,
+  type,
 }: TabProps) {
-  const Component = line ? LineTab : BasicTab
+  const Component = TAB_TYPE[type || 'basic']
 
   return (
-    <Component
-      line={line}
-      onChange={onChange}
-      options={options}
-      value={currentValue}
-    />
+    <Component onChange={onChange} options={options} value={currentValue} />
   )
 }
