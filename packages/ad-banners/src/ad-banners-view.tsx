@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react'
+import React, { FC, useRef, useEffect, useState } from 'react'
 import { Section, MarginPadding } from '@titicaca/core-elements'
 import Flicking from '@egjs/react-flicking'
 
@@ -18,6 +18,8 @@ interface AdBannersViewProps {
   ) => void
 }
 
+const FLICKING_DEFAULT_INDEX = 0
+
 const AdBannersView: FC<AdBannersViewProps> = ({
   banners,
   padding,
@@ -25,7 +27,16 @@ const AdBannersView: FC<AdBannersViewProps> = ({
   onIntersectingBanner,
   onClickBanner,
 }) => {
-  const flickingRef = useRef()
+  const [visibleIndex, setVisibleIndex] = useState(FLICKING_DEFAULT_INDEX)
+  const flickingRef = useRef<Flicking | null>(null)
+
+  const handleLoad = () => {
+    if (!flickingRef.current) {
+      return
+    }
+
+    flickingRef.current.resize()
+  }
 
   const makeBannerClickHandler = (index: number) => {
     return (banner: Banner) => {
@@ -37,6 +48,18 @@ const AdBannersView: FC<AdBannersViewProps> = ({
       onIntersectingBanner(isIntersecting, banner, index)
     }
   }
+
+  useEffect(() => {
+    if (banners.length > 0) {
+      onIntersectingBanner(
+        true,
+        banners[FLICKING_DEFAULT_INDEX],
+        FLICKING_DEFAULT_INDEX,
+      )
+    }
+
+    // HACK: 최초 한 번만 실행
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   if (banners.length === 0) {
     return null
@@ -63,12 +86,19 @@ const AdBannersView: FC<AdBannersViewProps> = ({
             ref={flickingRef}
             collectStatistics={false}
             zIndex={1}
-            defaultIndex={0}
+            defaultIndex={FLICKING_DEFAULT_INDEX}
             autoResize={false}
             horizontal={true}
             bounce={[10, 10]}
             duration={100}
             gap={10}
+            onMoveEnd={(e) => {
+              const newIndex = e.index
+
+              onIntersectingBanner(false, banners[visibleIndex], visibleIndex)
+              onIntersectingBanner(true, banners[newIndex], newIndex)
+              setVisibleIndex(newIndex)
+            }}
           >
             {banners.map((banner, index) => {
               return (
@@ -76,7 +106,7 @@ const AdBannersView: FC<AdBannersViewProps> = ({
                   key={banner.id}
                   banner={banner}
                   onClick={makeBannerClickHandler(index)}
-                  onChangeIsIntersecting={makeBannerIntersectingHandler(index)}
+                  onLoad={handleLoad}
                 />
               )
             })}
