@@ -4,3 +4,8 @@ export interface Banner {
   image: string
   target: string
 }
+
+export enum ListDirection {
+  VERTICAL = 'vertical',
+  HORIZONTAL = 'horizontal',
+}
