@@ -35,3 +35,19 @@ storiesOf('Pricing', module)
       buttonText="객실예약"
     />
   ))
+  .add('Fixed (Tooltip) ', () => (
+    <Pricing
+      fixed
+      active={boolean('열림', true)}
+      basePrice={30000}
+      salePrice={25000}
+      label={
+        <Text size="mini" alpha={0.8}>
+          트리플 클럽가
+        </Text>
+      }
+      buttonText="객실예약"
+      tooltipLabel="쿠폰사용시 -15,000원 더 할인!"
+      tooltipClick={boolean('툴팁액션', true)}
+    />
+  ))

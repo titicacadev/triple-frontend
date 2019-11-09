@@ -8,6 +8,7 @@ import {
   GlobalSizes,
   GlobalColors,
   MarginPadding,
+  Tooltip,
 } from '@titicaca/core-elements'
 
 const FONT_SIZE: Partial<Record<GlobalSizes, string>> = {
@@ -189,14 +190,18 @@ function FixedPricing({
   buttonText,
   description,
   salePrice,
+  tooltipLabel,
   onClick,
+  tooltipClick,
 }: {
   active?: boolean
   label?: React.ReactNode
   description?: string
   buttonText?: string
   salePrice?: number
+  tooltipLabel?: string
   onClick?: (e?: React.SyntheticEvent) => any
+  tooltipClick?: (e?: React.SyntheticEvent) => any
 }) {
   const pricingLabel = label ? (
     typeof label === 'string' ? (
@@ -209,7 +214,7 @@ function FixedPricing({
   ) : null
 
   return (
-    <Drawer active={active}>
+    <Drawer active={active} overflow="visible">
       <FloatedFrame
         clearing
         padding={{
@@ -219,6 +224,15 @@ function FixedPricing({
           left: 20,
         }}
       >
+        {active && tooltipLabel && (
+          <Tooltip
+            borderRadius="30"
+            absolute={{ top: -20 }}
+            label={tooltipLabel}
+            onClick={tooltipClick}
+          />
+        )}
+
         <FloatedPricingContainer floated="left">
           {pricingLabel}
           <Text size="huge" bold>
@@ -246,6 +260,8 @@ export default function Pricing({
   rich,
   fixed,
   description,
+  tooltipLabel,
+  tooltipClick,
 }: {
   basePrice?: number
   salePrice?: number
@@ -256,6 +272,8 @@ export default function Pricing({
   rich?: boolean
   fixed?: boolean
   description?: string
+  tooltipLabel?: string
+  tooltipClick?: (e?: React.SyntheticEvent) => any
 }) {
   if (rich) {
     return (
@@ -270,6 +288,8 @@ export default function Pricing({
         salePrice={salePrice}
         description={description}
         onClick={onClick}
+        tooltipLabel={tooltipLabel}
+        tooltipClick={tooltipClick}
       />
     )
   } else {
