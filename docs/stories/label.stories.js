@@ -15,7 +15,11 @@ storiesOf('Label', module)
     <Label
       promo
       size={select('크기', ['small', 'medium', 'large'], 'medium')}
-      color={select('색깔', ['purple', 'blue', 'red', 'gray'], 'purple')}
+      color={select(
+        '색깔',
+        ['purple', 'blue', 'red', 'gray', 'green'],
+        'purple',
+      )}
       emphasized={boolean('강조', true)}
     >
       {text('텍스트', '최대 24%')}
