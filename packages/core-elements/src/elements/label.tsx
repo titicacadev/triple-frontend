@@ -8,7 +8,7 @@ import {
   GlobalSizes,
 } from '../commons'
 
-export type LabelColor = GlobalColors | 'purple'
+export type LabelColor = GlobalColors | 'purple' | 'green'
 
 type Color = number[] | string[]
 
@@ -34,6 +34,10 @@ const LABEL_COLORS: Partial<
   gray: {
     background: [58, 58, 58, 0.05],
     text: [58, 58, 58, 0.7],
+  },
+  green: {
+    background: [13, 208, 175, 0.1],
+    text: [13, 208, 175, 1],
   },
 }
 
