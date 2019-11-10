@@ -60,8 +60,6 @@ export default class Carousel extends React.PureComponent<
   handleMoveEnd = (e: FlickingEvent) => {
     const { onMoveEnd } = this.props
 
-    console.log('durl ?')
-
     this.setState({
       currentIndex: e.index,
     })
@@ -96,7 +94,6 @@ export default class Carousel extends React.PureComponent<
   render() {
     const { margin, borderRadius, pageLabelRenderer, children } = this.props
     const PageLabel = ({ currentIndex }) => {
-      console.log('currentIndex, ', currentIndex)
       const Label = pageLabelRenderer({ currentIndex })
 
       return Label ? <TopRightControl>{Label}</TopRightControl> : null
