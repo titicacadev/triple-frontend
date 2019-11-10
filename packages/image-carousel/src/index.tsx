@@ -29,6 +29,7 @@ interface ImageCarouselProps extends Partial<CarouselProps> {
   onImageClick: (e?: React.SyntheticEvent, image?: any) => void
   showMoreRenderer: (props: RendererProps) => JSX.Element
   pageLabelRenderer: (props: RendererProps) => JSX.Element
+  totalCount?: number
 }
 
 export default class ImageCarousel extends React.PureComponent<
