@@ -48,6 +48,7 @@ export default class ImageCarousel extends React.PureComponent<
       onMove,
       onMoveEnd,
       pageLabelRenderer,
+      totalCount,
     } = this.props
 
     return {
@@ -58,7 +59,10 @@ export default class ImageCarousel extends React.PureComponent<
       onMove,
       onMoveEnd,
       pageLabelRenderer: ({ currentIndex }) =>
-        pageLabelRenderer({ currentIndex, totalCount: images.length }) || null,
+        pageLabelRenderer({
+          currentIndex,
+          totalCount: totalCount || images.length,
+        }) || null,
     }
   }
 
@@ -70,6 +74,7 @@ export default class ImageCarousel extends React.PureComponent<
       onImageClick,
       ImageSource,
       showMoreRenderer,
+      totalCount,
     } = this.props
 
     const { carouselProps } = this
@@ -95,7 +100,7 @@ export default class ImageCarousel extends React.PureComponent<
                 showMoreRenderer
                   ? showMoreRenderer({
                       currentIndex: i,
-                      totalCount: images.length,
+                      totalCount: totalCount || images.length,
                     })
                   : null
               }
