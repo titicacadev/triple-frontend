@@ -14,8 +14,8 @@ const TooltipFrame = styled.div<{
   &::before {
     position: absolute;
     content: '';
-    width: 0px;
-    height: 0px;
+    width: 1px;
+    height: 1px;
     border-top: 5px solid rgba(13, 208, 175, 1);
     border-right: 5px solid transparent;
     border-left: 5px solid transparent;
@@ -64,7 +64,7 @@ const ArrowRight = styled.span`
   transform: translateY(-50%);
   background-repeat: no-repeat;
   background-size: 11px;
-  background-image: url(https://assets.triple.guide/images/ico-arrow-right@2x.png);
+  background-image: url(https://assets.triple.guide/images/ico-arrow-right-w@3x.png);
 `
 
 function Tooltip({ label, onClick, borderRadius, absolute }) {
