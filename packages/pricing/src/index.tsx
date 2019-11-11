@@ -192,7 +192,7 @@ function FixedPricing({
   salePrice,
   tooltipLabel,
   onClick,
-  tooltipClick,
+  onTooltipClick,
 }: {
   active?: boolean
   label?: React.ReactNode
@@ -201,7 +201,7 @@ function FixedPricing({
   salePrice?: number
   tooltipLabel?: string
   onClick?: (e?: React.SyntheticEvent) => any
-  tooltipClick?: (e?: React.SyntheticEvent) => any
+  onTooltipClick?: (e?: React.SyntheticEvent) => any
 }) {
   const pricingLabel = label ? (
     typeof label === 'string' ? (
@@ -229,7 +229,7 @@ function FixedPricing({
             borderRadius="30"
             absolute={{ top: -20 }}
             label={tooltipLabel}
-            onClick={tooltipClick}
+            onClick={onTooltipClick}
           />
         )}
 
@@ -261,7 +261,7 @@ export default function Pricing({
   fixed,
   description,
   tooltipLabel,
-  tooltipClick,
+  onTooltipClick,
 }: {
   basePrice?: number
   salePrice?: number
@@ -273,7 +273,7 @@ export default function Pricing({
   fixed?: boolean
   description?: string
   tooltipLabel?: string
-  tooltipClick?: (e?: React.SyntheticEvent) => any
+  onTooltipClick?: (e?: React.SyntheticEvent) => any
 }) {
   if (rich) {
     return (
@@ -289,7 +289,7 @@ export default function Pricing({
         description={description}
         onClick={onClick}
         tooltipLabel={tooltipLabel}
-        tooltipClick={tooltipClick}
+        onTooltipClick={onTooltipClick}
       />
     )
   } else {
