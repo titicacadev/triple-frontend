@@ -172,7 +172,8 @@ const FloatedPricingContainer = styled(Container)`
 const PurchaseButton = styled.button`
   position: absolute;
   right: 20px;
-  top: 18px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 41%;
   height: 47px;
   border-radius: 4px;
@@ -218,16 +219,16 @@ function FixedPricing({
       <FloatedFrame
         clearing
         padding={{
-          top: description ? 12 : 20,
+          top: label ? 12 : 24,
           right: 20,
-          bottom: description ? 13 : 20,
+          bottom: label ? 12 : 15,
           left: 20,
         }}
       >
         {active && tooltipLabel && (
           <Tooltip
             borderRadius="30"
-            absolute={{ top: -20 }}
+            absolute={{ top: -12 }}
             label={tooltipLabel}
             onClick={onTooltipClick}
           />
@@ -239,7 +240,7 @@ function FixedPricing({
             {formatNumber(salePrice)}원
           </Text>
           {description ? (
-            <Text size="tiny" alpha={0.8}>
+            <Text size="mini" alpha={0.5} margin={{ top: label ? 0 : 4 }}>
               {description}
             </Text>
           ) : null}
