@@ -53,8 +53,8 @@ const TooltipContainer = styled.div<{ paddingRight?: number }>`
 `
 
 const ArrowRight = styled.span`
-  width: 11px;
-  height: 11px;
+  width: 9px;
+  height: 13px;
   margin: 0;
   padding: 0;
   top: 50%;
@@ -63,7 +63,7 @@ const ArrowRight = styled.span`
   bottom: 0;
   transform: translateY(-50%);
   background-repeat: no-repeat;
-  background-size: 11px;
+  background-size: 9px 13px;
   background-image: url(https://assets.triple.guide/images/ico-arrow-right-w@3x.png);
 `
 
@@ -74,7 +74,7 @@ function Tooltip({ label, onClick, borderRadius, absolute }) {
       absolute={absolute}
       onClick={onClick}
     >
-      <TooltipContainer paddingRight={onClick && 13}>
+      <TooltipContainer paddingRight={onClick && 12}>
         {label}
         {onClick && <ArrowRight />}
       </TooltipContainer>
