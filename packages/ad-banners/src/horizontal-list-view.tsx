@@ -3,13 +3,12 @@ import { Section, MarginPadding } from '@titicaca/core-elements'
 import { FlickingOptions } from '@egjs/flicking'
 import Flicking from '@egjs/react-flicking'
 
-import { Banner, ListDirection } from './typing'
+import { Banner } from './typing'
 import HorizontalEntity from './horizontal-entity'
 
 interface HorizontalListViewProps {
   banners: Banner[]
   padding?: MarginPadding
-  direction: ListDirection
   onClickBanner: (banner: Banner, index: number) => void
   onIntersectingBanner: (
     isIntersecting: boolean,
