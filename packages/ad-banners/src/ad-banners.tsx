@@ -7,7 +7,8 @@ import {
 } from '@titicaca/react-contexts'
 
 import { ContentType, postAdBannerEvent, getAdBanners } from './api'
-import { Banner } from './typing'
+import { Banner, ListDirection } from './typing'
+import HorizontalListView from './horizontal-list-view'
 import VerticalListView from './vertical-list-view'
 
 declare global {
@@ -27,6 +28,7 @@ interface AdBannersProps {
   regionId?: string
 
   padding?: MarginPadding
+  direction?: ListDirection
 
   eventAttributes?: EventAttributes
 }
@@ -37,6 +39,7 @@ const AdBanners: FC<AdBannersProps> = ({
   regionId,
 
   padding,
+  direction = ListDirection.VERTICAL,
 
   eventAttributes: { title } = {},
 }) => {
@@ -136,14 +139,30 @@ const AdBanners: FC<AdBannersProps> = ({
     navigate(banner.target)
   }
 
-  return (
-    <VerticalListView
-      banners={banners}
-      padding={padding}
-      onClickBanner={handleBannerClick}
-      onIntersectingBanner={handleBannerIntersecting}
-    />
-  )
+  switch (direction) {
+    case ListDirection.VERTICAL:
+      return (
+        <VerticalListView
+          banners={banners}
+          padding={padding}
+          onClickBanner={handleBannerClick}
+          onIntersectingBanner={handleBannerIntersecting}
+        />
+      )
+
+    case ListDirection.HORIZONTAL:
+      return (
+        <HorizontalListView
+          banners={banners}
+          padding={padding}
+          onClickBanner={handleBannerClick}
+          onIntersectingBanner={handleBannerIntersecting}
+        />
+      )
+
+    default:
+      return null
+  }
 }
 
 export default AdBanners

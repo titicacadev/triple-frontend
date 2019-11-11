@@ -1,6 +1,6 @@
 import AdBanners from './ad-banners'
-import HorizontalListView from './horizontal-list-view'
+import { ListDirection } from './typing'
 
-export { HorizontalListView as HorizontalAdBanners }
+export { ListDirection }
 
 export default AdBanners
