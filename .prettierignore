@@ -3,4 +3,4 @@ lib
 examples
 package-lock.json
 
-test/dist/*
+tests/dist/*
