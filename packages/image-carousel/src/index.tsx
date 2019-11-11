@@ -52,6 +52,10 @@ export default class ImageCarousel extends React.PureComponent<
       displayedTotalCount,
     } = this.props
 
+    const totalCount =
+      (displayedTotalCount !== undefined && displayedTotalCount) ||
+      images.length
+
     return {
       margin,
       borderRadius,
@@ -62,7 +66,7 @@ export default class ImageCarousel extends React.PureComponent<
       pageLabelRenderer: ({ currentIndex }) =>
         pageLabelRenderer({
           currentIndex,
-          totalCount: displayedTotalCount || images.length,
+          totalCount,
         }) || null,
     }
   }
@@ -86,6 +90,9 @@ export default class ImageCarousel extends React.PureComponent<
           const { frame: imageFrame, size: imageSize, sizes, sourceUrl } = image
           const size = globalSize || imageSize
           const frame = size ? undefined : globalFrame || imageFrame
+          const totalCount =
+            (displayedTotalCount !== undefined && displayedTotalCount) ||
+            images.length
 
           return (
             <Image
@@ -101,7 +108,7 @@ export default class ImageCarousel extends React.PureComponent<
                 showMoreRenderer
                   ? showMoreRenderer({
                       currentIndex: i,
-                      totalCount: displayedTotalCount || images.length,
+                      totalCount,
                     })
                   : null
               }
