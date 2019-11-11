@@ -72,7 +72,7 @@ function Tooltip({ label, onClick, borderRadius, absolute }) {
     <TooltipFrame
       borderRadius={borderRadius}
       absolute={absolute}
-      onClick={onClick && null}
+      onClick={onClick}
     >
       <TooltipContainer paddingRight={onClick && 13}>
         {label}
