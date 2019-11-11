@@ -48,6 +48,6 @@ storiesOf('Pricing', module)
       }
       buttonText="객실예약"
       tooltipLabel="쿠폰사용시 -15,000원 더 할인!"
-      tooltipClick={boolean('툴팁액션', true)}
+      onTooltipClick={boolean('툴팁액션', true)}
     />
   ))
