@@ -29,7 +29,7 @@ interface ImageCarouselProps extends Partial<CarouselProps> {
   onImageClick: (e?: React.SyntheticEvent, image?: any) => void
   showMoreRenderer: (props: RendererProps) => JSX.Element
   pageLabelRenderer: (props: RendererProps) => JSX.Element
-  totalCount?: number
+  displayedTotalCount?: number
 }
 
 export default class ImageCarousel extends React.PureComponent<
@@ -49,7 +49,7 @@ export default class ImageCarousel extends React.PureComponent<
       onMove,
       onMoveEnd,
       pageLabelRenderer,
-      totalCount,
+      displayedTotalCount,
     } = this.props
 
     return {
@@ -62,7 +62,7 @@ export default class ImageCarousel extends React.PureComponent<
       pageLabelRenderer: ({ currentIndex }) =>
         pageLabelRenderer({
           currentIndex,
-          totalCount: totalCount || images.length,
+          totalCount: displayedTotalCount || images.length,
         }) || null,
     }
   }
@@ -75,7 +75,7 @@ export default class ImageCarousel extends React.PureComponent<
       onImageClick,
       ImageSource,
       showMoreRenderer,
-      totalCount,
+      displayedTotalCount,
     } = this.props
 
     const { carouselProps } = this
@@ -101,7 +101,7 @@ export default class ImageCarousel extends React.PureComponent<
                 showMoreRenderer
                   ? showMoreRenderer({
                       currentIndex: i,
-                      totalCount: totalCount || images.length,
+                      totalCount: displayedTotalCount || images.length,
                     })
                   : null
               }
