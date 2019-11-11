@@ -5,7 +5,7 @@ import IntersectionObserver from '@titicaca/intersection-observer'
 
 import { Banner } from './typing'
 
-interface AdBannerEntityProps {
+interface VerticalEntityProps {
   banner: Banner
   onClick: (banner: Banner) => void
   onChangeIsIntersecting: (isIntersecting: boolean, banner: Banner) => void
@@ -17,7 +17,7 @@ const BannerImage = styled.img`
   vertical-align: top;
 `
 
-const AdBannerEntity: FC<AdBannerEntityProps> = ({
+const VerticalEntity: FC<VerticalEntityProps> = ({
   banner,
   onClick,
   onChangeIsIntersecting,
@@ -40,4 +40,4 @@ const AdBannerEntity: FC<AdBannerEntityProps> = ({
   )
 }
 
-export default AdBannerEntity
+export default VerticalEntity

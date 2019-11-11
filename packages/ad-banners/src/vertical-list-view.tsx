@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Section, MarginPadding } from '@titicaca/core-elements'
 
-import AdBannerEntity from './ad-banner-entity'
+import VerticalEntity from './vertical-entity'
 import { Banner } from './typing'
 
 interface VerticalListViewProps {
@@ -39,7 +39,7 @@ const VerticalListView: FC<VerticalListViewProps> = ({
   return (
     <Section minWidth={0} padding={padding}>
       {banners.map((banner, index) => (
-        <AdBannerEntity
+        <VerticalEntity
           key={banner.id}
           banner={banner}
           onClick={makeBannerClickHandler(index)}
