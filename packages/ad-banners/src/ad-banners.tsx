@@ -6,9 +6,9 @@ import {
   useHistoryContext,
 } from '@titicaca/react-contexts'
 
-import AdBannersView from './ad-banners-view'
 import { ContentType, postAdBannerEvent, getAdBanners } from './api'
 import { Banner } from './typing'
+import VerticalListView from './vertical-list-view'
 
 declare global {
   interface Window {
@@ -137,7 +137,7 @@ const AdBanners: FC<AdBannersProps> = ({
   }
 
   return (
-    <AdBannersView
+    <VerticalListView
       banners={banners}
       padding={padding}
       onClickBanner={handleBannerClick}

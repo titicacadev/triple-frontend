@@ -8,7 +8,7 @@ import {
   EventTrackingProvider,
   DeviceProvider,
 } from '@titicaca/react-contexts'
-import AdBanners, { AdBannersView, ListDirection } from '@titicaca/ad-banners'
+import AdBanners, { HorizontalAdBanners } from '@titicaca/ad-banners'
 
 const CONTENT_TYPE_SET = {
   article: 'article',
@@ -72,9 +72,8 @@ storiesOf('AdBanners', module)
     </DeviceProvider>
   ))
   .add('가로형 광고 배너 목록', () => (
-    <AdBannersView
+    <HorizontalAdBanners
       banners={BANNERS}
-      direction={ListDirection.HORIZONTAL}
       onIntersectingBanner={action('배너 표시 이벤트')}
       onClickBanner={action('배너 클릭 이벤트')}
       padding={{
