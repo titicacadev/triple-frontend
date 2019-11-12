@@ -43,12 +43,16 @@ export default function SearchNavbar({
   onBackClick,
   onDeleteClick,
   onInputChange,
+  onBlur,
+  onFocus,
   ...props
 }: {
   inputPlaceHolder: string
-  onBackClick: (event: React.SyntheticEvent) => any
-  onDeleteClick?: (event: React.SyntheticEvent) => any
-  onInputChange?: (e: React.SyntheticEvent, value: string) => any
+  onBackClick: (event: React.SyntheticEvent) => void
+  onDeleteClick?: (event: React.SyntheticEvent) => void
+  onInputChange?: (e: React.SyntheticEvent, value: string) => void
+  onBlur?: (e: React.SyntheticEvent) => void
+  onFocus?: (e: React.SyntheticEvent) => void
 } & InputState &
   MaskOptions) {
   return (
@@ -56,7 +60,9 @@ export default function SearchNavbar({
       <Back icon="back" onClick={onBackClick} />
       <InputText
         placeholder={inputPlaceholder}
-        onChange={(e) => onInputChange(e, e.target.value)}
+        onChange={(e) => onInputChange && onInputChange(e, e.target.value)}
+        onBlur={(e) => onBlur && onBlur(e)}
+        onFocus={(e) => onFocus && onFocus(e)}
         {...props}
       />
       <DeleteIcon
