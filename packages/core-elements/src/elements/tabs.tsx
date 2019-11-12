@@ -3,12 +3,7 @@ import styled, { css } from 'styled-components'
 import Container from './container'
 import { GetGlobalColor } from '../commons'
 
-interface TabTypeSet<T> {
-  basic: T
-  pointing: T
-}
-
-type TabType = keyof TabTypeSet<any>
+type TabType = 'basic' | 'pointing'
 
 interface Option {
   label: string
