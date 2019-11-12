@@ -161,7 +161,7 @@ const FloatedFrame = styled(Container)`
   border-top: 1px solid #efefef;
 
   @supports (padding: max(0px)) and (padding: env(safe-area-inset-bottom)) {
-    padding-bottom: max(10px, env(safe-area-inset-bottom, 10px));
+    padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
   }
 `
 
@@ -206,7 +206,7 @@ function FixedPricing({
 }) {
   const pricingLabel = label ? (
     typeof label === 'string' ? (
-      <Text color="blue" size="mini">
+      <Text color="blue" size="mini" margin={{ bottom: 2 }}>
         {label}
       </Text>
     ) : (
@@ -219,9 +219,9 @@ function FixedPricing({
       <FloatedFrame
         clearing
         padding={{
-          top: label ? 12 : 24,
+          top: 20,
           right: 20,
-          bottom: label ? 12 : 15,
+          bottom: 20,
           left: 20,
         }}
       >
@@ -235,12 +235,12 @@ function FixedPricing({
         )}
 
         <FloatedPricingContainer floated="left">
-          {pricingLabel}
+          {!description && pricingLabel}
           <Text size="huge" bold>
             {formatNumber(salePrice)}원
           </Text>
           {description ? (
-            <Text size="mini" alpha={0.5} margin={{ top: label ? 0 : 4 }}>
+            <Text size="mini" alpha={0.5} margin={{ top: 2 }}>
               {description}
             </Text>
           ) : null}
