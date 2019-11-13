@@ -114,7 +114,7 @@ function RangePicker({
   beforeBlock,
   afterBlock,
   height,
-  holiday,
+  publicHolidays,
 }: {
   startDate: string
   endDate: string
@@ -124,7 +124,7 @@ function RangePicker({
   numberOfMonths: number
   disabledDays?: string[]
   height?: string
-  holiday?: Date[]
+  publicHolidays?: Date[]
 }) {
   const from = startDate && moment(startDate).toDate()
   const to = endDate && moment(endDate).toDate()
@@ -182,7 +182,7 @@ function RangePicker({
           }}
           numberOfMonths={numberOfMonths}
           modifiers={{
-            holiday: holiday,
+            publicHolidays: publicHolidays,
             sunday: (day) => day.getDay() === 0,
             saturday: (day) => day.getDay() === 6,
             from,

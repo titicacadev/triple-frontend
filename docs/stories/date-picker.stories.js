@@ -8,7 +8,7 @@ const endDate = new Date()
 const afterDate = new Date()
 const specificDate = new Date()
 const nowYearMonth = `${new Date().getFullYear()}-${new Date().getMonth() + 1}`
-const holiday = [
+const publicHolidays = [
   new Date(`${nowYearMonth}-01`),
   new Date(`${nowYearMonth}-25`),
   new Date(`${nowYearMonth}-26`),
@@ -44,7 +44,7 @@ storiesOf('DatePicker', module)
   ))
   .add('RangePicker - 휴일', () => (
     <RangePicker
-      holiday={holiday}
+      publicHolidays={publicHolidays}
       beforeBlock={today}
       afterBlock={afterDate}
       disabledDays={[specificDate.toString()]}
