@@ -1,4 +1,6 @@
 import * as React from 'react'
+import * as CSS from 'csstype'
+
 import Container from './container'
 import { HR2 } from './hr'
 import { MarginPadding } from '../commons'
@@ -10,6 +12,7 @@ export default function Section({
   margin,
   divider,
   anchor,
+  userSelect,
   children,
   ...props
 }: {
@@ -19,6 +22,7 @@ export default function Section({
   margin?: MarginPadding
   divider?: string
   anchor?: string
+  userSelect?: CSS.UserSelectProperty
   children?: React.ReactNode
 }) {
   if (React.Children.toArray(children).length > 0) {
@@ -35,6 +39,7 @@ export default function Section({
           maxWidth={maxWidth}
           padding={padding}
           margin={margin}
+          userSelect={userSelect}
           {...props}
         >
           {children}
