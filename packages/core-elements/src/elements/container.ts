@@ -18,6 +18,7 @@ const Container = styled.div<{
   borderRadius?: number
   clearing?: boolean
   whiteSpace?: CSS.WhiteSpaceProperty
+  userSelect?: CSS.UserSelectProperty
 }>`
   box-sizing: border-box;
 
@@ -114,6 +115,13 @@ const Container = styled.div<{
     css`
       white-space: ${whiteSpace};
     `};
+
+  ${({ userSelect }) =>
+    userSelect &&
+    css`
+      -webkit-user-select: ${userSelect};
+      -user-select: ${userSelect};
+    `}
 `
 
 export default Container
