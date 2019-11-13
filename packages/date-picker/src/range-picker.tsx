@@ -14,7 +14,6 @@ const RangeContainer = styled.div<{ height?: string; selectedAll: boolean }>`
   .DayPicker {
     height: ${({ height }) => height || '395px'};
   }
-
   .DayPicker-Day--sunday {
     padding-left: 6px !important;
   }
@@ -115,6 +114,7 @@ function RangePicker({
   beforeBlock,
   afterBlock,
   height,
+  holiday,
 }: {
   startDate: string
   endDate: string
@@ -124,6 +124,7 @@ function RangePicker({
   numberOfMonths: number
   disabledDays?: string[]
   height?: string
+  holiday?: Date[]
 }) {
   const from = startDate && moment(startDate).toDate()
   const to = endDate && moment(endDate).toDate()
@@ -181,6 +182,7 @@ function RangePicker({
           }}
           numberOfMonths={numberOfMonths}
           modifiers={{
+            holiday: holiday,
             sunday: (day) => day.getDay() === 0,
             saturday: (day) => day.getDay() === 6,
             from,
