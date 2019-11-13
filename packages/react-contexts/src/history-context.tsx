@@ -48,7 +48,7 @@ export function HistoryProvider({
   const [uriHash, setUriHash] = React.useState(null)
 
   const onHashChange = React.useCallback((url) => {
-    const hash = new URL(url, 'https://triple.guide').hash.replace(/^#/, '')
+    const { hash } = parseUrl(url)
 
     // We only need to check if onHashChange is triggered by native action.
     const { hash: previousHash } = HASH_HISTORIES[
