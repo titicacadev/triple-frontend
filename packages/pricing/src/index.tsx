@@ -172,8 +172,7 @@ const FloatedPricingContainer = styled(Container)`
 const PurchaseButton = styled.button`
   position: absolute;
   right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 18px;
   width: 41%;
   height: 47px;
   border-radius: 4px;
