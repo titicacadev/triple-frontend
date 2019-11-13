@@ -7,6 +7,13 @@ const today = new Date()
 const endDate = new Date()
 const afterDate = new Date()
 const specificDate = new Date()
+const nowYearMonth = `${new Date().getFullYear()}-${new Date().getMonth() + 1}`
+const holiday = [
+  new Date(`${nowYearMonth}-01`),
+  new Date(`${nowYearMonth}-25`),
+  new Date(`${nowYearMonth}-26`),
+  new Date(`${nowYearMonth}-27`),
+]
 
 endDate.setDate(today.getDate() + 5)
 afterDate.setDate(today.getDate() + 20)
@@ -30,6 +37,14 @@ storiesOf('DatePicker', module)
   ))
   .add('RangePicker - 선택불가', () => (
     <RangePicker
+      beforeBlock={today}
+      afterBlock={afterDate}
+      disabledDays={[specificDate.toString()]}
+    />
+  ))
+  .add('RangePicker - 휴일', () => (
+    <RangePicker
+      holiday={holiday}
       beforeBlock={today}
       afterBlock={afterDate}
       disabledDays={[specificDate.toString()]}
