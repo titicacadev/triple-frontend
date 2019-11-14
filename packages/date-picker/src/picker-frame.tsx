@@ -111,12 +111,11 @@ const PickerFrame = styled.div`
   .DayPicker-Day--saturday.DayPicker-Day--today {
     color: rgb(${GetGlobalColor('red')});
   }
-  .DayPicker-Day--holiday {
+  .DayPicker-Day--publicHolidays {
     color: rgb(${GetGlobalColor('red')});
     &.DayPicker-Day--disabled {
       color: rgba(${GetGlobalColor('gray')}, 0.5);
     }
   }
 `
-
 export default PickerFrame
