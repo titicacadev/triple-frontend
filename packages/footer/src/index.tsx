@@ -45,7 +45,7 @@ export default function Footer() {
         <br />
         경기도 성남시 분당구 판교역로 14번길 16, 3층
         <br />
-        호텔 예약 및 투어/티켓 문의 1588-2539
+        호텔 예약 및 투어·티켓 문의 1588-2539
         <br />
         help@triple-corp.com
         <LinksContainer>
