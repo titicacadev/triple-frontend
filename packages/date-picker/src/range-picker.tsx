@@ -182,7 +182,7 @@ function RangePicker({
           }}
           numberOfMonths={numberOfMonths}
           modifiers={{
-            publicHolidays: publicHolidays,
+            publicHolidays,
             sunday: (day) => day.getDay() === 0,
             saturday: (day) => day.getDay() === 6,
             from,
