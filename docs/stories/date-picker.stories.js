@@ -31,6 +31,16 @@ storiesOf('DatePicker', module)
       height="300px"
     />
   ))
+  .add('DayPicker - 휴일', () => (
+    <DayPicker
+      publicHolidays={publicHolidays}
+      day={today.toString()}
+      beforeBlock={today}
+      afterBlock={afterDate}
+      disabledDays={[specificDate.toString()]}
+      height="300px"
+    />
+  ))
   .add('RangePicker - 일반', () => <RangePicker />)
   .add('RangePicker - 선택됨', () => (
     <RangePicker startDate={today.toString()} endDate={endDate.toString()} />
