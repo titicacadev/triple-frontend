@@ -69,6 +69,7 @@ function DatePicker({
   onDateChange,
   disabledDays = [],
   height,
+  publicHolidays,
 }: {
   day: string
   beforeBlock: Date
@@ -77,6 +78,7 @@ function DatePicker({
   onDateChange: Function
   disabledDays?: string[]
   height?: string
+  publicHolidays?: Date[]
 }) {
   const selectedDay = day && moment(day).toDate()
 
@@ -96,6 +98,7 @@ function DatePicker({
           }}
           numberOfMonths={numberOfMonths}
           modifiers={{
+            publicHolidays,
             sunday: (day) => day.getDay() === 0,
             saturday: (day) => day.getDay() === 6,
           }}
