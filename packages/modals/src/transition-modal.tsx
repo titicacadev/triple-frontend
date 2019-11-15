@@ -22,6 +22,7 @@ export enum TransitionType {
   Scrap = 'scrap',
   Review = 'review',
   ReviewWrite = 'reviewWrite',
+  ReviewThumbnail = 'reviewThumbnail',
   Article = 'article',
   Tna = 'tna',
   Hotel = 'hotel',
@@ -59,6 +60,11 @@ const MODAL_CONTENT: {
     icon: 'https://assets.triple.guide/images/ico-popup-review@4x.png',
     description: '리뷰는 앱에서 작성할 수 있어요.',
     eventLabel: '리뷰_리뷰쓰기',
+  },
+  [TransitionType.ReviewThumbnail]: {
+    icon: 'https://assets.triple.guide/images/ico-popup-gallery@4x.png',
+    description: '사진은 앱에서 더 편리하게\n확인할 수 있어요.',
+    eventLabel: '리뷰_리뷰사진썸네일',
   },
   [TransitionType.Article]: {
     icon: 'https://assets.triple.guide/images/ico-popup-guidebook@4x.png',

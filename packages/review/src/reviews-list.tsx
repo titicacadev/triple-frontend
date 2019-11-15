@@ -95,7 +95,7 @@ export default function ReviewsList({
     image,
   ) => {
     if (isPublic) {
-      return show(TransitionType.Gallery)
+      return show(TransitionType.ReviewThumbnail)
     }
 
     const convertImage = (convertingImage) => ({
