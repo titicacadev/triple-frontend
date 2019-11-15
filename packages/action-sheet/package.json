@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/action-sheet",
-  "version": "1.0.0-alpha.63",
+  "version": "1.0.0-alpha.64",
   "description": "Action sheet component",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/popup",
-  "version": "1.0.0-alpha.63",
+  "version": "1.0.0-alpha.64",
   "description": "Triple Popup",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
-    "@titicaca/core-elements": "^1.0.0-alpha.63",
+    "@titicaca/core-elements": "^1.0.0-alpha.64",
     "react-transition-group": "^4.3.0"
   }
 }
