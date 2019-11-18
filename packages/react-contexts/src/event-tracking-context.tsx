@@ -41,6 +41,19 @@ export class EventTrackingProvider extends React.PureComponent<
 > {
   state = { pageLabel: this.props.pageLabel || 'Unknown' }
 
+  value: EventTrackingContextValue
+
+  constructor(props: EventTrackingProvider['props']) {
+    super(props)
+
+    this.value = {
+      viewItem: props.viewItem,
+      trackScreen: this.trackScreen,
+      trackEvent: this.trackEvent,
+      trackSimpleEvent: this.trackSimpleEvent,
+    }
+  }
+
   trackScreen = (path) => {
     const {
       props: { trackScreen: nativeTrackScreen },
@@ -99,21 +112,10 @@ export class EventTrackingProvider extends React.PureComponent<
 
   render() {
     const {
-      props: { viewItem, children },
+      props: { children },
     } = this
 
-    return (
-      <Context.Provider
-        value={{
-          trackScreen: this.trackScreen,
-          trackEvent: this.trackEvent,
-          trackSimpleEvent: this.trackSimpleEvent,
-          viewItem: viewItem,
-        }}
-      >
-        {children}
-      </Context.Provider>
-    )
+    return <Context.Provider value={this.value}>{children}</Context.Provider>
   }
 }
 
