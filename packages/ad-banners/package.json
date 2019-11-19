@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/ad-banners",
-  "version": "1.0.0-alpha.64",
+  "version": "1.0.0-alpha.65",
   "description": "Image banner list section for POI, hotel, article",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "license": "ISC",
@@ -21,9 +21,9 @@
   },
   "dependencies": {
     "@egjs/react-flicking": "^3.1.1",
-    "@titicaca/core-elements": "^1.0.0-alpha.64",
-    "@titicaca/intersection-observer": "^1.0.0-alpha.64",
-    "@titicaca/react-contexts": "^1.0.0-alpha.64",
+    "@titicaca/core-elements": "^1.0.0-alpha.65",
+    "@titicaca/intersection-observer": "^1.0.0-alpha.65",
+    "@titicaca/react-contexts": "^1.0.0-alpha.65",
     "isomorphic-fetch": "^2.2.1"
   }
 }
