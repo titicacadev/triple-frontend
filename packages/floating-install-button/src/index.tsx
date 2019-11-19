@@ -6,6 +6,7 @@ declare var window: any
 
 const MIN_DESKTOP_WIDTH = 1142
 const CLOSE_INSTALL_BUTTON_KEY = 'close_install_button'
+const DEFAULT_DESCRIPTION_TEXT = '가이드북, 일정짜기, 길찾기, 맛집'
 
 const FloatingButton = styled.div`
   position: fixed;
@@ -63,11 +64,13 @@ const CloseButton = styled.img`
 export default function FloatingInstallButton({
   appInstallLink,
   isPublic,
+  description = DEFAULT_DESCRIPTION_TEXT,
   trackEvent,
   trackEventParams,
 }: {
   appInstallLink?: string
   isPublic?: boolean
+  description?: string
   trackEvent?: any
   trackEventParams?: {
     onShow?: any
@@ -114,7 +117,7 @@ export default function FloatingInstallButton({
             <GoAppButton src="https://assets.triple.guide/images/ico-arrow@4x.png" />
           </InstallAnchor>
         </InstallDescription>
-        <Description>가이드북, 일정짜기, 길찾기, 맛집</Description>
+        <Description>{description}</Description>
       </Container>
       <Container floated="right" onClick={onClose}>
         <CloseButton src="https://assets.triple.guide/images/btn-closebanner@3x.png" />
