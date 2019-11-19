@@ -235,6 +235,7 @@ function EmbeddedImage({
   value: {
     images: [image],
   },
+  size,
   onImageClick,
   onLinkClick,
   ImageSource,
@@ -246,7 +247,7 @@ function EmbeddedImage({
 
     return (
       <Image
-        size="medium"
+        size={size || 'medium'}
         src={sizes.large.url}
         sourceUrl={sourceUrl}
         onClick={(e) => handleClick(e, image)}
