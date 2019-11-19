@@ -21,6 +21,8 @@ import {
   Carousel,
   Container,
   GetGlobalColor,
+  ResourceListItem,
+  SquareImage,
 } from '@titicaca/core-elements'
 import { PoiListElement, PoiCarouselElement } from '@titicaca/poi-list-elements'
 
@@ -391,6 +393,7 @@ const LINK_CONTAINERS = {
   block: BlockContainer,
   list: ListLinkContainer,
   default: LinksContainer,
+  image: ResourceList,
 }
 
 function ButtonLink({ children, ...props }) {
@@ -409,11 +412,35 @@ function BlockLink({ children, ...props }) {
   )
 }
 
+const IMAGE_PLACEHOLDER =
+  'https://assets.triple.guide/images/ico-blank-see@2x.png'
+
+function ImageLink({ href, label, description, image, onClick }) {
+  return (
+    <ResourceListItem onClick={onClick}>
+      <a href={href}>
+        <SquareImage
+          floated="left"
+          size="small"
+          src={(image && image.sizes.small_square.url) || IMAGE_PLACEHOLDER}
+        />
+        <Text bold ellipsis alpha={1} margin={{ left: 50 }}>
+          {label}
+        </Text>
+        <Text size="tiny" alpha={0.7} margin={{ top: 4, left: 50 }}>
+          {description}
+        </Text>
+      </a>
+    </ResourceListItem>
+  )
+}
+
 const LINK_ELEMENTS = {
   button: ButtonLink,
   block: BlockLink,
   list: ListLink,
   default: SimpleLink,
+  image: ImageLink,
 }
 
 function Links({ value: { display, links }, onLinkClick, ...props }) {
@@ -425,8 +452,8 @@ function Links({ value: { display, links }, onLinkClick, ...props }) {
       {links.map((link, i) => (
         <Element
           key={i}
-          href={link.href}
           onClick={onLinkClick && ((e) => onLinkClick(e, link))}
+          {...link}
         >
           {link.label}
         </Element>
