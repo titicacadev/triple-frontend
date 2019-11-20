@@ -237,13 +237,12 @@ function EmbeddedImage({
   value: {
     images: [image],
   },
-  frame,
   onImageClick,
   onLinkClick,
   ImageSource,
 }) {
   if (image) {
-    const { sizes, sourceUrl } = image
+    const { sizes, sourceUrl, frame } = image
 
     const handleClick = generateClickHandler(onLinkClick, onImageClick)
 
