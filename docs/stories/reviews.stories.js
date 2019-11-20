@@ -49,7 +49,7 @@ storiesOf('Reviews', module).add('일반', () => (
           )}
           resourceType={select(
             'Resource Type',
-            ['poi', 'tna', 'article'],
+            ['poi', 'tna', 'article', 'hotel'],
             'tna',
           )}
           onFullListButtonClick={action('onFullListButtonClick')}
