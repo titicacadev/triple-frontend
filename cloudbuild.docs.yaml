@@ -38,6 +38,8 @@ steps:
     secretEnv:
       - 'OPS'
 
+timeout: 1200s
+
 substitutions:
   _OPS_API: 'https://ops.triple-corp.com/api/v1'
   _SLACK_NOTIFY_CHANNEL: '#triple-web-dev-notifications'
