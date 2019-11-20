@@ -86,6 +86,12 @@ storiesOf('ActionSheet', module)
       borderRadius={0}
       reverse={true}
       maxContentHeight={100}
+      padding={{
+        top: 20,
+        left: 25,
+        bottom: 30,
+        right: 25,
+      }}
     >
       <ActionSheet.Item
         icon={select(

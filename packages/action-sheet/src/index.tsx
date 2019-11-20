@@ -2,6 +2,7 @@ import React from 'react'
 import { CSSTransition } from 'react-transition-group'
 
 import {
+  MarginPadding,
   Title,
   ActionItemContainer,
   ItemText,
@@ -81,6 +82,7 @@ export default function ActionSheet({
   borderRadius = 12,
   bottomSpacing = 13,
   maxContentHeight = 'calc(100vh - 256px)',
+  padding,
   children,
 }: {
   open?: boolean
@@ -90,6 +92,7 @@ export default function ActionSheet({
   borderRadius?: number
   bottomSpacing?: number
   maxContentHeight?: string | number
+  padding?: MarginPadding
   children?: React.ReactNode
 }) {
   const actionSheetTitle = title ? (
@@ -106,6 +109,7 @@ export default function ActionSheet({
         reverse={reverse}
         borderRadius={borderRadius}
         bottomSpacing={bottomSpacing}
+        padding={padding}
         onClick={onClose}
       >
         <Sheet onClick={silenceEvent}>
