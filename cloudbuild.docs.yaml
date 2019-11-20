@@ -1,26 +1,52 @@
 steps:
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['install']
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['install']
-  dir: 'docs'
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['run-script', 'build']
-  dir: 'docs'
-## AWS S3 sync
-- name: 'mesosphere/aws-cli'
-  entrypoint: 'sh'
-  args:
-    - '-c'
-    - |
-      aws s3 sync --exclude .git --acl public-read docs/storybook-static s3://design.triple.systems
-  env:
-    - 'AWS_ACCESS_KEY_ID=AKIAIUP24J62HYKCFQZQ'
-  secretEnv:
-    - 'AWS_SECRET_ACCESS_KEY'
-
-## AWS credentials
-secrets:
-  - kmsKeyName: projects/titicaca-ci/locations/global/keyRings/aws/cryptoKeys/travis_secret_access_key
+  ## package release image
+  - name: 'gcr.io/cloud-builders/docker'
+    id: package
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        docker build \
+          --file Dockerfile.docs \
+          --build-arg npm_token=$$NPM_TOKEN \
+          --tag 107243714588.dkr.ecr.ap-northeast-1.amazonaws.com/${_SVC_BASENAME}:${SHORT_SHA} \
+          --tag 107243714588.dkr.ecr.ap-northeast-1.amazonaws.com/${_SVC_BASENAME}:latest \
+          .
     secretEnv:
-      AWS_SECRET_ACCESS_KEY: CiQArwjw2HE8LGUFMmmPxysOe37UXk2qxMUcYHMe3ugYyWpfNQ0SUQAb9IKs7CqeDXJsaRAYbrgs3RFO0pkWw1HlGxzojVjepEN9Iq+M/EVNIiRl5jsO0OQ4LR3YbtWk8jQkPDquMFJrcLxOgW3tMHpp9El1KeT0bA==
+      - 'NPM_TOKEN'
+
+  ## push release image to AWS ECR
+  - name: 'gcr.io/cloud-builders/docker'
+    id: push
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        curl -sS --fail "${_OPS_API}/gcp-ecr-auth?token=$$OPS&script=1&region=ap-northeast-1" | bash
+        docker push 107243714588.dkr.ecr.ap-northeast-1.amazonaws.com/${_SVC_BASENAME}:${SHORT_SHA}
+        docker push 107243714588.dkr.ecr.ap-northeast-1.amazonaws.com/${_SVC_BASENAME}:latest
+    secretEnv:
+      - 'OPS'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    id: release
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        curl -sS --fail --max-time 60 -X POST "${_OPS_API}/gcp-ecs-deploy/triple-dev/${_SVC_BASENAME}/${SHORT_SHA}?token=$$OPS"
+    secretEnv:
+      - 'OPS'
+
+substitutions:
+  _OPS_API: 'https://ops.triple-corp.com/api/v1'
+  _SLACK_NOTIFY_CHANNEL: '#triple-web-dev-notifications'
+  _SVC_BASENAME: 'triple-frontend-docs'
+
+secrets:
+  - kmsKeyName: projects/titicaca-ci/locations/global/keyRings/npm/cryptoKeys/read_only_token
+    secretEnv:
+      NPM_TOKEN: CiQAcBjweQp70fQdHefg3+1XUiV+kwWJc/usCYSnHK6/kceVvDISTQCQlPnJ+dwlsKOmOB5j6Wp7QkXs/zeZahCylb7nvnGgUa/1h1qlK2IppruD5XdRLmO0OzujWNDfvmjfNNtZ46CQMrPf58T1ZV0hgP/P
+  - kmsKeyName: projects/titicaca-ci/locations/global/keyRings/aws/cryptoKeys/ops
+    secretEnv:
+      OPS: CiQAI4MdjlE2q7vUiJzq4snoFOPtUIo3wD3utvp6uIvUw1sOaHsSUQBDqgoddjh/WYT0cBKxSwv2UAM+PlWooyFFF4tJ1cl20wQfa70N4AbKfF8sCwmqxu2Icc1BX9+4ODMO4kwwcDvlI1HUiD/nYQPSVywmUTUWDg==
