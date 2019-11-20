@@ -80,6 +80,7 @@ export default function ActionSheet({
   reverse = false,
   borderRadius = 12,
   bottomSpacing = 13,
+  maxContentHeight = 'calc(100vh - 256px)',
   children,
 }: {
   open?: boolean
@@ -87,8 +88,9 @@ export default function ActionSheet({
   title?: React.ReactNode
   reverse?: boolean
   borderRadius?: number
-  children?: React.ReactNode
   bottomSpacing?: number
+  maxContentHeight?: string | number
+  children?: React.ReactNode
 }) {
   const actionSheetTitle = title ? (
     typeof title === 'string' ? (
@@ -109,7 +111,9 @@ export default function ActionSheet({
         <Sheet onClick={silenceEvent}>
           {actionSheetTitle}
           <Provider value={{ onClose, reverse, borderRadius }}>
-            <ContentContainer>{children}</ContentContainer>
+            <ContentContainer maxContentHeight={maxContentHeight}>
+              {children}
+            </ContentContainer>
           </Provider>
         </Sheet>
       </Overlay>
