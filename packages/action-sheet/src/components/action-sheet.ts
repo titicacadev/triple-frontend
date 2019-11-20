@@ -1,4 +1,12 @@
 import styled, { css } from 'styled-components'
+import * as CSS from 'csstype'
+
+export type MarginPadding = Partial<
+  Record<
+    'top' | 'right' | 'bottom' | 'left',
+    CSS.MarginProperty<number | string>
+  >
+>
 
 export const Title = styled.div`
   height: 16px;
@@ -39,6 +47,7 @@ export const Overlay = styled.div<{
   reverse: boolean
   borderRadius: number
   bottomSpacing: number
+  padding?: MarginPadding
 }>`
   position: fixed;
   top: 0;
@@ -51,18 +60,34 @@ export const Overlay = styled.div<{
   pointer-events: none;
 
   ${Sheet} {
-    ${({ reverse, borderRadius }) =>
+    ${({ reverse, padding, borderRadius, bottomSpacing }) =>
       reverse
         ? css`
             top: 0;
             border-radius: 0 0 ${borderRadius}px ${borderRadius}px;
-            padding-bottom: 30px;
+            padding-top: ${padding ? padding.top || 0 : 0}px;
+            padding-bottom: ${padding ? padding.bottom || 0 : 30}px;
             margin-top: -120px;
           `
         : css`
             bottom: 0;
             border-radius: ${borderRadius}px ${borderRadius}px 0 0;
-            padding-top: 30px;
+            padding-top: ${padding ? padding.top || 0 : 30}px;
+            padding-bottom: ${padding ? padding.bottom || 0 : bottomSpacing}px;
+
+            @supports (padding: max(0px)) and
+              (padding: env(safe-area-inset-bottom)) {
+              padding-bottom: max(
+                ${padding ? padding.bottom || 0 : bottomSpacing}px,
+                calc(
+                  env(safe-area-inset-bottom) +
+                    ${(padding
+                      ? (padding.bottom as number) || 0
+                      : bottomSpacing) + 4}px
+                )
+              );
+            }
+
             margin-bottom: -120px;
           `}
   }
@@ -145,21 +170,15 @@ export const Overlay = styled.div<{
   }
 
   ${ContentContainer} {
-    padding: 0 25px;
-
-    ${({ reverse, bottomSpacing }) =>
-      reverse
-        ? css``
-        : css`
-            padding-bottom: ${bottomSpacing}px;
-
-            @supports (padding: max(0px)) and
-              (padding: env(safe-area-inset-bottom)) {
-              padding-bottom: max(
-                ${bottomSpacing}px,
-                calc(env(safe-area-inset-bottom) + ${bottomSpacing + 4}px)
-              );
-            }
-          `}
+    ${({ padding }) => css`
+      padding: ${[
+        0,
+        padding ? padding.right || 0 : 25,
+        0,
+        padding ? padding.left || 0 : 25,
+      ]
+        .map((n) => `${n}px`)
+        .join(' ')};
+    `}
   }
 `
