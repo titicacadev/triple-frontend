@@ -40,7 +40,7 @@ export function TnaProduct({
 }) {
   return (
     <>
-      <SquareImage size="medium" floated="left" src={heroImage} />
+      <SquareImage size="medium" floated="left" src={heroImage} alt={title} />
       <Text bold size="large" color="gray" margin={{ left: 150 }}>
         {title}
       </Text>

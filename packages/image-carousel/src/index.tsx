@@ -87,7 +87,14 @@ export default class ImageCarousel extends React.PureComponent<
     return (
       <Carousel {...carouselProps}>
         {images.map((image, i) => {
-          const { frame: imageFrame, size: imageSize, sizes, sourceUrl } = image
+          const {
+            frame: imageFrame,
+            size: imageSize,
+            sizes,
+            sourceUrl,
+            title,
+            description,
+          } = image
           const size = globalSize || imageSize
           const frame = size ? undefined : globalFrame || imageFrame
           const totalCount =
@@ -113,6 +120,7 @@ export default class ImageCarousel extends React.PureComponent<
                   : null
               }
               overlayType="dark"
+              alt={title || description}
             />
           )
         })}

@@ -1,8 +1,4 @@
 {
-  "packages": [
-    "docs",
-    "packages/*",
-    "tests"
-  ],
+  "packages": ["docs", "packages/*", "tests"],
   "version": "1.0.0-alpha.66"
 }
