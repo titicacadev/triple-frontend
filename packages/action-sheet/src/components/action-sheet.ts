@@ -49,7 +49,6 @@ const unit = (value: number | string, u = 'px') =>
 export const Overlay = styled.div<{
   reverse: boolean
   borderRadius: number
-  bottomSpacing: number
   padding: MarginPadding
 }>`
   position: fixed;
@@ -63,7 +62,7 @@ export const Overlay = styled.div<{
   pointer-events: none;
 
   ${Sheet} {
-    ${({ reverse, padding, borderRadius, bottomSpacing }) =>
+    ${({ reverse, padding, borderRadius }) =>
       reverse
         ? css`
             top: 0;
