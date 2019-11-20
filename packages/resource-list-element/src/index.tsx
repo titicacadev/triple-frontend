@@ -72,6 +72,7 @@ export default function ExtendedResourceListElement({
         }
         asPlaceholder={!image}
         margin={{ left: 20 }}
+        alt={name}
       />
 
       <Text bold maxLines={2} size="large">

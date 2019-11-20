@@ -426,6 +426,7 @@ function ImageLink({ href, label, description, image, onClick }) {
           floated="left"
           size="small"
           src={(image && image.sizes.small_square.url) || IMAGE_PLACEHOLDER}
+          alt={label}
         />
         <Text bold ellipsis alpha={1} margin={{ left: 50 }}>
           {label}

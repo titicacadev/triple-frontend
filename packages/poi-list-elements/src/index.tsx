@@ -67,15 +67,18 @@ export function PoiCarouselElement({
       currentState: resourceScraps[id],
     })
 
+    const name = nameOverride || names.ko || names.en || names.local
+
     return (
       <Carousel.Item size="small" onClick={onClick}>
         <Image
           frame="large"
           asPlaceholder={!image}
           src={image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS[type]}
+          alt={name}
         />
         <Text bold ellipsis alpha={1} margin={{ top: 8 }}>
-          {nameOverride || names.ko || names.en || names.local}
+          {name}
         </Text>
         <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
           {TYPE_NAMES[type]}
@@ -138,6 +141,8 @@ class CompactPoiListElement extends React.PureComponent<{
       currentState: resourceScraps[id],
     })
 
+    const name = nameOverride || names.ko || names.en || names.local
+
     return (
       <ResourceListItem onClick={onClick}>
         <SquareImage
@@ -147,6 +152,7 @@ class CompactPoiListElement extends React.PureComponent<{
             (image && image.sizes.large.url) ||
             POI_IMAGE_PLACEHOLDERS_SMALL[type]
           }
+          alt={name}
         />
         <Text
           bold
@@ -154,7 +160,7 @@ class CompactPoiListElement extends React.PureComponent<{
           alpha={1}
           margin={{ left: 50, right: actionButtonWidth }}
         >
-          {nameOverride || names.ko || names.en || names.local}
+          {name}
         </Text>
         <Text size="tiny" alpha={0.7} margin={{ top: 4, left: 50 }}>
           {TYPE_NAMES[type]}
