@@ -42,12 +42,15 @@ export const Sheet = styled.div`
   margin: 0;
 `
 
+const unit = (value: number | string, u = 'px') =>
+  typeof value === 'string' ? value : value !== 0 ? `${value}${u}` : value
+
 // eslint-disable-next-line no-unexpected-multiline
 export const Overlay = styled.div<{
   reverse: boolean
   borderRadius: number
   bottomSpacing: number
-  padding?: MarginPadding
+  padding: MarginPadding
 }>`
   position: fixed;
   top: 0;
@@ -64,26 +67,28 @@ export const Overlay = styled.div<{
       reverse
         ? css`
             top: 0;
-            border-radius: 0 0 ${borderRadius}px ${borderRadius}px;
-            padding-top: ${padding ? padding.top || 0 : 0}px;
-            padding-bottom: ${padding ? padding.bottom || 0 : 30}px;
+            border-radius: 0 0 ${unit(borderRadius)} ${unit(borderRadius)};
+            padding-top: ${unit(padding.top)};
+            padding-bottom: ${unit(padding.bottom)};
             margin-top: -120px;
           `
         : css`
             bottom: 0;
-            border-radius: ${borderRadius}px ${borderRadius}px 0 0;
-            padding-top: ${padding ? padding.top || 0 : 30}px;
-            padding-bottom: ${padding ? padding.bottom || 0 : bottomSpacing}px;
+            border-radius: ${unit(borderRadius)} ${unit(borderRadius)} 0 0;
+            padding-top: ${unit(padding.top)};
+            padding-bottom: ${unit(padding.bottom)};
 
             @supports (padding: max(0px)) and
               (padding: env(safe-area-inset-bottom)) {
               padding-bottom: max(
-                ${padding ? padding.bottom || 0 : bottomSpacing}px,
+                ${unit(padding.bottom)},
                 calc(
                   env(safe-area-inset-bottom) +
-                    ${(padding
-                      ? (padding.bottom as number) || 0
-                      : bottomSpacing) + 4}px
+                    ${unit(
+                      typeof padding.bottom === 'number'
+                        ? padding.bottom + 4
+                        : padding.bottom,
+                    )}
                 )
               );
             }
@@ -171,13 +176,8 @@ export const Overlay = styled.div<{
 
   ${ContentContainer} {
     ${({ padding }) => css`
-      padding: ${[
-        0,
-        padding ? padding.right || 0 : 25,
-        0,
-        padding ? padding.left || 0 : 25,
-      ]
-        .map((n) => `${n}px`)
+      padding: ${[0, padding.right, 0, padding.left]
+        .map((n) => unit(n))
         .join(' ')};
     `}
   }

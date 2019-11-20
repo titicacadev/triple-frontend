@@ -102,6 +102,13 @@ export default function ActionSheet({
       title
     )
   ) : null
+  const paddingValue = {
+    top: reverse ? 0 : 30,
+    right: 25,
+    left: 25,
+    bottom: reverse ? 30 : bottomSpacing || 0,
+    ...(padding || {}),
+  }
 
   return (
     <CSSTransition in={open} appear classNames="fade" timeout={500}>
@@ -109,7 +116,7 @@ export default function ActionSheet({
         reverse={reverse}
         borderRadius={borderRadius}
         bottomSpacing={bottomSpacing}
-        padding={padding}
+        padding={paddingValue}
         onClick={onClose}
       >
         <Sheet onClick={silenceEvent}>
