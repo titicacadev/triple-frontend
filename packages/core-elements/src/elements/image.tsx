@@ -108,6 +108,7 @@ const ImageFrameContent = ({
   overlayPadding,
   overlayType,
   withLinkIndicator,
+  alt,
 }: {
   imageUrl?: string
   borderRadius?: number
@@ -117,6 +118,7 @@ const ImageFrameContent = ({
   overlayPadding?: MarginPadding
   overlayType?: OverlayType
   withLinkIndicator?: boolean
+  alt?: string
 }) => (
   <>
     {imageUrl && (
@@ -124,6 +126,7 @@ const ImageFrameContent = ({
         overlay={!!overlay}
         src={imageUrl}
         borderRadius={borderRadius}
+        alt={alt}
       />
     )}
     {sourceUrl && (
@@ -241,6 +244,7 @@ function Image({
   height,
   margin,
   asPlaceholder,
+  alt,
 }: {
   src?: string
   borderRadius?: number
@@ -259,9 +263,18 @@ function Image({
   height?: number
   margin?: MarginPadding
   asPlaceholder?: boolean
+  alt?: string
 }) {
   if (circular) {
-    return <RoundImage src={src} floated={floated} size={size} width={width} />
+    return (
+      <RoundImage
+        src={src}
+        floated={floated}
+        size={size}
+        width={width}
+        alt={alt}
+      />
+    )
   }
 
   const Frame =
@@ -311,6 +324,7 @@ function Image({
           overlayPadding={overlayPadding}
           overlayType={overlayType}
           withLinkIndicator={withLinkIndicator}
+          alt={alt}
         />
       )}
     </Frame>
