@@ -8,9 +8,15 @@ export const Title = styled.div`
   margin: 0 0 10px 27px;
 `
 
-export const ContentContainer = styled.div<{ bottomSpacing?: number }>`
+// eslint-disable-next-line no-unexpected-multiline
+export const ContentContainer = styled.div<{
+  maxContentHeight?: string | number
+}>`
   box-sizing: border-box;
-  max-height: calc(100vh - 256px);
+  max-height: ${({ maxContentHeight }) =>
+    typeof maxContentHeight === 'string'
+      ? maxContentHeight
+      : `${maxContentHeight}px`};
   overflow: auto;
 
   ::-webkit-scrollbar {
@@ -141,20 +147,17 @@ export const Overlay = styled.div<{
   ${ContentContainer} {
     padding: 0 25px;
 
-    ${({ reverse }) =>
+    ${({ reverse, bottomSpacing }) =>
       reverse
         ? css``
         : css`
-            padding-bottom: ${({ bottomSpacing }) => bottomSpacing}px;
+            padding-bottom: ${bottomSpacing}px;
 
             @supports (padding: max(0px)) and
               (padding: env(safe-area-inset-bottom)) {
               padding-bottom: max(
-                ${({ bottomSpacing }) => bottomSpacing}px,
-                calc(
-                  env(safe-area-inset-bottom) +
-                    ${({ bottomSpacing }) => bottomSpacing + 4}px
-                )
+                ${bottomSpacing}px,
+                calc(env(safe-area-inset-bottom) + ${bottomSpacing + 4}px)
               );
             }
           `}

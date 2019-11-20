@@ -85,6 +85,7 @@ storiesOf('ActionSheet', module)
       title={text('제목', '샘플 액션 시트')}
       borderRadius={0}
       reverse={true}
+      maxContentHeight={100}
     >
       <ActionSheet.Item
         icon={select(
@@ -101,6 +102,9 @@ storiesOf('ActionSheet', module)
           'save',
         )}
       >
+        {text('메뉴 텍스트', '샘플 메뉴')}
+      </ActionSheet.Item>
+      <ActionSheet.Item buttonLabel={text('버튼 레이블', '액션')}>
         {text('메뉴 텍스트', '샘플 메뉴')}
       </ActionSheet.Item>
     </ActionSheet>
