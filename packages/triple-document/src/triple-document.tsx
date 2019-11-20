@@ -458,6 +458,7 @@ function Links({ value: { display, links }, onLinkClick, ...props }) {
           key={i}
           onClick={onLinkClick && ((e) => onLinkClick(e, link))}
           {...link}
+          href={link.href || '#'}
         >
           {link.label}
         </Element>
