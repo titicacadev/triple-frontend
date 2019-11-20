@@ -126,7 +126,7 @@ const ImageFrameContent = ({
         overlay={!!overlay}
         src={imageUrl}
         borderRadius={borderRadius}
-        alt={alt}
+        alt={alt || ''}
       />
     )}
     {sourceUrl && (
@@ -272,7 +272,7 @@ function Image({
         floated={floated}
         size={size}
         width={width}
-        alt={alt}
+        alt={alt || ''}
       />
     )
   }
@@ -324,7 +324,7 @@ function Image({
           overlayPadding={overlayPadding}
           overlayType={overlayType}
           withLinkIndicator={withLinkIndicator}
-          alt={alt}
+          alt={alt || ''}
         />
       )}
     </Frame>
