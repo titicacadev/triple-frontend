@@ -412,13 +412,17 @@ function BlockLink({ children, ...props }) {
   )
 }
 
+const ImageLinkItem = styled.a`
+  text-decoration: none;
+`
+
 const IMAGE_PLACEHOLDER =
   'https://assets.triple.guide/images/ico-blank-see@2x.png'
 
 function ImageLink({ href, label, description, image, onClick }) {
   return (
     <ResourceListItem onClick={onClick}>
-      <a href={href}>
+      <ImageLinkItem href={href}>
         <SquareImage
           floated="left"
           size="small"
@@ -430,7 +434,7 @@ function ImageLink({ href, label, description, image, onClick }) {
         <Text size="tiny" alpha={0.7} margin={{ top: 4, left: 50 }}>
           {description}
         </Text>
-      </a>
+      </ImageLinkItem>
     </ResourceListItem>
   )
 }
