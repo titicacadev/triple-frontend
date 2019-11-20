@@ -23,7 +23,7 @@ const PRIMARY_ICON_URL =
   'https://assets.triple-dev.titicaca-corp.com/images/ico-filter-cal.svg'
 
 // eslint-disable-next-line no-unexpected-multiline
-const ExpandingFilterEntryContainer = styled(FilterEntryBase)<{
+const ExpandingFilterEntryFrame = styled(FilterEntryBase)<{
   active?: boolean
 }>`
   padding: 9px 24px 9px 11px;
@@ -36,20 +36,32 @@ const ExpandingFilterEntryContainer = styled(FilterEntryBase)<{
 `
 
 const ExpandingFilterEntryBadge = styled.div`
-  display: inline-block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
   height: 18px;
   width: 18px;
   line-height: 18px;
   background-color: #368fff;
   color: #fff;
-  vertical-align: top;
   border-radius: 9px;
   font-size: 12px;
   font-weight: bold;
-  padding-left: 5px;
+  text-align: center;
   box-sizing: border-box;
-  margin-left: 2px;
-  margin-top: -2px;
+`
+
+const ExpandingFilterEntryContainer = styled.div<{
+  withBadge?: boolean
+}>`
+  position: relative;
+
+  ${({ withBadge }) =>
+    withBadge &&
+    css`
+      padding-right: 20px;
+    `}
 `
 
 interface ExpandingFilterEntryProps extends React.HTMLAttributes<HTMLElement> {
@@ -62,12 +74,14 @@ function ExpandingFilterEntry({
   ...props
 }: ExpandingFilterEntryProps) {
   return (
-    <ExpandingFilterEntryContainer {...props}>
-      {children}
-      {badge ? (
-        <ExpandingFilterEntryBadge>{badge}</ExpandingFilterEntryBadge>
-      ) : null}
-    </ExpandingFilterEntryContainer>
+    <ExpandingFilterEntryFrame {...props}>
+      <ExpandingFilterEntryContainer withBadge={!!badge}>
+        {children}
+        {badge ? (
+          <ExpandingFilterEntryBadge>{badge}</ExpandingFilterEntryBadge>
+        ) : null}
+      </ExpandingFilterEntryContainer>
+    </ExpandingFilterEntryFrame>
   )
 }
 
