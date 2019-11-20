@@ -203,6 +203,7 @@ export default function ReviewContainer({
       ) : (
         <ReviewsPlaceholder
           resourceType={resourceType}
+          appUrlScheme={appUrlScheme}
           onClick={onReviewWrite || handleWriteButtonClick}
         />
       )}
