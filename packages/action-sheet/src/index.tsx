@@ -115,7 +115,6 @@ export default function ActionSheet({
       <Overlay
         reverse={reverse}
         borderRadius={borderRadius}
-        bottomSpacing={bottomSpacing}
         padding={paddingValue}
         onClick={onClose}
       >
