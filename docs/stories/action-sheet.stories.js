@@ -79,3 +79,29 @@ storiesOf('ActionSheet', module)
       </ActionSheet.Item>
     </ActionSheet>
   ))
+  .add('{reverse=true} 상단 액션시트', () => (
+    <ActionSheet
+      open={boolean('열림', true)}
+      title={text('제목', '샘플 액션 시트')}
+      borderRadius={0}
+      reverse={true}
+    >
+      <ActionSheet.Item
+        icon={select(
+          '아이콘 종류',
+          [
+            'save',
+            'schedule',
+            'share',
+            'suggest',
+            'review',
+            'report',
+            'delete',
+          ],
+          'save',
+        )}
+      >
+        {text('메뉴 텍스트', '샘플 메뉴')}
+      </ActionSheet.Item>
+    </ActionSheet>
+  ))
