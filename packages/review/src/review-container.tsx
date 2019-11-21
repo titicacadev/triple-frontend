@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { Section, Container, Text, Button, HR1 } from '@titicaca/core-elements'
+import { Section, Container, Text, Button } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import {
   useUserAgentContext,
@@ -26,6 +26,42 @@ const WriteIcon = styled.img`
   width: 34px;
   height: 34px;
   float: right;
+`
+
+const MileageButton = styled.div`
+  position: relative;
+  box-sizing: border-box;
+  text-decoration: none;
+  display: block;
+  border-radius: 4px;
+  background-color: #ececec;
+  width: 100%;
+  margin-top: 25px;
+  padding: 25px 20px 22px;
+  font-size: 13px;
+  color: #2987f0;
+  cursor: pointer;
+
+  @media only screen and (max-width: 640px) {
+    padding-top: 19px;
+    padding-bottom: 19px;
+  }
+`
+
+const BulletRight = styled.img.attrs({
+  src:
+    'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMjk4N0YwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNNy4wNyAxNkwxMyAxMC4wMzUgNyA0Ii8+Cjwvc3ZnPgo=',
+})`
+  position: absolute;
+  right: 20px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  @media only screen and (max-width: 640px) {
+    right: 10px;
+  }
 `
 
 export default function ReviewContainer({
@@ -178,17 +214,8 @@ export default function ReviewContainer({
         )}
       </Container>
 
-      {shortened ? (
-        <ReviewsPlaceholder
-          resourceType={resourceType}
-          appUrlScheme={appUrlScheme}
-          onClick={onReviewWrite || handleWriteButtonClick}
-        />
-      ) : null}
-
       {(reviewsCount || 0) > 0 || myReview ? (
         <>
-          {shortened ? <HR1 margin={{ top: 30, bottom: 30 }} /> : null}
           <Container margin={{ top: 23 }} clearing>
             <SortingOptions
               selected={sortingOption}
@@ -209,7 +236,12 @@ export default function ReviewContainer({
             fetchNext={!shortened && fetchNext}
           />
         </>
-      ) : null}
+      ) : (
+        <ReviewsPlaceholder
+          resourceType={resourceType}
+          onClick={onReviewWrite || handleWriteButtonClick}
+        />
+      )}
 
       {reviewsCount > 3 && shortened ? (
         <Container margin={{ top: 50 }}>
@@ -227,6 +259,23 @@ export default function ReviewContainer({
             {reviewsCount - 3}개 리뷰 더보기
           </Button>
         </Container>
+      ) : null}
+
+      {!isPublic && shortened ? (
+        <MileageButton
+          onClick={(e) => {
+            window.location.href = `${appUrlScheme}:///my/mileage`
+            e.preventDefault()
+          }}
+        >
+          <Text color="gray" size="small" alpha={0.6} lineheight={1.7}>
+            리뷰 쓰면 여행자 클럽 최대 3포인트!
+          </Text>
+          <Text color="blue" size="small" margin={{ top: 5 }} lineheight={1.7}>
+            포인트별 혜택 보기
+          </Text>
+          <BulletRight />
+        </MileageButton>
       ) : null}
 
       <MyReviewActionSheet
