@@ -48,7 +48,7 @@ Slack `@frontend` 그룹, `#triple-web-dev` 채널 및 GitHub `@frontend` 팀
 
 ### Documentation
 
-[Triple Frontend Documentation](https://design.triple.systems) 페이지에서 컴포넌트
+[Triple Frontend Documentation](https://frontend-docs.dev.admin.triple-corp.com) 페이지에서 컴포넌트
 목록과 뷰, 동작을 볼 수 있습니다. `master` 브랜치에 변경 사항을 푸시할 때마다
 페이지를 업데이트합니다.
 
