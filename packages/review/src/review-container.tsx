@@ -31,7 +31,6 @@ const WriteIcon = styled.img`
 const MileageButton = styled.div`
   position: relative;
   box-sizing: border-box;
-  text-decoration: none;
   display: block;
   border-radius: 4px;
   background-color: #ececec;
@@ -43,8 +42,7 @@ const MileageButton = styled.div`
   cursor: pointer;
 
   @media only screen and (max-width: 640px) {
-    padding-top: 19px;
-    padding-bottom: 19px;
+    padding: 19px 20px 19px 0px;
   }
 `
 
