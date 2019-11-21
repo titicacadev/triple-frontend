@@ -20,16 +20,20 @@ type DeriveCurrentStateAndCount = ({
   reviewsCount,
 }: { id: string } & StateAndCount) => StateAndCount
 
-const NOOP = () => {}
+type MyReviewSet = {
+  [key: string]: boolean
+}
 
 interface MyReviewsContextProps {
-  myReviews: { [key: string]: boolean }
+  myReviews: MyReviewSet
   actions: {
     deleteMyReview: Function
     fetchMyReview: ({ id: string }) => Promise<any>
   }
   deriveCurrentStateAndCount: DeriveCurrentStateAndCount
 }
+
+const NOOP = () => {}
 
 const Context = React.createContext<MyReviewsContextProps>({
   myReviews: {},
@@ -44,14 +48,14 @@ const Context = React.createContext<MyReviewsContextProps>({
 })
 
 interface MyReviewsProviderProps {
-  myReviews: { [key: string]: boolean }
+  myReviews: MyReviewSet
   fetchMyReview: FetchReview
   resourceType: string
   subscribeReviewUpdateEvent: Function
 }
 
 interface MyReviewsProviderState {
-  myReviews: { [key: string]: boolean }
+  myReviews: MyReviewSet
 }
 
 export class MyReviewsProvider extends React.PureComponent<
