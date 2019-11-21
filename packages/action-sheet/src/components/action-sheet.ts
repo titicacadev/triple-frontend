@@ -66,7 +66,7 @@ export const Overlay = styled.div<{
             border-radius: 0 0 ${unit(borderRadius)} ${unit(borderRadius)};
             padding-top: ${unit(padding.top)};
             padding-bottom: ${unit(padding.bottom)};
-            margin-top: -120px;
+            transform: translate3d(0, -100%, 0);
           `
         : css`
             bottom: 0;
@@ -89,7 +89,7 @@ export const Overlay = styled.div<{
               );
             }
 
-            margin-bottom: -120px;
+            transform: translate3d(0, 100%, 0);
           `}
   }
 
@@ -103,12 +103,12 @@ export const Overlay = styled.div<{
       ${({ from }) =>
         from === 'top'
           ? css`
-              transition: margin-top 120ms ease-in;
-              margin-top: 0;
+              transition: transform 120ms ease-in;
+              transform: translate3d(0, 0, 0);
             `
           : css`
-              transition: margin-bottom 120ms ease-in;
-              margin-bottom: 0;
+              transition: transform 120ms ease-in;
+              transform: translate3d(0, 0, 0);
             `}
     }
   }
@@ -123,10 +123,10 @@ export const Overlay = styled.div<{
       ${({ from }) =>
         from === 'top'
           ? css`
-              margin-top: 0;
+              transform: translate3d(0, 0, 0);
             `
           : css`
-              margin-bottom: 0;
+              transform: translate3d(0, 0, 0);
             `}
     }
   }
@@ -139,10 +139,10 @@ export const Overlay = styled.div<{
       ${({ from }) =>
         from === 'top'
           ? css`
-              margin-top: 0;
+              transform: translate3d(0, 0, 0);
             `
           : css`
-              margin-bottom: 0;
+              transform: translate3d(0, 0, 0);
             `}
     }
   }
@@ -156,12 +156,12 @@ export const Overlay = styled.div<{
       ${({ from }) =>
         from === 'top'
           ? css`
-              transition: margin-top 120ms ease-in;
-              margin-top: -120px;
+              transition: transform 120ms ease-in;
+              transform: translate3d(0, -100%, 0);
             `
           : css`
-              transition: margin-bottom 120ms ease-in;
-              margin-bottom: -120px;
+              transition: transform 120ms ease-in;
+              transform: translate3d(0, 100%, 0);
             `}
     }
   }
