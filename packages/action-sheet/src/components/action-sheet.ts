@@ -1,6 +1,9 @@
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 
+const unit = (value: number | string, suffix = 'px') =>
+  typeof value === 'string' ? value : value !== 0 ? `${value}${suffix}` : value
+
 export type MarginPadding = Partial<
   Record<
     'top' | 'right' | 'bottom' | 'left',
@@ -21,10 +24,7 @@ export const ContentContainer = styled.div<{
   maxContentHeight?: string | number
 }>`
   box-sizing: border-box;
-  max-height: ${({ maxContentHeight }) =>
-    typeof maxContentHeight === 'string'
-      ? maxContentHeight
-      : `${maxContentHeight}px`};
+  max-height: ${({ maxContentHeight }) => unit(maxContentHeight)};
   overflow: auto;
 
   ::-webkit-scrollbar {
@@ -41,9 +41,6 @@ export const Sheet = styled.div`
   box-sizing: border-box;
   margin: 0;
 `
-
-const unit = (value: number | string, u = 'px') =>
-  typeof value === 'string' ? value : value !== 0 ? `${value}${u}` : value
 
 // eslint-disable-next-line no-unexpected-multiline
 export const Overlay = styled.div<{
