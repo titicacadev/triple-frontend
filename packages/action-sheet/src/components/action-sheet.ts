@@ -44,7 +44,7 @@ export const Sheet = styled.div`
 
 // eslint-disable-next-line no-unexpected-multiline
 export const Overlay = styled.div<{
-  reverse: boolean
+  from: 'bottom' | 'top'
   borderRadius: number
   padding: MarginPadding
 }>`
@@ -59,8 +59,8 @@ export const Overlay = styled.div<{
   pointer-events: none;
 
   ${Sheet} {
-    ${({ reverse, padding, borderRadius }) =>
-      reverse
+    ${({ from, padding, borderRadius }) =>
+      from === 'top'
         ? css`
             top: 0;
             border-radius: 0 0 ${unit(borderRadius)} ${unit(borderRadius)};
@@ -100,8 +100,8 @@ export const Overlay = styled.div<{
     pointer-events: auto;
 
     ${Sheet} {
-      ${({ reverse }) =>
-        reverse
+      ${({ from }) =>
+        from === 'top'
           ? css`
               transition: margin-top 120ms ease-in;
               margin-top: 0;
@@ -120,8 +120,8 @@ export const Overlay = styled.div<{
     pointer-events: auto;
 
     ${Sheet} {
-      ${({ reverse }) =>
-        reverse
+      ${({ from }) =>
+        from === 'top'
           ? css`
               margin-top: 0;
             `
@@ -136,8 +136,8 @@ export const Overlay = styled.div<{
     opacity: 1;
 
     ${Sheet} {
-      ${({ reverse }) =>
-        reverse
+      ${({ from }) =>
+        from === 'top'
           ? css`
               margin-top: 0;
             `
@@ -153,8 +153,8 @@ export const Overlay = styled.div<{
     transition: opacity 120ms;
 
     ${Sheet} {
-      ${({ reverse }) =>
-        reverse
+      ${({ from }) =>
+        from === 'top'
           ? css`
               transition: margin-top 120ms ease-in;
               margin-top: -120px;

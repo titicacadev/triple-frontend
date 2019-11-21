@@ -78,7 +78,7 @@ export default function ActionSheet({
   open,
   onClose,
   title,
-  reverse = false,
+  from = 'bottom',
   borderRadius = 12,
   bottomSpacing = 13,
   maxContentHeight = 'calc(100vh - 256px)',
@@ -88,7 +88,7 @@ export default function ActionSheet({
   open?: boolean
   onClose?: (e?: React.SyntheticEvent) => any
   title?: React.ReactNode
-  reverse?: boolean
+  from?: 'bottom' | 'top'
   borderRadius?: number
   bottomSpacing?: number
   maxContentHeight?: string | number
@@ -103,24 +103,24 @@ export default function ActionSheet({
     )
   ) : null
   const paddingValue = {
-    top: reverse ? 0 : 30,
+    top: from === 'top' ? 0 : 30,
     right: 25,
     left: 25,
-    bottom: reverse ? 30 : bottomSpacing || 0,
+    bottom: from === 'top' ? 30 : bottomSpacing || 0,
     ...(padding || {}),
   }
 
   return (
     <CSSTransition in={open} appear classNames="fade" timeout={500}>
       <Overlay
-        reverse={reverse}
+        from={from}
         borderRadius={borderRadius}
         padding={paddingValue}
         onClick={onClose}
       >
         <Sheet onClick={silenceEvent}>
           {actionSheetTitle}
-          <Provider value={{ onClose, reverse, borderRadius }}>
+          <Provider value={{ onClose, from, borderRadius }}>
             <ContentContainer maxContentHeight={maxContentHeight}>
               {children}
             </ContentContainer>

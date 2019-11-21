@@ -84,7 +84,7 @@ storiesOf('ActionSheet', module)
       open={boolean('열림', true)}
       title={text('제목', '샘플 액션 시트')}
       borderRadius={0}
-      reverse={true}
+      from="top"
       maxContentHeight={100}
       padding={{
         top: 20,
