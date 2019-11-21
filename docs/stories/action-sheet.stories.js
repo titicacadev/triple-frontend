@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { text, boolean, select } from '@storybook/addon-knobs'
+import { text, boolean, number, select, object } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
 import ActionSheet from '@titicaca/action-sheet'
@@ -79,19 +79,23 @@ storiesOf('ActionSheet', module)
       </ActionSheet.Item>
     </ActionSheet>
   ))
-  .add('{reverse=true} 상단 액션시트', () => (
+  .add('옵션 props 테스트: 상단으로 부터의 액션시트 예제', () => (
     <ActionSheet
       open={boolean('열림', true)}
       title={text('제목', '샘플 액션 시트')}
-      borderRadius={0}
-      from="top"
-      maxContentHeight={100}
-      padding={{
-        top: 20,
-        left: 25,
-        bottom: 30,
-        right: 25,
-      }}
+      borderRadius={number('시트 모서리의 radius 값', 0)}
+      from={select('시트가 나오는 위치', ['bottom', 'top'], 'top')}
+      maxContentHeight={number('컨텐츠 영역의 최대 높이', 100)}
+      padding={object(
+        'padding',
+        {
+          top: 20,
+          left: 25,
+          bottom: 30,
+          right: 25,
+        },
+        'padding 옵션',
+      )}
     >
       <ActionSheet.Item
         icon={select(
