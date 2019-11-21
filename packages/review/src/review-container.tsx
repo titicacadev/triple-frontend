@@ -278,7 +278,7 @@ export default function ReviewContainer({
           <Text color="blue" size="small" margin={{ top: 5 }} lineheight={1.7}>
             포인트별 혜택 보기
           </Text>
-          <BulletRight />
+          <BulletRight alt="포인트별 혜택 보기" />
         </MileageButton>
       ) : null}
 
