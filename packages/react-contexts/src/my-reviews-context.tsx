@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ComponentType } from 'react'
 import humps from 'humps'
 
 type FetchReview = ({
@@ -144,16 +144,29 @@ export function useMyReviewsContext() {
   return React.useContext(Context)
 }
 
-export function withMyReviews(Component) {
-  return function MyReviewsComponent(props) {
+export function withMyReviews<
+  P extends {
+    myReviews?: MyReviewsContextProps['myReviews']
+    myReviewActions?: MyReviewsContextProps['actions']
+    deriveCurrentReviewedStateAndCount?: MyReviewsContextProps['deriveCurrentStateAndCount']
+  }
+>(Component: ComponentType<P>) {
+  return function MyReviewsComponent(
+    props: Omit<
+      P,
+      'myReviews' | 'myReviewActions' | 'deriveCurrentReviewedStateAndCount'
+    >,
+  ) {
     return (
       <Context.Consumer>
         {({ myReviews, actions, deriveCurrentStateAndCount }) => (
           <Component
-            myReviews={myReviews}
-            myReviewActions={actions}
-            deriveCurrentReviewedStateAndCount={deriveCurrentStateAndCount}
-            {...props}
+            {...({
+              ...props,
+              myReviews,
+              myReviewActions: actions,
+              deriveCurrentReviewedStateAndCount: deriveCurrentStateAndCount,
+            } as P)}
           />
         )}
       </Context.Consumer>
