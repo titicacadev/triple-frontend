@@ -34,8 +34,8 @@ type MyReviewSet = {
 interface MyReviewsContextProps {
   myReviews: MyReviewSet
   actions: {
-    deleteMyReview: Function
-    fetchMyReview: ({ id: string }) => Promise<any>
+    deleteMyReview: ({ id: string }) => void
+    fetchMyReview: ({ id: string }) => Promise<object | null>
   }
   deriveCurrentStateAndCount: DeriveCurrentStateAndCount
 }
@@ -81,13 +81,13 @@ export function MyReviewsProvider({
       const response = await fetchMyReview({ resourceId: id, resourceType })
 
       if (response.ok) {
-        const myReview = humps.camelizeKeys(await response.json())
+        const myReview: object = humps.camelizeKeys(await response.json())
 
-        insert({ [id]: myReview })
+        insert({ [id]: true })
 
         return myReview
       } else if (response.status === 404) {
-        insert({ [id]: null })
+        insert({ [id]: false })
 
         return null
       }
@@ -95,7 +95,7 @@ export function MyReviewsProvider({
     [fetchMyReview, resourceType],
   )
 
-  const handleDelete = useCallback(({ id }) => insert({ [id]: null }), [])
+  const handleDelete = useCallback(({ id }) => insert({ [id]: false }), [])
 
   const deriveCurrentStateAndCount = useCallback(
     ({ id, reviewed, reviewsCount: originalReviewsCount }) => {
