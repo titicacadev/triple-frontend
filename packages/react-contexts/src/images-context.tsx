@@ -20,7 +20,7 @@ interface ImagesContext {
   images: Image[]
   total: number
   actions: {
-    fetch: (cb: () => void) => Promise<void>
+    fetch: (cb?: () => void) => Promise<void>
     indexOf: (target: { id: string }) => Promise<number>
   }
 }
