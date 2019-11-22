@@ -30,4 +30,4 @@ FROM build AS release
 ARG NPM_TOKEN
 RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 
-RUN npm run publish -- --yes --dist-tag next
+RUN npm run publish -- --yes
