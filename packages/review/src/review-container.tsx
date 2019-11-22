@@ -42,7 +42,7 @@ const MileageButton = styled.div`
   cursor: pointer;
 
   @media only screen and (max-width: 640px) {
-    padding: 19px 20px 19px 0px;
+    padding: 19px 20px 19px;
   }
 `
 
