@@ -1,4 +1,10 @@
-import React, { ComponentType } from 'react'
+import React, {
+  ComponentType,
+  useState,
+  useEffect,
+  useCallback,
+  PropsWithChildren,
+} from 'react'
 import humps from 'humps'
 
 type FetchReview = ({
@@ -7,7 +13,7 @@ type FetchReview = ({
 }: {
   resourceId: string
   resourceType: string
-}) => Promise<any>
+}) => Promise<Response>
 
 type StateAndCount = {
   reviewed: boolean
@@ -54,46 +60,47 @@ interface MyReviewsProviderProps {
   subscribeReviewUpdateEvent: Function
 }
 
-interface MyReviewsProviderState {
-  myReviews: MyReviewSet
-}
+export function MyReviewsProvider({
+  myReviews: initialMyReviews,
+  fetchMyReview,
+  resourceType,
+  subscribeReviewUpdateEvent,
+  children,
+}: PropsWithChildren<MyReviewsProviderProps>) {
+  const [myReviews, setMyReviews] = useState(initialMyReviews || {})
 
-export class MyReviewsProvider extends React.PureComponent<
-  MyReviewsProviderProps,
-  MyReviewsProviderState
-> {
-  state = { myReviews: this.props.myReviews || {} }
-
-  insert = (newReviews) =>
-    this.setState(({ myReviews }) => ({
-      myReviews: { ...myReviews, ...newReviews },
+  const insert = (newReviews: MyReviewSet) =>
+    setMyReviews((myReviews) => ({
+      ...myReviews,
+      ...newReviews,
     }))
 
-  handleFetch = async ({ id }) => {
-    const { fetchMyReview, resourceType } = this.props
-    const response = await fetchMyReview({ resourceId: id, resourceType })
+  const handleFetch = useCallback(
+    async ({ id }) => {
+      const response = await fetchMyReview({ resourceId: id, resourceType })
 
-    if (response.ok) {
-      const myReview = humps.camelizeKeys(await response.json())
+      if (response.ok) {
+        const myReview = humps.camelizeKeys(await response.json())
 
-      this.insert({ [id]: myReview })
+        insert({ [id]: myReview })
 
-      return myReview
-    } else if (response.status === 404) {
-      this.insert({ [id]: null })
+        return myReview
+      } else if (response.status === 404) {
+        insert({ [id]: null })
 
-      return null
-    }
-  }
+        return null
+      }
+    },
+    [fetchMyReview, resourceType],
+  )
 
-  handleDelete = ({ id }) => this.insert({ [id]: null })
+  const handleDelete = ({ id }) => insert({ [id]: null })
 
-  deriveCurrentStateAndCount = ({
+  const deriveCurrentStateAndCount = ({
     id,
     reviewed,
     reviewsCount: originalReviewsCount,
   }) => {
-    const { myReviews } = this.state
     const currentReview = myReviews[id]
     const reviewsCount = Number(originalReviewsCount || 0)
 
@@ -113,31 +120,24 @@ export class MyReviewsProvider extends React.PureComponent<
     }
   }
 
-  componentDidMount() {
-    this.props.subscribeReviewUpdateEvent(this.handleFetch)
-  }
+  useEffect(() => {
+    subscribeReviewUpdateEvent(handleFetch)
+  }, [handleFetch, subscribeReviewUpdateEvent])
 
-  render() {
-    const {
-      props: { children },
-      state: { myReviews },
-    } = this
-
-    return (
-      <Context.Provider
-        value={{
-          myReviews,
-          deriveCurrentStateAndCount: this.deriveCurrentStateAndCount,
-          actions: {
-            deleteMyReview: this.handleDelete,
-            fetchMyReview: this.handleFetch,
-          },
-        }}
-      >
-        {children}
-      </Context.Provider>
-    )
-  }
+  return (
+    <Context.Provider
+      value={{
+        myReviews,
+        deriveCurrentStateAndCount: deriveCurrentStateAndCount,
+        actions: {
+          deleteMyReview: handleDelete,
+          fetchMyReview: handleFetch,
+        },
+      }}
+    >
+      {children}
+    </Context.Provider>
+  )
 }
 
 export function useMyReviewsContext() {
