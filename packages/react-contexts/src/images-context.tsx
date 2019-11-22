@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropsWithChildren, useState, useEffect } from 'react'
 
 const Context = React.createContext(undefined)
 
@@ -23,37 +23,29 @@ interface ImagesProviderProps {
     id: string
     type: string
   }
-  children: React.ReactNode
   images?: Image[]
 }
 
-interface ImagesProviderState {
-  images: Image[]
-  total: null | number
-  loading: boolean
-  hasMore: boolean
-}
+export function ImagesProvider({
+  images: initialImages,
+  fetchImages,
+  source: { id, type },
+  children,
+}: PropsWithChildren<ImagesProviderProps>) {
+  const [images, setImages] = useState(initialImages || [])
+  const [total, setTotal] = useState<number | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [hasMore, setHasMore] = useState(true)
+  const [callback, setCallback] = useState<() => void>(null)
 
-export class ImagesProvider extends React.PureComponent<
-  ImagesProviderProps,
-  ImagesProviderState
-> {
-  state = {
-    images: this.props.images || [],
-    total: null,
-    loading: false,
-    hasMore: true,
-  }
+  useEffect(() => {
+    if (callback) {
+      callback()
+      setCallback(null)
+    }
+  }, [callback])
 
-  sendFetchRequest = async (size = 15) => {
-    const {
-      props: {
-        fetchImages,
-        source: { id, type },
-      },
-      state: { images },
-    } = this
-
+  const sendFetchRequest = async (size = 15) => {
     const response = await fetchImages(
       { type: TYPE_MAPPING[type] || type, id },
       { from: images.length, size },
@@ -68,39 +60,27 @@ export class ImagesProvider extends React.PureComponent<
     return {}
   }
 
-  fetch = async (cb) => {
-    const {
-      state: { loading, hasMore },
-    } = this
-
+  const fetch = async (cb: () => void) => {
     if (loading || !hasMore) {
       return
     }
 
-    this.setState({ loading: true })
+    setLoading(true)
 
-    const { data: fetchedImages, total } = await this.sendFetchRequest()
+    const { data: fetchedImages, total } = await sendFetchRequest()
 
     if (fetchedImages) {
-      this.setState(
-        ({ images }) => ({
-          images: [...images, ...fetchedImages],
-          total,
-          loading: false,
-          hasMore: fetchedImages.length > 0,
-        }),
-        cb,
-      )
+      setImages((images) => [...images, ...fetchedImages])
+      setTotal(total)
+      setLoading(false)
+      setHasMore(fetchedImages.length > 0)
     } else {
-      this.setState({ loading: false }, cb)
+      setLoading(false)
     }
+    setCallback(cb)
   }
 
-  indexOf = async ({ id: targetId }) => {
-    const {
-      state: { images },
-    } = this
-
+  const indexOf = async ({ id: targetId }) => {
     const index = images.findIndex(({ id }) => id === targetId)
     if (index >= 0) {
       return index
@@ -108,34 +88,27 @@ export class ImagesProvider extends React.PureComponent<
 
     // Just fetch 30 more images to check index of clicked image.
     // Ignore the case of unfindable image in these 45(15 + 30) images.
-    const { data: fetchedImages } = await this.sendFetchRequest(30)
+    const { data: fetchedImages } = await sendFetchRequest(30)
 
     return fetchedImages
       ? [...images, ...fetchedImages].findIndex(({ id }) => id === targetId)
       : -1
   }
 
-  render() {
-    const {
-      props: { children },
-      state: { images, total },
-    } = this
-
-    return (
-      <Context.Provider
-        value={{
-          images,
-          total,
-          actions: {
-            fetch: this.fetch,
-            indexOf: this.indexOf,
-          },
-        }}
-      >
-        {children}
-      </Context.Provider>
-    )
-  }
+  return (
+    <Context.Provider
+      value={{
+        images,
+        total,
+        actions: {
+          fetch: fetch,
+          indexOf: indexOf,
+        },
+      }}
+    >
+      {children}
+    </Context.Provider>
+  )
 }
 
 export function useImagesContext() {
