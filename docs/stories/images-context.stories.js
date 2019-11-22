@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, memo } from 'react'
 import styled from 'styled-components'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
@@ -69,7 +69,9 @@ function ImagesContextMonitor({ onFetched }) {
   )
 }
 
-export function fetchImages({ id, type }, { from, size }) {
+const MemeoizedImagesContextMonitor = memo(ImagesContextMonitor)
+
+function fetchImages({ id, type }, { from, size }) {
   return fetch(`/api/content/${type}s/${id}/images?from=${from}&size=${size}`, {
     credentials: 'same-origin',
   })
@@ -80,8 +82,32 @@ const SAMPLE_SOURCE = {
   id: 'a86a3f55-9f89-4540-a124-f8c4db07ab34',
 }
 
-storiesOf('ImagesContext', module).add('ImagesContext', () => (
-  <ImagesProvider source={SAMPLE_SOURCE} fetchImages={fetchImages}>
-    <ImagesContextMonitor onFetched={action('fetch 완료 콜백')} />
-  </ImagesProvider>
-))
+const handleFetched = action('fetch 완료 콜백')
+
+function RenderingTester() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <>
+      <button type="button" onClick={() => setCount((count) => ++count)}>
+        Provider 자식 re-render 하기
+      </button>
+
+      <ImagesProvider source={SAMPLE_SOURCE} fetchImages={fetchImages}>
+        <div style={{ border: 'dotted black 1px', padding: '5px' }}>
+          {count}
+
+          <MemeoizedImagesContextMonitor onFetched={handleFetched} />
+        </div>
+      </ImagesProvider>
+    </>
+  )
+}
+
+storiesOf('ImagesContext', module)
+  .add('데이터 확인', () => (
+    <ImagesProvider source={SAMPLE_SOURCE} fetchImages={fetchImages}>
+      <ImagesContextMonitor onFetched={handleFetched} />
+    </ImagesProvider>
+  ))
+  .add('자식 렌더링 될 때 value 유지 테스트', () => <RenderingTester />)
