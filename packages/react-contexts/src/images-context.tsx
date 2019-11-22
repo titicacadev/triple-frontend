@@ -4,15 +4,8 @@ import React, {
   useEffect,
   useMemo,
   useCallback,
+  ComponentType,
 } from 'react'
-
-const Context = React.createContext(undefined)
-
-const TYPE_MAPPING = {
-  attraction: 'poi',
-  restaurant: 'poi',
-  hotel: 'poi',
-}
 
 interface Image {
   id: string
@@ -23,13 +16,33 @@ interface Image {
   }
 }
 
+interface ImagesContext {
+  images: Image[]
+  total: number
+  actions: {
+    fetch: (cb: () => void) => Promise<void>
+    indexOf: (target: { id: string }) => Promise<number>
+  }
+}
+
 interface ImagesProviderProps {
-  fetchImages: Function
+  fetchImages: (
+    target: { type: string; id: string },
+    query: { from: number; size: number },
+  ) => Promise<Response>
   source: {
     id: string
     type: string
   }
   images?: Image[]
+}
+
+const Context = React.createContext<ImagesContext>(undefined)
+
+const TYPE_MAPPING = {
+  attraction: 'poi',
+  restaurant: 'poi',
+  hotel: 'poi',
 }
 
 export function ImagesProvider({
@@ -42,7 +55,7 @@ export function ImagesProvider({
   const [total, setTotal] = useState<number | null>(null)
   const [loading, setLoading] = useState(false)
   const [hasMore, setHasMore] = useState(true)
-  const [callback, setCallback] = useState<() => void>(null)
+  const [callback, setCallback] = useState<() => void | null>(null)
 
   useEffect(() => {
     if (callback) {
@@ -93,7 +106,7 @@ export function ImagesProvider({
   )
 
   const indexOf = useCallback(
-    async ({ id: targetId }) => {
+    async ({ id: targetId }: { id: string }) => {
       const index = images.findIndex(({ id }) => id === targetId)
       if (index >= 0) {
         return index
@@ -129,18 +142,30 @@ export function useImagesContext() {
   return React.useContext(Context)
 }
 
-export function withImages(Component) {
-  return function ImagesComponent(props) {
+export function withImages<
+  P extends {
+    images?: ImagesContext['images']
+    totalImageCount?: ImagesContext['total']
+    imagesActions?: ImagesContext['actions']
+  }
+>(Component: ComponentType<P>) {
+  return function ImagesComponent(
+    props: Omit<P, 'images' | 'totalImageCount' | 'imagesActions'>,
+  ) {
     return (
       <Context.Consumer>
-        {({ images, total, actions }) => (
-          <Component
-            images={images}
-            totalImagesCount={total}
-            imagesActions={actions}
-            {...props}
-          />
-        )}
+        {({ images, total, actions }) => {
+          return (
+            <Component
+              {...({
+                ...props,
+                images,
+                totalImageCount: total,
+                imagesActions: actions,
+              } as P)}
+            />
+          )
+        }}
       </Context.Consumer>
     )
   }
