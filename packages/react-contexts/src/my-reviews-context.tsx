@@ -4,6 +4,7 @@ import React, {
   useEffect,
   useCallback,
   PropsWithChildren,
+  useMemo,
 } from 'react'
 import humps from 'humps'
 
@@ -94,50 +95,51 @@ export function MyReviewsProvider({
     [fetchMyReview, resourceType],
   )
 
-  const handleDelete = ({ id }) => insert({ [id]: null })
+  const handleDelete = useCallback(({ id }) => insert({ [id]: null }), [])
 
-  const deriveCurrentStateAndCount = ({
-    id,
-    reviewed,
-    reviewsCount: originalReviewsCount,
-  }) => {
-    const currentReview = myReviews[id]
-    const reviewsCount = Number(originalReviewsCount || 0)
+  const deriveCurrentStateAndCount = useCallback(
+    ({ id, reviewed, reviewsCount: originalReviewsCount }) => {
+      const currentReview = myReviews[id]
+      const reviewsCount = Number(originalReviewsCount || 0)
 
-    if (typeof reviewed !== 'boolean' || typeof currentReview === 'undefined') {
-      /* At least one of the status are unknown: Reduces to a bitwise OR operation */
-      return { reviewed: !!reviewed || !!currentReview, reviewsCount }
-    }
+      if (
+        typeof reviewed !== 'boolean' ||
+        typeof currentReview === 'undefined'
+      ) {
+        /* At least one of the status are unknown: Reduces to a bitwise OR operation */
+        return { reviewed: !!reviewed || !!currentReview, reviewsCount }
+      }
 
-    return {
-      reviewed: !!currentReview,
-      reviewsCount:
-        reviewed === !!currentReview
-          ? reviewsCount
-          : currentReview
-          ? reviewsCount + 1
-          : reviewsCount - 1,
-    }
-  }
+      return {
+        reviewed: !!currentReview,
+        reviewsCount:
+          reviewed === !!currentReview
+            ? reviewsCount
+            : currentReview
+            ? reviewsCount + 1
+            : reviewsCount - 1,
+      }
+    },
+    [myReviews],
+  )
+
+  const value = useMemo(
+    () => ({
+      myReviews,
+      deriveCurrentStateAndCount: deriveCurrentStateAndCount,
+      actions: {
+        deleteMyReview: handleDelete,
+        fetchMyReview: handleFetch,
+      },
+    }),
+    [deriveCurrentStateAndCount, handleDelete, handleFetch, myReviews],
+  )
 
   useEffect(() => {
     subscribeReviewUpdateEvent(handleFetch)
   }, [handleFetch, subscribeReviewUpdateEvent])
 
-  return (
-    <Context.Provider
-      value={{
-        myReviews,
-        deriveCurrentStateAndCount: deriveCurrentStateAndCount,
-        actions: {
-          deleteMyReview: handleDelete,
-          fetchMyReview: handleFetch,
-        },
-      }}
-    >
-      {children}
-    </Context.Provider>
-  )
+  return <Context.Provider value={value}>{children}</Context.Provider>
 }
 
 export function useMyReviewsContext() {
