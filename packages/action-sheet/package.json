@@ -16,7 +16,7 @@
   },
   "peerDependencies": {
     "react": ">=16.3.0",
-    "styled-components": "^3.4.6"
+    "styled-components": "^4.4.1"
   },
   "dependencies": {
     "react-transition-group": "^4.2.2"
