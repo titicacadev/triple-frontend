@@ -1,6 +1,6 @@
-import { injectGlobal } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 
-injectGlobal` 
+const GlobalStyle = createGlobalStyle` 
   html,
   body,
   div,
@@ -145,3 +145,5 @@ injectGlobal`
     font-weight: bold;
   }
 `
+
+export default GlobalStyle
