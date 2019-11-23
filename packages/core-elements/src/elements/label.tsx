@@ -127,7 +127,7 @@ export const PromoLabel = styled.div<PromoLabelProps>`
           font-weight: bold;
             ${({ color }) => {
               const {
-                [color]: { background },
+                [color as LabelColor]: { background },
               } = LABEL_COLORS
               return css`
                 background-color: rgba(${getRGB(background)}, 1);
@@ -139,7 +139,7 @@ export const PromoLabel = styled.div<PromoLabelProps>`
           font-weight: normal;
           ${({ color }) => {
             const {
-              [color]: { background, text },
+              [color as LabelColor]: { background, text },
             } = LABEL_COLORS
             return css`
               background-color: rgba(${getRGBA(background)});
