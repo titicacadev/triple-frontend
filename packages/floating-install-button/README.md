@@ -13,7 +13,7 @@ import FloatingInstallButton from '@titicaca/floating-install-button'
 ```jsx harmony
 <FloatingInstallButton
   appInstallLink="href"
-  isPublic={isPublic}
+  fixed={fixed}
   description="가이드북, 일정짜기, 길찾기, 맛집"
 />
 ```
