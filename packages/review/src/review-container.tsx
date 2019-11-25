@@ -264,7 +264,7 @@ export default function ReviewContainer({
           onClick={(e) => {
             e.preventDefault()
             if (isPublic) window.location.href = `/pages/mileage-intro.html`
-            else navigate(`${appUrlScheme}:///my/mileage`)
+            else navigate(`${appUrlScheme}:///my/mileage/intro`)
           }}
         >
           <Text color="gray" size="small" alpha={0.6} lineheight={1.7}>
