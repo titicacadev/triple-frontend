@@ -37,15 +37,29 @@ interface HashHistory {
 
 const HASH_HISTORIES: HashHistory[] = []
 
+export enum HashStrategy {
+  NONE,
+  NO_PUSH,
+  PUSH,
+}
+export interface HistoryProviderProps {
+  appUrlScheme: string
+  webUrlBase: string
+  transitionModalHash?: string
+  isAndroid?: boolean
+  isPublic?: boolean
+  initialHashStrategy?: HashStrategy
+  children?: React.ReactElement
+}
 export function HistoryProvider({
   appUrlScheme,
   webUrlBase,
-  transitionModalHash,
-  isAndroid,
-  isPublic,
-  initialHash = false,
+  transitionModalHash = '',
+  isAndroid = false,
+  isPublic = false,
+  initialHashStrategy = HashStrategy.NONE,
   children,
-}) {
+}: HistoryProviderProps) {
   const [uriHash, setUriHash] = React.useState(null)
 
   const onHashChange = React.useCallback((url) => {
@@ -67,10 +81,15 @@ export function HistoryProvider({
     Router.events.on('routeChangeStart', onHashChange)
     Router.events.on('hashChangeStart', onHashChange)
 
-    if (initialHash && uriHash === null) {
-      setUriHash(
-        window && window.location ? window.location.hash.substr(1) || '' : '',
-      )
+    if (initialHashStrategy !== HashStrategy.NONE && uriHash === null) {
+      const initialHash =
+        window && window.location ? window.location.hash.substr(1) || '' : ''
+
+      if (initialHashStrategy === HashStrategy.PUSH) {
+        HASH_HISTORIES.push({ hash: initialHash, useRouter: isAndroid })
+      }
+
+      setUriHash(initialHash)
     }
 
     return () => {
