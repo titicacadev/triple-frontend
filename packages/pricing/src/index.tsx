@@ -80,7 +80,7 @@ const Price = styled.span<{
     absolutePosition &&
     css`
       position: absolute;
-      top: 5px;
+      top: 2px;
       right: 0;
     `};
 
@@ -126,7 +126,7 @@ function RichPricing({
   ) : null
 
   return (
-    <PricingContainer padding={{ top: 22 }}>
+    <PricingContainer padding={{ top: 20 }}>
       {pricingLabel}
       <Price absolutePosition>
         {pricingNote && (
