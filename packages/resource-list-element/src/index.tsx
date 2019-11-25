@@ -150,14 +150,12 @@ export default function ExtendedResourceListElement({
       ) : null}
 
       {salePrice ? (
-        <>
-          <Pricing
-            rich
-            basePrice={basePrice}
-            salePrice={salePrice}
-            pricingNote={pricingNote}
-          />
-        </>
+        <Pricing
+          rich
+          basePrice={basePrice}
+          salePrice={salePrice}
+          pricingNote={pricingNote}
+        />
       ) : null}
     </ResourceListItem>
   )
