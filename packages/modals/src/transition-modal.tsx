@@ -84,7 +84,8 @@ const MODAL_CONTENT: {
   },
   [TransitionType.View]: {
     icon: 'https://assets.triple.guide/images/ico-popup-app@4x.png',
-    description: '지금 트리플 앱 다운받고\n150개 도시 가이드를 무료로 보세요.',
+    description:
+      '일정 짜기부터 호텔, 투어・티켓 예약까지!\n트리플로 한 번에 여행 준비하세요.',
     eventLabel: '컨텐츠_연속보기',
   },
 }
