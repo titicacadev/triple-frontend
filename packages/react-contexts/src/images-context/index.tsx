@@ -5,16 +5,14 @@ import React, {
   useMemo,
   useCallback,
   ComponentType,
+  useReducer,
 } from 'react'
-
-interface Image {
-  id: string
-  sizes: {
-    [key: string]: {
-      url: string
-    }
-  }
-}
+import { Image } from './model'
+import reducer, {
+  loadImagesRequest,
+  loadImagesSuccess,
+  loadImagesFail,
+} from './reducer'
 
 interface ImagesContext {
   images: Image[]
@@ -51,10 +49,12 @@ export function ImagesProvider({
   source: { id, type },
   children,
 }: PropsWithChildren<ImagesProviderProps>) {
-  const [images, setImages] = useState(initialImages || [])
-  const [total, setTotal] = useState<number | null>(null)
-  const [loading, setLoading] = useState(false)
-  const [hasMore, setHasMore] = useState(true)
+  const [{ loading, images, total, hasMore }, dispatch] = useReducer(reducer, {
+    loading: false,
+    images: initialImages || [],
+    total: null,
+    hasMore: true,
+  })
   const [callback, setCallback] = useState<() => void | null>(null)
 
   useEffect(() => {
@@ -88,18 +88,20 @@ export function ImagesProvider({
         return
       }
 
-      setLoading(true)
+      dispatch(loadImagesRequest())
 
-      const { data: fetchedImages, total } = await sendFetchRequest()
+      try {
+        const { data: fetchedImages, total } = await sendFetchRequest()
 
-      if (fetchedImages) {
-        setImages((images) => [...images, ...fetchedImages])
-        setTotal(total)
-        setLoading(false)
-        setHasMore(fetchedImages.length > 0)
-      } else {
-        setLoading(false)
+        if (fetchedImages) {
+          dispatch(loadImagesSuccess({ images: fetchedImages, total }))
+        } else {
+          throw new Error('Response has no data property')
+        }
+      } catch (error) {
+        dispatch(loadImagesFail(error))
       }
+
       setCallback(cb)
     },
     [hasMore, loading, sendFetchRequest],
