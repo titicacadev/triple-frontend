@@ -4,12 +4,10 @@ import { GetGlobalColor, Text, Container } from '@titicaca/core-elements'
 
 declare var window: any
 
-const MIN_DESKTOP_WIDTH = 1142
 const CLOSE_INSTALL_BUTTON_KEY = 'close_install_button'
 const DEFAULT_DESCRIPTION_TEXT = '가이드북, 일정짜기, 길찾기, 맛집'
 
 const FloatingButton = styled.div`
-  position: fixed;
   height: 84px;
   border-radius: 42px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
@@ -19,10 +17,6 @@ const FloatingButton = styled.div`
   right: 10px;
   margin-bottom: 30px;
   overflow: hidden;
-
-  @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
-    display: none;
-  }
 `
 
 const InstallDescription = styled(Text)`
@@ -63,13 +57,11 @@ const CloseButton = styled.img`
 
 export default function FloatingInstallButton({
   appInstallLink,
-  isPublic,
   description = DEFAULT_DESCRIPTION_TEXT,
   trackEvent,
   trackEventParams,
 }: {
   appInstallLink?: string
-  isPublic?: boolean
   description?: string
   trackEvent?: any
   trackEventParams?: {
@@ -106,7 +98,7 @@ export default function FloatingInstallButton({
     return true
   }
 
-  return buttonVisibility && isPublic ? (
+  return buttonVisibility ? (
     <FloatingButton>
       <Container floated="left">
         <InstallDescription>
