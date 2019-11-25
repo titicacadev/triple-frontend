@@ -4,6 +4,7 @@ import { GetGlobalColor, Text, Container } from '@titicaca/core-elements'
 
 declare var window: any
 
+const MIN_DESKTOP_WIDTH = 1142
 const CLOSE_INSTALL_BUTTON_KEY = 'close_install_button'
 const DEFAULT_DESCRIPTION_TEXT = '가이드북, 일정짜기, 길찾기, 맛집'
 
@@ -17,6 +18,10 @@ const FloatingButton = styled.div<{ fixed?: boolean }>`
   right: 10px;
   margin-bottom: 30px;
   overflow: hidden;
+
+  @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
+    display: none;
+  }
 
   ${({ fixed }) =>
     fixed &&
