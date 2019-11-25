@@ -7,7 +7,7 @@ import FloatingInstallButton from '@titicaca/floating-install-button'
 storiesOf('FloatingInstallButton', module).add('플로팅 버튼', () => (
   <FloatingInstallButton
     appInstallLink={'https://triple.onelink.me/aZP6/21d43a81'}
-    isPublic={boolean('앱 밖', true)}
+    fixed={boolean('화면 고정', true)}
     trackEvent={() => {}}
     description={text('설명', '설명 텍스트가 들어갑니다.')}
     trackEventParams={{
