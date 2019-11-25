@@ -25,6 +25,8 @@ substitutions:
   _SVC_BASENAME: triple-frontend
   _AUTO_TAGGING_ENABLED: 'false'
 
+timeout: 1200s
+
 secrets:
   - kmsKeyName: projects/titicaca-ci/locations/global/keyRings/npm/cryptoKeys/publish_token
     secretEnv:
