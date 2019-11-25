@@ -25,6 +25,7 @@ storiesOf('POI', module)
       resourceScraps={{
         [HOTEL.id]: boolean('저장', false),
       }}
+      pricingNote="1박, 세금포함"
     />
   ))
   .add('TripleDocument', () => (

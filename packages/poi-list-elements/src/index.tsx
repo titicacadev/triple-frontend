@@ -186,6 +186,7 @@ class ExtendedPoiListElement extends React.PureComponent<{
   onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
   resourceScraps?: any
   tags?: [{ text: string; color: LabelColor; emphasized: boolean }]
+  pricingNote?: string
 }> {
   render() {
     const {
@@ -209,6 +210,7 @@ class ExtendedPoiListElement extends React.PureComponent<{
           distance,
           prices,
         },
+        pricingNote,
         onClick,
         onScrapedChange,
         resourceScraps,
@@ -268,7 +270,7 @@ class ExtendedPoiListElement extends React.PureComponent<{
         scrapsCount={scrapsCount}
         basePrice={basePrice}
         salePrice={salePrice}
-        pricingNote={nightlyPrice ? '1박, 세금포함' : null}
+        pricingNote={nightlyPrice && pricingNote ? pricingNote : null}
         onScrapedChange={onScrapedChange}
         onClick={onClick}
         tags={
