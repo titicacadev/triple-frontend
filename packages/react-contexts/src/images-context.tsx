@@ -145,12 +145,12 @@ export function useImagesContext() {
 export function withImages<
   P extends {
     images?: ImagesContext['images']
-    totalImageCount?: ImagesContext['total']
+    totalImagesCount?: ImagesContext['total']
     imagesActions?: ImagesContext['actions']
   }
 >(Component: ComponentType<P>) {
   return function ImagesComponent(
-    props: Omit<P, 'images' | 'totalImageCount' | 'imagesActions'>,
+    props: Omit<P, 'images' | 'totalImagesCount' | 'imagesActions'>,
   ) {
     return (
       <Context.Consumer>
@@ -160,7 +160,7 @@ export function withImages<
               {...({
                 ...props,
                 images,
-                totalImageCount: total,
+                totalImagesCount: total,
                 imagesActions: actions,
               } as P)}
             />
