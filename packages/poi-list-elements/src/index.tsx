@@ -268,7 +268,7 @@ class ExtendedPoiListElement extends React.PureComponent<{
         scrapsCount={scrapsCount}
         basePrice={basePrice}
         salePrice={salePrice}
-        pricingNote={nightlyPrice ? '세금포함' : null}
+        pricingNote={nightlyPrice ? '1박, 세금포함' : null}
         onScrapedChange={onScrapedChange}
         onClick={onClick}
         tags={

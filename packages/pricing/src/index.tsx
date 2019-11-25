@@ -110,10 +110,12 @@ function RichPricing({
   basePrice,
   salePrice,
   label,
+  pricingNote,
 }: {
   basePrice: number
   salePrice: number
-  label: React.ReactNode
+  label?: React.ReactNode
+  pricingNote?: string
 }) {
   const pricingLabel = label ? (
     typeof label === 'string' ? (
@@ -126,8 +128,15 @@ function RichPricing({
   return (
     <PricingContainer padding={{ top: 22 }}>
       {pricingLabel}
-      <Price color="gray" lineThrough absolutePosition>
-        {formatNumber(basePrice)}
+      <Price absolutePosition>
+        {pricingNote && (
+          <Text alpha={0.3} size="mini" inlineBlock margin={{ right: 3 }}>
+            {pricingNote}
+          </Text>
+        )}
+        <Text alpha={0.3} size="mini" strikethrough inline>
+          {formatNumber(basePrice)}
+        </Text>
       </Price>
       <Price color="pink" size="big" margin={{ right: 5 }} bold>
         {discountRate(basePrice, salePrice)}
@@ -260,6 +269,7 @@ export default function Pricing({
   rich,
   fixed,
   description,
+  pricingNote,
   tooltipLabel,
   onTooltipClick,
 }: {
@@ -272,12 +282,18 @@ export default function Pricing({
   rich?: boolean
   fixed?: boolean
   description?: string
+  pricingNote?: string
   tooltipLabel?: string
   onTooltipClick?: (e?: React.SyntheticEvent) => any
 }) {
   if (rich) {
     return (
-      <RichPricing basePrice={basePrice} salePrice={salePrice} label={label} />
+      <RichPricing
+        basePrice={basePrice}
+        salePrice={salePrice}
+        label={label}
+        pricingNote={pricingNote}
+      />
     )
   } else if (fixed) {
     return (
