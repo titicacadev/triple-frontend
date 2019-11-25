@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/footer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Common Footer for Public Pages",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,6 +15,6 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^1.0.2"
+    "@titicaca/core-elements": "^1.0.3"
   }
 }
