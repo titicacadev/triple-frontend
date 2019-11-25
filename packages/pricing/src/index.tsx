@@ -61,7 +61,6 @@ const Price = styled.span<{
   size?: GlobalSizes
   bold?: boolean
   lineThrough?: boolean
-  absolutePosition?: boolean
   margin?: MarginPadding
   color?: PricingColors
 }>`
@@ -74,14 +73,6 @@ const Price = styled.span<{
     lineThrough &&
     css`
       text-decoration: line-through;
-    `};
-
-  ${({ absolutePosition }) =>
-    absolutePosition &&
-    css`
-      position: absolute;
-      top: 2px;
-      right: 0;
     `};
 
   ${({ margin }) =>
@@ -100,6 +91,12 @@ const Label = styled.div<{ size?: GlobalSizes }>`
   bottom: 0;
   color: ${COLORS.blue};
   font-size: ${({ size }) => FONT_SIZE[size || 'tiny']};
+`
+
+const PriceNoteContainer = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
 `
 
 function discountRate(basePrice: number, salePrice: number) {
@@ -126,9 +123,9 @@ function RichPricing({
   ) : null
 
   return (
-    <PricingContainer padding={{ top: 20 }}>
+    <PricingContainer padding={{ top: 22 }}>
       {pricingLabel}
-      <Price absolutePosition>
+      <PriceNoteContainer>
         {pricingNote && (
           <Text alpha={0.3} size="mini" inlineBlock margin={{ right: 3 }}>
             {pricingNote}
@@ -137,7 +134,7 @@ function RichPricing({
         <Text alpha={0.3} size="mini" strikethrough inline>
           {formatNumber(basePrice)}
         </Text>
-      </Price>
+      </PriceNoteContainer>
       <Price color="pink" size="big" margin={{ right: 5 }} bold>
         {discountRate(basePrice, salePrice)}
       </Price>

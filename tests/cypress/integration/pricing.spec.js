@@ -28,8 +28,7 @@ describe('Pricing', () => {
 
     it('BasePrice Text have absolute', () => {
       cy.get('.rich-pressed > div')
-        .find('span')
-        .contains('30,000')
+        .find('div')
         .should('have.css', 'position')
         .and('eq', 'absolute')
     })
