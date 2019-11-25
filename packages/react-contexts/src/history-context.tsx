@@ -43,6 +43,7 @@ export function HistoryProvider({
   transitionModalHash,
   isAndroid,
   isPublic,
+  initialHash = false,
   children,
 }) {
   const [uriHash, setUriHash] = React.useState(null)
@@ -60,17 +61,23 @@ export function HistoryProvider({
 
       setUriHash(previousHash)
     }
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   React.useEffect(() => {
     Router.events.on('routeChangeStart', onHashChange)
     Router.events.on('hashChangeStart', onHashChange)
 
+    if (initialHash && uriHash === null) {
+      setUriHash(
+        window && window.location ? window.location.hash.substr(1) || '' : '',
+      )
+    }
+
     return () => {
       Router.events.off('routeChangeStart', onHashChange)
       Router.events.off('hashChangeStart', onHashChange)
     }
-  }, [onHashChange])
+  }, [onHashChange]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const replace = React.useCallback(
     (hash, { useRouter = isAndroid } = {}) => {
