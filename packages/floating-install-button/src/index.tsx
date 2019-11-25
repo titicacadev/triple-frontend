@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { GetGlobalColor, Text, Container } from '@titicaca/core-elements'
 
 declare var window: any
@@ -7,7 +7,7 @@ declare var window: any
 const CLOSE_INSTALL_BUTTON_KEY = 'close_install_button'
 const DEFAULT_DESCRIPTION_TEXT = '가이드북, 일정짜기, 길찾기, 맛집'
 
-const FloatingButton = styled.div`
+const FloatingButton = styled.div<{ fixed?: boolean }>`
   height: 84px;
   border-radius: 42px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
@@ -17,6 +17,12 @@ const FloatingButton = styled.div`
   right: 10px;
   margin-bottom: 30px;
   overflow: hidden;
+
+  ${({ fixed }) =>
+    fixed &&
+    css`
+      display: fixed;
+    `};
 `
 
 const InstallDescription = styled(Text)`
@@ -56,11 +62,13 @@ const CloseButton = styled.img`
 `
 
 export default function FloatingInstallButton({
+  fixed,
   appInstallLink,
   description = DEFAULT_DESCRIPTION_TEXT,
   trackEvent,
   trackEventParams,
 }: {
+  fixed?: boolean
   appInstallLink?: string
   description?: string
   trackEvent?: any
@@ -99,7 +107,7 @@ export default function FloatingInstallButton({
   }
 
   return buttonVisibility ? (
-    <FloatingButton>
+    <FloatingButton fixed={fixed}>
       <Container floated="left">
         <InstallDescription>
           <InstallAnchor href={appInstallLink} onClick={onSelect}>
