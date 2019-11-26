@@ -13,10 +13,6 @@ const FloatingButton = styled.div<{ fixed?: boolean }>`
   border-radius: 42px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
   background-color: rgba(${GetGlobalColor('blue')}, 0.98);
-  bottom: 0;
-  left: 10px;
-  right: 10px;
-  margin-bottom: 30px;
   overflow: hidden;
 
   @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
@@ -27,6 +23,10 @@ const FloatingButton = styled.div<{ fixed?: boolean }>`
     fixed &&
     css`
       position: fixed;
+      bottom: 0;
+      left: 10px;
+      right: 10px;
+      margin-bottom: 30px;
     `};
 `
 
