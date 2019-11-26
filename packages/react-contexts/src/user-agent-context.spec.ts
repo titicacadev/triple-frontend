@@ -20,6 +20,21 @@ describe('generateUserAgentValues', () => {
     )
   })
 
+  it('should not parse Chrome on Windows as mobile', () => {
+    assert.ok(
+      generateUserAgentValues(
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36',
+      ).isMobile === false,
+    )
+  })
+  it('should parse iOS client as mobile', () => {
+    assert.ok(
+      generateUserAgentValues(
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/3.0.0',
+      ),
+    )
+  })
+
   it('should parse Chrome on Windows as an Windows device', () => {
     assert.strict.deepEqual(
       generateUserAgentValues(
