@@ -3,6 +3,7 @@ import { UAParser } from 'ua-parser-js'
 
 interface UserAgentProps {
   isPublic: boolean
+  isMobile: boolean
   os: {
     name: string
     version: string
@@ -15,6 +16,7 @@ interface UserAgentProps {
 
 const Context = createContext({
   isPublic: false,
+  isMobile: false,
   os: { name: '', version: '' },
   app: { name: '', version: '' },
 })
@@ -42,6 +44,9 @@ export function generateUserAgentValues(userAgent: string) {
   const app = parseApp(userAgent)
   return {
     isPublic: !app,
+    isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      userAgent,
+    ),
     os: new UAParser(userAgent).getOS(),
     app,
   }
