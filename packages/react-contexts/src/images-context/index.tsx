@@ -1,7 +1,5 @@
 import React, {
   PropsWithChildren,
-  useState,
-  useEffect,
   useMemo,
   useCallback,
   ComponentType,
@@ -55,14 +53,6 @@ export function ImagesProvider({
     total: null,
     hasMore: true,
   })
-  const [callback, setCallback] = useState<() => void | null>(null)
-
-  useEffect(() => {
-    if (callback) {
-      callback()
-      setCallback(null)
-    }
-  }, [callback])
 
   const sendFetchRequest = useCallback(
     async (size = 15) => {
@@ -102,7 +92,7 @@ export function ImagesProvider({
         dispatch(loadImagesFail(error))
       }
 
-      setCallback(cb)
+      cb()
     },
     [hasMore, loading, sendFetchRequest],
   )
