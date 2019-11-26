@@ -26,7 +26,7 @@ const FloatingButton = styled.div<{ fixed?: boolean }>`
   ${({ fixed }) =>
     fixed &&
     css`
-      display: fixed;
+      position: fixed;
     `};
 `
 
