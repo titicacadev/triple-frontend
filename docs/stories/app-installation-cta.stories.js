@@ -6,7 +6,7 @@ import { text } from '@storybook/addon-knobs'
 import {
   ImageBanner,
   TextBanner,
-  AppInstallationCTA,
+  BannerCTA,
 } from '@titicaca/app-installation-cta'
 
 storiesOf('AppInstallationCTA', module)
@@ -23,19 +23,16 @@ storiesOf('AppInstallationCTA', module)
       installUrl={text('설치 URL', 'https://triple-dev.titicaca-corp.com')}
     />
   ))
-  .add('통합', () => (
+  .add('배너 CTA', () => (
     <div>
-      <AppInstallationCTA
-        imgUrl={text('이미지 URL', '')}
+      <BannerCTA
+        inventoryId={text(
+          '표시할 배너의 인벤토리 ID',
+          'app-install-cta-poi-v1',
+        )}
         installUrl={text('설치 URL', 'https://triple-dev.titicaca-corp.com')}
-        message={text('표시할 메시지', '앱 다운로드시 가이드북 무료')}
       />
 
-      {new Array(200).fill(
-        <>
-          긴 텍스트입니다!
-          <br />
-        </>,
-      )}
+      <div style={{ height: '2000px' }} />
     </div>
   ))

@@ -33,6 +33,9 @@ const BottomFixedContainer = styled.div`
   }
 `
 
+/**
+ * @deprecated 구체적인 형태의 컴포넌트인 BannerCTA를 사용하세요
+ */
 const AppInstallationCTA: FC<AppInstallationCTAProps> = ({
   imgUrl,
   installUrl,
