@@ -59,6 +59,7 @@ interface MyReviewsProviderProps {
   fetchMyReview: FetchReview
   resourceType: string
   subscribeReviewUpdateEvent: Function
+  unsubscribeReviewUpdateEvent: Function
 }
 
 export function MyReviewsProvider({
@@ -66,6 +67,7 @@ export function MyReviewsProvider({
   fetchMyReview,
   resourceType,
   subscribeReviewUpdateEvent,
+  unsubscribeReviewUpdateEvent,
   children,
 }: PropsWithChildren<MyReviewsProviderProps>) {
   const [myReviews, setMyReviews] = useState(initialMyReviews || {})
@@ -137,7 +139,13 @@ export function MyReviewsProvider({
 
   useEffect(() => {
     subscribeReviewUpdateEvent(handleFetch)
-  }, [handleFetch, subscribeReviewUpdateEvent])
+
+    return () => {
+      if (unsubscribeReviewUpdateEvent) {
+        unsubscribeReviewUpdateEvent(handleFetch)
+      }
+    }
+  }, [handleFetch, subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent])
 
   return <Context.Provider value={value}>{children}</Context.Provider>
 }
