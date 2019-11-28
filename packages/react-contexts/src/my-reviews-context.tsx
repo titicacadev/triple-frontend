@@ -58,8 +58,12 @@ interface MyReviewsProviderProps {
   myReviews: MyReviewSet
   fetchMyReview: FetchReview
   resourceType: string
-  subscribeReviewUpdateEvent: Function
-  unsubscribeReviewUpdateEvent: Function
+  subscribeReviewUpdateEvent: (
+    callback: (target: { id: string }) => any,
+  ) => void
+  unsubscribeReviewUpdateEvent: (
+    callback: (target: { id: string }) => any,
+  ) => void
 }
 
 export function MyReviewsProvider({
