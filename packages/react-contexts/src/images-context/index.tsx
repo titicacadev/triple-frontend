@@ -120,8 +120,8 @@ export function ImagesProvider({
       images,
       total,
       actions: {
-        fetch: fetch,
-        indexOf: indexOf,
+        fetch,
+        indexOf,
       },
     }),
     [fetch, images, indexOf, total],
