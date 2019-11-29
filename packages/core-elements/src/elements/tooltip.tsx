@@ -3,25 +3,58 @@ import * as CSS from 'csstype'
 import styled, { css } from 'styled-components'
 import { GetGlobalColor } from '../commons'
 
-const TooltipFrame = styled.div<{
+interface TooltipFrameProps {
   absolute?: Partial<Record<CSS.Position<string | number>, string>>
   borderRadius?: string
-}>`
+  pointingPosition?: 'above' | 'below'
+}
+interface TooltipProps extends TooltipFrameProps {
+  label: string
+  onClick?: React.MouseEventHandler<HTMLDivElement>
+}
+
+const POINTING_BASE_STYLE = css`
+  position: absolute;
+  content: '';
+  width: 1px;
+  height: 1px;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+`
+
+const TooltipFrame = styled.div<TooltipFrameProps>`
+  position: relative;
   background: rgba(13, 208, 175, 1);
   color: rgba(${GetGlobalColor('white')}, 1);
   padding: 6px 11px;
 
-  &::before {
-    position: absolute;
-    content: '';
-    width: 1px;
-    height: 1px;
-    border-top: 5px solid rgba(13, 208, 175, 1);
-    border-right: 5px solid transparent;
-    border-left: 5px solid transparent;
-    top: 100%;
-    left: 26px;
-  }
+  ${({ pointingPosition }) => {
+    switch (pointingPosition) {
+      case 'above':
+        return `
+          &::before {
+            ${POINTING_BASE_STYLE}
+
+            top: -6px;
+            left: 26px;
+            border-bottom: 5px solid rgba(13, 208, 175, 1);
+
+          }
+        `
+      case 'below':
+        return `
+          &::after {
+            ${POINTING_BASE_STYLE}
+
+            top: 100%;
+            left: 26px;
+            border-top: 5px solid rgba(13, 208, 175, 1);
+          }
+         `
+    }
+  }}
+
+
 
   ${({ borderRadius }) =>
     borderRadius &&
@@ -71,12 +104,19 @@ const ArrowRight = styled.span`
   background-image: url(https://assets.triple.guide/images/ico-arrow-right-w@3x.png);
 `
 
-function Tooltip({ label, onClick, borderRadius, absolute }) {
+function Tooltip({
+  label,
+  onClick,
+  borderRadius,
+  absolute,
+  pointingPosition,
+}: TooltipProps) {
   return (
     <TooltipFrame
       borderRadius={borderRadius}
       absolute={absolute}
       onClick={onClick}
+      pointingPosition={pointingPosition || 'below'}
     >
       <TooltipContainer paddingRight={onClick && 12}>
         {label}
