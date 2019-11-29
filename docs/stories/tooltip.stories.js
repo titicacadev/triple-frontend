@@ -38,25 +38,31 @@ storiesOf('Tooltip', module)
           ['rgba(13, 208, 175, 1)', '#368fff'],
           'rgba(13, 208, 175, 1)',
         )}
+        nowrap={boolean('텍스트 줄바꿈 없음', false)}
       />
     </Base>
   ))
   .add('아이콘', () => (
-    <Navbar>
-      <div style={{ height: '100%', position: 'relative' }}>
-        <Navbar.Item icon="list" />
-
-        <Tooltip
-          label="모든 호텔 보기"
-          borderRadius={12}
-          absolute={{
-            bottom: -25,
-            left: -14,
-          }}
-          pointingPosition="above"
-          floating={true}
-          backgroundColor="#368fff"
-        />
-      </div>
-    </Navbar>
+    <div style={{ width: '500px', height: '700px', border: 'solid 1px black' }}>
+      <Navbar>
+        <Navbar.Item
+          floated="right"
+          icon="list"
+          style={{ position: 'relative' }}
+        >
+          <Tooltip
+            label={`${text('리전 이름', '호찌민')} 모든 호텔 보기`}
+            borderRadius={12}
+            absolute={{
+              bottom: -25,
+              left: -14,
+            }}
+            pointingPosition="above"
+            floating={true}
+            backgroundColor="#368fff"
+            nowrap={true}
+          />
+        </Navbar.Item>
+      </Navbar>
+    </div>
   ))
