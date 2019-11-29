@@ -53,11 +53,11 @@
     },
     "type": "hotel",
     "prices": {
-      "nightlyBasePrice": 427432,
+      "nightlyBasePrice": 355695,
       "nightlyPrice": 355695,
       "promoText": "최대 16%",
-      "nightlyPriceHotelPromotionApplied": 359691,
-      "clubPromotionRate": 1,
+      "nightlyPriceHotelPromotionApplied": 0,
+      "clubPromotionRate": 0,
       "clubPromotionType": "STATIC",
       "clubMemberOnly": false,
       "clubPromotionTarget": true
