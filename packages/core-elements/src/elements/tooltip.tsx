@@ -10,7 +10,7 @@ interface PointingOptions {
 }
 
 interface TooltipFrameProps {
-  absolute?: Partial<Record<CSS.Position<string | number>, string>>
+  absolute?: Partial<Record<CSS.Position<string>, number | string>>
   borderRadius?: string
   floating?: boolean
   backgroundColor?: string
