@@ -33,10 +33,14 @@ const TooltipFrame = styled.div<{
     absolute &&
     css`
       position: absolute;
-      top: ${absolute.top}px;
-      right: ${absolute.right}px;
-      bottom: ${absolute.bottom}px;
-      left: ${absolute.left}px;
+      ${typeof absolute.top === 'number' ? `top: ${absolute.top}px;` : ''}
+      ${typeof absolute.right === 'number' ? `right: ${absolute.right}px;` : ''}
+      ${
+        typeof absolute.bottom === 'number'
+          ? `bottom: ${absolute.bottom}px;`
+          : ''
+      }
+      ${typeof absolute.left === 'number' ? `left: ${absolute.left}px;` : ''}
     `}
 `
 
