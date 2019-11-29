@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { number, text, select } from '@storybook/addon-knobs'
+import { number, text, select, boolean } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { Tooltip, Navbar } from '@titicaca/core-elements'
 import styled from 'styled-components'
@@ -20,6 +20,7 @@ storiesOf('Tooltip', module)
       <Tooltip
         label={text('내용', '모든 호텔 보기')}
         borderRadius={text('border radius')}
+        floating={boolean('floating')}
       />
     </Base>
   ))
