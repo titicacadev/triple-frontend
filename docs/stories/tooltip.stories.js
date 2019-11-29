@@ -32,7 +32,11 @@ storiesOf('Tooltip', module)
               }
             : undefined
         }
-        pointingPosition={select('포인팅 위치', ['above', 'below'], 'below')}
+        pointing={{
+          vertical: select('포인팅 상하 위치', ['top', 'bottom'], 'bottom'),
+          horizontal: select('포인팅 좌우 위치', ['left', 'right'], 'left'),
+          horizontalOffset: number('포인팅 가로 오프셋', 26),
+        }}
         backgroundColor={select(
           '툴팁 색',
           ['rgba(13, 208, 175, 1)', '#368fff'],
@@ -42,7 +46,8 @@ storiesOf('Tooltip', module)
       />
     </Base>
   ))
-  .add('아이콘', () => (
+
+  .add('호텔 목록 아이콘', () => (
     <div style={{ width: '500px', height: '700px', border: 'solid 1px black' }}>
       <Navbar>
         <Navbar.Item
@@ -55,9 +60,13 @@ storiesOf('Tooltip', module)
             borderRadius={12}
             absolute={{
               bottom: -25,
-              left: -14,
+              right: -14,
             }}
-            pointingPosition="above"
+            pointing={{
+              vertical: 'top',
+              horizontal: 'right',
+              horizontalOffset: 24,
+            }}
             floating={true}
             backgroundColor="#368fff"
             nowrap={true}
