@@ -13,6 +13,7 @@ interface TooltipFrameProps {
 interface TooltipProps extends TooltipFrameProps {
   label: string
   onClick?: React.MouseEventHandler<HTMLDivElement>
+  nowrap?: boolean
 }
 
 const POINTING_BASE_STYLE = css`
@@ -80,7 +81,7 @@ const TooltipFrame = styled.div<TooltipFrameProps>`
   ${({ floating }) => floating && 'box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);'}
 `
 
-const TooltipContainer = styled.div<{ paddingRight?: number }>`
+const TooltipContainer = styled.div<{ paddingRight?: number; nowrap: boolean }>`
   position: relative;
   font-size: 12px;
   font-weight: bold;
@@ -90,6 +91,8 @@ const TooltipContainer = styled.div<{ paddingRight?: number }>`
     css`
       padding-right: ${paddingRight}px;
     `}
+
+  ${({ nowrap }) => nowrap && 'white-space: nowrap;'}
 `
 
 const ArrowRight = styled.span`
@@ -115,6 +118,7 @@ function Tooltip({
   pointingPosition,
   floating,
   backgroundColor,
+  nowrap,
 }: TooltipProps) {
   return (
     <TooltipFrame
@@ -125,7 +129,7 @@ function Tooltip({
       floating={floating}
       backgroundColor={backgroundColor || 'rgba(13, 208, 175, 1)'}
     >
-      <TooltipContainer paddingRight={onClick && 12}>
+      <TooltipContainer paddingRight={onClick && 12} nowrap={nowrap}>
         {label}
         {onClick && <ArrowRight />}
       </TooltipContainer>
