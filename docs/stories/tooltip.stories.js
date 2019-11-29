@@ -21,31 +21,17 @@ storiesOf('Tooltip', module)
         label={text('내용', '모든 호텔 보기')}
         borderRadius={text('border radius')}
         floating={boolean('floating')}
-      />
-    </Base>
-  ))
-  .add('onClick', () => (
-    <Base>
-      툴팁 표시 대상
-      <Tooltip
-        label={text('내용', '모든 호텔 보기')}
-        borderRadius={text('border radius')}
-        onClick={action('툴팁 클릭')}
-      />
-    </Base>
-  ))
-  .add('위치', () => (
-    <Base>
-      툴팁 표시 대상
-      <Tooltip
-        label={text('내용', '모든 호텔 보기')}
-        borderRadius={text('border radius')}
-        absolute={{
-          top: number('top'),
-          right: number('right'),
-          bottom: number('bottom'),
-          left: number('left'),
-        }}
+        onClick={boolean('클릭 가능') ? action('툴팁 클릭') : undefined}
+        absolute={
+          boolean('위치 절대값 사용')
+            ? {
+                top: number('top'),
+                right: number('right'),
+                bottom: number('bottom'),
+                left: number('left'),
+              }
+            : undefined
+        }
         pointingPosition={select('포인팅 위치', ['above', 'below'], 'below')}
       />
     </Base>
@@ -56,15 +42,14 @@ storiesOf('Tooltip', module)
         <Navbar.Item icon="list" />
 
         <Tooltip
-          label={text('내용', '모든 호텔 보기')}
-          borderRadius={text('border radius', 12)}
+          label="모든 호텔 보기"
+          borderRadius={12}
           absolute={{
-            top: number('top'),
-            right: number('right'),
-            bottom: number('bottom', -25),
-            left: number('left', -14),
+            bottom: -25,
+            left: -14,
           }}
-          pointingPosition={select('포인팅 위치', ['above', 'below'], 'above')}
+          pointingPosition="above"
+          floating={true}
         />
       </div>
     </Navbar>
