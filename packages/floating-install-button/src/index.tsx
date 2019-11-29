@@ -1,6 +1,5 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { useUserAgentContext } from '@titicaca/react-contexts'
 import {
   GetGlobalColor,
   Text,
@@ -101,7 +100,6 @@ export default function FloatingInstallButton({
   }
 }) {
   const [buttonVisibility, setButtonVisibility] = React.useState(false)
-  const { isMobile } = useUserAgentContext()
 
   const sendTrackEventRequest = React.useCallback(
     (param) => {
@@ -114,21 +112,18 @@ export default function FloatingInstallButton({
     const visitedPages = window.sessionStorage.getItem(CLOSE_INSTALL_BUTTON_KEY)
     if (!visitedPages && !buttonVisibility) {
       setButtonVisibility(true)
-      isMobile &&
-        sendTrackEventRequest(trackEventParams && trackEventParams.onShow)
+      sendTrackEventRequest(trackEventParams && trackEventParams.onShow)
     }
-  }, [buttonVisibility, sendTrackEventRequest, trackEventParams, isMobile])
+  }, [buttonVisibility, sendTrackEventRequest, trackEventParams])
 
   const onClose = () => {
     setButtonVisibility(false)
     window.sessionStorage.setItem(CLOSE_INSTALL_BUTTON_KEY, 'true')
-    isMobile &&
-      sendTrackEventRequest(trackEventParams && trackEventParams.onClose)
+    sendTrackEventRequest(trackEventParams && trackEventParams.onClose)
   }
 
   const onSelect = () => {
-    isMobile &&
-      sendTrackEventRequest(trackEventParams && trackEventParams.onSelect)
+    sendTrackEventRequest(trackEventParams && trackEventParams.onSelect)
     return true
   }
 
