@@ -7,6 +7,7 @@ interface TooltipFrameProps {
   absolute?: Partial<Record<CSS.Position<string | number>, string>>
   borderRadius?: string
   pointingPosition?: 'above' | 'below'
+  floating?: boolean
 }
 interface TooltipProps extends TooltipFrameProps {
   label: string
@@ -38,7 +39,6 @@ const TooltipFrame = styled.div<TooltipFrameProps>`
             top: -6px;
             left: 26px;
             border-bottom: 5px solid rgba(13, 208, 175, 1);
-
           }
         `
       case 'below':
@@ -75,6 +75,8 @@ const TooltipFrame = styled.div<TooltipFrameProps>`
       }
       ${typeof absolute.left === 'number' ? `left: ${absolute.left}px;` : ''}
     `}
+
+  ${({ floating }) => floating && 'box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);'}
 `
 
 const TooltipContainer = styled.div<{ paddingRight?: number }>`
@@ -110,6 +112,7 @@ function Tooltip({
   borderRadius,
   absolute,
   pointingPosition,
+  floating,
 }: TooltipProps) {
   return (
     <TooltipFrame
@@ -117,6 +120,7 @@ function Tooltip({
       absolute={absolute}
       onClick={onClick}
       pointingPosition={pointingPosition || 'below'}
+      floating={floating}
     >
       <TooltipContainer paddingRight={onClick && 12}>
         {label}
