@@ -99,8 +99,20 @@ const PriceNoteContainer = styled.div`
   right: 0;
 `
 
-function discountRate(basePrice: number, salePrice: number) {
-  return `${Math.floor(((basePrice - salePrice) / basePrice) * 100)}%`
+function DiscountRate({
+  basePrice,
+  salePrice,
+}: {
+  basePrice: number
+  salePrice: number
+}) {
+  const rate = Math.floor(((basePrice - salePrice) / basePrice) * 100)
+
+  return rate > 0 ? (
+    <Price color="pink" size="big" margin={{ right: 5 }} bold>
+      {rate}%
+    </Price>
+  ) : null
 }
 
 function RichPricing({
@@ -135,9 +147,7 @@ function RichPricing({
           {formatNumber(basePrice)}
         </Text>
       </PriceNoteContainer>
-      <Price color="pink" size="big" margin={{ right: 5 }} bold>
-        {discountRate(basePrice, salePrice)}
-      </Price>
+      <DiscountRate basePrice={basePrice} salePrice={salePrice} />
       <Price size="big" bold>
         {formatNumber(salePrice)}원
       </Price>

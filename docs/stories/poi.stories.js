@@ -8,7 +8,6 @@ import POIS from './pois.sample.json'
 import HOTELS from './hotels.sample.json'
 
 const [POI] = POIS
-const [HOTEL] = HOTELS
 
 storiesOf('POI', module)
   .add('POI 리스트', () => (
@@ -19,15 +18,18 @@ storiesOf('POI', module)
       }}
     />
   ))
-  .add('호텔 리스트', () => (
-    <PoiListElement
-      poi={HOTEL}
-      resourceScraps={{
-        [HOTEL.id]: boolean('저장', false),
-      }}
-      pricingNote="1박, 세금포함"
-    />
-  ))
+  .add('호텔 리스트', () =>
+    HOTELS.map((hotel, idx) => (
+      <PoiListElement
+        key={idx}
+        poi={hotel}
+        resourceScraps={{
+          [hotel.id]: boolean('저장', false),
+        }}
+        pricingNote="1박, 세금포함"
+      />
+    )),
+  )
   .add('TripleDocument', () => (
     <PoiCarouselElement
       poi={POI}
