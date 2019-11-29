@@ -3,12 +3,19 @@ import * as CSS from 'csstype'
 import styled, { css } from 'styled-components'
 import { GetGlobalColor } from '../commons'
 
+interface PointingOptions {
+  vertical: 'top' | 'bottom'
+  horizontal: 'left' | 'right'
+  horizontalOffset?: number
+}
+
 interface TooltipFrameProps {
   absolute?: Partial<Record<CSS.Position<string | number>, string>>
   borderRadius?: string
-  pointingPosition?: 'above' | 'below'
   floating?: boolean
   backgroundColor?: string
+
+  pointing?: PointingOptions
 }
 interface TooltipProps extends TooltipFrameProps {
   label: string
@@ -33,28 +40,25 @@ const TooltipFrame = styled.div<TooltipFrameProps>`
   ${({ backgroundColor = 'rgba(13, 208, 175, 1)' }) =>
     backgroundColor && `background-color: ${backgroundColor}`};
 
-  ${({
-    pointingPosition = 'below',
-    backgroundColor = 'rgba(13, 208, 175, 1)',
-  }) => {
-    switch (pointingPosition) {
-      case 'above':
+  ${({ pointing, backgroundColor = 'rgba(13, 208, 175, 1)' }) => {
+    switch (pointing.vertical) {
+      case 'top':
         return `
           &::before {
             ${POINTING_BASE_STYLE}
 
             top: -6px;
-            left: 26px;
+            ${pointing.horizontal}: ${pointing.horizontalOffset}px;
             border-bottom: 5px solid ${backgroundColor};
           }
         `
-      case 'below':
+      case 'bottom':
         return `
           &::after {
             ${POINTING_BASE_STYLE}
 
-            top: 100%;
-            left: 26px;
+            bottom: -6px;
+            ${pointing.horizontal}: ${pointing.horizontalOffset}px;
             border-top: 5px solid ${backgroundColor};
           }
          `
@@ -121,7 +125,16 @@ function Tooltip({
   ...frameProps
 }: TooltipProps) {
   return (
-    <TooltipFrame {...frameProps}>
+    <TooltipFrame
+      {...{
+        ...frameProps,
+        pointing: frameProps.pointing || {
+          vertical: 'bottom',
+          horizontal: 'left',
+          horizontalOffset: 26,
+        },
+      }}
+    >
       <TooltipContainer paddingRight={onClick && 12} nowrap={nowrap}>
         {label}
         {onClick && <ArrowRight />}
