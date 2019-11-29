@@ -17,6 +17,18 @@ const TOC = styled.div`
   left: 52px;
 `
 
+const ICON_LIST = [
+  'more',
+  'map',
+  'write',
+  'scraped',
+  'unscraped',
+  'share',
+  'route',
+  'search',
+  'list',
+]
+
 storiesOf('Navbar', module)
   .add('버튼 2개 (좌1+우1)', () => (
     <Navbar
@@ -26,20 +38,7 @@ storiesOf('Navbar', module)
       <Navbar.Item icon={select('좌측 아이콘', ['back', 'close'], 'back')} />
       <Navbar.Item
         floated="right"
-        icon={select(
-          '우측 아이콘',
-          [
-            'more',
-            'map',
-            'write',
-            'scraped',
-            'unscraped',
-            'share',
-            'route',
-            'search',
-          ],
-          'more',
-        )}
+        icon={select('우측 아이콘', ICON_LIST, 'more')}
       />
     </Navbar>
   ))
@@ -51,37 +50,11 @@ storiesOf('Navbar', module)
       <Navbar.Item icon={select('좌측 아이콘', ['back', 'close'], 'back')} />
       <Navbar.Item
         floated="right"
-        icon={select(
-          '우측 아이콘 1',
-          [
-            'more',
-            'map',
-            'write',
-            'scraped',
-            'unscraped',
-            'share',
-            'route',
-            'search',
-          ],
-          'more',
-        )}
+        icon={select('우측 아이콘 1', ICON_LIST, 'more')}
       />
       <Navbar.Item
         floated="right"
-        icon={select(
-          '우측 아이콘 2',
-          [
-            'more',
-            'map',
-            'write',
-            'scraped',
-            'unscraped',
-            'share',
-            'route',
-            'search',
-          ],
-          'route',
-        )}
+        icon={select('우측 아이콘 2', ICON_LIST, 'route')}
       />
     </Navbar>
   ))
@@ -93,57 +66,15 @@ storiesOf('Navbar', module)
       <Navbar.Item icon={select('좌측 아이콘', ['back', 'close'], 'back')} />
       <Navbar.Item
         floated="right"
-        icon={select(
-          '우측 아이콘 1',
-          [
-            'more',
-            'map',
-            'write',
-            'scraped',
-            'unscraped',
-            'share',
-            'route',
-            'search',
-            'list',
-          ],
-          'more',
-        )}
+        icon={select('우측 아이콘 1', ICON_LIST, 'more')}
       />
       <Navbar.Item
         floated="right"
-        icon={select(
-          '우측 아이콘 2',
-          [
-            'more',
-            'map',
-            'write',
-            'scraped',
-            'unscraped',
-            'share',
-            'route',
-            'search',
-            'list',
-          ],
-          'route',
-        )}
+        icon={select('우측 아이콘 2', ICON_LIST, 'route')}
       />
       <Navbar.Item
         floated="right"
-        icon={select(
-          '우측 아이콘 3',
-          [
-            'more',
-            'map',
-            'write',
-            'scraped',
-            'unscraped',
-            'share',
-            'route',
-            'search',
-            'list',
-          ],
-          'list',
-        )}
+        icon={select('우측 아이콘 3', ICON_LIST, 'list')}
       />
     </Navbar>
   ))
