@@ -85,6 +85,68 @@ storiesOf('Navbar', module)
       />
     </Navbar>
   ))
+  .add('버튼 4개 (좌1+우3)', () => (
+    <Navbar
+      title={text('제목', '도쿄 관광지')}
+      borderless={boolean('Border 생략', true)}
+    >
+      <Navbar.Item icon={select('좌측 아이콘', ['back', 'close'], 'back')} />
+      <Navbar.Item
+        floated="right"
+        icon={select(
+          '우측 아이콘 1',
+          [
+            'more',
+            'map',
+            'write',
+            'scraped',
+            'unscraped',
+            'share',
+            'route',
+            'search',
+            'list',
+          ],
+          'more',
+        )}
+      />
+      <Navbar.Item
+        floated="right"
+        icon={select(
+          '우측 아이콘 2',
+          [
+            'more',
+            'map',
+            'write',
+            'scraped',
+            'unscraped',
+            'share',
+            'route',
+            'search',
+            'list',
+          ],
+          'route',
+        )}
+      />
+      <Navbar.Item
+        floated="right"
+        icon={select(
+          '우측 아이콘 3',
+          [
+            'more',
+            'map',
+            'write',
+            'scraped',
+            'unscraped',
+            'share',
+            'route',
+            'search',
+            'list',
+          ],
+          'list',
+        )}
+      />
+    </Navbar>
+  ))
   .add('보조 Navbar (리스트 필터링)', () => (
     <>
       <Navbar title={text('제목', '도쿄 관광지')} borderless>
