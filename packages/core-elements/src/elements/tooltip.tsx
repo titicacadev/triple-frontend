@@ -30,10 +30,13 @@ const TooltipFrame = styled.div<TooltipFrameProps>`
   color: rgba(${GetGlobalColor('white')}, 1);
   padding: 6px 11px;
 
-  ${({ backgroundColor }) =>
+  ${({ backgroundColor = 'rgba(13, 208, 175, 1)' }) =>
     backgroundColor && `background-color: ${backgroundColor}`};
 
-  ${({ pointingPosition, backgroundColor }) => {
+  ${({
+    pointingPosition = 'below',
+    backgroundColor = 'rgba(13, 208, 175, 1)',
+  }) => {
     switch (pointingPosition) {
       case 'above':
         return `
@@ -113,22 +116,12 @@ const ArrowRight = styled.span`
 function Tooltip({
   label,
   onClick,
-  borderRadius,
-  absolute,
-  pointingPosition,
-  floating,
-  backgroundColor,
   nowrap,
+
+  ...frameProps
 }: TooltipProps) {
   return (
-    <TooltipFrame
-      borderRadius={borderRadius}
-      absolute={absolute}
-      onClick={onClick}
-      pointingPosition={pointingPosition || 'below'}
-      floating={floating}
-      backgroundColor={backgroundColor || 'rgba(13, 208, 175, 1)'}
-    >
+    <TooltipFrame {...frameProps}>
       <TooltipContainer paddingRight={onClick && 12} nowrap={nowrap}>
         {label}
         {onClick && <ArrowRight />}
