@@ -46,7 +46,17 @@ storiesOf('Tooltip', module)
       />
     </Base>
   ))
-
+  .add('가격', () => (
+    <Base style={{ width: '300px' }}>
+      툴팁 표시 대상
+      <Tooltip
+        borderRadius="30"
+        absolute={{ top: -12 }}
+        label={text('툴팁 라벨', '쿠폰사용시 -15,000원 더 할인!')}
+        onClick={action('툴팁 클릭')}
+      />
+    </Base>
+  ))
   .add('호텔 목록 아이콘', () => (
     <div style={{ width: '500px', height: '700px', border: 'solid 1px black' }}>
       <Navbar>
