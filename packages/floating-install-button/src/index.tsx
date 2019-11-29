@@ -1,6 +1,12 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { GetGlobalColor, Text, Container } from '@titicaca/core-elements'
+import { useUserAgentContext } from '@titicaca/react-contexts'
+import {
+  GetGlobalColor,
+  Text,
+  Container,
+  MarginPadding,
+} from '@titicaca/core-elements'
 
 declare var window: any
 
@@ -8,7 +14,7 @@ const MIN_DESKTOP_WIDTH = 1142
 const CLOSE_INSTALL_BUTTON_KEY = 'close_install_button'
 const DEFAULT_DESCRIPTION_TEXT = '가이드북, 일정짜기, 길찾기, 맛집'
 
-const FloatingButton = styled.div<{ fixed?: boolean }>`
+const FloatingButton = styled.div<{ fixed?: boolean; margin?: MarginPadding }>`
   height: 84px;
   border-radius: 42px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
@@ -27,6 +33,15 @@ const FloatingButton = styled.div<{ fixed?: boolean }>`
       left: 10px;
       right: 10px;
       margin-bottom: 30px;
+    `};
+
+  ${({ margin }) =>
+    margin &&
+    css`
+      margin-top: ${margin.top || 0}px;
+      margin-bottom: ${margin.bottom || 0}px;
+      margin-left: ${margin.left || 0}px;
+      margin-right: ${margin.right || 0}px;
     `};
 `
 
@@ -71,12 +86,14 @@ export default function FloatingInstallButton({
   appInstallLink,
   description = DEFAULT_DESCRIPTION_TEXT,
   trackEvent,
+  margin,
   trackEventParams,
 }: {
   fixed?: boolean
   appInstallLink?: string
   description?: string
   trackEvent?: any
+  margin?: MarginPadding
   trackEventParams?: {
     onShow?: any
     onSelect?: any
@@ -84,6 +101,7 @@ export default function FloatingInstallButton({
   }
 }) {
   const [buttonVisibility, setButtonVisibility] = React.useState(false)
+  const { isMobile } = useUserAgentContext()
 
   const sendTrackEventRequest = React.useCallback(
     (param) => {
@@ -96,23 +114,26 @@ export default function FloatingInstallButton({
     const visitedPages = window.sessionStorage.getItem(CLOSE_INSTALL_BUTTON_KEY)
     if (!visitedPages && !buttonVisibility) {
       setButtonVisibility(true)
-      sendTrackEventRequest(trackEventParams && trackEventParams.onShow)
+      isMobile &&
+        sendTrackEventRequest(trackEventParams && trackEventParams.onShow)
     }
-  }, [buttonVisibility, sendTrackEventRequest, trackEventParams])
+  }, [buttonVisibility, sendTrackEventRequest, trackEventParams, isMobile])
 
   const onClose = () => {
     setButtonVisibility(false)
     window.sessionStorage.setItem(CLOSE_INSTALL_BUTTON_KEY, 'true')
-    sendTrackEventRequest(trackEventParams && trackEventParams.onClose)
+    isMobile &&
+      sendTrackEventRequest(trackEventParams && trackEventParams.onClose)
   }
 
   const onSelect = () => {
-    sendTrackEventRequest(trackEventParams && trackEventParams.onSelect)
+    isMobile &&
+      sendTrackEventRequest(trackEventParams && trackEventParams.onSelect)
     return true
   }
 
   return buttonVisibility ? (
-    <FloatingButton fixed={fixed}>
+    <FloatingButton fixed={fixed} margin={margin}>
       <Container floated="left">
         <InstallDescription>
           <InstallAnchor href={appInstallLink} onClick={onSelect}>
