@@ -33,6 +33,11 @@ storiesOf('Tooltip', module)
             : undefined
         }
         pointingPosition={select('포인팅 위치', ['above', 'below'], 'below')}
+        backgroundColor={select(
+          '툴팁 색',
+          ['rgba(13, 208, 175, 1)', '#368fff'],
+          'rgba(13, 208, 175, 1)',
+        )}
       />
     </Base>
   ))
@@ -50,6 +55,7 @@ storiesOf('Tooltip', module)
           }}
           pointingPosition="above"
           floating={true}
+          backgroundColor="#368fff"
         />
       </div>
     </Navbar>

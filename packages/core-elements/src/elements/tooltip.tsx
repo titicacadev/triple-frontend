@@ -8,6 +8,7 @@ interface TooltipFrameProps {
   borderRadius?: string
   pointingPosition?: 'above' | 'below'
   floating?: boolean
+  backgroundColor?: string
 }
 interface TooltipProps extends TooltipFrameProps {
   label: string
@@ -25,11 +26,13 @@ const POINTING_BASE_STYLE = css`
 
 const TooltipFrame = styled.div<TooltipFrameProps>`
   position: relative;
-  background: rgba(13, 208, 175, 1);
   color: rgba(${GetGlobalColor('white')}, 1);
   padding: 6px 11px;
 
-  ${({ pointingPosition }) => {
+  ${({ backgroundColor }) =>
+    backgroundColor && `background-color: ${backgroundColor}`};
+
+  ${({ pointingPosition, backgroundColor }) => {
     switch (pointingPosition) {
       case 'above':
         return `
@@ -38,7 +41,7 @@ const TooltipFrame = styled.div<TooltipFrameProps>`
 
             top: -6px;
             left: 26px;
-            border-bottom: 5px solid rgba(13, 208, 175, 1);
+            border-bottom: 5px solid ${backgroundColor};
           }
         `
       case 'below':
@@ -48,13 +51,11 @@ const TooltipFrame = styled.div<TooltipFrameProps>`
 
             top: 100%;
             left: 26px;
-            border-top: 5px solid rgba(13, 208, 175, 1);
+            border-top: 5px solid ${backgroundColor};
           }
          `
     }
   }}
-
-
 
   ${({ borderRadius }) =>
     borderRadius &&
@@ -113,6 +114,7 @@ function Tooltip({
   absolute,
   pointingPosition,
   floating,
+  backgroundColor,
 }: TooltipProps) {
   return (
     <TooltipFrame
@@ -121,6 +123,7 @@ function Tooltip({
       onClick={onClick}
       pointingPosition={pointingPosition || 'below'}
       floating={floating}
+      backgroundColor={backgroundColor || 'rgba(13, 208, 175, 1)'}
     >
       <TooltipContainer paddingRight={onClick && 12}>
         {label}
