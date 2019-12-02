@@ -1,8 +1,12 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 
-const DrawerContainer = styled.div<{ active?: boolean; overflow?: string }>`
-  z-index: 20;
+const DrawerContainer = styled.div<{
+  active?: boolean
+  overflow?: string
+  zIndex?: number
+}>`
+  z-index: ${({ zIndex }) => zIndex || 20};
   position: fixed;
   bottom: 0;
   left: 0;
@@ -19,9 +23,9 @@ const DrawerContainer = styled.div<{ active?: boolean; overflow?: string }>`
     `};
 `
 
-export default function Drawer({ active, overflow, children }) {
+export default function Drawer({ active, overflow, children, zIndex }) {
   return (
-    <DrawerContainer active={active} overflow={overflow}>
+    <DrawerContainer active={active} overflow={overflow} zIndex={zIndex}>
       {children}
     </DrawerContainer>
   )
