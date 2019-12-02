@@ -19,7 +19,7 @@ storiesOf('Tooltip', module)
       <Tooltip
         label={text('내용', '모든 호텔 보기')}
         borderRadius={text('border radius')}
-        floating={boolean('floating')}
+        hasShadow={boolean('그림자 표시')}
         onClick={boolean('클릭 가능') ? action('툴팁 클릭') : undefined}
         positioning={
           boolean('위치 절대값 사용')
@@ -71,7 +71,7 @@ storiesOf('Tooltip', module)
             horizontal: 'right',
             horizontalOffset: 24,
           }}
-          floating={true}
+          hasShadow={true}
           backgroundColor="#368fff"
           nowrap={true}
         />

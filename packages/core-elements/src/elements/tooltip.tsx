@@ -12,7 +12,7 @@ interface PointingOptions {
 interface TooltipFrameProps {
   positioning?: Partial<Record<CSS.Position<string>, number | string>>
   borderRadius?: string
-  floating?: boolean
+  hasShadow?: boolean
   backgroundColor: string
   pointing: PointingOptions
 }
@@ -100,7 +100,7 @@ const TooltipFrame = styled.div<TooltipFrameProps>`
       }
     `}
 
-  ${({ floating }) => floating && 'box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);'}
+  ${({ hasShadow }) => hasShadow && 'box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);'}
 `
 
 const TooltipContainer = styled.div<{ paddingRight?: number; nowrap: boolean }>`
