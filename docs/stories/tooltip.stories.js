@@ -60,11 +60,7 @@ storiesOf('Tooltip', module)
   .add('호텔 목록 아이콘', () => (
     <div style={{ width: '500px', height: '700px', border: 'solid 1px black' }}>
       <Navbar>
-        <Navbar.Item
-          floated="right"
-          icon="list"
-          style={{ position: 'relative' }}
-        >
+        <Navbar.Item floated="right" icon="list" position="relative">
           <Tooltip
             label={`${text('리전 이름', '호찌민')} 모든 호텔 보기`}
             borderRadius={12}
