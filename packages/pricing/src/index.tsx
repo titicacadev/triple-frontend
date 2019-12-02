@@ -175,7 +175,7 @@ const RegularPricing = ({
 const FloatedFrame = styled(Container)`
   position: relative;
   border-top: 1px solid #efefef;
-
+  background: #fff;
   @supports (padding: max(0px)) and (padding: env(safe-area-inset-bottom)) {
     padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
   }
