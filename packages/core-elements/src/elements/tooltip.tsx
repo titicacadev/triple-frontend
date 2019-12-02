@@ -13,15 +13,23 @@ interface TooltipFrameProps {
   positioning?: Partial<Record<CSS.Position<string>, number | string>>
   borderRadius?: string
   floating?: boolean
-  backgroundColor?: string
-
-  pointing?: PointingOptions
+  backgroundColor: string
+  pointing: PointingOptions
 }
-interface TooltipProps extends TooltipFrameProps {
+
+interface TooltipProps extends Partial<TooltipFrameProps> {
   label: string
   onClick?: React.MouseEventHandler<HTMLDivElement>
   nowrap?: boolean
 }
+
+const DEFAULT_POINTING_OPTION = {
+  vertical: 'bottom',
+  horizontal: 'left',
+  horizontalOffset: 26,
+} as const
+
+const DEFAULT_BACKGROUND_COLOR = 'rgba(13, 208, 175, 1)'
 
 const POINTING_BASE_STYLE = css`
   position: absolute;
@@ -37,10 +45,9 @@ const TooltipFrame = styled.div<TooltipFrameProps>`
   color: rgba(${GetGlobalColor('white')}, 1);
   padding: 6px 11px;
 
-  ${({ backgroundColor = 'rgba(13, 208, 175, 1)' }) =>
-    backgroundColor && `background-color: ${backgroundColor}`};
+  ${({ backgroundColor }) => `background-color: ${backgroundColor}`};
 
-  ${({ pointing, backgroundColor = 'rgba(13, 208, 175, 1)' }) => {
+  ${({ pointing, backgroundColor }) => {
     switch (pointing.vertical) {
       case 'top':
         return `
@@ -125,22 +132,13 @@ const ArrowRight = styled.span`
   background-image: url(https://assets.triple.guide/images/ico-arrow-right-w@3x.png);
 `
 
-function Tooltip({
-  label,
-  onClick,
-  nowrap,
-
-  ...frameProps
-}: TooltipProps) {
+function Tooltip({ label, onClick, nowrap, ...frameProps }: TooltipProps) {
   return (
     <TooltipFrame
       {...{
         ...frameProps,
-        pointing: frameProps.pointing || {
-          vertical: 'bottom',
-          horizontal: 'left',
-          horizontalOffset: 26,
-        },
+        backgroundColor: frameProps.backgroundColor || DEFAULT_BACKGROUND_COLOR,
+        pointing: frameProps.pointing || DEFAULT_POINTING_OPTION,
       }}
     >
       <TooltipContainer paddingRight={onClick && 12} nowrap={nowrap}>
