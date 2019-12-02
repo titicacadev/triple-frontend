@@ -48,11 +48,15 @@ const InstallDescription = styled(Text)`
   height: 21px;
   font-size: 18px;
   font-weight: bold;
-  margin: 23px 0px 0px 32px;
+  padding: 23px 0px 0px 32px;
   color: rgb(${GetGlobalColor('white')});
 `
 
 const InstallAnchor = styled.a`
+  width: 100%;
+  height: 100%;
+  display: block;
+  text-decoration: none;
   &:visited,
   &:hover,
   &:active {
@@ -78,6 +82,20 @@ const CloseButton = styled.img`
   width: 30px;
   height: 30px;
   margin: 27px 16px 27px 0;
+`
+
+const LeftContainer = styled(Container)`
+  float: left;
+  width: 100%;
+  height: 100%;
+  margin-right: -46px;
+  padding-right: 46px;
+  box-sizing: border-box;
+`
+
+const RightContainer = styled(Container)`
+  float: right;
+  width: 46px;
 `
 
 export default function FloatingInstallButton({
@@ -129,20 +147,20 @@ export default function FloatingInstallButton({
 
   return buttonVisibility ? (
     <FloatingButton fixed={fixed} margin={margin}>
-      <Container floated="left">
-        <InstallDescription>
-          <InstallAnchor href={appInstallLink} onClick={onSelect}>
+      <LeftContainer>
+        <InstallAnchor href={appInstallLink} onClick={onSelect}>
+          <InstallDescription>
             <Text floated="left" color="white">
               트리플 앱 설치하기
             </Text>
             <GoAppButton src="https://assets.triple.guide/images/ico-arrow@4x.png" />
-          </InstallAnchor>
-        </InstallDescription>
-        <Description>{description}</Description>
-      </Container>
-      <Container floated="right" onClick={onClose}>
+          </InstallDescription>
+          <Description>{description}</Description>
+        </InstallAnchor>
+      </LeftContainer>
+      <RightContainer onClick={onClose}>
         <CloseButton src="https://assets.triple.guide/images/btn-closebanner@3x.png" />
-      </Container>
+      </RightContainer>
     </FloatingButton>
   ) : null
 }
