@@ -6,7 +6,7 @@ const DrawerContainer = styled.div<{
   overflow?: string
   zIndex?: number
 }>`
-  z-index: ${({ zIndex }) => zIndex || 20};
+  z-index: ${({ zIndex }) => (Number.isInteger(zIndex) ? zIndex : 20)};
   position: fixed;
   bottom: 0;
   left: 0;
@@ -23,7 +23,17 @@ const DrawerContainer = styled.div<{
     `};
 `
 
-export default function Drawer({ active, overflow, children, zIndex }) {
+export default function Drawer({
+  active,
+  overflow,
+  zIndex,
+  children,
+}: {
+  active?: boolean
+  overflow?: string
+  zIndex?: number
+  children?: React.ReactNode
+}) {
   return (
     <DrawerContainer active={active} overflow={overflow} zIndex={zIndex}>
       {children}
