@@ -243,7 +243,7 @@ function FixedPricing({
         {active && tooltipLabel && (
           <Tooltip
             borderRadius="30"
-            absolute={{ top: -12 }}
+            positioning={{ top: -12 }}
             label={tooltipLabel}
             onClick={onTooltipClick}
           />

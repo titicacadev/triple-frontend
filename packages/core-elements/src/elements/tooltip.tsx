@@ -10,7 +10,7 @@ interface PointingOptions {
 }
 
 interface TooltipFrameProps {
-  absolute?: Partial<Record<CSS.Position<string>, number | string>>
+  positioning?: Partial<Record<CSS.Position<string>, number | string>>
   borderRadius?: string
   floating?: boolean
   backgroundColor?: string
@@ -71,18 +71,26 @@ const TooltipFrame = styled.div<TooltipFrameProps>`
       border-radius: ${borderRadius}px;
     `}
 
-  ${({ absolute }) =>
-    absolute &&
+  ${({ positioning }) =>
+    positioning &&
     css`
       position: absolute;
-      ${typeof absolute.top === 'number' ? `top: ${absolute.top}px;` : ''}
-      ${typeof absolute.right === 'number' ? `right: ${absolute.right}px;` : ''}
+      ${typeof positioning.top === 'number' ? `top: ${positioning.top}px;` : ''}
       ${
-        typeof absolute.bottom === 'number'
-          ? `bottom: ${absolute.bottom}px;`
+        typeof positioning.right === 'number'
+          ? `right: ${positioning.right}px;`
           : ''
       }
-      ${typeof absolute.left === 'number' ? `left: ${absolute.left}px;` : ''}
+      ${
+        typeof positioning.bottom === 'number'
+          ? `bottom: ${positioning.bottom}px;`
+          : ''
+      }
+      ${
+        typeof positioning.left === 'number'
+          ? `left: ${positioning.left}px;`
+          : ''
+      }
     `}
 
   ${({ floating }) => floating && 'box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);'}

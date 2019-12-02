@@ -22,7 +22,7 @@ storiesOf('Tooltip', module)
         borderRadius={text('border radius')}
         floating={boolean('floating')}
         onClick={boolean('클릭 가능') ? action('툴팁 클릭') : undefined}
-        absolute={
+        positioning={
           boolean('위치 절대값 사용')
             ? {
                 top: number('top'),
@@ -51,7 +51,7 @@ storiesOf('Tooltip', module)
       툴팁 표시 대상
       <Tooltip
         borderRadius="30"
-        absolute={{ top: -12 }}
+        positioning={{ top: -12 }}
         label={text('툴팁 라벨', '쿠폰사용시 -15,000원 더 할인!')}
         onClick={action('툴팁 클릭')}
       />
@@ -68,7 +68,7 @@ storiesOf('Tooltip', module)
           <Tooltip
             label={`${text('리전 이름', '호찌민')} 모든 호텔 보기`}
             borderRadius={12}
-            absolute={{
+            positioning={{
               bottom: -25,
               right: -14,
             }}
