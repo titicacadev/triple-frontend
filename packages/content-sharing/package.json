@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/content-sharing",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Content Sharing",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "license": "ISC",
@@ -19,6 +19,6 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^1.1.1"
+    "@titicaca/core-elements": "^1.1.2"
   }
 }
