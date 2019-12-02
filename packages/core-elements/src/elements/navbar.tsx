@@ -73,7 +73,9 @@ const ICON_URL_BY_NAMES: { [key in IconNames]: string } = {
 const NavbarItem = styled.div<{
   floated?: CSS.FloatProperty
   icon?: IconNames
+  position?: CSS.PositionProperty
 }>`
+  ${({ position }) => position && `position: ${position};`}
   float: ${({ floated }) => floated || 'left'};
   background-image: url(${({ icon }) => ICON_URL_BY_NAMES[icon]});
   background-size: cover;
