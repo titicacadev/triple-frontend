@@ -7,7 +7,6 @@ import styled from 'styled-components'
 
 const Base = styled.div`
   position: relative;
-  display: inline-block;
   margin: 50px;
   border: solid 1px black;
   padding: 10px;
@@ -47,7 +46,7 @@ storiesOf('Tooltip', module)
     </Base>
   ))
   .add('가격', () => (
-    <Base style={{ width: '300px' }}>
+    <Base>
       툴팁 표시 대상
       <Tooltip
         borderRadius="30"
@@ -58,26 +57,24 @@ storiesOf('Tooltip', module)
     </Base>
   ))
   .add('호텔 목록 아이콘', () => (
-    <div style={{ width: '500px', height: '700px', border: 'solid 1px black' }}>
-      <Navbar>
-        <Navbar.Item floated="right" icon="list" position="relative">
-          <Tooltip
-            label={`${text('리전 이름', '호찌민')} 모든 호텔 보기`}
-            borderRadius={12}
-            positioning={{
-              bottom: -25,
-              right: -14,
-            }}
-            pointing={{
-              vertical: 'top',
-              horizontal: 'right',
-              horizontalOffset: 24,
-            }}
-            floating={true}
-            backgroundColor="#368fff"
-            nowrap={true}
-          />
-        </Navbar.Item>
-      </Navbar>
-    </div>
+    <Navbar>
+      <Navbar.Item floated="right" icon="list" position="relative">
+        <Tooltip
+          label={`${text('리전 이름', '호찌민')} 모든 호텔 보기`}
+          borderRadius={12}
+          positioning={{
+            bottom: -25,
+            right: -14,
+          }}
+          pointing={{
+            vertical: 'top',
+            horizontal: 'right',
+            horizontalOffset: 24,
+          }}
+          floating={true}
+          backgroundColor="#368fff"
+          nowrap={true}
+        />
+      </Navbar.Item>
+    </Navbar>
   ))
