@@ -8,7 +8,6 @@ const DrawerContainer = styled.div<{ active?: boolean; overflow?: string }>`
   left: 0;
   right: 0;
   overflow: ${({ overflow }) => overflow || 'hidden'};
-  background: #fff;
   transform: translateY(100%);
   transition: all 300ms ease-in-out;
 
