@@ -55,6 +55,7 @@ Slack `@frontend` 그룹, `#triple-web-dev` 채널 및 GitHub `@frontend` 팀
 ### CI/CD
 
   - GitHub Actions를 이용해 CI/CD를 수행합니다.
+  - CI: 모든 브랜치 푸시에 동작합니다.
 
 ### History
 
