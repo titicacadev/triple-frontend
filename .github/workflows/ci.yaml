@@ -64,6 +64,6 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
     - name: Release
       run: |
-        npm publish -- --canary
+        npx lerna publish --canary
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
