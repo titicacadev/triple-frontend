@@ -42,6 +42,7 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Canary Release
       run: |
-        npx lerna publish --canary
+        git stash
+        npx lerna publish --canary --yes
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
