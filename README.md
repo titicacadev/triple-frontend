@@ -54,7 +54,7 @@ Slack `@frontend` 그룹, `#triple-web-dev` 채널 및 GitHub `@frontend` 팀
 
 ### CI/CD
 
-TBD
+  - GitHub Actions를 이용해 CI/CD를 수행합니다.
 
 ### History
 
