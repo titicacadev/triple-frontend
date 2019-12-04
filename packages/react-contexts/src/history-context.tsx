@@ -106,7 +106,9 @@ export function HistoryProvider({
       setUriHash(hash)
 
       if (useRouter) {
-        Router.replace(generateUrl({ hash }, Router.asPath))
+        return Router.replace(generateUrl({ hash }, Router.asPath))
+      } else {
+        return new Promise((resolve) => resolve(true))
       }
     },
     [isAndroid],
@@ -119,7 +121,9 @@ export function HistoryProvider({
       setUriHash(hash)
 
       if (useRouter) {
-        Router.push(generateUrl({ hash }, Router.asPath))
+        return Router.push(generateUrl({ hash }, Router.asPath))
+      } else {
+        return new Promise((resolve) => resolve(true))
       }
     },
     [isAndroid],
@@ -131,7 +135,9 @@ export function HistoryProvider({
     setUriHash((HASH_HISTORIES[HASH_HISTORIES.length - 1] || {}).hash)
 
     if (useRouter) {
-      Router.back()
+      return Router.back()
+    } else {
+      return new Promise((resolve) => resolve(true))
     }
   }, [])
 
