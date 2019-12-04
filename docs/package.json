@@ -5,9 +5,7 @@
   "description": "Documentation project for triple-frontend packages",
   "scripts": {
     "dev": "start-storybook -p 6006 -s ./public",
-    "build": "build-storybook -s ./public",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build": "build-storybook -s ./public"
   },
   "dependencies": {
     "@titicaca/action-sheet": "^1.1.3",
