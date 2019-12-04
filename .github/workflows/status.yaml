@@ -1,0 +1,9 @@
+name: Status Update
+on: pull_request
+jobs:
+  status-update:
+    runs-on: ubuntu-latest
+    steps:
+      uses: 'jessfraz/shaking-finger-action'
+      secrets:
+      - 'GITHUB_TOKEN'
