@@ -25,8 +25,35 @@ Text 를 표현할때 사용하는 컴포넌트입니다.
   </Story>
 </Preview>
 
+```js
+<Text size="medium" color="blue" onClick={() => 'clicked'}> 
+  호텔 최저가 보상!
+</Text>
+```
 
-## SIZES
+## Props
+
+```js
+size?: GlobalSizes | number
+bold?: boolean
+alpha?: number
+color?: string
+floated?: CSS.FloatProperty
+lineHeight?: number
+wordBreak?: CSS.WordBreakProperty
+whiteSpace?: CSS.WhiteSpaceProperty
+center?: boolean
+underline?: boolean
+inline?: boolean
+inlineBlock?: boolean
+margin?: MarginPadding
+padding?: MarginPadding
+ellipsis?: boolean
+maxLines?: number
+strikethrough?: boolean
+```
+
+## Size
 
 각 사이즈는 정해진 px 을 가지고 있습니다.
 
@@ -38,3 +65,9 @@ Text 를 표현할때 사용하는 컴포넌트입니다.
 <Text size="big"> big: 19px </Text>
 <Text size="huge"> huge: 21px </Text>
 <Text size="massive"> massive: 24px </Text>
+
+## Color
+
+<Text size="big" color="blue"> color: blue </Text>
+<Text size="big" color="gray"> color: gray </Text>
+<Text size="big" color="gray" alpha={0.5}> color: gray alpha = 0.5 </Text>
