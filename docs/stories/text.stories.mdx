@@ -1,0 +1,40 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { Text } from '@titicaca/core-elements'
+import { action } from '@storybook/addon-actions'
+import { select, text, boolean } from '@storybook/addon-knobs';
+
+<Meta title="Text" component={Text} />
+
+# Text
+
+Text 를 표현할때 사용하는 컴포넌트입니다.
+
+<Preview>
+  <Story name="Basic">
+     <Text
+        size={select(
+          '크기',
+          ['mini', 'tiny', 'small', 'medium', 'large', 'big', 'huge', 'massive'],
+          'tiny',
+        )}
+        color={select('색깔', ['blue', 'gray', 'white'], 'gray')}
+        onClick={action('clicked')}
+      >
+        {text('텍스트', '호텔 최저가 보상!')}
+    </Text>
+  </Story>
+</Preview>
+
+
+## SIZES
+
+각 사이즈는 정해진 px 을 가지고 있습니다.
+
+<Text size="mini"> mini: 12px </Text>
+<Text size="tiny"> tiny: 13px </Text>
+<Text size="small"> small: 14px </Text>
+<Text size="medium"> medium: 15px </Text>
+<Text size="large"> large: 16px </Text>
+<Text size="big"> big: 19px </Text>
+<Text size="huge"> huge: 21px </Text>
+<Text size="massive"> massive: 24px </Text>
