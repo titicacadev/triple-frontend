@@ -132,15 +132,19 @@ export default function PublicHeader({
   playStoreUrl,
   appStoreUrl,
   children,
+  fixed,
+  minWidth,
   ...props
 }: {
   href?: string
   playStoreUrl?: string
   appStoreUrl?: string
+  fixed?: boolean
+  minWidth?: number
   children?: React.ReactNode
 }) {
   return (
-    <HeaderFrame {...props}>
+    <HeaderFrame fixed={fixed} minWidth={minWidth} {...props}>
       <Logo href={href || 'https://triple.guide'}>TRIPLE</Logo>
       <MarketLinksContainer>
         {playStoreUrl ? (
