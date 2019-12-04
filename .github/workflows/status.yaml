@@ -4,6 +4,4 @@ jobs:
   status-update:
     runs-on: ubuntu-latest
     steps:
-      uses: 'jessfraz/shaking-finger-action'
-      secrets:
-      - 'GITHUB_TOKEN'
+    - uses: 'jessfraz/shaking-finger-action'
