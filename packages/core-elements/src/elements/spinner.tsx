@@ -41,16 +41,16 @@ const Icon = styled.div`
 
 export default function Spinner({
   full,
-  element,
+  children,
 }: {
   full?: boolean
-  element?: React.ReactNode
+  children?: React.ReactNode
 }) {
   return (
     <Container full={full}>
       <Wrapper>
         <Icon />
-        {element}
+        {children}
       </Wrapper>
     </Container>
   )
