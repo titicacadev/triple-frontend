@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled, { css, keyframes } from 'styled-components'
+import Text from './text'
 
 const loadingAnimation = keyframes`
   100% {
@@ -26,6 +27,7 @@ const Container = styled.div<{ full?: boolean }>`
 const Wrapper = styled.div`
   display: table-cell;
   vertical-align: middle;
+  text-align: center;
 `
 
 const Icon = styled.div`
@@ -37,11 +39,18 @@ const Icon = styled.div`
   animation: ${loadingAnimation} 1s steps(30) infinite;
 `
 
-export default function Spinner({ full }: { full?: boolean }) {
+export default function Spinner({
+  full,
+  element,
+}: {
+  full?: boolean
+  element?: React.ReactNode
+}) {
   return (
     <Container full={full}>
       <Wrapper>
         <Icon />
+        {element}
       </Wrapper>
     </Container>
   )
