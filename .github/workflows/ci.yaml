@@ -8,10 +8,14 @@ on:
       - 'release-prod-*'
 
 jobs:
-  build:
-
+  status-update:
     runs-on: ubuntu-latest
-
+    steps:
+    - uses: 'jessfraz/shaking-finger-action@master'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  build:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [12.x]

@@ -1,9 +1,0 @@
-name: Status Update
-on: push
-jobs:
-  status-update:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: 'jessfraz/shaking-finger-action@master'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
