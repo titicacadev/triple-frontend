@@ -28,7 +28,7 @@ storiesOf('POI', module)
             [hotel.id]: boolean('저장', false),
           }}
           pricingNote="1박, 세금포함"
-          skipDivided={boolean('라인 생략', false) && idx % 2 === 0}
+          noDivider={boolean('라인 생략', false) && idx % 2 === 0}
         />
       ))}
     </List>
