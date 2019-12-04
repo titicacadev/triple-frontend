@@ -71,17 +71,22 @@ export default class List extends React.PureComponent<
       return (
         <ListBase {...props}>
           {React.Children.toArray(children)
-            .reduce(
-              (array, child) => [
+            .reduce((array, child) => {
+              const {
+                props: { skipDivided },
+              } = child
+
+              return [
                 ...array,
                 child,
-                <HR1
-                  key={array.length + 1}
-                  margin={{ top: verticalGap / 2, bottom: verticalGap / 2 }}
-                />,
-              ],
-              [],
-            )
+                !skipDivided && (
+                  <HR1
+                    key={array.length + 1}
+                    margin={{ top: verticalGap / 2, bottom: verticalGap / 2 }}
+                  />
+                ),
+              ]
+            }, [])
             .slice(0, -1)}
         </ListBase>
       )

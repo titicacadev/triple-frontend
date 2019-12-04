@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { boolean } from '@storybook/addon-knobs'
-
+import { List } from '@titicaca/core-elements'
 import { PoiCarouselElement, PoiListElement } from '@titicaca/poi-list-elements'
 
 import POIS from './pois.sample.json'
@@ -18,18 +18,21 @@ storiesOf('POI', module)
       }}
     />
   ))
-  .add('호텔 리스트', () =>
-    HOTELS.map((hotel, idx) => (
-      <PoiListElement
-        key={idx}
-        poi={hotel}
-        resourceScraps={{
-          [hotel.id]: boolean('저장', false),
-        }}
-        pricingNote="1박, 세금포함"
-      />
-    )),
-  )
+  .add('호텔 리스트', () => (
+    <List divided>
+      {HOTELS.map((hotel, idx) => (
+        <PoiListElement
+          key={idx}
+          poi={hotel}
+          resourceScraps={{
+            [hotel.id]: boolean('저장', false),
+          }}
+          pricingNote="1박, 세금포함"
+          skipDivided={boolean('라인 생략', false) && idx % 2 === 0}
+        />
+      ))}
+    </List>
+  ))
   .add('TripleDocument', () => (
     <PoiCarouselElement
       poi={POI}
