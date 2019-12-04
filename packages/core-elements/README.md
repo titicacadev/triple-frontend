@@ -1,9 +1,6 @@
 # `@titicaca/core-elements`
 
 트리플의 프론트엔드 페이지에서 쓰이는 공통 디자인 요소들을 구현한 라이브러리입니다.
-[React](https://reactjs.org/)로 구현되었고, 현재 컴포넌트들의 동작은
-[Storybook](https://storybook.js.org/)으로 구성한 [https://design.triple.systems](https://design.triple.systems)
-페이지를 참조해 주세요.
 
 ## 설치하기
 
