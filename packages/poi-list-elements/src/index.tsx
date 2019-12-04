@@ -233,25 +233,13 @@ class ExtendedPoiListElement extends React.PureComponent<{
       .filter((v) => v)
       .join(' · ')
 
-    const {
-      nightlyBasePrice,
-      nightlyPrice,
-      nightlyPriceHotelPromotionApplied,
-      promoText,
-    } = prices || {
+    const { nightlyBasePrice, nightlyPrice } = prices || {
       nightlyBasePrice: 0,
       nightlyPrice: 0,
-      nightlyPriceHotelPromotionApplied: 0,
-      promoText: '',
     }
 
-    const salePrice =
-      nightlyPriceHotelPromotionApplied && nightlyPrice
-        ? Math.min(nightlyPriceHotelPromotionApplied, nightlyPrice)
-        : nightlyPriceHotelPromotionApplied || nightlyPrice
-
     const basePrice =
-      nightlyBasePrice && salePrice && nightlyBasePrice - salePrice > 0
+      nightlyBasePrice && nightlyPrice && nightlyBasePrice - nightlyPrice > 0
         ? nightlyBasePrice
         : null
 
@@ -269,14 +257,11 @@ class ExtendedPoiListElement extends React.PureComponent<{
         scraped={scraped}
         scrapsCount={scrapsCount}
         basePrice={basePrice}
-        salePrice={salePrice}
+        salePrice={nightlyPrice}
         pricingNote={pricingNote}
         onScrapedChange={onScrapedChange}
         onClick={onClick}
-        tags={
-          tags ||
-          (promoText ? [{ text: promoText, emphasized: true }] : undefined)
-        }
+        tags={tags}
       />
     )
   }
