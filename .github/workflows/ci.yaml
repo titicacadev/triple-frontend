@@ -38,8 +38,6 @@ jobs:
         npm run bootstrap
         npm run build
         npm test
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Canary Release
       run: |
         git stash
