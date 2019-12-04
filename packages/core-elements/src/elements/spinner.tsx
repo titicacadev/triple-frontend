@@ -1,6 +1,5 @@
 import * as React from 'react'
 import styled, { css, keyframes } from 'styled-components'
-import Text from './text'
 
 const loadingAnimation = keyframes`
   100% {
