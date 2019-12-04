@@ -1,5 +1,5 @@
 name: Status Update
-on: pull_request
+on: push
 jobs:
   status-update:
     runs-on: ubuntu-latest
