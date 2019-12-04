@@ -3,12 +3,15 @@ import { jsxDecorator } from 'storybook-addon-jsx'
 import { withKnobs } from '@storybook/addon-knobs'
 import '@titicaca/core-elements/lib/global-style'
 
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
+
 addDecorator(jsxDecorator)
 addDecorator(withKnobs)
 
 addParameters({
   viewport: {
-    defaultViewport: 'iPhone X',
+    viewports: INITIAL_VIEWPORTS,
+    defaultViewport: 'iphonex',
   },
 })
 
