@@ -8,12 +8,6 @@ on:
       - 'release-prod-*'
 
 jobs:
-  status-update:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: 'jessfraz/shaking-finger-action@master'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   build:
     runs-on: ubuntu-latest
     strategy:
@@ -42,6 +36,8 @@ jobs:
         npm run bootstrap
         npm run build
         npm test
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Canary Release
       run: |
         git stash
