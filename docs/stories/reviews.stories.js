@@ -52,6 +52,7 @@ storiesOf('Reviews', module).add('일반', () => (
             ['poi', 'tna', 'article', 'hotel'],
             'tna',
           )}
+          placeholderText={text('placeholder text', '이 투어·티켓 어떠셨나요?')}
           onFullListButtonClick={action('onFullListButtonClick')}
         />
       </HistoryProvider>
