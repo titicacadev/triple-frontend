@@ -19,10 +19,9 @@ storiesOf('Spinner', module).add('Basic ', () => {
   return (
     <>
       <Text>겨울왕국</Text>
-      <Spinner
-        full={boolean('배경 채우기', false)}
-        element={boolean('문구 노출', false) && <TextElement />}
-      />
+      <Spinner full={boolean('배경 채우기', false)}>
+        {boolean('문구 노출', false) && <TextElement />}
+      </Spinner>
     </>
   )
 })
