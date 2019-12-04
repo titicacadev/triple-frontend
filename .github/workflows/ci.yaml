@@ -42,8 +42,6 @@ jobs:
       run: |
         git stash
         git fetch --unshallow
-        VERSION="v$(node -p -e 'require(`./lerna.json`).version')"
-        git fetch origin "refs/tags/${VERSION}"
 
         npx lerna publish --canary --yes
       env:
