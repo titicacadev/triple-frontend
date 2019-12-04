@@ -9,6 +9,7 @@ export interface ReviewProps {
   reviewed?: boolean
   appUrlScheme: string
   deepLink?: string
+  placeholderText?: string
   appNativeActions: AppNativeActionProps
   sortingOption?: string
   onReviewWrite?: (e: React.SyntheticEvent, rating?: number) => any
