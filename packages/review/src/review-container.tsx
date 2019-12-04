@@ -68,6 +68,7 @@ export default function ReviewContainer({
   regionId,
   appUrlScheme,
   resourceId,
+  placeholderText,
   appNativeActions: {
     notifyReviewDeleted,
     showToast,
@@ -236,6 +237,7 @@ export default function ReviewContainer({
         </>
       ) : (
         <ReviewsPlaceholder
+          placeholderText={placeholderText}
           resourceType={resourceType}
           onClick={onReviewWrite || handleWriteButtonClick}
         />
