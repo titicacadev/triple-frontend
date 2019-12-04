@@ -73,13 +73,13 @@ export default class List extends React.PureComponent<
           {React.Children.toArray(children)
             .reduce((array, child) => {
               const {
-                props: { skipDivided },
+                props: { noDivider },
               } = child
 
               return [
                 ...array,
                 child,
-                !skipDivided && (
+                !noDivider && (
                   <HR1
                     key={array.length + 1}
                     margin={{ top: verticalGap / 2, bottom: verticalGap / 2 }}
