@@ -41,7 +41,7 @@ jobs:
     - name: Canary Release
       run: |
         git stash
-        VERSION="v$(node -p -e 'require(`./package.json`).version')"
+        VERSION="v$(node -p -e 'require(`./lerna.json`).version')"
         git fetch origin "refs/tags/${VERSION}"
 
         npx lerna publish --canary --yes
