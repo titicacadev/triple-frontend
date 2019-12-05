@@ -41,6 +41,8 @@ jobs:
         node-version: [12.x]
     steps:
     - uses: actions/checkout@v2-beta
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
     - name: Tag with annotation
       run: |
         VERSION="v$(node -p -e 'require(`./lerna.json`).version')"
