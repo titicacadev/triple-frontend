@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches-ignore:
+      - '**'
+    tags:
+      - 'release-test'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v2-beta
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+        registry-url: 'https://registry.npmjs.org'
+    - name: Build and Test
+      run: |
+        npm ci
+        npm run bootstrap
+        npm run build
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    - name: Canary Release
+      run: |
+        git stash
+        npx lerna publish from-package
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  tag:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@v2-beta
+    - name: Tag with annotation
+      run: |
+        VERSION="v$(node -p -e 'require(`./lerna.json`).version')"
+        curl -f --url https://api.github.com/repos/${{ github.repository }}/git/refs/tags/${VERSION} \
+          -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}'
+
+        if "$?" != "0"; then
+          curl --request POST --url https://api.github.com/repos/${{ github.repository }}/git/refs \
+            -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+            -H 'Content-Type: application/json' \
+            -d "{\"ref\":\"refs/tags/${VERSION}\",\"sha\":\"${GITHUB_SHA}\"}"
+        else
+          curl --request PATCH --url https://api.github.com/repos/${{ github.repository }}/git/refs/tags/${VERSION} \
+            -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+            -H 'Content-Type: application/json' \
+            -d "{\"force\":true,\"sha\":\"${GITHUB_SHA}\"}"
+        fi
+
+        curl --request POST --url https://api.github.com/repos/${{ github.repository }}/git/tags \
+          -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+          -H 'Content-Type: application/json' \
+          -d "{\"tag\":\"${VERSION}\",\"message\":\"${VERSION}\",\"object\":\"${GITHUB_SHA}\",\"type\":\"commit\"}"
