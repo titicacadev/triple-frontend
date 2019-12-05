@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Label } from '@titicaca/core-elements'
 
-const ORDER_BY_RECOMMENDATION = ''
-const ORDER_BY_RECENCY = 'latest'
+export const ORDER_BY_RECOMMENDATION = ''
+export const ORDER_BY_RECENCY = 'latest'
 
 const SORTING_OPTIONS = [
   { key: ORDER_BY_RECOMMENDATION, text: '추천순' },
