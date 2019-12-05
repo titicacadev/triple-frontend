@@ -72,6 +72,8 @@ export default function ReviewElement({
   likeVisible,
   menuVisible,
   DateFormatter,
+  trackEvent,
+  resourceId,
 }: {
   review?: any
   index?: number
@@ -85,6 +87,8 @@ export default function ReviewElement({
   likeVisible?: boolean
   menuVisible?: boolean
   DateFormatter?: React.ComponentClass | React.FunctionComponent
+  trackEvent?: any
+  resourceId: string
 }) {
   const [unfolded, setUnfolded] = useState(false)
   const { deriveCurrentStateAndCount } = useReviewLikesContext()
@@ -114,6 +118,13 @@ export default function ReviewElement({
           ) : (
             <FoldableComment
               onUnfoldButtonClick={(e) => {
+                trackEvent({
+                  ga: ['리뷰_리뷰글더보기'],
+                  fa: {
+                    action: '리뷰_리뷰글더보기',
+                    item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+                  },
+                })
                 setUnfolded(true)
 
                 onUnfoldButtonClick && onUnfoldButtonClick(e, review)
@@ -128,7 +139,17 @@ export default function ReviewElement({
                 <img
                   key={i}
                   src={image.sizes.smallSquare.url}
-                  onClick={(e) => onImageClick(e, review, image)}
+                  onClick={(e) => {
+                    trackEvent({
+                      ga: ['리뷰_리뷰사진썸네일'],
+                      fa: {
+                        action: '리뷰_리뷰사진썸네일',
+                        item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+                        photo_id: image.id, // eslint-disable-line @typescript-eslint/camelcase
+                      },
+                    })
+                    onImageClick(e, review, image)
+                  }}
                 />
               ))}
             </Images>
@@ -140,12 +161,35 @@ export default function ReviewElement({
               <>
                 <LikeButton
                   liked={liked}
-                  onClick={(e) => onLikeButtonClick(e, { ...review, liked })}
+                  onClick={(e) => {
+                    const actionName = `리뷰_땡스${liked ? '' : '취소'}`
+                    trackEvent({
+                      ga: [actionName],
+                      fa: {
+                        action: actionName,
+                        review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
+                        item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+                      },
+                    })
+                    onLikeButtonClick(e, { ...review, liked })
+                  }}
                 >
                   Thanks
                 </LikeButton>
                 {likesCount && likesCount > 0 ? (
-                  <span onClick={(e) => onLikesCountClick(e, review)}>
+                  <span
+                    onClick={(e) => {
+                      trackEvent({
+                        ga: '리뷰_땡스_리스트보기',
+                        fa: {
+                          action: '리뷰_땡스_리스트보기',
+                          review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
+                          item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+                        },
+                      })
+                      onLikesCountClick(e, review)
+                    }}
+                  >
                     {likesCount}명
                   </span>
                 ) : null}

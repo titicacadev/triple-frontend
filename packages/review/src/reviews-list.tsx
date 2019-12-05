@@ -27,6 +27,7 @@ export default function ReviewsList({
   regionId,
   maxLength,
   showToast,
+  trackEvent,
 }: {
   myReview?: any
   reviews: any[]
@@ -39,6 +40,7 @@ export default function ReviewsList({
   maxLength?: number
   showToast: Function
   perPage?: number
+  trackEvent?: any
 }) {
   const [selectedReview, setSelectedReview] = useState(undefined)
   const { isPublic } = useUserAgentContext()
@@ -46,7 +48,26 @@ export default function ReviewsList({
   const { navigate, push } = useHistoryContext()
   const { show } = useTransitionModal()
 
-  const handleUserClick = (e, { user: { uid, unregister } }) => {
+  const handleUserClick = (
+    e,
+    {
+      user: {
+        uid,
+        unregister,
+        mileage: { level },
+      },
+    },
+  ) => {
+    trackEvent({
+      ga: ['리뷰 프로필'],
+      fa: {
+        action: '리뷰_프로필',
+        item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+        user_id: uid, // eslint-disable-line @typescript-eslint/camelcase
+        level,
+      },
+    })
+
     if (isPublic) {
       return
     }
@@ -141,6 +162,8 @@ export default function ReviewsList({
               onImageClick={handleImageClick}
               likeVisible={!isPublic}
               menuVisible={!isPublic}
+              trackEvent={trackEvent}
+              resourceId={resourceId}
               DateFormatter={ReviewTimestamp}
               onShow={handleShow}
             />
