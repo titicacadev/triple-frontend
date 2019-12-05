@@ -14,10 +14,17 @@ import {
 import Pricing from '@titicaca/pricing'
 
 const ResourceListItem = styled(List.Item)`
+  position: relative;
   min-height: 150px;
   padding: 20px 0;
   box-sizing: border-box;
   cursor: pointer;
+`
+
+const ContentContainer = styled.div`
+  position: absolute;
+  top: 20px;
+  width: calc(100% - 110px);
 `
 
 export default function ExtendedResourceListElement({
@@ -61,102 +68,109 @@ export default function ExtendedResourceListElement({
 }) {
   return (
     <ResourceListItem onClick={onClick}>
-      <Image
-        floated="right"
-        size="small"
-        width={90}
-        src={
-          image
-            ? (image.sizes.smallSquare || image.sizes.small_square).url
-            : imagePlaceholder
-        }
-        asPlaceholder={!image}
-        margin={{ left: 20 }}
-        alt={name}
-      />
+      <Container>
+        <Container clearing>
+          <Image
+            floated="right"
+            size="small"
+            width={90}
+            src={
+              image
+                ? (image.sizes.smallSquare || image.sizes.small_square).url
+                : imagePlaceholder
+            }
+            asPlaceholder={!image}
+            alt={name}
+          />
 
-      <Text bold maxLines={2} size="large">
-        {name}
-      </Text>
+          {!hideScrapButton ? (
+            <ScrapButton
+              top={23}
+              scraped={scraped}
+              resource={resource}
+              onScrapedChange={onScrapedChange}
+            />
+          ) : null}
+        </Container>
 
-      <Text alpha={0.7} size="small" margin={{ top: 5 }}>
-        {comment}
-      </Text>
+        {salePrice ? (
+          <Container margin={{ top: 20 }}>
+            <Pricing
+              rich
+              basePrice={basePrice}
+              salePrice={salePrice}
+              pricingNote={pricingNote}
+            />
+          </Container>
+        ) : null}
+      </Container>
 
-      {reviewsCount || scrapsCount ? (
-        <Container margin={{ top: 5 }}>
-          <>
-            {reviewsCount ? (
-              <Rating
-                verticalAlign="middle"
-                size="tiny"
-                score={reviewsRating}
-              />
+      <ContentContainer>
+        <Text bold maxLines={2} size="large">
+          {name}
+        </Text>
+
+        <Text alpha={0.7} size="small" margin={{ top: 5 }}>
+          {comment}
+        </Text>
+
+        {reviewsCount || scrapsCount ? (
+          <Container margin={{ top: 5 }}>
+            <>
+              {reviewsCount ? (
+                <Rating
+                  verticalAlign="middle"
+                  size="tiny"
+                  score={reviewsRating}
+                />
+              ) : null}
+
+              <Text inline size="tiny" alpha={0.4}>
+                {[
+                  reviewsCount ? ` (${formatNumber(reviewsCount)})` : null,
+                  scrapsCount ? `저장 ${formatNumber(scrapsCount)}` : null,
+                ]
+                  .filter((count) => count)
+                  .join(' · ')}
+              </Text>
+            </>
+          </Container>
+        ) : null}
+
+        {distance || distance === 0 || note ? (
+          <Container margin={{ top: 3 }}>
+            {distance || distance === 0 ? (
+              <Text inline color="blue" size="small" alpha={1}>
+                {`${distance}m `}
+              </Text>
             ) : null}
+            {note ? (
+              <Text inline size="small" alpha={0.4}>
+                {note}
+              </Text>
+            ) : null}
+          </Container>
+        ) : null}
 
-            <Text inline size="tiny" alpha={0.4}>
-              {[
-                reviewsCount ? ` (${formatNumber(reviewsCount)})` : null,
-                scrapsCount ? `저장 ${formatNumber(scrapsCount)}` : null,
-              ]
-                .filter((count) => count)
-                .join(' · ')}
-            </Text>
-          </>
-        </Container>
-      ) : null}
-
-      {distance || distance === 0 || note ? (
-        <Container margin={{ top: 3 }}>
-          {distance || distance === 0 ? (
-            <Text inline color="blue" size="small" alpha={1}>
-              {`${distance}m `}
-            </Text>
-          ) : null}
-          {note ? (
-            <Text inline size="small" alpha={0.4}>
-              {note}
-            </Text>
-          ) : null}
-        </Container>
-      ) : null}
-
-      {(tags || []).length > 0 ? (
-        <Label.Group margin={{ top: 12 }} horizontalGap={5}>
-          {tags.map(
-            (
-              {
-                text,
-                color,
-                emphasized,
-              }: { text: string; color: LabelColor; emphasized: boolean },
-              index,
-            ) => (
-              <Label key={index} promo color={color} emphasized={emphasized}>
-                {text}
-              </Label>
-            ),
-          )}
-        </Label.Group>
-      ) : null}
-
-      {!hideScrapButton ? (
-        <ScrapButton
-          top={23}
-          scraped={scraped}
-          resource={resource}
-          onScrapedChange={onScrapedChange}
-        />
-      ) : null}
-
-      {salePrice ? (
-        <Pricing
-          rich
-          basePrice={basePrice}
-          salePrice={salePrice}
-          pricingNote={pricingNote}
-        />
-      ) : null}
+        {(tags || []).length > 0 ? (
+          <Label.Group margin={{ top: 12 }} horizontalGap={5}>
+            {tags.map(
+              (
+                {
+                  text,
+                  color,
+                  emphasized,
+                }: { text: string; color: LabelColor; emphasized: boolean },
+                index,
+              ) => (
+                <Label key={index} promo color={color} emphasized={emphasized}>
+                  {text}
+                </Label>
+              ),
+            )}
+          </Label.Group>
+        ) : null}
+      </ContentContainer>
     </ResourceListItem>
   )
 }

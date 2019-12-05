@@ -29,6 +29,11 @@ storiesOf('POI', module)
           }}
           pricingNote="1박, 세금포함"
           noDivider={boolean('라인 생략', false) && idx % 2 === 0}
+          tags={
+            idx % 2 === 0 && [
+              { text: '추가 할인쿠폰', color: 'green', emphasized: true },
+            ]
+          }
         />
       ))}
     </List>
