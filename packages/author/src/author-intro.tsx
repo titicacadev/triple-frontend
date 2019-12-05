@@ -22,7 +22,7 @@ export default function AuthorIntro({
     return <Html dangerouslySetInnerHTML={{ __html: rawHTML }} />
   }
   return (
-    <Text alpha={0.5} size={14} line-height={1.43} margin={{ top: 21 }}>
+    <Text alpha={0.5} size={14} lineHeight={1.43} margin={{ top: 21 }}>
       {text}
     </Text>
   )
