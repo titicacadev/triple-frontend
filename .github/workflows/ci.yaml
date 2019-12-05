@@ -43,6 +43,6 @@ jobs:
         git stash
         git fetch --unshallow
 
-        npx lerna publish --canary --yes --preid "${GITHUB_REF:11}"
+        npx lerna publish --canary --yes --preid "${GITHUB_ACTOR}"
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
