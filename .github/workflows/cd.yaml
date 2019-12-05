@@ -1,4 +1,4 @@
-name: CI
+name: CD
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
       - 'release-test'
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -21,14 +21,14 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         registry-url: 'https://registry.npmjs.org'
-    - name: Build and Test
+    - name: Build
       run: |
         npm ci
         npm run bootstrap
         npm run build
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - name: Canary Release
+    - name: Release
       run: |
         git stash
         npx lerna publish from-package
