@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@egjs/flicking": "3.4.0",
-    "@egjs/react-flicking": "^3.1.1",
+    "@egjs/react-flicking": "3.1.0",
     "@titicaca/core-elements": "^1.2.0",
     "@titicaca/intersection-observer": "^1.2.0",
     "@titicaca/react-contexts": "^1.2.0",
