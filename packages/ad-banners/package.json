@@ -20,6 +20,7 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
+    "@egjs/flicking": "3.4.0",
     "@egjs/react-flicking": "^3.1.1",
     "@titicaca/core-elements": "^1.2.0",
     "@titicaca/intersection-observer": "^1.2.0",

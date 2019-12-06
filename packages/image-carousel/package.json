@@ -15,6 +15,7 @@
   },
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
+    "@egjs/flicking": "3.4.0",
     "@egjs/react-flicking": "^3.0.0",
     "@titicaca/core-elements": "^1.2.0"
   }
