@@ -1,4 +1,7 @@
--`core-elements` 의 carousel/CarouselBase 에 `overflow-y: hidden` 속성을 추가합니다.
+- `image-carousel`과 `ad-banners` 에서 의존하고 있는 `@egjs/flicking`, `@egjs/react-flicking` 의 버전을 고정합니다.
+  - `@egjs/flicking@3.4.0`
+  - `@egjs/reac-flicking@3.1.0`
+- `core-elements` 의 carousel/CarouselBase 에 `overflow-y: hidden` 속성을 추가합니다.
 - `triple-document` 패키지에서 텍스트 요소(`Paragraph`, `H1`, `H2`, ...)를
   인터페이스로 노출합니다.
 - `MyReviewsProvider`의 props 중 `type`을 `resourceType`으로 변경합니다.
