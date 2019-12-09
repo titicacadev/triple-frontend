@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-const GlobalStyle = createGlobalStyle` 
+export const GlobalStyle = createGlobalStyle` 
   html,
   body,
   div,
@@ -145,5 +145,3 @@ const GlobalStyle = createGlobalStyle`
     font-weight: bold;
   }
 `
-
-export default GlobalStyle
