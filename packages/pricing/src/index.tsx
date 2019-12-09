@@ -134,11 +134,13 @@ function RichPricing({
     )
   ) : null
 
+  const hasBasePrice = basePrice > 0
+
   return (
-    <PricingContainer padding={{ top: 22 }}>
+    <PricingContainer padding={{ top: hasBasePrice ? 22 : 0 }}>
       {pricingLabel}
       <PriceNoteContainer>
-        {pricingNote && (
+        {hasBasePrice && pricingNote && (
           <Text alpha={0.3} size="mini" inlineBlock margin={{ right: 3 }}>
             {pricingNote}
           </Text>
