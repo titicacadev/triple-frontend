@@ -14,7 +14,6 @@ export interface ReviewProps {
   sortingOption?: string
   onReviewWrite?: (e: React.SyntheticEvent, rating?: number) => any
   onReviewDelete?: (e: React.SyntheticEvent, id: string) => Promise<void> | void
-  trackEvent?: any
   onFullListButtonClick?: (
     e: React.SyntheticEvent,
     sortingOption?: string,

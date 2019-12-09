@@ -5,6 +5,7 @@ import { List, MarginPadding } from '@titicaca/core-elements'
 import {
   useHistoryContext,
   useUserAgentContext,
+  useEventTrackingContext,
 } from '@titicaca/react-contexts'
 import { useTransitionModal, TransitionType } from '@titicaca/modals'
 import ReviewElement from './review-element'
@@ -27,7 +28,6 @@ export default function ReviewsList({
   regionId,
   maxLength,
   showToast,
-  trackEvent,
 }: {
   myReview?: any
   reviews: any[]
@@ -40,10 +40,10 @@ export default function ReviewsList({
   maxLength?: number
   showToast: Function
   perPage?: number
-  trackEvent?: any
 }) {
   const [selectedReview, setSelectedReview] = useState(undefined)
   const { isPublic } = useUserAgentContext()
+  const { trackEvent } = useEventTrackingContext()
   const { updateLikedStatus } = useReviewLikesContext()
   const { navigate, push } = useHistoryContext()
   const { show } = useTransitionModal()

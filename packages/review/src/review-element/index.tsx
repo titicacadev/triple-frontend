@@ -7,6 +7,7 @@ import { useReviewLikesContext } from '../review-likes-context'
 import User from './user'
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
+import { useEventTrackingContext } from '@titicaca/react-contexts'
 
 const MoreIcon = styled.img`
   margin-top: -3px;
@@ -72,7 +73,6 @@ export default function ReviewElement({
   likeVisible,
   menuVisible,
   DateFormatter,
-  trackEvent,
   resourceId,
 }: {
   review?: any
@@ -87,11 +87,11 @@ export default function ReviewElement({
   likeVisible?: boolean
   menuVisible?: boolean
   DateFormatter?: React.ComponentClass | React.FunctionComponent
-  trackEvent?: any
   resourceId: string
 }) {
   const [unfolded, setUnfolded] = useState(false)
   const { deriveCurrentStateAndCount } = useReviewLikesContext()
+  const { trackEvent } = useEventTrackingContext()
   const { user, blindedAt, comment, createdAt, rating, media } = review
 
   const { liked, likesCount } = deriveCurrentStateAndCount({

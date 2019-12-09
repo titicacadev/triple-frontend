@@ -5,6 +5,7 @@ import { formatNumber } from '@titicaca/view-utilities'
 import {
   useUserAgentContext,
   useHistoryContext,
+  useEventTrackingContext,
 } from '@titicaca/react-contexts'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'
 import {
@@ -83,10 +84,10 @@ export default function ReviewContainer({
   onReviewWrite,
   onReviewDelete,
   onFullListButtonClick,
-  trackEvent,
 }: ReviewProps) {
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
   const { isPublic } = useUserAgentContext()
+  const { trackEvent } = useEventTrackingContext()
   const [[myReview, myReviewIds], setMyReviewStatus] = useState<
     [any, Set<string>]
   >([undefined, new Set([])])
@@ -261,7 +262,6 @@ export default function ReviewContainer({
             margin={{ top: 30 }}
             resourceId={resourceId}
             showToast={showToast}
-            trackEvent={trackEvent}
             fetchNext={!shortened && fetchNext}
           />
         </>
