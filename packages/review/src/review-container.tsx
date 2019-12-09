@@ -262,7 +262,6 @@ export default function ReviewContainer({
             margin={{ top: 30 }}
             resourceId={resourceId}
             showToast={showToast}
-            trackEvent={trackEvent}
             fetchNext={!shortened && fetchNext}
           />
         </>

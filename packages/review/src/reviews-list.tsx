@@ -162,7 +162,6 @@ export default function ReviewsList({
               onImageClick={handleImageClick}
               likeVisible={!isPublic}
               menuVisible={!isPublic}
-              trackEvent={trackEvent}
               resourceId={resourceId}
               DateFormatter={ReviewTimestamp}
               onShow={handleShow}
