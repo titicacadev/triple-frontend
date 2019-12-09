@@ -192,7 +192,7 @@ export default function ReviewContainer({
   const handleSortingOptionSelect = (_, sortingOption) => {
     const eventLabel = sortingOption === ORDER_BY_RECENCY ? '최신순' : '추천순'
     trackEvent({
-      ga: ['리뷰_리뷰쓰기', eventLabel],
+      ga: ['리뷰_리뷰정렬', eventLabel],
       fa: {
         action: '리뷰_리뷰정렬',
         sort_order: eventLabel, // eslint-disable-line @typescript-eslint/camelcase
