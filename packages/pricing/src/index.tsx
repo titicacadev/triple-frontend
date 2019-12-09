@@ -56,7 +56,6 @@ const PricingContainer = styled.div<{ padding?: MarginPadding }>`
   }
 `
 
-// eslint-disable-next-line no-unexpected-multiline
 const Price = styled.span<{
   size?: GlobalSizes
   bold?: boolean
@@ -93,12 +92,6 @@ const Label = styled.div<{ size?: GlobalSizes }>`
   font-size: ${({ size }) => FONT_SIZE[size || 'tiny']};
 `
 
-const PriceNoteContainer = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-`
-
 function DiscountRate({
   basePrice,
   salePrice,
@@ -121,7 +114,7 @@ function RichPricing({
   label,
   pricingNote,
 }: {
-  basePrice: number
+  basePrice?: number
   salePrice: number
   label?: React.ReactNode
   pricingNote?: string
@@ -134,21 +127,23 @@ function RichPricing({
     )
   ) : null
 
-  const hasBasePrice = basePrice > 0
-
   return (
-    <PricingContainer padding={{ top: hasBasePrice ? 22 : 0 }}>
+    <PricingContainer>
       {pricingLabel}
-      <PriceNoteContainer>
-        {hasBasePrice && pricingNote && (
-          <Text alpha={0.3} size="mini" inlineBlock margin={{ right: 3 }}>
-            {pricingNote}
-          </Text>
-        )}
-        <Text alpha={0.3} size="mini" strikethrough inline>
-          {formatNumber(basePrice)}
-        </Text>
-      </PriceNoteContainer>
+      {(pricingNote || basePrice > 0) && (
+        <Container margin={{ bottom: 3 }}>
+          {pricingNote && (
+            <Text alpha={0.3} size="mini" inlineBlock margin={{ right: 3 }}>
+              {pricingNote}
+            </Text>
+          )}
+          {basePrice > 0 && (
+            <Text alpha={0.3} size="mini" strikethrough inline>
+              {formatNumber(basePrice)}
+            </Text>
+          )}
+        </Container>
+      )}
       <DiscountRate basePrice={basePrice} salePrice={salePrice} />
       <Price size="big" bold>
         {formatNumber(salePrice)}원
@@ -161,7 +156,7 @@ const RegularPricing = ({
   basePrice,
   salePrice,
 }: {
-  basePrice: number
+  basePrice?: number
   salePrice: number
 }) => (
   <PricingContainer padding={{ top: 18 }}>
