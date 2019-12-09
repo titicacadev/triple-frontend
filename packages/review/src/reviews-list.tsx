@@ -5,6 +5,7 @@ import { List, MarginPadding } from '@titicaca/core-elements'
 import {
   useHistoryContext,
   useUserAgentContext,
+  useEventTrackingContext,
 } from '@titicaca/react-contexts'
 import { useTransitionModal, TransitionType } from '@titicaca/modals'
 import ReviewElement from './review-element'
@@ -42,11 +43,31 @@ export default function ReviewsList({
 }) {
   const [selectedReview, setSelectedReview] = useState(undefined)
   const { isPublic } = useUserAgentContext()
+  const { trackEvent } = useEventTrackingContext()
   const { updateLikedStatus } = useReviewLikesContext()
   const { navigate, push } = useHistoryContext()
   const { show } = useTransitionModal()
 
-  const handleUserClick = (e, { user: { uid, unregister } }) => {
+  const handleUserClick = (
+    e,
+    {
+      user: {
+        uid,
+        unregister,
+        mileage: { level },
+      },
+    },
+  ) => {
+    trackEvent({
+      ga: ['리뷰 프로필'],
+      fa: {
+        action: '리뷰_프로필',
+        item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+        user_id: uid, // eslint-disable-line @typescript-eslint/camelcase
+        level,
+      },
+    })
+
     if (isPublic) {
       return
     }
@@ -141,6 +162,7 @@ export default function ReviewsList({
               onImageClick={handleImageClick}
               likeVisible={!isPublic}
               menuVisible={!isPublic}
+              resourceId={resourceId}
               DateFormatter={ReviewTimestamp}
               onShow={handleShow}
             />

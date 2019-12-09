@@ -5,6 +5,7 @@ import { formatNumber } from '@titicaca/view-utilities'
 import {
   useUserAgentContext,
   useHistoryContext,
+  useEventTrackingContext,
 } from '@titicaca/react-contexts'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'
 import {
@@ -15,7 +16,10 @@ import {
 import ReviewsPlaceholder from './review-placeholder-with-rating'
 import ReviewsList from './reviews-list'
 import { ReviewProps } from './types'
-import SortingOptions, { DEFAULT_SORTING_OPTION } from './sorting-options'
+import SortingOptions, {
+  DEFAULT_SORTING_OPTION,
+  ORDER_BY_RECENCY,
+} from './sorting-options'
 import usePaging from './use-paging'
 import MyReviewActionSheet from './my-review-action-sheet'
 
@@ -83,6 +87,7 @@ export default function ReviewContainer({
 }: ReviewProps) {
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
   const { isPublic } = useUserAgentContext()
+  const { trackEvent } = useEventTrackingContext()
   const [[myReview, myReviewIds], setMyReviewStatus] = useState<
     [any, Set<string>]
   >([undefined, new Set([])])
@@ -142,7 +147,13 @@ export default function ReviewContainer({
     rating: number = 0,
   ) => {
     e.stopPropagation()
-
+    trackEvent({
+      ga: ['리뷰_리뷰쓰기'],
+      fa: {
+        action: '리뷰_리뷰쓰기',
+        item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+      },
+    })
     if (isPublic) {
       return show(TransitionType.ReviewWrite)
     }
@@ -157,6 +168,14 @@ export default function ReviewContainer({
   }
 
   const handleFullListButtonClick = (e: React.SyntheticEvent) => {
+    trackEvent({
+      ga: ['리뷰_전체보기'],
+      fa: {
+        action: '리뷰_전체보기',
+        item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+      },
+    })
+
     e.stopPropagation()
 
     if (isPublic) {
@@ -170,8 +189,19 @@ export default function ReviewContainer({
     )
   }
 
-  const handleSortingOptionSelect = (_, sortingOption) =>
+  const handleSortingOptionSelect = (_, sortingOption) => {
+    const eventLabel = sortingOption === ORDER_BY_RECENCY ? '최신순' : '추천순'
+    trackEvent({
+      ga: ['리뷰_리뷰쓰기', eventLabel],
+      fa: {
+        action: '리뷰_리뷰정렬',
+        sort_order: eventLabel, // eslint-disable-line @typescript-eslint/camelcase
+        item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+      },
+    })
+
     setSortingOption(sortingOption)
+  }
 
   const { reviews, fetchNext } = usePaging({
     sortingOption,
@@ -264,6 +294,13 @@ export default function ReviewContainer({
       {shortened ? (
         <MileageButton
           onClick={(e) => {
+            trackEvent({
+              ga: '리뷰_여행자클럽선택',
+              fa: {
+                action: '리뷰_여행자클럽선택',
+                item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+              },
+            })
             e.preventDefault()
             if (isPublic) window.location.href = `/pages/mileage-intro.html`
             else navigate(`${appUrlScheme}:///my/mileage/intro`)
