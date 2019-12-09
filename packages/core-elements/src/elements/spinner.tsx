@@ -7,7 +7,7 @@ const loadingAnimation = keyframes`
   }
 `
 
-const Container = styled.div<{ full?: boolean }>`
+const FixedContianer = styled.div<{ clickThrough?: boolean; alpha?: number }>`
   width: 100%;
   height: 100%;
   position: fixed;
@@ -15,17 +15,15 @@ const Container = styled.div<{ full?: boolean }>`
   left: 0;
   z-index: 9999;
   display: table;
-
-  ${({ full }) =>
-    full &&
-    css`
-      background-color: rgb(255, 255, 255);
-    `};
+  background-color: rgb(255, 255, 255, ${({ alpha }) => alpha || 0});
 `
 
 const Wrapper = styled.div`
-  display: table-cell;
-  vertical-align: middle;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 260px;
   text-align: center;
 `
 
@@ -39,14 +37,18 @@ const Icon = styled.div`
 `
 
 export default function Spinner({
-  full,
+  clickThrough,
+  alpha,
   children,
 }: {
-  full?: boolean
+  alpha?: number
+  clickThrough?: boolean
   children?: React.ReactNode
 }) {
+  const Container = clickThrough ? React.Fragment : FixedContianer
+
   return (
-    <Container full={full}>
+    <Container clickThrough={clickThrough} alpha={alpha}>
       <Wrapper>
         <Icon />
         {children}
