@@ -140,6 +140,7 @@ function Tooltip({ label, onClick, nowrap, ...frameProps }: TooltipProps) {
         backgroundColor: frameProps.backgroundColor || DEFAULT_BACKGROUND_COLOR,
         pointing: frameProps.pointing || DEFAULT_POINTING_OPTION,
       }}
+      onClick={onClick}
     >
       <TooltipContainer paddingRight={onClick && 12} nowrap={nowrap}>
         {label}
