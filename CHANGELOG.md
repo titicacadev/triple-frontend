@@ -1,4 +1,3 @@
-## 1.2.3 (2019-12-10)
 - `pricing` baseprice, pricingNote 에 따라 스타일 수정 
 - `ExtendedResourceListElement` baseprice 에 따른 pricingNote 노출 조건 추가
 
@@ -9,7 +8,7 @@
 
 - `image-carousel`과 `ad-banners` 에서 의존하고 있는 `@egjs/flicking`, `@egjs/react-flicking` 의 버전을 고정합니다.
   - `@egjs/flicking@3.4.0`
-  - `@egjs/reac-flicking@3.1.0`  
+  - `@egjs/reac-flicking@3.1.0`
 
 ## 1.2.0 (2019-12-05)
 
