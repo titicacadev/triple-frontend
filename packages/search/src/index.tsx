@@ -98,26 +98,24 @@ export default function Main({
   }, [keyword]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <>
-      <MainContainer>
-        <SearchNavbar
-          inputPlaceholder={placeholder}
-          value={keyword}
-          onBackClick={backOrClose}
-          onDeleteClick={() => {
-            onDelete()
-            onEmptyKeyword()
-          }}
-          onInputChange={(e: SyntheticEvent, keyword: string) => {
-            setKeyword(keyword)
-            onInputChange(keyword)
-          }}
-          onKeyUp={(e: KeyboardEvent) => handleKeyUp(e.keyCode)}
-        />
-        <ContentsContainer margin={{ top: 58 }} isIOS={isIOS} userSelect="none">
-          <div ref={contentsDivRef}>{children}</div>
-        </ContentsContainer>
-      </MainContainer>
-    </>
+    <MainContainer>
+      <SearchNavbar
+        inputPlaceholder={placeholder}
+        value={keyword}
+        onBackClick={backOrClose}
+        onDeleteClick={() => {
+          onDelete()
+          onEmptyKeyword()
+        }}
+        onInputChange={(e: SyntheticEvent, keyword: string) => {
+          setKeyword(keyword)
+          onInputChange(keyword)
+        }}
+        onKeyUp={(e: KeyboardEvent) => handleKeyUp(e.keyCode)}
+      />
+      <ContentsContainer margin={{ top: 58 }} isIOS={isIOS} userSelect="none">
+        <div ref={contentsDivRef}>{children}</div>
+      </ContentsContainer>
+    </MainContainer>
   )
 }
