@@ -80,7 +80,7 @@ export default function Main({
         onAutoComplete(keyword)
       }
     }, 500),
-    [],
+    [onEmptyKeyword, onAutoComplete],
   )
 
   const handleKeyUp = async (keyCode: number) => {
