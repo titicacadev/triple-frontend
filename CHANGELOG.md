@@ -1,3 +1,5 @@
+## 1.2.3 (2019-12-10)
+
 - `pricing` baseprice, pricingNote 에 따라 스타일 수정 
 - `ExtendedResourceListElement` baseprice 에 따른 pricingNote 노출 조건 추가
 
