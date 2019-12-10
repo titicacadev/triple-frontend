@@ -48,16 +48,8 @@ export default function ReviewsList({
   const { navigate, push } = useHistoryContext()
   const { show } = useTransitionModal()
 
-  const handleUserClick = (
-    e,
-    {
-      user: {
-        uid,
-        unregister,
-        mileage: { level },
-      },
-    },
-  ) => {
+  const handleUserClick = (e, { user: { uid, unregister, mileage } }) => {
+    const { level } = mileage || { level: 0 }
     trackEvent({
       ga: ['리뷰 프로필'],
       fa: {
