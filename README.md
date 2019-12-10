@@ -79,6 +79,14 @@ Slack `@frontend` 그룹, `#triple-web-dev` 채널 및 GitHub `@frontend` 팀
 $ git clone git@github.com:titicacadev/triple-frontend.git && cd triple-frontend
 ```
 
+NPM 그룹의 본인 계정으로 로그인 합니다:
+
+```sh
+$ npm login
+Username: dev-fe
+Password: ********
+```
+
 디펜던시를 설치합니다:
 
 ```sh
