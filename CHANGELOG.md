@@ -1,3 +1,6 @@
+## 1.2.2 (2019-12-06)
+- `review` 컴포넌트에 ga/fa 지표 관련 코드 추가
+
 ## 1.2.1 (2019-12-06)
 
 - `image-carousel`과 `ad-banners` 에서 의존하고 있는 `@egjs/flicking`, `@egjs/react-flicking` 의 버전을 고정합니다.
