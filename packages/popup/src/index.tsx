@@ -1,4 +1,4 @@
-import React, { ReactNode, SyntheticEvent } from 'react'
+import React, { SyntheticEvent, PropsWithChildren } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import styled from 'styled-components'
 
@@ -37,16 +37,15 @@ export default function Popup({
   borderless = false,
   onClose,
   icon = 'close',
-  children,
   title,
-}: {
+  children,
+}: PropsWithChildren<{
   open: boolean
-  borderless?: boolean
   onClose: (e: SyntheticEvent) => void
-  children: ReactNode
+  borderless?: boolean
   title?: string
   icon?: NavbarIcon
-}) {
+}>) {
   return (
     <CSSTransition timeout={0} in={open} classNames="fade" appear>
       {/* https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451 */}
