@@ -4,6 +4,8 @@ import styled from 'styled-components'
 
 import { Navbar } from '@titicaca/core-elements'
 
+type NavbarIcon = 'close' | 'back'
+
 const PopupContainer = styled.div`
   position: fixed;
   top: 0;
@@ -34,6 +36,7 @@ export default function Popup({
   open = false,
   borderless = false,
   onClose,
+  icon = 'close',
   children,
   title,
 }: {
@@ -42,13 +45,14 @@ export default function Popup({
   onClose: (e: SyntheticEvent) => void
   children: ReactNode
   title?: string
+  icon?: NavbarIcon
 }) {
   return (
     <CSSTransition timeout={0} in={open} classNames="fade" appear>
       {/* https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451 */}
       <PopupContainer>
         <Navbar borderless={borderless} title={title}>
-          <Navbar.Item floated="left" icon="close" onClick={onClose} />
+          <Navbar.Item floated="left" icon={icon} onClick={onClose} />
         </Navbar>
 
         {children}
