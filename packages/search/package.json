@@ -1,0 +1,24 @@
+{
+  "name": "@titicaca/search",
+  "version": "1.2.1",
+  "description": "search",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "keywords": [
+    "search"
+  ],
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@titicaca/triple-web-to-native-interfaces": "^0.0.21",
+    "@titicaca/react-contexts": "^1.2.1",
+    "@titicaca/core-elements": "^1.2.1",
+    "@titicaca/view-utilities": "^1.2.1"
+  }
+}
