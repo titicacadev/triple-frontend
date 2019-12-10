@@ -127,17 +127,19 @@ function RichPricing({
     )
   ) : null
 
+  const hasBasePrice = basePrice !== undefined && basePrice > 0
+
   return (
     <PricingContainer>
       {pricingLabel}
-      {(pricingNote || basePrice > 0) && (
+      {(pricingNote || hasBasePrice) && (
         <Container margin={{ bottom: 3 }}>
           {pricingNote && (
             <Text alpha={0.3} size="mini" inlineBlock margin={{ right: 3 }}>
               {pricingNote}
             </Text>
           )}
-          {basePrice > 0 && (
+          {hasBasePrice && (
             <Text alpha={0.3} size="mini" strikethrough inline>
               {formatNumber(basePrice)}
             </Text>
@@ -158,16 +160,22 @@ const RegularPricing = ({
 }: {
   basePrice?: number
   salePrice: number
-}) => (
-  <PricingContainer padding={{ top: 18 }}>
-    <Price color="gray" lineThrough margin={{ right: 5 }}>
-      {formatNumber(basePrice)}
-    </Price>
-    <Price size="large" bold>
-      {formatNumber(salePrice)}원
-    </Price>
-  </PricingContainer>
-)
+}) => {
+  const hasBasePrice = basePrice !== undefined && basePrice > 0
+
+  return (
+    <PricingContainer padding={{ top: 18 }}>
+      {hasBasePrice && (
+        <Price color="gray" lineThrough margin={{ right: 5 }}>
+          {formatNumber(basePrice)}
+        </Price>
+      )}
+      <Price size="large" bold>
+        {formatNumber(salePrice)}원
+      </Price>
+    </PricingContainer>
+  )
+}
 
 const FloatedFrame = styled(Container)`
   position: relative;
