@@ -37,7 +37,7 @@ const MileageButton = styled.div`
   box-sizing: border-box;
   display: block;
   border-radius: 4px;
-  background-color: rgba(58, 58, 58, 0.3);
+  background-color: rgba(58, 58, 58, 0.03);
   width: 100%;
   margin-top: 25px;
   padding: 25px 20px 22px;
@@ -62,7 +62,7 @@ const BulletRight = styled.img.attrs({
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   @media only screen and (max-width: 640px) {
-    right: 10px;
+    right: 15px;
   }
 `
 
