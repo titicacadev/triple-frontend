@@ -4,12 +4,6 @@ describe('Pricing', () => {
   })
 
   context('when using listing layout', () => {
-    it('rich have padding 22px', () => {
-      cy.get('.rich-pressed > div')
-        .should('have.css', 'padding')
-        .and('eq', '22px 0px 0px')
-    })
-
     it('DescountRate Text have pink color', () => {
       cy.get('.rich-pressed > div')
         .find('span')
