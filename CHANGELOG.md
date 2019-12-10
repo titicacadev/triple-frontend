@@ -1,3 +1,7 @@
+## 1.2.4 (2019-12-10)
+
+- `ExtendedResourceListElement` baseprice 에 pricingNote 관계없이 노출 할 수 있도록 변경
+
 ## 1.2.3 (2019-12-10)
 
 - `pricing` baseprice, pricingNote 에 따라 스타일 수정 
