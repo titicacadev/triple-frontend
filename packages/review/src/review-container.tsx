@@ -37,7 +37,7 @@ const MileageButton = styled.div`
   box-sizing: border-box;
   display: block;
   border-radius: 4px;
-  background-color: #ececec;
+  background-color: rgba(58, 58, 58, 0.3);
   width: 100%;
   margin-top: 25px;
   padding: 25px 20px 22px;
