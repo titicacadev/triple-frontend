@@ -1,3 +1,7 @@
+## 1.2.3 (2019-12-10)
+- `pricing` baseprice, pricingNote 에 따라 스타일 수정 
+- `ExtendedResourceListElement` baseprice 에 따른 pricingNote 노출 조건 추가
+
 ## 1.2.2 (2019-12-10)
 - `review` 컴포넌트에 ga/fa 지표 관련 코드 추가
 
