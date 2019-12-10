@@ -1,6 +1,8 @@
+- [popup] 네비바 버튼의 아이콘을 선택하는 icon prop 추가
+
 ## 1.2.6 (2019-12-10)
 
-- `Tooltip` 컬러 추가 
+- `Tooltip` 컬러 추가
 
 ## 1.2.5 (2019-12-10)
 
@@ -12,7 +14,7 @@
 
 ## 1.2.3 (2019-12-10)
 
-- `pricing` baseprice, pricingNote 에 따라 스타일 수정 
+- `pricing` baseprice, pricingNote 에 따라 스타일 수정
 - `ExtendedResourceListElement` baseprice 에 따른 pricingNote 노출 조건 추가
 
 ## 1.2.2 (2019-12-10)
