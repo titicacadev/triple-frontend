@@ -1,3 +1,7 @@
+## 1.2.5 (2019-12-10)
+
+- `Tooltip` onClick event 추가
+
 ## 1.2.4 (2019-12-10)
 
 - `ExtendedResourceListElement` baseprice 에 관계없이 pricingNote 을 노출 할 수 있도록 변경
