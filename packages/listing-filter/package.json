@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/listing-filter",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Listing filter UI",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
