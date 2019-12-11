@@ -40,7 +40,6 @@ export default function FullScreenSearchView({
   onDelete = () => {},
   onAutoComplete = () => {},
   onEnter = () => {},
-  onEmptyKeyword = () => {},
   onInputChange = () => {},
   placeholder,
   defaultKeyword,
@@ -49,7 +48,6 @@ export default function FullScreenSearchView({
   onDelete?: () => void
   onAutoComplete?: (keyword: string) => void
   onEnter?: (keyword: string) => void
-  onEmptyKeyword?: () => void
   onInputChange?: (keyword: string) => void
   placeholder?: string
   defaultKeyword?: string
