@@ -92,7 +92,7 @@ export function ImagesProvider({
         dispatch(loadImagesFail(error))
       }
 
-      cb()
+      cb && cb()
     },
     [hasMore, loading, sendFetchRequest],
   )
