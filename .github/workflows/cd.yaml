@@ -46,6 +46,13 @@ jobs:
     - name: Tag with annotation
       run: |
         VERSION="v$(node -p -e 'require(`./lerna.json`).version')"
+        curl -f --request POST --url https://api.github.com/repos/${{ github.repository }}/git/tags \
+          -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+          -H 'Content-Type: application/json' \
+          -d "{\"tag\":\"${VERSION}\",\"message\":\"${VERSION}\",\"object\":\"${GITHUB_SHA}\",\"type\":\"commit\"}" > tag.json
+
+        TAG_SHA="$(node -p -e 'require(`./tag.json`).sha')"
+
         curl -s -o /dev/null -I -w "%{http_code}" \
           --url https://api.github.com/repos/${{ github.repository }}/git/refs/tags/${VERSION} \
           -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' > status
@@ -54,15 +61,10 @@ jobs:
           curl -f --request PATCH --url https://api.github.com/repos/${{ github.repository }}/git/refs/tags/${VERSION} \
             -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
             -H 'Content-Type: application/json' \
-            -d "{\"force\":true,\"sha\":\"${GITHUB_SHA}\"}"
+            -d "{\"force\":true,\"sha\":\"${TAG_SHA}\"}"
         else
           curl -f --request POST --url https://api.github.com/repos/${{ github.repository }}/git/refs \
             -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
             -H 'Content-Type: application/json' \
-            -d "{\"ref\":\"refs/tags/${VERSION}\",\"sha\":\"${GITHUB_SHA}\"}"
+            -d "{\"ref\":\"refs/tags/${VERSION}\",\"sha\":\"${TAG_SHA}\"}"
         fi
-
-        curl -f --request POST --url https://api.github.com/repos/${{ github.repository }}/git/tags \
-          -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-          -H 'Content-Type: application/json' \
-          -d "{\"tag\":\"${VERSION}\",\"message\":\"${VERSION}\",\"object\":\"${GITHUB_SHA}\",\"type\":\"commit\"}"
