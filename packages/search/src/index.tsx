@@ -74,7 +74,7 @@ export default function FullScreenSearchView({
     debounce(async (keyword: string) => {
       onAutoComplete(keyword)
     }, 500),
-    [onAutoComplete],
+    [],
   )
 
   const handleKeyUp = async (keyCode: number) => {
