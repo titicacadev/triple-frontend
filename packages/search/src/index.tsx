@@ -74,13 +74,9 @@ export default function FullScreenSearchView({
 
   const debounceCallback = useCallback(
     debounce(async (keyword: string) => {
-      if (!keyword || keyword.trim().length === 0) {
-        onEmptyKeyword()
-      } else {
-        onAutoComplete(keyword)
-      }
+      onAutoComplete(keyword)
     }, 500),
-    [onEmptyKeyword, onAutoComplete],
+    [onAutoComplete],
   )
 
   const handleKeyUp = async (keyCode: number) => {
@@ -104,8 +100,8 @@ export default function FullScreenSearchView({
         value={keyword}
         onBackClick={backOrClose}
         onDeleteClick={() => {
+          setKeyword('')
           onDelete()
-          onEmptyKeyword()
         }}
         onInputChange={(e: SyntheticEvent, keyword: string) => {
           setKeyword(keyword)
