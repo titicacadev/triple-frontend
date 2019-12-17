@@ -10,14 +10,14 @@ const MessageContainer = styled(Container)`
 
 // eslint-disable-next-line no-unexpected-multiline
 const Label = styled(Text)<{
-  focus?: boolean
+  focused?: boolean
   error?: boolean
   absolute?: boolean
 }>`
   font-size: 13px;
 
-  ${({ focus }) =>
-    focus &&
+  ${({ focused }) =>
+    focused &&
     css`
       color: rgb(${GetGlobalColor('blue')});
     `};
@@ -42,20 +42,28 @@ export function withField<T>(WrappedComponent: React.ComponentType<T>) {
     error?: string
     help?: string
     props?: T
-  }> = ({ label, error, help, props }) => {
-    const [isFocus, setFocus] = useState(false)
+  }> = ({ label, error, help, ...props }) => {
+    const [focused, setFocused] = useState(false)
+    const hasError = !!error
 
     return (
-      <Container onFocus={() => setFocus(true)} onBlur={() => setFocus(false)}>
+      <Container
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+      >
         {label && (
-          <Label isFocus={isFocus} error={!!error} margin={{ bottom: 6 }}>
+          <Label focused={focused} error={hasError} margin={{ bottom: 6 }}>
             {label}
           </Label>
         )}
-        <WrappedComponent focus={focus} error={!!error} {...props} />
-        {error ? (
+        <WrappedComponent
+          focused={focused ? 'true' : undefined}
+          error={hasError ? 'true' : undefined}
+          {...props}
+        />
+        {hasError ? (
           <MessageContainer padding={{ top: 6 }}>
-            <Label absolute={!help} error={!!error}>
+            <Label absolute={!help} error={true}>
               {error}
             </Label>
           </MessageContainer>
