@@ -46,7 +46,6 @@ const BaseInput = styled(InputMask)<{ focused?: string; error?: string }>`
 interface InputProps {
   id?: string
   type?: string
-  label?: string
   value?: string
   error?: string
   placeholder?: string
@@ -61,7 +60,6 @@ function Input({
   onChange,
   id,
   type,
-  label,
   value,
   error,
   placeholder,
@@ -75,7 +73,6 @@ function Input({
     <BaseInput
       id={id}
       type={type}
-      label={label}
       value={value}
       error={error}
       placeholder={placeholder}
