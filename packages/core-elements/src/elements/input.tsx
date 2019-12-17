@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 import { withField } from '../utils/form-field'
 import { GetGlobalColor } from '../commons'
 
-const BaseInput = styled(InputMask)<{ focus?: boolean; error?: boolean }>`
+const BaseInput = styled(InputMask)<{ focused?: string; error?: string }>`
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -30,8 +30,8 @@ const BaseInput = styled(InputMask)<{ focus?: boolean; error?: boolean }>`
     color: rgba(${GetGlobalColor('gray')}, 0.3);
   }
 
-  ${({ focus }) =>
-    focus &&
+  ${({ focused }) =>
+    focused &&
     css`
       border-color: rgb(${GetGlobalColor('blue')});
     `};
@@ -44,11 +44,49 @@ const BaseInput = styled(InputMask)<{ focus?: boolean; error?: boolean }>`
 `
 
 interface InputProps {
+  id?: string
+  type?: string
+  label?: string
+  value?: string
+  error?: string
+  placeholder?: string
+  help?: string
+  mask?: string
+  maskChar?: string | null
   onChange?: (e: React.SyntheticEvent, value: string) => any
+  onBlur?: (e: React.FocusEvent<any>) => any
 }
 
-function Input({ onChange, ...props }: InputProps & InputState & MaskOptions) {
-  return <BaseInput onChange={(e) => onChange(e, e.target.value)} {...props} />
+function Input({
+  onChange,
+  id,
+  type,
+  label,
+  value,
+  error,
+  placeholder,
+  help,
+  mask,
+  maskChar,
+  focused,
+  onBlur,
+}: InputProps & InputState & MaskOptions) {
+  return (
+    <BaseInput
+      id={id}
+      type={type}
+      label={label}
+      value={value}
+      error={error}
+      placeholder={placeholder}
+      help={help}
+      mask={mask}
+      maskChar={maskChar}
+      focused={focused}
+      onBlur={onBlur}
+      onChange={(e) => onChange(e, e.target.value)}
+    />
+  )
 }
 
 export default withField(Input)
