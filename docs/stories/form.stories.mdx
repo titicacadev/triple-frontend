@@ -1,0 +1,107 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions'
+import { select as selectAddons, text, boolean } from '@storybook/addon-knobs';
+
+import {
+  Input,
+  ConfirmSelector,
+  Textarea,
+  Select,
+  GenderSelector,
+  Radio,
+  Text,
+} from '@titicaca/core-elements'
+
+<Meta title="Form2" />
+
+# Form 
+
+<br/>
+
+## 공통 Field Type
+
+```js
+error?: string
+help?: string
+id?: string
+label?: string
+mask?: string
+maskChar?: string | null
+name?: string
+onBlur?: (e: React.SyntheticEvent, value: string) => any
+onChange?: (e: React.SyntheticEvent, value: string) => any
+placeholder?: string
+type?: string
+value?: any
+focusing?: boolean
+options?: option[]
+```
+
+<Props of={Input} />
+
+## Input 
+
+공통으로 사용되는 기본 Input 입니다.
+
+<Preview>
+  <Story name="Input">
+     <Input 
+        label={text('label', '이름')}
+        placeholder={text('placeholder', "이름을 입력해주세요")}
+        help={text('placeholder', "고객님의 요청사항은 해당 호텔에 전달됩니다만 호텔 사정에 따라 필요하신 내용이 이루어지지 않을 수 있으니 많은 양해 바랍니다.")}
+      />
+  </Story>
+</Preview>
+
+### Input - Status
+
+Focus 와 Error 두 가지의 상태 값을 가지고 있습니다. error props 를 이용하여 상태를 다룰 수 있습니다.
+
+<Input 
+  placeholder={text('placeholder', "이름을 입력해주세요")}
+  help={text('placeholder', "고객님의 요청사항은 해당 호텔에 전달됩니다만 호텔 사정에 따라 필요하신 내용이 이루어지지 않을 수 있으니 많은 양해 바랍니다.")}
+  error={true}
+/>
+
+### Input - Mask 
+
+mask props 를 이용하여 mask 를 추가 할 수 있습니다.
+
+<Preview>
+  <Story name="Input - Mask">
+     <Input 
+      mask={text('mask', "99/99")}
+      maskChar={null}
+      value={text('value', 1230)}
+    />
+  </Story>
+</Preview>
+
+
+## Select 
+
+option 을 선택 할 수 있는 SelectBox 입니다.
+
+<Preview>
+  <Story name="Select">
+     <Select
+        label="투어티켓 시간"
+        placeholder="시간을 선택해주세요"
+        value={selectAddons('value', ['12:00', '12:10', '12:20'], '12:00')}
+        options={[
+          {
+            label: '12:00',
+            value: '12:00',
+          },
+          {
+            label: '12:10',
+            value: '12:10',
+          },
+          {
+            label: '12:20',
+            value: '12:20',
+          },
+        ]}
+    />
+  </Story>
+</Preview>
