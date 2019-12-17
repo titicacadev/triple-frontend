@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import Container from '../elements/container'
 import Text from '../elements/text'
 import styled, { css } from 'styled-components'
@@ -36,50 +36,36 @@ const Label = styled(Text)<{
     `};
 `
 
-export function withField<T>(
-  WrappedComponent: React.ComponentType<T & { focus?: string; error?: string }>,
-) {
-  return class Wrapper extends React.PureComponent<
-    {
-      label?: string
-      error?: string
-      help?: string
-    } & T
-  > {
-    state = {
-      focus: false,
-    }
+export function withField<T>(WrappedComponent: React.ComponentType<T>) {
+  const WrapperComponent: React.FC<{
+    label?: string
+    error?: string
+    help?: string
+    props?: T
+  }> = ({ label, error, help, props }) => {
+    const [isFocus, setFocus] = useState(false)
 
-    render() {
-      const {
-        state: { focus },
-        props: { label, error, help, ...props },
-      } = this
-
-      return (
-        <Container
-          onFocus={() => this.setState({ focus: true })}
-          onBlur={() => this.setState({ focus: false })}
-        >
-          {label && (
-            <Label focus={focus} error={!!error} margin={{ bottom: 6 }}>
-              {label}
+    return (
+      <Container onFocus={() => setFocus(true)} onBlur={() => setFocus(false)}>
+        {label && (
+          <Label isFocus={isFocus} error={!!error} margin={{ bottom: 6 }}>
+            {label}
+          </Label>
+        )}
+        <WrappedComponent focus={focus} error={!!error} {...props} />
+        {error ? (
+          <MessageContainer padding={{ top: 6 }}>
+            <Label absolute={!help} error={!!error}>
+              {error}
             </Label>
-          )}
-          <WrappedComponent focus={focus} error={!!error} {...(props as T)} />
-          {error ? (
-            <MessageContainer padding={{ top: 6 }}>
-              <Label absolute={!help} error={!!error}>
-                {error}
-              </Label>
-            </MessageContainer>
-          ) : help ? (
-            <MessageContainer padding={{ top: 6 }}>
-              <Label alpha={0.5}>{help}</Label>
-            </MessageContainer>
-          ) : null}
-        </Container>
-      )
-    }
+          </MessageContainer>
+        ) : help ? (
+          <MessageContainer padding={{ top: 6 }}>
+            <Label alpha={0.5}>{help}</Label>
+          </MessageContainer>
+        ) : null}
+      </Container>
+    )
   }
+  return WrapperComponent
 }
