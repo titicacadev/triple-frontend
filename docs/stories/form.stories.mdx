@@ -12,13 +12,11 @@ import {
   Text,
 } from '@titicaca/core-elements'
 
-<Meta title="Form2" />
+<Meta title="Form" />
 
 # Form 
 
 <br/>
-
-<Props of={Input} />
 
 ## Input 
 
@@ -137,7 +135,7 @@ error?: string
       borderless={boolean('borderless', false)}
       textAlign={selectAddons('textAlign', ['left', 'right'], 'left')}
       padding={{ top: 16, left: 16, bottom: 16 }}
-      fillType={selectAddons('fillType', ['full' | 'border' | 'text'], 'full')}
+      fillType={selectAddons('fillType', ['full', 'border', 'text'], 'full')}
       padding={{ top: 16, right: 50, left: 16, bottom: 16 }}
     >
       <Text>예약자 정보를 업데이트 합니다.</Text>
@@ -162,7 +160,7 @@ options: option[]
 <Preview>
    <Story name="Radio">
      <Radio
-      value={selectAddons('value', ['item1', 'item2'], 'item1')}
+      value={selectAddons('value', ['item1', 'item2', 'item3'], 'item1')}
       options={[
         {
           text: 'item1',
