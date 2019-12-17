@@ -49,7 +49,6 @@ interface InputProps {
   value?: string
   error?: string
   placeholder?: string
-  help?: string
   mask?: string
   maskChar?: string | null
   onChange?: (e: React.SyntheticEvent, value: string) => any
@@ -63,7 +62,6 @@ function Input({
   value,
   error,
   placeholder,
-  help,
   mask,
   maskChar,
   focused,
@@ -76,7 +74,6 @@ function Input({
       value={value}
       error={error}
       placeholder={placeholder}
-      help={help}
       mask={mask}
       maskChar={maskChar}
       focused={focused}
