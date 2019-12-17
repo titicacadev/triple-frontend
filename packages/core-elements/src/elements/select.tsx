@@ -9,6 +9,7 @@ interface SelectOption {
 }
 
 interface SelectProps {
+  id?: string
   name?: string
   value?: any
   placeholder?: string
@@ -67,6 +68,7 @@ const Icon = styled.span`
 `
 
 function Select({
+  id,
   name,
   value,
   onChange,
@@ -79,6 +81,7 @@ function Select({
   return (
     <SelectFrame focused={focused} error={error}>
       <BaseSelect
+        id={id}
         onChange={(e) => onChange(e, e.target.value)}
         onBlur={onBlur}
         value={value}
