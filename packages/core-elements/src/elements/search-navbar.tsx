@@ -1,10 +1,9 @@
 import * as React from 'react'
-import InputMask, { InputState, MaskOptions } from 'react-input-mask'
 import styled from 'styled-components'
 
 import Navbar from './navbar'
 
-const InputText = styled(InputMask)`
+const InputText = styled.input`
   border-style: none;
   font-size: 17px;
   height: 21px;
@@ -39,37 +38,34 @@ const DeleteIcon = styled(Navbar.Item)<{ visible: boolean }>`
 `
 
 export default function SearchNavbar({
-  inputPlaceholder,
+  placeholder,
   onBackClick,
   onDeleteClick,
   onInputChange,
   onBlur,
   onFocus,
-  ...props
+  value,
 }: {
-  inputPlaceHolder: string
+  placeholder: string
   onBackClick: (event: React.SyntheticEvent) => void
   onDeleteClick?: (event: React.SyntheticEvent) => void
   onInputChange?: (e: React.SyntheticEvent, value: string) => void
   onBlur?: (e: React.SyntheticEvent) => void
   onFocus?: (e: React.SyntheticEvent) => void
-} & InputState &
-  MaskOptions) {
+  onKeyUp?: (e: React.KeyboardEvent) => void
+  value?: string
+}) {
   return (
     <MainNavbarFrame borderless>
       <Back icon="back" onClick={onBackClick} />
       <InputText
-        placeholder={inputPlaceholder}
+        placeholder={placeholder}
         onChange={(e) => onInputChange && onInputChange(e, e.target.value)}
         onBlur={(e) => onBlur && onBlur(e)}
         onFocus={(e) => onFocus && onFocus(e)}
-        {...props}
+        value={value}
       />
-      <DeleteIcon
-        icon="delete"
-        onClick={onDeleteClick}
-        visible={!!props.value}
-      />
+      <DeleteIcon icon="delete" onClick={onDeleteClick} visible={!!value} />
     </MainNavbarFrame>
   )
 }
