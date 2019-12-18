@@ -51,6 +51,7 @@ interface InputProps {
   placeholder?: string
   mask?: string
   maskChar?: string | null
+  focused?: string
   onChange?: (e: React.SyntheticEvent, value: string) => any
   onBlur?: (e: React.FocusEvent<any>) => any
 }
