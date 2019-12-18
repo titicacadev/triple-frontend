@@ -83,4 +83,4 @@ function Input({
   )
 }
 
-export default withField(Input)
+export default withField<InputProps & InputState & MaskOptions>(Input)

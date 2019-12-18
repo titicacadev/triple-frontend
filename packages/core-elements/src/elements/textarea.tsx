@@ -90,4 +90,4 @@ function Textarea({
   )
 }
 
-export default withField(Textarea)
+export default withField<TextareaProps>(Textarea)
