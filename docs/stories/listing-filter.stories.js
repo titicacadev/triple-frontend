@@ -28,7 +28,7 @@ storiesOf('ListingFilter', module)
       </ListingFilter.FilterEntry>
       <ListingFilter.FilterEntry
         withIcon
-        active={false}
+        active={true}
         activeIconImage="/ico-category-food-on.svg"
         inactiveIconImage="/ico-category-food.svg"
       >
@@ -66,6 +66,17 @@ storiesOf('ListingFilter', module)
     </ListingFilter>
   ))
   .add('타입4', () => (
+    <ListingFilter>
+      <ListingFilter.ExpandingFilterEntry
+        active={boolean('active', true)}
+        disabled={boolean('disabled', true)}
+        badge={text('badge', 0)}
+      >
+        {text('레이블', '성급 및 필터')}
+      </ListingFilter.ExpandingFilterEntry>
+    </ListingFilter>
+  ))
+  .add('타입5', () => (
     <ListingFilter>
       <ListingFilter.PrimaryFilterEntry>
         {text('레이블', '5.17-5.20, 3명')}
