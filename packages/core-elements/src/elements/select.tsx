@@ -101,4 +101,4 @@ function Select({
   )
 }
 
-export default withField(Select)
+export default withField<SelectProps>(Select)
