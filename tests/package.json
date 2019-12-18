@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-frontend-tests",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "private": true,
   "description": "Triple Design Systems Test",
   "scripts": {
@@ -27,12 +27,12 @@
   },
   "dependencies": {
     "@titicaca/action-sheet": "^1.2.8",
-    "@titicaca/author": "^1.2.8",
-    "@titicaca/core-elements": "^1.2.8",
-    "@titicaca/modals": "^1.2.8",
-    "@titicaca/pricing": "^1.2.8",
+    "@titicaca/author": "^1.2.9",
+    "@titicaca/core-elements": "^1.2.9",
+    "@titicaca/modals": "^1.2.9",
+    "@titicaca/pricing": "^1.2.9",
     "@titicaca/scrap-button": "^1.2.8",
-    "@titicaca/triple-document": "^1.2.8",
+    "@titicaca/triple-document": "^1.2.9",
     "koa": "^2.5.3",
     "koa-static": "^5.0.0",
     "react": "^16.4.2",
