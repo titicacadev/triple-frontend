@@ -1,6 +1,7 @@
 import React, {
   ReactNode,
   SyntheticEvent,
+  KeyboardEvent,
   useCallback,
   useEffect,
   useRef,
@@ -94,7 +95,7 @@ export default function FullScreenSearchView({
   return (
     <MainContainer>
       <SearchNavbar
-        inputPlaceholder={placeholder}
+        placeholder={placeholder}
         value={keyword}
         onBackClick={backOrClose}
         onDeleteClick={() => {
