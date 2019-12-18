@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 
-const FilterEntryBase = styled.div<{ active?: boolean }>`
+const FilterEntryBase = styled.div<{ active?: boolean; disabled?: boolean }>`
   display: inline-block;
   font-size: 13px;
   line-height: 1.2;
@@ -13,6 +13,11 @@ const FilterEntryBase = styled.div<{ active?: boolean }>`
   box-sizing: border-box;
   margin-right: 6px;
   vertical-align: top;
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      opacity: 0.3;
+    `};
 `
 
 const ACTIVE_EXPANDER_ICON_URL =
@@ -65,6 +70,7 @@ const ExpandingFilterEntryContainer = styled.div<{
 `
 
 interface ExpandingFilterEntryProps extends React.HTMLAttributes<HTMLElement> {
+  disabled?: boolean
   active?: boolean
   badge?: React.ReactNode
 }
@@ -129,12 +135,14 @@ const PrimaryFilterEntry = styled(FilterEntryBase)`
 `
 
 interface FilterEntryProps extends React.HTMLAttributes<HTMLElement> {
+  disabled?: boolean
   active?: boolean
   activeIconImage?: string
   inactiveIconImage?: string
 }
 
 function FilterEntry({
+  disabled,
   active,
   activeIconImage,
   inactiveIconImage,
