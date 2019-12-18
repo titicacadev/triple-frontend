@@ -142,7 +142,6 @@ interface FilterEntryProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 function FilterEntry({
-  disabled,
   active,
   activeIconImage,
   inactiveIconImage,
