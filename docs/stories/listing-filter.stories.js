@@ -43,7 +43,7 @@ storiesOf('ListingFilter', module)
         active={boolean('active', true)}
         activeIconImage="/ico-category-food-on.svg"
         inactiveIconImage="/ico-category-food.svg"
-        disabled={boolean('disable', false)}
+        disabled={boolean('disabled', false)}
       >
         {text('레이블', '음식점')}
       </ListingFilter.FilterEntry>
@@ -53,7 +53,7 @@ storiesOf('ListingFilter', module)
     <ListingFilter>
       <ListingFilter.FilterEntry
         active={boolean('active', true)}
-        disabled={boolean('disable', false)}
+        disabled={boolean('disabled', false)}
       >
         {text('레이블', '부티크 호텔')}
       </ListingFilter.FilterEntry>
@@ -63,7 +63,7 @@ storiesOf('ListingFilter', module)
     <ListingFilter>
       <ListingFilter.ExpandingFilterEntry
         active={boolean('active', true)}
-        disabled={boolean('disable', false)}
+        disabled={boolean('disabled', false)}
         badge={text('badge', 0)}
       >
         {text('레이블', '성급 및 필터')}
@@ -72,7 +72,7 @@ storiesOf('ListingFilter', module)
   ))
   .add('타입4', () => (
     <ListingFilter>
-      <ListingFilter.PrimaryFilterEntry disabled={boolean('disable', false)}>
+      <ListingFilter.PrimaryFilterEntry disabled={boolean('disabled', false)}>
         {text('레이블', '5.17-5.20, 3명')}
       </ListingFilter.PrimaryFilterEntry>
     </ListingFilter>
