@@ -28,8 +28,10 @@
     "nuka-carousel": "4.4.1",
     "react-input-mask": "^2.0.4"
   },
+  "devDependencies": {
+    "@types/react-input-mask": "^2.0.3"
+  },
   "peerDependencies": {
-    "@types/react-input-mask": "^2.0.3",
     "react": "*",
     "react-dom": "*",
     "styled-components": "^4.4.1"
