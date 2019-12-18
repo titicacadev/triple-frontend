@@ -8,7 +8,6 @@
     "moduleResolution": "node",
     "declaration": true,
     "alwaysStrict": true,
-    "esModuleInterop": true,
-    "importHelpers": true
+    "esModuleInterop": true
   }
 }
