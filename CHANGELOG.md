@@ -1,3 +1,8 @@
+## 1.2.9 (2019-12-18)
+
+- [listing-filter] FilterEntryBase에 disabled prop 추가
+- [core-elements] SearchNavbar에서 InputMask 사용하지 않도록 처리, prop 형식 변경
+
 ## 1.2.8 (2019-12-12)
 
 - `Image Context` fetch 시 넘겨주는 callback 에 대한 예외처리 추가
