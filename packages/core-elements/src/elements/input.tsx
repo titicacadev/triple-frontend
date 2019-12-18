@@ -1,5 +1,5 @@
 import * as React from 'react'
-import InputMask, { InputState, MaskOptions } from 'react-input-mask'
+import InputMask from 'react-input-mask'
 import styled, { css } from 'styled-components'
 import { withField } from '../utils/form-field'
 import { GetGlobalColor } from '../commons'
@@ -67,7 +67,7 @@ function Input({
   maskChar,
   focused,
   onBlur,
-}: InputProps & InputState & MaskOptions) {
+}: InputProps) {
   return (
     <BaseInput
       id={id}
@@ -84,4 +84,4 @@ function Input({
   )
 }
 
-export default withField<InputProps & InputState & MaskOptions>(Input)
+export default withField<InputProps>(Input)
