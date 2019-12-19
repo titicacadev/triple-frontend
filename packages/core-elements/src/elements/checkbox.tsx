@@ -126,7 +126,7 @@ interface ConfirmSelectorProps {
   error?: string
 }
 
-export const ConfirmSelector = withField<ConfirmSelectorProps>(
+export const ConfirmSelector = withField(
   ({
     name,
     value,

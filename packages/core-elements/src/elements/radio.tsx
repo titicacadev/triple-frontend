@@ -95,7 +95,7 @@ interface RadioProps {
   options: Option[]
 }
 
-export const Radio = withField<RadioProps>(
+export const Radio = withField(
   ({ name, value, onChange, options }: RadioProps) => {
     return (
       <>
@@ -129,7 +129,7 @@ interface GenderSelectorProps {
   onChange?: (e: React.SyntheticEvent, arg1: string) => any
 }
 
-export const GenderSelector = withField<GenderSelectorProps>(
+export const GenderSelector = withField(
   ({ name, value, onChange }: GenderSelectorProps) => {
     return (
       <Container>
