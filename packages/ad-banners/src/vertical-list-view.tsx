@@ -1,8 +1,9 @@
 import React, { FC } from 'react'
-import { Section, MarginPadding } from '@titicaca/core-elements'
+import { MarginPadding } from '@titicaca/core-elements'
 
 import VerticalEntity from './vertical-entity'
 import { Banner } from './typing'
+import ListSection from './list-section'
 
 interface VerticalListViewProps {
   banners: Banner[]
@@ -37,7 +38,7 @@ const VerticalListView: FC<VerticalListViewProps> = ({
   }
 
   return (
-    <Section minWidth={0} padding={padding}>
+    <ListSection minWidth={0} padding={padding}>
       {banners.map((banner, index) => (
         <VerticalEntity
           key={banner.id}
@@ -46,7 +47,7 @@ const VerticalListView: FC<VerticalListViewProps> = ({
           onChangeIsIntersecting={makeBannerIntersectingHandler(index)}
         />
       ))}
-    </Section>
+    </ListSection>
   )
 }
 

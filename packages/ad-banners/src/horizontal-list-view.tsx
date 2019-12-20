@@ -1,10 +1,11 @@
 import React, { FC, useRef, useEffect, useState } from 'react'
-import { Section, MarginPadding } from '@titicaca/core-elements'
+import { MarginPadding } from '@titicaca/core-elements'
 import { FlickingOptions } from '@egjs/flicking'
 import Flicking from '@egjs/react-flicking'
 
 import { Banner } from './typing'
 import HorizontalEntity from './horizontal-entity'
+import ListSection from './list-section'
 
 interface HorizontalListViewProps {
   banners: Banner[]
@@ -79,7 +80,7 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
   }
 
   return (
-    <Section
+    <ListSection
       minWidth={0}
       padding={{ top: padding.top, bottom: padding.bottom }}
     >
@@ -106,7 +107,7 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
           )
         })}
       </Flicking>
-    </Section>
+    </ListSection>
   )
 }
 
