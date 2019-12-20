@@ -8,9 +8,8 @@ interface SelectOption {
   value: any
 }
 
-interface SelectProps {
+interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   id?: string
-  name?: string
   value?: any
   placeholder?: string
   options?: SelectOption[]
