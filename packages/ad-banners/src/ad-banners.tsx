@@ -91,13 +91,13 @@ function useAdBannerProps(props: AdBannersProps) {
     } = props
 
     return {
-      getBannersAPI: getAdBanners,
-      getBannersParams: {
-        contentType,
-        contentId,
-        regionId,
-        userLocation: { latitude, longitude },
-      },
+      getBannersAPI: () =>
+        getAdBanners({
+          contentType,
+          contentId,
+          regionId,
+          userLocation: { latitude, longitude },
+        }),
       handleBannerIntersecting: (
         isIntersecting: boolean,
         banner: Banner,
@@ -168,7 +168,6 @@ const AdBanners: FC<AdBannersProps> = (props) => {
   const { padding, direction = ListDirection.VERTICAL } = props
   const {
     getBannersAPI,
-    getBannersParams,
     handleBannerIntersecting,
     handleBannerClick,
   } = useAdBannerProps(props)
@@ -181,7 +180,7 @@ const AdBanners: FC<AdBannersProps> = (props) => {
     let handle: number | undefined
 
     async function fetchBanners() {
-      const response = await getBannersAPI(getBannersParams)
+      const response = await getBannersAPI()
 
       if (isMounted) {
         setBanners(response || [])
