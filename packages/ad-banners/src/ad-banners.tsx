@@ -90,14 +90,15 @@ function useAdBannerProps(props: AdBannersProps) {
       eventAttributes: { title },
     } = props
 
+    const baseParams = {
+      contentType,
+      contentId,
+      regionId,
+      userLocation: { latitude, longitude },
+    }
+
     return {
-      getBannersAPI: () =>
-        getAdBanners({
-          contentType,
-          contentId,
-          regionId,
-          userLocation: { latitude, longitude },
-        }),
+      getBannersAPI: () => getAdBanners(baseParams),
       handleBannerIntersecting: (
         isIntersecting: boolean,
         banner: Banner,
@@ -110,12 +111,7 @@ function useAdBannerProps(props: AdBannersProps) {
         postAdBannerEvent({
           eventType: 'impression',
           itemId: banner.id,
-          ...{
-            contentType,
-            contentId,
-            regionId,
-            userLocation: { latitude, longitude },
-          },
+          ...baseParams,
         })
 
         /* eslint-disable @typescript-eslint/camelcase */
@@ -134,12 +130,7 @@ function useAdBannerProps(props: AdBannersProps) {
         postAdBannerEvent({
           eventType: 'click',
           itemId: banner.id,
-          ...{
-            contentType,
-            contentId,
-            regionId,
-            userLocation: { latitude, longitude },
-          },
+          ...baseParams,
         })
 
         /* eslint-disable @typescript-eslint/camelcase */
