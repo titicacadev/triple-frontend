@@ -22,45 +22,159 @@ interface EventAttributes {
   title?: string
 }
 
-interface AdBannersProps {
+/**
+ * 트리플 광고 API를 사용하는 배너의 Props
+ */
+interface AdSystemBannerProps {
   contentType: ContentType
   contentId: string
   regionId?: string
 
-  padding?: MarginPadding
-  direction?: ListDirection
-
   eventAttributes?: EventAttributes
 }
 
-const AdBanners: FC<AdBannersProps> = ({
-  contentType,
-  contentId,
-  regionId,
+/**
+ * Inventory API를 사용하는 배너의 Props
+ */
+interface InventoryBannerProps {
+  onFetchingBanners: () => Promise<Banner[]>
+  onBannerIntersecting?: (
+    isIntersecting: boolean,
+    banner: Banner,
+    index: number,
+  ) => void
+  onBannerClick?: (banner: Banner, index: number) => void
+}
 
-  padding,
-  direction = ListDirection.VERTICAL,
+type AdBannersProps = { padding?: MarginPadding; direction?: ListDirection } & (
+  | AdSystemBannerProps
+  | InventoryBannerProps)
 
-  eventAttributes: { title } = {},
-}) => {
+const NOOP = () => {}
+
+function isPropsForInventoryAPI(
+  props: AdBannersProps,
+): props is InventoryBannerProps {
+  return 'onFetchingBanners' in props
+}
+
+function useAdBannerProps(props: AdBannersProps) {
   const { latitude, longitude } = useDeviceContext()
   const { trackEvent } = useEventTrackingContext()
   const { navigate } = useHistoryContext()
-  const [banners, setBanners] = useState([])
 
-  const baseEventParams = {
-    contentType,
-    contentId,
-    regionId,
-    userLocation: { latitude, longitude },
+  if (isPropsForInventoryAPI(props)) {
+    const { onFetchingBanners, onBannerIntersecting, onBannerClick } = props
+
+    return {
+      getBannersAPI: onFetchingBanners,
+      handleBannerIntersecting: onBannerIntersecting || NOOP,
+      handleBannerClick: (banner: Banner, index: number) => {
+        if (onBannerClick) {
+          onBannerClick(banner, index)
+        }
+
+        navigate(banner.target)
+      },
+    }
+  } else {
+    const {
+      contentType,
+      contentId,
+      regionId,
+      eventAttributes: { title },
+    } = props
+
+    return {
+      getBannersAPI: getAdBanners,
+      getBannersParams: {
+        contentType,
+        contentId,
+        regionId,
+        userLocation: { latitude, longitude },
+      },
+      handleBannerIntersecting: (
+        isIntersecting: boolean,
+        banner: Banner,
+        index: number,
+      ) => {
+        if (!isIntersecting) {
+          return
+        }
+
+        postAdBannerEvent({
+          eventType: 'impression',
+          itemId: banner.id,
+          ...{
+            contentType,
+            contentId,
+            regionId,
+            userLocation: { latitude, longitude },
+          },
+        })
+
+        /* eslint-disable @typescript-eslint/camelcase */
+        trackEvent({
+          fa: {
+            action: 'V0_배너노출',
+            banner_id: banner.id,
+            banner_position: index,
+            url: banner.target,
+            poi_id: contentId,
+          },
+        })
+        /* eslint-enable @typescript-eslint/camelcase */
+      },
+      handleBannerClick: (banner: Banner, index: number) => {
+        postAdBannerEvent({
+          eventType: 'click',
+          itemId: banner.id,
+          ...{
+            contentType,
+            contentId,
+            regionId,
+            userLocation: { latitude, longitude },
+          },
+        })
+
+        /* eslint-disable @typescript-eslint/camelcase */
+        trackEvent({
+          fa: {
+            action: 'V0_배너선택',
+            banner_id: banner.id,
+            banner_position: index,
+            url: banner.target,
+            poi_id: contentId,
+          },
+          ga: [
+            'V0_배너선택',
+            `${title}_${contentId}_${banner.id}_${banner.desc}_${banner.target}`,
+          ],
+        })
+        /* eslint-enable @typescript-eslint/camelcase */
+
+        navigate(banner.target)
+      },
+    }
   }
+}
+
+const AdBanners: FC<AdBannersProps> = (props) => {
+  const { padding, direction = ListDirection.VERTICAL } = props
+  const {
+    getBannersAPI,
+    getBannersParams,
+    handleBannerIntersecting,
+    handleBannerClick,
+  } = useAdBannerProps(props)
+  const [banners, setBanners] = useState([])
 
   useEffect(() => {
     let isMounted = true
     let handle: number | undefined
 
     async function fetchBanners() {
-      const response = await getAdBanners(baseEventParams)
+      const response = await getBannersAPI(getBannersParams)
 
       if (isMounted) {
         setBanners(response || [])
@@ -84,60 +198,6 @@ const AdBanners: FC<AdBannersProps> = ({
     }
     // HACK: 최초 한 번만 실행
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
-  const handleBannerIntersecting = (
-    isIntersecting: boolean,
-    banner: Banner,
-    index: number,
-  ) => {
-    if (!isIntersecting) {
-      return
-    }
-
-    postAdBannerEvent({
-      eventType: 'impression',
-      itemId: banner.id,
-      ...baseEventParams,
-    })
-
-    /* eslint-disable @typescript-eslint/camelcase */
-    trackEvent({
-      fa: {
-        action: 'V0_배너노출',
-        banner_id: banner.id,
-        banner_position: index,
-        url: banner.target,
-        poi_id: contentId,
-      },
-    })
-    /* eslint-enable @typescript-eslint/camelcase */
-  }
-
-  const handleBannerClick = (banner: Banner, index: number) => {
-    postAdBannerEvent({
-      eventType: 'click',
-      itemId: banner.id,
-      ...baseEventParams,
-    })
-
-    /* eslint-disable @typescript-eslint/camelcase */
-    trackEvent({
-      fa: {
-        action: 'V0_배너선택',
-        banner_id: banner.id,
-        banner_position: index,
-        url: banner.target,
-        poi_id: contentId,
-      },
-      ga: [
-        'V0_배너선택',
-        `${title}_${contentId}_${banner.id}_${banner.desc}_${banner.target}`,
-      ],
-    })
-    /* eslint-enable @typescript-eslint/camelcase */
-
-    navigate(banner.target)
-  }
 
   switch (direction) {
     case ListDirection.VERTICAL:
