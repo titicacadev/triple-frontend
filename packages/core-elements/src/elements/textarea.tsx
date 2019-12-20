@@ -54,9 +54,7 @@ const BaseTextarea = styled.textarea<{ focused?: string; error?: string }>`
 
 interface TextareaProps extends RemainTextarea {
   id?: string
-  value?: string
   error?: string
-  placeholder?: string
   focused?: string
   onChange?: (e: React.SyntheticEvent, value: string) => any
   onBlur?: (e: React.FocusEvent<any>) => any
