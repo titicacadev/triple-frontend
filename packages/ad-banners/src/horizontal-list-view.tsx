@@ -79,7 +79,10 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
   }
 
   return (
-    <Section minWidth={0} padding={padding}>
+    <Section
+      minWidth={0}
+      padding={{ top: padding.top, bottom: padding.bottom }}
+    >
       <Flicking
         {...FLICKING_CONFIG}
         ref={flickingRef}
@@ -91,13 +94,14 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
           setVisibleIndex(newIndex)
         }}
       >
-        {banners.map((banner, index) => {
+        {banners.concat(banners).map((banner, index) => {
           return (
             <HorizontalEntity
-              key={banner.id}
+              key={banner.id + index}
               banner={banner}
               onClick={makeBannerClickHandler(index)}
               onLoad={resizeFlicking}
+              widthOffset={Number(padding.left || padding.right) * 2}
             />
           )
         })}

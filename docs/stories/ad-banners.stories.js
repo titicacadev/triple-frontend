@@ -82,8 +82,9 @@ storiesOf('AdBanners', module)
             regionId={text('리전 ID', 'ea2b52ff-9cdb-4028-9442-7a8defd13af9')}
             direction={ListDirection.HORIZONTAL}
             padding={{
-              left: number('섹션 왼쪽 패딩'),
-              right: number('섹션 오른쪽 패딩'),
+              top: number('위 패딩'),
+              bottom: number('아래 패딩'),
+              left: number('좌우 패딩', 25),
             }}
             eventAttributes={{ title: '콘텐츠 제목' }}
           />
