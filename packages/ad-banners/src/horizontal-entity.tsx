@@ -7,13 +7,14 @@ interface HorizontalEntityProps {
   banner: Banner
   onClick: (banner: Banner) => void
   onLoad: () => void
+  widthOffset?: number
 }
 
-const BannerItem = styled.a`
+const BannerItem = styled.a<{ widthOffset: number }>`
   position: absolute;
   left: -10000px;
   display: block;
-  width: calc(100% - 50px);
+  width: ${({ widthOffset }) => `calc(100% - ${widthOffset}px)`};
 
   > img {
     width: 100%;
@@ -26,6 +27,7 @@ const HorizontalEntity: FC<HorizontalEntityProps> = ({
   banner,
   onLoad,
   onClick,
+  widthOffset,
 }) => {
   return (
     <BannerItem
@@ -34,6 +36,7 @@ const HorizontalEntity: FC<HorizontalEntityProps> = ({
 
         onClick(banner)
       }}
+      widthOffset={widthOffset}
     >
       <img src={banner.image} alt={banner.desc} onLoad={onLoad} />
     </BannerItem>
