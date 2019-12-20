@@ -43,12 +43,12 @@ const BaseInput = styled(InputMask)<{ focused?: string; error?: string }>`
     `};
 `
 
-interface InputProps {
+type HTMLInputElementProps = React.InputHTMLAttributes<HTMLInputElement>
+type remainInput = Omit<HTMLInputElementProps, 'onChange'>
+
+interface InputProps extends remainInput {
   id?: string
-  type?: string
-  value?: string
   error?: string
-  placeholder?: string
   mask?: string
   maskChar?: string | null
   focused?: string
