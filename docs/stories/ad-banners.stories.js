@@ -91,3 +91,21 @@ storiesOf('AdBanners', module)
       </EventTrackingProvider>
     </DeviceProvider>
   ))
+  .add('호텔 목록 fetch 함수 커스텀', () => (
+    <HistoryProvider>
+      <AdBanners
+        direction={ListDirection.HORIZONTAL}
+        padding={{
+          left: number('섹션 왼쪽 패딩'),
+          right: number('섹션 오른쪽 패딩'),
+        }}
+        onFetchingBanners={async () => {
+          const response = await fetch('/api/inventories/v1/hotels/items')
+          const { items = [] } = await response.json()
+          return items
+        }}
+        onBannerIntersecting={action('배너 노출')}
+        onBannerClick={action('배너 클릭')}
+      />
+    </HistoryProvider>
+  ))
