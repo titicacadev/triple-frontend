@@ -1,4 +1,5 @@
 - `Popup`의 navbar를 생략할 수 있는 `noNavbar` props 제공
+- [ad-banners] 배너 목록 조회, 노출/클릭 이벤트 핸들러를 prop으로 넣을 수 있는 기능 추가 (#353)
 
 ## 1.3.1 (2019-12-27)
 
@@ -6,8 +7,8 @@
 
 ## 1.3.0 (2019-12-23)
 
-- `form` type 재정의 
-- `styled-components` V4 로 version up 
+- `form` type 재정의
+- `styled-components` V4 로 version up
 
 ## 1.2.9 (2019-12-18)
 
