@@ -52,6 +52,11 @@ type AdBannersProps = { padding?: MarginPadding; direction?: ListDirection } & (
 
 const NOOP = () => {}
 
+const COMPONENT_SET = {
+  [ListDirection.VERTICAL]: VerticalListView,
+  [ListDirection.HORIZONTAL]: HorizontalListView,
+}
+
 function isPropsForInventoryAPI(
   props: AdBannersProps,
 ): props is InventoryBannerProps {
@@ -169,6 +174,8 @@ const AdBanners: FC<AdBannersProps> = (props) => {
   } = useAdBannerProps(props)
   const [banners, setBanners] = useState([])
 
+  const Component = COMPONENT_SET[direction]
+
   useEffect(() => {
     let isMounted = true
     let handle: number | undefined
@@ -199,30 +206,14 @@ const AdBanners: FC<AdBannersProps> = (props) => {
     // HACK: 최초 한 번만 실행
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  switch (direction) {
-    case ListDirection.VERTICAL:
-      return (
-        <VerticalListView
-          banners={banners}
-          padding={padding}
-          onClickBanner={handleBannerClick}
-          onIntersectingBanner={handleBannerIntersecting}
-        />
-      )
-
-    case ListDirection.HORIZONTAL:
-      return (
-        <HorizontalListView
-          banners={banners}
-          padding={padding}
-          onClickBanner={handleBannerClick}
-          onIntersectingBanner={handleBannerIntersecting}
-        />
-      )
-
-    default:
-      return null
-  }
+  return (
+    <Component
+      banners={banners}
+      padding={padding}
+      onClickBanner={handleBannerClick}
+      onIntersectingBanner={handleBannerIntersecting}
+    />
+  )
 }
 
 export default AdBanners
