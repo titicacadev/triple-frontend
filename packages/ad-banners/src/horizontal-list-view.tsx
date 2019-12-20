@@ -102,7 +102,7 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
               banner={banner}
               onClick={makeBannerClickHandler(index)}
               onLoad={resizeFlicking}
-              widthOffset={Number(padding.left || padding.right) * 2}
+              widthOffset={Number(padding.left || padding.right) * 2 || 25}
             />
           )
         })}
