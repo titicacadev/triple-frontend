@@ -95,7 +95,7 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
           setVisibleIndex(newIndex)
         }}
       >
-        {banners.concat(banners).map((banner, index) => {
+        {banners.map((banner, index) => {
           return (
             <HorizontalEntity
               key={banner.id + index}
