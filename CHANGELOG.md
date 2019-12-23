@@ -1,3 +1,8 @@
+## 1.3.0 (2019-12-23)
+
+- `form` type 재정의 
+- `styled-components` V4 로 version up 
+
 ## 1.2.9 (2019-12-18)
 
 - [listing-filter] FilterEntryBase에 disabled prop 추가
