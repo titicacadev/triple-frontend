@@ -10,8 +10,8 @@ import ListSection from './list-section'
 interface HorizontalListViewProps {
   banners: Banner[]
   padding?: MarginPadding
-  onClickBanner: (banner: Banner, index: number) => void
-  onIntersectingBanner: (
+  onBannerClick: (banner: Banner, index: number) => void
+  onBannerIntersect: (
     isIntersecting: boolean,
     banner: Banner,
     index: number,
@@ -33,8 +33,8 @@ const FLICKING_CONFIG: Partial<FlickingOptions> = {
 const HorizontalListView: FC<HorizontalListViewProps> = ({
   banners,
   padding,
-  onIntersectingBanner,
-  onClickBanner,
+  onBannerIntersect,
+  onBannerClick,
 }) => {
   const [visibleIndex, setVisibleIndex] = useState(FLICKING_DEFAULT_INDEX)
   const flickingRef = useRef<Flicking | null>(null)
@@ -49,7 +49,7 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
 
   const makeBannerClickHandler = (index: number) => {
     return (banner: Banner) => {
-      onClickBanner(banner, index)
+      onBannerClick(banner, index)
     }
   }
 
@@ -67,7 +67,7 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
 
   useEffect(() => {
     if (banners.length > 0) {
-      onIntersectingBanner(
+      onBannerIntersect(
         true,
         banners[FLICKING_DEFAULT_INDEX],
         FLICKING_DEFAULT_INDEX,
@@ -90,8 +90,8 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
         onMoveEnd={(e) => {
           const newIndex = e.index
 
-          onIntersectingBanner(false, banners[visibleIndex], visibleIndex)
-          onIntersectingBanner(true, banners[newIndex], newIndex)
+          onBannerIntersect(false, banners[visibleIndex], visibleIndex)
+          onBannerIntersect(true, banners[newIndex], newIndex)
           setVisibleIndex(newIndex)
         }}
       >

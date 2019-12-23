@@ -8,8 +8,8 @@ import ListSection from './list-section'
 interface VerticalListViewProps {
   banners: Banner[]
   padding?: MarginPadding
-  onClickBanner: (banner: Banner, index: number) => void
-  onIntersectingBanner: (
+  onBannerClick: (banner: Banner, index: number) => void
+  onBannerIntersect: (
     isIntersecting: boolean,
     banner: Banner,
     index: number,
@@ -19,17 +19,17 @@ interface VerticalListViewProps {
 const VerticalListView: FC<VerticalListViewProps> = ({
   banners,
   padding,
-  onIntersectingBanner,
-  onClickBanner,
+  onBannerIntersect,
+  onBannerClick,
 }) => {
   const makeBannerClickHandler = (index: number) => {
     return (banner: Banner) => {
-      onClickBanner(banner, index)
+      onBannerClick(banner, index)
     }
   }
   const makeBannerIntersectingHandler = (index: number) => {
     return (isIntersecting: boolean, banner: Banner) => {
-      onIntersectingBanner(isIntersecting, banner, index)
+      onBannerIntersect(isIntersecting, banner, index)
     }
   }
 
@@ -44,7 +44,7 @@ const VerticalListView: FC<VerticalListViewProps> = ({
           key={banner.id}
           banner={banner}
           onClick={makeBannerClickHandler(index)}
-          onChangeIsIntersecting={makeBannerIntersectingHandler(index)}
+          onIntersect={makeBannerIntersectingHandler(index)}
         />
       ))}
     </ListSection>

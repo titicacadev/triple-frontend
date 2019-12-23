@@ -37,8 +37,8 @@ interface AdSystemBannerProps {
  * Inventory API를 사용하는 배너의 Props
  */
 interface InventoryBannerProps {
-  onFetchingBanners: () => Promise<Banner[]>
-  onBannerIntersecting?: (
+  onBannersFetch: () => Promise<Banner[]>
+  onBannerIntersect?: (
     isIntersecting: boolean,
     banner: Banner,
     index: number,
@@ -60,7 +60,7 @@ const COMPONENT_SET = {
 function isPropsForInventoryAPI(
   props: AdBannersProps,
 ): props is InventoryBannerProps {
-  return 'onFetchingBanners' in props
+  return 'onBannersFetch' in props
 }
 
 function useAdBannerProps(props: AdBannersProps) {
@@ -69,11 +69,11 @@ function useAdBannerProps(props: AdBannersProps) {
   const { navigate } = useHistoryContext()
 
   if (isPropsForInventoryAPI(props)) {
-    const { onFetchingBanners, onBannerIntersecting, onBannerClick } = props
+    const { onBannersFetch, onBannerIntersect, onBannerClick } = props
 
     return {
-      getBannersAPI: onFetchingBanners,
-      handleBannerIntersecting: onBannerIntersecting || NOOP,
+      getBannersAPI: onBannersFetch,
+      handleBannerIntersecting: onBannerIntersect || NOOP,
       handleBannerClick: (banner: Banner, index: number) => {
         if (onBannerClick) {
           onBannerClick(banner, index)
@@ -200,8 +200,8 @@ const AdBanners: FC<AdBannersProps> = (props) => {
     <Component
       banners={banners}
       padding={padding}
-      onClickBanner={handleBannerClick}
-      onIntersectingBanner={handleBannerIntersecting}
+      onBannerClick={handleBannerClick}
+      onBannerIntersect={handleBannerIntersecting}
     />
   )
 }

@@ -26,8 +26,8 @@
 
 | 이름 | 필수 여부 | 설명 |
 | ---- | ---- | ---- |
-| onFetchingBanners | O | 배너 목록 조회 함수 |
-| onBannerIntersecting | X | 배너가 노출되었을 때 작동하는 함수 |
+| onBannersFetch | O | 배너 목록 조회 함수 |
+| onBannerIntersect | X | 배너가 노출되었을 때 작동하는 함수 |
 | onBannerClick | X | 배너 클릭했을 떄 작동하는 함수. navigate는 기본 실행되므로 추가할 필요없습니다. |
 
 ### 사용하는 콘텍스트
