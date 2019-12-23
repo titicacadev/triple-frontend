@@ -9,6 +9,7 @@ import {
   DeviceProvider,
 } from '@titicaca/react-contexts'
 import AdBanners, { ListDirection } from '@titicaca/ad-banners'
+import styled from 'styled-components'
 
 const CONTENT_TYPE_SET = {
   article: 'article',
@@ -16,6 +17,10 @@ const CONTENT_TYPE_SET = {
   hotel: 'hotel',
   restaurant: 'restaurant',
 }
+
+const LongContent = styled.div`
+  height: 1000px;
+`
 
 storiesOf('AdBanners', module)
   .add('광고 배너 목록', () => (
@@ -69,25 +74,30 @@ storiesOf('AdBanners', module)
         viewItem={action('viewItem')}
       >
         <HistoryProvider>
-          <AdBanners
-            contentType={select(
-              '콘텐츠 타입',
-              CONTENT_TYPE_SET,
-              CONTENT_TYPE_SET['attraction'],
-            )}
-            contentId={text(
-              '콘텐츠 ID',
-              '81977f84-ddd0-4112-8057-6cc9dab9aa70',
-            )}
-            regionId={text('리전 ID', 'ea2b52ff-9cdb-4028-9442-7a8defd13af9')}
-            direction={ListDirection.HORIZONTAL}
-            padding={{
-              top: number('위 패딩'),
-              bottom: number('아래 패딩'),
-              left: number('좌우 패딩', 25),
-            }}
-            eventAttributes={{ title: '콘텐츠 제목' }}
-          />
+          <>
+            {boolean('스크롤 테스트', false) ? (
+              <LongContent>스크롤을 내려보세요...</LongContent>
+            ) : null}
+            <AdBanners
+              contentType={select(
+                '콘텐츠 타입',
+                CONTENT_TYPE_SET,
+                CONTENT_TYPE_SET['attraction'],
+              )}
+              contentId={text(
+                '콘텐츠 ID',
+                '81977f84-ddd0-4112-8057-6cc9dab9aa70',
+              )}
+              regionId={text('리전 ID', 'ea2b52ff-9cdb-4028-9442-7a8defd13af9')}
+              direction={ListDirection.HORIZONTAL}
+              padding={{
+                top: number('위 패딩'),
+                bottom: number('아래 패딩'),
+                left: number('좌우 패딩', 25),
+              }}
+              eventAttributes={{ title: '콘텐츠 제목' }}
+            />
+          </>
         </HistoryProvider>
       </EventTrackingProvider>
     </DeviceProvider>
