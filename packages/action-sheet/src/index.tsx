@@ -15,7 +15,19 @@ import {
   Overlay,
 } from './components'
 
-const { Provider, Consumer } = React.createContext(undefined)
+interface ActionSheetContext {
+  onClose?: (e?: React.SyntheticEvent) => any
+  from: 'bottom' | 'top'
+  borderRadius: number
+}
+
+const DEFAULT_FROM = 'bottom'
+const DEFAULT_BORDER_RADIUS = 12
+
+const { Provider, Consumer } = React.createContext<ActionSheetContext>({
+  from: DEFAULT_FROM,
+  borderRadius: DEFAULT_BORDER_RADIUS,
+})
 
 function ActionItem({
   buttonLabel,
@@ -23,13 +35,12 @@ function ActionItem({
   checked,
   onClick,
   children,
-}: {
+}: React.PropsWithChildren<{
   buttonLabel?: string
   icon?: string
   checked?: boolean
   onClick?: (e?: React.SyntheticEvent) => any
-  children?: React.ReactNode
-}) {
+}>) {
   let textWidth = '100%'
   if (buttonLabel && icon) {
     textWidth = 'calc(100% - 100px)'
@@ -41,11 +52,11 @@ function ActionItem({
 
   return (
     <Consumer>
-      {({ onClose }: { onClose?: (e?: React.SyntheticEvent) => any }) => (
+      {({ onClose }) => (
         <ActionItemContainer
           onClick={
             buttonLabel
-              ? null
+              ? undefined
               : () =>
                   onClick
                     ? !onClick() && onClose && onClose()
@@ -78,23 +89,22 @@ export default function ActionSheet({
   open,
   onClose,
   title,
-  from = 'bottom',
-  borderRadius = 12,
+  from = DEFAULT_FROM,
+  borderRadius = DEFAULT_BORDER_RADIUS,
   bottomSpacing = 13,
   maxContentHeight = 'calc(100vh - 256px)',
   padding,
   children,
-}: {
+}: React.PropsWithChildren<{
   open?: boolean
-  onClose?: (e?: React.SyntheticEvent) => any
+  onClose?: ActionSheetContext['onClose']
   title?: React.ReactNode
-  from?: 'bottom' | 'top'
-  borderRadius?: number
+  from?: ActionSheetContext['from']
+  borderRadius?: ActionSheetContext['borderRadius']
   bottomSpacing?: number
   maxContentHeight?: string | number
   padding?: MarginPadding
-  children?: React.ReactNode
-}) {
+}>) {
   const actionSheetTitle = title ? (
     typeof title === 'string' ? (
       <Title>{title}</Title>
@@ -131,7 +141,7 @@ export default function ActionSheet({
   )
 }
 
-function silenceEvent(e) {
+function silenceEvent(e: React.MouseEvent) {
   return e.stopPropagation()
 }
 
