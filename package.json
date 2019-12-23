@@ -14,7 +14,7 @@
     "prettier": "prettier --write \"**/*.{ts,tsx,js,json}\"",
     "lint": "eslint '{docs,packages,tests/src}/**/*.{ts,tsx,js}'",
     "test": "cd tests && npm test",
-    "clean": "lerna exec -- rm -rf ./node_modules"
+    "clean": "lerna exec -- rm -rf ./node_modules ./lib"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
