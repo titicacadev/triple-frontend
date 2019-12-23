@@ -52,7 +52,7 @@ const BaseTextarea = styled.textarea<{ focused?: string; error?: string }>`
     `};
 `
 
-interface TextareaProps extends RemainTextarea {
+interface TextareaProps extends Omit<HTMLTextAreaElementProps, 'onChange'> {
   id?: string
   error?: string
   focused?: string
@@ -63,8 +63,6 @@ interface TextareaProps extends RemainTextarea {
 type HTMLTextAreaElementProps = React.TextareaHTMLAttributes<
   HTMLTextAreaElement
 >
-
-type RemainTextarea = Omit<HTMLTextAreaElementProps, 'onChange'>
 
 function Textarea({
   onChange,
