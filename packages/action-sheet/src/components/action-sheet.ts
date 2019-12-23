@@ -24,7 +24,8 @@ export const ContentContainer = styled.div<{
   maxContentHeight?: string | number
 }>`
   box-sizing: border-box;
-  max-height: ${({ maxContentHeight }) => unit(maxContentHeight)};
+  ${({ maxContentHeight }) =>
+    maxContentHeight ? `max-height: ${unit(maxContentHeight)};` : ''}
   overflow: auto;
 
   ::-webkit-scrollbar {
@@ -64,26 +65,30 @@ export const Overlay = styled.div<{
         ? css`
             top: 0;
             border-radius: 0 0 ${unit(borderRadius)} ${unit(borderRadius)};
-            padding-top: ${unit(padding.top)};
-            padding-bottom: ${unit(padding.bottom)};
+            ${padding.top ? `padding-top: ${unit(padding.top)};` : ''}
+            ${padding.bottom
+              ? `padding-bottom: ${unit(padding.bottom)};`
+              : ''}
             transform: translate3d(0, -100%, 0);
           `
         : css`
             bottom: 0;
             border-radius: ${unit(borderRadius)} ${unit(borderRadius)} 0 0;
-            padding-top: ${unit(padding.top)};
-            padding-bottom: ${unit(padding.bottom)};
+            ${padding.top ? `padding-top: ${unit(padding.top)};` : ''}
+            ${padding.bottom
+              ? `padding-bottom: ${unit(padding.bottom)};`
+              : ''}
 
             @supports (padding: max(0px)) and
               (padding: env(safe-area-inset-bottom)) {
               padding-bottom: max(
-                ${unit(padding.bottom)},
+                ${padding.bottom ? unit(padding.bottom) : 0},
                 calc(
                   env(safe-area-inset-bottom) +
                     ${unit(
                       typeof padding.bottom === 'number'
                         ? padding.bottom + 4
-                        : padding.bottom,
+                        : padding.bottom || 0,
                     )}
                 )
               );
@@ -173,7 +178,7 @@ export const Overlay = styled.div<{
   ${ContentContainer} {
     ${({ padding }) => css`
       padding: ${[0, padding.right, 0, padding.left]
-        .map((n) => unit(n))
+        .map((n) => (n ? unit(n) : 0))
         .join(' ')};
     `}
   }
