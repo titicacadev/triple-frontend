@@ -98,7 +98,7 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
         {banners.map((banner, index) => {
           return (
             <HorizontalEntity
-              key={banner.id + index}
+              key={banner.id}
               banner={banner}
               onClick={makeBannerClickHandler(index)}
               onLoad={resizeFlicking}
