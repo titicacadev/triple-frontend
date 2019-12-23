@@ -73,7 +73,7 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
         FLICKING_DEFAULT_INDEX,
       )
     }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [banners]) // eslint-disable-line react-hooks/exhaustive-deps
 
   if (banners.length === 0) {
     return null
