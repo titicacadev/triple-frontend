@@ -1,12 +1,12 @@
 import * as React from 'react'
-import styled, { css, InterpolationValue } from 'styled-components'
+import styled, { css } from 'styled-components'
 import Icon from './icon'
 import { MarginPadding, GlobalSizes } from '../commons'
 import * as CSS from 'csstype'
 
 type OverlayType = 'gradient' | 'dark'
 
-const OverlayStyle: { [key in OverlayType]: InterpolationValue[] } = {
+const OverlayStyle: { [key in OverlayType]: ReturnType<typeof css> } = {
   dark: css`
     background-color: rgba(0, 0, 0, 0.8);
   `,
@@ -177,7 +177,7 @@ const ImageFrameBase = styled.div<{
 
   ${({ asPlaceholder }) =>
     asPlaceholder
-      ? css`
+      ? css<{ src?: string }>`
           background-color: #efefef;
           background-repeat: no-repeat;
           background-position: center;
