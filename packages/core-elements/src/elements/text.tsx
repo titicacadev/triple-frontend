@@ -146,7 +146,7 @@ const TextBase = styled.div<{
 
   ${({ strikethrough }) =>
     strikethrough &&
-    css`
+    css<{ color?: string; alpha?: number }>`
       position: relative;
       &:after {
         position: absolute;

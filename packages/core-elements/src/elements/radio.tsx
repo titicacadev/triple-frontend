@@ -23,7 +23,7 @@ const RadioFrame = styled.div.attrs<{ name?: string }>({})`
   }
 `
 
-const RadioContainer = styled.div.attrs<{ name?: string }>({})`
+const RadioContainer = styled.div.attrs({})<{ name?: string }>`
   display: table;
   width: 100%;
 `
@@ -57,9 +57,9 @@ const Icon = styled.span<{ selected?: boolean }>`
 `
 
 // eslint-disable-next-line no-unexpected-multiline
-const GenderContainer = styled.div.attrs<{ name?: string; value?: string }>(
-  {},
-)<{
+const GenderContainer = styled.div.attrs({})<{
+  name?: string
+  value?: string
   selected?: boolean
 }>`
   width: 50%;

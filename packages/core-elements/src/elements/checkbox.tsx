@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled, { css, InterpolationValue } from 'styled-components'
+import styled, { css } from 'styled-components'
 import { withField } from '../utils/form-field'
 import { GetGlobalColor, MarginPadding } from '../commons'
 
@@ -46,7 +46,7 @@ const generateFillStyles = ({
 }
 
 const TextAligns: Partial<
-  Record<CSS.TextAlignLastProperty, InterpolationValue[]>
+  Record<CSS.TextAlignLastProperty, ReturnType<typeof css>>
 > = {
   left: css`
     text-align: left;
@@ -57,7 +57,8 @@ const TextAligns: Partial<
 }
 
 // eslint-disable-next-line no-unexpected-multiline
-const ConfirmFrame = styled.div.attrs<{ name?: string }>({})<{
+const ConfirmFrame = styled.div.attrs({})<{
+  name?: string
   textAlign?: string
   borderless?: boolean
   checked?: boolean

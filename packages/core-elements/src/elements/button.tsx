@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled, { css, InterpolationValue } from 'styled-components'
+import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import Container from './container'
 import {
@@ -9,7 +9,7 @@ import {
   GetGlobalColor,
 } from '../commons'
 
-const SIZES: Partial<Record<GlobalSizes, InterpolationValue[]>> = {
+const SIZES: Partial<Record<GlobalSizes, ReturnType<typeof css>>> = {
   tiny: css`
     font-size: 13px;
     line-height: 16px;
@@ -260,7 +260,9 @@ const ButtonGroup = styled(Container)<{
   }
 `
 
-const BUTTON_ICON_STYLES: Partial<Record<GlobalSizes, InterpolationValue[]>> = {
+const BUTTON_ICON_STYLES: Partial<
+  Record<GlobalSizes, ReturnType<typeof css>>
+> = {
   tiny: css`
     width: 15px;
     height: 12px;

@@ -123,7 +123,7 @@ export const PromoLabel = styled.div<PromoLabelProps>`
 
   ${({ emphasized }) =>
     emphasized
-      ? css`
+      ? css<{ color: PromoLabelProps['color'] }>`
           font-weight: bold;
             ${({ color }) => {
               const {
@@ -135,7 +135,7 @@ export const PromoLabel = styled.div<PromoLabelProps>`
             }}
           color: rgba(${GetGlobalColor('white')}, 1);
         `
-      : css`
+      : css<{ color: PromoLabelProps['color'] }>`
           font-weight: normal;
           ${({ color }) => {
             const {
