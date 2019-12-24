@@ -3,14 +3,16 @@ import qs from 'querystring'
 
 export type ContentType = 'article' | 'attraction' | 'hotel' | 'restaurant'
 
+type UserLocation = {
+  latitude?: number | null
+  longitude?: number | null
+}
+
 interface AdBannersFetchingParams {
   contentType: ContentType
   contentId: string
   regionId?: string
-  userLocation?: {
-    latitude?: number
-    longitude?: number
-  }
+  userLocation?: UserLocation
 }
 
 interface AdBannerEventPostingParams {
@@ -19,10 +21,7 @@ interface AdBannerEventPostingParams {
   itemId: string
   eventType: 'click' | 'impression'
   regionId?: string
-  userLocation?: {
-    latitude?: number
-    longitude?: number
-  }
+  userLocation?: UserLocation
 }
 
 /**
@@ -79,7 +78,7 @@ export async function postAdBannerEvent({
   itemId,
   eventType,
   regionId,
-  userLocation: { latitude, longitude },
+  userLocation: { latitude, longitude } = {},
 }: AdBannerEventPostingParams) {
   const payload = {
     content: {
