@@ -29,3 +29,12 @@ export type GlobalColors = 'blue' | 'gray' | 'white' | 'red'
 export function GetGlobalColor(colorString: GlobalColors | string) {
   return GlobalColorSet[colorString as GlobalColors] || colorString // HACK: GlobalColors가 아닌 경우 colorString을 그대로 반환하게 되므로 에러 없음
 }
+
+export const MEDIA_FRAME_OPTIONS: Partial<Record<GlobalSizes, string>> = {
+  mini: '25%',
+  small: '60%',
+  medium: '75%',
+  large: '100%',
+  big: '110%',
+  huge: '160%',
+}

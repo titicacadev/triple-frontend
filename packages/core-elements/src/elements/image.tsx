@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 import Icon from './icon'
-import { MarginPadding, GlobalSizes } from '../commons'
+import { MarginPadding, GlobalSizes, MEDIA_FRAME_OPTIONS } from '../commons'
 import * as CSS from 'csstype'
 import { formatMarginPadding } from '../mixins'
 
@@ -30,15 +30,6 @@ const IMAGE_HEIGHT_OPTIONS: Partial<Record<GlobalSizes, string>> = {
 const ROUND_SIZES: Partial<Record<GlobalSizes, number>> = {
   small: 40,
   medium: 60,
-}
-
-const IMAGE_FRAME_OPTIONS: Partial<Record<GlobalSizes, string>> = {
-  mini: '25%',
-  small: '60%',
-  medium: '75%',
-  large: '100%',
-  big: '110%',
-  huge: '160%',
 }
 
 const RawImage = styled.img<{ borderRadius?: number; overlay?: boolean }>`
@@ -198,7 +189,7 @@ const ImageFrameWithFixedDimensions = styled(ImageFrameBase)<{
 const ImageFrameWithFixedRatio = styled(ImageFrameBase)<{
   frame?: GlobalSizes
 }>`
-  padding-top: ${({ frame }) => IMAGE_FRAME_OPTIONS[frame || 'small']};
+  padding-top: ${({ frame }) => MEDIA_FRAME_OPTIONS[frame || 'small']};
   width: 100%;
 `
 
