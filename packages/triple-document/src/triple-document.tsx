@@ -188,7 +188,7 @@ export const ELEMENTS: ElementSet = {
   note: Note,
   list: ListElement,
   regions: Regions,
-  video: Video,
+  video: ExternalVideo,
   tnaProducts: DocumentTnaProducts,
   table: TableElement,
   coupon: Coupon,
@@ -756,7 +756,7 @@ const VideoPlayer = styled.iframe`
   height: 100%;
 `
 
-function Video({
+function ExternalVideo({
   value: { provider, identifier },
 }: {
   value: { provider: string; identifier: string }
