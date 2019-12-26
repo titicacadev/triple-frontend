@@ -17,7 +17,6 @@ import {
   Button,
   Text,
   Table,
-  Image,
   List,
   Carousel,
   Container,
@@ -51,6 +50,7 @@ import {
 import { RegionListElement } from './region'
 import { TnaProductsList, TnaProductData } from './tna'
 import Coupon from './coupon'
+import Media from './media'
 import { RegionData } from './types'
 
 type ExtendedPOIListElementData = POIListElementData & {
@@ -343,15 +343,11 @@ function Images({
       margin={{ top: 40, bottom: images.some(({ title }) => title) ? 10 : 30 }}
     >
       {images.map((image, i) => {
-        const { frame, sizes, sourceUrl } = image
-
         return (
           <ElementContainer key={i}>
-            <Image
-              src={sizes.large.url}
-              sourceUrl={sourceUrl}
-              frame={frame}
-              onClick={(e?: React.SyntheticEvent) => handleClick(e, image)}
+            <Media
+              {...image}
+              handleClick={handleClick}
               ImageSource={ImageSource}
             />
             {image.title ? <ImageCaption>{image.title}</ImageCaption> : null}
@@ -378,17 +374,14 @@ function EmbeddedImage({
   ImageSource: unknown
 }) {
   if (image) {
-    const { sizes, sourceUrl, frame } = image
-
     const handleClick = generateClickHandler(onLinkClick, onImageClick)
 
     return (
-      <Image
-        frame={frame || 'medium'}
-        src={sizes.large.url}
-        sourceUrl={sourceUrl}
-        onClick={(e?: React.SyntheticEvent) => handleClick(e, image)}
+      <Media
+        {...image}
+        frame={image.frame || 'medium'}
         ImageSource={ImageSource}
+        handleClick={handleClick}
       />
     )
   }
