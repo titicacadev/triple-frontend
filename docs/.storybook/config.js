@@ -1,12 +1,19 @@
+import React from 'react'
 import { addParameters, addDecorator, configure } from '@storybook/react'
 import { jsxDecorator } from 'storybook-addon-jsx'
 import { withKnobs } from '@storybook/addon-knobs'
-import '@titicaca/core-elements/lib/global-style'
+import { GlobalStyle } from '@titicaca/core-elements'
 
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 
 addDecorator(jsxDecorator)
 addDecorator(withKnobs)
+addDecorator((stories) => (
+  <>
+    <GlobalStyle />
+    {stories()}
+  </>
+))
 
 addParameters({
   viewport: {
