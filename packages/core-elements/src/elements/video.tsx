@@ -34,8 +34,8 @@ export default function Video({
   fallbackImageUrl,
   frame,
 }: {
-  src: string
-  srcType: string
+  src?: string
+  srcType?: string
   cloudinaryBucket?: string
   cloudinaryId?: string
   fallbackImageUrl: string
