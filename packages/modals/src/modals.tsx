@@ -57,10 +57,9 @@ export function Alert({
   children?: string
   title?: string
   open?: boolean
-  confirmText?: string
+  confirmText?: string | React.ReactNode
   messageType?: string
   onClose?: (e?: React.SyntheticEvent) => any
-  onCancel?: (e?: React.SyntheticEvent) => any
   onConfirm?: (e?: React.SyntheticEvent) => any
 }) {
   return (
