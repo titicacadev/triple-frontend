@@ -2,6 +2,10 @@ export function deriveCurrentStateAndCount({
   initialState,
   initialCount,
   currentState,
+}: {
+  initialState?: boolean | unknown
+  initialCount?: number
+  currentState?: boolean | unknown
 }) {
   if (typeof initialState !== 'boolean' || typeof currentState !== 'boolean') {
     /* At least one of the status are unknown: Reduces to a bitwise OR operation */
