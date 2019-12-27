@@ -49,12 +49,14 @@ export default function ScrapButton({
   pressed?: boolean
 }) {
   const ButtonElement = compact ? CompactScrapButton : RegularScrapButton
-  const handleClick =
-    onScrapedChange &&
-    ((e) => {
-      e.stopPropagation()
-      onScrapedChange(e, { ...resource, scraped: !scraped })
-    })
+  const handleClick:
+    | React.MouseEventHandler<HTMLDivElement>
+    | undefined = onScrapedChange
+    ? (e) => {
+        e.stopPropagation()
+        onScrapedChange(e, { ...resource, scraped: !scraped })
+      }
+    : undefined
 
   return (
     <ButtonElement
