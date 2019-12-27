@@ -1,3 +1,7 @@
+## 1.3.1 (2019-12-27)
+
+- `Alert` confirmText type 변경, 불필요한 prop 제거
+
 ## 1.3.0 (2019-12-23)
 
 - `form` type 재정의 
