@@ -1,7 +1,7 @@
 {
   "name": "@titicaca/core-elements",
   "version": "1.7.1",
-  "description": "Triple Design System Library",
+  "description": "Core elements of Triple Design System",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
