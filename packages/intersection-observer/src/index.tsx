@@ -1,5 +1,6 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
+import { Props } from '@researchgate/react-intersection-observer'
 
 const OriginalObserver = dynamic(async () => {
   try {
@@ -20,10 +21,10 @@ const OriginalObserver = dynamic(async () => {
       '@researchgate/react-intersection-observer'
     )
   } catch (e) {
-    return Promise.resolve(({ children }) => children || null)
+    return Promise.resolve(({ children }: Props) => children || null)
   }
 })
 
-export default function IntersectionObserver(props) {
+export default function IntersectionObserver(props: Props) {
   return <OriginalObserver {...props} />
 }
