@@ -38,6 +38,7 @@ export default function Popup({
   onClose,
   icon = 'close',
   title,
+  noNavbar,
   children,
 }: PropsWithChildren<{
   open: boolean
@@ -45,14 +46,17 @@ export default function Popup({
   borderless?: boolean
   title?: string
   icon?: NavbarIcon
+  noNavbar?: boolean
 }>) {
   return (
     <CSSTransition timeout={0} in={open} classNames="fade" appear>
       {/* https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451 */}
       <PopupContainer>
-        <Navbar borderless={borderless} title={title}>
-          <Navbar.Item floated="left" icon={icon} onClick={onClose} />
-        </Navbar>
+        {noNavbar ? null : (
+          <Navbar borderless={borderless} title={title}>
+            <Navbar.Item floated="left" icon={icon} onClick={onClose} />
+          </Navbar>
+        )}
 
         {children}
       </PopupContainer>
