@@ -33,7 +33,7 @@ const FLICKING_CONFIG: Partial<FlickingOptions> = {
 
 const HorizontalListView: FC<HorizontalListViewProps> = ({
   banners,
-  padding,
+  padding = {},
   onBannerIntersect,
   onBannerClick,
 }) => {
@@ -72,7 +72,7 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
 
   return (
     <IntersectionObserver
-      onChange={({ isIntersecting }) => {
+      onChange={({ isIntersecting }: { isIntersecting: boolean }) => {
         if (isIntersecting && banners.length > 0) {
           onBannerIntersect(true, banners[visibleIndex], visibleIndex)
         }
