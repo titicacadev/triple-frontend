@@ -55,8 +55,6 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
   }
 
   useEffect(() => {
-    resizeFlicking()
-
     window.addEventListener('orientationchange', resizeFlicking)
     window.addEventListener('resize', resizeFlicking)
 
@@ -64,7 +62,11 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
       window.removeEventListener('orientationchange', resizeFlicking)
       window.removeEventListener('resize', resizeFlicking)
     }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    resizeFlicking()
+  }, [padding.left, padding.right])
 
   if (banners.length === 0) {
     return null
