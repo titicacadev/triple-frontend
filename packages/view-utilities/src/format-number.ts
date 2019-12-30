@@ -5,5 +5,5 @@ export function formatNumber(
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
 
-  return '0'
+  return ''
 }
