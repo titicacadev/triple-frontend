@@ -46,7 +46,7 @@ export default function SearchNavbar({
   onFocus,
   value,
 }: {
-  placeholder: string
+  placeholder?: string
   onBackClick: (event: React.SyntheticEvent) => void
   onDeleteClick?: (event: React.SyntheticEvent) => void
   onInputChange?: (e: React.SyntheticEvent, value: string) => void
