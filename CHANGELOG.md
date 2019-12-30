@@ -1,3 +1,5 @@
+- `Popup`의 navbar를 생략할 수 있는 `noNavbar` props 제공
+
 ## 1.3.1 (2019-12-27)
 
 - `Alert` confirmText type 변경, 불필요한 prop 제거
