@@ -7,7 +7,7 @@ interface HorizontalEntityProps {
   banner: Banner
   onClick: (banner: Banner) => void
   onLoad: () => void
-  widthOffset?: number
+  widthOffset: number
 }
 
 const BannerItem = styled.a<{ widthOffset: number }>`

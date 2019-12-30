@@ -87,7 +87,7 @@ function useAdBannerProps(props: AdBannersProps) {
       contentType,
       contentId,
       regionId,
-      eventAttributes: { title },
+      eventAttributes: { title } = { title: undefined },
     } = props
 
     const baseParams = {
