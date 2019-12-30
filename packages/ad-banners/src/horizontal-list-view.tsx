@@ -78,34 +78,36 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
         }
       }}
     >
-      <ListSection
-        minWidth={0}
-        padding={{ top: padding.top, bottom: padding.bottom }}
-      >
-        <Flicking
-          {...FLICKING_CONFIG}
-          ref={flickingRef}
-          onMoveEnd={(e) => {
-            const newIndex = e.index
-
-            onBannerIntersect(false, banners[visibleIndex], visibleIndex)
-            onBannerIntersect(true, banners[newIndex], newIndex)
-            setVisibleIndex(newIndex)
-          }}
+      <div>
+        <ListSection
+          minWidth={0}
+          padding={{ top: padding.top, bottom: padding.bottom }}
         >
-          {banners.map((banner, index) => {
-            return (
-              <HorizontalEntity
-                key={banner.id}
-                banner={banner}
-                onClick={makeBannerClickHandler(index)}
-                onLoad={resizeFlicking}
-                widthOffset={Number(padding.left || padding.right) * 2 || 25}
-              />
-            )
-          })}
-        </Flicking>
-      </ListSection>
+          <Flicking
+            {...FLICKING_CONFIG}
+            ref={flickingRef}
+            onMoveEnd={(e) => {
+              const newIndex = e.index
+
+              onBannerIntersect(false, banners[visibleIndex], visibleIndex)
+              onBannerIntersect(true, banners[newIndex], newIndex)
+              setVisibleIndex(newIndex)
+            }}
+          >
+            {banners.map((banner, index) => {
+              return (
+                <HorizontalEntity
+                  key={banner.id}
+                  banner={banner}
+                  onClick={makeBannerClickHandler(index)}
+                  onLoad={resizeFlicking}
+                  widthOffset={Number(padding.left || padding.right) * 2 || 25}
+                />
+              )
+            })}
+          </Flicking>
+        </ListSection>
+      </div>
     </IntersectionObserver>
   )
 }
