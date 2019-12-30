@@ -1,7 +1,11 @@
 import * as React from 'react'
 import moment from 'moment'
 import styled from 'styled-components'
-import DayPicker, { DayModifiers } from 'react-day-picker'
+import DayPicker, {
+  DayModifiers,
+  BeforeModifier,
+  AfterModifier,
+} from 'react-day-picker'
 
 import 'moment/locale/ko'
 import MomentLocaleUtils from 'react-day-picker/moment'
@@ -71,16 +75,16 @@ function DatePicker({
   height,
   publicHolidays,
 }: {
-  day: string
-  beforeBlock: Date
-  afterBlock: Date
-  numberOfMonths: number
-  onDateChange: Function
+  day: string | null
+  onDateChange: (date: Date) => void
+  beforeBlock?: Date
+  afterBlock?: Date
+  numberOfMonths?: number
   disabledDays?: string[]
   height?: string
   publicHolidays?: Date[]
 }) {
-  const selectedDay = day && moment(day).toDate()
+  const selectedDay = day ? moment(day).toDate() : null
 
   return (
     <PickerFrame>
@@ -103,13 +107,13 @@ function DatePicker({
             saturday: (day) => day.getDay() === 6,
           }}
           disabledDays={[
-            ...(disabledDays.length > 0
-              ? disabledDays.map((date) => moment(date).toDate())
-              : []),
-            {
-              before: beforeBlock,
-              after: afterBlock,
-            },
+            ...disabledDays.map((date) => moment(date).toDate()),
+            beforeBlock || afterBlock
+              ? ({
+                  before: beforeBlock,
+                  after: afterBlock,
+                } as BeforeModifier | AfterModifier) // HACK: before, after 중 하나만 존재할 때 undefiend 속성값을 허용하지 않아 타입 체크를 우회.
+              : undefined,
           ]}
         />
       </DayContainer>

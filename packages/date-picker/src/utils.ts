@@ -4,7 +4,7 @@ export function formatMonthTitle(d: Date): string {
   return `${d.getFullYear()}년 ${[d.getMonth() + 1]}월`
 }
 
-export function isValidDate(d: Date): boolean {
+export function isValidDate(d: unknown): boolean {
   return d instanceof Date && !isNaN(d.getTime())
 }
 

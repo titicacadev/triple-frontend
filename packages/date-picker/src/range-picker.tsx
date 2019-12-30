@@ -1,7 +1,11 @@
 import * as React from 'react'
 import moment from 'moment'
 import styled, { css } from 'styled-components'
-import DayPicker, { DayModifiers } from 'react-day-picker'
+import DayPicker, {
+  DayModifiers,
+  BeforeModifier,
+  AfterModifier,
+} from 'react-day-picker'
 
 import 'moment/locale/ko'
 import MomentLocaleUtils from 'react-day-picker/moment'
@@ -116,22 +120,29 @@ function RangePicker({
   height,
   publicHolidays,
 }: {
-  startDate: string
-  endDate: string
-  beforeBlock: Date
-  afterBlock: Date
-  onDatesChange: Function
-  numberOfMonths: number
+  startDate: string | null
+  endDate: string | null
+  beforeBlock?: Date
+  afterBlock?: Date
+  onDatesChange: (params: {
+    startDate: string | null
+    endDate: string | null
+    nights: number
+  }) => void
+  numberOfMonths?: number
   disabledDays?: string[]
   height?: string
   publicHolidays?: Date[]
 }) {
-  const from = startDate && moment(startDate).toDate()
-  const to = endDate && moment(endDate).toDate()
+  const from = startDate ? moment(startDate).toDate() : null
+  const to = endDate ? moment(endDate).toDate() : null
   const initialMonth = moment()
     .add(1, 'day')
     .startOf('day')
     .toDate()
+  const selectedDays = [from, from && to ? { from, to } : undefined].filter(
+    (day) => !!day,
+  )
 
   return (
     <PickerFrame>
@@ -141,7 +152,7 @@ function RangePicker({
           weekdaysShort={['일', '월', '화', '수', '목', '금', '토']}
           localeUtils={{ ...MomentLocaleUtils, formatMonthTitle }}
           initialMonth={initialMonth}
-          selectedDays={[from, { from, to }]}
+          selectedDays={selectedDays}
           onDayClick={(day: Date, modifiers: DayModifiers) => {
             if (modifiers.disabled) {
               return
@@ -151,15 +162,16 @@ function RangePicker({
               from: nextFrom,
               to: nextTo,
             } = DayPicker.DateUtils.addDayToRange(day, {
-              from,
-              to,
+              // HACK: 코드는 falsy값을 처리할 수 있게되어있지만, 타입 정의가 잘못되어있음
+              from: from as any,
+              to: to as any,
             })
 
             if (
               !isValidDate(to) &&
               moment(day)
                 .startOf('day')
-                .isSame(moment(from).startOf('day'))
+                .isSame(moment(from as any).startOf('day'))
             ) {
               return
             }
@@ -190,13 +202,13 @@ function RangePicker({
             'included-range': from && to ? generatePaddedRange(from, to) : [],
           }}
           disabledDays={[
-            ...(disabledDays.length > 0
-              ? disabledDays.map((date) => moment(date).toDate())
-              : []),
-            {
-              before: beforeBlock,
-              after: afterBlock,
-            },
+            ...disabledDays.map((date) => moment(date).toDate()),
+            beforeBlock || afterBlock
+              ? ({
+                  before: beforeBlock,
+                  after: afterBlock,
+                } as BeforeModifier | AfterModifier) // HACK: before, after 중 하나만 존재할 때 undefiend 속성값을 허용하지 않아 타입 체크를 우회.
+              : undefined,
           ]}
         />
       </RangeContainer>
