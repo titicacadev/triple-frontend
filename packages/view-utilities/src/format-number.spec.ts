@@ -25,4 +25,10 @@ describe('formatNumber', function() {
     assert.strictEqual(formatNumber(null), '')
     assert.strictEqual(formatNumber(undefined), '')
   })
+
+  it('should not add commas in decimals', function() {
+    assert.strictEqual(formatNumber(0.1), '0.1')
+    assert.strictEqual(formatNumber(0.1345), '0.1345')
+    assert.strictEqual(formatNumber(123214.324234), '123,214.324234')
+  })
 })
