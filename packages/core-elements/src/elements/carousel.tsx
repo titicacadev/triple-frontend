@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import { MarginPadding, GlobalSizes } from '../commons'
 import * as React from 'react'
+import { marginMixin } from '../mixins'
 
 interface CarouselBaseProps {
   margin?: MarginPadding
@@ -14,14 +15,7 @@ const CarouselBase = styled.ul<CarouselBaseProps>`
 
   padding-bottom: 10px;
 
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
-    `};
+  ${marginMixin}
 
   white-space: nowrap;
   overflow-x: scroll;

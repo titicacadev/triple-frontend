@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { GlobalSizes, MarginPadding } from '../commons'
+import { marginMixin } from '../mixins'
 
 export type TagColors = 'special' | 'pink' | 'purple' | 'default'
 
@@ -39,14 +40,7 @@ const TagBase = styled.div<{
   background-color: ${({ type }) => BG_COLORS[type || 'default']};
   border-radius: 4px;
 
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
-    `};
+  ${marginMixin}
 
   ${({ size = 'mini' }) => {
     const padding = PADDING_SIZE[size]

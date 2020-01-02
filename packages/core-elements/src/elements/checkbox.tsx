@@ -4,6 +4,7 @@ import { withField } from '../utils/form-field'
 import { GetGlobalColor, MarginPadding } from '../commons'
 
 import * as CSS from 'csstype'
+import { paddingMixin } from '../mixins'
 
 type FillType = 'full' | 'border' | 'text'
 
@@ -85,14 +86,7 @@ const ConfirmFrame = styled.div.attrs({})<{
       border: none;
     `};
 
-  ${({ padding }) =>
-    padding &&
-    css`
-      padding-top: ${padding.top}px;
-      padding-right: ${padding.right}px;
-      padding-bottom: ${padding.bottom}px;
-      padding-left: ${padding.left}px;
-    `};
+  ${paddingMixin}
 `
 
 const Icon = styled.span<{ borderless?: boolean; checked?: boolean }>`

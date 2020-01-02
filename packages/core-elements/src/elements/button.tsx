@@ -8,6 +8,7 @@ import {
   MarginPadding,
   GetGlobalColor,
 } from '../commons'
+import { marginMixin, formatMarginPadding } from '../mixins'
 
 const SIZES: Partial<Record<GlobalSizes, ReturnType<typeof css>>> = {
   tiny: css`
@@ -60,14 +61,7 @@ const ButtonBase = styled.a<ButtonBaseProp>`
       display: block;
     `};
 
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
-    `};
+  ${marginMixin}
 
   ${({ disabled }) =>
     disabled &&
@@ -104,12 +98,7 @@ const IconButton = styled(ButtonBase)<{ name?: string }>`
   ${({ size = 'tiny' }) => {
     const padding = ICON_PADDINGS[size]
 
-    return css`
-      padding-top: ${padding.top || 0}px;
-      padding-bottom: ${padding.bottom || 0}px;
-      padding-left: ${padding.left || 0}px;
-      padding-right: ${padding.right || 0}px;
-    `
+    return formatMarginPadding(padding, 'padding')
   }};
 `
 
@@ -193,12 +182,7 @@ const NormalButton = styled(ButtonBase)<{
   ${({ compact, size = 'tiny' }) => {
     const padding = (compact ? COMPACT_NORMAL_PADDINGS : NORMAL_PADDINGS)[size]
 
-    return css`
-      padding-top: ${padding.top || 0}px;
-      padding-bottom: ${padding.bottom || 0}px;
-      padding-left: ${padding.left || 0}px;
-      padding-right: ${padding.right || 0}px;
-    `
+    return formatMarginPadding(padding, 'padding')
   }};
 `
 

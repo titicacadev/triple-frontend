@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 import Icon from './icon'
 import { MarginPadding, GlobalSizes } from '../commons'
 import * as CSS from 'csstype'
+import { formatMarginPadding } from '../mixins'
 
 type OverlayType = 'gradient' | 'dark'
 
@@ -81,14 +82,7 @@ const ImageOverlay = styled.div<{
 
   ${({ overlayType = 'gradient' }) => OverlayStyle[overlayType]}
 
-  ${({ overlayPadding }) =>
-    overlayPadding &&
-    css`
-      padding-top: ${overlayPadding.top || 0}px;
-      padding-bottom: ${overlayPadding.bottom || 0}px;
-      padding-left: ${overlayPadding.left || 0}px;
-      padding-right: ${overlayPadding.right || 0}px;
-    `};
+  ${({ overlayPadding }) => formatMarginPadding(overlayPadding, 'padding')}
 `
 
 const IconContainer = styled.div`

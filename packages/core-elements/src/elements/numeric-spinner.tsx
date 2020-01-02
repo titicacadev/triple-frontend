@@ -1,7 +1,8 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 import Text from './text'
-import { MarginPadding } from '../commons'
+import { MarginPadding, GlobalSizes } from '../commons'
+import { paddingMixin } from '../mixins'
 
 interface NumericProp {
   borderless?: boolean
@@ -19,14 +20,7 @@ const NumericFrame = styled.div<NumericProp>`
       border: none;
     `};
 
-  ${({ padding }) =>
-    padding &&
-    css`
-      padding-top: ${padding.top}px;
-      padding-right: ${padding.right}px;
-      padding-bottom: ${padding.bottom}px;
-      padding-left: ${padding.left}px;
-    `};
+  ${paddingMixin}
 `
 
 const NumericContainer = styled.div`

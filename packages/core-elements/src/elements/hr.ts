@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import { MarginPadding } from '../commons'
+import { marginMixin } from '../mixins'
 
 interface HRProp {
   compact?: boolean
@@ -17,14 +18,7 @@ export const HR1 = styled.div<HRProp>`
       margin: 0;
     `};
 
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
-    `};
+  ${marginMixin}
 `
 
 export const HR2 = styled.div<HRProp>`
@@ -38,14 +32,7 @@ export const HR2 = styled.div<HRProp>`
       margin: 0;
     `};
 
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
-    `};
+  ${marginMixin}
 `
 
 export const HR3 = styled.div<{ height?: number }>`
