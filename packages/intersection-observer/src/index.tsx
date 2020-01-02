@@ -20,7 +20,9 @@ const OriginalObserver = dynamic(async () => {
       '@researchgate/react-intersection-observer'
     )
   } catch (e) {
-    return Promise.resolve(({ children }: Props) => children || null)
+    return Promise.resolve((({ children }) => children || null) as React.FC<
+      Props
+    >)
   }
 })
 
