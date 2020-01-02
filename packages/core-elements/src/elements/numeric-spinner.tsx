@@ -57,8 +57,8 @@ export default function NumricSpinner({
   label,
   sublabel,
   strikeLabel,
-  value,
-  max,
+  value = 0,
+  max = Infinity,
   min = 1,
   onChange,
   borderless,
@@ -74,11 +74,11 @@ export default function NumricSpinner({
   onChange?: (arg1: number) => any
   borderless?: boolean
   padding?: MarginPadding
-  size?: string
+  size?: GlobalSizes | number
 }) {
   const setQuantity = (value: number): void => {
     if (value >= 0 && value <= max) {
-      onChange(value)
+      onChange && onChange(value)
     }
   }
 
@@ -104,7 +104,7 @@ export default function NumricSpinner({
         <Text
           size="mini"
           color="gray"
-          alpha="0.3"
+          alpha={0.3}
           inline
           strikethrough
           margin={{ left: 2 }}

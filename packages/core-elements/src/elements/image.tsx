@@ -190,7 +190,7 @@ const ImageFrameWithFixedDimensions = styled(ImageFrameBase)<{
   width?: number
 }>`
   height: ${({ height, size }) =>
-    (height && `${height}px`) || IMAGE_HEIGHT_OPTIONS[size]};
+    (height && `${height}px`) || (size ? IMAGE_HEIGHT_OPTIONS[size] : '')};
   width: ${({ width }) => (width && `${width}px`) || '100%'};
 `
 
@@ -209,11 +209,12 @@ const RoundImage = styled.img<{
   width?: number
 }>`
   width: ${({ size, width }) =>
-    ROUND_SIZES[size] || width || ROUND_SIZES['small']}px;
+    (size && ROUND_SIZES[size]) || width || ROUND_SIZES['small']}px;
   height: ${({ size, width }) =>
-    ROUND_SIZES[size] || width || ROUND_SIZES['small']}px;
+    (size && ROUND_SIZES[size]) || width || ROUND_SIZES['small']}px;
   border-radius: ${({ size, width }) =>
-    (ROUND_SIZES[size] || width || ROUND_SIZES['small']) / 2}px;
+    ((size && ROUND_SIZES[size]) || width || (ROUND_SIZES['small'] as number)) /
+    2}px;
   background-color: #efefef;
   object-fit: cover;
 

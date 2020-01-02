@@ -37,7 +37,7 @@ interface ButtonBaseProp {
 
 const ButtonBase = styled.a<ButtonBaseProp>`
   display: inline-block;
-  ${({ size }) => SIZES[size]}
+  ${({ size }) => (size ? SIZES[size] : '')}
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
   text-align: center;
   text-decoration: none;
@@ -88,7 +88,8 @@ const IconButton = styled(ButtonBase)<{ name?: string }>`
   &:before {
     display: block;
     height: 30px;
-    background-image: url(${({ name }) => ICON_BUTTON_URLS[name]});
+    ${({ name }) =>
+      name ? `background-image: url(${ICON_BUTTON_URLS[name]});` : ''}
     background-size: 30px 30px;
     background-position: center center;
     background-repeat: no-repeat;
@@ -96,7 +97,7 @@ const IconButton = styled(ButtonBase)<{ name?: string }>`
   }
 
   ${({ size = 'tiny' }) => {
-    const padding = ICON_PADDINGS[size]
+    const padding: MarginPadding | undefined = ICON_PADDINGS[size]
 
     return formatMarginPadding(padding, 'padding')
   }};
@@ -143,10 +144,11 @@ const BasicButton = styled(ButtonBase)<BasicButtonProp>`
         color: white;
       `
     } else {
+      const { border, text } = BASIC_COLORS[color || 'gray'] || {}
       return css`
         background-color: transparent;
-        border-color: ${BASIC_COLORS[color || 'gray'].border};
-        color: ${BASIC_COLORS[color || 'gray'].text};
+        ${border && `border-color: ${border};`}
+        ${text && `color: ${text};`}
       `
     }
   }};
@@ -226,10 +228,10 @@ const ButtonGroup = styled(Container)<{
   width: 100%;
 
   ${ButtonBase} {
-    ${({ horizontalGap, children }) => {
+    ${({ horizontalGap = 0, children }) => {
       const childrenCount = React.Children.count(children)
 
-      return (horizontalGap || 0) > 0
+      return horizontalGap > 0
         ? css`
             width: ${childrenCount > 0
               ? `calc((100% - ${(childrenCount - 1) *

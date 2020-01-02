@@ -58,7 +58,7 @@ export default class List extends React.PureComponent<
 
   render() {
     const {
-      props: { divided, verticalGap, children, ...props },
+      props: { divided, verticalGap = 0, children, ...props },
     } = this
 
     if (divided) {

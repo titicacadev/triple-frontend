@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { StyledComponentProps } from 'styled-components'
 import Container from './container'
 
 type AccordionIcons = 'folded' | 'unfolded'
@@ -32,15 +32,23 @@ const Title = styled(Container)<{ active?: boolean }>`
   }
 `
 
-function Content({ active, children }) {
+function Content({
+  active,
+  children,
+}: React.PropsWithChildren<{ active: boolean }>) {
   return active && <Container margin={{ top: 5 }}>{children}</Container>
 }
 
-function Folded({ active, children }) {
+function Folded({
+  active,
+  children,
+}: React.PropsWithChildren<{ active: boolean }>) {
   return !active && <Container margin={{ top: 5 }}>{children}</Container>
 }
 
-export default class Accordion extends React.PureComponent {
+export default class Accordion extends React.PureComponent<
+  React.PropsWithChildren<StyledComponentProps<'div', any, {}, never>>
+> {
   static Title = Title
 
   static Content = Content

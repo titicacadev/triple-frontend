@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css, StyledComponentProps } from 'styled-components'
 import * as CSS from 'csstype'
 import {
   MarginPadding,
@@ -8,6 +8,30 @@ import {
   GlobalColors,
 } from '../commons'
 import { marginMixin, paddingMixin } from '../mixins'
+
+interface TextBaseProps {
+  size?: GlobalSizes | number
+  bold?: boolean
+  alpha?: number
+  color?: string
+  floated?: CSS.FloatProperty
+  lineHeight?: number | string
+  wordBreak?: CSS.WordBreakProperty
+  whiteSpace?: CSS.WhiteSpaceProperty
+  center?: boolean
+  underline?: boolean
+  inline?: boolean
+  inlineBlock?: boolean
+  margin?: MarginPadding
+  padding?: MarginPadding
+  ellipsis?: boolean
+  maxLines?: number
+  strikethrough?: boolean
+}
+
+interface TitleBaseProps {
+  margin?: MarginPadding
+}
 
 const SIZES: { [key in GlobalSizes]: string } = {
   mini: '12px',
@@ -20,14 +44,16 @@ const SIZES: { [key in GlobalSizes]: string } = {
   massive: '24px',
 }
 
-export function LineBreak({ children }: { children?: string }) {
-  const Line = ({ children }) => (
+function Line({ children }: React.PropsWithChildren<{}>) {
+  return (
     <>
       {children}
       <br />
     </>
   )
+}
 
+export function LineBreak({ children }: { children?: string }) {
   const texts = (children || '').split('\n')
 
   return (
@@ -43,26 +69,7 @@ function rgba({ color, alpha }: { color?: string; alpha?: number }) {
   return `rgba(${GetGlobalColor(color || 'gray')}, ${alpha || 1})`
 }
 
-// eslint-disable-next-line no-unexpected-multiline
-const TextBase = styled.div<{
-  size?: GlobalSizes | number
-  bold?: boolean
-  alpha?: number
-  color?: string
-  floated?: CSS.FloatProperty
-  lineHeight?: number
-  wordBreak?: CSS.WordBreakProperty
-  whiteSpace?: CSS.WhiteSpaceProperty
-  center?: boolean
-  underline?: boolean
-  inline?: boolean
-  inlineBlock?: boolean
-  margin?: MarginPadding
-  padding?: MarginPadding
-  ellipsis?: boolean
-  maxLines?: number
-  strikethrough?: boolean
-}>`
+const TextBase = styled.div<TextBaseProps>`
   font-size: ${({ size = 'large' }) =>
     typeof size === 'string' ? SIZES[size] : `${size}px`};
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
@@ -149,7 +156,12 @@ const TextBase = styled.div<{
     `};
 `
 
-function Text({ children, ...props }) {
+function Text({
+  children,
+  ...props
+}: React.PropsWithChildren<
+  StyledComponentProps<'div', any, TextBaseProps, never>
+>) {
   return (
     <TextBase {...props}>
       {React.Children.toArray(children).map((child, i) =>
@@ -186,10 +198,7 @@ const Html = styled(TextBase)`
   }
 `
 
-// eslint-disable-next-line no-unexpected-multiline
-const TitleBase = styled.h1<{
-  margin?: MarginPadding
-}>`
+const TitleBase = styled.h1<TitleBaseProps>`
   margin: 0;
   line-height: 1.2;
   font-size: 24px;
@@ -199,7 +208,12 @@ const TitleBase = styled.h1<{
   ${marginMixin}
 `
 
-function TextTitle({ children, ...props }) {
+function TextTitle({
+  children,
+  ...props
+}: React.PropsWithChildren<
+  StyledComponentProps<'h1', any, TitleBaseProps, never>
+>) {
   return (
     <TitleBase {...props}>
       {React.Children.toArray(children).map((child, i) =>

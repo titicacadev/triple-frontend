@@ -5,6 +5,20 @@ import * as CSS from 'csstype'
 import { MarginPadding } from '../commons'
 import { paddingMixin } from '../mixins'
 
+type TableType = 'vertical' | 'horizontal'
+
+type TableEntity = { text: string }
+type TableRow = TableEntity[]
+
+interface TableBodyProps {
+  head: TableRow
+  body: TableRow[]
+}
+
+interface TableProps extends TableBodyProps {
+  type: TableType
+}
+
 const BACKGROUND_COLORS: { [key: string]: string } = {
   header: '234, 234, 234',
   body: '245, 245, 245',
@@ -81,7 +95,7 @@ const Column = styled.div<{
   ${paddingMixin}
 `
 
-function HorizontalTable({ head, body }) {
+function HorizontalTable({ head, body }: TableBodyProps) {
   return (
     <Container borderLine borderRadius={6}>
       <Row>
@@ -115,7 +129,7 @@ function HorizontalTable({ head, body }) {
   )
 }
 
-function VerticalTable({ head, body }) {
+function VerticalTable({ head, body }: TableBodyProps) {
   return (
     <Container>
       {head.map(({ text }, idx) => (
@@ -157,7 +171,7 @@ function VerticalTable({ head, body }) {
   )
 }
 
-export default function Table({ head, body, type, ...props }) {
+export default function Table({ head, body, type }: TableProps) {
   const Container = type === 'vertical' ? VerticalTable : HorizontalTable
-  return <Container head={head} body={body} {...props} />
+  return <Container head={head} body={body} />
 }

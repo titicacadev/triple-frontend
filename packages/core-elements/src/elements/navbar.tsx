@@ -77,7 +77,7 @@ const NavbarItem = styled.div<{
 }>`
   ${({ position }) => position && `position: ${position};`}
   float: ${({ floated }) => floated || 'left'};
-  background-image: url(${({ icon }) => ICON_URL_BY_NAMES[icon]});
+  background-image: url(${({ icon }) => (icon ? ICON_URL_BY_NAMES[icon] : '')});
   background-size: cover;
   height: 34px;
   width: 34px;

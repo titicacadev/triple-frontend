@@ -142,7 +142,7 @@ function Tooltip({ label, onClick, nowrap, ...frameProps }: TooltipProps) {
       }}
       onClick={onClick}
     >
-      <TooltipContainer paddingRight={onClick && 12} nowrap={nowrap}>
+      <TooltipContainer paddingRight={onClick && 12} nowrap={!!nowrap}>
         {label}
         {onClick && <ArrowRight />}
       </TooltipContainer>

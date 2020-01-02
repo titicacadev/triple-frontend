@@ -103,9 +103,7 @@ export const Radio = withField(
           <RadioFrame key={idx}>
             <RadioContainer
               name={name}
-              onClick={(e?: React.SyntheticEvent) =>
-                onChange && onChange(e, optionValue)
-              }
+              onClick={(e) => onChange && onChange(e, optionValue)}
             >
               <Cell width={10}>
                 <Icon selected={value === optionValue} />
