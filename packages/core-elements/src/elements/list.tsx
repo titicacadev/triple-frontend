@@ -2,6 +2,7 @@ import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { HR1, HR3 } from './hr'
 import { MarginPadding } from '../commons'
+import { marginMixin } from '../mixins'
 
 interface ListBaseProp {
   margin?: MarginPadding
@@ -13,14 +14,7 @@ const ListBase = styled.ul<ListBaseProp>`
   margin: 0;
   padding: 0;
 
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
-    `};
+  ${marginMixin}
 
   li:not(:first-child) {
     ${({ verticalGap }) => css`

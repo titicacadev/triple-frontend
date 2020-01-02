@@ -1,6 +1,7 @@
 import { MarginPadding } from './../commons'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { GlobalSizes } from '../commons'
+import { marginMixin, paddingMixin } from '../mixins'
 
 type Icons = 'save' | 'web' | 'call' | 'map' | 'arrowRight'
 
@@ -37,23 +38,8 @@ const Icon = styled.div<{
   background-repeat: no-repeat;
   vertical-align: text-bottom;
 
-  ${({ padding }) =>
-    padding &&
-    css`
-      padding-top: ${padding.top || 0}px;
-      padding-bottom: ${padding.bottom || 0}px;
-      padding-left: ${padding.left || 0}px;
-      padding-right: ${padding.right || 0}px;
-    `};
-
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
-    `};
+  ${marginMixin}
+  ${paddingMixin}
 `
 
 export default Icon

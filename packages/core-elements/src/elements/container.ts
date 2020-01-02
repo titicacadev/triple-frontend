@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import { MarginPadding } from '../commons'
+import { paddingMixin, formatMarginPadding } from '../mixins'
 
 // eslint-disable-next-line no-unexpected-multiline
 const Container = styled.div<{
@@ -28,31 +29,13 @@ const Container = styled.div<{
       position: ${position};
     `};
 
-  ${({ centered, margin }) =>
-    (margin || centered) &&
-    css`
-      margin-top: ${(margin || {}).top || 0}px;
-      margin-bottom: ${(margin || {}).bottom || 0}px;
-      margin-left: ${centered
-        ? 'auto'
-        : margin.left
-        ? `${margin.left}px`
-        : '0px'};
-      margin-right: ${centered
-        ? 'auto'
-        : margin.right
-        ? `${margin.right}px`
-        : '0px'};
-    `};
+  ${({ centered, margin = {} }) =>
+    formatMarginPadding(
+      { ...margin, ...(centered ? { left: 'auto', right: 'auto' } : {}) },
+      'margin',
+    )}
 
-  ${({ padding }) =>
-    padding &&
-    css`
-      padding-top: ${padding.top || 0}px;
-      padding-bottom: ${padding.bottom || 0}px;
-      padding-left: ${padding.left || 0}px;
-      padding-right: ${padding.right || 0}px;
-    `};
+  ${paddingMixin}
 
   ${({ width }) =>
     width &&

@@ -7,6 +7,7 @@ import {
   MarginPadding,
   GlobalSizes,
 } from '../commons'
+import { marginMixin } from '../mixins'
 
 export type LabelColor = GlobalColors | 'purple' | 'green'
 
@@ -61,14 +62,7 @@ const RadioLabel = styled.div<RadioLabelProps>`
   background-repeat: no-repeat;
   cursor: pointer;
 
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
-    `};
+  ${marginMixin}
 `
 
 const PROMO_SIZES: Partial<
@@ -148,14 +142,7 @@ export const PromoLabel = styled.div<PromoLabelProps>`
           }}
         `};
 
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
-    `};
+  ${marginMixin}
 `
 
 interface LabelProps extends PromoLabelProps, RadioLabelProps {

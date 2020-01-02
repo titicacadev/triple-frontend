@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 import Text from './text'
 import * as CSS from 'csstype'
 import { MarginPadding } from '../commons'
+import { paddingMixin } from '../mixins'
 
 const BACKGROUND_COLORS: { [key: string]: string } = {
   header: '234, 234, 234',
@@ -77,14 +78,7 @@ const Column = styled.div<{
       background-color: rgb(${BACKGROUND_COLORS[type || 'body']});
     `};
 
-  ${({ padding }) =>
-    padding &&
-    css`
-      padding-top: ${padding.top || 0}px;
-      padding-bottom: ${padding.bottom || 0}px;
-      padding-left: ${padding.left || 0}px;
-      padding-right: ${padding.right || 0}px;
-    `};
+  ${paddingMixin}
 `
 
 function HorizontalTable({ head, body }) {

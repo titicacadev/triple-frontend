@@ -7,6 +7,7 @@ import {
   GetGlobalColor,
   GlobalColors,
 } from '../commons'
+import { marginMixin, paddingMixin } from '../mixins'
 
 const SIZES: { [key in GlobalSizes]: string } = {
   mini: '12px',
@@ -108,23 +109,9 @@ const TextBase = styled.div<{
       display: inline-block;
     `};
 
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
-    `};
+  ${marginMixin}
 
-  ${({ padding }) =>
-    padding &&
-    css`
-      padding-top: ${padding.top || 0}px;
-      padding-bottom: ${padding.bottom || 0}px;
-      padding-left: ${padding.left || 0}px;
-      padding-right: ${padding.right || 0}px;
-    `};
+  ${paddingMixin}
 
   ${({ ellipsis }) =>
     ellipsis &&
@@ -209,14 +196,7 @@ const TitleBase = styled.h1<{
   font-weight: bold;
   color: #3a3a3a;
 
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
-    `};
+  ${marginMixin}
 `
 
 function TextTitle({ children, ...props }) {
