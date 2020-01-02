@@ -74,7 +74,7 @@ function Input({
       value={value}
       error={error}
       placeholder={placeholder}
-      mask={mask}
+      mask={mask || '*'}
       maskChar={maskChar}
       focused={focused}
       onBlur={onBlur}
