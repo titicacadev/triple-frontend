@@ -14,8 +14,8 @@ const Pager = ({
   margin?: MarginPadding
   borderRadius?: number
   currentPage?: number
-  onPageChange?: (e?: React.SyntheticEvent) => any
-  pageLabelComponent?: React.ReactNode
+  onPageChange?: (slideIndex: number) => void
+  pageLabelComponent?: PagerCarousel['props']['renderTopRightControls']
   children?: React.ReactNode
 }) => (
   <Container margin={margin} borderRadius={borderRadius}>
@@ -24,9 +24,9 @@ const Pager = ({
       afterSlide={onPageChange}
       speed={100}
       renderTopRightControls={pageLabelComponent}
-      renderBottomCenterControls={null}
-      renderCenterLeftControls={null}
-      renderCenterRightControls={null}
+      renderBottomCenterControls={() => null}
+      renderCenterLeftControls={() => null}
+      renderCenterRightControls={() => null}
     >
       {children}
     </PagerCarousel>
