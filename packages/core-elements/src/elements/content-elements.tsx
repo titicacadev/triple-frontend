@@ -41,7 +41,7 @@ export const ResourceListItem = styled(List.Item)`
 
 // eslint-disable-next-line no-unexpected-multiline
 export const SquareImage = styled.img<{
-  size?: string
+  size?: 'small' | 'medium'
   borderRadius?: number
   floated?: CSS.FloatProperty
 }>`

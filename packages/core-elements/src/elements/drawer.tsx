@@ -6,7 +6,8 @@ const DrawerContainer = styled.div<{
   overflow?: string
   zIndex?: number
 }>`
-  z-index: ${({ zIndex }) => (Number.isInteger(zIndex) ? zIndex : 20)};
+  z-index: ${({ zIndex }) =>
+    zIndex && Number.isInteger(zIndex) ? zIndex : 20};
   position: fixed;
   bottom: 0;
   left: 0;

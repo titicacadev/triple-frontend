@@ -81,7 +81,7 @@ function Select({
     <SelectFrame focused={focused} error={error}>
       <BaseSelect
         id={id}
-        onChange={(e) => onChange(e, e.target.value)}
+        onChange={(e) => onChange && onChange(e, e.target.value)}
         onBlur={onBlur}
         value={value}
         error={error}
@@ -89,7 +89,7 @@ function Select({
         selected={value !== null && value !== undefined && value !== ''}
       >
         {placeholder ? <option value="">{placeholder}</option> : null}
-        {options.map(({ label, value }, idx) => (
+        {(options || []).map(({ label, value }, idx) => (
           <option key={idx} value={value}>
             {label}
           </option>

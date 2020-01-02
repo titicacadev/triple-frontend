@@ -1,20 +1,16 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 import Container from './container'
-import {
-  GetGlobalColor,
-  GlobalColors,
-  MarginPadding,
-  GlobalSizes,
-} from '../commons'
+import { GetGlobalColor, MarginPadding } from '../commons'
 import { marginMixin } from '../mixins'
 
-export type LabelColor = GlobalColors | 'purple' | 'green'
+export type LabelColor = 'blue' | 'red' | 'gray' | 'purple' | 'green'
 
 type Color = number[] | string[]
 
-const LABEL_COLORS: Partial<
-  Record<LabelColor, { background: Color; text: Color }>
+const LABEL_COLORS: Omit<
+  Record<LabelColor, { background: Color; text: Color }>,
+  'white'
 > = {
   blue: {
     background: GetGlobalColor('blue')
@@ -65,12 +61,7 @@ const RadioLabel = styled.div<RadioLabelProps>`
   ${marginMixin}
 `
 
-const PROMO_SIZES: Partial<
-  Record<
-    GlobalSizes,
-    { fontSize: number; borderRadius: number; height: number; padding: string }
-  >
-> = {
+const PROMO_SIZES = {
   small: {
     fontSize: 11,
     borderRadius: 1,
@@ -92,7 +83,7 @@ const PROMO_SIZES: Partial<
 }
 
 interface PromoLabelProps {
-  size?: GlobalSizes
+  size?: keyof typeof PROMO_SIZES
   emphasized?: boolean
   color?: LabelColor
   margin?: MarginPadding
@@ -117,23 +108,21 @@ export const PromoLabel = styled.div<PromoLabelProps>`
 
   ${({ emphasized }) =>
     emphasized
-      ? css<{ color: PromoLabelProps['color'] }>`
+      ? css<Pick<PromoLabelProps, 'color'>>`
           font-weight: bold;
-            ${({ color }) => {
-              const {
-                [color as LabelColor]: { background },
-              } = LABEL_COLORS
+            ${({ color = 'purple' }) => {
+              const { background } = LABEL_COLORS[color]
               return css`
                 background-color: rgba(${getRGB(background)}, 1);
               `
             }}
           color: rgba(${GetGlobalColor('white')}, 1);
         `
-      : css<{ color: PromoLabelProps['color'] }>`
+      : css<Pick<PromoLabelProps, 'color'>>`
           font-weight: normal;
-          ${({ color }) => {
+          ${({ color = 'purple' }) => {
             const {
-              [color as LabelColor]: { background, text },
+              [color]: { background, text },
             } = LABEL_COLORS
             return css`
               background-color: rgba(${getRGBA(background)});
@@ -191,7 +180,7 @@ export default class Label extends React.PureComponent<
           {...props}
           size={size}
           emphasized={emphasized}
-          color={color || 'purple'}
+          color={color}
           margin={margin}
         >
           {children}

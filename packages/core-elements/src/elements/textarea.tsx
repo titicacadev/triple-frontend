@@ -1,7 +1,20 @@
 import * as React from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css, StyledComponentProps } from 'styled-components'
 import { withField } from '../utils/form-field'
 import { GlobalColors } from '../commons'
+
+interface BaseTextareaProps {
+  focused?: string
+  error?: string
+}
+
+interface TextareaProps
+  extends Omit<
+    StyledComponentProps<'textarea', any, BaseTextareaProps, never>,
+    'onChange'
+  > {
+  onChange?: (e: React.SyntheticEvent, value: string) => any
+}
 
 const COLORS: Partial<Record<GlobalColors, string>> = {
   blue: '54, 143, 255',
@@ -9,7 +22,7 @@ const COLORS: Partial<Record<GlobalColors, string>> = {
   gray: '58, 58, 58',
 }
 
-const BaseTextarea = styled.textarea<{ focused?: string; error?: string }>`
+const BaseTextarea = styled.textarea<BaseTextareaProps>`
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -52,36 +65,13 @@ const BaseTextarea = styled.textarea<{ focused?: string; error?: string }>`
     `};
 `
 
-interface TextareaProps extends Omit<HTMLTextAreaElementProps, 'onChange'> {
-  id?: string
-  error?: string
-  focused?: string
-  onChange?: (e: React.SyntheticEvent, value: string) => any
-  onBlur?: (e: React.FocusEvent<any>) => any
-}
-
-type HTMLTextAreaElementProps = React.TextareaHTMLAttributes<
-  HTMLTextAreaElement
->
-
-function Textarea({
-  onChange,
-  id,
-  value,
-  error,
-  placeholder,
-  focused,
-  onBlur,
-}: TextareaProps) {
+function Textarea({ error, focused, onChange, ...props }: TextareaProps) {
   return (
     <BaseTextarea
-      id={id}
-      value={value}
       error={error}
-      placeholder={placeholder}
       focused={focused}
-      onBlur={onBlur}
-      onChange={(e) => onChange(e, e.target.value)}
+      onChange={(e) => onChange && onChange(e, e.target.value)}
+      {...props}
     />
   )
 }

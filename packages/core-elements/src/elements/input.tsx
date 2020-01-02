@@ -78,7 +78,7 @@ function Input({
       maskChar={maskChar}
       focused={focused}
       onBlur={onBlur}
-      onChange={(e) => onChange(e, e.target.value)}
+      onChange={(e) => onChange && onChange(e, e.target.value)}
     />
   )
 }

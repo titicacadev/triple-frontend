@@ -11,10 +11,10 @@ interface Option {
 }
 
 interface TabProps {
-  value?: any
-  options?: Option[]
-  onChange?: (e?: React.SyntheticEvent, value?: any) => any
-  type?: TabType
+  value: any
+  options: Option[]
+  onChange: (e?: React.SyntheticEvent, value?: any) => any
+  type: TabType
 }
 
 const TAB_TYPE: { [key in TabType]: React.ElementType } = {

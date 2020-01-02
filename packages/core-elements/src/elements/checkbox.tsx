@@ -15,7 +15,7 @@ const generateFillStyles = ({
 }: {
   fillType: FillType
   checked: boolean
-  error: string
+  error?: string
 }) => {
   if (!checked && !error) {
     return
@@ -47,7 +47,7 @@ const generateFillStyles = ({
 }
 
 const TextAligns: Partial<
-  Record<CSS.TextAlignLastProperty, ReturnType<typeof css>>
+  Record<CSS.TextAlignProperty, ReturnType<typeof css>>
 > = {
   left: css`
     text-align: left;
@@ -60,7 +60,7 @@ const TextAligns: Partial<
 // eslint-disable-next-line no-unexpected-multiline
 const ConfirmFrame = styled.div.attrs({})<{
   name?: string
-  textAlign?: string
+  textAlign?: CSS.TextAlignProperty
   borderless?: boolean
   checked?: boolean
   fillType?: FillType
@@ -76,7 +76,7 @@ const ConfirmFrame = styled.div.attrs({})<{
   color: rgba(${GetGlobalColor('gray')}, 0.5);
 
   ${({ checked, error, fillType }) =>
-    fillType && generateFillStyles({ checked, error, fillType })};
+    fillType && generateFillStyles({ checked: !!checked, error, fillType })};
 
   ${({ textAlign }) => textAlign && TextAligns[textAlign]};
 
@@ -136,7 +136,7 @@ export const ConfirmSelector = withField(
     return (
       <ConfirmFrame
         name={name}
-        onClick={(e) => onChange(e, !value)}
+        onClick={(e) => onChange && onChange(e, !value)}
         checked={value}
         textAlign={textAlign}
         borderless={borderless}

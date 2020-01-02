@@ -38,7 +38,7 @@ const CarouselBase = styled.ul<CarouselBaseProps>`
     `};
 `
 
-const CarouselItem = styled.li<{ size?: GlobalSizes }>`
+const CarouselItem = styled.li<{ size?: 'small' | 'medium' | 'large' }>`
   display: inline-block;
   position: relative;
   width: ${({ size }) =>

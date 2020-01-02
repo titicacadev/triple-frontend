@@ -32,7 +32,8 @@ const Icon = styled.div<{
   display: inline-block;
   width: ${({ size }) => SIZES[size || 'small']};
   height: ${({ size }) => SIZES[size || 'small']};
-  background-image: ${({ src, name }) => `url(${src || URL_BY_NAMES[name]})`};
+  background-image: ${({ src, name }) =>
+    `url(${src || (name ? URL_BY_NAMES[name] : '')})`};
   background-size: ${({ size }) =>
     `${SIZES[size || 'small']} ${SIZES[size || 'small']}`};
   background-repeat: no-repeat;

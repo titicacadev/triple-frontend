@@ -26,8 +26,7 @@ const PADDING_SIZE: Partial<Record<GlobalSizes, MarginPadding>> = {
   medium: { top: 6, right: 10, bottom: 6, left: 10 },
 }
 
-// eslint-disable-next-line no-unexpected-multiline
-const TagBase = styled.div<{
+const Tag = styled.div<{
   type?: TagColors
   margin?: MarginPadding
   size?: GlobalSizes
@@ -43,7 +42,7 @@ const TagBase = styled.div<{
   ${marginMixin}
 
   ${({ size = 'mini' }) => {
-    const padding = PADDING_SIZE[size]
+    const padding = PADDING_SIZE[size] || {}
     return css`
       padding-top: ${padding.top || 0}px;
       padding-bottom: ${padding.bottom || 0}px;
@@ -56,13 +55,9 @@ const TagBase = styled.div<{
     style &&
     css`
       ${Object.keys(style)
-        .map((key) => `${key}: ${style[key]};`)
+        .map((key) => `${key}: ${style[key as keyof React.CSSProperties]};`) // HACK: style: React.CSSProperties이므로
         .join('\n')};
     `};
 `
-
-const Tag = function({ children, ...props }) {
-  return <TagBase {...props}>{children}</TagBase>
-}
 
 export default Tag
