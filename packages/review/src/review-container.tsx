@@ -306,10 +306,10 @@ export default function ReviewContainer({
             else navigate(`${appUrlScheme}:///my/mileage/intro`)
           }}
         >
-          <Text color="gray" size="small" alpha={0.6} lineheight={1.7}>
+          <Text color="gray" size="small" alpha={0.6} lineHeight={1.7}>
             리뷰 쓰면 여행자 클럽 최대 3포인트!
           </Text>
-          <Text color="blue" size="small" margin={{ top: 5 }} lineheight={1.7}>
+          <Text color="blue" size="small" margin={{ top: 5 }} lineHeight={1.7}>
             포인트별 혜택 보기
           </Text>
           <BulletRight alt="포인트별 혜택 보기" />
