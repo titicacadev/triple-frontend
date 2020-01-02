@@ -50,7 +50,6 @@ export function CouponModal({ webUrlBase }) {
       {ICON_TYPES[uriHash] ? <CouponIcon src={ICON_TYPES[uriHash]} /> : null}
       <Text
         center
-        font
         bold
         size="big"
         lineHeight={1.38}
