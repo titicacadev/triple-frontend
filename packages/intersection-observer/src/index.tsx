@@ -9,8 +9,7 @@ const OriginalObserver = dynamic(async () => {
       !(
         'IntersectionObserver' in window &&
         'IntersectionObserverEntry' in window &&
-        'intersectionRatio' in
-          (window as any).IntersectionObserverEntry.prototype
+        'intersectionRatio' in window.IntersectionObserverEntry.prototype
       )
     ) {
       await import('intersection-observer')
