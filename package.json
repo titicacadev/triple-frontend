@@ -50,7 +50,7 @@
   },
   "lint-staged": {
     "**/*.{js,ts,tsx}": [
-      "eslint '{docs,packages,tests/src}/**/*.{ts,tsx,js}'",
+      "eslint",
       "prettier --write \"**/*.{ts,tsx,js,json}\"",
       "git add"
     ]
