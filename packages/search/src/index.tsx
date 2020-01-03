@@ -1,5 +1,4 @@
 import React, {
-  ReactNode,
   SyntheticEvent,
   KeyboardEvent,
   useCallback,
@@ -44,22 +43,31 @@ export default function FullScreenSearchView({
   onInputChange = () => {},
   placeholder,
   defaultKeyword,
-}: {
-  children: ReactNode
+  keyword: controlledKeyword,
+}: React.PropsWithChildren<{
   onDelete?: () => void
   onAutoComplete?: (keyword: string) => void
   onEnter?: (keyword: string) => void
   onInputChange?: (keyword: string) => void
   placeholder?: string
   defaultKeyword?: string
-}) {
-  const [keyword, setKeyword] = useState<string>(defaultKeyword)
+  keyword?: string
+}>) {
+  const [uncontrolledKeyword, onUncontrolledKeywordChange] = useState<string>(
+    defaultKeyword || '',
+  )
   const {
     os: { name },
   } = useUserAgentContext()
   const isIOS = name === 'iOS'
 
   const contentsDivRef = useRef<HTMLDivElement>(null)
+
+  const isControlledInput = typeof controlledKeyword !== 'undefined'
+  const keyword = isControlledInput ? controlledKeyword : uncontrolledKeyword
+  const setKeyword = isControlledInput
+    ? onInputChange
+    : onUncontrolledKeywordChange
 
   useEffect(() => {
     const contentsDiv = contentsDivRef.current
@@ -103,7 +111,7 @@ export default function FullScreenSearchView({
           onDelete()
         }}
         onInputChange={(e: SyntheticEvent, keyword: string) => {
-          setKeyword(keyword)
+          !isControlledInput && setKeyword(keyword)
           onInputChange(keyword)
         }}
         onKeyUp={(e: KeyboardEvent) => handleKeyUp(e.keyCode)}
