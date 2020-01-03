@@ -292,6 +292,7 @@ interface ButtonProps extends BasicButtonProp, ButtonBaseProp {
   icon?: string
   borderRadius?: number
   onClick?: (e: React.SyntheticEvent) => any
+  as?: keyof JSX.IntrinsicElements
 }
 
 class Button extends React.PureComponent<ButtonProps> {

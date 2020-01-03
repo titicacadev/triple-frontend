@@ -10,6 +10,7 @@ import FloatingInstallButton from '@titicaca/floating-install-button'
 storiesOf('Button', module)
   .add('일반', () => (
     <Button
+      as={select('as prop', ['a', 'button'], 'a')}
       size={select('버튼 크기', ['tiny', 'small'], 'tiny')}
       onClick={action('clicked')}
     >
