@@ -26,8 +26,8 @@ interface EventTrackingProviderProps {
   pageLabel: string
   trackScreen: (path: string) => void
   trackEvent: (params: {
-    ga: string[]
-    fa: {
+    ga?: string[]
+    fa?: {
       category: string
       event_name: string
       [key: string]: string
