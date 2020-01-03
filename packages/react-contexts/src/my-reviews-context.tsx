@@ -34,8 +34,8 @@ type MyReviewSet = {
 interface MyReviewsContextProps {
   myReviews: MyReviewSet
   actions: {
-    deleteMyReview: ({ id: string }) => void
-    fetchMyReview: ({ id: string }) => Promise<object | null>
+    deleteMyReview: (params: { id: string }) => void
+    fetchMyReview: (params: { id: string }) => Promise<object | null>
   }
   deriveCurrentStateAndCount: DeriveCurrentStateAndCount
 }
@@ -94,9 +94,9 @@ export function MyReviewsProvider({
         return myReview
       } else if (response.status === 404) {
         insert({ [id]: false })
-
-        return null
       }
+
+      return null
     },
     [fetchMyReview, resourceType],
   )

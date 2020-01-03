@@ -28,12 +28,19 @@ interface ImagesProviderProps {
   ) => Promise<Response>
   source: {
     id: string
-    type: string
+    type: 'attraction' | 'restaurant' | 'hotel'
   }
   images?: Image[]
 }
 
-const Context = React.createContext<ImagesContext>(undefined)
+const Context = React.createContext<ImagesContext>({
+  images: [],
+  total: 0,
+  actions: {
+    fetch: () => Promise.resolve(),
+    indexOf: () => Promise.resolve(-1),
+  },
+})
 
 const TYPE_MAPPING = {
   attraction: 'poi',
@@ -50,7 +57,7 @@ export function ImagesProvider({
   const [{ loading, images, total, hasMore }, dispatch] = useReducer(reducer, {
     loading: false,
     images: initialImages || [],
-    total: null,
+    total: 0,
     hasMore: true,
   })
 
@@ -73,7 +80,7 @@ export function ImagesProvider({
   )
 
   const fetch = useCallback(
-    async (cb: () => void) => {
+    async (cb?: () => void) => {
       if (loading || !hasMore) {
         return
       }

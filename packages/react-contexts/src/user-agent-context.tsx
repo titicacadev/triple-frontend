@@ -5,13 +5,18 @@ interface UserAgentProps {
   isPublic: boolean
   isMobile: boolean
   os: {
-    name: string
-    version: string
+    name: string | undefined
+    version: string | undefined
   }
   app: {
     name: string
     version: string
   } | null
+}
+
+enum AppName {
+  iOS = 'Triple-iOS',
+  Android = 'Triple-Android',
 }
 
 const Context = createContext({
@@ -55,14 +60,14 @@ export function generateUserAgentValues(userAgent: string) {
 function parseApp(
   userAgent: string,
 ): {
-  name: 'Triple-iOS' | 'Triple-Android'
+  name: AppName
   version: string
 } | null {
   const matchData = userAgent.match(/Triple-(iOS|Android)\/([^ ]+)/i)
 
   if (matchData) {
     return {
-      name: `Triple-${matchData[1]}` as any,
+      name: AppName[matchData[1] as 'iOS' | 'Android'],
       version: matchData[2] || 'unknown',
     }
   }
