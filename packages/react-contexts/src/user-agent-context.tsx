@@ -52,7 +52,10 @@ export function generateUserAgentValues(userAgent: string) {
     isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       userAgent,
     ),
-    os: new UAParser(userAgent).getOS(),
+    os: new UAParser(userAgent).getOS() as {
+      name: string | undefined
+      version: string | undefined
+    },
     app,
   }
 }
