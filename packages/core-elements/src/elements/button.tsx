@@ -200,26 +200,26 @@ const NormalButton = styled(ButtonBase)<{
 const ButtonContainer = styled(Container)<{ floated?: CSS.FloatProperty }>`
   text-align: center;
 
-  a {
+  ${ButtonBase} {
     float: ${({ floated }) => floated || 'none'};
     display: inline-block;
     margin: 0 5px;
-  }
 
-  a:first-child {
-    ${({ floated }) => {
-      if (floated === 'left') {
-        return css`
-          margin-left: 0;
-          margin-right: 5px;
-        `
-      } else if (floated === 'right') {
-        return css`
-          margin-left: 5px;
-          margin-right: 0;
-        `
-      }
-    }};
+    &:first-child {
+      ${({ floated }) => {
+        if (floated === 'left') {
+          return css`
+            margin-left: 0;
+            margin-right: 5px;
+          `
+        } else if (floated === 'right') {
+          return css`
+            margin-left: 5px;
+            margin-right: 0;
+          `
+        }
+      }};
+    }
   }
 
   &:after {
@@ -236,7 +236,7 @@ const ButtonGroup = styled(Container)<{
 }>`
   width: 100%;
 
-  a {
+  ${ButtonBase} {
     ${({ horizontalGap, children }) => {
       const childrenCount = React.Children.count(children)
 
@@ -251,12 +251,12 @@ const ButtonGroup = styled(Container)<{
             width: ${100 / childrenCount}%;
           `
     }};
-  }
 
-  a:not(:first-child) {
-    ${({ horizontalGap }) => css`
-      margin-left: ${horizontalGap || 0}px;
-    `};
+    &:not(:first-child) {
+      ${({ horizontalGap }) => css`
+        margin-left: ${horizontalGap || 0}px;
+      `}
+    }
   }
 `
 

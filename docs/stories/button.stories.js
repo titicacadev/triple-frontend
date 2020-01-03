@@ -86,16 +86,36 @@ storiesOf('Button', module)
       {text('버튼 레이블', '저장하기')}
     </Button>
   ))
-  .add('버튼 그룹', () => (
-    <Button.Group horizontalGap={number('버튼 간격', 10)}>
-      <Button basic color="gray" size="small">
-        현지에서 길묻기
-      </Button>
-      <Button basic inverted color="blue" size="small">
-        길찾기
-      </Button>
-    </Button.Group>
-  ))
+  .add('버튼 그룹', () => {
+    const buttonTag = select('as prop', ['a', 'button'], 'a')
+
+    return (
+      <Button.Group horizontalGap={number('버튼 간격', 10)}>
+        <Button as={buttonTag} basic color="gray" size="small">
+          현지에서 길묻기
+        </Button>
+        <Button as={buttonTag} basic inverted color="blue" size="small">
+          길찾기
+        </Button>
+      </Button.Group>
+    )
+  })
+  .add('버튼 컨테이너', () => {
+    const buttonTag = select('as prop', ['a', 'button'], 'a')
+
+    return (
+      <Button.Container
+        floated={select('floated', ['left', 'right', 'none'], 'none')}
+      >
+        <Button as={buttonTag} basic color="gray" size="small">
+          버튼 1
+        </Button>
+        <Button as={buttonTag} basic inverted color="blue" size="small">
+          버튼 2
+        </Button>
+      </Button.Container>
+    )
+  })
   .add('아이콘 버튼 그룹', () => (
     <Button.Group horizontalGap={number('버튼 간격', 22)}>
       <Button icon="saveEmpty">저장하기</Button>
