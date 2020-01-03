@@ -1,17 +1,21 @@
-import React from 'react'
+import React, { ComponentType } from 'react'
 import Router from 'next/router'
 import qs from 'qs'
 import { parseUrl, generateUrl } from '@titicaca/view-utilities'
 
-const NOOP: Function = () => {}
+type URIHash = string
 
-const Context = React.createContext<{
-  uriHash: string
+interface HistoryContext {
+  uriHash: URIHash
   push: any
   replace: any
   back: any
   navigate: any
-}>({
+}
+
+const NOOP: Function = () => {}
+
+const Context = React.createContext<HistoryContext>({
   uriHash: '',
   push: NOOP,
   replace: NOOP,
@@ -60,7 +64,7 @@ export function HistoryProvider({
   initialHashStrategy = HashStrategy.NONE,
   children,
 }: HistoryProviderProps) {
-  const [uriHash, setUriHash] = React.useState(null)
+  const [uriHash, setUriHash] = React.useState<URIHash>('')
 
   const onHashChange = React.useCallback((url) => {
     const { hash } = parseUrl(url)
@@ -73,7 +77,7 @@ export function HistoryProvider({
     if ((previousHash || '') === hash) {
       HASH_HISTORIES.pop()
 
-      setUriHash(previousHash)
+      setUriHash(previousHash || '')
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -132,7 +136,7 @@ export function HistoryProvider({
   const back = React.useCallback(() => {
     const { useRouter } = HASH_HISTORIES.pop() || { useRouter: false }
 
-    setUriHash((HASH_HISTORIES[HASH_HISTORIES.length - 1] || {}).hash)
+    setUriHash((HASH_HISTORIES[HASH_HISTORIES.length - 1] || {}).hash || '')
 
     if (useRouter) {
       return Router.back()
@@ -228,20 +232,31 @@ export function useHistoryContext() {
   return React.useContext(Context)
 }
 
-export function withHistory(Component) {
-  return function HistoryComponent(props) {
+interface WrappingComponentBaseProps {
+  uriHash: URIHash
+  historyActions: Pick<HistoryContext, 'back' | 'navigate' | 'push' | 'replace'>
+}
+
+export function withHistory<P extends Partial<WrappingComponentBaseProps>>(
+  Component: ComponentType<P>,
+) {
+  return function HistoryComponent(
+    props: Omit<P, keyof WrappingComponentBaseProps>,
+  ) {
     return (
       <Context.Consumer>
         {({ uriHash, push, replace, back, navigate }) => (
           <Component
-            uriHash={uriHash}
-            historyActions={{
-              push,
-              replace,
-              back,
-              navigate,
-            }}
-            {...props}
+            {...({
+              ...props,
+              uriHash,
+              historyActions: {
+                push,
+                replace,
+                back,
+                navigate,
+              },
+            } as P)}
           />
         )}
       </Context.Consumer>

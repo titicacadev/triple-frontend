@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { ComponentType } from 'react'
 
 const NOOP = () => {}
 
 interface EventTrackingContextValue {
-  trackScreen: Function
-  trackEvent: Function
-  trackSimpleEvent: Function
+  trackScreen: EventTrackingProviderProps['trackScreen']
+  trackEvent: EventTrackingProviderProps['trackEvent']
+  trackSimpleEvent: (params: {
+    action: string
+    label: string
+    [key: string]: string
+  }) => void
   viewItem: Function
 }
 
@@ -20,8 +24,15 @@ const DEFAULT_EVENT_NAME = 'user_interaction'
 
 interface EventTrackingProviderProps {
   pageLabel: string
-  trackScreen: Function
-  trackEvent: Function
+  trackScreen: (path: string) => void
+  trackEvent: (params: {
+    ga: string[]
+    fa: {
+      category: string
+      event_name: string
+      [key: string]: string
+    }
+  }) => void
   viewItem: Function
 }
 
@@ -34,6 +45,8 @@ declare global {
     ga: Function
   }
 }
+
+type WrappingComponentBaseProps = EventTrackingContextValue
 
 export class EventTrackingProvider extends React.PureComponent<
   EventTrackingProviderProps,
@@ -54,7 +67,7 @@ export class EventTrackingProvider extends React.PureComponent<
     }
   }
 
-  trackScreen = (path) => {
+  trackScreen: EventTrackingContextValue['trackScreen'] = (path: string) => {
     const {
       props: { trackScreen: nativeTrackScreen },
     } = this
@@ -66,7 +79,7 @@ export class EventTrackingProvider extends React.PureComponent<
     }
   }
 
-  trackEvent = ({ ga, fa }) => {
+  trackEvent: EventTrackingContextValue['trackEvent'] = ({ ga, fa }) => {
     const {
       props: { trackEvent: nativeTrackEvent },
       state: { pageLabel },
@@ -88,7 +101,11 @@ export class EventTrackingProvider extends React.PureComponent<
     }
   }
 
-  trackSimpleEvent = ({ action, label, ...rest }) => {
+  trackSimpleEvent: EventTrackingContextValue['trackSimpleEvent'] = ({
+    action,
+    label,
+    ...rest
+  }) => {
     const {
       props: { trackEvent: nativeTrackEvent },
       state: { pageLabel },
@@ -123,17 +140,23 @@ export function useEventTrackingContext() {
   return React.useContext(Context)
 }
 
-export function withEventTracking(Component) {
-  return function EventTrackingComponent(props) {
+export function withEventTracking<
+  P extends Partial<WrappingComponentBaseProps>
+>(Component: ComponentType<P>) {
+  return function EventTrackingComponent(
+    props: Omit<P, keyof WrappingComponentBaseProps>,
+  ) {
     return (
       <Context.Consumer>
         {({ trackScreen, trackEvent, trackSimpleEvent, viewItem }) => (
           <Component
-            trackScreen={trackScreen}
-            trackEvent={trackEvent}
-            trackSimpleEvent={trackSimpleEvent}
-            viewItem={viewItem}
-            {...props}
+            {...({
+              ...props,
+              trackScreen,
+              trackEvent,
+              trackSimpleEvent,
+              viewItem,
+            } as P)}
           />
         )}
       </Context.Consumer>

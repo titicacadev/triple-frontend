@@ -1,17 +1,53 @@
 import React from 'react'
 
-interface ScrapsContextActions {
-  deriveCurrentStateAndCount: Function
-  scrape: Function
-  scrapeArticle: Function
-  scrapePoi: Function
-  scraps: { [key: string]: boolean }
-  unscrape: Function
-  unscrapeArticle: Function
-  unscrapePoi: Function
+type Scraps = { [key: string]: boolean }
+type Target = { id: string; type: unknown }
+
+interface ScrapsContext {
+  scraps: Scraps
+  deriveCurrentStateAndCount: (params: {
+    id: string
+    scraped: boolean
+    scrapsCount: number
+  }) => { scraped: boolean; scrapsCount: number }
+  scrape: (target: Target) => Promise<void>
+  scrapeArticle: (id: string) => Promise<void>
+  scrapePoi: (id: string) => Promise<void>
+  unscrape: (target: Target) => Promise<void>
+  unscrapeArticle: (id: string) => Promise<void>
+  unscrapePoi: (id: string) => Promise<void>
 }
 
-const Context = React.createContext<ScrapsContextActions>(undefined)
+interface ScrapsProviderProps {
+  scraps?: Scraps
+  scrape: (target: Target) => Promise<Response>
+  unscrape: (target: Target) => Promise<Response>
+  notifyScraped: (id: string) => void
+  notifyUnscraped: (id: string) => void
+  subscribeScrapedChangeEvent: (
+    handler: (target: { id: string; scraped: boolean }) => void,
+  ) => void
+  unsubscribeScrapedChangeEvent: (
+    handler: (target: { id: string; scraped: boolean }) => void,
+  ) => void
+}
+
+interface WrappingComponentBaseProps {
+  deriveCurrentScrapedStateAndCount: ScrapsContext['deriveCurrentStateAndCount']
+  scraps: Scraps
+  scrapActions: Omit<ScrapsContext, 'deriveCurrentStateAndCount' | 'scraps'>
+}
+
+const Context = React.createContext<ScrapsContext>({
+  scraps: {},
+  deriveCurrentStateAndCount: () => ({ scraped: false, scrapsCount: 0 }),
+  scrape: () => Promise.resolve(),
+  scrapeArticle: () => Promise.resolve(),
+  scrapePoi: () => Promise.resolve(),
+  unscrape: () => Promise.resolve(),
+  unscrapeArticle: () => Promise.resolve(),
+  unscrapePoi: () => Promise.resolve(),
+})
 
 const START_SCRAPE = 'START_SCRAPE'
 const SCRAPE = 'SCRAPE'
@@ -20,7 +56,26 @@ const START_UNSCRAPE = 'START_UNSCRAPE'
 const UNSCRAPE = 'UNSCRAPE'
 const UNSCRAPE_FAILED = 'UNSCRAPE_FAILED'
 
-const reducer = ({ scraps, updating }, action) => {
+type ActionType =
+  | typeof START_SCRAPE
+  | typeof SCRAPE
+  | typeof SCRAPE_FAILED
+  | typeof START_UNSCRAPE
+  | typeof UNSCRAPE
+  | typeof UNSCRAPE_FAILED
+
+const reducer = (
+  {
+    scraps,
+    updating,
+  }: {
+    scraps: Scraps
+    updating: {
+      [id: string]: boolean
+    }
+  },
+  action: { type: ActionType; id: string },
+) => {
   /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
   const { [action.id]: _, ...restUpdating } = updating
 
@@ -66,13 +121,13 @@ export function ScrapsProvider({
   subscribeScrapedChangeEvent,
   unsubscribeScrapedChangeEvent,
   children,
-}) {
+}: React.PropsWithChildren<ScrapsProviderProps>) {
   const [{ scraps, updating }, dispatch] = React.useReducer(reducer, {
     scraps: initialScraps || {},
     updating: {},
   })
 
-  const deriveCurrentStateAndCount = React.useCallback(
+  const deriveCurrentStateAndCount: ScrapsContext['deriveCurrentStateAndCount'] = React.useCallback(
     ({ id, scraped, scrapsCount: originalScrapsCount }) => {
       const currentState =
         typeof updating[id] !== 'undefined' ? updating[id] : scraps[id]
@@ -156,43 +211,18 @@ export function ScrapsProvider({
     unsubscribeScrapedChangeEvent,
   ])
 
-  const scrapeArticle = React.useCallback(
-    (id) => scrape({ id, type: 'article' }),
-    [scrape],
-  )
-  const unscrapeArticle = React.useCallback(
-    (id) => unscrape({ id, type: 'article' }),
-    [unscrape],
-  )
-
-  const scrapePoi = React.useCallback((id) => scrape({ id, type: 'poi' }), [
-    scrape,
-  ])
-  const unscrapePoi = React.useCallback((id) => unscrape({ id, type: 'poi' }), [
-    unscrape,
-  ])
-
-  const value = React.useMemo(
+  const value: ScrapsContext = React.useMemo(
     () => ({
       deriveCurrentStateAndCount,
       scrape,
-      scrapeArticle,
-      scrapePoi,
+      scrapeArticle: (id) => scrape({ id, type: 'article' }),
+      scrapePoi: (id) => scrape({ id, type: 'poi' }),
       scraps,
       unscrape,
-      unscrapeArticle,
-      unscrapePoi,
+      unscrapeArticle: (id) => unscrape({ id, type: 'article' }),
+      unscrapePoi: (id) => unscrape({ id, type: 'poi' }),
     }),
-    [
-      deriveCurrentStateAndCount,
-      scrape,
-      scrapeArticle,
-      scrapePoi,
-      scraps,
-      unscrape,
-      unscrapeArticle,
-      unscrapePoi,
-    ],
+    [deriveCurrentStateAndCount, scrape, scraps, unscrape],
   )
 
   return <Context.Provider value={value}>{children}</Context.Provider>
@@ -202,16 +232,22 @@ export function useScrapsContext() {
   return React.useContext(Context)
 }
 
-export function withScraps(Component) {
-  return function ScrapsComponent(props) {
+export function withScraps<P extends Partial<WrappingComponentBaseProps>>(
+  Component: React.ComponentType<P>,
+) {
+  return function ScrapsComponent(
+    props: Omit<P, keyof WrappingComponentBaseProps>,
+  ) {
     return (
       <Context.Consumer>
         {({ deriveCurrentStateAndCount, scraps, ...actions }) => (
           <Component
-            deriveCurrentScrapedStateAndCount={deriveCurrentStateAndCount}
-            scraps={scraps}
-            scrapActions={actions}
-            {...props}
+            {...({
+              ...props,
+              deriveCurrentScrapedStateAndCount: deriveCurrentStateAndCount,
+              scraps,
+              scrapActions: actions,
+            } as P)}
           />
         )}
       </Context.Consumer>
