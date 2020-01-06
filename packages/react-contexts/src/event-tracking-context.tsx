@@ -1,14 +1,25 @@
 import React, { ComponentType } from 'react'
 
+interface FAParams {
+  category: string
+  event_name: string
+  [key: string]: any
+}
+
+type GAParams = (string | undefined)[]
+
 const NOOP = () => {}
 
 interface EventTrackingContextValue {
   trackScreen: EventTrackingProviderProps['trackScreen']
-  trackEvent: EventTrackingProviderProps['trackEvent']
+  trackEvent: (params: {
+    ga?: GAParams
+    fa?: Omit<FAParams, 'category' | 'event_name'>
+  }) => void
   trackSimpleEvent: (params: {
-    action: string
-    label: string
-    [key: string]: string
+    action?: string
+    label?: string
+    [key: string]: any
   }) => void
   viewItem: Function
 }
@@ -25,14 +36,7 @@ const DEFAULT_EVENT_NAME = 'user_interaction'
 interface EventTrackingProviderProps {
   pageLabel: string
   trackScreen: (path: string) => void
-  trackEvent: (params: {
-    ga?: string[]
-    fa?: {
-      category: string
-      event_name: string
-      [key: string]: string
-    }
-  }) => void
+  trackEvent: (params: { ga?: GAParams; fa?: FAParams }) => void
   viewItem: Function
 }
 
