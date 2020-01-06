@@ -1,40 +1,49 @@
 import React, { createContext, useContext } from 'react'
 import { UAParser } from 'ua-parser-js'
 
-interface OS {
-  name?: string
-  version?: string
-}
-
-interface UserAgentProps {
-  isPublic: boolean
-  isMobile: boolean
-  os: OS
-  app: {
-    name: string
-    version: string
-  } | null
-}
-
 enum AppName {
   iOS = 'Triple-iOS',
   Android = 'Triple-Android',
 }
 
-const Context = createContext({
+interface OS {
+  name?: string
+  version?: string
+}
+
+type App = {
+  name: AppName
+  version: string
+} | null
+
+interface UserAgentContext {
+  isPublic: boolean
+  isMobile: boolean
+  os: OS
+  app: App
+}
+
+const Context = createContext<UserAgentContext>({
   isPublic: false,
   isMobile: false,
   os: { name: '', version: '' },
-  app: { name: '', version: '' },
+  app: null,
 })
 const { Provider, Consumer } = Context
 
-export function withUserAgent(Component: React.ElementType) {
-  return function UserAgentComponent(props: any) {
+export function withUserAgent<P extends { userAgent: UserAgentContext }>(
+  Component: React.ComponentType<P>,
+): React.FC<Omit<P, 'userAgent'>> {
+  return function UserAgentComponent(props) {
     return (
       <Consumer>
-        {(values: UserAgentProps) => (
-          <Component userAgent={values} {...props} />
+        {(userAgent) => (
+          <Component
+            {...({
+              ...props,
+              userAgent,
+            } as P)}
+          />
         )}
       </Consumer>
     )
@@ -59,12 +68,7 @@ export function generateUserAgentValues(userAgent: string) {
   }
 }
 
-function parseApp(
-  userAgent: string,
-): {
-  name: AppName
-  version: string
-} | null {
+function parseApp(userAgent: string): App {
   const matchData = userAgent.match(/Triple-(iOS|Android)\/([^ ]+)/i)
 
   if (matchData) {
