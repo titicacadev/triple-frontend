@@ -180,7 +180,7 @@ export default function ReviewElement({
                   <span
                     onClick={(e) => {
                       trackEvent({
-                        ga: '리뷰_땡스_리스트보기',
+                        ga: ['리뷰_땡스_리스트보기'],
                         fa: {
                           action: '리뷰_땡스_리스트보기',
                           review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
