@@ -1,13 +1,15 @@
 import React, { createContext, useContext } from 'react'
 import { UAParser } from 'ua-parser-js'
 
+interface OS {
+  name?: string
+  version?: string
+}
+
 interface UserAgentProps {
   isPublic: boolean
   isMobile: boolean
-  os: {
-    name: string | undefined
-    version: string | undefined
-  }
+  os: OS
   app: {
     name: string
     version: string
@@ -52,10 +54,7 @@ export function generateUserAgentValues(userAgent: string) {
     isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       userAgent,
     ),
-    os: new UAParser(userAgent).getOS() as {
-      name: string | undefined
-      version: string | undefined
-    },
+    os: new UAParser(userAgent).getOS() as OS,
     app,
   }
 }
