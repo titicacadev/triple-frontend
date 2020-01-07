@@ -11,6 +11,34 @@ import {
   Tooltip,
 } from '@titicaca/core-elements'
 
+interface RegularPricingProps {
+  basePrice?: number
+  salePrice: number
+}
+
+interface RichPricingProps {
+  basePrice?: number
+  salePrice: number
+  label?: React.ReactNode
+  pricingNote?: string
+}
+
+interface FixedPricingProps {
+  active?: boolean
+  label?: React.ReactNode
+  description?: string
+  buttonText?: string
+  salePrice: number
+  tooltipLabel?: string
+  onClick?: (e?: React.SyntheticEvent) => any
+  onTooltipClick?: (e?: React.SyntheticEvent) => any
+}
+
+type PricingProps =
+  | ({ rich: true } & RichPricingProps)
+  | ({ fixed: true } & FixedPricingProps)
+  | RegularPricingProps
+
 const FONT_SIZE: Partial<Record<GlobalSizes, string>> = {
   mini: '12px',
   tiny: '13px',
@@ -113,12 +141,7 @@ function RichPricing({
   salePrice,
   label,
   pricingNote,
-}: {
-  basePrice?: number
-  salePrice: number
-  label?: React.ReactNode
-  pricingNote?: string
-}) {
+}: RichPricingProps) {
   const pricingLabel = label ? (
     typeof label === 'string' ? (
       <Label> {label} </Label>
@@ -159,13 +182,7 @@ function RichPricing({
   )
 }
 
-const RegularPricing = ({
-  basePrice,
-  salePrice,
-}: {
-  basePrice?: number
-  salePrice: number
-}) => {
+const RegularPricing = ({ basePrice, salePrice }: RegularPricingProps) => {
   const hasBasePrice = basePrice !== undefined && basePrice > 0
 
   return (
@@ -219,16 +236,7 @@ function FixedPricing({
   tooltipLabel,
   onClick,
   onTooltipClick,
-}: {
-  active?: boolean
-  label?: React.ReactNode
-  description?: string
-  buttonText?: string
-  salePrice: number
-  tooltipLabel?: string
-  onClick?: (e?: React.SyntheticEvent) => any
-  onTooltipClick?: (e?: React.SyntheticEvent) => any
-}) {
+}: FixedPricingProps) {
   const pricingLabel = label ? (
     typeof label === 'string' ? (
       <Text color="blue" size="mini" margin={{ bottom: 2 }}>
@@ -276,34 +284,12 @@ function FixedPricing({
   )
 }
 
-export default function Pricing({
-  basePrice,
-  salePrice,
-  label,
-  active,
-  buttonText,
-  onClick,
-  rich,
-  fixed,
-  description,
-  pricingNote,
-  tooltipLabel,
-  onTooltipClick,
-}: {
-  basePrice?: number
-  salePrice: number
-  label?: React.ReactNode
-  active?: boolean
-  buttonText?: string
-  onClick?: (e?: React.SyntheticEvent) => any
-  rich?: boolean
-  fixed?: boolean
-  description?: string
-  pricingNote?: string
-  tooltipLabel?: string
-  onTooltipClick?: (e?: React.SyntheticEvent) => any
-}) {
-  if (rich) {
+export default function Pricing(props: PricingProps) {
+  const { salePrice } = props
+
+  if ('rich' in props) {
+    const { basePrice, label, pricingNote } = props
+
     return (
       <RichPricing
         basePrice={basePrice}
@@ -312,7 +298,17 @@ export default function Pricing({
         pricingNote={pricingNote}
       />
     )
-  } else if (fixed) {
+  } else if ('fixed' in props) {
+    const {
+      active,
+      label,
+      buttonText,
+      description,
+      onClick,
+      tooltipLabel,
+      onTooltipClick,
+    } = props
+
     return (
       <FixedPricing
         active={active}
@@ -326,6 +322,8 @@ export default function Pricing({
       />
     )
   } else {
+    const { basePrice } = props
+
     return <RegularPricing basePrice={basePrice} salePrice={salePrice} />
   }
 }
