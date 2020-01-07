@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "dev": "npm run build-resources && concurrently 'npm run watch-build-resources' 'npm run watch-build-declarations' 'npm run dev-docs'",
+    "dev": "npm run build-resources && concurrently --names watch,docs --kill-others 'node build-watch' 'npm run dev-docs'",
     "watch-build-resources": "lerna exec --ignore @titicaca/triple-frontend-docs --ignore @titicaca/triple-frontend-tests --parallel 'babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments --watch'",
     "watch-build-declarations": "lerna exec --ignore @titicaca/triple-frontend-docs --ignore @titicaca/triple-frontend-tests --parallel 'tsc --watch --preserveWatchOutput'",
     "version": "lerna version --no-push",
