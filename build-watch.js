@@ -53,7 +53,7 @@ watcher
       })
   })
 
-process.on('SIGINT', () => {
+process.on('SIGTERM', () => {
   watcher.close().then(() => {
     console.log('Bye.')
   })
