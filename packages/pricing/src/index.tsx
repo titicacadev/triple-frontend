@@ -35,9 +35,9 @@ interface FixedPricingProps {
 }
 
 type PricingProps =
-  | ({ rich: true } & RichPricingProps)
-  | ({ fixed: true } & FixedPricingProps)
-  | RegularPricingProps
+  | ({ rich: true; fixed?: false } & RichPricingProps)
+  | ({ rich?: false; fixed: true } & FixedPricingProps)
+  | ({ rich?: false; fixed?: false } & RegularPricingProps)
 
 const FONT_SIZE: Partial<Record<GlobalSizes, string>> = {
   mini: '12px',
@@ -287,7 +287,7 @@ function FixedPricing({
 export default function Pricing(props: PricingProps) {
   const { salePrice } = props
 
-  if ('rich' in props) {
+  if (props.rich) {
     const { basePrice, label, pricingNote } = props
 
     return (
@@ -298,7 +298,7 @@ export default function Pricing(props: PricingProps) {
         pricingNote={pricingNote}
       />
     )
-  } else if ('fixed' in props) {
+  } else if (props.fixed) {
     const {
       active,
       label,
