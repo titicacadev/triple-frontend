@@ -12,6 +12,12 @@ const watcher = chokidar.watch('packages/', {
 
 let isReady = false
 
+function handleClose() {
+  watcher.close().then(() => {
+    console.log('Bye.')
+  })
+}
+
 watcher
   .on('ready', () => {
     isReady = true
@@ -53,8 +59,4 @@ watcher
       })
   })
 
-process.on('SIGTERM', () => {
-  watcher.close().then(() => {
-    console.log('Bye.')
-  })
-})
+process.on('SIGTERM', handleClose).on('SIGINT', handleClose)
