@@ -4,7 +4,7 @@
   "private": true,
   "description": "Documentation project for triple-frontend packages",
   "scripts": {
-    "dev": "start-storybook -p 6006 -s ./public",
+    "dev": "start-storybook --quiet -p 6006 -s ./public",
     "build": "build-storybook -s ./public"
   },
   "dependencies": {
