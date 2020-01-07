@@ -33,6 +33,7 @@
     "@types/react-transition-group": "^4.2.3",
     "@types/styled-components": "^4.4.1",
     "babel-plugin-styled-components": "^1.10.6",
+    "chokidar": "^3.3.1",
     "concurrently": "^4.1.2",
     "csstype": "^2.6.6",
     "eslint-plugin-cypress": "^2.6.1",
