@@ -132,6 +132,7 @@ function RichPricing({
   return (
     <PricingContainer>
       {pricingLabel}
+
       {(pricingNote || hasBasePrice) && (
         <Container margin={{ bottom: 3 }}>
           {pricingNote && (
@@ -146,7 +147,11 @@ function RichPricing({
           )}
         </Container>
       )}
-      <DiscountRate basePrice={basePrice} salePrice={salePrice} />
+
+      {hasBasePrice ? (
+        <DiscountRate basePrice={basePrice as number} salePrice={salePrice} /> // HACK: hasBasePrice가 true면 basePrice는 무조건 number이다.
+      ) : null}
+
       <Price size="big" bold>
         {formatNumber(salePrice)}원
       </Price>
@@ -219,7 +224,7 @@ function FixedPricing({
   label?: React.ReactNode
   description?: string
   buttonText?: string
-  salePrice?: number
+  salePrice: number
   tooltipLabel?: string
   onClick?: (e?: React.SyntheticEvent) => any
   onTooltipClick?: (e?: React.SyntheticEvent) => any
@@ -286,7 +291,7 @@ export default function Pricing({
   onTooltipClick,
 }: {
   basePrice?: number
-  salePrice?: number
+  salePrice: number
   label?: React.ReactNode
   active?: boolean
   buttonText?: string
