@@ -12,10 +12,7 @@ const NOOP = () => {}
 
 interface EventTrackingContextValue {
   trackScreen: EventTrackingProviderProps['trackScreen']
-  trackEvent: (params: {
-    ga?: GAParams
-    fa?: Omit<FAParams, 'category' | 'event_name'>
-  }) => void
+  trackEvent: (params: { ga?: GAParams; fa?: Partial<FAParams> }) => void
   trackSimpleEvent: (params: {
     action?: string
     label?: string
