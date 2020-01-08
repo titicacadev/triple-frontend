@@ -13,6 +13,66 @@ import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
 
 type PoiTypes = 'attraction' | 'restaurant' | 'hotel'
 
+interface POI {
+  id: string
+  type: PoiTypes
+  nameOverride?: string
+  scraped: boolean
+  source: {
+    image?: {
+      sizes: {
+        large?: { url: string }
+        smallSquare?: { url: string }
+        small_square?: { url: string }
+      }
+    }
+    names: {
+      ko?: string
+      en?: string
+      local?: string
+    }
+    areas?: { name: string }[]
+    categories?: { name: string }[]
+    comment?: string
+    reviewsCount?: number
+    scrapsCount?: number
+    reviewsRating?: number
+    starRating?: unknown
+  }
+  distance?: number
+  prices?: { nightlyBasePrice?: number; nightlyPrice?: number }
+}
+
+interface PoiCarouselElementProps {
+  poi?: POI
+  onClick?: React.MouseEventHandler<HTMLLIElement>
+  actionButtonElement?: React.ReactElement
+  onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
+  resourceScraps?: { [key: string]: boolean }
+}
+
+interface CompactPoiListElementProps {
+  poi: POI
+  onClick?: React.MouseEventHandler<HTMLLIElement>
+  onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
+  resourceScraps?: { [key: string]: boolean }
+  actionButtonElement?: any
+}
+
+interface ExtendedPoiListElementProps {
+  poi: POI
+  onClick?: React.MouseEventHandler<HTMLLIElement>
+  onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
+  resourceScraps?: { [key: string]: boolean }
+  tags?: [{ text: string; color: LabelColor; emphasized: boolean }]
+  pricingNote?: string
+  pricingDescription?: React.ReactNode
+}
+
+type PoiListElementProps =
+  | ({ compact: true } & CompactPoiListElementProps)
+  | ({ compact?: false } & ExtendedPoiListElementProps)
+
 const TYPE_NAMES: { [key in PoiTypes]: string } = {
   attraction: '관광명소',
   restaurant: '음식점',
@@ -31,7 +91,7 @@ const POI_IMAGE_PLACEHOLDERS_SMALL: { [key in PoiTypes]: string } = {
   hotel: 'https://assets.triple.guide/images/ico-blank-hotel-small@2x.png',
 }
 
-export function PoiListElement({ compact, ...props }) {
+export function PoiListElement({ compact, ...props }: PoiListElementProps) {
   return compact ? (
     <CompactPoiListElement {...props} />
   ) : (
@@ -45,13 +105,7 @@ export function PoiCarouselElement({
   actionButtonElement,
   onScrapedChange,
   resourceScraps,
-}: {
-  poi?: any
-  onClick?: (e?: React.SyntheticEvent) => any
-  actionButtonElement?: React.ReactElement
-  onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
-  resourceScraps?: any
-}) {
+}: PoiCarouselElementProps) {
   if (poi) {
     const {
       id,
@@ -64,7 +118,7 @@ export function PoiCarouselElement({
     const { state: scraped } = deriveCurrentStateAndCount({
       initialState: initialScraped,
       initialCount: 0,
-      currentState: resourceScraps[id],
+      currentState: (resourceScraps || {})[id],
     })
 
     const name = nameOverride || names.ko || names.en || names.local
@@ -74,7 +128,9 @@ export function PoiCarouselElement({
         <Image
           frame="large"
           asPlaceholder={!image}
-          src={image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS[type]}
+          src={
+            image ? (image.sizes.large || {}).url : POI_IMAGE_PLACEHOLDERS[type]
+          }
           alt={name}
         />
         <Text bold ellipsis alpha={1} margin={{ top: 8 }}>
@@ -95,16 +151,13 @@ export function PoiCarouselElement({
   }
 }
 
-class CompactPoiListElement extends React.PureComponent<{
-  actionButtonElement?: any
-  poi?: any
-  onClick?: (e?: React.SyntheticEvent) => any
-  onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
-  resourceScraps?: any
-}> {
+class CompactPoiListElement extends React.PureComponent<
+  CompactPoiListElementProps,
+  { actionButtonWidth: number }
+> {
   state = { actionButtonWidth: 34 }
 
-  setActionButtonRef = (ref) => {
+  setActionButtonRef = (ref: HTMLDivElement) => {
     if (ref && ref.children[0]) {
       const {
         state: { actionButtonWidth },
@@ -138,7 +191,7 @@ class CompactPoiListElement extends React.PureComponent<{
     const { state: scraped } = deriveCurrentStateAndCount({
       initialState: initialScraped,
       initialCount: 0,
-      currentState: resourceScraps[id],
+      currentState: (resourceScraps || {})[id],
     })
 
     const name = nameOverride || names.ko || names.en || names.local
@@ -149,7 +202,7 @@ class CompactPoiListElement extends React.PureComponent<{
           floated="left"
           size="small"
           src={
-            (image && image.sizes.large.url) ||
+            (image && (image.sizes.large || {}).url) ||
             POI_IMAGE_PLACEHOLDERS_SMALL[type]
           }
           alt={name}
@@ -180,15 +233,9 @@ class CompactPoiListElement extends React.PureComponent<{
   }
 }
 
-class ExtendedPoiListElement extends React.PureComponent<{
-  poi?: any
-  onClick?: (e?: React.SyntheticEvent) => any
-  onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
-  resourceScraps?: any
-  tags?: [{ text: string; color: LabelColor; emphasized: boolean }]
-  pricingNote?: string
-  pricingDescription?: React.ReactNode
-}> {
+class ExtendedPoiListElement extends React.PureComponent<
+  ExtendedPoiListElementProps
+> {
   render() {
     const {
       props: {
@@ -225,7 +272,7 @@ class ExtendedPoiListElement extends React.PureComponent<{
     const { state: scraped, count: scrapsCount } = deriveCurrentStateAndCount({
       initialState: initialScraped,
       initialCount: initialScrapsCount,
-      currentState: resourceScraps[id],
+      currentState: (resourceScraps || {})[id],
     })
     const reviewsCount = Number(rawReviewsCount || 0)
     const note = [
