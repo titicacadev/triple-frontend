@@ -11,7 +11,7 @@ import {
   Image,
   List,
 } from '@titicaca/core-elements'
-import Pricing from '@titicaca/pricing'
+import Pricing, { BasePrice } from '@titicaca/pricing'
 
 const ResourceListItem = styled(List.Item)`
   position: relative;
@@ -65,7 +65,7 @@ export default function ExtendedResourceListElement({
     color?: LabelColor
     emphasized?: boolean
   }[]
-  basePrice?: number
+  basePrice?: BasePrice
   salePrice?: number
   pricingNote?: string
   pricingDescription?: React.ReactNode
