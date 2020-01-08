@@ -11,13 +11,15 @@ import {
   Tooltip,
 } from '@titicaca/core-elements'
 
+export type BasePrice = number | null
+
 interface RegularPricingProps {
-  basePrice?: number
+  basePrice?: BasePrice
   salePrice: number
 }
 
 interface RichPricingProps {
-  basePrice?: number
+  basePrice?: BasePrice
   salePrice: number
   label?: React.ReactNode
   pricingNote?: string
@@ -154,7 +156,7 @@ function RichPricing({
     )
   ) : null
 
-  const hasBasePrice = basePrice !== undefined && basePrice > 0
+  const hasBasePrice = typeof basePrice === 'number' && basePrice > 0
 
   return (
     <Container textAlign="right">
@@ -189,7 +191,7 @@ function RichPricing({
 }
 
 const RegularPricing = ({ basePrice, salePrice }: RegularPricingProps) => {
-  const hasBasePrice = basePrice !== undefined && basePrice > 0
+  const hasBasePrice = typeof basePrice === 'number' && basePrice > 0
 
   return (
     <PricingContainer padding={{ top: 18 }}>
