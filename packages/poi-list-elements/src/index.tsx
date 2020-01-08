@@ -14,6 +14,7 @@ import ScrapButton from '@titicaca/scrap-button'
 import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
 
 type PoiTypes = 'attraction' | 'restaurant' | 'hotel'
+type Name = string | null
 
 interface POI {
   id: string
@@ -23,9 +24,9 @@ interface POI {
   source: {
     image?: ResourceImage
     names: {
-      ko?: string
-      en?: string
-      local?: string
+      ko: Name
+      en: Name
+      local: Name
     }
     areas?: { name: string }[]
     categories?: { name: string }[]
@@ -125,7 +126,7 @@ export function PoiCarouselElement({
           frame="large"
           asPlaceholder={!image}
           src={image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS[type]}
-          alt={name}
+          alt={name || ''}
         />
         <Text bold ellipsis alpha={1} margin={{ top: 8 }}>
           {name}
@@ -198,7 +199,7 @@ class CompactPoiListElement extends React.PureComponent<
           src={
             image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS_SMALL[type]
           }
-          alt={name}
+          alt={name || ''}
         />
         <Text
           bold
@@ -290,7 +291,7 @@ class ExtendedPoiListElement extends React.PureComponent<
         resource={this.props.poi}
         image={image}
         imagePlaceholder={POI_IMAGE_PLACEHOLDERS[type]}
-        name={nameOverride || names.ko || names.en || names.local}
+        name={nameOverride || names.ko || names.en || names.local || undefined}
         comment={comment}
         distance={distance}
         note={note}
