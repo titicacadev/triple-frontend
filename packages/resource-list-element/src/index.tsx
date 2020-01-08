@@ -13,6 +13,22 @@ import {
 } from '@titicaca/core-elements'
 import Pricing, { BasePrice } from '@titicaca/pricing'
 
+type ImageSize = { url: string }
+
+interface ImageSizeSet {
+  large: ImageSize
+  small_square: ImageSize
+}
+
+interface CamelizedImageSizeSet {
+  large: ImageSize
+  smallSquare: ImageSize
+}
+
+export interface ResourceImage {
+  sizes: ImageSizeSet | CamelizedImageSizeSet
+}
+
 const ResourceListItem = styled(List.Item)`
   position: relative;
   min-height: 150px;
@@ -49,12 +65,7 @@ export default function ExtendedResourceListElement({
   hideScrapButton,
 }: {
   resource?: any
-  image?: {
-    sizes: {
-      smallSquare?: { url: string }
-      small_square?: { url: string }
-    }
-  }
+  image?: ResourceImage
   imagePlaceholder?: string
   name?: string
   comment?: string
@@ -78,9 +89,6 @@ export default function ExtendedResourceListElement({
   hideScrapButton?: boolean
 }) {
   const labels = tags || []
-  const imageSrc = image
-    ? (image.sizes.smallSquare || image.sizes.small_square || {}).url
-    : null
 
   return (
     <ResourceListItem onClick={onClick}>
@@ -90,7 +98,14 @@ export default function ExtendedResourceListElement({
             floated="right"
             size="small"
             width={90}
-            src={imageSrc || imagePlaceholder}
+            src={
+              image
+                ? ('small_square' in image.sizes
+                    ? image.sizes.small_square
+                    : image.sizes.smallSquare
+                  ).url
+                : imagePlaceholder
+            }
             asPlaceholder={!image}
             alt={name}
           />

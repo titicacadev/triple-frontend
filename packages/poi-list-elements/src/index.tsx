@@ -7,7 +7,9 @@ import {
   ResourceListItem,
   LabelColor,
 } from '@titicaca/core-elements'
-import ExtendedResourceListElement from '@titicaca/resource-list-element'
+import ExtendedResourceListElement, {
+  ResourceImage,
+} from '@titicaca/resource-list-element'
 import ScrapButton from '@titicaca/scrap-button'
 import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
 
@@ -19,13 +21,7 @@ interface POI {
   nameOverride?: string
   scraped: boolean
   source: {
-    image?: {
-      sizes: {
-        large?: { url: string }
-        smallSquare?: { url: string }
-        small_square?: { url: string }
-      }
-    }
+    image?: ResourceImage
     names: {
       ko?: string
       en?: string
@@ -128,9 +124,7 @@ export function PoiCarouselElement({
         <Image
           frame="large"
           asPlaceholder={!image}
-          src={
-            image ? (image.sizes.large || {}).url : POI_IMAGE_PLACEHOLDERS[type]
-          }
+          src={image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS[type]}
           alt={name}
         />
         <Text bold ellipsis alpha={1} margin={{ top: 8 }}>
@@ -202,8 +196,7 @@ class CompactPoiListElement extends React.PureComponent<
           floated="left"
           size="small"
           src={
-            (image && (image.sizes.large || {}).url) ||
-            POI_IMAGE_PLACEHOLDERS_SMALL[type]
+            image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS_SMALL[type]
           }
           alt={name}
         />
