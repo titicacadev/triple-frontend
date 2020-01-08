@@ -55,7 +55,11 @@ export default function ExtendedResourceListElement({
   comment?: string
   distance?: number
   note?: string
-  tags?: [{ text?: string; color?: LabelColor; emphasized?: boolean }]
+  tags?: {
+    text?: string
+    color?: LabelColor
+    emphasized?: boolean
+  }[]
   basePrice?: number
   salePrice?: number
   pricingNote?: string
@@ -68,6 +72,7 @@ export default function ExtendedResourceListElement({
   onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
   hideScrapButton?: boolean
 }) {
+  const labels = tags || []
   return (
     <ResourceListItem onClick={onClick}>
       <Container>
@@ -155,22 +160,13 @@ export default function ExtendedResourceListElement({
           </Container>
         ) : null}
 
-        {(tags || []).length > 0 ? (
+        {labels.length > 0 ? (
           <Label.Group margin={{ top: 12 }} horizontalGap={5}>
-            {tags.map(
-              (
-                {
-                  text,
-                  color,
-                  emphasized,
-                }: { text: string; color: LabelColor; emphasized: boolean },
-                index,
-              ) => (
-                <Label key={index} promo color={color} emphasized={emphasized}>
-                  {text}
-                </Label>
-              ),
-            )}
+            {labels.map(({ text, color, emphasized }, index) => (
+              <Label key={index} promo color={color} emphasized={emphasized}>
+                {text}
+              </Label>
+            ))}
           </Label.Group>
         ) : null}
       </ContentContainer>
