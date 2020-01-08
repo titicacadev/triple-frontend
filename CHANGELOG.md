@@ -1,7 +1,19 @@
+## 1.3.3 (2020-01-08)
+
+- git hook에서 lint-staged 가 제대로 수행되지 않는 버그를 수정
+- git hook에서 prettier 삭제
+- `core-elements`
+  - scrap-button 패키지 제거
+  - Button 컴포넌트에 as prop 추가
+  - margin, padding 스타일을 지정하는 mixin 추가 (#381)
+  - core-elements 패키지에 ts strict 설정을 추가합니다 (#377)
+- `search` Controlled input 방식 제공
+- `pricing` pricing 패키지에 ts strict 설정을 추가합니다 (#386)
+
 ## 1.3.2 (2020-01-02)
 
 - `Popup`의 navbar를 생략할 수 있는 `noNavbar` props 제공
-- [ad-banners] 배너 목록 조회, 노출/클릭 이벤트 핸들러를 prop으로 넣을 수 있는 기능 추가 (#353)
+- `ad-banners` 배너 목록 조회, 노출/클릭 이벤트 핸들러를 prop으로 넣을 수 있는 기능 추가 (#353)
 
 ## 1.3.1 (2019-12-27)
 
@@ -14,8 +26,8 @@
 
 ## 1.2.9 (2019-12-18)
 
-- [listing-filter] FilterEntryBase에 disabled prop 추가
-- [core-elements] SearchNavbar에서 InputMask 사용하지 않도록 처리, prop 형식 변경
+- `listing-filter` FilterEntryBase에 disabled prop 추가
+- `core-elements` SearchNavbar에서 InputMask 사용하지 않도록 처리, prop 형식 변경
 
 ## 1.2.8 (2019-12-12)
 
@@ -43,6 +55,7 @@
 - `ExtendedResourceListElement` baseprice 에 따른 pricingNote 노출 조건 추가
 
 ## 1.2.2 (2019-12-10)
+
 - `review` 컴포넌트에 ga/fa 지표 관련 코드 추가
 
 ## 1.2.1 (2019-12-06)
@@ -81,14 +94,14 @@
   인터페이스로 노출합니다.
 - `MyReviewsProvider`의 props 중 `type`을 `resourceType`으로 변경합니다.
 - `ReviewLikesContext`가 노출하는 인터페이스를 다음과 같이 변경합니다:
-    ```
-    interface ReviewLikesContextProps {
-      deriveCurrentStateAndCount: (currentState: {
-        reviewId: any
-        liked: boolean
-        likesCount: number
-      }) => { liked: boolean; likesCount: number }
-      updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
-    }
-    ```
+  ```
+  interface ReviewLikesContextProps {
+    deriveCurrentStateAndCount: (currentState: {
+      reviewId: any
+      liked: boolean
+      likesCount: number
+    }) => { liked: boolean; likesCount: number }
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+  }
+  ```
 - `ReviewLikesContext`의 위치를 `@titicaca/review` 패키지로 옮깁니다.
