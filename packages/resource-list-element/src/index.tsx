@@ -49,7 +49,12 @@ export default function ExtendedResourceListElement({
   hideScrapButton,
 }: {
   resource?: any
-  image?: any
+  image?: {
+    sizes: {
+      smallSquare?: { url: string }
+      small_square?: { url: string }
+    }
+  }
   imagePlaceholder?: string
   name?: string
   comment?: string
@@ -64,15 +69,19 @@ export default function ExtendedResourceListElement({
   salePrice?: number
   pricingNote?: string
   pricingDescription?: React.ReactNode
-  scraped?: any
+  scraped?: boolean
   scrapsCount?: number
   reviewsCount?: number
   reviewsRating?: number
-  onClick?: (e?: React.SyntheticEvent) => any
+  onClick?: React.MouseEventHandler<HTMLLIElement>
   onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
   hideScrapButton?: boolean
 }) {
   const labels = tags || []
+  const imageSrc = image
+    ? (image.sizes.smallSquare || image.sizes.small_square || {}).url
+    : null
+
   return (
     <ResourceListItem onClick={onClick}>
       <Container>
@@ -81,11 +90,7 @@ export default function ExtendedResourceListElement({
             floated="right"
             size="small"
             width={90}
-            src={
-              image
-                ? (image.sizes.smallSquare || image.sizes.small_square).url
-                : imagePlaceholder
-            }
+            src={imageSrc || imagePlaceholder}
             asPlaceholder={!image}
             alt={name}
           />
