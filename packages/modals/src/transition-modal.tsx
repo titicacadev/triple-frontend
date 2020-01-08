@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ComponentType, FC } from 'react'
 import styled from 'styled-components'
 import { Text } from '@titicaca/core-elements'
 import {
@@ -8,6 +8,8 @@ import {
 
 import Actions from './actions'
 import Modal from './modal-base'
+
+type ShowTransitionModal = (type: TransitionType) => void
 
 const IconImage = styled.img`
   display: block;
@@ -97,7 +99,7 @@ export function TransitionModal({ deepLink }: { deepLink: string }) {
 
   if (matchData && Object.keys(MODAL_CONTENT).includes(matchData[1])) {
     const { icon, title, description, eventLabel } =
-      MODAL_CONTENT[matchData[1]] || {}
+      MODAL_CONTENT[matchData[1] as TransitionType] || {}
 
     return (
       <Modal open onClose={back}>
@@ -133,7 +135,7 @@ export function TransitionModal({ deepLink }: { deepLink: string }) {
                 ],
               })
 
-              window.location = deepLink as any
+              window.location.href = deepLink
             },
           }}
         />
@@ -144,22 +146,24 @@ export function TransitionModal({ deepLink }: { deepLink: string }) {
   return null
 }
 
-export function useTransitionModal() {
+export function useTransitionModal(): { show: ShowTransitionModal } {
   const { push } = useHistoryContext()
 
-  return { show: (type: TransitionType) => push(`transition.${type}`) }
+  return { show: (type) => push(`transition.${type}`) }
 }
 
-export function withTransitionModal(Component) {
+export function withTransitionModal<
+  P extends { showTransitionModal: ShowTransitionModal }
+>(Component: ComponentType<P>): FC<Omit<P, 'showTransitionModal'>> {
   return function TransitionModalComponent(props) {
     const { push } = useHistoryContext()
 
     return (
       <Component
-        {...props}
-        showTransitionModal={(type: TransitionType) =>
-          push(`transition.${type}`)
-        }
+        {...({
+          ...props,
+          showTransitionModal: (type) => push(`transition.${type}`),
+        } as P)}
       />
     )
   }
