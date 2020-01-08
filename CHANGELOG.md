@@ -7,7 +7,6 @@
   - Button 컴포넌트에 as prop 추가
   - margin, padding 스타일을 지정하는 mixin 추가 (#381)
   - core-elements 패키지에 ts strict 설정을 추가합니다 (#377)
-- `search` Controlled input 방식 제공
 - `pricing` pricing 패키지에 ts strict 설정을 추가합니다 (#386)
 
 ## 1.3.2 (2020-01-02)
