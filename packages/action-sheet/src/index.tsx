@@ -95,6 +95,7 @@ export default function ActionSheet({
   maxContentHeight = 'calc(100vh - 256px)',
   padding,
   children,
+  className,
 }: React.PropsWithChildren<{
   open?: boolean
   onClose?: ActionSheetContext['onClose']
@@ -104,6 +105,7 @@ export default function ActionSheet({
   bottomSpacing?: number
   maxContentHeight?: string | number
   padding?: MarginPadding
+  className?: string
 }>) {
   const actionSheetTitle = title ? (
     typeof title === 'string' ? (
@@ -128,7 +130,7 @@ export default function ActionSheet({
         padding={paddingValue}
         onClick={onClose}
       >
-        <Sheet onClick={silenceEvent}>
+        <Sheet onClick={silenceEvent} className={className}>
           {actionSheetTitle}
           <Provider value={{ onClose, from, borderRadius }}>
             <ContentContainer maxContentHeight={maxContentHeight}>
