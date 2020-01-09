@@ -64,6 +64,7 @@ export default function NumricSpinner({
   borderless,
   padding,
   size,
+  className,
 }: {
   label?: string
   sublabel?: string
@@ -75,6 +76,14 @@ export default function NumricSpinner({
   borderless?: boolean
   padding?: MarginPadding
   size?: GlobalSizes | number
+  /**
+   * To inject extended style from styled-component
+   *
+   * const newStyledNmericSpinner = styled(NumericSpinner)`
+   *   color: red;
+   * `
+   */
+  className?: string
 }) {
   const setQuantity = (value: number): void => {
     if (value >= 0 && value <= max) {
@@ -91,7 +100,11 @@ export default function NumricSpinner({
   }
 
   return (
-    <NumericFrame borderless={borderless} padding={padding}>
+    <NumericFrame
+      borderless={borderless}
+      padding={padding}
+      className={className}
+    >
       <Text size={size || 'small'}>{label}</Text>
 
       {sublabel ? (
