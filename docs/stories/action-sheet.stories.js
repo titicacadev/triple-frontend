@@ -5,6 +5,7 @@ import { text, boolean, number, select, object } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
 import ActionSheet from '@titicaca/action-sheet'
+import { RangePicker } from '@titicaca/date-picker'
 
 storiesOf('ActionSheet', module)
   .add('인터랙션 테스트: 초기상태 닫힘', () => (
@@ -157,9 +158,11 @@ storiesOf('ActionSheet', module)
       </>
     )
   })
-  .add('스타일드 컴포넌트 확장', () => {
+  .add('스타일드 컴포넌트 확장 및 캘린더 컴포넌트', () => {
     const NewStyledActionSheet = styled(ActionSheet)`
-      padding: 0;
+      > div:last-child {
+        // padding: 0;
+      }
     `
 
     return (
@@ -170,8 +173,11 @@ storiesOf('ActionSheet', module)
           title={text('제목', '샘플 액션 시트')}
           onClose={action('onClose')}
         >
-          <ActionSheet.Item>메뉴 1</ActionSheet.Item>
-          <ActionSheet.Item>메뉴 2</ActionSheet.Item>
+          <RangePicker
+            startDate={null}
+            endDate={null}
+            onDatesChange={() => {}}
+          />
         </NewStyledActionSheet>
       </>
     )
