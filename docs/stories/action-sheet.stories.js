@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import { storiesOf } from '@storybook/react'
 import { text, boolean, number, select, object } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
@@ -119,3 +120,59 @@ storiesOf('ActionSheet', module)
       </ActionSheet.Item>
     </ActionSheet>
   ))
+  .add('커스텀 헤더', () => {
+    const Title = styled.h1`
+      padding: 10px 20px;
+      font-size: 24px;
+      font-weight: bold;
+    `
+    const Help = styled.small`
+      padding: 0 20px;
+      color: gray;
+      font-size: 13px;
+    `
+    const CustomHeader = ({ title, help }) => (
+      <>
+        <Title>{title}</Title>
+        <Help>{help}</Help>
+      </>
+    )
+
+    return (
+      <>
+        <a onClick={action('clicked')}>Click me</a>
+        <ActionSheet
+          open={boolean('열림', true)}
+          title={
+            <CustomHeader
+              title="여행일정"
+              help="출발일-도착일을 선택해주세요."
+            />
+          }
+          onClose={action('onClose')}
+        >
+          <ActionSheet.Item>메뉴 1</ActionSheet.Item>
+          <ActionSheet.Item>메뉴 2</ActionSheet.Item>
+        </ActionSheet>
+      </>
+    )
+  })
+  .add('스타일드 컴포넌트 확장', () => {
+    const NewStyledActionSheet = styled(ActionSheet)`
+      padding: 0;
+    `
+
+    return (
+      <>
+        <a onClick={action('clicked')}>Click me</a>
+        <NewStyledActionSheet
+          open={boolean('열림', true)}
+          title={text('제목', '샘플 액션 시트')}
+          onClose={action('onClose')}
+        >
+          <ActionSheet.Item>메뉴 1</ActionSheet.Item>
+          <ActionSheet.Item>메뉴 2</ActionSheet.Item>
+        </NewStyledActionSheet>
+      </>
+    )
+  })
