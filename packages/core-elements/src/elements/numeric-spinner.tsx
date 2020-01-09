@@ -4,6 +4,14 @@ import Text from './text'
 import { MarginPadding, GlobalSizes } from '../commons'
 import { paddingMixin } from '../mixins'
 
+/**
+ * To inject extended style from styled-component
+ *
+ * const newStyledNmericSpinner = styled(NumericSpinner)`
+ *   color: red;
+ * `
+ */
+
 interface NumericProp {
   borderless?: boolean
   padding?: MarginPadding
@@ -76,13 +84,6 @@ export default function NumricSpinner({
   borderless?: boolean
   padding?: MarginPadding
   size?: GlobalSizes | number
-  /**
-   * To inject extended style from styled-component
-   *
-   * const newStyledNmericSpinner = styled(NumericSpinner)`
-   *   color: red;
-   * `
-   */
   className?: string
 }) {
   const setQuantity = (value: number): void => {
