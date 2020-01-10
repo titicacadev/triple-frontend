@@ -2,20 +2,15 @@ import { useEffect, useState } from 'react'
 import fetch from 'isomorphic-fetch'
 import isEqual from 'react-fast-compare'
 
-type FetchResponse =
-  | {
-      data: any
-      response: Response
-    }
-  | {
-      error: Error
-    }
+type FetchResponse = {
+  data?: any
+  response?: Response
+  error?: Error
+}
 
-type FetchStatus =
-  | { loading: true }
-  | ({
-      loading: false
-    } & FetchResponse)
+interface FetchStatus extends FetchResponse {
+  loading: boolean
+}
 
 const createFetchError = (response: Response): Error => {
   const err = new Error(`${response.status} ${response.statusText}`)
@@ -51,7 +46,9 @@ export function useFetch(url: string, options?: any): FetchStatus {
             response,
           })
         } else {
-          setFetchResponse({ error: createFetchError(response) })
+          setFetchResponse({
+            error: createFetchError(response),
+          })
         }
       } catch (error) {
         setFetchResponse({ error })
@@ -61,12 +58,8 @@ export function useFetch(url: string, options?: any): FetchStatus {
     fetchData()
   }, [url, fetchOptions])
 
-  if (fetchResponse === null) {
-    return { loading: true }
-  }
-
   return {
-    loading: false,
+    loading: fetchResponse === null,
     ...fetchResponse,
   }
 }
