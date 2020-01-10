@@ -1,3 +1,3 @@
-export * from './theme-provider'
-export * from './themes/dark'
-export * from './themes/light'
+export { default as ThemeProvider } from './theme-provider'
+export { default as dark } from './themes/dark'
+export { default as light } from './themes/light'

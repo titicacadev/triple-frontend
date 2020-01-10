@@ -29,6 +29,7 @@
     "@titicaca/recommended-contents": "^1.3.3",
     "@titicaca/review": "^1.3.3",
     "@titicaca/triple-document": "^1.3.3",
+    "@titicaca/theme": "^1.3.3",
     "http-proxy-middleware": "^0.20.0"
   },
   "devDependencies": {
