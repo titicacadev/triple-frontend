@@ -46,9 +46,7 @@ export function useFetch(url: string, options?: any): FetchStatus {
             response,
           })
         } else {
-          setFetchResponse({
-            error: createFetchError(response),
-          })
+          setFetchResponse({ error: createFetchError(response) })
         }
       } catch (error) {
         setFetchResponse({ error })
