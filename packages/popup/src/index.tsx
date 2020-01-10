@@ -54,9 +54,12 @@ export default function Popup({
   noNavbar?: boolean
 }>) {
   const popupRef = useRef(null)
+
   useEffect(() => {
-    popupRef.current.scrollTop = 0
-  }, [onClose])
+    if (open && popupRef.current.scrollTop > 0) {
+      popupRef.current.scrollTop = 0
+    }
+  }, [open])
 
   return (
     <CSSTransition timeout={0} in={open} classNames="fade" appear>
