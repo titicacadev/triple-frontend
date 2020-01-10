@@ -16,7 +16,7 @@ enum Color {
 }
 
 export default {
-  white: '255, 255, 255',
+  white: 'rgba(255, 255, 255, 1)',
   ...generateRgba('gray', Color.gray),
   gray_2: `rgba(${Color.gray}, 0.02)`,
   gray_5: `rgba(${Color.gray}, 0.05)`,

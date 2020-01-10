@@ -13,19 +13,28 @@ import { light, dark } from '@titicaca/theme'
 ## COLORS - LIGHT
 
 <Preview>
-  <Story name="light-2">
-    {Object.keys(light.color).map((key, idx) => (
-      <div key={idx}>
+  <Story name="colors - light">
+    {Object.keys(light).map((key, idx) => (
+      <div key={idx} style={{ position: 'relative', margin: '0 0 10px 0'}}>
         <div
           style={{
             width: '100%',
             height: '50px',
-            background: `rgba(${light.color[key]})`,
-            border: '1px solid #efefef',
+            background: light[key],
+            border: `1px solid ${light.gray_10}`,
           }}
         />
-        name: {key}
-        value: {`rgba(${light.color[key]})`}
+        <span style={{
+          color: light.white,
+          position: 'absolute',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          left: '5px',
+          textShadow: `0px 1px 5px ${light.gray_80}`,
+          fontWeight: 'bold'
+        }}>
+          {key}: {light[key]}
+        </span> 
       </div>
     ))}
   </Story>
