@@ -1,4 +1,9 @@
-import React, { SyntheticEvent, PropsWithChildren } from 'react'
+import React, {
+  SyntheticEvent,
+  PropsWithChildren,
+  useRef,
+  useEffect,
+} from 'react'
 import { CSSTransition } from 'react-transition-group'
 import styled from 'styled-components'
 
@@ -48,10 +53,15 @@ export default function Popup({
   icon?: NavbarIcon
   noNavbar?: boolean
 }>) {
+  const popupRef = useRef(null)
+  useEffect(() => {
+    popupRef.current.scrollTop = 0
+  }, [onClose])
+
   return (
     <CSSTransition timeout={0} in={open} classNames="fade" appear>
       {/* https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451 */}
-      <PopupContainer>
+      <PopupContainer ref={popupRef}>
         {noNavbar ? null : (
           <Navbar borderless={borderless} title={title}>
             <Navbar.Item floated="left" icon={icon} onClick={onClose} />
