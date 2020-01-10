@@ -1,7 +1,6 @@
 export interface Theme {
-  color: Color
-}
-
-export interface Color {
-  [key: string]: string
+  colors: {
+    [key: string]: string
+  }
+  fontSizes: number[]
 }
