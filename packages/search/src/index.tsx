@@ -64,7 +64,10 @@ export default function FullScreenSearchView({
   const contentsDivRef = useRef<HTMLDivElement>(null)
 
   const isControlledInput = typeof controlledKeyword !== 'undefined'
-  const keyword = isControlledInput ? controlledKeyword : uncontrolledKeyword
+  const keyword =
+    typeof controlledKeyword !== 'undefined'
+      ? controlledKeyword
+      : uncontrolledKeyword
   const setKeyword = isControlledInput
     ? onInputChange
     : onUncontrolledKeywordChange
