@@ -84,6 +84,10 @@ export default class ImageCarousel extends React.PureComponent<
 
     const { carouselProps } = this
 
+    const totalCount =
+      (displayedTotalCount !== undefined && displayedTotalCount) ||
+      images.length
+
     return (
       <Carousel {...carouselProps}>
         {images.map((image, i) => {
@@ -97,9 +101,6 @@ export default class ImageCarousel extends React.PureComponent<
           } = image
           const size = globalSize || imageSize
           const frame = size ? undefined : globalFrame || imageFrame
-          const totalCount =
-            (displayedTotalCount !== undefined && displayedTotalCount) ||
-            images.length
 
           return (
             <Image
