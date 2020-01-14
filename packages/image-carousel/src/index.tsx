@@ -3,6 +3,17 @@ import styled from 'styled-components'
 import Carousel, { CarouselProps } from './carousel'
 import { Image, GlobalSizes } from '@titicaca/core-elements'
 
+interface ImageEntity {
+  frame: GlobalSizes
+  size: GlobalSizes
+  sizes: {
+    large: { url: string }
+  }
+  sourceUrl?: string
+  title?: string
+  description?: string
+}
+
 const PageLabelText = styled.div`
   font-size: 12px;
   font-weight: bold;
@@ -21,25 +32,25 @@ export interface RendererProps {
   totalCount: number
 }
 
-interface ImageCarouselProps extends Partial<CarouselProps> {
-  size: GlobalSizes
-  frame: GlobalSizes
-  images: any[]
-  ImageSource: string
-  onImageClick: (e?: React.SyntheticEvent, image?: any) => void
-  showMoreRenderer: (props: RendererProps) => JSX.Element
-  pageLabelRenderer: (props: RendererProps) => JSX.Element
+interface ImageCarouselProps extends Omit<CarouselProps, 'pageLabelRenderer'> {
+  images: ImageEntity[]
+  size?: GlobalSizes
+  frame?: GlobalSizes
+  ImageSource?: string
+  onImageClick?: (e?: React.SyntheticEvent, image?: ImageEntity) => void
+  showMoreRenderer?: (params: RendererProps) => React.ReactNode
+  pageLabelRenderer?: (params: RendererProps) => React.ReactNode
   displayedTotalCount?: number
 }
 
 export default class ImageCarousel extends React.PureComponent<
-  Partial<ImageCarouselProps>
+  ImageCarouselProps
 > {
-  static defaultProps = {
+  static defaultProps: Partial<ImageCarousel['props']> = {
     pageLabelRenderer: (props) => PageLabel(props),
   }
 
-  get carouselProps() {
+  get carouselProps(): CarouselProps {
     const {
       margin,
       borderRadius,
@@ -64,7 +75,9 @@ export default class ImageCarousel extends React.PureComponent<
       onMove,
       onMoveEnd,
       pageLabelRenderer: ({ currentIndex }) =>
-        pageLabelRenderer({
+        // HACK: defaultProps로 지정해주었기 때문에 존재가 보장됨
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        pageLabelRenderer!({
           currentIndex,
           totalCount,
         }) || null,

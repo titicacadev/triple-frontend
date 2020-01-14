@@ -1,14 +1,14 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { FlickingEvent } from '@egjs/flicking'
+import { FlickingEvent, FlickingOptions } from '@egjs/flicking'
 import Flicking, { FlickingProps } from '@egjs/react-flicking'
 import { Container, MarginPadding } from '@titicaca/core-elements'
 
-export interface CarouselProps extends Partial<FlickingProps> {
-  margin: MarginPadding
-  borderRadius: number
-  pageLabelRenderer: (props: { currentIndex: number }) => JSX.Element
-  children: React.ReactNode
+export interface CarouselProps
+  extends Partial<FlickingProps & FlickingOptions> {
+  margin?: MarginPadding
+  borderRadius?: number
+  pageLabelRenderer: (params: { currentIndex: number }) => React.ReactNode
 }
 
 const CarouselContainer = styled(Container)`
@@ -26,9 +26,10 @@ const TopRightControl = styled.div`
 `
 
 export default class Carousel extends React.PureComponent<
-  Partial<CarouselProps>
+  React.PropsWithChildren<CarouselProps>,
+  { currentIndex: number }
 > {
-  static defaultProps: Partial<CarouselProps> = {
+  static defaultProps: Partial<Carousel['props']> = {
     zIndex: 1,
     defaultIndex: 0,
     autoResize: true,
@@ -67,7 +68,7 @@ export default class Carousel extends React.PureComponent<
     onMoveEnd && onMoveEnd(e)
   }
 
-  get flickingProps() {
+  get flickingProps(): Partial<FlickingProps & FlickingOptions> {
     const {
       zIndex,
       defaultIndex,
@@ -93,7 +94,9 @@ export default class Carousel extends React.PureComponent<
 
   render() {
     const { margin, borderRadius, pageLabelRenderer, children } = this.props
-    const PageLabel = ({ currentIndex }) => {
+    const PageLabel: React.ComponentType<{ currentIndex: number }> = ({
+      currentIndex,
+    }) => {
       const Label = pageLabelRenderer({ currentIndex })
 
       return Label ? <TopRightControl>{Label}</TopRightControl> : null
