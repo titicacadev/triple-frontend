@@ -197,11 +197,10 @@ const RegularPricing = ({ basePrice, salePrice }: RegularPricingProps) => {
 }
 
 const FloatedFrame = styled(Container)`
-  position: relative;
   border-top: 1px solid #efefef;
   background: #fff;
   @supports (padding: max(0px)) and (padding: env(safe-area-inset-bottom)) {
-    padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
+    padding-bottom: max(14px, env(safe-area-inset-bottom, 14px));
   }
 `
 
@@ -211,8 +210,9 @@ const FloatedPricingContainer = styled(Container)`
 
 const PurchaseButton = styled.button`
   position: absolute;
-  right: 20px;
-  top: 18px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   width: 41%;
   height: 47px;
   border-radius: 4px;
@@ -245,26 +245,27 @@ function FixedPricing({
   return (
     <Drawer active={active} overflow="visible">
       <FloatedFrame
-        clearing
         padding={{
-          top: 20,
+          top: 14,
           right: 20,
-          bottom: 20,
+          bottom: 14,
           left: 20,
         }}
       >
-        <FloatedPricingContainer floated="left">
-          {pricingLabel}
-          <Text size="huge" bold>
-            {formatNumber(salePrice)}원
-          </Text>
-          {description ? (
-            <Text size="mini" alpha={0.5} margin={{ top: 2 }}>
-              {description}
+        <Container position="relative" clearing>
+          <FloatedPricingContainer floated="left">
+            {pricingLabel}
+            <Text size="huge" bold>
+              {formatNumber(salePrice)}원
             </Text>
-          ) : null}
-        </FloatedPricingContainer>
-        <PurchaseButton onClick={onClick}>{buttonText}</PurchaseButton>
+            {description ? (
+              <Text size="mini" alpha={0.5} margin={{ top: 2 }}>
+                {description}
+              </Text>
+            ) : null}
+          </FloatedPricingContainer>
+          <PurchaseButton onClick={onClick}>{buttonText}</PurchaseButton>
+        </Container>
       </FloatedFrame>
     </Drawer>
   )
