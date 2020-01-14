@@ -19,13 +19,6 @@ describe('Pricing', () => {
         .should('have.css', 'font-size')
         .and('eq', '20px')
     })
-
-    it('BasePrice Text have absolute', () => {
-      cy.get('.rich-pressed > div')
-        .find('div')
-        .should('have.css', 'position')
-        .and('eq', 'absolute')
-    })
   })
 
   context('when using regular layout', () => {
