@@ -41,6 +41,7 @@ storiesOf('Pricing', module)
     )
   })
   .add('Fixed', () => {
+    const hasAction = boolean('툴팁액션', true)
     const useStringDescription = boolean('문자 타입의 설명')
     const useStringLabel = boolean('문자 타입의 라벨')
 
@@ -65,6 +66,8 @@ storiesOf('Pricing', module)
             <PricingDescription />
           )
         }
+        tooltipLabel={text('툴팁 라벨', '쿠폰사용시 -15,000원 더 할인!')}
+        onTooltipClick={hasAction ? () => window.alert('레릿꼬오') : null}
       />
     )
   })
