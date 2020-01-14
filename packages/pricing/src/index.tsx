@@ -20,13 +20,13 @@ interface RichPricingProps {
   salePrice: number
   label?: React.ReactNode
   pricingNote?: string
-  description?: string | React.ReactNode
+  description?: React.ReactNode
 }
 
 interface FixedPricingProps {
   active?: boolean
   label?: React.ReactNode
-  description?: string | React.ReactNode
+  description?: React.ReactNode
   buttonText?: string
   salePrice: number
   onClick?: (e?: React.SyntheticEvent) => any
