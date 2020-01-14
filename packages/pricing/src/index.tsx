@@ -8,7 +8,6 @@ import {
   GlobalSizes,
   GlobalColors,
   MarginPadding,
-  Tooltip,
 } from '@titicaca/core-elements'
 
 interface RegularPricingProps {
@@ -29,9 +28,7 @@ interface FixedPricingProps {
   description?: string
   buttonText?: string
   salePrice: number
-  tooltipLabel?: string
   onClick?: (e?: React.SyntheticEvent) => any
-  onTooltipClick?: (e?: React.SyntheticEvent) => any
 }
 
 type PricingProps =
@@ -233,9 +230,7 @@ function FixedPricing({
   buttonText,
   description,
   salePrice,
-  tooltipLabel,
   onClick,
-  onTooltipClick,
 }: FixedPricingProps) {
   const pricingLabel = label ? (
     typeof label === 'string' ? (
@@ -258,15 +253,6 @@ function FixedPricing({
           left: 20,
         }}
       >
-        {active && tooltipLabel && (
-          <Tooltip
-            borderRadius="30"
-            positioning={{ top: -12 }}
-            label={tooltipLabel}
-            onClick={onTooltipClick}
-          />
-        )}
-
         <FloatedPricingContainer floated="left">
           {!description && pricingLabel}
           <Text size="huge" bold>
@@ -299,15 +285,7 @@ export default function Pricing(props: PricingProps) {
       />
     )
   } else if (props.fixed) {
-    const {
-      active,
-      label,
-      buttonText,
-      description,
-      onClick,
-      tooltipLabel,
-      onTooltipClick,
-    } = props
+    const { active, label, buttonText, description, onClick } = props
 
     return (
       <FixedPricing
@@ -317,8 +295,6 @@ export default function Pricing(props: PricingProps) {
         salePrice={salePrice}
         description={description}
         onClick={onClick}
-        tooltipLabel={tooltipLabel}
-        onTooltipClick={onTooltipClick}
       />
     )
   } else {
