@@ -14,5 +14,7 @@
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
-  "dependencies": {}
+  "dependencies": {
+    "deepmerge": "4.2.2"
+  }
 }
