@@ -1,6 +1,11 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 
+enum MarketType {
+  appStore = 'appStore',
+  playStore = 'playStore',
+}
+
 const MIN_DESKTOP_WIDTH = 1142
 const MAX_PHONE_WIDTH = 1141
 
@@ -110,17 +115,17 @@ const MarketLinksContainer = styled.div`
   height: 24px;
 `
 
-const MARKET_LINK_BUTTON_ICON_URLS: { [key: string]: string } = {
+const MARKET_LINK_BUTTON_ICON_URLS: { [key in MarketType]: string } = {
   appStore: 'https://assets.triple.guide/images/btn-app-store-on@2x.png',
   playStore: 'https://assets.triple.guide/images/btn-play-store-on@2x.png',
 }
 
-const MarketLink = styled.a<{ marketType?: string }>`
+const MarketLink = styled.a<{ marketType: MarketType }>`
   display: inline-block;
   background-repeat: no-repeat;
   background-size: 24px 24px;
-  background-image: url(${({ marketType }) =>
-    MARKET_LINK_BUTTON_ICON_URLS[marketType]});
+  ${({ marketType }) =>
+    `background-image: url(${MARKET_LINK_BUTTON_ICON_URLS[marketType]});`}
   width: 24px;
   height: 24px;
   margin: 0 5px 0 0;
@@ -148,10 +153,10 @@ export default function PublicHeader({
       <Logo href={href || 'https://triple.guide'}>TRIPLE</Logo>
       <MarketLinksContainer>
         {playStoreUrl ? (
-          <MarketLink marketType="playStore" href={playStoreUrl} />
+          <MarketLink marketType={MarketType.playStore} href={playStoreUrl} />
         ) : null}
         {appStoreUrl ? (
-          <MarketLink marketType="appStore" href={appStoreUrl} />
+          <MarketLink marketType={MarketType.appStore} href={appStoreUrl} />
         ) : null}
       </MarketLinksContainer>
       {children}
