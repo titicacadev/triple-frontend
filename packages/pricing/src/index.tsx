@@ -25,7 +25,7 @@ interface RichPricingProps {
 interface FixedPricingProps {
   active?: boolean
   label?: React.ReactNode
-  description?: string
+  description?: string | React.ReactNode
   buttonText?: string
   salePrice: number
   onClick?: (e?: React.SyntheticEvent) => any
@@ -234,7 +234,7 @@ function FixedPricing({
 }: FixedPricingProps) {
   const pricingLabel = label ? (
     typeof label === 'string' ? (
-      <Text color="blue" size="mini" margin={{ bottom: 2 }}>
+      <Text color="blue" size="mini">
         {label}
       </Text>
     ) : (
@@ -254,7 +254,7 @@ function FixedPricing({
         }}
       >
         <FloatedPricingContainer floated="left">
-          {!description && pricingLabel}
+          {pricingLabel}
           <Text size="huge" bold>
             {formatNumber(salePrice)}원
           </Text>
