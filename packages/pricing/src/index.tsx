@@ -20,6 +20,7 @@ interface RichPricingProps {
   salePrice: number
   label?: React.ReactNode
   pricingNote?: string
+  description?: string | React.ReactNode
 }
 
 interface FixedPricingProps {
@@ -138,6 +139,7 @@ function RichPricing({
   salePrice,
   label,
   pricingNote,
+  description,
 }: RichPricingProps) {
   const pricingLabel = label ? (
     typeof label === 'string' ? (
@@ -147,35 +149,48 @@ function RichPricing({
     )
   ) : null
 
+  const pricingDescription = description ? (
+    typeof description === 'string' ? (
+      <Text size="tiny" alpha={0.8} margin={{ top: 3 }}>
+        {description}
+      </Text>
+    ) : (
+      description
+    )
+  ) : null
+
   const hasBasePrice = basePrice !== undefined && basePrice > 0
 
   return (
-    <PricingContainer>
-      {pricingLabel}
+    <Container textAlign="right">
+      <PricingContainer>
+        {pricingLabel}
 
-      {(pricingNote || hasBasePrice) && (
-        <Container margin={{ bottom: 3 }}>
-          {pricingNote && (
-            <Text alpha={0.3} size="mini" inlineBlock margin={{ right: 3 }}>
-              {pricingNote}
-            </Text>
-          )}
-          {hasBasePrice && (
-            <Text alpha={0.3} size="mini" strikethrough inline>
-              {formatNumber(basePrice)}
-            </Text>
-          )}
-        </Container>
-      )}
+        {(pricingNote || hasBasePrice) && (
+          <Container margin={{ bottom: 1 }}>
+            {pricingNote && (
+              <Text alpha={0.3} size="mini" inlineBlock margin={{ right: 3 }}>
+                {pricingNote}
+              </Text>
+            )}
+            {hasBasePrice && (
+              <Text alpha={0.3} size="mini" strikethrough inline>
+                {formatNumber(basePrice)}
+              </Text>
+            )}
+          </Container>
+        )}
 
-      {hasBasePrice ? (
-        <DiscountRate basePrice={basePrice as number} salePrice={salePrice} /> // HACK: hasBasePrice가 true면 basePrice는 무조건 number이다.
-      ) : null}
+        {hasBasePrice ? (
+          <DiscountRate basePrice={basePrice as number} salePrice={salePrice} /> // HACK: hasBasePrice가 true면 basePrice는 무조건 number이다.
+        ) : null}
 
-      <Price size="big" bold>
-        {formatNumber(salePrice)}원
-      </Price>
-    </PricingContainer>
+        <Price size="big" bold>
+          {formatNumber(salePrice)}원
+        </Price>
+      </PricingContainer>
+      {pricingDescription}
+    </Container>
   )
 }
 
@@ -242,6 +257,16 @@ function FixedPricing({
     )
   ) : null
 
+  const pricingDescription = description ? (
+    typeof description === 'string' ? (
+      <Text size="mini" alpha={0.5} margin={{ top: 1 }}>
+        {description}
+      </Text>
+    ) : (
+      description
+    )
+  ) : null
+
   return (
     <Drawer active={active} overflow="visible">
       <FloatedFrame
@@ -258,11 +283,7 @@ function FixedPricing({
             <Text size="huge" bold>
               {formatNumber(salePrice)}원
             </Text>
-            {description ? (
-              <Text size="mini" alpha={0.5} margin={{ top: 2 }}>
-                {description}
-              </Text>
-            ) : null}
+            {pricingDescription}
           </FloatedPricingContainer>
           <PurchaseButton onClick={onClick}>{buttonText}</PurchaseButton>
         </Container>
@@ -275,7 +296,7 @@ export default function Pricing(props: PricingProps) {
   const { salePrice } = props
 
   if (props.rich) {
-    const { basePrice, label, pricingNote } = props
+    const { basePrice, label, pricingNote, description } = props
 
     return (
       <RichPricing
@@ -283,6 +304,7 @@ export default function Pricing(props: PricingProps) {
         salePrice={salePrice}
         label={label}
         pricingNote={pricingNote}
+        description={description}
       />
     )
   } else if (props.fixed) {
