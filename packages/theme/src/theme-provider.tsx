@@ -17,13 +17,10 @@ function ThemeProvider({
   isDark,
   theme: customTheme = {},
 }: ThemeProviderProps) {
-  const theme: Theme = merge(
-    {
-      fontSizes,
-      colors: isDark ? dark : light,
-    },
-    customTheme,
-  )
+  const theme: Theme = merge(customTheme, {
+    fontSizes,
+    colors: isDark ? dark : light,
+  })
 
   return <BaseThemeProvider theme={theme}>{children}</BaseThemeProvider>
 }
