@@ -16,8 +16,6 @@ storiesOf('Pricing', module)
     />
   ))
   .add('Fixed', () => {
-    const hasAction = boolean('툴팁액션', true)
-
     return (
       <Pricing
         fixed
@@ -27,8 +25,6 @@ storiesOf('Pricing', module)
         label={text('라벨')}
         buttonText="객실예약"
         description={text('설명')}
-        tooltipLabel={text('툴팁 라벨', '쿠폰사용시 -15,000원 더 할인!')}
-        onTooltipClick={hasAction ? () => window.alert('레릿꼬오') : null}
       />
     )
   })
