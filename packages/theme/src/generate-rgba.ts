@@ -6,7 +6,7 @@ function generateRgba(
 } {
   return [...Array(9).keys()].reduce(
     (prev, _, index) => {
-      const key = `${name}_${index + 1}0`
+      const key = `${name}${index + 1}0`
       const rgba = `rgba(${baseColor}, 0.${index + 1})`
 
       return { ...prev, [key]: rgba }
