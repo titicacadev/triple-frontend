@@ -6,7 +6,7 @@ interface IntersectionObserverProps extends Props {
   safe?: boolean
 }
 
-async function importReactIntersectionObserver() {
+export async function importReactIntersectionObserver() {
   try {
     if (
       typeof window !== 'undefined' &&
