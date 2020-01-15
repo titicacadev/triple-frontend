@@ -1,11 +1,24 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { boolean } from '@storybook/addon-knobs'
-import { List } from '@titicaca/core-elements'
+import { List, Container, Text } from '@titicaca/core-elements'
 import { PoiCarouselElement, PoiListElement } from '@titicaca/poi-list-elements'
 
 import POIS from './pois.sample.json'
 import HOTELS from './hotels.sample.json'
+
+function PricingDescription() {
+  return (
+    <Container>
+      <Text size="tiny" inlineBlock>
+        쿠폰적용가
+      </Text>
+      <Text size="tiny" inlineBlock>
+        10,000 원
+      </Text>
+    </Container>
+  )
+}
 
 const [POI] = POIS
 
@@ -28,7 +41,7 @@ storiesOf('POI', module)
             [hotel.id]: boolean('저장', false),
           }}
           pricingNote="1박, 세금포함"
-          pricingDescription="테스트트트트트"
+          pricingDescription={<PricingDescription />}
           noDivider={boolean('라인 생략', false) && idx % 2 === 0}
           tags={
             idx % 2 === 0 && [
