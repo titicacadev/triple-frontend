@@ -1,6 +1,6 @@
 ## 1.3.4 (2020-01-08)
 
-- `pricing` label, document 의 타입을 확장합니다
+- `pricing` label, description 의 타입을 확장합니다
 
 ## 1.3.3 (2020-01-08)
 
