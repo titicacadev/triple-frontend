@@ -1,3 +1,17 @@
+## 1.3.4 (2020-01-15)
+
+- dev 스크립트 실행시 변경된 파일이 속한 패키지만 다시 빌드하는 스크립트 작성 (#390)
+- modals 패키지에 ts strict 옵션을 추가합니다 (#393)
+- react-hooks 패키지에 ts strict 옵션을 추가합니다 (#398)
+- image-carousel 패키지에 ts strict 옵션을 추가합니다 (#404)
+- search 패키지에 ts strict 옵션을 추가합니다 (#403)
+- public-header 패키지에 strict 옵션을 추가합니다 (#405)
+- search 컴포넌트를 controlled input처럼 사용할 수 있는 옵션을 추가합니다 (#383)
+- pricing 의 label, description 의 타입을 확장합니다 (#407)
+- core-ements/numeric-spinner 에 className props 이 확장되도록 설정합니다. (#394)
+- action-sheet 에 className props 이 확장되도록 설정합니다. (#396)
+- ExtendedResourceListElement 에서 pricing 의 description 을 활용 할 수 있도록 추가합니다 (#410)
+
 ## 1.3.3 (2020-01-08)
 
 - git hook에서 lint-staged 가 제대로 수행되지 않는 버그를 수정
