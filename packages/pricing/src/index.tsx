@@ -144,7 +144,6 @@ function RichPricing({
   pricingNote,
   description,
 }: RichPricingProps) {
-  console.log('description', description)
   const pricingLabel = label ? (
     typeof label === 'string' ? (
       <Label> {label} </Label>
