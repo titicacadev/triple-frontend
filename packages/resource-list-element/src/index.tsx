@@ -39,6 +39,7 @@ export default function ExtendedResourceListElement({
   basePrice,
   salePrice,
   pricingNote,
+  pricingDescription,
   scraped,
   scrapsCount,
   reviewsCount,
@@ -58,6 +59,7 @@ export default function ExtendedResourceListElement({
   basePrice?: number
   salePrice?: number
   pricingNote?: string
+  pricingDescription?: React.ReactNode
   scraped?: any
   scrapsCount?: number
   reviewsCount?: number
@@ -100,6 +102,7 @@ export default function ExtendedResourceListElement({
               basePrice={basePrice}
               salePrice={salePrice}
               pricingNote={pricingNote}
+              description={pricingDescription}
             />
           </Container>
         ) : null}

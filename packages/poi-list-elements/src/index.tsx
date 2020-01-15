@@ -187,6 +187,7 @@ class ExtendedPoiListElement extends React.PureComponent<{
   resourceScraps?: any
   tags?: [{ text: string; color: LabelColor; emphasized: boolean }]
   pricingNote?: string
+  pricingDescription?: React.ReactNode
 }> {
   render() {
     const {
@@ -211,6 +212,7 @@ class ExtendedPoiListElement extends React.PureComponent<{
           prices,
         },
         pricingNote,
+        pricingDescription,
         onClick,
         onScrapedChange,
         resourceScraps,
@@ -259,6 +261,7 @@ class ExtendedPoiListElement extends React.PureComponent<{
         basePrice={basePrice}
         salePrice={nightlyPrice}
         pricingNote={pricingNote}
+        pricingDescription={pricingDescription}
         onScrapedChange={onScrapedChange}
         onClick={onClick}
         tags={tags}
