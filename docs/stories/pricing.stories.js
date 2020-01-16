@@ -17,18 +17,27 @@ function PricingDescription() {
   )
 }
 
+function PricingLabel() {
+  return (
+    <Text size="tiny" alpha={0.8} bold>
+      1박 세금포함
+    </Text>
+  )
+}
+
 storiesOf('Pricing', module)
   .addDecorator(withKnobs)
   .add('일반', () => <Pricing basePrice={30000} salePrice={25000} />)
   .add('Rich', () => {
-    const useStringDescription = boolean('문자 타입의 설명')
+    const useStringDescription = boolean('문자 타입의 설명', true)
+    const useStringLabel = boolean('문자 타입의 라벨', true)
 
     return (
       <Pricing
         basePrice={number('basePrice', 30000)}
         pricingNote={text('문구', '1박, 세금포함')}
         salePrice={25000}
-        label="트리플가"
+        label={useStringLabel ? '트리플가' : <PricingLabel />}
         rich
         description={
           useStringDescription ? (
