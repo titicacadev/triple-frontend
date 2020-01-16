@@ -144,14 +144,6 @@ function RichPricing({
   pricingNote,
   description,
 }: RichPricingProps) {
-  const pricingLabel = label ? (
-    typeof label === 'string' ? (
-      <Label> {label} </Label>
-    ) : (
-      label
-    )
-  ) : null
-
   const pricingDescription = description ? (
     typeof description === 'string' ? (
       <Text size="tiny" alpha={0.8} margin={{ top: 3 }}>
@@ -167,8 +159,7 @@ function RichPricing({
   return (
     <Container textAlign="right">
       <PricingContainer>
-        {pricingLabel}
-
+        {label ? <Label> {label} </Label> : null}
         {(pricingNote || hasBasePrice) && (
           <Container margin={{ bottom: 1 }}>
             {pricingNote && (
