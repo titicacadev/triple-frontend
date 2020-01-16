@@ -1,5 +1,10 @@
-- `pricing` rich 의 custom label 스타일을 수정합니다.
-- `margin, padding mixins` 0 의 경우도 받아들일 수 있도록 변경합니다`
+## 1.3.6 (2020-01-16)
+
+- `input` 잘못된 type 을 수정합니다. (#415)
+- `pricing` rich 의 custom label 스타일을 수정합니다. (#414)
+- `margin, padding mixins` 0 의 경우도 받아들일 수 있도록 변경합니다` (#413)
+
+## 1.3.5 (2020-01-15)
 
 ## 1.3.4 (2020-01-15)
 
