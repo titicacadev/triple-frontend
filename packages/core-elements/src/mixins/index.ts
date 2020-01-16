@@ -13,11 +13,11 @@ export function formatMarginPadding(
   }
 
   return css`
-    ${marginPadding.top && `${key}-top: ${unit(marginPadding.top)};`}
-    ${marginPadding.right && `${key}-right: ${unit(marginPadding.right)};`}
-    ${marginPadding.bottom && `${key}-bottom: ${unit(marginPadding.bottom)};`}
-    ${marginPadding.left && `${key}-left: ${unit(marginPadding.left)};`}
-`
+    ${key}-top: ${unit(marginPadding.top || 0)};
+    ${key}-right: ${unit(marginPadding.right || 0)};
+    ${key}-bottom: ${unit(marginPadding.bottom || 0)};
+    ${key}-left: ${unit(marginPadding.left || 0)};
+  `
 }
 
 export const marginMixin = css<{ margin?: MarginPadding }>`
