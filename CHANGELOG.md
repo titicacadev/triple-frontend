@@ -1,4 +1,5 @@
 - `pricing` rich 의 custom label 스타일을 수정합니다.
+- `margin, padding mixins` 0 의 경우도 받아들일 수 있도록 변경합니다`
 
 ## 1.3.4 (2020-01-15)
 
