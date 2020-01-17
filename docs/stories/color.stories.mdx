@@ -6,9 +6,9 @@ import { ThemeProvider, light, dark } from '@titicaca/theme'
 
 <Meta title="Theme" />
 
-# Theme Provider 
+# Theme Provider
 
-Theme Provider 로 감싸진 styled component 의 내부에는 theme set 이 props 으로 내려갑니다.    
+Theme Provider 로 감싸진 styled component 의 내부에는 theme set 이 props 으로 내려갑니다.  
 기본 theme 는 light theme 를 사용합니다
 
 ```js
@@ -16,7 +16,7 @@ Theme Provider 로 감싸진 styled component 의 내부에는 theme set 이 pro
   <Text> Theme Provider 로 감싸진 텍스트 </Text>
 </ThemeProvider>
 
-// text.ts
+// text.tsx
 
 const Text = steyld.div`
   ${({ theme: { colors } }) => `
@@ -33,11 +33,11 @@ isDark 를 이용하여 Theme 의 전환이 가능합니다.
 const [isDark] = useState(true)
 
 <ThemeProvider isDark={isDark}>
-  Dark Mode 
+  Dark Mode
 </ThemeProvider>
 ```
 
-## Custom Theme 
+## Custom Theme
 
 기본 Light, Dark 외에도 커스텀 테마를 적용 할 수 있습니다.
 
@@ -49,37 +49,6 @@ const customTheme = {
 }
 
 <ThemeProvider theme={customTheme}>
-  Dark Mode 
+  Dark Mode
 </ThemeProvider>
 ```
-
-# Colors
-
-<br />
-
-## COLORS - LIGHT
-
-<Preview>
-  <Story name="colors - light">
-    <div style={{display: 'flex', flexFlow: 'wrap'}}>
-      {Object.keys(light).map((key, idx) => (
-        <div 
-          key={idx} 
-          style={{ 
-            width: '10%', 
-            background: light[key],
-            border: `1px solid ${light.gray_10}`,
-            margin: '0 0 10px 0',
-            color: light.white,
-            textShadow: `0px 1px 5px ${light.gray_80}`,
-            fontWeight: 'bold',
-            fontSize: '10px',
-            textAlign: 'center',
-            padding: '50px 0',
-          }}>
-        {key}
-      </div>
-    ))}
-    </div>
-  </Story>
-</Preview>
