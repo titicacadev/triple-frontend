@@ -1,1 +1,7 @@
-export const fontSizes: number[] = [12, 13, 14, 15, 16, 19, 21, 24]
+// TODO: font set 정의 필요
+export const fontSizes: {
+  [key: string]: string
+} = {
+  s1: '10px',
+  s2: '11px',
+}

@@ -5,10 +5,7 @@ function generateRgba(
 } {
   return [100, 200, 300, 400, 500, 600, 700, 800, 900].reduce(
     (colors, n, i) => {
-      const key = n
-      const rgba = `rgba(${baseColor}, 0.${i + 1})`
-
-      return { ...colors, [key]: rgba }
+      return { ...colors, [n]: `rgba(${baseColor}, 0.${i + 1})` }
     },
     {
       1000: `rgba(${baseColor}, 1)`,
