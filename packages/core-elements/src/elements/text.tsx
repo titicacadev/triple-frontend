@@ -16,6 +16,7 @@ interface TextBaseProps {
   color?: string
   floated?: CSS.FloatProperty
   lineHeight?: number | string
+  letterSpacing?: number
   wordBreak?: CSS.WordBreakProperty
   whiteSpace?: CSS.WhiteSpaceProperty
   center?: boolean
@@ -79,6 +80,8 @@ const TextBase = styled.div<TextBaseProps>`
   float: ${({ floated }) => floated || 'none'};
 
   line-height: ${({ lineHeight }) => lineHeight || 1.2};
+  
+  letter-spacing: ${({ letterSpacing }) => letterSpacing || 0};
 
   ${({ wordBreak }) =>
     wordBreak &&
