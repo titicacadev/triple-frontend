@@ -1,18 +1,17 @@
 function generateRgba(
-  name: string,
   baseColor: string,
 ): {
   [key: string]: string
 } {
-  return [...Array(9).keys()].reduce(
-    (prev, _, index) => {
-      const key = `${name}${index + 1}0`
-      const rgba = `rgba(${baseColor}, 0.${index + 1})`
+  return [100, 200, 300, 400, 500, 600, 700, 800, 900].reduce(
+    (colors, n, i) => {
+      const key = n
+      const rgba = `rgba(${baseColor}, 0.${i + 1})`
 
-      return { ...prev, [key]: rgba }
+      return { ...colors, [key]: rgba }
     },
     {
-      [name]: `rgba(${baseColor}, 1)`,
+      1000: `rgba(${baseColor}, 1)`,
     },
   )
 }

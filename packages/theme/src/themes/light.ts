@@ -11,20 +11,42 @@ enum Color {
   deepRed = '190, 0, 23',
   purple = '151, 95, 254',
   emerald = '11, 208, 153',
+  white = '255, 255, 255, 1',
 }
 
 export default {
-  white: 'rgba(255, 255, 255, 1)',
-  ...generateRgba('gray', Color.gray),
-  gray02: `rgba(${Color.gray}, 0.02)`,
-  gray05: `rgba(${Color.gray}, 0.05)`,
-  ...generateRgba('blue', Color.blue),
-  ...generateRgba('mint', Color.mint),
-  ...generateRgba('orange', Color.orange),
-  ...generateRgba('deepOrange', Color.deepOrange),
-  ...generateRgba('red', Color.red),
-  ...generateRgba('mediumRed', Color.mediumRed),
-  ...generateRgba('deepRed', Color.deepRed),
-  ...generateRgba('purple', Color.purple),
-  ...generateRgba('emerald', Color.emerald),
+  white: `rgba(${Color.white}, 1)`,
+  black: `rgba(${Color.gray})`,
+  gray: {
+    20: `rgba(${Color.gray}, 0.02)`,
+    50: `rgba(${Color.gray}, 0.05)`,
+    ...generateRgba(Color.gray),
+  },
+  blue: {
+    ...generateRgba(Color.blue),
+  },
+  mint: {
+    ...generateRgba(Color.mint),
+  },
+  orange: {
+    ...generateRgba(Color.orange),
+  },
+  deepOrange: {
+    ...generateRgba(Color.deepOrange),
+  },
+  red: {
+    ...generateRgba(Color.red),
+  },
+  mediumRed: {
+    ...generateRgba(Color.mediumRed),
+  },
+  deepRed: {
+    ...generateRgba(Color.deepRed),
+  },
+  purple: {
+    ...generateRgba(Color.purple),
+  },
+  emerald: {
+    ...generateRgba(Color.emerald),
+  },
 }
