@@ -21,7 +21,7 @@ export const textStyle = (
   line-height: ${lineHeight};
   letter-spacing: ${letterSpacing};`
 
-export const textStyleMap = {
+export const TextStyleMap = {
   /* 가계부 금액 */
   l6: textStyle(36, 47, -0.3),
   /* 서비스메인, 도시메인 타이틀 */
@@ -55,5 +55,5 @@ export const textStyleMap = {
 }
 
 export interface TextStyleMap {
-  textStyle: { [key in keyof typeof textStyleMap]: string }
+  textStyle: { [key in keyof typeof TextStyleMap]: string }
 }
