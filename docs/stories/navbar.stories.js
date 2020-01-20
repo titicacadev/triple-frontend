@@ -30,6 +30,11 @@ storiesOf('Navbar', module)
     <Navbar
       title={text('제목', '도쿄 관광지')}
       borderless={boolean('Border 생략', true)}
+      backgroundColor={select(
+        '배경 색',
+        ['249, 250, 252(rgb코드)', 'gray', 'blue'],
+        'white',
+      )}
     >
       <Navbar.Item icon={select('좌측 아이콘', ['back', 'close'], 'back')} />
       <Navbar.Item
