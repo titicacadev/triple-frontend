@@ -96,7 +96,7 @@ export default function ExtendedResourceListElement({
         </Container>
 
         {salePrice ? (
-          <Container margin={{ top: 20 }}>
+          <Container margin={{ top: 18 }}>
             <Pricing
               rich
               basePrice={basePrice}
