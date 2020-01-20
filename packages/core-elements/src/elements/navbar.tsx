@@ -6,7 +6,6 @@ import { GlobalColors, GetGlobalColor } from '../commons'
 const NavbarFrame = styled.div<{
   borderless?: boolean
   backgroundColor?: string
-  opacity?: number
 }>`
   background-color: ${({ backgroundColor = 'white' }) =>
     `rgba(${GetGlobalColor(backgroundColor)})`};
