@@ -1,3 +1,6 @@
+- `resource-list-element` 이미지와 가격 사이의 간격을 18px 로 수정합니다.
+- `pricing` fixed label 의 default color 를 gray 로 설정합니다.
+
 ## 1.3.6 (2020-01-16)
 
 - `input` 잘못된 type 을 수정합니다. (#415)
