@@ -71,3 +71,28 @@ strikethrough?: boolean
 <Text size="big" color="blue"> color: blue </Text>
 <Text size="big" color="gray"> color: gray </Text>
 <Text size="big" color="gray" alpha={0.5}> color: gray alpha = 0.5 </Text>
+
+## TextStyle
+
+<Text textStyle="L6">가계부 금액</Text>
+
+```js
+<Text textStyle="L6"> 
+  가계부 금액
+</Text>
+```
+<Text textStyle="M8">서비스메인, 도시메인 타이틀</Text>
+
+```js
+<Text textStyle="M8"> 
+  가계부 금액
+</Text>
+```
+
+<Text size="tiny" textStyle="S2">Tiny Size Text</Text>
+
+> `size`, `lineHeight` 과 같은 기존 `props` 설정이 우선적으로 동작합니다.
+
+```js
+<Text size="tiny" lineHeight={1.5} textStyle="S2">Tiny Size Text</Text>
+```
