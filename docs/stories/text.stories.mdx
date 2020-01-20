@@ -1,5 +1,6 @@
 import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
-import { Text } from '@titicaca/core-elements'
+// import { Text } from '@titicaca/core-elements'
+import { Text } from '../../packages/core-elements'
 import { action } from '@storybook/addon-actions'
 import { select, text, boolean } from '@storybook/addon-knobs';
 
@@ -35,6 +36,7 @@ Text 를 표현할때 사용하는 컴포넌트입니다.
 
 ```js
 size?: GlobalSizes | number
+textStyle?: KeyOfTextStyle
 bold?: boolean
 alpha?: number
 color?: string
@@ -74,24 +76,39 @@ strikethrough?: boolean
 
 ## TextStyle
 
-<Text textStyle="L6">가계부 금액</Text>
+<Text textStyle="L6">textStyle="L6"</Text>
+<Text textStyle="M8">textStyle="M8"</Text>
+<Text textStyle="M6">textStyle="M6"</Text>
+<Text textStyle="M4">textStyle="M4"</Text>
+<Text textStyle="M2">textStyle="M2"</Text>
+<Text textStyle="M1">textStyle="M1"</Text>
+<Text textStyle="M">textStyle="M"</Text>
+<Text textStyle="S9">textStyle="S9"</Text>
+<Text textStyle="S8">textStyle="S8"</Text>
+<Text textStyle="S7">textStyle="S7"</Text>
+<Text textStyle="S6">textStyle="S6"</Text>
+<Text textStyle="S5">textStyle="S5"</Text>
+<Text textStyle="S4">textStyle="S4"</Text>
+<Text textStyle="S3">textStyle="S3"</Text>
+<Text textStyle="S2">textStyle="S2"</Text>
 
 ```js
 <Text textStyle="L6"> 
   가계부 금액
 </Text>
 ```
-<Text textStyle="M8">서비스메인, 도시메인 타이틀</Text>
+<Text textStyle="M8">
+</Text>
 
 ```js
 <Text textStyle="M8"> 
-  가계부 금액
+  서비스메인, 도시메인 타이틀
 </Text>
 ```
 
 <Text size="tiny" textStyle="S2">Tiny Size Text</Text>
 
-> `size`, `lineHeight` 과 같은 기존 `props` 설정이 우선적으로 동작합니다.
+> `size`, `lineHeight` 과 같은 기존 `props` 을 함께 사용할 경우 `textStyle` 이 최종 적용됩니다.
 
 ```js
 <Text size="tiny" lineHeight={1.5} textStyle="S2">Tiny Size Text</Text>
