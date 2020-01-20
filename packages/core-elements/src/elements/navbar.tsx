@@ -1,9 +1,15 @@
 import * as React from 'react'
 import * as CSS from 'csstype'
 import styled, { css } from 'styled-components'
+import { GlobalColors, GetGlobalColor } from '../commons'
 
-const NavbarFrame = styled.div<{ borderless?: boolean }>`
-  background-color: #ffffff;
+const NavbarFrame = styled.div<{
+  borderless?: boolean
+  backgroundColor?: string
+  opacity?: number
+}>`
+  background-color: ${({ backgroundColor = 'white' }) =>
+    `rgba(${GetGlobalColor(backgroundColor)})`};
   position: sticky;
   position: -webkit-sticky;
   top: 0;
@@ -104,16 +110,18 @@ function Navbar({
   renderTitle,
   children,
   borderless,
+  backgroundColor,
 }: {
   title?: string
   renderTitle?: (props?: any) => JSX.Element
   children?: React.ReactNode
   borderless?: boolean
+  backgroundColor?: string
 }) {
   const childrenCount = React.Children.count(children)
 
   return (
-    <NavbarFrame borderless={borderless}>
+    <NavbarFrame borderless={borderless} backgroundColor={backgroundColor}>
       {renderTitle
         ? renderTitle()
         : title && (
