@@ -7,16 +7,21 @@ import {
   GetGlobalColor,
   GlobalColors,
 } from '../commons'
-import { marginMixin, paddingMixin } from '../mixins'
+import {
+  marginMixin,
+  paddingMixin,
+  getTextStyle,
+  KeyOfTextStyle,
+} from '../mixins'
 
 interface TextBaseProps {
   size?: GlobalSizes | number
+  textStyle?: KeyOfTextStyle
   bold?: boolean
   alpha?: number
   color?: string
   floated?: CSS.FloatProperty
   lineHeight?: number | string
-  letterSpacing?: number
   wordBreak?: CSS.WordBreakProperty
   whiteSpace?: CSS.WhiteSpaceProperty
   center?: boolean
@@ -71,17 +76,29 @@ function rgba({ color, alpha }: { color?: string; alpha?: number }) {
 }
 
 const TextBase = styled.div<TextBaseProps>`
-  font-size: ${({ size = 'large' }) =>
-    typeof size === 'string' ? SIZES[size] : `${size}px`};
+${({ textStyle, size, lineHeight }) => {
+  if (textStyle && (size || lineHeight)) {
+    console.warn(
+      "%c🙅🏻‍♂️\n%cPlease don't use `size` and `lineHeight` with `textStyle` together. \nIf you are use together, `size` and `lineHeight` will be omit. \nhttps://github.com/titicacadev/triple-frontend/issues/401",
+      'font-size: 24px',
+      '',
+    )
+  } else {
+    return undefined
+  }
+}}
+
+font-size: ${({ size = 'large' }) =>
+  typeof size === 'string' ? SIZES[size] : `${size}px`};
+line-height: ${({ lineHeight }) => lineHeight || 1.2};
+
+${({ textStyle }) => textStyle && getTextStyle(textStyle)}
+  
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
   color: ${({ color = 'gray', alpha }) => rgba({ color, alpha })};
   word-wrap: break-word;
 
   float: ${({ floated }) => floated || 'none'};
-
-  line-height: ${({ lineHeight }) => lineHeight || 1.2};
-  
-  letter-spacing: ${({ letterSpacing }) => letterSpacing || 0};
 
   ${({ wordBreak }) =>
     wordBreak &&
