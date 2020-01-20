@@ -79,9 +79,7 @@ const TextBase = styled.div<TextBaseProps>`
 ${({ textStyle, size, lineHeight }) => {
   if (textStyle && (size || lineHeight)) {
     console.warn(
-      "%c🙅🏻‍♂️\n%cPlease don't use `size` and `lineHeight` with `textStyle` together. \nIf you are use together, `size` and `lineHeight` will be omit. \nhttps://github.com/titicacadev/triple-frontend/issues/401",
-      'font-size: 24px',
-      '',
+      "🙅🏻‍♂️\n[Warn] Please don't use `size` and `lineHeight` with `textStyle` together. \nIf they are used together, `size` and `lineHeight` will be omit. See \nhttps://github.com/titicacadev/triple-frontend/issues/401",
     )
   } else {
     return undefined
