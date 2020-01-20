@@ -1,4 +1,4 @@
-import { css as _ } from 'styled-components'
+import { css } from 'styled-components'
 
 /**
  * TODO:
@@ -15,45 +15,49 @@ export const textStyle = (
   size: number,
   lineHeight: number,
   letterSpacing: number,
-) => () =>
-  _`
-  font-size: ${size};
-  line-height: ${lineHeight};
-  letter-spacing: ${letterSpacing};`
+) =>
+  css`
+    font-size: ${size}px;
+    line-height: ${lineHeight}px;
+    letter-spacing: ${letterSpacing}px;
+  `
 
 export const TextStyleMap = {
   /* 가계부 금액 */
-  l6: textStyle(36, 47, -0.3),
+  L6: textStyle(36, 47, -0.3),
   /* 서비스메인, 도시메인 타이틀 */
-  m8: textStyle(28, 37, -0.3),
+  M8: textStyle(28, 37, -0.3),
   /* 쿠폰 금액 */
-  m6: textStyle(28, 35, -0.3),
+  M6: textStyle(28, 35, -0.3),
   /* 타이틀 */
-  m4: textStyle(24, 33, -0.3),
+  M4: textStyle(24, 33, -0.3),
   /* 금액 가격 등 숫자 */
-  m2: textStyle(22, 31, -0.2),
+  M2: textStyle(22, 31, -0.2),
   /* 서비스메인 카드 타이틀 */
-  m1: textStyle(21, 29, -0.2),
+  M1: textStyle(21, 29, -0.2),
   /* 목록, 타이틀 */
-  m: textStyle(20, 24, -0.2),
+  M: textStyle(20, 24, -0.2),
   /* 서비스메인 타이틀 */
-  s9: textStyle(19, 23, -0.2),
+  S9: textStyle(19, 23, -0.2),
   /* 서비스 메인 타이틀 */
-  s8: textStyle(18, 21, -0.2),
+  S8: textStyle(18, 21, -0.2),
   /* 상단 네비게이션바 타이틀 */
-  s7: textStyle(17, 20, -0.1),
+  S7: textStyle(17, 20, -0.1),
   /* 본문, 도시메인 카드 타이틀, POI 타이틀, 최근검색어 */
-  s6: textStyle(16, 19, -0.1),
+  S6: textStyle(16, 19, -0.1),
   /* 본문 */
-  s5: textStyle(15, 19, -0.1),
+  S5: textStyle(15, 19, -0.1),
   /* 본문, 날짜 */
-  s4: textStyle(14, 24, -0.1),
+  S4: textStyle(14, 24, -0.1),
   /* 도시메인카드 본문, 서브 설명 */
-  s3: textStyle(13, 23, 0),
+  S3: textStyle(13, 23, 0),
   /* 부가설명, 일정판 요일 */
-  s2: textStyle(12, 22, 0),
+  S2: textStyle(12, 22, 0),
 }
 
-export interface TextStyleMap {
-  textStyle: { [key in keyof typeof TextStyleMap]: string }
+export function getTextStyle(type: KeyOfTextStyle) {
+  return TextStyleMap[type]
 }
+
+export type KeyOfTextStyle = keyof typeof TextStyleMap
+export type TextStyleMapType = { [key in KeyOfTextStyle]: string }

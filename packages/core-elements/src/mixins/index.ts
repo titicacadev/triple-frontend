@@ -1,6 +1,8 @@
 import { css } from 'styled-components'
 import { MarginPadding } from './../commons'
 
+export * from './text-style'
+
 const unit = (value: number | string, suffix = 'px') =>
   typeof value === 'string' ? value : value !== 0 ? `${value}${suffix}` : value
 
