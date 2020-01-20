@@ -245,7 +245,7 @@ function FixedPricing({
 }: FixedPricingProps) {
   const pricingLabel = label ? (
     typeof label === 'string' ? (
-      <Text color="blue" size="mini">
+      <Text color="gray" alpha={0.5} size="mini">
         {label}
       </Text>
     ) : (
