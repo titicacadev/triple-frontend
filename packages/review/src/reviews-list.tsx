@@ -37,7 +37,7 @@ export default function ReviewsList({
 }: {
   myReview?: ReviewData
   reviews: ReviewData[]
-  fetchNext?: Function
+  fetchNext?: () => void
   appUrlScheme: string
   margin: MarginPadding
   resourceType: ResourceType
@@ -45,7 +45,6 @@ export default function ReviewsList({
   regionId: string
   maxLength?: number
   showToast: AppNativeActionProps['showToast']
-  perPage?: number
 }) {
   const [selectedReview, setSelectedReview] = useState<ReviewData | undefined>(
     undefined,
