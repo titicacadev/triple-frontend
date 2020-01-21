@@ -56,15 +56,10 @@ export default function ReviewsList({
   const { navigate, push } = useHistoryContext()
   const { show } = useTransitionModal()
 
-  const handleUserClick: ReviewElementProps['onUserClick'] = (e, review) => {
-    if (!review) {
-      return
-    }
-
-    const {
-      user: { uid, unregister, mileage },
-    } = review
-
+  const handleUserClick: ReviewElementProps['onUserClick'] = (
+    e,
+    { user: { uid, unregister, mileage } },
+  ) => {
     const { level } = mileage || { level: 0 }
     trackEvent({
       ga: ['리뷰 프로필'],
@@ -89,13 +84,8 @@ export default function ReviewsList({
 
   const handleLikeButtonClick: ReviewElementProps['onLikeButtonClick'] = async (
     e,
-    review,
+    { id, liked },
   ) => {
-    if (!review) {
-      return
-    }
-
-    const { id, liked } = review
     const response = await (liked ? unlikeReview({ id }) : likeReview({ id }))
 
     if (response.ok) {
@@ -105,13 +95,11 @@ export default function ReviewsList({
 
   const handleLikesCountClick: ReviewElementProps['onLikesCountClick'] = (
     e,
-    review,
+    { id },
   ) => {
-    if (isPublic || !review) {
+    if (isPublic) {
       return
     }
-
-    const { id } = review
 
     navigate(
       `${appUrlScheme}:///inlink?path=${encodeURIComponent(
@@ -121,7 +109,7 @@ export default function ReviewsList({
   }
 
   const handleMenuClick: ReviewElementProps['onMenuClick'] = (e, review) => {
-    if (!isPublic && !!review) {
+    if (!isPublic) {
       if (myReview && review.id === myReview.id) {
         push(HASH_MY_REVIEW_ACTION_SHEET)
       } else {

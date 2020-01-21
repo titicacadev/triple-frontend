@@ -14,17 +14,17 @@ import { ReviewData, ImageEntity } from '../types'
 export interface ReviewElementProps {
   review: ReviewData
   index: number
-  onUserClick: (e?: React.SyntheticEvent, review?: ReviewData) => any
-  onUnfoldButtonClick?: (e?: React.SyntheticEvent, review?: ReviewData) => any
-  onLikeButtonClick: (e?: React.SyntheticEvent, review?: ReviewData) => any
-  onLikesCountClick: (e?: React.SyntheticEvent, review?: ReviewData) => any
-  onMenuClick: (e?: React.SyntheticEvent, review?: ReviewData) => any
+  onUserClick: (e: React.SyntheticEvent, review: ReviewData) => void
+  onUnfoldButtonClick?: (e: React.SyntheticEvent, review: ReviewData) => void
+  onLikeButtonClick: (e: React.SyntheticEvent, review: ReviewData) => void
+  onLikesCountClick: (e: React.SyntheticEvent, review: ReviewData) => void
+  onMenuClick: (e: React.SyntheticEvent, review: ReviewData) => void
   onImageClick: (
     e: React.SyntheticEvent,
     review: ReviewData,
     image: ImageEntity,
   ) => void
-  onShow?: (index: number) => any
+  onShow?: (index: number) => void
   likeVisible?: boolean
   menuVisible?: boolean
   DateFormatter?: ComponentType<{ date: string }>
