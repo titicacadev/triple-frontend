@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import humps from 'humps'
+import { ResourceType } from './types'
 
 export function writeReview({
   appUrlScheme,
@@ -9,7 +10,7 @@ export function writeReview({
   rating = 0,
 }: {
   appUrlScheme: string
-  resourceType: string
+  resourceType: ResourceType
   resourceId: string
   regionId: string
   rating: number
@@ -35,7 +36,7 @@ export async function fetchMyReview({
   resourceType,
   resourceId,
 }: {
-  resourceType: unknown
+  resourceType: ResourceType
   resourceId: string
 }) {
   const response = await fetch(
@@ -65,7 +66,7 @@ export function deleteReview({ id }: { id: string }) {
 
 export interface FetchReviewsInterface {
   resourceId: string
-  resourceType: string
+  resourceType: ResourceType
   order?: string
   from?: number
   size?: number
@@ -76,7 +77,7 @@ export async function fetchReviewsCount({
   resourceType,
 }: {
   resourceId: string
-  resourceType: string
+  resourceType: ResourceType
 }) {
   const response = await fetch(
     `/api/reviews/v2/count?resource_id=${resourceId}&resource_type=${resourceType}`,

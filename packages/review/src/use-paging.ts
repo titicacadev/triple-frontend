@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import humps from 'humps'
 import { useFetch } from '@titicaca/react-hooks'
+import { ResourceType } from './types'
 
 const OPTIONS = { credentials: 'same-origin' }
 
@@ -12,7 +13,7 @@ export default function usePaging({
 }: {
   sortingOption?: string
   resourceId: string
-  resourceType: string
+  resourceType: ResourceType
   perPage: number
 }) {
   const [currentPage, setCurrentPage] = useState(1)

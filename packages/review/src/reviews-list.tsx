@@ -16,6 +16,7 @@ import OthersReviewActionSheet, {
 } from './others-review-action-sheet'
 import { likeReview, unlikeReview } from './review-api-clients'
 import { useReviewLikesContext } from './review-likes-context'
+import { ResourceType } from './types'
 
 export default function ReviewsList({
   myReview,
@@ -34,7 +35,7 @@ export default function ReviewsList({
   fetchNext?: Function
   appUrlScheme: string
   margin: MarginPadding
-  resourceType: string
+  resourceType: ResourceType
   resourceId: string
   regionId: string
   maxLength?: number

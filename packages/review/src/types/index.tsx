@@ -1,8 +1,10 @@
 import React from 'react'
 
+export type ResourceType = 'article' | string
+
 export interface ReviewProps {
   resourceId: string
-  resourceType: string
+  resourceType: ResourceType
   regionId: string
   reviewsCount: number
   shortened?: boolean

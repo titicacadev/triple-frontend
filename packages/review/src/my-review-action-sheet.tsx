@@ -6,6 +6,7 @@ import {
   useMyReviewsContext,
 } from '@titicaca/react-contexts'
 import { deleteReview as deleteReviewApi } from './review-api-clients'
+import { ResourceType } from './types'
 
 interface MyReviewActionSheetProps {
   myReview: {
@@ -13,7 +14,7 @@ interface MyReviewActionSheetProps {
   }
   appUrlScheme: string
   regionId: string
-  resourceType: unknown
+  resourceType: ResourceType
   resourceId: string
   notifyReviewDeleted: (resourceId: string, reviewId: string) => void
   onReviewEdit?: () => void
