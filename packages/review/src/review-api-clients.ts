@@ -31,7 +31,13 @@ export function unlikeReview({ id }: { id: string }) {
   })
 }
 
-export async function fetchMyReview({ resourceType, resourceId }) {
+export async function fetchMyReview({
+  resourceType,
+  resourceId,
+}: {
+  resourceType: unknown
+  resourceId: string
+}) {
   const response = await fetch(
     `/api/reviews/v2/me?resource_type=${resourceType}&resource_id=${resourceId}`,
     { credentials: 'same-origin' },

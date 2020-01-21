@@ -8,10 +8,19 @@ export const HASH_REVIEW_ACTION_SHEET =
 export default function OthersReviewActionSheet({
   appUrlScheme,
   selectedReview,
+}: {
+  appUrlScheme: string
+  selectedReview?: {
+    id: string
+  } | null
 }) {
   const { uriHash, back } = useHistoryContext()
 
   const handleReportClick = () => {
+    if (!selectedReview) {
+      return
+    }
+
     window.location.href = `${appUrlScheme}:///reviews/${selectedReview.id}/report`
 
     back()
@@ -19,7 +28,7 @@ export default function OthersReviewActionSheet({
 
   return (
     <ActionSheet
-      open={uriHash === HASH_REVIEW_ACTION_SHEET && selectedReview}
+      open={uriHash === HASH_REVIEW_ACTION_SHEET && !!selectedReview}
       onClose={back}
     >
       <ActionSheet.Item icon="report" onClick={handleReportClick}>

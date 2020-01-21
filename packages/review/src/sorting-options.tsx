@@ -2,6 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import { Label } from '@titicaca/core-elements'
 
+export interface SortingOptionsProps {
+  onSelect: (e: React.SyntheticEvent, key: string) => any
+  selected: string
+}
+
 export const ORDER_BY_RECOMMENDATION = ''
 export const ORDER_BY_RECENCY = 'latest'
 
@@ -23,10 +28,7 @@ const OptionsContainer = styled.div`
 export default function SortingOptions({
   onSelect,
   selected,
-}: {
-  onSelect: (e: React.SyntheticEvent, key: string) => any
-  selected: string
-}) {
+}: SortingOptionsProps) {
   return (
     <OptionsContainer>
       {SORTING_OPTIONS.map(({ key, text }) => (
