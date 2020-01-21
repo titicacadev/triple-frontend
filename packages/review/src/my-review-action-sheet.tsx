@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { SyntheticEvent } from 'react'
 import ActionSheet from '@titicaca/action-sheet'
 import { Confirm } from '@titicaca/modals'
 import {
@@ -6,6 +6,19 @@ import {
   useMyReviewsContext,
 } from '@titicaca/react-contexts'
 import { deleteReview as deleteReviewApi } from './review-api-clients'
+
+interface MyReviewActionSheetProps {
+  myReview: {
+    id: string
+  }
+  appUrlScheme: string
+  regionId: string
+  resourceType: unknown
+  resourceId: string
+  notifyReviewDeleted: (resourceId: string, reviewId: string) => void
+  onReviewEdit?: () => void
+  onReviewDelete?: (e?: SyntheticEvent, reviewId?: string) => void
+}
 
 export const HASH_MY_REVIEW_ACTION_SHEET =
   'common.reviews-list.my-review-action-sheet'
@@ -21,7 +34,7 @@ export default function MyReviewActionSheet({
   notifyReviewDeleted,
   onReviewEdit,
   onReviewDelete,
-}) {
+}: MyReviewActionSheetProps) {
   const { uriHash, replace, back } = useHistoryContext()
   const {
     actions: { deleteMyReview },

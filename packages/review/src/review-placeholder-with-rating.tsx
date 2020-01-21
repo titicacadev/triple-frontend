@@ -19,6 +19,10 @@ export default function ReviewsPlaceholder({
   resourceType,
   placeholderText = DEFAULT_PLACEHOLDER_TEXT,
   onClick,
+}: {
+  resourceType: string
+  placeholderText?: string
+  onClick?: (e: React.SyntheticEvent, rating?: number) => void
 }) {
   return (
     <PlaceholderContainer margin={{ top: 20 }} onClick={onClick}>

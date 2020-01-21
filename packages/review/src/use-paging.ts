@@ -9,10 +9,15 @@ export default function usePaging({
   resourceId,
   resourceType,
   perPage,
+}: {
+  sortingOption?: string
+  resourceId: string
+  resourceType: string
+  perPage: number
 }) {
   const [currentPage, setCurrentPage] = useState(1)
   const [endOfList, setEndOfList] = useState(false)
-  const [reviews, setReviews] = useState([])
+  const [reviews, setReviews] = useState<{ id: string }[]>([])
   const { error, loading, data } = useFetch(
     `/api/reviews/v2${
       sortingOption ? `/${sortingOption}` : '/'
@@ -36,7 +41,7 @@ export default function usePaging({
       if (data.reviews.length > 0) {
         setReviews((currentReviews) => [
           ...currentReviews,
-          ...humps.camelizeKeys(data.reviews),
+          ...(humps.camelizeKeys(data.reviews) as { id: string }[]),
         ])
       } else {
         setEndOfList(true)

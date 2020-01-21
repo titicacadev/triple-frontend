@@ -1,6 +1,23 @@
-import React from 'react'
+import React, { PropsWithChildren, MouseEventHandler } from 'react'
 import styled from 'styled-components'
 import { Container, Text } from '@titicaca/core-elements'
+
+interface UserData {
+  photo: string
+  name: string
+  userBoard: {
+    reviews: number
+  }
+  mileage: {
+    badges: {
+      icon: {
+        imageUrl: string
+      }
+    }[]
+    level: number
+    point: number
+  }
+}
 
 const UserPhoto = styled.img`
   margin-right: 9px;
@@ -24,18 +41,10 @@ export default function User({
   user: { photo, name, mileage },
   onClick,
   children,
-}: {
-  onClick?: (e?: React.SyntheticEvent) => any
-  user: {
-    photo: any
-    name: string
-    userBoard: {
-      reviews: number
-    }
-    mileage: any
-  }
-  children: React.ReactNode
-}) {
+}: PropsWithChildren<{
+  onClick?: MouseEventHandler
+  user: UserData
+}>) {
   const {
     badges: [badge],
     level,
@@ -57,7 +66,10 @@ export default function User({
   )
 }
 
-function Name({ onClick, children }) {
+function Name({
+  onClick,
+  children,
+}: PropsWithChildren<{ onClick?: MouseEventHandler<HTMLDivElement> }>) {
   return (
     <Text bold size="large" color="gray" onClick={onClick}>
       {children}
@@ -68,10 +80,9 @@ function Name({ onClick, children }) {
 function UserExtra({
   onClick,
   children,
-}: {
-  onClick?: (e?: React.SyntheticEvent) => any
-  children?: React.ReactNode
-}) {
+}: PropsWithChildren<{
+  onClick?: MouseEventHandler<HTMLDivElement>
+}>) {
   return (
     <Text
       margin={{ top: 4 }}

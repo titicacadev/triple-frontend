@@ -12,8 +12,11 @@ export interface ReviewProps {
   placeholderText?: string
   appNativeActions: AppNativeActionProps
   sortingOption?: string
-  onReviewWrite?: (e: React.SyntheticEvent, rating?: number) => any
-  onReviewDelete?: (e: React.SyntheticEvent, id: string) => Promise<void> | void
+  onReviewWrite?: (e?: React.SyntheticEvent, rating?: number) => any
+  onReviewDelete?: (
+    e?: React.SyntheticEvent,
+    id?: string,
+  ) => Promise<void> | void
   onFullListButtonClick?: (
     e: React.SyntheticEvent,
     sortingOption?: string,
@@ -23,6 +26,6 @@ export interface ReviewProps {
 export interface AppNativeActionProps {
   subscribeReviewUpdateEvent?: Function
   unsubscribeReviewUpdateEvent?: Function
-  showToast?: Function
-  notifyReviewDeleted?: Function
+  showToast: Function
+  notifyReviewDeleted: Function
 }

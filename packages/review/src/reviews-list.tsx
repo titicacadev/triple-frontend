@@ -8,7 +8,7 @@ import {
   useEventTrackingContext,
 } from '@titicaca/react-contexts'
 import { useTransitionModal, TransitionType } from '@titicaca/modals'
-import ReviewElement from './review-element'
+import ReviewElement, { ReviewElementProps } from './review-element'
 import ReviewTimestamp from './review-timestamp'
 import { HASH_MY_REVIEW_ACTION_SHEET } from './my-review-action-sheet'
 import OthersReviewActionSheet, {
@@ -48,7 +48,10 @@ export default function ReviewsList({
   const { navigate, push } = useHistoryContext()
   const { show } = useTransitionModal()
 
-  const handleUserClick = (e, { user: { uid, unregister, mileage } }) => {
+  const handleUserClick: ReviewElementProps['onUserClick'] = (
+    e,
+    { user: { uid, unregister, mileage } },
+  ) => {
     const { level } = mileage || { level: 0 }
     trackEvent({
       ga: ['리뷰 프로필'],
@@ -71,7 +74,10 @@ export default function ReviewsList({
     }
   }
 
-  const handleLikeButtonClick = async (e, { id, liked }) => {
+  const handleLikeButtonClick: ReviewElementProps['onLikeButtonClick'] = async (
+    e,
+    { id, liked },
+  ) => {
     const response = await (liked ? unlikeReview({ id }) : likeReview({ id }))
 
     if (response.ok) {
@@ -79,7 +85,10 @@ export default function ReviewsList({
     }
   }
 
-  const handleLikesCountClick = (e, { id }) => {
+  const handleLikesCountClick: ReviewElementProps['onLikesCountClick'] = (
+    e,
+    { id },
+  ) => {
     if (isPublic) {
       return
     }
@@ -91,7 +100,7 @@ export default function ReviewsList({
     )
   }
 
-  const handleMenuClick = (e, review) => {
+  const handleMenuClick: ReviewElementProps['onMenuClick'] = (e, review) => {
     if (!isPublic) {
       if (myReview && review.id === myReview.id) {
         push(HASH_MY_REVIEW_ACTION_SHEET)
@@ -102,7 +111,7 @@ export default function ReviewsList({
     }
   }
 
-  const handleImageClick = (
+  const handleImageClick: ReviewElementProps['onImageClick'] = (
     e,
     { user: { name }, comment, media, createdAt },
     image,
@@ -111,7 +120,16 @@ export default function ReviewsList({
       return show(TransitionType.ReviewThumbnail)
     }
 
-    const convertImage = (convertingImage) => ({
+    const convertImage = (convertingImage: {
+      id: string
+      width: unknown
+      height: unknown
+      sizes: {
+        full: { url: string }
+        large: { url: string }
+        smallSquare: { url: string }
+      }
+    }) => ({
       id: convertingImage.id,
       title: '',
       description: (comment || '').replace(/\n\s*\n/g, '\n'),
@@ -128,13 +146,13 @@ export default function ReviewsList({
 
     window.location.href = `${appUrlScheme}:///images?${qs.stringify({
       images: JSON.stringify(media.map(convertImage)),
-      index: media.findIndex(({ id }) => id === image.id),
+      index: media.findIndex(({ id }: { id: string }) => id === image.id),
     })}`
   }
 
   const handleShow = fetchNext
-    ? (index) => index > reviews.length - 3 && fetchNext()
-    : null
+    ? (index: number) => index > reviews.length - 3 && fetchNext()
+    : undefined
 
   const allReviews = myReview ? [myReview, ...(reviews || [])] : reviews
 

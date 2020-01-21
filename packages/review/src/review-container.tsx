@@ -19,6 +19,7 @@ import { ReviewProps } from './types'
 import SortingOptions, {
   DEFAULT_SORTING_OPTION,
   ORDER_BY_RECENCY,
+  SortingOptionsProps,
 } from './sorting-options'
 import usePaging from './use-paging'
 import MyReviewActionSheet from './my-review-action-sheet'
@@ -189,7 +190,10 @@ export default function ReviewContainer({
     )
   }
 
-  const handleSortingOptionSelect = (_, sortingOption) => {
+  const handleSortingOptionSelect: SortingOptionsProps['onSelect'] = (
+    _,
+    sortingOption,
+  ) => {
     const eventLabel = sortingOption === ORDER_BY_RECENCY ? '최신순' : '추천순'
     trackEvent({
       ga: ['리뷰_리뷰정렬', eventLabel],
@@ -253,7 +257,7 @@ export default function ReviewContainer({
           </Container>
 
           <ReviewsList
-            maxLength={shortened ? 3 : null}
+            maxLength={shortened ? 3 : undefined}
             myReview={myReview}
             reviews={reviews.filter((review) => !myReviewIds.has(review.id))}
             resourceType={resourceType}
@@ -262,7 +266,7 @@ export default function ReviewContainer({
             margin={{ top: 30 }}
             resourceId={resourceId}
             showToast={showToast}
-            fetchNext={!shortened && fetchNext}
+            fetchNext={!shortened ? fetchNext : undefined}
           />
         </>
       ) : (
@@ -326,7 +330,7 @@ export default function ReviewContainer({
           myReview && reviewId === myReview.id && setMyReview(null)
           notifyReviewDeleted(resourceId, reviewId)
         }}
-        onReviewEdit={onReviewWrite}
+        onReviewEdit={() => onReviewWrite && onReviewWrite()}
         onReviewDelete={onReviewDelete}
       />
     </Section>

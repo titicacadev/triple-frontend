@@ -1,3 +1,4 @@
+import React from 'react'
 import moment from 'moment-timezone'
 
 moment.updateLocale('ko', {
@@ -11,8 +12,8 @@ moment.relativeTimeThreshold('m', 60)
 moment.relativeTimeThreshold('h', 24)
 moment.locale('ko')
 
-export default function ReviewTimestamp({ children }) {
-  const createdAt = moment(children)
+function formatReviewTimestamp(date: string) {
+  const createdAt = moment(date)
 
   if (
     moment()
@@ -29,4 +30,8 @@ export default function ReviewTimestamp({ children }) {
   }
 
   return createdAt.format('YYYY.M.D')
+}
+
+export default function ReviewTimestamp({ date }: { date: string }) {
+  return <>{formatReviewTimestamp(date)}</>
 }

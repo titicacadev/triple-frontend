@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, PropsWithChildren, ComponentType } from 'react'
 import styled, { css } from 'styled-components'
+import * as CSS from 'csstype'
 import IntersectionObserver from '@titicaca/intersection-observer'
 import { List, Container, Text, Rating } from '@titicaca/core-elements'
 
@@ -8,6 +9,29 @@ import User from './user'
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
+
+interface ImageEntity {
+  id: string
+  sizes: {
+    smallSquare: { url: string }
+  }
+}
+
+export interface ReviewElementProps {
+  review?: any
+  index: number
+  onUserClick: (e?: React.SyntheticEvent, review?: any) => any
+  onUnfoldButtonClick?: (e?: React.SyntheticEvent, review?: any) => any
+  onLikeButtonClick: (e?: React.SyntheticEvent, review?: any) => any
+  onLikesCountClick: (e?: React.SyntheticEvent, review?: any) => any
+  onMenuClick: (e?: React.SyntheticEvent, review?: any) => any
+  onImageClick: (e?: React.SyntheticEvent, review?: any, image?: any) => any
+  onShow?: (index: number) => any
+  likeVisible?: boolean
+  menuVisible?: boolean
+  DateFormatter?: ComponentType<{ date: string }>
+  resourceId: string
+}
 
 const MoreIcon = styled.img`
   margin-top: -3px;
@@ -74,21 +98,7 @@ export default function ReviewElement({
   menuVisible,
   DateFormatter,
   resourceId,
-}: {
-  review?: any
-  index?: number
-  onUserClick?: (e?: React.SyntheticEvent, review?: any) => any
-  onUnfoldButtonClick?: (e?: React.SyntheticEvent, review?: any) => any
-  onLikeButtonClick?: (e?: React.SyntheticEvent, review?: any) => any
-  onLikesCountClick?: (e?: React.SyntheticEvent, review?: any) => any
-  onMenuClick?: (e?: React.SyntheticEvent, review?: any) => any
-  onImageClick?: (e?: React.SyntheticEvent, review?: any, image?: any) => any
-  onShow?: (index: number) => any
-  likeVisible?: boolean
-  menuVisible?: boolean
-  DateFormatter?: React.ComponentClass | React.FunctionComponent
-  resourceId: string
-}) {
+}: ReviewElementProps) {
   const [unfolded, setUnfolded] = useState(false)
   const { deriveCurrentStateAndCount } = useReviewLikesContext()
   const { trackEvent } = useEventTrackingContext()
@@ -117,6 +127,7 @@ export default function ReviewElement({
             comment
           ) : (
             <FoldableComment
+              comment={comment}
               onUnfoldButtonClick={(e) => {
                 trackEvent({
                   ga: ['리뷰_리뷰글더보기'],
@@ -129,13 +140,11 @@ export default function ReviewElement({
 
                 onUnfoldButtonClick && onUnfoldButtonClick(e, review)
               }}
-            >
-              {comment}
-            </FoldableComment>
+            />
           )}
           {!blindedAt && (
             <Images>
-              {(media || []).map((image, i) => (
+              {(media || []).map((image: ImageEntity, i: number) => (
                 <img
                   key={i}
                   src={image.sizes.smallSquare.url}
@@ -195,12 +204,8 @@ export default function ReviewElement({
                 ) : null}
               </>
             ) : null}
-            <Date floated={likeVisible !== false && 'right'}>
-              {DateFormatter ? (
-                <DateFormatter>{createdAt}</DateFormatter>
-              ) : (
-                createdAt
-              )}
+            <Date floated={likeVisible !== false ? 'right' : undefined}>
+              {DateFormatter ? <DateFormatter date={createdAt} /> : createdAt}
               {menuVisible !== false && (
                 <MoreIcon
                   src="https://assets.triple.guide/images/btn-review-more@4x.png"
@@ -215,7 +220,7 @@ export default function ReviewElement({
   )
 }
 
-function Score({ score }) {
+function Score({ score }: { score?: number }) {
   return (
     <Container floated="right">
       <Rating size="tiny" score={score} />
@@ -223,7 +228,7 @@ function Score({ score }) {
   )
 }
 
-function Content({ children }) {
+function Content({ children }: PropsWithChildren<{}>) {
   return (
     <Container margin={{ top: 17 }} clearing>
       <Comment>{children}</Comment>
@@ -231,7 +236,7 @@ function Content({ children }) {
   )
 }
 
-function Meta({ children }) {
+function Meta({ children }: PropsWithChildren<{}>) {
   return (
     <Text margin={{ top: 20 }} bold size="mini" color="gray" alpha={0.3}>
       {children}
@@ -239,6 +244,9 @@ function Meta({ children }) {
   )
 }
 
-function Date({ floated, children }) {
+function Date({
+  floated,
+  children,
+}: PropsWithChildren<{ floated?: CSS.FloatProperty }>) {
   return <Container floated={floated}>{children}</Container>
 }

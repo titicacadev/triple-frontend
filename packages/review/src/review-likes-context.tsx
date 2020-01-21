@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useCallback, createContext } from 'react'
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  createContext,
+  ComponentType,
+} from 'react'
 
 const NOOP = () => {}
 
@@ -24,7 +30,9 @@ const Context = createContext<ReviewLikesContextProps>({
 
 interface ReviewLikesProviderProps {
   likes?: { [key: string]: boolean | null }
-  subscribeLikedChangeEvent: Function
+  subscribeLikedChangeEvent?: (
+    handler: (params: { id: string; liked: boolean }) => void,
+  ) => void
   notifyReviewLiked: Function
   notifyReviewUnliked: Function
   children: React.ReactNode
@@ -86,7 +94,7 @@ export function ReviewLikesProvider({
       }
 
       return {
-        liked: currentState,
+        liked: !!currentState,
         likesCount:
           initialLiked === currentState
             ? initialLikesCount || 0
@@ -114,15 +122,26 @@ export function useReviewLikesContext() {
   return React.useContext(Context)
 }
 
-export function withReviewLikes(Component) {
-  return function ReviewLikesComponent(props) {
+interface WrappedComponentBaseProps {
+  deriveCurrentLikedStateAndCount?: ReviewLikesContextProps['deriveCurrentStateAndCount']
+  updateLikedStatus?: ReviewLikesContextProps['updateLikedStatus']
+}
+
+export function withReviewLikes<P extends WrappedComponentBaseProps>(
+  Component: ComponentType<P>,
+) {
+  return function ReviewLikesComponent(
+    props: Omit<P, keyof WrappedComponentBaseProps>,
+  ) {
     return (
       <Context.Consumer>
         {({ deriveCurrentStateAndCount, updateLikedStatus }) => (
           <Component
-            deriveCurrentLikedStateAndCount={deriveCurrentStateAndCount}
-            updateLikedStatus={updateLikedStatus}
-            {...props}
+            {...({
+              ...props,
+              updateLikedStatus,
+              deriveCurrentLikedStateAndCount: deriveCurrentStateAndCount,
+            } as P)}
           />
         )}
       </Context.Consumer>
