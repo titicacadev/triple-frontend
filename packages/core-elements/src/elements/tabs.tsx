@@ -58,11 +58,13 @@ const BasicLabel = styled(TabLabel)`
 `
 
 const PointingLabel = styled(TabLabel)`
+  font-weight: bold;
+
   ${({ active }) => css`
     font-size: 15px;
     color: ${active
       ? `rgba(${GetGlobalColor('gray')}, 1)`
-      : `rgba(${GetGlobalColor('gray')}, 0.3)`};
+      : `rgba(${GetGlobalColor('gray')}, 0.2)`};
   `}
 `
 
