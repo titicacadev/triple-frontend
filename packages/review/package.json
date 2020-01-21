@@ -27,5 +27,10 @@
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.26",
     "scroll-to-element": "^2.0.3"
+  },
+  "devDependencies": {
+    "@types/isomorphic-fetch": "^0.0.35",
+    "@types/moment-timezone": "^0.5.12",
+    "@types/qs": "^6.9.0"
   }
 }
