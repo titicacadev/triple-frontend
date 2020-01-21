@@ -9,23 +9,21 @@ import User from './user'
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
-
-interface ImageEntity {
-  id: string
-  sizes: {
-    smallSquare: { url: string }
-  }
-}
+import { ReviewData, ImageEntity } from '../types'
 
 export interface ReviewElementProps {
-  review?: any
+  review: ReviewData
   index: number
-  onUserClick: (e?: React.SyntheticEvent, review?: any) => any
-  onUnfoldButtonClick?: (e?: React.SyntheticEvent, review?: any) => any
-  onLikeButtonClick: (e?: React.SyntheticEvent, review?: any) => any
-  onLikesCountClick: (e?: React.SyntheticEvent, review?: any) => any
-  onMenuClick: (e?: React.SyntheticEvent, review?: any) => any
-  onImageClick: (e?: React.SyntheticEvent, review?: any, image?: any) => any
+  onUserClick: (e?: React.SyntheticEvent, review?: ReviewData) => any
+  onUnfoldButtonClick?: (e?: React.SyntheticEvent, review?: ReviewData) => any
+  onLikeButtonClick: (e?: React.SyntheticEvent, review?: ReviewData) => any
+  onLikesCountClick: (e?: React.SyntheticEvent, review?: ReviewData) => any
+  onMenuClick: (e?: React.SyntheticEvent, review?: ReviewData) => any
+  onImageClick: (
+    e: React.SyntheticEvent,
+    review: ReviewData,
+    image: ImageEntity,
+  ) => void
   onShow?: (index: number) => any
   likeVisible?: boolean
   menuVisible?: boolean
@@ -144,7 +142,7 @@ export default function ReviewElement({
           )}
           {!blindedAt && (
             <Images>
-              {(media || []).map((image: ImageEntity, i: number) => (
+              {(media || []).map((image, i) => (
                 <img
                   key={i}
                   src={image.sizes.smallSquare.url}

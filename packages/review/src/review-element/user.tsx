@@ -1,23 +1,7 @@
 import React, { PropsWithChildren, MouseEventHandler } from 'react'
 import styled from 'styled-components'
 import { Container, Text } from '@titicaca/core-elements'
-
-interface UserData {
-  photo: string
-  name: string
-  userBoard: {
-    reviews: number
-  }
-  mileage: {
-    badges: {
-      icon: {
-        imageUrl: string
-      }
-    }[]
-    level: number
-    point: number
-  }
-}
+import { UserData } from '../types'
 
 const UserPhoto = styled.img`
   margin-right: 9px;
