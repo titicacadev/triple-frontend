@@ -16,7 +16,12 @@ import OthersReviewActionSheet, {
 } from './others-review-action-sheet'
 import { likeReview, unlikeReview } from './review-api-clients'
 import { useReviewLikesContext } from './review-likes-context'
-import { ResourceType, AppNativeActionProps } from './types'
+import {
+  ResourceType,
+  AppNativeActionProps,
+  ReviewData,
+  ImageEntity,
+} from './types'
 
 export default function ReviewsList({
   myReview,
@@ -30,8 +35,8 @@ export default function ReviewsList({
   maxLength,
   showToast,
 }: {
-  myReview?: any
-  reviews: any[]
+  myReview?: ReviewData
+  reviews: ReviewData[]
   fetchNext?: Function
   appUrlScheme: string
   margin: MarginPadding
@@ -42,17 +47,24 @@ export default function ReviewsList({
   showToast: AppNativeActionProps['showToast']
   perPage?: number
 }) {
-  const [selectedReview, setSelectedReview] = useState(undefined)
+  const [selectedReview, setSelectedReview] = useState<ReviewData | undefined>(
+    undefined,
+  )
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
   const { updateLikedStatus } = useReviewLikesContext()
   const { navigate, push } = useHistoryContext()
   const { show } = useTransitionModal()
 
-  const handleUserClick: ReviewElementProps['onUserClick'] = (
-    e,
-    { user: { uid, unregister, mileage } },
-  ) => {
+  const handleUserClick: ReviewElementProps['onUserClick'] = (e, review) => {
+    if (!review) {
+      return
+    }
+
+    const {
+      user: { uid, unregister, mileage },
+    } = review
+
     const { level } = mileage || { level: 0 }
     trackEvent({
       ga: ['리뷰 프로필'],
@@ -77,8 +89,13 @@ export default function ReviewsList({
 
   const handleLikeButtonClick: ReviewElementProps['onLikeButtonClick'] = async (
     e,
-    { id, liked },
+    review,
   ) => {
+    if (!review) {
+      return
+    }
+
+    const { id, liked } = review
     const response = await (liked ? unlikeReview({ id }) : likeReview({ id }))
 
     if (response.ok) {
@@ -88,11 +105,13 @@ export default function ReviewsList({
 
   const handleLikesCountClick: ReviewElementProps['onLikesCountClick'] = (
     e,
-    { id },
+    review,
   ) => {
-    if (isPublic) {
+    if (isPublic || !review) {
       return
     }
+
+    const { id } = review
 
     navigate(
       `${appUrlScheme}:///inlink?path=${encodeURIComponent(
@@ -102,7 +121,7 @@ export default function ReviewsList({
   }
 
   const handleMenuClick: ReviewElementProps['onMenuClick'] = (e, review) => {
-    if (!isPublic) {
+    if (!isPublic && !!review) {
       if (myReview && review.id === myReview.id) {
         push(HASH_MY_REVIEW_ACTION_SHEET)
       } else {
@@ -121,16 +140,7 @@ export default function ReviewsList({
       return show(TransitionType.ReviewThumbnail)
     }
 
-    const convertImage = (convertingImage: {
-      id: string
-      width: unknown
-      height: unknown
-      sizes: {
-        full: { url: string }
-        large: { url: string }
-        smallSquare: { url: string }
-      }
-    }) => ({
+    const convertImage = (convertingImage: ImageEntity) => ({
       id: convertingImage.id,
       title: '',
       description: (comment || '').replace(/\n\s*\n/g, '\n'),
@@ -145,9 +155,13 @@ export default function ReviewsList({
       },
     })
 
+    if (!media) {
+      return
+    }
+
     window.location.href = `${appUrlScheme}:///images?${qs.stringify({
       images: JSON.stringify(media.map(convertImage)),
-      index: media.findIndex(({ id }: { id: string }) => id === image.id),
+      index: media.findIndex(({ id }) => id === image.id),
     })}`
   }
 
@@ -156,29 +170,30 @@ export default function ReviewsList({
     : undefined
 
   const allReviews = myReview ? [myReview, ...(reviews || [])] : reviews
+  const displayedReviews = maxLength
+    ? allReviews.slice(0, maxLength)
+    : allReviews
 
   return (
     <>
       <List margin={margin} divided verticalGap={60}>
-        {(maxLength ? allReviews.slice(0, maxLength) : allReviews).map(
-          (review, i) => (
-            <ReviewElement
-              key={review.id}
-              index={i}
-              review={review}
-              onUserClick={handleUserClick}
-              onLikeButtonClick={handleLikeButtonClick}
-              onLikesCountClick={handleLikesCountClick}
-              onMenuClick={handleMenuClick}
-              onImageClick={handleImageClick}
-              likeVisible={!isPublic}
-              menuVisible={!isPublic}
-              resourceId={resourceId}
-              DateFormatter={ReviewTimestamp}
-              onShow={handleShow}
-            />
-          ),
-        )}
+        {displayedReviews.map((review, i) => (
+          <ReviewElement
+            key={review.id}
+            index={i}
+            review={review}
+            onUserClick={handleUserClick}
+            onLikeButtonClick={handleLikeButtonClick}
+            onLikesCountClick={handleLikesCountClick}
+            onMenuClick={handleMenuClick}
+            onImageClick={handleImageClick}
+            likeVisible={!isPublic}
+            menuVisible={!isPublic}
+            resourceId={resourceId}
+            DateFormatter={ReviewTimestamp}
+            onShow={handleShow}
+          />
+        ))}
       </List>
 
       <OthersReviewActionSheet

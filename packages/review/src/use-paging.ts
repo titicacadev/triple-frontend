@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import humps from 'humps'
 import { useFetch } from '@titicaca/react-hooks'
-import { ResourceType } from './types'
+import { ResourceType, ReviewData } from './types'
 
 const OPTIONS = { credentials: 'same-origin' }
 
@@ -18,7 +18,7 @@ export default function usePaging({
 }) {
   const [currentPage, setCurrentPage] = useState(1)
   const [endOfList, setEndOfList] = useState(false)
-  const [reviews, setReviews] = useState<{ id: string }[]>([])
+  const [reviews, setReviews] = useState<ReviewData[]>([])
   const { error, loading, data } = useFetch(
     `/api/reviews/v2${
       sortingOption ? `/${sortingOption}` : '/'
@@ -42,7 +42,7 @@ export default function usePaging({
       if (data.reviews.length > 0) {
         setReviews((currentReviews) => [
           ...currentReviews,
-          ...(humps.camelizeKeys(data.reviews) as { id: string }[]),
+          ...(humps.camelizeKeys(data.reviews) as ReviewData[]),
         ])
       } else {
         setEndOfList(true)
