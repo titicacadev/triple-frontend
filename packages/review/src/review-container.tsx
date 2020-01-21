@@ -331,7 +331,7 @@ export default function ReviewContainer({
           myReview && reviewId === myReview.id && setMyReview(null)
           notifyReviewDeleted(resourceId, reviewId)
         }}
-        onReviewEdit={() => onReviewWrite && onReviewWrite()}
+        onReviewEdit={onReviewWrite}
         onReviewDelete={onReviewDelete}
       />
     </Section>
