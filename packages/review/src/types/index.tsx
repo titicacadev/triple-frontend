@@ -26,8 +26,12 @@ export interface ReviewProps {
 }
 
 export interface AppNativeActionProps {
-  subscribeReviewUpdateEvent?: Function
-  unsubscribeReviewUpdateEvent?: Function
-  showToast: Function
-  notifyReviewDeleted: Function
+  subscribeReviewUpdateEvent?: (
+    handler: (params?: { id: string }) => void,
+  ) => void
+  unsubscribeReviewUpdateEvent?: (
+    handler: (params?: { id: string }) => void,
+  ) => void
+  showToast: (message: string) => void
+  notifyReviewDeleted: (resourceId: string, reviewId: string) => void
 }

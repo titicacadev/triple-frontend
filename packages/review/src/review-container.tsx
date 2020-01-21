@@ -130,10 +130,11 @@ export default function ReviewContainer({
       subscribeReviewUpdateEvent &&
       subscribeReviewUpdateEvent(refreshMyReview)
 
-    return () =>
+    return () => {
       !isPublic &&
-      unsubscribeReviewUpdateEvent &&
-      unsubscribeReviewUpdateEvent(refreshMyReview)
+        unsubscribeReviewUpdateEvent &&
+        unsubscribeReviewUpdateEvent(refreshMyReview)
+    }
   }, [
     isPublic,
     resourceType,
