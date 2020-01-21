@@ -5,7 +5,7 @@ import { GlobalColors, GetGlobalColor } from '../commons'
 
 const NavbarFrame = styled.div<{
   borderless?: boolean
-  backgroundColor?: string
+  backgroundColor?: string | GlobalColors
 }>`
   background-color: ${({ backgroundColor = 'white' }) =>
     `rgba(${GetGlobalColor(backgroundColor)})`};
@@ -115,7 +115,7 @@ function Navbar({
   renderTitle?: (props?: any) => JSX.Element
   children?: React.ReactNode
   borderless?: boolean
-  backgroundColor?: string
+  backgroundColor?: string | GlobalColors
 }) {
   const childrenCount = React.Children.count(children)
 
