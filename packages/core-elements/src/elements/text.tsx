@@ -11,12 +11,12 @@ import {
   marginMixin,
   paddingMixin,
   getTextStyle,
-  KeyOfTextStyle,
+  KeyOfTextStyleMap,
 } from '../mixins'
 
 interface TextBaseProps {
   size?: GlobalSizes | number
-  textStyle?: KeyOfTextStyle
+  textStyle?: KeyOfTextStyleMap
   bold?: boolean
   alpha?: number
   color?: string

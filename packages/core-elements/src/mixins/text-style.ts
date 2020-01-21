@@ -1,8 +1,8 @@
-import { css, CSSObject } from 'styled-components'
+import { css } from 'styled-components'
 
 /**
  * TODO:
- * - [ ] TF/Theme 가 설정되면 refactoring 예약
+ * - [ ] TF/Theme 가 설정되면 breakpoints, device 와 같은 const 는 theme 로 이동
  */
 
 /**
@@ -78,9 +78,9 @@ export const TextStyleMap = {
   S2: mediaQuery(textStyle(12, 22, 0), 14),
 }
 
-export function getTextStyle(type: KeyOfTextStyle) {
+export function getTextStyle(type: KeyOfTextStyleMap) {
   return TextStyleMap[type]
 }
 
-export type KeyOfTextStyle = keyof typeof TextStyleMap
-export type TextStyleMapType = { [key in KeyOfTextStyle]: string }
+export type KeyOfTextStyleMap = keyof typeof TextStyleMap
+export type TextStyleMapType = { [key in KeyOfTextStyleMap]: string }
