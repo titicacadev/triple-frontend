@@ -295,7 +295,7 @@ export default function ReviewContainer({
         <MileageButton
           onClick={(e) => {
             trackEvent({
-              ga: '리뷰_여행자클럽선택',
+              ga: ['리뷰_여행자클럽선택'],
               fa: {
                 action: '리뷰_여행자클럽선택',
                 item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
