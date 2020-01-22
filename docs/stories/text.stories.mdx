@@ -1,6 +1,6 @@
 import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import { Text } from '@titicaca/core-elements'
- import { action } from '@storybook/addon-actions'
+import { action } from '@storybook/addon-actions'
 import { select, text, boolean } from '@storybook/addon-knobs';
 
 <Meta title="Text" component={Text} />
@@ -40,6 +40,7 @@ bold?: boolean
 alpha?: number
 color?: string
 floated?: CSS.FloatProperty
+letterSpacing?: number
 lineHeight?: number
 wordBreak?: CSS.WordBreakProperty
 whiteSpace?: CSS.WhiteSpaceProperty
@@ -72,6 +73,15 @@ strikethrough?: boolean
 <Text size="big" color="blue"> color: blue </Text>
 <Text size="big" color="gray"> color: gray </Text>
 <Text size="big" color="gray" alpha={0.5}> color: gray alpha = 0.5 </Text>
+
+## LetterSpacing
+
+<Text letterSpacing={5}>letterSpacing</Text>
+
+```js
+<Text letterSpacing={5}>letterSpacing</Text>
+```
+
 
 ## TextStyle
 
