@@ -1,4 +1,16 @@
 import { css } from 'styled-components'
+import { GlobalSizes } from '../commons'
+
+const SIZES: { [key in GlobalSizes]: string } = {
+  mini: '12px',
+  tiny: '13px',
+  small: '14px',
+  medium: '15px',
+  large: '16px',
+  big: '19px',
+  huge: '21px',
+  massive: '24px',
+}
 
 /**
  * Create text style css
@@ -16,6 +28,25 @@ export const textStyle = (
     line-height: ${lineHeight}px;
     letter-spacing: ${letterSpacing}px;
   `
+
+/**
+ * 기존 스펙에
+ * @param fontSize
+ * @param lineHeight
+ * @param letterSpacing
+ */
+export const _unsafeTextStyle = (
+  fontSize: GlobalSizes | number = 'large',
+  lineHeight: number | string = 1.2,
+  letterSpacing: number = 0,
+) => {
+  const size = typeof fontSize === 'string' ? SIZES[fontSize] : `${fontSize}px`
+  return css`
+    font-size: ${size};
+    line-height: ${lineHeight};
+    letter-spacing: ${letterSpacing}px;
+  `
+}
 
 export const TextStyleMap = {
   /* 가계부 금액 */

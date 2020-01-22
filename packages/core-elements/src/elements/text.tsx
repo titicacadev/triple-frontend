@@ -11,6 +11,7 @@ import {
   marginMixin,
   paddingMixin,
   getTextStyle,
+  _unsafeTextStyle,
   KeyOfTextStyleMap,
 } from '../mixins'
 
@@ -40,17 +41,6 @@ interface TitleBaseProps {
   margin?: MarginPadding
 }
 
-const SIZES: { [key in GlobalSizes]: string } = {
-  mini: '12px',
-  tiny: '13px',
-  small: '14px',
-  medium: '15px',
-  large: '16px',
-  big: '19px',
-  huge: '21px',
-  massive: '24px',
-}
-
 function Line({ children }: React.PropsWithChildren<{}>) {
   return (
     <>
@@ -77,23 +67,18 @@ function rgba({ color, alpha }: { color?: string; alpha?: number }) {
 }
 
 const TextBase = styled.div<TextBaseProps>`
-${({ textStyle, size, lineHeight }) => {
-  if (textStyle && (size || lineHeight)) {
-    console.warn(
-      "🙅🏻‍♂️\n[Warn] Please don't use `size` and `lineHeight` with `textStyle` together. \nIf they are used together, `size` and `lineHeight` will be omit. See \nhttps://github.com/titicacadev/triple-frontend/issues/401",
-    )
-  } else {
-    return undefined
-  }
-}}
+  ${({ textStyle, size, lineHeight, letterSpacing }) => {
+    if (textStyle && (size || lineHeight || letterSpacing)) {
+      console.warn(
+        "🙅🏻‍♂️\n[Warn] Please don't use `size`, `lineHeight` and `letterSpacing` with `textStyle` together. \nIf they are used together, `size` and `lineHeight` will be omit. See \nhttps://github.com/titicacadev/triple-frontend/issues/401",
+      )
+    }
 
-font-size: ${({ size = 'large' }) =>
-  typeof size === 'string' ? SIZES[size] : `${size}px`};
-  line-height: ${({ lineHeight }) => lineHeight || 1.2};
-  letter-spacing: ${({ letterSpacing }) => letterSpacing || 0}px;
+    return textStyle
+      ? getTextStyle(textStyle)
+      : _unsafeTextStyle(size, lineHeight, letterSpacing)
+  }}
 
-  ${({ textStyle }) => textStyle && getTextStyle(textStyle)}
-  
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
   color: ${({ color = 'gray', alpha }) => rgba({ color, alpha })};
   word-wrap: break-word;
