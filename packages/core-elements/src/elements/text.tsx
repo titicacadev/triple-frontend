@@ -21,6 +21,7 @@ interface TextBaseProps {
   alpha?: number
   color?: string
   floated?: CSS.FloatProperty
+  letterSpacing?: number
   lineHeight?: number | string
   wordBreak?: CSS.WordBreakProperty
   whiteSpace?: CSS.WhiteSpaceProperty
@@ -88,9 +89,10 @@ ${({ textStyle, size, lineHeight }) => {
 
 font-size: ${({ size = 'large' }) =>
   typeof size === 'string' ? SIZES[size] : `${size}px`};
-line-height: ${({ lineHeight }) => lineHeight || 1.2};
+  line-height: ${({ lineHeight }) => lineHeight || 1.2};
+  letter-spacing: ${({ letterSpacing }) => letterSpacing || 0}px;
 
-${({ textStyle }) => textStyle && getTextStyle(textStyle)}
+  ${({ textStyle }) => textStyle && getTextStyle(textStyle)}
   
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
   color: ${({ color = 'gray', alpha }) => rgba({ color, alpha })};
