@@ -56,7 +56,7 @@ export default function Popup({
   const popupRef = useRef(null)
 
   useEffect(() => {
-    if (open && popupRef.current.scrollTop > 0) {
+    if (open && popupRef.current && popupRef.current.scrollTop > 0) {
       popupRef.current.scrollTop = 0
     }
   }, [open])
