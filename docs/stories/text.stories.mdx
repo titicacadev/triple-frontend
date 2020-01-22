@@ -41,7 +41,7 @@ alpha?: number
 color?: string
 floated?: CSS.FloatProperty
 letterSpacing?: number
-lineHeight?: number
+lineHeight?: number | string
 wordBreak?: CSS.WordBreakProperty
 whiteSpace?: CSS.WhiteSpaceProperty
 center?: boolean
@@ -64,15 +64,38 @@ strikethrough?: boolean
 <Text size="small"> small: 14px </Text>
 <Text size="medium"> medium: 15px </Text>
 <Text size="large"> large: 16px </Text>
+<Text>default size="large"</Text>
 <Text size="big"> big: 19px </Text>
 <Text size="huge"> huge: 21px </Text>
 <Text size="massive"> massive: 24px </Text>
+<Text size={50}>size={50}</Text>
+
+```js
+<Text size="mini"> mini: 12px </Text>
+<Text size="tiny"> tiny: 13px </Text>
+<Text size="small"> small: 14px </Text>
+<Text size="medium"> medium: 15px </Text>
+<Text size="large"> large: 16px </Text>
+<Text>default size="large"</Text>
+<Text size="big"> big: 19px </Text>
+<Text size="huge"> huge: 21px </Text>
+<Text size="massive"> massive: 24px </Text>
+<Text size={50}>size={50}</Text>
+```
 
 ## Color
 
 <Text size="big" color="blue"> color: blue </Text>
 <Text size="big" color="gray"> color: gray </Text>
 <Text size="big" color="gray" alpha={0.5}> color: gray alpha = 0.5 </Text>
+
+## LineHeight
+
+<Text style={{border: '1px solid gray'}}>lineHeight default: 1.2 <br/> lineHeight</Text>
+
+<Text lineHeight={1.8} style={{border: '1px solid gray'}}>lineHeight 1.8 <br/> lineHeight</Text>
+
+<Text lineHeight="50px" style={{border: '1px solid gray'}}>lineHeight 50px <br/> lineHeight</Text>
 
 ## LetterSpacing
 
