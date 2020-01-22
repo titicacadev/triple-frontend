@@ -1,6 +1,11 @@
-- `tab` PointingLabel 을 bold 처리합니다
-- `resource-list-element` 이미지와 가격 사이의 간격을 18px 로 수정합니다.
-- `pricing` fixed label 의 default color 를 gray 로 설정합니다.
+## 1.3.7 (2020-01-22)
+
+- `review` 잘못 할당한 ga event를 수정합니다 (#424)
+- `tab` PointingLabel 을 bold 처리합니다 (#424)
+- `core-elements` 규격화 폰트 사이즈 적용 (#421)
+- `resource-list-element` 이미지와 가격 사이의 간격을 18px 로 수정합니다. (#420)
+- `pricing` fixed label 의 default color 를 gray 로 설정합니다. (#419)
+-  `Navbar` backgroundColor prop를 추가합니다. (#418)
 
 ## 1.3.6 (2020-01-16)
 
