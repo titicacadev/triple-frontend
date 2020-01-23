@@ -12,7 +12,8 @@
     "build-declarations": "lerna exec --ignore @titicaca/triple-frontend-docs --ignore @titicaca/triple-frontend-tests tsc",
     "dev-docs": "lerna exec --scope @titicaca/triple-frontend-docs npm run dev",
     "prettier": "prettier --write \"**/*.{ts,tsx,js,json}\"",
-    "lint": "eslint '{docs,packages,tests/src}/**/*.{ts,tsx,js}'",
+    "lint": "concurrently --names eslint,stylelint 'npm:lint-es' 'npm:lint-style'",
+    "lint-es": "eslint '{docs,packages,tests/src}/**/*.{ts,tsx,js}'",
     "lint-style": "stylelint './**/*.{ts,tsx,js}'",
     "test": "cd tests && npm test",
     "clean": "lerna exec -- rm -rf ./node_modules ./lib"
