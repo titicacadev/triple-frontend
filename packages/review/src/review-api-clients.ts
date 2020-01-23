@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import humps from 'humps'
-import { ResourceType } from './types'
+import { ResourceType, ReviewData } from './types'
 
 export function writeReview({
   appUrlScheme,
@@ -38,7 +38,7 @@ export async function fetchMyReview({
 }: {
   resourceType: ResourceType
   resourceId: string
-}) {
+}): Promise<ReviewData | null> {
   const response = await fetch(
     `/api/reviews/v2/me?resource_type=${resourceType}&resource_id=${resourceId}`,
     { credentials: 'same-origin' },
@@ -54,7 +54,7 @@ export async function fetchMyReview({
 
   const { review } = await response.json()
 
-  return humps.camelizeKeys(review)
+  return humps.camelizeKeys(review as object) as ReviewData
 }
 
 export function deleteReview({ id }: { id: string }) {
@@ -78,7 +78,7 @@ export async function fetchReviewsCount({
 }: {
   resourceId: string
   resourceType: ResourceType
-}) {
+}): Promise<number> {
   const response = await fetch(
     `/api/reviews/v2/count?resource_id=${resourceId}&resource_type=${resourceType}`,
   )
