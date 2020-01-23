@@ -161,7 +161,7 @@ storiesOf('ActionSheet', module)
   .add('스타일드 컴포넌트 확장 및 캘린더 컴포넌트', () => {
     const NewStyledActionSheet = styled(ActionSheet)`
       > div:last-child {
-        // padding: 0;
+        /* padding: 0; */
       }
     `
 

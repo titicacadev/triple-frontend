@@ -94,7 +94,6 @@ const Price = styled.span<{
   margin?: MarginPadding
   color?: PricingColors
 }>`
-  font-weight: normal;
   display: inline-block;
   font-size: ${({ size = 'mini' }) => FONT_SIZE[size]};
   color: ${({ color = 'default' }) => COLORS[color]};

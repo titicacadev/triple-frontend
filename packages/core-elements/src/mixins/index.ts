@@ -15,10 +15,8 @@ export function formatMarginPadding(
   }
 
   return css`
-    ${key}-top: ${unit(marginPadding.top || 0)};
-    ${key}-right: ${unit(marginPadding.right || 0)};
-    ${key}-bottom: ${unit(marginPadding.bottom || 0)};
-    ${key}-left: ${unit(marginPadding.left || 0)};
+    ${key}: ${unit(marginPadding.top || 0)} ${unit(marginPadding.right || 0)}
+      ${unit(marginPadding.bottom || 0)} ${unit(marginPadding.left || 0)};
   `
 }
 

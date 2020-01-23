@@ -13,7 +13,6 @@ const HeaderFrame = styled.div<{ fixed?: boolean; minWidth?: number }>`
   background-color: #ffffff;
   border-bottom: 1px solid #efefef;
   position: sticky;
-  position: -webkit-sticky;
   z-index: 1;
   ${({ fixed }) =>
     fixed &&

@@ -86,7 +86,6 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
     font: inherit;
     vertical-align: baseline;
   }
@@ -112,7 +111,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     line-height: 1;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-touch-callout: none;
   }
   ol,
@@ -137,8 +136,7 @@ export const GlobalStyle = createGlobalStyle`
   select {
     border-style: none;
     background: transparent;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    appearance: none;
   }
   b,
   strong {

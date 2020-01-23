@@ -3,7 +3,7 @@ import styled, { css, keyframes } from 'styled-components'
 
 const loadingAnimation = keyframes`
   100% {
-    background-position -1740px;
+    background-position: -1740px;
   }
 `
 
