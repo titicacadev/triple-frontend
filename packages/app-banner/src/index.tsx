@@ -7,7 +7,6 @@ const AppBannerFrame = styled.div<{ fixed?: boolean; maxWidth?: number }>`
   border-bottom: 1px solid #efefef;
   height: 60px;
   position: sticky;
-  position: -webkit-sticky;
   z-index: 1;
   ${({ fixed }) =>
     fixed &&

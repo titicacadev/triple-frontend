@@ -10,7 +10,6 @@ const NavbarFrame = styled.div<{
   background-color: ${({ backgroundColor = 'white' }) =>
     `rgba(${GetGlobalColor(backgroundColor)})`};
   position: sticky;
-  position: -webkit-sticky;
   top: 0;
   left: 0;
   right: 0;
@@ -94,7 +93,6 @@ const NavbarItem = styled.div<{
 const SecondaryNavbar = styled.div`
   background-color: #ffffff;
   position: sticky;
-  position: -webkit-sticky;
   top: 52px;
   left: 0;
   right: 0;

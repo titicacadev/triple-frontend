@@ -6,8 +6,6 @@ import { GetGlobalColor } from '../commons'
 
 const BaseInput = styled(InputMask)<{ focused?: string; error?: string }>`
   appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   margin: 0;
   outline: none;
   padding: 14px 16px;
@@ -22,11 +20,11 @@ const BaseInput = styled(InputMask)<{ focused?: string; error?: string }>`
     color: rgba(${GetGlobalColor('gray')}, 0.3);
   }
 
-  :-ms-input-placeholder {
+  ::-webkit-input-placeholder {
     color: rgba(${GetGlobalColor('gray')}, 0.3);
   }
 
-  ::-ms-input-placeholder {
+  :-ms-input-placeholder {
     color: rgba(${GetGlobalColor('gray')}, 0.3);
   }
 

@@ -24,10 +24,7 @@ const COLORS: Partial<Record<GlobalColors, string>> = {
 
 const BaseTextarea = styled.textarea<BaseTextareaProps>`
   appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   overflow: hidden;
-  padding: 0;
   margin: 0;
   outline: none;
   padding: 14px 16px;
@@ -44,11 +41,11 @@ const BaseTextarea = styled.textarea<BaseTextareaProps>`
     color: rgba(${COLORS.gray}, 0.3);
   }
 
-  :-ms-input-placeholder {
+  ::-webkit-input-placeholder {
     color: rgba(${COLORS.gray}, 0.3);
   }
 
-  ::-ms-input-placeholder {
+  :-ms-input-placeholder {
     color: rgba(${COLORS.gray}, 0.3);
   }
 

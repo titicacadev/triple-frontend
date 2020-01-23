@@ -532,7 +532,7 @@ const VideoContainer = styled.div`
   padding-bottom: 56.25%;
   border-radius: 6px;
   overflow: hidden;
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
 `
 
 const VideoPlayer = styled.iframe`

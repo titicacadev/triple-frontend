@@ -22,7 +22,6 @@ export const ItemText = styled.div<{
   height: 54px;
   line-height: 54px;
   font-size: 16px;
-  font-weight: 500;
   color: ${({ checked }) => (checked ? '#368fff' : '#3a3a3a')};
   font-weight: ${({ checked }) => (checked ? 'bold' : 'normal')};
   white-space: nowrap;
@@ -36,7 +35,6 @@ export const ItemButton = styled.a`
   line-height: 30px;
   margin-top: 11px;
   padding: 0 17px;
-  text-align: center;
   border-radius: 15px;
   background-color: #fafafa;
   font-size: 12px;
