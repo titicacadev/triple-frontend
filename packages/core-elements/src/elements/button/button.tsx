@@ -1,74 +1,16 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import * as CSS from 'csstype'
-import Container from './container'
+
 import {
   GlobalSizes,
   GlobalColors,
   MarginPadding,
   GetGlobalColor,
-} from '../commons'
-import { marginMixin, formatMarginPadding } from '../mixins'
-
-const SIZES: Partial<Record<GlobalSizes, ReturnType<typeof css>>> = {
-  tiny: css`
-    font-size: 13px;
-    line-height: 16px;
-  `,
-  small: css`
-    font-size: 14px;
-    line-height: 17px;
-  `,
-  large: css`
-    font-size: 16px;
-  `,
-}
-
-interface ButtonBaseProp {
-  size?: GlobalSizes
-  bold?: boolean
-  textColor?: string
-  textAlpha?: number
-  floated?: CSS.FloatProperty
-  fluid?: boolean
-  margin?: MarginPadding
-  disabled?: boolean
-}
-
-const ButtonBase = styled.a<ButtonBaseProp>`
-  display: inline-block;
-  ${({ size }) => (size ? SIZES[size] : '')}
-  font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  box-sizing: border-box;
-  cursor: pointer;
-
-  &:active {
-    border-style: solid;
-  }
-
-  color: ${({ textColor = 'gray', textAlpha = 1 }) =>
-    `rgba(${GetGlobalColor(textColor)}, ${textAlpha})`};
-
-  float: ${({ floated }) => floated || 'none'};
-
-  ${({ fluid }) =>
-    fluid &&
-    css`
-      width: 100%;
-      display: block;
-    `};
-
-  ${marginMixin}
-
-  ${({ disabled }) =>
-    disabled &&
-    css`
-      opacity: 0.3;
-    `};
-`
+} from '../../commons'
+import { formatMarginPadding } from '../../mixins'
+import ButtonBase, { ButtonBaseProp } from './button-base'
+import ButtonContainer from './button-container'
+import ButtonGroup from './button-group'
 
 const ICON_BUTTON_URLS: { [key: string]: string } = {
   saveEmpty: 'https://assets.triple.guide/images/btn-end-save-off@4x.png',
@@ -186,69 +128,6 @@ const NormalButton = styled(ButtonBase)<{
 
     return formatMarginPadding(padding, 'padding')
   }};
-`
-
-const ButtonContainer = styled(Container)<{ floated?: CSS.FloatProperty }>`
-  text-align: center;
-
-  ${ButtonBase} {
-    float: ${({ floated }) => floated || 'none'};
-    display: inline-block;
-    margin: 0 5px;
-
-    &:first-child {
-      ${({ floated }) => {
-        if (floated === 'left') {
-          return css`
-            margin-left: 0;
-            margin-right: 5px;
-          `
-        } else if (floated === 'right') {
-          return css`
-            margin-left: 5px;
-            margin-right: 0;
-          `
-        }
-      }};
-    }
-  }
-
-  &:after {
-    content: '';
-    display: block;
-    clear: both;
-  }
-`
-
-// eslint-disable-next-line no-unexpected-multiline
-const ButtonGroup = styled(Container)<{
-  horizontalGap?: number
-  children?: React.ReactNode
-}>`
-  width: 100%;
-
-  ${ButtonBase} {
-    ${({ horizontalGap = 0, children }) => {
-      const childrenCount = React.Children.count(children)
-
-      return horizontalGap > 0
-        ? css`
-            width: ${childrenCount > 0
-              ? `calc((100% - ${(childrenCount - 1) *
-                  horizontalGap}px) / ${childrenCount})`
-              : '100%'};
-          `
-        : css`
-            width: ${100 / childrenCount}%;
-          `
-    }};
-
-    &:not(:first-child) {
-      ${({ horizontalGap }) => css`
-        margin-left: ${horizontalGap || 0}px;
-      `}
-    }
-  }
 `
 
 const BUTTON_ICON_STYLES: Partial<
