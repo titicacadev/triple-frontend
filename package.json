@@ -13,6 +13,7 @@
     "dev-docs": "lerna exec --scope @titicaca/triple-frontend-docs npm run dev",
     "prettier": "prettier --write \"**/*.{ts,tsx,js,json}\"",
     "lint": "eslint '{docs,packages,tests/src}/**/*.{ts,tsx,js}'",
+    "lint-style": "stylelint './**/*.{ts,tsx,js}'",
     "test": "cd tests && npm test",
     "clean": "lerna exec -- rm -rf ./node_modules ./lib"
   },
@@ -43,6 +44,10 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "styled-components": "^4.4.1",
+    "stylelint": "^13.0.0",
+    "stylelint-config-recommended": "^3.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.9.0",
     "typescript": "^3.5.3"
   },
   "husky": {
@@ -53,6 +58,7 @@
   "lint-staged": {
     "**/*.{js,ts,tsx}": [
       "eslint",
+      "stylelint",
       "git add"
     ]
   }
