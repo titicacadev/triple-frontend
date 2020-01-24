@@ -2,6 +2,6 @@ import { ColorSet } from './colors'
 
 type ColorString = keyof typeof ColorSet
 
-export function GetColor(color: ColorString): string {
+export function getColor(color: ColorString): string {
   return ColorSet[color as ColorString] || ''
 }
