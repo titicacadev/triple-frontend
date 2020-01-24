@@ -1,2 +1,2 @@
-export * from './get-global-color'
+export * from './get-color'
 export * from './colors'
