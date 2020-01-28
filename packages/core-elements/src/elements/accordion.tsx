@@ -36,14 +36,14 @@ function Content({
   active,
   children,
 }: React.PropsWithChildren<{ active: boolean }>) {
-  return active && <Container margin={{ top: 5 }}>{children}</Container>
+  return active ? <Container margin={{ top: 5 }}>{children}</Container> : null
 }
 
 function Folded({
   active,
   children,
 }: React.PropsWithChildren<{ active: boolean }>) {
-  return !active && <Container margin={{ top: 5 }}>{children}</Container>
+  return !active ? <Container margin={{ top: 5 }}>{children}</Container> : null
 }
 
 export default class Accordion extends React.PureComponent<
