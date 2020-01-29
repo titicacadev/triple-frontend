@@ -11,7 +11,7 @@ import {
 } from '@titicaca/core-elements'
 import { H1 } from './text'
 
-function insertCommas(price) {
+function insertCommas(price?: string | number | null) {
   if (price) {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
@@ -19,10 +19,10 @@ function insertCommas(price) {
   return ''
 }
 
-function Price({ children }) {
+function Price({ price }: { price?: string | number }) {
   return (
     <Text bold size="large" color="gray" margin={{ top: 13, left: 150 }}>
-      {`${insertCommas(children)}원`}
+      {`${insertCommas(price)}원`}
     </Text>
   )
 }
@@ -35,30 +35,32 @@ export function TnaProduct({
 }: {
   heroImage?: string
   title?: string
-  tags?: [{ text: string; type: TagColors; style: React.CSSProperties }]
+  tags?: { text: string; type: TagColors; style: React.CSSProperties }[]
   salePrice?: string | number
 }) {
+  const displayingTags = tags || []
+
   return (
     <>
       <SquareImage size="medium" floated="left" src={heroImage} alt={title} />
       <Text bold size="large" color="gray" margin={{ left: 150 }}>
         {title}
       </Text>
-      {(tags || []).length > 0 && (
+      {displayingTags.length > 0 && (
         <Container margin={{ top: 3, left: 150 }}>
-          {tags.map(({ text, type, style }, i) => (
+          {displayingTags.map(({ text, type, style }, i) => (
             <Tag
               key={i}
               type={type}
               style={style}
-              margin={{ top: 4, right: i < tags.length - 1 ? 4 : 0 }}
+              margin={{ top: 4, right: i < displayingTags.length - 1 ? 4 : 0 }}
             >
               {text}
             </Tag>
           ))}
         </Container>
       )}
-      <Price>{salePrice}</Price>
+      <Price price={salePrice} />
     </>
   )
 }

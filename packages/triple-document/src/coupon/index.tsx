@@ -37,10 +37,12 @@ const PublicCouponDownloadButton = () => {
   )
 }
 
-const InAppCouponDownloadButton = ({ slugId }) => {
+const InAppCouponDownloadButton = ({ slugId }: { slugId: string }) => {
   const [enabled, setEnabled] = useState(false)
   const [downloaded, setDownloaded] = useState(false)
-  const [errorMessage, setErrorMessage] = useState(undefined)
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(
+    undefined,
+  )
   const { push } = useHistoryContext()
 
   useEffect(() => {
@@ -51,7 +53,7 @@ const InAppCouponDownloadButton = ({ slugId }) => {
         })
 
         if (response.ok) {
-          const { downloaded } = await response.json()
+          const { downloaded }: { downloaded: boolean } = await response.json()
           setEnabled(true)
           setDownloaded(downloaded)
         } else {
@@ -72,7 +74,10 @@ const InAppCouponDownloadButton = ({ slugId }) => {
       const response = await fetch(`/api/benefit/coupons/${slugId}/download`, {
         credentials: 'same-origin',
       })
-      const { id, message } = await response.json()
+      const {
+        id,
+        message,
+      }: { id?: string; message: string } = await response.json()
 
       if (response.ok) {
         if (id) {
@@ -114,6 +119,13 @@ export default function Coupon({
   value: { identifier: slugId, description },
   webUrlBase,
   deepLink,
+}: {
+  value: {
+    identifier: string
+    description: string
+  }
+  webUrlBase: string
+  deepLink: string
 }) {
   const { isPublic } = useUserAgentContext()
 

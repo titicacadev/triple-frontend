@@ -4,6 +4,10 @@ import { Modal, Alert } from '@titicaca/modals'
 import styled from 'styled-components'
 import { useHistoryContext } from '@titicaca/react-contexts'
 
+type HashKeyValue = {
+  [hash: string]: string
+}
+
 export const HASH_COMPLETE_DOWNLOAD_COUPON = 'coupon.download-complete.modal'
 export const HASH_ALREADY_DOWNLOAD_COUPON = 'coupon.download-already.modal'
 export const HASH_ERROR_COUPON = 'coupon.error.modal'
@@ -14,23 +18,23 @@ const MODAL_HASHES = [
   HASH_ALREADY_DOWNLOAD_COUPON,
 ]
 
-const TITLE_TYPES = {
+const TITLE_TYPES: HashKeyValue = {
   [HASH_ALREADY_DOWNLOAD_COUPON]: '이미 받은 쿠폰입니다.',
   [HASH_COMPLETE_DOWNLOAD_COUPON]: '쿠폰 받기 완료',
 }
 
-const MESSAGE_TYPES = {
+const MESSAGE_TYPES: HashKeyValue = {
   [HASH_COMPLETE_DOWNLOAD_COUPON]:
     '쿠폰을 받았습니다!\n쿠폰함에서 확인 할 수 있어요~!',
   [HASH_ALREADY_DOWNLOAD_COUPON]: '쿠폰함에서 쿠폰을 확인하세요.',
 }
 
-const ICON_TYPES = {
+const ICON_TYPES: HashKeyValue = {
   [HASH_COMPLETE_DOWNLOAD_COUPON]:
     'https://assets.triple.guide/images/img-popup-coupon@3x.png',
 }
 
-const CONFIRM_MESSAGE_TYPES = {
+const CONFIRM_MESSAGE_TYPES: HashKeyValue = {
   [HASH_ALREADY_DOWNLOAD_COUPON]: '쿠폰함 가기',
   [HASH_COMPLETE_DOWNLOAD_COUPON]: '쿠폰 확인',
 }
@@ -42,7 +46,7 @@ const CouponIcon = styled.img`
   margin: 40px auto 10px auto;
 `
 
-export function CouponModal({ webUrlBase }) {
+export function CouponModal({ webUrlBase }: { webUrlBase: string }) {
   const { uriHash, back, navigate } = useHistoryContext()
 
   return (
@@ -96,7 +100,7 @@ export function CouponModal({ webUrlBase }) {
   )
 }
 
-export function CouponAlertModal({ errorMessage }) {
+export function CouponAlertModal({ errorMessage }: { errorMessage?: string }) {
   const { uriHash, back } = useHistoryContext()
 
   return (
@@ -117,7 +121,7 @@ const IconImage = styled.img`
   margin: 32px auto 10px auto;
 `
 
-export function CouponTransitionModal({ deepLink }) {
+export function CouponTransitionModal({ deepLink }: { deepLink: string }) {
   const { uriHash, back } = useHistoryContext()
 
   return (
@@ -141,7 +145,7 @@ export function CouponTransitionModal({ deepLink }) {
         <Modal.Action
           color="blue"
           onClick={() => {
-            window.location = deepLink
+            window.location.href = deepLink
           }}
         >
           트리플가기
