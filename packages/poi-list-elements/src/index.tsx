@@ -16,7 +16,7 @@ import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
 type PoiTypes = 'attraction' | 'restaurant' | 'hotel'
 type Name = string | null
 
-interface POI {
+export interface POI {
   id: string
   type: PoiTypes
   nameOverride?: string
@@ -70,7 +70,7 @@ interface ExtendedPoiListElementProps {
   pricingDescription?: React.ReactNode
 }
 
-type PoiListElementProps =
+export type PoiListElementProps =
   | ({ compact: true } & CompactPoiListElementProps)
   | ({ compact?: false } & ExtendedPoiListElementProps)
 
@@ -148,6 +148,8 @@ export function PoiCarouselElement({
       </Carousel.Item>
     )
   }
+
+  return null
 }
 
 class CompactPoiListElement extends React.PureComponent<
