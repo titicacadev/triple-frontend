@@ -11,14 +11,19 @@ import FoldableComment from './foldable-comment'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { ReviewData, ImageEntity } from '../types'
 
+type ReviewEventHandler<T = Element, E = Event> = (
+  e: React.SyntheticEvent<T, E>,
+  review: ReviewData,
+) => void
+
 export interface ReviewElementProps {
   review: ReviewData
   index: number
-  onUserClick: (e: React.SyntheticEvent, review: ReviewData) => void
-  onUnfoldButtonClick?: (e: React.SyntheticEvent, review: ReviewData) => void
-  onLikeButtonClick: (e: React.SyntheticEvent, review: ReviewData) => void
-  onLikesCountClick: (e: React.SyntheticEvent, review: ReviewData) => void
-  onMenuClick: (e: React.SyntheticEvent, review: ReviewData) => void
+  onUserClick: ReviewEventHandler
+  onUnfoldButtonClick?: ReviewEventHandler
+  onLikeButtonClick: ReviewEventHandler
+  onLikesCountClick: ReviewEventHandler
+  onMenuClick: ReviewEventHandler
   onImageClick: (
     e: React.SyntheticEvent,
     review: ReviewData,
