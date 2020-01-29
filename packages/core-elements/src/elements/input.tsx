@@ -54,29 +54,10 @@ interface InputProps extends Omit<HTMLInputElementProps, 'onChange'> {
   onBlur?: (e: React.FocusEvent<any>) => any
 }
 
-function Input({
-  onChange,
-  id,
-  type,
-  value,
-  error,
-  placeholder,
-  mask,
-  maskChar,
-  focused,
-  onBlur,
-}: InputProps) {
+function Input({ onChange, ...props }: InputProps) {
   return (
     <BaseInput
-      id={id}
-      type={type}
-      value={value}
-      error={error}
-      placeholder={placeholder}
-      mask={mask}
-      maskChar={maskChar}
-      focused={focused}
-      onBlur={onBlur}
+      {...props}
       onChange={(e) => onChange && onChange(e, e.target.value)}
     />
   )

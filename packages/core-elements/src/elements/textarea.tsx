@@ -65,13 +65,11 @@ const BaseTextarea = styled.textarea<BaseTextareaProps>`
     `};
 `
 
-function Textarea({ error, focused, onChange, ...props }: TextareaProps) {
+function Textarea({ onChange, ...props }: TextareaProps) {
   return (
     <BaseTextarea
-      error={error}
-      focused={focused}
-      onChange={(e) => onChange && onChange(e, e.target.value)}
       {...props}
+      onChange={(e) => onChange && onChange(e, e.target.value)}
     />
   )
 }
