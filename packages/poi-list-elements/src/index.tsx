@@ -40,27 +40,31 @@ interface POI {
   prices?: { nightlyBasePrice?: number; nightlyPrice?: number }
 }
 
+type ActionButtonElement = React.ReactNode
+type ResourceScrapSet = { [key: string]: boolean }
+type ScrapChangeHandler = (e?: React.SyntheticEvent, value?: any) => any
+
 interface PoiCarouselElementProps {
   poi?: POI
   onClick?: React.MouseEventHandler<HTMLLIElement>
-  actionButtonElement?: React.ReactElement
-  onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
-  resourceScraps?: { [key: string]: boolean }
+  actionButtonElement?: ActionButtonElement
+  onScrapedChange?: ScrapChangeHandler
+  resourceScraps?: ResourceScrapSet
 }
 
 interface CompactPoiListElementProps {
   poi: POI
   onClick?: React.MouseEventHandler<HTMLLIElement>
-  onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
-  resourceScraps?: { [key: string]: boolean }
-  actionButtonElement?: any
+  actionButtonElement?: ActionButtonElement
+  onScrapedChange?: ScrapChangeHandler
+  resourceScraps?: ResourceScrapSet
 }
 
 interface ExtendedPoiListElementProps {
   poi: POI
   onClick?: React.MouseEventHandler<HTMLLIElement>
-  onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
-  resourceScraps?: { [key: string]: boolean }
+  onScrapedChange?: ScrapChangeHandler
+  resourceScraps?: ResourceScrapSet
   tags?: [{ text: string; color: LabelColor; emphasized: boolean }]
   pricingNote?: string
   pricingDescription?: React.ReactNode
