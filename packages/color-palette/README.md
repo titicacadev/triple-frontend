@@ -1,11 +1,11 @@
-# `color-palettes`
+# `color-palette`
 
 > TODO: description
 
 ## Usage
 
 ```
-const colorPalettes = require('color-palettes');
+const { getColor } = require('color-palette');
 
 // TODO: DEMONSTRATE API
 ```
