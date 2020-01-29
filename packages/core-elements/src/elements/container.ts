@@ -1,10 +1,9 @@
-import styled, { css } from 'styled-components'
+import styled, { css, StyledComponentProps } from 'styled-components'
 import * as CSS from 'csstype'
 import { MarginPadding } from '../commons'
 import { paddingMixin, formatMarginPadding } from '../mixins'
 
-// eslint-disable-next-line no-unexpected-multiline
-const Container = styled.div<{
+export interface ContainerPropsFromTemplate {
   position?: CSS.PositionProperty
   centered?: boolean
   margin?: MarginPadding
@@ -20,7 +19,16 @@ const Container = styled.div<{
   clearing?: boolean
   whiteSpace?: CSS.WhiteSpaceProperty
   userSelect?: CSS.UserSelectProperty
-}>`
+}
+
+export type ContainerProps = StyledComponentProps<
+  'div',
+  any,
+  ContainerPropsFromTemplate,
+  never
+>
+
+const Container = styled.div<ContainerPropsFromTemplate>`
   box-sizing: border-box;
 
   ${({ position }) =>

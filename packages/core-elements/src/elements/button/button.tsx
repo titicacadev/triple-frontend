@@ -157,7 +157,7 @@ const ButtonIcon = styled.div<{ size?: GlobalSizes; src?: string }>`
   background-image: url(${({ src }) => src});
 `
 
-interface ButtonProps extends BasicButtonProp, ButtonBaseProp {
+export interface ButtonProps extends BasicButtonProp, ButtonBaseProp {
   basic?: boolean
   icon?: string
   borderRadius?: number
