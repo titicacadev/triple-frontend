@@ -1,3 +1,8 @@
+## 1.3.8 (2020-01-29)
+- color palette 추가 (#429)
+- `accordon`의 `Content`와 `Floded` 리턴 방식 변경 (#432)
+- `input` `textarea` props 수정 (#433)
+- `styleLint` 추가 (#434)
 
 ## 1.3.7 (2020-01-22)
 
