@@ -6,7 +6,6 @@ import ButtonBase from './button-base'
 
 const ButtonGroup = styled(Container)<{
   horizontalGap?: number
-  children?: React.ReactNode
 }>`
   width: 100%;
 

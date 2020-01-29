@@ -15,7 +15,7 @@ interface TableBodyProps {
   body: TableRow[]
 }
 
-interface TableProps extends TableBodyProps {
+export interface TableProps extends TableBodyProps {
   type: TableType
 }
 
