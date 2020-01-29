@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import * as CSS from 'csstype'
 
 import {
   ImageCarouselElementContainer,
@@ -23,43 +24,140 @@ import {
   GetGlobalColor,
   ResourceListItem,
   SquareImage,
+  ContainerProps,
+  MarginPadding,
+  TableProps,
+  GlobalSizes,
+  ButtonProps,
 } from '@titicaca/core-elements'
-import { PoiListElement, PoiCarouselElement } from '@titicaca/poi-list-elements'
+import {
+  PoiListElement,
+  PoiCarouselElement,
+  PoiListElementProps,
+  POI as POIListElementData,
+} from '@titicaca/poi-list-elements'
 
-import { H1, H2, H3, H4, Paragraph } from './text'
+import {
+  H1,
+  H2,
+  H3,
+  H4,
+  Paragraph,
+  H2Props,
+  H3Props,
+  H4Props,
+  H1Props,
+} from './text'
 import { RegionListElement } from './region'
 import { TnaProductsList } from './tna'
 import Coupon from './coupon'
+import { RegionData } from './types'
 
-const MH1 = ({ children, ...props }) => (
+type ExtendedPOIListElementData = POIListElementData & {
+  source: POIListElementData['source'] & {
+    pricing?: {
+      nightlyPrice?: number | null
+    } | null
+  }
+}
+
+type Link = {
+  href?: string
+  label?: string
+}
+
+interface ImageData {
+  title?: string
+  link: Link
+  frame?: GlobalSizes
+  sizes: {
+    large: { url: string }
+    small_square: { url: string }
+  }
+  sourceUrl: string
+}
+
+interface TripleElementData<T = string, Value = unknown> {
+  type: T
+  value: Value
+}
+
+type TextElementData = TripleElementData<'text', string>
+type LinksElementData = TripleElementData<'links', { links: Link[] }>
+
+interface ElementSet {
+  [type: string]: React.ComponentType<any>
+}
+
+type ImageEventHandler = (
+  e: React.SyntheticEvent | undefined,
+  image: ImageData,
+) => void
+type LinkEventHandler = (
+  e: React.SyntheticEvent | undefined,
+  link: Link,
+) => void
+
+type Display = 'list' | string
+
+interface TripleDocumentProps {
+  customElements?: ElementSet
+  children: TripleElementData[]
+
+  // merged...
+  onResourceClick?: (e: React.SyntheticEvent, resource: unknown) => void
+  onResourceScrapedChange?: unknown
+  onImageClick?: ImageEventHandler
+  onLinkClick?: LinkEventHandler
+  onTNAProductClick?: (e: React.SyntheticEvent, product: unknown) => void
+  onTNAProductsFetch: unknown
+  imageSourceComponent: unknown
+  resourceScraps: unknown
+  webUrlBase: string
+  deepLink: string
+}
+
+const MH1 = ({ children, ...props }: H1Props) => (
   <H1 margin={{ top: 25, bottom: 20, left: 30, right: 30 }} {...props}>
     {children}
   </H1>
 )
 
-const MH2 = ({ children, ...props }) => (
+const MH2 = ({ children, ...props }: H2Props) => (
   <H2 margin={{ top: 20, bottom: 20, left: 30, right: 30 }} {...props}>
     {children}
   </H2>
 )
 
-const MH3 = ({ compact, children, ...props }) => (
+const MH3 = ({
+  compact,
+  children,
+  ...props
+}: H3Props & {
+  compact: boolean
+}) => (
   <H3
     margin={compact ? { top: 13 } : { top: 20, left: 30, right: 30 }}
-    compact={compact}
     {...props}
   >
     {children}
   </H3>
 )
 
-const MH4 = ({ children, ...props }) => (
+const MH4 = ({ children, ...props }: H4Props) => (
   <H4 margin={{ top: 20, left: 30, right: 30 }} {...props}>
     {children}
   </H4>
 )
 
-const DocumentTnaProducts = ({ onTNAProductClick, value, ...props }) => (
+const DocumentTnaProducts = ({
+  onTNAProductClick,
+  value,
+  ...props
+}: {
+  value: { slotId?: number; title?: string }
+  onTNAProductClick?: (e?: React.SyntheticEvent, product?: any) => any
+}) => (
   <TnaProductsList
     margin={{ top: 30, left: 30, right: 30 }}
     onProductClick={onTNAProductClick}
@@ -68,7 +166,7 @@ const DocumentTnaProducts = ({ onTNAProductClick, value, ...props }) => (
   />
 )
 
-export const ELEMENTS: { [key: string]: any } = {
+export const ELEMENTS: ElementSet = {
   heading1: Heading(MH1),
   heading2: Heading(MH2),
   heading3: Heading(MH3),
@@ -93,7 +191,7 @@ export const ELEMENTS: { [key: string]: any } = {
   coupon: Coupon,
 }
 
-const EMBEDDED_ELEMENTS = {
+const EMBEDDED_ELEMENTS: ElementSet = {
   heading2: Compact(Heading(MH3)), // POI의 featuredContent에서 embedded entry의 제목이 heading2로 옵니다.
   heading3: Compact(Heading(MH3)),
   text: Compact(TextElement),
@@ -103,6 +201,7 @@ const EMBEDDED_ELEMENTS = {
 
 export function TripleDocument({
   children,
+  customElements,
   onResourceClick,
   onResourceScrapedChange,
   onImageClick,
@@ -111,10 +210,9 @@ export function TripleDocument({
   onTNAProductsFetch,
   imageSourceComponent,
   resourceScraps,
-  customElements,
   webUrlBase,
   deepLink,
-}) {
+}: TripleDocumentProps) {
   return (
     <>
       {children.map(({ type, value }, i) => {
@@ -143,17 +241,32 @@ export function TripleDocument({
   )
 }
 
-function Heading(Component) {
+function Heading<P extends object>(
+  Component: React.ComponentType<
+    P & {
+      href: string
+      emphasize: boolean
+      headline: string
+    }
+  >,
+) {
   return function WrappedHeading({
     value: { text, href, emphasize, headline },
     ...props
-  }) {
+  }: {
+    value: {
+      text: string
+      href: string
+      emphasize: boolean
+      headline: string
+    }
+  } & P) {
     return (
       <Component
         href={href}
         emphasize={emphasize}
         headline={headline}
-        {...props}
+        {...(props as P)}
       >
         {text}
       </Component>
@@ -183,13 +296,18 @@ function TextElement({ value: { text, rawHTML }, compact, ...props }: any) {
   )
 }
 
-function Compact(Component) {
-  return function CompactedComponent(props) {
+function Compact<P extends { compact?: boolean }>(
+  Component: React.ComponentType<P>,
+) {
+  return function CompactedComponent(props: P) {
     return <Component compact {...props} />
   }
 }
 
-const DocumentCarousel = ({ margin, children }) => (
+const DocumentCarousel = ({
+  margin,
+  children,
+}: React.PropsWithChildren<{ margin?: MarginPadding }>) => (
   <Carousel margin={margin} containerPadding={{ left: 30, right: 30 }}>
     {children}
   </Carousel>
@@ -200,6 +318,14 @@ function Images({
   onImageClick,
   onLinkClick,
   ImageSource,
+}: {
+  value: {
+    images: ImageData[]
+    display: CSS.DisplayProperty
+  }
+  onImageClick: ImageEventHandler
+  onLinkClick: LinkEventHandler
+  ImageSource: unknown
 }) {
   const ImagesContainer = display === 'block' ? Container : DocumentCarousel
   const ElementContainer =
@@ -222,7 +348,7 @@ function Images({
               src={sizes.large.url}
               sourceUrl={sourceUrl}
               frame={frame}
-              onClick={(e) => handleClick(e, image)}
+              onClick={(e?: React.SyntheticEvent) => handleClick(e, image)}
               ImageSource={ImageSource}
             />
             {image.title ? <ImageCaption>{image.title}</ImageCaption> : null}
@@ -240,6 +366,13 @@ function EmbeddedImage({
   onImageClick,
   onLinkClick,
   ImageSource,
+}: {
+  value: {
+    images: ImageData[]
+  }
+  onImageClick: ImageEventHandler
+  onLinkClick: LinkEventHandler
+  ImageSource: unknown
 }) {
   if (image) {
     const { sizes, sourceUrl, frame } = image
@@ -251,7 +384,7 @@ function EmbeddedImage({
         frame={frame || 'medium'}
         src={sizes.large.url}
         sourceUrl={sourceUrl}
-        onClick={(e) => handleClick(e, image)}
+        onClick={(e?: React.SyntheticEvent) => handleClick(e, image)}
         ImageSource={ImageSource}
       />
     )
@@ -272,7 +405,15 @@ const PoiPrice = styled.div`
   background-color: #fafafa;
 `
 
-function renderPoiListActionButton({ actionButtonElement, display, poi }) {
+function renderPoiListActionButton({
+  actionButtonElement,
+  display,
+  poi,
+}: {
+  actionButtonElement: JSX.Element | null
+  display: Display
+  poi: ExtendedPOIListElementData
+}) {
   if (actionButtonElement === null) {
     return <span />
   } else if (actionButtonElement) {
@@ -295,10 +436,10 @@ function renderPoiListActionButton({ actionButtonElement, display, poi }) {
     )
   }
 
-  return undefined
+  return null
 }
 
-const ResourceList = ({ children }) => (
+const ResourceList = ({ children }: React.PropsWithChildren<{}>) => (
   <List margin={{ top: 20, left: 30, right: 30 }}>{children}</List>
 )
 
@@ -308,13 +449,27 @@ export function Pois({
   onResourceClick,
   onResourceScrapedChange,
   resourceScraps,
+}: {
+  value: {
+    display: Display
+    pois: ExtendedPOIListElementData[]
+  }
+  actionButtonElement: JSX.Element | null
+  onResourceClick?: (
+    e: React.SyntheticEvent,
+    poi: ExtendedPOIListElementData,
+  ) => void
+  onResourceScrapedChange: PoiListElementProps['onScrapedChange']
+  resourceScraps: PoiListElementProps['resourceScraps']
 }) {
   const Container = display === 'list' ? ResourceList : DocumentCarousel
   const margin =
     display === 'list' ? { top: 20, left: 30, right: 30 } : { top: 20 }
   const Element =
     display === 'list'
-      ? function WrappedPoiListElment(props) {
+      ? function WrappedPoiListElment(
+          props: Omit<PoiListElementProps, 'compact'>,
+        ) {
           return <PoiListElement compact {...props} />
         }
       : PoiCarouselElement
@@ -326,7 +481,10 @@ export function Pois({
           key={poi.id}
           poi={poi}
           resourceScraps={resourceScraps}
-          onClick={onResourceClick && ((e) => onResourceClick(e, poi))}
+          onClick={
+            onResourceClick &&
+            ((e: React.SyntheticEvent) => onResourceClick(e, poi))
+          }
           onScrapedChange={onResourceScrapedChange}
           actionButtonElement={renderPoiListActionButton({
             actionButtonElement,
@@ -395,7 +553,10 @@ const LINK_CONTAINERS = {
   image: ResourceList,
 }
 
-function ButtonLink({ children, ...props }) {
+function ButtonLink({
+  children,
+  ...props
+}: React.PropsWithChildren<ButtonProps>) {
   return (
     <Button bold color="blue" {...props}>
       {children}
@@ -403,7 +564,10 @@ function ButtonLink({ children, ...props }) {
   )
 }
 
-function BlockLink({ children, ...props }) {
+function BlockLink({
+  children,
+  ...props
+}: React.PropsWithChildren<ButtonProps>) {
   return (
     <Button basic fluid compact color="gray" {...props}>
       {children}
@@ -418,7 +582,19 @@ const ImageLinkItem = styled.a`
 const IMAGE_PLACEHOLDER =
   'https://assets.triple.guide/images/ico-blank-see@2x.png'
 
-function ImageLink({ href, label, description, image, onClick }) {
+function ImageLink({
+  href,
+  label,
+  description,
+  image,
+  onClick,
+}: {
+  href: string
+  label?: string
+  description?: string
+  image?: ImageData
+  onClick?: React.MouseEventHandler
+}) {
   return (
     <ResourceListItem onClick={onClick}>
       <ImageLinkItem href={href}>
@@ -447,16 +623,33 @@ const LINK_ELEMENTS = {
   image: ImageLink,
 }
 
-function Links({ value: { display, links }, onLinkClick, ...props }) {
-  const Container = LINK_CONTAINERS[display] || LinksContainer
-  const Element = LINK_ELEMENTS[display] || SimpleLink
+function Links({
+  value: { display, links },
+  onLinkClick,
+  ...props
+}: {
+  value: {
+    display:
+      | (keyof typeof LINK_CONTAINERS & keyof typeof LINK_ELEMENTS)
+      | string
+    links: Link[]
+  }
+  onLinkClick?: LinkEventHandler
+  compact?: boolean
+}) {
+  const Container =
+    LINK_CONTAINERS[display as keyof typeof LINK_CONTAINERS] || LinksContainer
+  const Element =
+    LINK_ELEMENTS[display as keyof typeof LINK_ELEMENTS] || SimpleLink
 
   return (
     <Container {...props}>
       {links.map((link, i) => (
         <Element
           key={i}
-          onClick={onLinkClick && ((e) => onLinkClick(e, link))}
+          onClick={
+            onLinkClick && ((e: React.SyntheticEvent) => onLinkClick(e, link))
+          }
           {...link}
           href={link.href || '#'}
         >
@@ -472,6 +665,13 @@ function Embedded({
   onLinkClick,
   onImageClick,
   ImageSource,
+}: {
+  value: {
+    entries: TripleElementData[][]
+  }
+  onLinkClick: LinkEventHandler
+  onImageClick: ImageEventHandler
+  ImageSource: unknown
 }) {
   return (
     <DocumentCarousel margin={{ top: 20 }}>
@@ -498,7 +698,11 @@ function Embedded({
   )
 }
 
-function Note({ value: { title, body } }) {
+function Note({
+  value: { title, body },
+}: {
+  value: { title: string; body: string }
+}) {
   return (
     <Segment margin={{ top: 30, bottom: 30, left: 30, right: 30 }}>
       <Text bold size="small" color="gray" lineHeight={1.57}>
@@ -511,7 +715,13 @@ function Note({ value: { title, body } }) {
   )
 }
 
-function Regions({ value: { regions }, onResourceClick }) {
+function Regions({
+  value: { regions },
+  onResourceClick,
+}: {
+  value: { regions: RegionData[] }
+  onResourceClick?: (e: React.SyntheticEvent, region: RegionData) => void
+}) {
   return (
     <ResourceList>
       {regions.map((region, index) => (
@@ -543,7 +753,11 @@ const VideoPlayer = styled.iframe`
   height: 100%;
 `
 
-function Video({ value: { provider, identifier } }) {
+function Video({
+  value: { provider, identifier },
+}: {
+  value: { provider: string; identifier: string }
+}) {
   return provider === 'youtube' ? (
     <VideoContainer>
       <VideoPlayer
@@ -588,7 +802,17 @@ const ListTextElement = styled(TextElement)`
   }
 `
 
-function ListElement({ value: { bulletType, items }, onLinkClick, ...props }) {
+function ListElement({
+  value: { bulletType, items },
+  onLinkClick,
+  ...props
+}: {
+  value: {
+    bulletType?: string
+    items: (TextElementData | LinksElementData)[]
+  }
+  onLinkClick: LinkEventHandler
+}) {
   return (
     <Container margin={{ top: 10, left: 30, right: 30 }} {...props}>
       <ul>
@@ -610,7 +834,12 @@ function ListElement({ value: { bulletType, items }, onLinkClick, ...props }) {
   )
 }
 
-function TableElement({ value, ...props }) {
+function TableElement({
+  value,
+  ...props
+}: {
+  value: TableProps
+} & ContainerProps) {
   return (
     <Container margin={{ top: 20, bottom: 20, left: 30, right: 30 }} {...props}>
       <Table {...value} />
@@ -618,7 +847,10 @@ function TableElement({ value, ...props }) {
   )
 }
 
-function generateClickHandler(onLinkClick, onImageClick) {
+function generateClickHandler(
+  onLinkClick?: LinkEventHandler,
+  onImageClick?: ImageEventHandler,
+): ImageEventHandler {
   return (e, image) =>
     (image.link || {}).href
       ? onLinkClick && onLinkClick(e, image.link)

@@ -25,6 +25,7 @@
     "@sentry/browser": "^5.4.3"
   },
   "devDependencies": {
+    "@types/isomorphic-fetch": "^0.0.35",
     "@sentry/browser": "^5.4.3"
   }
 }

@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { ResourceListItem, Image } from '@titicaca/core-elements'
+import { RegionData } from './types'
 
 const Name = styled.div`
   float: left;
@@ -29,7 +30,13 @@ const Action = styled.div`
   background-color: #fafafa;
 `
 
-export function RegionListElement({ value, onClick }) {
+export function RegionListElement({
+  value,
+  onClick,
+}: {
+  value: RegionData | null
+  onClick?: React.MouseEventHandler
+}) {
   if (value) {
     const {
       nameOverride,
