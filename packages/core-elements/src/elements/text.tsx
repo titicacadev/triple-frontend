@@ -41,6 +41,10 @@ interface TitleBaseProps {
   margin?: MarginPadding
 }
 
+export type TextProps = React.PropsWithChildren<
+  StyledComponentProps<'div', any, TextBaseProps, never>
+>
+
 function Line({ children }: React.PropsWithChildren<{}>) {
   return (
     <>
@@ -161,12 +165,7 @@ const TextBase = styled.div<TextBaseProps>`
     `};
 `
 
-function Text({
-  children,
-  ...props
-}: React.PropsWithChildren<
-  StyledComponentProps<'div', any, TextBaseProps, never>
->) {
+function Text({ children, ...props }: TextProps) {
   return (
     <TextBase {...props}>
       {React.Children.toArray(children).map((child, i) =>
