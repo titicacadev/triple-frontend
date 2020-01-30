@@ -58,22 +58,21 @@ export function TnaProduct({
   tags,
   salePrice,
 }: TnaProductProps) {
-  const displayingTags = tags || []
-
   return (
     <>
       <SquareImage size="medium" floated="left" src={heroImage} alt={title} />
       <Text bold size="large" color="gray" margin={{ left: 150 }}>
         {title}
       </Text>
-      {displayingTags.length > 0 && (
+
+      {tags && tags.length > 0 && (
         <Container margin={{ top: 3, left: 150 }}>
-          {displayingTags.map(({ text, type, style }, i) => (
+          {tags.map(({ text, type, style }, i) => (
             <Tag
               key={i}
               type={type}
               style={style}
-              margin={{ top: 4, right: i < displayingTags.length - 1 ? 4 : 0 }}
+              margin={{ top: 4, right: i < tags.length - 1 ? 4 : 0 }}
             >
               {text}
             </Tag>
