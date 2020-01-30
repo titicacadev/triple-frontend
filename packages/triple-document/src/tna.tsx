@@ -13,6 +13,29 @@ import { H1 } from './text'
 
 type Price = string | number
 
+interface TnaProductProps {
+  heroImage?: string
+  title?: string
+  tags?: { text: string; type: TagColors; style: React.CSSProperties }[]
+  salePrice?: Price
+}
+
+export type TnaProductData = TnaProductProps
+
+interface TnaProductsListProps {
+  slotId?: number
+  onTNAProductsFetch?: (slotId?: number) => Promise<Response>
+  onProductClick?: (e?: React.SyntheticEvent, product?: TnaProductData) => void
+  margin?: MarginPadding
+  title?: string
+}
+
+interface TnaProductsListState {
+  products: TnaProductData[]
+  showMore: boolean
+  title: string
+}
+
 function insertCommas(price?: Price) {
   if (price) {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -34,12 +57,7 @@ export function TnaProduct({
   title,
   tags,
   salePrice,
-}: {
-  heroImage?: string
-  title?: string
-  tags?: { text: string; type: TagColors; style: React.CSSProperties }[]
-  salePrice?: Price
-}) {
+}: TnaProductProps) {
   const displayingTags = tags || []
 
   return (
@@ -67,14 +85,15 @@ export function TnaProduct({
   )
 }
 
-export class TnaProductsList extends React.PureComponent<{
-  slotId?: number
-  onTNAProductsFetch?: (slotId?: number) => any
-  onProductClick?: (e?: React.SyntheticEvent, product?: any) => any
-  margin?: MarginPadding
-  title?: string
-}> {
-  state = { products: [], showMore: false, title: '' }
+export class TnaProductsList extends React.PureComponent<
+  TnaProductsListProps,
+  TnaProductsListState
+> {
+  readonly state: Readonly<TnaProductsListState> = {
+    products: [],
+    showMore: false,
+    title: '',
+  }
 
   componentDidMount() {
     this.fetchProducts()
@@ -90,9 +109,12 @@ export class TnaProductsList extends React.PureComponent<{
     const response = await onTNAProductsFetch(slotId)
 
     if (response.ok) {
-      const { title, products } = await response.json()
+      const {
+        title,
+        products,
+      }: { title: string; products?: TnaProductData[] } = await response.json()
 
-      this.setState({ title, products })
+      this.setState({ title, products: products || [] })
     }
   }
 
@@ -102,7 +124,7 @@ export class TnaProductsList extends React.PureComponent<{
       state: { title, products, showMore },
     } = this
 
-    return (products || []).length > 0 ? (
+    return products.length > 0 ? (
       <Container margin={margin}>
         <H1 margin={{ bottom: 20 }}>{title}</H1>
 
