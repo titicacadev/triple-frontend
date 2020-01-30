@@ -1,0 +1,32 @@
+{
+  "name": "@titicaca/drawer-button",
+  "version": "1.4.2",
+  "description": "Button in drawer",
+  "keywords": [
+    "button",
+    "drawer"
+  ],
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "license": "UNLICENSED",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "scripts": {
+    "test": "echo \"No test is included in this package.\""
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "dependencies": {
+    "@titicaca/core-elements": "^1.4.2"
+  }
+}
