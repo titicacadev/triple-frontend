@@ -1,7 +1,7 @@
 {
-  "name": "@titicaca/booking-complete",
+  "name": "@titicaca/booking-completion",
   "version": "1.3.8",
-  "description": "Triple Booking Complete Page",
+  "description": "Triple Booking completion Page",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
   "files": [
