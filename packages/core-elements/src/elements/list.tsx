@@ -50,7 +50,7 @@ const ListItem = styled.li<{ minHeight?: number }>`
 export default class List extends React.PureComponent<
   {
     divided?: boolean
-    dividedColor?: string
+    dividerColor?: string
     verticalGap?: number
     children?: any
   } & ListBaseProp
@@ -59,7 +59,7 @@ export default class List extends React.PureComponent<
 
   render() {
     const {
-      props: { divided, dividedColor, verticalGap = 0, children, ...props },
+      props: { divided, dividerColor, verticalGap = 0, children, ...props },
     } = this
 
     if (divided) {
@@ -78,7 +78,7 @@ export default class List extends React.PureComponent<
                   <HR1
                     key={array.length + 1}
                     margin={{ top: verticalGap / 2, bottom: verticalGap / 2 }}
-                    backgroundColor={dividedColor}
+                    backgroundColor={dividerColor}
                   />
                 ),
               ]
