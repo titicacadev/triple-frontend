@@ -20,7 +20,7 @@ import { ColorBox, FlexBox } from './components/color-box'
 
 <Preview>
   <Story name="divided">
-    <List divided clearing dividedColor={text('구분선 색상', '#f5f5f5')}>
+    <List divided clearing dividerColor={text('구분선 색상', '#f5f5f5')}>
       {[...Array(5).keys()].map((_, idx) => (
         <Container 
           key={idx} 
