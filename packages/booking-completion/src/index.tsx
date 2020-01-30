@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Text, Button } from '@titicaca/core-elements'
 import styled from 'styled-components'
 
-interface BookingCompleteProps {
+interface BookingCompletionProps {
   detailLink?: string
   listLink?: string
   descriptions?: string[]
@@ -25,11 +25,11 @@ const moveToLink = (link: string) => {
   window.location.href = link
 }
 
-function BookingComplete({
+function BookingCompletion({
   listLink,
   detailLink,
   descriptions,
-}: BookingCompleteProps) {
+}: BookingCompletionProps) {
   return (
     <Container>
       <Container padding={{ top: 120 }} margin={{ bottom: 12 }}>
@@ -81,4 +81,4 @@ function BookingComplete({
   )
 }
 
-export default BookingComplete
+export default BookingCompletion
