@@ -11,7 +11,7 @@ interface HRProp {
 export const HR1 = styled.div<HRProp>`
   margin: 50px 30px;
   height: 1px;
-  background-color: ${({ backgroundColor }) => backgroundColor || '#efefef'};
+  background-color: ${({ color }) => color || '#efefef'};
 
   ${({ compact }) =>
     compact &&
