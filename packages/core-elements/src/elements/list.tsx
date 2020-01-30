@@ -78,7 +78,7 @@ export default class List extends React.PureComponent<
                   <HR1
                     key={array.length + 1}
                     margin={{ top: verticalGap / 2, bottom: verticalGap / 2 }}
-                    backgroundColor={dividerColor}
+                    color={dividerColor}
                   />
                 ),
               ]
