@@ -1,0 +1,21 @@
+{
+  "name": "@titicaca/booking-complete",
+  "version": "1.3.8",
+  "description": "Triple Booking Complete Page",
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "dependencies": {
+    "@titicaca/core-elements": "^1.3.8",
+    "@titicaca/color-palette": "^1.3.8"
+  }
+}
