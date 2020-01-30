@@ -1,0 +1,51 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+import { List, Container } from '@titicaca/core-elements'
+import { action } from '@storybook/addon-actions'
+import {
+  withKnobs,
+  select,
+  text,
+  boolean,
+  number,
+} from '@storybook/addon-knobs'
+import { ColorBox, FlexBox } from './components/color-box'
+
+<Meta title="List" decorators={[withKnobs]} />
+
+# List
+
+<br />
+
+## Divided
+
+<Preview>
+  <Story name="divided">
+    <List divided clearing dividedColor={text('구분선 색상', '#f5f5f5')}>
+      {[...Array(5).keys()].map((_, idx) => (
+        <Container 
+          key={idx} 
+          margin={{top: 10, bottom: 10}} 
+          noDivider={boolean('라인 생략', false) && idx % 2 === 0}
+        >
+          <List.Item>
+            <ColorBox color="blue" />
+          </List.Item>
+        </Container>
+      ))}
+     </List>
+  </Story>
+</Preview>
+
+## VerticalGap
+
+<Preview>
+  <Story name="verticalGap">
+    <List clearing verticalGap={(number('verticalGap', 20))}>
+      {[...Array(5).keys()].map(() => (
+        <List.Item>
+          <ColorBox color="blue" />
+        </List.Item>
+      ))}
+    </List>
+  </Story>
+</Preview>
