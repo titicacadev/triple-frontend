@@ -3,8 +3,8 @@ import { Container, Text, Button } from '@titicaca/core-elements'
 import styled from 'styled-components'
 
 interface BookingCompletionProps {
-  detailLink?: string
-  listLink?: string
+  detailUrl?: string
+  listUrl?: string
   descriptions?: string[]
 }
 
@@ -26,8 +26,8 @@ const moveToLink = (link: string) => {
 }
 
 function BookingCompletion({
-  listLink,
-  detailLink,
+  detailUrl,
+  listUrl,
   descriptions,
 }: BookingCompletionProps) {
   return (
@@ -49,27 +49,27 @@ function BookingCompletion({
       <Text color="gray" size="mini" alpha={0.5}>
         자세한 사항은 내 예약에서 확인해주세요.
       </Text>
-      {listLink || detailLink ? (
+      {listUrl || detailUrl ? (
         <Container margin={{ top: 30 }}>
           <Button.Group horizontalGap={7}>
-            {detailLink ? (
+            {detailUrl ? (
               <Button
                 basic
                 inverted
                 color="blue"
                 size="small"
-                onClick={() => moveToLink(detailLink)}
+                onClick={() => moveToLink(detailUrl)}
               >
                 내 예약에서 확인
               </Button>
             ) : null}
-            {listLink ? (
+            {listUrl ? (
               <Button
                 basic
                 inverted
                 color="gray"
                 size="small"
-                onClick={() => moveToLink(listLink)}
+                onClick={() => moveToLink(listUrl)}
               >
                 다른 상품 더보기
               </Button>
