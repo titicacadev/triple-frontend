@@ -56,6 +56,7 @@ const BASIC_COLORS: Partial<
 
 const BASIC_INVERTED_COLORS: Partial<Record<GlobalColors, string>> = {
   blue: '#368fff',
+  gray: '#3a3a3a',
 }
 
 interface BasicButtonProp {
