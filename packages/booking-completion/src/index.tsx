@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Text, Button } from '@titicaca/core-elements'
+import { useHistoryContext } from '@titicaca/react-contexts'
 import styled from 'styled-components'
 
 interface BookingCompletionProps {
@@ -21,15 +22,17 @@ const DescriptionText = styled(Text)`
   }
 `
 
-const moveToLink = (link: string) => {
-  window.location.href = link
-}
-
 function BookingCompletion({
   detailUrl,
   listUrl,
   descriptions,
 }: BookingCompletionProps) {
+  const { navigate } = useHistoryContext()
+
+  const moveToUrl = (url: string) => {
+    navigate(url)
+  }
+
   return (
     <Container>
       <Container padding={{ top: 120 }} margin={{ bottom: 12 }}>
@@ -58,7 +61,7 @@ function BookingCompletion({
                 inverted
                 color="blue"
                 size="small"
-                onClick={() => moveToLink(detailUrl)}
+                onClick={() => moveToUrl(detailUrl)}
               >
                 내 예약에서 확인
               </Button>
@@ -69,7 +72,7 @@ function BookingCompletion({
                 inverted
                 color="gray"
                 size="small"
-                onClick={() => moveToLink(listUrl)}
+                onClick={() => moveToUrl(listUrl)}
               >
                 다른 상품 더보기
               </Button>
