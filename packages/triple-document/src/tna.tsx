@@ -11,7 +11,9 @@ import {
 } from '@titicaca/core-elements'
 import { H1 } from './text'
 
-function insertCommas(price?: string | number | null) {
+type Price = string | number
+
+function insertCommas(price?: Price) {
   if (price) {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
@@ -19,7 +21,7 @@ function insertCommas(price?: string | number | null) {
   return ''
 }
 
-function Price({ price }: { price?: string | number }) {
+function Price({ price }: { price?: Price }) {
   return (
     <Text bold size="large" color="gray" margin={{ top: 13, left: 150 }}>
       {`${insertCommas(price)}원`}
@@ -36,7 +38,7 @@ export function TnaProduct({
   heroImage?: string
   title?: string
   tags?: { text: string; type: TagColors; style: React.CSSProperties }[]
-  salePrice?: string | number
+  salePrice?: Price
 }) {
   const displayingTags = tags || []
 
