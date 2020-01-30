@@ -5,13 +5,13 @@ import { marginMixin } from '../mixins'
 interface HRProp {
   compact?: boolean
   margin?: MarginPadding
-  borderColor?: string
+  backgroundColor?: string
 }
 
 export const HR1 = styled.div<HRProp>`
   margin: 50px 30px;
   height: 1px;
-  background-color: ${({ borderColor }) => borderColor || '#efefef'};
+  background-color: ${({ backgroundColor }) => backgroundColor || '#efefef'};
 
   ${({ compact }) =>
     compact &&
