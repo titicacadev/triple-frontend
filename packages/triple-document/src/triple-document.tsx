@@ -49,7 +49,7 @@ import {
   H1Props,
 } from './text'
 import { RegionListElement } from './region'
-import { TnaProductsList } from './tna'
+import { TnaProductsList, TnaProductData } from './tna'
 import Coupon from './coupon'
 import { RegionData } from './types'
 
@@ -156,7 +156,10 @@ const DocumentTnaProducts = ({
   ...props
 }: {
   value: { slotId?: number; title?: string }
-  onTNAProductClick?: (e?: React.SyntheticEvent, product?: any) => any
+  onTNAProductClick?: (
+    e?: React.SyntheticEvent,
+    product?: TnaProductData,
+  ) => any
 }) => (
   <TnaProductsList
     margin={{ top: 30, left: 30, right: 30 }}
