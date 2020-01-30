@@ -3,9 +3,9 @@ import { Container, Text, Button } from '@titicaca/core-elements'
 import styled from 'styled-components'
 
 interface BookingCompleteProps {
-  detailLink: string
-  listLink: string
-  descriptions: string[]
+  detailLink?: string
+  listLink?: string
+  descriptions?: string[]
 }
 
 const DescriptionText = styled(Text)`
