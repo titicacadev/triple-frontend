@@ -108,16 +108,14 @@ const COMPACT_NORMAL_PADDINGS: Partial<Record<GlobalSizes, MarginPadding>> = {
 
 // eslint-disable-next-line no-unexpected-multiline
 const NormalButton = styled(ButtonBase)<{
-  borderRadius?: number
+  borderRadius: number
   color?: string
   alpha?: number
   compact?: boolean
 }>`
-  ${({ borderRadius }) =>
-    borderRadius &&
-    css`
-      border-radius: ${borderRadius}px;
-    `};
+  ${({ borderRadius }) => css`
+    border-radius: ${borderRadius}px;
+  `};
   color: #ffffff;
 
   background-color: ${({ color = 'blue', alpha = 1 }) =>
@@ -223,7 +221,7 @@ class Button extends React.PureComponent<ButtonProps> {
         size={size || 'tiny'}
         textColor={textColor || 'white'}
         textAlpha={textAlpha}
-        borderRadius={borderRadius || 21}
+        borderRadius={borderRadius !== undefined ? borderRadius : 21}
         onClick={onClick}
         {...props}
       >
