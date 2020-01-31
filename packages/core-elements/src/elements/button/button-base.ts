@@ -13,6 +13,7 @@ export interface ButtonBaseProp {
   fluid?: boolean
   margin?: MarginPadding
   disabled?: boolean
+  lineHeight?: number | string
 }
 
 const SIZES: Partial<Record<GlobalSizes, ReturnType<typeof css>>> = {
@@ -47,6 +48,12 @@ const ButtonBase = styled.a<ButtonBaseProp>`
     `rgba(${GetGlobalColor(textColor)}, ${textAlpha})`};
 
   float: ${({ floated }) => floated || 'none'};
+
+  ${({ lineHeight }) =>
+    lineHeight &&
+    css`
+      line-height: ${lineHeight}px;
+    `};
 
   ${({ fluid }) =>
     fluid &&
