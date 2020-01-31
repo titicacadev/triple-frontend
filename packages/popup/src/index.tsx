@@ -35,6 +35,9 @@ const PopupContainer = styled.div`
   @supports (padding: max(0px)) and (padding: env(safe-area-inset-bottom)) {
     padding-bottom: max(13px, calc(env(safe-area-inset-bottom) + 17px));
   }
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `
 
 export default function Popup({
