@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/app-banner",
-  "version": "1.3.8",
+  "version": "1.3.9",
   "description": "Common App Banner for Public Pages",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,6 +15,6 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^1.3.8"
+    "@titicaca/core-elements": "^1.3.9"
   }
 }
