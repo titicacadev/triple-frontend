@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/color-palette",
-  "version": "1.3.9",
+  "version": "1.4.0",
   "description": "Triple Color Palette",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
