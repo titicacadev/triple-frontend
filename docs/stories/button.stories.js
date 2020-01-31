@@ -12,6 +12,11 @@ storiesOf('Button', module)
     <Button
       as={select('as prop', ['a', 'button'], 'a')}
       size={select('버튼 크기', ['tiny', 'small'], 'tiny')}
+      lineHeight={select(
+        '버튼 높이',
+        ['15', '16', '17', '18', '19', '20'],
+        '16',
+      )}
       onClick={action('clicked')}
     >
       {text('버튼 레이블', '안녕')}
