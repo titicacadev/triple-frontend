@@ -14,7 +14,7 @@ storiesOf('Button', module)
       size={select('버튼 크기', ['tiny', 'small'], 'tiny')}
       lineHeight={select(
         '버튼 높이',
-        ['15', '16', '17', '18', '19', '20'],
+        ['15px', '16px', '17px', '18px', '19px', '1', '2', '3'],
         '16',
       )}
       onClick={action('clicked')}
