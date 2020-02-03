@@ -19,7 +19,6 @@ const InputText = styled.input`
 const MainNavbarFrame = styled(Navbar.NavbarFrame)`
   height: 58px;
   padding: 12px;
-  position: fixed;
 `
 
 const Back = styled(Navbar.Item)`
