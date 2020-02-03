@@ -1,12 +1,12 @@
 import React from 'react'
 import { Container, Text, Button } from '@titicaca/core-elements'
-import { useHistoryContext } from '@titicaca/react-contexts'
 import styled from 'styled-components'
 
 interface BookingCompletionProps {
-  detailUrl?: string
-  listUrl?: string
+  onMoveToBookingDetail?: () => void
+  onMoveToList?: () => void
   descriptions?: string[]
+  listButtonLabel?: string
 }
 
 const DescriptionText = styled(Text)`
@@ -23,16 +23,11 @@ const DescriptionText = styled(Text)`
 `
 
 function BookingCompletion({
-  detailUrl,
-  listUrl,
+  onMoveToBookingDetail,
+  onMoveToList,
   descriptions,
+  listButtonLabel,
 }: BookingCompletionProps) {
-  const { navigate } = useHistoryContext()
-
-  const moveToUrl = (url: string) => {
-    navigate(url)
-  }
-
   return (
     <Container>
       <Container padding={{ top: 120 }} margin={{ bottom: 12 }}>
@@ -52,29 +47,29 @@ function BookingCompletion({
       <Text color="gray" size="mini" alpha={0.5}>
         자세한 사항은 내 예약에서 확인해주세요.
       </Text>
-      {listUrl || detailUrl ? (
+      {onMoveToList || onMoveToBookingDetail ? (
         <Container margin={{ top: 30 }}>
           <Button.Group horizontalGap={7}>
-            {detailUrl ? (
+            {onMoveToBookingDetail ? (
               <Button
                 basic
                 inverted
                 color="blue"
                 size="small"
-                onClick={() => moveToUrl(detailUrl)}
+                onClick={onMoveToBookingDetail}
               >
                 내 예약에서 확인
               </Button>
             ) : null}
-            {listUrl ? (
+            {onMoveToList ? (
               <Button
                 basic
                 inverted
                 color="gray"
                 size="small"
-                onClick={() => moveToUrl(listUrl)}
+                onClick={onMoveToList}
               >
-                다른 상품 더보기
+                {listButtonLabel || '다른 상품 더보기'}
               </Button>
             ) : null}
           </Button.Group>
