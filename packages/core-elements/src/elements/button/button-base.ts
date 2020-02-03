@@ -52,7 +52,7 @@ const ButtonBase = styled.a<ButtonBaseProp>`
   ${({ lineHeight }) =>
     lineHeight &&
     css`
-      line-height: ${lineHeight}px;
+      line-height: ${lineHeight};
     `};
 
   ${({ fluid }) =>
