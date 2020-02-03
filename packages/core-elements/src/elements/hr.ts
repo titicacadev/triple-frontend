@@ -5,7 +5,7 @@ import { marginMixin } from '../mixins'
 interface HRProp {
   compact?: boolean
   margin?: MarginPadding
-  backgroundColor?: string
+  color?: string
 }
 
 export const HR1 = styled.div<HRProp>`
