@@ -1,4 +1,13 @@
+## 1.4.1 (2020-02-03)
+
+- `poi-list-elements` categories 타입을 수정합니다
+
+## 1.4.0 (2020-01-30)
+
+- `list` hr1 의 구분선 색상을 변경할 수 있도록 prop을 추가합니다
+
 ## 1.3.8 (2020-01-29)
+
 - color palette 추가 (#429)
 - `accordon`의 `Content`와 `Floded` 리턴 방식 변경 (#432)
 - `input` `textarea` props 수정 (#433)
@@ -6,17 +15,17 @@
 
 ## 1.3.7 (2020-01-22)
 
-- `intersection-observer` safe prop 추가 
-- `react-contexts` 패키지에 tsc strict 옵션 설정 
+- `intersection-observer` safe prop 추가
+- `react-contexts` 패키지에 tsc strict 옵션 설정
 - `*-list-element` 패키지들에 ts strict 옵션 설정
-- `resource-list-element` 이미지와 가격 간격을 좁힙니다 
-- `review` 잘못 할당한 ga event 를 수정합니다. 
-- `popup` open일 경우 scroll를 reset시켜줍니다. 
-- `core-elements` feat: 규격화 폰트사이즈 적용 
-- `core-elements` tab 글자를 bold 처리 합니다  
+- `resource-list-element` 이미지와 가격 간격을 좁힙니다
+- `review` 잘못 할당한 ga event 를 수정합니다.
+- `popup` open일 경우 scroll를 reset시켜줍니다.
+- `core-elements` feat: 규격화 폰트사이즈 적용
+- `core-elements` tab 글자를 bold 처리 합니다
 - `theme` 테마를 제공합니다
-- `navbar` backgroundColor prop를 추가합니다. 
-- `pricing` fixed label 의 기본 색상을 변경합니다 
+- `navbar` backgroundColor prop를 추가합니다.
+- `pricing` fixed label 의 기본 색상을 변경합니다
 
 ## 1.3.6 (2020-01-16)
 
