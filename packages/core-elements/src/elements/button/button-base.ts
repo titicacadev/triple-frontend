@@ -3,6 +3,7 @@ import * as CSS from 'csstype'
 
 import { GlobalSizes, MarginPadding, GetGlobalColor } from '../../commons'
 import { marginMixin } from '../../mixins'
+import { unit } from '../../utils/unit'
 
 export interface ButtonBaseProp {
   size?: GlobalSizes
@@ -52,7 +53,7 @@ const ButtonBase = styled.a<ButtonBaseProp>`
   ${({ lineHeight }) =>
     lineHeight &&
     css`
-      line-height: ${lineHeight};
+      line-height: ${unit(lineHeight)};
     `};
 
   ${({ fluid }) =>
