@@ -115,7 +115,7 @@ export default function FullScreenSearchView({
         }}
         onKeyUp={(e: KeyboardEvent) => handleKeyUp(e.keyCode)}
       />
-      <ContentsContainer margin={{ top: 58 }} isIOS={isIOS} userSelect="none">
+      <ContentsContainer isIOS={isIOS} userSelect="none">
         <div ref={contentsDivRef}>{children}</div>
       </ContentsContainer>
     </>
