@@ -1,3 +1,7 @@
+## 1.4.2 (2020-02-03)
+
+- `poi-list-elements` areas 타입을 수정합니다
+
 ## 1.4.1 (2020-02-03)
 
 - `poi-list-elements` categories 타입을 수정합니다
