@@ -16,10 +16,6 @@ import {
 } from '@titicaca/triple-web-to-native-interfaces'
 import { debounce } from '@titicaca/view-utilities'
 
-const MainContainer = styled(Container)`
-  background-color: white;
-`
-
 const ContentsContainer = styled(Container)<{ isIOS: boolean }>`
   > div:first-child {
     ${({ isIOS }) =>
@@ -104,7 +100,7 @@ export default function FullScreenSearchView({
   }, [keyword]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <MainContainer>
+    <>
       <SearchNavbar
         placeholder={placeholder}
         value={keyword}
@@ -122,6 +118,6 @@ export default function FullScreenSearchView({
       <ContentsContainer margin={{ top: 58 }} isIOS={isIOS} userSelect="none">
         <div ref={contentsDivRef}>{children}</div>
       </ContentsContainer>
-    </MainContainer>
+    </>
   )
 }
