@@ -6,11 +6,18 @@ import BookingCompletion from '@titicaca/booking-completion'
 
 # Booking Complete
 
-<BookingCompletion
-  detailUrl={text('내 예약에서 확인', '블라블라')}
-  listUrl={text('다른 상품 더보기', '블라블라')}
-  descriptions={[
-    '공급사 확인 후 예약이 확정됩니다.',
-    '예약이 확정되면 이메일로 바우처가 발송됩니다.',
-  ]}
-/>
+<Preview>
+  <Story name="Default">
+    <BookingCompletion
+      onMoveToBookingDetail={
+        boolean('내 예약 상세 액션', true) ? () => {} : null
+      }
+      onMoveToList={boolean('리스트 이동 액션', true) ? () => {} : null}
+      listButtonLabel={text('다른 상품 더보기', '다른 호텔 더보기')}
+      descriptions={[
+        '공급사 확인 후 예약이 확정됩니다.',
+        '예약이 확정되면 이메일로 바우처가 발송됩니다.',
+      ]}
+    />
+  </Story>
+</Preview>
