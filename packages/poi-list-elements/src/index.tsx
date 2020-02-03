@@ -28,7 +28,7 @@ interface POI {
       en: Name
       local: Name
     }
-    areas: { name: string }[]
+    areas?: { name: string }[]
     categories?: { name: string }[]
     comment?: string
     reviewsCount?: number
@@ -241,7 +241,7 @@ class ExtendedPoiListElement extends React.PureComponent<
           source: {
             names,
             image,
-            areas,
+            areas = [],
             categories = [],
             comment,
             reviewsCount: rawReviewsCount,
