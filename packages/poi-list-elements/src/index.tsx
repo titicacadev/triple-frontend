@@ -29,7 +29,7 @@ interface POI {
       local: Name
     }
     areas: { name: string }[]
-    categories: { name: string }[]
+    categories: { name: string }[] | null
     comment?: string
     reviewsCount?: number
     scrapsCount?: number
@@ -262,7 +262,7 @@ class ExtendedPoiListElement extends React.PureComponent<
     } = this
 
     const [area] = areas
-    const [category] = categories
+    const [category = ''] = categories || []
     const { state: scraped, count: scrapsCount } = deriveCurrentStateAndCount({
       initialState: initialScraped,
       initialCount: initialScrapsCount,
