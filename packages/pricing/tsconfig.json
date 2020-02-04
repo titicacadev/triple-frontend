@@ -5,8 +5,7 @@
     "baseUrl": ".",
     "rootDir": "src",
     "emitDeclarationOnly": true,
-    "esModuleInterop": true,
-    "strict": true
+    "esModuleInterop": true
   },
   "include": ["./src"],
   "exclude": ["node_modules", "lib"]
