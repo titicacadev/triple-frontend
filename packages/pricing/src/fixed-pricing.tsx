@@ -33,10 +33,9 @@ const FloatedPricingContainer = styled(Container)`
   width: 50%;
 `
 
-const PurchaseButton = styled(Button)`
-  position: absolute;
-  right: 0;
+const PurchaseButtonContainer = styled(Container)`
   top: 50%;
+  right: 0;
   transform: translateY(-50%);
   width: 41%;
   height: 47px;
@@ -101,15 +100,19 @@ export default function FixedPricing({
             {pricingDescription}
           </FloatedPricingContainer>
 
-          <PurchaseButton
-            borderRadius={4}
-            size="small"
-            color="blue"
-            disabled={buttonDisabled}
-            onClick={onClick}
-          >
-            {buttonText}
-          </PurchaseButton>
+          <PurchaseButtonContainer position="absolute">
+            <Button
+              as="button"
+              fluid
+              borderRadius={4}
+              size="small"
+              color="blue"
+              disabled={buttonDisabled}
+              onClick={onClick}
+            >
+              {buttonText}
+            </Button>
+          </PurchaseButtonContainer>
         </Container>
       </FloatedFrame>
     </Drawer>
