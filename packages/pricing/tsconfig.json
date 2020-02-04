@@ -3,9 +3,7 @@
   "compilerOptions": {
     "outDir": "./lib",
     "baseUrl": ".",
-    "rootDir": "src",
-    "emitDeclarationOnly": true,
-    "esModuleInterop": true
+    "rootDir": "src"
   },
   "include": ["./src"],
   "exclude": ["node_modules", "lib"]
