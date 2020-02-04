@@ -40,6 +40,7 @@ const ButtonBase = styled.a<ButtonBaseProp>`
   outline: none;
   box-sizing: border-box;
   cursor: pointer;
+  border: 0;
 
   &:active {
     border-style: solid;
