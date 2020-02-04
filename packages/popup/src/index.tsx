@@ -56,7 +56,7 @@ export default function Popup({
   icon?: NavbarIcon
   noNavbar?: boolean
 }>) {
-  const popupRef = useRef(null)
+  const popupRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (open && popupRef.current && popupRef.current.scrollTop > 0) {
