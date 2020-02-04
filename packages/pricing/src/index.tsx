@@ -9,6 +9,7 @@ import {
   GlobalColors,
   MarginPadding,
   Tooltip,
+  Button,
 } from '@titicaca/core-elements'
 
 export type BasePrice = number | null
@@ -218,20 +219,13 @@ const FloatedPricingContainer = styled(Container)`
   width: 50%;
 `
 
-const PurchaseButton = styled.button`
+const PurchaseButton = styled(Button)`
   position: absolute;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
   width: 41%;
   height: 47px;
-  border-radius: 4px;
-  background: ${COLORS.blue};
-  color: ${COLORS.white};
-  font-size: ${FONT_SIZE.small};
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
 `
 
 function FixedPricing({
@@ -291,7 +285,15 @@ function FixedPricing({
             </Text>
             {pricingDescription}
           </FloatedPricingContainer>
-          <PurchaseButton onClick={onClick}>{buttonText}</PurchaseButton>
+
+          <PurchaseButton
+            borderRadius={4}
+            size="small"
+            color="blue"
+            onClick={onClick}
+          >
+            {buttonText}
+          </PurchaseButton>
         </Container>
       </FloatedFrame>
     </Drawer>
