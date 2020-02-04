@@ -32,6 +32,7 @@ interface FixedPricingProps {
   label?: React.ReactNode
   description?: React.ReactNode
   buttonText?: string
+  buttonDisabled?: boolean
   salePrice: number
   tooltipLabel?: string
   onClick?: (e?: React.SyntheticEvent) => any
@@ -232,6 +233,7 @@ function FixedPricing({
   active,
   label,
   buttonText,
+  buttonDisabled,
   description,
   salePrice,
   tooltipLabel,
@@ -290,6 +292,7 @@ function FixedPricing({
             borderRadius={4}
             size="small"
             color="blue"
+            disabled={buttonDisabled}
             onClick={onClick}
           >
             {buttonText}
@@ -320,6 +323,7 @@ export default function Pricing(props: PricingProps) {
       active,
       label,
       buttonText,
+      buttonDisabled,
       description,
       onClick,
       tooltipLabel,
@@ -331,6 +335,7 @@ export default function Pricing(props: PricingProps) {
         active={active}
         label={label}
         buttonText={buttonText}
+        buttonDisabled={buttonDisabled}
         salePrice={salePrice}
         description={description}
         onClick={onClick}
