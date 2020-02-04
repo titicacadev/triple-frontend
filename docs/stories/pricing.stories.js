@@ -68,6 +68,7 @@ storiesOf('Pricing', module)
           )
         }
         buttonText="객실예약"
+        buttonDisabled={boolean('버튼 비활성화', false)}
         description={
           useStringDescription ? (
             text('설명', '쿠폰적용시 10,000원')
