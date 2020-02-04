@@ -9,6 +9,7 @@
     "declaration": true,
     "esModuleInterop": true,
     "strict": true,
+    "emitDeclarationOnly": true,
     "types": ["react", "node"]
   }
 }
