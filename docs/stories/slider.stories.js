@@ -12,18 +12,35 @@ function Label({ fromValue, toValue }) {
   )
 }
 
-storiesOf('Slider', module).add('일반', () => {
-  const [values, setValues] = useState([])
+storiesOf('Slider', module)
+  .add('기본', () => {
+    const [values, setValues] = useState([])
 
-  return (
-    <div style={{ height: '4000px', padding: '500px 20px 0 20px' }}>
-      컴포넌트 외부: {values.join(', ')}
-      <Slider
-        min={0}
-        max={500000}
-        onChange={setValues}
-        labelComponent={Label}
-      />
-    </div>
-  )
-})
+    return (
+      <div style={{ height: '4000px', padding: '500px 20px 0 20px' }}>
+        컴포넌트 외부: {values.join(', ')}
+        <Slider
+          min={0}
+          max={500000}
+          onChange={setValues}
+          labelComponent={Label}
+        />
+      </div>
+    )
+  })
+  .add('Non linear', () => {
+    const [values, setValues] = useState([])
+
+    return (
+      <div style={{ height: '4000px', padding: '500px 20px 0 20px' }}>
+        컴포넌트 외부: {values.join(', ')}
+        <Slider
+          min={0}
+          max={500000}
+          onChange={setValues}
+          labelComponent={Label}
+          nonLinear
+        />
+      </div>
+    )
+  })
