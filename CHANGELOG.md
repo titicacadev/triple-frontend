@@ -1,3 +1,14 @@
+## 1.5.0 (2020-02-06)
+
+- `search` 안드로이드 환경에서 팝업에 있을 경우 상단 navbar가 고정되지 않는 문제 수정 #454
+- `core-elements` 잘못된 color type 수정 #455 
+- `pricing` FixedPricing 컴포넌트 내부 버튼 비활성화 기능 추가 #457 
+- `common` tsconfig 공통옵션 추출 #458 
+- `booking-completion` 예약완료 패키지 추가 #439 
+- `core-elements` drawer-button 패키지 추가 #445 
+- `triple-document` triple-document에 tsc strict 옵션 설정 #442
+- `popup` popup에 -webkit-scrollbar 속성 추가 #446
+
 ## 1.4.2 (2020-02-03)
 
 - `poi-list-elements` areas 타입을 수정합니다
