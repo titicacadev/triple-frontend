@@ -1,10 +1,15 @@
 import React from 'react'
 import styled, { StyledComponentProps } from 'styled-components'
 
-const HandleContainer = styled.div<{ percent: number }>`
+const HandleContainer = styled.div.attrs<{ percent: number }>(
+  ({ percent }) => ({
+    style: {
+      left: `${percent}%`,
+    },
+  }),
+)`
   position: absolute;
   box-sizing: border-box;
-  left: ${({ percent }) => percent}%;
   width: 70px;
   height: 90px;
   transform: translate(-50%, -50%);
