@@ -28,7 +28,6 @@ function BookingCompletion({
   descriptions,
   listButtonLabel,
 }: BookingCompletionProps) {
-  console.log('listButtonLabel', listButtonLabel)
   return (
     <Container>
       <Container padding={{ top: 120 }} margin={{ bottom: 12 }}>
