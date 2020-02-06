@@ -1,10 +1,15 @@
 import React from 'react'
 import styled, { StyledComponentProps } from 'styled-components'
 
-export const TrackContainer = styled.div<{ left: number; right: number }>`
+export const TrackContainer = styled.div.attrs<{ left: number; right: number }>(
+  ({ left, right }) => ({
+    style: {
+      left: `${left}%`,
+      right: `${100 - right}%`,
+    },
+  }),
+)`
   position: absolute;
-  left: ${({ left }) => left}%;
-  right: ${({ right }) => 100 - right}%;
   padding: 20px 0;
   margin-top: -20px;
 `
