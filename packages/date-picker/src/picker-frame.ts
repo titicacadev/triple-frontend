@@ -58,35 +58,52 @@ const PickerFrame = styled.div`
     vertical-align: middle;
     outline: none;
   }
-  .DayPicker-Day--today {
-    color: rgb(${GetGlobalColor('blue')});
-  }
+
   .DayPicker-Weekday abbr {
     text-decoration: none;
     color: rgba(${GetGlobalColor('gray')}, 0.5);
     font-size: 12px;
   }
+
   .DayPicker-Day--sunday,
-  .DayPicker-Day--saturday {
+  .DayPicker-Day--saturday,
+  .DayPicker-Day--publicHolidays {
     color: rgb(${GetGlobalColor('red')});
+
+    &:before {
+      color: rgb(${GetGlobalColor('red')});
+    }
   }
-  .DayPicker-Day--today:before {
-    top: 30px;
-    left: 0;
-    content: '오늘';
-    position: absolute;
-    display: inline-block;
-    font-size: 11px;
-    width: 100%;
+
+  .DayPicker-Day--today {
     color: rgb(${GetGlobalColor('blue')});
+
+    &:before {
+      top: 30px;
+      left: 0;
+      content: '오늘';
+      position: absolute;
+      display: inline-block;
+      font-size: 11px;
+      width: 100%;
+      color: rgb(${GetGlobalColor('blue')});
+    }
+
+    &.DayPicker-Day--sunday,
+    &.DayPicker-Day--saturday,
+    &.DayPicker-Day--publicHolidays {
+      color: rgb(${GetGlobalColor('red')});
+
+      &:before {
+        color: rgb(${GetGlobalColor('red')});
+      }
+    }
   }
-  .DayPicker-Day--saturday.DayPicker-Day--today:before,
-  .DayPicker-Day--sunday.DayPicker-Day--today:before {
-    color: rgb(${GetGlobalColor('red')});
-  }
+
   .DayPicker-Day--disabled {
     color: rgba(${GetGlobalColor('gray')}, 0.5);
   }
+
   .DayPicker-Day--selected:before {
     content: '';
   }
@@ -106,16 +123,6 @@ const PickerFrame = styled.div`
   }
   .DayPicker-Day--saturday {
     padding-right: 10px !important;
-  }
-  .DayPicker-Day--sunday.DayPicker-Day--today,
-  .DayPicker-Day--saturday.DayPicker-Day--today {
-    color: rgb(${GetGlobalColor('red')});
-  }
-  .DayPicker-Day--publicHolidays {
-    color: rgb(${GetGlobalColor('red')});
-    &.DayPicker-Day--disabled {
-      color: rgba(${GetGlobalColor('gray')}, 0.5);
-    }
   }
 `
 export default PickerFrame
