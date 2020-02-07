@@ -3,6 +3,7 @@ import { Container, Text, Button } from '@titicaca/core-elements'
 import styled from 'styled-components'
 
 interface BookingCompletionProps {
+  title?: string
   onMoveToBookingDetail?: () => void
   onMoveToList?: () => void
   descriptions?: string[]
@@ -23,6 +24,7 @@ const DescriptionText = styled(Text)`
 `
 
 function BookingCompletion({
+  title,
   onMoveToBookingDetail,
   onMoveToList,
   descriptions,
@@ -30,8 +32,10 @@ function BookingCompletion({
 }: BookingCompletionProps) {
   return (
     <Container>
-      <Container padding={{ top: 120 }} margin={{ bottom: 12 }}>
-        <Text size={28} bold>{`예약이 \n 접수되었습니다.`}</Text>
+      <Container margin={{ bottom: 12 }}>
+        <Text size={28} bold>
+          {title || `예약이 \n 접수되었습니다.`}
+        </Text>
       </Container>
       {(descriptions || []).map((description, idx) => (
         <DescriptionText
