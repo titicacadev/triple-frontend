@@ -12,7 +12,7 @@ import Track from './track'
 import Handle from './handle'
 
 type SliderValue = readonly number[]
-type ScaleFunction = (x: number) => number
+type ValueTransformer = (x: number) => number
 
 interface SliderProps {
   initialValues?: SliderValue
@@ -43,9 +43,12 @@ const RailBase = styled.div`
   transform: translate(0, -50%);
 `
 
-const IDENTICAL_SCALE: ScaleFunction = (x) => x
+const IDENTICAL_SCALE: ValueTransformer = (x) => x
+
+const LINEAR_FN_SET: ValueTransformer[] = [IDENTICAL_SCALE, IDENTICAL_SCALE]
+
 const EXPONENT = 1 / Math.E
-const [nonLinearScale, nonLinearScaleInverse]: ScaleFunction[] = [
+const NON_LINEAR_FN_SET: ValueTransformer[] = [
   (x) => Math.round(Math.pow(x, EXPONENT)),
   (x) => Math.round(Math.pow(x, 1 / EXPONENT)),
 ]
@@ -61,8 +64,19 @@ export default function Slider({
 }: SliderProps) {
   const [values, setValues] = useState<SliderValue>(initialValues || [min, max])
 
-  const scaleFn = nonLinear ? nonLinearScale : IDENTICAL_SCALE
-  const scaleFnInverse = nonLinear ? nonLinearScaleInverse : IDENTICAL_SCALE
+  const [scaleFn, scaleFnInverse] = nonLinear
+    ? NON_LINEAR_FN_SET
+    : LINEAR_FN_SET
+
+  const limiter: ValueTransformer = (value) => {
+    if (value < min) {
+      return min
+    }
+    if (value > max) {
+      return max
+    }
+    return value
+  }
 
   const debouncedChangeHandler = useCallback(debounce(onChange, 500), [
     onChange,
@@ -85,7 +99,9 @@ export default function Slider({
           step={scaleFn(step)}
           domain={[min, max].map(scaleFn)}
           rootStyle={{ position: 'relative' }}
-          onUpdate={(newValues) => setValues(newValues.map(scaleFnInverse))}
+          onUpdate={(newValues) =>
+            setValues(newValues.map(scaleFnInverse).map(limiter))
+          }
         >
           <Rail>{() => <RailBase />}</Rail>
 
