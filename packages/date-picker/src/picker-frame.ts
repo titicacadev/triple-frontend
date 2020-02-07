@@ -65,16 +65,6 @@ const PickerFrame = styled.div`
     font-size: 12px;
   }
 
-  .DayPicker-Day--sunday,
-  .DayPicker-Day--saturday,
-  .DayPicker-Day--publicHolidays {
-    color: rgb(${GetGlobalColor('red')});
-
-    &:before {
-      color: rgb(${GetGlobalColor('red')});
-    }
-  }
-
   .DayPicker-Day--today {
     color: rgb(${GetGlobalColor('blue')});
 
@@ -92,12 +82,16 @@ const PickerFrame = styled.div`
     &.DayPicker-Day--sunday,
     &.DayPicker-Day--saturday,
     &.DayPicker-Day--publicHolidays {
-      color: rgb(${GetGlobalColor('red')});
-
       &:before {
         color: rgb(${GetGlobalColor('red')});
       }
     }
+  }
+
+  .DayPicker-Day--sunday,
+  .DayPicker-Day--saturday,
+  .DayPicker-Day--publicHolidays {
+    color: rgb(${GetGlobalColor('red')});
   }
 
   .DayPicker-Day--disabled {
