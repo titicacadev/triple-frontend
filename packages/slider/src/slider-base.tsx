@@ -86,7 +86,7 @@ export default function SliderBase({
 
   useEffect(() => {
     debouncedChangeHandler(values)
-  }, [debouncedChangeHandler, values])
+  }, [values]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Container>
