@@ -3,27 +3,31 @@ import { Tracks } from 'react-compound-slider'
 
 import Track from './track'
 import SliderBase, { SliderBaseProps } from './slider-base'
-import { SliderValue } from './types'
 
-interface RangeSliderProps extends Omit<SliderBaseProps, 'labelComponent'> {
-  labelComponent?: ComponentType<{
-    fromValue: SliderValue[0]
-    toValue: SliderValue[1]
-  }>
+interface SingleSliderProps
+  extends Omit<
+    SliderBaseProps,
+    'initialValues' | 'labelComponent' | 'onChange'
+  > {
+  initialValue?: number
+  labelComponent?: ComponentType<{ value: number }>
+  onChange: (value: number) => void
 }
 
-export default function RangeSlider({
+export default function SingleSlider({
+  initialValue,
   labelComponent: LabelComponent,
+  onChange,
   ...restProps
-}: RangeSliderProps) {
+}: SingleSliderProps) {
   return (
     <SliderBase
       {...restProps}
+      initialValues={initialValue ? [initialValue] : undefined}
+      onChange={(values) => onChange(values[0])}
       labelComponent={
         LabelComponent
-          ? ({ values }) => (
-              <LabelComponent fromValue={values[0]} toValue={values[1]} />
-            )
+          ? ({ values }) => <LabelComponent value={values[0]} />
           : undefined
       }
     >
@@ -33,7 +37,7 @@ export default function RangeSlider({
             {tracks.map(
               ({
                 id,
-                source: { id: sourceId, percent: sourcePercent },
+                source: { percent: sourcePercent },
                 target: { id: targetId, percent: targetPercent },
               }) => (
                 <Track
@@ -41,7 +45,7 @@ export default function RangeSlider({
                   left={sourcePercent}
                   right={targetPercent}
                   {...getTrackProps()}
-                  active={sourceId !== '$' && targetId !== '$'}
+                  active={targetId !== '$'}
                 />
               ),
             )}
