@@ -23,7 +23,7 @@ storiesOf('Slider', module)
     const [value, setValue] = useState(500000)
 
     return (
-      <div style={{ height: '4000px', padding: '500px 20px 0 20px' }}>
+      <div>
         컴포넌트 외부: {value}
         <SingleSlider
           initialValue={value}
@@ -39,7 +39,7 @@ storiesOf('Slider', module)
     const [value, setValue] = useState(500000)
 
     return (
-      <div style={{ height: '4000px', padding: '500px 20px 0 20px' }}>
+      <div>
         컴포넌트 외부: {value}
         <SingleSlider
           initialValue={value}
@@ -56,7 +56,7 @@ storiesOf('Slider', module)
     const [values, setValues] = useState([0, 500000])
 
     return (
-      <div style={{ height: '4000px', padding: '500px 20px 0 20px' }}>
+      <div>
         컴포넌트 외부: {values.join(', ')}
         <RangeSlider
           initialValues={values}
@@ -72,7 +72,7 @@ storiesOf('Slider', module)
     const [values, setValues] = useState([0, 500000])
 
     return (
-      <div style={{ height: '4000px', padding: '500px 20px 0 20px' }}>
+      <div>
         컴포넌트 외부: {values.join(', ')}
         <RangeSlider
           initialValues={values}
