@@ -16,8 +16,8 @@ import { ValueTransformer, SliderValue } from './types'
 export interface SliderBaseProps {
   initialValues?: SliderValue
   step?: number
-  min: number
-  max: number
+  min?: number
+  max?: number
   labelComponent?: ComponentType<{
     values: SliderValue
   }>
@@ -54,8 +54,8 @@ const RailBase = styled.div`
 export default function SliderBase({
   step = 1,
   initialValues,
-  min,
-  max,
+  min = 0,
+  max = 100,
   onChange,
   labelComponent: LabelComponent,
   nonLinear,
