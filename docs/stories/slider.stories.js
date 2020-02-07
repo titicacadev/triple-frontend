@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
+import { number } from '@storybook/addon-knobs'
 
 import { SingleSlider, RangeSlider } from '@titicaca/slider'
 import { Text } from '@titicaca/core-elements'
@@ -31,6 +32,7 @@ storiesOf('Slider', module)
           max={500000}
           onChange={setValue}
           labelComponent={SingleLabel}
+          debounceTime={number('debounceTime')}
         />
       </div>
     )
@@ -48,6 +50,7 @@ storiesOf('Slider', module)
           onChange={setValue}
           labelComponent={SingleLabel}
           nonLinear
+          debounceTime={number('debounceTime')}
         />
       </div>
     )
@@ -64,6 +67,7 @@ storiesOf('Slider', module)
           max={500000}
           onChange={setValues}
           labelComponent={RangeLabel}
+          debounceTime={number('debounceTime')}
         />
       </div>
     )
@@ -81,6 +85,7 @@ storiesOf('Slider', module)
           onChange={setValues}
           labelComponent={RangeLabel}
           nonLinear
+          debounceTime={number('debounceTime')}
         />
       </div>
     )
