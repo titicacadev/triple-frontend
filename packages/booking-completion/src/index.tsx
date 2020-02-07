@@ -31,7 +31,7 @@ function BookingCompletion({
   listButtonLabel,
 }: BookingCompletionProps) {
   return (
-    <Container>
+    <>
       <Container margin={{ bottom: 12 }}>
         <Text size={28} bold>
           {title || `예약이 \n 접수되었습니다.`}
@@ -79,7 +79,7 @@ function BookingCompletion({
           </Button.Group>
         </Container>
       ) : null}
-    </Container>
+    </>
   )
 }
 
