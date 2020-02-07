@@ -51,7 +51,7 @@ const [nonLinearScale, nonLinearScaleInverse]: ScaleFunction[] = [
 ]
 
 export default function Slider({
-  step = 0.01,
+  step = 1,
   initialValues,
   min,
   max,
@@ -82,7 +82,7 @@ export default function Slider({
         <OriginalSlider
           values={values.map(scaleFn)}
           mode={2}
-          step={step}
+          step={scaleFn(step)}
           domain={[min, max].map(scaleFn)}
           rootStyle={{ position: 'relative' }}
           onUpdate={(newValues) => setValues(newValues.map(scaleFnInverse))}
