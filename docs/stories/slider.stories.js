@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
 
 import { SingleSlider, RangeSlider } from '@titicaca/slider'
 import { Text } from '@titicaca/core-elements'
@@ -17,7 +18,8 @@ function RangeLabel({ fromValue, toValue }) {
 }
 
 storiesOf('Slider', module)
-  .add('기본', () => {
+  .add('기본', () => <SingleSlider onChange={action('onChange')} />)
+  .add('단일', () => {
     const [value, setValue] = useState(500000)
 
     return (
@@ -29,6 +31,23 @@ storiesOf('Slider', module)
           max={500000}
           onChange={setValue}
           labelComponent={SingleLabel}
+        />
+      </div>
+    )
+  })
+  .add('단일 non linear', () => {
+    const [value, setValue] = useState(500000)
+
+    return (
+      <div style={{ height: '4000px', padding: '500px 20px 0 20px' }}>
+        컴포넌트 외부: {value}
+        <SingleSlider
+          initialValue={value}
+          min={0}
+          max={500000}
+          onChange={setValue}
+          labelComponent={SingleLabel}
+          nonLinear
         />
       </div>
     )
@@ -49,7 +68,7 @@ storiesOf('Slider', module)
       </div>
     )
   })
-  .add('Non linear', () => {
+  .add('범위 non linear', () => {
     const [values, setValues] = useState([0, 500000])
 
     return (
