@@ -14,7 +14,7 @@ import Handle from './handle'
 type SliderValue = readonly number[]
 type ValueTransformer = (x: number) => number
 
-interface SliderProps {
+interface RangeSliderProps {
   initialValues?: SliderValue
   step?: number
   min: number
@@ -53,7 +53,7 @@ const NON_LINEAR_FN_SET: ValueTransformer[] = [
   (x) => Math.round(Math.pow(x, 1 / EXPONENT)),
 ]
 
-export default function Slider({
+export default function RangeSlider({
   step = 1,
   initialValues,
   min,
@@ -61,7 +61,7 @@ export default function Slider({
   onChange,
   labelComponent: LabelComponent,
   nonLinear,
-}: SliderProps) {
+}: RangeSliderProps) {
   const [values, setValues] = useState<SliderValue>(initialValues || [min, max])
 
   const [scaleFn, scaleFnInverse] = nonLinear
