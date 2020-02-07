@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { storiesOf } from '@storybook/react'
 
-import Slider from '@titicaca/slider'
+import { RangeSlider } from '@titicaca/slider'
 import { Text } from '@titicaca/core-elements'
 
 function Label({ fromValue, toValue }) {
@@ -19,7 +19,7 @@ storiesOf('Slider', module)
     return (
       <div style={{ height: '4000px', padding: '500px 20px 0 20px' }}>
         컴포넌트 외부: {values.join(', ')}
-        <Slider
+        <RangeSlider
           min={0}
           max={500000}
           onChange={setValues}
@@ -34,7 +34,7 @@ storiesOf('Slider', module)
     return (
       <div style={{ height: '4000px', padding: '500px 20px 0 20px' }}>
         컴포넌트 외부: {values.join(', ')}
-        <Slider
+        <RangeSlider
           min={0}
           max={500000}
           onChange={setValues}
