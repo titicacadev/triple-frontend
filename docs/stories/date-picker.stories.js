@@ -55,7 +55,7 @@ function useOptionalKnob({
   extraKnobParams,
 }) {
   return boolean(`${name} 활성화`, initialVisibility || false)
-    ? knob(name, initialValue, ...(extraKnobParams || {}))
+    ? knob(name, initialValue, ...(extraKnobParams || []))
     : undefined
 }
 
