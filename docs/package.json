@@ -13,6 +13,7 @@
     "@titicaca/app-banner": "^1.5.0",
     "@titicaca/app-installation-cta": "^1.5.0",
     "@titicaca/author": "^1.5.0",
+    "@titicaca/booking-completion": "^1.5.0",
     "@titicaca/color-palette": "^1.5.0",
     "@titicaca/content-sharing": "^1.5.0",
     "@titicaca/core-elements": "^1.5.0",
