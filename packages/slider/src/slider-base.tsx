@@ -23,6 +23,7 @@ export interface SliderBaseProps {
   }>
   onChange: (values: SliderValue) => void
   nonLinear?: boolean
+  debounceTime?: number
 }
 
 const IDENTICAL_SCALE: ValueTransformer = (x) => x
@@ -59,6 +60,7 @@ export default function SliderBase({
   onChange,
   labelComponent: LabelComponent,
   nonLinear,
+  debounceTime = 500,
   children,
 }: PropsWithChildren<SliderBaseProps>) {
   const [values, setValues] = useState<SliderValue>(initialValues || [0])
@@ -77,8 +79,9 @@ export default function SliderBase({
     return value
   }
 
-  const debouncedChangeHandler = useCallback(debounce(onChange, 500), [
+  const debouncedChangeHandler = useCallback(debounce(onChange, debounceTime), [
     onChange,
+    debounceTime,
   ])
 
   useEffect(() => {
