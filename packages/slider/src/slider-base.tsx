@@ -37,8 +37,7 @@ const NON_LINEAR_FN_SET: ValueTransformer[] = [
 ]
 
 const SliderContainer = styled.div`
-  margin: 24px 0 21px 0;
-  padding: 0 9px;
+  position: relative;
   height: 18px;
   touch-action: pan-x;
 `
@@ -98,7 +97,12 @@ export default function SliderBase({
           mode={2}
           step={scaleFn(step)}
           domain={[min, max].map(scaleFn)}
-          rootStyle={{ position: 'relative' }}
+          rootStyle={{
+            position: 'absolute',
+            top: '50%',
+            left: '9px',
+            right: '9px',
+          }}
           onUpdate={(newValues) =>
             setValues(newValues.map(scaleFnInverse).map(limiter))
           }
