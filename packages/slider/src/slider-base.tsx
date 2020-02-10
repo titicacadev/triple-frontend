@@ -100,8 +100,8 @@ export default function SliderBase({
           rootStyle={{
             position: 'absolute',
             top: '50%',
-            left: '9px',
-            right: '9px',
+            left: 0,
+            right: 0,
           }}
           onUpdate={(newValues) =>
             setValues(newValues.map(scaleFnInverse).map(limiter))
