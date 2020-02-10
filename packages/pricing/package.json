@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/pricing",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Triple - pricing",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,7 +15,7 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^1.5.0",
-    "@titicaca/view-utilities": "^1.5.0"
+    "@titicaca/core-elements": "^1.6.0",
+    "@titicaca/view-utilities": "^1.6.0"
   }
 }
