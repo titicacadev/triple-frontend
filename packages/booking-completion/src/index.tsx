@@ -43,7 +43,7 @@ function BookingCompletion({
           size="small"
           color="blue"
           bold
-          margin={{ bottom: 12 }}
+          margin={{ bottom: 8 }}
         >
           {description}
         </DescriptionText>
