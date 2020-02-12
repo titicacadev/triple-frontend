@@ -37,6 +37,7 @@ export default function FullScreenSearchView({
   onAutoComplete = () => {},
   onEnter = () => {},
   onInputChange = () => {},
+  onBackClick = () => {},
   placeholder,
   defaultKeyword,
   keyword: controlledKeyword,
@@ -45,6 +46,7 @@ export default function FullScreenSearchView({
   onAutoComplete?: (keyword: string) => void
   onEnter?: (keyword: string) => void
   onInputChange?: (keyword: string) => void
+  onBackClick?: () => void
   placeholder?: string
   defaultKeyword?: string
   keyword?: string
@@ -99,7 +101,10 @@ export default function FullScreenSearchView({
       <SearchNavbar
         placeholder={placeholder}
         value={keyword}
-        onBackClick={backOrClose}
+        onBackClick={() => {
+          onBackClick()
+          backOrClose()
+        }}
         onDeleteClick={() => {
           setKeyword('')
           onDelete()
