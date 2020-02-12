@@ -6,7 +6,7 @@ export default function ModalBody({
   description,
 }: {
   title?: string
-  description?: string
+  description?: React.ReactNode
 }) {
   return (
     <Container padding={{ top: 40, bottom: 40, left: 30, right: 30 }}>
