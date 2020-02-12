@@ -13,7 +13,7 @@ export function Confirm({
   confirmText,
   onConfirm,
 }: {
-  children?: string
+  children?: React.ReactNode
   title?: string
   open?: boolean
   cancelText?: string
@@ -54,7 +54,7 @@ export function Alert({
   confirmText,
   onConfirm,
 }: {
-  children?: string
+  children?: React.ReactNode
   title?: string
   open?: boolean
   confirmText?: string | React.ReactNode
