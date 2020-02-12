@@ -1,9 +1,15 @@
+## 1.6.2 (2020-02-12)
+
+- `modals` children type 변경 (string -> ReactNode) #478
+
 ## 1.6.1 (2020-02-12)
+
 - `search` onBackClick props 추가 #476
 - `search` keyword prop 입력 후 텍스 변경 불가능 오류 수정 #475
 - `booking-completion` 스타일 수정 #474
 
 ## 1.6.0 (2020-02-10)
+
 - `slider` 패키지 추가 #469 #464
 - `booking-completion` 제목을 옵셔널하게 받을 수 있도록 수정 #466
 - `booking-completion` docs에 패키지 추가 #463
@@ -12,11 +18,11 @@
 ## 1.5.0 (2020-02-06)
 
 - `search` 안드로이드 환경에서 팝업에 있을 경우 상단 navbar가 고정되지 않는 문제 수정 #454
-- `core-elements` 잘못된 color type 수정 #455 
-- `pricing` FixedPricing 컴포넌트 내부 버튼 비활성화 기능 추가 #457 
-- `common` tsconfig 공통옵션 추출 #458 
-- `booking-completion` 예약완료 패키지 추가 #439 
-- `core-elements` drawer-button 패키지 추가 #445 
+- `core-elements` 잘못된 color type 수정 #455
+- `pricing` FixedPricing 컴포넌트 내부 버튼 비활성화 기능 추가 #457
+- `common` tsconfig 공통옵션 추출 #458
+- `booking-completion` 예약완료 패키지 추가 #439
+- `core-elements` drawer-button 패키지 추가 #445
 - `triple-document` triple-document에 tsc strict 옵션 설정 #442
 - `popup` popup에 -webkit-scrollbar 속성 추가 #446
 
