@@ -23,7 +23,8 @@ storiesOf('Search', module)
     return (
       <>
         <Search
-          keyword={keyword}
+          keyword={text('keyword', keyword)}
+          defaultKeyword={text('defaultKeyword', '')}
           onDelete={action('onDelete')}
           onAutoComplete={action('onAutoComplete')}
           onEnter={action('onEnter')}
@@ -53,6 +54,7 @@ storiesOf('Search', module)
         onAutoComplete={searchPois}
         onEnter={action('onEnter')}
         onInputChange={action('onInputChange')}
+        defaultKeyword={text('defaultKeyword', '')}
         placeholder={text('Placeholder', '“항공권 예약” 도시이름으로 검색')}
       >
         <Section padding={{ left: 10, right: 10 }}>
