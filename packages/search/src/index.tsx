@@ -49,24 +49,13 @@ export default function FullScreenSearchView({
   defaultKeyword?: string
   keyword?: string
 }>) {
-  const [uncontrolledKeyword, onUncontrolledKeywordChange] = useState<string>(
-    defaultKeyword || '',
-  )
+  const [keyword, setKeyword] = useState<string>(defaultKeyword || '')
   const {
     os: { name },
   } = useUserAgentContext()
   const isIOS = name === 'iOS'
 
   const contentsDivRef = useRef<HTMLDivElement>(null)
-
-  const isControlledInput = typeof controlledKeyword !== 'undefined'
-  const keyword =
-    typeof controlledKeyword !== 'undefined'
-      ? controlledKeyword
-      : uncontrolledKeyword
-  const setKeyword = isControlledInput
-    ? onInputChange
-    : onUncontrolledKeywordChange
 
   useEffect(() => {
     const contentsDiv = contentsDivRef.current
@@ -99,6 +88,12 @@ export default function FullScreenSearchView({
     debounceCallback(keyword)
   }, [keyword]) // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    if (controlledKeyword && controlledKeyword.trim().length > 0) {
+      setKeyword(controlledKeyword)
+    }
+  }, [controlledKeyword])
+
   return (
     <>
       <SearchNavbar
@@ -109,9 +104,9 @@ export default function FullScreenSearchView({
           setKeyword('')
           onDelete()
         }}
-        onInputChange={(e: SyntheticEvent, keyword: string) => {
-          !isControlledInput && setKeyword(keyword)
-          onInputChange(keyword)
+        onInputChange={(e: SyntheticEvent, value: string) => {
+          setKeyword(value)
+          onInputChange(value)
         }}
         onKeyUp={(e: KeyboardEvent) => handleKeyUp(e.keyCode)}
       />
