@@ -16,7 +16,7 @@
     "lint-es": "eslint '{docs,packages,tests/src}/**/*.{ts,tsx,js}'",
     "lint-style": "stylelint './**/*.{ts,tsx,js}'",
     "test": "cd tests && npm test",
-    "clean": "lerna exec -- rm -rf ./node_modules ./lib"
+    "clean": "lerna exec -- rm -rf ./node_modules ./lib ./package-lock.json"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
