@@ -13,7 +13,7 @@ describe('Button', () => {
       cy.get('.default-button-group')
         .children('a')
         .should('have.css', 'width')
-        .and('eq', '179.5px')
+        .and('eq', '180px')
     })
   })
 
@@ -34,7 +34,7 @@ describe('Button', () => {
       cy.get('.button-group-horizontal-gap')
         .children('a')
         .should('have.css', 'width')
-        .and('eq', '154.5px')
+        .and('eq', '155px')
     })
   })
 })
