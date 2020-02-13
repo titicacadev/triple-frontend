@@ -8,7 +8,7 @@ const NavbarFrame = styled.div<{
   backgroundColor?: string | GlobalColors
 }>`
   background-color: ${({ backgroundColor = 'white' }) =>
-    `rgba(${GetGlobalColor(backgroundColor)})`};
+    `rgb(${GetGlobalColor(backgroundColor)})`};
   position: sticky;
   top: 0;
   left: 0;
