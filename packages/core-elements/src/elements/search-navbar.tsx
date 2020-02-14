@@ -36,6 +36,33 @@ const DeleteIcon = styled(Navbar.Item)<{ visible: boolean }>`
   display: ${({ visible }) => (visible ? 'block' : 'none')};
 `
 
+interface InputProps {
+  placeholder?: string
+  onInputChange?: (e: React.SyntheticEvent, value: string) => void
+  onBlur?: (e: React.SyntheticEvent) => void
+  onFocus?: (e: React.SyntheticEvent) => void
+  onKeyUp?: (e: React.KeyboardEvent) => void
+  value?: string
+}
+
+const input = React.forwardRef(
+  (
+    { placeholder, onInputChange, onBlur, onFocus, value }: InputProps,
+    ref?: React.Ref<HTMLInputElement>,
+  ) => (
+    <InputText
+      placeholder={placeholder}
+      onChange={(e) => onInputChange && onInputChange(e, e.target.value)}
+      onBlur={(e) => onBlur && onBlur(e)}
+      onFocus={(e) => onFocus && onFocus(e)}
+      value={value}
+      ref={ref}
+    />
+  ),
+)
+
+input.displayName = 'InputText'
+
 export default function SearchNavbar({
   placeholder,
   onBackClick,
@@ -44,16 +71,12 @@ export default function SearchNavbar({
   onBlur,
   onFocus,
   value,
+  inputRef,
 }: {
-  placeholder?: string
   onBackClick: (event: React.SyntheticEvent) => void
   onDeleteClick?: (event: React.SyntheticEvent) => void
-  onInputChange?: (e: React.SyntheticEvent, value: string) => void
-  onBlur?: (e: React.SyntheticEvent) => void
-  onFocus?: (e: React.SyntheticEvent) => void
-  onKeyUp?: (e: React.KeyboardEvent) => void
-  value?: string
-}) {
+  inputRef?: React.Ref<HTMLInputElement>
+} & InputProps) {
   return (
     <MainNavbarFrame borderless>
       <Back icon="back" onClick={onBackClick} />
@@ -63,6 +86,7 @@ export default function SearchNavbar({
         onBlur={(e) => onBlur && onBlur(e)}
         onFocus={(e) => onFocus && onFocus(e)}
         value={value}
+        ref={inputRef}
       />
       <DeleteIcon icon="delete" onClick={onDeleteClick} visible={!!value} />
     </MainNavbarFrame>
