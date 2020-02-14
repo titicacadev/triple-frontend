@@ -149,6 +149,7 @@ function RichPricing({
     <Container textAlign="right">
       <PricingContainer>
         {label ? <Label> {label} </Label> : null}
+
         {(pricingNote || hasBasePrice) && (
           <Container margin={{ bottom: 1 }}>
             {pricingNote && (
@@ -156,9 +157,10 @@ function RichPricing({
                 {pricingNote}
               </Text>
             )}
+
             {hasBasePrice && (
               <Text alpha={0.3} size="mini" strikethrough inline>
-                {formatNumber(basePrice)}
+                {formatNumber(basePrice)}원
               </Text>
             )}
           </Container>
