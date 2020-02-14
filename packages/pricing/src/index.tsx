@@ -143,7 +143,8 @@ function RichPricing({
     )
   ) : null
 
-  const hasBasePrice = typeof basePrice === 'number' && basePrice > 0
+  const hasBasePrice =
+    typeof basePrice === 'number' && basePrice > 0 && basePrice > salePrice
 
   return (
     <Container textAlign="right">
@@ -180,7 +181,8 @@ function RichPricing({
 }
 
 const RegularPricing = ({ basePrice, salePrice }: RegularPricingProps) => {
-  const hasBasePrice = typeof basePrice === 'number' && basePrice > 0
+  const hasBasePrice =
+    typeof basePrice === 'number' && basePrice > 0 && basePrice > salePrice
 
   return (
     <PricingContainer padding={{ top: 18 }}>
