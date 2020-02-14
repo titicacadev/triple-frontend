@@ -45,7 +45,7 @@ interface InputProps {
   value?: string
 }
 
-const input = React.forwardRef(
+const Input = React.forwardRef(
   (
     { placeholder, onInputChange, onBlur, onFocus, value }: InputProps,
     ref?: React.Ref<HTMLInputElement>,
@@ -61,7 +61,7 @@ const input = React.forwardRef(
   ),
 )
 
-input.displayName = 'InputText'
+Input.displayName = 'InputText'
 
 export default function SearchNavbar({
   placeholder,
@@ -80,7 +80,7 @@ export default function SearchNavbar({
   return (
     <MainNavbarFrame borderless>
       <Back icon="back" onClick={onBackClick} />
-      <InputText
+      <Input
         placeholder={placeholder}
         onChange={(e) => onInputChange && onInputChange(e, e.target.value)}
         onBlur={(e) => onBlur && onBlur(e)}
