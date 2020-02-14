@@ -41,6 +41,7 @@ export default function FullScreenSearchView({
   placeholder,
   defaultKeyword,
   keyword: controlledKeyword,
+  inputRef,
 }: React.PropsWithChildren<{
   onDelete?: () => void
   onAutoComplete?: (keyword: string) => void
@@ -50,6 +51,7 @@ export default function FullScreenSearchView({
   placeholder?: string
   defaultKeyword?: string
   keyword?: string
+  inputRef?: React.Ref<HTMLInputElement>
 }>) {
   const [keyword, setKeyword] = useState<string>(defaultKeyword || '')
   const {
@@ -114,6 +116,7 @@ export default function FullScreenSearchView({
           onInputChange(value)
         }}
         onKeyUp={(e: KeyboardEvent) => handleKeyUp(e.keyCode)}
+        inputRef={inputRef}
       />
       <ContentsContainer isIOS={isIOS} userSelect="none">
         <div ref={contentsDivRef}>{children}</div>
