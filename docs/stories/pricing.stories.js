@@ -35,6 +35,7 @@ storiesOf('Pricing', module)
     return (
       <Pricing
         basePrice={number('basePrice', 30000)}
+        basePriceUnit={text('basePriceUnit', undefined)}
         pricingNote={text('문구', '1박, 세금포함')}
         salePrice={25000}
         label={useStringLabel ? '트리플가' : <PricingLabel />}

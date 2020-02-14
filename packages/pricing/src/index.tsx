@@ -19,6 +19,7 @@ interface RegularPricingProps {
 
 interface RichPricingProps {
   basePrice?: BasePrice
+  basePriceUnit?: string
   salePrice: number
   label?: React.ReactNode
   pricingNote?: string
@@ -132,6 +133,7 @@ function RichPricing({
   label,
   pricingNote,
   description,
+  basePriceUnit,
 }: RichPricingProps) {
   const pricingDescription = description ? (
     typeof description === 'string' ? (
@@ -161,7 +163,8 @@ function RichPricing({
 
             {hasBasePrice && (
               <Text alpha={0.3} size="mini" strikethrough inline>
-                {formatNumber(basePrice)}원
+                {formatNumber(basePrice)}
+                {basePriceUnit}
               </Text>
             )}
           </Container>
@@ -202,11 +205,12 @@ export default function Pricing(props: PricingProps) {
   const { salePrice } = props
 
   if (props.rich) {
-    const { basePrice, label, pricingNote, description } = props
+    const { basePrice, label, pricingNote, description, basePriceUnit } = props
 
     return (
       <RichPricing
         basePrice={basePrice}
+        basePriceUnit={basePriceUnit}
         salePrice={salePrice}
         label={label}
         pricingNote={pricingNote}
