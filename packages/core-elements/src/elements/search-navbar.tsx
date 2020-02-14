@@ -82,9 +82,9 @@ export default function SearchNavbar({
       <Back icon="back" onClick={onBackClick} />
       <Input
         placeholder={placeholder}
-        onChange={(e) => onInputChange && onInputChange(e, e.target.value)}
-        onBlur={(e) => onBlur && onBlur(e)}
-        onFocus={(e) => onFocus && onFocus(e)}
+        onInputChange={onInputChange}
+        onBlur={onBlur}
+        onFocus={onFocus}
         value={value}
         ref={inputRef}
       />
