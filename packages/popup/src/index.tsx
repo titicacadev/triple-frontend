@@ -48,11 +48,9 @@ export default function Popup({
   title,
   noNavbar,
   children,
-  onOpen,
 }: PropsWithChildren<{
   open: boolean
   onClose: (e: SyntheticEvent) => void
-  onOpen?: (isAppearing: boolean) => void
   borderless?: boolean
   title?: string
   icon?: NavbarIcon
@@ -67,15 +65,7 @@ export default function Popup({
   }, [open])
 
   return (
-    <CSSTransition
-      timeout={0}
-      in={open}
-      classNames="fade"
-      appear
-      onEntered={(_node: HTMLElement, isAppearing: boolean) =>
-        onOpen && onOpen(isAppearing)
-      }
-    >
+    <CSSTransition timeout={0} in={open} classNames="fade" appear>
       {/* https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451 */}
       <PopupContainer ref={popupRef}>
         {noNavbar ? null : (
