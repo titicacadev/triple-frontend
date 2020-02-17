@@ -1,3 +1,10 @@
+## 1.7.0 (2020-02-17)
+- `core-elements` Navbar 의 background-color 지정시의 css 오류를 수정합니다. #481
+- `core-elements`, `Search` 에서 SearchNavbar Input 에 inputRef prop 을 추가합니다. #485
+- `pricing` pricingUnit prop 을 추가합니다. #486
+- bootstrap 후에는 package-lock.json 이 생성되지 않도록 합니다. #480
+
+
 ## 1.6.2 (2020-02-12)
 
 - `modals` children type 변경 (string -> ReactNode) #478
