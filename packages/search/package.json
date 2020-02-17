@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/search",
-  "version": "1.6.2",
+  "version": "1.7.0",
   "description": "search",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -16,9 +16,9 @@
   ],
   "license": "UNLICENSED",
   "dependencies": {
-    "@titicaca/core-elements": "^1.6.2",
-    "@titicaca/react-contexts": "^1.6.2",
+    "@titicaca/core-elements": "^1.7.0",
+    "@titicaca/react-contexts": "^1.7.0",
     "@titicaca/triple-web-to-native-interfaces": "^0.0.21",
-    "@titicaca/view-utilities": "^1.6.2"
+    "@titicaca/view-utilities": "^1.7.0"
   }
 }
