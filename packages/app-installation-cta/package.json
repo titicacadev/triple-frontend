@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/app-installation-cta",
-  "version": "1.6.2",
+  "version": "1.7.0",
   "description": "Call to action components for app installation",
   "keywords": [
     "cta",
