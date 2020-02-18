@@ -47,7 +47,7 @@ interface InputProps {
 
 const Input = React.forwardRef(
   (
-    { placeholder, onInputChange, onBlur, onFocus, value }: InputProps,
+    { placeholder, onInputChange, onBlur, onFocus, onKeyUp, value }: InputProps,
     ref?: React.Ref<HTMLInputElement>,
   ) => (
     <InputText
@@ -55,6 +55,7 @@ const Input = React.forwardRef(
       onChange={(e) => onInputChange && onInputChange(e, e.target.value)}
       onBlur={(e) => onBlur && onBlur(e)}
       onFocus={(e) => onFocus && onFocus(e)}
+      onKeyUp={(e) => onKeyUp && onKeyUp(e)}
       value={value}
       ref={ref}
     />
@@ -68,6 +69,7 @@ export default function SearchNavbar({
   onBackClick,
   onDeleteClick,
   onInputChange,
+  onKeyUp,
   onBlur,
   onFocus,
   value,
@@ -84,6 +86,7 @@ export default function SearchNavbar({
         placeholder={placeholder}
         onInputChange={onInputChange}
         onBlur={onBlur}
+        onKeyUp={onKeyUp}
         onFocus={onFocus}
         value={value}
         ref={inputRef}

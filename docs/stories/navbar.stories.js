@@ -118,6 +118,7 @@ storiesOf('Navbar', module)
       onBackClick={action('onBackClick')}
       onDeleteClick={action('onDeleteClick')}
       onInputChange={action('onInputChange')}
+      onKeyUp={action('onKeyUp')}
       onBlur={action('onBlur')}
       onFocus={action('onFocus')}
     />
