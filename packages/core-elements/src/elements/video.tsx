@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { GlobalSizes, MEDIA_FRAME_OPTIONS } from '../commons'
 
 const VideoContainer = styled.div<
-  { frame: string; fallbackImageUrl: string } & React.HTMLAttributes<
+  { frame: GlobalSizes; fallbackImageUrl: string } & React.HTMLAttributes<
     HTMLDivElement
   >
 >`
@@ -70,9 +70,13 @@ function Sources({
   cloudinaryId: string
   frame: GlobalSizes
 }) {
-  const [, heightOverWidthPercent] = MEDIA_FRAME_OPTIONS[frame].match(
-    /^(\d+)%$/,
-  )
+  const matchData = (MEDIA_FRAME_OPTIONS[frame] || '').match(/^(\d+)%$/)
+
+  if (!matchData) {
+    return null
+  }
+
+  const [, heightOverWidthPercent] = matchData
   const widthOverHeight = 100 / parseInt(heightOverWidthPercent, 10)
   const manipulationParams = `c_fill,ar_${widthOverHeight},f_auto`
 
