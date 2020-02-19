@@ -43,7 +43,7 @@ export default function FullScreenSearchView({
   keyword: controlledKeyword,
   inputRef,
 }: React.PropsWithChildren<{
-  onDelete?: () => void
+  onDelete?: (keyword: string) => void
   onAutoComplete?: (keyword: string) => void
   onEnter?: (keyword: string) => void
   onInputChange?: (keyword: string) => void
@@ -108,8 +108,9 @@ export default function FullScreenSearchView({
           backOrClose()
         }}
         onDeleteClick={() => {
+          const deletedKeyword = keyword
           setKeyword('')
-          onDelete()
+          onDelete(deletedKeyword)
         }}
         onInputChange={(e: SyntheticEvent, value: string) => {
           setKeyword(value)
