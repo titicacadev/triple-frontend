@@ -68,6 +68,7 @@ interface ExtendedPoiListElementProps {
   tags?: [{ text: string; color: LabelColor; emphasized: boolean }]
   pricingNote?: string
   pricingDescription?: React.ReactNode
+  hideScrapButton?: boolean
 }
 
 export type PoiListElementProps =
@@ -264,6 +265,7 @@ class ExtendedPoiListElement extends React.PureComponent<
         onScrapedChange,
         resourceScraps,
         tags,
+        hideScrapButton,
       },
     } = this
 
@@ -313,6 +315,7 @@ class ExtendedPoiListElement extends React.PureComponent<
         onScrapedChange={onScrapedChange}
         onClick={onClick}
         tags={tags}
+        hideScrapButton={hideScrapButton}
       />
     )
   }
