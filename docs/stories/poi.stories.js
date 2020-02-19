@@ -48,6 +48,7 @@ storiesOf('POI', module)
               { text: '추가 할인쿠폰', color: 'green', emphasized: true },
             ]
           }
+          hideScrapButton={boolean('hideScrapButton', false)}
         />
       ))}
     </List>
