@@ -10,7 +10,7 @@ import {
 import ExtendedResourceListElement, {
   ResourceImage,
 } from '@titicaca/resource-list-element'
-import ScrapButton from '@titicaca/scrap-button'
+import ScrapButton, { ScrapButtonProps } from '@titicaca/scrap-button'
 import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
 
 type PoiTypes = 'attraction' | 'restaurant' | 'hotel'
@@ -42,7 +42,7 @@ export interface POI {
 
 type ActionButtonElement = React.ReactNode
 type ResourceScrapSet = { [key: string]: boolean }
-type ScrapChangeHandler = (e?: React.SyntheticEvent, value?: any) => any
+type ScrapChangeHandler = ScrapButtonProps<POI>['onScrapedChange']
 
 interface PoiCarouselElementProps {
   poi?: POI
@@ -139,13 +139,15 @@ export function PoiCarouselElement({
         <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
           {TYPE_NAMES[type]}
         </Text>
-        {actionButtonElement || (
-          <ScrapButton
-            scraped={scraped}
-            resource={poi}
-            onScrapedChange={onScrapedChange}
-          />
-        )}
+
+        {actionButtonElement ||
+          (onScrapedChange ? (
+            <ScrapButton
+              scraped={scraped}
+              resource={poi}
+              onScrapedChange={onScrapedChange}
+            />
+          ) : null)}
       </Carousel.Item>
     )
   }
@@ -219,16 +221,17 @@ class CompactPoiListElement extends React.PureComponent<
         <Text size="tiny" alpha={0.7} margin={{ top: 4, left: 50 }}>
           {TYPE_NAMES[type]}
         </Text>
+
         {actionButtonElement ? (
           <div ref={this.setActionButtonRef}>{actionButtonElement}</div>
-        ) : (
+        ) : onScrapedChange ? (
           <ScrapButton
             compact
             scraped={scraped}
             resource={this.props.poi}
             onScrapedChange={onScrapedChange}
           />
-        )}
+        ) : null}
       </ResourceListItem>
     )
   }
@@ -297,7 +300,9 @@ class ExtendedPoiListElement extends React.PureComponent<
 
     return (
       <ExtendedResourceListElement
+        scraped={scraped}
         resource={this.props.poi}
+        onScrapedChange={onScrapedChange}
         image={image}
         imagePlaceholder={POI_IMAGE_PLACEHOLDERS[type]}
         name={nameOverride || names.ko || names.en || names.local || undefined}
@@ -306,13 +311,11 @@ class ExtendedPoiListElement extends React.PureComponent<
         note={note}
         reviewsCount={reviewsCount}
         reviewsRating={reviewsRating}
-        scraped={scraped}
         scrapsCount={scrapsCount}
         basePrice={basePrice}
         salePrice={nightlyPrice}
         pricingNote={pricingNote}
         pricingDescription={pricingDescription}
-        onScrapedChange={onScrapedChange}
         onClick={onClick}
         tags={tags}
         hideScrapButton={hideScrapButton}
