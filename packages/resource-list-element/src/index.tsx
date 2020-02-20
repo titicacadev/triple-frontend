@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import ScrapButton from '@titicaca/scrap-button'
+import ScrapButton, { ScrapButtonProps } from '@titicaca/scrap-button'
 import { formatNumber } from '@titicaca/view-utilities'
 import {
   Container,
@@ -29,42 +29,11 @@ export interface ResourceImage {
   sizes: ImageSizeSet | CamelizedImageSizeSet
 }
 
-const ResourceListItem = styled(List.Item)`
-  position: relative;
-  min-height: 150px;
-  padding: 20px 0;
-  box-sizing: border-box;
-  cursor: pointer;
-`
+export type ResourceListElementProps<R> = Partial<
+  Pick<ScrapButtonProps<R>, 'scraped' | 'resource' | 'onScrapedChange'>
+> & {
+  hideScrapButton?: boolean
 
-const ContentContainer = styled.div`
-  position: absolute;
-  top: 20px;
-  width: calc(100% - 110px);
-`
-
-export default function ExtendedResourceListElement({
-  resource,
-  image,
-  imagePlaceholder,
-  name,
-  comment,
-  distance,
-  note,
-  tags,
-  basePrice,
-  salePrice,
-  pricingNote,
-  pricingDescription,
-  scraped,
-  scrapsCount,
-  reviewsCount,
-  reviewsRating,
-  onClick,
-  onScrapedChange,
-  hideScrapButton,
-}: {
-  resource?: any
   image?: ResourceImage
   imagePlaceholder?: string
   name?: string
@@ -80,14 +49,49 @@ export default function ExtendedResourceListElement({
   salePrice?: number
   pricingNote?: string
   pricingDescription?: React.ReactNode
-  scraped?: boolean
+
   scrapsCount?: number
   reviewsCount?: number
   reviewsRating?: number
   onClick?: React.MouseEventHandler<HTMLLIElement>
-  onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
-  hideScrapButton?: boolean
-}) {
+}
+
+const ResourceListItem = styled(List.Item)`
+  position: relative;
+  min-height: 150px;
+  padding: 20px 0;
+  box-sizing: border-box;
+  cursor: pointer;
+`
+
+const ContentContainer = styled.div`
+  position: absolute;
+  top: 20px;
+  width: calc(100% - 110px);
+`
+
+export default function ExtendedResourceListElement<R = any>({
+  hideScrapButton,
+  resource,
+  scraped,
+  onScrapedChange,
+
+  image,
+  imagePlaceholder,
+  name,
+  comment,
+  distance,
+  note,
+  tags,
+  basePrice,
+  salePrice,
+  pricingNote,
+  pricingDescription,
+  scrapsCount,
+  reviewsCount,
+  reviewsRating,
+  onClick,
+}: ResourceListElementProps<R>) {
   const labels = tags || []
 
   return (
@@ -110,7 +114,7 @@ export default function ExtendedResourceListElement({
             alt={name}
           />
 
-          {!hideScrapButton ? (
+          {!hideScrapButton && scraped !== undefined && onScrapedChange ? (
             <ScrapButton
               top={23}
               scraped={scraped}
