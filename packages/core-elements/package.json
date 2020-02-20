@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/core-elements",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Triple Design System Library",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/titicacadev/triple-design-system#readme",
   "dependencies": {
-    "@titicaca/view-utilities": "^1.7.0",
+    "@titicaca/view-utilities": "^1.7.1",
     "nuka-carousel": "4.4.7",
     "react-input-mask": "^2.0.4"
   },
