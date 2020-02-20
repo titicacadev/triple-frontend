@@ -1,9 +1,14 @@
+## 1.7.1 (2020-02-20)
+- `core-elements` SearchNavBar 컴포넌트에서 누락된 `onKeyUp` props를 추가합니다. #492
+- `search` onDelete 핸들러에 방금 삭제한 키워드를 전달합니다. #494 #490
+- `search` controlledKeyword 의 update 조건 개선 (빈문자열 허용) #496
+
+
 ## 1.7.0 (2020-02-17)
 - `core-elements` Navbar 의 background-color 지정시의 css 오류를 수정합니다. #481
-- `core-elements`, `Search` 에서 SearchNavbar Input 에 inputRef prop 을 추가합니다. #485
+- `core-elements`, `Search` 에서 SearchNavbar Input 에 inputRef prop 을 추가합니다. #485 #482
 - `pricing` pricingUnit prop 을 추가합니다. #486
 - bootstrap 후에는 package-lock.json 이 생성되지 않도록 합니다. #480
-
 
 ## 1.6.2 (2020-02-12)
 
