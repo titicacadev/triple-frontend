@@ -94,7 +94,7 @@ export default function FullScreenSearchView({
 
   useEffect(() => {
     if (controlledKeyword !== undefined) {
-      setKeyword(controlledKeyword)
+      setKeyword(controlledKeyword || '')
     }
   }, [controlledKeyword])
 
