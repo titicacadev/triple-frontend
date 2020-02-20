@@ -26,7 +26,6 @@ import {
   ContainerProps,
   MarginPadding,
   TableProps,
-  GlobalSizes,
   ButtonProps,
 } from '@titicaca/core-elements'
 import {
@@ -35,6 +34,7 @@ import {
   PoiListElementProps,
   POI as POIListElementData,
 } from '@titicaca/poi-list-elements'
+import TripleMedia, { MediaMeta } from '@titicaca/triple-media'
 
 import {
   H1,
@@ -50,7 +50,6 @@ import {
 import { RegionListElement } from './region'
 import { TnaProductsList, TnaProductData } from './tna'
 import Coupon from './coupon'
-import Media from './media'
 import { RegionData } from './types'
 
 type ExtendedPOIListElementData = POIListElementData & {
@@ -66,17 +65,6 @@ type Link = {
   label?: string
 }
 
-interface ImageData {
-  title?: string
-  link: Link
-  frame?: GlobalSizes
-  sizes: {
-    large: { url: string }
-    small_square: { url: string }
-  }
-  sourceUrl: string
-}
-
 interface TripleElementData<T = string, Value = unknown> {
   type: T
   value: Value
@@ -89,14 +77,8 @@ interface ElementSet {
   [type: string]: React.ComponentType<any>
 }
 
-type ImageEventHandler = (
-  e: React.SyntheticEvent | undefined,
-  image: ImageData,
-) => void
-type LinkEventHandler = (
-  e: React.SyntheticEvent | undefined,
-  link: Link,
-) => void
+type ImageEventHandler = (e: React.SyntheticEvent, image: MediaMeta) => void
+type LinkEventHandler = (e: React.SyntheticEvent, link: Link) => void
 
 type Display = 'list' | string
 
@@ -323,7 +305,7 @@ function Images({
   ImageSource,
 }: {
   value: {
-    images: ImageData[]
+    images: MediaMeta[]
     display: CSS.DisplayProperty
   }
   onImageClick: ImageEventHandler
@@ -345,9 +327,9 @@ function Images({
       {images.map((image, i) => {
         return (
           <ElementContainer key={i}>
-            <Media
-              {...image}
-              handleClick={handleClick}
+            <TripleMedia
+              media={image}
+              onClick={handleClick}
               ImageSource={ImageSource}
             />
             {image.title ? <ImageCaption>{image.title}</ImageCaption> : null}
@@ -367,7 +349,7 @@ function EmbeddedImage({
   ImageSource,
 }: {
   value: {
-    images: ImageData[]
+    images: MediaMeta[]
   }
   onImageClick: ImageEventHandler
   onLinkClick: LinkEventHandler
@@ -377,11 +359,10 @@ function EmbeddedImage({
     const handleClick = generateClickHandler(onLinkClick, onImageClick)
 
     return (
-      <Media
-        {...image}
-        frame={image.frame || 'medium'}
+      <TripleMedia
+        media={image}
         ImageSource={ImageSource}
-        handleClick={handleClick}
+        onClick={handleClick}
       />
     )
   }
@@ -588,7 +569,7 @@ function ImageLink({
   href: string
   label?: string
   description?: string
-  image?: ImageData
+  image?: MediaMeta
   onClick?: React.MouseEventHandler
 }) {
   return (
@@ -847,8 +828,11 @@ function generateClickHandler(
   onLinkClick?: LinkEventHandler,
   onImageClick?: ImageEventHandler,
 ): ImageEventHandler {
-  return (e, image) =>
-    (image.link || {}).href
-      ? onLinkClick && onLinkClick(e, image.link)
-      : onImageClick && onImageClick(e, image)
+  return (e, image) => {
+    if (image.link && image.link.href && onLinkClick) {
+      return onLinkClick(e, image.link)
+    } else if (onImageClick) {
+      return onImageClick(e, image)
+    }
+  }
 }
