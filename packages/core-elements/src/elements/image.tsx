@@ -243,7 +243,7 @@ function Image({
   overlayPadding?: MarginPadding
   overlayType?: OverlayType
   withLinkIndicator?: boolean
-  onClick?: (e?: React.SyntheticEvent) => any
+  onClick?: (e: React.SyntheticEvent) => any
   floated?: CSS.FloatProperty
   width?: number
   height?: number
