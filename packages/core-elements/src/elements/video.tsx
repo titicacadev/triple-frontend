@@ -33,6 +33,7 @@ export default function Video({
   cloudinaryId,
   fallbackImageUrl,
   frame,
+  autoPlay,
 }: {
   src?: string
   srcType?: string
@@ -40,10 +41,11 @@ export default function Video({
   cloudinaryId?: string
   fallbackImageUrl: string
   frame: GlobalSizes
+  autoPlay?: boolean
 }) {
   return (
     <VideoContainer frame={frame} fallbackImageUrl={fallbackImageUrl}>
-      <VideoFrame autoPlay loop muted>
+      <VideoFrame autoPlay={autoPlay} loop muted>
         {cloudinaryBucket && cloudinaryId ? (
           <Sources
             cloudinaryBucket={cloudinaryBucket}
