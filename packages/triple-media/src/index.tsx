@@ -28,11 +28,13 @@ export interface MediaMeta {
 }
 
 export default function Media({
+  media,
+  autoPlay,
   ImageSource,
   onClick,
-  media,
 }: {
   media: MediaMeta
+  autoPlay?: boolean
   ImageSource: unknown
   onClick: (e: React.SyntheticEvent, media: MediaMeta) => void
 }) {
@@ -54,6 +56,7 @@ export default function Media({
         fallbackImageUrl={sizes.large.url}
         cloudinaryBucket={cloudinaryBucket}
         cloudinaryId={cloudinaryId}
+        autoPlay={autoPlay}
       />
     )
   }
