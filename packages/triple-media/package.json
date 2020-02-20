@@ -1,0 +1,20 @@
+{
+  "name": "@titicaca/triple-media",
+  "version": "1.7.0",
+  "description": "Media object of Triple",
+  "main": "lib/index.js",
+  "files": [
+    "lib/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "dependencies": {
+    "@titicaca/core-elements": "^1.7.0"
+  }
+}
