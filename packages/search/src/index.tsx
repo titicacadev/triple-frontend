@@ -93,7 +93,7 @@ export default function FullScreenSearchView({
   }, [keyword]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    if (controlledKeyword) {
+    if (controlledKeyword !== undefined) {
       setKeyword(controlledKeyword)
     }
   }, [controlledKeyword])
