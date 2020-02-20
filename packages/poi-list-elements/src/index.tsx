@@ -50,6 +50,7 @@ interface PoiCarouselElementProps {
   actionButtonElement?: ActionButtonElement
   onScrapedChange?: ScrapChangeHandler
   resourceScraps?: ResourceScrapSet
+  descriptionText?: React.ReactNode
 }
 
 interface CompactPoiListElementProps {
@@ -106,6 +107,7 @@ export function PoiCarouselElement({
   actionButtonElement,
   onScrapedChange,
   resourceScraps,
+  descriptionText,
 }: PoiCarouselElementProps) {
   if (poi) {
     const {
@@ -136,7 +138,7 @@ export function PoiCarouselElement({
           {name}
         </Text>
         <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
-          {TYPE_NAMES[type]}
+          {descriptionText || TYPE_NAMES[type]}
         </Text>
         {actionButtonElement || (
           <ScrapButton
