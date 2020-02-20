@@ -141,7 +141,7 @@ export function PoiCarouselElement({
         </Text>
 
         {actionButtonElement ||
-          (onScrapedChange ? (
+          (onScrapedChange && resourceScraps ? (
             <ScrapButton
               scraped={scraped}
               resource={poi}
@@ -224,7 +224,7 @@ class CompactPoiListElement extends React.PureComponent<
 
         {actionButtonElement ? (
           <div ref={this.setActionButtonRef}>{actionButtonElement}</div>
-        ) : onScrapedChange ? (
+        ) : onScrapedChange && resourceScraps ? (
           <ScrapButton
             compact
             scraped={scraped}
@@ -318,7 +318,7 @@ class ExtendedPoiListElement extends React.PureComponent<
         pricingDescription={pricingDescription}
         onClick={onClick}
         tags={tags}
-        hideScrapButton={hideScrapButton}
+        hideScrapButton={hideScrapButton || !resourceScraps}
       />
     )
   }
