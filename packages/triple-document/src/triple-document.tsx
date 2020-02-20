@@ -97,6 +97,7 @@ interface TripleDocumentProps {
   resourceScraps: unknown
   webUrlBase: string
   deepLink: string
+  videoAutoPlay?: boolean
 }
 
 const MH1 = ({ children, ...props }: H1Props) => (
@@ -197,6 +198,7 @@ export function TripleDocument({
   resourceScraps,
   webUrlBase,
   deepLink,
+  videoAutoPlay,
 }: TripleDocumentProps) {
   return (
     <>
@@ -218,6 +220,7 @@ export function TripleDocument({
               resourceScraps={resourceScraps || {}}
               deepLink={deepLink}
               webUrlBase={webUrlBase}
+              videoAutoPlay={videoAutoPlay}
             />
           )
         )
@@ -303,6 +306,7 @@ function Images({
   onImageClick,
   onLinkClick,
   ImageSource,
+  videoAutoPlay,
 }: {
   value: {
     images: MediaMeta[]
@@ -311,6 +315,7 @@ function Images({
   onImageClick: ImageEventHandler
   onLinkClick: LinkEventHandler
   ImageSource: unknown
+  videoAutoPlay?: boolean
 }) {
   const ImagesContainer = display === 'block' ? Container : DocumentCarousel
   const ElementContainer =
@@ -328,6 +333,7 @@ function Images({
         return (
           <ElementContainer key={i}>
             <TripleMedia
+              autoPlay={videoAutoPlay}
               media={image}
               onClick={handleClick}
               ImageSource={ImageSource}
