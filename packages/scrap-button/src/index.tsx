@@ -1,12 +1,27 @@
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { StyledComponentProps } from 'styled-components'
 
-// eslint-disable-next-line no-unexpected-multiline
-const CompactScrapButton = styled.div<{
+interface ScrapButtonBaseProps {
   top?: number
   right?: number
   pressed?: boolean
-}>`
+}
+
+export type ScrapButtonProps<R = any> = Omit<
+  StyledComponentProps<'div', any, ScrapButtonBaseProps, never>,
+  'resource'
+> & {
+  scraped: boolean
+  onScrapedChange: (
+    e?: React.SyntheticEvent,
+    value?: (R & { scraped: boolean }) | { scraped: boolean },
+  ) => void
+
+  resource?: R
+  compact?: boolean
+}
+
+const CompactScrapButton = styled.div<ScrapButtonBaseProps>`
   position: absolute;
   top: ${({ top }) => top || 0}px;
   right: ${({ right }) => right || 0}px;
@@ -16,12 +31,7 @@ const CompactScrapButton = styled.div<{
   background-size: 34px 34px;
 `
 
-// eslint-disable-next-line no-unexpected-multiline
-const RegularScrapButton = styled.div<{
-  top?: number
-  right?: number
-  pressed?: boolean
-}>`
+const RegularScrapButton = styled.div<ScrapButtonBaseProps>`
   position: absolute;
   top: ${({ top }) => (top === 0 ? 0 : top || 3)}px;
   right: ${({ right }) => (right === 0 ? 0 : right || 3)}px;
@@ -31,7 +41,7 @@ const RegularScrapButton = styled.div<{
   background-size: 36px 36px;
 `
 
-export default function ScrapButton({
+export default function ScrapButton<R>({
   compact,
   resource,
   scraped,
@@ -39,15 +49,7 @@ export default function ScrapButton({
   top,
   right,
   ...props
-}: {
-  compact?: boolean
-  resource?: any
-  scraped?: boolean
-  onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
-  top?: number
-  right?: number
-  pressed?: boolean
-}) {
+}: ScrapButtonProps<R>) {
   const ButtonElement = compact ? CompactScrapButton : RegularScrapButton
   const handleClick:
     | React.MouseEventHandler<HTMLDivElement>
