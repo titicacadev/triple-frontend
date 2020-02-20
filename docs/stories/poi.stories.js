@@ -55,7 +55,13 @@ storiesOf('POI', module)
   .add('TripleDocument', () => (
     <PoiCarouselElement
       poi={POI}
-      descriptionText={boolean('커스텀 텍스트 노출', false) && '4 · 4 성급'}
+      descriptionText={
+        boolean('커스텀 텍스트 노출', false) && (
+          <Text color="blue" size="tiny">
+            4 · 5성급
+          </Text>
+        )
+      }
       resourceScraps={{
         [POI.id]: boolean('저장', false),
       }}
