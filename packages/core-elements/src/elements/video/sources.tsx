@@ -6,12 +6,16 @@ const MEDIA_CDN_URL_BASE = 'https://media.triple.guide'
 const FORMATS = ['webm', 'mp4', 'ogv']
 
 export default function Sources({
+  src,
+  srcType,
   cloudinaryBucket,
   cloudinaryId,
   frame,
 }: {
-  cloudinaryBucket: string
-  cloudinaryId: string
+  src?: string
+  srcType?: string
+  cloudinaryBucket?: string
+  cloudinaryId?: string
   frame: GlobalSizes
 }) {
   const matchData = (MEDIA_FRAME_OPTIONS[frame] || '').match(/^(\d+)%$/)
@@ -23,6 +27,10 @@ export default function Sources({
   const [, heightOverWidthPercent] = matchData
   const widthOverHeight = 100 / parseInt(heightOverWidthPercent, 10)
   const manipulationParams = `c_fill,ar_${widthOverHeight},f_auto`
+
+  if (!cloudinaryBucket || !cloudinaryId) {
+    return <source src={src} type={srcType} />
+  }
 
   return (
     <>
