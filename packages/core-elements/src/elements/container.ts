@@ -19,6 +19,7 @@ export interface ContainerPropsFromTemplate {
   clearing?: boolean
   whiteSpace?: CSS.WhiteSpaceProperty
   userSelect?: CSS.UserSelectProperty
+  display?: CSS.DisplayProperty
 }
 
 export type ContainerProps = StyledComponentProps<
@@ -113,6 +114,12 @@ const Container = styled.div<ContainerPropsFromTemplate>`
       -webkit-user-select: ${userSelect};
       -user-select: ${userSelect};
     `}
+
+  ${({ display }) =>
+    display &&
+    css`
+      display: ${display};
+    `}  
 `
 
 export default Container
