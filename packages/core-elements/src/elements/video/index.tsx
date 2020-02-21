@@ -1,8 +1,9 @@
-import * as React from 'react'
+import React, { useRef, useState, useCallback, useEffect } from 'react'
 import styled from 'styled-components'
 
 import { GlobalSizes, MEDIA_FRAME_OPTIONS } from '../../commons'
 import Sources from './sources'
+import Controls from './controls'
 
 const VideoContainer = styled.div<
   { frame: GlobalSizes; fallbackImageUrl: string } & React.HTMLAttributes<
@@ -27,6 +28,19 @@ const VideoFrame = styled.video`
   object-fit: cover;
 `
 
+const Pending = styled.div`
+  position: absolute;
+  border: none;
+  background: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: yellow;
+`
+
 export default function Video({
   src,
   srcType = 'video/mp4',
@@ -44,19 +58,41 @@ export default function Video({
   frame: GlobalSizes
   autoPlay?: boolean
 }) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [pending, setPending] = useState(true)
+
+  const handlePending = useCallback(() => setPending(true), [setPending])
+  const handleReady = useCallback(() => setPending(false), [setPending])
+
+  useEffect(() => {
+    const currentRef = videoRef.current
+
+    if (currentRef) {
+      currentRef.addEventListener('canplaythrough', handleReady)
+      currentRef.addEventListener('waiting', handlePending)
+    }
+
+    return () => {
+      if (currentRef) {
+        currentRef.removeEventListener('canplaythrough', handleReady)
+        currentRef.removeEventListener('waiting', handlePending)
+      }
+    }
+  }, [videoRef, handleReady, handlePending])
+
   return (
     <VideoContainer frame={frame} fallbackImageUrl={fallbackImageUrl}>
-      <VideoFrame autoPlay={autoPlay} loop muted>
-        {cloudinaryBucket && cloudinaryId ? (
-          <Sources
-            cloudinaryBucket={cloudinaryBucket}
-            cloudinaryId={cloudinaryId}
-            frame={frame}
-          />
-        ) : (
-          <source src={src} type={srcType} />
-        )}
+      <VideoFrame autoPlay={autoPlay} loop muted ref={videoRef}>
+        <Sources
+          src={src}
+          srcType={srcType}
+          cloudinaryBucket={cloudinaryBucket}
+          cloudinaryId={cloudinaryId}
+          frame={frame}
+        />
       </VideoFrame>
+      {pending && <Pending />}
+      {videoRef && <Controls videoRef={videoRef} />}
     </VideoContainer>
   )
 }
