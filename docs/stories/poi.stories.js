@@ -56,7 +56,7 @@ storiesOf('POI', module)
   .add('TripleDocument', () => (
     <PoiCarouselElement
       poi={POI}
-      descriptionText={
+      description={
         boolean('커스텀 텍스트 노출', false) && (
           <Text color="blue" size="tiny">
             4 · 5성급
