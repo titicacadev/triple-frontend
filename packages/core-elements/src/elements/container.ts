@@ -20,6 +20,7 @@ export interface ContainerPropsFromTemplate {
   whiteSpace?: CSS.WhiteSpaceProperty
   userSelect?: CSS.UserSelectProperty
   display?: CSS.DisplayProperty
+  horizontalScroll?: boolean
 }
 
 export type ContainerProps = StyledComponentProps<
@@ -119,6 +120,14 @@ const Container = styled.div<ContainerPropsFromTemplate>`
     display &&
     css`
       display: ${display};
+    `}  
+
+  ${({ horizontalScroll }) =>
+    horizontalScroll &&
+    css`
+      white-space: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
     `}  
 `
 
