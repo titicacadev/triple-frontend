@@ -10,11 +10,39 @@ import { Video } from '@titicaca/core-elements'
 영상을 표현하기 위해 사용하는 컴포넌트입니다.
 
 <Preview>
-  <Story name="비디오">
+  <Story name="비디오 with Autoplay">
     {
       boolean('Visible', true) ? (
         <Video
           autoPlay
+          frame={select(
+            'Frame',
+            ['mini', 'small', 'medium', 'large', 'big', 'huge'],
+            'small',
+          )}
+          src={text(
+            'URL',
+            'https://media.triple.guide/triple-dev/video/upload/c_fill,h_256,w_256,f_auto/580e50be-d1d5-4ad8-a477-ad13f4faec9d.mp4',
+          )}
+          fallbackImageUrl={text(
+            'Fallback URL',
+            'https://media.triple.guide/triple-dev/video/upload/c_limit,f_auto,h_1024,w_1024/580e50be-d1d5-4ad8-a477-ad13f4faec9d.jpeg',
+          )}
+          cloudinaryId={text(
+            'Cloudinary ID',
+            '580e50be-d1d5-4ad8-a477-ad13f4faec9d',
+          )}
+          cloudinaryBucket={text('Cloudinary Bucket', 'triple-dev')}
+        />
+      ) : (
+        <div>Hidden</div>
+      )
+    }
+  </Story>
+  <Story name="비디오 without Autoplay">
+    {
+      boolean('Visible', true) ? (
+        <Video
           frame={select(
             'Frame',
             ['mini', 'small', 'medium', 'large', 'big', 'huge'],
