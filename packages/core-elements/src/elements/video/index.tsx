@@ -92,7 +92,7 @@ export default function Video({
 
   return (
     <VideoContainer frame={frame} fallbackImageUrl={fallbackImageUrl}>
-      <VideoFrame autoPlay={autoPlay} loop muted ref={videoRef}>
+      <VideoFrame autoPlay={autoPlay} loop muted={autoPlay} ref={videoRef}>
         <Sources
           src={src}
           srcType={srcType}
@@ -102,7 +102,7 @@ export default function Video({
         />
       </VideoFrame>
       {pending && <Pending />}
-      {videoRef && <Controls videoRef={videoRef} />}
+      {videoRef && <Controls videoRef={videoRef} muted={!!autoPlay} />}
     </VideoContainer>
   )
 }
