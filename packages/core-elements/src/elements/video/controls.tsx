@@ -6,6 +6,8 @@ import { debounce } from '@titicaca/view-utilities'
 import { GetGlobalColor } from '../../commons'
 
 import Seeker from './seeker'
+import PlayPauseButton from './play-pause-button'
+import MuteUnmuteButton from './mute-unmute-button'
 import { formatTime } from './utils'
 
 const ControlsContainer = styled.div<{ visible: boolean }>`
@@ -18,19 +20,6 @@ const ControlsContainer = styled.div<{ visible: boolean }>`
   background-color: rgba(0, 0, 0, 0.4);
 
   transition: opacity 0.3s;
-`
-
-const PlayPauseButton = styled.button<{ playing: boolean }>`
-  position: absolute;
-  border: none;
-  background: none;
-  width: 60px;
-  height: 60px;
-  border-radius: 30px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: ${({ playing }) => (playing ? 'red' : 'blue')};
 `
 
 const CurrentTime = styled.div`
@@ -78,19 +67,18 @@ const Progress = styled.progress`
 `
 
 export default function Controls({
+  muted,
   videoRef,
 }: {
+  muted: boolean
   videoRef: React.RefObject<HTMLVideoElement>
 }) {
   const [visible, setVisible] = useState(false)
-  const [playing, setPlaying] = useState(false)
   const [duration, setDuration] = useState<number>(0)
   const currentTimeRef = useRef<HTMLDivElement>(null)
   const progressRef = useRef<HTMLProgressElement>(null)
   const seekerRef = useRef<HTMLInputElement>(null)
 
-  const handlePlay = useCallback(() => setPlaying(true), [setPlaying])
-  const handlePause = useCallback(() => setPlaying(false), [setPlaying])
   const handleDurationChange = useCallback(
     () =>
       videoRef.current && setDuration(Math.floor(videoRef.current.duration)),
@@ -116,27 +104,17 @@ export default function Controls({
     const currentRef = videoRef.current
 
     if (currentRef) {
-      currentRef.addEventListener('play', handlePlay)
-      currentRef.addEventListener('pause', handlePause)
       currentRef.addEventListener('durationchange', handleDurationChange)
       currentRef.addEventListener('timeupdate', handleTimeUpdate)
     }
 
     return () => {
       if (currentRef) {
-        currentRef.removeEventListener('play', handlePlay)
-        currentRef.removeEventListener('pause', handlePause)
         currentRef.removeEventListener('durationchange', handleDurationChange)
         currentRef.removeEventListener('timeupdate', handleTimeUpdate)
       }
     }
-  }, [
-    videoRef,
-    handlePlay,
-    handlePause,
-    handleDurationChange,
-    handleTimeUpdate,
-  ])
+  }, [videoRef, handleDurationChange, handleTimeUpdate])
 
   const handleFadeOut = useCallback(debounce(() => setVisible(false), 2500), [
     setVisible,
@@ -146,18 +124,6 @@ export default function Controls({
     setVisible(true)
     handleFadeOut()
   }, [setVisible, handleFadeOut])
-
-  const handlePlayPause = useCallback(
-    (e) => {
-      if (videoRef.current) {
-        playing ? videoRef.current.pause() : videoRef.current.play()
-      }
-
-      e.stopPropagation()
-      handleFadeOut()
-    },
-    [videoRef, playing, handleFadeOut],
-  )
 
   const handleSeekerChange = useCallback(
     (e) => {
@@ -179,23 +145,33 @@ export default function Controls({
   )
 
   return (
-    <ControlsContainer
-      visible={visible}
-      onClick={visible ? () => setVisible(false) : handleFadeIn}
-    >
-      {visible ? (
-        <PlayPauseButton playing={playing} onClick={handlePlayPause} />
-      ) : null}
-      <CurrentTime ref={currentTimeRef}>00:00</CurrentTime>
-      <Duration>{formatTime(duration)}</Duration>
-      <Progress max={duration} value={0} ref={progressRef} />
-      <Seeker
+    <>
+      <ControlsContainer
         visible={visible}
-        ref={seekerRef}
-        duration={duration}
-        onClick={handleSeekerClick}
-        onChange={handleSeekerChange}
+        onClick={visible ? () => setVisible(false) : handleFadeIn}
+      >
+        <CurrentTime ref={currentTimeRef}>00:00</CurrentTime>
+        <Duration>{formatTime(duration)}</Duration>
+        <Progress max={duration} value={0} ref={progressRef} />
+        <Seeker
+          visible={visible}
+          ref={seekerRef}
+          duration={duration}
+          onClick={handleSeekerClick}
+          onChange={handleSeekerChange}
+        />
+      </ControlsContainer>
+      <PlayPauseButton
+        videoRef={videoRef}
+        forceVisible={visible}
+        onPlayPause={handleFadeOut}
       />
-    </ControlsContainer>
+      <MuteUnmuteButton
+        videoRef={videoRef}
+        forceVisible={visible}
+        muted={muted}
+        onMuteUnmute={handleFadeOut}
+      />
+    </>
   )
 }
