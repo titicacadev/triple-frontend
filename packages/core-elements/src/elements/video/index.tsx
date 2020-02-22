@@ -37,8 +37,18 @@ const Pending = styled.div`
   border-radius: 30px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: yellow;
+  background-image: url(https://assets.triple-dev.titicaca-corp.com/images/img-video-loading@3x.png);
+  background-size: cover;
+  animation: rotation 2s infinite linear;
+
+  @keyframes rotation {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(359deg);
+    }
+  }
 `
 
 export default function Video({
