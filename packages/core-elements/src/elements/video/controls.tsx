@@ -108,12 +108,14 @@ export default function Controls({
 
     if (currentRef) {
       currentRef.addEventListener('durationchange', handleDurationChange)
+      currentRef.addEventListener('progress', handleDurationChange)
       currentRef.addEventListener('timeupdate', handleTimeUpdate)
     }
 
     return () => {
       if (currentRef) {
         currentRef.removeEventListener('durationchange', handleDurationChange)
+        currentRef.removeEventListener('progress', handleDurationChange)
         currentRef.removeEventListener('timeupdate', handleTimeUpdate)
       }
     }
@@ -154,8 +156,10 @@ export default function Controls({
         onClick={visible ? () => setVisible(false) : handleFadeIn}
       >
         <CurrentTime ref={currentTimeRef}>00:00</CurrentTime>
-        <Duration>{formatTime(duration)}</Duration>
-        <Progress max={duration} value={0} ref={progressRef} />
+        {duration ? <Duration>{formatTime(duration)}</Duration> : null}
+        {duration ? (
+          <Progress max={duration} value={0} ref={progressRef} />
+        ) : null}
         <Seeker
           visible={visible}
           ref={seekerRef}
