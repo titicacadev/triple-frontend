@@ -18,6 +18,7 @@ type ReviewEventHandler<T = Element, E = Event> = (
 
 export interface ReviewElementProps {
   review: ReviewData
+  myReview: ReviewData
   index: number
   onUserClick: ReviewEventHandler
   onUnfoldButtonClick?: ReviewEventHandler
@@ -89,6 +90,7 @@ const LikeButton = styled.a<{ liked?: boolean }>`
 
 export default function ReviewElement({
   review,
+  myReview,
   index,
   onUserClick,
   onUnfoldButtonClick,
@@ -167,46 +169,48 @@ export default function ReviewElement({
             </Images>
           )}
         </Content>
-        {!blindedAt && (
-          <Meta>
-            {likeVisible !== false ? (
-              <>
-                <LikeButton
-                  liked={liked}
+        <Meta>
+          {!blindedAt && likeVisible !== false ? (
+            <>
+              <LikeButton
+                liked={liked}
+                onClick={(e) => {
+                  const actionName = `리뷰_땡스${liked ? '' : '취소'}`
+                  trackEvent({
+                    ga: [actionName],
+                    fa: {
+                      action: actionName,
+                      review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
+                      item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+                    },
+                  })
+                  onLikeButtonClick(e, { ...review, liked })
+                }}
+              >
+                Thanks
+              </LikeButton>
+              {likesCount && likesCount > 0 ? (
+                <span
                   onClick={(e) => {
-                    const actionName = `리뷰_땡스${liked ? '' : '취소'}`
                     trackEvent({
-                      ga: [actionName],
+                      ga: ['리뷰_땡스_리스트보기'],
                       fa: {
-                        action: actionName,
+                        action: '리뷰_땡스_리스트보기',
                         review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
                         item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
                       },
                     })
-                    onLikeButtonClick(e, { ...review, liked })
+                    onLikesCountClick(e, review)
                   }}
                 >
-                  Thanks
-                </LikeButton>
-                {likesCount && likesCount > 0 ? (
-                  <span
-                    onClick={(e) => {
-                      trackEvent({
-                        ga: ['리뷰_땡스_리스트보기'],
-                        fa: {
-                          action: '리뷰_땡스_리스트보기',
-                          review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
-                          item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
-                        },
-                      })
-                      onLikesCountClick(e, review)
-                    }}
-                  >
-                    {likesCount}명
-                  </span>
-                ) : null}
-              </>
-            ) : null}
+                  {likesCount}명
+                </span>
+              ) : null}
+            </>
+          ) : null}
+          {!blindedAt ||
+          (blindedAt && !myReview) ||
+          (blindedAt && !myReview && review.id !== myReview.id) ? (
             <Date floated={likeVisible !== false ? 'right' : undefined}>
               {DateFormatter ? <DateFormatter date={createdAt} /> : createdAt}
               {menuVisible !== false && (
@@ -216,8 +220,8 @@ export default function ReviewElement({
                 />
               )}
             </Date>
-          </Meta>
-        )}
+          ) : null}
+        </Meta>
       </List.Item>
     </IntersectionObserver>
   )
