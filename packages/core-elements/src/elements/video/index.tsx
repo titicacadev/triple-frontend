@@ -5,13 +5,11 @@ import { GlobalSizes, MEDIA_FRAME_OPTIONS } from '../../commons'
 import Sources from './sources'
 import Controls from './controls'
 
-const VideoContainer = styled.div<
-  {
-    frame: GlobalSizes
-    fallbackImageUrl: string
-    borderRadius?: number
-  } & React.HTMLAttributes<HTMLDivElement>
->`
+const VideoContainer = styled.div<{
+  frame: GlobalSizes
+  fallbackImageUrl: string
+  borderRadius?: number
+}>`
   padding-top: ${({ frame }) => MEDIA_FRAME_OPTIONS[frame]};
   width: 100%;
   overflow: hidden;
