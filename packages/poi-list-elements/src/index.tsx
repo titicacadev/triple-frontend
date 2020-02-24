@@ -51,6 +51,7 @@ interface PoiCarouselElementProps {
   onScrapedChange?: ScrapChangeHandler
   resourceScraps?: ResourceScrapSet
   description?: React.ReactNode
+  additionalInfo?: React.ReactNode
 }
 
 interface CompactPoiListElementProps {
@@ -109,6 +110,7 @@ export function PoiCarouselElement({
   onScrapedChange,
   resourceScraps,
   description,
+  additionalInfo = null,
 }: PoiCarouselElementProps) {
   if (poi) {
     const {
@@ -150,6 +152,8 @@ export function PoiCarouselElement({
               onScrapedChange={onScrapedChange}
             />
           ) : null)}
+
+        {additionalInfo}
       </Carousel.Item>
     )
   }
