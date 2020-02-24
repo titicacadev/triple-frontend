@@ -38,3 +38,8 @@ export const MEDIA_FRAME_OPTIONS: Partial<Record<GlobalSizes, string>> = {
   big: '110%',
   huge: '160%',
 }
+
+export type CarouselSizes = Exclude<
+  GlobalSizes,
+  'mini' | 'tiny' | 'huge' | 'massive'
+>
