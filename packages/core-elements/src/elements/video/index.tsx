@@ -86,6 +86,7 @@ export default function Video({
     if (currentRef) {
       currentRef.addEventListener('canplaythrough', handleReady)
       currentRef.addEventListener('canplay', handleReady)
+      currentRef.addEventListener('play', handleReady)
       currentRef.addEventListener('waiting', handlePending)
     }
 
@@ -93,6 +94,7 @@ export default function Video({
       if (currentRef) {
         currentRef.removeEventListener('canplaythrough', handleReady)
         currentRef.removeEventListener('canplay', handleReady)
+        currentRef.removeEventListener('play', handleReady)
         currentRef.removeEventListener('waiting', handlePending)
       }
     }
