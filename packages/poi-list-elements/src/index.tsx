@@ -54,6 +54,7 @@ interface PoiCarouselElementProps {
   description?: React.ReactNode
   additionalInfo?: React.ReactNode
   carouselSize?: CarouselSizes
+  titleTopSpacing?: number
 }
 
 interface CompactPoiListElementProps {
@@ -114,6 +115,7 @@ export function PoiCarouselElement({
   description,
   additionalInfo = null,
   carouselSize,
+  titleTopSpacing = 10,
 }: PoiCarouselElementProps) {
   if (poi) {
     const {
@@ -131,7 +133,6 @@ export function PoiCarouselElement({
     })
 
     const name = nameOverride || names.ko || names.en || names.local
-    const isBigSizeCarousel = carouselSize === 'big'
 
     return (
       <Carousel.Item size={carouselSize || 'small'} onClick={onClick}>
@@ -141,12 +142,7 @@ export function PoiCarouselElement({
           src={image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS[type]}
           alt={name || ''}
         />
-        <Text
-          bold
-          ellipsis
-          alpha={1}
-          margin={{ top: isBigSizeCarousel ? 16 : 10 }}
-        >
+        <Text bold ellipsis alpha={1} margin={{ top: titleTopSpacing }}>
           {name}
         </Text>
         <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
