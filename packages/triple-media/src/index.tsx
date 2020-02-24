@@ -31,11 +31,13 @@ export default function Media({
   media,
   autoPlay,
   ImageSource,
+  borderRadius,
   onClick,
 }: {
   media: MediaMeta
   autoPlay?: boolean
   ImageSource: unknown
+  borderRadius?: number
   onClick: (e: React.SyntheticEvent, media: MediaMeta) => void
 }) {
   const {
@@ -57,6 +59,7 @@ export default function Media({
         cloudinaryBucket={cloudinaryBucket}
         cloudinaryId={cloudinaryId}
         autoPlay={autoPlay}
+        borderRadius={borderRadius}
       />
     )
   }
@@ -66,6 +69,7 @@ export default function Media({
       frame={frame}
       src={sizes.large.url}
       sourceUrl={sourceUrl}
+      borderRadius={borderRadius}
       onClick={(e: React.SyntheticEvent) => onClick(e, media)}
       ImageSource={ImageSource}
     />
