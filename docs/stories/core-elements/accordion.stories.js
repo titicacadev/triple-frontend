@@ -4,7 +4,7 @@ import { text, boolean } from '@storybook/addon-knobs'
 
 import { Text, Accordion } from '@titicaca/core-elements'
 
-storiesOf('Accordion', module).add('영업시간', () => (
+storiesOf('Core-Elements | Accordion', module).add('영업시간', () => (
   <Accordion>
     <Accordion.Title active={boolean('펼침', false)}>
       <Text bold>{text('제목', '이용가능시간, 휴무일')}</Text>
