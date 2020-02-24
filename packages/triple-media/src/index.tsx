@@ -38,9 +38,9 @@ export default function Media({
   media: MediaMeta
   autoPlay?: boolean
   hideControls?: boolean
-  ImageSource: unknown
+  ImageSource?: unknown
   borderRadius?: number
-  onClick: (e: React.SyntheticEvent, media: MediaMeta) => void
+  onClick?: (e: React.SyntheticEvent, media: MediaMeta) => void
 }) {
   const {
     type,
@@ -73,7 +73,7 @@ export default function Media({
       src={sizes.large.url}
       sourceUrl={sourceUrl}
       borderRadius={borderRadius}
-      onClick={(e: React.SyntheticEvent) => onClick(e, media)}
+      onClick={onClick && ((e: React.SyntheticEvent) => onClick(e, media))}
       ImageSource={ImageSource}
     />
   )
