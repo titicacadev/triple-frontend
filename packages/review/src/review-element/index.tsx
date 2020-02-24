@@ -18,7 +18,7 @@ type ReviewEventHandler<T = Element, E = Event> = (
 
 export interface ReviewElementProps {
   review: ReviewData
-  myReview: ReviewData
+  myReview?: ReviewData
   index: number
   onUserClick: ReviewEventHandler
   onUnfoldButtonClick?: ReviewEventHandler
@@ -209,8 +209,7 @@ export default function ReviewElement({
             </>
           ) : null}
           {!blindedAt ||
-          (blindedAt && !myReview) ||
-          (blindedAt && !myReview && review.id !== myReview.id) ? (
+          (blindedAt && myReview && review.id !== myReview.id) ? (
             <Date floated={likeVisible !== false ? 'right' : undefined}>
               {DateFormatter ? <DateFormatter date={createdAt} /> : createdAt}
               {menuVisible !== false && (
