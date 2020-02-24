@@ -166,6 +166,7 @@ export default function ReviewsList({
       <List margin={margin} divided verticalGap={60}>
         {displayedReviews.map((review, i) => (
           <ReviewElement
+            myReview={myReview}
             key={review.id}
             index={i}
             review={review}
