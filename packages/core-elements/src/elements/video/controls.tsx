@@ -79,11 +79,14 @@ export default function Controls({
   const progressRef = useRef<HTMLProgressElement>(null)
   const seekerRef = useRef<HTMLInputElement>(null)
 
-  const handleDurationChange = useCallback(
-    () =>
-      videoRef.current && setDuration(Math.floor(videoRef.current.duration)),
-    [videoRef, setDuration],
-  )
+  const handleDurationChange = useCallback(() => {
+    if (videoRef.current) {
+      const duration = videoRef.current.duration
+
+      !isNaN(duration) && setDuration(Math.floor(videoRef.current.duration))
+    }
+  }, [videoRef, setDuration])
+
   const handleTimeUpdate = useCallback(() => {
     if (currentTimeRef.current && videoRef.current) {
       currentTimeRef.current.innerHTML = formatTime(
