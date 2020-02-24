@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 
 import { NumericSpinner } from '@titicaca/core-elements'
 
-storiesOf('numeric-spinner | NumericSpinner', module)
+storiesOf('Core-Elements | NumericSpinner', module)
   .add('숙박 인원', () => (
     <NumericSpinner
       size="big"
