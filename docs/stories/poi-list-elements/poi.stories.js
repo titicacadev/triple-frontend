@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean } from '@storybook/addon-knobs'
+import { boolean, number } from '@storybook/addon-knobs'
 import { List, Container, Text } from '@titicaca/core-elements'
 import { PoiCarouselElement, PoiListElement } from '@titicaca/poi-list-elements'
 
@@ -56,6 +56,7 @@ storiesOf('poi-list-elements | POI', module)
   .add('TripleDocument', () => (
     <PoiCarouselElement
       poi={POI}
+      titleTopSpacing={number('이미지와 타이틀 간격', 10)}
       description={
         boolean('커스텀 텍스트 노출', false) && (
           <Text color="blue" size="tiny">
