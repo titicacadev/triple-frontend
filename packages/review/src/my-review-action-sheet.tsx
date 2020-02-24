@@ -67,12 +67,14 @@ export default function MyReviewActionSheet({
         open={uriHash === HASH_MY_REVIEW_ACTION_SHEET}
         onClose={back}
       >
-        <ActionSheet.Item
-          icon="review"
-          onClick={onReviewEdit || handleEditMenuClick}
-        >
-          수정하기
-        </ActionSheet.Item>
+        {!myReview.blindedAt ? (
+          <ActionSheet.Item
+            icon="review"
+            onClick={onReviewEdit || handleEditMenuClick}
+          >
+            수정하기
+          </ActionSheet.Item>
+        ) : null}
         <ActionSheet.Item icon="delete" onClick={handleDeleteMenuClick}>
           삭제하기
         </ActionSheet.Item>
