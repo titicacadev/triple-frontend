@@ -85,12 +85,14 @@ export default function Video({
 
     if (currentRef) {
       currentRef.addEventListener('canplaythrough', handleReady)
+      currentRef.addEventListener('canplay', handleReady)
       currentRef.addEventListener('waiting', handlePending)
     }
 
     return () => {
       if (currentRef) {
         currentRef.removeEventListener('canplaythrough', handleReady)
+        currentRef.removeEventListener('canplay', handleReady)
         currentRef.removeEventListener('waiting', handlePending)
       }
     }
