@@ -5,11 +5,8 @@ import styled from 'styled-components'
 interface BookingCompletionProps {
   title?: string
   onMoveToBookingDetail?: () => void
-  onMoveToList?: () => void
-  listButtonLabel?: string
+  onMoveToMain?: () => void
   descriptions?: string[]
-  regionButtonLabel?: string
-  onMoveToRegion?: () => void
 }
 
 const DescriptionText = styled(Text)`
@@ -38,12 +35,10 @@ const RegionButton = styled(Button)`
 function BookingCompletion({
   title,
   onMoveToBookingDetail,
-  onMoveToList,
-  listButtonLabel,
+  onMoveToMain,
   descriptions,
-  regionButtonLabel,
-  onMoveToRegion,
-}: BookingCompletionProps) {
+  children,
+}: React.PropsWithChildren<BookingCompletionProps>) {
   return (
     <>
       <Container margin={{ bottom: 12 }}>
@@ -65,39 +60,31 @@ function BookingCompletion({
       <Text color="gray" size="mini" alpha={0.5}>
         자세한 사항은 내 예약에서 확인해주세요.
       </Text>
-      {onMoveToList || onMoveToBookingDetail ? (
-        <Container margin={{ top: 30 }}>
-          <Button.Group horizontalGap={7}>
-            {onMoveToBookingDetail ? (
-              <Button
-                basic
-                inverted
-                color="blue"
-                size="small"
-                onClick={onMoveToBookingDetail}
-              >
-                내 예약에서 확인
-              </Button>
-            ) : null}
-            {onMoveToList ? (
-              <Button
-                basic
-                inverted
-                color="gray"
-                size="small"
-                onClick={onMoveToList}
-              >
-                {listButtonLabel || '메인으로 가기'}
-              </Button>
-            ) : null}
-          </Button.Group>
-        </Container>
-      ) : null}
-      {onMoveToRegion ? (
-        <RegionButton fluid margin={{ top: 6 }} onClick={onMoveToRegion}>
-          {regionButtonLabel}
-        </RegionButton>
-      ) : null}
+      <Container margin={{ top: 30 }}>
+        <Button.Group horizontalGap={7}>
+          <Button
+            basic
+            inverted
+            color="blue"
+            size="small"
+            onClick={onMoveToBookingDetail}
+          >
+            내 예약에서 확인
+          </Button>
+          {onMoveToMain ? (
+            <Button
+              basic
+              inverted
+              color="gray"
+              size="small"
+              onClick={onMoveToMain}
+            >
+              메인으로 가기
+            </Button>
+          ) : null}
+        </Button.Group>
+      </Container>
+      {children}
     </>
   )
 }
