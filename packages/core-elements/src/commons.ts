@@ -24,7 +24,7 @@ enum GlobalColorSet {
   red = '255, 33, 60',
 }
 
-export type Ratio = '4:1' | '5:3' | '11:7' | '4:3' | '1:1' | '10:11' | '30 : 47'
+export type Ratio = '4:1' | '5:3' | '11:7' | '4:3' | '1:1' | '10:11' | '30:47'
 export type GlobalColors = 'blue' | 'gray' | 'white' | 'red'
 
 export function GetGlobalColor(colorString: GlobalColors | string) {
@@ -50,5 +50,5 @@ export const MEDIA_FRAME_OPTIONS: {
   '4:3': '75%',
   '1:1': '100%',
   '10:11': '110%',
-  '30 : 47': '160%',
+  '30:47': '160%',
 }
