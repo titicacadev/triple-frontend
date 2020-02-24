@@ -6,8 +6,10 @@ interface BookingCompletionProps {
   title?: string
   onMoveToBookingDetail?: () => void
   onMoveToList?: () => void
-  descriptions?: string[]
   listButtonLabel?: string
+  descriptions?: string[]
+  regionButtonLabel?: string
+  onMoveToRegion?: () => void
 }
 
 const DescriptionText = styled(Text)`
@@ -23,12 +25,24 @@ const DescriptionText = styled(Text)`
   }
 `
 
+const RegionButton = styled(Button)`
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  color: #3a3a3a;
+  font-weight: bold;
+  font-size: 14px;
+  height: 45px;
+  line-height: normal;
+`
+
 function BookingCompletion({
   title,
   onMoveToBookingDetail,
   onMoveToList,
-  descriptions,
   listButtonLabel,
+  descriptions,
+  regionButtonLabel,
+  onMoveToRegion,
 }: BookingCompletionProps) {
   return (
     <>
@@ -73,11 +87,16 @@ function BookingCompletion({
                 size="small"
                 onClick={onMoveToList}
               >
-                {listButtonLabel || '다른 상품 더보기'}
+                {listButtonLabel || '메인으로 가기'}
               </Button>
             ) : null}
           </Button.Group>
         </Container>
+      ) : null}
+      {onMoveToRegion ? (
+        <RegionButton fluid margin={{ top: 6 }} onClick={onMoveToRegion}>
+          {regionButtonLabel}
+        </RegionButton>
       ) : null}
     </>
   )
