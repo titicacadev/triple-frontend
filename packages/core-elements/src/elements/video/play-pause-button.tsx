@@ -29,6 +29,7 @@ const PlayPauseButtonBase = styled.button<{
   }
 
   opacity: ${({ visible }) => (visible ? '1' : '0')};
+  pointer-events: ${({ visible }) => (visible ? 'auto' : 'none')};
   transition: opacity 0.3s;
 `
 
@@ -57,11 +58,7 @@ export default function PlayPauseButton({
         onPlayPause()
 
         handleFadeOut()
-
-        return
       }
-
-      return true
     },
     [videoRef, playing, handleFadeOut, forceVisible, visible, onPlayPause],
   )
