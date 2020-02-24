@@ -62,6 +62,7 @@ export default function Video({
   frame,
   autoPlay,
   borderRadius,
+  hideControls,
 }: {
   src?: string
   srcType?: string
@@ -71,6 +72,7 @@ export default function Video({
   frame: GlobalSizes
   autoPlay?: boolean
   borderRadius?: number
+  hideControls?: boolean
 }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [pending, setPending] = useState(true)
@@ -110,7 +112,9 @@ export default function Video({
         />
       </VideoFrame>
       {pending && <Pending />}
-      {videoRef && <Controls videoRef={videoRef} muted={!!autoPlay} />}
+      {videoRef && !hideControls && (
+        <Controls videoRef={videoRef} muted={!!autoPlay} />
+      )}
     </VideoContainer>
   )
 }
