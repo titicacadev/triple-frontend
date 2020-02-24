@@ -42,7 +42,9 @@ const CarouselItem = styled.li<{ size?: 'small' | 'medium' | 'large' }>`
   display: inline-block;
   position: relative;
   width: ${({ size }) =>
-    ({ small: '140px', medium: '153px', large: '270px' }[size || 'small'])};
+    ({ small: '140px', medium: '153px', large: '270px', big: '275px' }[
+      size || 'small'
+    ])};
   vertical-align: top;
   white-space: normal;
   cursor: pointer;
