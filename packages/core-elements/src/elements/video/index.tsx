@@ -6,9 +6,11 @@ import Sources from './sources'
 import Controls from './controls'
 
 const VideoContainer = styled.div<
-  { frame: GlobalSizes; fallbackImageUrl: string } & React.HTMLAttributes<
-    HTMLDivElement
-  >
+  {
+    frame: GlobalSizes
+    fallbackImageUrl: string
+    borderRadius?: number
+  } & React.HTMLAttributes<HTMLDivElement>
 >`
   padding-top: ${({ frame }) => MEDIA_FRAME_OPTIONS[frame]};
   width: 100%;
@@ -17,6 +19,8 @@ const VideoContainer = styled.div<
   position: relative;
   background-image: url(${({ fallbackImageUrl }) => fallbackImageUrl});
   background-size: cover;
+  border-radius: ${({ borderRadius }) =>
+    borderRadius === 0 ? 0 : borderRadius || 6}px;
 `
 
 const VideoFrame = styled.video`
@@ -59,6 +63,7 @@ export default function Video({
   fallbackImageUrl,
   frame,
   autoPlay,
+  borderRadius,
 }: {
   src?: string
   srcType?: string
@@ -67,6 +72,7 @@ export default function Video({
   fallbackImageUrl: string
   frame: GlobalSizes
   autoPlay?: boolean
+  borderRadius?: number
 }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [pending, setPending] = useState(true)
@@ -91,7 +97,11 @@ export default function Video({
   }, [videoRef, handleReady, handlePending])
 
   return (
-    <VideoContainer frame={frame} fallbackImageUrl={fallbackImageUrl}>
+    <VideoContainer
+      frame={frame}
+      fallbackImageUrl={fallbackImageUrl}
+      borderRadius={borderRadius}
+    >
       <VideoFrame autoPlay={autoPlay} loop muted={autoPlay} ref={videoRef}>
         <Sources
           src={src}
