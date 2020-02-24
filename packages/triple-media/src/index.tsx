@@ -30,12 +30,14 @@ export interface MediaMeta {
 export default function Media({
   media,
   autoPlay,
+  hideControls,
   ImageSource,
   borderRadius,
   onClick,
 }: {
   media: MediaMeta
   autoPlay?: boolean
+  hideControls?: boolean
   ImageSource: unknown
   borderRadius?: number
   onClick: (e: React.SyntheticEvent, media: MediaMeta) => void
@@ -60,6 +62,7 @@ export default function Media({
         cloudinaryId={cloudinaryId}
         autoPlay={autoPlay}
         borderRadius={borderRadius}
+        hideControls={!!hideControls}
       />
     )
   }
