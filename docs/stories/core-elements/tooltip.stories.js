@@ -12,7 +12,7 @@ const Base = styled.div`
   padding: 10px;
 `
 
-storiesOf('Tooltip', module)
+storiesOf('Core-Elements | Tooltip', module)
   .add('기본', () => (
     <Base>
       툴팁 표시 대상

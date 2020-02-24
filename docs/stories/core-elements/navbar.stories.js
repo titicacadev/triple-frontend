@@ -25,7 +25,7 @@ const ICON_LIST = [
   'list',
 ]
 
-storiesOf('Navbar', module)
+storiesOf('Core-Elements | Navbar', module)
   .add('버튼 2개 (좌1+우1)', () => (
     <Navbar
       title={text('제목', '도쿄 관광지')}

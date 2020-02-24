@@ -6,7 +6,7 @@ import { select } from '@storybook/addon-knobs'
 
 import { Tabs } from '@titicaca/core-elements'
 
-storiesOf('Tabs', module)
+storiesOf('Core-Elements | Tabs', module)
   .add('이근처장소', () => (
     <Tabs
       value={select('현재 탭', ['attractions', 'restaurants'], 'attractions')}
