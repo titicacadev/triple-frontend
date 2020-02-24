@@ -1,7 +1,12 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 import Icon from './icon'
-import { MarginPadding, GlobalSizes, MEDIA_FRAME_OPTIONS } from '../commons'
+import {
+  MarginPadding,
+  GlobalSizes,
+  FrameRatioAndSizes,
+  MEDIA_FRAME_OPTIONS,
+} from '../commons'
 import * as CSS from 'csstype'
 import { formatMarginPadding } from '../mixins'
 
@@ -187,7 +192,7 @@ const ImageFrameWithFixedDimensions = styled(ImageFrameBase)<{
 
 // eslint-disable-next-line no-unexpected-multiline
 const ImageFrameWithFixedRatio = styled(ImageFrameBase)<{
-  frame?: GlobalSizes
+  frame?: FrameRatioAndSizes
 }>`
   padding-top: ${({ frame }) => MEDIA_FRAME_OPTIONS[frame || 'small']};
   width: 100%;
@@ -236,7 +241,7 @@ function Image({
   borderRadius?: number
   circular?: boolean
   sourceUrl?: string
-  frame?: GlobalSizes
+  frame?: FrameRatioAndSizes
   size?: GlobalSizes
   ImageSource?: any
   overlay?: React.ReactNode
