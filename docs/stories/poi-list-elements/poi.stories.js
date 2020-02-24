@@ -66,6 +66,9 @@ storiesOf('poi-list-elements | POI', module)
       resourceScraps={{
         [POI.id]: boolean('저장', false),
       }}
+      additionalInfo={
+        boolean('부가 정보 노출', false) ? <PricingDescription /> : null
+      }
     />
   ))
   .add('TripleDocument 리스트', () => (
