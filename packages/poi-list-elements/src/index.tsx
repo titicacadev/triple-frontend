@@ -6,6 +6,7 @@ import {
   SquareImage,
   ResourceListItem,
   LabelColor,
+  CarouselSizes,
 } from '@titicaca/core-elements'
 import ExtendedResourceListElement, {
   ResourceImage,
@@ -52,6 +53,7 @@ interface PoiCarouselElementProps {
   resourceScraps?: ResourceScrapSet
   description?: React.ReactNode
   additionalInfo?: React.ReactNode
+  carouselSize?: CarouselSizes
 }
 
 interface CompactPoiListElementProps {
@@ -111,6 +113,7 @@ export function PoiCarouselElement({
   resourceScraps,
   description,
   additionalInfo = null,
+  carouselSize,
 }: PoiCarouselElementProps) {
   if (poi) {
     const {
@@ -130,14 +133,14 @@ export function PoiCarouselElement({
     const name = nameOverride || names.ko || names.en || names.local
 
     return (
-      <Carousel.Item size="small" onClick={onClick}>
+      <Carousel.Item size={carouselSize || 'small'} onClick={onClick}>
         <Image
           frame="large"
           asPlaceholder={!image}
           src={image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS[type]}
           alt={name || ''}
         />
-        <Text bold ellipsis alpha={1} margin={{ top: 8 }}>
+        <Text bold ellipsis alpha={1} margin={{ top: 10 }}>
           {name}
         </Text>
         <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { MarginPadding } from '../commons'
+import { MarginPadding, CarouselSizes } from '../commons'
 import * as React from 'react'
 import { marginMixin } from '../mixins'
 
@@ -38,7 +38,7 @@ const CarouselBase = styled.ul<CarouselBaseProps>`
     `};
 `
 
-const CarouselItem = styled.li<{ size?: 'small' | 'medium' | 'large' }>`
+const CarouselItem = styled.li<{ size?: CarouselSizes }>`
   display: inline-block;
   position: relative;
   width: ${({ size }) =>
@@ -50,7 +50,9 @@ const CarouselItem = styled.li<{ size?: 'small' | 'medium' | 'large' }>`
   cursor: pointer;
 
   margin-left: ${({ size }) =>
-    ({ small: '10px', medium: '10px', large: '15px' }[size || 'small'])};
+    ({ small: '10px', medium: '10px', large: '15px', big: '10px' }[
+      size || 'small'
+    ])};
 `
 
 export default class Carousel extends React.PureComponent<CarouselBaseProps> {
