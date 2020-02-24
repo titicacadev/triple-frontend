@@ -18,6 +18,8 @@ import BookingCompletion from '@titicaca/booking-completion'
         '공급사 확인 후 예약이 확정됩니다.',
         '예약이 확정되면 이메일로 바우처가 발송됩니다.',
       ]}
+      regionButtonLabel={text('바르셀로나 여행 준비하러 가기', '바르셀로나 여행 준비하러 가기')}
+      onMoveToRegion={boolean('도시 이동 액션', true) ? () => {} : null}
     />
   </Story>
 </Preview>
