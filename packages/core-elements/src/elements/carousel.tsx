@@ -3,6 +3,20 @@ import { MarginPadding, CarouselSizes } from '../commons'
 import * as React from 'react'
 import { marginMixin } from '../mixins'
 
+const CAROUSEL_WIDTH_SIZES = {
+  small: '140px',
+  medium: '153px',
+  large: '270px',
+  big: '275px',
+}
+
+const CAROUSEL_LEFT_SPACING_SIZES = {
+  small: '10px',
+  medium: '10px',
+  large: '15px',
+  big: '10px',
+}
+
 interface CarouselBaseProps {
   margin?: MarginPadding
   containerPadding?: { left: number; right: number }
@@ -12,7 +26,6 @@ interface CarouselBaseProps {
 const CarouselBase = styled.ul<CarouselBaseProps>`
   margin: 0;
   padding: 0;
-
   padding-bottom: 10px;
 
   ${marginMixin}
@@ -41,18 +54,11 @@ const CarouselBase = styled.ul<CarouselBaseProps>`
 const CarouselItem = styled.li<{ size?: CarouselSizes }>`
   display: inline-block;
   position: relative;
-  width: ${({ size }) =>
-    ({ small: '140px', medium: '153px', large: '270px', big: '275px' }[
-      size || 'small'
-    ])};
+  width: ${({ size }) => CAROUSEL_WIDTH_SIZES[size || 'small']};
+  margin-left: ${({ size }) => CAROUSEL_LEFT_SPACING_SIZES[size || 'small']};
   vertical-align: top;
   white-space: normal;
   cursor: pointer;
-
-  margin-left: ${({ size }) =>
-    ({ small: '10px', medium: '10px', large: '15px', big: '10px' }[
-      size || 'small'
-    ])};
 `
 
 export default class Carousel extends React.PureComponent<CarouselBaseProps> {
