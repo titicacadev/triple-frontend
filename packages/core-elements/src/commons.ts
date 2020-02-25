@@ -35,7 +35,7 @@ export type FrameRatioAndSizes =
   | Exclude<GlobalSizes, 'tiny' | 'massive'>
   | Ratio
 
-const ratio = ['25%', '60%', '60.3%', '75%', '100%', '110%', '160%']
+const ratio = ['25%', '60%', '63.7%', '75%', '100%', '110%', '160%']
 
 export const MEDIA_FRAME_OPTIONS: {
   [key in FrameRatioAndSizes]: string
