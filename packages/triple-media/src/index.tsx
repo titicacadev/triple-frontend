@@ -1,5 +1,5 @@
 import React from 'react'
-import { Video, Image, GlobalSizes } from '@titicaca/core-elements'
+import { Video, Image, FrameRatioAndSizes } from '@titicaca/core-elements'
 
 export interface MediaMeta {
   id: string
@@ -18,7 +18,7 @@ export interface MediaMeta {
     large: { url: string }
     small_square: { url: string }
   }
-  frame?: GlobalSizes
+  frame?: FrameRatioAndSizes
   title?: string
   link?: {
     href: string
