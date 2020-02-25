@@ -1,12 +1,12 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react'
 import styled from 'styled-components'
 
-import { GlobalSizes, MEDIA_FRAME_OPTIONS } from '../../commons'
+import { MEDIA_FRAME_OPTIONS, FrameRatioAndSizes } from '../../commons'
 import Sources from './sources'
 import Controls from './controls'
 
 const VideoContainer = styled.div<{
-  frame: GlobalSizes
+  frame: FrameRatioAndSizes
   fallbackImageUrl: string
   borderRadius?: number
 }>`
@@ -69,7 +69,7 @@ export default function Video({
   cloudinaryBucket?: string
   cloudinaryId?: string
   fallbackImageUrl: string
-  frame: GlobalSizes
+  frame: FrameRatioAndSizes
   autoPlay?: boolean
   borderRadius?: number
   hideControls?: boolean
