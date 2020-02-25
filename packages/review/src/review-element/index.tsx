@@ -18,7 +18,7 @@ type ReviewEventHandler<T = Element, E = Event> = (
 
 export interface ReviewElementProps {
   review: ReviewData
-  myReview?: ReviewData
+  isMyReview: boolean
   index: number
   onUserClick: ReviewEventHandler
   onUnfoldButtonClick?: ReviewEventHandler
@@ -90,7 +90,7 @@ const LikeButton = styled.a<{ liked?: boolean }>`
 
 export default function ReviewElement({
   review,
-  myReview,
+  isMyReview,
   index,
   onUserClick,
   onUnfoldButtonClick,
@@ -208,8 +208,7 @@ export default function ReviewElement({
               ) : null}
             </>
           ) : null}
-          {!blindedAt ||
-          (blindedAt && myReview && review.id === myReview.id) ? (
+          {!blindedAt || (blindedAt && isMyReview) ? (
             <Date floated={likeVisible !== false ? 'right' : undefined}>
               {DateFormatter ? <DateFormatter date={createdAt} /> : createdAt}
               {menuVisible !== false && (
