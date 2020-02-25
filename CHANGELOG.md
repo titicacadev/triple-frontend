@@ -1,6 +1,6 @@
 ## 1.8.0 (2020-02-25)
 
-- `common` lint-staged 출력을 제거합니다.
+- `common` lint-staged 출력을 제거합니다. (#500)
 - `core-elements` 미디어 비율을 추가하고, 비율 값을 key로 가지는 frame 옵션을 추가합니다. (#512)
 - `core-elements` CarouselSizes를 추가하고, 그 값에 따른 크기를 정의합니다. (#508)
 - `core-elements` Video 컨트롤을 추가합니다. (#503)
