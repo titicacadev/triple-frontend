@@ -209,7 +209,7 @@ export default function ReviewElement({
             </>
           ) : null}
           {!blindedAt ||
-          (blindedAt && myReview && review.id !== myReview.id) ? (
+          (blindedAt && myReview && review.id === myReview.id) ? (
             <Date floated={likeVisible !== false ? 'right' : undefined}>
               {DateFormatter ? <DateFormatter date={createdAt} /> : createdAt}
               {menuVisible !== false && (
