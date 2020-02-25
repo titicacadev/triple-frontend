@@ -9,7 +9,7 @@
 ## Usage
 
 ```typescript
-const bookingComplete = require('booking-complete')
+const BookingCompletion = require('booking-complete')
 
 return (
   <BookingCompletion
