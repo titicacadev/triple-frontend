@@ -106,7 +106,13 @@ export default function Video({
       fallbackImageUrl={fallbackImageUrl}
       borderRadius={borderRadius}
     >
-      <VideoFrame autoPlay={autoPlay} loop muted={autoPlay} ref={videoRef}>
+      <VideoFrame
+        autoPlay={autoPlay}
+        loop
+        muted={autoPlay}
+        ref={videoRef}
+        poster={fallbackImageUrl}
+      >
         <Sources
           src={src}
           srcType={srcType}
