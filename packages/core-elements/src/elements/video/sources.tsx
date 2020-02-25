@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { GlobalSizes, MEDIA_FRAME_OPTIONS } from '../../commons'
+import { FrameRatioAndSizes, MEDIA_FRAME_OPTIONS } from '../../commons'
 
 const MEDIA_CDN_URL_BASE = 'https://media.triple.guide'
 const FORMATS = ['webm', 'mp4', 'ogv']
@@ -16,7 +16,7 @@ export default function Sources({
   srcType?: string
   cloudinaryBucket?: string
   cloudinaryId?: string
-  frame: GlobalSizes
+  frame: FrameRatioAndSizes
 }) {
   const matchData = (MEDIA_FRAME_OPTIONS[frame] || '').match(/^(\d+)%$/)
 
