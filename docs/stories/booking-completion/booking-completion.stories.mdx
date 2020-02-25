@@ -9,17 +9,15 @@ import BookingCompletion from '@titicaca/booking-completion'
 <Preview>
   <Story name="Default">
     <BookingCompletion
+      title={'발권이\n완료되었습니다.'}
       onMoveToBookingDetail={
         boolean('내 예약 상세 액션', true) ? () => {} : null
       }
-      onMoveToList={boolean('리스트 이동 액션', true) ? () => {} : null}
-      listButtonLabel={text('다른 상품 더보기', '다른 호텔 더보기')}
       descriptions={[
         '공급사 확인 후 예약이 확정됩니다.',
         '예약이 확정되면 이메일로 바우처가 발송됩니다.',
       ]}
-      regionButtonLabel={text('바르셀로나 여행 준비하러 가기', '바르셀로나 여행 준비하러 가기')}
-      onMoveToRegion={boolean('도시 이동 액션', true) ? () => {} : null}
+      region={{ id: regionId, names: { ko: '바르셀로나', en: 'Barcelona' } }}
     />
   </Story>
 </Preview>
