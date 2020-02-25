@@ -1,3 +1,19 @@
+## 1.8.0 (2020-02-25)
+
+- `common` lint-staged 출력을 제거합니다.
+- `core-elements` 미디어 비율을 추가하고, 비율 값을 key로 가지는 frame 옵션을 추가합니다. (#512)
+- `core-elements` CarouselSizes를 추가하고, 그 값에 따른 크기를 정의합니다. (#508)
+- `core-elements` Video 컨트롤을 추가합니다. (#503)
+- `core-elements` Container에 display, scroll 관련 prop을 추가합니다. (#501)
+- `booking-completion` 도시 메인으로 가는 버튼을 추가합니다. (#506)
+- `footer` 항공 문의 메시지를 추가합니다 (#499)
+- `poi-list-element` PoiCarouselElement가 부가 정보를 노출 할 수 있도록 prop을 추가합니다. (#509)
+- `poi-list-element` PoiCarouselElement가 커스텀 텍스트를 사용할 수 있도록 prop을 추가합니다. (#498)
+- `poi-list-element` 스크랩 관련 prop이 없으면 스크랩 버튼을 비활성화하는 조건을 추가합니다. (#495)
+- `review` 리뷰 컴포넌트 더보기의 노출 조건을 변경합니다. (#510)
+- `triple-document` Video를 지원합니다. (#361)
+- `triple-frontend-docs` 스토리를 패키지별로 분류합니다. (#505)
+
 ## 1.7.1 (2020-02-20)
 - `core-elements` SearchNavBar 컴포넌트에서 누락된 `onKeyUp` props를 추가합니다. #492
 - `search` onDelete 핸들러에 방금 삭제한 키워드를 전달합니다. #494 #490
