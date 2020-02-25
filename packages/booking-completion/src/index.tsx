@@ -1,12 +1,21 @@
 import React from 'react'
 import { Container, Text, Button } from '@titicaca/core-elements'
+import { useHistoryContext } from '@titicaca/react-contexts'
 import styled from 'styled-components'
+
+interface Region {
+  id: string
+  names: {
+    ko?: string
+    en?: string
+  }
+}
 
 interface BookingCompletionProps {
   title?: string
-  onMoveToBookingDetail?: () => void
-  onMoveToMain?: () => void
+  onMoveToBookingDetail: () => void
   descriptions?: string[]
+  region?: Region
 }
 
 const DescriptionText = styled(Text)`
@@ -35,10 +44,10 @@ const RegionButton = styled(Button)`
 function BookingCompletion({
   title,
   onMoveToBookingDetail,
-  onMoveToMain,
   descriptions,
-  children,
-}: React.PropsWithChildren<BookingCompletionProps>) {
+  region,
+}: BookingCompletionProps) {
+  const { navigate } = useHistoryContext()
   return (
     <>
       <Container margin={{ bottom: 12 }}>
@@ -71,20 +80,26 @@ function BookingCompletion({
           >
             내 예약에서 확인
           </Button>
-          {onMoveToMain ? (
-            <Button
-              basic
-              inverted
-              color="gray"
-              size="small"
-              onClick={onMoveToMain}
-            >
-              메인으로 가기
-            </Button>
-          ) : null}
+          <Button
+            basic
+            inverted
+            color="gray"
+            size="small"
+            onClick={() => navigate('/main')}
+          >
+            메인으로 가기
+          </Button>
         </Button.Group>
       </Container>
-      {children}
+      {region ? (
+        <RegionButton
+          fluid
+          margin={{ top: 6 }}
+          onClick={() => navigate(`/regions/${region.id}`)}
+        >
+          {region.names.ko || region.names.en} 여행 준비하러 가기
+        </RegionButton>
+      ) : null}
     </>
   )
 }
