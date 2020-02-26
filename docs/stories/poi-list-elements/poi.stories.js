@@ -75,7 +75,7 @@ storiesOf('poi-list-elements | POI', module)
         ['big', 'small', 'mini', 'tiny', 'medium', 'large', 'huge', 'massive'],
         undefined,
       )}
-      frame={select(
+      imageFrame={select(
         '프레임 크기',
         ['4:1', '5:3', '11:7', '4:3', '1:1', '10:11', '5:8'],
         undefined,
