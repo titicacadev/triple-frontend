@@ -109,6 +109,7 @@ export default function Video({
       <VideoFrame
         autoPlay={autoPlay}
         loop
+        playsInline
         muted={autoPlay}
         ref={videoRef}
         poster={fallbackImageUrl}
