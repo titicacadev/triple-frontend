@@ -4,9 +4,9 @@ import styled from 'styled-components'
 import { debounce } from '@titicaca/view-utilities'
 
 const PLAY_BUTTON_IMAGE_URL =
-  'https://assets.triple-dev.titicaca-corp.com/images/btn-video-play@3x.png'
+  'https://assets.triple.guide/images/btn-video-play@3x.png'
 const PAUSE_BUTTON_IMAGE_URL =
-  'https://assets.triple-dev.titicaca-corp.com/images/btn-video-stop@3x.png'
+  'https://assets.triple.guide/images/btn-video-stop@3x.png'
 
 const PlayPauseButtonBase = styled.button<{
   playing: boolean

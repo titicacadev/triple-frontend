@@ -39,7 +39,7 @@ const Pending = styled.div`
   border-radius: 30px;
   top: 50%;
   left: 50%;
-  background-image: url(https://assets.triple-dev.titicaca-corp.com/images/img-video-loading@3x.png);
+  background-image: url(https://assets.triple.guide/images/img-video-loading@3x.png);
   background-size: cover;
   animation: rotation 2s infinite linear;
 

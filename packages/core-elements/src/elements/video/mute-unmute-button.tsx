@@ -4,9 +4,9 @@ import styled from 'styled-components'
 import { debounce } from '@titicaca/view-utilities'
 
 const MUTE_BUTTON_IMAGE_URL =
-  'https://assets.triple-dev.titicaca-corp.com/images/btn-video-volume-mute@3x.png'
+  'https://assets.triple.guide/images/btn-video-volume-mute@3x.png'
 const UNMUTE_BUTTON_IMAGE_URL =
-  'https://assets.triple-dev.titicaca-corp.com/images/btn-video-volume-up@3x.png'
+  'https://assets.triple.guide/images/btn-video-volume-up@3x.png'
 
 const MuteUnmuteButtonBase = styled.button<{
   muted: boolean
