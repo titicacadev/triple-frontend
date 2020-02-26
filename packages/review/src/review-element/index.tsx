@@ -227,7 +227,7 @@ export default function ReviewElement({
 
 function Score({ score }: { score?: number }) {
   return (
-    <Container floated="right">
+    <Container margin={{ top: 20 }}>
       <Rating size="tiny" score={score} />
     </Container>
   )
