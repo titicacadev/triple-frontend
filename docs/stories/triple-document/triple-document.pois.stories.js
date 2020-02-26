@@ -21,7 +21,7 @@ storiesOf('TripleDocument | TripleDocument.POI', module)
     <Pois
       resourceScraps={{}}
       value={{
-        pois: POIS.map(({ source: { image, ...source }, ...rest }) => ({
+        pois: POIS.map(({ source: { ...source }, ...rest }) => ({
           source,
           ...rest,
         })),
@@ -42,7 +42,7 @@ storiesOf('TripleDocument | TripleDocument.POI', module)
     <Pois
       resourceScraps={{}}
       value={{
-        pois: POIS.map(({ source: { image, ...source }, ...rest }) => ({
+        pois: POIS.map(({ source: { ...source }, ...rest }) => ({
           source,
           ...rest,
         })),

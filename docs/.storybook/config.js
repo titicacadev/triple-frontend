@@ -23,4 +23,7 @@ addParameters({
 })
 
 // automatically import all files ending in *.stories.js
-configure(require.context('../stories', true, /\.stories\.(js|mdx)$/), module)
+configure(
+  require.context('../stories', true, /\.stories\.(js|mdx|tsx)$/),
+  module,
+)

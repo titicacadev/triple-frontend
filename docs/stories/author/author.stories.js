@@ -23,6 +23,7 @@ storiesOf('author | Author', module).add('일반', () => (
             url:
               'https://res.cloudinary.com/triple-dev/image/upload/w_1024,h_1024,c_limit,f_auto/568dea0a-c04a-403a-84c8-ae5171878c6a.jpg',
           },
+          /* eslint-disable @typescript-eslint/camelcase */
           small_square: {
             url:
               'https://res.cloudinary.com/triple-dev/image/upload/w_256,h_256,c_fill,f_auto/568dea0a-c04a-403a-84c8-ae5171878c6a.jpg',
