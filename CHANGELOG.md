@@ -1,3 +1,7 @@
+## 1.9.0 (2020-03-04) (Draft)
+- `core-elements` List 컴포넌트에 dividerWeight prop을 추가합니다. (#514 #518)
+   - verticalGap 과 divider 의 내부 구현방식을 개선합니다.
+
 ## 1.8.0 (2020-02-25)
 
 - `common` lint-staged 출력을 제거합니다. (#500)
