@@ -7,6 +7,7 @@ import {
   ResourceListItem,
   LabelColor,
   CarouselSizes,
+  FrameRatioAndSizes,
 } from '@titicaca/core-elements'
 import ExtendedResourceListElement, {
   ResourceImage,
@@ -55,6 +56,7 @@ interface PoiCarouselElementProps {
   additionalInfo?: React.ReactNode
   carouselSize?: CarouselSizes
   titleTopSpacing?: number
+  frame?: FrameRatioAndSizes
 }
 
 interface CompactPoiListElementProps {
@@ -116,6 +118,7 @@ export function PoiCarouselElement({
   additionalInfo = null,
   carouselSize,
   titleTopSpacing = 10,
+  frame,
 }: PoiCarouselElementProps) {
   if (poi) {
     const {
@@ -137,7 +140,7 @@ export function PoiCarouselElement({
     return (
       <Carousel.Item size={carouselSize || 'small'} onClick={onClick}>
         <Image
-          frame="large"
+          frame={frame || 'large'}
           asPlaceholder={!image}
           src={image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS[type]}
           alt={name || ''}
