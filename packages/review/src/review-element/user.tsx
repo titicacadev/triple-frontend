@@ -5,8 +5,8 @@ import { UserData } from '../types'
 
 const UserPhoto = styled.img`
   margin-right: 9px;
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   float: left;
   background-color: #efefef;
   border-radius: 19px;
@@ -42,7 +42,7 @@ export default function User({
       <Name onClick={onClick}>{name}</Name>
       <UserExtra>
         <span onClick={onClick}>
-          {level ? `LEVEL ${level} / ${point}포인트` : `${point}포인트`}
+          {level ? `LEVEL ${level} · ${point}포인트` : `${point}포인트`}
         </span>
         {children}
       </UserExtra>
@@ -55,7 +55,7 @@ function Name({
   children,
 }: PropsWithChildren<{ onClick?: MouseEventHandler<HTMLDivElement> }>) {
   return (
-    <Text bold size="large" color="gray" onClick={onClick}>
+    <Text bold size="medium" color="gray" onClick={onClick}>
       {children}
     </Text>
   )
@@ -69,8 +69,7 @@ function UserExtra({
 }>) {
   return (
     <Text
-      margin={{ top: 4 }}
-      bold
+      margin={{ top: 3 }}
       size="mini"
       color="gray"
       alpha={0.3}
