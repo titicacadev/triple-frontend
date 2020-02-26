@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, number } from '@storybook/addon-knobs'
+import { boolean, number, select } from '@storybook/addon-knobs'
 import { List, Container, Text } from '@titicaca/core-elements'
 import { PoiCarouselElement, PoiListElement } from '@titicaca/poi-list-elements'
 
@@ -70,6 +70,16 @@ storiesOf('poi-list-elements | POI', module)
       additionalInfo={
         boolean('부가 정보 노출', false) ? <PricingDescription /> : null
       }
+      carouselSize={select(
+        '캐러셀 크기',
+        ['big', 'small', 'mini', 'tiny', 'medium', 'large', 'huge', 'massive'],
+        undefined,
+      )}
+      frame={select(
+        '프레임 크기',
+        ['4:1', '5:3', '11:7', '4:3', '1:1', '10:11', '5:8'],
+        undefined,
+      )}
     />
   ))
   .add('TripleDocument 리스트', () => (
