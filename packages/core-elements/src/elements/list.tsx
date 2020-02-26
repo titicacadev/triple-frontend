@@ -15,7 +15,7 @@ interface DividerOptions {
   dividerWeight?: number
 }
 
-interface ListItemProps {
+export interface ListItemProps {
   margin?: MarginPadding
   noDivider?: boolean
   minHeight?: number
