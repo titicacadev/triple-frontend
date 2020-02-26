@@ -4,5 +4,5 @@
     "resolveJsonModule": true
   },
   "include": ["stories"],
-  "exclude": ["node_modules", "server/*"]
+  "exclude": ["node_modules"]
 }
