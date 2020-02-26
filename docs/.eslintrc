@@ -1,0 +1,6 @@
+{
+  "extends": "@titicaca/eslint-config-triple/typescript",
+  "rules": {
+    "@typescript-eslint/no-empty-function": "off"
+  }
+}

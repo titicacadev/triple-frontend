@@ -1,12 +1,10 @@
-const path = require('path')
-
 module.exports = {
-  mode: 'development',
-  module: {
-    rules: [
-      {
-        test: /\.(js|ts|tsx)$/,
-        use: {
+  webpackFinal: async (config, { configType }) => {
+    config.mode = 'development'
+    config.module.rules.push({
+      test: /\.(js|ts|tsx)$/,
+      use: [
+        {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/env', '@babel/react'],
@@ -19,10 +17,13 @@ module.exports = {
             ],
           },
         },
-        resolve: {
-          extensions: ['.js', '.ts', '.tsx'],
-        },
+        require.resolve('react-docgen-typescript-loader'),
+      ],
+      resolve: {
+        extensions: ['.js', '.ts', '.tsx'],
       },
-    ],
+    })
+
+    return config
   },
 }

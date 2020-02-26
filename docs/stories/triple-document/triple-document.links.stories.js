@@ -75,6 +75,7 @@ storiesOf('TripleDocument | TripleDocument.링크', module)
                   url:
                     'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/1c22ae37-108f-44a7-b96b-1d70179b0b3f.jpeg',
                 },
+                /* eslint-disable @typescript-eslint/camelcase */
                 small_square: {
                   url:
                     'https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/1c22ae37-108f-44a7-b96b-1d70179b0b3f.jpeg',
