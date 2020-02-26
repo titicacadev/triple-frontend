@@ -24,8 +24,7 @@ const ACTIVE_EXPANDER_ICON_URL =
   'https://assets.triple.guide/images/ico-category-select-on.svg'
 const INACTIVE_EXPANDER_ICON_URL =
   'https://assets.triple.guide/images/ico-category-select.svg'
-const PRIMARY_ICON_URL =
-  'https://assets.triple-dev.titicaca-corp.com/images/ico-filter-cal.svg'
+const PRIMARY_ICON_URL = 'https://assets.triple.guide/images/ico-filter-cal.svg'
 
 // eslint-disable-next-line no-unexpected-multiline
 const ExpandingFilterEntryFrame = styled(FilterEntryBase)<{
