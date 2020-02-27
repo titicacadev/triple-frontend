@@ -68,7 +68,7 @@ export default function MyReviewActionSheet({
         open={uriHash === HASH_MY_REVIEW_ACTION_SHEET}
         onClose={back}
       >
-        {!myReview.blindedAt ? (
+        {myReview && !myReview.blindedAt ? (
           <ActionSheet.Item
             icon="review"
             onClick={onReviewEdit || handleEditMenuClick}
