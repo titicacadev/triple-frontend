@@ -18,11 +18,14 @@ jobs:
     - uses: actions/checkout@v2-beta
 
     - name: Notify build start to slack
+      uses: rtCamp/action-slack-notify@v2.0.0
       env:
-        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-      uses: pullreminders/slack-action@master
-      with:
-        args: ${{ format('{{\"channel\":\"CMSJHHMA4\",\"attachments\":[{{\"title\":\"Build WORKING\",\"title_link\":\"https://github.com/titicacadev/triple-frontend/actions/runs/{0}\",\"text\":\"{1}\",\"color\":\"gray\"}}]}}', github.run_id, github.ref) }}
+        SLACK_CHANNEL: CMSJHHMA4
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_USERNAME: GHA Notifications
+        SLACK_ICON_EMOJI: ':gg:'
+        SLACK_COLOR: gray
+        SLACK_TITLE: Build WORKING
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
