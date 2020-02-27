@@ -45,12 +45,12 @@ storiesOf('Reviews | Reviews', module).add('일반', () => (
           }}
           resourceId={text(
             'Resource ID',
-            '95af0432-c604-4c50-bfaf-6758ee0dc339',
+            'f79d6799-e5f0-4485-afb1-2c57c5eca661',
           )}
           resourceType={select(
             'Resource Type',
             ['poi', 'tna', 'article', 'hotel'],
-            'tna',
+            'poi',
           )}
           placeholderText={text('placeholder text', '이 투어·티켓 어떠셨나요?')}
           onFullListButtonClick={action('onFullListButtonClick')}

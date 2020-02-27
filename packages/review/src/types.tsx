@@ -1,6 +1,11 @@
 import React from 'react'
 
-export type ResourceType = 'article' | string
+export type ResourceType =
+  | 'article'
+  | 'attraction'
+  | 'restaurant'
+  | 'tna'
+  | 'hotel'
 
 export interface UserData {
   photo: string

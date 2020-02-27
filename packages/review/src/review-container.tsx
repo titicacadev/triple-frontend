@@ -123,12 +123,14 @@ export default function ReviewContainer({
         ] = await Promise.all([
           fetchMyReview({ resourceType, resourceId }),
           fetchReviewsCount({ resourceType, resourceId }),
-          fetchReviewRateDescrption({ resourceType }),
+          resourceType === 'article'
+            ? null
+            : fetchReviewRateDescrption({ resourceType }),
         ])
 
         setMyReview(fetchedMyReview)
         setReviewsCount(fetchedReviewsCount)
-        setReviewRateDescriptions(fetchedReviewRateDescrption)
+        setReviewRateDescriptions(fetchedReviewRateDescrption || [])
       }
     }
 
