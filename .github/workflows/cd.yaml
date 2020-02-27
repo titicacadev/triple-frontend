@@ -18,11 +18,14 @@ jobs:
     - uses: actions/checkout@v2-beta
 
     - name: Notify release start to slack
+      uses: rtCamp/action-slack-notify@v2.0.0
       env:
-        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-      uses: pullreminders/slack-action@master
-      with:
-        args: ${{ format('{{\"channel\":\"CMSJHHMA4\",\"attachments\":[{{\"title\":\"Deploy WORKING\",\"title_link\":\"https://github.com/titicacadev/triple-frontend/actions/runs/{0}\",\"text\":\"{1}\",\"color\":\"gray\"}}]}}', github.run_id, github.ref) }}
+        SLACK_CHANNEL: CMSJHHMA4
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_USERNAME: GHA Notifications
+        SLACK_ICON_EMOJI: ${{ ':gg:' }}
+        SLACK_COLOR: gray
+        SLACK_TITLE: Deploy WORKING
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
@@ -78,15 +81,21 @@ jobs:
         fi
     - name: Notify deploy success to slack
       if: success()
+      uses: rtCamp/action-slack-notify@v2.0.0
       env:
-        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-      uses: pullreminders/slack-action@master
-      with:
-        args: ${{ format('{{\"channel\":\"CMSJHHMA4\",\"attachments\":[{{\"title\":\"Deploy SUCCESS\",\"title_link\":\"https://github.com/titicacadev/triple-frontend/actions/runs/{0}\",\"text\":\"{1}\",\"color\":\"good\"}}]}}', github.run_id, github.ref) }}
+        SLACK_CHANNEL: CMSJHHMA4
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_USERNAME: GHA Notifications
+        SLACK_ICON_EMOJI: ${{ ':gg:' }}
+        SLACK_COLOR: good
+        SLACK_TITLE: Deploy SUCCESS
     - name: Notify deploy fail to slack
       if: failure()
+      uses: rtCamp/action-slack-notify@v2.0.0
       env:
-        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-      uses: pullreminders/slack-action@master
-      with:
-        args: ${{ format('{{\"channel\":\"CMSJHHMA4\",\"attachments\":[{{\"title\":\"Deploy FAIL\",\"title_link\":\"https://github.com/titicacadev/triple-frontend/actions/runs/{0}\",\"text\":\"{1}\",\"color\":\"warning\"}}]}}', github.run_id, github.ref) }}
+        SLACK_CHANNEL: CMSJHHMA4
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_USERNAME: GHA Notifications
+        SLACK_ICON_EMOJI: ${{ ':gg:' }}
+        SLACK_COLOR: warining
+        SLACK_TITLE: Deploy FAIL
