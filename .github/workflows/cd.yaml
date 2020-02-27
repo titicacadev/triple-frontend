@@ -24,7 +24,7 @@ jobs:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_USERNAME: GHA Notifications
         SLACK_ICON_EMOJI: ${{ ':gg:' }}
-        SLACK_COLOR: gray
+        SLACK_COLOR: good
         SLACK_TITLE: Deploy WORKING
 
     - name: Use Node.js ${{ matrix.node-version }}
