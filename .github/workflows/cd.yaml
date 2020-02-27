@@ -8,6 +8,17 @@ on:
       - 'release-prod-*'
 
 jobs:
+  pre-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Notify release start to slack
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        uses: pullreminders/slack-action@master
+        with:
+          args: ${{ format('{{\"channel\":\"CMSJHHMA4\",\"attachments\":[{{\"title\":\"Deploy WORKING\",\"title_link\":\"https://github.com/titicacadev/triple-frontend/actions/runs/{0}\",\"text\":\"{1}\",\"color\":\"gray\"}}]}}', github.run_id, github.ref) }}
+
   release:
     runs-on: ubuntu-latest
     strategy:
@@ -68,3 +79,17 @@ jobs:
             -H 'Content-Type: application/json' \
             -d "{\"ref\":\"refs/tags/${VERSION}\",\"sha\":\"${TAG_SHA}\"}"
         fi
+    - name: Notify deploy success to slack
+      if: success()
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      uses: pullreminders/slack-action@master
+      with:
+        args: ${{ format('{{\"channel\":\"CMSJHHMA4\",\"attachments\":[{{\"title\":\"Deploy SUCCESS\",\"title_link\":\"https://github.com/titicacadev/triple-frontend/actions/runs/{0}\",\"text\":\"{1}\",\"color\":\"good\"}}]}}', github.run_id, github.ref) }}
+    - name: Notify deploy fail to slack
+      if: failure()
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      uses: pullreminders/slack-action@master
+      with:
+        args: ${{ format('{{\"channel\":\"CMSJHHMA4\",\"attachments\":[{{\"title\":\"Deploy FAIL\",\"title_link\":\"https://github.com/titicacadev/triple-frontend/actions/runs/{0}\",\"text\":\"{1}\",\"color\":\"warning\"}}]}}', github.run_id, github.ref) }}
