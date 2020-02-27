@@ -31,6 +31,7 @@ export interface ReviewElementProps {
     image: ImageEntity,
   ) => void
   onShow?: (index: number) => void
+  reviewRateDescriptions?: string[]
   likeVisible?: boolean
   menuVisible?: boolean
   DateFormatter?: ComponentType<{ date: string }>
@@ -102,6 +103,7 @@ export default function ReviewElement({
   likeVisible,
   menuVisible,
   DateFormatter,
+  reviewRateDescriptions,
   resourceId,
 }: ReviewElementProps) {
   const [unfolded, setUnfolded] = useState(false)
@@ -128,23 +130,19 @@ export default function ReviewElement({
         <Content>
           {blindedAt ? (
             '신고가 접수되어 블라인드 처리되었습니다.'
-          ) : unfolded ? (
-            comment
+          ) : comment ? (
+            unfolded ? (
+              comment
+            ) : (
+              <FoldableComment
+                comment={comment}
+                onUnfoldButtonClick={() => {}}
+              />
+            )
           ) : (
-            <FoldableComment
-              comment={comment}
-              onUnfoldButtonClick={(e) => {
-                trackEvent({
-                  ga: ['리뷰_리뷰글더보기'],
-                  fa: {
-                    action: '리뷰_리뷰글더보기',
-                    item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
-                  },
-                })
-                setUnfolded(true)
-
-                onUnfoldButtonClick && onUnfoldButtonClick(e, review)
-              }}
+            <RateDescription
+              rating={rating}
+              reviewRateDescriptions={reviewRateDescriptions}
             />
           )}
           {!blindedAt && (
@@ -254,4 +252,16 @@ function Date({
   children,
 }: PropsWithChildren<{ floated?: CSS.FloatProperty }>) {
   return <Container floated={floated}>{children}</Container>
+}
+
+function RateDescription({
+  rating,
+  reviewRateDescriptions,
+}: {
+  rating?: number | null | undefined
+  reviewRateDescriptions: string[] | undefined
+}) {
+  const comment =
+    rating && reviewRateDescriptions ? reviewRateDescriptions[rating] : ''
+  return <Comment>{comment}</Comment>
 }

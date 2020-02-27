@@ -12,10 +12,11 @@ import {
   fetchMyReview,
   writeReview,
   fetchReviewsCount,
+  fetchReviewRateDescrption,
 } from './review-api-clients'
 import ReviewsPlaceholder from './review-placeholder-with-rating'
 import ReviewsList from './reviews-list'
-import { ReviewProps } from './types'
+import { ReviewProps, ReviewData } from './types'
 import SortingOptions, {
   DEFAULT_SORTING_OPTION,
   ORDER_BY_RECENCY,
@@ -88,9 +89,12 @@ export default function ReviewContainer({
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
   const [[myReview, myReviewIds], setMyReviewStatus] = useState<
-    [any, Set<string>]
+    [ReviewData | undefined, Set<string>]
   >([undefined, new Set([])])
   const [reviewsCount, setReviewsCount] = useState(initialReviewsCount)
+  const [reviewRateDescriptions, setReviewRateDescriptions] = useState<
+    string[]
+  >([])
   const { navigate } = useHistoryContext()
   const { show } = useTransitionModal()
 
@@ -112,13 +116,19 @@ export default function ReviewContainer({
       const { id } = params
 
       if (id && id === resourceId) {
-        const [fetchedMyReview, fetchedReviewsCount] = await Promise.all([
+        const [
+          fetchedMyReview,
+          fetchedReviewsCount,
+          fetchedReviewRateDescrption,
+        ] = await Promise.all([
           fetchMyReview({ resourceType, resourceId }),
           fetchReviewsCount({ resourceType, resourceId }),
+          fetchReviewRateDescrption({ resourceType }),
         ])
 
         setMyReview(fetchedMyReview)
         setReviewsCount(fetchedReviewsCount)
+        setReviewRateDescriptions(fetchedReviewRateDescrption)
       }
     }
 
@@ -265,6 +275,7 @@ export default function ReviewContainer({
             margin={{ top: 30 }}
             resourceId={resourceId}
             showToast={showToast}
+            reviewRateDescriptions={reviewRateDescriptions}
             fetchNext={!shortened ? fetchNext : undefined}
           />
         </>
@@ -319,19 +330,21 @@ export default function ReviewContainer({
         </MileageButton>
       ) : null}
 
-      <MyReviewActionSheet
-        myReview={myReview}
-        appUrlScheme={appUrlScheme}
-        regionId={regionId}
-        resourceType={resourceType}
-        resourceId={resourceId}
-        notifyReviewDeleted={(resourceId, reviewId) => {
-          myReview && reviewId === myReview.id && setMyReview(null)
-          notifyReviewDeleted(resourceId, reviewId)
-        }}
-        onReviewEdit={onReviewWrite}
-        onReviewDelete={onReviewDelete}
-      />
+      {myReview ? (
+        <MyReviewActionSheet
+          myReview={myReview}
+          appUrlScheme={appUrlScheme}
+          regionId={regionId}
+          resourceType={resourceType}
+          resourceId={resourceId}
+          notifyReviewDeleted={(resourceId, reviewId) => {
+            reviewId === myReview.id && setMyReview(null)
+            notifyReviewDeleted(resourceId, reviewId)
+          }}
+          onReviewEdit={onReviewWrite}
+          onReviewDelete={onReviewDelete}
+        />
+      ) : null}
     </Section>
   )
 }

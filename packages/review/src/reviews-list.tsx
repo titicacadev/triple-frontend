@@ -33,6 +33,7 @@ export default function ReviewsList({
   resourceId,
   regionId,
   maxLength,
+  reviewRateDescriptions,
   showToast,
 }: {
   myReview?: ReviewData
@@ -44,6 +45,7 @@ export default function ReviewsList({
   resourceId: string
   regionId: string
   maxLength?: number
+  reviewRateDescriptions?: string[]
   showToast: AppNativeActionProps['showToast']
 }) {
   const [selectedReview, setSelectedReview] = useState<ReviewData | undefined>(
@@ -170,6 +172,7 @@ export default function ReviewsList({
             key={review.id}
             index={i}
             review={review}
+            reviewRateDescriptions={reviewRateDescriptions}
             onUserClick={handleUserClick}
             onLikeButtonClick={handleLikeButtonClick}
             onLikesCountClick={handleLikesCountClick}
