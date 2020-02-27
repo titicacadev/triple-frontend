@@ -8,17 +8,6 @@ on:
       - '**'
 
 jobs:
-  pre-build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Notify build start to slack
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-        uses: pullreminders/slack-action@master
-        with:
-          args: ${{ format('{{\"channel\":\"CMSJHHMA4\",\"attachments\":[{{\"title\":\"Build WORKING\",\"title_link\":\"https://github.com/titicacadev/triple-frontend/actions/runs/{0}\",\"text\":\"{1}\",\"color\":\"gray\"}}]}}', github.run_id, github.ref) }}
-
   build:
     runs-on: ubuntu-latest
     strategy:
@@ -27,6 +16,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2-beta
+
+    - name: Notify build start to slack
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      uses: pullreminders/slack-action@master
+      with:
+        args: ${{ format('{{\"channel\":\"CMSJHHMA4\",\"attachments\":[{{\"title\":\"Build WORKING\",\"title_link\":\"https://github.com/titicacadev/triple-frontend/actions/runs/{0}\",\"text\":\"{1}\",\"color\":\"gray\"}}]}}', github.run_id, github.ref) }}
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
