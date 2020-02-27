@@ -8,7 +8,18 @@ on:
       - '**'
 
 jobs:
+  pre-build:
+    steps:
+      - name: Notify build start to slack
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        uses: pullreminders/slack-action@master
+        with:
+          args: '{\"channel\":\"CMSJHHMA4\",\"text\":\"Build WORKING\"}'
+
   build:
+    needs: pre-build
+
     runs-on: ubuntu-latest
     strategy:
       matrix:
