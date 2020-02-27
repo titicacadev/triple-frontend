@@ -8,12 +8,6 @@ on:
       - 'release-prod-*'
 
 jobs:
-  pre-release:
-    runs-on: ubuntu-latest
-
-    steps:
-
-
   release:
     runs-on: ubuntu-latest
     strategy:
