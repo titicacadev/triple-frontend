@@ -23,7 +23,7 @@ jobs:
         SLACK_CHANNEL: CMSJHHMA4
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_USERNAME: GHA Notifications
-        SLACK_ICON_EMOJI: ${{ ':gg:' }}
+        SLACK_ICON_EMOJI: ':gear:'
         SLACK_COLOR: good
         SLACK_TITLE: Deploy WORKING
 
@@ -86,9 +86,9 @@ jobs:
         SLACK_CHANNEL: CMSJHHMA4
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_USERNAME: GHA Notifications
-        SLACK_ICON_EMOJI: ${{ ':gg:' }}
+        SLACK_ICON_EMOJI: ':gear:'
         SLACK_COLOR: good
-        SLACK_TITLE: Deploy SUCCESS
+        SLACK_TITLE: ${{ ':rocket:' }} Deploy SUCCESS
     - name: Notify deploy fail to slack
       if: failure()
       uses: rtCamp/action-slack-notify@v2.0.0
@@ -96,6 +96,6 @@ jobs:
         SLACK_CHANNEL: CMSJHHMA4
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_USERNAME: GHA Notifications
-        SLACK_ICON_EMOJI: ${{ ':gg:' }}
+        SLACK_ICON_EMOJI: ':gear:'
         SLACK_COLOR: warining
-        SLACK_TITLE: Deploy FAIL
+        SLACK_TITLE: ${{ ':x:' }} Deploy FAIL

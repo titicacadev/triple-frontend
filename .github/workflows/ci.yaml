@@ -23,7 +23,7 @@ jobs:
         SLACK_CHANNEL: CMSJHHMA4
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_USERNAME: GHA Notifications
-        SLACK_ICON_EMOJI: ${{ ':gg:' }}
+        SLACK_ICON_EMOJI: ':gear:'
         SLACK_COLOR: good
         SLACK_TITLE: Build WORKING
 
@@ -56,9 +56,9 @@ jobs:
         SLACK_CHANNEL: CMSJHHMA4
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_USERNAME: GHA Notifications
-        SLACK_ICON_EMOJI: ${{ ':gg:' }}
+        SLACK_ICON_EMOJI: ':gear:'
         SLACK_COLOR: good
-        SLACK_TITLE: Build SUCCESS
+        SLACK_TITLE: ${{ ':tada:' }} Build SUCCESS
 
     - name: Notify build and test fail to slack
       if: failure()
@@ -67,9 +67,9 @@ jobs:
         SLACK_CHANNEL: CMSJHHMA4
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_USERNAME: GHA Notifications
-        SLACK_ICON_EMOJI: ${{ ':gg:' }}
+        SLACK_ICON_EMOJI: ':gear:'
         SLACK_COLOR: warining
-        SLACK_TITLE: Build FAIL
+        SLACK_TITLE: ${{ ':x:' }} Build FAIL
     - name: Canary Release
       run: |
         git stash
