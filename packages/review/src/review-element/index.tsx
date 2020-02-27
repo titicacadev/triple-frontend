@@ -57,9 +57,9 @@ const Images = styled.div`
   }
 
   img {
-    width: 80px;
-    height: 80px;
-    border-radius: 3px;
+    width: 275px;
+    height: 175px;
+    border-radius: 4px;
     object-fit: cover;
     cursor: pointer;
 
@@ -152,7 +152,7 @@ export default function ReviewElement({
               {(media || []).map((image, i) => (
                 <img
                   key={i}
-                  src={image.sizes.smallSquare.url}
+                  src={image.sizes.large.url}
                   onClick={(e) => {
                     trackEvent({
                       ga: ['리뷰_리뷰사진썸네일'],
@@ -235,7 +235,7 @@ function Score({ score }: { score?: number }) {
 
 function Content({ children }: PropsWithChildren<{}>) {
   return (
-    <Container margin={{ top: 17 }} clearing>
+    <Container margin={{ top: 15 }} clearing>
       <Comment>{children}</Comment>
     </Container>
   )
