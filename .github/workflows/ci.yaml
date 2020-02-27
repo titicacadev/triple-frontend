@@ -17,7 +17,7 @@ jobs:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         uses: pullreminders/slack-action@master
         with:
-          args: format('{{\"channel\":\"CMSJHHMA4\",\"attachments\":[{{\"title\":\"Build WORKING\",\"title_link\":\"https://github.com/titicacadev/triple-frontend/actions/runs/{0}\",\"text\":\"{1}\",\"color\":\"gray\",\"author_name\":\"{2}\"}}]}}', github.run_id, github.workspace, github.actor)
+          args: ${{ format('{{\"channel\":\"CMSJHHMA4\",\"attachments\":[{{\"title\":\"Build WORKING\",\"title_link\":\"https://github.com/titicacadev/triple-frontend/actions/runs/{0}\",\"text\":\"{1}\",\"color\":\"gray\",\"author_name\":\"{2}\"}}]}}', github.run_id, github.workspace, github.actor) }}
 
   build:
     needs: pre-build
@@ -57,14 +57,14 @@ jobs:
         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       uses: pullreminders/slack-action@master
       with:
-        args: format('{{\"channel\":\"CMSJHHMA4\",\"attachments\":[{{\"title\":\"Build SUCCESS\",\"title_link\":\"https://github.com/titicacadev/triple-frontend/actions/runs/{0}\",\"text\":\"{1}\",\"color\":\"good\",\"author_name\":\"{2}\"}}]}}', github.run_id, github.workspace, github.actor)
+        args: ${{ format('{{\"channel\":\"CMSJHHMA4\",\"attachments\":[{{\"title\":\"Build SUCCESS\",\"title_link\":\"https://github.com/titicacadev/triple-frontend/actions/runs/{0}\",\"text\":\"{1}\",\"color\":\"good\",\"author_name\":\"{2}\"}}]}}', github.run_id, github.workspace, github.actor) }}
     - name: Notify build and test fail to slack
       if: failure()
       env:
         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       uses: pullreminders/slack-action@master
       with:
-        args: format('{{\"channel\":\"CMSJHHMA4\",\"attachments\":[{{\"title\":\"Build FAIL\",\"title_link\":\"https://github.com/titicacadev/triple-frontend/actions/runs/{0}\",\"text\":\"{1}\",\"color\":\"warning\",\"author_name\":\"{2}\"}}]}}', github.run_id, github.workspace, github.actor)
+        args: ${{ format('{{\"channel\":\"CMSJHHMA4\",\"attachments\":[{{\"title\":\"Build FAIL\",\"title_link\":\"https://github.com/titicacadev/triple-frontend/actions/runs/{0}\",\"text\":\"{1}\",\"color\":\"warning\",\"author_name\":\"{2}\"}}]}}', github.run_id, github.workspace, github.actor) }}
     - name: Canary Release
       run: |
         git stash
