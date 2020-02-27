@@ -45,7 +45,7 @@ storiesOf('Reviews | Reviews', module).add('일반', () => (
           }}
           resourceId={text(
             'Resource ID',
-            'f939b4cb-ea3b-34b6-b430-eb5d28fbf467',
+            '95af0432-c604-4c50-bfaf-6758ee0dc339',
           )}
           resourceType={select(
             'Resource Type',
