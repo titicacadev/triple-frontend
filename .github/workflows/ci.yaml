@@ -10,6 +10,7 @@ on:
 jobs:
   pre-build:
     steps:
+      runs-on: ubuntu-latest
       - name: Notify build start to slack
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
