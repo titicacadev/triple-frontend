@@ -19,10 +19,7 @@ module.exports = {
           options: {
             presets: [['react-app', { flow: false, typescript: true }]],
             plugins: [
-              [
-                'styled-components',
-                { ssr: true, displayName: true, preprocess: false },
-              ],
+              ['styled-components', { ssr: true, displayName: true }],
               ['@babel/plugin-proposal-class-properties'],
             ],
           },
