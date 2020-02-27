@@ -38,6 +38,13 @@ jobs:
         npm test
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    - name: Notify build and test success to slack
+      if: success()
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      uses: pullreminders/slack-action@master
+      with:
+        args: '{\"channel\":\"CMSJHHMA4\",\"text\":\"Build Successed\"}'
     - name: Canary Release
       run: |
         git stash
