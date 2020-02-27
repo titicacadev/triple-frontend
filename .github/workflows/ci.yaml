@@ -45,6 +45,13 @@ jobs:
       uses: pullreminders/slack-action@master
       with:
         args: '{\"channel\":\"CMSJHHMA4\",\"text\":\"Build Successed\"}'
+    - name: Notify build and test fail to slack
+      if: failure()
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      uses: pullreminders/slack-action@master
+      with:
+        args: '{\"channel\":\"CMSJHHMA4\",\"text\":\"Build Failed\"}'
     - name: Canary Release
       run: |
         git stash
