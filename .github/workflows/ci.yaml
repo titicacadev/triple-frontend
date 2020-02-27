@@ -20,8 +20,6 @@ jobs:
           args: ${{ format('{{\"channel\":\"CMSJHHMA4\",\"attachments\":[{{\"title\":\"Build WORKING\",\"title_link\":\"https://github.com/titicacadev/triple-frontend/actions/runs/{0}\",\"text\":\"{1}\",\"color\":\"gray\"}}]}}', github.run_id, github.ref) }}
 
   build:
-    needs: pre-build
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
