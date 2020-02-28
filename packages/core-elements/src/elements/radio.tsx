@@ -4,9 +4,11 @@ import Text from './text'
 import styled, { css } from 'styled-components'
 import { withField } from '../utils/form-field'
 
-interface Option<V> {
+type RadioValue = string | null
+
+interface Option {
   text: string
-  value: V
+  value: RadioValue
 }
 
 const RadioFrame = styled.div`
@@ -46,14 +48,14 @@ const RadioInput = styled.input.attrs({ type: 'radio' })<{
         `};
 `
 
-interface RadioProps<V> {
+interface RadioProps {
   name?: string
-  value?: V
-  onChange?: (e: React.SyntheticEvent, value: V) => void
-  options: Option<V>[]
+  value?: RadioValue
+  onChange?: (e: React.SyntheticEvent, value: RadioValue) => void
+  options: Option[]
 }
 
-function Radio<V>({ name, value, onChange, options }: RadioProps<V>) {
+function Radio({ name, value, onChange, options }: RadioProps) {
   return (
     <>
       {options.map(({ text, value: optionValue }, idx) => (
@@ -65,7 +67,7 @@ function Radio<V>({ name, value, onChange, options }: RadioProps<V>) {
             {text}
           </Text>
 
-          <RadioInput name={name} selected={value === optionValue} />
+          <RadioInput name={name} selected={optionValue === value} />
         </RadioFrame>
       ))}
     </>
