@@ -3,7 +3,10 @@ import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import IntersectionObserver from '@titicaca/intersection-observer'
 import { List, Container, Text, Rating } from '@titicaca/core-elements'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import {
+  useEventTrackingContext,
+  useHistoryContext,
+} from '@titicaca/react-contexts'
 import { useReviewLikesContext } from '../review-likes-context'
 import User from './user'
 import Comment from './comment'
@@ -19,6 +22,8 @@ export interface ReviewElementProps {
   review: ReviewData
   isMyReview: boolean
   index: number
+  regionId: string
+  appUrlScheme: string
   onUserClick: ReviewEventHandler
   onLikeButtonClick: ReviewEventHandler
   onMenuClick: ReviewEventHandler
@@ -94,6 +99,8 @@ export default function ReviewElement({
   review,
   isMyReview,
   index,
+  regionId,
+  appUrlScheme,
   onUserClick,
   onLikeButtonClick,
   onMenuClick,
@@ -107,6 +114,7 @@ export default function ReviewElement({
   const { deriveCurrentStateAndCount } = useReviewLikesContext()
   const { user, blindedAt, comment, createdAt, rating, media } = review
   const { trackEvent } = useEventTrackingContext()
+  const { navigate } = useHistoryContext()
   const { liked, likesCount } = deriveCurrentStateAndCount({
     reviewId: review.id,
     liked: review.liked,
@@ -121,7 +129,12 @@ export default function ReviewElement({
         review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
       },
     })
-    console.log('리뷰 엔드 app scheme 호출  ', review, resourceId)
+
+    navigate(
+      `${appUrlScheme}:///inlink?path=${encodeURIComponent(
+        `/reviews/list?_triple_no_navbar&region_id=${regionId}&resource_id=${resourceId}`,
+      )}`,
+    )
   }
   return (
     <IntersectionObserver
