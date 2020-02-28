@@ -1,0 +1,23 @@
+{
+  "name": "@titicaca/style-box",
+  "version": "1.8.0",
+  "description": "Triple Style Box",
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "dependencies": {
+    "styled-components": "^4.4.1"
+  }
+}
