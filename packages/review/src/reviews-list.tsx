@@ -18,6 +18,7 @@ import { AppNativeActionProps, ReviewData } from './types'
 export default function ReviewsList({
   myReview,
   reviews,
+  regionId,
   fetchNext,
   appUrlScheme,
   margin,
@@ -29,6 +30,7 @@ export default function ReviewsList({
   myReview?: ReviewData
   reviews: ReviewData[]
   fetchNext?: () => void
+  regionId: string
   appUrlScheme: string
   margin: MarginPadding
   resourceId: string
@@ -109,6 +111,8 @@ export default function ReviewsList({
             isMyReview={!!(myReview && myReview.id === review.id)}
             key={review.id}
             index={i}
+            regionId={regionId}
+            appUrlScheme={appUrlScheme}
             review={review}
             reviewRateDescriptions={reviewRateDescriptions}
             onUserClick={handleUserClick}
