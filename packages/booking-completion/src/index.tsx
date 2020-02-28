@@ -87,7 +87,7 @@ function BookingCompletion({
             size="small"
             onClick={() => navigate('/main')}
           >
-            메인으로 가기
+            트리플 홈으로 가기
           </Button>
         </Button.Group>
       </Container>
