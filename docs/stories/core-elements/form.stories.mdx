@@ -12,13 +12,15 @@ import {
   Text,
 } from '@titicaca/core-elements'
 
+import RadioWrapper from './radio-wrapper'
+
 <Meta title="Core-Elements | Form" />
 
-# Form 
+# Form
 
 <br/>
 
-## Input 
+## Input
 
 기본 Input 입니다.
 
@@ -36,7 +38,7 @@ onBlur?: (e: React.FocusEvent<any>) => any
 
 <Preview>
   <Story name="Input">
-     <Input 
+     <Input
         error={boolean('error', false)}
         label={text('label', '이름')}
         placeholder={text('placeholder', "이름을 입력해주세요")}
@@ -47,22 +49,22 @@ onBlur?: (e: React.FocusEvent<any>) => any
 
 ### Input - Status
 
-Focus 와 Error 두 가지의 상태 값을 가지고 있습니다.   
+Focus 와 Error 두 가지의 상태 값을 가지고 있습니다.
 focused, error props 를 이용하여 상태를 다룰 수 있습니다.
 
-<Input 
+<Input
   placeholder={text('placeholder', "이름을 입력해주세요")}
   help={text('placeholder', "고객님의 요청사항은 해당 호텔에 전달됩니다만 호텔 사정에 따라 필요하신 내용이 이루어지지 않을 수 있으니 많은 양해 바랍니다.")}
   error={true}
 />
 
-### Input - Mask 
+### Input - Mask
 
 mask props 를 이용하여 mask 를 추가 할 수 있습니다.
 
 <Preview>
   <Story name="Input - Mask">
-     <Input 
+     <Input
       mask={text('mask', "99/99")}
       maskChar={null}
       value={text('value', 1230)}
@@ -71,7 +73,7 @@ mask props 를 이용하여 mask 를 추가 할 수 있습니다.
 </Preview>
 
 
-## Select 
+## Select
 
 option 을 선택 할 수 있는 SelectBox 입니다.
 
@@ -143,7 +145,7 @@ error?: string
   </Story>
 </Preview>
 
-## Radio 
+## Radio
 
 ```js
 option: {
@@ -159,23 +161,7 @@ options: option[]
 
 <Preview>
    <Story name="Radio">
-     <Radio
-      value={selectAddons('value', ['item1', 'item2', 'item3'], 'item1')}
-      options={[
-        {
-          text: 'item1',
-          value: 'item1',
-        },
-        {
-          text: 'item2',
-          value: 'item2',
-        },
-        {
-          text: 'item3',
-          value: 'item3',
-        },
-      ]}
-    />
+     <RadioWrapper />
    </Story>
 </Preview>
 
@@ -209,7 +195,7 @@ onBlur?: (e: React.FocusEvent<any>) => any
 
 <Preview>
    <Story name="Textarea">
-     <Textarea 
+     <Textarea
        error={boolean('error', false)}
        label={text('label', '요청사항')}
        placeholder={text('placeholder', "요청사항을 입력해주세요")}
