@@ -38,11 +38,11 @@ const RadioInput = styled.input.attrs({ type: 'radio' })<{
     selected
       ? css`
           opacity: 1;
-          background-image: url('https://assets.triple-dev.titicaca-corp.com/images/btn-filter-radio-check.svg');
+          background-image: url('https://assets.triple.guide/images/btn-filter-radio-check.svg');
         `
       : css`
           opacity: 0.5;
-          background-image: url('https://assets.triple-dev.titicaca-corp.com/images/btn-filter-radio.svg');
+          background-image: url('https://assets.triple.guide/images/btn-filter-radio.svg');
         `};
 `
 
