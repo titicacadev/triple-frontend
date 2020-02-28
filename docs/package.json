@@ -34,6 +34,7 @@
     "@titicaca/search": "^1.8.0",
     "@titicaca/slider": "^1.8.0",
     "@titicaca/triple-document": "^1.8.0",
+    "@titicaca/style-box": "^1.8.0",
     "http-proxy-middleware": "^0.20.0"
   },
   "devDependencies": {
