@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Container from './container'
+
 import Text from './text'
 import styled, { css } from 'styled-components'
 import { withField } from '../utils/form-field'
@@ -56,38 +56,6 @@ const Icon = styled.span<{ selected?: boolean }>`
     `};
 `
 
-// eslint-disable-next-line no-unexpected-multiline
-const GenderContainer = styled.div.attrs({})<{
-  name?: string
-  value?: string
-  selected?: boolean
-}>`
-  width: 50%;
-  display: inline-block;
-  padding: 15px 0;
-  border: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
-  border-radius: 2px;
-  box-sizing: border-box;
-  text-align: center;
-  font-size: 16px;
-  color: rgba(${GetGlobalColor('gray')}, 0.3);
-
-  &:last-child {
-    border-left: none;
-  }
-
-  ${({ selected }) =>
-    selected &&
-    css`
-      color: rgb(${GetGlobalColor('blue')});
-      border: 1px solid rgb(${GetGlobalColor('blue')});
-
-      &:last-child {
-        border: 1px solid rgb(${GetGlobalColor('blue')});
-      }
-    `};
-`
-
 interface RadioProps {
   name?: string
   value?: string
@@ -95,61 +63,28 @@ interface RadioProps {
   options: Option[]
 }
 
-export const Radio = withField(
-  ({ name, value, onChange, options }: RadioProps) => {
-    return (
-      <>
-        {options.map(({ text, value: optionValue }, idx) => (
-          <RadioFrame key={idx}>
-            <RadioContainer
-              name={name}
-              onClick={(e) => onChange && onChange(e, optionValue)}
-            >
-              <Cell width={10}>
-                <Icon selected={value === optionValue} />
-              </Cell>
-              <Cell width={90}>
-                <Text size="small" lineHeight={1.45}>
-                  {text}
-                </Text>
-              </Cell>
-            </RadioContainer>
-          </RadioFrame>
-        ))}
-      </>
-    )
-  },
-)
-
-interface GenderSelectorProps {
-  name?: string
-  value?: string
-  onChange?: (e: React.SyntheticEvent, arg1: string) => any
+function Radio({ name, value, onChange, options }: RadioProps) {
+  return (
+    <>
+      {options.map(({ text, value: optionValue }, idx) => (
+        <RadioFrame key={idx}>
+          <RadioContainer
+            name={name}
+            onClick={(e) => onChange && onChange(e, optionValue)}
+          >
+            <Cell width={10}>
+              <Icon selected={value === optionValue} />
+            </Cell>
+            <Cell width={90}>
+              <Text size="small" lineHeight={1.45}>
+                {text}
+              </Text>
+            </Cell>
+          </RadioContainer>
+        </RadioFrame>
+      ))}
+    </>
+  )
 }
 
-export const GenderSelector = withField(
-  ({ name, value, onChange }: GenderSelectorProps) => {
-    return (
-      <Container>
-        <GenderContainer
-          name={name}
-          value="MALE"
-          selected={value === 'MALE'}
-          onClick={(e: React.SyntheticEvent) => onChange && onChange(e, 'MALE')}
-        >
-          남자
-        </GenderContainer>
-        <GenderContainer
-          name={name}
-          value="FEMALE"
-          selected={value === 'FEMALE'}
-          onClick={(e: React.SyntheticEvent) =>
-            onChange && onChange(e, 'FEMALE')
-          }
-        >
-          여자
-        </GenderContainer>
-      </Container>
-    )
-  },
-)
+export default withField(Radio)
