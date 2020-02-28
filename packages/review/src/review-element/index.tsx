@@ -1,15 +1,14 @@
-import React, { useState, PropsWithChildren, ComponentType } from 'react'
+import React, { PropsWithChildren, ComponentType } from 'react'
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import IntersectionObserver from '@titicaca/intersection-observer'
 import { List, Container, Text, Rating } from '@titicaca/core-elements'
-
+import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useReviewLikesContext } from '../review-likes-context'
 import User from './user'
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
-import { ReviewData, ImageEntity } from '../types'
+import { ReviewData } from '../types'
 
 type ReviewEventHandler<T = Element, E = Event> = (
   e: React.SyntheticEvent<T, E>,
@@ -21,15 +20,8 @@ export interface ReviewElementProps {
   isMyReview: boolean
   index: number
   onUserClick: ReviewEventHandler
-  onUnfoldButtonClick?: ReviewEventHandler
   onLikeButtonClick: ReviewEventHandler
-  onLikesCountClick: ReviewEventHandler
   onMenuClick: ReviewEventHandler
-  onImageClick: (
-    e: React.SyntheticEvent,
-    review: ReviewData,
-    image: ImageEntity,
-  ) => void
   onShow?: (index: number) => void
   reviewRateDescriptions?: string[]
   likeVisible?: boolean
@@ -46,7 +38,19 @@ const MoreIcon = styled.img`
   vertical-align: middle;
   cursor: pointer;
 `
+const SoloImageContainer = styled.div`
+  margin-top: 17px;
+  white-space: nowrap;
+  overflow-x: hidden;
 
+  img {
+    width: 335px;
+    height: 175px;
+    border-radius: 4px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+`
 const Images = styled.div`
   margin-top: 17px;
   white-space: nowrap;
@@ -70,22 +74,19 @@ const Images = styled.div`
   }
 `
 
-const LikeButton = styled.a<{ liked?: boolean }>`
+const LikeButton = styled.div<{ liked?: boolean }>`
   display: inline-block;
-  font-size: 12px;
-  font-weight: bold;
-  text-align: center;
   text-decoration: none;
-  box-sizing: border-box;
-  cursor: pointer;
-
+  width: 100px;
+  height: 18px;
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
   margin-right: 8px;
-  padding: 5px 7px;
-  border-radius: 3px;
-
+  padding: 2px 20px;
   ${({ liked }) => css`
-    color: ${liked ? '#ffffff' : 'rgba(58, 58, 58, 0.8)'};
-    background-color: ${liked ? '#368fff' : '#fafafa'};
+  background-image: url('https://assets.triple.guide/images/btn-lounge-thanks-${
+    liked ? 'on' : 'off'
+  }@3x.png');
   `};
 `
 
@@ -94,11 +95,8 @@ export default function ReviewElement({
   isMyReview,
   index,
   onUserClick,
-  onUnfoldButtonClick,
   onLikeButtonClick,
-  onLikesCountClick,
   onMenuClick,
-  onImageClick,
   onShow,
   likeVisible,
   menuVisible,
@@ -106,17 +104,25 @@ export default function ReviewElement({
   reviewRateDescriptions,
   resourceId,
 }: ReviewElementProps) {
-  const [unfolded, setUnfolded] = useState(false)
   const { deriveCurrentStateAndCount } = useReviewLikesContext()
-  const { trackEvent } = useEventTrackingContext()
   const { user, blindedAt, comment, createdAt, rating, media } = review
-
+  const { trackEvent } = useEventTrackingContext()
   const { liked, likesCount } = deriveCurrentStateAndCount({
     reviewId: review.id,
     liked: review.liked,
     likesCount: review.likesCount,
   })
-
+  const handleSelectReview = () => {
+    trackEvent({
+      ga: ['리뷰_엔드로이동'],
+      fa: {
+        action: '리뷰_엔드로이동',
+        item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+        review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
+      },
+    })
+    console.log('리뷰 엔드 app scheme 호출  ', review, resourceId)
+  }
   return (
     <IntersectionObserver
       onChange={({ isIntersecting }) =>
@@ -127,84 +133,52 @@ export default function ReviewElement({
         <User user={user} onClick={(e) => onUserClick(e, review)}>
           {!blindedAt && !!rating ? <Score score={rating} /> : null}
         </User>
-        <Content>
+        <Content onClick={handleSelectReview}>
           {blindedAt ? (
             '신고가 접수되어 블라인드 처리되었습니다.'
           ) : comment ? (
-            unfolded ? (
-              comment
-            ) : (
-              <FoldableComment
-                comment={comment}
-                onUnfoldButtonClick={() => {}}
-              />
-            )
+            <FoldableComment comment={comment} />
           ) : (
             <RateDescription
               rating={rating}
               reviewRateDescriptions={reviewRateDescriptions}
             />
           )}
-          {!blindedAt && (
-            <Images>
-              {(media || []).map((image, i) => (
-                <img
-                  key={i}
-                  src={image.sizes.large.url}
-                  onClick={(e) => {
-                    trackEvent({
-                      ga: ['리뷰_리뷰사진썸네일'],
-                      fa: {
-                        action: '리뷰_리뷰사진썸네일',
-                        item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
-                        photo_id: image.id, // eslint-disable-line @typescript-eslint/camelcase
-                      },
-                    })
-                    onImageClick(e, review, image)
-                  }}
-                />
-              ))}
-            </Images>
+          {!blindedAt && (media || []).length > 0 && (
+            <>
+              {media && media.length === 1 ? (
+                <SoloImageContainer>
+                  <img src={media[0].sizes.large.url} />
+                </SoloImageContainer>
+              ) : (
+                <Images>
+                  {(media || []).map((image, i) => (
+                    <img key={i} src={image.sizes.large.url} />
+                  ))}
+                </Images>
+              )}
+            </>
           )}
         </Content>
         <Meta>
           {!blindedAt && likeVisible !== false ? (
-            <>
-              <LikeButton
-                liked={liked}
-                onClick={(e) => {
-                  const actionName = `리뷰_땡스${liked ? '' : '취소'}`
-                  trackEvent({
-                    ga: [actionName],
-                    fa: {
-                      action: actionName,
-                      review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
-                      item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
-                    },
-                  })
-                  onLikeButtonClick(e, { ...review, liked })
-                }}
-              >
-                Thanks
-              </LikeButton>
-              {likesCount && likesCount > 0 ? (
-                <span
-                  onClick={(e) => {
-                    trackEvent({
-                      ga: ['리뷰_땡스_리스트보기'],
-                      fa: {
-                        action: '리뷰_땡스_리스트보기',
-                        review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
-                        item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
-                      },
-                    })
-                    onLikesCountClick(e, review)
-                  }}
-                >
-                  {likesCount}명
-                </span>
-              ) : null}
-            </>
+            <LikeButton
+              liked={liked}
+              onClick={(e) => {
+                const actionName = `리뷰_땡스${liked ? '' : '취소'}`
+                trackEvent({
+                  ga: [actionName],
+                  fa: {
+                    action: actionName,
+                    review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
+                    item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+                  },
+                })
+                onLikeButtonClick(e, { ...review, liked })
+              }}
+            >
+              {likesCount}
+            </LikeButton>
           ) : null}
           {!blindedAt || (blindedAt && isMyReview) ? (
             <Date floated={likeVisible !== false ? 'right' : undefined}>
@@ -231,17 +205,22 @@ function Score({ score }: { score?: number }) {
   )
 }
 
-function Content({ children }: PropsWithChildren<{}>) {
+function Content({
+  onClick,
+  children,
+}: PropsWithChildren<{ onClick?: () => void }>) {
   return (
     <Container margin={{ top: 15 }} clearing>
-      <Comment>{children}</Comment>
+      <a onClick={onClick}>
+        <Comment>{children}</Comment>
+      </a>
     </Container>
   )
 }
 
 function Meta({ children }: PropsWithChildren<{}>) {
   return (
-    <Text margin={{ top: 20 }} bold size="mini" color="gray" alpha={0.3}>
+    <Text margin={{ top: 20 }} size="mini" color="gray" alpha={0.3}>
       {children}
     </Text>
   )
@@ -251,7 +230,11 @@ function Date({
   floated,
   children,
 }: PropsWithChildren<{ floated?: CSS.FloatProperty }>) {
-  return <Container floated={floated}>{children}</Container>
+  return (
+    <Container floated={floated} margin={{ top: 2 }}>
+      {children}
+    </Container>
+  )
 }
 
 function RateDescription({
