@@ -49,8 +49,8 @@ storiesOf('Reviews | Reviews', module).add('일반', () => (
           )}
           resourceType={select(
             'Resource Type',
-            ['poi', 'tna', 'article', 'hotel'],
-            'poi',
+            ['restaurant', 'attraction', 'tna', 'article', 'hotel'],
+            'restaurant',
           )}
           placeholderText={text('placeholder text', '이 투어·티켓 어떠셨나요?')}
           onFullListButtonClick={action('onFullListButtonClick')}
