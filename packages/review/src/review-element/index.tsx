@@ -132,7 +132,7 @@ export default function ReviewElement({
 
     navigate(
       `${appUrlScheme}:///inlink?path=${encodeURIComponent(
-        `/reviews/list?_triple_no_navbar&region_id=${regionId}&resource_id=${resourceId}`,
+        `/reviews/${review.id}/detail?_triple_no_navbar&region_id=${regionId}&resource_id=${resourceId}`,
       )}`,
     )
   }
