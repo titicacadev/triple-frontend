@@ -7,7 +7,7 @@ export interface MediaMeta {
   sizes: {
     full: { url: string }
     large: { url: string }
-    small_square: { url: string }
+    small_square: { url: string } // eslint-disable-line @typescript-eslint/camelcase
   }
   width?: number
   height?: number
@@ -16,7 +16,7 @@ export interface MediaMeta {
   video?: {
     full: { url: string }
     large: { url: string }
-    small_square: { url: string }
+    small_square: { url: string } // eslint-disable-line @typescript-eslint/camelcase
   }
   frame?: FrameRatioAndSizes
   title?: string

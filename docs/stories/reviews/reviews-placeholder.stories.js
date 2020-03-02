@@ -1,5 +1,4 @@
 import React from 'react'
-
 import ReviewsPlaceholder from '@titicaca/review/lib/review-placeholder-with-rating'
 import { storiesOf } from '@storybook/react'
 import { select } from '@storybook/addon-knobs'

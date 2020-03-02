@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled, { StyledComponentProps } from 'styled-components'
+
 import Container from './container'
 
 type AccordionIcons = 'folded' | 'unfolded'

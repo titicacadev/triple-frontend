@@ -1,5 +1,7 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
+import * as CSS from 'csstype'
+
 import Icon from './icon'
 import {
   MarginPadding,
@@ -7,7 +9,6 @@ import {
   FrameRatioAndSizes,
   MEDIA_FRAME_OPTIONS,
 } from '../commons'
-import * as CSS from 'csstype'
 import { formatMarginPadding } from '../mixins'
 
 type OverlayType = 'gradient' | 'dark'

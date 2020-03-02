@@ -1,7 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { boolean, text } from '@storybook/addon-knobs'
-
 import { Spinner, Text, Container } from '@titicaca/core-elements'
 
 storiesOf('Core-Elements | Spinner', module).add('Basic ', () => {

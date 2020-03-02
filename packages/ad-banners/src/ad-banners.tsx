@@ -48,7 +48,8 @@ interface InventoryBannerProps {
 
 type AdBannersProps = { padding?: MarginPadding; direction?: ListDirection } & (
   | AdSystemBannerProps
-  | InventoryBannerProps)
+  | InventoryBannerProps
+)
 
 const NOOP = () => {}
 

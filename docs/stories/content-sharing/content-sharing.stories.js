@@ -1,7 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-
 import ContentSharing from '@titicaca/content-sharing'
 
 storiesOf('content-sharing | ContentSharing', module).add('일반', () => (

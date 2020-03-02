@@ -1,4 +1,5 @@
 import React from 'react'
+
 import Modal from './modal-base'
 
 export default function ModalActions({

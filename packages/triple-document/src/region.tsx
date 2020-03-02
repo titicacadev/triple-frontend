@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { ResourceListItem, Image } from '@titicaca/core-elements'
+
 import { RegionData } from './types'
 
 const Name = styled.div`

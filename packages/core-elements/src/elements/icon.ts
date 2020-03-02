@@ -1,5 +1,6 @@
-import { MarginPadding } from './../commons'
 import styled from 'styled-components'
+
+import { MarginPadding } from './../commons'
 import { GlobalSizes } from '../commons'
 import { marginMixin, paddingMixin } from '../mixins'
 

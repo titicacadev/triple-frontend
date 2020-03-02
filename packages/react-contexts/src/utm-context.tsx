@@ -1,11 +1,11 @@
 import React, { createContext, useContext, ComponentType } from 'react'
 
 interface UTMQuery {
-  utm_source?: string
-  utm_medium?: string
-  utm_campaign?: string
-  utm_term?: string
-  utm_content?: string
+  utm_source?: string // eslint-disable-line @typescript-eslint/camelcase
+  utm_medium?: string // eslint-disable-line @typescript-eslint/camelcase
+  utm_campaign?: string // eslint-disable-line @typescript-eslint/camelcase
+  utm_term?: string // eslint-disable-line @typescript-eslint/camelcase
+  utm_content?: string // eslint-disable-line @typescript-eslint/camelcase
 
   // for camelized query
   utmSource?: string

@@ -6,12 +6,11 @@ import DayPicker, {
   BeforeModifier,
   AfterModifier,
 } from 'react-day-picker'
-
 import 'moment/locale/ko'
 import MomentLocaleUtils from 'react-day-picker/moment'
 import { GetGlobalColor } from '@titicaca/core-elements'
-import { formatMonthTitle } from './utils'
 
+import { formatMonthTitle } from './utils'
 import PickerFrame from './picker-frame'
 
 const DayContainer = styled.div<{ height?: string }>`

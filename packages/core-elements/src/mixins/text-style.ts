@@ -1,4 +1,5 @@
 import { css } from 'styled-components'
+
 import { GlobalSizes } from '../commons'
 
 const SIZES: { [key in GlobalSizes]: string } = {

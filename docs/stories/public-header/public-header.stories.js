@@ -1,8 +1,6 @@
 import React from 'react'
-
 import { storiesOf } from '@storybook/react'
 import { text, boolean, number } from '@storybook/addon-knobs'
-
 import PublicHeader from '@titicaca/public-header'
 
 storiesOf('public-header | PublicHeader', module).add('일반', () => (

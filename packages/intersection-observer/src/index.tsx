@@ -24,9 +24,9 @@ async function importReactIntersectionObserver() {
       '@researchgate/react-intersection-observer'
     )
   } catch (e) {
-    return Promise.resolve((({ children }) => children || null) as React.FC<
-      Props
-    >)
+    return Promise.resolve(
+      (({ children }) => children || null) as React.FC<Props>,
+    )
   }
 }
 

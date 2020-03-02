@@ -2,7 +2,6 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { number, text, select, boolean } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
-
 import {
   HistoryProvider,
   EventTrackingProvider,

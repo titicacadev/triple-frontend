@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
+import styled, { css } from 'styled-components'
+
 import Container from '../elements/container'
 import Text from '../elements/text'
-import styled, { css } from 'styled-components'
 import { GetGlobalColor } from '../commons'
 
 const MessageContainer = styled(Container)`
@@ -37,13 +38,11 @@ const Label = styled(Text)<{
 `
 
 export function withField<T>(WrappedComponent: React.ComponentType<T>) {
-  const WrapperComponent: React.FC<
-    {
-      label?: string
-      error?: string
-      help?: string
-    } & T
-  > = ({ label, error, help, ...props }) => {
+  const WrapperComponent: React.FC<{
+    label?: string
+    error?: string
+    help?: string
+  } & T> = ({ label, error, help, ...props }) => {
     const [focused, setFocused] = useState(false)
     const hasError = !!error
 

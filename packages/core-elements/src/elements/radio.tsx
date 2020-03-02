@@ -1,7 +1,8 @@
 import * as React from 'react'
-
-import Text from './text'
 import styled, { css } from 'styled-components'
+
+import Container from './container'
+import Text from './text'
 import { withField } from '../utils/form-field'
 
 type RadioValue = string | null

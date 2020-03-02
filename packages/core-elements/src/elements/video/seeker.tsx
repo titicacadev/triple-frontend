@@ -1,6 +1,5 @@
 import React, { useState, useCallback, forwardRef } from 'react'
 import styled from 'styled-components'
-
 import { debounce } from '@titicaca/view-utilities'
 
 import { GetGlobalColor } from '../../commons'

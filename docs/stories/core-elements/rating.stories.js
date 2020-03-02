@@ -1,7 +1,5 @@
 import React from 'react'
-
 import { storiesOf } from '@storybook/react'
-
 import { Rating } from '@titicaca/core-elements'
 import { number, select } from '@storybook/addon-knobs'
 

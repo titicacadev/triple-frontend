@@ -8,6 +8,7 @@ import {
   MarginPadding,
   GlobalColors,
 } from '@titicaca/core-elements'
+
 import FixedPricing, { FixedPricingProps } from './fixed-pricing'
 
 export type BasePrice = number | null

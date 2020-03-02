@@ -1,5 +1,6 @@
 import React, { MouseEventHandler } from 'react'
 import styled from 'styled-components'
+
 import Comment from './comment'
 
 const MAX_COMMENT_LINES = 6

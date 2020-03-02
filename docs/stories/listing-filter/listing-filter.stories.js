@@ -1,9 +1,7 @@
 import React from 'react'
-
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { text, boolean } from '@storybook/addon-knobs'
-
 import ListingFilter from '@titicaca/listing-filter'
 
 storiesOf('listing-filter | ListingFilter', module)

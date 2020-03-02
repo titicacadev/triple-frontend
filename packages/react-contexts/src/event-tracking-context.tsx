@@ -2,7 +2,7 @@ import React, { ComponentType } from 'react'
 
 interface FAParams {
   category: string
-  event_name: string
+  event_name: string // eslint-disable-line @typescript-eslint/camelcase
   [key: string]: any
 }
 

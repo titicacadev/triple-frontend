@@ -7,7 +7,6 @@ import React, {
   useState,
 } from 'react'
 import styled, { css } from 'styled-components'
-
 import { Container, SearchNavbar } from '@titicaca/core-elements'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 import {

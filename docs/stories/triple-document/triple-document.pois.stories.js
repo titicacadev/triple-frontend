@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-
 import { ELEMENTS } from '@titicaca/triple-document'
+
 import POIS from '../__mocks__/pois.sample.json'
 import HOTEL from '../__mocks__/hotel.sample.json'
 

@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
-import List from './list'
 import * as CSS from 'csstype'
+
+import List from './list'
 
 export const ImageCarouselElementContainer = styled.div`
   display: inline-block;

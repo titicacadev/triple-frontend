@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-
 import { Container, Text } from '@titicaca/core-elements'
 
 const ShareIcon = styled.img`

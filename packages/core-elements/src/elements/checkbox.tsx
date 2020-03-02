@@ -1,9 +1,9 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
+import * as CSS from 'csstype'
+
 import { withField } from '../utils/form-field'
 import { GetGlobalColor, MarginPadding } from '../commons'
-
-import * as CSS from 'csstype'
 import { paddingMixin } from '../mixins'
 
 type FillType = 'full' | 'border' | 'text'
@@ -46,9 +46,10 @@ const generateFillStyles = ({
   }
 }
 
-const TextAligns: Partial<
-  Record<CSS.TextAlignProperty, ReturnType<typeof css>>
-> = {
+const TextAligns: Partial<Record<
+  CSS.TextAlignProperty,
+  ReturnType<typeof css>
+>> = {
   left: css`
     text-align: left;
   `,

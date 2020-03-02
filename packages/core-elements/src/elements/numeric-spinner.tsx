@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
+
 import Text from './text'
 import { MarginPadding, GlobalSizes } from '../commons'
 import { paddingMixin } from '../mixins'

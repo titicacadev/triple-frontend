@@ -1,6 +1,7 @@
 import React, { PropsWithChildren, MouseEventHandler } from 'react'
 import styled from 'styled-components'
 import { Container, Text } from '@titicaca/core-elements'
+
 import { UserData } from '../types'
 
 const UserPhoto = styled.img`

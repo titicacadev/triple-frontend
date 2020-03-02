@@ -1,6 +1,5 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-
 import { ELEMENTS } from '@titicaca/triple-document'
 
 const { regions: Regions } = ELEMENTS

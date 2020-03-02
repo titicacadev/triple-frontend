@@ -1,7 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { select } from '@storybook/addon-knobs'
-
 import { Section, Text } from '@titicaca/core-elements'
 
 storiesOf('Core-Elements | Section', module).add('일반', () => (
