@@ -11,14 +11,13 @@ export const margin = (defaultValue?: MarginPadding) => css`
           }
         : null
 
-    return (
-      value &&
+    return value
+      ? `
+        ${value.top ? `margin-top: ${value.top}px;` : ''}
+        ${value.right ? `margin-right: ${value.right}px;` : ''}
+        ${value.bottom ? `margin-bottom: ${value.bottom}px;` : ''}
+        ${value.left ? `margin-left: ${value.left}px;` : ''}
       `
-        ${value.top && `margin-top: ${value.top}px;`}
-        ${value.right && `margin-right: ${value.right}px;`}
-        ${value.bottom && `margin-bottom: ${value.bottom}px;`}
-        ${value.left && `margin-left: ${value.left}px;`}
-      `
-    )
+      : ''
   }}
 `

@@ -1,5 +1,5 @@
 import React from 'react'
-import { withKnobs } from '@storybook/addon-knobs'
+import { withKnobs, number } from '@storybook/addon-knobs'
 
 import Container from './components/container'
 
@@ -9,7 +9,13 @@ export default {
 }
 
 export const BaseContinaer = () => (
-  <Container margin={{ top: 10 }}>Container</Container>
+  <Container
+    margin={{ top: number('기본 마진 top', 0) }}
+    padding={{ top: 200 }}
+    ellipsis
+  >
+    Container
+  </Container>
 )
 
 BaseContinaer.story = {
