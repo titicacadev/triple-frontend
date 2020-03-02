@@ -1,9 +1,11 @@
 import { css } from 'styled-components'
 import { Ellipsis } from '../types'
 
-export const ellipsis = (defaultValue?: Ellipsis) => css`
-  ${({ ellipsis }: { ellipsis?: Ellipsis }) =>
-    (ellipsis || defaultValue) &&
+export const ellipsis = (defaultValue?: Ellipsis) => css<{
+  ellipsis?: Ellipsis
+}>`
+  ${({ ellipsis = defaultValue }) =>
+    ellipsis &&
     `
       white-space: nowrap;
       text-overflow: ellipsis;
