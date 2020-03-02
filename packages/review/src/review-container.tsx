@@ -119,7 +119,9 @@ export default function ReviewContainer({
         ])
 
         setMyReview(fetchedMyReview)
-        setReviewsCount(fetchedReviewsCount)
+        if (fetchedReviewsCount !== null) {
+          setReviewsCount(fetchedReviewsCount)
+        }
       }
     }
 
