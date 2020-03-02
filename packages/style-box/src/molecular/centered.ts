@@ -1,8 +1,8 @@
 import { css } from 'styled-components'
 import { margin } from '../atom/margin'
 
-export const centered = (defaultValue?: boolean) => css<{
-  centered?: boolean
+export const centered = (defaultValue?: Centered) => css<{
+  centered?: Centered
 }>`
   ${({ centered = defaultValue }) => {
     return centered

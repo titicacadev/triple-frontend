@@ -11,9 +11,9 @@ export const clearing = (defaultValue?: Clearing) => css<{
     return clearing
       ? `
         &:after {
-            content: '';
-            ${display('block')}
-            ${clear('both')}
+           content: '';
+           ${display('block')}
+           ${clear('both')}
         }
         `
       : ''
