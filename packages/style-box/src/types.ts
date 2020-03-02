@@ -12,6 +12,8 @@ export type Width = number
 export type Height = number
 export type Clearing = boolean
 export type BorderRadius = number
+export type Centered = boolean
+export type HorizontalScroll = boolean
 export interface Position {
   type: CSS.PositionProperty
   top?: number

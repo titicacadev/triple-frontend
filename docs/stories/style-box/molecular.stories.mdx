@@ -22,39 +22,52 @@ Style Box 는 컴포넌트를 작성할때 필요한 다양한 스타일을 지�
 
 <br />
 
-## 사용방법
+## [border-radius](https://developer.mozilla.org/ko/docs/Web/CSS/border-radius)
 
-- style-box 를 사용하지 않은 기존의 방법
+border-radius CSS 속성은 요소의 바깥 테두리 경계의 모서리를 둥글게 만듭니다.
 
-```text
-export interface ContainerPropsFromTemplate {
-  margin?: MarginPadding
-  padding?: MarginPadding
-}
+```
+borderRadius (value?: number)
 
-
-const Container = styled.div<ContainerPropsFromTemplate>`
-  box-sizing: border-box;
-
-  ${({ position }) =>
-    position &&
-    css`
-      position: ${position};
-    `};
-
-  ${paddingMixin}
-`
+${borderRadius()} or ${borderRadius(10)}
 ```
 
-- style-box 적용 후
+## [Centered](#centered)
 
-```text
-const Container = styled.div`
-  ${margin()}
-  ${padding()}
-  ${ellipsis()}
-`
+Block 요소를 가운데 정렬합니다.
 
-<Container margin="10px"> // error
-<Container margin={{ top: 10 }}> // pass
+```
+centered (value?: boolean)
+
+${centered()} or ${centered(true)}
+```
+
+## [Clearing](#clearing)
+
+float 된 요소들을 clear 시킵니다
+
+```
+clearing (value?: booelan)
+
+${clearing()} or ${clearing(true)}
+```
+
+## [Ellipsis](#ellipsis)
+
+글자가 고정된 너비보다 넘칠 경우 말줄임 처리합니다.
+
+```
+ellipsis (value?: booelan)
+
+${ellipsis()} or ${ellipsis(true)}
+```
+
+## [Horizontal Scroll](#horizontal-scroll)
+
+너비가 넘칠 경우 가로스크롤을 만들어줍니다.
+
+```
+horizontalScroll (value?: booelan)
+
+${horizontalScroll()} or ${horizontalScroll(true)}
 ```
