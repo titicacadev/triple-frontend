@@ -8,3 +8,5 @@ export type MarginPadding = Partial<
 >
 
 export type Ellipsis = boolean
+export type Width = number
+export type Height = number
