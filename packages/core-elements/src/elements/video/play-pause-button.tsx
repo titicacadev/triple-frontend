@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import styled from 'styled-components'
-
 import { debounce } from '@titicaca/view-utilities'
 
 const PLAY_BUTTON_IMAGE_URL =
@@ -45,9 +44,10 @@ export default function PlayPauseButton({
   const [playing, setPlaying] = useState(false)
   const [visible, setVisible] = useState(true)
 
-  const handleFadeOut = useCallback(debounce(() => setVisible(false), 500), [
-    setVisible,
-  ])
+  const handleFadeOut = useCallback(
+    debounce(() => setVisible(false), 500),
+    [setVisible],
+  )
 
   const handlePlayPause = useCallback(
     (e) => {

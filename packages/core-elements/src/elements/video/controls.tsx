@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import styled from 'styled-components'
-
 import { debounce } from '@titicaca/view-utilities'
 
 import { GetGlobalColor } from '../../commons'
-
 import Seeker from './seeker'
 import PlayPauseButton from './play-pause-button'
 import MuteUnmuteButton from './mute-unmute-button'
@@ -121,9 +119,10 @@ export default function Controls({
     }
   }, [videoRef, handleDurationChange, handleTimeUpdate])
 
-  const handleFadeOut = useCallback(debounce(() => setVisible(false), 2500), [
+  const handleFadeOut = useCallback(
+    debounce(() => setVisible(false), 2500),
     setVisible,
-  ])
+  )
 
   const handleFadeIn = useCallback(() => {
     setVisible(true)

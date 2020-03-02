@@ -6,7 +6,6 @@ import React, {
 } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import styled from 'styled-components'
-
 import { Navbar } from '@titicaca/core-elements'
 
 type NavbarIcon = 'close' | 'back'

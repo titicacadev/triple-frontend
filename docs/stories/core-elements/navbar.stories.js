@@ -1,8 +1,6 @@
 import React from 'react'
-
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-
 import { Navbar, Text, SearchNavbar } from '@titicaca/core-elements'
 import ListingFilter from '@titicaca/listing-filter'
 import { text, boolean, select } from '@storybook/addon-knobs'

@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled, { css, StyledComponentProps } from 'styled-components'
 import * as CSS from 'csstype'
+
 import {
   MarginPadding,
   GlobalSizes,

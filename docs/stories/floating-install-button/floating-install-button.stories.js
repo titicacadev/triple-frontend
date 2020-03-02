@@ -1,7 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { text, boolean } from '@storybook/addon-knobs'
-
 import FloatingInstallButton from '@titicaca/floating-install-button'
 
 storiesOf('floating-install-button | FloatingInstallButton', module).add(

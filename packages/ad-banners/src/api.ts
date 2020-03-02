@@ -1,5 +1,6 @@
-import fetch from 'isomorphic-fetch'
 import qs from 'querystring'
+
+import fetch from 'isomorphic-fetch'
 
 export type ContentType = 'article' | 'attraction' | 'hotel' | 'restaurant'
 

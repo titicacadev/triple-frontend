@@ -1,7 +1,8 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import Text from './text'
 import * as CSS from 'csstype'
+
+import Text from './text'
 import { MarginPadding } from '../commons'
 import { paddingMixin } from '../mixins'
 

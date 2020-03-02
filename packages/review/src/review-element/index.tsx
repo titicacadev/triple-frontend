@@ -3,12 +3,12 @@ import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import IntersectionObserver from '@titicaca/intersection-observer'
 import { List, Container, Text, Rating } from '@titicaca/core-elements'
+import { useEventTrackingContext } from '@titicaca/react-contexts'
 
 import { useReviewLikesContext } from '../review-likes-context'
 import User from './user'
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { ReviewData, ImageEntity } from '../types'
 
 type ReviewEventHandler<T = Element, E = Event> = (

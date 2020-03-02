@@ -1,7 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { text } from '@storybook/addon-knobs'
-
 import Author from '@titicaca/author'
 
 storiesOf('author | Author', module).add('일반', () => (

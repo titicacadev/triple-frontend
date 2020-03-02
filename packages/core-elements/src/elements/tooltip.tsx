@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as CSS from 'csstype'
 import styled, { css } from 'styled-components'
+
 import { GetGlobalColor } from '../commons'
 
 interface PointingOptions {

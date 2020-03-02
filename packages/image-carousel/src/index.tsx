@@ -1,7 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import Carousel, { CarouselProps } from './carousel'
 import { Image, GlobalSizes, FrameRatioAndSizes } from '@titicaca/core-elements'
+
+import Carousel, { CarouselProps } from './carousel'
 
 interface ImageEntity {
   frame: FrameRatioAndSizes

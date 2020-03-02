@@ -1,8 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { select, text } from '@storybook/addon-knobs'
-
 import { ELEMENTS } from '@titicaca/triple-document'
+
 import IMAGES from '../__mocks__/images.sample.json'
 
 const { images: Images } = ELEMENTS

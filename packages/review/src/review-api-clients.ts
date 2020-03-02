@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import humps from 'humps'
+
 import { ResourceType, ReviewData } from './types'
 
 export function writeReview({

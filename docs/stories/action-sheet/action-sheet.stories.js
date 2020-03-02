@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { storiesOf } from '@storybook/react'
 import { text, boolean, number, select, object } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
-
 import ActionSheet from '@titicaca/action-sheet'
 import { RangePicker } from '@titicaca/date-picker'
 

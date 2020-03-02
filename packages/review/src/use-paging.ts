@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import humps from 'humps'
 import { useFetch } from '@titicaca/react-hooks'
+
 import { ResourceType, ReviewData } from './types'
 
 const OPTIONS = { credentials: 'same-origin' }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Text, Image, MarginPadding } from '@titicaca/core-elements'
+
 import AuthorIntro from './author-intro'
 
 export default function Author({

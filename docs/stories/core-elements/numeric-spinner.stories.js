@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { storiesOf } from '@storybook/react'
-
 import { NumericSpinner } from '@titicaca/core-elements'
 
 storiesOf('Core-Elements | NumericSpinner', module)

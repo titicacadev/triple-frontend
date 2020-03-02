@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import styled from 'styled-components'
-
 import { debounce } from '@titicaca/view-utilities'
 
 const MUTE_BUTTON_IMAGE_URL =
@@ -45,9 +44,10 @@ export default function MuteUnmuteButton({
   const [muted, setMuted] = useState(initialMuted)
   const [visible, setVisible] = useState(false)
 
-  const handleFadeOut = useCallback(debounce(() => setVisible(false), 5000), [
-    setVisible,
-  ])
+  const handleFadeOut = useCallback(
+    debounce(() => setVisible(false), 5000),
+    [setVisible],
+  )
 
   const handlePlay = useCallback(() => {
     setVisible(true)

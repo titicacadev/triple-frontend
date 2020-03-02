@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
-import { MarginPadding, CarouselSizes } from '../commons'
 import * as React from 'react'
+
+import { MarginPadding, CarouselSizes } from '../commons'
 import { marginMixin } from '../mixins'
 
 const CAROUSEL_WIDTH_SIZES = {

@@ -45,9 +45,10 @@ const IconButton = styled(ButtonBase)<{ name?: string }>`
   }};
 `
 
-const BASIC_COLORS: Partial<
-  Record<GlobalColors, { border: string; text: string }>
-> = {
+const BASIC_COLORS: Partial<Record<
+  GlobalColors,
+  { border: string; text: string }
+>> = {
   gray: {
     border: 'rgba(58, 58, 58, 0.2)',
     text: '#3a3a3a',
@@ -129,9 +130,10 @@ const NormalButton = styled(ButtonBase)<{
   }};
 `
 
-const BUTTON_ICON_STYLES: Partial<
-  Record<GlobalSizes, ReturnType<typeof css>>
-> = {
+const BUTTON_ICON_STYLES: Partial<Record<
+  GlobalSizes,
+  ReturnType<typeof css>
+>> = {
   tiny: css`
     width: 15px;
     height: 12px;

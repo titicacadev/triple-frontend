@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-
 import TripleDocument, { ELEMENTS } from '@titicaca/triple-document'
+
 import SAMPLE from '../__mocks__/triple-document.sample.json'
 
 const {

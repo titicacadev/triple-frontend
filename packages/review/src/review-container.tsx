@@ -8,6 +8,7 @@ import {
   useEventTrackingContext,
 } from '@titicaca/react-contexts'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'
+
 import {
   fetchMyReview,
   writeReview,
@@ -305,8 +306,11 @@ export default function ReviewContainer({
               },
             })
             e.preventDefault()
-            if (isPublic) window.location.href = `/pages/mileage-intro.html`
-            else navigate(`${appUrlScheme}:///my/mileage/intro`)
+            if (isPublic) {
+              window.location.href = `/pages/mileage-intro.html`
+            } else {
+              navigate(`${appUrlScheme}:///my/mileage/intro`)
+            }
           }}
         >
           <Text color="gray" size="small" alpha={0.6} lineHeight={1.7}>

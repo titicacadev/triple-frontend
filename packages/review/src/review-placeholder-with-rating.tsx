@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { Container, Rating, Text } from '@titicaca/core-elements'
+
 import { ResourceType } from './types'
 
 const DEFAULT_PLACEHOLDER_TEXT = '이곳의 첫 번째 리뷰를 올려주세요.'

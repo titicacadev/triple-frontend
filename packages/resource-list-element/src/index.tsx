@@ -17,7 +17,7 @@ type ImageSize = { url: string }
 
 interface ImageSizeSet {
   large: ImageSize
-  small_square: ImageSize
+  small_square: ImageSize // eslint-disable-line @typescript-eslint/camelcase
 }
 
 interface CamelizedImageSizeSet {

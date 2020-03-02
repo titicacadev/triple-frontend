@@ -9,6 +9,7 @@ import {
   SquareImage,
   MarginPadding,
 } from '@titicaca/core-elements'
+
 import { H1 } from './text'
 
 type Price = string | number
@@ -103,7 +104,9 @@ export class TnaProductsList extends React.PureComponent<
       props: { slotId, onTNAProductsFetch },
     } = this
 
-    if (!onTNAProductsFetch || !slotId) return
+    if (!onTNAProductsFetch || !slotId) {
+      return
+    }
 
     const response = await onTNAProductsFetch(slotId)
 
