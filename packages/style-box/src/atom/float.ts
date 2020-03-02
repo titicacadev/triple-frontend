@@ -2,7 +2,7 @@ import { css } from 'styled-components'
 import CSS from 'csstype'
 
 export const float = (defaultValue?: CSS.FloatProperty) => css<{
-  float?: boolean
+  float?: CSS.FloatProperty
 }>`
   ${({ float = defaultValue }) => {
     return float
