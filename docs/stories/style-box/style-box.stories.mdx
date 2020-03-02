@@ -1,0 +1,58 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+import { action } from '@storybook/addon-actions'
+import { select as selectAddons, text, boolean } from '@storybook/addon-knobs'
+
+import {
+  Input,
+  ConfirmSelector,
+  Textarea,
+  Select,
+  GenderSelector,
+  Radio,
+  Text,
+} from '@titicaca/core-elements'
+
+<Meta title="Style-Box | Basic" />
+
+# Style Box
+
+Style Box 는 컴포넌트를 작성할때 필요한 다양한 스타일을 지원하여 빠르게 컴포넌트를 만들 수 있도록 도와줍니다.
+
+<br />
+
+## 사용방법
+
+- style-box 를 사용하지 않은 기존의 방법
+
+```text
+export interface ContainerPropsFromTemplate {
+  margin?: MarginPadding
+  padding?: MarginPadding
+}
+
+
+const Container = styled.div<ContainerPropsFromTemplate>`
+  box-sizing: border-box;
+
+  ${({ position }) =>
+    position &&
+    css`
+      position: ${position};
+    `};
+
+  ${paddingMixin}
+`
+```
+
+- style-box 적용 후
+
+```text
+const Container = styled.div`
+  ${margin()}
+  ${padding()}
+  ${ellipsis()}
+`
+
+<Container margin="10px"> // error
+<Container margin={{ top: 10 }}> // pass
+```
