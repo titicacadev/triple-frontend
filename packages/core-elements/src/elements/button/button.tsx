@@ -158,12 +158,24 @@ const ButtonIcon = styled.div<{ size?: GlobalSizes; src?: string }>`
   background-image: url(${({ src }) => src});
 `
 
+interface ButtonAProps {
+  // HTML
+  a: React.DetailedHTMLProps<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    HTMLAnchorElement
+  >
+  button: React.DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  >
+}
+
 export interface ButtonProps extends BasicButtonProp, ButtonBaseProp {
   basic?: boolean
   icon?: string
   borderRadius?: number
   onClick?: (e: React.SyntheticEvent) => any
-  as?: keyof JSX.IntrinsicElements
+  as?: keyof ButtonAProps
 }
 
 class Button extends React.PureComponent<ButtonProps> {
