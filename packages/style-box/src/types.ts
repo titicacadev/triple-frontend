@@ -7,8 +7,4 @@ export type MarginPadding = Partial<
   >
 >
 
-export type Styles = {
-  margin?: MarginPadding
-  padding?: MarginPadding
-  ellipsis?: boolean
-}
+export type Ellipsis = boolean
