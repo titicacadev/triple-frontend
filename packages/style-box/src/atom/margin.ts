@@ -1,18 +1,24 @@
 import { css } from 'styled-components'
-import { MarginPadding, Styles } from '../types'
+import { MarginPadding } from '../types'
 
-export const margin = (defaultValue?: MarginPadding) => ({
-  margin,
-}: Styles) => {
-  const value = margin || defaultValue
+export const margin = (defaultValue?: MarginPadding) => css`
+  ${({ margin }: { margin?: MarginPadding }) => {
+    const value =
+      defaultValue || margin
+        ? {
+            ...(defaultValue || {}),
+            ...(margin || {}),
+          }
+        : null
 
-  return (
-    value &&
-    css`
-      margin-top: ${value.top}px;
-      margin-right: ${value.right}px;
-      margin-bottom: ${value.bottom}px;
-      margin-left: ${value.left}px;
-    `
-  )
-}
+    return (
+      value &&
+      `
+        ${value.top && `margin-top: ${value.top}px;`}
+        ${value.right && `margin-right: ${value.right}px;`}
+        ${value.bottom && `margin-bottom: ${value.bottom}px;`}
+        ${value.left && `margin-left: ${value.left}px;`}
+      `
+    )
+  }}
+`
