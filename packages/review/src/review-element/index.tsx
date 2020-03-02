@@ -3,10 +3,7 @@ import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import IntersectionObserver from '@titicaca/intersection-observer'
 import { List, Container, Text, Rating } from '@titicaca/core-elements'
-import {
-  useEventTrackingContext,
-  useHistoryContext,
-} from '@titicaca/react-contexts'
+import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useReviewLikesContext } from '../review-likes-context'
 import User from './user'
 import Comment from './comment'
@@ -114,7 +111,6 @@ export default function ReviewElement({
   const { deriveCurrentStateAndCount } = useReviewLikesContext()
   const { user, blindedAt, comment, createdAt, rating, media } = review
   const { trackEvent } = useEventTrackingContext()
-  const { navigate } = useHistoryContext()
   const { liked, likesCount } = deriveCurrentStateAndCount({
     reviewId: review.id,
     liked: review.liked,
@@ -122,19 +118,15 @@ export default function ReviewElement({
   })
   const handleSelectReview = () => {
     trackEvent({
-      ga: ['리뷰_엔드로이동'],
+      ga: ['리뷰_선택'],
       fa: {
-        action: '리뷰_엔드로이동',
+        action: '리뷰_선택',
         item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
         review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
       },
     })
 
-    navigate(
-      `${appUrlScheme}:///inlink?path=${encodeURIComponent(
-        `/reviews/${review.id}/detail?_triple_no_navbar&region_id=${regionId}&resource_id=${resourceId}`,
-      )}`,
-    )
+    window.location.href = `${appUrlScheme}:///reviews/${review.id}/detail?region_id=${regionId}&resource_id=${resourceId}`
   }
   return (
     <IntersectionObserver
