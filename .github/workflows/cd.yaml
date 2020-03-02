@@ -97,5 +97,5 @@ jobs:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_USERNAME: GHA Notifications
         SLACK_ICON_EMOJI: ':gear:'
-        SLACK_COLOR: warining
+        SLACK_COLOR: warning
         SLACK_TITLE: ${{ ':x:' }} Deploy FAIL
