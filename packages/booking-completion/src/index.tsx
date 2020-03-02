@@ -14,6 +14,8 @@ interface Region {
 interface BookingCompletionProps {
   title?: string
   onMoveToBookingDetail: () => void
+  onMoveToMain?: () => void
+  onMoveToRegion?: () => void
   descriptions?: string[]
   region?: Region
 }
@@ -44,6 +46,8 @@ const RegionButton = styled(Button)`
 function BookingCompletion({
   title,
   onMoveToBookingDetail,
+  onMoveToMain = () => {},
+  onMoveToRegion = () => {},
   descriptions,
   region,
 }: BookingCompletionProps) {
@@ -85,7 +89,10 @@ function BookingCompletion({
             inverted
             color="gray"
             size="small"
-            onClick={() => navigate('/main')}
+            onClick={() => {
+              onMoveToMain()
+              navigate('/main')
+            }}
           >
             트리플 홈으로 가기
           </Button>
@@ -95,7 +102,10 @@ function BookingCompletion({
         <RegionButton
           fluid
           margin={{ top: 6 }}
-          onClick={() => navigate(`/regions/${region.id}`)}
+          onClick={() => {
+            onMoveToRegion()
+            navigate(`/regions/${region.id}`)
+          }}
         >
           {region.names.ko || region.names.en} 여행 준비하러 가기
         </RegionButton>
