@@ -1,4 +1,5 @@
 import { css } from 'styled-components'
+
 import { Ellipsis } from '../types'
 
 export const ellipsis = (defaultValue?: Ellipsis) => css<{
