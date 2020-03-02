@@ -121,7 +121,7 @@ export default function Controls({
 
   const handleFadeOut = useCallback(
     debounce(() => setVisible(false), 2500),
-    setVisible,
+    [setVisible],
   )
 
   const handleFadeIn = useCallback(() => {
