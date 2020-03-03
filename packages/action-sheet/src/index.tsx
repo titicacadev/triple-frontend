@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
+import { disableScroll, enableScroll } from '@titicaca/view-utilities'
 
 import {
   MarginPadding,
@@ -110,14 +110,10 @@ export default function ActionSheet({
   className?: string
 }>) {
   useEffect(() => {
-    const actionSheetElem = document.querySelector(
-      '#action-sheet',
-    ) as HTMLElement
-
     if (open) {
-      disableBodyScroll(actionSheetElem)
+      disableScroll('#action-sheet')
     } else {
-      enableBodyScroll(actionSheetElem)
+      enableScroll('#action-sheet')
     }
   }, [open])
 

@@ -6,10 +6,15 @@ import { action } from '@storybook/addon-actions'
 import ActionSheet from '@titicaca/action-sheet'
 import { RangePicker } from '@titicaca/date-picker'
 
+const Empty = styled.div`
+  height: 200vh;
+`
+
 storiesOf('action-sheet | ActionSheet', module)
   .add('인터랙션 테스트: 초기상태 닫힘', () => (
     <>
       <a onClick={action('clicked')}>Click me</a>
+      <Empty />
       <ActionSheet
         open={boolean('열림', false)}
         title={text('제목', '샘플 액션 시트')}

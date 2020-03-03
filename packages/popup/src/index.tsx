@@ -7,7 +7,7 @@ import React, {
 import { CSSTransition } from 'react-transition-group'
 import styled from 'styled-components'
 import { Navbar } from '@titicaca/core-elements'
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
+import { disableScroll, enableScroll } from '@titicaca/view-utilities'
 
 type NavbarIcon = 'close' | 'back'
 
@@ -59,16 +59,14 @@ export default function Popup({
   const popupRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const popupElem = document.querySelector('#popup') as HTMLElement
-
     if (open && popupRef.current && popupRef.current.scrollTop > 0) {
       popupRef.current.scrollTop = 0
     }
 
     if (open) {
-      disableBodyScroll(popupElem)
+      disableScroll('#popup')
     } else {
-      enableBodyScroll(popupElem)
+      enableScroll('#popup')
     }
   }, [open])
 

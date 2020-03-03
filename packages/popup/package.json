@@ -22,6 +22,7 @@
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
     "@titicaca/core-elements": "^1.11.0",
-    "react-transition-group": "^4.3.0"
+    "react-transition-group": "^4.3.0",
+    "@titicaca/view-utilities": "^1.10.1"
   }
 }

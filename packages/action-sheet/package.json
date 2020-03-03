@@ -20,6 +20,6 @@
   },
   "dependencies": {
     "react-transition-group": "^4.2.2",
-    "body-scroll-lock": "2.6.4"
+    "@titicaca/view-utilities": "^1.8.0"
   }
 }

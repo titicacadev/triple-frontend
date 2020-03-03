@@ -2,20 +2,30 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { Text } from '@titicaca/core-elements'
 import { Modal, Confirm, Alert } from '@titicaca/modals'
+import styled from 'styled-components'
+import { boolean } from '@storybook/addon-knobs/dist'
+
+const Empty = styled.div`
+  height: 200vh;
+`
 
 storiesOf('modals | Modal', module)
   .add('Basic', () => (
-    <Modal open>
-      <Text
-        center
-        size="large"
-        lineHeight={1.38}
-        color="gray"
-        padding={{ top: 40, bottom: 40, left: 30, right: 30 }}
-      >
-        안녕
-      </Text>
-    </Modal>
+    <>
+      ss
+      <Empty />
+      <Modal open={boolean('모달 오픈', false)}>
+        <Text
+          center
+          size="large"
+          lineHeight={1.38}
+          color="gray"
+          padding={{ top: 40, bottom: 40, left: 30, right: 30 }}
+        >
+          안녕
+        </Text>
+      </Modal>
+    </>
   ))
   .add('Confirm', () => (
     <Confirm open>
@@ -26,7 +36,7 @@ storiesOf('modals | Modal', module)
     <Alert
       title="장애공지
     타이틀이 두줄일수도"
-      open
+      open={boolean('알럿 오픈', true)}
     >
       실시간 객실정보가 변경되어 안내드려요.
     </Alert>

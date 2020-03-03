@@ -1,4 +1,8 @@
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
+import {
+  disableBodyScroll,
+  enableBodyScroll,
+  clearAllBodyScrollLocks,
+} from 'body-scroll-lock'
 
 export function disableScroll(selector: string) {
   disableBodyScroll(document.querySelector(selector) as HTMLElement)
@@ -6,4 +10,8 @@ export function disableScroll(selector: string) {
 
 export function enableScroll(selector: string) {
   enableBodyScroll(document.querySelector(selector) as HTMLElement)
+}
+
+export function clearScrollLocks() {
+  clearAllBodyScrollLocks()
 }
