@@ -43,6 +43,36 @@ export function unlikeReview({ id }: { id: string }) {
   })
 }
 
+export async function fetchReviewRateDescription({
+  resourceType,
+  resourceId,
+}: {
+  resourceType: ResourceType
+  resourceId: string
+}): Promise<string[]> {
+  const response = await fetch(
+    `/api/reviews/v2/specification?resource_id=${resourceId}&resource_type=${resourceType}`,
+    {
+      method: 'GET',
+      credentials: 'same-origin',
+    },
+  )
+
+  if (!response.ok) {
+    throw new Error(
+      `Failed to get rate description for ${resourceType} : ${response.status}`,
+    )
+  }
+
+  const {
+    specification: {
+      rating: { description },
+    },
+  } = await response.json()
+
+  return description
+}
+
 export async function fetchMyReview({
   resourceType,
   resourceId,

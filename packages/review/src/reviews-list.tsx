@@ -17,34 +17,29 @@ import OthersReviewActionSheet, {
 } from './others-review-action-sheet'
 import { likeReview, unlikeReview } from './review-api-clients'
 import { useReviewLikesContext } from './review-likes-context'
-import {
-  ResourceType,
-  AppNativeActionProps,
-  ReviewData,
-  ImageEntity,
-} from './types'
+import { AppNativeActionProps, ReviewData, ImageEntity } from './types'
 
 export default function ReviewsList({
   myReview,
   reviews,
+  regionId,
   fetchNext,
   appUrlScheme,
   margin,
-  resourceType,
   resourceId,
-  regionId,
   maxLength,
+  reviewRateDescriptions,
   showToast,
 }: {
   myReview?: ReviewData
   reviews: ReviewData[]
   fetchNext?: () => void
+  regionId: string
   appUrlScheme: string
   margin: MarginPadding
-  resourceType: ResourceType
   resourceId: string
-  regionId: string
   maxLength?: number
+  reviewRateDescriptions?: string[]
   showToast: AppNativeActionProps['showToast']
 }) {
   const [selectedReview, setSelectedReview] = useState<ReviewData | undefined>(
@@ -53,7 +48,7 @@ export default function ReviewsList({
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
   const { updateLikedStatus } = useReviewLikesContext()
-  const { navigate, push } = useHistoryContext()
+  const { push } = useHistoryContext()
   const { show } = useTransitionModal()
 
   const handleUserClick: ReviewElementProps['onUserClick'] = (
@@ -91,21 +86,6 @@ export default function ReviewsList({
     if (response.ok) {
       updateLikedStatus({ [id]: !liked }, resourceId)
     }
-  }
-
-  const handleLikesCountClick: ReviewElementProps['onLikesCountClick'] = (
-    e,
-    { id },
-  ) => {
-    if (isPublic) {
-      return
-    }
-
-    navigate(
-      `${appUrlScheme}:///inlink?path=${encodeURIComponent(
-        `/reviews/thanks?_triple_no_navbar&region_id=${regionId}&resource_id=${resourceId}&resource_type=${resourceType}&review_id=${id}`,
-      )}`,
-    )
   }
 
   const handleMenuClick: ReviewElementProps['onMenuClick'] = (e, review) => {
@@ -164,16 +144,18 @@ export default function ReviewsList({
 
   return (
     <>
-      <List margin={margin} divided verticalGap={60}>
+      <List margin={margin} divided verticalGap={20}>
         {displayedReviews.map((review, i) => (
           <ReviewElement
             isMyReview={!!(myReview && myReview.id === review.id)}
             key={review.id}
             index={i}
+            regionId={regionId}
+            appUrlScheme={appUrlScheme}
             review={review}
+            reviewRateDescriptions={reviewRateDescriptions}
             onUserClick={handleUserClick}
             onLikeButtonClick={handleLikeButtonClick}
-            onLikesCountClick={handleLikesCountClick}
             onMenuClick={handleMenuClick}
             onImageClick={handleImageClick}
             likeVisible={!isPublic}
