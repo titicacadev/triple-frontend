@@ -34,7 +34,7 @@ export const minHeight = (defaultValue?: Height) => css<{
   ${({ minHeight = defaultValue, unit = 'px' }) => {
     return minHeight
       ? `
-          max-height: ${minHeight}${unit};
+          min-height: ${minHeight}${unit};
           `
       : ''
   }}
