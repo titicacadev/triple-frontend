@@ -43,6 +43,7 @@ function ActionItem({
   onClick?: (e?: React.SyntheticEvent) => any
 }>) {
   let textWidth = '100%'
+
   if (buttonLabel && icon) {
     textWidth = 'calc(100% - 100px)'
   } else if (buttonLabel || checked) {

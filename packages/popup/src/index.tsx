@@ -64,6 +64,7 @@ export default function Popup({
     if (open && popupRef.current && popupRef.current.scrollTop > 0) {
       popupRef.current.scrollTop = 0
     }
+
     if (open) {
       disableBodyScroll(popupElem)
     } else {
