@@ -1,7 +1,7 @@
 import { css } from 'styled-components'
 
 import { whiteSpace } from '../atom/white-space'
-import { overflow } from '../atom/overflow'
+import { overflowX, overflowY } from '../atom/overflow'
 import { HorizontalScroll } from '../types'
 
 export const horizontalScroll = (defaultValue?: HorizontalScroll) => css<{
@@ -11,7 +11,8 @@ export const horizontalScroll = (defaultValue?: HorizontalScroll) => css<{
     return horizontalScroll
       ? `
         ${whiteSpace('nowrap')}
-        ${overflow('auto hidden')}
+        ${overflowX('auto')}
+        ${overflowY('hidden')}
         `
       : ''
   }}

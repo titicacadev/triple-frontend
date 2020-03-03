@@ -7,8 +7,7 @@ export const userSelect = (defaultValue?: CSS.UserSelectProperty) => css<{
   ${({ userSelect = defaultValue }) => {
     return userSelect
       ? `
-        -webkit-user-select: ${userSelect};
-        -user-select: ${userSelect};
+        user-select: ${userSelect};
         `
       : ''
   }}

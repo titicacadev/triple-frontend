@@ -2,6 +2,7 @@ import { css } from 'styled-components'
 import CSS from 'csstype'
 
 import { Position } from '../types'
+import { isObject, isString } from '../utils'
 
 export const position = (
   defaultValue?: CSS.PositionProperty | Position,
@@ -9,21 +10,34 @@ export const position = (
   position?: CSS.PositionProperty | Position
   unit?: string
 }>`
-  ${({ position = defaultValue, unit = 'px' }) => {
-    if (!position) {
+  ${({ position, unit = 'px' }) => {
+    if (!defaultValue && !position) {
       return ''
     }
 
-    if (typeof position === 'object') {
+    if (isString(position)) {
+      return `position: ${position};`
+    }
+
+    if (isObject(defaultValue) || isObject(position)) {
+      const mergedPosition = {
+        ...(isObject(defaultValue) ? defaultValue : {}),
+        ...(isObject(position) ? position : {}),
+      } as Position
+
       return `
-        position: ${position.type};
-        ${position.top ? `top: ${position.top}${unit};` : ''}
-        ${position.right ? `right: ${position.right}${unit};` : ''}
-        ${position.bottom ? `bottom: ${position.bottom}${unit};` : ''}
-        ${position.left ? `left: ${position.left}${unit};` : ''}
+        position: ${mergedPosition.type};
+        ${mergedPosition.top ? `top: ${mergedPosition.top}${unit};` : ''}
+        ${mergedPosition.right ? `right: ${mergedPosition.right}${unit};` : ''}
+        ${
+          mergedPosition.bottom
+            ? `bottom: ${mergedPosition.bottom}${unit};`
+            : ''
+        }
+        ${mergedPosition.left ? `left: ${mergedPosition.left}${unit};` : ''}
       `
     }
 
-    return `position: ${position}`
+    return `position: ${defaultValue || position};`
   }}
 `
