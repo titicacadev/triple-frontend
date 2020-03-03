@@ -8,7 +8,7 @@ export const height = (defaultValue?: Height) => css<{
   ${({ height = defaultValue, unit = 'px' }) => {
     return height
       ? `
-      width: ${height}${unit};
+      height: ${height}${unit};
       `
       : ''
   }}
@@ -21,7 +21,7 @@ export const maxHeight = (defaultValue?: Height) => css<{
   ${({ maxHeight = defaultValue, unit = 'px' }) => {
     return maxHeight
       ? `
-        max-width: ${maxHeight}${unit};
+        max-height: ${maxHeight}${unit};
         `
       : ''
   }}
@@ -34,7 +34,7 @@ export const minHeight = (defaultValue?: Height) => css<{
   ${({ minHeight = defaultValue, unit = 'px' }) => {
     return minHeight
       ? `
-          max-width: ${minHeight}${unit};
+          max-height: ${minHeight}${unit};
           `
       : ''
   }}

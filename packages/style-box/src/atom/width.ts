@@ -34,7 +34,7 @@ export const minWidth = (defaultValue?: Width) => css<{
   ${({ minWidth = defaultValue, unit = 'px' }) => {
     return minWidth
       ? `
-          max-width: ${minWidth}${unit};
+          min-width: ${minWidth}${unit};
           `
       : ''
   }}

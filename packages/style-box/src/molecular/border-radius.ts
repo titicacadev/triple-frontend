@@ -11,7 +11,6 @@ export const borderRadius = (defaultValue?: BorderRadius) => css<{
       ? `
         border-radius: ${borderRadius}px;
         ${overflow('hidden')}
-        -webkit-mask-image: -webkit-radial-gradient(white, black);
         `
       : ''
   }}

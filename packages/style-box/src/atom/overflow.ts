@@ -12,3 +12,27 @@ export const overflow = (defaultValue?: CSS.OverflowProperty) => css<{
       : ''
   }}
 `
+
+export const overflowX = (defaultValue?: CSS.OverflowProperty) => css<{
+  overflowX?: CSS.OverflowProperty
+}>`
+  ${({ overflowX = defaultValue }) => {
+    return overflowX
+      ? `
+        overflow-x: ${overflowX};
+        `
+      : ''
+  }}
+`
+
+export const overflowY = (defaultValue?: CSS.OverflowProperty) => css<{
+  overflowY?: CSS.OverflowProperty
+}>`
+  ${({ overflowY = defaultValue }) => {
+    return overflowY
+      ? `
+        overflow-x: ${overflowY};
+        `
+      : ''
+  }}
+`
