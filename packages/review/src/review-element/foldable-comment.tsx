@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 import Comment from './comment'
@@ -13,36 +13,21 @@ const Unfold = styled.a`
   cursor: pointer;
 `
 
-export default function FoldableComment({
-  comment,
-  onUnfoldButtonClick,
-}: {
-  comment: string
-  onUnfoldButtonClick: MouseEventHandler<HTMLAnchorElement>
-}) {
+export default function FoldableComment({ comment }: { comment: string }) {
   const foldedPosition = findFoldedPosition(comment)
 
   return foldedPosition ? (
-    <FoldedComment
-      comment={comment.slice(0, foldedPosition)}
-      onUnfoldButtonClick={onUnfoldButtonClick}
-    />
+    <FoldedComment comment={comment.slice(0, foldedPosition)} />
   ) : (
     <Comment>{comment}</Comment>
   )
 }
 
-function FoldedComment({
-  comment,
-  onUnfoldButtonClick,
-}: {
-  comment: string
-  onUnfoldButtonClick: MouseEventHandler<HTMLAnchorElement>
-}) {
+function FoldedComment({ comment }: { comment: string }) {
   return (
     <Comment>
       {`${comment} …`}
-      <Unfold onClick={onUnfoldButtonClick}>더보기</Unfold>
+      <Unfold>더보기</Unfold>
     </Comment>
   )
 }
