@@ -41,3 +41,5 @@ import { debounce, formatNumber } from '@titicaca/view-utilities'
 ## generateUrl
 
 [API]
+
+## lock-body-scroll
