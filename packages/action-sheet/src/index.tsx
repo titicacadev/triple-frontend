@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { CSSTransition } from 'react-transition-group'
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 
 import {
   MarginPadding,
@@ -107,6 +108,18 @@ export default function ActionSheet({
   padding?: MarginPadding
   className?: string
 }>) {
+  useEffect(() => {
+    const actionSheetElem = document.querySelector(
+      '#action-sheet',
+    ) as HTMLElement
+
+    if (open) {
+      disableBodyScroll(actionSheetElem)
+    } else {
+      enableBodyScroll(actionSheetElem)
+    }
+  }, [open])
+
   const actionSheetTitle = title ? (
     typeof title === 'string' ? (
       <Title>{title}</Title>
@@ -123,7 +136,13 @@ export default function ActionSheet({
   }
 
   return (
-    <CSSTransition in={open} appear classNames="fade" timeout={500}>
+    <CSSTransition
+      id="action-sheet"
+      in={open}
+      appear
+      classNames="fade"
+      timeout={500}
+    >
       <Overlay
         from={from}
         borderRadius={borderRadius}

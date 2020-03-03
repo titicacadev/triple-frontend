@@ -7,6 +7,7 @@ import React, {
 import { CSSTransition } from 'react-transition-group'
 import styled from 'styled-components'
 import { Navbar } from '@titicaca/core-elements'
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 
 type NavbarIcon = 'close' | 'back'
 
@@ -58,13 +59,20 @@ export default function Popup({
   const popupRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const popupElem = document.querySelector('#popup') as HTMLElement
+
     if (open && popupRef.current && popupRef.current.scrollTop > 0) {
       popupRef.current.scrollTop = 0
+    }
+    if (open) {
+      disableBodyScroll(popupElem)
+    } else {
+      enableBodyScroll(popupElem)
     }
   }, [open])
 
   return (
-    <CSSTransition timeout={0} in={open} classNames="fade" appear>
+    <CSSTransition id="popup" timeout={0} in={open} classNames="fade" appear>
       {/* https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451 */}
       <PopupContainer ref={popupRef}>
         {noNavbar ? null : (
