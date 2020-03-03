@@ -11,8 +11,8 @@ export const ORDER_BY_RECOMMENDATION = ''
 export const ORDER_BY_RECENCY = 'latest'
 
 const SORTING_OPTIONS = [
-  { key: ORDER_BY_RECOMMENDATION, text: '추천순' },
-  { key: ORDER_BY_RECENCY, text: '최신순' },
+  { key: ORDER_BY_RECOMMENDATION, text: '추천' },
+  { key: ORDER_BY_RECENCY, text: '최신' },
 ]
 
 const OptionsContainer = styled.div`
