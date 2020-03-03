@@ -13,6 +13,7 @@ import {
   fetchMyReview,
   writeReview,
   fetchReviewsCount,
+  fetchReviewRateDescrption,
 } from './review-api-clients'
 import ReviewsPlaceholder from './review-placeholder-with-rating'
 import ReviewsList from './reviews-list'
@@ -92,6 +93,9 @@ export default function ReviewContainer({
     [ReviewData | undefined, Set<string>]
   >([undefined, new Set([])])
   const [reviewsCount, setReviewsCount] = useState(initialReviewsCount)
+  const [reviewRateDescriptions, setReviewRateDescriptions] = useState<
+    string[]
+  >([])
   const { navigate } = useHistoryContext()
   const { show } = useTransitionModal()
 
@@ -113,14 +117,24 @@ export default function ReviewContainer({
       const { id } = params
 
       if (id && id === resourceId) {
-        const [fetchedMyReview, fetchedReviewsCount] = await Promise.all([
+        const [
+          fetchedMyReview,
+          fetchedReviewsCount,
+          fetchedReviewRateDescrption,
+        ] = await Promise.all([
           fetchMyReview({ resourceType, resourceId }),
           fetchReviewsCount({ resourceType, resourceId }),
+          resourceType === 'article'
+            ? null
+            : fetchReviewRateDescrption({ resourceType }),
         ])
 
         setMyReview(fetchedMyReview)
         if (fetchedReviewsCount !== null) {
           setReviewsCount(fetchedReviewsCount)
+        }
+        if (fetchedReviewRateDescrption !== null) {
+          setReviewRateDescriptions(fetchedReviewRateDescrption)
         }
       }
     }
@@ -262,12 +276,12 @@ export default function ReviewContainer({
             maxLength={shortened ? 3 : undefined}
             myReview={myReview}
             reviews={reviews.filter((review) => !myReviewIds.has(review.id))}
-            resourceType={resourceType}
             regionId={regionId}
             appUrlScheme={appUrlScheme}
             margin={{ top: 30 }}
             resourceId={resourceId}
             showToast={showToast}
+            reviewRateDescriptions={reviewRateDescriptions}
             fetchNext={!shortened ? fetchNext : undefined}
           />
         </>
