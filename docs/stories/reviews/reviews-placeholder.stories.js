@@ -8,7 +8,7 @@ storiesOf('Reviews | Reviews', module).add('플레이스홀더', () => (
   <ReviewsPlaceholder
     resourceType={select(
       'Resource Type',
-      ['poi', 'tna', 'article', 'hotel', 'default'],
+      ['restaurant', 'attraction', 'tna', 'article', 'hotel'],
       'tna',
     )}
     appUrlScheme="triple"
