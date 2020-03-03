@@ -55,7 +55,7 @@ const Context = React.createContext<MyReviewsContextProps>({
 })
 
 interface MyReviewsProviderProps {
-  myReviews: MyReviewSet
+  myReviews?: MyReviewSet
   fetchMyReview: FetchReview
   resourceType: string
   subscribeReviewUpdateEvent: (
