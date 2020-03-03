@@ -1,4 +1,4 @@
-import React, { useState, PropsWithChildren, ComponentType } from 'react'
+import React, { PropsWithChildren, ComponentType } from 'react'
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import IntersectionObserver from '@titicaca/intersection-observer'
