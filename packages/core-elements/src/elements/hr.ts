@@ -72,6 +72,7 @@ export const HR6 = styled.div`
 
 export const HR7 = styled.div<HRProp>`
   margin: 30px auto;
+
   ${({ compact }) =>
     compact &&
     css`
@@ -86,6 +87,7 @@ export const HR7 = styled.div<HRProp>`
       margin-left: ${margin.left || 0}px;
       margin-right: ${margin.right || 0}px;
     `};
+
   width: 100%;
   border-bottom: dashed 1px #efefef;
 `
