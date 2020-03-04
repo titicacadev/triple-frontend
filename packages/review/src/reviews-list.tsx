@@ -17,12 +17,7 @@ import OthersReviewActionSheet, {
 } from './others-review-action-sheet'
 import { likeReview, unlikeReview } from './review-api-clients'
 import { useReviewLikesContext } from './review-likes-context'
-import {
-  ResourceType,
-  AppNativeActionProps,
-  ReviewData,
-  ImageEntity,
-} from './types'
+import { AppNativeActionProps, ReviewData, ImageEntity } from './types'
 
 export default function ReviewsList({
   myReview,
@@ -31,7 +26,6 @@ export default function ReviewsList({
   fetchNext,
   appUrlScheme,
   margin,
-  resourceType,
   resourceId,
   maxLength,
   reviewRateDescriptions,
@@ -43,7 +37,6 @@ export default function ReviewsList({
   regionId: string
   appUrlScheme: string
   margin: MarginPadding
-  resourceType: ResourceType
   resourceId: string
   maxLength?: number
   reviewRateDescriptions?: string[]
@@ -55,7 +48,7 @@ export default function ReviewsList({
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
   const { updateLikedStatus } = useReviewLikesContext()
-  const { navigate, push } = useHistoryContext()
+  const { push } = useHistoryContext()
   const { show } = useTransitionModal()
 
   const handleUserClick: ReviewElementProps['onUserClick'] = (
