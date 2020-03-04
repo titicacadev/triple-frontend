@@ -1,15 +1,18 @@
-import React, { PropsWithChildren, ComponentType } from 'react'
+import React, { useState, PropsWithChildren, ComponentType } from 'react'
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import IntersectionObserver from '@titicaca/intersection-observer'
 import { List, Container, Text, Rating } from '@titicaca/core-elements'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import {
+  useEventTrackingContext,
+  useUserAgentContext,
+} from '@titicaca/react-contexts'
 
 import { useReviewLikesContext } from '../review-likes-context'
 import User from './user'
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
-import { ReviewData } from '../types'
+import { ReviewData, ImageEntity } from '../types'
 
 type ReviewEventHandler<T = Element, E = Event> = (
   e: React.SyntheticEvent<T, E>,
@@ -23,8 +26,14 @@ export interface ReviewElementProps {
   regionId: string
   appUrlScheme: string
   onUserClick: ReviewEventHandler
+  onUnfoldButtonClick?: ReviewEventHandler
   onLikeButtonClick: ReviewEventHandler
   onMenuClick: ReviewEventHandler
+  onImageClick: (
+    e: React.SyntheticEvent,
+    review: ReviewData,
+    image: ImageEntity,
+  ) => void
   onShow?: (index: number) => void
   reviewRateDescriptions?: string[]
   likeVisible?: boolean
@@ -100,8 +109,10 @@ export default function ReviewElement({
   regionId,
   appUrlScheme,
   onUserClick,
+  onUnfoldButtonClick,
   onLikeButtonClick,
   onMenuClick,
+  onImageClick,
   onShow,
   likeVisible,
   menuVisible,
@@ -109,7 +120,11 @@ export default function ReviewElement({
   reviewRateDescriptions,
   resourceId,
 }: ReviewElementProps) {
+  const [unfolded, setUnfolded] = useState(false)
   const { deriveCurrentStateAndCount } = useReviewLikesContext()
+  const {
+    os: { version: appVersion },
+  } = useUserAgentContext()
   const { user, blindedAt, comment, createdAt, rating, media } = review
   const { trackEvent } = useEventTrackingContext()
   const { liked, likesCount } = deriveCurrentStateAndCount({
@@ -117,17 +132,20 @@ export default function ReviewElement({
     liked: review.liked,
     likesCount: review.likesCount,
   })
-  const handleSelectReview = () => {
-    trackEvent({
-      ga: ['리뷰_선택'],
-      fa: {
-        action: '리뷰_선택',
-        item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
-        review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
-      },
-    })
+  const handleSelectReview = (e: React.SyntheticEvent) => {
+    if (parseInt(appVersion) >= 4) {
+      trackEvent({
+        ga: ['리뷰_선택'],
+        fa: {
+          action: '리뷰_선택',
+          item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+          review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
+        },
+      })
 
-    window.location.href = `${appUrlScheme}:///reviews/${review.id}/detail?region_id=${regionId}&resource_id=${resourceId}`
+      window.location.href = `${appUrlScheme}:///reviews/${review.id}/detail?region_id=${regionId}&resource_id=${resourceId}`
+      e.preventDefault()
+    }
   }
   return (
     <IntersectionObserver
@@ -143,7 +161,25 @@ export default function ReviewElement({
           {blindedAt ? (
             '신고가 접수되어 블라인드 처리되었습니다.'
           ) : comment ? (
-            <FoldableComment comment={comment} />
+            unfolded ? (
+              comment
+            ) : (
+              <FoldableComment
+                comment={comment}
+                onUnfoldButtonClick={(e) => {
+                  trackEvent({
+                    ga: ['리뷰_리뷰글더보기'],
+                    fa: {
+                      action: '리뷰_리뷰글더보기',
+                      item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+                    },
+                  })
+                  setUnfolded(true)
+
+                  onUnfoldButtonClick && onUnfoldButtonClick(e, review)
+                }}
+              />
+            )
           ) : (
             <RateDescription
               rating={rating}
@@ -159,7 +195,21 @@ export default function ReviewElement({
               ) : (
                 <Images>
                   {(media || []).map((image, i) => (
-                    <img key={i} src={image.sizes.large.url} />
+                    <img
+                      key={i}
+                      src={image.sizes.large.url}
+                      onClick={(e) => {
+                        trackEvent({
+                          ga: ['리뷰_리뷰사진썸네일'],
+                          fa: {
+                            action: '리뷰_리뷰사진썸네일',
+                            item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+                            photo_id: image.id, // eslint-disable-line @typescript-eslint/camelcase
+                          },
+                        })
+                        onImageClick(e, review, image)
+                      }}
+                    />
                   ))}
                 </Images>
               )}
@@ -211,10 +261,7 @@ function Score({ score }: { score?: number }) {
   )
 }
 
-function Content({
-  onClick,
-  children,
-}: PropsWithChildren<{ onClick?: () => void }>) {
+function Content({ onClick, children }: PropsWithChildren<{ onClick?: any }>) {
   return (
     <Container margin={{ top: 15 }} clearing>
       <a onClick={onClick}>
