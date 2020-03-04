@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
+import qs from 'qs'
+import moment from 'moment'
 import { List, MarginPadding } from '@titicaca/core-elements'
 import {
   useHistoryContext,
   useUserAgentContext,
   useEventTrackingContext,
 } from '@titicaca/react-contexts'
+import { useTransitionModal, TransitionType } from '@titicaca/modals'
 
 import ReviewElement, { ReviewElementProps } from './review-element'
 import ReviewTimestamp from './review-timestamp'
@@ -14,7 +17,12 @@ import OthersReviewActionSheet, {
 } from './others-review-action-sheet'
 import { likeReview, unlikeReview } from './review-api-clients'
 import { useReviewLikesContext } from './review-likes-context'
-import { AppNativeActionProps, ReviewData } from './types'
+import {
+  ResourceType,
+  AppNativeActionProps,
+  ReviewData,
+  ImageEntity,
+} from './types'
 
 export default function ReviewsList({
   myReview,
@@ -23,6 +31,7 @@ export default function ReviewsList({
   fetchNext,
   appUrlScheme,
   margin,
+  resourceType,
   resourceId,
   maxLength,
   reviewRateDescriptions,
@@ -34,6 +43,7 @@ export default function ReviewsList({
   regionId: string
   appUrlScheme: string
   margin: MarginPadding
+  resourceType: ResourceType
   resourceId: string
   maxLength?: number
   reviewRateDescriptions?: string[]
@@ -45,7 +55,8 @@ export default function ReviewsList({
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
   const { updateLikedStatus } = useReviewLikesContext()
-  const { push } = useHistoryContext()
+  const { navigate, push } = useHistoryContext()
+  const { show } = useTransitionModal()
 
   const handleUserClick: ReviewElementProps['onUserClick'] = (
     e,
@@ -95,6 +106,40 @@ export default function ReviewsList({
     }
   }
 
+  const handleImageClick: ReviewElementProps['onImageClick'] = (
+    e,
+    { user: { name }, comment, media, createdAt },
+    image,
+  ) => {
+    if (isPublic) {
+      return show(TransitionType.ReviewThumbnail)
+    }
+
+    const convertImage = (convertingImage: ImageEntity) => ({
+      id: convertingImage.id,
+      title: '',
+      description: (comment || '').replace(/\n\s*\n/g, '\n'),
+      width: convertingImage.width,
+      height: convertingImage.height,
+      sourceUrl: `${name} / ${moment(createdAt).format('YYYY.M.D')}`,
+      sizes: {
+        full: convertingImage.sizes.full,
+        large: convertingImage.sizes.large,
+        /* eslint-disable-next-line @typescript-eslint/camelcase */
+        small_square: convertingImage.sizes.smallSquare,
+      },
+    })
+
+    if (!media) {
+      return
+    }
+
+    window.location.href = `${appUrlScheme}:///images?${qs.stringify({
+      images: JSON.stringify(media.map(convertImage)),
+      index: media.findIndex(({ id }) => id === image.id),
+    })}`
+  }
+
   const handleShow = fetchNext
     ? (index: number) => index > reviews.length - 3 && fetchNext()
     : undefined
@@ -119,6 +164,7 @@ export default function ReviewsList({
             onUserClick={handleUserClick}
             onLikeButtonClick={handleLikeButtonClick}
             onMenuClick={handleMenuClick}
+            onImageClick={handleImageClick}
             likeVisible={!isPublic}
             menuVisible={!isPublic}
             resourceId={resourceId}
