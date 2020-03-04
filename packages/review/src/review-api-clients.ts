@@ -43,7 +43,7 @@ export function unlikeReview({ id }: { id: string }) {
   })
 }
 
-export async function fetchReviewRateDescrption({
+export async function fetchReviewRateDescription({
   resourceType,
 }: {
   resourceType: ResourceType
