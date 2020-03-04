@@ -1,4 +1,5 @@
 import { css } from 'styled-components'
+
 import { Width } from '../types'
 
 export const width = (defaultValue?: Width) => css<{
