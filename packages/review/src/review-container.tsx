@@ -13,7 +13,7 @@ import {
   fetchMyReview,
   writeReview,
   fetchReviewsCount,
-  fetchReviewRateDescrption,
+  fetchReviewRateDescription,
 } from './review-api-clients'
 import ReviewsPlaceholder from './review-placeholder-with-rating'
 import ReviewsList from './reviews-list'
@@ -126,7 +126,7 @@ export default function ReviewContainer({
           fetchReviewsCount({ resourceType, resourceId }),
           resourceType === 'article'
             ? null
-            : fetchReviewRateDescrption({ resourceType }),
+            : fetchReviewRateDescription({ resourceType }),
         ])
 
         setMyReview(fetchedMyReview)
