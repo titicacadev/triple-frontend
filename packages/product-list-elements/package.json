@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/product-list-elements",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "Triple Product UI Elements",
   "main": "lib/index.js",
   "files": [
@@ -15,8 +15,8 @@
   },
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
-    "@titicaca/core-elements": "^1.8.0",
-    "@titicaca/resource-list-element": "^1.8.0",
-    "@titicaca/view-utilities": "^1.8.0"
+    "@titicaca/core-elements": "^1.9.0",
+    "@titicaca/resource-list-element": "^1.9.0",
+    "@titicaca/view-utilities": "^1.9.0"
   }
 }
