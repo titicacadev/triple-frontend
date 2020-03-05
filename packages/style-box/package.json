@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/style-box",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "Triple Style Box",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -18,7 +18,7 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "styled-components": "^4.4.1",
-    "csstype": "2.6.9"
+    "csstype": "2.6.9",
+    "styled-components": "^4.4.1"
   }
 }
