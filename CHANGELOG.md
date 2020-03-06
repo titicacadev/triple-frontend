@@ -1,6 +1,21 @@
-## 1.9.0 (2020-03-04) (Draft)
+## 1.9.0 (2020-03-05)
+- `style-box` 스타일 박스 요소를 추가합니다 (#529, #538)
+- `common` 9:5 frame size 를 추가합니다. (#522)
+- `core-elements` 새로운 라디오 디자인 구현 (#527)
+- `core-elements` Video 컴포넌트에 poster prop을 추가하고, playsInline 속성을 지정합니다. (#515)
 - `core-elements` List 컴포넌트에 dividerWeight prop을 추가합니다. (#514 #518)
    - verticalGap 과 divider 의 내부 구현방식을 개선합니다.
+- `booking-completion` ✨ optional 이벤트 추가 (#537)
+- `booking-completion` 🏷 메인으로 가기 label 변경. (#528)
+- `poi-carousel-element` PoiCarouselElement 의 imageFrame 을 조절할 수 있도록 추가합니다. (#516)
+- `react-contexts` myReviews optional 처리 (#540)
+- `review` 수정/삭제 시트 열 때 생기는 오류를 수정합니다. (#521)
+
+- `dev` lint 에 어긋나는 부분을 수정합니다 (#542)
+- `dev` 💪eslint-config-triple의 버전을 1.0.0 으로 올립니다. (#533)
+- `dev` CI, CD 결과 Slack 노티파이를 개선합니다 (#523, #524, #534)
+- `dev` dev 환경 URL을 참조하는 asset path를 수정합니다. (#517)
+- `dev` 스토리북을 타입스크립트 환경으로 변경합니다. (#519)
 
 ## 1.8.0 (2020-02-25)
 
