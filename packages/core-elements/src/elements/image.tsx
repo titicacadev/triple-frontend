@@ -12,6 +12,7 @@ import {
 import { formatMarginPadding } from '../mixins'
 
 type OverlayType = 'gradient' | 'dark'
+type ImageFrameRatioAndSizes = FrameRatioAndSizes | 'original'
 
 const OverlayStyle: { [key in OverlayType]: ReturnType<typeof css> } = {
   dark: css`
@@ -193,9 +194,10 @@ const ImageFrameWithFixedDimensions = styled(ImageFrameBase)<{
 
 // eslint-disable-next-line no-unexpected-multiline
 const ImageFrameWithFixedRatio = styled(ImageFrameBase)<{
-  frame?: FrameRatioAndSizes
+  frame?: ImageFrameRatioAndSizes
 }>`
-  padding-top: ${({ frame }) => MEDIA_FRAME_OPTIONS[frame || 'small']};
+  padding-top: ${({ frame }) =>
+    frame === 'original' ? 'initial' : MEDIA_FRAME_OPTIONS[frame || 'small']};
   width: 100%;
 `
 
@@ -242,7 +244,7 @@ function Image({
   borderRadius?: number
   circular?: boolean
   sourceUrl?: string
-  frame?: FrameRatioAndSizes
+  frame?: ImageFrameRatioAndSizes
   size?: GlobalSizes
   ImageSource?: any
   overlay?: React.ReactNode
