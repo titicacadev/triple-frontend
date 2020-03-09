@@ -41,6 +41,7 @@ export type Ratio =
 
 export type FrameRatioAndSizes =
   | Exclude<GlobalSizes, 'tiny' | 'massive'>
+  | 'original'
   | Ratio
 
 const ratio = {
@@ -55,7 +56,7 @@ const ratio = {
 }
 
 export const MEDIA_FRAME_OPTIONS: {
-  [key in FrameRatioAndSizes]: string
+  [key in FrameRatioAndSizes]: string | undefined
 } = {
   mini: ratio['4:1'],
   small: ratio['5:3'],
@@ -63,6 +64,7 @@ export const MEDIA_FRAME_OPTIONS: {
   large: ratio['1:1'],
   big: ratio['10:11'],
   huge: ratio['5:8'],
+  original: undefined,
   ...ratio,
 }
 
