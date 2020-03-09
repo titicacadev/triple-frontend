@@ -38,11 +38,19 @@ const ROUND_SIZES: Partial<Record<GlobalSizes, number>> = {
   medium: 60,
 }
 
-const RawImage = styled.img<{ borderRadius?: number; overlay?: boolean }>`
-  position: absolute;
-  top: 0;
+const RawImage = styled.img<{
+  borderRadius?: number
+  overlay?: boolean
+  frame?: FrameRatioAndSizes
+}>`
+  ${({ frame }) =>
+    (!frame || (frame && frame !== 'original')) &&
+    css`
+      position: absolute;
+      top: 0;
+      height: 100%;
+    `};
   width: 100%;
-  height: 100%;
   border-radius: ${({ borderRadius }) =>
     borderRadius === 0 ? 0 : borderRadius || 6}px;
   object-fit: cover;
@@ -100,6 +108,7 @@ const ImageFrameContent = ({
   overlayType,
   withLinkIndicator,
   alt,
+  frame,
 }: {
   imageUrl?: string
   borderRadius?: number
@@ -110,6 +119,7 @@ const ImageFrameContent = ({
   overlayType?: OverlayType
   withLinkIndicator?: boolean
   alt?: string
+  frame?: FrameRatioAndSizes
 }) => (
   <>
     {imageUrl && (
@@ -118,6 +128,7 @@ const ImageFrameContent = ({
         src={imageUrl}
         borderRadius={borderRadius}
         alt={alt || ''}
+        frame={frame}
       />
     )}
     {sourceUrl && (
@@ -149,10 +160,14 @@ const ImageFrameBase = styled.div<{
   borderRadius?: number
   asPlaceholder?: boolean
   src?: string
+  frame?: FrameRatioAndSizes
 }>`
-  position: relative;
-  overflow: hidden;
-  float: ${({ floated }) => floated || 'none'};
+  ${({ frame }) =>
+    (!frame || (frame && frame !== 'original')) &&
+    css`
+      position: relative;
+      overflow: hidden;
+    `};
 
   ${({ margin }) =>
     margin &&
@@ -321,6 +336,7 @@ function Image({
           overlayPadding={overlayPadding}
           overlayType={overlayType}
           withLinkIndicator={withLinkIndicator}
+          frame={frame}
           alt={alt || ''}
         />
       )}
