@@ -2,6 +2,7 @@ import React, { useRef, useState, useCallback, useEffect } from 'react'
 import styled from 'styled-components'
 
 import { MEDIA_FRAME_OPTIONS, FrameRatioAndSizes } from '../../commons'
+import { formatMarginPadding } from '../../mixins'
 import Sources from './sources'
 import Controls from './controls'
 
@@ -10,7 +11,6 @@ const VideoContainer = styled.div<{
   fallbackImageUrl: string
   borderRadius?: number
 }>`
-  padding-top: ${({ frame }) => MEDIA_FRAME_OPTIONS[frame]};
   width: 100%;
   overflow: hidden;
   height: 0;
@@ -19,6 +19,13 @@ const VideoContainer = styled.div<{
   background-size: cover;
   border-radius: ${({ borderRadius }) =>
     borderRadius === 0 ? 0 : borderRadius || 6}px;
+
+  ${({ frame }) =>
+    frame !== 'original' &&
+    formatMarginPadding(
+      { top: MEDIA_FRAME_OPTIONS[frame || 'small'] },
+      'padding',
+    )}
 `
 
 const VideoFrame = styled.video`
