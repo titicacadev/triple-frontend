@@ -2,7 +2,10 @@ export function formatNumber(
   number: number | string | null | undefined,
 ): string {
   if (typeof number === 'number' || typeof number === 'string') {
-    return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')
+    const [integer, ...fractions] = number.toString().split('.')
+    return [integer.replace(/\B(?=(\d{3})+(?!\d))/g, ','), ...fractions].join(
+      '.',
+    )
   }
 
   return ''
