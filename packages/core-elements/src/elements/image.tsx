@@ -162,13 +162,15 @@ const ImageFrameBase = styled.div<{
   src?: string
   frame?: FrameRatioAndSizes
 }>`
+  position: relative;
+  float: ${({ floated }) => floated || 'none'};
+
   ${({ frame }) =>
     (!frame || (frame && frame !== 'original')) &&
     css`
-      position: relative;
       overflow: hidden;
     `};
-  float: ${({ floated }) => floated || 'none'};
+
   ${({ margin }) =>
     margin &&
     css`
