@@ -168,7 +168,7 @@ const ImageFrameBase = styled.div<{
       position: relative;
       overflow: hidden;
     `};
-
+  float: ${({ floated }) => floated || 'none'};
   ${({ margin }) =>
     margin &&
     css`
