@@ -70,6 +70,11 @@ const ContentContainer = styled.div`
   width: calc(100% - 110px);
 `
 
+const LabelContainer = styled.div`
+  position: absolute;
+  bottom: 0;
+`
+
 export default function ExtendedResourceListElement<R = any>({
   hideScrapButton,
   resource,
@@ -96,7 +101,7 @@ export default function ExtendedResourceListElement<R = any>({
 
   return (
     <ResourceListItem onClick={onClick}>
-      <Container>
+      <Container position="relative">
         <Container clearing>
           <Image
             floated="right"
@@ -134,6 +139,18 @@ export default function ExtendedResourceListElement<R = any>({
               description={pricingDescription}
             />
           </Container>
+        ) : null}
+
+        {labels.length > 0 ? (
+          <LabelContainer>
+            <Label.Group horizontalGap={5}>
+              {labels.map(({ text, color, emphasized }, index) => (
+                <Label key={index} promo color={color} emphasized={emphasized}>
+                  {text}
+                </Label>
+              ))}
+            </Label.Group>
+          </LabelContainer>
         ) : null}
       </Container>
 
@@ -182,16 +199,6 @@ export default function ExtendedResourceListElement<R = any>({
               </Text>
             ) : null}
           </Container>
-        ) : null}
-
-        {labels.length > 0 ? (
-          <Label.Group margin={{ top: 12 }} horizontalGap={5}>
-            {labels.map(({ text, color, emphasized }, index) => (
-              <Label key={index} promo color={color} emphasized={emphasized}>
-                {text}
-              </Label>
-            ))}
-          </Label.Group>
         ) : null}
       </ContentContainer>
     </ResourceListItem>
