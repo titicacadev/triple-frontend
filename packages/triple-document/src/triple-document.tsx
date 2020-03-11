@@ -80,6 +80,7 @@ type ImageEventHandler = (e: React.SyntheticEvent, image: MediaMeta) => void
 type LinkEventHandler = (e: React.SyntheticEvent, link: Link) => void
 
 type Display = 'list' | string
+type MediaDisplayProperty = CSS.DisplayProperty | 'gapless-block'
 
 interface TripleDocumentProps {
   customElements?: ElementSet
@@ -309,7 +310,7 @@ function Images({
 }: {
   value: {
     images: MediaMeta[]
-    display: CSS.DisplayProperty
+    display: MediaDisplayProperty
   }
   onImageClick: ImageEventHandler
   onLinkClick: LinkEventHandler
@@ -318,7 +319,9 @@ function Images({
 }) {
   const ImagesContainer = display === 'block' ? Container : DocumentCarousel
   const ElementContainer =
-    display === 'block'
+    display === 'gapless-block'
+      ? Container
+      : display === 'block'
       ? ImageBlockElementContainer
       : ImageCarouselElementContainer
 
@@ -331,13 +334,27 @@ function Images({
       {images.map((image, i) => {
         return (
           <ElementContainer key={i}>
-            <TripleMedia
-              autoPlay={videoAutoPlay}
-              media={image}
-              onClick={handleClick}
-              ImageSource={ImageSource}
-            />
-            {image.title ? <ImageCaption>{image.title}</ImageCaption> : null}
+            {display === 'gapless-block' ? (
+              <TripleMedia
+                borderRadius={0}
+                autoPlay={videoAutoPlay}
+                media={image}
+                onClick={handleClick}
+                ImageSource={ImageSource}
+              />
+            ) : (
+              <>
+                <TripleMedia
+                  autoPlay={videoAutoPlay}
+                  media={image}
+                  onClick={handleClick}
+                  ImageSource={ImageSource}
+                />
+                {image.title ? (
+                  <ImageCaption>{image.title}</ImageCaption>
+                ) : null}
+              </>
+            )}
           </ElementContainer>
         )
       })}
