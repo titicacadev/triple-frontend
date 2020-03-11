@@ -104,6 +104,74 @@
     }
   },
   {
+    "type": "images",
+    "value": {
+      "images": [
+        {
+          "title": "",
+          "frame": "mini",
+          "cloudinaryId": "2da68c26-ab6e-4896-840e-cdf2e88dd3dc",
+          "id": "2da68c26-ab6e-4896-840e-cdf2e88dd3dc",
+          "type": "image",
+          "sizes": {
+            "full": {
+              "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/2da68c26-ab6e-4896-840e-cdf2e88dd3dc.jpeg"
+            },
+            "large": {
+              "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/2da68c26-ab6e-4896-840e-cdf2e88dd3dc.jpeg"
+            },
+            "small_square": {
+              "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/2da68c26-ab6e-4896-840e-cdf2e88dd3dc.jpeg"
+            }
+          },
+          "source": {},
+          "cloudinaryBucket": "triple-cms"
+        },
+        {
+          "title": "",
+          "frame": "mini",
+          "cloudinaryId": "f18ce6e9-3d3d-4600-80b4-2baa7f7eeade",
+          "id": "f18ce6e9-3d3d-4600-80b4-2baa7f7eeade",
+          "type": "image",
+          "sizes": {
+            "full": {
+              "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/f18ce6e9-3d3d-4600-80b4-2baa7f7eeade.jpeg"
+            },
+            "large": {
+              "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/f18ce6e9-3d3d-4600-80b4-2baa7f7eeade.jpeg"
+            },
+            "small_square": {
+              "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/f18ce6e9-3d3d-4600-80b4-2baa7f7eeade.jpeg"
+            }
+          },
+          "source": {},
+          "cloudinaryBucket": "triple-cms"
+        },
+        {
+          "title": "",
+          "frame": "mini",
+          "cloudinaryId": "174f0d0c-1536-4096-956a-372c72ed431a",
+          "id": "174f0d0c-1536-4096-956a-372c72ed431a",
+          "type": "image",
+          "sizes": {
+            "full": {
+              "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/174f0d0c-1536-4096-956a-372c72ed431a.jpeg"
+            },
+            "large": {
+              "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/174f0d0c-1536-4096-956a-372c72ed431a.jpeg"
+            },
+            "small_square": {
+              "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/174f0d0c-1536-4096-956a-372c72ed431a.jpeg"
+            }
+          },
+          "source": {},
+          "cloudinaryBucket": "triple-cms"
+        }
+      ],
+      "display": "gapless-block"
+    }
+  },
+  {
     "type": "video",
     "value": {
       "provider": "youtube",
