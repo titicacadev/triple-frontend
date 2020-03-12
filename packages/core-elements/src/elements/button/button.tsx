@@ -236,7 +236,7 @@ class Button extends React.PureComponent<ButtonProps> {
         size={size || 'tiny'}
         textColor={textColor || 'white'}
         textAlpha={textAlpha}
-        borderRadius={borderRadius !== undefined ? borderRadius : 21}
+        borderRadius={borderRadius ?? 21}
         onClick={onClick}
         {...props}
       >
