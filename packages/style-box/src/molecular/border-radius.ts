@@ -10,7 +10,7 @@ export const borderRadius = (defaultValue?: BorderRadius) => css<{
     return borderRadius
       ? `
         border-radius: ${borderRadius}px;
-        ${overflow('hidden')}
+        overflow:hidden;
         `
       : ''
   }}
