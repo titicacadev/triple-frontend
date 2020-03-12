@@ -12,7 +12,7 @@ const ButtonGroup = styled(Container)<{
 
   ${ButtonBase} {
     ${({ horizontalGap = 0, buttonCount, children }) => {
-      const childrenCount = buttonCount ?? React.Children.count(children)
+      const childrenCount = buttonCount || React.Children.count(children)
 
       return horizontalGap > 0
         ? css`
