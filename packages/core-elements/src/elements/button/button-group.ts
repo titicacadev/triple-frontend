@@ -6,12 +6,13 @@ import ButtonBase from './button-base'
 
 const ButtonGroup = styled(Container)<{
   horizontalGap?: number
+  buttonCount?: number
 }>`
   width: 100%;
 
   ${ButtonBase} {
-    ${({ horizontalGap = 0, children }) => {
-      const childrenCount = React.Children.count(children)
+    ${({ horizontalGap = 0, buttonCount, children }) => {
+      const childrenCount = buttonCount ?? React.Children.count(children)
 
       return horizontalGap > 0
         ? css`
