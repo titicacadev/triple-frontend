@@ -1,8 +1,9 @@
 import { css } from 'styled-components'
-import CSS from 'csstype'
 
-export const display = (defaultValue?: CSS.DisplayProperty) => css<{
-  display?: CSS.DisplayProperty
+import { Display } from '../types'
+
+export const display = (defaultValue?: Display) => css<{
+  display?: Display
 }>`
   ${({ display = defaultValue }) => {
     return display

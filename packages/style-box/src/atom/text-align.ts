@@ -1,8 +1,9 @@
 import { css } from 'styled-components'
-import CSS from 'csstype'
 
-export const textAlign = (defaultValue?: CSS.TextAlignProperty) => css<{
-  textAlign?: CSS.TextAlignProperty
+import { TextAlign } from '../types'
+
+export const textAlign = (defaultValue?: TextAlign) => css<{
+  textAlign?: TextAlign
 }>`
   ${({ textAlign = defaultValue }) => {
     return textAlign

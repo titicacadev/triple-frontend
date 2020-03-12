@@ -1,8 +1,9 @@
 import { css } from 'styled-components'
-import CSS from 'csstype'
 
-export const overflow = (defaultValue?: CSS.OverflowProperty) => css<{
-  overflow?: CSS.OverflowProperty
+import { Overflow } from '../types'
+
+export const overflow = (defaultValue?: Overflow) => css<{
+  overflow?: Overflow
 }>`
   ${({ overflow = defaultValue }) => {
     return overflow
@@ -13,8 +14,8 @@ export const overflow = (defaultValue?: CSS.OverflowProperty) => css<{
   }}
 `
 
-export const overflowX = (defaultValue?: CSS.OverflowProperty) => css<{
-  overflowX?: CSS.OverflowProperty
+export const overflowX = (defaultValue?: Overflow) => css<{
+  overflowX?: Overflow
 }>`
   ${({ overflowX = defaultValue }) => {
     return overflowX
@@ -25,8 +26,8 @@ export const overflowX = (defaultValue?: CSS.OverflowProperty) => css<{
   }}
 `
 
-export const overflowY = (defaultValue?: CSS.OverflowProperty) => css<{
-  overflowY?: CSS.OverflowProperty
+export const overflowY = (defaultValue?: Overflow) => css<{
+  overflowY?: Overflow
 }>`
   ${({ overflowY = defaultValue }) => {
     return overflowY

@@ -14,7 +14,17 @@ export type Clearing = boolean
 export type BorderRadius = number
 export type Centered = boolean
 export type HorizontalScroll = boolean
-export interface Position {
+export type BoxSizing = CSS.BoxSizingProperty
+export type Clear = CSS.ClearProperty
+export type Display = CSS.DisplayProperty
+export type Float = CSS.FloatProperty
+export type TextAlign = CSS.TextAlignProperty
+export type UserSelect = CSS.UserSelectProperty
+export type Overflow = CSS.OverflowProperty
+export type WhiteSpace = CSS.WhiteSpaceProperty
+export type Position = BasePosition | RichPosition
+export type BasePosition = CSS.PositionProperty
+export type RichPosition = {
   type: CSS.PositionProperty
   top?: number
   right?: number

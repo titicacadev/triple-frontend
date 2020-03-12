@@ -1,8 +1,9 @@
 import { css } from 'styled-components'
-import CSS from 'csstype'
 
-export const boxSizing = (defaultValue?: CSS.BoxSizingProperty) => css<{
-  boxSizing?: CSS.BoxSizingProperty
+import { BoxSizing } from '../types'
+
+export const boxSizing = (defaultValue?: BoxSizing) => css<{
+  boxSizing?: BoxSizing
 }>`
   ${({ boxSizing = defaultValue }) => {
     return boxSizing

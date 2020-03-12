@@ -1,8 +1,9 @@
 import { css } from 'styled-components'
-import CSS from 'csstype'
 
-export const userSelect = (defaultValue?: CSS.UserSelectProperty) => css<{
-  userSelect?: boolean
+import { UserSelect } from '../types'
+
+export const userSelect = (defaultValue?: UserSelect) => css<{
+  userSelect?: UserSelect
 }>`
   ${({ userSelect = defaultValue }) => {
     return userSelect
