@@ -2,13 +2,13 @@ import { css } from 'styled-components'
 
 import { Float } from '../types'
 
-export const float = (defaultValue?: Float) => css<{
-  float?: Float
+export const floated = (defaultValue?: Float) => css<{
+  floated?: Float
 }>`
-  ${({ float = defaultValue }) => {
-    return float
+  ${({ floated = defaultValue }) => {
+    return floated
       ? `
-        float: ${float}
+        float: ${floated}
         `
       : ''
   }}
