@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import humps from 'humps'
+import qs from 'qs'
 
 import { ResourceType, ReviewData } from './types'
 
@@ -13,10 +14,19 @@ export function writeReview({
   appUrlScheme: string
   resourceType: ResourceType
   resourceId: string
-  regionId: string
-  rating: number
+  regionId?: string
+  rating?: number
 }) {
-  window.location.href = `${appUrlScheme}:///reviews/new?region_id=${regionId}&resource_type=${resourceType}&resource_id=${resourceId}&rating=${rating}`
+  const params = qs.stringify({
+    /* eslint-disable @typescript-eslint/camelcase */
+    region_id: regionId,
+    resource_type: resourceType,
+    resource_id: resourceId,
+    /* eslint-disable @typescript-eslint/camelcase */
+    rating,
+  })
+
+  window.location.href = `${appUrlScheme}:///reviews/new?${params}`
 }
 
 export function likeReview({ id }: { id: string }) {
