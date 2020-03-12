@@ -64,9 +64,7 @@ export default class ImageCarousel extends React.PureComponent<
       displayedTotalCount,
     } = this.props
 
-    const totalCount =
-      (displayedTotalCount !== undefined && displayedTotalCount) ||
-      images.length
+    const totalCount = displayedTotalCount ?? images.length
 
     return {
       margin,
@@ -98,9 +96,7 @@ export default class ImageCarousel extends React.PureComponent<
 
     const { carouselProps } = this
 
-    const totalCount =
-      (displayedTotalCount !== undefined && displayedTotalCount) ||
-      images.length
+    const totalCount = displayedTotalCount ?? images.length
 
     return (
       <Carousel {...carouselProps}>
