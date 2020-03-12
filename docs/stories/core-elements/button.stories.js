@@ -92,7 +92,10 @@ storiesOf('Core-Elements | Button', module)
     const buttonTag = select('as prop', ['a', 'button'], 'a')
 
     return (
-      <Button.Group horizontalGap={number('버튼 간격', 10)}>
+      <Button.Group
+        horizontalGap={number('버튼 간격', 10)}
+        buttonCount={number('button 개수', 2)}
+      >
         <Button as={buttonTag} basic color="gray" size="small">
           현지에서 길묻기
         </Button>
