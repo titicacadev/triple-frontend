@@ -136,7 +136,7 @@ export function HistoryProvider({
   const back = React.useCallback(() => {
     const { useRouter } = HASH_HISTORIES.pop() || { useRouter: false }
 
-    setUriHash((HASH_HISTORIES[HASH_HISTORIES.length - 1] || {}).hash || '')
+    setUriHash(HASH_HISTORIES[HASH_HISTORIES.length - 1]?.hash || '')
 
     if (useRouter) {
       return Router.back()
@@ -190,13 +190,13 @@ export function HistoryProvider({
   )
 
   const navigateInApp = React.useCallback(
-    ({ href, scheme, host }, params) => {
+    ({ href, scheme, host }, params?: { target: unknown }) => {
       if (scheme === 'http' || scheme === 'https') {
         const outlinkParams = qs.stringify({
           url: href,
           ...(params || {}),
           target:
-            (params || {}).target ||
+            params?.target ||
             (EXTERNAL_BROWSER_HOSTS.includes(host) ? 'browser' : 'default'),
         })
 
