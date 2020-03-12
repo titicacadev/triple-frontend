@@ -1,8 +1,9 @@
 import { css } from 'styled-components'
-import CSS from 'csstype'
 
-export const whiteSpace = (defaultValue?: CSS.WhiteSpaceProperty) => css<{
-  whiteSpace?: CSS.DisplayProperty
+import { WhiteSpace } from '../types'
+
+export const whiteSpace = (defaultValue?: WhiteSpace) => css<{
+  whiteSpace?: WhiteSpace
 }>`
   ${({ whiteSpace = defaultValue }) => {
     return whiteSpace

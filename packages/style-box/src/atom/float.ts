@@ -1,8 +1,9 @@
 import { css } from 'styled-components'
-import CSS from 'csstype'
 
-export const float = (defaultValue?: CSS.FloatProperty) => css<{
-  float?: CSS.FloatProperty
+import { Float } from '../types'
+
+export const float = (defaultValue?: Float) => css<{
+  float?: Float
 }>`
   ${({ float = defaultValue }) => {
     return float

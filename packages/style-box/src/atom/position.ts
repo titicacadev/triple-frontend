@@ -1,13 +1,10 @@
 import { css } from 'styled-components'
-import CSS from 'csstype'
 
-import { Position } from '../types'
+import { Position, RichPosition } from '../types'
 import { isObject, isString } from '../utils'
 
-export const position = (
-  defaultValue?: CSS.PositionProperty | Position,
-) => css<{
-  position?: CSS.PositionProperty | Position
+export const position = (defaultValue?: Position) => css<{
+  position?: Position
   unit?: string
 }>`
   ${({ position, unit = 'px' }) => {
@@ -23,7 +20,7 @@ export const position = (
       const mergedPosition = {
         ...(isObject(defaultValue) ? defaultValue : {}),
         ...(isObject(position) ? position : {}),
-      } as Position
+      } as RichPosition
 
       return `
         position: ${mergedPosition.type};
