@@ -1,3 +1,13 @@
+## 1.10.0 (2020-03-12)
+
+- `style-box` 타입을 수정합니다 (#557)
+- `review` writeReview interface를 변경합니다 (#555)
+- `core-elements` ButtonGroup 컴포넌트에 buttonCount prop을 추가합니다 (#554)
+- `triple-document` Image, Video에 display 타입으로 margin이 없는 block 형태를 추가합니다 (#553)
+- `resource-list-element` label 위치를 변경합니다 (#551)
+- `common` lint-staged를 업데이트 합니다 (#549)
+- `core-elements` Image, Video 컴포넌트의 프레임 타입에 original 추가 및 분기 처리 (#547)
+
 ## 1.9.1 (2020-03-09)
 
 - `format-number` revert code (#545)
