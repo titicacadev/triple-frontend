@@ -26,13 +26,14 @@
 
 ### Parameters
 
-| 파라미터    | 필수여부     | 기본값 | 설명                                                                         |
-| ----------- | ------------ | ------ | ---------------------------------------------------------------------------- |
-| serviceType | required     | -      | AIR, TNA, HOTEL 중 하나. 1:1 문의 노출 시 이용됩니다.                        |
-| csTime      | required     | -      | CS 운영시간 '오전 9시 - 오후 6시 (한국시간 기준, 연중무휴)'                  |
-| csMessage   | required     | -      | CS 메시지 '현지사용 긴급문의 카카오톡 @트리플서비스\n(오전 9시 - 오후 10시)' |
-| onFAQButton | not required | -      | 자주 묻는 질문 버튼 클릭시 발생시킬 이벤트                                   |
-| onCSButton  | not required | -      | 1:1 문의 버튼 클릭시 발생시킬 이벤트                                         |
+| 파라미터     | 필수여부     | 기본값 | 설명                                                                         |
+| ------------ | ------------ | ------ | ---------------------------------------------------------------------------- |
+| appUrlScheme | required     | -      | APP_URL_SCHEME                                                               |
+| serviceType  | required     | -      | AIR, TNA, HOTEL 중 하나. 1:1 문의 노출 시 이용됩니다.                        |
+| csTime       | required     | -      | CS 운영시간 '오전 9시 - 오후 6시 (한국시간 기준, 연중무휴)'                  |
+| csMessage    | required     | -      | CS 메시지 '현지사용 긴급문의 카카오톡 @트리플서비스\n(오전 9시 - 오후 10시)' |
+| onFAQButton  | not required | -      | 자주 묻는 질문 버튼 클릭시 발생시킬 이벤트                                   |
+| onCSButton   | not required | -      | 1:1 문의 버튼 클릭시 발생시킬 이벤트                                         |
 
 ## SimpleFooter
 
