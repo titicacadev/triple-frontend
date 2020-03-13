@@ -106,10 +106,10 @@ export default function CSFooter({
         </Text>
 
         <Button.Group margin={{ top: 20 }} horizontalGap={7}>
-          <Button basic color="gray" onClick={moveToCsInquiry}>
+          <Button basic color="gray" onClick={movetoFAQ}>
             자주 묻는 질문
           </Button>
-          <Button basic color="gray" onClick={movetoFAQ}>
+          <Button basic color="gray" onClick={moveToCsInquiry}>
             1:1 문의
           </Button>
         </Button.Group>
