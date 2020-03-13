@@ -11,6 +11,7 @@ interface HistoryContext {
   replace: any
   back: any
   navigate: any
+  openWindow: any
 }
 
 const NOOP: Function = () => {}
@@ -21,6 +22,7 @@ const Context = React.createContext<HistoryContext>({
   replace: NOOP,
   back: NOOP,
   navigate: NOOP,
+  openWindow: NOOP,
 })
 
 const EXTERNAL_BROWSER_HOSTS = ['play.google.com', 'itunes.apple.com']
@@ -214,6 +216,36 @@ export function HistoryProvider({
     [isPublic, navigateInApp, navigateOnPublic],
   )
 
+  const openWindow = React.useCallback(
+    (rawHref: string, params?: { target: unknown }) => {
+      if (isPublic) {
+        window.open(rawHref)
+      } else {
+        const { href, scheme, host } = parseUrl(rawHref)
+
+        if (appUrlScheme) {
+          if (scheme === 'http' || scheme === 'https') {
+            const outlinkParams = qs.stringify({
+              url: href,
+              ...(params || {}),
+              target:
+                params?.target ||
+                (EXTERNAL_BROWSER_HOSTS.includes(host) ? 'browser' : 'default'),
+            })
+
+            window.location.href = `${appUrlScheme}:///outlink?${outlinkParams}`
+          } else if (!scheme && !host) {
+            window.location.href = generateUrl(
+              { scheme: appUrlScheme },
+              `/inlink?path=${encodeURIComponent(rawHref)}`,
+            )
+          }
+        }
+      }
+    },
+    [appUrlScheme, isPublic],
+  )
+
   const value = React.useMemo(
     () => ({
       uriHash,
@@ -221,8 +253,9 @@ export function HistoryProvider({
       replace,
       back,
       navigate,
+      openWindow,
     }),
-    [back, navigate, push, replace, uriHash],
+    [back, navigate, openWindow, push, replace, uriHash],
   )
 
   return <Context.Provider value={value}>{children}</Context.Provider>
