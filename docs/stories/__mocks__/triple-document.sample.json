@@ -109,62 +109,68 @@
       "images": [
         {
           "title": "",
-          "frame": "mini",
-          "cloudinaryId": "2da68c26-ab6e-4896-840e-cdf2e88dd3dc",
-          "id": "2da68c26-ab6e-4896-840e-cdf2e88dd3dc",
+          "frame": "original",
+          "cloudinaryId": "dd5bc1ab-24b4-4d2a-ad42-9b885740f9ef",
+          "id": "dd5bc1ab-24b4-4d2a-ad42-9b885740f9ef",
           "type": "image",
           "sizes": {
             "full": {
-              "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/2da68c26-ab6e-4896-840e-cdf2e88dd3dc.jpeg"
+              "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/dd5bc1ab-24b4-4d2a-ad42-9b885740f9ef.jpeg"
             },
             "large": {
-              "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/2da68c26-ab6e-4896-840e-cdf2e88dd3dc.jpeg"
+              "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/dd5bc1ab-24b4-4d2a-ad42-9b885740f9ef.jpeg"
             },
             "small_square": {
-              "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/2da68c26-ab6e-4896-840e-cdf2e88dd3dc.jpeg"
+              "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/dd5bc1ab-24b4-4d2a-ad42-9b885740f9ef.jpeg"
             }
           },
           "source": {},
+          "width": 1080,
+          "height": 1080,
           "cloudinaryBucket": "triple-cms"
         },
         {
           "title": "",
-          "frame": "mini",
-          "cloudinaryId": "f18ce6e9-3d3d-4600-80b4-2baa7f7eeade",
-          "id": "f18ce6e9-3d3d-4600-80b4-2baa7f7eeade",
+          "frame": "original",
+          "cloudinaryId": "23f458de-46a4-44fd-aa63-374a2edf3bca",
+          "id": "23f458de-46a4-44fd-aa63-374a2edf3bca",
           "type": "image",
           "sizes": {
             "full": {
-              "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/f18ce6e9-3d3d-4600-80b4-2baa7f7eeade.jpeg"
+              "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/23f458de-46a4-44fd-aa63-374a2edf3bca.jpeg"
             },
             "large": {
-              "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/f18ce6e9-3d3d-4600-80b4-2baa7f7eeade.jpeg"
+              "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/23f458de-46a4-44fd-aa63-374a2edf3bca.jpeg"
             },
             "small_square": {
-              "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/f18ce6e9-3d3d-4600-80b4-2baa7f7eeade.jpeg"
+              "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/23f458de-46a4-44fd-aa63-374a2edf3bca.jpeg"
             }
           },
           "source": {},
+          "width": 1080,
+          "height": 1078,
           "cloudinaryBucket": "triple-cms"
         },
         {
           "title": "",
-          "frame": "mini",
-          "cloudinaryId": "174f0d0c-1536-4096-956a-372c72ed431a",
-          "id": "174f0d0c-1536-4096-956a-372c72ed431a",
+          "frame": "original",
+          "cloudinaryId": "6d795778-6586-4a2e-a841-af3198cb1603",
+          "id": "6d795778-6586-4a2e-a841-af3198cb1603",
           "type": "image",
           "sizes": {
             "full": {
-              "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/174f0d0c-1536-4096-956a-372c72ed431a.jpeg"
+              "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/6d795778-6586-4a2e-a841-af3198cb1603.jpeg"
             },
             "large": {
-              "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/174f0d0c-1536-4096-956a-372c72ed431a.jpeg"
+              "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/6d795778-6586-4a2e-a841-af3198cb1603.jpeg"
             },
             "small_square": {
-              "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/174f0d0c-1536-4096-956a-372c72ed431a.jpeg"
+              "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/6d795778-6586-4a2e-a841-af3198cb1603.jpeg"
             }
           },
           "source": {},
+          "width": 2048,
+          "height": 1366,
           "cloudinaryBucket": "triple-cms"
         }
       ],
