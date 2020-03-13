@@ -317,10 +317,9 @@ function Images({
   ImageSource: unknown
   videoAutoPlay?: boolean
 }) {
-  const ImagesContainer =
-    ['block', 'gapless-block'].indexOf(display) > -1
-      ? Container
-      : DocumentCarousel
+  const ImagesContainer = ['block', 'gapless-block'].includes(display)
+    ? Container
+    : DocumentCarousel
   const ElementContainer =
     display === 'gapless-block'
       ? Container
