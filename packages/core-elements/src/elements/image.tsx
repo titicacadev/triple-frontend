@@ -162,6 +162,7 @@ const ImageFrameBase = styled.div<{
   src?: string
   frame?: FrameRatioAndSizes
 }>`
+  font-size: 0;
   position: relative;
   float: ${({ floated }) => floated || 'none'};
 
