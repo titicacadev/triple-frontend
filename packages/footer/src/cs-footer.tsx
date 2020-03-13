@@ -24,21 +24,21 @@ export default function CSFooter({
   csTime,
   csMessage,
   appUrlScheme,
-  onFAQButton = () => {},
-  onCSButton = () => {},
+  onFAQButtonClick = () => {},
+  onCSButtonClick = () => {},
 }: {
   serviceType: SERVICE_TYPE
   csTime: string
   csMessage: string
   appUrlScheme: string
-  onFAQButton?: () => void
-  onCSButton?: () => void
+  onFAQButtonClick?: () => void
+  onCSButtonClick?: () => void
 }) {
   const { navigate } = useHistoryContext()
   const supportType = SUPPORT_TYPES_BY_SERVICE[serviceType]
 
   const movetoFAQ = () => {
-    onFAQButton()
+    onFAQButtonClick()
 
     navigate(
       `${appUrlScheme}:///outlink?${qs.stringify({
@@ -49,7 +49,7 @@ export default function CSFooter({
   }
 
   const moveToCsInquiry = React.useCallback(async () => {
-    onCSButton()
+    onCSButtonClick()
 
     const response = await fetch('/api/users/me', {
       credentials: 'same-origin',
@@ -69,7 +69,7 @@ export default function CSFooter({
         )}`,
       )
     }
-  }, [appUrlScheme, navigate, onCSButton, supportType])
+  }, [appUrlScheme, navigate, onCSButtonClick, supportType])
 
   return (
     <SupportContainer padding={{ top: 32, left: 30, right: 30 }}>

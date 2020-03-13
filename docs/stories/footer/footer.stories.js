@@ -12,8 +12,8 @@ storiesOf('footer | Footer', module).add('CS', () => (
     csMessage={
       '현지사용 긴급문의 카카오톡 @트리플서비스\n(오전 9시 - 오후 10시)'
     }
-    onFAQButton={action('자주묻는 질문 버튼 클릭')}
-    onCSButton={action('1:1 문의 버튼 클릭')}
+    onFAQButtonClick={action('자주묻는 질문 버튼 클릭')}
+    onCSButtonClick={action('1:1 문의 버튼 클릭')}
   />
 ))
 storiesOf('footer | Footer', module).add('Logo', () => <LogoFooter />)
