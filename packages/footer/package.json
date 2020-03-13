@@ -15,6 +15,9 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^1.10.1"
+    "@titicaca/core-elements": "^1.10.1",
+    "@titicaca/react-contexts": "^1.10.1",
+    "@types/qs": "^6.9.0",
+    "qs": "^6.9.0"
   }
 }

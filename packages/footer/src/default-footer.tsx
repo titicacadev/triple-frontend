@@ -27,7 +27,7 @@ const LinksContainer = styled.div`
   margin: 10px 0;
 `
 
-export default function Footer() {
+export default function DefaultFooter() {
   return (
     <FooterFrame>
       <Container
