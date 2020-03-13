@@ -57,6 +57,7 @@ type IconNames =
   | 'cs'
   | 'delete'
   | 'list'
+  | 'hamburger'
 
 const ICON_URL_BY_NAMES: { [key in IconNames]: string } = {
   back: 'https://assets.triple.guide/images/btn-com-back@4x.png',
@@ -72,6 +73,7 @@ const ICON_URL_BY_NAMES: { [key in IconNames]: string } = {
   cs: 'https://assets.triple.guide/images/btn-com-cs@2x.png',
   delete: 'https://assets.triple.guide/images/btn-search-close@3x.png',
   list: 'https://assets.triple.guide/images/ico-hotel-list@3x.png',
+  hamburger: 'https://assets.triple.guide/images/btn-my-profile@3x.png',
 }
 
 // eslint-disable-next-line no-unexpected-multiline

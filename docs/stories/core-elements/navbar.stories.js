@@ -21,6 +21,7 @@ const ICON_LIST = [
   'route',
   'search',
   'list',
+  'hamburger',
 ]
 
 storiesOf('Core-Elements | Navbar', module)
