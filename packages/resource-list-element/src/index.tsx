@@ -121,7 +121,6 @@ export default function ExtendedResourceListElement<R = any>({
 
           {!hideScrapButton && scraped !== undefined && onScrapedChange ? (
             <ScrapButton
-              top={23}
               scraped={scraped}
               resource={resource}
               onScrapedChange={onScrapedChange}
