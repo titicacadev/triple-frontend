@@ -60,11 +60,8 @@ export default function CSFooter({
 
       navigate(
         `${appUrlScheme}:///inlink?path=${encodeURIComponent(
-          `/cs-bridge/outlink?service=${supportType}&type=${supportType}&data=${qs.stringify(
-            {
-              /* eslint-disable-next-line @typescript-eslint/camelcase */
-              user_id: uid,
-            },
+          `/cs-bridge/outlink?service=${supportType}&type=${supportType}&data=${encodeURIComponent(
+            `user_id=${uid}`,
           )}`,
         )}`,
       )
