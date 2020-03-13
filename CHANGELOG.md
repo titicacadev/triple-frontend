@@ -1,3 +1,10 @@
+## 1.10.1 (2020-03-13)
+
+- `navbar` Navbar icon에 햄버거 추가 (#563)
+- `poi-list-elements` label 위치 변경에 따른 스크랩 버튼 포지션 수정 (#561)
+- `core-elements` gapless-block형태일 때 이미지 컨테이너 공백을 제거합니다 (#560)
+- `common` Optional chaining과 Nullish coalescing을 사용할 수 있게 설정 (#559)
+
 ## 1.10.0 (2020-03-12)
 
 - `style-box` 타입을 수정합니다 (#557)
@@ -13,12 +20,13 @@
 - `format-number` revert code (#545)
 
 ## 1.9.0 (2020-03-05)
+
 - `style-box` 스타일 박스 요소를 추가합니다 (#529, #538)
 - `common` 9:5 frame size 를 추가합니다. (#522)
 - `core-elements` 새로운 라디오 디자인 구현 (#527)
 - `core-elements` Video 컴포넌트에 poster prop을 추가하고, playsInline 속성을 지정합니다. (#515)
 - `core-elements` List 컴포넌트에 dividerWeight prop을 추가합니다. (#514 #518)
-   - verticalGap 과 divider 의 내부 구현방식을 개선합니다.
+  - verticalGap 과 divider 의 내부 구현방식을 개선합니다.
 - `booking-completion` ✨ optional 이벤트 추가 (#537)
 - `booking-completion` 🏷 메인으로 가기 label 변경. (#528)
 - `poi-carousel-element` PoiCarouselElement 의 imageFrame 을 조절할 수 있도록 추가합니다. (#516)
@@ -48,12 +56,13 @@
 - `triple-frontend-docs` 스토리를 패키지별로 분류합니다. (#505)
 
 ## 1.7.1 (2020-02-20)
+
 - `core-elements` SearchNavBar 컴포넌트에서 누락된 `onKeyUp` props를 추가합니다. #492
 - `search` onDelete 핸들러에 방금 삭제한 키워드를 전달합니다. #494 #490
 - `search` controlledKeyword 의 update 조건 개선 (빈문자열 허용) #496
 
-
 ## 1.7.0 (2020-02-17)
+
 - `core-elements` Navbar 의 background-color 지정시의 css 오류를 수정합니다. #481
 - `core-elements`, `Search` 에서 SearchNavbar Input 에 inputRef prop 을 추가합니다. #485 #482
 - `pricing` pricingUnit prop 을 추가합니다. #486
