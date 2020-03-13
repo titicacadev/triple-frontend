@@ -27,7 +27,9 @@ function PricingLabel() {
 
 storiesOf('pricing | Pricing', module)
   .addDecorator(withKnobs)
-  .add('일반', () => <Pricing basePrice={30000} salePrice={25000} />)
+  .add('일반', () => (
+    <Pricing message={text('메세지')} basePrice={30000} salePrice={25000} />
+  ))
   .add('Rich', () => {
     const useStringDescription = boolean('문자 타입의 설명', true)
     const useStringLabel = boolean('문자 타입의 라벨', true)
@@ -35,10 +37,11 @@ storiesOf('pricing | Pricing', module)
     return (
       <Pricing
         basePrice={number('basePrice', 30000)}
-        basePriceUnit={text('basePriceUnit', undefined)}
+        basePriceUnit={text('basePriceUnit', '원')}
         pricingNote={text('문구', '1박, 세금포함')}
         salePrice={25000}
         label={useStringLabel ? '트리플가' : <PricingLabel />}
+        message={text('메세지')}
         rich
         description={
           useStringDescription ? (
@@ -61,6 +64,7 @@ storiesOf('pricing | Pricing', module)
         active={boolean('열림', true)}
         basePrice={30000}
         salePrice={25000}
+        message={text('메세지')}
         label={
           useStringLabel ? (
             text('라벨', '1박 세금포함')

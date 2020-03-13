@@ -16,6 +16,7 @@ export interface FixedPricingProps {
   buttonText?: string
   buttonDisabled?: boolean
   salePrice: number
+  message?: string
   tooltipLabel?: string
   onClick?: (e?: React.SyntheticEvent) => any
   onTooltipClick?: (e?: React.SyntheticEvent) => any
@@ -50,6 +51,7 @@ export default function FixedPricing({
   salePrice,
   tooltipLabel,
   onClick,
+  message,
   onTooltipClick,
 }: FixedPricingProps) {
   const pricingLabel = label ? (
@@ -95,7 +97,7 @@ export default function FixedPricing({
           <FloatedPricingContainer floated="left">
             {pricingLabel}
             <Text size="huge" bold>
-              {formatNumber(salePrice)}원
+              {message || `${formatNumber(salePrice)}원`}
             </Text>
             {pricingDescription}
           </FloatedPricingContainer>

@@ -16,6 +16,7 @@ export type BasePrice = number | null
 interface RegularPricingProps {
   basePrice?: BasePrice
   salePrice: number
+  message?: string
 }
 
 interface RichPricingProps {
@@ -25,6 +26,7 @@ interface RichPricingProps {
   label?: React.ReactNode
   pricingNote?: string
   description?: React.ReactNode
+  message?: string
 }
 
 type PricingProps =
@@ -135,6 +137,7 @@ function RichPricing({
   pricingNote,
   description,
   basePriceUnit,
+  message,
 }: RichPricingProps) {
   const pricingDescription = description ? (
     typeof description === 'string' ? (
@@ -176,7 +179,7 @@ function RichPricing({
         ) : null}
 
         <Price size="big" bold>
-          {formatNumber(salePrice)}원
+          {message || `${formatNumber(salePrice)}원`}
         </Price>
       </PricingContainer>
       {pricingDescription}
@@ -184,7 +187,11 @@ function RichPricing({
   )
 }
 
-const RegularPricing = ({ basePrice, salePrice }: RegularPricingProps) => {
+const RegularPricing = ({
+  basePrice,
+  salePrice,
+  message,
+}: RegularPricingProps) => {
   const hasBasePrice =
     typeof basePrice === 'number' && basePrice > 0 && basePrice > salePrice
 
@@ -196,7 +203,7 @@ const RegularPricing = ({ basePrice, salePrice }: RegularPricingProps) => {
         </Price>
       )}
       <Price size="large" bold>
-        {formatNumber(salePrice)}원
+        {message || `${formatNumber(salePrice)}원`}
       </Price>
     </PricingContainer>
   )
@@ -206,11 +213,19 @@ export default function Pricing(props: PricingProps) {
   const { salePrice } = props
 
   if (props.rich) {
-    const { basePrice, label, pricingNote, description, basePriceUnit } = props
+    const {
+      basePrice,
+      label,
+      pricingNote,
+      description,
+      basePriceUnit,
+      message,
+    } = props
 
     return (
       <RichPricing
         basePrice={basePrice}
+        message={message}
         basePriceUnit={basePriceUnit}
         salePrice={salePrice}
         label={label}
@@ -228,6 +243,7 @@ export default function Pricing(props: PricingProps) {
       onClick,
       tooltipLabel,
       onTooltipClick,
+      message,
     } = props
 
     return (
@@ -239,6 +255,7 @@ export default function Pricing(props: PricingProps) {
         salePrice={salePrice}
         description={description}
         onClick={onClick}
+        message={message}
         tooltipLabel={tooltipLabel}
         onTooltipClick={onTooltipClick}
       />

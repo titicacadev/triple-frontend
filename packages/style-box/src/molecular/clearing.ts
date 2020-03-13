@@ -1,7 +1,5 @@
 import { css } from 'styled-components'
 
-import { display } from '../atom/display'
-import { clear } from '../atom/clear'
 import { Clearing } from '../types'
 
 export const clearing = (defaultValue?: Clearing) => css<{
