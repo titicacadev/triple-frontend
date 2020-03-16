@@ -192,7 +192,7 @@ export function HistoryProvider({
   )
 
   const navigateInApp = React.useCallback(
-    ({ href, scheme, host }, params?: { target: unknown }) => {
+    ({ href, scheme, host = '' }, params?: { target: unknown }) => {
       if (scheme === 'http' || scheme === 'https') {
         const outlinkParams = qs.stringify({
           url: href,
@@ -221,7 +221,7 @@ export function HistoryProvider({
       if (isPublic) {
         window.open(rawHref)
       } else {
-        const { href, scheme, host } = parseUrl(rawHref)
+        const { href, scheme, host = '' } = parseUrl(rawHref)
 
         if (appUrlScheme) {
           if (scheme === 'http' || scheme === 'https') {
