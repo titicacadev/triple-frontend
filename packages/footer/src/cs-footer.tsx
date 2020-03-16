@@ -99,31 +99,23 @@ export default function CSFooter({
           <br />
           {csTime}
         </Text>
-
         <Text lineHeight={1.54} color="gray" alpha={0.4} size="tiny">
           {csMessage}
         </Text>
-
-        {showCSButton ? (
-          <Button.Group margin={{ top: 20 }} horizontalGap={7}>
-            <Button basic color="gray" onClick={movetoFAQ}>
-              자주 묻는 질문
-            </Button>
+        <Button.Group
+          margin={{ top: 20 }}
+          horizontalGap={7}
+          buttonCount={showCSButton ? 2 : 1}
+        >
+          <Button basic color="gray" onClick={movetoFAQ}>
+            자주 묻는 질문
+          </Button>
+          {showCSButton ? (
             <Button basic color="gray" onClick={moveToCsInquiry}>
               1:1 문의
             </Button>
-          </Button.Group>
-        ) : (
-          <Button
-            fluid
-            margin={{ top: 20 }}
-            basic
-            color="gray"
-            onClick={movetoFAQ}
-          >
-            자주 묻는 질문
-          </Button>
-        )}
+          ) : null}
+        </Button.Group>
       </Container>
     </SupportContainer>
   )
