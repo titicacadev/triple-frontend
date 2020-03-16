@@ -24,6 +24,7 @@ export default function CSFooter({
   csTime,
   csMessage,
   appUrlScheme,
+  showCSButton = true,
   onFAQButtonClick = () => {},
   onCSButtonClick = () => {},
 }: {
@@ -31,6 +32,7 @@ export default function CSFooter({
   csTime: string
   csMessage: string
   appUrlScheme: string
+  showCSButton: boolean
   onFAQButtonClick?: () => void
   onCSButtonClick?: () => void
 }) {
@@ -102,14 +104,22 @@ export default function CSFooter({
           {csMessage}
         </Text>
 
-        <Button.Group margin={{ top: 20 }} horizontalGap={7}>
-          <Button basic color="gray" onClick={movetoFAQ}>
-            자주 묻는 질문
-          </Button>
-          <Button basic color="gray" onClick={moveToCsInquiry}>
-            1:1 문의
-          </Button>
-        </Button.Group>
+        {showCSButton ? (
+          <Button.Group margin={{ top: 20 }} horizontalGap={7}>
+            <Button basic color="gray" onClick={movetoFAQ}>
+              자주 묻는 질문
+            </Button>
+            <Button basic color="gray" onClick={moveToCsInquiry}>
+              1:1 문의
+            </Button>
+          </Button.Group>
+        ) : (
+          <Button.Group margin={{ top: 20 }} horizontalGap={7}>
+            <Button margin={{ top: 20 }} basic color="gray" onClick={movetoFAQ}>
+              자주 묻는 질문
+            </Button>
+          </Button.Group>
+        )}
       </Container>
     </SupportContainer>
   )
