@@ -444,7 +444,7 @@ const ResourceList = ({ children }: React.PropsWithChildren<{}>) => (
   <List margin={{ top: 20, left: 30, right: 30 }}>{children}</List>
 )
 
-export function Pois({
+export function Pois<T extends ExtendedPOIListElementData>({
   value: { display, pois },
   actionButtonElement,
   onResourceClick,
@@ -453,15 +453,12 @@ export function Pois({
 }: {
   value: {
     display: Display
-    pois: ExtendedPOIListElementData[]
+    pois: T[]
   }
   actionButtonElement: JSX.Element | null
-  onResourceClick?: (
-    e: React.SyntheticEvent,
-    poi: ExtendedPOIListElementData,
-  ) => void
-  onResourceScrapedChange: PoiListElementProps['onScrapedChange']
-  resourceScraps: PoiListElementProps['resourceScraps']
+  onResourceClick?: (e: React.SyntheticEvent, poi: T) => void
+  onResourceScrapedChange: PoiListElementProps<T>['onScrapedChange']
+  resourceScraps: PoiListElementProps<T>['resourceScraps']
 }) {
   const Container = display === 'list' ? ResourceList : DocumentCarousel
   const margin =
@@ -469,7 +466,7 @@ export function Pois({
   const Element =
     display === 'list'
       ? function WrappedPoiListElment(
-          props: Omit<PoiListElementProps, 'compact'>,
+          props: Omit<PoiListElementProps<T>, 'compact'>,
         ) {
           return <PoiListElement compact {...props} />
         }

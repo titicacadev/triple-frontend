@@ -44,13 +44,13 @@ export interface POI {
 
 type ActionButtonElement = React.ReactNode
 type ResourceScrapSet = { [key: string]: boolean }
-type ScrapChangeHandler = ScrapButtonProps<POI>['onScrapedChange']
+type ScrapChangeHandler<T> = ScrapButtonProps<T>['onScrapedChange']
 
-interface PoiCarouselElementProps {
-  poi?: POI
+interface PoiCarouselElementProps<T extends POI> {
+  poi?: T
   onClick?: React.MouseEventHandler<HTMLLIElement>
   actionButtonElement?: ActionButtonElement
-  onScrapedChange?: ScrapChangeHandler
+  onScrapedChange?: ScrapChangeHandler<T>
   resourceScraps?: ResourceScrapSet
   description?: React.ReactNode
   additionalInfo?: React.ReactNode
@@ -59,18 +59,18 @@ interface PoiCarouselElementProps {
   imageFrame?: FrameRatioAndSizes
 }
 
-interface CompactPoiListElementProps {
-  poi: POI
+interface CompactPoiListElementProps<T extends POI> {
+  poi: T
   onClick?: React.MouseEventHandler<HTMLLIElement>
   actionButtonElement?: ActionButtonElement
-  onScrapedChange?: ScrapChangeHandler
+  onScrapedChange?: ScrapChangeHandler<T>
   resourceScraps?: ResourceScrapSet
 }
 
-interface ExtendedPoiListElementProps {
-  poi: POI
+interface ExtendedPoiListElementProps<T extends POI> {
+  poi: T
   onClick?: React.MouseEventHandler<HTMLLIElement>
-  onScrapedChange?: ScrapChangeHandler
+  onScrapedChange?: ScrapChangeHandler<T>
   resourceScraps?: ResourceScrapSet
   tags?: [{ text: string; color: LabelColor; emphasized: boolean }]
   pricingNote?: string
@@ -79,9 +79,9 @@ interface ExtendedPoiListElementProps {
   hideScrapButton?: boolean
 }
 
-export type PoiListElementProps =
-  | ({ compact: true } & CompactPoiListElementProps)
-  | ({ compact?: false } & ExtendedPoiListElementProps)
+export type PoiListElementProps<T extends POI> =
+  | ({ compact: true } & CompactPoiListElementProps<T>)
+  | ({ compact?: false } & ExtendedPoiListElementProps<T>)
 
 const TYPE_NAMES: { [key in PoiTypes]: string } = {
   attraction: '관광명소',
@@ -101,7 +101,10 @@ const POI_IMAGE_PLACEHOLDERS_SMALL: { [key in PoiTypes]: string } = {
   hotel: 'https://assets.triple.guide/images/ico-blank-hotel-small@2x.png',
 }
 
-export function PoiListElement({ compact, ...props }: PoiListElementProps) {
+export function PoiListElement<T extends POI>({
+  compact,
+  ...props
+}: PoiListElementProps<T>) {
   return compact ? (
     <CompactPoiListElement {...props} />
   ) : (
@@ -109,7 +112,7 @@ export function PoiListElement({ compact, ...props }: PoiListElementProps) {
   )
 }
 
-export function PoiCarouselElement({
+export function PoiCarouselElement<T extends POI>({
   poi,
   onClick,
   actionButtonElement,
@@ -120,7 +123,7 @@ export function PoiCarouselElement({
   carouselSize,
   titleTopSpacing = 10,
   imageFrame,
-}: PoiCarouselElementProps) {
+}: PoiCarouselElementProps<T>) {
   if (poi) {
     const {
       id,
@@ -170,8 +173,8 @@ export function PoiCarouselElement({
   return null
 }
 
-class CompactPoiListElement extends React.PureComponent<
-  CompactPoiListElementProps,
+class CompactPoiListElement<T extends POI> extends React.PureComponent<
+  CompactPoiListElementProps<T>,
   { actionButtonWidth: number }
 > {
   state = { actionButtonWidth: 34 }
@@ -252,8 +255,8 @@ class CompactPoiListElement extends React.PureComponent<
   }
 }
 
-class ExtendedPoiListElement extends React.PureComponent<
-  ExtendedPoiListElementProps
+class ExtendedPoiListElement<T extends POI> extends React.PureComponent<
+  ExtendedPoiListElementProps<T>
 > {
   render() {
     const {
