@@ -46,7 +46,7 @@ storiesOf('pricing | Pricing', module)
         salePrice={25000}
         label={useStringLabel ? '트리플가' : <PricingLabel />}
         priceLabelOverride={text('메세지')}
-        isVisibleDiscountRate={boolean('쿠폰 할인률 노출', true)}
+        hideDiscountRate={boolean('할인률 미노출', false)}
         rich
         description={
           useStringDescription ? (
