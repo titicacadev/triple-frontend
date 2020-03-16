@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, number, select } from '@storybook/addon-knobs'
+import { boolean, number, select, text } from '@storybook/addon-knobs'
 import { List, Container, Text } from '@titicaca/core-elements'
 import { PoiCarouselElement, PoiListElement } from '@titicaca/poi-list-elements'
 
@@ -41,6 +41,7 @@ storiesOf('poi-list-elements | POI', module)
             [hotel.id]: boolean('저장', false),
           }}
           pricingNote="1박, 세금포함"
+          priceLabelOverride={text('pricing custom text')}
           pricingDescription={<PricingDescription />}
           noDivider={boolean('라인 생략', false) && idx % 2 === 0}
           tags={
