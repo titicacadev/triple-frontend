@@ -15,18 +15,18 @@ export type BasePrice = number | null
 
 interface RegularPricingProps {
   basePrice?: BasePrice
-  salePrice: number
-  message?: string
+  salePrice?: number
+  priceLabelOverride?: string
 }
 
 interface RichPricingProps {
   basePrice?: BasePrice
   basePriceUnit?: string
-  salePrice: number
+  salePrice?: number
   label?: React.ReactNode
   pricingNote?: string
   description?: React.ReactNode
-  message?: string
+  priceLabelOverride?: string
 }
 
 type PricingProps =
@@ -132,12 +132,12 @@ function DiscountRate({
 
 function RichPricing({
   basePrice,
-  salePrice,
+  salePrice = 0,
   label,
   pricingNote,
   description,
   basePriceUnit,
-  message,
+  priceLabelOverride,
 }: RichPricingProps) {
   const pricingDescription = description ? (
     typeof description === 'string' ? (
@@ -179,7 +179,7 @@ function RichPricing({
         ) : null}
 
         <Price size="big" bold>
-          {message || `${formatNumber(salePrice)}원`}
+          {priceLabelOverride || `${formatNumber(salePrice)}원`}
         </Price>
       </PricingContainer>
       {pricingDescription}
@@ -189,8 +189,8 @@ function RichPricing({
 
 const RegularPricing = ({
   basePrice,
-  salePrice,
-  message,
+  salePrice = 0,
+  priceLabelOverride,
 }: RegularPricingProps) => {
   const hasBasePrice =
     typeof basePrice === 'number' && basePrice > 0 && basePrice > salePrice
@@ -203,29 +203,22 @@ const RegularPricing = ({
         </Price>
       )}
       <Price size="large" bold>
-        {message || `${formatNumber(salePrice)}원`}
+        {priceLabelOverride || `${formatNumber(salePrice)}원`}
       </Price>
     </PricingContainer>
   )
 }
 
 export default function Pricing(props: PricingProps) {
-  const { salePrice } = props
+  const { salePrice, priceLabelOverride } = props
 
   if (props.rich) {
-    const {
-      basePrice,
-      label,
-      pricingNote,
-      description,
-      basePriceUnit,
-      message,
-    } = props
+    const { basePrice, label, pricingNote, description, basePriceUnit } = props
 
     return (
       <RichPricing
         basePrice={basePrice}
-        message={message}
+        priceLabelOverride={priceLabelOverride}
         basePriceUnit={basePriceUnit}
         salePrice={salePrice}
         label={label}
@@ -243,7 +236,6 @@ export default function Pricing(props: PricingProps) {
       onClick,
       tooltipLabel,
       onTooltipClick,
-      message,
     } = props
 
     return (
@@ -255,7 +247,7 @@ export default function Pricing(props: PricingProps) {
         salePrice={salePrice}
         description={description}
         onClick={onClick}
-        message={message}
+        priceLabelOverride={priceLabelOverride}
         tooltipLabel={tooltipLabel}
         onTooltipClick={onTooltipClick}
       />
@@ -263,6 +255,12 @@ export default function Pricing(props: PricingProps) {
   } else {
     const { basePrice } = props
 
-    return <RegularPricing basePrice={basePrice} salePrice={salePrice} />
+    return (
+      <RegularPricing
+        basePrice={basePrice}
+        salePrice={salePrice}
+        priceLabelOverride={priceLabelOverride}
+      />
+    )
   }
 }
