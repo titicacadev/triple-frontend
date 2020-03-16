@@ -8,35 +8,31 @@ import {
 import { useHistoryContext } from './history-context'
 
 export async function pushRouter(
-  url: string,
-  asurlOrScrollPosition?: string | [number, number],
+  path: string,
+  asPathOrScrollPosition?: string | [number, number],
 ) {
-  const asUrl =
-    typeof asurlOrScrollPosition === 'string'
-      ? asurlOrScrollPosition
-      : undefined
-  const scrollPosition: [number, number] = Array.isArray(asurlOrScrollPosition)
-    ? asurlOrScrollPosition
+  const asPath =
+    typeof asPathOrScrollPosition === 'string' ? asPathOrScrollPosition : ''
+  const scrollPosition: [number, number] = Array.isArray(asPathOrScrollPosition)
+    ? asPathOrScrollPosition
     : [0, 0]
 
-  await Router.push(url, asUrl || undefined)
+  asPath ? await Router.push(path, asPath) : await Router.push(path)
 
   window.scrollTo(...scrollPosition)
 }
 
 export async function replaceRouter(
-  url: string,
-  asurlOrScrollPosition?: string | [number, number],
+  path: string,
+  asPathOrScrollPosition?: string | [number, number],
 ) {
-  const asUrl =
-    typeof asurlOrScrollPosition === 'string'
-      ? asurlOrScrollPosition
-      : undefined
-  const scrollPosition: [number, number] = Array.isArray(asurlOrScrollPosition)
-    ? asurlOrScrollPosition
+  const asPath =
+    typeof asPathOrScrollPosition === 'string' ? asPathOrScrollPosition : ''
+  const scrollPosition: [number, number] = Array.isArray(asPathOrScrollPosition)
+    ? asPathOrScrollPosition
     : [0, 0]
 
-  await Router.replace(url, asUrl || undefined)
+  asPath ? await Router.replace(path, asPath) : await Router.push(path)
 
   window.scrollTo(...scrollPosition)
 }
