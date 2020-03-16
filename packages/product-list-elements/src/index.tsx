@@ -14,14 +14,14 @@ interface Product {
   salePrice?: number
 }
 
-export class ProductListElement extends React.PureComponent<
+export class ProductListElement<T extends Product> extends React.PureComponent<
   {
-    product: Product
+    product: T
     scraped?: boolean
     scrapsCount?: number
     resourceScraps?: { [key: string]: boolean }
   } & Pick<
-    ResourceListElementProps<Product>,
+    ResourceListElementProps<T>,
     'reviewsCount' | 'reviewsRating' | 'onClick' | 'onScrapedChange'
   >
 > {
