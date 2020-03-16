@@ -75,6 +75,7 @@ interface ExtendedPoiListElementProps {
   tags?: [{ text: string; color: LabelColor; emphasized: boolean }]
   pricingNote?: string
   pricingDescription?: React.ReactNode
+  priceLabelOverride?: string
   hideScrapButton?: boolean
 }
 
@@ -278,6 +279,7 @@ class ExtendedPoiListElement extends React.PureComponent<
         },
         pricingNote,
         pricingDescription,
+        priceLabelOverride,
         onClick,
         onScrapedChange,
         resourceScraps,
@@ -329,6 +331,7 @@ class ExtendedPoiListElement extends React.PureComponent<
         basePrice={basePrice}
         salePrice={nightlyPrice}
         pricingNote={pricingNote}
+        priceLabelOverride={priceLabelOverride}
         pricingDescription={pricingDescription}
         onClick={onClick}
         tags={tags}

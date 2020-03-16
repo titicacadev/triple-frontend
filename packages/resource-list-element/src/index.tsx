@@ -49,7 +49,7 @@ export type ResourceListElementProps<R> = Partial<
   salePrice?: number
   pricingNote?: string
   pricingDescription?: React.ReactNode
-
+  priceLabelOverride?: string
   scrapsCount?: number
   reviewsCount?: number
   reviewsRating?: number
@@ -80,7 +80,6 @@ export default function ExtendedResourceListElement<R = any>({
   resource,
   scraped,
   onScrapedChange,
-
   image,
   imagePlaceholder,
   name,
@@ -92,6 +91,7 @@ export default function ExtendedResourceListElement<R = any>({
   salePrice,
   pricingNote,
   pricingDescription,
+  priceLabelOverride,
   scrapsCount,
   reviewsCount,
   reviewsRating,
@@ -136,6 +136,7 @@ export default function ExtendedResourceListElement<R = any>({
               salePrice={salePrice}
               pricingNote={pricingNote}
               description={pricingDescription}
+              priceLabelOverride={priceLabelOverride}
             />
           </Container>
         ) : null}
