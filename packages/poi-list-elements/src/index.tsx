@@ -18,6 +18,7 @@ import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
 type PoiTypes = 'attraction' | 'restaurant' | 'hotel'
 type Name = string | null
 
+// TODO: attraction, restaourant와 hotel을 따로 정의하고 POIType으로 서로소 타입 만들기
 export interface POI {
   id: string
   type: PoiTypes
@@ -43,15 +44,17 @@ export interface POI {
 }
 
 type ActionButtonElement = React.ReactNode
-type ResourceScrapSet = { [key: string]: boolean }
-type ScrapChangeHandler<T> = ScrapButtonProps<T>['onScrapedChange']
 
-interface PoiCarouselElementProps<T extends POI> {
-  poi?: T
+interface POIListElementBaseProps<T extends POI> {
+  poi: T
   onClick?: React.MouseEventHandler<HTMLLIElement>
+  onScrapedChange?: ScrapButtonProps<T>['onScrapedChange']
+  resourceScraps?: { [key: string]: boolean }
+}
+
+interface PoiCarouselElementProps<T extends POI>
+  extends POIListElementBaseProps<T> {
   actionButtonElement?: ActionButtonElement
-  onScrapedChange?: ScrapChangeHandler<T>
-  resourceScraps?: ResourceScrapSet
   description?: React.ReactNode
   additionalInfo?: React.ReactNode
   carouselSize?: CarouselSizes
@@ -59,19 +62,13 @@ interface PoiCarouselElementProps<T extends POI> {
   imageFrame?: FrameRatioAndSizes
 }
 
-interface CompactPoiListElementProps<T extends POI> {
-  poi: T
-  onClick?: React.MouseEventHandler<HTMLLIElement>
+interface CompactPoiListElementProps<T extends POI>
+  extends POIListElementBaseProps<T> {
   actionButtonElement?: ActionButtonElement
-  onScrapedChange?: ScrapChangeHandler<T>
-  resourceScraps?: ResourceScrapSet
 }
 
-interface ExtendedPoiListElementProps<T extends POI> {
-  poi: T
-  onClick?: React.MouseEventHandler<HTMLLIElement>
-  onScrapedChange?: ScrapChangeHandler<T>
-  resourceScraps?: ResourceScrapSet
+interface ExtendedPoiListElementProps<T extends POI>
+  extends POIListElementBaseProps<T> {
   tags?: [{ text: string; color: LabelColor; emphasized: boolean }]
   pricingNote?: string
   pricingDescription?: React.ReactNode
