@@ -1,6 +1,7 @@
 import * as React from 'react'
 import ExtendedResourceListElement, {
   ResourceImage,
+  ResourceListElementProps,
 } from '@titicaca/resource-list-element'
 import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
 
@@ -13,16 +14,17 @@ interface Product {
   salePrice?: number
 }
 
-export class ProductListElement extends React.PureComponent<{
-  product: Product
-  scraped?: boolean
-  scrapsCount?: number
-  reviewsCount?: number
-  reviewsRating?: number
-  onClick?: React.MouseEventHandler<HTMLLIElement>
-  onScrapedChange?: (e?: React.SyntheticEvent, value?: any) => any
-  resourceScraps?: { [key: string]: boolean }
-}> {
+export class ProductListElement extends React.PureComponent<
+  {
+    product: Product
+    scraped?: boolean
+    scrapsCount?: number
+    resourceScraps?: { [key: string]: boolean }
+  } & Pick<
+    ResourceListElementProps<Product>,
+    'reviewsCount' | 'reviewsRating' | 'onClick' | 'onScrapedChange'
+  >
+> {
   render() {
     const {
       props: {
