@@ -27,7 +27,7 @@ interface RichPricingProps {
   pricingNote?: string
   description?: React.ReactNode
   priceLabelOverride?: string
-  isVisibleDiscountRate?: boolean
+  hideDiscountRate?: boolean
 }
 
 type PricingProps =
@@ -139,7 +139,7 @@ function RichPricing({
   description,
   basePriceUnit,
   priceLabelOverride,
-  isVisibleDiscountRate = true,
+  hideDiscountRate,
 }: RichPricingProps) {
   const pricingDescription = description ? (
     typeof description === 'string' ? (
@@ -176,7 +176,7 @@ function RichPricing({
           </Container>
         )}
 
-        {isVisibleDiscountRate && hasBasePrice ? (
+        {!hideDiscountRate && hasBasePrice ? (
           <DiscountRate basePrice={basePrice as number} salePrice={salePrice} /> // HACK: hasBasePrice가 true면 basePrice는 무조건 number이다.
         ) : null}
 
@@ -221,7 +221,7 @@ export default function Pricing(props: PricingProps) {
       pricingNote,
       description,
       basePriceUnit,
-      isVisibleDiscountRate,
+      hideDiscountRate,
     } = props
 
     return (
@@ -233,7 +233,7 @@ export default function Pricing(props: PricingProps) {
         label={label}
         pricingNote={pricingNote}
         description={description}
-        isVisibleDiscountRate={isVisibleDiscountRate}
+        hideDiscountRate={hideDiscountRate}
       />
     )
   } else if (props.fixed) {
