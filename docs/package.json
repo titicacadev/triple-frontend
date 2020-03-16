@@ -31,6 +31,7 @@
     "@titicaca/react-contexts": "^1.10.1",
     "@titicaca/recommended-contents": "^1.10.1",
     "@titicaca/review": "^1.10.1",
+    "@titicaca/scrap-button": "^1.10.1",
     "@titicaca/search": "^1.10.1",
     "@titicaca/slider": "^1.10.1",
     "@titicaca/style-box": "^1.10.1",
