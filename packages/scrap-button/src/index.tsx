@@ -7,17 +7,17 @@ interface ScrapButtonBaseProps {
   pressed?: boolean
 }
 
-export type ScrapButtonProps<R = any> = Omit<
+export type ScrapButtonProps<R = {}> = Omit<
   StyledComponentProps<'div', any, ScrapButtonBaseProps, never>,
   'resource'
 > & {
   scraped: boolean
   onScrapedChange: (
     e?: React.SyntheticEvent,
-    value?: (R & { scraped: boolean }) | { scraped: boolean },
+    value?: R & { scraped: boolean },
   ) => void
+  resource: R
 
-  resource?: R
   compact?: boolean
 }
 

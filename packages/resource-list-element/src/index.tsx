@@ -29,7 +29,7 @@ export interface ResourceImage {
   sizes: ImageSizeSet | CamelizedImageSizeSet
 }
 
-export type ResourceListElementProps<R> = Partial<
+export type ResourceListElementProps<R = {}> = Partial<
   Pick<ScrapButtonProps<R>, 'scraped' | 'resource' | 'onScrapedChange'>
 > & {
   hideScrapButton?: boolean
@@ -75,7 +75,7 @@ const LabelContainer = styled.div`
   bottom: 0;
 `
 
-export default function ExtendedResourceListElement<R = any>({
+export default function ExtendedResourceListElement<R>({
   hideScrapButton,
   resource,
   scraped,
