@@ -114,11 +114,15 @@ export default function CSFooter({
             </Button>
           </Button.Group>
         ) : (
-          <Button.Group margin={{ top: 20 }} horizontalGap={7}>
-            <Button margin={{ top: 20 }} basic color="gray" onClick={movetoFAQ}>
-              자주 묻는 질문
-            </Button>
-          </Button.Group>
+          <Button
+            fluid
+            margin={{ top: 20 }}
+            basic
+            color="gray"
+            onClick={movetoFAQ}
+          >
+            자주 묻는 질문
+          </Button>
         )}
       </Container>
     </SupportContainer>
