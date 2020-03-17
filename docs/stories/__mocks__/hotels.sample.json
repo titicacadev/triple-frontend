@@ -52,6 +52,10 @@
       }
     },
     "type": "hotel",
+    "priceInfo": {
+      "nightlyBasePrice": 355695,
+      "nightlyPrice": 180000
+    },
     "prices": {
       "nightlyBasePrice": 355695,
       "nightlyPrice": 355695,
