@@ -10,12 +10,13 @@ import { useHistoryContext } from './history-context'
 export async function pushRouter(
   path: string,
   asPathOrScrollPosition?: string | [number, number],
+  scrollTo?: [number, number],
 ) {
   const asPath =
     typeof asPathOrScrollPosition === 'string' ? asPathOrScrollPosition : ''
   const scrollPosition: [number, number] = Array.isArray(asPathOrScrollPosition)
     ? asPathOrScrollPosition
-    : [0, 0]
+    : scrollTo || [0, 0]
 
   asPath ? await Router.push(path, asPath) : await Router.push(path)
 
@@ -25,14 +26,15 @@ export async function pushRouter(
 export async function replaceRouter(
   path: string,
   asPathOrScrollPosition?: string | [number, number],
+  scrollTo?: [number, number],
 ) {
   const asPath =
     typeof asPathOrScrollPosition === 'string' ? asPathOrScrollPosition : ''
   const scrollPosition: [number, number] = Array.isArray(asPathOrScrollPosition)
     ? asPathOrScrollPosition
-    : [0, 0]
+    : scrollTo || [0, 0]
 
-  asPath ? await Router.replace(path, asPath) : await Router.push(path)
+  asPath ? await Router.replace(path, asPath) : await Router.replace(path)
 
   window.scrollTo(...scrollPosition)
 }
