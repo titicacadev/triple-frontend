@@ -39,7 +39,6 @@ export interface POI {
     starRating?: unknown
   }
   distance?: number
-  prices?: { nightlyBasePrice?: number; nightlyPrice?: number }
   priceInfo?: { nightlyBasePrice?: number; nightlyPrice?: number }
 }
 
@@ -276,7 +275,6 @@ class ExtendedPoiListElement extends React.PureComponent<
             starRating,
           },
           distance,
-          prices,
           priceInfo,
         },
         pricingNote,
@@ -306,11 +304,10 @@ class ExtendedPoiListElement extends React.PureComponent<
       .filter((v) => v)
       .join(' · ')
 
-    const { nightlyBasePrice, nightlyPrice } = priceInfo ||
-      prices || {
-        nightlyBasePrice: 0,
-        nightlyPrice: 0,
-      }
+    const { nightlyBasePrice, nightlyPrice } = priceInfo || {
+      nightlyBasePrice: 0,
+      nightlyPrice: 0,
+    }
 
     const basePrice =
       nightlyBasePrice && nightlyPrice && nightlyBasePrice - nightlyPrice > 0
