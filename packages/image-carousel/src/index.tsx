@@ -11,8 +11,8 @@ interface ImageEntity {
     large: { url: string }
   }
   sourceUrl?: string
-  title?: string
-  description?: string
+  title?: string | null
+  description?: string | null
 }
 
 const PageLabelText = styled.div`
@@ -131,7 +131,7 @@ export default class ImageCarousel extends React.PureComponent<
                   : null
               }
               overlayType="dark"
-              alt={title || description}
+              alt={title || description || undefined}
             />
           )
         })}
