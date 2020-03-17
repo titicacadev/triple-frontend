@@ -5,8 +5,8 @@ import { Image, GlobalSizes, FrameRatioAndSizes } from '@titicaca/core-elements'
 import Carousel, { CarouselProps } from './carousel'
 
 interface ImageEntity {
-  frame: FrameRatioAndSizes
-  size: GlobalSizes
+  frame?: FrameRatioAndSizes
+  size?: GlobalSizes
   sizes: {
     large: { url: string }
   }
