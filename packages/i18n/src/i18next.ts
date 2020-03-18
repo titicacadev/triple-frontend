@@ -7,7 +7,6 @@ i18n
   .use(initReactI18next)
   .use(FetchBackend)
   .init({
-    debug: true,
     fallbackLng: ['ko'],
     ns: 'common',
     defaultNS: 'common',
