@@ -45,7 +45,8 @@ const FRAME_GROUP = '틀 관련 props'
 
 enum IMAGE_SOURCE_TYPE {
   CORE_ELEMENTS = 'core-elements',
-  CUSTOM = 'custom',
+  CUSTOM_NEW = 'custom_new',
+  CUSTOM_OLD = 'custom_old',
   UNDEFINED = 'undefined',
 }
 
@@ -53,7 +54,14 @@ const IMAGE_SOURCE_COMPONENTS: {
   [key in IMAGE_SOURCE_TYPE]: ImageSourceType | undefined
 } = {
   [IMAGE_SOURCE_TYPE.CORE_ELEMENTS]: ImageSource,
-  [IMAGE_SOURCE_TYPE.CUSTOM]: function CustomImageSource({
+  [IMAGE_SOURCE_TYPE.CUSTOM_OLD]: function OldCustomImageSource({
+    children,
+  }: {
+    children: string
+  }) {
+    return `출처 ${children.replace(/^https?:\/\//, '')}`
+  },
+  [IMAGE_SOURCE_TYPE.CUSTOM_NEW]: function CustomImageSource({
     sourceUrl,
   }: {
     sourceUrl?: string
@@ -85,7 +93,8 @@ storiesOf('Core-Elements | Image', module)
               'ImageSource',
               [
                 IMAGE_SOURCE_TYPE.CORE_ELEMENTS,
-                IMAGE_SOURCE_TYPE.CUSTOM,
+                IMAGE_SOURCE_TYPE.CUSTOM_OLD,
+                IMAGE_SOURCE_TYPE.CUSTOM_NEW,
                 IMAGE_SOURCE_TYPE.UNDEFINED,
               ],
               IMAGE_SOURCE_TYPE.UNDEFINED,
