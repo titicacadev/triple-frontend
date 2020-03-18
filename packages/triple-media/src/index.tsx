@@ -1,5 +1,10 @@
 import React from 'react'
-import { Video, Image, FrameRatioAndSizes } from '@titicaca/core-elements'
+import {
+  Video,
+  Image,
+  FrameRatioAndSizes,
+  ImageSourceType,
+} from '@titicaca/core-elements'
 
 export interface MediaMeta {
   id: string
@@ -38,7 +43,7 @@ export default function Media({
   media: MediaMeta
   autoPlay?: boolean
   hideControls?: boolean
-  ImageSource?: unknown
+  ImageSource?: ImageSourceType
   borderRadius?: number
   onClick?: (e: React.SyntheticEvent, media: MediaMeta) => void
 }) {
