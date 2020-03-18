@@ -27,7 +27,7 @@ watcher
       return
     }
 
-    const [, packageName] = path.match(/packages\/([-a-z]+)\//)
+    const [, packageName] = path.match(/packages\/([-a-z0-9]+)\//)
 
     if (typeof packageName !== 'string') {
       return
