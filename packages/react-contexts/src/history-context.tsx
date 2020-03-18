@@ -25,8 +25,6 @@ const Context = React.createContext<HistoryContext>({
   openWindow: NOOP,
 })
 
-const EXTERNAL_BROWSER_HOSTS = ['play.google.com', 'itunes.apple.com']
-
 function targetPageAvailable(path: string) {
   const regexes = [
     /^\/regions\/.+\/(attractions|restaurants|hotels|articles)\/.+/,
@@ -192,14 +190,11 @@ export function HistoryProvider({
   )
 
   const navigateInApp = React.useCallback(
-    ({ href, scheme, host = '' }, params?: { target: unknown }) => {
+    ({ href, scheme }, params?: { target: unknown }) => {
       if (scheme === 'http' || scheme === 'https') {
         const outlinkParams = qs.stringify({
           url: href,
           ...(params || {}),
-          target:
-            params?.target ||
-            (EXTERNAL_BROWSER_HOSTS.includes(host) ? 'browser' : 'default'),
         })
 
         window.location.href = `${appUrlScheme}:///outlink?${outlinkParams}`
@@ -228,9 +223,6 @@ export function HistoryProvider({
             const outlinkParams = qs.stringify({
               url: href,
               ...(params || {}),
-              target:
-                params?.target ||
-                (EXTERNAL_BROWSER_HOSTS.includes(host) ? 'browser' : 'default'),
             })
 
             window.location.href = `${appUrlScheme}:///outlink?${outlinkParams}`
