@@ -1,10 +1,41 @@
 import React, { useState } from 'react'
-import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
-import { number } from '@storybook/addon-knobs'
-import { SingleSlider, RangeSlider } from '@titicaca/slider'
-import { Text } from '@titicaca/core-elements'
+import styled from 'styled-components'
+import { boolean } from '@storybook/addon-knobs'
+import ActionSheet from '@titicaca/action-sheet'
+import { Confirm } from '@titicaca/modals'
+
+const EmptyScroll = styled.div`
+  height: 200vh;
+`
 
 export default {
-  title: 'body-scoll-lock',
+  title: 'React-Hooks | body-scoll-lock',
+}
+
+export const 기본_스크롤락 = () => (
+  <div>
+    <EmptyScroll>가나다라마바사아자차카</EmptyScroll>
+    <ActionSheet open={boolean('열림', false)} title="가나다라마바사아자차카">
+      <ActionSheet.Item>메뉴 1</ActionSheet.Item>
+      <ActionSheet.Item>메뉴 2</ActionSheet.Item>
+    </ActionSheet>
+  </div>
+)
+
+export const 중첩_스크롤락 = () => {
+  const [openModal, setOpenModal] = useState(false)
+
+  return (
+    <div>
+      <EmptyScroll>가나다라마바사아자차카</EmptyScroll>
+      <ActionSheet open={boolean('열림', false)} title="가나다라마바사아자차카">
+        <ActionSheet.Item onClick={() => setOpenModal(true)}>
+          모달 열기
+        </ActionSheet.Item>
+      </ActionSheet>
+      <Confirm open={openModal} onClose={() => setOpenModal(false)}>
+        삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.
+      </Confirm>
+    </div>
+  )
 }
