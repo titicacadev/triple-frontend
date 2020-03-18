@@ -44,6 +44,9 @@ storiesOf('image-carousel | Image Carousel', module).add('일반', () => {
       onMoveStart={action('move-start')}
       onMove={action('move')}
       onMoveEnd={action('move-end')}
+      ImageSource={({ children }) =>
+        `출처 ${(children || '').replace(/^https?:\/\//, '')}`
+      }
       showMoreRenderer={({ currentIndex, totalCount }) => {
         const result =
           totalCount > 5 && currentIndex === totalCount - 1 ? (
