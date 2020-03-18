@@ -306,6 +306,9 @@ class ExtendedPoiListElement<T extends POI> extends React.PureComponent<
       .filter((v) => v)
       .join(' · ')
 
+    /**
+     * Deprecation: priceInfo 배포 후 prices 제거 예정
+     */
     const { nightlyBasePrice, nightlyPrice } = priceInfo ||
       prices || {
         nightlyBasePrice: 0,
