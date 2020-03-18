@@ -24,7 +24,6 @@
   },
   "dependencies": {
     "@types/qs": "^6.9.0",
-    "qs": "^6.9.0",
-    "body-scroll-lock": "2.6.4"
+    "qs": "^6.9.0"
   }
 }
