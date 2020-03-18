@@ -1,6 +1,11 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Image, GlobalSizes, FrameRatioAndSizes } from '@titicaca/core-elements'
+import {
+  Image,
+  GlobalSizes,
+  FrameRatioAndSizes,
+  ImageSourceType,
+} from '@titicaca/core-elements'
 
 import Carousel, { CarouselProps } from './carousel'
 
@@ -37,7 +42,7 @@ interface ImageCarouselProps extends Omit<CarouselProps, 'pageLabelRenderer'> {
   images: ImageEntity[]
   size?: GlobalSizes
   frame?: FrameRatioAndSizes
-  ImageSource?: string
+  ImageSource?: ImageSourceType
   onImageClick?: (e?: React.SyntheticEvent, image?: ImageEntity) => void
   showMoreRenderer?: (params: RendererProps) => React.ReactNode
   pageLabelRenderer?: (params: RendererProps) => React.ReactNode

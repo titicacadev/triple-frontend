@@ -26,6 +26,7 @@ import {
   MarginPadding,
   TableProps,
   ButtonProps,
+  ImageSourceType,
 } from '@titicaca/core-elements'
 import {
   PoiListElement,
@@ -93,7 +94,7 @@ interface TripleDocumentProps {
   onLinkClick?: LinkEventHandler
   onTNAProductClick?: (e: React.SyntheticEvent, product: unknown) => void
   onTNAProductsFetch: unknown
-  imageSourceComponent: unknown
+  imageSourceComponent: ImageSourceType
   resourceScraps: unknown
   webUrlBase: string
   deepLink: string
@@ -314,7 +315,7 @@ function Images({
   }
   onImageClick: ImageEventHandler
   onLinkClick: LinkEventHandler
-  ImageSource: unknown
+  ImageSource: ImageSourceType
   videoAutoPlay?: boolean
 }) {
   const ImagesContainer = ['block', 'gapless-block'].includes(display)
@@ -377,7 +378,7 @@ function EmbeddedImage({
   }
   onImageClick: ImageEventHandler
   onLinkClick: LinkEventHandler
-  ImageSource: unknown
+  ImageSource: ImageSourceType
 }) {
   if (image) {
     const handleClick = generateClickHandler(onLinkClick, onImageClick)
@@ -669,7 +670,7 @@ function Embedded({
   }
   onLinkClick: LinkEventHandler
   onImageClick: ImageEventHandler
-  ImageSource: unknown
+  ImageSource: ImageSourceType
 }) {
   return (
     <DocumentCarousel margin={{ top: 20 }}>

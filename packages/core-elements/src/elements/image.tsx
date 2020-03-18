@@ -11,6 +11,9 @@ import {
 } from '../commons'
 import { formatMarginPadding } from '../mixins'
 
+export type ImageSourceType = React.ComponentType<{
+  children: string
+}>
 type OverlayType = 'gradient' | 'dark'
 
 const OverlayStyle: { [key in OverlayType]: ReturnType<typeof css> } = {
@@ -113,7 +116,7 @@ const ImageFrameContent = ({
   imageUrl?: string
   borderRadius?: number
   sourceUrl?: string
-  ImageSource?: any
+  ImageSource?: ImageSourceType
   overlay?: React.ReactNode
   overlayPadding?: MarginPadding
   overlayType?: OverlayType
@@ -133,7 +136,12 @@ const ImageFrameContent = ({
     )}
     {sourceUrl && (
       <SourceUrl>
-        {ImageSource ? <ImageSource>{sourceUrl}</ImageSource> : sourceUrl}
+        {ImageSource ? (
+          // TODO: children에 url 전달하는 것 제거하기
+          <ImageSource sourceUrl={sourceUrl}>{sourceUrl}</ImageSource>
+        ) : (
+          sourceUrl
+        )}
       </SourceUrl>
     )}
     {overlay && (
@@ -267,7 +275,7 @@ function Image({
   sourceUrl?: string
   frame?: FrameRatioAndSizes
   size?: GlobalSizes
-  ImageSource?: any
+  ImageSource?: ImageSourceType
   overlay?: React.ReactNode
   overlayPadding?: MarginPadding
   overlayType?: OverlayType
