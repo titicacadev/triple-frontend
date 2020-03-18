@@ -11,8 +11,10 @@ import {
 } from '../commons'
 import { formatMarginPadding } from '../mixins'
 
+// TODO: children 제거하기
 export type ImageSourceType = React.ComponentType<{
-  children: string
+  sourceUrl?: string
+  children?: string
 }>
 type OverlayType = 'gradient' | 'dark'
 

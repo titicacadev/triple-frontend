@@ -1,5 +1,14 @@
 import React from 'react'
 
-export default function ImageSource({ children }: { children?: string }) {
-  return <>{`출처 ${(children || '').replace(/^https?:\/\//, '')}`}</>
+// TODO: children 제거하기
+export default function ImageSource({
+  sourceUrl,
+  children,
+}: {
+  sourceUrl?: string
+  children?: string
+}) {
+  return (
+    <>{`출처 ${(sourceUrl || children || '').replace(/^https?:\/\//, '')}`}</>
+  )
 }
