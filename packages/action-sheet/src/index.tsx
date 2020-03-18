@@ -89,7 +89,7 @@ function ActionItem({
 }
 
 export default function ActionSheet({
-  open,
+  open = false,
   onClose,
   title,
   from = DEFAULT_FROM,

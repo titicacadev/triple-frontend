@@ -23,6 +23,7 @@
   "dependencies": {
     "@titicaca/core-elements": "^1.11.0",
     "react-transition-group": "^4.3.0",
-    "@titicaca/view-utilities": "^1.10.1"
+    "@titicaca/view-utilities": "^1.10.1",
+    "@titicaca/react-hooks": "^1.8.0"
   }
 }
