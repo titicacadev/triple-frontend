@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import styled, { css } from 'styled-components'
 import { GlobalColors } from '@titicaca/core-elements'
+import { generateUniqueKey } from '@titicaca/view-utilities'
+import { useBodyScrollLock } from '@titicaca/react-hooks'
 
 const Overlay = styled.div`
   position: fixed;
@@ -69,19 +71,20 @@ const Action = styled.a<{ color?: GlobalColors }>`
 `
 
 export default function ModalBase({
-  open,
+  open = false,
   onClose,
   children,
 }: {
-  open?: boolean
+  open: boolean
   onClose?: (e: React.SyntheticEvent) => any
   children?: React.ReactNode
 }) {
-  useEffect(() => {
-    console.log(open)
-  }, [open])
+  const elementId = generateUniqueKey('modal')
+
+  useBodyScrollLock(elementId, open)
+
   return open ? (
-    <Overlay id="modal" onClick={onClose}>
+    <Overlay id={elementId} onClick={onClose}>
       <Box onClick={(e?: React.SyntheticEvent) => silenceEvent(e)}>
         {children}
       </Box>

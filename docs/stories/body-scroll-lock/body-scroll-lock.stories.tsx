@@ -24,6 +24,7 @@ export const 기본_스크롤락 = () => (
 
 export const 중첩_스크롤락 = () => {
   const [openModal, setOpenModal] = useState(false)
+  const [openActionSheet, setOpenActionSheet] = useState(false)
 
   return (
     <div>
@@ -32,13 +33,32 @@ export const 중첩_스크롤락 = () => {
         <ActionSheet.Item onClick={() => setOpenModal(true)}>
           모달 열기
         </ActionSheet.Item>
-        <ActionSheet.Item>가</ActionSheet.Item>
+        <ActionSheet.Item onClick={() => setOpenActionSheet(true)}>
+          액션시트 열기
+        </ActionSheet.Item>
         <ActionSheet.Item>나</ActionSheet.Item>
         <ActionSheet.Item>다</ActionSheet.Item>
         <ActionSheet.Item>라</ActionSheet.Item>
         <ActionSheet.Item>마</ActionSheet.Item>
         <ActionSheet.Item>바</ActionSheet.Item>
         <ActionSheet.Item>사</ActionSheet.Item>
+      </ActionSheet>
+      <ActionSheet
+        open={openActionSheet}
+        borderRadius={0}
+        from="top"
+        maxContentHeight={300}
+        padding={{
+          top: 0,
+          left: 20,
+          bottom: 9.5,
+          right: 20,
+        }}
+        onClose={() => setOpenActionSheet(false)}
+      >
+        <ActionSheet.Item>가</ActionSheet.Item>
+        <ActionSheet.Item>나</ActionSheet.Item>
+        <ActionSheet.Item>다</ActionSheet.Item>
       </ActionSheet>
       <Confirm open={openModal} onClose={() => setOpenModal(false)}>
         삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.

@@ -7,7 +7,7 @@ import ModalBody from './body'
 export function Confirm({
   children,
   title,
-  open,
+  open = false,
   onClose,
   cancelText,
   onCancel,
@@ -16,7 +16,7 @@ export function Confirm({
 }: {
   children?: React.ReactNode
   title?: string
-  open?: boolean
+  open: boolean
   cancelText?: string
   confirmText?: string
   messageType?: string
@@ -50,14 +50,14 @@ export function Confirm({
 export function Alert({
   title,
   children,
-  open,
+  open = false,
   onClose,
   confirmText,
   onConfirm,
 }: {
   children?: React.ReactNode
   title?: string
-  open?: boolean
+  open: boolean
   confirmText?: string | React.ReactNode
   messageType?: string
   onClose?: (e?: React.SyntheticEvent) => any
