@@ -1,7 +1,13 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { text, boolean, number, select } from '@storybook/addon-knobs'
-import { Image, GlobalSizes, FrameRatioAndSizes } from '@titicaca/core-elements'
+import {
+  Image,
+  GlobalSizes,
+  FrameRatioAndSizes,
+  ImageSource,
+  ImageSourceType,
+} from '@titicaca/core-elements'
 import { action } from '@storybook/addon-actions'
 
 const GLOBAL_SIZES: GlobalSizes[] = [
@@ -37,6 +43,31 @@ const FRAME_RATIO_AND_SIZES: FrameRatioAndSizes[] = [
 
 const FRAME_GROUP = '틀 관련 props'
 
+enum IMAGE_SOURCE_TYPE {
+  CORE_ELEMENTS = 'core-elements',
+  CUSTOM = 'custom',
+  UNDEFINED = 'undefined',
+}
+
+const IMAGE_SOURCE_COMPONENTS: {
+  [key in IMAGE_SOURCE_TYPE]: ImageSourceType | undefined
+} = {
+  [IMAGE_SOURCE_TYPE.CORE_ELEMENTS]: ImageSource,
+  [IMAGE_SOURCE_TYPE.CUSTOM]: function CustomImageSource({
+    sourceUrl,
+  }: {
+    sourceUrl?: string
+  }) {
+    return (
+      <div style={{ fontSize: 20, border: 'solid 1px red', overflow: 'auto' }}>
+        커스텀 컴포넌트입니다.
+        {sourceUrl}
+      </div>
+    )
+  },
+  [IMAGE_SOURCE_TYPE.UNDEFINED]: undefined,
+}
+
 storiesOf('Core-Elements | Image', module)
   .add('기본', () => {
     const useFixedDemensions = boolean('틀 고정', true, FRAME_GROUP)
@@ -48,6 +79,19 @@ storiesOf('Core-Elements | Image', module)
         src={text('src', 'https://triple-corp.com/static/images/img-bg-0.jpg')}
         borderRadius={number('borderRadius', 6)}
         sourceUrl={text('sourceUrl', 'https://triple-corp.com')}
+        ImageSource={
+          IMAGE_SOURCE_COMPONENTS[
+            select(
+              'ImageSource',
+              [
+                IMAGE_SOURCE_TYPE.CORE_ELEMENTS,
+                IMAGE_SOURCE_TYPE.CUSTOM,
+                IMAGE_SOURCE_TYPE.UNDEFINED,
+              ],
+              IMAGE_SOURCE_TYPE.UNDEFINED,
+            )
+          ]
+        }
         withLinkIndicator={boolean('withLinkIndicator', false)}
         floated={select('floated', ['right', 'left', 'none'], 'none')}
         margin={{
