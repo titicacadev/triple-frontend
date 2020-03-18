@@ -20,7 +20,8 @@
   },
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
-    "react-fast-compare": "^2.0.4"
+    "react-fast-compare": "^2.0.4",
+    "body-scroll-lock": "2.6.4"
   },
   "devDependencies": {
     "@types/isomorphic-fetch": "^0.0.35"

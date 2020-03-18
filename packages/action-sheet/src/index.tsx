@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { CSSTransition } from 'react-transition-group'
-import { disableScroll, enableScroll } from '@titicaca/view-utilities'
+import { generateUniqueKey } from '@titicaca/view-utilities'
+import { useBodyScrollLock } from '@titicaca/react-hooks'
 
 import {
   MarginPadding,
@@ -99,7 +100,7 @@ export default function ActionSheet({
   children,
   className,
 }: React.PropsWithChildren<{
-  open?: boolean
+  open: boolean
   onClose?: ActionSheetContext['onClose']
   title?: React.ReactNode
   from?: ActionSheetContext['from']
@@ -109,13 +110,9 @@ export default function ActionSheet({
   padding?: MarginPadding
   className?: string
 }>) {
-  useEffect(() => {
-    if (open) {
-      disableScroll('#action-sheet')
-    } else {
-      enableScroll('#action-sheet')
-    }
-  }, [open])
+  const elementId = generateUniqueKey('action-sheet')
+
+  useBodyScrollLock(elementId, open)
 
   const actionSheetTitle = title ? (
     typeof title === 'string' ? (
@@ -134,7 +131,7 @@ export default function ActionSheet({
 
   return (
     <CSSTransition
-      id="action-sheet"
+      id={elementId}
       in={open}
       appear
       classNames="fade"

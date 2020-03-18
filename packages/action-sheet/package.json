@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "react-transition-group": "^4.2.2",
-    "@titicaca/view-utilities": "^1.8.0"
+    "@titicaca/view-utilities": "^1.8.0",
+    "@titicaca/react-hooks": "^1.8.0"
   }
 }
