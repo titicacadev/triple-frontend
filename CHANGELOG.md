@@ -1,6 +1,15 @@
-## 1.11.0 (2020-03-18)
+## 1.11.0 (2020-03-19)
 
-- `react-contexts` useIsomorphicNavigation 추가 (#548)
+- `poi-list-element` 하위호환을 위해 prices 를 추가 (#577)
+- `react-contexts` useIsomorphicNavigation 을 제공 (#576)
+- `image` story 추가 (#573)
+- `core-element` ImageSource 타입 정의 개선 (#572)
+- `poi-list-element` priceLabelOverride 추가 (#571)
+- `footer`1:1 문의 버튼 표시 여부 제어 가능하도록 props 추가 (#570)
+- ScrapButtom prop 타입 간단하게 수정하고, list element의 prop에 제네릭 사용 (#569)
+  - `triple-document`, `scrap-button`, `poi-list-element`, `product-list-element`
+- `pricing` 사용자 메세지 추가 (#565)
+- `footer` 신규 Footer를 추가합니다. (#562)
 
 ## 1.10.1 (2020-03-13)
 
