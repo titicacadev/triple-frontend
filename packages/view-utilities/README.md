@@ -42,4 +42,6 @@ import { debounce, formatNumber } from '@titicaca/view-utilities'
 
 [API]
 
-## lock-body-scroll
+## generate unique key
+
+[API]

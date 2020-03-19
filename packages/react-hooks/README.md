@@ -14,6 +14,8 @@ const { response, data, error, loading } = useFetch(url, options)
 
 ### useBodyScrollLock
 
+스크롤을 제어합니다.
+
 ```
 import { useBodyScrollLock } from '@titicaca/react-hooks`;
 
