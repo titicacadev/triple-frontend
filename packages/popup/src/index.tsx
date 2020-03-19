@@ -3,6 +3,7 @@ import React, {
   PropsWithChildren,
   useRef,
   useEffect,
+  useMemo,
 } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import styled from 'styled-components'
@@ -58,7 +59,7 @@ export default function Popup({
   noNavbar?: boolean
 }>) {
   const popupRef = useRef<HTMLDivElement>(null)
-  const elementId = generateUniqueKey('popup')
+  const elementId = useMemo(() => generateUniqueKey('popup'), [])
 
   useEffect(() => {
     if (open && popupRef.current && popupRef.current.scrollTop > 0) {

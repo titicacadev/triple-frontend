@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { generateUniqueKey } from '@titicaca/view-utilities'
 import { useBodyScrollLock } from '@titicaca/react-hooks'
@@ -110,7 +110,7 @@ export default function ActionSheet({
   padding?: MarginPadding
   className?: string
 }>) {
-  const elementId = generateUniqueKey('action-sheet')
+  const elementId = useMemo(() => generateUniqueKey('action-sheet'), [])
 
   useBodyScrollLock(elementId, open)
 

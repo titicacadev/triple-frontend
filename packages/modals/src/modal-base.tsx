@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import styled, { css } from 'styled-components'
 import { GlobalColors } from '@titicaca/core-elements'
 import { generateUniqueKey } from '@titicaca/view-utilities'
@@ -79,7 +79,7 @@ export default function ModalBase({
   onClose?: (e: React.SyntheticEvent) => any
   children?: React.ReactNode
 }) {
-  const elementId = generateUniqueKey('modal')
+  const elementId = useMemo(() => generateUniqueKey('modal'), [])
 
   useBodyScrollLock(elementId, open)
 
