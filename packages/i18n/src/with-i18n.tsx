@@ -1,7 +1,7 @@
 import React from 'react'
 import { withTranslation, WithTranslation } from 'react-i18next'
 
-export default function withI18n<T extends WithTranslation, S, L>(
+export default function withI18n<T extends WithTranslation>(
   Component: React.ComponentType<T>,
 ): React.ComponentType<T> {
   const WrappedComponent = withTranslation()(Component)
