@@ -3,6 +3,8 @@ import fetch from 'isomorphic-fetch'
 export default class I18nextFetchBackend {
   type: 'backend' = 'backend'
 
+  static type: 'backend' = 'backend'
+
   read(language: string, namespace: string, callback: Function) {
     return this.loadUrl(
       `https://assets.triple-dev.titicaca-corp.com/locales/${language}/${namespace}.json`,
