@@ -42,6 +42,6 @@ import { debounce, formatNumber } from '@titicaca/view-utilities'
 
 [API]
 
-## generate unique key
+## generateUniqueKey
 
 [API]
