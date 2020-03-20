@@ -4,7 +4,9 @@ import { GlobalColors } from '@titicaca/core-elements'
 import { generateUniqueKey } from '@titicaca/view-utilities'
 import { useBodyScrollLock } from '@titicaca/react-hooks'
 
-const Overlay = styled.div`
+const Overlay = styled.div<{
+  open: boolean
+}>`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -12,6 +14,13 @@ const Overlay = styled.div`
   right: 0;
   background-color: rgba(58, 58, 58, 0.5);
   z-index: 10;
+  display: none;
+
+  ${({ open }) =>
+    open &&
+    css`
+      display: block;
+    `}
 `
 
 const Box = styled.div`
@@ -83,13 +92,13 @@ export default function ModalBase({
 
   useBodyScrollLock(elementId, open)
 
-  return open ? (
-    <Overlay id={elementId} onClick={onClose}>
+  return (
+    <Overlay id={elementId} open={open} onClick={onClose}>
       <Box onClick={(e?: React.SyntheticEvent) => silenceEvent(e)}>
         {children}
       </Box>
     </Overlay>
-  ) : null
+  )
 }
 
 function silenceEvent(e?: React.SyntheticEvent) {
