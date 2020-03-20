@@ -5,7 +5,7 @@ export default function useI18n(namespaces = 'common') {
 
   if (ready) {
     return {
-      t: (key: string, fallback: string) => t([key, fallback]),
+      t: (key: string, fallback: string) => t(key, fallback),
       i18n,
     }
   } else {
