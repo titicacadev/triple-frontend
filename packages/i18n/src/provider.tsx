@@ -4,16 +4,16 @@ import { I18nextProvider, I18nextProviderProps } from 'react-i18next'
 import i18n from './i18next'
 
 export default function I18nProvider(
-  props: { language?: string } & Omit<I18nextProviderProps, 'i18n'>,
+  props: { language?: string } & Partial<I18nextProviderProps>,
 ) {
-  const i18nInstance = isServer() ? i18n.cloneInstance() : i18n
+  const i18nInstance = props.i18n || getI18nInstance()
 
   i18nInstance.changeLanguage(props.language || 'ko')
 
   return (
     <I18nextProvider
-      {...props}
       i18n={i18nInstance}
+      {...props}
       defaultNS={props.defaultNS || 'common'}
     />
   )
@@ -21,4 +21,8 @@ export default function I18nProvider(
 
 function isServer() {
   return typeof window === 'undefined'
+}
+
+function getI18nInstance() {
+  return isServer() ? i18n.cloneInstance() : i18n
 }
