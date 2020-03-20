@@ -12,7 +12,7 @@
     "test": "mocha --require ts-node/register ./src/**/*.spec.ts"
   },
   "dependencies": {
-    "@titicaca/triple-web-to-native-interfaces": "0.0.21",
+    "@titicaca/triple-web-to-native-interfaces": "^1.0.0",
     "@titicaca/view-utilities": "^1.11.0",
     "humps": "^2.0.1",
     "qs": "^6.7.0",
