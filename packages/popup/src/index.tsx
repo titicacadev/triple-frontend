@@ -70,7 +70,13 @@ export default function Popup({
   useBodyScrollLock(elementId, open)
 
   return (
-    <CSSTransition id="popup" timeout={0} in={open} classNames="fade" appear>
+    <CSSTransition
+      id={elementId}
+      timeout={0}
+      in={open}
+      classNames="fade"
+      appear
+    >
       {/* https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451 */}
       <PopupContainer ref={popupRef}>
         {noNavbar ? null : (
