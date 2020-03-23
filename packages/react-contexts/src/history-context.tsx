@@ -12,6 +12,7 @@ interface HistoryContext {
   back: any
   navigate: any
   openWindow: any
+  showTransitionModal: any
 }
 
 const NOOP: Function = () => {}
@@ -23,6 +24,7 @@ const Context = React.createContext<HistoryContext>({
   back: NOOP,
   navigate: NOOP,
   openWindow: NOOP,
+  showTransitionModal: NOOP,
 })
 
 function targetPageAvailable(path: string) {
@@ -238,6 +240,11 @@ export function HistoryProvider({
     [appUrlScheme, isPublic],
   )
 
+  const showTransitionModal = React.useCallback(
+    () => push(transitionModalHash),
+    [push, transitionModalHash],
+  )
+
   const value = React.useMemo(
     () => ({
       uriHash,
@@ -246,8 +253,9 @@ export function HistoryProvider({
       back,
       navigate,
       openWindow,
+      showTransitionModal,
     }),
-    [back, navigate, openWindow, push, replace, uriHash],
+    [back, navigate, openWindow, push, replace, showTransitionModal, uriHash],
   )
 
   return <Context.Provider value={value}>{children}</Context.Provider>
@@ -259,7 +267,10 @@ export function useHistoryContext() {
 
 interface WrappingComponentBaseProps {
   uriHash: URIHash
-  historyActions: Pick<HistoryContext, 'back' | 'navigate' | 'push' | 'replace'>
+  historyActions: Pick<
+    HistoryContext,
+    'back' | 'navigate' | 'push' | 'replace' | 'showTransitionModal'
+  >
 }
 
 export function withHistory<P extends Partial<WrappingComponentBaseProps>>(
@@ -270,7 +281,7 @@ export function withHistory<P extends Partial<WrappingComponentBaseProps>>(
   ) {
     return (
       <Context.Consumer>
-        {({ uriHash, push, replace, back, navigate }) => (
+        {({ uriHash, push, replace, back, navigate, showTransitionModal }) => (
           <Component
             {...({
               ...props,
@@ -280,6 +291,7 @@ export function withHistory<P extends Partial<WrappingComponentBaseProps>>(
                 replace,
                 back,
                 navigate,
+                showTransitionModal,
               },
             } as P)}
           />
