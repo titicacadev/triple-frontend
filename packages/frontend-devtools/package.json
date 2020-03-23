@@ -1,5 +1,5 @@
 {
-  "name": "@titicaca/devtools",
+  "name": "@titicaca/frontend-devtools",
   "version": "1.11.0",
   "description": "custom react devtools for triple-frontend",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
