@@ -167,17 +167,7 @@ const TextBase = styled.div<TextBaseProps>`
 `
 
 function Text({ children, ...props }: TextProps) {
-  return (
-    <TextBase {...props}>
-      {React.Children.toArray(children).map((child, i) =>
-        typeof child === 'string' ? (
-          <LineBreak key={i}>{child}</LineBreak>
-        ) : (
-          child
-        ),
-      )}
-    </TextBase>
-  )
+  return <TextBase {...props}>{ChildrenWithLineBreaks(children)}</TextBase>
 }
 
 const Html = styled(TextBase)`
@@ -232,7 +222,24 @@ function TextTitle({
   )
 }
 
+const TextWithRef = React.forwardRef<HTMLDivElement>(
+  ({ children, ...props }: TextProps, ref) => (
+    <TextBase ref={ref} {...props}>
+      {ChildrenWithLineBreaks(children)}
+    </TextBase>
+  ),
+)
+
+function ChildrenWithLineBreaks(children: React.ReactNode) {
+  return React.Children.toArray(children).map((child, i) =>
+    typeof child === 'string' ? <LineBreak key={i}>{child}</LineBreak> : child,
+  )
+}
+
+TextWithRef.displayName = 'TextWithRef'
+
 Text.Html = Html
 Text.Title = TextTitle
+Text.WithRef = TextWithRef
 
 export default Text
