@@ -6,16 +6,29 @@ interface TreeDiff {
   [key: string]: any
 }
 
-function getProperties(diff: TreeDiff) {
+function printLeaf(key: string | number, diff: TreeDiff) {
   switch (diff.kind) {
     case 'N':
-      return ['+', diff.rhs]
+      console.log(
+        `%c${key}: %c+`,
+        'font-weight: bold',
+        'color: #22bb33;',
+        diff.rhs,
+      )
+      break
 
     case 'D':
-      return ['-', diff.lhs]
+      console.log(
+        `%c${key}: %c-`,
+        'font-weight: bold',
+        'color: #bb2124;',
+        diff.lhs,
+      )
+      break
 
     case 'E':
-      return [diff.lhs, '->', diff.rhs]
+      console.log(`%c${key}:`, 'font-weight: bold', diff.lhs, '->', diff.rhs)
+      break
   }
 }
 
@@ -32,7 +45,7 @@ export default function printDiff(value: TreeDiff | TreeDiff[] | undefined) {
         printDiff(e)
         console.groupEnd()
       } else {
-        console.log(`${index}: `, ...getProperties(e))
+        printLeaf(index, e)
       }
     })
     return
@@ -44,7 +57,7 @@ export default function printDiff(value: TreeDiff | TreeDiff[] | undefined) {
       printDiff(value[key])
       console.groupEnd()
     } else {
-      console.log(`${key}: `, ...getProperties(value[key]))
+      printLeaf(key, value[key])
     }
   })
 }
