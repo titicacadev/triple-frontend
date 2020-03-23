@@ -18,6 +18,7 @@
     "@titicaca/content-sharing": "^1.11.0",
     "@titicaca/core-elements": "^1.11.0",
     "@titicaca/date-picker": "^1.11.0",
+    "@titicaca/directions-finder": "^1.11.0",
     "@titicaca/drawer-button": "^1.11.0",
     "@titicaca/floating-install-button": "^1.11.0",
     "@titicaca/footer": "^1.11.0",
