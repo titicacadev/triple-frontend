@@ -222,8 +222,8 @@ function TextTitle({
   )
 }
 
-const TextWithRef = React.forwardRef<HTMLDivElement>(
-  ({ children, ...props }: TextProps, ref) => (
+const TextWithRef = React.forwardRef<HTMLDivElement, TextProps>(
+  ({ children, ...props }, ref) => (
     <TextBase ref={ref} {...props}>
       {ChildrenWithLineBreaks(children)}
     </TextBase>
