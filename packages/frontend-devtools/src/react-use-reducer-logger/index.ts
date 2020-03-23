@@ -5,7 +5,7 @@ import printDiff from './print-diff'
 
 function loggerMiddleware<R extends Reducer<any, any>>(next: R) {
   return ((state, action) => {
-    console.group(action.type, action.payload)
+    console.group('Action:', action)
     const nextState = next(state, action)
     printDiff(diff(state, nextState))
     console.groupEnd()
