@@ -241,8 +241,8 @@ export function HistoryProvider({
   )
 
   const showTransitionModal = React.useCallback(
-    () => push(transitionModalHash),
-    [push, transitionModalHash],
+    () => isPublic && transitionModalHash && push(transitionModalHash),
+    [push, transitionModalHash, isPublic],
   )
 
   const value = React.useMemo(
