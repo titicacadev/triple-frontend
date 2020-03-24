@@ -160,7 +160,7 @@ function RichPricing({
         {label ? <Label> {label} </Label> : null}
 
         {(pricingNote || hasBasePrice) && (
-          <Container margin={{ bottom: 1 }}>
+          <Container margin={{ bottom: 3 }}>
             {pricingNote && (
               <Text alpha={0.3} size="mini" inlineBlock margin={{ right: 3 }}>
                 {pricingNote}
