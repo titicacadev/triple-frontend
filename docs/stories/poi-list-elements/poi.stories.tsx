@@ -147,6 +147,7 @@ storiesOf('poi-list-elements | POI', module)
               ? [{ text: '추가 할인쿠폰', color: 'green', emphasized: true }]
               : undefined
           }
+          hideDiscountRate={boolean('hideDiscountRate', false)}
           hideScrapButton={boolean('hideScrapButton', false)}
           onScrapedChange={action('scrap change')}
         />
