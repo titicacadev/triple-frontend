@@ -75,6 +75,7 @@ interface ExtendedPoiListElementProps<T extends POI>
   pricingDescription?: React.ReactNode
   priceLabelOverride?: string
   hideScrapButton?: boolean
+  hideDiscountRate?: boolean
 }
 
 export type PoiListElementProps<T extends POI> =
@@ -287,6 +288,7 @@ class ExtendedPoiListElement<T extends POI> extends React.PureComponent<
         resourceScraps,
         tags,
         hideScrapButton,
+        hideDiscountRate,
       },
     } = this
 
@@ -342,6 +344,7 @@ class ExtendedPoiListElement<T extends POI> extends React.PureComponent<
         onClick={onClick}
         tags={tags}
         hideScrapButton={hideScrapButton || !resourceScraps}
+        hideDiscountRate={hideDiscountRate}
       />
     )
   }
