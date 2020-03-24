@@ -49,32 +49,33 @@ export default function LocationProperties({
     Omit<PropertyItemProps, 'identifier'>
   > = useMemo(() => {
     const allValues = new Map<string, Omit<PropertyItemProps, 'identifier'>>()
+    const addressValue =
+      addresses?.primary || addresses?.ko || addresses?.en || addresses?.local
 
-    allValues.set('addresses', {
-      title: t('common:address', '주소'),
-      value:
-        addresses?.primary ||
-        addresses?.ko ||
-        addresses?.en ||
-        addresses?.local,
-      onClick: onAddressesClick,
-      eventActionFragment: '기본정보_주소',
-    })
+    addressValue &&
+      allValues.set('addresses', {
+        title: t('common:address', '주소'),
+        value: addressValue,
+        onClick: onAddressesClick,
+        eventActionFragment: '기본정보_주소',
+      })
 
-    allValues.set('phoneNumber', {
-      title: t('common:contact', '전화'),
-      value: phoneNumber,
-      onClick: onPhoneNumberClick,
-      eventActionFragment: '기본정보_전화번호',
-    })
+    phoneNumber &&
+      allValues.set('phoneNumber', {
+        title: t('common:contact', '전화'),
+        value: phoneNumber,
+        onClick: onPhoneNumberClick,
+        eventActionFragment: '기본정보_전화번호',
+      })
 
-    allValues.set('officialSiteUrl', {
-      title: t('common:homepage', '홈페이지'),
-      value: officialSiteUrl,
-      singleLine: true,
-      onClick: onOfficialSiteUrlClick,
-      eventActionFragment: '기본정보_홈페이지',
-    })
+    officialSiteUrl &&
+      allValues.set('officialSiteUrl', {
+        title: t('common:homepage', '홈페이지'),
+        value: officialSiteUrl,
+        singleLine: true,
+        onClick: onOfficialSiteUrlClick,
+        eventActionFragment: '기본정보_홈페이지',
+      })
 
     if (extraProperties) {
       extraProperties.forEach(({ description, value, ...rest }, i) => {
