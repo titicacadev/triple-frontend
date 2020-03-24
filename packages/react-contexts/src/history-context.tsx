@@ -218,24 +218,27 @@ export function HistoryProvider({
     (rawHref, params) => {
       if (!hasAccessibleTripleNativeClients()) {
         window.open(rawHref, params?.target)
-      } else {
-        const { href, scheme, host = '' } = parseUrl(rawHref)
+        return
+      }
 
-        if (appUrlScheme) {
-          if (scheme === 'http' || scheme === 'https') {
-            const outlinkParams = qs.stringify({
-              url: href,
-              ...(params || {}),
-            })
+      if (!appUrlScheme) {
+        return
+      }
 
-            window.location.href = `${appUrlScheme}:///outlink?${outlinkParams}`
-          } else if (!scheme && !host) {
-            window.location.href = generateUrl(
-              { scheme: appUrlScheme },
-              `/inlink?path=${encodeURIComponent(rawHref)}`,
-            )
-          }
-        }
+      const { href, scheme, host = '' } = parseUrl(rawHref)
+
+      if (scheme === 'http' || scheme === 'https') {
+        const outlinkParams = qs.stringify({
+          url: href,
+          ...(params || {}),
+        })
+
+        window.location.href = `${appUrlScheme}:///outlink?${outlinkParams}`
+      } else if (!scheme && !host) {
+        window.location.href = generateUrl(
+          { scheme: appUrlScheme },
+          `/inlink?path=${encodeURIComponent(rawHref)}`,
+        )
       }
     },
     [appUrlScheme],
