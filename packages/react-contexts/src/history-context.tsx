@@ -2,6 +2,7 @@ import React, { ComponentType } from 'react'
 import Router from 'next/router'
 import qs from 'qs'
 import { parseUrl, generateUrl } from '@titicaca/view-utilities'
+import { hasAccessibleTripleNativeClients } from '@titicaca/triple-web-to-native-interfaces'
 
 type URIHash = string
 
@@ -215,7 +216,7 @@ export function HistoryProvider({
 
   const openWindow: HistoryContext['openWindow'] = React.useCallback(
     (rawHref, params) => {
-      if (isPublic) {
+      if (hasAccessibleTripleNativeClients()) {
         window.open(rawHref)
       } else {
         const { href, scheme, host = '' } = parseUrl(rawHref)
@@ -237,7 +238,7 @@ export function HistoryProvider({
         }
       }
     },
-    [appUrlScheme, isPublic],
+    [appUrlScheme],
   )
 
   const showTransitionModal = React.useCallback(
