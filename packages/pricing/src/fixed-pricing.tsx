@@ -96,7 +96,7 @@ export default function FixedPricing({
         <Container position="relative" clearing>
           <FloatedPricingContainer floated="left">
             {pricingLabel}
-            <Text size="huge" bold>
+            <Text size="huge" bold margin={{ bottom: 3 }}>
               {priceLabelOverride || `${formatNumber(salePrice)}원`}
             </Text>
             {pricingDescription}
