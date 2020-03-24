@@ -11,11 +11,11 @@ interface HistoryContext {
   replace: any
   back: any
   navigate: any
-  openWindow: any
+  openWindow: (href: string, params?: { target?: string }) => void
   showTransitionModal: any
 }
 
-const NOOP: Function = () => {}
+const NOOP = () => {}
 
 const Context = React.createContext<HistoryContext>({
   uriHash: '',
@@ -213,8 +213,8 @@ export function HistoryProvider({
     [isPublic, navigateInApp, navigateOnPublic],
   )
 
-  const openWindow = React.useCallback(
-    (rawHref: string, params?: { target: unknown }) => {
+  const openWindow: HistoryContext['openWindow'] = React.useCallback(
+    (rawHref, params) => {
       if (isPublic) {
         window.open(rawHref)
       } else {
@@ -245,7 +245,7 @@ export function HistoryProvider({
     [push, transitionModalHash, isPublic],
   )
 
-  const value = React.useMemo(
+  const value: HistoryContext = React.useMemo(
     () => ({
       uriHash,
       push,
