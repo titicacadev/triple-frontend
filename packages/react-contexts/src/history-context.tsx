@@ -233,12 +233,17 @@ export function HistoryProvider({
           ...(params || {}),
         })
 
-        window.location.href = `${appUrlScheme}:///outlink?${outlinkParams}`
+        window.location.href = generateUrl({
+          scheme: appUrlScheme,
+          path: '/outlink',
+          query: outlinkParams,
+        })
       } else if (!scheme && !host) {
-        window.location.href = generateUrl(
-          { scheme: appUrlScheme },
-          `/inlink?path=${encodeURIComponent(rawHref)}`,
-        )
+        window.location.href = generateUrl({
+          scheme: appUrlScheme,
+          path: '/inlink',
+          query: `path=${encodeURIComponent(rawHref)}`,
+        })
       }
     },
     [appUrlScheme],
