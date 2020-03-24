@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback } from 'react'
 
 interface LongClickableComponentProps {
   onTouchStart?: (e: React.SyntheticEvent) => void
@@ -25,9 +25,11 @@ export default function longClickable<T extends LongClickableComponentProps>(
       }
     }, [onLongClick])
 
-    const onTouchMove = useMemo(() => {
-      isScrolled = true
-    }, [])
+    const onTouchMove = useCallback(() => {
+      if (onLongClick) {
+        isScrolled = true
+      }
+    }, [onLongClick])
 
     const onTouchEnd = useCallback(
       (e) => {
