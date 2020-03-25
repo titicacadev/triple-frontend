@@ -31,6 +31,7 @@ export interface POI {
       en: Name
       local: Name
     }
+    regionId?: string
     areas?: { name: string }[]
     categories?: { name: string }[]
     comment?: string
