@@ -39,6 +39,10 @@ export interface POI {
     scrapsCount?: number
     reviewsRating?: number
     starRating?: unknown
+    pointGeolocation: {
+      type: string
+      coordinates: number[]
+    }
   }
   distance?: number
   prices?: { nightlyBasePrice?: number; nightlyPrice?: number }
