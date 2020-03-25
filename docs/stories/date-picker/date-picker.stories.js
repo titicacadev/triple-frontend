@@ -180,7 +180,7 @@ storiesOf('date-picker | DatePicker', module)
           .map((date) => new Date(date))}
         numberOfMonths={number('표시할 개월 수', 3)}
         height={text('높이', '300px')}
-        enableOneDay={boolean('enableOneDay 활성화')}
+        enableSameDay={boolean('enableSameDay 활성화')}
       />
     )
   })
