@@ -1,6 +1,8 @@
 import fetch from 'isomorphic-fetch'
+import haversine from 'haversine'
+import { POI } from '@titicaca/poi-list-elements'
 
-import { PoiType } from './types'
+import { PoiType, PointGeoJSON } from './types'
 
 export async function fetchPois({
   type,
@@ -15,8 +17,8 @@ export async function fetchPois({
   type: PoiType
   excludedIds?: string[]
   regionId: string
-  lat: number | string
-  lon: number | string
+  lat: number
+  lon: number
   distance?: number | string
   from?: number
   size?: number
@@ -43,5 +45,26 @@ export async function fetchPois({
     throw new Error(`Failed to fetch nearby POIs: ${type}`)
   }
 
-  return response.json()
+  const pois = await response.json()
+
+  return pois.map((poi: POI) => ({
+    ...poi,
+    distance: measureDistance(poi.source.pointGeolocation, {
+      type: 'Point',
+      coordinates: [lon, lat],
+    }),
+  }))
+}
+
+function measureDistance(
+  { coordinates: [fromLon, fromLat] }: PointGeoJSON,
+  { coordinates: [toLon, toLat] }: PointGeoJSON,
+) {
+  return Math.round(
+    haversine(
+      { latitude: fromLat, longitude: fromLon },
+      { latitude: toLat, longitude: toLon },
+      { unit: 'meter' },
+    ),
+  )
 }

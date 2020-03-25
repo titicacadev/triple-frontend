@@ -4,7 +4,7 @@ import { Section, Button, List, Tabs } from '@titicaca/core-elements'
 import { H1, Paragraph } from '@titicaca/triple-document'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 
-import { PoiType } from './types'
+import { PoiType, PointGeoJSON } from './types'
 import nearbyPoisReducer, {
   NearbyPoisState,
   setCurrentTab,
@@ -30,11 +30,6 @@ const INITIAL_STATE: NearbyPoisState = {
 const EVENT_LABELS: { [key in PoiType]: string } = {
   attraction: '관광',
   restaurant: '맛집',
-}
-
-export type PointGeoJSON = {
-  coordinates: number[]
-  type: string
 }
 
 const DEFAULT_PAGE_SIZE = 3
