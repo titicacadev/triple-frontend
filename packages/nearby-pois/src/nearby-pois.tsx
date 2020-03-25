@@ -53,7 +53,7 @@ export default function NearbyPois({
 }: {
   poiId: string
   regionId: string
-  initialTab: PoiType
+  initialTab?: PoiType
   scraps: { [key: string]: boolean }
   onScrapedChange: (props: {
     id: string
