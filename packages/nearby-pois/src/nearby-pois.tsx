@@ -15,7 +15,7 @@ import nearbyPoisReducer, {
   setCurrentTab,
   appendPois,
 } from './reducer'
-import { fetchPois } from './api-client'
+import { fetchPois } from './service'
 
 const INITIAL_STATE: NearbyPoisState = {
   attraction: {
