@@ -16,7 +16,7 @@ import PickerFrame from './picker-frame'
 const RangeContainer = styled.div<{
   height?: string
   selectedAll: boolean
-  saneFromTo?: boolean
+  sameFromTo?: boolean
 }>`
   .DayPicker {
     height: ${({ height }) => height || '395px'};
@@ -90,7 +90,7 @@ const RangeContainer = styled.div<{
     transform: translate(calc(-50% - 3px), -50%);
   }
 
-  ${({ selectedAll, saneFromTo }) =>
+  ${({ selectedAll, sameFromTo }) =>
     selectedAll &&
     css`
       .DayPicker-Day--from:before,
@@ -106,7 +106,7 @@ const RangeContainer = styled.div<{
         right: auto;
         left: 0;
       }
-      ${saneFromTo &&
+      ${sameFromTo &&
         css`
           .DayPicker-Day--from.DayPicker-Day--to:before {
             content: none;
@@ -128,7 +128,7 @@ function RangePicker({
   afterBlock,
   height,
   publicHolidays,
-  saneFromTo,
+  sameFromTo,
 }: {
   startDate: string | null
   endDate: string | null
@@ -143,7 +143,7 @@ function RangePicker({
   disabledDays?: string[]
   height?: string
   publicHolidays?: Date[]
-  saneFromTo?: boolean
+  sameFromTo?: boolean
 }) {
   const from = startDate ? moment(startDate).toDate() : null
   const to = endDate ? moment(endDate).toDate() : null
@@ -160,7 +160,7 @@ function RangePicker({
       <RangeContainer
         selectedAll={!!(startDate && endDate)}
         height={height}
-        saneFromTo={saneFromTo}
+        sameFromTo={sameFromTo}
       >
         <DayPicker
           locale="ko"
@@ -183,7 +183,7 @@ function RangePicker({
             })
 
             if (
-              saneFromTo &&
+              !sameFromTo &&
               !isValidDate(to) &&
               moment(day)
                 .startOf('day')
