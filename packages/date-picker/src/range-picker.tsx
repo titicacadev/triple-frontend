@@ -13,7 +13,11 @@ import { GetGlobalColor } from '@titicaca/core-elements'
 import { formatMonthTitle, isValidDate, generatePaddedRange } from './utils'
 import PickerFrame from './picker-frame'
 
-const RangeContainer = styled.div<{ height?: string; selectedAll: boolean }>`
+const RangeContainer = styled.div<{
+  height?: string
+  selectedAll: boolean
+  withoutNight?: boolean
+}>`
   .DayPicker {
     height: ${({ height }) => height || '395px'};
   }
@@ -86,7 +90,7 @@ const RangeContainer = styled.div<{ height?: string; selectedAll: boolean }>`
     transform: translate(calc(-50% - 3px), -50%);
   }
 
-  ${({ selectedAll }) =>
+  ${({ selectedAll, withoutNight }) =>
     selectedAll &&
     css`
       .DayPicker-Day--from:before,
@@ -102,6 +106,12 @@ const RangeContainer = styled.div<{ height?: string; selectedAll: boolean }>`
         right: auto;
         left: 0;
       }
+      ${withoutNight &&
+        css`
+          .DayPicker-Day--from.DayPicker-Day--to:before {
+            content: none;
+          }
+        `}
       .DayPicker-Day--outside.DayPicker-Day--included-range {
         background: rgba(${GetGlobalColor('blue')}, 0.1);
       }
@@ -118,6 +128,7 @@ function RangePicker({
   afterBlock,
   height,
   publicHolidays,
+  withoutNight,
 }: {
   startDate: string | null
   endDate: string | null
@@ -132,6 +143,7 @@ function RangePicker({
   disabledDays?: string[]
   height?: string
   publicHolidays?: Date[]
+  withoutNight?: boolean
 }) {
   const from = startDate ? moment(startDate).toDate() : null
   const to = endDate ? moment(endDate).toDate() : null
@@ -145,7 +157,11 @@ function RangePicker({
 
   return (
     <PickerFrame>
-      <RangeContainer selectedAll={!!(startDate && endDate)} height={height}>
+      <RangeContainer
+        selectedAll={!!(startDate && endDate)}
+        height={height}
+        withoutNight={withoutNight}
+      >
         <DayPicker
           locale="ko"
           weekdaysShort={['일', '월', '화', '수', '목', '금', '토']}
@@ -167,6 +183,7 @@ function RangePicker({
             })
 
             if (
+              withoutNight &&
               !isValidDate(to) &&
               moment(day)
                 .startOf('day')
