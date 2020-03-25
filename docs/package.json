@@ -26,6 +26,7 @@
     "@titicaca/listing-filter": "^1.11.0",
     "@titicaca/location-properties": "^1.10.1",
     "@titicaca/modals": "^1.11.0",
+    "@titicaca/nearby-pois": "^1.10.1",
     "@titicaca/poi-list-elements": "^1.11.0",
     "@titicaca/popup": "^1.11.0",
     "@titicaca/pricing": "^1.11.0",
