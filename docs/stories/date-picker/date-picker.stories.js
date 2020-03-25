@@ -180,6 +180,7 @@ storiesOf('date-picker | DatePicker', module)
           .map((date) => new Date(date))}
         numberOfMonths={number('표시할 개월 수', 3)}
         height={text('높이', '300px')}
+        sameFromTo={boolean('sameFromTo 활성화')}
       />
     )
   })
