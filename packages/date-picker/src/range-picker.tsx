@@ -16,7 +16,7 @@ import PickerFrame from './picker-frame'
 const RangeContainer = styled.div<{
   height?: string
   selectedAll: boolean
-  enableOneDay?: boolean
+  enableSameDay?: boolean
 }>`
   .DayPicker {
     height: ${({ height }) => height || '395px'};
@@ -90,7 +90,7 @@ const RangeContainer = styled.div<{
     transform: translate(calc(-50% - 3px), -50%);
   }
 
-  ${({ selectedAll, enableOneDay }) =>
+  ${({ selectedAll, enableSameDay }) =>
     selectedAll &&
     css`
       .DayPicker-Day--from:before,
@@ -106,7 +106,7 @@ const RangeContainer = styled.div<{
         right: auto;
         left: 0;
       }
-      ${enableOneDay &&
+      ${enableSameDay &&
         css`
           .DayPicker-Day--from.DayPicker-Day--to:before {
             content: none;
@@ -128,7 +128,7 @@ function RangePicker({
   afterBlock,
   height,
   publicHolidays,
-  enableOneDay,
+  enableSameDay,
 }: {
   startDate: string | null
   endDate: string | null
@@ -143,7 +143,7 @@ function RangePicker({
   disabledDays?: string[]
   height?: string
   publicHolidays?: Date[]
-  enableOneDay?: boolean
+  enableSameDay?: boolean
 }) {
   const from = startDate ? moment(startDate).toDate() : null
   const to = endDate ? moment(endDate).toDate() : null
@@ -160,7 +160,7 @@ function RangePicker({
       <RangeContainer
         selectedAll={!!(startDate && endDate)}
         height={height}
-        enableOneDay={enableOneDay}
+        enableSameDay={enableSameDay}
       >
         <DayPicker
           locale="ko"
@@ -183,7 +183,7 @@ function RangePicker({
             })
 
             if (
-              !enableOneDay &&
+              !enableSameDay &&
               !isValidDate(to) &&
               moment(day)
                 .startOf('day')
