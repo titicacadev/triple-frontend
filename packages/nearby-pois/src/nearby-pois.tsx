@@ -215,9 +215,7 @@ export default function NearbyPois({
                     })
 
                     navigate(
-                      `/regions/${(poi.source as any).regionId}/${poi.type}s/${
-                        poi.id
-                      }`,
+                      `/regions/${poi.source.regionId}/${poi.type}s/${poi.id}`,
                     )
                   }}
                 />
