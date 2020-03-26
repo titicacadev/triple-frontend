@@ -143,7 +143,7 @@ export default function NearbyPois({
   )
 
   return (
-    <Section anchor="nearby-pois" /* minHeight={404} */ {...props}>
+    <Section anchor="nearby-pois" minHeight={404} {...props}>
       <H1 margin={{ bottom: 20 }}>
         {t('common:nearbyPois', '근처의 추천 장소')}
       </H1>
