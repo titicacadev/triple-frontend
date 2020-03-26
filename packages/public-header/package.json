@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/public-header",
-  "version": "1.11.0",
+  "version": "1.12.0",
   "description": "Common Header for Public Pages",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
