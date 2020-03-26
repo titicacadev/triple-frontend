@@ -44,4 +44,6 @@ import { debounce, formatNumber } from '@titicaca/view-utilities'
 
 ## generateUniqueKey
 
+유니크한 키를 만들어준다.
+
 [API]
