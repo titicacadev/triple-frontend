@@ -3,18 +3,12 @@ import { Segment, List } from '@titicaca/core-elements'
 import ActionSheet from '@titicaca/action-sheet'
 import { useI18n } from '@titicaca/i18n'
 import { useHistoryContext } from '@titicaca/react-contexts'
+import { TranslatedProperty } from '@titicaca/type-definitions'
 
 import PropertyItem, {
   ACTION_SHEET_PREFIX,
   PropertyItemProps,
 } from './property-item'
-
-interface TranslatedProperty {
-  primary?: string
-  ko?: string
-  en?: string
-  local?: string
-}
 
 interface ExtraProperty {
   description: string

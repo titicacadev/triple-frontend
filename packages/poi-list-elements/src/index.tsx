@@ -14,9 +14,9 @@ import ExtendedResourceListElement, {
 } from '@titicaca/resource-list-element'
 import ScrapButton, { ScrapButtonProps } from '@titicaca/scrap-button'
 import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
+import { TranslatedProperty } from '@titicaca/type-definitions'
 
 type PoiTypes = 'attraction' | 'restaurant' | 'hotel'
-type Name = string | null
 
 // TODO: attraction, restaourant와 hotel을 따로 정의하고 POIType으로 서로소 타입 만들기
 export interface POI {
@@ -26,11 +26,7 @@ export interface POI {
   scraped: boolean
   source: {
     image?: ResourceImage
-    names: {
-      ko: Name
-      en: Name
-      local: Name
-    }
+    names: TranslatedProperty
     regionId?: string
     areas?: { name: string }[]
     categories?: { name: string }[]
