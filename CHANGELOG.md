@@ -1,23 +1,22 @@
 ## 1.12.0 (2020-03-26)
 
-- `core-elements` Pager 삭제
-- `common` triple-web-to-native-interfaces 버전 1.0.0로 업데이트
-- `i18n` 패키지 추가
-- `react-contexts` HistoryContext에 showTransitionModal 인터페이스 추가
-- `directions-finder` 패키지 추가
-- `static-map` 패키지 추가
-- `core-elements` Text에 ref를 지정할 수 있도록 수정
-- `core-elements` Text.WithRef의 타이핑 오류 수정
-- `core-elements` longClickable HoC를 추가
-- `resource-list-element` salePrice 가 0 원이더라도 priceLabelOverride 가 있다면 가격영역 노출
-- `social-reviews` 소셜 리뷰 패키지 추가
-- `location-properties` 패키지 추가
-- `react-contexts` native 인터페이스 사용할 수 없을 때 openWindow가 window.open 사용
-- `poi-list-elements` POI 타입에 regionId 추가
-- `date-picker` RangePicker에 sameFromTo 옵션 추가
-- `frontend-devtools` react-use-reducer-logger 추가
-- `nearby-pois` 근처의 추천 장소 컴포넌트 패키지 추가
-- `core-elements` Section의 type annotation 확장, 중복 제거
+- `core-elements` Pager 삭제 (#532)
+- `common` triple-web-to-native-interfaces 버전 1.0.0로 업데이트 (#583)
+- `i18n` 패키지 추가 (#580)
+- `react-contexts` HistoryContext에 showTransitionModal 인터페이스 추가 (#586)
+- `directions-finder` 패키지 추가 (#590)
+- `static-map` 패키지 추가 (#592)
+- `core-elements` Text에 ref를 지정할 수 있도록 수정 (#592)
+- `core-elements` longClickable HoC를 추가 (#597)
+- `resource-list-element` salePrice 가 0 원이더라도 priceLabelOverride 가 있다면 가격영역 노출 (#602)
+- `social-reviews` 소셜 리뷰 패키지 추가 (#604)
+- `location-properties` 패키지 추가 (#601)
+- `react-contexts` native 인터페이스 사용할 수 없을 때 openWindow가 window.open 사용 (#600)
+- `poi-list-elements` POI 타입에 regionId 추가 (#608)
+- `date-picker` RangePicker에 sameFromTo 옵션 추가 (#609)
+- `frontend-devtools` react-use-reducer-logger 추가 (#587)
+- `nearby-pois` 근처의 추천 장소 컴포넌트 패키지 추가, `poi-list-elements`에 pointGeolocation props 추가 (#610)
+- `core-elements` Section의 type annotation 확장, 중복 제거 (#607)
 
 ## 1.11.0 (2020-03-19)
 
