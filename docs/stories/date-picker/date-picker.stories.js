@@ -162,6 +162,9 @@ storiesOf('date-picker | DatePicker', module)
       <RangePicker
         startDate={startDate}
         endDate={endDate}
+        startDateLabel="출국일"
+        endDateLabel="귀국일"
+        sameDateLabel="당일 왕복"
         onDatesChange={({ startDate, endDate, nights }) => {
           action('날짜 선택')({ startDate, endDate, nights })
           setDateRange({ startDate, endDate })

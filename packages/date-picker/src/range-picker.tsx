@@ -17,6 +17,9 @@ const RangeContainer = styled.div<{
   height?: string
   selectedAll: boolean
   enableSameDay?: boolean
+  startDateLabel?: string
+  endDateLabel?: string
+  sameDateLabel?: string
 }>`
   .DayPicker {
     height: ${({ height }) => height || '395px'};
@@ -62,6 +65,24 @@ const RangeContainer = styled.div<{
     z-index: 0;
     color: rgb(${GetGlobalColor('white')}) !important;
   }
+  ${({ selectedAll }) =>
+    selectedAll &&
+    css`
+      .DayPicker-Day--from {
+        background: -webkit-linear-gradient(
+          right,
+          rgba(54, 143, 255, 0.1) 50%,
+          #fafafa 50%
+        );
+      }
+      .DayPicker-Day--to {
+        background: -webkit-linear-gradient(
+          right,
+          #fafafa 50%,
+          rgba(54, 143, 255, 0.1) 50%
+        );
+      }
+    `}
   .DayPicker-Day--from:before,
   .DayPicker-Day--to:before {
     background: none;
@@ -90,37 +111,58 @@ const RangeContainer = styled.div<{
     transform: translate(calc(-50% - 3px), -50%);
   }
 
-  ${({ selectedAll, enableSameDay }) =>
+  ${({ startDateLabel, selectedAll }) =>
+    startDateLabel &&
     selectedAll &&
     css`
-      .DayPicker-Day--from:before,
-      .DayPicker-Day--to:before {
-        width: 50%;
-        background: rgba(${GetGlobalColor('blue')}, 0.1);
+    .DayPicker-Day--from:before {
+      content: '${startDateLabel}';
+      color: rgba(${GetGlobalColor('blue')});
+      position: absolute;
+      top: 35px;
+      left: 0px;
+      display: inline-block;
+      font-size: 11px;
+      width: 100%;
+      transform: translateY(0px);
+      background-color: transparent;
+      height: auto !important;
+    }
+  `}
+  ${({ endDateLabel, selectedAll }) =>
+    endDateLabel &&
+    selectedAll &&
+    css`
+    .DayPicker-Day--to:before {
+      content: '${endDateLabel}';
+      color: rgba(${GetGlobalColor('blue')});
+      position: absolute;
+      top: 35px;
+      left: 0px;
+      display: inline-block;
+      font-size: 11px;
+      width: 100%;
+      transform: translateY(0px);
+      background-color: transparent;
+      height: auto !important;
+    }
+  `}
+  .DayPicker-Day--from.DayPicker-Day--to {
+    background: none;
+    ${({ sameDateLabel }) => css`
+      &:before {
+        content: '${sameDateLabel}';
       }
-      .DayPicker-Day--from:before {
-        left: auto;
-        right: 0;
-      }
-      .DayPicker-Day--to:before {
-        right: auto;
-        left: 0;
-      }
-      ${enableSameDay &&
-        css`
-          .DayPicker-Day--from.DayPicker-Day--to:before {
-            content: none;
-          }
-        `}
-      .DayPicker-Day--outside.DayPicker-Day--included-range {
-        background: rgba(${GetGlobalColor('blue')}, 0.1);
-      }
-    `};
+    `}
+  }
 `
 
 function RangePicker({
   startDate,
   endDate,
+  startDateLabel,
+  endDateLabel,
+  sameDateLabel,
   onDatesChange,
   numberOfMonths = 25,
   disabledDays = [],
@@ -132,6 +174,9 @@ function RangePicker({
 }: {
   startDate: string | null
   endDate: string | null
+  startDateLabel?: string
+  endDateLabel?: string
+  sameDateLabel?: string
   beforeBlock?: Date
   afterBlock?: Date
   onDatesChange: (params: {
@@ -161,6 +206,9 @@ function RangePicker({
         selectedAll={!!(startDate && endDate)}
         height={height}
         enableSameDay={enableSameDay}
+        startDateLabel={startDateLabel}
+        endDateLabel={endDateLabel}
+        sameDateLabel={sameDateLabel}
       >
         <DayPicker
           locale="ko"
