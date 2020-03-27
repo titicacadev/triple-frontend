@@ -1,0 +1,26 @@
+{
+  "name": "@titicaca/type-definitions",
+  "version": "1.12.0",
+  "description": "triple frontend global type definitions",
+  "keywords": [
+    "triple",
+    "frontend",
+    "typescript"
+  ],
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "scripts": {},
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  }
+}
