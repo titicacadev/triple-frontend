@@ -41,6 +41,7 @@
     "@titicaca/static-map": "^1.12.0",
     "@titicaca/style-box": "^1.12.0",
     "@titicaca/triple-document": "^1.12.0",
+    "@titicaca/type-definitions": "^1.12.0",
     "http-proxy-middleware": "^0.20.0"
   },
   "devDependencies": {

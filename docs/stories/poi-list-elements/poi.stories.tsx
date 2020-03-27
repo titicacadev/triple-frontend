@@ -4,6 +4,7 @@ import { boolean, number, select, text } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { List, Container, Text } from '@titicaca/core-elements'
 import { PoiCarouselElement, PoiListElement } from '@titicaca/poi-list-elements'
+import { TranslatedProperty } from '@titicaca/type-definitions'
 
 import POIS from '../__mocks__/pois.sample.json'
 import HOTELS from '../__mocks__/hotels.sample.json'
@@ -32,12 +33,6 @@ interface PointGeolocation {
   type: 'Point'
 }
 
-interface POINames {
-  ko: string
-  en: string
-  local: string
-}
-
 interface POIData {
   id: string
   source: {
@@ -49,7 +44,7 @@ interface POIData {
     type: 'attraction' | 'restaurant'
     pointGeolocation: PointGeolocation
     reviewsRating?: number
-    names: POINames
+    names: TranslatedProperty
     regionId: string
     grade: number
     comment: string
@@ -73,7 +68,7 @@ interface HotelData {
     pointGeolocation: PointGeolocation
     tags: { name: string }[]
     reviewsRating?: number
-    names: POINames
+    names: TranslatedProperty
     regionId: string
     grade: number
     comment: string

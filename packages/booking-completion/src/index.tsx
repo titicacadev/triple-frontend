@@ -2,13 +2,11 @@ import React from 'react'
 import { Container, Text, Button } from '@titicaca/core-elements'
 import { useHistoryContext } from '@titicaca/react-contexts'
 import styled from 'styled-components'
+import { TranslatedProperty } from '@titicaca/type-definitions'
 
 interface Region {
   id: string
-  names: {
-    ko?: string
-    en?: string
-  }
+  names: TranslatedProperty
 }
 
 interface BookingCompletionProps {
