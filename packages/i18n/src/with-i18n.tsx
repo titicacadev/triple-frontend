@@ -1,14 +1,16 @@
 import React from 'react'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { WithTranslation } from 'react-i18next'
+
+import useI18n from './use-i18n'
 
 export default function withI18n<T extends WithTranslation>(
   Component: React.ComponentType<T>,
 ): React.ComponentType<T> {
-  const WrappedComponent = withTranslation()(Component)
+  const NewComponent = (props: T) => {
+    const i18nProps = useI18n()
 
-  const NewComponent = (props: T) => (
-    <WrappedComponent {...props} useSuspense={false} />
-  )
+    return <Component {...props} {...i18nProps} />
+  }
 
   return NewComponent
 }
