@@ -34,7 +34,7 @@ import {
   PoiListElementProps,
 } from '@titicaca/poi-list-elements'
 import TripleMedia, { MediaMeta } from '@titicaca/triple-media'
-import { POI as POIListElementData } from '@titicaca/type-definitions'
+import { ListingPOI } from '@titicaca/type-definitions'
 
 import {
   H1,
@@ -52,8 +52,8 @@ import { TnaProductsList, TnaProductData } from './tna'
 import Coupon from './coupon'
 import { RegionData } from './types'
 
-type ExtendedPOIListElementData = POIListElementData & {
-  source: POIListElementData['source'] & {
+type ExtendedPOIListElementData = ListingPOI & {
+  source: ListingPOI['source'] & {
     pricing?: {
       nightlyPrice?: number | null
     } | null

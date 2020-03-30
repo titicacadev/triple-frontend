@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-fetch'
 import haversine from 'haversine'
-import { POI, PointGeoJSON } from '@titicaca/type-definitions'
+import { PointGeoJSON } from '@titicaca/type-definitions'
 
-import { PoiType } from './types'
+import { PoiType, ListingPOI } from './types'
 
 export async function fetchPois({
   type,
@@ -22,7 +22,7 @@ export async function fetchPois({
   distance?: number | string
   from?: number
   size?: number
-}) {
+}): Promise<ListingPOI[]> {
   const response = await fetch('/api/content/pois', {
     method: 'POST',
     headers: {
@@ -47,7 +47,7 @@ export async function fetchPois({
 
   const pois = await response.json()
 
-  return pois.map((poi: POI) => ({
+  return pois.map((poi: Omit<ListingPOI, 'distance'>) => ({
     ...poi,
     distance: measureDistance(poi.source.pointGeolocation, {
       type: 'Point',

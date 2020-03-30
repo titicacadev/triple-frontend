@@ -5,7 +5,8 @@ import {
   useHistoryContext,
   useEventTrackingContext,
 } from '@titicaca/react-contexts'
-import { POI } from '@titicaca/type-definitions'
+
+import { ListingPOI } from './types'
 
 export default function PoiEntry({
   index,
@@ -15,7 +16,7 @@ export default function PoiEntry({
   onScrapedChange,
 }: {
   index: number
-  poi: POI
+  poi: ListingPOI
   eventLabel: string
   scraps: { [key: string]: boolean }
   onScrapedChange: (props: {
