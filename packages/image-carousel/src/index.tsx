@@ -6,18 +6,13 @@ import {
   FrameRatioAndSizes,
   ImageSourceType,
 } from '@titicaca/core-elements'
+import { ImageMeta as OriginalImageMeta } from '@titicaca/type-definitions'
 
 import Carousel, { CarouselProps } from './carousel'
 
-interface ImageEntity {
-  frame?: FrameRatioAndSizes
-  size?: GlobalSizes
-  sizes: {
-    large: { url: string }
-  }
-  sourceUrl?: string
-  title?: string | null
-  description?: string | null
+interface ImageMeta extends OriginalImageMeta {
+  frame: FrameRatioAndSizes
+  size: GlobalSizes
 }
 
 const PageLabelText = styled.div`
@@ -39,11 +34,11 @@ export interface RendererProps {
 }
 
 interface ImageCarouselProps extends Omit<CarouselProps, 'pageLabelRenderer'> {
-  images: ImageEntity[]
+  images: ImageMeta[]
   size?: GlobalSizes
   frame?: FrameRatioAndSizes
   ImageSource?: ImageSourceType
-  onImageClick?: (e?: React.SyntheticEvent, image?: ImageEntity) => void
+  onImageClick?: (e?: React.SyntheticEvent, image?: ImageMeta) => void
   showMoreRenderer?: (params: RendererProps) => React.ReactNode
   pageLabelRenderer?: (params: RendererProps) => React.ReactNode
   displayedTotalCount?: number
