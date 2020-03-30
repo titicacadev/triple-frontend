@@ -25,6 +25,11 @@ export default function RadioWrapper() {
           text: '긴자',
           value: '4',
         },
+        {
+          text:
+            '아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 긴 텍스트',
+          value: '5',
+        },
       ]}
       onChange={(e, value) => setValue(value)}
     />
