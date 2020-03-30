@@ -116,7 +116,7 @@ const RangeContainer = styled.div<{
     selectedAll &&
     css`
     .DayPicker-Day--from:before {
-      content: '${startDateLabel}';
+      content: '${startDateLabel || ''}';
       color: rgba(${GetGlobalColor('blue')});
       position: absolute;
       top: 35px;
@@ -134,7 +134,7 @@ const RangeContainer = styled.div<{
     selectedAll &&
     css`
     .DayPicker-Day--to:before {
-      content: '${endDateLabel}';
+      content: '${endDateLabel || ''}';
       color: rgba(${GetGlobalColor('blue')});
       position: absolute;
       top: 35px;
@@ -151,7 +151,7 @@ const RangeContainer = styled.div<{
     background: none;
     ${({ sameDateLabel }) => css`
       &:before {
-        content: '${sameDateLabel}';
+        content: '${sameDateLabel || ''}';
       }
     `}
   }
