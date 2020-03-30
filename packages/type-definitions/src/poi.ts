@@ -1,10 +1,6 @@
 import { TranslatedProperty } from './translated-property'
 import { ImageMeta } from './image'
-
-export interface PointGeoJSON {
-  type: 'Point'
-  coordinates: number[] // [number, number]
-}
+import { PointGeoJSON } from './geo-json'
 
 interface POISourceBase {
   id: string
