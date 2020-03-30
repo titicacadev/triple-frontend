@@ -12,29 +12,14 @@ import {
   List,
 } from '@titicaca/core-elements'
 import Pricing, { BasePrice } from '@titicaca/pricing'
-
-type ImageSize = { url: string }
-
-interface ImageSizeSet {
-  large: ImageSize
-  small_square: ImageSize // eslint-disable-line @typescript-eslint/camelcase
-}
-
-interface CamelizedImageSizeSet {
-  large: ImageSize
-  smallSquare: ImageSize
-}
-
-export interface ResourceImage {
-  sizes: ImageSizeSet | CamelizedImageSizeSet
-}
+import { ImageMeta } from '@titicaca/type-definitions'
 
 export type ResourceListElementProps<R = {}> = Partial<
   Pick<ScrapButtonProps<R>, 'scraped' | 'resource' | 'onScrapedChange'>
 > & {
   hideScrapButton?: boolean
 
-  image?: ResourceImage
+  image?: ImageMeta
   imagePlaceholder?: string
   name?: string
   comment?: string
