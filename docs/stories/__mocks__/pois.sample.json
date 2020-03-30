@@ -32,7 +32,7 @@
         "coordinates": [100.493298, 13.746523],
         "type": "Point"
       },
-      "reviewsRating": "3.5",
+      "reviewsRating": 3.5,
       "names": {
         "ko": "왓 포 사원",
         "en": "Temple of the Reclining Buddha (Wat Pho)",
@@ -73,20 +73,20 @@
         "id": "d9705590-7480-4ed5-adee-34c01463d1d2",
         "title": null
       },
-      "scrapsCount": "19",
+      "scrapsCount": 19,
       "areas": [
         {
           "name": "셩완, 센트럴, 빅토리아피크"
         }
       ],
-      "reviewsCount": "12",
+      "reviewsCount": 12,
       "hasTnaProducts": false,
       "type": "attraction",
       "pointGeolocation": {
         "coordinates": [114.145457, 22.275908],
         "type": "Point"
       },
-      "reviewsRating": "4.5",
+      "reviewsRating": 4.5,
       "names": {
         "ko": "빅토리아 피크",
         "en": "Victoria Peak (The Peak)",
@@ -178,13 +178,13 @@
         "id": "85eb8700-d8a4-4a0b-a7ef-a78ec5104269",
         "title": null
       },
-      "scrapsCount": "9",
+      "scrapsCount": 9,
       "areas": [
         {
           "name": "침사추이"
         }
       ],
-      "reviewsCount": "6",
+      "reviewsCount": 6,
       "hasTnaProducts": false,
       "type": "attraction",
       "pointGeolocation": {
@@ -283,20 +283,20 @@
         "id": "56b8ace0-a8ef-46c8-8cf8-3ea5f80f7903",
         "title": null
       },
-      "scrapsCount": "7",
+      "scrapsCount": 7,
       "areas": [
         {
           "name": "셩완, 센트럴, 빅토리아피크"
         }
       ],
-      "reviewsCount": "7",
+      "reviewsCount": 7,
       "hasTnaProducts": true,
       "type": "attraction",
       "pointGeolocation": {
         "coordinates": [114.152844, 22.281572],
         "type": "Point"
       },
-      "reviewsRating": "4.571428571428571",
+      "reviewsRating": 4.571428571428571,
       "names": {
         "ko": "소호",
         "en": "Soho Test",
@@ -337,20 +337,20 @@
         "id": "54e4fbf9-239f-4294-bfba-cb72003397a2",
         "title": null
       },
-      "scrapsCount": "2",
+      "scrapsCount": 2,
       "areas": [
         {
           "name": "올드시티"
         }
       ],
-      "reviewsCount": "5",
+      "reviewsCount": 5,
       "hasTnaProducts": false,
       "type": "attraction",
       "pointGeolocation": {
         "coordinates": [100.491253, 13.749977],
         "type": "Point"
       },
-      "reviewsRating": "3.4",
+      "reviewsRating": 3.4,
       "names": {
         "ko": "왕궁",
         "en": "The Grand Palace",
@@ -437,20 +437,20 @@
         "id": "cb3b1eb2-ca99-418d-a2ad-6cf19fdee88b",
         "title": null
       },
-      "scrapsCount": "3",
+      "scrapsCount": 3,
       "areas": [
         {
           "name": "셩완, 센트럴, 빅토리아피크"
         }
       ],
-      "reviewsCount": "6",
+      "reviewsCount": 6,
       "hasTnaProducts": false,
       "type": "attraction",
       "pointGeolocation": {
         "coordinates": [114.15567, 22.280837],
         "type": "Point"
       },
-      "reviewsRating": "4.5",
+      "reviewsRating": 4.5,
       "names": {
         "ko": "란콰이퐁",
         "en": "Lan Kwai Fong",
@@ -542,20 +542,20 @@
         "id": "95cb40a3-78c3-430b-8d04-894ecbbb2a89",
         "title": null
       },
-      "scrapsCount": "7",
+      "scrapsCount": 7,
       "areas": [
         {
           "name": "란타우섬"
         }
       ],
-      "reviewsCount": "7",
+      "reviewsCount": 7,
       "hasTnaProducts": true,
       "type": "attraction",
       "pointGeolocation": {
         "coordinates": [114.041281, 22.312962],
         "type": "Point"
       },
-      "reviewsRating": "4.571428571428571",
+      "reviewsRating": 4.571428571428571,
       "names": {
         "ko": "홍콩 디즈니랜드",
         "en": "Hong Kong Disneyland",
@@ -647,20 +647,20 @@
         "id": "635446f3-235f-4e06-b504-b8db1244918a",
         "title": null
       },
-      "scrapsCount": "4",
+      "scrapsCount": 4,
       "areas": [
         {
           "name": "셩완, 센트럴, 빅토리아피크"
         }
       ],
-      "reviewsCount": "4",
+      "reviewsCount": 4,
       "hasTnaProducts": false,
       "type": "attraction",
       "pointGeolocation": {
         "coordinates": [114.158127, 22.285878],
         "type": "Point"
       },
-      "reviewsRating": "4.0",
+      "reviewsRating": 4.0,
       "names": {
         "ko": "IFC 몰",
         "en": "IFC mall",
