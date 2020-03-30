@@ -11,11 +11,13 @@ interface Option {
   value: RadioValue
 }
 
+const RADIO_INPUT_SIZE = 26
+
 const RadioFrame = styled.div`
   position: relative;
   margin-bottom: 20px;
-  line-height: 26px;
-  padding-right: 26px;
+  line-height: ${RADIO_INPUT_SIZE}px;
+  padding-right: ${RADIO_INPUT_SIZE}px;
 
   &:last-child {
     margin-bottom: 0;
@@ -34,11 +36,11 @@ const RadioInput = styled.input.attrs({ type: 'radio' })<{
   top: 0;
   right: 0;
   margin: 0;
-  width: 26px;
-  height: 26px;
+  width: ${RADIO_INPUT_SIZE}px;
+  height: ${RADIO_INPUT_SIZE}px;
   border: 0;
   padding: 0;
-  background-size: 26px 26px;
+  background-size: ${RADIO_INPUT_SIZE}px ${RADIO_INPUT_SIZE}px;
   background-repeat: no-repeat;
   transition: all 0.3s ease;
   appearance: none;
