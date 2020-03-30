@@ -9,12 +9,10 @@ import {
   CarouselSizes,
   FrameRatioAndSizes,
 } from '@titicaca/core-elements'
-import ExtendedResourceListElement, {
-  ResourceImage,
-} from '@titicaca/resource-list-element'
+import ExtendedResourceListElement from '@titicaca/resource-list-element'
 import ScrapButton, { ScrapButtonProps } from '@titicaca/scrap-button'
 import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
-import { TranslatedProperty } from '@titicaca/type-definitions'
+import { TranslatedProperty, ImageMeta } from '@titicaca/type-definitions'
 
 type PoiTypes = 'attraction' | 'restaurant' | 'hotel'
 
@@ -25,7 +23,7 @@ export interface POI {
   nameOverride?: string
   scraped: boolean
   source: {
-    image?: ResourceImage
+    image?: ImageMeta
     names: TranslatedProperty
     regionId?: string
     areas?: { name: string }[]

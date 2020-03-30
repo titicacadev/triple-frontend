@@ -1,14 +1,14 @@
 import * as React from 'react'
 import ExtendedResourceListElement, {
-  ResourceImage,
   ResourceListElementProps,
 } from '@titicaca/resource-list-element'
 import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
+import { ImageMeta } from '@titicaca/type-definitions'
 
 interface Product {
   id: string
   title: string
-  image?: ResourceImage
+  image?: ImageMeta
   subtitle?: string
   basePrice?: number | null
   salePrice?: number
