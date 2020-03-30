@@ -17,7 +17,7 @@ const RadioFrame = styled.div`
   position: relative;
   margin-bottom: 20px;
   line-height: ${RADIO_INPUT_SIZE}px;
-  padding-right: ${RADIO_INPUT_SIZE}px;
+  padding-right: ${RADIO_INPUT_SIZE + 3}px;
 
   &:last-child {
     margin-bottom: 0;
