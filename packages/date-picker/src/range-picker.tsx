@@ -47,19 +47,6 @@ const RangeContainer = styled.div<{
     padding-right: 6px;
     box-sizing: border-box;
   }
-  .DayPicker-Day--selected:before {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    display: block;
-    width: 100%;
-    height: 32px !important;
-    background-color: rgba(${GetGlobalColor('blue')}, 0.1);
-    box-sizing: border-box;
-    content: '';
-  }
   .DayPicker-Day--from,
   .DayPicker-Day--to {
     z-index: 0;
@@ -68,6 +55,9 @@ const RangeContainer = styled.div<{
   ${({ selectedAll }) =>
     selectedAll &&
     css`
+      .DayPicker-Day--selected {
+        background: rgba(${GetGlobalColor('blue')}, 0.1);
+      }
       .DayPicker-Day--from {
         background: -webkit-linear-gradient(
           right,
@@ -154,6 +144,10 @@ const RangeContainer = styled.div<{
         content: '${sameDateLabel || ''}';
       }
     `}
+  }
+
+  .DayPicker-Day--outside.DayPicker-Day--included-range {
+    background: rgb(${GetGlobalColor('blue')}, 0.1);
   }
 `
 
