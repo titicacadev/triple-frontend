@@ -2,7 +2,7 @@ import { TranslatedProperty } from './translated-property'
 import { ImageMeta } from './image'
 import { PointGeoJSON } from './geo-json'
 
-interface POISourceBase {
+interface ListingPOISourceBase {
   id: string
   areas?: { name: string }[]
   categories?: { name: string }[]
@@ -18,7 +18,7 @@ interface POISourceBase {
   scrapsCount?: number
 }
 
-interface POIBase {
+interface ListingPOIBase {
   id: string
   nameOverride?: string
   reviewed: boolean
@@ -26,25 +26,25 @@ interface POIBase {
   distance?: number
 }
 
-export interface Attraction extends POIBase {
+export interface ListingAttraction extends ListingPOIBase {
   type: 'attraction'
-  source: POISourceBase & {
+  source: ListingPOISourceBase & {
     type: 'attraction'
     regionId: string
   }
 }
 
-export interface Restaurant extends POIBase {
+export interface ListingRestaurant extends ListingPOIBase {
   type: 'restaurant'
-  source: POISourceBase & {
+  source: ListingPOISourceBase & {
     type: 'restaurant'
     regionId: string
   }
 }
 
-export interface Hotel extends POIBase {
+export interface ListingHotel extends ListingPOIBase {
   type: 'hotel'
-  source: POISourceBase & {
+  source: ListingPOISourceBase & {
     type: 'hotel'
     regionId?: string
     starRating: number
@@ -76,4 +76,4 @@ export interface Hotel extends POIBase {
   }
 }
 
-export type POI = Attraction | Restaurant | Hotel
+export type ListingPOI = ListingAttraction | ListingRestaurant | ListingHotel
