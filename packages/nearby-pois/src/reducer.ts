@@ -1,4 +1,4 @@
-import { POI } from '@titicaca/poi-list-elements'
+import { POI } from '@titicaca/type-definitions'
 
 import { PoiType } from './types'
 

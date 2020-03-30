@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-fetch'
 import haversine from 'haversine'
-import { POI } from '@titicaca/poi-list-elements'
+import { POI, PointGeoJSON } from '@titicaca/type-definitions'
 
-import { PoiType, PointGeoJSON } from './types'
+import { PoiType } from './types'
 
 export async function fetchPois({
   type,
