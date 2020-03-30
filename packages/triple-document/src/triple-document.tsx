@@ -32,9 +32,9 @@ import {
   PoiListElement,
   PoiCarouselElement,
   PoiListElementProps,
-  POI as POIListElementData,
 } from '@titicaca/poi-list-elements'
 import TripleMedia, { MediaMeta } from '@titicaca/triple-media'
+import { POI as POIListElementData } from '@titicaca/type-definitions'
 
 import {
   H1,

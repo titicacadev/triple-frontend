@@ -4,102 +4,10 @@ import { boolean, number, select, text } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { List, Container, Text } from '@titicaca/core-elements'
 import { PoiCarouselElement, PoiListElement } from '@titicaca/poi-list-elements'
-import { TranslatedProperty } from '@titicaca/type-definitions'
+import { POI as POIData, Hotel as HotelData } from '@titicaca/type-definitions'
 
 import POIS from '../__mocks__/pois.sample.json'
 import HOTELS from '../__mocks__/hotels.sample.json'
-
-interface Image {
-  id: string
-  title: string | null
-  sourceUrl: string
-  sizes: {
-    large: {
-      url: string
-    }
-    // eslint-disable-next-line @typescript-eslint/camelcase
-    small_square: {
-      url: string
-    }
-    full: {
-      url: string
-    }
-  }
-  description: string | null
-}
-
-interface PointGeolocation {
-  coordinates: number[]
-  type: 'Point'
-}
-
-interface POIData {
-  id: string
-  source: {
-    image: Image
-    scrapsCount?: number
-    areas?: { name: string }[]
-    reviewsCount?: number
-    hasTnaProducts: boolean
-    type: 'attraction' | 'restaurant'
-    pointGeolocation: PointGeolocation
-    reviewsRating?: number
-    names: TranslatedProperty
-    regionId: string
-    grade: number
-    comment: string
-    location: number[]
-    categories: { name: string }[]
-    id: string
-  }
-  type: 'attraction' | 'restaurant'
-  reviewed: boolean
-  scraped: boolean
-}
-
-interface HotelData {
-  id: string
-  source: {
-    image: Image
-    scrapsCount?: number
-    areas: { name: string }[]
-    reviewsCount?: number
-    type: 'hotel'
-    pointGeolocation: PointGeolocation
-    tags: { name: string }[]
-    reviewsRating?: number
-    names: TranslatedProperty
-    regionId: string
-    grade: number
-    comment: string
-    location: number[]
-    id: string
-    starRating: number
-    pricing: {
-      promoText: string
-      nightlyPrice: number
-      clubPromotionTarget: boolean
-      nightlyPriceHotelPromotionApplied: number
-      clubPromotionRate: number
-      clubMemberOnly: boolean
-      nightlyBasePrice: number
-      clubPromotionType: 'STATIC'
-    }
-  }
-  type: 'hotel'
-  prices: {
-    nightlyBasePrice: number
-    nightlyPrice: number
-    promoText: string
-    nightlyPriceHotelPromotionApplied: number
-    clubPromotionRate: number
-    clubPromotionType: 'STATIC'
-    clubMemberOnly: boolean
-    clubPromotionTarget: boolean
-  }
-  reviewed: boolean
-  scraped: boolean
-}
 
 function PricingDescription() {
   return (
@@ -114,7 +22,7 @@ function PricingDescription() {
   )
 }
 
-const [POI] = POIS as POIData[]
+const [POI] = POIS as Exclude<POIData, HotelData>[]
 
 storiesOf('poi-list-elements | POI', module)
   .add('POI 리스트', () => (

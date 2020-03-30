@@ -12,36 +12,9 @@ import {
 import ExtendedResourceListElement from '@titicaca/resource-list-element'
 import ScrapButton, { ScrapButtonProps } from '@titicaca/scrap-button'
 import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
-import { TranslatedProperty, ImageMeta } from '@titicaca/type-definitions'
+import { POI, Hotel } from '@titicaca/type-definitions'
 
-type PoiTypes = 'attraction' | 'restaurant' | 'hotel'
-
-// TODO: attraction, restaourant와 hotel을 따로 정의하고 POIType으로 서로소 타입 만들기
-export interface POI {
-  id: string
-  type: PoiTypes
-  nameOverride?: string
-  scraped: boolean
-  source: {
-    image?: ImageMeta
-    names: TranslatedProperty
-    regionId?: string
-    areas?: { name: string }[]
-    categories?: { name: string }[]
-    comment?: string
-    reviewsCount?: number
-    scrapsCount?: number
-    reviewsRating?: number
-    starRating?: unknown
-    pointGeolocation: {
-      type: string
-      coordinates: number[]
-    }
-  }
-  distance?: number
-  prices?: { nightlyBasePrice?: number; nightlyPrice?: number }
-  priceInfo?: { nightlyBasePrice?: number; nightlyPrice?: number }
-}
+type PoiTypes = POI['type']
 
 type ActionButtonElement = React.ReactNode
 
@@ -259,6 +232,7 @@ class ExtendedPoiListElement<T extends POI> extends React.PureComponent<
   render() {
     const {
       props: {
+        poi,
         poi: {
           id,
           type,
@@ -273,11 +247,8 @@ class ExtendedPoiListElement<T extends POI> extends React.PureComponent<
             reviewsCount: rawReviewsCount,
             scrapsCount: initialScrapsCount,
             reviewsRating,
-            starRating,
           },
           distance,
-          prices,
-          priceInfo,
         },
         pricingNote,
         pricingDescription,
@@ -290,6 +261,19 @@ class ExtendedPoiListElement<T extends POI> extends React.PureComponent<
         hideDiscountRate,
       },
     } = this
+
+    const {
+      source: { starRating },
+      priceInfo,
+      prices,
+    } =
+      type === 'hotel'
+        ? (poi as Hotel)
+        : {
+            source: { starRating: undefined },
+            priceInfo: undefined,
+            prices: undefined,
+          }
 
     const [area] = areas
     const [category] = categories
