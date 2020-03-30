@@ -1,6 +1,6 @@
 import { TranslatedProperty } from './translated-property'
 import { ImageMeta } from './image'
-import { PointGeoJSON } from './geo-json'
+import { PointGeoJSON } from './geojson'
 
 interface ListingPOISourceBase {
   id: string
