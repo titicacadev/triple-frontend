@@ -19,16 +19,16 @@
         "id": "883a655b-adf0-4dd5-a350-3dd12852dd52",
         "title": null
       },
-      "scrapsCount": "0",
+      "scrapsCount": 0,
       "areas": [{ "name": "셩완, 센트럴, 빅토리아피크" }],
-      "reviewsCount": "1",
+      "reviewsCount": 1,
       "type": "hotel",
       "pointGeolocation": {
         "coordinates": [114.14238, 22.28804],
         "type": "Point"
       },
       "tags": [{ "name": "야경이 멋진" }, { "name": "교통이 편리한" }],
-      "reviewsRating": "5.0",
+      "reviewsRating": 5.0,
       "names": {
         "ko": "아일랜드 퍼시픽 호텔",
         "en": "Island Pacific Hotel",
@@ -152,9 +152,9 @@
         "id": "214a63a6-3ead-4342-ab10-e1a2a5d84649",
         "title": null
       },
-      "scrapsCount": "1",
+      "scrapsCount": 1,
       "areas": [{ "name": "마카오" }],
-      "reviewsCount": "0",
+      "reviewsCount": 0,
       "type": "hotel",
       "pointGeolocation": {
         "coordinates": [113.55321, 22.19266],
