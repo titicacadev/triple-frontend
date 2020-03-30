@@ -15,16 +15,24 @@ const RadioFrame = styled.div`
   position: relative;
   margin-bottom: 20px;
   line-height: 26px;
+  padding-right: 26px;
 
   &:last-child {
     margin-bottom: 0;
   }
 `
 
+const RadioText = styled(Text)`
+  width: 100%;
+  vertical-align: middle;
+`
+
 const RadioInput = styled.input.attrs({ type: 'radio' })<{
   selected?: boolean
 }>`
-  float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
   margin: 0;
   width: 26px;
   height: 26px;
@@ -63,9 +71,9 @@ function Radio({ name, value, onChange, options }: RadioProps) {
           key={idx}
           onClick={(e) => onChange && onChange(e, optionValue)}
         >
-          <Text inlineBlock size="large">
+          <RadioText inlineBlock size="large" ellipsis>
             {text}
-          </Text>
+          </RadioText>
 
           <RadioInput name={name} selected={optionValue === value} />
         </RadioFrame>
