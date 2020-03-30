@@ -10,7 +10,6 @@ interface ListingPOISourceBase {
   grade: number
   hasTnaProducts?: boolean
   image: ImageMeta
-  location: number[] // [number, number]
   names: TranslatedProperty
   pointGeolocation: PointGeoJSON
   reviewsRating?: number
