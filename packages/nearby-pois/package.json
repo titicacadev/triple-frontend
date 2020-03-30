@@ -21,6 +21,7 @@
     "@titicaca/poi-list-elements": "^1.12.0",
     "@titicaca/react-contexts": "^1.12.0",
     "@titicaca/triple-document": "^1.12.0",
+    "@titicaca/type-definitions": "^1.12.0",
     "haversine": "^1.1.1",
     "isomorphic-fetch": "^2.2.1"
   },

@@ -1,10 +1,11 @@
 import React, { useCallback } from 'react'
 import IntersectionObserver from '@titicaca/intersection-observer'
-import { PoiListElement, POI } from '@titicaca/poi-list-elements'
+import { PoiListElement } from '@titicaca/poi-list-elements'
 import {
   useHistoryContext,
   useEventTrackingContext,
 } from '@titicaca/react-contexts'
+import { POI } from '@titicaca/type-definitions'
 
 export default function PoiEntry({
   index,
