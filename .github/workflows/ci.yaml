@@ -81,6 +81,6 @@ jobs:
         git fetch --unshallow
         git checkout $PR_LATEST_COMMIT_SHA
 
-        npx lerna publish --canary --yes --preid "pr-${PR_NUMBER}"
+        npx lerna publish --canary --force-publish --yes --preid "pr-${PR_NUMBER}"
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
