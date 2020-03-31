@@ -70,8 +70,12 @@ export interface ListingHotel extends ListingPOIBase {
     clubPromotionTarget: boolean
   }
   priceInfo: {
-    nightlyBasePrice?: number
-    nightlyPrice?: number
+    nightlyBasePrice: number
+    nightlyPrice: number
+    price: number
+    discountRate: number
+    badge: 'COUPON' | 'NORMAL' | 'PACKAGE' | 'TRIPLE'
+    excludedVat: number
   }
 }
 
