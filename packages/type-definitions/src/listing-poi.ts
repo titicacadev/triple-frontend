@@ -48,7 +48,9 @@ export interface ListingHotel extends ListingPOIBase {
     regionId?: string
     starRating: number
     tags: { name: string }[]
-    pricing: {
+
+    /** @deprecated priceInfo를 사용해주세요 */
+    pricing?: {
       promoText: string
       nightlyPrice: number
       clubPromotionTarget: boolean
@@ -59,6 +61,8 @@ export interface ListingHotel extends ListingPOIBase {
       clubPromotionType: 'STATIC'
     }
   }
+
+  /** @deprecated priceInfo를 사용해주세요 */
   prices?: {
     nightlyBasePrice?: number
     nightlyPrice?: number
