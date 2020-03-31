@@ -93,11 +93,11 @@ interface TripleDocumentProps {
   onImageClick?: ImageEventHandler
   onLinkClick?: LinkEventHandler
   onTNAProductClick?: (e: React.SyntheticEvent, product: unknown) => void
-  onTNAProductsFetch: unknown
+  onTNAProductsFetch?: (slotId: number) => Promise<unknown>
   imageSourceComponent: ImageSourceType
-  resourceScraps: unknown
-  webUrlBase: string
-  deepLink: string
+  resourceScraps?: { [resourceId: string]: boolean }
+  webUrlBase?: string
+  deepLink?: string
   videoAutoPlay?: boolean
 }
 
