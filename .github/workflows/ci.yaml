@@ -23,6 +23,7 @@ jobs:
         SLACK_ICON_EMOJI: ':gear:'
         SLACK_COLOR: good
         SLACK_TITLE: Build WORKING
+        SLACK_MESSAGE: ${{ github.event.pull_request.title }}
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
@@ -56,6 +57,7 @@ jobs:
         SLACK_ICON_EMOJI: ':gear:'
         SLACK_COLOR: good
         SLACK_TITLE: ${{ ':tada:' }} Build SUCCESS
+        SLACK_MESSAGE: ${{ github.event.pull_request.title }}
 
     - name: Notify build and test fail to slack
       if: failure()
@@ -67,6 +69,7 @@ jobs:
         SLACK_ICON_EMOJI: ':gear:'
         SLACK_COLOR: warning
         SLACK_TITLE: ${{ ':x:' }} Build FAIL
+        SLACK_MESSAGE: ${{ github.event.pull_request.title }}
     - name: Canary Release
       run: |
         cat $GITHUB_EVENT_PATH > event.json
