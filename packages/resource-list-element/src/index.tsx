@@ -23,7 +23,7 @@ export type ResourceListElementProps<R = {}> = Partial<
   name?: string
   comment?: string
   distance?: number | string
-  distanceUnit?: string
+  distanceSuffix?: string
   note?: string
   tags?: {
     text?: string
@@ -71,7 +71,7 @@ export default function ExtendedResourceListElement<R>({
   name,
   comment,
   distance,
-  distanceUnit = 'm ',
+  distanceSuffix = 'm ',
   note,
   tags,
   basePrice,
@@ -179,7 +179,7 @@ export default function ExtendedResourceListElement<R>({
           <Container margin={{ top: 3 }}>
             {distance || distance === 0 ? (
               <Text inline color="blue" size="small" alpha={1}>
-                {`${distance}${distanceUnit}`}
+                {`${distance}${distanceSuffix}`}
               </Text>
             ) : null}
             {note ? (

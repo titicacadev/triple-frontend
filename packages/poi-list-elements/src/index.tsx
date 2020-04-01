@@ -49,7 +49,7 @@ interface ExtendedPoiListElementProps<T extends ListingPOI>
   hideScrapButton?: boolean
   hideDiscountRate?: boolean
   distance?: string | number
-  distanceUnit?: string
+  distanceSuffix?: string
 }
 
 export type PoiListElementProps<T extends ListingPOI> =
@@ -262,7 +262,7 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
         hideScrapButton,
         hideDiscountRate,
         distance: distanceOverride,
-        distanceUnit,
+        distanceSuffix,
       },
     } = this
 
@@ -319,7 +319,7 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
         name={nameOverride || names.ko || names.en || names.local || undefined}
         comment={comment}
         distance={distanceOverride || distance}
-        distanceUnit={distanceUnit}
+        distanceSuffix={distanceSuffix}
         note={note}
         reviewsCount={reviewsCount}
         reviewsRating={reviewsRating}

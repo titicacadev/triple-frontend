@@ -56,7 +56,7 @@ storiesOf('poi-list-elements | POI', module)
           {...(boolean('distance 표시', false)
             ? {
                 distance: text('distance', '300m'),
-                distanceUnit: text('distanceUnit', ' 이내 '),
+                distanceSuffix: text('distanceSuffix', ' 이내 '),
               }
             : {})}
         />
