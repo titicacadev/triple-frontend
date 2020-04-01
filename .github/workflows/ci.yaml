@@ -1,11 +1,8 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - '**'
-    tags-ignore:
-      - '**'
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   build:
@@ -72,9 +69,15 @@ jobs:
         SLACK_TITLE: ${{ ':x:' }} Build FAIL
     - name: Canary Release
       run: |
+        cat $GITHUB_EVENT_PATH > event.json
+        PR_LATEST_COMMIT_SHA="$(node -p -e 'require(`./event.json`).after')"
+        PR_NUMBER="$(node -p -e 'require(`./event.json`).number')"
+        rm event.json
+
         git stash
         git fetch --unshallow
+        git checkout $PR_LATEST_COMMIT_SHA
 
-        npx lerna publish --canary --yes --preid "${GITHUB_ACTOR}"
+        npx lerna publish --canary --yes --preid "pr-${PR_NUMBER}"
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
