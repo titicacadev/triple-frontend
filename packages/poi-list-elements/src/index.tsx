@@ -48,6 +48,8 @@ interface ExtendedPoiListElementProps<T extends ListingPOI>
   priceLabelOverride?: string
   hideScrapButton?: boolean
   hideDiscountRate?: boolean
+  distance?: string | number
+  distanceUnit?: string
 }
 
 export type PoiListElementProps<T extends ListingPOI> =
@@ -259,6 +261,8 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
         tags,
         hideScrapButton,
         hideDiscountRate,
+        distance: distanceProp,
+        distanceUnit,
       },
     } = this
 
@@ -314,7 +318,8 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
         imagePlaceholder={POI_IMAGE_PLACEHOLDERS[type]}
         name={nameOverride || names.ko || names.en || names.local || undefined}
         comment={comment}
-        distance={distance}
+        distance={distanceProp || distance}
+        distanceUnit={distanceUnit}
         note={note}
         reviewsCount={reviewsCount}
         reviewsRating={reviewsRating}
