@@ -18,12 +18,12 @@ export type ResourceListElementProps<R = {}> = Partial<
   Pick<ScrapButtonProps<R>, 'scraped' | 'resource' | 'onScrapedChange'>
 > & {
   hideScrapButton?: boolean
-
   image?: ImageMeta
   imagePlaceholder?: string
   name?: string
   comment?: string
-  distance?: number
+  distance?: number | string
+  distanceUnit?: string
   note?: string
   tags?: {
     text?: string
@@ -71,6 +71,7 @@ export default function ExtendedResourceListElement<R>({
   name,
   comment,
   distance,
+  distanceUnit = 'm ',
   note,
   tags,
   basePrice,
@@ -178,7 +179,7 @@ export default function ExtendedResourceListElement<R>({
           <Container margin={{ top: 3 }}>
             {distance || distance === 0 ? (
               <Text inline color="blue" size="small" alpha={1}>
-                {`${distance}m `}
+                {`${distance}${distanceUnit}`}
               </Text>
             ) : null}
             {note ? (

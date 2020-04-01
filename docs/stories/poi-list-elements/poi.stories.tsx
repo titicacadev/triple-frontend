@@ -53,6 +53,12 @@ storiesOf('poi-list-elements | POI', module)
           hideDiscountRate={boolean('hideDiscountRate', false)}
           hideScrapButton={boolean('hideScrapButton', false)}
           onScrapedChange={action('scrap change')}
+          {...(boolean('distance 표시', false)
+            ? {
+                distance: text('distance', '300m'),
+                distanceUnit: text('distanceUnit', ' 이내 '),
+              }
+            : {})}
         />
       ))}
     </List>
