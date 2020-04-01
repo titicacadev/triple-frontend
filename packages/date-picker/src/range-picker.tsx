@@ -146,8 +146,11 @@ const RangeContainer = styled.div<{
     `}
   }
 
+  .DayPicker-Day--outside {
+    background: none;
+  }
   .DayPicker-Day--outside.DayPicker-Day--included-range {
-    background: rgb(${GetGlobalColor('blue')}, 0.1);
+    background: rgba(${GetGlobalColor('blue')}, 0.1);
   }
 `
 
