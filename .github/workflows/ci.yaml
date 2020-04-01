@@ -70,6 +70,7 @@ jobs:
     - name: Canary Release
       run: |
         cat $GITHUB_EVENT_PATH > event.json
+        cat event.json
         PR_LATEST_COMMIT_SHA="$(node -p -e 'require(`./event.json`).after')"
         PR_NUMBER="$(node -p -e 'require(`./event.json`).number')"
         rm event.json
