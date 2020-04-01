@@ -261,7 +261,7 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
         tags,
         hideScrapButton,
         hideDiscountRate,
-        distance: distanceProp,
+        distance: distanceOverride,
         distanceUnit,
       },
     } = this
@@ -318,7 +318,7 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
         imagePlaceholder={POI_IMAGE_PLACEHOLDERS[type]}
         name={nameOverride || names.ko || names.en || names.local || undefined}
         comment={comment}
-        distance={distanceProp || distance}
+        distance={distanceOverride || distance}
         distanceUnit={distanceUnit}
         note={note}
         reviewsCount={reviewsCount}
