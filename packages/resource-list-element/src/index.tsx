@@ -71,7 +71,7 @@ export default function ExtendedResourceListElement<R>({
   name,
   comment,
   distance,
-  distanceSuffix = 'm ',
+  distanceSuffix = 'm',
   note,
   tags,
   basePrice,
@@ -179,7 +179,7 @@ export default function ExtendedResourceListElement<R>({
           <Container margin={{ top: 3 }}>
             {distance || distance === 0 ? (
               <Text inline color="blue" size="small" alpha={1}>
-                {`${distance}${distanceSuffix}`}
+                {`${distance}${distanceSuffix} `}
               </Text>
             ) : null}
             {note ? (
