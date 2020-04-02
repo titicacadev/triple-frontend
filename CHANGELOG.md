@@ -1,3 +1,14 @@
+## 1.13.0 (2020-04-02)
+
+- `resource-list-element`, `poi-list-elements` 호텔 목록에서 distance 표시할 수 있도록 인터페이스 추가 및 수정 (#621)
+- `type-definitions` 공용 타입 정의 패키지 추가 (#616)
+- `common` Canary 릴리즈시 모든 패키지를 내보냅니다. (#619)
+- `date-picker` RangePicker에 DateLabel 을 추가합니다 (#614)
+- `triple-document` Optional props를 명시합니다. (#618)
+- `i18n` Provider가 없을 때 반드시 fallback을 사용하도록 합니다. (#612)
+- `core-elements` Radio 텍스트가 길 경우 말줄임표 추가 (#617)
+- `dev` Canary release의 preid로 PR 번호 사용 (#622)
+
 ## 1.12.0 (2020-03-26)
 
 - `core-elements` Pager 삭제 (#532)
