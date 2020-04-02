@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/nearby-pois",
-  "version": "1.12.0",
+  "version": "1.13.0",
   "description": "Nearby POIs list",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,13 +15,13 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^1.12.0",
-    "@titicaca/i18n": "^1.12.0",
-    "@titicaca/intersection-observer": "^1.12.0",
-    "@titicaca/poi-list-elements": "^1.12.0",
-    "@titicaca/react-contexts": "^1.12.0",
-    "@titicaca/triple-document": "^1.12.0",
-    "@titicaca/type-definitions": "^1.12.0",
+    "@titicaca/core-elements": "^1.13.0",
+    "@titicaca/i18n": "^1.13.0",
+    "@titicaca/intersection-observer": "^1.13.0",
+    "@titicaca/poi-list-elements": "^1.13.0",
+    "@titicaca/react-contexts": "^1.13.0",
+    "@titicaca/triple-document": "^1.13.0",
+    "@titicaca/type-definitions": "^1.13.0",
     "haversine": "^1.1.1",
     "isomorphic-fetch": "^2.2.1"
   },

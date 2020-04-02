@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/social-reviews",
-  "version": "1.12.0",
+  "version": "1.13.0",
   "description": "Social reviews section for Triple contents",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,10 +15,10 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^1.12.0",
-    "@titicaca/i18n": "^1.12.0",
-    "@titicaca/react-contexts": "^1.12.0",
-    "@titicaca/triple-document": "^1.12.0",
+    "@titicaca/core-elements": "^1.13.0",
+    "@titicaca/i18n": "^1.13.0",
+    "@titicaca/react-contexts": "^1.13.0",
+    "@titicaca/triple-document": "^1.13.0",
     "i18next": "^19.3.3",
     "isomorphic-fetch": "^2.2.1",
     "react-i18next": "^11.3.3"
