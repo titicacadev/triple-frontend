@@ -39,7 +39,7 @@ interface InputProps {
   placeholder?: string
   onInputChange?: (e: React.SyntheticEvent, value: string) => void
   onBlur?: (e: React.SyntheticEvent) => void
-  onFocus?: (e: React.SyntheticEvent) => void
+  onFocus?: (e: React.FocusEvent) => void
   onKeyUp?: (e: React.KeyboardEvent) => void
   value?: string
 }

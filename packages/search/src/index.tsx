@@ -40,8 +40,10 @@ export default function FullScreenSearchView({
   placeholder,
   defaultKeyword,
   keyword: controlledKeyword,
+  onFocus,
   inputRef,
 }: React.PropsWithChildren<{
+  onFocus?: (e: React.FocusEvent) => void
   onDelete?: (keyword: string) => void
   onAutoComplete?: (keyword: string) => void
   onEnter?: (keyword: string) => void
@@ -102,6 +104,7 @@ export default function FullScreenSearchView({
       <SearchNavbar
         placeholder={placeholder}
         value={keyword}
+        onFocus={onFocus}
         onBackClick={() => {
           onBackClick()
           backOrClose()
