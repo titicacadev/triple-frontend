@@ -1,3 +1,9 @@
+## 1.13.1 (2020-04-03)
+
+- `dev` bootstrap할 때 ci 해제 (#628)
+- `dev` Checkout시 branch name을 사용합니다. (#629)
+- `date-picker` 토, 일요일이 선택 날짜 범위에 있을 때 정렬이 어긋나는 문제 수정 (#626)
+
 ## 1.13.0 (2020-04-02)
 
 - `resource-list-element`, `poi-list-elements` 호텔 목록에서 distance 표시할 수 있도록 인터페이스 추가 및 수정 (#621)
