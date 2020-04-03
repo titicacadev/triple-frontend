@@ -1,5 +1,4 @@
 name: CI
-
 on:
   pull_request:
     types: [opened, synchronize, reopened]
@@ -42,7 +41,7 @@ jobs:
       run: |
         npm ci
         npm run lint
-        npm run bootstrap -- --no-ci
+        npm run bootstrap
         npm run build
         npm test
       env:
