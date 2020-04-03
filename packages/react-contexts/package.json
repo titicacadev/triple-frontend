@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@titicaca/triple-web-to-native-interfaces": "^1.0.0",
+    "@titicaca/type-definitions": "^1.13.1",
     "@titicaca/view-utilities": "^1.13.1",
     "humps": "^2.0.1",
     "qs": "^6.7.0",
