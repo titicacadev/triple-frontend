@@ -36,17 +36,6 @@ const RangeContainer = styled.div<{
   .DayPicker-Weekday:last-child {
     padding-right: 6px;
   }
-  .DayPicker-Day--sunday:before {
-    top: 30px;
-    left: 0;
-    padding-left: 3px;
-  }
-  .DayPicker-Day--saturday:before {
-    top: 30px;
-    left: 0;
-    padding-right: 6px;
-    box-sizing: border-box;
-  }
   .DayPicker-Day--from,
   .DayPicker-Day--to {
     z-index: 0;
