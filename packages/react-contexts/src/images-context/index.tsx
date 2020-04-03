@@ -5,8 +5,8 @@ import React, {
   ComponentType,
   useReducer,
 } from 'react'
+import { ImageMeta } from '@titicaca/type-definitions'
 
-import { Image } from './model'
 import reducer, {
   loadImagesRequest,
   loadImagesSuccess,
@@ -14,7 +14,7 @@ import reducer, {
 } from './reducer'
 
 interface ImagesContext {
-  images: Image[]
+  images: ImageMeta[]
   total: number
   actions: {
     fetch: (cb?: () => void) => Promise<void>
@@ -31,7 +31,7 @@ interface ImagesProviderProps {
     id: string
     type: 'attraction' | 'restaurant' | 'hotel'
   }
-  images?: Image[]
+  images?: ImageMeta[]
 }
 
 const Context = React.createContext<ImagesContext>({

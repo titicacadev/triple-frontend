@@ -1,8 +1,8 @@
-import { Image } from './model'
+import { ImageMeta } from '@titicaca/type-definitions'
 
 interface ImagesState {
   loading: boolean
-  images: Image[]
+  images: ImageMeta[]
   total: number
   hasMore: boolean
 }
@@ -17,7 +17,10 @@ export function loadImagesRequest() {
   } as const
 }
 
-export function loadImagesSuccess(payload: { images: Image[]; total: number }) {
+export function loadImagesSuccess(payload: {
+  images: ImageMeta[]
+  total: number
+}) {
   return {
     type: LOAD_IMAGES_SUCCESS,
     payload,
