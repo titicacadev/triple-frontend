@@ -27,13 +27,12 @@ const Back = styled(Navbar.Item)`
   position: absolute;
 `
 
-const DeleteIcon = styled(Navbar.Item)<{ visible: boolean }>`
+const Icon = styled(Navbar.Item)`
   position: absolute;
   top: 12px;
   right: 12px;
   margin-right: 0px;
   float: none;
-  display: ${({ visible }) => (visible ? 'block' : 'none')};
 `
 
 interface InputProps {
@@ -91,7 +90,10 @@ export default function SearchNavbar({
         value={value}
         ref={inputRef}
       />
-      <DeleteIcon icon="delete" onClick={onDeleteClick} visible={!!value} />
+      <Icon
+        icon={value ? 'delete' : 'search'}
+        onClick={value ? onDeleteClick : () => {}}
+      />
     </MainNavbarFrame>
   )
 }
