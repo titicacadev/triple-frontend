@@ -42,7 +42,7 @@ jobs:
       run: |
         npm ci
         npm run lint
-        npm run bootstrap
+        npm run bootstrap -- --no-ci
         npm run build
         npm test
       env:
@@ -73,13 +73,15 @@ jobs:
     - name: Canary Release
       run: |
         cat $GITHUB_EVENT_PATH > event.json
-        PR_LATEST_COMMIT_SHA="$(node -p -e 'require(`./event.json`).after')"
+
+        BRANCH_NAME="$(node -p -e 'require(`./event.json`).pull_request.head.ref')"
         PR_NUMBER="$(node -p -e 'require(`./event.json`).number')"
+
         rm event.json
 
         git stash
         git fetch --unshallow
-        git checkout $PR_LATEST_COMMIT_SHA
+        git checkout $BRANCH_NAME
 
         npx lerna publish --canary --yes --preid "pr-${PR_NUMBER}"
       env:
