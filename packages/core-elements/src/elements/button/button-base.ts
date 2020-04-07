@@ -1,14 +1,15 @@
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
+import { getColor, Color } from '@titicaca/color-palette'
 
-import { GlobalSizes, MarginPadding, GetGlobalColor } from '../../commons'
+import { GlobalSizes, MarginPadding } from '../../commons'
 import { marginMixin } from '../../mixins'
 import { unit } from '../../utils/unit'
 
 export interface ButtonBaseProp {
   size?: GlobalSizes
   bold?: boolean
-  textColor?: string
+  textColor?: Color
   textAlpha?: number
   floated?: CSS.FloatProperty
   fluid?: boolean
@@ -47,7 +48,7 @@ const ButtonBase = styled.a<ButtonBaseProp>`
   }
 
   color: ${({ textColor = 'gray', textAlpha = 1 }) =>
-    `rgba(${GetGlobalColor(textColor)}, ${textAlpha})`};
+    `rgba(${getColor(textColor)}, ${textAlpha})`};
 
   float: ${({ floated }) => floated || 'none'};
 

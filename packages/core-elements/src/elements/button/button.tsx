@@ -1,12 +1,8 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
+import { getColor, Color } from '@titicaca/color-palette'
 
-import {
-  GlobalSizes,
-  GlobalColors,
-  MarginPadding,
-  GetGlobalColor,
-} from '../../commons'
+import { GlobalSizes, MarginPadding } from '../../commons'
 import { formatMarginPadding } from '../../mixins'
 import ButtonBase, { ButtonBaseProp } from './button-base'
 import ButtonContainer from './button-container'
@@ -45,17 +41,14 @@ const IconButton = styled(ButtonBase)<{ name?: string }>`
   }};
 `
 
-const BASIC_COLORS: Partial<Record<
-  GlobalColors,
-  { border: string; text: string }
->> = {
+const BASIC_COLORS: Partial<Record<Color, { border: string; text: string }>> = {
   gray: {
     border: 'rgba(58, 58, 58, 0.2)',
     text: '#3a3a3a',
   },
 }
 
-const BASIC_INVERTED_COLORS: Partial<Record<GlobalColors, string>> = {
+const BASIC_INVERTED_COLORS: Partial<Record<Color, string>> = {
   blue: '#368fff',
   gray: '#3a3a3a',
 }
@@ -63,7 +56,7 @@ const BASIC_INVERTED_COLORS: Partial<Record<GlobalColors, string>> = {
 interface BasicButtonProp {
   compact?: boolean
   inverted?: boolean
-  color?: GlobalColors
+  color?: Color
 }
 
 const BasicButton = styled(ButtonBase)<BasicButtonProp>`
@@ -111,8 +104,7 @@ const COMPACT_NORMAL_PADDINGS: Partial<Record<GlobalSizes, MarginPadding>> = {
 // eslint-disable-next-line no-unexpected-multiline
 const NormalButton = styled(ButtonBase)<{
   borderRadius: number
-  color?: string
-  alpha?: number
+  color?: Color
   compact?: boolean
 }>`
   ${({ borderRadius }) => css`
@@ -120,8 +112,7 @@ const NormalButton = styled(ButtonBase)<{
   `};
   color: #ffffff;
 
-  background-color: ${({ color = 'blue', alpha = 1 }) =>
-    `rgba(${GetGlobalColor(color)}, ${alpha})`};
+  background-color: ${({ color = 'blue' }) => `rgba(${getColor(color)})`};
 
   ${({ compact, size = 'tiny' }) => {
     const padding = (compact ? COMPACT_NORMAL_PADDINGS : NORMAL_PADDINGS)[size]
