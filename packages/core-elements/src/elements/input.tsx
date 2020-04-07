@@ -1,9 +1,9 @@
 import * as React from 'react'
 import InputMask, { MaskOptions } from 'react-input-mask'
 import styled, { css } from 'styled-components'
+import { getColor } from '@titicaca/color-palette'
 
 import { withField } from '../utils/form-field'
-import { GetGlobalColor } from '../commons'
 
 const BaseInput = styled(InputMask)<{ focused?: string; error?: string }>`
   appearance: none;
@@ -12,33 +12,33 @@ const BaseInput = styled(InputMask)<{ focused?: string; error?: string }>`
   padding: 14px 16px;
   font-size: 16px;
   font-weight: 500;
-  border: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
+  border: 1px solid rgba(${getColor('gray100')});
   border-radius: 2px;
   box-sizing: border-box;
   width: 100%;
 
   ::placeholder {
-    color: rgba(${GetGlobalColor('gray')}, 0.3);
+    color: rgba(${getColor('gray300')});
   }
 
   ::-webkit-input-placeholder {
-    color: rgba(${GetGlobalColor('gray')}, 0.3);
+    color: rgba(${getColor('gray300')});
   }
 
   :-ms-input-placeholder {
-    color: rgba(${GetGlobalColor('gray')}, 0.3);
+    color: rgba(${getColor('gray300')});
   }
 
   ${({ focused }) =>
     focused &&
     css`
-      border-color: rgb(${GetGlobalColor('blue')});
+      border-color: rgb(${getColor('blue')});
     `};
 
   ${({ error }) =>
     error &&
     css`
-      border-color: rgb(${GetGlobalColor('red')});
+      border-color: rgb(${getColor('red')});
     `};
 `
 
