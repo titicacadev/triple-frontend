@@ -81,7 +81,7 @@ const BasicButton = styled(ButtonBase)<BasicButtonProp>`
         color: white;
       `
     } else {
-      const { border, text } = BASIC_COLORS[color || 'gray'] || {}
+      const { border = '', text = '' } = BASIC_COLORS[color || 'gray'] || {}
       return css`
         background-color: transparent;
         ${border && `border-color: ${border};`}
