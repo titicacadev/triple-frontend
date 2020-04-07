@@ -1,8 +1,9 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
+import { getColor } from '@titicaca/color-palette'
 
 import Container from './container'
-import { GetGlobalColor, MarginPadding } from '../commons'
+import { MarginPadding } from '../commons'
 import { marginMixin } from '../mixins'
 
 export type LabelColor = 'blue' | 'red' | 'gray' | 'purple' | 'green'
@@ -14,10 +15,10 @@ const LABEL_COLORS: Omit<
   'white'
 > = {
   blue: {
-    background: GetGlobalColor('blue')
+    background: getColor('blue')
       .split(', ')
       .concat('0.1'),
-    text: GetGlobalColor('blue')
+    text: getColor('blue')
       .split(', ')
       .concat('1'),
   },
@@ -117,7 +118,7 @@ export const PromoLabel = styled.div<PromoLabelProps>`
                 background-color: rgba(${getRGB(background)}, 1);
               `
             }}
-          color: rgba(${GetGlobalColor('white')}, 1);
+          color: rgba(${getColor('white')});
         `
       : css<Pick<PromoLabelProps, 'color'>>`
           font-weight: normal;
