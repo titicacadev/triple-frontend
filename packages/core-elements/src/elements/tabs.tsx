@@ -1,8 +1,8 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
+import { getColor } from '@titicaca/color-palette'
 
 import Container from './container'
-import { GetGlobalColor } from '../commons'
 
 type TabType = 'basic' | 'pointing'
 
@@ -45,7 +45,7 @@ const BasicContainer = styled(TabContainer)`
 `
 
 const PointingContainer = styled(TabContainer)`
-  border-bottom: 1px solid rgba(${GetGlobalColor('gray')}, 0.05);
+  border-bottom: 1px solid rgba(${getColor('gray500')});
 `
 
 const BasicLabel = styled(TabLabel)`
@@ -64,8 +64,8 @@ const PointingLabel = styled(TabLabel)`
   ${({ active }) => css`
     font-size: 15px;
     color: ${active
-      ? `rgba(${GetGlobalColor('gray')}, 1)`
-      : `rgba(${GetGlobalColor('gray')}, 0.2)`};
+      ? `rgba(${getColor('gray100')})`
+      : `rgba(${getColor('gray20')})`};
   `}
 `
 
@@ -75,7 +75,7 @@ const Line = styled.div<{ size: number; left: number }>`
   width: ${({ size }) => size}%;
   left: ${({ left }) => left}%;
   height: 2px;
-  background: rgba(${GetGlobalColor('blue')}, 1);
+  background: rgba(${getColor('blue')});
   transition: all 0.2s;
 `
 
