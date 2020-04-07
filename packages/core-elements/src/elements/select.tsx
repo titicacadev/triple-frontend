@@ -1,8 +1,8 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
+import { getColor } from '@titicaca/color-palette'
 
 import { withField } from '../utils/form-field'
-import { GetGlobalColor } from '../commons'
 
 interface SelectOption {
   label: string
@@ -22,35 +22,32 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
 
 const SelectFrame = styled.div<{ focused?: string; error?: string }>`
   padding: 14px 16px;
-  border: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
+  border: 1px solid rgba(${getColor('gray100')});
   border-radius: 2px;
   position: relative;
 
   ${({ focused }) =>
     focused &&
     css`
-      border-color: rgb(${GetGlobalColor('blue')});
+      border-color: rgba(${getColor('blue')});
     `};
 
   ${({ error }) =>
     error &&
     css`
-      border-color: rgb(${GetGlobalColor('red')});
+      border-color: rgba(${getColor('red')});
     `};
 `
 
 const BaseSelect = styled.select<{ selected?: boolean; error?: string }>`
   width: 100%;
   font-size: 16px;
-  color: rgba(
-    ${GetGlobalColor('gray')},
-    ${({ selected }) => (selected ? 1 : 0.3)}
-  );
+  color: rgba(${getColor('gray')}, ${({ selected }) => (selected ? 1 : 0.3)});
 
   ${({ error }) =>
     error &&
     css`
-      color: rgb(${GetGlobalColor('red')});
+      color: rgba(${getColor('red')});
     `};
 `
 
