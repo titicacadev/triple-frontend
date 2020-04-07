@@ -8,7 +8,7 @@ import DayPicker, {
 } from 'react-day-picker'
 import 'moment/locale/ko'
 import MomentLocaleUtils from 'react-day-picker/moment'
-import { GetGlobalColor } from '@titicaca/core-elements'
+import { getColor } from '@titicaca/color-palette'
 
 import { formatMonthTitle, isValidDate, generatePaddedRange } from './utils'
 import PickerFrame from './picker-frame'
@@ -39,18 +39,18 @@ const RangeContainer = styled.div<{
   .DayPicker-Day--from,
   .DayPicker-Day--to {
     z-index: 0;
-    color: rgb(${GetGlobalColor('white')}) !important;
+    color: rgba(${getColor('white')}) !important;
   }
   ${({ selectedAll }) =>
     selectedAll &&
     css`
       .DayPicker-Day--selected {
-        background: rgba(${GetGlobalColor('blue')}, 0.1);
+        background: rgba(${getColor('blue100')});
       }
       .DayPicker-Day--from {
         background: -webkit-linear-gradient(
           right,
-          rgba(54, 143, 255, 0.1) 50%,
+          rgba(${getColor('blue100')}) 50%,
           #fafafa 50%
         );
       }
@@ -58,7 +58,7 @@ const RangeContainer = styled.div<{
         background: -webkit-linear-gradient(
           right,
           #fafafa 50%,
-          rgba(54, 143, 255, 0.1) 50%
+          rgba(${getColor('blue100')}) 50%
         );
       }
     `}
@@ -77,7 +77,7 @@ const RangeContainer = styled.div<{
     bottom: 0px;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgb(${GetGlobalColor('blue')});
+    background-color: rgba(${getColor('blue')});
     content: '';
     border-radius: 100%;
   }
@@ -96,7 +96,7 @@ const RangeContainer = styled.div<{
     css`
     .DayPicker-Day--from:before {
       content: '${startDateLabel || ''}';
-      color: rgba(${GetGlobalColor('blue')});
+      color: rgba(${getColor('blue')});
       position: absolute;
       top: 35px;
       left: 0px;
@@ -114,7 +114,7 @@ const RangeContainer = styled.div<{
     css`
     .DayPicker-Day--to:before {
       content: '${endDateLabel || ''}';
-      color: rgba(${GetGlobalColor('blue')});
+      color: rgba(${getColor('blue')});
       position: absolute;
       top: 35px;
       left: 0px;
@@ -139,7 +139,7 @@ const RangeContainer = styled.div<{
     background: none;
   }
   .DayPicker-Day--outside.DayPicker-Day--included-range {
-    background: rgba(${GetGlobalColor('blue')}, 0.1);
+    background: rgba(${getColor('blue100')});
   }
 `
 

@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@titicaca/core-elements": "^1.13.1",
-    "@titicaca/triple-document": "^1.13.1"
+    "@titicaca/triple-document": "^1.13.1",
+    "@titicaca/color-palette": "^1.13.1"
   }
 }
