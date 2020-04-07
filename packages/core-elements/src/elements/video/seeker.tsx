@@ -1,8 +1,7 @@
 import React, { useState, useCallback, forwardRef } from 'react'
 import styled from 'styled-components'
 import { debounce } from '@titicaca/view-utilities'
-
-import { GetGlobalColor } from '../../commons'
+import { getColor } from '@titicaca/color-palette'
 
 const SeekerBase = styled.input<{ handleVisible: boolean }>`
   appearance: none;
@@ -25,7 +24,7 @@ const SeekerBase = styled.input<{ handleVisible: boolean }>`
     width: 13px;
     height: 13px;
     border-radius: 10px;
-    background-color: rgba(${GetGlobalColor('blue')}, 1);
+    background-color: rgba(${getColor('blue')});
     cursor: pointer;
     opacity: ${({ handleVisible }) => (handleVisible ? '1' : '0')};
     transition: opacity 0.3s;
@@ -35,7 +34,7 @@ const SeekerBase = styled.input<{ handleVisible: boolean }>`
     width: 13px;
     height: 13px;
     border-radius: 10px;
-    background-color: rgba(${GetGlobalColor('blue')}, 1);
+    background-color: rgba(${getColor('blue')});
     cursor: pointer;
     opacity: ${({ handleVisible }) => (handleVisible ? '1' : '0')};
     transition: opacity 0.3s;
@@ -45,7 +44,7 @@ const SeekerBase = styled.input<{ handleVisible: boolean }>`
     width: 13px;
     height: 13px;
     border-radius: 10px;
-    background-color: rgba(${GetGlobalColor('blue')}, 1);
+    background-color: rgba(${getColor('blue')}, 1);
     cursor: pointer;
     opacity: ${({ handleVisible }) => (handleVisible ? '1' : '0')};
     transition: opacity 0.3s;
