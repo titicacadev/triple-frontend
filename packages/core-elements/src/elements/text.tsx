@@ -1,13 +1,9 @@
 import * as React from 'react'
 import styled, { css, StyledComponentProps } from 'styled-components'
 import * as CSS from 'csstype'
+import { getColor, Color } from '@titicaca/color-palette'
 
-import {
-  MarginPadding,
-  GlobalSizes,
-  GetGlobalColor,
-  GlobalColors,
-} from '../commons'
+import { MarginPadding, GlobalSizes, GetGlobalColor } from '../commons'
 import {
   marginMixin,
   paddingMixin,
@@ -21,7 +17,7 @@ interface TextBaseProps {
   textStyle?: KeyOfTextStyleMap
   bold?: boolean
   alpha?: number
-  color?: string
+  color?: Color
   floated?: CSS.FloatProperty
   letterSpacing?: number
   lineHeight?: number | string
@@ -85,7 +81,8 @@ const TextBase = styled.div<TextBaseProps>`
   }}
 
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
-  color: ${({ color = 'gray', alpha }) => rgba({ color, alpha })};
+  color: ${({ color = 'gray', alpha }) =>
+    alpha ? rgba({ color, alpha }) : `rgba(${getColor(color)})`};
   word-wrap: break-word;
 
   float: ${({ floated }) => floated || 'none'};
@@ -157,7 +154,7 @@ const TextBase = styled.div<TextBaseProps>`
         left: 0;
         top: 45%;
         height: 1px;
-        background: ${({ color = 'gray' as GlobalColors, alpha }) =>
+        background: ${({ color = 'gray' as Color, alpha }) =>
           rgba({ color, alpha })};
         content: '';
         width: 100%;
