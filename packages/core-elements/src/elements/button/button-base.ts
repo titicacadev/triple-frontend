@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
-import { getColor, Color } from '@titicaca/color-palette'
+import { Color } from '@titicaca/color-palette'
 
-import { GlobalSizes, MarginPadding } from '../../commons'
+import { GlobalSizes, MarginPadding, GetGlobalColor } from '../../commons'
 import { marginMixin } from '../../mixins'
 import { unit } from '../../utils/unit'
 
@@ -48,7 +48,7 @@ const ButtonBase = styled.a<ButtonBaseProp>`
   }
 
   color: ${({ textColor = 'gray', textAlpha = 1 }) =>
-    `rgba(${getColor(textColor)}, ${textAlpha})`};
+    `rgba(${GetGlobalColor(textColor)}, ${textAlpha})`};
 
   float: ${({ floated }) => floated || 'none'};
 
