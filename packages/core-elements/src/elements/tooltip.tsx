@@ -1,8 +1,7 @@
 import * as React from 'react'
 import * as CSS from 'csstype'
 import styled, { css } from 'styled-components'
-
-import { GetGlobalColor } from '../commons'
+import { getColor } from '@titicaca/color-palette'
 
 interface PointingOptions {
   vertical: 'top' | 'bottom'
@@ -43,7 +42,7 @@ const POINTING_BASE_STYLE = css`
 
 const TooltipFrame = styled.div<TooltipFrameProps>`
   position: relative;
-  color: rgba(${GetGlobalColor('white')}, 1);
+  color: rgba(${getColor('white')});
   padding: 6px 11px;
 
   ${({ backgroundColor }) => `background-color: ${backgroundColor}`};
