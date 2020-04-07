@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
+import { getColor } from '@titicaca/color-palette'
 
 import Container from '../elements/container'
 import Text from '../elements/text'
-import { GetGlobalColor } from '../commons'
 
 const MessageContainer = styled(Container)`
   position: relative;
@@ -20,21 +20,21 @@ const Label = styled(Text)<{
   ${({ focused }) =>
     focused &&
     css`
-      color: rgb(${GetGlobalColor('blue')});
-    `};
+      color: rgba(${getColor('blue')});
+    `}
 
   ${({ error }) =>
     error &&
     css`
-      color: rgb(${GetGlobalColor('red')});
-    `};
+      color: rgba(${getColor('red')});
+    `}
 
   ${({ absolute }) =>
     absolute &&
     css`
       position: absolute;
       top: 6px;
-    `};
+    `}
 `
 
 export function withField<T>(WrappedComponent: React.ComponentType<T>) {
