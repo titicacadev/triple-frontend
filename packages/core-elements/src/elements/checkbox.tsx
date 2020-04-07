@@ -1,9 +1,10 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
+import { getColor } from '@titicaca/color-palette'
 
 import { withField } from '../utils/form-field'
-import { GetGlobalColor, MarginPadding } from '../commons'
+import { MarginPadding } from '../commons'
 import { paddingMixin } from '../mixins'
 
 type FillType = 'full' | 'border' | 'text'
@@ -21,7 +22,7 @@ const generateFillStyles = ({
     return
   }
 
-  const color = GetGlobalColor(checked ? 'blue' : 'red')
+  const color = getColor(checked ? 'blue' : 'red')
 
   switch (fillType) {
     case 'full':
@@ -74,7 +75,7 @@ const ConfirmFrame = styled.div.attrs({})<{
   box-sizing: border-box;
   position: relative;
   font-weight: bold;
-  color: rgba(${GetGlobalColor('gray')}, 0.5);
+  color: rgba(${getColor('gray500')});
 
   ${({ checked, error, fillType }) =>
     fillType && generateFillStyles({ checked: !!checked, error, fillType })};
