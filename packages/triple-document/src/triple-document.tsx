@@ -19,7 +19,6 @@ import {
   List,
   Carousel,
   Container,
-  GetGlobalColor,
   ResourceListItem,
   SquareImage,
   ContainerProps,
@@ -35,6 +34,7 @@ import {
 } from '@titicaca/poi-list-elements'
 import TripleMedia, { MediaMeta } from '@titicaca/triple-media'
 import { ListingPOI } from '@titicaca/type-definitions'
+import { getColor } from '@titicaca/color-palette'
 
 import {
   H1,
@@ -516,7 +516,7 @@ const ListLinkContainer = styled.div`
 
 const ListLink = styled.a`
   text-decoration: underline;
-  color: rgba(${GetGlobalColor('gray')}, 0.9);
+  color: rgba(${getColor('gray900')});
   font-weight: 500;
 `
 
