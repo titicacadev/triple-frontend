@@ -4,16 +4,16 @@ import styled from 'styled-components'
 import Navbar from './navbar'
 
 const InputText = styled.input`
+  box-sizing: border-box;
   border-style: none;
   font-size: 17px;
-  height: 21px;
-  line-height: 21px;
-  margin: 6px 34px 0 40px;
   text-overflow: ellipsis;
+  padding: 8px 35px 0px 40px;
   white-space: nowrap;
-  width: calc(100% - 80px);
+  width: 100%;
   outline: none;
-  padding: 0;
+
+  ${({ value }) => value && `padding: 8px 95px 0px 40px;`}
 `
 
 const MainNavbarFrame = styled(Navbar.NavbarFrame)`
@@ -21,18 +21,19 @@ const MainNavbarFrame = styled(Navbar.NavbarFrame)`
   padding: 12px;
 `
 
-const Back = styled(Navbar.Item)`
-  float: none;
-  margin-right: 6px;
-  position: absolute;
-`
-
-const DeleteIcon = styled(Navbar.Item)<{ visible: boolean }>`
+const Icon = styled(Navbar.Item)`
   position: absolute;
   top: 12px;
-  right: 12px;
   margin-right: 0px;
   float: none;
+`
+
+const SearchIcon = styled(Icon)`
+  right: 12px;
+`
+
+const DeleteIcon = styled(Icon)<{ visible: boolean }>`
+  right: 52px;
   display: ${({ visible }) => (visible ? 'block' : 'none')};
 `
 
@@ -81,7 +82,7 @@ export default function SearchNavbar({
 } & InputProps) {
   return (
     <MainNavbarFrame borderless>
-      <Back icon="back" onClick={onBackClick} />
+      <Icon icon="back" onClick={onBackClick} />
       <Input
         placeholder={placeholder}
         onInputChange={onInputChange}
@@ -92,6 +93,7 @@ export default function SearchNavbar({
         ref={inputRef}
       />
       <DeleteIcon icon="delete" onClick={onDeleteClick} visible={!!value} />
+      <SearchIcon icon="search" />
     </MainNavbarFrame>
   )
 }
