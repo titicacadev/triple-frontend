@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import styled from 'styled-components'
 import { debounce } from '@titicaca/view-utilities'
+import { getColor } from '@titicaca/color-palette'
 
-import { GetGlobalColor } from '../../commons'
 import Seeker from './seeker'
 import PlayPauseButton from './play-pause-button'
 import MuteUnmuteButton from './mute-unmute-button'
@@ -60,7 +60,7 @@ const Progress = styled.progress`
 
   &::-webkit-progress-value {
     border-radius: 2.5px;
-    background-color: rgba(${GetGlobalColor('blue')}, 1);
+    background-color: rgba(${getColor('blue')});
   }
 `
 
