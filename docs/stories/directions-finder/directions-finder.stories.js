@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
+import { text } from '@storybook/addon-knobs'
 import { HistoryProvider } from '@titicaca/react-contexts'
 import DirectionsFinder from '@titicaca/directions-finder'
 
@@ -15,10 +16,13 @@ storiesOf('directions-finder | DirectionsFinder', module).add('기본', () => {
       <LongPage>
         <DirectionsFinder
           onDirectionsClick={action('onDirectionsClick')}
-          primaryName="도쿄 디즈니 랜드"
-          localName="東京ディズニーランド"
-          localAddress="〒279-0031 東京都千葉県浦安市舞浜11"
-          phoneNumber="+81453305211"
+          primaryName={text('primaryName', '도쿄 디즈니 랜드')}
+          localName={text('localName', '東京ディズニーランド')}
+          localAddress={text(
+            'localAddress',
+            '〒279-0031 東京都千葉県浦安市舞浜11',
+          )}
+          phoneNumber={text('phoneNumber', '+81453305211')}
         />
       </LongPage>
     </HistoryProvider>
