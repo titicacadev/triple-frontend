@@ -1,8 +1,8 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+import { getColor } from '@titicaca/color-palette'
 
 import { withField } from '../utils/form-field'
-import { GetGlobalColor } from '../commons'
 import Container from './container'
 
 interface GenderSelectorProps {
@@ -20,12 +20,12 @@ const GenderContainer = styled.div<{
   width: 50%;
   display: inline-block;
   padding: 15px 0;
-  border: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
+  border: 1px solid rgba(${getColor('gray100')});
   border-radius: 2px;
   box-sizing: border-box;
   text-align: center;
   font-size: 16px;
-  color: rgba(${GetGlobalColor('gray')}, 0.3);
+  color: rgba(${getColor('gray300')});
 
   &:last-child {
     border-left: none;
@@ -34,11 +34,11 @@ const GenderContainer = styled.div<{
   ${({ selected }) =>
     selected &&
     css`
-      color: rgb(${GetGlobalColor('blue')});
-      border: 1px solid rgb(${GetGlobalColor('blue')});
+      color: rgb(${getColor('blue')});
+      border: 1px solid rgb(${getColor('blue')});
 
       &:last-child {
-        border: 1px solid rgb(${GetGlobalColor('blue')});
+        border: 1px solid rgb(${getColor('blue')});
       }
     `};
 `
