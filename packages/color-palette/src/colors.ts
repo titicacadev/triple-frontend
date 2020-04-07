@@ -13,6 +13,7 @@ export enum ColorSet {
   gray900 = '58, 58, 58, 0.9',
   blue = '54, 143, 255, 1',
   blue100 = '54, 143, 255, 0.1',
+  blue980 = '54, 143, 255, 0.98',
   mint = '38, 206, 194, 1',
   mint100 = '38, 206, 194, 0.1',
   orange = '255, 150, 35, 1',
@@ -23,6 +24,7 @@ export enum ColorSet {
   purple = '151, 95, 254, 1',
   emerald = '11, 208, 153, 1',
   white = '255, 255, 255, 1',
+  white600 = '255, 255, 255, 0.6',
 }
 
 export type Color = keyof typeof ColorSet

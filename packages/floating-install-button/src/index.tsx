@@ -1,11 +1,7 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import {
-  GetGlobalColor,
-  Text,
-  Container,
-  MarginPadding,
-} from '@titicaca/core-elements'
+import { Text, Container, MarginPadding } from '@titicaca/core-elements'
+import { getColor } from '@titicaca/color-palette'
 
 declare var window: any
 
@@ -17,7 +13,7 @@ const FloatingButton = styled.div<{ fixed?: boolean; margin?: MarginPadding }>`
   height: 84px;
   border-radius: 42px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
-  background-color: rgba(${GetGlobalColor('blue')}, 0.98);
+  background-color: rgba(${getColor('blue980')});
   overflow: hidden;
 
   @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
@@ -49,7 +45,7 @@ const InstallDescription = styled(Text)`
   font-size: 18px;
   font-weight: bold;
   padding: 23px 0px 0px 32px;
-  color: rgb(${GetGlobalColor('white')});
+  color: rgb(${getColor('white')});
 `
 
 const InstallAnchor = styled.a`
@@ -69,7 +65,7 @@ const Description = styled(Text)`
   height: 15px;
   font-size: 12px;
   font-weight: 500;
-  color: rgba(${GetGlobalColor('white')}, 0.6);
+  color: rgba(${getColor('white600')});
   margin: 3px 0px 22px 32px;
 `
 
