@@ -24,3 +24,5 @@ export enum ColorSet {
   emerald = '11, 208, 153, 1',
   white = '255, 255, 255, 1',
 }
+
+export type Color = keyof typeof ColorSet
