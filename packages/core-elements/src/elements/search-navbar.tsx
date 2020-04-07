@@ -73,9 +73,11 @@ export default function SearchNavbar({
   onKeyUp,
   onBlur,
   onFocus,
+  onSearch,
   value,
   inputRef,
 }: {
+  onSearch: () => void
   onBackClick: (event: React.SyntheticEvent) => void
   onDeleteClick?: (event: React.SyntheticEvent) => void
   inputRef?: React.Ref<HTMLInputElement>
@@ -93,7 +95,7 @@ export default function SearchNavbar({
         ref={inputRef}
       />
       <DeleteIcon icon="delete" onClick={onDeleteClick} visible={!!value} />
-      <SearchIcon icon="search" />
+      <SearchIcon icon="search" onClick={onSearch} />
     </MainNavbarFrame>
   )
 }
