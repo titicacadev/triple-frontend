@@ -24,6 +24,7 @@
   "homepage": "https://github.com/titicacadev/triple-design-system#readme",
   "dependencies": {
     "@titicaca/view-utilities": "^1.13.1",
+    "@titicaca/color-palette": "^1.13.1",
     "react-input-mask": "^2.0.4"
   },
   "peerDependencies": {
