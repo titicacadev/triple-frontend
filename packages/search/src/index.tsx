@@ -116,6 +116,7 @@ export default function FullScreenSearchView({
           onInputChange(value)
         }}
         onKeyUp={(e: KeyboardEvent) => handleKeyUp(e.keyCode)}
+        onSearch={() => keyword && onEnter(keyword)}
         inputRef={inputRef}
       />
       <ContentsContainer isIOS={isIOS} userSelect="none">
