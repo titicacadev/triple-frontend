@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { GetGlobalColor } from '@titicaca/core-elements'
+import { getColor } from '@titicaca/color-palette'
 
 const PickerFrame = styled.div`
-  border-top: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
-  border-bottom: 1px solid rgba(${GetGlobalColor('gray')}, 0.1);
+  border-top: 1px solid rgba(${getColor('gray100')});
+  border-bottom: 1px solid rgba(${getColor('gray100')});
 
   .DayPicker {
     overflow: auto;
@@ -61,12 +61,12 @@ const PickerFrame = styled.div`
 
   .DayPicker-Weekday abbr {
     text-decoration: none;
-    color: rgba(${GetGlobalColor('gray')}, 0.5);
+    color: rgba(${getColor('gray500')});
     font-size: 12px;
   }
 
   .DayPicker-Day--today {
-    color: rgb(${GetGlobalColor('blue')});
+    color: rgba(${getColor('blue')});
 
     &:before {
       top: 30px;
@@ -76,14 +76,14 @@ const PickerFrame = styled.div`
       display: inline-block;
       font-size: 11px;
       width: 100%;
-      color: rgb(${GetGlobalColor('blue')});
+      color: rgba(${getColor('blue')});
     }
 
     &.DayPicker-Day--sunday,
     &.DayPicker-Day--saturday,
     &.DayPicker-Day--publicHolidays {
       &:before {
-        color: rgb(${GetGlobalColor('red')});
+        color: rgba(${getColor('red')});
       }
     }
   }
@@ -91,11 +91,11 @@ const PickerFrame = styled.div`
   .DayPicker-Day--sunday,
   .DayPicker-Day--saturday,
   .DayPicker-Day--publicHolidays {
-    color: rgb(${GetGlobalColor('red')});
+    color: rgba(${getColor('red')});
   }
 
   .DayPicker-Day--disabled {
-    color: rgba(${GetGlobalColor('gray')}, 0.5);
+    color: rgba(${getColor('gray500')});
   }
 
   .DayPicker-Day--selected:before {

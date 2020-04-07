@@ -8,7 +8,7 @@ import DayPicker, {
 } from 'react-day-picker'
 import 'moment/locale/ko'
 import MomentLocaleUtils from 'react-day-picker/moment'
-import { GetGlobalColor } from '@titicaca/core-elements'
+import { getColor } from '@titicaca/color-palette'
 
 import { formatMonthTitle } from './utils'
 import PickerFrame from './picker-frame'
@@ -27,7 +27,7 @@ const DayContainer = styled.div<{ height?: string }>`
   }
   .DayPicker-Day--selected {
     z-index: 0;
-    color: rgb(${GetGlobalColor('white')}) !important;
+    color: rgba(${getColor('white')}) !important;
   }
   .DayPicker-Day--selected:after {
     z-index: -1;
@@ -39,7 +39,7 @@ const DayContainer = styled.div<{ height?: string }>`
     bottom: 0px;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgb(${GetGlobalColor('blue')});
+    background-color: rgba(${getColor('blue')});
     content: '';
     border-radius: 100%;
   }
