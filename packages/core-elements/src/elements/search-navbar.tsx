@@ -13,7 +13,15 @@ const InputText = styled.input`
   width: 100%;
   outline: none;
 
-  ${({ value }) => value && `padding: 8px 95px 0px 40px;`}
+  ${({ value }) =>
+    value
+      ? `padding: 8px 95px 0px 40px;`
+      : `
+      background: url(https://assets.triple.guide/images/btn-com-search@2x.png);
+      no-repeat;
+      background-size: 34px 34px;
+      background-position: 100% 0;
+  `}
 `
 
 const MainNavbarFrame = styled(Navbar.NavbarFrame)`
@@ -21,20 +29,21 @@ const MainNavbarFrame = styled(Navbar.NavbarFrame)`
   padding: 12px;
 `
 
-const Icon = styled(Navbar.Item)`
+const Icon = styled(Navbar.Item)<{ visible: boolean }>`
   position: absolute;
   top: 12px;
   margin-right: 0px;
   float: none;
+
+  display: ${({ visible }) => (visible ? 'block' : 'none')};
 `
 
 const SearchIcon = styled(Icon)`
   right: 12px;
 `
 
-const DeleteIcon = styled(Icon)<{ visible: boolean }>`
+const DeleteIcon = styled(Icon)`
   right: 52px;
-  display: ${({ visible }) => (visible ? 'block' : 'none')};
 `
 
 interface InputProps {
@@ -84,7 +93,7 @@ export default function SearchNavbar({
 } & InputProps) {
   return (
     <MainNavbarFrame borderless>
-      <Icon icon="back" onClick={onBackClick} />
+      <Icon icon="back" onClick={onBackClick} visible={true} />
       <Input
         placeholder={placeholder}
         onInputChange={onInputChange}
@@ -95,7 +104,7 @@ export default function SearchNavbar({
         ref={inputRef}
       />
       <DeleteIcon icon="delete" onClick={onDeleteClick} visible={!!value} />
-      <SearchIcon icon="search" onClick={onSearch} />
+      <SearchIcon icon="search" onClick={onSearch} visible={!!value} />
     </MainNavbarFrame>
   )
 }
