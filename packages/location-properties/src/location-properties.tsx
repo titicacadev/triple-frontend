@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { Segment, List } from '@titicaca/core-elements'
 import ActionSheet from '@titicaca/action-sheet'
 import { useI18n } from '@titicaca/i18n'
@@ -24,6 +24,7 @@ export default function LocationProperties({
   onOfficialSiteUrlClick,
   extraProperties,
   onExtraPropertyClick,
+  onCopy,
   ...props
 }: {
   addresses?: TranslatedProperty
@@ -34,6 +35,7 @@ export default function LocationProperties({
   onOfficialSiteUrlClick?: () => void
   extraProperties?: ExtraProperty[]
   onExtraPropertyClick?: (extraProperty: ExtraProperty) => void
+  onCopy: (value: string) => void
 } & Parameters<typeof Segment>['0']) {
   const { t } = useI18n()
   const { uriHash, back } = useHistoryContext()
@@ -97,6 +99,10 @@ export default function LocationProperties({
   ])
 
   const isActionSheetOpen = (uriHash || '').startsWith(ACTION_SHEET_PREFIX)
+  const value =
+    isActionSheetOpen &&
+    properties.get(uriHash.replace(`${ACTION_SHEET_PREFIX}.`, ''))?.value
+  const handleClick = useCallback(() => onCopy(value), [onCopy, value])
 
   return (
     <>
@@ -112,10 +118,11 @@ export default function LocationProperties({
         open={isActionSheetOpen}
         onClose={back}
       >
-        <ActionSheet.Item buttonLabel={t('common:copy', '복사')}>
-          {isActionSheetOpen &&
-            properties.get(uriHash.replace(`${ACTION_SHEET_PREFIX}.`, ''))
-              ?.value}
+        <ActionSheet.Item
+          buttonLabel={t('common:copy', '복사')}
+          onClick={handleClick}
+        >
+          {value}
         </ActionSheet.Item>
       </ActionSheet>
     </>
