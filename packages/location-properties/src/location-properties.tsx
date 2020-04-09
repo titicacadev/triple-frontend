@@ -102,7 +102,7 @@ export default function LocationProperties({
   const value =
     isActionSheetOpen &&
     properties.get(uriHash.replace(`${ACTION_SHEET_PREFIX}.`, ''))?.value
-  const handleClick = useCallback(() => onCopy(value), [onCopy, value])
+  const handleClick = useCallback(() => value && onCopy(value), [onCopy, value])
 
   return (
     <>

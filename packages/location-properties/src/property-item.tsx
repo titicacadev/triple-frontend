@@ -10,7 +10,7 @@ export const ACTION_SHEET_PREFIX = 'location-properties.copy-action-sheet'
 
 export interface PropertyItemProps {
   title: string
-  value?: string | React.ReactNode
+  value?: string
   singleLine?: boolean
   identifier: string
   eventActionFragment?: string
