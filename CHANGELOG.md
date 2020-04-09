@@ -1,3 +1,12 @@
+# 1.14.0 (2020-04-09)
+
+- `StaticIntersectionObserver` 추가 (#627)
+- `direction-finder` 전화번호가 없는 경우 전화하기 버튼 숨김 (#636)
+- `search-navbar` 입력된 값에 따라 검색 버튼의 동작 변경 (#639)
+- `color-palette` 패키지 추가 (#638)
+- `search` 검색 버튼 추가 (#637)
+- `context` ImagesContext에 type definitions 이용 (#633)
+
 ## 1.13.1 (2020-04-03)
 
 - `dev` bootstrap할 때 ci 해제 (#628)
