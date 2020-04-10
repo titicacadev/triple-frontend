@@ -1,3 +1,7 @@
+# 1.15.0 (2020-04-10)
+
+- `location-properties` 패키지에 `onCopy` 핸들러 추가 (#641)
+
 # 1.14.0 (2020-04-09)
 
 - `StaticIntersectionObserver` 추가 (#627)
