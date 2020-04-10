@@ -16,14 +16,14 @@ type App = {
   version: string
 } | null
 
-interface UserAgentContext {
+export interface UserAgentContextValue {
   isPublic: boolean
   isMobile: boolean
   os: OS
   app: App
 }
 
-const Context = createContext<UserAgentContext>({
+const Context = createContext<UserAgentContextValue>({
   isPublic: false,
   isMobile: false,
   os: { name: '', version: '' },
@@ -32,7 +32,7 @@ const Context = createContext<UserAgentContext>({
 const { Provider, Consumer } = Context
 
 export function withUserAgent<
-  P extends { userAgent: Partial<UserAgentContext> }
+  P extends { userAgent: Partial<UserAgentContextValue> }
 >(Component: React.ComponentType<P>): React.FC<Omit<P, 'userAgent'>> {
   return function UserAgentComponent(props) {
     return (
