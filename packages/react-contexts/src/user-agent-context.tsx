@@ -31,9 +31,9 @@ const Context = createContext<UserAgentContext>({
 })
 const { Provider, Consumer } = Context
 
-export function withUserAgent<P extends { userAgent: UserAgentContext }>(
-  Component: React.ComponentType<P>,
-): React.FC<Omit<P, 'userAgent'>> {
+export function withUserAgent<
+  P extends { userAgent: Partial<UserAgentContext> }
+>(Component: React.ComponentType<P>): React.FC<Omit<P, 'userAgent'>> {
   return function UserAgentComponent(props) {
     return (
       <Consumer>
