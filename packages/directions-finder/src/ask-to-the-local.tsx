@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
-import { useHistoryContext } from '@titicaca/react-contexts'
 import {
   Button,
   Container,
@@ -53,11 +52,11 @@ export default function AskToTheLocal({
   primaryName: string
   phoneNumber?: string
 }) {
-  const { navigate } = useHistoryContext()
-  const handleCall = useCallback(
-    () => phoneNumber && navigate(`tel:${phoneNumber}`),
-    [navigate, phoneNumber],
-  )
+  const handleCall = useCallback(() => {
+    if (phoneNumber) {
+      window.location.href = `tel:${phoneNumber}`
+    }
+  }, [phoneNumber])
 
   return (
     <Popup open={open} onClose={onClose} borderless>
