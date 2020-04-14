@@ -17,6 +17,7 @@ interface RegularPricingProps {
   basePrice?: BasePrice
   salePrice?: number
   priceLabelOverride?: string
+  isSoldOut?: boolean
 }
 
 interface RichPricingProps {
@@ -28,6 +29,7 @@ interface RichPricingProps {
   description?: React.ReactNode
   priceLabelOverride?: string
   hideDiscountRate?: boolean
+  isSoldOut?: boolean
 }
 
 type PricingProps =
@@ -80,33 +82,6 @@ const PricingContainer = styled.div<{ padding?: MarginPadding }>`
   }
 `
 
-const Price = styled.span<{
-  size?: GlobalSizes
-  bold?: boolean
-  lineThrough?: boolean
-  margin?: MarginPadding
-  color?: PricingColors
-}>`
-  display: inline-block;
-  font-size: ${({ size = 'mini' }) => FONT_SIZE[size]};
-  color: ${({ color = 'default' }) => COLORS[color]};
-  font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
-  ${({ lineThrough }) =>
-    lineThrough &&
-    css`
-      text-decoration: line-through;
-    `};
-
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
-    `};
-`
-
 const Label = styled.div<{ size?: GlobalSizes }>`
   position: absolute;
   left: 0;
@@ -125,9 +100,9 @@ function DiscountRate({
   const rate = Math.floor(((basePrice - salePrice) / basePrice) * 100)
 
   return rate > 0 ? (
-    <Price color="pink" size="big" margin={{ right: 5 }} bold>
+    <Text color="red" size="big" margin={{ right: 5 }} bold inline>
       {rate}%
-    </Price>
+    </Text>
   ) : null
 }
 
@@ -140,6 +115,7 @@ function RichPricing({
   basePriceUnit,
   priceLabelOverride,
   hideDiscountRate,
+  isSoldOut,
 }: RichPricingProps) {
   const pricingDescription = description ? (
     typeof description === 'string' ? (
@@ -168,7 +144,7 @@ function RichPricing({
             )}
 
             {hasBasePrice && (
-              <Text alpha={0.3} size="mini" strikethrough inline>
+              <Text size="mini" strikethrough inline color="gray300">
                 {formatNumber(basePrice)}
                 {basePriceUnit}
               </Text>
@@ -180,9 +156,9 @@ function RichPricing({
           <DiscountRate basePrice={basePrice as number} salePrice={salePrice} /> // HACK: hasBasePrice가 true면 basePrice는 무조건 number이다.
         ) : null}
 
-        <Price size="big" bold>
+        <Text size="big" bold inline color={isSoldOut ? 'gray300' : 'gray'}>
           {priceLabelOverride || `${formatNumber(salePrice)}원`}
-        </Price>
+        </Text>
       </PricingContainer>
       {pricingDescription}
     </Container>
@@ -193,6 +169,7 @@ const RegularPricing = ({
   basePrice,
   salePrice = 0,
   priceLabelOverride,
+  isSoldOut,
 }: RegularPricingProps) => {
   const hasBasePrice =
     typeof basePrice === 'number' && basePrice > 0 && basePrice > salePrice
@@ -200,13 +177,19 @@ const RegularPricing = ({
   return (
     <PricingContainer padding={{ top: 18 }}>
       {hasBasePrice && (
-        <Price color="gray" lineThrough margin={{ right: 5 }}>
+        <Text
+          color="gray300"
+          size="mini"
+          strikethrough
+          inline
+          margin={{ right: 5 }}
+        >
           {formatNumber(basePrice)}
-        </Price>
+        </Text>
       )}
-      <Price size="large" bold>
+      <Text size={18} bold inline color={isSoldOut ? 'gray300' : 'gray'}>
         {priceLabelOverride || `${formatNumber(salePrice)}원`}
-      </Price>
+      </Text>
     </PricingContainer>
   )
 }
@@ -222,6 +205,7 @@ export default function Pricing(props: PricingProps) {
       description,
       basePriceUnit,
       hideDiscountRate,
+      isSoldOut,
     } = props
 
     return (
@@ -234,6 +218,7 @@ export default function Pricing(props: PricingProps) {
         pricingNote={pricingNote}
         description={description}
         hideDiscountRate={hideDiscountRate}
+        isSoldOut={isSoldOut}
       />
     )
   } else if (props.fixed) {
@@ -246,6 +231,7 @@ export default function Pricing(props: PricingProps) {
       onClick,
       tooltipLabel,
       onTooltipClick,
+      isSoldOut,
     } = props
 
     return (
@@ -260,16 +246,18 @@ export default function Pricing(props: PricingProps) {
         priceLabelOverride={priceLabelOverride}
         tooltipLabel={tooltipLabel}
         onTooltipClick={onTooltipClick}
+        isSoldOut={isSoldOut}
       />
     )
   } else {
-    const { basePrice } = props
+    const { basePrice, isSoldOut } = props
 
     return (
       <RegularPricing
         basePrice={basePrice}
         salePrice={salePrice}
         priceLabelOverride={priceLabelOverride}
+        isSoldOut={isSoldOut}
       />
     )
   }

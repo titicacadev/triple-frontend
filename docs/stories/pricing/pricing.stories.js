@@ -32,6 +32,7 @@ storiesOf('pricing | Pricing', module)
       priceLabelOverride={text('메세지')}
       basePrice={30000}
       salePrice={25000}
+      isSoldOut={boolean('판매완료', false)}
     />
   ))
   .add('Rich', () => {
@@ -47,6 +48,7 @@ storiesOf('pricing | Pricing', module)
         label={useStringLabel ? '트리플가' : <PricingLabel />}
         priceLabelOverride={text('메세지')}
         hideDiscountRate={boolean('할인률 미노출', false)}
+        isSoldOut={boolean('판매완료', false)}
         rich
         description={
           useStringDescription ? (
@@ -88,6 +90,7 @@ storiesOf('pricing | Pricing', module)
         }
         tooltipLabel={text('툴팁 라벨', '쿠폰사용시 -15,000원 더 할인!')}
         onTooltipClick={hasAction ? () => window.alert('레릿꼬오') : null}
+        isSoldOut={boolean('판매완료', false)}
       />
     )
   })
