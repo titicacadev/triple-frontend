@@ -46,6 +46,7 @@ interface ExtendedPoiListElementProps<T extends ListingPOI>
   pricingNote?: string
   pricingDescription?: React.ReactNode
   priceLabelOverride?: string
+  isSoldOut?: boolean
   hideScrapButton?: boolean
   hideDiscountRate?: boolean
   distance?: string | number
@@ -255,6 +256,7 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
         pricingNote,
         pricingDescription,
         priceLabelOverride,
+        isSoldOut,
         onClick,
         onScrapedChange,
         resourceScraps,
@@ -329,6 +331,7 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
         pricingNote={pricingNote}
         priceLabelOverride={priceLabelOverride}
         pricingDescription={pricingDescription}
+        isSoldOut={isSoldOut}
         onClick={onClick}
         tags={tags}
         hideScrapButton={hideScrapButton || !resourceScraps}
