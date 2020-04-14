@@ -32,12 +32,6 @@ interface ScrapsProviderProps {
   ) => void
 }
 
-interface WrappingComponentBaseProps {
-  deriveCurrentScrapedStateAndCount: ScrapsContext['deriveCurrentStateAndCount']
-  scraps: Scraps
-  scrapActions: Omit<ScrapsContext, 'deriveCurrentStateAndCount' | 'scraps'>
-}
-
 const Context = React.createContext<ScrapsContext>({
   scraps: {},
   deriveCurrentStateAndCount: () => ({ scraped: false, scrapsCount: 0 }),
@@ -232,12 +226,18 @@ export function useScrapsContext() {
   return React.useContext(Context)
 }
 
-export function withScraps<P extends Partial<WrappingComponentBaseProps>>(
+export type WithScrapsBaseProps = Partial<{
+  deriveCurrentScrapedStateAndCount: ScrapsContext['deriveCurrentStateAndCount']
+  scraps: Scraps
+  scrapActions: Partial<
+    Omit<ScrapsContext, 'deriveCurrentStateAndCount' | 'scraps'>
+  >
+}>
+
+export function withScraps<P extends WithScrapsBaseProps>(
   Component: React.ComponentType<P>,
 ) {
-  return function ScrapsComponent(
-    props: Omit<P, keyof WrappingComponentBaseProps>,
-  ) {
+  return function ScrapsComponent(props: Omit<P, keyof WithScrapsBaseProps>) {
     return (
       <Context.Consumer>
         {({ deriveCurrentStateAndCount, scraps, ...actions }) => (
