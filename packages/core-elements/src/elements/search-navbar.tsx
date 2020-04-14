@@ -17,7 +17,7 @@ const InputText = styled.input`
 
   ${({ value }) =>
     value
-      ? `padding: 8px 95px 0px 40px;`
+      ? `padding: 0px 95px 0px 40px;`
       : `
       background: url(https://assets.triple.guide/images/btn-com-search@2x.png) no-repeat;
       background-size: 34px 34px;
