@@ -47,8 +47,6 @@ declare global {
   }
 }
 
-type WrappingComponentBaseProps = EventTrackingContextValue
-
 export class EventTrackingProvider extends React.PureComponent<
   EventTrackingProviderProps,
   EventTrackingProviderState
@@ -141,11 +139,13 @@ export function useEventTrackingContext() {
   return React.useContext(Context)
 }
 
-export function withEventTracking<
-  P extends Partial<WrappingComponentBaseProps>
->(Component: ComponentType<P>) {
+export type WithEventTrackingBaseProps = Partial<EventTrackingContextValue>
+
+export function withEventTracking<P extends WithEventTrackingBaseProps>(
+  Component: ComponentType<P>,
+) {
   return function EventTrackingComponent(
-    props: Omit<P, keyof WrappingComponentBaseProps>,
+    props: Omit<P, keyof WithEventTrackingBaseProps>,
   ) {
     return (
       <Context.Consumer>
