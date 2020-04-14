@@ -35,6 +35,7 @@ export type ResourceListElementProps<R = {}> = Partial<
   pricingNote?: string
   pricingDescription?: React.ReactNode
   priceLabelOverride?: string
+  isSoldOut?: boolean
   hideDiscountRate?: boolean
   scrapsCount?: number
   reviewsCount?: number
@@ -79,6 +80,7 @@ export default function ExtendedResourceListElement<R>({
   pricingNote,
   pricingDescription,
   priceLabelOverride,
+  isSoldOut,
   hideDiscountRate,
   scrapsCount,
   reviewsCount,
@@ -126,6 +128,7 @@ export default function ExtendedResourceListElement<R>({
               description={pricingDescription}
               priceLabelOverride={priceLabelOverride}
               hideDiscountRate={hideDiscountRate}
+              isSoldOut={isSoldOut}
             />
           </Container>
         ) : null}

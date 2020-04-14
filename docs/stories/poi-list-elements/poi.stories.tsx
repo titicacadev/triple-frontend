@@ -45,6 +45,7 @@ storiesOf('poi-list-elements | POI', module)
           pricingNote="1박, 세금포함"
           priceLabelOverride={text('pricing custom text', '')}
           pricingDescription={<PricingDescription />}
+          isSoldOut={boolean('판매완료', false)}
           tags={
             idx % 2 === 0
               ? [{ text: '추가 할인쿠폰', color: 'green', emphasized: true }]
