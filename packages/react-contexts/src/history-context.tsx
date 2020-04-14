@@ -300,20 +300,20 @@ export function useHistoryContext() {
   return React.useContext(Context)
 }
 
-interface WrappingComponentBaseProps {
+export type WithHistoryBaseProps = Partial<{
   uriHash: URIHash
-  historyActions: Pick<
-    HistoryContextValue,
-    'back' | 'navigate' | 'push' | 'replace' | 'showTransitionModal'
+  historyActions: Partial<
+    Pick<
+      HistoryContextValue,
+      'back' | 'navigate' | 'push' | 'replace' | 'showTransitionModal'
+    >
   >
-}
+}>
 
-export function withHistory<P extends Partial<WrappingComponentBaseProps>>(
+export function withHistory<P extends WithHistoryBaseProps>(
   Component: ComponentType<P>,
 ) {
-  return function HistoryComponent(
-    props: Omit<P, keyof WrappingComponentBaseProps>,
-  ) {
+  return function HistoryComponent(props: Omit<P, keyof WithHistoryBaseProps>) {
     return (
       <Context.Consumer>
         {({ uriHash, push, replace, back, navigate, showTransitionModal }) => (
