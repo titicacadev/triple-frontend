@@ -8,9 +8,10 @@ const InputText = styled.input`
   border-style: none;
   font-size: 17px;
   text-overflow: ellipsis;
-  padding: 8px 35px 0px 40px;
+  padding: 0 35px 0px 40px;
   white-space: nowrap;
   width: 100%;
+  height: 100%;
   outline: none;
 
   ${({ value }) =>
@@ -30,7 +31,8 @@ const MainNavbarFrame = styled(Navbar.NavbarFrame)`
 
 const Icon = styled(Navbar.Item)<{ visible: boolean }>`
   position: absolute;
-  top: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   margin-right: 0px;
   float: none;
 
