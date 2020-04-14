@@ -76,14 +76,18 @@ export function useUTMContext() {
   return useContext(Context)
 }
 
+export type WithUTMContextBaseProps = Partial<{
+  utmContext: Partial<UTMContextValue>
+}>
+
 /**
  * class 컴포넌트에서 utm context를 inject할 때 사용하는 함수
  * @param Component
  */
-export function withUTMContext<P extends { utmContext: UTMContextValue }>(
+export function withUTMContext<P extends WithUTMContextBaseProps>(
   Component: ComponentType<P>,
 ) {
-  return function UTMComponent(props: Omit<P, 'utmContext'>) {
+  return function UTMComponent(props: Omit<P, keyof WithUTMContextBaseProps>) {
     return (
       <Context.Consumer>
         {(utmContext) => {
