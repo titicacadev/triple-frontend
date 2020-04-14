@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import { getColor } from '@titicaca/color-palette'
 
 import Navbar from './navbar'
 
@@ -27,6 +28,7 @@ const InputText = styled.input`
 const MainNavbarFrame = styled(Navbar.NavbarFrame)`
   height: 58px;
   padding: 12px;
+  border-bottom: 1px solid rgba(${getColor('gray50')});
 `
 
 const Icon = styled(Navbar.Item)<{ visible: boolean }>`
