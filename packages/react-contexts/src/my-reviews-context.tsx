@@ -158,18 +158,17 @@ export function useMyReviewsContext() {
   return React.useContext(Context)
 }
 
-export function withMyReviews<
-  P extends {
-    myReviews?: MyReviewsContextValue['myReviews']
-    myReviewActions?: MyReviewsContextValue['actions']
-    deriveCurrentReviewedStateAndCount?: MyReviewsContextValue['deriveCurrentStateAndCount']
-  }
->(Component: ComponentType<P>) {
+export type WithMyReviewsBaseProps = Partial<{
+  myReviews: MyReviewsContextValue['myReviews']
+  myReviewActions: Partial<MyReviewsContextValue['actions']>
+  deriveCurrentReviewedStateAndCount: MyReviewsContextValue['deriveCurrentStateAndCount']
+}>
+
+export function withMyReviews<P extends WithMyReviewsBaseProps>(
+  Component: ComponentType<P>,
+) {
   return function MyReviewsComponent(
-    props: Omit<
-      P,
-      'myReviews' | 'myReviewActions' | 'deriveCurrentReviewedStateAndCount'
-    >,
+    props: Omit<P, keyof WithMyReviewsBaseProps>,
   ) {
     return (
       <Context.Consumer>
