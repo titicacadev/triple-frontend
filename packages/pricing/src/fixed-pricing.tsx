@@ -16,6 +16,7 @@ export interface FixedPricingProps {
   buttonText?: string
   buttonDisabled?: boolean
   salePrice?: number
+  isSoldOut?: boolean
   priceLabelOverride?: string
   tooltipLabel?: string
   onClick?: (e?: React.SyntheticEvent) => any
@@ -53,6 +54,7 @@ export default function FixedPricing({
   onClick,
   priceLabelOverride,
   onTooltipClick,
+  isSoldOut = false,
 }: FixedPricingProps) {
   const pricingLabel = label ? (
     typeof label === 'string' ? (
@@ -96,7 +98,12 @@ export default function FixedPricing({
         <Container position="relative" clearing>
           <FloatedPricingContainer floated="left">
             {pricingLabel}
-            <Text size="huge" bold margin={{ bottom: 3 }}>
+            <Text
+              size="huge"
+              bold
+              margin={{ bottom: 3 }}
+              color={isSoldOut ? 'gray300' : 'gray'}
+            >
               {priceLabelOverride || `${formatNumber(salePrice)}원`}
             </Text>
             {pricingDescription}
