@@ -14,9 +14,13 @@ const Context = createContext<DeviceContextValue>({
 
 export const DeviceProvider = Context.Provider
 
-export function withDeviceContext<
-  P extends { deviceContext: DeviceContextValue }
->(Component: ComponentType<P>) {
+export type WithDeviceContextBaseProps = Partial<{
+  deviceContext: Partial<DeviceContextValue>
+}>
+
+export function withDeviceContext<P extends WithDeviceContextBaseProps>(
+  Component: ComponentType<P>,
+) {
   return function WithDeviceComponent(props: Omit<P, 'deviceContext'>) {
     return (
       <Context.Consumer>
