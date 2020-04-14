@@ -31,7 +31,7 @@ type MyReviewSet = {
   [key: string]: boolean
 }
 
-interface MyReviewsContextProps {
+interface MyReviewsContextValue {
   myReviews: MyReviewSet
   actions: {
     deleteMyReview: (params: { id: string }) => void
@@ -42,7 +42,7 @@ interface MyReviewsContextProps {
 
 const NOOP = () => {}
 
-const Context = React.createContext<MyReviewsContextProps>({
+const Context = React.createContext<MyReviewsContextValue>({
   myReviews: {},
   actions: {
     deleteMyReview: NOOP,
@@ -160,9 +160,9 @@ export function useMyReviewsContext() {
 
 export function withMyReviews<
   P extends {
-    myReviews?: MyReviewsContextProps['myReviews']
-    myReviewActions?: MyReviewsContextProps['actions']
-    deriveCurrentReviewedStateAndCount?: MyReviewsContextProps['deriveCurrentStateAndCount']
+    myReviews?: MyReviewsContextValue['myReviews']
+    myReviewActions?: MyReviewsContextValue['actions']
+    deriveCurrentReviewedStateAndCount?: MyReviewsContextValue['deriveCurrentStateAndCount']
   }
 >(Component: ComponentType<P>) {
   return function MyReviewsComponent(
