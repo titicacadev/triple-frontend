@@ -54,7 +54,7 @@ export const Overlay = styled.div<{
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 0;
+  z-index: 10;
   background-color: rgba(58, 58, 58, 0.7);
   opacity: 0;
   pointer-events: none;
@@ -99,7 +99,6 @@ export const Overlay = styled.div<{
   }
 
   &.fade-enter-active {
-    z-index: 10;
     opacity: 1;
     transition: opacity 10ms;
     pointer-events: auto;
@@ -120,7 +119,6 @@ export const Overlay = styled.div<{
 
   &.fade-appear,
   &.fade-enter-done {
-    z-index: 10;
     opacity: 1;
     pointer-events: auto;
 
@@ -137,7 +135,6 @@ export const Overlay = styled.div<{
   }
 
   &.fade-exit {
-    z-index: 10;
     opacity: 1;
 
     ${Sheet} {
@@ -153,7 +150,6 @@ export const Overlay = styled.div<{
   }
 
   &.fade-exit-active {
-    z-index: 0;
     opacity: 0;
     transition: opacity 120ms;
 
