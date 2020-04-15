@@ -100,7 +100,7 @@ function DiscountRate({
   const rate = Math.floor(((basePrice - salePrice) / basePrice) * 100)
 
   return rate > 0 ? (
-    <Text color="red" size="big" margin={{ right: 5 }} bold inline>
+    <Text color="red" size={20} margin={{ right: 5 }} bold inline>
       {rate}%
     </Text>
   ) : null
@@ -156,7 +156,7 @@ function RichPricing({
           <DiscountRate basePrice={basePrice as number} salePrice={salePrice} /> // HACK: hasBasePrice가 true면 basePrice는 무조건 number이다.
         ) : null}
 
-        <Text size="big" bold inline color={isSoldOut ? 'gray300' : 'gray'}>
+        <Text size={20} bold inline color={isSoldOut ? 'gray300' : 'gray'}>
           {priceLabelOverride || `${formatNumber(salePrice)}원`}
         </Text>
       </PricingContainer>
