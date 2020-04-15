@@ -64,7 +64,7 @@ describe('Label', () => {
 
     cy.get('@smallPromo')
       .should('have.css', 'border-radius')
-      .and('eq', '1px')
+      .and('eq', '2px')
 
     cy.get('@smallPromo')
       .should('have.css', 'height')
