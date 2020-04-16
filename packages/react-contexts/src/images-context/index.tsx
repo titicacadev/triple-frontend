@@ -143,7 +143,7 @@ export function useImagesContext() {
   return React.useContext(Context)
 }
 
-export type WithImagesBaseProps = {
+export interface WithImagesBaseProps {
   images: ImagesContext['images']
   totalImagesCount: ImagesContext['total']
   imagesActions: ImagesContext['actions']

@@ -301,7 +301,7 @@ export function useHistoryContext() {
   return React.useContext(Context)
 }
 
-export type WithHistoryBaseProps = {
+export interface WithHistoryBaseProps {
   uriHash: URIHash
   historyActions: Pick<
     HistoryContextValue,

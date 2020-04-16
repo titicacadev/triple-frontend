@@ -15,7 +15,7 @@ const Context = createContext<DeviceContextValue>({
 
 export const DeviceProvider = Context.Provider
 
-export type WithDeviceContextBaseProps = {
+export interface WithDeviceContextBaseProps {
   deviceContext: DeviceContextValue
 }
 

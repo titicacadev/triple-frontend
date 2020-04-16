@@ -159,7 +159,7 @@ export function useMyReviewsContext() {
   return React.useContext(Context)
 }
 
-export type WithMyReviewsBaseProps = {
+export interface WithMyReviewsBaseProps {
   myReviews: MyReviewsContextValue['myReviews']
   myReviewActions: MyReviewsContextValue['actions']
   deriveCurrentReviewedStateAndCount: MyReviewsContextValue['deriveCurrentStateAndCount']

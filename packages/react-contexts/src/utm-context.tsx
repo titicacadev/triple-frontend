@@ -77,7 +77,7 @@ export function useUTMContext() {
   return useContext(Context)
 }
 
-export type WithUTMContextBaseProps = {
+export interface WithUTMContextBaseProps {
   utmContext: UTMContextValue
 }
 
