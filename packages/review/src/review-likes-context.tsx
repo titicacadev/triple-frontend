@@ -5,6 +5,7 @@ import React, {
   createContext,
   ComponentType,
 } from 'react'
+import { DeepPartial } from 'utility-types'
 
 const NOOP = () => {}
 
@@ -122,16 +123,16 @@ export function useReviewLikesContext() {
   return React.useContext(Context)
 }
 
-interface WrappedComponentBaseProps {
-  deriveCurrentLikedStateAndCount?: ReviewLikesContextProps['deriveCurrentStateAndCount']
-  updateLikedStatus?: ReviewLikesContextProps['updateLikedStatus']
+export interface WithReviewLikesBaseProps {
+  deriveCurrentLikedStateAndCount: ReviewLikesContextProps['deriveCurrentStateAndCount']
+  updateLikedStatus: ReviewLikesContextProps['updateLikedStatus']
 }
 
-export function withReviewLikes<P extends WrappedComponentBaseProps>(
-  Component: ComponentType<P>,
-) {
+export function withReviewLikes<
+  P extends DeepPartial<WithReviewLikesBaseProps>
+>(Component: ComponentType<P>) {
   return function ReviewLikesComponent(
-    props: Omit<P, keyof WrappedComponentBaseProps>,
+    props: Omit<P, keyof WithReviewLikesBaseProps>,
   ) {
     return (
       <Context.Consumer>
