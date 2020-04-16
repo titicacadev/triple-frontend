@@ -5,6 +5,7 @@ import {
   useHistoryContext,
   useEventTrackingContext,
 } from '@titicaca/react-contexts'
+import { DeepPartial } from 'utility-types'
 
 import Actions from './actions'
 import Modal from './modal-base'
@@ -152,8 +153,12 @@ export function useTransitionModal(): { show: ShowTransitionModal } {
   return { show: (type) => push(`transition.${type}`) }
 }
 
+export type WithTransitionModalBaseProps = {
+  showTransitionModal: ShowTransitionModal
+}
+
 export function withTransitionModal<
-  P extends { showTransitionModal: ShowTransitionModal }
+  P extends DeepPartial<WithTransitionModalBaseProps>
 >(Component: ComponentType<P>): FC<Omit<P, 'showTransitionModal'>> {
   return function TransitionModalComponent(props) {
     const { push } = useHistoryContext()
