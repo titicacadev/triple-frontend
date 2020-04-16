@@ -6,7 +6,7 @@ import { hasAccessibleTripleNativeClients } from '@titicaca/triple-web-to-native
 
 type URIHash = string
 
-interface OutlinkParams {
+export interface OutlinkParams {
   target?: string
   title?: string
   [key: string]: any
