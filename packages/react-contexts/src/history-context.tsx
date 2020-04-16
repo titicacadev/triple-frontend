@@ -6,19 +6,30 @@ import { hasAccessibleTripleNativeClients } from '@titicaca/triple-web-to-native
 
 type URIHash = string
 
-interface HistoryContext {
+interface OutlinkParams {
+  target?: string
+  title?: string
+  [key: string]: any
+}
+
+type URLElement = ReturnType<typeof parseUrl>
+
+interface HistoryContextValue {
   uriHash: URIHash
-  push: any
-  replace: any
-  back: any
-  navigate: any
-  openWindow: (href: string, params?: { target?: string }) => void
-  showTransitionModal: any
+  push: (hash: string, config?: { useRouter?: boolean }) => void
+  replace: (hash: string, config?: { useRouter?: boolean }) => void
+  back: () => Promise<boolean> | void
+  navigate: (
+    rawHref: string,
+    params?: OutlinkParams,
+  ) => string | undefined | void
+  openWindow: (href: string, params?: OutlinkParams) => void
+  showTransitionModal: () => void
 }
 
 const NOOP = () => {}
 
-const Context = React.createContext<HistoryContext>({
+const Context = React.createContext<HistoryContextValue>({
   uriHash: '',
   push: NOOP,
   replace: NOOP,
@@ -105,8 +116,10 @@ export function HistoryProvider({
     }
   }, [onHashChange]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const replace = React.useCallback(
-    (hash, { useRouter = isAndroid } = {}) => {
+  const replace = React.useCallback<HistoryContextValue['replace']>(
+    (hash, config = {}) => {
+      const { useRouter = isAndroid } = config
+
       HASH_HISTORIES.pop()
       HASH_HISTORIES.push({ hash, useRouter })
 
@@ -121,8 +134,10 @@ export function HistoryProvider({
     [isAndroid],
   )
 
-  const push = React.useCallback(
-    (hash, { useRouter = isAndroid } = {}) => {
+  const push = React.useCallback<HistoryContextValue['push']>(
+    (hash, config = {}) => {
+      const { useRouter = isAndroid } = config
+
       HASH_HISTORIES.push({ hash, useRouter })
 
       setUriHash(hash)
@@ -136,7 +151,7 @@ export function HistoryProvider({
     [isAndroid],
   )
 
-  const back = React.useCallback(() => {
+  const back = React.useCallback<HistoryContextValue['back']>(() => {
     const { useRouter } = HASH_HISTORIES.pop() || { useRouter: false }
 
     setUriHash(HASH_HISTORIES[HASH_HISTORIES.length - 1]?.hash || '')
@@ -148,9 +163,15 @@ export function HistoryProvider({
     }
   }, [])
 
-  const navigateOnPublic = React.useCallback(
+  const navigateOnPublic = React.useCallback<
+    (url: URLElement) => string | undefined
+  >(
     ({ href, scheme, path, query, hash }) => {
       if (scheme === 'http' || scheme === 'https') {
+        if (!href) {
+          throw new Error('href is undefined')
+        }
+
         return (window.location.href = href)
       } else if (path === '/outlink') {
         const { url: encodedUrl } = qs.parse(query || '')
@@ -180,7 +201,7 @@ export function HistoryProvider({
             webUrlBase,
           ))
         }
-      } else if (targetPageAvailable(path)) {
+      } else if (path && targetPageAvailable(path)) {
         return (window.location.href = generateUrl(
           { path, query, hash },
           webUrlBase,
@@ -192,8 +213,10 @@ export function HistoryProvider({
     [push, transitionModalHash, webUrlBase],
   )
 
-  const navigateInApp = React.useCallback(
-    ({ href, scheme }, params?: { target: unknown }) => {
+  const navigateInApp = React.useCallback<
+    (url: URLElement, params?: OutlinkParams) => void
+  >(
+    ({ href, scheme }, params) => {
       if (scheme === 'http' || scheme === 'https') {
         const outlinkParams = qs.stringify({
           url: href,
@@ -208,13 +231,13 @@ export function HistoryProvider({
     [appUrlScheme],
   )
 
-  const navigate = React.useCallback(
+  const navigate = React.useCallback<HistoryContextValue['navigate']>(
     (rawHref, params) =>
       (isPublic ? navigateOnPublic : navigateInApp)(parseUrl(rawHref), params),
     [isPublic, navigateInApp, navigateOnPublic],
   )
 
-  const openWindow: HistoryContext['openWindow'] = React.useCallback(
+  const openWindow = React.useCallback<HistoryContextValue['openWindow']>(
     (rawHref, params) => {
       if (!hasAccessibleTripleNativeClients()) {
         window.open(rawHref)
@@ -249,12 +272,15 @@ export function HistoryProvider({
     [appUrlScheme],
   )
 
-  const showTransitionModal = React.useCallback(
-    () => isPublic && transitionModalHash && push(transitionModalHash),
-    [push, transitionModalHash, isPublic],
-  )
+  const showTransitionModal = React.useCallback<
+    HistoryContextValue['showTransitionModal']
+  >(() => isPublic && transitionModalHash && push(transitionModalHash), [
+    push,
+    transitionModalHash,
+    isPublic,
+  ])
 
-  const value: HistoryContext = React.useMemo(
+  const value = React.useMemo<HistoryContextValue>(
     () => ({
       uriHash,
       push,
@@ -277,7 +303,7 @@ export function useHistoryContext() {
 interface WrappingComponentBaseProps {
   uriHash: URIHash
   historyActions: Pick<
-    HistoryContext,
+    HistoryContextValue,
     'back' | 'navigate' | 'push' | 'replace' | 'showTransitionModal'
   >
 }
