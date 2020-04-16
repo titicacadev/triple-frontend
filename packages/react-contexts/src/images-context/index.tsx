@@ -6,6 +6,7 @@ import React, {
   useReducer,
 } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
+import { DeepPartial } from 'utility-types'
 
 import reducer, {
   loadImagesRequest,
@@ -142,13 +143,15 @@ export function useImagesContext() {
   return React.useContext(Context)
 }
 
-export function withImages<
-  P extends {
-    images?: ImagesContext['images']
-    totalImagesCount?: ImagesContext['total']
-    imagesActions?: ImagesContext['actions']
-  }
->(Component: ComponentType<P>) {
+export type WithImagesBaseProps = {
+  images: ImagesContext['images']
+  totalImagesCount: ImagesContext['total']
+  imagesActions: ImagesContext['actions']
+}
+
+export function withImages<P extends DeepPartial<WithImagesBaseProps>>(
+  Component: ComponentType<P>,
+) {
   return function ImagesComponent(
     props: Omit<P, 'images' | 'totalImagesCount' | 'imagesActions'>,
   ) {
