@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react'
+import React, { createContext, useContext, FC, ComponentType } from 'react'
 import { UAParser } from 'ua-parser-js'
 import { DeepPartial } from 'utility-types'
 
@@ -42,8 +42,8 @@ export interface WithUserAgentBaseProps {
 }
 
 export function withUserAgent<P extends DeepPartial<WithUserAgentBaseProps>>(
-  Component: React.ComponentType<P>,
-): React.ComponentType<Omit<P, keyof WithUserAgentBaseProps>> {
+  Component: ComponentType<P>,
+): FC<Omit<P, keyof WithUserAgentBaseProps>> {
   return function UserAgentComponent(props) {
     return (
       <Consumer>
