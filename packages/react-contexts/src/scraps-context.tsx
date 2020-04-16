@@ -1,4 +1,5 @@
 import React from 'react'
+import { DeepPartial } from 'utility-types'
 
 type Scraps = { [key: string]: boolean }
 type Target = { id: string; type: unknown }
@@ -226,15 +227,13 @@ export function useScrapsContext() {
   return React.useContext(Context)
 }
 
-export type WithScrapsBaseProps = Partial<{
+export type WithScrapsBaseProps = {
   deriveCurrentScrapedStateAndCount: ScrapsContext['deriveCurrentStateAndCount']
   scraps: Scraps
-  scrapActions: Partial<
-    Omit<ScrapsContext, 'deriveCurrentStateAndCount' | 'scraps'>
-  >
-}>
+  scrapActions: Omit<ScrapsContext, 'deriveCurrentStateAndCount' | 'scraps'>
+}
 
-export function withScraps<P extends WithScrapsBaseProps>(
+export function withScraps<P extends DeepPartial<WithScrapsBaseProps>>(
   Component: React.ComponentType<P>,
 ) {
   return function ScrapsComponent(props: Omit<P, keyof WithScrapsBaseProps>) {

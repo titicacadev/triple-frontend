@@ -1,4 +1,5 @@
 import React, { createContext, useContext, ComponentType } from 'react'
+import { DeepPartial } from 'utility-types'
 
 interface UTMQuery {
   utm_source?: string // eslint-disable-line @typescript-eslint/camelcase
@@ -76,15 +77,15 @@ export function useUTMContext() {
   return useContext(Context)
 }
 
-export type WithUTMContextBaseProps = Partial<{
-  utmContext: Partial<UTMContextValue>
-}>
+export type WithUTMContextBaseProps = {
+  utmContext: UTMContextValue
+}
 
 /**
  * class 컴포넌트에서 utm context를 inject할 때 사용하는 함수
  * @param Component
  */
-export function withUTMContext<P extends WithUTMContextBaseProps>(
+export function withUTMContext<P extends DeepPartial<WithUTMContextBaseProps>>(
   Component: ComponentType<P>,
 ) {
   return function UTMComponent(props: Omit<P, keyof WithUTMContextBaseProps>) {

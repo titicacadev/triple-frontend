@@ -7,6 +7,7 @@ import React, {
   useMemo,
 } from 'react'
 import humps from 'humps'
+import { DeepPartial } from 'utility-types'
 
 type FetchReview = ({
   resourceId,
@@ -158,13 +159,13 @@ export function useMyReviewsContext() {
   return React.useContext(Context)
 }
 
-export type WithMyReviewsBaseProps = Partial<{
+export type WithMyReviewsBaseProps = {
   myReviews: MyReviewsContextValue['myReviews']
-  myReviewActions: Partial<MyReviewsContextValue['actions']>
+  myReviewActions: MyReviewsContextValue['actions']
   deriveCurrentReviewedStateAndCount: MyReviewsContextValue['deriveCurrentStateAndCount']
-}>
+}
 
-export function withMyReviews<P extends WithMyReviewsBaseProps>(
+export function withMyReviews<P extends DeepPartial<WithMyReviewsBaseProps>>(
   Component: ComponentType<P>,
 ) {
   return function MyReviewsComponent(
