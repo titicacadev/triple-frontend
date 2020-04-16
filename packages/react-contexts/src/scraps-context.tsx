@@ -227,7 +227,7 @@ export function useScrapsContext() {
   return React.useContext(Context)
 }
 
-export type WithScrapsBaseProps = {
+export interface WithScrapsBaseProps {
   deriveCurrentScrapedStateAndCount: ScrapsContext['deriveCurrentStateAndCount']
   scraps: Scraps
   scrapActions: Omit<ScrapsContext, 'deriveCurrentStateAndCount' | 'scraps'>

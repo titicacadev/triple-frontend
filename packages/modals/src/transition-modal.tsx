@@ -153,7 +153,7 @@ export function useTransitionModal(): { show: ShowTransitionModal } {
   return { show: (type) => push(`transition.${type}`) }
 }
 
-export type WithTransitionModalBaseProps = {
+export interface WithTransitionModalBaseProps {
   showTransitionModal: ShowTransitionModal
 }
 

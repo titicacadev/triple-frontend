@@ -32,7 +32,7 @@ const Context = createContext<UserAgentContextValue>({
 })
 const { Provider, Consumer } = Context
 
-export type WithUserAgentBaseProps = {
+export interface WithUserAgentBaseProps {
   userAgent: {
     isPublic: boolean
     isMobile: boolean
