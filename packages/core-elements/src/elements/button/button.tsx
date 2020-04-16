@@ -14,7 +14,7 @@ const ICON_BUTTON_URLS: { [key: string]: string } = {
   starEmpty: 'https://assets.triple.guide/images/btn-end-review@4x.png',
   starFilled: 'https://assets.triple.guide/images/btn-end-review-on@4x.png',
   map: 'https://assets.triple.guide/images/btn-end-search-place@2x.png',
-  share: 'https://assets.triple.guide/images/btn-com-share@2x.png',
+  share: 'https://assets.triple.guide/images/btn-com-share@3x.png',
   schedule: 'https://assets.triple.guide/images/btn-end-schedule@4x.png',
 }
 
