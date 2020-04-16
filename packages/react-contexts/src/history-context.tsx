@@ -3,6 +3,7 @@ import Router from 'next/router'
 import qs from 'qs'
 import { parseUrl, generateUrl } from '@titicaca/view-utilities'
 import { hasAccessibleTripleNativeClients } from '@titicaca/triple-web-to-native-interfaces'
+import { DeepPartial } from 'utility-types'
 
 type URIHash = string
 
@@ -300,17 +301,15 @@ export function useHistoryContext() {
   return React.useContext(Context)
 }
 
-export type WithHistoryBaseProps = Partial<{
+export type WithHistoryBaseProps = {
   uriHash: URIHash
-  historyActions: Partial<
-    Pick<
-      HistoryContextValue,
-      'back' | 'navigate' | 'push' | 'replace' | 'showTransitionModal'
-    >
+  historyActions: Pick<
+    HistoryContextValue,
+    'back' | 'navigate' | 'push' | 'replace' | 'showTransitionModal'
   >
-}>
+}
 
-export function withHistory<P extends WithHistoryBaseProps>(
+export function withHistory<P extends DeepPartial<WithHistoryBaseProps>>(
   Component: ComponentType<P>,
 ) {
   return function HistoryComponent(props: Omit<P, keyof WithHistoryBaseProps>) {

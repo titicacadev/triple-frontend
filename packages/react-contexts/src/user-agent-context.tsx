@@ -1,5 +1,6 @@
 import React, { createContext, useContext } from 'react'
 import { UAParser } from 'ua-parser-js'
+import { DeepPartial } from 'utility-types'
 
 enum AppName {
   iOS = 'Triple-iOS',
@@ -31,16 +32,16 @@ const Context = createContext<UserAgentContextValue>({
 })
 const { Provider, Consumer } = Context
 
-export type WithUserAgentBaseProps = Partial<{
-  userAgent: Partial<{
+export type WithUserAgentBaseProps = {
+  userAgent: {
     isPublic: boolean
     isMobile: boolean
-    os: Partial<OS>
-    app: Partial<App>
-  }>
-}>
+    os: OS
+    app: App
+  }
+}
 
-export function withUserAgent<P extends WithUserAgentBaseProps>(
+export function withUserAgent<P extends DeepPartial<WithUserAgentBaseProps>>(
   Component: React.ComponentType<P>,
 ): React.ComponentType<Omit<P, keyof WithUserAgentBaseProps>> {
   return function UserAgentComponent(props) {

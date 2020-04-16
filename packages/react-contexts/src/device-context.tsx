@@ -1,4 +1,5 @@
 import React, { createContext, ComponentType, useContext } from 'react'
+import { DeepPartial } from 'utility-types'
 
 interface DeviceContextValue {
   inRegion: boolean
@@ -14,13 +15,13 @@ const Context = createContext<DeviceContextValue>({
 
 export const DeviceProvider = Context.Provider
 
-export type WithDeviceContextBaseProps = Partial<{
-  deviceContext: Partial<DeviceContextValue>
-}>
+export type WithDeviceContextBaseProps = {
+  deviceContext: DeviceContextValue
+}
 
-export function withDeviceContext<P extends WithDeviceContextBaseProps>(
-  Component: ComponentType<P>,
-) {
+export function withDeviceContext<
+  P extends DeepPartial<WithDeviceContextBaseProps>
+>(Component: ComponentType<P>) {
   return function WithDeviceComponent(props: Omit<P, 'deviceContext'>) {
     return (
       <Context.Consumer>

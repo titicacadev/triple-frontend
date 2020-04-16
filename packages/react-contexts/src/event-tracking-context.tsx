@@ -1,4 +1,5 @@
 import React, { ComponentType } from 'react'
+import { DeepPartial } from 'utility-types'
 
 interface FAParams {
   category: string
@@ -139,11 +140,11 @@ export function useEventTrackingContext() {
   return React.useContext(Context)
 }
 
-export type WithEventTrackingBaseProps = Partial<EventTrackingContextValue>
+export type WithEventTrackingBaseProps = EventTrackingContextValue
 
-export function withEventTracking<P extends WithEventTrackingBaseProps>(
-  Component: ComponentType<P>,
-) {
+export function withEventTracking<
+  P extends DeepPartial<WithEventTrackingBaseProps>
+>(Component: ComponentType<P>) {
   return function EventTrackingComponent(
     props: Omit<P, keyof WithEventTrackingBaseProps>,
   ) {
