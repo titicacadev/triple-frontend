@@ -9,7 +9,7 @@ const InputText = styled.input`
   border-style: none;
   font-size: 17px;
   text-overflow: ellipsis;
-  padding: 0 35px 0px 40px;
+  padding: 2px 35px 0px 40px;
   white-space: nowrap;
   width: 100%;
   height: 100%;
@@ -17,7 +17,7 @@ const InputText = styled.input`
 
   ${({ value }) =>
     value
-      ? `padding: 0px 95px 0px 40px;`
+      ? `padding: 2px 95px 0px 40px;`
       : `
       background: url(https://assets.triple.guide/images/btn-com-search@2x.png) no-repeat;
       background-size: 34px 34px;
