@@ -1,3 +1,16 @@
+# 1.16.0 (2020-04-16)
+
+- `common` context HOC 타이핑 개선 (#649)
+- `core-elements` 2배 이미지들을 3배 이미지로 변경합니다 (#657)
+- `core-elements` small size label 의 r 값을 2로 변경합니다 (#654)
+- `action-sheet` action sheet dimmed의 z-index 를 10으로 유지합니다 (#655)
+- `search-navbar` input 의 스타일을 수정하여 꿈틀거림을 방지합니다 (#647)
+- `directions-finder` 전화하기 클릭시 navigate 대신 window href 를 이용하도록 변경 (#645)
+- `react-context` withUserAgent 함수 타이핑 개선 (#643)
+- `react-context` history context 타이핑 개선 (#658)
+- `search-web` input ref 를 내부에 추가합니다. 삭제시 focus 될 수 있도록 합니다 (#652)
+- `pricing, poi, resource-list-element` isSoldOut Props 을 추가하여 판매완료 케이스를 대응합니다 (#650)
+
 # 1.15.0 (2020-04-10)
 
 - `location-properties` 패키지에 `onCopy` 핸들러 추가 (#641)
