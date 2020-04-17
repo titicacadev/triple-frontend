@@ -28,7 +28,7 @@ const ListBase = styled.ul<ListBaseProp & DividerOptions>`
 
   ${marginMixin}
 
-  li:not(:first-child) {
+  > li:not(:first-child) {
     ${({ divided, verticalGap = 0 }) => css`
       margin-top: ${divided ? verticalGap / 2 : verticalGap}px;
     `};
@@ -45,7 +45,7 @@ const ListBase = styled.ul<ListBaseProp & DividerOptions>`
     css`
       ${clearing &&
         css`
-          li:after {
+          > li:after {
             content: '';
             display: block;
             clear: both;
@@ -53,7 +53,7 @@ const ListBase = styled.ul<ListBaseProp & DividerOptions>`
         `}
       ${divided
         ? css`
-            li:not(:last-child):after {
+            > li:not(:last-child):after {
               content: '';
               display: block;
               height: 0;
@@ -64,7 +64,7 @@ const ListBase = styled.ul<ListBaseProp & DividerOptions>`
           `
         : !clearing &&
           css`
-            li:not(:last-child):after {
+            > li:not(:last-child):after {
               display: none;
             }
           `}
