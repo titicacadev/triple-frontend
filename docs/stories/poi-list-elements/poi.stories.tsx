@@ -33,6 +33,15 @@ storiesOf('poi-list-elements | POI', module)
       }}
     />
   ))
+  .add('POI 리스트 (as div)', () => (
+    <PoiListElement
+      as={text('as', 'div')}
+      poi={POI}
+      resourceScraps={{
+        [POI.id]: boolean('저장', false),
+      }}
+    />
+  ))
   .add('호텔 리스트', () => (
     <List divided>
       {(HOTELS as HotelData[]).map((hotel, idx) => (

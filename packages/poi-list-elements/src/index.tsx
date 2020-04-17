@@ -9,7 +9,9 @@ import {
   CarouselSizes,
   FrameRatioAndSizes,
 } from '@titicaca/core-elements'
-import ExtendedResourceListElement from '@titicaca/resource-list-element'
+import ExtendedResourceListElement, {
+  ResourceListElementProps,
+} from '@titicaca/resource-list-element'
 import ScrapButton, { ScrapButtonProps } from '@titicaca/scrap-button'
 import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
 import { ListingPOI, ListingHotel } from '@titicaca/type-definitions'
@@ -35,12 +37,17 @@ interface PoiCarouselElementProps<T extends ListingPOI>
   imageFrame?: FrameRatioAndSizes
 }
 
-interface CompactPoiListElementProps<T extends ListingPOI>
+interface CompactPoiListElementBaseProps<T extends ListingPOI>
   extends POIListElementBaseProps<T> {
   actionButtonElement?: ActionButtonElement
 }
 
-interface ExtendedPoiListElementProps<T extends ListingPOI>
+type CompactPoiListElementProps<
+  T extends ListingPOI
+> = CompactPoiListElementBaseProps<T> &
+  Partial<Pick<Parameters<typeof ResourceListItem>['0'], 'as'>>
+
+interface ExtendedPoiListElementBaseProps<T extends ListingPOI>
   extends POIListElementBaseProps<T> {
   tags?: [{ text: string; color: LabelColor; emphasized: boolean }]
   pricingNote?: string
@@ -52,6 +59,11 @@ interface ExtendedPoiListElementProps<T extends ListingPOI>
   distance?: string | number
   distanceSuffix?: string
 }
+
+type ExtendedPoiListElementProps<
+  T extends ListingPOI
+> = ExtendedPoiListElementBaseProps<T> &
+  Partial<Pick<ResourceListElementProps<T>, 'as'>>
 
 export type PoiListElementProps<T extends ListingPOI> =
   | ({ compact: true } & CompactPoiListElementProps<T>)
@@ -265,6 +277,7 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
         hideDiscountRate,
         distance: distanceOverride,
         distanceSuffix,
+        as,
       },
     } = this
 
@@ -313,6 +326,7 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
 
     return (
       <ExtendedResourceListElement
+        as={as}
         scraped={scraped}
         resource={this.props.poi}
         onScrapedChange={onScrapedChange}
