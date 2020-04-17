@@ -30,6 +30,8 @@ export enum ColorSet {
   azul = '31, 87, 250, 1',
   azul500 = '31, 87, 250, 0.5',
   teal = '10, 219, 143, 1',
+  teal100 = '10, 219, 143, 0.1',
+  teal900 = '10, 219, 143, 0.9',
 }
 
 export type Color = keyof typeof ColorSet
