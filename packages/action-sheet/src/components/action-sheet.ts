@@ -27,6 +27,7 @@ export const ContentContainer = styled.div<{
   ${({ maxContentHeight }) =>
     maxContentHeight ? `max-height: ${unit(maxContentHeight)};` : ''}
   overflow: auto;
+  user-select: none;
 
   ::-webkit-scrollbar {
     display: none;

@@ -22,6 +22,7 @@ const Box = styled.div`
   border-radius: 6px;
   background-color: #fff;
   margin: 0;
+  user-select: none;
 `
 
 const Actions = styled.div<{ children?: any }>`
