@@ -111,6 +111,18 @@ storiesOf('Core-Elements | Navbar', module)
       <Navbar.Item floated="right" icon={'more'} />
     </Navbar>
   ))
+  .add('backgroundColor="azul" 적용', () => (
+    <Navbar borderless backgroundColor="azul" title="컬러가 적용된 Navbar">
+      <Navbar.Item icon={'back'} />
+      <Navbar.Item floated="right" icon={'more'} />
+    </Navbar>
+  ))
+  .add('backgroundColor="teal" 적용', () => (
+    <Navbar borderless backgroundColor="teal" title="컬러가 적용된 Navbar">
+      <Navbar.Item icon={'back'} />
+      <Navbar.Item floated="right" icon={'more'} />
+    </Navbar>
+  ))
   .add('검색', () => (
     <SearchNavbar
       inputPlaceholder={'“호텔예약” 도시이름으로 검색'}
