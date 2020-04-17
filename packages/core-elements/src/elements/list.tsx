@@ -59,7 +59,7 @@ const ListBase = styled.ul<ListBaseProp & DividerOptions>`
               height: 0;
               overflow: hidden;
               border-bottom: solid ${dividerWeight}px ${dividerColor};
-              margin: ${verticalGap}px 0 ${verticalGap}px 0;
+              margin: ${verticalGap / 2}px 0 ${verticalGap / 2}px 0;
             }
           `
         : !clearing &&
