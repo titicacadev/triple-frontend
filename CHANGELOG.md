@@ -1,3 +1,10 @@
+# 1.16.1 (2020-04-17)
+
+- `core-elements` List divider의 default style을 수정합니다 (#662)
+- `common` PR canary release 시 올바른 커밋을 fetch합니다 (#663)
+- `pricing` 잘못된 색상을 수정합니다 (#664)
+- `modal`, `popup`, `action-sheet` user-select를 none으로 변경합니다 (#666)
+
 # 1.16.0 (2020-04-16)
 
 - `common` context HOC 타이핑 개선 (#649)
