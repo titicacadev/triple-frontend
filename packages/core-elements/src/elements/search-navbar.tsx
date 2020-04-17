@@ -19,7 +19,7 @@ const InputText = styled.input`
     value
       ? `padding: 2px 95px 0px 40px;`
       : `
-      background: url(https://assets.triple.guide/images/btn-com-search@2x.png) no-repeat;
+      background: url(https://assets.triple.guide/images/btn-com-search@3x.png) no-repeat;
       background-size: 34px 34px;
       background-position: 100% 0;
   `}
