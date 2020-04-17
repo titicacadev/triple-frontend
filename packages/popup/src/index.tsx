@@ -18,6 +18,7 @@ const PopupContainer = styled.div`
   right: 0;
   background-color: #fff;
   z-index: 10;
+  user-select: none;
 
   transition: all 300ms ease-out;
   transform: translateY(100%);
