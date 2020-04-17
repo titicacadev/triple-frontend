@@ -22,7 +22,7 @@ export class ProductListElement<T extends Product> extends React.PureComponent<
     resourceScraps?: { [key: string]: boolean }
   } & Pick<
     ResourceListElementProps<T>,
-    'reviewsCount' | 'reviewsRating' | 'onClick' | 'onScrapedChange'
+    'reviewsCount' | 'reviewsRating' | 'onClick' | 'onScrapedChange' | 'as'
   >
 > {
   render() {
@@ -36,6 +36,7 @@ export class ProductListElement<T extends Product> extends React.PureComponent<
         onClick,
         onScrapedChange,
         resourceScraps,
+        as,
       },
     } = this
 
@@ -59,6 +60,7 @@ export class ProductListElement<T extends Product> extends React.PureComponent<
         scrapsCount={scrapsCount}
         onScrapedChange={onScrapedChange}
         onClick={onClick}
+        as={as}
       />
     )
   }
