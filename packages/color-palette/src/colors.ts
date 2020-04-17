@@ -25,6 +25,11 @@ export enum ColorSet {
   emerald = '11, 208, 153, 1',
   white = '255, 255, 255, 1',
   white600 = '255, 255, 255, 0.6',
+
+  /** genie */
+  azul = '31, 87, 250, 1',
+  azul500 = '31, 87, 250, 0.5',
+  teal = '10, 219, 143, 1',
 }
 
 export type Color = keyof typeof ColorSet
