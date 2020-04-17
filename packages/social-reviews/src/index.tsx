@@ -36,7 +36,7 @@ export default function SocialReviews({
   return (
     <Section anchor="external-links" {...props}>
       <H1>{t('common:externalLinks', '소셜 리뷰')}</H1>
-      <List divided margin={{ top: 10 }}>
+      <List divided clearing margin={{ top: 10 }}>
         {socialReviews.map(
           ({ imageUrl, publisher, title, url }: SocialReview, i) => (
             <SocialReviewEntry
@@ -51,7 +51,7 @@ export default function SocialReviews({
                 floated="right"
                 width={60}
                 margin={{ left: 20 }}
-                padding={{ top: 20 }}
+                padding={{ top: 20, bottom: 20 }}
               >
                 <Image src={imageUrl} frame="big" borderRadius={4} />
               </Container>
