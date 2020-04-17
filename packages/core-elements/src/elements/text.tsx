@@ -147,15 +147,14 @@ const TextBase = styled.div<TextBaseProps>`
 
   ${({ strikethrough }) =>
     strikethrough &&
-    css<{ color?: string; alpha?: number }>`
+    css<{ color?: Color; alpha?: number }>`
       position: relative;
       &:after {
         position: absolute;
         left: 0;
         top: 45%;
         height: 1px;
-        background: ${({ color = 'gray' as Color, alpha }) =>
-          rgba({ color, alpha })};
+        background: ${({ color = 'gray' }) => `rgba(${getColor(color)})`};
         content: '';
         width: 100%;
         display: block;
