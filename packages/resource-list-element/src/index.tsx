@@ -41,7 +41,7 @@ export type ResourceListElementProps<R = {}> = Partial<
   reviewsCount?: number
   reviewsRating?: number
   onClick?: React.MouseEventHandler<HTMLLIElement>
-}
+} & Partial<Parameters<typeof List.Item>['0']>
 
 const ResourceListItem = styled(List.Item)`
   position: relative;
@@ -86,11 +86,12 @@ export default function ExtendedResourceListElement<R>({
   reviewsCount,
   reviewsRating,
   onClick,
+  ...props
 }: ResourceListElementProps<R>) {
   const labels = tags || []
 
   return (
-    <ResourceListItem onClick={onClick}>
+    <ResourceListItem onClick={onClick} {...props}>
       <Container position="relative">
         <Container clearing>
           <Image
