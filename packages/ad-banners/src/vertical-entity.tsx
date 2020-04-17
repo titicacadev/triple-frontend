@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
 import { Container } from '@titicaca/core-elements'
-import IntersectionObserver from '@titicaca/intersection-observer'
+import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 
 import { Banner } from './typing'
 
