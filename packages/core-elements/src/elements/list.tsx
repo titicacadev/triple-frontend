@@ -37,7 +37,7 @@ const ListBase = styled.ul<ListBaseProp & DividerOptions>`
   ${({
     verticalGap = 0,
     divided = false,
-    dividerColor = 'transparent',
+    dividerColor = '#efefef',
     dividerWeight = 1,
     clearing = false,
   }) =>
