@@ -29,8 +29,8 @@ const ListBase = styled.ul<ListBaseProp & DividerOptions>`
   ${marginMixin}
 
   li:not(:first-child) {
-    ${({ verticalGap = 0 }) => css`
-      margin-top: ${verticalGap}px;
+    ${({ divided, verticalGap = 0 }) => css`
+      margin-top: ${divided ? verticalGap / 2 : verticalGap}px;
     `};
   }
 
