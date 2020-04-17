@@ -27,7 +27,6 @@ export const ContentContainer = styled.div<{
   ${({ maxContentHeight }) =>
     maxContentHeight ? `max-height: ${unit(maxContentHeight)};` : ''}
   overflow: auto;
-  user-select: none;
 
   ::-webkit-scrollbar {
     display: none;
@@ -42,6 +41,7 @@ export const Sheet = styled.div`
   background-color: #fff;
   box-sizing: border-box;
   margin: 0;
+  user-select: none;
 `
 
 // eslint-disable-next-line no-unexpected-multiline
