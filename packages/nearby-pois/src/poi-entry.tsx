@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
-import IntersectionObserver from '@titicaca/intersection-observer'
+import { List } from '@titicaca/core-elements'
+import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { PoiListElement } from '@titicaca/poi-list-elements'
 import {
   useHistoryContext,
@@ -66,15 +67,16 @@ export default function PoiEntry({
   }, [navigate, poi, trackSimpleEvent, eventLabel, index])
 
   return (
-    <IntersectionObserver safe key={poi.id} onChange={handleIntersectionChange}>
-      <div>
+    <IntersectionObserver key={poi.id} onChange={handleIntersectionChange}>
+      <List.Item>
         <PoiListElement
+          as="div"
           poi={poi}
           onScrapedChange={handleScrapedChange}
           resourceScraps={scraps}
           onClick={handleClick}
         />
-      </div>
+      </List.Item>
     </IntersectionObserver>
   )
 }
