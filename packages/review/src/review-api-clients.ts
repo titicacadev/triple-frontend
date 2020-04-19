@@ -51,7 +51,7 @@ export async function fetchReviewRateDescription({
   resourceId: string
 }): Promise<string[]> {
   const response = await fetch(
-    `/api/reviews/v2/specification?resourceId=${resourceId}&resource_type=${resourceType}`,
+    `/api/reviews/v2/specification?resource_id=${resourceId}&resource_type=${resourceType}`,
     {
       method: 'GET',
       credentials: 'same-origin',
