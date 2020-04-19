@@ -190,7 +190,20 @@ export default function ReviewElement({
             <>
               {media && media.length === 1 ? (
                 <SoloImageContainer>
-                  <img src={media[0].sizes.large.url} />
+                  <img
+                    onClick={(e) => {
+                      trackEvent({
+                        ga: ['리뷰_리뷰사진썸네일'],
+                        fa: {
+                          action: '리뷰_리뷰사진썸네일',
+                          item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+                          photo_id: media[0].id, // eslint-disable-line @typescript-eslint/camelcase
+                        },
+                      })
+                      onImageClick(e, review, media[0])
+                    }}
+                    src={media[0].sizes.large.url}
+                  />
                 </SoloImageContainer>
               ) : (
                 <Images>
@@ -255,7 +268,7 @@ export default function ReviewElement({
 
 function Score({ score }: { score?: number }) {
   return (
-    <Container margin={{ top: 20 }}>
+    <Container margin={{ top: 17 }}>
       <Rating size="tiny" score={score} />
     </Container>
   )
@@ -263,7 +276,7 @@ function Score({ score }: { score?: number }) {
 
 function Content({ onClick, children }: PropsWithChildren<{ onClick?: any }>) {
   return (
-    <Container margin={{ top: 15 }} clearing>
+    <Container margin={{ top: 10 }} clearing>
       <a onClick={onClick}>
         <Comment>{children}</Comment>
       </a>
@@ -273,7 +286,7 @@ function Content({ onClick, children }: PropsWithChildren<{ onClick?: any }>) {
 
 function Meta({ children }: PropsWithChildren<{}>) {
   return (
-    <Text margin={{ top: 20 }} size="mini" color="gray" alpha={0.3}>
+    <Text margin={{ top: 17 }} size="mini" color="gray" alpha={0.4}>
       {children}
     </Text>
   )
