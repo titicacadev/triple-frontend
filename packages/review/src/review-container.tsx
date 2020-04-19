@@ -126,7 +126,7 @@ export default function ReviewContainer({
           fetchReviewsCount({ resourceType, resourceId }),
           resourceType === 'article'
             ? null
-            : fetchReviewRateDescription({ resourceType }),
+            : fetchReviewRateDescription({ resourceType, resourceId }),
         ])
 
         setMyReview(fetchedMyReview)
