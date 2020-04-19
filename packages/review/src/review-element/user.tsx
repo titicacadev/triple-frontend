@@ -56,7 +56,7 @@ function Name({
   children,
 }: PropsWithChildren<{ onClick?: MouseEventHandler<HTMLDivElement> }>) {
   return (
-    <Text bold size="medium" color="gray" onClick={onClick}>
+    <Text bold size="medium" onClick={onClick}>
       {children}
     </Text>
   )
@@ -73,7 +73,7 @@ function UserExtra({
       margin={{ top: 3 }}
       size="mini"
       color="gray"
-      alpha={0.3}
+      alpha={0.4}
       onClick={onClick}
     >
       {children}
