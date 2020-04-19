@@ -133,7 +133,7 @@ export default function ReviewElement({
     likesCount: review.likesCount,
   })
   const handleSelectReview = (e: React.SyntheticEvent) => {
-    if (parseInt(appVersion || '') >= 4) {
+    if (parseFloat(appVersion || '') >= 4.2) {
       trackEvent({
         ga: ['리뷰_선택'],
         fa: {
