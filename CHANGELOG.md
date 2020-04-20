@@ -1,3 +1,11 @@
+# 1.17.0 (2020-04-20)
+
+- `core-elements` List 하위 li에 적용되는 스타일은 direct children에만 영향이 있도록 합니다 (#673)
+- StaticIntersectionObserver를 사용합니다 (#672)
+- `social-reviews` Divider를 바로잡습니다 (#670)
+- `resource-list-element` POI, 상품 리스트 엘리먼트를 li 외의 태그로 렌더링 가능하게 합니다 (#669)
+- `color-palette` 체크리스트 v2에서 사용되는 컬러셋을 추가합니다 (#668)
+
 # 1.16.1 (2020-04-17)
 
 - `core-elements` List divider의 default style을 수정합니다 (#662)
