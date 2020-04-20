@@ -40,6 +40,7 @@ export type ResourceListElementProps<R = {}> = Partial<
   scrapsCount?: number
   reviewsCount?: number
   reviewsRating?: number
+  maxCommentLines?: number
   onClick?: React.MouseEventHandler<HTMLLIElement>
 } & Partial<Parameters<typeof List.Item>['0']>
 
@@ -86,6 +87,7 @@ export default function ExtendedResourceListElement<R>({
   reviewsCount,
   reviewsRating,
   onClick,
+  maxCommentLines = 0,
   ...props
 }: ResourceListElementProps<R>) {
   const labels = tags || []
@@ -153,7 +155,12 @@ export default function ExtendedResourceListElement<R>({
           {name}
         </Text>
 
-        <Text alpha={0.7} maxLines={2} size="small" margin={{ top: 5 }}>
+        <Text
+          alpha={0.7}
+          maxLines={maxCommentLines}
+          size="small"
+          margin={{ top: 5 }}
+        >
           {comment}
         </Text>
 

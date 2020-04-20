@@ -56,6 +56,7 @@ interface ExtendedPoiListElementBaseProps<T extends ListingPOI>
   isSoldOut?: boolean
   hideScrapButton?: boolean
   hideDiscountRate?: boolean
+  maxCommentLines?: number
   distance?: string | number
   distanceSuffix?: string
 }
@@ -277,6 +278,7 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
         hideDiscountRate,
         distance: distanceOverride,
         distanceSuffix,
+        maxCommentLines = 0,
         as,
       },
     } = this
@@ -350,6 +352,7 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
         tags={tags}
         hideScrapButton={hideScrapButton || !resourceScraps}
         hideDiscountRate={hideDiscountRate}
+        maxCommentLines={maxCommentLines}
       />
     )
   }
