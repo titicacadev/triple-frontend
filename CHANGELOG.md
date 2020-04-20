@@ -1,9 +1,9 @@
 # 1.17.1 (2020-04-20)
 
-- `resource-list-element`
+- `resource-list-element` (#677)
   - maxCommentLines props 을 추가하여 POI 설명 노출 라인 수 제어
   - basePriceUnit 을 추가합니다
-- `scrap-button` 2배 아이콘을 3 배 아이콘으로 변경합니다
+- `scrap-button` 2배 아이콘을 3 배 아이콘으로 변경합니다 (#677)
 
 # 1.17.0 (2020-04-20)
 
