@@ -16,6 +16,8 @@ import ScrapButton, { ScrapButtonProps } from '@titicaca/scrap-button'
 import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
 import { ListingPOI, ListingHotel } from '@titicaca/type-definitions'
 
+export { default as POICardElement } from './poi-card-element'
+
 type PoiTypes = ListingPOI['type']
 
 type ActionButtonElement = React.ReactNode
