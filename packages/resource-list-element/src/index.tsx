@@ -152,7 +152,7 @@ export default function ExtendedResourceListElement<R>({
           {name}
         </Text>
 
-        <Text alpha={0.7} size="small" margin={{ top: 5 }}>
+        <Text alpha={0.7} maxLines={2} size="small" margin={{ top: 5 }}>
           {comment}
         </Text>
 
