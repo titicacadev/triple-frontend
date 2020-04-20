@@ -43,7 +43,7 @@ describe('ScrapButton', () => {
         .should('have.css', 'background-image')
         .and(
           'eq',
-          'url("https://assets.triple.guide/images/btn-content-scrap-overlay-on@2x.png")',
+          'url("https://assets.triple.guide/images/btn-content-scrap-overlay-on@3x.png")',
         )
     })
 
@@ -52,7 +52,7 @@ describe('ScrapButton', () => {
         .should('have.css', 'background-image')
         .and(
           'eq',
-          'url("https://assets.triple.guide/images/btn-content-scrap-overlay-off@2x.png")',
+          'url("https://assets.triple.guide/images/btn-content-scrap-overlay-off@3x.png")',
         )
     })
   })
