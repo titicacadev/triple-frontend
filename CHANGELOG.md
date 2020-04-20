@@ -1,3 +1,10 @@
+# 1.17.1 (2020-04-20)
+
+- `resource-list-element`
+  - POI 설명을 최대 2 줄로 노출되도록 변경
+  - basePriceUnit 을 추가합니다
+- `scrap-button` 2배 아이콘을 3 배 아이콘으로 변경합니다
+
 # 1.17.0 (2020-04-20)
 
 - `core-elements` List 하위 li에 적용되는 스타일은 direct children에만 영향이 있도록 합니다 (#673)
