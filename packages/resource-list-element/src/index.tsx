@@ -124,6 +124,7 @@ export default function ExtendedResourceListElement<R>({
             <Pricing
               rich
               basePrice={basePrice}
+              basePriceUnit="원"
               salePrice={salePrice}
               pricingNote={pricingNote}
               description={pricingDescription}
