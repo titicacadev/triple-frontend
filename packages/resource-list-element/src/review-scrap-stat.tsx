@@ -1,6 +1,8 @@
 import React from 'react'
-import { Container, Rating, Text } from '@titicaca/core-elements'
+import { Container, Rating } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
+
+import ResourceListElementStats from './stats'
 
 export default function ReviewScrapStat({
   reviewsCount,
@@ -22,14 +24,15 @@ export default function ReviewScrapStat({
         <Rating verticalAlign="middle" size="tiny" score={reviewsRating} />
       ) : null}
 
-      <Text inline size="tiny" alpha={0.4}>
-        {[
+      <ResourceListElementStats
+        stats={[
           reviewsCount ? `(${formatNumber(reviewsCount)})` : null,
           scrapsCount ? `저장 ${formatNumber(scrapsCount)}` : null,
-        ]
-          .filter((count) => count)
-          .join(' · ')}
-      </Text>
+        ]}
+        inline
+        size="tiny"
+        alpha={0.4}
+      />
     </Container>
   )
 }

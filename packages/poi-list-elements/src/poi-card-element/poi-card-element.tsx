@@ -6,7 +6,11 @@ import {
   ImageMeta,
   TranslatedProperty,
 } from '@titicaca/type-definitions'
-import { Card, ReviewScrapStat } from '@titicaca/resource-list-element'
+import {
+  Card,
+  ReviewScrapStat,
+  ResourceListElementStats,
+} from '@titicaca/resource-list-element'
 import { formatNumber } from '@titicaca/view-utilities'
 
 import DirectionButton from './direction-button'
@@ -114,11 +118,12 @@ export default function POICardElement({
           </Text>
         ) : null}
 
-        {categoryName || areaName ? (
-          <Text size="tiny" alpha={0.4} margin={{ top: 4 }}>
-            {[categoryName, areaName].filter((value) => value).join(' · ')}
-          </Text>
-        ) : null}
+        <ResourceListElementStats
+          stats={[categoryName, areaName]}
+          size="tiny"
+          alpha={0.4}
+          margin={{ top: 4 }}
+        />
 
         <ReviewScrapStat
           reviewsCount={reviewsCount}
