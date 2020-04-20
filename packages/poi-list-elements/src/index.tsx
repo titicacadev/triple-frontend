@@ -278,7 +278,7 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
         hideDiscountRate,
         distance: distanceOverride,
         distanceSuffix,
-        maxCommentLines = 0,
+        maxCommentLines,
         as,
       },
     } = this
