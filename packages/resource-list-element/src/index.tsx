@@ -87,7 +87,7 @@ export default function ExtendedResourceListElement<R>({
   reviewsCount,
   reviewsRating,
   onClick,
-  maxCommentLines = 0,
+  maxCommentLines,
   ...props
 }: ResourceListElementProps<R>) {
   const labels = tags || []
