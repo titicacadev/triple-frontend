@@ -1,12 +1,12 @@
 import React, { MouseEventHandler } from 'react'
 import styled from 'styled-components'
-import { Container, Image, Text, Rating } from '@titicaca/core-elements'
+import { Container, Image, Text } from '@titicaca/core-elements'
 import {
   ListingPOI,
   ImageMeta,
   TranslatedProperty,
 } from '@titicaca/type-definitions'
-import { Card } from '@titicaca/resource-list-element'
+import { Card, ReviewScrapStat } from '@titicaca/resource-list-element'
 import { formatNumber } from '@titicaca/view-utilities'
 
 import DirectionButton from './direction-button'
@@ -120,26 +120,12 @@ export default function POICardElement({
           </Text>
         ) : null}
 
-        {reviewsCount || scrapsCount ? (
-          <Container margin={{ top: 4 }}>
-            {reviewsCount ? (
-              <Rating
-                verticalAlign="middle"
-                size="tiny"
-                score={reviewsRating}
-              />
-            ) : null}
-
-            <Text inline size="tiny" alpha={0.4}>
-              {[
-                reviewsCount ? ` (${formatNumber(reviewsCount)})` : null,
-                scrapsCount ? `저장 ${formatNumber(scrapsCount)}` : null,
-              ]
-                .filter((count) => count)
-                .join(' · ')}
-            </Text>
-          </Container>
-        ) : null}
+        <ReviewScrapStat
+          reviewsCount={reviewsCount}
+          scrapsCount={scrapsCount}
+          reviewsRating={reviewsRating}
+          margin={{ top: 4 }}
+        />
 
         {distance || nightlyPrice !== undefined ? (
           <Container margin={{ top: 6 }}>

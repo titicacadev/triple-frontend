@@ -1,20 +1,21 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import ScrapButton, { ScrapButtonProps } from '@titicaca/scrap-button'
-import { formatNumber } from '@titicaca/view-utilities'
 import {
   Container,
   Label,
   LabelColor,
   Text,
-  Rating,
   Image,
   List,
 } from '@titicaca/core-elements'
 import Pricing, { BasePrice } from '@titicaca/pricing'
 import { ImageMeta } from '@titicaca/type-definitions'
 
+import ReviewScrapStat from './review-scrap-stat'
+
 export { default as Card } from './card'
+export { ReviewScrapStat }
 
 export type ResourceListElementProps<R = {}> = Partial<
   Pick<ScrapButtonProps<R>, 'scraped' | 'resource' | 'onScrapedChange'>
@@ -168,28 +169,12 @@ export default function ExtendedResourceListElement<R>({
           {comment}
         </Text>
 
-        {reviewsCount || scrapsCount ? (
-          <Container margin={{ top: 5 }}>
-            <>
-              {reviewsCount ? (
-                <Rating
-                  verticalAlign="middle"
-                  size="tiny"
-                  score={reviewsRating}
-                />
-              ) : null}
-
-              <Text inline size="tiny" alpha={0.4}>
-                {[
-                  reviewsCount ? ` (${formatNumber(reviewsCount)})` : null,
-                  scrapsCount ? `저장 ${formatNumber(scrapsCount)}` : null,
-                ]
-                  .filter((count) => count)
-                  .join(' · ')}
-              </Text>
-            </>
-          </Container>
-        ) : null}
+        <ReviewScrapStat
+          reviewsCount={reviewsCount}
+          scrapsCount={scrapsCount}
+          reviewsRating={reviewsRating}
+          margin={{ top: 5 }}
+        />
 
         {distance || distance === 0 || note || isAdvertisement ? (
           <Container margin={{ top: 3 }}>
