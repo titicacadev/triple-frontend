@@ -241,7 +241,7 @@ export function HistoryProvider({
   const openWindow = React.useCallback<HistoryContextValue['openWindow']>(
     (rawHref, params) => {
       if (!hasAccessibleTripleNativeClients()) {
-        window.open(rawHref)
+        window.open(rawHref, undefined, 'noopener')
         return
       }
 
