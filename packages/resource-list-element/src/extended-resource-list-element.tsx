@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import ScrapButton, { ScrapButtonProps } from '@titicaca/scrap-button'
 import {
@@ -13,9 +13,6 @@ import Pricing, { BasePrice } from '@titicaca/pricing'
 import { ImageMeta } from '@titicaca/type-definitions'
 
 import ReviewScrapStat from './review-scrap-stat'
-
-export { default as Card } from './card'
-export { ReviewScrapStat }
 
 export type ResourceListElementProps<R = {}> = Partial<
   Pick<ScrapButtonProps<R>, 'scraped' | 'resource' | 'onScrapedChange'>
