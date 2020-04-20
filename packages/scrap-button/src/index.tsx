@@ -37,7 +37,7 @@ const RegularScrapButton = styled.div<ScrapButtonBaseProps>`
   right: ${({ right }) => (right === 0 ? 0 : right || 3)}px;
   width: 36px;
   height: 36px;
-  background-image: url(https://assets.triple.guide/images/${({ pressed }) => (pressed ? 'btn-content-scrap-overlay-on@2x.png' : 'btn-content-scrap-overlay-off@2x.png')});
+  background-image: url(https://assets.triple.guide/images/${({ pressed }) => (pressed ? 'btn-content-scrap-overlay-on@3x.png' : 'btn-content-scrap-overlay-off@3x.png')});
   background-size: 36px 36px;
 `
 
