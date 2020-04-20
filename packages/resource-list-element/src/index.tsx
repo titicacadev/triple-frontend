@@ -14,6 +14,8 @@ import {
 import Pricing, { BasePrice } from '@titicaca/pricing'
 import { ImageMeta } from '@titicaca/type-definitions'
 
+export { default as Card } from './card'
+
 export type ResourceListElementProps<R = {}> = Partial<
   Pick<ScrapButtonProps<R>, 'scraped' | 'resource' | 'onScrapedChange'>
 > & {
