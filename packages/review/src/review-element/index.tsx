@@ -122,9 +122,7 @@ export default function ReviewElement({
 }: ReviewElementProps) {
   const [unfolded, setUnfolded] = useState(false)
   const { deriveCurrentStateAndCount } = useReviewLikesContext()
-  const {
-    app: { version: appVersion },
-  } = useUserAgentContext()
+  const appVersion = useUserAgentContext()?.app?.version
   const { user, blindedAt, comment, createdAt, rating, media } = review
   const { trackEvent } = useEventTrackingContext()
   const { liked, likesCount } = deriveCurrentStateAndCount({
