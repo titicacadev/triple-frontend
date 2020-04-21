@@ -7,15 +7,15 @@ export type MarginPadding = Partial<
   >
 >
 
+export type BaseSizes = 'small' | 'medium' | 'large'
+
 export type GlobalSizes =
   | 'mini'
   | 'tiny'
-  | 'small'
-  | 'medium'
-  | 'large'
   | 'big'
   | 'huge'
   | 'massive'
+  | BaseSizes
 
 enum GlobalColorSet {
   blue = '54, 143, 255',
