@@ -109,6 +109,18 @@ export default function ReviewContainer({
   )
 
   useEffect(() => {
+    if (resourceType !== 'article') {
+      const fetchReviewDescription = async () => {
+        setReviewRateDescriptions(
+          await fetchReviewRateDescription({ resourceType, resourceId }),
+        )
+      }
+
+      fetchReviewDescription()
+    }
+  }, [resourceId, resourceType])
+
+  useEffect(() => {
     const refreshMyReview = async (params?: { id: string }) => {
       if (!params) {
         return
@@ -117,24 +129,14 @@ export default function ReviewContainer({
       const { id } = params
 
       if (id && id === resourceId) {
-        const [
-          fetchedMyReview,
-          fetchedReviewsCount,
-          fetchedReviewRateDescrption,
-        ] = await Promise.all([
+        const [fetchedMyReview, fetchedReviewsCount] = await Promise.all([
           fetchMyReview({ resourceType, resourceId }),
           fetchReviewsCount({ resourceType, resourceId }),
-          resourceType === 'article'
-            ? null
-            : fetchReviewRateDescription({ resourceType, resourceId }),
         ])
 
         setMyReview(fetchedMyReview)
         if (fetchedReviewsCount !== null) {
           setReviewsCount(fetchedReviewsCount)
-        }
-        if (fetchedReviewRateDescrption !== null) {
-          setReviewRateDescriptions(fetchedReviewRateDescrption)
         }
       }
     }
