@@ -3,6 +3,7 @@ import * as CSS from 'csstype'
 
 import { MarginPadding } from '../commons'
 import { paddingMixin, formatMarginPadding } from '../mixins'
+import { boxShadow } from '../mixins/box'
 
 export interface ContainerPropsFromTemplate {
   position?: CSS.PositionProperty
@@ -22,6 +23,7 @@ export interface ContainerPropsFromTemplate {
   userSelect?: CSS.UserSelectProperty
   display?: CSS.DisplayProperty
   horizontalScroll?: boolean
+  shadow?: CSS.BoxShadowProperty
 }
 
 export type ContainerProps = StyledComponentProps<
@@ -129,7 +131,9 @@ const Container = styled.div<ContainerPropsFromTemplate>`
       white-space: nowrap;
       overflow-x: auto;
       overflow-y: hidden;
-    `}  
+    `}
+  
+  ${boxShadow}
 `
 
 export default Container
