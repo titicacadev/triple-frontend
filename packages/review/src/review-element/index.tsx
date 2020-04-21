@@ -123,7 +123,7 @@ export default function ReviewElement({
   const [unfolded, setUnfolded] = useState(false)
   const { deriveCurrentStateAndCount } = useReviewLikesContext()
   const {
-    os: { version: appVersion },
+    app: { version: appVersion },
   } = useUserAgentContext()
   const { user, blindedAt, comment, createdAt, rating, media } = review
   const { trackEvent } = useEventTrackingContext()
@@ -145,6 +145,7 @@ export default function ReviewElement({
 
       window.location.href = `${appUrlScheme}:///reviews/${review.id}/detail?region_id=${regionId}&resource_id=${resourceId}`
       e.preventDefault()
+      e.stopPropagation()
     }
   }
   return (
