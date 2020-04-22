@@ -97,6 +97,7 @@ const LikeButton = styled.div<{ liked?: boolean }>`
   margin-top: 5px;
   margin-right: 8px;
   padding: 2px 20px;
+  font-weight: bold;
   ${({ liked }) => css`
   color: ${getColor(liked ? 'blue' : 'gray')};
   background-image: url('https://assets.triple.guide/images/btn-lounge-thanks-${
