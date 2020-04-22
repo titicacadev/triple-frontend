@@ -37,7 +37,7 @@ export default function User({
   } = mileage || { badges: [undefined], level: 0, point: 0 }
 
   return (
-    <Container padding={{ top: 20, bottom: 2 }}>
+    <Container padding={{ top: 30, bottom: 2 }}>
       <UserPhoto src={photo} onClick={onClick} />
       {badge && <Badge src={badge.icon.imageUrl} />}
       <Name onClick={onClick}>{name}</Name>
