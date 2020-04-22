@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css, ThemedStyledProps } from 'styled-components'
 
 import { BaseSizes } from '../commons'
 
@@ -11,24 +11,28 @@ const ShadowMap: { [key in BaseSizes]: string } = {
 /**
  * Usage
  *
- * import { boxShadow } from '../mixins/box'
+ * import { shadowMixin } from '../mixins/box'
  *
  * const ShadowComponent = styled.div`
- *  ${boxShadow}
+ *  ${shadowMixin}
  * `
  *
  * <BoxShadowedComponent shadow="small | medium | large" />
  *
  * const ShadowContainer = styled(Container)`
- *   ${boxShadow}
+ *   ${shadowMixin}
  * `
  *
  * <ShadowContainer shadow="small"></ShadowContainer>
  *
  */
-export const shadowMixin = ({ shadow: key = 'medium' }: any) => css`
-  box-shadow: ${ShadowMap[key as KeyOfShadowMap]};
-`
+export const shadowMixin = ({
+  shadow,
+}: ThemedStyledProps<{ shadow?: KeyOfShadowMap }, any>) =>
+  shadow &&
+  css`
+    box-shadow: ${ShadowMap[shadow as KeyOfShadowMap]};
+  `
 
 export type KeyOfShadowMap = keyof typeof ShadowMap
 export type ShadowMapType = { [key in KeyOfShadowMap]: string }
