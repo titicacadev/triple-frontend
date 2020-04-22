@@ -296,7 +296,7 @@ export default function ReviewContainer({
       )}
 
       {reviewsCount > 3 && shortened ? (
-        <Container margin={{ top: 50 }}>
+        <Container margin={{ top: 40 }}>
           <Button
             basic
             fluid
