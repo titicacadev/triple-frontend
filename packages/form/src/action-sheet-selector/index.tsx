@@ -1,0 +1,84 @@
+import React from 'react'
+import styled, { css } from 'styled-components'
+import { Container, Text, withField } from '@titicaca/core-elements'
+import { getColor } from '@titicaca/color-palette'
+
+import { Option } from './types'
+import ActionSheet from './action-sheet'
+import ArrowDown from '../arrow-down'
+
+const FieldContainer = styled.div`
+  position: relative;
+  padding: 16px;
+  border: 1px solid #efefef;
+
+  ${({ error }: { error: boolean }) =>
+    error &&
+    css`
+      border: 1px solid rgba(${getColor('red')});
+    `}
+`
+
+interface ActionSheetSelectorProps {
+  title?: string
+  options: Option[]
+  onChange: (value?: Option) => void
+  value: string | number
+  error: boolean
+  required?: boolean
+  onOpen: () => void
+  onClose: () => void
+  open: boolean
+  directSelect?: boolean
+}
+
+function ActionSheetSelector({
+  title,
+  options,
+  onChange,
+  value,
+  error,
+  required,
+  onOpen,
+  open,
+  onClose,
+  directSelect,
+}: ActionSheetSelectorProps) {
+  const OPTIONS = [
+    ...(required
+      ? []
+      : [
+          {
+            label: '선택안함',
+            value: '',
+          },
+        ]),
+    ...options,
+  ]
+
+  const selected = options.find((option) => option.value === value)
+
+  return (
+    <Container position="relative">
+      <Container onClick={onOpen}>
+        <FieldContainer error={error}>
+          <Text size="large" alpha={selected ? 1 : 0.5}>
+            {selected ? selected.label : '선택안함'}
+          </Text>
+          <ArrowDown />
+        </FieldContainer>
+      </Container>
+      <ActionSheet
+        title={title}
+        directSelect={directSelect}
+        open={open}
+        onClose={onClose}
+        options={OPTIONS}
+        value={value}
+        onSelect={onChange}
+      />
+    </Container>
+  )
+}
+
+export default withField(ActionSheetSelector)
