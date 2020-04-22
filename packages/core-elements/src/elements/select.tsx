@@ -42,7 +42,7 @@ const SelectFrame = styled.div<{ focused?: string; error?: string }>`
 const BaseSelect = styled.select<{ selected?: boolean; error?: string }>`
   width: 100%;
   font-size: 16px;
-  color: rgba(${getColor('gray')}, ${({ selected }) => (selected ? 1 : 0.3)});
+  color: rgba(${({ selected }) => getColor(selected ? 'gray' : 'gray300')});
 
   ${({ error }) =>
     error &&
