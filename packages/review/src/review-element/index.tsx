@@ -156,7 +156,7 @@ export default function ReviewElement({
         isIntersecting && onShow && onShow(index)
       }
     >
-      <List.Item padding={{ top: 20 }}>
+      <List.Item>
         <User user={user} onClick={(e) => onUserClick(e, review)}>
           {!blindedAt && !!rating ? <Score score={rating} /> : null}
         </User>
