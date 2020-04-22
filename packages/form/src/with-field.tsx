@@ -60,7 +60,9 @@ export default function withField<T>(WrappedComponent: React.ComponentType<T>) {
               {error}
             </Label>
           </Container>
-        ) : help ? (
+        ) : null}
+
+        {!hasError && help ? (
           <Container position="relative" padding={{ top: 6 }}>
             <Label alpha={0.5}>{help}</Label>
           </Container>
