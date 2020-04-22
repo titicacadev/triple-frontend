@@ -34,4 +34,4 @@ export enum ColorSet {
   teal900 = '10, 219, 143, 0.9',
 }
 
-export type Color = keyof typeof ColorSet
+export type Color = keyof typeof ColorSet | string
