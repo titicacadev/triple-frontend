@@ -63,13 +63,19 @@ const BaseTextarea = styled.textarea<BaseTextareaProps>`
     `};
 `
 
-function Textarea({ onChange, ...props }: TextareaProps) {
-  return (
+const Textarea = React.forwardRef(
+  (
+    { onChange, ...props }: TextareaProps,
+    ref?: React.Ref<HTMLTextAreaElement>,
+  ) => (
     <BaseTextarea
       {...props}
       onChange={(e) => onChange && onChange(e, e.target.value)}
+      ref={ref}
     />
-  )
-}
+  ),
+)
+
+Textarea.displayName = 'TextareaWithRef'
 
 export default withField(Textarea)
