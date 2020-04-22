@@ -4,6 +4,7 @@ import { MarginPadding } from './../commons'
 import { unit } from '../utils/unit'
 
 export * from './text-style'
+export * from './box'
 
 export function formatMarginPadding(
   marginPadding: MarginPadding | undefined,

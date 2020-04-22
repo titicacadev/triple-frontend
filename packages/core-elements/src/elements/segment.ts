@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 
 import { MarginPadding } from '../commons'
-import { marginMixin, paddingMixin } from '../mixins'
+import { marginMixin, paddingMixin, formatMarginPadding } from '../mixins'
 import { shadowMixin, KeyOfShadowMap } from '../mixins/box'
 
 // eslint-disable-next-line no-unexpected-multiline
@@ -37,6 +37,10 @@ const borderRadius = ({ radius = 0 }: any) => css`
   border-radius: ${radius}px;
 `
 
+const DEFAULT_CARD_PADDING = { top: 10, right: 10, bottom: 10, left: 10 }
+const paddingMixinWithDefault = ({ padding = DEFAULT_CARD_PADDING }: any) =>
+  formatMarginPadding(padding, 'padding')
+
 /**
  * Card Component
  *
@@ -50,7 +54,7 @@ const borderRadius = ({ radius = 0 }: any) => css`
  */
 export const Card = styled.div<Partial<BoxProps>>`
   ${marginMixin}
-  ${paddingMixin}
+  ${paddingMixinWithDefault}
 
   ${borderRadius}
   ${shadowMixin}

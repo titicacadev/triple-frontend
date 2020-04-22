@@ -11,30 +11,39 @@ Card 를 표현할때 사용하는 컴포넌트입니다.
 
 <Preview>
   <Story name="Basic">
-      {['small', 'medium', 'large'].map((item, i) => (
     <Container width={300} margin={{bottom: 50}}>
-      <Card
-        shadow={item}
-        padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
-        margin={{ top: i*10+10, bottom: i*10+10 }}
-      >
-        {item}/radius(default)
-      </Card>
-      <Card
-        shadow={item}
-        padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
-        margin={{ top: i*10+10, bottom: i*10+10 }}
-      >
-        {item}/radius(default)
-      </Card>
-      <Card
-        shadow={item}
-        padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
-        margin={{ top: i*10+10, bottom: i*10+10 }}
-      >
-        {item}/radius(default)
-      </Card>
-      </Container>))}
+      <Card>default card</Card>
+    </Container>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Shadow Props">
+    {['small', 'medium', 'large'].map((item, i) => (
+      <Container width={300} margin={{bottom: 50}}>
+        <Card
+          shadow={item}
+          padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
+          margin={{ top: i*10+10, bottom: i*10+10 }}
+        >
+          {item}/radius(default)
+        </Card>
+        <Card
+          shadow={item}
+          padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
+          margin={{ top: i*10+10, bottom: i*10+10 }}
+        >
+          {item}/radius(default)
+        </Card>
+        <Card
+          shadow={item}
+          padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
+          margin={{ top: i*10+10, bottom: i*10+10 }}
+        >
+          {item}/radius(default)
+        </Card>
+      </Container>
+    ))}
   </Story>
 </Preview>
 
