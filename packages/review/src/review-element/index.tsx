@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import IntersectionObserver from '@titicaca/intersection-observer'
 import { List, Container, Text, Rating } from '@titicaca/core-elements'
+import { getColor } from '@titicaca/color-palette'
 import {
   useEventTrackingContext,
   useUserAgentContext,
@@ -56,7 +57,7 @@ const SoloImageContainer = styled.div`
   overflow-x: hidden;
 
   img {
-    width: 335px;
+    width: 100%;
     height: 175px;
     border-radius: 4px;
     object-fit: cover;
@@ -93,9 +94,11 @@ const LikeButton = styled.div<{ liked?: boolean }>`
   height: 18px;
   background-size: 18px 18px;
   background-repeat: no-repeat;
+  margin-top: 5px;
   margin-right: 8px;
   padding: 2px 20px;
   ${({ liked }) => css`
+  color: ${getColor(liked ? 'blue' : 'gray')};
   background-image: url('https://assets.triple.guide/images/btn-lounge-thanks-${
     liked ? 'on' : 'off'
   }@3x.png');
@@ -267,7 +270,7 @@ export default function ReviewElement({
 
 function Score({ score }: { score?: number }) {
   return (
-    <Container margin={{ top: 17 }}>
+    <Container margin={{ top: 18 }}>
       <Rating size="tiny" score={score} />
     </Container>
   )
@@ -275,7 +278,7 @@ function Score({ score }: { score?: number }) {
 
 function Content({ onClick, children }: PropsWithChildren<{ onClick?: any }>) {
   return (
-    <Container margin={{ top: 10 }} clearing>
+    <Container margin={{ top: 6 }} clearing>
       <a onClick={onClick}>
         <Comment>{children}</Comment>
       </a>
@@ -285,7 +288,7 @@ function Content({ onClick, children }: PropsWithChildren<{ onClick?: any }>) {
 
 function Meta({ children }: PropsWithChildren<{}>) {
   return (
-    <Text margin={{ top: 17 }} size="mini" color="gray" alpha={0.4}>
+    <Text margin={{ top: 5 }} size="mini" color="gray" alpha={0.4}>
       {children}
     </Text>
   )

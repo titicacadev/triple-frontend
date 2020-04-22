@@ -43,13 +43,13 @@ const MileageButton = styled.div`
   background-color: rgba(58, 58, 58, 0.03);
   width: 100%;
   margin-top: 25px;
-  padding: 25px 20px 22px;
+  padding: 22px 20px 19px;
   font-size: 13px;
   color: #2987f0;
   cursor: pointer;
 
   @media only screen and (max-width: 640px) {
-    padding: 19px 20px 19px;
+    padding: 16px 14px 16px 20px;
   }
 `
 
@@ -63,7 +63,7 @@ const BulletRight = styled.img.attrs({
   top: 50%;
   transform: translateY(-50%);
   @media only screen and (max-width: 640px) {
-    right: 15px;
+    right: 9px;
   }
 `
 
@@ -334,7 +334,7 @@ export default function ReviewContainer({
           <Text color="gray" size="small" alpha={0.6} lineHeight={1.7}>
             리뷰 쓰면 여행자 클럽 최대 3포인트!
           </Text>
-          <Text color="blue" size="small" margin={{ top: 5 }} lineHeight={1.7}>
+          <Text color="blue" size="small" lineHeight={1.7}>
             포인트별 혜택 보기
           </Text>
           <BulletRight alt="포인트별 혜택 보기" />
