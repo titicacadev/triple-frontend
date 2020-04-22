@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled, { css, StyledComponentProps } from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 
-import withField from './with-field'
+import withField from '../with-field'
 
 interface BaseTextareaProps {
   focused?: string
@@ -33,14 +33,6 @@ const BaseTextarea = styled.textarea<BaseTextareaProps>`
   min-height: 100px;
 
   ::placeholder {
-    color: rgba(${getColor('gray300')});
-  }
-
-  ::-webkit-input-placeholder {
-    color: rgba(${getColor('gray300')});
-  }
-
-  :-ms-input-placeholder {
     color: rgba(${getColor('gray300')});
   }
 
