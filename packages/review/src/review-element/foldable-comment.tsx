@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import Comment from './comment'
 
-const MAX_COMMENT_LINES = 6
+const MAX_COMMENT_LINES = 2
 const CHARACTERS_PER_LINE = 25
 
 const Unfold = styled.a`
