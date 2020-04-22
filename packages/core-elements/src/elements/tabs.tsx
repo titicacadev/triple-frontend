@@ -45,7 +45,7 @@ const BasicContainer = styled(TabContainer)`
 `
 
 const PointingContainer = styled(TabContainer)`
-  border-bottom: 1px solid rgba(${getColor('gray500')});
+  border-bottom: 1px solid rgba(${getColor('gray50')});
 `
 
 const BasicLabel = styled(TabLabel)`
@@ -64,8 +64,8 @@ const PointingLabel = styled(TabLabel)`
   ${({ active }) => css`
     font-size: 15px;
     color: ${active
-      ? `rgba(${getColor('gray100')})`
-      : `rgba(${getColor('gray20')})`};
+      ? `rgba(${getColor('gray')})`
+      : `rgba(${getColor('gray200')})`};
   `}
 `
 
