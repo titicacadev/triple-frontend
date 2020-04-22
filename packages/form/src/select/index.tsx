@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 
 import withField from '../with-field'
+import ArrowDown from '../arrow-down'
 
 interface SelectOption {
   label: string
@@ -51,19 +52,6 @@ const BaseSelect = styled.select<{ selected?: boolean; error?: string }>`
     `};
 `
 
-const Icon = styled.span`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 16px;
-  display: inline-block;
-  width: 10px;
-  height: 24px;
-  background-size: 10px 24px;
-  background-repeat: no-repeat;
-  background-image: url('https://assets.triple.guide/images/ico-category-select@3x.png');
-`
-
 function Select({
   id,
   name,
@@ -93,7 +81,7 @@ function Select({
           </option>
         ))}
       </BaseSelect>
-      <Icon />
+      <ArrowDown />
     </SelectFrame>
   )
 }
