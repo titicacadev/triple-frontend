@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { css, ThemedStyledProps } from 'styled-components'
 
 import { MarginPadding } from '../commons'
 import { marginMixin, paddingMixin } from '../mixins'
@@ -33,9 +33,14 @@ export type BoxProps = {
   padding: MarginPadding
 }
 
-const borderRadius = ({ radius = 0 }: any) => css`
+const borderRadius = ({
+  radius = 0,
+}: ThemedStyledProps<{ radius?: number }, any>) => css`
   border-radius: ${radius}px;
 `
+
+const shadowMixinWithDefault = (props: ThemedStyledProps<any, any>) =>
+  shadowMixin({ shadow: 'medium', ...props })
 
 /**
  * Card Component
@@ -51,7 +56,7 @@ export const Card = styled.div<Partial<BoxProps>>`
   ${paddingMixin}
 
   ${borderRadius}
-  ${shadowMixin}
+  ${shadowMixinWithDefault}
 `
 
 export default Segment
