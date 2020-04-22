@@ -35,7 +35,7 @@ export type BoxProps = {
 
 const borderRadius = ({
   radius = 0,
-}: ThemedStyledProps<{ radius?: number }, any>) => css`
+}: ThemedStyledProps<any, any> & { radius?: number }) => css`
   border-radius: ${radius}px;
 `
 
