@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/react-contexts",
-  "version": "1.17.1",
+  "version": "1.17.2",
   "description": "React context modules for triple web applications",
   "main": "lib/index.js",
   "files": [
@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "@titicaca/triple-web-to-native-interfaces": "^1.0.0",
-    "@titicaca/type-definitions": "^1.17.1",
-    "@titicaca/view-utilities": "^1.17.1",
+    "@titicaca/type-definitions": "^1.17.2",
+    "@titicaca/view-utilities": "^1.17.2",
     "humps": "^2.0.1",
     "qs": "^6.7.0",
     "ua-parser-js": "^0.7.20"
