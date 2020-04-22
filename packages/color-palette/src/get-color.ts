@@ -2,8 +2,8 @@ import { ColorSet } from './colors'
 
 type ColorString = keyof typeof ColorSet
 
-export function getColor(color: ColorString, cssValue?: boolean): string {
-  const colorCodes = ColorSet[color]
+export function getColor(color: ColorString): string {
+  const colorCodes = (ColorSet[color] as unknown) as string
 
-  return cssValue ? `rgba(${colorCodes})` : colorCodes
+  return colorCodes.replace(/^rgba\(((,?\s*\d+){4}).+$/, '$1')
 }
