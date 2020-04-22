@@ -1,3 +1,7 @@
+# 1.17.2 (2020-04-22)
+
+- `core-elements` tabs 와 select 에 적용한 color 값 오류를 수정합니다. (#686)
+
 # 1.17.1 (2020-04-20)
 
 - `resource-list-element` (#677)
