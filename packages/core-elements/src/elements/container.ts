@@ -2,8 +2,7 @@ import styled, { css, StyledComponentProps } from 'styled-components'
 import * as CSS from 'csstype'
 
 import { MarginPadding } from '../commons'
-import { paddingMixin, formatMarginPadding } from '../mixins'
-import { boxShadow } from '../mixins/box'
+import { paddingMixin, formatMarginPadding, shadowMixin } from '../mixins'
 
 export interface ContainerPropsFromTemplate {
   position?: CSS.PositionProperty
@@ -123,7 +122,7 @@ const Container = styled.div<ContainerPropsFromTemplate>`
     display &&
     css`
       display: ${display};
-    `}  
+    `}
 
   ${({ horizontalScroll }) =>
     horizontalScroll &&
@@ -132,8 +131,8 @@ const Container = styled.div<ContainerPropsFromTemplate>`
       overflow-x: auto;
       overflow-y: hidden;
     `}
-  
-  ${boxShadow}
+
+  ${shadowMixin}
 `
 
 export default Container
