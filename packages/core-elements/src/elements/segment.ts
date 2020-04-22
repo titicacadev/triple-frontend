@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 
 import { MarginPadding } from '../commons'
 import { marginMixin, paddingMixin } from '../mixins'
-import { boxShadow, KeyOfShadowMap } from '../mixins/box'
+import { shadowMixin, KeyOfShadowMap } from '../mixins/box'
 
 // eslint-disable-next-line no-unexpected-multiline
 export const Segment = styled.div<{
@@ -53,7 +53,7 @@ export const Card = styled.div<Partial<BoxProps>>`
   ${paddingMixin}
 
   ${borderRadius}
-  ${boxShadow}
+  ${shadowMixin}
 `
 
 export default Segment

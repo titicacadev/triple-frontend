@@ -26,7 +26,7 @@ const ShadowMap: { [key in BaseSizes]: string } = {
  * <ShadowContainer shadow="small"></ShadowContainer>
  *
  */
-export const boxShadow = ({ shadow: key }: any) => css`
+export const shadowMixin = ({ shadow: key }: any) => css`
   box-shadow: ${ShadowMap[key as KeyOfShadowMap]};
 `
 
