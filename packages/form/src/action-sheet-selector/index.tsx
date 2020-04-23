@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import { Container, Text, withField } from '@titicaca/core-elements'
 import { getColor } from '@titicaca/color-palette'
 
-import { Option } from './types'
+import { Option } from '../types'
 import ActionSheet from './action-sheet'
 import ArrowDown from '../arrow-down'
 
@@ -22,7 +22,7 @@ const FieldContainer = styled.div`
 interface ActionSheetSelectorProps {
   title?: string
   options: Option[]
-  onChange: (value: Option) => void
+  onChange: (value: Option['value']) => void
   value: string | number | null
   error?: string
   required?: boolean
