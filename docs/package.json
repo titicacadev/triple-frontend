@@ -8,7 +8,6 @@
     "build": "build-storybook -s ./public"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@titicaca/action-sheet": "^1.17.2",
     "@titicaca/ad-banners": "^1.17.2",
     "@titicaca/app-banner": "^1.17.2",
