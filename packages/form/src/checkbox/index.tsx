@@ -72,7 +72,6 @@ const CheckboxInput = styled.input`
 
 export interface CheckboxItemOption
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  key: string | number
   label: React.ReactElement | string
   value: any
   margin?: MarginPadding
@@ -86,7 +85,6 @@ export interface CheckboxWrapperProps {
 }
 
 export function CheckboxItem({
-  key,
   label,
   value,
   name,
@@ -100,7 +98,7 @@ export function CheckboxItem({
   return (
     <Container margin={margin} position="relative" padding={{ right: 29 }}>
       <CheckboxLabel disabled={disabled} ellipsis>
-        <label htmlFor={`${name}-checked_${key}`}>{label}</label>
+        <label htmlFor={`${name}-checked`}>{label}</label>
       </CheckboxLabel>
 
       <CheckboxInput
@@ -111,7 +109,7 @@ export function CheckboxItem({
         checked={checked}
         onChange={onChange}
         value={value}
-        id={`${name}-checked_${key}`}
+        id={`${name}-checked`}
       />
     </Container>
   )
