@@ -5,6 +5,8 @@ import React, {
   ComponentType,
   useReducer,
 } from 'react'
+import qs from 'qs'
+import fetch from 'isomorphic-fetch'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { DeepPartial } from 'utility-types'
 
@@ -24,7 +26,7 @@ interface ImagesContext {
 }
 
 interface ImagesProviderProps {
-  fetchImages: (
+  fetchImages?: (
     target: { type: string; id: string },
     query: { from: number; size: number },
   ) => Promise<Response>
@@ -33,6 +35,7 @@ interface ImagesProviderProps {
     type: 'attraction' | 'restaurant' | 'hotel'
   }
   images?: ImageMeta[]
+  total?: number
 }
 
 const Context = React.createContext<ImagesContext>({
@@ -52,14 +55,15 @@ const TYPE_MAPPING = {
 
 export function ImagesProvider({
   images: initialImages,
-  fetchImages,
+  total: initialTotal,
+  fetchImages = defaultFetchImages,
   source: { id, type },
   children,
 }: PropsWithChildren<ImagesProviderProps>) {
   const [{ loading, images, total, hasMore }, dispatch] = useReducer(reducer, {
     loading: false,
     images: initialImages || [],
-    total: 0,
+    total: initialTotal || 0,
     hasMore: true,
   })
 
@@ -137,6 +141,20 @@ export function ImagesProvider({
   )
 
   return <Context.Provider value={value}>{children}</Context.Provider>
+}
+
+async function defaultFetchImages(
+  target: { type: string; id: string },
+  query: { from: number; size: number },
+): Promise<Response> {
+  const querystring = qs.stringify({
+    resourceType: target.type,
+    resourceId: target.id,
+    from: query.from,
+    size: query.size,
+  })
+
+  return fetch(`/api/content/images?${querystring}`)
 }
 
 export function useImagesContext() {
