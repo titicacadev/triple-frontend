@@ -138,7 +138,7 @@ export default function ReviewElement({
     e.stopPropagation()
     if (parseFloat(appVersion || '') >= 4.3) {
       trackEvent({
-        ga: ['리뷰_선택'],
+        ga: ['리뷰_리뷰선택', resourceId],
         fa: {
           action: '리뷰_리뷰선택',
           item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
