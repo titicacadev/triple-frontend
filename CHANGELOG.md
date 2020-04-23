@@ -1,7 +1,9 @@
 # 1.18.0 (2020-04-22)
+
 - `color-palette` (#685)
   - getColor 함수의 두 번째 인자를 제공하여 rgba() 를 포함한 cssValue 문자열을 받을 수 있게 합니다.
   - Color 타입에 string 을 union 해서 하위 호환을 유지합니다.
+- `colre-elements` Card 컴포넌트를 추가합니다. (#681)
 
 # 1.17.2 (2020-04-22)
 
