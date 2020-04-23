@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@types/humps": "^1.1.2",
+    "@types/isomorphic-fetch": "^0.0.35",
     "@types/mocha": "^5.2.7",
     "@types/qs": "^6.9.0",
     "@types/ua-parser-js": "^0.7.33",
