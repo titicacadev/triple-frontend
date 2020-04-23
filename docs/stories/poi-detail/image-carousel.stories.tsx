@@ -12,10 +12,6 @@ import { ImageMeta } from '@titicaca/type-definitions'
 
 storiesOf('poi-detail | ImageCarousel', module)
   .add('Attraction / Restaurant', () => {
-    const [initialImages, setInitialImages] = useState<{
-      images: ImageMeta[]
-      total: number
-    } | null>(null)
     const resourceId = text('POI ID', 'e889ae22-0336-4cf9-8fbb-742b95fd09d0')
     const resourceType = select(
       'POI Type',
@@ -40,24 +36,9 @@ storiesOf('poi-detail | ImageCarousel', module)
       : undefined
     const permanentlyClosed = boolean('운영종료', false)
 
-    useEffect(() => {
-      async function fetchAndSetImages() {
-        const response = await fetch(
-          `/api/content/images?resourceId=${resourceId}&resourceType=${resourceType}&from=0&size=10`,
-        )
-
-        const { data, total } = await response.json()
-
-        setInitialImages({ images: data, total })
-      }
-      fetchAndSetImages()
-    }, [resourceId, resourceType])
-
-    return initialImages ? (
+    return (
       <UserAgentProvider value={userAgentValues}>
         <ImagesProvider
-          images={initialImages.images}
-          total={initialImages.total}
           source={{
             id: resourceId,
             type: resourceType,
@@ -78,8 +59,6 @@ storiesOf('poi-detail | ImageCarousel', module)
           />
         </ImagesProvider>
       </UserAgentProvider>
-    ) : (
-      <div>Loading</div>
     )
   })
   .add('Hotel', () => {
