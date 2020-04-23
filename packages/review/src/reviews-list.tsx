@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import qs from 'qs'
 import moment from 'moment'
-import { List, MarginPadding } from '@titicaca/core-elements'
+import { List } from '@titicaca/core-elements'
 import {
   useHistoryContext,
   useUserAgentContext,
@@ -25,7 +25,6 @@ export default function ReviewsList({
   regionId,
   fetchNext,
   appUrlScheme,
-  margin,
   resourceId,
   maxLength,
   reviewRateDescriptions,
@@ -36,7 +35,6 @@ export default function ReviewsList({
   fetchNext?: () => void
   regionId: string
   appUrlScheme: string
-  margin: MarginPadding
   resourceId: string
   maxLength?: number
   reviewRateDescriptions?: string[]
@@ -144,7 +142,7 @@ export default function ReviewsList({
 
   return (
     <>
-      <List margin={margin} divided verticalGap={24}>
+      <List divided verticalGap={24}>
         {displayedReviews.map((review, i) => (
           <ReviewElement
             isMyReview={!!(myReview && myReview.id === review.id)}
