@@ -13,6 +13,7 @@ export default function ImageCarousel(
     | 'onImageClick'
     | 'onCTAClick'
     | 'onPlaceholderClick'
+    | 'margin'
   >,
 ) {
   const {
