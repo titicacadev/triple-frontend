@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const MoreImageOverlayLink = styled.a`
+  display: block;
   width: 100%;
   text-align: center;
   color: white;
@@ -10,6 +11,7 @@ const MoreImageOverlayLink = styled.a`
   position: absolute;
   transform: translateY(-50%);
   text-decoration: none;
+  font-size: 16px;
 `
 
 const MoreImageOverlayLinkIcon = styled.img`
