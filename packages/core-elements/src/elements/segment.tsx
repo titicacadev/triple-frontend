@@ -39,12 +39,20 @@ export type CardProps = Partial<
 
 const borderRadius = ({
   radius = 0,
-}: ThemedStyledProps<any, any> & { radius?: number }) => css`
+}: ThemedStyledProps<any, { radius?: number }>) => css`
   border-radius: ${radius}px;
 `
 
 const shadowMixinWithDefault = (props: ThemedStyledProps<any, any>) =>
   shadowMixin({ shadow: 'medium', ...props })
+
+export const CardFrame = styled.div<CardProps>`
+  ${marginMixin}
+  ${paddingMixin}
+
+  ${borderRadius}
+  ${shadowMixinWithDefault}
+`
 
 /**
  * Card Component
@@ -55,16 +63,18 @@ const shadowMixinWithDefault = (props: ThemedStyledProps<any, any>) =>
  *  - margin: MarginPadding
  *  - padding: MarginPadding
  */
-export const CardFrame = styled.div<Partial<CardProps>>`
-  ${marginMixin}
-  ${paddingMixin}
-
-  ${borderRadius}
-  ${shadowMixinWithDefault}
-`
-
-export function Card({ children, ...props }: PropsWithChildren<CardProps>) {
-  return <CardFrame {...props}>{children}</CardFrame>
+export function Card({
+  children,
+  className,
+  ...props
+}: PropsWithChildren<CardProps> & {
+  className: string
+}) {
+  return (
+    <CardFrame className={className} {...props}>
+      {children}
+    </CardFrame>
+  )
 }
 
 export default Segment
