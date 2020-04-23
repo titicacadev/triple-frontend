@@ -10,7 +10,7 @@ import { ImageMeta as OriginalImageMeta } from '@titicaca/type-definitions'
 
 import Carousel, { CarouselProps } from './carousel'
 
-interface ImageMeta extends OriginalImageMeta {
+export interface CarouselImageMeta extends OriginalImageMeta {
   frame: FrameRatioAndSizes
   size: GlobalSizes
 }
@@ -34,11 +34,11 @@ export interface RendererProps {
 }
 
 interface ImageCarouselProps extends Omit<CarouselProps, 'pageLabelRenderer'> {
-  images: ImageMeta[]
+  images: CarouselImageMeta[]
   size?: GlobalSizes
   frame?: FrameRatioAndSizes
   ImageSource?: ImageSourceType
-  onImageClick?: (e?: React.SyntheticEvent, image?: ImageMeta) => void
+  onImageClick?: (e?: React.SyntheticEvent, image?: CarouselImageMeta) => void
   showMoreRenderer?: (params: RendererProps) => React.ReactNode
   pageLabelRenderer?: (params: RendererProps) => React.ReactNode
   displayedTotalCount?: number
