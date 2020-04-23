@@ -22,4 +22,5 @@ export interface ImageMeta {
     full: ImageURL
     large: ImageURL
   } & SmallSquare
+  attachmentId?: string
 }
