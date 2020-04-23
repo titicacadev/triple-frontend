@@ -1,5 +1,5 @@
 import React from 'react'
-import { Section } from '@titicaca/core-elements'
+import { Section, MarginPadding } from '@titicaca/core-elements'
 
 import Carousel from './carousel'
 import Placeholder from './placeholder'
@@ -12,6 +12,7 @@ export default function CarouselSection({
   permanentlyClosed,
   onPlaceholderClick,
   onBusinessHoursClick,
+  margin,
   ...props
 }: {
   currentBusinessHours?: string
@@ -19,9 +20,15 @@ export default function CarouselSection({
   permanentlyClosed?: boolean
   onBusinessHoursClick?: () => void
   onPlaceholderClick: () => void
+  margin: MarginPadding
 } & Parameters<typeof Carousel>['0']) {
   return (
-    <Section>
+    <Section
+      minWidth={320}
+      maxWidth={780}
+      padding={{ left: 20, right: 20 }}
+      margin={margin}
+    >
       {images.length > 0 ? (
         <Carousel images={images} {...props} />
       ) : (
