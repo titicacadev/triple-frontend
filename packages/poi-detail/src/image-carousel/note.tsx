@@ -39,7 +39,7 @@ export function BusinessHoursNote({
 }) {
   return (
     <Container position="relative">
-      <NoteContainer onClick={onClick}>
+      <NoteContainer onClick={onClick} warning={!currentBusinessHours}>
         <Text bold size="small" color="white">
           {currentBusinessHours
             ? `영업중 ${todayBusinessHours || ''}`
