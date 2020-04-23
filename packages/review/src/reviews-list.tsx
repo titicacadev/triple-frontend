@@ -142,7 +142,7 @@ export default function ReviewsList({
 
   return (
     <>
-      <List divided verticalGap={24}>
+      <List divided margin={{ top: 24 }} verticalGap={48}>
         {displayedReviews.map((review, i) => (
           <ReviewElement
             isMyReview={!!(myReview && myReview.id === review.id)}
