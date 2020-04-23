@@ -138,7 +138,7 @@ export default function ReviewElement({
       trackEvent({
         ga: ['리뷰_선택'],
         fa: {
-          action: '리뷰_선택',
+          action: '리뷰_리뷰선택',
           item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
           review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
         },
