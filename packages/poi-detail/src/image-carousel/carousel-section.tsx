@@ -20,7 +20,7 @@ export default function CarouselSection({
   permanentlyClosed?: boolean
   onBusinessHoursClick?: () => void
   onPlaceholderClick: () => void
-  margin: MarginPadding
+  margin?: MarginPadding
 } & Parameters<typeof Carousel>['0']) {
   return (
     <Section
