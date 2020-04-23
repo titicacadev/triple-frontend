@@ -37,18 +37,24 @@ const ImagePlaceholderContent = styled.div<{ large?: boolean }>`
 
 function ImagePlaceholder({
   large,
+  noContent,
   onClick,
 }: {
   large?: boolean
+  noContent?: boolean
   onClick: () => void
 }) {
   return (
     <ImagePlaceholderContainer large={large} onClick={onClick}>
       <ImagePlaceholderContent large={large}>
-        <PlaceholderIcon src="https://assets.triple.guide/images/img-empty-photo-m@4x.png" />
-        <Text size="small" color="gray" alpha={0.3}>
-          이곳의 첫 번째 사진을 올려주세요.
-        </Text>
+        {noContent ? null : (
+          <>
+            <PlaceholderIcon src="https://assets.triple.guide/images/img-empty-photo-m@4x.png" />
+            <Text size="small" color="gray" alpha={0.3}>
+              이곳의 첫 번째 사진을 올려주세요.
+            </Text>
+          </>
+        )}
       </ImagePlaceholderContent>
     </ImagePlaceholderContainer>
   )
@@ -56,16 +62,18 @@ function ImagePlaceholder({
 
 export default function ResponsiveImagePlaceholder({
   onClick,
+  noContent,
 }: {
   onClick: () => void
+  noContent?: boolean
 }) {
   return (
     <>
       <Responsive maxWidth={706}>
-        <ImagePlaceholder onClick={onClick} />
+        <ImagePlaceholder noContent={noContent} onClick={onClick} />
       </Responsive>
       <Responsive minWidth={707}>
-        <ImagePlaceholder large onClick={onClick} />
+        <ImagePlaceholder noContent={noContent} large onClick={onClick} />
       </Responsive>
     </>
   )

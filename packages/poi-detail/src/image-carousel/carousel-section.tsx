@@ -33,8 +33,8 @@ export default function CarouselSection({
     >
       {images.length > 0 ? (
         <Carousel images={images} {...props} />
-      ) : loading ? null : (
-        <Placeholder onClick={onPlaceholderClick} />
+      ) : (
+        <Placeholder onClick={onPlaceholderClick} noContent={loading} />
       )}
       {!permanentlyClosed && onBusinessHoursClick ? (
         <BusinessHoursNote
