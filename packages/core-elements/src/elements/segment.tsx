@@ -1,3 +1,4 @@
+import React, { PropsWithChildren } from 'react'
 import styled, { css, ThemedStyledProps } from 'styled-components'
 
 import { MarginPadding } from '../commons'
@@ -26,9 +27,12 @@ export const Segment = styled.div<{
 
 export type BoxProps = {
   radius: number
-  shadow: KeyOfShadowMap
   margin: MarginPadding
   padding: MarginPadding
+}
+
+export type CardProps = BoxProps & {
+  shadow: KeyOfShadowMap
 }
 
 const borderRadius = ({
@@ -49,12 +53,16 @@ const shadowMixinWithDefault = (props: ThemedStyledProps<any, any>) =>
  *  - margin: MarginPadding
  *  - padding: MarginPadding
  */
-export const Card = styled.div<Partial<BoxProps>>`
+export const CardFrame = styled.div<Partial<CardProps>>`
   ${marginMixin}
   ${paddingMixin}
 
   ${borderRadius}
   ${shadowMixinWithDefault}
 `
+
+export function Card({ children, ...props }: PropsWithChildren<CardProps>) {
+  return <CardFrame {...props}>{children}</CardFrame>
+}
 
 export default Segment
