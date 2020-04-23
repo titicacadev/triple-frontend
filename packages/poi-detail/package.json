@@ -18,6 +18,7 @@
     "@titicaca/action-sheet": "^1.17.2",
     "@titicaca/core-elements": "^1.17.2",
     "@titicaca/i18n": "^1.17.2",
+    "@titicaca/image-carousel": "^1.17.2",
     "@titicaca/intersection-observer": "^1.17.2",
     "@titicaca/modals": "^1.17.2",
     "@titicaca/react-contexts": "^1.17.2",
