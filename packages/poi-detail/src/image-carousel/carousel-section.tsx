@@ -7,6 +7,7 @@ import { BusinessHoursNote, PermanentlyClosedNote } from './note'
 
 export default function CarouselSection({
   images,
+  loading,
   currentBusinessHours,
   todayBusinessHours,
   permanentlyClosed,
@@ -15,6 +16,7 @@ export default function CarouselSection({
   margin,
   ...props
 }: {
+  loading: boolean
   currentBusinessHours?: string
   todayBusinessHours?: string
   permanentlyClosed?: boolean
@@ -31,7 +33,7 @@ export default function CarouselSection({
     >
       {images.length > 0 ? (
         <Carousel images={images} {...props} />
-      ) : (
+      ) : loading ? null : (
         <Placeholder onClick={onPlaceholderClick} />
       )}
       {!permanentlyClosed && onBusinessHoursClick ? (

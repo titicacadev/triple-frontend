@@ -18,6 +18,7 @@ export default function ImageCarousel(
 ) {
   const {
     images,
+    loading,
     total,
     actions: { fetch },
   } = useImagesContext()
@@ -25,6 +26,7 @@ export default function ImageCarousel(
   return (
     <CarouselSection
       images={images}
+      loading={loading}
       totalImagesCount={total}
       onImagesFetch={fetch}
       {...props}
