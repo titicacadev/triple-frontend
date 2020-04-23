@@ -134,6 +134,8 @@ export default function ReviewElement({
     likesCount: review.likesCount,
   })
   const handleSelectReview = (e: React.SyntheticEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
     if (parseFloat(appVersion || '') >= 4.3) {
       trackEvent({
         ga: ['리뷰_선택'],
@@ -145,8 +147,6 @@ export default function ReviewElement({
       })
 
       window.location.href = `${appUrlScheme}:///reviews/${review.id}/detail?region_id=${regionId}&resource_id=${resourceId}`
-      e.preventDefault()
-      e.stopPropagation()
     }
   }
   return (
