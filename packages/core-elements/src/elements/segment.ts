@@ -25,8 +25,6 @@ export const Segment = styled.div<{
 `
 
 export type BoxProps = {
-  width: number
-  height: number
   radius: number
   shadow: KeyOfShadowMap
   margin: MarginPadding
