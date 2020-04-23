@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ActionSheet from '@titicaca/action-sheet'
 import DrawerButton from '@titicaca/drawer-button'
 
-import { Option } from '../types'
+import { Option } from './types'
 
 interface ActionSheetProps {
   title?: string

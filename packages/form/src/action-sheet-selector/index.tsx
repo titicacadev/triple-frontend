@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import { Container, Text, withField } from '@titicaca/core-elements'
 import { getColor } from '@titicaca/color-palette'
 
-import { Option } from '../types'
+import { Option } from './types'
 import ActionSheet from './action-sheet'
 import ArrowDown from '../arrow-down'
 
@@ -50,7 +50,7 @@ function ActionSheetSelector({
       : [
           {
             label: '선택안함',
-            value: '',
+            value: null,
           },
         ]),
     ...options,
