@@ -7,6 +7,7 @@ import {
   ActionSheetSelector,
   Textarea,
   ConfirmCheckbox,
+  GenderRadio
 } from '@titicaca/form'
 
 import RadioWrapper from './components/radio.tsx'
@@ -149,4 +150,12 @@ import RadioWrapper from './components/radio.tsx'
       <div>예약자 정보를 업데이트 합니다.</div>
     </ConfirmCheckbox>
   </Story>
+</Preview>
+
+# GenderRadio 
+
+<Preview>
+   <Story name="Gender Selector">
+     <GenderRadio value={selectAddons('value', ['MALE', 'FEMALE'], 'MALE')} />
+   </Story>
 </Preview>
