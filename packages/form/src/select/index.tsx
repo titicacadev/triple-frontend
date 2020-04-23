@@ -21,7 +21,7 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   onChange?: (e?: React.SyntheticEvent, value?: any) => any
 }
 
-const SelectFrame = styled.div<{ focused?: string; error?: string }>`
+const SelectFrame = styled.div<{ focused?: string; error?: boolean }>`
   padding: 14px 16px;
   border: 1px solid rgba(${getColor('gray100')});
   border-radius: 2px;
@@ -40,7 +40,7 @@ const SelectFrame = styled.div<{ focused?: string; error?: string }>`
     `};
 `
 
-const BaseSelect = styled.select<{ selected?: boolean; error?: string }>`
+const BaseSelect = styled.select<{ selected?: boolean; error?: boolean }>`
   width: 100%;
   font-size: 16px;
   color: rgba(${getColor('gray')}, ${({ selected }) => (selected ? 1 : 0.3)});
@@ -64,13 +64,13 @@ function Select({
   onBlur,
 }: SelectProps) {
   return (
-    <SelectFrame focused={focused} error={error}>
+    <SelectFrame focused={focused} error={!!error}>
       <BaseSelect
         id={id}
         onChange={(e) => onChange && onChange(e, e.target.value)}
         onBlur={onBlur}
         value={value}
-        error={error}
+        error={!!error}
         name={name}
         selected={value !== null && value !== undefined && value !== ''}
       >

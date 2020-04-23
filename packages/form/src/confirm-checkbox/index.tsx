@@ -15,7 +15,7 @@ const generateFillStyles = ({
 }: {
   fillType: FillType
   checked: boolean
-  error?: string
+  error?: boolean
 }) => {
   if (!checked && !error) {
     return
@@ -66,7 +66,7 @@ const ConfirmFrame = styled.div.attrs({})<{
   checked?: boolean
   fillType?: FillType
   padding?: MarginPadding
-  error?: string
+  error?: boolean
 }>`
   width: 100%;
   border: 1px solid #efefef;
@@ -143,7 +143,7 @@ export default withField(
         borderless={borderless}
         fillType={fillType}
         padding={padding}
-        error={error}
+        error={!!error}
       >
         {children}
         <Icon checked={value} borderless={borderless} />

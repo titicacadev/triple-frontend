@@ -22,9 +22,9 @@ const FieldContainer = styled.div`
 interface ActionSheetSelectorProps {
   title?: string
   options: Option[]
-  onChange: (value?: Option) => void
-  value: string | number
-  error: boolean
+  onChange: (value: Option) => void
+  value: string | number | null
+  error?: string
   required?: boolean
   onOpen: () => void
   onClose: () => void
@@ -61,7 +61,7 @@ function ActionSheetSelector({
   return (
     <Container position="relative">
       <Container onClick={onOpen}>
-        <FieldContainer error={error}>
+        <FieldContainer error={!!error}>
           <Text size="large" alpha={selected ? 1 : 0.5}>
             {selected ? selected.label : '선택안함'}
           </Text>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ActionSheet from '@titicaca/action-sheet'
 import DrawerButton from '@titicaca/drawer-button'
 
@@ -10,7 +10,7 @@ interface ActionSheetProps {
   open: boolean
   onClose: () => void | Promise<boolean>
   onSelect: (value: Option) => void
-  value?: string | number
+  value?: string | number | null
   directSelect?: boolean
 }
 
@@ -24,6 +24,12 @@ export default function ActionSheetWrapper({
   directSelect,
 }: ActionSheetProps) {
   const [selectedOption, setSelectedOption] = useState<Option | null>(null)
+
+  useEffect(() => {
+    if (!open) {
+      setSelectedOption(null)
+    }
+  }, [open, setSelectedOption])
 
   const handleSelect = (option: Option) => {
     if (directSelect) {
