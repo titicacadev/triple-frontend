@@ -1,7 +1,13 @@
 import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
 import { action } from '@storybook/addon-actions'
 import { text, boolean, select as selectAddons } from '@storybook/addon-knobs'
-import { Input, Select, ActionSheetSelector, Textarea } from '@titicaca/form'
+import {
+  Input,
+  Select,
+  ActionSheetSelector,
+  Textarea,
+  ConfirmCheckbox,
+} from '@titicaca/form'
 
 import RadioWrapper from './components/radio.tsx'
 
@@ -125,5 +131,22 @@ import RadioWrapper from './components/radio.tsx'
 <Preview>
   <Story name="Radio">
     <RadioWrapper />
+  </Story>
+</Preview>
+
+# ConfirmCheckbox
+
+<Preview>
+  <Story name="Confirm Selector">
+     <ConfirmCheckbox
+      value={boolean('value', false)}
+      borderless={boolean('borderless', false)}
+      textAlign={selectAddons('textAlign', ['left', 'right'], 'left')}
+      padding={{ top: 16, left: 16, bottom: 16 }}
+      fillType={selectAddons('fillType', ['full', 'border', 'text'], 'full')}
+      padding={{ top: 16, right: 50, left: 16, bottom: 16 }}
+    >
+      <div>예약자 정보를 업데이트 합니다.</div>
+    </ConfirmCheckbox>
   </Story>
 </Preview>
