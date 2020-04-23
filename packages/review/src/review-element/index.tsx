@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import IntersectionObserver from '@titicaca/intersection-observer'
 import { List, Container, Text, Rating } from '@titicaca/core-elements'
-import { getColor } from '@titicaca/color-palette'
 import {
   useEventTrackingContext,
   useUserAgentContext,
@@ -99,7 +98,7 @@ const LikeButton = styled.div<{ liked?: boolean }>`
   padding: 2px 20px;
   font-weight: bold;
   ${({ liked }) => css`
-  color: rgba(${getColor(liked ? 'blue' : 'gray400')});
+  color: rgba(${liked ? '54, 143, 255, 1' : '58, 58, 58, 0.4'});
   background-image: url('https://assets.triple.guide/images/btn-lounge-thanks-${
     liked ? 'on' : 'off'
   }@3x.png');
