@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 import { MarginPadding, paddingMixin } from '@titicaca/core-elements'
 
-import withField from './with-field'
+import withField from '../with-field'
 
 type FillType = 'full' | 'border' | 'text'
 
@@ -26,20 +26,20 @@ const generateFillStyles = ({
   switch (fillType) {
     case 'full':
       return css`
-        border-color: rgba(${color}, 1);
+        border-color: rgba(${color});
         & > * {
-          color: rgba(${color}, 1);
+          color: rgba(${color});
           font-weight: bold;
         }
       `
     case 'border':
       return css`
-        border-color: rgba(${color}, 1);
+        border-color: rgba(${color});
       `
     case 'text':
       return css`
         & > * {
-          color: rgba(${color}, 1);
+          color: rgba(${color});
           font-weight: bold;
         }
       `
@@ -109,11 +109,11 @@ const Icon = styled.span<{ borderless?: boolean; checked?: boolean }>`
     `};
 `
 
-interface ConfirmSelectorProps {
+interface ConfirmCheckboxProps {
   name?: string
-  value: any
+  value: boolean
   placeholder: string
-  onChange?: (e?: React.SyntheticEvent, value?: any) => any
+  onChange?: (e?: React.SyntheticEvent, value?: boolean) => void
   textAlign?: CSS.TextAlignProperty
   borderless?: boolean
   fillType?: FillType
@@ -122,7 +122,7 @@ interface ConfirmSelectorProps {
   error?: string
 }
 
-export const ConfirmSelector = withField(
+export default withField(
   ({
     name,
     value,
@@ -133,7 +133,7 @@ export const ConfirmSelector = withField(
     fillType,
     padding,
     error,
-  }: ConfirmSelectorProps) => {
+  }: ConfirmCheckboxProps) => {
     return (
       <ConfirmFrame
         name={name}
