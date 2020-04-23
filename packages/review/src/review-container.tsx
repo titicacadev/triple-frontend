@@ -280,7 +280,6 @@ export default function ReviewContainer({
             reviews={reviews.filter((review) => !myReviewIds.has(review.id))}
             regionId={regionId}
             appUrlScheme={appUrlScheme}
-            margin={{ top: 30 }}
             resourceId={resourceId}
             showToast={showToast}
             reviewRateDescriptions={reviewRateDescriptions}
