@@ -11,8 +11,8 @@ import { ImageMeta as OriginalImageMeta } from '@titicaca/type-definitions'
 import Carousel, { CarouselProps } from './carousel'
 
 export interface CarouselImageMeta extends OriginalImageMeta {
-  frame: FrameRatioAndSizes
-  size: GlobalSizes
+  frame?: FrameRatioAndSizes
+  size?: GlobalSizes
 }
 
 const PageLabelText = styled.div`
