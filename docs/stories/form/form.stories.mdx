@@ -3,6 +3,8 @@ import { action } from '@storybook/addon-actions'
 import { text, boolean, select as selectAddons } from '@storybook/addon-knobs'
 import { Input, Select, ActionSheetSelector, Textarea } from '@titicaca/form'
 
+import RadioWrapper from './components/radio.tsx'
+
 <Meta title="form | Form" />
 
 # Form
@@ -115,5 +117,13 @@ import { Input, Select, ActionSheetSelector, Textarea } from '@titicaca/form'
         '고객님의 요청사항은 해당 호텔에 전달됩니다만 호텔 사정에 따라 필요하신 내용이 이루어지지 않을 수 있으니 많은 양해 바랍니다.',
       )}
     />
+  </Story>
+</Preview>
+
+## Radio
+
+<Preview>
+  <Story name="Radio">
+    <RadioWrapper />
   </Story>
 </Preview>

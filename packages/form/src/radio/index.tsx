@@ -2,9 +2,9 @@ import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { Text } from '@titicaca/core-elements'
 
-import withField from './with-field'
+import withField from '../with-field'
 
-type RadioValue = string | null
+type RadioValue = string | number | null | undefined
 
 interface Option {
   text: string
