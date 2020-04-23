@@ -31,9 +31,11 @@ export type BoxProps = {
   padding: MarginPadding
 }
 
-export type CardProps = BoxProps & {
-  shadow?: KeyOfShadowSize
-}
+export type CardProps = Partial<
+  BoxProps & {
+    shadow: KeyOfShadowSize
+  }
+>
 
 const borderRadius = ({
   radius = 0,
