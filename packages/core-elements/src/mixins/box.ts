@@ -2,7 +2,7 @@ import { css, ThemedStyledProps } from 'styled-components'
 
 import { BaseSizes } from '../commons'
 
-const ShadowMap: { [key in BaseSizes]: string } = {
+const ShadowSizeMap: { [key in BaseSizes]: string } = {
   small: '0 0 10px 0 rgba(0, 0, 0, 0.07)',
   medium: '0 0 20px 0 rgba(0, 0, 0, 0.07)',
   large: '0 0 30px 0 rgba(0, 0, 0, 0.1)',
@@ -28,11 +28,11 @@ const ShadowMap: { [key in BaseSizes]: string } = {
  */
 export const shadowMixin = ({
   shadow,
-}: ThemedStyledProps<any, any> & { shadow?: KeyOfShadowMap }) =>
+}: ThemedStyledProps<any, any> & { shadow?: KeyOfShadowSize }) =>
   shadow &&
   css`
-    box-shadow: ${ShadowMap[shadow as KeyOfShadowMap]};
+    box-shadow: ${ShadowSizeMap[shadow as KeyOfShadowSize]};
   `
 
-export type KeyOfShadowMap = keyof typeof ShadowMap
-export type ShadowMapType = { [key in KeyOfShadowMap]: string }
+export type KeyOfShadowSize = keyof typeof ShadowSizeMap
+export type ShadowSizeMapType = { [key in KeyOfShadowSize]: string }
