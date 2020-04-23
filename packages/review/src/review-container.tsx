@@ -280,7 +280,6 @@ export default function ReviewContainer({
             reviews={reviews.filter((review) => !myReviewIds.has(review.id))}
             regionId={regionId}
             appUrlScheme={appUrlScheme}
-            margin={{ top: 30 }}
             resourceId={resourceId}
             showToast={showToast}
             reviewRateDescriptions={reviewRateDescriptions}
@@ -296,7 +295,7 @@ export default function ReviewContainer({
       )}
 
       {reviewsCount > 3 && shortened ? (
-        <Container margin={{ top: 50 }}>
+        <Container margin={{ top: 40 }}>
           <Button
             basic
             fluid

@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import IntersectionObserver from '@titicaca/intersection-observer'
 import { List, Container, Text, Rating } from '@titicaca/core-elements'
-import { getColor } from '@titicaca/color-palette'
 import {
   useEventTrackingContext,
   useUserAgentContext,
@@ -97,8 +96,9 @@ const LikeButton = styled.div<{ liked?: boolean }>`
   margin-top: 5px;
   margin-right: 8px;
   padding: 2px 20px;
+  font-weight: bold;
   ${({ liked }) => css`
-  color: ${getColor(liked ? 'blue' : 'gray')};
+  color: rgba(${liked ? '54, 143, 255, 1' : '58, 58, 58, 0.4'});
   background-image: url('https://assets.triple.guide/images/btn-lounge-thanks-${
     liked ? 'on' : 'off'
   }@3x.png');
@@ -135,6 +135,8 @@ export default function ReviewElement({
   })
   const handleSelectReview = (e: React.SyntheticEvent) => {
     if (parseFloat(appVersion || '') >= 4.3) {
+      e.preventDefault()
+      e.stopPropagation()
       trackEvent({
         ga: ['리뷰_선택'],
         fa: {
@@ -145,8 +147,6 @@ export default function ReviewElement({
       })
 
       window.location.href = `${appUrlScheme}:///reviews/${review.id}/detail?region_id=${regionId}&resource_id=${resourceId}`
-      e.preventDefault()
-      e.stopPropagation()
     }
   }
   return (
@@ -155,7 +155,7 @@ export default function ReviewElement({
         isIntersecting && onShow && onShow(index)
       }
     >
-      <List.Item>
+      <List.Item style={{ paddingTop: 6 }}>
         <User user={user} onClick={(e) => onUserClick(e, review)}>
           {!blindedAt && !!rating ? <Score score={rating} /> : null}
         </User>
