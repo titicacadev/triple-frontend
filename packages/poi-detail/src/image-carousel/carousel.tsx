@@ -56,12 +56,12 @@ export default function Carousel({
     : images
 
   const handleImageClick = useCallback(() => {
-    if (currentPage === SHOW_CTA_FROM_INDEX) {
+    if (isPublic && currentPage === SHOW_CTA_FROM_INDEX) {
       return onCTAClick()
     }
 
     onImageClick(images[currentPage])
-  }, [onImageClick, onCTAClick, images, currentPage])
+  }, [onImageClick, onCTAClick, images, currentPage, isPublic])
 
   const handlePageChange = useCallback(
     ({ index }) => {
