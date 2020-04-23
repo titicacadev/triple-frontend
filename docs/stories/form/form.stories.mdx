@@ -12,6 +12,7 @@ import {
 
 import RadioWrapper from './components/radio.tsx'
 import SelectActionSheetWrapper from './components/select-action-sheet.tsx'
+import CheckboxWrapper from './components/checkbox.tsx'
 
 <Meta title="form | Form" />
 
@@ -126,5 +127,13 @@ import SelectActionSheetWrapper from './components/select-action-sheet.tsx'
 <Preview>
    <Story name="Gender Selector">
      <GenderRadio value={selectAddons('value', ['MALE', 'FEMALE'], 'MALE')} />
+   </Story>
+</Preview>
+
+# CheckBox
+
+<Preview>
+   <Story name="Checkbox">
+     <CheckboxWrapper />
    </Story>
 </Preview>

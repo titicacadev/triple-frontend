@@ -60,7 +60,7 @@ const RadioInput = styled.input.attrs({ type: 'radio' })<{
 
 interface RadioProps {
   name?: string
-  value?: RadioValue
+  value: RadioValue
   onChange?: (e: React.SyntheticEvent, value: RadioValue) => void
   options: Option[]
 }

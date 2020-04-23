@@ -25,6 +25,7 @@
     "@titicaca/color-palette": "^1.17.1",
     "@titicaca/action-sheet": "^1.17.1",
     "@titicaca/drawer-button": "^1.17.1",
-    "react-input-mask": "^2.0.4"
+    "react-input-mask": "^2.0.4",
+    "react-fast-compare": "^3.0.1"
   }
 }
