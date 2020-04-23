@@ -4,6 +4,7 @@ import React, {
   useCallback,
   ComponentType,
   useReducer,
+  useEffect,
 } from 'react'
 import qs from 'qs'
 import fetch from 'isomorphic-fetch'
@@ -19,6 +20,7 @@ import reducer, {
 interface ImagesContext {
   images: ImageMeta[]
   total: number
+  loading: boolean
   actions: {
     fetch: (cb?: () => void) => Promise<void>
     indexOf: (target: { id: string }) => Promise<number>
@@ -41,6 +43,7 @@ interface ImagesProviderProps {
 const Context = React.createContext<ImagesContext>({
   images: [],
   total: 0,
+  loading: false,
   actions: {
     fetch: () => Promise.resolve(),
     indexOf: () => Promise.resolve(-1),
@@ -61,7 +64,7 @@ export function ImagesProvider({
   children,
 }: PropsWithChildren<ImagesProviderProps>) {
   const [{ loading, images, total, hasMore }, dispatch] = useReducer(reducer, {
-    loading: false,
+    loading: !initialImages,
     images: initialImages || [],
     total: initialTotal || 0,
     hasMore: true,
@@ -86,8 +89,8 @@ export function ImagesProvider({
   )
 
   const fetch = useCallback(
-    async (cb?: () => void) => {
-      if (loading || !hasMore) {
+    async (cb?: () => void, force?: boolean) => {
+      if (!force && (loading || !hasMore)) {
         return
       }
 
@@ -128,6 +131,10 @@ export function ImagesProvider({
     [images, sendFetchRequest],
   )
 
+  useEffect(() => {
+    fetch(undefined, true)
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
   const value = useMemo(
     () => ({
       images,
@@ -136,8 +143,9 @@ export function ImagesProvider({
         fetch,
         indexOf,
       },
+      loading,
     }),
-    [fetch, images, indexOf, total],
+    [fetch, images, indexOf, total, loading],
   )
 
   return <Context.Provider value={value}>{children}</Context.Provider>
