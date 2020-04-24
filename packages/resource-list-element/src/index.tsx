@@ -41,7 +41,7 @@ export type ResourceListElementProps<R = {}> = Partial<
   reviewsCount?: number
   reviewsRating?: number
   maxCommentLines?: number
-  isAdvertise?: boolean
+  isAdvertisement?: boolean
   onClick?: React.MouseEventHandler<HTMLLIElement>
 } & Partial<Parameters<typeof List.Item>['0']>
 
@@ -89,7 +89,7 @@ export default function ExtendedResourceListElement<R>({
   reviewsRating,
   onClick,
   maxCommentLines,
-  isAdvertise,
+  isAdvertisement,
   ...props
 }: ResourceListElementProps<R>) {
   const labels = tags || []
@@ -189,9 +189,9 @@ export default function ExtendedResourceListElement<R>({
           </Container>
         ) : null}
 
-        {distance || distance === 0 || note || isAdvertise ? (
+        {distance || distance === 0 || note || isAdvertisement ? (
           <Container margin={{ top: 3 }}>
-            {isAdvertise ? (
+            {isAdvertisement ? (
               <Label
                 emphasized
                 size="tiny"
