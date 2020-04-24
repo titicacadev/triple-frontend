@@ -1,42 +1,51 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { getColor } from '@titicaca/color-palette'
+import { ColorSet, Color } from '@titicaca/color-palette'
 
 import Container from './container'
 import { MarginPadding } from '../commons'
 import { marginMixin } from '../mixins'
 
-export type LabelColor = 'blue' | 'red' | 'gray' | 'purple' | 'green'
+export type LabelColor = 'blue' | 'red' | 'purple' | 'gray' | 'green'
 
-type Color = number[] | string[]
-
-const LABEL_COLORS: Omit<
-  Record<LabelColor, { background: Color; text: Color }>,
-  'white'
-> = {
+const LABEL_COLORS: {
+  [key in LabelColor]: {
+    background: string
+    color: string
+    emphasizedColor: string
+    emphasizedBackground: string
+    borderColor?: Color
+  }
+} = {
   blue: {
-    background: getColor('blue')
-      .split(', ')
-      .concat('0.1'),
-    text: getColor('blue')
-      .split(', ')
-      .concat('1'),
+    background: ColorSet.blue100,
+    color: ColorSet.blue,
+    emphasizedColor: ColorSet.white,
+    emphasizedBackground: ColorSet.blue,
   },
   red: {
-    background: [253, 46, 105, 0.1],
-    text: [253, 46, 105, 1],
+    background: ColorSet.red100,
+    color: ColorSet.red,
+    emphasizedColor: ColorSet.white,
+    emphasizedBackground: ColorSet.red,
   },
   purple: {
-    background: [151, 95, 255, 0.1],
-    text: [151, 95, 255, 1],
+    background: ColorSet.purple100,
+    color: ColorSet.purple,
+    emphasizedColor: ColorSet.white,
+    emphasizedBackground: ColorSet.purple,
   },
   gray: {
-    background: [58, 58, 58, 0.05],
-    text: [58, 58, 58, 0.7],
+    background: ColorSet.gray50,
+    color: ColorSet.gray700,
+    emphasizedColor: ColorSet.white,
+    emphasizedBackground: ColorSet.gray700,
   },
   green: {
-    background: [13, 208, 175, 0.1],
-    text: [13, 208, 175, 1],
+    background: ColorSet.mint100,
+    color: ColorSet.mint,
+    emphasizedColor: ColorSet.white,
+    emphasizedBackground: ColorSet.mint,
   },
 }
 
@@ -91,49 +100,47 @@ interface PromoLabelProps {
   margin?: MarginPadding
 }
 
-function getRGB(rgba: string[] | number[]) {
-  return rgba.slice(0, 3).join(',')
-}
-
-function getRGBA(rgba: string[] | number[]) {
-  return rgba.join(',')
-}
-
 export const PromoLabel = styled.div<PromoLabelProps>`
   display: inline-block;
+  ${marginMixin}
 
-  padding: ${({ size }) => PROMO_SIZES[size || 'small'].padding};
-  border-radius: ${({ size }) => PROMO_SIZES[size || 'small'].borderRadius}px;
-  line-height: ${({ size }) => PROMO_SIZES[size || 'small'].height}px;
-  height: ${({ size }) => PROMO_SIZES[size || 'small'].height}px;
-  font-size: ${({ size }) => PROMO_SIZES[size || 'small'].fontSize}px;
+  ${({ size = 'small' }) => {
+    const { padding, borderRadius, height, fontSize } = PROMO_SIZES[
+      size || 'small'
+    ]
+    return `
+      padding: ${padding};
+      border-radius: ${borderRadius}px;
+      line-height: ${height}px;
+      height: ${height}px;
+      font-size: ${fontSize}px;
+   `
+  }}
 
   ${({ emphasized }) =>
     emphasized
       ? css<Pick<PromoLabelProps, 'color'>>`
           font-weight: bold;
-            ${({ color = 'purple' }) => {
-              const { background } = LABEL_COLORS[color]
-              return css`
-                background-color: rgba(${getRGB(background)}, 1);
-              `
-            }}
-          color: rgba(${getColor('white')});
+          ${({ color = 'purple' }) => {
+            const { emphasizedColor, emphasizedBackground } = LABEL_COLORS[
+              color
+            ]
+            return css`
+              background-color: ${emphasizedBackground};
+              color: ${emphasizedColor};
+            `
+          }}
         `
       : css<Pick<PromoLabelProps, 'color'>>`
           font-weight: normal;
           ${({ color = 'purple' }) => {
-            const {
-              [color]: { background, text },
-            } = LABEL_COLORS
+            const { color: textColor, background } = LABEL_COLORS[color]
             return css`
-              background-color: rgba(${getRGBA(background)});
-              color: rgba(${getRGBA(text)});
+              background-color: ${background};
+              color: ${textColor};
             `
           }}
         `};
-
-  ${marginMixin}
 `
 
 interface LabelProps extends PromoLabelProps, RadioLabelProps {
