@@ -127,7 +127,7 @@ export default function ReviewElement({
 }: ReviewElementProps) {
   const [unfolded, setUnfolded] = useState(false)
   const { deriveCurrentStateAndCount } = useReviewLikesContext()
-  const appVersion = useUserAgentContext()?.app?.version
+  const appVersion = useUserAgentContext()?.app?.version || '1'
   const { user, blindedAt, comment, createdAt, rating, media } = review
   const { trackEvent } = useEventTrackingContext()
   const { liked, likesCount } = deriveCurrentStateAndCount({
@@ -136,7 +136,7 @@ export default function ReviewElement({
     likesCount: review.likesCount,
   })
   const handleSelectReview = (e: React.SyntheticEvent) => {
-    if (semver.lt(semver.coerce(appVersion), LOUNGE_APP_VERSION)) {
+    if (semver.lt(semver.coerce(appVersion || '1'), LOUNGE_APP_VERSION)) {
       return
     }
     e.preventDefault()
