@@ -51,6 +51,7 @@ storiesOf('poi-list-elements | POI', module)
           resourceScraps={{
             [hotel.id]: boolean('저장', false),
           }}
+          isAdvertise={boolean('광고 상품', false)}
           maxCommentLines={number('comment 최대 노출', 0)}
           pricingNote="1박, 세금포함"
           priceLabelOverride={text('pricing custom text', '')}
