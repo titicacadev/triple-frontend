@@ -127,7 +127,7 @@ export default function ReviewElement({
 }: ReviewElementProps) {
   const [unfolded, setUnfolded] = useState(false)
   const { deriveCurrentStateAndCount } = useReviewLikesContext()
-  const appVersion = useUserAgentContext()?.app?.version || '1'
+  const appVersion = semver.coerce(useUserAgentContext()?.app?.version)
   const { user, blindedAt, comment, createdAt, rating, media } = review
   const { trackEvent } = useEventTrackingContext()
   const { liked, likesCount } = deriveCurrentStateAndCount({
@@ -136,21 +136,20 @@ export default function ReviewElement({
     likesCount: review.likesCount,
   })
   const handleSelectReview = (e: React.SyntheticEvent) => {
-    if (semver.lt(semver.coerce(appVersion || '1'), LOUNGE_APP_VERSION)) {
-      return
-    }
-    e.preventDefault()
-    e.stopPropagation()
-    trackEvent({
-      ga: ['리뷰_리뷰선택', resourceId],
-      fa: {
-        action: '리뷰_리뷰선택',
-        item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
-        review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
-      },
-    })
+    if (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) {
+      e.preventDefault()
+      e.stopPropagation()
+      trackEvent({
+        ga: ['리뷰_리뷰선택', resourceId],
+        fa: {
+          action: '리뷰_리뷰선택',
+          item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+          review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
+        },
+      })
 
-    window.location.href = `${appUrlScheme}:///reviews/${review.id}/detail?region_id=${regionId}&resource_id=${resourceId}`
+      window.location.href = `${appUrlScheme}:///reviews/${review.id}/detail?region_id=${regionId}&resource_id=${resourceId}`
+    }
   }
   return (
     <IntersectionObserver
@@ -173,19 +172,21 @@ export default function ReviewElement({
                 comment={comment}
                 onUnfoldButtonClick={(e) => {
                   if (
-                    semver.lt(semver.coerce(appVersion), LOUNGE_APP_VERSION)
+                    appVersion &&
+                    semver.gte(appVersion, LOUNGE_APP_VERSION)
                   ) {
-                    trackEvent({
-                      ga: ['리뷰_리뷰글더보기'],
-                      fa: {
-                        action: '리뷰_리뷰글더보기',
-                        item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
-                      },
-                    })
-                    setUnfolded(true)
-
-                    onUnfoldButtonClick && onUnfoldButtonClick(e, review)
+                    return
                   }
+                  trackEvent({
+                    ga: ['리뷰_리뷰글더보기'],
+                    fa: {
+                      action: '리뷰_리뷰글더보기',
+                      item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+                    },
+                  })
+                  setUnfolded(true)
+
+                  onUnfoldButtonClick && onUnfoldButtonClick(e, review)
                 }}
               />
             )
@@ -202,18 +203,20 @@ export default function ReviewElement({
                   <img
                     onClick={(e) => {
                       if (
-                        semver.lt(semver.coerce(appVersion), LOUNGE_APP_VERSION)
+                        appVersion &&
+                        semver.gte(appVersion, LOUNGE_APP_VERSION)
                       ) {
-                        trackEvent({
-                          ga: ['리뷰_리뷰사진썸네일'],
-                          fa: {
-                            action: '리뷰_리뷰사진썸네일',
-                            item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
-                            photo_id: media[0].id, // eslint-disable-line @typescript-eslint/camelcase
-                          },
-                        })
-                        onImageClick(e, review, media[0])
+                        return
                       }
+                      trackEvent({
+                        ga: ['리뷰_리뷰사진썸네일'],
+                        fa: {
+                          action: '리뷰_리뷰사진썸네일',
+                          item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+                          photo_id: media[0].id, // eslint-disable-line @typescript-eslint/camelcase
+                        },
+                      })
+                      onImageClick(e, review, media[0])
                     }}
                     src={media[0].sizes.large.url}
                   />
@@ -226,21 +229,20 @@ export default function ReviewElement({
                       src={image.sizes.large.url}
                       onClick={(e) => {
                         if (
-                          semver.lt(
-                            semver.coerce(appVersion),
-                            LOUNGE_APP_VERSION,
-                          )
+                          appVersion &&
+                          semver.gte(appVersion, LOUNGE_APP_VERSION)
                         ) {
-                          trackEvent({
-                            ga: ['리뷰_리뷰사진썸네일'],
-                            fa: {
-                              action: '리뷰_리뷰사진썸네일',
-                              item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
-                              photo_id: image.id, // eslint-disable-line @typescript-eslint/camelcase
-                            },
-                          })
-                          onImageClick(e, review, image)
+                          return
                         }
+                        trackEvent({
+                          ga: ['리뷰_리뷰사진썸네일'],
+                          fa: {
+                            action: '리뷰_리뷰사진썸네일',
+                            item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+                            photo_id: image.id, // eslint-disable-line @typescript-eslint/camelcase
+                          },
+                        })
+                        onImageClick(e, review, image)
                       }}
                     />
                   ))}
