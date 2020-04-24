@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { ColorSet, Color } from '@titicaca/color-palette'
+import CSS from 'csstype'
 
 import Container from './container'
 import { MarginPadding } from '../commons'
@@ -114,6 +115,7 @@ interface PromoLabelProps {
   emphasized?: boolean
   color?: LabelColor
   margin?: MarginPadding
+  verticalAlign?: CSS.VerticalAlignProperty<string>
 }
 
 export const PromoLabel = styled.div<PromoLabelProps>`
@@ -132,6 +134,12 @@ export const PromoLabel = styled.div<PromoLabelProps>`
       font-size: ${fontSize}px;
    `
   }}
+
+  ${({ verticalAlign }) =>
+    verticalAlign &&
+    `
+    vertical-align: ${verticalAlign};
+  `}
 
   ${({ emphasized }) =>
     emphasized
