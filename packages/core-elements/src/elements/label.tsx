@@ -83,6 +83,12 @@ const RadioLabel = styled.div<RadioLabelProps>`
 `
 
 const PROMO_SIZES = {
+  tiny: {
+    fontSize: 10,
+    borderRadius: 1,
+    height: 15,
+    padding: '0 4px',
+  },
   small: {
     fontSize: 11,
     borderRadius: 2,

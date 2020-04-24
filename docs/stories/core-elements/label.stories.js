@@ -12,7 +12,7 @@ storiesOf('Core-Elements | Label', module)
   .add('프로모', () => (
     <Label
       promo
-      size={select('크기', ['small', 'medium', 'large'], 'medium')}
+      size={select('크기', ['tiny', 'small', 'medium', 'large'], 'medium')}
       color={select(
         '색깔',
         ['white', 'purple', 'blue', 'red', 'gray', 'green'],
