@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
+import { Color } from '@titicaca/color-palette'
 
 import { MarginPadding, FrameRatioAndSizes } from '../../commons'
 import { marginMixin } from '../../mixins'
@@ -32,7 +33,7 @@ const ImageFrameBase = styled.div<ImageFrameBaseProps>`
   ${({ asPlaceholder }) =>
     asPlaceholder
       ? css<{ src?: string }>`
-          background-color: #efefef;
+          background-color: ${Color.brightGray};
           background-repeat: no-repeat;
           background-position: center;
           background-size: 40px 40px;
