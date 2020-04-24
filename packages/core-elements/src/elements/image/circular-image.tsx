@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import * as CSS from 'csstype'
+import { Color } from '@titicaca/color-palette'
 
 import { GlobalSizes } from '../../commons'
 
@@ -21,7 +22,7 @@ const RoundImage = styled.img<{
   border-radius: ${({ size, width }) =>
     ((size && ROUND_SIZES[size]) || width || (ROUND_SIZES['small'] as number)) /
     2}px;
-  background-color: #efefef;
+  background-color: ${Color.brightGray};
   object-fit: cover;
 
   float: ${({ floated }) => floated || 'none'};
