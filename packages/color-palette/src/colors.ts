@@ -11,6 +11,7 @@ export const ColorSet = {
   gray700: 'rgba(58, 58, 58, 0.7)',
   gray800: 'rgba(58, 58, 58, 0.8)',
   gray900: 'rgba(58, 58, 58, 0.9)',
+  brightGray: 'rgba(239, 239, 239, 1)',
   blue: 'rgba(54, 143, 255, 1)',
   blue100: 'rgba(54, 143, 255, 0.1)',
   blue980: 'rgba(54, 143, 255, 0.98)',
