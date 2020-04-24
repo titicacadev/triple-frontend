@@ -29,7 +29,7 @@ export default function SocialReviews({
   const { navigate } = useHistoryContext()
   const { t } = useI18n()
 
-  if (!socialReviews) {
+  if (!socialReviews || socialReviews.length === 0) {
     return null
   }
 
