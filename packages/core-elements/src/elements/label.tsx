@@ -6,7 +6,7 @@ import Container from './container'
 import { MarginPadding } from '../commons'
 import { marginMixin } from '../mixins'
 
-export type LabelColor = 'blue' | 'red' | 'purple' | 'gray' | 'green'
+export type LabelColor = 'blue' | 'red' | 'purple' | 'gray' | 'green' | 'white'
 
 const LABEL_COLORS: {
   [key in LabelColor]: {
@@ -46,6 +46,16 @@ const LABEL_COLORS: {
     color: ColorSet.mint,
     emphasizedColor: ColorSet.white,
     emphasizedBackground: ColorSet.mint,
+  },
+  /**
+   * white 의 경우 강조 타입만 정의된 상태
+   */
+  white: {
+    background: ColorSet.white,
+    color: ColorSet.gray,
+    emphasizedColor: ColorSet.gray,
+    emphasizedBackground: ColorSet.white,
+    borderColor: ColorSet.gray200,
   },
 }
 
@@ -122,12 +132,16 @@ export const PromoLabel = styled.div<PromoLabelProps>`
       ? css<Pick<PromoLabelProps, 'color'>>`
           font-weight: bold;
           ${({ color = 'purple' }) => {
-            const { emphasizedColor, emphasizedBackground } = LABEL_COLORS[
-              color
-            ]
+            const {
+              emphasizedColor,
+              emphasizedBackground,
+              borderColor,
+            } = LABEL_COLORS[color]
+
             return css`
               background-color: ${emphasizedBackground};
               color: ${emphasizedColor};
+              ${borderColor && `border: 1px solid ${borderColor}`};
             `
           }}
         `
