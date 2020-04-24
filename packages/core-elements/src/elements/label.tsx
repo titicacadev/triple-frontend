@@ -11,11 +11,7 @@ export type LabelColor = 'blue' | 'red' | 'purple' | 'gray' | 'green' | 'white'
 
 const LABEL_COLORS: {
   [key in LabelColor]: {
-    background: string
-    color: string
-    emphasizedColor: string
-    emphasizedBackground: string
-    borderColor?: Color
+    [key: string]: string
   }
 } = {
   blue: {
