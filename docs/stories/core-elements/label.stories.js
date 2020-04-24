@@ -15,7 +15,7 @@ storiesOf('Core-Elements | Label', module)
       size={select('크기', ['small', 'medium', 'large'], 'medium')}
       color={select(
         '색깔',
-        ['purple', 'blue', 'red', 'gray', 'green'],
+        ['white', 'purple', 'blue', 'red', 'gray', 'green'],
         'purple',
       )}
       emphasized={boolean('강조', true)}
