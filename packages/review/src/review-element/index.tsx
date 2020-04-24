@@ -105,6 +105,7 @@ const LikeButton = styled.div<{ liked?: boolean }>`
   `};
 `
 
+const LOUNGE_APP_VERSION = '4.3.0'
 export default function ReviewElement({
   review,
   isMyReview,
@@ -134,9 +135,9 @@ export default function ReviewElement({
     likesCount: review.likesCount,
   })
   const handleSelectReview = (e: React.SyntheticEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    if (parseFloat(appVersion || '') >= 4.3) {
+    if (parseFloat(appVersion || '') >= parseFloat(LOUNGE_APP_VERSION)) {
+      e.preventDefault()
+      e.stopPropagation()
       trackEvent({
         ga: ['리뷰_리뷰선택', resourceId],
         fa: {
@@ -169,16 +170,21 @@ export default function ReviewElement({
               <FoldableComment
                 comment={comment}
                 onUnfoldButtonClick={(e) => {
-                  trackEvent({
-                    ga: ['리뷰_리뷰글더보기'],
-                    fa: {
-                      action: '리뷰_리뷰글더보기',
-                      item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
-                    },
-                  })
-                  setUnfolded(true)
+                  if (
+                    parseFloat(appVersion || '') <
+                    parseFloat(LOUNGE_APP_VERSION)
+                  ) {
+                    trackEvent({
+                      ga: ['리뷰_리뷰글더보기'],
+                      fa: {
+                        action: '리뷰_리뷰글더보기',
+                        item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+                      },
+                    })
+                    setUnfolded(true)
 
-                  onUnfoldButtonClick && onUnfoldButtonClick(e, review)
+                    onUnfoldButtonClick && onUnfoldButtonClick(e, review)
+                  }
                 }}
               />
             )
@@ -194,15 +200,20 @@ export default function ReviewElement({
                 <SoloImageContainer>
                   <img
                     onClick={(e) => {
-                      trackEvent({
-                        ga: ['리뷰_리뷰사진썸네일'],
-                        fa: {
-                          action: '리뷰_리뷰사진썸네일',
-                          item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
-                          photo_id: media[0].id, // eslint-disable-line @typescript-eslint/camelcase
-                        },
-                      })
-                      onImageClick(e, review, media[0])
+                      if (
+                        parseFloat(appVersion || '') <
+                        parseFloat(LOUNGE_APP_VERSION)
+                      ) {
+                        trackEvent({
+                          ga: ['리뷰_리뷰사진썸네일'],
+                          fa: {
+                            action: '리뷰_리뷰사진썸네일',
+                            item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+                            photo_id: media[0].id, // eslint-disable-line @typescript-eslint/camelcase
+                          },
+                        })
+                        onImageClick(e, review, media[0])
+                      }
                     }}
                     src={media[0].sizes.large.url}
                   />
@@ -214,15 +225,20 @@ export default function ReviewElement({
                       key={i}
                       src={image.sizes.large.url}
                       onClick={(e) => {
-                        trackEvent({
-                          ga: ['리뷰_리뷰사진썸네일'],
-                          fa: {
-                            action: '리뷰_리뷰사진썸네일',
-                            item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
-                            photo_id: image.id, // eslint-disable-line @typescript-eslint/camelcase
-                          },
-                        })
-                        onImageClick(e, review, image)
+                        if (
+                          parseFloat(appVersion || '') <
+                          parseFloat(LOUNGE_APP_VERSION)
+                        ) {
+                          trackEvent({
+                            ga: ['리뷰_리뷰사진썸네일'],
+                            fa: {
+                              action: '리뷰_리뷰사진썸네일',
+                              item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+                              photo_id: image.id, // eslint-disable-line @typescript-eslint/camelcase
+                            },
+                          })
+                          onImageClick(e, review, image)
+                        }
                       }}
                     />
                   ))}
