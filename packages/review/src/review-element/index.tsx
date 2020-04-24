@@ -1,6 +1,7 @@
 import React, { useState, PropsWithChildren, ComponentType } from 'react'
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
+import semver from 'semver'
 import IntersectionObserver from '@titicaca/intersection-observer'
 import { List, Container, Text, Rating } from '@titicaca/core-elements'
 import {
@@ -126,7 +127,7 @@ export default function ReviewElement({
 }: ReviewElementProps) {
   const [unfolded, setUnfolded] = useState(false)
   const { deriveCurrentStateAndCount } = useReviewLikesContext()
-  const appVersion = useUserAgentContext()?.app?.version
+  const appVersion = useUserAgentContext()?.app?.version || 1
   const { user, blindedAt, comment, createdAt, rating, media } = review
   const { trackEvent } = useEventTrackingContext()
   const { liked, likesCount } = deriveCurrentStateAndCount({
@@ -135,20 +136,21 @@ export default function ReviewElement({
     likesCount: review.likesCount,
   })
   const handleSelectReview = (e: React.SyntheticEvent) => {
-    if (parseFloat(appVersion || '') >= parseFloat(LOUNGE_APP_VERSION)) {
-      e.preventDefault()
-      e.stopPropagation()
-      trackEvent({
-        ga: ['리뷰_리뷰선택', resourceId],
-        fa: {
-          action: '리뷰_리뷰선택',
-          item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
-          review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
-        },
-      })
-
-      window.location.href = `${appUrlScheme}:///reviews/${review.id}/detail?region_id=${regionId}&resource_id=${resourceId}`
+    if (semver.lt(semver.coerce(appVersion), LOUNGE_APP_VERSION)) {
+      return
     }
+    e.preventDefault()
+    e.stopPropagation()
+    trackEvent({
+      ga: ['리뷰_리뷰선택', resourceId],
+      fa: {
+        action: '리뷰_리뷰선택',
+        item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+        review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
+      },
+    })
+
+    window.location.href = `${appUrlScheme}:///reviews/${review.id}/detail?region_id=${regionId}&resource_id=${resourceId}`
   }
   return (
     <IntersectionObserver
@@ -171,8 +173,7 @@ export default function ReviewElement({
                 comment={comment}
                 onUnfoldButtonClick={(e) => {
                   if (
-                    parseFloat(appVersion || '') <
-                    parseFloat(LOUNGE_APP_VERSION)
+                    semver.lt(semver.coerce(appVersion), LOUNGE_APP_VERSION)
                   ) {
                     trackEvent({
                       ga: ['리뷰_리뷰글더보기'],
@@ -201,8 +202,7 @@ export default function ReviewElement({
                   <img
                     onClick={(e) => {
                       if (
-                        parseFloat(appVersion || '') <
-                        parseFloat(LOUNGE_APP_VERSION)
+                        semver.lt(semver.coerce(appVersion), LOUNGE_APP_VERSION)
                       ) {
                         trackEvent({
                           ga: ['리뷰_리뷰사진썸네일'],
@@ -226,8 +226,10 @@ export default function ReviewElement({
                       src={image.sizes.large.url}
                       onClick={(e) => {
                         if (
-                          parseFloat(appVersion || '') <
-                          parseFloat(LOUNGE_APP_VERSION)
+                          semver.lt(
+                            semver.coerce(appVersion),
+                            LOUNGE_APP_VERSION,
+                          )
                         ) {
                           trackEvent({
                             ga: ['리뷰_리뷰사진썸네일'],
