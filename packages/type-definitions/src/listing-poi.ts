@@ -9,7 +9,7 @@ interface ListingPOISourceBase {
   comment?: string
   grade: number
   hasTnaProducts?: boolean
-  image: ImageMeta
+  image?: ImageMeta
   names: TranslatedProperty
   pointGeolocation: PointGeoJSON
   reviewsRating?: number
