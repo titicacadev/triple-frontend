@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-interface BodyScrollLockState {
+export interface BodyScrollLockState {
   scrollTop: number
   style?: Partial<{
     top: string
