@@ -17,5 +17,5 @@ const { response, data, error, loading } = useFetch(url, options)
 ```
 import { useBodyScrollLock } from '@titicaca/react-hooks';
 
-useBodyScrollLock()
+useBodyScrollLock(lockFlag: boolean)
 ```
