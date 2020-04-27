@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { ColorSet, Color } from '@titicaca/color-palette'
+import { ColorSet } from '@titicaca/color-palette'
 import CSS from 'csstype'
 
 import Container from './container'
