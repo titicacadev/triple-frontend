@@ -22,6 +22,7 @@
     "@titicaca/drawer-button": "^1.17.2",
     "@titicaca/floating-install-button": "^1.17.2",
     "@titicaca/footer": "^1.17.2",
+    "@titicaca/form": "^1.17.1",
     "@titicaca/image-carousel": "^1.17.2",
     "@titicaca/listing-filter": "^1.17.2",
     "@titicaca/location-properties": "^1.17.2",
