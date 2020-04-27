@@ -4,6 +4,7 @@ import { List, Text, longClickable } from '@titicaca/core-elements'
 import {
   useEventTrackingContext,
   useHistoryContext,
+  useUserAgentContext,
 } from '@titicaca/react-contexts'
 
 export const ACTION_SHEET_PREFIX = 'location-properties.copy-action-sheet'
@@ -39,6 +40,7 @@ export default function PropertyItem({
   onClick,
   eventActionFragment,
 }: PropertyItemProps) {
+  const { isPublic } = useUserAgentContext()
   const titleTextRef = useRef<HTMLDivElement>(null)
   const [titleTextWidth, setTitleTextWidth] = useState(0)
   const LongClickableItemContainer = longClickable(PropertyItemContainer)
@@ -62,7 +64,7 @@ export default function PropertyItem({
   return (
     <List.Item>
       <LongClickableItemContainer
-        onLongClick={handleLongClick}
+        onLongClick={!isPublic ? handleLongClick : undefined}
         onClick={onClick}
       >
         <Text.WithRef
