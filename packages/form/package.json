@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/form",
-  "version": "1.17.1",
+  "version": "1.18.0",
   "description": "Triple Form Components",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -21,11 +21,11 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^1.17.1",
-    "@titicaca/color-palette": "^1.17.1",
-    "@titicaca/action-sheet": "^1.17.1",
-    "@titicaca/drawer-button": "^1.17.1",
-    "react-input-mask": "^2.0.4",
-    "react-fast-compare": "^3.0.1"
+    "@titicaca/action-sheet": "^1.18.0",
+    "@titicaca/color-palette": "^1.18.0",
+    "@titicaca/core-elements": "^1.18.0",
+    "@titicaca/drawer-button": "^1.18.0",
+    "react-fast-compare": "^3.0.1",
+    "react-input-mask": "^2.0.4"
   }
 }
