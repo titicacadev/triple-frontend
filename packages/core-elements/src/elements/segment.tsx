@@ -68,7 +68,7 @@ export function Card({
   className,
   ...props
 }: PropsWithChildren<CardProps> & {
-  className: string
+  className?: string
 }) {
   return (
     <CardFrame className={className} {...props}>
