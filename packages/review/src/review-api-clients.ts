@@ -10,20 +10,23 @@ export function writeReview({
   resourceId,
   regionId,
   rating = 0,
+  photoFirst,
 }: {
   appUrlScheme: string
   resourceType: ResourceType
   resourceId: string
   regionId?: string
   rating?: number
+  photoFirst?: boolean
 }) {
   const params = qs.stringify({
     /* eslint-disable @typescript-eslint/camelcase */
     region_id: regionId,
     resource_type: resourceType,
     resource_id: resourceId,
-    /* eslint-disable @typescript-eslint/camelcase */
     rating,
+    ...(photoFirst && { photo_first: 'true' }),
+    /* eslint-enable @typescript-eslint/camelcase */
   })
 
   window.location.href = `${appUrlScheme}:///reviews/new?${params}`
