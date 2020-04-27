@@ -32,6 +32,8 @@ const PropertyValueContainer = styled.div<{ width: string }>`
   width: ${({ width }) => width};
 `
 
+const LongClickableItemContainer = longClickable(PropertyItemContainer)
+
 export default function PropertyItem({
   identifier,
   title,
@@ -43,7 +45,7 @@ export default function PropertyItem({
   const { isPublic } = useUserAgentContext()
   const titleTextRef = useRef<HTMLDivElement>(null)
   const [titleTextWidth, setTitleTextWidth] = useState(0)
-  const LongClickableItemContainer = longClickable(PropertyItemContainer)
+
   const { push } = useHistoryContext()
   const { trackSimpleEvent } = useEventTrackingContext()
 

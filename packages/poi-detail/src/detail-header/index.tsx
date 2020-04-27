@@ -18,6 +18,8 @@ import { formatNumber } from '@titicaca/view-utilities'
 import { HASH_COPY_ACTION_SHEET } from './constants'
 import CopyActionSheet from './copy-action-sheet'
 
+const LongClickableSection = longClickable(Section)
+
 export default function DetailHeader({
   names,
   scrapsCount,
@@ -35,7 +37,7 @@ export default function DetailHeader({
   onCopy: (value: string) => void
 } & Parameters<typeof Section>['0']) {
   const { isPublic } = useUserAgentContext()
-  const LongClickableSection = longClickable(Section)
+
   const { uriHash, push, back } = useHistoryContext()
   const { trackEvent } = useEventTrackingContext()
 
