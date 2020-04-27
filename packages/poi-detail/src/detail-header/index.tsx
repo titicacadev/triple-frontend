@@ -10,6 +10,7 @@ import {
 import {
   useEventTrackingContext,
   useHistoryContext,
+  useUserAgentContext,
 } from '@titicaca/react-contexts'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 import { formatNumber } from '@titicaca/view-utilities'
@@ -33,6 +34,7 @@ export default function DetailHeader({
   onReviewsRatingClick: () => void
   onCopy: (value: string) => void
 } & Parameters<typeof Section>['0']) {
+  const { isPublic } = useUserAgentContext()
   const LongClickableSection = longClickable(Section)
   const { uriHash, push, back } = useHistoryContext()
   const { trackEvent } = useEventTrackingContext()
@@ -44,7 +46,10 @@ export default function DetailHeader({
 
   return (
     <>
-      <LongClickableSection onLongClick={handleLongClick} {...props}>
+      <LongClickableSection
+        onLongClick={!isPublic ? handleLongClick : undefined}
+        {...props}
+      >
         <Text.Title>{names.primary || names.ko || names.en}</Text.Title>
         <Text size="tiny" alpha={0.5}>
           {names.local || names.en}
