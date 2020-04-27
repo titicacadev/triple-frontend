@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/review",
-  "version": "1.17.2",
+  "version": "1.18.0",
   "description": "UI Components for User Reviews from Triple Service",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,26 +15,26 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/action-sheet": "^1.17.2",
-    "@titicaca/core-elements": "^1.17.2",
-    "@titicaca/intersection-observer": "^1.17.2",
-    "@titicaca/modals": "^1.17.2",
-    "@titicaca/react-contexts": "^1.17.2",
-    "@titicaca/react-hooks": "^1.17.2",
-    "@titicaca/view-utilities": "^1.17.2",
-    "semver": "^7.1.3",
+    "@titicaca/action-sheet": "^1.18.0",
+    "@titicaca/core-elements": "^1.18.0",
+    "@titicaca/intersection-observer": "^1.18.0",
+    "@titicaca/modals": "^1.18.0",
+    "@titicaca/react-contexts": "^1.18.0",
+    "@titicaca/react-hooks": "^1.18.0",
+    "@titicaca/view-utilities": "^1.18.0",
     "humps": "^2.0.1",
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.26",
     "qs": "^6.9.0",
-    "scroll-to-element": "^2.0.3"
+    "scroll-to-element": "^2.0.3",
+    "semver": "^7.1.3"
   },
   "devDependencies": {
-    "@types/semver": "^7.1.0",
     "@types/humps": "^1.1.3",
     "@types/isomorphic-fetch": "^0.0.35",
     "@types/moment-timezone": "^0.5.12",
-    "@types/qs": "^6.9.0"
+    "@types/qs": "^6.9.0",
+    "@types/semver": "^7.1.0"
   }
 }
