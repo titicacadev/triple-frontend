@@ -94,7 +94,7 @@ export default function NearbyPois({
         appendPois({
           type: 'restaurant',
           pois: restaurants,
-          hasMore: attractions.length === DEFAULT_PAGE_SIZE,
+          hasMore: restaurants.length === DEFAULT_PAGE_SIZE,
         }),
       )
     }
