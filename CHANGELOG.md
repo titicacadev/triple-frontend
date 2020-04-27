@@ -4,6 +4,17 @@
   - getColor 함수의 두 번째 인자를 제공하여 rgba() 를 포함한 cssValue 문자열을 받을 수 있게 합니다.
   - Color 타입에 string 을 union 해서 하위 호환을 유지합니다.
 - `colre-elements` Card 컴포넌트를 추가합니다. (#681)
+- `review` 디자인을 개선합니다. (#694)
+- `poi-detail` 패키지를 추가합니다. (#691)
+- `social-reviews` 목록이 비어있을 때 섹션을 감춥니다. (#697)
+- `core-elements` Image 컴포넌트를 분리합니다. (#695)
+- `core-elements` / `poi-list-elements` / `resource-list-element` 광고 라벨을 추가합니다. (#696)
+- `type-definitions` POI의 image 속성을 optional로 처리합니다. (#702)
+- `docs` Form 패키지 디펜던시를 추가합니다. (#703)
+- `nearby-pois` 맛집 hasMore 정보가 제대로 반영되지 않던 문제를 수정합니다. (#705)
+- `location-properties` isPublic일 때 long click을 막습니다. (#704)
+- `review` writeReview시 photoFirst 인자를 추가합니다. (#707)
+- `review` sorting option 레이블을 수정합니다. (#706)
 
 # 1.17.2 (2020-04-22)
 
