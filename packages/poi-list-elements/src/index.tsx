@@ -1,43 +1,24 @@
 import * as React from 'react'
 import {
   Text,
-  Image,
-  Carousel,
   SquareImage,
   ResourceListItem,
   LabelColor,
-  CarouselSizes,
-  FrameRatioAndSizes,
 } from '@titicaca/core-elements'
 import ExtendedResourceListElement, {
   ResourceListElementProps,
 } from '@titicaca/resource-list-element'
-import ScrapButton, { ScrapButtonProps } from '@titicaca/scrap-button'
+import ScrapButton from '@titicaca/scrap-button'
 import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
 import { ListingPOI, ListingHotel } from '@titicaca/type-definitions'
 
+import { TYPE_NAMES, POI_IMAGE_PLACEHOLDERS } from './constants'
+import { POIListElementBaseProps, ActionButtonElement } from './types'
+
 export { default as POICardElement } from './poi-card-element'
+export { default as PoiCarouselElement } from './carousel-element'
 
 type PoiTypes = ListingPOI['type']
-
-type ActionButtonElement = React.ReactNode
-
-interface POIListElementBaseProps<T extends ListingPOI> {
-  poi: T
-  onClick?: React.MouseEventHandler<HTMLLIElement>
-  onScrapedChange?: ScrapButtonProps<T>['onScrapedChange']
-  resourceScraps?: { [key: string]: boolean }
-}
-
-interface PoiCarouselElementProps<T extends ListingPOI>
-  extends POIListElementBaseProps<T> {
-  actionButtonElement?: ActionButtonElement
-  description?: React.ReactNode
-  additionalInfo?: React.ReactNode
-  carouselSize?: CarouselSizes
-  titleTopSpacing?: number
-  imageFrame?: FrameRatioAndSizes
-}
 
 interface CompactPoiListElementBaseProps<T extends ListingPOI>
   extends POIListElementBaseProps<T> {
@@ -74,18 +55,6 @@ export type PoiListElementProps<T extends ListingPOI> =
   | ({ compact: true } & CompactPoiListElementProps<T>)
   | ({ compact?: false } & ExtendedPoiListElementProps<T>)
 
-const TYPE_NAMES: { [key in PoiTypes]: string } = {
-  attraction: '관광명소',
-  restaurant: '음식점',
-  hotel: '호텔',
-}
-
-const POI_IMAGE_PLACEHOLDERS: { [key in PoiTypes]: string } = {
-  attraction: 'https://assets.triple.guide/images/ico-blank-see@2x.png',
-  restaurant: 'https://assets.triple.guide/images/ico-blank-eat@2x.png',
-  hotel: 'https://assets.triple.guide/images/ico-blank-hotel@2x.png',
-}
-
 const POI_IMAGE_PLACEHOLDERS_SMALL: { [key in PoiTypes]: string } = {
   attraction: 'https://assets.triple.guide/images/ico-blank-see-small@2x.png',
   restaurant: 'https://assets.triple.guide/images/ico-blank-eat-small@2x.png',
@@ -101,67 +70,6 @@ export function PoiListElement<T extends ListingPOI>({
   ) : (
     <ExtendedPoiListElement {...props} />
   )
-}
-
-export function PoiCarouselElement<T extends ListingPOI>({
-  poi,
-  onClick,
-  actionButtonElement,
-  onScrapedChange,
-  resourceScraps,
-  description,
-  additionalInfo = null,
-  carouselSize,
-  titleTopSpacing = 10,
-  imageFrame,
-}: PoiCarouselElementProps<T>) {
-  if (poi) {
-    const {
-      id,
-      type,
-      nameOverride,
-      scraped: initialScraped,
-      source: { image, names },
-    } = poi
-
-    const { state: scraped } = deriveCurrentStateAndCount({
-      initialState: initialScraped,
-      initialCount: 0,
-      currentState: (resourceScraps || {})[id],
-    })
-
-    const name = nameOverride || names.ko || names.en || names.local
-
-    return (
-      <Carousel.Item size={carouselSize || 'small'} onClick={onClick}>
-        <Image
-          frame={imageFrame || 'large'}
-          asPlaceholder={!image}
-          src={image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS[type]}
-          alt={name || ''}
-        />
-        <Text bold ellipsis alpha={1} margin={{ top: titleTopSpacing }}>
-          {name}
-        </Text>
-        <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
-          {description || TYPE_NAMES[type]}
-        </Text>
-
-        {actionButtonElement ||
-          (onScrapedChange && resourceScraps ? (
-            <ScrapButton
-              scraped={scraped}
-              resource={poi}
-              onScrapedChange={onScrapedChange}
-            />
-          ) : null)}
-
-        {additionalInfo}
-      </Carousel.Item>
-    )
-  }
-
-  return null
 }
 
 class CompactPoiListElement<T extends ListingPOI> extends React.PureComponent<
