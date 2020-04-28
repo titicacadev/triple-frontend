@@ -13,17 +13,11 @@ import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
 import { POI_IMAGE_PLACEHOLDERS, TYPE_NAMES } from './constants'
 import { POIListElementBaseProps, ActionButtonElement } from './types'
 
-interface PoiCarouselElementProps<T extends ListingPOI>
-  extends POIListElementBaseProps<T> {
-  actionButtonElement?: ActionButtonElement
-  description?: React.ReactNode
-  additionalInfo?: React.ReactNode
-  carouselSize?: CarouselSizes
-  titleTopSpacing?: number
-  imageFrame?: FrameRatioAndSizes
-}
-
-export default function PoiCarouselElement<T extends ListingPOI>({
+export default function PoiCarouselElement<
+  T extends Pick<ListingPOI, 'id' | 'type' | 'nameOverride' | 'scraped'> & {
+    source: Pick<ListingPOI['source'], 'names' | 'image'>
+  }
+>({
   poi,
   onClick,
   actionButtonElement,
@@ -34,7 +28,14 @@ export default function PoiCarouselElement<T extends ListingPOI>({
   carouselSize,
   titleTopSpacing = 10,
   imageFrame,
-}: PoiCarouselElementProps<T>) {
+}: POIListElementBaseProps<T> & {
+  actionButtonElement?: ActionButtonElement
+  description?: React.ReactNode
+  additionalInfo?: React.ReactNode
+  carouselSize?: CarouselSizes
+  titleTopSpacing?: number
+  imageFrame?: FrameRatioAndSizes
+}) {
   if (poi) {
     const {
       id,
