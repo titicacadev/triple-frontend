@@ -43,6 +43,11 @@ export interface ReviewElementProps {
   resourceId: string
 }
 
+const MetaContainer = styled.div`
+  margin-top: 5px;
+  height: 27px;
+`
+
 const MoreIcon = styled.img`
   margin-top: -3px;
   margin-left: 5px;
@@ -308,9 +313,11 @@ function Content({ onClick, children }: PropsWithChildren<{ onClick?: any }>) {
 
 function Meta({ children }: PropsWithChildren<{}>) {
   return (
-    <Text margin={{ top: 5 }} size="mini" color="gray" alpha={0.4}>
-      {children}
-    </Text>
+    <MetaContainer>
+      <Text size="mini" color="gray" alpha={0.4}>
+        {children}
+      </Text>
+    </MetaContainer>
   )
 }
 
