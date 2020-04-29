@@ -7,11 +7,19 @@
   "files": [
     "lib"
   ],
+  "scripts": {
+    "test": "mocha --require ts-node/register ./src/**/*.spec.ts"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
   },
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.2",
+    "@types/mocha": "^5.2.7",
+    "ts-node": "^8.4.1"
   }
 }
