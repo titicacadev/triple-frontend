@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 
-function useVisibilityChange(
+export function useVisibilityChange(
   onChange: (visible: boolean) => void,
   deps: unknown[] = [],
 ) {
@@ -23,5 +23,3 @@ function useVisibilityChange(
     }
   }, deps) // eslint-disable-line react-hooks/exhaustive-deps
 }
-
-export default useVisibilityChange
