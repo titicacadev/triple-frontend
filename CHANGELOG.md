@@ -6,7 +6,7 @@
 
 # 1.18.0 (2020-04-27)
 
-- `color-palette` ColorSet 의 값이 `rgba()` 로 감싸지게 만들고, getColor 에서 `rgba()` 를 제거하여 반환하돌고 합니다. (#685)
+- `color-palette` ColorSet 의 값이 `rgba()` 로 감싸지게 만들고, getColor 에서 `rgba()` 를 제거하여 반환하도록 합니다. (#685)
 - `colre-elements` Card 컴포넌트를 추가합니다. (#681)
 - `review` 디자인을 개선합니다. (#694)
 - `poi-detail` 패키지를 추가합니다. (#691)
