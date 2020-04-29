@@ -154,7 +154,8 @@ const TextBase = styled.div<TextBaseProps>`
         left: 0;
         top: 45%;
         height: 1px;
-        background: ${({ color = 'gray' }) => `rgba(${getColor(color)})`};
+        background: ${({ color = 'gray', alpha }) =>
+          alpha ? rgba({ color, alpha }) : `rgba(${getColor(color)})`};
         content: '';
         width: 100%;
         display: block;
