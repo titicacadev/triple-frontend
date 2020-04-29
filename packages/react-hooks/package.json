@@ -20,9 +20,13 @@
   },
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
-    "react-fast-compare": "^2.0.4"
+    "react-fast-compare": "^2.0.4",
+    "@titicaca/react-contexts": "^1.18.0"
   },
   "devDependencies": {
     "@types/isomorphic-fetch": "^0.0.35"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
   }
 }
