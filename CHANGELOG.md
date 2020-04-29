@@ -1,8 +1,9 @@
-# 1.18.0 (2020-04-22)
+# 1.19.0 (2020-04-29)
+- `color-palette` 개별 color 를 export 하고, ColorSet export 방식을 변경합니다. (#717)
 
-- `color-palette` (#685)
-  - getColor 함수의 두 번째 인자를 제공하여 rgba() 를 포함한 cssValue 문자열을 받을 수 있게 합니다.
-  - Color 타입에 string 을 union 해서 하위 호환을 유지합니다.
+# 1.18.0 (2020-04-27)
+
+- `color-palette` ColorSet 의 값이 `rgba()` 로 감싸지게 만들고, getColor 에서 `rgba()` 를 제거하여 반환하돌고 합니다. (#685)
 - `colre-elements` Card 컴포넌트를 추가합니다. (#681)
 - `review` 디자인을 개선합니다. (#694)
 - `poi-detail` 패키지를 추가합니다. (#691)
