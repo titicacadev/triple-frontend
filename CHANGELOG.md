@@ -1,5 +1,8 @@
 # 1.19.0 (2020-04-29)
-- `color-palette` 개별 color 를 export 하고, ColorSet export 방식을 변경합니다. (#717)
+- `color-palette` (#717)
+  - 개별 color 를 export 하고, ColorSet export 방식을 변경합니다. 
+  - getColor 에서 ColorSet 이 아닌 color 입력시 폴백을 제공합니다.
+- `core-elements` Text 의 strokeThrough color 또는 alpha 가 잘못표시되는 문제를  수정합니다.(#717)
 
 # 1.18.0 (2020-04-27)
 
