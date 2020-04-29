@@ -21,10 +21,12 @@
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
     "react-fast-compare": "^2.0.4",
+    "scroll-to-element": "^2.0.3",
     "@titicaca/react-contexts": "^1.18.0"
   },
   "devDependencies": {
-    "@types/isomorphic-fetch": "^0.0.35"
+    "@types/isomorphic-fetch": "^0.0.35",
+    "@types/scroll-to-element": "^2.0.0"
   },
   "peerDependencies": {
     "react": ">=16.8.0"
