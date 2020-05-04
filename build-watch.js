@@ -1,5 +1,6 @@
 const chokidar = require('chokidar')
 const concurrently = require('concurrently')
+const debounce = require('lodash.debounce')
 
 const BUILD_RESOURCES =
   'BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments'
@@ -18,21 +19,10 @@ function handleClose() {
   })
 }
 
-watcher
-  .on('ready', () => {
-    isReady = true
-  })
-  .on('all', (event, path) => {
-    if (!isReady || !path) {
-      return
-    }
+const BUILDERS = {}
 
-    const [, packageName] = path.match(/packages\/([-a-z0-9]+)\//)
-
-    if (typeof packageName !== 'string') {
-      return
-    }
-
+function builder(packageName) {
+  return () => {
     console.log(`@titicaca/${packageName} is changed`)
 
     concurrently(
@@ -57,6 +47,33 @@ watcher
       .catch((error) => {
         console.error(error)
       })
+  }
+}
+
+function getBuilder(packageName) {
+  if (!BUILDERS[packageName]) {
+    BUILDERS[packageName] = debounce(builder(packageName), 300)
+  }
+
+  return BUILDERS[packageName]
+}
+
+watcher
+  .on('ready', () => {
+    isReady = true
+  })
+  .on('all', (event, path) => {
+    if (!isReady || !path) {
+      return
+    }
+
+    const [, packageName] = path.match(/packages\/([-a-z0-9]+)\//)
+
+    if (typeof packageName !== 'string') {
+      return
+    }
+
+    getBuilder(packageName)()
   })
 
 process.on('SIGTERM', handleClose).on('SIGINT', handleClose)
