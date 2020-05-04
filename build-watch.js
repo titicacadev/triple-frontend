@@ -4,7 +4,7 @@ const debounce = require('lodash.debounce')
 
 const BUILD_RESOURCES =
   'BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments'
-const BUILD_DECLARATIONS = 'tsc'
+const BUILD_DECLARATIONS = 'tsc --incremental'
 
 const watcher = chokidar.watch('packages/', {
   ignored: /(node_modules|lib|(^|[/\\])\..)/,
@@ -32,7 +32,7 @@ function createBuilder(packageName) {
           name: 'resources',
         },
         {
-          command: `lerna exec --scope=@titicaca/${packageName} ${BUILD_DECLARATIONS}`,
+          command: `lerna exec --scope=@titicaca/${packageName} '${BUILD_DECLARATIONS}'`,
           name: 'declarations',
         },
       ],
