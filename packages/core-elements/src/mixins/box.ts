@@ -28,11 +28,20 @@ const ShadowSizeMap: { [key in BaseSizes]: string } = {
  */
 export const shadowMixin = ({
   shadow,
-}: ThemedStyledProps<any, { shadow?: KeyOfShadowSize }>) =>
-  shadow &&
-  css`
-    box-shadow: ${ShadowSizeMap[shadow as KeyOfShadowSize]};
+  shadowValue,
+}: ThemedStyledProps<
+  any,
+  { shadow?: KeyOfShadowSize; shadowValue?: string }
+>) =>
+  shadow
+    ? css`
+        box-shadow: ${ShadowSizeMap[shadow as KeyOfShadowSize]};
+      `
+    : shadowValue
+    ? `
+    box-shadow: ${shadowValue};
   `
+    : ''
 
 export type KeyOfShadowSize = keyof typeof ShadowSizeMap
 export type ShadowSizeMapType = { [key in KeyOfShadowSize]: string }

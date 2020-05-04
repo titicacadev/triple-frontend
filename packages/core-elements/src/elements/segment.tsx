@@ -34,6 +34,7 @@ export type BoxProps = {
 export type CardProps = Partial<
   BoxProps & {
     shadow: KeyOfShadowSize
+    shadowValue?: string
   }
 >
 
