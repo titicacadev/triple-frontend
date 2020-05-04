@@ -8,6 +8,11 @@ const ShadowSizeMap: { [key in BaseSizes]: string } = {
   large: '0 0 30px 0 rgba(0, 0, 0, 0.1)',
 }
 
+export type ShadowMixinProps = ThemedStyledProps<
+  { shadow?: KeyOfShadowSize; shadowValue?: string },
+  any
+>
+
 /**
  * Usage
  *
@@ -26,13 +31,7 @@ const ShadowSizeMap: { [key in BaseSizes]: string } = {
  * <ShadowContainer shadow="small"></ShadowContainer>
  *
  */
-export const shadowMixin = ({
-  shadow,
-  shadowValue,
-}: ThemedStyledProps<
-  { shadow?: KeyOfShadowSize; shadowValue?: string },
-  any
->) =>
+export const shadowMixin = ({ shadow, shadowValue }: ShadowMixinProps) =>
   shadow
     ? css`
         box-shadow: ${ShadowSizeMap[shadow as KeyOfShadowSize]};
