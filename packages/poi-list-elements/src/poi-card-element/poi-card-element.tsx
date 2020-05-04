@@ -17,8 +17,10 @@ import {
 } from '@titicaca/resource-list-element'
 import { formatNumber } from '@titicaca/view-utilities'
 
-import DirectionButton from './direction-button'
+import DirectionButton, { DIRECTION_BUTTON_WIDTH } from './direction-button'
 import ScrapButton from './scrap-button'
+
+const IMAGE_WIDTH = 58
 
 const IMAGE_PLACEHOLDERS = {
   hotel: 'https://assets.triple.guide/images/ico-blank-hotel@3x.png',
@@ -30,7 +32,16 @@ const Card = styled(OriginalCard)`
   background-color: white;
 `
 
+const ImageContainer = styled(Container)`
+  position: absolute;
+  top: 0;
+  left: 0;
+`
+
 const DirectionButtonContainer = styled(Container)`
+  position: absolute;
+  top: 0;
+  right: 0;
   line-height: 99px;
 `
 
@@ -77,23 +88,21 @@ export default function POICardElement({
   onDirectionButtonClick: Parameters<typeof DirectionButton>[0]['onClick']
 }) {
   return (
-    <Card radius={6} shadowValue="0 1px 3px 0 rgba(0, 0, 0, 0.1)">
+    <Card
+      radius={6}
+      shadowValue="0 1px 3px 0 rgba(0, 0, 0, 0.1)"
+      padding={{ top: 18, right: 18, bottom: 18, left: 18 }}
+    >
       <Container
+        position="relative"
         display="block"
         textAlign="left"
-        clearing
-        padding={{ top: 18, right: 18, bottom: 18, left: 18 }}
         onClick={onClick}
       >
-        <Container
-          floated="left"
-          clearing
-          position="relative"
-          margin={{ right: 14 }}
-        >
+        <ImageContainer clearing>
           <Image
             size="small"
-            width={58}
+            width={IMAGE_WIDTH}
             height={72}
             asPlaceholder={!image}
             src={
@@ -113,9 +122,15 @@ export default function POICardElement({
               />
             </ScrapButtonContainer>
           ) : null}
-        </Container>
+        </ImageContainer>
 
-        <Container floated="left" width={190}>
+        <Container
+          maxWidth={190}
+          margin={{
+            left: IMAGE_WIDTH + 14,
+            right: DIRECTION_BUTTON_WIDTH + 13,
+          }}
+        >
           <Text size="large" bold ellipsis>
             {ko || en || local}
           </Text>
@@ -162,7 +177,7 @@ export default function POICardElement({
           ) : null}
         </Container>
 
-        <DirectionButtonContainer floated="right">
+        <DirectionButtonContainer>
           <DirectionButton onClick={onDirectionButtonClick} />
         </DirectionButtonContainer>
       </Container>

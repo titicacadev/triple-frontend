@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+export const DIRECTION_BUTTON_WIDTH = 40
+
 const IconWrapper = styled.div`
   > svg {
     vertical-align: middle;
@@ -17,7 +19,7 @@ export default function DirectionButton({ onClick }: { onClick: () => void }) {
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="40"
+        width={DIRECTION_BUTTON_WIDTH}
         height="40"
         viewBox="0 0 40 40"
       >
