@@ -1,0 +1,64 @@
+import { useState, useEffect } from 'react'
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { Container } from '@titicaca/core-elements'
+import { useScrollToAnchor } from '@titicaca/react-hooks'
+import { select, text, number, boolean } from '@storybook/addon-knobs';
+
+<Meta title="React-Hooks | useScrollToAnchor" />
+
+# useScrollToAnchor
+
+특정 anchor 의 위치로 스크롤을 이동하려할때 사용할 수 있는 hook 입니다.
+
+<Preview>
+  <Story name="Basic">
+    {() => {
+      const [anchor, setAnchor] = useState('#my-anchor')
+      const delay = number('delay', 1500)
+      const offset = number('offset', -52)
+      const align = select('align', ['top', 'middle', 'bottom'])
+      const ease = text('ease', '')
+      const duration = number('duration', 1000)
+      useEffect(() => {
+        document.documentElement.scrollTo(0, 0)
+        setAnchor('')
+        setTimeout(() => setAnchor('#my-anchor'), 100)
+      }, [delay, offset, align, ease, duration])
+      useScrollToAnchor({
+        anchor,
+        delay,
+        offset,
+        align,
+        ease,
+        duration
+      })
+      return (
+        <div style={{ paddingTop: '100%', paddingBottom: '100%' }}>
+          <button onClick={() => {
+            document.documentElement.scrollTo(0, 0)
+          }}>Reset scroll</button>
+          <h1 id="my-anchor">My Anchor</h1>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>
+
+```js
+useScrollToAnchor({
+  anchor: '#my-anchor',
+  delay: 100,
+  duration: 500
+})
+```
+
+## Props
+
+```js
+anchor?: string = window.location.hash
+delay?: number = 1500
+offset?: number = -52
+align?: 'top' | 'middle' | 'bottom' = 'top'
+ease?: string = 'out-circ'
+duration?: number = 1000
+```
