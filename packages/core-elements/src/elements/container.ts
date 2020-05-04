@@ -1,7 +1,7 @@
 import styled, { css, StyledComponentProps } from 'styled-components'
 import * as CSS from 'csstype'
 
-import { MarginPadding } from '../commons'
+import { MarginPadding, BaseSizes } from '../commons'
 import { paddingMixin, formatMarginPadding, shadowMixin } from '../mixins'
 
 export interface ContainerPropsFromTemplate {
@@ -22,7 +22,7 @@ export interface ContainerPropsFromTemplate {
   userSelect?: CSS.UserSelectProperty
   display?: CSS.DisplayProperty
   horizontalScroll?: boolean
-  shadow?: CSS.BoxShadowProperty
+  shadow?: BaseSizes
 }
 
 export type ContainerProps = StyledComponentProps<
