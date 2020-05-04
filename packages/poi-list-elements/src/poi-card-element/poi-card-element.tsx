@@ -1,13 +1,17 @@
 import React, { MouseEventHandler } from 'react'
 import styled from 'styled-components'
-import { Container, Image, Text } from '@titicaca/core-elements'
+import {
+  Container,
+  Image,
+  Text,
+  Card as OriginalCard,
+} from '@titicaca/core-elements'
 import {
   ListingPOI,
   ImageMeta,
   TranslatedProperty,
 } from '@titicaca/type-definitions'
 import {
-  Card,
   ReviewScrapStat,
   ResourceListElementStats,
 } from '@titicaca/resource-list-element'
@@ -21,6 +25,20 @@ const IMAGE_PLACEHOLDERS = {
   attraction: 'https://assets.triple.guide/images/ico-blank-see@3x.png',
   restaurant: 'https://assets.triple.guide/images/ico-blank-eat@3x.png',
 } as const
+
+const CardLayoutWrapper = styled(Container)<{
+  cardHeight: number
+  widthOffset: number
+}>`
+  ${({ cardHeight, widthOffset }) => `
+    width: calc(100vw - ${widthOffset * 2}px);
+    height: ${cardHeight}px;
+  `}
+`
+
+const Card = styled(OriginalCard)`
+  background-color: white;
+`
 
 const DirectionButtonContainer = styled(Container)`
   line-height: 99px;
@@ -73,85 +91,100 @@ export default function POICardElement({
   sideSpacing: number
 }) {
   return (
-    <Card
-      textAlign="left"
-      padding={{ top: 18, right: 18, bottom: 18, left: 18 }}
-      onClick={onClick}
+    <CardLayoutWrapper
       cardHeight={cardHeight}
-      sideSpacing={sideSpacing}
+      widthOffset={sideSpacing}
+      onClick={onClick}
     >
-      <Container
-        floated="left"
-        clearing
-        position="relative"
-        margin={{ right: 14 }}
-      >
-        <Image
-          size="small"
-          width={58}
-          height={72}
-          asPlaceholder={!image}
-          src={
-            image
-              ? 'smallSquare' in image.sizes
-                ? image.sizes.smallSquare.url
-                : image.sizes.small_square.url
-              : IMAGE_PLACEHOLDERS[type]
-          }
-        />
+      <Card radius={6} shadowValue="0 1px 3px 0 rgba(0, 0, 0, 0.1)">
+        <Container
+          display="block"
+          textAlign="left"
+          clearing
+          padding={{ top: 18, right: 18, bottom: 18, left: 18 }}
+        >
+          <Container
+            floated="left"
+            clearing
+            position="relative"
+            margin={{ right: 14 }}
+          >
+            <Image
+              size="small"
+              width={58}
+              height={72}
+              asPlaceholder={!image}
+              src={
+                image
+                  ? 'smallSquare' in image.sizes
+                    ? image.sizes.smallSquare.url
+                    : image.sizes.small_square.url
+                  : IMAGE_PLACEHOLDERS[type]
+              }
+            />
 
-        {regionId ? (
-          <ScrapButtonContainer>
-            <ScrapButton scraped={scraped} onScrapedChange={onScrapedChange} />
-          </ScrapButtonContainer>
-        ) : null}
-      </Container>
-
-      <Container floated="left" width={190}>
-        <Text size="large" bold ellipsis>
-          {ko || en || local}
-        </Text>
-
-        {comment ? (
-          <Text alpha={0.7} size="small" margin={{ top: 4 }} maxLines={2}>
-            {comment}
-          </Text>
-        ) : null}
-
-        <ResourceListElementStats
-          stats={[categoryName, areaName]}
-          size="tiny"
-          alpha={0.4}
-          margin={{ top: 4 }}
-        />
-
-        <ReviewScrapStat
-          reviewsCount={reviewsCount}
-          scrapsCount={scrapsCount}
-          reviewsRating={reviewsRating}
-          margin={{ top: 4 }}
-        />
-
-        {distance || nightlyPrice !== undefined ? (
-          <Container margin={{ top: 6 }}>
-            {distance ? (
-              <Text inlineBlock size="tiny" color="blue" margin={{ right: 4 }}>
-                {distance} 이내
-              </Text>
-            ) : null}
-
-            {nightlyPrice !== undefined ? (
-              <Text inlineBlock size="small">
-                {formatNumber(nightlyPrice)}원
-              </Text>
+            {regionId ? (
+              <ScrapButtonContainer>
+                <ScrapButton
+                  scraped={scraped}
+                  onScrapedChange={onScrapedChange}
+                />
+              </ScrapButtonContainer>
             ) : null}
           </Container>
-        ) : null}
-      </Container>
 
-      <DirectionButtonContainer floated="right">
-        <DirectionButton onClick={onDirectionButtonClick} />
-      </DirectionButtonContainer>
-    </Card>
+          <Container floated="left" width={190}>
+            <Text size="large" bold ellipsis>
+              {ko || en || local}
+            </Text>
+
+            {comment ? (
+              <Text alpha={0.7} size="small" margin={{ top: 4 }} maxLines={2}>
+                {comment}
+              </Text>
+            ) : null}
+
+            <ResourceListElementStats
+              stats={[categoryName, areaName]}
+              size="tiny"
+              alpha={0.4}
+              margin={{ top: 4 }}
+            />
+
+            <ReviewScrapStat
+              reviewsCount={reviewsCount}
+              scrapsCount={scrapsCount}
+              reviewsRating={reviewsRating}
+              margin={{ top: 4 }}
+            />
+
+            {distance || nightlyPrice !== undefined ? (
+              <Container margin={{ top: 6 }}>
+                {distance ? (
+                  <Text
+                    inlineBlock
+                    size="tiny"
+                    color="blue"
+                    margin={{ right: 4 }}
+                  >
+                    {distance} 이내
+                  </Text>
+                ) : null}
+
+                {nightlyPrice !== undefined ? (
+                  <Text inlineBlock size="small">
+                    {formatNumber(nightlyPrice)}원
+                  </Text>
+                ) : null}
+              </Container>
+            ) : null}
+          </Container>
+
+          <DirectionButtonContainer floated="right">
+            <DirectionButton onClick={onDirectionButtonClick} />
+          </DirectionButtonContainer>
+        </Container>
+      </Card>
+    </CardLayoutWrapper>
   )
 }
