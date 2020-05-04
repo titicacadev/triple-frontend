@@ -3,7 +3,7 @@ import styled, { css, ThemedStyledProps } from 'styled-components'
 
 import { MarginPadding } from '../commons'
 import { marginMixin, paddingMixin } from '../mixins'
-import { shadowMixin, KeyOfShadowSize } from '../mixins/box'
+import { shadowMixin, KeyOfShadowSize, ShadowMixinProps } from '../mixins/box'
 
 // eslint-disable-next-line no-unexpected-multiline
 export const Segment = styled.div<{
@@ -44,7 +44,7 @@ const borderRadius = ({
   border-radius: ${radius}px;
 `
 
-const shadowMixinWithDefault = (props: ThemedStyledProps<any, any>) =>
+const shadowMixinWithDefault = (props: ShadowMixinProps) =>
   shadowMixin({ shadow: 'medium', ...props })
 
 export const CardFrame = styled.div<CardProps>`
