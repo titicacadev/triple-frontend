@@ -21,7 +21,7 @@ function handleClose() {
 
 const BUILDERS = {}
 
-function builder(packageName) {
+function createBuilder(packageName) {
   return () => {
     console.log(`@titicaca/${packageName} is changed`)
 
@@ -52,7 +52,7 @@ function builder(packageName) {
 
 function getBuilder(packageName) {
   if (!BUILDERS[packageName]) {
-    BUILDERS[packageName] = debounce(builder(packageName), 300)
+    BUILDERS[packageName] = debounce(createBuilder(packageName), 300)
   }
 
   return BUILDERS[packageName]
