@@ -1,4 +1,4 @@
-import { css, ThemedStyledProps } from 'styled-components'
+import { ThemedStyledProps } from 'styled-components'
 
 import { BaseSizes } from '../commons'
 
@@ -31,16 +31,11 @@ export type ShadowMixinProps = ThemedStyledProps<
  * <ShadowContainer shadow="small"></ShadowContainer>
  *
  */
-export const shadowMixin = ({ shadow, shadowValue }: ShadowMixinProps) =>
-  shadow
-    ? css`
-        box-shadow: ${ShadowSizeMap[shadow as KeyOfShadowSize]};
-      `
-    : shadowValue
-    ? `
-    box-shadow: ${shadowValue};
-  `
-    : ''
+export const shadowMixin = ({ shadow, shadowValue }: ShadowMixinProps) => {
+  const value = shadow ? ShadowSizeMap[shadow] : shadowValue
+
+  return value ? `box-shadow: ${value};` : ''
+}
 
 export type KeyOfShadowSize = keyof typeof ShadowSizeMap
 export type ShadowSizeMapType = { [key in KeyOfShadowSize]: string }
