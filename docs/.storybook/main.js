@@ -31,6 +31,11 @@ module.exports = {
       },
     })
 
+    config.watchOptions = {
+      ignored: /node_modules\/.+tsx?$/,
+      aggregateTimeout: 1000,
+    }
+
     return config
   },
 }
