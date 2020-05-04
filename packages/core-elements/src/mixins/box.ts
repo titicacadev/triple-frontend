@@ -30,8 +30,8 @@ export const shadowMixin = ({
   shadow,
   shadowValue,
 }: ThemedStyledProps<
-  any,
-  { shadow?: KeyOfShadowSize; shadowValue?: string }
+  { shadow?: KeyOfShadowSize; shadowValue?: string },
+  any
 >) =>
   shadow
     ? css`
