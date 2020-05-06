@@ -6,14 +6,21 @@ export function useScrollToElement(
   option?: {
     delayTime: number
     offset: number
+    duration?: number
+    align?: 'top' | 'bottom' | 'middle'
   },
 ) {
   useEffect(() => {
     if (selector) {
-      const { offset = -52, delayTime = 1500 } = option || {}
+      const {
+        offset = -52, // HACK: 헤더 높이
+        delayTime = 1500,
+        duration,
+        align,
+      } = option || {}
 
       setTimeout(() => {
-        scrollToElement(selector, { offset }) // HACK: 헤더 높이
+        scrollToElement(selector, { offset, duration, align })
       }, delayTime)
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
