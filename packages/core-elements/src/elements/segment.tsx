@@ -61,6 +61,7 @@ export const CardFrame = styled.div<CardProps>`
  * Props
  *  - radius: number
  *  - shadow: ShadowType
+ *  - shadowValue: string
  *  - margin: MarginPadding
  *  - padding: MarginPadding
  */
