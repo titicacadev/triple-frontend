@@ -32,6 +32,10 @@ const Card = styled(OriginalCard)`
   background-color: white;
 `
 
+const POICardBody = styled(Container)`
+  height: 100%;
+`
+
 const ImageContainer = styled(Container)`
   position: absolute;
   top: 0;
@@ -40,9 +44,9 @@ const ImageContainer = styled(Container)`
 
 const DirectionButtonContainer = styled(Container)`
   position: absolute;
-  top: 0;
+  top: 50%;
   right: 0;
-  line-height: 99px;
+  transform: translateY(-50%);
 `
 
 const ScrapButtonContainer = styled(Container).attrs({
@@ -93,7 +97,7 @@ export default function POICardElement({
       shadowValue="0 1px 3px 0 rgba(0, 0, 0, 0.1)"
       padding={{ top: 18, right: 18, bottom: 18, left: 18 }}
     >
-      <Container
+      <POICardBody
         position="relative"
         display="block"
         textAlign="left"
@@ -180,7 +184,7 @@ export default function POICardElement({
         <DirectionButtonContainer>
           <DirectionButton onClick={onDirectionButtonClick} />
         </DirectionButtonContainer>
-      </Container>
+      </POICardBody>
     </Card>
   )
 }
