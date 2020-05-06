@@ -7,7 +7,7 @@ import {
   Button,
   Container,
   SquareImage,
-  MarginPadding,
+  HR2,
 } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 
@@ -25,11 +25,14 @@ interface TnaProductProps {
 export type TnaProductData = TnaProductProps
 
 interface TnaProductsListProps {
-  slotId?: number
+  value: {
+    slotId?: number
+  }
   onTNAProductsFetch?: (slotId?: number) => Promise<Response>
-  onProductClick?: (e?: React.SyntheticEvent, product?: TnaProductData) => void
-  margin?: MarginPadding
-  title?: string
+  onTNAProductClick?: (
+    e?: React.SyntheticEvent,
+    product?: TnaProductData,
+  ) => void
 }
 
 interface TnaProductsListState {
@@ -94,7 +97,10 @@ export class TnaProductsList extends React.PureComponent<
 
   fetchProducts = async () => {
     const {
-      props: { slotId, onTNAProductsFetch },
+      props: {
+        value: { slotId },
+        onTNAProductsFetch,
+      },
     } = this
 
     if (!onTNAProductsFetch || !slotId) {
@@ -115,36 +121,48 @@ export class TnaProductsList extends React.PureComponent<
 
   render() {
     const {
-      props: { onProductClick, margin },
+      props: {
+        value: { slotId },
+        onTNAProductClick,
+      },
       state: { title, products, showMore },
     } = this
 
     return products.length > 0 ? (
-      <Container margin={margin}>
-        <H1 margin={{ bottom: 20 }}>{title}</H1>
+      <>
+        <HR2 />
+        <Container
+          margin={{ top: 30, left: 30, right: 30 }}
+          id={`tna-slot-${slotId}`}
+        >
+          <H1 margin={{ bottom: 20 }}>{title}</H1>
 
-        <List clearing verticalGap={20}>
-          {(showMore ? products : products.slice(0, 3)).map((product, i) => (
-            <List.Item
-              key={i}
-              onClick={onProductClick && ((e) => onProductClick(e, product))}
-            >
-              <TnaProduct {...product} />
-            </List.Item>
-          ))}
-          {!showMore && products.length > 3 && (
-            <Button
-              basic
-              fluid
-              compact
-              margin={{ top: 10 }}
-              onClick={() => this.setState({ showMore: true })}
-            >
-              더보기
-            </Button>
-          )}
-        </List>
-      </Container>
+          <List clearing verticalGap={20}>
+            {(showMore ? products : products.slice(0, 3)).map((product, i) => (
+              <List.Item
+                key={i}
+                onClick={
+                  onTNAProductClick && ((e) => onTNAProductClick(e, product))
+                }
+              >
+                <TnaProduct {...product} />
+              </List.Item>
+            ))}
+            {!showMore && products.length > 3 && (
+              <Button
+                basic
+                fluid
+                compact
+                size="small"
+                margin={{ top: 10 }}
+                onClick={() => this.setState({ showMore: true })}
+              >
+                더보기
+              </Button>
+            )}
+          </List>
+        </Container>
+      </>
     ) : null
   }
 }
