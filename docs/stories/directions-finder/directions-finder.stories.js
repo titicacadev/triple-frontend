@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import { text } from '@storybook/addon-knobs'
+import { text, boolean } from '@storybook/addon-knobs'
 import { HistoryProvider } from '@titicaca/react-contexts'
 import DirectionsFinder from '@titicaca/directions-finder'
 
@@ -23,6 +23,7 @@ storiesOf('directions-finder | DirectionsFinder', module).add('기본', () => {
             '〒279-0031 東京都千葉県浦安市舞浜11',
           )}
           phoneNumber={text('phoneNumber', '+81453305211')}
+          isDomestic={boolean('isDomestic', false)}
         />
       </LongPage>
     </HistoryProvider>
