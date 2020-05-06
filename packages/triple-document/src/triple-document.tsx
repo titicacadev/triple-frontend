@@ -48,7 +48,7 @@ import {
   H1Props,
 } from './text'
 import { RegionListElement } from './region'
-import { TnaProductsList, TnaProductData } from './tna'
+import { TnaProductsList } from './tna'
 import Coupon from './coupon'
 import { RegionData } from './types'
 
@@ -134,25 +134,6 @@ const MH4 = ({ children, ...props }: H4Props) => (
   </H4>
 )
 
-const DocumentTnaProducts = ({
-  onTNAProductClick,
-  value,
-  ...props
-}: {
-  value: { slotId?: number; title?: string }
-  onTNAProductClick?: (
-    e?: React.SyntheticEvent,
-    product?: TnaProductData,
-  ) => any
-}) => (
-  <TnaProductsList
-    margin={{ top: 30, left: 30, right: 30 }}
-    onProductClick={onTNAProductClick}
-    {...value}
-    {...props}
-  />
-)
-
 export const ELEMENTS: ElementSet = {
   heading1: Heading(MH1),
   heading2: Heading(MH2),
@@ -173,7 +154,7 @@ export const ELEMENTS: ElementSet = {
   list: ListElement,
   regions: Regions,
   video: ExternalVideo,
-  tnaProducts: DocumentTnaProducts,
+  tnaProducts: TnaProductsList,
   table: TableElement,
   coupon: Coupon,
 }
