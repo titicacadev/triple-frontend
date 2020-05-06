@@ -73,7 +73,7 @@ export default function POICardElement({
   type: ListingPOI['type']
   scraped: boolean
   regionId?: string
-  image: ImageMeta
+  image: ImageMeta | undefined
   names: TranslatedProperty
   comment?: string
   reviewsRating?: number
