@@ -164,18 +164,19 @@ export default function NearbyPois({
           {t('common:noNearbyPlaces', '장소가 없습니다.')}
         </Paragraph>
       ) : (
-        <List divided margin={{ top: 10 }}>
-          {pois.map((poi, i) => (
-            <PoiEntry
-              key={poi.id}
-              index={i}
-              poi={poi}
-              scraps={scraps}
-              onScrapedChange={onScrapedChange}
-              eventLabel={EVENT_LABELS[currentTab]}
-            />
-          ))}
-
+        <>
+          <List divided margin={{ top: 10 }}>
+            {pois.map((poi, i) => (
+              <PoiEntry
+                key={poi.id}
+                index={i}
+                poi={poi}
+                scraps={scraps}
+                onScrapedChange={onScrapedChange}
+                eventLabel={EVENT_LABELS[currentTab]}
+              />
+            ))}
+          </List>
           {hasMore && (
             <Button
               basic
@@ -190,7 +191,7 @@ export default function NearbyPois({
               {t('common:moreNearbyplaces', '더 많은 장소 보기')}
             </Button>
           )}
-        </List>
+        </>
       )}
     </Section>
   )
