@@ -30,6 +30,20 @@ interface HistoryContextValue {
 
 const NOOP = () => {}
 
+function parseQuery(query: string | undefined): ReturnType<typeof parseUrl> {
+  const { url: encodedUrl } = qs.parse(query || '')
+
+  if (!encodedUrl) {
+    return {}
+  }
+
+  if (typeof encodedUrl !== 'string') {
+    throw new Error('url should be string type.')
+  }
+
+  return parseUrl(decodeURIComponent(encodedUrl))
+}
+
 const Context = React.createContext<HistoryContextValue>({
   uriHash: '',
   push: NOOP,
@@ -175,12 +189,11 @@ export function HistoryProvider({
 
         return (window.location.href = href)
       } else if (path === '/outlink') {
-        const { url: encodedUrl } = qs.parse(query || '')
         const {
           path: targetPath,
           query: targetQuery,
           hash: targetHash,
-        } = parseUrl(decodeURIComponent(encodedUrl))
+        } = parseQuery(query)
 
         if (targetPath && targetPageAvailable(targetPath)) {
           return (window.location.href = generateUrl(
@@ -189,12 +202,11 @@ export function HistoryProvider({
           ))
         }
       } else if (path === '/inlink') {
-        const { path: encodedPath } = qs.parse(query || '')
         const {
           path: targetPath,
           query: targetQuery,
           hash: targetHash,
-        } = parseUrl(decodeURIComponent(encodedPath))
+        } = parseQuery(query)
 
         if (targetPath && targetPageAvailable(targetPath)) {
           return (window.location.href = generateUrl(
