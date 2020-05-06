@@ -16,12 +16,14 @@ export default function DirectionButtons({
   localName,
   localAddress,
   phoneNumber,
+  isDomestic,
 }: {
   onDirectionsClick: () => void
   primaryName: string
   localName: string
   localAddress: string
   phoneNumber?: string
+  isDomestic?: boolean
 }) {
   const { t } = useI18n()
   const { isPublic } = useUserAgentContext()
@@ -62,6 +64,7 @@ export default function DirectionButtons({
         localAddress={localAddress}
         primaryName={primaryName}
         phoneNumber={phoneNumber}
+        isDomestic={isDomestic}
       />
     </>
   )

@@ -44,6 +44,7 @@ export default function AskToTheLocal({
   localAddress,
   primaryName,
   phoneNumber,
+  isDomestic,
 }: {
   open: boolean
   onClose: () => void
@@ -51,6 +52,7 @@ export default function AskToTheLocal({
   localAddress: string
   primaryName: string
   phoneNumber?: string
+  isDomestic?: boolean
 }) {
   const handleCall = useCallback(() => {
     if (phoneNumber) {
@@ -73,7 +75,10 @@ export default function AskToTheLocal({
         </Text>
         {phoneNumber ? (
           <Drawer active>
-            <DrawerContentContainer margin={{ left: 30, right: 30 }}>
+            <DrawerContentContainer
+              margin={{ left: 30, right: 30 }}
+              padding={{ bottom: 10 }}
+            >
               <CallButton fluid borderRadius={4} onClick={handleCall}>
                 <IconContainer>
                   <Icon viewBox="0 0 20 20">
@@ -88,9 +93,15 @@ export default function AskToTheLocal({
                 </IconContainer>
                 전화하기
               </CallButton>
-              <Text textStyle="S3" alpha={0.5} padding={{ top: 6, bottom: 10 }}>
-                국제 전화 요금이 부과될 수 있습니다.
-              </Text>
+              {isDomestic ? null : (
+                <Text
+                  textStyle="S3"
+                  alpha={0.5}
+                  padding={{ top: 6, bottom: 0 }}
+                >
+                  국제 전화 요금이 부과될 수 있습니다.
+                </Text>
+              )}
             </DrawerContentContainer>
           </Drawer>
         ) : null}
