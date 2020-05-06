@@ -4,12 +4,20 @@ import scrollToElement from 'scroll-to-element'
 export function useScrollToAnchor(option?: {
   offset?: number
   delayTime?: number
+  duration?: number
+  align?: 'top' | 'bottom' | 'middle'
   alias?: {
     [key: string]: string
   }
 }) {
   useEffect(() => {
-    const { offset = -52, delayTime = 1500, alias } = option || {} // HACK: 헤더 높이
+    const {
+      offset = -52, // HACK: 헤더 높이
+      delayTime = 1500,
+      alias,
+      duration,
+      align,
+    } = option || {}
 
     const replacedHash = window.location.hash
       ? window.location.hash.replace(/^#/, '')
@@ -21,7 +29,7 @@ export function useScrollToAnchor(option?: {
       const _el = document.getElementById(canonicalHash)
 
       if (_el) {
-        scrollToElement(_el, { offset })
+        scrollToElement(_el, { offset, duration, align })
       }
     }, delayTime)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
