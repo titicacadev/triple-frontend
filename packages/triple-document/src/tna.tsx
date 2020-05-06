@@ -9,6 +9,7 @@ import {
   SquareImage,
   MarginPadding,
 } from '@titicaca/core-elements'
+import { formatNumber } from '@titicaca/view-utilities'
 
 import { H1 } from './text'
 
@@ -37,18 +38,10 @@ interface TnaProductsListState {
   title: string
 }
 
-function insertCommas(price?: Price) {
-  if (price) {
-    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-  }
-
-  return ''
-}
-
 function Price({ price }: { price?: Price }) {
   return (
     <Text bold size="large" color="gray" margin={{ top: 13, left: 150 }}>
-      {`${insertCommas(price)}원`}
+      {`${formatNumber(price)}원`}
     </Text>
   )
 }
