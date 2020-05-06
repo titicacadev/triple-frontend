@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   List,
   Text,
@@ -41,14 +41,6 @@ interface TnaProductsListState {
   title: string
 }
 
-function Price({ price }: { price?: Price }) {
-  return (
-    <Text bold size="large" color="gray" margin={{ top: 13, left: 150 }}>
-      {`${formatNumber(price)}원`}
-    </Text>
-  )
-}
-
 export function TnaProduct({
   heroImage,
   title,
@@ -76,93 +68,89 @@ export function TnaProduct({
           ))}
         </Container>
       )}
-      <Price price={salePrice} />
+      <Text bold size="large" color="gray" margin={{ top: 13, left: 150 }}>
+        {`${formatNumber(salePrice)}원`}
+      </Text>
     </>
   )
 }
 
-export class TnaProductsList extends React.PureComponent<
-  TnaProductsListProps,
-  TnaProductsListState
-> {
-  readonly state: Readonly<TnaProductsListState> = {
+export function TnaProductsList({
+  onTNAProductsFetch,
+  onTNAProductClick,
+  value: { slotId },
+}: TnaProductsListProps) {
+  const [{ products, showMore, title }, setProductsList] = useState<
+    TnaProductsListState
+  >({
     products: [],
     showMore: false,
     title: '',
-  }
+  })
 
-  componentDidMount() {
-    this.fetchProducts()
-  }
+  useEffect(() => {
+    async function fetchAndSetProductsList() {
+      if (!onTNAProductsFetch || !slotId) {
+        return
+      }
 
-  fetchProducts = async () => {
-    const {
-      props: {
-        value: { slotId },
-        onTNAProductsFetch,
-      },
-    } = this
+      const response = await onTNAProductsFetch(slotId)
 
-    if (!onTNAProductsFetch || !slotId) {
-      return
+      if (response.ok) {
+        const {
+          title,
+          products,
+        }: {
+          title: string
+          products?: TnaProductData[]
+        } = await response.json()
+
+        setProductsList({ title, products: products || [], showMore: false })
+      }
     }
 
-    const response = await onTNAProductsFetch(slotId)
+    fetchAndSetProductsList()
+  }, [onTNAProductsFetch, slotId, setProductsList])
 
-    if (response.ok) {
-      const {
-        title,
-        products,
-      }: { title: string; products?: TnaProductData[] } = await response.json()
+  return products.length > 0 ? (
+    <>
+      <HR2 />
+      <Container
+        margin={{ top: 30, left: 30, right: 30 }}
+        id={`tna-slot-${slotId}`}
+      >
+        <H1 margin={{ bottom: 20 }}>{title}</H1>
 
-      this.setState({ title, products: products || [] })
-    }
-  }
-
-  render() {
-    const {
-      props: {
-        value: { slotId },
-        onTNAProductClick,
-      },
-      state: { title, products, showMore },
-    } = this
-
-    return products.length > 0 ? (
-      <>
-        <HR2 />
-        <Container
-          margin={{ top: 30, left: 30, right: 30 }}
-          id={`tna-slot-${slotId}`}
-        >
-          <H1 margin={{ bottom: 20 }}>{title}</H1>
-
-          <List clearing verticalGap={20}>
-            {(showMore ? products : products.slice(0, 3)).map((product, i) => (
-              <List.Item
-                key={i}
-                onClick={
-                  onTNAProductClick && ((e) => onTNAProductClick(e, product))
-                }
-              >
-                <TnaProduct {...product} />
-              </List.Item>
-            ))}
-            {!showMore && products.length > 3 && (
-              <Button
-                basic
-                fluid
-                compact
-                size="small"
-                margin={{ top: 10 }}
-                onClick={() => this.setState({ showMore: true })}
-              >
-                더보기
-              </Button>
-            )}
-          </List>
-        </Container>
-      </>
-    ) : null
-  }
+        <List clearing verticalGap={20}>
+          {(showMore ? products : products.slice(0, 3)).map((product, i) => (
+            <List.Item
+              key={i}
+              onClick={
+                onTNAProductClick && ((e) => onTNAProductClick(e, product))
+              }
+            >
+              <TnaProduct {...product} />
+            </List.Item>
+          ))}
+          {!showMore && products.length > 3 && (
+            <Button
+              basic
+              fluid
+              compact
+              size="small"
+              margin={{ top: 10 }}
+              onClick={() =>
+                setProductsList((prevValues) => ({
+                  ...prevValues,
+                  showMore: true,
+                }))
+              }
+            >
+              더보기
+            </Button>
+          )}
+        </List>
+      </Container>
+    </>
+  ) : null
 }
