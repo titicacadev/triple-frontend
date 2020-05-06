@@ -1,48 +1,52 @@
 import { useState, useEffect } from 'react'
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
-import { Container } from '@titicaca/core-elements'
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks'
+import { select, text, number } from '@storybook/addon-knobs'
+import { Container, Button } from '@titicaca/core-elements'
 import { useScrollToAnchor } from '@titicaca/react-hooks'
-import { select, text, number, boolean } from '@storybook/addon-knobs';
 
-<Meta title="React-Hooks | useScrollToAnchor" />
+<Meta title="react-hooks | useScrollToAnchor" />
 
 # useScrollToAnchor
 
 특정 anchor 의 위치로 스크롤을 이동하려할때 사용할 수 있는 hook 입니다.
 
-<Preview>
-  <Story name="Basic">
-    {() => {
-      const [anchor, setAnchor] = useState('#my-anchor')
-      const delay = number('delay', 1500)
-      const offset = number('offset', -52)
-      const align = select('align', ['top', 'middle', 'bottom'])
-      const ease = text('ease', '')
-      const duration = number('duration', 1000)
-      useEffect(() => {
-        document.documentElement.scrollTo(0, 0)
-        setAnchor('')
-        setTimeout(() => setAnchor('#my-anchor'), 100)
-      }, [delay, offset, align, ease, duration])
-      useScrollToAnchor({
-        anchor,
-        delay,
-        offset,
-        align,
-        ease,
-        duration
-      })
-      return (
-        <div style={{ paddingTop: '100%', paddingBottom: '100%' }}>
-          <button onClick={() => {
-            document.documentElement.scrollTo(0, 0)
-          }}>Reset scroll</button>
-          <h1 id="my-anchor">My Anchor</h1>
-        </div>
-      )
-    }}
-  </Story>
-</Preview>
+<Story name="Basic">
+  {() => {
+    const [anchor, setAnchor] = useState('#my-anchor')
+    const delay = number('delay', 100)
+    const offset = number('offset', 0)
+    const align = select('align', ['top', 'middle', 'bottom'])
+    const ease = text('ease', 'out-circ')
+    const duration = number('duration', 500)
+    useEffect(() => {
+      document.documentElement.scrollTo(0, 0)
+      setAnchor('')
+    }, [delay, offset, align, ease, duration])
+    useEffect(() => {
+      if (anchor === '') {
+        setAnchor('#my-anchor')
+      }
+    }, [anchor])
+    useScrollToAnchor({
+      anchor,
+      delay,
+      offset,
+      align,
+      ease,
+      duration
+    })
+    return (
+      <div style={{ paddingTop: '90%', paddingBottom: '100%', background: 'linear-gradient(#000000, #ffffff, #000000)' }}>
+        <Button onClick={(e) => {
+          e.preventDefault()
+          document.documentElement.scrollTo(0, 0)
+          setAnchor('')
+        }}>Replay</Button>
+        <h1 id="my-anchor">My Anchor</h1>
+      </div>
+    )
+  }}
+</Story>
 
 ```js
 useScrollToAnchor({
@@ -57,7 +61,8 @@ useScrollToAnchor({
 ```js
 anchor?: string = window.location.hash
 delay?: number = 1500
-offset?: number = -52
+// See https://github.com/willhoag/scroll-to-element#readme
+offset?: number = 0
 align?: 'top' | 'middle' | 'bottom' = 'top'
 ease?: string = 'out-circ'
 duration?: number = 1000

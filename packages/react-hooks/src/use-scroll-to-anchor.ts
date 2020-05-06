@@ -4,7 +4,7 @@ import scrollToElement from 'scroll-to-element'
 export function useScrollToAnchor({
   anchor = window.location.hash,
   delay = 1500,
-  offset = -52,
+  offset = 0,
   align = 'top',
   ease = 'out-circ',
   duration = 1000,
@@ -17,8 +17,10 @@ export function useScrollToAnchor({
   duration?: number
 }) {
   useEffect(() => {
+    let timerId: number
+
     if (anchor) {
-      setTimeout(() => {
+      timerId = window.setTimeout(() => {
         scrollToElement(anchor, {
           offset,
           align,
@@ -26,6 +28,10 @@ export function useScrollToAnchor({
           duration,
         })
       }, delay)
+    }
+
+    return () => {
+      timerId && window.clearTimeout(timerId)
     }
   }, [anchor]) // eslint-disable-line react-hooks/exhaustive-deps
 }
