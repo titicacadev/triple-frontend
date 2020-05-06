@@ -17,12 +17,12 @@ export function useScrollToAnchor(option?: {
 
     const canonicalHash = (alias || {})[replacedHash] || replacedHash
 
-    const _el = document.getElementById(canonicalHash)
+    setTimeout(() => {
+      const _el = document.getElementById(canonicalHash)
 
-    if (_el) {
-      setTimeout(() => {
+      if (_el) {
         scrollToElement(_el, { offset })
-      }, delayTime)
-    }
+      }
+    }, delayTime)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 }
