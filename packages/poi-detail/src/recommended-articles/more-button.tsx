@@ -7,7 +7,7 @@ export default styled.button<
     margin?: MarginPadding
     floated?: CSS.FloatProperty
     center?: boolean
-  } & Omit<React.HTMLAttributes<HTMLDivElement>, 'margin'>
+  } & Omit<React.HTMLAttributes<HTMLButtonElement>, 'margin'>
 >`
   display: block;
   cursor: pointer;
