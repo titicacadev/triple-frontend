@@ -1,6 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import haversine from 'haversine'
-import { PointGeoJSON } from '@titicaca/type-definitions'
+import { measureDistance } from '@titicaca/view-utilities'
 
 import { PoiType, ListingPOI } from './types'
 
@@ -54,17 +53,4 @@ export async function fetchPois({
       coordinates: [lon, lat],
     }),
   }))
-}
-
-function measureDistance(
-  { coordinates: [fromLon, fromLat] }: PointGeoJSON,
-  { coordinates: [toLon, toLat] }: PointGeoJSON,
-) {
-  return Math.round(
-    haversine(
-      { latitude: fromLat, longitude: fromLon },
-      { latitude: toLat, longitude: toLon },
-      { unit: 'meter' },
-    ),
-  )
 }
