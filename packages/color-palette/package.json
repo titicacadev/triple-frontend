@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/color-palette",
-  "version": "1.18.0",
+  "version": "1.19.0",
   "description": "Triple Color Palette",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -18,8 +18,8 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "devDependencies": {
-    "mocha": "^6.2.2",
     "@types/mocha": "^5.2.7",
+    "mocha": "^6.2.2",
     "ts-node": "^8.4.1"
   }
 }
