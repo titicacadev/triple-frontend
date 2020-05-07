@@ -18,6 +18,8 @@
     "test": "mocha --require ts-node/register ./src/*.spec.ts ./src/**/*.spec.ts"
   },
   "devDependencies": {
+    "@titicaca/type-definitions": "^1.18.0",
+    "@types/haversine": "^1.1.4",
     "@types/mocha": "^5.2.7",
     "mocha": "^6.2.2",
     "ts-node": "^8.4.1"
