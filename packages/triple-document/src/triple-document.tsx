@@ -92,7 +92,12 @@ interface TripleDocumentProps {
   onResourceScrapedChange?: unknown
   onImageClick?: ImageEventHandler
   onLinkClick?: LinkEventHandler
-  onTNAProductClick?: (e: React.SyntheticEvent, product: unknown) => void
+  onTNAProductClick?: (
+    e: React.SyntheticEvent,
+    product: unknown,
+    slotId?: number,
+    index?: number,
+  ) => void
   onTNAProductsFetch?: (slotId: number) => Promise<unknown>
   imageSourceComponent: ImageSourceType
   resourceScraps?: { [resourceId: string]: boolean }
