@@ -5,6 +5,26 @@
   - getColor 에서 ColorSet 이 아닌 color 입력시 폴백을 제공합니다.
 - `core-elements` Text 의 strokeThrough color 또는 alpha 가 잘못표시되는 문제를 수정합니다.(#717)
 - `view-utilities` PointGeo 간 직선거리를 구하는 함수를 공통함수로 분리합니다. (#742)
+- `poi-detail` RecommendedArticles 컴포넌트를 추가합니다. (#722)
+- `poi-list-element` notes prop 을 추가하여 note 값을 제어합니다. (#741)
+- `color`
+  - emerald 색상을 변경합니다. (#740)
+  - getColor 의 alpha 소수점을 2 자리까지 허용합니다. (#721)
+  - 개별 color 를 export 합니다. (#717)
+- `triple-document` T&A slot element의 구현을 content-web과 맞춥니다. (#736)
+- `react-hook`
+  - 자주 사용되는 hook 을 TF 로 이동합니다. (#718)
+  - use-scroll-lock 을 추가합니다. (#699)
+- `direction-finder` 국내 전화번호이면 국제전화 요금 안내를 보여주지 않을 수 있도록 합니다. (#735)
+- `nearby-pois` 더 많은 장소 보기 버튼 바로 위에 보이는 구분선을 제거해야 합니다. (#734)
+- `poi-card-lement` POICardElement를 추가합니다. (#725)
+- `poi-carousel-element` PoiCarouselElement의 타입 제약 조건 완화. (#709)
+- `type-definitions` originalPrice 에 대한 타입이 누락되어있어 추가합니다. (#731)
+- `common`
+  - Storybook webpack에 watchOptions를 추가합니다. (#727)
+  - File watch handler에 debounce를 적용합니다. (#724)
+  - qs.parse의 리턴 타입 달라진 버전 대응 (#728)
+- `review` 리뷰 하단 UI가 깨지는 케이스를 수정합니다. (#719)
 
 # 1.18.0 (2020-04-27)
 
