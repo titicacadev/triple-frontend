@@ -41,3 +41,24 @@ import { debounce, formatNumber } from '@titicaca/view-utilities'
 ## generateUrl
 
 [API]
+
+## measureDistance
+
+지도 좌표의 직선거리를 `meter` 값으로 반환합니다.
+
+```tsx
+import { measureDistance } from '@titicaca/view-utilities'
+
+const distance = measureDistance(
+  {
+    coordinates: [121.525966, 25.094853],
+    type: 'Point',
+  },
+  {
+    coordinates: [121.528408, 25.095141],
+    type: 'Point',
+  },
+)
+
+console.log(distance) // -> 248
+```
