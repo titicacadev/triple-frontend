@@ -58,56 +58,54 @@ export default function RecommendedArticles({
       maxWidth={0}
       padding={{ left: 0, right: 0 }}
     >
-      <>
-        <Responsive minWidth={760}>
-          <H1 textAlign="center">함께 보면 좋을 추천 가이드</H1>
+      <Responsive minWidth={760}>
+        <H1 textAlign="center">함께 보면 좋을 추천 가이드</H1>
 
-          <Carousel
-            margin={{ top: 20 }}
-            containerPadding={{ left: 110, right: 110 }}
-          >
-            {recommendedArticles.map((article) => (
-              <Carousel.Item key={article.id} size="medium">
-                <ArticleEntry
-                  article={article}
-                  onClick={onArticleClick}
-                  onIntersect={handleIntersect}
-                />
-              </Carousel.Item>
-            ))}
-          </Carousel>
+        <Carousel
+          margin={{ top: 20 }}
+          containerPadding={{ left: 110, right: 110 }}
+        >
+          {recommendedArticles.map((article) => (
+            <Carousel.Item key={article.id} size="medium">
+              <ArticleEntry
+                article={article}
+                onClick={onArticleClick}
+                onIntersect={handleIntersect}
+              />
+            </Carousel.Item>
+          ))}
+        </Carousel>
 
-          <MoreButton margin={{ top: 20 }} center onClick={handleShowMoreClick}>
-            가이드 더보기
-          </MoreButton>
-        </Responsive>
-        <Responsive maxWidth={759}>
-          <H1 margin={{ left: 30 }}>{`함께 보면 좋을\n추천 가이드`}</H1>
+        <MoreButton margin={{ top: 20 }} center onClick={handleShowMoreClick}>
+          가이드 더보기
+        </MoreButton>
+      </Responsive>
+      <Responsive maxWidth={759}>
+        <H1 margin={{ left: 30 }}>{`함께 보면 좋을\n추천 가이드`}</H1>
 
-          <Carousel
-            margin={{ top: 20 }}
-            containerPadding={{ left: 30, right: 30 }}
-          >
-            {recommendedArticles.map((article) => (
-              <Carousel.Item key={article.id} size="medium">
-                <ArticleEntry
-                  article={article}
-                  onClick={onArticleClick}
-                  onIntersect={handleIntersect}
-                />
-              </Carousel.Item>
-            ))}
-          </Carousel>
+        <Carousel
+          margin={{ top: 20 }}
+          containerPadding={{ left: 30, right: 30 }}
+        >
+          {recommendedArticles.map((article) => (
+            <Carousel.Item key={article.id} size="medium">
+              <ArticleEntry
+                article={article}
+                onClick={onArticleClick}
+                onIntersect={handleIntersect}
+              />
+            </Carousel.Item>
+          ))}
+        </Carousel>
 
-          <MoreButton
-            onClick={handleShowMoreClick}
-            margin={{ top: 20, right: 20 }}
-            floated="right"
-          >
-            가이드 더보기
-          </MoreButton>
-        </Responsive>
-      </>
+        <MoreButton
+          onClick={handleShowMoreClick}
+          margin={{ top: 20, right: 20 }}
+          floated="right"
+        >
+          가이드 더보기
+        </MoreButton>
+      </Responsive>
     </Section>
   )
 }
