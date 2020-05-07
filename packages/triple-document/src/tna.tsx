@@ -10,6 +10,8 @@ import {
   HR2,
 } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
+import { useEventTrackingContext } from '@titicaca/react-contexts'
+import IntersectionObserver from '@titicaca/intersection-observer'
 
 import { H1 } from './text'
 
@@ -30,7 +32,12 @@ interface TnaProductsListProps {
     slotId?: number
   }
   onTNAProductsFetch?: (slotId?: number) => Promise<Response>
-  onTNAProductClick?: (e: React.SyntheticEvent, product: TnaProductData) => void
+  onTNAProductClick?: (
+    e: React.SyntheticEvent,
+    product: TnaProductData,
+    slotId?: number,
+    index?: number,
+  ) => void
 }
 
 interface TnaProductsListState {
@@ -40,43 +47,62 @@ interface TnaProductsListState {
 }
 
 export function TnaProduct({
+  index,
   product,
   product: { heroImage, title, tags, salePrice },
   onClick,
+  onIntersect,
 }: {
+  index: number
   product: TnaProductData
-  onClick: (e: React.SyntheticEvent, product: TnaProductData) => void
+  onClick: (
+    e: React.SyntheticEvent,
+    product: TnaProductData,
+    index: number,
+  ) => void
+  onIntersect: (product: TnaProductData, index: number) => void
 }) {
   const handleClick = useCallback(
-    (e: React.SyntheticEvent) => onClick(e, product),
-    [product, onClick],
+    (e: React.SyntheticEvent) => onClick(e, product, index),
+    [product, onClick, index],
+  )
+
+  const handleIntersectionChange = useCallback(
+    ({ isIntersecting }: { isIntersecting: boolean }) => {
+      if (isIntersecting) {
+        onIntersect(product, index)
+      }
+    },
+    [product, onIntersect, index],
   )
 
   return (
-    <Container onClick={handleClick}>
-      <SquareImage size="medium" floated="left" src={heroImage} alt={title} />
-      <Text bold size="large" color="gray" margin={{ left: 150 }}>
-        {title}
-      </Text>
+    <IntersectionObserver safe onChange={handleIntersectionChange}>
+      <Container onClick={handleClick}>
+        <SquareImage size="medium" floated="left" src={heroImage} alt={title} />
+        <Text bold size="large" color="gray" margin={{ left: 150 }}>
+          {title}
+        </Text>
 
-      {tags && tags.length > 0 && (
-        <Container margin={{ top: 3, left: 150 }}>
-          {tags.map(({ text, type, style }, i) => (
-            <Tag
-              key={i}
-              type={type}
-              style={style}
-              margin={{ top: 4, right: i < tags.length - 1 ? 4 : 0 }}
-            >
-              {text}
-            </Tag>
-          ))}
-        </Container>
-      )}
-      <Text bold size="large" color="gray" margin={{ top: 13, left: 150 }}>
-        {`${formatNumber(salePrice)}원`}
-      </Text>
-    </Container>
+        {tags && tags.length > 0 && (
+          <Container margin={{ top: 3, left: 150 }}>
+            {tags.map(({ text, type, style }, i) => (
+              <Tag
+                key={i}
+                type={type}
+                style={style}
+                margin={{ top: 4, right: i < tags.length - 1 ? 4 : 0 }}
+              >
+                {text}
+              </Tag>
+            ))}
+          </Container>
+        )}
+        <Text bold size="large" color="gray" margin={{ top: 13, left: 150 }}>
+          {`${formatNumber(salePrice)}원`}
+        </Text>
+      </Container>
+    </IntersectionObserver>
   )
 }
 
@@ -92,6 +118,8 @@ export function TnaProductsList({
     showMore: false,
     title: '',
   })
+
+  const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
 
   useEffect(() => {
     async function fetchAndSetProductsList() {
@@ -118,13 +146,42 @@ export function TnaProductsList({
   }, [onTNAProductsFetch, slotId, setProductsList])
 
   const handleClick = useCallback(
-    (e: React.SyntheticEvent, product: TnaProductData) => {
+    (e: React.SyntheticEvent, product: TnaProductData, index: number) => {
       if (onTNAProductClick) {
-        onTNAProductClick(e, product)
+        onTNAProductClick(e, product, slotId, index)
       }
     },
-    [onTNAProductClick],
+    [onTNAProductClick, slotId],
   )
+
+  const handleIntersect = useCallback(
+    (product: TnaProductData, index: number) => {
+      trackEvent({
+        fa: {
+          action: '투어티켓_노출',
+          /* eslint-disable-next-line @typescript-eslint/camelcase */
+          slot_id: slotId,
+          /* eslint-disable-next-line @typescript-eslint/camelcase */
+          tna_id: product.id,
+          position: index,
+        },
+      })
+    },
+    [trackEvent, slotId],
+  )
+
+  const handleShowMoreClick = useCallback(() => {
+    trackSimpleEvent({
+      action: '투어티켓_더보기',
+      /* eslint-disable-next-line @typescript-eslint/camelcase */
+      slot_id: slotId,
+    })
+
+    setProductsList((prevValues) => ({
+      ...prevValues,
+      showMore: true,
+    }))
+  }, [trackSimpleEvent, setProductsList, slotId])
 
   return products.length > 0 ? (
     <>
@@ -138,7 +195,12 @@ export function TnaProductsList({
         <List clearing verticalGap={20}>
           {(showMore ? products : products.slice(0, 3)).map((product, i) => (
             <List.Item key={i}>
-              <TnaProduct product={product} onClick={handleClick} />
+              <TnaProduct
+                index={i}
+                product={product}
+                onClick={handleClick}
+                onIntersect={handleIntersect}
+              />
             </List.Item>
           ))}
           {!showMore && products.length > 3 ? (
@@ -148,12 +210,7 @@ export function TnaProductsList({
               compact
               size="small"
               margin={{ top: 10 }}
-              onClick={() =>
-                setProductsList((prevValues) => ({
-                  ...prevValues,
-                  showMore: true,
-                }))
-              }
+              onClick={handleShowMoreClick}
             >
               더보기
             </Button>
