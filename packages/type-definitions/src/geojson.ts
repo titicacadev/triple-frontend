@@ -1,4 +1,4 @@
 export interface PointGeoJSON {
   type: 'Point'
-  coordinates: number[] // [number, number]
+  coordinates: [number, number]
 }
