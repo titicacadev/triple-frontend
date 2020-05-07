@@ -69,19 +69,3 @@ jobs:
         SLACK_COLOR: warning
         SLACK_TITLE: ${{ ':x:' }} Build FAIL
         SLACK_MESSAGE: ${{ github.event.pull_request.title }}
-    - name: Canary Release
-      run: |
-        cat $GITHUB_EVENT_PATH > event.json
-
-        COMMIT_SIGNATURE="$(node -p -e 'require(`./event.json`).pull_request.head.sha')"
-        PR_NUMBER="$(node -p -e 'require(`./event.json`).number')"
-
-        rm event.json
-
-        git stash
-        git fetch --unshallow
-        git checkout $COMMIT_SIGNATURE
-
-        npx lerna publish --canary --force-publish --yes --preid "pr-${PR_NUMBER}"
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
