@@ -62,7 +62,7 @@ interface ExtendedPoiListElementBaseProps<T extends ListingPOI>
   distance?: string | number
   distanceSuffix?: string
   isAdvertisement?: boolean
-  notes: string[]
+  notes?: string[]
 }
 
 type ExtendedPoiListElementProps<
