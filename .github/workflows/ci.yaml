@@ -66,6 +66,53 @@ jobs:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_USERNAME: GHA Notifications
         SLACK_ICON_EMOJI: ':gear:'
-        SLACK_COLOR: warning
+        SLACK_COLOR: '#FD2E69'
         SLACK_TITLE: ${{ ':x:' }} Build FAIL
         SLACK_MESSAGE: ${{ github.event.pull_request.title }}
+
+    - name: Notify canary publish start to slack
+      uses: rtCamp/action-slack-notify@v2.0.0
+      env:
+        SLACK_CHANNEL: CMSJHHMA4
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_USERNAME: GHA Notifications
+        SLACK_ICON_EMOJI: ':gear:'
+        SLACK_COLOR: '#368FFF'
+        SLACK_TITLE: Canary publish Started
+        SLACK_MESSAGE: Version TBD
+
+    - name: Canary Release
+      run: |
+        git stash
+        git fetch --unshallow
+        git checkout ${{ env.PR_SHORT_SHA }}
+
+        npx lerna publish --canary --force-publish --yes --preid "pr-${{ env.PR_NUMBER }}"
+
+        echo ::set-env name=CANARY_VERSION::$(cat ./packages/core-elements/package.json | jq '.version' | sed 's/\"//g')
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    - name: Notify canary publish success to slack
+      if: success()
+      uses: rtCamp/action-slack-notify@v2.0.0
+      env:
+        SLACK_CHANNEL: CMSJHHMA4
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_USERNAME: GHA Notifications
+        SLACK_ICON_EMOJI: ':gear:'
+        SLACK_COLOR: good
+        SLACK_TITLE: ${{ ':tada:' }} Canary publish SUCCESS
+        SLACK_MESSAGE: ${{ env.CANARY_VERSION }}
+
+    - name: Notify canary publish success to slack
+      if: failure()
+      uses: rtCamp/action-slack-notify@v2.0.0
+      env:
+        SLACK_CHANNEL: CMSJHHMA4
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_USERNAME: GHA Notifications
+        SLACK_ICON_EMOJI: ':gear:'
+        SLACK_COLOR: warning
+        SLACK_TITLE: ${{ ':x:' }} Canary publish FAIL
+        SLACK_MESSAGE: ${{ env.CANARY_VERSION }}
