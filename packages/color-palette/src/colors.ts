@@ -24,7 +24,7 @@ export const mediumRed = 'rgba(255, 33, 60, 1)'
 export const deepRed = 'rgba(190, 0, 23, 1)'
 export const purple = 'rgba(151, 95, 254, 1)'
 export const purple100 = 'rgba(151, 95, 254, 0.1)'
-export const emerald = 'rgba(11, 208, 153, 1)'
+export const emerald = 'rgba(13, 208, 175, 1)'
 export const white = 'rgba(255, 255, 255, 1)'
 export const white600 = 'rgba(255, 255, 255, 0.6)'
 
