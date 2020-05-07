@@ -62,6 +62,7 @@ interface ExtendedPoiListElementBaseProps<T extends ListingPOI>
   distance?: string | number
   distanceSuffix?: string
   isAdvertisement?: boolean
+  notes: string[]
 }
 
 type ExtendedPoiListElementProps<
@@ -284,6 +285,7 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
         maxCommentLines,
         as,
         isAdvertisement,
+        notes,
       },
     } = this
 
@@ -309,12 +311,14 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
       currentState: (resourceScraps || {})[id],
     })
     const reviewsCount = Number(rawReviewsCount || 0)
-    const note = [
-      starRating ? `${starRating}성급` : category ? category.name : null,
-      area ? area.name : null,
-    ]
-      .filter((v) => v)
-      .join(' · ')
+    const note =
+      notes ||
+      [
+        starRating ? `${starRating}성급` : category ? category.name : null,
+        area ? area.name : null,
+      ]
+        .filter((v) => v)
+        .join(' · ')
 
     /**
      * Deprecation: priceInfo 배포 후 prices 제거 예정
