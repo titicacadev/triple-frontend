@@ -311,14 +311,14 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
       currentState: (resourceScraps || {})[id],
     })
     const reviewsCount = Number(rawReviewsCount || 0)
-    const note =
-      notes ||
-      [
+    const note = (
+      notes || [
         starRating ? `${starRating}성급` : category ? category.name : null,
         area ? area.name : null,
       ]
-        .filter((v) => v)
-        .join(' · ')
+    )
+      .filter((v) => v)
+      .join(' · ')
 
     /**
      * Deprecation: priceInfo 배포 후 prices 제거 예정

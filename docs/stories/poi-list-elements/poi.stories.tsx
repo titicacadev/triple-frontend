@@ -69,6 +69,7 @@ storiesOf('poi-list-elements | POI', module)
           hideDiscountRate={boolean('hideDiscountRate', false)}
           hideScrapButton={boolean('hideScrapButton', false)}
           onScrapedChange={action('scrap change')}
+          notes={boolean('custom note') && ['3성급', '판교 백현동']}
           {...(boolean('distance 표시', false)
             ? {
                 distance: text('distance', '300m'),
