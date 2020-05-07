@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import {
   List,
   Text,
@@ -16,6 +16,7 @@ import { H1 } from './text'
 type Price = string | number
 
 interface TnaProductProps {
+  id: number
   heroImage?: string
   title?: string
   tags?: { text: string; type: TagColors; style: React.CSSProperties }[]
@@ -29,10 +30,7 @@ interface TnaProductsListProps {
     slotId?: number
   }
   onTNAProductsFetch?: (slotId?: number) => Promise<Response>
-  onTNAProductClick?: (
-    e?: React.SyntheticEvent,
-    product?: TnaProductData,
-  ) => void
+  onTNAProductClick?: (e: React.SyntheticEvent, product: TnaProductData) => void
 }
 
 interface TnaProductsListState {
@@ -42,13 +40,20 @@ interface TnaProductsListState {
 }
 
 export function TnaProduct({
-  heroImage,
-  title,
-  tags,
-  salePrice,
-}: TnaProductProps) {
+  product,
+  product: { heroImage, title, tags, salePrice },
+  onClick,
+}: {
+  product: TnaProductData
+  onClick: (e: React.SyntheticEvent, product: TnaProductData) => void
+}) {
+  const handleClick = useCallback(
+    (e: React.SyntheticEvent) => onClick(e, product),
+    [product, onClick],
+  )
+
   return (
-    <>
+    <Container onClick={handleClick}>
       <SquareImage size="medium" floated="left" src={heroImage} alt={title} />
       <Text bold size="large" color="gray" margin={{ left: 150 }}>
         {title}
@@ -71,7 +76,7 @@ export function TnaProduct({
       <Text bold size="large" color="gray" margin={{ top: 13, left: 150 }}>
         {`${formatNumber(salePrice)}원`}
       </Text>
-    </>
+    </Container>
   )
 }
 
@@ -112,6 +117,15 @@ export function TnaProductsList({
     fetchAndSetProductsList()
   }, [onTNAProductsFetch, slotId, setProductsList])
 
+  const handleClick = useCallback(
+    (e: React.SyntheticEvent, product: TnaProductData) => {
+      if (onTNAProductClick) {
+        onTNAProductClick(e, product)
+      }
+    },
+    [onTNAProductClick],
+  )
+
   return products.length > 0 ? (
     <>
       <HR2 />
@@ -123,16 +137,11 @@ export function TnaProductsList({
 
         <List clearing verticalGap={20}>
           {(showMore ? products : products.slice(0, 3)).map((product, i) => (
-            <List.Item
-              key={i}
-              onClick={
-                onTNAProductClick && ((e) => onTNAProductClick(e, product))
-              }
-            >
-              <TnaProduct {...product} />
+            <List.Item key={i}>
+              <TnaProduct product={product} onClick={handleClick} />
             </List.Item>
           ))}
-          {!showMore && products.length > 3 && (
+          {!showMore && products.length > 3 ? (
             <Button
               basic
               fluid
@@ -148,7 +157,7 @@ export function TnaProductsList({
             >
               더보기
             </Button>
-          )}
+          ) : null}
         </List>
       </Container>
     </>
