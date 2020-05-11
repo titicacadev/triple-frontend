@@ -1,4 +1,8 @@
-# 1.19.0 (2020-04-29)
+# 1.19.1 (2020-05-11)
+
+- `view-utilies` type-definition 모듈 의존성 devDep -> dev 으로 변경합니다.
+
+# 1.19.0 (2020-05-07)
 
 - `color-palette` (#717)
   - 개별 color 를 export 하고, ColorSet export 방식을 변경합니다.
