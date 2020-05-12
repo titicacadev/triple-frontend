@@ -31,13 +31,13 @@ jobs:
             -H "Accept: application/vnd.github.sailor-v-preview+json" \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" > pr.json
 
-          PR_SHA=$(cat ./pr.json | jq '.head.sha' | sed 's/\"//g')
+          PR_SHA=$(cat ./pr.json | jq -r '.head.sha')
           echo ::set-env name=PR_NUMBER::${{ github.event.issue.number }}
           echo ::set-env name=PR_SHA::$PR_SHA
           echo ::set-env name=PR_SHORT_SHA::${PR_SHA:0:7}
-          echo ::set-env name=PR_TITLE::$(cat ./pr.json | jq '.title' | sed 's/\"//g')
-          echo ::set-env name=SLACK_AUTHOR_NAME::$(cat ./pr.json | jq '.user.login\' | sed 's/\"//g')
-          echo ::set-env name=SLACK_AUTHOR_ICON::$(cat ./pr.json | jq '.user.avatar_url\' | sed 's/\"//g')
+          echo ::set-env name=PR_TITLE::$(cat ./pr.json | jq -r '.title')
+          echo ::set-env name=SLACK_AUTHOR_NAME::$(cat ./pr.json | jq -r '.user.login')
+          echo ::set-env name=SLACK_AUTHOR_ICON::$(cat ./pr.json | jq -r '.user.avatar_url')
 
       - name: Reaction
         run: |
@@ -125,7 +125,7 @@ jobs:
 
           npx lerna publish --canary --force-publish --yes --preid "pr-${{ env.PR_NUMBER }}"
 
-          echo ::set-env name=CANARY_VERSION::$(cat ./packages/core-elements/package.json | jq '.version' | sed 's/\"//g')
+          echo ::set-env name=CANARY_VERSION::$(cat ./packages/core-elements/package.json | jq -r '.version')
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
