@@ -21,7 +21,6 @@ jobs:
       SLACK_FOOTER: "Triple Frontend"
       SLACK_AUTHOR_NAME: ${{ github.event.sender.login }}
       SLACK_AUTHOR_ICON: "${{ github.event.sender.avatar_url }}"
-      GITHUB_REF: "${{ github.ref }}"
       GITHUB_EVENT_NAME: "$GITHUB_EVENT_NAME"
       GITHUB_REPOSITORY: ${{ github.repository }}
       GITHUB_ACTIONS_URL: "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
@@ -35,8 +34,11 @@ jobs:
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" > pr.json
 
           PR_SHA=$(cat ./pr.json | jq -r '.head.sha')
+          PR_REF=$(cat ./pr.json | jq -r '.head.ref')
           echo ::set-env name=PR_NUMBER::${{ github.event.issue.number }}
           echo ::set-env name=PR_SHA::$PR_SHA
+          echo ::set-env name=PR_REF::$PR_REF
+          echo ::set-env name=GITHUB_REF::$PR_REF
           echo ::set-env name=PR_SHORT_SHA::${PR_SHA:0:7}
           echo ::set-env name=PR_TITLE::$(cat ./pr.json | jq -r '.title')
 
