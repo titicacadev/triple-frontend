@@ -58,7 +58,7 @@ const template = {
       "short": true
     }],
     "footer": SLACK_FOOTER,
-    "ts": `${(new Date()).getTime()}`
+    "ts": (new Date()).getTime()
   }]
 }
 
