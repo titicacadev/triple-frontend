@@ -12,144 +12,137 @@ jobs:
         matrix:
           node-version: [12.x]
 
+    env:
+      SLACK_CHANNEL: "#triple-web-dev-notifications"
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      SLACK_USERNAME: "Triple Frontend"
+      SLACK_ICON_EMOJI: ":triple_new:"
+      SLACK_COLOR: gray
+      SLACK_FOOTER: "Triple Frontend"
+      GITHUB_EVENT_NAME: "$GITHUB_EVENT_NAME"
+      GITHUB_REPOSITORY: ${{ github.repository }}
+      GITHUB_ACTIONS_URL: "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
     steps:
-    - name: Recognize head sha of pull request
-      run: |
-        curl -v \
-          --url https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.issue.number }} \
-          -H "Accept: application/vnd.github.sailor-v-preview+json" \
-          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" > pr.json
+      - name: Recognize head sha of pull request
+        run: |
+          curl -v \
+            --url https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.issue.number }} \
+            -H "Accept: application/vnd.github.sailor-v-preview+json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" > pr.json
 
-        PR_SHA=$(cat ./pr.json | jq '.head.sha' | sed 's/\"//g')
-        echo ::set-env name=PR_NUMBER::${{ github.event.issue.number }}
-        echo ::set-env name=PR_SHA::$PR_SHA
-        echo ::set-env name=PR_SHORT_SHA::${PR_SHA:0:7}
-        echo ::set-env name=PR_TITLE::$(cat ./pr.json | jq '.title' | sed 's/\"//g')
+          PR_SHA=$(cat ./pr.json | jq '.head.sha' | sed 's/\"//g')
+          echo ::set-env name=PR_NUMBER::${{ github.event.issue.number }}
+          echo ::set-env name=PR_SHA::$PR_SHA
+          echo ::set-env name=PR_SHORT_SHA::${PR_SHA:0:7}
+          echo ::set-env name=PR_TITLE::$(cat ./pr.json | jq '.title' | sed 's/\"//g')
+          echo ::set-env name=SLACK_AUTHOR_NAME::$(cat ./pr.json | jq '.user.login\' | sed 's/\"//g')
+          echo ::set-env name=SLACK_AUTHOR_ICON::$(cat ./pr.json | jq '.user.avatar_url\' | sed 's/\"//g')
 
-    - name: Reaction
-      run: |
-        curl -v \
-          --url https://api.github.com/repos/${{ github.repository }}/issues/comments/${{ github.event.comment.id }}/reactions \
-          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          -H "Accept: application/vnd.github.squirrel-girl-preview+json" \
-          -H "Content-Type: application/json" \
-          -f --request POST \
-          -d "{\"content\":\"+1\"}"
-        curl -v \
-          --url https://api.github.com/repos/${{ github.repository }}/issues/${{ env.PR_NUMBER }}/comments \
-          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          -H "Content-Type: application/json" \
-          -f --request POST \
-          -d "{\"body\":\"@${{ github.event.comment.user.login}} I got it! :rocket:\"}"
+      - name: Reaction
+        run: |
+          curl -v \
+            --url https://api.github.com/repos/${{ github.repository }}/issues/comments/${{ github.event.comment.id }}/reactions \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.squirrel-girl-preview+json" \
+            -H "Content-Type: application/json" \
+            -f --request POST \
+            -d "{\"content\":\"+1\"}"
+          curl -v \
+            --url https://api.github.com/repos/${{ github.repository }}/issues/${{ env.PR_NUMBER }}/comments \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -f --request POST \
+            -d "{\"body\":\"@${{ github.event.comment.user.login}} I got it! :rocket: \"}"
 
-    - name: Git checkout@v2
-      uses: actions/checkout@v2
-      with:
-        ref: ${{ env.PR_SHA }}
+      - name: Git checkout@v2
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ env.PR_SHA }}
 
-    - name: Notify build start to slack
-      uses: rtCamp/action-slack-notify@v2.0.0
-      env:
-        SLACK_CHANNEL: CMSJHHMA4
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_USERNAME: GHA Notifications
-        SLACK_ICON_EMOJI: ':gear:'
-        SLACK_COLOR: good
-        SLACK_TITLE: Build WORKING
-        SLACK_MESSAGE: ${{ env.PR_TITLE }}
+      - name: Notify build start to slack
+        env:
+          SLACK_TITLE: ":rocket: Build Started"
+          SLACK_TOPIC: "${{ env.PR_TITLE }}"
+        run: |
+          node ./.github/workflows/notifier.js
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-        registry-url: 'https://registry.npmjs.org'
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org'
 
-    - name: Cache node modules
-      uses: actions/cache@v1
-      with:
-        path: node_modules
-        key: ${{ runner.OS }}-build-${{ hashFiles('package-lock.json') }}
-        restore-keys: |
-          ${{ runner.OS }}-build-${{ env.cache-name }}-
-          ${{ runner.OS }}-build-
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-${{ env.cache-name }}-
+            ${{ runner.OS }}-build-
 
-    - name: Build and Test
-      run: |
-        npm ci
-        npm run lint
-        npm run bootstrap
-        npm run build
-        npm test
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Build and Test
+        run: |
+          npm ci
+          npm run lint
+          npm run bootstrap
+          npm run build
+          npm test
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-    - name: Notify build and test success to slack
-      if: success()
-      uses: rtCamp/action-slack-notify@v2.0.0
-      env:
-        SLACK_CHANNEL: CMSJHHMA4
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_USERNAME: GHA Notifications
-        SLACK_ICON_EMOJI: ':gear:'
-        SLACK_COLOR: good
-        SLACK_TITLE: ${{ ':tada:' }} Build SUCCESS
-        SLACK_MESSAGE: ${{ env.PR_TITLE }}
+      - name: Notify build and test success to slack
+        if: success()
+        env:
+          SLACK_TITLE: ":tada: Build Succeed"
+          SLACK_TOPIC: "${{ env.PR_TITLE }}"
+          SLACK_COLOR: good
+        run: |
+          node ./.github/workflows/notifier.js
 
-    - name: Notify build and test fail to slack
-      if: failure()
-      uses: rtCamp/action-slack-notify@v2.0.0
-      env:
-        SLACK_CHANNEL: CMSJHHMA4
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_USERNAME: GHA Notifications
-        SLACK_ICON_EMOJI: ':gear:'
-        SLACK_COLOR: '#FD2E69'
-        SLACK_TITLE: ${{ ':x:' }} Build FAIL
-        SLACK_MESSAGE: ${{ env.PR_TITLE }}
+      - name: Notify build and test fail to slack
+        if: failure()
+        env:
+          SLACK_TITLE: ":pleading: Build Failed"
+          SLACK_TOPIC: "${{ env.PR_TITLE }}"
+          SLACK_COLOR: fail
+        run: |
+          node ./.github/workflows/notifier.js
 
-    - name: Notify canary publish start to slack
-      uses: rtCamp/action-slack-notify@v2.0.0
-      env:
-        SLACK_CHANNEL: CMSJHHMA4
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_USERNAME: GHA Notifications
-        SLACK_ICON_EMOJI: ':gear:'
-        SLACK_COLOR: '#368FFF'
-        SLACK_TITLE: Canary publish Started
-        SLACK_MESSAGE: Version TBD
+      - name: Notify canary publish start to slack
+        env:
+          SLACK_TITLE: ":rocket: Canary publish Started"
+          SLACK_TOPIC: "Version TBD"
+        run: |
+          node ./.github/workflows/notifier.js
 
-    - name: Canary Release
-      run: |
-        git stash
-        git fetch --unshallow
-        git checkout ${{ env.PR_SHORT_SHA }}
+      - name: Canary Release
+        run: |
+          git stash
+          git fetch --unshallow
+          git checkout ${{ env.PR_SHORT_SHA }}
 
-        npx lerna publish --canary --force-publish --yes --preid "pr-${{ env.PR_NUMBER }}"
+          npx lerna publish --canary --force-publish --yes --preid "pr-${{ env.PR_NUMBER }}"
 
-        echo ::set-env name=CANARY_VERSION::$(cat ./packages/core-elements/package.json | jq '.version' | sed 's/\"//g')
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          echo ::set-env name=CANARY_VERSION::$(cat ./packages/core-elements/package.json | jq '.version' | sed 's/\"//g')
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-    - name: Notify canary publish success to slack
-      if: success()
-      uses: rtCamp/action-slack-notify@v2.0.0
-      env:
-        SLACK_CHANNEL: CMSJHHMA4
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_USERNAME: GHA Notifications
-        SLACK_ICON_EMOJI: ':gear:'
-        SLACK_COLOR: good
-        SLACK_TITLE: ${{ ':tada:' }} Canary publish SUCCESS
-        SLACK_MESSAGE: ${{ env.CANARY_VERSION }}
+      - name: Notify canary publish success to slack
+        if: success()
+        env:
+          SLACK_TITLE: ":tada: Canary publish Succeed"
+          SLACK_TOPIC: "${{ env.CANARY_VERSION }}"
+          SLACK_COLOR: good
+        run: |
+          node ./.github/workflows/notifier.js
 
-    - name: Notify canary publish success to slack
-      if: failure()
-      uses: rtCamp/action-slack-notify@v2.0.0
-      env:
-        SLACK_CHANNEL: CMSJHHMA4
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_USERNAME: GHA Notifications
-        SLACK_ICON_EMOJI: ':gear:'
-        SLACK_COLOR: '#FD2E69'
-        SLACK_TITLE: ${{ ':x:' }} Canary publish FAIL
-        SLACK_MESSAGE: ${{ env.CANARY_VERSION }}
+      - name: Notify canary publish success to slack
+        if: failure()
+        env:
+          SLACK_TITLE: ":pleading: Canary publish Failed"
+          SLACK_TOPIC: "${{ env.CANARY_VERSION }}"
+          SLACK_COLOR: fail
+        run: |
+          node ./.github/workflows/notifier.js
