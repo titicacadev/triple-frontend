@@ -1,4 +1,4 @@
-const exec = require('child_process').exec;
+const exec = require('child_process').exec
 
 const {
   SLACK_CHANNEL,
@@ -16,7 +16,6 @@ const {
   SLACK_AUTHOR_NAME,
   SLACK_AUTHOR_ICON,
 } = process.env
-
 const COLOR_PRESET = {
   "success": "#36a64f",
   "fail": "#fd2e69",
@@ -66,10 +65,10 @@ const payload = JSON.stringify(template)
 const cmd = `curl -X POST --data-urlencode 'payload=${payload}' ${SLACK_WEBHOOK}`
 
 exec(cmd, function (error, stdout, stderr) {
-  console.log(stdout);
-  console.log(stderr);
+  console.log(stdout)
+  console.log(stderr)
 
   if (error !== null) {
-    console.error(error);
+    console.error(error)
   }
 })
