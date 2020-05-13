@@ -18,7 +18,6 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   error?: string
   onBlur?: (e: React.FocusEvent<any>) => any
   onChange?: (e?: React.SyntheticEvent, value?: any) => any
-  disabled?: boolean
 }
 
 const SelectFrame = styled.div<{
@@ -91,10 +90,10 @@ function Select({
   focused,
   error,
   onBlur,
-  disabled,
+  ...props
 }: SelectProps) {
   return (
-    <SelectFrame focused={focused} error={error} disabled={disabled}>
+    <SelectFrame focused={focused} error={error} disabled={props.disabled}>
       <BaseSelect
         id={id}
         onChange={(e) => onChange && onChange(e, e.target.value)}
@@ -103,7 +102,7 @@ function Select({
         error={error}
         name={name}
         selected={value !== null && value !== undefined && value !== ''}
-        disabled={disabled}
+        {...props}
       >
         {placeholder ? <option value="">{placeholder}</option> : null}
         {(options || []).map(({ label, value }, idx) => (
