@@ -32,7 +32,7 @@ jobs:
             --url https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.issue.number }} \
             -H "Accept: application/vnd.github.sailor-v-preview+json" \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" > pr.json
-          cat ./pr.json
+
           PR_SHA=$(cat ./pr.json | jq -r '.head.sha')
           PR_REF=$(cat ./pr.json | jq -r '.head.ref')
           echo ::set-env name=PR_NUMBER::${{ github.event.issue.number }}
