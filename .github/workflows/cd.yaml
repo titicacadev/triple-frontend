@@ -24,10 +24,10 @@ jobs:
       SLACK_TOPIC:
       SLACK_AUTHOR_NAME: ${{ github.event.sender.login }}
       SLACK_AUTHOR_ICON: "${{ github.event.sender.avatar_url }}"
-      GITHUB_REF: "${{ github.event.ref }}"
-      GITHUB_EVENT_NAME: "$GITHUB_EVENT_NAME"
-      GITHUB_REPOSITORY: ${{ github.repository }}
-      GITHUB_ACTIONS_URL: "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+      SLACK_GITHUB_REF: "${{ github.event.ref }}"
+      SLACK_GITHUB_EVENT_NAME: "$GITHUB_EVENT_NAME"
+      SLACK_GITHUB_REPOSITORY: ${{ github.repository }}
+      SLACK_DEATIL_URL: "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
     steps:
       - uses: actions/checkout@v2-beta

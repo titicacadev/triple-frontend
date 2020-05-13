@@ -9,10 +9,10 @@ const {
   SLACK_FOOTER,
   SLACK_TITLE,
   SLACK_TOPIC,
-  GITHUB_REF,
-  GITHUB_EVENT_NAME,
-  GITHUB_REPOSITORY,
-  GITHUB_ACTIONS_URL,
+  SLACK_GITHUB_REF,
+  SLACK_GITHUB_EVENT_NAME,
+  SLACK_GITHUB_REPOSITORY,
+  SLACK_DETAIL_URL,
   SLACK_AUTHOR_NAME,
   SLACK_AUTHOR_ICON,
 } = process.env
@@ -36,7 +36,7 @@ const template = {
   "channel": SLACK_CHANNEL,
   "icon_emoji": SLACK_ICON_EMOJI,
   "username": SLACK_USERNAME,
-  "text": `*${SLACK_TITLE}* - <${GITHUB_ACTIONS_URL}|[${GITHUB_REPOSITORY}]>`,
+  "text": `*${SLACK_TITLE}* - <${SLACK_DETAIL_URL}|[${SLACK_GITHUB_REPOSITORY}]>`,
   "attachments":[{
     "fallback": "GitHub Action workflow done.",
     "color": COLOR_PRESET[SLACK_COLOR] || SLACK_COLOR,
@@ -49,11 +49,11 @@ const template = {
       "short": false
     }, {
       "title": "Ref",
-      "value": GITHUB_REF,
+      "value": SLACK_GITHUB_REF,
       "short": true
     }, {
       "title": "Event",
-      "value": GITHUB_EVENT_NAME,
+      "value": SLACK_GITHUB_EVENT_NAME,
       "short": true
     }],
     "footer": SLACK_FOOTER,
