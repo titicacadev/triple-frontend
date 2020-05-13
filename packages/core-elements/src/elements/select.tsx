@@ -18,9 +18,14 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   error?: string
   onBlur?: (e: React.FocusEvent<any>) => any
   onChange?: (e?: React.SyntheticEvent, value?: any) => any
+  disabled?: boolean
 }
 
-const SelectFrame = styled.div<{ focused?: string; error?: string }>`
+const SelectFrame = styled.div<{
+  focused?: string
+  error?: string
+  disabled?: boolean
+}>`
   padding: 14px 16px;
   border: 1px solid rgba(${getColor('gray100')});
   border-radius: 2px;
@@ -37,9 +42,18 @@ const SelectFrame = styled.div<{ focused?: string; error?: string }>`
     css`
       border-color: rgba(${getColor('red')});
     `};
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      background-color: rgba(235, 235, 235, 1);
+    `};
 `
 
-const BaseSelect = styled.select<{ selected?: boolean; error?: string }>`
+const BaseSelect = styled.select<{
+  selected?: boolean
+  error?: string
+}>`
   width: 100%;
   font-size: 16px;
   color: rgba(${({ selected }) => getColor(selected ? 'gray' : 'gray300')});
@@ -49,6 +63,9 @@ const BaseSelect = styled.select<{ selected?: boolean; error?: string }>`
     css`
       color: rgba(${getColor('red')});
     `};
+  &:disabled {
+    color: rgba(${getColor('gray300')});
+  }
 `
 
 const Icon = styled.span`
@@ -74,9 +91,10 @@ function Select({
   focused,
   error,
   onBlur,
+  disabled,
 }: SelectProps) {
   return (
-    <SelectFrame focused={focused} error={error}>
+    <SelectFrame focused={focused} error={error} disabled={disabled}>
       <BaseSelect
         id={id}
         onChange={(e) => onChange && onChange(e, e.target.value)}
@@ -85,6 +103,7 @@ function Select({
         error={error}
         name={name}
         selected={value !== null && value !== undefined && value !== ''}
+        disabled={disabled}
       >
         {placeholder ? <option value="">{placeholder}</option> : null}
         {(options || []).map(({ label, value }, idx) => (
