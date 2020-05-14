@@ -49,7 +49,7 @@ import {
 import { RegionListElement } from './region'
 import { TnaProductsList } from './tna'
 import Coupon from './coupon'
-import { RegionData } from './types'
+import { RegionData, TripleElementData } from './types'
 import DocumentCarousel from './document-carousel'
 
 type ExtendedPOIListElementData = ListingPOI & {
@@ -63,11 +63,6 @@ type ExtendedPOIListElementData = ListingPOI & {
 type Link = {
   href?: string
   label?: string
-}
-
-interface TripleElementData<T = string, Value = unknown> {
-  type: T
-  value: Value
 }
 
 type TextElementData = TripleElementData<'text', string>
