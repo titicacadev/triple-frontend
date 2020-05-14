@@ -51,13 +51,6 @@ jobs:
         with:
           ref: ${{ env.PR_SHA }}
 
-      - name: Recognize next canary version
-        run: |
-          NEXT_VERSION=$(node -e "const [major, minor, patch] = require('./lerna.json').version.split('.');console.log(['v'+major, minor, parseInt(patch, 10) + 1].join('.'))")
-          REF_COUNT=$(node -p -e "Math.max(0, parseInt((\"$(git describe --always --long --dirty --match "v*.*.*")\".match(/^(?:.*@)?.*-(\d+)-.*?$/) || ['0', '0'])[1], 10) - 1)")
-          echo ::set-env name=CANARY_VERSION::$NEXT_VERSION-pr-${{ env.PR_NUMBER }}.$REF_COUNT
-          echo ${{ env.CANARY_VERSION }}
-
       - name: Notify build start to slack
         env:
           SLACK_TITLE: ":rocket: Build Started"
@@ -80,15 +73,15 @@ jobs:
             ${{ runner.OS }}-build-${{ env.cache-name }}-
             ${{ runner.OS }}-build-
 
-      - name: Build and Test
-        run: |
-          npm ci
-          npm run lint
-          npm run bootstrap
-          npm run build
-          npm test
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - name: Build and Test
+      #   run: |
+      #     npm ci
+      #     npm run lint
+      #     npm run bootstrap
+      #     npm run build
+      #     npm test
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Notify build and test success to slack
         if: success()
@@ -108,6 +101,17 @@ jobs:
         run: |
           node ./.github/workflows/notifier.js
 
+      - name: Preparing canary publish
+        run: |
+          git stash
+          git fetch --unshallow
+          git checkout ${{ env.PR_SHORT_SHA }}
+
+          NEXT_VERSION=$(node -e "const [major, minor, patch] = require('./lerna.json').version.split('.');console.log(['v'+major, minor, parseInt(patch, 10) + 1].join('.'))")
+          REF_COUNT=$(node -p -e "Math.max(0, parseInt((\"$(git describe --always --long --dirty --match "v*.*.*")\".match(/^(?:.*@)?.*-(\d+)-.*?$/) || ['0', '0'])[1], 10) - 1)")
+          echo ::set-env name=CANARY_VERSION::$NEXT_VERSION-pr-${{ env.PR_NUMBER }}.$REF_COUNT
+          echo ${{ env.CANARY_VERSION }}
+
       - name: Notify canary publish start to slack
         env:
           SLACK_TITLE: ":rocket: Canary publish Started"
@@ -117,10 +121,6 @@ jobs:
 
       - name: Canary Release
         run: |
-          git stash
-          git fetch --unshallow
-          git checkout ${{ env.PR_SHORT_SHA }}
-
           npx lerna publish --canary --force-publish --yes --preid "pr-${{ env.PR_NUMBER }}"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
