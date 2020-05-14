@@ -49,7 +49,13 @@ import {
 import { RegionListElement } from './region'
 import { TnaProductsList } from './tna'
 import Coupon from './coupon'
-import { RegionData, TripleElementData } from './types'
+import {
+  RegionData,
+  TripleElementData,
+  Link,
+  ImageEventHandler,
+  LinkEventHandler,
+} from './types'
 import DocumentCarousel from './document-carousel'
 
 type ExtendedPOIListElementData = ListingPOI & {
@@ -60,20 +66,12 @@ type ExtendedPOIListElementData = ListingPOI & {
   }
 }
 
-type Link = {
-  href?: string
-  label?: string
-}
-
 type TextElementData = TripleElementData<'text', string>
 type LinksElementData = TripleElementData<'links', { links: Link[] }>
 
 interface ElementSet {
   [type: string]: React.ComponentType<any>
 }
-
-type ImageEventHandler = (e: React.SyntheticEvent, image: MediaMeta) => void
-type LinkEventHandler = (e: React.SyntheticEvent, link: Link) => void
 
 type Display = 'list' | string
 type MediaDisplayProperty = CSS.DisplayProperty | 'gapless-block'
