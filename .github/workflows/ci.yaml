@@ -65,7 +65,7 @@ jobs:
           SLACK_TITLE: ":tada: Build Succeed"
           SLACK_COLOR: success
         run: |
-        npx @titicaca/gha-tools notify
+          npx @titicaca/gha-tools notify
 
       - name: Notify build and test fail to slack
         if: failure()
