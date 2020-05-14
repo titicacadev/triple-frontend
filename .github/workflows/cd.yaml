@@ -27,7 +27,7 @@ jobs:
       SLACK_GITHUB_REF: "${{ github.event.ref }}"
       SLACK_GITHUB_EVENT_NAME: "${{ github.event_name }}"
       SLACK_GITHUB_REPOSITORY: ${{ github.repository }}
-      SLACK_DEATIL_URL: "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+      SLACK_DETAIL_URL: "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
     steps:
       - uses: actions/checkout@v2-beta
@@ -79,7 +79,7 @@ jobs:
 
       - name: Notify deploy start to slack
         env:
-          SLACK_TITLE: ":rocket: Build Started"
+          SLACK_TITLE: ":rocket: Deploy Started"
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npx @titicaca/gha-tools notify
