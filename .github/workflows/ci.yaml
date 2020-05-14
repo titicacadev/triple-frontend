@@ -28,17 +28,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2-beta
 
-      - name: Notify build start to slack
-        env:
-          SLACK_TITLE: ":rocket: Build Started"
-        run: |
-          node ./.github/workflows/notifier.js
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: 'https://registry.npmjs.org'
+
+      - name: Notify build start to slack
+        env:
+          SLACK_TITLE: ":rocket: Build Started"
+        run: |
+          npx @titicaca/gha-tools notify
 
       - name: Cache node modules
         uses: actions/cache@v1
@@ -65,7 +65,7 @@ jobs:
           SLACK_TITLE: ":tada: Build Succeed"
           SLACK_COLOR: success
         run: |
-          node ./.github/workflows/notifier.js
+        npx @titicaca/gha-tools notify
 
       - name: Notify build and test fail to slack
         if: failure()
@@ -73,4 +73,4 @@ jobs:
           SLACK_TITLE: ":pleading: Build Failed"
           SLACK_COLOR: fail
         run: |
-          node ./.github/workflows/notifier.js
+          npx @titicaca/gha-tools notify

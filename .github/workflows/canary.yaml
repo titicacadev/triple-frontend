@@ -28,10 +28,7 @@ jobs:
     steps:
       - name: Recognize head sha of pull request
         run: |
-          curl -v \
-            --url https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.issue.number }} \
-            -H "Accept: application/vnd.github.sailor-v-preview+json" \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" > pr.json
+          npx @titicaca/gha-tools pr=${{ github.event.issue.number }}
 
           PR_SHA=$(cat ./pr.json | jq -r '.head.sha')
           PR_REF=$(cat ./pr.json | jq -r '.head.ref')
@@ -68,7 +65,7 @@ jobs:
           SLACK_TITLE: ":rocket: Build Started"
           SLACK_TOPIC: "${{ env.PR_TITLE }}"
         run: |
-          node ./.github/workflows/notifier.js
+          npx @titicaca/gha-tools notify
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -101,7 +98,7 @@ jobs:
           SLACK_TOPIC: "${{ env.PR_TITLE }}"
           SLACK_COLOR: good
         run: |
-          node ./.github/workflows/notifier.js
+          npx @titicaca/gha-tools notify
 
       - name: Notify build fail to slack
         if: failure()
@@ -110,7 +107,7 @@ jobs:
           SLACK_TOPIC: "${{ env.PR_TITLE }}"
           SLACK_COLOR: fail
         run: |
-          node ./.github/workflows/notifier.js
+          npx @titicaca/gha-tools notify
 
       - name: Preparing canary publish
         run: |
@@ -128,7 +125,7 @@ jobs:
           SLACK_TITLE: ":rocket: Canary publish Started"
           SLACK_TOPIC: "${{ env.CANARY_VERSION }}"
         run: |
-          node ./.github/workflows/notifier.js
+          npx @titicaca/gha-tools notify
 
       - name: Canary Release
         run: |
@@ -143,7 +140,7 @@ jobs:
           SLACK_TOPIC: "${{ env.CANARY_VERSION }}"
           SLACK_COLOR: good
         run: |
-          node ./.github/workflows/notifier.js
+          npx @titicaca/gha-tools notify
 
       - name: Notify canary publish success to slack
         if: failure()
@@ -152,4 +149,4 @@ jobs:
           SLACK_TOPIC: "${{ env.CANARY_VERSION }}"
           SLACK_COLOR: fail
         run: |
-          node ./.github/workflows/notifier.js
+          npx @titicaca/gha-tools notify

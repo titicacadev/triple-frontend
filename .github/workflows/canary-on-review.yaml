@@ -56,7 +56,7 @@ jobs:
           SLACK_TITLE: ":rocket: Build Started"
           SLACK_TOPIC: "${{ env.PR_TITLE }}"
         run: |
-          node ./.github/workflows/notifier.js
+          npx @titicaca/gha-tools notify
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -89,7 +89,7 @@ jobs:
           SLACK_TOPIC: "${{ env.PR_TITLE }}"
           SLACK_COLOR: good
         run: |
-          node ./.github/workflows/notifier.js
+          npx @titicaca/gha-tools notify
 
       - name: Notify build fail to slack
         if: failure()
@@ -98,7 +98,7 @@ jobs:
           SLACK_TOPIC: "${{ env.PR_TITLE }}"
           SLACK_COLOR: fail
         run: |
-          node ./.github/workflows/notifier.js
+          npx @titicaca/gha-tools notify
 
       - name: Preparing canary publish
         run: |
@@ -116,7 +116,7 @@ jobs:
           SLACK_TITLE: ":rocket: Canary publish Started"
           SLACK_TOPIC: "${{ env.CANARY_VERSION }}"
         run: |
-          node ./.github/workflows/notifier.js
+          npx @titicaca/gha-tools notify
 
       - name: Canary Release
         run: |
@@ -131,7 +131,7 @@ jobs:
           SLACK_TOPIC: "${{ env.CANARY_VERSION }}"
           SLACK_COLOR: good
         run: |
-          node ./.github/workflows/notifier.js
+          npx @titicaca/gha-tools notify
 
       - name: Notify canary publish success to slack
         if: failure()
@@ -140,4 +140,4 @@ jobs:
           SLACK_TOPIC: "${{ env.CANARY_VERSION }}"
           SLACK_COLOR: fail
         run: |
-          node ./.github/workflows/notifier.js
+          npx @titicaca/gha-tools notify

@@ -42,7 +42,7 @@ jobs:
         env:
           SLACK_TITLE: ":rocket: Build Started"
         run: |
-          node ./.github/workflows/notifier.js
+          npx @titicaca/gha-tools notify
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -64,7 +64,7 @@ jobs:
           SLACK_TITLE: ":tada: Build Succeed"
           SLACK_COLOR: success
         run: |
-          node ./.github/workflows/notifier.js
+          npx @titicaca/gha-tools notify
 
       - name: Notify build fail to slack
         if: failure()
@@ -72,13 +72,13 @@ jobs:
           SLACK_TITLE: ":pleading: Build Failed"
           SLACK_COLOR: fail
         run: |
-          node ./.github/workflows/notifier.js
+          npx @titicaca/gha-tools notify
 
       - name: Notify deploy start to slack
         env:
           SLACK_TITLE: ":rocket: Build Started"
         run: |
-          node ./.github/workflows/notifier.js
+          npx @titicaca/gha-tools notify
 
       - name: Release
         run: |
@@ -93,7 +93,7 @@ jobs:
           SLACK_TITLE: ":tada: Deploy Succeed"
           SLACK_COLOR: success
         run: |
-          node ./.github/workflows/notifier.js
+          npx @titicaca/gha-tools notify
 
       - name: Notify deploy fail to slack
         if: failure()
@@ -101,7 +101,7 @@ jobs:
           SLACK_TITLE: ":pleading: Deploy Failed"
           SLACK_COLOR: fail
         run: |
-          node ./.github/workflows/notifier.js
+          npx @titicaca/gha-tools notify
 
   tag:
     runs-on: ubuntu-latest
