@@ -55,6 +55,7 @@ import {
   Link,
   ImageEventHandler,
   LinkEventHandler,
+  ElementSet,
 } from './types'
 import DocumentCarousel from './document-carousel'
 import Heading from './heading-hoc'
@@ -70,10 +71,6 @@ type ExtendedPOIListElementData = ListingPOI & {
 
 type TextElementData = TripleElementData<'text', string>
 type LinksElementData = TripleElementData<'links', { links: Link[] }>
-
-interface ElementSet {
-  [type: string]: React.ComponentType<any>
-}
 
 type Display = 'list' | string
 type MediaDisplayProperty = CSS.DisplayProperty | 'gapless-block'
