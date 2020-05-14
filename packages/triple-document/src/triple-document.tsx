@@ -22,7 +22,6 @@ import {
   ResourceListItem,
   SquareImage,
   ContainerProps,
-  MarginPadding,
   TableProps,
   ButtonProps,
   ImageSourceType,
@@ -51,6 +50,7 @@ import { RegionListElement } from './region'
 import { TnaProductsList } from './tna'
 import Coupon from './coupon'
 import { RegionData } from './types'
+import DocumentCarousel from './document-carousel'
 
 type ExtendedPOIListElementData = ListingPOI & {
   source: ListingPOI['source'] & {
@@ -278,15 +278,6 @@ function Compact<P extends { compact?: boolean }>(
     return <Component compact {...props} />
   }
 }
-
-const DocumentCarousel = ({
-  margin,
-  children,
-}: React.PropsWithChildren<{ margin?: MarginPadding }>) => (
-  <Carousel margin={margin} containerPadding={{ left: 30, right: 30 }}>
-    {children}
-  </Carousel>
-)
 
 function Images({
   value: { images, display },
