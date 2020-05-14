@@ -35,17 +35,7 @@ import TripleMedia, { MediaMeta } from '@titicaca/triple-media'
 import { ListingPOI } from '@titicaca/type-definitions'
 import { getColor } from '@titicaca/color-palette'
 
-import {
-  H1,
-  H2,
-  H3,
-  H4,
-  Paragraph,
-  H2Props,
-  H3Props,
-  H4Props,
-  H1Props,
-} from './text'
+import { H1, H2, H3, H4, H2Props, H3Props, H4Props, H1Props } from './text'
 import { RegionListElement } from './region'
 import { TnaProductsList } from './tna'
 import Coupon from './coupon'
@@ -60,6 +50,7 @@ import {
 import DocumentCarousel from './document-carousel'
 import Heading from './heading-hoc'
 import generateClickHandler from './generate-click-handler'
+import TextElement from './text-element'
 
 type ExtendedPOIListElementData = ListingPOI & {
   source: ListingPOI['source'] & {
@@ -205,28 +196,6 @@ export function TripleDocument({
         )
       })}
     </>
-  )
-}
-
-function TextElement({ value: { text, rawHTML }, compact, ...props }: any) {
-  if (rawHTML) {
-    return (
-      <Text.Html
-        margin={compact ? { top: 4 } : { top: 10, left: 30, right: 30 }}
-        alpha={0.9}
-        dangerouslySetInnerHTML={{ __html: rawHTML }}
-        {...props}
-      />
-    )
-  }
-
-  return (
-    <Paragraph
-      margin={compact ? { top: 4 } : { top: 10, left: 30, right: 30 }}
-      {...props}
-    >
-      {text}
-    </Paragraph>
   )
 }
 
