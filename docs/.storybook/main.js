@@ -5,7 +5,6 @@ module.exports = {
     '@storybook/addon-links/register',
     '@storybook/addon-knobs/register',
     '@storybook/addon-viewport/register',
-    'storybook-addon-jsx/register',
   ],
   presets: ['@storybook/addon-docs/preset'],
   webpackFinal: async (config, { configType }) => {
