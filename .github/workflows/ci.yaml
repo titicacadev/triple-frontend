@@ -37,6 +37,7 @@ jobs:
       - name: Notify build start to slack
         env:
           SLACK_TITLE: ":rocket: Build Started"
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npx @titicaca/gha-tools notify
 
@@ -64,6 +65,7 @@ jobs:
         env:
           SLACK_TITLE: ":tada: Build Succeed"
           SLACK_COLOR: success
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npx @titicaca/gha-tools notify
 
@@ -72,5 +74,6 @@ jobs:
         env:
           SLACK_TITLE: ":pleading: Build Failed"
           SLACK_COLOR: fail
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npx @titicaca/gha-tools notify
