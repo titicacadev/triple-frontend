@@ -32,6 +32,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2-beta
 
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org'
+
       - name: Define variables
         run: |
           VERSION=$(cat ./lerna.json | jq -r '.version')
@@ -44,12 +50,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npx @titicaca/gha-tools notify
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-          registry-url: 'https://registry.npmjs.org'
 
       - name: Build
         run: |

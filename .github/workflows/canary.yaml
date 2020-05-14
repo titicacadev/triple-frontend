@@ -26,6 +26,12 @@ jobs:
       SLACK_DETAIL_URL: "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
     steps:
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org'
+
       - name: Recognize head sha of pull request
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -69,12 +75,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npx @titicaca/gha-tools notify
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-          registry-url: 'https://registry.npmjs.org'
 
       - name: Cache node modules
         uses: actions/cache@v1
