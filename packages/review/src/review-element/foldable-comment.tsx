@@ -3,7 +3,8 @@ import styled from 'styled-components'
 
 import Comment from './comment'
 
-const MAX_COMMENT_LINES = 2
+const MAX_COMMENT_WITH_IMAGE_LINES = 3
+const MAX_COMMENT_LINES = 6
 const CHARACTERS_PER_LINE = 25
 
 const Unfold = styled.a`
@@ -15,12 +16,17 @@ const Unfold = styled.a`
 
 export default function FoldableComment({
   comment,
+  hasImage,
   onUnfoldButtonClick,
 }: {
   comment: string
+  hasImage: boolean
   onUnfoldButtonClick: MouseEventHandler<HTMLAnchorElement>
 }) {
-  const foldedPosition = findFoldedPosition(comment)
+  const foldedPosition = findFoldedPosition(
+    hasImage ? MAX_COMMENT_WITH_IMAGE_LINES : MAX_COMMENT_LINES,
+    comment,
+  )
 
   return foldedPosition ? (
     <FoldedComment
@@ -47,7 +53,7 @@ function FoldedComment({
   )
 }
 
-function findFoldedPosition(comment?: string | null) {
+function findFoldedPosition(maxLines: number, comment?: string | null) {
   const lines = (comment || '').split('\n')
 
   let linesCount = 0

@@ -175,6 +175,7 @@ export default function ReviewElement({
             ) : (
               <FoldableComment
                 comment={comment}
+                hasImage={(media || []).length > 0}
                 onUnfoldButtonClick={(e) => {
                   if (
                     appVersion &&
