@@ -370,11 +370,13 @@ function EmbeddedImage({
     const handleClick = generateClickHandler(onLinkClick, onImageClick)
 
     return (
-      <TripleMedia
-        media={image}
-        ImageSource={ImageSource}
-        onClick={handleClick}
-      />
+      <Container margin={{ top: 10 }}>
+        <TripleMedia
+          media={image}
+          ImageSource={ImageSource}
+          onClick={handleClick}
+        />
+      </Container>
     )
   }
 
@@ -659,7 +661,7 @@ function Embedded({
   ImageSource: ImageSourceType
 }) {
   return (
-    <DocumentCarousel margin={{ top: 20 }}>
+    <DocumentCarousel margin={{ top: 10 }}>
       {entries.map((elements, i) => (
         <Carousel.Item key={i} size="large">
           {elements.map(({ type, value }, j) => {
