@@ -397,8 +397,8 @@ const ListItemContainer = styled.li<{ bulletType?: string }>`
     display: inline-block;
     width: 10px;
     height: 10px;
-    background-image: url(${({ bulletType: name }) =>
-      BULLET_ICON_URLS[name || 'oval']});
+    ${({ bulletType: name }) =>
+      `background-image: url(${BULLET_ICON_URLS[name || 'oval']});`}
     background-size: 10px 10px;
     background-position: center center;
     background-repeat: no-repeat;
