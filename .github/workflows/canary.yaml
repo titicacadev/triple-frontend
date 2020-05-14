@@ -27,6 +27,8 @@ jobs:
 
     steps:
       - name: Recognize head sha of pull request
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npx @titicaca/gha-tools pr=${{ github.event.issue.number }}
 
@@ -64,6 +66,7 @@ jobs:
         env:
           SLACK_TITLE: ":rocket: Build Started"
           SLACK_TOPIC: "${{ env.PR_TITLE }}"
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npx @titicaca/gha-tools notify
 
@@ -97,6 +100,7 @@ jobs:
           SLACK_TITLE: ":tada: Build Succeed"
           SLACK_TOPIC: "${{ env.PR_TITLE }}"
           SLACK_COLOR: good
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npx @titicaca/gha-tools notify
 
@@ -106,6 +110,7 @@ jobs:
           SLACK_TITLE: ":pleading: Build Failed"
           SLACK_TOPIC: "${{ env.PR_TITLE }}"
           SLACK_COLOR: fail
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npx @titicaca/gha-tools notify
 
@@ -124,6 +129,7 @@ jobs:
         env:
           SLACK_TITLE: ":rocket: Canary publish Started"
           SLACK_TOPIC: "${{ env.CANARY_VERSION }}"
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npx @titicaca/gha-tools notify
 
@@ -139,6 +145,7 @@ jobs:
           SLACK_TITLE: ":tada: Canary publish Succeed"
           SLACK_TOPIC: "${{ env.CANARY_VERSION }}"
           SLACK_COLOR: good
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npx @titicaca/gha-tools notify
 
@@ -148,5 +155,6 @@ jobs:
           SLACK_TITLE: ":pleading: Canary publish Failed"
           SLACK_TOPIC: "${{ env.CANARY_VERSION }}"
           SLACK_COLOR: fail
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npx @titicaca/gha-tools notify
