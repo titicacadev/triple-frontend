@@ -78,7 +78,7 @@ export interface ListingHotel extends ListingPOIBase {
     nightlyPrice: number
     price: number
     discountRate: number
-    badge: 'COUPON' | 'NORMAL' | 'PACKAGE' | 'TRIPLE' | 'TRIPLECLUB'
+    badge: string
     excludedVat: number
     originalPrice: number
   }
