@@ -60,7 +60,6 @@
     "@storybook/react": "^5.3.14",
     "babel-loader": "^8.0.6",
     "babel-preset-react-app": "^9.1.1",
-    "react-docgen-typescript-loader": "^3.6.0",
-    "storybook-addon-jsx": "^7.1.13"
+    "react-docgen-typescript-loader": "^3.6.0"
   }
 }
