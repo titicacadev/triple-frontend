@@ -28,7 +28,6 @@ import {
 import TripleMedia, { MediaMeta } from '@titicaca/triple-media'
 import { ListingPOI } from '@titicaca/type-definitions'
 
-import { H1, H2, H3, H4, H2Props, H3Props, H4Props, H1Props } from './text'
 import { RegionListElement } from './region'
 import { TnaProductsList } from './tna'
 import Coupon from './coupon'
@@ -46,6 +45,7 @@ import generateClickHandler from './generate-click-handler'
 import TextElement from './text-element'
 import ResourceList from './resource-list'
 import Links from './links'
+import { MH1, MH2, MH3, MH4 } from './margin-headings'
 
 type ExtendedPOIListElementData = ListingPOI & {
   source: ListingPOI['source'] & {
@@ -83,39 +83,6 @@ interface TripleDocumentProps {
   deepLink?: string
   videoAutoPlay?: boolean
 }
-
-const MH1 = ({ children, ...props }: H1Props) => (
-  <H1 margin={{ top: 25, bottom: 20, left: 30, right: 30 }} {...props}>
-    {children}
-  </H1>
-)
-
-const MH2 = ({ children, ...props }: H2Props) => (
-  <H2 margin={{ top: 20, bottom: 20, left: 30, right: 30 }} {...props}>
-    {children}
-  </H2>
-)
-
-const MH3 = ({
-  compact,
-  children,
-  ...props
-}: H3Props & {
-  compact: boolean
-}) => (
-  <H3
-    margin={compact ? { top: 13 } : { top: 20, left: 30, right: 30 }}
-    {...props}
-  >
-    {children}
-  </H3>
-)
-
-const MH4 = ({ children, ...props }: H4Props) => (
-  <H4 margin={{ top: 20, left: 30, right: 30 }} {...props}>
-    {children}
-  </H4>
-)
 
 export const ELEMENTS: ElementSet = {
   heading1: Heading(MH1),
