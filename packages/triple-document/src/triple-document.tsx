@@ -16,7 +16,6 @@ import {
   Button,
   Text,
   Table,
-  List,
   Carousel,
   Container,
   ResourceListItem,
@@ -51,6 +50,7 @@ import DocumentCarousel from './document-carousel'
 import Heading from './heading-hoc'
 import generateClickHandler from './generate-click-handler'
 import TextElement from './text-element'
+import ResourceList from './resource-list'
 
 type ExtendedPOIListElementData = ListingPOI & {
   source: ListingPOI['source'] & {
@@ -348,10 +348,6 @@ function renderPoiListActionButton({
 
   return null
 }
-
-const ResourceList = ({ children }: React.PropsWithChildren<{}>) => (
-  <List margin={{ top: 20, left: 30, right: 30 }}>{children}</List>
-)
 
 export function Pois<T extends ExtendedPOIListElementData>({
   value: { display, pois },
