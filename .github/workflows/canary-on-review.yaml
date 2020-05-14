@@ -1,12 +1,12 @@
-name: canary
+name: canary-on-publish
 
 on:
-  issue_comment:
-    types: [created]
+  pull_request_review:
+    types: [submitted]
 
 jobs:
   canary:
-    if: github.event.issue.state == 'open' && contains(github.event.comment.html_url, '/pull/') && contains(github.event.comment.body, 'canary publish')
+    if: github.event.review.state == 'commented' && contains(github.event.review.body, 'canary publish')
     runs-on: ubuntu-latest
     strategy:
         matrix:
@@ -28,29 +28,17 @@ jobs:
     steps:
       - name: Recognize head sha of pull request
         run: |
-          curl -v \
-            --url https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.issue.number }} \
-            -H "Accept: application/vnd.github.sailor-v-preview+json" \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" > pr.json
-
-          PR_SHA=$(cat ./pr.json | jq -r '.head.sha')
-          PR_REF=$(cat ./pr.json | jq -r '.head.ref')
-          echo ::set-env name=PR_NUMBER::${{ github.event.issue.number }}
+          PR_SHA=${{ github.event.pull_request.head.sha }}
+          PR_REF=${{ github.event.pull_request.head.ref }}
+          echo ::set-env name=PR_NUMBER::${{ github.event.pull_request.number }}
           echo ::set-env name=PR_SHA::$PR_SHA
           echo ::set-env name=PR_REF::$PR_REF
           echo ::set-env name=SLACK_GITHUB_REF::$PR_REF
           echo ::set-env name=PR_SHORT_SHA::${PR_SHA:0:7}
-          echo ::set-env name=PR_TITLE::$(cat ./pr.json | jq -r '.title')
+          echo ::set-env name=PR_TITLE::${{ github.event.pull_request.title }}
 
       - name: Reaction
         run: |
-          curl -v \
-            --url https://api.github.com/repos/${{ github.repository }}/issues/comments/${{ github.event.comment.id }}/reactions \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Accept: application/vnd.github.squirrel-girl-preview+json" \
-            -H "Content-Type: application/json" \
-            -f --request POST \
-            -d "{\"content\":\"+1\"}"
           curl -v \
             --url https://api.github.com/repos/${{ github.repository }}/issues/${{ env.PR_NUMBER }}/comments \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
