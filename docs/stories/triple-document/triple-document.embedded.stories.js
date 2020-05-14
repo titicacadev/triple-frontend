@@ -116,6 +116,50 @@ storiesOf('TripleDocument | TripleDocument', module).add('임베딩', () => (
             },
           },
         ],
+        [
+          {
+            type: 'heading3',
+            value: {
+              text: '제목',
+            },
+          },
+          {
+            type: 'text',
+            value: {
+              text:
+                '짧은 설명이 들어가면 좋겠습니 다. 모든 임베딩에 균일하게 최대 3줄 정도면 적당하겠군요.',
+            },
+          },
+          {
+            type: 'images',
+            value: {
+              images: [
+                {
+                  id: 'bfb5dd63-696c-4f1c-b98c-8e7f86fe069f',
+                  frame: 'large',
+                  sizes: {
+                    full: {
+                      url:
+                        'https://res.cloudinary.com/triple-dev/image/upload/w_2048,h_2048,c_limit/bfb5dd63-696c-4f1c-b98c-8e7f86fe069f.jpg',
+                    },
+                    large: {
+                      url:
+                        'https://res.cloudinary.com/triple-dev/image/upload/w_1024,h_1024,c_limit/bfb5dd63-696c-4f1c-b98c-8e7f86fe069f.jpg',
+                    },
+                    small_square: {
+                      url:
+                        'https://res.cloudinary.com/triple-dev/image/upload/w_256,h_256,c_fill/bfb5dd63-696c-4f1c-b98c-8e7f86fe069f.jpg',
+                    },
+                  },
+                  title: '',
+                  width: 4287,
+                  height: 2706,
+                  description: '',
+                },
+              ],
+            },
+          },
+        ],
       ],
     }}
   />
