@@ -59,7 +59,7 @@ function findFoldedPosition(maxLines: number, comment?: string | null) {
   let linesCount = 0
   let foldedIndex = 0
   for (const line of lines) {
-    const rest = (MAX_COMMENT_LINES - linesCount) * CHARACTERS_PER_LINE
+    const rest = (maxLines - linesCount) * CHARACTERS_PER_LINE
 
     if (line.length > rest) {
       return foldedIndex + rest
