@@ -14,7 +14,6 @@ import {
   Segment,
   Text,
   Table,
-  Carousel,
   Container,
   ContainerProps,
   TableProps,
@@ -46,6 +45,7 @@ import TextElement from './text-element'
 import ResourceList from './resource-list'
 import Links from './links'
 import { MH1, MH2, MH3, MH4 } from './margin-headings'
+import Embedded from './embedded'
 
 type ExtendedPOIListElementData = ListingPOI & {
   source: ListingPOI['source'] & {
@@ -109,14 +109,6 @@ export const ELEMENTS: ElementSet = {
   coupon: Coupon,
 }
 
-const EMBEDDED_ELEMENTS: ElementSet = {
-  heading2: Compact(Heading(MH3)), // POI의 featuredContent에서 embedded entry의 제목이 heading2로 옵니다.
-  heading3: Compact(Heading(MH3)),
-  text: Compact(TextElement),
-  links: Compact(Links),
-  images: EmbeddedImage,
-}
-
 export function TripleDocument({
   children,
   customElements,
@@ -159,14 +151,6 @@ export function TripleDocument({
       })}
     </>
   )
-}
-
-function Compact<P extends { compact?: boolean }>(
-  Component: React.ComponentType<P>,
-) {
-  return function CompactedComponent(props: P) {
-    return <Component compact {...props} />
-  }
 }
 
 function Images({
@@ -230,39 +214,6 @@ function Images({
       })}
     </ImagesContainer>
   )
-}
-
-function EmbeddedImage({
-  value: {
-    images: [image],
-  },
-  onImageClick,
-  onLinkClick,
-  ImageSource,
-  ...props
-}: {
-  value: {
-    images: MediaMeta[]
-  }
-  onImageClick: ImageEventHandler
-  onLinkClick: LinkEventHandler
-  ImageSource: ImageSourceType
-} & Parameters<typeof Container>[0]) {
-  if (image) {
-    const handleClick = generateClickHandler(onLinkClick, onImageClick)
-
-    return (
-      <Container margin={{ top: 10 }} {...props}>
-        <TripleMedia
-          media={image}
-          ImageSource={ImageSource}
-          onClick={handleClick}
-        />
-      </Container>
-    )
-  }
-
-  return null
 }
 
 const PoiPrice = styled.div`
@@ -359,45 +310,6 @@ export function Pois<T extends ExtendedPOIListElementData>({
         />
       ))}
     </Container>
-  )
-}
-
-function Embedded({
-  value: { entries },
-  onLinkClick,
-  onImageClick,
-  ImageSource,
-}: {
-  value: {
-    entries: TripleElementData[][]
-  }
-  onLinkClick: LinkEventHandler
-  onImageClick: ImageEventHandler
-  ImageSource: ImageSourceType
-}) {
-  return (
-    <DocumentCarousel margin={{ top: 20 }}>
-      {entries.map((elements, i) => (
-        <Carousel.Item key={i} size="large">
-          {elements.map(({ type, value }, j) => {
-            const Element = EMBEDDED_ELEMENTS[type]
-
-            return (
-              Element && (
-                <Element
-                  key={j}
-                  value={value}
-                  onLinkClick={onLinkClick}
-                  onImageClick={onImageClick}
-                  ImageSource={ImageSource}
-                  {...(j === 0 ? { margin: { top: 0 } } : {})}
-                />
-              )
-            )
-          })}
-        </Carousel.Item>
-      ))}
-    </DocumentCarousel>
   )
 }
 
