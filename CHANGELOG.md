@@ -1,3 +1,16 @@
+# 1.20.0 (2020-05-14)
+
+- `triple-document`
+  - `imageSourceComponent`를 optional 처리합니다. (#754)
+  - 임베딩에서 텍스트, 이미지 순서로 표시하는 경우를 대응합니다. (#753)
+- `common`
+  - npx @titicaca/gha-tools 로 notify 와 pr 정보를 처리합니다. (#757)
+  - Canary Version 을 추론하여 notifier 에 알려줍니다. (#752)
+- `docs` jsx 애드온을 제거합니다. (#755)
+- `review` 이미지가 있을 때와 없을 때 리뷰 최대 라인을 분기 처리합니다. (#758)
+- `type-definitions` ListingHotel 의 TRIPLECLUB뱃지 타입을 string 으로 변경합니다. (#750)
+- `core-elements` Select에서 disabled 를 받습니다. (#748)
+
 # 1.19.1 (2020-05-11)
 
 - `view-utilies` type-definition 모듈 의존성 devDep -> dev 으로 변경합니다.
