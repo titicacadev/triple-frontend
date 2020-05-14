@@ -26,3 +26,7 @@ export type Link = {
 }
 
 export type LinkEventHandler = (e: React.SyntheticEvent, link: Link) => void
+
+export interface ElementSet {
+  [type: string]: React.ComponentType<any>
+}
