@@ -57,6 +57,7 @@ import {
   LinkEventHandler,
 } from './types'
 import DocumentCarousel from './document-carousel'
+import Heading from './heading-hoc'
 
 type ExtendedPOIListElementData = ListingPOI & {
   source: ListingPOI['source'] & {
@@ -207,39 +208,6 @@ export function TripleDocument({
       })}
     </>
   )
-}
-
-function Heading<P extends object>(
-  Component: React.ComponentType<
-    P & {
-      href: string
-      emphasize: boolean
-      headline: string
-    }
-  >,
-) {
-  return function WrappedHeading({
-    value: { text, href, emphasize, headline },
-    ...props
-  }: {
-    value: {
-      text: string
-      href: string
-      emphasize: boolean
-      headline: string
-    }
-  } & P) {
-    return (
-      <Component
-        href={href}
-        emphasize={emphasize}
-        headline={headline}
-        {...(props as P)}
-      >
-        {text}
-      </Component>
-    )
-  }
 }
 
 function TextElement({ value: { text, rawHTML }, compact, ...props }: any) {
