@@ -10,3 +10,8 @@ export interface RegionData {
     }
   }
 }
+
+export interface TripleElementData<T = string, Value = unknown> {
+  type: T
+  value: Value
+}
