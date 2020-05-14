@@ -58,6 +58,7 @@ import {
 } from './types'
 import DocumentCarousel from './document-carousel'
 import Heading from './heading-hoc'
+import generateClickHandler from './generate-click-handler'
 
 type ExtendedPOIListElementData = ListingPOI & {
   source: ListingPOI['source'] & {
@@ -786,17 +787,4 @@ function TableElement({
       <Table {...value} />
     </Container>
   )
-}
-
-function generateClickHandler(
-  onLinkClick?: LinkEventHandler,
-  onImageClick?: ImageEventHandler,
-): ImageEventHandler {
-  return (e, image) => {
-    if (image.link && image.link.href && onLinkClick) {
-      return onLinkClick(e, image.link)
-    } else if (onImageClick) {
-      return onImageClick(e, image)
-    }
-  }
 }
