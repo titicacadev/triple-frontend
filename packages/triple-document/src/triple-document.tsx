@@ -99,7 +99,7 @@ interface TripleDocumentProps {
     index?: number,
   ) => void
   onTNAProductsFetch?: (slotId: number) => Promise<unknown>
-  imageSourceComponent: ImageSourceType
+  imageSourceComponent?: ImageSourceType
   resourceScraps?: { [resourceId: string]: boolean }
   webUrlBase?: string
   deepLink?: string
