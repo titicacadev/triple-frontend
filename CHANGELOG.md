@@ -1,3 +1,6 @@
+# 1.21.0 (2020-05-21)
+- `core-elements` Text 요소에서 textAlign props 를 제공합니다. (#346) (#765)
+
 # 1.20.0 (2020-05-14)
 
 - `triple-document`
