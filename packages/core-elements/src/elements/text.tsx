@@ -24,6 +24,7 @@ interface TextBaseProps {
   wordBreak?: CSS.WordBreakProperty
   whiteSpace?: CSS.WhiteSpaceProperty
   center?: boolean
+  textAlign?: CSS.TextAlignProperty
   underline?: boolean
   inline?: boolean
   inlineBlock?: boolean
@@ -105,11 +106,10 @@ const TextBase = styled.div<TextBaseProps>`
       text-decoration: underline;
     `};
 
-  ${({ center }) =>
-    center &&
+  ${({ center, textAlign }) =>
     css`
-      text-align: center;
-    `};
+      text-align: ${textAlign ?? (center ? 'center' : 'inherit')};
+    `}
 
   ${({ inline }) =>
     inline &&

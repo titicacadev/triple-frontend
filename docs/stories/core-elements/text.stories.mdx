@@ -18,6 +18,8 @@ Text 를 표현할때 사용하는 컴포넌트입니다.
           'tiny',
         )}
         color={select('색깔', ['blue', 'gray', 'gray20', 'gray100', 'white'], 'gray')}
+        center={boolean('중앙정렬')}
+        textAlign={select('정렬', [undefined, 'left', 'center', 'right'])}
         onClick={action('clicked')}
       >
         {text('텍스트', '호텔 최저가 보상!')}
@@ -25,7 +27,7 @@ Text 를 표현할때 사용하는 컴포넌트입니다.
   </Story>
 </Preview>
 
-```js
+```jsx
 <Text size="medium" color="blue" onClick={() => 'clicked'}> 
   호텔 최저가 보상!
 </Text>
@@ -45,6 +47,7 @@ lineHeight?: number | string
 wordBreak?: CSS.WordBreakProperty
 whiteSpace?: CSS.WhiteSpaceProperty
 center?: boolean
+textAlign?: CSS.TextAlignProperty
 underline?: boolean
 inline?: boolean
 inlineBlock?: boolean
@@ -70,7 +73,7 @@ strikethrough?: boolean
 <Text size="massive"> massive: 24px </Text>
 <Text size={50}>size={50}</Text>
 
-```js
+```jsx
 <Text size="mini"> mini: 12px </Text>
 <Text size="tiny"> tiny: 13px </Text>
 <Text size="small"> small: 14px </Text>
@@ -101,7 +104,7 @@ strikethrough?: boolean
 
 <Text letterSpacing={5}>letterSpacing</Text>
 
-```js
+```jsx
 <Text letterSpacing={5}>letterSpacing</Text>
 ```
 
@@ -124,7 +127,7 @@ strikethrough?: boolean
 <Text textStyle="S3">textStyle="S3"</Text>
 <Text textStyle="S2">textStyle="S2"</Text>
 
-```js
+```jsx
 <Text textStyle="L6">textStyle="L6"</Text>
 <Text textStyle="M8">textStyle="M8"</Text>
 <Text textStyle="M6">textStyle="M6"</Text>
@@ -145,7 +148,7 @@ strikethrough?: boolean
 <Text textStyle="M8">서비스메인, 도시메인 타이틀
 </Text>
 
-```js
+```jsx
 <Text textStyle="M8"> 
   서비스메인, 도시메인 타이틀
 </Text>
@@ -155,6 +158,29 @@ strikethrough?: boolean
 
 > `size`, `lineHeight` 과 같은 기존 `props` 을 함께 사용할 경우 `textStyle` 이 최종 적용됩니다.
 
-```js
+```jsx
 <Text size="tiny" lineHeight={1.5} textStyle="S2">Tiny Size Text</Text>
+```
+
+
+## TextAlign
+
+`center` 는 deprecated property 입니다. (`textAlign` 이 없을때만 동작합니다.)
+
+<Text center margin={{ bottom: 10 }} style={{border: '1px solid gray'}}>center</Text>
+<Text center textAlign="right" margin={{ bottom: 10 }} style={{border: '1px solid gray'}}>center textAlign="right"</Text>
+<Text textAlign="center" margin={{ bottom: 10 }} style={{border: '1px solid gray'}}>textAlign="center"</Text>
+<Text center style={{border: '1px solid gray'}}>
+  center
+  <Text textAlign="left" style={{border: '1px solid lightgray'}}>textAlign="left"</Text>
+</Text>
+
+```jsx
+<Text center>center</Text>
+<Text center textAlign="right">center textAlign="right"</Text>
+<Text textAlign="center">textAlign="center"</Text>
+<Text center>
+  center
+  <Text textAlign="left">textAlign="left"</Text>
+</Text>
 ```
