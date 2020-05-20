@@ -176,7 +176,7 @@ export default function ExtendedResourceListElement<R>({
         />
 
         {partnerName ? (
-          <Text size="tiny" color="gray" alpha={0.5}>
+          <Text size="tiny" color="gray" alpha={0.5} margin={{ top: 5 }}>
             {partnerName}
           </Text>
         ) : null}
