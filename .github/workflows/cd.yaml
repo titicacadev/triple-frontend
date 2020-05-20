@@ -40,7 +40,7 @@ jobs:
 
       - name: Define variables
         run: |
-          VERSION=$(cat ./lerna.json | jq -r '.version')
+          VERSION="v$(cat ./lerna.json | jq -r '.version')"
           echo ::set-env name=DEPLOY_VERSION::$VERSION
           echo ::set-env name=SLACK_TOPIC::$VERSION
 
@@ -123,9 +123,7 @@ jobs:
 
       - name: Tag with annotation
         run: |
-          VERSION=$(cat ./lerna.json | jq -r '.version')
-          echo ::set-env name=DEPLOY_VERSION::$VERSION
-          echo ::set-env name=SLACK_TOPIC::$VERSION
+          VERSION="v$(cat ./lerna.json | jq -r '.version')"
 
           curl -f --request POST --url https://api.github.com/repos/${{ github.repository }}/git/tags \
             -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
