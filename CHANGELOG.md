@@ -1,5 +1,12 @@
 # 1.21.0 (2020-05-21)
+
 - `core-elements` Text 요소에서 textAlign props 를 제공합니다. (#346) (#765)
+- `resource-poi-element` partnerName을 추가합니다. (#766)
+- `triple-document` 에서 embedded 컴포넌트를 별도의 파일로 분리합니다. (#759)
+- `common`
+  - cd worlflow 에서 tagging 시 v prefix 가 누락되는 버그를 수정합니다. (#768)
+  - canary publish 시 전달이 누락된 GITHUB_TOKEN 을 추가합니다. (#764)
+  - cd workflow 내 notifier 전달 파라미터 오타 수정 (#761)
 
 # 1.20.0 (2020-05-14)
 
