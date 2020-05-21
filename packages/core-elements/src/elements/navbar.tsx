@@ -59,6 +59,7 @@ type IconNames =
   | 'hamburger'
   | 'message'
   | 'unreadMessage'
+  | 'support'
 
 const ICON_URL_BY_NAMES: { [key in IconNames]: string } = {
   back: 'https://assets.triple.guide/images/btn-com-back@4x.png',
@@ -75,6 +76,7 @@ const ICON_URL_BY_NAMES: { [key in IconNames]: string } = {
   delete: 'https://assets.triple.guide/images/btn-search-close@3x.png',
   list: 'https://assets.triple.guide/images/ico-hotel-list@3x.png',
   hamburger: 'https://assets.triple.guide/images/btn-my-profile@3x.png',
+  support: 'https://assets.triple.guide/images/btn-com-support@3x.png',
   message: 'https://assets.triple.guide/images/btn-com-message@3x.png',
   unreadMessage:
     'https://assets.triple.guide/images/btn-com-message-noti@3x.png',
