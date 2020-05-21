@@ -52,6 +52,7 @@ export const URL_BY_NAMES: { [key: string]: string } = {
   report: 'https://assets.triple.guide/images/img-action-report@4x.png',
   delete: 'https://assets.triple.guide/images/img-action-delete@4x.png',
   message: 'https://assets.triple.guide/images/img-action-message-4-x.png',
+  support: 'https://assets.triple.guide/images/img-action-support@3x.png',
 }
 
 export const CHECKED_ICON_URL =
