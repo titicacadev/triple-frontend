@@ -51,6 +51,7 @@ export const URL_BY_NAMES: { [key: string]: string } = {
   review: 'https://assets.triple.guide/images/img-action-review@4x.png',
   report: 'https://assets.triple.guide/images/img-action-report@4x.png',
   delete: 'https://assets.triple.guide/images/img-action-delete@4x.png',
+  message: 'https://assets.triple.guide/images/img-action-message-4-x.png',
 }
 
 export const CHECKED_ICON_URL =
