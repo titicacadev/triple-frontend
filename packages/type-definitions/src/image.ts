@@ -2,17 +2,6 @@ interface ImageURL {
   url: string
 }
 
-interface CamelSmallSquare {
-  smallSquare: ImageURL
-}
-
-interface SnakeSmallSquare {
-  // eslint-disable-next-line @typescript-eslint/camelcase
-  small_square: ImageURL
-}
-
-type SmallSquare = CamelSmallSquare | SnakeSmallSquare
-
 export interface ImageMeta {
   id: string
   title: string | null
@@ -21,6 +10,9 @@ export interface ImageMeta {
   sizes: {
     full: ImageURL
     large: ImageURL
-  } & SmallSquare
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    small_square?: ImageURL
+    smallSquare?: ImageURL
+  }
   attachmentId?: string
 }
