@@ -53,7 +53,7 @@ const Context = React.createContext<ImagesContext>({
 const TYPE_MAPPING = {
   attraction: 'poi',
   restaurant: 'poi',
-  hotel: 'poi',
+  hotel: 'hotel',
 }
 
 export function ImagesProvider({
