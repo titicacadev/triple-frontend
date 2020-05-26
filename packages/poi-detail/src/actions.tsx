@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Section, HR1, Button } from '@titicaca/core-elements'
+import { Section, HR1, Button, MarginPadding } from '@titicaca/core-elements'
 import { useI18n } from '@titicaca/i18n'
 
 const ActionButton = styled(Button)`
@@ -24,6 +24,8 @@ export default function Actions({
   onScrapedChange?: () => void
   onContentShare: () => void
   onReviewEdit: () => void
+  margin?: MarginPadding
+  padding?: MarginPadding
 }) {
   const { t } = useI18n()
 
