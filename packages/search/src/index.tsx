@@ -88,6 +88,10 @@ export default function FullScreenSearchView({
 
   const handleKeyUp = async (keyCode: number) => {
     if (keyCode === KEY_CODE_ENTER) {
+      if (inputRef && inputRef.current) {
+        inputRef.current.blur()
+      }
+
       onEnter(keyword)
       let id = window.setTimeout(() => {}, 0)
       while (id--) {
