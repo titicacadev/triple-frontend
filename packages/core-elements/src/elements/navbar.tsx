@@ -3,7 +3,7 @@ import * as CSS from 'csstype'
 import styled, { css } from 'styled-components'
 import { Color, getColor } from '@titicaca/color-palette'
 
-const NavbarFrame = styled.div<{
+const NavbarFrame = styled.header<{
   borderless?: boolean
   backgroundColor?: Color
 }>`
