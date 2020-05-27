@@ -27,19 +27,18 @@ const NavbarFrame = styled.header<{
 
 const TitleContainer = styled.div<{ childrenCount?: number }>`
   position: absolute;
-  top: 17.5px;
+  top: 50%;
   left: 52px;
   right: ${({ childrenCount }) => {
     const count = childrenCount || 0
     return 26 + 40 * Math.max(count - 1, 0)
   }}px;
+  transform: translateY(-50%);
   font-size: 18px;
-  line-height: 18px;
   color: #1e1e1e;
   white-space: nowrap;
   overflow-x: hidden;
   text-overflow: ellipsis;
-  bottom: 0px;
 `
 
 type IconNames =
