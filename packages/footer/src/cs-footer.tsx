@@ -4,9 +4,10 @@ import styled from 'styled-components'
 import { Button, Container, Text } from '@titicaca/core-elements'
 import { useHistoryContext } from '@titicaca/react-contexts'
 
-const SupportContainer = styled(Container)`
+const SupportContainer = styled.footer`
   background-color: #f5f5f5;
   height: 311px;
+  padding: 32px 30px 0 30px;
 `
 
 type SERVICE_TYPE = 'AIR' | 'TNA' | 'HOTEL'
@@ -71,7 +72,7 @@ export default function CSFooter({
   }, [appUrlScheme, navigate, onCSButtonClick, supportType])
 
   return (
-    <SupportContainer padding={{ top: 32, left: 30, right: 30 }}>
+    <SupportContainer>
       <Container>
         <Text bold color="gray" size="huge">
           도움이 필요하신가요?
