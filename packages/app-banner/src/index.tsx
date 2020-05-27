@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { Text } from '@titicaca/core-elements'
 
-const AppBannerFrame = styled.div<{ fixed?: boolean; maxWidth?: number }>`
+const AppBannerFrame = styled.header<{ fixed?: boolean; maxWidth?: number }>`
   background-color: #ffffff;
   border-bottom: 1px solid #efefef;
   height: 60px;

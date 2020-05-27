@@ -9,7 +9,7 @@ enum MarketType {
 const MIN_DESKTOP_WIDTH = 1142
 const MAX_PHONE_WIDTH = 1141
 
-const HeaderFrame = styled.div<{ fixed?: boolean; minWidth?: number }>`
+const HeaderFrame = styled.header<{ fixed?: boolean; minWidth?: number }>`
   background-color: #ffffff;
   border-bottom: 1px solid #efefef;
   position: sticky;
