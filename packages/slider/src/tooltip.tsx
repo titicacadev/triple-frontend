@@ -2,18 +2,46 @@ import React, { useRef } from 'react'
 import { TrackItem } from 'react-compound-slider'
 import styled from 'styled-components'
 
-const TooltipFrame = styled.div<{ width: number; left: number }>`
+const TooltipFrame = styled.div<{
+  position: string
+}>`
   position: absolute;
   top: -32px;
   font-size: 16px;
   font-weight: bold;
   color: #368fff;
-  left: ${({ left, width }) => `calc(${left}% - ${width / 2}px)`};
+
+  ${({ position }) => position};
 `
 
 function ToolTip({ tracks }: { tracks: TrackItem[] }) {
-  console.log('tracks', tracks)
-  const _tool = useRef<HTMLDivElement>(null)
+  const _tootipRef = useRef<HTMLDivElement>(null)
+
+  const widthSizes = getWidthSize(_tootipRef)
+  const position = getPosition({ tracks, widthSizes })
+
+  return (
+    <TooltipFrame ref={_tootipRef} position={position}>
+      아주 좋았어요 아주 좋았어요
+    </TooltipFrame>
+  )
+}
+
+function getWidthSize(ref: React.RefObject<HTMLDivElement>): [number, number] {
+  if (!ref.current) {
+    return [0, 0]
+  }
+
+  return [ref.current.parentElement?.clientWidth || 0, ref.current.clientWidth]
+}
+
+function getPosition({
+  tracks,
+  widthSizes,
+}: {
+  tracks: TrackItem[]
+  widthSizes: [number, number]
+}) {
   const [
     {
       source: { value: min },
@@ -24,15 +52,24 @@ function ToolTip({ tracks }: { tracks: TrackItem[] }) {
     },
   ] = tracks
 
-  const width = _tool?.current?.clientWidth || 0
+  const [containerWidth, tooltipWidth] = widthSizes
 
-  console.log('_tool', _tool)
+  const isStart = percent === min
+  const isEnd = percent * 0.1 === max
+  const currentAreaWidth = containerWidth * (percent / 100)
+  const halfOfTooltipWidth = tooltipWidth / 2
 
-  return (
-    <TooltipFrame ref={_tool} width={width} left={percent}>
-      Tooltip
-    </TooltipFrame>
-  )
+  switch (true) {
+    case isStart || currentAreaWidth < halfOfTooltipWidth: {
+      return 'left: 0'
+    }
+    case isEnd || containerWidth - currentAreaWidth < halfOfTooltipWidth: {
+      return 'right: 0'
+    }
+    default: {
+      return `left: calc(${percent}% - ${halfOfTooltipWidth}px);`
+    }
+  }
 }
 
 export default ToolTip

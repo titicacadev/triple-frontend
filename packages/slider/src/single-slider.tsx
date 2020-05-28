@@ -34,7 +34,7 @@ export default function SingleSlider({
     >
       <Tracks>
         {({ tracks, getTrackProps }) => (
-          <>
+          <div>
             <ToolTip tracks={tracks} />
             {tracks.map(
               ({
@@ -51,7 +51,7 @@ export default function SingleSlider({
                 />
               ),
             )}
-          </>
+          </div>
         )}
       </Tracks>
     </SliderBase>

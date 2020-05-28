@@ -40,7 +40,7 @@ storiesOf('slider | Slider', module)
     const [value, setValue] = useState(500000)
 
     return (
-      <Container padding={{ top: 50, bottom: 50 }}>
+      <Container padding={{ top: 50, bottom: 50, left: 20, right: 20 }}>
         <SingleSlider
           initialValue={value}
           min={0}
