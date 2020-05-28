@@ -3,6 +3,7 @@ import { Tracks } from 'react-compound-slider'
 
 import Track from './track'
 import SliderBase, { SliderBaseProps } from './slider-base'
+import ToolTip from './tooltip'
 
 interface SingleSliderProps
   extends Omit<
@@ -34,6 +35,7 @@ export default function SingleSlider({
       <Tracks>
         {({ tracks, getTrackProps }) => (
           <>
+            <ToolTip tracks={tracks} />
             {tracks.map(
               ({
                 id,

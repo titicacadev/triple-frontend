@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { number } from '@storybook/addon-knobs'
 import { SingleSlider, RangeSlider } from '@titicaca/slider'
-import { Text } from '@titicaca/core-elements'
+import { Text, Container } from '@titicaca/core-elements'
 
 function SingleLabel({ value }) {
   return <Text size="large">컴포넌트 내부: {value}</Text>
@@ -34,6 +34,21 @@ storiesOf('slider | Slider', module)
           debounceTime={number('debounceTime')}
         />
       </div>
+    )
+  })
+  .add('단일 (tootip)', () => {
+    const [value, setValue] = useState(500000)
+
+    return (
+      <Container padding={{ top: 50, bottom: 50 }}>
+        <SingleSlider
+          initialValue={value}
+          min={0}
+          max={10}
+          onChange={setValue}
+          debounceTime={number('debounceTime')}
+        />
+      </Container>
     )
   })
   .add('단일 non linear', () => {
