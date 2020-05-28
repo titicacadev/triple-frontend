@@ -1,3 +1,5 @@
+const path = require('path')
+
 const glob = require('glob')
 
 module.exports = {
@@ -33,5 +35,10 @@ module.exports = {
         },
       },
     ],
+  },
+  resolve: {
+    alias: {
+      react: path.resolve(__dirname, '../node_modules/react'),
+    },
   },
 }
