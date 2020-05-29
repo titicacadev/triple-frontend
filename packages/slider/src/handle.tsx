@@ -1,6 +1,7 @@
 import React from 'react'
 import styled, { StyledComponentProps } from 'styled-components'
 
+import { SliderBaseProps } from './slider-base'
 import COLORS, { Color } from './color'
 
 const HandleContainer = styled.div.attrs<{ percent: number }>(
@@ -20,8 +21,9 @@ const HandleContainer = styled.div.attrs<{ percent: number }>(
 
 const HandlePeg = styled.div<{
   color: Color
-  handleSize: number
-  handleBorderWeight: number
+  handlerSize: number
+  handlerBorderWeight: number
+  ActivateHandlerShadow?: boolean
 }>`
   position: absolute;
   box-sizing: border-box;
@@ -32,48 +34,55 @@ const HandlePeg = styled.div<{
   text-align: center;
   font-weight: bold;
 
+  ${({ ActivateHandlerShadow }) =>
+    ActivateHandlerShadow &&
+    `
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
+  `}
+
   ${({ color }) => `
     color: ${COLORS[color].font};
     background-color: ${COLORS[color].background};
   `}
 
-  ${({ handleSize, handleBorderWeight }) => `
-    width: ${handleSize}px;
-    height: ${handleSize}px;
-    border-radius: ${handleSize}px;
-    line-height: ${handleSize - handleBorderWeight * 2}px;
-    border: solid ${handleBorderWeight}px;
+  ${({ handlerSize, handlerBorderWeight }) => `
+    width: ${handlerSize}px;
+    height: ${handlerSize}px;
+    border-radius: ${handlerSize}px;
+    line-height: ${handlerSize - handlerBorderWeight * 2}px;
+    border: solid ${handlerBorderWeight}px;
   `}
 `
 
 export default function Handle({
   color,
-  handleSize,
+  handlerSize,
   displayPercent,
-  handleBorderWeight,
+  handlerBorderWeight,
+  ActivateHandlerShadow,
   ...props
 }: StyledComponentProps<
   'div',
   {},
   {
     percent: number
-    handleSize: number
+    handlerSize: number
     displayPercent?: boolean
-    handleBorderWeight: number
+    handlerBorderWeight: number
+    ActivateHandlerShadow?: boolean
     color: Color
   },
   never
 >) {
   const { percent } = props
 
-  console.log(COLORS[color])
-
   return (
     <HandleContainer {...props}>
       <HandlePeg
         color={color}
-        handleSize={handleSize}
-        handleBorderWeight={handleBorderWeight}
+        handlerSize={handlerSize}
+        ActivateHandlerShadow={ActivateHandlerShadow}
+        handlerBorderWeight={handlerBorderWeight}
       >
         {displayPercent ? percent / 10 : ''}
       </HandlePeg>

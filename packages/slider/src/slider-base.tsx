@@ -23,13 +23,14 @@ export interface SliderBaseProps {
   labelComponent?: ComponentType<{
     values: SliderValue
   }>
-  handleBorderWeight?: number
+  handlerBorderWeight?: number
   displayPercent?: boolean
   onChange: (values: SliderValue) => void
   nonLinear?: boolean
   debounceTime?: number
   railHeight?: number
-  handleSize?: number
+  handlerSize?: number
+  ActivateHandlerShadow?: boolean
   color?: Color
 }
 
@@ -74,8 +75,9 @@ export default function SliderBase({
   nonLinear,
   displayPercent,
   debounceTime = 500,
-  handleSize = 18,
-  handleBorderWeight = 3,
+  handlerSize = 18,
+  handlerBorderWeight = 3,
+  ActivateHandlerShadow,
   color = 'white',
   railHeight,
   children,
@@ -135,9 +137,10 @@ export default function SliderBase({
                     key={i}
                     percent={percent}
                     color={color}
+                    ActivateHandlerShadow={ActivateHandlerShadow}
                     displayPercent={displayPercent}
-                    handleBorderWeight={handleBorderWeight}
-                    handleSize={handleSize}
+                    handlerBorderWeight={handlerBorderWeight}
+                    handlerSize={handlerSize}
                     {...getHandleProps(id)}
                   />
                 ))}

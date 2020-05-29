@@ -48,7 +48,9 @@ storiesOf('slider | Slider', module)
           railHeight={8}
           handleSize={40}
           displayPercent
-          handleBorderWeight={4}
+          ActivateHandlerShadow
+          color="blue"
+          handlerBorderWeight={4}
           onChange={setValue}
           toolTipLabel={['별로였어요', '괜찮았어요', '아주 좋았어요']}
           debounceTime={number('debounceTime')}
