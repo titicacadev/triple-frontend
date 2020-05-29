@@ -13,6 +13,7 @@ import { brightGray } from '@titicaca/color-palette'
 
 import Handle from './handle'
 import { ValueTransformer, SliderValue } from './types'
+import Indecator from './indecator'
 import { Color } from './color'
 
 export interface SliderBaseProps {
@@ -25,6 +26,7 @@ export interface SliderBaseProps {
   }>
   handlerBorderWeight?: number
   displayPercent?: boolean
+  displayIndecator?: boolean
   onChange: (values: SliderValue) => void
   nonLinear?: boolean
   debounceTime?: number
@@ -74,6 +76,7 @@ export default function SliderBase({
   labelComponent: LabelComponent,
   nonLinear,
   displayPercent,
+  displayIndecator,
   debounceTime = 500,
   handlerSize = 18,
   handlerBorderWeight = 3,
@@ -150,6 +153,9 @@ export default function SliderBase({
 
           {children}
         </OriginalSlider>
+        {displayIndecator ? (
+          <Indecator min={min} max={max} railHeight={railHeight} />
+        ) : null}
       </SliderContainer>
     </Container>
   )
