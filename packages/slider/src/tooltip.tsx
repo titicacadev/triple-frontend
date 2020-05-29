@@ -1,15 +1,19 @@
 import React, { useRef } from 'react'
 import { TrackItem } from 'react-compound-slider'
 import styled from 'styled-components'
+import { blue } from '@titicaca/color-palette'
 
+/**
+ * TODO: handlerSize + railHeight 고려 top 값 조절
+ */
 const TooltipFrame = styled.div<{
   position: string
 }>`
   position: absolute;
-  top: -32px;
+  top: -45px;
   font-size: 16px;
   font-weight: bold;
-  color: #368fff;
+  color: ${blue};
 
   ${({ position }) => position};
 `

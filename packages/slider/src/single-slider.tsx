@@ -38,7 +38,7 @@ export default function SingleSlider({
     >
       <Tracks>
         {({ tracks, getTrackProps }) => (
-          <div>
+          <>
             {toolTipLabel ? (
               <ToolTip tracks={tracks} toolTipLabel={toolTipLabel} />
             ) : null}
@@ -58,7 +58,7 @@ export default function SingleSlider({
                 />
               ),
             )}
-          </div>
+          </>
         )}
       </Tracks>
     </SliderBase>
