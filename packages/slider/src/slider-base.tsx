@@ -25,6 +25,7 @@ export interface SliderBaseProps {
   nonLinear?: boolean
   debounceTime?: number
   railHeight?: number
+  handleSize?: number
 }
 
 const IDENTICAL_SCALE: ValueTransformer = (x) => x
@@ -67,6 +68,7 @@ export default function SliderBase({
   labelComponent: LabelComponent,
   nonLinear,
   debounceTime = 500,
+  handleSize = 18,
   railHeight,
   children,
 }: PropsWithChildren<SliderBaseProps>) {
@@ -121,7 +123,12 @@ export default function SliderBase({
             {({ handles, getHandleProps }) => (
               <>
                 {handles.map(({ id, percent }, i) => (
-                  <Handle key={i} percent={percent} {...getHandleProps(id)} />
+                  <Handle
+                    key={i}
+                    percent={percent}
+                    handleSize={handleSize}
+                    {...getHandleProps(id)}
+                  />
                 ))}
               </>
             )}

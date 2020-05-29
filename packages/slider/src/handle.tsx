@@ -16,26 +16,35 @@ const HandleContainer = styled.div.attrs<{ percent: number }>(
   z-index: 1;
 `
 
-const HandlePeg = styled.div`
+const HandlePeg = styled.div<{ handleSize: number }>`
   position: absolute;
   box-sizing: border-box;
   top: 50%;
   left: 50%;
-  width: 18px;
-  height: 18px;
-  border-radius: 18px;
   border: solid 3px #368fff;
   background-color: #ffffff;
   transform: translate(-50%, -50%);
   z-index: 1;
+
+  ${({ handleSize }) => `
+    width: ${handleSize}px;
+    height: ${handleSize}px;
+    border-radius: ${handleSize}px;
+  `}
 `
 
-export default function Handle(
-  props: StyledComponentProps<'div', {}, { percent: number }, never>,
-) {
+export default function Handle({
+  handleSize,
+  ...props
+}: StyledComponentProps<
+  'div',
+  {},
+  { percent: number; handleSize: number },
+  never
+>) {
   return (
     <HandleContainer {...props}>
-      <HandlePeg />
+      <HandlePeg handleSize={handleSize} />
     </HandleContainer>
   )
 }
