@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { StyledComponentProps } from 'styled-components'
+import { blue } from '@titicaca/color-palette'
 
 export const TrackContainer = styled.div.attrs<{ left: number; right: number }>(
   ({ left, right }) => ({
@@ -17,7 +18,7 @@ export const TrackContainer = styled.div.attrs<{ left: number; right: number }>(
 export const ActiveTrack = styled.div<{ railHeight?: number }>`
   height: 3px;
   border-radius: 4px;
-  background-color: #368fff;
+  background-color: ${blue};
   transform: translate(0, -50%);
 
   ${({ railHeight }) =>

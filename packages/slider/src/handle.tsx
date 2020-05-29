@@ -1,6 +1,8 @@
 import React from 'react'
 import styled, { StyledComponentProps } from 'styled-components'
 
+import COLORS, { Color } from './color'
+
 const HandleContainer = styled.div.attrs<{ percent: number }>(
   ({ percent }) => ({
     style: {
@@ -17,6 +19,7 @@ const HandleContainer = styled.div.attrs<{ percent: number }>(
 `
 
 const HandlePeg = styled.div<{
+  color: Color
   handleSize: number
   handleBorderWeight: number
 }>`
@@ -24,23 +27,27 @@ const HandlePeg = styled.div<{
   box-sizing: border-box;
   top: 50%;
   left: 50%;
-  background-color: #ffffff;
   transform: translate(-50%, -50%);
   z-index: 1;
-  color: #368fff;
   text-align: center;
   font-weight: bold;
+
+  ${({ color }) => `
+    color: ${COLORS[color].font};
+    background-color: ${COLORS[color].background};
+  `}
 
   ${({ handleSize, handleBorderWeight }) => `
     width: ${handleSize}px;
     height: ${handleSize}px;
     border-radius: ${handleSize}px;
     line-height: ${handleSize - handleBorderWeight * 2}px;
-    border: solid ${handleBorderWeight}px #368fff;
+    border: solid ${handleBorderWeight}px;
   `}
 `
 
 export default function Handle({
+  color,
   handleSize,
   displayPercent,
   handleBorderWeight,
@@ -53,14 +60,18 @@ export default function Handle({
     handleSize: number
     displayPercent?: boolean
     handleBorderWeight: number
+    color: Color
   },
   never
 >) {
   const { percent } = props
 
+  console.log(COLORS[color])
+
   return (
     <HandleContainer {...props}>
       <HandlePeg
+        color={color}
         handleSize={handleSize}
         handleBorderWeight={handleBorderWeight}
       >

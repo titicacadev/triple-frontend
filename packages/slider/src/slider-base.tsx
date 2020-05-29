@@ -9,9 +9,11 @@ import styled from 'styled-components'
 import { Rail, Slider as OriginalSlider, Handles } from 'react-compound-slider'
 import { debounce } from '@titicaca/view-utilities'
 import { Container } from '@titicaca/core-elements'
+import { brightGray } from '@titicaca/color-palette'
 
 import Handle from './handle'
 import { ValueTransformer, SliderValue } from './types'
+import { Color } from './color'
 
 export interface SliderBaseProps {
   initialValues?: SliderValue
@@ -28,6 +30,7 @@ export interface SliderBaseProps {
   debounceTime?: number
   railHeight?: number
   handleSize?: number
+  color?: Color
 }
 
 const IDENTICAL_SCALE: ValueTransformer = (x) => x
@@ -50,7 +53,7 @@ const RailBase = styled.div<{ railHeight?: number }>`
   position: absolute;
   width: 100%;
   border-radius: 4px;
-  background-color: #efefef;
+  background-color: ${brightGray};
   height: 3px;
   transform: translate(0, -50%);
 
@@ -73,6 +76,7 @@ export default function SliderBase({
   debounceTime = 500,
   handleSize = 18,
   handleBorderWeight = 3,
+  color = 'white',
   railHeight,
   children,
 }: PropsWithChildren<SliderBaseProps>) {
@@ -130,6 +134,7 @@ export default function SliderBase({
                   <Handle
                     key={i}
                     percent={percent}
+                    color={color}
                     displayPercent={displayPercent}
                     handleBorderWeight={handleBorderWeight}
                     handleSize={handleSize}
