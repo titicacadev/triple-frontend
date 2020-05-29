@@ -24,6 +24,7 @@ export interface SliderBaseProps {
   onChange: (values: SliderValue) => void
   nonLinear?: boolean
   debounceTime?: number
+  railHeight?: number
 }
 
 const IDENTICAL_SCALE: ValueTransformer = (x) => x
@@ -42,13 +43,19 @@ const SliderContainer = styled.div`
   touch-action: pan-x;
 `
 
-const RailBase = styled.div`
+const RailBase = styled.div<{ railHeight?: number }>`
   position: absolute;
   width: 100%;
   border-radius: 4px;
   background-color: #efefef;
   height: 3px;
   transform: translate(0, -50%);
+
+  ${({ railHeight }) =>
+    railHeight &&
+    `
+    height: ${railHeight}px;
+  `}
 `
 
 export default function SliderBase({
@@ -60,6 +67,7 @@ export default function SliderBase({
   labelComponent: LabelComponent,
   nonLinear,
   debounceTime = 500,
+  railHeight,
   children,
 }: PropsWithChildren<SliderBaseProps>) {
   const [values, setValues] = useState<SliderValue>(initialValues || [0])
@@ -107,7 +115,7 @@ export default function SliderBase({
             setValues(newValues.map(scaleFnInverse).map(limiter))
           }
         >
-          <Rail>{() => <RailBase />}</Rail>
+          <Rail>{() => <RailBase railHeight={railHeight} />}</Rail>
 
           <Handles>
             {({ handles, getHandleProps }) => (

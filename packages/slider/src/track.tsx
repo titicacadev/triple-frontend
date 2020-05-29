@@ -14,23 +14,32 @@ export const TrackContainer = styled.div.attrs<{ left: number; right: number }>(
   margin-top: -20px;
 `
 
-export const ActiveTrack = styled.div`
+export const ActiveTrack = styled.div<{ railHeight?: number }>`
   height: 3px;
   border-radius: 4px;
   background-color: #368fff;
   transform: translate(0, -50%);
+
+  ${({ railHeight }) =>
+    railHeight &&
+    `
+    height: ${railHeight}px;
+  `}
 `
 
 export default function Track({
   active,
+  railHeight,
   ...rest
-}: { active: boolean } & StyledComponentProps<
+}: { active: boolean; railHeight?: number } & StyledComponentProps<
   'div',
   {},
   { left: number; right: number },
   never
 >) {
   return (
-    <TrackContainer {...rest}>{active ? <ActiveTrack /> : null}</TrackContainer>
+    <TrackContainer {...rest}>
+      {active ? <ActiveTrack railHeight={railHeight} /> : null}
+    </TrackContainer>
   )
 }

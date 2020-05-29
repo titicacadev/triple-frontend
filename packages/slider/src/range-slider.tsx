@@ -14,11 +14,13 @@ interface RangeSliderProps extends Omit<SliderBaseProps, 'labelComponent'> {
 
 export default function RangeSlider({
   labelComponent: LabelComponent,
+  railHeight,
   ...restProps
 }: RangeSliderProps) {
   return (
     <SliderBase
       {...restProps}
+      railHeight={railHeight}
       labelComponent={
         LabelComponent
           ? ({ values }) => (
@@ -42,6 +44,7 @@ export default function RangeSlider({
                   right={targetPercent}
                   {...getTrackProps()}
                   active={sourceId !== '$' && targetId !== '$'}
+                  railHeight={railHeight}
                 />
               ),
             )}

@@ -21,6 +21,7 @@ export default function SingleSlider({
   labelComponent: LabelComponent,
   onChange,
   toolTipLabel,
+  railHeight,
   ...restProps
 }: SingleSliderProps) {
   return (
@@ -28,6 +29,7 @@ export default function SingleSlider({
       {...restProps}
       initialValues={initialValue ? [initialValue] : undefined}
       onChange={(values) => onChange(values[0])}
+      railHeight={railHeight}
       labelComponent={
         LabelComponent
           ? ({ values }) => <LabelComponent value={values[0]} />
@@ -52,6 +54,7 @@ export default function SingleSlider({
                   right={targetPercent}
                   {...getTrackProps()}
                   active={targetId !== '$'}
+                  railHeight={railHeight}
                 />
               ),
             )}
