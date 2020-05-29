@@ -12,6 +12,7 @@ interface SingleSliderProps
   > {
   initialValue?: number
   labelComponent?: ComponentType<{ value: number }>
+  toolTipLabel?: string[]
   onChange: (value: number) => void
 }
 
@@ -19,6 +20,7 @@ export default function SingleSlider({
   initialValue,
   labelComponent: LabelComponent,
   onChange,
+  toolTipLabel,
   ...restProps
 }: SingleSliderProps) {
   return (
@@ -35,7 +37,9 @@ export default function SingleSlider({
       <Tracks>
         {({ tracks, getTrackProps }) => (
           <div>
-            <ToolTip tracks={tracks} />
+            {toolTipLabel ? (
+              <ToolTip tracks={tracks} toolTipLabel={toolTipLabel} />
+            ) : null}
             {tracks.map(
               ({
                 id,

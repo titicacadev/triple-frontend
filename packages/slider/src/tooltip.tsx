@@ -14,17 +14,46 @@ const TooltipFrame = styled.div<{
   ${({ position }) => position};
 `
 
-function ToolTip({ tracks }: { tracks: TrackItem[] }) {
+function ToolTip({
+  tracks,
+  toolTipLabel,
+}: {
+  tracks: TrackItem[]
+  toolTipLabel: string[]
+}) {
   const _tootipRef = useRef<HTMLDivElement>(null)
 
+  const label = getTooltipLabel({ tracks, toolTipLabel })
   const widthSizes = getWidthSize(_tootipRef)
   const position = getPosition({ tracks, widthSizes })
 
   return (
     <TooltipFrame ref={_tootipRef} position={position}>
-      아주 좋았어요 아주 좋았어요
+      {label}
     </TooltipFrame>
   )
+}
+
+function getTooltipLabel({
+  tracks,
+  toolTipLabel,
+}: {
+  tracks: TrackItem[]
+  toolTipLabel: string[]
+}) {
+  const [
+    {
+      target: { percent },
+    },
+  ] = tracks
+
+  const maxPercent = 100
+  const index =
+    percent === maxPercent
+      ? toolTipLabel.length - 1
+      : Math.floor((toolTipLabel.length * percent) / 100)
+
+  return toolTipLabel[index] || ''
 }
 
 function getWidthSize(ref: React.RefObject<HTMLDivElement>): [number, number] {

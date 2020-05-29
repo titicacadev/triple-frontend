@@ -46,6 +46,7 @@ storiesOf('slider | Slider', module)
           min={0}
           max={10}
           onChange={setValue}
+          toolTipLabel={['별로였어요', '괜찮았어요', '아주 좋았어요']}
           debounceTime={number('debounceTime')}
         />
       </Container>
