@@ -21,6 +21,8 @@ export interface SliderBaseProps {
   labelComponent?: ComponentType<{
     values: SliderValue
   }>
+  handleBorderWeight?: number
+  displayPercent?: boolean
   onChange: (values: SliderValue) => void
   nonLinear?: boolean
   debounceTime?: number
@@ -67,8 +69,10 @@ export default function SliderBase({
   onChange,
   labelComponent: LabelComponent,
   nonLinear,
+  displayPercent,
   debounceTime = 500,
   handleSize = 18,
+  handleBorderWeight = 3,
   railHeight,
   children,
 }: PropsWithChildren<SliderBaseProps>) {
@@ -126,6 +130,8 @@ export default function SliderBase({
                   <Handle
                     key={i}
                     percent={percent}
+                    displayPercent={displayPercent}
+                    handleBorderWeight={handleBorderWeight}
                     handleSize={handleSize}
                     {...getHandleProps(id)}
                   />

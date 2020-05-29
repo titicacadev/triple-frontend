@@ -5,7 +5,8 @@ import Track from './track'
 import SliderBase, { SliderBaseProps } from './slider-base'
 import { SliderValue } from './types'
 
-interface RangeSliderProps extends Omit<SliderBaseProps, 'labelComponent'> {
+interface RangeSliderProps
+  extends Omit<SliderBaseProps, 'labelComponent' | 'displayPercent'> {
   labelComponent?: ComponentType<{
     fromValue: SliderValue[0]
     toValue: SliderValue[1]
