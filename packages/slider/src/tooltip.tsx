@@ -99,10 +99,10 @@ function getPosition({
 
   switch (true) {
     case isStart || currentAreaWidth < halfOfTooltipWidth: {
-      return `left: -${halfOfHandlerWidth}px`
+      return `left: ${isStart ? `-${halfOfHandlerWidth}` : 0}px`
     }
     case isEnd || containerWidth - currentAreaWidth < halfOfTooltipWidth: {
-      return `right: -${halfOfHandlerWidth}px`
+      return `right: ${isEnd ? `-${halfOfHandlerWidth}` : 0}px`
     }
     default: {
       return `left: calc(${percent}% - ${halfOfTooltipWidth}px);`
