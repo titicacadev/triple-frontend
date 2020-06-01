@@ -5,7 +5,7 @@ import { Text } from '@titicaca/core-elements'
 /**
  * HACK: bottom 디자인상 여백 + 레일의 높이 값
  */
-const IndecatorFrame = styled.div<{ railHeight: number }>`
+const MarkFrame = styled.div<{ railHeight: number }>`
   position: absolute;
   left: 0;
   right: 0;
@@ -13,7 +13,7 @@ const IndecatorFrame = styled.div<{ railHeight: number }>`
   ${({ railHeight }) => `bottom: -${railHeight + 6}px;`}
 `
 
-function Indecator({
+function Mark({
   min,
   max,
   railHeight,
@@ -23,15 +23,15 @@ function Indecator({
   railHeight: number
 }) {
   return (
-    <IndecatorFrame railHeight={railHeight}>
+    <MarkFrame railHeight={railHeight}>
       <Text size="tiny" color="gray200" floated="left">
         {min}
       </Text>
       <Text size="tiny" color="gray200" floated="right">
         {max}
       </Text>
-    </IndecatorFrame>
+    </MarkFrame>
   )
 }
 
-export default Indecator
+export default Mark

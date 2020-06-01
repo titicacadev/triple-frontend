@@ -17,7 +17,7 @@ import { Container } from '@titicaca/core-elements'
 import Rail from './rail'
 import Handle from './handle'
 import { ValueTransformer, SliderValue } from './types'
-import Indecator from './indecator'
+import MarkFrame from './mark'
 import { Color } from './color'
 
 export interface SliderBaseProps {
@@ -30,7 +30,7 @@ export interface SliderBaseProps {
   }>
   handlerBorderWeight?: number
   displayPercent?: boolean
-  displayIndecator?: boolean
+  displayMark?: boolean
   onChange: (values: SliderValue) => void
   nonLinear?: boolean
   debounceTime?: number
@@ -65,7 +65,7 @@ export default function SliderBase({
   labelComponent: LabelComponent,
   nonLinear,
   displayPercent,
-  displayIndecator,
+  displayMark,
   debounceTime = 500,
   handlerSize = 18,
   handlerBorderWeight = 3,
@@ -144,8 +144,8 @@ export default function SliderBase({
 
           {children}
         </OriginalSlider>
-        {displayIndecator ? (
-          <Indecator min={min} max={max} railHeight={railHeight} />
+        {displayMark ? (
+          <MarkFrame min={min} max={max} railHeight={railHeight} />
         ) : null}
       </SliderContainer>
     </Container>

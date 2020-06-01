@@ -51,7 +51,7 @@ storiesOf('slider | Slider', module)
           color={select('핸들러 색상', ['white', 'blue'], 'blue')}
           handlerSize={number('핸들러 사이즈', 40)}
           handlerBorderWeight={number('핸들러 테두리 굵기', 4)}
-          displayIndecator={boolean('인디케이터 노출', true)}
+          displayMark={boolean('인디케이터 노출', true)}
           onChange={setValue}
           toolTipLabel={['별로였어요', '괜찮았어요', '아주 좋았어요']}
           debounceTime={number('debounceTime')}
