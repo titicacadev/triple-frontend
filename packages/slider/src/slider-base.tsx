@@ -36,7 +36,7 @@ export interface SliderBaseProps {
   debounceTime?: number
   railHeight?: number
   handlerSize?: number
-  ActivateHandlerShadow?: boolean
+  handlerActivateShadow?: boolean
   color?: Color
 }
 
@@ -69,7 +69,7 @@ export default function SliderBase({
   debounceTime = 500,
   handlerSize = 18,
   handlerBorderWeight = 3,
-  ActivateHandlerShadow,
+  handlerActivateShadow,
   color = 'white',
   railHeight = 3,
   children,
@@ -131,7 +131,7 @@ export default function SliderBase({
                     key={i}
                     percent={percent}
                     color={color}
-                    ActivateHandlerShadow={ActivateHandlerShadow}
+                    handlerActivateShadow={handlerActivateShadow}
                     displayPercent={displayPercent}
                     handlerBorderWeight={handlerBorderWeight}
                     handlerSize={handlerSize}

@@ -1,7 +1,6 @@
 import React from 'react'
 import styled, { StyledComponentProps } from 'styled-components'
 
-import { SliderBaseProps } from './slider-base'
 import COLORS, { Color } from './color'
 
 const HandleContainer = styled.div.attrs<{ percent: number }>(
@@ -23,7 +22,7 @@ const HandlePeg = styled.div<{
   color: Color
   handlerSize: number
   handlerBorderWeight: number
-  ActivateHandlerShadow?: boolean
+  handlerActivateShadow?: boolean
 }>`
   position: absolute;
   box-sizing: border-box;
@@ -34,8 +33,8 @@ const HandlePeg = styled.div<{
   text-align: center;
   font-weight: bold;
 
-  ${({ ActivateHandlerShadow }) =>
-    ActivateHandlerShadow &&
+  ${({ handlerActivateShadow }) =>
+    handlerActivateShadow &&
     `
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
   `}
@@ -59,7 +58,7 @@ export default function Handle({
   handlerSize,
   displayPercent,
   handlerBorderWeight,
-  ActivateHandlerShadow,
+  handlerActivateShadow,
   ...props
 }: StyledComponentProps<
   'div',
@@ -69,7 +68,7 @@ export default function Handle({
     handlerSize: number
     displayPercent?: boolean
     handlerBorderWeight: number
-    ActivateHandlerShadow?: boolean
+    handlerActivateShadow?: boolean
     color: Color
   },
   never
@@ -81,7 +80,7 @@ export default function Handle({
       <HandlePeg
         color={color}
         handlerSize={handlerSize}
-        ActivateHandlerShadow={ActivateHandlerShadow}
+        handlerActivateShadow={handlerActivateShadow}
         handlerBorderWeight={handlerBorderWeight}
       >
         {displayPercent ? percent / 10 : ''}
