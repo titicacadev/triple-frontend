@@ -21,15 +21,17 @@ const TooltipFrame = styled.div<{
 function ToolTip({
   tracks,
   toolTipLabel,
+  handlerSize = 18,
 }: {
+  handlerSize?: number
   tracks: TrackItem[]
   toolTipLabel: string[]
 }) {
   const _tootipRef = useRef<HTMLDivElement>(null)
 
   const label = getTooltipLabel({ tracks, toolTipLabel })
-  const widthSizes = getWidthSize(_tootipRef)
-  const position = getPosition({ tracks, widthSizes })
+  const widthSizes = getWidths(_tootipRef)
+  const position = getPosition({ tracks, widthSizes, handlerSize })
 
   return (
     <TooltipFrame ref={_tootipRef} position={position}>
@@ -60,7 +62,7 @@ function getTooltipLabel({
   return toolTipLabel[index] || ''
 }
 
-function getWidthSize(ref: React.RefObject<HTMLDivElement>): [number, number] {
+function getWidths(ref: React.RefObject<HTMLDivElement>): [number, number] {
   if (!ref.current) {
     return [0, 0]
   }
@@ -71,9 +73,11 @@ function getWidthSize(ref: React.RefObject<HTMLDivElement>): [number, number] {
 function getPosition({
   tracks,
   widthSizes,
+  handlerSize,
 }: {
   tracks: TrackItem[]
   widthSizes: [number, number]
+  handlerSize: number
 }) {
   const [
     {
@@ -91,13 +95,14 @@ function getPosition({
   const isEnd = percent * 0.1 === max
   const currentAreaWidth = containerWidth * (percent / 100)
   const halfOfTooltipWidth = tooltipWidth / 2
+  const halfOfHandlerWidth = handlerSize / 2
 
   switch (true) {
     case isStart || currentAreaWidth < halfOfTooltipWidth: {
-      return 'left: 0'
+      return `left: -${halfOfHandlerWidth}px`
     }
     case isEnd || containerWidth - currentAreaWidth < halfOfTooltipWidth: {
-      return 'right: 0'
+      return `right: -${halfOfHandlerWidth}px`
     }
     default: {
       return `left: calc(${percent}% - ${halfOfTooltipWidth}px);`

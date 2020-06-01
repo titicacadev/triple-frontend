@@ -21,6 +21,7 @@ export default function SingleSlider({
   labelComponent: LabelComponent,
   onChange,
   toolTipLabel,
+  handlerSize,
   railHeight,
   ...restProps
 }: SingleSliderProps) {
@@ -28,6 +29,7 @@ export default function SingleSlider({
     <SliderBase
       {...restProps}
       initialValues={initialValue ? [initialValue] : undefined}
+      handlerSize={handlerSize}
       onChange={(values) => onChange(values[0])}
       railHeight={railHeight}
       labelComponent={
@@ -40,7 +42,11 @@ export default function SingleSlider({
         {({ tracks, getTrackProps }) => (
           <>
             {toolTipLabel ? (
-              <ToolTip tracks={tracks} toolTipLabel={toolTipLabel} />
+              <ToolTip
+                handlerSize={handlerSize}
+                tracks={tracks}
+                toolTipLabel={toolTipLabel}
+              />
             ) : null}
             {tracks.map(
               ({
