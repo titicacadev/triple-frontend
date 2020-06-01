@@ -6,11 +6,15 @@ import React, {
   PropsWithChildren,
 } from 'react'
 import styled from 'styled-components'
-import { Rail, Slider as OriginalSlider, Handles } from 'react-compound-slider'
+import {
+  Rail as RailContainer,
+  Slider as OriginalSlider,
+  Handles,
+} from 'react-compound-slider'
 import { debounce } from '@titicaca/view-utilities'
 import { Container } from '@titicaca/core-elements'
-import { brightGray } from '@titicaca/color-palette'
 
+import Rail from './rail'
 import Handle from './handle'
 import { ValueTransformer, SliderValue } from './types'
 import Indecator from './indecator'
@@ -52,21 +56,6 @@ const SliderContainer = styled.div`
   touch-action: pan-x;
 `
 
-const RailBase = styled.div<{ railHeight?: number }>`
-  position: absolute;
-  width: 100%;
-  border-radius: 4px;
-  background-color: ${brightGray};
-  height: 3px;
-  transform: translate(0, -50%);
-
-  ${({ railHeight }) =>
-    railHeight &&
-    `
-    height: ${railHeight}px;
-  `}
-`
-
 export default function SliderBase({
   step = 1,
   initialValues,
@@ -82,7 +71,7 @@ export default function SliderBase({
   handlerBorderWeight = 3,
   ActivateHandlerShadow,
   color = 'white',
-  railHeight,
+  railHeight = 3,
   children,
 }: PropsWithChildren<SliderBaseProps>) {
   const [values, setValues] = useState<SliderValue>(initialValues || [0])
@@ -130,7 +119,9 @@ export default function SliderBase({
             setValues(newValues.map(scaleFnInverse).map(limiter))
           }
         >
-          <Rail>{() => <RailBase railHeight={railHeight} />}</Rail>
+          <RailContainer>
+            {() => <Rail railHeight={railHeight} />}
+          </RailContainer>
 
           <Handles>
             {({ handles, getHandleProps }) => (

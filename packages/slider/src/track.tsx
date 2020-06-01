@@ -2,6 +2,8 @@ import React from 'react'
 import styled, { StyledComponentProps } from 'styled-components'
 import { blue } from '@titicaca/color-palette'
 
+import Rail from './rail'
+
 export const TrackContainer = styled.div.attrs<{ left: number; right: number }>(
   ({ left, right }) => ({
     style: {
@@ -13,19 +15,6 @@ export const TrackContainer = styled.div.attrs<{ left: number; right: number }>(
   position: absolute;
   padding: 20px 0;
   margin-top: -20px;
-`
-
-export const ActiveTrack = styled.div<{ railHeight?: number }>`
-  height: 3px;
-  border-radius: 4px;
-  background-color: ${blue};
-  transform: translate(0, -50%);
-
-  ${({ railHeight }) =>
-    railHeight &&
-    `
-    height: ${railHeight}px;
-  `}
 `
 
 export default function Track({
@@ -40,7 +29,7 @@ export default function Track({
 >) {
   return (
     <TrackContainer {...rest}>
-      {active ? <ActiveTrack railHeight={railHeight} /> : null}
+      {active ? <Rail active={active} railHeight={railHeight} /> : null}
     </TrackContainer>
   )
 }

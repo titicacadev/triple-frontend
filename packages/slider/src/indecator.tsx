@@ -5,14 +5,12 @@ import { Text } from '@titicaca/core-elements'
 /**
  * HACK: bottom 디자인상 여백 + 레일의 높이 값
  */
-const IndecatorFrame = styled.div<{ handlerBorderWeight: number }>`
+const IndecatorFrame = styled.div<{ railHeight: number }>`
   position: absolute;
   left: 0;
   right: 0;
 
-  ${({ railHeight }) => `
-  bottom: -${railHeight + 6}px;
-  `}
+  ${({ railHeight }) => `bottom: -${railHeight + 6}px;`}
 `
 
 function Indecator({
