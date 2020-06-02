@@ -17,8 +17,9 @@ const ButtonGroup = styled(Container)<{
       return horizontalGap > 0
         ? css`
             width: ${childrenCount > 0
-              ? `calc((100% - ${(childrenCount - 1) *
-                  horizontalGap}px) / ${childrenCount})`
+              ? `calc((100% - ${
+                  (childrenCount - 1) * horizontalGap
+                }px) / ${childrenCount})`
               : '100%'};
           `
         : css`

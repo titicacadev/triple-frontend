@@ -4,8 +4,8 @@ import { describe, it } from 'mocha'
 
 import { injectContentSource, injectUTMContext } from './param-injectors'
 
-describe('injectContentSource', function() {
-  it('should make object with path made of content source.', function() {
+describe('injectContentSource', function () {
+  it('should make object with path made of content source.', function () {
     assert.deepStrictEqual(
       injectContentSource({
         regionId: '1',
@@ -19,8 +19,8 @@ describe('injectContentSource', function() {
   })
 })
 
-describe('injectUTMContext', function() {
-  it('should make object with path made of utm context.', function() {
+describe('injectUTMContext', function () {
+  it('should make object with path made of utm context.', function () {
     assert.deepStrictEqual(
       injectUTMContext({
         source: 'test1',
@@ -37,7 +37,7 @@ describe('injectUTMContext', function() {
     )
   })
 
-  it('should ignore empty string', function() {
+  it('should ignore empty string', function () {
     assert.deepStrictEqual(
       injectUTMContext({
         source: '',
@@ -49,7 +49,7 @@ describe('injectUTMContext', function() {
     )
   })
 
-  it('should ignore undefiend parameter', function() {
+  it('should ignore undefiend parameter', function () {
     assert.deepStrictEqual(injectUTMContext(undefined), {})
   })
 })

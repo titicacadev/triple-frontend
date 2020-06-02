@@ -23,9 +23,9 @@ export default function usePaging({
   const { error, loading, data } = useFetch(
     `/api/reviews/v2${
       sortingOption ? `/${sortingOption}` : '/'
-    }?resource_id=${resourceId}&resource_type=${resourceType}&from=${(currentPage -
-      1) *
-      perPage}&size=${perPage}`,
+    }?resource_id=${resourceId}&resource_type=${resourceType}&from=${
+      (currentPage - 1) * perPage
+    }&size=${perPage}`,
     OPTIONS,
   )
   const fetchNext = useCallback(

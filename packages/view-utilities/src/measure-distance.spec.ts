@@ -4,8 +4,8 @@ import { describe, it } from 'mocha'
 
 import { measureDistance } from './measure-distance'
 
-describe('measureDistance', function() {
-  it('직선거리', function() {
+describe('measureDistance', function () {
+  it('직선거리', function () {
     const distance = measureDistance(
       {
         coordinates: [121.525966, 25.094853],

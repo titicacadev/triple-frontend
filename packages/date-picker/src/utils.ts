@@ -25,10 +25,7 @@ export function generatePaddedRange(from: Date, to: Date): Date[] {
       .startOf('month')
 
     if (firstDayOfNextMonth.diff(endDate) <= 0) {
-      const currentWeekday = currentDate
-        .clone()
-        .endOf('month')
-        .startOf('week')
+      const currentWeekday = currentDate.clone().endOf('month').startOf('week')
 
       const endOfWeek = firstDayOfNextMonth.endOf('week')
 
