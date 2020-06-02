@@ -1,3 +1,3 @@
-import useVerification from './use-verification'
+import useUserVerification from './use-user-verification'
 
-export { useVerification }
+export { useUserVerification }
