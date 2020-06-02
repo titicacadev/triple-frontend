@@ -58,7 +58,7 @@ export function SingleSliderWithToolTip() {
         max={10}
         railHeight={number('레일 높이', 8)}
         displayPercent={boolean('퍼센트 노출', true)}
-        ActivateHandlerShadow={boolean('핸들러 그림자', true)}
+        handlerActivateShadow={boolean('핸들러 그림자', true)}
         color={select('핸들러 색상', ['white', 'blue'], 'blue')}
         handlerSize={number('핸들러 사이즈', 40)}
         handlerBorderWeight={number('핸들러 테두리 굵기', 4)}
