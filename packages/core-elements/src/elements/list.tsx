@@ -44,13 +44,13 @@ const ListBase = styled.ul<ListBaseProp & DividerOptions>`
     (divided || clearing) &&
     css`
       ${clearing &&
-        css`
-          > li:after {
-            content: '';
-            display: block;
-            clear: both;
-          }
-        `}
+      css`
+        > li:after {
+          content: '';
+          display: block;
+          clear: both;
+        }
+      `}
       ${divided
         ? css`
             > li:not(:last-child):after {

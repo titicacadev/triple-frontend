@@ -15,17 +15,9 @@ moment.locale('ko')
 function formatReviewTimestamp(date: string) {
   const createdAt = moment(date)
 
-  if (
-    moment()
-      .subtract(1, 'minute')
-      .isBefore(createdAt)
-  ) {
+  if (moment().subtract(1, 'minute').isBefore(createdAt)) {
     return createdAt.fromNow(true)
-  } else if (
-    moment()
-      .subtract(1, 'week')
-      .isBefore(createdAt)
-  ) {
+  } else if (moment().subtract(1, 'week').isBefore(createdAt)) {
     return createdAt.fromNow()
   }
 

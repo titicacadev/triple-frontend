@@ -4,8 +4,8 @@ import { describe, it } from 'mocha'
 
 import { parseUrl, generateUrl } from './url'
 
-describe('parseUrl', function() {
-  it('should parse http url', function() {
+describe('parseUrl', function () {
+  it('should parse http url', function () {
     assert.deepStrictEqual(parseUrl('http://triple.guide'), {
       href: 'http://triple.guide',
       scheme: 'http',
@@ -16,7 +16,7 @@ describe('parseUrl', function() {
     })
   })
 
-  it('should parse https url', function() {
+  it('should parse https url', function () {
     assert.deepStrictEqual(parseUrl('https://triple.guide'), {
       href: 'https://triple.guide',
       scheme: 'https',
@@ -27,7 +27,7 @@ describe('parseUrl', function() {
     })
   })
 
-  it('should parse url with custom scheme', function() {
+  it('should parse url with custom scheme', function () {
     assert.deepStrictEqual(parseUrl('triple://triple.guide'), {
       href: 'triple://triple.guide',
       scheme: 'triple',
@@ -38,7 +38,7 @@ describe('parseUrl', function() {
     })
   })
 
-  it('should parse simple url with query', function() {
+  it('should parse simple url with query', function () {
     assert.deepStrictEqual(
       parseUrl('https://triple.guide?q=1&_triple_no_navbar'),
       {
@@ -52,7 +52,7 @@ describe('parseUrl', function() {
     )
   })
 
-  it('should parse simple url with hash', function() {
+  it('should parse simple url with hash', function () {
     assert.deepStrictEqual(parseUrl('https://triple.guide#show-me-the-money'), {
       href: 'https://triple.guide#show-me-the-money',
       scheme: 'https',
@@ -63,7 +63,7 @@ describe('parseUrl', function() {
     })
   })
 
-  it('should parse poi page', function() {
+  it('should parse poi page', function () {
     assert.deepStrictEqual(
       parseUrl(
         'https://triple.guide/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
@@ -81,7 +81,7 @@ describe('parseUrl', function() {
     )
   })
 
-  it('should parse poi page with hash', function() {
+  it('should parse poi page with hash', function () {
     assert.deepStrictEqual(
       parseUrl(
         'https://triple.guide/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3#reviews',
@@ -99,7 +99,7 @@ describe('parseUrl', function() {
     )
   })
 
-  it('should parse relative path of poi page', function() {
+  it('should parse relative path of poi page', function () {
     assert.deepStrictEqual(
       parseUrl(
         '/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
@@ -117,7 +117,7 @@ describe('parseUrl', function() {
     )
   })
 
-  it('should parse app url of poi page', function() {
+  it('should parse app url of poi page', function () {
     assert.deepStrictEqual(
       parseUrl(
         'triple:///regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
@@ -135,7 +135,7 @@ describe('parseUrl', function() {
     )
   })
 
-  it('should parse app url of poi page with hash', function() {
+  it('should parse app url of poi page with hash', function () {
     assert.deepStrictEqual(
       parseUrl(
         'triple:///regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3#reviews',
@@ -153,7 +153,7 @@ describe('parseUrl', function() {
     )
   })
 
-  it('should parse article page', function() {
+  it('should parse article page', function () {
     assert.deepStrictEqual(
       parseUrl(
         'https://triple.guide/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
@@ -170,7 +170,7 @@ describe('parseUrl', function() {
     )
   })
 
-  it('should parse outlink', function() {
+  it('should parse outlink', function () {
     assert.deepStrictEqual(
       parseUrl(
         '/outlink?url=https%3A%2F%2Ftriple.guide%2Farticles%2F68dc3c17-01e9-45d2-aa04-a2891d5c7b69%3F_triple_no_navbar%26_triple_swipe_to_close',
@@ -188,7 +188,7 @@ describe('parseUrl', function() {
     )
   })
 
-  it('should trim passed url before parsing', function() {
+  it('should trim passed url before parsing', function () {
     assert.deepStrictEqual(
       parseUrl(
         ' https://triple.guide/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3\t ',
@@ -206,15 +206,15 @@ describe('parseUrl', function() {
   })
 })
 
-describe('generateUrl', function() {
-  it('should generate url with scheme and host only', function() {
+describe('generateUrl', function () {
+  it('should generate url with scheme and host only', function () {
     assert.strictEqual(
       generateUrl({ scheme: 'https', host: 'triple.guide' }),
       'https://triple.guide',
     )
   })
 
-  it('should generate url with scheme, host and path only', function() {
+  it('should generate url with scheme, host and path only', function () {
     assert.strictEqual(
       generateUrl({
         scheme: 'https',
@@ -225,14 +225,14 @@ describe('generateUrl', function() {
     )
   })
 
-  it('should generate url with scheme and path only', function() {
+  it('should generate url with scheme and path only', function () {
     assert.strictEqual(
       generateUrl({ scheme: 'triple', path: '/announcements' }),
       'triple:///announcements',
     )
   })
 
-  it('should generate url with all elements', function() {
+  it('should generate url with all elements', function () {
     assert.strictEqual(
       generateUrl({
         scheme: 'https',
@@ -245,7 +245,7 @@ describe('generateUrl', function() {
     )
   })
 
-  it('should generate url with base url', function() {
+  it('should generate url with base url', function () {
     assert.strictEqual(
       generateUrl(
         { query: 'in_region=true', hash: 'reviews' },

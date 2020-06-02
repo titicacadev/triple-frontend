@@ -31,11 +31,13 @@ const Label = styled(Text)<{
 `
 
 export default function withField<T>(WrappedComponent: React.ComponentType<T>) {
-  const WrapperComponent: React.FC<{
-    label?: string
-    error?: string
-    help?: string
-  } & T> = ({ label, error, help, ...props }) => {
+  const WrapperComponent: React.FC<
+    {
+      label?: string
+      error?: string
+      help?: string
+    } & T
+  > = ({ label, error, help, ...props }) => {
     const [focused, setFocused] = useState(false)
     const hasError = !!error
 

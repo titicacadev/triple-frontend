@@ -91,8 +91,7 @@ export function CheckboxItem({
   margin = { bottom: 20 },
   disabled,
   checked,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onChange = (_: React.SyntheticEvent) => {},
+  onChange = () => {},
   ...rest
 }: CheckboxItemOption) {
   return (

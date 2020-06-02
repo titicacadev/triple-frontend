@@ -178,10 +178,7 @@ function RangePicker({
 }) {
   const from = startDate ? moment(startDate).toDate() : null
   const to = endDate ? moment(endDate).toDate() : null
-  const initialMonth = moment()
-    .add(1, 'day')
-    .startOf('day')
-    .toDate()
+  const initialMonth = moment().add(1, 'day').startOf('day').toDate()
   const selectedDays = [from, from && to ? { from, to } : undefined].filter(
     (day) => !!day,
   )
