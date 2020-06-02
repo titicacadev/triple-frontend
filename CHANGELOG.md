@@ -1,3 +1,13 @@
+# 1.22.0 (2020-05-28)
+
+- `react-contexts` ImageContext에서 hotel 타입의 경우에는 poi 타입으로 변경하지 않습니다. (#775)
+- `search` enter 시 input blur 처리하도록 액션을 추가합니다. (#776)
+- `core-elements`, `action-sheet` Navbar 컴포넌트와 ActionSheet.Item 컴포넌트에 message, support 아이콘을 추가합니다. (#771)
+- `poi-detail` Actions 컴포넌트에 margin, padding타입을 추가합니다. (#773)
+- `common`
+  - Navbar, Footer, AppBanner, PublicHeader의 tag를 시멘틱한 tag로 수정합니다. (#778)
+  - typescript(3.9,x), styled-component(5.x)를 최신버전으로 올립니다. (#780)
+
 # 1.21.0 (2020-05-21)
 
 - `core-elements` Text 요소에서 textAlign props 를 제공합니다. (#346) (#765)
