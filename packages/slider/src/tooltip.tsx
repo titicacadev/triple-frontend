@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { blue } from '@titicaca/color-palette'
 
 /**
- * TODO: handlerSize + railHeight 고려 top 값 조절
+ * TODO: thumbSize + railHeight 고려 top 값 조절
  */
 const TooltipFrame = styled.div<{
   position: string
@@ -21,9 +21,9 @@ const TooltipFrame = styled.div<{
 function ToolTip({
   tracks,
   toolTipLabel,
-  handlerSize = 18,
+  thumbSize = 18,
 }: {
-  handlerSize?: number
+  thumbSize?: number
   tracks: TrackItem[]
   toolTipLabel: string[]
 }) {
@@ -31,7 +31,7 @@ function ToolTip({
 
   const label = getTooltipLabel({ tracks, toolTipLabel })
   const widthSizes = getWidths(_tootipRef)
-  const position = getPosition({ tracks, widthSizes, handlerSize })
+  const position = getPosition({ tracks, widthSizes, thumbSize })
 
   return (
     <TooltipFrame ref={_tootipRef} position={position}>
@@ -73,11 +73,11 @@ function getWidths(ref: React.RefObject<HTMLDivElement>): [number, number] {
 function getPosition({
   tracks,
   widthSizes,
-  handlerSize,
+  thumbSize,
 }: {
   tracks: TrackItem[]
   widthSizes: [number, number]
-  handlerSize: number
+  thumbSize: number
 }) {
   const [
     {
@@ -95,14 +95,14 @@ function getPosition({
   const isEnd = percent * 0.1 === max
   const currentAreaWidth = containerWidth * (percent / 100)
   const halfOfTooltipWidth = tooltipWidth / 2
-  const halfOfHandlerWidth = handlerSize / 2
+  const halfOfThumbWidth = thumbSize / 2
 
   switch (true) {
     case isStart || currentAreaWidth < halfOfTooltipWidth: {
-      return `left: ${isStart ? `-${halfOfHandlerWidth}` : 0}px`
+      return `left: ${isStart ? `-${halfOfThumbWidth}` : 0}px`
     }
     case isEnd || containerWidth - currentAreaWidth < halfOfTooltipWidth: {
-      return `right: ${isEnd ? `-${halfOfHandlerWidth}` : 0}px`
+      return `right: ${isEnd ? `-${halfOfThumbWidth}` : 0}px`
     }
     default: {
       return `left: calc(${percent}% - ${halfOfTooltipWidth}px);`

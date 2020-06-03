@@ -58,10 +58,10 @@ export function SingleSliderWithToolTip() {
         max={10}
         railHeight={number('레일 높이', 8)}
         displayPercent={boolean('퍼센트 노출', true)}
-        handlerActivateShadow={boolean('핸들러 그림자', true)}
-        color={select('핸들러 색상', ['white', 'blue'], 'blue')}
-        handlerSize={number('핸들러 사이즈', 40)}
-        handlerBorderWeight={number('핸들러 테두리 굵기', 4)}
+        color={select('thumb 색상', ['white', 'blue'], 'blue')}
+        thumbActivateShadow={boolean('thumb 그림자', true)}
+        thumbSize={number('thumb 사이즈', 40)}
+        thumbBorderWeight={number('thumb 테두리 굵기', 4)}
         displayMark={boolean('인디케이터 노출', true)}
         onChange={setValue}
         toolTipLabel={['별로였어요', '괜찮았어요', '아주 좋았어요']}

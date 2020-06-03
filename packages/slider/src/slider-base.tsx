@@ -15,7 +15,7 @@ import { debounce } from '@titicaca/view-utilities'
 import { Container } from '@titicaca/core-elements'
 
 import Rail from './rail'
-import Handle from './handle'
+import Thumb from './thumb'
 import { ValueTransformer, SliderValue } from './types'
 import MarkFrame from './mark'
 import { Color } from './color'
@@ -28,15 +28,15 @@ export interface SliderBaseProps {
   labelComponent?: ComponentType<{
     values: SliderValue
   }>
-  handlerBorderWeight?: number
+  thumbBorderWeight?: number
   displayPercent?: boolean
   displayMark?: boolean
   onChange: (values: SliderValue) => void
   nonLinear?: boolean
   debounceTime?: number
   railHeight?: number
-  handlerSize?: number
-  handlerActivateShadow?: boolean
+  thumbSize?: number
+  thumbActivateShadow?: boolean
   color?: Color
 }
 
@@ -67,9 +67,9 @@ export default function SliderBase({
   displayPercent,
   displayMark,
   debounceTime = 500,
-  handlerSize = 18,
-  handlerBorderWeight = 3,
-  handlerActivateShadow,
+  thumbSize = 18,
+  thumbBorderWeight = 3,
+  thumbActivateShadow,
   color = 'white',
   railHeight = 3,
   children,
@@ -127,14 +127,14 @@ export default function SliderBase({
             {({ handles, getHandleProps }) => (
               <>
                 {handles.map(({ id, percent }, i) => (
-                  <Handle
+                  <Thumb
                     key={i}
                     percent={percent}
                     color={color}
-                    handlerActivateShadow={handlerActivateShadow}
+                    thumbActivateShadow={thumbActivateShadow}
                     displayPercent={displayPercent}
-                    handlerBorderWeight={handlerBorderWeight}
-                    handlerSize={handlerSize}
+                    thumbBorderWeight={thumbBorderWeight}
+                    thumbSize={thumbSize}
                     {...getHandleProps(id)}
                   />
                 ))}
