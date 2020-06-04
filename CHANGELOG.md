@@ -3,7 +3,7 @@
 - `react-contexts` device context에 state 추가 #787device context에 state 추가 (#787)
 - `common` Config: lint 설정을 개선합니다. (#783)
 
-# 1.22.0 (2020-05-28)
+# 1.22.0 (2020-06-02)
 
 - `react-contexts` ImageContext에서 hotel 타입의 경우에는 poi 타입으로 변경하지 않습니다. (#775)
 - `search` enter 시 input blur 처리하도록 액션을 추가합니다. (#776)
