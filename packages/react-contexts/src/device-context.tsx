@@ -1,4 +1,10 @@
-import React, { createContext, ComponentType, useContext } from 'react'
+import React, {
+  createContext,
+  ComponentType,
+  useContext,
+  PropsWithChildren,
+  useState,
+} from 'react'
 import { DeepPartial } from 'utility-types'
 
 interface DeviceContextValue {
@@ -13,7 +19,15 @@ const Context = createContext<DeviceContextValue>({
   longitude: null,
 })
 
-export const DeviceProvider = Context.Provider
+export function DeviceProvider({
+  value: initialValue,
+  children,
+}: PropsWithChildren<{
+  value: DeviceContextValue
+}>) {
+  const [deviceContext] = useState(initialValue)
+  return <Context.Provider value={deviceContext}>{children}</Context.Provider>
+}
 
 export interface WithDeviceContextBaseProps {
   deviceContext: DeviceContextValue
