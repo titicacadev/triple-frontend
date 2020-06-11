@@ -73,7 +73,11 @@ export interface ListingHotel extends ListingPOIBase {
     clubMemberOnly: boolean
     clubPromotionTarget: boolean
   }
-  priceInfo: {
+
+  /**
+   * 판매완료 호텔은 priceInfo가 없습니다`.
+   */
+  priceInfo?: {
     nightlyBasePrice: number
     nightlyPrice: number
     price: number
