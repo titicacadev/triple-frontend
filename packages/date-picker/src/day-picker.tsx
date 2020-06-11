@@ -1,17 +1,17 @@
 import * as React from 'react'
 import moment from 'moment'
+import 'moment/locale/ko'
 import styled from 'styled-components'
 import DayPicker, {
   DayModifiers,
   BeforeModifier,
   AfterModifier,
+  Modifiers,
 } from 'react-day-picker'
-import 'moment/locale/ko'
-import MomentLocaleUtils from 'react-day-picker/moment'
 import { getColor } from '@titicaca/color-palette'
 
-import { formatMonthTitle } from './utils'
 import PickerFrame from './picker-frame'
+import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
 
 const DayContainer = styled.div<{ height?: string }>`
   .DayPicker {
@@ -70,7 +70,7 @@ function DatePicker({
   afterBlock,
   numberOfMonths = 3,
   onDateChange,
-  disabledDays = [],
+  disabledDays: disabledDaysFromProps = [],
   height,
   publicHolidays,
 }: {
@@ -83,37 +83,52 @@ function DatePicker({
   height?: string
   publicHolidays?: Date[]
 }) {
-  const selectedDay = day ? moment(day).toDate() : null
+  const selectedDay = React.useMemo(() => (day ? moment(day).toDate() : null), [
+    day,
+  ])
+  const modifiers: Partial<Modifiers> = React.useMemo(
+    () => ({
+      publicHolidays,
+      sunday: (day) => day.getDay() === 0,
+      saturday: (day) => day.getDay() === 6,
+    }),
+    [publicHolidays],
+  )
+  const disabledDays = React.useMemo(
+    () => [
+      ...disabledDaysFromProps.map((date) => moment(date).toDate()),
+      beforeBlock || afterBlock
+        ? ({
+            before: beforeBlock,
+            after: afterBlock,
+          } as BeforeModifier | AfterModifier) // HACK: before, after 중 하나만 존재할 때 undefiend 속성값을 허용하지 않아 타입 체크를 우회.
+        : undefined,
+    ],
+    [afterBlock, beforeBlock, disabledDaysFromProps],
+  )
+
+  const handleDayClick = React.useCallback(
+    (day: Date, modifiers: DayModifiers): void => {
+      if (modifiers.disabled) {
+        return
+      }
+      onDateChange(day)
+    },
+    [onDateChange],
+  )
 
   return (
     <PickerFrame>
       <DayContainer height={height}>
         <DayPicker
-          locale="ko"
-          weekdaysShort={['일', '월', '화', '수', '목', '금', '토']}
-          localeUtils={{ ...MomentLocaleUtils, formatMonthTitle }}
+          locale={LOCALE}
+          weekdaysShort={WEEKDAY_SHORT_LABEL}
+          localeUtils={LOCALE_UTILS}
           selectedDays={selectedDay}
-          onDayClick={(day: Date, modifiers: DayModifiers): void => {
-            if (modifiers.disabled) {
-              return
-            }
-            onDateChange(day)
-          }}
+          onDayClick={handleDayClick}
           numberOfMonths={numberOfMonths}
-          modifiers={{
-            publicHolidays,
-            sunday: (day) => day.getDay() === 0,
-            saturday: (day) => day.getDay() === 6,
-          }}
-          disabledDays={[
-            ...disabledDays.map((date) => moment(date).toDate()),
-            beforeBlock || afterBlock
-              ? ({
-                  before: beforeBlock,
-                  after: afterBlock,
-                } as BeforeModifier | AfterModifier) // HACK: before, after 중 하나만 존재할 때 undefiend 속성값을 허용하지 않아 타입 체크를 우회.
-              : undefined,
-          ]}
+          modifiers={modifiers}
+          disabledDays={disabledDays}
         />
       </DayContainer>
     </PickerFrame>
