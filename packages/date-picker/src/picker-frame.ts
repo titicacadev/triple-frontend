@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 
-const PickerFrame = styled.div`
+const PickerFrame = styled.div<{ height: string }>`
   border-top: 1px solid rgba(${getColor('gray100')});
   border-bottom: 1px solid rgba(${getColor('gray100')});
 
@@ -11,6 +11,8 @@ const PickerFrame = styled.div`
     font-weight: bold;
     font-size: 14px;
     background: #fafafa;
+
+    ${({ height }) => `height: ${height};`}
 
     .DayPicker-Month {
       position: relative;
