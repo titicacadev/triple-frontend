@@ -15,11 +15,7 @@ import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
 
 const MemoDayPicker = React.memo(DayPicker)
 
-const DayContainer = styled.div<{ height?: string }>`
-  .DayPicker {
-    height: ${({ height }) => height || '300px'};
-  }
-
+const DayContainer = styled.div`
   .DayPicker-Month {
     padding: 40px 0 0 0;
   }
@@ -121,8 +117,8 @@ function DatePicker({
   )
 
   return (
-    <PickerFrame>
-      <DayContainer height={height}>
+    <PickerFrame height={height || '300px'}>
+      <DayContainer>
         <MemoDayPicker
           locale={LOCALE}
           weekdaysShort={WEEKDAY_SHORT_LABEL}

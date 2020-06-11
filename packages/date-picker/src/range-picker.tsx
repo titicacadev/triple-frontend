@@ -17,16 +17,12 @@ import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
 const MemoDayPicker = React.memo(DayPicker)
 
 const RangeContainer = styled.div<{
-  height?: string
   selectedAll: boolean
   enableSameDay?: boolean
   startDateLabel?: string
   endDateLabel?: string
   sameDateLabel?: string
 }>`
-  .DayPicker {
-    height: ${({ height }) => height || '395px'};
-  }
   .DayPicker-Day--sunday {
     padding-left: 6px !important;
   }
@@ -268,10 +264,9 @@ function RangePicker({
   )
 
   return (
-    <PickerFrame>
+    <PickerFrame height={height || '395px'}>
       <RangeContainer
         selectedAll={!!(startDate && endDate)}
-        height={height}
         enableSameDay={enableSameDay}
         startDateLabel={startDateLabel}
         endDateLabel={endDateLabel}
