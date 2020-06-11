@@ -14,21 +14,21 @@ import { DayPicker, RangePicker } from '@titicaca/date-picker'
 /**
  * 유효한 날짜인지 확인하는 함수
  */
-function checkValidDate(date) {
+function checkValidDate(date: string) {
   return new Date(date).toString() !== 'Invalid Date'
 }
 
 /**
  * ISO8601 날짜 포맷으로 되었는지 확인하는 함수
  */
-function checkValidISODateFormat(date) {
+function checkValidISODateFormat(date: string) {
   return /^\d{4}-\d{2}-\d{2}$/.test(date)
 }
 
 /**
  * 한자리수 숫자를 0으로 채워 두자리로 만들어주는 함수
  */
-function formatPaddedNumber(num) {
+function formatPaddedNumber(num: number) {
   if (num < 10) {
     return `0${num}`
   }
@@ -38,7 +38,7 @@ function formatPaddedNumber(num) {
 /**
  * YYYY-MM-DD 형식으로 포맷팅하는 함수
  */
-function formatDate(date) {
+function formatDate(date: Date) {
   return `${date.getFullYear()}-${formatPaddedNumber(
     date.getMonth() + 1,
   )}-${formatPaddedNumber(date.getDate())}`
@@ -53,6 +53,12 @@ function useOptionalKnob({
   initialVisibility,
   initialValue,
   extraKnobParams,
+}: {
+  name: string
+  knob: Function
+  initialVisibility?: boolean
+  initialValue: any
+  extraKnobParams?: any
 }) {
   return boolean(`${name} 활성화`, initialVisibility || false)
     ? knob(name, initialValue, ...(extraKnobParams || []))
@@ -82,7 +88,7 @@ const initialHolidays = [
 
 storiesOf('date-picker | DatePicker', module)
   .add('DayPicker', () => {
-    const [selectedDate, setSelectedDate] = useState(null)
+    const [selectedDate, setSelectedDate] = useState<string | null>(null)
     const beforeBlock = useOptionalKnob({
       name: 'beforeBlock',
       knob: date,
@@ -109,7 +115,7 @@ storiesOf('date-picker | DatePicker', module)
         day={selectedDate}
         onDateChange={(date) => {
           action('날짜 선택')(date)
-          setSelectedDate(date)
+          setSelectedDate(date.toISOString())
         }}
         beforeBlock={beforeBlock ? new Date(beforeBlock) : undefined}
         afterBlock={afterBlock ? new Date(afterBlock) : undefined}
@@ -129,7 +135,10 @@ storiesOf('date-picker | DatePicker', module)
     )
   })
   .add('RangePicker', () => {
-    const [{ startDate, endDate }, setDateRange] = useState({
+    const [{ startDate, endDate }, setDateRange] = useState<{
+      startDate: string | null
+      endDate: string | null
+    }>({
       startDate: null,
       endDate: null,
     })
@@ -183,7 +192,7 @@ storiesOf('date-picker | DatePicker', module)
           .map((date) => new Date(date))}
         numberOfMonths={number('표시할 개월 수', 3)}
         height={text('높이', '300px')}
-        enableSameDay={boolean('enableSameDay 활성화')}
+        enableSameDay={boolean('enableSameDay 활성화', false)}
       />
     )
   })
