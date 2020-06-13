@@ -1,11 +1,13 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { text, boolean } from '@storybook/addon-knobs'
 import FloatingInstallButton from '@titicaca/floating-install-button'
 
-storiesOf('floating-install-button | FloatingInstallButton', module).add(
-  '플로팅 버튼',
-  () => (
+export default {
+  title: 'floating-install-button | FloatingInstallButton',
+}
+
+export function BaseFloatingInstallButton() {
+  return (
     <FloatingInstallButton
       appInstallLink={'https://triple.onelink.me/aZP6/21d43a81'}
       fixed={boolean('화면 고정', true)}
@@ -17,5 +19,9 @@ storiesOf('floating-install-button | FloatingInstallButton', module).add(
         onClose: { ga: ['플로팅_설치하기_닫기'] },
       }}
     />
-  ),
-)
+  )
+}
+
+BaseFloatingInstallButton.story = {
+  name: '기본 플로팅 버튼',
+}
