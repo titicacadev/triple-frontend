@@ -49,6 +49,34 @@ const sideSpacingMixin = css<{ sideSpacing: number }>`
   `}
 `
 
+export function generateSelectedCircleStyle(selector: string) {
+  return css`
+    ${selector} {
+      z-index: 0;
+      color: rgba(${getColor('white')}) !important;
+
+      &:before {
+        top: 35px !important;
+      }
+
+      &:after {
+        z-index: -1;
+        display: block;
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        top: 50%;
+        bottom: 0px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(${getColor('blue')});
+        content: '';
+        border-radius: 100%;
+      }
+    }
+  `
+}
+
 const PickerFrame = styled.div<{ height: string; sideSpacing: number }>`
   border-top: 1px solid rgba(${getColor('gray100')});
   border-bottom: 1px solid rgba(${getColor('gray100')});
