@@ -23,18 +23,6 @@ const RangeContainer = styled.div<{
   endDateLabel?: string
   sameDateLabel?: string
 }>`
-  .DayPicker-Day--sunday {
-    padding-left: 6px !important;
-  }
-  .DayPicker-Day--saturday {
-    padding-right: 6px !important;
-  }
-  .DayPicker-Weekday:first-child {
-    padding-left: 6px;
-  }
-  .DayPicker-Weekday:last-child {
-    padding-right: 6px;
-  }
   .DayPicker-Day--from,
   .DayPicker-Day--to {
     z-index: 0;
@@ -79,14 +67,6 @@ const RangeContainer = styled.div<{
     background-color: rgba(${getColor('blue')});
     content: '';
     border-radius: 100%;
-  }
-  .DayPicker-Day--sunday:after {
-    left: calc(50%);
-    transform: translate(calc(-50% + 3px), -50%);
-  }
-  .DayPicker-Day--saturday:after {
-    left: calc(50%);
-    transform: translate(calc(-50% - 3px), -50%);
   }
 
   ${({ startDateLabel, selectedAll }) =>
@@ -264,7 +244,7 @@ function RangePicker({
   )
 
   return (
-    <PickerFrame height={height || '395px'}>
+    <PickerFrame height={height || '395px'} sideSpacing={6}>
       <RangeContainer
         selectedAll={!!(startDate && endDate)}
         enableSameDay={enableSameDay}
