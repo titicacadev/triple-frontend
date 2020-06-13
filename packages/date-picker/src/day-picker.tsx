@@ -8,9 +8,8 @@ import DayPicker, {
   AfterModifier,
   Modifiers,
 } from 'react-day-picker'
-import { getColor } from '@titicaca/color-palette'
 
-import PickerFrame from './picker-frame'
+import PickerFrame, { generateSelectedCircleStyle } from './picker-frame'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
 
 const MemoDayPicker = React.memo(DayPicker)
@@ -23,24 +22,8 @@ const DayContainer = styled.div`
     top: 30px;
     left: 0px;
   }
-  .DayPicker-Day--selected {
-    z-index: 0;
-    color: rgba(${getColor('white')}) !important;
-  }
-  .DayPicker-Day--selected:after {
-    z-index: -1;
-    display: block;
-    width: 32px;
-    height: 32px;
-    position: absolute;
-    top: 50%;
-    bottom: 0px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(${getColor('blue')});
-    content: '';
-    border-radius: 100%;
-  }
+
+  ${generateSelectedCircleStyle('.DayPicker-Day--selected')}
 `
 
 function DatePicker({

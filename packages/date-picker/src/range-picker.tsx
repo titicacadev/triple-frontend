@@ -11,7 +11,7 @@ import 'moment/locale/ko'
 import { getColor } from '@titicaca/color-palette'
 
 import { isValidDate, generatePaddedRange } from './utils'
-import PickerFrame from './picker-frame'
+import PickerFrame, { generateSelectedCircleStyle } from './picker-frame'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
 
 const MemoDayPicker = React.memo(DayPicker)
@@ -23,11 +23,8 @@ const RangeContainer = styled.div<{
   endDateLabel?: string
   sameDateLabel?: string
 }>`
-  .DayPicker-Day--from,
-  .DayPicker-Day--to {
-    z-index: 0;
-    color: rgba(${getColor('white')}) !important;
-  }
+  ${generateSelectedCircleStyle('.DayPicker-Day--from,.DayPicker-Day--to')}
+
   ${({ selectedAll }) =>
     selectedAll &&
     css`
@@ -49,25 +46,8 @@ const RangeContainer = styled.div<{
         );
       }
     `}
-  .DayPicker-Day--from:before,
-  .DayPicker-Day--to:before {
-    background: none;
-  }
-  .DayPicker-Day--from:after,
-  .DayPicker-Day--to:after {
-    z-index: -1;
-    display: block;
-    width: 32px;
-    height: 32px;
-    position: absolute;
-    top: 50%;
-    bottom: 0px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(${getColor('blue')});
-    content: '';
-    border-radius: 100%;
-  }
+
+
 
   ${({ startDateLabel, selectedAll }) =>
     startDateLabel &&
