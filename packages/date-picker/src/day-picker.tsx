@@ -41,25 +41,6 @@ const DayContainer = styled.div`
     content: '';
     border-radius: 100%;
   }
-  .DayPicker-Day--sunday:before {
-    padding-left: 6px;
-  }
-  .DayPicker-Day--saturday:before {
-    box-sizing: border-box;
-    padding-right: 9px;
-  }
-  .DayPicker-Day--selected.DayPicker-Day--sunday:before,
-  .DayPicker-Day--selected.DayPicker-Day--sunday:after {
-    padding-left: 0px;
-    left: calc(50%);
-    transform: translate(calc(-50% + 5px), -50%);
-  }
-  .DayPicker-Day--selected.DayPicker-Day--saturday:before,
-  .DayPicker-Day--selected.DayPicker-Day--saturday:after {
-    padding-right: 0px;
-    left: calc(50%);
-    transform: translate(calc(-50% - 5px), -50%);
-  }
 `
 
 function DatePicker({
@@ -117,7 +98,7 @@ function DatePicker({
   )
 
   return (
-    <PickerFrame height={height || '300px'}>
+    <PickerFrame height={height || '300px'} sideSpacing={10}>
       <DayContainer>
         <MemoDayPicker
           locale={LOCALE}
