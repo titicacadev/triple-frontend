@@ -1,7 +1,55 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 
-const PickerFrame = styled.div<{ height: string }>`
+const sideSpacingMixin = css<{ sideSpacing: number }>`
+  ${({ sideSpacing }) => `
+    .DayPicker-Weekday {
+      &:first-child {
+        padding-left: ${sideSpacing}px;
+      }
+      &:last-child {
+        padding-right: ${sideSpacing}px;
+      }
+    }
+
+    .DayPicker-Day {
+      &--sunday {
+        padding-left: ${sideSpacing}px !important;
+
+        &:before {
+          /* date label */
+          transform: translate(${sideSpacing / 2}px) !important;
+        }
+
+        &:after {
+          /* Select circle */
+          transform: translate(calc(-50% + ${
+            sideSpacing / 2
+          }px), -50%) !important;
+        }
+      }
+
+      &--saturday {
+        padding-right: ${sideSpacing}px !important;
+
+        &:before {
+          /* date label */
+          transform: translate(${(sideSpacing / 2) * -1}px) !important;
+        }
+
+        &:after {
+          /* Select circle */
+          transform: translate(
+            calc(-50% + ${(sideSpacing / 2) * -1}px),
+            -50%
+          ) !important;
+        }
+      }
+    }
+  `}
+`
+
+const PickerFrame = styled.div<{ height: string; sideSpacing: number }>`
   border-top: 1px solid rgba(${getColor('gray100')});
   border-bottom: 1px solid rgba(${getColor('gray100')});
 
@@ -46,13 +94,6 @@ const PickerFrame = styled.div<{ height: string }>`
             display: table-cell;
             color: #8b9898;
             text-align: center;
-
-            &:first-child {
-              padding-left: 10px;
-            }
-            &:last-child {
-              padding-right: 10px;
-            }
 
             abbr {
               text-decoration: none;
@@ -115,17 +156,12 @@ const PickerFrame = styled.div<{ height: string }>`
               content: '' !important;
               background: none !important;
             }
-
-            &--sunday {
-              padding-left: 10px !important;
-            }
-            &--saturday {
-              padding-right: 10px !important;
-            }
           }
         }
       }
     }
+
+    ${sideSpacingMixin}
 
     /* unknown class */
     .DayPicker-WeekNumber {
