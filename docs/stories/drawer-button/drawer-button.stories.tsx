@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import DrawerButton from '@titicaca/drawer-button'
 
@@ -8,7 +7,11 @@ const LongPage = styled.div`
   height: 4000px;
 `
 
-storiesOf('drawer-button | DrawerButton', module).add('기본', () => {
+export default {
+  title: 'drawer-button | DrawerButton',
+}
+
+export function BaseDrawerButton() {
   const [active, setActive] = useState(true)
 
   return (
@@ -28,4 +31,8 @@ storiesOf('drawer-button | DrawerButton', module).add('기본', () => {
       </DrawerButton>
     </LongPage>
   )
-})
+}
+
+BaseDrawerButton.story = {
+  name: '기본 버튼',
+}
