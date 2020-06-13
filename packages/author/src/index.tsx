@@ -17,7 +17,7 @@ export default function Author({
   }
   bioOverride?: string
   introOverride?: { text?: string; rawHTML?: string }
-  margin: MarginPadding
+  margin?: MarginPadding
 }) {
   const displayedBio = (bioOverride || bio || '').replace('\n', '')
   const displayedIntro = introOverride || intro
