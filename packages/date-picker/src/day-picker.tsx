@@ -18,10 +18,6 @@ const DayContainer = styled.div`
   .DayPicker-Month {
     padding: 40px 0 0 0;
   }
-  .DayPicker-Day--today:before {
-    top: 30px;
-    left: 0px;
-  }
 
   ${generateSelectedCircleStyle('.DayPicker-Day--selected')}
 `
