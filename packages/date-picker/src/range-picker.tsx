@@ -37,6 +37,10 @@ const rangeStyle = css`
     );
   }
 
+  .DayPicker-Day--from.DayPicker-Day--to {
+    background: none;
+  }
+
   .DayPicker-Day--outside {
     background: none;
 
@@ -94,7 +98,6 @@ const RangeContainer = styled.div<{
     }
   `}
   .DayPicker-Day--from.DayPicker-Day--to {
-    background: none;
     ${({ sameDateLabel }) => css`
       &:before {
         content: '${sameDateLabel || ''}';
