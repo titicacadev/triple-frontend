@@ -5,10 +5,9 @@ import {
   Container,
   GetGlobalColor,
   MarginPadding,
-  Text,
 } from '@titicaca/core-elements'
 
-const CheckboxLabel = styled(Text)<{ disabled?: boolean }>`
+const Label = styled.label<{ disabled?: boolean }>`
   color: rgb(${GetGlobalColor('gray')});
   position: relative;
   cursor: pointer;
@@ -17,6 +16,9 @@ const CheckboxLabel = styled(Text)<{ disabled?: boolean }>`
   line-height: 26px;
   font-size: 16px;
   font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 
   ${({ disabled }) =>
     disabled
@@ -72,7 +74,7 @@ const CheckboxInput = styled.input`
 
 export interface CheckboxItemOption
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: React.ReactElement | string
+  label: string
   value: any
   margin?: MarginPadding
 }
@@ -96,19 +98,19 @@ export function CheckboxItem({
 }: CheckboxItemOption) {
   return (
     <Container margin={margin} position="relative" padding={{ right: 29 }}>
-      <CheckboxLabel disabled={disabled} ellipsis>
-        <label htmlFor={`${name}-checked`}>{label}</label>
-      </CheckboxLabel>
+      <Label htmlFor={label} disabled={disabled}>
+        {label}
+      </Label>
 
       <CheckboxInput
         {...rest}
         type="checkbox"
-        name={name}
+        name={label}
         disabled={disabled}
         checked={checked}
         onChange={onChange}
         value={value}
-        id={`${name}-checked`}
+        id={label}
       />
     </Container>
   )
