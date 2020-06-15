@@ -16,6 +16,36 @@ import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
 
 const MemoDayPicker = React.memo(DayPicker)
 
+const rangeStyle = css`
+  .DayPicker-Day--selected {
+    background: rgba(${getColor('blue100')});
+  }
+
+  .DayPicker-Day--from {
+    background: linear-gradient(
+      to right,
+      #fafafa 50%,
+      rgba(${getColor('blue100')}) 50%
+    );
+  }
+
+  .DayPicker-Day--to {
+    background: linear-gradient(
+      to left,
+      #fafafa 50%,
+      rgba(${getColor('blue100')}) 50%
+    );
+  }
+
+  .DayPicker-Day--outside {
+    background: none;
+
+    &.DayPicker-Day--included-range {
+      background: rgba(${getColor('blue100')});
+    }
+  }
+`
+
 const RangeContainer = styled.div<{
   selectedAll: boolean
   enableSameDay?: boolean
@@ -25,29 +55,7 @@ const RangeContainer = styled.div<{
 }>`
   ${generateSelectedCircleStyle('.DayPicker-Day--from,.DayPicker-Day--to')}
 
-  ${({ selectedAll }) =>
-    selectedAll &&
-    css`
-      .DayPicker-Day--selected {
-        background: rgba(${getColor('blue100')});
-      }
-      .DayPicker-Day--from {
-        background: -webkit-linear-gradient(
-          right,
-          rgba(${getColor('blue100')}) 50%,
-          #fafafa 50%
-        );
-      }
-      .DayPicker-Day--to {
-        background: -webkit-linear-gradient(
-          right,
-          #fafafa 50%,
-          rgba(${getColor('blue100')}) 50%
-        );
-      }
-    `}
-
-
+  ${({ selectedAll }) => selectedAll && rangeStyle}
 
   ${({ startDateLabel, selectedAll }) =>
     startDateLabel &&
@@ -92,13 +100,6 @@ const RangeContainer = styled.div<{
         content: '${sameDateLabel || ''}';
       }
     `}
-  }
-
-  .DayPicker-Day--outside {
-    background: none;
-  }
-  .DayPicker-Day--outside.DayPicker-Day--included-range {
-    background: rgba(${getColor('blue100')});
   }
 `
 
