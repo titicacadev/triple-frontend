@@ -14,7 +14,7 @@ import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
 
 const MemoDayPicker = React.memo(DayPicker)
 
-const DayContainer = styled.div`
+const DayContainer = styled(PickerFrame)`
   ${generateSelectedCircleStyle('.DayPicker-Day--selected')}
 `
 
@@ -73,24 +73,22 @@ function DatePicker({
   )
 
   return (
-    <PickerFrame
+    <DayContainer
       height={height || '300px'}
       sideSpacing={10}
       monthPadding="40px 0 0 0"
     >
-      <DayContainer>
-        <MemoDayPicker
-          locale={LOCALE}
-          weekdaysShort={WEEKDAY_SHORT_LABEL}
-          localeUtils={LOCALE_UTILS}
-          selectedDays={selectedDay}
-          onDayClick={handleDayClick}
-          numberOfMonths={numberOfMonths}
-          modifiers={modifiers}
-          disabledDays={disabledDays}
-        />
-      </DayContainer>
-    </PickerFrame>
+      <MemoDayPicker
+        locale={LOCALE}
+        weekdaysShort={WEEKDAY_SHORT_LABEL}
+        localeUtils={LOCALE_UTILS}
+        selectedDays={selectedDay}
+        onDayClick={handleDayClick}
+        numberOfMonths={numberOfMonths}
+        modifiers={modifiers}
+        disabledDays={disabledDays}
+      />
+    </DayContainer>
   )
 }
 
