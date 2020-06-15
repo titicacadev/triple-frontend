@@ -70,7 +70,7 @@ function generateDateLabelStyle(selector: string, label: string) {
   `
 }
 
-const RangeContainer = styled.div<{
+const RangeContainer = styled(PickerFrame)<{
   selectedAll: boolean
   enableSameDay?: boolean
   startDateLabel?: string
@@ -226,31 +226,28 @@ function RangePicker({
   )
 
   return (
-    <PickerFrame
+    <RangeContainer
       height={height || '395px'}
       sideSpacing={6}
       monthPadding="32px 0 30px 0"
+      selectedAll={!!(startDate && endDate)}
+      enableSameDay={enableSameDay}
+      startDateLabel={startDateLabel}
+      endDateLabel={endDateLabel}
+      sameDateLabel={sameDateLabel}
     >
-      <RangeContainer
-        selectedAll={!!(startDate && endDate)}
-        enableSameDay={enableSameDay}
-        startDateLabel={startDateLabel}
-        endDateLabel={endDateLabel}
-        sameDateLabel={sameDateLabel}
-      >
-        <MemoDayPicker
-          locale={LOCALE}
-          weekdaysShort={WEEKDAY_SHORT_LABEL}
-          localeUtils={LOCALE_UTILS}
-          initialMonth={initialMonth}
-          selectedDays={selectedDays}
-          onDayClick={handleDayClick}
-          numberOfMonths={numberOfMonths}
-          modifiers={modifiers}
-          disabledDays={disabledDays}
-        />
-      </RangeContainer>
-    </PickerFrame>
+      <MemoDayPicker
+        locale={LOCALE}
+        weekdaysShort={WEEKDAY_SHORT_LABEL}
+        localeUtils={LOCALE_UTILS}
+        initialMonth={initialMonth}
+        selectedDays={selectedDays}
+        onDayClick={handleDayClick}
+        numberOfMonths={numberOfMonths}
+        modifiers={modifiers}
+        disabledDays={disabledDays}
+      />
+    </RangeContainer>
   )
 }
 
