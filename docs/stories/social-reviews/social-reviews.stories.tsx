@@ -1,8 +1,11 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import SocialReviews from '@titicaca/social-reviews'
 
-storiesOf('Social-Reviews | SocialReviews', module).add('기본', () => {
+export default {
+  title: 'Social-Reviews | SocialReviews',
+}
+
+export function BaseSocialReviews() {
   return (
     <SocialReviews
       socialReviews={[
@@ -45,4 +48,8 @@ storiesOf('Social-Reviews | SocialReviews', module).add('기본', () => {
       ]}
     />
   )
-})
+}
+
+BaseSocialReviews.story = {
+  name: '기본 SocialReviews',
+}
