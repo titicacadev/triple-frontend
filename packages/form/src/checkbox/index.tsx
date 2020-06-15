@@ -7,6 +7,8 @@ import {
   MarginPadding,
 } from '@titicaca/core-elements'
 
+type CheckBoxValue = string | number | string[] | undefined
+
 const Label = styled.label<{ disabled?: boolean }>`
   color: rgb(${GetGlobalColor('gray')});
   position: relative;
@@ -75,15 +77,15 @@ const CheckboxInput = styled.input`
 export interface CheckboxItemOption
   extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string
-  value: any
+  value: CheckBoxValue
   margin?: MarginPadding
 }
 
 export interface CheckboxWrapperProps {
   name: string
-  value: any[]
+  value: CheckBoxValue[]
   options: CheckboxItemOption[]
-  onChange: (newValue: any[]) => any
+  onChange: (newValue: CheckBoxValue[]) => void
 }
 
 export function CheckboxItem({
@@ -124,7 +126,7 @@ export default function Checkbox({
 }: CheckboxWrapperProps) {
   const onCheckboxChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    value: any,
+    value: CheckBoxValue,
   ) =>
     onChange(
       e.target.checked

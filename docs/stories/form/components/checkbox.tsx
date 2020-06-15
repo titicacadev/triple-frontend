@@ -14,7 +14,6 @@ export default function CheckboxWrapper() {
         { label: '12:30', value: '12:30' },
       ]}
       onChange={(value) => {
-        console.log('value', value)
         setCheckedList(value)
       }}
     />
