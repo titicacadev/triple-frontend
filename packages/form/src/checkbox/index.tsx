@@ -105,7 +105,7 @@ export function CheckboxItem({
       <CheckboxInput
         {...rest}
         type="checkbox"
-        name={label}
+        name={name}
         disabled={disabled}
         checked={checked}
         onChange={onChange}
