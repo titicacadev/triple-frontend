@@ -77,6 +77,41 @@ export function generateSelectedCircleStyle(selector: string) {
   `
 }
 
+const todayStyle = css`
+  .DayPicker-Day--today:not(.DayPicker-Day--selected):not(.DayPicker-Day--outside) {
+    color: rgba(${getColor('blue')});
+
+    &:before {
+      top: 30px;
+      left: 0;
+      content: '오늘';
+      position: absolute;
+      display: inline-block;
+      font-size: 11px;
+      width: 100%;
+      color: rgba(${getColor('blue')});
+    }
+
+    &.DayPicker-Day--sunday,
+    &.DayPicker-Day--saturday,
+    &.DayPicker-Day--publicHolidays {
+      color: rgba(${getColor('red')});
+
+      &:before {
+        color: rgba(${getColor('red')});
+      }
+    }
+
+    &.DayPicker-Day--disabled {
+      color: rgba(${getColor('gray500')});
+
+      &:before {
+        color: rgba(${getColor('gray500')});
+      }
+    }
+  }
+`
+
 const PickerFrame = styled.div<{ height: string; sideSpacing: number }>`
   border-top: 1px solid rgba(${getColor('gray100')});
   border-bottom: 1px solid rgba(${getColor('gray100')});
@@ -138,6 +173,8 @@ const PickerFrame = styled.div<{ height: string; sideSpacing: number }>`
         .DayPicker-Week {
           display: table-row;
 
+          ${todayStyle}
+
           .DayPicker-Day {
             position: relative;
             display: table-cell;
@@ -145,29 +182,6 @@ const PickerFrame = styled.div<{ height: string; sideSpacing: number }>`
             width: 2%;
             vertical-align: middle;
             outline: none;
-
-            &--today {
-              color: rgba(${getColor('blue')});
-
-              &:before {
-                top: 30px;
-                left: 0;
-                content: '오늘';
-                position: absolute;
-                display: inline-block;
-                font-size: 11px;
-                width: 100%;
-                color: rgba(${getColor('blue')});
-              }
-
-              &.DayPicker-Day--sunday,
-              &.DayPicker-Day--saturday,
-              &.DayPicker-Day--publicHolidays {
-                &:before {
-                  color: rgba(${getColor('red')});
-                }
-              }
-            }
 
             &--sunday,
             &--saturday,
