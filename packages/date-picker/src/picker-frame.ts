@@ -119,7 +119,13 @@ const todayStyle = css`
   }
 `
 
-const PickerFrame = styled.div<{ height: string; sideSpacing: number }>`
+interface PickerFrameProps {
+  height: string
+  sideSpacing: number
+  monthPadding: string
+}
+
+const PickerFrame = styled.div<PickerFrameProps>`
   border-top: 1px solid rgba(${getColor('gray100')});
   border-bottom: 1px solid rgba(${getColor('gray100')});
 
@@ -138,9 +144,10 @@ const PickerFrame = styled.div<{ height: string; sideSpacing: number }>`
       text-align: center;
       width: 100%;
       border-spacing: 0 25px;
-      padding: 32px 0 30px 0;
       user-select: none;
       box-sizing: border-box;
+
+      ${({ monthPadding }) => `padding: ${monthPadding};`}
 
       .DayPicker-Caption {
         position: absolute;
