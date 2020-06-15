@@ -83,7 +83,13 @@ const NoContent = styled.div`
   color: ${gray500};
 `
 
-export function StaticPageContents({ src }: { src: string }) {
+export function StaticPageContents({
+  src,
+  onFallback = () => <NoContent>컨텐츠를 불러올 수 없습니다.</NoContent>,
+}: {
+  src: string
+  onFallback?: () => JSX.Element
+}) {
   const { content, fetchStatic } = useFetchStatic(src)
 
   useEffect(() => {
@@ -91,7 +97,7 @@ export function StaticPageContents({ src }: { src: string }) {
   }, [fetchStatic])
 
   if (!content) {
-    return <NoContent>컨텐츠를 불러올 수 없습니다.</NoContent>
+    return onFallback()
   }
 
   return <Contents dangerouslySetInnerHTML={{ __html: content }}></Contents>
