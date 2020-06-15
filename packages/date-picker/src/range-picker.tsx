@@ -50,6 +50,26 @@ const rangeStyle = css`
   }
 `
 
+function generateDateLabelStyle(selector: string, label: string) {
+  return css`
+   ${selector} {
+    &:not(.DayPicker-Day--outside):before {
+      color: rgba(${getColor('blue')});
+      position: absolute;
+      top: 35px;
+      left: 0px;
+      display: inline-block;
+      font-size: 11px;
+      width: 100%;
+      transform: translateY(0px);
+      background-color: transparent;
+      height: auto !important;
+      content: '${label}';
+    }
+   }
+  `
+}
+
 const RangeContainer = styled.div<{
   selectedAll: boolean
   enableSameDay?: boolean
@@ -59,51 +79,29 @@ const RangeContainer = styled.div<{
 }>`
   ${generateSelectedCircleStyle('.DayPicker-Day--from,.DayPicker-Day--to')}
 
-  ${({ selectedAll }) => selectedAll && rangeStyle}
+  ${({ selectedAll, startDateLabel, endDateLabel, sameDateLabel }) =>
+    selectedAll &&
+    css`
+      ${rangeStyle}
 
-  ${({ startDateLabel, selectedAll }) =>
-    startDateLabel &&
-    selectedAll &&
-    css`
-    .DayPicker-Day--from:before {
-      content: '${startDateLabel || ''}';
-      color: rgba(${getColor('blue')});
-      position: absolute;
-      top: 35px;
-      left: 0px;
-      display: inline-block;
-      font-size: 11px;
-      width: 100%;
-      transform: translateY(0px);
-      background-color: transparent;
-      height: auto !important;
-    }
-  `}
-  ${({ endDateLabel, selectedAll }) =>
-    endDateLabel &&
-    selectedAll &&
-    css`
-    .DayPicker-Day--to:before {
-      content: '${endDateLabel || ''}';
-      color: rgba(${getColor('blue')});
-      position: absolute;
-      top: 35px;
-      left: 0px;
-      display: inline-block;
-      font-size: 11px;
-      width: 100%;
-      transform: translateY(0px);
-      background-color: transparent;
-      height: auto !important;
-    }
-  `}
-  .DayPicker-Day--from.DayPicker-Day--to {
-    ${({ sameDateLabel }) => css`
-      &:before {
-        content: '${sameDateLabel || ''}';
+      ${
+        startDateLabel &&
+        generateDateLabelStyle('.DayPicker-Day--from', startDateLabel)
+      }
+
+      ${
+        endDateLabel &&
+        generateDateLabelStyle('.DayPicker-Day--to', endDateLabel)
+      }
+
+      ${
+        sameDateLabel &&
+        generateDateLabelStyle(
+          '.DayPicker-Day--from.DayPicker-Day--to',
+          sameDateLabel,
+        )
       }
     `}
-  }
 `
 
 function getInitialMonth() {
