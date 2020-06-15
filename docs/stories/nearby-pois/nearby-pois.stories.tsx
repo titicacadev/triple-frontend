@@ -8,7 +8,7 @@ export default {
   title: 'Nearby-Pois | NearbyPois',
 }
 
-function HistoryProviderWraaper({ children }: { children: React.ReactNode }) {
+function HistoryProviderWrapper({ children }: { children: React.ReactNode }) {
   return (
     <HistoryProvider
       appUrlScheme="dev-soto"
@@ -41,9 +41,9 @@ BaseNearbyPois.story = {
   name: '기본 NearbyPois',
   decorators: [
     (storyFn: StoryFn<JSX.Element>) => (
-      <HistoryProviderWraaper>
+      <HistoryProviderWrapper>
         <div>{storyFn()}</div>
-      </HistoryProviderWraaper>
+      </HistoryProviderWrapper>
     ),
   ],
 }
@@ -67,9 +67,9 @@ NearbyPoisWithRecommended.story = {
   name: '추천 일정이 있는',
   decorators: [
     (storyFn: StoryFn<JSX.Element>) => (
-      <HistoryProviderWraaper>
+      <HistoryProviderWrapper>
         <div>{storyFn()}</div>
-      </HistoryProviderWraaper>
+      </HistoryProviderWrapper>
     ),
   ],
 }
