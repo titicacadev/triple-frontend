@@ -1,9 +1,11 @@
 {
   "name": "@titicaca/static-page-content",
-  "version": "1.19.1",
+  "version": "1.23.0",
   "description": "Static Page Component",
-  "main": "lib/index.tsx",
-  "files": ["lib/"],
+  "main": "lib/index.js",
+  "files": [
+    "lib/"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
@@ -13,14 +15,10 @@
   },
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
-    "@titicaca/color-palette": "^1.19.1",
+    "@titicaca/color-palette": "^1.23.0",
     "isomorphic-fetch": "^2.2.1"
   },
-  "peerDependencies": {
-    "@sentry/browser": "^5.4.3"
-  },
   "devDependencies": {
-    "@sentry/browser": "^5.4.3",
     "@types/isomorphic-fetch": "^0.0.35"
   }
 }
