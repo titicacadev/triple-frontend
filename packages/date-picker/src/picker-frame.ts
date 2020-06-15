@@ -73,6 +73,13 @@ export function generateSelectedCircleStyle(selector: string) {
         content: '';
         border-radius: 100%;
       }
+
+      &.DayPicker-Day--outside {
+        &:before,
+        &:after {
+          content: none;
+        }
+      }
     }
   `
 }
@@ -191,12 +198,6 @@ const PickerFrame = styled.div<{ height: string; sideSpacing: number }>`
 
             &--disabled {
               color: rgba(${getColor('gray500')});
-            }
-
-            &--outside:after,
-            &--outside:before {
-              content: '' !important;
-              background: none !important;
             }
           }
         }
