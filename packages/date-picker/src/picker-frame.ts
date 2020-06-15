@@ -119,6 +119,60 @@ const todayStyle = css`
   }
 `
 
+export const rangeStyle = css`
+  .DayPicker-Day--selected {
+    background: rgba(${getColor('blue100')});
+  }
+
+  .DayPicker-Day--from {
+    background: linear-gradient(
+      to right,
+      #fafafa 50%,
+      rgba(${getColor('blue100')}) 50%
+    );
+  }
+
+  .DayPicker-Day--to {
+    background: linear-gradient(
+      to left,
+      #fafafa 50%,
+      rgba(${getColor('blue100')}) 50%
+    );
+  }
+
+  .DayPicker-Day--from.DayPicker-Day--to {
+    background: none;
+  }
+
+  .DayPicker-Day--outside {
+    background: none;
+
+    &.DayPicker-Day--included-range {
+      background: rgba(${getColor('blue100')});
+    }
+  }
+`
+
+export function generateDateLabelStyle(selector: string, label: string) {
+  return css`
+   ${selector} {
+    &:not(.DayPicker-Day--outside):before {
+      color: rgba(${getColor('blue')});
+      position: absolute;
+      top: 35px;
+      left: 0px;
+      display: inline-block;
+      font-size: 11px;
+      width: 100%;
+      transform: translateY(0px);
+      background-color: transparent;
+      height: auto !important;
+      content: '${label}';
+    }
+   }
+  `
+}
+
 interface PickerFrameProps {
   height: string
   sideSpacing: number
