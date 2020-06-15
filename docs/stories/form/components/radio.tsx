@@ -31,7 +31,9 @@ export default function RadioWrapper() {
           value: '5',
         },
       ]}
-      onChange={(e, value) => setValue(value)}
+      onChange={(e, value) => {
+        setValue(value)
+      }}
     />
   )
 }
