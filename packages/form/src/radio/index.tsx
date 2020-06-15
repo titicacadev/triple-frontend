@@ -7,7 +7,7 @@ import withField from '../with-field'
 type RadioValue = string | number | null | undefined
 
 interface Option {
-  text: string
+  label: string
   value: RadioValue
 }
 
@@ -73,13 +73,13 @@ interface RadioProps {
 function Radio({ name, value, onChange, options }: RadioProps) {
   return (
     <>
-      {options.map(({ text, value: optionValue }, idx) => (
+      {options.map(({ label, value: optionValue }, idx) => (
         <RadioFrame
           key={idx}
           onClick={(e) => onChange && onChange(e, optionValue)}
         >
-          <Label htmlFor={name}>{text}</Label>
-          <RadioInput name={name} selected={optionValue === value} />
+          <Label htmlFor={label}>{label}</Label>
+          <RadioInput name={name} id={label} selected={optionValue === value} />
         </RadioFrame>
       ))}
     </>

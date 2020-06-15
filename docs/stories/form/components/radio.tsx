@@ -10,23 +10,23 @@ export default function RadioWrapper() {
       name="지역_선택"
       options={[
         {
-          text: '전 지역',
+          label: '전 지역',
           value: null,
         },
         {
-          text: '신주쿠',
+          label: '신주쿠',
           value: '2',
         },
         {
-          text: '우에노',
+          label: '우에노',
           value: '3',
         },
         {
-          text: '긴자',
+          label: '긴자',
           value: '4',
         },
         {
-          text:
+          label:
             '아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 긴 텍스트',
           value: '5',
         },
