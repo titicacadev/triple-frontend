@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react'
 import fetch from 'isomorphic-fetch'
 import { useHistoryContext } from '@titicaca/react-contexts'
 
-export default function useVerification() {
+export default function useVerification({
+  forceVerification,
+}: {
+  forceVerification: boolean
+}) {
   const [verifiedContact, setVerifiedContact] = useState<string | undefined>()
   const [error, setError] = useState<string | undefined>()
   const { openWindow } = useHistoryContext()
@@ -20,7 +24,7 @@ export default function useVerification() {
 
         setVerifiedContact(rawPhoneNumber)
       } else if (response.status === 404) {
-        initiateVerification()
+        forceVerification && initiateVerification()
       } else {
         setError(await response.text())
       }
