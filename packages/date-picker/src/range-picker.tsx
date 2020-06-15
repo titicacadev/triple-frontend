@@ -226,7 +226,11 @@ function RangePicker({
   )
 
   return (
-    <PickerFrame height={height || '395px'} sideSpacing={6}>
+    <PickerFrame
+      height={height || '395px'}
+      sideSpacing={6}
+      monthPadding="32px 0 30px 0"
+    >
       <RangeContainer
         selectedAll={!!(startDate && endDate)}
         enableSameDay={enableSameDay}
