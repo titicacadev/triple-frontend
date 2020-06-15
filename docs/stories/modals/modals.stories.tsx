@@ -1,10 +1,13 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { Text } from '@titicaca/core-elements'
 import { Modal, Confirm, Alert } from '@titicaca/modals'
 
-storiesOf('modals | Modal', module)
-  .add('Basic', () => (
+export default {
+  title: 'modals | Modal',
+}
+
+export function BaseModal() {
+  return (
     <Modal open>
       <Text
         center
@@ -16,13 +19,27 @@ storiesOf('modals | Modal', module)
         안녕
       </Text>
     </Modal>
-  ))
-  .add('Confirm', () => (
+  )
+}
+
+BaseModal.story = {
+  name: 'Modal',
+}
+
+export function BaseConfirm() {
+  return (
     <Confirm open>
       삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.
     </Confirm>
-  ))
-  .add('Alert', () => (
+  )
+}
+
+BaseConfirm.story = {
+  name: 'Confirm',
+}
+
+export function BaseAlert() {
+  return (
     <Alert
       title="장애공지
     타이틀이 두줄일수도"
@@ -30,4 +47,9 @@ storiesOf('modals | Modal', module)
     >
       실시간 객실정보가 변경되어 안내드려요.
     </Alert>
-  ))
+  )
+}
+
+BaseAlert.story = {
+  name: 'Alert',
+}
