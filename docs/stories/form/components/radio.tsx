@@ -5,7 +5,7 @@ export default function RadioWrapper() {
   const [value, setValue] = useState<string | null>(null)
 
   return (
-    <Radio<string>
+    <Radio
       value={value}
       name="지역_선택"
       options={[
