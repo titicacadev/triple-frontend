@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled, { css } from 'styled-components'
 
 import withField from '../with-field'
@@ -65,30 +65,35 @@ interface RadioProps<T> {
   name: string
   onChange: (value: T) => void
   options: Option<T>[]
+  value: T
 }
 
-function Radio<T>({ name, onChange, options }: RadioProps<T>) {
-  const [selectedOptionKey, setSelectedOptionKey] = useState<string>('')
+function Radio<T>({ name, onChange, options, value }: RadioProps<T>) {
+  const handleSelect = (selectedKey: string) => {
+    const selctedOption = options.find((option) => option.key === selectedKey)
 
-  const handleSelect = (e: React.ChangeEvent<HTMLInputElement>, value: T) => {
-    setSelectedOptionKey(e.target.value)
-    onChange(value)
+    if (selctedOption) {
+      onChange(selctedOption.value)
+    }
   }
+
+  const selectedOptionKey = options.find((option) => option.value === value)
+    ?.key as string
 
   return (
     <>
-      {options.map(({ label, key, value }) => {
-        const id = `${key}_${label}_${name}`
+      {options.map(({ key, label }) => {
+        const id = `${name}_${label}_${key}`
 
         return (
-          <RadioFrame key={key}>
+          <RadioFrame key={id}>
             <Label htmlFor={id}>{label}</Label>
             <RadioInput
+              id={id}
               name={name}
               value={key}
-              id={id}
               selected={selectedOptionKey === key}
-              onChange={(e) => handleSelect(e, value)}
+              onChange={() => handleSelect(key)}
             />
           </RadioFrame>
         )
