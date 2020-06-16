@@ -29,6 +29,10 @@
     "isomorphic-fetch": "^2.2.1"
   },
   "devDependencies": {
+    "@titicaca/triple-web-to-native-interfaces": "^1.1.2",
     "@types/isomorphic-fetch": "^0.0.35"
+  },
+  "peerDependencies": {
+    "@titicaca/triple-web-to-native-interfaces": "*"
   }
 }
