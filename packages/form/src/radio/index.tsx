@@ -6,6 +6,7 @@ import withField from '../with-field'
 type RadioValue = string | number | null | undefined
 
 interface Option {
+  key: string
   label: string
   value: RadioValue
 }
@@ -63,24 +64,30 @@ const RadioInput = styled.input.attrs({ type: 'radio' })<{
 `
 
 interface RadioProps {
-  name?: string
+  name: string
   value: RadioValue
-  onChange?: (e: React.SyntheticEvent, value: RadioValue) => void
+  onChange: (value: RadioValue) => void
   options: Option[]
 }
 
 function Radio({ name, value, onChange, options }: RadioProps) {
   return (
     <>
-      {options.map(({ label, value: optionValue }, idx) => (
-        <RadioFrame
-          key={idx}
-          onClick={(e) => onChange && onChange(e, optionValue)}
-        >
-          <Label htmlFor={label}>{label}</Label>
-          <RadioInput name={name} id={label} selected={optionValue === value} />
-        </RadioFrame>
-      ))}
+      {options.map(({ label, value: optionValue, key }) => {
+        const id = `${key}_${label}`
+
+        return (
+          <RadioFrame key={key}>
+            <Label htmlFor={id}>{label}</Label>
+            <RadioInput
+              name={name}
+              id={id}
+              selected={optionValue === value}
+              onChange={() => onChange(optionValue)}
+            />
+          </RadioFrame>
+        )
+      })}
     </>
   )
 }
