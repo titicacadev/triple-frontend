@@ -8,14 +8,17 @@ export default function VerificationRequest({
 }: {
   onCancel: Function
 }) {
-  const { verifiedContact, initiateVerification } = useUserVerification({
+  const {
+    verificationState: { verified },
+    initiateVerification,
+  } = useUserVerification({
     forceVerification: true,
   })
 
   return (
     <Confirm
       title="인증이 필요해요!"
-      open={!verifiedContact}
+      open={verified === false}
       onConfirm={() => initiateVerification()}
       onCancel={() => onCancel()}
     >
