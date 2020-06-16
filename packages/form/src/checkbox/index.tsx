@@ -1,13 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled, { css } from 'styled-components'
-import equals from 'react-fast-compare'
 import {
   Container,
   GetGlobalColor,
   MarginPadding,
 } from '@titicaca/core-elements'
-
-type CheckBoxValue = string | number | string[] | undefined
 
 const Label = styled.label<{ disabled?: boolean }>`
   color: rgb(${GetGlobalColor('gray')});
@@ -74,86 +71,97 @@ const CheckboxInput = styled.input`
   }
 `
 
-export interface CheckboxItemOption
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+type Item<T> = {
+  key: string
   label: string
-  value: CheckBoxValue
+  value: T
+  disabled?: boolean
+}
+
+export interface CheckboxItemProps<T>
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  option: Item<T>
   margin?: MarginPadding
 }
 
-export interface CheckboxWrapperProps {
+export interface CheckboxWrapperProps<T> {
   name: string
-  value: CheckBoxValue[]
-  options: CheckboxItemOption[]
-  onChange: (newValue: CheckBoxValue[]) => void
+  options: Item<T>[]
+  onChange: (checkedValues: T[]) => void
 }
 
-export function CheckboxItem({
-  label,
-  value,
-  name,
+export function CheckboxItem<T>({
   margin = { bottom: 20 },
   disabled,
   checked,
   onChange = () => {},
-  ...rest
-}: CheckboxItemOption) {
+  name,
+  option: { key, label },
+}: CheckboxItemProps<T>) {
+  const id = `${key}_${label}`
+
   return (
     <Container margin={margin} position="relative" padding={{ right: 29 }}>
-      <Label htmlFor={label} disabled={disabled}>
+      <Label htmlFor={id} disabled={disabled}>
         {label}
       </Label>
 
       <CheckboxInput
-        {...rest}
         type="checkbox"
         name={name}
         disabled={disabled}
         checked={checked}
         onChange={onChange}
-        value={value}
-        id={label}
+        value={key}
+        id={id}
       />
     </Container>
   )
 }
 
-export default function Checkbox({
+export default function Checkbox<T>({
   name,
-  value: checkedList,
   onChange,
   options,
-}: CheckboxWrapperProps) {
-  const onCheckboxChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    value: CheckBoxValue,
-  ) =>
-    onChange(
-      e.target.checked
-        ? [...checkedList, value]
-        : checkedList.filter((v) => !equals(v, value)),
+}: CheckboxWrapperProps<T>) {
+  const [checkedKeyList, setCheckedKeyList] = useState<string[]>([])
+
+  const onCheckboxChange = (checkedKey: string) => {
+    const isCheckedKey = checkedKeyList.indexOf(checkedKey) > -1
+
+    setCheckedKeyList(
+      isCheckedKey
+        ? checkedKeyList.filter((key) => key !== checkedKey)
+        : [...checkedKeyList, checkedKey],
     )
+  }
+
+  useEffect(() => {
+    onChange(
+      checkedKeyList.map(
+        (key) =>
+          (options.find((option) => option.key === key) as Item<T>).value,
+      ),
+    )
+  }, [checkedKeyList, onChange, options])
 
   return (
     <>
       {options.map((option, index) => {
-        const { value, disabled, checked } = option
-        const checkedState =
-          checked !== undefined
-            ? checked
-            : checkedList.filter((v) => equals(v, value)).length > 0
+        const { disabled, key } = option
+        const isChecked = checkedKeyList.indexOf(key) > -1
         const isLast = index + 1 === options.length
         const checkboxMargin = { bottom: isLast ? 0 : 20 }
 
         return (
           <CheckboxItem
-            key={index}
-            {...option}
+            key={key}
+            option={option}
             name={name}
+            checked={isChecked}
             margin={checkboxMargin}
-            checked={checkedState}
             disabled={disabled}
-            onChange={(e) => onCheckboxChange(e, value)}
+            onChange={(e) => onCheckboxChange(e.target.value)}
           />
         )
       })}
