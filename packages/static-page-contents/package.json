@@ -1,11 +1,9 @@
 {
-  "name": "@titicaca/static-page-content",
+  "name": "@titicaca/static-page-contents",
   "version": "1.23.0",
   "description": "Static Page Component",
   "main": "lib/index.js",
-  "files": [
-    "lib/"
-  ],
+  "files": ["lib/"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
