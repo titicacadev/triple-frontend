@@ -5,6 +5,7 @@ import {
   subscribe,
   unsubscribe,
 } from '@titicaca/triple-web-to-native-interfaces'
+import { useVisibilityChange } from '@titicaca/react-hooks'
 
 export default function useVerification({
   forceVerification,
@@ -15,9 +16,9 @@ export default function useVerification({
   const [error, setError] = useState<string | undefined>()
   const { openWindow } = useHistoryContext()
 
-  const initiateVerification = () => {
+  const initiateVerification = useCallback(() => {
     openWindow('/verifications/?_triple_no_navbar')
-  }
+  }, [openWindow])
 
   const handleVerifiedMessageReceive = useCallback(
     ({ type, phoneNumber }: { type: string; phoneNumber?: string }) => {
@@ -28,8 +29,8 @@ export default function useVerification({
     [setVerifiedContact],
   )
 
-  useEffect(() => {
-    async function fetchAndSetVerifiedContact() {
+  const fetchAndSetVerifiedContact = useCallback(
+    async (force: boolean) => {
       const response = await fetch('/api/users/smscert')
 
       if (response.ok) {
@@ -37,19 +38,26 @@ export default function useVerification({
 
         setVerifiedContact(rawPhoneNumber)
       } else if (response.status === 404) {
-        forceVerification && initiateVerification()
+        force && initiateVerification()
       } else {
         setError(await response.text())
       }
-    }
+    },
+    [setVerifiedContact, initiateVerification],
+  )
 
-    fetchAndSetVerifiedContact()
+  useEffect(() => {
+    fetchAndSetVerifiedContact(forceVerification)
 
     subscribe('receiveMessage', handleVerifiedMessageReceive)
 
     return () => unsubscribe('receiveMessage', handleVerifiedMessageReceive)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useVisibilityChange((visible) => {
+    visible && fetchAndSetVerifiedContact(false)
+  })
 
   return { verifiedContact, initiateVerification, error }
 }
