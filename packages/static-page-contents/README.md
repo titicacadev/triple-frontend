@@ -41,6 +41,25 @@ const PolicyPopup = () => {
 
 - https://github.com/titicacadev/triple-static-pages/src/air/reservation/private-policy.html
 
+## Notice
+
+StaticPageContents 컴포넌트는 환경에 맞게 상대 경로로 `fetch` 가 동작하기 때문에 로컬 환경에서 개발할 때에는 커스텀 서버의 proxy 설정이 필요합니다.
+
+```ts
+const dev = process.env.NODE_ENV !== 'production'
+const API_URL_BASE =
+  process.env.API_URI_BASE || 'https://triple-dev.titicaca-corp.com'
+
+if (dev) {
+  app.use(
+    proxy('/pages', {
+      target: API_URL_BASE,
+      changeOrigin: true,
+    }),
+  )
+}
+```
+
 ## with Custom Style
 
 static page 로 serving 되는 페이지들은 markdown -> html 형태로 되어있다 보니 구조적인 markup 을 가지고 있어서
