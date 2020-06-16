@@ -143,7 +143,7 @@ export default function Checkbox<T>({
           (options.find((option) => option.key === key) as Item<T>).value,
       ),
     )
-  }, [checkedKeyList, onChange, options])
+  }, [checkedKeyList]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
