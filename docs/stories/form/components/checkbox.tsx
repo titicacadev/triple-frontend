@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Checkbox } from '@titicaca/form'
 
 export default function CheckboxWrapper() {
-  const [, setCheckedList] = useState<string[]>([])
+  const [checkedList, setCheckedList] = useState<string[]>([])
 
   return (
     <Checkbox
@@ -16,6 +16,7 @@ export default function CheckboxWrapper() {
           value: '12:30',
         },
       ]}
+      value={checkedList}
       onChange={(value) => {
         setCheckedList(value)
       }}
