@@ -10,6 +10,7 @@ import { useVisibilityChange } from '@titicaca/react-hooks'
 type VerificationState = {
   phoneNumber?: string
   verified?: boolean
+  error?: string
 }
 
 export default function useVerification({
@@ -18,9 +19,8 @@ export default function useVerification({
   forceVerification: boolean
 }) {
   const [verificationState, setVerificationState] = useState<VerificationState>(
-    { phoneNumber: undefined, verified: undefined },
+    { phoneNumber: undefined, verified: undefined, error: undefined },
   )
-  const [error, setError] = useState<string | undefined>()
   const { openWindow } = useHistoryContext()
 
   const initiateVerification = useCallback(() => {
@@ -52,7 +52,10 @@ export default function useVerification({
 
         force && initiateVerification()
       } else {
-        setError(await response.text())
+        setVerificationState({
+          verified: undefined,
+          error: await response.text(),
+        })
       }
     },
     [setVerificationState, initiateVerification],
@@ -71,5 +74,5 @@ export default function useVerification({
     visible && fetchAndSetVerificationState(false)
   })
 
-  return { verificationState, initiateVerification, error }
+  return { verificationState, initiateVerification }
 }
