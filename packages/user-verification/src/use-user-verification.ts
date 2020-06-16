@@ -1,6 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import fetch from 'isomorphic-fetch'
 import { useHistoryContext } from '@titicaca/react-contexts'
+import {
+  subscribe,
+  unsubscribe,
+} from '@titicaca/triple-web-to-native-interfaces'
 
 export default function useVerification({
   forceVerification,
@@ -14,6 +18,15 @@ export default function useVerification({
   const initiateVerification = () => {
     openWindow('/verifications/?_triple_no_navbar')
   }
+
+  const handleVerifiedMessageReceive = useCallback(
+    ({ type, phoneNumber }: { type: string; phoneNumber?: string }) => {
+      if (type === 'USER_VERIFIED' && phoneNumber) {
+        setVerifiedContact(phoneNumber)
+      }
+    },
+    [setVerifiedContact],
+  )
 
   useEffect(() => {
     async function fetchAndSetVerifiedContact() {
@@ -31,6 +44,10 @@ export default function useVerification({
     }
 
     fetchAndSetVerifiedContact()
+
+    subscribe('receiveMessage', handleVerifiedMessageReceive)
+
+    return () => unsubscribe('receiveMessage', handleVerifiedMessageReceive)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
