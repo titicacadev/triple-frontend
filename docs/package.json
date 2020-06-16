@@ -46,6 +46,7 @@
     "@titicaca/style-box": "^1.23.0",
     "@titicaca/triple-document": "^1.23.0",
     "@titicaca/type-definitions": "^1.23.0",
+    "@titicaca/user-verification": "^1.23.0",
     "http-proxy-middleware": "^0.20.0"
   },
   "devDependencies": {
