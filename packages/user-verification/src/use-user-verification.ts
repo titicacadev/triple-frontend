@@ -14,8 +14,10 @@ type VerificationState = {
 }
 
 export default function useVerification({
+  verificationContext,
   forceVerification,
 }: {
+  verificationContext?: string
   forceVerification: boolean
 }) {
   const [verificationState, setVerificationState] = useState<VerificationState>(
@@ -24,8 +26,10 @@ export default function useVerification({
   const { openWindow } = useHistoryContext()
 
   const initiateVerification = useCallback(() => {
-    openWindow('/verifications/?_triple_no_navbar')
-  }, [openWindow])
+    openWindow(
+      `/verifications/?_triple_no_navbar&context=${verificationContext}`,
+    )
+  }, [openWindow, verificationContext])
 
   const handleVerifiedMessageReceive = useCallback(
     ({ type, phoneNumber }: { type: string; phoneNumber?: string }) => {

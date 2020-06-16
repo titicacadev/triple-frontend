@@ -6,14 +6,17 @@ import { Text } from '@titicaca/core-elements'
 import useUserVerification from './use-user-verification'
 
 export default function VerificationRequest({
+  verificationContext,
   onCancel,
 }: {
+  verificationContext?: string
   onCancel: Function
 }) {
   const {
     verificationState: { verified },
     initiateVerification,
   } = useUserVerification({
+    verificationContext,
     forceVerification: true,
   })
 
