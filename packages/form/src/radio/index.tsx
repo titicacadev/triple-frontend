@@ -78,7 +78,7 @@ function Radio<T>({ name, onChange, options }: RadioProps<T>) {
   return (
     <>
       {options.map(({ label, key, value }) => {
-        const id = `${key}_${label}`
+        const id = `${key}_${label}_${name}`
 
         return (
           <RadioFrame key={key}>

@@ -98,7 +98,7 @@ export function CheckboxItem<T>({
   name,
   option: { key, label },
 }: CheckboxItemProps<T>) {
-  const id = `${key}_${label}`
+  const id = `${key}_${label}_${name}`
 
   return (
     <Container margin={margin} position="relative" padding={{ right: 29 }}>
