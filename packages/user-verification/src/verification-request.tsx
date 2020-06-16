@@ -9,7 +9,7 @@ export default function VerificationRequest({
   verificationContext,
   onCancel,
 }: {
-  verificationContext?: string
+  verificationContext?: 'purchase' | 'cash'
   onCancel: Function
 }) {
   const {

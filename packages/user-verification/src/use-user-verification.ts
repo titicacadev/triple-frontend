@@ -17,7 +17,7 @@ export default function useVerification({
   verificationContext,
   forceVerification,
 }: {
-  verificationContext?: string
+  verificationContext?: 'purchase' | 'cash'
   forceVerification: boolean
 }) {
   const [verificationState, setVerificationState] = useState<VerificationState>(
