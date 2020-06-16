@@ -59,6 +59,17 @@ export function common() {
       </tr>
 
       <tr className="DayPicker-Week">
+        <td>오늘</td>
+        <td className="DayPicker-Day DayPicker-Day--today">1</td>
+        <td className="DayPicker-Day DayPicker-Day--today DayPicker-Day--disabled">
+          2
+        </td>
+        <td className="DayPicker-Day DayPicker-Day--today DayPicker-Day--saturday">
+          3
+        </td>
+      </tr>
+
+      <tr className="DayPicker-Week">
         <td>knob</td>
         <td
           className={[
