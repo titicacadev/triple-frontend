@@ -137,9 +137,7 @@ export default function Checkbox<T>({
     )
 
     if (checkedKeyIndex > -1) {
-      const removeIndex = checkedKeyList.findIndex((key) => key === checkedKey)
-
-      onChange(value.filter((_, index) => index !== removeIndex))
+      onChange(value.filter((_, index) => index !== checkedKeyIndex))
     } else {
       onChange([
         ...value,
