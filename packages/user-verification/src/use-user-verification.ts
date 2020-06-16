@@ -7,12 +7,19 @@ import {
 } from '@titicaca/triple-web-to-native-interfaces'
 import { useVisibilityChange } from '@titicaca/react-hooks'
 
+type VerificationState = {
+  phoneNumber?: string
+  verified?: boolean
+}
+
 export default function useVerification({
   forceVerification,
 }: {
   forceVerification: boolean
 }) {
-  const [verifiedContact, setVerifiedContact] = useState<string | undefined>()
+  const [verificationState, setVerificationState] = useState<VerificationState>(
+    { phoneNumber: undefined, verified: undefined },
+  )
   const [error, setError] = useState<string | undefined>()
   const { openWindow } = useHistoryContext()
 
@@ -23,31 +30,36 @@ export default function useVerification({
   const handleVerifiedMessageReceive = useCallback(
     ({ type, phoneNumber }: { type: string; phoneNumber?: string }) => {
       if (type === 'USER_VERIFIED' && phoneNumber) {
-        setVerifiedContact(phoneNumber)
+        setVerificationState({
+          verified: true,
+          phoneNumber,
+        })
       }
     },
-    [setVerifiedContact],
+    [setVerificationState],
   )
 
-  const fetchAndSetVerifiedContact = useCallback(
+  const fetchAndSetVerificationState = useCallback(
     async (force: boolean) => {
       const response = await fetch('/api/users/smscert')
 
       if (response.ok) {
-        const { rawPhoneNumber } = await response.json()
+        const { rawPhoneNumber: phoneNumber } = await response.json()
 
-        setVerifiedContact(rawPhoneNumber)
+        setVerificationState({ phoneNumber, verified: true })
       } else if (response.status === 404) {
+        setVerificationState({ verified: false })
+
         force && initiateVerification()
       } else {
         setError(await response.text())
       }
     },
-    [setVerifiedContact, initiateVerification],
+    [setVerificationState, initiateVerification],
   )
 
   useEffect(() => {
-    fetchAndSetVerifiedContact(forceVerification)
+    fetchAndSetVerificationState(forceVerification)
 
     subscribe('receiveMessage', handleVerifiedMessageReceive)
 
@@ -56,8 +68,8 @@ export default function useVerification({
   }, [])
 
   useVisibilityChange((visible) => {
-    visible && fetchAndSetVerifiedContact(false)
+    visible && fetchAndSetVerificationState(false)
   })
 
-  return { verifiedContact, initiateVerification, error }
+  return { verificationState, initiateVerification, error }
 }
