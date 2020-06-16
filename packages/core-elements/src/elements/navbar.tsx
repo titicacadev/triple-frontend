@@ -81,12 +81,18 @@ const ICON_URL_BY_NAMES: { [key in IconNames]: string } = {
     'https://assets.triple.guide/images/btn-com-message-noti@3x.png',
 }
 
-// eslint-disable-next-line no-unexpected-multiline
-const NavbarItem = styled.div<{
+type NavbarItemProps = {
   floated?: CSS.FloatProperty
   icon?: IconNames
   position?: CSS.PositionProperty
-}>`
+}
+
+// eslint-disable-next-line no-unexpected-multiline
+const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
+  className: ['back', 'close'].includes(icon || '')
+    ? '-triple-fallback-action'
+    : '',
+}))<NavbarItemProps>`
   ${({ position }) => position && `position: ${position};`}
   float: ${({ floated }) => floated || 'left'};
   background-image: url(${({ icon }) => (icon ? ICON_URL_BY_NAMES[icon] : '')});
@@ -97,7 +103,6 @@ const NavbarItem = styled.div<{
   margin-right: ${({ floated }) => (floated === 'right' ? 0 : '6px')};
   cursor: pointer;
 `
-
 const SecondaryNavbar = styled.div`
   background-color: #ffffff;
   position: sticky;
