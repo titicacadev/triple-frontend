@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styled, { css } from 'styled-components'
 import {
   Container,
@@ -88,6 +88,7 @@ export interface CheckboxWrapperProps<T> {
   name: string
   options: Item<T>[]
   onChange: (checkedValues: T[]) => void
+  value: T[]
 }
 
 export function CheckboxItem<T>({
@@ -123,33 +124,36 @@ export default function Checkbox<T>({
   name,
   onChange,
   options,
+  value,
 }: CheckboxWrapperProps<T>) {
-  const [checkedKeyList, setCheckedKeyList] = useState<string[]>([])
+  const checkedKeyList = value.map(
+    (v) =>
+      (options.find((option) => option.value === v) as Item<T>).key as string,
+  )
 
   const onCheckboxChange = (checkedKey: string) => {
-    const isCheckedKey = checkedKeyList.indexOf(checkedKey) > -1
-
-    setCheckedKeyList(
-      isCheckedKey
-        ? checkedKeyList.filter((key) => key !== checkedKey)
-        : [...checkedKeyList, checkedKey],
+    const checkedKeyIndex = checkedKeyList.findIndex(
+      (key) => key === checkedKey,
     )
+
+    if (checkedKeyIndex > -1) {
+      const removeIndex = checkedKeyList.findIndex((key) => key === checkedKey)
+
+      onChange(value.filter((_, index) => index !== removeIndex))
+    } else {
+      onChange([
+        ...value,
+        (options.find((option) => option.key === checkedKey) as Item<T>)
+          .value as T,
+      ])
+    }
   }
-
-  useEffect(() => {
-    onChange(
-      checkedKeyList.map(
-        (key) =>
-          (options.find((option) => option.key === key) as Item<T>).value,
-      ),
-    )
-  }, [checkedKeyList]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
       {options.map((option, index) => {
         const { disabled, key } = option
-        const isChecked = checkedKeyList.indexOf(key) > -1
+        const isChecked = checkedKeyList.includes(key)
         const isLast = index + 1 === options.length
         const checkboxMargin = { bottom: isLast ? 0 : 20 }
 
