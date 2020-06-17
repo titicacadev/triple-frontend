@@ -184,14 +184,18 @@ function RangePicker({
   const initialMonth = React.useMemo(getInitialMonth, [])
 
   const from = React.useMemo(
-    () => (startDate ? moment(startDate).toDate() : null),
+    () => (startDate ? moment(startDate).toDate() : undefined),
     [startDate],
   )
-  const to = React.useMemo(() => (endDate ? moment(endDate).toDate() : null), [
-    endDate,
-  ])
+  const to = React.useMemo(
+    () => (endDate ? moment(endDate).toDate() : undefined),
+    [endDate],
+  )
   const selectedDays = React.useMemo(
-    () => [from, from && to ? { from, to } : undefined].filter((day) => !!day),
+    () =>
+      [from, from && to ? { from, to } : undefined].filter(
+        (day): day is Date | { from: Date; to: Date } => !!day,
+      ),
     [from, to],
   )
   const modifiers: Partial<Modifiers> = React.useMemo(
