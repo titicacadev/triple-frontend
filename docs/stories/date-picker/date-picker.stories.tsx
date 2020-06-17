@@ -14,7 +14,7 @@ import { DayPicker, RangePicker } from '@titicaca/date-picker'
  * 유효한 날짜인지 확인하는 함수
  */
 function checkValidDate(date: string) {
-  return new Date(date).toString() !== 'Invalid Date'
+  return isNaN(new Date(date).getTime())
 }
 
 /**
