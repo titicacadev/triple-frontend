@@ -15,7 +15,7 @@
     "lint": "concurrently --names eslint,stylelint,jsonlint 'npm:lint-es' 'npm:lint-style' 'npm:lint-json'",
     "test": "cd tests && npm test",
     "clean-lock": "lerna exec --ignore @titicaca/triple-frontend-docs --ignore @titicaca/triple-frontend-tests -- rm -rf ./package-lock.json",
-    "clean": "lerna exec -- rm -rf ./node_modules ./lib"
+    "clean": "lerna exec -- rm -rf ./node_modules ./lib ./*.tsbuildinfo"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
