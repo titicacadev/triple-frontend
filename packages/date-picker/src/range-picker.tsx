@@ -14,6 +14,8 @@ import { isValidDate, generatePaddedRange } from './utils'
 import PickerFrame from './picker-frame'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
 
+const MemoDayPicker = React.memo(DayPicker)
+
 const RangeContainer = styled.div<{
   height?: string
   selectedAll: boolean
@@ -275,7 +277,7 @@ function RangePicker({
         endDateLabel={endDateLabel}
         sameDateLabel={sameDateLabel}
       >
-        <DayPicker
+        <MemoDayPicker
           locale={LOCALE}
           weekdaysShort={WEEKDAY_SHORT_LABEL}
           localeUtils={LOCALE_UTILS}
