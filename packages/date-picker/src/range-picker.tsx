@@ -243,7 +243,7 @@ function RangePicker({
         return
       }
 
-      if (!isValidDate(nextTo) || (startDate && endDate)) {
+      if (!isValidDate(nextTo) || (from && to)) {
         onDatesChange({
           startDate: moment(day).format('YYYY-MM-DD'),
           endDate: null,
@@ -258,7 +258,7 @@ function RangePicker({
         nights: nextTo && nextFrom ? moment(nextTo).diff(nextFrom, 'days') : 0,
       })
     },
-    [enableSameDay, endDate, from, onDatesChange, startDate, to],
+    [enableSameDay, from, onDatesChange, to],
   )
 
   return (
