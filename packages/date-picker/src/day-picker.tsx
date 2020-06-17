@@ -13,6 +13,8 @@ import { getColor } from '@titicaca/color-palette'
 import PickerFrame from './picker-frame'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
 
+const MemoDayPicker = React.memo(DayPicker)
+
 const DayContainer = styled.div<{ height?: string }>`
   .DayPicker {
     height: ${({ height }) => height || '300px'};
@@ -121,7 +123,7 @@ function DatePicker({
   return (
     <PickerFrame>
       <DayContainer height={height}>
-        <DayPicker
+        <MemoDayPicker
           locale={LOCALE}
           weekdaysShort={WEEKDAY_SHORT_LABEL}
           localeUtils={LOCALE_UTILS}
