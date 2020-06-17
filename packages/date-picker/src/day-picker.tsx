@@ -83,9 +83,10 @@ function DatePicker({
   height?: string
   publicHolidays?: Date[]
 }) {
-  const selectedDay = React.useMemo(() => (day ? moment(day).toDate() : null), [
-    day,
-  ])
+  const selectedDay = React.useMemo(
+    () => (day ? moment(day).toDate() : undefined),
+    [day],
+  )
   const modifiers: Partial<Modifiers> = React.useMemo(
     () => ({
       publicHolidays,
