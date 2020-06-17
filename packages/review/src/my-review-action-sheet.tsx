@@ -1,4 +1,5 @@
 import React, { SyntheticEvent } from 'react'
+import qs from 'qs'
 import ActionSheet from '@titicaca/action-sheet'
 import { Confirm } from '@titicaca/modals'
 import {
@@ -12,7 +13,7 @@ import { ResourceType, ReviewData, ReviewProps } from './types'
 interface MyReviewActionSheetProps {
   myReview: ReviewData
   appUrlScheme: string
-  regionId: string
+  regionId?: string
   resourceType: ResourceType
   resourceId: string
   notifyReviewDeleted: (resourceId: string, reviewId: string) => void
@@ -41,7 +42,14 @@ export default function MyReviewActionSheet({
   } = useMyReviewsContext()
 
   const handleEditMenuClick = () => {
-    window.location.href = `${appUrlScheme}:///reviews/edit?region_id=${regionId}&resource_type=${resourceType}&resource_id=${resourceId}`
+    const params = qs.stringify({
+      /* eslint-disable @typescript-eslint/camelcase */
+      region_id: regionId,
+      resource_type: resourceType,
+      resource_id: resourceId,
+      /* eslint-enable @typescript-eslint/camelcase */
+    })
+    window.location.href = `${appUrlScheme}:///reviews/edit?${params}`
   }
 
   const handleDeleteMenuClick = () => {

@@ -33,7 +33,7 @@ export default function ReviewsList({
   myReview?: ReviewData
   reviews: ReviewData[]
   fetchNext?: () => void
-  regionId: string
+  regionId?: string
   appUrlScheme: string
   resourceId: string
   maxLength?: number
