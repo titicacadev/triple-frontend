@@ -32,7 +32,7 @@ function createBuilder(packageName) {
           name: 'resources',
         },
         {
-          command: `lerna exec --scope=@titicaca/${packageName} '${BUILD_DECLARATIONS}'`,
+          command: `lerna exec --scope=@titicaca/${packageName} '${BUILD_DECLARATIONS} || rm ./*.tsbuildinfo'`,
           name: 'declarations',
         },
       ],
