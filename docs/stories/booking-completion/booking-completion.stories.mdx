@@ -1,5 +1,5 @@
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
-import { text, boolean, withKnobs } from '@storybook/addon-knobs'
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
+import { boolean, withKnobs } from '@storybook/addon-knobs'
 import BookingCompletion from '@titicaca/booking-completion'
 
 <Meta title="booking-completion | Booking Complete" decorators={[withKnobs]} />
@@ -17,7 +17,7 @@ import BookingCompletion from '@titicaca/booking-completion'
         '공급사 확인 후 예약이 확정됩니다.',
         '예약이 확정되면 이메일로 바우처가 발송됩니다.',
       ]}
-      region={{ id: regionId, names: { ko: '바르셀로나', en: 'Barcelona' } }}
+      region={{ id: '', names: { ko: '바르셀로나', en: 'Barcelona' } }}
     />
   </Story>
 </Preview>

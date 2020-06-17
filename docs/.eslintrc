@@ -1,6 +1,7 @@
 {
-  "extends": "@titicaca/eslint-config-triple/typescript",
+  "extends": ["@titicaca/eslint-config-triple/typescript", "plugin:mdx/recommended"],
   "rules": {
-    "@typescript-eslint/no-empty-function": "off"
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-unused-expressions": "off"
   }
 }
