@@ -156,7 +156,7 @@ function RangePicker({
   sameDateLabel,
   onDatesChange,
   numberOfMonths = 25,
-  disabledDays: disabledDaysFromProps = [],
+  disabledDays: disabledDaysFromProps,
   beforeBlock,
   afterBlock,
   height,
@@ -207,7 +207,7 @@ function RangePicker({
   )
   const disabledDays = React.useMemo(
     () => [
-      ...disabledDaysFromProps.map((date) => moment(date).toDate()),
+      ...(disabledDaysFromProps || []).map((date) => moment(date).toDate()),
       beforeBlock || afterBlock
         ? ({
             before: beforeBlock,

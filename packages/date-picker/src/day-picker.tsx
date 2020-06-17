@@ -70,7 +70,7 @@ function DatePicker({
   afterBlock,
   numberOfMonths = 3,
   onDateChange,
-  disabledDays: disabledDaysFromProps = [],
+  disabledDays: disabledDaysFromProps,
   height,
   publicHolidays,
 }: {
@@ -96,7 +96,7 @@ function DatePicker({
   )
   const disabledDays = React.useMemo(
     () => [
-      ...disabledDaysFromProps.map((date) => moment(date).toDate()),
+      ...(disabledDaysFromProps || []).map((date) => moment(date).toDate()),
       beforeBlock || afterBlock
         ? ({
             before: beforeBlock,
