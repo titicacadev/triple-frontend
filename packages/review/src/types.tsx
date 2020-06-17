@@ -47,7 +47,7 @@ export interface ReviewData {
 export interface ReviewProps {
   resourceId: string
   resourceType: ResourceType
-  regionId: string
+  regionId?: string
   reviewsCount: number
   shortened?: boolean
   reviewed?: boolean
