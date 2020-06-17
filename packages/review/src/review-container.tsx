@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import styled from 'styled-components'
+import qs from 'qs'
 import { Section, Container, Text, Button } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import {
@@ -187,6 +188,14 @@ export default function ReviewContainer({
   }
 
   const handleFullListButtonClick = (e: React.SyntheticEvent) => {
+    const params = qs.stringify({
+      /* eslint-disable @typescript-eslint/camelcase */
+      region_id: regionId,
+      resource_id: resourceId,
+      resource_type: resourceType,
+      sorting_option: sortingOption,
+      /* eslint-disable @typescript-eslint/camelcase */
+    })
     trackEvent({
       ga: ['리뷰_전체보기'],
       fa: {
@@ -203,7 +212,7 @@ export default function ReviewContainer({
 
     navigate(
       `${appUrlScheme}:///inlink?path=${encodeURIComponent(
-        `/reviews/list?_triple_no_navbar&region_id=${regionId}&resource_id=${resourceId}&resource_type=${resourceType}&sorting_option=${sortingOption}`,
+        `/reviews/list?_triple_no_navbar&${params}`,
       )}`,
     )
   }
