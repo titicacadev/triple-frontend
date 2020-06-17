@@ -1,14 +1,8 @@
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
-import { List, Container } from '@titicaca/core-elements'
-import { action } from '@storybook/addon-actions'
-import {
-  withKnobs,
-  select,
-  text,
-  boolean,
-  number,
-} from '@storybook/addon-knobs'
-import { ColorBox, FlexBox } from '../color-palette/color-box'
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
+import { List } from '@titicaca/core-elements'
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs'
+
+import { ColorBox } from '../color-palette/color-box'
 
 <Meta title="Core-Elements | List" decorators={[withKnobs]} />
 
@@ -21,15 +15,17 @@ import { ColorBox, FlexBox } from '../color-palette/color-box'
 <Preview>
   <Story name="List">
     <List
-      verticalGap={(number('verticalGap(리스트 간격)', 20))}
+      verticalGap={number('verticalGap(리스트 간격)', 20)}
       divided={boolean('divided', false)}
       dividerColor={text('deviderColor(구분선 색상)', '#ff0000')}
       dividerWeight={number('dividerWeight(구분선 두께)', 1)}
-      >
+    >
       {[...Array(5).keys()].map((_, idx) => (
         <List.Item
           key={idx}
-          noDivider={boolean('짝수 번째 아래 라인 생략', false) && idx % 2 === 0}
+          noDivider={
+            boolean('짝수 번째 아래 라인 생략', false) && idx % 2 === 0
+          }
         >
           <ColorBox color="blue" />
         </List.Item>
