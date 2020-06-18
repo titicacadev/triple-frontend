@@ -1,5 +1,38 @@
 # 1.24.0 (2020-06-18)
 
+### common
+
+- root, docs, tests의 패키지 업데이트 (#797)
+- CHANGELOG 1.22.0 배포 날짜를 수정합니다 (#789)
+- Declarations 빌드 시 incremental flag 사용 (#726)
+
+### core-elements
+
+- Navbar.Item 의 icon 에 따라 기본 className 을 추가 (#805)
+- FlexBox 를 추가합니다. (#790)
+
+### user-verification
+
+- 패키지를 추가했습니다. (#786)
+- react-contexts를 devDeps, peerDeps 로 이동했습니다. (#815)
+
+### reviews
+
+- regionId를 옵셔녈하게 변경 (#813)
+
+### form
+
+- checkbox, radio 에 label 을 추가합니다 (#803)
+
+### type-definitions
+
+- ListingHotel.source.priceInfo optional 처리 (#796)
+
+### docs
+
+- eslint-mdx 플러그인을 추가합니다. (#814)
+- storybook 파일 형식을 최신 방식으로 변경합니다. (#798)
+
 # 1.23.0 (2020-06-04)
 
 - `react-contexts` device context에 state 추가 #787device context에 state 추가 (#787)
@@ -436,6 +469,7 @@
   인터페이스로 노출합니다.
 - `MyReviewsProvider`의 props 중 `type`을 `resourceType`으로 변경합니다.
 - `ReviewLikesContext`가 노출하는 인터페이스를 다음과 같이 변경합니다:
+
   ```
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
@@ -446,4 +480,5 @@
     updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
   }
   ```
+
 - `ReviewLikesContext`의 위치를 `@titicaca/review` 패키지로 옮깁니다.
