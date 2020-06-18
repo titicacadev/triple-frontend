@@ -90,33 +90,42 @@ HotelList.story = {
 
 export function TripleDocument() {
   return (
-    <PoiCarouselElement
-      poi={POI}
-      titleTopSpacing={number('이미지와 타이틀 간격', 10)}
-      description={
-        boolean('커스텀 텍스트 노출', false) && (
-          <Text color="blue" size="tiny">
-            4 · 5성급
-          </Text>
-        )
-      }
-      resourceScraps={{
-        [POI.id]: boolean('저장', false),
-      }}
-      additionalInfo={
-        boolean('부가 정보 노출', false) ? <PricingDescription /> : null
-      }
-      carouselSize={select(
-        '캐러셀 크기',
-        ['big', 'small', 'medium', 'large'],
-        undefined,
-      )}
-      imageFrame={select(
-        '프레임 크기',
-        ['4:1', '5:3', '11:7', '4:3', '1:1', '10:11', '5:8'],
-        undefined,
-      )}
-    />
+    <>
+      <PoiCarouselElement
+        poi={POI}
+        titleTopSpacing={number('이미지와 타이틀 간격', 10)}
+        description={
+          boolean('커스텀 텍스트 노출', false) && (
+            <Text color="blue" size="tiny">
+              4 · 5성급
+            </Text>
+          )
+        }
+        resourceScraps={{
+          [POI.id]: boolean('저장', false),
+        }}
+        additionalInfo={
+          boolean('부가 정보 노출', false) ? <PricingDescription /> : null
+        }
+        carouselSize={select(
+          '캐러셀 크기',
+          ['big', 'small', 'medium', 'large'],
+          undefined,
+        )}
+        imageFrame={select(
+          '프레임 크기',
+          ['4:1', '5:3', '11:7', '4:3', '1:1', '10:11', '5:8'],
+          undefined,
+        )}
+        onIntersecting={
+          boolean('onIntersecting', false)
+            ? () => {
+                console.log('노출')
+              }
+            : undefined
+        }
+      />
+    </>
   )
 }
 
