@@ -7,7 +7,7 @@
     "version": "lerna version --no-push --force-publish",
     "build": "npm run build-resources && npm run build-declarations",
     "build-resources": "lerna exec --ignore @titicaca/triple-frontend-docs --ignore @titicaca/triple-frontend-tests 'BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --delete-dir-on-start --no-comments'",
-    "build-declarations": "lerna exec --ignore @titicaca/triple-frontend-docs --ignore @titicaca/triple-frontend-tests tsc -- --incremental",
+    "build-declarations": "lerna exec --ignore @titicaca/triple-frontend-docs --ignore @titicaca/triple-frontend-tests tsc",
     "dev-docs": "lerna exec --scope @titicaca/triple-frontend-docs npm run dev",
     "lint-json": "prettier --check '**/*.json'",
     "lint-es": "eslint '{docs,packages,tests/src}/**/*.{ts,tsx,js}'",
