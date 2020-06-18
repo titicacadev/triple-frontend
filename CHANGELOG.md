@@ -1,3 +1,5 @@
+# 1.24.0 (2020-06-18)
+
 # 1.23.0 (2020-06-04)
 
 - `react-contexts` device context에 state 추가 #787device context에 state 추가 (#787)
