@@ -274,7 +274,10 @@ export function Pois<T extends ExtendedPOIListElementData>({
     pois: T[]
   }
   actionButtonElement: JSX.Element | null
-  onResourceClick?: (e: React.SyntheticEvent, poi: T) => void
+  onResourceClick?: (
+    e: React.MouseEvent<HTMLLIElement, MouseEvent>,
+    poi: T,
+  ) => void
   onResourceScrapedChange: PoiListElementProps<T>['onScrapedChange']
   resourceScraps: PoiListElementProps<T>['resourceScraps']
 }) {
@@ -298,8 +301,11 @@ export function Pois<T extends ExtendedPOIListElementData>({
           poi={poi}
           resourceScraps={resourceScraps}
           onClick={
-            onResourceClick &&
-            ((e: React.SyntheticEvent) => onResourceClick(e, poi))
+            onResourceClick
+              ? (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+                  onResourceClick(e, poi)
+                }
+              : undefined
           }
           onScrapedChange={onResourceScrapedChange}
           actionButtonElement={renderPoiListActionButton({
