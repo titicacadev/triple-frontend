@@ -25,6 +25,7 @@
   "dependencies": {
     "@titicaca/color-palette": "^1.24.0",
     "@titicaca/view-utilities": "^1.24.0",
+    "@titicaca/intersection-observer": "^1.24.0",
     "react-input-mask": "^2.0.4"
   },
   "peerDependencies": {
