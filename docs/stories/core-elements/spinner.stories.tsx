@@ -44,7 +44,11 @@ export function BaseRollingSpinner() {
     'https://triple-dev.titicaca-corp.com/air/static/images/airline-logos/AC.png',
   ]
   return (
-    <RollingSpinner imageUrls={logos} size={number('size', 36)}>
+    <RollingSpinner
+      imageUrls={logos}
+      duration={number('duration', 50)}
+      size={number('size', 36)}
+    >
       {boolean('children', false) ? (
         <Container textAlign="center" margin={{ bottom: 20 }}>
           <Text size="huge" lineHeight={1.29} bold>
