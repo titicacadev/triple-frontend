@@ -117,8 +117,8 @@ export function TripleDocument() {
           ['4:1', '5:3', '11:7', '4:3', '1:1', '10:11', '5:8'],
           undefined,
         )}
-        onIntersecting={
-          boolean('onIntersecting', false)
+        onImpress={
+          boolean('onImpress', false)
             ? () => {
                 console.log('노출')
               }
