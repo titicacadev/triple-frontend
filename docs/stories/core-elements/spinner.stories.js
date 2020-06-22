@@ -1,5 +1,5 @@
 import React from 'react'
-import { boolean, text } from '@storybook/addon-knobs'
+import { boolean, text, number } from '@storybook/addon-knobs'
 import {
   Spinner,
   Text,
@@ -43,7 +43,20 @@ export function BaseRollingSpinner() {
     'https://triple-dev.titicaca-corp.com/air/static/images/airline-logos/TW.png',
     'https://triple-dev.titicaca-corp.com/air/static/images/airline-logos/AC.png',
   ]
-  return <RollingSpinner imageUrls={logos} />
+  return (
+    <RollingSpinner imageUrls={logos} size={number('size', 36)}>
+      {boolean('children', false) ? (
+        <Container textAlign="center" margin={{ bottom: 20 }}>
+          <Text size="huge" lineHeight={1.29} bold>
+            {`항공을 예약하면, \n 나만의 여행일정이 생겨요!`}
+          </Text>
+          <Text size="small" lineHeight={1.29} alpha={0.5} margin={{ top: 14 }}>
+            {`200개 도시 무료가이드로 \n 나머지 준비도 완성해보세요.`}
+          </Text>
+        </Container>
+      ) : null}
+    </RollingSpinner>
+  )
 }
 
 BaseRollingSpinner.story = {
