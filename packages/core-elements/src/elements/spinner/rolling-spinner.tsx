@@ -74,9 +74,10 @@ const TrackContainer = styled.div`
   }
 `
 
-const Track = styled.div`
+const Track = styled.div<{ duration: number }>`
   display: inline-block;
-  animation: ${marquee} 50s linear infinite;
+  animation: ${marquee} linear infinite;
+  ${({ duration }) => `animation-duration: ${duration}s;`}
 `
 
 const ImageContainer = styled.div`
@@ -87,7 +88,7 @@ const ImageContainer = styled.div`
     position: relative;
     left: 0%;
   }
-  animation: ${swap} 50s linear infinite;
+  animation: ${swap} linear infinite;
 `
 
 const Image = styled.img<{ size: number }>`
@@ -106,9 +107,11 @@ const Image = styled.img<{ size: number }>`
 export default function RollingSpinner({
   imageUrls,
   size = 36,
+  duration = 50,
   children,
 }: PropsWithChildren<{
   size?: number
+  duration?: number
   imageUrls: string[]
 }>) {
   const images = useMemo(
@@ -130,7 +133,7 @@ export default function RollingSpinner({
       <RollingSpinnerContainer size={size}>
         {children ? <Container>{children}</Container> : null}
         <TrackContainer>
-          <Track>{images}</Track>
+          <Track duration={duration}>{images}</Track>
         </TrackContainer>
       </RollingSpinnerContainer>
     </RollingSpinnerFrame>
