@@ -4,7 +4,7 @@ export type ActionButtonElement = React.ReactNode
 
 export interface POIListElementBaseProps<T> {
   poi: T
-  onClick?: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void
+  onClick?: React.MouseEventHandler<HTMLLIElement>
   onScrapedChange?: ScrapButtonProps<T>['onScrapedChange']
   resourceScraps?: { [key: string]: boolean }
 }
