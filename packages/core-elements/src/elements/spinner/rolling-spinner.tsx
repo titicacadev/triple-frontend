@@ -1,5 +1,7 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, PropsWithChildren } from 'react'
 import styled, { keyframes } from 'styled-components'
+
+import Container from '../container'
 
 const marquee = keyframes`
   0% {
@@ -28,14 +30,17 @@ const RollingSpinnerFrame = styled.div`
   z-index: 9999;
 `
 
-const RollingSpinnerContainer = styled.div`
+const RollingSpinnerContainer = styled.div<{ size: number }>`
   position: absolute;
   width: 100%;
   top: 50%;
-  transform: translateY(-50%);
   overflow: visible;
   text-align: center;
   box-sizing: border-box;
+
+  ${({ size }) => `
+    transform: translateY(calc(-50% - ${size}px));
+  `}
 `
 
 const TrackContainer = styled.div`
@@ -77,7 +82,6 @@ const Track = styled.div`
 const ImageContainer = styled.div`
   display: inline-block;
   vertical-align: top;
-  height: 36px;
   font-size: 0;
   &:first-child {
     position: relative;
@@ -86,34 +90,45 @@ const ImageContainer = styled.div`
   animation: ${swap} 50s linear infinite;
 `
 
-const Image = styled.img`
+const Image = styled.img<{ size: number }>`
   display: inline-block;
   vertical-align: top;
   text-align: center;
-  width: 36px;
-  height: 36px;
   margin: 0 8px;
   box-sizing: border-box;
+
+  ${({ size }) => `
+    width: ${size}px;
+    height: ${size}px;
+  `}
 `
 
-export default function RollingSpinner({ imageUrls }: { imageUrls: string[] }) {
+export default function RollingSpinner({
+  imageUrls,
+  size = 36,
+  children,
+}: PropsWithChildren<{
+  size?: number
+  imageUrls: string[]
+}>) {
   const images = useMemo(
     () =>
       [...Array(5).keys()].map((_, idx) => {
         return (
           <ImageContainer key={idx}>
             {imageUrls.map((url: string, index: number) => (
-              <Image src={url} key={index} alt="rolling_image" />
+              <Image src={url} size={size} key={index} alt="rolling_image" />
             ))}
           </ImageContainer>
         )
       }),
-    [imageUrls],
+    [imageUrls, size],
   )
 
   return (
     <RollingSpinnerFrame>
-      <RollingSpinnerContainer>
+      <RollingSpinnerContainer size={size}>
+        {children ? <Container>{children}</Container> : null}
         <TrackContainer>
           <Track>{images}</Track>
         </TrackContainer>
