@@ -39,7 +39,7 @@ const RollingSpinnerContainer = styled.div<{ size: number }>`
   box-sizing: border-box;
 
   ${({ size }) => `
-    transform: translateY(calc(-50% - ${size}px));
+    transform: translateY(calc(-50% - ${size / 2}px));
   `}
 `
 
