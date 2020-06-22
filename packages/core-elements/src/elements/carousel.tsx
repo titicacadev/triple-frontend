@@ -69,7 +69,9 @@ function CarouselItem({
   threshold,
   onIntersecting,
   onClick,
+  className,
 }: PropsWithChildren<{
+  className?: string
   size?: CarouselSizes
   threshold?: number
   onIntersecting?: () => void
@@ -77,7 +79,7 @@ function CarouselItem({
 }>) {
   if (onIntersecting) {
     return (
-      <Item onClick={onClick}>
+      <Item onClick={onClick} size={size} className={className}>
         <StaticIntersectionObserver
           threshold={threshold || 0.5}
           onChange={({ isIntersecting }: { isIntersecting: boolean }) => {
@@ -93,7 +95,7 @@ function CarouselItem({
   }
 
   return (
-    <Item onClick={onClick} size={size}>
+    <Item onClick={onClick} size={size} className={className}>
       {children}
     </Item>
   )
