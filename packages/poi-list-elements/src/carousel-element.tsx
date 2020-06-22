@@ -28,7 +28,7 @@ export default function PoiCarouselElement<
   carouselSize,
   titleTopSpacing = 10,
   imageFrame,
-  onIntersecting,
+  onImpress,
 }: POIListElementBaseProps<T> & {
   actionButtonElement?: ActionButtonElement
   description?: React.ReactNode
@@ -36,7 +36,7 @@ export default function PoiCarouselElement<
   carouselSize?: CarouselSizes
   titleTopSpacing?: number
   imageFrame?: FrameRatioAndSizes
-  onIntersecting?: () => void
+  onImpress?: () => void
 }) {
   if (!poi) {
     return null
@@ -62,7 +62,7 @@ export default function PoiCarouselElement<
     <Carousel.Item
       size={carouselSize || 'small'}
       onClick={onClick}
-      onIntersecting={onIntersecting}
+      onImpress={onImpress}
     >
       <Image
         frame={imageFrame || 'large'}
