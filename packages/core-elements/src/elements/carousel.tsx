@@ -67,24 +67,24 @@ function CarouselItem({
   size,
   children,
   threshold,
-  onIntersecting,
+  onImpress,
   onClick,
   className,
 }: PropsWithChildren<{
   className?: string
   size?: CarouselSizes
   threshold?: number
-  onIntersecting?: () => void
+  onImpress?: () => void
   onClick?: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void
 }>) {
-  if (onIntersecting) {
+  if (onImpress) {
     return (
       <Item onClick={onClick} size={size} className={className}>
         <StaticIntersectionObserver
           threshold={threshold || 0.5}
           onChange={({ isIntersecting }: { isIntersecting: boolean }) => {
             if (isIntersecting) {
-              onIntersecting()
+              onImpress()
             }
           }}
         >
