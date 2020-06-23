@@ -4,6 +4,7 @@ import * as CSS from 'csstype'
 
 import { MarginPadding, BaseSizes } from '../commons'
 import { paddingMixin, formatMarginPadding, shadowMixin } from '../mixins'
+import { unit } from '../utils/unit'
 
 export interface ContainerPropsFromTemplate {
   position?: CSS.PositionProperty
@@ -58,41 +59,37 @@ const Container = styled.div<ContainerPropsFromTemplate>`
   ${({ width }) =>
     width &&
     `
-      width: ${typeof width === 'string' ? width : `${width}px`};
+      width: ${unit(width)};
     `};
 
   ${({ height }) =>
     height &&
     `
-      height: ${typeof height === 'string' ? height : `${height}px`};
+      height: ${unit(height)};
     `};
 
   ${({ minWidth }) =>
     minWidth &&
     `
-     min-width: ${typeof minWidth === 'string' ? minWidth : `${minWidth}px`};
+     min-width: ${unit(minWidth)};
     `};
 
   ${({ maxWidth }) =>
     maxWidth &&
     `
-    max-width: ${typeof maxWidth === 'string' ? maxWidth : `${maxWidth}px`};
+    max-width: ${unit(maxWidth)};
     `};
 
   ${({ minHeight }) =>
     minHeight &&
     `
-      min-height: ${
-        typeof minHeight === 'string' ? minHeight : `${minHeight}px`
-      };
+      min-height: ${unit(minHeight)};
     `};
 
   ${({ maxHeight }) =>
     maxHeight &&
     `
-      max-height: ${
-        typeof maxHeight === 'string' ? maxHeight : `${maxHeight}px`
-      };
+      max-height: ${unit(maxHeight)};
     `};
 
   float: ${({ floated }) => floated || 'none'};
