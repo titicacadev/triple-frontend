@@ -14,7 +14,7 @@ type VerificationState = {
 }
 
 export default function useVerification({
-  verificationContext,
+  verificationContext = 'purchase',
   forceVerification,
 }: {
   verificationContext?: 'purchase' | 'cash'
