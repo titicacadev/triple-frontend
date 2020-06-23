@@ -44,6 +44,7 @@ interface ExtendedPoiListElementBaseProps<T extends ListingPOI>
   distanceSuffix?: string
   isAdvertisement?: boolean
   notes?: string[]
+  hidePrice?: boolean
 }
 
 type ExtendedPoiListElementProps<
@@ -194,6 +195,7 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
         as,
         isAdvertisement,
         notes,
+        hidePrice,
       },
     } = this
 
@@ -268,6 +270,7 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
         tags={tags}
         hideScrapButton={hideScrapButton || !resourceScraps}
         hideDiscountRate={hideDiscountRate}
+        hidePrice={hidePrice}
         maxCommentLines={maxCommentLines}
         isAdvertisement={isAdvertisement}
       />
