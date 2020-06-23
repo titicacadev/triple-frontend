@@ -4,6 +4,7 @@ import { gray500, gray, blue, brightGray } from '@titicaca/color-palette'
 
 function useFetchStatic(url: string) {
   const [content, setContent] = useState<string | undefined>()
+  const [init, setInit] = useState<boolean>(false)
 
   const fetchStatic = useCallback(async () => {
     const response = await fetch(`/pages/${url}`)
@@ -15,9 +16,10 @@ function useFetchStatic(url: string) {
     ]
 
     setContent(response.ok ? bodyHTML : undefined)
+    setInit(true)
   }, [url])
 
-  return { content, fetchStatic }
+  return { content, init, fetchStatic }
 }
 
 const Contents = styled.div`
@@ -85,20 +87,27 @@ const NoContent = styled.div`
 
 export function StaticPageContents({
   src,
+  className,
   onFallback = () => <NoContent>컨텐츠를 불러올 수 없습니다.</NoContent>,
 }: {
   src: string
+  className?: string
   onFallback?: () => JSX.Element
 }) {
-  const { content, fetchStatic } = useFetchStatic(src)
+  const { content, init, fetchStatic } = useFetchStatic(src)
 
   useEffect(() => {
     fetchStatic()
   }, [fetchStatic])
 
-  if (!content) {
+  if (init && !content) {
     return onFallback()
   }
 
-  return <Contents dangerouslySetInnerHTML={{ __html: content }}></Contents>
+  return (
+    <Contents
+      className={className}
+      dangerouslySetInnerHTML={{ __html: content }}
+    ></Contents>
+  )
 }
