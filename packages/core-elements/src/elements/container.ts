@@ -1,4 +1,5 @@
 import styled, { css, StyledComponentProps } from 'styled-components'
+import { Color } from '@titicaca/color-palette'
 import * as CSS from 'csstype'
 
 import { MarginPadding, BaseSizes } from '../commons'
@@ -23,6 +24,7 @@ export interface ContainerPropsFromTemplate {
   display?: CSS.DisplayProperty
   horizontalScroll?: boolean
   shadow?: BaseSizes
+  backgroundColor?: Color
 }
 
 export type ContainerProps = StyledComponentProps<
@@ -40,6 +42,9 @@ const Container = styled.div<ContainerPropsFromTemplate>`
     css`
       position: ${position};
     `};
+
+  ${({ backgroundColor }) =>
+    backgroundColor && `background-color: ${backgroundColor};`}
 
   ${({ centered, margin = {} }) =>
     formatMarginPadding(
