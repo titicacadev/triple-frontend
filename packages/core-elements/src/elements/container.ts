@@ -1,4 +1,4 @@
-import styled, { css, StyledComponentProps } from 'styled-components'
+import styled, { StyledComponentProps } from 'styled-components'
 import { Color } from '@titicaca/color-palette'
 import * as CSS from 'csstype'
 
@@ -10,11 +10,12 @@ export interface ContainerPropsFromTemplate {
   centered?: boolean
   margin?: MarginPadding
   padding?: MarginPadding
-  width?: number
-  minWidth?: number
-  maxWidth?: number
-  minHeight?: number
-  maxHeight?: number
+  width?: number | string
+  height?: number | string
+  minWidth?: number | string
+  maxWidth?: number | string
+  minHeight?: number | string
+  maxHeight?: number | string
   floated?: CSS.FloatProperty
   textAlign?: CSS.TextAlignProperty
   borderRadius?: number
@@ -39,7 +40,7 @@ const Container = styled.div<ContainerPropsFromTemplate>`
 
   ${({ position }) =>
     position &&
-    css`
+    `
       position: ${position};
     `};
 
@@ -56,45 +57,55 @@ const Container = styled.div<ContainerPropsFromTemplate>`
 
   ${({ width }) =>
     width &&
-    css`
-      width: ${width}px;
+    `
+      width: ${typeof width === 'string' ? width : `${width}px`};
+    `};
+
+  ${({ height }) =>
+    height &&
+    `
+      height: ${typeof height === 'string' ? height : `${height}px`};
     `};
 
   ${({ minWidth }) =>
     minWidth &&
-    css`
-      min-width: ${minWidth}px;
+    `
+     min-width: ${typeof minWidth === 'string' ? minWidth : `${minWidth}px`};
     `};
 
   ${({ maxWidth }) =>
     maxWidth &&
-    css`
-      max-width: ${maxWidth}px;
+    `
+    max-width: ${typeof maxWidth === 'string' ? maxWidth : `${maxWidth}px`};
     `};
 
   ${({ minHeight }) =>
     minHeight &&
-    css`
-      min-height: ${minHeight}px;
+    `
+      min-height: ${
+        typeof minHeight === 'string' ? minHeight : `${minHeight}px`
+      };
     `};
 
   ${({ maxHeight }) =>
     maxHeight &&
-    css`
-      max-height: ${maxHeight}px;
+    `
+      max-height: ${
+        typeof maxHeight === 'string' ? maxHeight : `${maxHeight}px`
+      };
     `};
 
   float: ${({ floated }) => floated || 'none'};
 
   ${({ textAlign }) =>
     textAlign &&
-    css`
+    `
       text-align: ${textAlign};
     `};
 
   ${({ borderRadius }) =>
     borderRadius &&
-    css`
+    `
       border-radius: ${borderRadius}px;
       overflow: hidden;
       -webkit-mask-image: -webkit-radial-gradient(white, black);
@@ -102,7 +113,7 @@ const Container = styled.div<ContainerPropsFromTemplate>`
 
   ${({ clearing }) =>
     clearing &&
-    css`
+    `
       &:after {
         content: '';
         display: block;
@@ -112,26 +123,26 @@ const Container = styled.div<ContainerPropsFromTemplate>`
 
   ${({ whiteSpace }) =>
     whiteSpace &&
-    css`
+    `
       white-space: ${whiteSpace};
     `};
 
   ${({ userSelect }) =>
     userSelect &&
-    css`
+    `
       -webkit-user-select: ${userSelect};
       -user-select: ${userSelect};
     `}
 
   ${({ display }) =>
     display &&
-    css`
+    `
       display: ${display};
     `}
 
   ${({ horizontalScroll }) =>
     horizontalScroll &&
-    css`
+    `
       white-space: nowrap;
       overflow-x: auto;
       overflow-y: hidden;
