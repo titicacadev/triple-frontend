@@ -36,7 +36,7 @@ export default function VerificationRequest({
       >
         예약을 위해서는
         <br />
-        휴대폰 인증(최초 1회)이 필요합니다.
+        휴대폰 인증이 필요합니다. (최초 1회)
       </Text>
       <Modal.Actions>
         <Modal.Action onClick={() => onCancel()}>뒤로가기</Modal.Action>
