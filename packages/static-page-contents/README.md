@@ -33,13 +33,13 @@ const PolicyPopup = () => {
 
    <StaticContents src="hotel-service-policy.html" />
 
-- https://github.com/titicacadev/triple-static-pages/src/hotel-service-policy.md
+- <https://github.com/titicacadev/triple-static-pages/src/hotel-service-policy.md>
 
-항공 개인정보 이둉동의를 표시하고 싶다면
+항공 개인정보 이용동의를 표시하고 싶다면
 
    <StaticContents src="air/reservation/private-policy.html">
 
-- https://github.com/titicacadev/triple-static-pages/src/air/reservation/private-policy.html
+- <https://github.com/titicacadev/triple-static-pages/src/air/reservation/private-policy.html>
 
 ## Notice
 
