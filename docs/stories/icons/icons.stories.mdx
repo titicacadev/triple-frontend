@@ -1,14 +1,11 @@
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
-import { action } from '@storybook/addon-actions'
-import { text, boolean, select as selectAddons } from '@storybook/addon-knobs'
-import { ThemeProvider} from 'styled-components'
-
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
+import { ThemeProvider } from 'styled-components'
 import * as Colors from '@titicaca/color-palette'
 import { Back } from '@titicaca/icons'
 
 <Meta title="icons | Icons" />
 
-# Icons 
+# Icons
 
 <br />
 
@@ -21,9 +18,11 @@ import { Back } from '@titicaca/icons'
 </Preview>
 
 ## Size
+
 추가예정
 
 ## Color
+
 아이콘의 컬러값을 지정할 수 있습니다.
 
 <Preview>
@@ -38,6 +37,7 @@ import { Back } from '@titicaca/icons'
 </Preview>
 
 ## Stroke width
+
 `strokeWidth` prop 은 아이콘의 두께를 설정할 수 있습니다.
 
 <Preview>
@@ -60,7 +60,7 @@ Icon 은 기본적으로 `color` prop 이 최우선의 아이콘 컬러를 적�
 
 <Preview>
   <Story name="Theme">
-    <ThemeProvider theme={{colors: {primary:Colors.blue}}}>
+    <ThemeProvider theme={{ colors: { primary: Colors.blue } }}>
       <>
         <Back strokeWidth={1.6} />
         <Back strokeWidth={1.6} color={Colors.mint} />
