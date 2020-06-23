@@ -76,6 +76,25 @@ const CustomStyledStaticContents = styled(StaticPageContents)`
 `
 ```
 
+## with Fallback
+
+어떤 이유에서 정적 페이지를 로드하지 못할 경우 StaticPageContents 컴포넌트는 아래의 컴포넌트를 렌더링합니다.
+
+```jsx
+<NoContent>컨텐츠를 불러올 수 없습니다.</NoContent>
+```
+
+만약 fallback 처리를 커스텀하고 싶은 경우 `JSX.Element` 를 반환하는 `onFallback` 함수를 전달하면 됩니다.
+
+```jsx
+import styled from 'styled-components'
+import StaticContents from '@titicaca/static-contents'
+
+<StaticPageContents
+    src="can-not-load-static-file.html"
+    onFallback={() => <span>custom fallback contents</span>} />
+```
+
 ## Etc
 
 어떤 이유에서 static page 를 표시할 수 없는 경우 StaticPageContents 는 `컨텐츠를 불러올 수 없습니다.` 라는 메세지를 표시하도록 합니다.
