@@ -6,9 +6,11 @@ import { Text } from '@titicaca/core-elements'
 import useUserVerification from './use-user-verification'
 
 export default function VerificationRequest({
+  forceVerification,
   verificationContext,
   onCancel,
 }: {
+  forceVerification?: boolean
   verificationContext?: 'purchase' | 'cash'
   onCancel: Function
 }) {
@@ -17,7 +19,8 @@ export default function VerificationRequest({
     initiateVerification,
   } = useUserVerification({
     verificationContext,
-    forceVerification: true,
+    forceVerification:
+      typeof forceVerification !== 'undefined' ? forceVerification : true,
   })
 
   return (
