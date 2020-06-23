@@ -43,6 +43,7 @@
     "@titicaca/slider": "^1.25.1",
     "@titicaca/social-reviews": "^1.25.1",
     "@titicaca/static-map": "^1.25.1",
+    "@titicaca/static-page-contents": "^1.25.1",
     "@titicaca/style-box": "^1.25.1",
     "@titicaca/triple-document": "^1.25.1",
     "@titicaca/type-definitions": "^1.25.1",
