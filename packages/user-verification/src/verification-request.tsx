@@ -62,49 +62,22 @@ function Icon() {
       xmlns="http://www.w3.org/2000/svg"
     >
       <g fill="none" fillRule="evenodd">
-        <path
-          d="m0 0h3858v955h-3858z"
-          fill="#efefef"
-          transform="translate(-626 -375)"
+        <rect
+          fill="#368fff"
+          height="46.08"
+          rx="3.84"
+          width="30.08"
+          x="14"
+          y="7"
         />
-        <g fill="#fff">
-          <path d="m0 0h375v812h-375z" transform="translate(-158 -301)" />
-          <path d="m0 0h375v812h-375z" transform="translate(-158 -301)" />
-          <rect
-            height="47"
-            rx="2"
-            stroke="#368fff"
-            width="176"
-            x="-127.5"
-            y="-38.5"
+        <path d="m17.2 10.84h23.68v37.12h-23.68z" fill="#fff" />
+        <g stroke="#fff" strokeWidth="1.92">
+          <circle cx="41.84" cy="42.52" fill="#3d8bf7" r="11.2" />
+          <path
+            d="m37.68 41.796 3.115 3.115 5.271-5.271"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
-        </g>
-        <rect fill="#368fff" height="48" rx="2" width="130" x="57" y="-39" />
-        <path
-          d="m0 0h375v812h-375z"
-          fill="#3a3a3a"
-          opacity=".7"
-          transform="translate(-158 -301)"
-        />
-        <rect fill="#fff" height="272" rx="6" width="295" x="-118" y="-40" />
-        <g>
-          <rect
-            fill="#368fff"
-            height="46.08"
-            rx="3.84"
-            width="30.08"
-            x="14"
-            y="7"
-          />
-          <path d="m17.2 10.84h23.68v37.12h-23.68z" fill="#fff" />
-          <g stroke="#fff" strokeWidth="1.92">
-            <circle cx="41.84" cy="42.52" fill="#3d8bf7" r="11.2" />
-            <path
-              d="m37.68 41.796 3.115 3.115 5.271-5.271"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </g>
         </g>
       </g>
     </SvgWithPositioning>
