@@ -74,7 +74,7 @@ export default function useVerification({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  useVisibilityChange((visible) => {
+  useVisibilityChange((visible: boolean) => {
     visible && fetchAndSetVerificationState(false)
   })
 
