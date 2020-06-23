@@ -28,7 +28,7 @@ const BannerImage = styled.img`
   position: relative;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
   display: block;
   width: 320px;
   height: 130px;
@@ -79,7 +79,9 @@ const ImageBanner: FC<ImageBannerProps> = ({
         <BannerImage src={imgUrl} />
       </ImageWrapper>
 
-      <InstallLink href={installUrl}>👋🏻 손쉽게 앱 설치하기</InstallLink>
+      <InstallLink href={installUrl}>
+        👀&nbsp;&nbsp;편하게 앱에서 보기
+      </InstallLink>
 
       <DismissButton onClick={onDismiss}>
         아깝지만 나중에 받을게요
