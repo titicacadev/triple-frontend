@@ -4,3 +4,6 @@ examples
 package-lock.json
 
 tests/dist/*
+.vscode/*
+docs/*
+
