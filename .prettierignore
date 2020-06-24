@@ -2,8 +2,9 @@ node_modules
 lib
 examples
 package-lock.json
+lerna.json
 
-tests/dist/*
 .vscode/*
+tests/dist/*
 docs/*
 
