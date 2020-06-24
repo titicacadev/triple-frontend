@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import styled from 'styled-components'
 
 interface ImageBannerProps {
-  imgUrl: string
+  imgUrl?: string
   installUrl: string
   onDismiss: () => void
 }
@@ -73,10 +73,14 @@ const ImageBanner: FC<ImageBannerProps> = ({
   installUrl,
   onDismiss,
 }) => {
+  const imgSrc =
+    (imgUrl ?? '').trim() ||
+    'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+
   return (
     <ImageBannerWrapper>
       <ImageWrapper>
-        <BannerImage src={imgUrl} />
+        <BannerImage src={imgSrc} />
       </ImageWrapper>
 
       <InstallLink href={installUrl}>
