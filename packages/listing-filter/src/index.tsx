@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 const FilterEntryBase = styled.div<{ active?: boolean; disabled?: boolean }>`
   display: inline-block;
   font-size: 13px;
-  line-height: 1.2;
+  line-height: 15px;
   border: 1px solid
     ${({ active }) => (active ? '#368fff' : 'rgba(58, 58, 58, 0.2)')};
   color: ${({ active }) => (active ? '#368fff' : 'rgba(58, 58, 58, 0.2)')};
