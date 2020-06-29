@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { gray500, gray, blue, brightGray } from '@titicaca/color-palette'
 
 function useFetchStatic(url: string) {
-  const [content, setContent] = useState<string | undefined>()
+  const [content, setContent] = useState<string>('')
   const [init, setInit] = useState<boolean>(false)
 
   const fetchStatic = useCallback(async () => {
@@ -15,7 +15,7 @@ function useFetchStatic(url: string) {
       '',
     ]
 
-    setContent(response.ok ? bodyHTML : undefined)
+    setContent(response.ok ? bodyHTML : '')
     setInit(true)
   }, [url])
 
@@ -100,14 +100,17 @@ export function StaticPageContents({
     fetchStatic()
   }, [fetchStatic])
 
-  if (init && !content) {
-    return onFallback()
+  switch (true) {
+    case init && content !== '':
+      return (
+        <Contents
+          className={className}
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      )
+    case !init:
+      return <NoContent>컨텐츠를 로딩중입니다.</NoContent>
+    default:
+      return onFallback()
   }
-
-  return (
-    <Contents
-      className={className}
-      dangerouslySetInnerHTML={{ __html: content }}
-    ></Contents>
-  )
 }

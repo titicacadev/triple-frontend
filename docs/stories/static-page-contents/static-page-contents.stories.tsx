@@ -19,7 +19,7 @@ export function Basic() {
 }
 
 Basic.story = {
-  name: '기본 사용',
+  name: 'Basic usage',
 }
 
 export function withPopup() {
