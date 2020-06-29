@@ -3,6 +3,8 @@ import * as CSS from 'csstype'
 import styled, { css } from 'styled-components'
 import { Color, getColor } from '@titicaca/color-palette'
 
+import { FALLBACK_ACTION_CLASS_NAME } from '../constants'
+
 const NavbarFrame = styled.header<{
   borderless?: boolean
   backgroundColor?: Color
@@ -90,7 +92,7 @@ type NavbarItemProps = {
 // eslint-disable-next-line no-unexpected-multiline
 const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
   className: ['back', 'close'].includes(icon || '')
-    ? '-triple-fallback-action'
+    ? FALLBACK_ACTION_CLASS_NAME
     : '',
 }))<NavbarItemProps>`
   ${({ position }) => position && `position: ${position};`}
