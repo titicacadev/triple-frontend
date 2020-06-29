@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as CSS from 'csstype'
 import styled, { css } from 'styled-components'
-import { Color, getColor } from '@titicaca/color-palette'
+import { Color, getColor, brightGray } from '@titicaca/color-palette'
 
 const NavbarFrame = styled.header<{
   borderless?: boolean
@@ -19,7 +19,7 @@ const NavbarFrame = styled.header<{
     borderless
       ? ''
       : css`
-          box-shadow: 0 1px 0 0 #efefef;
+          box-shadow: 0 1px 0 0 ${brightGray};
         `};
   box-sizing: border-box;
   padding: 9px 12px;
