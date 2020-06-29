@@ -5,7 +5,7 @@ export default {
   title: 'core-elements | skeleton',
 }
 
-export function BaseActionSheet() {
+export function BaseSkeleton() {
   return (
     <Container width="400px" margin={{top: 20, left: 20}}>
       <Skeleton height="150px" margin={{bottom: 15}} borderRadius={4}/>
@@ -15,6 +15,6 @@ export function BaseActionSheet() {
   )
 }
 
-BaseActionSheet.story = {
+BaseSkeleton.story = {
   name: '기본 스켈레톤',
 }
