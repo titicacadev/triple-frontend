@@ -39,6 +39,7 @@ const TitleContainer = styled.div<{ childrenCount?: number }>`
   white-space: nowrap;
   overflow-x: hidden;
   text-overflow: ellipsis;
+  line-height: 52px;
 `
 
 type IconNames =
