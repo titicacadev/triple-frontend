@@ -48,8 +48,8 @@ export default function Spinner({
   children?: React.ReactNode
 }) {
   return (
-    <Container full={full} className={FALLBACK_ACTION_CLASS_NAME}>
-      <Wrapper>
+    <Container full={full}>
+      <Wrapper className={FALLBACK_ACTION_CLASS_NAME}>
         <Icon />
         {children}
       </Wrapper>
