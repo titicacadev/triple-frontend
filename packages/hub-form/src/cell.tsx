@@ -4,23 +4,23 @@ import { Text } from '@titicaca/core-elements'
 
 const STYLE_BY_TYPES: { [type: string]: ReturnType<typeof css> } = {
   SCHEDULE: css`
-    background: url('https://assets.triple-dev.titicaca-corp.com/images/img-hub-date@3x.png')
+    background: url('https://assets.triple.guide/images/img-hub-date@3x.png')
       center center no-repeat;
   `,
   PEOPLE: css`
-    background: url('https://assets.triple-dev.titicaca-corp.com/images/img-hub-people@3x.png')
+    background: url('https://assets.triple.guide/images/img-hub-people@3x.png')
       center center no-repeat;
   `,
   ORIGIN: css`
-    background: url('https://assets.triple-dev.titicaca-corp.com/images/img-hub-departure@3x.png')
+    background: url('https://assets.triple.guide/images/img-hub-departure@3x.png')
       center center no-repeat;
   `,
   DESTINATION: css`
-    background: url('https://assets.triple-dev.titicaca-corp.com/images/img-hub-arrival@3x.png')
+    background: url('https://assets.triple.guide/images/img-hub-arrival@3x.png')
       center center no-repeat;
   `,
   SEARCH: css`
-    background: url('https://assets.triple-dev.titicaca-corp.com/images/img-hub-search@3x.png')
+    background: url('https://assets.triple.guide/images/img-hub-search@3x.png')
       center center no-repeat;
   `,
 }
