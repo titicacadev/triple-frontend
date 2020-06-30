@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled, { css, keyframes } from 'styled-components'
 
-import { FALLBACK_ACTION_CLASS_NAME } from '../constants'
+import { FALLBACK_ACTION_CLASS_NAME } from '../../constants'
 
 const loadingAnimation = keyframes`
   100% {
