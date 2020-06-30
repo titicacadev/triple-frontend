@@ -19,6 +19,10 @@ const STYLE_BY_TYPES: { [type: string]: ReturnType<typeof css> } = {
     background: url('https://assets.triple-dev.titicaca-corp.com/images/img-hub-arrival@3x.png')
       center center no-repeat;
   `,
+  SEARCH: css`
+    background: url('https://assets.triple-dev.titicaca-corp.com/images/img-hub-search@3x.png')
+      center center no-repeat;
+  `,
 }
 
 const CellContainer = styled.div<{ type: string }>`
