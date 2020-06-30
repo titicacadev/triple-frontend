@@ -1,13 +1,13 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { gray20, blue } from '@titicaca/color-palette'
+import { blue, gray200 } from '@titicaca/color-palette'
 
 const FilterEntryBase = styled.div<{ active?: boolean; disabled?: boolean }>`
   display: inline-block;
   font-size: 13px;
   line-height: 15px;
-  border: 1px solid ${({ active }) => (active ? blue : gray20)};
-  color: ${({ active }) => (active ? blue : gray20)};
+  border: 1px solid ${({ active }) => (active ? blue : gray200)};
+  color: ${({ active }) => (active ? blue : gray200)};
   background-repeat: no-repeat;
   border-radius: 2px;
   box-sizing: border-box;
