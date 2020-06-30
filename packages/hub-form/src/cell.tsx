@@ -49,13 +49,15 @@ export default function Cell({
   type,
   placeholder,
   value,
+  onClick,
 }: {
   type: string
   placeholder?: string
   value?: string
+  onClick?: (e: React.SyntheticEvent) => void
 }) {
   return (
-    <CellContainer type={type}>
+    <CellContainer type={type} onClick={onClick}>
       {value ? (
         <Value>{value}</Value>
       ) : (
