@@ -54,7 +54,7 @@ const RangeContainer = styled(PickerFrame)<{
 `
 
 function getInitialMonth() {
-  return moment().add(1, 'day').startOf('day').toDate()
+  return moment().startOf('day').toDate()
 }
 
 function RangePicker({
