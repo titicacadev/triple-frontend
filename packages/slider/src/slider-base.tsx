@@ -51,6 +51,10 @@ const RailBase = styled.div`
   height: 3px;
   transform: translate(0, -50%);
 `
+const adjustMax = (maxVal: number, step: number) =>
+  maxVal % step ? Math.ceil(maxVal / step) * step : maxVal
+const adjustMin = (minVal: number, step: number) =>
+  minVal % step ? Math.floor(minVal / step) * step : minVal
 
 export default function SliderBase({
   step = 1,
@@ -64,19 +68,14 @@ export default function SliderBase({
   adjustInitValues,
   children,
 }: PropsWithChildren<SliderBaseProps>) {
-  const adjustMax = (maxVal: number) =>
-    maxVal % step ? Math.ceil(maxVal / step) * step : maxVal
-  const adjustMin = (minVal: number) =>
-    minVal % step ? Math.floor(minVal / step) * step : minVal
-
   const [values, setValues] = useState<SliderValue>(
     adjustInitValues && initialValues
-      ? [adjustMin(initialValues[0]), adjustMax(initialValues[1])]
+      ? [adjustMin(initialValues[0], step), adjustMax(initialValues[1], step)]
       : initialValues || [0],
   )
 
-  const adjustedMin = adjustMin(min)
-  const adjustedMax = adjustMax(max)
+  const adjustedMin = adjustMin(min, step)
+  const adjustedMax = adjustMax(max, step)
 
   const [scaleFn, scaleFnInverse] = nonLinear
     ? NON_LINEAR_FN_SET
@@ -98,10 +97,7 @@ export default function SliderBase({
   ])
 
   useEffect(() => {
-    const adjustedValue = [
-      values[0] < min ? min : values[0],
-      values[1] > max ? max : values[1],
-    ]
+    const adjustedValue = [Math.max(min, values[0]), Math.min(max, values[1])]
     debouncedChangeHandler(adjustedValue)
   }, [values, min, max]) // eslint-disable-line react-hooks/exhaustive-deps
 
