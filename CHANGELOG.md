@@ -47,7 +47,7 @@
 
 ### user-verification
 - 휴대전화번호 점유인증 테스트 과정에서 발견한 수정 사항들을 반영합니다. (#829)
-   - 워딩과 일부 디자인 요소의 svg를수정합니다.
+   - 워딩과 일부 디자인 요소의 svg를 수정합니다.
    - Verification context의 기본값을 지정합니다.
    - VerificationRequest에서 forceVerification을 false로 변경할 수 있도록 합니다.
 
