@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/location-properties",
-  "version": "1.25.1",
+  "version": "1.26.0",
   "description": "Location properties: addresses, contact, URL, ...",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,10 +15,10 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/action-sheet": "^1.25.1",
-    "@titicaca/core-elements": "^1.25.1",
-    "@titicaca/i18n": "^1.25.1",
-    "@titicaca/react-contexts": "^1.25.1",
-    "@titicaca/type-definitions": "^1.25.1"
+    "@titicaca/action-sheet": "^1.26.0",
+    "@titicaca/core-elements": "^1.26.0",
+    "@titicaca/i18n": "^1.26.0",
+    "@titicaca/react-contexts": "^1.26.0",
+    "@titicaca/type-definitions": "^1.26.0"
   }
 }
