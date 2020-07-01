@@ -55,8 +55,26 @@ export function BaseFilterEntry() {
   )
 }
 
-BaseFilterEntry.story = {
+BaseListingFilter.story = {
   name: '기본 FilterEntry',
+}
+
+export function UnderlineFilterEntry() {
+  return (
+    <ListingFilter>
+      <ListingFilter.FilterEntry
+        underline
+        active={boolean('active', true)}
+        disabled={boolean('disabled', false)}
+      >
+        {text('레이블', '부티크 호텔')}
+      </ListingFilter.FilterEntry>
+    </ListingFilter>
+  )
+}
+
+UnderlineFilterEntry.story = {
+  name: 'Underline FilterEntry',
 }
 
 export function FilterEntryWithIconImage() {

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { blue, gray200 } from '@titicaca/color-palette'
+import { blue, gray, gray200 } from '@titicaca/color-palette'
 
 const FilterEntryBase = styled.div<{ active?: boolean; disabled?: boolean }>`
   display: inline-block;
@@ -120,6 +120,32 @@ const RegularFilterEntry = styled(FilterEntryBase)<{
   border-radius: 2px;
 `
 
+// eslint-disable-next-line no-unexpected-multiline
+const UnderlineRegularFilterEntry = styled(FilterEntryBase)<{
+  active?: boolean
+}>`
+  position: relative;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 10px 15px;
+  ${({ active }) =>
+    active &&
+    css`
+      color: ${gray};
+      font-weight: 600;
+      &:before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 13px;
+        right: 13px;
+        height: 4px;
+        background: ${blue};
+      }
+    `};
+`
+
 const PrimaryFilterEntry = styled(FilterEntryBase)`
   padding: 10px 14px 9px 38px;
   background-image: url(${PRIMARY_ICON_URL});
@@ -138,14 +164,19 @@ interface FilterEntryProps extends React.HTMLAttributes<HTMLElement> {
   active?: boolean
   activeIconImage?: string
   inactiveIconImage?: string
+  underline?: boolean
 }
 
 function FilterEntry({
   active,
   activeIconImage,
   inactiveIconImage,
+  underline,
   ...props
 }: FilterEntryProps) {
+  if (underline) {
+    return <UnderlineRegularFilterEntry active={active} {...props} />
+  }
   return (
     <RegularFilterEntry
       active={active}
