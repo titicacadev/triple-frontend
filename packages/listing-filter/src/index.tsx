@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { blue, gray, gray200 } from '@titicaca/color-palette'
+import { blue, gray, gray200, white } from '@titicaca/color-palette'
 
 const FilterEntryBase = styled.div<{ active?: boolean; disabled?: boolean }>`
   display: inline-block;
@@ -47,8 +47,8 @@ const ExpandingFilterEntryBadge = styled.div`
   height: 18px;
   width: 18px;
   line-height: 18px;
-  background-color: #368fff;
-  color: #fff;
+  background-color: ${blue};
+  color: ${white};
   border-radius: 9px;
   font-size: 12px;
   font-weight: bold;
@@ -110,12 +110,12 @@ const RegularFilterEntry = styled(FilterEntryBase)<{
   ${({ active }) =>
     active
       ? css`
-          color: #fff;
-          background-color: #368fff;
+          color: ${white};
+          background-color: ${blue};
         `
       : css`
-          color: rgba(58, 58, 58, 0.2);
-          border: solid 1px rgba(58, 58, 58, 0.2);
+          color: ${gray200};
+          border: solid 1px ${gray200};
         `};
   border-radius: 2px;
 `
@@ -153,10 +153,10 @@ const PrimaryFilterEntry = styled(FilterEntryBase)`
   background-position: top 5px left 10px;
   border: none;
   border-radius: 2px;
-  background-color: #368fff;
+  background-color: ${blue};
   font-size: 13px;
   font-weight: bold;
-  color: #fff;
+  color: ${white};
 `
 
 interface FilterEntryProps extends React.HTMLAttributes<HTMLElement> {
