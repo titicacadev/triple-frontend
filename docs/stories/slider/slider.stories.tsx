@@ -74,14 +74,14 @@ BaseRangeSlider.story = {
 
 
 export function AdjustedRangeSlider() {
-  const [values, setValues] = useState([1, 13])
+  const [values, setValues] = useState([1, 31])
   return (
     <div>
       컴포넌트 외부: {values.join(', ')}
       <RangeSlider
         initialValues={values}
         min={1}
-        max={13}
+        max={31}
         step={3}
         onChange={([form, to]) => {
           setValues([form, to])
