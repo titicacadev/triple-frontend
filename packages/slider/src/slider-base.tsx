@@ -1,6 +1,7 @@
 import React, {
   useState,
   useEffect,
+  useMemo,
   useCallback,
   ComponentType,
   PropsWithChildren,
@@ -96,14 +97,18 @@ export default function SliderBase({
     debounceTime,
   ])
 
+  const adjustedValues = useMemo(
+    () => [Math.max(min, values[0]), Math.min(max, values[1])],
+    [max, min, values],
+  )
+
   useEffect(() => {
-    const adjustedValue = [Math.max(min, values[0]), Math.min(max, values[1])]
-    debouncedChangeHandler(adjustedValue)
-  }, [values, min, max]) // eslint-disable-line react-hooks/exhaustive-deps
+    debouncedChangeHandler(adjustedValues)
+  }, [adjustedValues]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Container>
-      {LabelComponent ? <LabelComponent values={values} /> : null}
+      {LabelComponent ? <LabelComponent values={adjustedValues} /> : null}
 
       <SliderContainer>
         <OriginalSlider
