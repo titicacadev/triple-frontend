@@ -120,7 +120,6 @@ const RegularFilterEntry = styled(FilterEntryBase)<{
   border-radius: 2px;
 `
 
-// eslint-disable-next-line no-unexpected-multiline
 const UnderlineRegularFilterEntry = styled(FilterEntryBase)<{
   active?: boolean
 }>`
