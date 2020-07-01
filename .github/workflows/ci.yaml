@@ -50,17 +50,16 @@ jobs:
             ${{ runner.OS }}-build-${{ env.cache-name }}-
             ${{ runner.OS }}-build-
 
-      - name: Build and Test
+      - name: Build
         run: |
           npm ci
           npm run lint
           npm run bootstrap
           npm run build
-          npm test
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Notify build and test success to slack
+      - name: Notify build success to slack
         if: success()
         env:
           SLACK_TITLE: ":tada: Build Succeed"
@@ -69,7 +68,7 @@ jobs:
         run: |
           npx @titicaca/gha-tools notify
 
-      - name: Notify build and test fail to slack
+      - name: Notify build fail to slack
         if: failure()
         env:
           SLACK_TITLE: ":pleading: Build Failed"
