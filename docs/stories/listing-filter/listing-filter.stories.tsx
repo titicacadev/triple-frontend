@@ -55,7 +55,7 @@ export function BaseFilterEntry() {
   )
 }
 
-BaseListingFilter.story = {
+BaseFilterEntry.story = {
   name: '기본 FilterEntry',
 }
 
