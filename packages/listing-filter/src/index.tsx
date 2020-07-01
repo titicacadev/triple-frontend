@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { blue, gray, gray200, white } from '@titicaca/color-palette'
+import { blue, gray, gray200, gray300, white } from '@titicaca/color-palette'
 
 const FilterEntryBase = styled.div<{ active?: boolean; disabled?: boolean }>`
   display: inline-block;
@@ -127,19 +127,21 @@ const UnderlineRegularFilterEntry = styled(FilterEntryBase)<{
   margin: 0;
   border: 0;
   border-radius: 0;
-  padding: 10px 15px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: ${gray300};
   ${({ active }) =>
     active &&
     css`
       color: ${gray};
-      font-weight: 600;
       &:before {
         content: '';
         position: absolute;
         bottom: 0;
-        left: 13px;
-        right: 13px;
-        height: 4px;
+        left: 10px;
+        right: 10px;
+        height: 2px;
         background: ${blue};
       }
     `};
