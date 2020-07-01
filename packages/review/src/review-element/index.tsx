@@ -1,5 +1,6 @@
 import React, { useState, PropsWithChildren, ComponentType } from 'react'
 import styled, { css } from 'styled-components'
+import qs from 'qs'
 import * as CSS from 'csstype'
 import semver from 'semver'
 import IntersectionObserver from '@titicaca/intersection-observer'
@@ -24,7 +25,7 @@ export interface ReviewElementProps {
   review: ReviewData
   isMyReview: boolean
   index: number
-  regionId: string
+  regionId?: string
   appUrlScheme: string
   onUserClick: ReviewEventHandler
   onUnfoldButtonClick?: ReviewEventHandler
@@ -141,6 +142,12 @@ export default function ReviewElement({
     likesCount: review.likesCount,
   })
   const handleSelectReview = (e: React.SyntheticEvent) => {
+    const params = qs.stringify({
+      /* eslint-disable @typescript-eslint/camelcase */
+      region_id: regionId,
+      resource_id: resourceId,
+      /* eslint-disable @typescript-eslint/camelcase */
+    })
     if (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) {
       e.preventDefault()
       e.stopPropagation()
@@ -153,7 +160,7 @@ export default function ReviewElement({
         },
       })
 
-      window.location.href = `${appUrlScheme}:///reviews/${review.id}/detail?region_id=${regionId}&resource_id=${resourceId}`
+      window.location.href = `${appUrlScheme}:///reviews/${review.id}/detail?${params}`
     }
   }
   return (

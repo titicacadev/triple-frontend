@@ -1,6 +1,8 @@
 import * as React from 'react'
 import styled, { css, keyframes } from 'styled-components'
 
+import { FALLBACK_ACTION_CLASS_NAME } from '../../constants'
+
 const loadingAnimation = keyframes`
   100% {
     background-position: -1740px;
@@ -47,7 +49,7 @@ export default function Spinner({
 }) {
   return (
     <Container full={full}>
-      <Wrapper>
+      <Wrapper className={FALLBACK_ACTION_CLASS_NAME}>
         <Icon />
         {children}
       </Wrapper>

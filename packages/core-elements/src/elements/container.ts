@@ -1,19 +1,22 @@
-import styled, { css, StyledComponentProps } from 'styled-components'
+import styled, { StyledComponentProps } from 'styled-components'
+import { Color } from '@titicaca/color-palette'
 import * as CSS from 'csstype'
 
 import { MarginPadding, BaseSizes } from '../commons'
 import { paddingMixin, formatMarginPadding, shadowMixin } from '../mixins'
+import { unit } from '../utils/unit'
 
 export interface ContainerPropsFromTemplate {
   position?: CSS.PositionProperty
   centered?: boolean
   margin?: MarginPadding
   padding?: MarginPadding
-  width?: number
-  minWidth?: number
-  maxWidth?: number
-  minHeight?: number
-  maxHeight?: number
+  width?: number | string
+  height?: number | string
+  minWidth?: number | string
+  maxWidth?: number | string
+  minHeight?: number | string
+  maxHeight?: number | string
   floated?: CSS.FloatProperty
   textAlign?: CSS.TextAlignProperty
   borderRadius?: number
@@ -23,6 +26,7 @@ export interface ContainerPropsFromTemplate {
   display?: CSS.DisplayProperty
   horizontalScroll?: boolean
   shadow?: BaseSizes
+  backgroundColor?: Color
 }
 
 export type ContainerProps = StyledComponentProps<
@@ -37,9 +41,12 @@ const Container = styled.div<ContainerPropsFromTemplate>`
 
   ${({ position }) =>
     position &&
-    css`
+    `
       position: ${position};
     `};
+
+  ${({ backgroundColor }) =>
+    backgroundColor && `background-color: ${backgroundColor};`}
 
   ${({ centered, margin = {} }) =>
     formatMarginPadding(
@@ -51,45 +58,51 @@ const Container = styled.div<ContainerPropsFromTemplate>`
 
   ${({ width }) =>
     width &&
-    css`
-      width: ${width}px;
+    `
+      width: ${unit(width)};
+    `};
+
+  ${({ height }) =>
+    height &&
+    `
+      height: ${unit(height)};
     `};
 
   ${({ minWidth }) =>
     minWidth &&
-    css`
-      min-width: ${minWidth}px;
+    `
+     min-width: ${unit(minWidth)};
     `};
 
   ${({ maxWidth }) =>
     maxWidth &&
-    css`
-      max-width: ${maxWidth}px;
+    `
+    max-width: ${unit(maxWidth)};
     `};
 
   ${({ minHeight }) =>
     minHeight &&
-    css`
-      min-height: ${minHeight}px;
+    `
+      min-height: ${unit(minHeight)};
     `};
 
   ${({ maxHeight }) =>
     maxHeight &&
-    css`
-      max-height: ${maxHeight}px;
+    `
+      max-height: ${unit(maxHeight)};
     `};
 
   float: ${({ floated }) => floated || 'none'};
 
   ${({ textAlign }) =>
     textAlign &&
-    css`
+    `
       text-align: ${textAlign};
     `};
 
   ${({ borderRadius }) =>
     borderRadius &&
-    css`
+    `
       border-radius: ${borderRadius}px;
       overflow: hidden;
       -webkit-mask-image: -webkit-radial-gradient(white, black);
@@ -97,7 +110,7 @@ const Container = styled.div<ContainerPropsFromTemplate>`
 
   ${({ clearing }) =>
     clearing &&
-    css`
+    `
       &:after {
         content: '';
         display: block;
@@ -107,26 +120,26 @@ const Container = styled.div<ContainerPropsFromTemplate>`
 
   ${({ whiteSpace }) =>
     whiteSpace &&
-    css`
+    `
       white-space: ${whiteSpace};
     `};
 
   ${({ userSelect }) =>
     userSelect &&
-    css`
+    `
       -webkit-user-select: ${userSelect};
       -user-select: ${userSelect};
     `}
 
   ${({ display }) =>
     display &&
-    css`
+    `
       display: ${display};
     `}
 
   ${({ horizontalScroll }) =>
     horizontalScroll &&
-    css`
+    `
       white-space: nowrap;
       overflow-x: auto;
       overflow-y: hidden;

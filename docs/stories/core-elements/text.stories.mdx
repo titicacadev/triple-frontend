@@ -1,7 +1,7 @@
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
 import { Text } from '@titicaca/core-elements'
 import { action } from '@storybook/addon-actions'
-import { select, text, boolean } from '@storybook/addon-knobs';
+import { select, text, boolean } from '@storybook/addon-knobs'
 
 <Meta title="Core-Elements | Text" component={Text} />
 
@@ -11,24 +11,28 @@ Text 를 표현할때 사용하는 컴포넌트입니다.
 
 <Preview>
   <Story name="Basic">
-     <Text
-        size={select(
-          '크기',
-          ['mini', 'tiny', 'small', 'medium', 'large', 'big', 'huge', 'massive'],
-          'tiny',
-        )}
-        color={select('색깔', ['blue', 'gray', 'gray20', 'gray100', 'white'], 'gray')}
-        center={boolean('중앙정렬')}
-        textAlign={select('정렬', [undefined, 'left', 'center', 'right'])}
-        onClick={action('clicked')}
-      >
-        {text('텍스트', '호텔 최저가 보상!')}
+    <Text
+      size={select(
+        '크기',
+        ['mini', 'tiny', 'small', 'medium', 'large', 'big', 'huge', 'massive'],
+        'tiny',
+      )}
+      color={select(
+        '색깔',
+        ['blue', 'gray', 'gray20', 'gray100', 'white'],
+        'gray',
+      )}
+      center={boolean('중앙정렬')}
+      textAlign={select('정렬', [undefined, 'left', 'center', 'right'])}
+      onClick={action('clicked')}
+    >
+      {text('텍스트', '호텔 최저가 보상!')}
     </Text>
   </Story>
 </Preview>
 
 ```jsx
-<Text size="medium" color="blue" onClick={() => 'clicked'}> 
+<Text size="medium" color="blue" onClick={() => 'clicked'}>
   호텔 최저가 보상!
 </Text>
 ```
@@ -66,8 +70,7 @@ strikethrough?: boolean
 <Text size="tiny"> tiny: 13px </Text>
 <Text size="small"> small: 14px </Text>
 <Text size="medium"> medium: 15px </Text>
-<Text size="large"> large: 16px </Text>
-<Text>default size="large"</Text>
+<Text size="large"> large: 16px (default) </Text>
 <Text size="big"> big: 19px </Text>
 <Text size="huge"> huge: 21px </Text>
 <Text size="massive"> massive: 24px </Text>
@@ -88,17 +91,32 @@ strikethrough?: boolean
 
 ## Color
 
-<Text size="big" color="blue"> color: blue </Text>
-<Text size="big" color="gray"> color: gray </Text>
-<Text size="big" color="gray" alpha={0.5}> color: gray alpha = 0.5 </Text>
+<Text size="big" color="blue">
+  {' '}
+  color: blue{' '}
+</Text>
+<Text size="big" color="gray">
+  {' '}
+  color: gray{' '}
+</Text>
+<Text size="big" color="gray" alpha={0.5}>
+  {' '}
+  color: gray alpha = 0.5{' '}
+</Text>
 
 ## LineHeight
 
-<Text style={{border: '1px solid gray'}}>lineHeight default: 1.2 <br/> lineHeight</Text>
+<Text style={{ border: '1px solid gray' }}>
+  lineHeight default: 1.2 <br /> lineHeight
+</Text>
 
-<Text lineHeight={1.8} style={{border: '1px solid gray'}}>lineHeight 1.8 <br/> lineHeight</Text>
+<Text lineHeight={1.8} style={{ border: '1px solid gray' }}>
+  lineHeight 1.8 <br /> lineHeight
+</Text>
 
-<Text lineHeight="50px" style={{border: '1px solid gray'}}>lineHeight 50px <br/> lineHeight</Text>
+<Text lineHeight="50px" style={{ border: '1px solid gray' }}>
+  lineHeight 50px <br /> lineHeight
+</Text>
 
 ## LetterSpacing
 
@@ -108,24 +126,23 @@ strikethrough?: boolean
 <Text letterSpacing={5}>letterSpacing</Text>
 ```
 
-
 ## TextStyle
 
-<Text textStyle="L6">textStyle="L6"</Text>
-<Text textStyle="M8">textStyle="M8"</Text>
-<Text textStyle="M6">textStyle="M6"</Text>
-<Text textStyle="M4">textStyle="M4"</Text>
-<Text textStyle="M2">textStyle="M2"</Text>
-<Text textStyle="M1">textStyle="M1"</Text>
-<Text textStyle="M">textStyle="M"</Text>
-<Text textStyle="S9">textStyle="S9"</Text>
-<Text textStyle="S8">textStyle="S8"</Text>
-<Text textStyle="S7">textStyle="S7"</Text>
-<Text textStyle="S6">textStyle="S6"</Text>
-<Text textStyle="S5">textStyle="S5"</Text>
-<Text textStyle="S4">textStyle="S4"</Text>
-<Text textStyle="S3">textStyle="S3"</Text>
-<Text textStyle="S2">textStyle="S2"</Text>
+<Text textStyle="L6">L6</Text>
+<Text textStyle="M8">M8</Text>
+<Text textStyle="M6">M6</Text>
+<Text textStyle="M4">M4</Text>
+<Text textStyle="M2">M2</Text>
+<Text textStyle="M1">M1</Text>
+<Text textStyle="M">M</Text>
+<Text textStyle="S9">S9</Text>
+<Text textStyle="S8">S8</Text>
+<Text textStyle="S7">S7</Text>
+<Text textStyle="S6">S6</Text>
+<Text textStyle="S5">S5</Text>
+<Text textStyle="S4">S4</Text>
+<Text textStyle="S3">S3</Text>
+<Text textStyle="S2">S2</Text>
 
 ```jsx
 <Text textStyle="L6">textStyle="L6"</Text>
@@ -145,34 +162,51 @@ strikethrough?: boolean
 <Text textStyle="S2">textStyle="S2"</Text>
 ```
 
-<Text textStyle="M8">서비스메인, 도시메인 타이틀
-</Text>
+<Text textStyle="M8">서비스메인, 도시메인 타이틀</Text>
 
 ```jsx
-<Text textStyle="M8"> 
-  서비스메인, 도시메인 타이틀
-</Text>
+<Text textStyle="M8">서비스메인, 도시메인 타이틀</Text>
 ```
 
-<Text size="tiny" textStyle="S2">Tiny Size Text</Text>
+<Text size="tiny" textStyle="S2">
+  Tiny Size Text
+</Text>
 
 > `size`, `lineHeight` 과 같은 기존 `props` 을 함께 사용할 경우 `textStyle` 이 최종 적용됩니다.
 
 ```jsx
-<Text size="tiny" lineHeight={1.5} textStyle="S2">Tiny Size Text</Text>
+<Text size="tiny" lineHeight={1.5} textStyle="S2">
+  Tiny Size Text
+</Text>
 ```
-
 
 ## TextAlign
 
 `center` 는 deprecated property 입니다. (`textAlign` 이 없을때만 동작합니다.)
 
-<Text center margin={{ bottom: 10 }} style={{border: '1px solid gray'}}>center</Text>
-<Text center textAlign="right" margin={{ bottom: 10 }} style={{border: '1px solid gray'}}>center textAlign="right"</Text>
-<Text textAlign="center" margin={{ bottom: 10 }} style={{border: '1px solid gray'}}>textAlign="center"</Text>
-<Text center style={{border: '1px solid gray'}}>
+<Text center margin={{ bottom: 10 }} style={{ border: '1px solid gray' }}>
   center
-  <Text textAlign="left" style={{border: '1px solid lightgray'}}>textAlign="left"</Text>
+</Text>
+<Text
+  center
+  textAlign="right"
+  margin={{ bottom: 10 }}
+  style={{ border: '1px solid gray' }}
+>
+  center and textAlign right
+</Text>
+<Text
+  textAlign="center"
+  margin={{ bottom: 10 }}
+  style={{ border: '1px solid gray' }}
+>
+  textAlign center
+</Text>
+<Text center style={{ border: '1px solid gray' }}>
+  center
+  <Text textAlign="left" style={{ border: '1px solid lightgray' }}>
+    textAlign left
+  </Text>
 </Text>
 
 ```jsx

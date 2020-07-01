@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
-import * as React from 'react'
+import React, { PropsWithChildren } from 'react'
+import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
 import { MarginPadding, CarouselSizes } from '../commons'
 import { marginMixin } from '../mixins'
@@ -52,7 +53,7 @@ const CarouselBase = styled.ul<CarouselBaseProps>`
     `};
 `
 
-const CarouselItem = styled.li<{ size?: CarouselSizes }>`
+const Item = styled.li<{ size?: CarouselSizes }>`
   display: inline-block;
   position: relative;
   width: ${({ size }) => CAROUSEL_WIDTH_SIZES[size || 'small']};
@@ -62,22 +63,61 @@ const CarouselItem = styled.li<{ size?: CarouselSizes }>`
   cursor: pointer;
 `
 
-export default class Carousel extends React.PureComponent<CarouselBaseProps> {
-  static Item = CarouselItem
-
-  render() {
-    const {
-      props: { margin, containerPadding, children, className },
-    } = this
-
+function CarouselItem({
+  size,
+  children,
+  threshold,
+  onImpress,
+  onClick,
+  className,
+}: PropsWithChildren<{
+  className?: string
+  size?: CarouselSizes
+  threshold?: number
+  onImpress?: () => void
+  onClick?: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void
+}>) {
+  if (onImpress) {
     return (
-      <CarouselBase
-        className={className}
-        margin={margin}
-        containerPadding={containerPadding}
-      >
-        {children}
-      </CarouselBase>
+      <Item onClick={onClick} size={size} className={className}>
+        <StaticIntersectionObserver
+          threshold={threshold || 0.5}
+          onChange={({ isIntersecting }: { isIntersecting: boolean }) => {
+            if (isIntersecting) {
+              onImpress()
+            }
+          }}
+        >
+          <div>{children}</div>
+        </StaticIntersectionObserver>
+      </Item>
     )
   }
+
+  return (
+    <Item onClick={onClick} size={size} className={className}>
+      {children}
+    </Item>
+  )
 }
+
+function Carousel({
+  margin,
+  containerPadding,
+  children,
+  className,
+}: PropsWithChildren<CarouselBaseProps>) {
+  return (
+    <CarouselBase
+      className={className}
+      margin={margin}
+      containerPadding={containerPadding}
+    >
+      {children}
+    </CarouselBase>
+  )
+}
+
+Carousel.Item = CarouselItem
+
+export default Carousel

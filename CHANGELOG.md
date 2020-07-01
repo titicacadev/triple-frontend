@@ -1,3 +1,92 @@
+# 1.26.0 (2020-07-01)
+
+### color-palette
+
+- `blue60`을 추가합니다. (#838)
+
+### listing-filter
+
+- underline filter entry를 추가합니다. (#845)
+- line-height를 px단위로 고정합니다. (#841)
+
+### core-elements
+
+- rolling-spinner 컴포넌트를 추가합니다. (#823)
+- Spinner에 fallback class를 추가합니다. (#837)
+- Navbar의 TitleContainer 영역을 확장합니다. (#839)
+
+### date-picker
+
+- RangePicker에서 오늘 날짜가 속한 달을 가장 처음 표시하도록 수정합니다. (#842)
+
+### hub-form
+
+- 패키지를 추가합니다. (#840)
+
+### slider
+
+- min, max값을 step의 배수로 보정하는 기능을 추가합니다. (#844)
+
+### poi-list-elements
+
+- 가격 노출 여부를 결정하는 prop을 추가합니다. (#828)
+
+# 1.25.0 (2020-06-24)
+### common
+- clean 태스크에서 .tsbulidinfo 파일을 삭제합니다. (#812)
+
+### app-installation-cta
+- 이미지 배너의 앱설치 버튼 레이블 변경 (#825, #826)
+
+### core-elements
+- Carousel 의 Item 에 IntersectionObserver 를 내장시킵니다. (#822)
+- Container 에서 width, height 의 unit, bg color 를 지원하는 prop 을 추가합니다. (#824)
+
+### date-picker
+- react-date-picker 의 style override 코드 리펙토링 (#625, #804)
+
+### user-verification
+- 휴대전화번호 점유인증 테스트 과정에서 발견한 수정 사항들을 반영합니다. (#829)
+   - 워딩과 일부 디자인 요소의 svg를 수정합니다.
+   - Verification context의 기본값을 지정합니다.
+   - VerificationRequest에서 forceVerification을 false로 변경할 수 있도록 합니다.
+
+
+# 1.24.0 (2020-06-18)
+
+### common
+
+- root, docs, tests의 패키지 업데이트 (#797)
+- CHANGELOG 1.22.0 배포 날짜를 수정합니다 (#789)
+- Declarations 빌드 시 incremental flag 사용 (#726)
+
+### core-elements
+
+- Navbar.Item 의 icon 에 따라 기본 className 을 추가 (#805)
+- FlexBox 를 추가합니다. (#790)
+
+### user-verification
+
+- 패키지를 추가했습니다. (#786)
+- react-contexts를 devDeps, peerDeps 로 이동했습니다. (#815)
+
+### reviews
+
+- regionId를 옵셔녈하게 변경 (#813)
+
+### form
+
+- checkbox, radio 에 label 을 추가합니다 (#803)
+
+### type-definitions
+
+- ListingHotel.source.priceInfo optional 처리 (#796)
+
+### docs
+
+- eslint-mdx 플러그인을 추가합니다. (#814)
+- storybook 파일 형식을 최신 방식으로 변경합니다. (#798)
+
 # 1.23.0 (2020-06-04)
 
 - `react-contexts` device context에 state 추가 #787device context에 state 추가 (#787)
@@ -434,6 +523,7 @@
   인터페이스로 노출합니다.
 - `MyReviewsProvider`의 props 중 `type`을 `resourceType`으로 변경합니다.
 - `ReviewLikesContext`가 노출하는 인터페이스를 다음과 같이 변경합니다:
+
   ```
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
@@ -444,4 +534,5 @@
     updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
   }
   ```
+
 - `ReviewLikesContext`의 위치를 `@titicaca/review` 패키지로 옮깁니다.

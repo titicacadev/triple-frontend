@@ -1,5 +1,4 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { boolean, number, select, text } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { List, Container, Text } from '@titicaca/core-elements'
@@ -28,16 +27,12 @@ function PricingDescription() {
 
 const [POI] = POIS as Exclude<POIData, HotelData>[]
 
-storiesOf('poi-list-elements | POI', module)
-  .add('POI 리스트', () => (
-    <PoiListElement
-      poi={POI}
-      resourceScraps={{
-        [POI.id]: boolean('저장', false),
-      }}
-    />
-  ))
-  .add('POI 리스트 (as div)', () => (
+export default {
+  title: 'poi-list-elements | POI',
+}
+
+export function PoiList() {
+  return (
     <PoiListElement
       as={text('as', 'div')}
       poi={POI}
@@ -45,8 +40,15 @@ storiesOf('poi-list-elements | POI', module)
         [POI.id]: boolean('저장', false),
       }}
     />
-  ))
-  .add('호텔 리스트', () => (
+  )
+}
+
+PoiList.story = {
+  name: 'POI 리스트',
+}
+
+export function HotelList() {
+  return (
     <List divided>
       {(HOTELS as HotelData[]).map((hotel, idx) => (
         <PoiListElement
@@ -68,6 +70,7 @@ storiesOf('poi-list-elements | POI', module)
           }
           hideDiscountRate={boolean('hideDiscountRate', false)}
           hideScrapButton={boolean('hideScrapButton', false)}
+          hidePrice={boolean('hidePrice', false)}
           onScrapedChange={action('scrap change')}
           notes={boolean('custom note') && ['3성급', '판교 백현동']}
           {...(boolean('distance 표시', false)
@@ -79,37 +82,60 @@ storiesOf('poi-list-elements | POI', module)
         />
       ))}
     </List>
-  ))
-  .add('TripleDocument', () => (
-    <PoiCarouselElement
-      poi={POI}
-      titleTopSpacing={number('이미지와 타이틀 간격', 10)}
-      description={
-        boolean('커스텀 텍스트 노출', false) && (
-          <Text color="blue" size="tiny">
-            4 · 5성급
-          </Text>
-        )
-      }
-      resourceScraps={{
-        [POI.id]: boolean('저장', false),
-      }}
-      additionalInfo={
-        boolean('부가 정보 노출', false) ? <PricingDescription /> : null
-      }
-      carouselSize={select(
-        '캐러셀 크기',
-        ['big', 'small', 'medium', 'large'],
-        undefined,
-      )}
-      imageFrame={select(
-        '프레임 크기',
-        ['4:1', '5:3', '11:7', '4:3', '1:1', '10:11', '5:8'],
-        undefined,
-      )}
-    />
-  ))
-  .add('TripleDocument 리스트', () => (
+  )
+}
+
+HotelList.story = {
+  name: '호텔 리스트',
+}
+
+export function TripleDocument() {
+  return (
+    <>
+      <PoiCarouselElement
+        poi={POI}
+        titleTopSpacing={number('이미지와 타이틀 간격', 10)}
+        description={
+          boolean('커스텀 텍스트 노출', false) && (
+            <Text color="blue" size="tiny">
+              4 · 5성급
+            </Text>
+          )
+        }
+        resourceScraps={{
+          [POI.id]: boolean('저장', false),
+        }}
+        additionalInfo={
+          boolean('부가 정보 노출', false) ? <PricingDescription /> : null
+        }
+        carouselSize={select(
+          '캐러셀 크기',
+          ['big', 'small', 'medium', 'large'],
+          undefined,
+        )}
+        imageFrame={select(
+          '프레임 크기',
+          ['4:1', '5:3', '11:7', '4:3', '1:1', '10:11', '5:8'],
+          undefined,
+        )}
+        onImpress={
+          boolean('onImpress', false)
+            ? () => {
+                console.log('노출')
+              }
+            : undefined
+        }
+      />
+    </>
+  )
+}
+
+TripleDocument.story = {
+  name: 'TripleDocument',
+}
+
+export function TripleDocumentList() {
+  return (
     <PoiListElement
       compact
       poi={POI}
@@ -117,8 +143,15 @@ storiesOf('poi-list-elements | POI', module)
         [POI.id]: boolean('저장', false),
       }}
     />
-  ))
-  .add('POI Card Element (호텔)', () => (
+  )
+}
+
+TripleDocumentList.story = {
+  name: 'TripleDocument 리스트',
+}
+
+export function PoiCardElementsTypeHotel() {
+  return (
     <POICardElement
       type="hotel"
       names={{
@@ -161,8 +194,15 @@ storiesOf('poi-list-elements | POI', module)
       onScrapedChange={action('onScrapedChange')}
       onDirectionButtonClick={action('onDirectionButtonClick')}
     />
-  ))
-  .add('POI Card Element (POI)', () => (
+  )
+}
+
+PoiCardElementsTypeHotel.stroy = {
+  name: 'POI Card Element (호텔)',
+}
+
+export function PoiCardElementsTypePoi() {
+  return (
     <POICardElement
       type={select('type', ['attraction', 'restaurant'], 'attraction')}
       names={{
@@ -206,4 +246,9 @@ storiesOf('poi-list-elements | POI', module)
       onScrapedChange={action('onScrapedChange')}
       onDirectionButtonClick={action('onDirectionButtonClick')}
     />
-  ))
+  )
+}
+
+PoiCardElementsTypePoi.story = {
+  name: 'POI Card Element (POI)',
+}

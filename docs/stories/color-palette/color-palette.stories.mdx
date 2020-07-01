@@ -1,6 +1,5 @@
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
-import { action } from '@storybook/addon-actions'
-import { select, text, boolean } from '@storybook/addon-knobs'
+import { Meta } from '@storybook/addon-docs/blocks'
+
 import { ColorBox, FlexBox } from './color-box'
 
 <Meta title="color-palette | Color Palette" />
@@ -29,6 +28,7 @@ import { ColorBox, FlexBox } from './color-box'
   </FlexBox>
   <FlexBox flex={1} flexFlow="column" space>
     <ColorBox color="blue" />
+    <ColorBox color="blue60" labelColor="gray600" />
     <ColorBox color="blue100" labelColor="gray600" />
   </FlexBox>
   <FlexBox flex={1} flexFlow="column" space>
@@ -67,14 +67,14 @@ import { ColorBox, FlexBox } from './color-box'
 
 - 2020.04.17 체크리스트 color sets
 
-  <FlexBox>
-    <FlexBox flex={1} flexFlow="column" space>
-      <ColorBox color="azul500" />
-      <ColorBox color="azul" />
-    </FlexBox>
-    <FlexBox flex={1} flexFlow="column" space>
-      <ColorBox color="teal100" />
-      <ColorBox color="teal900" />
-      <ColorBox color="teal" />
-    </FlexBox>
+<FlexBox>
+  <FlexBox flex={1} flexFlow="column" space>
+    <ColorBox color="azul500" />
+    <ColorBox color="azul" />
   </FlexBox>
+  <FlexBox flex={1} flexFlow="column" space>
+    <ColorBox color="teal100" />
+    <ColorBox color="teal900" />
+    <ColorBox color="teal" />
+  </FlexBox>
+</FlexBox>

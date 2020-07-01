@@ -35,9 +35,13 @@ storiesOf('Core-Elements | Navbar', module)
         'white',
       )}
     >
-      <Navbar.Item icon={select('좌측 아이콘', ['back', 'close'], 'back')} />
+      <Navbar.Item
+        className="boxer gg"
+        icon={select('좌측 아이콘', ['back', 'close'], 'back')}
+      />
       <Navbar.Item
         floated="right"
+        className="boxer gg"
         icon={select('우측 아이콘', ICON_LIST, 'more')}
       />
     </Navbar>

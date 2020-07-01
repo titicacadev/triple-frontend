@@ -1,14 +1,12 @@
-import * as React from 'react'
+import React from 'react'
 import styled, { css } from 'styled-components'
-import { Text } from '@titicaca/core-elements'
 
 import withField from '../with-field'
 
-type RadioValue = string | number | null | undefined
-
-interface Option {
-  text: string
-  value: RadioValue
+interface Option<T> {
+  key: string
+  label: string
+  value: T
 }
 
 const RADIO_INPUT_SIZE = 26
@@ -24,9 +22,14 @@ const RadioFrame = styled.div`
   }
 `
 
-const RadioText = styled(Text)`
+const Label = styled.label`
   width: 100%;
   vertical-align: middle;
+  font-size: 16px;
+  display: inline-block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `
 
 const RadioInput = styled.input.attrs({ type: 'radio' })<{
@@ -58,28 +61,43 @@ const RadioInput = styled.input.attrs({ type: 'radio' })<{
         `};
 `
 
-interface RadioProps {
-  name?: string
-  value: RadioValue
-  onChange?: (e: React.SyntheticEvent, value: RadioValue) => void
-  options: Option[]
+interface RadioProps<T> {
+  name: string
+  onChange: (value: T) => void
+  options: Option<T>[]
+  value: T
 }
 
-function Radio({ name, value, onChange, options }: RadioProps) {
+function Radio<T>({ name, onChange, options, value }: RadioProps<T>) {
+  const handleSelect = (selectedKey: string) => {
+    const selctedOption = options.find((option) => option.key === selectedKey)
+
+    if (selctedOption) {
+      onChange(selctedOption.value)
+    }
+  }
+
+  const selectedOptionKey = options.find((option) => option.value === value)
+    ?.key as string
+
   return (
     <>
-      {options.map(({ text, value: optionValue }, idx) => (
-        <RadioFrame
-          key={idx}
-          onClick={(e) => onChange && onChange(e, optionValue)}
-        >
-          <RadioText inlineBlock size="large" ellipsis>
-            {text}
-          </RadioText>
+      {options.map(({ key, label }) => {
+        const id = `${name}_${label}_${key}`
 
-          <RadioInput name={name} selected={optionValue === value} />
-        </RadioFrame>
-      ))}
+        return (
+          <RadioFrame key={id}>
+            <Label htmlFor={id}>{label}</Label>
+            <RadioInput
+              id={id}
+              name={name}
+              value={key}
+              selected={selectedOptionKey === key}
+              onChange={() => handleSelect(key)}
+            />
+          </RadioFrame>
+        )
+      })}
     </>
   )
 }

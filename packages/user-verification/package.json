@@ -1,0 +1,41 @@
+{
+  "name": "@titicaca/user-verification",
+  "version": "1.26.0",
+  "description": "user verification",
+  "keywords": [
+    "triple",
+    "frontend",
+    "user",
+    "verification"
+  ],
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "dependencies": {
+    "@titicaca/core-elements": "^1.26.0",
+    "@titicaca/modals": "^1.26.0",
+    "@titicaca/react-hooks": "^1.26.0",
+    "isomorphic-fetch": "^2.2.1"
+  },
+  "devDependencies": {
+    "@titicaca/react-contexts": "^1.26.0",
+    "@titicaca/triple-web-to-native-interfaces": "^1.1.2",
+    "@types/isomorphic-fetch": "^0.0.35"
+  },
+  "peerDependencies": {
+    "@titicaca/react-contexts": "*",
+    "@titicaca/triple-web-to-native-interfaces": "*"
+  }
+}

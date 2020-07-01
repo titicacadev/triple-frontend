@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import styled from 'styled-components'
 
 interface ImageBannerProps {
-  imgUrl: string
+  imgUrl?: string
   installUrl: string
   onDismiss: () => void
 }
@@ -28,7 +28,7 @@ const BannerImage = styled.img`
   position: relative;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
   display: block;
   width: 320px;
   height: 130px;
@@ -73,13 +73,19 @@ const ImageBanner: FC<ImageBannerProps> = ({
   installUrl,
   onDismiss,
 }) => {
+  const imgSrc =
+    (imgUrl ?? '').trim() ||
+    'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+
   return (
     <ImageBannerWrapper>
       <ImageWrapper>
-        <BannerImage src={imgUrl} />
+        <BannerImage src={imgSrc} />
       </ImageWrapper>
 
-      <InstallLink href={installUrl}>👋🏻 손쉽게 앱 설치하기</InstallLink>
+      <InstallLink href={installUrl}>
+        👀&nbsp;&nbsp;편하게 앱에서 보기
+      </InstallLink>
 
       <DismissButton onClick={onDismiss}>
         아깝지만 나중에 받을게요
