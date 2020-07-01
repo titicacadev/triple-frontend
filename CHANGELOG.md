@@ -1,3 +1,36 @@
+# 1.26.0 (2020-07-01)
+
+### color-palette
+
+- `blue60`을 추가합니다. (#838)
+
+### listing-filter
+
+- underline filter entry를 추가합니다. (#845)
+- line-height를 px단위로 고정합니다. (#841)
+
+### core-elements
+
+- rolling-spinner 컴포넌트를 추가합니다. (#823)
+- Spinner에 fallback class를 추가합니다. (#837)
+- Navbar의 TitleContainer 영역을 확장합니다. (#839)
+
+### date-picker
+
+- RangePicker에서 오늘 날짜가 속한 달을 가장 처음 표시하도록 수정합니다. (#842)
+
+### hub-form
+
+- 패키지를 추가합니다. (#840)
+
+### slider
+
+- min, max값을 step의 배수로 보정하는 기능을 추가합니다. (#844)
+
+### poi-list-elements
+
+- 가격 노출 여부를 결정하는 prop을 추가합니다. (#828)
+
 # 1.25.0 (2020-06-24)
 ### common
 - clean 태스크에서 .tsbulidinfo 파일을 삭제합니다. (#812)
@@ -12,9 +45,9 @@
 ### date-picker
 - react-date-picker 의 style override 코드 리펙토링 (#625, #804)
 
-### user-verification 
+### user-verification
 - 휴대전화번호 점유인증 테스트 과정에서 발견한 수정 사항들을 반영합니다. (#829)
-   - 워딩과 일부 디자인 요소의 svg를수정합니다. 
+   - 워딩과 일부 디자인 요소의 svg를수정합니다.
    - Verification context의 기본값을 지정합니다.
    - VerificationRequest에서 forceVerification을 false로 변경할 수 있도록 합니다.
 
