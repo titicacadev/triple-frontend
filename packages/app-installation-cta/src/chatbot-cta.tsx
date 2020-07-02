@@ -16,6 +16,7 @@ type CTAData = {
 }
 
 export const CHATBOT_CLOSED_STORAGE_KEY = 'triple_chatbotad_closed'
+export const EVENT_CHATBOT_CTA_READY = 'triple_chatbot_cta_ready'
 
 export default function ChatbotCTA({
   available = false,
@@ -38,6 +39,7 @@ export default function ChatbotCTA({
 
     if (!visited && !visibility && available) {
       setVisibility(true)
+      window.dispatchEvent(new Event(EVENT_CHATBOT_CTA_READY))
     }
   }, [available, visibility])
 
