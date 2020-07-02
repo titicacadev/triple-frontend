@@ -3,40 +3,6 @@ import { Text, Container, MarginPadding } from '@titicaca/core-elements'
 import { white, white600, blue980 } from '@titicaca/color-palette'
 
 export const MIN_DESKTOP_WIDTH = 1142
-export const FloatingButton = styled.div<{
-  fixed?: boolean
-  margin?: MarginPadding
-}>`
-  height: 84px;
-  border-radius: 42px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
-  background-color: ${blue980};
-  overflow: hidden;
-
-  @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
-    display: none;
-  }
-
-  ${({ fixed }) =>
-    fixed &&
-    css`
-      position: fixed;
-      bottom: 0;
-      left: 10px;
-      right: 10px;
-      margin-bottom: 30px;
-    `};
-
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
-    `};
-`
-
 export const InstallDescription = styled(Text)`
   height: 21px;
   font-size: 18px;
@@ -91,6 +57,64 @@ export const RightContainer = styled(Container)`
   width: 46px;
 `
 
+export const FloatingButton = styled.div<{
+  visibility: boolean
+  fixed?: boolean
+  margin?: MarginPadding
+}>`
+  height: 84px;
+  border-radius: 42px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
+  background-color: ${blue980};
+  overflow: hidden;
+
+  @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
+    display: none;
+  }
+
+  ${({ fixed }) =>
+    fixed &&
+    css`
+      position: fixed;
+      bottom: 0;
+      left: 10px;
+      right: 10px;
+      margin-bottom: 30px;
+    `};
+
+  ${({ margin }) =>
+    margin &&
+    css`
+      margin-top: ${margin.top || 0}px;
+      margin-bottom: ${margin.bottom || 0}px;
+      margin-left: ${margin.left || 0}px;
+      margin-right: ${margin.right || 0}px;
+    `};
+
+  ${({ visibility }) => (visibility ? 'display: block;' : 'display: none;')}
+
+  &.fade-exit {
+    transform: translate3d(0, 0, 0);
+  }
+
+  &.fade-exit-active {
+    transition: transform 300ms ease-out;
+    transform: translate3d(
+      0,
+      calc(
+        100% +
+          ${({ fixed, margin }) =>
+            margin ? `${margin.right || 0}px` : fixed ? '30px' : '0px'}
+      ),
+      0
+    );
+  }
+
+  &.fade-exit-done {
+    display: none;
+  }
+`
+
 // ChatbotCTA
 export const ChatBalloon = styled.div`
   position: relative;
@@ -109,7 +133,7 @@ export const ChatbotAction = styled.a`
   font-weight: bold;
   text-decoration: none;
   line-height: 16px;
-  color: #3a91ff;
+  color: ${blue980};
   padding-right: 14px;
   background-size: 14px 14px;
   background-image: url(https://assets.triple.guide/images/ico-right-blue-arrow-s@3x.png);
