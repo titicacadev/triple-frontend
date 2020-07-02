@@ -85,6 +85,7 @@ export function ChatBotBanner() {
   return (
     <div style={{ height: '600px', backgroundColor: '#fff'}}>
     <ChatbotCTA
+      available={boolean('사용 가능여부', false)}
       inventoryId={text('표시할 배너의 인벤토리 ID', 'app-install-cta-chatbot-v1')}
       installUrl={text('설치 URL', 'https://triple.guide/magazine')}
       onDismiss={action('banner dismissed')} />

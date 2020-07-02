@@ -18,10 +18,12 @@ type CTAData = {
 export const CHATBOT_CLOSED_STORAGE_KEY = 'triple_chatbotad_closed'
 
 export default function ChatbotCTA({
+  available = false,
   inventoryId,
   installUrl,
   onDismiss = () => {},
 }: {
+  available?: boolean
   inventoryId: string
   installUrl: string
   onDismiss?: () => void
@@ -34,10 +36,10 @@ export default function ChatbotCTA({
   useEffect(() => {
     const visited = window.sessionStorage.getItem(CHATBOT_CLOSED_STORAGE_KEY)
 
-    if (!visited && !visibility) {
+    if (!visited && !visibility && available) {
       setVisibility(true)
     }
-  }, [visibility])
+  }, [available, visibility])
 
   useEffect(() => {
     async function fetchInventory() {
@@ -59,8 +61,8 @@ export default function ChatbotCTA({
       }
     }
 
-    inventoryId && fetchInventory()
-  }, [inventoryId])
+    available && inventoryId && !detailedDesc && fetchInventory()
+  }, [available, detailedDesc, inventoryId])
 
   const handleDismiss = useCallback(() => {
     setVisibility(false)
