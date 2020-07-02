@@ -5,7 +5,8 @@ import {
   ImageBanner,
   TextBanner,
   BannerCTA,
-  FloatingButtonCTA
+  FloatingButtonCTA,
+  ChatbotCTA,
 } from '@titicaca/app-installation-cta'
 
 export default {
@@ -81,11 +82,9 @@ BaseBannerCTA.story = {
 
 export function ChatBotBanner() {
   return (
-    <ImageBanner
-      imgUrl={text('이미지 URL', '')}
-      installUrl={text('설치 URL', 'https://triple-dev.titicaca-corp.com')}
-      onDismiss={action('banner dismissed')}
-    />
+    <div style={{ height: '600px', backgroundColor: '#fff'}}>
+    <ChatbotCTA />
+    </div>
   )
 }
 
