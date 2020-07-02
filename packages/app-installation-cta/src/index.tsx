@@ -3,6 +3,7 @@ import TextBanner from './text-banner'
 import AppInstallationCTA from './app-installation-cta'
 import BannerCTA from './banner-cta'
 import FloatingButtonCTA from './floating-button-cta'
+import ChatbotCTA from './chatbot-cta'
 
 export {
   ImageBanner,
@@ -10,4 +11,5 @@ export {
   AppInstallationCTA,
   BannerCTA,
   FloatingButtonCTA,
+  ChatbotCTA,
 }
