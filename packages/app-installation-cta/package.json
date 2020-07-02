@@ -25,5 +25,9 @@
   "scripts": {},
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "dependencies": {
+    "@titicaca/color-palette": "^1.26.0",
+    "@titicaca/core-elements": "^1.26.0"
   }
 }

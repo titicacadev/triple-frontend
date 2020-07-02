@@ -1,14 +1,35 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
-import { text } from '@storybook/addon-knobs'
+import { text, boolean } from '@storybook/addon-knobs'
 import {
   ImageBanner,
   TextBanner,
   BannerCTA,
+  FloatingButtonCTA
 } from '@titicaca/app-installation-cta'
 
 export default {
   title: 'app-installation-cta | AppInstallationCTA',
+}
+
+export function FloatingButton() {
+  return (
+    <FloatingButtonCTA
+      appInstallLink={'https://triple.onelink.me/aZP6/21d43a81'}
+      fixed={boolean('화면 고정', true)}
+      trackEvent={() => {}}
+      description={text('설명', '설명 텍스트가 들어갑니다.')}
+      trackEventParams={{
+        onShow: { ga: ['플로팅_설치하기_노출'] },
+        onSelect: { ga: ['플로팅_설치하기_선택'] },
+        onClose: { ga: ['플로팅_설치하기_닫기'] },
+      }}
+    />
+  )
+}
+
+FloatingButton.story = {
+  name: '트리플 앱 설치하기 버튼'
 }
 
 export function BaseImageBanner() {
@@ -56,4 +77,18 @@ export function BaseBannerCTA() {
 
 BaseBannerCTA.story = {
   name: '배너 CTA',
+}
+
+export function ChatBotBanner() {
+  return (
+    <ImageBanner
+      imgUrl={text('이미지 URL', '')}
+      installUrl={text('설치 URL', 'https://triple-dev.titicaca-corp.com')}
+      onDismiss={action('banner dismissed')}
+    />
+  )
+}
+
+ChatBotBanner.story = {
+  name: '챗봇 스타일 배너',
 }

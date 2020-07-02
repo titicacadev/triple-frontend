@@ -94,6 +94,9 @@ const RightContainer = styled(Container)`
   width: 46px;
 `
 
+/**
+ * @deprecated app-installation-cta 패키지의 FloatingButtonCTA 를 사용하세요.
+ */
 export default function FloatingInstallButton({
   fixed,
   appInstallLink,
