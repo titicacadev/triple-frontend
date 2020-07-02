@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@titicaca/color-palette": "^1.26.0",
-    "@titicaca/core-elements": "^1.26.0"
+    "@titicaca/core-elements": "^1.26.0",
+    "react-transition-group": "^4.4.1"
   }
 }

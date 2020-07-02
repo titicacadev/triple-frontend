@@ -96,7 +96,6 @@ export const ChatBalloon = styled.div`
   position: relative;
   z-index: 1;
   background-color: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 30px 100px 0 rgba(0, 0, 0, 0.3);
   border-radius: 26px 26px 0 26px;
   padding: 30px 0 30px 30px;
   margin-right: 50px;
@@ -161,7 +160,7 @@ export const ChatbotIcon = styled.a`
   background-repeat: no-repeat;
 `
 
-export const ChatbotContainer = styled.div`
+export const ChatbotContainer = styled.div<{ visibility: string }>`
   position: fixed;
   bottom: 10px;
   left: 10px;
@@ -171,5 +170,32 @@ export const ChatbotContainer = styled.div`
     bottom: 30px;
     left: 30px;
     right: 30px;
+  }
+
+  transform: translate3d(0, calc(100% + 10px), 0);
+
+  &.fade-appear,
+  &.fade-enter-done {
+    transition: transform 300ms ease-in;
+    transform: translate3d(0, 0, 0);
+  }
+  &.fade-exit {
+    transform: translate3d(0, 0, 0);
+  }
+
+  &.fade-exit-active {
+    transition: transform 300ms ease-out;
+    transform: translate3d(0, calc(100% + 10px), 0);
+  }
+
+  &.fade-exit-done {
+    display: none;
+  }
+
+  ${ChatBalloon} {
+    ${({ visibility }) =>
+      visibility === 'true'
+        ? 'box-shadow: 0 30px 100px 0 rgba(0, 0, 0, 0.3);'
+        : ''}
   }
 `
