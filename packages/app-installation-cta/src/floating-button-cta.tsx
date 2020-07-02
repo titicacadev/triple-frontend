@@ -13,7 +13,7 @@ import {
   RightContainer,
 } from './elements'
 
-export const CLOSE_INSTALL_BUTTON_KEY = 'close_install_button'
+export const FLOATING_BITTON_CLOSED_STORAGE_KEY = 'close_install_button'
 const DEFAULT_DESCRIPTION_TEXT = '가이드북, 일정짜기, 길찾기, 맛집'
 
 export default function FloatingButtonCTA({
@@ -47,7 +47,9 @@ export default function FloatingButtonCTA({
   )
 
   useEffect(() => {
-    const visitedPages = window.sessionStorage.getItem(CLOSE_INSTALL_BUTTON_KEY)
+    const visitedPages = window.sessionStorage.getItem(
+      FLOATING_BITTON_CLOSED_STORAGE_KEY,
+    )
     if (!visitedPages && !buttonVisibility) {
       setButtonVisibility(true)
       sendTrackEventRequest(trackEventParams && trackEventParams.onShow)
@@ -56,7 +58,7 @@ export default function FloatingButtonCTA({
 
   const onClose = () => {
     setButtonVisibility(false)
-    window.sessionStorage.setItem(CLOSE_INSTALL_BUTTON_KEY, 'true')
+    window.sessionStorage.setItem(FLOATING_BITTON_CLOSED_STORAGE_KEY, 'true')
     sendTrackEventRequest(trackEventParams && trackEventParams.onClose)
   }
 
