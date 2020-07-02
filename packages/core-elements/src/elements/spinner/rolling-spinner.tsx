@@ -99,7 +99,6 @@ const Image = styled.img<{ size: number }>`
   box-sizing: border-box;
 
   ${({ size }) => `
-    width: ${size}px;
     height: ${size}px;
   `}
 `
