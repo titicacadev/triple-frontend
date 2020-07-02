@@ -16,6 +16,7 @@ export default {
 export function FloatingButton() {
   return (
     <FloatingButtonCTA
+      available={boolean('사용 가능여부', true)}
       appInstallLink={'https://triple.onelink.me/aZP6/21d43a81'}
       fixed={boolean('화면 고정', true)}
       trackEvent={() => {}}
