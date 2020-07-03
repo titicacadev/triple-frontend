@@ -75,7 +75,7 @@ export default function ChatbotCTA({
 
   return (
     <CSSTransition in={visibility} appear classNames="fade" timeout={500}>
-      <ChatbotContainer visibility={visibility ? 'true' : 'false'}>
+      <ChatbotContainer visibility={visibility ? 1 : 0}>
         <ChatBalloon>
           <Text size={18} bold lineHeight="24px">
             {detailedDesc}

@@ -58,8 +58,8 @@ export const RightContainer = styled(Container)`
 `
 
 export const FloatingButton = styled.div<{
-  visibility: boolean
-  fixed?: boolean
+  visibility: 1 | 0
+  fixed?: 1 | 0
   margin?: MarginPadding
 }>`
   height: 84px;
@@ -184,19 +184,18 @@ export const ChatbotIcon = styled.a`
   background-repeat: no-repeat;
 `
 
-export const ChatbotContainer = styled.div<{ visibility: string }>`
+export const ChatbotContainer = styled.div<{ visibility: 1 | 0 }>`
   position: fixed;
   bottom: 10px;
   left: 10px;
   right: 10px;
 
-  @media (min-width: 768px) {
-    bottom: 30px;
-    left: 30px;
-    right: 30px;
-  }
-
   transform: translate3d(0, calc(100% + 10px), 0);
+
+  ${ChatBalloon} {
+    ${({ visibility }) =>
+      visibility ? 'box-shadow: 0 30px 100px 0 rgba(0, 0, 0, 0.3);' : ''}
+  }
 
   &.fade-appear,
   &.fade-enter-done {
@@ -216,10 +215,16 @@ export const ChatbotContainer = styled.div<{ visibility: string }>`
     display: none;
   }
 
-  ${ChatBalloon} {
-    ${({ visibility }) =>
-      visibility === 'true'
-        ? 'box-shadow: 0 30px 100px 0 rgba(0, 0, 0, 0.3);'
-        : ''}
+  @media (min-width: 768px) {
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
+
+    transform: translate3d(0, calc(100% + 30px), 0);
+
+    &.fade-exit-active {
+      transition: transform 300ms ease-out;
+      transform: translate3d(0, calc(100% + 30px), 0);
+    }
   }
 `
