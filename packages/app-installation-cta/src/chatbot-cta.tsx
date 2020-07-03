@@ -3,6 +3,10 @@ import { Text } from '@titicaca/core-elements'
 import { CSSTransition } from 'react-transition-group'
 
 import {
+  CHATBOT_CLOSED_STORAGE_KEY,
+  EVENT_CHATBOT_CTA_READY,
+} from './constants'
+import {
   ChatbotContainer,
   ChatBalloon,
   ChatbotAction,
@@ -14,9 +18,6 @@ type CTAData = {
   detailedDesc?: string
   text?: string
 }
-
-export const CHATBOT_CLOSED_STORAGE_KEY = 'triple_chatbotad_closed'
-export const EVENT_CHATBOT_CTA_READY = 'triple_chatbot_cta_ready'
 
 export default function ChatbotCTA({
   available = false,

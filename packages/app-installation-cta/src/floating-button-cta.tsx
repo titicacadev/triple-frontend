@@ -3,6 +3,11 @@ import { Text, MarginPadding } from '@titicaca/core-elements'
 import { CSSTransition } from 'react-transition-group'
 
 import {
+  BannerExitStrategy,
+  EVENT_CHATBOT_CTA_READY,
+  FLOATING_BUTTON_CLOSED_STORAGE_KEY,
+} from './constants'
+import {
   FloatingButton,
   InstallDescription,
   InstallAnchor,
@@ -13,19 +18,16 @@ import {
   RightContainer,
 } from './elements'
 
-export const FLOATING_BITTON_CLOSED_STORAGE_KEY = 'close_install_button'
-const DEFAULT_DESCRIPTION_TEXT = '가이드북, 일정짜기, 길찾기, 맛집'
-
 export default function FloatingButtonCTA({
-  available = true,
+  exitStrategy = BannerExitStrategy.NONE,
   fixed,
   appInstallLink,
-  description = DEFAULT_DESCRIPTION_TEXT,
+  description = '가이드북, 일정짜기, 길찾기, 맛집',
   trackEvent,
   margin,
   trackEventParams,
 }: {
-  available?: boolean
+  exitStrategy?: BannerExitStrategy
   fixed?: boolean
   appInstallLink?: string
   description?: string
@@ -38,6 +40,7 @@ export default function FloatingButtonCTA({
   }
 }) {
   const [buttonVisibility, setButtonVisibility] = useState(false)
+  const [available, setAvailable] = useState(true)
 
   const sendTrackEventRequest = useCallback(
     (param) => {
@@ -48,7 +51,7 @@ export default function FloatingButtonCTA({
 
   useEffect(() => {
     const visitedPages = window.sessionStorage.getItem(
-      FLOATING_BITTON_CLOSED_STORAGE_KEY,
+      FLOATING_BUTTON_CLOSED_STORAGE_KEY,
     )
     if (!visitedPages && !buttonVisibility) {
       setButtonVisibility(true)
@@ -58,7 +61,7 @@ export default function FloatingButtonCTA({
 
   const onClose = () => {
     setButtonVisibility(false)
-    window.sessionStorage.setItem(FLOATING_BITTON_CLOSED_STORAGE_KEY, 'true')
+    window.sessionStorage.setItem(FLOATING_BUTTON_CLOSED_STORAGE_KEY, 'true')
     sendTrackEventRequest(trackEventParams && trackEventParams.onClose)
   }
 
@@ -66,6 +69,21 @@ export default function FloatingButtonCTA({
     sendTrackEventRequest(trackEventParams && trackEventParams.onSelect)
     return true
   }
+
+  useEffect(() => {
+    if (exitStrategy === BannerExitStrategy.CHATBOT_READY) {
+      const onChatbotReady = () => {
+        setAvailable(false)
+        window.removeEventListener(EVENT_CHATBOT_CTA_READY, onChatbotReady)
+      }
+
+      window.addEventListener(EVENT_CHATBOT_CTA_READY, onChatbotReady)
+
+      return () => {
+        window.removeEventListener(EVENT_CHATBOT_CTA_READY, onChatbotReady)
+      }
+    }
+  }, [exitStrategy])
 
   return (
     <CSSTransition in={available} appear classNames="fade" timeout={500}>
