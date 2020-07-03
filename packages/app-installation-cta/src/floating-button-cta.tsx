@@ -18,6 +18,17 @@ import {
   RightContainer,
 } from './elements'
 
+/**
+ * '트리플 앱 설치하기' 하단 플로팅 버튼 CTA
+ *
+ * @param exitStrategy 이 버튼 컴포넌트가 사라져야하는 조건 또는 전략 (기본값 NONE)
+ * @param fixed 스크롤 위치와 관계없이 fixed position 인지의 여부
+ * @param appInstallLink 앱 설치 URL
+ * @param description 앱 설치 안내문구
+ * @param trackEvent 이벤트 트래킹 함수
+ * @param margin 버튼 주변 margin 값 (optional)
+ * @param trackEventParams GA/FA 수집 파라미터
+ */
 export default function FloatingButtonCTA({
   exitStrategy = BannerExitStrategy.NONE,
   fixed,
