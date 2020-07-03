@@ -19,6 +19,13 @@ type CTAData = {
   text?: string
 }
 
+/**
+ * 챗봇 스타일의 하단 배너 CTA를 build/destroy 에니메이션과 함께 띄웁니다.
+ *
+ * @param available CTA 가 표시되어야하는지의 여부 (기본값 false) (controlled)
+ * @param inventoryId 표시할 이미지의 인벤토리 ID
+ * @param installUrl 앱 설치 URL
+ */
 export default function ChatbotCTA({
   available = false,
   inventoryId,
