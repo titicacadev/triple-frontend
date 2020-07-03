@@ -2,7 +2,115 @@ import styled, { css } from 'styled-components'
 import { Text, Container, MarginPadding } from '@titicaca/core-elements'
 import { white, white600, blue980 } from '@titicaca/color-palette'
 
-export const MIN_DESKTOP_WIDTH = 1142
+export const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
+  background-color: rgba(58, 58, 58, 0.5);
+  z-index: 10;
+`
+
+export const BottomFixedContainer = styled.div`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 11;
+
+  > * {
+    margin: 0 auto;
+  }
+`
+
+const CONTENT_MIN_WIDTH = 320
+const CONTENT_MAX_WIDTH = 760
+export const ImageBannerWrapper = styled.div`
+  box-sizing: border-box;
+  max-width: ${CONTENT_MAX_WIDTH}px;
+  min-width: ${CONTENT_MIN_WIDTH}px;
+  height: 230px;
+  padding: 0 20px 20px 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.07);
+  background-color: #0179ff;
+`
+export const ImageWrapper = styled.div`
+  margin: 0 auto;
+  height: 130px;
+`
+
+export const BannerImage = styled.img`
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  display: block;
+  width: 320px;
+  height: 130px;
+`
+
+export const InstallLink = styled.a`
+  display: block;
+  box-sizing: border-box;
+  margin-top: 5px;
+  margin-bottom: 16px;
+  width: 100%;
+  height: 44px;
+  line-height: 23px;
+  border-radius: 25px;
+  padding: 10px 0 11px 0;
+  background-color: white;
+  color: black;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+`
+
+export const DismissButton = styled.button`
+  display: block;
+  margin: 0 auto;
+  border: 0;
+  background-color: transparent;
+  opacity: 0.6;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  color: white;
+  text-decoration: underline;
+  outline: none;
+  cursor: pointer;
+`
+
+export const TextBannerWrapper = styled.a`
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 54px;
+  line-height: 17px;
+  padding: 19px 0 18px 0;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
+  background-color: #0179ff;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+`
+
+export const DownloadIcon = styled.img`
+  margin-left: 6px;
+  width: 12px;
+  height: 13px;
+  vertical-align: middle;
+  transform: translateY(-1px); /* HACK: 아래로 가있는 이미지 위로 끌어 올림 */
+`
+
+const MIN_DESKTOP_WIDTH = 1142
 export const InstallDescription = styled(Text)`
   height: 21px;
   font-size: 18px;
