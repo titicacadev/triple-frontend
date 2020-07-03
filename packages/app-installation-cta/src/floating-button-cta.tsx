@@ -70,8 +70,8 @@ export default function FloatingButtonCTA({
   return (
     <CSSTransition in={available} appear classNames="fade" timeout={500}>
       <FloatingButton
-        visibility={buttonVisibility}
-        fixed={fixed}
+        visibility={buttonVisibility ? 1 : 0}
+        fixed={fixed ? 1 : 0}
         margin={margin}
       >
         <LeftContainer>
