@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import { Text, Container, MarginPadding } from '@titicaca/core-elements'
-import { white, white600, blue980 } from '@titicaca/color-palette'
+import { white, white600, blue980, gray500 } from '@titicaca/color-palette'
 
 export const Overlay = styled.div`
   position: fixed;
@@ -9,7 +9,7 @@ export const Overlay = styled.div`
   left: 0;
   right: 0;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
-  background-color: rgba(58, 58, 58, 0.5);
+  background-color: ${gray500};
   z-index: 10;
 `
 
