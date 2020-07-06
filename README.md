@@ -21,7 +21,6 @@ Slack `@frontend` 그룹, `#triple-web-dev` 채널 및 GitHub `@frontend` 팀
 
   - `docs/`: [Storybook](https://storybook.js.org)으로 생성하는 Documentation page
   - `packages/`: npm에 배포하는 트리플 프론트엔드 패키지
-  - `tests/`: [Cypress](https://www.cypress.io)를 이용한 end-to-end 테스팅 환경
 
 ### Package Versioning
 
@@ -124,29 +123,8 @@ $ lerna bootstrap
   10. 배포 (Optional): CD에서 패키지 publish, npm 페이지 통해서 확인
 
 ### Testing
-#### 전체 테스트 수행하기
 
-```sh
-$ npm test
-```
-
-#### 테스트 상세히 보기
-  1. `/tests` 디렉토리로 이동합니다.
-  2. 서버를 실행합니다.
-
-```sh
-$ npm start
-```
-  3. `cypress` 창을 띄웁니다.
-
-```sh
-$ npm run cypress:open
-```
-
-#### 테스트 추가 및 수정하기
-  1. `/tests` 디렉토리로 이동합니다.
-  2. `/src` 디렉토리에 테스팅 앱을 추가 / 수정 합니다.
-  3. `/cypress/integration` 테스트 케이스를 추가 / 수정 합니다.
+각 패키지별 유닛 테스트를 추가할 예정입니다.
 
 ### Review
 
