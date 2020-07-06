@@ -15,6 +15,7 @@ export default function Actions({
   onScrapedChange,
   onContentShare,
   onReviewEdit,
+  hideUnderLine,
   ...props
 }: {
   poiId: string
@@ -26,6 +27,7 @@ export default function Actions({
   onReviewEdit: () => void
   margin?: MarginPadding
   padding?: MarginPadding
+  hideUnderLine?: boolean
 }) {
   const { t } = useI18n()
 
@@ -66,7 +68,7 @@ export default function Actions({
           {t('common:share', '공유하기')}
         </ActionButton>
       </Button.Group>
-      <HR1 margin={{ top: 8, bottom: 0 }} />
+      {!hideUnderLine && <HR1 margin={{ top: 8, bottom: 0 }} />}
     </Section>
   )
 }
