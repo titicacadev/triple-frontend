@@ -7,7 +7,7 @@ export default class I18nextFetchBackend {
 
   read(language: string, namespace: string, callback: Function) {
     return this.loadUrl(
-      `https://assets.triple-dev.titicaca-corp.com/locales/${language}/${namespace}.json`,
+      `https://assets.triple.guide/locales/${language}/${namespace}.json`,
       callback,
     )
   }
