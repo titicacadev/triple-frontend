@@ -1,7 +1,8 @@
+import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import { gray100, gray20 } from '@titicaca/color-palette'
 
-import Container from './container'
+import Container, { ContainerProps } from './container'
 
 const opacityAnimation = keyframes`
   0% {
@@ -27,7 +28,7 @@ const waveAnimation = keyframes`
   }
 `
 
-export default styled(Container)`
+export const Skeleton = styled(Container)`
   position: relative;
   overflow: hidden;
   background: ${gray100};
@@ -45,3 +46,25 @@ export default styled(Container)`
     background: linear-gradient(90deg, transparent, ${gray20}, transparent);
   }
 `
+
+export function SkeletonText({ height = 16, ...props }: ContainerProps) {
+  return <Skeleton height={height} {...props} />
+}
+
+export function SkeletonCircle({
+  size = 50,
+  ...props
+}: { size: number } & Omit<
+  ContainerProps,
+  'width' | 'height' | 'borderRadius'
+>) {
+  return <Skeleton width={size} height={size} borderRadius={size} {...props} />
+}
+
+export function SkeletonButton({
+  height = 45,
+  borderRadius = 4,
+  ...props
+}: ContainerProps) {
+  return <Skeleton height={height} borderRadius={borderRadius} {...props} />
+}
