@@ -229,7 +229,7 @@ export const ChatBalloon = styled.div`
   z-index: 1;
   background-color: rgba(255, 255, 255, 0.98);
   border-radius: 26px 26px 0 26px;
-  padding: 30px 0 30px 30px;
+  padding: 30px;
   margin-right: 50px;
   box-sizing: border-box;
   min-height: 132px;
