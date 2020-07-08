@@ -7,6 +7,7 @@ import TextBanner from './text-banner'
 interface BannerCTAProps {
   inventoryId: string
   installUrl: string
+  onDismiss?: () => void
 }
 
 /**
@@ -15,7 +16,11 @@ interface BannerCTAProps {
  * @param inventoryId 표시할 이미지의 인벤토리 ID
  * @param installUrl 앱 설치 URL
  */
-export default function BannerCTA({ inventoryId, installUrl }: BannerCTAProps) {
+export default function BannerCTA({
+  inventoryId,
+  installUrl,
+  onDismiss,
+}: BannerCTAProps) {
   const [{ image, desc }, setCTAImage] = useState({ image: '', desc: '' })
   const [isImageBannerOpen, setIsImageBannerOpen] = useState(true)
 
@@ -48,7 +53,10 @@ export default function BannerCTA({ inventoryId, installUrl }: BannerCTAProps) {
           <ImageBanner
             imgUrl={image}
             installUrl={installUrl}
-            onDismiss={() => setIsImageBannerOpen(false)}
+            onDismiss={() => {
+              setIsImageBannerOpen(false)
+              onDismiss && onDismiss()
+            }}
           />
         </BottomFixedContainer>
       </Overlay>
