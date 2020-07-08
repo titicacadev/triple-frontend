@@ -7,7 +7,7 @@ import TextBanner from './text-banner'
 interface BannerCTAProps {
   inventoryId: string
   installUrl: string
-  onDismiss?: () => void
+  onDismiss?: (inventory?: { image?: string; desc?: string }) => void
 }
 
 /**
@@ -42,14 +42,16 @@ export default function BannerCTA({
           })
 
           setIsImageBannerOpen(true)
+        } else {
+          onDismiss && onDismiss(image || desc ? { image, desc } : undefined)
         }
       }
     }
     fetchCTAImage()
-  }, [inventoryId])
+  }, [desc, image, inventoryId, onDismiss])
 
   if (isImageBannerOpen) {
-    return (
+    return image ? (
       <Overlay>
         <BottomFixedContainer>
           <ImageBanner
@@ -57,13 +59,14 @@ export default function BannerCTA({
             installUrl={installUrl}
             onDismiss={() => {
               setIsImageBannerOpen(false)
-              onDismiss && onDismiss()
+              onDismiss &&
+                onDismiss(image || desc ? { image, desc } : undefined)
             }}
           />
         </BottomFixedContainer>
       </Overlay>
-    )
+    ) : null
   }
 
-  return <TextBanner message={desc} installUrl={installUrl} />
+  return desc ? <TextBanner message={desc} installUrl={installUrl} /> : null
 }
