@@ -52,7 +52,8 @@ export default function BannerCTA({
       }
     }
     fetchCTAImage()
-  }, [inventoryId, onDismiss])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inventoryId])
 
   useEffect(() => {
     setIsImageBannerOpen(!!ctaImage?.image)
