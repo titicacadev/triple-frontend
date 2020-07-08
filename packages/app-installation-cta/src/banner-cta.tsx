@@ -22,7 +22,7 @@ export default function BannerCTA({
   onDismiss,
 }: BannerCTAProps) {
   const [{ image, desc }, setCTAImage] = useState({ image: '', desc: '' })
-  const [isImageBannerOpen, setIsImageBannerOpen] = useState(true)
+  const [isImageBannerOpen, setIsImageBannerOpen] = useState(false)
 
   useEffect(() => {
     async function fetchCTAImage() {
@@ -40,6 +40,8 @@ export default function BannerCTA({
             image: item.image ? item.image.replace(/\.jpg$/, '.png') : '',
             desc: item.desc,
           })
+
+          setIsImageBannerOpen(true)
         }
       }
     }
