@@ -4,10 +4,15 @@ import { Overlay, BottomFixedContainer } from './elements'
 import ImageBanner from './image-banner'
 import TextBanner from './text-banner'
 
+type CTAImage = {
+  image?: string
+  desc?: string
+}
+
 interface BannerCTAProps {
   inventoryId: string
   installUrl: string
-  onDismiss?: (inventory?: { image?: string; desc?: string }) => void
+  onDismiss?: (ctaImage?: CTAImage) => void
 }
 
 /**
@@ -21,8 +26,9 @@ export default function BannerCTA({
   installUrl,
   onDismiss,
 }: BannerCTAProps) {
-  const [{ image, desc }, setCTAImage] = useState({ image: '', desc: '' })
+  const [ctaImage, setCTAImage] = useState<CTAImage>()
   const [isImageBannerOpen, setIsImageBannerOpen] = useState(false)
+  const { image = '', desc = '' } = ctaImage || {}
 
   useEffect(() => {
     async function fetchCTAImage() {
@@ -40,15 +46,17 @@ export default function BannerCTA({
             image: item.image ? item.image.replace(/\.jpg$/, '.png') : '',
             desc: item.desc,
           })
-
-          setIsImageBannerOpen(true)
         } else {
-          onDismiss && onDismiss(image || desc ? { image, desc } : undefined)
+          onDismiss && onDismiss()
         }
       }
     }
     fetchCTAImage()
-  }, [desc, image, inventoryId, onDismiss])
+  }, [inventoryId, onDismiss])
+
+  useEffect(() => {
+    setIsImageBannerOpen(!!ctaImage?.image)
+  }, [ctaImage])
 
   if (isImageBannerOpen) {
     return image ? (
@@ -59,8 +67,7 @@ export default function BannerCTA({
             installUrl={installUrl}
             onDismiss={() => {
               setIsImageBannerOpen(false)
-              onDismiss &&
-                onDismiss(image || desc ? { image, desc } : undefined)
+              onDismiss && onDismiss(ctaImage)
             }}
           />
         </BottomFixedContainer>
