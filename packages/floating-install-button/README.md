@@ -1,5 +1,4 @@
-# `floating-install-button` *(deprecated)*
-
+# `floating-install-button` _(deprecated)_
 
 **이 패키지는 Deprecated 상태입니다.**
 **`app-installtion-cta` 의 `FloatingButtonCTA` 를 사용해주세요.**

@@ -7,7 +7,7 @@ import {
   BannerCTA,
   FloatingButtonCTA,
   ChatbotCTA,
-  BannerExitStrategy
+  BannerExitStrategy,
 } from '@titicaca/app-installation-cta'
 
 export default {
@@ -31,7 +31,7 @@ export function FloatingButton() {
 }
 
 FloatingButton.story = {
-  name: '트리플 앱 설치하기 버튼'
+  name: '트리플 앱 설치하기 버튼',
 }
 
 export function BaseImageBanner() {
@@ -84,12 +84,16 @@ BaseBannerCTA.story = {
 
 export function ChatBotBanner() {
   return (
-    <div style={{ height: '600px', backgroundColor: '#fff'}}>
+    <div style={{ height: '600px', backgroundColor: '#fff' }}>
       <ChatbotCTA
         available={boolean('챗봇 사용 가능상태', false)}
-        inventoryId={text('표시할 배너의 인벤토리 ID', 'app-install-cta-chatbot-v1')}
+        inventoryId={text(
+          '표시할 배너의 인벤토리 ID',
+          'app-install-cta-chatbot-v1',
+        )}
         installUrl={text('설치 URL', 'https://triple.guide/magazine')}
-        onDismiss={action('banner dismissed')} />
+        onDismiss={action('banner dismissed')}
+      />
     </div>
   )
 }
@@ -100,9 +104,13 @@ ChatBotBanner.story = {
 
 export function FloatingButtonWithChatBot() {
   return (
-    <div style={{ height: '600px', backgroundColor: '#fff'}}>
+    <div style={{ height: '600px', backgroundColor: '#fff' }}>
       <FloatingButtonCTA
-        exitStrategy={select('플로팅 배너 퇴장 방식', [BannerExitStrategy.NONE, BannerExitStrategy.CHATBOT_READY], BannerExitStrategy.CHATBOT_READY)}
+        exitStrategy={select(
+          '플로팅 배너 퇴장 방식',
+          [BannerExitStrategy.NONE, BannerExitStrategy.CHATBOT_READY],
+          BannerExitStrategy.CHATBOT_READY,
+        )}
         appInstallLink={'https://triple.onelink.me/aZP6/21d43a81'}
         fixed={true}
         trackEvent={() => {}}
@@ -115,13 +123,17 @@ export function FloatingButtonWithChatBot() {
       />
       <ChatbotCTA
         available={boolean('챗봇 사용 가능상태', false)}
-        inventoryId={text('표시할 배너의 인벤토리 ID', 'app-install-cta-chatbot-v1')}
+        inventoryId={text(
+          '표시할 배너의 인벤토리 ID',
+          'app-install-cta-chatbot-v1',
+        )}
         installUrl={text('설치 URL', 'https://triple.guide/magazine')}
-        onDismiss={action('banner dismissed')} />
+        onDismiss={action('banner dismissed')}
+      />
     </div>
   )
 }
 
 FloatingButtonWithChatBot.story = {
-  name: '챗봇 사용 가능시 플로팅 버튼 제거 예제'
+  name: '챗봇 사용 가능시 플로팅 버튼 제거 예제',
 }
