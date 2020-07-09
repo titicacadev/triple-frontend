@@ -70,10 +70,7 @@ export function BaseBannerCTA() {
           'app-install-cta-poi-v1',
         )}
         installUrl={text('설치 URL', 'https://triple-dev.titicaca-corp.com')}
-        onDismiss={(data: any) => {
-          console.log(data)
-          action('banner dismissed')
-        }}
+        onDismiss={action('banner dismissed')}
       />
 
       <div style={{ height: '2000px' }} />
