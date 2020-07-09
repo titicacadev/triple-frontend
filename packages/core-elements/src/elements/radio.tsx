@@ -1,12 +1,12 @@
 import * as React from 'react'
-import styled, { css } from 'styled-components'
-import { getColor } from '@titicaca/color-palette'
+import styled from 'styled-components'
+import { gray100 } from '@titicaca/color-palette'
 
 import Text from './text'
 import { withField } from '../utils/form-field'
 
 type RadioValue = string | null
-type RadioDirection = 'left' | 'right'
+type TextAlign = 'left' | 'right'
 
 interface Option {
   text: string
@@ -16,7 +16,7 @@ interface Option {
 const RADIO_INPUT_SIZE = 26
 
 const RadioFrame = styled.div<{
-  direction?: RadioDirection
+  textAlign?: TextAlign
   outline?: boolean
 }>`
   position: relative;
@@ -26,51 +26,51 @@ const RadioFrame = styled.div<{
     margin-bottom: 0;
   }
 
-  ${({ direction, outline }) =>
-    direction === 'left'
+  ${({ textAlign, outline }) =>
+    textAlign === 'left'
       ? outline
-        ? css`
+        ? `
             padding: 20px ${RADIO_INPUT_SIZE + 20}px 20px 20px;
           `
-        : css`
+        : `
             padding-right: ${RADIO_INPUT_SIZE + 3}px;
           `
       : outline
-      ? css`
+      ? `
           padding: 20px 20px 20px ${RADIO_INPUT_SIZE + 20}px;
         `
-      : css`
+      : `
           padding-left: ${RADIO_INPUT_SIZE + 20}px;
         `};
 
   ${({ outline }) =>
     outline &&
-    css`
+    `
       border-radius: 2px;
-      border: solid 1px rgba(${getColor('gray100')});
+      border: solid 1px ${gray100};
     `}
 `
 
 const RadioText = styled(Text)<{
-  direction?: RadioDirection
+  textAlign?: TextAlign
   multiline?: boolean
 }>`
   vertical-align: middle;
   ${({ multiline }) =>
     !multiline &&
-    css`
+    `
       width: 100%;
     `}
-  ${({ direction }) =>
-    direction === 'right' &&
-    css`
+  ${({ textAlign }) =>
+    textAlign === 'right' &&
+    `
       padding-left: 15px;
     `}
 `
 
 const RadioInput = styled.input.attrs({ type: 'radio' })<{
   selected?: boolean
-  direction?: RadioDirection
+  textAlign?: TextAlign
   outline?: boolean
 }>`
   position: absolute;
@@ -87,22 +87,22 @@ const RadioInput = styled.input.attrs({ type: 'radio' })<{
   outline: none;
   transform: translateY(-50%);
 
-  ${({ direction, outline }) =>
-    direction === 'left'
-      ? css`
+  ${({ textAlign, outline }) =>
+    textAlign === 'left'
+      ? `
           right: ${outline ? '20px' : '0'};
         `
-      : css`
+      : `
           left: ${outline ? '20px' : '0'};
         `};
 
   ${({ selected }) =>
     selected
-      ? css`
+      ? `
           opacity: 1;
           background-image: url('https://assets.triple.guide/images/btn-filter-radio-check.svg');
         `
-      : css`
+      : `
           opacity: 0.5;
           background-image: url('https://assets.triple.guide/images/btn-filter-radio.svg');
         `};
@@ -112,7 +112,7 @@ interface RadioProps {
   name?: string
   value?: RadioValue
   onChange?: (e: React.SyntheticEvent, value: RadioValue) => void
-  direction?: RadioDirection
+  textAlign?: TextAlign
   multiline?: boolean
   outline?: boolean
   options: Option[]
@@ -122,7 +122,7 @@ function Radio({
   name,
   value,
   onChange,
-  direction = 'left',
+  textAlign = 'left',
   multiline = false,
   outline = false,
   options,
@@ -132,14 +132,14 @@ function Radio({
       {options.map(({ text, value: optionValue }, idx) => (
         <RadioFrame
           key={idx}
-          direction={direction}
+          textAlign={textAlign}
           outline={outline}
           onClick={(e) => onChange && onChange(e, optionValue)}
         >
           <RadioText
             inlineBlock
             size="large"
-            direction={direction}
+            textAlign={textAlign}
             multiline={multiline}
             ellipsis={!multiline}
           >
@@ -148,7 +148,7 @@ function Radio({
 
           <RadioInput
             name={name}
-            direction={direction}
+            textAlign={textAlign}
             outline={outline}
             selected={optionValue === value}
           />
