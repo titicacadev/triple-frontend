@@ -136,7 +136,13 @@ function Radio({
           outline={outline}
           onClick={(e) => onChange && onChange(e, optionValue)}
         >
-          <RadioText inlineBlock size="large" ellipsis={!multiline}>
+          <RadioText
+            inlineBlock
+            size="large"
+            direction={direction}
+            multiline={multiline}
+            ellipsis={!multiline}
+          >
             {text}
           </RadioText>
 
