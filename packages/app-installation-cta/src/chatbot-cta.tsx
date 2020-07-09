@@ -10,7 +10,7 @@ import {
   ChatbotContainer,
   ChatBalloon,
   ChatbotAction,
-  CharbotCloseButton,
+  ChatbotCloseButton,
   ChatbotIcon,
 } from './elements'
 
@@ -89,7 +89,7 @@ export default function ChatbotCTA({
             {detailedDesc}
           </Text>
           <ChatbotAction href={installUrl}>{text}</ChatbotAction>
-          <CharbotCloseButton onClick={handleDismiss}>닫기</CharbotCloseButton>
+          <ChatbotCloseButton onClick={handleDismiss}>닫기</ChatbotCloseButton>
         </ChatBalloon>
         <ChatbotIcon href={installUrl}>트리플</ChatbotIcon>
       </ChatbotContainer>

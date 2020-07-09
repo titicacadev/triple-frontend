@@ -248,7 +248,7 @@ export const ChatbotAction = styled.a`
   margin-top: 10px;
 `
 
-export const CharbotCloseButton = styled.button`
+export const ChatbotCloseButton = styled.button`
   position: absolute;
   top: 10px;
   right: 10px;
