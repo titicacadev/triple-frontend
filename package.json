@@ -9,10 +9,11 @@
     "build-resources": "lerna exec --ignore @titicaca/triple-frontend-docs 'BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --delete-dir-on-start --no-comments'",
     "build-declarations": "lerna exec --ignore @titicaca/triple-frontend-docs tsc",
     "dev-docs": "lerna exec --scope @titicaca/triple-frontend-docs npm run dev",
-    "lint-json": "prettier --check '**/*.json'",
+    "lint-etc": "prettier --check '**/*.{json,md,yaml}'",
+    "lint-etc-fix": "prettier --write '**/*.{json,md,yaml}'",
     "lint-es": "eslint '{docs,packages,tests/src}/**/*.{ts,tsx,js,mdx}'",
     "lint-style": "stylelint './**/*.{ts,tsx,js}'",
-    "lint": "concurrently --names eslint,stylelint,jsonlint 'npm:lint-es' 'npm:lint-style' 'npm:lint-json'",
+    "lint": "concurrently --names eslint,stylelint,jsonlint 'npm:lint-es' 'npm:lint-style' 'npm:lint-etc'",
     "clean-lock": "lerna exec --ignore @titicaca/triple-frontend-docs -- rm -rf ./package-lock.json",
     "clean": "lerna exec -- rm -rf ./node_modules ./lib ./*.tsbuildinfo"
   },
@@ -62,7 +63,7 @@
     "**/*.mdx": [
       "eslint"
     ],
-    "**/*.json": [
+    "**/*.{json,md,yaml}": [
       "prettier --check"
     ]
   }

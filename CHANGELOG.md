@@ -32,25 +32,30 @@
 - 가격 노출 여부를 결정하는 prop을 추가합니다. (#828)
 
 # 1.25.0 (2020-06-24)
+
 ### common
+
 - clean 태스크에서 .tsbulidinfo 파일을 삭제합니다. (#812)
 
 ### app-installation-cta
+
 - 이미지 배너의 앱설치 버튼 레이블 변경 (#825, #826)
 
 ### core-elements
+
 - Carousel 의 Item 에 IntersectionObserver 를 내장시킵니다. (#822)
 - Container 에서 width, height 의 unit, bg color 를 지원하는 prop 을 추가합니다. (#824)
 
 ### date-picker
+
 - react-date-picker 의 style override 코드 리펙토링 (#625, #804)
 
 ### user-verification
-- 휴대전화번호 점유인증 테스트 과정에서 발견한 수정 사항들을 반영합니다. (#829)
-   - 워딩과 일부 디자인 요소의 svg를 수정합니다.
-   - Verification context의 기본값을 지정합니다.
-   - VerificationRequest에서 forceVerification을 false로 변경할 수 있도록 합니다.
 
+- 휴대전화번호 점유인증 테스트 과정에서 발견한 수정 사항들을 반영합니다. (#829)
+  - 워딩과 일부 디자인 요소의 svg를 수정합니다.
+  - Verification context의 기본값을 지정합니다.
+  - VerificationRequest에서 forceVerification을 false로 변경할 수 있도록 합니다.
 
 # 1.24.0 (2020-06-18)
 

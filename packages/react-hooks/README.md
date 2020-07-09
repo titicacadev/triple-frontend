@@ -25,15 +25,13 @@ useBodyScrollLock(lockFlag: boolean)
 기본 사용법은 아래와 같이 alias 에 key/value 방식으로 컴포넌트에 지정한 `anchor` 이름과 맵핑 됩니다.
 
 ```js
-  useScrollToAnchor({
-    /* scroll target */
-    alias: { 'equipping-pois': 'equipping-pois' },
-  })
+useScrollToAnchor({
+  /* scroll target */
+  alias: { 'equipping-pois': 'equipping-pois' },
+})
 
-  return
-    <Section anchor="equipping-pois">
-      ...
-    </Section>
+return
+;<Section anchor="equipping-pois">...</Section>
 ```
 
 `alias` 값을 지정하지 않을 경우 location.hash 값 id 로 해서 타깃 엘리먼트를 찾아 자동 스크롤이 동작합니다.
