@@ -72,7 +72,6 @@ BaseRangeSlider.story = {
   name: 'RangeSlider',
 }
 
-
 export function AdjustedRangeSlider() {
   const [values, setValues] = useState([1, 31])
   return (
