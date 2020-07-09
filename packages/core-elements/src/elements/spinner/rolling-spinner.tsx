@@ -1,6 +1,7 @@
 import React, { useMemo, PropsWithChildren } from 'react'
 import styled, { keyframes } from 'styled-components'
 
+import { FALLBACK_ACTION_CLASS_NAME } from '../../constants'
 import Container from '../container'
 
 const marquee = keyframes`
@@ -128,7 +129,7 @@ export default function RollingSpinner({
   )
 
   return (
-    <RollingSpinnerFrame>
+    <RollingSpinnerFrame className={FALLBACK_ACTION_CLASS_NAME}>
       <RollingSpinnerContainer size={size}>
         {children ? <Container>{children}</Container> : null}
         <TrackContainer>
