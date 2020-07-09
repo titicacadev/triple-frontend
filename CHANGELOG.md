@@ -1,3 +1,34 @@
+# 1.27.1 (2020-07-09)
+
+### hub-form
+
+- HubForm의 box-shadow 스타일을 커스터마이징할 수 있도록 합니다. (#866)
+
+### core-elements
+
+- feature: skeleton ui 를 추가합니다. (#835)
+- Radio 컴포넌트에 multiline, textAlign, outline props를 추가합니다. (#863)
+- rolling-spinner 에 FALLBACK_ACTION_CLASS_NAME class 를 추가합니다. (#864)
+- skeleton ui 를 추가합니다. (#865)
+
+### i18n
+
+- Locale asset의 로딩을 방지합니다. (#858)
+
+### poi-detail
+
+- hr 구분선을 제거 할 수 있는 prop 을 추가합니다. (#859)
+
+### app-installation-cta
+
+- 챗봇 스타일 CTA 를 추가합니다. (#857)
+
+### ETC
+
+- useScrollToAnchorHook 설명 문서를 추가합니다. (#861)
+- docs 파일이 prettier로 포매팅할 수 있도록 수정 및 md, yaml도 prettier로 검사 (#867)
+- test 패키지 및 관련 코드 제거 (#848)
+
 # 1.26.0 (2020-07-01)
 
 ### color-palette
