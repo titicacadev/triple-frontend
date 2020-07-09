@@ -29,7 +29,6 @@ const CONTENT_MIN_WIDTH = 320
 const CONTENT_MAX_WIDTH = 760
 export const ImageBannerWrapper = styled.div`
   box-sizing: border-box;
-  max-width: ${CONTENT_MAX_WIDTH}px;
   min-width: ${CONTENT_MIN_WIDTH}px;
   height: 230px;
   padding: 0 20px 20px 20px;
@@ -54,9 +53,8 @@ export const BannerImage = styled.img`
 export const InstallLink = styled.a`
   display: block;
   box-sizing: border-box;
-  margin-top: 5px;
-  margin-bottom: 16px;
-  width: 100%;
+  margin: 5px auto 16px auto;
+  max-width: ${CONTENT_MAX_WIDTH}px;
   height: 44px;
   line-height: 23px;
   border-radius: 25px;
