@@ -10,7 +10,7 @@ export default {
 export function HotelHubForm() {
   return (
     <>
-      <HubForm boxShadow={text('boxShadow', '')}>
+      <HubForm shadow={text('shadow', '')}>
         <Cell
           type="DESTINATION"
           placeholder={text('목적지 Placeholder', '도시, 또는 호텔')}
@@ -43,7 +43,7 @@ export function HotelHubForm() {
 export function AirHubForm() {
   return (
     <>
-      <HubForm boxShadow={text('boxShadow', '')}>
+      <HubForm shadow={text('shadow', '')}>
         <Cell
           type="ORIGIN"
           placeholder={text('출발지 Placeholder', '출발 도시')}
