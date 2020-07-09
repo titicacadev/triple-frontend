@@ -11,9 +11,13 @@ webpack: (config) => {
   if (
     config.mode === 'development' &&
     entries['main.js'] &&
-    !entries['main.js'].includes('@titicaca/frontend-devtools/lib/react-use-reducer-logger')
+    !entries['main.js'].includes(
+      '@titicaca/frontend-devtools/lib/react-use-reducer-logger',
+    )
   ) {
-    entries['main.js'].unshift('@titicaca/frontend-devtools/lib/react-use-reducer-logger')
+    entries['main.js'].unshift(
+      '@titicaca/frontend-devtools/lib/react-use-reducer-logger',
+    )
   }
 
   // ...
