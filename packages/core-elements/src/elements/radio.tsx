@@ -51,9 +51,21 @@ const RadioFrame = styled.div<{
     `}
 `
 
-const RadioText = styled(Text)`
-  width: 100%;
+const RadioText = styled(Text)<{
+  direction?: RadioDirection
+  multiline?: boolean
+}>`
   vertical-align: middle;
+  ${({ multiline }) =>
+    !multiline &&
+    css`
+      width: 100%;
+    `}
+  ${({ direction }) =>
+    direction === 'right' &&
+    css`
+      padding-left: 15px;
+    `}
 `
 
 const RadioInput = styled.input.attrs({ type: 'radio' })<{
