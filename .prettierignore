@@ -6,5 +6,3 @@ lerna.json
 
 .vscode/*
 tests/dist/*
-docs/*
-
