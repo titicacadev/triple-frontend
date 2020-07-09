@@ -1,15 +1,8 @@
+import React from 'react'
 import styled from 'styled-components'
-import * as CSS from 'csstype'
+import { CardFrame } from '@titicaca/core-elements'
 
-export default styled.div<{ boxShadow?: CSS.BoxShadowProperty }>`
-  border-radius: 6px;
-  box-shadow: ${({ boxShadow }) =>
-    boxShadow || '0 0 20px 0 rgba(0, 0, 0, 0.07)'};
-  background-color: #fff;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding: 4px 18px 4px 22px;
-
+const HubFormFrame = styled(CardFrame)`
   > div:not(:last-child) {
     &:after {
       content: '';
@@ -22,3 +15,21 @@ export default styled.div<{ boxShadow?: CSS.BoxShadowProperty }>`
     }
   }
 `
+
+export default function HubForm({
+  children,
+  shadow,
+  ...props
+}: React.PropsWithChildren<Parameters<typeof HubFormFrame>['0']>) {
+  return (
+    <HubFormFrame
+      margin={{ top: 10, bottom: 10 }}
+      padding={{ top: 4, bottom: 4, right: 18, left: 22 }}
+      borderRadius={6}
+      shadow={shadow || 'medium'}
+      {...props}
+    >
+      {children}
+    </HubFormFrame>
+  )
+}
