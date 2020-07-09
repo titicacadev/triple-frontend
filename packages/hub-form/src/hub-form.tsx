@@ -1,8 +1,10 @@
 import styled from 'styled-components'
+import * as CSS from 'csstype'
 
-export default styled.div`
+export default styled.div<{ boxShadow?: CSS.BoxShadowProperty }>`
   border-radius: 6px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
+  box-shadow: ${({ boxShadow }) =>
+    boxShadow || '0 0 20px 0 rgba(0, 0, 0, 0.07)'};
   background-color: #fff;
   margin-top: 10px;
   margin-bottom: 10px;
