@@ -19,12 +19,12 @@ export function FloatingButton() {
     <FloatingButtonCTA
       appInstallLink={'https://triple.onelink.me/aZP6/21d43a81'}
       fixed={boolean('화면 고정', true)}
-      trackEvent={() => {}}
       description={text('설명', '설명 텍스트가 들어갑니다.')}
+      trackEvent={action('tracked')}
       trackEventParams={{
-        onShow: { ga: ['플로팅_설치하기_노출'] },
-        onSelect: { ga: ['플로팅_설치하기_선택'] },
-        onClose: { ga: ['플로팅_설치하기_닫기'] },
+        onShow: 'onShow',
+        onSelect: 'onSelect(click)',
+        onClose: 'onClose(dismiss)',
       }}
     />
   )
@@ -40,6 +40,12 @@ export function BaseImageBanner() {
       imgUrl={text('이미지 URL', '')}
       installUrl={text('설치 URL', 'https://triple-dev.titicaca-corp.com')}
       onDismiss={action('banner dismissed')}
+      trackEvent={action('tracked')}
+      trackEventParams={{
+        onShow: 'onShow',
+        onSelect: 'onSelect(click)',
+        onDismiss: 'onDismiss(close)',
+      }}
     />
   )
 }
@@ -53,6 +59,11 @@ export function BaseTextBanner() {
     <TextBanner
       message={text('표시할 메시지', '앱 다운로드시 가이드북 무료')}
       installUrl={text('설치 URL', 'https://triple-dev.titicaca-corp.com')}
+      trackEvent={action('tracked')}
+      trackEventParams={{
+        onShow: 'onShow',
+        onSelect: 'onSelect(click)',
+      }}
     />
   )
 }
@@ -71,6 +82,12 @@ export function BaseBannerCTA() {
         )}
         installUrl={text('설치 URL', 'https://triple-dev.titicaca-corp.com')}
         onDismiss={action('banner dismissed')}
+        trackEvent={action('tracked')}
+        trackEventParams={{
+          onShow: 'onShow',
+          onSelect: 'onSelect(click)',
+          onDismiss: 'onDismiss(close)',
+        }}
       />
 
       <div style={{ height: '2000px' }} />
@@ -93,6 +110,12 @@ export function ChatBotBanner() {
         )}
         installUrl={text('설치 URL', 'https://triple.guide/magazine')}
         onDismiss={action('banner dismissed')}
+        trackEvent={action('tracked')}
+        trackEventParams={{
+          onShow: 'onShow',
+          onSelect: 'onSelect(click)',
+          onDismiss: 'onDismiss(close)',
+        }}
       />
     </div>
   )
@@ -113,12 +136,12 @@ export function FloatingButtonWithChatBot() {
         )}
         appInstallLink={'https://triple.onelink.me/aZP6/21d43a81'}
         fixed={true}
-        trackEvent={() => {}}
         description="설명 텍스트가 들어갑니다."
+        trackEvent={action('tracked')}
         trackEventParams={{
-          onShow: { ga: ['플로팅_설치하기_노출'] },
-          onSelect: { ga: ['플로팅_설치하기_선택'] },
-          onClose: { ga: ['플로팅_설치하기_닫기'] },
+          onShow: 'onShow',
+          onSelect: 'onSelect(click)',
+          onClose: 'onClose(dismiss)',
         }}
       />
       <ChatbotCTA
@@ -129,6 +152,12 @@ export function FloatingButtonWithChatBot() {
         )}
         installUrl={text('설치 URL', 'https://triple.guide/magazine')}
         onDismiss={action('banner dismissed')}
+        trackEvent={action('tracked')}
+        trackEventParams={{
+          onShow: 'onShow',
+          onSelect: 'onSelect(click)',
+          onDismissClose: 'onDismiss(close)',
+        }}
       />
     </div>
   )
