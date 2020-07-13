@@ -7,6 +7,7 @@ import {
   EVENT_CHATBOT_CTA_READY,
   FLOATING_BUTTON_CLOSED_STORAGE_KEY,
 } from './constants'
+import { EventTrackingProps } from './interfaces'
 import {
   FloatingButton,
   InstallDescription,
@@ -17,6 +18,14 @@ import {
   LeftContainer,
   RightContainer,
 } from './elements'
+
+interface FloatingButtonCTAProps extends EventTrackingProps {
+  exitStrategy?: BannerExitStrategy
+  fixed?: boolean
+  appInstallLink?: string
+  description?: string
+  margin?: MarginPadding
+}
 
 /**
  * '트리플 앱 설치하기' 하단 플로팅 버튼 CTA
@@ -34,22 +43,10 @@ export default function FloatingButtonCTA({
   fixed,
   appInstallLink,
   description = '가이드북, 일정짜기, 길찾기, 맛집',
-  trackEvent,
   margin,
+  trackEvent,
   trackEventParams,
-}: {
-  exitStrategy?: BannerExitStrategy
-  fixed?: boolean
-  appInstallLink?: string
-  description?: string
-  trackEvent?: any
-  margin?: MarginPadding
-  trackEventParams?: {
-    onShow?: any
-    onSelect?: any
-    onClose?: any
-  }
-}) {
+}: FloatingButtonCTAProps) {
   const [buttonVisibility, setButtonVisibility] = useState(false)
   const [available, setAvailable] = useState(true)
 

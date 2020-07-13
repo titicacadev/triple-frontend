@@ -6,6 +6,7 @@ import {
   CHATBOT_CLOSED_STORAGE_KEY,
   EVENT_CHATBOT_CTA_READY,
 } from './constants'
+import { EventTrackingProps } from './interfaces'
 import {
   ChatbotContainer,
   ChatBalloon,
@@ -17,6 +18,13 @@ import {
 type CTAData = {
   detailedDesc?: string
   text?: string
+}
+
+interface ChatbotCTAProps extends EventTrackingProps {
+  available?: boolean
+  inventoryId: string
+  installUrl: string
+  onDismiss?: () => void
 }
 
 /**
@@ -31,16 +39,20 @@ export default function ChatbotCTA({
   inventoryId,
   installUrl,
   onDismiss = () => {},
-}: {
-  available?: boolean
-  inventoryId: string
-  installUrl: string
-  onDismiss?: () => void
-}) {
+  trackEvent,
+  trackEventParams,
+}: ChatbotCTAProps) {
   const [{ detailedDesc = '', text = '' } = {}, setCTAData] = useState<
     CTAData
   >()
   const [visibility, setVisibility] = useState(false)
+
+  const sendTrackEventRequest = useCallback(
+    (param) => {
+      trackEvent && param && trackEvent(param)
+    },
+    [trackEvent],
+  )
 
   useEffect(() => {
     const visited = window.sessionStorage.getItem(CHATBOT_CLOSED_STORAGE_KEY)
@@ -48,8 +60,10 @@ export default function ChatbotCTA({
     if (!visited && !visibility && available) {
       setVisibility(true)
       window.dispatchEvent(new Event(EVENT_CHATBOT_CTA_READY))
+
+      sendTrackEventRequest(trackEventParams && trackEventParams.onShow)
     }
-  }, [available, visibility])
+  }, [available, sendTrackEventRequest, trackEventParams, visibility])
 
   useEffect(() => {
     async function fetchInventory() {
@@ -74,12 +88,18 @@ export default function ChatbotCTA({
     available && inventoryId && !detailedDesc && fetchInventory()
   }, [available, detailedDesc, inventoryId])
 
+  const handleClick = useCallback(() => {
+    sendTrackEventRequest(trackEventParams && trackEventParams.onSelect)
+  }, [sendTrackEventRequest, trackEventParams])
+
   const handleDismiss = useCallback(() => {
     setVisibility(false)
     window.sessionStorage.setItem(CHATBOT_CLOSED_STORAGE_KEY, 'true')
 
     onDismiss()
-  }, [onDismiss])
+
+    sendTrackEventRequest(trackEventParams && trackEventParams.onDismiss)
+  }, [onDismiss, sendTrackEventRequest, trackEventParams])
 
   return (
     <CSSTransition in={visibility} appear classNames="fade" timeout={500}>
@@ -88,10 +108,14 @@ export default function ChatbotCTA({
           <Text size={18} bold lineHeight="24px">
             {detailedDesc}
           </Text>
-          <ChatbotAction href={installUrl}>{text}</ChatbotAction>
+          <ChatbotAction href={installUrl} onClick={handleClick}>
+            {text}
+          </ChatbotAction>
           <ChatbotCloseButton onClick={handleDismiss}>닫기</ChatbotCloseButton>
         </ChatBalloon>
-        <ChatbotIcon href={installUrl}>트리플</ChatbotIcon>
+        <ChatbotIcon href={installUrl} onClick={handleClick}>
+          트리플
+        </ChatbotIcon>
       </ChatbotContainer>
     </CSSTransition>
   )

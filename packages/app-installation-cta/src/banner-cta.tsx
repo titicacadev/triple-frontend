@@ -3,13 +3,14 @@ import React, { useState, useEffect } from 'react'
 import { Overlay, BottomFixedContainer } from './elements'
 import ImageBanner from './image-banner'
 import TextBanner from './text-banner'
+import { EventTrackingProps } from './interfaces'
 
 type CTAImage = {
   image?: string
   desc?: string
 }
 
-interface BannerCTAProps {
+interface BannerCTAProps extends EventTrackingProps {
   inventoryId: string
   installUrl: string
   onDismiss?: (ctaImage?: CTAImage) => void
@@ -25,6 +26,8 @@ export default function BannerCTA({
   inventoryId,
   installUrl,
   onDismiss,
+  trackEvent,
+  trackEventParams,
 }: BannerCTAProps) {
   const [ctaImage, setCTAImage] = useState<CTAImage>()
   const [isImageBannerOpen, setIsImageBannerOpen] = useState(false)
@@ -70,11 +73,20 @@ export default function BannerCTA({
               setIsImageBannerOpen(false)
               onDismiss && onDismiss(ctaImage)
             }}
+            trackEvent={trackEvent}
+            trackEventParams={trackEventParams}
           />
         </BottomFixedContainer>
       </Overlay>
     ) : null
   }
 
-  return desc ? <TextBanner message={desc} installUrl={installUrl} /> : null
+  return desc ? (
+    <TextBanner
+      message={desc}
+      installUrl={installUrl}
+      trackEvent={trackEvent}
+      trackEventParams={trackEventParams}
+    />
+  ) : null
 }
