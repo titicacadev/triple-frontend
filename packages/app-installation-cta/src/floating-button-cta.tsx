@@ -63,6 +63,11 @@ export default function FloatingButtonCTA({
     )
     if (!visitedPages && !buttonVisibility) {
       setButtonVisibility(true)
+    }
+  }, [buttonVisibility])
+
+  useEffect(() => {
+    if (buttonVisibility) {
       sendTrackEventRequest(trackEventParams && trackEventParams.onShow)
     }
   }, [buttonVisibility, sendTrackEventRequest, trackEventParams])

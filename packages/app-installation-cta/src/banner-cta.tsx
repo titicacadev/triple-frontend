@@ -30,7 +30,7 @@ export default function BannerCTA({
   trackEventParams,
 }: BannerCTAProps) {
   const [ctaImage, setCTAImage] = useState<CTAImage>()
-  const [isImageBannerOpen, setIsImageBannerOpen] = useState(false)
+  const [isImageBannerOpen, setIsImageBannerOpen] = useState(true)
   const { image = '', desc = '' } = ctaImage || {}
 
   useEffect(() => {
@@ -58,12 +58,8 @@ export default function BannerCTA({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inventoryId])
 
-  useEffect(() => {
-    setIsImageBannerOpen(!!ctaImage?.image)
-  }, [ctaImage])
-
-  if (isImageBannerOpen) {
-    return image ? (
+  return ctaImage ? (
+    isImageBannerOpen ? (
       <Overlay>
         <BottomFixedContainer>
           <ImageBanner
@@ -78,15 +74,13 @@ export default function BannerCTA({
           />
         </BottomFixedContainer>
       </Overlay>
-    ) : null
-  }
-
-  return desc ? (
-    <TextBanner
-      message={desc}
-      installUrl={installUrl}
-      trackEvent={trackEvent}
-      trackEventParams={trackEventParams}
-    />
+    ) : (
+      <TextBanner
+        message={desc}
+        installUrl={installUrl}
+        trackEvent={trackEvent}
+        trackEventParams={trackEventParams}
+      />
+    )
   ) : null
 }
