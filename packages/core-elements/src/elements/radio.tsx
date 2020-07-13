@@ -55,6 +55,7 @@ const RadioText = styled(Text)<{
   textAlign?: TextAlign
   multiline?: boolean
 }>`
+  text-align: left;
   vertical-align: middle;
   ${({ multiline }) =>
     !multiline &&
