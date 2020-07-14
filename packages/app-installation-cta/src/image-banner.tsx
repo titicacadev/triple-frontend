@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useMemo } from 'react'
 
 import {
   ImageBannerWrapper,
@@ -7,44 +7,40 @@ import {
   InstallLink,
   DismissButton,
 } from './elements'
-import { EventTrackingProps } from './interfaces'
+import { CTAProps } from './interfaces'
 
-interface ImageBannerProps extends EventTrackingProps {
+interface ImageBannerProps extends CTAProps {
   imgUrl?: string
   installUrl: string
-  onDismiss: () => void
 }
 
 export default function ImageBanner({
   imgUrl,
   installUrl,
+  onShow,
+  onClick,
   onDismiss,
-  trackEvent,
-  trackEventParams,
 }: ImageBannerProps) {
   const imgSrc =
     (imgUrl ?? '').trim() ||
     'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
 
-  const sendTrackEventRequest = useCallback(
-    (param) => {
-      trackEvent && param && trackEvent(param)
-    },
-    [trackEvent],
+  const inventoryItem = useMemo(
+    () => (imgUrl ? { image: imgUrl } : undefined),
+    [imgUrl],
   )
 
   useEffect(() => {
-    sendTrackEventRequest(trackEventParams && trackEventParams.onShow)
-  }, [sendTrackEventRequest, trackEventParams])
+    onShow && onShow(inventoryItem)
+  }, [onShow, inventoryItem])
 
   const handleClick = useCallback(() => {
-    sendTrackEventRequest(trackEventParams && trackEventParams.onSelect)
-  }, [sendTrackEventRequest, trackEventParams])
+    onClick && onClick(inventoryItem)
+  }, [onClick, inventoryItem])
 
   const handleDismiss = useCallback(() => {
-    onDismiss()
-    sendTrackEventRequest(trackEventParams && trackEventParams.onDismiss)
-  }, [onDismiss, sendTrackEventRequest, trackEventParams])
+    onDismiss && onDismiss(inventoryItem)
+  }, [onDismiss, inventoryItem])
 
   return (
     <ImageBannerWrapper>

@@ -7,7 +7,7 @@ import {
   EVENT_CHATBOT_CTA_READY,
   FLOATING_BUTTON_CLOSED_STORAGE_KEY,
 } from './constants'
-import { EventTrackingProps } from './interfaces'
+import { CTAProps } from './interfaces'
 import {
   FloatingButton,
   InstallDescription,
@@ -19,12 +19,14 @@ import {
   RightContainer,
 } from './elements'
 
-interface FloatingButtonCTAProps extends EventTrackingProps {
+interface FloatingButtonCTAProps extends CTAProps {
   exitStrategy?: BannerExitStrategy
   fixed?: boolean
   appInstallLink?: string
   description?: string
   margin?: MarginPadding
+  trackEvent?: any
+  trackEventParams?: any
 }
 
 /**
@@ -46,6 +48,9 @@ export default function FloatingButtonCTA({
   margin,
   trackEvent,
   trackEventParams,
+  onShow,
+  onClick,
+  onDismiss,
 }: FloatingButtonCTAProps) {
   const [buttonVisibility, setButtonVisibility] = useState(false)
   const [available, setAvailable] = useState(true)
@@ -69,19 +74,23 @@ export default function FloatingButtonCTA({
   useEffect(() => {
     if (buttonVisibility) {
       sendTrackEventRequest(trackEventParams && trackEventParams.onShow)
+      onShow && onShow()
     }
-  }, [buttonVisibility, sendTrackEventRequest, trackEventParams])
+  }, [buttonVisibility, onShow, sendTrackEventRequest, trackEventParams])
 
-  const onClose = () => {
+  const handleClick = useCallback(() => {
+    sendTrackEventRequest(trackEventParams && trackEventParams.onSelect)
+    onClick && onClick()
+
+    return true
+  }, [onClick, sendTrackEventRequest, trackEventParams])
+
+  const handleDismiss = useCallback(() => {
     setButtonVisibility(false)
     window.sessionStorage.setItem(FLOATING_BUTTON_CLOSED_STORAGE_KEY, 'true')
     sendTrackEventRequest(trackEventParams && trackEventParams.onClose)
-  }
-
-  const onSelect = () => {
-    sendTrackEventRequest(trackEventParams && trackEventParams.onSelect)
-    return true
-  }
+    onDismiss && onDismiss()
+  }, [onDismiss, sendTrackEventRequest, trackEventParams])
 
   useEffect(() => {
     if (exitStrategy === BannerExitStrategy.CHATBOT_READY) {
@@ -106,7 +115,7 @@ export default function FloatingButtonCTA({
         margin={margin}
       >
         <LeftContainer>
-          <InstallAnchor href={appInstallLink} onClick={onSelect}>
+          <InstallAnchor href={appInstallLink} onClick={handleClick}>
             <InstallDescription>
               <Text floated="left" color="white">
                 트리플 앱 설치하기
@@ -116,7 +125,7 @@ export default function FloatingButtonCTA({
             <Description>{description}</Description>
           </InstallAnchor>
         </LeftContainer>
-        <RightContainer onClick={onClose}>
+        <RightContainer onClick={handleDismiss}>
           <CloseButton src="https://assets.triple.guide/images/btn-closebanner@3x.png" />
         </RightContainer>
       </FloatingButton>

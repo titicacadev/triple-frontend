@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useMemo } from 'react'
 
 import { TextBannerWrapper, DownloadIcon } from './elements'
-import { EventTrackingProps } from './interfaces'
+import { CTAProps } from './interfaces'
 
-interface TextBannerProps extends EventTrackingProps {
+interface TextBannerProps extends CTAProps {
   message: string
   installUrl: string
 }
@@ -11,23 +11,21 @@ interface TextBannerProps extends EventTrackingProps {
 export default function TextBanner({
   message,
   installUrl,
-  trackEvent,
-  trackEventParams,
+  onShow,
+  onClick,
 }: TextBannerProps) {
-  const sendTrackEventRequest = useCallback(
-    (param) => {
-      trackEvent && param && trackEvent(param)
-    },
-    [trackEvent],
+  const inventoryItem = useMemo(
+    () => (message ? { desc: message } : undefined),
+    [message],
   )
 
   useEffect(() => {
-    sendTrackEventRequest(trackEventParams && trackEventParams.onShow)
-  }, [sendTrackEventRequest, trackEventParams])
+    onShow && onShow(inventoryItem)
+  }, [onShow, inventoryItem])
 
   const handleClick = useCallback(() => {
-    sendTrackEventRequest(trackEventParams && trackEventParams.onSelect)
-  }, [sendTrackEventRequest, trackEventParams])
+    onClick && onClick(inventoryItem)
+  }, [onClick, inventoryItem])
 
   return (
     <TextBannerWrapper href={installUrl} onClick={handleClick}>
