@@ -21,13 +21,34 @@ storiesOf('Core-Elements | Tabs', module)
       { label: '호텔', value: '호텔' },
     ]
 
+    const options2 = [
+      { label: '투어티켓1', value: '투어티켓' },
+      { label: '호텔2', value: '호텔2' },
+      { label: '투어티켓3', value: '투어티켓3' },
+      { label: '호텔4', value: '호텔4' },
+      { label: '투어티켓5', value: '투어티켓5' },
+      { label: '호텔6', value: '호텔6' },
+      { label: '투어티켓7', value: '투어티켓7' },
+      { label: '호텔8', value: '호텔8' },
+    ]
+
     const values = options.map(({ value }) => value)
+    const values2 = options2.map(({ value }) => value)
 
     return (
-      <Tabs
-        type="pointing"
-        options={options}
-        value={select('버튼 크기', values, values[0])}
-      />
+      <>
+        <Tabs
+          type="pointing"
+          options={options}
+          value={select('버튼 크기', values, values[0])}
+        />
+        <br /> <br /> <br /> <br />
+        <Tabs
+          scroll
+          type="pointing"
+          options={options2}
+          value={select('버튼 크기2', values2, values2[0])}
+        />
+      </>
     )
   })
