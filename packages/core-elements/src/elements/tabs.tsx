@@ -1,8 +1,6 @@
-import * as React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
-
-import Container from './container'
 
 type TabType = 'basic' | 'pointing'
 
@@ -16,26 +14,50 @@ interface TabProps {
   options: Option[]
   onChange: (e?: React.SyntheticEvent, value?: any) => any
   type: TabType
+  scroll?: boolean
 }
 
-const TAB_TYPE: { [key in TabType]: React.ElementType } = {
-  basic: BasicTab,
-  pointing: PointingTab,
+interface RefValuesProps {
+  refSize: number | undefined
+  refLeft: number | undefined
 }
 
-const TabContainer = styled.div`
+// eslint-disable-next-line no-unexpected-multiline
+const TabContainer = styled.div<{
+  active?: boolean
+  scroll?: boolean
+}>`
+  position: relative;
   white-space: nowrap;
-  display: table;
-  width: 100%;
-  table-layout: fixed;
+  ${({ scroll }) =>
+    scroll
+      ? css`
+          overflow-x: scroll;
+          -webkit-overflow-scrolling: touch;
+          cursor: pointer;
+
+          ::-webkit-scrollbar {
+            display: none;
+          }
+        `
+      : css`
+          display: table;
+          width: 100%;
+          table-layout: fixed;
+        `};
 `
 
-const TabLabel = styled.div<{ active?: boolean }>`
-  display: table-cell;
+const TabLabel = styled.div<{ active?: boolean; scroll?: boolean }>`
   box-sizing: border-box;
   text-align: center;
-  padding: 11px 0;
   cursor: pointer;
+
+  ${({ scroll }) =>
+    !scroll &&
+    css`
+      display: table-cell;
+      padding: 11px 0;
+    `};
 `
 
 const BasicContainer = styled(TabContainer)`
@@ -44,10 +66,27 @@ const BasicContainer = styled(TabContainer)`
   padding: 2px;
 `
 
-const PointingContainer = styled(TabContainer)`
+const PointingContainer = styled(TabContainer)<{
+  size?: number
+  left?: number
+  scroll?: boolean
+}>`
   border-bottom: 1px solid rgba(${getColor('gray50')});
+  &:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    width: ${({ size, scroll }) => `${size}${scroll ? 'px' : '%'}`};
+    left: ${({ left, scroll }) => `${left}${scroll ? 'px' : '%'}`};
+    height: 2px;
+    background: rgba(${getColor('blue')});
+    transition: all 0.2s;
+  }
 `
-
+const PointingRow = styled.div`
+  display: table-row;
+`
 const BasicLabel = styled(TabLabel)`
   ${({ active }) => css`
     color: ${active ? '#3a3a3a' : 'rgba(46, 46, 46, 0.3)'};
@@ -67,16 +106,13 @@ const PointingLabel = styled(TabLabel)`
       ? `rgba(${getColor('gray')})`
       : `rgba(${getColor('gray200')})`};
   `}
-`
 
-const Line = styled.div<{ size: number; left: number }>`
-  position: absolute;
-  bottom: 0;
-  width: ${({ size }) => size}%;
-  left: ${({ left }) => left}%;
-  height: 2px;
-  background: rgba(${getColor('blue')});
-  transition: all 0.2s;
+  ${({ scroll }) =>
+    scroll &&
+    css`
+      display: inline-block;
+      padding: 11px 18px;
+    `};
 `
 
 function BasicTab({ options, value: currentValue, onChange }: TabProps) {
@@ -95,26 +131,58 @@ function BasicTab({ options, value: currentValue, onChange }: TabProps) {
   )
 }
 
-function PointingTab({ options, value: currentValue, onChange }: TabProps) {
+function PointingTab({
+  options,
+  value: currentValue,
+  onChange,
+  scroll,
+}: TabProps) {
+  const pointingRef = useRef<(HTMLDivElement | null)[]>([])
+
+  const [refValues, setRefValues] = useState<RefValuesProps>({
+    refSize: 0,
+    refLeft: 0,
+  })
+
   const size = 100 / options.length
   const activeIdx = options.findIndex(({ value }) => value === currentValue)
   const left = activeIdx > -1 ? activeIdx * size : -100
 
+  useEffect(() => {
+    if (!pointingRef || !pointingRef.current) {
+      return
+    }
+
+    setRefValues({
+      refSize: pointingRef.current[activeIdx]?.clientWidth,
+      refLeft: pointingRef.current[activeIdx]?.offsetLeft,
+    })
+  }, [activeIdx]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const { refSize, refLeft } = refValues
+
   return (
-    <Container position="relative">
-      <PointingContainer>
+    <PointingContainer
+      size={scroll ? refSize : size}
+      left={scroll ? refLeft : left}
+      scroll={scroll}
+    >
+      <PointingRow>
         {options.map(({ label, value }, idx) => (
           <PointingLabel
+            scroll={scroll}
+            ref={(ref) => (pointingRef.current[idx] = ref)}
             key={idx}
             active={value === currentValue}
-            onClick={(e) => onChange(e, value)}
+            onClick={(e) => {
+              onChange(e, value)
+            }}
           >
             {label}
           </PointingLabel>
         ))}
-      </PointingContainer>
-      <Line size={size} left={left} />
-    </Container>
+      </PointingRow>
+    </PointingContainer>
   )
 }
 
@@ -123,10 +191,26 @@ export default function Tabs({
   options,
   onChange,
   type,
+  scroll,
 }: TabProps) {
-  const Component = TAB_TYPE[type || 'basic']
+  if (type || (type === 'pointing' && scroll)) {
+    return (
+      <PointingTab
+        scroll={scroll}
+        onChange={onChange}
+        options={options}
+        value={currentValue}
+        type="pointing"
+      />
+    )
+  }
 
   return (
-    <Component onChange={onChange} options={options} value={currentValue} />
+    <BasicTab
+      onChange={onChange}
+      options={options}
+      value={currentValue}
+      type="basic"
+    />
   )
 }
