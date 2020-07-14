@@ -3,17 +3,11 @@ import React, { useState, useEffect } from 'react'
 import { Overlay, BottomFixedContainer } from './elements'
 import ImageBanner from './image-banner'
 import TextBanner from './text-banner'
-import { EventTrackingProps } from './interfaces'
+import { InventoryItem, CTAProps } from './interfaces'
 
-type CTAImage = {
-  image?: string
-  desc?: string
-}
-
-interface BannerCTAProps extends EventTrackingProps {
+interface BannerCTAProps extends CTAProps {
   inventoryId: string
   installUrl: string
-  onDismiss?: (ctaImage?: CTAImage) => void
 }
 
 /**
@@ -25,13 +19,13 @@ interface BannerCTAProps extends EventTrackingProps {
 export default function BannerCTA({
   inventoryId,
   installUrl,
+  onShow,
+  onClick,
   onDismiss,
-  trackEvent,
-  trackEventParams,
 }: BannerCTAProps) {
-  const [ctaImage, setCTAImage] = useState<CTAImage>()
+  const [inventoryItem, setInventoryItem] = useState<InventoryItem>()
   const [isImageBannerOpen, setIsImageBannerOpen] = useState(true)
-  const { image = '', desc = '' } = ctaImage || {}
+  const { image = '', desc = '' } = inventoryItem || {}
 
   useEffect(() => {
     async function fetchCTAImage() {
@@ -45,7 +39,7 @@ export default function BannerCTA({
         if (items.length > 0) {
           const item = items[0]
 
-          setCTAImage({
+          setInventoryItem({
             image: item.image ? item.image.replace(/\.jpg$/, '.png') : '',
             desc: item.desc,
           })
@@ -58,19 +52,19 @@ export default function BannerCTA({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inventoryId])
 
-  return ctaImage ? (
-    isImageBannerOpen ? (
+  return inventoryItem ? (
+    isImageBannerOpen && image ? (
       <Overlay>
         <BottomFixedContainer>
           <ImageBanner
             imgUrl={image}
             installUrl={installUrl}
+            onShow={onShow}
+            onClick={onClick}
             onDismiss={() => {
               setIsImageBannerOpen(false)
-              onDismiss && onDismiss(ctaImage)
+              onDismiss && onDismiss(inventoryItem)
             }}
-            trackEvent={trackEvent}
-            trackEventParams={trackEventParams}
           />
         </BottomFixedContainer>
       </Overlay>
@@ -78,8 +72,8 @@ export default function BannerCTA({
       <TextBanner
         message={desc}
         installUrl={installUrl}
-        trackEvent={trackEvent}
-        trackEventParams={trackEventParams}
+        onShow={onShow}
+        onClick={onClick}
       />
     )
   ) : null

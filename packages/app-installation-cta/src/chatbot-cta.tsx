@@ -6,7 +6,7 @@ import {
   CHATBOT_CLOSED_STORAGE_KEY,
   EVENT_CHATBOT_CTA_READY,
 } from './constants'
-import { EventTrackingProps } from './interfaces'
+import { InventoryItem, CTAProps } from './interfaces'
 import {
   ChatbotContainer,
   ChatBalloon,
@@ -15,16 +15,10 @@ import {
   ChatbotIcon,
 } from './elements'
 
-type CTAData = {
-  detailedDesc?: string
-  text?: string
-}
-
-interface ChatbotCTAProps extends EventTrackingProps {
+interface ChatbotCTAProps extends CTAProps {
   available?: boolean
   inventoryId: string
   installUrl: string
-  onDismiss?: () => void
 }
 
 /**
@@ -38,21 +32,13 @@ export default function ChatbotCTA({
   available = false,
   inventoryId,
   installUrl,
-  onDismiss = () => {},
-  trackEvent,
-  trackEventParams,
+  onShow,
+  onClick,
+  onDismiss,
 }: ChatbotCTAProps) {
-  const [{ detailedDesc = '', text = '' } = {}, setCTAData] = useState<
-    CTAData
-  >()
+  const [inventoryItem, setInventoryItem] = useState<InventoryItem>()
   const [visibility, setVisibility] = useState(false)
-
-  const sendTrackEventRequest = useCallback(
-    (param) => {
-      trackEvent && param && trackEvent(param)
-    },
-    [trackEvent],
-  )
+  const { detailedDesc = '', text = '' } = inventoryItem || {}
 
   useEffect(() => {
     const visited = window.sessionStorage.getItem(CHATBOT_CLOSED_STORAGE_KEY)
@@ -60,10 +46,8 @@ export default function ChatbotCTA({
     if (!visited && !visibility && available) {
       setVisibility(true)
       window.dispatchEvent(new Event(EVENT_CHATBOT_CTA_READY))
-
-      sendTrackEventRequest(trackEventParams && trackEventParams.onShow)
     }
-  }, [available, sendTrackEventRequest, trackEventParams, visibility])
+  }, [available, inventoryItem, onShow, visibility])
 
   useEffect(() => {
     async function fetchInventory() {
@@ -72,34 +56,37 @@ export default function ChatbotCTA({
       })
 
       if (response.ok) {
-        const { items } = await response.json()
+        const { items } = (await response.json()) as { items: InventoryItem[] }
+        const [item] = items
 
-        if (items.length > 0) {
-          const { detailedDesc = '', text = '' } = (items[0] as CTAData) || {}
-
-          setCTAData({
-            detailedDesc: detailedDesc.replace('\\n', '\n'),
-            text,
+        if (item) {
+          setInventoryItem({
+            detailedDesc: (item.detailedDesc || '').replace('\\n', '\n'),
+            text: item.text,
           })
         }
       }
     }
 
     available && inventoryId && !detailedDesc && fetchInventory()
-  }, [available, detailedDesc, inventoryId])
+  }, [available, detailedDesc, inventoryId, text])
+
+  useEffect(() => {
+    if (inventoryItem?.detailedDesc && visibility) {
+      onShow && onShow(inventoryItem)
+    }
+  }, [inventoryItem, onShow, visibility])
 
   const handleClick = useCallback(() => {
-    sendTrackEventRequest(trackEventParams && trackEventParams.onSelect)
-  }, [sendTrackEventRequest, trackEventParams])
+    onClick && onClick(inventoryItem)
+  }, [onClick, inventoryItem])
 
   const handleDismiss = useCallback(() => {
     setVisibility(false)
     window.sessionStorage.setItem(CHATBOT_CLOSED_STORAGE_KEY, 'true')
 
-    onDismiss()
-
-    sendTrackEventRequest(trackEventParams && trackEventParams.onDismiss)
-  }, [onDismiss, sendTrackEventRequest, trackEventParams])
+    onDismiss && onDismiss(inventoryItem)
+  }, [onDismiss, inventoryItem])
 
   return (
     <CSSTransition in={visibility} appear classNames="fade" timeout={500}>
