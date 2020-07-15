@@ -1,3 +1,13 @@
+# 1.28.0 (2020-07-15)
+
+### app-installation-cta
+
+- 각 CTA 에서 모두 지표 트래킹을 가능하게합니다. (#872)
+
+### core-elements
+
+- Radio컴포넌트의 텍스트 `text-align` 을 left로 고정합니다. (#871)
+
 # 1.27.1 (2020-07-09)
 
 ### hub-form
