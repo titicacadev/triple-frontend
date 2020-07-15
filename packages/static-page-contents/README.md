@@ -90,9 +90,14 @@ const CustomStyledStaticContents = styled(StaticPageContents)`
 import styled from 'styled-components'
 import StaticContents from '@titicaca/static-contents'
 
-<StaticPageContents
-    src="can-not-load-static-file.html"
-    onFallback={() => <span>custom fallback contents</span>} />
+function foo() {
+  return (
+    <StaticPageContents
+      src="can-not-load-static-file.html"
+      onFallback={() => <span>custom fallback contents</span>}
+    />
+  )
+}
 ```
 
 ## Etc
