@@ -1,8 +1,11 @@
-# `floating-install-button`
+# `floating-install-button` _(deprecated)_
 
-퍼블릭 웹뷰에서 공통으로 쓰이는 플로팅 설치 유도 버튼입니다.
+**이 패키지는 Deprecated 상태입니다.**
+**`app-installtion-cta` 의 `FloatingButtonCTA` 를 사용해주세요.**
 
-꼭 퍼블릭 웹뷰 환경에서만 쓰일 수 있도록 유의 부탁드립니다.
+~퍼블릭 웹뷰에서 공통으로 쓰이는 플로팅 설치 유도 버튼입니다.~
+
+~꼭 퍼블릭 웹뷰 환경에서만 쓰일 수 있도록 유의 부탁드립니다.~
 
 ## Usage
 

@@ -1,36 +1,14 @@
-import React, { FC, useState, useEffect } from 'react'
-import styled from 'styled-components'
+import React, { useState, useEffect } from 'react'
 
+import { Overlay, BottomFixedContainer } from './elements'
 import ImageBanner from './image-banner'
 import TextBanner from './text-banner'
+import { InventoryItem, CTAProps } from './interfaces'
 
-interface BannerCTAProps {
+interface BannerCTAProps extends CTAProps {
   inventoryId: string
   installUrl: string
 }
-
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
-  background-color: rgba(58, 58, 58, 0.5);
-  z-index: 10;
-`
-
-const BottomFixedContainer = styled.div`
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  z-index: 11;
-
-  > * {
-    margin: 0 auto;
-  }
-`
 
 /**
  * 이미지가 포함된 배너를 띄우고 dismiss 시에는 텍스트 배너로 바뀌는 CTA 컴포넌트
@@ -38,9 +16,16 @@ const BottomFixedContainer = styled.div`
  * @param inventoryId 표시할 이미지의 인벤토리 ID
  * @param installUrl 앱 설치 URL
  */
-const BannerCTA: FC<BannerCTAProps> = ({ inventoryId, installUrl }) => {
-  const [{ image, desc }, setCTAImage] = useState({ image: '', desc: '' })
+export default function BannerCTA({
+  inventoryId,
+  installUrl,
+  onShow,
+  onClick,
+  onDismiss,
+}: BannerCTAProps) {
+  const [inventoryItem, setInventoryItem] = useState<InventoryItem>()
   const [isImageBannerOpen, setIsImageBannerOpen] = useState(true)
+  const { image = '', desc = '' } = inventoryItem || {}
 
   useEffect(() => {
     async function fetchCTAImage() {
@@ -54,31 +39,42 @@ const BannerCTA: FC<BannerCTAProps> = ({ inventoryId, installUrl }) => {
         if (items.length > 0) {
           const item = items[0]
 
-          setCTAImage({
+          setInventoryItem({
             image: item.image ? item.image.replace(/\.jpg$/, '.png') : '',
             desc: item.desc,
           })
+        } else {
+          onDismiss && onDismiss()
         }
       }
     }
     fetchCTAImage()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inventoryId])
 
-  if (isImageBannerOpen) {
-    return (
+  return inventoryItem ? (
+    isImageBannerOpen && image ? (
       <Overlay>
         <BottomFixedContainer>
           <ImageBanner
             imgUrl={image}
             installUrl={installUrl}
-            onDismiss={() => setIsImageBannerOpen(false)}
+            onShow={onShow}
+            onClick={onClick}
+            onDismiss={() => {
+              setIsImageBannerOpen(false)
+              onDismiss && onDismiss(inventoryItem)
+            }}
           />
         </BottomFixedContainer>
       </Overlay>
+    ) : (
+      <TextBanner
+        message={desc}
+        installUrl={installUrl}
+        onShow={onShow}
+        onClick={onClick}
+      />
     )
-  }
-
-  return <TextBanner message={desc} installUrl={installUrl} />
+  ) : null
 }
-
-export default BannerCTA

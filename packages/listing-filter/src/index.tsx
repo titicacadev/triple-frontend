@@ -1,13 +1,13 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
+import { blue, gray, gray200, gray300, white } from '@titicaca/color-palette'
 
 const FilterEntryBase = styled.div<{ active?: boolean; disabled?: boolean }>`
   display: inline-block;
   font-size: 13px;
-  line-height: 1.2;
-  border: 1px solid
-    ${({ active }) => (active ? '#368fff' : 'rgba(58, 58, 58, 0.2)')};
-  color: ${({ active }) => (active ? '#368fff' : 'rgba(58, 58, 58, 0.2)')};
+  line-height: 15px;
+  border: 1px solid ${({ active }) => (active ? blue : gray200)};
+  color: ${({ active }) => (active ? blue : gray200)};
   background-repeat: no-repeat;
   border-radius: 2px;
   box-sizing: border-box;
@@ -47,8 +47,8 @@ const ExpandingFilterEntryBadge = styled.div`
   height: 18px;
   width: 18px;
   line-height: 18px;
-  background-color: #368fff;
-  color: #fff;
+  background-color: ${blue};
+  color: ${white};
   border-radius: 9px;
   font-size: 12px;
   font-weight: bold;
@@ -110,14 +110,41 @@ const RegularFilterEntry = styled(FilterEntryBase)<{
   ${({ active }) =>
     active
       ? css`
-          color: #fff;
-          background-color: #368fff;
+          color: ${white};
+          background-color: ${blue};
         `
       : css`
-          color: rgba(58, 58, 58, 0.2);
-          border: solid 1px rgba(58, 58, 58, 0.2);
+          color: ${gray200};
+          border: solid 1px ${gray200};
         `};
   border-radius: 2px;
+`
+
+const UnderlineRegularFilterEntry = styled(FilterEntryBase)<{
+  active?: boolean
+}>`
+  position: relative;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: ${gray300};
+  ${({ active }) =>
+    active &&
+    css`
+      color: ${gray};
+      &:before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 10px;
+        right: 10px;
+        height: 2px;
+        background: ${blue};
+      }
+    `};
 `
 
 const PrimaryFilterEntry = styled(FilterEntryBase)`
@@ -127,10 +154,10 @@ const PrimaryFilterEntry = styled(FilterEntryBase)`
   background-position: top 5px left 10px;
   border: none;
   border-radius: 2px;
-  background-color: #368fff;
+  background-color: ${blue};
   font-size: 13px;
   font-weight: bold;
-  color: #fff;
+  color: ${white};
 `
 
 interface FilterEntryProps extends React.HTMLAttributes<HTMLElement> {
@@ -138,14 +165,19 @@ interface FilterEntryProps extends React.HTMLAttributes<HTMLElement> {
   active?: boolean
   activeIconImage?: string
   inactiveIconImage?: string
+  underline?: boolean
 }
 
 function FilterEntry({
   active,
   activeIconImage,
   inactiveIconImage,
+  underline,
   ...props
 }: FilterEntryProps) {
+  if (underline) {
+    return <UnderlineRegularFilterEntry active={active} {...props} />
+  }
   return (
     <RegularFilterEntry
       active={active}

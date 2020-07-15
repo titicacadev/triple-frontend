@@ -1,43 +1,36 @@
-import React, { FC } from 'react'
-import styled from 'styled-components'
+import React, { useCallback, useEffect, useMemo } from 'react'
 
-interface TextBannerProps {
+import { TextBannerWrapper, DownloadIcon } from './elements'
+import { CTAProps } from './interfaces'
+
+interface TextBannerProps extends CTAProps {
   message: string
   installUrl: string
 }
 
-const TextBannerWrapper = styled.a`
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
-  height: 54px;
-  line-height: 17px;
-  padding: 19px 0 18px 0;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
-  background-color: #0179ff;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  text-align: center;
-  cursor: pointer;
-  text-decoration: none;
-`
+export default function TextBanner({
+  message,
+  installUrl,
+  onShow,
+  onClick,
+}: TextBannerProps) {
+  const inventoryItem = useMemo(
+    () => (message ? { desc: message } : undefined),
+    [message],
+  )
 
-const DownloadIcon = styled.img`
-  margin-left: 6px;
-  width: 12px;
-  height: 13px;
-  vertical-align: middle;
-  transform: translateY(-1px); /* HACK: 아래로 가있는 이미지 위로 끌어 올림 */
-`
+  useEffect(() => {
+    onShow && onShow(inventoryItem)
+  }, [onShow, inventoryItem])
 
-const TextBanner: FC<TextBannerProps> = ({ message, installUrl }) => {
+  const handleClick = useCallback(() => {
+    onClick && onClick(inventoryItem)
+  }, [onClick, inventoryItem])
+
   return (
-    <TextBannerWrapper href={installUrl}>
+    <TextBannerWrapper href={installUrl} onClick={handleClick}>
       {message}
       <DownloadIcon src="https://assets.triple.guide/images/m-banner-top-dw@3x.png" />
     </TextBannerWrapper>
   )
 }
-
-export default TextBanner

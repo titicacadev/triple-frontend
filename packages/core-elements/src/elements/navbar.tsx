@@ -1,7 +1,9 @@
 import * as React from 'react'
 import * as CSS from 'csstype'
 import styled, { css } from 'styled-components'
-import { Color, getColor } from '@titicaca/color-palette'
+import { Color, getColor, brightGray } from '@titicaca/color-palette'
+
+import { FALLBACK_ACTION_CLASS_NAME } from '../constants'
 
 const NavbarFrame = styled.header<{
   borderless?: boolean
@@ -19,7 +21,7 @@ const NavbarFrame = styled.header<{
     borderless
       ? ''
       : css`
-          box-shadow: 0 1px 0 0 #efefef;
+          box-shadow: 0 1px 0 0 ${brightGray};
         `};
   box-sizing: border-box;
   padding: 9px 12px;
@@ -39,6 +41,7 @@ const TitleContainer = styled.div<{ childrenCount?: number }>`
   white-space: nowrap;
   overflow-x: hidden;
   text-overflow: ellipsis;
+  line-height: 52px;
 `
 
 type IconNames =
@@ -90,7 +93,7 @@ type NavbarItemProps = {
 // eslint-disable-next-line no-unexpected-multiline
 const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
   className: ['back', 'close'].includes(icon || '')
-    ? '-triple-fallback-action'
+    ? FALLBACK_ACTION_CLASS_NAME
     : '',
 }))<NavbarItemProps>`
   ${({ position }) => position && `position: ${position};`}

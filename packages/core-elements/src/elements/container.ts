@@ -1,5 +1,5 @@
 import styled, { StyledComponentProps } from 'styled-components'
-import { Color } from '@titicaca/color-palette'
+import { Color, getColor } from '@titicaca/color-palette'
 import * as CSS from 'csstype'
 
 import { MarginPadding, BaseSizes } from '../commons'
@@ -46,7 +46,7 @@ const Container = styled.div<ContainerPropsFromTemplate>`
     `};
 
   ${({ backgroundColor }) =>
-    backgroundColor && `background-color: ${backgroundColor};`}
+    backgroundColor && `background-color: rgba(${getColor(backgroundColor)});`}
 
   ${({ centered, margin = {} }) =>
     formatMarginPadding(
