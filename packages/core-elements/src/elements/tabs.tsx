@@ -69,7 +69,6 @@ const BasicContainer = styled(TabContainer)`
 const PointingContainer = styled(TabContainer)<{
   size?: number
   left?: number
-  scroll?: boolean
 }>`
   border-bottom: 1px solid rgba(${getColor('gray50')});
   &:after {
@@ -77,8 +76,8 @@ const PointingContainer = styled(TabContainer)<{
     display: inline-block;
     position: absolute;
     bottom: 0;
-    width: ${({ size, scroll }) => `${size}${scroll ? 'px' : '%'}`};
-    left: ${({ left, scroll }) => `${left}${scroll ? 'px' : '%'}`};
+    width: ${({ size }) => `${size}px`};
+    left: ${({ left }) => `${left}px`};
     height: 2px;
     background: rgba(${getColor('blue')});
     transition: all 0.2s;
@@ -144,9 +143,7 @@ function PointingTab({
     refLeft: 0,
   })
 
-  const size = 100 / options.length
   const activeIdx = options.findIndex(({ value }) => value === currentValue)
-  const left = activeIdx > -1 ? activeIdx * size : -100
 
   useEffect(() => {
     if (!pointingRef || !pointingRef.current) {
@@ -162,11 +159,7 @@ function PointingTab({
   const { refSize, refLeft } = refValues
 
   return (
-    <PointingContainer
-      size={scroll ? refSize : size}
-      left={scroll ? refLeft : left}
-      scroll={scroll}
-    >
+    <PointingContainer size={refSize} left={refLeft} scroll={scroll}>
       <PointingRow>
         {options.map(({ label, value }, idx) => (
           <PointingLabel
