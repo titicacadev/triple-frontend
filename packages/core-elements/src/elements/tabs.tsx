@@ -17,6 +17,11 @@ interface TabProps {
   scroll?: boolean
 }
 
+const TAB_TYPE: { [key in TabType]: React.ElementType } = {
+  basic: BasicTab,
+  pointing: PointingTab,
+}
+
 interface RefValuesProps {
   refSize: number | undefined
   refLeft: number | undefined
@@ -186,24 +191,14 @@ export default function Tabs({
   type,
   scroll,
 }: TabProps) {
-  if (type || (type === 'pointing' && scroll)) {
-    return (
-      <PointingTab
-        scroll={scroll}
-        onChange={onChange}
-        options={options}
-        value={currentValue}
-        type="pointing"
-      />
-    )
-  }
+  const Component = TAB_TYPE[type || 'basic']
 
   return (
-    <BasicTab
+    <Component
+      scroll={scroll}
       onChange={onChange}
       options={options}
       value={currentValue}
-      type="basic"
     />
   )
 }
