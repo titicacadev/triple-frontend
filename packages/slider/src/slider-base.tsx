@@ -1,6 +1,7 @@
 import React, {
   useState,
   useEffect,
+  useMemo,
   useCallback,
   ComponentType,
   PropsWithChildren,
@@ -24,6 +25,7 @@ export interface SliderBaseProps {
   onChange: (values: SliderValue) => void
   nonLinear?: boolean
   debounceTime?: number
+  adjustInitValues?: boolean
 }
 
 const IDENTICAL_SCALE: ValueTransformer = (x) => x
@@ -50,6 +52,10 @@ const RailBase = styled.div`
   height: 3px;
   transform: translate(0, -50%);
 `
+const adjustMax = (maxVal: number, step: number) =>
+  maxVal % step ? Math.ceil(maxVal / step) * step : maxVal
+const adjustMin = (minVal: number, step: number) =>
+  minVal % step ? Math.floor(minVal / step) * step : minVal
 
 export default function SliderBase({
   step = 1,
@@ -60,20 +66,28 @@ export default function SliderBase({
   labelComponent: LabelComponent,
   nonLinear,
   debounceTime = 500,
+  adjustInitValues,
   children,
 }: PropsWithChildren<SliderBaseProps>) {
-  const [values, setValues] = useState<SliderValue>(initialValues || [0])
+  const [values, setValues] = useState<SliderValue>(
+    adjustInitValues && initialValues
+      ? [adjustMin(initialValues[0], step), adjustMax(initialValues[1], step)]
+      : initialValues || [0],
+  )
+
+  const adjustedMin = adjustMin(min, step)
+  const adjustedMax = adjustMax(max, step)
 
   const [scaleFn, scaleFnInverse] = nonLinear
     ? NON_LINEAR_FN_SET
     : LINEAR_FN_SET
 
   const limiter: ValueTransformer = (value) => {
-    if (value < min) {
-      return min
+    if (value < adjustedMin) {
+      return adjustedMin
     }
-    if (value > max) {
-      return max
+    if (value > adjustedMax) {
+      return adjustedMax
     }
     return value
   }
@@ -83,20 +97,25 @@ export default function SliderBase({
     debounceTime,
   ])
 
+  const adjustedValues = useMemo(
+    () => [Math.max(min, values[0]), Math.min(max, values[1])],
+    [max, min, values],
+  )
+
   useEffect(() => {
-    debouncedChangeHandler(values)
-  }, [values]) // eslint-disable-line react-hooks/exhaustive-deps
+    debouncedChangeHandler(adjustedValues)
+  }, [adjustedValues]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Container>
-      {LabelComponent ? <LabelComponent values={values} /> : null}
+      {LabelComponent ? <LabelComponent values={adjustedValues} /> : null}
 
       <SliderContainer>
         <OriginalSlider
           values={values.map(scaleFn)}
           mode={2}
           step={scaleFn(step)}
-          domain={[min, max].map(scaleFn)}
+          domain={[adjustedMin, adjustedMax].map(scaleFn)}
           rootStyle={{
             position: 'absolute',
             top: '50%',

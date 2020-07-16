@@ -59,6 +59,26 @@ BaseFilterEntry.story = {
   name: '기본 FilterEntry',
 }
 
+export function UnderlineFilterEntry() {
+  return (
+    <ListingFilter>
+      <ListingFilter.FilterEntry
+        underline
+        active={boolean('active', true)}
+        activeIconImage="/ico-category-food-on.svg"
+        inactiveIconImage="/ico-category-food.svg"
+        disabled={boolean('disabled', false)}
+      >
+        {text('레이블', '음식점')}
+      </ListingFilter.FilterEntry>
+    </ListingFilter>
+  )
+}
+
+UnderlineFilterEntry.story = {
+  name: 'Underline FilterEntry',
+}
+
 export function FilterEntryWithIconImage() {
   return (
     <ListingFilter>

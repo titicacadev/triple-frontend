@@ -4,7 +4,9 @@ import { I18nextProvider, I18nextProviderProps } from 'react-i18next'
 import i18n from './i18next'
 
 export default function I18nProvider(
-  props: { language?: string } & Partial<I18nextProviderProps>,
+  props: React.PropsWithChildren<
+    { language?: string } & Partial<I18nextProviderProps>
+  >,
 ) {
   const i18nInstance = props.i18n || getI18nInstance()
 

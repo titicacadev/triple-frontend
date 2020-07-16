@@ -1,23 +1,102 @@
+# 1.28.0 (2020-07-15)
+
+### app-installation-cta
+
+- 각 CTA 에서 모두 지표 트래킹을 가능하게합니다. (#872)
+
+### core-elements
+
+- Radio컴포넌트의 텍스트 `text-align` 을 left로 고정합니다. (#871)
+
+# 1.27.1 (2020-07-09)
+
+### hub-form
+
+- HubForm의 box-shadow 스타일을 커스터마이징할 수 있도록 합니다. (#866)
+
+### core-elements
+
+- feature: skeleton ui 를 추가합니다. (#835)
+- Radio 컴포넌트에 multiline, textAlign, outline props를 추가합니다. (#863)
+- rolling-spinner 에 FALLBACK_ACTION_CLASS_NAME class 를 추가합니다. (#864)
+- skeleton ui 를 추가합니다. (#865)
+
+### i18n
+
+- Locale asset의 로딩을 방지합니다. (#858)
+
+### poi-detail
+
+- hr 구분선을 제거 할 수 있는 prop 을 추가합니다. (#859)
+
+### app-installation-cta
+
+- 챗봇 스타일 CTA 를 추가합니다. (#857)
+
+### ETC
+
+- useScrollToAnchorHook 설명 문서를 추가합니다. (#861)
+- docs 파일이 prettier로 포매팅할 수 있도록 수정 및 md, yaml도 prettier로 검사 (#867)
+- test 패키지 및 관련 코드 제거 (#848)
+
+# 1.26.0 (2020-07-01)
+
+### color-palette
+
+- `blue60`을 추가합니다. (#838)
+
+### listing-filter
+
+- underline filter entry를 추가합니다. (#845)
+- line-height를 px단위로 고정합니다. (#841)
+
+### core-elements
+
+- rolling-spinner 컴포넌트를 추가합니다. (#823)
+- Spinner에 fallback class를 추가합니다. (#837)
+- Navbar의 TitleContainer 영역을 확장합니다. (#839)
+
+### date-picker
+
+- RangePicker에서 오늘 날짜가 속한 달을 가장 처음 표시하도록 수정합니다. (#842)
+
+### hub-form
+
+- 패키지를 추가합니다. (#840)
+
+### slider
+
+- min, max값을 step의 배수로 보정하는 기능을 추가합니다. (#844)
+
+### poi-list-elements
+
+- 가격 노출 여부를 결정하는 prop을 추가합니다. (#828)
+
 # 1.25.0 (2020-06-24)
+
 ### common
+
 - clean 태스크에서 .tsbulidinfo 파일을 삭제합니다. (#812)
 
 ### app-installation-cta
+
 - 이미지 배너의 앱설치 버튼 레이블 변경 (#825, #826)
 
 ### core-elements
+
 - Carousel 의 Item 에 IntersectionObserver 를 내장시킵니다. (#822)
 - Container 에서 width, height 의 unit, bg color 를 지원하는 prop 을 추가합니다. (#824)
 
 ### date-picker
+
 - react-date-picker 의 style override 코드 리펙토링 (#625, #804)
 
-### user-verification 
-- 휴대전화번호 점유인증 테스트 과정에서 발견한 수정 사항들을 반영합니다. (#829)
-   - 워딩과 일부 디자인 요소의 svg를수정합니다. 
-   - Verification context의 기본값을 지정합니다.
-   - VerificationRequest에서 forceVerification을 false로 변경할 수 있도록 합니다.
+### user-verification
 
+- 휴대전화번호 점유인증 테스트 과정에서 발견한 수정 사항들을 반영합니다. (#829)
+  - 워딩과 일부 디자인 요소의 svg를 수정합니다.
+  - Verification context의 기본값을 지정합니다.
+  - VerificationRequest에서 forceVerification을 false로 변경할 수 있도록 합니다.
 
 # 1.24.0 (2020-06-18)
 

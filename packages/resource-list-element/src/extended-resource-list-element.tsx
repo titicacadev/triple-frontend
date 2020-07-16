@@ -37,6 +37,7 @@ export type ResourceListElementProps<R = {}> = Partial<
   priceLabelOverride?: string
   isSoldOut?: boolean
   hideDiscountRate?: boolean
+  hidePrice?: boolean
   scrapsCount?: number
   reviewsCount?: number
   reviewsRating?: number
@@ -92,6 +93,7 @@ export default function ExtendedResourceListElement<R>({
   maxCommentLines,
   isAdvertisement,
   partnerName,
+  hidePrice,
   ...props
 }: ResourceListElementProps<R>) {
   const labels = tags || []
@@ -125,7 +127,7 @@ export default function ExtendedResourceListElement<R>({
           ) : null}
         </Container>
 
-        {salePrice || priceLabelOverride ? (
+        {!hidePrice && (salePrice || priceLabelOverride) ? (
           <Container margin={{ top: 18 }}>
             <Pricing
               rich

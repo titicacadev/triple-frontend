@@ -94,6 +94,9 @@ const RightContainer = styled(Container)`
   width: 46px;
 `
 
+/**
+ * @deprecated app-installation-cta 패키지의 FloatingButtonCTA 를 사용하세요.
+ */
 export default function FloatingInstallButton({
   fixed,
   appInstallLink,
@@ -128,6 +131,13 @@ export default function FloatingInstallButton({
       setButtonVisibility(true)
       sendTrackEventRequest(trackEventParams && trackEventParams.onShow)
     }
+
+    try {
+      console.warn(
+        'floating-install-button 패키지는 deprecated 상태입니다.\napp-installation-cta 패키지의 FloatingButtonCTA 컴포넌트를 사용해주세요!',
+      )
+      // eslint-disable-next-line no-empty
+    } catch (ignored) {}
   }, [buttonVisibility, sendTrackEventRequest, trackEventParams])
 
   const onClose = () => {
