@@ -2,7 +2,7 @@
 
 ### app-installation-cta
 
-- Chatbot CTA 가 inventory item 이 없을때 콘텐츠가 비어잇는 상태로 뜨는 문제를 수정합니다. (#877)
+- Chatbot CTA 가 inventory item 이 없을때 콘텐츠가 비어있는 상태로 뜨는 문제를 수정합니다. (#877)
 
 # 1.28.0 (2020-07-15)
 
