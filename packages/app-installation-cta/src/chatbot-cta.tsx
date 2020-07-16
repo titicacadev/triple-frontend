@@ -43,7 +43,7 @@ export default function ChatbotCTA({
   useEffect(() => {
     const visited = window.sessionStorage.getItem(CHATBOT_CLOSED_STORAGE_KEY)
 
-    if (!visited && !visibility && available) {
+    if (!visited && !visibility && available && inventoryItem) {
       setVisibility(true)
       window.dispatchEvent(new Event(EVENT_CHATBOT_CTA_READY))
     }
