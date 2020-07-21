@@ -59,7 +59,6 @@ export interface ListingHotel extends ListingPOIBase {
     site: string
     siteImageId: string
     supplier?: string
-    triplePriceCodes: string[]
   }[]
 }
 
