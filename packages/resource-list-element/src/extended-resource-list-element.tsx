@@ -32,12 +32,6 @@ export type ResourceListElementProps<R = {}> = Partial<
   }[]
   basePrice?: BasePrice
   salePrice?: number
-  pricingNote?: string
-  pricingDescription?: React.ReactNode
-  priceLabelOverride?: string
-  isSoldOut?: boolean
-  hideDiscountRate?: boolean
-  hidePrice?: boolean
   scrapsCount?: number
   reviewsCount?: number
   reviewsRating?: number
@@ -81,11 +75,6 @@ export default function ExtendedResourceListElement<R>({
   tags,
   basePrice,
   salePrice,
-  pricingNote,
-  pricingDescription,
-  priceLabelOverride,
-  isSoldOut,
-  hideDiscountRate,
   scrapsCount,
   reviewsCount,
   reviewsRating,
@@ -93,7 +82,6 @@ export default function ExtendedResourceListElement<R>({
   maxCommentLines,
   isAdvertisement,
   partnerName,
-  hidePrice,
   ...props
 }: ResourceListElementProps<R>) {
   const labels = tags || []
@@ -127,18 +115,13 @@ export default function ExtendedResourceListElement<R>({
           ) : null}
         </Container>
 
-        {!hidePrice && (salePrice || priceLabelOverride) ? (
+        {salePrice ? (
           <Container margin={{ top: 18 }}>
             <Pricing
               rich
               basePrice={basePrice}
               basePriceUnit="원"
               salePrice={salePrice}
-              pricingNote={pricingNote}
-              description={pricingDescription}
-              priceLabelOverride={priceLabelOverride}
-              hideDiscountRate={hideDiscountRate}
-              isSoldOut={isSoldOut}
             />
           </Container>
         ) : null}
