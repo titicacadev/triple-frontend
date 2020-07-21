@@ -48,32 +48,9 @@ export interface ListingHotel extends ListingPOIBase {
     regionId?: string
     starRating: number
     tags: { name: string }[]
-
-    /** @deprecated priceInfo를 사용해주세요 */
-    pricing?: {
-      promoText: string
-      nightlyPrice: number
-      clubPromotionTarget: boolean
-      nightlyPriceHotelPromotionApplied: number
-      clubPromotionRate: number
-      clubMemberOnly: boolean
-      nightlyBasePrice: number
-      clubPromotionType: 'STATIC'
-    }
   }
 
-  /** @deprecated priceInfo를 사용해주세요 */
-  prices?: {
-    nightlyBasePrice?: number
-    nightlyPrice?: number
-    promoText: string
-    nightlyPriceHotelPromotionApplied: number
-    clubPromotionRate: number
-    clubPromotionType: 'STATIC'
-    clubMemberOnly: boolean
-    clubPromotionTarget: boolean
-  }
-
+  /** @deprecated priceInfos를 사용해주세요 */
   priceInfo?: {
     nightlyBasePrice: number
     nightlyPrice: number
@@ -83,6 +60,17 @@ export interface ListingHotel extends ListingPOIBase {
     excludedVat: number
     originalPrice: number
   }
+
+  priceInfos?: {
+    badge: string
+    nightlyPrice: number
+    originalPrice?: number
+    promotionText?: string
+    issuableCouponAppliedNightlyPrice?: number
+    site: string
+    siteImageId: string
+    supplier?: string
+  }[]
 }
 
 export type ListingPOI = ListingAttraction | ListingRestaurant | ListingHotel
