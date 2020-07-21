@@ -9,7 +9,6 @@ import {
   Image,
   List,
 } from '@titicaca/core-elements'
-import Pricing, { BasePrice } from '@titicaca/pricing'
 import { ImageMeta } from '@titicaca/type-definitions'
 
 import ReviewScrapStat from './review-scrap-stat'
@@ -30,8 +29,6 @@ export type ResourceListElementProps<R = {}> = Partial<
     color?: LabelColor
     emphasized?: boolean
   }[]
-  basePrice?: BasePrice
-  salePrice?: number
   scrapsCount?: number
   reviewsCount?: number
   reviewsRating?: number
@@ -73,8 +70,6 @@ export default function ExtendedResourceListElement<R>({
   distanceSuffix = 'm',
   note,
   tags,
-  basePrice,
-  salePrice,
   scrapsCount,
   reviewsCount,
   reviewsRating,
@@ -114,17 +109,6 @@ export default function ExtendedResourceListElement<R>({
             />
           ) : null}
         </Container>
-
-        {salePrice ? (
-          <Container margin={{ top: 18 }}>
-            <Pricing
-              rich
-              basePrice={basePrice}
-              basePriceUnit="원"
-              salePrice={salePrice}
-            />
-          </Container>
-        ) : null}
 
         {labels.length > 0 ? (
           <LabelContainer>
