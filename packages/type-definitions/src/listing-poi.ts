@@ -51,6 +51,18 @@ export interface ListingHotel extends ListingPOIBase {
   }
 
   /** @deprecated priceInfos를 사용해주세요 */
+  prices?: {
+    nightlyBasePrice?: number
+    nightlyPrice?: number
+    promoText: string
+    nightlyPriceHotelPromotionApplied: number
+    clubPromotionRate: number
+    clubPromotionType: 'STATIC'
+    clubMemberOnly: boolean
+    clubPromotionTarget: boolean
+  }
+
+  /** @deprecated priceInfos를 사용해주세요 */
   priceInfo?: {
     nightlyBasePrice: number
     nightlyPrice: number
