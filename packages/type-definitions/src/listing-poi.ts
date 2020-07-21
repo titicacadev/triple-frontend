@@ -49,17 +49,6 @@ export interface ListingHotel extends ListingPOIBase {
     starRating: number
     tags: { name: string }[]
   }
-
-  priceInfos?: {
-    badge: string
-    nightlyPrice: number
-    originalPrice?: number
-    promotionText?: string
-    issuableCouponAppliedNightlyPrice?: number
-    site: string
-    siteImageId: string
-    supplier?: string
-  }[]
 }
 
 export type ListingPOI = ListingAttraction | ListingRestaurant | ListingHotel
