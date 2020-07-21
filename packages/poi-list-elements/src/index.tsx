@@ -1,10 +1,5 @@
 import * as React from 'react'
-import {
-  Text,
-  SquareImage,
-  ResourceListItem,
-  LabelColor,
-} from '@titicaca/core-elements'
+import { Text, SquareImage, ResourceListItem } from '@titicaca/core-elements'
 import ExtendedResourceListElement, {
   ResourceListElementProps,
 } from '@titicaca/resource-list-element'
@@ -32,19 +27,12 @@ type CompactPoiListElementProps<
 
 interface ExtendedPoiListElementBaseProps<T extends ListingPOI>
   extends POIListElementBaseProps<T> {
-  tags?: [{ text: string; color: LabelColor; emphasized: boolean }]
-  pricingNote?: string
-  pricingDescription?: React.ReactNode
-  priceLabelOverride?: string
-  isSoldOut?: boolean
   hideScrapButton?: boolean
-  hideDiscountRate?: boolean
   maxCommentLines?: number
   distance?: string | number
   distanceSuffix?: string
   isAdvertisement?: boolean
   notes?: string[]
-  hidePrice?: boolean
 }
 
 type ExtendedPoiListElementProps<
@@ -179,37 +167,26 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
           },
           distance,
         },
-        pricingNote,
-        pricingDescription,
-        priceLabelOverride,
-        isSoldOut,
         onClick,
         onScrapedChange,
         resourceScraps,
-        tags,
         hideScrapButton,
-        hideDiscountRate,
         distance: distanceOverride,
         distanceSuffix,
         maxCommentLines,
         as,
         isAdvertisement,
         notes,
-        hidePrice,
       },
     } = this
 
     const {
       source: { starRating },
-      priceInfo,
-      prices,
     } =
       type === 'hotel'
         ? (poi as ListingHotel)
         : {
             source: { starRating: undefined },
-            priceInfo: undefined,
-            prices: undefined,
           }
 
     const [area] = areas
@@ -230,20 +207,6 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
       .filter((v) => v)
       .join(' · ')
 
-    /**
-     * Deprecation: priceInfo 배포 후 prices 제거 예정
-     */
-    const { nightlyBasePrice, nightlyPrice } = priceInfo ||
-      prices || {
-        nightlyBasePrice: 0,
-        nightlyPrice: 0,
-      }
-
-    const basePrice =
-      nightlyBasePrice && nightlyPrice && nightlyBasePrice - nightlyPrice > 0
-        ? nightlyBasePrice
-        : null
-
     return (
       <ExtendedResourceListElement
         as={as}
@@ -260,17 +223,8 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
         reviewsCount={reviewsCount}
         reviewsRating={reviewsRating}
         scrapsCount={scrapsCount}
-        basePrice={basePrice}
-        salePrice={nightlyPrice}
-        pricingNote={pricingNote}
-        priceLabelOverride={priceLabelOverride}
-        pricingDescription={pricingDescription}
-        isSoldOut={isSoldOut}
         onClick={onClick}
-        tags={tags}
         hideScrapButton={hideScrapButton || !resourceScraps}
-        hideDiscountRate={hideDiscountRate}
-        hidePrice={hidePrice}
         maxCommentLines={maxCommentLines}
         isAdvertisement={isAdvertisement}
       />
