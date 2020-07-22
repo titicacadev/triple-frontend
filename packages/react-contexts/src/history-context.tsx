@@ -19,7 +19,7 @@ interface HistoryContextValue {
   uriHash: URIHash
   push: (hash: string, config?: { useRouter?: boolean }) => void
   replace: (hash: string, config?: { useRouter?: boolean }) => void
-  back: () => Promise<boolean> | void
+  back: () => void
   navigate: (
     rawHref: string,
     params?: OutlinkParams,
@@ -173,8 +173,6 @@ export function HistoryProvider({
 
     if (useRouter) {
       return Router.back()
-    } else {
-      return new Promise((resolve) => resolve(true))
     }
   }, [])
 

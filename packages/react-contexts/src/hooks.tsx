@@ -51,7 +51,7 @@ export function closeWindow() {
   return !hasAccessibleTripleNativeClients() ? window.close() : _closeWindow()
 }
 
-export function asyncBack(backer = Router.back) {
+export function asyncBack(backer = Router.back): Promise<void> {
   return new Promise((resolve) => {
     const handler = () => {
       Router.events.off('hashChangeComplete', handler)

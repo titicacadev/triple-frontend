@@ -15,7 +15,6 @@ export default function Cta({
       fluid
       borderRadius={4}
       disabled={!available}
-      color={available ? 'blue' : 'gray'}
       lineHeight="20px"
       onClick={available ? onSubmit : undefined}
     >
