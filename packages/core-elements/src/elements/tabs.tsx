@@ -151,7 +151,7 @@ function PointingTab({
   const activeIdx = options.findIndex(({ value }) => value === currentValue)
 
   useEffect(() => {
-    if (!pointingRef || !pointingRef.current) {
+    if (pointingRef.current.length === 0) {
       return
     }
 
