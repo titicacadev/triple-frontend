@@ -1,6 +1,6 @@
 # 1.29.0 (2020-07-22)
 
-### core-elements]
+### core-elements
 
 - pointing Tabs에 스크롤 prop을 추가합니다. (#873)
 
@@ -10,11 +10,11 @@
 
 ### react-contexts
 
-- asyncBack과 historyContext의 back 타입을 조정합니다
+- asyncBack과 historyContext의 back 타입을 조정합니다 (#879)
 
 ### common
 
-- eslint rule을 타입스크립트로 변경합니다.
+- eslint rule을 타입스크립트로 변경합니다. (#878)
 
 # 1.28.1 (2020-07-16)
 
