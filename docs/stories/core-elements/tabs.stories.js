@@ -40,6 +40,7 @@ storiesOf('Core-Elements | Tabs', module)
         <Tabs
           type="pointing"
           options={options}
+          onChange={action('change')}
           value={select('버튼 크기', values, values[0])}
         />
         <br /> <br /> <br /> <br />
@@ -47,6 +48,7 @@ storiesOf('Core-Elements | Tabs', module)
           scroll
           type="pointing"
           options={options2}
+          onChange={action('change')}
           value={select('버튼 크기2', values2, values2[0])}
         />
       </>
