@@ -1,3 +1,21 @@
+# 1.29.0 (2020-07-22)
+
+### core-elements]
+
+- pointing Tabs에 스크롤 prop을 추가합니다. (#873)
+
+### hub-form
+
+- CTA 버튼의 배경색을 변경합니다. (#855)
+
+### react-contexts
+
+- asyncBack과 historyContext의 back 타입을 조정합니다
+
+### common
+
+- eslint rule을 타입스크립트로 변경합니다.
+
 # 1.28.1 (2020-07-16)
 
 ### app-installation-cta
