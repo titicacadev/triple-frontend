@@ -1,3 +1,27 @@
+# 1.29.0 (2020-07-22)
+
+### core-elements
+
+- pointing Tabs에 스크롤 prop을 추가합니다. (#873)
+
+### hub-form
+
+- CTA 버튼의 배경색을 변경합니다. (#855)
+
+### react-contexts
+
+- asyncBack과 historyContext의 back 타입을 조정합니다 (#879)
+
+### common
+
+- eslint rule을 타입스크립트로 변경합니다. (#878)
+
+# 1.28.1 (2020-07-16)
+
+### app-installation-cta
+
+- Chatbot CTA 가 inventory item 이 없을때 콘텐츠가 비어있는 상태로 뜨는 문제를 수정합니다. (#877)
+
 # 1.28.0 (2020-07-15)
 
 ### app-installation-cta

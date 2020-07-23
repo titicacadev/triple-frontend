@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/view-utilities",
-  "version": "1.28.0",
+  "version": "1.29.0",
   "description": "Utilities for Triple view libraries and applications",
   "main": "lib/index.js",
   "files": [
@@ -24,7 +24,7 @@
     "ts-node": "^8.4.1"
   },
   "dependencies": {
-    "@titicaca/type-definitions": "^1.28.0",
+    "@titicaca/type-definitions": "^1.29.0",
     "@types/qs": "^6.9.0",
     "haversine": "^1.1.1",
     "qs": "^6.9.0"
