@@ -48,40 +48,6 @@ export interface ListingHotel extends ListingPOIBase {
     regionId?: string
     starRating: number
     tags: { name: string }[]
-
-    /** @deprecated priceInfo를 사용해주세요 */
-    pricing?: {
-      promoText: string
-      nightlyPrice: number
-      clubPromotionTarget: boolean
-      nightlyPriceHotelPromotionApplied: number
-      clubPromotionRate: number
-      clubMemberOnly: boolean
-      nightlyBasePrice: number
-      clubPromotionType: 'STATIC'
-    }
-  }
-
-  /** @deprecated priceInfo를 사용해주세요 */
-  prices?: {
-    nightlyBasePrice?: number
-    nightlyPrice?: number
-    promoText: string
-    nightlyPriceHotelPromotionApplied: number
-    clubPromotionRate: number
-    clubPromotionType: 'STATIC'
-    clubMemberOnly: boolean
-    clubPromotionTarget: boolean
-  }
-
-  priceInfo?: {
-    nightlyBasePrice: number
-    nightlyPrice: number
-    price: number
-    discountRate: number
-    badge: string
-    excludedVat: number
-    originalPrice: number
   }
 }
 

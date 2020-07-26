@@ -59,18 +59,7 @@ export function HotelList() {
           }}
           isAdvertisement={boolean('광고 상품', false)}
           maxCommentLines={number('comment 최대 노출', 0)}
-          pricingNote="1박, 세금포함"
-          priceLabelOverride={text('pricing custom text', '')}
-          pricingDescription={<PricingDescription />}
-          isSoldOut={boolean('판매완료', false)}
-          tags={
-            idx % 2 === 0
-              ? [{ text: '추가 할인쿠폰', color: 'green', emphasized: true }]
-              : undefined
-          }
-          hideDiscountRate={boolean('hideDiscountRate', false)}
           hideScrapButton={boolean('hideScrapButton', false)}
-          hidePrice={boolean('hidePrice', false)}
           onScrapedChange={action('scrap change')}
           notes={boolean('custom note') && ['3성급', '판교 백현동']}
           {...(boolean('distance 표시', false)

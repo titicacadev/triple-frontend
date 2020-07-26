@@ -9,7 +9,6 @@ import {
   Image,
   List,
 } from '@titicaca/core-elements'
-import Pricing, { BasePrice } from '@titicaca/pricing'
 import { ImageMeta } from '@titicaca/type-definitions'
 
 import ReviewScrapStat from './review-scrap-stat'
@@ -30,14 +29,6 @@ export type ResourceListElementProps<R = {}> = Partial<
     color?: LabelColor
     emphasized?: boolean
   }[]
-  basePrice?: BasePrice
-  salePrice?: number
-  pricingNote?: string
-  pricingDescription?: React.ReactNode
-  priceLabelOverride?: string
-  isSoldOut?: boolean
-  hideDiscountRate?: boolean
-  hidePrice?: boolean
   scrapsCount?: number
   reviewsCount?: number
   reviewsRating?: number
@@ -79,13 +70,6 @@ export default function ExtendedResourceListElement<R>({
   distanceSuffix = 'm',
   note,
   tags,
-  basePrice,
-  salePrice,
-  pricingNote,
-  pricingDescription,
-  priceLabelOverride,
-  isSoldOut,
-  hideDiscountRate,
   scrapsCount,
   reviewsCount,
   reviewsRating,
@@ -93,7 +77,6 @@ export default function ExtendedResourceListElement<R>({
   maxCommentLines,
   isAdvertisement,
   partnerName,
-  hidePrice,
   ...props
 }: ResourceListElementProps<R>) {
   const labels = tags || []
@@ -126,22 +109,6 @@ export default function ExtendedResourceListElement<R>({
             />
           ) : null}
         </Container>
-
-        {!hidePrice && (salePrice || priceLabelOverride) ? (
-          <Container margin={{ top: 18 }}>
-            <Pricing
-              rich
-              basePrice={basePrice}
-              basePriceUnit="원"
-              salePrice={salePrice}
-              pricingNote={pricingNote}
-              description={pricingDescription}
-              priceLabelOverride={priceLabelOverride}
-              hideDiscountRate={hideDiscountRate}
-              isSoldOut={isSoldOut}
-            />
-          </Container>
-        ) : null}
 
         {labels.length > 0 ? (
           <LabelContainer>
