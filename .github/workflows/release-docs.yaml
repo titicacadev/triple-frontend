@@ -73,7 +73,7 @@ jobs:
           DEPLOYMENT_ID=$(cat ./deployment.json | jq -r '.id')
           IMG_TAG="${SHORT_SHA}"
           docker build \
-            --file Dockerfile.docs \
+            --file Dockerfile.docs.standalone \
             --build-arg NPM_TOKEN=$NODE_AUTH_TOKEN \
             --cache-from docker.pkg.github.com/titicacadev/triple-frontend/${SVC_BASENAME}-base \
             --cache-from docker.pkg.github.com/titicacadev/triple-frontend/${SVC_BASENAME}-build \
