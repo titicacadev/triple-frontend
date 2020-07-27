@@ -17,5 +17,8 @@
   "peerDependencies": {
     "react": "*",
     "styled-components": ">=4.4.1 < 6"
+  },
+  "dependencies": {
+    "@titicaca/react-contexts": "^1.29.0"
   }
 }

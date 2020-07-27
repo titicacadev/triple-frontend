@@ -1,5 +1,6 @@
-import * as React from 'react'
+import React, { useCallback } from 'react'
 import styled, { StyledComponentProps } from 'styled-components'
+import { useScrapsContext } from '@titicaca/react-contexts'
 
 interface ScrapButtonBaseProps {
   top?: number
@@ -7,15 +8,16 @@ interface ScrapButtonBaseProps {
   pressed?: boolean
 }
 
-export type ScrapButtonProps<R = {}> = Omit<
+type ScrapableResource = {
+  id: string
+  type: string
+  scraped?: boolean
+}
+
+export type ScrapButtonProps<R extends ScrapableResource> = Omit<
   StyledComponentProps<'div', any, ScrapButtonBaseProps, never>,
   'resource'
 > & {
-  scraped: boolean
-  onScrapedChange: (
-    e?: React.SyntheticEvent,
-    value?: R & { scraped: boolean },
-  ) => void
   resource: R
 
   compact?: boolean
@@ -41,28 +43,24 @@ const RegularScrapButton = styled.div<ScrapButtonBaseProps>`
   background-size: 36px 36px;
 `
 
-export default function ScrapButton<R>({
+export default function ScrapButton<R extends ScrapableResource>({
   compact,
-  resource,
-  scraped,
-  onScrapedChange,
+  resource: { id, type, scraped },
   top,
   right,
   ...props
 }: ScrapButtonProps<R>) {
   const ButtonElement = compact ? CompactScrapButton : RegularScrapButton
-  const handleClick:
-    | React.MouseEventHandler<HTMLDivElement>
-    | undefined = onScrapedChange
-    ? (e) => {
-        e.stopPropagation()
-        onScrapedChange(e, { ...resource, scraped: !scraped })
-      }
-    : undefined
+  const { scrape, unscrape, deriveCurrentStateAndCount } = useScrapsContext()
+  const { scraped: actualScraped } = deriveCurrentStateAndCount({ id, scraped })
+
+  const handleClick = useCallback(() => {
+    actualScraped ? unscrape({ id, type }) : scrape({ id, type })
+  }, [scrape, unscrape, actualScraped, id, type])
 
   return (
     <ButtonElement
-      pressed={scraped}
+      pressed={actualScraped}
       onClick={handleClick}
       top={top}
       right={right}
