@@ -136,6 +136,30 @@ jobs:
           SLACK_COLOR: good
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
+          TAG_NAME="release-canary"
+
+          curl -f --request POST --url https://api.github.com/repos/${{ github.repository }}/git/tags \
+            -H 'Authorization: token ${{ secrets.GHA_TOKEN }}' \
+            -H 'Content-Type: application/json' \
+            -d "{\"tag\":\"${TAG_NAME}\",\"message\":\"`v${{ env.CANARY_VERSION }}`\",\"object\":\"${GITHUB_SHA}\",\"type\":\"commit\"}" > tag.json
+
+          TAG_SHA="$(node -p -e 'require(`./tag.json`).sha')"
+
+          curl -s -o /dev/null -I -w "%{http_code}" \
+            --url https://api.github.com/repos/${{ github.repository }}/git/refs/tags/${TAG_NAME} \
+            -H 'Authorization: token ${{ secrets.GHA_TOKEN }}' > status
+
+          if [[ `cat status` == "200" ]]; then
+            curl -f --request PATCH --url https://api.github.com/repos/${{ github.repository }}/git/refs/tags/${TAG_NAME} \
+              -H 'Authorization: token ${{ secrets.GHA_TOKEN }}' \
+              -H 'Content-Type: application/json' \
+              -d "{\"force\":true,\"sha\":\"${TAG_SHA}\"}"
+          else
+            curl -f --request POST --url https://api.github.com/repos/${{ github.repository }}/git/refs \
+              -H 'Authorization: token ${{ secrets.GHA_TOKEN }}' \
+              -H 'Content-Type: application/json' \
+              -d "{\"ref\":\"refs/tags/${TAG_NAME}\",\"sha\":\"${TAG_SHA}\"}"
+          fi
           npx @titicaca/gha-tools notify
 
       - name: Notify canary publish success to slack
