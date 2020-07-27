@@ -1,4 +1,4 @@
-import React, { ComponentType, FC } from 'react'
+import React, { ComponentType, FC, useMemo } from 'react'
 import styled from 'styled-components'
 import { Text } from '@titicaca/core-elements'
 import {
@@ -150,7 +150,7 @@ export function TransitionModal({ deepLink }: { deepLink: string }) {
 export function useTransitionModal(): { show: ShowTransitionModal } {
   const { push } = useHistoryContext()
 
-  return { show: (type) => push(`transition.${type}`) }
+  return useMemo(() => ({ show: (type) => push(`transition.${type}`) }), [push])
 }
 
 export interface WithTransitionModalBaseProps {
