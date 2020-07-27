@@ -1,15 +1,20 @@
 import React from 'react'
 import { DeepPartial } from 'utility-types'
 
+import { Target } from './types'
+import {
+  scrape as nativeScrape,
+  unscrape as nativeUnscrape,
+} from './api-client'
+
 type Scraps = { [key: string]: boolean }
-type Target = { id: string; type: unknown }
 
 interface ScrapsContext {
   scraps: Scraps
   deriveCurrentStateAndCount: (params: {
     id: string
-    scraped: boolean
-    scrapsCount: number
+    scraped?: boolean
+    scrapsCount?: number
   }) => { scraped: boolean; scrapsCount: number }
   scrape: (target: Target) => Promise<void>
   scrapeArticle: (id: string) => Promise<void>
@@ -109,8 +114,6 @@ const reducer = (
 
 export function ScrapsProvider({
   scraps: initialScraps,
-  scrape: nativeScrape,
-  unscrape: nativeUnscrape,
   notifyScraped,
   notifyUnscraped,
   subscribeScrapedChangeEvent,
@@ -167,7 +170,7 @@ export function ScrapsProvider({
         dispatch({ type: SCRAPE_FAILED, id })
       }
     },
-    [nativeScrape, notifyScraped, updating],
+    [notifyScraped, updating],
   )
 
   const unscrape = React.useCallback(
@@ -188,7 +191,7 @@ export function ScrapsProvider({
         dispatch({ type: UNSCRAPE_FAILED, id })
       }
     },
-    [nativeUnscrape, notifyUnscraped, updating],
+    [notifyUnscraped, updating],
   )
 
   const handleSubscribeEvent = React.useCallback(
