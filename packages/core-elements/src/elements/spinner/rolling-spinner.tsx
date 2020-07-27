@@ -13,15 +13,6 @@ const marquee = keyframes`
  }
 `
 
-const swap = keyframes`
-    0%, 50% {
-      left: 0%;
-    }
-    50.01%,
-    100% {
-      left: 100%;
-  }
-`
 const RollingSpinnerFrame = styled.div`
   position: fixed;
   top: 0;
@@ -76,20 +67,41 @@ const TrackContainer = styled.div`
 `
 
 const Track = styled.div<{ duration: number }>`
+  position: relative;
   display: inline-block;
   animation: ${marquee} linear infinite;
   ${({ duration }) => `animation-duration: ${duration}s;`}
 `
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.div<{
+  duration: number
+  offset: number
+}>`
+  position: relative;
   display: inline-block;
   vertical-align: top;
   font-size: 0;
-  &:first-child {
-    position: relative;
-    left: 0%;
-  }
-  animation: ${swap} linear infinite;
+
+  ${({ offset }) => {
+    const keyframeName = `swap-${offset}`
+    const snap = (offset + 1) * 20
+
+    return `
+      @keyframes ${keyframeName} {
+        0%, ${snap}% {
+          left: 0%;
+        }
+
+        ${snap + 0.01}%, 100% {
+          left: 100%;
+        }
+      }
+
+      animation: ${keyframeName} linear infinite;
+  `
+  }}
+
+  ${({ duration }) => `animation-duration: ${duration}s;`}
 `
 
 const Image = styled.img<{ size: number }>`
@@ -118,14 +130,14 @@ export default function RollingSpinner({
     () =>
       [...Array(5).keys()].map((_, idx) => {
         return (
-          <ImageContainer key={idx}>
+          <ImageContainer key={idx} duration={duration} offset={idx}>
             {imageUrls.map((url: string, index: number) => (
               <Image src={url} size={size} key={index} alt="rolling_image" />
             ))}
           </ImageContainer>
         )
       }),
-    [imageUrls, size],
+    [duration, imageUrls, size],
   )
 
   return (
