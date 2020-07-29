@@ -7,7 +7,7 @@ const packageJSON = require('../package.json')
 const [TAG_NAME = 'latest'] = process.argv.slice(2)
 
 async function main() {
-  const { stdout } = await exec('lerna list --json')
+  const { stdout } = await exec('npx lerna list --json')
   let packageList
 
   try {
