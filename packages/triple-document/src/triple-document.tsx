@@ -67,7 +67,6 @@ interface TripleDocumentProps {
 
   // merged...
   onResourceClick?: (e: React.SyntheticEvent, resource: unknown) => void
-  onResourceScrapedChange?: unknown
   onImageClick?: ImageEventHandler
   onLinkClick?: LinkEventHandler
   onTNAProductClick?: (
@@ -78,7 +77,6 @@ interface TripleDocumentProps {
   ) => void
   onTNAProductsFetch?: (slotId: number) => Promise<unknown>
   imageSourceComponent?: ImageSourceType
-  resourceScraps?: { [resourceId: string]: boolean }
   webUrlBase?: string
   deepLink?: string
   videoAutoPlay?: boolean
@@ -113,13 +111,11 @@ export function TripleDocument({
   children,
   customElements,
   onResourceClick,
-  onResourceScrapedChange,
   onImageClick,
   onLinkClick,
   onTNAProductClick,
   onTNAProductsFetch,
   imageSourceComponent,
-  resourceScraps,
   webUrlBase,
   deepLink,
   videoAutoPlay,
@@ -137,11 +133,9 @@ export function TripleDocument({
               onResourceClick={onResourceClick}
               onImageClick={onImageClick}
               onLinkClick={onLinkClick}
-              onResourceScrapedChange={onResourceScrapedChange}
               onTNAProductClick={onTNAProductClick}
               onTNAProductsFetch={onTNAProductsFetch}
               ImageSource={imageSourceComponent}
-              resourceScraps={resourceScraps || {}}
               deepLink={deepLink}
               webUrlBase={webUrlBase}
               videoAutoPlay={videoAutoPlay}
@@ -266,8 +260,6 @@ export function Pois<T extends ExtendedPOIListElementData>({
   value: { display, pois },
   actionButtonElement,
   onResourceClick,
-  onResourceScrapedChange,
-  resourceScraps,
 }: {
   value: {
     display: Display
@@ -278,8 +270,6 @@ export function Pois<T extends ExtendedPOIListElementData>({
     e: React.MouseEvent<HTMLLIElement, MouseEvent>,
     poi: T,
   ) => void
-  onResourceScrapedChange: PoiListElementProps<T>['onScrapedChange']
-  resourceScraps: PoiListElementProps<T>['resourceScraps']
 }) {
   const Container = display === 'list' ? ResourceList : DocumentCarousel
   const margin =
@@ -299,7 +289,6 @@ export function Pois<T extends ExtendedPOIListElementData>({
         <Element
           key={poi.id}
           poi={poi}
-          resourceScraps={resourceScraps}
           onClick={
             onResourceClick
               ? (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
@@ -307,7 +296,6 @@ export function Pois<T extends ExtendedPOIListElementData>({
                 }
               : undefined
           }
-          onScrapedChange={onResourceScrapedChange}
           actionButtonElement={renderPoiListActionButton({
             actionButtonElement,
             display,
