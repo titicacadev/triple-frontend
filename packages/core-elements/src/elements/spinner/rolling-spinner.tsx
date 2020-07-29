@@ -1,5 +1,5 @@
-import React, { useMemo, PropsWithChildren } from 'react'
-import styled, { keyframes } from 'styled-components'
+import React, { useMemo, PropsWithChildren, useState } from 'react'
+import styled, { keyframes, css } from 'styled-components'
 
 import { FALLBACK_ACTION_CLASS_NAME } from '../../constants'
 import Container from '../container'
@@ -66,14 +66,19 @@ const TrackContainer = styled.div`
   }
 `
 
-const Track = styled.div<{ duration: number }>`
+const Track = styled.div<{ duration: number; animated: boolean }>`
   position: relative;
   display: inline-block;
-  animation: ${marquee} linear infinite;
-  ${({ duration }) => `animation-duration: ${duration}s;`}
+
+  ${({ animated, duration }) =>
+    animated &&
+    css`
+      animation: ${marquee} ${duration}s linear infinite;
+    `}
 `
 
 const ImageContainer = styled.div<{
+  animated: boolean
   duration: number
   offset: number
 }>`
@@ -82,7 +87,11 @@ const ImageContainer = styled.div<{
   vertical-align: top;
   font-size: 0;
 
-  ${({ offset }) => {
+  ${({ animated, offset, duration }) => {
+    if (!animated) {
+      return ''
+    }
+
     const keyframeName = `swap-${offset}`
     const snap = (offset + 1) * 20
 
@@ -97,11 +106,9 @@ const ImageContainer = styled.div<{
         }
       }
 
-      animation: ${keyframeName} linear infinite;
+      animation: ${keyframeName} ${duration}s linear infinite;
   `
   }}
-
-  ${({ duration }) => `animation-duration: ${duration}s;`}
 `
 
 const Image = styled.img<{ size: number }>`
@@ -126,18 +133,40 @@ export default function RollingSpinner({
   duration?: number
   imageUrls: string[]
 }>) {
+  const [loadedImage, setLoadedImage] = useState(new Map())
+
+  const everyImageLoaded = loadedImage.size === imageUrls.length
+
   const images = useMemo(
     () =>
       [...Array(5).keys()].map((_, idx) => {
         return (
-          <ImageContainer key={idx} duration={duration} offset={idx}>
+          <ImageContainer
+            key={idx}
+            animated={everyImageLoaded}
+            duration={duration}
+            offset={idx}
+          >
             {imageUrls.map((url: string, index: number) => (
-              <Image src={url} size={size} key={index} alt="rolling_image" />
+              <Image
+                src={url}
+                size={size}
+                key={index}
+                alt="rolling_image"
+                onLoad={() => {
+                  setLoadedImage((prev) => {
+                    if (prev.has(url)) {
+                      return prev
+                    }
+                    return new Map([...prev.entries(), [url, true]])
+                  })
+                }}
+              />
             ))}
           </ImageContainer>
         )
       }),
-    [duration, imageUrls, size],
+    [everyImageLoaded, duration, imageUrls, size],
   )
 
   return (
@@ -145,7 +174,9 @@ export default function RollingSpinner({
       <RollingSpinnerContainer size={size}>
         {children ? <Container>{children}</Container> : null}
         <TrackContainer>
-          <Track duration={duration}>{images}</Track>
+          <Track animated={everyImageLoaded} duration={duration}>
+            {images}
+          </Track>
         </TrackContainer>
       </RollingSpinnerContainer>
     </RollingSpinnerFrame>
