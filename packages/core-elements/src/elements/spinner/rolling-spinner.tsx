@@ -69,6 +69,7 @@ const TrackContainer = styled.div`
 const Track = styled.div<{ duration: number }>`
   position: relative;
   display: inline-block;
+  min-width: 1820px;
   animation: ${marquee} linear infinite;
   ${({ duration }) => `animation-duration: ${duration}s;`}
 `
