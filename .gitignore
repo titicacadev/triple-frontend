@@ -97,3 +97,6 @@ packages/*/package-lock.json
 # IntelliJ
 .idea
 .vscode
+
+# docs
+docs/storybook-static/
