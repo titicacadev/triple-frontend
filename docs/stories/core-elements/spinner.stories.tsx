@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { boolean, text, number } from '@storybook/addon-knobs'
 import {
   Spinner,
@@ -65,4 +65,41 @@ export function BaseRollingSpinner() {
 
 BaseRollingSpinner.story = {
   name: '롤링 스피너',
+}
+
+function RollingSpinnerToggler() {
+  const [visible, setVisible] = useState(true)
+
+  const logos = [
+    'https://triple-dev.titicaca-corp.com/air/static/images/airline-logos/7C.png',
+    'https://triple-dev.titicaca-corp.com/air/static/images/airline-logos/TW.png',
+    'https://triple-dev.titicaca-corp.com/air/static/images/airline-logos/AC.png',
+  ]
+
+  return (
+    <>
+      <button
+        onClick={() => setVisible((prev) => !prev)}
+        style={{ position: 'fixed', top: 0, zIndex: 10000 }}
+      >
+        토글
+      </button>
+
+      {visible ? (
+        <RollingSpinner
+          imageUrls={logos}
+          duration={number('duration', 5)}
+          size={number('size', 36)}
+        />
+      ) : null}
+    </>
+  )
+}
+
+export function rollingSpinnerMountToggle() {
+  return <RollingSpinnerToggler />
+}
+
+rollingSpinnerMountToggle.story = {
+  name: '롤링 스피너 마운트 테스트',
 }
