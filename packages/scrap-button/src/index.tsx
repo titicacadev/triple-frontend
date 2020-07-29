@@ -19,11 +19,9 @@ export type ScrapButtonProps<R extends ScrapableResource> = Omit<
   'resource'
 > & {
   resource: R
-
-  compact?: boolean
 }
 
-const CompactScrapButton = styled.div<ScrapButtonBaseProps>`
+const CompactScrapButtonBase = styled.div<ScrapButtonBaseProps>`
   position: absolute;
   top: ${({ top }) => top || 0}px;
   right: ${({ right }) => right || 0}px;
@@ -33,7 +31,7 @@ const CompactScrapButton = styled.div<ScrapButtonBaseProps>`
   background-size: 34px 34px;
 `
 
-const RegularScrapButton = styled.div<ScrapButtonBaseProps>`
+const RegularScrapButtonBase = styled.div<ScrapButtonBaseProps>`
   position: absolute;
   top: ${({ top }) => (top === 0 ? 0 : top || 3)}px;
   right: ${({ right }) => (right === 0 ? 0 : right || 3)}px;
@@ -43,28 +41,34 @@ const RegularScrapButton = styled.div<ScrapButtonBaseProps>`
   background-size: 36px 36px;
 `
 
-export default function ScrapButton<R extends ScrapableResource>({
-  compact,
-  resource: { id, type, scraped },
-  top,
-  right,
-  ...props
-}: ScrapButtonProps<R>) {
-  const ButtonElement = compact ? CompactScrapButton : RegularScrapButton
-  const { scrape, unscrape, deriveCurrentStateAndCount } = useScrapsContext()
-  const { scraped: actualScraped } = deriveCurrentStateAndCount({ id, scraped })
+function scrapButtonComponent(Component: React.FC<ScrapButtonBaseProps>) {
+  return function ScrapButton<R extends ScrapableResource>({
+    resource: { id, type, scraped },
+    top,
+    right,
+    ...props
+  }: ScrapButtonProps<R>) {
+    const { scrape, unscrape, deriveCurrentStateAndCount } = useScrapsContext()
+    const { scraped: actualScraped } = deriveCurrentStateAndCount({
+      id,
+      scraped,
+    })
 
-  const handleClick = useCallback(() => {
-    actualScraped ? unscrape({ id, type }) : scrape({ id, type })
-  }, [scrape, unscrape, actualScraped, id, type])
+    const handleClick = useCallback(() => {
+      actualScraped ? unscrape({ id, type }) : scrape({ id, type })
+    }, [scrape, unscrape, actualScraped, id, type])
 
-  return (
-    <ButtonElement
-      pressed={actualScraped}
-      onClick={handleClick}
-      top={top}
-      right={right}
-      {...props}
-    />
-  )
+    return (
+      <Component
+        pressed={actualScraped}
+        onClick={handleClick}
+        top={top}
+        right={right}
+        {...props}
+      />
+    )
+  }
 }
+
+export const RegularScrapButton = scrapButtonComponent(RegularScrapButtonBase)
+export const CompactScrapButton = scrapButtonComponent(CompactScrapButtonBase)
