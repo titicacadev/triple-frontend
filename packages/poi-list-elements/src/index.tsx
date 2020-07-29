@@ -3,8 +3,7 @@ import { Text, SquareImage, ResourceListItem } from '@titicaca/core-elements'
 import ExtendedResourceListElement, {
   ResourceListElementProps,
 } from '@titicaca/resource-list-element'
-import ScrapButton from '@titicaca/scrap-button'
-import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
+import { CompactScrapButton } from '@titicaca/scrap-button'
 import { ListingPOI, ListingHotel } from '@titicaca/type-definitions'
 
 import { TYPE_NAMES, POI_IMAGE_PLACEHOLDERS } from './constants'
@@ -85,24 +84,14 @@ class CompactPoiListElement<T extends ListingPOI> extends React.PureComponent<
       props: {
         actionButtonElement,
         poi: {
-          id,
           type,
           nameOverride,
-          scraped: initialScraped,
           source: { names, image },
         },
         onClick,
-        onScrapedChange,
-        resourceScraps,
       },
       state: { actionButtonWidth },
     } = this
-
-    const { state: scraped } = deriveCurrentStateAndCount({
-      initialState: initialScraped,
-      initialCount: 0,
-      currentState: (resourceScraps || {})[id],
-    })
 
     const name = nameOverride || names.ko || names.en || names.local
 
@@ -130,14 +119,9 @@ class CompactPoiListElement<T extends ListingPOI> extends React.PureComponent<
 
         {actionButtonElement ? (
           <div ref={this.setActionButtonRef}>{actionButtonElement}</div>
-        ) : onScrapedChange && resourceScraps ? (
-          <ScrapButton
-            compact
-            scraped={scraped}
-            resource={this.props.poi}
-            onScrapedChange={onScrapedChange}
-          />
-        ) : null}
+        ) : (
+          <CompactScrapButton resource={this.props.poi} />
+        )}
       </ResourceListItem>
     )
   }
@@ -151,10 +135,9 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
       props: {
         poi,
         poi: {
-          id,
           type,
           nameOverride,
-          scraped: initialScraped,
+          scraped,
           source: {
             names,
             image,
@@ -162,14 +145,12 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
             categories = [],
             comment,
             reviewsCount: rawReviewsCount,
-            scrapsCount: initialScrapsCount,
+            scrapsCount,
             reviewsRating,
           },
           distance,
         },
         onClick,
-        onScrapedChange,
-        resourceScraps,
         hideScrapButton,
         distance: distanceOverride,
         distanceSuffix,
@@ -192,11 +173,6 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
     const [area] = areas
     const [category] = categories
 
-    const { state: scraped, count: scrapsCount } = deriveCurrentStateAndCount({
-      initialState: initialScraped,
-      initialCount: initialScrapsCount,
-      currentState: (resourceScraps || {})[id],
-    })
     const reviewsCount = Number(rawReviewsCount || 0)
     const note = (
       notes || [
@@ -212,7 +188,6 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
         as={as}
         scraped={scraped}
         resource={this.props.poi}
-        onScrapedChange={onScrapedChange}
         image={image}
         imagePlaceholder={POI_IMAGE_PLACEHOLDERS[type]}
         name={nameOverride || names.ko || names.en || names.local || undefined}
@@ -224,7 +199,7 @@ class ExtendedPoiListElement<T extends ListingPOI> extends React.PureComponent<
         reviewsRating={reviewsRating}
         scrapsCount={scrapsCount}
         onClick={onClick}
-        hideScrapButton={hideScrapButton || !resourceScraps}
+        hideScrapButton={hideScrapButton}
         maxCommentLines={maxCommentLines}
         isAdvertisement={isAdvertisement}
       />
