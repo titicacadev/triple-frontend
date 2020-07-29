@@ -13,18 +13,10 @@ export default function PoiEntry({
   index,
   poi,
   eventLabel,
-  scraps,
-  onScrapedChange,
 }: {
   index: number
   poi: ListingPOI
   eventLabel: string
-  scraps: { [key: string]: boolean }
-  onScrapedChange: (props: {
-    id: string
-    type: string
-    scraped: boolean
-  }) => void
 }) {
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
   const { navigate } = useHistoryContext()
@@ -45,18 +37,6 @@ export default function PoiEntry({
     [trackEvent, poi, eventLabel, index],
   )
 
-  const handleScrapedChange = useCallback(
-    (
-      e?: React.SyntheticEvent,
-      params?: { id: string; type: string; scraped: boolean },
-    ) => {
-      if (params) {
-        onScrapedChange(params)
-      }
-    },
-    [onScrapedChange],
-  )
-
   const handleClick = useCallback(() => {
     trackSimpleEvent({
       action: '근처추천장소_POI선택',
@@ -69,13 +49,7 @@ export default function PoiEntry({
   return (
     <IntersectionObserver key={poi.id} onChange={handleIntersectionChange}>
       <List.Item>
-        <PoiListElement
-          as="div"
-          poi={poi}
-          onScrapedChange={handleScrapedChange}
-          resourceScraps={scraps}
-          onClick={handleClick}
-        />
+        <PoiListElement as="div" poi={poi} onClick={handleClick} />
       </List.Item>
     </IntersectionObserver>
   )

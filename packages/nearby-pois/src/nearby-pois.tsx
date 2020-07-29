@@ -40,8 +40,6 @@ export default function NearbyPois({
   poiId,
   regionId,
   initialTab,
-  scraps,
-  onScrapedChange,
   geolocation: {
     coordinates: [lon, lat],
   },
@@ -50,12 +48,6 @@ export default function NearbyPois({
   poiId: string
   regionId: string
   initialTab?: PoiType
-  scraps: { [key: string]: boolean }
-  onScrapedChange: (props: {
-    id: string
-    type: string
-    scraped: boolean
-  }) => void
   geolocation: PointGeoJSON
 } & Parameters<typeof Section>['0']) {
   const [{ currentTab, ...state }, dispatch] = useReducer(nearbyPoisReducer, {
@@ -171,8 +163,6 @@ export default function NearbyPois({
                 key={poi.id}
                 index={i}
                 poi={poi}
-                scraps={scraps}
-                onScrapedChange={onScrapedChange}
                 eventLabel={EVENT_LABELS[currentTab]}
               />
             ))}
