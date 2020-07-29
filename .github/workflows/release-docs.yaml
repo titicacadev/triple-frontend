@@ -40,8 +40,14 @@ jobs:
 
       - name: Define variables
         run: |
-          VERSION="v$(cat ./lerna.json | jq -r '.version')"
-          echo "::set-env name=SLACK_TOPIC::Release docs of `$VERSION`"
+          TAG_NAME=${GITHUB_REF#refs/tags/}
+
+          if [[ "${TAG_NAME}" == "release-canary" ]]; then
+            echo ::set-env name=SLACK_TOPIC::"Release docs of `canary`"
+          else
+            VERSION="v$(cat ./lerna.json | jq -r '.version')"
+            echo ::set-env name=SLACK_TOPIC::"Release docs of `v${VERSION}`"
+          fi
 
       - name: Docker Login
         uses: azure/docker-login@v1
