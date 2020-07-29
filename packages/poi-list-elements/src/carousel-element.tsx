@@ -6,9 +6,8 @@ import {
   Carousel,
   Text,
 } from '@titicaca/core-elements'
-import ScrapButton from '@titicaca/scrap-button'
+import { RegularScrapButton } from '@titicaca/scrap-button'
 import { ListingPOI } from '@titicaca/type-definitions'
-import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
 
 import { POI_IMAGE_PLACEHOLDERS, TYPE_NAMES } from './constants'
 import { POIListElementBaseProps, ActionButtonElement } from './types'
@@ -21,8 +20,6 @@ export default function PoiCarouselElement<
   poi,
   onClick,
   actionButtonElement,
-  onScrapedChange,
-  resourceScraps,
   description,
   additionalInfo = null,
   carouselSize,
@@ -43,18 +40,10 @@ export default function PoiCarouselElement<
   }
 
   const {
-    id,
     type,
     nameOverride,
-    scraped: initialScraped,
     source: { image, names },
   } = poi
-
-  const { state: scraped } = deriveCurrentStateAndCount({
-    initialState: initialScraped,
-    initialCount: 0,
-    currentState: (resourceScraps || {})[id],
-  })
 
   const name = nameOverride || names.ko || names.en || names.local
 
@@ -77,14 +66,7 @@ export default function PoiCarouselElement<
         {description || TYPE_NAMES[type]}
       </Text>
 
-      {actionButtonElement ||
-        (onScrapedChange && resourceScraps ? (
-          <ScrapButton
-            scraped={scraped}
-            resource={poi}
-            onScrapedChange={onScrapedChange}
-          />
-        ) : null)}
+      {actionButtonElement || <RegularScrapButton resource={poi} />}
 
       {additionalInfo}
     </Carousel.Item>
