@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import ScrapButton, { ScrapButtonProps } from '@titicaca/scrap-button'
+import { RegularScrapButton } from '@titicaca/scrap-button'
 import {
   Container,
   Label,
@@ -13,9 +13,14 @@ import { ImageMeta } from '@titicaca/type-definitions'
 
 import ReviewScrapStat from './review-scrap-stat'
 
-export type ResourceListElementProps<R = {}> = Partial<
-  Pick<ScrapButtonProps<R>, 'scraped' | 'resource' | 'onScrapedChange'>
-> & {
+type ResourceMeta = {
+  id: string
+  type?: string
+  scraped?: boolean
+}
+
+export type ResourceListElementProps<R extends ResourceMeta> = {
+  resource: R
   hideScrapButton?: boolean
   image?: ImageMeta
   imagePlaceholder?: string
@@ -57,11 +62,10 @@ const LabelContainer = styled.div`
   bottom: 0;
 `
 
-export default function ExtendedResourceListElement<R>({
+export default function ExtendedResourceListElement<R extends ResourceMeta>({
+  resource: { id, type, scraped },
   hideScrapButton,
   resource,
-  scraped,
-  onScrapedChange,
   image,
   imagePlaceholder,
   name,
@@ -101,12 +105,8 @@ export default function ExtendedResourceListElement<R>({
             alt={name}
           />
 
-          {!hideScrapButton && scraped !== undefined && onScrapedChange ? (
-            <ScrapButton
-              scraped={scraped}
-              resource={resource}
-              onScrapedChange={onScrapedChange}
-            />
+          {!hideScrapButton && id && type ? (
+            <RegularScrapButton resource={{ id, type, scraped }} />
           ) : null}
         </Container>
 
