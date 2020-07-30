@@ -21,6 +21,7 @@ export interface FixedPricingProps {
   tooltipLabel?: string
   onClick?: (e?: React.SyntheticEvent) => any
   onTooltipClick?: (e?: React.SyntheticEvent) => any
+  maxWidth?: number
 }
 
 const FloatedFrame = styled(Container)`
@@ -55,6 +56,7 @@ export default function FixedPricing({
   priceLabelOverride,
   onTooltipClick,
   isSoldOut = false,
+  maxWidth,
 }: FixedPricingProps) {
   const pricingLabel = label ? (
     typeof label === 'string' ? (
@@ -86,16 +88,20 @@ export default function FixedPricing({
           left: 20,
         }}
       >
-        {active && tooltipLabel && (
-          <Tooltip
-            borderRadius="30"
-            positioning={{ top: -20 }}
-            label={tooltipLabel}
-            onClick={onTooltipClick}
-          />
-        )}
-
-        <Container position="relative" clearing>
+        <Container
+          position="relative"
+          clearing
+          maxWidth={maxWidth}
+          centered={!!maxWidth}
+        >
+          {active && tooltipLabel && (
+            <Tooltip
+              borderRadius="30"
+              positioning={{ top: -34 }}
+              label={tooltipLabel}
+              onClick={onTooltipClick}
+            />
+          )}
           <FloatedPricingContainer floated="left">
             {pricingLabel}
             <Text
