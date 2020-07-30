@@ -65,8 +65,7 @@ jobs:
 
       - name: Restore Docker build caches
         run: |
-          docker pull docker.pkg.github.com/titicacadev/triple-frontend/triple-frontend-docs-base || true
-          docker pull docker.pkg.github.com/titicacadev/triple-frontend/triple-frontend-docs-build || true
+          docker pull docker.pkg.github.com/titicacadev/triple-frontend/triple-frontend-docs || true
 
       - name: Package release image
         run: |
@@ -84,16 +83,15 @@ jobs:
             --file Dockerfile.docs.standalone \
             --build-arg NPM_TOKEN=$NODE_AUTH_TOKEN \
             --build-arg TAG_NAME=$TAG_NAME \
-            --cache-from docker.pkg.github.com/titicacadev/triple-frontend/${SVC_BASENAME}-base \
-            --cache-from docker.pkg.github.com/titicacadev/triple-frontend/${SVC_BASENAME}-build \
+            --cache-from docker.pkg.github.com/titicacadev/triple-frontend/${SVC_BASENAME} \
             --tag 107243714588.dkr.ecr.ap-northeast-1.amazonaws.com/${SVC_BASENAME}:$IMG_TAG \
             --tag 107243714588.dkr.ecr.ap-northeast-1.amazonaws.com/${SVC_BASENAME}:latest \
+            --tag docker.pkg.github.com/titicacadev/triple-frontend/${SVC_BASENAME}:latest \
             .
           curl -sS --fail "https://ops.triple-corp.com/api/v1/gcp-ecr-auth?token=$OPS_API_KEY&script=1&region=ap-northeast-1" | bash
           docker push 107243714588.dkr.ecr.ap-northeast-1.amazonaws.com/$SVC_BASENAME:$IMG_TAG
           docker push 107243714588.dkr.ecr.ap-northeast-1.amazonaws.com/$SVC_BASENAME:latest
-          docker push docker.pkg.github.com/titicacadev/triple-frontend/${SVC_BASENAME}-base
-          docker push docker.pkg.github.com/titicacadev/triple-frontend/${SVC_BASENAME}-build
+          docker push docker.pkg.github.com/titicacadev/triple-frontend/$SVC_BASENAME:latest
           curl -sS --fail --max-time 60 -X POST "https://ops.triple-corp.com/api/v1/gcp-ecs-deploy/$CLUSTER/$SVC_BASENAME/$IMG_TAG?token=$OPS_API_KEY&region=ap-northeast-1"
           curl -f --request POST --url https://api.github.com/repos/${{ github.repository }}/deployments/${DEPLOYMENT_ID}/statuses \
             -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
