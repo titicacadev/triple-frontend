@@ -58,17 +58,17 @@ storiesOf('TripleDocument | TripleDocument.링크', module)
       }}
     />
   ))
-  .add('확장 + Type', () => (
+  .add('확장 + Level', () => (
     <Links
       value={{
         links: [
           {
             label: '장소 보기',
-            type: 'primary',
+            level: 'primary',
           },
           {
             label: '장소 보기',
-            type: 'secondary',
+            level: 'secondary',
           },
         ],
         display: 'block',
