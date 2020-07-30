@@ -63,11 +63,6 @@ jobs:
         run: |
           npx @titicaca/gha-tools notify
 
-      - name: Restore Docker build caches
-        run: |
-          docker pull docker.pkg.github.com/titicacadev/triple-frontend/triple-frontend-docs-base || true
-          docker pull docker.pkg.github.com/titicacadev/triple-frontend/triple-frontend-docs-build || true
-
       - name: Package release image
         run: |
           TAG_NAME=${GITHUB_REF#refs/tags/}
@@ -92,6 +87,8 @@ jobs:
           curl -sS --fail "https://ops.triple-corp.com/api/v1/gcp-ecr-auth?token=$OPS_API_KEY&script=1&region=ap-northeast-1" | bash
           docker push 107243714588.dkr.ecr.ap-northeast-1.amazonaws.com/$SVC_BASENAME:$IMG_TAG
           docker push 107243714588.dkr.ecr.ap-northeast-1.amazonaws.com/$SVC_BASENAME:latest
+          docker push docker.pkg.github.com/titicacadev/triple-frontend/${SVC_BASENAME}-base
+          docker push docker.pkg.github.com/titicacadev/triple-frontend/${SVC_BASENAME}-build
           curl -sS --fail --max-time 60 -X POST "https://ops.triple-corp.com/api/v1/gcp-ecs-deploy/$CLUSTER/$SVC_BASENAME/$IMG_TAG?token=$OPS_API_KEY&region=ap-northeast-1"
           curl -f --request POST --url https://api.github.com/repos/${{ github.repository }}/deployments/${DEPLOYMENT_ID}/statuses \
             -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
