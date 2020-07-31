@@ -7,7 +7,14 @@ import Container from './container'
 import { MarginPadding } from '../commons'
 import { marginMixin } from '../mixins'
 
-export type LabelColor = 'blue' | 'red' | 'purple' | 'gray' | 'green' | 'white'
+export type LabelColor =
+  | 'blue'
+  | 'red'
+  | 'purple'
+  | 'gray'
+  | 'green'
+  | 'white'
+  | 'orange'
 
 const LABEL_COLORS: {
   [key in LabelColor]: {
@@ -45,7 +52,7 @@ const LABEL_COLORS: {
     emphasizedBackground: ColorSet.mint,
   },
   /**
-   * white 의 경우 강조 타입만 정의된 상태
+   * white, orange 의 경우 강조 타입만 정의된 상태
    */
   white: {
     background: ColorSet.white,
@@ -53,6 +60,12 @@ const LABEL_COLORS: {
     emphasizedColor: ColorSet.gray,
     emphasizedBackground: ColorSet.white,
     borderColor: ColorSet.gray200,
+  },
+  orange: {
+    background: ColorSet.white,
+    color: ColorSet.orange,
+    emphasizedColor: ColorSet.white,
+    emphasizedBackground: ColorSet.orange,
   },
 }
 
