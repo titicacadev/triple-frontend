@@ -8,7 +8,7 @@ export default async function serial(
   options: ContextOptions,
   { execute }: { execute: (url: string) => Promise<void> },
 ) {
-  if (path === '/web-action/serial') {
+  if (path === '/web-action/serial' && query) {
     const { actions } = qs.parse(query, { ignoreQueryPrefix: true })
 
     if (actions) {
