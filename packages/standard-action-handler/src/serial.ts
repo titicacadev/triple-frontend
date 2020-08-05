@@ -6,14 +6,14 @@ import { ContextOptions } from './types'
 export default async function serial(
   { path, query }: UrlElements,
   options: ContextOptions,
-  { execute }: { execute: (url: string) => Promise<void> },
+  handler: { execute: (url: string) => Promise<void> },
 ) {
   if (path === '/web-action/serial' && query) {
     const { actions } = qs.parse(query, { ignoreQueryPrefix: true })
 
     if (actions) {
       for (const actionUrl of actions as string[]) {
-        await execute(actionUrl as string)
+        await handler.execute(actionUrl as string)
         await sleep(0.5)
       }
     }
