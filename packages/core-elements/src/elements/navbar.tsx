@@ -122,19 +122,17 @@ function Navbar({
   title,
   renderTitle,
   children,
-  borderless,
-  backgroundColor,
+  ...props
 }: {
-  title?: string
   renderTitle?: (props?: any) => JSX.Element
   children?: React.ReactNode
   borderless?: boolean
   backgroundColor?: Color
-}) {
+} & React.HTMLAttributes<HTMLDivElement>) {
   const childrenCount = React.Children.count(children)
 
   return (
-    <NavbarFrame borderless={borderless} backgroundColor={backgroundColor}>
+    <NavbarFrame {...props}>
       {renderTitle
         ? renderTitle()
         : title && (
