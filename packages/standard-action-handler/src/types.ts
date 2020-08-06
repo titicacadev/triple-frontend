@@ -9,5 +9,5 @@ export type ContextOptions = {
 export type WebAction = (
   url: UrlElements,
   options: ContextOptions,
-  handler: { execute: (url: string) => Promise<void> },
+  handler: { execute: (url: string, params?: any) => Promise<void> },
 ) => Promise<boolean>
