@@ -150,5 +150,6 @@ function Navbar({
 Navbar.Item = NavbarItem
 Navbar.Secondary = SecondaryNavbar
 Navbar.NavbarFrame = NavbarFrame
+Navbar.TitleContainer = TitleContainer
 
 export default Navbar
