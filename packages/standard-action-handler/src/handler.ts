@@ -18,7 +18,10 @@ export default class Handler {
     this.options = options
   }
 
-  async execute(url: string) {
+  async execute(
+    url: string,
+    params: Parameters<ContextOptions['navigate']>[1],
+  ) {
     const parsedUrl = parseUrl(url)
 
     if (parsedUrl.path?.match(/^\/web-action\//)) {
@@ -30,11 +33,11 @@ export default class Handler {
         }
       }
     } else {
-      this.options.navigate(url)
+      this.options.navigate(url, params)
     }
   }
 
   toFunction() {
-    return (url: string) => this.execute(url)
+    return this.execute.bind(this)
   }
 }
