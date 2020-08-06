@@ -8,10 +8,10 @@ export default async function fetchApi({ path, query }: UrlElements) {
   })
 
   if (path === '/web-action/fetch-api') {
-    await fetch(apiPath, {
-      method: method || 'GET',
+    await fetch(apiPath as string, {
+      method: (method as string) || 'GET',
       ...(body ? { headers: { 'content-type': 'application/json' } } : {}),
-      body,
+      body: body as string,
     })
 
     return true
