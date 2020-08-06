@@ -14,7 +14,7 @@ export default async function serial(
     if (actions) {
       for (const actionUrl of actions as string[]) {
         await handler.execute(actionUrl as string)
-        await sleep(0.5)
+        await sleep(0.4)
       }
     }
 
