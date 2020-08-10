@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
+import * as CSS from 'csstype'
 import { getColor } from '@titicaca/color-palette'
 
 import { withField } from '../utils/form-field'
@@ -7,7 +8,7 @@ import { MarginPadding } from '../commons'
 import { paddingMixin } from '../mixins'
 
 type FillType = 'full' | 'border' | 'text'
-type TextAlignType = 'left' | 'right'
+type TextAlignType = CSS.Property.TextAlign
 
 const generateFillStyles = ({
   fillType,
@@ -47,15 +48,6 @@ const generateFillStyles = ({
   }
 }
 
-const TextAligns: Partial<Record<TextAlignType, ReturnType<typeof css>>> = {
-  left: css`
-    text-align: left;
-  `,
-  right: css`
-    text-align: right;
-  `,
-}
-
 // eslint-disable-next-line no-unexpected-multiline
 const ConfirmFrame = styled.div.attrs({})<{
   name?: string
@@ -77,7 +69,7 @@ const ConfirmFrame = styled.div.attrs({})<{
   ${({ checked, error, fillType }) =>
     fillType && generateFillStyles({ checked: !!checked, error, fillType })};
 
-  ${({ textAlign }) => textAlign && TextAligns[textAlign]};
+  ${({ textAlign }) => `text-align: ${textAlign};`}
 
   ${({ borderless }) =>
     borderless &&
