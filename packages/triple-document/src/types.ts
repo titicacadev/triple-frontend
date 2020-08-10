@@ -23,6 +23,7 @@ export type ImageEventHandler = (e: SyntheticEvent, image: MediaMeta) => void
 export type Link = {
   href?: string
   label?: string
+  level?: string
 }
 
 export type LinkEventHandler = (e: React.SyntheticEvent, link: Link) => void

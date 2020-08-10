@@ -110,6 +110,8 @@ jobs:
           npx @titicaca/gha-tools notify
 
   tag:
+    needs: release
+    if: success()
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -126,7 +128,7 @@ jobs:
           VERSION="v$(cat ./lerna.json | jq -r '.version')"
 
           curl -f --request POST --url https://api.github.com/repos/${{ github.repository }}/git/tags \
-            -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+            -H 'Authorization: token ${{ secrets.GHA_TOKEN }}' \
             -H 'Content-Type: application/json' \
             -d "{\"tag\":\"${VERSION}\",\"message\":\"${VERSION}\",\"object\":\"${GITHUB_SHA}\",\"type\":\"commit\"}" > tag.json
 
@@ -134,16 +136,16 @@ jobs:
 
           curl -s -o /dev/null -I -w "%{http_code}" \
             --url https://api.github.com/repos/${{ github.repository }}/git/refs/tags/${VERSION} \
-            -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' > status
+            -H 'Authorization: token ${{ secrets.GHA_TOKEN }}' > status
 
           if [[ `cat status` == "200" ]]; then
             curl -f --request PATCH --url https://api.github.com/repos/${{ github.repository }}/git/refs/tags/${VERSION} \
-              -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+              -H 'Authorization: token ${{ secrets.GHA_TOKEN }}' \
               -H 'Content-Type: application/json' \
               -d "{\"force\":true,\"sha\":\"${TAG_SHA}\"}"
           else
             curl -f --request POST --url https://api.github.com/repos/${{ github.repository }}/git/refs \
-              -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+              -H 'Authorization: token ${{ secrets.GHA_TOKEN }}' \
               -H 'Content-Type: application/json' \
               -d "{\"ref\":\"refs/tags/${VERSION}\",\"sha\":\"${TAG_SHA}\"}"
           fi

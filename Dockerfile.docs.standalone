@@ -1,0 +1,16 @@
+FROM node:12 AS docs-build
+WORKDIR /app
+
+ARG NPM_TOKEN
+RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+
+COPY . .
+
+ARG TAG_NAME
+RUN cd docs && node ./conf/package.json.js $TAG_NAME
+RUN cd docs && npm install && npm run build
+
+FROM nginx:latest as docs-release
+
+COPY --from=docs-build /app/docs/storybook-static /usr/share/nginx/html/
+COPY ./docs/conf/nginx.conf /etc/nginx/nginx.conf

@@ -75,10 +75,20 @@ function ButtonLink({
 
 function BlockLink({
   children,
+  level,
   ...props
-}: React.PropsWithChildren<ButtonProps>) {
+}: React.PropsWithChildren<ButtonProps & Link>) {
   return (
-    <Button basic fluid compact color="gray" {...props}>
+    <Button
+      basic={level !== 'primary'}
+      fluid
+      size="small"
+      compact={!(level === 'primary' || level === 'secondary')}
+      color={level === 'primary' ? 'blue' : 'gray'}
+      borderRadius={4}
+      margin={{ top: 10 }}
+      {...props}
+    >
       {children}
     </Button>
   )

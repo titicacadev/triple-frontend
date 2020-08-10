@@ -1,3 +1,37 @@
+# 1.30.1 (2020-08-03)
+
+### core-elements
+
+- label 색상에 orange 를 추가합니다. (#906)
+
+# 1.30.0 (2020-07-30)
+
+### common
+
+- release-docs 를 GHA workflow 로 옮깁니다. (#888)
+- release-docs workflow 에서 Dockerfile 오타 수정 (#889)
+- release-docs Standalone build/release 를 가능하게 합니다. (#894)
+- release-docs 이미지 빌드시 NPM_TOKEN 변수를 대문자로 넘깁니다. (#890)
+- release-docs Github Package Registry 에도 이미지를 push 해둡니다. (#903)
+- i18n/lib/provider를 resolve 하지 못하는 문제 수정 (#893)
+
+### triple-document
+
+- TripleElementData interface를 export합니다 (#892)
+- display="block" 형식의 links element가 level을 가지도록 합니다. (#896)
+
+### core-elements
+
+- 롤링 스피너 무한히 반복될 수 있도록 수정 (#895)
+
+### modals
+
+- useTransitionModal에 memo 적용 (#897)
+
+### pricing
+
+- fixed pricing 에 max-width prop 을 추가합니다 (#902)
+
 # 1.29.0 (2020-07-22)
 
 ### core-elements
