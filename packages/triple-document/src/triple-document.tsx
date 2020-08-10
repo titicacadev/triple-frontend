@@ -59,7 +59,7 @@ type TextElementData = TripleElementData<'text', string>
 type LinksElementData = TripleElementData<'links', { links: Link[] }>
 
 type Display = 'list' | string
-type MediaDisplayProperty = CSS.DisplayProperty | 'gapless-block'
+type MediaDisplayProperty = CSS.Property.Display | 'gapless-block'
 
 interface TripleDocumentProps {
   customElements?: ElementSet

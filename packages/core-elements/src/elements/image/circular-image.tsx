@@ -12,7 +12,7 @@ const ROUND_SIZES: Partial<Record<GlobalSizes, number>> = {
 
 const RoundImage = styled.img<{
   size?: GlobalSizes
-  floated?: CSS.FloatProperty
+  floated?: CSS.Property.Float
   width?: number
 }>`
   width: ${({ size, width }) =>
@@ -30,7 +30,7 @@ const RoundImage = styled.img<{
 
 export default function CircularImage(props: {
   src?: string
-  floated?: CSS.FloatProperty
+  floated?: CSS.Property.Float
   size?: GlobalSizes
   width?: number
   alt?: string

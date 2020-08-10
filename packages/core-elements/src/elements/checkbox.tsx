@@ -1,6 +1,5 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import * as CSS from 'csstype'
 import { getColor } from '@titicaca/color-palette'
 
 import { withField } from '../utils/form-field'
@@ -8,6 +7,7 @@ import { MarginPadding } from '../commons'
 import { paddingMixin } from '../mixins'
 
 type FillType = 'full' | 'border' | 'text'
+type TextAlignType = 'left' | 'right'
 
 const generateFillStyles = ({
   fillType,
@@ -47,10 +47,7 @@ const generateFillStyles = ({
   }
 }
 
-const TextAligns: Partial<Record<
-  CSS.TextAlignProperty,
-  ReturnType<typeof css>
->> = {
+const TextAligns: Partial<Record<TextAlignType, ReturnType<typeof css>>> = {
   left: css`
     text-align: left;
   `,
@@ -62,7 +59,7 @@ const TextAligns: Partial<Record<
 // eslint-disable-next-line no-unexpected-multiline
 const ConfirmFrame = styled.div.attrs({})<{
   name?: string
-  textAlign?: CSS.TextAlignProperty
+  textAlign?: TextAlignType
   borderless?: boolean
   checked?: boolean
   fillType?: FillType
@@ -115,7 +112,7 @@ interface ConfirmSelectorProps {
   value: any
   placeholder: string
   onChange?: (e?: React.SyntheticEvent, value?: any) => any
-  textAlign?: CSS.TextAlignProperty
+  textAlign?: TextAlignType
   borderless?: boolean
   fillType?: FillType
   children?: React.ReactNode
