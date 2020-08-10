@@ -6,7 +6,11 @@ import { MarginPadding, BaseSizes } from '../commons'
 import { paddingMixin, formatMarginPadding, shadowMixin } from '../mixins'
 import { unit } from '../utils/unit'
 
-export interface ContainerPropsFromTemplate {
+export interface ContainerPropsFromTemplate
+  extends Pick<
+    CSS.Properties,
+    'position' | 'textAlign' | 'whiteSpace' | 'userSelect' | 'display'
+  > {
   centered?: boolean
   margin?: MarginPadding
   padding?: MarginPadding
@@ -19,12 +23,7 @@ export interface ContainerPropsFromTemplate {
 
   borderRadius?: number
   clearing?: boolean
-  position?: CSS.Property.Position
   floated?: CSS.Property.Float
-  textAlign?: CSS.Property.TextAlign
-  whiteSpace?: CSS.Property.WhiteSpace
-  userSelect?: CSS.Property.UserSelect
-  display?: CSS.Property.Display
   horizontalScroll?: boolean
   shadow?: BaseSizes
   backgroundColor?: Color
