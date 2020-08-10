@@ -1,15 +1,11 @@
 import * as React from 'react'
 import moment from 'moment'
 import styled from 'styled-components'
-import DayPicker, {
-  DayModifiers,
-  BeforeModifier,
-  AfterModifier,
-  Modifiers,
-} from 'react-day-picker'
+import DayPicker, { DayModifiers, Modifiers } from 'react-day-picker'
 
 import PickerFrame, { generateSelectedCircleStyle } from './picker-frame'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
+import useDisabledDays, { DislableDaysProps } from './use-disabled-days'
 
 const MemoDayPicker = React.memo(DayPicker)
 
@@ -26,16 +22,19 @@ function DatePicker({
   disabledDays: disabledDaysFromProps,
   height,
   publicHolidays,
-}: {
+}: DislableDaysProps & {
   day: string | null
   onDateChange: (date: Date) => void
-  beforeBlock?: Date
-  afterBlock?: Date
   numberOfMonths?: number
-  disabledDays?: string[]
   height?: string
   publicHolidays?: Date[]
 }) {
+  const disabledDays = useDisabledDays({
+    disabledDays: disabledDaysFromProps,
+    beforeBlock,
+    afterBlock,
+  })
+
   const selectedDay = React.useMemo(
     () => (day ? moment(day).toDate() : undefined),
     [day],
@@ -47,18 +46,6 @@ function DatePicker({
       saturday: (day) => day.getDay() === 6,
     }),
     [publicHolidays],
-  )
-  const disabledDays = React.useMemo(
-    () => [
-      ...(disabledDaysFromProps || []).map((date) => moment(date).toDate()),
-      beforeBlock || afterBlock
-        ? ({
-            before: beforeBlock,
-            after: afterBlock,
-          } as BeforeModifier | AfterModifier) // HACK: before, after 중 하나만 존재할 때 undefiend 속성값을 허용하지 않아 타입 체크를 우회.
-        : undefined,
-    ],
-    [afterBlock, beforeBlock, disabledDaysFromProps],
   )
 
   const handleDayClick = React.useCallback(
