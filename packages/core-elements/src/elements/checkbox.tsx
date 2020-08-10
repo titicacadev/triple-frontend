@@ -8,7 +8,6 @@ import { MarginPadding } from '../commons'
 import { paddingMixin } from '../mixins'
 
 type FillType = 'full' | 'border' | 'text'
-type TextAlignType = CSS.Property.TextAlign
 
 const generateFillStyles = ({
   fillType,
@@ -51,7 +50,7 @@ const generateFillStyles = ({
 // eslint-disable-next-line no-unexpected-multiline
 const ConfirmFrame = styled.div.attrs({})<{
   name?: string
-  textAlign?: TextAlignType
+  textAlign?: CSS.Property.TextAlign
   borderless?: boolean
   checked?: boolean
   fillType?: FillType
@@ -104,7 +103,7 @@ interface ConfirmSelectorProps {
   value: any
   placeholder: string
   onChange?: (e?: React.SyntheticEvent, value?: any) => any
-  textAlign?: TextAlignType
+  textAlign?: CSS.Property.TextAlign
   borderless?: boolean
   fillType?: FillType
   children?: React.ReactNode
