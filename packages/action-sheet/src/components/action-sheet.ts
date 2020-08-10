@@ -1,10 +1,14 @@
 import styled, { css } from 'styled-components'
+import * as CSS from 'csstype'
 
 const unit = (value: number | string, suffix = 'px') =>
   typeof value === 'string' ? value : value !== 0 ? `${value}${suffix}` : value
 
 export type MarginPadding = Partial<
-  Record<'top' | 'right' | 'bottom' | 'left', number | string>
+  Record<
+    'top' | 'right' | 'bottom' | 'left',
+    CSS.Property.Margin<number | string>
+  >
 >
 
 export const Title = styled.div`
@@ -84,7 +88,7 @@ export const Overlay = styled.div<{
                   env(safe-area-inset-bottom) +
                     ${unit(
                       typeof padding.bottom === 'number'
-                        ? padding.bottom + 4
+                        ? (padding.bottom as number) + 4
                         : padding.bottom || 0,
                     )}
                 )
