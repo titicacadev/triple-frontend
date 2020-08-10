@@ -1,12 +1,7 @@
 import * as React from 'react'
 import moment from 'moment'
 import styled, { css } from 'styled-components'
-import DayPicker, {
-  DayModifiers,
-  BeforeModifier,
-  AfterModifier,
-  Modifiers,
-} from 'react-day-picker'
+import DayPicker, { DayModifiers, Modifiers } from 'react-day-picker'
 
 import { isValidDate, generatePaddedRange } from './utils'
 import PickerFrame, {
@@ -15,6 +10,7 @@ import PickerFrame, {
   generateDateLabelStyle,
 } from './picker-frame'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
+import useDisabledDays, { DislableDaysProps } from './use-disabled-days'
 
 const MemoDayPicker = React.memo(DayPicker)
 
@@ -70,25 +66,28 @@ function RangePicker({
   height,
   publicHolidays,
   enableSameDay,
-}: {
+}: DislableDaysProps & {
   startDate: string | null
   endDate: string | null
   startDateLabel?: string
   endDateLabel?: string
   sameDateLabel?: string
-  beforeBlock?: Date
-  afterBlock?: Date
   onDatesChange: (params: {
     startDate: string | null
     endDate: string | null
     nights: number
   }) => void
   numberOfMonths?: number
-  disabledDays?: string[]
   height?: string
   publicHolidays?: Date[]
   enableSameDay?: boolean
 }) {
+  const disabledDays = useDisabledDays({
+    disabledDays: disabledDaysFromProps,
+    beforeBlock,
+    afterBlock,
+  })
+
   const initialMonth = React.useMemo(getInitialMonth, [])
 
   const from = React.useMemo(
@@ -116,18 +115,6 @@ function RangePicker({
       'included-range': from && to ? generatePaddedRange(from, to) : [],
     }),
     [from, publicHolidays, to],
-  )
-  const disabledDays = React.useMemo(
-    () => [
-      ...(disabledDaysFromProps || []).map((date) => moment(date).toDate()),
-      beforeBlock || afterBlock
-        ? ({
-            before: beforeBlock,
-            after: afterBlock,
-          } as BeforeModifier | AfterModifier) // HACK: before, after 중 하나만 존재할 때 undefiend 속성값을 허용하지 않아 타입 체크를 우회.
-        : undefined,
-    ],
-    [afterBlock, beforeBlock, disabledDaysFromProps],
   )
 
   const handleDayClick = React.useCallback(
