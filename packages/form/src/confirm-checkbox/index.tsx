@@ -7,7 +7,6 @@ import { MarginPadding, paddingMixin } from '@titicaca/core-elements'
 import withField from '../with-field'
 
 type FillType = 'full' | 'border' | 'text'
-type TextAlignType = CSS.Property.TextAlign
 
 const generateFillStyles = ({
   fillType,
@@ -50,7 +49,7 @@ const generateFillStyles = ({
 // eslint-disable-next-line no-unexpected-multiline
 const ConfirmFrame = styled.div.attrs({})<{
   name?: string
-  textAlign?: TextAlignType
+  textAlign?: CSS.Property.TextAlign
   borderless?: boolean
   checked?: boolean
   fillType?: FillType
@@ -103,7 +102,7 @@ interface ConfirmCheckboxProps {
   value: boolean
   placeholder: string
   onChange?: (e?: React.SyntheticEvent, value?: boolean) => void
-  textAlign?: TextAlignType
+  textAlign?: CSS.Property.TextAlign
   borderless?: boolean
   fillType?: FillType
   children?: React.ReactNode
