@@ -12,7 +12,8 @@ import {
   KeyOfTextStyleMap,
 } from '../mixins'
 
-interface TextBaseProps {
+interface TextBaseProps
+  extends Pick<CSS.Properties, 'wordBreak' | 'whiteSpace' | 'textAlign'> {
   size?: GlobalSizes | number
   textStyle?: KeyOfTextStyleMap
   bold?: boolean
@@ -21,10 +22,7 @@ interface TextBaseProps {
   floated?: CSS.Property.Float
   letterSpacing?: number
   lineHeight?: number | string
-  wordBreak?: CSS.Property.WordBreak
-  whiteSpace?: CSS.Property.WhiteSpace
   center?: boolean
-  textAlign?: CSS.Property.TextAlign
   underline?: boolean
   inline?: boolean
   inlineBlock?: boolean
