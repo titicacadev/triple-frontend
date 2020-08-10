@@ -1,5 +1,10 @@
+import * as CSS from 'csstype'
+
 export type MarginPadding = Partial<
-  Record<'top' | 'right' | 'bottom' | 'left', string | number>
+  Record<
+    'top' | 'right' | 'bottom' | 'left',
+    CSS.Property.Margin<string | number>
+  >
 >
 
 export type BaseSizes = 'small' | 'medium' | 'large'

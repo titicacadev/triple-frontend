@@ -13,7 +13,7 @@ export const ActionItemContainer = styled.div`
 `
 
 export const ItemText = styled.div<{
-  width?: CSS.Property.Width
+  width?: CSS.Property.Width<string | number>
   checked?: boolean
 }>`
   display: inline-block;
