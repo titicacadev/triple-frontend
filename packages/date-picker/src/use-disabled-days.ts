@@ -4,8 +4,8 @@ import { BeforeModifier, AfterModifier } from 'react-day-picker'
 
 export interface DislableDaysProps {
   disabledDays?: string[]
-  beforeBlock?: Date
-  afterBlock?: Date
+  beforeBlock?: string
+  afterBlock?: string
 }
 
 export default function useDisabledDays({
@@ -18,8 +18,8 @@ export default function useDisabledDays({
       ...(disabledDays || []).map((date) => moment(date).toDate()),
       beforeBlock || afterBlock
         ? ({
-            before: beforeBlock,
-            after: afterBlock,
+            before: beforeBlock ? moment(beforeBlock).toDate() : undefined,
+            after: afterBlock ? moment(afterBlock).toDate() : undefined,
           } as BeforeModifier | AfterModifier) // HACK: before, after 중 하나만 존재할 때 undefiend 속성값을 허용하지 않아 타입 체크를 우회.
         : undefined,
     ],
