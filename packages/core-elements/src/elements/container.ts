@@ -7,7 +7,6 @@ import { paddingMixin, formatMarginPadding, shadowMixin } from '../mixins'
 import { unit } from '../utils/unit'
 
 export interface ContainerPropsFromTemplate {
-  position?: CSS.PositionProperty
   centered?: boolean
   margin?: MarginPadding
   padding?: MarginPadding
@@ -17,13 +16,15 @@ export interface ContainerPropsFromTemplate {
   maxWidth?: number | string
   minHeight?: number | string
   maxHeight?: number | string
-  floated?: CSS.FloatProperty
-  textAlign?: CSS.TextAlignProperty
+
   borderRadius?: number
   clearing?: boolean
-  whiteSpace?: CSS.WhiteSpaceProperty
-  userSelect?: CSS.UserSelectProperty
-  display?: CSS.DisplayProperty
+  position?: CSS.Property.Position
+  floated?: CSS.Property.Float
+  textAlign?: CSS.Property.TextAlign
+  whiteSpace?: CSS.Property.WhiteSpace
+  userSelect?: CSS.Property.UserSelect
+  display?: CSS.Property.Display
   horizontalScroll?: boolean
   shadow?: BaseSizes
   backgroundColor?: Color

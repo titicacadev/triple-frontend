@@ -11,7 +11,7 @@ export interface ButtonBaseProp {
   bold?: boolean
   textColor?: Color
   textAlpha?: number
-  floated?: CSS.FloatProperty
+  floated?: CSS.Property.Float
   fluid?: boolean
   margin?: MarginPadding
   disabled?: boolean

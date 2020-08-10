@@ -85,9 +85,9 @@ const ICON_URL_BY_NAMES: { [key in IconNames]: string } = {
 }
 
 type NavbarItemProps = {
-  floated?: CSS.FloatProperty
+  floated?: CSS.Property.Float
   icon?: IconNames
-  position?: CSS.PositionProperty
+  position?: CSS.Property.Position
 }
 
 // eslint-disable-next-line no-unexpected-multiline

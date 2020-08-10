@@ -1,20 +1,23 @@
 import styled from 'styled-components'
-import csstype from 'csstype'
+import * as CSS from 'csstype'
 
 import Container from './container'
 
-export interface FlexBoxProps {
-  flexGrow?: number
-  order?: number
-  flexShrink?: number
+export interface FlexBoxProps
+  extends Pick<
+    CSS.Properties,
+    | 'flexGrow'
+    | 'flexShrink'
+    | 'flexBasis'
+    | 'flexDirection'
+    | 'flexWrap'
+    | 'justifyContent'
+    | 'alignItems'
+    | 'alignContent'
+    | 'alignSelf'
+    | 'order'
+  > {
   flex?: boolean
-  flexDirection?: csstype.FlexDirectionProperty
-  flexWrap?: csstype.FlexWrapProperty
-  justifyContent?: csstype.JustifyContentProperty
-  alignItems?: csstype.AlignItemsProperty
-  alignContent?: csstype.AlignContentProperty
-  alignSelf?: csstype.AlignSelfProperty
-  flexBasis?: string
 }
 
 export default styled(Container)<FlexBoxProps>`

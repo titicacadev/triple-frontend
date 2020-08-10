@@ -18,13 +18,13 @@ interface TextBaseProps {
   bold?: boolean
   alpha?: number
   color?: Color
-  floated?: CSS.FloatProperty
+  floated?: CSS.Property.Float
   letterSpacing?: number
   lineHeight?: number | string
-  wordBreak?: CSS.WordBreakProperty
-  whiteSpace?: CSS.WhiteSpaceProperty
+  wordBreak?: CSS.Property.WordBreak
+  whiteSpace?: CSS.Property.WhiteSpace
   center?: boolean
-  textAlign?: CSS.TextAlignProperty
+  textAlign?: CSS.Property.TextAlign
   underline?: boolean
   inline?: boolean
   inlineBlock?: boolean
