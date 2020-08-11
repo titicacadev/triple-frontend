@@ -25,6 +25,8 @@ const NavbarFrame = styled.header<{
         `};
   box-sizing: border-box;
   padding: 9px 12px;
+  margin: 0 auto;
+  max-width: 760px;
 `
 
 const TitleContainer = styled.div<{ childrenCount?: number }>`
