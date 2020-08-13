@@ -5,10 +5,13 @@ import { Color, getColor, brightGray } from '@titicaca/color-palette'
 
 import { FALLBACK_ACTION_CLASS_NAME } from '../constants'
 
-const NavbarFrame = styled.header<{
+type NavbarProps = {
+  maxWidth?: number
   borderless?: boolean
   backgroundColor?: Color
-}>`
+}
+
+const NavbarFrame = styled.header<NavbarProps>`
   background-color: ${({ backgroundColor = 'white' }) =>
     `rgba(${getColor(backgroundColor)})`};
   position: sticky;
@@ -26,7 +29,7 @@ const NavbarFrame = styled.header<{
   box-sizing: border-box;
   padding: 9px 12px;
   margin: 0 auto;
-  max-width: 760px;
+  max-width: ${({ maxWidth }) => maxWidth || 768}px;
 `
 
 const TitleContainer = styled.div<{ childrenCount?: number }>`
@@ -128,9 +131,8 @@ function Navbar({
 }: {
   renderTitle?: (props?: any) => JSX.Element
   children?: React.ReactNode
-  borderless?: boolean
-  backgroundColor?: Color
-} & React.HTMLAttributes<HTMLDivElement>) {
+} & NavbarProps &
+  React.HTMLAttributes<HTMLDivElement>) {
   const childrenCount = React.Children.count(children)
 
   return (
@@ -146,7 +148,6 @@ function Navbar({
     </NavbarFrame>
   )
 }
-
 Navbar.Item = NavbarItem
 Navbar.Secondary = SecondaryNavbar
 Navbar.NavbarFrame = NavbarFrame
