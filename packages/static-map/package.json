@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/static-map",
-  "version": "1.30.2",
+  "version": "1.31.0",
   "description": "Static map component",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,6 +15,6 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^1.30.2"
+    "@titicaca/core-elements": "^1.31.0"
   }
 }
