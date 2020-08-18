@@ -41,14 +41,16 @@ export default function User({
       <UserPhoto src={photo} onClick={onClick} />
       {badge && <Badge src={badge.icon.imageUrl} />}
       <Name onClick={onClick}>{name}</Name>
-      <UserExtra>
-        <span onClick={onClick}>
-          {[level && `LEVEL ${level}`, point && `${point}포인트`]
-            .filter(Boolean)
-            .join(' · ') || null}
-        </span>
-        {children}
-      </UserExtra>
+      {level || point ? (
+        <UserExtra>
+          <span onClick={onClick}>
+            {[level && `LEVEL ${level}`, point && `${point}포인트`]
+              .filter(Boolean)
+              .join(' · ') || null}
+          </span>
+          {children}
+        </UserExtra>
+      ) : null}
     </Container>
   )
 }
