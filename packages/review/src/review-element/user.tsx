@@ -43,9 +43,9 @@ export default function User({
       <Name onClick={onClick}>{name}</Name>
       <UserExtra>
         <span onClick={onClick}>
-          {level ? `LEVEL ${level}` : null}
-          {level && point ? ' · ' : null}
-          {point ? `${point}포인트` : null}
+          {[level && `LEVEL ${level}`, point && `${point}포인트`]
+            .filter(Boolean)
+            .join(' · ') || null}
         </span>
         {children}
       </UserExtra>
