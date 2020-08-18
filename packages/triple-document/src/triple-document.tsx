@@ -183,7 +183,15 @@ function Images({
 
   return (
     <ImagesContainer
-      margin={{ top: 40, bottom: images.some(({ title }) => title) ? 10 : 30 }}
+      margin={{
+        top: display === 'gapless-block' ? 0 : 40,
+        bottom:
+          display === 'gapless-block'
+            ? 0
+            : images.some(({ title }) => title)
+            ? 10
+            : 30,
+      }}
     >
       {images.map((image, i) => {
         return (
