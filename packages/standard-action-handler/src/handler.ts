@@ -20,7 +20,7 @@ export default class Handler {
 
   async execute(
     url: string,
-    params: Parameters<ContextOptions['navigate']>[1],
+    params?: Parameters<ContextOptions['navigate']>[1],
   ) {
     const parsedUrl = parseUrl(url)
 
