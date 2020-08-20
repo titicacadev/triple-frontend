@@ -1,6 +1,7 @@
 # 1.32.0 (2020-08-20)
 
 ### triple-document
+
 - gapless-block의 경우 컨테이너의 상하단 마진을 삭제합니다. (#918)
 
 ### review
