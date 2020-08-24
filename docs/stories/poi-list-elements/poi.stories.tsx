@@ -192,6 +192,13 @@ export function PoiCardElementsTypeHotel() {
       reviewsRating={number('reviewsRating', 5)}
       reviewsCount={number('reviewsCount', 1)}
       nightlyPrice={number('nightlyPrice', 120094)}
+      priceLabelOverride={
+        boolean('use priceLabelOverride', false) ? (
+          <Text inlineBlock size="small" color="gray300" bold>
+            판매 완료
+          </Text>
+        ) : undefined
+      }
       scraped={boolean('scraped', false)}
       scrapsCount={number('scrapesCount', 0)}
       distance={text('distance', '300m')}
