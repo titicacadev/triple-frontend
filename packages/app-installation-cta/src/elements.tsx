@@ -163,11 +163,13 @@ export const RightContainer = styled(Container)`
   width: 46px;
 `
 
-export const FloatingButton = styled.div<{
+interface FloatingButtonProps {
   visibility: 1 | 0
   fixed?: 1 | 0
   margin?: MarginPadding
-}>`
+}
+
+export const FloatingButton = styled.div<FloatingButtonProps>`
   height: 84px;
   border-radius: 42px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
