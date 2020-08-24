@@ -7,7 +7,10 @@ import {
   PoiListElement,
   POICardElement,
 } from '@titicaca/poi-list-elements'
-import { POI as POIData, Hotel as HotelData } from '@titicaca/type-definitions'
+import {
+  ListingPOI as POIData,
+  ListingHotel as HotelData,
+} from '@titicaca/type-definitions'
 
 import POIS from '../__mocks__/pois.sample.json'
 import HOTELS from '../__mocks__/hotels.sample.json'
@@ -25,7 +28,7 @@ function PricingDescription() {
   )
 }
 
-const [POI] = POIS as Exclude<POIData, HotelData>[]
+const [POI] = (POIS as unknown[]) as Exclude<POIData, HotelData>[]
 
 export default {
   title: 'poi-list-elements | POI',
@@ -34,7 +37,7 @@ export default {
 export function PoiList() {
   return (
     <PoiListElement
-      as={text('as', 'div')}
+      as={text('as', 'div') as any}
       poi={POI}
       resourceScraps={{
         [POI.id]: boolean('저장', false),
@@ -50,7 +53,7 @@ PoiList.story = {
 export function HotelList() {
   return (
     <List divided>
-      {(HOTELS as HotelData[]).map((hotel, idx) => (
+      {((HOTELS as unknown[]) as HotelData[]).map((hotel, idx) => (
         <PoiListElement
           key={idx}
           poi={hotel}
@@ -72,7 +75,9 @@ export function HotelList() {
           hideScrapButton={boolean('hideScrapButton', false)}
           hidePrice={boolean('hidePrice', false)}
           onScrapedChange={action('scrap change')}
-          notes={boolean('custom note') && ['3성급', '판교 백현동']}
+          notes={
+            boolean('custom note', false) ? ['3성급', '판교 백현동'] : undefined
+          }
           {...(boolean('distance 표시', false)
             ? {
                 distance: text('distance', '300m'),
