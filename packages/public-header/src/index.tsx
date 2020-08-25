@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
+import { getColor } from '@titicaca/color-palette'
 
 enum MarketType {
   appStore = 'appStore',
@@ -35,7 +36,7 @@ const HeaderFrame = styled.header<{
   ${({ borderless }) =>
     !borderless &&
     css`
-      border-bottom: 1px solid #efefef;
+      border-bottom: 1px solid rgba(${getColor('brightGray')});
     `}
 
   ${({ minWidth }) =>
