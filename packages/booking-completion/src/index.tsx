@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Text, Button } from '@titicaca/core-elements'
-import { useHistoryContext } from '@titicaca/react-contexts'
+import { useHistoryFunctions } from '@titicaca/react-contexts'
 import styled from 'styled-components'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 
@@ -49,7 +49,7 @@ function BookingCompletion({
   descriptions,
   region,
 }: BookingCompletionProps) {
-  const { navigate } = useHistoryContext()
+  const { navigate } = useHistoryFunctions()
   return (
     <>
       <Container margin={{ bottom: 12 }}>

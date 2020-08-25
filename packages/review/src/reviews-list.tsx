@@ -3,9 +3,9 @@ import qs from 'qs'
 import moment from 'moment'
 import { List } from '@titicaca/core-elements'
 import {
-  useHistoryContext,
   useUserAgentContext,
   useEventTrackingContext,
+  useHistoryFunctions,
 } from '@titicaca/react-contexts'
 import { useTransitionModal, TransitionType } from '@titicaca/modals'
 
@@ -46,7 +46,7 @@ export default function ReviewsList({
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
   const { updateLikedStatus } = useReviewLikesContext()
-  const { push } = useHistoryContext()
+  const { push } = useHistoryFunctions()
   const { show } = useTransitionModal()
 
   const handleUserClick: ReviewElementProps['onUserClick'] = (

@@ -3,8 +3,8 @@ import { Text, Button, Container } from '@titicaca/core-elements'
 import styled from 'styled-components'
 import fetch from 'isomorphic-fetch'
 import {
-  useHistoryContext,
   useUserAgentContext,
+  useHistoryFunctions,
 } from '@titicaca/react-contexts'
 import { captureException } from '@sentry/browser'
 
@@ -24,7 +24,7 @@ const BaseCouponDownloadButton = styled(Button)`
 `
 
 const PublicCouponDownloadButton = () => {
-  const { push } = useHistoryContext()
+  const { push } = useHistoryFunctions()
 
   const onDownloadButtonClick = useCallback(() => {
     push(HASH_COUPON_APP_TRANSITION_MODAL)
@@ -43,7 +43,7 @@ const InAppCouponDownloadButton = ({ slugId }: { slugId: string }) => {
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined,
   )
-  const { push } = useHistoryContext()
+  const { push } = useHistoryFunctions()
 
   useEffect(() => {
     async function fetchCoupon() {

@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { Section, Container, List, Image, Text } from '@titicaca/core-elements'
 import { H1, H3 } from '@titicaca/triple-document'
 import {
-  useHistoryContext,
   useEventTrackingContext,
+  useHistoryFunctions,
 } from '@titicaca/react-contexts'
 import { useI18n } from '@titicaca/i18n'
 
@@ -26,7 +26,7 @@ export default function SocialReviews({
   socialReviews?: SocialReview[]
 } & Parameters<typeof Section>['0']) {
   const { trackSimpleEvent } = useEventTrackingContext()
-  const { navigate } = useHistoryContext()
+  const { navigate } = useHistoryFunctions()
   const { t } = useI18n()
 
   if (!socialReviews || socialReviews.length === 0) {

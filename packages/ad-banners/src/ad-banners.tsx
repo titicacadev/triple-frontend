@@ -3,7 +3,7 @@ import { MarginPadding } from '@titicaca/core-elements'
 import {
   useDeviceContext,
   useEventTrackingContext,
-  useHistoryContext,
+  useHistoryFunctions,
 } from '@titicaca/react-contexts'
 
 import { ContentType, postAdBannerEvent, getAdBanners } from './api'
@@ -67,7 +67,7 @@ function isPropsForInventoryAPI(
 function useAdBannerProps(props: AdBannersProps) {
   const { latitude, longitude } = useDeviceContext()
   const { trackEvent } = useEventTrackingContext()
-  const { navigate } = useHistoryContext()
+  const { navigate } = useHistoryFunctions()
 
   if (isPropsForInventoryAPI(props)) {
     const { onBannersFetch, onBannerIntersect, onBannerClick } = props

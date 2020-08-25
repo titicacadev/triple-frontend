@@ -2,7 +2,7 @@ import * as React from 'react'
 import qs from 'qs'
 import styled from 'styled-components'
 import { Button, Container, Text } from '@titicaca/core-elements'
-import { useHistoryContext } from '@titicaca/react-contexts'
+import { useHistoryFunctions } from '@titicaca/react-contexts'
 
 const SupportContainer = styled.footer`
   background-color: #f5f5f5;
@@ -37,7 +37,7 @@ export default function CSFooter({
   onFAQButtonClick?: () => void
   onCSButtonClick?: () => void
 }) {
-  const { navigate } = useHistoryContext()
+  const { navigate } = useHistoryFunctions()
   const supportType = SUPPORT_TYPES_BY_SERVICE[serviceType]
 
   const movetoFAQ = () => {
