@@ -46,9 +46,13 @@ const PopupContainer = styled.div`
     display: none;
   }
 
-  ${inactivePopupContainerStyle}
+  &:not([class*='fade-']) {
+    ${inactivePopupContainerStyle}
+    display: none;
+  }
 
-  &.fade-appear, &.fade-enter {
+  &.fade-appear,
+  &.fade-enter {
     ${inactivePopupContainerStyle}
   }
 
@@ -73,6 +77,7 @@ const PopupContainer = styled.div`
 
   &.fade-exit-done {
     ${inactivePopupContainerStyle}
+    display: none;
   }
 `
 
