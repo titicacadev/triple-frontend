@@ -1,11 +1,28 @@
 import * as React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
+import { CSSTransition } from 'react-transition-group'
 
-const DrawerContainer = styled.div<{
-  active?: boolean
+const TRANSITION_DURATION = 300
+
+interface DrawerContainerProps {
   overflow?: string
   zIndex?: number
-}>`
+  duration: number
+}
+
+const inactiveDrawerStyle = `
+  transform: translateY(100%);
+`
+
+const activeDrawerStyle = `
+  transform: translateY(0%);
+`
+
+const drawerTransitionConfig = `
+  transition: transform ${TRANSITION_DURATION}ms ease-in-out;
+`
+
+const DrawerContainer = styled.div<DrawerContainerProps>`
   z-index: ${({ zIndex }) =>
     zIndex && Number.isInteger(zIndex) ? zIndex : 20};
   position: fixed;
@@ -13,15 +30,36 @@ const DrawerContainer = styled.div<{
   left: 0;
   right: 0;
   overflow: ${({ overflow }) => overflow || 'hidden'};
-  transform: translateY(100%);
-  transition: all 300ms ease-in-out;
 
-  ${({ active }) =>
-    active &&
-    css`
-      transform: translateY(0%);
-      transition: all 300ms ease-in-out;
-    `};
+  ${inactiveDrawerStyle}
+
+  &.drawer-slide-appear,
+  &.drawer-slide-enter {
+    ${inactiveDrawerStyle}
+  }
+
+  &.drawer-slide-appear-active,
+  &.drawer-slide-enter-active {
+    ${activeDrawerStyle}
+    ${drawerTransitionConfig}
+  }
+
+  &.drawer-slide-enter-done {
+    ${activeDrawerStyle}
+  }
+
+  &.drawer-slide-exit {
+    ${activeDrawerStyle}
+  }
+
+  &.drawer-slide-exit-active {
+    ${inactiveDrawerStyle}
+    ${drawerTransitionConfig}
+  }
+
+  &.drawer-slide-exit-done {
+    ${inactiveDrawerStyle}
+  }
 `
 
 export default function Drawer({
@@ -36,8 +74,19 @@ export default function Drawer({
   children?: React.ReactNode
 }) {
   return (
-    <DrawerContainer active={active} overflow={overflow} zIndex={zIndex}>
-      {children}
-    </DrawerContainer>
+    <CSSTransition
+      in={active}
+      appear
+      classNames="drawer-slide"
+      timeout={TRANSITION_DURATION}
+    >
+      <DrawerContainer
+        duration={TRANSITION_DURATION}
+        overflow={overflow}
+        zIndex={zIndex}
+      >
+        {children}
+      </DrawerContainer>
+    </CSSTransition>
   )
 }
