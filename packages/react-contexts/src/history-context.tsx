@@ -45,7 +45,7 @@ function parseQuery(query: string | undefined): ReturnType<typeof parseUrl> {
 }
 
 const URIHashContext = React.createContext<URIHash>('')
-const FunctionsContext = React.createContext<
+const HistoryFunctionsContext = React.createContext<
   Omit<HistoryContextValue, 'uriHash'>
 >({
   push: NOOP,
@@ -307,9 +307,9 @@ export function HistoryProvider({
 
   return (
     <URIHashContext.Provider value={uriHash}>
-      <FunctionsContext.Provider value={functions}>
+      <HistoryFunctionsContext.Provider value={functions}>
         {children}
-      </FunctionsContext.Provider>
+      </HistoryFunctionsContext.Provider>
     </URIHashContext.Provider>
   )
 }
@@ -323,7 +323,7 @@ export function HistoryProvider({
  */
 export function useHistoryContext(): HistoryContextValue {
   const uriHash = React.useContext(URIHashContext)
-  const functions = React.useContext(FunctionsContext)
+  const functions = React.useContext(HistoryFunctionsContext)
 
   return React.useMemo(
     () => ({
@@ -339,7 +339,7 @@ export function useURIHash(): URIHash {
 }
 
 export function useHistoryFunctions(): Omit<HistoryContextValue, 'uriHash'> {
-  return React.useContext(FunctionsContext)
+  return React.useContext(HistoryFunctionsContext)
 }
 
 export interface WithHistoryBaseProps {
@@ -357,7 +357,7 @@ export function withHistory<P extends DeepPartial<WithHistoryBaseProps>>(
     return (
       <URIHashContext.Consumer>
         {(uriHash) => (
-          <FunctionsContext.Consumer>
+          <HistoryFunctionsContext.Consumer>
             {({ push, replace, back, navigate, showTransitionModal }) => (
               <Component
                 {...({
@@ -373,7 +373,7 @@ export function withHistory<P extends DeepPartial<WithHistoryBaseProps>>(
                 } as P)}
               />
             )}
-          </FunctionsContext.Consumer>
+          </HistoryFunctionsContext.Consumer>
         )}
       </URIHashContext.Consumer>
     )
