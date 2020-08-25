@@ -327,6 +327,14 @@ export function useHistoryContext(): HistoryContextValue {
   )
 }
 
+export function useURIHash(): URIHash {
+  return React.useContext(URIHashContext)
+}
+
+export function useHistoryFunctions(): Omit<HistoryContextValue, 'uriHash'> {
+  return React.useContext(FunctionsContext)
+}
+
 export interface WithHistoryBaseProps {
   uriHash: URIHash
   historyActions: Pick<
