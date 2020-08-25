@@ -74,7 +74,10 @@ export const Sheet = styled.div<SheetProps>`
   margin: 0;
   user-select: none;
 
-  ${inactiveSheetSlideStyle}
+  &:not([class*='action-sheet-slide-']) {
+    ${inactiveSheetSlideStyle}
+    display: none;
+  }
 
   &.action-sheet-slide-appear,
   &.action-sheet-slide-enter {
@@ -166,7 +169,10 @@ export const Overlay = styled.div<OverlayProps>`
   z-index: 10;
   background-color: rgba(58, 58, 58, 0.7);
 
-  ${inactiveOverlayFadeStyle}
+  &:not([class*='action-sheet-fade-']) {
+    ${inactiveOverlayFadeStyle}
+    display: none;
+  }
 
   &.action-sheet-fade-appear,
   &.action-sheet-fade-enter {

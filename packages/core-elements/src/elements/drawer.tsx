@@ -31,7 +31,10 @@ const DrawerContainer = styled.div<DrawerContainerProps>`
   right: 0;
   overflow: ${({ overflow }) => overflow || 'hidden'};
 
-  ${inactiveDrawerStyle}
+  &:not([class*='drawer-slide-']) {
+    ${inactiveDrawerStyle}
+    display: none;
+  }
 
   &.drawer-slide-appear,
   &.drawer-slide-enter {
@@ -59,6 +62,7 @@ const DrawerContainer = styled.div<DrawerContainerProps>`
 
   &.drawer-slide-exit-done {
     ${inactiveDrawerStyle}
+    display: none;
   }
 `
 

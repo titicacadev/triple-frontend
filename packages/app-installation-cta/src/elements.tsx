@@ -341,7 +341,10 @@ export const ChatbotContainer = styled.div<{ visibility: 1 | 0 }>`
     right: 30px;
   }
 
-  ${inactiveChatbotContainerStyle}
+  &:not([class*='fade-']) {
+    ${inactiveChatbotContainerStyle}
+    display: none;
+  }
 
   &.fade-appear,
   &.fade-enter {
