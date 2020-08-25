@@ -3,8 +3,9 @@ import qs from 'qs'
 import ActionSheet from '@titicaca/action-sheet'
 import { Confirm } from '@titicaca/modals'
 import {
-  useHistoryContext,
   useMyReviewsContext,
+  useURIHash,
+  useHistoryFunctions,
 } from '@titicaca/react-contexts'
 
 import { deleteReview as deleteReviewApi } from './review-api-clients'
@@ -36,7 +37,8 @@ export default function MyReviewActionSheet({
   onReviewEdit,
   onReviewDelete,
 }: MyReviewActionSheetProps) {
-  const { uriHash, replace, back } = useHistoryContext()
+  const uriHash = useURIHash()
+  const { replace, back } = useHistoryFunctions()
   const {
     actions: { deleteMyReview },
   } = useMyReviewsContext()

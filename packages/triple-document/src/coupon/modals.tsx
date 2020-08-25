@@ -2,7 +2,7 @@ import React from 'react'
 import { Text } from '@titicaca/core-elements'
 import { Modal, Alert } from '@titicaca/modals'
 import styled from 'styled-components'
-import { useHistoryContext } from '@titicaca/react-contexts'
+import { useURIHash, useHistoryFunctions } from '@titicaca/react-contexts'
 
 type HashKeyValue = {
   [hash: string]: string
@@ -47,7 +47,8 @@ const CouponIcon = styled.img`
 `
 
 export function CouponModal({ webUrlBase }: { webUrlBase: string }) {
-  const { uriHash, back, navigate } = useHistoryContext()
+  const uriHash = useURIHash()
+  const { back, navigate } = useHistoryFunctions()
 
   return (
     <Modal open={MODAL_HASHES.includes(uriHash)} onClose={back}>
@@ -101,7 +102,8 @@ export function CouponModal({ webUrlBase }: { webUrlBase: string }) {
 }
 
 export function CouponAlertModal({ errorMessage }: { errorMessage?: string }) {
-  const { uriHash, back } = useHistoryContext()
+  const uriHash = useURIHash()
+  const { back } = useHistoryFunctions()
 
   return (
     <Alert
@@ -122,7 +124,8 @@ const IconImage = styled.img`
 `
 
 export function CouponTransitionModal({ deepLink }: { deepLink: string }) {
-  const { uriHash, back } = useHistoryContext()
+  const uriHash = useURIHash()
+  const { back } = useHistoryFunctions()
 
   return (
     <Modal open={uriHash === HASH_COUPON_APP_TRANSITION_MODAL} onClose={back}>

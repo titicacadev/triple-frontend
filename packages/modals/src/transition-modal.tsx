@@ -2,8 +2,9 @@ import React, { ComponentType, FC, useMemo } from 'react'
 import styled from 'styled-components'
 import { Text } from '@titicaca/core-elements'
 import {
-  useHistoryContext,
   useEventTrackingContext,
+  useURIHash,
+  useHistoryFunctions,
 } from '@titicaca/react-contexts'
 import { DeepPartial } from 'utility-types'
 
@@ -94,7 +95,8 @@ const MODAL_CONTENT: {
 }
 
 export function TransitionModal({ deepLink }: { deepLink: string }) {
-  const { uriHash, back } = useHistoryContext()
+  const uriHash = useURIHash()
+  const { back } = useHistoryFunctions()
   const { trackEvent } = useEventTrackingContext()
   const matchData = (uriHash || '').match(/^transition\.(.+)$/)
 
@@ -148,7 +150,7 @@ export function TransitionModal({ deepLink }: { deepLink: string }) {
 }
 
 export function useTransitionModal(): { show: ShowTransitionModal } {
-  const { push } = useHistoryContext()
+  const { push } = useHistoryFunctions()
 
   return useMemo(() => ({ show: (type) => push(`transition.${type}`) }), [push])
 }
@@ -161,7 +163,7 @@ export function withTransitionModal<
   P extends DeepPartial<WithTransitionModalBaseProps>
 >(Component: ComponentType<P>): FC<Omit<P, 'showTransitionModal'>> {
   return function TransitionModalComponent(props) {
-    const { push } = useHistoryContext()
+    const { push } = useHistoryFunctions()
 
     return (
       <Component
