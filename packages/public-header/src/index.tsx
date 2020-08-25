@@ -13,9 +13,9 @@ const HeaderFrame = styled.header<{
   fixed?: boolean
   minWidth?: number
   height?: number
+  borderless?: boolean
 }>`
   background-color: #ffffff;
-  border-bottom: 1px solid #efefef;
   position: sticky;
   z-index: 1;
   ${({ fixed }) =>
@@ -31,6 +31,12 @@ const HeaderFrame = styled.header<{
   @media (max-width: ${MAX_PHONE_WIDTH}px) {
     height: ${({ height }) => height || 50}px;
   }
+
+  ${({ borderless }) =>
+    !borderless &&
+    css`
+      border-bottom: 1px solid #efefef;
+    `}
 
   ${({ minWidth }) =>
     minWidth &&
@@ -142,7 +148,7 @@ export default function PublicHeader({
   children,
   fixed,
   minWidth,
-  height = 50,
+  borderless = false,
   ...props
 }: {
   href?: string
@@ -151,10 +157,16 @@ export default function PublicHeader({
   fixed?: boolean
   minWidth?: number
   height?: number
+  borderless?: boolean
   children?: React.ReactNode
 }) {
   return (
-    <HeaderFrame fixed={fixed} minWidth={minWidth} height={height} {...props}>
+    <HeaderFrame
+      fixed={fixed}
+      minWidth={minWidth}
+      borderless={borderless}
+      {...props}
+    >
       <Logo href={href || 'https://triple.guide'}>TRIPLE</Logo>
       <MarketLinksContainer>
         {playStoreUrl ? (
