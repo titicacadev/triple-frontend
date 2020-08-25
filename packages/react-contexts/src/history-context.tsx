@@ -44,8 +44,10 @@ function parseQuery(query: string | undefined): ReturnType<typeof parseUrl> {
   return parseUrl(decodeURIComponent(encodedUrl))
 }
 
-const Context = React.createContext<HistoryContextValue>({
-  uriHash: '',
+const URIHashContext = React.createContext<URIHash>('')
+const FunctionsContext = React.createContext<
+  Omit<HistoryContextValue, 'uriHash'>
+>({
   push: NOOP,
   replace: NOOP,
   back: NOOP,
@@ -291,9 +293,8 @@ export function HistoryProvider({
     isPublic,
   ])
 
-  const value = React.useMemo<HistoryContextValue>(
+  const functions = React.useMemo<Omit<HistoryContextValue, 'uriHash'>>(
     () => ({
-      uriHash,
       push,
       replace,
       back,
@@ -301,14 +302,29 @@ export function HistoryProvider({
       openWindow,
       showTransitionModal,
     }),
-    [back, navigate, openWindow, push, replace, showTransitionModal, uriHash],
+    [back, navigate, openWindow, push, replace, showTransitionModal],
   )
 
-  return <Context.Provider value={value}>{children}</Context.Provider>
+  return (
+    <URIHashContext.Provider value={uriHash}>
+      <FunctionsContext.Provider value={functions}>
+        {children}
+      </FunctionsContext.Provider>
+    </URIHashContext.Provider>
+  )
 }
 
-export function useHistoryContext() {
-  return React.useContext(Context)
+export function useHistoryContext(): HistoryContextValue {
+  const uriHash = React.useContext(URIHashContext)
+  const functions = React.useContext(FunctionsContext)
+
+  return React.useMemo(
+    () => ({
+      uriHash,
+      ...functions,
+    }),
+    [functions, uriHash],
+  )
 }
 
 export interface WithHistoryBaseProps {
@@ -324,23 +340,27 @@ export function withHistory<P extends DeepPartial<WithHistoryBaseProps>>(
 ) {
   return function HistoryComponent(props: Omit<P, keyof WithHistoryBaseProps>) {
     return (
-      <Context.Consumer>
-        {({ uriHash, push, replace, back, navigate, showTransitionModal }) => (
-          <Component
-            {...({
-              ...props,
-              uriHash,
-              historyActions: {
-                push,
-                replace,
-                back,
-                navigate,
-                showTransitionModal,
-              },
-            } as P)}
-          />
+      <URIHashContext.Consumer>
+        {(uriHash) => (
+          <FunctionsContext.Consumer>
+            {({ push, replace, back, navigate, showTransitionModal }) => (
+              <Component
+                {...({
+                  ...props,
+                  uriHash,
+                  historyActions: {
+                    push,
+                    replace,
+                    back,
+                    navigate,
+                    showTransitionModal,
+                  },
+                } as P)}
+              />
+            )}
+          </FunctionsContext.Consumer>
         )}
-      </Context.Consumer>
+      </URIHashContext.Consumer>
     )
   }
 }
