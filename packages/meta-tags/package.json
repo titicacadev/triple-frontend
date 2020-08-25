@@ -1,0 +1,30 @@
+{
+  "name": "meta-tags",
+  "version": "1.32.0",
+  "description": "> TODO: description",
+  "author": "torres-triple <torres@triple-corp.com>",
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "license": "ISC",
+  "main": "lib/meta-tags.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "peerDependencies": {
+    "next": "*",
+    "react": ">=16.8.0"
+  },
+  "devDependencies": {
+    "next": "~9.0"
+  }
+}
