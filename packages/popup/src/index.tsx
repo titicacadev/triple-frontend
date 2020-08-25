@@ -10,6 +10,20 @@ import { Navbar } from '@titicaca/core-elements'
 
 type NavbarIcon = 'close' | 'back'
 
+const TRANSITION_DURATION = 300
+
+const inactivePopupContainerStyle = `
+  transform: translateY(100%);
+`
+
+const activePopupContainerStyle = `
+  transform: translateY(0);
+`
+
+const popupContainerTransitionConfig = `
+  transition: transform ${TRANSITION_DURATION}ms ease-out;
+`
+
 const PopupContainer = styled.div`
   position: fixed;
   top: 0;
@@ -19,13 +33,6 @@ const PopupContainer = styled.div`
   background-color: #fff;
   z-index: 10;
   user-select: none;
-
-  transition: all 300ms ease-out;
-  transform: translateY(100%);
-
-  &.fade-enter-done {
-    transform: translateY(0);
-  }
 
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -37,6 +44,35 @@ const PopupContainer = styled.div`
   }
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  ${inactivePopupContainerStyle}
+
+  &.fade-appear, &.fade-enter {
+    ${inactivePopupContainerStyle}
+  }
+
+  &.fade-appear-active,
+  &.fade-enter-active {
+    ${activePopupContainerStyle}
+    ${popupContainerTransitionConfig}
+  }
+
+  &.fade-enter-done {
+    ${activePopupContainerStyle}
+  }
+
+  &.fade-exit {
+    ${activePopupContainerStyle}
+  }
+
+  &.fade-exit-active {
+    ${inactivePopupContainerStyle}
+    ${popupContainerTransitionConfig}
+  }
+
+  &.fade-exit-done {
+    ${inactivePopupContainerStyle}
   }
 `
 
@@ -65,7 +101,12 @@ export default function Popup({
   }, [open])
 
   return (
-    <CSSTransition timeout={0} in={open} classNames="fade" appear>
+    <CSSTransition
+      timeout={TRANSITION_DURATION}
+      in={open}
+      classNames="fade"
+      appear
+    >
       {/* https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451 */}
       <PopupContainer ref={popupRef}>
         {noNavbar ? null : (
