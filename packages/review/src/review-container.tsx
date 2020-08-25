@@ -5,8 +5,8 @@ import { Section, Container, Text, Button } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import {
   useUserAgentContext,
-  useHistoryContext,
   useEventTrackingContext,
+  useHistoryFunctions,
 } from '@titicaca/react-contexts'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'
 
@@ -97,7 +97,7 @@ export default function ReviewContainer({
   const [reviewRateDescriptions, setReviewRateDescriptions] = useState<
     string[]
   >([])
-  const { navigate } = useHistoryContext()
+  const { navigate } = useHistoryFunctions()
   const { show } = useTransitionModal()
 
   const setMyReview = useCallback(
