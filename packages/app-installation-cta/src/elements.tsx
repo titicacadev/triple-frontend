@@ -163,6 +163,29 @@ export const RightContainer = styled(Container)`
   width: 46px;
 `
 
+const inactiveFloatingButtonStyle = css<{
+  fixed?: 1 | 0
+  margin?: MarginPadding
+}>`
+  transform: translate3d(
+    0,
+    calc(
+      100% +
+        ${({ fixed, margin }) =>
+          margin ? `${margin.right || 0}px` : fixed ? '30px' : '0px'}
+    ),
+    0
+  );
+`
+
+const activeFloatingButtonStyle = `
+  transform: translate3d(0, 0, 0);
+`
+
+const floatingButtonTransitionConfig = `
+  transition: transform 300ms ease-out;
+`
+
 interface FloatingButtonProps {
   visibility: 1 | 0
   fixed?: 1 | 0
@@ -202,23 +225,16 @@ export const FloatingButton = styled.div<FloatingButtonProps>`
   ${({ visibility }) => (visibility ? 'display: block;' : 'display: none;')}
 
   &.fade-exit {
-    transform: translate3d(0, 0, 0);
+    ${activeFloatingButtonStyle}
   }
 
   &.fade-exit-active {
-    transition: transform 300ms ease-out;
-    transform: translate3d(
-      0,
-      calc(
-        100% +
-          ${({ fixed, margin }) =>
-            margin ? `${margin.right || 0}px` : fixed ? '30px' : '0px'}
-      ),
-      0
-    );
+    ${inactiveFloatingButtonStyle}
+    ${floatingButtonTransitionConfig}
   }
 
   &.fade-exit-done {
+    ${inactiveFloatingButtonStyle}
     display: none;
   }
 `
