@@ -147,14 +147,18 @@ export default function ActionSheet({
             className={className}
           >
             {actionSheetTitle}
-            <Provider value={{ onClose, from, borderRadius }}>
-              <ContentContainer
-                maxContentHeight={maxContentHeight}
-                padding={paddingValue}
-              >
+
+            <ContentContainer
+              maxHeight={maxContentHeight}
+              padding={{
+                left: paddingValue.left,
+                right: paddingValue.right,
+              }}
+            >
+              <Provider value={{ onClose, from, borderRadius }}>
                 {children}
-              </ContentContainer>
-            </Provider>
+              </Provider>
+            </ContentContainer>
           </Sheet>
         </CSSTransition>
       </Overlay>

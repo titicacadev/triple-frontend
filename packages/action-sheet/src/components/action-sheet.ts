@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { MarginPadding } from '@titicaca/core-elements'
+import { MarginPadding, Container } from '@titicaca/core-elements'
 
 const unit = (value: number | string, suffix = 'px') =>
   typeof value === 'string' ? value : value !== 0 ? `${value}${suffix}` : value
@@ -12,25 +12,12 @@ export const Title = styled.div`
   margin: 0 0 10px 27px;
 `
 
-// eslint-disable-next-line no-unexpected-multiline
-export const ContentContainer = styled.div<{
-  maxContentHeight?: string | number
-  padding: MarginPadding
-}>`
-  box-sizing: border-box;
-  ${({ maxContentHeight }) =>
-    maxContentHeight ? `max-height: ${unit(maxContentHeight)};` : ''}
+export const ContentContainer = styled(Container)`
   overflow: auto;
 
   ::-webkit-scrollbar {
     display: none;
   }
-
-  ${({ padding }) => css`
-    padding: ${[0, padding.right, 0, padding.left]
-      .map((n) => (n ? unit(n) : 0))
-      .join(' ')};
-  `}
 `
 
 const inactiveSheetSlideStyle = css<{ from: 'top' | 'bottom' }>`
