@@ -1,15 +1,8 @@
 import styled, { css } from 'styled-components'
-import * as CSS from 'csstype'
+import { MarginPadding } from '@titicaca/core-elements'
 
 const unit = (value: number | string, suffix = 'px') =>
   typeof value === 'string' ? value : value !== 0 ? `${value}${suffix}` : value
-
-export type MarginPadding = Partial<
-  Record<
-    'top' | 'right' | 'bottom' | 'left',
-    CSS.Property.Margin<number | string>
-  >
->
 
 export const Title = styled.div`
   height: 16px;
