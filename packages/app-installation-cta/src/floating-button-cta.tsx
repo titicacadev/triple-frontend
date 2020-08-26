@@ -122,6 +122,8 @@ export default function FloatingButtonCTA({
       appear
       classNames="floating-button-slide"
       timeout={500}
+      mountOnEnter
+      unmountOnExit
     >
       <FloatingButton
         visibility={buttonVisibility ? 1 : 0}

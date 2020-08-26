@@ -228,6 +228,8 @@ export default function ActionSheet({
       appear
       classNames="action-sheet-fade"
       timeout={TRANSITION_DURATION}
+      mountOnEnter
+      unmountOnExit
     >
       <Overlay
         duration={TRANSITION_DURATION}
@@ -240,6 +242,8 @@ export default function ActionSheet({
           classNames="action-sheet-slide"
           timeout={TRANSITION_DURATION}
           appear
+          mountOnEnter
+          unmountOnExit
         >
           <Sheet
             duration={TRANSITION_DURATION}
