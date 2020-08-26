@@ -19,6 +19,7 @@
     "styled-components": ">=4.4.1 < 6"
   },
   "dependencies": {
+    "@titicaca/core-elements": "^1.33.0",
     "react-transition-group": "^4.4.1"
   }
 }
