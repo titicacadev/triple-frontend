@@ -29,8 +29,8 @@ export function HeightPublicHeader() {
       playStoreUrl={text('playStoreUrl', 'asdf')}
       appStoreUrl={text('appStoreUrl', 'asdf')}
       fixed={boolean('fixed', false)}
-      minWidth={number('minWidth', 740)}
-      height={number('height', 190)}
+      minWidth={number('minWidth', 768)}
+      height={number('mobileViewHeight', 190)}
     />
   )
 }
