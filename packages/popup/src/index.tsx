@@ -46,36 +46,36 @@ const PopupContainer = styled.div`
     display: none;
   }
 
-  &:not([class*='fade-']) {
+  &:not([class*='popup-slide-']) {
     ${inactivePopupContainerStyle}
     display: none;
   }
 
-  &.fade-appear,
-  &.fade-enter {
+  &.popup-slide-appear,
+  &.popup-slide-enter {
     ${inactivePopupContainerStyle}
   }
 
-  &.fade-appear-active,
-  &.fade-enter-active {
+  &.popup-slide-appear-active,
+  &.popup-slide-enter-active {
     ${activePopupContainerStyle}
     ${popupContainerTransitionConfig}
   }
 
-  &.fade-enter-done {
+  &.popup-slide-enter-done {
     ${activePopupContainerStyle}
   }
 
-  &.fade-exit {
+  &.popup-slide-exit {
     ${activePopupContainerStyle}
   }
 
-  &.fade-exit-active {
+  &.popup-slide-exit-active {
     ${inactivePopupContainerStyle}
     ${popupContainerTransitionConfig}
   }
 
-  &.fade-exit-done {
+  &.popup-slide-exit-done {
     ${inactivePopupContainerStyle}
     display: none;
   }
@@ -109,7 +109,7 @@ export default function Popup({
     <CSSTransition
       timeout={TRANSITION_DURATION}
       in={open}
-      classNames="fade"
+      classNames="popup-slide"
       appear
     >
       {/* https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451 */}
