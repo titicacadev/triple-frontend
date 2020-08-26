@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { getColor } from '@titicaca/color-palette'
+import { white, brightGray } from '@titicaca/color-palette'
 
 enum MarketType {
   appStore = 'appStore',
@@ -13,10 +13,10 @@ const MAX_PHONE_WIDTH = 1141
 const HeaderFrame = styled.header<{
   fixed?: boolean
   minWidth?: number
-  height?: number
+  mobileViewHeight?: number
   borderless?: boolean
 }>`
-  background-color: #ffffff;
+  background-color: ${white};
   position: sticky;
   z-index: 1;
   ${({ fixed }) =>
@@ -36,7 +36,7 @@ const HeaderFrame = styled.header<{
   ${({ borderless }) =>
     !borderless &&
     css`
-      border-bottom: 1px solid rgba(${getColor('brightGray')});
+      border-bottom: 1px solid ${brightGray};
     `}
 
   ${({ minWidth }) =>
@@ -157,7 +157,7 @@ export default function PublicHeader({
   appStoreUrl?: string
   fixed?: boolean
   minWidth?: number
-  height?: number
+  mobileViewHeight?: number
   borderless?: boolean
   children?: React.ReactNode
 }) {
