@@ -1,3 +1,9 @@
+# 1.33.0 (2020-08-26)
+
+### publich-header
+
+- `mobileViewHeight`, `borderless` 속성 추가합니다. (#931)
+
 # 1.32.0 (2020-08-20)
 
 ### triple-document

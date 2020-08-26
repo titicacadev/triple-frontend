@@ -30,7 +30,7 @@ const HeaderFrame = styled.header<{
   }
 
   @media (max-width: ${MAX_PHONE_WIDTH}px) {
-    height: ${({ height }) => height || 50}px;
+    height: ${({ mobileViewHeight }) => mobileViewHeight || 50}px;
   }
 
   ${({ borderless }) =>

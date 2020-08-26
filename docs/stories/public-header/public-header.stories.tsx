@@ -30,7 +30,7 @@ export function HeightPublicHeader() {
       appStoreUrl={text('appStoreUrl', 'asdf')}
       fixed={boolean('fixed', false)}
       minWidth={number('minWidth', 768)}
-      height={number('mobileViewHeight', 190)}
+      mobileViewHeight={number('mobileViewHeight', 190)}
     />
   )
 }
