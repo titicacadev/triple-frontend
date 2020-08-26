@@ -224,16 +224,16 @@ export const FloatingButton = styled.div<FloatingButtonProps>`
 
   ${({ visibility }) => (visibility ? 'display: block;' : 'display: none;')}
 
-  &.fade-exit {
+  &.floating-button-slide-exit {
     ${activeFloatingButtonStyle}
   }
 
-  &.fade-exit-active {
+  &.floating-button-slide-exit-active {
     ${inactiveFloatingButtonStyle}
     ${floatingButtonTransitionConfig}
   }
 
-  &.fade-exit-done {
+  &.floating-button-slide-exit-done {
     ${inactiveFloatingButtonStyle}
     display: none;
   }

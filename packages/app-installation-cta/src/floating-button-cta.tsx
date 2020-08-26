@@ -111,7 +111,12 @@ export default function FloatingButtonCTA({
   }, [exitStrategy])
 
   return (
-    <CSSTransition in={available} appear classNames="fade" timeout={500}>
+    <CSSTransition
+      in={available}
+      appear
+      classNames="floating-button-slide"
+      timeout={500}
+    >
       <FloatingButton
         visibility={buttonVisibility ? 1 : 0}
         fixed={fixed ? 1 : 0}
