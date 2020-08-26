@@ -1,8 +1,20 @@
 # 1.33.0 (2020-08-26)
 
+### common
+
+- UI 요소의 등장, 퇴장 애니메이션을 정비하고; 퇴장 상태에서 UI를 가립니다. (#932)
+
 ### publich-header
 
 - `mobileViewHeight`, `borderless` 속성 추가합니다. (#931)
+
+### react-contexts
+
+- history-context를 둘로 나눕니다. (#930)
+
+### poi-list-elements
+
+- poi-card-element에 priceLabelOverride를 추가합니다. (#925)
 
 # 1.32.0 (2020-08-20)
 
