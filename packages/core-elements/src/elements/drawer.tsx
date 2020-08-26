@@ -83,6 +83,8 @@ export default function Drawer({
       appear
       classNames="drawer-slide"
       timeout={TRANSITION_DURATION}
+      mountOnEnter
+      unmountOnExit
     >
       <DrawerContainer
         duration={TRANSITION_DURATION}

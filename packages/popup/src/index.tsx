@@ -120,6 +120,8 @@ export default function Popup({
       in={open}
       classNames="popup-slide"
       appear
+      mountOnEnter
+      unmountOnExit
     >
       {/* https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451 */}
       <PopupContainer ref={popupRef} zTier={zTier} zIndex={zIndex}>

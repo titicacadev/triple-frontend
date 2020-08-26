@@ -96,6 +96,8 @@ export default function ChatbotCTA({
       appear
       classNames="chatbot-slide"
       timeout={500}
+      mountOnEnter
+      unmountOnExit
     >
       <ChatbotContainer
         visibility={visibility ? 1 : 0}
