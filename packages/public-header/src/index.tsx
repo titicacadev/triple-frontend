@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
+import { white, brightGray } from '@titicaca/color-palette'
 
 enum MarketType {
   appStore = 'appStore',
@@ -9,9 +10,13 @@ enum MarketType {
 const MIN_DESKTOP_WIDTH = 1142
 const MAX_PHONE_WIDTH = 1141
 
-const HeaderFrame = styled.header<{ fixed?: boolean; minWidth?: number }>`
-  background-color: #ffffff;
-  border-bottom: 1px solid #efefef;
+const HeaderFrame = styled.header<{
+  fixed?: boolean
+  minWidth?: number
+  mobileViewHeight?: number
+  borderless?: boolean
+}>`
+  background-color: ${white};
   position: sticky;
   z-index: 1;
   ${({ fixed }) =>
@@ -25,8 +30,14 @@ const HeaderFrame = styled.header<{ fixed?: boolean; minWidth?: number }>`
   }
 
   @media (max-width: ${MAX_PHONE_WIDTH}px) {
-    height: 50px;
+    height: ${({ mobileViewHeight }) => mobileViewHeight || 50}px;
   }
+
+  ${({ borderless }) =>
+    !borderless &&
+    css`
+      border-bottom: 1px solid ${brightGray};
+    `}
 
   ${({ minWidth }) =>
     minWidth &&
@@ -115,8 +126,8 @@ const MarketLinksContainer = styled.div`
 `
 
 const MARKET_LINK_BUTTON_ICON_URLS: { [key in MarketType]: string } = {
-  appStore: 'https://assets.triple.guide/images/btn-app-store-on@2x.png',
-  playStore: 'https://assets.triple.guide/images/btn-play-store-on@2x.png',
+  appStore: 'https://assets.triple.guide/images/btn-app-store-on@3x.png',
+  playStore: 'https://assets.triple.guide/images/btn-play-store-on@3x.png',
 }
 
 const MarketLink = styled.a<{ marketType: MarketType }>`
@@ -138,6 +149,7 @@ export default function PublicHeader({
   children,
   fixed,
   minWidth,
+  borderless = false,
   ...props
 }: {
   href?: string
@@ -145,10 +157,17 @@ export default function PublicHeader({
   appStoreUrl?: string
   fixed?: boolean
   minWidth?: number
+  mobileViewHeight?: number
+  borderless?: boolean
   children?: React.ReactNode
 }) {
   return (
-    <HeaderFrame fixed={fixed} minWidth={minWidth} {...props}>
+    <HeaderFrame
+      fixed={fixed}
+      minWidth={minWidth}
+      borderless={borderless}
+      {...props}
+    >
       <Logo href={href || 'https://triple.guide'}>TRIPLE</Logo>
       <MarketLinksContainer>
         {playStoreUrl ? (

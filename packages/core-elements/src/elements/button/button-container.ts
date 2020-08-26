@@ -4,7 +4,7 @@ import * as CSS from 'csstype'
 import Container from '../container'
 import ButtonBase from './button-base'
 
-const ButtonContainer = styled(Container)<{ floated?: CSS.FloatProperty }>`
+const ButtonContainer = styled(Container)<{ floated?: CSS.Property.Float }>`
   text-align: center;
 
   ${ButtonBase} {

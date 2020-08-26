@@ -124,7 +124,7 @@ interface PromoLabelProps {
   emphasized?: boolean
   color?: LabelColor
   margin?: MarginPadding
-  verticalAlign?: CSS.VerticalAlignProperty<string>
+  verticalAlign?: CSS.Property.VerticalAlign<string>
 }
 
 export const PromoLabel = styled.div<PromoLabelProps>`

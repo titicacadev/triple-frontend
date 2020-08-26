@@ -6,7 +6,7 @@ import { MarginPadding, FrameRatioAndSizes } from '../../commons'
 import { marginMixin } from '../../mixins'
 
 export interface ImageFrameBaseProps {
-  floated?: CSS.FloatProperty
+  floated?: CSS.Property.Float
   margin?: MarginPadding
   borderRadius?: number
   asPlaceholder?: boolean

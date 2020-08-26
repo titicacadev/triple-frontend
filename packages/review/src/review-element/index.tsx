@@ -332,7 +332,7 @@ function Meta({ children }: PropsWithChildren<{}>) {
 function Date({
   floated,
   children,
-}: PropsWithChildren<{ floated?: CSS.FloatProperty }>) {
+}: PropsWithChildren<{ floated?: CSS.Property.Float }>) {
   return (
     <Container floated={floated} margin={{ top: 2 }}>
       {children}

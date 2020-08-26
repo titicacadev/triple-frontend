@@ -9,8 +9,9 @@ import {
 } from '@titicaca/core-elements'
 import {
   useEventTrackingContext,
-  useHistoryContext,
   useUserAgentContext,
+  useURIHash,
+  useHistoryFunctions,
 } from '@titicaca/react-contexts'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 import { formatNumber } from '@titicaca/view-utilities'
@@ -38,7 +39,8 @@ export default function DetailHeader({
 } & Parameters<typeof Section>['0']) {
   const { isPublic } = useUserAgentContext()
 
-  const { uriHash, push, back } = useHistoryContext()
+  const uriHash = useURIHash()
+  const { push, back } = useHistoryFunctions()
   const { trackEvent } = useEventTrackingContext()
 
   const handleLongClick = useCallback(() => {

@@ -1,4 +1,4 @@
-interface UrlElements {
+export interface UrlElements {
   href?: string
   scheme?: string
   host?: string

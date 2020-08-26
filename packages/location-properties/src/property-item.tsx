@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { List, Text, longClickable } from '@titicaca/core-elements'
 import {
   useEventTrackingContext,
-  useHistoryContext,
   useUserAgentContext,
+  useHistoryFunctions,
 } from '@titicaca/react-contexts'
 
 export const ACTION_SHEET_PREFIX = 'location-properties.copy-action-sheet'
@@ -46,7 +46,7 @@ export default function PropertyItem({
   const titleTextRef = useRef<HTMLDivElement>(null)
   const [titleTextWidth, setTitleTextWidth] = useState(0)
 
-  const { push } = useHistoryContext()
+  const { push } = useHistoryFunctions()
   const { trackSimpleEvent } = useEventTrackingContext()
 
   useEffect(() => {

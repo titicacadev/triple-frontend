@@ -1,3 +1,59 @@
+# 1.33.0 (2020-08-26)
+
+### common
+
+- UI 요소의 등장, 퇴장 애니메이션을 정비하고; 퇴장 상태에서 UI를 가립니다. (#932)
+
+### publich-header
+
+- `mobileViewHeight`, `borderless` 속성 추가합니다. (#931)
+
+### react-contexts
+
+- history-context를 둘로 나눕니다. (#930)
+
+### poi-list-elements
+
+- poi-card-element에 priceLabelOverride를 추가합니다. (#925)
+
+# 1.32.0 (2020-08-20)
+
+### triple-document
+
+- gapless-block의 경우 컨테이너의 상하단 마진을 삭제합니다. (#918)
+
+### review
+
+- 유저 포인트가 있을 때에만 UI를 노출합니다. (#919)
+
+### standard-action-handler
+
+- 타이핑을 개선합니다. (#922)
+
+### content-sharing
+
+- Asset 이미지를 HTTPS 프로토콜로 fetch합니다. (#920)
+
+# 1.31.0 (2020-08-13)
+
+### core-elements
+
+- navbar를 확장에 유연하도록 변경합니다 (#911)
+
+### standard-action-handler
+
+- 신규 패키지를 추가합니다 (#910)
+
+# 1.30.2 (2020-08-11)
+
+### common
+
+- csstype 3으로 업그레이드 (#913, #914)
+
+### app-installation-cta
+
+- 앱설치 배너 제목을 입력할 수 있는 기능 추가 (#915)
+
 # 1.30.1 (2020-08-03)
 
 ### core-elements

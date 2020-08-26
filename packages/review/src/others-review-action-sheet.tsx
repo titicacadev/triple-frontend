@@ -1,6 +1,6 @@
 import React from 'react'
 import ActionSheet from '@titicaca/action-sheet'
-import { useHistoryContext } from '@titicaca/react-contexts'
+import { useURIHash, useHistoryFunctions } from '@titicaca/react-contexts'
 
 import { ReviewData } from './types'
 
@@ -14,7 +14,8 @@ export default function OthersReviewActionSheet({
   appUrlScheme: string
   selectedReview?: ReviewData | null
 }) {
-  const { uriHash, back } = useHistoryContext()
+  const uriHash = useURIHash()
+  const { back } = useHistoryFunctions()
 
   const handleReportClick = () => {
     if (!selectedReview) {

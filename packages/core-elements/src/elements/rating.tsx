@@ -23,7 +23,7 @@ const IMAGE_PREFIXES: Partial<Record<GlobalSizes, string>> = {
 
 // eslint-disable-next-line no-unexpected-multiline
 const RatingStar = styled.span<{
-  verticalAlign?: CSS.VerticalAlignProperty<string>
+  verticalAlign?: CSS.Property.VerticalAlign<string>
   size?: GlobalSizes
   full?: boolean
   half?: boolean
@@ -53,7 +53,7 @@ export default function Rating({
 }: {
   size?: GlobalSizes
   score?: number
-  verticalAlign?: CSS.VerticalAlignProperty<string>
+  verticalAlign?: CSS.Property.VerticalAlign<string>
   onClick?: (event: React.SyntheticEvent, rating: number) => any
 }) {
   const full = Math.floor(score)

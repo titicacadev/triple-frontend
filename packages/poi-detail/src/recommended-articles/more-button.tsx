@@ -5,7 +5,7 @@ import { marginMixin, MarginPadding } from '@titicaca/core-elements'
 export default styled.button<
   {
     margin?: MarginPadding
-    floated?: CSS.FloatProperty
+    floated?: CSS.Property.Float
     center?: boolean
   } & Omit<React.HTMLAttributes<HTMLButtonElement>, 'margin'>
 >`

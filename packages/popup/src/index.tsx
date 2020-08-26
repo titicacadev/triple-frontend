@@ -10,6 +10,20 @@ import { Navbar } from '@titicaca/core-elements'
 
 type NavbarIcon = 'close' | 'back'
 
+const TRANSITION_DURATION = 300
+
+const inactivePopupContainerStyle = `
+  transform: translateY(100%);
+`
+
+const activePopupContainerStyle = `
+  transform: translateY(0);
+`
+
+const popupContainerTransitionConfig = `
+  transition: transform ${TRANSITION_DURATION}ms ease-out;
+`
+
 const PopupContainer = styled.div`
   position: fixed;
   top: 0;
@@ -20,13 +34,6 @@ const PopupContainer = styled.div`
   z-index: 10;
   user-select: none;
 
-  transition: all 300ms ease-out;
-  transform: translateY(100%);
-
-  &.fade-enter-done {
-    transform: translateY(0);
-  }
-
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
@@ -36,6 +43,40 @@ const PopupContainer = styled.div`
     padding-bottom: max(13px, calc(env(safe-area-inset-bottom) + 17px));
   }
   &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &:not([class*='popup-slide-']) {
+    ${inactivePopupContainerStyle}
+    display: none;
+  }
+
+  &.popup-slide-appear,
+  &.popup-slide-enter {
+    ${inactivePopupContainerStyle}
+  }
+
+  &.popup-slide-appear-active,
+  &.popup-slide-enter-active {
+    ${activePopupContainerStyle}
+    ${popupContainerTransitionConfig}
+  }
+
+  &.popup-slide-enter-done {
+    ${activePopupContainerStyle}
+  }
+
+  &.popup-slide-exit {
+    ${activePopupContainerStyle}
+  }
+
+  &.popup-slide-exit-active {
+    ${inactivePopupContainerStyle}
+    ${popupContainerTransitionConfig}
+  }
+
+  &.popup-slide-exit-done {
+    ${inactivePopupContainerStyle}
     display: none;
   }
 `
@@ -65,7 +106,12 @@ export default function Popup({
   }, [open])
 
   return (
-    <CSSTransition timeout={0} in={open} classNames="fade" appear>
+    <CSSTransition
+      timeout={TRANSITION_DURATION}
+      in={open}
+      classNames="popup-slide"
+      appear
+    >
       {/* https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451 */}
       <PopupContainer ref={popupRef}>
         {noNavbar ? null : (
