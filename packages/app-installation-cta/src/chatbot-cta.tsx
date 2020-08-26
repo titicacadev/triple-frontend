@@ -89,7 +89,12 @@ export default function ChatbotCTA({
   }, [onDismiss, inventoryItem])
 
   return (
-    <CSSTransition in={visibility} appear classNames="fade" timeout={500}>
+    <CSSTransition
+      in={visibility}
+      appear
+      classNames="chatbot-slide"
+      timeout={500}
+    >
       <ChatbotContainer visibility={visibility ? 1 : 0}>
         <ChatBalloon>
           <Text size={18} bold lineHeight="24px">

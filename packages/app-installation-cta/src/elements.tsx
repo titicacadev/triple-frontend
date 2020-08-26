@@ -341,36 +341,36 @@ export const ChatbotContainer = styled.div<{ visibility: 1 | 0 }>`
     right: 30px;
   }
 
-  &:not([class*='fade-']) {
+  &:not([class*='chatbot-slide-']) {
     ${inactiveChatbotContainerStyle}
     display: none;
   }
 
-  &.fade-appear,
-  &.fade-enter {
+  &.chatbot-slide-appear,
+  &.chatbot-slide-enter {
     ${inactiveChatbotContainerStyle}
   }
 
-  &.fade-appear-active,
-  &.fade-enter-active {
+  &.chatbot-slide-appear-active,
+  &.chatbot-slide-enter-active {
     ${activeChatbotContainerStyle}
     ${chatbotContainerTransitionStyle}
   }
 
-  &.fade-enter-done {
+  &.chatbot-slide-enter-done {
     ${activeChatbotContainerStyle}
   }
 
-  &.fade-exit {
+  &.chatbot-slide-exit {
     ${activeChatbotContainerStyle}
   }
 
-  &.fade-exit-active {
+  &.chatbot-slide-exit-active {
     ${inactiveChatbotContainerStyle}
     ${chatbotContainerTransitionStyle}
   }
 
-  &.fade-exit-done {
+  &.chatbot-slide-exit-done {
     ${inactiveChatbotContainerStyle}
     display: none;
   }
