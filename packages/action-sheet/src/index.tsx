@@ -85,6 +85,8 @@ function ActionItem({
   )
 }
 
+const TRANSITION_DURATION = 120
+
 export default function ActionSheet({
   open,
   onClose,
@@ -123,21 +125,38 @@ export default function ActionSheet({
   }
 
   return (
-    <CSSTransition in={open} appear classNames="fade" timeout={500}>
-      <Overlay
-        from={from}
-        borderRadius={borderRadius}
-        padding={paddingValue}
-        onClick={onClose}
-      >
-        <Sheet onClick={silenceEvent} className={className}>
-          {actionSheetTitle}
-          <Provider value={{ onClose, from, borderRadius }}>
-            <ContentContainer maxContentHeight={maxContentHeight}>
-              {children}
-            </ContentContainer>
-          </Provider>
-        </Sheet>
+    <CSSTransition
+      in={open}
+      appear
+      classNames="action-sheet-fade"
+      timeout={TRANSITION_DURATION}
+    >
+      <Overlay duration={TRANSITION_DURATION} onClick={onClose}>
+        <CSSTransition
+          in={open}
+          classNames="action-sheet-slide"
+          timeout={TRANSITION_DURATION}
+          appear
+        >
+          <Sheet
+            duration={TRANSITION_DURATION}
+            from={from}
+            borderRadius={borderRadius}
+            padding={paddingValue}
+            onClick={silenceEvent}
+            className={className}
+          >
+            {actionSheetTitle}
+            <Provider value={{ onClose, from, borderRadius }}>
+              <ContentContainer
+                maxContentHeight={maxContentHeight}
+                padding={paddingValue}
+              >
+                {children}
+              </ContentContainer>
+            </Provider>
+          </Sheet>
+        </CSSTransition>
       </Overlay>
     </CSSTransition>
   )

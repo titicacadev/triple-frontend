@@ -1,5 +1,4 @@
 import * as React from 'react'
-import * as CSS from 'csstype'
 import styled, { css } from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 
@@ -10,7 +9,9 @@ interface PointingOptions {
 }
 
 interface TooltipFrameProps {
-  positioning?: Partial<Record<CSS.Position<string>, number | string>>
+  positioning?: Partial<
+    Record<'top' | 'right' | 'bottom' | 'left', number | string>
+  >
   borderRadius?: string
   hasShadow?: boolean
   backgroundColor: string

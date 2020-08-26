@@ -65,6 +65,7 @@ export default function POICardElement({
   reviewsRating,
   reviewsCount,
   nightlyPrice,
+  priceLabelOverride,
   scraped,
   scrapsCount,
   distance,
@@ -84,6 +85,7 @@ export default function POICardElement({
   reviewsCount?: number
   scrapsCount?: number
   nightlyPrice?: number
+  priceLabelOverride?: JSX.Element
   distance?: string
   categoryName?: string
   areaName?: string
@@ -159,7 +161,9 @@ export default function POICardElement({
             margin={{ top: 4 }}
           />
 
-          {distance || nightlyPrice !== undefined ? (
+          {distance ||
+          nightlyPrice !== undefined ||
+          priceLabelOverride !== undefined ? (
             <Container margin={{ top: 6 }}>
               {distance ? (
                 <Text
@@ -172,11 +176,13 @@ export default function POICardElement({
                 </Text>
               ) : null}
 
-              {nightlyPrice !== undefined ? (
-                <Text inlineBlock size="small">
-                  {formatNumber(nightlyPrice)}원
-                </Text>
-              ) : null}
+              {/* TODO: pricing과 관련 로직 통합 */}
+              {priceLabelOverride ||
+                (nightlyPrice !== undefined ? (
+                  <Text inlineBlock size="small">
+                    {formatNumber(nightlyPrice)}원
+                  </Text>
+                ) : null)}
             </Container>
           ) : null}
         </Container>

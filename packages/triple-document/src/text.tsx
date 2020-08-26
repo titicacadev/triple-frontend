@@ -12,7 +12,7 @@ export interface H1Props extends TextProps {
   headline?: string
   emphasize?: boolean
   margin?: MarginPadding
-  textAlign?: CSS.TextAlignProperty
+  textAlign?: CSS.Property.TextAlign
   children?: string
 }
 

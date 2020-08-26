@@ -163,11 +163,36 @@ export const RightContainer = styled(Container)`
   width: 46px;
 `
 
-export const FloatingButton = styled.div<{
-  visibility: 1 | 0
+const inactiveFloatingButtonStyle = css<{
   fixed?: 1 | 0
   margin?: MarginPadding
 }>`
+  transform: translate3d(
+    0,
+    calc(
+      100% +
+        ${({ fixed, margin }) =>
+          margin ? `${margin.right || 0}px` : fixed ? '30px' : '0px'}
+    ),
+    0
+  );
+`
+
+const activeFloatingButtonStyle = `
+  transform: translate3d(0, 0, 0);
+`
+
+const floatingButtonTransitionConfig = `
+  transition: transform 300ms ease-out;
+`
+
+interface FloatingButtonProps {
+  visibility: 1 | 0
+  fixed?: 1 | 0
+  margin?: MarginPadding
+}
+
+export const FloatingButton = styled.div<FloatingButtonProps>`
   height: 84px;
   border-radius: 42px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
@@ -199,24 +224,17 @@ export const FloatingButton = styled.div<{
 
   ${({ visibility }) => (visibility ? 'display: block;' : 'display: none;')}
 
-  &.fade-exit {
-    transform: translate3d(0, 0, 0);
+  &.floating-button-slide-exit {
+    ${activeFloatingButtonStyle}
   }
 
-  &.fade-exit-active {
-    transition: transform 300ms ease-out;
-    transform: translate3d(
-      0,
-      calc(
-        100% +
-          ${({ fixed, margin }) =>
-            margin ? `${margin.right || 0}px` : fixed ? '30px' : '0px'}
-      ),
-      0
-    );
+  &.floating-button-slide-exit-active {
+    ${inactiveFloatingButtonStyle}
+    ${floatingButtonTransitionConfig}
   }
 
-  &.fade-exit-done {
+  &.floating-button-slide-exit-done {
+    ${inactiveFloatingButtonStyle}
     display: none;
   }
 `
@@ -290,47 +308,70 @@ export const ChatbotIcon = styled.a`
   background-repeat: no-repeat;
 `
 
+const inactiveChatbotContainerStyle = `
+  transform: translate3d(0, calc(100% + 10px), 0);
+
+  @media (min-width: 768px) {
+    transform: translate3d(0, calc(100% + 30px), 0);
+  }
+`
+
+const activeChatbotContainerStyle = `
+  transform: translate3d(0, 0, 0);
+`
+
+const chatbotContainerTransitionStyle = `
+  transition: transform 300ms ease-out;
+`
+
 export const ChatbotContainer = styled.div<{ visibility: 1 | 0 }>`
   position: fixed;
   bottom: 10px;
   left: 10px;
   right: 10px;
 
-  transform: translate3d(0, calc(100% + 10px), 0);
-
   ${ChatBalloon} {
     ${({ visibility }) =>
       visibility ? 'box-shadow: 0 30px 100px 0 rgba(0, 0, 0, 0.3);' : ''}
-  }
-
-  &.fade-appear,
-  &.fade-enter-done {
-    transition: transform 300ms ease-in;
-    transform: translate3d(0, 0, 0);
-  }
-  &.fade-exit {
-    transform: translate3d(0, 0, 0);
-  }
-
-  &.fade-exit-active {
-    transition: transform 300ms ease-out;
-    transform: translate3d(0, calc(100% + 10px), 0);
-  }
-
-  &.fade-exit-done {
-    display: none;
   }
 
   @media (min-width: 768px) {
     bottom: 30px;
     left: 30px;
     right: 30px;
+  }
 
-    transform: translate3d(0, calc(100% + 30px), 0);
+  &:not([class*='chatbot-slide-']) {
+    ${inactiveChatbotContainerStyle}
+    display: none;
+  }
 
-    &.fade-exit-active {
-      transition: transform 300ms ease-out;
-      transform: translate3d(0, calc(100% + 30px), 0);
-    }
+  &.chatbot-slide-appear,
+  &.chatbot-slide-enter {
+    ${inactiveChatbotContainerStyle}
+  }
+
+  &.chatbot-slide-appear-active,
+  &.chatbot-slide-enter-active {
+    ${activeChatbotContainerStyle}
+    ${chatbotContainerTransitionStyle}
+  }
+
+  &.chatbot-slide-enter-done {
+    ${activeChatbotContainerStyle}
+  }
+
+  &.chatbot-slide-exit {
+    ${activeChatbotContainerStyle}
+  }
+
+  &.chatbot-slide-exit-active {
+    ${inactiveChatbotContainerStyle}
+    ${chatbotContainerTransitionStyle}
+  }
+
+  &.chatbot-slide-exit-done {
+    ${inactiveChatbotContainerStyle}
+    display: none;
   }
 `

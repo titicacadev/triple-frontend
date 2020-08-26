@@ -44,7 +44,7 @@ export const ResourceListItem = styled(List.Item)`
 export const SquareImage = styled.img<{
   size?: 'small' | 'medium'
   borderRadius?: number
-  floated?: CSS.FloatProperty
+  floated?: CSS.Property.Float
 }>`
   width: ${({ size = 'medium' }) => ({ small: 40, medium: 140 }[size])}px;
   height: ${({ size = 'medium' }) => ({ small: 40, medium: 140 }[size])}px;

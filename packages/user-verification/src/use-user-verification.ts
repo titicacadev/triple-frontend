@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import fetch from 'isomorphic-fetch'
-import { useHistoryContext } from '@titicaca/react-contexts'
+import { useHistoryFunctions } from '@titicaca/react-contexts'
 import {
   subscribe,
   unsubscribe,
@@ -23,7 +23,7 @@ export default function useVerification({
   const [verificationState, setVerificationState] = useState<VerificationState>(
     { phoneNumber: undefined, verified: undefined, error: undefined },
   )
-  const { openWindow } = useHistoryContext()
+  const { openWindow } = useHistoryFunctions()
 
   const initiateVerification = useCallback(() => {
     openWindow(

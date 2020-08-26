@@ -5,10 +5,13 @@ import { Color, getColor, brightGray } from '@titicaca/color-palette'
 
 import { FALLBACK_ACTION_CLASS_NAME } from '../constants'
 
-const NavbarFrame = styled.header<{
+type NavbarProps = {
+  maxWidth?: number
   borderless?: boolean
   backgroundColor?: Color
-}>`
+}
+
+const NavbarFrame = styled.header<NavbarProps>`
   background-color: ${({ backgroundColor = 'white' }) =>
     `rgba(${getColor(backgroundColor)})`};
   position: sticky;
@@ -25,6 +28,8 @@ const NavbarFrame = styled.header<{
         `};
   box-sizing: border-box;
   padding: 9px 12px;
+  margin: 0 auto;
+  max-width: ${({ maxWidth }) => maxWidth || 768}px;
 `
 
 const TitleContainer = styled.div<{ childrenCount?: number }>`
@@ -85,9 +90,9 @@ const ICON_URL_BY_NAMES: { [key in IconNames]: string } = {
 }
 
 type NavbarItemProps = {
-  floated?: CSS.FloatProperty
+  floated?: CSS.Property.Float
   icon?: IconNames
-  position?: CSS.PositionProperty
+  position?: CSS.Property.Position
 }
 
 // eslint-disable-next-line no-unexpected-multiline
@@ -122,19 +127,16 @@ function Navbar({
   title,
   renderTitle,
   children,
-  borderless,
-  backgroundColor,
+  ...props
 }: {
-  title?: string
   renderTitle?: (props?: any) => JSX.Element
   children?: React.ReactNode
-  borderless?: boolean
-  backgroundColor?: Color
-}) {
+} & NavbarProps &
+  React.HTMLAttributes<HTMLDivElement>) {
   const childrenCount = React.Children.count(children)
 
   return (
-    <NavbarFrame borderless={borderless} backgroundColor={backgroundColor}>
+    <NavbarFrame {...props}>
       {renderTitle
         ? renderTitle()
         : title && (
@@ -146,9 +148,9 @@ function Navbar({
     </NavbarFrame>
   )
 }
-
 Navbar.Item = NavbarItem
 Navbar.Secondary = SecondaryNavbar
 Navbar.NavbarFrame = NavbarFrame
+Navbar.TitleContainer = TitleContainer
 
 export default Navbar

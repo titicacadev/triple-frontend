@@ -59,7 +59,7 @@ type TextElementData = TripleElementData<'text', string>
 type LinksElementData = TripleElementData<'links', { links: Link[] }>
 
 type Display = 'list' | string
-type MediaDisplayProperty = CSS.DisplayProperty | 'gapless-block'
+type MediaDisplayProperty = CSS.Property.Display | 'gapless-block'
 
 interface TripleDocumentProps {
   customElements?: ElementSet
@@ -177,7 +177,15 @@ function Images({
 
   return (
     <ImagesContainer
-      margin={{ top: 40, bottom: images.some(({ title }) => title) ? 10 : 30 }}
+      margin={{
+        top: display === 'gapless-block' ? 0 : 40,
+        bottom:
+          display === 'gapless-block'
+            ? 0
+            : images.some(({ title }) => title)
+            ? 10
+            : 30,
+      }}
     >
       {images.map((image, i) => {
         return (

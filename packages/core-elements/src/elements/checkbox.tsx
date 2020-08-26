@@ -47,22 +47,10 @@ const generateFillStyles = ({
   }
 }
 
-const TextAligns: Partial<Record<
-  CSS.TextAlignProperty,
-  ReturnType<typeof css>
->> = {
-  left: css`
-    text-align: left;
-  `,
-  right: css`
-    text-align: right;
-  `,
-}
-
 // eslint-disable-next-line no-unexpected-multiline
 const ConfirmFrame = styled.div.attrs({})<{
   name?: string
-  textAlign?: CSS.TextAlignProperty
+  textAlign?: CSS.Property.TextAlign
   borderless?: boolean
   checked?: boolean
   fillType?: FillType
@@ -80,7 +68,7 @@ const ConfirmFrame = styled.div.attrs({})<{
   ${({ checked, error, fillType }) =>
     fillType && generateFillStyles({ checked: !!checked, error, fillType })};
 
-  ${({ textAlign }) => textAlign && TextAligns[textAlign]};
+  ${({ textAlign }) => `text-align: ${textAlign};`}
 
   ${({ borderless }) =>
     borderless &&
@@ -115,7 +103,7 @@ interface ConfirmSelectorProps {
   value: any
   placeholder: string
   onChange?: (e?: React.SyntheticEvent, value?: any) => any
-  textAlign?: CSS.TextAlignProperty
+  textAlign?: CSS.Property.TextAlign
   borderless?: boolean
   fillType?: FillType
   children?: React.ReactNode

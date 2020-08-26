@@ -1,14 +1,39 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
-import { text } from '@storybook/addon-knobs'
+import { text, boolean } from '@storybook/addon-knobs'
 import {
   ImageBanner,
   TextBanner,
   BannerCTA,
+  FloatingButtonCTA,
 } from '@titicaca/app-installation-cta'
 
 export default {
   title: 'app-installation-cta | AppInstallationCTA',
+}
+
+export function FloatingButton() {
+  return (
+    <FloatingButtonCTA
+      appInstallLink={'https://triple.onelink.me/aZP6/21d43a81'}
+      fixed={boolean('화면 고정', true)}
+      title={text('제목', '제목을 입력하세요.')}
+      description={text('설명', '설명 텍스트가 들어갑니다.')}
+      trackEvent={action('tracked')}
+      trackEventParams={{
+        onShow: 'onShow',
+        onSelect: 'onSelect(click)',
+        onClose: 'onClose(dismiss)',
+      }}
+      onShow={action('onShow')}
+      onClick={action('onClick')}
+      onDismiss={action('onDismiss')}
+    />
+  )
+}
+
+FloatingButton.story = {
+  name: '트리플 앱 설치하기 버튼',
 }
 
 export function BaseImageBanner() {

@@ -5,7 +5,7 @@ import {
   hasAccessibleTripleNativeClients,
 } from '@titicaca/triple-web-to-native-interfaces'
 
-import { useHistoryContext } from './history-context'
+import { useHistoryFunctions } from './history-context'
 
 export async function pushRouter(
   path: string,
@@ -65,7 +65,7 @@ export function asyncBack(backer = Router.back): Promise<void> {
 }
 
 export function useIsomorphicNavigation() {
-  const { openWindow } = useHistoryContext()
+  const { openWindow } = useHistoryFunctions()
 
   return {
     pushRouter,

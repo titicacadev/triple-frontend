@@ -3,7 +3,7 @@ import * as CSS from 'csstype'
 export type MarginPadding = Partial<
   Record<
     'top' | 'right' | 'bottom' | 'left',
-    CSS.MarginProperty<string | number>
+    CSS.Property.Margin<string | number>
   >
 >
 

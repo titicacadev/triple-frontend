@@ -3,8 +3,8 @@ import { List } from '@titicaca/core-elements'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { PoiListElement } from '@titicaca/poi-list-elements'
 import {
-  useHistoryContext,
   useEventTrackingContext,
+  useHistoryFunctions,
 } from '@titicaca/react-contexts'
 
 import { ListingPOI } from './types'
@@ -19,7 +19,7 @@ export default function PoiEntry({
   eventLabel: string
 }) {
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
-  const { navigate } = useHistoryContext()
+  const { navigate } = useHistoryFunctions()
 
   const handleIntersectionChange = useCallback(
     ({ isIntersecting }: { isIntersecting: boolean }) => {
