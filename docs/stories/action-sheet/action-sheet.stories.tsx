@@ -14,10 +14,30 @@ export function BaseActionSheet() {
     <ActionSheet
       open={boolean('열림', false)}
       title={text('제목', '샘플 액션 시트')}
+      borderRadius={number('시트 모서리의 radius 값', 12)}
+      from={select('시트가 나오는 위치', ['bottom', 'top'], 'bottom')}
+      maxContentHeight={number('컨텐츠 영역의 최대 높이', 100)}
+      padding={object(
+        'padding',
+        {
+          top: 20,
+          left: 25,
+          bottom: 30,
+          right: 25,
+        },
+        'padding 옵션',
+      )}
+      transitionDuration={number('진출입 애니메이션 지속시간', 120)}
       onClose={action('onClose')}
     >
       <ActionSheet.Item>메뉴 1</ActionSheet.Item>
       <ActionSheet.Item>메뉴 2</ActionSheet.Item>
+      <ActionSheet.Item>메뉴 3</ActionSheet.Item>
+      <ActionSheet.Item>메뉴 4</ActionSheet.Item>
+      <ActionSheet.Item>메뉴 5</ActionSheet.Item>
+      <ActionSheet.Item>메뉴 6</ActionSheet.Item>
+      <ActionSheet.Item>메뉴 7</ActionSheet.Item>
+      <ActionSheet.Item>메뉴 8</ActionSheet.Item>
     </ActionSheet>
   )
 }
