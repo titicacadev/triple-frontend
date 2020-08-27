@@ -1,173 +1,44 @@
 import React from 'react'
-import { CSSTransition } from 'react-transition-group'
-import { MarginPadding } from '@titicaca/core-elements'
 
-import {
-  Title,
-  ActionItemContainer,
-  ItemText,
-  ItemButton,
-  URL_BY_NAMES,
-  ItemIcon,
-  CheckedIcon,
-  ContentContainer,
-  Sheet,
-  Overlay,
-} from './components'
-
-interface ActionSheetContext {
-  onClose?: (e?: React.SyntheticEvent) => any
-  from: 'bottom' | 'top'
-  borderRadius: number
-}
+import ActionItemUI from './components/action-item'
+import ActionSheetUI from './components/action-sheet'
+import { ActionSheetContextValue } from './types'
 
 const DEFAULT_FROM = 'bottom'
 const DEFAULT_BORDER_RADIUS = 12
 
-const { Provider, Consumer } = React.createContext<ActionSheetContext>({
+const { Provider, Consumer } = React.createContext<ActionSheetContextValue>({
   from: DEFAULT_FROM,
   borderRadius: DEFAULT_BORDER_RADIUS,
 })
 
-function ActionItem({
-  buttonLabel,
-  icon,
-  checked,
-  onClick,
-  children,
-}: React.PropsWithChildren<{
-  buttonLabel?: string
-  icon?: string
-  checked?: boolean
-  onClick?: (e?: React.SyntheticEvent) => any
-}>) {
-  let textWidth = '100%'
-  if (buttonLabel && icon) {
-    textWidth = 'calc(100% - 100px)'
-  } else if (buttonLabel || checked) {
-    textWidth = 'calc(100% - 60px)'
-  } else if (icon) {
-    textWidth = 'calc(100% - 40px)'
-  }
-
+function ActionItem(
+  props: Omit<Parameters<typeof ActionItemUI>[0], 'onClose'>,
+) {
   return (
     <Consumer>
-      {({ onClose }) => (
-        <ActionItemContainer
-          onClick={
-            buttonLabel
-              ? undefined
-              : () =>
-                  onClick
-                    ? !onClick() && onClose && onClose()
-                    : onClose && onClose()
-          }
-        >
-          {icon ? <ItemIcon src={URL_BY_NAMES[icon]} /> : null}
-          <ItemText width={textWidth} checked={checked}>
-            {children}
-          </ItemText>
-          {buttonLabel ? (
-            <ItemButton
-              onClick={() =>
-                onClick
-                  ? !onClick() && onClose && onClose()
-                  : onClose && onClose()
-              }
-            >
-              {buttonLabel}
-            </ItemButton>
-          ) : null}
-          {checked ? <CheckedIcon /> : null}
-        </ActionItemContainer>
-      )}
+      {({ onClose }) => <ActionItemUI {...props} onClose={onClose} />}
     </Consumer>
   )
 }
 
-const TRANSITION_DURATION = 120
-
 export default function ActionSheet({
-  open,
   onClose,
-  title,
   from = DEFAULT_FROM,
   borderRadius = DEFAULT_BORDER_RADIUS,
-  bottomSpacing = 13,
-  maxContentHeight = 'calc(100vh - 256px)',
-  padding,
-  children,
-  className,
-}: React.PropsWithChildren<{
-  open?: boolean
-  onClose?: ActionSheetContext['onClose']
-  title?: React.ReactNode
-  from?: ActionSheetContext['from']
-  borderRadius?: ActionSheetContext['borderRadius']
-  bottomSpacing?: number
-  maxContentHeight?: string | number
-  padding?: MarginPadding
-  className?: string
-}>) {
-  const actionSheetTitle = title ? (
-    typeof title === 'string' ? (
-      <Title>{title}</Title>
-    ) : (
-      title
-    )
-  ) : null
-  const paddingValue = {
-    top: from === 'top' ? 0 : 30,
-    right: 25,
-    left: 25,
-    bottom: from === 'top' ? 30 : bottomSpacing || 0,
-    ...(padding || {}),
-  }
-
+  ...restProps
+}: Partial<ActionSheetContextValue> &
+  Omit<Parameters<typeof ActionSheetUI>[0], 'from' | 'borderRadius'>) {
   return (
-    <CSSTransition
-      in={open}
-      appear
-      classNames="action-sheet-fade"
-      timeout={TRANSITION_DURATION}
-    >
-      <Overlay duration={TRANSITION_DURATION} onClick={onClose}>
-        <CSSTransition
-          in={open}
-          classNames="action-sheet-slide"
-          timeout={TRANSITION_DURATION}
-          appear
-        >
-          <Sheet
-            duration={TRANSITION_DURATION}
-            from={from}
-            borderRadius={borderRadius}
-            padding={paddingValue}
-            onClick={silenceEvent}
-            className={className}
-          >
-            {actionSheetTitle}
-
-            <ContentContainer
-              maxHeight={maxContentHeight}
-              padding={{
-                left: paddingValue.left,
-                right: paddingValue.right,
-              }}
-            >
-              <Provider value={{ onClose, from, borderRadius }}>
-                {children}
-              </Provider>
-            </ContentContainer>
-          </Sheet>
-        </CSSTransition>
-      </Overlay>
-    </CSSTransition>
+    <Provider value={{ onClose, from, borderRadius }}>
+      <ActionSheetUI
+        {...restProps}
+        onClose={onClose}
+        from={from}
+        borderRadius={borderRadius}
+      />
+    </Provider>
   )
-}
-
-function silenceEvent(e: React.MouseEvent) {
-  return e.stopPropagation()
 }
 
 ActionSheet.Item = ActionItem
