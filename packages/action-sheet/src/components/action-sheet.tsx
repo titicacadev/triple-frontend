@@ -189,13 +189,15 @@ const Overlay = styled.div<OverlayProps>`
 `
 
 const TRANSITION_DURATION = 120
+const DEFAULT_FROM = 'bottom'
+const DEFAULT_BORDER_RADIUS = 12
 
 export default function ActionSheet({
   open,
   onClose,
   title,
-  from,
-  borderRadius,
+  from = DEFAULT_FROM,
+  borderRadius = DEFAULT_BORDER_RADIUS,
   bottomSpacing = 13,
   maxContentHeight = 'calc(100vh - 256px)',
   padding,
@@ -205,8 +207,8 @@ export default function ActionSheet({
   open?: boolean
   title?: ReactNode
   onClose?: ActionSheetContextValue['onClose']
-  from: ActionSheetContextValue['from']
-  borderRadius: number
+  from?: 'top' | 'bottom'
+  borderRadius?: number
   bottomSpacing?: number
   maxContentHeight?: string | number
   padding?: MarginPadding
