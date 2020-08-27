@@ -27,7 +27,6 @@ export function BaseActionSheet() {
         },
         'padding 옵션',
       )}
-      transitionDuration={number('진출입 애니메이션 지속시간', 120)}
       onClose={action('onClose')}
     >
       <ActionSheet.Item>메뉴 1</ActionSheet.Item>
