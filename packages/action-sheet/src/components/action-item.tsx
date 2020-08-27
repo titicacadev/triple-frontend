@@ -1,7 +1,8 @@
+import React from 'react'
 import styled from 'styled-components'
 import * as CSS from 'csstype'
 
-export const ActionItemContainer = styled.div`
+const ActionItemContainer = styled.div`
   width: 100%;
   height: 54px;
 
@@ -12,7 +13,7 @@ export const ActionItemContainer = styled.div`
   }
 `
 
-export const ItemText = styled.div<{
+const ItemText = styled.div<{
   width?: CSS.Property.Width<string | number>
   checked?: boolean
 }>`
@@ -28,7 +29,7 @@ export const ItemText = styled.div<{
   overflow: hidden;
 `
 
-export const ItemButton = styled.a`
+const ItemButton = styled.a`
   float: right;
   height: 30px;
   line-height: 30px;
@@ -42,7 +43,7 @@ export const ItemButton = styled.a`
   color: #3a3a3a;
 `
 
-export const URL_BY_NAMES: { [key: string]: string } = {
+const URL_BY_NAMES: { [key: string]: string } = {
   save: 'https://assets.triple.guide/images/img-action-save@4x.png',
   schedule: 'https://assets.triple.guide/images/img-action-schedule@4x.png',
   share: 'https://assets.triple.guide/images/img-action-share@4x.png',
@@ -54,10 +55,9 @@ export const URL_BY_NAMES: { [key: string]: string } = {
   support: 'https://assets.triple.guide/images/img-action-support@3x.png',
 }
 
-export const CHECKED_ICON_URL =
-  'https://assets.triple.guide/images/checkbox-on.svg'
+const CHECKED_ICON_URL = 'https://assets.triple.guide/images/checkbox-on.svg'
 
-export const ItemIcon = styled.img`
+const ItemIcon = styled.img`
   float: left;
   margin-top: 12px;
   width: 30px;
@@ -65,7 +65,7 @@ export const ItemIcon = styled.img`
   margin-right: 9px;
 `
 
-export const CheckedIcon = styled.div`
+const CheckedIcon = styled.div`
   float: right;
   margin-top: 9px;
   margin-right: -5px;
@@ -75,3 +75,54 @@ export const CheckedIcon = styled.div`
   background-image: url(${CHECKED_ICON_URL});
   background-repeat: none;
 `
+
+export default function ActionItem({
+  buttonLabel,
+  icon,
+  checked,
+  onClick,
+  onClose,
+  children,
+}: React.PropsWithChildren<{
+  buttonLabel?: string
+  icon?: string
+  checked?: boolean
+  onClick?: (e?: React.SyntheticEvent) => any
+  onClose?: () => void
+}>) {
+  let textWidth = '100%'
+  if (buttonLabel && icon) {
+    textWidth = 'calc(100% - 100px)'
+  } else if (buttonLabel || checked) {
+    textWidth = 'calc(100% - 60px)'
+  } else if (icon) {
+    textWidth = 'calc(100% - 40px)'
+  }
+  return (
+    <ActionItemContainer
+      onClick={
+        buttonLabel
+          ? undefined
+          : () =>
+              onClick
+                ? !onClick() && onClose && onClose()
+                : onClose && onClose()
+      }
+    >
+      {icon ? <ItemIcon src={URL_BY_NAMES[icon]} /> : null}
+      <ItemText width={textWidth} checked={checked}>
+        {children}
+      </ItemText>
+      {buttonLabel ? (
+        <ItemButton
+          onClick={() =>
+            onClick ? !onClick() && onClose && onClose() : onClose && onClose()
+          }
+        >
+          {buttonLabel}
+        </ItemButton>
+      ) : null}
+      {checked ? <CheckedIcon /> : null}
+    </ActionItemContainer>
+  )
+}
