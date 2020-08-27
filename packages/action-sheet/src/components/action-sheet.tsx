@@ -9,8 +9,6 @@ import {
   Text,
 } from '@titicaca/core-elements'
 
-import { ActionSheetContextValue } from '../types'
-
 const unit = (value: number | string, suffix = 'px') =>
   typeof value === 'string' ? value : value !== 0 ? `${value}${suffix}` : value
 
@@ -177,7 +175,7 @@ const DEFAULT_BORDER_RADIUS = 12
 
 export default function ActionSheet({
   open,
-  onClose,
+  onOverlayClick,
   title,
   from = DEFAULT_FROM,
   borderRadius = DEFAULT_BORDER_RADIUS,
@@ -190,7 +188,7 @@ export default function ActionSheet({
 }: PropsWithChildren<{
   open?: boolean
   title?: ReactNode
-  onClose?: ActionSheetContextValue['onClose']
+  onOverlayClick?: () => void
   from?: 'top' | 'bottom'
   borderRadius?: number
   bottomSpacing?: number
@@ -225,7 +223,7 @@ export default function ActionSheet({
       classNames="action-sheet-fade"
       timeout={transitionDuration}
     >
-      <Overlay duration={transitionDuration} onClick={onClose}>
+      <Overlay duration={transitionDuration} onClick={onOverlayClick}>
         <CSSTransition
           in={open}
           classNames="action-sheet-slide"
