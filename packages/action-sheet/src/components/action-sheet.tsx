@@ -1,7 +1,12 @@
 import React, { PropsWithChildren, ReactNode, MouseEvent } from 'react'
 import styled, { css } from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
-import { MarginPadding, Container } from '@titicaca/core-elements'
+import {
+  MarginPadding,
+  Container,
+  safeAreaInsetMixin,
+  paddingMixin,
+} from '@titicaca/core-elements'
 
 import { ActionSheetContextValue } from '../types'
 
@@ -91,36 +96,21 @@ const Sheet = styled.div<SheetProps>`
     display: none;
   }
 
-  ${({ from, borderRadius, padding }) => {
+  ${paddingMixin}
+
+  ${({ from, borderRadius }) => {
     switch (from) {
       case 'top':
         return `
           top: 0;
           border-radius: 0 0 ${unit(borderRadius)} ${unit(borderRadius)};
-          ${padding.top ? `padding-top: ${unit(padding.top)};` : ''}
-          ${padding.bottom ? `padding-bottom: ${unit(padding.bottom)};` : ''}
         `
       case 'bottom':
-        return `
-        bottom: 0;
-        border-radius: ${unit(borderRadius)} ${unit(borderRadius)} 0 0;
-        ${padding.top ? `padding-top: ${unit(padding.top)};` : ''}
-        ${padding.bottom ? `padding-bottom: ${unit(padding.bottom)};` : ''}
+        return css<{ padding: MarginPadding }>`
+          bottom: 0;
+          border-radius: ${unit(borderRadius)} ${unit(borderRadius)} 0 0;
 
-        @supports (padding: max(0px)) and
-          (padding: env(safe-area-inset-bottom)) {
-          padding-bottom: max(
-            ${padding.bottom ? unit(padding.bottom) : 0},
-            calc(
-              env(safe-area-inset-bottom) +
-                ${unit(
-                  typeof padding.bottom === 'number'
-                    ? (padding.bottom as number) + 4
-                    : padding.bottom || 0,
-                )}
-            )
-          );
-        }
+          ${safeAreaInsetMixin}
         `
     }
   }}
@@ -247,7 +237,10 @@ export default function ActionSheet({
             duration={TRANSITION_DURATION}
             from={from}
             borderRadius={borderRadius}
-            padding={paddingValue}
+            padding={{
+              top: paddingValue.top,
+              bottom: paddingValue.bottom,
+            }}
             onClick={silenceEvent}
             className={className}
           >
