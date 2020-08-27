@@ -6,20 +6,13 @@ import {
   Container,
   safeAreaInsetMixin,
   paddingMixin,
+  Text,
 } from '@titicaca/core-elements'
 
 import { ActionSheetContextValue } from '../types'
 
 const unit = (value: number | string, suffix = 'px') =>
   typeof value === 'string' ? value : value !== 0 ? `${value}${suffix}` : value
-
-const Title = styled.div`
-  height: 16px;
-  font-size: 13px;
-  font-weight: bold;
-  color: rgba(73, 73, 73, 0.7);
-  margin: 0 0 10px 27px;
-`
 
 const ContentContainer = styled(Container)`
   overflow: auto;
@@ -208,7 +201,11 @@ export default function ActionSheet({
 }>) {
   const actionSheetTitle = title ? (
     typeof title === 'string' ? (
-      <Title>{title}</Title>
+      <Container height="16px" margin={{ bottom: 10, left: 27 }}>
+        <Text size="tiny" bold color="gray700">
+          {title}
+        </Text>
+      </Container>
     ) : (
       title
     )
