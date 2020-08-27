@@ -1,10 +1,14 @@
+import React, { PropsWithChildren, ReactNode, MouseEvent } from 'react'
 import styled, { css } from 'styled-components'
+import { CSSTransition } from 'react-transition-group'
 import { MarginPadding, Container } from '@titicaca/core-elements'
+
+import { ActionSheetContextValue } from '../types'
 
 const unit = (value: number | string, suffix = 'px') =>
   typeof value === 'string' ? value : value !== 0 ? `${value}${suffix}` : value
 
-export const Title = styled.div`
+const Title = styled.div`
   height: 16px;
   font-size: 13px;
   font-weight: bold;
@@ -12,7 +16,7 @@ export const Title = styled.div`
   margin: 0 0 10px 27px;
 `
 
-export const ContentContainer = styled(Container)`
+const ContentContainer = styled(Container)`
   overflow: auto;
 
   ::-webkit-scrollbar {
@@ -44,7 +48,7 @@ interface SheetProps {
   duration: number
 }
 
-export const Sheet = styled.div<SheetProps>`
+const Sheet = styled.div<SheetProps>`
   position: fixed;
   left: 0;
   right: 0;
@@ -140,7 +144,7 @@ interface OverlayProps {
   duration: number
 }
 
-export const Overlay = styled.div<OverlayProps>`
+const Overlay = styled.div<OverlayProps>`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -183,3 +187,86 @@ export const Overlay = styled.div<OverlayProps>`
     display: none;
   }
 `
+
+const TRANSITION_DURATION = 120
+
+export default function ActionSheet({
+  open,
+  onClose,
+  title,
+  from,
+  borderRadius,
+  bottomSpacing = 13,
+  maxContentHeight = 'calc(100vh - 256px)',
+  padding,
+  children,
+  className,
+}: PropsWithChildren<{
+  open?: boolean
+  title?: ReactNode
+  onClose?: ActionSheetContextValue['onClose']
+  from: ActionSheetContextValue['from']
+  borderRadius: number
+  bottomSpacing?: number
+  maxContentHeight?: string | number
+  padding?: MarginPadding
+  className?: string
+}>) {
+  const actionSheetTitle = title ? (
+    typeof title === 'string' ? (
+      <Title>{title}</Title>
+    ) : (
+      title
+    )
+  ) : null
+  const paddingValue = {
+    top: from === 'top' ? 0 : 30,
+    right: 25,
+    left: 25,
+    bottom: from === 'top' ? 30 : bottomSpacing || 0,
+    ...(padding || {}),
+  }
+
+  return (
+    <CSSTransition
+      in={open}
+      appear
+      classNames="action-sheet-fade"
+      timeout={TRANSITION_DURATION}
+    >
+      <Overlay duration={TRANSITION_DURATION} onClick={onClose}>
+        <CSSTransition
+          in={open}
+          classNames="action-sheet-slide"
+          timeout={TRANSITION_DURATION}
+          appear
+        >
+          <Sheet
+            duration={TRANSITION_DURATION}
+            from={from}
+            borderRadius={borderRadius}
+            padding={paddingValue}
+            onClick={silenceEvent}
+            className={className}
+          >
+            {actionSheetTitle}
+
+            <ContentContainer
+              maxHeight={maxContentHeight}
+              padding={{
+                left: paddingValue.left,
+                right: paddingValue.right,
+              }}
+            >
+              {children}
+            </ContentContainer>
+          </Sheet>
+        </CSSTransition>
+      </Overlay>
+    </CSSTransition>
+  )
+}
+
+function silenceEvent(e: MouseEvent) {
+  return e.stopPropagation()
+}
