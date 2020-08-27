@@ -178,7 +178,7 @@ const Overlay = styled.div<OverlayProps>`
   }
 `
 
-const TRANSITION_DURATION = 120
+const DEFAULT_TRANSITION_DURATION = 120
 const DEFAULT_FROM = 'bottom'
 const DEFAULT_BORDER_RADIUS = 12
 
@@ -193,6 +193,7 @@ export default function ActionSheet({
   padding,
   children,
   className,
+  transitionDuration = DEFAULT_TRANSITION_DURATION,
 }: PropsWithChildren<{
   open?: boolean
   title?: ReactNode
@@ -203,6 +204,7 @@ export default function ActionSheet({
   maxContentHeight?: string | number
   padding?: MarginPadding
   className?: string
+  transitionDuration?: number
 }>) {
   const actionSheetTitle = title ? (
     typeof title === 'string' ? (
@@ -224,17 +226,17 @@ export default function ActionSheet({
       in={open}
       appear
       classNames="action-sheet-fade"
-      timeout={TRANSITION_DURATION}
+      timeout={transitionDuration}
     >
-      <Overlay duration={TRANSITION_DURATION} onClick={onClose}>
+      <Overlay duration={transitionDuration} onClick={onClose}>
         <CSSTransition
           in={open}
           classNames="action-sheet-slide"
-          timeout={TRANSITION_DURATION}
+          timeout={transitionDuration}
           appear
         >
           <Sheet
-            duration={TRANSITION_DURATION}
+            duration={transitionDuration}
             from={from}
             borderRadius={borderRadius}
             padding={{
