@@ -2,7 +2,11 @@ import React from 'react'
 
 import ActionItemUI from './components/action-item'
 import ActionSheetUI from './components/action-sheet'
-import { ActionSheetContextValue } from './types'
+
+type ActionSheetContextValue = Pick<
+  Parameters<typeof ActionItemUI>[0],
+  'onClose'
+>
 
 const { Provider, Consumer } = React.createContext<ActionSheetContextValue>({})
 
@@ -19,10 +23,10 @@ function ActionItem(
 export default function ActionSheet({
   onClose,
   ...restProps
-}: Parameters<typeof ActionSheetUI>[0]) {
+}: ActionSheetContextValue & Parameters<typeof ActionSheetUI>[0]) {
   return (
     <Provider value={{ onClose }}>
-      <ActionSheetUI {...restProps} onClose={onClose} />
+      <ActionSheetUI {...restProps} onOverlayClick={onClose} />
     </Provider>
   )
 }
