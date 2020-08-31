@@ -76,3 +76,27 @@ useScrollToAnchor({
   },
 })
 ```
+
+### useDebounce
+
+value와 timeout을 파라미터로 받는다. value가 업데이트 될 때 timeout만큼 업데이트를 디바운스한 결과를 반환합니다.
+
+짧은 시간 동안 많이 업데이트 되는 input 값을 천천히 업데이트 되도록 할 때 사용할 수 있습니다.
+
+#### 예시
+
+```tsx
+const [inputValue, setInputValue] = useState('')
+const debouncedValue = useDebounce(inputValue, 500)
+
+useEffect(() => {
+  fetchAPI(debouncedValue) // 500ms에 한 번씩 실행됨
+}, [debounceValue])
+
+return (
+  <input
+    value={inputValue}
+    onChange={(e) => setInputValue(e.currentTarget.value)}
+  />
+)
+```
