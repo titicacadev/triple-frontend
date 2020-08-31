@@ -94,10 +94,6 @@ export default function FullScreenSearchView({
       }
 
       onEnter(keyword)
-      let id = window.setTimeout(() => {}, 0)
-      while (id--) {
-        window.clearTimeout(id)
-      }
     }
   }
 
