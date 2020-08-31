@@ -13,7 +13,7 @@ import {
   backOrClose,
   closeKeyboard,
 } from '@titicaca/triple-web-to-native-interfaces'
-import { debounce } from '@titicaca/view-utilities'
+import { useDebounce } from '@titicaca/react-hooks'
 
 const ContentsContainer = styled(Container)<{ isIOS: boolean }>`
   > div:first-child {
@@ -50,21 +50,16 @@ export default function FullScreenSearchView({
   defaultKeyword?: string
   keyword?: string
 }>) {
-  const [keyword, setKeyword] = useState<string>(defaultKeyword || '')
   const {
     os: { name },
   } = useUserAgentContext()
   const isIOS = name === 'iOS'
 
+  const [keyword, setKeyword] = useState<string>(defaultKeyword || '')
+  const debouncedKeyword = useDebounce(keyword, 500)
+
   const contentsDivRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
-
-  const debounceCallback = useCallback(
-    debounce(async (keyword: string) => {
-      onAutoComplete(keyword)
-    }, 500),
-    [],
-  )
 
   useEffect(() => {
     const contentsDiv = contentsDivRef.current
@@ -76,9 +71,15 @@ export default function FullScreenSearchView({
     }
   }, [isIOS])
 
-  useEffect(() => {
-    debounceCallback(keyword)
-  }, [keyword]) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(
+    () => {
+      onAutoComplete(debouncedKeyword)
+    },
+    // HACK: 부모에서 콜백 안 쓰고 있으면
+    // 렌더링 할 때마다 fetch가 다시 일어나므로 onAutoComplete 의존성 제거.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [debouncedKeyword],
+  )
 
   useEffect(() => {
     if (controlledKeyword !== undefined) {
