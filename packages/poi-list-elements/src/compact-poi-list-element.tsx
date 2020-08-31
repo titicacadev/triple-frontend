@@ -1,5 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Text, SquareImage, ResourceListItem } from '@titicaca/core-elements'
+import {
+  Text,
+  SquareImage,
+  ResourceListItem,
+  Container,
+} from '@titicaca/core-elements'
 import { ListingPOI } from '@titicaca/type-definitions'
 import { CompactScrapButton } from '@titicaca/scrap-button'
 
@@ -66,7 +71,9 @@ export function CompactPoiListElement<T extends ListingPOI>({
       {actionButtonElement ? (
         <div ref={actionButtonRef}>{actionButtonElement}</div>
       ) : (
-        <CompactScrapButton resource={poi} />
+        <Container position="absolute" positioning={{ top: 0, right: 0 }}>
+          <CompactScrapButton resource={poi} />
+        </Container>
       )}
     </ResourceListItem>
   )
