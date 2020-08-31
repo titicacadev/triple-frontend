@@ -3,7 +3,12 @@ import { Color, getColor } from '@titicaca/color-palette'
 import * as CSS from 'csstype'
 
 import { MarginPadding, BaseSizes } from '../commons'
-import { paddingMixin, formatMarginPadding, shadowMixin } from '../mixins'
+import {
+  paddingMixin,
+  formatMarginPadding,
+  shadowMixin,
+  positioningMixin,
+} from '../mixins'
 import { unit } from '../utils/unit'
 
 export interface ContainerPropsFromTemplate
@@ -14,6 +19,7 @@ export interface ContainerPropsFromTemplate
   centered?: boolean
   margin?: MarginPadding
   padding?: MarginPadding
+  positioning?: MarginPadding
   width?: number | string
   height?: number | string
   minWidth?: number | string
@@ -146,6 +152,7 @@ const Container = styled.div<ContainerPropsFromTemplate>`
     `}
 
   ${shadowMixin}
+  ${positioningMixin}
 `
 
 export default Container
