@@ -56,7 +56,10 @@ export default function FullScreenSearchView({
   const isIOS = name === 'iOS'
 
   const [keyword, setKeyword] = useState<string>(defaultKeyword || '')
-  const debouncedKeyword = useDebounce(keyword, 500)
+  const { debounced: debouncedKeyword, clearDebounce } = useDebounce(
+    keyword,
+    500,
+  )
 
   const contentsDivRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -94,6 +97,7 @@ export default function FullScreenSearchView({
       }
 
       onEnter(keyword)
+      clearDebounce()
     }
   }
 
