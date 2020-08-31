@@ -106,7 +106,9 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
           />
 
           {!hideScrapButton && id && type ? (
-            <RegularScrapButton resource={{ id, type, scraped }} />
+            <Container position="absolute" positioning={{ top: 3, right: 3 }}>
+              <RegularScrapButton resource={{ id, type, scraped }} />
+            </Container>
           ) : null}
         </Container>
 

@@ -5,6 +5,7 @@ import {
   Image,
   Carousel,
   Text,
+  Container,
 } from '@titicaca/core-elements'
 import { RegularScrapButton } from '@titicaca/scrap-button'
 import { ListingPOI } from '@titicaca/type-definitions'
@@ -66,7 +67,11 @@ export default function PoiCarouselElement<
         {description || TYPE_NAMES[type]}
       </Text>
 
-      {actionButtonElement || <RegularScrapButton resource={poi} />}
+      {actionButtonElement || (
+        <Container position="absolute" positioning={{ top: 3, right: 3 }}>
+          <RegularScrapButton resource={poi} />
+        </Container>
+      )}
 
       {additionalInfo}
     </Carousel.Item>
