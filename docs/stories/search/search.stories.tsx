@@ -69,8 +69,14 @@ function APIUsageExampleComponent() {
   return (
     <Search
       onDelete={action('onDelete')}
-      onAutoComplete={searchPois}
-      onEnter={action('onEnter')}
+      onAutoComplete={(keyword) => {
+        action('onAutoComplete')(keyword)
+        searchPois(keyword)
+      }}
+      onEnter={(keyword) => {
+        action('onEnter')(keyword)
+        searchPois(keyword)
+      }}
       onInputChange={action('onInputChange')}
       defaultKeyword={text('defaultKeyword', '')}
       placeholder={text('Placeholder', '“항공권 예약” 도시이름으로 검색')}
