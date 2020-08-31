@@ -18,6 +18,7 @@
   onEnter={async (keyword) => {
     // Optional
     // Search Navbar에서 엔터키를 입력했을 때 실행되는 이벤트
+    // 만약 debounce 되어있던 auto completion이 있으면 제거합니다.
   }}
   onEmptyKeyword={() => {
     // Optional
