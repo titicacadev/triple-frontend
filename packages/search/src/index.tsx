@@ -13,7 +13,7 @@ import {
   backOrClose,
   closeKeyboard,
 } from '@titicaca/triple-web-to-native-interfaces'
-import { useDebounce } from '@titicaca/react-hooks'
+import { useDebouncedState } from '@titicaca/react-hooks'
 
 const ContentsContainer = styled(Container)<{ isIOS: boolean }>`
   > div:first-child {
@@ -56,7 +56,7 @@ export default function FullScreenSearchView({
   const isIOS = name === 'iOS'
 
   const [keyword, setKeyword] = useState<string>(defaultKeyword || '')
-  const { debounced: debouncedKeyword, clearDebounce } = useDebounce(
+  const { debounced: debouncedKeyword, clearDebounce } = useDebouncedState(
     keyword,
     500,
   )
