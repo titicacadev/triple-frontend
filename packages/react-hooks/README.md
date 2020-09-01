@@ -77,7 +77,7 @@ useScrollToAnchor({
 })
 ```
 
-### useDebounce
+### useDebouncedState
 
 value와 timeout을 파라미터로 받습니다. value가 업데이트 될 때 timeout만큼 업데이트를 디바운스한 결과와 진행중인 debounce를 취소하는 함수를 반환합니다.
 
@@ -87,7 +87,7 @@ value와 timeout을 파라미터로 받습니다. value가 업데이트 될 때 
 
 ```tsx
 const [inputValue, setInputValue] = useState('')
-const { debounced: debouncedValue } = useDebounce(inputValue, 500)
+const { debounced: debouncedValue } = useDebouncedState(inputValue, 500)
 
 useEffect(() => {
   fetchAPI(debouncedValue) // 500ms에 한 번씩 실행됨
@@ -107,7 +107,7 @@ return (
 
 ```tsx
 const [inputValue, setInputValue] = useState('')
-const { debounced: debouncedValue, clearDebounce } = useDebounce(
+const { debounced: debouncedValue, clearDebounce } = useDebouncedState(
   inputValue,
   500,
 )
