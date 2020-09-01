@@ -30,7 +30,7 @@ export function FacebookOpenGraph({
           'https://assets.triple.guide/images/default-cover-image.jpg'
         }
       />
-      {!image || image.width || image.height ? (
+      {!image || (image.width && image.height) ? (
         <>
           <meta
             property="og:image:width"
