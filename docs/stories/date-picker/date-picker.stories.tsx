@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import {
-  date,
   array,
   text,
   number,
@@ -89,17 +88,24 @@ export default {
   title: 'date-picker | DatePicker',
 }
 
+function padZero(num: number): string {
+  if (num > 9){
+    return num.toString()
+  }
+  return `0${num}`
+}
+
 export function DayPickerStory() {
   const [selectedDate, setSelectedDate] = useState<string | null>(null)
-  const beforeBlock = useOptionalKnob({
+  const beforeBlock: string | undefined = useOptionalKnob({
     name: 'beforeBlock',
-    knob: date,
-    initialValue: today,
+    knob: text,
+    initialValue: `${today.getFullYear()}-${padZero(today.getMonth() + 1)}-${padZero(today.getDate())}`,
   })
-  const afterBlock = useOptionalKnob({
+  const afterBlock: string | undefined = useOptionalKnob({
     name: 'afterBlock',
-    knob: date,
-    initialValue: initialAfterBlock,
+    knob: text,
+    initialValue: `${initialAfterBlock.getFullYear()}-${padZero(initialAfterBlock.getMonth() + 1)}-${padZero(initialAfterBlock.getDate())}`,
   })
   const disabledDays = useOptionalKnob({
     name: 'disabledDays',
@@ -119,8 +125,8 @@ export function DayPickerStory() {
         action('날짜 선택')(date)
         setSelectedDate(date.toISOString())
       }}
-      beforeBlock={beforeBlock ? new Date(beforeBlock) : undefined}
-      afterBlock={afterBlock ? new Date(afterBlock) : undefined}
+      beforeBlock={beforeBlock}
+      afterBlock={afterBlock}
       disabledDays={
         disabledDays
           ? disabledDays.filter(checkValidISODateFormat).filter(checkValidDate)
@@ -148,15 +154,15 @@ export function RangePickerStory() {
     endDate: null,
   })
 
-  const beforeBlock = useOptionalKnob({
+  const beforeBlock: string | undefined = useOptionalKnob({
     name: 'beforeBlock',
-    knob: date,
-    initialValue: today,
+    knob: text,
+    initialValue: `${today.getFullYear()}-${padZero(today.getMonth() + 1)}-${padZero(today.getDate())}`,
   })
-  const afterBlock = useOptionalKnob({
+  const afterBlock: string | undefined = useOptionalKnob({
     name: 'afterBlock',
-    knob: date,
-    initialValue: initialAfterBlock,
+    knob: text,
+    initialValue: `${initialAfterBlock.getFullYear()}-${padZero(initialAfterBlock.getMonth() + 1)}-${padZero(initialAfterBlock.getDate())}`,
   })
   const disabledDays = useOptionalKnob({
     name: 'disabledDays',
@@ -183,8 +189,8 @@ export function RangePickerStory() {
         action('날짜 선택')({ startDate, endDate, nights })
         setDateRange({ startDate, endDate })
       }}
-      beforeBlock={beforeBlock ? new Date(beforeBlock) : undefined}
-      afterBlock={afterBlock ? new Date(afterBlock) : undefined}
+      beforeBlock={beforeBlock}
+      afterBlock={afterBlock}
       disabledDays={
         disabledDays
           ? disabledDays.filter(checkValidISODateFormat).filter(checkValidDate)
