@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 
-export default function useDebounce<T>(
+export default function useDebouncedState<T>(
   value: T,
   timeout: number,
 ): { debounced: T; clearDebounce: () => void } {
