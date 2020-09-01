@@ -1,6 +1,6 @@
 # 메타 태그 출처, 가이드 및 사용 출처 정리
 
-## 기본 태그
+## 기본 태그 (BaseMeta)
 
 ### [뷰포트 메타 태그](https://developer.mozilla.org/ko/docs/Mozilla/Mobile/Viewport_meta_tag)
 
@@ -8,11 +8,11 @@
   - name: viewport
   - 페이지의 viewport를 설정합니다
   - content
-    - [x] width: viewport의 크기를 지정한다.
-    - [x] height: viewport의 높이를 지정한다.
-    - [x] initial-scale: 페이지가 처음 로드될 때 줌 레벨을 조정한다.
-    - [x] minimum-scale, maximum-scale: 사용자가 얼마나 페이지를 줌 인/아웃 할 수 있는지 조정한다.
-    - [x] user-scalable: 사용자가 브라우저의 확대축소를 가능하게 할 것인지 정의.
+    - width: viewport의 크기를 지정한다.
+    - height: viewport의 높이를 지정한다.
+    - initial-scale: 페이지가 처음 로드될 때 줌 레벨을 조정한다.
+    - minimum-scale, maximum-scale: 사용자가 얼마나 페이지를 줌 인/아웃 할 수 있는지 조정한다.
+    - user-scalable: 사용자가 브라우저의 확대축소를 가능하게 할 것인지 정의.
 - 사용 출처
   - [triple-articles-web](https://github.com/titicacadev/triple-articles-web/blob/master/src/pages/_app.js#L115-L118)
 
@@ -41,35 +41,35 @@
 - 사용 가이드
   - httpEquiv: X-UA-Compatible
   - content
-    - [x] IE: 웹 페이지를 레거시 문서 모드로 제한할 경우 사용한다.
+    - IE: 웹 페이지를 레거시 문서 모드로 제한할 경우 사용한다.
 - 사용 출처
   - [triple-articles-web](https://github.com/titicacadev/triple-articles-web/blob/master/src/pages/_app.js#L114)
 
-## [애플 스마트 앱 배너](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html)
+## [애플 스마트 앱 배너](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html) (AppleSmartBannerMeta)
 
 - 사용 가이드
   - name: apple-itunes-app
   - content
-    - [x] app-id : (필수) 앱의 고유 식별자입니다.
-    - [ ] Affiliate-data : (선택 사항) iTunes 계열사 인 경우 iTunes 계열사 문자열입니다.
-    - [x] app-argument : (선택 사항) 네이티브 앱에 컨텍스트를 제공하는 URL입니다.
+    - app-id : (필수) 앱의 고유 식별자입니다.
+    - Affiliate-data : (선택 사항) iTunes 계열사 인 경우 iTunes 계열사 문자열입니다.
+    - app-argument : (선택 사항) 네이티브 앱에 컨텍스트를 제공하는 URL입니다.
 - 사용 출처
   - [triple-articles-web](https://github.com/titicacadev/triple-articles-web/blob/master/src/pages/_app.js#L121-L124)
 
-## [페이스북 앱 링크](https://developers.facebook.com/docs/applinks)
+## [페이스북 앱 링크](https://developers.facebook.com/docs/applinks) (FacebookAppLink)
 
 ### IOS
 
 - 사용가이드
-  - [x] IOS Url
+  - IOS Url
     - 필수 여부: ⭕
     - name: al:ios:url `ex) com.titicacacorp.triple:///`
     - content: IOS 앱 전용 커스텀 스키마
-  - [x] 앱스토어 Id
+  - 앱스토어 Id
     - 필수 여부: ❌
     - name: al:ios:app_store_id
     - content: 앱스토어 앱 아이디`ex) 12345`
-  - [x] 앱 이름
+  - 앱 이름
     - 필수 여부: ❌
     - name: al:ios:app_name
     - content: 앱 이름 `ex) 트리플`
@@ -79,26 +79,26 @@
 ### 안드로이드
 
 - 사용가이드
-  - [x] 안드로이드 Url
+  - 안드로이드 Url
     - 필수 여부: ❌
     - name: al:android:url
     - content: 안드로이드 앱 전용 커스텀 스키마 `ex) triple:///`
-  - [x] 패키지 이름
+  - 패키지 이름
     - 필수 여부: ⭕
     - name: al:android:package
     - content: 증명된 패키지 이름 `ex) com.titicacacorp.triple`
-  - [ ] 클래스 이름
+  - 클래스 이름
     - 필수 여부: ❌
     - name: al:android:class
     - content: 증명된 활동 클래스 이름 `ex) org.applinks.DocsActivity`
-  - [x] 앱 이름
+  - 앱 이름
     - 필수 여부: ❌
     - name: al:android:app_name
     - content: 앱이름 `ex) 트리플`
 - 사용 출처
   - [triple-air-web](https://github.com/titicacadev/triple-air-web/blob/master/src/pages/_app.tsx#L226-L231)
 
-## [페이스북 오픈 그래프](https://developers.facebook.com/docs/sharing/webmasters/#markup)
+## [페이스북 오픈 그래프](https://developers.facebook.com/docs/sharing/webmasters/#markup) (FacebookOpenGraph)
 
 ### 기본태그
 
@@ -109,7 +109,7 @@
   - 제목
     - name: og:title
     - content: 사이트 이름등의 브랜드 제목이 없는 콘텐츠 제목 `ex) 여행사 대리 3인방의 국내 인생 여행지`
-      - 라고 정이되어있는데요 `실시간 여행 가이드 - 트리플` 상관없을까요? - 사용하는 쪽에서 웬만하면 오버라이드해서 사용했으면 합니다
+      - 라고 정의되어있는데요 `실시간 여행 가이드 - 트리플` 상관없을까요? - 사용하는 쪽에서 웬만하면 오버라이드해서 사용했으면 합니다
   - 설명
     - name: og:description
     - content: 콘텐츠의 간단한 설명 `ex) 늦여름, 초가을에 떠나기 좋은 장소`
