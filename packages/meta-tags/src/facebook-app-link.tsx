@@ -19,12 +19,12 @@ export function FacebookAppLink({
       <meta property="al:android:app_name" content={appName} />
       <meta
         property="al:ios:url"
-        content={`${appPackageName}://${contentUrl}`}
+        content={`${appPackageName}://${encodeURIComponent(contentUrl)}`}
       />
       <meta property="al:ios:app_store_id" content={iosAppStoreId} />
       <meta
         property="al:android:url"
-        content={`${appUrlScheme}://${contentUrl}`}
+        content={`${appUrlScheme}://${encodeURIComponent(contentUrl)}`}
       />
       <meta property="al:android:package" content={appPackageName} />
     </Fragment>
