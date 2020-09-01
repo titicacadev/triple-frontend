@@ -1,7 +1,10 @@
 import moment from 'moment'
 
-export function formatMonthTitle(d: Date): string {
-  return `${d.getFullYear()}년 ${[d.getMonth() + 1]}월`
+import { LOCALE } from './constants'
+
+export function formatMonthTitle(d: Date, locale: string = LOCALE): string {
+  moment.locale(locale)
+  return moment(d).format('YYYY년 Mo')
 }
 
 export function isValidDate(d: unknown): boolean {
