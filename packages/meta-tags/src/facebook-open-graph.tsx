@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react'
 
 export function FacebookOpenGraph({
-  ogTitle,
+  ogTitle = '실시간 여행 가이드 - 트리플',
   ogDescription,
-  ogUrl,
-  ogType,
-  ogLocale,
+  ogUrl = 'https://triple.guide/',
+  ogType = 'website',
+  ogLocale = 'ko_KR',
   ogImage,
-  fbAppId,
+  fbAppId = '136540730081853',
 }: {
   ogTitle?: string
   ogDescription?: string
@@ -19,13 +19,10 @@ export function FacebookOpenGraph({
 }) {
   return (
     <Fragment>
-      <meta
-        property="og:title"
-        content={ogTitle || '실시간 여행 가이드 - 트리플'}
-      />
-      <meta property="og:url" content={ogUrl || 'https://triple.guide/'} />
-      <meta property="og:type" content={ogType || 'website'} />
-      <meta property="og:locale" content={ogLocale || 'ko_KR'} />
+      <meta property="og:title" content={ogTitle} />
+      <meta property="og:url" content={ogUrl} />
+      <meta property="og:type" content={ogType} />
+      <meta property="og:locale" content={ogLocale} />
       <meta
         property="og:image"
         content={
@@ -45,11 +42,8 @@ export function FacebookOpenGraph({
           />
         </>
       ) : null}
-      <meta
-        property="og:description"
-        content={ogDescription || '최신 가이드북 제공, 길찾기 탑재, 맛집 추천'}
-      />
-      <meta property="fb:app_id" content={fbAppId || '136540730081853'} />
+      <meta property="og:description" content={ogDescription || ''} />
+      <meta property="fb:app_id" content={fbAppId} />
     </Fragment>
   )
 }
