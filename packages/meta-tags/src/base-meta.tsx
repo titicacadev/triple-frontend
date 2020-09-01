@@ -2,10 +2,10 @@ import React, { Fragment } from 'react'
 
 export function BaseMeta({
   description,
-  canonical = 'https://triple.guide/',
+  canonicalUrl = 'https://triple.guide/',
 }: {
   description?: string
-  canonical?: string
+  canonicalUrl?: string
 }) {
   return (
     <Fragment>
@@ -25,7 +25,7 @@ export function BaseMeta({
         rel="apple-touch-icon-precomposed"
         href="https://triple.guide/icons/favicon-152x152.png"
       />
-      <link rel="canonical" href={canonical} />
+      <link rel="canonical" href={canonicalUrl} />
     </Fragment>
   )
 }
