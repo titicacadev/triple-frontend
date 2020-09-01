@@ -1,6 +1,5 @@
 import * as React from 'react'
 import moment from 'moment'
-import 'moment/locale/ko'
 import styled from 'styled-components'
 import DayPicker, {
   DayModifiers,

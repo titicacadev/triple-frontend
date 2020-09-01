@@ -7,7 +7,6 @@ import DayPicker, {
   AfterModifier,
   Modifiers,
 } from 'react-day-picker'
-import 'moment/locale/ko'
 
 import { isValidDate, generatePaddedRange } from './utils'
 import PickerFrame, {
