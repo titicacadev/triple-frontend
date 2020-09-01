@@ -1,3 +1,9 @@
+# 2.0.0
+
+### date-picker
+
+- `beforeBlock`, `afterBlock` prop의 형식을 Date에서 string으로 바꿉니다.
+
 # 1.33.0 (2020-08-26)
 
 ### common
