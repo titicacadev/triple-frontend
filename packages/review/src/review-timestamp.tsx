@@ -10,7 +10,6 @@ moment.relativeTimeRounding(Math.floor)
 moment.relativeTimeThreshold('s', 60)
 moment.relativeTimeThreshold('m', 60)
 moment.relativeTimeThreshold('h', 24)
-moment.locale('ko')
 
 function formatReviewTimestamp(date: string) {
   const createdAt = moment(date)
