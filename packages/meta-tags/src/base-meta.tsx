@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 
 export function BaseMeta({
   description,
-  canonical,
+  canonical = 'https://triple.guide/',
 }: {
   description?: string
   canonical?: string
@@ -15,7 +15,7 @@ export function BaseMeta({
         name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover"
       />
-      <meta name="description" content={description} />
+      <meta name="description" content={description || ''} />
       <meta
         name="msapplication-TileImage"
         content="https://triple.guide/icons/favicon-144x144.png"
@@ -25,7 +25,7 @@ export function BaseMeta({
         rel="apple-touch-icon-precomposed"
         href="https://triple.guide/icons/favicon-152x152.png"
       />
-      <link rel="canonical" href={canonical || 'https://triple.guide/'} />
+      <link rel="canonical" href={canonical} />
     </Fragment>
   )
 }

@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react'
 
 export function FacebookAppLink({
-  appName,
-  iosAppStoreId,
-  contentUrl,
-  appPackageName,
-  appUrlScheme,
+  appName = '트리플',
+  iosAppStoreId = '1225499481',
+  contentUrl = '/',
+  appPackageName = 'com.titicacacorp.triple',
+  appUrlScheme = 'triple',
 }: {
   appName?: string
   iosAppStoreId?: string
@@ -15,26 +15,18 @@ export function FacebookAppLink({
 }) {
   return (
     <Fragment>
-      <meta property="al:ios:app_name" content={appName || '트리플'} />
-      <meta property="al:android:app_name" content={appName || '트리플'} />
+      <meta property="al:ios:app_name" content={appName} />
+      <meta property="al:android:app_name" content={appName} />
       <meta
         property="al:ios:url"
-        content={`${appPackageName || 'com.titicacacorp.triple'}://${
-          contentUrl || '/'
-        }`}
+        content={`${appPackageName}://${contentUrl}`}
       />
-      <meta
-        property="al:ios:app_store_id"
-        content={iosAppStoreId || '1225499481'}
-      />
+      <meta property="al:ios:app_store_id" content={iosAppStoreId} />
       <meta
         property="al:android:url"
-        content={`${appUrlScheme || 'triple'}://${contentUrl || '/'}`}
+        content={`${appUrlScheme}://${contentUrl}`}
       />
-      <meta
-        property="al:android:package"
-        content={appPackageName || 'com.titicacacorp.triple'}
-      />
+      <meta property="al:android:package" content={appPackageName} />
     </Fragment>
   )
 }
