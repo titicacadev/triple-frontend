@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 
 export function FacebookOpenGraphMeta({
   title = '실시간 여행 가이드 - 트리플',
-  description,
+  description = '',
   canonicalUrl = 'https://triple.guide/',
   type = 'website',
   locale = 'ko_KR',
@@ -34,7 +34,7 @@ export function FacebookOpenGraphMeta({
           <meta property="og:image:height" content={image.height.toString()} />
         </>
       ) : null}
-      <meta property="og:description" content={description || ''} />
+      <meta property="og:description" content={description} />
       <meta property="fb:app_id" content={fbAppId} />
     </Fragment>
   )
