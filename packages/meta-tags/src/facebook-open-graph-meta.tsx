@@ -30,14 +30,8 @@ export function FacebookOpenGraphMeta({
       <meta property="og:image" content={image?.url} />
       {image?.width && image?.height ? (
         <>
-          <meta
-            property="og:image:width"
-            content={encodeURIComponent(image.width)}
-          />
-          <meta
-            property="og:image:height"
-            content={encodeURIComponent(image.height)}
-          />
+          <meta property="og:image:width" content={image.width.toString()} />
+          <meta property="og:image:height" content={image.height.toString()} />
         </>
       ) : null}
       <meta property="og:description" content={description || ''} />
