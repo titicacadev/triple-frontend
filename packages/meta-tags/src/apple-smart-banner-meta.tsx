@@ -2,7 +2,7 @@ import React from 'react'
 
 export function AppleSmartBannerMeta({
   appId = '1225499481',
-  appUrlScheme = 'com.titicacacorp.triple',
+  appUrlScheme = 'triple',
   appPath = '/',
 }: {
   appId?: string
