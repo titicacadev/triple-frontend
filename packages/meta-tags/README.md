@@ -1,6 +1,6 @@
-# 메타 태그 출처, 가이드 및 사용 출처 정리
+# `@titicaca/meta-tags`
 
-## 기본 태그 (BaseMeta)
+## 기본 태그 (EssentialMeta)
 
 ### [뷰포트 메타 태그](https://developer.mozilla.org/ko/docs/Mozilla/Mobile/Viewport_meta_tag)
 
@@ -56,7 +56,7 @@
 - 사용 출처
   - [triple-articles-web](https://github.com/titicacadev/triple-articles-web/blob/master/src/pages/_app.js#L121-L124)
 
-## [페이스북 앱 링크](https://developers.facebook.com/docs/applinks) (FacebookAppLink)
+## [페이스북 앱 링크](https://developers.facebook.com/docs/applinks) (FacebookAppLinkMeta)
 
 ### IOS
 
@@ -98,7 +98,7 @@
 - 사용 출처
   - [triple-air-web](https://github.com/titicacadev/triple-air-web/blob/master/src/pages/_app.tsx#L226-L231)
 
-## [페이스북 오픈 그래프](https://developers.facebook.com/docs/sharing/webmasters/#markup) (FacebookOpenGraph)
+## [페이스북 오픈 그래프](https://developers.facebook.com/docs/sharing/webmasters/#markup) (FacebookOpenGraphMeta)
 
 ### 기본태그
 
