@@ -2,7 +2,7 @@ import React from 'react'
 
 export function AppleSmartBannerMeta({
   appId = '1225499481',
-  appUrlScheme = 'com.titicacacorp.triple://',
+  appUrlScheme = 'com.titicacacorp.triple',
   appPath = '/',
 }: {
   appId?: string
@@ -12,7 +12,7 @@ export function AppleSmartBannerMeta({
   return (
     <meta
       name="apple-itunes-app"
-      content={`app-id=${appId}, app-argument=${appUrlScheme}${appPath}`}
+      content={`app-id=${appId}, app-argument=${appUrlScheme}://${appPath}`}
     />
   )
 }
