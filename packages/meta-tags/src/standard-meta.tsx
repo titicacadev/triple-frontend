@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 
-export function BaseMeta({
+export function StandardMeta({
   description,
   canonicalUrl = 'https://triple.guide/',
 }: {
