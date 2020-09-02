@@ -4,6 +4,24 @@
 
 - `beforeBlock`, `afterBlock` prop의 형식을 Date에서 string으로 바꿉니다.
 
+# 1.34.0 (2020-09-02)
+
+### meta-tags
+
+- 메타 태그 컴포넌트 추가 (#929)
+
+### action-sheet
+
+- 구조정리 및 최신 패턴 적용 (#937)
+
+### search & hook
+
+- onEnter, onAutoCompletion 기능 개선 및 취소기능 재구현 (#939)
+
+### common
+
+- style-box 패키지의 cstype을 3으로 업그레이드합니다. (#945)
+
 # 1.33.0 (2020-08-26)
 
 ### common
