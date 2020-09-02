@@ -1,8 +1,25 @@
 # `@titicaca/meta-tags`
 
+현재 사용중인 메타태그들을 묶어둔 패키지입니다.
+
 ## 기본 태그 (EssentialMeta)
 
-### [뷰포트 메타 태그](https://developer.mozilla.org/ko/docs/Mozilla/Mobile/Viewport_meta_tag)
+### Usage
+
+```typescript
+import { EssentialMeta } from '@titicaca/meta-tags'
+
+return (
+  <EssentialMeta
+    description="모바일 여행 가이드 - 트리플"
+    canonicalUrl="https://triple.guide/"
+  />
+)
+```
+
+### 포함된 메타 태그
+
+#### [뷰포트 메타 태그](https://developer.mozilla.org/ko/docs/Mozilla/Mobile/Viewport_meta_tag)
 
 - 사용 가이드
   - name: viewport
@@ -13,18 +30,14 @@
     - initial-scale: 페이지가 처음 로드될 때 줌 레벨을 조정한다.
     - minimum-scale, maximum-scale: 사용자가 얼마나 페이지를 줌 인/아웃 할 수 있는지 조정한다.
     - user-scalable: 사용자가 브라우저의 확대축소를 가능하게 할 것인지 정의.
-- 사용 출처
-  - [triple-articles-web](https://github.com/titicacadev/triple-articles-web/blob/master/src/pages/_app.js#L115-L118)
 
-### Description 메타 태그
+#### Description 메타 태그
 
 - 사용 가이드
   - name: description
   - content: 페이지의 설명을 정의합니다. `ex) 늦여름, 초가을에 떠나기 좋은 장소`
-- 사용 출처
-  - [triple-air-web](https://github.com/titicacadev/triple-air-web/blob/master/src/pages/_app.tsx#L202-L205)
 
-### 파비콘 메타 태그
+#### 파비콘 메타 태그
 
 - 사용 가이드
   - name: msapplication-TileImage
@@ -33,32 +46,53 @@
   - link tag로 설정가능
   - name: apple-touch-icon-precomposed
   - href: 터치 아이콘 이비지 url
-- 사용 출처
-  - [triple-articles-web](https://github.com/titicacadev/triple-articles-web/blob/master/src/pages/_app.js#L132-L140)
 
-### [레거시 문서 모드 지정](<https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/compatibility/jj676915(v=vs.85)>)
+#### [레거시 문서 모드 지정](<https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/compatibility/jj676915(v=vs.85)>)
 
 - 사용 가이드
   - httpEquiv: X-UA-Compatible
   - content
     - IE: 웹 페이지를 레거시 문서 모드로 제한할 경우 사용한다.
-- 사용 출처
-  - [triple-articles-web](https://github.com/titicacadev/triple-articles-web/blob/master/src/pages/_app.js#L114)
 
 ## [애플 스마트 앱 배너](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html) (AppleSmartBannerMeta)
 
-- 사용 가이드
-  - name: apple-itunes-app
-  - content
-    - app-id : (필수) 앱의 고유 식별자입니다.
-    - Affiliate-data : (선택 사항) iTunes 계열사 인 경우 iTunes 계열사 문자열입니다.
-    - app-argument : (선택 사항) 네이티브 앱에 컨텍스트를 제공하는 URL입니다.
-- 사용 출처
-  - [triple-articles-web](https://github.com/titicacadev/triple-articles-web/blob/master/src/pages/_app.js#L121-L124)
+### Usage
+
+```typescript
+import { AppleSmartBannerMeta } from '@titicaca/meta-tags'
+
+return <AppleSmartBannerMeta appId="12345" appUrlScheme="triple" appPath="/" />
+```
+
+#### 사용된 메타 태그
+
+- name: apple-itunes-app
+- content
+  - app-id : (필수) 앱의 고유 식별자입니다.
+  - Affiliate-data : (선택 사항) iTunes 계열사 인 경우 iTunes 계열사 문자열입니다.
+  - app-argument : (선택 사항) 네이티브 앱에 컨텍스트를 제공하는 URL입니다.
 
 ## [페이스북 앱 링크](https://developers.facebook.com/docs/applinks) (FacebookAppLinkMeta)
 
-### IOS
+### Usage
+
+```typescript
+import { FacebookAppLinkMeta } from '@titicaca/meta-tags'
+
+return (
+  <FacebookAppLinkMeta
+    appName="트리플"
+    iosAppStoreId="1225499481"
+    appPath="/"
+    appPackageName="com.titicacacorp.triple"
+    appUrlScheme="triple"
+  />
+)
+```
+
+### 사용된 메타 태그
+
+#### IOS
 
 - 사용가이드
   - IOS Url
@@ -73,10 +107,8 @@
     - 필수 여부: ❌
     - name: al:ios:app_name
     - content: 앱 이름 `ex) 트리플`
-- 사용 출처
-  - [triple-air-web](https://github.com/titicacadev/triple-air-web/blob/master/src/pages/_app.tsx#L219-L221)
 
-### 안드로이드
+#### 안드로이드
 
 - 사용가이드
   - 안드로이드 Url
@@ -95,12 +127,34 @@
     - 필수 여부: ❌
     - name: al:android:app_name
     - content: 앱이름 `ex) 트리플`
-- 사용 출처
-  - [triple-air-web](https://github.com/titicacadev/triple-air-web/blob/master/src/pages/_app.tsx#L226-L231)
 
 ## [페이스북 오픈 그래프](https://developers.facebook.com/docs/sharing/webmasters/#markup) (FacebookOpenGraphMeta)
 
-### 기본태그
+### Usage
+
+```typescript
+import { FacebookOpenGraphMeta } from '@titicaca/meta-tags'
+
+return (
+  <FacebookOpenGraphMeta
+    title = '실시간 여행 가이드 - 트리플'
+    description = '전세계 맛집, 호텔, 관광지'
+    canonicalUrl = 'https://triple.guide/'
+    type = 'website'
+    locale = 'ko_KR'
+    image = {
+      url: 'https://assets.triple.guide/images/default-cover-image.jpg',
+      width: 1052,
+      height: 1052,
+    }
+    fbAppId = '136540730081853'
+  />
+)
+```
+
+### 사용된 태그
+
+#### 기본태그
 
 - 사용가이드
   - Url
@@ -124,7 +178,7 @@
     - name: fb:app_id
     - content: 페이스북 전용 앱 id `ex) 12345`
 
-### 추가 태그
+#### 추가 태그
 
 - 사용가이드
   - 콘텐츠 타입
@@ -133,7 +187,3 @@
   - 언어
     - name: og:locale
     - content: 리소스의 언어, 기본값: en_US `ex) ko_kr`
-
-### 사용 출처
-
-- [triple-air-web](https://github.com/titicacadev/triple-air-web/blob/master/src/pages/_app.tsx#L206-L218)
