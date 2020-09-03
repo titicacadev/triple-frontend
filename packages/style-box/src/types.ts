@@ -1,9 +1,9 @@
-import CSS from 'csstype'
+import * as CSS from 'csstype'
 
 export type MarginPadding = Partial<
   Record<
     'top' | 'right' | 'bottom' | 'left',
-    CSS.MarginProperty<string | number>
+    CSS.Property.Margin<string | number>
   >
 >
 
@@ -14,18 +14,18 @@ export type Clearing = boolean
 export type BorderRadius = number
 export type Centered = boolean
 export type HorizontalScroll = boolean
-export type BoxSizing = CSS.BoxSizingProperty
-export type Clear = CSS.ClearProperty
-export type Display = CSS.DisplayProperty
-export type Float = CSS.FloatProperty
-export type TextAlign = CSS.TextAlignProperty
-export type UserSelect = CSS.UserSelectProperty
-export type Overflow = CSS.OverflowProperty
-export type WhiteSpace = CSS.WhiteSpaceProperty
+export type BoxSizing = CSS.Property.BoxSizing
+export type Clear = CSS.Property.Clear
+export type Display = CSS.Property.Display
+export type Float = CSS.Property.Float
+export type TextAlign = CSS.Property.TextAlign
+export type UserSelect = CSS.Property.UserSelect
+export type Overflow = CSS.Property.Overflow
+export type WhiteSpace = CSS.Property.WhiteSpace
 export type Position = BasePosition | RichPosition
-export type BasePosition = CSS.PositionProperty
+export type BasePosition = CSS.Property.Position
 export type RichPosition = {
-  type: CSS.PositionProperty
+  type: CSS.Property.Position
   top?: number
   right?: number
   bottom?: number
