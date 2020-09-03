@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head'
 
 export function AppleSmartBannerMeta({
   appId = '1225499481',
@@ -10,9 +11,11 @@ export function AppleSmartBannerMeta({
   appPath?: string
 }) {
   return (
-    <meta
-      name="apple-itunes-app"
-      content={`app-id=${appId}, app-argument=${appUrlScheme}://${appPath}`}
-    />
+    <Head>
+      <meta
+        name="apple-itunes-app"
+        content={`app-id=${appId}, app-argument=${appUrlScheme}://${appPath}`}
+      />
+    </Head>
   )
 }

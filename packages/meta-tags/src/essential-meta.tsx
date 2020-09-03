@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import Head from 'next/head'
 
 export function EssentialMeta({
   description = '',
@@ -8,7 +9,7 @@ export function EssentialMeta({
   canonicalUrl?: string
 }) {
   return (
-    <Fragment>
+    <Head>
       <meta charSet="utf-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta
@@ -26,6 +27,6 @@ export function EssentialMeta({
         href="https://triple.guide/icons/favicon-152x152.png"
       />
       <link rel="canonical" href={canonicalUrl} />
-    </Fragment>
+    </Head>
   )
 }
