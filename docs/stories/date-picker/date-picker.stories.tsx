@@ -89,7 +89,7 @@ export default {
 }
 
 function padZero(num: number): string {
-  if (num > 9){
+  if (num > 9) {
     return num.toString()
   }
   return `0${num}`
