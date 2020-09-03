@@ -18,7 +18,7 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "csstype": "2.6.9",
+    "csstype": "^3.0.3",
     "styled-components": ">=4.4.1 < 6"
   }
 }
