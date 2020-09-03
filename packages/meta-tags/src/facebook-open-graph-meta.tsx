@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import Head from 'next/head'
 
 export function FacebookOpenGraphMeta({
   title = '실시간 여행 가이드 - 트리플',
@@ -22,7 +23,7 @@ export function FacebookOpenGraphMeta({
   fbAppId?: string
 }) {
   return (
-    <Fragment>
+    <Head>
       <meta property="og:title" content={title} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content={type} />
@@ -36,6 +37,6 @@ export function FacebookOpenGraphMeta({
       ) : null}
       <meta property="og:description" content={description} />
       <meta property="fb:app_id" content={fbAppId} />
-    </Fragment>
+    </Head>
   )
 }
