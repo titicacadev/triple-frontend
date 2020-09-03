@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import Head from 'next/head'
 
 export function FacebookAppLinkMeta({
   appName = '트리플',
@@ -14,7 +15,7 @@ export function FacebookAppLinkMeta({
   appUrlScheme?: string
 }) {
   return (
-    <Fragment>
+    <Head>
       <meta property="al:ios:app_name" content={appName} />
       <meta property="al:android:app_name" content={appName} />
       <meta property="al:ios:url" content={`${appUrlScheme}://${appPath}`} />
@@ -24,6 +25,6 @@ export function FacebookAppLinkMeta({
         content={`${appUrlScheme}://${appPath}`}
       />
       <meta property="al:android:package" content={appPackageName} />
-    </Fragment>
+    </Head>
   )
 }
