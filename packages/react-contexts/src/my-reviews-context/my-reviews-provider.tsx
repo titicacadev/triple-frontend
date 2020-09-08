@@ -17,12 +17,12 @@ export default function MyReviewsProvider({
 }>) {
   const [myReviews, setMyReviews] = useState(initialMyReviews)
   const updateReviewedStatus = useCallback(
-    async ({ id }: { id: string }) => {
-      const reviewed = await checkIfReviewed({ id })
+    async ({ id: resourceId }: { id: string }) => {
+      const reviewed = await checkIfReviewed({ resourceId })
 
       setMyReviews((previousMyReviews) => ({
         ...previousMyReviews,
-        [id]: reviewed,
+        [resourceId]: reviewed,
       }))
     },
     [setMyReviews],
