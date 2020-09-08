@@ -7,7 +7,6 @@ import {
   useUserAgentContext,
   useEventTrackingContext,
   useHistoryFunctions,
-  useMyReviewsContext,
 } from '@titicaca/react-contexts'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'
 
@@ -100,7 +99,6 @@ export default function ReviewContainer({
   >([])
   const { navigate } = useHistoryFunctions()
   const { show } = useTransitionModal()
-  const { deleteMyReview } = useMyReviewsContext()
 
   const setMyReview = useCallback(
     (review) =>
@@ -360,7 +358,6 @@ export default function ReviewContainer({
           resourceId={resourceId}
           notifyReviewDeleted={(resourceId, reviewId) => {
             reviewId === myReview.id && setMyReview(null)
-            deleteMyReview(resourceId)
             notifyReviewDeleted(resourceId, reviewId)
           }}
           onReviewEdit={onReviewWrite}
