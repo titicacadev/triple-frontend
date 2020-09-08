@@ -39,9 +39,7 @@ export default function MyReviewActionSheet({
 }: MyReviewActionSheetProps) {
   const uriHash = useURIHash()
   const { replace, back } = useHistoryFunctions()
-  const {
-    actions: { deleteMyReview },
-  } = useMyReviewsContext()
+  const { deleteMyReview } = useMyReviewsContext()
 
   const handleEditMenuClick = () => {
     const params = qs.stringify({
@@ -66,7 +64,7 @@ export default function MyReviewActionSheet({
     if (response.ok) {
       notifyReviewDeleted(resourceId, myReview.id)
 
-      deleteMyReview({ id: myReview.id })
+      deleteMyReview({ id: myReview.id, resourceId, resourceType })
     }
 
     back()
