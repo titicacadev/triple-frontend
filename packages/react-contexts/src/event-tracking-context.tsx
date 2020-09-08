@@ -1,5 +1,10 @@
 import React, { ComponentType } from 'react'
 import { DeepPartial } from 'utility-types'
+import {
+  trackScreen as nativeTrackScreen,
+  trackEvent as nativeTrackEvent,
+  viewItem as nativeViewItem,
+} from '@titicaca/triple-web-to-native-interfaces'
 
 interface FAParams {
   category: string
@@ -12,7 +17,7 @@ type GAParams = (string | undefined)[]
 const NOOP = () => {}
 
 interface EventTrackingContextValue {
-  trackScreen: EventTrackingProviderProps['trackScreen']
+  trackScreen: (screenPath: string) => void
   trackEvent: (params: { ga?: GAParams; fa?: Partial<FAParams> }) => void
   trackSimpleEvent: (params: {
     action?: string
@@ -33,9 +38,6 @@ const DEFAULT_EVENT_NAME = 'user_interaction'
 
 interface EventTrackingProviderProps {
   pageLabel: string
-  trackScreen: (path: string) => void
-  trackEvent: (params: { ga?: GAParams; fa?: FAParams }) => void
-  viewItem: Function
 }
 
 interface EventTrackingProviderState {
@@ -60,7 +62,7 @@ export class EventTrackingProvider extends React.PureComponent<
     super(props)
 
     this.value = {
-      viewItem: props.viewItem,
+      viewItem: nativeViewItem,
       trackScreen: this.trackScreen,
       trackEvent: this.trackEvent,
       trackSimpleEvent: this.trackSimpleEvent,
@@ -68,10 +70,6 @@ export class EventTrackingProvider extends React.PureComponent<
   }
 
   trackScreen: EventTrackingContextValue['trackScreen'] = (path: string) => {
-    const {
-      props: { trackScreen: nativeTrackScreen },
-    } = this
-
     if (window.ga) {
       window.ga('send', 'pageview')
     } else {
@@ -81,7 +79,6 @@ export class EventTrackingProvider extends React.PureComponent<
 
   trackEvent: EventTrackingContextValue['trackEvent'] = ({ ga, fa }) => {
     const {
-      props: { trackEvent: nativeTrackEvent },
       state: { pageLabel },
     } = this
 
@@ -107,7 +104,6 @@ export class EventTrackingProvider extends React.PureComponent<
     ...rest
   }) => {
     const {
-      props: { trackEvent: nativeTrackEvent },
       state: { pageLabel },
     } = this
 
@@ -120,7 +116,7 @@ export class EventTrackingProvider extends React.PureComponent<
           category: pageLabel,
           /* eslint-disable-next-line @typescript-eslint/camelcase */
           event_name: DEFAULT_EVENT_NAME,
-          action,
+          action: action as string,
           ...rest,
         },
       })
