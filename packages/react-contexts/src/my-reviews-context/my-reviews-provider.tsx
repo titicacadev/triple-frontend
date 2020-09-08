@@ -62,7 +62,7 @@ export default function MyReviewsProvider({
           reviewsCount: reviewsCount || 0,
           reviewsRating: reviewsRating || 0,
         }
-      } else if (reviewed) {
+      } else if (currentState) {
         return {
           reviewed,
           reviewsCount: (reviewsCount || 0) + 1,
