@@ -1,5 +1,11 @@
 import React from 'react'
 import { DeepPartial } from 'utility-types'
+import {
+  notifyScraped,
+  notifyUnscraped,
+  subscribeScrapedChangeEvent,
+  unsubscribeScrapedChangeEvent,
+} from '@titicaca/triple-web-to-native-interfaces'
 
 import { Target } from './types'
 import {
@@ -26,16 +32,6 @@ interface ScrapsContext {
 
 interface ScrapsProviderProps {
   scraps?: Scraps
-  scrape: (target: Target) => Promise<Response>
-  unscrape: (target: Target) => Promise<Response>
-  notifyScraped: (id: string) => void
-  notifyUnscraped: (id: string) => void
-  subscribeScrapedChangeEvent: (
-    handler: (target: { id: string; scraped: boolean }) => void,
-  ) => void
-  unsubscribeScrapedChangeEvent: (
-    handler: (target: { id: string; scraped: boolean }) => void,
-  ) => void
 }
 
 const Context = React.createContext<ScrapsContext>({
@@ -114,10 +110,6 @@ const reducer = (
 
 export function ScrapsProvider({
   scraps: initialScraps,
-  notifyScraped,
-  notifyUnscraped,
-  subscribeScrapedChangeEvent,
-  unsubscribeScrapedChangeEvent,
   children,
 }: React.PropsWithChildren<ScrapsProviderProps>) {
   const [{ scraps, updating }, dispatch] = React.useReducer(reducer, {
@@ -170,7 +162,7 @@ export function ScrapsProvider({
         dispatch({ type: SCRAPE_FAILED, id })
       }
     },
-    [notifyScraped, updating],
+    [updating],
   )
 
   const unscrape = React.useCallback(
@@ -191,7 +183,7 @@ export function ScrapsProvider({
         dispatch({ type: UNSCRAPE_FAILED, id })
       }
     },
-    [notifyUnscraped, updating],
+    [updating],
   )
 
   const handleSubscribeEvent = React.useCallback(
@@ -203,11 +195,7 @@ export function ScrapsProvider({
     subscribeScrapedChangeEvent(handleSubscribeEvent)
 
     return () => unsubscribeScrapedChangeEvent(handleSubscribeEvent)
-  }, [
-    handleSubscribeEvent,
-    subscribeScrapedChangeEvent,
-    unsubscribeScrapedChangeEvent,
-  ])
+  }, [handleSubscribeEvent])
 
   const value: ScrapsContext = React.useMemo(
     () => ({
