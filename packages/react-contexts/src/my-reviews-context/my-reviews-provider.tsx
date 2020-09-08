@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback, useMemo } from 'react'
 import {
   subscribe,
   unsubscribe,
@@ -90,11 +90,14 @@ export default function MyReviewsProvider({
     [setMyReviews],
   )
 
-  const value = {
-    myReviews,
-    deriveCurrentStateAndCount,
-    deleteMyReview: handleMyReviewDelete,
-  }
+  const value = useMemo(
+    () => ({
+      myReviews,
+      deriveCurrentStateAndCount,
+      deleteMyReview: handleMyReviewDelete,
+    }),
+    [myReviews, deriveCurrentStateAndCount, handleMyReviewDelete],
+  )
 
   return <Context.Provider value={value}>{children}</Context.Provider>
 }
