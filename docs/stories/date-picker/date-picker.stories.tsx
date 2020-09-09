@@ -1,11 +1,5 @@
 import React, { useState } from 'react'
-import {
-  array,
-  text,
-  number,
-  button,
-  boolean,
-} from '@storybook/addon-knobs'
+import { array, text, number, button, boolean } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { DayPicker, RangePicker } from '@titicaca/date-picker'
 
@@ -100,12 +94,16 @@ export function DayPickerStory() {
   const beforeBlock: string | undefined = useOptionalKnob({
     name: 'beforeBlock',
     knob: text,
-    initialValue: `${today.getFullYear()}-${padZero(today.getMonth() + 1)}-${padZero(today.getDate())}`,
+    initialValue: `${today.getFullYear()}-${padZero(
+      today.getMonth() + 1,
+    )}-${padZero(today.getDate())}`,
   })
   const afterBlock: string | undefined = useOptionalKnob({
     name: 'afterBlock',
     knob: text,
-    initialValue: `${initialAfterBlock.getFullYear()}-${padZero(initialAfterBlock.getMonth() + 1)}-${padZero(initialAfterBlock.getDate())}`,
+    initialValue: `${initialAfterBlock.getFullYear()}-${padZero(
+      initialAfterBlock.getMonth() + 1,
+    )}-${padZero(initialAfterBlock.getDate())}`,
   })
   const disabledDays = useOptionalKnob({
     name: 'disabledDays',
@@ -157,12 +155,16 @@ export function RangePickerStory() {
   const beforeBlock: string | undefined = useOptionalKnob({
     name: 'beforeBlock',
     knob: text,
-    initialValue: `${today.getFullYear()}-${padZero(today.getMonth() + 1)}-${padZero(today.getDate())}`,
+    initialValue: `${today.getFullYear()}-${padZero(
+      today.getMonth() + 1,
+    )}-${padZero(today.getDate())}`,
   })
   const afterBlock: string | undefined = useOptionalKnob({
     name: 'afterBlock',
     knob: text,
-    initialValue: `${initialAfterBlock.getFullYear()}-${padZero(initialAfterBlock.getMonth() + 1)}-${padZero(initialAfterBlock.getDate())}`,
+    initialValue: `${initialAfterBlock.getFullYear()}-${padZero(
+      initialAfterBlock.getMonth() + 1,
+    )}-${padZero(initialAfterBlock.getDate())}`,
   })
   const disabledDays = useOptionalKnob({
     name: 'disabledDays',
