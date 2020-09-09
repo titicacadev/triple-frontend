@@ -23,7 +23,11 @@ export function ImageStateContextProvider({
   const [overlayMounted, setOverlayMounted] = useState(false)
 
   const value = useMemo(
-    () => ({ borderRadius, overlayMounted, setOverlayMounted }),
+    () => ({
+      borderRadius,
+      overlayMounted,
+      setOverlayMounted,
+    }),
     [borderRadius, overlayMounted],
   )
 
