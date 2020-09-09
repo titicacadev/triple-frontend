@@ -23,9 +23,9 @@ const Img = styled.img<{
 `
 
 export default function ImageImg(
-  props: Omit<Parameters<typeof Img>[0], 'borderRadius'>,
+  props: Omit<Parameters<typeof Img>[0], 'borderRadius' | 'dimmed'>,
 ) {
-  const { borderRadius } = useImageState()
+  const { borderRadius, overlayMounted } = useImageState()
 
-  return <Img {...props} borderRadius={borderRadius} />
+  return <Img {...props} borderRadius={borderRadius} dimmed={overlayMounted} />
 }
