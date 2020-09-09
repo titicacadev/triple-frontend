@@ -5,14 +5,13 @@ import { useImageState } from './context'
 import { useContentAbsolute } from './fixed-ratio-frame'
 
 const Img = styled.img<{
-  borderRadius?: number
+  borderRadius: number
   dimmed?: boolean
   absolute: boolean
 }>`
   width: 100%;
   height: 100%;
-  border-radius: ${({ borderRadius }) =>
-    borderRadius === 0 ? 0 : borderRadius || 6}px;
+  border-radius: ${({ borderRadius }) => borderRadius}px;
   object-fit: cover;
   opacity: ${({ dimmed }) => (dimmed ? 80 : 100)}%;
 

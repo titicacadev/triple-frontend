@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 
 interface ImageStateContextValue {
-  borderRadius: number | undefined
+  borderRadius: number
   overlayMounted: boolean
   setOverlayMounted: (mounted: boolean) => void
 }
@@ -24,7 +24,7 @@ export function ImageStateContextProvider({
 
   const value = useMemo(
     () => ({
-      borderRadius,
+      borderRadius: borderRadius ?? 6,
       overlayMounted,
       setOverlayMounted,
     }),
