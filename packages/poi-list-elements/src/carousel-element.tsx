@@ -5,7 +5,7 @@ import {
   Carousel,
   Text,
   Container,
-  ImageV2,
+  Image,
 } from '@titicaca/core-elements'
 import { RegularScrapButton } from '@titicaca/scrap-button'
 import { ListingPOI } from '@titicaca/type-definitions'
@@ -54,15 +54,15 @@ export default function PoiCarouselElement<
       onClick={onClick}
       onImpress={onImpress}
     >
-      <ImageV2>
-        <ImageV2.FixedRatioFrame frame={imageFrame || 'large'}>
+      <Image>
+        <Image.FixedRatioFrame frame={imageFrame || 'large'}>
           {image ? (
-            <ImageV2.Img src={image.sizes.large.url} alt={name || ''} />
+            <Image.Img src={image.sizes.large.url} alt={name || ''} />
           ) : (
-            <ImageV2.Placeholder src={POI_IMAGE_PLACEHOLDERS[type]} />
+            <Image.Placeholder src={POI_IMAGE_PLACEHOLDERS[type]} />
           )}
-        </ImageV2.FixedRatioFrame>
-      </ImageV2>
+        </Image.FixedRatioFrame>
+      </Image>
 
       <Text bold ellipsis alpha={1} margin={{ top: titleTopSpacing }}>
         {name}

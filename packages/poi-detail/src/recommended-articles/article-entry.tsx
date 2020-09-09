@@ -1,5 +1,5 @@
 import React from 'react'
-import { ImageV2 } from '@titicaca/core-elements'
+import { Image } from '@titicaca/core-elements'
 import { H3 } from '@titicaca/triple-document'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
@@ -30,19 +30,19 @@ export default function ArticleEntry({
       onChange={handleIntersectionChange}
     >
       <div>
-        <ImageV2 borderRadius={6}>
-          <ImageV2.FixedRatioFrame frame="huge" onClick={handleClick}>
-            <ImageV2.Img src={image && image.sizes.large.url} />
+        <Image borderRadius={6}>
+          <Image.FixedRatioFrame frame="huge" onClick={handleClick}>
+            <Image.Img src={image && image.sizes.large.url} />
 
-            <ImageV2.Overlay
+            <Image.Overlay
               padding={{ top: 16, bottom: 16, left: 16, right: 26 }}
             >
               <H3 lineHeight="25px" color="white">
                 {title}
               </H3>
-            </ImageV2.Overlay>
-          </ImageV2.FixedRatioFrame>
-        </ImageV2>
+            </Image.Overlay>
+          </Image.FixedRatioFrame>
+        </Image>
       </div>
     </StaticIntersectionObserver>
   )

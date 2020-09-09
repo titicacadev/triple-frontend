@@ -4,7 +4,7 @@ import {
   GlobalSizes,
   FrameRatioAndSizes,
   ImageSourceType,
-  ImageV2,
+  Image,
 } from '@titicaca/core-elements'
 import { ImageMeta as OriginalImageMeta } from '@titicaca/type-definitions'
 
@@ -122,48 +122,48 @@ export default class ImageCarousel extends React.PureComponent<
 
             return (
               <>
-                <ImageV2.Img
+                <Image.Img
                   src={sizes.large.url}
                   alt={title || description || undefined}
                 />
 
-                <ImageV2.SourceUrl>
+                <Image.SourceUrl>
                   {ImageSource ? (
                     <ImageSource sourceUrl={sourceUrl}>{sourceUrl}</ImageSource>
                   ) : (
                     sourceUrl
                   )}
-                </ImageV2.SourceUrl>
+                </Image.SourceUrl>
 
                 {overlayContent ? (
-                  <ImageV2.Overlay overlayType="dark">
+                  <Image.Overlay overlayType="dark">
                     {overlayContent}
-                  </ImageV2.Overlay>
+                  </Image.Overlay>
                 ) : null}
               </>
             )
           }
 
           return (
-            <ImageV2 key={i} borderRadius={0}>
+            <Image key={i} borderRadius={0}>
               {size ? (
-                <ImageV2.FixedDimensionsFrame
+                <Image.FixedDimensionsFrame
                   size={size}
                   onClick={onImageClick && ((e) => onImageClick(e, image))}
                 >
                   {renderContent()}
-                </ImageV2.FixedDimensionsFrame>
+                </Image.FixedDimensionsFrame>
               ) : null}
 
               {frame ? (
-                <ImageV2.FixedRatioFrame
+                <Image.FixedRatioFrame
                   frame={frame}
                   onClick={onImageClick && ((e) => onImageClick(e, image))}
                 >
                   {renderContent()}
-                </ImageV2.FixedRatioFrame>
+                </Image.FixedRatioFrame>
               ) : null}
-            </ImageV2>
+            </Image>
           )
         })}
       </Carousel>
