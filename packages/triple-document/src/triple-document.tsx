@@ -77,7 +77,6 @@ interface TripleDocumentProps {
   ) => void
   onTNAProductsFetch?: (slotId: number) => Promise<unknown>
   imageSourceComponent?: ImageSourceType
-  webUrlBase?: string
   deepLink?: string
   videoAutoPlay?: boolean
 }
@@ -116,7 +115,6 @@ export function TripleDocument({
   onTNAProductClick,
   onTNAProductsFetch,
   imageSourceComponent,
-  webUrlBase,
   deepLink,
   videoAutoPlay,
 }: TripleDocumentProps) {
@@ -137,7 +135,6 @@ export function TripleDocument({
               onTNAProductsFetch={onTNAProductsFetch}
               ImageSource={imageSourceComponent}
               deepLink={deepLink}
-              webUrlBase={webUrlBase}
               videoAutoPlay={videoAutoPlay}
             />
           )
