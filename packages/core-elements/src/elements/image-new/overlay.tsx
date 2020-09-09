@@ -1,0 +1,60 @@
+import React, { PropsWithChildren } from 'react'
+import styled, { css } from 'styled-components'
+
+import { MarginPadding } from '../../commons'
+import { paddingMixin } from '../../mixins'
+import { useImageState } from './context'
+
+type OverlayType = 'gradient' | 'dark'
+
+const OverlayStyle: { [key in OverlayType]: ReturnType<typeof css> } = {
+  dark: css`
+    background-color: rgba(0, 0, 0, 0.8);
+  `,
+  gradient: css`
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0)
+    );
+  `,
+}
+
+const OverlayContainer = styled.div<{
+  borderRadius?: number
+  padding?: MarginPadding
+  overlayType?: OverlayType
+}>`
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  border-radius: ${({ borderRadius }) =>
+    borderRadius === 0 ? 0 : borderRadius || 6}px;
+
+  ${({ overlayType = 'gradient' }) => OverlayStyle[overlayType]}
+
+  ${paddingMixin}
+`
+
+export default function ImageOverlay({
+  overlayType = 'gradient',
+  padding,
+  children,
+}: PropsWithChildren<{
+  overlayType?: OverlayType
+  padding?: MarginPadding
+}>) {
+  const { borderRadius } = useImageState()
+  return (
+    <OverlayContainer
+      overlayType={overlayType}
+      padding={padding}
+      borderRadius={borderRadius}
+    >
+      {children}
+    </OverlayContainer>
+  )
+}
