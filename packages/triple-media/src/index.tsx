@@ -3,7 +3,7 @@ import {
   Video,
   FrameRatioAndSizes,
   ImageSourceType,
-  ImageV2,
+  Image,
 } from '@titicaca/core-elements'
 
 export interface MediaMeta {
@@ -73,14 +73,14 @@ export default function Media({
   }
 
   return (
-    <ImageV2 borderRadius={borderRadius}>
-      <ImageV2.FixedRatioFrame
+    <Image borderRadius={borderRadius}>
+      <Image.FixedRatioFrame
         frame={frame}
         onClick={onClick && ((e: React.SyntheticEvent) => onClick(e, media))}
       >
-        <ImageV2.Img src={sizes.large.url} />
+        <Image.Img src={sizes.large.url} />
 
-        <ImageV2.SourceUrl>
+        <Image.SourceUrl>
           {ImageSource ? (
             <ImageSource sourceUrl={sourceUrl || ''}>
               {sourceUrl || ''}
@@ -88,8 +88,8 @@ export default function Media({
           ) : (
             sourceUrl
           )}
-        </ImageV2.SourceUrl>
-      </ImageV2.FixedRatioFrame>
-    </ImageV2>
+        </Image.SourceUrl>
+      </Image.FixedRatioFrame>
+    </Image>
   )
 }

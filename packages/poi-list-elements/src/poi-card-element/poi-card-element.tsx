@@ -4,7 +4,7 @@ import {
   Container,
   Text,
   Card as OriginalCard,
-  ImageV2,
+  Image,
 } from '@titicaca/core-elements'
 import {
   ListingPOI,
@@ -106,10 +106,10 @@ export default function POICardElement({
         onClick={onClick}
       >
         <ImageContainer clearing>
-          <ImageV2>
-            <ImageV2.FixedDimensionsFrame width={IMAGE_WIDTH} height={72}>
+          <Image>
+            <Image.FixedDimensionsFrame width={IMAGE_WIDTH} height={72}>
               {image ? (
-                <ImageV2.Img
+                <Image.Img
                   src={
                     'smallSquare' in image.sizes
                       ? image.sizes.smallSquare.url
@@ -117,10 +117,10 @@ export default function POICardElement({
                   }
                 />
               ) : (
-                <ImageV2.Placeholder src={IMAGE_PLACEHOLDERS[type]} />
+                <Image.Placeholder src={IMAGE_PLACEHOLDERS[type]} />
               )}
-            </ImageV2.FixedDimensionsFrame>
-          </ImageV2>
+            </Image.FixedDimensionsFrame>
+          </Image>
 
           {regionId ? (
             <ScrapButtonContainer>

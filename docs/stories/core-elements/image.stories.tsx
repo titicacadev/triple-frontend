@@ -1,14 +1,6 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { text, boolean, number, select } from '@storybook/addon-knobs'
-import {
-  Image,
-  GlobalSizes,
-  FrameRatioAndSizes,
-  ImageSource,
-  ImageSourceType,
-} from '@titicaca/core-elements'
-import { action } from '@storybook/addon-actions'
+import { Image, GlobalSizes, FrameRatioAndSizes } from '@titicaca/core-elements'
+import { boolean, select, number } from '@storybook/addon-knobs'
 
 const GLOBAL_SIZES: GlobalSizes[] = [
   'mini',
@@ -20,8 +12,6 @@ const GLOBAL_SIZES: GlobalSizes[] = [
   'huge',
   'massive',
 ]
-
-const ROUND_SIZES: GlobalSizes[] = ['small', 'medium']
 
 const FRAME_RATIO_AND_SIZES: FrameRatioAndSizes[] = [
   '10:11',
@@ -41,112 +31,160 @@ const FRAME_RATIO_AND_SIZES: FrameRatioAndSizes[] = [
   'small',
 ]
 
-const FRAME_GROUP = '틀 관련 props'
-
-enum IMAGE_SOURCE_TYPE {
-  CORE_ELEMENTS = 'core-elements',
-  CUSTOM_NEW = 'custom_new',
-  CUSTOM_OLD = 'custom_old',
-  UNDEFINED = 'undefined',
+export default {
+  title: 'Image 컴포넌트',
 }
 
-const IMAGE_SOURCE_COMPONENTS: {
-  [key in IMAGE_SOURCE_TYPE]: ImageSourceType | undefined
-} = {
-  [IMAGE_SOURCE_TYPE.CORE_ELEMENTS]: ImageSource,
-  [IMAGE_SOURCE_TYPE.CUSTOM_OLD]: function OldCustomImageSource({
-    children,
-  }: {
-    children: string
-  }) {
-    return `출처 ${children.replace(/^https?:\/\//, '')}`
-  },
-  [IMAGE_SOURCE_TYPE.CUSTOM_NEW]: function CustomImageSource({
-    sourceUrl,
-  }: {
-    sourceUrl?: string
-  }) {
-    return (
-      <div style={{ fontSize: 20, border: 'solid 1px red', overflow: 'auto' }}>
-        커스텀 컴포넌트입니다.
-        {sourceUrl}
-      </div>
-    )
-  },
-  [IMAGE_SOURCE_TYPE.UNDEFINED]: undefined,
+export function baseExample() {
+  return (
+    <Image
+      borderRadius={
+        boolean('borderRadius prop 사용', false)
+          ? number('borderRadius', 0)
+          : undefined
+      }
+    >
+      <Image.Img src="https://triple-corp.com/static/images/img-bg-0.jpg" />
+    </Image>
+  )
 }
 
-storiesOf('Core-Elements | Image', module)
-  .add('기본', () => {
-    const useFixedDemensions = boolean('틀 고정', true, FRAME_GROUP)
-    const useDirectDemension =
-      useFixedDemensions && boolean('width, height 사용', false, FRAME_GROUP)
-
-    return (
-      <Image
-        src={text('src', 'https://triple-corp.com/static/images/img-bg-0.jpg')}
-        borderRadius={number('borderRadius', 6)}
-        sourceUrl={text('sourceUrl', 'https://triple-corp.com')}
-        ImageSource={
-          IMAGE_SOURCE_COMPONENTS[
-            select(
-              'ImageSource',
-              [
-                IMAGE_SOURCE_TYPE.CORE_ELEMENTS,
-                IMAGE_SOURCE_TYPE.CUSTOM_OLD,
-                IMAGE_SOURCE_TYPE.CUSTOM_NEW,
-                IMAGE_SOURCE_TYPE.UNDEFINED,
-              ],
-              IMAGE_SOURCE_TYPE.UNDEFINED,
-            )
-          ]
-        }
-        withLinkIndicator={boolean('withLinkIndicator', false)}
-        floated={select('floated', ['right', 'left', 'none'], 'none')}
-        margin={{
-          top: number('margin-top', 0),
-          right: number('margin-right', 0),
-          bottom: number('margin-bottom', 0),
-          left: number('margin-left', 0),
-        }}
-        asPlaceholder={boolean('asPlaceholder', false)}
-        alt={text('alt', '')}
+export function fixedRatioExample() {
+  return (
+    <Image>
+      <Image.FixedRatioFrame
         frame={
-          boolean('frame 사용', false, FRAME_GROUP)
-            ? select('frame', FRAME_RATIO_AND_SIZES, 'original', FRAME_GROUP)
+          boolean('frame 사용', false)
+            ? select('frame', FRAME_RATIO_AND_SIZES, 'original')
             : undefined
         }
+      >
+        <Image.Img src="https://triple-corp.com/static/images/img-bg-0.jpg" />
+      </Image.FixedRatioFrame>
+    </Image>
+  )
+}
+
+export function fixedDimensionsExample() {
+  const withDirectDimensions = boolean('width, height 사용', false)
+
+  return (
+    <Image>
+      <Image.FixedDimensionsFrame
         size={
-          useFixedDemensions && !useDirectDemension
-            ? select('size', GLOBAL_SIZES, 'medium', FRAME_GROUP)
+          !withDirectDimensions
+            ? select('size', GLOBAL_SIZES, 'medium')
             : undefined
         }
         width={
-          useFixedDemensions && useDirectDemension
-            ? number('width', 500, undefined, FRAME_GROUP)
-            : undefined
+          withDirectDimensions ? number('width', 500, undefined) : undefined
         }
         height={
-          useFixedDemensions && useDirectDemension
-            ? number('height', 500, undefined, FRAME_GROUP)
-            : undefined
+          withDirectDimensions ? number('height', 500, undefined) : undefined
         }
-        onClick={action('onClick')}
-      />
-    )
-  })
-  .add('circular', () => {
-    const useDirectWidth = boolean('크기 직접 입력', false)
+      >
+        <Image.Img src="https://triple-corp.com/static/images/img-bg-0.jpg" />
+      </Image.FixedDimensionsFrame>
+    </Image>
+  )
+}
 
-    return (
-      <Image
-        circular
-        src={text('src', 'https://triple-corp.com/static/images/img-bg-0.jpg')}
-        floated={select('floated', ['right', 'left', 'none'], 'none')}
-        size={
-          !useDirectWidth ? select('size', ROUND_SIZES, 'medium') : undefined
-        }
-        width={useDirectWidth ? number('width', 20) : undefined}
-      />
-    )
-  })
+export function sourceUrlExample() {
+  return (
+    <>
+      <Image>
+        <Image.FixedRatioFrame frame="small">
+          <Image.Img src="https://triple-corp.com/static/images/img-bg-0.jpg" />
+
+          <Image.SourceUrl>출처: https://triple-corp.com</Image.SourceUrl>
+        </Image.FixedRatioFrame>
+      </Image>
+
+      <Image>
+        <Image.FixedRatioFrame frame="small" margin={{ top: 100 }}>
+          <Image.Img src="https://triple-corp.com/static/images/img-bg-0.jpg" />
+
+          <Image.SourceUrl>
+            <div
+              style={{
+                fontSize: 20,
+                border: 'solid 1px red',
+                overflow: 'auto',
+              }}
+            >
+              커스텀 컴포넌트입니다.
+              <br />
+              출처: https://triple-corp.com
+            </div>
+          </Image.SourceUrl>
+        </Image.FixedRatioFrame>
+      </Image>
+    </>
+  )
+}
+
+export function overlayExample() {
+  return (
+    <Image>
+      <Image.FixedRatioFrame frame="mini">
+        <Image.Img src="https://triple-corp.com/static/images/img-bg-0.jpg" />
+
+        <Image.Overlay
+          overlayType={select('overlayType', ['gradient', 'dark'], 'dark')}
+          padding={{ top: 20, bottom: 20 }}
+        >
+          <div style={{ fontSize: 14, color: 'white' }}>오버레이입니다.</div>
+        </Image.Overlay>
+      </Image.FixedRatioFrame>
+    </Image>
+  )
+}
+
+export function linkIndicatorExample() {
+  return (
+    <Image>
+      <Image.FixedRatioFrame frame="mini">
+        <Image.Img src="https://triple-corp.com/static/images/img-bg-0.jpg" />
+
+        <Image.LinkIndicator />
+      </Image.FixedRatioFrame>
+    </Image>
+  )
+}
+
+export function placeholderExample() {
+  return (
+    <>
+      <Image>
+        <Image.FixedRatioFrame frame="mini">
+          <Image.Placeholder src="https://assets.triple.guide/images/ico-blank-hotel@2x.png" />
+        </Image.FixedRatioFrame>
+      </Image>
+
+      <Image>
+        <Image.FixedDimensionsFrame
+          width={90}
+          height={160}
+          margin={{ top: 50 }}
+        >
+          <Image.Placeholder src="https://assets.triple.guide/images/ico-blank-hotel@2x.png" />
+        </Image.FixedDimensionsFrame>
+      </Image>
+    </>
+  )
+}
+
+export function circularImageExample() {
+  const withDirectDimensions = boolean('width 사용', false)
+  return (
+    <Image.Circular
+      src="https://triple-corp.com/static/images/img-bg-0.jpg"
+      size={
+        !withDirectDimensions
+          ? select('size', ['small', 'medium'], 'medium')
+          : undefined
+      }
+      width={withDirectDimensions ? number('width', 40) : undefined}
+    />
+  )
+}
