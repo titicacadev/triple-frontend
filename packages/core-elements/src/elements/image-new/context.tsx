@@ -3,10 +3,13 @@ import React, {
   PropsWithChildren,
   useMemo,
   useContext,
+  useState,
 } from 'react'
 
 interface ImageStateContextValue {
   borderRadius: number | undefined
+  overlayMounted: boolean
+  setOverlayMounted: (mounted: boolean) => void
 }
 
 const ImageStateContext = createContext<ImageStateContextValue | null>(null)
@@ -17,7 +20,12 @@ export function ImageStateContextProvider({
 }: PropsWithChildren<{
   borderRadius?: number
 }>) {
-  const value = useMemo(() => ({ borderRadius }), [borderRadius])
+  const [overlayMounted, setOverlayMounted] = useState(false)
+
+  const value = useMemo(
+    () => ({ borderRadius, overlayMounted, setOverlayMounted }),
+    [borderRadius, overlayMounted],
+  )
 
   return (
     <ImageStateContext.Provider value={value}>

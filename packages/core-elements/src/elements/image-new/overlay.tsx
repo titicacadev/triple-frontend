@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 
 import { MarginPadding } from '../../commons'
@@ -47,7 +47,16 @@ export default function ImageOverlay({
   overlayType?: OverlayType
   padding?: MarginPadding
 }>) {
-  const { borderRadius } = useImageState()
+  const { borderRadius, setOverlayMounted } = useImageState()
+
+  useEffect(() => {
+    setOverlayMounted(true)
+
+    return () => {
+      setOverlayMounted(false)
+    }
+  }, [setOverlayMounted])
+
   return (
     <OverlayContainer
       overlayType={overlayType}
