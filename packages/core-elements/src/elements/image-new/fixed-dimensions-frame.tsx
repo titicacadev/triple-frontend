@@ -17,7 +17,7 @@ const FixedDimensionsFrameContainer = styled.div<{
   size?: GlobalSizes
   width?: number
   height?: number
-  borderRadius?: number
+  borderRadius: number
   floated?: CSS.Property.Float
   margin?: MarginPadding
 }>`
@@ -31,7 +31,7 @@ const FixedDimensionsFrameContainer = styled.div<{
   height: ${({ height, size }) =>
     (height && `${height}px`) || (size ? IMAGE_HEIGHT_OPTIONS[size] : '')};
 
-  ${({ borderRadius }) => `border-radius: ${borderRadius ?? 6}px;`}
+  ${({ borderRadius }) => `border-radius: ${borderRadius}px;`}
 
   float: ${({ floated }) => floated || 'none'};
 

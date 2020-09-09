@@ -23,7 +23,7 @@ export function useContentAbsolute() {
 
 const FixedRatioFrameContainer = styled.div<{
   frame: FrameRatioAndSizes
-  borderRadius?: number
+  borderRadius: number
   overflowHidden?: boolean
   floated?: CSS.Property.Float
   margin?: MarginPadding
@@ -35,7 +35,7 @@ const FixedRatioFrameContainer = styled.div<{
 
   float: ${({ floated }) => floated || 'none'};
 
-  ${({ borderRadius }) => `border-radius: ${borderRadius ?? 6}px;`}
+  ${({ borderRadius }) => `border-radius: ${borderRadius}px;`}
 
   ${({ frame }) =>
     frame !== 'original' &&

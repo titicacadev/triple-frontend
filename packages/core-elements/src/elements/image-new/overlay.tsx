@@ -21,7 +21,7 @@ const OverlayStyle: { [key in OverlayType]: ReturnType<typeof css> } = {
 }
 
 const OverlayContainer = styled.div<{
-  borderRadius?: number
+  borderRadius: number
   padding?: MarginPadding
   overlayType?: OverlayType
 }>`
@@ -31,8 +31,7 @@ const OverlayContainer = styled.div<{
   width: 100%;
   height: 100%;
 
-  border-radius: ${({ borderRadius }) =>
-    borderRadius === 0 ? 0 : borderRadius || 6}px;
+  border-radius: ${({ borderRadius }) => borderRadius}px;
 
   ${({ overlayType = 'gradient' }) => OverlayStyle[overlayType]}
 
