@@ -129,7 +129,7 @@ export default class ImageCarousel extends React.PureComponent<
 
                 <Image.SourceUrl>
                   {ImageSource ? (
-                    <ImageSource sourceUrl={sourceUrl}>{sourceUrl}</ImageSource>
+                    <ImageSource sourceUrl={sourceUrl} />
                   ) : (
                     sourceUrl
                   )}
