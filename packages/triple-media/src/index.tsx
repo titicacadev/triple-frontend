@@ -80,15 +80,15 @@ export default function Media({
       >
         <Image.Img src={sizes.large.url} />
 
-        <Image.SourceUrl>
-          {ImageSource ? (
-            <ImageSource sourceUrl={sourceUrl || ''}>
-              {sourceUrl || ''}
-            </ImageSource>
-          ) : (
-            sourceUrl
-          )}
-        </Image.SourceUrl>
+        {sourceUrl ? (
+          <Image.SourceUrl>
+            {ImageSource ? (
+              <ImageSource sourceUrl={sourceUrl}>{sourceUrl}</ImageSource>
+            ) : (
+              sourceUrl
+            )}
+          </Image.SourceUrl>
+        ) : null}
       </Image.FixedRatioFrame>
     </Image>
   )
