@@ -6,7 +6,9 @@ import {
   LayeringMixinProps,
 } from '@titicaca/core-elements'
 
-const AppBannerFrame = styled.header<{ fixed?: boolean; maxWidth?: number }>`
+const AppBannerFrame = styled.header<
+  { fixed?: boolean; maxWidth?: number } & LayeringMixinProps
+>`
   background-color: #ffffff;
   border-bottom: 1px solid #efefef;
   height: 60px;
