@@ -1,13 +1,19 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { Text } from '@titicaca/core-elements'
+import {
+  Text,
+  layeringMixin,
+  LayeringMixinProps,
+} from '@titicaca/core-elements'
 
 const AppBannerFrame = styled.header<{ fixed?: boolean; maxWidth?: number }>`
   background-color: #ffffff;
   border-bottom: 1px solid #efefef;
   height: 60px;
   position: sticky;
-  z-index: 1;
+
+  ${layeringMixin(0)}
+
   ${({ fixed }) =>
     fixed &&
     css`
@@ -68,6 +74,8 @@ export default function AppBanner({
   cta,
   href,
   onCTAClick,
+  zTier,
+  zIndex = 1,
   ...props
 }: {
   title?: string
@@ -75,9 +83,9 @@ export default function AppBanner({
   cta?: string
   href?: string
   onCTAClick?: (e?: React.SyntheticEvent) => any
-}) {
+} & LayeringMixinProps) {
   return (
-    <AppBannerFrame {...props}>
+    <AppBannerFrame {...props} zTier={zTier} zIndex={zIndex}>
       <Logo />
       <ContentContainer>
         <Text
