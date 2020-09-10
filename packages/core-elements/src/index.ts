@@ -4,12 +4,15 @@ export * from './elements/content-elements'
 export * from './elements/hr'
 export * from './elements/checkbox'
 export * from './elements/image'
+export {
+  default as ImageSource,
+  ImageSourceType,
+} from './elements/image-source'
 export { default as Radio } from './elements/radio'
 export { default as GenderSelector } from './elements/gender-selector'
 export { default as Section } from './elements/section'
 export { default as Text, TextProps } from './elements/text'
 export { default as Tag, TagColors } from './elements/tag'
-export { default as ImageSource } from './elements/image-source'
 export { default as Label, LabelColor } from './elements/label'
 export { default as Icon } from './elements/icon'
 export { default as List } from './elements/list'

@@ -82,11 +82,7 @@ export default function Media({
 
         {sourceUrl ? (
           <Image.SourceUrl>
-            {ImageSource ? (
-              <ImageSource sourceUrl={sourceUrl}>{sourceUrl}</ImageSource>
-            ) : (
-              sourceUrl
-            )}
+            {ImageSource ? <ImageSource sourceUrl={sourceUrl} /> : sourceUrl}
           </Image.SourceUrl>
         ) : null}
       </Image.FixedRatioFrame>
