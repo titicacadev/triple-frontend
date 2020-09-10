@@ -6,7 +6,11 @@ import React, {
 } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import styled from 'styled-components'
-import { Navbar } from '@titicaca/core-elements'
+import {
+  Navbar,
+  layeringMixin,
+  LayeringMixinProps,
+} from '@titicaca/core-elements'
 
 type NavbarIcon = 'close' | 'back'
 
@@ -24,14 +28,13 @@ const popupContainerTransitionConfig = `
   transition: transform ${TRANSITION_DURATION}ms ease-out;
 `
 
-const PopupContainer = styled.div`
+const PopupContainer = styled.div<LayeringMixinProps>`
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   background-color: #fff;
-  z-index: 10;
   user-select: none;
 
   overflow-y: auto;
@@ -79,6 +82,8 @@ const PopupContainer = styled.div`
     ${inactivePopupContainerStyle}
     display: none;
   }
+
+  ${layeringMixin(2)}
 `
 
 export default function Popup({
@@ -89,14 +94,18 @@ export default function Popup({
   title,
   noNavbar,
   children,
-}: PropsWithChildren<{
-  open: boolean
-  onClose: (e: SyntheticEvent) => void
-  borderless?: boolean
-  title?: string
-  icon?: NavbarIcon
-  noNavbar?: boolean
-}>) {
+  zTier,
+  zIndex,
+}: PropsWithChildren<
+  {
+    open: boolean
+    onClose: (e: SyntheticEvent) => void
+    borderless?: boolean
+    title?: string
+    icon?: NavbarIcon
+    noNavbar?: boolean
+  } & LayeringMixinProps
+>) {
   const popupRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -113,7 +122,7 @@ export default function Popup({
       appear
     >
       {/* https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451 */}
-      <PopupContainer ref={popupRef}>
+      <PopupContainer ref={popupRef} zTier={zTier} zIndex={zIndex}>
         {noNavbar ? null : (
           <Navbar borderless={borderless} title={title}>
             <Navbar.Item floated="left" icon={icon} onClick={onClose} />
