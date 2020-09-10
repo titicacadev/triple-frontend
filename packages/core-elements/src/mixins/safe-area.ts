@@ -1,12 +1,7 @@
 import { css } from 'styled-components'
 
-import { MarginPadding } from './../commons'
+import { MarginPadding } from '../commons'
 import { unit } from '../utils/unit'
-
-export * from './text-style'
-export * from './box'
-export * from './margin-padding'
-export * from './positioning'
 
 export const safeAreaInsetMixin = css<{
   padding?: MarginPadding
