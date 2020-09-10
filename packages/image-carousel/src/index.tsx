@@ -1,10 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import {
-  Image,
   GlobalSizes,
   FrameRatioAndSizes,
   ImageSourceType,
+  ImageV2,
 } from '@titicaca/core-elements'
 import { ImageMeta as OriginalImageMeta } from '@titicaca/type-definitions'
 
@@ -112,27 +112,58 @@ export default class ImageCarousel extends React.PureComponent<
           const size = globalSize || imageSize
           const frame = size ? undefined : globalFrame || imageFrame
 
+          const renderContent = () => {
+            const overlayContent = showMoreRenderer
+              ? showMoreRenderer({
+                  currentIndex: i,
+                  totalCount,
+                })
+              : null
+
+            return (
+              <>
+                <ImageV2.Img
+                  src={sizes.large.url}
+                  alt={title || description || undefined}
+                />
+
+                <ImageV2.SourceUrl>
+                  {ImageSource ? (
+                    <ImageSource sourceUrl={sourceUrl}>{sourceUrl}</ImageSource>
+                  ) : (
+                    sourceUrl
+                  )}
+                </ImageV2.SourceUrl>
+
+                {overlayContent ? (
+                  <ImageV2.Overlay overlayType="dark">
+                    {overlayContent}
+                  </ImageV2.Overlay>
+                ) : null}
+              </>
+            )
+          }
+
           return (
-            <Image
-              key={i}
-              src={sizes.large.url}
-              sourceUrl={sourceUrl}
-              size={size}
-              frame={frame}
-              ImageSource={ImageSource}
-              borderRadius={0}
-              onClick={onImageClick && ((e) => onImageClick(e, image))}
-              overlay={
-                showMoreRenderer
-                  ? showMoreRenderer({
-                      currentIndex: i,
-                      totalCount,
-                    })
-                  : null
-              }
-              overlayType="dark"
-              alt={title || description || undefined}
-            />
+            <ImageV2 key={i} borderRadius={0}>
+              {size ? (
+                <ImageV2.FixedDimensionsFrame
+                  size={size}
+                  onClick={onImageClick && ((e) => onImageClick(e, image))}
+                >
+                  {renderContent()}
+                </ImageV2.FixedDimensionsFrame>
+              ) : null}
+
+              {frame ? (
+                <ImageV2.FixedRatioFrame
+                  frame={frame}
+                  onClick={onImageClick && ((e) => onImageClick(e, image))}
+                >
+                  {renderContent()}
+                </ImageV2.FixedRatioFrame>
+              ) : null}
+            </ImageV2>
           )
         })}
       </Carousel>

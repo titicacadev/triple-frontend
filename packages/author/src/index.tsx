@@ -1,5 +1,10 @@
 import React from 'react'
-import { Container, Text, Image, MarginPadding } from '@titicaca/core-elements'
+import {
+  Container,
+  Text,
+  MarginPadding,
+  ImageV2,
+} from '@titicaca/core-elements'
 
 import AuthorIntro from './author-intro'
 
@@ -25,9 +30,8 @@ export default function Author({
   return (
     <Container margin={margin}>
       {image && (
-        <Image
+        <ImageV2.Circular
           floated="right"
-          circular
           width={45}
           src={image.sizes.large.url}
         />

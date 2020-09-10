@@ -1,6 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Section, Container, List, Image, Text } from '@titicaca/core-elements'
+import {
+  Section,
+  Container,
+  List,
+  Text,
+  ImageV2,
+} from '@titicaca/core-elements'
 import { H1, H3 } from '@titicaca/triple-document'
 import {
   useEventTrackingContext,
@@ -53,8 +59,13 @@ export default function SocialReviews({
                 margin={{ left: 20 }}
                 padding={{ top: 20, bottom: 20 }}
               >
-                <Image src={imageUrl} frame="big" borderRadius={4} />
+                <ImageV2 borderRadius={4}>
+                  <ImageV2.FixedRatioFrame frame="big">
+                    <ImageV2.Img src={imageUrl} alt={`${title} 썸네일`} />
+                  </ImageV2.FixedRatioFrame>
+                </ImageV2>
               </Container>
+
               <Container padding={{ top: 20 }}>
                 <H3 maxLines={2}>{title}</H3>
                 <Text size="small" alpha={0.5} margin={{ top: 8 }}>

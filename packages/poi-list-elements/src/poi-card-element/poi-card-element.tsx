@@ -2,9 +2,9 @@ import React, { MouseEventHandler } from 'react'
 import styled from 'styled-components'
 import {
   Container,
-  Image,
   Text,
   Card as OriginalCard,
+  ImageV2,
 } from '@titicaca/core-elements'
 import {
   ListingPOI,
@@ -106,19 +106,21 @@ export default function POICardElement({
         onClick={onClick}
       >
         <ImageContainer clearing>
-          <Image
-            size="small"
-            width={IMAGE_WIDTH}
-            height={72}
-            asPlaceholder={!image}
-            src={
-              image
-                ? 'smallSquare' in image.sizes
-                  ? image.sizes.smallSquare.url
-                  : image.sizes.small_square.url
-                : IMAGE_PLACEHOLDERS[type]
-            }
-          />
+          <ImageV2>
+            <ImageV2.FixedDimensionsFrame width={IMAGE_WIDTH} height={72}>
+              {image ? (
+                <ImageV2.Img
+                  src={
+                    'smallSquare' in image.sizes
+                      ? image.sizes.smallSquare.url
+                      : image.sizes.small_square.url
+                  }
+                />
+              ) : (
+                <ImageV2.Placeholder src={IMAGE_PLACEHOLDERS[type]} />
+              )}
+            </ImageV2.FixedDimensionsFrame>
+          </ImageV2>
 
           {regionId ? (
             <ScrapButtonContainer>
