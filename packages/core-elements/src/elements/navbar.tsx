@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components'
 import { Color, getColor, brightGray } from '@titicaca/color-palette'
 
 import { FALLBACK_ACTION_CLASS_NAME } from '../constants'
+import { layeringMixin, LayeringMixinProps } from '../mixins'
 
 type NavbarProps = {
   maxWidth?: number
@@ -19,7 +20,9 @@ const NavbarFrame = styled.header<NavbarProps>`
   left: 0;
   right: 0;
   height: 52px;
-  z-index: 2;
+
+  ${layeringMixin(0)}
+
   ${({ borderless }) =>
     borderless
       ? ''
@@ -127,16 +130,19 @@ function Navbar({
   title,
   renderTitle,
   children,
+  zTier,
+  zIndex = 2,
   ...props
 }: {
   renderTitle?: (props?: any) => JSX.Element
   children?: React.ReactNode
 } & NavbarProps &
+  LayeringMixinProps &
   React.HTMLAttributes<HTMLDivElement>) {
   const childrenCount = React.Children.count(children)
 
   return (
-    <NavbarFrame {...props}>
+    <NavbarFrame zTier={zTier} zIndex={zIndex} {...props}>
       {renderTitle
         ? renderTitle()
         : title && (
