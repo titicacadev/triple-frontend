@@ -2,10 +2,10 @@ import React from 'react'
 import {
   CarouselSizes,
   FrameRatioAndSizes,
-  Image,
   Carousel,
   Text,
   Container,
+  ImageV2,
 } from '@titicaca/core-elements'
 import { RegularScrapButton } from '@titicaca/scrap-button'
 import { ListingPOI } from '@titicaca/type-definitions'
@@ -54,12 +54,16 @@ export default function PoiCarouselElement<
       onClick={onClick}
       onImpress={onImpress}
     >
-      <Image
-        frame={imageFrame || 'large'}
-        asPlaceholder={!image}
-        src={image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS[type]}
-        alt={name || ''}
-      />
+      <ImageV2>
+        <ImageV2.FixedRatioFrame frame={imageFrame || 'large'}>
+          {image ? (
+            <ImageV2.Img src={image.sizes.large.url} alt={name || ''} />
+          ) : (
+            <ImageV2.Placeholder src={POI_IMAGE_PLACEHOLDERS[type]} />
+          )}
+        </ImageV2.FixedRatioFrame>
+      </ImageV2>
+
       <Text bold ellipsis alpha={1} margin={{ top: titleTopSpacing }}>
         {name}
       </Text>

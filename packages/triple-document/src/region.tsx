@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { ResourceListItem, Image } from '@titicaca/core-elements'
+import { ResourceListItem, ImageV2 } from '@titicaca/core-elements'
 
 import { RegionData } from './types'
 
@@ -46,8 +46,7 @@ export function RegionListElement({
 
     return (
       <ResourceListItem key={id} onClick={onClick}>
-        <Image
-          circular
+        <ImageV2.Circular
           size="small"
           floated="left"
           src={style && style.backgroundImageUrl}

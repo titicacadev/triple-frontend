@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Container, Image } from '@titicaca/core-elements'
+import { Container, ImageV2 } from '@titicaca/core-elements'
 
 export type PoiType = 'attraction' | 'restaurant' | 'hotel'
 
@@ -35,10 +35,14 @@ export default function StaticMap({
 }) {
   return (
     <Container position="relative" onClick={onClick}>
-      <Image
-        frame="mini"
-        src={`/api/maps/static-map?size=320x120&scale=2&center=${lat}%2C${lon}&zoom=16`}
-      />
+      <ImageV2>
+        <ImageV2.FixedRatioFrame frame="mini">
+          <ImageV2.Img
+            src={`/api/maps/static-map?size=320x120&scale=2&center=${lat}%2C${lon}&zoom=16`}
+          />
+        </ImageV2.FixedRatioFrame>
+      </ImageV2>
+
       <Marker src={markerImage || (type && MARKER_SOURCES[type])} />
     </Container>
   )

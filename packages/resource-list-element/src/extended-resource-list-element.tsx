@@ -6,8 +6,8 @@ import {
   Label,
   LabelColor,
   Text,
-  Image,
   List,
+  ImageV2,
 } from '@titicaca/core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
 
@@ -89,21 +89,27 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
     <ResourceListItem onClick={onClick} {...props}>
       <Container position="relative">
         <Container clearing>
-          <Image
-            floated="right"
-            size="small"
-            width={90}
-            src={
-              image
-                ? ('small_square' in image.sizes
-                    ? image.sizes.small_square
-                    : image.sizes.smallSquare
-                  ).url
-                : imagePlaceholder
-            }
-            asPlaceholder={!image}
-            alt={name}
-          />
+          <ImageV2>
+            <ImageV2.FixedDimensionsFrame
+              size="small"
+              width={90}
+              floated="right"
+            >
+              {image ? (
+                <ImageV2.Img
+                  src={
+                    ('small_square' in image.sizes
+                      ? image.sizes.small_square
+                      : image.sizes.smallSquare
+                    ).url
+                  }
+                  alt={name}
+                />
+              ) : (
+                <ImageV2.Placeholder src={imagePlaceholder || ''} />
+              )}
+            </ImageV2.FixedDimensionsFrame>
+          </ImageV2>
 
           {!hideScrapButton && id && type ? (
             <Container position="absolute" positioning={{ top: 3, right: 3 }}>
