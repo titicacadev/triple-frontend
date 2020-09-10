@@ -12,7 +12,7 @@ type NavbarProps = {
   backgroundColor?: Color
 }
 
-const NavbarFrame = styled.header<NavbarProps>`
+const NavbarFrame = styled.header<NavbarProps & LayeringMixinProps>`
   background-color: ${({ backgroundColor = 'white' }) =>
     `rgba(${getColor(backgroundColor)})`};
   position: sticky;
