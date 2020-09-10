@@ -1,8 +1,14 @@
 import styled, { css } from 'styled-components'
-import { Text, Container, MarginPadding } from '@titicaca/core-elements'
+import {
+  Text,
+  Container,
+  MarginPadding,
+  layeringMixin,
+  LayeringMixinProps,
+} from '@titicaca/core-elements'
 import { white, white600, blue980, gray500 } from '@titicaca/color-palette'
 
-export const Overlay = styled.div`
+export const Overlay = styled.div<LayeringMixinProps>`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -10,15 +16,17 @@ export const Overlay = styled.div`
   right: 0;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
   background-color: ${gray500};
-  z-index: 10;
+
+  ${layeringMixin(1)}
 `
 
-export const BottomFixedContainer = styled.div`
+export const BottomFixedContainer = styled.div<LayeringMixinProps>`
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-  z-index: 11;
+
+  ${layeringMixin(0)}
 
   > * {
     margin: 0 auto;
@@ -192,12 +200,16 @@ interface FloatingButtonProps {
   margin?: MarginPadding
 }
 
-export const FloatingButton = styled.div<FloatingButtonProps>`
+export const FloatingButton = styled.div<
+  FloatingButtonProps & LayeringMixinProps
+>`
   height: 84px;
   border-radius: 42px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
   background-color: ${blue980};
   overflow: hidden;
+
+  ${layeringMixin(1)}
 
   @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
     display: none;
@@ -324,11 +336,15 @@ const chatbotContainerTransitionStyle = `
   transition: transform 300ms ease-out;
 `
 
-export const ChatbotContainer = styled.div<{ visibility: 1 | 0 }>`
+export const ChatbotContainer = styled.div<
+  { visibility: 1 | 0 } & LayeringMixinProps
+>`
   position: fixed;
   bottom: 10px;
   left: 10px;
   right: 10px;
+
+  ${layeringMixin(1)}
 
   ${ChatBalloon} {
     ${({ visibility }) =>
