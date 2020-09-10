@@ -1,5 +1,9 @@
 # 2.0.0
 
+### core-elements
+
+- `Image` 컴포넌트를 하위 컴포넌트를 조합하는 방식으로 개선
+
 ### date-picker
 
 - `beforeBlock`, `afterBlock` prop의 형식을 Date에서 string으로 바꿉니다.
