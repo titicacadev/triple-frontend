@@ -143,4 +143,17 @@ export const GlobalStyle = createGlobalStyle`
   strong {
     font-weight: bold;
   }
+
+  a[href] {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    margin: 0;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    font-size: inherit;
+  }
 `
