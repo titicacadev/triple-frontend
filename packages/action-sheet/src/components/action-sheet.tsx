@@ -59,7 +59,6 @@ const Sheet = styled.div<SheetProps & LayeringMixinProps>`
 
   &:not([class*='action-sheet-slide-']) {
     ${inactiveSheetSlideStyle}
-    display: none;
   }
 
   &.action-sheet-slide-appear,
@@ -87,7 +86,6 @@ const Sheet = styled.div<SheetProps & LayeringMixinProps>`
 
   &.action-sheet-slide-exit-done {
     ${inactiveSheetSlideStyle}
-    display: none;
   }
 
   ${paddingMixin}
@@ -140,7 +138,6 @@ const Overlay = styled.div<OverlayProps & LayeringMixinProps>`
 
   &:not([class*='action-sheet-fade-']) {
     ${inactiveOverlayFadeStyle}
-    display: none;
   }
 
   &.action-sheet-fade-appear,
@@ -169,7 +166,6 @@ const Overlay = styled.div<OverlayProps & LayeringMixinProps>`
 
   &.action-sheet-fade-exit-done {
     ${inactiveOverlayFadeStyle}
-    display: none;
   }
 `
 

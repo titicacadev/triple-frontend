@@ -247,7 +247,6 @@ export const FloatingButton = styled.div<
 
   &.floating-button-slide-exit-done {
     ${inactiveFloatingButtonStyle}
-    display: none;
   }
 `
 
@@ -359,7 +358,6 @@ export const ChatbotContainer = styled.div<
 
   &:not([class*='chatbot-slide-']) {
     ${inactiveChatbotContainerStyle}
-    display: none;
   }
 
   &.chatbot-slide-appear,
@@ -388,6 +386,5 @@ export const ChatbotContainer = styled.div<
 
   &.chatbot-slide-exit-done {
     ${inactiveChatbotContainerStyle}
-    display: none;
   }
 `
