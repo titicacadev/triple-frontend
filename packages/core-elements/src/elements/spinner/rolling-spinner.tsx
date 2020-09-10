@@ -2,8 +2,8 @@ import React, { useMemo, PropsWithChildren } from 'react'
 import styled, { keyframes } from 'styled-components'
 
 import { FALLBACK_ACTION_CLASS_NAME } from '../../constants'
+import { layeringMixin, LayeringMixinProps } from '../../mixins'
 import Container from '../container'
-import { layeringMixin, LayeringMixinProps } from '../mixins'
 
 const marquee = keyframes`
   0% {
