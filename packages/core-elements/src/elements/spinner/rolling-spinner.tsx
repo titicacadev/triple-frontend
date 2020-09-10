@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components'
 
 import { FALLBACK_ACTION_CLASS_NAME } from '../../constants'
 import Container from '../container'
+import { layeringMixin, LayeringMixinProps } from '../mixins'
 
 const marquee = keyframes`
   0% {
@@ -13,13 +14,14 @@ const marquee = keyframes`
  }
 `
 
-const RollingSpinnerFrame = styled.div`
+const RollingSpinnerFrame = styled.div<LayeringMixinProps>`
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 9999;
+
+  ${layeringMixin(10)}
 `
 
 const RollingSpinnerContainer = styled.div<{ size: number }>`
@@ -120,12 +122,16 @@ export default function RollingSpinner({
   imageUrls,
   size = 36,
   duration = 50,
+  zTier,
+  zIndex,
   children,
-}: PropsWithChildren<{
-  size?: number
-  duration?: number
-  imageUrls: string[]
-}>) {
+}: PropsWithChildren<
+  {
+    size?: number
+    duration?: number
+    imageUrls: string[]
+  } & LayeringMixinProps
+>) {
   const images = useMemo(
     () =>
       [...Array(5).keys()].map((_, idx) => {
@@ -141,7 +147,11 @@ export default function RollingSpinner({
   )
 
   return (
-    <RollingSpinnerFrame className={FALLBACK_ACTION_CLASS_NAME}>
+    <RollingSpinnerFrame
+      className={FALLBACK_ACTION_CLASS_NAME}
+      zTier={zTier}
+      zIndex={zIndex}
+    >
       <RollingSpinnerContainer size={size}>
         {children ? <Container>{children}</Container> : null}
         <TrackContainer>

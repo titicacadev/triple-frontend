@@ -2,11 +2,12 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
 
+import { layeringMixin, LayeringMixinProps } from '../mixins'
+
 const TRANSITION_DURATION = 300
 
 interface DrawerContainerProps {
   overflow?: string
-  zIndex?: number
   duration: number
 }
 
@@ -22,9 +23,8 @@ const drawerTransitionConfig = `
   transition: transform ${TRANSITION_DURATION}ms ease-in-out;
 `
 
-const DrawerContainer = styled.div<DrawerContainerProps>`
-  z-index: ${({ zIndex }) =>
-    zIndex && Number.isInteger(zIndex) ? zIndex : 20};
+const DrawerContainer = styled.div<DrawerContainerProps & LayeringMixinProps>`
+  ${layeringMixin(1)}
   position: fixed;
   bottom: 0;
   left: 0;
@@ -69,14 +69,14 @@ const DrawerContainer = styled.div<DrawerContainerProps>`
 export default function Drawer({
   active,
   overflow,
-  zIndex,
   children,
+  zTier,
+  zIndex,
 }: {
   active?: boolean
   overflow?: string
-  zIndex?: number
   children?: React.ReactNode
-}) {
+} & LayeringMixinProps) {
   return (
     <CSSTransition
       in={active}
@@ -87,6 +87,7 @@ export default function Drawer({
       <DrawerContainer
         duration={TRANSITION_DURATION}
         overflow={overflow}
+        zTier={zTier}
         zIndex={zIndex}
       >
         {children}

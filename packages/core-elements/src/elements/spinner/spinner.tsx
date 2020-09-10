@@ -2,6 +2,7 @@ import * as React from 'react'
 import styled, { css, keyframes } from 'styled-components'
 
 import { FALLBACK_ACTION_CLASS_NAME } from '../../constants'
+import { layeringMixin, LayeringMixinProps } from '../mixins'
 
 const loadingAnimation = keyframes`
   100% {
@@ -9,14 +10,15 @@ const loadingAnimation = keyframes`
   }
 `
 
-const Container = styled.div<{ full?: boolean }>`
+const Container = styled.div<{ full?: boolean } & LayeringMixinProps>`
   width: 100%;
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
   display: table;
+
+  ${layeringMixin(10)}
 
   ${({ full }) =>
     full &&
@@ -43,12 +45,14 @@ const Icon = styled.div`
 export default function Spinner({
   full,
   children,
+  zTier,
+  zIndex,
 }: {
   full?: boolean
   children?: React.ReactNode
-}) {
+} & LayeringMixinProps) {
   return (
-    <Container full={full}>
+    <Container full={full} zTier={zTier} zIndex={zIndex}>
       <Wrapper className={FALLBACK_ACTION_CLASS_NAME}>
         <Icon />
         {children}
