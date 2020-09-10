@@ -1,5 +1,9 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import { Text, MarginPadding } from '@titicaca/core-elements'
+import {
+  Text,
+  MarginPadding,
+  LayeringMixinProps,
+} from '@titicaca/core-elements'
 import { CSSTransition } from 'react-transition-group'
 
 import {
@@ -54,7 +58,9 @@ export default function FloatingButtonCTA({
   onShow,
   onClick,
   onDismiss,
-}: FloatingButtonCTAProps) {
+  zTier,
+  zIndex,
+}: FloatingButtonCTAProps & LayeringMixinProps) {
   const [buttonVisibility, setButtonVisibility] = useState(false)
   const [available, setAvailable] = useState(true)
 
@@ -121,6 +127,8 @@ export default function FloatingButtonCTA({
         visibility={buttonVisibility ? 1 : 0}
         fixed={fixed ? 1 : 0}
         margin={margin}
+        zTier={zTier}
+        zIndex={zIndex}
       >
         <LeftContainer>
           <InstallAnchor href={appInstallLink} onClick={handleClick}>

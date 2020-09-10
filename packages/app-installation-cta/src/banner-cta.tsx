@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { LayeringMixinProps } from '@titicaca/core-elements'
 
 import { Overlay, BottomFixedContainer } from './elements'
 import ImageBanner from './image-banner'
@@ -22,7 +23,9 @@ export default function BannerCTA({
   onShow,
   onClick,
   onDismiss,
-}: BannerCTAProps) {
+  zTier,
+  zIndex,
+}: BannerCTAProps & LayeringMixinProps) {
   const [inventoryItem, setInventoryItem] = useState<InventoryItem>()
   const [isImageBannerOpen, setIsImageBannerOpen] = useState(true)
   const { image = '', desc = '' } = inventoryItem || {}
@@ -54,7 +57,7 @@ export default function BannerCTA({
 
   return inventoryItem ? (
     isImageBannerOpen && image ? (
-      <Overlay>
+      <Overlay zTier={zTier} zIndex={zIndex}>
         <BottomFixedContainer>
           <ImageBanner
             imgUrl={image}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { Text } from '@titicaca/core-elements'
+import { Text, LayeringMixinProps } from '@titicaca/core-elements'
 import { CSSTransition } from 'react-transition-group'
 
 import {
@@ -35,7 +35,9 @@ export default function ChatbotCTA({
   onShow,
   onClick,
   onDismiss,
-}: ChatbotCTAProps) {
+  zTier,
+  zIndex,
+}: ChatbotCTAProps & LayeringMixinProps) {
   const [inventoryItem, setInventoryItem] = useState<InventoryItem>()
   const [visibility, setVisibility] = useState(false)
   const { detailedDesc = '', text = '' } = inventoryItem || {}
@@ -95,7 +97,11 @@ export default function ChatbotCTA({
       classNames="chatbot-slide"
       timeout={500}
     >
-      <ChatbotContainer visibility={visibility ? 1 : 0}>
+      <ChatbotContainer
+        visibility={visibility ? 1 : 0}
+        zTier={zTier}
+        zIndex={zIndex}
+      >
         <ChatBalloon>
           <Text size={18} bold lineHeight="24px">
             {detailedDesc}
