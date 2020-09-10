@@ -7,6 +7,8 @@ import {
   safeAreaInsetMixin,
   paddingMixin,
   Text,
+  layeringMixin,
+  LayeringMixinProps,
 } from '@titicaca/core-elements'
 
 const unit = (value: number | string, suffix = 'px') =>
@@ -44,15 +46,16 @@ interface SheetProps {
   duration: number
 }
 
-const Sheet = styled.div<SheetProps>`
+const Sheet = styled.div<SheetProps & LayeringMixinProps>`
   position: fixed;
   left: 0;
   right: 0;
-  z-index: 11;
   background-color: #fff;
   box-sizing: border-box;
   margin: 0;
   user-select: none;
+
+  ${layeringMixin(0)}
 
   &:not([class*='action-sheet-slide-']) {
     ${inactiveSheetSlideStyle}
@@ -125,14 +128,15 @@ interface OverlayProps {
   duration: number
 }
 
-const Overlay = styled.div<OverlayProps>`
+const Overlay = styled.div<OverlayProps & LayeringMixinProps>`
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 10;
   background-color: rgba(58, 58, 58, 0.7);
+
+  ${layeringMixin(1)}
 
   &:not([class*='action-sheet-fade-']) {
     ${inactiveOverlayFadeStyle}
@@ -184,17 +188,21 @@ export default function ActionSheet({
   padding,
   children,
   className,
-}: PropsWithChildren<{
-  open?: boolean
-  title?: ReactNode
-  onOverlayClick?: () => void
-  from?: 'top' | 'bottom'
-  borderRadius?: number
-  bottomSpacing?: number
-  maxContentHeight?: string | number
-  padding?: MarginPadding
-  className?: string
-}>) {
+  zTier,
+  zIndex,
+}: PropsWithChildren<
+  {
+    open?: boolean
+    title?: ReactNode
+    onOverlayClick?: () => void
+    from?: 'top' | 'bottom'
+    borderRadius?: number
+    bottomSpacing?: number
+    maxContentHeight?: string | number
+    padding?: MarginPadding
+    className?: string
+  } & LayeringMixinProps
+>) {
   const actionSheetTitle = title ? (
     typeof title === 'string' ? (
       <Container height="16px" margin={{ bottom: 10, left: 27 }}>
@@ -221,7 +229,12 @@ export default function ActionSheet({
       classNames="action-sheet-fade"
       timeout={TRANSITION_DURATION}
     >
-      <Overlay duration={TRANSITION_DURATION} onClick={onOverlayClick}>
+      <Overlay
+        duration={TRANSITION_DURATION}
+        onClick={onOverlayClick}
+        zTier={zTier}
+        zIndex={zIndex}
+      >
         <CSSTransition
           in={open}
           classNames="action-sheet-slide"
@@ -238,6 +251,7 @@ export default function ActionSheet({
             }}
             onClick={silenceEvent}
             className={className}
+            zIndex={1}
           >
             {actionSheetTitle}
 
