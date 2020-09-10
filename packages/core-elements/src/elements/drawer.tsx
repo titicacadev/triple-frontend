@@ -33,7 +33,6 @@ const DrawerContainer = styled.div<DrawerContainerProps & LayeringMixinProps>`
 
   &:not([class*='drawer-slide-']) {
     ${inactiveDrawerStyle}
-    display: none;
   }
 
   &.drawer-slide-appear,
@@ -62,7 +61,6 @@ const DrawerContainer = styled.div<DrawerContainerProps & LayeringMixinProps>`
 
   &.drawer-slide-exit-done {
     ${inactiveDrawerStyle}
-    display: none;
   }
 `
 

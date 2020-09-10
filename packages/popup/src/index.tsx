@@ -51,7 +51,6 @@ const PopupContainer = styled.div<LayeringMixinProps>`
 
   &:not([class*='popup-slide-']) {
     ${inactivePopupContainerStyle}
-    display: none;
   }
 
   &.popup-slide-appear,
@@ -80,7 +79,6 @@ const PopupContainer = styled.div<LayeringMixinProps>`
 
   &.popup-slide-exit-done {
     ${inactivePopupContainerStyle}
-    display: none;
   }
 
   ${layeringMixin(2)}
