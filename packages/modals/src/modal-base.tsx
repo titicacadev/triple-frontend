@@ -1,28 +1,34 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { GlobalColors } from '@titicaca/core-elements'
+import {
+  GlobalColors,
+  layeringMixin,
+  LayeringMixinProps,
+} from '@titicaca/core-elements'
 
-const Overlay = styled.div`
+const Overlay = styled.div<LayeringMixinProps>`
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   background-color: rgba(58, 58, 58, 0.5);
-  z-index: 10;
+
+  ${layeringMixin(3)}
 `
 
-const Box = styled.div`
+const Box = styled.div<LayeringMixinProps>`
   position: absolute;
   top: 50%;
   left: 50%;
   width: 295px;
   transform: translate(-50%, -50%);
-  z-index: 11;
   border-radius: 6px;
   background-color: #fff;
   margin: 0;
   user-select: none;
+
+  ${layeringMixin(0)}
 `
 
 const Actions = styled.div<{ children?: any }>`
@@ -73,14 +79,16 @@ export default function ModalBase({
   open,
   onClose,
   children,
+  zTier,
+  zIndex,
 }: {
   open?: boolean
   onClose?: (e: React.SyntheticEvent) => any
   children?: React.ReactNode
-}) {
+} & LayeringMixinProps) {
   return open ? (
-    <Overlay onClick={onClose}>
-      <Box onClick={(e?: React.SyntheticEvent) => silenceEvent(e)}>
+    <Overlay onClick={onClose} zTier={zTier} zIndex={zIndex}>
+      <Box onClick={(e?: React.SyntheticEvent) => silenceEvent(e)} zIndex={1}>
         {children}
       </Box>
     </Overlay>
