@@ -1,0 +1,21 @@
+{
+  "name": "@titicaca/fetcher",
+  "version": "1.34.0",
+  "description": "Utilities for Triple view libraries and applications",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "peerDependencies": {
+    "ts-custom-error": "^3.2.0",
+    "universal-cookie": "^4.0.3"
+  }
+}
