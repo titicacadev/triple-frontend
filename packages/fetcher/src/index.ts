@@ -10,7 +10,7 @@ export async function fetcher<T = any>(
   url: string,
   { req, body, ...rest }: RequestOptions,
 ): Promise<HttpResponse<T>> {
-  const baseUrl: string = req ? (process.env.API_URL_BASE as string) : ''
+  const baseUrl: string = req ? (process.env.API_URI_BASE as string) : ''
   const reqUrl: string = baseUrl + url
   const defaultHeaders = {
     'Content-Type': 'application/json',
