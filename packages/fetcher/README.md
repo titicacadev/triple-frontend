@@ -3,6 +3,10 @@
 Next.js 기반 트리플 웹 앱에서 사용하는 `fetch` 를 랩핑한 SSR/CSR 에서 동시에 사용할 수 있는
 API Client 라이브러리입니다.
 
+🚨**이 라이브러리는 현재 `process.env.API_URI_BASE` 환경변수에 의존하여 동작합니다.** 🚨
+
+- https://titicaca.slack.com/archives/CEEPB4TDY/p1600049528091600
+
 ## 기본 사용법
 
 ```ts
@@ -143,4 +147,4 @@ setTimeout(() => {
 
 ## TODOs
 
-- [ ] Add AbortController
+- [ ] Add camelize util function
