@@ -1,5 +1,9 @@
 # 2.0.0
 
+### fetcher
+
+- fetcher 유틸을 추가합니다. (#962)
+
 ### core-elements
 
 - `Image` 컴포넌트를 하위 컴포넌트를 조합하는 방식으로 개선
