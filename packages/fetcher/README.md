@@ -22,7 +22,7 @@ const { result } = await fetcher<CustomResponse>('/api/some/thing', {
   body: { param1: 'value1' },
   headers: {
     'x-forwarded-for': '',
-    'x-forwared-host': '',
+    'x-forwarded-host': '',
   },
 })
 ```
@@ -41,7 +41,7 @@ async function() {
 }
 
 ___.getInitialProps = async function({ req }: NextPageContext) {
-  const { result: users, ok, error } =  await get<UserResponse>('/api/users/me', {})
+  const { result: users, ok, error } =  await get<UserResponse>('/api/users/me')
 
   return { users }
 }
@@ -81,7 +81,7 @@ async function() {
 import { put } from '@titicaca/fetcher'
 
 async function() {
-  const { result, ok, error } = await put<UserResponse>('/api/users/me', {})
+  const { result, ok, error } = await put<UserResponse>('/api/users/me')
 }
 ```
 
@@ -91,7 +91,7 @@ async function() {
 import { del } from '@titicaca/fetcher'
 
 async function() {
-  const { result, ok, error } = await del<UserResponse>('/api/users/me', {})
+  const { result, ok, error } = await del<UserResponse>('/api/users/me')
 }
 ```
 
@@ -121,7 +121,7 @@ async function() {
   const { result, ok, error } = await post<UserResponse>('/api/users/me', {
     req,  // if ssr
     headers: { // custom header
-      'x-forwared-host': ''
+      'x-forwarded-host': ''
     }
   })
 }
@@ -132,17 +132,15 @@ async function() {
 ```ts
 const controller = new AbortController()
 const signal = controller.siginal
-const response = await fetcher('/api/some/thing', {
+const response = await get('/api/some/thing', {
   req,
   method: HTTPMethod.GET,
   signal,
-  }
 })
 
 setTimeout(() => {
   controller.abort()
 }, 3000)
-
 ```
 
 ## TODOs

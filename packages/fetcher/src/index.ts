@@ -75,40 +75,37 @@ export async function fetcher<T = any>(
 
 export const get = async <T extends {}>(
   url: string,
-  { req, ...rest }: RequestOptions,
+  options?: RequestOptions,
 ): Promise<HttpResponse<T>> =>
   (await fetcher(url, {
-    req,
-    ...rest,
+    ...options,
     method: HTTPMethods.GET,
   })) as HttpResponse<T>
 
 export const put = async <T extends {}>(
   url: string,
-  { req, ...rest }: RequestOptions,
+  options?: RequestOptions,
 ): Promise<HttpResponse<T>> =>
   (await fetcher(url, {
-    req,
-    ...rest,
+    ...options,
     method: HTTPMethods.PUT,
   })) as HttpResponse<T>
 
 export const post = async <T extends {}>(
   url: string,
-  { req, ...rest }: RequestOptions,
+  options?: RequestOptions,
 ): Promise<HttpResponse<T>> =>
   (await fetcher(url, {
-    req,
-    ...rest,
+    url,
+    ...options,
     method: HTTPMethods.POST,
   })) as HttpResponse<T>
 
 export const del = async <T extends {}>(
   url: string,
-  { req, ...rest }: RequestOptions,
+  options?: RequestOptions,
 ): Promise<HttpResponse<T>> =>
   (await fetcher(url, {
-    req,
-    ...rest,
+    ...options,
     method: HTTPMethods.DELETE,
   })) as HttpResponse<T>
