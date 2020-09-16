@@ -5,7 +5,7 @@ import { gray as defaultSvgIconColor } from '@titicaca/color-palette'
 import { IconBaseProps } from './types'
 import { SvgIcon } from './base'
 
-export default function Back({
+export default function Search({
   color,
   width = 34,
   height = 34,
@@ -33,7 +33,14 @@ export default function Back({
         opacity={opacity}
         transform="translate(9 9)"
       >
-        <path d="M7.907 16L0 8.047 8 0M.2 8L16 8" />
+        {/* <g fill="none" fillRule="evenodd" stroke="#3A3A3A" strokeWidth="1.6">
+    </g> */}
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M11 11L16.5 16.5"
+        />
+        <circle cx="6.25" cy="6.25" r="6.25" />
       </g>
     </SvgIcon>
   )
