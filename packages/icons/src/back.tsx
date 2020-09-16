@@ -18,6 +18,8 @@ export default function Back({
 
   return (
     <SvgIcon
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox={`0 0 ${width} ${height}`}
       width={width}
       height={height}
@@ -35,6 +37,7 @@ export default function Back({
       >
         <path d="M7.907 16L0 8.047 8 0M.2 8L16 8" />
       </g>
+      <image xlinkHref="https://assets.triple.guide/images/btn-com-back@4x.png" />
     </SvgIcon>
   )
 }

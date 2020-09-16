@@ -35,6 +35,7 @@ export default function Close({
         <path d="M6.918 14L0 7.041 7 0" transform="matrix(-1 0 0 1 17 10)" />
         <path d="M6.918 14L0 7.041 7 0" transform="translate(17 10)" />
       </g>
+      <image xlinkHref="https://assets.triple.guide/images/btn-com-close@3x.png" />
     </SvgIcon>
   )
 }
