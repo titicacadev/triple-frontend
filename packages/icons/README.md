@@ -63,4 +63,11 @@ const CustomStyledBackIcon = styled(Back)`
 <CustomStyledBackIcon color="red" />
 ```
 
-## Etc
+## TODOs
+
+- [ ] Triple Frontend 에서 사용중인 컴포넌트를 전체적으로 svg 로 전환합니다.
+- [ ] 표준 아이콘?을 모두 svg icon 으로 생성합니다.
+
+## Refereneces
+
+- fallback: https://css-tricks.com/a-complete-guide-to-svg-fallbacks/#fallback-inline-svg-imgtag
