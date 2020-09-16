@@ -25,6 +25,7 @@
     "@titicaca/form": "^1.34.0",
     "@titicaca/hub-form": "^1.34.0",
     "@titicaca/i18n": "^1.34.0",
+    "@titicaca/icons": "^1.34.0",
     "@titicaca/image-carousel": "^1.34.0",
     "@titicaca/listing-filter": "^1.34.0",
     "@titicaca/location-properties": "^1.34.0",

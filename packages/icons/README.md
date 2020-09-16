@@ -8,8 +8,14 @@
 type Props = {
   /** 색상 */
   color?: string
+  /** 가로 사이즈 */
+  width?: number
+  /** 세로 사이즈 */
+  height?: number
   /** 두께 */
   strokeWidth?: number
+  /** 투명도 */
+  opacity?: number
 }
 ```
 
@@ -17,6 +23,8 @@ type Props = {
 
 ```jsx
 import { Back } from '@titicaca/icons'
+// or
+import Back from '@titicaca/icons/back'
 import * as Colors from '@titicaca/color-palette'
 
 <Back />
@@ -28,7 +36,7 @@ import * as Colors from '@titicaca/color-palette'
 
 ## with Theme Provider
 
-`@titicaca/icons` 에 포함된 모든 아이콘의 컬러설정 우선순위는
+`@titicaca/icons` 에 포함된 모든 아이콘의 컬러설정 우선순위는 다음과 같습니다.
 
 1. `color` props value
 2. ThemeProvider 의 `colors.primary` value
@@ -40,6 +48,19 @@ import { Back } from '@titicaca/icons'
 ;<ThemeProvider theme={{ colors: { primary: 'red' } }}>
   <Back />
 </ThemeProvider>
+```
+
+## with Styled Component
+
+```jsx
+import styled from 'styled-components'
+import { Back } from '@titicaca/icons'
+
+const CustomStyledBackIcon = styled(Back)`
+  padding: 5px;
+`
+
+<CustomStyledBackIcon color="red" />
 ```
 
 ## Etc
