@@ -33,14 +33,13 @@ export default function Search({
         opacity={opacity}
         transform="translate(9 9)"
       >
-        {/* <g fill="none" fillRule="evenodd" stroke="#3A3A3A" strokeWidth="1.6">
-    </g> */}
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
           d="M11 11L16.5 16.5"
         />
         <circle cx="6.25" cy="6.25" r="6.25" />
+        <image xlinkHref="https://assets.triple.guide/images/btn-com-search@3x.png" />
       </g>
     </SvgIcon>
   )
