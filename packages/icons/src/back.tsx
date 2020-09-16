@@ -1,23 +1,20 @@
 import React, { useContext } from 'react'
-import styled, { ThemeContext } from 'styled-components'
-import { gray } from '@titicaca/color-palette'
+import { ThemeContext } from 'styled-components'
+import { gray as defaultSvgIconColor } from '@titicaca/color-palette'
 
-import { IconBaseProps } from '.'
-
-const SvgIcon = styled.svg`
-  width: ${(props) => props.width || 36}px;
-  height: ${(props) => props.height || 36}px;
-`
+import { IconBaseProps } from './types'
+import { SvgIcon } from './base'
 
 export default function Back({
   color,
   width = 34,
   height = 34,
   strokeWidth = 1.6,
+  opacity = 1,
   ...rest
 }: IconBaseProps) {
   const { colors } = useContext(ThemeContext) || { colors: {} }
-  const stroke = color || colors.primary || gray
+  const stroke = color || colors.primary || defaultSvgIconColor
 
   return (
     <SvgIcon
@@ -33,6 +30,7 @@ export default function Back({
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={strokeWidth}
+        opacity={opacity}
       >
         <path d="M7.907 16L0 8.047 8 0M.2 8L16 8" transform="translate(9 9)" />
       </g>
