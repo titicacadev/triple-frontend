@@ -1,7 +1,7 @@
 import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
 import { ThemeProvider } from 'styled-components'
 import * as Colors from '@titicaca/color-palette'
-import { Back, Search, Close, SearchPlace } from '@titicaca/icons'
+import * as Icons from '@titicaca/icons'
 
 <Meta title="icons | Icons" />
 
@@ -14,10 +14,10 @@ import { Back, Search, Close, SearchPlace } from '@titicaca/icons'
 <Preview>
   <Story name="Basic">
     <>
-      <Back />
-      <Search />
-      <Close />
-      <SearchPlace />
+      <Icons.Back />
+      <Icons.Search />
+      <Icons.Close />
+      <Icons.SearchPlace />
     </>
   </Story>
 </Preview>
@@ -33,10 +33,10 @@ import { Back, Search, Close, SearchPlace } from '@titicaca/icons'
 <Preview>
   <Story name="Color">
     <>
-      <Back color="red" />
-      <Back color="blue" />
-      <Back color="gray" />
-      <Back color="purple" />
+      <Icons.Back color="red" />
+      <Icons.Back color="blue" />
+      <Icons.Back color="gray" />
+      <Icons.Back color="purple" />
     </>
   </Story>
 </Preview>
@@ -48,9 +48,9 @@ import { Back, Search, Close, SearchPlace } from '@titicaca/icons'
 <Preview>
   <Story name="Stroke">
     <>
-      <Back strokeWidth={1.6} />
-      <Back strokeWidth={3} />
-      <Back strokeWidth={5} />
+      <Icons.Back strokeWidth={1.6} />
+      <Icons.Back strokeWidth={3} />
+      <Icons.Back strokeWidth={5} />
     </>
   </Story>
 </Preview>
@@ -63,24 +63,24 @@ import { Back, Search, Close, SearchPlace } from '@titicaca/icons'
   <Story name="Opacity">
     <>
       <div>
-        <Back color="black" opacity={1} />
-        <Back color="black" opacity={0.9} />
-        <Back color="black" opacity={0.8} />
-        <Back color="black" opacity={0.7} />
-        <Back color="black" opacity={0.5} />
-        <Back color="black" opacity={0.4} />
-        <Back color="black" opacity={0.3} />
-        <Back color="black" opacity={0.1} />
+        <Icons.Back color="black" opacity={1} />
+        <Icons.Back color="black" opacity={0.9} />
+        <Icons.Back color="black" opacity={0.8} />
+        <Icons.Back color="black" opacity={0.7} />
+        <Icons.Back color="black" opacity={0.5} />
+        <Icons.Back color="black" opacity={0.4} />
+        <Icons.Back color="black" opacity={0.3} />
+        <Icons.Back color="black" opacity={0.1} />
       </div>
       <div>
-        <Back color="blue" opacity={1} />
-        <Back color="blue" opacity={0.9} />
-        <Back color="blue" opacity={0.8} />
-        <Back color="blue" opacity={0.7} />
-        <Back color="blue" opacity={0.5} />
-        <Back color="blue" opacity={0.4} />
-        <Back color="blue" opacity={0.3} />
-        <Back color="blue" opacity={0.1} />
+        <Icons.Back color="blue" opacity={1} />
+        <Icons.Back color="blue" opacity={0.9} />
+        <Icons.Back color="blue" opacity={0.8} />
+        <Icons.Back color="blue" opacity={0.7} />
+        <Icons.Back color="blue" opacity={0.5} />
+        <Icons.Back color="blue" opacity={0.4} />
+        <Icons.Back color="blue" opacity={0.3} />
+        <Icons.Back color="blue" opacity={0.1} />
       </div>
     </>
   </Story>
@@ -98,12 +98,12 @@ Icon 은 기본적으로 `color` prop 이 최우선의 아이콘 컬러를 적�
   <Story name="Theme">
     <ThemeProvider theme={{ colors: { primary: Colors.blue } }}>
       <>
-        <Back strokeWidth={1.6} />
-        <Back strokeWidth={1.6} color={Colors.mint} />
+        <Icons.Back strokeWidth={1.6} />
+        <Icons.Back strokeWidth={1.6} color={Colors.mint} />
       </>
     </ThemeProvider>
   </Story>
   <Story name="Out of theme context">
-    <Back strokeWidth={1.5} />
+    <Icons.Back strokeWidth={1.5} />
   </Story>
 </Preview>
