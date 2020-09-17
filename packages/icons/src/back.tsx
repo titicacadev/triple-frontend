@@ -25,6 +25,10 @@ export default function Back({
       height={height}
       {...rest}
     >
+      {/* <image
+        xlinkHref="https://assets.triple.guide/images/btn-com-back@4x.png"
+        width={width}
+      /> */}
       <g
         fill="none"
         fillRule="evenodd"
@@ -37,7 +41,6 @@ export default function Back({
       >
         <path d="M7.907 16L0 8.047 8 0M.2 8L16 8" />
       </g>
-      <image xlinkHref="https://assets.triple.guide/images/btn-com-back@4x.png" />
     </SvgIcon>
   )
 }

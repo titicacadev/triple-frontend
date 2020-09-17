@@ -23,6 +23,10 @@ export default function Search({
       height={height}
       {...rest}
     >
+      {/* <image
+        xlinkHref="https://assets.triple.guide/images/btn-com-search@3x.png"
+        width={width}
+      /> */}
       <g
         fill="none"
         fillRule="evenodd"
@@ -39,7 +43,6 @@ export default function Search({
           d="M11 11L16.5 16.5"
         />
         <circle cx="6.25" cy="6.25" r="6.25" />
-        <image xlinkHref="https://assets.triple.guide/images/btn-com-search@3x.png" />
       </g>
     </SvgIcon>
   )
