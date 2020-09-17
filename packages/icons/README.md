@@ -22,14 +22,11 @@ type Props = {
 ## Usage
 
 ```jsx
-import { Back } from '@titicaca/icons'
-// or
-import Back from '@titicaca/icons/back'
-import * as Colors from '@titicaca/color-palette'
+import * as Icons from '@titicaca/icons'
 
-<Back />
-<Back color="red" />
-<Back color="blue" strokeWidth={3} />
+<Icons.Back />
+<Icons.Back color="red" />
+<Icons.Back color="blue" strokeWidth={3} />
 ```
 
 ## Notice
@@ -44,7 +41,7 @@ import * as Colors from '@titicaca/color-palette'
 
 ```jsx
 import styled, { ThemeProvider } from 'styled-components'
-import { Back } from '@titicaca/icons'
+import * as Icons from '@titicaca/icons'
 ;<ThemeProvider theme={{ colors: { primary: 'red' } }}>
   <Back />
 </ThemeProvider>
@@ -54,7 +51,7 @@ import { Back } from '@titicaca/icons'
 
 ```jsx
 import styled from 'styled-components'
-import { Back } from '@titicaca/icons'
+import * as Icons from '@titicaca/icons'
 
 const CustomStyledBackIcon = styled(Back)`
   padding: 5px;
@@ -66,7 +63,7 @@ const CustomStyledBackIcon = styled(Back)`
 ## TODOs
 
 - [ ] Triple Frontend 에서 사용중인 컴포넌트를 전체적으로 svg 로 전환합니다.
-- [ ] 표준 아이콘?을 모두 svg icon 으로 생성합니다.
+- [ ] 표준 아이콘을 모두 svg icon 으로 생성합니다.
 
 ## Refereneces
 
