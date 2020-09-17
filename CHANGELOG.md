@@ -1,5 +1,9 @@
 # 2.0.0
 
+### common
+
+- `CSSTransition`의 `mountOnEnter`, `unmountOnExit` 사용
+
 ### icons
 
 - Icons 컴포넌트를 추가합니다. (#806)
