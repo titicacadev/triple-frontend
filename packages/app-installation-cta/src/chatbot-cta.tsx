@@ -19,6 +19,7 @@ interface ChatbotCTAProps extends CTAProps {
   available?: boolean
   inventoryId: string
   installUrl: string
+  unmountOnExit?: boolean
 }
 
 /**
@@ -27,6 +28,7 @@ interface ChatbotCTAProps extends CTAProps {
  * @param available CTA 가 표시되어야하는지의 여부 (기본값 false) (controlled)
  * @param inventoryId 표시할 이미지의 인벤토리 ID
  * @param installUrl 앱 설치 URL
+ * @param unmountOnExit 표시되지 않는 상태일 때 컴포넌트 마운트 해제
  */
 export default function ChatbotCTA({
   available = false,
@@ -37,6 +39,7 @@ export default function ChatbotCTA({
   onDismiss,
   zTier,
   zIndex,
+  unmountOnExit,
 }: ChatbotCTAProps & LayeringMixinProps) {
   const [inventoryItem, setInventoryItem] = useState<InventoryItem>()
   const [visibility, setVisibility] = useState(false)
@@ -96,8 +99,8 @@ export default function ChatbotCTA({
       appear
       classNames="chatbot-slide"
       timeout={500}
-      mountOnEnter
-      unmountOnExit
+      mountOnEnter={unmountOnExit}
+      unmountOnExit={unmountOnExit}
     >
       <ChatbotContainer
         visibility={visibility ? 1 : 0}

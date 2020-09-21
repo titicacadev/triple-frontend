@@ -32,6 +32,7 @@ interface FloatingButtonCTAProps extends CTAProps {
   margin?: MarginPadding
   trackEvent?: any
   trackEventParams?: any
+  unmountOnExit?: boolean
 }
 
 /**
@@ -45,6 +46,7 @@ interface FloatingButtonCTAProps extends CTAProps {
  * @param trackEvent 이벤트 트래킹 함수
  * @param margin 버튼 주변 margin 값 (optional)
  * @param trackEventParams GA/FA 수집 파라미터
+ * @param unmountOnExit 버튼이 표시되지 않을 때 컴포넌트 마운트 해제 여부
  */
 export default function FloatingButtonCTA({
   exitStrategy = BannerExitStrategy.NONE,
@@ -60,6 +62,7 @@ export default function FloatingButtonCTA({
   onDismiss,
   zTier,
   zIndex,
+  unmountOnExit,
 }: FloatingButtonCTAProps & LayeringMixinProps) {
   const [buttonVisibility, setButtonVisibility] = useState(false)
   const [available, setAvailable] = useState(true)
@@ -122,8 +125,8 @@ export default function FloatingButtonCTA({
       appear
       classNames="floating-button-slide"
       timeout={500}
-      mountOnEnter
-      unmountOnExit
+      mountOnEnter={unmountOnExit}
+      unmountOnExit={unmountOnExit}
     >
       <FloatingButton
         visibility={buttonVisibility ? 1 : 0}

@@ -59,6 +59,7 @@ const Sheet = styled.div<SheetProps & LayeringMixinProps>`
 
   &:not([class*='action-sheet-slide-']) {
     ${inactiveSheetSlideStyle}
+    display: none;
   }
 
   &.action-sheet-slide-appear,
@@ -86,6 +87,7 @@ const Sheet = styled.div<SheetProps & LayeringMixinProps>`
 
   &.action-sheet-slide-exit-done {
     ${inactiveSheetSlideStyle}
+    display: none;
   }
 
   ${paddingMixin}
@@ -138,6 +140,7 @@ const Overlay = styled.div<OverlayProps & LayeringMixinProps>`
 
   &:not([class*='action-sheet-fade-']) {
     ${inactiveOverlayFadeStyle}
+    display: none;
   }
 
   &.action-sheet-fade-appear,
@@ -166,6 +169,7 @@ const Overlay = styled.div<OverlayProps & LayeringMixinProps>`
 
   &.action-sheet-fade-exit-done {
     ${inactiveOverlayFadeStyle}
+    display: none;
   }
 `
 
@@ -186,6 +190,7 @@ export default function ActionSheet({
   className,
   zTier,
   zIndex,
+  unmountOnExit,
 }: PropsWithChildren<
   {
     open?: boolean
@@ -197,6 +202,7 @@ export default function ActionSheet({
     maxContentHeight?: string | number
     padding?: MarginPadding
     className?: string
+    unmountOnExit?: boolean
   } & LayeringMixinProps
 >) {
   const actionSheetTitle = title ? (
@@ -224,8 +230,8 @@ export default function ActionSheet({
       appear
       classNames="action-sheet-fade"
       timeout={TRANSITION_DURATION}
-      mountOnEnter
-      unmountOnExit
+      mountOnEnter={unmountOnExit}
+      unmountOnExit={unmountOnExit}
     >
       <Overlay
         duration={TRANSITION_DURATION}
@@ -238,8 +244,8 @@ export default function ActionSheet({
           classNames="action-sheet-slide"
           timeout={TRANSITION_DURATION}
           appear
-          mountOnEnter
-          unmountOnExit
+          mountOnEnter={unmountOnExit}
+          unmountOnExit={unmountOnExit}
         >
           <Sheet
             duration={TRANSITION_DURATION}

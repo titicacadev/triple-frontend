@@ -51,6 +51,7 @@ const PopupContainer = styled.div<LayeringMixinProps>`
 
   &:not([class*='popup-slide-']) {
     ${inactivePopupContainerStyle}
+    display: none;
   }
 
   &.popup-slide-appear,
@@ -79,6 +80,7 @@ const PopupContainer = styled.div<LayeringMixinProps>`
 
   &.popup-slide-exit-done {
     ${inactivePopupContainerStyle}
+    display: none;
   }
 
   ${layeringMixin(2)}
@@ -94,6 +96,7 @@ export default function Popup({
   children,
   zTier,
   zIndex,
+  unmountOnExit,
 }: PropsWithChildren<
   {
     open: boolean
@@ -102,6 +105,7 @@ export default function Popup({
     title?: string
     icon?: NavbarIcon
     noNavbar?: boolean
+    unmountOnExit?: boolean
   } & LayeringMixinProps
 >) {
   const popupRef = useRef<HTMLDivElement>(null)
@@ -118,8 +122,8 @@ export default function Popup({
       in={open}
       classNames="popup-slide"
       appear
-      mountOnEnter
-      unmountOnExit
+      mountOnEnter={unmountOnExit}
+      unmountOnExit={unmountOnExit}
     >
       {/* https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451 */}
       <PopupContainer ref={popupRef} zTier={zTier} zIndex={zIndex}>
