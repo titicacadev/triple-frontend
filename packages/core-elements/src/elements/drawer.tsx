@@ -33,6 +33,7 @@ const DrawerContainer = styled.div<DrawerContainerProps & LayeringMixinProps>`
 
   &:not([class*='drawer-slide-']) {
     ${inactiveDrawerStyle}
+    display: none;
   }
 
   &.drawer-slide-appear,
@@ -61,6 +62,7 @@ const DrawerContainer = styled.div<DrawerContainerProps & LayeringMixinProps>`
 
   &.drawer-slide-exit-done {
     ${inactiveDrawerStyle}
+    display: none;
   }
 `
 
@@ -70,9 +72,11 @@ export default function Drawer({
   children,
   zTier,
   zIndex,
+  unmountOnExit,
 }: {
   active?: boolean
   overflow?: string
+  unmountOnExit?: boolean
   children?: React.ReactNode
 } & LayeringMixinProps) {
   return (
@@ -81,8 +85,8 @@ export default function Drawer({
       appear
       classNames="drawer-slide"
       timeout={TRANSITION_DURATION}
-      mountOnEnter
-      unmountOnExit
+      mountOnEnter={unmountOnExit}
+      unmountOnExit={unmountOnExit}
     >
       <DrawerContainer
         duration={TRANSITION_DURATION}

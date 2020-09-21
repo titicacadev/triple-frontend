@@ -2,7 +2,8 @@
 
 ### common
 
-- `CSSTransition`의 `mountOnEnter`, `unmountOnExit` 사용
+- 등장, 퇴장 애니메이션이 있는 컴포넌트에
+  `CSSTransition`의 `mountOnEnter`, `unmountOnExit` 설정하는 prop 추가
 
 ### icons
 
