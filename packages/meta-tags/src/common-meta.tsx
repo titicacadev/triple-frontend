@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 
-export function ImmutableEssentialMeta() {
+export function CommonMeta() {
   return (
     <Head>
       <meta charSet="utf-8" />
