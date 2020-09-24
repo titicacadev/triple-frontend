@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 
-export function VariableEssentialMeta({
+export function EssentialContentMeta({
   title = '실시간 여행 가이드 - 트리플',
   description = '',
   canonicalUrl = 'https://triple.guide/',
