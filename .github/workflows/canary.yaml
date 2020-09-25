@@ -174,7 +174,7 @@ jobs:
           fi
           npx @titicaca/gha-tools notify
 
-      - name: Notify canary publish success to slack
+      - name: Notify canary publish failure to slack
         if: failure()
         env:
           SLACK_TITLE: ':pleading: Canary publish Failed'
