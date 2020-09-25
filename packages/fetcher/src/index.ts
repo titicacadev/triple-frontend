@@ -10,6 +10,12 @@ export async function fetcher<T = any>(
   url: string,
   { req, body, ...rest }: RequestOptions,
 ): Promise<HttpResponse<T>> {
+  if (req && !process.env.API_URI_BASE) {
+    throw new Error(
+      'Insufficient environment variables in `.env.*` files\n- API_URI_BASE',
+    )
+  }
+
   const baseUrl: string = req ? (process.env.API_URI_BASE as string) : ''
   const reqUrl: string = baseUrl + url
   const defaultHeaders = {
