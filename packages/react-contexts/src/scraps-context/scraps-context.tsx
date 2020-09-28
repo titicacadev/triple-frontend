@@ -32,6 +32,8 @@ interface ScrapsContext {
 
 interface ScrapsProviderProps {
   scraps?: Scraps
+  beforeScrapedChange?: (target: Target, scraped: boolean) => boolean
+  afterScrapedChange?: (target: Target, scraped: boolean) => boolean
 }
 
 const Context = React.createContext<ScrapsContext>({
@@ -110,6 +112,8 @@ const reducer = (
 
 export function ScrapsProvider({
   scraps: initialScraps,
+  beforeScrapedChange,
+  afterScrapedChange,
   children,
 }: React.PropsWithChildren<ScrapsProviderProps>) {
   const [{ scraps, updating }, dispatch] = React.useReducer(reducer, {
@@ -150,6 +154,13 @@ export function ScrapsProvider({
         return
       }
 
+      if (
+        beforeScrapedChange &&
+        beforeScrapedChange({ id, type }, true) === false
+      ) {
+        return
+      }
+
       dispatch({ type: START_SCRAPE, id })
 
       const response = await nativeScrape({ id, type })
@@ -157,17 +168,26 @@ export function ScrapsProvider({
       if (response.ok) {
         notifyScraped(id)
 
+        afterScrapedChange && afterScrapedChange({ id, type }, true)
+
         dispatch({ type: SCRAPE, id })
       } else {
         dispatch({ type: SCRAPE_FAILED, id })
       }
     },
-    [updating],
+    [updating, beforeScrapedChange, afterScrapedChange],
   )
 
   const unscrape = React.useCallback(
     async ({ id, type }) => {
       if (typeof updating[id] !== 'undefined') {
+        return
+      }
+
+      if (
+        beforeScrapedChange &&
+        beforeScrapedChange({ id, type }, false) === false
+      ) {
         return
       }
 
@@ -178,12 +198,14 @@ export function ScrapsProvider({
       if (response.ok) {
         notifyUnscraped(id)
 
+        afterScrapedChange && afterScrapedChange({ id, type }, false)
+
         dispatch({ type: UNSCRAPE, id })
       } else {
         dispatch({ type: UNSCRAPE_FAILED, id })
       }
     },
-    [updating],
+    [updating, beforeScrapedChange, afterScrapedChange],
   )
 
   const handleSubscribeEvent = React.useCallback(
