@@ -48,9 +48,15 @@ function scrapButtonComponent(Component: React.FC<ScrapButtonBaseProps>) {
       scraped,
     })
 
-    const handleClick = useCallback(() => {
-      actualScraped ? unscrape({ id, type }) : scrape({ id, type })
-    }, [scrape, unscrape, actualScraped, id, type])
+    const handleClick = useCallback(
+      (e: React.SyntheticEvent) => {
+        e.preventDefault()
+        e.stopPropagation()
+
+        actualScraped ? unscrape({ id, type }) : scrape({ id, type })
+      },
+      [scrape, unscrape, actualScraped, id, type],
+    )
 
     return (
       <Component
