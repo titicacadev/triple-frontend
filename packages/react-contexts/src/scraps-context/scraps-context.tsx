@@ -33,7 +33,7 @@ interface ScrapsContext {
 interface ScrapsProviderProps {
   scraps?: Scraps
   beforeScrapedChange?: (target: Target, scraped: boolean) => boolean
-  afterScrapedChange?: (target: Target, scraped: boolean) => boolean
+  afterScrapedChange?: (target: Target, scraped: boolean) => void
 }
 
 const Context = React.createContext<ScrapsContext>({
