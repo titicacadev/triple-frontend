@@ -23,14 +23,14 @@ interface ScrapsContext {
     scrapsCount?: number
   }) => { scraped: boolean; scrapsCount: number }
   scrape: (target: Target) => Promise<void>
-  /** DEPRECATED: Use scrape instead */
+  /** @deprecated Use `scrape()` instead */
   scrapeArticle: (id: string) => Promise<void>
-  /** DEPRECATED: Use scrape instead */
+  /** @deprecated Use `scrape()` instead */
   scrapePoi: (id: string) => Promise<void>
   unscrape: (target: Target) => Promise<void>
-  /** DEPRECATED: Use unscrape instead */
+  /** @deprecated Use `unscrape()` instead */
   unscrapeArticle: (id: string) => Promise<void>
-  /** DEPRECATED: Use unscrape instead */
+  /** @deprecated Use `unscrape()` instead */
   unscrapePoi: (id: string) => Promise<void>
 }
 
