@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/core-elements",
-  "version": "2.0.0-alpha.0",
+  "version": "2.0.0-alpha.1",
   "description": "Core elements of Triple Design System",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -23,9 +23,9 @@
   },
   "homepage": "https://github.com/titicacadev/triple-design-system#readme",
   "dependencies": {
-    "@titicaca/color-palette": "^2.0.0-alpha.0",
-    "@titicaca/intersection-observer": "^2.0.0-alpha.0",
-    "@titicaca/view-utilities": "^2.0.0-alpha.0",
+    "@titicaca/color-palette": "^2.0.0-alpha.1",
+    "@titicaca/intersection-observer": "^2.0.0-alpha.1",
+    "@titicaca/view-utilities": "^2.0.0-alpha.1",
     "react-input-mask": "^2.0.4",
     "react-transition-group": "^4.4.1"
   },
