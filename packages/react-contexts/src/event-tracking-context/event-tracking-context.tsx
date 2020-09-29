@@ -6,13 +6,7 @@ import {
   viewItem as nativeViewItem,
 } from '@titicaca/triple-web-to-native-interfaces'
 
-interface FAParams {
-  category: string
-  event_name: string // eslint-disable-line @typescript-eslint/camelcase
-  [key: string]: any
-}
-
-type GAParams = (string | undefined)[]
+import { FAParams, GAParams } from './types'
 
 const NOOP = () => {}
 
