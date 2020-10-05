@@ -108,7 +108,7 @@ export const ELEMENTS: ElementSet = {
 
 export function TripleDocument({
   children,
-  customElements,
+  customElements = {},
   onResourceClick,
   onImageClick,
   onLinkClick,
@@ -121,7 +121,7 @@ export function TripleDocument({
   return (
     <>
       {children.map(({ type, value }, i) => {
-        const Element = (customElements || {})[type] || ELEMENTS[type]
+        const Element = { ...ELEMENTS, ...customElements }[type]
 
         return (
           Element && (
