@@ -67,7 +67,7 @@ export default function DetailHeader({
           {names.local || names.en}
         </Text>
         {(reviewsCount > 0 || scrapsCount > 0) && (
-          <Container margin={{ top: 4 }}>
+          <Container margin={{ top: 14 }}>
             {reviewsCount > 0 && (
               <Text
                 inline
