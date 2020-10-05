@@ -1,10 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import * as CSS from 'csstype'
 import {
-  ImageCarouselElementContainer,
-  ImageBlockElementContainer,
-  ImageCaption,
   HR1,
   HR2,
   HR3,
@@ -24,7 +20,6 @@ import {
   PoiCarouselElement,
   PoiListElementProps,
 } from '@titicaca/poi-list-elements'
-import TripleMedia, { MediaMeta } from '@titicaca/triple-media'
 import { ListingPOI } from '@titicaca/type-definitions'
 
 import { RegionListElement } from './region'
@@ -40,10 +35,10 @@ import {
 } from './types'
 import DocumentCarousel from './document-carousel'
 import Heading from './heading-hoc'
-import generateClickHandler from './generate-click-handler'
 import TextElement from './text-element'
 import ResourceList from './resource-list'
 import Links from './links'
+import Images from './images'
 import { MH1, MH2, MH3, MH4 } from './margin-headings'
 import Embedded from './embedded'
 
@@ -59,7 +54,6 @@ type TextElementData = TripleElementData<'text', string>
 type LinksElementData = TripleElementData<'links', { links: Link[] }>
 
 type Display = 'list' | string
-type MediaDisplayProperty = CSS.Property.Display | 'gapless-block'
 
 interface TripleDocumentProps {
   customElements?: ElementSet
@@ -141,77 +135,6 @@ export function TripleDocument({
         )
       })}
     </>
-  )
-}
-
-function Images({
-  value: { images, display },
-  onImageClick,
-  onLinkClick,
-  ImageSource,
-  videoAutoPlay,
-}: {
-  value: {
-    images: MediaMeta[]
-    display: MediaDisplayProperty
-  }
-  onImageClick: ImageEventHandler
-  onLinkClick: LinkEventHandler
-  ImageSource: ImageSourceType
-  videoAutoPlay?: boolean
-}) {
-  const ImagesContainer = ['block', 'gapless-block'].includes(display)
-    ? Container
-    : DocumentCarousel
-  const ElementContainer =
-    display === 'gapless-block'
-      ? Container
-      : display === 'block'
-      ? ImageBlockElementContainer
-      : ImageCarouselElementContainer
-
-  const handleClick = generateClickHandler(onLinkClick, onImageClick)
-
-  return (
-    <ImagesContainer
-      margin={{
-        top: display === 'gapless-block' ? 0 : 40,
-        bottom:
-          display === 'gapless-block'
-            ? 0
-            : images.some(({ title }) => title)
-            ? 10
-            : 30,
-      }}
-    >
-      {images.map((image, i) => {
-        return (
-          <ElementContainer key={i}>
-            {display === 'gapless-block' ? (
-              <TripleMedia
-                borderRadius={0}
-                autoPlay={videoAutoPlay}
-                media={image}
-                onClick={handleClick}
-                ImageSource={ImageSource}
-              />
-            ) : (
-              <>
-                <TripleMedia
-                  autoPlay={videoAutoPlay}
-                  media={image}
-                  onClick={handleClick}
-                  ImageSource={ImageSource}
-                />
-                {image.title ? (
-                  <ImageCaption>{image.title}</ImageCaption>
-                ) : null}
-              </>
-            )}
-          </ElementContainer>
-        )
-      })}
-    </ImagesContainer>
   )
 }
 
