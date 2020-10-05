@@ -25,6 +25,10 @@ storiesOf('poi-detail | DetailHeader', module).add('일반', () => (
           en: 'Tokyo Disney land',
           local: '東京ディズニーランド',
         }}
+        areas={[
+          { id: 1, name: '도쿄' },
+          { id: 2, name: '오사카' },
+        ]}
         scrapsCount={number('저장수', 682)}
         reviewsCount={number('리뷰수', 13859)}
         reviewsRating={number('리뷰평점', 4.45)}
