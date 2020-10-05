@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import styled from 'styled-components'
 import {
   Section,
   Text,
@@ -21,8 +22,14 @@ import CopyActionSheet from './copy-action-sheet'
 
 const LongClickableSection = longClickable(Section)
 
+interface Area {
+  id: number
+  name: string
+}
+
 export default function DetailHeader({
   names,
+  areas,
   scrapsCount,
   reviewsCount,
   reviewsRating,
@@ -31,6 +38,7 @@ export default function DetailHeader({
   ...props
 }: {
   names: TranslatedProperty
+  areas?: Area[]
   scrapsCount: number
   reviewsCount: number
   reviewsRating: number
@@ -81,6 +89,7 @@ export default function DetailHeader({
             )}
           </Container>
         )}
+        <AreaNames areas={areas} />
       </LongClickableSection>
       <CopyActionSheet
         open={uriHash === HASH_COPY_ACTION_SHEET}
@@ -91,3 +100,22 @@ export default function DetailHeader({
     </>
   )
 }
+
+function AreaNames({ areas }: { areas?: Area[] }) {
+  const names = (areas || []).map(({ name }) => name).join(' / ')
+  return names ? (
+    <AreaContainer>
+      <Text size="tiny" bold margin={{ top: 10 }} alpha={0.8} lineHeight={1.38}>
+        {names}
+      </Text>
+    </AreaContainer>
+  ) : null
+}
+
+const AreaContainer = styled(Container)`
+  padding-left: 20px;
+  background-image: url('https://assets.triple.guide/images/ico-end-location@3x.png');
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: left top;
+`
