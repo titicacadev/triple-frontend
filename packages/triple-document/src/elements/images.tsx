@@ -9,9 +9,9 @@ import {
 } from '@titicaca/core-elements'
 import TripleMedia, { MediaMeta } from '@titicaca/triple-media'
 
-import DocumentCarousel from './document-carousel'
-import generateClickHandler from './generate-click-handler'
-import { ImageEventHandler, LinkEventHandler } from './types'
+import DocumentCarousel from '../shared/document-carousel'
+import generateClickHandler from '../shared/generate-click-handler'
+import { ImageEventHandler, LinkEventHandler } from '../types'
 
 type MediaDisplayProperty = CSS.Property.Display | 'gapless-block'
 

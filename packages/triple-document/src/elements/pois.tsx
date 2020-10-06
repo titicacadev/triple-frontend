@@ -8,8 +8,8 @@ import {
 import { Text } from '@titicaca/core-elements'
 import { ListingPOI } from '@titicaca/type-definitions'
 
-import ResourceList from './resource-list'
-import DocumentCarousel from './document-carousel'
+import ResourceList from '../shared/resource-list'
+import DocumentCarousel from '../shared/document-carousel'
 
 const PoiPrice = styled.div`
   position: absolute;
