@@ -1,8 +1,29 @@
-import * as React from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { ResourceListItem, Image } from '@titicaca/core-elements'
 
+import ResourceList from './resource-list'
 import { RegionData } from './types'
+
+export default function Regions({
+  value: { regions },
+  onResourceClick,
+}: {
+  value: { regions: RegionData[] }
+  onResourceClick?: (e: React.SyntheticEvent, region: RegionData) => void
+}) {
+  return (
+    <ResourceList>
+      {regions.map((region, index) => (
+        <RegionListElement
+          key={index}
+          value={region}
+          onClick={onResourceClick && ((e) => onResourceClick(e, region))}
+        />
+      ))}
+    </ResourceList>
+  )
+}
 
 const Name = styled.div`
   float: left;
