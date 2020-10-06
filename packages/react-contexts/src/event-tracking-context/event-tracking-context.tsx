@@ -1,6 +1,7 @@
 import React, { ComponentType } from 'react'
 import { DeepPartial } from 'utility-types'
 import {
+  hasAccessibleTripleNativeClients,
   trackScreen as nativeTrackScreen,
   trackEvent as nativeTrackEvent,
   viewItem as nativeViewItem,
@@ -66,7 +67,9 @@ export class EventTrackingProvider extends React.PureComponent<
   trackScreen: EventTrackingContextValue['trackScreen'] = (path: string) => {
     if (window.ga) {
       window.ga('send', 'pageview')
-    } else {
+    }
+
+    if (hasAccessibleTripleNativeClients()) {
       nativeTrackScreen(path)
     }
   }
@@ -79,7 +82,9 @@ export class EventTrackingProvider extends React.PureComponent<
     if (window.ga && ga) {
       const [action, label] = ga
       window.ga('send', 'event', pageLabel, action, label)
-    } else {
+    }
+
+    if (hasAccessibleTripleNativeClients()) {
       nativeTrackEvent({
         ga: ga && [pageLabel, ...ga],
         fa: fa && {
@@ -103,7 +108,9 @@ export class EventTrackingProvider extends React.PureComponent<
 
     if (window.ga) {
       window.ga('send', 'event', pageLabel, action, label)
-    } else {
+    }
+
+    if (hasAccessibleTripleNativeClients()) {
       nativeTrackEvent({
         ga: [pageLabel, action, label].filter((v) => v),
         fa: {
