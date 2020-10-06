@@ -10,7 +10,7 @@ import {
 } from '@titicaca/core-elements'
 
 import Pois from './elements/pois'
-import { TnaProductsList } from './tna'
+import { TnaProductsList } from './elements/tna'
 import Coupon from './elements/coupon'
 import {
   TripleElementData,
