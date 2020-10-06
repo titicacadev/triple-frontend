@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Container } from '@titicaca/core-elements'
 
+import { TripleElementData, Link, LinkEventHandler } from '../types'
 import TextElement from './text-element'
-import { TripleElementData, Link, LinkEventHandler } from './types'
 import Links from './links'
 
 const BULLET_ICON_URLS: { [key: string]: string } = {

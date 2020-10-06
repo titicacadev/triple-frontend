@@ -11,8 +11,8 @@ import {
 } from '@titicaca/core-elements'
 import { MediaMeta } from '@titicaca/triple-media'
 
-import { Link, LinkEventHandler } from './types'
-import ResourceList from './resource-list'
+import { Link, LinkEventHandler } from '../types'
+import ResourceList from '../shared/resource-list'
 
 const LinksContainer = styled.div<{ compact?: boolean }>`
   margin: ${({ compact }) => (compact ? '0' : '0 30px')};

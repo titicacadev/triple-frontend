@@ -2,15 +2,15 @@ import React from 'react'
 import { ImageSourceType, Carousel, Container } from '@titicaca/core-elements'
 import TripleMedia, { MediaMeta } from '@titicaca/triple-media'
 
-import DocumentCarousel from './document-carousel'
 import {
   TripleElementData,
   LinkEventHandler,
   ImageEventHandler,
   ElementSet,
-} from './types'
+} from '../types'
 import Heading from './heading-hoc'
-import generateClickHandler from './generate-click-handler'
+import DocumentCarousel from '../shared/document-carousel'
+import generateClickHandler from '../shared/generate-click-handler'
 import TextElement from './text-element'
 import Links from './links'
 import { MH3 } from './margin-headings'

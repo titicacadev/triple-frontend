@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { ResourceListItem, Image } from '@titicaca/core-elements'
 
-import ResourceList from './resource-list'
-import { RegionData } from './types'
+import ResourceList from '../shared/resource-list'
+import { RegionData } from '../types'
 
 export default function Regions({
   value: { regions },
