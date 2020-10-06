@@ -13,7 +13,11 @@ const NOOP = () => {}
 
 interface EventTrackingContextValue {
   trackScreen: (screenPath: string) => void
-  trackEvent: (params: { ga?: GAParams; fa?: Partial<FAParams> }) => void
+  trackEvent: (params: {
+    ga?: GAParams
+    fa?: Partial<FAParams>
+    pixel?: [string, { [key: string]: unknown }]
+  }) => void
   trackSimpleEvent: (params: {
     action?: string
     label?: string
@@ -42,6 +46,11 @@ interface EventTrackingProviderState {
 declare global {
   interface Window {
     ga: Function
+    fbq?: (
+      type: 'track' | 'trackCustom',
+      action: string,
+      payload?: { [key: string]: unknown },
+    ) => void
   }
 }
 
@@ -69,12 +78,16 @@ export class EventTrackingProvider extends React.PureComponent<
       window.ga('send', 'pageview')
     }
 
+    if (window.fbq) {
+      window.fbq('track', 'PageView')
+    }
+
     if (hasAccessibleTripleNativeClients()) {
       nativeTrackScreen(path)
     }
   }
 
-  trackEvent: EventTrackingContextValue['trackEvent'] = ({ ga, fa }) => {
+  trackEvent: EventTrackingContextValue['trackEvent'] = ({ ga, fa, pixel }) => {
     const {
       state: { pageLabel },
     } = this
@@ -82,6 +95,10 @@ export class EventTrackingProvider extends React.PureComponent<
     if (window.ga && ga) {
       const [action, label] = ga
       window.ga('send', 'event', pageLabel, action, label)
+    }
+
+    if (window.fbq && pixel) {
+      window.fbq('trackCustom', ...pixel)
     }
 
     if (hasAccessibleTripleNativeClients()) {
@@ -108,6 +125,17 @@ export class EventTrackingProvider extends React.PureComponent<
 
     if (window.ga) {
       window.ga('send', 'event', pageLabel, action, label)
+    }
+
+    if (window.fbq) {
+      if (!action) {
+        console.warn('이벤트 action이 없습니다.')
+      } else {
+        window.fbq('trackCustom', action, {
+          label,
+          ...rest,
+        })
+      }
     }
 
     if (hasAccessibleTripleNativeClients()) {
