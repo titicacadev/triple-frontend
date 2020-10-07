@@ -1,4 +1,4 @@
-import { LinkEventHandler, ImageEventHandler } from './types'
+import { LinkEventHandler, ImageEventHandler } from '../types'
 
 export default function generateClickHandler(
   onLinkClick?: LinkEventHandler,
