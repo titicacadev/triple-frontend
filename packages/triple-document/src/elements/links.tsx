@@ -12,7 +12,7 @@ import {
 import { MediaMeta } from '@titicaca/triple-media'
 
 import { Link, LinkEventHandler } from '../types'
-import ResourceList from '../shared/resource-list'
+import ResourceList from './shared/resource-list'
 
 const LinksContainer = styled.div<{ compact?: boolean }>`
   margin: ${({ compact }) => (compact ? '0' : '0 30px')};
