@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { select, text, boolean } from '@storybook/addon-knobs'
+import { action } from '@storybook/addon-actions'
 import Popup from '@titicaca/popup'
 import { StaticPageContents } from '@titicaca/static-page-contents'
 
@@ -30,6 +31,7 @@ export function withPopup() {
       borderless={boolean('네비바 경계선 없음', true)}
       open={boolean('팝업 열기', true)}
       icon={select('네비바 아이콘', ['close', 'back'], 'close')}
+      onClose={action('onClose')}
     >
       <StaticPageContents src="static-mock.html" />
     </Popup>

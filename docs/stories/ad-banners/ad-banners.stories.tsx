@@ -34,12 +34,7 @@ function ProviderWrapper({ children }: { children: React.ReactNode }) {
         longitude: number('경도', 144.812304),
       }}
     >
-      <EventTrackingProvider
-        pageLabel="광고 배너 테스트"
-        trackEvent={action('이벤트 트래킹')}
-        trackScreen={action('스크린 트래킹')}
-        viewItem={action('viewItem')}
-      >
+      <EventTrackingProvider pageLabel="광고 배너 테스트">
         <HistoryProvider
           appUrlScheme=""
           webUrlBase=""

@@ -5,7 +5,7 @@ import { ActionSheetSelector } from '@titicaca/form'
 type Option = {
   key: string
   label: string
-  value: string | null
+  value: string | number | null
 }
 
 export default function SelectActionSheetWraaper() {
@@ -25,7 +25,7 @@ export default function SelectActionSheetWraaper() {
         setOpen(false)
       }}
       required={boolean('required', false)}
-      onChange={(value) => setSelectedValue(value)}
+      onChange={(value) => setSelectedValue(value || null)}
       help={text(
         'placeholder',
         '고객님의 요청사항은 해당 호텔에 전달됩니다만 호텔 사정에 따라 필요하신 내용이 이루어지지 않을 수 있으니 많은 양해 바랍니다.',
@@ -33,17 +33,14 @@ export default function SelectActionSheetWraaper() {
       value={selectedValue}
       options={[
         {
-          key: '12:00',
           label: '12:00',
           value: '12:00',
         },
         {
-          key: '12:10',
           label: '12:10',
           value: '12:10',
         },
         {
-          key: '12:20',
           label: '12:20',
           value: '12:20',
         },

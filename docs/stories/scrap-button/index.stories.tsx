@@ -1,9 +1,9 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
 import { boolean } from '@storybook/addon-knobs'
-import ScrapButton from '@titicaca/scrap-button'
+import { CompactScrapButton, RegularScrapButton } from '@titicaca/scrap-button'
 import styled from 'styled-components'
+import { StoryFn } from '@storybook/addons'
+import { ScrapsProvider } from '@titicaca/react-contexts'
 
 const ScrapButtonWrapper = styled.div`
   position: relative;
@@ -14,25 +14,41 @@ const ScrapButtonWrapper = styled.div`
   padding: 20px;
 `
 
-storiesOf('ScrapButton | ScrapButton', module)
-  .add('일반', () => (
-    <ScrapButtonWrapper>
-      <ScrapButton
-        scraped={boolean('scraped', false)}
-        onScrapedChange={action('scraped changed')}
-        resource={{ a: 'test' }}
-      />
-      position: relative
-    </ScrapButtonWrapper>
-  ))
-  .add('compact', () => (
-    <ScrapButtonWrapper>
-      <ScrapButton
-        scraped={boolean('scraped', false)}
-        onScrapedChange={action('scraped changed')}
-        resource={{ a: 'test' }}
-        compact
-      />
-      position: relative
-    </ScrapButtonWrapper>
-  ))
+export default {
+  title: 'ScrapButton',
+  decorators: [
+    (storyFn: StoryFn) => (
+      <ScrapButtonWrapper>
+        {storyFn()}
+        position: relative
+      </ScrapButtonWrapper>
+    ),
+    (storyFn: StoryFn<JSX.Element>) => (
+      <ScrapsProvider>{storyFn()}</ScrapsProvider>
+    ),
+  ],
+}
+
+export function regularScrapButton() {
+  return (
+    <RegularScrapButton
+      resource={{
+        id: 'scrapable_id',
+        type: 'scrapable_type',
+        scraped: boolean('initial scraped', false),
+      }}
+    />
+  )
+}
+
+export function compactScrapButton() {
+  return (
+    <CompactScrapButton
+      resource={{
+        id: 'scrapable_id',
+        type: 'scrapable_type',
+        scraped: boolean('initial scraped', false),
+      }}
+    />
+  )
+}

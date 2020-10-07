@@ -35,15 +35,7 @@ export default {
 }
 
 export function PoiList() {
-  return (
-    <PoiListElement
-      as={text('as', 'div') as any}
-      poi={POI}
-      resourceScraps={{
-        [POI.id]: boolean('저장', false),
-      }}
-    />
-  )
+  return <PoiListElement as={text('as', 'div') as any} poi={POI} />
 }
 
 PoiList.story = {
@@ -57,13 +49,9 @@ export function HotelList() {
         <PoiListElement
           key={idx}
           poi={hotel}
-          resourceScraps={{
-            [hotel.id]: boolean('저장', false),
-          }}
           isAdvertisement={boolean('광고 상품', false)}
           maxCommentLines={number('comment 최대 노출', 0)}
           hideScrapButton={boolean('hideScrapButton', false)}
-          onScrapedChange={action('scrap change')}
           notes={
             boolean('custom note', false) ? ['3성급', '판교 백현동'] : undefined
           }
@@ -96,9 +84,6 @@ export function TripleDocument() {
             </Text>
           )
         }
-        resourceScraps={{
-          [POI.id]: boolean('저장', false),
-        }}
         additionalInfo={
           boolean('부가 정보 노출', false) ? <PricingDescription /> : null
         }
@@ -129,15 +114,7 @@ TripleDocument.story = {
 }
 
 export function TripleDocumentList() {
-  return (
-    <PoiListElement
-      compact
-      poi={POI}
-      resourceScraps={{
-        [POI.id]: boolean('저장', false),
-      }}
-    />
-  )
+  return <PoiListElement compact poi={POI} />
 }
 
 TripleDocumentList.story = {
@@ -147,6 +124,7 @@ TripleDocumentList.story = {
 export function PoiCardElementsTypeHotel() {
   return (
     <POICardElement
+      id={text('id', 'f72d2f50-2efb-4469-a903-47ad6b0c0740')}
       type="hotel"
       names={{
         ko: text('ko name', '아일랜드 퍼시픽 호텔'),
@@ -192,7 +170,6 @@ export function PoiCardElementsTypeHotel() {
       scrapsCount={number('scrapesCount', 0)}
       distance={text('distance', '300m')}
       onClick={action('onClick')}
-      onScrapedChange={action('onScrapedChange')}
       onDirectionButtonClick={action('onDirectionButtonClick')}
     />
   )
@@ -205,6 +182,7 @@ PoiCardElementsTypeHotel.stroy = {
 export function PoiCardElementsTypePoi() {
   return (
     <POICardElement
+      id={text('id', 'f72d2f50-2efb-4469-a903-47ad6b0c0740')}
       type={select('type', ['attraction', 'restaurant'], 'attraction')}
       names={{
         ko: text('ko name', '왓 포 사원'),
@@ -244,7 +222,6 @@ export function PoiCardElementsTypePoi() {
       categoryName={text('categoryName', '관광명소')}
       areaName={text('areaName', '올드시티')}
       onClick={action('onClick')}
-      onScrapedChange={action('onScrapedChange')}
       onDirectionButtonClick={action('onDirectionButtonClick')}
     />
   )
