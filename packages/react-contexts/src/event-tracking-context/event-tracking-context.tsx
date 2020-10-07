@@ -37,6 +37,7 @@ const DEFAULT_EVENT_NAME = 'user_interaction'
 
 interface EventTrackingProviderProps {
   pageLabel: string
+  onError?: (error: Error) => void
 }
 
 interface EventTrackingProviderState {
@@ -74,43 +75,60 @@ export class EventTrackingProvider extends React.PureComponent<
   }
 
   trackScreen: EventTrackingContextValue['trackScreen'] = (path: string) => {
-    if (window.ga) {
-      window.ga('send', 'pageview')
-    }
+    try {
+      if (window.ga) {
+        window.ga('send', 'pageview')
+      }
 
-    if (window.fbq) {
-      window.fbq('track', 'PageView')
-    }
+      if (window.fbq) {
+        window.fbq('track', 'PageView')
+      }
 
-    if (hasAccessibleTripleNativeClients()) {
-      nativeTrackScreen(path)
+      if (hasAccessibleTripleNativeClients()) {
+        nativeTrackScreen(path)
+      }
+    } catch (error) {
+      const {
+        props: { onError },
+      } = this
+
+      if (onError) {
+        onError(error)
+      }
     }
   }
 
   trackEvent: EventTrackingContextValue['trackEvent'] = ({ ga, fa, pixel }) => {
     const {
+      props: { onError },
       state: { pageLabel },
     } = this
 
-    if (window.ga && ga) {
-      const [action, label] = ga
-      window.ga('send', 'event', pageLabel, action, label)
-    }
+    try {
+      if (window.ga && ga) {
+        const [action, label] = ga
+        window.ga('send', 'event', pageLabel, action, label)
+      }
 
-    if (window.fbq && pixel) {
-      window.fbq('trackCustom', pixel[0], { pageLabel, ...pixel[1] })
-    }
+      if (window.fbq && pixel) {
+        window.fbq('trackCustom', pixel[0], { pageLabel, ...pixel[1] })
+      }
 
-    if (hasAccessibleTripleNativeClients()) {
-      nativeTrackEvent({
-        ga: ga && [pageLabel, ...ga],
-        fa: fa && {
-          category: pageLabel,
-          /* eslint-disable-next-line @typescript-eslint/camelcase */
-          event_name: DEFAULT_EVENT_NAME,
-          ...fa,
-        },
-      })
+      if (hasAccessibleTripleNativeClients()) {
+        nativeTrackEvent({
+          ga: ga && [pageLabel, ...ga],
+          fa: fa && {
+            category: pageLabel,
+            /* eslint-disable-next-line @typescript-eslint/camelcase */
+            event_name: DEFAULT_EVENT_NAME,
+            ...fa,
+          },
+        })
+      }
+    } catch (error) {
+      if (onError) {
+        onError(error)
+      }
     }
   }
 
@@ -120,36 +138,45 @@ export class EventTrackingProvider extends React.PureComponent<
     ...rest
   }) => {
     const {
+      props: { onError },
       state: { pageLabel },
     } = this
 
-    if (window.ga) {
-      window.ga('send', 'event', pageLabel, action, label)
-    }
+    try {
+      if (window.ga) {
+        window.ga('send', 'event', pageLabel, action, label)
+      }
 
-    if (window.fbq) {
-      if (!action) {
-        console.warn('이벤트 action이 없습니다.')
-      } else {
-        window.fbq('trackCustom', action, {
-          pageLabel,
-          label,
-          ...rest,
+      if (window.fbq) {
+        if (!action) {
+          throw new Error(
+            'Facebook Pixel 이벤트 이름으로 사용하는 action이 없습니다.',
+          )
+        } else {
+          window.fbq('trackCustom', action, {
+            pageLabel,
+            label,
+            ...rest,
+          })
+        }
+      }
+
+      if (hasAccessibleTripleNativeClients()) {
+        nativeTrackEvent({
+          ga: [pageLabel, action, label].filter((v) => v),
+          fa: {
+            category: pageLabel,
+            /* eslint-disable-next-line @typescript-eslint/camelcase */
+            event_name: DEFAULT_EVENT_NAME,
+            action: action as string,
+            ...rest,
+          },
         })
       }
-    }
-
-    if (hasAccessibleTripleNativeClients()) {
-      nativeTrackEvent({
-        ga: [pageLabel, action, label].filter((v) => v),
-        fa: {
-          category: pageLabel,
-          /* eslint-disable-next-line @typescript-eslint/camelcase */
-          event_name: DEFAULT_EVENT_NAME,
-          action: action as string,
-          ...rest,
-        },
-      })
+    } catch (error) {
+      if (onError) {
+        onError(error)
+      }
     }
   }
 
