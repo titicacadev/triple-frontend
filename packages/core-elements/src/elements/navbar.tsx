@@ -114,16 +114,21 @@ const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
   margin-right: ${({ floated }) => (floated === 'right' ? 0 : '6px')};
   cursor: pointer;
 `
-const SecondaryNavbar = styled.div`
-  background-color: #ffffff;
+const SecondaryNavbar = styled.div<NavbarProps & LayeringMixinProps>`
+  background-color: ${({ backgroundColor = 'white' }) =>
+    `rgba(${getColor(backgroundColor)})`};
   position: sticky;
   top: 52px;
   left: 0;
   right: 0;
-  z-index: 2;
   box-sizing: border-box;
   padding: 0 0 5px 0;
   overflow: hidden;
+
+  ${layeringMixin(0)};
+
+  margin: 0 auto;
+  max-width: ${({ maxWidth }) => maxWidth || 768}px;
 `
 
 function Navbar({
