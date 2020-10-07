@@ -98,7 +98,7 @@ export class EventTrackingProvider extends React.PureComponent<
     }
 
     if (window.fbq && pixel) {
-      window.fbq('trackCustom', ...pixel)
+      window.fbq('trackCustom', pixel[0], { pageLabel, ...pixel[1] })
     }
 
     if (hasAccessibleTripleNativeClients()) {
@@ -132,6 +132,7 @@ export class EventTrackingProvider extends React.PureComponent<
         console.warn('이벤트 action이 없습니다.')
       } else {
         window.fbq('trackCustom', action, {
+          pageLabel,
           label,
           ...rest,
         })
