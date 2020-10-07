@@ -1,4 +1,5 @@
-import React from 'react'
+import { useScrapsContext } from '@titicaca/react-contexts'
+import React, { useCallback } from 'react'
 import styled from 'styled-components'
 
 const Button = styled.button<{ isActive: boolean }>`
@@ -17,26 +18,31 @@ const Button = styled.button<{ isActive: boolean }>`
     `
       background-image: url("https://assets.triple.guide/images/${
         isActive
-          ? 'btn-content-scrap-overlay-on@2x.png'
-          : 'btn-content-scrap-overlay-off@2x.png'
+          ? 'btn-content-scrap-overlay-on@3x.png'
+          : 'btn-content-scrap-overlay-off@3x.png'
       }");
     `}
 `
 
 export default function ScrapButton({
-  scraped,
-  onScrapedChange,
+  resource: { id, type, scraped },
 }: {
-  scraped: boolean
-  onScrapedChange: (scraped: boolean) => void
+  resource: { id: string; type: string; scraped?: boolean }
 }) {
-  return (
-    <Button
-      isActive={scraped}
-      onClick={(e) => {
-        e.stopPropagation()
-        onScrapedChange(!scraped)
-      }}
-    />
+  const { scrape, unscrape, deriveCurrentStateAndCount } = useScrapsContext()
+  const { scraped: actualScraped } = deriveCurrentStateAndCount({
+    id,
+    scraped,
+  })
+
+  const handleClick = useCallback(
+    (e: React.SyntheticEvent) => {
+      e.preventDefault()
+      e.stopPropagation()
+
+      actualScraped ? unscrape({ id, type }) : scrape({ id, type })
+    },
+    [actualScraped, unscrape, id, type, scrape],
   )
+  return <Button isActive={actualScraped} onClick={handleClick} />
 }

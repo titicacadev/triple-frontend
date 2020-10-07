@@ -57,6 +57,7 @@ const ScrapButtonContainer = styled(Container).attrs({
 `
 
 export default function POICardElement({
+  id,
   type,
   names: { ko, en, local },
   regionId,
@@ -72,9 +73,9 @@ export default function POICardElement({
   categoryName,
   areaName,
   onClick,
-  onScrapedChange,
   onDirectionButtonClick,
 }: {
+  id: string
   type: ListingPOI['type']
   scraped: boolean
   regionId?: string
@@ -90,7 +91,6 @@ export default function POICardElement({
   categoryName?: string
   areaName?: string
   onClick?: MouseEventHandler<HTMLDivElement>
-  onScrapedChange: Parameters<typeof ScrapButton>[0]['onScrapedChange']
   onDirectionButtonClick: Parameters<typeof DirectionButton>[0]['onClick']
 }) {
   return (
@@ -124,10 +124,7 @@ export default function POICardElement({
 
           {regionId ? (
             <ScrapButtonContainer>
-              <ScrapButton
-                scraped={scraped}
-                onScrapedChange={onScrapedChange}
-              />
+              <ScrapButton resource={{ id, type, scraped }} />
             </ScrapButtonContainer>
           ) : null}
         </ImageContainer>
