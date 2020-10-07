@@ -50,14 +50,21 @@ jobs:
             ${{ runner.OS }}-build-${{ env.cache-name }}-
             ${{ runner.OS }}-build-
 
-      - name: Build
-        run: |
-          npm ci
-          npm run lint
-          npm run bootstrap
-          npm run build
+      - name: Install dependencies
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm ci
+          npm run bootstrap
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Build storybook
+        run: npm run build:storybook
 
       - name: Notify build success to slack
         if: success()
