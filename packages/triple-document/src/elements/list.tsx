@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Container } from '@titicaca/core-elements'
 
 import { TripleElementData, Link, LinkEventHandler } from '../types'
-import TextElement from './text-element'
+import { Text } from './text'
 import Links from './links'
 
 const BULLET_ICON_URLS: { [key: string]: string } = {
@@ -27,7 +27,7 @@ const ListItemContainer = styled.li<{ bulletType?: string }>`
   }
 `
 
-const ListTextElement = styled(TextElement)`
+const ListTextElement = styled(Text)`
   font-size: 16px;
   margin-left: 8px;
   display: inline;

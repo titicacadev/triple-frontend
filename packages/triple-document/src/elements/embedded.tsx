@@ -8,12 +8,10 @@ import {
   ImageEventHandler,
   ElementSet,
 } from '../types'
-import Heading from './heading-hoc'
 import DocumentCarousel from '../shared/document-carousel'
 import generateClickHandler from '../shared/generate-click-handler'
-import TextElement from './text-element'
+import { Text, MH3 } from './text'
 import Links from './links'
-import { MH3 } from './margin-headings'
 
 function Compact<P extends { compact?: boolean }>(
   Component: React.ComponentType<P>,
@@ -57,9 +55,9 @@ function EmbeddedImage({
 }
 
 const EMBEDDED_ELEMENTS: ElementSet = {
-  heading2: Compact(Heading(MH3)), // POI의 featuredContent에서 embedded entry의 제목이 heading2로 옵니다.
-  heading3: Compact(Heading(MH3)),
-  text: Compact(TextElement),
+  heading2: Compact(MH3), // POI의 featuredContent에서 embedded entry의 제목이 heading2로 옵니다.
+  heading3: Compact(MH3),
+  text: Compact(Text),
   links: Compact(Links),
   images: EmbeddedImage,
 }
