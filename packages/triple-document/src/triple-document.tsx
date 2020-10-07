@@ -18,11 +18,9 @@ import {
   LinkEventHandler,
   ElementSet,
 } from './types'
-import Heading from './elements/heading-hoc'
-import TextElement from './elements/text-element'
+import { Text, MH1, MH2, MH3, MH4 } from './elements/text'
 import Links from './elements/links'
 import Images from './elements/images'
-import { MH1, MH2, MH3, MH4 } from './elements/margin-headings'
 import Embedded from './elements/embedded'
 import List from './elements/list'
 import Regions from './elements/regions'
@@ -51,11 +49,11 @@ interface TripleDocumentProps {
 }
 
 export const ELEMENTS: ElementSet = {
-  heading1: Heading(MH1),
-  heading2: Heading(MH2),
-  heading3: Heading(MH3),
-  heading4: Heading(MH4),
-  text: TextElement,
+  heading1: MH1,
+  heading2: MH2,
+  heading3: MH3,
+  heading4: MH4,
+  text: Text,
   images: Images,
   hr1: HR1,
   hr2: HR2,
