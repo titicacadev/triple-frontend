@@ -134,7 +134,6 @@ const controller = new AbortController()
 const signal = controller.siginal
 const response = await get('/api/some/thing', {
   req,
-  method: HTTPMethod.GET,
   signal,
 })
 
@@ -143,6 +142,21 @@ setTimeout(() => {
 }, 3000)
 ```
 
+## camelize
+
+일부 API 응답값에 `snake_case` 가 있을 때 `camelCase` 으로 변환시키기 위한 유틸입니다.
+
+```ts
+import { get } from '@titicaca/fetcher'
+import { camelize } from '@titicaca/fetcher/utils'
+
+const { result, error } = camelize(
+  await get('/api/some/thing', {
+    req,
+  }),
+)
+```
+
 ## TODOs
 
-- [ ] Add camelize util function
+- [x] Add camelize util function

@@ -15,11 +15,15 @@
   },
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
+    "humps": "^2.0.1",
     "ts-custom-error": "^3.2.0",
     "universal-cookie": "^4.0.3"
   },
   "peerDependencies": {
     "ts-custom-error": "^3.2.0",
     "universal-cookie": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/humps": "^2.0.0"
   }
 }
