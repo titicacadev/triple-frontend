@@ -12,7 +12,7 @@ import {
   KeyOfTextStyleMap,
 } from '../mixins'
 
-interface TextBaseProps
+export interface TextBaseProps
   extends Pick<CSS.Properties, 'wordBreak' | 'whiteSpace' | 'textAlign'> {
   size?: GlobalSizes | number
   textStyle?: KeyOfTextStyleMap
