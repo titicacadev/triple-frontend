@@ -2,7 +2,6 @@ import * as React from 'react'
 import ExtendedResourceListElement, {
   ResourceListElementProps,
 } from '@titicaca/resource-list-element'
-import { deriveCurrentStateAndCount } from '@titicaca/view-utilities'
 import { ImageMeta } from '@titicaca/type-definitions'
 
 interface Product {
@@ -16,30 +15,21 @@ interface Product {
 
 export function ProductListElement<T extends Product>({
   product,
-  product: { id, title, image, subtitle, basePrice, salePrice },
-  scraped: initialScraped,
-  scrapsCount: initialScrapsCount,
+  product: { title, image, subtitle, basePrice, salePrice },
+  scraped,
+  scrapsCount,
   reviewsCount,
   reviewsRating,
   onClick,
-  onScrapedChange,
-  resourceScraps,
   as,
 }: {
   product: T
   scraped?: boolean
   scrapsCount?: number
-  resourceScraps?: { [key: string]: boolean }
 } & Pick<
   ResourceListElementProps<T>,
-  'reviewsCount' | 'reviewsRating' | 'onClick' | 'onScrapedChange' | 'as'
+  'reviewsCount' | 'reviewsRating' | 'onClick' | 'as'
 >) {
-  const { state: scraped, count: scrapsCount } = deriveCurrentStateAndCount({
-    initialState: initialScraped,
-    initialCount: initialScrapsCount,
-    currentState: (resourceScraps || {})[id],
-  })
-
   return (
     <ExtendedResourceListElement
       resource={product}
@@ -52,7 +42,6 @@ export function ProductListElement<T extends Product>({
       reviewsRating={reviewsRating}
       scraped={scraped}
       scrapsCount={scrapsCount}
-      onScrapedChange={onScrapedChange}
       onClick={onClick}
       as={as}
     />
