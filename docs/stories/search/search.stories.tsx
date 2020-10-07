@@ -83,12 +83,7 @@ function APIUsageExampleComponent() {
     >
       <Section padding={{ left: 10, right: 10 }}>
         {results.map((result) => (
-          <PoiListElement
-            key={result.id}
-            compact
-            poi={result}
-            resourceScraps={{}}
-          />
+          <PoiListElement key={result.id} compact poi={result} />
         ))}
       </Section>
     </Search>

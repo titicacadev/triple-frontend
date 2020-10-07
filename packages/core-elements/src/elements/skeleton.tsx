@@ -54,7 +54,7 @@ export function SkeletonText({ height = 16, ...props }: ContainerProps) {
 export function SkeletonCircle({
   size = 50,
   ...props
-}: { size: number } & Omit<
+}: { size?: number } & Omit<
   ContainerProps,
   'width' | 'height' | 'borderRadius'
 >) {

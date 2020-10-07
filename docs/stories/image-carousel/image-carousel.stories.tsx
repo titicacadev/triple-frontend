@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import ImageCarousel, { PageLabel } from '@titicaca/image-carousel'
+import { ImageSource } from '@titicaca/core-elements'
 
 import IMAGES from '../__mocks__/image-carousel.sample.json'
 
@@ -44,9 +45,7 @@ storiesOf('image-carousel | Image Carousel', module).add('일반', () => {
       onMoveStart={action('move-start')}
       onMove={action('move')}
       onMoveEnd={action('move-end')}
-      ImageSource={({ sourceUrl }) =>
-        `출처 ${sourceUrl.replace(/^https?:\/\//, '')}`
-      }
+      ImageSource={ImageSource}
       showMoreRenderer={({ currentIndex, totalCount }) => {
         const result =
           totalCount > 5 && currentIndex === totalCount - 1 ? (
