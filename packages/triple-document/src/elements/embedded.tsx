@@ -8,8 +8,8 @@ import {
   ImageEventHandler,
   ElementSet,
 } from '../types'
-import DocumentCarousel from '../shared/document-carousel'
-import generateClickHandler from '../shared/generate-click-handler'
+import DocumentCarousel from './shared/document-carousel'
+import generateClickHandler from './shared/generate-click-handler'
 import { Text, MH3 } from './text'
 import Links from './links'
 
