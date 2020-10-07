@@ -5,17 +5,26 @@ import { Color, getColor, brightGray } from '@titicaca/color-palette'
 
 import { FALLBACK_ACTION_CLASS_NAME } from '../constants'
 import { layeringMixin, LayeringMixinProps } from '../mixins'
+import Container from './container'
 
 type NavbarProps = {
   maxWidth?: number
   borderless?: boolean
   backgroundColor?: Color
+  position?: CSS.Property.Position
 }
+
+const NavbarsWrapper = styled(Container)<NavbarProps & LayeringMixinProps>`
+  > header,
+  > header + div {
+    position: relative;
+  }
+`
 
 const NavbarFrame = styled.header<NavbarProps & LayeringMixinProps>`
   background-color: ${({ backgroundColor = 'white' }) =>
     `rgba(${getColor(backgroundColor)})`};
-  position: sticky;
+  position: ${({ position = 'sticky' }) => position};
   top: 0;
   left: 0;
   right: 0;
@@ -117,7 +126,7 @@ const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
 const SecondaryNavbar = styled.div<NavbarProps & LayeringMixinProps>`
   background-color: ${({ backgroundColor = 'white' }) =>
     `rgba(${getColor(backgroundColor)})`};
-  position: sticky;
+  position: ${({ position = 'sticky' }) => position};
   top: 52px;
   left: 0;
   right: 0;
@@ -125,7 +134,7 @@ const SecondaryNavbar = styled.div<NavbarProps & LayeringMixinProps>`
   padding: 0 0 5px 0;
   overflow: hidden;
 
-  ${layeringMixin(0)};
+  ${layeringMixin(0)}
 
   margin: 0 auto;
   max-width: ${({ maxWidth }) => maxWidth || 768}px;
@@ -163,5 +172,6 @@ Navbar.Item = NavbarItem
 Navbar.Secondary = SecondaryNavbar
 Navbar.NavbarFrame = NavbarFrame
 Navbar.TitleContainer = TitleContainer
+Navbar.Wrapper = NavbarsWrapper
 
 export default Navbar
