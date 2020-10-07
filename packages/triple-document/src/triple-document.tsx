@@ -9,24 +9,30 @@ import {
   ImageSourceType,
 } from '@titicaca/core-elements'
 
-import Pois from './elements/pois'
-import { TnaProductsList } from './elements/tna'
-import Coupon from './elements/coupon'
+import {
+  Coupon,
+  Text,
+  MH1,
+  MH2,
+  MH3,
+  MH4,
+  Embedded,
+  ExternalVideo,
+  Images,
+  Links,
+  List,
+  Note,
+  Pois,
+  Regions,
+  Table,
+  TnaProductsList,
+} from './elements'
 import {
   TripleElementData,
   ImageEventHandler,
   LinkEventHandler,
   ElementSet,
 } from './types'
-import { Text, MH1, MH2, MH3, MH4 } from './elements/text'
-import Links from './elements/links'
-import Images from './elements/images'
-import Embedded from './elements/embedded'
-import List from './elements/list'
-import Regions from './elements/regions'
-import ExternalVideo from './elements/external-video'
-import Note from './elements/note'
-import Table from './elements/table'
 
 interface TripleDocumentProps {
   customElements?: ElementSet
