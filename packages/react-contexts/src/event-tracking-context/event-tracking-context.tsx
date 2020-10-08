@@ -96,7 +96,7 @@ export class EventTrackingProvider extends React.PureComponent<
       }
 
       if (window.fbq) {
-        window.fbq('track', 'PageView')
+        window.fbq('trackCustom', `PageView_${path}`)
       }
 
       if (hasAccessibleTripleNativeClients()) {
