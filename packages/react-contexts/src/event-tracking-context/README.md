@@ -1,13 +1,13 @@
 # EventTrackingContext
 
 앱 내에서 수집하는 Firebase/Google Analytics 및 일반 브라우저에서 수집하는
-Google Analytics 이벤트를 위한 Context입니다.
+Google Analytics/Pixel 이벤트를 위한 Context입니다.
 
 ## Event 정의
 
 ### Screen view (page view) events
 
-String 형식 path로 표현하는 스크린(앱 내) 및 페이지(웹 페이지) 뷰를 기혹합니다.
+String 형식 path로 표현하는 스크린(앱 내) 및 페이지(웹 페이지) 뷰를 기록합니다.
 페이지가 열릴 때마다 `useEffect` 훅이나 `componentDidMount`라이프사이클 이벤트를
 이용해 기록하는 것이 보통이며, 팝업이나 모달 윈도우 등이 열릴 때 별도로 기록하기도
 합니다.
@@ -24,6 +24,11 @@ String 형식 path로 표현하는 스크린(앱 내) 및 페이지(웹 페이�
 - Firebase Analytics Events: `event_name`, `category`, `action`을 포함한 1-depth
   object입니다. `event_name`은 `user_interaction`이라는 고정 값을 사용합니다.
   `category`는 Google Analytics와 마찬가지로 page label을 사용합니다.
+- Facebook Pixel Events: `type`, `action`, `payload`로 이뤄진 object를 받습니다.
+  `type`이 `'track'`이면 표준 이벤트를 사용하며 주어진 `action`만 사용할 수 있습니다.
+  `type`이 `'trackCustom'`이면 맞춤 이벤트를 사용하면 자유로운 `action`을 사용할 수 있습니다.
+  `type`은 생략가능하며, 생략하면 `'trackCustom'`으로 간주합니다.
+  `payload`는 이벤트에 전달되는 매개변수로 생략 가능합니다.
 
 ## Context
 
@@ -32,6 +37,7 @@ String 형식 path로 표현하는 스크린(앱 내) 및 페이지(웹 페이�
 #### Props
 
 - `pageLabel`: Event category로 사용하는 page label을 정의합니다.
+- `onError`: 메서드 실행 중 에러가 발생했을 때 호출합니다.
 
 ### `useEventTrackingContext()`
 
