@@ -7,7 +7,7 @@ import {
   viewItem as nativeViewItem,
 } from '@titicaca/triple-web-to-native-interfaces'
 
-import { FAParams, GAParams } from './types'
+import { FAParams, GAParams, PixelParams } from './types'
 
 const NOOP = () => {}
 
@@ -16,8 +16,19 @@ interface EventTrackingContextValue {
   trackEvent: (params: {
     ga?: GAParams
     fa?: Partial<FAParams>
-    pixel?: [string, { [key: string]: unknown }]
+    /**
+     * Facebook Pixel 이벤트 파라미터
+     *
+     * type을 "track"으로 설정하면 주어진 action만 사용할 수 있습니다.
+     * 그리고 type을 생략하면 맞춤 이벤트를 사용합니다.
+     */
+    pixel?: PixelParams
   }) => void
+  /**
+   * 하나의 파라미터로 GA, FA, Pixel 이벤트를 기록합니다.
+   *
+   * 그래서 Pixel은 무조건 맞춤 이벤트를 사용합니다.
+   */
   trackSimpleEvent: (params: {
     action?: string
     label?: string
@@ -111,7 +122,9 @@ export class EventTrackingProvider extends React.PureComponent<
       }
 
       if (window.fbq && pixel) {
-        window.fbq('trackCustom', pixel[0], { pageLabel, ...pixel[1] })
+        const { type = 'trackCustom', action, payload } = pixel
+
+        window.fbq(type, action, { pageLabel, ...payload })
       }
 
       if (hasAccessibleTripleNativeClients()) {
