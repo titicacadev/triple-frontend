@@ -25,9 +25,9 @@ interface EventTrackingContextValue {
     pixel?: PixelParams
   }) => void
   /**
-   * 하나의 파라미터로 GA, FA, Pixel 이벤트를 기록합니다.
+   * 하나의 파라미터로 GA, FA 이벤트를 기록합니다.
    *
-   * 그래서 Pixel은 무조건 맞춤 이벤트를 사용합니다.
+   * @deprecated 여러 이벤트 트래커를 유연하게 대응하는 trackEvent를 사용해주세요
    */
   trackSimpleEvent: (params: {
     action?: string
@@ -158,20 +158,6 @@ export class EventTrackingProvider extends React.PureComponent<
     try {
       if (window.ga) {
         window.ga('send', 'event', pageLabel, action, label)
-      }
-
-      if (window.fbq) {
-        if (!action) {
-          throw new Error(
-            'Facebook Pixel 이벤트 이름으로 사용하는 action이 없습니다.',
-          )
-        } else {
-          window.fbq('trackCustom', action, {
-            pageLabel,
-            label,
-            ...rest,
-          })
-        }
       }
 
       if (hasAccessibleTripleNativeClients()) {
