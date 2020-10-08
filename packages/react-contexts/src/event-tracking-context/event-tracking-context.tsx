@@ -12,7 +12,7 @@ import { FAParams, GAParams, PixelParams } from './types'
 const NOOP = () => {}
 
 interface EventTrackingContextValue {
-  trackScreen: (screenPath: string) => void
+  trackScreen: (screenPath: string, label?: string) => void
   trackEvent: (params: {
     ga?: GAParams
     fa?: Partial<FAParams>
@@ -89,14 +89,17 @@ export class EventTrackingProvider extends React.PureComponent<
     }
   }
 
-  trackScreen: EventTrackingContextValue['trackScreen'] = (path: string) => {
+  trackScreen: EventTrackingContextValue['trackScreen'] = (
+    path: string,
+    label?: string,
+  ) => {
     try {
       if (window.ga) {
         window.ga('send', 'pageview')
       }
 
-      if (window.fbq) {
-        window.fbq('trackCustom', `PageView_${path}`)
+      if (window.fbq && label) {
+        window.fbq('trackCustom', `PageView_${label}`, { path })
       }
 
       if (hasAccessibleTripleNativeClients()) {
