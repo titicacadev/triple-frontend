@@ -57,7 +57,11 @@ interface EventTrackingProviderState {
 
 declare global {
   interface Window {
-    ga: Function
+    ga?: (
+      method: 'send',
+      type: 'pageview' | 'event',
+      ...data: (string | undefined)[]
+    ) => void
     fbq?: (
       type: 'track' | 'trackCustom',
       action: string,
