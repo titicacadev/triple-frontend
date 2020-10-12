@@ -13,6 +13,16 @@ type NavbarProps = {
   position?: CSS.Property.Position
 }
 
+const WrapperContainer = styled.div<
+  { position?: CSS.Property.Position; top?: number } & LayeringMixinProps
+>`
+  position: ${({ position = 'fixed' }) => position};
+  top: ${({ top = 0 }) => top}px;
+  left: 0;
+  right: 0;
+  ${layeringMixin(0)}
+`
+
 const NavbarFrame = styled.header<NavbarProps & LayeringMixinProps>`
   background-color: ${({ backgroundColor = 'white' }) =>
     `rgba(${getColor(backgroundColor)})`};
@@ -21,9 +31,7 @@ const NavbarFrame = styled.header<NavbarProps & LayeringMixinProps>`
   left: 0;
   right: 0;
   height: 52px;
-
   ${layeringMixin(0)}
-
   ${({ borderless }) =>
     borderless
       ? ''
@@ -115,6 +123,7 @@ const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
   margin-right: ${({ floated }) => (floated === 'right' ? 0 : '6px')};
   cursor: pointer;
 `
+
 const SecondaryNavbar = styled.div<NavbarProps & LayeringMixinProps>`
   background-color: ${({ backgroundColor = 'white' }) =>
     `rgba(${getColor(backgroundColor)})`};
@@ -125,12 +134,29 @@ const SecondaryNavbar = styled.div<NavbarProps & LayeringMixinProps>`
   box-sizing: border-box;
   padding: 0 0 5px 0;
   overflow: hidden;
-
   ${layeringMixin(0)}
-
   margin: 0 auto;
   max-width: ${({ maxWidth }) => maxWidth || 768}px;
 `
+
+export function NavbarWrapper({
+  position,
+  top,
+  children,
+}: React.PropsWithChildren<{
+  position?: CSS.Property.Position
+  top?: number
+}>) {
+  return (
+    <WrapperContainer position={position} top={top}>
+      {React.Children.map(children, (child) => {
+        return React.cloneElement(child as React.ReactElement<any>, {
+          position: 'relative',
+        })
+      })}
+    </WrapperContainer>
+  )
+}
 
 function Navbar({
   title,
@@ -146,7 +172,6 @@ function Navbar({
   LayeringMixinProps &
   React.HTMLAttributes<HTMLDivElement>) {
   const childrenCount = React.Children.count(children)
-
   return (
     <NavbarFrame zTier={zTier} zIndex={zIndex} {...props}>
       {renderTitle
@@ -160,6 +185,7 @@ function Navbar({
     </NavbarFrame>
   )
 }
+
 Navbar.Item = NavbarItem
 Navbar.Secondary = SecondaryNavbar
 Navbar.NavbarFrame = NavbarFrame
