@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { Section, Carousel, Responsive } from '@titicaca/core-elements'
-import { H1 } from '@titicaca/triple-document'
+import { Section, Carousel, Responsive, H1 } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'
 

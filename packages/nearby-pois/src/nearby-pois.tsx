@@ -1,7 +1,13 @@
 import React, { useReducer, useCallback, useEffect } from 'react'
 import { useI18n } from '@titicaca/i18n'
-import { Section, Button, List, Tabs } from '@titicaca/core-elements'
-import { H1, Paragraph } from '@titicaca/triple-document'
+import {
+  Section,
+  Button,
+  List,
+  Tabs,
+  H1,
+  Paragraph,
+} from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { PointGeoJSON } from '@titicaca/type-definitions'
 

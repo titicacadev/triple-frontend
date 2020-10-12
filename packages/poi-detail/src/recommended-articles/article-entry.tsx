@@ -1,6 +1,5 @@
 import React from 'react'
-import { Image } from '@titicaca/core-elements'
-import { H3 } from '@titicaca/triple-document'
+import { Image, H3 } from '@titicaca/core-elements'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
 import { ArticleListingData } from './types'

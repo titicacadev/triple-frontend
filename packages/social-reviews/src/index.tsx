@@ -1,7 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Section, Container, List, Text, Image } from '@titicaca/core-elements'
-import { H1, H3 } from '@titicaca/triple-document'
+import {
+  Section,
+  Container,
+  List,
+  Text,
+  Image,
+  H1,
+  H3,
+} from '@titicaca/core-elements'
 import {
   useEventTrackingContext,
   useHistoryFunctions,
