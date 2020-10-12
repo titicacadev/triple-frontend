@@ -1,7 +1,12 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import { Navbar, Text, SearchNavbar } from '@titicaca/core-elements'
+import {
+  Navbar,
+  Text,
+  SearchNavbar,
+  NavbarWrapper,
+} from '@titicaca/core-elements'
 import ListingFilter from '@titicaca/listing-filter'
 import { text, boolean, select } from '@storybook/addon-knobs'
 import styled from 'styled-components'
@@ -96,6 +101,21 @@ storiesOf('Core-Elements | Navbar', module)
         </ListingFilter>
       </Navbar.Secondary>
     </>
+  ))
+  .add('wrapper로 감싼 Navbar', () => (
+    <NavbarWrapper>
+      <Navbar title={text('제목', '도쿄 관광지')} borderless>
+        <Navbar.Item icon={'back'} />
+        <Navbar.Item floated="right" icon={'more'} />
+      </Navbar>
+      <Navbar.Secondary>
+        <ListingFilter>
+          <ListingFilter.FilterEntry active expanding>
+            전 지역
+          </ListingFilter.FilterEntry>
+        </ListingFilter>
+      </Navbar.Secondary>
+    </NavbarWrapper>
   ))
   .add('목차', () => (
     <Navbar
