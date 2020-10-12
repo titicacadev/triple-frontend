@@ -8,12 +8,11 @@ import {
   Container,
   SquareImage,
   HR2,
+  H1,
 } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import IntersectionObserver from '@titicaca/intersection-observer'
-
-import { H1 } from './text'
 
 type Price = string | number
 

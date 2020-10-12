@@ -1,7 +1,5 @@
 import React from 'react'
-import { Text } from '@titicaca/core-elements'
-
-import Paragraph from './paragraph'
+import { Text, Paragraph } from '@titicaca/core-elements'
 
 export default function TextElement({
   value: { text, rawHTML },

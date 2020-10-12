@@ -18,7 +18,6 @@
     "@titicaca/core-elements": "^2.0.0-alpha.1",
     "@titicaca/i18n": "^2.0.0-alpha.1",
     "@titicaca/react-contexts": "^2.0.0-alpha.1",
-    "@titicaca/triple-document": "^2.0.0-alpha.1",
     "i18next": "^19.3.3",
     "isomorphic-fetch": "^2.2.1",
     "react-i18next": "^11.3.3"
