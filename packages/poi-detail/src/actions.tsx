@@ -44,9 +44,6 @@ function ScrapButton({
   )
 }
 
-/**
- * TODO: Compound Component로 바꾸기
- */
 export default function Actions({
   reviewed,
   onScheduleAdd,
@@ -56,6 +53,7 @@ export default function Actions({
   scrapableResource,
   ...props
 }: {
+  poiId: string
   reviewed: boolean
   onScheduleAdd?: () => void
   onContentShare: () => void
