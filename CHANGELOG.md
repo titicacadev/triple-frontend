@@ -1,4 +1,6 @@
-# 2.0.0
+# CHANGELOG
+
+## 2.0.0
 
 ### common
 
@@ -21,7 +23,7 @@
 
 - `beforeBlock`, `afterBlock` prop의 형식을 Date에서 string으로 바꿉니다.
 
-# 1.34.0 (2020-09-02)
+## 1.34.0 (2020-09-02)
 
 ### meta-tags
 
@@ -39,7 +41,7 @@
 
 - style-box 패키지의 cstype을 3으로 업그레이드합니다. (#945)
 
-# 1.33.0 (2020-08-26)
+## 1.33.0 (2020-08-26)
 
 ### common
 
@@ -57,7 +59,7 @@
 
 - poi-card-element에 priceLabelOverride를 추가합니다. (#925)
 
-# 1.32.0 (2020-08-20)
+## 1.32.0 (2020-08-20)
 
 ### triple-document
 
@@ -75,7 +77,7 @@
 
 - Asset 이미지를 HTTPS 프로토콜로 fetch합니다. (#920)
 
-# 1.31.0 (2020-08-13)
+## 1.31.0 (2020-08-13)
 
 ### core-elements
 
@@ -85,7 +87,7 @@
 
 - 신규 패키지를 추가합니다 (#910)
 
-# 1.30.2 (2020-08-11)
+## 1.30.2 (2020-08-11)
 
 ### common
 
@@ -95,13 +97,13 @@
 
 - 앱설치 배너 제목을 입력할 수 있는 기능 추가 (#915)
 
-# 1.30.1 (2020-08-03)
+## 1.30.1 (2020-08-03)
 
 ### core-elements
 
 - label 색상에 orange 를 추가합니다. (#906)
 
-# 1.30.0 (2020-07-30)
+## 1.30.0 (2020-07-30)
 
 ### common
 
@@ -129,7 +131,7 @@
 
 - fixed pricing 에 max-width prop 을 추가합니다 (#902)
 
-# 1.29.0 (2020-07-22)
+## 1.29.0 (2020-07-22)
 
 ### core-elements
 
@@ -147,13 +149,13 @@
 
 - eslint rule을 타입스크립트로 변경합니다. (#878)
 
-# 1.28.1 (2020-07-16)
+## 1.28.1 (2020-07-16)
 
 ### app-installation-cta
 
 - Chatbot CTA 가 inventory item 이 없을때 콘텐츠가 비어있는 상태로 뜨는 문제를 수정합니다. (#877)
 
-# 1.28.0 (2020-07-15)
+## 1.28.0 (2020-07-15)
 
 ### app-installation-cta
 
@@ -163,7 +165,7 @@
 
 - Radio컴포넌트의 텍스트 `text-align` 을 left로 고정합니다. (#871)
 
-# 1.27.1 (2020-07-09)
+## 1.27.1 (2020-07-09)
 
 ### hub-form
 
@@ -194,7 +196,7 @@
 - docs 파일이 prettier로 포매팅할 수 있도록 수정 및 md, yaml도 prettier로 검사 (#867)
 - test 패키지 및 관련 코드 제거 (#848)
 
-# 1.26.0 (2020-07-01)
+## 1.26.0 (2020-07-01)
 
 ### color-palette
 
@@ -227,7 +229,7 @@
 
 - 가격 노출 여부를 결정하는 prop을 추가합니다. (#828)
 
-# 1.25.0 (2020-06-24)
+## 1.25.0 (2020-06-24)
 
 ### common
 
@@ -253,7 +255,7 @@
   - Verification context의 기본값을 지정합니다.
   - VerificationRequest에서 forceVerification을 false로 변경할 수 있도록 합니다.
 
-# 1.24.0 (2020-06-18)
+## 1.24.0 (2020-06-18)
 
 ### common
 
@@ -288,12 +290,12 @@
 - eslint-mdx 플러그인을 추가합니다. (#814)
 - storybook 파일 형식을 최신 방식으로 변경합니다. (#798)
 
-# 1.23.0 (2020-06-04)
+## 1.23.0 (2020-06-04)
 
 - `react-contexts` device context에 state 추가 #787device context에 state 추가 (#787)
 - `common` Config: lint 설정을 개선합니다. (#783)
 
-# 1.22.0 (2020-06-02)
+## 1.22.0 (2020-06-02)
 
 - `react-contexts` ImageContext에서 hotel 타입의 경우에는 poi 타입으로 변경하지 않습니다. (#775)
 - `search` enter 시 input blur 처리하도록 액션을 추가합니다. (#776)
@@ -303,7 +305,7 @@
   - Navbar, Footer, AppBanner, PublicHeader의 tag를 시멘틱한 tag로 수정합니다. (#778)
   - typescript(3.9,x), styled-component(5.x)를 최신버전으로 올립니다. (#780)
 
-# 1.21.0 (2020-05-21)
+## 1.21.0 (2020-05-21)
 
 - `core-elements` Text 요소에서 textAlign props 를 제공합니다. (#346) (#765)
 - `resource-poi-element` partnerName을 추가합니다. (#766)
@@ -313,7 +315,7 @@
   - canary publish 시 전달이 누락된 GITHUB_TOKEN 을 추가합니다. (#764)
   - cd workflow 내 notifier 전달 파라미터 오타 수정 (#761)
 
-# 1.20.0 (2020-05-14)
+## 1.20.0 (2020-05-14)
 
 - `triple-document`
   - `imageSourceComponent`를 optional 처리합니다. (#754)
@@ -326,11 +328,11 @@
 - `type-definitions` ListingHotel 의 TRIPLECLUB뱃지 타입을 string 으로 변경합니다. (#750)
 - `core-elements` Select에서 disabled 를 받습니다. (#748)
 
-# 1.19.1 (2020-05-11)
+## 1.19.1 (2020-05-11)
 
 - `view-utilies` type-definition 모듈 의존성 devDep -> dev 으로 변경합니다.
 
-# 1.19.0 (2020-05-07)
+## 1.19.0 (2020-05-07)
 
 - `color-palette` (#717)
   - 개별 color 를 export 하고, ColorSet export 방식을 변경합니다.
@@ -358,7 +360,7 @@
   - qs.parse의 리턴 타입 달라진 버전 대응 (#728)
 - `review` 리뷰 하단 UI가 깨지는 케이스를 수정합니다. (#719)
 
-# 1.18.0 (2020-04-27)
+## 1.18.0 (2020-04-27)
 
 - `color-palette` ColorSet 의 값이 `rgba()` 로 감싸지게 만들고, getColor 에서 `rgba()` 를 제거하여 반환하도록 합니다. (#685)
 - `colre-elements` Card 컴포넌트를 추가합니다. (#681)
@@ -374,18 +376,18 @@
 - `review` writeReview시 photoFirst 인자를 추가합니다. (#707)
 - `review` sorting option 레이블을 수정합니다. (#706)
 
-# 1.17.2 (2020-04-22)
+## 1.17.2 (2020-04-22)
 
 - `core-elements` tabs 와 select에 적용한 color 값 오류를 수정합니다. (#686)
 
-# 1.17.1 (2020-04-20)
+## 1.17.1 (2020-04-20)
 
 - `resource-list-element` (#677)
   - maxCommentLines props 을 추가하여 POI 설명 노출 라인 수 제어
   - basePriceUnit 을 추가합니다
 - `scrap-button` 2배 아이콘을 3 배 아이콘으로 변경합니다 (#677)
 
-# 1.17.0 (2020-04-20)
+## 1.17.0 (2020-04-20)
 
 - `core-elements` List 하위 li에 적용되는 스타일은 direct children에만 영향이 있도록 합니다 (#673)
 - StaticIntersectionObserver를 사용합니다 (#672)
@@ -393,14 +395,14 @@
 - `resource-list-element` POI, 상품 리스트 엘리먼트를 li 외의 태그로 렌더링 가능하게 합니다 (#669)
 - `color-palette` 체크리스트 v2에서 사용되는 컬러셋을 추가합니다 (#668)
 
-# 1.16.1 (2020-04-17)
+## 1.16.1 (2020-04-17)
 
 - `core-elements` List divider의 default style을 수정합니다 (#662)
 - `common` PR canary release 시 올바른 커밋을 fetch합니다 (#663)
 - `pricing` 잘못된 색상을 수정합니다 (#664)
 - `modal`, `popup`, `action-sheet` user-select를 none으로 변경합니다 (#666)
 
-# 1.16.0 (2020-04-16)
+## 1.16.0 (2020-04-16)
 
 - `common` context HOC 타이핑 개선 (#649)
 - `core-elements` 2배 이미지들을 3배 이미지로 변경합니다 (#657)
@@ -413,11 +415,11 @@
 - `search-web` input ref 를 내부에 추가합니다. 삭제시 focus 될 수 있도록 합니다 (#652)
 - `pricing, poi, resource-list-element` isSoldOut Props 을 추가하여 판매완료 케이스를 대응합니다 (#650)
 
-# 1.15.0 (2020-04-10)
+## 1.15.0 (2020-04-10)
 
 - `location-properties` 패키지에 `onCopy` 핸들러 추가 (#641)
 
-# 1.14.0 (2020-04-09)
+## 1.14.0 (2020-04-09)
 
 - `StaticIntersectionObserver` 추가 (#627)
 - `direction-finder` 전화번호가 없는 경우 전화하기 버튼 숨김 (#636)
@@ -725,7 +727,7 @@
 - `MyReviewsProvider`의 props 중 `type`을 `resourceType`으로 변경합니다.
 - `ReviewLikesContext`가 노출하는 인터페이스를 다음과 같이 변경합니다:
 
-  ```
+  ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
       reviewId: any
