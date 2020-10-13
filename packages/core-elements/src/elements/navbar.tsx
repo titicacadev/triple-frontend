@@ -6,12 +6,14 @@ import { Color, getColor, brightGray } from '@titicaca/color-palette'
 import { FALLBACK_ACTION_CLASS_NAME } from '../constants'
 import { layeringMixin, LayeringMixinProps, paddingMixin } from '../mixins'
 import { unit } from '../utils/unit'
+import { MarginPadding } from '../commons'
 
 type NavbarProps = {
   maxWidth?: number
   borderless?: boolean
   backgroundColor?: Color
   position?: CSS.Property.Position
+  padding?: MarginPadding
 }
 
 const WrapperContainer = styled.div<
@@ -143,12 +145,12 @@ const SecondaryNavbar = styled.div<NavbarProps & LayeringMixinProps>`
   left: 0;
   right: 0;
   box-sizing: border-box;
-  padding: 0 0 5px 0;
+  ${({ padding }) => !padding && 'padding: 0 0 5px 0;'}
+  ${paddingMixin}
   overflow: hidden;
   ${layeringMixin(0)}
   margin: 0 auto;
   max-width: ${({ maxWidth }) => unit(maxWidth || 768)};
-  ${paddingMixin}
 `
 
 export function NavbarWrapper({
