@@ -6,6 +6,8 @@
 
 - 등장, 퇴장 애니메이션이 있는 컴포넌트에
   `CSSTransition`의 `mountOnEnter`, `unmountOnExit` 설정하는 prop 추가
+- PR 정보를 가져오는 gh-tools 커맨드 `fetch-github-pr`로 변경 (#977)
+- 타입이 어긋나있던 story를 수정 (#985)
 
 ### icons
 
@@ -18,10 +20,33 @@
 ### core-elements
 
 - `Image` 컴포넌트를 하위 컴포넌트를 조합하는 방식으로 개선
+- `Navbar`에 `position` prop 추가 및 `SecondaryNavbar` prop 개선 (#980)
+- triple-document에 있던 typography 컴포넌트 추가 (#978)
 
 ### date-picker
 
 - `beforeBlock`, `afterBlock` prop의 형식을 Date에서 string으로 바꿉니다.
+
+### react-contexts
+
+- `withEventTrackingProvider` HOC 추가, event-tracking-context 구조 개선 및 문서 보강 (#974)
+- Event Tracking Context에 Facebook Pixel 연동 (#979)
+
+### poi-detail
+
+- `DetailHeader`에 거점 지역 정보 추가 (#976)
+
+### scrap-button
+
+- react-context를 연동하여 Uncontrolled 컴포넌트로 변경 (#900, #984)
+
+### drawer-button
+
+- layering props 추가 (#990)
+
+### triple-document
+
+- elements 디렉토리 추가, Regions, T&A 관련 export를 제거 및 typography 컴포넌트 core-elements로 이동 (#978)
 
 ## 1.34.0 (2020-09-02)
 
