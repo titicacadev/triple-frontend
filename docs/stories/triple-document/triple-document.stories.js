@@ -1,5 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
 import TripleDocument, { ELEMENTS } from '@titicaca/triple-document'
 
 import SAMPLE from '../__mocks__/triple-document.sample.json'
@@ -39,6 +40,12 @@ storiesOf('TripleDocument | TripleDocument', module)
       <Heading3 value={{ text: '제목3: bold 16' }} />
       <Heading4 value={{ text: '제목4: bold 16 #2987F0' }} />
       <Text value={{ text: '텍스트: medium 16 80%' }} />
+      <Text
+        value={{
+          rawHTML: '텍스트 <a href="/regions/:regionId">Inline link</a>',
+        }}
+        onLinkClick={action('onLinkClick')}
+      />
       <Text bold value={{ text: '강조 텍스트: bold 16 100%' }} alpha={1} />
     </>
   ))
