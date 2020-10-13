@@ -4,7 +4,8 @@ import styled, { css } from 'styled-components'
 import { Color, getColor, brightGray } from '@titicaca/color-palette'
 
 import { FALLBACK_ACTION_CLASS_NAME } from '../constants'
-import { layeringMixin, LayeringMixinProps } from '../mixins'
+import { layeringMixin, LayeringMixinProps, paddingMixin } from '../mixins'
+import { unit } from '../utils/unit'
 
 type NavbarProps = {
   maxWidth?: number
@@ -14,12 +15,22 @@ type NavbarProps = {
 }
 
 const WrapperContainer = styled.div<
-  { position?: CSS.Property.Position; top?: number } & LayeringMixinProps
+  {
+    position?: CSS.Property.Position
+    top?: number | string
+    height?: number | string
+  } & LayeringMixinProps
 >`
   position: ${({ position = 'fixed' }) => position};
-  top: ${({ top = 0 }) => top}px;
+  top: ${({ top = 0 }) => unit(top)};
   left: 0;
   right: 0;
+  background: rgba(${getColor('white')});
+  ${({ height }) =>
+    height &&
+    `
+      height: ${unit(height)};
+    `};
   ${layeringMixin(0)}
 `
 
@@ -41,7 +52,7 @@ const NavbarFrame = styled.header<NavbarProps & LayeringMixinProps>`
   box-sizing: border-box;
   padding: 9px 12px;
   margin: 0 auto;
-  max-width: ${({ maxWidth }) => maxWidth || 768}px;
+  max-width: ${({ maxWidth }) => unit(maxWidth || 768)};
 `
 
 const TitleContainer = styled.div<{ childrenCount?: number }>`
@@ -136,19 +147,22 @@ const SecondaryNavbar = styled.div<NavbarProps & LayeringMixinProps>`
   overflow: hidden;
   ${layeringMixin(0)}
   margin: 0 auto;
-  max-width: ${({ maxWidth }) => maxWidth || 768}px;
+  max-width: ${({ maxWidth }) => unit(maxWidth || 768)};
+  ${paddingMixin}
 `
 
 export function NavbarWrapper({
   position,
   top,
+  height,
   children,
 }: React.PropsWithChildren<{
   position?: CSS.Property.Position
-  top?: number
+  top?: number | string
+  height?: number | string
 }>) {
   return (
-    <WrapperContainer position={position} top={top}>
+    <WrapperContainer position={position} top={top} height={height}>
       {React.Children.map(children, (child) => {
         return React.cloneElement(child as React.ReactElement<any>, {
           position: 'relative',
