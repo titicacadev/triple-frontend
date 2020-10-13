@@ -16,24 +16,23 @@ type NavbarProps = {
   padding?: MarginPadding
 }
 
-const WrapperContainer = styled.div<
-  {
-    position?: CSS.Property.Position
-    top?: number | string
-    height?: number | string
-  } & LayeringMixinProps
->`
+const WrapperContainer = styled.div<{
+  position?: CSS.Property.Position
+  top?: number | string
+  height?: number | string
+  zIndex?: number
+}>`
   position: ${({ position = 'fixed' }) => position};
   top: ${({ top = 0 }) => unit(top)};
   left: 0;
   right: 0;
+  z-index: ${({ zIndex = 10 }) => zIndex};
   background: rgba(${getColor('white')});
   ${({ height }) =>
     height &&
     `
       height: ${unit(height)};
     `};
-  ${layeringMixin(0)}
 `
 
 const NavbarFrame = styled.header<NavbarProps & LayeringMixinProps>`
@@ -157,14 +156,21 @@ export function NavbarWrapper({
   position,
   top,
   height,
+  zIndex,
   children,
 }: React.PropsWithChildren<{
   position?: CSS.Property.Position
   top?: number | string
   height?: number | string
+  zIndex?: number
 }>) {
   return (
-    <WrapperContainer position={position} top={top} height={height}>
+    <WrapperContainer
+      position={position}
+      top={top}
+      height={height}
+      zIndex={zIndex}
+    >
       {React.Children.map(children, (child) => {
         return React.cloneElement(child as React.ReactElement<any>, {
           position: 'relative',
