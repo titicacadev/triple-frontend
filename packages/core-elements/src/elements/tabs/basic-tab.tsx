@@ -1,3 +1,4 @@
+import { brightGray, gray, white } from '@titicaca/color-palette'
 import React from 'react'
 import styled, { css } from 'styled-components'
 
@@ -6,15 +7,15 @@ import TabLabel from './tab-label'
 import { TabProps } from './types'
 
 const BasicContainer = styled(TabContainer)`
-  background-color: #efefef;
+  background-color: ${brightGray};
   border-radius: 4px;
   padding: 2px;
 `
 
 const BasicLabel = styled(TabLabel)`
   ${({ active }) => css`
-    color: ${active ? '#3a3a3a' : 'rgba(46, 46, 46, 0.3)'};
-    background-color: ${active ? '#ffffff' : 'transparent'};
+    color: ${active ? gray : 'rgba(46, 46, 46, 0.3)'};
+    background-color: ${active ? white : 'transparent'};
     border-radius: 2px;
     font-size: 14px;
     font-weight: bold;
