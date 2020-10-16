@@ -13,7 +13,7 @@ interface TabProps {
   value: any
   options: Option[]
   onChange: (e?: React.SyntheticEvent, value?: any) => any
-  type: TabType
+  type?: TabType
   scroll?: boolean
 }
 
@@ -188,10 +188,10 @@ export default function Tabs({
   value: currentValue,
   options,
   onChange,
-  type,
+  type = 'basic',
   scroll,
 }: TabProps) {
-  const Component = TAB_TYPE[type || 'basic']
+  const Component = TAB_TYPE[type]
 
   return (
     <Component
