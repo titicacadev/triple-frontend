@@ -2,6 +2,7 @@ import { blue, gray, gray200, gray50 } from '@titicaca/color-palette'
 import React, { useRef, useState, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 
+import { MarginPadding } from '../../commons'
 import TabContainer from './tab-container'
 import TabLabel from './tab-label'
 import { TabProps } from './types'
@@ -54,7 +55,10 @@ export default function PointingTab({
   value: currentValue,
   onChange,
   scroll,
-}: TabProps) {
+  labelPadding,
+}: TabProps & {
+  labelPadding?: MarginPadding
+}) {
   const pointingRef = useRef<(HTMLDivElement | null)[]>([])
 
   const [refValues, setRefValues] = useState<RefValuesProps>({
@@ -89,6 +93,7 @@ export default function PointingTab({
             onClick={(e) => {
               onChange(e, value)
             }}
+            padding={labelPadding}
           >
             {label}
           </PointingLabel>

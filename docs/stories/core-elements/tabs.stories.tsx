@@ -1,6 +1,6 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
-import { select } from '@storybook/addon-knobs'
+import { number, select } from '@storybook/addon-knobs'
 import { Tabs } from '@titicaca/core-elements'
 
 export default {
@@ -51,6 +51,10 @@ export function lineTab() {
         options={options}
         onChange={action('change')}
         value={select('버튼 크기', values, values[0])}
+        labelPadding={{
+          top: number('verticalPadding', 11),
+          bottom: number('verticalPadding', 11),
+        }}
       />
       <br /> <br /> <br /> <br />
       <Tabs
