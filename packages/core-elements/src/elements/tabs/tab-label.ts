@@ -1,6 +1,13 @@
 import styled, { css } from 'styled-components'
 
-const TabLabel = styled.div<{ active?: boolean; scroll?: boolean }>`
+import { paddingMixin } from '../../mixins'
+import { MarginPadding } from '../../commons'
+
+const TabLabel = styled.div<{
+  active?: boolean
+  scroll?: boolean
+  padding?: MarginPadding
+}>`
   box-sizing: border-box;
   text-align: center;
   cursor: pointer;
@@ -11,6 +18,8 @@ const TabLabel = styled.div<{ active?: boolean; scroll?: boolean }>`
       display: table-cell;
       padding: 11px 0;
     `};
+
+  ${paddingMixin}
 `
 
 export default TabLabel
