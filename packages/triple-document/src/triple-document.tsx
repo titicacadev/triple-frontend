@@ -110,7 +110,9 @@ export function TripleDocument({
 
   const defaultHandleResourceClick = useCallback(
     (e: React.SyntheticEvent, resource) => {
-      handleAction(composeResourceUrl(resource))
+      const url = composeResourceUrl(resource)
+
+      url && handleAction(url)
     },
     [handleAction],
   )
