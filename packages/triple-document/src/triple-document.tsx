@@ -52,6 +52,7 @@ interface TripleDocumentProps {
   imageSourceComponent?: ImageSourceType
   deepLink?: string
   videoAutoPlay?: boolean
+  hideVideoControls?: boolean
 }
 
 export const ELEMENTS: ElementSet = {
@@ -90,6 +91,7 @@ export function TripleDocument({
   imageSourceComponent,
   deepLink,
   videoAutoPlay,
+  hideVideoControls,
 }: TripleDocumentProps) {
   return (
     <>
@@ -109,6 +111,7 @@ export function TripleDocument({
               ImageSource={imageSourceComponent}
               deepLink={deepLink}
               videoAutoPlay={videoAutoPlay}
+              hideVideoControls={hideVideoControls}
             />
           )
         )
