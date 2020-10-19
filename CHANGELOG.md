@@ -48,6 +48,7 @@
 
 - elements 디렉토리 추가, Regions, T&A 관련 export를 제거 및 typography 컴포넌트 core-elements로 이동 (#978)
 - Inline link click handler 추가 (#994)
+- `hideVideoControls` prop 추가 (#996)
 
 ## 1.34.0 (2020-09-02)
 
