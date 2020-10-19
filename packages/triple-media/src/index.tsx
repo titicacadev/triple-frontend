@@ -36,6 +36,7 @@ export default function Media({
   media,
   autoPlay,
   hideControls,
+  showNativeControls,
   ImageSource,
   borderRadius,
   onClick,
@@ -43,6 +44,7 @@ export default function Media({
   media: MediaMeta
   autoPlay?: boolean
   hideControls?: boolean
+  showNativeControls?: boolean
   ImageSource?: ImageSourceType
   borderRadius?: number
   onClick?: (e: React.SyntheticEvent, media: MediaMeta) => void
@@ -68,6 +70,7 @@ export default function Media({
         autoPlay={autoPlay}
         borderRadius={borderRadius}
         hideControls={!!hideControls}
+        showNativeControls={showNativeControls}
       />
     )
   }

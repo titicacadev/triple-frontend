@@ -70,6 +70,7 @@ export default function Video({
   autoPlay,
   borderRadius,
   hideControls,
+  showNativeControls,
 }: {
   src?: string
   srcType?: string
@@ -80,6 +81,7 @@ export default function Video({
   autoPlay?: boolean
   borderRadius?: number
   hideControls?: boolean
+  showNativeControls?: boolean
 }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [pending, setPending] = useState(true)
@@ -114,6 +116,7 @@ export default function Video({
       borderRadius={borderRadius}
     >
       <VideoFrame
+        controls={!!showNativeControls}
         autoPlay={autoPlay}
         loop
         playsInline
