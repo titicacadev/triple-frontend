@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useMemo, useCallback } from 'react'
 import {
   HR1,
   HR2,
@@ -8,6 +8,8 @@ import {
   HR6,
   ImageSourceType,
 } from '@titicaca/core-elements'
+import { useHistoryFunctions } from '@titicaca/react-contexts'
+import { initialize } from '@titicaca/standard-action-handler'
 
 import {
   Coupon,
@@ -51,6 +53,7 @@ interface TripleDocumentProps {
   onTNAProductsFetch?: (slotId: number) => Promise<unknown>
   imageSourceComponent?: ImageSourceType
   deepLink?: string
+  cta?: string
   videoAutoPlay?: boolean
 }
 
@@ -89,8 +92,29 @@ export function TripleDocument({
   onTNAProductsFetch,
   imageSourceComponent,
   deepLink,
+  cta,
   videoAutoPlay,
 }: TripleDocumentProps) {
+  const { navigate } = useHistoryFunctions()
+  const handleAction = useMemo(() => initialize({ cta, navigate }), [
+    cta,
+    navigate,
+  ])
+
+  const defaultHandleLinkClick = useCallback(
+    (e: React.SyntheticEvent, { href, target }) => {
+      handleAction(href, { target })
+    },
+    [handleAction],
+  )
+
+  const defaultHandleResourceClick = useCallback(
+    (e: React.SyntheticEvent, resource) => {
+      handleAction(composeResourceUrl(resource))
+    },
+    [handleAction],
+  )
+
   return (
     <>
       {children.map(({ type, value }, i) => {
@@ -101,9 +125,9 @@ export function TripleDocument({
             <Element
               key={i}
               value={value}
-              onResourceClick={onResourceClick}
+              onResourceClick={onResourceClick || defaultHandleResourceClick}
               onImageClick={onImageClick}
-              onLinkClick={onLinkClick}
+              onLinkClick={onLinkClick || defaultHandleLinkClick}
               onTNAProductClick={onTNAProductClick}
               onTNAProductsFetch={onTNAProductsFetch}
               ImageSource={imageSourceComponent}
@@ -115,4 +139,33 @@ export function TripleDocument({
       })}
     </>
   )
+}
+
+function composeResourceUrl(resource: {
+  id: string
+  type: string
+  source: unknown
+}) {
+  switch (resource.type) {
+    case 'attraction':
+      return `/inlink?path=${encodeURIComponent(
+        `/attractions/${resource.id}?_triple_no_navbar`,
+      )}`
+    case 'restaurant':
+      return `/inlink?path=${encodeURIComponent(
+        `/restaurants/${resource.id}?_triple_no_navbar`,
+      )}`
+    case 'hotel':
+      return `/inlink?path=${encodeURIComponent(
+        `/hotels/${resource.id}?_triple_no_navbar`,
+      )}`
+    case 'article':
+      return `/inlink?path=${encodeURIComponent(
+        `/articles/${resource.id}?_triple_no_navbar`,
+      )}`
+    case 'region':
+      return `/regions/${resource.id}`
+    default:
+      return null
+  }
 }
