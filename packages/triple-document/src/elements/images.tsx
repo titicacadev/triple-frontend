@@ -21,6 +21,7 @@ export default function Images({
   onLinkClick,
   ImageSource,
   videoAutoPlay,
+  hideVideoControls,
 }: {
   value: {
     images: MediaMeta[]
@@ -30,6 +31,7 @@ export default function Images({
   onLinkClick: LinkEventHandler
   ImageSource: ImageSourceType
   videoAutoPlay?: boolean
+  hideVideoControls?: boolean
 }) {
   const ImagesContainer = ['block', 'gapless-block'].includes(display)
     ? Container
@@ -62,6 +64,7 @@ export default function Images({
               <TripleMedia
                 borderRadius={0}
                 autoPlay={videoAutoPlay}
+                hideControls={hideVideoControls}
                 media={image}
                 onClick={handleClick}
                 ImageSource={ImageSource}
@@ -70,6 +73,7 @@ export default function Images({
               <>
                 <TripleMedia
                   autoPlay={videoAutoPlay}
+                  hideControls={hideVideoControls}
                   media={image}
                   onClick={handleClick}
                   ImageSource={ImageSource}
