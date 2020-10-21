@@ -16,17 +16,18 @@ type NavbarProps = {
   padding?: MarginPadding
 }
 
-const WrapperContainer = styled.div<{
-  position?: CSS.Property.Position
-  top?: number | string
-  height?: number | string
-  zIndex?: number
-}>`
+const WrapperContainer = styled.div<
+  {
+    position?: CSS.Property.Position
+    top?: number | string
+    height?: number | string
+  } & LayeringMixinProps
+>`
   position: ${({ position = 'fixed' }) => position};
   top: ${({ top = 0 }) => unit(top)};
   left: 0;
   right: 0;
-  z-index: ${({ zIndex = 10 }) => zIndex};
+  ${layeringMixin(0)}
   background: rgba(${getColor('white')});
   ${({ height }) =>
     height &&
