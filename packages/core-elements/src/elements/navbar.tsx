@@ -157,19 +157,22 @@ export function NavbarWrapper({
   position,
   top,
   height,
+  zTier,
   zIndex,
   children,
-}: React.PropsWithChildren<{
-  position?: CSS.Property.Position
-  top?: number | string
-  height?: number | string
-  zIndex?: number
-}>) {
+}: React.PropsWithChildren<
+  {
+    position?: CSS.Property.Position
+    top?: number | string
+    height?: number | string
+  } & LayeringMixinProps
+>) {
   return (
     <WrapperContainer
       position={position}
       top={top}
       height={height}
+      zTier={zTier}
       zIndex={zIndex}
     >
       {React.Children.map(children, (child) => {
