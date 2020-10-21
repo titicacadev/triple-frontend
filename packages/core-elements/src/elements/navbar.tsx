@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as CSS from 'csstype'
 import styled, { css } from 'styled-components'
-import { Color, getColor, brightGray } from '@titicaca/color-palette'
+import { Color, getColor, brightGray, white } from '@titicaca/color-palette'
 
 import { FALLBACK_ACTION_CLASS_NAME } from '../constants'
 import { layeringMixin, LayeringMixinProps, paddingMixin } from '../mixins'
@@ -28,7 +28,7 @@ const WrapperContainer = styled.div<
   left: 0;
   right: 0;
   ${layeringMixin(0)}
-  background: rgba(${getColor('white')});
+  background: ${white};
   ${({ height }) =>
     height &&
     `
