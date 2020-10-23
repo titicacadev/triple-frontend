@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/search",
-  "version": "2.0.0-alpha.2",
+  "version": "2.0.0-alpha.3",
   "description": "search",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -16,10 +16,10 @@
   ],
   "license": "UNLICENSED",
   "dependencies": {
-    "@titicaca/core-elements": "^2.0.0-alpha.2",
-    "@titicaca/react-contexts": "^2.0.0-alpha.2",
-    "@titicaca/react-hooks": "^2.0.0-alpha.2",
+    "@titicaca/core-elements": "^2.0.0-alpha.3",
+    "@titicaca/react-contexts": "^2.0.0-alpha.3",
+    "@titicaca/react-hooks": "^2.0.0-alpha.3",
     "@titicaca/triple-web-to-native-interfaces": "^1.0.0",
-    "@titicaca/view-utilities": "^2.0.0-alpha.2"
+    "@titicaca/view-utilities": "^2.0.0-alpha.3"
   }
 }
