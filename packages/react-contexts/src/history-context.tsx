@@ -128,7 +128,7 @@ export function HistoryProvider({
     }
 
     const initialHash =
-      window && window.location ? window.location.hash.substr(1) || '' : ''
+      (typeof window !== 'undefined' && window.location.hash.substr(1)) || ''
 
     if (initialHashStrategy === HashStrategy.PUSH) {
       // Side Effect. TODO: HASH_HISTORIES와 uriHash를 reducer로 통합하기
