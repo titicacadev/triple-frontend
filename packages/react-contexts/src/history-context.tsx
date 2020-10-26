@@ -44,6 +44,10 @@ function parseQuery(query: string | undefined): ReturnType<typeof parseUrl> {
   return parseUrl(decodeURIComponent(encodedUrl))
 }
 
+function addHashToCurrentUrl(hash: string) {
+  return generateUrl({ hash }, Router.asPath)
+}
+
 const URIHashContext = React.createContext<URIHash>('')
 const HistoryFunctionsContext = React.createContext<
   Omit<HistoryContextValue, 'uriHash'>
@@ -143,7 +147,7 @@ export function HistoryProvider({
       setUriHash(hash)
 
       if (useRouter) {
-        return Router.replace(generateUrl({ hash }, Router.asPath))
+        return Router.replace(addHashToCurrentUrl(hash))
       } else {
         return new Promise((resolve) => resolve(true))
       }
@@ -160,7 +164,7 @@ export function HistoryProvider({
       setUriHash(hash)
 
       if (useRouter) {
-        return Router.push(generateUrl({ hash }, Router.asPath))
+        return Router.push(addHashToCurrentUrl(hash))
       } else {
         return new Promise((resolve) => resolve(true))
       }
