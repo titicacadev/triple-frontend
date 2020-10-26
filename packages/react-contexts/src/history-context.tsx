@@ -1,7 +1,7 @@
 import React, {
   ComponentType,
   createContext,
-  ReactElement,
+  PropsWithChildren,
   useCallback,
   useContext,
   useEffect,
@@ -105,15 +105,15 @@ export enum HashStrategy {
   NO_PUSH,
   PUSH,
 }
-export interface HistoryProviderProps {
+export type HistoryProviderProps = PropsWithChildren<{
   appUrlScheme: string
   webUrlBase: string
   transitionModalHash?: string
   isAndroid?: boolean
   isPublic?: boolean
   initialHashStrategy?: HashStrategy
-  children?: ReactElement
-}
+}>
+
 export function HistoryProvider({
   appUrlScheme,
   webUrlBase,
