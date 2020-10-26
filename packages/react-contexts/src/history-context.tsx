@@ -126,22 +126,22 @@ export function HistoryProvider({
   const initialSettingsRef = useRef({ isAndroid, initialHashStrategy })
   const [uriHash, setUriHash] = useState<URIHash>('')
 
-  const onHashChange = useCallback((url) => {
-    const { hash } = parseUrl(url)
-
-    // We only need to check if onHashChange is triggered by native action.
-    const { hash: previousHash } = HASH_HISTORIES[
-      HASH_HISTORIES.length - 2
-    ] || { hash: undefined }
-
-    if ((previousHash || '') === hash) {
-      HASH_HISTORIES.pop()
-
-      setUriHash(previousHash || '')
-    }
-  }, [])
-
   useEffect(() => {
+    const onHashChange = (url: string) => {
+      const { hash } = parseUrl(url)
+
+      // We only need to check if onHashChange is triggered by native action.
+      const { hash: previousHash } = HASH_HISTORIES[
+        HASH_HISTORIES.length - 2
+      ] || { hash: undefined }
+
+      if ((previousHash || '') === hash) {
+        HASH_HISTORIES.pop()
+
+        setUriHash(previousHash || '')
+      }
+    }
+
     Router.events.on('routeChangeStart', onHashChange)
     Router.events.on('hashChangeStart', onHashChange)
 
@@ -149,7 +149,7 @@ export function HistoryProvider({
       Router.events.off('routeChangeStart', onHashChange)
       Router.events.off('hashChangeStart', onHashChange)
     }
-  }, [onHashChange])
+  }, [])
 
   useEffect(() => {
     const { initialHashStrategy, isAndroid } = initialSettingsRef.current
