@@ -143,6 +143,13 @@ export function HistoryProvider({
     Router.events.on('routeChangeStart', onHashChange)
     Router.events.on('hashChangeStart', onHashChange)
 
+    return () => {
+      Router.events.off('routeChangeStart', onHashChange)
+      Router.events.off('hashChangeStart', onHashChange)
+    }
+  }, [onHashChange])
+
+  useEffect(() => {
     if (initialHashStrategy !== HashStrategy.NONE && uriHash === null) {
       const initialHash =
         window && window.location ? window.location.hash.substr(1) || '' : ''
@@ -153,12 +160,7 @@ export function HistoryProvider({
 
       setUriHash(initialHash)
     }
-
-    return () => {
-      Router.events.off('routeChangeStart', onHashChange)
-      Router.events.off('hashChangeStart', onHashChange)
-    }
-  }, [onHashChange]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const replace = useCallback<HistoryContextValue['replace']>(
     (hash, config = {}) => {
