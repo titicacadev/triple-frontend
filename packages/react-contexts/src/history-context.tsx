@@ -45,7 +45,7 @@ function parseQuery(query: string | undefined): ReturnType<typeof parseUrl> {
 }
 
 function addHashToCurrentUrl(hash: string) {
-  return generateUrl({ hash }, Router.asPath)
+  return generateUrl({ hash }, Router.asPath === '/' ? '' : Router.asPath)
 }
 
 const URIHashContext = React.createContext<URIHash>('')
