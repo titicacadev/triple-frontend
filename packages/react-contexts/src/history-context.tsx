@@ -158,23 +158,14 @@ export function HistoryProvider({
       return
     }
 
-    try {
-      const initialHash =
-        window && window.location ? window.location.hash.substr(1) || '' : ''
+    const initialHash =
+      window && window.location ? window.location.hash.substr(1) || '' : ''
 
-      setUriHash((prev) => {
-        if (!prev) {
-          return initialHash
-        }
-        throw new Error('Hash already changed')
-      })
-
-      if (initialHashStrategy === HashStrategy.PUSH) {
-        HASH_HISTORIES.push({ hash: initialHash, useRouter: isAndroid })
-      }
-    } catch (error) {
-      // 초기 세팅 이전에 이미 해시가 변경된 경우.
+    if (initialHashStrategy === HashStrategy.PUSH) {
+      HASH_HISTORIES.push({ hash: initialHash, useRouter: isAndroid })
     }
+
+    setUriHash(initialHash)
   }, [])
 
   const replace = useCallback<HistoryContextValue['replace']>(
