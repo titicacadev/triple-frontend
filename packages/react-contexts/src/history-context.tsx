@@ -6,7 +6,6 @@ import React, {
   useContext,
   useEffect,
   useMemo,
-  useRef,
   useState,
 } from 'react'
 import Router from 'next/router'
@@ -123,8 +122,21 @@ export function HistoryProvider({
   initialHashStrategy = HashStrategy.NONE,
   children,
 }: HistoryProviderProps) {
-  const initialSettingsRef = useRef({ isAndroid, initialHashStrategy })
-  const [uriHash, setUriHash] = useState<URIHash>('')
+  const [uriHash, setUriHash] = useState<URIHash>(() => {
+    if (initialHashStrategy === HashStrategy.NONE) {
+      return ''
+    }
+
+    const initialHash =
+      window && window.location ? window.location.hash.substr(1) || '' : ''
+
+    if (initialHashStrategy === HashStrategy.PUSH) {
+      // Side Effect. TODO: HASH_HISTORIES와 uriHash를 reducer로 통합하기
+      HASH_HISTORIES.push({ hash: initialHash, useRouter: isAndroid })
+    }
+
+    return initialHash
+  })
 
   useEffect(() => {
     const onHashChange = (url: string) => {
@@ -149,23 +161,6 @@ export function HistoryProvider({
       Router.events.off('routeChangeStart', onHashChange)
       Router.events.off('hashChangeStart', onHashChange)
     }
-  }, [])
-
-  useEffect(() => {
-    const { initialHashStrategy, isAndroid } = initialSettingsRef.current
-
-    if (initialHashStrategy === HashStrategy.NONE) {
-      return
-    }
-
-    const initialHash =
-      window && window.location ? window.location.hash.substr(1) || '' : ''
-
-    if (initialHashStrategy === HashStrategy.PUSH) {
-      HASH_HISTORIES.push({ hash: initialHash, useRouter: isAndroid })
-    }
-
-    setUriHash(initialHash)
   }, [])
 
   const replace = useCallback<HistoryContextValue['replace']>(
