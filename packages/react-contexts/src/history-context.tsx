@@ -15,10 +15,15 @@ export interface OutlinkParams {
 
 type URLElement = ReturnType<typeof parseUrl>
 
+type NavigateFunctionConfig = {
+  useRouter?: boolean
+  basePathCompatible?: boolean
+}
+
 interface HistoryContextValue {
   uriHash: URIHash
-  push: (hash: string, config?: { useRouter?: boolean }) => void
-  replace: (hash: string, config?: { useRouter?: boolean }) => void
+  push: (hash: string, config?: NavigateFunctionConfig) => void
+  replace: (hash: string, config?: NavigateFunctionConfig) => void
   back: () => void
   navigate: (
     rawHref: string,
@@ -44,8 +49,17 @@ function parseQuery(query: string | undefined): ReturnType<typeof parseUrl> {
   return parseUrl(decodeURIComponent(encodedUrl))
 }
 
-function addHashToCurrentUrl(hash: string) {
-  return generateUrl({ hash }, Router.asPath === '/' ? '' : Router.asPath)
+function addHashToCurrentUrl({
+  hash,
+  basePathCompatible,
+}: {
+  hash: string
+  basePathCompatible?: boolean
+}) {
+  return generateUrl(
+    { hash },
+    !basePathCompatible && Router.asPath === '/' ? '' : Router.asPath,
+  )
 }
 
 const URIHashContext = React.createContext<URIHash>('')
@@ -139,7 +153,7 @@ export function HistoryProvider({
 
   const replace = React.useCallback<HistoryContextValue['replace']>(
     (hash, config = {}) => {
-      const { useRouter = isAndroid } = config
+      const { useRouter = isAndroid, basePathCompatible } = config
 
       HASH_HISTORIES.pop()
       HASH_HISTORIES.push({ hash, useRouter })
@@ -147,7 +161,7 @@ export function HistoryProvider({
       setUriHash(hash)
 
       if (useRouter) {
-        return Router.replace(addHashToCurrentUrl(hash))
+        return Router.replace(addHashToCurrentUrl({ hash, basePathCompatible }))
       } else {
         return new Promise((resolve) => resolve(true))
       }
@@ -157,14 +171,14 @@ export function HistoryProvider({
 
   const push = React.useCallback<HistoryContextValue['push']>(
     (hash, config = {}) => {
-      const { useRouter = isAndroid } = config
+      const { useRouter = isAndroid, basePathCompatible } = config
 
       HASH_HISTORIES.push({ hash, useRouter })
 
       setUriHash(hash)
 
       if (useRouter) {
-        return Router.push(addHashToCurrentUrl(hash))
+        return Router.push(addHashToCurrentUrl({ hash, basePathCompatible }))
       } else {
         return new Promise((resolve) => resolve(true))
       }
