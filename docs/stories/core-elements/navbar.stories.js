@@ -1,5 +1,4 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import {
   Navbar,
@@ -29,8 +28,12 @@ const ICON_LIST = [
   'hamburger',
 ]
 
-storiesOf('Core-Elements | Navbar', module)
-  .add('버튼 2개 (좌1+우1)', () => (
+export default {
+  title: 'Core-Elements | Navbar',
+}
+
+export function twoButtons() {
+  return (
     <Navbar
       title={text('제목', '도쿄 관광지')}
       borderless={boolean('Border 생략', true)}
@@ -50,8 +53,14 @@ storiesOf('Core-Elements | Navbar', module)
         icon={select('우측 아이콘', ICON_LIST, 'more')}
       />
     </Navbar>
-  ))
-  .add('버튼 3개 (좌1+우2)', () => (
+  )
+}
+twoButtons.story = {
+  name: '버튼 2개 (좌1+우1)',
+}
+
+export function threeButtons() {
+  return (
     <Navbar
       title={text('제목', '도쿄 관광지')}
       borderless={boolean('Border 생략', true)}
@@ -66,8 +75,14 @@ storiesOf('Core-Elements | Navbar', module)
         icon={select('우측 아이콘 2', ICON_LIST, 'route')}
       />
     </Navbar>
-  ))
-  .add('버튼 4개 (좌1+우3)', () => (
+  )
+}
+threeButtons.story = {
+  name: '버튼 3개 (좌1+우2)',
+}
+
+export function fourButtons() {
+  return (
     <Navbar
       title={text('제목', '도쿄 관광지')}
       borderless={boolean('Border 생략', true)}
@@ -86,8 +101,14 @@ storiesOf('Core-Elements | Navbar', module)
         icon={select('우측 아이콘 3', ICON_LIST, 'list')}
       />
     </Navbar>
-  ))
-  .add('보조 Navbar (리스트 필터링)', () => (
+  )
+}
+fourButtons.story = {
+  name: '버튼 4개 (좌1+우3)',
+}
+
+export function secondaryNavbar() {
+  return (
     <>
       <Navbar title={text('제목', '도쿄 관광지')} borderless>
         <Navbar.Item icon={'back'} />
@@ -101,8 +122,14 @@ storiesOf('Core-Elements | Navbar', module)
         </ListingFilter>
       </Navbar.Secondary>
     </>
-  ))
-  .add('wrapper로 감싼 Navbar', () => (
+  )
+}
+secondaryNavbar.story = {
+  name: '보조 Navbar (리스트 필터링)',
+}
+
+export function wrappedNavbar() {
+  return (
     <NavbarWrapper>
       <Navbar title={text('제목', '도쿄 관광지')} borderless>
         <Navbar.Item icon={'back'} />
@@ -116,8 +143,14 @@ storiesOf('Core-Elements | Navbar', module)
         </ListingFilter>
       </Navbar.Secondary>
     </NavbarWrapper>
-  ))
-  .add('목차', () => (
+  )
+}
+wrappedNavbar.story = {
+  name: 'wrapper로 감싼 Navbar',
+}
+
+export function toc() {
+  return (
     <Navbar
       renderTitle={() => (
         <TOC>
@@ -134,20 +167,32 @@ storiesOf('Core-Elements | Navbar', module)
       <Navbar.Item icon={'back'} />
       <Navbar.Item floated="right" icon={'more'} />
     </Navbar>
-  ))
-  .add('backgroundColor="azul" 적용', () => (
-    <Navbar borderless backgroundColor="azul" title="컬러가 적용된 Navbar">
-      <Navbar.Item icon={'back'} />
-      <Navbar.Item floated="right" icon={'more'} />
-    </Navbar>
-  ))
-  .add('backgroundColor="teal" 적용', () => (
-    <Navbar borderless backgroundColor="teal" title="컬러가 적용된 Navbar">
-      <Navbar.Item icon={'back'} />
-      <Navbar.Item floated="right" icon={'more'} />
-    </Navbar>
-  ))
-  .add('검색', () => (
+  )
+}
+toc.story = {
+  name: '목차',
+}
+
+export function backgroundExample() {
+  return (
+    <>
+      <Navbar borderless backgroundColor="azul" title="컬러가 적용된 Navbar">
+        <Navbar.Item icon={'back'} />
+        <Navbar.Item floated="right" icon={'more'} />
+      </Navbar>
+      <Navbar borderless backgroundColor="teal" title="컬러가 적용된 Navbar">
+        <Navbar.Item icon={'back'} />
+        <Navbar.Item floated="right" icon={'more'} />
+      </Navbar>
+    </>
+  )
+}
+backgroundExample.story = {
+  name: 'backgroundColor',
+}
+
+export function searchExample() {
+  return (
     <SearchNavbar
       inputPlaceholder={'“호텔예약” 도시이름으로 검색'}
       onBackClick={action('onBackClick')}
@@ -158,4 +203,7 @@ storiesOf('Core-Elements | Navbar', module)
       onFocus={action('onFocus')}
       borderless={boolean('borderless')}
     />
-  ))
+  )
+}
+
+searchExample.story = { name: '검색' }
