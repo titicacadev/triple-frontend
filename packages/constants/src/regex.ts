@@ -13,7 +13,7 @@ const KOREAN_VOWEL_UNICODES = '\u314F-\u3163'
  */
 export const ENNAME_REGEX = /^[A-Z\s]+$/
 export const KONAME_REGEX = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+$/
-export const NAME_REGEX = /^([가-힣]{2,100}|[a-zA-Z]{2,32}\s?[a-zA-Z]{2,32})$/
+export const NAME_REGEX = /^([가-힣]{1,100}|[a-zA-Z]{2,32})$/
 export const FULL_NAME_REGEX = /^([가-힣]{2,100}|[a-zA-Z]{2,32}\s?[a-zA-Z]{2,32})$/
 
 export const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
