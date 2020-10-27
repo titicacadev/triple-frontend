@@ -4,3 +4,11 @@
 
 - 공통 상수
 - 공통 정규 표현식
+
+## How to use
+
+```tsx
+import { EMAIL_REGEX } from '@titicaca/constants'
+
+const isValidEmailAddress = !EMAIL_REGEX.test(value)
+```
