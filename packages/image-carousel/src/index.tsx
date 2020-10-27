@@ -153,16 +153,14 @@ export default class ImageCarousel extends React.PureComponent<
                 >
                   {renderContent()}
                 </Image.FixedDimensionsFrame>
-              ) : null}
-
-              {frame ? (
+              ) : (
                 <Image.FixedRatioFrame
                   frame={frame}
                   onClick={onImageClick && ((e) => onImageClick(e, image))}
                 >
                   {renderContent()}
                 </Image.FixedRatioFrame>
-              ) : null}
+              )}
             </Image>
           )
         })}

@@ -47,7 +47,7 @@ const FixedRatioFrameContainer = styled.div<{
 `
 
 export default function ImageFixedRatioFrame({
-  frame,
+  frame = 'small',
   floated,
   margin,
   onClick,
@@ -64,7 +64,7 @@ export default function ImageFixedRatioFrame({
 
   return (
     <FixedRatioFrameContainer
-      frame={frame || 'small'}
+      frame={frame}
       overflowHidden={!originalFrame}
       floated={floated}
       borderRadius={borderRadius}
