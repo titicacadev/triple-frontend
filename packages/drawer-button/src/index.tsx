@@ -16,8 +16,8 @@ const ButtonWithSafeAreaInset = styled(Button)`
 
 export default function DrawerButton({
   active,
-  zTier,
-  zIndex,
+  zTier = 2,
+  zIndex = 1,
   children,
   ...props
 }: PropsWithChildren<{ active?: boolean } & ButtonProps & LayeringMixinProps>) {
