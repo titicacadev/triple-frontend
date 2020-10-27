@@ -156,5 +156,6 @@ storiesOf('Core-Elements | Navbar', module)
       onKeyUp={action('onKeyUp')}
       onBlur={action('onBlur')}
       onFocus={action('onFocus')}
+      borderless={boolean('borderless')}
     />
   ))

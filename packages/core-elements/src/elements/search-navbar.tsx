@@ -25,10 +25,11 @@ const InputText = styled.input`
   `}
 `
 
-const MainNavbarFrame = styled(Navbar.NavbarFrame)`
+const MainNavbarFrame = styled(Navbar.NavbarFrame)<{ noBorder?: boolean }>`
   height: 58px;
   padding: 12px;
-  border-bottom: 1px solid rgba(${getColor('gray50')});
+  ${({ noBorder }) =>
+    noBorder ? '' : ` border-bottom: 1px solid rgba(${getColor('gray50')});`}
 `
 
 const Icon = styled(Navbar.Item)<{ visible: boolean }>`
@@ -88,14 +89,18 @@ export default function SearchNavbar({
   onSearch,
   value,
   inputRef,
+  borderless: noBorder,
 }: {
   onSearch: () => void
   onBackClick: (event: React.SyntheticEvent) => void
   onDeleteClick?: (event: React.SyntheticEvent) => void
   inputRef?: React.Ref<HTMLInputElement>
+  borderless?: boolean
 } & InputProps) {
   return (
-    <MainNavbarFrame borderless>
+    // borderless는 NavbarFrame의 기본 border(box-shadow)를 비활성화 시킴.
+    // noBorder는 MainNavbarFrame의 border(border-bottom)를 비활성화 시킴.
+    <MainNavbarFrame borderless noBorder={noBorder}>
       <Icon icon="back" onClick={onBackClick} visible={true} />
       <Input
         placeholder={placeholder}

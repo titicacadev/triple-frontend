@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { action } from '@storybook/addon-actions'
-import { text } from '@storybook/addon-knobs'
+import { boolean, text } from '@storybook/addon-knobs'
 import { Button, Section } from '@titicaca/core-elements'
 import Search from '@titicaca/search'
 import { PoiListElement } from '@titicaca/poi-list-elements'
@@ -18,6 +18,7 @@ export function uncontrolledExample() {
       onEnter={action('onEnter')}
       onInputChange={action('onInputChange')}
       placeholder={text('Placeholder', '“항공권 예약” 도시이름으로 검색')}
+      borderless={boolean('borderless', false)}
     />
   )
 }
@@ -39,6 +40,7 @@ function ControlledExampleComponent() {
         onEnter={action('onEnter')}
         onInputChange={setKeyword}
         placeholder={text('Placeholder', '“항공권 예약” 도시이름으로 검색')}
+        borderless={boolean('borderless', false)}
       />
       <Button onClick={() => setKeyword('')}>Clear</Button>
     </>
@@ -80,6 +82,7 @@ function APIUsageExampleComponent() {
       onInputChange={action('onInputChange')}
       defaultKeyword={text('defaultKeyword', '')}
       placeholder={text('Placeholder', '“항공권 예약” 도시이름으로 검색')}
+      borderless={boolean('borderless', false)}
     >
       <Section padding={{ left: 10, right: 10 }}>
         {results.map((result) => (
