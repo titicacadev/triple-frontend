@@ -17,12 +17,18 @@
 
 - fetcher 유틸을 추가합니다. (#962)
 
+### constants
+
+- 패키지 추가 (#1010)
+
 ### core-elements
 
-- `Image` 컴포넌트를 하위 컴포넌트를 조합하는 방식으로 개선
+- `Image` 컴포넌트를 하위 컴포넌트를 조합하는 방식으로 개선 (#956, #1006)
 - `Navbar`에 `position` prop 추가 및 `SecondaryNavbar` prop 개선 (#980)
 - triple-document에 있던 typography 컴포넌트 추가 (#978)
 - `Video`에 `showNativeControls` prop 추가 (#996)
+- `SearchNavbar`에 `borderless` prop 추가 (#1009)
+- `PointingTab`의 세로 패딩을 조정할 수 있는 prop 추가 (#995)
 
 ### date-picker
 
@@ -32,6 +38,7 @@
 
 - `withEventTrackingProvider` HOC 추가, event-tracking-context 구조 개선 및 문서 보강 (#974)
 - Event Tracking Context에 Facebook Pixel 연동 (#979)
+- history context에서 해시 추가할 때 root 페이지에서 asPath가 /인 상황 대응 (#1003, #1011)
 
 ### poi-detail
 
@@ -43,7 +50,11 @@
 
 ### drawer-button
 
-- layering props 추가 (#990)
+- layering props 추가 (#990, #1007)
+
+### search
+
+- `borderless` prop 추가 (#1009)
 
 ### triple-document
 
