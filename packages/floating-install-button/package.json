@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/floating-install-button",
-  "version": "2.0.0-alpha.3",
+  "version": "2.0.0-alpha.4",
   "description": "floating triple install button",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
-    "@titicaca/color-palette": "^2.0.0-alpha.3",
-    "@titicaca/core-elements": "^2.0.0-alpha.3"
+    "@titicaca/color-palette": "^2.0.0-alpha.4",
+    "@titicaca/core-elements": "^2.0.0-alpha.4"
   }
 }

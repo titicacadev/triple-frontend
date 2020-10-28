@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-document",
-  "version": "2.0.0-alpha.3",
+  "version": "2.0.0-alpha.4",
   "description": "TripleDocument: Formatted Content System",
   "main": "lib/index.js",
   "files": [
@@ -15,16 +15,16 @@
   },
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
-    "@titicaca/color-palette": "^2.0.0-alpha.3",
-    "@titicaca/core-elements": "^2.0.0-alpha.3",
-    "@titicaca/intersection-observer": "^2.0.0-alpha.3",
-    "@titicaca/modals": "^2.0.0-alpha.3",
-    "@titicaca/poi-list-elements": "^2.0.0-alpha.3",
-    "@titicaca/react-contexts": "^2.0.0-alpha.3",
-    "@titicaca/standard-action-handler": "^2.0.0-alpha.3",
-    "@titicaca/triple-media": "^2.0.0-alpha.3",
-    "@titicaca/type-definitions": "^2.0.0-alpha.3",
-    "@titicaca/view-utilities": "^2.0.0-alpha.3",
+    "@titicaca/color-palette": "^2.0.0-alpha.4",
+    "@titicaca/core-elements": "^2.0.0-alpha.4",
+    "@titicaca/intersection-observer": "^2.0.0-alpha.4",
+    "@titicaca/modals": "^2.0.0-alpha.4",
+    "@titicaca/poi-list-elements": "^2.0.0-alpha.4",
+    "@titicaca/react-contexts": "^2.0.0-alpha.4",
+    "@titicaca/standard-action-handler": "^2.0.0-alpha.4",
+    "@titicaca/triple-media": "^2.0.0-alpha.4",
+    "@titicaca/type-definitions": "^2.0.0-alpha.4",
+    "@titicaca/view-utilities": "^2.0.0-alpha.4",
     "isomorphic-fetch": "^2.2.1"
   },
   "peerDependencies": {
