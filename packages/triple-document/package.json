@@ -25,13 +25,15 @@
     "@titicaca/triple-media": "^2.0.0-alpha.4",
     "@titicaca/type-definitions": "^2.0.0-alpha.4",
     "@titicaca/view-utilities": "^2.0.0-alpha.4",
-    "isomorphic-fetch": "^2.2.1"
+    "isomorphic-fetch": "^2.2.1",
+    "semver": "^7.3.2"
   },
   "peerDependencies": {
     "@sentry/browser": "^5.4.3"
   },
   "devDependencies": {
     "@sentry/browser": "^5.4.3",
-    "@types/isomorphic-fetch": "^0.0.35"
+    "@types/isomorphic-fetch": "^0.0.35",
+    "@types/semver": "^7.3.4"
   }
 }
