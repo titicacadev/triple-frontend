@@ -50,12 +50,13 @@ export default function Images({
   const handleClick = generateClickHandler(onLinkClick, onImageClick)
   const { isPublic, os, app } = useUserAgentContext()
   const appVersion = semver.coerce(app?.version)
-  const isLegacyIosApp =
+  const isLegacyIosApp = Boolean(
     !isPublic &&
-    os &&
-    os.name === 'iOS' &&
-    appVersion &&
-    semver.lt(appVersion, PLAYS_INLINE_APP_VERSION)
+      os &&
+      os.name === 'iOS' &&
+      appVersion &&
+      semver.lt(appVersion, PLAYS_INLINE_APP_VERSION),
+  )
 
   return (
     <ImagesContainer
