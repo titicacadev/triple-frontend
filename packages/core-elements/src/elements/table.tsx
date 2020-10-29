@@ -16,12 +16,8 @@ interface TableBodyProps {
   body: TableRow[]
 }
 
-interface TableTypeProps extends TableBodyProps {
+export interface TableProps extends TableBodyProps {
   type: TableType
-}
-
-export interface TableProps {
-  table: TableTypeProps
 }
 
 const BACKGROUND_COLORS: { [key: string]: string } = {
@@ -177,7 +173,7 @@ function VerticalTable({ head, body }: TableBodyProps) {
   )
 }
 
-export default function Table({ table: { head, body, type } }: TableProps) {
+export default function Table({ head, body, type }: TableProps) {
   const Container = type === 'vertical' ? VerticalTable : HorizontalTable
   return <Container head={head} body={body} />
 }
