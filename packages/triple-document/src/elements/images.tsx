@@ -1,5 +1,6 @@
 import React from 'react'
 import * as CSS from 'csstype'
+import semver from 'semver'
 import {
   ImageCarouselElementContainer,
   ImageBlockElementContainer,
@@ -15,6 +16,8 @@ import generateClickHandler from './shared/generate-click-handler'
 import { ImageEventHandler, LinkEventHandler } from '../types'
 
 type MediaDisplayProperty = CSS.Property.Display | 'gapless-block'
+
+const PLAYS_INLINE_APP_VERSION = '4.10.0'
 
 export default function Images({
   value: { images, display },
@@ -45,8 +48,14 @@ export default function Images({
       : ImageCarouselElementContainer
 
   const handleClick = generateClickHandler(onLinkClick, onImageClick)
-  const { isPublic, os } = useUserAgentContext()
-  const isLegacyIos = !isPublic && os && os.name === 'iOS'
+  const { isPublic, os, app } = useUserAgentContext()
+  const appVersion = semver.coerce(app?.version)
+  const isLegacyIosApp =
+    !isPublic &&
+    os &&
+    os.name === 'iOS' &&
+    appVersion &&
+    semver.lt(appVersion, PLAYS_INLINE_APP_VERSION)
 
   return (
     <ImagesContainer
@@ -76,8 +85,8 @@ export default function Images({
               <>
                 <TripleMedia
                   autoPlay={videoAutoPlay}
-                  hideControls={hideVideoControls || isLegacyIos}
-                  showNativeControls={isLegacyIos}
+                  hideControls={hideVideoControls || isLegacyIosApp}
+                  showNativeControls={isLegacyIosApp}
                   media={image}
                   onClick={handleClick}
                   ImageSource={ImageSource}
