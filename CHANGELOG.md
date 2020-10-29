@@ -44,6 +44,10 @@
 
 - `DetailHeader`에 거점 지역 정보 추가 (#976)
 
+### poi-list-elements
+
+- `POICardElement`에서 계산된 스크랩 카운트 사용 (#1015)
+
 ### scrap-button
 
 - react-context를 연동하여 Uncontrolled 컴포넌트로 변경 (#900, #984)
