@@ -7,14 +7,14 @@ import {
 } from '@titicaca/core-elements'
 
 export default function Table({
-  value,
+  value: { table },
   ...props
 }: {
-  value: TableProps
+  value: { table: TableProps }
 } & ContainerProps) {
   return (
     <Container margin={{ top: 20, bottom: 20, left: 30, right: 30 }} {...props}>
-      <TableView {...value} />
+      <TableView {...table} />
     </Container>
   )
 }
