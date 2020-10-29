@@ -19,6 +19,7 @@ const {
   hr6: HR6,
   note: Note,
   video: Video,
+  table: Table,
 } = ELEMENTS
 
 // storybook의 jsxDecoration에는 Object를 표현하는 기능이 없어 Proxy를 호출하게 해두었습니다.
@@ -79,6 +80,25 @@ storiesOf('TripleDocument | TripleDocument', module)
       value={{
         provider: 'youtube',
         identifier: 'hYIe4VrfHoA',
+      }}
+    />
+  ))
+  .add('표', () => (
+    <Table
+      value={{
+        table: {
+          type: 'horizontal',
+          head: [{ text: '취소 시점' }, { text: '취소 수수료' }],
+          body: [
+            [{ text: '구매 당일 (No-show 제외)' }, { text: '0원' }],
+            [{ text: '구매 익일 ~ 출발 61일 전' }, { text: '1,000원' }],
+            [{ text: '출발 60일 전 ~ 출발 31일 전' }, { text: '3,000원' }],
+            [{ text: '출발 30일 전 ~ 출발 8일 전' }, { text: '4,000원' }],
+            [{ text: '출발 7일 전 ~ 출발 2일 전' }, { text: '6,000원' }],
+            [{ text: '출발 1일 전 ~ 출발시간 전' }, { text: '12,000원' }],
+            [{ text: '출발시간 이후 (No-show)' }, { text: '15,000원' }],
+          ],
+        },
       }}
     />
   ))
