@@ -24,14 +24,20 @@ export type ScrapButtonProps<R extends ScrapableResource> = Omit<
 const CompactScrapButtonBase = styled.div<ScrapButtonBaseProps>`
   width: 34px;
   height: 34px;
-  background-image: url(https://assets.triple.guide/images/${({ pressed }) => (pressed ? 'btn-content-scrap-list-on@2x.png' : 'btn-content-scrap-list-off@2x.png')});
+  ${({ pressed }) =>
+    pressed
+      ? 'background-image: url("https://assets.triple.guide/images/btn-content-scrap-list-on@2x.png");'
+      : 'background-image: url("https://assets.triple.guide/images/btn-content-scrap-list-off@2x.png");'}
   background-size: 34px 34px;
 `
 
 const RegularScrapButtonBase = styled.div<ScrapButtonBaseProps>`
   width: 36px;
   height: 36px;
-  background-image: url(https://assets.triple.guide/images/${({ pressed }) => (pressed ? 'btn-content-scrap-overlay-on@3x.png' : 'btn-content-scrap-overlay-off@3x.png')});
+  ${({ pressed }) =>
+    pressed
+      ? 'background-image: url("https://assets.triple.guide/images/btn-content-scrap-overlay-on@3x.png");'
+      : 'background-image: url("https://assets.triple.guide/images/btn-content-scrap-overlay-off@3x.png");'}
   background-size: 36px 36px;
 `
 
