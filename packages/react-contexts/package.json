@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/react-contexts",
-  "version": "2.0.0-alpha.4",
+  "version": "2.0.0-alpha.5",
   "description": "React context modules for triple web applications",
   "main": "lib/index.js",
   "files": [
@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "@titicaca/triple-web-to-native-interfaces": "^1.0.0",
-    "@titicaca/type-definitions": "^2.0.0-alpha.4",
-    "@titicaca/view-utilities": "^2.0.0-alpha.4",
+    "@titicaca/type-definitions": "^2.0.0-alpha.5",
+    "@titicaca/view-utilities": "^2.0.0-alpha.5",
     "humps": "^2.0.1",
     "isomorphic-fetch": "^2.2.1",
     "qs": "^6.9.4",
