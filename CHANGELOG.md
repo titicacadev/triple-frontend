@@ -55,6 +55,7 @@
 ### drawer-button
 
 - layering props 추가 (#990, #1007)
+- 배경색 추가 (#1019)
 
 ### search
 
@@ -65,6 +66,7 @@
 - elements 디렉토리 추가, Regions, T&A 관련 export를 제거 및 typography 컴포넌트 core-elements로 이동 (#978)
 - Inline link click handler 추가 (#994)
 - `hideVideoControls` prop 추가 (#996)
+- Video control 제어를 위해 앱 버전 사용 (#1017)
 
 ### triple-media
 
