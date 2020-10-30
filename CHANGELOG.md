@@ -67,6 +67,7 @@
 - Inline link click handler 추가 (#994)
 - `hideVideoControls` prop 추가 (#996)
 - Video control 제어를 위해 앱 버전 사용 (#1017)
+- `table` element 데이터 스키마 변경 (#1020)
 
 ### triple-media
 
