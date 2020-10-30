@@ -12,8 +12,10 @@ import React, {
 import { SESSION_KEY } from '@titicaca/constants'
 
 interface SessionContextValue {
-  /** x-soto-session 쿠키 정보 */
+  /** @deprecated x-soto-session 쿠키 정보 */
   hasSessionId: boolean
+  /** session 이 없는 경우 */
+  needToLogin: boolean
   /** 로그인 핸들러 */
   login: (options?: AuthOptions) => void
   /** 로그아웃 핸들러 */
@@ -27,6 +29,7 @@ type AuthOptions = {
 
 const SessionContext = createContext<SessionContextValue>({
   hasSessionId: false,
+  needToLogin: true,
   login: () => {},
   logout: () => {},
 })
@@ -60,6 +63,8 @@ export function SessionContextProvider({
 }: PropsWithChildren<{ hasSessionId: boolean }>) {
   const [hasSessionId] = useState(hasSessionIdFromProps)
 
+  const needToLogin = !hasSessionId
+
   const login = useCallback((options?: AuthOptions) => {
     if (!process.env.NEXT_PUBLIC_AUTH_WEB_BASE_PATH) {
       throw new Error(
@@ -79,7 +84,9 @@ export function SessionContextProvider({
   }, [])
 
   return (
-    <SessionContext.Provider value={{ hasSessionId, login, logout }}>
+    <SessionContext.Provider
+      value={{ hasSessionId, needToLogin, login, logout }}
+    >
       {children}
     </SessionContext.Provider>
   )
