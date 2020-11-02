@@ -39,6 +39,7 @@
 - `withEventTrackingProvider` HOC 추가, event-tracking-context 구조 개선 및 문서 보강 (#974)
 - Event Tracking Context에 Facebook Pixel 연동 (#979)
 - history context에서 해시 추가할 때 root 페이지에서 asPath가 /인 상황 대응 (#1003, #1011)
+- `SessionContextProvider` 를 추가합니다. (#1022)
 
 ### poi-detail
 
