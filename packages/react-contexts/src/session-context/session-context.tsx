@@ -8,6 +8,7 @@ import React, {
   useContext,
   useState,
   useCallback,
+  useMemo,
 } from 'react'
 import { SESSION_KEY } from '@titicaca/constants'
 
@@ -27,12 +28,7 @@ type AuthOptions = {
   returnUrl?: string
 }
 
-const SessionContext = createContext<SessionContextValue>({
-  hasSessionId: false,
-  needToLogin: true,
-  login: () => {},
-  logout: () => {},
-})
+const SessionContext = createContext<SessionContextValue | null>(null)
 
 export function getSessionID(
   req: IncomingMessage | undefined,
@@ -83,15 +79,27 @@ export function SessionContextProvider({
     console.warn("Not implemented yet! Let's make PR 🧑🏻‍💻")
   }, [])
 
+  const value = useMemo(
+    () => ({
+      hasSessionId,
+      needToLogin,
+      login,
+      logout,
+    }),
+    [hasSessionId, login, logout, needToLogin],
+  )
+
   return (
-    <SessionContext.Provider
-      value={{ hasSessionId, needToLogin, login, logout }}
-    >
-      {children}
-    </SessionContext.Provider>
+    <SessionContext.Provider value={value}>{children}</SessionContext.Provider>
   )
 }
 
 export function useSessionContext() {
-  return useContext(SessionContext)
+  const context = useContext(SessionContext)
+
+  if (!context) {
+    throw new Error('SessionContextProvider를 찾을 수 없습니다.')
+  }
+
+  return context
 }
