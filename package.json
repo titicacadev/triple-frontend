@@ -16,6 +16,7 @@
     "lint-style": "stylelint './**/*.{ts,tsx,js}'",
     "lint": "concurrently --names eslint,stylelint,jsonlint 'npm:lint-es' 'npm:lint-style' 'npm:lint-etc'",
     "test": "jest",
+    "test:ci": "jest --ci",
     "test:watch": "jest --watch",
     "clean-lock": "lerna exec --ignore @titicaca/triple-frontend-docs -- rm -rf ./package-lock.json",
     "clean": "lerna exec -- rm -rf ./node_modules ./lib ./*.tsbuildinfo"
