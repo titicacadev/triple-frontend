@@ -11,9 +11,17 @@ import { SessionContextProvider } from '@titicaca/react-contexts'
 import User from './user-component'
 
 export default Page() {
+  if (!process.env.NEXT_PUBLIC_AUTH_WEB_BASE_PATH) {
+    throw new Error(
+      'Insufficient environment variables in `.env.*` files\n- NEXT_PUBLIC_AUTH_WEB_BASE_PATH',
+    )
+  }
 
   return (
-    <SessionContextProvider sessionId={sessionId}>
+    <SessionContextProvider
+      authBasePath={process.env.NEXT_PUBLIC_AUTH_WEB_BASE_PATH}
+      sessionId={sessionId}
+    >
       <User />
     </SessionContextProvider>
   )

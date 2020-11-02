@@ -53,23 +53,21 @@ function safeReturnUrl(returnUrl?: string) {
 
 export function SessionContextProvider({
   sessionId,
+  authBasePath,
   children,
-}: PropsWithChildren<{ sessionId?: string }>) {
+}: PropsWithChildren<{ sessionId?: string; authBasePath: string }>) {
   const hasSessionId = Boolean(sessionId)
 
-  const login = useCallback((options?: AuthOptions) => {
-    if (!process.env.NEXT_PUBLIC_AUTH_WEB_BASE_PATH) {
-      throw new Error(
-        'Insufficient environment variables in `.env.*` files\n- NEXT_PUBLIC_AUTH_WEB_BASE_PATH',
-      )
-    }
+  const login = useCallback(
+    (options?: AuthOptions) => {
+      const query = qs.stringify({
+        returnUrl: safeReturnUrl(options?.returnUrl),
+      })
 
-    const query = qs.stringify({
-      returnUrl: safeReturnUrl(options?.returnUrl),
-    })
-
-    window.location.href = `${process.env.NEXT_PUBLIC_AUTH_WEB_BASE_PATH}?${query}`
-  }, [])
+      window.location.href = `${authBasePath}?${query}`
+    },
+    [authBasePath],
+  )
 
   const logout = useCallback(() => {
     console.warn("Not implemented yet! Let's make PR 🧑🏻‍💻")
@@ -77,7 +75,6 @@ export function SessionContextProvider({
 
   const value = useMemo(
     () => ({
-      /** TODO: @deprecated, 적용하는 쪽에 hasSessionId 변경점이 많아서  */
       hasSessionId,
       sessionId,
       login,
