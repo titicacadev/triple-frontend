@@ -8,6 +8,7 @@
   `CSSTransition`의 `mountOnEnter`, `unmountOnExit` 설정하는 prop 추가
 - PR 정보를 가져오는 gh-tools 커맨드 `fetch-github-pr`로 변경 (#977)
 - 타입이 어긋나있던 story를 수정 (#985)
+- 전역 테스트 환경을 설정합니다. (#1023)
 
 ### icons
 
