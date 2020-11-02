@@ -235,7 +235,12 @@ export default function ActionSheet({
     >
       <Overlay
         duration={TRANSITION_DURATION}
-        onClick={onOverlayClick}
+        onClick={(e) => {
+          silenceEvent(e)
+          if (onOverlayClick) {
+            onOverlayClick()
+          }
+        }}
         zTier={zTier}
         zIndex={zIndex}
         data-testid="overlay"
