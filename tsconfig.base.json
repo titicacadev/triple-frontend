@@ -11,5 +11,6 @@
     "strict": true,
     "emitDeclarationOnly": true,
     "types": ["react", "node", "jest"]
-  }
+  },
+  "exclude": ["node_modules", "lib"]
 }
