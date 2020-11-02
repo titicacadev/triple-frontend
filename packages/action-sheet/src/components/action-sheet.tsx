@@ -238,6 +238,7 @@ export default function ActionSheet({
         onClick={onOverlayClick}
         zTier={zTier}
         zIndex={zIndex}
+        data-testid="overlay"
       >
         <CSSTransition
           in={open}
@@ -258,6 +259,7 @@ export default function ActionSheet({
             onClick={silenceEvent}
             className={className}
             zIndex={1}
+            data-testid="action-sheet"
           >
             {actionSheetTitle}
 
