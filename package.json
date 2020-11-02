@@ -34,6 +34,7 @@
     "@babel/runtime": "^7.10.2",
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.0",
+    "@testing-library/react-hooks": "^3.4.2",
     "@titicaca/eslint-config-triple": "^1.2.0",
     "@types/jest": "^26.0.15",
     "@types/node": "^12.12.47",
@@ -54,6 +55,7 @@
     "lodash.debounce": "^4.0.8",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-test-renderer": "^17.0.1",
     "styled-components": "^5.1.1",
     "typescript": "^3.9.5",
     "utility-types": "^3.10.0"
