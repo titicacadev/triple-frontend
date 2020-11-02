@@ -31,6 +31,10 @@
 - `SearchNavbar`에 `borderless` prop 추가 (#1009)
 - `PointingTab`의 세로 패딩을 조정할 수 있는 prop 추가 (#995)
 
+### action-sheet
+
+- 오버레이를 클릭했을 때 propagation을 막습니다. (#1024)
+
 ### date-picker
 
 - `beforeBlock`, `afterBlock` prop의 형식을 Date에서 string으로 바꿉니다.
