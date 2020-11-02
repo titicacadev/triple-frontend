@@ -6,17 +6,15 @@ import React, {
   createContext,
   PropsWithChildren,
   useContext,
-  useState,
   useCallback,
   useMemo,
 } from 'react'
 import { SESSION_KEY } from '@titicaca/constants'
 
 interface SessionContextValue {
-  /** @deprecated x-soto-session 쿠키 정보 */
+  /** x-soto-session 쿠키 정보 유무 */
   hasSessionId: boolean
-  /** session 이 없는 경우 */
-  needToLogin: boolean
+  sessionId?: string
   /** 로그인 핸들러 */
   login: (options?: AuthOptions) => void
   /** 로그아웃 핸들러 */
@@ -54,12 +52,10 @@ function safeReturnUrl(returnUrl?: string) {
 }
 
 export function SessionContextProvider({
-  hasSessionId: hasSessionIdFromProps,
+  sessionId,
   children,
-}: PropsWithChildren<{ hasSessionId: boolean }>) {
-  const [hasSessionId] = useState(hasSessionIdFromProps)
-
-  const needToLogin = !hasSessionId
+}: PropsWithChildren<{ sessionId?: string }>) {
+  const hasSessionId = Boolean(sessionId)
 
   const login = useCallback((options?: AuthOptions) => {
     if (!process.env.NEXT_PUBLIC_AUTH_WEB_BASE_PATH) {
@@ -81,12 +77,13 @@ export function SessionContextProvider({
 
   const value = useMemo(
     () => ({
+      /** TODO: @deprecated, 적용하는 쪽에 hasSessionId 변경점이 많아서  */
       hasSessionId,
-      needToLogin,
+      sessionId,
       login,
       logout,
     }),
-    [hasSessionId, login, logout, needToLogin],
+    [hasSessionId, login, logout, sessionId],
   )
 
   return (
