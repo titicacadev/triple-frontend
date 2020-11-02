@@ -1,7 +1,5 @@
 import assert from 'assert'
 
-import { describe, it } from 'mocha'
-
 import { getColor } from './get-color'
 
 describe('getColor remove to rgba', () => {
@@ -14,6 +12,6 @@ describe('getColor remove to rgba', () => {
   })
 
   it('getColor(emerald) => 11, 208, 153, 1', () => {
-    assert.strictEqual(getColor('emerald'), '11, 208, 153, 1')
+    assert.strictEqual(getColor('emerald'), '13, 208, 175, 1')
   })
 })

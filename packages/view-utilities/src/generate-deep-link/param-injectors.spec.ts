@@ -1,7 +1,5 @@
 import assert from 'assert'
 
-import { describe, it } from 'mocha'
-
 import { injectContentSource, injectUTMContext } from './param-injectors'
 
 describe('injectContentSource', function () {

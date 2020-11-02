@@ -1,7 +1,5 @@
 import assert from 'assert'
 
-import { describe, it } from 'mocha'
-
 import { measureDistance } from './measure-distance'
 
 describe('measureDistance', function () {
