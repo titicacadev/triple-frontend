@@ -39,8 +39,8 @@ export default function User() {
   const { hasSessionId, login, logout } = useSessionContext()
 
   return { hasSessionId
-    ? <button onClick={login}>login</button>
-    : <button onClick={logout}>logout</button>
+    ? <button onClick={logout}>login</button>
+    : <button onClick={login}>logout</button>
   }
 }
 ```
