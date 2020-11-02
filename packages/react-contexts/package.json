@@ -8,9 +8,6 @@
   ],
   "author": "",
   "license": "ISC",
-  "scripts": {
-    "test": "mocha --require ts-node/register ./src/**/*.spec.ts"
-  },
   "dependencies": {
     "@titicaca/triple-web-to-native-interfaces": "^1.0.0",
     "@titicaca/type-definitions": "^2.0.0-alpha.5",
@@ -27,11 +24,8 @@
   "devDependencies": {
     "@types/humps": "^1.1.2",
     "@types/isomorphic-fetch": "^0.0.35",
-    "@types/mocha": "^5.2.7",
     "@types/qs": "^6.9.2",
     "@types/ua-parser-js": "^0.7.33",
-    "mocha": "^6.2.2",
-    "next": "~9.0",
-    "ts-node": "^8.4.1"
+    "next": "~9.0"
   }
 }
