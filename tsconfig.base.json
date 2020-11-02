@@ -12,5 +12,5 @@
     "emitDeclarationOnly": true,
     "types": ["react", "node", "jest"]
   },
-  "exclude": ["node_modules", "lib"]
+  "exclude": ["node_modules", "lib", "**/*.test.*", "**/*.spec.*"]
 }
