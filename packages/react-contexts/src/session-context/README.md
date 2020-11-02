@@ -20,7 +20,7 @@ export default Page() {
 }
 ```
 
-위와 같이 Context Provider 를 추가하고 다음과 같이 `needToLogin` 값을 참조하여 로그인, 로그아웃
+위와 같이 Context Provider 를 추가하고 다음과 같이 `hasSessionId` 값을 참조하여 로그인, 로그아웃
 을 처리합니다.
 
 ```tsx
@@ -28,9 +28,9 @@ export default Page() {
 import { useSessionContext } from '@titicaca/react-contexts'
 
 export default function User() {
-  const { needToLogin, login, logout } = useSessionContext()
+  const { hasSessionId, login, logout } = useSessionContext()
 
-  return { needToLogin
+  return { hasSessionId
     ? <button onClick={login}>login</button>
     : <button onClick={logout}>logout</button>
   }
