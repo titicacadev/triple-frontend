@@ -13,7 +13,7 @@ import User from './user-component'
 export default Page() {
 
   return (
-    <SessionContextProvider hasSession={!!initialValue}>
+    <SessionContextProvider sessionId={sessionId}>
       <User />
     </SessionContextProvider>
   )
