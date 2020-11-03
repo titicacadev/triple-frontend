@@ -1,12 +1,6 @@
-import React, { FC, SyntheticEvent, useCallback } from 'react'
-import styled, { StyledComponentProps } from 'styled-components'
 import { useScrapsContext } from '@titicaca/react-contexts'
-
-interface ScrapButtonBaseProps {
-  top?: number
-  right?: number
-  pressed?: boolean
-}
+import React, { MouseEventHandler } from 'react'
+import styled from 'styled-components'
 
 type ScrapableResource = {
   id: string
@@ -14,67 +8,150 @@ type ScrapableResource = {
   scraped?: boolean
 }
 
-export type ScrapButtonProps<R extends ScrapableResource> = Omit<
-  StyledComponentProps<'div', any, ScrapButtonBaseProps, never>,
-  'resource'
-> & {
-  resource: R
+const ScrapingButton = styled.button<{ size: number }>`
+  display: block;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  appearance: none;
+  outline: none;
+
+  ${({ size }) => `
+    width: ${size}px;
+    height: ${size}px;
+  `}
+`
+
+interface ScrapIconProps {
+  pressed: boolean
+  size: number
 }
 
-const CompactScrapButtonBase = styled.div<ScrapButtonBaseProps>`
-  width: 34px;
-  height: 34px;
-  ${({ pressed }) =>
-    pressed
-      ? 'background-image: url("https://assets.triple.guide/images/btn-content-scrap-list-on@2x.png");'
-      : 'background-image: url("https://assets.triple.guide/images/btn-content-scrap-list-off@2x.png");'}
-  background-size: 34px 34px;
-`
+const OUTLINE_HEART_ON =
+  'https://assets.triple.guide/images/btn-content-scrap-list-on@2x.png'
+const OUTLINE_HEART_OFF =
+  'https://assets.triple.guide/images/btn-content-scrap-list-off@2x.png'
 
-const RegularScrapButtonBase = styled.div<ScrapButtonBaseProps>`
-  width: 36px;
-  height: 36px;
-  ${({ pressed }) =>
-    pressed
-      ? 'background-image: url("https://assets.triple.guide/images/btn-content-scrap-overlay-on@3x.png");'
-      : 'background-image: url("https://assets.triple.guide/images/btn-content-scrap-overlay-off@3x.png");'}
-  background-size: 36px 36px;
-`
+function OutlineHeart({ pressed, size }: ScrapIconProps) {
+  return (
+    <img
+      src={pressed ? OUTLINE_HEART_ON : OUTLINE_HEART_OFF}
+      width={size}
+      height={size}
+    />
+  )
+}
 
-function scrapButtonComponent(Component: FC<ScrapButtonBaseProps>) {
-  return function ScrapButton<R extends ScrapableResource>({
-    resource: { id, type, scraped },
-    top,
-    right,
-    ...props
-  }: ScrapButtonProps<R>) {
-    const { scrape, unscrape, deriveCurrentStateAndCount } = useScrapsContext()
-    const { scraped: actualScraped } = deriveCurrentStateAndCount({
-      id,
-      scraped,
-    })
+const OVERLAY_HEART_ON =
+  'https://assets.triple.guide/images/btn-content-scrap-overlay-on@3x.png'
+const OVERLAY_HEART_OFF =
+  'https://assets.triple.guide/images/btn-content-scrap-overlay-off@3x.png'
 
-    const handleClick = useCallback(
-      (e: SyntheticEvent) => {
-        e.preventDefault()
-        e.stopPropagation()
+function OverlayHeart({ pressed, size }: ScrapIconProps) {
+  return (
+    <img
+      src={pressed ? OVERLAY_HEART_ON : OVERLAY_HEART_OFF}
+      width={size}
+      height={size}
+    />
+  )
+}
 
-        actualScraped ? unscrape({ id, type }) : scrape({ id, type })
-      },
-      [scrape, unscrape, actualScraped, id, type],
-    )
+function useScrapButtonLogic<R extends ScrapableResource>({
+  id,
+  type,
+  scraped,
+}: R): {
+  scraped: boolean
+  onButtonClick: MouseEventHandler<HTMLButtonElement>
+} {
+  const { scrape, unscrape, deriveCurrentStateAndCount } = useScrapsContext()
 
-    return (
-      <Component
-        pressed={actualScraped}
-        onClick={handleClick}
-        top={top}
-        right={right}
-        {...props}
-      />
-    )
+  const { scraped: actualScraped } = deriveCurrentStateAndCount({ id, scraped })
+
+  return {
+    scraped: actualScraped,
+    onButtonClick: (e) => {
+      e.stopPropagation()
+      e.preventDefault()
+
+      actualScraped ? unscrape({ id, type }) : scrape({ id, type })
+    },
   }
 }
 
-export const RegularScrapButton = scrapButtonComponent(RegularScrapButtonBase)
-export const CompactScrapButton = scrapButtonComponent(CompactScrapButtonBase)
+interface ScrapButtonProps<R extends ScrapableResource> {
+  resource: R
+  size?: number
+}
+
+export function OutlineScrapButton<R extends ScrapableResource>({
+  resource,
+  size = 34,
+}: ScrapButtonProps<R>) {
+  const { scraped: actualScraped, onButtonClick } = useScrapButtonLogic(
+    resource,
+  )
+
+  return (
+    <ScrapingButton size={size} onClick={onButtonClick}>
+      <OutlineHeart pressed={actualScraped} size={size} />
+    </ScrapingButton>
+  )
+}
+
+export function OverlayScrapButton<R extends ScrapableResource>({
+  resource,
+  size = 36,
+}: ScrapButtonProps<R>) {
+  const { scraped: actualScraped, onButtonClick } = useScrapButtonLogic(
+    resource,
+  )
+
+  return (
+    <ScrapingButton size={size} onClick={onButtonClick}>
+      <OverlayHeart pressed={actualScraped} size={size} />
+    </ScrapingButton>
+  )
+}
+
+/**
+ * @deprecated - size를 자유롭게 조절할 수 있는 OverlayScrapButton을 사용하세요.
+ */
+export function RegularScrapButton<R extends ScrapableResource>({
+  resource,
+}: {
+  resource: R
+}) {
+  const { scraped: actualScraped, onButtonClick } = useScrapButtonLogic(
+    resource,
+  )
+  const size = 36
+
+  return (
+    <ScrapingButton size={size} onClick={onButtonClick}>
+      <OverlayHeart pressed={actualScraped} size={size} />
+    </ScrapingButton>
+  )
+}
+
+/**
+ * @deprecated - size를 자유롭게 조절할 수 있는 OutlineScrapButton을 사용하세요.
+ */
+export function CompactScrapButton<R extends ScrapableResource>({
+  resource,
+}: {
+  resource: R
+}) {
+  const { scraped: actualScraped, onButtonClick } = useScrapButtonLogic(
+    resource,
+  )
+  const size = 34
+
+  return (
+    <ScrapingButton size={size} onClick={onButtonClick}>
+      <OutlineHeart pressed={actualScraped} size={size} />
+    </ScrapingButton>
+  )
+}
