@@ -1,6 +1,6 @@
 import React from 'react'
-import { boolean } from '@storybook/addon-knobs'
-import { CompactScrapButton, RegularScrapButton } from '@titicaca/scrap-button'
+import { boolean, number } from '@storybook/addon-knobs'
+import { OverlayScrapButton, OutlineScrapButton } from '@titicaca/scrap-button'
 import styled from 'styled-components'
 import { StoryFn } from '@storybook/addons'
 import { ScrapsProvider } from '@titicaca/react-contexts'
@@ -29,26 +29,28 @@ export default {
   ],
 }
 
-export function regularScrapButton() {
+export function overlayScrapButton() {
   return (
-    <RegularScrapButton
+    <OverlayScrapButton
       resource={{
         id: 'scrapable_id',
         type: 'scrapable_type',
         scraped: boolean('initial scraped', false),
       }}
+      size={number('size', 36)}
     />
   )
 }
 
-export function compactScrapButton() {
+export function outlineScrapButton() {
   return (
-    <CompactScrapButton
+    <OutlineScrapButton
       resource={{
         id: 'scrapable_id',
         type: 'scrapable_type',
         scraped: boolean('initial scraped', false),
       }}
+      size={number('size', 34)}
     />
   )
 }

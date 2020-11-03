@@ -17,9 +17,9 @@ import {
 } from '@titicaca/resource-list-element'
 import { formatNumber } from '@titicaca/view-utilities'
 import { useScrapsContext } from '@titicaca/react-contexts'
+import { OverlayScrapButton } from '@titicaca/scrap-button'
 
 import DirectionButton, { DIRECTION_BUTTON_WIDTH } from './direction-button'
-import ScrapButton from './scrap-button'
 
 const IMAGE_WIDTH = 58
 
@@ -132,7 +132,7 @@ export default function POICardElement({
 
           {regionId ? (
             <ScrapButtonContainer>
-              <ScrapButton resource={{ id, type, scraped }} />
+              <OverlayScrapButton resource={{ id, type, scraped }} size={30} />
             </ScrapButtonContainer>
           ) : null}
         </ImageContainer>
