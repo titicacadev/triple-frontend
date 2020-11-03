@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { FC, SyntheticEvent, useCallback } from 'react'
 import styled, { StyledComponentProps } from 'styled-components'
 import { useScrapsContext } from '@titicaca/react-contexts'
 
@@ -41,7 +41,7 @@ const RegularScrapButtonBase = styled.div<ScrapButtonBaseProps>`
   background-size: 36px 36px;
 `
 
-function scrapButtonComponent(Component: React.FC<ScrapButtonBaseProps>) {
+function scrapButtonComponent(Component: FC<ScrapButtonBaseProps>) {
   return function ScrapButton<R extends ScrapableResource>({
     resource: { id, type, scraped },
     top,
@@ -55,7 +55,7 @@ function scrapButtonComponent(Component: React.FC<ScrapButtonBaseProps>) {
     })
 
     const handleClick = useCallback(
-      (e: React.SyntheticEvent) => {
+      (e: SyntheticEvent) => {
         e.preventDefault()
         e.stopPropagation()
 

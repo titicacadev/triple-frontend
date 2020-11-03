@@ -1,4 +1,13 @@
-import React from 'react'
+import React, {
+  ComponentType,
+  createContext,
+  PropsWithChildren,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+} from 'react'
 import { DeepPartial } from 'utility-types'
 import {
   notifyScraped,
@@ -40,7 +49,7 @@ interface ScrapsProviderProps {
   afterScrapedChange?: (target: Target, scraped: boolean) => void
 }
 
-const Context = React.createContext<ScrapsContext>({
+const Context = createContext<ScrapsContext>({
   scraps: {},
   deriveCurrentStateAndCount: () => ({ scraped: false, scrapsCount: 0 }),
   scrape: () => Promise.resolve(),
@@ -119,13 +128,13 @@ export function ScrapsProvider({
   beforeScrapedChange,
   afterScrapedChange,
   children,
-}: React.PropsWithChildren<ScrapsProviderProps>) {
-  const [{ scraps, updating }, dispatch] = React.useReducer(reducer, {
+}: PropsWithChildren<ScrapsProviderProps>) {
+  const [{ scraps, updating }, dispatch] = useReducer(reducer, {
     scraps: initialScraps || {},
     updating: {},
   })
 
-  const deriveCurrentStateAndCount: ScrapsContext['deriveCurrentStateAndCount'] = React.useCallback(
+  const deriveCurrentStateAndCount: ScrapsContext['deriveCurrentStateAndCount'] = useCallback(
     ({ id, scraped, scrapsCount: originalScrapsCount }) => {
       const currentState =
         typeof updating[id] !== 'undefined' ? updating[id] : scraps[id]
@@ -152,7 +161,7 @@ export function ScrapsProvider({
     [scraps, updating],
   )
 
-  const scrape = React.useCallback(
+  const scrape = useCallback(
     async ({ id, type }) => {
       if (typeof updating[id] !== 'undefined') {
         return
@@ -182,7 +191,7 @@ export function ScrapsProvider({
     [updating, beforeScrapedChange, afterScrapedChange],
   )
 
-  const unscrape = React.useCallback(
+  const unscrape = useCallback(
     async ({ id, type }) => {
       if (typeof updating[id] !== 'undefined') {
         return
@@ -212,18 +221,18 @@ export function ScrapsProvider({
     [updating, beforeScrapedChange, afterScrapedChange],
   )
 
-  const handleSubscribeEvent = React.useCallback(
+  const handleSubscribeEvent = useCallback(
     ({ scraped, id }) => dispatch({ type: scraped ? SCRAPE : UNSCRAPE, id }),
     [],
   )
 
-  React.useEffect(() => {
+  useEffect(() => {
     subscribeScrapedChangeEvent(handleSubscribeEvent)
 
     return () => unsubscribeScrapedChangeEvent(handleSubscribeEvent)
   }, [handleSubscribeEvent])
 
-  const value: ScrapsContext = React.useMemo(
+  const value: ScrapsContext = useMemo(
     () => ({
       deriveCurrentStateAndCount,
       scrape,
@@ -241,7 +250,7 @@ export function ScrapsProvider({
 }
 
 export function useScrapsContext() {
-  return React.useContext(Context)
+  return useContext(Context)
 }
 
 export interface WithScrapsBaseProps {
@@ -251,7 +260,7 @@ export interface WithScrapsBaseProps {
 }
 
 export function withScraps<P extends DeepPartial<WithScrapsBaseProps>>(
-  Component: React.ComponentType<P>,
+  Component: ComponentType<P>,
 ) {
   return function ScrapsComponent(props: Omit<P, keyof WithScrapsBaseProps>) {
     return (
