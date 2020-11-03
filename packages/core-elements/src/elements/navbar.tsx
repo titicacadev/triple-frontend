@@ -140,8 +140,12 @@ const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
 const SecondaryNavbar = styled.div<NavbarProps & LayeringMixinProps>`
   background-color: ${({ backgroundColor = 'white' }) =>
     `rgba(${getColor(backgroundColor)})`};
-  position: ${({ position = 'sticky' }) => position};
-  top: ${({ position }) => (position === 'sticky' ? '52px' : 0)};
+
+  ${({ position = 'sticky' }) => `
+      position: ${position};
+      top: ${position === 'sticky' ? '52px' : 0};
+  `}
+
   left: 0;
   right: 0;
   box-sizing: border-box;
