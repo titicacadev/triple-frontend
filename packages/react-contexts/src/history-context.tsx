@@ -6,6 +6,7 @@ import React, {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react'
 import Router from 'next/router'
@@ -97,7 +98,9 @@ interface HashHistory {
   useRouter?: boolean
 }
 
-const HASH_HISTORIES: HashHistory[] = []
+function getInitialHash() {
+  return (typeof window !== 'undefined' && window.location.hash.substr(1)) || ''
+}
 
 export enum HashStrategy {
   NONE,
@@ -127,28 +130,27 @@ export function HistoryProvider({
       return ''
     }
 
-    const initialHash =
-      (typeof window !== 'undefined' && window.location.hash.substr(1)) || ''
-
-    if (initialHashStrategy === HashStrategy.PUSH) {
-      // Side Effect. TODO: HASH_HISTORIES와 uriHash를 reducer로 통합하기
-      HASH_HISTORIES.push({ hash: initialHash, useRouter: isAndroid })
-    }
-
-    return initialHash
+    return getInitialHash()
   })
+  const hasHistoriesRef = useRef<HashHistory[]>(
+    initialHashStrategy === HashStrategy.PUSH
+      ? [{ hash: getInitialHash(), useRouter: isAndroid }]
+      : [],
+  )
 
   useEffect(() => {
     const onHashChange = (url: string) => {
       const { hash } = parseUrl(url)
 
+      const hashHistories = hasHistoriesRef.current
+
       // We only need to check if onHashChange is triggered by native action.
-      const { hash: previousHash } = HASH_HISTORIES[
-        HASH_HISTORIES.length - 2
+      const { hash: previousHash } = hashHistories[
+        hashHistories.length - 2
       ] || { hash: undefined }
 
       if ((previousHash || '') === hash) {
-        HASH_HISTORIES.pop()
+        hashHistories.pop()
 
         setUriHash(previousHash || '')
       }
@@ -166,9 +168,10 @@ export function HistoryProvider({
   const replace = useCallback<HistoryContextValue['replace']>(
     (hash, config = {}) => {
       const { useRouter = isAndroid, basePathCompatible } = config
+      const hashHistories = hasHistoriesRef.current
 
-      HASH_HISTORIES.pop()
-      HASH_HISTORIES.push({ hash, useRouter })
+      hashHistories.pop()
+      hashHistories.push({ hash, useRouter })
 
       setUriHash(hash)
 
@@ -184,8 +187,9 @@ export function HistoryProvider({
   const push = useCallback<HistoryContextValue['push']>(
     (hash, config = {}) => {
       const { useRouter = isAndroid, basePathCompatible } = config
+      const hashHistories = hasHistoriesRef.current
 
-      HASH_HISTORIES.push({ hash, useRouter })
+      hashHistories.push({ hash, useRouter })
 
       setUriHash(hash)
 
@@ -199,9 +203,10 @@ export function HistoryProvider({
   )
 
   const back = useCallback<HistoryContextValue['back']>(() => {
-    const { useRouter } = HASH_HISTORIES.pop() || { useRouter: false }
+    const hashHistories = hasHistoriesRef.current
+    const { useRouter } = hashHistories.pop() || { useRouter: false }
 
-    setUriHash(HASH_HISTORIES[HASH_HISTORIES.length - 1]?.hash || '')
+    setUriHash(hashHistories[hashHistories.length - 1]?.hash || '')
 
     if (useRouter) {
       return Router.back()
