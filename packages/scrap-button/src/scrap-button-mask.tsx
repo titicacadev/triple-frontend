@@ -7,8 +7,11 @@ import React, {
 
 const MaskContext = createContext(false)
 
-export function ScrapButtonMask({ children }: PropsWithChildren<{}>) {
-  return <MaskContext.Provider value={true}>{children}</MaskContext.Provider>
+export function ScrapButtonMask({
+  masked,
+  children,
+}: PropsWithChildren<{ masked: boolean }>) {
+  return <MaskContext.Provider value={masked}>{children}</MaskContext.Provider>
 }
 
 export function withMask<P>(Component: ComponentType<P>) {
