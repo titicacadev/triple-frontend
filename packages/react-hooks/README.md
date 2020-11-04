@@ -128,3 +128,30 @@ return (
   />
 )
 ```
+
+### useLottie
+
+Json형태로 내 보낸 Adobe After Effects 애니메이션을 지정된 컴포넌트에서 렌더링 할수 있도록 도와줍니다.
+animationData와 player 옵션들을 파라미터로 받습니다.
+
+#### 예시
+
+```tsx
+import { useLottie } from '@titicaca/react-hooks'
+
+const LottieContainer = styled.div`
+  width: 57px;
+  height: 57px;
+`
+
+export function Lottie() {
+  const { animationRef } = useLottie<HTMLDivElement>({
+    data: logos,
+    rendererSettings: {
+      viewBoxSize: `0 0 57px 57px`,
+    },
+  })
+
+  return <LottieContainer ref={animationRef} />
+}
+```

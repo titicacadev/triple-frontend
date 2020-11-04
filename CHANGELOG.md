@@ -46,6 +46,10 @@
 - history context에서 해시 추가할 때 root 페이지에서 asPath가 /인 상황 대응 (#1003, #1011)
 - `SessionContextProvider` 를 추가합니다. (#1022)
 
+### react-hooks
+
+- `useLottie` 추가 (#1012)
+
 ### poi-detail
 
 - `DetailHeader`에 거점 지역 정보 추가 (#976)
