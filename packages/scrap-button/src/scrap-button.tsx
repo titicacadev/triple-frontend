@@ -63,26 +63,32 @@ function OverlayHeart({ pressed, size }: ScrapIconProps) {
   )
 }
 
-function useScrapButtonLogic<R extends ScrapableResource>({
-  id,
-  type,
-  scraped,
-}: R): {
-  scraped: boolean
-  onButtonClick: MouseEventHandler<HTMLButtonElement>
-} {
+function useScraped<R extends ScrapableResource>({ id, type, scraped }: R) {
   const { scrape, unscrape, deriveCurrentStateAndCount } = useScrapsContext()
 
   const { scraped: actualScraped } = deriveCurrentStateAndCount({ id, scraped })
 
-  return {
-    scraped: actualScraped,
-    onButtonClick: (e) => {
-      e.stopPropagation()
-      e.preventDefault()
-
+  return [
+    actualScraped,
+    () => {
       actualScraped ? unscrape({ id, type }) : scrape({ id, type })
     },
+  ] as const
+}
+
+/**
+ * 주어진 핸들러에 propagation을 막는 로직을 추가한 핸들러를 반환합니다.
+ * TODO: 비슷한 역할을 하는 함수들 통합
+ * @param handler
+ */
+function createIsolatedClickHandler(
+  handler: MouseEventHandler<HTMLButtonElement>,
+): MouseEventHandler<HTMLButtonElement> {
+  return (e) => {
+    e.stopPropagation()
+    e.preventDefault()
+
+    handler(e)
   }
 }
 
@@ -95,12 +101,13 @@ function OutlineScrapButton<R extends ScrapableResource>({
   resource,
   size = 34,
 }: ScrapButtonProps<R>) {
-  const { scraped: actualScraped, onButtonClick } = useScrapButtonLogic(
-    resource,
-  )
+  const [actualScraped, setScraped] = useScraped(resource)
 
   return (
-    <ScrapingButton size={size} onClick={onButtonClick}>
+    <ScrapingButton
+      size={size}
+      onClick={createIsolatedClickHandler(setScraped)}
+    >
       <OutlineHeart pressed={actualScraped} size={size} />
     </ScrapingButton>
   )
@@ -110,12 +117,13 @@ function OverlayScrapButton<R extends ScrapableResource>({
   resource,
   size = 36,
 }: ScrapButtonProps<R>) {
-  const { scraped: actualScraped, onButtonClick } = useScrapButtonLogic(
-    resource,
-  )
+  const [actualScraped, setScraped] = useScraped(resource)
 
   return (
-    <ScrapingButton size={size} onClick={onButtonClick}>
+    <ScrapingButton
+      size={size}
+      onClick={createIsolatedClickHandler(setScraped)}
+    >
       <OverlayHeart pressed={actualScraped} size={size} />
     </ScrapingButton>
   )
@@ -126,13 +134,14 @@ function RegularScrapButton<R extends ScrapableResource>({
 }: {
   resource: R
 }) {
-  const { scraped: actualScraped, onButtonClick } = useScrapButtonLogic(
-    resource,
-  )
+  const [actualScraped, setScraped] = useScraped(resource)
   const size = 36
 
   return (
-    <ScrapingButton size={size} onClick={onButtonClick}>
+    <ScrapingButton
+      size={size}
+      onClick={createIsolatedClickHandler(setScraped)}
+    >
       <OverlayHeart pressed={actualScraped} size={size} />
     </ScrapingButton>
   )
@@ -143,13 +152,14 @@ function CompactScrapButton<R extends ScrapableResource>({
 }: {
   resource: R
 }) {
-  const { scraped: actualScraped, onButtonClick } = useScrapButtonLogic(
-    resource,
-  )
+  const [actualScraped, setScraped] = useScraped(resource)
   const size = 34
 
   return (
-    <ScrapingButton size={size} onClick={onButtonClick}>
+    <ScrapingButton
+      size={size}
+      onClick={createIsolatedClickHandler(setScraped)}
+    >
       <OutlineHeart pressed={actualScraped} size={size} />
     </ScrapingButton>
   )
