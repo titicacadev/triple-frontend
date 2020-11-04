@@ -45,6 +45,8 @@
 - Event Tracking Context에 Facebook Pixel 연동 (#979)
 - history context에서 해시 추가할 때 root 페이지에서 asPath가 /인 상황 대응 (#1003, #1011)
 - `SessionContextProvider` 를 추가합니다. (#1022)
+- `ScrapsProvider`가 없으면 `useScrapsContext`에서 에러를 던집니다. (#1027)
+- 자식에서 `ScrapsProvider`가 없다는 에러를 잡고, UI를 없애주는 `ScrapsContextGuard` 컴포넌트를 추가합니다. (#1027)
 
 ### react-hooks
 
@@ -61,6 +63,8 @@
 ### scrap-button
 
 - react-context를 연동하여 Uncontrolled 컴포넌트로 변경 (#900, #984)
+- Regular, Compact deprecated 처리 및 Overlay, Outline으로 이름 변경 (#1027)
+- 스크랩 버튼을 가릴 수 있는 `ScrapsButtonMask` 컴포넌트 구현 (#1027)
 
 ### drawer-button
 
