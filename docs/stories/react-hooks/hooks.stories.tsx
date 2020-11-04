@@ -1,14 +1,24 @@
 import React, { useEffect } from 'react'
+import styled from 'styled-components'
 import {
   useScrollToElement,
   useScrollToAnchor,
   useVisibilityChange,
+  useLottie,
 } from '@titicaca/react-hooks'
 import { boolean } from '@storybook/addon-knobs'
+import { Container } from '@titicaca/core-elements'
+
+import logos from '../__mocks__/lottie.sample.json'
 
 export default {
   title: 'react-hooks | hooks',
 }
+
+const RollingSpinner = styled(Container)`
+  width: 57px;
+  height: 57px;
+`
 
 export function ScrollElement() {
   useScrollToElement('#app')
@@ -68,4 +78,15 @@ export function VisibilityChange() {
   }, [])
 
   return <div>useVisibilityChange</div>
+}
+
+export function Lottie() {
+  const { animationRef } = useLottie<HTMLDivElement>({
+    data: logos,
+    rendererSettings: {
+      viewBoxSize: `0 0 57px 57px`,
+    },
+  })
+
+  return <RollingSpinner ref={animationRef} />
 }

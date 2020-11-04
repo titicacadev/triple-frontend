@@ -1,7 +1,7 @@
 import Lottie, { SVGRendererConfig, AnimationItem } from 'lottie-web'
 import { useRef, useEffect, useState } from 'react'
 
-export default function useLottie<T extends HTMLElement>({
+export function useLottie<T extends HTMLElement>({
   loop = true,
   autoplay = true,
   path,
