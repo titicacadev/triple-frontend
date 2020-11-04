@@ -1,5 +1,5 @@
 import Lottie, { SVGRendererConfig, AnimationItem } from 'lottie-web'
-import { createRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
 
 export default function useLottie<T extends HTMLElement>({
   loop = true,
@@ -15,7 +15,7 @@ export default function useLottie<T extends HTMLElement>({
   rendererSettings?: SVGRendererConfig
 }) {
   const [animation, setAnimation] = useState<AnimationItem>()
-  const animationRef = createRef<T>()
+  const animationRef = useRef<T>()
 
   useEffect(
     () => {
