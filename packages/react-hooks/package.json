@@ -22,7 +22,8 @@
     "@titicaca/react-contexts": "^2.0.0-alpha.5",
     "isomorphic-fetch": "^2.2.1",
     "react-fast-compare": "^2.0.4",
-    "scroll-to-element": "^2.0.3"
+    "scroll-to-element": "^2.0.3",
+    "lottie-web": "^5.7.4"
   },
   "devDependencies": {
     "@types/isomorphic-fetch": "^0.0.35",
