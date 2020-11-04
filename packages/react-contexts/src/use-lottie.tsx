@@ -15,7 +15,7 @@ export default function useLottie<T extends HTMLElement>({
   rendererSettings?: SVGRendererConfig
 }) {
   const [animation, setAnimation] = useState<AnimationItem>()
-  const animationRef = useRef<T>()
+  const animationRef = useRef<T>(null)
 
   useEffect(
     () => {
