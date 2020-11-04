@@ -7,7 +7,7 @@ import {
   Container,
   Image,
 } from '@titicaca/core-elements'
-import { RegularScrapButton } from '@titicaca/scrap-button'
+import { OverlayScrapButton } from '@titicaca/scrap-button'
 import { ListingPOI } from '@titicaca/type-definitions'
 
 import { POI_IMAGE_PLACEHOLDERS, TYPE_NAMES } from './constants'
@@ -73,7 +73,7 @@ export default function PoiCarouselElement<
 
       {actionButtonElement || (
         <Container position="absolute" positioning={{ top: 3, right: 3 }}>
-          <RegularScrapButton resource={poi} />
+          <OverlayScrapButton resource={poi} size={36} />
         </Container>
       )}
 

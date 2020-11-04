@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { RegularScrapButton } from '@titicaca/scrap-button'
+import { OverlayScrapButton } from '@titicaca/scrap-button'
 import {
   Container,
   Label,
@@ -109,7 +109,7 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
 
           {!hideScrapButton && id && type ? (
             <Container position="absolute" positioning={{ top: 3, right: 3 }}>
-              <RegularScrapButton resource={{ id, type, scraped }} />
+              <OverlayScrapButton resource={{ id, type, scraped }} size={36} />
             </Container>
           ) : null}
         </Container>

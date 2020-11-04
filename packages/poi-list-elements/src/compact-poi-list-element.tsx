@@ -6,7 +6,7 @@ import {
   Container,
 } from '@titicaca/core-elements'
 import { ListingPOI } from '@titicaca/type-definitions'
-import { CompactScrapButton } from '@titicaca/scrap-button'
+import { OutlineScrapButton } from '@titicaca/scrap-button'
 
 import { POIListElementBaseProps, ActionButtonElement } from './types'
 import { TYPE_NAMES } from './constants'
@@ -72,7 +72,7 @@ export function CompactPoiListElement<T extends ListingPOI>({
         <div ref={actionButtonRef}>{actionButtonElement}</div>
       ) : (
         <Container position="absolute" positioning={{ top: 0, right: 0 }}>
-          <CompactScrapButton resource={poi} />
+          <OutlineScrapButton resource={poi} size={34} />
         </Container>
       )}
     </ResourceListItem>
