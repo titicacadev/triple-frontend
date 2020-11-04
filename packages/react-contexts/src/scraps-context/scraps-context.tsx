@@ -21,6 +21,7 @@ import {
   scrape as nativeScrape,
   unscrape as nativeUnscrape,
 } from './api-client'
+import { NO_CONTEXT_ERROR_MESSAGE } from './constants'
 
 type Scraps = { [key: string]: boolean }
 
@@ -49,16 +50,7 @@ interface ScrapsProviderProps {
   afterScrapedChange?: (target: Target, scraped: boolean) => void
 }
 
-const Context = createContext<ScrapsContext>({
-  scraps: {},
-  deriveCurrentStateAndCount: () => ({ scraped: false, scrapsCount: 0 }),
-  scrape: () => Promise.resolve(),
-  scrapeArticle: () => Promise.resolve(),
-  scrapePoi: () => Promise.resolve(),
-  unscrape: () => Promise.resolve(),
-  unscrapeArticle: () => Promise.resolve(),
-  unscrapePoi: () => Promise.resolve(),
-})
+const Context = createContext<ScrapsContext | null>(null)
 
 const START_SCRAPE = 'START_SCRAPE'
 const SCRAPE = 'SCRAPE'
@@ -250,7 +242,12 @@ export function ScrapsProvider({
 }
 
 export function useScrapsContext() {
-  return useContext(Context)
+  const context = useContext(Context)
+
+  if (!context) {
+    throw new Error(NO_CONTEXT_ERROR_MESSAGE)
+  }
+  return context
 }
 
 export interface WithScrapsBaseProps {
@@ -263,19 +260,21 @@ export function withScraps<P extends DeepPartial<WithScrapsBaseProps>>(
   Component: ComponentType<P>,
 ) {
   return function ScrapsComponent(props: Omit<P, keyof WithScrapsBaseProps>) {
+    const {
+      deriveCurrentStateAndCount,
+      scraps,
+      ...actions
+    } = useScrapsContext()
+
     return (
-      <Context.Consumer>
-        {({ deriveCurrentStateAndCount, scraps, ...actions }) => (
-          <Component
-            {...({
-              ...props,
-              deriveCurrentScrapedStateAndCount: deriveCurrentStateAndCount,
-              scraps,
-              scrapActions: actions,
-            } as P)}
-          />
-        )}
-      </Context.Consumer>
+      <Component
+        {...({
+          ...props,
+          deriveCurrentScrapedStateAndCount: deriveCurrentStateAndCount,
+          scraps,
+          scrapActions: actions,
+        } as P)}
+      />
     )
   }
 }
