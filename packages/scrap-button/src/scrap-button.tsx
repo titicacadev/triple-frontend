@@ -5,6 +5,8 @@ import {
 import React, { MouseEventHandler } from 'react'
 import styled from 'styled-components'
 
+import { withMask } from './scrap-button-mask'
+
 type ScrapableResource = {
   id: string
   type: string
@@ -153,20 +155,28 @@ function CompactScrapButton<R extends ScrapableResource>({
   )
 }
 
-const GuardedOutlineScrapButton = withScrapsContextGuard(OutlineScrapButton)
-const GuardedOverlayScrapButton = withScrapsContextGuard(OverlayScrapButton)
+const ComposedOutlineScrapButton = withMask(
+  withScrapsContextGuard(OutlineScrapButton),
+)
+const ComposedOverlayScrapButton = withMask(
+  withScrapsContextGuard(OverlayScrapButton),
+)
 /**
  * @deprecated - size를 자유롭게 조절할 수 있는 OverlayScrapButton을 사용하세요.
  */
-const GuardedRegularScrapButton = withScrapsContextGuard(RegularScrapButton)
+const ComposedRegularScrapButton = withMask(
+  withScrapsContextGuard(RegularScrapButton),
+)
 /**
  * @deprecated - size를 자유롭게 조절할 수 있는 OutlineScrapButton을 사용하세요.
  */
-const GuardedCompactScrapButton = withScrapsContextGuard(CompactScrapButton)
+const ComposedCompactScrapButton = withMask(
+  withScrapsContextGuard(CompactScrapButton),
+)
 
 export {
-  GuardedOutlineScrapButton as OutlineScrapButton,
-  GuardedOverlayScrapButton as OverlayScrapButton,
-  GuardedRegularScrapButton as RegularScrapButton,
-  GuardedCompactScrapButton as CompactScrapButton,
+  ComposedOutlineScrapButton as OutlineScrapButton,
+  ComposedOverlayScrapButton as OverlayScrapButton,
+  ComposedRegularScrapButton as RegularScrapButton,
+  ComposedCompactScrapButton as CompactScrapButton,
 }
