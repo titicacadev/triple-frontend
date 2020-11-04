@@ -64,6 +64,7 @@
 
 - react-context를 연동하여 Uncontrolled 컴포넌트로 변경 (#900, #984)
 - Regular, Compact deprecated 처리 및 Overlay, Outline으로 이름 변경 (#1027)
+- 스크랩 버튼 size 조절 prop 추가 (#1027)
 - 스크랩 버튼을 가릴 수 있는 `ScrapsButtonMask` 컴포넌트 구현 (#1027)
 
 ### drawer-button
