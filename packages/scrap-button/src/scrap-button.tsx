@@ -100,7 +100,7 @@ function OutlineScrapButton<R extends ScrapableResource>({
   )
 
   return (
-    <ScrapingButton size={size} onClick={onButtonClick} role="button">
+    <ScrapingButton size={size} onClick={onButtonClick}>
       <OutlineHeart pressed={actualScraped} size={size} />
     </ScrapingButton>
   )
@@ -115,7 +115,7 @@ function OverlayScrapButton<R extends ScrapableResource>({
   )
 
   return (
-    <ScrapingButton size={size} onClick={onButtonClick} role="button">
+    <ScrapingButton size={size} onClick={onButtonClick}>
       <OverlayHeart pressed={actualScraped} size={size} />
     </ScrapingButton>
   )
