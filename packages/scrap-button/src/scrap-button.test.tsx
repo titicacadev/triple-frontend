@@ -2,7 +2,7 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { ScrapsProvider } from '@titicaca/react-contexts'
 
-import { OutlineScrapButton, OverlayScrapButton } from '.'
+import { OutlineScrapButton, OverlayScrapButton } from './scrap-button'
 
 /**
  * 테스트 환경에서 리액트 에러 메시지를 표시하지 않습니다.
