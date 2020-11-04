@@ -7,7 +7,6 @@ import {
   useLottie,
 } from '@titicaca/react-hooks'
 import { boolean } from '@storybook/addon-knobs'
-import { Container } from '@titicaca/core-elements'
 
 import logos from '../__mocks__/lottie.sample.json'
 
@@ -15,7 +14,7 @@ export default {
   title: 'react-hooks | hooks',
 }
 
-const RollingSpinner = styled(Container)`
+const LottieContainer = styled.div`
   width: 57px;
   height: 57px;
 `
@@ -88,5 +87,5 @@ export function Lottie() {
     },
   })
 
-  return <RollingSpinner ref={animationRef} />
+  return <LottieContainer ref={animationRef} />
 }
