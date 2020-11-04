@@ -129,60 +129,14 @@ function OverlayScrapButton<R extends ScrapableResource>({
   )
 }
 
-function RegularScrapButton<R extends ScrapableResource>({
-  resource,
-}: {
-  resource: R
-}) {
-  const [actualScraped, setScraped] = useScraped(resource)
-  const size = 36
-
-  return (
-    <ScrapingButton
-      size={size}
-      onClick={createIsolatedClickHandler(setScraped)}
-    >
-      <OverlayHeart pressed={actualScraped} size={size} />
-    </ScrapingButton>
-  )
-}
-
-function CompactScrapButton<R extends ScrapableResource>({
-  resource,
-}: {
-  resource: R
-}) {
-  const [actualScraped, setScraped] = useScraped(resource)
-  const size = 34
-
-  return (
-    <ScrapingButton
-      size={size}
-      onClick={createIsolatedClickHandler(setScraped)}
-    >
-      <OutlineHeart pressed={actualScraped} size={size} />
-    </ScrapingButton>
-  )
-}
-
 function composedHOCs<P>(Component: ComponentType<P>) {
   return withMask(withScrapsContextGuard(Component))
 }
 
 const ComposedOutlineScrapButton = composedHOCs(OutlineScrapButton)
 const ComposedOverlayScrapButton = composedHOCs(OverlayScrapButton)
-/**
- * @deprecated - size를 자유롭게 조절할 수 있는 OverlayScrapButton을 사용하세요.
- */
-const ComposedRegularScrapButton = composedHOCs(RegularScrapButton)
-/**
- * @deprecated - size를 자유롭게 조절할 수 있는 OutlineScrapButton을 사용하세요.
- */
-const ComposedCompactScrapButton = composedHOCs(CompactScrapButton)
 
 export {
   ComposedOutlineScrapButton as OutlineScrapButton,
   ComposedOverlayScrapButton as OverlayScrapButton,
-  ComposedRegularScrapButton as RegularScrapButton,
-  ComposedCompactScrapButton as CompactScrapButton,
 }
