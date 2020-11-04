@@ -1,4 +1,7 @@
-import { useScrapsContext } from '@titicaca/react-contexts'
+import {
+  useScrapsContext,
+  withScrapsContextGuard,
+} from '@titicaca/react-contexts'
 import React, { MouseEventHandler } from 'react'
 import styled from 'styled-components'
 
@@ -86,7 +89,7 @@ interface ScrapButtonProps<R extends ScrapableResource> {
   size?: number
 }
 
-export function OutlineScrapButton<R extends ScrapableResource>({
+function OutlineScrapButton<R extends ScrapableResource>({
   resource,
   size = 34,
 }: ScrapButtonProps<R>) {
@@ -95,13 +98,13 @@ export function OutlineScrapButton<R extends ScrapableResource>({
   )
 
   return (
-    <ScrapingButton size={size} onClick={onButtonClick}>
+    <ScrapingButton size={size} onClick={onButtonClick} role="button">
       <OutlineHeart pressed={actualScraped} size={size} />
     </ScrapingButton>
   )
 }
 
-export function OverlayScrapButton<R extends ScrapableResource>({
+function OverlayScrapButton<R extends ScrapableResource>({
   resource,
   size = 36,
 }: ScrapButtonProps<R>) {
@@ -110,16 +113,13 @@ export function OverlayScrapButton<R extends ScrapableResource>({
   )
 
   return (
-    <ScrapingButton size={size} onClick={onButtonClick}>
+    <ScrapingButton size={size} onClick={onButtonClick} role="button">
       <OverlayHeart pressed={actualScraped} size={size} />
     </ScrapingButton>
   )
 }
 
-/**
- * @deprecated - size를 자유롭게 조절할 수 있는 OverlayScrapButton을 사용하세요.
- */
-export function RegularScrapButton<R extends ScrapableResource>({
+function RegularScrapButton<R extends ScrapableResource>({
   resource,
 }: {
   resource: R
@@ -136,10 +136,7 @@ export function RegularScrapButton<R extends ScrapableResource>({
   )
 }
 
-/**
- * @deprecated - size를 자유롭게 조절할 수 있는 OutlineScrapButton을 사용하세요.
- */
-export function CompactScrapButton<R extends ScrapableResource>({
+function CompactScrapButton<R extends ScrapableResource>({
   resource,
 }: {
   resource: R
@@ -154,4 +151,22 @@ export function CompactScrapButton<R extends ScrapableResource>({
       <OutlineHeart pressed={actualScraped} size={size} />
     </ScrapingButton>
   )
+}
+
+const GuardedOutlineScrapButton = withScrapsContextGuard(OutlineScrapButton)
+const GuardedOverlayScrapButton = withScrapsContextGuard(OverlayScrapButton)
+/**
+ * @deprecated - size를 자유롭게 조절할 수 있는 OverlayScrapButton을 사용하세요.
+ */
+const GuardedRegularScrapButton = withScrapsContextGuard(RegularScrapButton)
+/**
+ * @deprecated - size를 자유롭게 조절할 수 있는 OutlineScrapButton을 사용하세요.
+ */
+const GuardedCompactScrapButton = withScrapsContextGuard(CompactScrapButton)
+
+export {
+  GuardedOutlineScrapButton as OutlineScrapButton,
+  GuardedOverlayScrapButton as OverlayScrapButton,
+  GuardedRegularScrapButton as RegularScrapButton,
+  GuardedCompactScrapButton as CompactScrapButton,
 }
