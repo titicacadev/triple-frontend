@@ -85,6 +85,11 @@ export default function ReviewsList({
     e,
     { id, liked },
   ) => {
+    if (!hasSessionId) {
+      // TODO: 로그인 유도 모달 표시
+      return
+    }
+
     const response = await (liked ? unlikeReview({ id }) : likeReview({ id }))
 
     if (response.ok) {
