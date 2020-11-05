@@ -7,6 +7,7 @@ import {
   useUserAgentContext,
   useEventTrackingContext,
   useHistoryFunctions,
+  useSessionContext,
 } from '@titicaca/react-contexts'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'
 
@@ -115,6 +116,7 @@ export default function ReviewContainer({
     sortingOption?: string,
   ) => void
 }) {
+  const { hasSessionId } = useSessionContext()
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
@@ -195,6 +197,7 @@ export default function ReviewContainer({
     rating: number = 0,
   ) => {
     e.stopPropagation()
+
     trackEvent({
       ga: ['리뷰_리뷰쓰기'],
       fa: {
@@ -202,8 +205,14 @@ export default function ReviewContainer({
         item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
       },
     })
+
     if (isPublic) {
       return show(TransitionType.ReviewWrite)
+    }
+
+    if (!hasSessionId) {
+      // TODO: 로그인 유도 모달 표시
+      return
     }
 
     writeReview({
