@@ -18,7 +18,12 @@ import {
 } from './review-api-clients'
 import ReviewsPlaceholder from './review-placeholder-with-rating'
 import ReviewsList from './reviews-list'
-import { ReviewProps, ReviewData } from './types'
+import {
+  ReviewData,
+  AppNativeActionProps,
+  ResourceType,
+  ReviewDeleteHandler,
+} from './types'
 import SortingOptions, {
   DEFAULT_SORTING_OPTION,
   ORDER_BY_RECENCY,
@@ -86,7 +91,25 @@ export default function ReviewContainer({
   onReviewWrite,
   onReviewDelete,
   onFullListButtonClick,
-}: ReviewProps) {
+}: {
+  resourceId: string
+  resourceType: ResourceType
+  regionId?: string
+  reviewsCount: number
+  shortened?: boolean
+  reviewed?: boolean
+  appUrlScheme: string
+  deepLink?: string
+  placeholderText?: string
+  appNativeActions: AppNativeActionProps
+  sortingOption?: string
+  onReviewWrite?: (e?: React.SyntheticEvent, rating?: number) => any
+  onReviewDelete?: ReviewDeleteHandler
+  onFullListButtonClick?: (
+    e: React.SyntheticEvent,
+    sortingOption?: string,
+  ) => void
+}) {
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
