@@ -103,6 +103,11 @@ export default function ReviewContainer({
   placeholderText?: string
   appNativeActions: AppNativeActionProps
   sortingOption?: string
+  /**
+   * @deprecated 리뷰 작성 함수를 자체 구현하면
+   * 다양한 방어 로직을 중복 구현하게 됩니다.
+   * 이 prop을 사용하지 말아주세요.
+   */
   onReviewWrite?: (e?: React.SyntheticEvent, rating?: number) => any
   onReviewDelete?: ReviewDeleteHandler
   onFullListButtonClick?: (
