@@ -6,6 +6,7 @@ import {
   useUserAgentContext,
   useEventTrackingContext,
   useHistoryFunctions,
+  useSessionContext,
 } from '@titicaca/react-contexts'
 import { useTransitionModal, TransitionType } from '@titicaca/modals'
 
@@ -40,6 +41,7 @@ export default function ReviewsList({
   reviewRateDescriptions?: string[]
   showToast: AppNativeActionProps['showToast']
 }) {
+  const { hasSessionId } = useSessionContext()
   const [selectedReview, setSelectedReview] = useState<ReviewData | undefined>(
     undefined,
   )
@@ -65,6 +67,10 @@ export default function ReviewsList({
     })
 
     if (isPublic) {
+      return
+    }
+
+    if (!hasSessionId) {
       return
     }
 
