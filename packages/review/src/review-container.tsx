@@ -160,12 +160,17 @@ export default function ReviewContainer({
       const { id } = params
 
       if (id && id === resourceId) {
-        const [fetchedMyReview, fetchedReviewsCount] = await Promise.all([
-          fetchMyReview({ resourceType, resourceId }),
+        const [fetchedReviewsCount, fetchedMyReview] = await Promise.all([
           fetchReviewsCount({ resourceType, resourceId }),
+          hasSessionId
+            ? fetchMyReview({ resourceType, resourceId })
+            : Promise.resolve(null),
         ])
 
-        setMyReview(fetchedMyReview)
+        if (fetchedMyReview) {
+          setMyReview(fetchedMyReview)
+        }
+
         if (fetchedReviewsCount !== null) {
           setReviewsCount(fetchedReviewsCount)
         }
@@ -190,6 +195,7 @@ export default function ReviewContainer({
     setMyReview,
     subscribeReviewUpdateEvent,
     unsubscribeReviewUpdateEvent,
+    hasSessionId,
   ])
 
   const handleWriteButtonClick = (
