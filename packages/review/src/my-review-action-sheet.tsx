@@ -9,7 +9,7 @@ import {
 } from '@titicaca/react-contexts'
 
 import { deleteReview as deleteReviewApi } from './review-api-clients'
-import { ResourceType, ReviewData, ReviewProps } from './types'
+import { ResourceType, ReviewData, ReviewDeleteHandler } from './types'
 
 interface MyReviewActionSheetProps {
   myReview: ReviewData
@@ -19,7 +19,7 @@ interface MyReviewActionSheetProps {
   resourceId: string
   notifyReviewDeleted: (resourceId: string, reviewId: string) => void
   onReviewEdit?: (e?: SyntheticEvent) => void
-  onReviewDelete?: ReviewProps['onReviewDelete']
+  onReviewDelete?: ReviewDeleteHandler
 }
 
 export const HASH_MY_REVIEW_ACTION_SHEET =
