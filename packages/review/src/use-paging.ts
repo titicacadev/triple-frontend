@@ -1,6 +1,8 @@
 import { useEffect, useState, useCallback } from 'react'
 import humps from 'humps'
+import qs from 'qs'
 import { useFetch } from '@titicaca/react-hooks'
+import { generateUrl } from '@titicaca/view-utilities'
 
 import { ResourceType, ReviewData } from './types'
 
@@ -21,11 +23,17 @@ export default function usePaging({
   const [endOfList, setEndOfList] = useState(false)
   const [reviews, setReviews] = useState<ReviewData[]>([])
   const { error, loading, data } = useFetch(
-    `/api/reviews/v2${
-      sortingOption ? `/${sortingOption}` : '/'
-    }?resource_id=${resourceId}&resource_type=${resourceType}&from=${
-      (currentPage - 1) * perPage
-    }&size=${perPage}`,
+    generateUrl({
+      path: `/api/reviews/v2${sortingOption ? `/${sortingOption}` : ''}`,
+      query: qs.stringify({
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        resource_id: resourceId,
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        resource_type: resourceType,
+        from: (currentPage - 1) * perPage,
+        size: perPage,
+      }),
+    }),
     OPTIONS,
   )
   const fetchNext = useCallback(
