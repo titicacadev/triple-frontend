@@ -7,7 +7,11 @@ import React, {
   useState,
 } from 'react'
 import styled, { css } from 'styled-components'
-import { Container, SearchNavbar } from '@titicaca/core-elements'
+import {
+  Container,
+  LayeringMixinProps,
+  SearchNavbar,
+} from '@titicaca/core-elements'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 import {
   backOrClose,
@@ -42,18 +46,20 @@ export default function FullScreenSearchView({
   keyword: controlledKeyword,
   borderless,
   zIndex,
-}: React.PropsWithChildren<{
-  onDelete?: (keyword: string) => void
-  onAutoComplete?: (keyword: string) => void
-  onEnter?: (keyword: string) => void
-  onInputChange?: (keyword: string) => void
-  onBackClick?: () => void
-  placeholder?: string
-  defaultKeyword?: string
-  keyword?: string
-  borderless?: boolean
-  zIndex?: number
-}>) {
+  zTier,
+}: React.PropsWithChildren<
+  {
+    onDelete?: (keyword: string) => void
+    onAutoComplete?: (keyword: string) => void
+    onEnter?: (keyword: string) => void
+    onInputChange?: (keyword: string) => void
+    onBackClick?: () => void
+    placeholder?: string
+    defaultKeyword?: string
+    keyword?: string
+    borderless?: boolean
+  } & LayeringMixinProps
+>) {
   const {
     os: { name },
   } = useUserAgentContext()
@@ -143,6 +149,7 @@ export default function FullScreenSearchView({
         inputRef={inputRef}
         borderless={borderless}
         zIndex={zIndex}
+        zTier={zTier}
       />
       <ContentsContainer isIOS={isIOS} userSelect="none">
         <div ref={contentsDivRef}>{children}</div>
