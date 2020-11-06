@@ -41,6 +41,7 @@ export default function FullScreenSearchView({
   defaultKeyword,
   keyword: controlledKeyword,
   borderless,
+  zIndex = 2,
 }: React.PropsWithChildren<{
   onDelete?: (keyword: string) => void
   onAutoComplete?: (keyword: string) => void
@@ -51,6 +52,7 @@ export default function FullScreenSearchView({
   defaultKeyword?: string
   keyword?: string
   borderless?: boolean
+  zIndex?: number
 }>) {
   const {
     os: { name },
@@ -140,6 +142,7 @@ export default function FullScreenSearchView({
         onSearch={() => keyword && onEnter(keyword)}
         inputRef={inputRef}
         borderless={borderless}
+        zIndex={zIndex}
       />
       <ContentsContainer isIOS={isIOS} userSelect="none">
         <div ref={contentsDivRef}>{children}</div>
