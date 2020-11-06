@@ -9,7 +9,12 @@ import {
   useHistoryFunctions,
   useSessionContext,
 } from '@titicaca/react-contexts'
-import { TransitionType, useTransitionModal } from '@titicaca/modals'
+import {
+  TransitionType,
+  useLoginCTAModal,
+  useTransitionModal,
+  withLoginCTAModal,
+} from '@titicaca/modals'
 
 import {
   fetchMyReview,
@@ -74,7 +79,7 @@ const BulletRight = styled.img.attrs({
   }
 `
 
-export default function ReviewContainer({
+function ReviewContainer({
   reviewsCount: initialReviewsCount,
   resourceType,
   regionId,
@@ -129,6 +134,7 @@ export default function ReviewContainer({
   >([])
   const { navigate } = useHistoryFunctions()
   const { show } = useTransitionModal()
+  const { show: showLoginCTA } = useLoginCTAModal()
 
   const setMyReview = useCallback(
     (review) =>
@@ -217,7 +223,7 @@ export default function ReviewContainer({
     }
 
     if (!hasSessionId) {
-      // TODO: 로그인 유도 모달 표시
+      showLoginCTA()
       return
     }
 
@@ -410,3 +416,5 @@ export default function ReviewContainer({
     </Section>
   )
 }
+
+export default withLoginCTAModal(ReviewContainer)
