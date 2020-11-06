@@ -8,7 +8,11 @@ import {
   useHistoryFunctions,
   useSessionContext,
 } from '@titicaca/react-contexts'
-import { useTransitionModal, TransitionType } from '@titicaca/modals'
+import {
+  useTransitionModal,
+  TransitionType,
+  useLoginCTAModal,
+} from '@titicaca/modals'
 
 import ReviewElement, { ReviewElementProps } from './review-element'
 import ReviewTimestamp from './review-timestamp'
@@ -50,6 +54,7 @@ export default function ReviewsList({
   const { updateLikedStatus } = useReviewLikesContext()
   const { push } = useHistoryFunctions()
   const { show } = useTransitionModal()
+  const { show: showLoginCTA } = useLoginCTAModal()
 
   const handleUserClick: ReviewElementProps['onUserClick'] = (
     e,
@@ -86,7 +91,7 @@ export default function ReviewsList({
     { id, liked },
   ) => {
     if (!hasSessionId) {
-      // TODO: 로그인 유도 모달 표시
+      showLoginCTA()
       return
     }
 
