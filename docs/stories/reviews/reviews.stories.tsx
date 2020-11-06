@@ -8,6 +8,7 @@ import {
   UserAgentProvider,
   generateUserAgentValues,
   HistoryProvider,
+  SessionContextProvider,
 } from '@titicaca/react-contexts'
 
 export default {
@@ -48,6 +49,11 @@ export default {
       <HistoryProvider appUrlScheme="" webUrlBase="">
         {storyFn()}
       </HistoryProvider>
+    ),
+    (storyFn: StoryFn<JSX.Element>) => (
+      <SessionContextProvider authBasePath="">
+        {storyFn()}
+      </SessionContextProvider>
     ),
   ],
 }
