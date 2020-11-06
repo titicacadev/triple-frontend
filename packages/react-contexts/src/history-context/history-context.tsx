@@ -15,6 +15,9 @@ import { parseUrl, generateUrl } from '@titicaca/view-utilities'
 import { hasAccessibleTripleNativeClients } from '@titicaca/triple-web-to-native-interfaces'
 import { DeepPartial } from 'utility-types'
 
+import { useSessionContext } from '../session-context'
+import { checkIfRoutable, generateTargetAddressOnPublic } from './routelist'
+
 type URIHash = string
 
 export interface OutlinkParams {
@@ -45,20 +48,6 @@ interface HistoryContextValue {
 
 const NOOP = () => {}
 
-function parseQuery(query: string | undefined): ReturnType<typeof parseUrl> {
-  const { url: encodedUrl } = qs.parse(query || '')
-
-  if (!encodedUrl) {
-    return {}
-  }
-
-  if (typeof encodedUrl !== 'string') {
-    throw new Error('url should be string type.')
-  }
-
-  return parseUrl(decodeURIComponent(encodedUrl))
-}
-
 function addHashToCurrentUrl({
   hash,
   basePathCompatible,
@@ -83,15 +72,6 @@ const HistoryFunctionsContext = createContext<
   openWindow: NOOP,
   showTransitionModal: NOOP,
 })
-
-function targetPageAvailable(path: string) {
-  const regexes = [
-    /^\/regions\/.+\/(attractions|restaurants|hotels|articles)\/.+/,
-    /^\/articles\/.+/,
-  ]
-
-  return regexes.some((regex) => path.match(regex))
-}
 
 interface HashHistory {
   hash?: string
@@ -137,6 +117,7 @@ export function HistoryProvider({
       ? [{ hash: getInitialHash(), useRouter: isAndroid }]
       : [],
   )
+  const { hasSessionId } = useSessionContext()
 
   useEffect(() => {
     const onHashChange = (url: string) => {
@@ -213,45 +194,12 @@ export function HistoryProvider({
     }
   }, [])
 
-  const navigateOnPublic = useCallback<(url: URLElement) => string | undefined>(
-    ({ href, scheme, path, query, hash }) => {
-      if (scheme === 'http' || scheme === 'https') {
-        if (!href) {
-          throw new Error('href is undefined')
-        }
+  const navigateOnPublic = useCallback<(href: string) => string | undefined>(
+    (rawHref) => {
+      const href = generateTargetAddressOnPublic({ href: rawHref, webUrlBase })
 
+      if (checkIfRoutable({ href })) {
         return (window.location.href = href)
-      } else if (path === '/outlink') {
-        const {
-          path: targetPath,
-          query: targetQuery,
-          hash: targetHash,
-        } = parseQuery(query)
-
-        if (targetPath && targetPageAvailable(targetPath)) {
-          return (window.location.href = generateUrl(
-            { path: targetPath, query: targetQuery, hash: targetHash },
-            webUrlBase,
-          ))
-        }
-      } else if (path === '/inlink') {
-        const {
-          path: targetPath,
-          query: targetQuery,
-          hash: targetHash,
-        } = parseQuery(query)
-
-        if (targetPath && targetPageAvailable(targetPath)) {
-          return (window.location.href = generateUrl(
-            { path: targetPath, query: targetQuery, hash: targetHash },
-            webUrlBase,
-          ))
-        }
-      } else if (path && targetPageAvailable(path)) {
-        return (window.location.href = generateUrl(
-          { path, query, hash },
-          webUrlBase,
-        ))
       }
 
       transitionModalHash && push(transitionModalHash)
@@ -260,9 +208,11 @@ export function HistoryProvider({
   )
 
   const navigateInApp = useCallback<
-    (url: URLElement, params?: OutlinkParams) => void
+    (href: string, params?: OutlinkParams) => void
   >(
-    ({ href, scheme }, params) => {
+    (href, params) => {
+      const { scheme } = parseUrl(href)
+
       if (scheme === 'http' || scheme === 'https') {
         const outlinkParams = qs.stringify({
           url: href,
@@ -270,16 +220,18 @@ export function HistoryProvider({
         })
 
         window.location.href = `${appUrlScheme}:///outlink?${outlinkParams}`
-      } else {
+      } else if (hasSessionId || checkIfRoutable({ href })) {
         window.location.href = generateUrl({ scheme: appUrlScheme }, href)
       }
+
+      transitionModalHash && push(transitionModalHash)
     },
-    [appUrlScheme],
+    [push, appUrlScheme, transitionModalHash, hasSessionId],
   )
 
   const navigate = useCallback<HistoryContextValue['navigate']>(
     (rawHref, params) =>
-      (isPublic ? navigateOnPublic : navigateInApp)(parseUrl(rawHref), params),
+      (isPublic ? navigateOnPublic : navigateInApp)(rawHref, params),
     [isPublic, navigateInApp, navigateOnPublic],
   )
 
