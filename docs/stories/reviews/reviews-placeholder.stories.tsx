@@ -11,7 +11,6 @@ storiesOf('Reviews | Reviews', module).add('플레이스홀더', () => (
       ['poi', 'tna', 'article', 'hotel', 'default'],
       'tna',
     )}
-    appUrlScheme="triple"
     onClick={action('clicked')}
   />
 ))
