@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 
 import Navbar from './navbar'
-import { LayeringMixinProps } from '../mixins'
+import { LayeringMixinProps, layeringMixin } from '../mixins'
 
 const InputText = styled.input`
   box-sizing: border-box;
@@ -26,11 +26,14 @@ const InputText = styled.input`
   `}
 `
 
-const MainNavbarFrame = styled(Navbar.NavbarFrame)<{ noBorder?: boolean }>`
+const MainNavbarFrame = styled(Navbar.NavbarFrame)<
+  { noBorder?: boolean } & LayeringMixinProps
+>`
   height: 58px;
   padding: 12px;
   ${({ noBorder }) =>
     noBorder ? '' : ` border-bottom: 1px solid rgba(${getColor('gray50')});`}
+  ${layeringMixin(0)}
 `
 
 const Icon = styled(Navbar.Item)<{ visible: boolean }>`
