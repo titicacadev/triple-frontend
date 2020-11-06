@@ -28,6 +28,8 @@ export default function CSFooter({
   showCSButton = true,
   onFAQButtonClick = () => {},
   onCSButtonClick = () => {},
+  overrideFAQButtonClick,
+  overrideCSuttonClick,
 }: {
   serviceType: SERVICE_TYPE
   csTime: string
@@ -36,6 +38,8 @@ export default function CSFooter({
   showCSButton: boolean
   onFAQButtonClick?: () => void
   onCSButtonClick?: () => void
+  overrideFAQButtonClick?: () => void
+  overrideCSuttonClick?: () => void
 }) {
   const { navigate } = useHistoryFunctions()
   const supportType = SUPPORT_TYPES_BY_SERVICE[serviceType]
@@ -108,11 +112,19 @@ export default function CSFooter({
           horizontalGap={7}
           buttonCount={showCSButton ? 2 : 1}
         >
-          <Button basic color="gray" onClick={movetoFAQ}>
+          <Button
+            basic
+            color="gray"
+            onClick={overrideFAQButtonClick || movetoFAQ}
+          >
             자주 묻는 질문
           </Button>
           {showCSButton ? (
-            <Button basic color="gray" onClick={moveToCsInquiry}>
+            <Button
+              basic
+              color="gray"
+              onClick={overrideCSuttonClick || moveToCsInquiry}
+            >
               1:1 문의
             </Button>
           ) : null}
