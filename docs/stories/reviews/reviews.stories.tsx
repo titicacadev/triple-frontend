@@ -28,9 +28,10 @@ storiesOf('Reviews | Reviews', module).add('일반', () => (
         ),
       )}
     >
-      <HistoryProvider>
+      <HistoryProvider appUrlScheme="" webUrlBase="">
         <TransitionModal deepLink="/" />
         <Reviews
+          appUrlScheme=""
           shortened={boolean('Shortened', false)}
           reviewsCount={number('Review count', 120)}
           appNativeActions={{
