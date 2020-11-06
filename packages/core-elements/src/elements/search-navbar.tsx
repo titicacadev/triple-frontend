@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 
 import Navbar from './navbar'
+import { LayeringMixinProps } from '../mixins'
 
 const InputText = styled.input`
   box-sizing: border-box;
@@ -89,7 +90,8 @@ export default function SearchNavbar({
   onSearch,
   value,
   inputRef,
-  zIndex,
+  zIndex = 2,
+  zTier,
   borderless: noBorder,
 }: {
   onSearch: () => void
@@ -97,12 +99,17 @@ export default function SearchNavbar({
   onDeleteClick?: (event: React.SyntheticEvent) => void
   inputRef?: React.Ref<HTMLInputElement>
   borderless?: boolean
-  zIndex?: number
-} & InputProps) {
+} & InputProps &
+  LayeringMixinProps) {
   return (
     // borderless는 NavbarFrame의 기본 border(box-shadow)를 비활성화 시킴.
     // noBorder는 MainNavbarFrame의 border(border-bottom)를 비활성화 시킴.
-    <MainNavbarFrame borderless noBorder={noBorder} zIndex={zIndex}>
+    <MainNavbarFrame
+      borderless
+      noBorder={noBorder}
+      zTier={zTier}
+      zIndex={zIndex}
+    >
       <Icon icon="back" onClick={onBackClick} visible={true} />
       <Input
         placeholder={placeholder}

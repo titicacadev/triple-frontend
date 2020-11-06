@@ -41,7 +41,7 @@ export default function FullScreenSearchView({
   defaultKeyword,
   keyword: controlledKeyword,
   borderless,
-  zIndex = 2,
+  zIndex,
 }: React.PropsWithChildren<{
   onDelete?: (keyword: string) => void
   onAutoComplete?: (keyword: string) => void
