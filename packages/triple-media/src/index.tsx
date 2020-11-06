@@ -4,6 +4,7 @@ import {
   FrameRatioAndSizes,
   ImageSourceType,
   Image,
+  MarginPadding,
 } from '@titicaca/core-elements'
 
 export interface MediaMeta {
@@ -39,6 +40,8 @@ export default function Media({
   showNativeControls,
   ImageSource,
   borderRadius,
+  margin,
+  frame,
   onClick,
 }: {
   media: MediaMeta
@@ -47,6 +50,8 @@ export default function Media({
   showNativeControls?: boolean
   ImageSource?: ImageSourceType
   borderRadius?: number
+  margin?: MarginPadding
+  frame?: FrameRatioAndSizes
   onClick?: (e: React.SyntheticEvent, media: MediaMeta) => void
 }) {
   const {
@@ -55,14 +60,14 @@ export default function Media({
     cloudinaryBucket,
     cloudinaryId,
     video,
-    frame,
+    frame: mediaFrame,
     sourceUrl,
   } = media
 
   if (type && type === 'video' && video) {
     return (
       <Video
-        frame={frame || 'large'}
+        frame={mediaFrame || frame || 'large'}
         src={video.large.url}
         fallbackImageUrl={sizes.large.url}
         cloudinaryBucket={cloudinaryBucket}
@@ -78,7 +83,8 @@ export default function Media({
   return (
     <Image borderRadius={borderRadius}>
       <Image.FixedRatioFrame
-        frame={frame}
+        margin={margin}
+        frame={mediaFrame || frame}
         onClick={onClick && ((e: React.SyntheticEvent) => onClick(e, media))}
       >
         <Image.Img src={sizes.large.url} />
