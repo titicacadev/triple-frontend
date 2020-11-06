@@ -94,6 +94,10 @@
 
 - LoginCTAModalProvider 컴포넌트와 `useLoginModal` hook 함수를 추가합니다. (#1034)
 
+### cs-footer
+
+- CSFooter컴포넌트의 클릭이벤트 오버라이드 제공
+
 ## 1.34.0 (2020-09-02)
 
 ### meta-tags
