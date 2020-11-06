@@ -21,7 +21,7 @@ export function LoginCTAModalProvider({ children }: PropsWithChildren<{}>) {
   const open = uriHash === LOGIN_CTA_MODAL_HASH
 
   if (hasParentModal) {
-    return null
+    return <>{children}</>
   }
 
   return (
