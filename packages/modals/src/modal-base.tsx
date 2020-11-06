@@ -88,7 +88,11 @@ export default function ModalBase({
 } & LayeringMixinProps) {
   return open ? (
     <Overlay onClick={onClose} zTier={zTier} zIndex={zIndex}>
-      <Box onClick={(e?: React.SyntheticEvent) => silenceEvent(e)} zIndex={1}>
+      <Box
+        role="dialog"
+        onClick={(e?: React.SyntheticEvent) => silenceEvent(e)}
+        zIndex={1}
+      >
         {children}
       </Box>
     </Overlay>
