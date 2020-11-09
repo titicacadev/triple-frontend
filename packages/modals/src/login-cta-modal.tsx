@@ -9,7 +9,7 @@ import React, {
 
 import { Confirm } from './modals'
 
-const LOGIN_CTA_MODAL_HASH = 'login-cta-modal'
+export const LOGIN_CTA_MODAL_HASH = 'login-cta-modal'
 
 const LoginCTAFlagContext = createContext(false)
 
