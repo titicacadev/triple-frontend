@@ -14,7 +14,7 @@ import semver from 'semver'
 
 import { Confirm, Alert } from './modals'
 
-const LOGIN_CTA_MODAL_HASH = 'login-cta-modal'
+export const LOGIN_CTA_MODAL_HASH = 'login-cta-modal'
 
 const WITH_LOGIN_PATH_APP_VERSION = '5.0.0'
 
