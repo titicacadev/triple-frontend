@@ -22,8 +22,8 @@ export default function CSFooter({
   onFAQButtonClick = () => {},
   onCSButtonClick = () => {},
 }: {
-  service?: string
-  type: string
+  service: string
+  type?: string
   identifier?: string
   csTime: string
   csMessage?: string
