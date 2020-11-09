@@ -91,6 +91,7 @@ export type HistoryProviderProps = PropsWithChildren<{
   appUrlScheme: string
   webUrlBase: string
   transitionModalHash?: string
+  loginCTAModalHash?: string
   isAndroid?: boolean
   isPublic?: boolean
   initialHashStrategy?: HashStrategy
@@ -100,6 +101,7 @@ export function HistoryProvider({
   appUrlScheme,
   webUrlBase,
   transitionModalHash = '',
+  loginCTAModalHash = '',
   isAndroid = false,
   isPublic = false,
   initialHashStrategy = HashStrategy.NONE,
@@ -224,9 +226,9 @@ export function HistoryProvider({
         window.location.href = generateUrl({ scheme: appUrlScheme }, href)
       }
 
-      transitionModalHash && push(transitionModalHash)
+      loginCTAModalHash && push(loginCTAModalHash)
     },
-    [push, appUrlScheme, transitionModalHash, hasSessionId],
+    [push, appUrlScheme, loginCTAModalHash, hasSessionId],
   )
 
   const navigate = useCallback<HistoryContextValue['navigate']>(
