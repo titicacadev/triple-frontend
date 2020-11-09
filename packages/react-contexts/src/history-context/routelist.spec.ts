@@ -6,6 +6,14 @@ describe('checkIfRoutable', () => {
   const regionId = '5eb828fe-cb69-482c-bf37-e166d6cce259'
   const hotelId = 'f20c23b6-8eff-47d7-b25a-032be42c1ea6'
 
+  it('should allow navigation to login path', () => {
+    assert.ok(
+      checkIfRoutable({
+        href: '/login',
+      }),
+    )
+  })
+
   it('should allow navigation to external url', () => {
     assert.ok(
       checkIfRoutable({
