@@ -1,6 +1,9 @@
 import React from 'react'
 import { fireEvent, render } from '@testing-library/react'
-import { HistoryProvider } from '@titicaca/react-contexts'
+import {
+  HistoryProvider,
+  SessionContextProvider,
+} from '@titicaca/react-contexts'
 
 import { LoginCTAModalProvider, useLoginCTAModal } from './login-cta-modal'
 
@@ -10,6 +13,16 @@ function OpenLoginModal() {
     <button data-testid="modal-open-button" onClick={() => show()}>
       열기
     </button>
+  )
+}
+
+function Wrappers({ children }) {
+  return (
+    <SessionContextProvider>
+      <HistoryProvider appUrlScheme="triple" webUrlBase="https://triple.guide">
+        {children}
+      </HistoryProvider>
+    </SessionContextProvider>
   )
 }
 
@@ -23,7 +36,7 @@ describe('Login CTA Modal', () => {
           <div data-testid="child-element-2">4242</div>
         </LoginCTAModalProvider>
       </LoginCTAModalProvider>,
-      { wrapper: HistoryProvider },
+      { wrapper: Wrappers },
     )
 
     expect(getByTestId('child-element-1')).toHaveTextContent('42')
@@ -37,7 +50,7 @@ describe('Login CTA Modal', () => {
         <OpenLoginModal />
       </LoginCTAModalProvider>,
       {
-        wrapper: HistoryProvider,
+        wrapper: Wrappers,
       },
     )
 
@@ -57,7 +70,7 @@ describe('Login CTA Modal', () => {
         </LoginCTAModalProvider>
       </LoginCTAModalProvider>,
       {
-        wrapper: HistoryProvider,
+        wrapper: Wrappers,
       },
     )
 
