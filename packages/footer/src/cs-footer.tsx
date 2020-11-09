@@ -10,39 +10,30 @@ const SupportContainer = styled.footer`
   padding: 32px 30px 0 30px;
 `
 
-type SERVICE_TYPE = 'AIR' | 'TNA' | 'HOTEL'
-
-const SUPPORT_TYPES_BY_SERVICE: {
-  [key in SERVICE_TYPE]: string
-} = {
-  TNA: 'tna',
-  HOTEL: 'hotel',
-  AIR: 'airline',
-}
-
 export default function CSFooter({
-  serviceType,
+  service,
+  type,
+  identifier,
   csTime,
   csMessage,
+  data,
   appUrlScheme,
   showCSButton = true,
   onFAQButtonClick = () => {},
   onCSButtonClick = () => {},
-  overrideFAQButtonClick,
-  overrideCSButtonClick,
 }: {
-  serviceType: SERVICE_TYPE
+  service?: string
+  type: string
+  identifier?: string
   csTime: string
-  csMessage: string
+  csMessage?: string
+  data?: { [key: string]: string | number | boolean | undefined }
   appUrlScheme: string
   showCSButton: boolean
   onFAQButtonClick?: () => void
   onCSButtonClick?: () => void
-  overrideFAQButtonClick?: () => void
-  overrideCSButtonClick?: () => void
 }) {
   const { navigate } = useHistoryFunctions()
-  const supportType = SUPPORT_TYPES_BY_SERVICE[serviceType]
 
   const movetoFAQ = () => {
     onFAQButtonClick()
@@ -65,15 +56,23 @@ export default function CSFooter({
     if (response.ok) {
       const { uid } = await response.json()
 
+      const query = qs.stringify({
+        service,
+        identifier,
+        type,
+        data: {
+          uid,
+          ...data,
+        },
+      })
+
       navigate(
         `${appUrlScheme}:///inlink?path=${encodeURIComponent(
-          `/cs-bridge/outlink?service=${supportType}&type=${supportType}&data=${encodeURIComponent(
-            `user_id=${uid}`,
-          )}`,
+          `/cs-bridge/outlink?${query}`,
         )}`,
       )
     }
-  }, [appUrlScheme, navigate, onCSButtonClick, supportType])
+  }, [appUrlScheme, data, identifier, navigate, onCSButtonClick, service, type])
 
   return (
     <SupportContainer>
@@ -104,27 +103,23 @@ export default function CSFooter({
           <br />
           {csTime}
         </Text>
-        <Text lineHeight={1.54} color="gray" alpha={0.4} size="tiny">
-          {csMessage}
-        </Text>
+
+        {csMessage ? (
+          <Text lineHeight={1.54} color="gray" alpha={0.4} size="tiny">
+            {csMessage}
+          </Text>
+        ) : null}
+
         <Button.Group
           margin={{ top: 20 }}
           horizontalGap={7}
           buttonCount={showCSButton ? 2 : 1}
         >
-          <Button
-            basic
-            color="gray"
-            onClick={overrideFAQButtonClick || movetoFAQ}
-          >
+          <Button basic color="gray" onClick={movetoFAQ}>
             자주 묻는 질문
           </Button>
           {showCSButton ? (
-            <Button
-              basic
-              color="gray"
-              onClick={overrideCSButtonClick || moveToCsInquiry}
-            >
+            <Button basic color="gray" onClick={moveToCsInquiry}>
               1:1 문의
             </Button>
           ) : null}
