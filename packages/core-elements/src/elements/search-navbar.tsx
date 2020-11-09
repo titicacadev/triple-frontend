@@ -106,7 +106,7 @@ export default function SearchNavbar({
   return (
     // borderless는 NavbarFrame의 기본 border(box-shadow)를 비활성화 시킴.
     // noBorder는 MainNavbarFrame의 border(border-bottom)를 비활성화 시킴.
-    <MainNavbarFrame noBorder={noBorder} {...rest}>
+    <MainNavbarFrame borderless noBorder={noBorder} {...rest}>
       <Icon icon="back" onClick={onBackClick} visible={true} />
       <Input
         placeholder={placeholder}
