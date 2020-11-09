@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/public-header",
-  "version": "2.0.0-alpha.5",
+  "version": "2.0.0",
   "description": "Common Header for Public Pages",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,7 +15,7 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^2.0.0-alpha.5"
+    "@titicaca/color-palette": "^2.0.0"
   },
   "peerDependencies": {
     "react": "*",

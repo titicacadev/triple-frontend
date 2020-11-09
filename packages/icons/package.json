@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/icons",
-  "version": "2.0.0-alpha.5",
+  "version": "2.0.0",
   "description": "Triple Icons",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,6 +15,6 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^2.0.0-alpha.5"
+    "@titicaca/color-palette": "^2.0.0"
   }
 }
