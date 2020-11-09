@@ -20,7 +20,7 @@
 
 ### constants
 
-- 패키지 추가 (#1010)
+- 공통 상수 및 정규 표현식을 담는 모듈 추가합니다. (#1010)
 
 ### core-elements
 
@@ -75,6 +75,7 @@
 ### search
 
 - `borderless` prop 추가 (#1009)
+- `zIndex`, `zTier` 를 prop 으로 받을 수 있도록 합니다. (#1031)
 
 ### triple-document
 
@@ -87,6 +88,11 @@
 ### triple-media
 
 - `showNativeControls` prop 추가 (#996)
+- `margin`, `frame` 을 추가합니다. (#1033)
+
+### modal
+
+- LoginCTAModalProvider 컴포넌트와 `useLoginModal` hook 함수를 추가합니다. (#1034)
 
 ## 1.34.0 (2020-09-02)
 
