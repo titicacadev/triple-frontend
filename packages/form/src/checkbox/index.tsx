@@ -1,13 +1,10 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import {
-  Container,
-  GetGlobalColor,
-  MarginPadding,
-} from '@titicaca/core-elements'
+import { gray, gray500 } from '@titicaca/color-palette'
+import { Container, MarginPadding } from '@titicaca/core-elements'
 
 const Label = styled.label<{ disabled?: boolean }>`
-  color: rgb(${GetGlobalColor('gray')});
+  color: ${gray};
   position: relative;
   cursor: pointer;
   display: block;
@@ -25,7 +22,7 @@ const Label = styled.label<{ disabled?: boolean }>`
           color: rgba(34, 34, 34, 0.3);
           span {
             font-size: 13px;
-            color: rgba(58, 58, 58, 0.5);
+            color: ${gray500};
           }
         `
       : ''}

@@ -1,12 +1,12 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
+import { blue } from '@titicaca/color-palette'
 import { formatNumber } from '@titicaca/view-utilities'
 import {
   Container,
   Text,
   GlobalSizes,
   MarginPadding,
-  GlobalColors,
 } from '@titicaca/core-elements'
 
 import FixedPricing, { FixedPricingProps } from './fixed-pricing'
@@ -45,16 +45,6 @@ const FONT_SIZE: Partial<Record<GlobalSizes, string>> = {
   big: '20px',
 }
 
-type PricingColors = GlobalColors | 'pink' | 'default'
-
-const COLORS: Partial<Record<PricingColors, string>> = {
-  pink: 'rgba(253, 46, 105, 1)',
-  gray: 'rgba(58, 58, 58, 0.3)',
-  blue: 'rgba(54, 143, 255, 1)',
-  white: 'rgba(255, 255, 255, 1)',
-  default: 'rgba(58, 58, 58, 1)',
-}
-
 const PricingContainer = styled.div<{ padding?: MarginPadding }>`
   clear: both;
   position: relative;
@@ -86,7 +76,7 @@ const Label = styled.div<{ size?: GlobalSizes }>`
   position: absolute;
   left: 0;
   bottom: 0;
-  color: ${COLORS.blue};
+  color: ${blue};
   font-size: ${({ size }) => FONT_SIZE[size || 'tiny']};
 `
 

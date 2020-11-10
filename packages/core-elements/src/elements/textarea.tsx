@@ -2,7 +2,6 @@ import * as React from 'react'
 import styled, { css, StyledComponentProps } from 'styled-components'
 
 import { withField } from '../utils/form-field'
-import { GlobalColors } from '../commons'
 
 interface BaseTextareaProps {
   focused?: string
@@ -17,7 +16,7 @@ interface TextareaProps
   onChange?: (e: React.SyntheticEvent, value: string) => any
 }
 
-const COLORS: Partial<Record<GlobalColors, string>> = {
+const COLORS = {
   blue: '54, 143, 255',
   red: '255, 33, 60',
   gray: '58, 58, 58',

@@ -17,18 +17,6 @@ export type GlobalSizes =
   | 'massive'
   | BaseSizes
 
-enum GlobalColorSet {
-  blue = '54, 143, 255',
-  gray = '58, 58, 58',
-  white = '255, 255, 255',
-  red = '255, 33, 60',
-}
-
-export type GlobalColors = 'blue' | 'gray' | 'white' | 'red'
-
-export function GetGlobalColor(colorString: GlobalColors | string) {
-  return GlobalColorSet[colorString as GlobalColors] || colorString // HACK: GlobalColors가 아닌 경우 colorString을 그대로 반환하게 되므로 에러 없음
-}
 export type Ratio =
   | '4:1'
   | '5:3'

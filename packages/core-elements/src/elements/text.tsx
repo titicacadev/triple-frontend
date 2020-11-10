@@ -3,7 +3,7 @@ import styled, { css, StyledComponentProps } from 'styled-components'
 import * as CSS from 'csstype'
 import { getColor, Color } from '@titicaca/color-palette'
 
-import { MarginPadding, GlobalSizes, GetGlobalColor } from '../commons'
+import { MarginPadding, GlobalSizes } from '../commons'
 import {
   marginMixin,
   paddingMixin,
@@ -17,7 +17,6 @@ interface TextBaseProps
   size?: GlobalSizes | number
   textStyle?: KeyOfTextStyleMap
   bold?: boolean
-  alpha?: number
   color?: Color
   floated?: CSS.Property.Float
   letterSpacing?: number
@@ -62,10 +61,6 @@ export function LineBreak({ children }: { children?: string }) {
   )
 }
 
-function rgba({ color, alpha }: { color?: string; alpha?: number }) {
-  return `rgba(${GetGlobalColor(color || 'gray')}, ${alpha || 1})`
-}
-
 const TextBase = styled.div<TextBaseProps>`
   ${({ textStyle, size, lineHeight, letterSpacing }) => {
     if (textStyle && (size || lineHeight || letterSpacing)) {
@@ -80,8 +75,7 @@ const TextBase = styled.div<TextBaseProps>`
   }}
 
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
-  color: ${({ color = 'gray', alpha }) =>
-    alpha ? rgba({ color, alpha }) : `rgba(${getColor(color)})`};
+  color: ${({ color = 'gray' }) => `rgba(${getColor(color)})`};
   word-wrap: break-word;
 
   float: ${({ floated }) => floated || 'none'};
@@ -152,8 +146,7 @@ const TextBase = styled.div<TextBaseProps>`
         left: 0;
         top: 45%;
         height: 1px;
-        background: ${({ color = 'gray', alpha }) =>
-          alpha ? rgba({ color, alpha }) : `rgba(${getColor(color)})`};
+        background: ${({ color = 'gray' }) => `rgba(${getColor(color)})`};
         content: '';
         width: 100%;
         display: block;
@@ -177,7 +170,7 @@ const Html = styled(TextBase)`
   }
 
   strong {
-    color: ${({ color = 'gray' }) => rgba({ color, alpha: 1 })};
+    color: ${({ color = 'gray' }) => `rgba(${getColor(color)})`};
   }
 
   a {

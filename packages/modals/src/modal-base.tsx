@@ -1,10 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import {
-  GlobalColors,
-  layeringMixin,
-  LayeringMixinProps,
-} from '@titicaca/core-elements'
+import { layeringMixin, LayeringMixinProps } from '@titicaca/core-elements'
 
 const Overlay = styled.div<LayeringMixinProps>`
   position: fixed;
@@ -59,12 +55,12 @@ const Actions = styled.div<{ children?: any }>`
   }
 `
 
-const ACTION_COLORS: Partial<Record<GlobalColors, string>> = {
+const ACTION_COLORS = {
   gray: 'rgba(58, 58, 58, 0.5)',
   blue: '#368fff',
 }
 
-const Action = styled.a<{ color?: GlobalColors }>`
+const Action = styled.a<{ color: 'gray' | 'blue' }>`
   display: inline-block;
   height: 50px;
   line-height: 50px;
