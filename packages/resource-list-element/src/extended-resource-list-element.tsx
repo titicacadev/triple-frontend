@@ -142,6 +142,8 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
         </Text>
 
         <ReviewScrapStat
+          id={id}
+          scraped={!!scraped}
           reviewsCount={reviewsCount}
           scrapsCount={scrapsCount}
           reviewsRating={reviewsRating}
