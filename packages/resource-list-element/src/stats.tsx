@@ -2,14 +2,27 @@ import React from 'react'
 import { Text } from '@titicaca/core-elements'
 
 export default function ResourceListElementStats({
-  stats,
+  children,
   ...textProps
-}: {
-  stats: (string | null | undefined)[]
-} & Parameters<typeof Text>[0]) {
-  if (stats.length === 0) {
+}: Parameters<typeof Text>[0]) {
+  if (React.Children.count(children) === 0) {
     return null
   }
 
-  return <Text {...textProps}>{stats.filter((stat) => stat).join(' · ')}</Text>
+  return (
+    <Text {...textProps}>
+      {React.Children.toArray(children).reduce((result, current, index) => {
+        if (index === 0) {
+          return current
+        }
+        return (
+          <>
+            {result}
+            <span>{' · '}</span>
+            {current}
+          </>
+        )
+      }, <></>)}
+    </Text>
+  )
 }

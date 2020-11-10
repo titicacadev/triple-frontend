@@ -24,15 +24,10 @@ export default function ReviewScrapStat({
         <Rating verticalAlign="middle" size="tiny" score={reviewsRating} />
       ) : null}
 
-      <ResourceListElementStats
-        stats={[
-          reviewsCount ? `(${formatNumber(reviewsCount)})` : null,
-          scrapsCount ? `저장 ${formatNumber(scrapsCount)}` : null,
-        ]}
-        inline
-        size="tiny"
-        alpha={0.4}
-      />
+      <ResourceListElementStats inline size="tiny" alpha={0.4}>
+        {reviewsCount ? <span>({formatNumber(reviewsCount)})</span> : null}
+        {scrapsCount ? <span>저장 {formatNumber(scrapsCount)}</span> : null}
+      </ResourceListElementStats>
     </Container>
   )
 }

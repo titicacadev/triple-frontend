@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { number, array } from '@storybook/addon-knobs'
+import { number } from '@storybook/addon-knobs'
 import {
   ReviewScrapStat,
   ResourceListElementStats,
@@ -15,5 +15,8 @@ storiesOf('resource-list-element | resource-list-element', module)
     />
   ))
   .add('ResourceListElementStats', () => (
-    <ResourceListElementStats stats={array('stats', ['볼거리', '판교'])} />
+    <ResourceListElementStats>
+      <span>볼거리</span>
+      <span>판교</span>
+    </ResourceListElementStats>
   ))
