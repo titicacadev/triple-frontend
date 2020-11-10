@@ -3,7 +3,6 @@ import ExtendedResourceListElement, {
   ResourceListElementProps,
 } from '@titicaca/resource-list-element'
 import { ListingPOI, ListingHotel } from '@titicaca/type-definitions'
-import { useScrapsContext } from '@titicaca/react-contexts'
 
 import { POI_IMAGE_PLACEHOLDERS } from './constants'
 import { POIListElementBaseProps } from './types'
@@ -26,7 +25,6 @@ export type ExtendedPoiListElementProps<
 export function ExtendedPoiListElement<T extends ListingPOI>({
   poi,
   poi: {
-    id,
     type,
     nameOverride,
     scraped,
@@ -37,7 +35,7 @@ export function ExtendedPoiListElement<T extends ListingPOI>({
       categories = [],
       comment,
       reviewsCount: rawReviewsCount,
-      scrapsCount: rawScrapsCount,
+      scrapsCount,
       reviewsRating,
     },
     distance,
@@ -51,7 +49,6 @@ export function ExtendedPoiListElement<T extends ListingPOI>({
   isAdvertisement,
   notes,
 }: ExtendedPoiListElementProps<T>) {
-  const { deriveCurrentStateAndCount } = useScrapsContext()
   const {
     source: { starRating },
   } =
@@ -64,11 +61,6 @@ export function ExtendedPoiListElement<T extends ListingPOI>({
   const [area] = areas
   const [category] = categories
 
-  const { scrapsCount } = deriveCurrentStateAndCount({
-    id,
-    scraped,
-    scrapsCount: rawScrapsCount,
-  })
   const reviewsCount = Number(rawReviewsCount || 0)
   const note = (
     notes || [
