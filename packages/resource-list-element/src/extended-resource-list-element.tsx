@@ -34,6 +34,9 @@ export type ResourceListElementProps<R extends ResourceMeta> = {
     color?: LabelColor
     emphasized?: boolean
   }[]
+  /**
+   * Scraps context에 들어가지 않은 resource의 원본 데이터를 넣어주세요.
+   */
   scrapsCount?: number
   reviewsCount?: number
   reviewsRating?: number
