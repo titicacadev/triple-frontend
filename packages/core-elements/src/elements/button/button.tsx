@@ -183,7 +183,7 @@ class Button extends React.PureComponent<ButtonProps> {
         icon,
         size,
         textColor,
-        textAlpha,
+
         children,
         borderRadius,
         onClick,
@@ -197,7 +197,6 @@ class Button extends React.PureComponent<ButtonProps> {
           bold
           size={size || 'small'}
           textColor={textColor || 'gray'}
-          textAlpha={textAlpha}
           onClick={onClick}
           {...props}
         >
@@ -211,8 +210,7 @@ class Button extends React.PureComponent<ButtonProps> {
         <IconButton
           name={icon}
           size={size || 'tiny'}
-          textColor={textColor || 'gray'}
-          textAlpha={textAlpha || 0.5}
+          textColor={textColor || 'gray500'}
           onClick={onClick}
           {...props}
         >
@@ -226,7 +224,6 @@ class Button extends React.PureComponent<ButtonProps> {
         bold
         size={size || 'tiny'}
         textColor={textColor || 'white'}
-        textAlpha={textAlpha}
         borderRadius={borderRadius ?? 21}
         onClick={onClick}
         {...props}
