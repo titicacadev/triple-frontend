@@ -84,6 +84,9 @@ export default function POICardElement({
   comment?: string
   reviewsRating?: number
   reviewsCount?: number
+  /**
+   * Scraps context를 통과하지 않은 POI의 원본 데이터를 넣어주세요.
+   */
   scrapsCount?: number
   nightlyPrice?: number
   priceLabelOverride?: JSX.Element
