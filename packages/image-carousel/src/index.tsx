@@ -103,7 +103,7 @@ export default class ImageCarousel extends React.PureComponent<
             frame: imageFrame,
             size: imageSize,
             sizes,
-            sourceUrl,
+            sourceUrl = '',
             title,
             description,
           } = image
