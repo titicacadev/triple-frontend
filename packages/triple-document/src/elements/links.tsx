@@ -9,7 +9,7 @@ import {
   SimpleLink,
   Text,
 } from '@titicaca/core-elements'
-import { MediaMeta } from '@titicaca/triple-media'
+import { ImageMeta } from '@titicaca/type-definitions'
 
 import { Link, LinkEventHandler } from '../types'
 import ResourceList from './shared/resource-list'
@@ -111,7 +111,7 @@ function ImageLink({
   href: string
   label?: string
   description?: string
-  image?: MediaMeta
+  image?: ImageMeta
   onClick?: React.MouseEventHandler
 }) {
   return (
@@ -120,7 +120,7 @@ function ImageLink({
         <SquareImage
           floated="left"
           size="small"
-          src={(image && image.sizes.small_square.url) || IMAGE_PLACEHOLDER}
+          src={getDefaultImageUrl(image) || IMAGE_PLACEHOLDER}
           alt={label}
         />
         <Text bold ellipsis alpha={1} margin={{ left: 50 }}>
@@ -132,6 +132,26 @@ function ImageLink({
       </ImageLinkItem>
     </ResourceListItem>
   )
+}
+
+function getDefaultImageUrl(image: ImageMeta | undefined) {
+  if (!image) {
+    return null
+  }
+
+  const sizes = image.sizes as {
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    small_square?: { url: string }
+    smallSquare?: { url: string }
+  }
+
+  if (sizes.small_square) {
+    return sizes.small_square.url
+  } else if (sizes.smallSquare) {
+    return sizes.smallSquare.url
+  } else {
+    return null
+  }
 }
 
 const LINK_CONTAINERS = {

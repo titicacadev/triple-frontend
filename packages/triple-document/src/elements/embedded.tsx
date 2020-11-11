@@ -1,6 +1,7 @@
 import React from 'react'
 import { ImageSourceType, Carousel, Container } from '@titicaca/core-elements'
-import TripleMedia, { MediaMeta } from '@titicaca/triple-media'
+import TripleMedia from '@titicaca/triple-media'
+import { ImageMeta } from '@titicaca/type-definitions'
 
 import {
   TripleElementData,
@@ -31,7 +32,7 @@ function EmbeddedImage({
   ...props
 }: {
   value: {
-    images: MediaMeta[]
+    images: ImageMeta[]
   }
   onImageClick: ImageEventHandler
   onLinkClick: LinkEventHandler

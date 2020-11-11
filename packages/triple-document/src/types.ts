@@ -1,6 +1,5 @@
 import { SyntheticEvent } from 'react'
-import { TranslatedProperty } from '@titicaca/type-definitions'
-import { MediaMeta } from '@titicaca/triple-media'
+import { TranslatedProperty, ImageMeta } from '@titicaca/type-definitions'
 
 export interface RegionData {
   nameOverride: string | null
@@ -18,7 +17,7 @@ export interface TripleElementData<T = string, Value = unknown> {
   value: Value
 }
 
-export type ImageEventHandler = (e: SyntheticEvent, image: MediaMeta) => void
+export type ImageEventHandler = (e: SyntheticEvent, image: ImageMeta) => void
 
 export type Link = {
   href?: string
