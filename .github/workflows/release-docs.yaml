@@ -43,10 +43,10 @@ jobs:
           TAG_NAME=${GITHUB_REF#refs/tags/}
 
           if [[ "${TAG_NAME}" == "release-canary" ]]; then
-            echo ::set-env name=SLACK_TOPIC::"Release docs of `canary`"
+            echo "SLACK_TOPIC=Release docs of `canary`" >> GITHUB_ENV
           else
             VERSION="v$(cat ./lerna.json | jq -r '.version')"
-            echo ::set-env name=SLACK_TOPIC::"Release docs of `v${VERSION}`"
+            echo "SLACK_TOPIC=Release docs of `v${VERSION}`" >> GITHUB_ENV
           fi
 
       - name: Docker Login

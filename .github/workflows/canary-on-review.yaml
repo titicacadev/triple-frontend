@@ -36,12 +36,13 @@ jobs:
         run: |
           PR_SHA=${{ github.event.pull_request.head.sha }}
           PR_REF=${{ github.event.pull_request.head.ref }}
-          echo ::set-env name=PR_NUMBER::${{ github.event.pull_request.number }}
-          echo ::set-env name=PR_SHA::$PR_SHA
-          echo ::set-env name=PR_REF::$PR_REF
-          echo ::set-env name=SLACK_GITHUB_REF::$PR_REF
-          echo ::set-env name=PR_SHORT_SHA::${PR_SHA:0:7}
-          echo ::set-env name=PR_TITLE::${{ github.event.pull_request.title }}
+
+          echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+          echo "PR_SHA=$PR_SHA" >> GITHUB_ENV
+          echo "PR_REF=$PR_REF" >> GITHUB_ENV
+          echo "SLACK_GITHUB_REF=$PR_REF" >> GITHUB_ENV
+          echo "PR_SHORT_SHA=${PR_SHA:0:7}" >> GITHUB_ENV
+          echo "PR_TITLE=${{ github.event.pull_request.title }}" >> GITHUB_ENV
 
       - name: Reaction
         run: |
@@ -111,7 +112,9 @@ jobs:
 
           NEXT_VERSION=$(node -e "const [major, minor, patch] = require('./lerna.json').version.split('.');console.log(['v'+major, minor, parseInt(patch, 10) + 1].join('.'))")
           REF_COUNT=$(node -p -e "Math.max(0, parseInt((\"$(git describe --always --long --dirty --match "v*.*.*")\".match(/^(?:.*@)?.*-(\d+)-.*?$/) || ['0', '0'])[1], 10) - 1)")
-          echo ::set-env name=CANARY_VERSION::$NEXT_VERSION-pr-${{ env.PR_NUMBER }}.$REF_COUNT
+
+          echo "CANARY_VERSION=$NEXT_VERSION-pr-${{ env.PR_NUMBER }}.$REF_COUNT" >> GITHUB_ENV
+
           echo ${{ env.CANARY_VERSION }}
 
       - name: Notify canary publish start to slack
