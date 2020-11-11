@@ -1,31 +1,19 @@
 import React from 'react'
 import { Container, Rating } from '@titicaca/core-elements'
-import { useScrapsContext } from '@titicaca/react-contexts'
 import { formatNumber } from '@titicaca/view-utilities'
 
 import ResourceListElementStats from './stats'
 
 export default function ReviewScrapStat({
   reviewsCount,
-  scrapsCount: rawScrapsCount,
+  scrapsCount,
   reviewsRating,
-  id,
-  scraped,
   ...containerProps
 }: Parameters<typeof Container>[0] & {
-  id: string
-  scraped: boolean
   reviewsRating: number | undefined
   reviewsCount: number | undefined
   scrapsCount: number | undefined
 }) {
-  const { deriveCurrentStateAndCount } = useScrapsContext()
-  const { scrapsCount } = deriveCurrentStateAndCount({
-    id,
-    scraped,
-    scrapsCount: rawScrapsCount,
-  })
-
   if (!reviewsCount && !scrapsCount) {
     return null
   }
