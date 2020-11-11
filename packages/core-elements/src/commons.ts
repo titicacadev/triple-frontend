@@ -50,7 +50,7 @@ export type Ratio =
   | '9:5'
 
 /**
- * DEPRECATED type-definitions로 이동합니다.
+ * @deprecated type-definitions로 이동합니다.
  */
 export type FrameRatioAndSizes =
   | Exclude<GlobalSizes, 'tiny' | 'massive'>
