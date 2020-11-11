@@ -119,7 +119,8 @@ export function HistoryProvider({
       ? [{ hash: getInitialHash(), useRouter: isAndroid }]
       : [],
   )
-  const { hasSessionId } = useSessionContext()
+  const sessionContext = useSessionContext(true)
+  const hasSessionId = sessionContext ? sessionContext.hasSessionId : true
 
   useEffect(() => {
     const onHashChange = (url: string) => {
