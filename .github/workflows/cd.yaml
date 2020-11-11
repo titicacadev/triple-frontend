@@ -41,8 +41,8 @@ jobs:
       - name: Define variables
         run: |
           VERSION="v$(cat ./lerna.json | jq -r '.version')"
-          echo ::set-env name=DEPLOY_VERSION::$VERSION
-          echo ::set-env name=SLACK_TOPIC::$VERSION
+          echo "DEPLOY_VERSION=$VERSION" >> GITHUB_ENV
+          echo "SLACK_TOPIC=$VERSION" >> GITHUB_ENV
 
       - name: Notify build start to slack
         env:
