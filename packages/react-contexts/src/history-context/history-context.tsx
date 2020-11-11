@@ -225,9 +225,9 @@ export function HistoryProvider({
         window.location.href = `${appUrlScheme}:///outlink?${outlinkParams}`
       } else if (hasSessionId || checkIfRoutable({ href })) {
         window.location.href = generateUrl({ scheme: appUrlScheme }, href)
+      } else {
+        loginCTAModalHash && push(loginCTAModalHash)
       }
-
-      loginCTAModalHash && push(loginCTAModalHash)
     },
     [push, appUrlScheme, loginCTAModalHash, hasSessionId],
   )
