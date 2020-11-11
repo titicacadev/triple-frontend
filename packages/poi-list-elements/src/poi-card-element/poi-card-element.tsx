@@ -157,10 +157,12 @@ export default function POICardElement({
             </Text>
           ) : null}
 
-          <ResourceListElementStats size="tiny" alpha={0.4} margin={{ top: 4 }}>
-            <span>{categoryName}</span>
-            <span>{areaName}</span>
-          </ResourceListElementStats>
+          <ResourceListElementStats
+            stats={[categoryName, areaName]}
+            size="tiny"
+            alpha={0.4}
+            margin={{ top: 4 }}
+          />
 
           <ReviewScrapStat
             reviewsCount={reviewsCount}
