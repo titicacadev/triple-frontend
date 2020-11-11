@@ -1,37 +1,13 @@
 import React from 'react'
 import {
   Video,
-  FrameRatioAndSizes,
   ImageSourceType,
   Image,
   MarginPadding,
 } from '@titicaca/core-elements'
+import { ImageMeta, FrameRatioAndSizes } from '@titicaca/type-definitions'
 
-export interface MediaMeta {
-  id: string
-  type: string
-  sizes: {
-    full: { url: string }
-    large: { url: string }
-    small_square: { url: string } // eslint-disable-line @typescript-eslint/camelcase
-  }
-  width?: number
-  height?: number
-  cloudinaryId: string
-  cloudinaryBucket: string
-  video?: {
-    full: { url: string }
-    large: { url: string }
-    small_square: { url: string } // eslint-disable-line @typescript-eslint/camelcase
-  }
-  frame?: FrameRatioAndSizes
-  title?: string
-  link?: {
-    href: string
-    label?: string
-  }
-  sourceUrl?: string
-}
+export type MediaMeta = ImageMeta
 
 export default function Media({
   media,
@@ -44,7 +20,7 @@ export default function Media({
   frame,
   onClick,
 }: {
-  media: MediaMeta
+  media: ImageMeta
   autoPlay?: boolean
   hideControls?: boolean
   showNativeControls?: boolean
@@ -52,7 +28,7 @@ export default function Media({
   borderRadius?: number
   margin?: MarginPadding
   frame?: FrameRatioAndSizes
-  onClick?: (e: React.SyntheticEvent, media: MediaMeta) => void
+  onClick?: (e: React.SyntheticEvent, media: ImageMeta) => void
 }) {
   const {
     type,

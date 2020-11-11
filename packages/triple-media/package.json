@@ -15,6 +15,7 @@
   },
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
-    "@titicaca/core-elements": "^2.0.0"
+    "@titicaca/core-elements": "^2.0.0",
+    "@titicaca/type-definitions": "^2.0.0"
   }
 }
