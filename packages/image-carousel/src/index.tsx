@@ -1,17 +1,15 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import { ImageSourceType, Image } from '@titicaca/core-elements'
 import {
+  ImageMeta as OriginalImageMeta,
   GlobalSizes,
   FrameRatioAndSizes,
-  ImageSourceType,
-  Image,
-} from '@titicaca/core-elements'
-import { ImageMeta as OriginalImageMeta } from '@titicaca/type-definitions'
+} from '@titicaca/type-definitions'
 
 import Carousel, { CarouselProps } from './carousel'
 
 export interface CarouselImageMeta extends OriginalImageMeta {
-  frame?: FrameRatioAndSizes
   size?: GlobalSizes
 }
 
