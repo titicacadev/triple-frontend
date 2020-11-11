@@ -4,10 +4,10 @@ import { formatNumber } from '@titicaca/view-utilities'
 import {
   Container,
   Text,
-  GlobalSizes,
   MarginPadding,
   GlobalColors,
 } from '@titicaca/core-elements'
+import { GlobalSizes } from '@titicaca/type-definitions'
 
 import FixedPricing, { FixedPricingProps } from './fixed-pricing'
 
