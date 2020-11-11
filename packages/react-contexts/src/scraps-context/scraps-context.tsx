@@ -41,17 +41,40 @@ interface ScrapsContext {
   unscrapeArticle: (id: string) => Promise<void>
   /** @deprecated Use `unscrape()` instead */
   unscrapePoi: (id: string) => Promise<void>
+  isDefault?: boolean
+}
+
+function createNOOPFunctions(name: string) {
+  return () => {
+    if (process.env.NODE_ENV === 'development') {
+      if (
+        [
+          'scrapeArticle',
+          'unscrapeArticle',
+          'scrapePoi',
+          'unscrapePoi',
+        ].includes(name)
+      ) {
+        console.warn(`${name} is deprecated. Please use scrape instead.`)
+      }
+    }
+    return Promise.resolve()
+  }
 }
 
 const Context = createContext<ScrapsContext>({
   scraps: {},
-  deriveCurrentStateAndCount: () => ({ scraped: false, scrapsCount: 0 }),
-  scrape: () => Promise.resolve(),
-  scrapePoi: () => Promise.resolve(),
-  scrapeArticle: () => Promise.resolve(),
-  unscrape: () => Promise.resolve(),
-  unscrapePoi: () => Promise.resolve(),
-  unscrapeArticle: () => Promise.resolve(),
+  deriveCurrentStateAndCount: ({ scraped = false, scrapsCount = 0 }) => ({
+    scraped,
+    scrapsCount,
+  }),
+  scrape: createNOOPFunctions('scrape'),
+  unscrape: createNOOPFunctions('unscrape'),
+  scrapeArticle: createNOOPFunctions('scrapeArticle'),
+  unscrapeArticle: createNOOPFunctions('unscrapeArticle'),
+  scrapePoi: createNOOPFunctions('scrapePoi'),
+  unscrapePoi: createNOOPFunctions('unscrapePoi'),
+  isDefault: true,
 })
 
 const START_SCRAPE = 'START_SCRAPE'
@@ -236,12 +259,36 @@ export function ScrapsProvider({
     () => ({
       deriveCurrentStateAndCount,
       scrape,
-      scrapeArticle: (id) => scrape({ id, type: 'article' }),
-      scrapePoi: (id) => scrape({ id, type: 'poi' }),
+      scrapeArticle: (id) => {
+        if (process.env.NODE_ENV === 'development') {
+          console.warn(
+            'scrapeArticle is deprecated. Please use scrape instead.',
+          )
+        }
+        return scrape({ id, type: 'article' })
+      },
+      scrapePoi: (id) => {
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('scrapePoi is deprecated. Please use scrape instead.')
+        }
+        return scrape({ id, type: 'poi' })
+      },
       scraps,
       unscrape,
-      unscrapeArticle: (id) => unscrape({ id, type: 'article' }),
-      unscrapePoi: (id) => unscrape({ id, type: 'poi' }),
+      unscrapeArticle: (id) => {
+        if (process.env.NODE_ENV === 'development') {
+          console.warn(
+            'unscrapeArticle is deprecated. Please use scrape instead.',
+          )
+        }
+        return unscrape({ id, type: 'article' })
+      },
+      unscrapePoi: (id) => {
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('unscrapePoi is deprecated. Please use scrape instead.')
+        }
+        return unscrape({ id, type: 'poi' })
+      },
     }),
     [deriveCurrentStateAndCount, scrape, scraps, unscrape],
   )
@@ -250,7 +297,13 @@ export function ScrapsProvider({
 }
 
 export function useScrapsContext() {
-  return useContext(Context)
+  const { isDefault, ...rest } = useContext(Context)
+
+  if (isDefault && process.env.NODE_ENV === 'development') {
+    console.error('ScrapsProvider를 찾을 수 없습니다.')
+  }
+
+  return rest
 }
 
 export interface WithScrapsBaseProps {
