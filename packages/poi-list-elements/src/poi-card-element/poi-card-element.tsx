@@ -16,6 +16,7 @@ import {
   ResourceListElementStats,
 } from '@titicaca/resource-list-element'
 import { formatNumber } from '@titicaca/view-utilities'
+import { useScrapsContext } from '@titicaca/react-contexts'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
 
 import DirectionButton, { DIRECTION_BUTTON_WIDTH } from './direction-button'
@@ -68,7 +69,7 @@ export default function POICardElement({
   nightlyPrice,
   priceLabelOverride,
   scraped,
-  scrapsCount,
+  scrapsCount: rawScrapsCount,
   distance,
   categoryName,
   areaName,
@@ -96,6 +97,13 @@ export default function POICardElement({
   onClick?: MouseEventHandler<HTMLDivElement>
   onDirectionButtonClick: Parameters<typeof DirectionButton>[0]['onClick']
 }) {
+  const { deriveCurrentStateAndCount } = useScrapsContext()
+  const { scrapsCount } = deriveCurrentStateAndCount({
+    id,
+    scraped,
+    scrapsCount: rawScrapsCount,
+  })
+
   return (
     <Card
       radius={6}
