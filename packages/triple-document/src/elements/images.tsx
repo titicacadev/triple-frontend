@@ -8,7 +8,8 @@ import {
   Container,
   ImageSourceType,
 } from '@titicaca/core-elements'
-import TripleMedia, { MediaMeta } from '@titicaca/triple-media'
+import TripleMedia from '@titicaca/triple-media'
+import { ImageMeta } from '@titicaca/type-definitions'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 
 import DocumentCarousel from './shared/document-carousel'
@@ -28,7 +29,7 @@ export default function Images({
   hideVideoControls,
 }: {
   value: {
-    images: MediaMeta[]
+    images: ImageMeta[]
     display: MediaDisplayProperty
   }
   onImageClick: ImageEventHandler
