@@ -31,8 +31,8 @@ const SessionContext = createContext<SessionContextValue | null>(null)
 export function getSessionID(
   req: IncomingMessage | undefined,
 ): string | undefined {
-  const cookie = req?.headers.cookie
-  return cookie ? new Cookies(cookie).get(SESSION_KEY) : undefined
+  const cookieHeader = req?.headers.cookie
+  return new Cookies(cookieHeader).get(SESSION_KEY)
 }
 
 export function setSessionID(sessionId: string | undefined) {
