@@ -7,8 +7,14 @@ export type MarginPadding = Partial<
   >
 >
 
+/**
+ * DEPRECATED type-definitions로 이동합니다.
+ */
 export type BaseSizes = 'small' | 'medium' | 'large'
 
+/**
+ * DEPRECATED type-definitions로 이동합니다.
+ */
 export type GlobalSizes =
   | 'mini'
   | 'tiny'
@@ -29,6 +35,10 @@ export type GlobalColors = 'blue' | 'gray' | 'white' | 'red'
 export function GetGlobalColor(colorString: GlobalColors | string) {
   return GlobalColorSet[colorString as GlobalColors] || colorString // HACK: GlobalColors가 아닌 경우 colorString을 그대로 반환하게 되므로 에러 없음
 }
+
+/**
+ * DEPRECATED type-definitions로 이동합니다.
+ */
 export type Ratio =
   | '4:1'
   | '5:3'
@@ -39,6 +49,9 @@ export type Ratio =
   | '5:8'
   | '9:5'
 
+/**
+ * DEPRECATED type-definitions로 이동합니다.
+ */
 export type FrameRatioAndSizes =
   | Exclude<GlobalSizes, 'tiny' | 'massive'>
   | 'original'
