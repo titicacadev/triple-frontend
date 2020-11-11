@@ -120,7 +120,7 @@ export function HistoryProvider({
       : [],
   )
   const sessionContext = useSessionContext(true)
-  const hasSessionId = sessionContext ? sessionContext.hasSessionId : true
+  const hasSessionId = sessionContext ? sessionContext.hasSessionId : !isPublic
 
   useEffect(() => {
     const onHashChange = (url: string) => {
