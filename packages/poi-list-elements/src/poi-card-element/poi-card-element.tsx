@@ -163,8 +163,6 @@ export default function POICardElement({
           </ResourceListElementStats>
 
           <ReviewScrapStat
-            id={id}
-            scraped={!!scraped}
             reviewsCount={reviewsCount}
             scrapsCount={scrapsCount}
             reviewsRating={reviewsRating}
