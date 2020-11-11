@@ -8,7 +8,7 @@ export type MarginPadding = Partial<
 >
 
 /**
- * DEPRECATED type-definitions로 이동합니다.
+ * @deprecated type-definitions로 이동합니다.
  */
 export type BaseSizes = 'small' | 'medium' | 'large'
 
