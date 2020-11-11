@@ -88,12 +88,18 @@ export function SessionContextProvider({
   )
 }
 
-export function useSessionContext(safe?: boolean) {
+export function useSessionContext() {
   const context = useContext(SessionContext)
 
-  if (!context && !safe) {
+  if (!context) {
     throw new Error('SessionContextProvider를 찾을 수 없습니다.')
   }
+
+  return context
+}
+
+export function useSessionContextSafely() {
+  const context = useContext(SessionContext)
 
   return context
 }
