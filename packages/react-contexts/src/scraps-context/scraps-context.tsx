@@ -21,7 +21,6 @@ import {
   scrape as nativeScrape,
   unscrape as nativeUnscrape,
 } from './api-client'
-import { NO_CONTEXT_ERROR_MESSAGE } from './constants'
 
 type Scraps = { [key: string]: boolean }
 
@@ -44,7 +43,16 @@ interface ScrapsContext {
   unscrapePoi: (id: string) => Promise<void>
 }
 
-const Context = createContext<ScrapsContext | null>(null)
+const Context = createContext<ScrapsContext>({
+  scraps: {},
+  deriveCurrentStateAndCount: () => ({ scraped: false, scrapsCount: 0 }),
+  scrape: () => Promise.resolve(),
+  scrapePoi: () => Promise.resolve(),
+  scrapeArticle: () => Promise.resolve(),
+  unscrape: () => Promise.resolve(),
+  unscrapePoi: () => Promise.resolve(),
+  unscrapeArticle: () => Promise.resolve(),
+})
 
 const START_SCRAPE = 'START_SCRAPE'
 const SCRAPE = 'SCRAPE'
@@ -242,12 +250,7 @@ export function ScrapsProvider({
 }
 
 export function useScrapsContext() {
-  const context = useContext(Context)
-
-  if (!context) {
-    throw new Error(NO_CONTEXT_ERROR_MESSAGE)
-  }
-  return context
+  return useContext(Context)
 }
 
 export interface WithScrapsBaseProps {

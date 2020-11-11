@@ -1,7 +1,4 @@
-import {
-  useScrapsContext,
-  withScrapsContextGuard,
-} from '@titicaca/react-contexts'
+import { useScrapsContext } from '@titicaca/react-contexts'
 import React, { ComponentType, MouseEventHandler } from 'react'
 import styled from 'styled-components'
 
@@ -130,7 +127,7 @@ function OverlayScrapButton<R extends ScrapableResource>({
 }
 
 function composedHOCs<P>(Component: ComponentType<P>) {
-  return withMask(withScrapsContextGuard(Component))
+  return withMask(Component)
 }
 
 const ComposedOutlineScrapButton = composedHOCs(OutlineScrapButton)

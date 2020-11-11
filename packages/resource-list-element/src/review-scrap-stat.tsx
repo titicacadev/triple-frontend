@@ -1,35 +1,13 @@
 import React from 'react'
 import { Container, Rating } from '@titicaca/core-elements'
-import {
-  useScrapsContext,
-  withScrapsContextGuard,
-} from '@titicaca/react-contexts'
+import { useScrapsContext } from '@titicaca/react-contexts'
 import { formatNumber } from '@titicaca/view-utilities'
 
 import ResourceListElementStats from './stats'
 
-const GuardedScrapsCount = withScrapsContextGuard(function ScrapsCountStat({
-  id,
-  scraped,
-  scrapsCount: rawScrapsCount,
-}: {
-  id: string
-  scraped: boolean
-  scrapsCount: number | undefined
-}) {
-  const { deriveCurrentStateAndCount } = useScrapsContext()
-  const { scrapsCount } = deriveCurrentStateAndCount({
-    id,
-    scraped,
-    scrapsCount: rawScrapsCount,
-  })
-
-  return scrapsCount ? <span>저장 {formatNumber(scrapsCount)}</span> : null
-})
-
 export default function ReviewScrapStat({
   reviewsCount,
-  scrapsCount,
+  scrapsCount: rawScrapsCount,
   reviewsRating,
   id,
   scraped,
@@ -41,6 +19,13 @@ export default function ReviewScrapStat({
   reviewsCount: number | undefined
   scrapsCount: number | undefined
 }) {
+  const { deriveCurrentStateAndCount } = useScrapsContext()
+  const { scrapsCount } = deriveCurrentStateAndCount({
+    id,
+    scraped,
+    scrapsCount: rawScrapsCount,
+  })
+
   if (!reviewsCount && !scrapsCount) {
     return null
   }
@@ -53,11 +38,7 @@ export default function ReviewScrapStat({
 
       <ResourceListElementStats inline size="tiny" alpha={0.4}>
         {reviewsCount ? <span>({formatNumber(reviewsCount)})</span> : null}
-        <GuardedScrapsCount
-          id={id}
-          scraped={scraped}
-          scrapsCount={scrapsCount}
-        />
+        {scrapsCount ? <span>저장 {formatNumber(scrapsCount)}</span> : null}
       </ResourceListElementStats>
     </Container>
   )
