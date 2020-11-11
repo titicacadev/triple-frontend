@@ -15,7 +15,7 @@ import { parseUrl, generateUrl } from '@titicaca/view-utilities'
 import { hasAccessibleTripleNativeClients } from '@titicaca/triple-web-to-native-interfaces'
 import { DeepPartial } from 'utility-types'
 
-import { useSessionContext } from '../session-context'
+import { useSessionContextSafely } from '../session-context'
 import { checkIfRoutable, generateTargetAddressOnPublic } from './routelist'
 
 type URIHash = string
@@ -119,7 +119,7 @@ export function HistoryProvider({
       ? [{ hash: getInitialHash(), useRouter: isAndroid }]
       : [],
   )
-  const sessionContext = useSessionContext(true)
+  const sessionContext = useSessionContextSafely()
   const hasSessionId = sessionContext ? sessionContext.hasSessionId : !isPublic
 
   useEffect(() => {
