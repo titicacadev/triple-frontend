@@ -23,8 +23,6 @@ export type GlobalSizes =
   | 'massive'
   | BaseSizes
 
-export type GlobalColors = 'blue' | 'gray' | 'white' | 'red'
-
 export type Ratio =
   | '4:1'
   | '5:3'
