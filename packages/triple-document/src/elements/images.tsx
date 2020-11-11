@@ -77,7 +77,8 @@ export default function Images({
               <TripleMedia
                 borderRadius={0}
                 autoPlay={videoAutoPlay}
-                hideControls={hideVideoControls}
+                hideControls={hideVideoControls || isLegacyIosApp}
+                showNativeControls={isLegacyIosApp}
                 media={image}
                 onClick={handleClick}
                 ImageSource={ImageSource}

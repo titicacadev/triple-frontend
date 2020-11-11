@@ -1,14 +1,13 @@
 import React from 'react'
 import {
   CarouselSizes,
-  FrameRatioAndSizes,
   Carousel,
   Text,
   Container,
   Image,
 } from '@titicaca/core-elements'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
-import { ListingPOI } from '@titicaca/type-definitions'
+import { ListingPOI, FrameRatioAndSizes } from '@titicaca/type-definitions'
 
 import { POI_IMAGE_PLACEHOLDERS, TYPE_NAMES } from './constants'
 import { POIListElementBaseProps, ActionButtonElement } from './types'
