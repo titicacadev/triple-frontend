@@ -37,7 +37,7 @@ export function GetGlobalColor(colorString: GlobalColors | string) {
 }
 
 /**
- * DEPRECATED type-definitions로 이동합니다.
+ * @deprecated type-definitions로 이동합니다.
  */
 export type Ratio =
   | '4:1'
