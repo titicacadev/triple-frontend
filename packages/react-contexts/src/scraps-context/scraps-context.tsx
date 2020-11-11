@@ -44,12 +44,6 @@ interface ScrapsContext {
   unscrapePoi: (id: string) => Promise<void>
 }
 
-interface ScrapsProviderProps {
-  scraps?: Scraps
-  beforeScrapedChange?: (target: Target, scraped: boolean) => boolean
-  afterScrapedChange?: (target: Target, scraped: boolean) => void
-}
-
 const Context = createContext<ScrapsContext | null>(null)
 
 const START_SCRAPE = 'START_SCRAPE'
@@ -113,6 +107,12 @@ const reducer = (
     case UNSCRAPE_FAILED:
       return { scraps, updating: restUpdating }
   }
+}
+
+interface ScrapsProviderProps {
+  scraps?: Scraps
+  beforeScrapedChange?: (target: Target, scraped: boolean) => boolean
+  afterScrapedChange?: (target: Target, scraped: boolean) => void
 }
 
 export function ScrapsProvider({
