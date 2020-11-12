@@ -17,5 +17,8 @@
   "dependencies": {
     "@titicaca/core-elements": "^2.0.0",
     "@titicaca/react-contexts": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/semver": "^7.3.4"
   }
 }
