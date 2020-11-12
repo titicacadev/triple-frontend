@@ -2,9 +2,32 @@
 
 ## 2.0.1
 
+### common
+
+- github action setEnv 방식 변경 (#1044)
+- Environment variable을 직접 참조합니다. (#1048)
+
 ### footer
 
-- `CSFooter` 컴포넌트에 ButtonClickEvent의 callback을 오버라이드 할수 있는 prop을 추가합니다.
+- `CSFooter` 컴포넌트에 ButtonClickEvent의 callback을 오버라이드 할수 있는 prop을 추가합니다. (#1040)
+
+### react-contexts
+
+- navigate() 에서 URL을 더 상세하게 해석합니다. (#1036)
+- 스크랩 count를 사용하는 부분 ScrapsProvider 없는 경우 대응 (#1042)
+- session-context의 getSessionId가 클라이언트 쪽에서도 쿠키를 가져오도록 수정 (#1047)
+
+### modals
+
+- 낮은 버전 Android 기기에는 /login path가 없습니다. Alert을 대신 렌더링합니다. (#1049)
+
+### core-elements
+
+- SencondaryNavbar의 position 기본값 수정 (#1045)
+
+### type-definitions
+
+- Image frame 관련 공통 타입을 type-definitions 패키지로 옮깁니다. (#1043)
 
 ## 2.0.0
 
