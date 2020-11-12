@@ -7,7 +7,6 @@ interface CamelSmallSquare {
 }
 
 interface SnakeSmallSquare {
-  // eslint-disable-next-line @typescript-eslint/camelcase
   small_square: ImageURL
 }
 

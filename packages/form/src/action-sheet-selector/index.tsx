@@ -3,9 +3,10 @@ import styled, { css } from 'styled-components'
 import { Container, Text, withField } from '@titicaca/core-elements'
 import { getColor } from '@titicaca/color-palette'
 
+import ArrowDown from '../arrow-down'
+
 import { Option } from './types'
 import ActionSheet from './action-sheet'
-import ArrowDown from '../arrow-down'
 
 const FieldContainer = styled.div`
   position: relative;

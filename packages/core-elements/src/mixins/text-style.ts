@@ -32,6 +32,7 @@ export const textStyle = (
 
 /**
  * 기존 스펙 그대로 text style 을 생성하는 함수
+ * @deprecated
  * @param fontSize
  * @param lineHeight
  * @param letterSpacing

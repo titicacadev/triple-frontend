@@ -20,13 +20,11 @@ export function writeReview({
   photoFirst?: boolean
 }) {
   const params = qs.stringify({
-    /* eslint-disable @typescript-eslint/camelcase */
     region_id: regionId,
     resource_type: resourceType,
     resource_id: resourceId,
     rating,
     ...(photoFirst && { photo_first: 'true' }),
-    /* eslint-enable @typescript-eslint/camelcase */
   })
 
   window.location.href = `${appUrlScheme}:///reviews/new?${params}`

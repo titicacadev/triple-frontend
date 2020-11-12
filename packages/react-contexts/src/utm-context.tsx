@@ -2,11 +2,11 @@ import React, { createContext, useContext, ComponentType } from 'react'
 import { DeepPartial } from 'utility-types'
 
 interface UTMQuery {
-  utm_source?: string // eslint-disable-line @typescript-eslint/camelcase
-  utm_medium?: string // eslint-disable-line @typescript-eslint/camelcase
-  utm_campaign?: string // eslint-disable-line @typescript-eslint/camelcase
-  utm_term?: string // eslint-disable-line @typescript-eslint/camelcase
-  utm_content?: string // eslint-disable-line @typescript-eslint/camelcase
+  utm_source?: string
+  utm_medium?: string
+  utm_campaign?: string
+  utm_term?: string
+  utm_content?: string
 
   // for camelized query
   utmSource?: string
@@ -31,7 +31,6 @@ interface UTMContextValue {
 /**
  * query 객체에서 utm context 객체를 추출합니다.
  */
-/* eslint-disable @typescript-eslint/camelcase */
 export function extractUTMContextFromQuery({
   utm_source,
   utm_medium,
@@ -60,7 +59,6 @@ export function extractUTMContextFromQuery({
     partner: prt,
   }
 }
-/* eslint-enable @typescript-eslint/camelcase */
 
 const Context = createContext<UTMContextValue>({
   source: '',

@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 
 import { MarginPadding } from '../../commons'
 import { paddingMixin } from '../../mixins'
+
 import { useImageState } from './context'
 
 type OverlayType = 'gradient' | 'dark'

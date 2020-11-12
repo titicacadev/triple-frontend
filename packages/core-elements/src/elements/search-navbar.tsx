@@ -2,8 +2,9 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 
-import Navbar from './navbar'
 import { LayeringMixinProps, layeringMixin } from '../mixins'
+
+import Navbar from './navbar'
 
 const InputText = styled.input`
   box-sizing: border-box;

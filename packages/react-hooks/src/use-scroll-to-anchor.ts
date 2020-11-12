@@ -26,10 +26,10 @@ export function useScrollToAnchor(option?: {
     const canonicalHash = (alias || {})[replacedHash] || replacedHash
 
     setTimeout(() => {
-      const _el = document.getElementById(canonicalHash)
+      const el = document.getElementById(canonicalHash)
 
-      if (_el) {
-        scrollToElement(_el, { offset, duration, align })
+      if (el) {
+        scrollToElement(el, { offset, duration, align })
       }
     }, delayTime)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps

@@ -2,8 +2,9 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { gray100 } from '@titicaca/color-palette'
 
-import Text from './text'
 import { withField } from '../utils/form-field'
+
+import Text from './text'
 
 type RadioValue = string | null
 type TextAlign = 'left' | 'right'

@@ -92,6 +92,7 @@ export default function SliderBase({
     return value
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedChangeHandler = useCallback(debounce(onChange, debounceTime), [
     onChange,
     debounceTime,

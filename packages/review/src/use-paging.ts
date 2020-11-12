@@ -26,9 +26,7 @@ export default function usePaging({
     generateUrl({
       path: `/api/reviews/v2${sortingOption ? `/${sortingOption}` : ''}`,
       query: qs.stringify({
-        // eslint-disable-next-line @typescript-eslint/camelcase
         resource_id: resourceId,
-        // eslint-disable-next-line @typescript-eslint/camelcase
         resource_type: resourceType,
         from: (currentPage - 1) * perPage,
         size: perPage,

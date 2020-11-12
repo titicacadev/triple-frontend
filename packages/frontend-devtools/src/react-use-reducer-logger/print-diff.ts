@@ -9,6 +9,7 @@ interface TreeDiff {
 function printLeaf(key: string | number, diff: TreeDiff) {
   switch (diff.kind) {
     case 'N':
+      // eslint-disable-next-line no-console
       console.log(
         `%c${key}: %c+`,
         'font-weight: bold',
@@ -18,6 +19,7 @@ function printLeaf(key: string | number, diff: TreeDiff) {
       break
 
     case 'D':
+      // eslint-disable-next-line no-console
       console.log(
         `%c${key}: %c-`,
         'font-weight: bold',
@@ -27,6 +29,7 @@ function printLeaf(key: string | number, diff: TreeDiff) {
       break
 
     case 'E':
+      // eslint-disable-next-line no-console
       console.log(`%c${key}:`, 'font-weight: bold', diff.lhs, '->', diff.rhs)
       break
   }
@@ -34,6 +37,7 @@ function printLeaf(key: string | number, diff: TreeDiff) {
 
 export default function printDiff(value: TreeDiff | TreeDiff[] | undefined) {
   if (!value) {
+    // eslint-disable-next-line no-console
     console.log('state not changed')
     return
   }
@@ -41,8 +45,10 @@ export default function printDiff(value: TreeDiff | TreeDiff[] | undefined) {
   if (Array.isArray(value)) {
     value.forEach((e, index) => {
       if (!e._leaf) {
+        // eslint-disable-next-line no-console
         console.groupCollapsed(index)
         printDiff(e)
+        // eslint-disable-next-line no-console
         console.groupEnd()
       } else {
         printLeaf(index, e)
@@ -53,8 +59,10 @@ export default function printDiff(value: TreeDiff | TreeDiff[] | undefined) {
 
   Object.keys(value).forEach((key: string) => {
     if (!value[key]._leaf) {
+      // eslint-disable-next-line no-console
       console.groupCollapsed(key)
       printDiff(value[key])
+      // eslint-disable-next-line no-console
       console.groupEnd()
     } else {
       printLeaf(key, value[key])

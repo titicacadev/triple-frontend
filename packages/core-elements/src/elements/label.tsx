@@ -3,9 +3,10 @@ import styled, { css } from 'styled-components'
 import { ColorSet } from '@titicaca/color-palette'
 import CSS from 'csstype'
 
-import Container from './container'
 import { MarginPadding } from '../commons'
 import { marginMixin } from '../mixins'
+
+import Container from './container'
 
 export type LabelColor =
   | 'blue'
@@ -74,16 +75,17 @@ interface RadioLabelProps {
   margin?: MarginPadding
 }
 
+const backgroundImage = ({ selected }: RadioLabelProps) =>
+  `https://assets.triple.guide/images/img-search-select-${
+    selected ? 'on' : 'off'
+  }@4x.png`
 const RadioLabel = styled.div<RadioLabelProps>`
   display: inline-block;
   padding-left: 9px;
   font-size: 14px;
   line-height: 17px;
   color: ${({ selected }) => (selected ? '#3a3a3a' : 'rgba(58, 58, 58, 0.3)')};
-  background-image: url(${({ selected }) =>
-    `https://assets.triple.guide/images/img-search-select-${
-      selected ? 'on' : 'off'
-    }@4x.png`});
+  background-image: url('${backgroundImage}');
   background-size: 5px 5px;
   background-position: left center;
   background-repeat: no-repeat;

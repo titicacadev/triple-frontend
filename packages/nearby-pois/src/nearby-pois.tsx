@@ -131,7 +131,6 @@ export default function NearbyPois({
         trackSimpleEvent({
           action: '근처추천장소_탭선택',
           label: EVENT_LABELS[newTab as PoiType],
-          /* eslint-disable-next-line @typescript-eslint/camelcase */
           tab_name: EVENT_LABELS[newTab as PoiType],
         })
 

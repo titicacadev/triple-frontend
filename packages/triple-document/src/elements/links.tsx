@@ -12,6 +12,7 @@ import {
 import { ImageMeta } from '@titicaca/type-definitions'
 
 import { Link, LinkEventHandler } from '../types'
+
 import ResourceList from './shared/resource-list'
 
 const LinksContainer = styled.div<{ compact?: boolean }>`
@@ -140,7 +141,6 @@ function getDefaultImageUrl(image: ImageMeta | undefined) {
   }
 
   const sizes = image.sizes as {
-    // eslint-disable-next-line @typescript-eslint/camelcase
     small_square?: { url: string }
     smallSquare?: { url: string }
   }

@@ -155,21 +155,21 @@ export const rangeStyle = css`
 
 export function generateDateLabelStyle(selector: string, label: string) {
   return css`
-   ${selector} {
-    &:not(.DayPicker-Day--outside):before {
-      color: rgba(${getColor('blue')});
-      position: absolute;
-      top: 35px;
-      left: 0px;
-      display: inline-block;
-      font-size: 11px;
-      width: 100%;
-      transform: translateY(0px);
-      background-color: transparent;
-      height: auto !important;
-      content: '${label}';
+    ${selector} {
+      &:not(.DayPicker-Day--outside):before {
+        color: rgba(${getColor('blue')});
+        position: absolute;
+        top: 35px;
+        left: 0px;
+        display: inline-block;
+        font-size: 11px;
+        width: 100%;
+        transform: translateY(0px);
+        background-color: transparent;
+        height: auto !important;
+        content: '${label}';
+      }
     }
-   }
   `
 }
 

@@ -7,10 +7,14 @@ const MUTE_BUTTON_IMAGE_URL =
 const UNMUTE_BUTTON_IMAGE_URL =
   'https://assets.triple.guide/images/btn-video-volume-up@3x.png'
 
-const MuteUnmuteButtonBase = styled.button<{
+interface MuteUnmutButtonBaseProps {
   muted: boolean
   visible: boolean
-}>`
+}
+
+const backgroundImage = ({ muted }: MuteUnmutButtonBaseProps) =>
+  muted ? MUTE_BUTTON_IMAGE_URL : UNMUTE_BUTTON_IMAGE_URL
+const MuteUnmuteButtonBase = styled.button<MuteUnmutButtonBaseProps>`
   position: absolute;
   border: none;
   background: none;
@@ -18,8 +22,7 @@ const MuteUnmuteButtonBase = styled.button<{
   height: 36px;
   top: 3px;
   right: 3px;
-  background-image: url(${({ muted }) =>
-    muted ? MUTE_BUTTON_IMAGE_URL : UNMUTE_BUTTON_IMAGE_URL});
+  background-image: url(${backgroundImage});
   background-size: cover;
 
   &:focus {
@@ -43,7 +46,8 @@ export default function MuteUnmuteButton({
 }) {
   const [muted, setMuted] = useState(initialMuted)
   const [visible, setVisible] = useState(false)
-
+  // TODO: useDebouncedState 사용하기
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleFadeOut = useCallback(
     debounce(() => setVisible(false), 5000),
     [setVisible],

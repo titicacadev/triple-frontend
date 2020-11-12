@@ -55,6 +55,8 @@ function createNOOPFunctions(name: string) {
           'unscrapePoi',
         ].includes(name)
       ) {
+        // TODO: development 환경에서만 기록하는 logger 만들기
+        // eslint-disable-next-line no-console
         console.warn(`${name} is deprecated. Please use scrape instead.`)
       }
     }
@@ -261,6 +263,8 @@ export function ScrapsProvider({
       scrape,
       scrapeArticle: (id) => {
         if (process.env.NODE_ENV === 'development') {
+          // TODO: development 환경에서만 기록하는 logger 만들기
+          // eslint-disable-next-line no-console
           console.warn(
             'scrapeArticle is deprecated. Please use scrape instead.',
           )
@@ -269,6 +273,8 @@ export function ScrapsProvider({
       },
       scrapePoi: (id) => {
         if (process.env.NODE_ENV === 'development') {
+          // TODO: development 환경에서만 기록하는 logger 만들기
+          // eslint-disable-next-line no-console
           console.warn('scrapePoi is deprecated. Please use scrape instead.')
         }
         return scrape({ id, type: 'poi' })
@@ -277,6 +283,8 @@ export function ScrapsProvider({
       unscrape,
       unscrapeArticle: (id) => {
         if (process.env.NODE_ENV === 'development') {
+          // TODO: development 환경에서만 기록하는 logger 만들기
+          // eslint-disable-next-line no-console
           console.warn(
             'unscrapeArticle is deprecated. Please use scrape instead.',
           )
@@ -285,6 +293,8 @@ export function ScrapsProvider({
       },
       unscrapePoi: (id) => {
         if (process.env.NODE_ENV === 'development') {
+          // TODO: development 환경에서만 기록하는 logger 만들기
+          // eslint-disable-next-line no-console
           console.warn('unscrapePoi is deprecated. Please use scrape instead.')
         }
         return unscrape({ id, type: 'poi' })
@@ -300,6 +310,8 @@ export function useScrapsContext() {
   const { isDefault, ...rest } = useContext(Context)
 
   if (isDefault && process.env.NODE_ENV === 'development') {
+    // TODO: development 환경에서만 기록하는 logger 만들기
+    // eslint-disable-next-line no-console
     console.error('ScrapsProvider를 찾을 수 없습니다.')
   }
 

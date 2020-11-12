@@ -158,9 +158,7 @@ export function TnaProductsList({
       trackEvent({
         fa: {
           action: '투어티켓_노출',
-          /* eslint-disable-next-line @typescript-eslint/camelcase */
           slot_id: slotId,
-          /* eslint-disable-next-line @typescript-eslint/camelcase */
           tna_id: product.id,
           position: index,
         },
@@ -172,7 +170,6 @@ export function TnaProductsList({
   const handleShowMoreClick = useCallback(() => {
     trackSimpleEvent({
       action: '투어티켓_더보기',
-      /* eslint-disable-next-line @typescript-eslint/camelcase */
       slot_id: slotId,
     })
 

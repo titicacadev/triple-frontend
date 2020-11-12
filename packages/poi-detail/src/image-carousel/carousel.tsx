@@ -86,7 +86,6 @@ export default function Carousel({
           fa: {
             action,
             label,
-            /* eslint-disable-next-line @typescript-eslint/camelcase */
             ...(attachmentId ? { attachment_id: attachmentId } : {}),
           },
           ga: ['대표사진_스와이프'],

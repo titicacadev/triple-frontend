@@ -72,7 +72,8 @@ export default forwardRef(function Seeker(
   ref: React.Ref<HTMLInputElement>,
 ) {
   const [handleVisible, setHandleVisible] = useState(false)
-
+  // TODO: useDebouncedState 사용하기
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleHandleFadeOut = useCallback(
     debounce(() => setHandleVisible(false), 500),
     [setHandleVisible],

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Container } from '@titicaca/core-elements'
 
 import { TripleElementData, Link, LinkEventHandler } from '../types'
+
 import { Text } from './text'
 import Links from './links'
 
