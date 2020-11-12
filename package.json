@@ -13,6 +13,7 @@
     "lint-etc": "prettier --check '**/*.{json,md,yaml}'",
     "lint-etc-fix": "prettier --write '**/*.{json,md,yaml}'",
     "lint-es": "eslint '{docs,packages,tests/src}/**/*.{ts,tsx,js,mdx}'",
+    "lint-es-fix": "npm run lint-es -- --fix",
     "lint-style": "stylelint './**/*.{ts,tsx,js}'",
     "lint": "concurrently --names eslint,stylelint,jsonlint 'npm:lint-es' 'npm:lint-style' 'npm:lint-etc'",
     "test": "jest",
