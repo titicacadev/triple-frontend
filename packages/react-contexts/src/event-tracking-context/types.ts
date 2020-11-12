@@ -1,6 +1,6 @@
 export interface FAParams {
   category: string
-  event_name: string // eslint-disable-line @typescript-eslint/camelcase
+  event_name: string
   [key: string]: any
 }
 

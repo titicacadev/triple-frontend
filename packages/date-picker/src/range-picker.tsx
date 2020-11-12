@@ -28,23 +28,17 @@ const RangeContainer = styled(PickerFrame)<{
     css`
       ${rangeStyle}
 
-      ${
-        startDateLabel &&
-        generateDateLabelStyle('.DayPicker-Day--from', startDateLabel)
-      }
+      ${startDateLabel &&
+      generateDateLabelStyle('.DayPicker-Day--from', startDateLabel)}
 
-      ${
-        endDateLabel &&
-        generateDateLabelStyle('.DayPicker-Day--to', endDateLabel)
-      }
+      ${endDateLabel &&
+      generateDateLabelStyle('.DayPicker-Day--to', endDateLabel)}
 
-      ${
-        sameDateLabel &&
-        generateDateLabelStyle(
-          '.DayPicker-Day--from.DayPicker-Day--to',
-          sameDateLabel,
-        )
-      }
+      ${sameDateLabel &&
+      generateDateLabelStyle(
+        '.DayPicker-Day--from.DayPicker-Day--to',
+        sameDateLabel,
+      )}
     `}
 `
 

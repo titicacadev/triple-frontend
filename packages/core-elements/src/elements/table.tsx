@@ -2,9 +2,10 @@ import * as React from 'react'
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 
-import Text from './text'
 import { MarginPadding } from '../commons'
 import { paddingMixin } from '../mixins'
+
+import Text from './text'
 
 type TableType = 'vertical' | 'horizontal'
 

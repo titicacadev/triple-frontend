@@ -84,21 +84,15 @@ const TooltipFrame = styled.div<TooltipFrameProps>`
     css`
       position: absolute;
       ${typeof positioning.top === 'number' ? `top: ${positioning.top}px;` : ''}
-      ${
-        typeof positioning.right === 'number'
-          ? `right: ${positioning.right}px;`
-          : ''
-      }
-      ${
-        typeof positioning.bottom === 'number'
-          ? `bottom: ${positioning.bottom}px;`
-          : ''
-      }
-      ${
-        typeof positioning.left === 'number'
-          ? `left: ${positioning.left}px;`
-          : ''
-      }
+      ${typeof positioning.right === 'number'
+        ? `right: ${positioning.right}px;`
+        : ''}
+      ${typeof positioning.bottom === 'number'
+        ? `bottom: ${positioning.bottom}px;`
+        : ''}
+      ${typeof positioning.left === 'number'
+        ? `left: ${positioning.left}px;`
+        : ''}
     `}
 
   ${({ hasShadow }) => hasShadow && 'box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);'}

@@ -28,7 +28,6 @@ export default function PoiEntry({
           fa: {
             action: '근처추천장소_POI노출',
             label: `${eventLabel}_${index + 1}_${poi.id}`,
-            /* eslint-disable-next-line @typescript-eslint/camelcase */
             item_id: poi.id,
           },
         })

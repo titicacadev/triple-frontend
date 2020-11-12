@@ -119,6 +119,8 @@ export default function Controls({
     }
   }, [videoRef, handleDurationChange, handleTimeUpdate])
 
+  // TODO: useDebouncedState 사용하기
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleFadeOut = useCallback(
     debounce(() => setVisible(false), 2500),
     [setVisible],

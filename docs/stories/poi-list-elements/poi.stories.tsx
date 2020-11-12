@@ -98,11 +98,7 @@ export function TripleDocument() {
           undefined,
         )}
         onImpress={
-          boolean('onImpress', false)
-            ? () => {
-                console.log('노출')
-              }
-            : undefined
+          boolean('onImpress', false) ? action('onImpress') : undefined
         }
       />
     </>

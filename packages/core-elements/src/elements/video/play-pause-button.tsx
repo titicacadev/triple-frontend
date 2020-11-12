@@ -43,7 +43,8 @@ export default function PlayPauseButton({
 }) {
   const [playing, setPlaying] = useState(false)
   const [visible, setVisible] = useState(true)
-
+  // TODO: useDebouncedState 사용하기
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleFadeOut = useCallback(
     debounce(() => setVisible(false), 500),
     [setVisible],

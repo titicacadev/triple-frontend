@@ -214,7 +214,7 @@ function ReviewContainer({
       ga: ['리뷰_리뷰쓰기'],
       fa: {
         action: '리뷰_리뷰쓰기',
-        item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+        item_id: resourceId,
       },
     })
 
@@ -238,18 +238,16 @@ function ReviewContainer({
 
   const handleFullListButtonClick = (e: React.SyntheticEvent) => {
     const params = qs.stringify({
-      /* eslint-disable @typescript-eslint/camelcase */
       region_id: regionId,
       resource_id: resourceId,
       resource_type: resourceType,
       sorting_option: sortingOption,
-      /* eslint-disable @typescript-eslint/camelcase */
     })
     trackEvent({
       ga: ['리뷰_전체보기'],
       fa: {
         action: '리뷰_전체보기',
-        item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+        item_id: resourceId,
       },
     })
 
@@ -275,8 +273,8 @@ function ReviewContainer({
       ga: ['리뷰_리뷰정렬', eventLabel],
       fa: {
         action: '리뷰_리뷰정렬',
-        sort_order: eventLabel, // eslint-disable-line @typescript-eslint/camelcase
-        item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+        sort_order: eventLabel,
+        item_id: resourceId,
       },
     })
 
@@ -377,7 +375,7 @@ function ReviewContainer({
               ga: ['리뷰_여행자클럽선택'],
               fa: {
                 action: '리뷰_여행자클럽선택',
-                item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+                item_id: resourceId,
               },
             })
             e.preventDefault()

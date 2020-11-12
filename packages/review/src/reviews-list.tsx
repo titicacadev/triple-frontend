@@ -65,8 +65,8 @@ export default function ReviewsList({
       ga: ['리뷰 프로필'],
       fa: {
         action: '리뷰_프로필',
-        item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
-        user_id: uid, // eslint-disable-line @typescript-eslint/camelcase
+        item_id: resourceId,
+        user_id: uid,
         level,
       },
     })
@@ -132,7 +132,6 @@ export default function ReviewsList({
       sizes: {
         full: convertingImage.sizes.full,
         large: convertingImage.sizes.large,
-        /* eslint-disable-next-line @typescript-eslint/camelcase */
         small_square: convertingImage.sizes.smallSquare,
       },
     })

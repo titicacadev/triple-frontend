@@ -4,6 +4,7 @@ import * as CSS from 'csstype'
 
 import { GlobalSizes, MarginPadding } from '../../commons'
 import { marginMixin } from '../../mixins'
+
 import { useImageState } from './context'
 
 const IMAGE_HEIGHT_OPTIONS: Partial<Record<GlobalSizes, string>> = {

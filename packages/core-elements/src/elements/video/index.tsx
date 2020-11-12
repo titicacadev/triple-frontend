@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import { MEDIA_FRAME_OPTIONS, FrameRatioAndSizes } from '../../commons'
 import { formatMarginPadding } from '../../mixins'
+
 import Sources from './sources'
 import Controls from './controls'
 

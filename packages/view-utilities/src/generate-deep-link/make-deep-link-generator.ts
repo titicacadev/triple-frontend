@@ -41,7 +41,6 @@ export function makeDeepLinkGenerator({
   return ({ path, pid, campaign, adSet, ad, channel, partner }) => {
     const appLink = generateUrl({ scheme: appScheme, path })
 
-    /* eslint-disable @typescript-eslint/camelcase */
     const query = qs.stringify({
       af_dp: appLink,
       af_web_dp: webURLBase || appLink,
@@ -53,7 +52,6 @@ export function makeDeepLinkGenerator({
       af_channel: channel,
       af_prt: partner,
     })
-    /* eslint-enable @typescript-eslint/camelcase */
 
     return generateUrl({
       scheme: 'https',

@@ -39,7 +39,6 @@ export async function getAdBanners({
   regionId,
   userLocation: { latitude, longitude } = {},
 }: AdBannersFetchingParams) {
-  /* eslint-disable @typescript-eslint/camelcase */
   const search = qs.stringify({
     content_type: contentType,
     content_id: contentId,
@@ -48,7 +47,6 @@ export async function getAdBanners({
       ? { user_location: `${longitude},${latitude}` }
       : {}),
   })
-  /* eslint-enable @typescript-eslint/camelcase */
 
   const response = await fetch(
     `/api/inventories/content_details_ad_v0/items?${search}`,

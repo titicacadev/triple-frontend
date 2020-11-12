@@ -70,6 +70,7 @@ export function SessionContextProvider({
   )
 
   const logout = useCallback(() => {
+    // eslint-disable-next-line no-console
     console.warn("Not implemented yet! Let's make PR 🧑🏻‍💻")
   }, [])
 

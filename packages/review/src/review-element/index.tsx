@@ -11,10 +11,11 @@ import {
 } from '@titicaca/react-contexts'
 
 import { useReviewLikesContext } from '../review-likes-context'
+import { ReviewData, ImageEntity } from '../types'
+
 import User from './user'
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
-import { ReviewData, ImageEntity } from '../types'
 
 type ReviewEventHandler<T = Element, E = Event> = (
   e: React.SyntheticEvent<T, E>,
@@ -105,10 +106,10 @@ const LikeButton = styled.div<{ liked?: boolean }>`
   padding: 2px 20px;
   font-weight: bold;
   ${({ liked }) => css`
-  color: rgba(${liked ? '54, 143, 255, 1' : '58, 58, 58, 0.4'});
-  background-image: url('https://assets.triple.guide/images/btn-lounge-thanks-${
-    liked ? 'on' : 'off'
-  }@3x.png');
+    color: rgba(${liked ? '54, 143, 255, 1' : '58, 58, 58, 0.4'});
+    background-image: url('https://assets.triple.guide/images/btn-lounge-thanks-${liked
+      ? 'on'
+      : 'off'}@3x.png');
   `};
 `
 
@@ -143,10 +144,8 @@ export default function ReviewElement({
   })
   const handleSelectReview = (e: React.SyntheticEvent) => {
     const params = qs.stringify({
-      /* eslint-disable @typescript-eslint/camelcase */
       region_id: regionId,
       resource_id: resourceId,
-      /* eslint-disable @typescript-eslint/camelcase */
     })
     if (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) {
       e.preventDefault()
@@ -155,8 +154,8 @@ export default function ReviewElement({
         ga: ['리뷰_리뷰선택', resourceId],
         fa: {
           action: '리뷰_리뷰선택',
-          item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
-          review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
+          item_id: resourceId,
+          review_id: review.id,
         },
       })
 
@@ -194,7 +193,7 @@ export default function ReviewElement({
                     ga: ['리뷰_리뷰글더보기'],
                     fa: {
                       action: '리뷰_리뷰글더보기',
-                      item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+                      item_id: resourceId,
                     },
                   })
                   setUnfolded(true)
@@ -225,8 +224,8 @@ export default function ReviewElement({
                         ga: ['리뷰_리뷰사진썸네일'],
                         fa: {
                           action: '리뷰_리뷰사진썸네일',
-                          item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
-                          photo_id: media[0].id, // eslint-disable-line @typescript-eslint/camelcase
+                          item_id: resourceId,
+                          photo_id: media[0].id,
                         },
                       })
                       onImageClick(e, review, media[0])
@@ -251,8 +250,8 @@ export default function ReviewElement({
                           ga: ['리뷰_리뷰사진썸네일'],
                           fa: {
                             action: '리뷰_리뷰사진썸네일',
-                            item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
-                            photo_id: image.id, // eslint-disable-line @typescript-eslint/camelcase
+                            item_id: resourceId,
+                            photo_id: image.id,
                           },
                         })
                         onImageClick(e, review, image)
@@ -274,8 +273,8 @@ export default function ReviewElement({
                   ga: [actionName],
                   fa: {
                     action: actionName,
-                    review_id: review.id, // eslint-disable-line @typescript-eslint/camelcase
-                    item_id: resourceId, // eslint-disable-line @typescript-eslint/camelcase
+                    review_id: review.id,
+                    item_id: resourceId,
                   },
                 })
                 onLikeButtonClick(e, { ...review, liked })

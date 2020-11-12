@@ -115,7 +115,6 @@ function useAdBannerProps(props: AdBannersProps) {
           ...baseParams,
         })
 
-        /* eslint-disable @typescript-eslint/camelcase */
         trackEvent({
           fa: {
             action: 'V0_배너노출',
@@ -125,7 +124,6 @@ function useAdBannerProps(props: AdBannersProps) {
             poi_id: contentId,
           },
         })
-        /* eslint-enable @typescript-eslint/camelcase */
       },
       handleBannerClick: (banner: Banner, index: number) => {
         postAdBannerEvent({
@@ -134,7 +132,6 @@ function useAdBannerProps(props: AdBannersProps) {
           ...baseParams,
         })
 
-        /* eslint-disable @typescript-eslint/camelcase */
         trackEvent({
           fa: {
             action: 'V0_배너선택',
@@ -148,7 +145,6 @@ function useAdBannerProps(props: AdBannersProps) {
             `${title}_${contentId}_${banner.id}_${banner.desc}_${banner.target}`,
           ],
         })
-        /* eslint-enable @typescript-eslint/camelcase */
 
         navigate(banner.target)
       },

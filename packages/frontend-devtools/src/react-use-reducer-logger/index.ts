@@ -5,9 +5,11 @@ import printDiff from './print-diff'
 
 function loggerMiddleware<R extends Reducer<any, any>>(next: R) {
   return ((state, action) => {
+    // eslint-disable-next-line no-console
     console.group('Action:', action)
     const nextState = next(state, action)
     printDiff(diff(state, nextState))
+    // eslint-disable-next-line no-console
     console.groupEnd()
 
     return nextState

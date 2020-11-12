@@ -48,11 +48,9 @@ export default function MyReviewActionSheet({
 
   const handleEditMenuClick = () => {
     const params = qs.stringify({
-      /* eslint-disable @typescript-eslint/camelcase */
       region_id: regionId,
       resource_type: resourceType,
       resource_id: resourceId,
-      /* eslint-enable @typescript-eslint/camelcase */
     })
     window.location.href = `${appUrlScheme}:///reviews/edit?${params}`
   }
