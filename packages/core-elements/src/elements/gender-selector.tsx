@@ -12,7 +12,6 @@ interface GenderSelectorProps {
   onChange?: (e: React.SyntheticEvent, arg1: string) => any
 }
 
-// eslint-disable-next-line no-unexpected-multiline
 const GenderContainer = styled.div<{
   name?: string
   value?: string

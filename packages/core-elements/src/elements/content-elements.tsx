@@ -40,7 +40,6 @@ export const ResourceListItem = styled(List.Item)`
   cursor: pointer;
 `
 
-// eslint-disable-next-line no-unexpected-multiline
 export const SquareImage = styled.img<{
   size?: 'small' | 'medium'
   borderRadius?: number

@@ -26,7 +26,6 @@ const INACTIVE_EXPANDER_ICON_URL =
   'https://assets.triple.guide/images/ico-category-select.svg'
 const PRIMARY_ICON_URL = 'https://assets.triple.guide/images/ico-filter-cal.svg'
 
-// eslint-disable-next-line no-unexpected-multiline
 const ExpandingFilterEntryFrame = styled(FilterEntryBase)<{
   active?: boolean
 }>`
@@ -90,7 +89,6 @@ function ExpandingFilterEntry({
   )
 }
 
-// eslint-disable-next-line no-unexpected-multiline
 const RegularFilterEntry = styled(FilterEntryBase)<{
   active?: boolean
   withIcon?: boolean

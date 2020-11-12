@@ -8,7 +8,6 @@ import {
 } from '@titicaca/core-elements'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 
-// eslint-disable-next-line no-unexpected-multiline
 const RecommendedContentsContainer = styled.ul<{
   margin?: MarginPadding
 }>`
@@ -22,7 +21,6 @@ const RecommendedContentsContainer = styled.ul<{
     `};
 `
 
-// eslint-disable-next-line no-unexpected-multiline
 const RecommendedContentWithDesktopResolution = styled.li<{
   backgroundImageUrl: string
 }>`

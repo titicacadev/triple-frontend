@@ -106,7 +106,6 @@ const reducer = (
   },
   action: { type: ActionType; id: string },
 ) => {
-  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
   const { [action.id]: _, ...restUpdating } = updating
 
   switch (action.type) {

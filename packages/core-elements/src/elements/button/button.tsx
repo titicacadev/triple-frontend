@@ -102,7 +102,6 @@ const COMPACT_NORMAL_PADDINGS: Partial<Record<GlobalSizes, MarginPadding>> = {
   tiny: { top: 9, bottom: 9, left: 15, right: 15 },
 }
 
-// eslint-disable-next-line no-unexpected-multiline
 const NormalButton = styled(ButtonBase)<{
   borderRadius: number
   color?: Color
