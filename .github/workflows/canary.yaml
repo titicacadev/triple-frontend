@@ -58,7 +58,7 @@ jobs:
             -f --request POST \
             -d "{\"content\":\"+1\"}"
           curl -v \
-            --url https://api.github.com/repos/${{ github.repository }}/issues/${PR_NUMBER}/comments \
+            --url https://api.github.com/repos/${{ github.repository }}/issues/${{ env.NUMBER }}/comments \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Content-Type: application/json" \
             -f --request POST \
@@ -119,19 +119,19 @@ jobs:
         run: |
           git stash
           git fetch --unshallow
-          git checkout $PR_SHORT_SHA
+          git checkout ${{ env.PR_SHORT_SHA }}
 
           NEXT_VERSION=$(node -e "const [major, minor, patch] = require('./lerna.json').version.split('.');console.log(['v'+major, minor, parseInt(patch, 10) + 1].join('.'))")
           REF_COUNT=$(node -p -e "Math.max(0, parseInt((\"$(git describe --always --long --dirty --match "v*.*.*")\".match(/^(?:.*@)?.*-(\d+)-.*?$/) || ['0', '0'])[1], 10) - 1)")
 
-          echo "CANARY_VERSION=$NEXT_VERSION-pr-$PR_NUMBER.$REF_COUNT" >> GITHUB_ENV
+          echo "CANARY_VERSION=$NEXT_VERSION-pr-${{ env.PR_NUMBER }}.$REF_COUNT" >> GITHUB_ENV
 
-          echo $CANARY_VERSION
+          echo ${{ env.CANARY_VERSION }}
 
       - name: Notify canary publish start to slack
         env:
           SLACK_TITLE: ':rocket: Canary publish Started'
-          SLACK_TOPIC: '$CANARY_VERSION'
+          SLACK_TOPIC: '${{ env.CANARY_VERSION }}'
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npx @titicaca/gha-tools notify
@@ -146,7 +146,7 @@ jobs:
         if: success()
         env:
           SLACK_TITLE: ':tada: Canary publish Succeed'
-          SLACK_TOPIC: '$CANARY_VERSION'
+          SLACK_TOPIC: '${{ env.CANARY_VERSION }}'
           SLACK_COLOR: good
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
@@ -155,7 +155,7 @@ jobs:
           curl -f --request POST --url https://api.github.com/repos/${{ github.repository }}/git/tags \
             -H 'Authorization: token ${{ secrets.GHA_TOKEN }}' \
             -H 'Content-Type: application/json' \
-            -d "{\"tag\":\"${TAG_NAME}\",\"message\":\"`v$CANARY_VERSION`\",\"object\":\"$PR_SHA\",\"type\":\"commit\"}" > tag.json
+            -d "{\"tag\":\"${TAG_NAME}\",\"message\":\"`v${{ env.CANARY_VERSION }}`\",\"object\":\"${{ env.PR_SHA }}\",\"type\":\"commit\"}" > tag.json
 
           TAG_SHA="$(node -p -e 'require(`./tag.json`).sha')"
 
