@@ -1,5 +1,5 @@
 {
-  "extends": ["@titicaca/eslint-config-triple/typescript"],
+  "extends": ["@titicaca/eslint-config-triple/typescript", "./.eslintrc.naming-convention.js"],
   "env": {
     "jest": true
   }
