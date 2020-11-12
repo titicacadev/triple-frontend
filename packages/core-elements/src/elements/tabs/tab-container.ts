@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components'
 
-// eslint-disable-next-line no-unexpected-multiline
 const TabContainer = styled.div<{
   active?: boolean
   scroll?: boolean

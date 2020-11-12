@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components'
 
-// eslint-disable-next-line no-unexpected-multiline
 const Responsive = styled.div<{
   inline?: boolean
   maxWidth?: number

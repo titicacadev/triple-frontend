@@ -5,7 +5,6 @@ import { MarginPadding } from '../commons'
 import { marginMixin, paddingMixin } from '../mixins'
 import { shadowMixin, KeyOfShadowSize, ShadowMixinProps } from '../mixins/box'
 
-// eslint-disable-next-line no-unexpected-multiline
 export const Segment = styled.div<{
   margin?: MarginPadding
   padding?: MarginPadding

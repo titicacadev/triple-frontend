@@ -21,7 +21,6 @@ const IMAGE_PREFIXES: Partial<Record<GlobalSizes, string>> = {
   medium: 'https://assets.triple.guide/images/img-review-star-medium',
 }
 
-// eslint-disable-next-line no-unexpected-multiline
 const RatingStar = styled.span<{
   verticalAlign?: CSS.Property.VerticalAlign<string>
   size?: GlobalSizes

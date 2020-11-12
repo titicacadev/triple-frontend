@@ -120,7 +120,6 @@ type NavbarItemProps = {
   position?: CSS.Property.Position
 }
 
-// eslint-disable-next-line no-unexpected-multiline
 const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
   className: ['back', 'close'].includes(icon || '')
     ? FALLBACK_ACTION_CLASS_NAME
