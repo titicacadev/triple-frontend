@@ -29,7 +29,7 @@ export default function CSFooter({
   csMessage?: string
   data?: { [key: string]: string | number | boolean | undefined }
   appUrlScheme: string
-  showCSButton: boolean
+  showCSButton?: boolean
   onFAQButtonClick?: () => void
   onCSButtonClick?: () => void
 }) {
