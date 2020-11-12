@@ -58,7 +58,7 @@ jobs:
             -f --request POST \
             -d "{\"content\":\"+1\"}"
           curl -v \
-            --url https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments \
+            --url https://api.github.com/repos/${{ github.repository }}/issues/${PR_NUMBER}/comments \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Content-Type: application/json" \
             -f --request POST \
