@@ -5,6 +5,7 @@ import React, {
   useEffect,
   useRef,
   useState,
+  MouseEventHandler,
 } from 'react'
 import styled, { css } from 'styled-components'
 import {
@@ -41,6 +42,7 @@ export default function FullScreenSearchView({
   onEnter = () => {},
   onInputChange = () => {},
   onBackClick = () => {},
+  onInputClick,
   placeholder,
   defaultKeyword,
   keyword: controlledKeyword,
@@ -51,6 +53,7 @@ export default function FullScreenSearchView({
     onAutoComplete?: (keyword: string) => void
     onEnter?: (keyword: string) => void
     onInputChange?: (keyword: string) => void
+    onInputClick?: MouseEventHandler<HTMLInputElement>
     onBackClick?: () => void
     placeholder?: string
     defaultKeyword?: string
@@ -142,6 +145,7 @@ export default function FullScreenSearchView({
         onBackClick={handleBack}
         onDeleteClick={handleDelete}
         onInputChange={handleChange}
+        onInputClick={onInputClick}
         onKeyUp={(e: KeyboardEvent) => handleKeyUp(e.keyCode)}
         onSearch={() => keyword && onEnter(keyword)}
         inputRef={inputRef}
