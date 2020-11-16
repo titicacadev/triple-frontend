@@ -60,12 +60,21 @@ interface InputProps {
   onBlur?: (e: React.SyntheticEvent) => void
   onFocus?: (e: React.SyntheticEvent) => void
   onKeyUp?: (e: React.KeyboardEvent) => void
+  onClick?: React.MouseEventHandler<HTMLInputElement>
   value?: string
 }
 
 const Input = React.forwardRef(
   (
-    { placeholder, onInputChange, onBlur, onFocus, onKeyUp, value }: InputProps,
+    {
+      placeholder,
+      onInputChange,
+      onBlur,
+      onFocus,
+      onKeyUp,
+      value,
+      onClick,
+    }: InputProps,
     ref?: React.Ref<HTMLInputElement>,
   ) => (
     <InputText
@@ -74,6 +83,7 @@ const Input = React.forwardRef(
       onBlur={(e) => onBlur && onBlur(e)}
       onFocus={(e) => onFocus && onFocus(e)}
       onKeyUp={(e) => onKeyUp && onKeyUp(e)}
+      onClick={onClick}
       value={value}
       ref={ref}
     />
@@ -86,6 +96,7 @@ export default function SearchNavbar({
   placeholder,
   onBackClick,
   onDeleteClick,
+  onInputClick,
   onInputChange,
   onKeyUp,
   onBlur,
@@ -97,6 +108,7 @@ export default function SearchNavbar({
   ...rest
 }: {
   onSearch: () => void
+  onInputClick?: React.MouseEventHandler<HTMLInputElement>
   onBackClick: (event: React.SyntheticEvent) => void
   onDeleteClick?: (event: React.SyntheticEvent) => void
   inputRef?: React.Ref<HTMLInputElement>
@@ -116,6 +128,7 @@ export default function SearchNavbar({
         onFocus={onFocus}
         value={value}
         ref={inputRef}
+        onClick={onInputClick}
       />
       <DeleteIcon icon="delete" onClick={onDeleteClick} visible={!!value} />
       <SearchIcon icon="search" onClick={onSearch} visible={!!value} />

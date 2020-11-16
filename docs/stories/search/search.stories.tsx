@@ -19,6 +19,8 @@ export function uncontrolledExample() {
       onInputChange={action('onInputChange')}
       placeholder={text('Placeholder', '“항공권 예약” 도시이름으로 검색')}
       borderless={boolean('borderless', false)}
+      onInputClick={action('onClick')}
+      onBackClick={action('onBackClick')}
     />
   )
 }
@@ -41,6 +43,7 @@ function ControlledExampleComponent() {
         onInputChange={setKeyword}
         placeholder={text('Placeholder', '“항공권 예약” 도시이름으로 검색')}
         borderless={boolean('borderless', false)}
+        onInputClick={action('onClick')}
       />
       <Button onClick={() => setKeyword('')}>Clear</Button>
     </>
@@ -83,6 +86,7 @@ function APIUsageExampleComponent() {
       defaultKeyword={text('defaultKeyword', '')}
       placeholder={text('Placeholder', '“항공권 예약” 도시이름으로 검색')}
       borderless={boolean('borderless', false)}
+      onInputClick={action('onClick')}
     >
       <Section padding={{ left: 10, right: 10 }}>
         {results.map((result) => (
