@@ -103,7 +103,7 @@ export class EventTrackingProvider extends React.PureComponent<
       }
 
       if (hasAccessibleTripleNativeClients()) {
-        nativeTrackScreen(path)
+        nativeTrackScreen(path, label)
       }
     } catch (error) {
       const {
