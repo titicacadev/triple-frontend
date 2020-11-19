@@ -23,7 +23,7 @@ import CopyActionSheet from './copy-action-sheet'
 const LongClickableSection = longClickable(Section)
 
 interface Area {
-  id: number
+  id: number | string
   name: string
 }
 
