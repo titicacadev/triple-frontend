@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 2.2.0
+
+### Search
+
+- 검색 컴포넌트에 인풋 클릭 핸들러 prop을 추가합니다. (#1052)
+
+### common
+
+- eslint-config-triple 최신 버전을 설치합니다. (#1054)
+
+### react-context
+
+- label를 추가합니다. (#1056)
+
 ## 2.1.0
 
 ### common
