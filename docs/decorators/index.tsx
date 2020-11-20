@@ -1,6 +1,10 @@
 import React from 'react'
 import { StoryFn } from '@storybook/addons'
-import { HistoryProvider } from '@titicaca/react-contexts'
+import {
+  HistoryProvider,
+  SessionContextProvider,
+} from '@titicaca/react-contexts'
+import { boolean } from '@storybook/addon-knobs'
 
 export function historyProviderDecorator(storyFn: StoryFn<JSX.Element>) {
   return (
@@ -13,5 +17,16 @@ export function historyProviderDecorator(storyFn: StoryFn<JSX.Element>) {
     >
       {storyFn()}
     </HistoryProvider>
+  )
+}
+
+export function sessionContextProviderDecorator(storyFn: StoryFn<JSX.Element>) {
+  return (
+    <SessionContextProvider
+      sessionId={boolean('hasSessionId', false) ? 'MOCK_SESSION_ID' : undefined}
+      authBasePath="MOCK_AUTH_BASE_PATH"
+    >
+      {storyFn()}
+    </SessionContextProvider>
   )
 }
