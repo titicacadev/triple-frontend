@@ -170,8 +170,6 @@ export default function ReviewsList({
             isMyReview={!!(myReview && myReview.id === review.id)}
             key={review.id}
             index={i}
-            regionId={regionId}
-            appUrlScheme={appUrlScheme}
             review={review}
             reviewRateDescriptions={reviewRateDescriptions}
             onUserClick={isPublic ? undefined : handleUserClick}
@@ -183,6 +181,13 @@ export default function ReviewsList({
             resourceId={resourceId}
             DateFormatter={ReviewTimestamp}
             onShow={handleShow}
+            onMoveToDetail={(reviewId) => {
+              const params = qs.stringify({
+                region_id: regionId,
+                resource_id: resourceId,
+              })
+              window.location.href = `${appUrlScheme}:///reviews/${reviewId}/detail?${params}`
+            }}
           />
         ))}
       </List>
