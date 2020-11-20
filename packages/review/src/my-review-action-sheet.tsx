@@ -1,5 +1,4 @@
 import React, { SyntheticEvent } from 'react'
-import qs from 'qs'
 import ActionSheet from '@titicaca/action-sheet'
 import { Confirm } from '@titicaca/modals'
 import {
@@ -13,16 +12,9 @@ import { ResourceType, ReviewData, ReviewDeleteHandler } from './types'
 
 interface MyReviewActionSheetProps {
   myReview: ReviewData
-  appUrlScheme: string
-  regionId?: string
   resourceType: ResourceType
   resourceId: string
   notifyReviewDeleted: (resourceId: string, reviewId: string) => void
-  /**
-   * @deprecated 리뷰 작성 함수를 자체 구현하면
-   * 다양한 방어 로직을 중복 구현하게 됩니다.
-   * 이 prop을 사용하지 말아주세요.
-   */
   onReviewEdit?: (e?: SyntheticEvent) => void
   onReviewDelete?: ReviewDeleteHandler
 }
@@ -34,8 +26,6 @@ const HASH_DELETION_MODAL = 'common.reviews-list.deletion-modal'
 
 export default function MyReviewActionSheet({
   myReview,
-  appUrlScheme,
-  regionId,
   resourceType,
   resourceId,
   notifyReviewDeleted,
@@ -45,15 +35,6 @@ export default function MyReviewActionSheet({
   const uriHash = useURIHash()
   const { replace, back } = useHistoryFunctions()
   const { deleteMyReview } = useMyReviewsContext()
-
-  const handleEditMenuClick = () => {
-    const params = qs.stringify({
-      region_id: regionId,
-      resource_type: resourceType,
-      resource_id: resourceId,
-    })
-    window.location.href = `${appUrlScheme}:///reviews/edit?${params}`
-  }
 
   const handleDeleteMenuClick = () => {
     replace(HASH_DELETION_MODAL)
@@ -81,10 +62,7 @@ export default function MyReviewActionSheet({
         zTier={3}
       >
         {!myReview.blindedAt ? (
-          <ActionSheet.Item
-            icon="review"
-            onClick={onReviewEdit || handleEditMenuClick}
-          >
+          <ActionSheet.Item icon="review" onClick={onReviewEdit}>
             수정하기
           </ActionSheet.Item>
         ) : null}

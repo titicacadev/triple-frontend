@@ -401,15 +401,25 @@ function ReviewContainer({
       {myReview ? (
         <MyReviewActionSheet
           myReview={myReview}
-          appUrlScheme={appUrlScheme}
-          regionId={regionId}
           resourceType={resourceType}
           resourceId={resourceId}
           notifyReviewDeleted={(resourceId, reviewId) => {
             reviewId === myReview.id && setMyReview(null)
             notifyReviewDeleted(resourceId, reviewId)
           }}
-          onReviewEdit={onReviewWrite}
+          onReviewEdit={() => {
+            if (onReviewWrite) {
+              onReviewWrite()
+              return
+            }
+
+            const params = qs.stringify({
+              region_id: regionId,
+              resource_type: resourceType,
+              resource_id: resourceId,
+            })
+            window.location.href = `${appUrlScheme}:///reviews/edit?${params}`
+          }}
           onReviewDelete={onReviewDelete}
         />
       ) : null}
