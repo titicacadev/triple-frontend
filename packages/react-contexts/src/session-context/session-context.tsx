@@ -11,6 +11,8 @@ import React, {
 } from 'react'
 import { SESSION_KEY } from '@titicaca/constants'
 
+import { useEnv } from '../env-context'
+
 interface SessionContextValue {
   /** x-soto-session 쿠키 정보 유무 */
   hasSessionId: boolean
@@ -53,10 +55,35 @@ function safeReturnUrl(returnUrl?: string) {
 
 export function SessionContextProvider({
   sessionId,
-  authBasePath,
+  authBasePath: authBasePathFromProps,
   children,
-}: PropsWithChildren<{ sessionId?: string; authBasePath: string }>) {
+}: PropsWithChildren<{
+  sessionId?: string
+  /**
+   * @deprecated env context를 사용하세요.
+   */
+  authBasePath?: string
+}>) {
+  const { authBasePath: authBasePathFromContext } = useEnv()
   const hasSessionId = Boolean(sessionId)
+
+  const authBasePath = useMemo(() => {
+    if (authBasePathFromContext) {
+      return authBasePathFromContext
+    }
+    if (typeof authBasePathFromProps === 'string') {
+      // TODO: 개발용 logger 만들기
+      if (process.env.NODE_ENV === 'development') {
+        // eslint-disable-next-line no-console
+        console.warn(
+          'authBasePath prop은 deprecate되었습니다.\n다음 메이저 버전부터 env context를 사용해야 합니다.',
+        )
+      }
+
+      return authBasePathFromProps
+    }
+    throw new Error('authBasePath를 구할 수 없습니다.')
+  }, [authBasePathFromContext, authBasePathFromProps])
 
   const login = useCallback(
     (options?: AuthOptions) => {
