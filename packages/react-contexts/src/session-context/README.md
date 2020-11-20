@@ -18,12 +18,13 @@ export default Page() {
   }
 
   return (
-    <SessionContextProvider
-      authBasePath={process.env.NEXT_PUBLIC_AUTH_WEB_BASE_PATH}
-      sessionId={sessionId}
-    >
-      <User />
-    </SessionContextProvider>
+    <EnvProvider authBasePath={process.env.NEXT_PUBLIC_AUTH_WEB_BASE_PATH}>
+      <SessionContextProvider
+        sessionId={sessionId}
+      >
+        <User />
+      </SessionContextProvider>
+    </EnvProvider>
   )
 }
 ```
