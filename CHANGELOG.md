@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## Unreleased
+
+### react-contexts
+
+- 환경 변수를 공급하는 context 추가. `EnvProvider`, `useEnv` (#1059)
+- `HistoryProvider`에 env context 적용 및 `appUrlScheme`, `webUrlBase` prop deprecate 처리 (#1059)
+- `SessionContextProvider`에 env context 적용 및 `authBasePath` prop deprecate 처리 (#1059)
+
+### reviews
+
+- env context 적용 및 `ReviewContainer`의 `appUrlScheme` prop deprecate 처리 (#1059)
+
+### footer
+
+- `CSFooter`에 env context 적용 및 `appUrlScheme` prop deprecate 처리 (#1059)
+
+### meta-tags
+
+- `AppleSmartBannerMeta`와 `FacebookAppLinkMeta`에 env context 적용 및 `appUrlScheme` prop deprecate 처리 (#1059)
+
 ## 2.3.1
 
 ### ui-flow
