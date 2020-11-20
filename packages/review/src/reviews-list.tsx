@@ -188,8 +188,10 @@ export default function ReviewsList({
       </List>
 
       <OthersReviewActionSheet
-        appUrlScheme={appUrlScheme}
         selectedReview={selectedReview}
+        onReportReview={(reviewId) => {
+          window.location.href = `${appUrlScheme}:///reviews/${reviewId}/report`
+        }}
       />
     </>
   )
