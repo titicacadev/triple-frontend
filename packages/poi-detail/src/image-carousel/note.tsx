@@ -33,7 +33,9 @@ export function BusinessHoursNote({
   todayBusinessHours,
   onClick,
 }: {
-  currentBusinessHours?: string
+  currentBusinessHours?:
+    | string
+    | { from: number; to: number; dayOfWeek: number }
   todayBusinessHours?: string
   onClick: () => void
 }) {
