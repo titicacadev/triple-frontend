@@ -1,6 +1,7 @@
 import React from 'react'
 import { fireEvent, render } from '@testing-library/react'
 import {
+  EnvProvider,
   HistoryProvider,
   SessionContextProvider,
 } from '@titicaca/react-contexts'
@@ -18,11 +19,15 @@ function OpenLoginModal() {
 
 function Wrappers({ children }) {
   return (
-    <SessionContextProvider>
-      <HistoryProvider appUrlScheme="triple" webUrlBase="https://triple.guide">
-        {children}
-      </HistoryProvider>
-    </SessionContextProvider>
+    <EnvProvider
+      appUrlScheme="triple"
+      webUrlBase="https://triple.guide"
+      authBasePath="MOCK_AUTH_BASE_PATH"
+    >
+      <SessionContextProvider>
+        <HistoryProvider>{children}</HistoryProvider>
+      </SessionContextProvider>
+    </EnvProvider>
   )
 }
 
