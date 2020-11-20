@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from 'react'
+import React from 'react'
 import ActionSheet from '@titicaca/action-sheet'
 import { Confirm } from '@titicaca/modals'
 import {
@@ -15,7 +15,7 @@ interface MyReviewActionSheetProps {
   resourceType: ResourceType
   resourceId: string
   notifyReviewDeleted: (resourceId: string, reviewId: string) => void
-  onReviewEdit?: (e?: SyntheticEvent) => void
+  onReviewEdit?: () => void
   onReviewDelete?: ReviewDeleteHandler
 }
 
