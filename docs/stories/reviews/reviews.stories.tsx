@@ -7,9 +7,10 @@ import { Reviews, ReviewLikesProvider } from '@titicaca/review'
 import {
   UserAgentProvider,
   generateUserAgentValues,
-  HistoryProvider,
   SessionContextProvider,
 } from '@titicaca/react-contexts'
+
+import { historyProviderDecorator } from '../../decorators'
 
 export default {
   title: 'Reviews | Reviews',
@@ -45,11 +46,7 @@ export default {
         {storyFn()}
       </UserAgentProvider>
     ),
-    (storyFn: StoryFn<JSX.Element>) => (
-      <HistoryProvider appUrlScheme="" webUrlBase="">
-        {storyFn()}
-      </HistoryProvider>
-    ),
+    historyProviderDecorator,
     (storyFn: StoryFn<JSX.Element>) => (
       <SessionContextProvider authBasePath="">
         {storyFn()}

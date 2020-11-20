@@ -2,13 +2,11 @@ import React from 'react'
 import { number, text, select, boolean } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { StoryFn } from '@storybook/addons'
-import {
-  HistoryProvider,
-  EventTrackingProvider,
-  DeviceProvider,
-} from '@titicaca/react-contexts'
+import { EventTrackingProvider, DeviceProvider } from '@titicaca/react-contexts'
 import { ListDirection, AdBanners } from '@titicaca/ad-banners'
 import styled from 'styled-components'
+
+import { historyProviderDecorator } from '../../decorators'
 
 const CONTENT_TYPE_SET = {
   air: 'air',
@@ -24,6 +22,7 @@ const LongContent = styled.div`
 
 export default {
   title: 'ad-banners | AdBanners',
+  decorators: [historyProviderDecorator],
 }
 
 function ProviderWrapper({ children }: { children: React.ReactNode }) {
@@ -36,15 +35,7 @@ function ProviderWrapper({ children }: { children: React.ReactNode }) {
       }}
     >
       <EventTrackingProvider pageLabel="광고 배너 테스트">
-        <HistoryProvider
-          appUrlScheme=""
-          webUrlBase=""
-          isPublic={false}
-          isAndroid={false}
-          transitionModalHash="transition.general"
-        >
-          <div>{children}</div>
-        </HistoryProvider>
+        <div>{children}</div>
       </EventTrackingProvider>
     </DeviceProvider>
   )

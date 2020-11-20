@@ -1,9 +1,11 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
 import { boolean } from '@storybook/addon-knobs'
-import { HistoryProvider, UserAgentProvider } from '@titicaca/react-contexts'
+import { UserAgentProvider } from '@titicaca/react-contexts'
 import LocationProperties from '@titicaca/location-properties'
 import { StoryFn } from '@storybook/addons'
+
+import { historyProviderDecorator } from '../../decorators'
 
 export default {
   title: 'Location-Properties | LocationProperties',
@@ -51,21 +53,17 @@ BaseLocationProperties.story = {
   name: '기본 LocationProperties',
   decorators: [
     (storyFn: StoryFn<JSX.Element>) => (
-      <HistoryProvider
-        appUrlScheme="dev-soto"
-        webUrlBase="https://triple-dev.titicaca-corp.com"
+      <UserAgentProvider
+        value={{
+          isPublic: boolean('isPublic', true),
+          isMobile: true,
+          os: {},
+          app: null,
+        }}
       >
-        <UserAgentProvider
-          value={{
-            isPublic: boolean('isPublic', true),
-            isMobile: true,
-            os: {},
-            app: null,
-          }}
-        >
-          <div>{storyFn()}</div>
-        </UserAgentProvider>
-      </HistoryProvider>
+        <div>{storyFn()}</div>
+      </UserAgentProvider>
     ),
+    historyProviderDecorator,
   ],
 }
