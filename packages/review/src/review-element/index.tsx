@@ -5,7 +5,6 @@ import React, {
   ComponentType,
 } from 'react'
 import styled, { css } from 'styled-components'
-import qs from 'qs'
 import * as CSS from 'csstype'
 import semver from 'semver'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
@@ -33,8 +32,6 @@ export interface ReviewElementProps {
   review: ReviewData
   isMyReview: boolean
   index: number
-  regionId?: string
-  appUrlScheme: string
   onUserClick?: ReviewEventHandler
   onUnfoldButtonClick?: ReviewEventHandler
   onLikeButtonClick: ReviewEventHandler
@@ -50,6 +47,7 @@ export interface ReviewElementProps {
   menuVisible?: boolean
   DateFormatter?: ComponentType<{ date: string }>
   resourceId: string
+  onMoveToDetail: (reviewId: string) => void
 }
 
 const MetaContainer = styled.div`
@@ -125,8 +123,6 @@ export default function ReviewElement({
   review,
   isMyReview,
   index,
-  regionId,
-  appUrlScheme,
   onUserClick,
   onUnfoldButtonClick,
   onLikeButtonClick,
@@ -138,6 +134,7 @@ export default function ReviewElement({
   DateFormatter,
   reviewRateDescriptions,
   resourceId,
+  onMoveToDetail,
 }: ReviewElementProps) {
   const [unfolded, setUnfolded] = useState(false)
   const { deriveCurrentStateAndCount } = useReviewLikesContext()
@@ -155,10 +152,6 @@ export default function ReviewElement({
     useSessionCallback(
       useCallback(
         (e: React.SyntheticEvent) => {
-          const params = qs.stringify({
-            region_id: regionId,
-            resource_id: resourceId,
-          })
           if (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) {
             e.preventDefault()
             e.stopPropagation()
@@ -171,10 +164,10 @@ export default function ReviewElement({
               },
             })
 
-            window.location.href = `${appUrlScheme}:///reviews/${review.id}/detail?${params}`
+            onMoveToDetail(review.id)
           }
         },
-        [trackEvent, regionId, resourceId, appUrlScheme, review, appVersion],
+        [appVersion, trackEvent, resourceId, review.id, onMoveToDetail],
       ),
     ),
   )
