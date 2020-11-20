@@ -1,12 +1,39 @@
 import { useMemo } from 'react'
 import qs from 'qs'
-import { useHistoryFunctions } from '@titicaca/react-contexts'
+import { useHistoryFunctions, useEnv } from '@titicaca/react-contexts'
 
 import { ResourceType } from './types'
 import { writeReview } from './review-api-clients'
 
-export function useClientActions({ appUrlScheme }: { appUrlScheme: string }) {
+export function useClientActions({
+  appUrlScheme: appUrlSchemeFromProps,
+}: {
+  /**
+   * @deprecated env context를 사용하면 생략 가능
+   */
+  appUrlScheme?: string
+}) {
+  const { appUrlScheme: appUrlSchemeFromContext } = useEnv()
   const { navigate } = useHistoryFunctions()
+
+  const appUrlScheme = useMemo(() => {
+    if (appUrlSchemeFromContext) {
+      return appUrlSchemeFromContext
+    }
+    if (typeof appUrlSchemeFromProps === 'string') {
+      // TODO: 개발용 logger 만들기
+      if (process.env.NODE_ENV === 'development') {
+        // eslint-disable-next-line no-console
+        console.warn(
+          'appUrlScheme prop은 deprecate되었습니다.\n다음 메이저 버전부터 env context를 사용해야 합니다.',
+        )
+      }
+
+      return appUrlSchemeFromProps
+    }
+
+    throw new Error('appUrlScheme을 구할 수 없습니다.')
+  }, [appUrlSchemeFromContext, appUrlSchemeFromProps])
 
   return useMemo(() => {
     return {
