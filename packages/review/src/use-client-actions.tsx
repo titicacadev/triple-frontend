@@ -3,34 +3,21 @@ import qs from 'qs'
 import { useHistoryFunctions } from '@titicaca/react-contexts'
 
 import { ResourceType } from './types'
+import { writeReview } from './review-api-clients'
 
 export function useClientActions({ appUrlScheme }: { appUrlScheme: string }) {
   const { navigate } = useHistoryFunctions()
 
   return useMemo(() => {
     return {
-      writeReview({
-        resourceType,
-        resourceId,
-        regionId,
-        rating = 0,
-        photoFirst,
-      }: {
+      writeReview(params: {
         resourceType: ResourceType
         resourceId: string
         regionId?: string
         rating?: number
         photoFirst?: boolean
       }) {
-        const params = qs.stringify({
-          region_id: regionId,
-          resource_type: resourceType,
-          resource_id: resourceId,
-          rating,
-          ...(photoFirst && { photo_first: 'true' }),
-        })
-
-        window.location.href = `${appUrlScheme}:///reviews/new?${params}`
+        writeReview({ appUrlScheme, ...params })
       },
       editReview({
         regionId,
