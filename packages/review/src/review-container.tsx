@@ -1,12 +1,10 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import styled from 'styled-components'
-import qs from 'qs'
 import { Section, Container, Text, Button } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import {
   useUserAgentContext,
   useEventTrackingContext,
-  useHistoryFunctions,
   useSessionContext,
 } from '@titicaca/react-contexts'
 import { TransitionType, withLoginCTAModal } from '@titicaca/modals'
@@ -14,7 +12,6 @@ import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 
 import {
   fetchMyReview,
-  writeReview,
   fetchReviewsCount,
   fetchReviewRateDescription,
 } from './review-api-clients'
@@ -33,6 +30,7 @@ import SortingOptions, {
 } from './sorting-options'
 import usePaging from './use-paging'
 import MyReviewActionSheet from './my-review-action-sheet'
+import { useClientActions } from './use-client-actions'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
@@ -128,7 +126,12 @@ function ReviewContainer({
   const [reviewRateDescriptions, setReviewRateDescriptions] = useState<
     string[]
   >([])
-  const { navigate } = useHistoryFunctions()
+  const {
+    writeReview,
+    editReview,
+    navigateReviewList,
+    navigateMileageIntro,
+  } = useClientActions({ appUrlScheme })
 
   const setMyReview = useCallback(
     (review) =>
@@ -214,14 +217,13 @@ function ReviewContainer({
           })
 
           writeReview({
-            appUrlScheme,
             resourceType,
             resourceId,
             regionId,
             rating,
           })
         },
-        [trackEvent, appUrlScheme, resourceType, resourceId, regionId],
+        [trackEvent, resourceId, writeReview, resourceType, regionId],
       ),
     ),
   )
@@ -231,12 +233,6 @@ function ReviewContainer({
     useSessionCallback(
       useCallback(
         (e: React.SyntheticEvent) => {
-          const params = qs.stringify({
-            region_id: regionId,
-            resource_id: resourceId,
-            resource_type: resourceType,
-            sorting_option: sortingOption,
-          })
           trackEvent({
             ga: ['리뷰_전체보기'],
             fa: {
@@ -247,20 +243,20 @@ function ReviewContainer({
 
           e.stopPropagation()
 
-          navigate(
-            `${appUrlScheme}:///inlink?path=${encodeURIComponent(
-              `/reviews/list?_triple_no_navbar&${params}`,
-            )}`,
-          )
+          navigateReviewList({
+            regionId,
+            resourceId,
+            resourceType,
+            sortingOption,
+          })
         },
         [
           trackEvent,
+          resourceId,
+          navigateReviewList,
           regionId,
           resourceType,
-          resourceId,
           sortingOption,
-          navigate,
-          appUrlScheme,
         ],
       ),
     ),
@@ -384,7 +380,7 @@ function ReviewContainer({
             if (isPublic) {
               window.location.href = `/pages/mileage-intro.html`
             } else {
-              navigate(`${appUrlScheme}:///my/mileage/intro`)
+              navigateMileageIntro()
             }
           }}
         >
@@ -413,12 +409,7 @@ function ReviewContainer({
               return
             }
 
-            const params = qs.stringify({
-              region_id: regionId,
-              resource_type: resourceType,
-              resource_id: resourceId,
-            })
-            window.location.href = `${appUrlScheme}:///reviews/edit?${params}`
+            editReview({ regionId, resourceId, resourceType })
           }}
           onReviewDelete={onReviewDelete}
         />
