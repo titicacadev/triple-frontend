@@ -17,7 +17,9 @@ export default function CarouselSection({
   ...props
 }: {
   loading: boolean
-  currentBusinessHours?: string
+  currentBusinessHours?:
+    | string
+    | { from: number; to: number; dayOfWeek: number }
   todayBusinessHours?: string
   permanentlyClosed?: boolean
   onBusinessHoursClick?: () => void
