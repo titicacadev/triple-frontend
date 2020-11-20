@@ -1,5 +1,4 @@
-import React, { useState, useCallback } from 'react'
-import qs from 'qs'
+import React, { useCallback, useState } from 'react'
 import moment from 'moment'
 import { List } from '@titicaca/core-elements'
 import {
@@ -19,6 +18,7 @@ import OthersReviewActionSheet, {
 import { likeReview, unlikeReview } from './review-api-clients'
 import { useReviewLikesContext } from './review-likes-context'
 import { AppNativeActionProps, ReviewData, ImageEntity } from './types'
+import { useClientActions } from './use-client-actions'
 
 export default function ReviewsList({
   myReview,
@@ -48,6 +48,12 @@ export default function ReviewsList({
   const { trackEvent } = useEventTrackingContext()
   const { updateLikedStatus } = useReviewLikesContext()
   const { push } = useHistoryFunctions()
+  const {
+    navigateUserDetail,
+    navigateImages,
+    navigateReviewDetail,
+    reportReview,
+  } = useClientActions({ appUrlScheme })
 
   const handleUserClick: ReviewElementProps['onUserClick'] = useSessionCallback(
     useCallback(
@@ -69,10 +75,10 @@ export default function ReviewsList({
         if (unregister) {
           showToast('탈퇴한 사용자입니다.')
         } else {
-          window.location.href = `${appUrlScheme}:///users/${uid}`
+          navigateUserDetail(uid)
         }
       },
-      [appUrlScheme, trackEvent, resourceId, showToast],
+      [trackEvent, resourceId, showToast, navigateUserDetail],
     ),
   )
 
@@ -143,12 +149,12 @@ export default function ReviewsList({
             return
           }
 
-          window.location.href = `${appUrlScheme}:///images?${qs.stringify({
-            images: JSON.stringify(media.map(convertImage)),
-            index: media.findIndex(({ id }) => id === image.id),
-          })}`
+          navigateImages(
+            media.map(convertImage),
+            media.findIndex(({ id }) => id === image.id),
+          )
         },
-        [appUrlScheme],
+        [navigateImages],
       ),
     ),
   )
@@ -181,22 +187,16 @@ export default function ReviewsList({
             resourceId={resourceId}
             DateFormatter={ReviewTimestamp}
             onShow={handleShow}
-            onMoveToDetail={(reviewId) => {
-              const params = qs.stringify({
-                region_id: regionId,
-                resource_id: resourceId,
-              })
-              window.location.href = `${appUrlScheme}:///reviews/${reviewId}/detail?${params}`
-            }}
+            onMoveToDetail={(reviewId) =>
+              navigateReviewDetail({ reviewId, regionId, resourceId })
+            }
           />
         ))}
       </List>
 
       <OthersReviewActionSheet
         selectedReview={selectedReview}
-        onReportReview={(reviewId) => {
-          window.location.href = `${appUrlScheme}:///reviews/${reviewId}/report`
-        }}
+        onReportReview={reportReview}
       />
     </>
   )
