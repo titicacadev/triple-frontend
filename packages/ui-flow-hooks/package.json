@@ -1,0 +1,31 @@
+{
+  "name": "@titicaca/ui-flow-hooks",
+  "version": "2.2.1",
+  "description": "React Hook functions used to construct general UI flow",
+  "keywords": [
+    "session",
+    "installation",
+    "react",
+    "hooks"
+  ],
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "scripts": {},
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "dependencies": {
+    "@titicaca/modals": "^2.2.1",
+    "@titicaca/react-contexts": "^2.2.1"
+  }
+}
