@@ -1,12 +1,12 @@
 import React from 'react'
-import { HistoryProvider } from '@titicaca/react-contexts'
 import {
   TransitionModal,
   TransitionType,
   useTransitionModal,
 } from '@titicaca/modals'
 import { select } from '@storybook/addon-knobs'
-import { StoryFn } from '@storybook/addons'
+
+import { historyProviderDecorator } from '../../decorators'
 
 export default {
   title: 'modals | Modal',
@@ -31,19 +31,7 @@ export function BaseTransitionModal() {
 
 BaseTransitionModal.story = {
   name: 'TransitionModal',
-  decorators: [
-    (storyFn: StoryFn<JSX.Element>) => (
-      <HistoryProvider
-        appUrlScheme="dev-soto"
-        webUrlBase="https://triple-dev.titicaca-corp.com"
-        isPublic={false}
-        isAndroid={false}
-        transitionModalHash="transition.general"
-      >
-        <div>{storyFn()}</div>
-      </HistoryProvider>
-    ),
-  ],
+  decorators: [historyProviderDecorator],
 }
 
 function UriHashHistoryManipulator({ uriHash }: { uriHash: string }) {

@@ -3,8 +3,9 @@ import styled from 'styled-components'
 import { action } from '@storybook/addon-actions'
 import { text, boolean } from '@storybook/addon-knobs'
 import { StoryFn } from '@storybook/addons'
-import { HistoryProvider } from '@titicaca/react-contexts'
 import DirectionsFinder from '@titicaca/directions-finder'
+
+import { historyProviderDecorator } from '../../decorators'
 
 const LongPage = styled.div`
   height: 4000px;
@@ -30,16 +31,7 @@ export function BaseDirectionsFinder() {
 BaseDirectionsFinder.story = {
   name: 'directions-finder',
   decorators: [
-    (storyFn: StoryFn<JSX.Element>) => (
-      <HistoryProvider
-        appUrlScheme=""
-        webUrlBase=""
-        isPublic={false}
-        isAndroid={false}
-        transitionModalHash="transition.general"
-      >
-        <LongPage>{storyFn()}</LongPage>
-      </HistoryProvider>
-    ),
+    (storyFn: StoryFn<JSX.Element>) => <LongPage>{storyFn()}</LongPage>,
+    historyProviderDecorator,
   ],
 }

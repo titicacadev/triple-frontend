@@ -1,25 +1,11 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
-import { HistoryProvider } from '@titicaca/react-contexts'
 import NearbyPois from '@titicaca/nearby-pois'
-import { StoryFn } from '@storybook/addons'
+
+import { historyProviderDecorator } from '../../decorators'
 
 export default {
   title: 'Nearby-Pois | NearbyPois',
-}
-
-function HistoryProviderWrapper({ children }: { children: React.ReactNode }) {
-  return (
-    <HistoryProvider
-      appUrlScheme="dev-soto"
-      webUrlBase="https://triple-dev.titicaca-corp.com"
-      isPublic={false}
-      isAndroid={false}
-      transitionModalHash="transition.general"
-    >
-      <div>{children}</div>
-    </HistoryProvider>
-  )
 }
 
 export function BaseNearbyPois() {
@@ -39,13 +25,7 @@ export function BaseNearbyPois() {
 
 BaseNearbyPois.story = {
   name: '기본 NearbyPois',
-  decorators: [
-    (storyFn: StoryFn<JSX.Element>) => (
-      <HistoryProviderWrapper>
-        <div>{storyFn()}</div>
-      </HistoryProviderWrapper>
-    ),
-  ],
+  decorators: [historyProviderDecorator],
 }
 
 export function NearbyPoisWithRecommended() {
@@ -65,11 +45,5 @@ export function NearbyPoisWithRecommended() {
 
 NearbyPoisWithRecommended.story = {
   name: '추천 일정이 있는',
-  decorators: [
-    (storyFn: StoryFn<JSX.Element>) => (
-      <HistoryProviderWrapper>
-        <div>{storyFn()}</div>
-      </HistoryProviderWrapper>
-    ),
-  ],
+  decorators: [historyProviderDecorator],
 }

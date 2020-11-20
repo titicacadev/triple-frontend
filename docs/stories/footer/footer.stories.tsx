@@ -5,6 +5,7 @@ import { action } from '@storybook/addon-actions'
 
 export default {
   title: 'footer | Footer',
+  decorators: [],
 }
 
 export function BaseFooter() {
@@ -18,7 +19,6 @@ BaseFooter.story = {
 export function BaseCSFooter() {
   return (
     <CSFooter
-      appUrlScheme=""
       serviceType={select('서비스', ['AIR', 'TNA', 'HOTEL'], 'AIR')}
       csTime={'오전 9시 - 오후 6시 (한국시간 기준, 연중무휴)'}
       csMessage={
