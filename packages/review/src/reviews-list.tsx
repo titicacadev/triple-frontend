@@ -35,7 +35,10 @@ export default function ReviewsList({
   reviews: ReviewData[]
   fetchNext?: () => void
   regionId?: string
-  appUrlScheme: string
+  /**
+   * @deprecated env context를 사용하면 생략 가능
+   */
+  appUrlScheme?: string
   resourceId: string
   maxLength?: number
   reviewRateDescriptions?: string[]

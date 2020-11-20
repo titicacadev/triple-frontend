@@ -98,7 +98,10 @@ function ReviewContainer({
   reviewsCount: number
   shortened?: boolean
   reviewed?: boolean
-  appUrlScheme: string
+  /**
+   * @deprecated env context를 사용하면 생략 가능
+   */
+  appUrlScheme?: string
   deepLink?: string
   placeholderText?: string
   appNativeActions: AppNativeActionProps
