@@ -15,6 +15,7 @@ import { parseUrl, generateUrl } from '@titicaca/view-utilities'
 import { hasAccessibleTripleNativeClients } from '@titicaca/triple-web-to-native-interfaces'
 import { DeepPartial } from 'utility-types'
 
+import { useEnv } from '../env-context'
 import { useSessionContextSafely } from '../session-context'
 
 import { checkIfRoutable, generateTargetAddressOnPublic } from './routelist'
@@ -89,8 +90,14 @@ export enum HashStrategy {
   PUSH,
 }
 export type HistoryProviderProps = PropsWithChildren<{
-  appUrlScheme: string
-  webUrlBase: string
+  /**
+   * @deprecated EnvProvider가 있으면 이 prop을 넣어주지 않아도 됩니다.
+   */
+  appUrlScheme?: string
+  /**
+   * @deprecated EnvProvider가 있으면 이 prop을 넣어주지 않아도 됩니다.
+   */
+  webUrlBase?: string
   transitionModalHash?: string
   loginCTAModalHash?: string
   isAndroid?: boolean
@@ -99,8 +106,8 @@ export type HistoryProviderProps = PropsWithChildren<{
 }>
 
 export function HistoryProvider({
-  appUrlScheme,
-  webUrlBase,
+  appUrlScheme: appUrlSchemeFromProps,
+  webUrlBase: webUrlBaseFromProps,
   transitionModalHash = '',
   loginCTAModalHash = '',
   isAndroid = false,
@@ -108,6 +115,11 @@ export function HistoryProvider({
   initialHashStrategy = HashStrategy.NONE,
   children,
 }: HistoryProviderProps) {
+  const {
+    appUrlScheme: appUrlSchemeFromContext,
+    webUrlBase: webUrlBaseFromContext,
+  } = useEnv()
+
   const [uriHash, setUriHash] = useState<URIHash>(() => {
     if (initialHashStrategy === HashStrategy.NONE) {
       return ''
@@ -122,6 +134,43 @@ export function HistoryProvider({
   )
   const sessionContext = useSessionContextSafely()
   const hasSessionId = sessionContext ? sessionContext.hasSessionId : !isPublic
+
+  const appUrlScheme = useMemo(() => {
+    if (appUrlSchemeFromContext) {
+      return appUrlSchemeFromContext
+    }
+    if (typeof appUrlSchemeFromProps === 'string') {
+      // TODO: 개발용 logger 만들기
+      if (process.env.NODE_ENV === 'development') {
+        // eslint-disable-next-line no-console
+        console.warn(
+          'appUrlScheme prop은 deprecate되었습니다.\n다음 메이저 버전부터 env context를 사용해야 합니다.',
+        )
+      }
+
+      return appUrlSchemeFromProps
+    }
+
+    throw new Error('appUrlScheme을 구할 수 없습니다.')
+  }, [appUrlSchemeFromContext, appUrlSchemeFromProps])
+
+  const webUrlBase = useMemo(() => {
+    if (webUrlBaseFromContext) {
+      return webUrlBaseFromContext
+    }
+    if (typeof webUrlBaseFromProps === 'string') {
+      // TODO: 개발용 logger 만들기
+      if (process.env.NODE_ENV === 'development') {
+        // eslint-disable-next-line no-console
+        console.warn(
+          'webUrlBase prop은 deprecate되었습니다.\n다음 메이저 버전부터 env context를 사용해야 합니다.',
+        )
+      }
+
+      return webUrlBaseFromProps
+    }
+    throw new Error('webUrlBase를 구할 수 없습니다.')
+  }, [webUrlBaseFromContext, webUrlBaseFromProps])
 
   useEffect(() => {
     const onHashChange = (url: string) => {
