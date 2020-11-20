@@ -1,0 +1,13 @@
+# `@titicaca/ui-flow-hooks`
+
+UI 플로우 구성을 위해 사용할 수 있는 React Hook 함수들입니다.
+
+## `useSessionCallback`
+
+`SessionContext`가 존재하는 환경에서, `sessionId`가 없을 때 실행할 수 없는 액션
+핸들러와 함께 사용해 사용자가 해당 액션을 수행하고자 할 때 로그인을 유도합니다.
+
+## `useAppCallback`
+
+`UserAgentContext`를 사용해 트리플 앱 내에서만 실행 가능한 액션에 접근하는
+사용자들에게 앱 설치를 유도합니다. 일반 브라우저에서만 작동합니다.
