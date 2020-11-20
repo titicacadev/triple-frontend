@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.2.1
+
+### review
+
+- 액션시트의 zTier를 3으로 명시 (#1060)
+
 ## 2.2.0
 
 ### Search
