@@ -8,21 +8,19 @@ export const HASH_REVIEW_ACTION_SHEET =
   'common.reviews-list.review-action-sheet'
 
 export default function OthersReviewActionSheet({
-  appUrlScheme,
   selectedReview,
+  onReportReview,
 }: {
-  appUrlScheme: string
   selectedReview?: ReviewData | null
+  onReportReview: (reportingReviewId: string) => void
 }) {
   const uriHash = useURIHash()
   const { back } = useHistoryFunctions()
 
   const handleReportClick = () => {
-    if (!selectedReview) {
-      return
+    if (selectedReview) {
+      onReportReview(selectedReview.id)
     }
-
-    window.location.href = `${appUrlScheme}:///reviews/${selectedReview.id}/report`
 
     back()
   }
