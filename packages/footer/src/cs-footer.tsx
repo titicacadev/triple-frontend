@@ -2,7 +2,7 @@ import * as React from 'react'
 import qs from 'qs'
 import styled from 'styled-components'
 import { Button, Container, Text } from '@titicaca/core-elements'
-import { useHistoryFunctions } from '@titicaca/react-contexts'
+import { useHistoryFunctions, useEnv } from '@titicaca/react-contexts'
 
 const SupportContainer = styled.footer`
   background-color: #f5f5f5;
@@ -17,7 +17,7 @@ export default function CSFooter({
   csTime,
   csMessage,
   data,
-  appUrlScheme,
+  appUrlScheme: appUrlSchemeFromProps,
   showCSButton = true,
   onFAQButtonClick = () => {},
   onCSButtonClick = () => {},
@@ -28,12 +28,35 @@ export default function CSFooter({
   csTime: string
   csMessage?: string
   data?: { [key: string]: string | number | boolean | undefined }
-  appUrlScheme: string
+  /**
+   * @deprecated EnvProvider가 있으면 이 prop을 넣어주지 않아도 됩니다.
+   */
+  appUrlScheme?: string
   showCSButton?: boolean
   onFAQButtonClick?: () => void
   onCSButtonClick?: () => void
 }) {
+  const { appUrlScheme: appUrlSchemeFromContext } = useEnv()
   const { navigate } = useHistoryFunctions()
+
+  const appUrlScheme = React.useMemo(() => {
+    if (appUrlSchemeFromContext) {
+      return appUrlSchemeFromContext
+    }
+    if (typeof appUrlSchemeFromProps === 'string') {
+      // TODO: 개발용 logger 만들기
+      if (process.env.NODE_ENV === 'development') {
+        // eslint-disable-next-line no-console
+        console.warn(
+          'appUrlScheme prop은 deprecate되었습니다.\n다음 메이저 버전부터 env context를 사용해야 합니다.',
+        )
+      }
+
+      return appUrlSchemeFromProps
+    }
+
+    throw new Error('appUrlScheme을 구할 수 없습니다.')
+  }, [appUrlSchemeFromContext, appUrlSchemeFromProps])
 
   const movetoFAQ = () => {
     onFAQButtonClick()

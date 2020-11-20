@@ -28,7 +28,7 @@
 
 | 파라미터         | 필수여부     | 기본값 | 설명                                                                         |
 | ---------------- | ------------ | ------ | ---------------------------------------------------------------------------- |
-| appUrlScheme     | required     | -      | APP_URL_SCHEME                                                               |
+| appUrlScheme     | not required | -      | APP_URL_SCHEME. deprecated되었습니다. env context로 넣어주세요.              |
 | serviceType      | required     | -      | AIR, TNA, HOTEL 중 하나. 1:1 문의 노출 시 이용됩니다.                        |
 | csTime           | required     | -      | CS 운영시간 '오전 9시 - 오후 6시 (한국시간 기준, 연중무휴)'                  |
 | csMessage        | required     | -      | CS 메시지 '현지사용 긴급문의 카카오톡 @트리플서비스\n(오전 9시 - 오후 10시)' |
