@@ -61,7 +61,11 @@ return (
 ```tsx
 import { AppleSmartBannerMeta } from '@titicaca/meta-tags'
 
-return <AppleSmartBannerMeta appId="12345" appUrlScheme="triple" appPath="/" />
+return (
+  <EnvProvider appUrlScheme="triple">
+    <AppleSmartBannerMeta appId="12345" appPath="/" />
+  </EnvProvider>
+)
 ```
 
 #### 사용된 메타 태그
@@ -80,13 +84,14 @@ return <AppleSmartBannerMeta appId="12345" appUrlScheme="triple" appPath="/" />
 import { FacebookAppLinkMeta } from '@titicaca/meta-tags'
 
 return (
-  <FacebookAppLinkMeta
-    appName="트리플"
-    iosAppStoreId="1225499481"
-    appPath="/"
-    appPackageName="com.titicacacorp.triple"
-    appUrlScheme="triple"
-  />
+  <EnvProvider appUrlScheme="triple">
+    <FacebookAppLinkMeta
+      appName="트리플"
+      iosAppStoreId="1225499481"
+      appPath="/"
+      appPackageName="com.titicacacorp.triple"
+    />
+  </EnvProvider>
 )
 ```
 
