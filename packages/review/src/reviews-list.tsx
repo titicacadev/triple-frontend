@@ -53,17 +53,7 @@ export default function ReviewsList({
     useCallback(
       (
         e: React.SyntheticEvent,
-        {
-          user: { uid, unregister, mileage },
-        }: {
-          user: {
-            uid: string
-            unregister?: boolean
-            mileage?: {
-              level: number
-            }
-          }
-        },
+        { user: { uid, unregister, mileage } }: ReviewData,
       ) => {
         const { level } = mileage || { level: 0 }
         trackEvent({
