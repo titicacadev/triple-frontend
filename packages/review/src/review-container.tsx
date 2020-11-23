@@ -9,12 +9,8 @@ import {
   useHistoryFunctions,
   useSessionContext,
 } from '@titicaca/react-contexts'
-import {
-  TransitionType,
-  useLoginCTAModal,
-  useTransitionModal,
-  withLoginCTAModal,
-} from '@titicaca/modals'
+import { TransitionType, withLoginCTAModal } from '@titicaca/modals'
+import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 
 import {
   fetchMyReview,
@@ -133,8 +129,6 @@ function ReviewContainer({
     string[]
   >([])
   const { navigate } = useHistoryFunctions()
-  const { show } = useTransitionModal()
-  const { show: showLoginCTA } = useLoginCTAModal()
 
   const setMyReview = useCallback(
     (review) =>
@@ -204,65 +198,73 @@ function ReviewContainer({
     hasSessionId,
   ])
 
-  const handleWriteButtonClick = (
-    e: React.SyntheticEvent,
-    rating: number = 0,
-  ) => {
-    e.stopPropagation()
+  const handleWriteButtonClick = useAppCallback(
+    TransitionType.ReviewWrite,
+    useSessionCallback(
+      useCallback(
+        (e: React.SyntheticEvent, rating: number = 0) => {
+          e.stopPropagation()
 
-    trackEvent({
-      ga: ['리뷰_리뷰쓰기'],
-      fa: {
-        action: '리뷰_리뷰쓰기',
-        item_id: resourceId,
-      },
-    })
+          trackEvent({
+            ga: ['리뷰_리뷰쓰기'],
+            fa: {
+              action: '리뷰_리뷰쓰기',
+              item_id: resourceId,
+            },
+          })
 
-    if (isPublic) {
-      return show(TransitionType.ReviewWrite)
-    }
+          writeReview({
+            appUrlScheme,
+            resourceType,
+            resourceId,
+            regionId,
+            rating,
+          })
+        },
+        [trackEvent, appUrlScheme, resourceType, resourceId, regionId],
+      ),
+    ),
+  )
 
-    if (!hasSessionId) {
-      showLoginCTA()
-      return
-    }
+  const handleFullListButtonClick = useAppCallback(
+    TransitionType.Review,
+    useSessionCallback(
+      useCallback(
+        (e: React.SyntheticEvent) => {
+          const params = qs.stringify({
+            region_id: regionId,
+            resource_id: resourceId,
+            resource_type: resourceType,
+            sorting_option: sortingOption,
+          })
+          trackEvent({
+            ga: ['리뷰_전체보기'],
+            fa: {
+              action: '리뷰_전체보기',
+              item_id: resourceId,
+            },
+          })
 
-    writeReview({
-      appUrlScheme,
-      resourceType,
-      resourceId,
-      regionId,
-      rating,
-    })
-  }
+          e.stopPropagation()
 
-  const handleFullListButtonClick = (e: React.SyntheticEvent) => {
-    const params = qs.stringify({
-      region_id: regionId,
-      resource_id: resourceId,
-      resource_type: resourceType,
-      sorting_option: sortingOption,
-    })
-    trackEvent({
-      ga: ['리뷰_전체보기'],
-      fa: {
-        action: '리뷰_전체보기',
-        item_id: resourceId,
-      },
-    })
-
-    e.stopPropagation()
-
-    if (isPublic) {
-      return show(TransitionType.Review)
-    }
-
-    navigate(
-      `${appUrlScheme}:///inlink?path=${encodeURIComponent(
-        `/reviews/list?_triple_no_navbar&${params}`,
-      )}`,
-    )
-  }
+          navigate(
+            `${appUrlScheme}:///inlink?path=${encodeURIComponent(
+              `/reviews/list?_triple_no_navbar&${params}`,
+            )}`,
+          )
+        },
+        [
+          trackEvent,
+          regionId,
+          resourceType,
+          resourceId,
+          sortingOption,
+          navigate,
+          appUrlScheme,
+        ],
+      ),
+    ),
+  )
 
   const handleSortingOptionSelect: SortingOptionsProps['onSelect'] = (
     _,
