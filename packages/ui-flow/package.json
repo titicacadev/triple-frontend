@@ -1,7 +1,7 @@
 {
-  "name": "@titicaca/ui-flow-hooks",
+  "name": "@titicaca/ui-flow",
   "version": "2.2.1",
-  "description": "React Hook functions used to construct general UI flow",
+  "description": "Functions, hooks, and/or components used to construct general UI flow",
   "keywords": [
     "session",
     "installation",
