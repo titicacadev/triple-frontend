@@ -76,17 +76,13 @@ export default function ReviewsList({
           },
         })
 
-        if (isPublic) {
-          return
-        }
-
         if (unregister) {
           showToast('탈퇴한 사용자입니다.')
         } else {
           window.location.href = `${appUrlScheme}:///users/${uid}`
         }
       },
-      [appUrlScheme, trackEvent, resourceId, isPublic, showToast],
+      [appUrlScheme, trackEvent, resourceId, showToast],
     ),
   )
 
@@ -188,7 +184,7 @@ export default function ReviewsList({
             appUrlScheme={appUrlScheme}
             review={review}
             reviewRateDescriptions={reviewRateDescriptions}
-            onUserClick={handleUserClick}
+            onUserClick={isPublic ? undefined : handleUserClick}
             onLikeButtonClick={handleLikeButtonClick}
             onMenuClick={handleMenuClick}
             onImageClick={handleImageClick}

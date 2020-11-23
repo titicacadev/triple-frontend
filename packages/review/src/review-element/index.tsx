@@ -35,7 +35,7 @@ export interface ReviewElementProps {
   index: number
   regionId?: string
   appUrlScheme: string
-  onUserClick: ReviewEventHandler
+  onUserClick?: ReviewEventHandler
   onUnfoldButtonClick?: ReviewEventHandler
   onLikeButtonClick: ReviewEventHandler
   onMenuClick: ReviewEventHandler
@@ -186,7 +186,10 @@ export default function ReviewElement({
       }
     >
       <List.Item style={{ paddingTop: 6 }}>
-        <User user={user} onClick={(e) => onUserClick(e, review)}>
+        <User
+          user={user}
+          onClick={onUserClick && ((e) => onUserClick(e, review))}
+        >
           {!blindedAt && !!rating ? <Score score={rating} /> : null}
         </User>
         <Content onClick={handleSelectReview}>
