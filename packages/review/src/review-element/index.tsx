@@ -1,14 +1,21 @@
-import React, { useState, PropsWithChildren, ComponentType } from 'react'
+import React, {
+  useState,
+  useCallback,
+  PropsWithChildren,
+  ComponentType,
+} from 'react'
 import styled, { css } from 'styled-components'
 import qs from 'qs'
 import * as CSS from 'csstype'
 import semver from 'semver'
-import IntersectionObserver from '@titicaca/intersection-observer'
+import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { List, Container, Text, Rating } from '@titicaca/core-elements'
 import {
   useEventTrackingContext,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
+import { TransitionType } from '@titicaca/modals'
+import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 
 import { useReviewLikesContext } from '../review-likes-context'
 import { ReviewData, ImageEntity } from '../types'
@@ -142,26 +149,36 @@ export default function ReviewElement({
     liked: review.liked,
     likesCount: review.likesCount,
   })
-  const handleSelectReview = (e: React.SyntheticEvent) => {
-    const params = qs.stringify({
-      region_id: regionId,
-      resource_id: resourceId,
-    })
-    if (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) {
-      e.preventDefault()
-      e.stopPropagation()
-      trackEvent({
-        ga: ['리뷰_리뷰선택', resourceId],
-        fa: {
-          action: '리뷰_리뷰선택',
-          item_id: resourceId,
-          review_id: review.id,
-        },
-      })
 
-      window.location.href = `${appUrlScheme}:///reviews/${review.id}/detail?${params}`
-    }
-  }
+  const handleSelectReview = useAppCallback(
+    TransitionType.Review,
+    useSessionCallback(
+      useCallback(
+        (e: React.SyntheticEvent) => {
+          const params = qs.stringify({
+            region_id: regionId,
+            resource_id: resourceId,
+          })
+          if (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) {
+            e.preventDefault()
+            e.stopPropagation()
+            trackEvent({
+              ga: ['리뷰_리뷰선택', resourceId],
+              fa: {
+                action: '리뷰_리뷰선택',
+                item_id: resourceId,
+                review_id: review.id,
+              },
+            })
+
+            window.location.href = `${appUrlScheme}:///reviews/${review.id}/detail?${params}`
+          }
+        },
+        [trackEvent, regionId, resourceId, appUrlScheme, review, appVersion],
+      ),
+    ),
+  )
+
   return (
     <IntersectionObserver
       onChange={({ isIntersecting }) =>
