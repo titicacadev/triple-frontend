@@ -6,7 +6,7 @@
 
 ### Usage
 
-```typescript
+```tsx
 import { EssentialMeta } from '@titicaca/meta-tags'
 
 return (
@@ -58,7 +58,7 @@ return (
 
 ### Usage
 
-```typescript
+```tsx
 import { AppleSmartBannerMeta } from '@titicaca/meta-tags'
 
 return <AppleSmartBannerMeta appId="12345" appUrlScheme="triple" appPath="/" />
@@ -76,7 +76,7 @@ return <AppleSmartBannerMeta appId="12345" appUrlScheme="triple" appPath="/" />
 
 ### Usage
 
-```typescript
+```tsx
 import { FacebookAppLinkMeta } from '@titicaca/meta-tags'
 
 return (
@@ -132,7 +132,7 @@ return (
 
 ### Usage
 
-```typescript
+```tsx
 import { FacebookOpenGraphMeta } from '@titicaca/meta-tags'
 
 return (
