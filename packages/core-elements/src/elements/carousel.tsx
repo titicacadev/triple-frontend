@@ -47,7 +47,7 @@ const CarouselBase = styled.ul<
     display: none;
   }
 
-  ${({ isMobile }) =>
+  ${({ isMobile = true }) =>
     !isMobile &&
     css`
       ::-webkit-scrollbar {
