@@ -7,7 +7,7 @@ import {
   EventTrackingProvider,
   DeviceProvider,
 } from '@titicaca/react-contexts'
-import AdBanners, { ListDirection } from '@titicaca/ad-banners'
+import { ListDirection, AdBanners } from '@titicaca/ad-banners'
 import styled from 'styled-components'
 
 const CONTENT_TYPE_SET = {
