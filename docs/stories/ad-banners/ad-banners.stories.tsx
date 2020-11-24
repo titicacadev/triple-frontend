@@ -11,6 +11,7 @@ import AdBanners, { ListDirection } from '@titicaca/ad-banners'
 import styled from 'styled-components'
 
 const CONTENT_TYPE_SET = {
+  air: 'air',
   article: 'article',
   attraction: 'attraction',
   hotel: 'hotel',
@@ -55,10 +56,10 @@ export function BaseAdBanners() {
       contentType={select(
         '콘텐츠 타입',
         CONTENT_TYPE_SET,
-        CONTENT_TYPE_SET['attraction'] as any,
+        CONTENT_TYPE_SET['air'] as any,
       )}
       contentId={text('콘텐츠 ID', '81977f84-ddd0-4112-8057-6cc9dab9aa70')}
-      regionId={text('리전 ID', 'ea2b52ff-9cdb-4028-9442-7a8defd13af9')}
+      regionId={text('리전 ID', '759174cc-0814-4400-a420-5668a0517edd')}
       padding={{
         left: number('섹션 왼쪽 패딩', 0),
         right: number('섹션 오른쪽 패딩', 0),
@@ -89,10 +90,10 @@ export function HorizontalAdBanners() {
         contentType={select(
           '콘텐츠 타입',
           CONTENT_TYPE_SET,
-          CONTENT_TYPE_SET['attraction'] as any,
+          CONTENT_TYPE_SET['air'] as any,
         )}
         contentId={text('콘텐츠 ID', '81977f84-ddd0-4112-8057-6cc9dab9aa70')}
-        regionId={text('리전 ID', 'ea2b52ff-9cdb-4028-9442-7a8defd13af9')}
+        regionId={text('리전 ID', '759174cc-0814-4400-a420-5668a0517edd')}
         direction={ListDirection.HORIZONTAL}
         padding={{
           top: number('위 패딩', 0),

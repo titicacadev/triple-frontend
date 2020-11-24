@@ -91,15 +91,14 @@ function useAdBannerProps(props: AdBannersProps) {
       eventAttributes: { title } = { title: undefined },
     } = props
 
-    const baseParams = {
-      contentType,
-      contentId,
-      regionId,
-      userLocation: { latitude, longitude },
-    }
-
     return {
-      getBannersAPI: () => getAdBanners(baseParams),
+      getBannersAPI: () =>
+        getAdBanners({
+          contentType,
+          regionId,
+          contentId,
+          userLocation: { longitude, latitude },
+        }),
       handleBannerIntersecting: (
         isIntersecting: boolean,
         banner: Banner,
@@ -110,9 +109,9 @@ function useAdBannerProps(props: AdBannersProps) {
         }
 
         postAdBannerEvent({
-          eventType: 'impression',
           itemId: banner.id,
-          ...baseParams,
+          eventType: 'impression',
+          regionId,
         })
 
         trackEvent({
@@ -127,9 +126,9 @@ function useAdBannerProps(props: AdBannersProps) {
       },
       handleBannerClick: (banner: Banner, index: number) => {
         postAdBannerEvent({
-          eventType: 'click',
           itemId: banner.id,
-          ...baseParams,
+          eventType: 'click',
+          regionId,
         })
 
         trackEvent({
