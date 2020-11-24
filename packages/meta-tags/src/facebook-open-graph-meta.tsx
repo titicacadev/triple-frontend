@@ -24,19 +24,31 @@ export function FacebookOpenGraphMeta({
 }) {
   return (
     <Head>
-      <meta property="og:title" content={title} />
-      <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:type" content={type} />
-      <meta property="og:locale" content={locale} />
-      <meta property="og:image" content={image?.url} />
+      <meta key="og-title" property="og:title" content={title} />
+      <meta key="og-url" property="og:url" content={canonicalUrl} />
+      <meta key="og-type" property="og:type" content={type} />
+      <meta key="og-locale" property="og:locale" content={locale} />
+      <meta key="og-image" property="og:image" content={image?.url} />
       {image?.width && image?.height ? (
         <>
-          <meta property="og:image:width" content={image.width.toString()} />
-          <meta property="og:image:height" content={image.height.toString()} />
+          <meta
+            key="og-image-width"
+            property="og:image:width"
+            content={image.width.toString()}
+          />
+          <meta
+            key="og-image-height"
+            property="og:image:height"
+            content={image.height.toString()}
+          />
         </>
       ) : null}
-      <meta property="og:description" content={description} />
-      <meta property="fb:app_id" content={fbAppId} />
+      <meta
+        key="og-description"
+        property="og:description"
+        content={description}
+      />
+      <meta key="fb-app-id" property="fb:app_id" content={fbAppId} />
     </Head>
   )
 }

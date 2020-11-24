@@ -16,15 +16,36 @@ export function FacebookAppLinkMeta({
 }) {
   return (
     <Head>
-      <meta property="al:ios:app_name" content={appName} />
-      <meta property="al:android:app_name" content={appName} />
-      <meta property="al:ios:url" content={`${appUrlScheme}://${appPath}`} />
-      <meta property="al:ios:app_store_id" content={iosAppStoreId} />
       <meta
+        key="al-ios-app-name"
+        property="al:ios:app_name"
+        content={appName}
+      />
+      <meta
+        key="al-android-app-name"
+        property="al:android:app_name"
+        content={appName}
+      />
+      <meta
+        key="al-ios-url"
+        property="al:ios:url"
+        content={`${appUrlScheme}://${appPath}`}
+      />
+      <meta
+        key="al-ios-app-store-id"
+        property="al:ios:app_store_id"
+        content={iosAppStoreId}
+      />
+      <meta
+        key="al-android-url"
         property="al:android:url"
         content={`${appUrlScheme}://${appPath}`}
       />
-      <meta property="al:android:package" content={appPackageName} />
+      <meta
+        key="al-android-package"
+        property="al:android:package"
+        content={appPackageName}
+      />
     </Head>
   )
 }

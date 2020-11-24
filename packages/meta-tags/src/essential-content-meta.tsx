@@ -12,9 +12,9 @@ export function EssentialContentMeta({
 }) {
   return (
     <Head>
-      <title>{title}</title>
+      <title key="title">{title}</title>
       <meta name="description" content={description} />
-      <link rel="canonical" href={canonicalUrl} />
+      <link key="canonical-url" rel="canonical" href={canonicalUrl} />
     </Head>
   )
 }
