@@ -2,7 +2,12 @@ import qs from 'querystring'
 
 import fetch from 'isomorphic-fetch'
 
-export type ContentType = 'article' | 'attraction' | 'hotel' | 'restaurant'
+export type ContentType =
+  | 'article'
+  | 'attraction'
+  | 'hotel'
+  | 'restaurant'
+  | 'air'
 
 type UserLocation = {
   latitude?: number | null
@@ -11,18 +16,10 @@ type UserLocation = {
 
 interface AdBannersFetchingParams {
   contentType: ContentType
-  contentId: string
+  contentId?: string
+  contentRegionId?: string
   regionId?: string
-  userLocation?: UserLocation
-}
-
-interface AdBannerEventPostingParams {
-  contentType: ContentType
-  contentId: string
-  itemId: string
-  eventType: 'click' | 'impression'
-  regionId?: string
-  userLocation?: UserLocation
+  userLocation: UserLocation
 }
 
 /**
@@ -30,26 +27,29 @@ interface AdBannerEventPostingParams {
  *
  * @param contentType
  * @param contentId
+ * @param contentRegionId
  * @param regionId
  * @param userLocation
  */
 export async function getAdBanners({
   contentType,
   contentId,
+  contentRegionId,
   regionId,
-  userLocation: { latitude, longitude } = {},
+  userLocation: { latitude, longitude },
 }: AdBannersFetchingParams) {
   const search = qs.stringify({
     content_type: contentType,
     content_id: contentId,
-    ...(regionId ? { content_region_id: regionId } : {}),
-    ...(latitude && longitude
+    content_region_id: contentRegionId,
+    region_id: regionId,
+    ...(longitude && latitude
       ? { user_location: `${longitude},${latitude}` }
       : {}),
   })
 
   const response = await fetch(
-    `/api/inventories/content_details_ad_v0/items?${search}`,
+    `/api/inventories/menu_top_banner_ad_v0/items?${search}`,
     {
       credentials: 'same-origin',
     },
@@ -59,42 +59,35 @@ export async function getAdBanners({
     const { items } = await response.json()
     return items
   }
+
+  return []
 }
 
 /**
  * 광고 노출, 광고 클릭 이벤트를 기록합니다.
  *
- * @param contentType
- * @param contentId
  * @param itemId 광고 ID
  * @param eventType
  * @param regionId
- * @param userLocation
  */
 export async function postAdBannerEvent({
-  contentType,
-  contentId,
   itemId,
   eventType,
   regionId,
-  userLocation: { latitude, longitude } = {},
-}: AdBannerEventPostingParams) {
-  const payload = {
-    content: {
-      id: contentId,
-      type: contentType,
-      regionId,
+}: {
+  itemId: string
+  eventType: string
+  regionId?: string
+}) {
+  return fetch(
+    `/api/inventories/menu_top_banner_ad_v0/items/${itemId}/events`,
+    {
+      body: JSON.stringify({ eventType, regionId }),
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'same-origin',
     },
-    eventType,
-    userLocation: latitude && longitude ? [longitude, latitude] : undefined,
-  }
-
-  await fetch(`/api/inventories/content_details_ad_v0/items/${itemId}/events`, {
-    credentials: 'same-origin',
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-    },
-    body: JSON.stringify(payload),
-  })
+  )
 }
