@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components'
 import React, { PropsWithChildren } from 'react'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
+import { useUserAgentContext } from '@titicaca/react-contexts'
+import { gray500 } from '@titicaca/color-palette'
 
 import { MarginPadding, CarouselSizes } from '../commons'
 import { marginMixin } from '../mixins'
@@ -25,7 +27,11 @@ interface CarouselBaseProps {
   className?: string
 }
 
-const CarouselBase = styled.ul<CarouselBaseProps>`
+const CarouselBase = styled.ul<
+  CarouselBaseProps & {
+    isMobile: boolean
+  }
+>`
   margin: 0;
   padding: 0;
   padding-bottom: 10px;
@@ -40,6 +46,19 @@ const CarouselBase = styled.ul<CarouselBaseProps>`
   ::-webkit-scrollbar {
     display: none;
   }
+
+  ${({ isMobile }) =>
+    !isMobile &&
+    css`
+      ::-webkit-scrollbar {
+        display: block;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: ${gray500};
+      }
+    `}
 
   ${({ containerPadding }) =>
     containerPadding &&
@@ -107,11 +126,14 @@ function Carousel({
   children,
   className,
 }: PropsWithChildren<CarouselBaseProps>) {
+  const { isMobile } = useUserAgentContext()
+
   return (
     <CarouselBase
       className={className}
       margin={margin}
       containerPadding={containerPadding}
+      isMobile={isMobile}
     >
       {children}
     </CarouselBase>

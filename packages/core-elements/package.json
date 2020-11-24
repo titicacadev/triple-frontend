@@ -26,6 +26,7 @@
     "@titicaca/color-palette": "^2.2.1",
     "@titicaca/intersection-observer": "^2.2.1",
     "@titicaca/view-utilities": "^2.2.1",
+    "@titicaca/react-contexts": "^2.2.1",
     "react-input-mask": "^2.0.4",
     "react-transition-group": "^4.4.1"
   },
