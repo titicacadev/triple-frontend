@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import Head from 'next/head'
+import { useEnv } from '@titicaca/react-contexts'
 
 export function FacebookOpenGraphMeta({
   title = '실시간 여행 가이드 - 트리플',
@@ -12,7 +13,7 @@ export function FacebookOpenGraphMeta({
     width: 1052,
     height: 1052,
   },
-  fbAppId = '136540730081853',
+  fbAppId: fbAppIdFromProps,
 }: {
   title?: string
   description?: string
@@ -20,8 +21,32 @@ export function FacebookOpenGraphMeta({
   type?: string
   locale?: string
   image?: { url: string; width?: number; height?: number }
+  /**
+   * @deprecated env context를 사용하세요.
+   */
   fbAppId?: string
 }) {
+  const { facebookAppId: fbAppIdFromContext } = useEnv()
+
+  const fbAppId = useMemo(() => {
+    if (fbAppIdFromContext) {
+      return fbAppIdFromContext
+    }
+    if (typeof fbAppIdFromProps === 'string') {
+      // TODO: 개발용 logger 만들기
+      if (process.env.NODE_ENV === 'development') {
+        // eslint-disable-next-line no-console
+        console.warn(
+          'fbAppId prop은 deprecate되었습니다.\n다음 메이저 버전부터 env context를 사용해야 합니다.',
+        )
+      }
+
+      return fbAppIdFromProps
+    }
+
+    return '136540730081853'
+  }, [fbAppIdFromContext, fbAppIdFromProps])
+
   return (
     <Head>
       <meta key="og-title" property="og:title" content={title} />
