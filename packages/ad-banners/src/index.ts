@@ -1,6 +1,2 @@
-import AdBanners from './ad-banners'
-import { ListDirection } from './typing'
-
-export { ListDirection }
-
-export default AdBanners
+export { ListDirection } from './typing'
+export { default as AdBanners } from './ad-banners'
