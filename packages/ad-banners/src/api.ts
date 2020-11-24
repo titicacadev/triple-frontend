@@ -2,7 +2,12 @@ import qs from 'querystring'
 
 import fetch from 'isomorphic-fetch'
 
-export type ContentType = 'article' | 'attraction' | 'hotel' | 'restaurant'
+export type ContentType =
+  | 'article'
+  | 'attraction'
+  | 'hotel'
+  | 'restaurant'
+  | 'tna'
 
 type UserLocation = {
   latitude?: number | null

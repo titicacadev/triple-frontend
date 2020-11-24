@@ -15,6 +15,7 @@ const CONTENT_TYPE_SET = {
   attraction: 'attraction',
   hotel: 'hotel',
   restaurant: 'restaurant',
+  tna: 'tna',
 }
 
 const LongContent = styled.div`
