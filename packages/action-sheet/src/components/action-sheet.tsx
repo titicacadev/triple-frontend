@@ -136,7 +136,7 @@ const Overlay = styled.div<OverlayProps & LayeringMixinProps>`
   right: 0;
   background-color: rgba(58, 58, 58, 0.7);
 
-  ${layeringMixin(1)}
+  ${layeringMixin(3)}
 
   &:not([class*='action-sheet-fade-']) {
     ${inactiveOverlayFadeStyle}
