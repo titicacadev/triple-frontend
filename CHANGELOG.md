@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.3.1
+
+### ui-flow
+
+- `GuardedScrapsProvider`가 export되지 않는 문제를 수정합니다. ([#1084](#https://github.com/titicacadev/triple-frontend/pull/1084))
+
 ## 2.3.0
 
 ### core-elements
