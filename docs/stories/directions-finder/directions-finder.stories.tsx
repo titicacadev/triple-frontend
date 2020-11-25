@@ -14,7 +14,7 @@ export default {
   title: 'directions-finder | DirectionsFinder',
 }
 
-function BaseDirectionsFinder() {
+export function BaseDirectionsFinder() {
   return (
     <DirectionsFinder
       onDirectionsClick={action('onDirectionsClick')}
@@ -28,6 +28,7 @@ function BaseDirectionsFinder() {
 }
 
 BaseDirectionsFinder.story = {
+  name: 'directions-finder',
   decorators: [
     (storyFn: StoryFn<JSX.Element>) => (
       <HistoryProvider
