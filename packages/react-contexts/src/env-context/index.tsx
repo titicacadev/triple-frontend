@@ -10,6 +10,8 @@ interface EnvContextValue {
   webUrlBase: string
   authBasePath: string
   facebookAppId: string
+  defaultPageTitle: string
+  defaultPageDescription: string
 }
 
 const EnvContext = createContext<EnvContextValue>({
@@ -17,6 +19,8 @@ const EnvContext = createContext<EnvContextValue>({
   webUrlBase: '',
   authBasePath: '',
   facebookAppId: '',
+  defaultPageTitle: '',
+  defaultPageDescription: '',
 })
 
 export function EnvProvider({
@@ -24,6 +28,8 @@ export function EnvProvider({
   webUrlBase,
   authBasePath,
   facebookAppId,
+  defaultPageTitle,
+  defaultPageDescription,
   children,
 }: PropsWithChildren<EnvContextValue>) {
   const value = useMemo<EnvContextValue>(
@@ -32,8 +38,17 @@ export function EnvProvider({
       webUrlBase,
       authBasePath,
       facebookAppId,
+      defaultPageTitle,
+      defaultPageDescription,
     }),
-    [appUrlScheme, authBasePath, facebookAppId, webUrlBase],
+    [
+      appUrlScheme,
+      authBasePath,
+      defaultPageDescription,
+      defaultPageTitle,
+      facebookAppId,
+      webUrlBase,
+    ],
   )
   return <EnvContext.Provider value={value}>{children}</EnvContext.Provider>
 }
