@@ -2,44 +2,44 @@
 
 ## 2.3.0
 
-## core-elements
+### core-elements
 
 - `H1Props`의 `children`을 `PropsWithChildren`으로 표현 ([#1074](https://github.com/titicacadev/triple-frontend/pull/1074))
 
-## ui-flow
+### ui-flow
 
 - 패키지 추가 ([#1063](https://github.com/titicacadev/triple-frontend/pull/1063))
 - `GuardedScrapsProvider` 추가 ([#1065](https://github.com/titicacadev/triple-frontend/pull/1065))
 
-## action-sheet
+### action-sheet
 
 - 기본 `zTier`를 3으로 설정합니다. ([#1070](https://github.com/titicacadev/triple-frontend/pull/1070))
 
-## poi-detail
+### poi-detail
 
 - 헤더의 거점지역 형식을 수정합니다. ([#1058](https://github.com/titicacadev/triple-frontend/pull/1058))
 - 영업시간 prop의 형식을 수정합니다. ([#1062](https://github.com/titicacadev/triple-frontend/pull/1062))
 
-## social-reviews
+### social-reviews
 
 - 링크의 설명 영역을 한 줄로 제한합니다. ([#1082](https://github.com/titicacadev/triple-frontend/pull/1082))
 
-## directions-finder
+### directions-finder
 
 - 현지 이름, 주소가 있을 때만 "현지에서 길묻기" 버튼을 노출합니다. ([#1079](https://github.com/titicacadev/triple-frontend/pull/1079))
 
-## ad-banners
+### ad-banners
 
 - 최신 API를 반영합니다. ([#1073](https://github.com/titicacadev/triple-frontend/pull/1073))
 - `ContentType`에 `air`를 추가합니다. ([#1073](https://github.com/titicacadev/triple-frontend/pull/1073))
 - default export하는 컴포넌트를 deprecate 처리하고, `ListTopBanners`를 추가합니다. ([#1073](https://github.com/titicacadev/triple-frontend/pull/1073))
 
-## review
+### review
 
 - 앱 관련 액션을 하나의 훅으로 모읍니다. ([#1077](https://github.com/titicacadev/triple-frontend/pull/1077))
 - 액션에 유저 인증을 필수로 합니다. ([#1064](https://github.com/titicacadev/triple-frontend/pull/1064))
 
-## meta-tags
+### meta-tags
 
 - 중복될 수 있는 `meta` 태그에 `key`를 추가합니다. ([#1069](https://github.com/titicacadev/triple-frontend/pull/1069))
 
