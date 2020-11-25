@@ -1,2 +1,5 @@
+import ListTopBanners from './list-top-banners'
 export { ListDirection } from './typing'
-export { default as AdBanners } from './ad-banners'
+
+export { ListTopBanners }
+export default ListTopBanners
