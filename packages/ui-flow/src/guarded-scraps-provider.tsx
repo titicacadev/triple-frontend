@@ -15,7 +15,7 @@ import {
  *
  * 모웹이거나 세션ID가 없을 때 스크랩이 작동하면 안된다.
  */
-export default function GuardedScrapsProvider({
+export function GuardedScrapsProvider({
   children,
   beforeScrapedChange,
   ...props
