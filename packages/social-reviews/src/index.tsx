@@ -69,7 +69,7 @@ export default function SocialReviews({
 
               <Container padding={{ top: 20 }}>
                 <H3 maxLines={2}>{title}</H3>
-                <Text size="small" alpha={0.5} margin={{ top: 8 }}>
+                <Text size="small" alpha={0.5} margin={{ top: 8 }} maxLines={1}>
                   {publisher}
                 </Text>
               </Container>
