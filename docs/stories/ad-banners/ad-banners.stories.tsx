@@ -3,7 +3,7 @@ import { number, text, select, boolean } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { StoryFn } from '@storybook/addons'
 import { EventTrackingProvider, DeviceProvider } from '@titicaca/react-contexts'
-import { ListDirection, AdBanners } from '@titicaca/ad-banners'
+import { ListDirection, ListTopBanners } from '@titicaca/ad-banners'
 import styled from 'styled-components'
 
 import { historyProviderDecorator } from '../../decorators'
@@ -21,7 +21,7 @@ const LongContent = styled.div`
 `
 
 export default {
-  title: 'ad-banners | AdBanners',
+  title: 'ad-banners | ListTopBanners',
   decorators: [historyProviderDecorator],
 }
 
@@ -43,7 +43,7 @@ function ProviderWrapper({ children }: { children: React.ReactNode }) {
 
 export function BaseAdBanners() {
   return (
-    <AdBanners
+    <ListTopBanners
       contentType={select(
         '콘텐츠 타입',
         CONTENT_TYPE_SET,
@@ -77,7 +77,7 @@ export function HorizontalAdBanners() {
       {boolean('스크롤 테스트', false) ? (
         <LongContent>스크롤을 내려보세요...</LongContent>
       ) : null}
-      <AdBanners
+      <ListTopBanners
         contentType={select(
           '콘텐츠 타입',
           CONTENT_TYPE_SET,
@@ -110,7 +110,7 @@ HorizontalAdBanners.story = {
 
 export function HotelListAdBanners() {
   return (
-    <AdBanners
+    <ListTopBanners
       direction={ListDirection.HORIZONTAL}
       padding={{
         left: number('섹션 왼쪽 패딩', 0),
