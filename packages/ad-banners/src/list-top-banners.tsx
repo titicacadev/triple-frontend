@@ -151,7 +151,7 @@ function useAdBannerProps(props: AdBannersProps) {
   }
 }
 
-const AdBanners: FC<AdBannersProps> = (props) => {
+const ListTopBanners: FC<AdBannersProps> = (props) => {
   const { padding, direction = ListDirection.VERTICAL } = props
   const {
     getBannersAPI,
@@ -202,4 +202,4 @@ const AdBanners: FC<AdBannersProps> = (props) => {
   )
 }
 
-export default AdBanners
+export default ListTopBanners
