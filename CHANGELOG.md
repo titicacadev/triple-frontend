@@ -32,7 +32,7 @@
 
 - 최신 API를 반영합니다. ([#1073](https://github.com/titicacadev/triple-frontend/pull/1073))
 - `ContentType`에 `air`를 추가합니다. ([#1073](https://github.com/titicacadev/triple-frontend/pull/1073))
-- default export하는 컴포넌트를 deprecate 처리하고, `ListTopBanners를 추가합니다. ([#1073](https://github.com/titicacadev/triple-frontend/pull/1073))
+- default export하는 컴포넌트를 deprecate 처리하고, `ListTopBanners`를 추가합니다. ([#1073](https://github.com/titicacadev/triple-frontend/pull/1073))
 
 ## review
 
