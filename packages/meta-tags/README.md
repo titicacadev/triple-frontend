@@ -141,19 +141,20 @@ return (
 import { FacebookOpenGraphMeta } from '@titicaca/meta-tags'
 
 return (
-  <FacebookOpenGraphMeta
-    title = '실시간 여행 가이드 - 트리플'
-    description = '전세계 맛집, 호텔, 관광지'
-    canonicalUrl = 'https://triple.guide/'
-    type = 'website'
-    locale = 'ko_KR'
-    image = {
-      url: 'https://assets.triple.guide/images/default-cover-image.jpg',
-      width: 1052,
-      height: 1052,
-    }
-    fbAppId = '136540730081853'
-  />
+  <EnvProvider facebookAppId="136540730081853">
+    <FacebookOpenGraphMeta
+      title="실시간 여행 가이드 - 트리플"
+      description="전세계 맛집, 호텔, 관광지"
+      canonicalUrl="https://triple.guide/"
+      type="website"
+      locale="ko_KR"
+      image={{
+        url: 'https://assets.triple.guide/images/default-cover-image.jpg',
+        width: 1052,
+        height: 1052,
+      }}
+    />
+  </EnvProvider>
 )
 ```
 
