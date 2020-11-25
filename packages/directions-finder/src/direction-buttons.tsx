@@ -21,8 +21,8 @@ export default function DirectionButtons({
 }: {
   onDirectionsClick: () => void
   primaryName: string
-  localName: string
-  localAddress: string
+  localName?: string
+  localAddress?: string
   phoneNumber?: string
   isDomestic?: boolean
 }) {
@@ -41,14 +41,16 @@ export default function DirectionButtons({
   return (
     <>
       <Button.Group horizontalGap={10}>
-        <Button
-          basic
-          color="gray"
-          size="small"
-          onClick={handleAskToLocalsClick}
-        >
-          {t('common:askToTheLocal', '현지에서 길묻기')}
-        </Button>
+        {localName && localAddress ? (
+          <Button
+            basic
+            color="gray"
+            size="small"
+            onClick={handleAskToLocalsClick}
+          >
+            {t('common:askToTheLocal', '현지에서 길묻기')}
+          </Button>
+        ) : null}
         <Button
           basic
           inverted
@@ -59,15 +61,18 @@ export default function DirectionButtons({
           {t('common:showDirections', '길찾기')}
         </Button>
       </Button.Group>
-      <AskToTheLocal
-        open={uriHash === HASH_ASK_TO_LOCALS_POPUP}
-        onClose={back}
-        localName={localName}
-        localAddress={localAddress}
-        primaryName={primaryName}
-        phoneNumber={phoneNumber}
-        isDomestic={isDomestic}
-      />
+
+      {localName && localAddress ? (
+        <AskToTheLocal
+          open={uriHash === HASH_ASK_TO_LOCALS_POPUP}
+          onClose={back}
+          localName={localName}
+          localAddress={localAddress}
+          primaryName={primaryName}
+          phoneNumber={phoneNumber}
+          isDomestic={isDomestic}
+        />
+      ) : null}
     </>
   )
 }
