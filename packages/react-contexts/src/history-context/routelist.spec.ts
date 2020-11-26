@@ -1,6 +1,6 @@
-import assert from 'assert'
+import * as assert from 'assert'
 
-import { checkIfRoutable, generateTargetAddressOnPublic } from './routelist'
+import { checkIfRoutable } from './routelist'
 
 describe('checkIfRoutable', () => {
   const regionId = '5eb828fe-cb69-482c-bf37-e166d6cce259'
@@ -109,69 +109,6 @@ describe('checkIfRoutable', () => {
       checkIfRoutable({
         href: path,
       }),
-    )
-  })
-})
-
-describe('generateTargetAddressOnPublic', () => {
-  const webUrlBase = 'https://triple.guide'
-  const hotelId = 'f20c23b6-8eff-47d7-b25a-032be42c1ea6'
-  const path = `/hotels/${hotelId}?_triple_no_navbar`
-
-  it('should convert expandable inlink into expanded url', () => {
-    const inlink = `/inlink?path=${encodeURIComponent(path)}&_web_expand`
-
-    assert.strictEqual(
-      generateTargetAddressOnPublic({ webUrlBase, href: inlink }),
-      path,
-    )
-  })
-
-  it('should not convert non-expandable inlink', () => {
-    const inlink = `/inlink?path=${encodeURIComponent(path)}`
-
-    assert.strictEqual(
-      generateTargetAddressOnPublic({ webUrlBase, href: inlink }),
-      inlink,
-    )
-  })
-
-  it('should convert outlink with web url base into path', () => {
-    const path = `/hotels/${hotelId}?_triple_no_navbar`
-    const url = `${webUrlBase}${path}`
-    const outlink = `/outlink?url=${encodeURIComponent(url)}`
-
-    assert.strictEqual(
-      generateTargetAddressOnPublic({ webUrlBase, href: outlink }),
-      path,
-    )
-  })
-
-  it('should convert external outlink into plain url', () => {
-    const url = 'https://google.com'
-    const outlink = `/outlink?url=${encodeURIComponent(url)}`
-
-    assert.strictEqual(
-      generateTargetAddressOnPublic({ webUrlBase, href: outlink }),
-      url,
-    )
-  })
-
-  it('should not convert a plain url', () => {
-    const url = 'https://google.com'
-
-    assert.strictEqual(
-      generateTargetAddressOnPublic({ webUrlBase, href: url }),
-      url,
-    )
-  })
-
-  it('should not convert a plain path', () => {
-    const path = `/hotels/${hotelId}?_triple_no_navbar`
-
-    assert.strictEqual(
-      generateTargetAddressOnPublic({ webUrlBase, href: path }),
-      path,
     )
   })
 })
