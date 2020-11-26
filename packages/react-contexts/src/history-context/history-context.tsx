@@ -323,14 +323,18 @@ export function HistoryProvider({
           query: outlinkParams,
         })
       } else if (!scheme && !host) {
-        window.location.href = generateUrl({
-          scheme: appUrlScheme,
-          path: '/inlink',
-          query: `path=${encodeURIComponent(rawHref)}`,
-        })
+        if (hasSessionId || checkIfRoutable({ href: rawHref })) {
+          window.location.href = generateUrl({
+            scheme: appUrlScheme,
+            path: '/inlink',
+            query: `path=${encodeURIComponent(rawHref)}`,
+          })
+        } else {
+          loginCTAModalHash && push(loginCTAModalHash)
+        }
       }
     },
-    [appUrlScheme],
+    [appUrlScheme, hasSessionId, loginCTAModalHash, push],
   )
 
   const showTransitionModal = useCallback<
