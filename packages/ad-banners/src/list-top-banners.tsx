@@ -27,9 +27,8 @@ interface EventAttributes {
  */
 interface AdSystemBannerProps {
   contentType: ContentType
+  regionId: string
   contentId?: string
-  regionId?: string
-
   eventAttributes?: EventAttributes
 }
 
