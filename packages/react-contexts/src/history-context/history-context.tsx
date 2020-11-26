@@ -268,23 +268,28 @@ export function HistoryProvider({
   const navigateInApp = useCallback<
     (href: string, params?: OutlinkParams) => void
   >(
-    (href, params) => {
-      const { scheme } = parseUrl(href)
+    (rawHref, params) => {
+      const canonizedHref = canonizeTargetAddress({
+        href: rawHref,
+        webUrlBase,
+        expandInlinkStrictly: false,
+      })
+      const { scheme } = parseUrl(canonizedHref)
 
       if (scheme === 'http' || scheme === 'https') {
         const outlinkParams = qs.stringify({
-          url: href,
+          url: canonizedHref,
           ...(params || {}),
         })
 
         window.location.href = `${appUrlScheme}:///outlink?${outlinkParams}`
-      } else if (hasSessionId || checkIfRoutable({ href })) {
-        window.location.href = generateUrl({ scheme: appUrlScheme }, href)
+      } else if (hasSessionId || checkIfRoutable({ href: canonizedHref })) {
+        window.location.href = generateUrl({ scheme: appUrlScheme }, rawHref)
       } else {
         loginCTAModalHash && push(loginCTAModalHash)
       }
     },
-    [push, appUrlScheme, loginCTAModalHash, hasSessionId],
+    [push, appUrlScheme, loginCTAModalHash, hasSessionId, webUrlBase],
   )
 
   const navigate = useCallback<HistoryContextValue['navigate']>(
