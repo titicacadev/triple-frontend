@@ -18,7 +18,8 @@ import { DeepPartial } from 'utility-types'
 import { useEnv } from '../env-context'
 import { useSessionContextSafely } from '../session-context'
 
-import { checkIfRoutable, generateTargetAddressOnPublic } from './routelist'
+import { checkIfRoutable } from './routelist'
+import { canonizeTargetAddress } from './canonization'
 
 type URIHash = string
 
@@ -249,7 +250,11 @@ export function HistoryProvider({
 
   const navigateOnPublic = useCallback<(href: string) => string | undefined>(
     (rawHref) => {
-      const href = generateTargetAddressOnPublic({ href: rawHref, webUrlBase })
+      const href = canonizeTargetAddress({
+        href: rawHref,
+        webUrlBase,
+        expandInlinkStrictly: true,
+      })
 
       if (checkIfRoutable({ href })) {
         return (window.location.href = href)
