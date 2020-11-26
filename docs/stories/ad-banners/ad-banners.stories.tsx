@@ -55,6 +55,10 @@ export function BaseAdBanners() {
         left: number('섹션 왼쪽 패딩', 0),
         right: number('섹션 오른쪽 패딩', 0),
       }}
+      margin={{
+        left: number('섹션 왼쪽 패딩', 0),
+        right: number('섹션 오른쪽 패딩', 0),
+      }}
       eventAttributes={{ title: '콘텐츠 제목' }}
     />
   )
@@ -91,6 +95,11 @@ export function HorizontalAdBanners() {
           bottom: number('아래 패딩', 0),
           left: number('좌우 패딩', 25),
         }}
+        margin={{
+          top: number('위 패딩', 0),
+          bottom: number('아래 패딩', 0),
+          left: number('좌우 패딩', 0),
+        }}
         eventAttributes={{ title: '콘텐츠 제목' }}
       />
     </>
@@ -113,6 +122,10 @@ export function HotelListAdBanners() {
     <ListTopBanners
       direction={ListDirection.HORIZONTAL}
       padding={{
+        left: number('섹션 왼쪽 패딩', 0),
+        right: number('섹션 오른쪽 패딩', 0),
+      }}
+      margin={{
         left: number('섹션 왼쪽 패딩', 0),
         right: number('섹션 오른쪽 패딩', 0),
       }}
