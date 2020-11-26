@@ -34,7 +34,8 @@ export const BottomFixedContainer = styled.div<LayeringMixinProps>`
 `
 
 const CONTENT_MIN_WIDTH = 320
-const CONTENT_MAX_WIDTH = 760
+const CONTENT_MAX_WIDTH = 768
+
 export const ImageBannerWrapper = styled.div`
   box-sizing: border-box;
   min-width: ${CONTENT_MIN_WIDTH}px;
@@ -43,6 +44,7 @@ export const ImageBannerWrapper = styled.div`
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.07);
   background-color: #0179ff;
 `
+
 export const ImageWrapper = styled.div`
   margin: 0 auto;
   height: 130px;

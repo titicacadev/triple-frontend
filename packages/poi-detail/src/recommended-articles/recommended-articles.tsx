@@ -57,7 +57,7 @@ export default function RecommendedArticles({
       maxWidth={0}
       padding={{ left: 0, right: 0 }}
     >
-      <Responsive minWidth={760}>
+      <Responsive minWidth={768}>
         <H1 textAlign="center">함께 보면 좋을 추천 가이드</H1>
 
         <Carousel
@@ -79,7 +79,7 @@ export default function RecommendedArticles({
           가이드 더보기
         </MoreButton>
       </Responsive>
-      <Responsive maxWidth={759}>
+      <Responsive maxWidth={767}>
         <H1 margin={{ left: 30 }}>{`함께 보면 좋을\n추천 가이드`}</H1>
 
         <Carousel
