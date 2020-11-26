@@ -8,7 +8,7 @@ export default function Section({
   anchor,
   children,
   minWidth = 320,
-  maxWidth = 760,
+  maxWidth = 768,
   padding = { left: 30, right: 30 },
   ...props
 }: {
