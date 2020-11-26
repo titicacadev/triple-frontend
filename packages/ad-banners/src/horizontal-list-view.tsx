@@ -35,6 +35,7 @@ const FLICKING_CONFIG: Partial<FlickingOptions> = {
 const HorizontalListView: FC<HorizontalListViewProps> = ({
   banners,
   padding = {},
+  margin,
   onBannerIntersect,
   onBannerClick,
 }) => {
@@ -85,6 +86,7 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
         <ListSection
           minWidth={0}
           padding={{ top: padding.top, bottom: padding.bottom }}
+          margin={margin}
         >
           <Flicking
             {...FLICKING_CONFIG}
