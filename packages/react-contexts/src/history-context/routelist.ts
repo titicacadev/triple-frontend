@@ -2,7 +2,7 @@ import { parse } from 'qs'
 import { parseUrl, generateUrl } from '@titicaca/view-utilities'
 
 const PUBLIC_ROUTELIST_REGEXES = [
-  /^\/login+$/,
+  /^\/login$/,
   /^\/regions\/[^/]+\/(attractions|restaurants|articles)\/[^/]+$/,
   /^\/regions\/[^/]+\/hotels(\/.*)?$/,
   /^\/(attractions|restaurants|hotels|articles)\/[^/]+$/,
