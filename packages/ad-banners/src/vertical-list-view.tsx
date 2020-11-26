@@ -20,6 +20,7 @@ interface VerticalListViewProps {
 const VerticalListView: FC<VerticalListViewProps> = ({
   banners,
   padding,
+  margin,
   onBannerIntersect,
   onBannerClick,
 }) => {
@@ -39,7 +40,7 @@ const VerticalListView: FC<VerticalListViewProps> = ({
   }
 
   return (
-    <ListSection minWidth={0} padding={padding}>
+    <ListSection minWidth={0} padding={padding} margin={margin}>
       {banners.map((banner, index) => (
         <VerticalEntity
           key={banner.id}
