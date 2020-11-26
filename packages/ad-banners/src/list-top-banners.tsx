@@ -27,7 +27,7 @@ interface EventAttributes {
  */
 interface AdSystemBannerProps {
   contentType: ContentType
-  contentId: string
+  contentId?: string
   regionId?: string
 
   eventAttributes?: EventAttributes
@@ -46,10 +46,11 @@ interface InventoryBannerProps {
   onBannerClick?: (banner: Banner, index: number) => void
 }
 
-type AdBannersProps = { padding?: MarginPadding; direction?: ListDirection } & (
-  | AdSystemBannerProps
-  | InventoryBannerProps
-)
+type AdBannersProps = {
+  margin?: MarginPadding
+  padding?: MarginPadding
+  direction?: ListDirection
+} & (AdSystemBannerProps | InventoryBannerProps)
 
 const NOOP = () => {}
 
@@ -152,7 +153,7 @@ function useAdBannerProps(props: AdBannersProps) {
 }
 
 const ListTopBanners: FC<AdBannersProps> = (props) => {
-  const { padding, direction = ListDirection.VERTICAL } = props
+  const { margin, padding, direction = ListDirection.VERTICAL } = props
   const {
     getBannersAPI,
     handleBannerIntersecting,
@@ -196,6 +197,7 @@ const ListTopBanners: FC<AdBannersProps> = (props) => {
     <Component
       banners={banners}
       padding={padding}
+      margin={margin}
       onBannerClick={handleBannerClick}
       onBannerIntersect={handleBannerIntersecting}
     />

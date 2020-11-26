@@ -11,6 +11,7 @@ import ListSection from './list-section'
 interface HorizontalListViewProps {
   banners: Banner[]
   padding?: MarginPadding
+  margin?: MarginPadding
   onBannerClick: (banner: Banner, index: number) => void
   onBannerIntersect: (
     isIntersecting: boolean,
