@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/map",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "Map component",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
