@@ -11,6 +11,7 @@ import PickerFrame, {
 } from './picker-frame'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
 import useDisabledDays, { DislableDaysProps } from './use-disabled-days'
+import { usePublicHolidays } from './use-public-holidays'
 
 const MemoDayPicker = React.memo(DayPicker)
 
@@ -82,6 +83,10 @@ function RangePicker({
     afterBlock,
   })
 
+  const updatePublicHolidays = usePublicHolidays({
+    numberOfMonths,
+  })
+
   const initialMonth = React.useMemo(getInitialMonth, [])
 
   const from = React.useMemo(
@@ -101,14 +106,14 @@ function RangePicker({
   )
   const modifiers: Partial<Modifiers> = React.useMemo(
     () => ({
-      publicHolidays,
+      publicHolidays: publicHolidays || updatePublicHolidays,
       sunday: (day) => day.getDay() === 0,
       saturday: (day) => day.getDay() === 6,
       from,
       to,
       'included-range': from && to ? generatePaddedRange(from, to) : [],
     }),
-    [from, publicHolidays, to],
+    [from, publicHolidays, to, updatePublicHolidays],
   )
 
   const handleDayClick = React.useCallback(
