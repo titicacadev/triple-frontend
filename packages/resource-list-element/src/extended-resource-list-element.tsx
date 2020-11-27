@@ -20,7 +20,7 @@ type ResourceMeta = {
 }
 
 export type ResourceListElementProps<R extends ResourceMeta> = {
-  scrapResource?: R
+  resource?: R
   hideScrapButton?: boolean
   image?: ImageMeta
   imagePlaceholder?: string
@@ -63,7 +63,7 @@ const LabelContainer = styled.div`
 `
 
 export default function ExtendedResourceListElement<R extends ResourceMeta>({
-  scrapResource,
+  resource,
   hideScrapButton,
   image,
   imagePlaceholder,
@@ -82,7 +82,7 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
   partnerName,
   ...props
 }: ResourceListElementProps<R>) {
-  const { id, type, scraped } = scrapResource || {}
+  const { id, type, scraped } = resource || {}
   const labels = tags || []
 
   return (
