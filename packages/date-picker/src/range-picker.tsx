@@ -59,7 +59,7 @@ function RangePicker({
   beforeBlock,
   afterBlock,
   height,
-  publicHolidays,
+  publicHolidays: publicHolidaysFromProps,
   enableSameDay,
 }: DislableDaysProps & {
   startDate: string | null
@@ -74,6 +74,9 @@ function RangePicker({
   }) => void
   numberOfMonths?: number
   height?: string
+  /**
+   * @deprecated TF에서 공휴일을 Fetch하고 있습니다.
+   */
   publicHolidays?: Date[]
   enableSameDay?: boolean
 }) {
@@ -83,7 +86,7 @@ function RangePicker({
     afterBlock,
   })
 
-  const updatePublicHolidays = usePublicHolidays({
+  const publicHolidays = usePublicHolidays({
     numberOfMonths,
   })
 
@@ -106,14 +109,14 @@ function RangePicker({
   )
   const modifiers: Partial<Modifiers> = React.useMemo(
     () => ({
-      publicHolidays: publicHolidays || updatePublicHolidays,
+      publicHolidays: publicHolidaysFromProps || publicHolidays,
       sunday: (day) => day.getDay() === 0,
       saturday: (day) => day.getDay() === 6,
       from,
       to,
       'included-range': from && to ? generatePaddedRange(from, to) : [],
     }),
-    [from, publicHolidays, to, updatePublicHolidays],
+    [from, publicHolidaysFromProps, to, publicHolidays],
   )
 
   const handleDayClick = React.useCallback(
