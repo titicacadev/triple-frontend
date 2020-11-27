@@ -22,12 +22,15 @@ function DatePicker({
   onDateChange,
   disabledDays: disabledDaysFromProps,
   height,
-  publicHolidays,
+  publicHolidays: publicHolidaysFromProps,
 }: DislableDaysProps & {
   day: string | null
   onDateChange: (date: Date) => void
   numberOfMonths?: number
   height?: string
+  /**
+   * @deprecated TF에서 공휴일을 Fetch하고 있습니다.
+   */
   publicHolidays?: Date[]
 }) {
   const disabledDays = useDisabledDays({
@@ -36,7 +39,7 @@ function DatePicker({
     afterBlock,
   })
 
-  const updatePublicHolidays = usePublicHolidays({
+  const publicHolidays = usePublicHolidays({
     numberOfMonths,
   })
 
@@ -46,11 +49,11 @@ function DatePicker({
   )
   const modifiers: Partial<Modifiers> = React.useMemo(
     () => ({
-      publicHolidays: publicHolidays || updatePublicHolidays,
+      publicHolidays: publicHolidaysFromProps || publicHolidays,
       sunday: (day) => day.getDay() === 0,
       saturday: (day) => day.getDay() === 6,
     }),
-    [publicHolidays, updatePublicHolidays],
+    [publicHolidaysFromProps, publicHolidays],
   )
 
   const handleDayClick = React.useCallback(
