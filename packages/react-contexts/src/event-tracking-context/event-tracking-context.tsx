@@ -51,10 +51,6 @@ interface EventTrackingProviderProps {
   onError?: (error: Error) => void
 }
 
-interface EventTrackingProviderState {
-  pageLabel: string
-}
-
 declare global {
   interface Window {
     ga?: (
@@ -71,11 +67,8 @@ declare global {
 }
 
 export class EventTrackingProvider extends React.PureComponent<
-  EventTrackingProviderProps,
-  EventTrackingProviderState
+  EventTrackingProviderProps
 > {
-  state = { pageLabel: this.props.pageLabel || 'Unknown' }
-
   value: EventTrackingContextValue
 
   constructor(props: EventTrackingProvider['props']) {
@@ -118,8 +111,7 @@ export class EventTrackingProvider extends React.PureComponent<
 
   trackEvent: EventTrackingContextValue['trackEvent'] = ({ ga, fa, pixel }) => {
     const {
-      props: { onError },
-      state: { pageLabel },
+      props: { pageLabel, onError },
     } = this
 
     try {
@@ -157,8 +149,7 @@ export class EventTrackingProvider extends React.PureComponent<
     ...rest
   }) => {
     const {
-      props: { onError },
-      state: { pageLabel },
+      props: { pageLabel, onError },
     } = this
 
     try {
