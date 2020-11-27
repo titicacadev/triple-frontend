@@ -52,6 +52,7 @@
     "@titicaca/triple-document": "^2.4.1",
     "@titicaca/type-definitions": "^2.4.1",
     "@titicaca/user-verification": "^2.4.1",
+    "@titicaca/map": "^2.4.1",
     "http-proxy-middleware": "^0.20.0"
   },
   "devDependencies": {
