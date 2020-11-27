@@ -5,7 +5,7 @@ import { useEnv } from '@titicaca/react-contexts'
 export function EssentialContentMeta({
   title: titleFromProps,
   description: descriptionFromProps,
-  canonicalUrl = 'https://triple.guide/',
+  canonicalUrl,
 }: {
   title?: string
   description?: string
@@ -20,7 +20,10 @@ export function EssentialContentMeta({
     <Head>
       <title key="title">{title}</title>
       <meta name="description" content={description} />
-      <link key="canonical-url" rel="canonical" href={canonicalUrl} />
+
+      {canonicalUrl ? (
+        <link key="canonical-url" rel="canonical" href={canonicalUrl} />
+      ) : null}
     </Head>
   )
 }
