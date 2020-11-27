@@ -50,7 +50,7 @@ function DatePicker({
       sunday: (day) => day.getDay() === 0,
       saturday: (day) => day.getDay() === 6,
     }),
-    [publicHolidays],
+    [publicHolidays, updatePublicHolidays],
   )
 
   const handleDayClick = React.useCallback(
