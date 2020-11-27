@@ -17,7 +17,7 @@ describe('canonizeTargetAddress', () => {
     )
   })
 
-  it('should caninize external url as is', () => {
+  it('should canonize external url as is', () => {
     const url = 'https://google.com'
 
     assert.strictEqual(
