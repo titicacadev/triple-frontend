@@ -5,7 +5,7 @@ import { useEnv } from '@titicaca/react-contexts'
 export function FacebookOpenGraphMeta({
   title = '실시간 여행 가이드 - 트리플',
   description = '',
-  canonicalUrl = 'https://triple.guide/',
+  canonicalUrl,
   type = 'website',
   locale = 'ko_KR',
   image = {
@@ -17,7 +17,7 @@ export function FacebookOpenGraphMeta({
 }: {
   title?: string
   description?: string
-  canonicalUrl?: string
+  canonicalUrl: string
   type?: string
   locale?: string
   image?: { url: string; width?: number; height?: number }
