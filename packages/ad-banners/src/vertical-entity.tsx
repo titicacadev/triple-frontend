@@ -12,7 +12,6 @@ interface VerticalEntityProps {
 }
 
 const BannerImage = styled.img`
-  border-radius: 6px;
   width: 100%;
   vertical-align: top;
 `
@@ -33,7 +32,7 @@ const VerticalEntity: FC<VerticalEntityProps> = ({
 
   return (
     <IntersectionObserver threshold={0.5} onChange={handleIntersectionChange}>
-      <Container margin={{ top: 10 }}>
+      <Container margin={{ top: 10 }} borderRadius={6}>
         <BannerImage src={banner.image} onClick={handleBannerClick} />
       </Container>
     </IntersectionObserver>
