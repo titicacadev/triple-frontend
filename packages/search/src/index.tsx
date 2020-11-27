@@ -14,10 +14,7 @@ import {
   SearchNavbar,
 } from '@titicaca/core-elements'
 import { useUserAgentContext } from '@titicaca/react-contexts'
-import {
-  backOrClose,
-  closeKeyboard,
-} from '@titicaca/triple-web-to-native-interfaces'
+import { closeKeyboard } from '@titicaca/triple-web-to-native-interfaces'
 import { useDebouncedState } from '@titicaca/react-hooks'
 
 const ContentsContainer = styled(Container)<{ isIOS: boolean }>`
@@ -132,17 +129,12 @@ export default function FullScreenSearchView({
     handleInputFocus()
   }
 
-  const handleBack = useCallback(() => {
-    onBackClick()
-    backOrClose()
-  }, [onBackClick])
-
   return (
     <>
       <SearchNavbar
         placeholder={placeholder}
         value={keyword}
-        onBackClick={handleBack}
+        onBackClick={onBackClick}
         onDeleteClick={handleDelete}
         onInputChange={handleChange}
         onInputClick={onInputClick}
