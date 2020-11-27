@@ -19,6 +19,8 @@
 ### meta-tags
 
 - `AppleSmartBannerMeta`와 `FacebookAppLinkMeta`에 env context 적용 및 `appUrlScheme` prop deprecate 처리 (#1059)
+- `EssentialContentMeta`의 `canonicalUrl` prop의 기본 값 제거 및 값이 없을 때 태그 표시 안 함 (#1095)
+- `FacebookOpenGraphMeta`의 `canonicalUrl`을 필수 prop으로 변경 (#1095)
 
 ## 2.3.1
 
