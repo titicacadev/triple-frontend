@@ -6,6 +6,7 @@ import DayPicker, { DayModifiers, Modifiers } from 'react-day-picker'
 import PickerFrame, { generateSelectedCircleStyle } from './picker-frame'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
 import useDisabledDays, { DislableDaysProps } from './use-disabled-days'
+import { usePublicHolidays } from './use-public-holidays'
 
 const MemoDayPicker = React.memo(DayPicker)
 
@@ -35,13 +36,17 @@ function DatePicker({
     afterBlock,
   })
 
+  const updatePublicHolidays = usePublicHolidays({
+    numberOfMonths,
+  })
+
   const selectedDay = React.useMemo(
     () => (day ? moment(day).toDate() : undefined),
     [day],
   )
   const modifiers: Partial<Modifiers> = React.useMemo(
     () => ({
-      publicHolidays,
+      publicHolidays: publicHolidays || updatePublicHolidays,
       sunday: (day) => day.getDay() === 0,
       saturday: (day) => day.getDay() === 6,
     }),
