@@ -198,9 +198,6 @@ export function RangePickerStory() {
           ? disabledDays.filter(checkValidISODateFormat).filter(checkValidDate)
           : undefined
       }
-      publicHolidays={array('공휴일', initialHolidays, '\n')
-        .filter(checkValidDate)
-        .map((date) => new Date(date))}
       numberOfMonths={number('표시할 개월 수', 3)}
       height={text('높이', '300px')}
       enableSameDay={boolean('enableSameDay 활성화', false)}
