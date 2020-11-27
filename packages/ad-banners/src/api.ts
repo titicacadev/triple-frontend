@@ -18,7 +18,7 @@ interface AdBannersFetchingParams {
   contentType: ContentType
   contentId?: string
   contentRegionId?: string
-  regionId?: string
+  regionId: string
   userLocation: UserLocation
 }
 
