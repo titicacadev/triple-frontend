@@ -2,5 +2,8 @@
   "extends": ["@titicaca/eslint-config-triple/typescript", "./.eslintrc.naming-convention.js"],
   "env": {
     "jest": true
+  },
+  "globals": {
+    "google": true
   }
 }
