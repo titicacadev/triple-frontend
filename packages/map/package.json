@@ -1,0 +1,28 @@
+{
+  "name": "@titicaca/map",
+  "version": "2.3.1",
+  "description": "Map component",
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "dependencies": {
+    "@react-google-maps/api": "^1.13.0",
+    "@titicaca/color-palette": "^2.3.1",
+    "@titicaca/core-elements": "^2.3.1"
+  },
+  "peerDependencies": {
+    "@react-google-maps/api": "^1.13.0"
+  },
+  "devDependencies": {
+    "@types/googlemaps": "^3.40.3"
+  }
+}
