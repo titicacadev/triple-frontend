@@ -21,8 +21,6 @@ const DEFAULT_MAP_CONTAINER_STYLE: CSSProperties = {
 }
 
 export interface WithGoogleMapProps extends GoogleMapProps {
-  mapContainerStyle?: CSSProperties
-
   googleMapLoadOptions: {
     /** goole map api key */
     googleMapsApiKey: string
@@ -35,7 +33,7 @@ export interface WithGoogleMapProps extends GoogleMapProps {
   }
 }
 
-export function MapProvider<P extends WithGoogleMapProps>({
+export function MapProvider({
   options: _options,
   mapContainerStyle: _mapContainerStyle,
   googleMapLoadOptions: {
@@ -45,23 +43,25 @@ export function MapProvider<P extends WithGoogleMapProps>({
   },
   children,
   ...props
-}: PropsWithChildren<P>) {
+}: PropsWithChildren<WithGoogleMapProps>) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey,
     region,
     libraries,
   })
+
   const options: google.maps.MapOptions = useMemo(
     () => ({
       ...DEFAULT_MAP_OPTIONS,
-      ...(_options && _options),
+      ..._options,
     }),
     [_options],
   )
+
   const mapContainerStyle: CSSProperties = useMemo(
     () => ({
       ...DEFAULT_MAP_CONTAINER_STYLE,
-      ...(_mapContainerStyle && _mapContainerStyle),
+      ..._mapContainerStyle,
     }),
     [_mapContainerStyle],
   )
@@ -79,16 +79,4 @@ export function MapProvider<P extends WithGoogleMapProps>({
   ) : (
     <Spinner />
   )
-}
-
-export function withMapProvider<P>(
-  Component: React.ComponentType<P>,
-): React.ComponentType<P & WithGoogleMapProps> {
-  return function ComponentWithMaps(props: WithGoogleMapProps & P) {
-    return (
-      <MapProvider {...(props as P & WithGoogleMapProps)}>
-        <Component {...(props as P)} />
-      </MapProvider>
-    )
-  }
 }
