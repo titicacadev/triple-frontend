@@ -1,44 +1,23 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-// import { text, boolean, number, select, object } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { Container } from '@titicaca/core-elements'
-import { MapProvider, getGeometry } from '@titicaca/map'
+import { MapProvider } from '@titicaca/map'
 
-import HOTELS from '../__mocks__/map/hotel-recommandations.json'
+import { center, bounds } from './mock'
 
-import { RecommendationHotelResourceType } from './types'
+const MapContainer = styled(Container)`
+  background-color: #ffffff;
+  width: ${({ width }) => width || '100%'};
+  height: ${({ height }) => height || '200px'};
+`
 
 export default {
   title: 'Map | Map',
 }
 
 export function Map() {
-  /** MapProvider 는 기본적으로 width/heigth 이 100%/100%  */
-  const MapContainer = styled(Container)`
-    position: sticky;
-    top: 52px;
-    z-index: 3;
-    background-color: #ffffff;
-    width: 100%;
-    height: 180px;
-  `
-
   const [key, setKey] = useState<string>('')
-  const coordinates: [
-    number,
-    number,
-  ][] = ((HOTELS as unknown) as RecommendationHotelResourceType[])
-    .map(({ hotel }) => hotel)
-    .map(
-      ({
-        source: {
-          pointGeolocation: { coordinates },
-        },
-      }) => coordinates as [number, number],
-    )
-
-  const { center, bounds } = getGeometry(coordinates)
 
   return (
     <MapContainer>
@@ -51,17 +30,53 @@ export function Map() {
         size={50}
         placeholder="google map api key"
       />
-      <MapProvider
-        options={{ center, bounds }}
-        onLoad={action('onLoad')}
-        googleMapLoadOptions={{
-          googleMapsApiKey: key,
-        }}
-      ></MapProvider>
+      {key ? (
+        <MapProvider
+          options={{ center, bounds }}
+          onLoad={action('onLoad')}
+          googleMapLoadOptions={{
+            googleMapsApiKey: key,
+          }}
+        ></MapProvider>
+      ) : null}
     </MapContainer>
   )
 }
 
 Map.story = {
   name: '기본 맵',
+}
+
+export function MapWithProps() {
+  const [key, setKey] = useState<string>('')
+
+  return (
+    <MapContainer>
+      <input
+        type="text"
+        defaultValue={key}
+        onBlur={(e) => {
+          setKey(e.currentTarget.value)
+        }}
+        size={50}
+        placeholder="google map api key"
+      />
+
+      <Container width="50%" height={200}>
+        {key ? (
+          <MapProvider
+            options={{ center, bounds }}
+            onLoad={action('onLoad')}
+            googleMapLoadOptions={{
+              googleMapsApiKey: key,
+            }}
+          ></MapProvider>
+        ) : null}
+      </Container>
+    </MapContainer>
+  )
+}
+
+MapWithProps.story = {
+  name: '사이즈 설정',
 }
