@@ -1,16 +1,41 @@
 # CHANGELOG
 
-## Unreleased
+## 2.4.0
+
+### common
+
+- `HistoryProvider`, `SessionContextProvider` 를 Storybook Decorator로 제공합니다. (#1080)
+- 760 대신 768을 기준으로 큰 화면 레이아웃을 구성합니다. (#1091)
+
+### ad-banners
+
+- `ListTopBanners` 컴포넌트 `margin` 추가 (#1092)
+- `ListTopBanners` 컴포넌트 `contentId` props를 optional props로 수정 (#1092)
+- `ContentDetailsBanner` 컴포넌트 추가 (#1099)
+
+### date-picker
+
+- 공휴일을 추가합니다 (#1097)
 
 ### react-contexts
 
 - 환경 변수를 공급하는 context 추가. `EnvProvider`, `useEnv` (#1059)
 - `HistoryProvider`에 env context 적용 및 `appUrlScheme`, `webUrlBase` prop deprecate 처리 (#1059)
 - `SessionContextProvider`에 env context 적용 및 `authBasePath` prop deprecate 처리 (#1059)
+- `withEventTrackingProvider` 에 `options` 파라미터추가 (#1087)
+- `pageLabel` State를 삭제합니다. (#1094)
+
+### resource-list-element
+
+- `resource`를 optional하게 받을수 있도록 수정합니다. (#1093)
 
 ### reviews
 
 - env context 적용 및 `ReviewContainer`의 `appUrlScheme` prop deprecate 처리 (#1059)
+
+### search
+
+- `Search` 컴포넌트에서 `backOrClose` 제거 (#1096)
 
 ### footer
 
