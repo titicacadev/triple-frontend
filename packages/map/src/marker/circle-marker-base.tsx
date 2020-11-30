@@ -85,8 +85,6 @@ export const CirclePin = styled.div<
 
   ${({ active }) => (active ? 'pointer-events: none;' : '')}
 
-  /**
-   * FIXME: 마커, 핀 좌표 정확도 리펙토링 필요 */
   ${({ src, width, height, active, zIndex }) => {
     return active
       ? css`
