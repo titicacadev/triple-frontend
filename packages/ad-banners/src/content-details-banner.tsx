@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { MarginPadding } from '@titicaca/core-elements'
 import {
   useDeviceContext,
@@ -12,8 +12,7 @@ import {
   getAdBanners,
   BannerTypes,
 } from './api'
-import { Banner, ListDirection } from './typing'
-import HorizontalListView from './horizontal-list-view'
+import { Banner } from './typing'
 import VerticalListView from './vertical-list-view'
 
 declare global {
@@ -32,7 +31,7 @@ interface EventAttributes {
  */
 interface AdSystemBannerProps {
   contentType: ContentType
-  regionId: string
+  contentRegionId: string
   contentId?: string
   eventAttributes?: EventAttributes
 }
@@ -53,15 +52,9 @@ interface InventoryBannerProps {
 type AdBannersProps = {
   margin?: MarginPadding
   padding?: MarginPadding
-  direction?: ListDirection
 } & (AdSystemBannerProps | InventoryBannerProps)
 
 const NOOP = () => {}
-
-const COMPONENT_SET = {
-  [ListDirection.VERTICAL]: VerticalListView,
-  [ListDirection.HORIZONTAL]: HorizontalListView,
-}
 
 function isPropsForInventoryAPI(
   props: AdBannersProps,
@@ -92,7 +85,7 @@ function useAdBannerProps(props: AdBannersProps) {
     const {
       contentType,
       contentId,
-      regionId,
+      contentRegionId,
       eventAttributes: { title } = { title: undefined },
     } = props
 
@@ -100,10 +93,10 @@ function useAdBannerProps(props: AdBannersProps) {
       getBannersAPI: () =>
         getAdBanners({
           contentType,
-          regionId,
+          contentRegionId,
           contentId,
           userLocation: { longitude, latitude },
-          bannerType: BannerTypes.ListTopBanner,
+          bannerType: BannerTypes.ContentDetailsBanner,
         }),
       handleBannerIntersecting: (
         isIntersecting: boolean,
@@ -117,8 +110,11 @@ function useAdBannerProps(props: AdBannersProps) {
         postAdBannerEvent({
           itemId: banner.id,
           eventType: 'impression',
-          regionId,
-          bannerType: BannerTypes.ListTopBanner,
+          bannerType: BannerTypes.ContentDetailsBanner,
+          contentId,
+          contentRegionId,
+          contentType,
+          userLocation: { longitude, latitude },
         })
 
         trackEvent({
@@ -135,8 +131,10 @@ function useAdBannerProps(props: AdBannersProps) {
         postAdBannerEvent({
           itemId: banner.id,
           eventType: 'click',
-          regionId,
-          bannerType: BannerTypes.ListTopBanner,
+          bannerType: BannerTypes.ContentDetailsBanner,
+          contentId,
+          contentRegionId,
+          userLocation: { longitude, latitude },
         })
 
         trackEvent({
@@ -159,16 +157,14 @@ function useAdBannerProps(props: AdBannersProps) {
   }
 }
 
-const ListTopBanners: FC<AdBannersProps> = (props) => {
-  const { margin, padding, direction = ListDirection.VERTICAL } = props
+export default function ContentDetailsBanner(props: AdBannersProps) {
+  const { margin, padding } = props
   const {
     getBannersAPI,
     handleBannerIntersecting,
     handleBannerClick,
   } = useAdBannerProps(props)
   const [banners, setBanners] = useState([])
-
-  const Component = COMPONENT_SET[direction]
 
   useEffect(() => {
     let isMounted = true
@@ -201,7 +197,7 @@ const ListTopBanners: FC<AdBannersProps> = (props) => {
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <Component
+    <VerticalListView
       banners={banners}
       padding={padding}
       margin={margin}
@@ -210,5 +206,3 @@ const ListTopBanners: FC<AdBannersProps> = (props) => {
     />
   )
 }
-
-export default ListTopBanners
