@@ -171,15 +171,12 @@ const ListTopBanners: FC<AdBannersProps> = (props) => {
   const Component = COMPONENT_SET[direction]
 
   useEffect(() => {
-    let isMounted = true
     let handle: number | undefined
 
     async function fetchBanners() {
       const response = await getBannersAPI()
 
-      if (isMounted) {
-        setBanners(response || [])
-      }
+      setBanners(response || [])
     }
 
     if (window.requestIdleCallback) {
@@ -191,8 +188,6 @@ const ListTopBanners: FC<AdBannersProps> = (props) => {
     }
 
     return () => {
-      isMounted = false
-
       if (handle && window.cancelIdleCallback) {
         window.cancelIdleCallback(handle)
       }
