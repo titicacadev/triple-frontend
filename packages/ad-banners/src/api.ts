@@ -9,6 +9,11 @@ export type ContentType =
   | 'restaurant'
   | 'air'
 
+export enum BannerTypes {
+  ListTopBanner = 'menu_top_banner_ad_v0',
+  ContentDetailsBanner = 'content_details_ad_v0',
+}
+
 type UserLocation = {
   latitude?: number | null
   longitude?: number | null
@@ -20,6 +25,7 @@ interface AdBannersFetchingParams {
   contentRegionId?: string
   regionId: string
   userLocation: UserLocation
+  bannerType: BannerTypes
 }
 
 /**
@@ -37,6 +43,7 @@ export async function getAdBanners({
   contentRegionId,
   regionId,
   userLocation: { latitude, longitude },
+  bannerType,
 }: AdBannersFetchingParams) {
   const search = qs.stringify({
     content_type: contentType,
@@ -49,7 +56,7 @@ export async function getAdBanners({
   })
 
   const response = await fetch(
-    `/api/inventories/menu_top_banner_ad_v0/items?${search}`,
+    `/api/inventories/${bannerType}/items?${search}`,
     {
       credentials: 'same-origin',
     },
@@ -74,20 +81,42 @@ export async function postAdBannerEvent({
   itemId,
   eventType,
   regionId,
+  bannerType,
+  userLocation,
+  contentId,
+  contentRegionId,
+  contentType,
 }: {
   itemId: string
   eventType: string
+  bannerType: BannerTypes
+  userLocation?: UserLocation
   regionId?: string
+  contentId?: string
+  contentRegionId?: string
+  contentType?: ContentType
 }) {
-  return fetch(
-    `/api/inventories/menu_top_banner_ad_v0/items/${itemId}/events`,
-    {
-      body: JSON.stringify({ eventType, regionId }),
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'same-origin',
+  return fetch(`/api/inventories/${bannerType}/items/${itemId}/events`, {
+    body: JSON.stringify({
+      eventType,
+      regionId,
+      ...(contentId || contentRegionId || contentType
+        ? {
+            content: {
+              id: contentId,
+              regionId: contentRegionId,
+              type: contentType,
+            },
+          }
+        : {}),
+      ...(userLocation
+        ? { userLocation: [userLocation.longitude, userLocation.latitude] }
+        : {}),
+    }),
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
     },
-  )
+    credentials: 'same-origin',
+  })
 }

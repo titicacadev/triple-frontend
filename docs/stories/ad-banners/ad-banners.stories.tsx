@@ -3,7 +3,11 @@ import { number, text, select, boolean } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { StoryFn } from '@storybook/addons'
 import { EventTrackingProvider, DeviceProvider } from '@titicaca/react-contexts'
-import { ListDirection, ListTopBanners } from '@titicaca/ad-banners'
+import {
+  ListDirection,
+  ListTopBanners,
+  ContentDetailsBanner,
+} from '@titicaca/ad-banners'
 import styled from 'styled-components'
 
 import { historyProviderDecorator } from '../../decorators'
@@ -21,7 +25,7 @@ const LongContent = styled.div`
 `
 
 export default {
-  title: 'ad-banners | ListTopBanners',
+  title: 'ad-banners',
   decorators: [historyProviderDecorator],
 }
 
@@ -41,16 +45,16 @@ function ProviderWrapper({ children }: { children: React.ReactNode }) {
   )
 }
 
-export function BaseAdBanners() {
+export function ContentDetailsBanners() {
   return (
-    <ListTopBanners
+    <ContentDetailsBanner
       contentType={select(
         '콘텐츠 타입',
         CONTENT_TYPE_SET,
-        CONTENT_TYPE_SET['air'] as any,
+        CONTENT_TYPE_SET['restaurant'] as any,
       )}
-      contentId={text('콘텐츠 ID', '81977f84-ddd0-4112-8057-6cc9dab9aa70')}
-      regionId={text('리전 ID', '759174cc-0814-4400-a420-5668a0517edd')}
+      contentId={text('콘텐츠 ID', 'a897fe29-f947-4364-b994-9a40157e54cb')}
+      contentRegionId={text('리전 ID', '759174cc-0814-4400-a420-5668a0517edd')}
       padding={{
         left: number('섹션 왼쪽 패딩', 0),
         right: number('섹션 오른쪽 패딩', 0),
@@ -64,8 +68,8 @@ export function BaseAdBanners() {
   )
 }
 
-BaseAdBanners.story = {
-  name: '기본 광고 배너',
+ContentDetailsBanners.story = {
+  name: '콘텐츠 디테일 배너',
   decorators: [
     (storyFn: StoryFn<JSX.Element>) => (
       <ProviderWrapper>
@@ -75,7 +79,7 @@ BaseAdBanners.story = {
   ],
 }
 
-export function HorizontalAdBanners() {
+export function ListTopAdBanners() {
   return (
     <>
       {boolean('스크롤 테스트', false) ? (
@@ -106,8 +110,8 @@ export function HorizontalAdBanners() {
   )
 }
 
-HorizontalAdBanners.story = {
-  name: '가로형 광고 배너',
+ListTopAdBanners.story = {
+  name: '메뉴상단 배너',
   decorators: [
     (storyFn: StoryFn<JSX.Element>) => (
       <ProviderWrapper>

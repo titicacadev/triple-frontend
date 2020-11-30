@@ -7,6 +7,7 @@ import ListSection from './list-section'
 
 interface VerticalListViewProps {
   banners: Banner[]
+  margin?: MarginPadding
   padding?: MarginPadding
   margin?: MarginPadding
   onBannerClick: (banner: Banner, index: number) => void
