@@ -21,9 +21,9 @@ type UserLocation = {
 
 interface AdBannersFetchingParams {
   contentType: ContentType
+  regionId: string
   contentId?: string
   contentRegionId?: string
-  regionId: string
   userLocation: UserLocation
   bannerType: BannerTypes
 }
@@ -32,27 +32,23 @@ interface AdBannersFetchingParams {
  * 트리플 광고 시스템에 등록된 광고 목록을 요청합니다.
  *
  * @param contentType
- * @param contentId
- * @param contentRegionId
  * @param regionId
+ * @param contentId
  * @param userLocation
+ * @param bannerType
  */
 export async function getAdBanners({
   contentType,
-  contentId,
-  contentRegionId,
   regionId,
-  userLocation: { latitude, longitude },
+  contentId,
+  userLocation,
   bannerType,
 }: AdBannersFetchingParams) {
-  const search = qs.stringify({
-    content_type: contentType,
-    content_id: contentId,
-    content_region_id: contentRegionId,
-    region_id: regionId,
-    ...(longitude && latitude
-      ? { user_location: `${longitude},${latitude}` }
-      : {}),
+  const search = getSearchQuery(bannerType, {
+    contentType,
+    regionId,
+    contentId,
+    userLocation,
   })
 
   const response = await fetch(
@@ -76,6 +72,10 @@ export async function getAdBanners({
  * @param itemId 광고 ID
  * @param eventType
  * @param regionId
+ * @param bannerType
+ * @param userLocation
+ * @param contentId
+ * @param contentType
  */
 export async function postAdBannerEvent({
   itemId,
@@ -84,39 +84,94 @@ export async function postAdBannerEvent({
   bannerType,
   userLocation,
   contentId,
-  contentRegionId,
   contentType,
 }: {
   itemId: string
   eventType: string
   bannerType: BannerTypes
   userLocation?: UserLocation
-  regionId?: string
+  regionId: string
   contentId?: string
-  contentRegionId?: string
   contentType?: ContentType
 }) {
+  const body = getRequestBody(bannerType, {
+    eventType,
+    regionId,
+    contentId,
+    contentType,
+    userLocation,
+  })
+
   return fetch(`/api/inventories/${bannerType}/items/${itemId}/events`, {
-    body: JSON.stringify({
-      eventType,
-      regionId,
-      ...(contentId || contentRegionId || contentType
-        ? {
-            content: {
-              id: contentId,
-              regionId: contentRegionId,
-              type: contentType,
-            },
-          }
-        : {}),
-      ...(userLocation
-        ? { userLocation: [userLocation.longitude, userLocation.latitude] }
-        : {}),
-    }),
+    body,
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     credentials: 'same-origin',
   })
+}
+
+function getSearchQuery(
+  bannerType: BannerTypes,
+  options: {
+    contentType: string
+    regionId: string
+    contentId?: string
+    userLocation?: UserLocation
+  },
+) {
+  const { contentId, regionId, contentType, userLocation } = options
+
+  switch (bannerType) {
+    case BannerTypes.ContentDetailsBanner:
+      return qs.stringify({
+        content_id: contentId,
+        content_region_id: regionId,
+        content_type: contentType,
+        user_location:
+          userLocation && userLocation.longitude && userLocation.latitude
+            ? `${userLocation.longitude},${userLocation.latitude}`
+            : undefined,
+      })
+    case BannerTypes.ListTopBanner:
+      return qs.stringify({
+        content_type: contentType,
+        region_id: regionId,
+      })
+  }
+}
+
+function getRequestBody(
+  bannerType: BannerTypes,
+  options: {
+    eventType: string
+    contentId?: string
+    regionId: string
+    contentType?: string
+    userLocation?: UserLocation
+  },
+) {
+  const { eventType, contentId, regionId, contentType, userLocation } = options
+
+  switch (bannerType) {
+    case BannerTypes.ContentDetailsBanner:
+      return JSON.stringify({
+        content: {
+          id: contentId,
+          regionId: regionId,
+          type: contentType,
+        },
+        eventType,
+        userLocation:
+          userLocation && userLocation.longitude && userLocation.latitude
+            ? [userLocation.longitude, userLocation.latitude]
+            : undefined,
+      })
+    case BannerTypes.ListTopBanner:
+      return JSON.stringify({
+        eventType,
+        regionId,
+      })
+  }
 }

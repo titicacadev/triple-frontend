@@ -93,7 +93,7 @@ function useAdBannerProps(props: AdBannersProps) {
       getBannersAPI: () =>
         getAdBanners({
           contentType,
-          contentRegionId,
+          regionId: contentRegionId,
           contentId,
           userLocation: { longitude, latitude },
           bannerType: BannerTypes.ContentDetailsBanner,
@@ -112,7 +112,7 @@ function useAdBannerProps(props: AdBannersProps) {
           eventType: 'impression',
           bannerType: BannerTypes.ContentDetailsBanner,
           contentId,
-          contentRegionId,
+          regionId: contentRegionId,
           contentType,
           userLocation: { longitude, latitude },
         })
@@ -133,7 +133,7 @@ function useAdBannerProps(props: AdBannersProps) {
           eventType: 'click',
           bannerType: BannerTypes.ContentDetailsBanner,
           contentId,
-          contentRegionId,
+          regionId: contentRegionId,
           userLocation: { longitude, latitude },
         })
 
