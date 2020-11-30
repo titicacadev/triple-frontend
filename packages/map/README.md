@@ -2,7 +2,15 @@
 
 구글맵을 기반으로 하는 트리플 공통 맵 컴포넌트입니다.
 
-## Props
+## Usage
+
+### Provider
+
+기본 Map 컴포넌트입니다.
+
+- 참고: https://tomchentw.github.io/react-google-maps/#googlemap
+
+#### Props
 
 ```ts
 {
@@ -25,12 +33,6 @@
   onLoad: () => void
 }
 ```
-
-## Usage
-
-기본 Map 컴포넌트입니다.
-
-- 참고: https://tomchentw.github.io/react-google-maps/#googlemap
 
 ```tsx
 import { MapProvider } from '@titicaca/map'
