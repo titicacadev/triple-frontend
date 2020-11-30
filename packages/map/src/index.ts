@@ -1,2 +1,5 @@
 export * from './provider'
 export * from './utilities'
+export * from './marker'
+export * from './polygon'
+export * from './polyline'
