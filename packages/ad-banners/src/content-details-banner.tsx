@@ -167,15 +167,12 @@ export default function ContentDetailsBanner(props: AdBannersProps) {
   const [banners, setBanners] = useState([])
 
   useEffect(() => {
-    let isMounted = true
     let handle: number | undefined
 
     async function fetchBanners() {
       const response = await getBannersAPI()
 
-      if (isMounted) {
-        setBanners(response || [])
-      }
+      setBanners(response || [])
     }
 
     if (window.requestIdleCallback) {
@@ -187,8 +184,6 @@ export default function ContentDetailsBanner(props: AdBannersProps) {
     }
 
     return () => {
-      isMounted = false
-
       if (handle && window.cancelIdleCallback) {
         window.cancelIdleCallback(handle)
       }
