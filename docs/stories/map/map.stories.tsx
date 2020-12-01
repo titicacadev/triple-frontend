@@ -2,9 +2,22 @@ import React from 'react'
 import { text, number, select } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { Container } from '@titicaca/core-elements'
-import { MapProvider, Polyline, HotelCircleMarker } from '@titicaca/map'
+import {
+  MapProvider,
+  Polyline,
+  DotPolyline,
+  Polygon,
+  HotelCircleMarker,
+} from '@titicaca/map'
 
-import { mapOptions, polylineGeometry, polylinePaths } from './mock'
+import {
+  mapOptions,
+  polylineGeometry,
+  polylinePaths,
+  polygonGeometry,
+  polygonLinePath,
+  polygonPaths,
+} from './mock'
 
 /**
  * FIXME: security issue
@@ -118,4 +131,102 @@ export function PolylineWithMarker() {
 
 PolylineWithMarker.story = {
   name: 'Polyline with CircleMarker',
+}
+
+export function PolygonWithMarker() {
+  return (
+    <Container width="100vw" height={300}>
+      <MapProvider
+        options={{ ...polygonGeometry, zoom: 10 }}
+        onLoad={action('onLoad')}
+        googleMapLoadOptions={{
+          googleMapsApiKey: GOOGLE_MAPS_API_KEY,
+        }}
+      >
+        {/* {polylinePaths.map((path, i) => (
+            <HotelCircleMarker
+              key={i}
+              zIndex={polylinePaths.length - i}
+              active={false}
+              position={{ ...path }}
+              onClick={() => {}}
+            >
+              {i + 1}
+            </HotelCircleMarker>
+          ))} */}
+
+        <Polygon paths={polygonPaths} />
+      </MapProvider>
+    </Container>
+  )
+}
+
+PolygonWithMarker.story = {
+  name: 'Polygon with CircleMarker',
+}
+
+export function PolygonWithPolyline() {
+  return (
+    <Container height={300}>
+      <MapProvider
+        options={{ ...polygonGeometry, zoom: 10 }}
+        onLoad={action('onLoad')}
+        googleMapLoadOptions={{
+          googleMapsApiKey: GOOGLE_MAPS_API_KEY,
+        }}
+      >
+        {/* {polylinePaths.map((path, i) => (
+            <HotelCircleMarker
+              key={i}
+              zIndex={polylinePaths.length - i}
+              active={false}
+              position={{ ...path }}
+              onClick={() => {}}
+            >
+              {i + 1}
+            </HotelCircleMarker>
+          ))} */}
+
+        <DotPolyline path={polygonLinePath} />
+        <Polygon paths={polygonPaths} />
+      </MapProvider>
+    </Container>
+  )
+}
+
+PolygonWithPolyline.story = {
+  name: 'Polygon with Polyline',
+}
+
+export function PolygonWithPolylineAndMarker() {
+  return (
+    <Container height={300}>
+      <MapProvider
+        options={{ ...polygonGeometry, zoom: 10 }}
+        onLoad={action('onLoad')}
+        googleMapLoadOptions={{
+          googleMapsApiKey: GOOGLE_MAPS_API_KEY,
+        }}
+      >
+        {polygonPaths.map((path, i) => (
+          <HotelCircleMarker
+            key={i}
+            zIndex={polygonPaths.length - i}
+            active={false}
+            position={{ ...path }}
+            onClick={() => {}}
+          >
+            {i + 1}
+          </HotelCircleMarker>
+        ))}
+
+        <DotPolyline path={polygonLinePath} />
+        <Polygon paths={polygonPaths} />
+      </MapProvider>
+    </Container>
+  )
+}
+
+PolygonWithPolylineAndMarker.story = {
+  name: 'Polygon with Polyline, Marker',
 }
