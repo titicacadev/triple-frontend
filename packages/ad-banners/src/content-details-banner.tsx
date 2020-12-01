@@ -134,6 +134,7 @@ function useAdBannerProps(props: AdBannersProps) {
           bannerType: BannerTypes.ContentDetailsBanner,
           contentId,
           regionId: contentRegionId,
+          contentType,
           userLocation: { longitude, latitude },
         })
 
