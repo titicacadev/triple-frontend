@@ -18,12 +18,6 @@ enum PoiType {
   air = 'air',
 }
 
-type AddresType = {
-  en: string
-  ko: string
-  local: string
-}
-
 type Price = {
   promoText: string // "최대 8%",
   nightlyPrice: number // 79228,
@@ -90,7 +84,7 @@ export type RecommendationItineraryPoiCard = {
     id?: string
     regionId: string
     names: TranslatedProperty
-    addresses: AddresType
+    addresses: TranslatedProperty
     location: number[]
     comment: string
     pointGeolocation: PointGeoJSON
