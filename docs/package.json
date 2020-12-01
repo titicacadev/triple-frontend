@@ -30,6 +30,7 @@
     "@titicaca/image-carousel": "^2.4.1",
     "@titicaca/listing-filter": "^2.4.1",
     "@titicaca/location-properties": "^2.4.1",
+    "@titicaca/map": "^2.4.1",
     "@titicaca/modals": "^2.4.1",
     "@titicaca/nearby-pois": "^2.4.1",
     "@titicaca/poi-detail": "^2.4.1",
@@ -52,7 +53,6 @@
     "@titicaca/triple-document": "^2.4.1",
     "@titicaca/type-definitions": "^2.4.1",
     "@titicaca/user-verification": "^2.4.1",
-    "@titicaca/map": "^2.4.1",
     "http-proxy-middleware": "^0.20.0"
   },
   "devDependencies": {
