@@ -7,7 +7,7 @@ export * from './polyline-base'
  *
  * e.g. 체크리스트 v2 일정짜기 결과 페이지
  */
-export const Polyline = withCustomOptions({
+export const DotPolyline = withCustomOptions({
   icons: [
     {
       icon: {
@@ -26,7 +26,7 @@ export const Polyline = withCustomOptions({
  * Dot-style Polyline
  * e.g. 체크리스트 v2 경로상 추천 결과 페이지
  */
-export const DotPolyline = withCustomOptions({
+export const Polyline = withCustomOptions({
   strokeColor: '#FF0000',
   strokeOpacity: 0.8,
 })
