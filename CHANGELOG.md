@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.4.1
+
+### ad-banners
+
+- `ContentDetailsBanner` 컴포넌트 Click Event contentType 수집
+
 ## 2.4.0
 
 ### common
