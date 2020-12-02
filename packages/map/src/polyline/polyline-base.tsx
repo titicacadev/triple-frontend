@@ -32,7 +32,7 @@ export function withCustomOptions(options: google.maps.PolylineOptions) {
     path,
     ...rest
   }: google.maps.PolylineOptions) {
-    const style: google.maps.PolylineOptions = { ...rest, ...options }
+    const style: google.maps.PolylineOptions = { ...options, ...rest }
 
     return <PolylineBase path={path} {...style} />
   }
