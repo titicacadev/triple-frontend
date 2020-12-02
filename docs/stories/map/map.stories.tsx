@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { text, number } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { Container } from '@titicaca/core-elements'
 import { MapProvider } from '@titicaca/map'
@@ -33,7 +34,7 @@ export function Map() {
       {key ? (
         <MapProvider
           options={mapOptions}
-          onLoad={action('onLoad')}
+          onLoad={action('맵 로드 완료 액션')}
           googleMapLoadOptions={{
             googleMapsApiKey: key,
           }}
@@ -62,11 +63,14 @@ export function MapWithProps() {
         placeholder="google map api key"
       />
 
-      <Container width="50%" height={200}>
+      <Container
+        width={text('맵 컨테이너 가로 사이즈', '50%')}
+        height={number('맵 컨테이너 세로 사이즈', 200)}
+      >
         {key ? (
           <MapProvider
             options={mapOptions}
-            onLoad={action('onLoad')}
+            onLoad={action('맵 로드 완료 액션')}
             googleMapLoadOptions={{
               googleMapsApiKey: key,
             }}
