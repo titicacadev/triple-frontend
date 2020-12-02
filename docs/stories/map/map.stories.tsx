@@ -1,10 +1,10 @@
 import React from 'react'
-import { text, number } from '@storybook/addon-knobs'
+import { text, number, select } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { Container } from '@titicaca/core-elements'
-import { MapProvider } from '@titicaca/map'
+import { MapProvider, Polyline, HotelCircleMarker } from '@titicaca/map'
 
-import { mapOptions } from './mock'
+import { mapOptions, polylineGeometry, polylinePaths } from './mock'
 
 /**
  * FIXME: security issue
@@ -52,4 +52,70 @@ export function MapWithProps() {
 
 MapWithProps.story = {
   name: '사이즈 설정',
+}
+
+export function MapWithPolyline() {
+  return (
+    <Container width="100vw" height={200}>
+      <MapProvider
+        options={{ ...polylineGeometry, zoom: number('zoom', 12) }}
+        onLoad={action('맵 로드 완료 액션')}
+        googleMapLoadOptions={{
+          googleMapsApiKey: GOOGLE_MAPS_API_KEY,
+        }}
+      >
+        <Polyline
+          path={polylinePaths}
+          strokeColor={select(
+            'line color',
+            ['red', 'blue', 'green'],
+            '#000000',
+          )}
+        />
+      </MapProvider>
+    </Container>
+  )
+}
+
+MapWithPolyline.story = {
+  name: 'Polyline',
+}
+
+export function PolylineWithMarker() {
+  return (
+    <Container width="100vw" height={200}>
+      <MapProvider
+        options={{ ...polylineGeometry, zoom: number('zoom', 12) }}
+        onLoad={action('맵 로드 완료 액션')}
+        googleMapLoadOptions={{
+          googleMapsApiKey: GOOGLE_MAPS_API_KEY,
+        }}
+      >
+        {polylinePaths.map((path, i) => (
+          <HotelCircleMarker
+            key={i}
+            zIndex={polylinePaths.length - i}
+            active={false}
+            position={{ ...path }}
+            onClick={() => {}}
+          >
+            {i + 1}
+          </HotelCircleMarker>
+        ))}
+
+        <Polyline
+          path={polylinePaths}
+          strokeColor={select(
+            'line color',
+            ['red', 'blue', 'green'],
+            '#000000',
+          )}
+        />
+      </MapProvider>
+    </Container>
+  )
+}
+
+PolylineWithMarker.story = {
+  name: 'Polyline with CircleMarker',
 }
