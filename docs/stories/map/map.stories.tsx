@@ -140,7 +140,7 @@ export function PolygonWithMarker() {
       height={number('맵 컨테이너 세로 사이즈', 300)}
     >
       <MapProvider
-        options={{ ...polygonGeometry, zoom: 10 }}
+        options={{ ...polygonGeometry, zoom: number('zoom', 10) }}
         onLoad={action('맵 로드 완료 액션')}
         googleMapLoadOptions={{
           googleMapsApiKey: GOOGLE_MAPS_API_KEY,
@@ -167,7 +167,7 @@ export function PolygonWithPolyline() {
   return (
     <Container height={300}>
       <MapProvider
-        options={{ ...polygonGeometry, zoom: 10 }}
+        options={{ ...polygonGeometry, zoom: number('zoom', 10) }}
         onLoad={action('맵 로드 완료 액션')}
         googleMapLoadOptions={{
           googleMapsApiKey: GOOGLE_MAPS_API_KEY,
@@ -203,7 +203,7 @@ export function PolygonWithPolylineAndMarker() {
   return (
     <Container height={300}>
       <MapProvider
-        options={{ ...polygonGeometry, zoom: 10 }}
+        options={{ ...polygonGeometry, zoom: number('zoom', 10) }}
         onLoad={action('맵 로드 완료 액션')}
         googleMapLoadOptions={{
           googleMapsApiKey: GOOGLE_MAPS_API_KEY,
