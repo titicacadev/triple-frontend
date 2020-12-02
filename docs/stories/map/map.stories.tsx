@@ -135,27 +135,25 @@ PolylineWithMarker.story = {
 
 export function PolygonWithMarker() {
   return (
-    <Container width="100vw" height={300}>
+    <Container
+      width={text('맵 컨테이너 가로 사이즈', '50%')}
+      height={number('맵 컨테이너 세로 사이즈', 300)}
+    >
       <MapProvider
         options={{ ...polygonGeometry, zoom: 10 }}
-        onLoad={action('onLoad')}
+        onLoad={action('맵 로드 완료 액션')}
         googleMapLoadOptions={{
           googleMapsApiKey: GOOGLE_MAPS_API_KEY,
         }}
       >
-        {/* {polylinePaths.map((path, i) => (
-            <HotelCircleMarker
-              key={i}
-              zIndex={polylinePaths.length - i}
-              active={false}
-              position={{ ...path }}
-              onClick={() => {}}
-            >
-              {i + 1}
-            </HotelCircleMarker>
-          ))} */}
-
-        <Polygon paths={polygonPaths} />
+        <Polygon
+          paths={polygonPaths}
+          strokeColor={select(
+            'line color',
+            ['red', 'blue', 'green'],
+            '#000000',
+          )}
+        />
       </MapProvider>
     </Container>
   )
@@ -170,25 +168,28 @@ export function PolygonWithPolyline() {
     <Container height={300}>
       <MapProvider
         options={{ ...polygonGeometry, zoom: 10 }}
-        onLoad={action('onLoad')}
+        onLoad={action('맵 로드 완료 액션')}
         googleMapLoadOptions={{
           googleMapsApiKey: GOOGLE_MAPS_API_KEY,
         }}
       >
-        {/* {polylinePaths.map((path, i) => (
-            <HotelCircleMarker
-              key={i}
-              zIndex={polylinePaths.length - i}
-              active={false}
-              position={{ ...path }}
-              onClick={() => {}}
-            >
-              {i + 1}
-            </HotelCircleMarker>
-          ))} */}
-
-        <DotPolyline path={polygonLinePath} />
-        <Polygon paths={polygonPaths} />
+        <DotPolyline
+          path={polygonLinePath}
+          strokeColor={select(
+            'line color',
+            ['red', 'blue', 'green'],
+            '#000000',
+          )}
+        />
+        <Polygon
+          paths={polygonPaths}
+          fillColor={select(
+            'polygon color',
+            ['red', 'blue', 'green'],
+            '#000000',
+          )}
+          fillOpacity={select('polygon opacity', [1, 0.7, 0.5, 0.2], 0.2)}
+        />
       </MapProvider>
     </Container>
   )
@@ -203,7 +204,7 @@ export function PolygonWithPolylineAndMarker() {
     <Container height={300}>
       <MapProvider
         options={{ ...polygonGeometry, zoom: 10 }}
-        onLoad={action('onLoad')}
+        onLoad={action('맵 로드 완료 액션')}
         googleMapLoadOptions={{
           googleMapsApiKey: GOOGLE_MAPS_API_KEY,
         }}
@@ -220,8 +221,23 @@ export function PolygonWithPolylineAndMarker() {
           </HotelCircleMarker>
         ))}
 
-        <DotPolyline path={polygonLinePath} />
-        <Polygon paths={polygonPaths} />
+        <DotPolyline
+          path={polygonLinePath}
+          strokeColor={select(
+            'line color',
+            ['red', 'blue', 'green'],
+            '#000000',
+          )}
+        />
+        <Polygon
+          paths={polygonPaths}
+          fillColor={select(
+            'polygon color',
+            ['red', 'blue', 'green'],
+            '#000000',
+          )}
+          fillOpacity={select('polygon opacity', [1, 0.7, 0.5, 0.2], 0.2)}
+        />
       </MapProvider>
     </Container>
   )
