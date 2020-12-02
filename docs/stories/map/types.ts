@@ -18,15 +18,6 @@ enum PoiType {
   air = 'air',
 }
 
-<<<<<<< HEAD
-=======
-type AddresType = {
-  en: string
-  ko: string
-  local: string
-}
-
->>>>>>> docs(map): polyline 예시 추가
 type Price = {
   promoText: string // "최대 8%",
   nightlyPrice: number // 79228,
@@ -93,11 +84,7 @@ export type RecommendationItineraryPoiCard = {
     id?: string
     regionId: string
     names: TranslatedProperty
-<<<<<<< HEAD
     addresses: TranslatedProperty
-=======
-    addresses: AddresType
->>>>>>> docs(map): polyline 예시 추가
     location: number[]
     comment: string
     pointGeolocation: PointGeoJSON
