@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions'
 import { Container } from '@titicaca/core-elements'
 import { MapProvider } from '@titicaca/map'
 
-import { center, bounds } from './mock'
+import { mapOptions } from './mock'
 
 const MapContainer = styled(Container)`
   background-color: #ffffff;
@@ -32,7 +32,7 @@ export function Map() {
       />
       {key ? (
         <MapProvider
-          options={{ center, bounds }}
+          options={mapOptions}
           onLoad={action('onLoad')}
           googleMapLoadOptions={{
             googleMapsApiKey: key,
@@ -65,7 +65,7 @@ export function MapWithProps() {
       <Container width="50%" height={200}>
         {key ? (
           <MapProvider
-            options={{ center, bounds }}
+            options={mapOptions}
             onLoad={action('onLoad')}
             googleMapLoadOptions={{
               googleMapsApiKey: key,

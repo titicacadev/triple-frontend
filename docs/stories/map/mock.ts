@@ -17,4 +17,4 @@ export const coordinates: [
     }) => coordinates as [number, number],
   )
 
-export const { center, bounds } = getGeometry(coordinates)
+export const mapOptions = getGeometry(coordinates)
