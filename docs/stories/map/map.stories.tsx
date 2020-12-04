@@ -20,9 +20,13 @@ import {
 } from './mock'
 
 /**
- * FIXME: security issue
+ * 구글 맵 SDK API 키 설정은 아래에서 진행할 수 있습니다.
+ * 아래 키는 triple-frontend 적용키로 서비스에서 사용하는 키와 다르고
+ * 사용 범위가 *.triple-corp.com/* 으로 제한되어 있습니다.
+ *
+ * https://console.cloud.google.com/apis/credentials/key/e2f05131-1fe0-48d7-a231-f5f05336a007?folder=&organizationId=&project=titicaca-ci
  */
-const GOOGLE_MAPS_API_KEY = 'AIzaSyA1Shc9dPadNkDCemFqXX8D7DJzT6OA4a8'
+const GOOGLE_MAPS_API_KEY = 'AIzaSyBaOSog5Kc4PkNw1JiSIcvz8WHt1Y78lNU'
 
 export default {
   title: 'Map | Map',
