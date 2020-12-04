@@ -54,7 +54,7 @@ const NavbarFrame = styled.header<NavbarProps & LayeringMixinProps>`
   box-sizing: border-box;
   padding: 9px 12px;
   margin: 0 auto;
-  max-width: ${({ maxWidth }) => unit(maxWidth || 768)};
+  max-width: ${({ maxWidth = '100%' }) => unit(maxWidth)};
 `
 
 const TitleContainer = styled.div<{ childrenCount?: number }>`
