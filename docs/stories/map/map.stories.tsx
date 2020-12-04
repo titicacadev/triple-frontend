@@ -2,8 +2,7 @@ import React from 'react'
 import { text, number, select } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { Container } from '@titicaca/core-elements'
-import {
-  MapProvider,
+import MapView, {
   Polyline,
   DotPolyline,
   Polygon,
@@ -35,13 +34,13 @@ export default {
 export function Map() {
   return (
     <Container width="100vw" height="100vh">
-      <MapProvider
+      <MapView
         options={mapOptions}
         onLoad={action('맵 로드 완료 액션')}
         googleMapLoadOptions={{
           googleMapsApiKey: GOOGLE_MAPS_API_KEY,
         }}
-      ></MapProvider>
+      ></MapView>
     </Container>
   )
 }
@@ -56,7 +55,7 @@ export function MapWithProps() {
       width={text('맵 컨테이너 가로 사이즈', '50%')}
       height={number('맵 컨테이너 세로 사이즈', 200)}
     >
-      <MapProvider
+      <MapView
         options={mapOptions}
         onLoad={action('맵 로드 완료 액션')}
         googleMapLoadOptions={{
@@ -74,7 +73,7 @@ MapWithProps.story = {
 export function MapWithPolyline() {
   return (
     <Container width="100vw" height={200}>
-      <MapProvider
+      <MapView
         options={{ ...polylineGeometry, zoom: number('zoom', 12) }}
         onLoad={action('맵 로드 완료 액션')}
         googleMapLoadOptions={{
@@ -89,7 +88,7 @@ export function MapWithPolyline() {
             '#000000',
           )}
         />
-      </MapProvider>
+      </MapView>
     </Container>
   )
 }
@@ -101,7 +100,7 @@ MapWithPolyline.story = {
 export function PolylineWithMarker() {
   return (
     <Container width="100vw" height={200}>
-      <MapProvider
+      <MapView
         options={{ ...polylineGeometry, zoom: number('zoom', 12) }}
         onLoad={action('맵 로드 완료 액션')}
         googleMapLoadOptions={{
@@ -128,7 +127,7 @@ export function PolylineWithMarker() {
             '#000000',
           )}
         />
-      </MapProvider>
+      </MapView>
     </Container>
   )
 }
@@ -143,7 +142,7 @@ export function PolygonWithMarker() {
       width={text('맵 컨테이너 가로 사이즈', '50%')}
       height={number('맵 컨테이너 세로 사이즈', 300)}
     >
-      <MapProvider
+      <MapView
         options={{ ...polygonGeometry, zoom: number('zoom', 10) }}
         onLoad={action('맵 로드 완료 액션')}
         googleMapLoadOptions={{
@@ -158,7 +157,7 @@ export function PolygonWithMarker() {
             '#000000',
           )}
         />
-      </MapProvider>
+      </MapView>
     </Container>
   )
 }
@@ -170,7 +169,7 @@ PolygonWithMarker.story = {
 export function PolygonWithPolyline() {
   return (
     <Container height={300}>
-      <MapProvider
+      <MapView
         options={{ ...polygonGeometry, zoom: number('zoom', 10) }}
         onLoad={action('맵 로드 완료 액션')}
         googleMapLoadOptions={{
@@ -194,7 +193,7 @@ export function PolygonWithPolyline() {
           )}
           fillOpacity={select('polygon opacity', [1, 0.7, 0.5, 0.2], 0.2)}
         />
-      </MapProvider>
+      </MapView>
     </Container>
   )
 }
@@ -206,7 +205,7 @@ PolygonWithPolyline.story = {
 export function PolygonWithPolylineAndMarker() {
   return (
     <Container height={300}>
-      <MapProvider
+      <MapView
         options={{ ...polygonGeometry, zoom: number('zoom', 10) }}
         onLoad={action('맵 로드 완료 액션')}
         googleMapLoadOptions={{
@@ -242,7 +241,7 @@ export function PolygonWithPolylineAndMarker() {
           )}
           fillOpacity={select('polygon opacity', [1, 0.7, 0.5, 0.2], 0.2)}
         />
-      </MapProvider>
+      </MapView>
     </Container>
   )
 }
