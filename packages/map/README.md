@@ -212,7 +212,7 @@ function Page() {
 }
 ```
 
-🧐 Polygone 컴포넌트는 `paths` 속성을 갖습니다. (not `path`)
+🧐 Polygon 컴포넌트는 `paths` 속성을 갖습니다. (not `path`)
 
 ## Trouble shooting
 
