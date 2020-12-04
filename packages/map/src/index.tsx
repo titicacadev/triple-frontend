@@ -7,6 +7,11 @@ import {
 import { Spinner } from '@titicaca/core-elements'
 import { Libraries } from '@react-google-maps/api/dist/utils/make-load-script-url'
 
+export * from './utilities'
+export * from './marker'
+export * from './polygon'
+export * from './polyline'
+
 const DEFAULT_MAP_OPTIONS: google.maps.MapOptions = {
   zoom: 13,
   center: { lat: 37.7577627, lng: -122.4726194 },
@@ -33,7 +38,7 @@ export interface WithGoogleMapProps extends GoogleMapProps {
   }
 }
 
-export function MapProvider({
+export default function MapView({
   options: _options,
   mapContainerStyle: _mapContainerStyle,
   googleMapLoadOptions: {

@@ -4,7 +4,7 @@
 
 ## Usage
 
-### Provider
+### MapView
 
 기본 Map 컴포넌트입니다.
 
@@ -35,7 +35,7 @@
 ```
 
 ```tsx
-import { MapProvider } from '@titicaca/map'
+import MapView from '@titicaca/map'
 
 function Page() {
   const mapOptions = {
@@ -53,7 +53,7 @@ function Page() {
   }, [])
 
   return (
-    <MapProvider
+    <MapView
       options={mapOptions}
       onLoad={handleMapLoaded}
       googleMapLoadOptions={{
@@ -72,8 +72,7 @@ CircleMarker 컴포넌트 입니다.
 
 ```tsx
 import { white } from '@titicaca/color-palette'
-import { MapProvider } from '@titicaca/map'
-import { CircleMarker } from '@titicaca/map/marker'
+import MapView, { CircleMarker } from '@titicaca/map'
 
 const coordinates = [
   { lat: 33.24577929502035, lng: 126.57157193028415 },
@@ -93,7 +92,7 @@ function Page() {
   }, [])
 
   return (
-    <MapProvider
+    <MapView
       options={mapOptions}
       onLoad={handleMapLoaded}
       googleMapLoadOptions={{
@@ -113,7 +112,7 @@ function Page() {
           {i + 1}
         </CircleMarker>
       ))}
-    </MapProvider>
+    </MapView>
   )
 }
 ```
@@ -126,8 +125,7 @@ Polyline 컴포넌트 입니다.
 
 ```tsx
 import { black } from '@titicaca/color-palette'
-import { MapProvider } from '@titicaca/map'
-import { Polyline } from '@titicaca/map/polyline'
+import MapView, { Polyline } from '@titicaca/map'
 
 const path = [
   { lat: 33.24577929502035, lng: 126.57157193028415 },
@@ -145,7 +143,7 @@ function Page() {
   }, [])
 
   return (
-    <MapProvider
+    <MapView
       options={mapOptions}
       onLoad={handleMapLoaded}
       googleMapLoadOptions={{
@@ -153,7 +151,7 @@ function Page() {
       }}
     >
       <Polyline path={path} strokeColor={black} />
-    </MapProvider>
+    </MapView>
   )
 }
 ```
@@ -166,8 +164,7 @@ Polygon 컴포넌트입니다.
 
 ```tsx
 import { black } from '@titicaca/color-palette'
-import { MapProvider } from '@titicaca/map'
-import { Polygon } from '@titicaca/map/polygon'
+import MapView, { Polygon } from '@titicaca/map'
 
 const paths = [
   { lat: 33.22410952604817, lng: 126.57855753182952 },
@@ -199,7 +196,7 @@ function Page() {
   }, [])
 
   return (
-    <MapProvider
+    <MapView
       options={mapOptions}
       onLoad={handleMapLoaded}
       googleMapLoadOptions={{
@@ -207,7 +204,7 @@ function Page() {
       }}
     >
       <Polygon paths={paths} strokeColor={black} />
-    </MapProvider>
+    </MapView>
   )
 }
 ```
@@ -215,6 +212,12 @@ function Page() {
 🧐 Polygon 컴포넌트는 `paths` 속성을 갖습니다. (not `path`)
 
 ## Trouble shooting
+
+맵 컴포넌트 내에 기본적으로 구글맵 SDK 로딩 로직이 포함되어 있다보니 모든 스토리가 개별적으로
+구글맵 SDK 를 개별적으로 호출하게 되어 아래와 같은 오류가 발생합니다.
+
+추후 개선이 되어야 한다면 Context Provider 가 로딩을 1회만 담당하도록 하고
+다수의 MapView 를 갖는 형태로 개선되면 좋을거 같습니다.
 
 ```sh
 You have included the Google Maps JavaScript API multiple times on this page.
