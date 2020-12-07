@@ -118,9 +118,7 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
           ) : null}
         </Container>
 
-        {children ? (
-          <Container margin={{ top: 18 }}>{children}</Container>
-        ) : null}
+        {children || null}
 
         {labels.length > 0 ? (
           <LabelContainer>
