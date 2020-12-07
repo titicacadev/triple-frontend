@@ -1,5 +1,5 @@
 import React, { createContext, useContext, FC, ComponentType } from 'react'
-import { UAParser } from 'ua-parser-js'
+import UAParser from 'ua-parser-js'
 import { DeepPartial } from 'utility-types'
 
 enum AppName {
