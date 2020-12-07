@@ -72,11 +72,11 @@ describe('checkIfRoutable', () => {
     )
   })
 
-  it('should not allow navigation to tna details', () => {
+  it('should allow navigation to tna details', () => {
     const path = `/tna/regions/${regionId}/products/${hotelId}`
 
     assert.ok(
-      !checkIfRoutable({
+      checkIfRoutable({
         href: path,
       }),
     )
