@@ -6,6 +6,7 @@ import ExtendedResourceListElement, {
   ResourceListElementStats,
 } from '@titicaca/resource-list-element'
 import Pricing from '@titicaca/pricing'
+import { Container } from '@titicaca/core-elements'
 
 storiesOf('resource-list-element | resource-list-element', module)
   .add('ReviewScrapStat', () => (
@@ -30,11 +31,13 @@ storiesOf('resource-list-element | resource-list-element', module)
       hideScrapButton={boolean('hideScrapButton', true)}
       partnerName={text('partnerName', '브이패스')}
     >
-      <Pricing
-        basePrice={number('basePrice', 30000)}
-        basePriceUnit={text('basePriceUnit', '원')}
-        salePrice={25000}
-        rich
-      />
+      <Container margin={{ top: 18 }}>
+        <Pricing
+          basePrice={number('basePrice', 30000)}
+          basePriceUnit={text('basePriceUnit', '원')}
+          salePrice={25000}
+          rich
+        />
+      </Container>
     </ExtendedResourceListElement>
   ))
