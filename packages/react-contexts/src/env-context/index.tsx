@@ -37,7 +37,7 @@ const EnvContext = createContext<EnvContextValue>({
   webUrlBase: '',
   authBasePath: '',
   facebookAppId: '',
-  defaultPageTitle: '',
+  defaultPageTitle: '모바일 여행 가이드 - 트리플',
   defaultPageDescription: '',
 })
 
