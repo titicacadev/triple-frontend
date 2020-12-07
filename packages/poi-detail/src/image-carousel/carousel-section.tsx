@@ -29,7 +29,7 @@ export default function CarouselSection({
   return (
     <Section
       minWidth={320}
-      maxWidth={780}
+      maxWidth={788}
       padding={{ left: 20, right: 20 }}
       margin={margin}
     >
