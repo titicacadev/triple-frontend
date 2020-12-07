@@ -42,7 +42,6 @@ export type ResourceListElementProps<R extends ResourceMeta> = {
   maxCommentLines?: number
   isAdvertisement?: boolean
   partnerName?: string
-  children?: React.ReactNode
   onClick?: React.MouseEventHandler<HTMLLIElement>
 } & Partial<Parameters<typeof List.Item>['0']>
 
@@ -86,7 +85,7 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
   partnerName,
   children,
   ...props
-}: ResourceListElementProps<R>) {
+}: React.PropsWithChildren<ResourceListElementProps<R>>) {
   const { id, type, scraped } = scrapResource || resource || {}
   const labels = tags || []
 
