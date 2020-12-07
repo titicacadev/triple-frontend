@@ -62,16 +62,16 @@ const Logo = styled.a`
     left: 50px;
     width: 68px;
     height: 24px;
-    background-size: 68px 24px;
+    background-size: cover;
     margin-top: -12px;
   }
 
   @media (max-width: ${MAX_PHONE_WIDTH}px) {
     left: 14px;
     width: 56px;
-    height: 18px;
-    background-size: 56px 18px;
-    margin-top: -9px;
+    height: 20px;
+    background-size: cover;
+    margin-top: -10px;
   }
 `
 
