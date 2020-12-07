@@ -118,7 +118,7 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
           ) : null}
         </Container>
 
-        {children || null}
+        {children}
 
         {labels.length > 0 ? (
           <LabelContainer>
