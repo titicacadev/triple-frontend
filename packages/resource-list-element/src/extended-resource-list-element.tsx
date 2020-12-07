@@ -42,6 +42,7 @@ export type ResourceListElementProps<R extends ResourceMeta> = {
   maxCommentLines?: number
   isAdvertisement?: boolean
   partnerName?: string
+  children?: React.ReactNode
   onClick?: React.MouseEventHandler<HTMLLIElement>
 } & Partial<Parameters<typeof List.Item>['0']>
 
@@ -83,6 +84,7 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
   maxCommentLines,
   isAdvertisement,
   partnerName,
+  children,
   ...props
 }: ResourceListElementProps<R>) {
   const { id, type, scraped } = scrapResource || resource || {}
@@ -116,6 +118,10 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
             </Container>
           ) : null}
         </Container>
+
+        {children ? (
+          <Container margin={{ top: 18 }}>{children}</Container>
+        ) : null}
 
         {labels.length > 0 ? (
           <LabelContainer>
