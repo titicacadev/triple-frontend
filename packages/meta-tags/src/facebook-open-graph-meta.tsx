@@ -3,8 +3,8 @@ import Head from 'next/head'
 import { useEnv } from '@titicaca/react-contexts'
 
 export function FacebookOpenGraphMeta({
-  title = '실시간 여행 가이드 - 트리플',
-  description = '',
+  title: titleFromProps,
+  description: descriptionFromProps,
   canonicalUrl,
   type = 'website',
   locale = 'ko_KR',
@@ -26,7 +26,11 @@ export function FacebookOpenGraphMeta({
    */
   fbAppId?: string
 }) {
-  const { facebookAppId: fbAppIdFromContext } = useEnv()
+  const {
+    facebookAppId: fbAppIdFromContext,
+    defaultPageTitle,
+    defaultPageDescription,
+  } = useEnv()
 
   const fbAppId = useMemo(() => {
     if (fbAppIdFromContext) {
@@ -46,6 +50,9 @@ export function FacebookOpenGraphMeta({
 
     return '136540730081853'
   }, [fbAppIdFromContext, fbAppIdFromProps])
+
+  const title = titleFromProps || defaultPageTitle
+  const description = descriptionFromProps || defaultPageDescription
 
   return (
     <Head>
