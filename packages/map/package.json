@@ -19,9 +19,6 @@
     "@titicaca/color-palette": "^2.3.1",
     "@titicaca/core-elements": "^2.3.1"
   },
-  "peerDependencies": {
-    "@react-google-maps/api": "^1.13.0"
-  },
   "devDependencies": {
     "@types/googlemaps": "^3.40.3"
   }
