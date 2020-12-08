@@ -1,14 +1,16 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { Container, Text } from '@titicaca/core-elements'
 import RecommendedContents from '@titicaca/recommended-contents'
 
 import { contents } from '../__mocks__/recommended-contents.sample.json'
 
-storiesOf('recommended-contents | RecommendedContents', module).add(
-  '추천 컨텐츠',
-  () => (
+export default {
+  title: 'recommended-contents | RecommendedContents',
+}
+
+export function Primary() {
+  return (
     <Container margin={{ top: 50, left: 30, right: 30 }}>
       <Text size="big" bold>
         다른 컨텐츠 더보기
@@ -19,5 +21,7 @@ storiesOf('recommended-contents | RecommendedContents', module).add(
         onContentIntersect={action('onContentIntersect')}
       />
     </Container>
-  ),
-)
+  )
+}
+
+Primary.storyName = '추천 컨텐츠'
