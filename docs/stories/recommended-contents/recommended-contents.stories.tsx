@@ -24,4 +24,4 @@ export function Primary() {
   )
 }
 
-Primary.storyName = '추천 컨텐츠'
+Primary.story = { name: '추천 컨텐츠' }
