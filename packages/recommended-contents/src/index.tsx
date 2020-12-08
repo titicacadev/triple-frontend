@@ -8,7 +8,7 @@ import {
 } from '@titicaca/core-elements'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 
-const RecommendedContentsContainer = styled.ul<{
+const RecommendedContentsContainer = styled.section<{
   margin?: MarginPadding
 }>`
   ${({ margin }) =>
@@ -125,7 +125,7 @@ export default function RecommendedContents<T extends ContentElementProps>({
   return (
     <RecommendedContentsContainer margin={margin}>
       <Responsive maxWidth={767}>
-        <Container padding={{ right: 15 }}>
+        <Container as="ul" padding={{ right: 15 }}>
           {contents.map((content, index) => (
             <IntersectionObserver
               key={index}
@@ -154,7 +154,7 @@ export default function RecommendedContents<T extends ContentElementProps>({
           ))}
         </Container>
       </Responsive>
-      <Responsive minWidth={768}>
+      <Responsive as="ul" minWidth={768}>
         {contents.map((content, index) => (
           <IntersectionObserver
             key={index}
