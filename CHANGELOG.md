@@ -1,5 +1,40 @@
 # CHANGELOG
 
+## 2.5.0
+
+### map
+
+- `MapView` 컴포넌트를 추가합니다.
+
+### react-contexts
+
+- in-app 내비게이션에도 URL canonization을 적용합니다. (#1090)
+- `navigate()` 에서 tna 상세로의 링크를 허용합니다. (#1113)
+
+### recommended-contents
+
+- ul 바로 아래에 li 태그가 들어가도록 수정 (#1117)
+
+### meta-tag
+
+- Facebook OpenGraph의 `title`, `description` 태그 기본값을 `env-context`에서 가져옵니다. (#1112)
+
+### poi-detail
+
+- Image carousel의 가로폭을 768 기반으로 변경합니다. (#1114)
+
+### public-header
+
+- 로고 이미지 비율을 바로잡습니다. (#1115)
+
+### resource-list-element
+
+- 가격정보를 `children` 으로 받을 수 있도록합니다. (#1109, #1110)
+
+### navbar
+
+- `maxWidth` 가 기본값을 100%를 가지도록 처리합니다. (#1108)
+
 ## 2.4.1
 
 ### ad-banners
