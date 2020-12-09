@@ -1,9 +1,13 @@
 import styled, { css } from 'styled-components'
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren, useRef, useEffect, useState } from 'react'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
+import { useUserAgentContext } from '@titicaca/react-contexts'
+import { white, gray500 } from '@titicaca/color-palette'
 
 import { MarginPadding, CarouselSizes } from '../commons'
 import { marginMixin } from '../mixins'
+
+import Container from './container'
 
 const CAROUSEL_WIDTH_SIZES = {
   small: '140px',
@@ -57,10 +61,34 @@ const Item = styled.li<{ size?: CarouselSizes }>`
   display: inline-block;
   position: relative;
   width: ${({ size }) => CAROUSEL_WIDTH_SIZES[size || 'small']};
-  margin-left: ${({ size }) => CAROUSEL_LEFT_SPACING_SIZES[size || 'small']};
   vertical-align: top;
   white-space: normal;
   cursor: pointer;
+  &:not(:first-child) {
+    margin-left: ${({ size }) => CAROUSEL_LEFT_SPACING_SIZES[size || 'small']};
+  }
+`
+
+const CarouselScrollButton = styled.div<{ direction: 'left' | 'right' }>`
+  position: absolute;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  background-color: ${white};
+  top: calc(50% - 20px);
+  box-shadow: 0 0 5px 0 ${gray500};
+  ${({ direction }) =>
+    direction === 'left'
+      ? css`
+          left: -15px;
+        `
+      : css`
+          right: -15px;
+          background-image: url(https://assets.triple.guide/images/ico-arrow-right-black@3x.png);
+        `};
+  background-size: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
 `
 
 function CarouselItem({
@@ -107,8 +135,38 @@ function Carousel({
   children,
   className,
 }: PropsWithChildren<CarouselBaseProps>) {
-  return (
+  const carouselRef = useRef() as React.RefObject<HTMLUListElement>
+  const [scrollable, setScrollable] = useState(false)
+  const { isMobile } = useUserAgentContext()
+
+  useEffect(() => {
+    const carouselElement = carouselRef?.current
+
+    if (!carouselElement) {
+      return
+    }
+
+    if (carouselElement.scrollWidth > carouselElement.clientWidth) {
+      setScrollable(true)
+    }
+  }, [carouselRef])
+
+  return !isMobile && scrollable ? (
+    <Container position="relative">
+      <CarouselBase
+        ref={carouselRef}
+        className={className}
+        margin={margin}
+        containerPadding={containerPadding}
+      >
+        {children}
+      </CarouselBase>
+      <CarouselScrollButton direction="left" />
+      <CarouselScrollButton direction="right" />
+    </Container>
+  ) : (
     <CarouselBase
+      ref={carouselRef}
       className={className}
       margin={margin}
       containerPadding={containerPadding}
