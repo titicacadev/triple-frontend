@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/react-hooks",
-  "version": "2.4.1",
+  "version": "2.5.0",
   "description": "triple frontend custom hooks",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "license": "ISC",
@@ -19,7 +19,7 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/react-contexts": "^2.4.1",
+    "@titicaca/react-contexts": "^2.5.0",
     "isomorphic-fetch": "^2.2.1",
     "lottie-web": "^5.7.4",
     "react-fast-compare": "^2.0.4",
