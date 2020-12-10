@@ -20,6 +20,10 @@
   "dependencies": {
     "@titicaca/modals": "^2.5.0",
     "@titicaca/react-contexts": "^2.5.0",
-    "@titicaca/view-utilities": "^2.5.0"
+    "@titicaca/view-utilities": "^2.5.0",
+    "qs": "^6.9.4"
+  },
+  "devDependencies": {
+    "@types/qs": "^6.9.5"
   }
 }
