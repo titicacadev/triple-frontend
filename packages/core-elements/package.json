@@ -26,10 +26,16 @@
     "@titicaca/color-palette": "^2.10.1",
     "@titicaca/content-utilities": "2.6.1",
     "@titicaca/intersection-observer": "^2.10.1",
+    "@titicaca/react-contexts": "^2.10.1",
     "@titicaca/view-utilities": "^2.10.1",
+    "@egjs/react-flicking": "0.0.5",
     "@egjs/flicking": "3.7.0",
     "react-input-mask": "^2.0.4",
-    "react-transition-group": "^4.4.1"
+    "react-transition-group": "^4.4.1",
+    "uniqid": "5.2.0"
+  },
+  "devDependencies": {
+    "@types/uniqid": "5.2.0"
   },
   "peerDependencies": {
     "react": "*",
