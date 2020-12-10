@@ -3,6 +3,7 @@ import React, { PropsWithChildren, useRef, useEffect, useState } from 'react'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 import { white, gray500 } from '@titicaca/color-palette'
+import NativeFlicking, { FlickingOptions } from '@egjs/flicking'
 
 import { MarginPadding, CarouselSizes } from '../commons'
 import { marginMixin } from '../mixins'
@@ -81,6 +82,7 @@ const CarouselScrollButton = styled.div<{ direction: 'left' | 'right' }>`
     direction === 'left'
       ? css`
           left: -15px;
+          background-image: url(https://assets.triple.guide/images/ico-arrow-right-black@3x.png);
         `
       : css`
           right: -15px;
@@ -89,6 +91,7 @@ const CarouselScrollButton = styled.div<{ direction: 'left' | 'right' }>`
   background-size: 10px;
   background-position: center;
   background-repeat: no-repeat;
+  z-index: 60;
 `
 
 function CarouselItem({
@@ -128,6 +131,32 @@ function CarouselItem({
     </Item>
   )
 }
+const FLICK_ATTRIBUTES: Partial<FlickingOptions> = {
+  deceleration: 0.0075,
+  horizontal: true,
+  circular: false,
+  infinite: false,
+  infiniteThreshold: 0,
+  lastIndex: Infinity,
+  threshold: 40,
+  duration: 100,
+  panelEffect: (x: number) => 1 - Math.pow(1 - x, 3),
+  defaultIndex: 2,
+  inputType: ['touch', 'mouse'],
+  thresholdAngle: 45,
+  bounce: 10,
+  autoResize: false,
+  adaptive: false,
+  bound: false,
+  overflow: false,
+  hanger: '50%',
+  anchor: '50%',
+  gap: 10,
+  moveType: { type: 'snap', count: 1 },
+  collectStatistics: true,
+  zIndex: 50,
+  classPrefix: 'eg-flick',
+}
 
 function Carousel({
   margin,
@@ -137,6 +166,7 @@ function Carousel({
 }: PropsWithChildren<CarouselBaseProps>) {
   const carouselRef = useRef() as React.RefObject<HTMLUListElement>
   const [scrollable, setScrollable] = useState(false)
+  const [flicking, setFlicking] = useState<NativeFlicking>()
   const { isMobile } = useUserAgentContext()
 
   useEffect(() => {
@@ -151,18 +181,22 @@ function Carousel({
     }
   }, [carouselRef])
 
+  useEffect(() => {
+    if (scrollable) {
+      setFlicking(new NativeFlicking('.egjs-flick', FLICK_ATTRIBUTES))
+    }
+  }, [scrollable])
+
   return !isMobile && scrollable ? (
     <Container position="relative">
-      <CarouselBase
-        ref={carouselRef}
-        className={className}
-        margin={margin}
-        containerPadding={containerPadding}
-      >
+      <div className="egjs-flick" {...FLICK_ATTRIBUTES}>
         {children}
-      </CarouselBase>
-      <CarouselScrollButton direction="left" />
-      <CarouselScrollButton direction="right" />
+      </div>
+      <CarouselScrollButton direction="left" onClick={() => flicking?.prev()} />
+      <CarouselScrollButton
+        direction="right"
+        onClick={() => flicking?.next()}
+      />
     </Container>
   ) : (
     <CarouselBase
