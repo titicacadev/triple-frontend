@@ -21,6 +21,7 @@
     "@titicaca/modals": "^2.6.0",
     "@titicaca/poi-list-elements": "^2.6.0",
     "@titicaca/react-contexts": "^2.6.0",
+    "@titicaca/router": "^2.6.0",
     "@titicaca/standard-action-handler": "^2.6.0",
     "@titicaca/triple-media": "^2.6.0",
     "@titicaca/type-definitions": "^2.6.0",
