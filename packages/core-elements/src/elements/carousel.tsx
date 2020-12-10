@@ -1,5 +1,12 @@
 import styled, { css } from 'styled-components'
-import React, { PropsWithChildren, useRef, useEffect, useState } from 'react'
+import React, {
+  PropsWithChildren,
+  useRef,
+  useEffect,
+  useState,
+  useMemo,
+} from 'react'
+import uniqid from 'uniqid'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 import { white, gray500 } from '@titicaca/color-palette'
@@ -168,6 +175,7 @@ function Carousel({
   const [scrollable, setScrollable] = useState(false)
   const [flicking, setFlicking] = useState<NativeFlicking>()
   const { isMobile } = useUserAgentContext()
+  const uniqueId = useMemo(() => uniqid('egjs-flick-'), [])
 
   useEffect(() => {
     const carouselElement = carouselRef?.current
@@ -183,13 +191,13 @@ function Carousel({
 
   useEffect(() => {
     if (scrollable) {
-      setFlicking(new NativeFlicking('.egjs-flick', FLICK_ATTRIBUTES))
+      setFlicking(new NativeFlicking(`.${uniqueId}`, FLICK_ATTRIBUTES))
     }
-  }, [scrollable])
+  }, [scrollable, uniqueId])
 
   return !isMobile && scrollable ? (
-    <Container position="relative">
-      <div className="egjs-flick" {...FLICK_ATTRIBUTES}>
+    <Container position="relative" margin={margin} padding={containerPadding}>
+      <div className={uniqueId} {...FLICK_ATTRIBUTES}>
         {children}
       </div>
       <CarouselScrollButton direction="left" onClick={() => flicking?.prev()} />
