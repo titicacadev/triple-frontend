@@ -24,6 +24,11 @@
     "qs": "^6.9.4"
   },
   "devDependencies": {
-    "@types/qs": "^6.9.5"
+    "@types/qs": "^6.9.5",
+    "@types/webpack": "^4.41.25",
+    "next": "^10.0.3"
+  },
+  "peerDependencies": {
+    "next": "^10.0.3"
   }
 }
