@@ -143,4 +143,8 @@ export const GlobalStyle = createGlobalStyle`
   strong {
     font-weight: bold;
   }
+
+  a:any-link {
+    text-decoration: none;
+  }
 `
