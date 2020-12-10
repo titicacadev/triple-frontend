@@ -4,6 +4,7 @@ import {
   HistoryProvider,
   SessionContextProvider,
   EnvProvider,
+  UserAgentProvider,
 } from '@titicaca/react-contexts'
 import { boolean } from '@storybook/addon-knobs'
 
@@ -40,5 +41,20 @@ export function sessionContextProviderDecorator(storyFn: StoryFn<JSX.Element>) {
         {storyFn()}
       </SessionContextProvider>
     </EnvProvider>
+  )
+}
+
+export function userAgentProviderDecorator(storyFn: StoryFn<JSX.Element>) {
+  return (
+    <UserAgentProvider
+      value={{
+        isPublic: boolean('isPublic', true),
+        isMobile: boolean('isMobile', false),
+        os: {},
+        app: null,
+      }}
+    >
+      {storyFn()}
+    </UserAgentProvider>
   )
 }
