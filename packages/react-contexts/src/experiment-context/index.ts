@@ -1,1 +1,1 @@
-export {}
+export { getExperiment } from './service'
