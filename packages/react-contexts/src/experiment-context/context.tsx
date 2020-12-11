@@ -1,6 +1,7 @@
 import React, {
   createContext,
   PropsWithChildren,
+  useContext,
   useEffect,
   useState,
 } from 'react'
@@ -49,4 +50,16 @@ export function ExperimentProvider({
       {children}
     </ExperimentContext.Provider>
   )
+}
+
+export function useExperimentVariant<T>(
+  variants: {
+    [group: string]: T
+  },
+  fallback: T,
+): T {
+  const meta = useContext(ExperimentContext)
+
+  const { group } = meta || {}
+  return group ? variants[group] : fallback
 }
