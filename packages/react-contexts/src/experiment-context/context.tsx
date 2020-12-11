@@ -61,5 +61,8 @@ export function useExperimentVariant<T>(
   const meta = useContext(ExperimentContext)
 
   const { group } = meta || {}
+
+  // TODO: session 시작을 기록해야함
+
   return group ? variants[group] : fallback
 }
