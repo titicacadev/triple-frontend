@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@titicaca/constants": "^2.6.0",
+    "@titicaca/fetcher": "^2.6.0",
     "@titicaca/type-definitions": "^2.6.0",
     "@titicaca/view-utilities": "^2.6.0",
     "humps": "^2.0.1",
