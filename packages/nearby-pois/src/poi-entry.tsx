@@ -12,6 +12,11 @@ import { ListingPOI } from './types'
 export default function PoiEntry({
   index,
   poi,
+  poi: {
+    id,
+    type,
+    source: { regionId },
+  },
   eventLabel,
 }: {
   index: number
@@ -27,26 +32,26 @@ export default function PoiEntry({
         trackEvent({
           fa: {
             action: '근처추천장소_POI노출',
-            label: `${eventLabel}_${index + 1}_${poi.id}`,
-            item_id: poi.id,
+            label: `${eventLabel}_${index + 1}_${id}`,
+            item_id: id,
           },
         })
       }
     },
-    [trackEvent, poi, eventLabel, index],
+    [trackEvent, eventLabel, index, id],
   )
 
   const handleClick = useCallback(() => {
     trackSimpleEvent({
       action: '근처추천장소_POI선택',
-      label: `${eventLabel}_${index + 1}_${poi.id}`,
+      label: `${eventLabel}_${index + 1}_${id}`,
     })
 
-    navigate(`/regions/${poi.source.regionId}/${poi.type}s/${poi.id}`)
-  }, [navigate, poi, trackSimpleEvent, eventLabel, index])
+    navigate(`/regions/${regionId}/${type}s/${id}`)
+  }, [eventLabel, id, index, navigate, regionId, trackSimpleEvent, type])
 
   return (
-    <IntersectionObserver key={poi.id} onChange={handleIntersectionChange}>
+    <IntersectionObserver key={id} onChange={handleIntersectionChange}>
       <List.Item>
         <PoiListElement as="div" poi={poi} onClick={handleClick} />
       </List.Item>
