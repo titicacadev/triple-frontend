@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { HR2, Container, H1, List, Button } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 
-import { TnaProductData, TnaProduct } from './tna'
+import { TnaProductData, TnaProduct } from './product'
 
 interface TnaProductsListProps {
   value: {
