@@ -48,7 +48,13 @@ export function TnaProduct({
     <IntersectionObserver safe onChange={handleIntersectionChange}>
       <Container onClick={handleClick}>
         <SquareImage size="medium" floated="left" src={heroImage} alt={title} />
-        <Text bold size="large" color="gray" margin={{ left: 150 }}>
+        <Text
+          bold
+          size="large"
+          color="gray"
+          margin={{ left: 150 }}
+          maxLines={2}
+        >
           {title}
         </Text>
 
@@ -159,7 +165,7 @@ export function TnaProductWithPrice({
         </Image>
 
         <Container margin={{ left: 104 }}>
-          <Text bold size="large" color="gray">
+          <Text bold size="large" color="gray" maxLines={2}>
             {title}
           </Text>
 
