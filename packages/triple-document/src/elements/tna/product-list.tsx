@@ -1,8 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { HR2, Container, H1, List, Button } from '@titicaca/core-elements'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import {
+  useEventTrackingContext,
+  useExperimentVariant,
+} from '@titicaca/react-contexts'
 
-import { TnaProduct } from './product'
+import { TnaProduct, TnaProductWithPrice } from './product'
 import { TNAProductData } from './types'
 
 type ProductsFetcher = (slotId?: number) => Promise<Response>
@@ -69,6 +72,13 @@ export function TnaProductsList({
   value: { slotId },
 }: TnaProductsListProps) {
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
+  const ProductEntity = useExperimentVariant(
+    {
+      A: TnaProduct,
+      B: TnaProductWithPrice,
+    },
+    TnaProduct,
+  )
   const { products, title } = useProducts({
     slotId,
     fetcher: onTNAProductsFetch,
@@ -119,7 +129,7 @@ export function TnaProductsList({
         <List clearing verticalGap={20}>
           {(showMore ? products : products.slice(0, 3)).map((product, i) => (
             <List.Item key={i}>
-              <TnaProduct
+              <ProductEntity
                 index={i}
                 product={product}
                 onClick={handleClick}
