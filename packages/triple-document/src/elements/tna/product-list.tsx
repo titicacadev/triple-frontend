@@ -4,46 +4,32 @@ import { useEventTrackingContext } from '@titicaca/react-contexts'
 
 import { TnaProductData, TnaProduct } from './product'
 
-interface TnaProductsListProps {
-  value: {
-    slotId?: number
-  }
-  onTNAProductsFetch?: (slotId?: number) => Promise<Response>
-  onTNAProductClick?: (
-    e: React.SyntheticEvent,
-    product: TnaProductData,
-    slotId?: number,
-    index?: number,
-  ) => void
-}
+type ProductsFetcher = (slotId?: number) => Promise<Response>
 
-interface TnaProductsListState {
+interface TNAProductsResponse {
   products: TnaProductData[]
   title: string
 }
 
-export function TnaProductsList({
-  onTNAProductsFetch,
-  onTNAProductClick,
-  value: { slotId },
-}: TnaProductsListProps) {
-  const [{ products, title }, setProductsList] = useState<TnaProductsListState>(
-    {
-      products: [],
-      title: '',
-    },
-  )
-  const [showMore, setShowMore] = useState(false)
-
-  const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
+function useProducts({
+  slotId,
+  fetcher,
+}: {
+  slotId?: number
+  fetcher?: ProductsFetcher
+}): TNAProductsResponse {
+  const [response, setProductsList] = useState<TNAProductsResponse>({
+    products: [],
+    title: '',
+  })
 
   useEffect(() => {
     async function fetchAndSetProductsList() {
-      if (!onTNAProductsFetch || !slotId) {
+      if (!fetcher || !slotId) {
         return
       }
 
-      const response = await onTNAProductsFetch(slotId)
+      const response = await fetcher(slotId)
 
       if (response.ok) {
         const {
@@ -55,12 +41,38 @@ export function TnaProductsList({
         } = await response.json()
 
         setProductsList({ title, products: products || [] })
-        setShowMore(false)
       }
     }
 
     fetchAndSetProductsList()
-  }, [onTNAProductsFetch, slotId])
+  }, [fetcher, slotId])
+  return response
+}
+
+interface TnaProductsListProps {
+  value: {
+    slotId?: number
+  }
+  onTNAProductsFetch?: ProductsFetcher
+  onTNAProductClick?: (
+    e: React.SyntheticEvent,
+    product: TnaProductData,
+    slotId?: number,
+    index?: number,
+  ) => void
+}
+
+export function TnaProductsList({
+  onTNAProductsFetch,
+  onTNAProductClick,
+  value: { slotId },
+}: TnaProductsListProps) {
+  const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
+  const { products, title } = useProducts({
+    slotId,
+    fetcher: onTNAProductsFetch,
+  })
+  const [showMore, setShowMore] = useState(false)
 
   const handleClick = useCallback(
     (e: React.SyntheticEvent, product: TnaProductData, index: number) => {
