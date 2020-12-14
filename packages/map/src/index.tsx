@@ -34,25 +34,23 @@ export interface WithGoogleMapProps extends GoogleMapProps {
     /**
      * google map additional libraries
      * default: ['geometry'] - https://developers.google.com/maps/documentation/javascript/libraries */
-    libraries?: Libraries
+    // libraries?: Libraries
   }
 }
+
+const GOOGLE_MAP_LIBRARIES: Libraries = ['geometry']
 
 export default function MapView({
   options: _options,
   mapContainerStyle: _mapContainerStyle,
-  googleMapLoadOptions: {
-    googleMapsApiKey,
-    region = 'kr',
-    libraries = ['geometry'],
-  },
+  googleMapLoadOptions: { googleMapsApiKey, region = 'kr' },
   children,
   ...props
 }: PropsWithChildren<WithGoogleMapProps>) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey,
     region,
-    libraries,
+    libraries: GOOGLE_MAP_LIBRARIES,
   })
 
   const options: google.maps.MapOptions = useMemo(
