@@ -1,0 +1,1 @@
+export { TnaProductsList } from './tna'
