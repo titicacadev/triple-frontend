@@ -19,7 +19,6 @@ interface TnaProductsListProps {
 
 interface TnaProductsListState {
   products: TnaProductData[]
-  showMore: boolean
   title: string
 }
 
@@ -28,13 +27,13 @@ export function TnaProductsList({
   onTNAProductClick,
   value: { slotId },
 }: TnaProductsListProps) {
-  const [{ products, showMore, title }, setProductsList] = useState<
-    TnaProductsListState
-  >({
-    products: [],
-    showMore: false,
-    title: '',
-  })
+  const [{ products, title }, setProductsList] = useState<TnaProductsListState>(
+    {
+      products: [],
+      title: '',
+    },
+  )
+  const [showMore, setShowMore] = useState(false)
 
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
 
@@ -55,12 +54,13 @@ export function TnaProductsList({
           products?: TnaProductData[]
         } = await response.json()
 
-        setProductsList({ title, products: products || [], showMore: false })
+        setProductsList({ title, products: products || [] })
+        setShowMore(false)
       }
     }
 
     fetchAndSetProductsList()
-  }, [onTNAProductsFetch, slotId, setProductsList])
+  }, [onTNAProductsFetch, slotId])
 
   const handleClick = useCallback(
     (e: React.SyntheticEvent, product: TnaProductData, index: number) => {
@@ -91,11 +91,8 @@ export function TnaProductsList({
       slot_id: slotId,
     })
 
-    setProductsList((prevValues) => ({
-      ...prevValues,
-      showMore: true,
-    }))
-  }, [trackSimpleEvent, setProductsList, slotId])
+    setShowMore(true)
+  }, [trackSimpleEvent, slotId])
 
   return products.length > 0 ? (
     <>
