@@ -1,1 +1,1 @@
-export { TnaProductsList } from './tna'
+export { TnaProductsList } from './product-list'
