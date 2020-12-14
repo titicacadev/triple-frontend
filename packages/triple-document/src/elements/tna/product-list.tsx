@@ -2,12 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { HR2, Container, H1, List, Button } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 
-import { TnaProductData, TnaProduct } from './product'
+import { TnaProduct } from './product'
+import { TNAProductData } from './types'
 
 type ProductsFetcher = (slotId?: number) => Promise<Response>
 
 interface TNAProductsResponse {
-  products: TnaProductData[]
+  products: TNAProductData[]
   title: string
 }
 
@@ -37,7 +38,7 @@ function useProducts({
           products,
         }: {
           title: string
-          products?: TnaProductData[]
+          products?: TNAProductData[]
         } = await response.json()
 
         setProductsList({ title, products: products || [] })
@@ -56,7 +57,7 @@ interface TnaProductsListProps {
   onTNAProductsFetch?: ProductsFetcher
   onTNAProductClick?: (
     e: React.SyntheticEvent,
-    product: TnaProductData,
+    product: TNAProductData,
     slotId?: number,
     index?: number,
   ) => void
@@ -75,7 +76,7 @@ export function TnaProductsList({
   const [showMore, setShowMore] = useState(false)
 
   const handleClick = useCallback(
-    (e: React.SyntheticEvent, product: TnaProductData, index: number) => {
+    (e: React.SyntheticEvent, product: TNAProductData, index: number) => {
       if (onTNAProductClick) {
         onTNAProductClick(e, product, slotId, index)
       }
@@ -84,7 +85,7 @@ export function TnaProductsList({
   )
 
   const handleIntersect = useCallback(
-    (product: TnaProductData, index: number) => {
+    (product: TNAProductData, index: number) => {
       trackEvent({
         fa: {
           action: '투어티켓_노출',

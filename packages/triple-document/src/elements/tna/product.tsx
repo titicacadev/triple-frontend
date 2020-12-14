@@ -1,25 +1,9 @@
 import React, { useCallback } from 'react'
-import {
-  Text,
-  Tag,
-  TagColors,
-  Container,
-  SquareImage,
-} from '@titicaca/core-elements'
+import { Text, Tag, Container, SquareImage } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import IntersectionObserver from '@titicaca/intersection-observer'
 
-type Price = string | number
-
-interface TnaProductProps {
-  id: number
-  heroImage?: string
-  title?: string
-  tags?: { text: string; type: TagColors; style: React.CSSProperties }[]
-  salePrice?: Price
-}
-
-export type TnaProductData = TnaProductProps
+import { TNAProductData } from './types'
 
 export function TnaProduct({
   index,
@@ -29,13 +13,13 @@ export function TnaProduct({
   onIntersect,
 }: {
   index: number
-  product: TnaProductData
+  product: TNAProductData
   onClick: (
     e: React.SyntheticEvent,
-    product: TnaProductData,
+    product: TNAProductData,
     index: number,
   ) => void
-  onIntersect: (product: TnaProductData, index: number) => void
+  onIntersect: (product: TNAProductData, index: number) => void
 }) {
   const handleClick = useCallback(
     (e: React.SyntheticEvent) => onClick(e, product, index),
