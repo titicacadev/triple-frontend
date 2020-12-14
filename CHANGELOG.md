@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Unreleased
+
+### react-contexts
+
+- `experiment-context` 모듈 추가 (#1123)
+
 ## 2.6.0
 
 ### react-contexts
