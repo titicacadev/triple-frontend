@@ -6,7 +6,7 @@ A/B 테스트를 도와주는 context입니다.
 
 ### `getABExperiment`
 
-A/B 테스트 slug로 현재 사용자의 `testId`와 사용자가 속해있는 그룹을 반환합니다.
+slug에 대응하는 `testId`와 사용자가 속해있는 그룹을 반환합니다.
 첫 번째 파라미터는 slug, 두 번째 파라미터는 fetcher의 options 객체입니다.
 
 ### `ABExperimentProvider`
