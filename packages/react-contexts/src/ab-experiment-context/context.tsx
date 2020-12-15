@@ -3,14 +3,19 @@ import React, {
   PropsWithChildren,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from 'react'
 
 import { ABExperimentMeta, getABExperiment } from './service'
 
-type ABExperimentContextValue = ABExperimentMeta | null
+interface ABExperimentMetas {
+  [key: string]: ABExperimentMeta | undefined
+}
 
-const ABExperimentContext = createContext<ABExperimentContextValue>(null)
+type ABExperimentContextValue = ABExperimentMetas
+
+const ABExperimentContext = createContext<ABExperimentContextValue>({})
 
 export function ABExperimentProvider({
   experimentSlug,
@@ -25,6 +30,7 @@ export function ABExperimentProvider({
   meta?: ABExperimentMeta
   onError?: (error: unknown) => void
 }>) {
+  const experimentMetas = useContext(ABExperimentContext)
   const [meta, setMeta] = useState(metaFromSSR)
 
   useEffect(() => {
@@ -45,22 +51,28 @@ export function ABExperimentProvider({
     }
   }, [experimentSlug, metaFromSSR, onError])
 
+  const value = useMemo(
+    () => ({ ...experimentMetas, [experimentSlug]: meta }),
+    [experimentMetas, experimentSlug, meta],
+  )
+
   return (
-    <ABExperimentContext.Provider value={meta || null}>
+    <ABExperimentContext.Provider value={value}>
       {children}
     </ABExperimentContext.Provider>
   )
 }
 
 export function useABExperimentVariant<T>(
+  slug: string,
   variants: {
     [group: string]: T
   },
   fallback: T,
 ): T {
-  const meta = useContext(ABExperimentContext)
+  const metas = useContext(ABExperimentContext)
 
-  const { group } = meta || {}
+  const { group } = metas[slug] || {}
 
   // TODO: session 시작을 기록해야함
 
