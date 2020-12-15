@@ -4,6 +4,7 @@ import React, {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react'
 
@@ -20,7 +21,7 @@ const ABExperimentContext = createContext<ABExperimentContextValue>({})
 export function ABExperimentProvider({
   experimentSlug,
   meta: metaFromSSR,
-  onError,
+  onError: onErrorFromProps,
   children,
 }: PropsWithChildren<{
   experimentSlug: string
@@ -30,10 +31,13 @@ export function ABExperimentProvider({
   meta?: ABExperimentMeta
   onError?: (error: unknown) => void
 }>) {
+  const onErrorRef = useRef(onErrorFromProps)
   const experimentMetas = useContext(ABExperimentContext)
   const [meta, setMeta] = useState(metaFromSSR)
 
   useEffect(() => {
+    const onError = onErrorRef.current
+
     async function fetchAndSetMeta() {
       const { result, error } = await getABExperiment(experimentSlug)
 
@@ -49,7 +53,7 @@ export function ABExperimentProvider({
     if (!metaFromSSR) {
       fetchAndSetMeta()
     }
-  }, [experimentSlug, metaFromSSR, onError])
+  }, [experimentSlug, metaFromSSR])
 
   const value = useMemo(
     () => ({ ...experimentMetas, [experimentSlug]: meta }),
