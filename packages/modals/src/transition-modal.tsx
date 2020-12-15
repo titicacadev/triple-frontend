@@ -78,7 +78,7 @@ const MODAL_CONTENT: {
   },
   [TransitionType.Tna]: {
     icon: 'https://assets.triple.guide/images/ico-popup-tna@4x.png',
-    description: '상품 정보는 앱에서\n더 편리하게 확인할 수 있어요.',
+    description: '투어티켓 예약은\n앱에서 더 편리하게 할 수 있어요',
     eventLabel: '투어티켓_상품선택',
   },
   [TransitionType.Hotel]: {
