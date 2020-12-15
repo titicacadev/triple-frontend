@@ -16,21 +16,22 @@ meta 값은 prop으로 넣어주며 prop이 없을 경우 자체적으로 API �
 
 #### props
 
-| 이름           | 설명                                 |
-| -------------- | ------------------------------------ |
-| experimentSlug | A/B 테스트 slug 값                   |
-| meta           | SSR에서 조회한 `ExperimentMeta` 값   |
-| onError        | API에서 에러가 발생했을 때 처리 함수 |
+| 이름    | 설명                                                                                  |
+| ------- | ------------------------------------------------------------------------------------- |
+| slug    | A/B 테스트 slug 값                                                                    |
+| meta    | SSR에서 조회한 `ExperimentMeta` 값. 넣어주지 않으면 Provider가 자체적으로 가져옵니다. |
+| onError | API에서 에러가 발생했을 때 처리 함수.                                                 |
 
 ### `useABExperimentVariant`
 
 사용자의 그룹에 맞는 variant를 선택해서 반환합니다.
-파라미터로 그룹을 key값으로 하고 해당 그룹의 variant를 value로 하는 객체와,
-그룹이 없을 때 반환하는 fallback 값을 받습니다.
+AB 테스트의 slug, 각 그룹의 후보군, fallback 값을 파라미터로 받습니다.
+주어진 slug에 맞는 meta 값을 찾을 수 없으면 fallback 값을 반환합니다.
 
 ```ts
 const Component = useABExperimentVariant(
-  { a: OriginalComponent, b: NewComponent },
+  'component-ab-test',
+  { A: OriginalComponent, B: NewComponent },
   OriginalComponent,
 )
 ```
@@ -39,13 +40,24 @@ const Component = useABExperimentVariant(
 
 `getServerSideProps` 함수에서 `getABExperiment`를 사용하여 실험 정보를 가져옵니다.
 
+> 💡만약 클라이언트에서 실험 정보를 가져오면
+> 사용자는 fallback 값을 봤다가 실험 값을 보게 됩니다.
+> 이러한 "깜박거림"을 방지하려면 서버사이드에서 실험 정보를 가져와야 합니다.
+
 ```ts
 FooPage.getServerSideProps = async ({ req }) => {
-  const { result } = await getABExperiment(EXPERIMENT_ID, { req })
+  const [
+    { result: messageMeta },
+    { result: componentMeta },
+  ] = await Promise.all([
+    getABExperiment(MESSAGE_AB_TEST_ID, { req }),
+    getABExperiment(COMPONENT_AB_TEST_ID, { req }),
+  ])
 
   return {
     props: {
-      experimentMeta: result,
+      messageMeta,
+      componentMeta,
     },
   }
 }
@@ -54,16 +66,24 @@ FooPage.getServerSideProps = async ({ req }) => {
 A/B 테스트를 진행하려는 페이지를 `ABExperimentProvider`로 감쌉니다.
 
 ```tsx
-export function FooPage({ experimentMeta }) {
+export function FooPage({ messageMeta, componentMeta }) {
   return (
     <ABExperimentProvider
-      experimentSlug={EXPERIMENT_ID}
-      meta={experimentMeta}
+      slug={MESSAGE_AB_TEST_ID}
+      meta={messageMeta}
       onError={(error) => {
         Sentry.captureException(error)
       }}
     >
-      <Foo />
+      <ABExperimentProvider
+        slug={COMPONENT_AB_TEST_ID}
+        meta={componentMeta}
+        onError={(error) => {
+          Sentry.captureException(error)
+        }}
+      >
+        <Foo />
+      </ABExperimentProvider>
     </ABExperimentProvider>
   )
 }
@@ -75,6 +95,7 @@ A/B 테스트 대상을 렌더링하는 컴포넌트에서 `useABExperimentVaria
 
 ```ts
 const ExperimentTargetComponent = useABExperimentVariant(
+  COMPONENT_AB_TEST_ID,
   {
     a: OriginalComponent,
     b: NewComponent,
@@ -85,6 +106,7 @@ const ExperimentTargetComponent = useABExperimentVariant(
 
 ```ts
 const experimentTargetMessage = useABExperimentVariant(
+  MESSAGE_AB_TEST_ID,
   {
     a: '이 호텔을 예약하세요!',
     b: '다른 호텔보다 평균 3만원 저렴한 호텔을 예약해보세요!',
