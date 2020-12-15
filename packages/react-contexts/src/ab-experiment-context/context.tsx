@@ -19,12 +19,12 @@ type ABExperimentContextValue = ABExperimentMetas
 const ABExperimentContext = createContext<ABExperimentContextValue>({})
 
 export function ABExperimentProvider({
-  experimentSlug,
+  slug,
   meta: metaFromSSR,
   onError: onErrorFromProps,
   children,
 }: PropsWithChildren<{
-  experimentSlug: string
+  slug: string
   /**
    * SSR 단계에서 조회한 값을 넣어 줄 수 있는 prop
    */
@@ -39,7 +39,7 @@ export function ABExperimentProvider({
     const onError = onErrorRef.current
 
     async function fetchAndSetMeta() {
-      const { result, error } = await getABExperiment(experimentSlug)
+      const { result, error } = await getABExperiment(slug)
 
       if (error && onError) {
         onError(error)
@@ -53,12 +53,13 @@ export function ABExperimentProvider({
     if (!metaFromSSR) {
       fetchAndSetMeta()
     }
-  }, [experimentSlug, metaFromSSR])
+  }, [slug, metaFromSSR])
 
-  const value = useMemo(
-    () => ({ ...experimentMetas, [experimentSlug]: meta }),
-    [experimentMetas, experimentSlug, meta],
-  )
+  const value = useMemo(() => ({ ...experimentMetas, [slug]: meta }), [
+    experimentMetas,
+    slug,
+    meta,
+  ])
 
   return (
     <ABExperimentContext.Provider value={value}>
