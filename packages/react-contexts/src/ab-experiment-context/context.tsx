@@ -6,13 +6,13 @@ import React, {
   useState,
 } from 'react'
 
-import { ExperimentMeta, getExperiment } from './service'
+import { ABExperimentMeta, getABExperiment } from './service'
 
-type ExperimentContextValue = ExperimentMeta | null
+type ABExperimentContextValue = ABExperimentMeta | null
 
-const ExperimentContext = createContext<ExperimentContextValue>(null)
+const ABExperimentContext = createContext<ABExperimentContextValue>(null)
 
-export function ExperimentProvider({
+export function ABExperimentProvider({
   experimentSlug,
   meta: metaFromSSR,
   onError,
@@ -22,14 +22,14 @@ export function ExperimentProvider({
   /**
    * SSR 단계에서 조회한 값을 넣어 줄 수 있는 prop
    */
-  meta?: ExperimentMeta
+  meta?: ABExperimentMeta
   onError?: (error: unknown) => void
 }>) {
   const [meta, setMeta] = useState(metaFromSSR)
 
   useEffect(() => {
     async function fetchAndSetMeta() {
-      const { result, error } = await getExperiment(experimentSlug)
+      const { result, error } = await getABExperiment(experimentSlug)
 
       if (error && onError) {
         onError(error)
@@ -46,19 +46,19 @@ export function ExperimentProvider({
   }, [experimentSlug, metaFromSSR, onError])
 
   return (
-    <ExperimentContext.Provider value={meta || null}>
+    <ABExperimentContext.Provider value={meta || null}>
       {children}
-    </ExperimentContext.Provider>
+    </ABExperimentContext.Provider>
   )
 }
 
-export function useExperimentVariant<T>(
+export function useABExperimentVariant<T>(
   variants: {
     [group: string]: T
   },
   fallback: T,
 ): T {
-  const meta = useContext(ExperimentContext)
+  const meta = useContext(ABExperimentContext)
 
   const { group } = meta || {}
 
