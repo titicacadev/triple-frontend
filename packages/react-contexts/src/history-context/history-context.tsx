@@ -11,14 +11,17 @@ import React, {
 } from 'react'
 import Router from 'next/router'
 import qs from 'qs'
-import { parseUrl, generateUrl } from '@titicaca/view-utilities'
+import {
+  parseUrl,
+  generateUrl,
+  checkIfRoutable,
+} from '@titicaca/view-utilities'
 import { hasAccessibleTripleNativeClients } from '@titicaca/triple-web-to-native-interfaces'
 import { DeepPartial } from 'utility-types'
 
 import { useEnv } from '../env-context'
 import { useSessionContextSafely } from '../session-context'
 
-import { checkIfRoutable } from './routelist'
 import { canonizeTargetAddress } from './canonization'
 
 type URIHash = string
