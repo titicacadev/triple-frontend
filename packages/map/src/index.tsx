@@ -118,7 +118,7 @@ export default function MapView({
   )
 
   useEffect(() => {
-    bounds && map?.fitBounds(bounds as google.maps.LatLngBoundsLiteral, padding)
+    bounds && map?.fitBounds(bounds, padding)
   }, [map, bounds, padding])
 
   return loadError ? (
