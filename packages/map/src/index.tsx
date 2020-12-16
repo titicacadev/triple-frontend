@@ -110,11 +110,11 @@ export default function MapView({
       }
 
       google.maps.event.addListenerOnce(map, 'idle', () => {
-        map.fitBounds(bounds)
+        map.fitBounds(bounds, padding)
         setMap(map)
       })
     },
-    [bounds, onLoad],
+    [bounds, onLoad, padding],
   )
 
   useEffect(() => {
