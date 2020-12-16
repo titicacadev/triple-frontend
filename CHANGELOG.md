@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2.6.0
+
+### MapView
+
+- `bounds`, `padding` ,`onLoad` prop 을 추가합니다. (#1131)
+- 구글맵 `Libraries` 옵션 설정 관련 performance warning 이슈 해결 (#1127)
+
 ## 2.5.0
 
 ### map
