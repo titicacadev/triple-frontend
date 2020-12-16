@@ -1,4 +1,11 @@
-import React, { CSSProperties, useMemo, PropsWithChildren } from 'react'
+import React, {
+  CSSProperties,
+  useMemo,
+  PropsWithChildren,
+  useEffect,
+  useCallback,
+  useState,
+} from 'react'
 import {
   GoogleMap,
   GoogleMapProps,
@@ -12,6 +19,13 @@ export * from './marker'
 export * from './polygon'
 export * from './polyline'
 
+const DEFAULT_BOUNDS_PADDING = {
+  top: 20,
+  right: 22,
+  left: 22,
+  bottom: 20,
+}
+
 const DEFAULT_MAP_OPTIONS: google.maps.MapOptions = {
   zoom: 13,
   center: { lat: 37.7577627, lng: -122.4726194 },
@@ -20,6 +34,7 @@ const DEFAULT_MAP_OPTIONS: google.maps.MapOptions = {
   clickableIcons: false,
   gestureHandling: 'greedy',
 }
+
 const DEFAULT_MAP_CONTAINER_STYLE: CSSProperties = {
   width: '100%',
   height: '100%',
@@ -36,6 +51,18 @@ export interface WithGoogleMapProps extends GoogleMapProps {
      * default: ['geometry'] - https://developers.google.com/maps/documentation/javascript/libraries */
     // libraries?: Libraries
   }
+  /**
+   * https://developers.google.com/maps/documentation/javascript/reference/coordinates#LatLngBoundsLiteral */
+  bounds?: google.maps.LatLngBoundsLiteral
+  padding?:
+    | number
+    | {
+        top?: number
+        right?: number
+        bottom?: number
+        left?: number
+      }
+  onLoad?: (map?: google.maps.Map) => void
 }
 
 const GOOGLE_MAP_LIBRARIES: Libraries = ['geometry']
@@ -44,7 +71,10 @@ export default function MapView({
   options: _options,
   mapContainerStyle: _mapContainerStyle,
   googleMapLoadOptions: { googleMapsApiKey, region = 'kr' },
+  bounds,
+  padding = DEFAULT_BOUNDS_PADDING,
   children,
+  onLoad,
   ...props
 }: PropsWithChildren<WithGoogleMapProps>) {
   const { isLoaded, loadError } = useLoadScript({
@@ -52,6 +82,7 @@ export default function MapView({
     region,
     libraries: GOOGLE_MAP_LIBRARIES,
   })
+  const [map, setMap] = useState<google.maps.Map>()
 
   const options: google.maps.MapOptions = useMemo(
     () => ({
@@ -69,12 +100,34 @@ export default function MapView({
     [_mapContainerStyle],
   )
 
+  const handleOnLoad = useCallback(
+    (map: google.maps.Map) => {
+      onLoad && onLoad(map)
+
+      if (!bounds) {
+        setMap(map)
+        return
+      }
+
+      google.maps.event.addListenerOnce(map, 'idle', () => {
+        map.fitBounds(bounds as google.maps.LatLngBoundsLiteral)
+        setMap(map)
+      })
+    },
+    [bounds, onLoad],
+  )
+
+  useEffect(() => {
+    bounds && map?.fitBounds(bounds as google.maps.LatLngBoundsLiteral, padding)
+  }, [map, bounds, padding])
+
   return loadError ? (
     <div>Map cannot be loaded right now, sorry.</div>
   ) : isLoaded ? (
     <GoogleMap
       options={options}
       mapContainerStyle={mapContainerStyle}
+      onLoad={handleOnLoad}
       {...(props as GoogleMapProps)}
     >
       {children}
