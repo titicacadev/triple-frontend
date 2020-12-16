@@ -30,7 +30,7 @@
   /**
    * Map SDK loaded 콜백 핸들러
    */
-  onLoad: (map?: google.maps.Map) => void
+  onLoad: (map: google.maps.Map) => void
   /**
    * bounds 는 계산된 순수 영역이고 padding 은 맵 내부에 애니메이션 핀이나 마커가 들어가면서
    * 가상의 추가 여백이 필요하여 보정하기 위한 여백값입니다.
