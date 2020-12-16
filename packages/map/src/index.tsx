@@ -110,7 +110,7 @@ export default function MapView({
       }
 
       google.maps.event.addListenerOnce(map, 'idle', () => {
-        map.fitBounds(bounds as google.maps.LatLngBoundsLiteral)
+        map.fitBounds(bounds)
         setMap(map)
       })
     },
