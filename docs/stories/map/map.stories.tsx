@@ -1,5 +1,5 @@
 import React from 'react'
-import { text, number, select } from '@storybook/addon-knobs'
+import { text, number, select, object } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { Container } from '@titicaca/core-elements'
 import MapView, {
@@ -11,6 +11,7 @@ import MapView, {
 
 import {
   mapOptions,
+  bounds,
   polylineGeometry,
   polylinePaths,
   polygonGeometry,
@@ -40,6 +41,7 @@ export function Map() {
         googleMapLoadOptions={{
           googleMapsApiKey: GOOGLE_MAPS_API_KEY,
         }}
+        bounds={object('동서남북 경계', bounds)}
       ></MapView>
     </Container>
   )
@@ -61,6 +63,13 @@ export function MapWithProps() {
         googleMapLoadOptions={{
           googleMapsApiKey: GOOGLE_MAPS_API_KEY,
         }}
+        padding={object('맵 내부 여백', {
+          top: 10,
+          left: 10,
+          right: 10,
+          bottom: 10,
+        })}
+        bounds={object('동서남북 경계', bounds)}
       />
     </Container>
   )
@@ -79,6 +88,7 @@ export function MapWithPolyline() {
         googleMapLoadOptions={{
           googleMapsApiKey: GOOGLE_MAPS_API_KEY,
         }}
+        bounds={object('동서남북 경계', bounds)}
       >
         <Polyline
           path={polylinePaths}
@@ -106,6 +116,7 @@ export function PolylineWithMarker() {
         googleMapLoadOptions={{
           googleMapsApiKey: GOOGLE_MAPS_API_KEY,
         }}
+        bounds={object('동서남북 경계', bounds)}
       >
         {polylinePaths.map((path, i) => (
           <HotelCircleMarker
@@ -148,6 +159,7 @@ export function PolygonWithMarker() {
         googleMapLoadOptions={{
           googleMapsApiKey: GOOGLE_MAPS_API_KEY,
         }}
+        bounds={object('동서남북 경계', bounds)}
       >
         <Polygon
           paths={polygonPaths}
