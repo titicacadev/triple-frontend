@@ -30,7 +30,13 @@
   /**
    * Map SDK loaded 콜백 핸들러
    */
-  onLoad: () => void
+  onLoad: (map?: google.maps.Map) => void
+  /**
+   * bounds 는 계산된 순수 영역이고 padding 은 맵 내부에 애니메이션 핀이나 마커가 들어가면서
+   * 가상의 추가 여백이 필요하여 보정하기 위한 여백값입니다.
+   */
+  padding?: number | { top, left, right, bottom }
+  bounds?: google.maps.LatLngBoundsLiteral
 }
 ```
 
@@ -38,17 +44,16 @@
 import MapView from '@titicaca/map'
 
 function Page() {
-  const mapOptions = {
-    center: { lat: 25.061425, lng: 121.380241 },
-    bounds: {
-      south: 25.0331,
-      west: 121.234206,
-      north: 25.08975,
-      east: 121.526276,
-    },
+  const [mapOptions] = useState({ center: { lat: 25.061425, lng: 121.380241 } })
+  const bounds = {
+    south: 25.0331,
+    west: 121.234206,
+    north: 25.08975,
+    east: 121.526276,
   }
+  const padding = { top: 10, left: 10, right: 10, bottom: 10 } // or 10
 
-  const handleMapLoaded = useCallback(() => {
+  const handleMapLoaded = useCallback((map: google.maps.Map) => {
     // do some after loaded google map
   }, [])
 
@@ -59,6 +64,8 @@ function Page() {
       googleMapLoadOptions={{
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
       }}
+      padding={padding}
+      bounds={bounds}
     />
   )
 }
