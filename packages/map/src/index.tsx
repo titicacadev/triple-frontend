@@ -62,7 +62,7 @@ export interface WithGoogleMapProps extends GoogleMapProps {
         bottom?: number
         left?: number
       }
-  onLoad?: (map?: google.maps.Map) => void
+  onLoad?: (map: google.maps.Map) => void
 }
 
 const GOOGLE_MAP_LIBRARIES: Libraries = ['geometry']
