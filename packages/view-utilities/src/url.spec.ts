@@ -252,4 +252,16 @@ describe('generateUrl', function () {
       'https://triple.guide/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3?in_region=true#reviews',
     )
   })
+
+  it('should erase scheme and host', () => {
+    expect(
+      generateUrl(
+        {
+          scheme: undefined,
+          host: undefined,
+        },
+        'https://triple.guide/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3#nearby',
+      ),
+    ).toBe('/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3#nearby')
+  })
 })
