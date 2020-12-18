@@ -1,5 +1,5 @@
 import React, { MouseEventHandler, PropsWithChildren } from 'react'
-import Router from 'next/router'
+import Router, { useRouter } from 'next/router'
 import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
 
 import { useAppBridge } from './use-app-bridge'
@@ -29,8 +29,9 @@ export function LocalLink({
   const { webUrlBase } = useEnv()
   const { isPublic } = useUserAgentContext()
   const { openInlink, openOutlink } = useAppBridge()
+  const { basePath } = useRouter()
 
-  const fullHref = `${Router.basePath}${href}`
+  const fullHref = `${basePath}${href}`
 
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     if (onClick) {
