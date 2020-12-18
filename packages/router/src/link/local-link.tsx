@@ -43,6 +43,7 @@ export function LocalLink({
         e.preventDefault()
 
         Router[replace ? 'replace' : 'push'](href)
+        window.scrollTo(0, 0)
         return
 
       case 'new':
