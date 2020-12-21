@@ -4,7 +4,7 @@
 
 ### react-contexts
 
--tna 상세프로그램 더보기 router를 추가합니다. #1135
+- tna 상세프로그램 더보기 router를 추가합니다. (#1135)
 
 ### Modals
 
