@@ -153,5 +153,5 @@ export function useABExperimentVariant<T>(
     }
   }, [group, slug, testId, trackEvent])
 
-  return group ? variants[group] : fallback
+  return group && group in variants ? variants[group] : fallback
 }
