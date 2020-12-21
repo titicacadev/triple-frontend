@@ -88,6 +88,12 @@ function useABExperimentMeta(slug: string, onError?: (error: Error) => void) {
   }
 }
 
+/**
+ * 주어진 slug의 AB 테스트 전환 이벤트를 기록합니다.
+ * 콜백 함수가 받는 파라미터는 이벤트에 따라 선택적으로 넣어줄 수 있습니다.
+ * @param slug 실험 slug
+ * @param onError
+ */
 export function useABExperimentConversionTracker(
   slug: string,
   onError?: (error: Error) => void,
@@ -128,6 +134,13 @@ export function useABExperimentConversionTracker(
   )
 }
 
+/**
+ * 주어진 slug의 실험 variant를 선택합니다.
+ * @param slug 실험 slug
+ * @param variants 실험 선택지. A, B, C, D...를 key 값으로 하는 객체
+ * @param fallback 실험을 찾을 수 없거나 variants에 현재 실험군이 설정되어있지 않으면 반환하는 값
+ * @param onError
+ */
 export function useABExperimentVariant<T>(
   slug: string,
   variants: {
