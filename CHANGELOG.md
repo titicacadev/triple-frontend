@@ -2,6 +2,14 @@
 
 ## 2.6.0
 
+### react-contexts
+
+-tna 상세프로그램 더보기 router를 추가합니다. #1135
+
+### Modals
+
+- tna type의 description을 수정합니다. (#1130)
+
 ### MapView
 
 - `bounds`, `padding` ,`onLoad` prop 을 추가합니다. (#1131)
