@@ -27,6 +27,7 @@ meta 값은 prop으로 넣어주며 prop이 없을 경우 자체적으로 API �
 사용자의 그룹에 맞는 variant를 선택해서 반환합니다.
 AB 테스트의 slug, 각 그룹의 후보군, fallback 값을 파라미터로 받습니다.
 주어진 slug에 맞는 meta 값을 찾을 수 없으면 fallback 값을 반환합니다.
+이 훅이 마운트되면 세션 시작을 알리는 이벤트가 기록됩니다.
 
 ```ts
 const Component = useABExperimentVariant(
@@ -35,6 +36,10 @@ const Component = useABExperimentVariant(
   OriginalComponent,
 )
 ```
+
+### `useABExperimentConversionTracker`
+
+AB 테스트의 전환을 기록합니다.
 
 ## 사용 예시
 
@@ -63,10 +68,10 @@ FooPage.getServerSideProps = async ({ req }) => {
 }
 ```
 
-A/B 테스트를 진행하려는 페이지를 `ABExperimentProvider`로 감쌉니다.
+A/B 테스트를 진행하려는 지점을 `ABExperimentProvider`로 감쌉니다.
 
 ```tsx
-export function FooPage({ messageMeta, componentMeta }) {
+export function Foo({ messageMeta, componentMeta }) {
   return (
     <ABExperimentProvider
       slug={MESSAGE_AB_TEST_ID}
@@ -82,7 +87,8 @@ export function FooPage({ messageMeta, componentMeta }) {
           Sentry.captureException(error)
         }}
       >
-        <Foo />
+        <SomeComponent />
+        {/* ... */}
       </ABExperimentProvider>
     </ABExperimentProvider>
   )
@@ -118,10 +124,16 @@ const experimentTargetMessage = useABExperimentVariant(
 `useABExperimentConversionTracker` 훅의 함수를 이용해 실험에서 측정하려는 목표 행동을 기록합니다.
 
 ```tsx
-const trackConversion = useABExperimentConversionTracker()
+const trackComponentTestConversion = useABExperimentConversionTracker(
+  COMPONENT_AB_TEST_ID,
+)
+const trackMessageTestConversion = useABExperimentConversionTracker(
+  MESSAGE_AB_TEST_ID,
+)
 
 const handleButtonClick = () => {
-  trackConversion()
+  trackComponentTestConversion()
+  trackMessageTestConversion()
 }
 
 return <Button onClick={handleButtonClick}>{experimentTargetMessage}</Button>
