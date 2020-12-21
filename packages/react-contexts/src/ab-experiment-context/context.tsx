@@ -98,20 +98,22 @@ export function useABExperimentConversionTracker(
   slug: string,
   onError?: (error: Error) => void,
 ): (params?: {
-  contentType?: string
-  itemId?: string
-  itemName?: string
-  regionId?: string
-  zoneId?: string
+  [key: string]: string | undefined
+  content_type?: string
+  item_id?: string
+  item_name?: string
+  region_id?: string
+  zone_id?: string
+  action: never
+  experiment_name: never
+  experiment_id: never
+  variant_id: never
 }) => void {
   const { trackEvent } = useEventTrackingContext()
   const meta = useABExperimentMeta(slug, onError)
 
   return useCallback(
     (eventParams) => {
-      const { contentType, itemId, itemName, regionId, zoneId } =
-        eventParams || {}
-
       if (meta) {
         const { testId, group } = meta
 
@@ -121,11 +123,7 @@ export function useABExperimentConversionTracker(
             experiment_name: slug,
             experiment_id: testId,
             variant_id: group,
-            content_type: contentType,
-            item_id: itemId,
-            item_name: itemName,
-            region_id: regionId,
-            zone_id: zoneId,
+            ...eventParams,
           },
         })
       }
