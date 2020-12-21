@@ -15,8 +15,10 @@ const excludes = [
   'resource_id',
   'resource_type',
   'item_id',
+  'item_name',
   'user_id',
   'region_id',
+  'zone_id',
   'review_id',
   'photo_id',
   'photo_first',
@@ -39,6 +41,9 @@ const excludes = [
   'poi_id',
   '_unsafeTextStyle',
   '_web_expand',
+  'experiment_name',
+  'experiment_id',
+  'variant_id',
 ]
 const regex = `^(${excludes.join('|')})$`
 
