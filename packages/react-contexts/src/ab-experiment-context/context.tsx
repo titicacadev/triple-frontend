@@ -1,12 +1,15 @@
 import React, {
   createContext,
   PropsWithChildren,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from 'react'
+
+import { useEventTrackingContext } from '../event-tracking-context'
 
 import { ABExperimentMeta, getABExperiment } from './service'
 
@@ -68,6 +71,43 @@ export function ABExperimentProvider({
   )
 }
 
+export function useABExperimentConversionTracker(
+  slug: string,
+): (params?: {
+  contentType?: string
+  itemId?: string
+  itemName?: string
+  regionId?: string
+  zoneId?: string
+}) => void {
+  const { trackEvent } = useEventTrackingContext()
+  const metas = useContext(ABExperimentContext)
+
+  const { testId, group } = metas[slug] || {}
+
+  return useCallback(
+    (eventParams) => {
+      const { contentType, itemId, itemName, regionId, zoneId } =
+        eventParams || {}
+
+      trackEvent({
+        fa: {
+          action: 'experiment_key_conversion',
+          experiment_name: slug,
+          experiment_id: testId,
+          variant_id: group,
+          content_type: contentType,
+          item_id: itemId,
+          item_name: itemName,
+          region_id: regionId,
+          zone_id: zoneId,
+        },
+      })
+    },
+    [group, slug, testId, trackEvent],
+  )
+}
+
 export function useABExperimentVariant<T>(
   slug: string,
   variants: {
@@ -75,11 +115,21 @@ export function useABExperimentVariant<T>(
   },
   fallback: T,
 ): T {
+  const { trackEvent } = useEventTrackingContext()
   const metas = useContext(ABExperimentContext)
 
-  const { group } = metas[slug] || {}
+  const { testId, group } = metas[slug] || {}
 
-  // TODO: session 시작을 기록해야함
+  useEffect(() => {
+    trackEvent({
+      fa: {
+        action: 'enter_experiment',
+        experiment_name: slug,
+        experiment_id: testId,
+        variant_id: group,
+      },
+    })
+  }, [group, slug, testId, trackEvent])
 
   return group ? variants[group] : fallback
 }
