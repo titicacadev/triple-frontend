@@ -139,12 +139,20 @@ function getTarget({
 }
 
 /**
- * inlink일 때 allowSource를 결정합니다.
+ * allowSource를 결정합니다.
  *
+ * routable한 링크는 모든 소스에서 열릴 수 있습니다.
+ * routable하지 않으면 세션이 있는 app에서만 열립니다.
  * inlink는 원칙적으로 앱에서만 열 수 있습니다.
  * 단, 웹에서 열리는 URL이고, _web_expand 파라미터가 설정되어있다면 웹에서도 열립니다.
  */
-function getInlinkAllowSource(href: string): AllowSource {
+function getAllowSource({
+  href,
+  webUrlBase,
+}: {
+  href: string
+  webUrlBase: string
+}): AllowSource {
   const { path, query } = parseUrl(href)
 
   if (path === '/inlink') {
@@ -157,7 +165,9 @@ function getInlinkAllowSource(href: string): AllowSource {
     return 'app-with-session'
   }
 
-  return 'all'
+  return checkIfRoutable({ href: canonizeHref({ href, webUrlBase }) })
+    ? 'all'
+    : 'app-with-session'
 }
 
 export function useHrefToProps(params?: {
@@ -180,7 +190,7 @@ export function useHrefToProps(params?: {
         return {
           href: canonizeHref({ href, webUrlBase }),
           target: getTarget({ href, isPublic }),
-          allowSource: getInlinkAllowSource(href),
+          allowSource: getAllowSource({ href, webUrlBase }),
         }
       } catch (error) {
         if (onError) {
