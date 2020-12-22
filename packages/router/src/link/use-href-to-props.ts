@@ -130,7 +130,9 @@ function getTarget({
   if (path === '/outlink') {
     const { target } = qs.parse(query || '')
 
-    return target === 'browser' ? 'browser' : 'new'
+    if (target === 'browser') {
+      return 'browser'
+    }
   }
 
   return isPublic ? 'current' : 'new'
