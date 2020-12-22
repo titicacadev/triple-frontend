@@ -4,9 +4,8 @@ import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/in
 import { PoiListElement } from '@titicaca/poi-list-elements'
 import {
   useEventTrackingContext,
-  useUserAgentContext,
+  useHistoryFunctions,
 } from '@titicaca/react-contexts'
-import { ExternalLink } from '@titicaca/router'
 
 import { ListingPOI } from './types'
 
@@ -25,7 +24,7 @@ export default function PoiEntry({
   eventLabel: string
 }) {
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
-  const { isPublic } = useUserAgentContext()
+  const { navigate } = useHistoryFunctions()
 
   const handleIntersectionChange = useCallback(
     ({ isIntersecting }: { isIntersecting: boolean }) => {
@@ -42,24 +41,19 @@ export default function PoiEntry({
     [trackEvent, eventLabel, index, id],
   )
 
+  const handleClick = useCallback(() => {
+    trackSimpleEvent({
+      action: '근처추천장소_POI선택',
+      label: `${eventLabel}_${index + 1}_${id}`,
+    })
+
+    navigate(`/regions/${regionId}/${type}s/${id}`)
+  }, [eventLabel, id, index, navigate, regionId, trackSimpleEvent, type])
+
   return (
     <IntersectionObserver key={id} onChange={handleIntersectionChange}>
       <List.Item>
-        <ExternalLink
-          href={`/regions/${regionId}/${type}s/${id}`}
-          target={isPublic ? 'current' : 'new'}
-          allowSource="all"
-          onClick={() => {
-            trackSimpleEvent({
-              action: '근처추천장소_POI선택',
-              label: `${eventLabel}_${index + 1}_${id}`,
-            })
-          }}
-        >
-          <a>
-            <PoiListElement as="div" poi={poi} />
-          </a>
-        </ExternalLink>
+        <PoiListElement as="div" poi={poi} onClick={handleClick} />
       </List.Item>
     </IntersectionObserver>
   )
