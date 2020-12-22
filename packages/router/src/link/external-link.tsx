@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, PropsWithChildren } from 'react'
+import React, { MouseEventHandler, PropsWithChildren, useEffect } from 'react'
 import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
 import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 
@@ -14,6 +14,7 @@ export function ExternalLink({
   allowSource,
   title,
   onClick,
+  onError,
   children,
 }: PropsWithChildren<{
   href: string
@@ -22,6 +23,7 @@ export function ExternalLink({
   allowSource?: AllowSource
   title?: string
   onClick?: () => void
+  onError?: (error: Error) => void
 }>) {
   const { webUrlBase } = useEnv()
   const { isPublic } = useUserAgentContext()
@@ -29,6 +31,8 @@ export function ExternalLink({
 
   const { host } = parseUrl(href)
   const outOfTriple = !!host
+  const forbiddenLinkCondition =
+    !isPublic && outOfTriple && target === 'current'
 
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     if (onClick) {
@@ -39,7 +43,6 @@ export function ExternalLink({
       case 'current':
         if (!isPublic && outOfTriple) {
           e.preventDefault()
-          // TODO: 처리 방법 고민: error | 침묵 | 새창 열기
         }
         return
 
@@ -70,9 +73,20 @@ export function ExternalLink({
     }
   }
 
+  useEffect(
+    () => {
+      if (forbiddenLinkCondition && onError) {
+        onError(new Error('현재 창에서 외부 URL로 이동할 수 없습니다.'))
+      }
+    },
+    // onError 변경에 대응하지 않습니다.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [forbiddenLinkCondition],
+  )
+
   return (
     <RouterGuardedLink
-      href={href}
+      href={!forbiddenLinkCondition ? href : undefined}
       relList={outOfTriple ? ['external', ...relList] : relList}
       allowSource={allowSource}
       onClick={handleClick}
