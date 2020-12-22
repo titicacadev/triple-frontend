@@ -30,7 +30,6 @@ export function RouterGuardedLink({
   ...restProps
 }: PropsWithChildren<
   Partial<Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'rel'>> & {
-    href: string
     relList?: LinkType[]
     /**
      * 라우팅 가능 환경을 결정하는 prop. 기본 값은 all.
