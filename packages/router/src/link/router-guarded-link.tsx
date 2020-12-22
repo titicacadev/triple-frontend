@@ -16,7 +16,7 @@ import {
 
 import { LinkType, useRel } from './use-rel'
 
-export type AllowSource = 'all' | 'app' | 'app-with-session'
+export type AllowSource = 'all' | 'app' | 'app-with-session' | 'none'
 
 /**
  * 조건부 라우팅 검사 로직을 자식 a 엘리먼트에 주입하는 컴포넌트
@@ -45,17 +45,15 @@ export function RouterGuardedLink({
   const { show: showLoginCTAModal } = useLoginCTAModal()
 
   const isDisabledRoute =
+    allowSource === 'none' ||
     (allowSource === 'app' && isPublic) ||
     (allowSource === 'app-with-session' && (isPublic || !hasSessionId))
 
-  const rel = useRel([
-    ...relList,
-    ...(isDisabledRoute ? ['nofollow' as const] : []),
-  ])
+  const rel = useRel(relList)
 
   const anchorProps: Partial<AnchorHTMLAttributes<HTMLAnchorElement>> = {
     ...restProps,
-    href,
+    href: isDisabledRoute ? undefined : href,
     rel,
     onClick: (e) => {
       if (isDisabledRoute) {

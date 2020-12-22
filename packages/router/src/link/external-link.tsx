@@ -86,9 +86,9 @@ export function ExternalLink({
 
   return (
     <RouterGuardedLink
-      href={!forbiddenLinkCondition ? href : undefined}
+      href={href}
       relList={outOfTriple ? ['external', ...relList] : relList}
-      allowSource={allowSource}
+      allowSource={forbiddenLinkCondition ? 'none' : allowSource}
       onClick={handleClick}
       target={ANCHOR_TARGET_MAP[target]}
     >
