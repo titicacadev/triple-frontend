@@ -7,6 +7,7 @@ import { useAppBridge } from './use-app-bridge'
 import { LinkType } from './use-rel'
 import { ANCHOR_TARGET_MAP, TargetType } from './target'
 import { AllowSource, RouterGuardedLink } from './router-guarded-link'
+import { addWebUrlBase } from './add-web-url-base'
 
 function addBasePath(href: string, basePath: string): string {
   const { path } = parseUrl(href)
@@ -70,7 +71,7 @@ export function LocalLink({
         if (!isPublic) {
           e.preventDefault()
 
-          openOutlink(`${webUrlBase}${hrefWithBasePath}`, {
+          openOutlink(addWebUrlBase(hrefWithBasePath, webUrlBase), {
             target: 'browser',
           })
         }
