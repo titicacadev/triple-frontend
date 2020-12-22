@@ -2,19 +2,10 @@ import React from 'react'
 import { action } from '@storybook/addon-actions'
 import NearbyPois from '@titicaca/nearby-pois'
 
-import {
-  historyProviderDecorator,
-  sessionContextProviderDecorator,
-  userAgentProviderDecorator,
-} from '../../decorators'
+import { historyProviderDecorator } from '../../decorators'
 
 export default {
   title: 'Nearby-Pois | NearbyPois',
-  decorators: [
-    historyProviderDecorator,
-    sessionContextProviderDecorator,
-    userAgentProviderDecorator,
-  ],
 }
 
 export function BaseNearbyPois() {
@@ -34,6 +25,7 @@ export function BaseNearbyPois() {
 
 BaseNearbyPois.story = {
   name: '기본 NearbyPois',
+  decorators: [historyProviderDecorator],
 }
 
 export function NearbyPoisWithRecommended() {
@@ -53,4 +45,5 @@ export function NearbyPoisWithRecommended() {
 
 NearbyPoisWithRecommended.story = {
   name: '추천 일정이 있는',
+  decorators: [historyProviderDecorator],
 }
