@@ -1,11 +1,12 @@
 import React, { MouseEventHandler, PropsWithChildren, useEffect } from 'react'
 import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
-import { generateUrl, parseUrl } from '@titicaca/view-utilities'
+import { parseUrl } from '@titicaca/view-utilities'
 
 import { useAppBridge } from './use-app-bridge'
 import { LinkType } from './use-rel'
 import { ANCHOR_TARGET_MAP, TargetType } from './target'
 import { AllowSource, RouterGuardedLink } from './router-guarded-link'
+import { addWebUrlBase } from './add-web-url-base'
 
 export function ExternalLink({
   href,
@@ -63,12 +64,10 @@ export function ExternalLink({
         if (!isPublic) {
           e.preventDefault()
 
-          const { scheme, host } = parseUrl(webUrlBase)
-
-          openOutlink(
-            outOfTriple ? href : generateUrl({ scheme, host }, href),
-            { target: 'browser', title },
-          )
+          openOutlink(outOfTriple ? href : addWebUrlBase(href, webUrlBase), {
+            target: 'browser',
+            title,
+          })
         }
     }
   }
