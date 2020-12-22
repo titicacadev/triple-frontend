@@ -25,7 +25,7 @@
 
 ### `useHrefToProps`
 
-inlink, outlink가 포함된 href를 받아서 Link 컴포넌트의 prop을 반환합니다.
+inlink, outlink가 포함된 href를 받아서 Link 컴포넌트의 href, target, allowSource 세 가지 prop을 반환합니다.
 
 ```tsx
 const convertHrefToProps = useHrefToProps()
@@ -33,7 +33,19 @@ const convertHrefToProps = useHrefToProps()
 <ExternalLink {...convertHrefToProps(target)} />
 ```
 
-- 트리플 도메인의 절대 경로(`https://triple.guide/regions/....`)는 scheme과 host를 제거합니다. 그리고 현재 창에서 엽니다.
-- 외부 URL은 그대로 반환하고 웹일 땐 현재창, 앱일 땐 새 창에서 엽니다.
-- inlink url은 path query의 값을 반환하고, 웹일 땐 현재창, 앱일 땐 새 창에서 엽니다. 웹인데 `_web_expand` query가 없으면 URL을 열지 않습니다.
-- outlink url은 url query의 값을 한 번 더 함수를 통과시킨 다음 반환하고, target: browser query가 있으면 브라우저로, 없으면 새 창으로 엽니다.
+#### `href`
+
+inlink, outlink는 각각 query에 들어있는 URL이나 path를 빼내고,
+트리플 도메인의 절대 경로(`https://triple.guide/regions/....`)는 scheme과 host를 제거합니다.
+
+#### `target`
+
+현재 웹일 땐 `current`, 앱일 땐 `new`를 반환합니다.
+단, outlink의 target query가 browser이면 `browser`를 반환합니다.
+
+#### `allowSource`
+
+| `checkIfRoutable` | inlink with `_web_expand` |       inlink       |       그 외        |
+| ----------------: | :-----------------------: | :----------------: | :----------------: |
+|              true |           `all`           |       `app`        |       `all`        |
+|             false |    `app-with-session`     | `app-with-session` | `app-with-session` |
