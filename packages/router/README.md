@@ -10,7 +10,7 @@
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `target`      | 페이지를 이동할 목표입니다. `current`, `new`, `browser` 세 가지를 사용할 수 있으며 각각 현재 창, 새 창(새 웹뷰), 기본 브라우저를 의미합니다.               |
 | `relList`     | anchor 엘리먼트의 [링크 유형](https://developer.mozilla.org/ko/docs/Web/HTML/Link_types) 목록입니다. 중복되어도 알아서 중복을 제거하여 `rel`로 넣어줍니다. |
-| `allowSource` | 링크가 작동하는 환경을 명시하는 prop입니다. `all`, `app`, `app-with-session` 세 가지 상태를 가지며 prop을 넣지 않았을 때는 주어진 href만으로 판단합니다.   |
+| `allowSource` | 링크가 작동하는 환경을 명시하는 prop입니다. `all`, `app`, `app-with-session`, 'none' 네 가지 타입을 가지며 prop을 넣지 않았을 때는 `all`입니다.            |
 | `onClick`     | anchor를 클릭했을 때 작동합니다. 이벤트 로깅하는 데 사용할 수 있습니다. anchor가 routable할 때만 작동합니다.                                               |
 
 ### `LocalLink`
