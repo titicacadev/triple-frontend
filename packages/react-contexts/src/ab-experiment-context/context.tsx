@@ -88,6 +88,21 @@ function useABExperimentMeta(slug: string, onError?: (error: Error) => void) {
   }
 }
 
+type ReservedAttributes =
+  | 'action'
+  | 'experiment_name'
+  | 'experiment_id'
+  | 'variant_id'
+type EventAttributes<
+  T = {
+    content_type?: string
+    item_id?: string
+    item_name?: string
+    region_id?: string
+    zone_id?: string
+  }
+> = keyof T & ReservedAttributes extends never ? T : Omit<T, ReservedAttributes>
+
 /**
  * 주어진 slug의 AB 테스트 전환 이벤트를 기록합니다.
  * 콜백 함수가 받는 파라미터는 이벤트에 따라 선택적으로 넣어줄 수 있습니다.
@@ -95,11 +110,6 @@ function useABExperimentMeta(slug: string, onError?: (error: Error) => void) {
  * @param onError
  */
 
-type ReservedParameters =
-  | 'action'
-  | 'experiment_name'
-  | 'experiment_id'
-  | 'variant_id'
 export function useABExperimentConversionTracker(
   slug: string,
   onError?: (error: Error) => void,
@@ -112,9 +122,7 @@ export function useABExperimentConversionTracker(
     zone_id?: string
   }
 >(
-  params?: keyof T & ReservedParameters extends never
-    ? T
-    : Omit<T, ReservedParameters>,
+  params?: EventAttributes<T>,
 ) => void {
   const { trackEvent } = useEventTrackingContext()
   const meta = useABExperimentMeta(slug, onError)
@@ -146,16 +154,28 @@ export function useABExperimentConversionTracker(
  * @param fallback 실험을 찾을 수 없거나 variants에 현재 실험군이 설정되어있지 않으면 반환하는 값
  * @param onError
  */
-export function useABExperimentVariant<T>(
+export function useABExperimentVariant<
+  T,
+  U = {
+    content_type?: string
+    item_id?: string
+    item_name?: string
+    region_id?: string
+    zone_id?: string
+  }
+>(
   slug: string,
   variants: {
     [group: string]: T
   },
   fallback: T,
   onError?: (error: Error) => void,
+  eventAttributesFromProps?: EventAttributes<U>,
 ): T {
   const { trackEvent } = useEventTrackingContext()
   const meta = useABExperimentMeta(slug, onError)
+  const eventAttributes = useRef(eventAttributesFromProps)
+
   const { testId, group } = meta || {}
 
   useEffect(() => {
@@ -166,6 +186,7 @@ export function useABExperimentVariant<T>(
           experiment_name: slug,
           experiment_id: testId,
           variant_id: group,
+          ...eventAttributes,
         },
       })
     }
