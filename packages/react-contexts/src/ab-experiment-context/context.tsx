@@ -94,21 +94,28 @@ function useABExperimentMeta(slug: string, onError?: (error: Error) => void) {
  * @param slug 실험 slug
  * @param onError
  */
+
+type ReservedParameters =
+  | 'action'
+  | 'experiment_name'
+  | 'experiment_id'
+  | 'variant_id'
 export function useABExperimentConversionTracker(
   slug: string,
   onError?: (error: Error) => void,
-): (params?: {
-  [key: string]: string | undefined
-  content_type?: string
-  item_id?: string
-  item_name?: string
-  region_id?: string
-  zone_id?: string
-  action: never
-  experiment_name: never
-  experiment_id: never
-  variant_id: never
-}) => void {
+): <
+  T = {
+    content_type?: string
+    item_id?: string
+    item_name?: string
+    region_id?: string
+    zone_id?: string
+  }
+>(
+  params?: keyof T & ReservedParameters extends never
+    ? T
+    : Omit<T, ReservedParameters>,
+) => void {
   const { trackEvent } = useEventTrackingContext()
   const meta = useABExperimentMeta(slug, onError)
 
