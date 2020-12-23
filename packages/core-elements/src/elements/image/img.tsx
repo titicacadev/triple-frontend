@@ -66,11 +66,11 @@ export default function ImageImg(
 
   const imgAttributes = isVisible
     ? unoptimized
-      ? src
-      : generateImgAttrs({
+      ? generateImgAttrs({
           src,
           quality,
         })
+      : src
     : {
         // TODO: 트리플 서비스에 맞는 dummy 이미지로 처리 필요
         src:
