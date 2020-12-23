@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
+import IntersectionObserver from '@titicaca/intersection-observer'
 
 import { useImageState } from './context'
 import { useContentAbsolute } from './fixed-ratio-frame'
-import { useIntersection } from './use-intersction'
 
 // TODO: root path는 .env에서 가져오게 하는게 좋을까?
 const root = 'https://media.triple.guide/triple-cms'
@@ -39,7 +39,7 @@ export default function ImageImg(
     | 'quality'
     | 'priority'
     | 'unoptimized'
-    | 'ref'
+    // | 'ref'
   >,
 ) {
   const {
@@ -52,41 +52,52 @@ export default function ImageImg(
   } = useImageState()
   const { src } = props
 
+  const [imgAttributes, setImgAttributes] = useState({
+    src,
+    sizes: '100vw',
+    srcSet: '',
+  })
+
   const absolute = useContentAbsolute()
 
   const isLazy =
     !priority && (loading === 'lazy' || typeof loading === 'undefined')
 
-  const [setRef, isIntersected] = useIntersection<HTMLImageElement>({
-    rootMargin: '200px',
-    disabled: !isLazy,
-  })
-
-  const isVisible = !isLazy || isIntersected
-
-  const imgAttributes = isVisible
-    ? unoptimized
-      ? generateImgAttrs({
-          src,
-          quality,
-        })
-      : src
-    : {
-        // TODO: 트리플 서비스에 맞는 dummy 이미지로 처리 필요
-        src:
-          'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+  const handleLazyLoad = useCallback(
+    (event, unobserve) => {
+      if (event.isIntersecting) {
+        unobserve()
       }
 
+      const isVisible = !isLazy || event.isIntersecting
+
+      setImgAttributes((prev) => ({
+        ...prev,
+        ...(isVisible
+          ? unoptimized
+            ? { src }
+            : { ...generateImgAttrs({ src, quality }) }
+          : {
+              src:
+                'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+            }),
+      }))
+    },
+    [isLazy, quality, src, unoptimized],
+  )
+
   return (
-    <Img
-      {...props}
-      {...imgAttributes}
-      borderRadius={borderRadius}
-      dimmed={overlayMounted}
-      absolute={absolute}
-      decoding="async"
-      ref={setRef}
-    />
+    <IntersectionObserver rootMargin="200px" onChange={handleLazyLoad}>
+      <Img
+        {...props}
+        {...imgAttributes}
+        borderRadius={borderRadius}
+        dimmed={overlayMounted}
+        absolute={absolute}
+        decoding="async"
+        // ref={setRef}
+      />
+    </IntersectionObserver>
   )
 }
 
@@ -129,7 +140,6 @@ function generateImgAttrs({ src, quality }: { src: string; quality?: number }) {
 
   return {
     src: cloudinaryLoader({ root, src, quality }),
-    sizes: '100vw',
     srcSet,
   }
 }

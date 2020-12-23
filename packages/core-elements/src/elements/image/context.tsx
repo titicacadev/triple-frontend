@@ -40,7 +40,7 @@ export function ImageStateContextProvider({
       quality: quality ?? 100,
       priority: priority ?? false,
       loading: loading ?? 'lazy',
-      unoptimized: unoptimized ?? false,
+      unoptimized: unoptimized ?? true,
       overlayMounted,
       setOverlayMounted,
     }),
