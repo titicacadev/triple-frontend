@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 2.7.1
+
+### react-contexts
+
+- `experiment-context`의 `useABExperimentConversionTracker`의 반환 함수 타입 수정 (#1146)
+
 ## 2.7.0
 
 ### react-contexts
