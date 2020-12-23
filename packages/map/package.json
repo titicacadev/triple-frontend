@@ -20,6 +20,6 @@
     "@titicaca/core-elements": "^2.6.0"
   },
   "devDependencies": {
-    "@types/googlemaps": "3.40.5"
+    "@types/googlemaps": "~3.40.5"
   }
 }
