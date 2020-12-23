@@ -39,7 +39,6 @@ export default function ImageImg(
     | 'quality'
     | 'priority'
     | 'unoptimized'
-    // | 'ref'
   >,
 ) {
   const {
@@ -95,7 +94,6 @@ export default function ImageImg(
         dimmed={overlayMounted}
         absolute={absolute}
         decoding="async"
-        // ref={setRef}
       />
     </IntersectionObserver>
   )
