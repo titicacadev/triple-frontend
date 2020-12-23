@@ -174,7 +174,7 @@ export function useABExperimentVariant<
 ): T {
   const { trackEvent } = useEventTrackingContext()
   const meta = useABExperimentMeta(slug, onError)
-  const eventAttributes = useRef(eventAttributesFromProps)
+  const eventAttributesRef = useRef(eventAttributesFromProps)
 
   const { testId, group } = meta || {}
 
@@ -186,7 +186,7 @@ export function useABExperimentVariant<
           experiment_name: slug,
           experiment_id: testId,
           variant_id: group,
-          ...eventAttributes,
+          ...eventAttributesRef.current,
         },
       })
     }
