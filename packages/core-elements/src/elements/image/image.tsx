@@ -12,12 +12,26 @@ import ImagePlaceholder from './placeholder'
 
 export default function Image({
   borderRadius,
+  quality,
+  priority,
+  loading,
+  unoptimized,
   children,
 }: PropsWithChildren<{
   borderRadius?: number
+  quality?: number
+  priority?: boolean
+  loading?: 'lazy' | 'eager'
+  unoptimized?: boolean
 }>) {
   return (
-    <ImageStateContextProvider borderRadius={borderRadius}>
+    <ImageStateContextProvider
+      borderRadius={borderRadius}
+      quality={quality}
+      priority={priority}
+      loading={loading}
+      unoptimized={unoptimized}
+    >
       {children}
     </ImageStateContextProvider>
   )
