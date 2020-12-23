@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, PropsWithChildren } from 'react'
+import React, { MouseEvent, MouseEventHandler, PropsWithChildren } from 'react'
 import Router, { useRouter } from 'next/router'
 import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
 import { generateUrl, parseUrl } from '@titicaca/view-utilities'
@@ -18,6 +18,16 @@ function addBasePath(href: string, basePath: string): string {
     },
     href,
   )
+}
+
+/**
+ * https://github.com/vercel/next.js/blob/7d48241949bc7bac7b8e30fda6be71f37286886f/packages/next/client/link.tsx#L64
+ * which 속성은 deprecated 됐다고 하여 사용하지 않습니다.
+ *
+ * @param e 앵커 태그 클릭 이벤트
+ */
+export function isKeyPressingClick(e: MouseEvent<HTMLAnchorElement>): boolean {
+  return e.metaKey || e.ctrlKey || e.shiftKey || e.altKey
 }
 
 /**
@@ -53,6 +63,10 @@ export function LocalLink({
 
     switch (target) {
       case 'current':
+        if (isKeyPressingClick(e)) {
+          return
+        }
+
         e.preventDefault()
 
         Router[replace ? 'replace' : 'push'](href)
