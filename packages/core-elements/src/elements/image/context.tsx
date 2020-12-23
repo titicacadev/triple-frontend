@@ -8,8 +8,6 @@ import React, {
 
 interface ImageStateContextValue {
   borderRadius: number
-  width?: number
-  height?: number
   quality?: number
   priority?: boolean
   loading?: 'lazy' | 'eager'
