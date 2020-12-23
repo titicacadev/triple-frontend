@@ -2,12 +2,19 @@
 
 ## Unreleased
 
+## 2.7.0
+
 ### react-contexts
 
 - `experiment-context` 모듈 추가 (#1123)
 
+### map
+
+- `@types/googlemaps` 버전에 ~ 사용 (#1143)
+
 ### router
 
+- link 모듈 구현 (#1121)
 - 키 누르고 링크를 눌렀을 때 기본 앵커 태그처럼 작동하도록 처리 (#1142)
 
 ## 2.6.0
