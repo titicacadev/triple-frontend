@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### react-contexts
+
+- `ab-experiment-context`의 `ABExperimentProvider`에서 실험 정보 API를
+  세션이 있을 때만 호출하도록 수정 (#1150)
+
 ## 2.7.2
 
 ### react-contexts
