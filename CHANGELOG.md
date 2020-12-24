@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 2.7.2
+
+### react-contexts
+
+- `ab-experiment-context`의 `useABExperimentVariant`에 실험 시작 이벤트에 attribute를 추가할 수 있는 파라미터 추가 (#1148)
+
 ## 2.7.1
 
 ### react-contexts
