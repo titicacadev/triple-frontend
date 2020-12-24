@@ -8,6 +8,7 @@ import React, {
   useRef,
   useState,
 } from 'react'
+import { useSessionContext } from 'src/session-context'
 
 import { useEventTrackingContext } from '../event-tracking-context'
 
@@ -34,6 +35,7 @@ export function ABExperimentProvider({
   meta?: ABExperimentMeta
   onError?: (error: unknown) => void
 }>) {
+  const { hasSessionId } = useSessionContext()
   const onErrorRef = useRef(onErrorFromProps)
   const experimentMetas = useContext(ABExperimentContext)
   const [meta, setMeta] = useState(metaFromSSR)
@@ -53,10 +55,10 @@ export function ABExperimentProvider({
       }
     }
 
-    if (!metaFromSSR) {
+    if (!metaFromSSR && hasSessionId) {
       fetchAndSetMeta()
     }
-  }, [slug, metaFromSSR])
+  }, [slug, metaFromSSR, hasSessionId])
 
   const value = useMemo(() => ({ ...experimentMetas, [slug]: meta }), [
     experimentMetas,
