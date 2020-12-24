@@ -8,8 +8,8 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { useSessionContext } from 'src/session-context'
 
+import { useSessionContext } from '../session-context'
 import { useEventTrackingContext } from '../event-tracking-context'
 
 import { ABExperimentMeta, getABExperiment } from './service'
