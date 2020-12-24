@@ -74,6 +74,7 @@ export function ABExperimentProvider({
 }
 
 function useABExperimentMeta(slug: string, onError?: (error: Error) => void) {
+  const { hasSessionId } = useSessionContext()
   const metas = useContext(ABExperimentContext)
   const meta = useMemo(() => metas[slug], [metas, slug])
 
@@ -83,7 +84,8 @@ function useABExperimentMeta(slug: string, onError?: (error: Error) => void) {
     }
     return meta
   } catch (error) {
-    if (onError) {
+    if (hasSessionId && onError) {
+      // session이 없을 때 발생한 에러는 리포팅 할 필요 없습니다.
       onError(error)
     }
     return null
