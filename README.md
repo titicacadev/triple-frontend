@@ -85,19 +85,41 @@ $ git clone git@github.com:titicacadev/triple-frontend.git && cd triple-frontend
 $ npm install
 ```
 
-[Lerna bootstrap](https://github.com/lerna/lerna/tree/master/commands/bootstrap)
-커맨드로 Monorepo 개발 환경을 구성합니다:
+#### npm@7 or above
+
+[NPM Workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces) 에 의해
+root의 `node_modules` 디렉토리 밑에 Symlink로 패키지들이 링크됩니다.
+
+```sh
+$ ls -l node_modules/@titicaca
+total 0
+lrwxr-xr-x   1 inbeom  staff   27 Dec 27 10:47 action-sheet -> ../../packages/action-sheet
+lrwxr-xr-x   1 inbeom  staff   25 Dec 27 10:47 ad-banners -> ../../packages/ad-banners
+lrwxr-xr-x   1 inbeom  staff   25 Dec 27 10:47 app-banner -> ../../packages/app-banner
+lrwxr-xr-x   1 inbeom  staff   35 Dec 27 10:47 app-installation-cta -> ../../packages/app-installation-cta
+lrwxr-xr-x   1 inbeom  staff   21 Dec 27 10:47 author -> ../../packages/author
+...
+```
+
+#### npm < 7
+
+Workspaces를 이용하지 못하는 환경인 경우 [Lerna bootstrap](https://github.com/lerna/lerna/tree/master/commands/bootstrap)
+커맨드로 개발 환경을 구성합니다:
 
 ```sh
 $ lerna bootstrap
+...
 ```
+
+개별 패키지의 `node_modules`(`packages/*/node_modules`) 디렉토리에 개별 패키지의
+의존성 트리가 구성됩니다.
 
 ### Workflow
 
 #### 기능 추가
 
 1. 작업자가 코드 기여
-   - 디펜던시에 변경이 있는 경우 `lerna bootstrap` 실행 필요
+   - (npm < 7) 디펜던시에 변경이 있는 경우 `lerna bootstrap` 실행 필요
 2. 커밋 & 푸시
 3. PR 생성 & 리뷰
 4. 버전 생성 (Optional): `npm run version` (경우에 따라 PR과 함께 혹은 별도로 생성)
@@ -109,7 +131,7 @@ $ lerna bootstrap
 
 1. `lerna create [패키지명]` 커맨드로 패키지 추가
 2. 적절한 `package.json` 및 `tsconfig.json` 수정 및 생성
-3. 프로젝트 루트에서 `lerna bootstrap` 커맨드 실행으로 디펜던시 링크
+3. (npm < 7) 프로젝트 루트에서 `lerna bootstrap` 커맨드 실행으로 디펜던시 링크
 4. `src`에 코드 작성
 5. 버전 생성 (Optional): 기존 패키지에서 분리가 일어나서 API 인터페이스에
    변경이 있었다면 MAJOR, 기존 패키지와 관련 없는 패키지 추가라면 MINOR 버전
@@ -130,12 +152,13 @@ $ lerna bootstrap
 
 - 모든 PR 리뷰는 GitHub의 `@frontend` 팀에게 자동으로 할당됩니다.
 - 팀 멤버 2인 이상이 승인해야 머지할 수 있습니다.
-- 머지 전 머지 체크리스트를 모두 확인해야 합니다. (TBD: `PULL_REQUEST_TEMPLATE.md` 작성 필요)
+- 머지 전 머지 체크리스트를 모두 확인해야 합니다.
 
 ### 주의사항
 
-- 새로운 패키지를 추가하거나 패키지 간 의존성 그래프가 바뀌면 반드시
-  `lerna bootstrap` 커맨드로 의존성을 바로잡아야 합니다.
+- npm Workspaces를 이용하지 않는 경우, 새로운 패키지를 추가하거나 패키지 간
+  의존성 그래프가 바뀌면 반드시 `lerna bootstrap` 커맨드로 의존성을 바로잡아야
+  합니다.
 - Docs를 비롯한 패키지 내에서 다른 패키지를 import하는 경우, 대상 패키지를
   빌드한 이후에만 의도한 동작을 수행할 수 있습니다.
 - 뷰 및 기능에 변경이 있는 기여인 경우, docs 페이지도 그에 준하게 업데이트해야
