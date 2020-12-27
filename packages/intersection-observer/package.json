@@ -12,8 +12,7 @@
     "intersection-observer": "^0.7.0"
   },
   "peerDependencies": {
-    "next": "*",
-    "react": ">=16.8.0"
+    "next": "*"
   },
   "devDependencies": {
     "next": "^9.0.5"
