@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [15.x]
 
     env:
       SLACK_CHANNEL: '#triple-web-dev-notifications'
@@ -54,7 +54,6 @@ jobs:
       - name: Build
         run: |
           npm ci
-          npm run bootstrap
           npm run build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
