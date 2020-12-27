@@ -7,7 +7,7 @@ const BUILD_RESOURCES =
 const BUILD_DECLARATIONS = 'tsc --incremental'
 
 const watcher = chokidar.watch('packages/', {
-  ignored: /(node_modules|lib|(^|[/\\])\..)/,
+  ignored: /(node_modules|lib|tsconfig\.tsbuildinfo|(^|[/\\])\..)/,
   persistent: true,
 })
 
