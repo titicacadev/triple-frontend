@@ -34,9 +34,13 @@ const ListLinkContainer = styled.div`
 `
 
 const ListLink = styled.a`
-  text-decoration: underline;
   color: rgba(${getColor('gray900')});
   font-weight: 500;
+
+  /* HACK: global-style의 underline 설정보다 우선하도록 수정 */
+  && {
+    text-decoration: underline;
+  }
 `
 
 const ButtonContainer = styled.div<{ compact?: boolean }>`
