@@ -182,11 +182,14 @@ const Html = styled(TextBase)`
     color: ${({ color = 'gray' }) => rgba({ color, alpha: 1 })};
   }
 
-  a {
-    font-size: 15px;
-    font-weight: bold;
-    color: #2987f0;
-    text-decoration: underline;
+  /* HACK: global-style의 underline 설정보다 우선하도록 수정 */
+  && {
+    a {
+      font-size: 15px;
+      font-weight: bold;
+      color: #2987f0;
+      text-decoration: underline;
+    }
   }
 `
 
