@@ -4,7 +4,7 @@ import { brightGray } from '@titicaca/color-palette'
 
 import { useContentAbsolute } from './fixed-ratio-frame'
 
-const Placeholder = styled.div<{
+export const Placeholder = styled.div<{
   src: string
   absolute: boolean
 }>`

@@ -1,21 +1,20 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import IntersectionObserver from '@titicaca/intersection-observer'
+import { generateImageUrl } from '@titicaca/content-utilities'
 
 import { useImageState } from './context'
 import { useContentAbsolute } from './fixed-ratio-frame'
+import { Placeholder } from './placeholder'
 
-interface OptimizedImgAttrProps {
-  src: string
-  sizes?: string
-  srcSet?: string
-}
-
-// TODO: root path는 .env에서 가져오게 하는게 좋을까?
-const root = 'https://media.triple.guide/triple-cms'
-
-// TODO: 트리플에 맞는 size정의 필요
-const deviceSizes = [640, 768, 1024, 1080, 1280]
+type Version = 'full' | 'large' | 'smallSquare'
+type Quality =
+  | 'original'
+  | 'size-optimized-v0'
+  | 'quality-optimized-v0'
+  | 'high-v0'
+  | 'high-v1'
+  | 'high-v2'
 
 const Img = styled.img<{
   borderRadius: number
@@ -38,27 +37,39 @@ const Img = styled.img<{
 
 export default function ImageImg({
   src,
-  priority = false,
+  placeholderSrc = 'https://assets.triple.guide/images/ico-popup-gallery@4x.png',
+  mediaUrlBase = 'https://media.triple.guide',
+  cloudinaryBucket = 'triple-cms',
+  cloudinaryId,
+  version = 'large',
+  quality = 'original',
+  format = 'jpeg',
   loading = 'lazy',
   unoptimized = true,
-  quality = 100,
 }: Omit<Parameters<typeof Img>[0], 'borderRadius' | 'dimmed' | 'absolute'> & {
-  quality?: number
-  priority?: boolean
+  placeholderSrc?: string
+  mediaUrlBase?: string
+  cloudinaryBucket?: string
+  cloudinaryId?: string
+  version: Version
+  quality?: Quality
+  format?: string
   loading?: 'lazy' | 'eager'
   unoptimized?: boolean
 }) {
   const { borderRadius, overlayMounted } = useImageState()
 
-  const [
-    imgAttributes,
-    setImgAttributes,
-  ] = useState<OptimizedImgAttrProps | null>()
+  const [isVisible, setIsVisible] = useState(false)
+  const [imgAttributes, setImgAttributes] = useState({ src })
 
   const absolute = useContentAbsolute()
 
-  const isLazy =
-    !priority && (loading === 'lazy' || typeof loading === 'undefined')
+  const isLazy = loading === 'lazy' || typeof loading === 'undefined'
+
+  const matchedPath = src.match(
+    /^https:\/\/(?:[^/]+\/)+[^/]*,?w_(\d+),?[^/]*\/([0-9a-z-]+).jpeg$/,
+  )
+  const matchedCloudinaryId = matchedPath ? matchedPath[2] : undefined
 
   const handleLazyLoad = useCallback(
     (event, unobserve) => {
@@ -66,75 +77,48 @@ export default function ImageImg({
         unobserve()
       }
 
-      const isVisible = !isLazy || event.isIntersecting
+      setIsVisible(!isLazy || event.isIntersecting)
 
-      setImgAttributes((prev) => ({
-        ...prev,
-        ...(isVisible
-          ? unoptimized
-            ? { src }
-            : { ...generateImgAttrs({ src, quality }) }
-          : {
-              src:
-                'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+      setImgAttributes({
+        src: unoptimized
+          ? src
+          : generateImageUrl({
+              mediaUrlBase,
+              cloudinaryBucket,
+              cloudinaryId: cloudinaryId || matchedCloudinaryId,
+              version,
+              quality,
+              format,
             }),
-      }))
+      })
     },
-    [isLazy, quality, src, unoptimized],
+    [
+      cloudinaryBucket,
+      cloudinaryId,
+      format,
+      isLazy,
+      matchedCloudinaryId,
+      mediaUrlBase,
+      quality,
+      src,
+      unoptimized,
+      version,
+    ],
   )
 
   return (
     <IntersectionObserver rootMargin="200px" onChange={handleLazyLoad}>
-      <Img
-        {...imgAttributes}
-        borderRadius={borderRadius}
-        dimmed={overlayMounted}
-        absolute={absolute}
-        decoding="async"
-      />
+      {isVisible || !isLazy ? (
+        <Img
+          {...imgAttributes}
+          borderRadius={borderRadius}
+          dimmed={overlayMounted}
+          absolute={absolute}
+          decoding="async"
+        />
+      ) : (
+        <Placeholder src={placeholderSrc} absolute={absolute} />
+      )}
     </IntersectionObserver>
   )
-}
-
-function cloudinaryLoader({
-  root,
-  src,
-  width,
-  quality,
-}: {
-  root: string
-  src: string
-  width?: number
-  quality?: number
-}): string {
-  const matchedPath = src.match(
-    /^https:\/\/(?:[^/]+\/)+[^/]*,?w_(\d+),?[^/]*\/([0-9a-z-]+.jpeg)$/,
-  )
-  const originalWidth = matchedPath ? matchedPath[1] : undefined
-  const imageName = matchedPath ? matchedPath[2] : undefined
-
-  const params = [
-    'f_auto',
-    'c_limit',
-    'w_' + (width || originalWidth),
-    'q_' + (quality || 'auto'),
-  ]
-  const paramsString = '/' + params.join(',') + '/'
-  return `${root}${paramsString}${imageName as string}`
-}
-
-function generateImgAttrs({ src, quality }: { src: string; quality?: number }) {
-  const widths = deviceSizes.sort((a, b) => a - b)
-  const kind = 'w'
-  const srcSet = widths
-    .map(
-      (w) =>
-        `${cloudinaryLoader({ root, src, quality, width: w })} ${w}${kind}`,
-    )
-    .join(', ')
-
-  return {
-    src: cloudinaryLoader({ root, src, quality }),
-    srcSet,
-  }
 }
