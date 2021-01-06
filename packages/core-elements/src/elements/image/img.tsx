@@ -51,7 +51,7 @@ export default function ImageImg({
   mediaUrlBase?: string
   cloudinaryBucket?: string
   cloudinaryId?: string
-  version: Version
+  version?: Version
   quality?: Quality
   format?: string
   loading?: 'lazy' | 'eager'
