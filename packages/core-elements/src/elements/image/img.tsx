@@ -5,6 +5,12 @@ import IntersectionObserver from '@titicaca/intersection-observer'
 import { useImageState } from './context'
 import { useContentAbsolute } from './fixed-ratio-frame'
 
+interface OptimizedImgAttrProps {
+  src: string
+  sizes?: string
+  srcSet?: string
+}
+
 // TODO: root path는 .env에서 가져오게 하는게 좋을까?
 const root = 'https://media.triple.guide/triple-cms'
 
@@ -30,32 +36,24 @@ const Img = styled.img<{
   `}
 `
 
-export default function ImageImg(
-  props: Omit<
-    Parameters<typeof Img>[0],
-    | 'borderRadius'
-    | 'dimmed'
-    | 'fitHeight'
-    | 'quality'
-    | 'priority'
-    | 'unoptimized'
-  >,
-) {
-  const {
-    borderRadius,
-    quality,
-    priority,
-    loading,
-    unoptimized,
-    overlayMounted,
-  } = useImageState()
-  const { src } = props
+export default function ImageImg({
+  src,
+  priority = false,
+  loading = 'lazy',
+  unoptimized = true,
+  quality = 100,
+}: Omit<Parameters<typeof Img>[0], 'borderRadius' | 'dimmed' | 'absolute'> & {
+  quality?: number
+  priority?: boolean
+  loading?: 'lazy' | 'eager'
+  unoptimized?: boolean
+}) {
+  const { borderRadius, overlayMounted } = useImageState()
 
-  const [imgAttributes, setImgAttributes] = useState({
-    src,
-    sizes: '100vw',
-    srcSet: '',
-  })
+  const [
+    imgAttributes,
+    setImgAttributes,
+  ] = useState<OptimizedImgAttrProps | null>()
 
   const absolute = useContentAbsolute()
 
@@ -88,7 +86,6 @@ export default function ImageImg(
   return (
     <IntersectionObserver rootMargin="200px" onChange={handleLazyLoad}>
       <Img
-        {...props}
         {...imgAttributes}
         borderRadius={borderRadius}
         dimmed={overlayMounted}
@@ -122,7 +119,7 @@ function cloudinaryLoader({
     'w_' + (width || originalWidth),
     'q_' + (quality || 'auto'),
   ]
-  const paramsString = '/' + params.join(',')
+  const paramsString = '/' + params.join(',') + '/'
   return `${root}${paramsString}${imageName as string}`
 }
 
