@@ -9,16 +9,13 @@ import ImageFixedRatioFrame from './fixed-ratio-frame'
 import ImageFixedDimensionsFrame from './fixed-dimensions-frame'
 import ImageCircular from './circular'
 import ImagePlaceholder from './placeholder'
+import ImageOptimizedImg from './optimized-img'
 
 export default function Image({
   borderRadius,
   children,
 }: PropsWithChildren<{
   borderRadius?: number
-  // quality?: number
-  // priority?: boolean
-  // loading?: 'lazy' | 'eager'
-  // unoptimized?: boolean
 }>) {
   return (
     <ImageStateContextProvider borderRadius={borderRadius}>
@@ -31,6 +28,7 @@ Image.FixedRatioFrame = ImageFixedRatioFrame
 Image.FixedDimensionsFrame = ImageFixedDimensionsFrame
 
 Image.Img = ImageImg
+Image.OptimizedImg = ImageOptimizedImg
 Image.Placeholder = ImagePlaceholder
 
 Image.SourceUrl = ImageSourceUrl
