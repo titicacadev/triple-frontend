@@ -1,20 +1,23 @@
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 import IntersectionObserver from '@titicaca/intersection-observer'
-import { generateImageUrl } from '@titicaca/content-utilities'
+import { generateImageUrl, Version, Quality } from '@titicaca/content-utilities'
 
 import { useImageState } from './context'
 import { useContentAbsolute } from './fixed-ratio-frame'
 import { Placeholder } from './placeholder'
 
-type Version = 'full' | 'large' | 'smallSquare'
-type Quality =
-  | 'original'
-  | 'size-optimized-v0'
-  | 'quality-optimized-v0'
-  | 'high-v0'
-  | 'high-v1'
-  | 'high-v2'
+interface OptimizedImgProps {
+  placeholderSrc?: string
+  mediaUrlBase?: string
+  cloudinaryBucket?: string
+  cloudinaryId: string
+  version?: Version
+  quality?: Quality
+  format?: string
+  loading?: 'lazy' | 'eager'
+  deviceSizes?: number[]
+}
 
 const Img = styled.img<{
   borderRadius: number
@@ -40,27 +43,20 @@ export default function ImageOptimizedImg({
   mediaUrlBase = 'https://media.triple.guide',
   cloudinaryBucket = 'triple-cms',
   cloudinaryId,
-  version = 'large',
+  version = 'full',
   quality = 'original',
   format = 'jpeg',
   loading = 'lazy',
-}: Omit<Parameters<typeof Img>[0], 'borderRadius' | 'dimmed' | 'absolute'> & {
-  placeholderSrc?: string
-  mediaUrlBase?: string
-  cloudinaryBucket?: string
-  cloudinaryId: string
-  version?: Version
-  quality?: Quality
-  format?: string
-  loading?: 'lazy' | 'eager'
-}) {
+  deviceSizes = [640, 768, 1024, 1080, 1280],
+}: Omit<Parameters<typeof Img>[0], 'borderRadius' | 'dimmed' | 'absolute'> &
+  OptimizedImgProps) {
   const { borderRadius, overlayMounted } = useImageState()
 
   const [isVisible, setIsVisible] = useState(false)
   const [imgAttributes, setImgAttributes] = useState({
     src: '',
     sizes: '100vw',
-    srcSet: '',
+    srcset: '',
   })
 
   const absolute = useContentAbsolute()
@@ -73,6 +69,23 @@ export default function ImageOptimizedImg({
     quality,
     format,
   })
+
+  const srcset = deviceSizes
+    .sort((a, b) => a - b)
+    .map(
+      (width) =>
+        `${generateImageUrl({
+          mediaUrlBase,
+          cloudinaryBucket,
+          cloudinaryId,
+          version,
+          quality,
+          format,
+          width: width,
+          height: width,
+        })} ${width}w`,
+    )
+    .join(', ')
 
   const isLazy = loading === 'lazy' || typeof loading === 'undefined'
 
@@ -87,9 +100,10 @@ export default function ImageOptimizedImg({
       setImgAttributes((prev) => ({
         ...prev,
         src: url,
+        srcset,
       }))
     },
-    [isLazy, url],
+    [isLazy, srcset, url],
   )
 
   return (
