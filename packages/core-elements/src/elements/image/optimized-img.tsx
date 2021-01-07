@@ -16,8 +16,6 @@ type Quality =
   | 'high-v1'
   | 'high-v2'
 
-const deviceSizes = [640, 768, 1024, 1080, 1280]
-
 const Img = styled.img<{
   borderRadius: number
   dimmed?: boolean
