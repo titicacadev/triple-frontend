@@ -36,7 +36,7 @@ const Img = styled.img<{
 `
 
 export default function ImageOptimizedImg({
-  placeholderSrc = 'https://assets.triple.guide/images/ico-popup-gallery@4x.png',
+  placeholderSrc = 'https://assets.triple.guide/images/ico-blank-see@3x.png',
   mediaUrlBase = 'https://media.triple.guide',
   cloudinaryBucket = 'triple-cms',
   cloudinaryId,
