@@ -54,7 +54,14 @@ export default function ImageOptimizedImg({
 
   const [isVisible, setIsVisible] = useState(false)
   const [imgAttributes, setImgAttributes] = useState({
-    src: '',
+    src: generateImageUrl({
+      mediaUrlBase,
+      cloudinaryBucket,
+      cloudinaryId,
+      version,
+      quality,
+      format,
+    }),
     srcSet: '',
     sizes: '',
   })
@@ -86,22 +93,13 @@ export default function ImageOptimizedImg({
         )
         .join(', ')
 
-      const url = generateImageUrl({
-        mediaUrlBase,
-        cloudinaryBucket,
-        cloudinaryId,
-        version,
-        quality,
-        format,
-      })
-
       setIsVisible(!isLazy || event.isIntersecting)
 
-      setImgAttributes({
-        src: url,
+      setImgAttributes((prev) => ({
+        ...prev,
         srcSet,
         sizes: '100vw',
-      })
+      }))
     },
     [
       cloudinaryBucket,
