@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/frontend-devtools",
-  "version": "2.7.3",
+  "version": "2.8.0",
   "description": "custom react devtools for triple-frontend",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
