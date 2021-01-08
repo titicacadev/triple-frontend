@@ -1,6 +1,6 @@
 import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
 import { select as selectAddons, number, boolean } from '@storybook/addon-knobs'
-import { Image } from '@titicaca/core-elements'
+import { Image, Container } from '@titicaca/core-elements'
 
 import { FRAME_RATIO_AND_SIZES, GLOBAL_SIZES } from './image-knob-options'
 
@@ -24,6 +24,59 @@ context를 만들어주는 컴포넌트, 프레임 관련 컴포넌트, 실제 �
 | borderRadius | 이미지의 경계 곡률을 정합니다. |
 
 이미지의 컴포넌트 경계를 설정합니다. context provider로 자식을 감쌉니다.
+
+### Image optimization
+
+<Story name="이미지 최적화 및 lazy loading">
+  <Container>
+    <Image>
+      <Image.FixedRatioFrame
+        frame={
+          boolean('frame 사용', true)
+            ? selectAddons('frame', FRAME_RATIO_AND_SIZES, 'mini')
+            : undefined
+        }
+      >
+        <Image.OptimizedImg
+          loading="eager"
+          cloudinaryId="45a36898-b412-4d51-882c-fdefad5a164d"
+        />
+      </Image.FixedRatioFrame>
+    </Image>
+    <Image>
+      <Image.FixedRatioFrame
+        frame={
+          boolean('frame 사용', true)
+            ? selectAddons('frame', FRAME_RATIO_AND_SIZES, 'mini')
+            : undefined
+        }
+      >
+        <Image.OptimizedImg cloudinaryId="45a36898-b412-4d51-882c-fdefad5a164d" />
+      </Image.FixedRatioFrame>
+    </Image>
+    <Container minHeight={10000}>{''}</Container>
+    <Image>
+      <Image.FixedRatioFrame
+        frame={
+          boolean('frame 사용', true)
+            ? selectAddons('frame', FRAME_RATIO_AND_SIZES, 'mini')
+            : undefined
+        }
+      >
+        <Image.OptimizedImg cloudinaryId="45a36898-b412-4d51-882c-fdefad5a164d" />
+      </Image.FixedRatioFrame>
+    </Image>
+  </Container>
+</Story>
+
+| prop 이름 | 설명                                                     |
+| --------- | -------------------------------------------------------- |
+| frame     | (optional) 이미지 비율 preset. `FrameRatioAndSizes` 참조 |
+| floated   | (optional) 이미지 float 값                               |
+| margin    | (optional)                                               |
+| onClick   | (optional)                                               |
+
+이미지를 미리 정해진 프레임 안에 넣는 컴포넌트 중 하나입니다. width는 무조건 100%고 주어진 `frame` 값에 따라 높이가 정해집니다.
 
 ### Image.FixedRatioFrame
 
@@ -98,6 +151,25 @@ height는 `height` prop으로 직접 입력하거나 `size`에 맞게 미리 정
 | 기타      | img 태그에 들어가는 모든 prop이 가능합니다. |
 
 실제 `img` 태그를 그리는 컴포넌트입니다. Frame 관련 컴포넌트의 자식으로 들어갑니다.
+
+### Image.OptimizedImg
+
+| prop 이름        | 설명                                               |
+| ---------------- | -------------------------------------------------- |
+| cloudinaryId     | cloudinary 이미지 Id                               |
+| mediaUrlBase     | (optional) cloudinary base url                     |
+| cloudinaryBucket | (optional) cloudinary bucket                       |
+| version          | (optional) 이미지 사이즈                           |
+| quality          | (optional) 이미지 품질                             |
+| format           | (optional) 이미지 확장자                           |
+| loading          | (optional) lazy 여부를 선택                        |
+| placeholderSrc   | lazy loading에 필요한 아이콘 URL                   |
+| deviceSizes      | (optional) srcset을 생성를 위한 viewport size 정보 |
+| 기타             | img 태그에 들어가는 모든 prop이 가능합니다.        |
+
+`Image.Img` 컴포넌트와 동일하게 `img` 태그를 그리는 컴포넌트이고, Frame 관련 컴포넌트의 자식으로 들어갑니다.
+cloudinaryId를 가지고 이미지를 생성하는 컴포넌트입니다.
+cloudinary를 활용하여 이미지 최적화 및 lazy loading이 포함된 컴포넌트입니다.
 
 ### Image.SourceUrl
 
