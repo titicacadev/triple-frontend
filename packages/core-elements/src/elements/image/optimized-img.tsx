@@ -55,37 +55,11 @@ export default function ImageOptimizedImg({
   const [isVisible, setIsVisible] = useState(false)
   const [imgAttributes, setImgAttributes] = useState({
     src: '',
-    sizes: '100vw',
-    srcset: '',
+    srcSet: '',
+    sizes: '',
   })
 
   const absolute = useContentAbsolute()
-
-  const url = generateImageUrl({
-    mediaUrlBase,
-    cloudinaryBucket,
-    cloudinaryId,
-    version,
-    quality,
-    format,
-  })
-
-  const srcset = deviceSizes
-    .sort((a, b) => a - b)
-    .map(
-      (width) =>
-        `${generateImageUrl({
-          mediaUrlBase,
-          cloudinaryBucket,
-          cloudinaryId,
-          version,
-          quality,
-          format,
-          width: width,
-          height: width,
-        })} ${width}w`,
-    )
-    .join(', ')
 
   const isLazy = loading === 'lazy' || typeof loading === 'undefined'
 
@@ -95,15 +69,50 @@ export default function ImageOptimizedImg({
         unobserve()
       }
 
+      const srcSet = deviceSizes
+        .sort((a, b) => a - b)
+        .map(
+          (width) =>
+            `${generateImageUrl({
+              mediaUrlBase,
+              cloudinaryBucket,
+              cloudinaryId,
+              version,
+              quality,
+              format,
+              width,
+              height: width,
+            })} ${width}w`,
+        )
+        .join(', ')
+
+      const url = generateImageUrl({
+        mediaUrlBase,
+        cloudinaryBucket,
+        cloudinaryId,
+        version,
+        quality,
+        format,
+      })
+
       setIsVisible(!isLazy || event.isIntersecting)
 
-      setImgAttributes((prev) => ({
-        ...prev,
+      setImgAttributes({
         src: url,
-        srcset,
-      }))
+        srcSet,
+        sizes: '100vw',
+      })
     },
-    [isLazy, srcset, url],
+    [
+      cloudinaryBucket,
+      cloudinaryId,
+      deviceSizes,
+      format,
+      isLazy,
+      mediaUrlBase,
+      quality,
+      version,
+    ],
   )
 
   return (
