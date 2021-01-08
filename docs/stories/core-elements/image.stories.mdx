@@ -1,8 +1,8 @@
-import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
-import { select as selectAddons, number, boolean } from '@storybook/addon-knobs'
-import { Image, Container } from '@titicaca/core-elements'
+import {Meta, Preview, Story} from '@storybook/addon-docs/blocks'
+import {boolean, number, select as selectAddons} from '@storybook/addon-knobs'
+import {Container, Image} from '@titicaca/core-elements'
 
-import { FRAME_RATIO_AND_SIZES, GLOBAL_SIZES } from './image-knob-options'
+import {FRAME_RATIO_AND_SIZES, GLOBAL_SIZES} from './image-knob-options'
 
 <Meta title="Core-Elements | Image" />
 
@@ -55,6 +55,20 @@ context를 만들어주는 컴포넌트, 프레임 관련 컴포넌트, 실제 �
       </Image.FixedRatioFrame>
     </Image>
     <Container minHeight={10000}>{''}</Container>
+    <Image>
+      <Image.FixedRatioFrame
+        frame={
+          boolean('frame 사용', true)
+            ? selectAddons('frame', FRAME_RATIO_AND_SIZES, 'mini')
+            : undefined
+        }
+      >
+        <Image.OptimizedImg
+          loading="eager"
+          cloudinaryId="45a36898-b412-4d51-882c-fdefad5a164d"
+        />
+      </Image.FixedRatioFrame>
+    </Image>
     <Image>
       <Image.FixedRatioFrame
         frame={
