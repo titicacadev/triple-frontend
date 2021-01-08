@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+## 2.8.0
+
+### common
+
+- tsconfig.tsbuildinfo 파일의 change event를 무시합니다. (#1153)
+- npm workspaces 사용 (#1152)
+- package-lock 업데이트 (#1154, #1155)
+- 컴포넌트의 underline 설정이 우선하도록 && hack 추가 (#1157)
+
+### core-elements
+
+- lazy loading 및 cloudinary optimization처리되는 `OptimizedImg`를 추가합니다. (#1145)
+
 ## 2.7.3
 
 ### react-contexts
