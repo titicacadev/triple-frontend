@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { createRef, RefObject } from 'react'
 import styled from 'styled-components'
 import { ImageSourceType, Image } from '@titicaca/core-elements'
 import {
@@ -6,6 +6,7 @@ import {
   GlobalSizes,
   FrameRatioAndSizes,
 } from '@titicaca/type-definitions'
+import Flicking from '@egjs/react-flicking'
 
 import Carousel, { CarouselProps } from './carousel'
 
@@ -45,8 +46,15 @@ interface ImageCarouselProps extends Omit<CarouselProps, 'pageLabelRenderer'> {
 export default class ImageCarousel extends React.PureComponent<
   ImageCarouselProps
 > {
+  private flickingRef: RefObject<Flicking>
+
   static defaultProps: Partial<ImageCarousel['props']> = {
     pageLabelRenderer: (props) => PageLabel(props),
+  }
+
+  constructor(props: ImageCarouselProps) {
+    super(props)
+    this.flickingRef = createRef<Flicking>()
   }
 
   get carouselProps(): CarouselProps {
@@ -78,6 +86,7 @@ export default class ImageCarousel extends React.PureComponent<
           currentIndex,
           totalCount,
         }) || null,
+      flickingRef: this.flickingRef,
     }
   }
 
@@ -147,14 +156,24 @@ export default class ImageCarousel extends React.PureComponent<
               {size ? (
                 <Image.FixedDimensionsFrame
                   size={size}
-                  onClick={onImageClick && ((e) => onImageClick(e, image))}
+                  onClick={
+                    onImageClick &&
+                    ((e) =>
+                      !this.flickingRef.current?.isPlaying() &&
+                      onImageClick(e, image))
+                  }
                 >
                   {renderContent()}
                 </Image.FixedDimensionsFrame>
               ) : (
                 <Image.FixedRatioFrame
                   frame={frame}
-                  onClick={onImageClick && ((e) => onImageClick(e, image))}
+                  onClick={
+                    onImageClick &&
+                    ((e) =>
+                      !this.flickingRef.current?.isPlaying() &&
+                      onImageClick(e, image))
+                  }
                 >
                   {renderContent()}
                 </Image.FixedRatioFrame>

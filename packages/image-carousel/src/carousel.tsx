@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { RefObject } from 'react'
 import styled from 'styled-components'
 import { FlickingEvent, FlickingOptions } from '@egjs/flicking'
 import Flicking, { FlickingProps } from '@egjs/react-flicking'
@@ -6,6 +6,7 @@ import { Container, MarginPadding } from '@titicaca/core-elements'
 
 export interface CarouselProps
   extends Partial<FlickingProps & FlickingOptions> {
+  flickingRef: RefObject<Flicking>
   margin?: MarginPadding
   borderRadius?: number
   pageLabelRenderer: (params: { currentIndex: number }) => React.ReactNode
@@ -93,7 +94,13 @@ export default class Carousel extends React.PureComponent<
   }
 
   render() {
-    const { margin, borderRadius, pageLabelRenderer, children } = this.props
+    const {
+      margin,
+      borderRadius,
+      pageLabelRenderer,
+      children,
+      flickingRef,
+    } = this.props
     const PageLabel: React.ComponentType<{ currentIndex: number }> = ({
       currentIndex,
     }) => {
@@ -108,7 +115,9 @@ export default class Carousel extends React.PureComponent<
         margin={margin}
         borderRadius={borderRadius}
       >
-        <Flicking {...this.flickingProps}>{children}</Flicking>
+        <Flicking ref={flickingRef} {...this.flickingProps}>
+          {children}
+        </Flicking>
 
         <PageLabel currentIndex={this.state.currentIndex} />
       </CarouselContainer>
