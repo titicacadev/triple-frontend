@@ -9,7 +9,7 @@ import React, {
 import uniqid from 'uniqid'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 import { useUserAgentContext } from '@titicaca/react-contexts'
-import { white, gray500 } from '@titicaca/color-palette'
+import { ArrowButton } from '@titicaca/icons'
 import NativeFlicking, { FlickingOptions } from '@egjs/flicking'
 
 import { MarginPadding, CarouselSizes } from '../commons'
@@ -79,25 +79,19 @@ const Item = styled.li<{ size?: CarouselSizes }>`
 
 const CarouselScrollButton = styled.div<{ direction: 'left' | 'right' }>`
   position: absolute;
+  cursor: pointer;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  background-color: ${white};
-  top: calc(50% - 20px);
-  box-shadow: 0 0 5px 0 ${gray500};
+  width: 60px;
+  height: 60px;
+  top: calc(50% - 30px);
   ${({ direction }) =>
     direction === 'left'
       ? css`
-          left: -15px;
-          background-image: url(https://assets.triple.guide/images/ico-arrow-right-black@3x.png);
+          left: -30px;
         `
       : css`
-          right: -15px;
-          background-image: url(https://assets.triple.guide/images/ico-arrow-right-black@3x.png);
+          right: -30px;
         `};
-  background-size: 10px;
-  background-position: center;
-  background-repeat: no-repeat;
   z-index: 60;
 `
 
@@ -149,7 +143,6 @@ const FLICK_ATTRIBUTES: Partial<FlickingOptions> = {
   duration: 100,
   panelEffect: (x: number) => 1 - Math.pow(1 - x, 3),
   defaultIndex: 0,
-  inputType: ['touch', 'mouse'],
   thresholdAngle: 45,
   bounce: 10,
   autoResize: false,
@@ -200,11 +193,12 @@ function Carousel({
       <div className={uniqueId} {...FLICK_ATTRIBUTES}>
         {children}
       </div>
-      <CarouselScrollButton direction="left" onClick={() => flicking?.prev()} />
-      <CarouselScrollButton
-        direction="right"
-        onClick={() => flicking?.next()}
-      />
+      <CarouselScrollButton direction="left" onClick={() => flicking?.prev()}>
+        <ArrowButton direction="left" />
+      </CarouselScrollButton>
+      <CarouselScrollButton direction="right" onClick={() => flicking?.next()}>
+        <ArrowButton direction="right" />
+      </CarouselScrollButton>
     </Container>
   ) : (
     <CarouselBase
