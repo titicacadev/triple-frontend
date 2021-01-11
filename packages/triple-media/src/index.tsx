@@ -84,7 +84,7 @@ export default function Media({
           <Image.OptimizedImg
             placeholderSrc={placeholderSrc}
             mediaUrlBase={mediaUrlBase}
-            cloudinaryId={cloudinaryId}
+            cloudinaryId={cloudinaryId as string}
             cloudinaryBucket={cloudinaryBucket}
             version={version}
             quality={quality}
