@@ -80,7 +80,7 @@ export default function Media({
         frame={mediaFrame || frame}
         onClick={onClick && ((e: React.SyntheticEvent) => onClick(e, media))}
       >
-        {optimized ? (
+        {media && optimized ? (
           <Image.OptimizedImg
             placeholderSrc={placeholderSrc}
             mediaUrlBase={mediaUrlBase}
