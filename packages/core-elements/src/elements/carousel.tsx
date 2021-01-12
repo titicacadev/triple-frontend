@@ -158,6 +158,12 @@ const FLICK_ATTRIBUTES: Partial<FlickingOptions> = {
   classPrefix: 'eg-flick',
 }
 
+const FlickingContainer = styled.div`
+  .eg-flick-panel {
+    margin-left: 0 !important;
+  }
+`
+
 function Carousel({
   margin,
   containerPadding,
@@ -190,9 +196,7 @@ function Carousel({
 
   return !isMobile && scrollable ? (
     <Container position="relative" margin={margin} padding={containerPadding}>
-      <div className={uniqueId} {...FLICK_ATTRIBUTES}>
-        {children}
-      </div>
+      <FlickingContainer className={uniqueId}>{children}</FlickingContainer>
       <CarouselScrollButton direction="left" onClick={() => flicking?.prev()}>
         <ArrowButton direction="left" />
       </CarouselScrollButton>
