@@ -7,7 +7,7 @@ import ImageFixedRatioFrame from './fixed-ratio-frame'
 import ImageFixedDimensionsFrame from './fixed-dimensions-frame'
 import ImageCircular from './circular'
 import ImagePlaceholder from './placeholder'
-import ImageOptimizedImg, { OptimizedImgProps } from './optimized-img'
+import ImageOptimizedImg from './optimized-img'
 
 /**
  * @deprecated children: string
