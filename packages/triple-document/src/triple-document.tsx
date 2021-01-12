@@ -97,7 +97,7 @@ export function TripleDocument({
   cta,
   videoAutoPlay,
   hideVideoControls,
-  optimized,
+  optimized = false,
 }: TripleDocumentProps) {
   const { navigate } = useHistoryFunctions()
   const handleAction = useMemo(() => initialize({ cta, navigate }), [
