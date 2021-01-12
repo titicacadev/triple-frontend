@@ -28,6 +28,7 @@ export default function Images({
   ImageSource,
   videoAutoPlay,
   hideVideoControls,
+  optimized,
 }: {
   value: {
     images: ImageMeta[]
@@ -38,6 +39,7 @@ export default function Images({
   ImageSource: ImageSourceType
   videoAutoPlay?: boolean
   hideVideoControls?: boolean
+  optimized?: boolean
 }) {
   const ImagesContainer = ['block', 'gapless-block'].includes(display)
     ? Container
@@ -77,6 +79,7 @@ export default function Images({
           <ElementContainer key={i}>
             {display === 'gapless-block' ? (
               <TripleMedia
+                optimized={optimized}
                 borderRadius={0}
                 autoPlay={videoAutoPlay}
                 hideControls={hideVideoControls || isLegacyIosApp}
@@ -88,6 +91,7 @@ export default function Images({
             ) : (
               <>
                 <TripleMedia
+                  optimized={optimized}
                   autoPlay={videoAutoPlay}
                   hideControls={hideVideoControls || isLegacyIosApp}
                   showNativeControls={isLegacyIosApp}
