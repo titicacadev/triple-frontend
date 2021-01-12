@@ -7,7 +7,7 @@ import { useImageState } from './context'
 import { useContentAbsolute } from './fixed-ratio-frame'
 import { Placeholder } from './placeholder'
 
-interface OptimizedImgProps {
+export interface OptimizedImgProps {
   placeholderSrc?: string
   mediaUrlBase?: string
   cloudinaryBucket?: string
