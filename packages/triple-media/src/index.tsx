@@ -23,6 +23,7 @@ export default function Media({
   onClick,
   ...props
 }: {
+  optimized?: boolean
   media: ImageMeta
   autoPlay?: boolean
   hideControls?: boolean
