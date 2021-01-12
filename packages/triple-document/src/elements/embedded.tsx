@@ -30,6 +30,7 @@ function EmbeddedImage({
   onImageClick,
   onLinkClick,
   ImageSource,
+  optimized,
   ...props
 }: {
   value: {
@@ -38,6 +39,7 @@ function EmbeddedImage({
   onImageClick: ImageEventHandler
   onLinkClick: LinkEventHandler
   ImageSource: ImageSourceType
+  optimized?: boolean
 } & Parameters<typeof Container>[0]) {
   if (image) {
     const handleClick = generateClickHandler(onLinkClick, onImageClick)
@@ -45,6 +47,7 @@ function EmbeddedImage({
     return (
       <Container margin={{ top: 10 }} {...props}>
         <TripleMedia
+          optimized={optimized}
           media={image}
           ImageSource={ImageSource}
           onClick={handleClick}

@@ -56,6 +56,7 @@ interface TripleDocumentProps {
   cta?: string
   videoAutoPlay?: boolean
   hideVideoControls?: boolean
+  optimized?: boolean
 }
 
 export const ELEMENTS: ElementSet = {
@@ -96,6 +97,7 @@ export function TripleDocument({
   cta,
   videoAutoPlay,
   hideVideoControls,
+  optimized,
 }: TripleDocumentProps) {
   const { navigate } = useHistoryFunctions()
   const handleAction = useMemo(() => initialize({ cta, navigate }), [
@@ -138,6 +140,7 @@ export function TripleDocument({
               deepLink={deepLink}
               videoAutoPlay={videoAutoPlay}
               hideVideoControls={hideVideoControls}
+              optimized={optimized}
             />
           )
         )
