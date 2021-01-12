@@ -35,6 +35,7 @@ export default function Media({
   onClick?: (e: React.SyntheticEvent, media: ImageMeta) => void
 } & Omit<OptimizedImgProps, 'cloudinaryBucket' | 'cloudinaryId'>) {
   const {
+    id,
     type,
     sizes,
     cloudinaryBucket,
@@ -69,7 +70,7 @@ export default function Media({
       >
         {media && optimized ? (
           <Image.OptimizedImg
-            cloudinaryId={cloudinaryId as string}
+            cloudinaryId={cloudinaryId || id}
             cloudinaryBucket={cloudinaryBucket}
             {...props}
           />
