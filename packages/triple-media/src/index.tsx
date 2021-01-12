@@ -4,21 +4,14 @@ import {
   ImageSourceType,
   Image,
   MarginPadding,
+  OptimizedImgProps,
 } from '@titicaca/core-elements'
 import { ImageMeta, FrameRatioAndSizes } from '@titicaca/type-definitions'
-import { Quality, Version } from '@titicaca/content-utilities'
 
 export type MediaMeta = ImageMeta
 
 export default function Media({
   optimized = false,
-  placeholderSrc,
-  mediaUrlBase,
-  version,
-  quality,
-  format,
-  loading,
-  deviceSizes,
   media,
   autoPlay,
   hideControls,
@@ -28,15 +21,8 @@ export default function Media({
   margin,
   frame,
   onClick,
+  ...props
 }: {
-  optimized?: boolean
-  placeholderSrc?: string
-  mediaUrlBase?: string
-  version?: Version
-  quality?: Quality
-  format?: string
-  loading?: 'lazy' | 'eager'
-  deviceSizes?: number[]
   media: ImageMeta
   autoPlay?: boolean
   hideControls?: boolean
@@ -46,7 +32,7 @@ export default function Media({
   margin?: MarginPadding
   frame?: FrameRatioAndSizes
   onClick?: (e: React.SyntheticEvent, media: ImageMeta) => void
-}) {
+} & Omit<OptimizedImgProps, 'cloudinaryBucket' | 'cloudinaryId'>) {
   const {
     type,
     sizes,
@@ -82,15 +68,9 @@ export default function Media({
       >
         {media && optimized ? (
           <Image.OptimizedImg
-            placeholderSrc={placeholderSrc}
-            mediaUrlBase={mediaUrlBase}
             cloudinaryId={cloudinaryId as string}
             cloudinaryBucket={cloudinaryBucket}
-            version={version}
-            quality={quality}
-            format={format}
-            loading={loading}
-            deviceSizes={deviceSizes}
+            {...props}
           />
         ) : (
           <Image.Img src={sizes.large.url} />
