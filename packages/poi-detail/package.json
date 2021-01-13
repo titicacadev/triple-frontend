@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@titicaca/action-sheet": "^2.10.1",
+    "@titicaca/carousel": "^2.10.1",
     "@titicaca/core-elements": "^2.10.1",
     "@titicaca/i18n": "^2.10.1",
     "@titicaca/image-carousel": "^2.10.1",

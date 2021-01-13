@@ -48,20 +48,22 @@ const CarouselBase = styled.ul<CarouselBaseProps>`
     `};
 `
 
-const CarouselScrollButton = styled.div<{ direction: 'left' | 'right' }>`
+const FlickingScrollButton = styled(ArrowButton)<{
+  direction: 'left' | 'right'
+  positionRearrange?: number
+}>`
   position: absolute;
   cursor: pointer;
-  border-radius: 50%;
   width: 60px;
   height: 60px;
   top: calc(50% - 30px);
-  ${({ direction }) =>
+  ${({ direction, positionRearrange = 0 }) =>
     direction === 'left'
       ? css`
-          left: -30px;
+          left: ${positionRearrange - 30}px;
         `
       : css`
-          right: -30px;
+          right: ${positionRearrange - 30}px;
         `};
   z-index: 60;
 `
@@ -130,13 +132,17 @@ function Carousel({
 
   return !isMobile && scrollable ? (
     <Container position="relative" margin={margin} padding={containerPadding}>
+      <FlickingScrollButton
+        positionRearrange={containerPadding?.left}
+        direction="left"
+        onClick={() => flicking?.prev()}
+      />
       <FlickingContainer className={uniqueId}>{children}</FlickingContainer>
-      <CarouselScrollButton direction="left" onClick={() => flicking?.prev()}>
-        <ArrowButton direction="left" />
-      </CarouselScrollButton>
-      <CarouselScrollButton direction="right" onClick={() => flicking?.next()}>
-        <ArrowButton direction="right" />
-      </CarouselScrollButton>
+      <FlickingScrollButton
+        positionRearrange={containerPadding?.right}
+        direction="right"
+        onClick={() => flicking?.next()}
+      />
     </Container>
   ) : (
     <CarouselBase
