@@ -1,9 +1,8 @@
 import { PoiType } from '@titicaca/type-definitions'
-import { useCallback, useMemo } from 'react'
+import { useMemo } from 'react'
 
 import { Day, TransportationType } from './types'
 import { getSafetyPoiName } from './use-safety-poi'
-import useHandleAddPoiToTrip from './use-handle-add-poi-to-trip'
 
 interface Props {
   itinerary: Day
@@ -47,7 +46,6 @@ export default function useItinerary({ itinerary }: Props) {
   /** NOTE: 일정을 일정판에 저장하기 위해 regionId 를 특정하기 위한 로직 */
   const regionId = items[0].poi.source.regionId
 
-  const addPOIToTrip = useHandleAddPoiToTrip(regionId)
   const poiIds = useMemo(() => items.map(({ poi }) => poi.id), [items])
 
   const courses = useMemo<Course[]>(() => {
@@ -83,15 +81,11 @@ export default function useItinerary({ itinerary }: Props) {
     })
   }, [items])
 
-  const saveToItinerary = useCallback(() => {
-    addPOIToTrip(poiIds)
-  }, [addPOIToTrip, poiIds])
-
   return {
     day,
     items,
     courses,
-    /** 내 일정에 담기 */
-    saveToItinerary,
+    regionId,
+    poiIds,
   }
 }

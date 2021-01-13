@@ -29,12 +29,15 @@ interface Props {
   value: {
     itinerary: Day
   }
-}
-
-interface Props {
-  value: {
-    itinerary: Day
-  }
+  /**
+   * 내 일정으로 담기 클릭 이벤트 핸들러
+   */
+  onClickSaveToItinerary: (
+    /** 추천코스의 기준이 되는 regionId */
+    regionId: string,
+    /** 추천코스에 포함된 POI id 리스트 */
+    poiIds: string[],
+  ) => void
 }
 
 const Timeline = styled(FlexBox)`
@@ -120,9 +123,12 @@ function TransportationIcon(type?: TransportationType) {
   }
 }
 
-export default function RecommendedRoutesElement({ value }: Props) {
+export default function RecommendedRoutesElement({
+  value,
+  onClickSaveToItinerary,
+}: Props) {
   const { navigate } = useHistoryFunctions()
-  const { courses, saveToItinerary } = useItinerary(value)
+  const { courses, regionId, poiIds } = useItinerary(value)
 
   const generatePoiClickHandler = useCallback(
     (regionId: string, type: PoiType, id: string) => () => {
@@ -132,13 +138,8 @@ export default function RecommendedRoutesElement({ value }: Props) {
   )
 
   const handleSaveToItinerary = useCallback(() => {
-    /**
-     * TODO:
-     * - add to track event
-     * - prevent call in public
-     */
-    saveToItinerary()
-  }, [saveToItinerary])
+    onClickSaveToItinerary(regionId, poiIds)
+  }, [onClickSaveToItinerary, regionId, poiIds])
 
   return (
     <Container margin={{ top: 10, bottom: 10 }}>
