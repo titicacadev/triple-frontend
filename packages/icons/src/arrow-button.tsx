@@ -23,18 +23,26 @@ export default function ArrowButton({
   strokeWidth = 2,
   opacity = 1,
   direction,
-}: Omit<IconBaseProps, 'width' | 'height'> & { direction: 'left' | 'right' }) {
+  onClick,
+  className,
+}: Omit<IconBaseProps, 'width' | 'height'> & {
+  direction: 'left' | 'right'
+  onClick?: (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void
+  className?: string
+}) {
   const { d, transform } = SVG_ATTRIBUTES_BY_DIRECTION[direction]
   const { colors } = useContext(ThemeContext) || { colors: {} }
   const stroke = color || colors.primary || defaultSvgIconColor
 
   return (
     <SvgIcon
+      className={className}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 60 60"
       width={60}
       height={60}
+      onClick={onClick}
     >
       <defs>
         <filter

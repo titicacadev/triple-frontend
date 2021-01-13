@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { Section, Carousel, Responsive, H1 } from '@titicaca/core-elements'
+import { Section, Responsive, H1 } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'
 import {
   ArticleCardCTA,
   fetchArticleCardCTA,
 } from '@titicaca/app-installation-cta'
+import { Carousel } from '@titicaca/carousel'
 
 import { fetchRecommendedArticles } from './api-client'
 import { ArticleListingData, InventoryItem } from './types'
