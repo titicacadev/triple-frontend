@@ -76,10 +76,6 @@ const Duration = styled(Container)`
   left: -5px;
 `
 
-/**
- * TODO: Button 컴포넌트에 icon=download 추가
- *
- */
 const SaveToItineraryButton = styled(Button)`
   > * {
     vertical-align: middle;
@@ -136,7 +132,11 @@ export default function RecommendedRoutesElement({ value }: Props) {
   )
 
   const handleSaveToItinerary = useCallback(() => {
-    /** TODO: add to event tracking */
+    /**
+     * TODO:
+     * - add to track event
+     * - prevent call in public
+     */
     saveToItinerary()
   }, [saveToItinerary])
 
