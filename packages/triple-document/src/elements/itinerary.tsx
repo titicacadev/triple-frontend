@@ -5,7 +5,11 @@ import { gray100, white } from '@titicaca/color-palette'
 import { useHistoryFunctions } from '@titicaca/react-contexts'
 import { PoiType } from '@titicaca/type-definitions'
 
-import { Day, TransportationType, ItineraryPoi } from './itinerary/types'
+import type {
+  TransportationType,
+  ItineraryPoi,
+  Itinerary,
+} from './itinerary/types'
 import Map from './itinerary/map'
 import useItinerary from './itinerary/use-computed-itineraries'
 import {
@@ -27,7 +31,7 @@ import {
 
 interface Props {
   value: {
-    itinerary: Day
+    itinerary: Itinerary
   }
   /**
    * 내 일정으로 담기 클릭 이벤트 핸들러
@@ -106,19 +110,19 @@ function PoiCircleBadge(type: PoiType) {
 
 function TransportationIcon(type?: TransportationType) {
   switch (type) {
-    case TransportationType.CAR:
+    case 'car':
       return Car
-    case TransportationType.BUS:
+    case 'bus':
       return Bus
-    case TransportationType.WALK:
+    case 'walk':
       return Walk
-    case TransportationType.PLANE:
+    case 'plane':
       return Plane
-    case TransportationType.TRAIN:
+    case 'train':
       return Train
-    case TransportationType.TRAM:
+    case 'tram':
       return Tram
-    case TransportationType.CABLE:
+    case 'cable':
       return Cable
     default:
       return () => null
@@ -259,7 +263,7 @@ export default function RecommendedRoutesElement({
           onClick={handleSaveToItinerary}
         >
           <Download />
-          <Text inline size={14} margin={{ left: 3 }} color={white}>
+          <Text inline size={14} margin={{ left: 3 }} color="white">
             내 일정으로 담기
           </Text>
         </SaveToItineraryButton>
