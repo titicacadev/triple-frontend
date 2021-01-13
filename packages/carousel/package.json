@@ -1,0 +1,43 @@
+{
+  "name": "carousel",
+  "version": "2.8.0",
+  "description": "Triple Carousel",
+  "author": "torres-triple <torres@triple-corp.com>",
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "dependencies": {
+    "@titicaca/core-elements": "^2.8.0",
+    "@titicaca/icons": "^2.8.0",
+    "@titicaca/intersection-observer": "^2.8.0",
+    "@titicaca/react-contexts": "^2.8.0",
+    "@titicaca/type-definitions": "^2.8.0",
+    "@egjs/flicking": "3.7.0",
+    "uniqid": "5.2.0"
+  },
+  "devDependencies": {
+    "@types/uniqid": "5.2.0"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "styled-components": ">=4.4.1 < 6"
+  }
+}
