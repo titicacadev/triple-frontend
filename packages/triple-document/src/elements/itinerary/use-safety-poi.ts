@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
-import { TranslatedProperty, ImageMeta } from '@titicaca/type-definitions'
+import { ImageMeta } from '@titicaca/type-definitions'
+import { Translations } from '@titicaca/content-utilities'
 
 type SafetyPoi<T> = T & {
   /** POI Name: primary || ko || en || local || '' */
@@ -8,13 +9,20 @@ type SafetyPoi<T> = T & {
   defaultImage?: string
 }
 
+/**
+ * POI 의 names 에 대한 타입정의가
+ * triple-frontend 와 triple-content 가 서로 다른 이슈가 있어 triple-content 쪽으로
+ * 맞추기 위해 아래의 타입을 추가합니다.
+ */
+type UnSafetyTranlations = Translations & { primary?: string }
+
 export function getSafetyPoiName({
   primary,
   /** will be @deprecated */
   ko,
   en,
   local,
-}: TranslatedProperty): string {
+}: UnSafetyTranlations): string {
   return primary || ko || en || local || ''
 }
 
@@ -57,8 +65,8 @@ export function getImage(
 export function useSafetyPoi<
   T extends {
     image?: ImageMeta
-    names?: TranslatedProperty
-    source?: { names: TranslatedProperty; image?: ImageMeta }
+    names?: UnSafetyTranlations
+    source?: { names: UnSafetyTranlations; image?: ImageMeta }
   }
 >(poi: T | undefined): SafetyPoi<T> {
   return useMemo<SafetyPoi<T>>(() => {
@@ -83,7 +91,7 @@ export function useSafetyPoi<
     return {
       ...poi,
       defaultImage: image && getImage(image, 'large'),
-      safeName: names ? getSafetyPoiName(names as TranslatedProperty) : '',
+      safeName: names ? getSafetyPoiName(names as UnSafetyTranlations) : '',
     } as SafetyPoi<T>
   }, [poi])
 }

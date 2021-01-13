@@ -5,20 +5,17 @@ import { PoiType } from '@titicaca/type-definitions'
  * TODO: triple-content 쪽으로 union 시킵니다.
  */
 
-export const TRANSPORTATION_MAP = {
-  CAR: 'car',
-  BUS: 'bus',
-  WALK: 'walk',
-  PLANE: 'plane',
-  TRAM: 'tram',
-  TRAIN: 'train',
-  CABLE: 'cable',
-}
-
 /**
  * 이동수단
  */
-type TransportationType = keyof typeof TRANSPORTATION_MAP
+export type TransportationType =
+  | 'car'
+  | 'bus'
+  | 'walk'
+  | 'plane'
+  | 'tram'
+  | 'train'
+  | 'cable'
 
 /**
  * 추천코스 일정간에 이동수단과 이동시간에 대한 정보
