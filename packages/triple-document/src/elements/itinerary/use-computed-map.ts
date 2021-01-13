@@ -1,13 +1,14 @@
 import { useMemo } from 'react'
 import { getGeometry } from '@titicaca/map'
+import type { LatLngLiteral } from '@titicaca/type-definitions'
 
-import { Day, Poi, LatLngLiteral } from './types'
+import { ItineraryPoi, ItineraryItemType } from './types'
 
 /**
  * TODO: move to use-safety-poi
  */
-function getLatLng({ source }: Poi): LatLngLiteral {
-  const [lng, lat] = source.pointGeolocation.coordinates
+function getLatLng({ source }: ItineraryPoi): LatLngLiteral {
+  const [lng, lat] = source.pointGeolocation?.coordinates
   return { lat, lng }
 }
 
@@ -16,11 +17,11 @@ function getLatLng({ source }: Poi): LatLngLiteral {
  * 유일한 타입으로 이 함수는 없어도 됩니다.
  * [number, number][] -> { lat, lng } 으로 개선이 필요
  */
-function extractPoiCoordinate(items: Day['items']) {
-  return items.map((item) => item.poi.source.pointGeolocation.coordinates)
+function extractPoiCoordinate(items: ItineraryItemType[]) {
+  return items.map((item) => item.poi.source.pointGeolocation?.coordinates)
 }
 
-function extracPathMap(items: Day['items']): LatLngLiteral[] {
+function extracPathMap(items: ItineraryItemType[]): LatLngLiteral[] {
   return items.map(({ poi }) => getLatLng(poi))
 }
 
@@ -28,7 +29,7 @@ function extracPathMap(items: Day['items']): LatLngLiteral[] {
  * TripleDocument 추천코스 목록 데이터에서 MapView 표시해야 할 정보들을 추출하는 로직들을 담습니다.
  * @param param0 TripleDoucment Itinerary Day Items
  */
-export default function useMapData({ items }: Day) {
+export default function useMapData(items: ItineraryItemType[]) {
   return useMemo(() => {
     const coordinates = extractPoiCoordinate(items)
     const polyline = extracPathMap(items)
