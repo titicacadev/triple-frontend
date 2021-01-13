@@ -1,14 +1,8 @@
 import React, { PropsWithChildren } from 'react'
 import { purple, mint } from '@titicaca/color-palette'
+import type { PoiType } from '@titicaca/type-definitions'
 
 import { CircleBadge } from './badge'
-
-/**
- * TODO:
- * TF 에 통합하면서 타이핑 변경이 필요합니다.
- * - TF/map 컴포넌트의 로직과 중복되는 코드입니다.
- */
-type PoiType = 'attraction' | 'restaurant' | 'hotel'
 
 function getColorOfType(type: PoiType) {
   switch (type) {

@@ -1,11 +1,11 @@
 import { PoiType } from '@titicaca/type-definitions'
 import { useMemo } from 'react'
 
-import { Day, TransportationType } from './types'
+import { TransportationType, Itinerary } from './types'
 import { getSafetyPoiName } from './use-safety-poi'
 
 interface Props {
-  itinerary: Day
+  itinerary: Itinerary
 }
 
 interface Course {
