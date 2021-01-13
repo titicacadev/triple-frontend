@@ -5,7 +5,7 @@ import { gray100, white } from '@titicaca/color-palette'
 import { useHistoryFunctions } from '@titicaca/react-contexts'
 import { PoiType } from '@titicaca/type-definitions'
 
-import { Day, TransportationType } from './itinerary/types'
+import { Day, TransportationType, ItineraryPoi } from './itinerary/types'
 import Map from './itinerary/map'
 import useItinerary from './itinerary/use-computed-itineraries'
 import {
@@ -140,13 +140,24 @@ export default function RecommendedRoutesElement({
     [navigate],
   )
 
+  const handleMarkerClick = useCallback(
+    ({ id, type, source: { regionId } }: ItineraryPoi) => {
+      navigate(`/regions/${regionId}/${type}s/${id}`)
+    },
+    [navigate],
+  )
+
   const handleSaveToItinerary = useCallback(() => {
     onClickSaveToItinerary(regionId, poiIds)
   }, [onClickSaveToItinerary, regionId, poiIds])
 
   return (
     <Container margin={{ top: 10, bottom: 10 }}>
-      <Map googleMapsApiKey={googleMapsApiKey} {...value.itinerary} />
+      <Map
+        googleMapsApiKey={googleMapsApiKey}
+        {...value.itinerary}
+        onClickMarker={handleMarkerClick}
+      />
       <Container margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
         <Stack>
           {courses.map((course, index) => {

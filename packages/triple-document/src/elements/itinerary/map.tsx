@@ -9,15 +9,18 @@ import MapView, {
 } from '@titicaca/map'
 import styled from 'styled-components'
 
-import { composeUrl } from '..'
-
 import useMapData from './use-computed-map'
 import { ItineraryPoi, Itinerary } from './types'
 
 type Props = {
+  /** google maps api key */
   googleMapsApiKey: string
+  /** 몇번째 일정 */
   day: Itinerary['day']
+  /** 추천 코스 POI 목록 */
   items: Itinerary['items']
+  /** 지도상 마커 클릭 핸들러 */
+  onClickMarker: (poi: ItineraryPoi) => void
 }
 
 const Label = styled.span`
@@ -40,15 +43,18 @@ function ItineraryTypeCircleMarker(type: PoiType) {
   throw new Error(`Unknown card type of itinerary "${type}"`)
 }
 
-export default function Map({ googleMapsApiKey, items }: Props) {
+export default function Map({ googleMapsApiKey, onClickMarker, items }: Props) {
   const { totalPois, polyline, pois, mapOptions, bounds } = useMapData(items)
 
   const generateClickMarkerHandle = useCallback(
     (poi: ItineraryPoi) => (e: MouseEvent) => {
       e.preventDefault()
-      location.href = composeUrl(poi) as string
+
+      if (onClickMarker) {
+        onClickMarker(poi)
+      }
     },
-    [],
+    [onClickMarker],
   )
 
   return (
