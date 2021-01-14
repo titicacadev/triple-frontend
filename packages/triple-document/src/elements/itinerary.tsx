@@ -129,7 +129,7 @@ function TransportationIcon(type?: TransportationType) {
   }
 }
 
-export default function RecommendedRoutesElement({
+export default function ItineraryElement({
   value,
   googleMapsApiKey,
   onClickSaveToItinerary,
