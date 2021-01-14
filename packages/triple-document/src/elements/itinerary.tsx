@@ -42,8 +42,6 @@ interface Props {
     /** 추천코스에 포함된 POI id 리스트 */
     poiIds: string[],
   ) => void
-  /** google maps api key */
-  googleMapsApiKey: string
 }
 
 const Timeline = styled(FlexBox)`
@@ -131,7 +129,6 @@ function TransportationIcon(type?: TransportationType) {
 
 export default function ItineraryElement({
   value,
-  googleMapsApiKey,
   onClickSaveToItinerary,
 }: Props) {
   const { navigate } = useHistoryFunctions()
@@ -157,11 +154,7 @@ export default function ItineraryElement({
 
   return (
     <Container margin={{ top: 10, bottom: 10 }}>
-      <Map
-        googleMapsApiKey={googleMapsApiKey}
-        {...value.itinerary}
-        onClickMarker={handleMarkerClick}
-      />
+      <Map {...value.itinerary} onClickMarker={handleMarkerClick} />
       <Container margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
         <Stack>
           {courses.map((course, index) => {

@@ -7,13 +7,12 @@ import MapView, {
   RestaurantCirlceMarker,
   DotPolyline,
 } from '@titicaca/map'
+import { useEnv } from '@titicaca/react-contexts'
 
 import useMapData from './use-computed-map'
 import { ItineraryPoi, Itinerary } from './types'
 
 type Props = {
-  /** google maps api key */
-  googleMapsApiKey: string
   /** 몇번째 일정 */
   day: Itinerary['day']
   /** 추천 코스 POI 목록 */
@@ -38,7 +37,8 @@ function ItineraryTypeCircleMarker(type: PoiType) {
   throw new Error(`Unknown card type of itinerary "${type}"`)
 }
 
-export default function Map({ googleMapsApiKey, onClickMarker, items }: Props) {
+export default function Map({ onClickMarker, items }: Props) {
+  const { googleMapsApiKey } = useEnv()
   const { totalPois, polyline, pois, mapOptions, bounds } = useMapData(items)
 
   const generateClickMarkerHandle = useCallback(
@@ -54,31 +54,32 @@ export default function Map({ googleMapsApiKey, onClickMarker, items }: Props) {
 
   return (
     <Container width="100%" height={180}>
-      <MapView
-        options={mapOptions}
-        bounds={bounds}
-        googleMapLoadOptions={{
-          googleMapsApiKey,
-        }}
-      >
-        {pois.map(({ position, poi: { type }, poi }, i) => {
-          const CircleMarker = ItineraryTypeCircleMarker(type)
+      {googleMapsApiKey ? (
+        <MapView
+          options={mapOptions}
+          bounds={bounds}
+          googleMapLoadOptions={{
+            googleMapsApiKey,
+          }}
+        />
+      ) : null}
+      {pois.map(({ position, poi: { type }, poi }, i) => {
+        const CircleMarker = ItineraryTypeCircleMarker(type)
 
-          return (
-            <CircleMarker
-              key={i}
-              zIndex={totalPois - i}
-              width={22}
-              height={22}
-              position={position}
-              onClick={generateClickMarkerHandle(poi)}
-            >
-              <strong>{i + 1}</strong>
-            </CircleMarker>
-          )
-        })}
-        <DotPolyline path={polyline}></DotPolyline>
-      </MapView>
+        return (
+          <CircleMarker
+            key={i}
+            zIndex={totalPois - i}
+            width={22}
+            height={22}
+            position={position}
+            onClick={generateClickMarkerHandle(poi)}
+          >
+            <strong>{i + 1}</strong>
+          </CircleMarker>
+        )
+      })}
+      <DotPolyline path={polyline}></DotPolyline>
     </Container>
   )
 }
