@@ -7,7 +7,6 @@ import MapView, {
   RestaurantCirlceMarker,
   DotPolyline,
 } from '@titicaca/map'
-import styled from 'styled-components'
 
 import useMapData from './use-computed-map'
 import { ItineraryPoi, Itinerary } from './types'
@@ -22,10 +21,6 @@ type Props = {
   /** 지도상 마커 클릭 핸들러 */
   onClickMarker: (poi: ItineraryPoi) => void
 }
-
-const Label = styled.span`
-  font-weight: bold;
-`
 
 /**
  * NOTE: poi.type 값을 기반으로 공통 CircleMarker 컴포넌트로 맵핑하는 WrapperComponent
@@ -78,7 +73,7 @@ export default function Map({ googleMapsApiKey, onClickMarker, items }: Props) {
               position={position}
               onClick={generateClickMarkerHandle(poi)}
             >
-              <Label style={{ fontWeight: 'bold' }}>{i + 1}</Label>
+              <strong>{i + 1}</strong>
             </CircleMarker>
           )
         })}
