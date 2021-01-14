@@ -28,6 +28,7 @@ import {
   Regions,
   Table,
   TnaProductsList,
+  Itinerary,
 } from './elements'
 import {
   TripleElementData,
@@ -82,6 +83,7 @@ export const ELEMENTS: ElementSet = {
   tnaProducts: TnaProductsList,
   table: Table,
   coupon: Coupon,
+  itinerary: Itinerary,
 }
 
 export function TripleDocument({
