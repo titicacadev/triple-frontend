@@ -1,7 +1,10 @@
-import { PoiType } from '@titicaca/type-definitions'
 import { useMemo } from 'react'
+import {
+  TransportationType,
+  Itinerary,
+  ItineraryItemType,
+} from '@titicaca/content-utilities'
 
-import { TransportationType, Itinerary } from './types'
 import { getSafetyPoiName } from './use-safety-poi'
 
 interface Props {
@@ -16,7 +19,7 @@ interface Course {
   /** POI 제목, 공백값 가드닝 적용 */
   name: string
   /** POI 타입 */
-  type: PoiType
+  type: ItineraryItemType['poi']['type']
   /** 거점지역, 카테고리 */
   description: string
   /** 이동수단 */

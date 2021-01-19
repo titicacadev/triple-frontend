@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react'
 import { Container } from '@titicaca/core-elements'
-import { PoiType } from '@titicaca/type-definitions'
 import MapView, {
   HotelCircleMarker,
   AttractionCirlceMarker,
@@ -8,9 +7,9 @@ import MapView, {
   DotPolyline,
 } from '@titicaca/map'
 import { useEnv } from '@titicaca/react-contexts'
+import { Itinerary, ItineraryItemType } from '@titicaca/content-utilities'
 
 import useMapData from './use-computed-map'
-import { ItineraryPoi, Itinerary } from './types'
 
 type Props = {
   /** 몇번째 일정 */
@@ -18,13 +17,13 @@ type Props = {
   /** 추천 코스 POI 목록 */
   items: Itinerary['items']
   /** 지도상 마커 클릭 핸들러 */
-  onClickMarker: (poi: ItineraryPoi) => void
+  onClickMarker: (poi: ItineraryItemType['poi']) => void
 }
 
 /**
  * NOTE: poi.type 값을 기반으로 공통 CircleMarker 컴포넌트로 맵핑하는 WrapperComponent
  */
-function ItineraryTypeCircleMarker(type: PoiType) {
+function ItineraryTypeCircleMarker(type: ItineraryItemType['poi']['type']) {
   switch (type) {
     case 'hotel':
       return HotelCircleMarker
@@ -42,7 +41,7 @@ export default function Map({ onClickMarker, items }: Props) {
   const { totalPois, polyline, pois, mapOptions, bounds } = useMapData(items)
 
   const generateClickMarkerHandle = useCallback(
-    (poi: ItineraryPoi) => (e: MouseEvent) => {
+    (poi: ItineraryItemType['poi']) => (e: MouseEvent) => {
       e.preventDefault()
 
       if (onClickMarker) {
