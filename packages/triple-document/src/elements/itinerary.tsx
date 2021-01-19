@@ -9,7 +9,7 @@ import type {
   ItineraryItemType,
 } from '@titicaca/content-utilities'
 
-import Map from './itinerary/map'
+import ItineraryMap from './itinerary/itinerary-map'
 import useItinerary from './itinerary/use-computed-itineraries'
 import {
   HotelCircleBadge,
@@ -118,7 +118,7 @@ export default function ItineraryElement({
 
   return (
     <Container margin={{ top: 10, bottom: 10 }}>
-      <Map {...value.itinerary} onClickMarker={handleMarkerClick} />
+      <ItineraryMap {...value.itinerary} onClickMarker={handleMarkerClick} />
       <Container margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
         <Stack>
           {courses.map((course, index) => {
