@@ -1,13 +1,12 @@
 import { useMemo } from 'react'
 import { getGeometry } from '@titicaca/map'
 import type { LatLngLiteral } from '@titicaca/type-definitions'
-
-import { ItineraryPoi, ItineraryItemType } from './types'
+import type { ItineraryItemType } from '@titicaca/content-utilities'
 
 /**
  * TODO: move to use-safety-poi
  */
-function getLatLng({ source }: ItineraryPoi): LatLngLiteral {
+function getLatLng({ source }: ItineraryItemType['poi']): LatLngLiteral {
   const [lng, lat] = source.pointGeolocation?.coordinates
   return { lat, lng }
 }
