@@ -3,13 +3,12 @@ import styled from 'styled-components'
 import { Container, Card, Text, FlexBox, Button } from '@titicaca/core-elements'
 import { gray100, white } from '@titicaca/color-palette'
 import { useHistoryFunctions } from '@titicaca/react-contexts'
-import { PoiType } from '@titicaca/type-definitions'
-
 import type {
   TransportationType,
-  ItineraryPoi,
   Itinerary,
-} from './itinerary/types'
+  ItineraryItemType,
+} from '@titicaca/content-utilities'
+
 import Map from './itinerary/map'
 import useItinerary from './itinerary/use-computed-itineraries'
 import {
@@ -73,7 +72,6 @@ const Stack = styled(Container)`
 `
 
 const Time = styled(Text)`
-  font-weight: 700;
   background-color: ${white};
 `
 
@@ -89,44 +87,6 @@ const SaveToItineraryButton = styled(Button)`
   }
 `
 
-const Description = styled(Text)`
-  font-weight: 500;
-`
-
-function PoiCircleBadge(type: PoiType) {
-  switch (type) {
-    case 'hotel':
-      return HotelCircleBadge
-    case 'attraction':
-      return AttractionCircleBadge
-    case 'restaurant':
-      return RestaurantCircleBadge
-  }
-
-  throw new Error(`Unknown card type of poi "${type}"`)
-}
-
-function TransportationIcon(type?: TransportationType) {
-  switch (type) {
-    case 'car':
-      return Car
-    case 'bus':
-      return Bus
-    case 'walk':
-      return Walk
-    case 'plane':
-      return Plane
-    case 'train':
-      return Train
-    case 'tram':
-      return Tram
-    case 'cable':
-      return Cable
-    default:
-      return () => null
-  }
-}
-
 export default function ItineraryElement({
   value,
   onClickSaveToItinerary,
@@ -135,14 +95,18 @@ export default function ItineraryElement({
   const { courses, regionId, poiIds } = useItinerary(value)
 
   const generatePoiClickHandler = useCallback(
-    (regionId: string, type: PoiType, id: string) => () => {
+    (
+      regionId: string,
+      type: ItineraryItemType['poi']['type'],
+      id: string,
+    ) => () => {
       navigate(`/regions/${regionId}/${type}s/${id}`)
     },
     [navigate],
   )
 
   const handleMarkerClick = useCallback(
-    ({ id, type, source: { regionId } }: ItineraryPoi) => {
+    ({ id, type, source: { regionId } }: ItineraryItemType['poi']) => {
       navigate(`/regions/${regionId}/${type}s/${id}`)
     },
     [navigate],
@@ -194,6 +158,7 @@ export default function ItineraryElement({
                       <CircleBadge>{index + 1}</CircleBadge>
                       {schedule ? (
                         <Time
+                          bold
                           size={11}
                           color="gray300"
                           padding={{ top: 5, bottom: 5 }}
@@ -226,16 +191,15 @@ export default function ItineraryElement({
                     <Text size={16} bold ellipsis>
                       {name}
                     </Text>
-                    <Description
+                    <Text
                       size={13}
-                      bold
                       color="gray500"
                       lineHeight={1.4}
                       padding={{ top: 6 }}
                       ellipsis
                     >
                       {description}
-                    </Description>
+                    </Text>
                     {memo ? (
                       <Text size={14} margin={{ top: 10 }}>
                         {memo}
@@ -263,4 +227,38 @@ export default function ItineraryElement({
       </Container>
     </Container>
   )
+}
+
+function PoiCircleBadge(type: ItineraryItemType['poi']['type']) {
+  switch (type) {
+    case 'hotel':
+      return HotelCircleBadge
+    case 'attraction':
+      return AttractionCircleBadge
+    case 'restaurant':
+      return RestaurantCircleBadge
+  }
+
+  throw new Error(`Unknown card type of poi "${type}"`)
+}
+
+function TransportationIcon(type?: TransportationType) {
+  switch (type) {
+    case 'car':
+      return Car
+    case 'bus':
+      return Bus
+    case 'walk':
+      return Walk
+    case 'plane':
+      return Plane
+    case 'train':
+      return Train
+    case 'tram':
+      return Tram
+    case 'cable':
+      return Cable
+    default:
+      return () => null
+  }
 }
