@@ -156,9 +156,9 @@ $ lerna bootstrap
 
 ### 배포하기
 
-1. 최신 기본 브랜치에서 릴리즈용 브랜치를 만듭니다.
+1. 최신 기본 브랜치에서 릴리즈용 브랜치를 만듭니다. `git switch -c release/v1.2.3`
 2. `npm run version` 커맨드로 새로운 버전을 만듭니다.
-3. 새로운 버전의 마일스톤이나 커밋 히스토리를 참고하여 CHANGELOG를 작성합니다.
+3. 새로운 버전의 마일스톤이나 커밋 히스토리를 참고하여 CHANGELOG.md 에 변경사항을 업데이트합니다.
 4. Pull Request를 생성하여 변경 내역을 기본 브랜치로 머지합니다.
 5. `#triple-web-dev-notifications` 채널에서 `/release triple-frontend main`을 입력하여 CD를 실행합니다.
 6. minor 버전 배포였다면, 다음 minor 버전의 마일스톤을 생성합니다.
