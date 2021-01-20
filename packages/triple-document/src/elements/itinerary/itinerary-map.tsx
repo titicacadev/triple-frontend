@@ -44,25 +44,26 @@ export default function ItineraryMap({ onClickMarker, items }: Props) {
           googleMapLoadOptions={{
             googleMapsApiKey,
           }}
-        />
-      ) : null}
-      {pois.map(({ position, poi: { type }, poi }, i) => {
-        const CircleMarker = ItineraryTypeCircleMarker(type)
+        >
+          {pois.map(({ position, poi: { type }, poi }, i) => {
+            const CircleMarker = ItineraryTypeCircleMarker(type)
 
-        return (
-          <CircleMarker
-            key={i}
-            zIndex={totalPois - i}
-            width={22}
-            height={22}
-            position={position}
-            onClick={generateClickMarkerHandle(poi)}
-          >
-            <strong>{i + 1}</strong>
-          </CircleMarker>
-        )
-      })}
-      <DotPolyline path={polyline}></DotPolyline>
+            return (
+              <CircleMarker
+                key={i}
+                zIndex={totalPois - i}
+                width={22}
+                height={22}
+                position={position}
+                onClick={generateClickMarkerHandle(poi)}
+              >
+                <strong>{i + 1}</strong>
+              </CircleMarker>
+            )
+          })}
+          <DotPolyline path={polyline}></DotPolyline>
+        </MapView>
+      ) : null}
     </Container>
   )
 }
