@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import scrollToElement from 'scroll-to-element'
-import { useCanonicalHash } from '@titicaca/react-hooks'
 
 const Element = styled.div`
-  width: 100%;
   height: 0px;
 `
 
 interface AnchorProps {
   elementId: string
+  canonicalHash: string
   offset?: number
   delayTime?: number
   duration?: number
@@ -21,25 +20,22 @@ interface AnchorProps {
 
 export default function BaseAnchor({
   elementId,
+  canonicalHash,
   offset = -52,
   delayTime = 1500,
   duration,
   align,
-  alias,
 }: AnchorProps) {
-  const { canonicalHash } = useCanonicalHash({ alias })
-
   useEffect(() => {
     if (canonicalHash) {
-      setTimeout(() => {
-        const el = document.getElementById(canonicalHash)
-        if (el) {
+      const el = document.getElementById(canonicalHash)
+      if (el) {
+        setTimeout(() => {
           scrollToElement(el, { offset, duration, align })
-        }
-      }, delayTime)
+        }, delayTime)
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [canonicalHash])
-
   return <Element id={elementId}></Element>
 }
