@@ -13,9 +13,6 @@ interface AnchorProps {
   delayTime?: number
   duration?: number
   align?: 'top' | 'bottom' | 'middle'
-  alias?: {
-    [key: string]: string
-  }
 }
 
 export default function BaseAnchor({
