@@ -136,10 +136,9 @@ function RangePicker({
 
       if (
         !enableSameDay &&
-        !isValidDate(to) &&
-        moment(day)
-          .startOf('day')
-          .isSame(moment(from as any).startOf('day'))
+        nextFrom &&
+        nextTo &&
+        moment(nextFrom).startOf('day').isSame(moment(nextTo).startOf('day'))
       ) {
         return
       }
