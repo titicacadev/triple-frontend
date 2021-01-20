@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### footer
+
+- Default Footer 안 wording을 변경합니다 (#1168)
+
 ## 2.8.0
 
 ### common
