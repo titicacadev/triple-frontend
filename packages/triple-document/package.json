@@ -18,6 +18,7 @@
     "@titicaca/color-palette": "^2.8.0",
     "@titicaca/core-elements": "^2.8.0",
     "@titicaca/intersection-observer": "^2.8.0",
+    "@titicaca/map": "^2.8.0",
     "@titicaca/modals": "^2.8.0",
     "@titicaca/poi-list-elements": "^2.8.0",
     "@titicaca/react-contexts": "^2.8.0",
