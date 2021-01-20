@@ -154,6 +154,15 @@ $ lerna bootstrap
 - 팀 멤버 2인 이상이 승인해야 머지할 수 있습니다.
 - 머지 전 머지 체크리스트를 모두 확인해야 합니다.
 
+### 배포하기
+
+1. 최신 기본 브랜치에서 릴리즈용 브랜치를 만듭니다.
+2. `npm run version` 커맨드로 새로운 버전을 만듭니다.
+3. 새로운 버전의 마일스톤이나 커밋 히스토리를 참고하여 CHANGELOG를 작성합니다.
+4. Pull Request를 생성하여 변경 내역을 기본 브랜치로 머지합니다.
+5. `#triple-web-dev-notifications` 채널에서 `/release triple-frontend main`을 입력하여 CD를 실행합니다.
+6. minor 버전 배포였다면, 다음 minor 버전의 마일스톤을 생성합니다.
+
 ### 주의사항
 
 - npm Workspaces를 이용하지 않는 경우, 새로운 패키지를 추가하거나 패키지 간
