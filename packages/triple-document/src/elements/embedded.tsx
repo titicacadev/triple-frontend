@@ -72,6 +72,7 @@ export default function Embedded({
   onLinkClick,
   onImageClick,
   ImageSource,
+  optimized,
 }: {
   value: {
     entries: TripleElementData[][]
@@ -79,6 +80,7 @@ export default function Embedded({
   onLinkClick: LinkEventHandler
   onImageClick: ImageEventHandler
   ImageSource: ImageSourceType
+  optimized?: boolean
 }) {
   return (
     <DocumentCarousel margin={{ top: 20 }}>
@@ -90,6 +92,7 @@ export default function Embedded({
             return (
               Element && (
                 <Element
+                  optimized={optimized}
                   key={j}
                   value={value}
                   onLinkClick={onLinkClick}
