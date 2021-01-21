@@ -164,7 +164,7 @@
                   }
                 },
                 {
-                  "memo": "",
+                  "memo": "동해물과 백두산 마고 닳도록 메모도 너무 너 길어서 말줄임이 되어 합니.메모 영은 최대 2줄까 표될 수 있어야 합니다.",
                   "schedule": "",
                   "transportation": [
                     {
@@ -183,7 +183,7 @@
                       "type": "restaurant",
                       "regionId": "edf1982d-c835-43a7-b06b-af43acbb6f38",
                       "names": {
-                        "ko": "걸리버스 트래블러 터번 카오산 점",
+                        "ko": "이름 매우 길고 길고 길어서 말줄임이 필요한 POI 이름입니다",
                         "en": "Gulliver's Traveler's Tavern",
                         "local": "บริษัท กัลลิเวอร์ ทาเวิร์น จำกัด"
                       },
