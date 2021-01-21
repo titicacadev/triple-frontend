@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/directions-finder",
-  "version": "2.8.0",
+  "version": "2.9.0",
   "description": "POI directions finder",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,9 +15,9 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^2.8.0",
-    "@titicaca/i18n": "^2.8.0",
-    "@titicaca/popup": "^2.8.0",
-    "@titicaca/react-contexts": "^2.8.0"
+    "@titicaca/core-elements": "^2.9.0",
+    "@titicaca/i18n": "^2.9.0",
+    "@titicaca/popup": "^2.9.0",
+    "@titicaca/react-contexts": "^2.9.0"
   }
 }
