@@ -16,6 +16,7 @@
 ### footer
 
 - Default Footer 안 wording을 변경합니다 (#1168)
+- Footer 패키지에서 사용하는 react-contexts를 peerDependencies에 추가합니다 (#1177)
 
 ### triple-media
 
