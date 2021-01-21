@@ -30,6 +30,9 @@ interface EnvContextValue {
    * 페이지의 기본 설명. meta[name="description"] 태그의 기본 content가 됩니다.
    */
   defaultPageDescription: string
+
+  /** 구글 맵 API Key */
+  googleMapsApiKey?: string
 }
 
 const EnvContext = createContext<EnvContextValue>({
@@ -49,6 +52,7 @@ export function EnvProvider({
   defaultPageTitle,
   defaultPageDescription,
   children,
+  ...rest
 }: PropsWithChildren<EnvContextValue>) {
   const value = useMemo<EnvContextValue>(
     () => ({
@@ -58,6 +62,7 @@ export function EnvProvider({
       facebookAppId,
       defaultPageTitle,
       defaultPageDescription,
+      ...rest,
     }),
     [
       appUrlScheme,
@@ -66,6 +71,7 @@ export function EnvProvider({
       defaultPageTitle,
       facebookAppId,
       webUrlBase,
+      rest,
     ],
   )
   return <EnvContext.Provider value={value}>{children}</EnvContext.Provider>
