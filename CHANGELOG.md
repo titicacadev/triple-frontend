@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 2.9.0
+
+## triple-document
+
+- Triple Document에 지도, 추천컴포넌트 추가 (#1167)
+
 ### footer
 
 - Default Footer 안 wording을 변경합니다 (#1168)
