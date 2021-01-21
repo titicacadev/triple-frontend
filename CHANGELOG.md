@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 2.9.2
+
+### triple-document
+
+- 지도, 추천코스 Poi 메모 영역 line-height 값 조정 (#1184)
+
 ## 2.9.1
 
 ### triple-document
