@@ -5,9 +5,11 @@
 ## 2.9.0
 
 ### date-picker
+
 - enableSameDay가 false일 때 같은날짜를 무시하는 로직 개선 (#1174)
 
 ### triple-document
+
 - optimized prop를 추가 (#1165)
 - Triple Document에 지도, 추천컴포넌트 추가 (#1167)
 
@@ -16,10 +18,12 @@
 - Default Footer 안 wording을 변경합니다 (#1168)
 
 ### triple-media
+
 - OptimizedImg 컴포넌트를 추가합니다 (#1163)
 
 ### image-carousel
-- flicking isPaying 시 clickEvent를 발생 시키지 않음 
+
+- flicking isPaying 시 clickEvent를 발생 시키지 않음
   useRef를 사용하여, react-flicking 내부 인터페이스 사용 (#1162)
 
 ## 2.8.0
