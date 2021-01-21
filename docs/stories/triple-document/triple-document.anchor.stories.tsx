@@ -45,5 +45,5 @@ export function BaseAnchor() {
 }
 
 BaseAnchor.story = {
-    name: 'Anchor'
+  name: 'Anchor'
 }
