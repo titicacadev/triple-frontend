@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 2.9.1
+
+### triple-document
+
+- 지도, 추천코스 Poi 카드 타이틀, 메모 말줄임 처리 (#1180)
+
 ## 2.9.0
 
 ### date-picker
