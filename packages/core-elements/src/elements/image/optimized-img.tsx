@@ -93,7 +93,7 @@ export default function ImageOptimizedImg({
         )
         .join(', ')
 
-      setIsVisible(!isLazy || event.isIntersecting)
+      setIsVisible(event.isIntersecting)
 
       setImgAttributes((prev) => ({
         ...prev,
@@ -106,7 +106,6 @@ export default function ImageOptimizedImg({
       cloudinaryId,
       deviceSizes,
       format,
-      isLazy,
       mediaUrlBase,
       quality,
       version,
@@ -115,7 +114,7 @@ export default function ImageOptimizedImg({
 
   return (
     <IntersectionObserver rootMargin="200px" onChange={handleLazyLoad}>
-      {isVisible || !isLazy ? (
+      {isLazy && isVisible ? (
         <Img
           {...imgAttributes}
           borderRadius={borderRadius}
