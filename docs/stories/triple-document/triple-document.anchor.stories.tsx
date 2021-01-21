@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { ELEMENTS } from '@titicaca/triple-document'
-import { useCanonicalHash } from '@titicaca/react-hooks'
+import { useScrollToAnchor } from '@titicaca/react-hooks'
 
 const Container = styled.div`
   display: flex;
@@ -25,27 +25,21 @@ export function BaseAnchor() {
     window.history.pushState(null, '', '#App')
   })
 
-  const { canonicalHash } = useCanonicalHash({})
+  useScrollToAnchor({ delayTime: 0 })
 
   return (
     <Container>
       <Temp />
       <Anchor
         value={{
-          canonicalHash: canonicalHash,
           elementId: 'App',
-          option: { delayTime: 0 },
         }}
       />
       <div>App</div>
       <Temp />
       <Anchor
         value={{
-          canonicalHash: canonicalHash,
           elementId: 'DApp',
-          option: {
-            delayTime: 0,
-          },
         }}
       />
       <div>DApp</div>
