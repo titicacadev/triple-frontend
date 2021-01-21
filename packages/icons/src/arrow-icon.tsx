@@ -18,7 +18,7 @@ const SVG_ATTRIBUTES_BY_DIRECTION = {
   },
 }
 
-export default function ArrowButton({
+export default function ArrowIcon({
   color,
   strokeWidth = 2,
   opacity = 1,
