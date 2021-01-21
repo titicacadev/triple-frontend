@@ -2,10 +2,10 @@ import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 import IntersectionObserver from '@titicaca/intersection-observer'
 import { generateImageUrl, Version, Quality } from '@titicaca/content-utilities'
+import { brightGray } from '@titicaca/color-palette'
 
 import { useImageState } from './context'
 import { useContentAbsolute } from './fixed-ratio-frame'
-import { Placeholder } from './placeholder'
 
 export interface OptimizedImgProps {
   placeholderSrc?: string
@@ -18,6 +18,28 @@ export interface OptimizedImgProps {
   loading?: 'lazy' | 'eager'
   deviceSizes?: number[]
 }
+
+export const Lazy = styled.div<{
+  src: string
+  absolute: boolean
+}>`
+  width: 100%;
+  height: 100%;
+  background-color: ${brightGray};
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40px 40px;
+  background-image: url(${({ src }) => src});
+
+  ${({ absolute }) =>
+    absolute
+      ? `
+  position: absolute;
+  top: 0;
+  left: 0;
+`
+      : ''}
+`
 
 const Img = styled.img<{
   borderRadius: number
@@ -123,7 +145,7 @@ export default function ImageOptimizedImg({
           decoding="async"
         />
       ) : (
-        <Placeholder src={placeholderSrc} absolute={absolute} />
+        <Lazy src={placeholderSrc} absolute={absolute} />
       )}
     </IntersectionObserver>
   )
