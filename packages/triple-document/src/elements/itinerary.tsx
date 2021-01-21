@@ -60,9 +60,15 @@ const Timeline = styled(FlexBox)`
 
 const PoiCard = styled(Card)`
   flex: 1;
-  padding: 16px 15px;
 `
 
+const CardWrapper = styled(FlexBox)`
+  min-width: 200px;
+
+  > ${PoiCard} {
+    padding: 16px 15px;
+  }
+`
 const Stack = styled(Container)`
   div:first-child ${Timeline} {
     :before {
@@ -79,6 +85,7 @@ const Duration = styled(Container)`
   position: relative;
   bottom: -10px;
   left: -5px;
+  flex-shrink: 0;
 `
 
 const SaveToItineraryButton = styled(Button)`
@@ -178,7 +185,7 @@ export default function ItineraryElement({
                     ) : null}
                   </FlexBox>
                 </Timeline>
-                <FlexBox
+                <CardWrapper
                   flexGrow={1}
                   as="a"
                   onClick={generatePoiClickHandler(regionId, type, id)}
@@ -196,17 +203,16 @@ export default function ItineraryElement({
                       color="gray500"
                       lineHeight={1.4}
                       padding={{ top: 6 }}
-                      ellipsis
                     >
                       {description}
                     </Text>
                     {memo ? (
-                      <Text size={14} margin={{ top: 10 }}>
+                      <Text size={14} margin={{ top: 10 }} maxLines={2}>
                         {memo}
                       </Text>
                     ) : null}
                   </PoiCard>
-                </FlexBox>
+                </CardWrapper>
               </FlexBox>
             )
           })}
