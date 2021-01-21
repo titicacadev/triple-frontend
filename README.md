@@ -156,12 +156,55 @@ $ lerna bootstrap
 
 ### 배포하기
 
-1. 최신 기본 브랜치에서 릴리즈용 브랜치를 만듭니다. `git switch -c release/v1.2.3`
-2. `npm run version` 커맨드로 새로운 버전을 만듭니다.
-3. 새로운 버전의 마일스톤이나 커밋 히스토리를 참고하여 CHANGELOG.md 에 변경사항을 업데이트합니다.
-4. Pull Request를 생성하여 변경 내역을 기본 브랜치로 머지합니다.
-5. `#triple-web-dev-notifications` 채널에서 `/release triple-frontend main`을 입력하여 CD를 실행합니다.
-6. minor 버전 배포였다면, 다음 minor 버전의 마일스톤을 생성합니다.
+메이저, 마이너 버전에 반영할 내용은 마일스톤을 통해 관리합니다. 가장 먼저 할 일은
+이번 릴리즈에 해당하는 마일스톤에서 완료되지 않은 작업을 챙기는 일입니다.
+각 이슈의 작업자에게 찾아가 이번 릴리즈에 포함할 예정인지 물어봅시다. 이번 릴리즈에 포함해야 하는데 리뷰가 덜 된 Pull Request는 리뷰를 독려합니다.
+
+마일스톤의 모든 이슈가 완료되었다면 이제 새 버전을 릴리즈할 차례입니다. 다음 순서로 진행합니다.
+
+최신 기본 브랜치에서 릴리즈용 브랜치를 만듭니다.
+
+```bash
+git switch -c release/v2.9.0
+```
+
+새로운 버전을 올립니다. 원하는 버전을 선택하면 lerna가 알아서 모든 패키지의 버전을 바꿉니다.
+
+```bash
+$ npm run version
+
+> version
+> lerna version --no-push --force-publish
+
+lerna notice cli v3.22.1
+lerna info current version 2.8.0
+lerna WARN force-publish all packages
+lerna info Assuming all packages changed
+? Select a new version (currently 2.8.0) (Use arrow keys)
+  Patch (2.8.1)
+❯ Minor (2.9.0)
+  Major (3.0.0)
+  Prepatch (2.8.1-alpha.0)
+  Preminor (2.9.0-alpha.0)
+  Premajor (3.0.0-alpha.0)
+  Custom Prerelease
+  Custom Version
+```
+
+새로운 버전의 마일스톤이나 커밋 히스토리를 참고하여 `CHANGELOG.md`에 변경 사항을 작성합니다.
+Unreleased 단락에 내용이 작성되어있다면 이를 새 버전 아래로 옮겨줍니다.
+
+Pull Request를 생성하여 변경 내역을 기본 브랜치로 머지합니다.
+
+`#triple-web-dev-notifications` 채널에서 `/release triple-frontend main`을 입력하여 CD를 실행합니다.
+
+릴리즈가 완료되면 마일스톤을 닫고, 다음 minor 버전의 마일스톤을 생성합니다.
+
+#### 패치 릴리즈
+
+심각한 버그가 발견되어 다음 마이너 릴리즈 전에 패치 버전을 릴리즈해야할 수 있습니다.
+이때는 별도의 마일스톤을 생성하진 않고 수정 내역을 반영한 다음 바로 릴리즈 PR을 생성하여 릴리즈합니다.
+`CHANGELOG.md`의 수정 내역은 동일하게 작성합니다.
 
 ### 주의사항
 
