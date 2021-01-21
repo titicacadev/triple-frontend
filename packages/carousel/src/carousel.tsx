@@ -1,16 +1,10 @@
 import styled, { css } from 'styled-components'
-import React, {
-  PropsWithChildren,
-  useRef,
-  useEffect,
-  useState,
-  useMemo,
-} from 'react'
-import uniqid from 'uniqid'
+import React, { PropsWithChildren, useRef, useEffect, useState } from 'react'
 import { useUserAgentContext } from '@titicaca/react-contexts'
-import { ArrowButton } from '@titicaca/icons'
+import { ArrowIcon } from '@titicaca/icons'
 import { Container, MarginPadding, marginMixin } from '@titicaca/core-elements'
-import NativeFlicking, { FlickingOptions } from '@egjs/flicking'
+import { FlickingOptions } from '@egjs/flicking'
+import Flicking from '@egjs/react-flicking'
 
 import CarouselItem from './carousel-item'
 
@@ -48,7 +42,7 @@ const CarouselBase = styled.ul<CarouselBaseProps>`
     `};
 `
 
-const FlickingScrollButton = styled(ArrowButton)<{
+const FlickingScrollButton = styled.button<{
   direction: 'left' | 'right'
   positionRearrange?: number
 }>`
@@ -66,6 +60,9 @@ const FlickingScrollButton = styled(ArrowButton)<{
           right: ${positionRearrange - 30}px;
         `};
   z-index: 60;
+  border: none;
+  background-color: inherit;
+  padding: 0;
 `
 
 const FLICK_ATTRIBUTES: Partial<FlickingOptions> = {
@@ -106,14 +103,13 @@ function Carousel({
   children,
   className,
 }: PropsWithChildren<CarouselBaseProps>) {
-  const carouselRef = useRef() as React.RefObject<HTMLUListElement>
+  const carouselRef = useRef<HTMLUListElement>(null)
+  const flickingRef = useRef<Flicking>(null)
   const [scrollable, setScrollable] = useState(false)
-  const [flicking, setFlicking] = useState<NativeFlicking>()
   const { isMobile } = useUserAgentContext()
-  const uniqueId = useMemo(() => uniqid('egjs-flick-'), [])
 
   useEffect(() => {
-    const carouselElement = carouselRef?.current
+    const carouselElement = carouselRef.current
 
     if (!carouselElement) {
       return
@@ -124,25 +120,27 @@ function Carousel({
     }
   }, [carouselRef])
 
-  useEffect(() => {
-    if (scrollable) {
-      setFlicking(new NativeFlicking(`.${uniqueId}`, FLICK_ATTRIBUTES))
-    }
-  }, [scrollable, uniqueId])
-
   return !isMobile && scrollable ? (
     <Container position="relative" margin={margin} padding={containerPadding}>
       <FlickingScrollButton
         positionRearrange={containerPadding?.left}
         direction="left"
-        onClick={() => flicking?.prev()}
-      />
-      <FlickingContainer className={uniqueId}>{children}</FlickingContainer>
+        onClick={() => flickingRef?.current?.prev()}
+      >
+        <ArrowIcon direction="right" />
+      </FlickingScrollButton>
+      <FlickingContainer>
+        <Flicking ref={flickingRef} {...FLICK_ATTRIBUTES}>
+          {children}
+        </Flicking>
+      </FlickingContainer>
       <FlickingScrollButton
         positionRearrange={containerPadding?.right}
         direction="right"
-        onClick={() => flicking?.next()}
-      />
+        onClick={() => flickingRef?.current?.next()}
+      >
+        <ArrowIcon direction="right" />
+      </FlickingScrollButton>
     </Container>
   ) : (
     <CarouselBase

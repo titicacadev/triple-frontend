@@ -97,6 +97,9 @@ function CarouselItem({
   )
 }
 
+/**
+ * @deprecated @titicaca/carousel 패키지를 사용해주세요.
+ */
 function Carousel({
   margin,
   containerPadding,
@@ -115,7 +118,4 @@ function Carousel({
 }
 
 Carousel.Item = CarouselItem
-/**
- * @deprecated @titicaca/carousel 패키지를 사용해주세요.
- */
 export default Carousel
