@@ -1,23 +1,23 @@
-import React, {useEffect} from 'react';
-import styled from 'styled-components';
+import React, { useEffect } from 'react'
+import styled from 'styled-components'
 import { ELEMENTS } from '@titicaca/triple-document'
-import { useCanonicalHash} from '@titicaca/react-hooks'
+import { useCanonicalHash } from '@titicaca/react-hooks'
 
- const Container= styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
- `
+`
 
 const Temp = styled.div`
   width: 100%;
   height: 200vh;
 `
 
-const { anchor: Anchor} = ELEMENTS
+const { anchor: Anchor } = ELEMENTS
 
 export default {
-  title: 'TripleDocument | TripleDocument.Anchor'
+  title: 'TripleDocument | TripleDocument.Anchor',
 }
 
 export function BaseAnchor() {
@@ -29,21 +29,31 @@ export function BaseAnchor() {
 
   return (
     <Container>
-      <Temp/>
-      <Anchor canonicalHash={canonicalHash} elementId={'App'} delayTime={0} />
-        <div>
-          App
-        </div>
-      <Temp/>
-      <Anchor canonicalHash={canonicalHash} elementId={'DApp'} />
-        <div>
-          DApp
-        </div>       
-      <Temp/>
+      <Temp />
+      <Anchor
+        value={{
+          canonicalHash: canonicalHash,
+          elementId: 'App',
+          option: { delayTime: 0 },
+        }}
+      />
+      <div>App</div>
+      <Temp />
+      <Anchor
+        value={{
+          canonicalHash: canonicalHash,
+          elementId: 'DApp',
+          option: {
+            delayTime: 0,
+          },
+        }}
+      />
+      <div>DApp</div>
+      <Temp />
     </Container>
   )
 }
 
 BaseAnchor.story = {
-  name: 'Anchor'
+  name: 'Anchor',
 }

@@ -7,6 +7,7 @@ interface Props {
 }
 export function useCanonicalHash({ alias }: Props) {
   const [canonicalHash, setCanonicalHash] = useState('')
+
   useEffect(() => {
     const replacedHash = window.location.hash
       ? window.location.hash.replace(/^#/, '')
