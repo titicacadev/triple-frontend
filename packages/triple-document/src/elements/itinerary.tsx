@@ -207,7 +207,12 @@ export default function ItineraryElement({
                       {description}
                     </Text>
                     {memo ? (
-                      <Text size={14} margin={{ top: 10 }} maxLines={2}>
+                      <Text
+                        size={14}
+                        margin={{ top: 10 }}
+                        maxLines={2}
+                        lineHeight="18px"
+                      >
                         {memo}
                       </Text>
                     ) : null}
