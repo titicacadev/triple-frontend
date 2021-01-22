@@ -62,7 +62,10 @@ export default function SocialReviews({
               >
                 <Image borderRadius={4}>
                   <Image.FixedRatioFrame frame="big">
-                    <Image.Img src={imageUrl} alt={`${title} 썸네일`} />
+                    <Image.Img
+                      src={`/api/images/cast?url=${imageUrl}&transformation=c_fill,f_auto,h_256,w_256`}
+                      alt={`${title} 썸네일`}
+                    />
                   </Image.FixedRatioFrame>
                 </Image>
               </Container>
