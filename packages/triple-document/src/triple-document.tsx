@@ -29,6 +29,7 @@ import {
   Table,
   TnaProductsList,
   Itinerary,
+  Anchor,
 } from './elements'
 import {
   TripleElementData,
@@ -84,6 +85,7 @@ export const ELEMENTS: ElementSet = {
   table: Table,
   coupon: Coupon,
   itinerary: Itinerary,
+  anchor: Anchor,
 }
 
 export function TripleDocument({
