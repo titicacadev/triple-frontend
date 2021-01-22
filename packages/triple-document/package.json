@@ -21,16 +21,17 @@
     "@titicaca/map": "^2.9.2",
     "@titicaca/modals": "^2.9.2",
     "@titicaca/poi-list-elements": "^2.9.2",
-    "@titicaca/react-contexts": "^2.9.2",
     "@titicaca/standard-action-handler": "^2.9.2",
     "@titicaca/triple-media": "^2.9.2",
     "@titicaca/type-definitions": "^2.9.2",
     "@titicaca/view-utilities": "^2.9.2",
+    "@titicaca/ui-flow": "^2.9.2",
     "isomorphic-fetch": "^2.2.1",
     "semver": "^7.3.2"
   },
   "peerDependencies": {
-    "@sentry/browser": "^5.4.3"
+    "@sentry/browser": "^5.4.3",
+    "@titicaca/react-contexts": "^2.9.2"
   },
   "devDependencies": {
     "@sentry/browser": "^5.4.3",
