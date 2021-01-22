@@ -15,7 +15,7 @@ export default {
 
 export function BaseAnchor() {
   useEffect(() => {
-    window.history.pushState(null, '', '#andorid')
+    window.history.pushState(null, '', '#android')
   }, [])
 
   useScrollToAnchor({ delayTime: 0 })
@@ -24,10 +24,10 @@ export function BaseAnchor() {
     <div>
       <EmptyArea />
       <div>Android</div>
-      <Anchor value={{ href: '#android' }} />
+      <Anchor value={{ href: 'android' }} />
       <EmptyArea />
       <div>ios</div>
-      <Anchor value={{ href: '#ios' }} />
+      <Anchor value={{ href: 'ios' }} />
     </div>
   )
 }
