@@ -36,6 +36,7 @@ const Img = styled.img<{
     position: absolute;
     top: 0;
   `}
+  z-index: 1;
 `
 
 export default function ImageOptimizedImg({
@@ -93,7 +94,7 @@ export default function ImageOptimizedImg({
         )
         .join(', ')
 
-      setIsVisible(!isLazy || event.isIntersecting)
+      setIsVisible(event.isIntersecting)
 
       setImgAttributes((prev) => ({
         ...prev,
@@ -115,7 +116,7 @@ export default function ImageOptimizedImg({
 
   return (
     <IntersectionObserver rootMargin="200px" onChange={handleLazyLoad}>
-      {isVisible || !isLazy ? (
+      {isLazy && isVisible ? (
         <Img
           {...imgAttributes}
           borderRadius={borderRadius}

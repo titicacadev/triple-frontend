@@ -12,6 +12,7 @@ const SourceUrlContainer = styled.div`
   font-size: 9px;
   line-height: 1.2;
   color: rgba(255, 255, 255, 0.9);
+  z-index: 2;
 `
 
 export default function ImageSourceUrl({ children }: PropsWithChildren<{}>) {
