@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { white, brightGray } from '@titicaca/color-palette'
+import { layeringMixin, LayeringMixinProps } from '@titicaca/core-elements'
 
 enum MarketType {
   appStore = 'appStore',
@@ -10,15 +11,17 @@ enum MarketType {
 const MIN_DESKTOP_WIDTH = 1142
 const MAX_PHONE_WIDTH = 1141
 
-const HeaderFrame = styled.header<{
-  fixed?: boolean
-  minWidth?: number
-  mobileViewHeight?: number
-  borderless?: boolean
-}>`
+const HeaderFrame = styled.header<
+  {
+    fixed?: boolean
+    minWidth?: number
+    mobileViewHeight?: number
+    borderless?: boolean
+  } & LayeringMixinProps
+>`
   background-color: ${white};
   position: sticky;
-  z-index: 1;
+  ${layeringMixin(0)}
   ${({ fixed }) =>
     fixed &&
     css`
@@ -150,6 +153,8 @@ export default function PublicHeader({
   fixed,
   minWidth,
   borderless = false,
+  zTier,
+  zIndex = 1,
   ...props
 }: {
   href?: string
@@ -160,12 +165,14 @@ export default function PublicHeader({
   mobileViewHeight?: number
   borderless?: boolean
   children?: React.ReactNode
-}) {
+} & LayeringMixinProps) {
   return (
     <HeaderFrame
       fixed={fixed}
       minWidth={minWidth}
       borderless={borderless}
+      zTier={zTier}
+      zIndex={zIndex}
       {...props}
     >
       <Logo href={href || 'https://triple.guide'}>TRIPLE</Logo>
