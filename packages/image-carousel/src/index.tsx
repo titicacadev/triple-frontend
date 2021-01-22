@@ -41,6 +41,7 @@ interface ImageCarouselProps extends Omit<CarouselProps, 'pageLabelRenderer'> {
   showMoreRenderer?: (params: RendererProps) => React.ReactNode
   pageLabelRenderer?: (params: RendererProps) => React.ReactNode
   displayedTotalCount?: number
+  optimized?: boolean
 }
 
 export default class ImageCarousel extends React.PureComponent<
@@ -99,6 +100,7 @@ export default class ImageCarousel extends React.PureComponent<
       ImageSource,
       showMoreRenderer,
       displayedTotalCount,
+      optimized,
     } = this.props
 
     const { carouselProps } = this
@@ -129,11 +131,6 @@ export default class ImageCarousel extends React.PureComponent<
 
             return (
               <>
-                <Image.Img
-                  src={sizes.large.url}
-                  alt={title || description || undefined}
-                />
-
                 <Image.SourceUrl>
                   {ImageSource ? (
                     <ImageSource sourceUrl={sourceUrl} />
@@ -147,6 +144,19 @@ export default class ImageCarousel extends React.PureComponent<
                     {overlayContent}
                   </Image.Overlay>
                 ) : null}
+
+                {!optimized ? (
+                  <Image.Img
+                    src={sizes.large.url}
+                    alt={title || description || undefined}
+                  />
+                ) : (
+                  <Image.OptimizedImg
+                    cloudinaryId={image.cloudinaryId as string}
+                    cloudinaryBucket={image.cloudinaryBucket}
+                    alt={title || description || undefined}
+                  />
+                )}
               </>
             )
           }
