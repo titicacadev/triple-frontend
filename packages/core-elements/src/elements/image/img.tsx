@@ -21,6 +21,7 @@ const Img = styled.img<{
     position: absolute;
     top: 0;
   `}
+  z-index: 1;
 `
 
 export default function ImageImg(
