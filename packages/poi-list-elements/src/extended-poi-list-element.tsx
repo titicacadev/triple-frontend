@@ -50,7 +50,8 @@ export function ExtendedPoiListElement<T extends ListingPOI>({
   as,
   isAdvertisement,
   notes,
-}: ExtendedPoiListElementProps<T>) {
+  optimized,
+}: ExtendedPoiListElementProps<T> & { optimized?: boolean }) {
   const { deriveCurrentStateAndCount } = useScrapsContext()
   const {
     source: { starRating },
@@ -98,6 +99,7 @@ export function ExtendedPoiListElement<T extends ListingPOI>({
       hideScrapButton={hideScrapButton}
       maxCommentLines={maxCommentLines}
       isAdvertisement={isAdvertisement}
+      optimized={optimized}
     />
   )
 }

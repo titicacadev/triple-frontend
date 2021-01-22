@@ -26,6 +26,7 @@ export default function PoiCarouselElement<
   titleTopSpacing = 10,
   imageFrame,
   onImpress,
+  optimized,
 }: POIListElementBaseProps<T> & {
   actionButtonElement?: ActionButtonElement
   description?: React.ReactNode
@@ -34,6 +35,7 @@ export default function PoiCarouselElement<
   titleTopSpacing?: number
   imageFrame?: FrameRatioAndSizes
   onImpress?: () => void
+  optimized?: boolean
 }) {
   if (!poi) {
     return null
@@ -56,7 +58,15 @@ export default function PoiCarouselElement<
       <Image>
         <Image.FixedRatioFrame frame={imageFrame || 'large'}>
           {image ? (
-            <Image.Img src={image.sizes.large.url} alt={name || ''} />
+            !optimized ? (
+              <Image.Img src={image.sizes.large.url} alt={name || ''} />
+            ) : (
+              <Image.OptimizedImg
+                cloudinaryId={image.cloudinaryId as string}
+                cloudinaryBucket={image.cloudinaryBucket}
+                alt={name || ''}
+              />
+            )
           ) : (
             <Image.Placeholder src={POI_IMAGE_PLACEHOLDERS[type]} />
           )}

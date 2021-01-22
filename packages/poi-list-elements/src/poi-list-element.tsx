@@ -12,7 +12,7 @@ import {
 
 export type PoiListElementProps<T extends ListingPOI> =
   | ({ compact: true } & CompactPoiListElementProps<T>)
-  | ({ compact?: false } & ExtendedPoiListElementProps<T>)
+  | ({ compact?: false; optimized?: boolean } & ExtendedPoiListElementProps<T>)
 
 export function PoiListElement<T extends ListingPOI>({
   compact,
