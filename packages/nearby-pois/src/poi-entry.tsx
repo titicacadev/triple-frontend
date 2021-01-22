@@ -18,10 +18,12 @@ export default function PoiEntry({
     source: { regionId },
   },
   eventLabel,
+  optimized,
 }: {
   index: number
   poi: ListingPOI
   eventLabel: string
+  optimized?: boolean
 }) {
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
   const { navigate } = useHistoryFunctions()
@@ -53,7 +55,12 @@ export default function PoiEntry({
   return (
     <IntersectionObserver key={id} onChange={handleIntersectionChange}>
       <List.Item>
-        <PoiListElement as="div" poi={poi} onClick={handleClick} />
+        <PoiListElement
+          as="div"
+          poi={poi}
+          onClick={handleClick}
+          optimized={optimized}
+        />
       </List.Item>
     </IntersectionObserver>
   )
