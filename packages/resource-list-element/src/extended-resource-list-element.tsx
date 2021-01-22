@@ -98,7 +98,13 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
           <Image>
             <Image.FixedDimensionsFrame size="small" width={90} floated="right">
               {image ? (
-                !optimized ? (
+                optimized ? (
+                  <Image.OptimizedImg
+                    cloudinaryId={image.cloudinaryId as string}
+                    cloudinaryBucket={image.cloudinaryBucket}
+                    alt={name}
+                  />
+                ) : (
                   <Image.Img
                     src={
                       ('small_square' in image.sizes
@@ -106,12 +112,6 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
                         : image.sizes.smallSquare
                       ).url
                     }
-                    alt={name}
-                  />
-                ) : (
-                  <Image.OptimizedImg
-                    cloudinaryId={image.cloudinaryId as string}
-                    cloudinaryBucket={image.cloudinaryBucket}
                     alt={name}
                   />
                 )

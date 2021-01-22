@@ -75,6 +75,7 @@ export default function POICardElement({
   areaName,
   onClick,
   onDirectionButtonClick,
+  optimized,
 }: {
   id: string
   type: ListingPOI['type']
@@ -96,6 +97,7 @@ export default function POICardElement({
   areaName?: string
   onClick?: MouseEventHandler<HTMLDivElement>
   onDirectionButtonClick: Parameters<typeof DirectionButton>[0]['onClick']
+  optimized?: boolean
 }) {
   const { deriveCurrentStateAndCount } = useScrapsContext()
   const { scrapsCount } = deriveCurrentStateAndCount({
@@ -120,13 +122,20 @@ export default function POICardElement({
           <Image>
             <Image.FixedDimensionsFrame width={IMAGE_WIDTH} height={72}>
               {image ? (
-                <Image.Img
-                  src={
-                    'smallSquare' in image.sizes
-                      ? image.sizes.smallSquare.url
-                      : image.sizes.small_square.url
-                  }
-                />
+                optimized ? (
+                  <Image.OptimizedImg
+                    cloudinaryId={image.cloudinaryId as string}
+                    cloudinaryBucket={image.cloudinaryBucket}
+                  />
+                ) : (
+                  <Image.Img
+                    src={
+                      'smallSquare' in image.sizes
+                        ? image.sizes.smallSquare.url
+                        : image.sizes.small_square.url
+                    }
+                  />
+                )
               ) : (
                 <Image.Placeholder src={IMAGE_PLACEHOLDERS[type]} />
               )}

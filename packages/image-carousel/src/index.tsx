@@ -145,15 +145,15 @@ export default class ImageCarousel extends React.PureComponent<
                   </Image.Overlay>
                 ) : null}
 
-                {!optimized ? (
-                  <Image.Img
-                    src={sizes.large.url}
-                    alt={title || description || undefined}
-                  />
-                ) : (
+                {optimized ? (
                   <Image.OptimizedImg
                     cloudinaryId={image.cloudinaryId as string}
                     cloudinaryBucket={image.cloudinaryBucket}
+                    alt={title || description || undefined}
+                  />
+                ) : (
+                  <Image.Img
+                    src={sizes.large.url}
                     alt={title || description || undefined}
                   />
                 )}

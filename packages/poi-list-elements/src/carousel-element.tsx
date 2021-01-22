@@ -58,14 +58,14 @@ export default function PoiCarouselElement<
       <Image>
         <Image.FixedRatioFrame frame={imageFrame || 'large'}>
           {image ? (
-            !optimized ? (
-              <Image.Img src={image.sizes.large.url} alt={name || ''} />
-            ) : (
+            optimized ? (
               <Image.OptimizedImg
                 cloudinaryId={image.cloudinaryId as string}
                 cloudinaryBucket={image.cloudinaryBucket}
                 alt={name || ''}
               />
+            ) : (
+              <Image.Img src={image.sizes.large.url} alt={name || ''} />
             )
           ) : (
             <Image.Placeholder src={POI_IMAGE_PLACEHOLDERS[type]} />
