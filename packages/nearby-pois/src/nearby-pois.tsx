@@ -49,12 +49,14 @@ export default function NearbyPois({
   geolocation: {
     coordinates: [lon, lat],
   },
+  optimized,
   ...props
 }: {
   poiId: string
   regionId: string
   initialTab?: PoiType
   geolocation: PointGeoJSON
+  optimized?: boolean
 } & Parameters<typeof Section>['0']) {
   const [{ currentTab, ...state }, dispatch] = useReducer(nearbyPoisReducer, {
     ...INITIAL_STATE,
@@ -169,6 +171,7 @@ export default function NearbyPois({
                 index={i}
                 poi={poi}
                 eventLabel={EVENT_LABELS[currentTab]}
+                optimized={optimized}
               />
             ))}
           </List>
