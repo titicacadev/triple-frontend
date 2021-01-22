@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 interface Props {
   value: {
-    elementId: string
+    href: string
   }
 }
 
@@ -12,7 +12,7 @@ const Element = styled.div`
 `
 
 export default function BaseAnchor({ value }: Props) {
-  const { elementId } = value
+  const { href } = value
 
-  return <Element id={elementId}></Element>
+  return <Element id={href}></Element>
 }
