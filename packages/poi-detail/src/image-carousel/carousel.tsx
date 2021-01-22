@@ -41,12 +41,14 @@ export default function Carousel({
   onImageClick,
   onCTAClick,
   onImagesFetch,
+  optimized,
 }: {
   images: CarouselImageMeta[]
   totalImagesCount: number
   onImageClick: (image: ImageMeta) => void
   onCTAClick: () => void
   onImagesFetch: () => void
+  optimized?: boolean
 }) {
   const { isPublic } = useUserAgentContext()
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
@@ -131,6 +133,7 @@ export default function Carousel({
             ImageSource={ImageSource}
             showMoreRenderer={CTA}
             pageLabelRenderer={ConditionalPageLabel}
+            optimized={optimized}
           />
         </FixedRatio>
       </Responsive>
@@ -147,6 +150,7 @@ export default function Carousel({
             ImageSource={ImageSource}
             showMoreRenderer={CTA}
             pageLabelRenderer={ConditionalPageLabel}
+            optimized={optimized}
           />
         </Container>
       </Responsive>
