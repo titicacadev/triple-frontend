@@ -43,6 +43,8 @@ export default function Media({
     video,
     frame: mediaFrame,
     sourceUrl,
+    title,
+    description,
   } = media
 
   if (type && type === 'video' && video) {
@@ -68,21 +70,25 @@ export default function Media({
         frame={mediaFrame || frame}
         onClick={onClick && ((e: React.SyntheticEvent) => onClick(e, media))}
       >
-        {media && optimized ? (
-          <Image.OptimizedImg
-            cloudinaryId={cloudinaryId || id}
-            cloudinaryBucket={cloudinaryBucket}
-            {...props}
-          />
-        ) : (
-          <Image.Img src={sizes.large.url} />
-        )}
-
         {sourceUrl ? (
           <Image.SourceUrl>
             {ImageSource ? <ImageSource sourceUrl={sourceUrl} /> : sourceUrl}
           </Image.SourceUrl>
         ) : null}
+
+        {media && optimized ? (
+          <Image.OptimizedImg
+            cloudinaryId={cloudinaryId || id}
+            cloudinaryBucket={cloudinaryBucket}
+            alt={title || description || undefined}
+            {...props}
+          />
+        ) : (
+          <Image.Img
+            src={sizes.large.url}
+            alt={title || description || undefined}
+          />
+        )}
       </Image.FixedRatioFrame>
     </Image>
   )
