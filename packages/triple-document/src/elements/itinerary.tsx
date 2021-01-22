@@ -27,6 +27,7 @@ import {
   Plane,
   Download,
 } from './itinerary/icons'
+import useHandleAddPoisToTrip from './itinerary/use-handle-add-pois-to-trip'
 
 interface Props {
   value: {
@@ -94,12 +95,10 @@ const SaveToItineraryButton = styled(Button)`
   }
 `
 
-export default function ItineraryElement({
-  value,
-  onClickSaveToItinerary,
-}: Props) {
+export default function ItineraryElement({ value }: Props) {
   const { navigate } = useHistoryFunctions()
   const { courses, regionId, poiIds } = useItinerary(value)
+  const addPoisToTrip = useHandleAddPoisToTrip(regionId)
 
   const generatePoiClickHandler = useCallback(
     (
@@ -120,8 +119,9 @@ export default function ItineraryElement({
   )
 
   const handleSaveToItinerary = useCallback(() => {
-    onClickSaveToItinerary(regionId, poiIds)
-  }, [onClickSaveToItinerary, regionId, poiIds])
+    addPoisToTrip(poiIds)
+    /** TODO: event tracking */
+  }, [poiIds, addPoisToTrip])
 
   return (
     <Container margin={{ top: 10, bottom: 10 }}>
