@@ -107,7 +107,6 @@ export default function ImageOptimizedImg({
       cloudinaryId,
       deviceSizes,
       format,
-      isLazy,
       mediaUrlBase,
       quality,
       version,
