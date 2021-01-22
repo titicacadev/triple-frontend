@@ -14,6 +14,7 @@ export default function ImageCarousel(
     | 'onCTAClick'
     | 'onPlaceholderClick'
     | 'margin'
+    | 'optimized'
   >,
 ) {
   const {
