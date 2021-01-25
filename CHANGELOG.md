@@ -6,7 +6,7 @@
 
 ### social-reviews
 
-- Support placeholder image for social reviews (1193)
+- Support placeholder image for social reviews (#1193)
 
 ### triple-document
 
