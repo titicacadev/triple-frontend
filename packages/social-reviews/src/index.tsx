@@ -27,9 +27,11 @@ export interface SocialReview {
 }
 
 export default function SocialReviews({
+  placeholderImageUrl,
   socialReviews,
   ...props
 }: {
+  placeholderImageUrl?: string
   socialReviews?: SocialReview[]
 } & Parameters<typeof Section>['0']) {
   const { trackSimpleEvent } = useEventTrackingContext()
@@ -69,7 +71,13 @@ export default function SocialReviews({
                           imageUrl,
                         )}&transformation=${encodeURIComponent(
                           'c_fill,f_auto,q_auto,h_256,w_256',
-                        )}`
+                        )}${
+                          placeholderImageUrl
+                            ? `&placeholder=${encodeURIComponent(
+                                placeholderImageUrl,
+                              )}`
+                            : ''
+                        }`
                       }
                       alt={`${title} 썸네일`}
                     />
