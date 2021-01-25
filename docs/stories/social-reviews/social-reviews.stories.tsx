@@ -8,6 +8,7 @@ export default {
 export function BaseSocialReviews() {
   return (
     <SocialReviews
+      placeholderImageUrl="https://assets.triple-dev.titicaca-corp.com/images/img-empty-contents@3x.png"
       socialReviews={[
         {
           imageUrl:
