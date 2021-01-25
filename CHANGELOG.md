@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+## 2.10.0
+
+### social-reviews
+
+- Support placeholder image for social reviews (1193)
+
+### triple-document
+
+- 임의의 anchor 컴포넌트 추가 (#1190)
+- 지도,추천코스 > 일정담기 이벤트 핸들처리 로직 추가 (#1191)
+
 ## 2.9.2
 
 ### triple-document
