@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [common] peerDependencies에 이미 있는 모듈을 devDependencies에서 제거합니다 (#1186)
+
 ## 2.10.0
 
 ### social-reviews
