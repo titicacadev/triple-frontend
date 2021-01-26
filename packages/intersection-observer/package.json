@@ -13,8 +13,5 @@
   },
   "peerDependencies": {
     "next": "*"
-  },
-  "devDependencies": {
-    "next": "^9.0.5"
   }
 }
