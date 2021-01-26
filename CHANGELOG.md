@@ -2,7 +2,13 @@
 
 ## Unreleased
 
+## 2.10.1
+
 - [common] peerDependencies에 이미 있는 모듈을 devDependencies에서 제거합니다 (#1186)
+
+### triple-document
+
+- 지도, 추천코스 아이템이 없는 케이스에 대한 예외처리 (#1194)
 
 ## 2.10.0
 
