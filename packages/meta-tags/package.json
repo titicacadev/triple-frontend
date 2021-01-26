@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/meta-tags",
-  "version": "2.10.0",
+  "version": "2.10.1",
   "description": "Triple Web Application Meta tag modules",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,6 +15,6 @@
     "next": "*"
   },
   "dependencies": {
-    "@titicaca/react-contexts": "^2.10.0"
+    "@titicaca/react-contexts": "^2.10.1"
   }
 }
