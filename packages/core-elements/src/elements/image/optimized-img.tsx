@@ -111,11 +111,7 @@ export default function ImageOptimizedImg({
   )
 
   return (
-    <IntersectionObserver
-      rootMargin="-100px"
-      threshold={0.5}
-      onChange={handleLazyLoad}
-    >
+    <IntersectionObserver rootMargin="-100px" onChange={handleLazyLoad}>
       <Img
         {...imgAttributes}
         borderRadius={borderRadius}
