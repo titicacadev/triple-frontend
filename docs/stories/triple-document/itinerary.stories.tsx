@@ -2,7 +2,8 @@ import React from 'react'
 import { ELEMENTS } from '@titicaca/triple-document'
 import { action } from '@storybook/addon-actions'
 import { StoryFn } from '@storybook/addons'
-import { EnvProvider } from '@titicaca/react-contexts'
+import { boolean } from "@storybook/addon-knobs";
+import { EnvProvider, SessionContextProvider } from '@titicaca/react-contexts'
 
 import mock from '../__mocks__/triple-document.itinerary.json'
 
@@ -19,7 +20,13 @@ function envProviderDecorator(storyFn: StoryFn<JSX.Element>) {
       defaultPageDescription=""
       googleMapsApiKey="AIzaSyBaOSog5Kc4PkNw1JiSIcvz8WHt1Y78lNU"
     >
-      {storyFn()}
+      <SessionContextProvider
+        sessionId={
+          boolean('hasSessionId', false) ? 'MOCK_SESSION_ID' : undefined
+        }
+      >
+        {storyFn()}
+      </SessionContextProvider>
     </EnvProvider>
   )
 }

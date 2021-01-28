@@ -37,12 +37,12 @@ export const TagLabel = styled.div`
     background-color: ${white};
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
     top: 50%;
-    right: -14px;
+    right: -15px;
 
     position: absolute;
     content: '';
     z-index: -1;
-    width: 17px;
-    height: 17px;
+    width: 18px;
+    height: 18px;
   }
 `
