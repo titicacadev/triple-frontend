@@ -2,10 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { Section, Carousel, Responsive, H1 } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'
-
-import InstallBannel from '../intall-bannel'
-import { fetchInstallBannel } from '../intall-bannel/api'
-import { Bannel } from '../intall-bannel/type'
+import { PoiDetailCTA } from '@titicaca/app-installation-cta'
 
 import { fetchRecommendedArticles } from './api-client'
 import { ArticleListingData } from './types'
@@ -28,8 +25,6 @@ export default function RecommendedArticles({
     ArticleListingData[]
   >([])
 
-  const [installBannel, setInstallBannel] = useState<Bannel[]>([])
-
   const { show } = useTransitionModal()
   const { trackEvent } = useEventTrackingContext()
 
@@ -38,13 +33,8 @@ export default function RecommendedArticles({
       setRecommendedArticles(await fetchRecommendedArticles({ regionId }))
     }
 
-    async function fetchAndSetInstallBannel() {
-      setInstallBannel(await fetchInstallBannel({ inventoryId }))
-    }
-
     fetchAndSetRecommendedArticles()
-    fetchAndSetInstallBannel()
-  }, [regionId, inventoryId, setRecommendedArticles, setInstallBannel])
+  }, [regionId, setRecommendedArticles])
 
   const handleIntersect = useCallback(
     (intersectingArticle: ArticleListingData) => {
@@ -77,8 +67,8 @@ export default function RecommendedArticles({
           margin={{ top: 20 }}
           containerPadding={{ left: 110, right: 110 }}
         >
-          <Carousel.Item key={installBannel[0].id} size="medium">
-            <InstallBannel bannel={installBannel[0]} />
+          <Carousel.Item key={inventoryId} size="medium">
+            <PoiDetailCTA inventoryId={inventoryId} />
           </Carousel.Item>
 
           {recommendedArticles.map((article) => (

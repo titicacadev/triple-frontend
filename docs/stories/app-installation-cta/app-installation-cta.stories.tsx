@@ -6,7 +6,9 @@ import {
   TextBanner,
   BannerCTA,
   FloatingButtonCTA,
+  PoiDetailCTA,
 } from '@titicaca/app-installation-cta'
+import { Carousel } from '@titicaca/core-elements'
 
 export default {
   title: 'app-installation-cta | AppInstallationCTA',
@@ -81,4 +83,19 @@ export function BaseBannerCTA() {
 
 BaseBannerCTA.story = {
   name: '배너 CTA',
+}
+
+export function BasePoiDetailCTA() {
+  return (
+    <div>
+      <Carousel
+        margin={{ top: 20 }}
+        containerPadding={{ left: 110, right: 110 }}
+      >
+        <Carousel.Item key={'d'} size="medium">
+          <PoiDetailCTA inventoryId="d" />
+        </Carousel.Item>
+      </Carousel>
+    </div>
+  )
 }
