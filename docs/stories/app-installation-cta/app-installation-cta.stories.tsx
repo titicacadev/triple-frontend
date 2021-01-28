@@ -93,7 +93,7 @@ export function BasePoiDetailCTA() {
         containerPadding={{ left: 110, right: 110 }}
       >
         <Carousel.Item key={'d'} size="medium">
-          <PoiDetailCTA inventoryId="d" />
+          <PoiDetailCTA inventoryId={text('인벤토리 ID', 'd')} installURL={text('설치 URL', 'https://triple-dev.titicaca-corp.com')} />
         </Carousel.Item>
       </Carousel>
     </div>

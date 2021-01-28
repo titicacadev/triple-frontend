@@ -11,10 +11,12 @@ import MoreButton from './more-button'
 
 export default function RecommendedArticles({
   inventoryId,
+  installURL,
   regionId,
   onArticleClick,
 }: {
   inventoryId: string
+  installURL: string
   regionId: string
   onArticleClick: (
     e: React.SyntheticEvent,
@@ -68,7 +70,7 @@ export default function RecommendedArticles({
           containerPadding={{ left: 110, right: 110 }}
         >
           <Carousel.Item key={inventoryId} size="medium">
-            <PoiDetailCTA inventoryId={inventoryId} />
+            <PoiDetailCTA inventoryId={inventoryId} installURL={installURL} />
           </Carousel.Item>
 
           {recommendedArticles.map((article) => (

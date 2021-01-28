@@ -5,16 +5,18 @@ import { InventoryItem } from '../interfaces'
 
 export default function PoiDetailInstall({
   inventory,
+  installURL,
 }: {
-  inventory: InventoryItem
+  inventory?: InventoryItem
+  installURL?: string
 }) {
   return (
-    <div>
+    <a href={installURL}>
       <Image borderRadius={6}>
         <Image.FixedRatioFrame frame="huge" onClick={() => null}>
           <Image.Img src={inventory && inventory.image} />
         </Image.FixedRatioFrame>
       </Image>
-    </div>
+    </a>
   )
 }

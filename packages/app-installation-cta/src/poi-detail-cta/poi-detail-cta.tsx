@@ -5,14 +5,10 @@ import { InventoryItem } from '../interfaces'
 
 import PoiDetailInstall from './poi-detail-install'
 
-interface Props {
-  inventory: InventoryItem
-}
-
 async function fetchInstallAppInventory({
   inventoryId,
 }: {
-  inventoryId: string
+  inventoryId?: string
 }): Promise<any> {
   const response = await fetch(`/api/inventories/v1/${inventoryId}/items`, {
     credentials: 'same-origin',
@@ -21,7 +17,13 @@ async function fetchInstallAppInventory({
   return items
 }
 
-export default function PoiDetailCTA({ inventoryId }: { inventoryId: string }) {
+export default function PoiDetailCTA({
+  inventoryId,
+  installURL,
+}: {
+  inventoryId?: string
+  installURL?: string
+}) {
   const [inventories, setInventories] = useState<InventoryItem[]>([])
 
   useEffect(() => {
@@ -32,5 +34,5 @@ export default function PoiDetailCTA({ inventoryId }: { inventoryId: string }) {
     fetchAndSetInventories()
   }, [inventoryId, setInventories])
 
-  return <PoiDetailInstall inventory={inventories[0]} />
+  return <PoiDetailInstall inventory={inventories[0]} installURL={installURL} />
 }
