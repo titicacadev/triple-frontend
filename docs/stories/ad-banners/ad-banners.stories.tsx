@@ -134,9 +134,7 @@ export function HotelListAdBanners() {
         right: number('섹션 오른쪽 패딩', 0),
       }}
       onBannersFetch={async () => {
-        const response = await fetch('/api/inventories/v1/d/items', {
-          credentials: 'same-origin',
-        })
+        const response = await fetch('/api/inventories/v1/hotels/items')
         const { items = [] } = await response.json()
         return items
       }}
