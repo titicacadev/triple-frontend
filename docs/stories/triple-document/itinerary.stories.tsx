@@ -2,7 +2,7 @@ import React from 'react'
 import { ELEMENTS } from '@titicaca/triple-document'
 import { action } from '@storybook/addon-actions'
 import { StoryFn } from '@storybook/addons'
-import { boolean } from "@storybook/addon-knobs";
+import { boolean } from '@storybook/addon-knobs'
 import { EnvProvider, SessionContextProvider } from '@titicaca/react-contexts'
 
 import mock from '../__mocks__/triple-document.itinerary.json'
