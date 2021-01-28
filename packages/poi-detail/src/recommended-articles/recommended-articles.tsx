@@ -15,8 +15,8 @@ export default function RecommendedArticles({
   regionId,
   onArticleClick,
 }: {
-  inventoryId: string
-  installURL: string
+  inventoryId?: string
+  installURL?: string
   regionId: string
   onArticleClick: (
     e: React.SyntheticEvent,
