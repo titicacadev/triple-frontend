@@ -5,6 +5,7 @@ import { generateImageUrl, Version, Quality } from '@titicaca/content-utilities'
 
 import { useImageState } from './context'
 import { useContentAbsolute } from './fixed-ratio-frame'
+import { Placeholder } from './placeholder'
 
 export interface OptimizedImgProps {
   placeholderSrc?: string
