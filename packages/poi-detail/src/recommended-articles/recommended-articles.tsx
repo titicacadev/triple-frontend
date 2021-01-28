@@ -3,15 +3,21 @@ import { Section, Carousel, Responsive, H1 } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'
 
+import InstallBannel from '../intall-bannel'
+import { fetchInstallBannel } from '../intall-bannel/api'
+import { Bannel } from '../intall-bannel/type'
+
 import { fetchRecommendedArticles } from './api-client'
 import { ArticleListingData } from './types'
 import ArticleEntry from './article-entry'
 import MoreButton from './more-button'
 
 export default function RecommendedArticles({
+  inventoryId,
   regionId,
   onArticleClick,
 }: {
+  inventoryId: string
   regionId: string
   onArticleClick: (
     e: React.SyntheticEvent,
@@ -22,6 +28,8 @@ export default function RecommendedArticles({
     ArticleListingData[]
   >([])
 
+  const [installBannel, setInstallBannel] = useState<Bannel[]>([])
+
   const { show } = useTransitionModal()
   const { trackEvent } = useEventTrackingContext()
 
@@ -30,8 +38,13 @@ export default function RecommendedArticles({
       setRecommendedArticles(await fetchRecommendedArticles({ regionId }))
     }
 
+    async function fetchAndSetInstallBannel() {
+      setInstallBannel(await fetchInstallBannel({ inventoryId }))
+    }
+
     fetchAndSetRecommendedArticles()
-  }, [regionId, setRecommendedArticles])
+    fetchAndSetInstallBannel()
+  }, [regionId, inventoryId, setRecommendedArticles, setInstallBannel])
 
   const handleIntersect = useCallback(
     (intersectingArticle: ArticleListingData) => {
@@ -64,6 +77,10 @@ export default function RecommendedArticles({
           margin={{ top: 20 }}
           containerPadding={{ left: 110, right: 110 }}
         >
+          <Carousel.Item key={installBannel[0].id} size="medium">
+            <InstallBannel bannel={installBannel[0]} />
+          </Carousel.Item>
+
           {recommendedArticles.map((article) => (
             <Carousel.Item key={article.id} size="medium">
               <ArticleEntry
