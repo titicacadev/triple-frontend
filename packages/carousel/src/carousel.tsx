@@ -63,6 +63,7 @@ const FlickingScrollButton = styled.button<{
   border: none;
   background-color: inherit;
   padding: 0;
+  outline: none;
 `
 
 const FLICK_ATTRIBUTES: Partial<FlickingOptions> = {
@@ -127,7 +128,7 @@ function Carousel({
         direction="left"
         onClick={() => flickingRef?.current?.prev()}
       >
-        <ArrowIcon direction="right" />
+        <ArrowIcon direction="left" />
       </FlickingScrollButton>
       <FlickingContainer>
         <Flicking ref={flickingRef} {...FLICK_ATTRIBUTES}>
