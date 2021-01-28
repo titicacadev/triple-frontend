@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- [tag-label] 태그라벨 안 이미지 변경, square 모서리 부분 수정 (#1195)
+- [poi] poi 추천코스에 하나만 넣으면 zoom level이 너무 커져 default zoom 값 수정 (#1195)
+
 ## 2.10.1
 
 ### common
