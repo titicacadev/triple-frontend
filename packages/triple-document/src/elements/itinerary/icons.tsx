@@ -24,7 +24,7 @@ function ImageIcon({
   name,
   ...props
 }: ImageIconProps) {
-  const src = `https://assets.triple.guide/images/${name}.png`
+  const src = `https://assets.triple.guide/images/${name}.png?20210128`
   return <img width={width} height={height} {...props} src={src} />
 }
 

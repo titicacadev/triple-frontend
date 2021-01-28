@@ -45,8 +45,8 @@ export default function useMapData(items: ItineraryItemType[]) {
       totalPois,
       pois,
       polyline,
-      mapOptions: { center },
-      bounds,
+      mapOptions: totalPois === 1 ? { center, zoom: 17} : { center },
+      bounds: totalPois !== 1 ? bounds : undefined,
     }
   }, [items])
 }
