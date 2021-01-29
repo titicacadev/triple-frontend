@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import fetch from 'isomorphic-fetch'
+import { Image } from '@titicaca/core-elements'
+import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
 import { InventoryItem } from '../interfaces'
-
-import PoiDetailInstall from './poi-detail-install'
 
 async function fetchInstallAppInventory({
   inventoryId,
@@ -17,7 +17,7 @@ async function fetchInstallAppInventory({
   return items
 }
 
-export default function PoiDetailCTA({
+export default function ArticleCardCTA({
   inventoryId,
   installURL,
 }: {
@@ -34,5 +34,15 @@ export default function PoiDetailCTA({
     fetchAndSetInventories()
   }, [inventoryId, setInventories])
 
-  return <PoiDetailInstall inventory={inventories[0]} installURL={installURL} />
+  return (
+    <StaticIntersectionObserver threshold={0.7} onChange={() => null}>
+      <a href={installURL}>
+        <Image borderRadius={6}>
+          <Image.FixedRatioFrame frame="huge" onClick={() => null}>
+            <Image.Img src={inventories[0] && inventories[0].image} />
+          </Image.FixedRatioFrame>
+        </Image>
+      </a>
+    </StaticIntersectionObserver>
+  )
 }

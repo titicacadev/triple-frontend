@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { Section, Carousel, Responsive, H1 } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'
-import { PoiDetailCTA } from '@titicaca/app-installation-cta'
+import { ArticleCardCTA } from '@titicaca/app-installation-cta'
 
 import { fetchRecommendedArticles } from './api-client'
 import { ArticleListingData } from './types'
@@ -70,7 +70,7 @@ export default function RecommendedArticles({
           containerPadding={{ left: 110, right: 110 }}
         >
           <Carousel.Item key={inventoryId} size="medium">
-            <PoiDetailCTA inventoryId={inventoryId} installURL={installURL} />
+            <ArticleCardCTA inventoryId={inventoryId} installURL={installURL} />
           </Carousel.Item>
 
           {recommendedArticles.map((article) => (
@@ -96,7 +96,7 @@ export default function RecommendedArticles({
           containerPadding={{ left: 30, right: 30 }}
         >
           <Carousel.Item key={inventoryId} size="medium">
-            <PoiDetailCTA inventoryId={inventoryId} installURL={installURL} />
+            <ArticleCardCTA inventoryId={inventoryId} installURL={installURL} />
           </Carousel.Item>
 
           {recommendedArticles.map((article) => (
