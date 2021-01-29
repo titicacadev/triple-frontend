@@ -17,8 +17,8 @@ export const coordinates: [
     }) => coordinates as [number, number],
   )
 
-export const { center, bounds } = getGeometry(coordinates)
-export const mapOptions = { center }
+export const { center, bounds, zoom } = getGeometry(coordinates)
+export const mapOptions = { center, zoom }
 export const polylinePaths = [
   { lat: 16.0563348, lng: 108.2025533 },
   { lat: 16.0131183, lng: 108.2637083 },
