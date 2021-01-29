@@ -24,7 +24,7 @@ function ImageIcon({
   name,
   ...props
 }: ImageIconProps) {
-  const src = `https://assets.triple.guide/images/${name}.png?20210128`
+  const src = `https://assets.triple.guide/images/${name}.png`
   return <img width={width} height={height} {...props} src={src} />
 }
 
@@ -75,7 +75,7 @@ export function Plane(props: IconDefaultProps) {
 export function Tram(props: IconDefaultProps) {
   return (
     <ImageIcon
-      name="ico_contents_trans_tram@3x"
+      name="ico_contents_trans_tram@3x-v2"
       width={11}
       height={11}
       {...props}
@@ -97,7 +97,7 @@ export function Cable(props: IconDefaultProps) {
 export function Train(props: IconDefaultProps) {
   return (
     <ImageIcon
-      name="ico_contents_trans_train@3x"
+      name="ico_contents_trans_train@3x-v2"
       width={11}
       height={11}
       {...props}
