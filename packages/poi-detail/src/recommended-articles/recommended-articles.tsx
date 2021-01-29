@@ -95,6 +95,10 @@ export default function RecommendedArticles({
           margin={{ top: 20 }}
           containerPadding={{ left: 30, right: 30 }}
         >
+          <Carousel.Item key={inventoryId} size="medium">
+            <PoiDetailCTA inventoryId={inventoryId} installURL={installURL} />
+          </Carousel.Item>
+
           {recommendedArticles.map((article) => (
             <Carousel.Item key={article.id} size="medium">
               <ArticleEntry
