@@ -34,7 +34,7 @@ export default function useMapData(items: ItineraryItemType[]) {
     const polyline = extracPathMap(items)
     const totalPois = items.length
 
-    const { center, bounds } = getGeometry(coordinates)
+    const { center, bounds, zoom } = getGeometry(coordinates)
 
     const pois = items.map(({ poi }) => ({
       poi,
@@ -45,8 +45,8 @@ export default function useMapData(items: ItineraryItemType[]) {
       totalPois,
       pois,
       polyline,
-      mapOptions: totalPois === 1 ? { center, zoom: 17 } : { center },
-      bounds: totalPois !== 1 ? bounds : undefined,
+      mapOptions: { center, zoom },
+      bounds,
     }
   }, [items])
 }

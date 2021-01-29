@@ -1,6 +1,7 @@
 export function getGeometry(coordinates: [number, number][]) {
   const longitude = { west: 180, east: -180 }
   const latitude = { south: 90, north: -90 }
+  const coordinatesLength = coordinates.length
 
   coordinates.forEach(([lng, lat]) => {
     longitude.west = Math.min(longitude.west, lng)
@@ -17,12 +18,16 @@ export function getGeometry(coordinates: [number, number][]) {
       lat: (north + south) / 2,
       lng: (west + east) / 2,
     } as google.maps.LatLngLiteral,
-    bounds: {
-      south,
-      west,
-      north,
-      east,
-    } as google.maps.LatLngBoundsLiteral,
+    zoom: coordinatesLength === 1 ? 17 : undefined,
+    bounds:
+      coordinatesLength !== 1
+        ? ({
+            south,
+            west,
+            north,
+            east,
+          } as google.maps.LatLngBoundsLiteral)
+        : undefined,
   }
 }
 
