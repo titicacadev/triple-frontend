@@ -1,4 +1,4 @@
-import { StrictQuery } from './index'
+import { strictQuery } from './index'
 
 describe('query utils', () => {
   it('should determine query string value to string type.', () => {
@@ -9,12 +9,9 @@ describe('query utils', () => {
       landingPage: 'service-main',
     }
 
-    const {
-      regionId,
-      hotelId,
-      landingPage,
-      multipleQueries,
-    } = StrictQuery.parse(query)
+    const { regionId, hotelId, landingPage, multipleQueries } = strictQuery(
+      query,
+    )
       .string('regionId')
       .string('hotelId')
       .string('multipleQueries')
@@ -33,7 +30,7 @@ describe('query utils', () => {
       multipleQueries: ['1', '2', '3'],
     }
 
-    const { tripId, numberOfAdults, multipleQueries } = StrictQuery.parse(query)
+    const { tripId, numberOfAdults, multipleQueries } = strictQuery(query)
       .number('tripId')
       .number('numberOfAdults')
       .number('multipleQueries')
@@ -51,7 +48,7 @@ describe('query utils', () => {
       multipleQueries: ['a', 'b', 'c'],
     }
 
-    const { regionIds, hotelIds, multipleQueries } = StrictQuery.parse(query)
+    const { regionIds, hotelIds, multipleQueries } = strictQuery(query)
       .stringArray('regionIds')
       .stringArray('hotelIds')
       .stringArray('multipleQueries')
@@ -68,9 +65,7 @@ describe('query utils', () => {
       multipleQueries: ['1', '2', '3'],
     }
 
-    const { tripIds, agesOfChildren, multipleQueries } = StrictQuery.parse(
-      query,
-    )
+    const { tripIds, agesOfChildren, multipleQueries } = strictQuery(query)
       .numberArray('tripIds')
       .numberArray('agesOfChildren')
       .numberArray('multipleQueries')
@@ -96,7 +91,7 @@ describe('query utils', () => {
       duplicateValue1,
       duplicateValue2,
       closeWindow,
-    } = StrictQuery.parse(query)
+    } = strictQuery(query)
       .boolean('inRegion')
       .boolean('hideButton')
       .boolean('duplicateValue1')

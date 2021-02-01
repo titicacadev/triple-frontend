@@ -17,16 +17,7 @@ function normalizeToArray<T extends string = string>(query: RawQuery): T[] {
   return []
 }
 
-export class StrictQuery<
-  Raw extends { [key: string]: RawQuery },
-  Resolved = {}
-> {
-  static parse<T extends { [key: string]: RawQuery }>(
-    query: T,
-  ): StrictQuery<T, {}> {
-    return new StrictQuery(query)
-  }
-
+class StrictQuery<Raw extends { [key: string]: RawQuery }, Resolved = {}> {
   private raw: Raw
 
   private resolved: Resolved
@@ -138,4 +129,8 @@ export class StrictQuery<
       ...normalized,
     })
   }
+}
+
+export function strictQuery<T extends { [key: string]: RawQuery }>(query: T) {
+  return new StrictQuery(query)
 }
