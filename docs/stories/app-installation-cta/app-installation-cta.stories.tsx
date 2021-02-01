@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { action } from '@storybook/addon-actions'
 import { text, boolean } from '@storybook/addon-knobs'
 import {
@@ -7,6 +7,8 @@ import {
   BannerCTA,
   FloatingButtonCTA,
   ArticleCardCTA,
+  fetchArticleCardCTA
+  
 } from '@titicaca/app-installation-cta'
 import { Carousel } from '@titicaca/core-elements'
 
@@ -86,6 +88,16 @@ BaseBannerCTA.story = {
 }
 
 export function BaseArticleCardCTA() {
+  const [articleCTA, setArticleCTA] = useState(null)
+
+  useEffect(() => {
+   async function fetchAndSetArticleCardCTA() {
+     const response = (await fetchArticleCardCTA({inventoryId: 'd'}))
+     setArticleCTA(response[0])
+   }
+
+   fetchAndSetArticleCardCTA()
+  },[fetchArticleCardCTA])
   return (
     <div>
       <Carousel
@@ -93,11 +105,11 @@ export function BaseArticleCardCTA() {
         containerPadding={{ left: 110, right: 110 }}
       >
         <Carousel.Item key={'d'} size="medium">
-          <ArticleCardCTA
-            inventoryId={text('인벤토리 ID', 'd')}
+          {articleCTA ? <ArticleCardCTA
+            cta={articleCTA}
             href={text('설치 URL', 'https://triple-dev.titicaca-corp.com')}
             onCTAClick={action('onCTAClick')}
-          />
+          /> : null}
         </Carousel.Item>
       </Carousel>
     </div>

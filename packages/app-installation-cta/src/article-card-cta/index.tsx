@@ -1,3 +1,2 @@
-import ArticleCardCTA from './article-card-cta'
-
-export default ArticleCardCTA
+export { default as ArticleCardCTA } from './article-card-cta'
+export { default as fetchArticleCardCTA } from './api'
