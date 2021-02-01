@@ -10,5 +10,6 @@ storiesOf('poi-detail | RecommendedArticles', module).add('일반', () => (
     installURL={text('설치 URL', 'https://triple-dev.titicaca-corp.com')}
     regionId={text('Region ID', '23c5965b-01ad-486b-a694-a2ced15f245c')}
     onArticleClick={action('onArticleClick')}
+    onCTAClick={action('onCTAClick')}
   />
 ))

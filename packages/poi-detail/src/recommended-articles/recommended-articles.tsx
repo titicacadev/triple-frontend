@@ -13,11 +13,13 @@ export default function RecommendedArticles({
   inventoryId,
   installURL,
   regionId,
+  onCTAClick,
   onArticleClick,
 }: {
   inventoryId?: string
   installURL?: string
   regionId: string
+  onCTAClick: (e: React.SyntheticEvent, cta: any) => void
   onArticleClick: (
     e: React.SyntheticEvent,
     clickedArticle: ArticleListingData,
@@ -47,6 +49,15 @@ export default function RecommendedArticles({
     [trackEvent],
   )
 
+  const handleArticleCTAIntersect = useCallback(
+    (inventory: any) => {
+      trackEvent({
+        ga: ['앱설치 유도 구좌_노출', inventory],
+      })
+    },
+    [trackEvent],
+  )
+
   const handleShowMoreClick = useCallback(() => {
     show(TransitionType.Article)
   }, [show])
@@ -70,7 +81,12 @@ export default function RecommendedArticles({
           containerPadding={{ left: 110, right: 110 }}
         >
           <Carousel.Item key={inventoryId} size="medium">
-            <ArticleCardCTA inventoryId={inventoryId} installURL={installURL} />
+            <ArticleCardCTA
+              inventoryId={inventoryId}
+              href={installURL}
+              onClick={onCTAClick}
+              onIntersect={handleArticleCTAIntersect}
+            />
           </Carousel.Item>
 
           {recommendedArticles.map((article) => (
@@ -96,7 +112,12 @@ export default function RecommendedArticles({
           containerPadding={{ left: 30, right: 30 }}
         >
           <Carousel.Item key={inventoryId} size="medium">
-            <ArticleCardCTA inventoryId={inventoryId} installURL={installURL} />
+            <ArticleCardCTA
+              inventoryId={inventoryId}
+              href={installURL}
+              onIntersect={handleArticleCTAIntersect}
+              onClick={onCTAClick}
+            />
           </Carousel.Item>
 
           {recommendedArticles.map((article) => (

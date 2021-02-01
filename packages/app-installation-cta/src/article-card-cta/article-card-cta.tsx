@@ -19,10 +19,14 @@ async function fetchInstallAppInventory({
 
 export default function ArticleCardCTA({
   inventoryId,
-  installURL,
+  href,
+  onClick,
+  onIntersect,
 }: {
   inventoryId?: string
-  installURL?: string
+  href?: string
+  onClick: (e: React.SyntheticEvent, inventory: any) => void
+  onIntersect: (cta: any) => void
 }) {
   const [inventories, setInventories] = useState<InventoryItem[]>([])
 
@@ -34,11 +38,21 @@ export default function ArticleCardCTA({
     fetchAndSetInventories()
   }, [inventoryId, setInventories])
 
+  const handleClick = (e: React.SyntheticEvent) => onClick(e, inventories[0])
+  const handleIntersectionChange = ({
+    isIntersecting,
+  }: {
+    isIntersecting: boolean
+  }) => isIntersecting && onIntersect(inventories[0])
+
   return (
-    <StaticIntersectionObserver threshold={0.7} onChange={() => null}>
-      <a href={installURL}>
+    <StaticIntersectionObserver
+      threshold={0.7}
+      onChange={handleIntersectionChange}
+    >
+      <a href={href}>
         <Image borderRadius={6}>
-          <Image.FixedRatioFrame frame="huge" onClick={() => null}>
+          <Image.FixedRatioFrame frame="huge" onClick={handleClick}>
             <Image.Img src={inventories[0] && inventories[0].image} />
           </Image.FixedRatioFrame>
         </Image>
