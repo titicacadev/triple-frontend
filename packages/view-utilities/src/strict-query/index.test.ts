@@ -14,7 +14,7 @@ describe('query utils', () => {
     )
       .string('regionId')
       .string('hotelId')
-      .string<'service-main' | 'public-list', 'landingPage'>('landingPage')
+      .string<'landingPage', 'service-main' | 'public-list'>('landingPage')
       .string('multipleQueries')
       .use()
     expect(regionId).toBe('MOCK_REGION_ID')
