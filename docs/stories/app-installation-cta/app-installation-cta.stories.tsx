@@ -96,8 +96,7 @@ export function BaseArticleCardCTA() {
           <ArticleCardCTA
             inventoryId={text('인벤토리 ID', 'd')}
             href={text('설치 URL', 'https://triple-dev.titicaca-corp.com')}
-            onIntersect={action('onIntersect')}
-            onClick={action('onClick')}
+            onCTAClick={action('onCTAClick')}
           />
         </Carousel.Item>
       </Carousel>

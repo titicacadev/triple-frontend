@@ -19,7 +19,7 @@ export default function RecommendedArticles({
   inventoryId?: string
   installURL?: string
   regionId: string
-  onCTAClick: (e: React.SyntheticEvent, cta: any) => void
+  onCTAClick: (e: React.SyntheticEvent) => void
   onArticleClick: (
     e: React.SyntheticEvent,
     clickedArticle: ArticleListingData,
@@ -44,15 +44,6 @@ export default function RecommendedArticles({
     (intersectingArticle: ArticleListingData) => {
       trackEvent({
         ga: ['추천가이드_노출', intersectingArticle.source.title],
-      })
-    },
-    [trackEvent],
-  )
-
-  const handleArticleCTAIntersect = useCallback(
-    (inventory: any) => {
-      trackEvent({
-        ga: ['앱설치 유도 구좌_노출', inventory],
       })
     },
     [trackEvent],
@@ -84,8 +75,7 @@ export default function RecommendedArticles({
             <ArticleCardCTA
               inventoryId={inventoryId}
               href={installURL}
-              onClick={onCTAClick}
-              onIntersect={handleArticleCTAIntersect}
+              onCTAClick={onCTAClick}
             />
           </Carousel.Item>
 
@@ -115,8 +105,7 @@ export default function RecommendedArticles({
             <ArticleCardCTA
               inventoryId={inventoryId}
               href={installURL}
-              onIntersect={handleArticleCTAIntersect}
-              onClick={onCTAClick}
+              onCTAClick={onCTAClick}
             />
           </Carousel.Item>
 

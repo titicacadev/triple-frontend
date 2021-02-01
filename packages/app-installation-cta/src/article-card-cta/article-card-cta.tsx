@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import fetch from 'isomorphic-fetch'
 import { Image } from '@titicaca/core-elements'
+import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
 import { InventoryItem } from '../interfaces'
@@ -20,34 +21,51 @@ async function fetchInstallAppInventory({
 export default function ArticleCardCTA({
   inventoryId,
   href,
-  onClick,
-  onIntersect,
+  onCTAClick,
 }: {
   inventoryId?: string
   href?: string
-  onClick: (e: React.SyntheticEvent, inventory: any) => void
-  onIntersect: (cta: any) => void
+  onCTAClick: (e: React.SyntheticEvent) => void
 }) {
   const [isIntersecting, setIsIntersecting] = useState(false)
   const [inventories, setInventories] = useState<InventoryItem[]>([])
+  const { trackEvent } = useEventTrackingContext()
 
-  useEffect(() => {
-    async function fetchAndSetInventories() {
-      const response = await fetchInstallAppInventory({ inventoryId })
-      setInventories(response)
-      onIntersect(response[0])
-    }
-    if (isIntersecting) {
-      fetchAndSetInventories()
-    }
-  }, [isIntersecting, inventoryId, setInventories, onIntersect])
+  const handleCTAIntersect = useCallback(
+    (cta: InventoryItem) => {
+      trackEvent({
+        ga: ['앱설치 유도 구좌_노출', cta.desc],
+      })
+    },
+    [trackEvent],
+  )
 
-  const handleClick = (e: React.SyntheticEvent) => onClick(e, inventories[0])
+  const handleCTAClick = useCallback(
+    (e: React.SyntheticEvent) => {
+      trackEvent({
+        ga: ['앱설치 유도 구좌_선택', inventories[0].desc],
+      })
+      onCTAClick(e)
+    },
+    [inventories, onCTAClick, trackEvent],
+  )
+
   const handleIntersectionChange = ({
     isIntersecting,
   }: {
     isIntersecting: boolean
   }) => isIntersecting && setIsIntersecting(isIntersecting)
+
+  useEffect(() => {
+    async function fetchAndSetInventories() {
+      const response = await fetchInstallAppInventory({ inventoryId })
+      setInventories(response)
+      handleCTAIntersect(response[0])
+    }
+    if (isIntersecting) {
+      fetchAndSetInventories()
+    }
+  }, [isIntersecting, inventoryId, setInventories, handleCTAIntersect])
 
   return (
     <StaticIntersectionObserver
@@ -56,7 +74,7 @@ export default function ArticleCardCTA({
     >
       <a href={href}>
         <Image borderRadius={6}>
-          <Image.FixedRatioFrame frame="huge" onClick={handleClick}>
+          <Image.FixedRatioFrame frame="huge" onClick={handleCTAClick}>
             <Image.Img src={inventories[0] && inventories[0].image} />
           </Image.FixedRatioFrame>
         </Image>
