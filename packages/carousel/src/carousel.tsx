@@ -44,21 +44,17 @@ const CarouselBase = styled.ul<CarouselBaseProps>`
 
 const FlickingScrollButton = styled.button<{
   direction: 'left' | 'right'
-  positionRearrange?: number
+  containerPadding?: { left: number; right: number }
 }>`
   position: absolute;
   cursor: pointer;
   width: 60px;
   height: 60px;
   top: calc(50% - 30px);
-  ${({ direction, positionRearrange = 0 }) =>
-    direction === 'left'
-      ? css`
-          left: ${positionRearrange - 30}px;
-        `
-      : css`
-          right: ${positionRearrange - 30}px;
-        `};
+  ${({ direction, containerPadding }) =>
+    css`
+      ${direction}: ${(containerPadding?.[direction] || 0) - 30}px;
+    `}
   z-index: 60;
   border: none;
   background-color: inherit;
@@ -87,7 +83,7 @@ const FLICK_ATTRIBUTES: Partial<FlickingOptions> = {
   anchor: '50%',
   gap: 10,
   moveType: { type: 'snap', count: 1 },
-  collectStatistics: true,
+  collectStatistics: false,
   zIndex: 50,
   classPrefix: 'eg-flick',
 }
@@ -124,9 +120,9 @@ function Carousel({
   return !isMobile && scrollable ? (
     <Container position="relative" margin={margin} padding={containerPadding}>
       <FlickingScrollButton
-        positionRearrange={containerPadding?.left}
+        containerPadding={containerPadding}
         direction="left"
-        onClick={() => flickingRef?.current?.prev()}
+        onClick={() => flickingRef.current?.prev()}
       >
         <ArrowIcon direction="left" />
       </FlickingScrollButton>
@@ -136,9 +132,9 @@ function Carousel({
         </Flicking>
       </FlickingContainer>
       <FlickingScrollButton
-        positionRearrange={containerPadding?.right}
+        containerPadding={containerPadding}
         direction="right"
-        onClick={() => flickingRef?.current?.next()}
+        onClick={() => flickingRef.current?.next()}
       >
         <ArrowIcon direction="right" />
       </FlickingScrollButton>
