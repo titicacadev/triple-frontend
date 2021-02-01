@@ -17,12 +17,12 @@ function normalizeToArray<T extends string = string>(query: RawQuery): T[] {
   return []
 }
 
-class StrictQuery<Raw extends { [key: string]: RawQuery }, Resolved = {}> {
-  private raw: Raw
+class StrictQuery<Resolved = {}> {
+  private raw: { [key: string]: RawQuery }
 
   private resolved: Resolved
 
-  constructor(raw: Raw, resolved?: Resolved) {
+  constructor(raw: { [key: string]: RawQuery }, resolved?: Resolved) {
     this.raw = raw
     this.resolved = resolved || ({} as Resolved)
   }
@@ -31,10 +31,9 @@ class StrictQuery<Raw extends { [key: string]: RawQuery }, Resolved = {}> {
     return this.resolved
   }
 
-  string<Key extends keyof Raw = string, Value extends string = string>(
+  string<Key extends string, Value extends string = string>(
     key: Key,
   ): StrictQuery<
-    Omit<Raw, Key>,
     Resolved &
       {
         [key in Key]: Value | undefined
@@ -50,10 +49,9 @@ class StrictQuery<Raw extends { [key: string]: RawQuery }, Resolved = {}> {
     })
   }
 
-  number<Key extends keyof Raw>(
+  number<Key extends string>(
     key: Key,
   ): StrictQuery<
-    Omit<Raw, Key>,
     Resolved &
       {
         [key in Key]: number | undefined
@@ -70,10 +68,9 @@ class StrictQuery<Raw extends { [key: string]: RawQuery }, Resolved = {}> {
     })
   }
 
-  stringArray<Key extends keyof Raw>(
+  stringArray<Key extends string>(
     key: Key,
   ): StrictQuery<
-    Omit<Raw, Key>,
     Resolved &
       {
         [key in Key]: string[]
@@ -89,10 +86,9 @@ class StrictQuery<Raw extends { [key: string]: RawQuery }, Resolved = {}> {
     })
   }
 
-  numberArray<Key extends keyof Raw>(
+  numberArray<Key extends string>(
     key: Key,
   ): StrictQuery<
-    Omit<Raw, Key>,
     Resolved &
       {
         [key in Key]: number[]
@@ -108,10 +104,9 @@ class StrictQuery<Raw extends { [key: string]: RawQuery }, Resolved = {}> {
     })
   }
 
-  boolean<Key extends keyof Raw>(
+  boolean<Key extends string>(
     key: Key,
   ): StrictQuery<
-    Omit<Raw, Key>,
     Resolved &
       {
         [key in Key]: boolean
