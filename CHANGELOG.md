@@ -19,6 +19,10 @@
 
 - [carousel] Carousel 컴포넌트 deprecated 주석 명시 (#1120)
 
+### view-utilities
+
+- query 값의 타입을 확정해서 사용할 수 있게 해주는 `strictQuery` 추가 (#1201)
+
 ## 2.10.1
 
 ### common
