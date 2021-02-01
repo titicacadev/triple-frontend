@@ -8,11 +8,11 @@ import { InventoryItem } from '../interfaces'
 export default function ArticleCardCTA({
   href,
   cta,
-  onCTAClick,
+  onClick,
 }: {
   href?: string
   cta?: InventoryItem | null
-  onCTAClick: (e: React.SyntheticEvent) => void
+  onClick?: (e: React.SyntheticEvent) => void
 }) {
   const { trackEvent } = useEventTrackingContext()
 
@@ -27,9 +27,9 @@ export default function ArticleCardCTA({
       trackEvent({
         ga: ['앱설치 유도 구좌_선택', cta?.desc],
       })
-      onCTAClick(e)
+      onClick && onClick(e)
     },
-    [cta, onCTAClick, trackEvent],
+    [cta, onClick, trackEvent],
   )
 
   const handleIntersectionChange = ({

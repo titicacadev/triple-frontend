@@ -22,7 +22,7 @@ export default function RecommendedArticles({
   inventoryId?: string
   installURL?: string
   regionId: string
-  onCTAClick: (e: React.SyntheticEvent) => void
+  onCTAClick?: (e: React.SyntheticEvent) => void
   onArticleClick: (
     e: React.SyntheticEvent,
     clickedArticle: ArticleListingData,
@@ -85,7 +85,7 @@ export default function RecommendedArticles({
               <ArticleCardCTA
                 cta={articleCardCTA}
                 href={installURL}
-                onCTAClick={onCTAClick}
+                onClick={onCTAClick}
               />
             </Carousel.Item>
           )}
@@ -116,7 +116,7 @@ export default function RecommendedArticles({
               <ArticleCardCTA
                 cta={articleCardCTA}
                 href={installURL}
-                onCTAClick={onCTAClick}
+                onClick={onCTAClick}
               />
             </Carousel.Item>
           )}
