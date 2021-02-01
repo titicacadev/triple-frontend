@@ -95,10 +95,7 @@ export function BaseArticleCardCTA() {
         <Carousel.Item key={'d'} size="medium">
           <ArticleCardCTA
             inventoryId={text('인벤토리 ID', 'd')}
-            href={text(
-              '설치 URL',
-              'https://triple-dev.titicaca-corp.com',
-            )}
+            href={text('설치 URL', 'https://triple-dev.titicaca-corp.com')}
             onIntersect={action('onIntersect')}
             onClick={action('onClick')}
           />
