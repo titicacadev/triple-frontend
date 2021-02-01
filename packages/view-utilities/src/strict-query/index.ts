@@ -31,7 +31,7 @@ class StrictQuery<Raw extends { [key: string]: RawQuery }, Resolved = {}> {
     return this.resolved
   }
 
-  string<Value extends string = string, Key extends keyof Raw = string>(
+  string<Key extends keyof Raw = string, Value extends string = string>(
     key: Key,
   ): StrictQuery<
     Omit<Raw, Key>,
