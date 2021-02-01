@@ -28,22 +28,26 @@ export default function ArticleCardCTA({
   onClick: (e: React.SyntheticEvent, inventory: any) => void
   onIntersect: (cta: any) => void
 }) {
+  const [isIntersecting, setIsIntersecting] = useState(false)
   const [inventories, setInventories] = useState<InventoryItem[]>([])
 
   useEffect(() => {
     async function fetchAndSetInventories() {
-      setInventories(await fetchInstallAppInventory({ inventoryId }))
+      const response = await fetchInstallAppInventory({ inventoryId })
+      setInventories(response)
+      onIntersect(response)
     }
-
-    fetchAndSetInventories()
-  }, [inventoryId, setInventories])
+    if (isIntersecting) {
+      fetchAndSetInventories()
+    }
+  }, [isIntersecting, inventoryId, setInventories, onIntersect])
 
   const handleClick = (e: React.SyntheticEvent) => onClick(e, inventories[0])
   const handleIntersectionChange = ({
     isIntersecting,
   }: {
     isIntersecting: boolean
-  }) => isIntersecting && onIntersect(inventories[0])
+  }) => isIntersecting && setIsIntersecting(isIntersecting)
 
   return (
     <StaticIntersectionObserver
