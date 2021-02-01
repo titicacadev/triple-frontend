@@ -70,10 +70,12 @@ query-string으로 주어진 값의 타입을 결정하여 사용할 수 있게 
 ```ts
 import { strictQuery } from '@titicaca/view-utilities'
 
-const { regionId, tripId, categoryIds, agesOfChildren, inRegion } = strictQuery(query)
+const { regionId, tripId, categoryIds, agesOfChildren, inRegion } = strictQuery(
+  query,
+)
   .string('regionId') // regionId will be string | undefined
   .number('tripId') // tripId will be number | undefined
-  .stringArray('categoryIds')  // categoryIds will be string[]
+  .stringArray('categoryIds') // categoryIds will be string[]
   .numberArray('agesOfChildren') // agesOfChildren will be number[]
   .boolean('inRegion') // inRegion will be boolean
   .use()
