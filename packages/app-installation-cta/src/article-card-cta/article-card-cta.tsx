@@ -35,7 +35,7 @@ export default function ArticleCardCTA({
     async function fetchAndSetInventories() {
       const response = await fetchInstallAppInventory({ inventoryId })
       setInventories(response)
-      onIntersect(response)
+      onIntersect(response[0])
     }
     if (isIntersecting) {
       fetchAndSetInventories()
