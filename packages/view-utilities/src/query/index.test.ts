@@ -6,15 +6,23 @@ describe('query utils', () => {
     const query: { [key: string]: string | string[] | undefined } = {
       regionId: 'MOCK_REGION_ID',
       multipleQueries: ['a', 'b', 'c'],
+      landingPage: 'service-main',
     }
 
-    const { regionId, hotelId, multipleQueries } = StrictQuery.parse(query)
+    const {
+      regionId,
+      hotelId,
+      landingPage,
+      multipleQueries,
+    } = StrictQuery.parse(query)
       .string('regionId')
       .string('hotelId')
       .string('multipleQueries')
+      .string<'service-main' | 'public-list'>('landingPage')
       .use()
     expect(regionId).toBe('MOCK_REGION_ID')
     expect(hotelId).toBe(undefined)
+    expect(landingPage).toBe('service-main')
     expect(multipleQueries).toBe('a')
   })
 
