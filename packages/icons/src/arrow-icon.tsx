@@ -24,11 +24,9 @@ export default function ArrowIcon({
   opacity = 1,
   direction,
   onClick,
-  className,
 }: Omit<IconBaseProps, 'width' | 'height'> & {
   direction: 'left' | 'right'
   onClick?: (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void
-  className?: string
 }) {
   const { d, transform } = SVG_ATTRIBUTES_BY_DIRECTION[direction]
   const { colors } = useContext(ThemeContext) || { colors: {} }
@@ -36,7 +34,6 @@ export default function ArrowIcon({
 
   return (
     <SvgIcon
-      className={className}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 60 60"

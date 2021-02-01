@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react'
+import React, { MouseEventHandler, PropsWithChildren } from 'react'
 import styled from 'styled-components'
 import { GlobalSizes } from '@titicaca/type-definitions'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
@@ -46,7 +46,7 @@ export default function CarouselItem({
   size?: CarouselSizes
   threshold?: number
   onImpress?: () => void
-  onClick?: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void
+  onClick?: MouseEventHandler<HTMLLIElement>
 }>) {
   if (onImpress) {
     return (

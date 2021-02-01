@@ -7,8 +7,7 @@
   "license": "ISC",
   "main": "lib/index.js",
   "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+    "lib": "lib"
   },
   "files": [
     "lib"
@@ -16,9 +15,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
-  },
-  "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
@@ -31,10 +27,5 @@
     "@titicaca/type-definitions": "^2.10.1",
     "@egjs/flicking": "3.4.0",
     "@egjs/react-flicking": "3.1.0"
-  },
-  "peerDependencies": {
-    "react": "*",
-    "react-dom": "*",
-    "styled-components": ">=4.4.1 < 6"
   }
 }
