@@ -40,19 +40,19 @@ export class StrictQuery<
     return this.resolved
   }
 
-  string<Key extends keyof Raw>(
+  string<Value extends string = string, Key extends keyof Raw = string>(
     key: Key,
   ): StrictQuery<
     Omit<Raw, Key>,
     Resolved &
       {
-        [key in Key]: string | undefined
+        [key in Key]: Value | undefined
       }
   > {
     const { [key]: value, ...restRaw } = this.raw
     const normalized = {
-      [key]: normalizeToString(value),
-    } as { [key in Key]: string | undefined }
+      [key]: normalizeToString<Value>(value),
+    } as { [key in Key]: Value | undefined }
     return new StrictQuery(restRaw, {
       ...this.resolved,
       ...normalized,
