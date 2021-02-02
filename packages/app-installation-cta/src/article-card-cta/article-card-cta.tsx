@@ -12,7 +12,7 @@ export default function ArticleCardCTA({
 }: {
   href?: string
   cta?: InventoryItem | null
-  onClick?: (e: React.SyntheticEvent) => void
+  onClick?: () => void
 }) {
   const { trackEvent } = useEventTrackingContext()
 
@@ -22,15 +22,12 @@ export default function ArticleCardCTA({
     })
   }, [cta, trackEvent])
 
-  const handleCTAClick = useCallback(
-    (e: React.SyntheticEvent) => {
-      trackEvent({
-        ga: ['앱설치 유도 구좌_선택', cta?.desc],
-      })
-      onClick && onClick(e)
-    },
-    [cta, onClick, trackEvent],
-  )
+  const handleCTAClick = useCallback(() => {
+    trackEvent({
+      ga: ['앱설치 유도 구좌_선택', cta?.desc],
+    })
+    onClick && onClick()
+  }, [cta, onClick, trackEvent])
 
   const handleIntersectionChange = ({
     isIntersecting,
