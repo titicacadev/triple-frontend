@@ -11,7 +11,7 @@ export default function ArticleCardCTA({
   onClick,
 }: {
   href?: string
-  cta?: InventoryItem | null
+  cta: InventoryItem | null
   onClick?: () => void
 }) {
   const { trackEvent } = useEventTrackingContext()

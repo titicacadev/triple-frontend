@@ -13,20 +13,20 @@ import ArticleEntry from './article-entry'
 import MoreButton from './more-button'
 
 export default function RecommendedArticles({
-  inventoryId,
-  installURL,
   regionId,
-  onCTAClick,
   onArticleClick,
+  appInstallationCta,
 }: {
-  inventoryId?: string
-  installURL?: string
   regionId: string
-  onCTAClick?: () => void
   onArticleClick: (
     e: React.SyntheticEvent,
     clickedArticle: ArticleListingData,
   ) => void
+  appInstallationCta?: {
+    href: string
+    inventoryId: string
+    onClick: () => void
+  }
 }) {
   const [recommendedArticles, setRecommendedArticles] = useState<
     ArticleListingData[]
@@ -41,13 +41,17 @@ export default function RecommendedArticles({
       setRecommendedArticles(await fetchRecommendedArticles({ regionId }))
     }
     async function fetchAndSetArticleCardCTA() {
-      const response = await fetchArticleCardCTA({ inventoryId })
+      const response = await fetchArticleCardCTA({
+        inventoryId: appInstallationCta?.inventoryId,
+      })
       setArticleCardCTA(response[0])
     }
 
     fetchAndSetRecommendedArticles()
-    fetchAndSetArticleCardCTA()
-  }, [inventoryId, regionId, setRecommendedArticles, setArticleCardCTA])
+    if (appInstallationCta?.inventoryId) {
+      fetchAndSetArticleCardCTA()
+    }
+  }, [appInstallationCta, regionId, setRecommendedArticles, setArticleCardCTA])
 
   const handleIntersect = useCallback(
     (intersectingArticle: ArticleListingData) => {
@@ -81,11 +85,11 @@ export default function RecommendedArticles({
           containerPadding={{ left: 110, right: 110 }}
         >
           {articleCardCTA && (
-            <Carousel.Item key={inventoryId} size="medium">
+            <Carousel.Item key={appInstallationCta?.inventoryId} size="medium">
               <ArticleCardCTA
                 cta={articleCardCTA}
-                href={installURL}
-                onClick={onCTAClick}
+                href={appInstallationCta?.href}
+                onClick={appInstallationCta?.onClick}
               />
             </Carousel.Item>
           )}
@@ -112,11 +116,11 @@ export default function RecommendedArticles({
           containerPadding={{ left: 30, right: 30 }}
         >
           {articleCardCTA && (
-            <Carousel.Item key={inventoryId} size="medium">
+            <Carousel.Item key={appInstallationCta?.inventoryId} size="medium">
               <ArticleCardCTA
                 cta={articleCardCTA}
-                href={installURL}
-                onClick={onCTAClick}
+                href={appInstallationCta?.href}
+                onClick={appInstallationCta?.onClick}
               />
             </Carousel.Item>
           )}

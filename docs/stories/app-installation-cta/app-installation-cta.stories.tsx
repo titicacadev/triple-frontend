@@ -91,7 +91,7 @@ export function BaseArticleCardCTA() {
 
   useEffect(() => {
     async function fetchAndSetArticleCardCTA() {
-      const response = await fetchArticleCardCTA({ inventoryId: 'd' })
+      const response = await fetchArticleCardCTA({ inventoryId: 'app-install-cta-footer-hotel-v1' })
       setArticleCTA(response[0])
     }
 
@@ -108,7 +108,7 @@ export function BaseArticleCardCTA() {
             <ArticleCardCTA
               cta={articleCTA}
               href={text('설치 URL', 'https://triple-dev.titicaca-corp.com')}
-              onCTAClick={action('onCTAClick')}
+              onClick={action('onCTAClick')}
             />
           ) : null}
         </Carousel.Item>
