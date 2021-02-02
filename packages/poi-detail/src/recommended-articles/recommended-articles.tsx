@@ -22,7 +22,7 @@ export default function RecommendedArticles({
   inventoryId?: string
   installURL?: string
   regionId: string
-  onCTAClick?: (e: React.SyntheticEvent) => void
+  onCTAClick?: () => void
   onArticleClick: (
     e: React.SyntheticEvent,
     clickedArticle: ArticleListingData,
