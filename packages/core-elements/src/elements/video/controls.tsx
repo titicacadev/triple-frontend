@@ -7,7 +7,7 @@ import Seeker from './seeker'
 import PlayPauseButton from './play-pause-button'
 import MuteUnmuteButton from './mute-unmute-button'
 import { formatTime } from './utils'
-import { useVideoControll } from './use-video-controll'
+import { useVideoControl } from './use-video-control'
 const ControlsContainer = styled.div<{ visible: boolean }>`
   position: absolute;
   top: 0;
@@ -78,9 +78,9 @@ export default function Controls({
     seek,
     playing,
     muted,
-  } = useVideoControll({
+  } = useVideoControl({
     videoRef,
-    autoPlay,
+    initialMuted: autoPlay,
   })
 
   const [visible, setVisible] = useState(false)
@@ -135,7 +135,7 @@ export default function Controls({
       </ControlsContainer>
       <PlayPauseButton
         videoRef={videoRef}
-        autoPlay={autoPlay}
+        initialVisible={!autoPlay}
         playing={playing}
         forceVisible={visible}
         onPlayPause={handleFadeOut}
