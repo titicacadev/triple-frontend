@@ -65,14 +65,22 @@ const Progress = styled.progress`
 `
 
 export default function Controls({
-  muted,
+  muted: initialMuted,
   videoRef,
 }: {
   muted: boolean
   videoRef: React.RefObject<HTMLVideoElement>
 }) {
-  const { duration, currentTime, progress, seek, playing } = useVideoControll({
+  const {
+    duration,
+    currentTime,
+    progress,
+    seek,
+    playing,
+    muted,
+  } = useVideoControll({
     videoRef,
+    initialMuted,
   })
 
   const [visible, setVisible] = useState(false)
@@ -127,6 +135,7 @@ export default function Controls({
       </ControlsContainer>
       <PlayPauseButton
         videoRef={videoRef}
+        playing={playing}
         forceVisible={visible}
         onPlayPause={handleFadeOut}
       />
@@ -134,6 +143,7 @@ export default function Controls({
         videoRef={videoRef}
         forceVisible={visible}
         muted={muted}
+        playing={playing}
         onMuteUnmute={handleFadeOut}
       />
     </>

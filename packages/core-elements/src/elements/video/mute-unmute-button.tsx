@@ -34,17 +34,18 @@ const MuteUnmuteButtonBase = styled.button<MuteUnmutButtonBaseProps>`
 `
 
 export default function MuteUnmuteButton({
-  muted: initialMuted,
+  muted,
   videoRef,
+  playing,
   forceVisible,
   onMuteUnmute,
 }: {
+  playing: boolean
   muted: boolean
   videoRef: React.RefObject<HTMLVideoElement>
   forceVisible: boolean
   onMuteUnmute: (e: React.SyntheticEvent) => void
 }) {
-  const [muted, setMuted] = useState(initialMuted)
   const [visible, setVisible] = useState(false)
   // TODO: useDebouncedState 사용하기
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -53,49 +54,30 @@ export default function MuteUnmuteButton({
     [setVisible],
   )
 
-  const handlePlay = useCallback(() => {
-    setVisible(true)
-    handleFadeOut()
-  }, [setVisible, handleFadeOut])
-
   const handleMuteUnmute = useCallback(
     (e: React.SyntheticEvent) => {
       if (videoRef.current) {
         videoRef.current.muted = !muted
-
-        handleFadeOut()
-
         onMuteUnmute(e)
-
         return
       }
 
       return true
     },
-    [muted, handleFadeOut, videoRef, onMuteUnmute],
+    [muted, videoRef, onMuteUnmute],
   )
 
-  const handleSync = useCallback(() => {
-    if (videoRef.current) {
-      setMuted(videoRef.current.muted)
+  useEffect(() => {
+    if (visible) {
+      handleFadeOut()
     }
-  }, [setMuted, videoRef])
+  }, [visible, handleFadeOut])
 
   useEffect(() => {
-    const currentRef = videoRef.current
-
-    if (currentRef) {
-      currentRef.addEventListener('volumechange', handleSync)
-      currentRef.addEventListener('play', handlePlay)
+    if (playing) {
+      setVisible(true)
     }
-
-    return () => {
-      if (currentRef) {
-        currentRef.removeEventListener('volumechange', handleSync)
-        currentRef.removeEventListener('play', handlePlay)
-      }
-    }
-  }, [videoRef, handleSync, handlePlay])
+  }, [playing])
 
   return (
     <MuteUnmuteButtonBase
