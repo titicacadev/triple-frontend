@@ -35,13 +35,14 @@ const PlayPauseButtonBase = styled.button<{
 export default function PlayPauseButton({
   forceVisible,
   videoRef,
+  playing,
   onPlayPause,
 }: {
   forceVisible: boolean
+  playing: boolean
   videoRef: React.RefObject<HTMLVideoElement>
   onPlayPause: (e?: React.SyntheticEvent) => void
 }) {
-  const [playing, setPlaying] = useState(false)
   const [visible, setVisible] = useState(true)
   // TODO: useDebouncedState 사용하기
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -55,37 +56,17 @@ export default function PlayPauseButton({
       if (videoRef.current && (visible || forceVisible)) {
         playing ? videoRef.current.pause() : videoRef.current.play()
         e.stopPropagation()
-
         onPlayPause()
-
-        handleFadeOut()
       }
     },
-    [videoRef, playing, handleFadeOut, forceVisible, visible, onPlayPause],
+    [videoRef, playing, forceVisible, visible, onPlayPause],
   )
 
-  const handlePlay = useCallback(() => {
-    setPlaying(true)
-    handleFadeOut()
-  }, [setPlaying, handleFadeOut])
-
-  const handlePause = useCallback(() => setPlaying(false), [setPlaying])
-
   useEffect(() => {
-    const currentRef = videoRef.current
-
-    if (currentRef) {
-      currentRef.addEventListener('play', handlePlay)
-      currentRef.addEventListener('pause', handlePause)
+    if (visible) {
+      handleFadeOut()
     }
-
-    return () => {
-      if (currentRef) {
-        currentRef.removeEventListener('play', handlePlay)
-        currentRef.removeEventListener('pause', handlePause)
-      }
-    }
-  }, [videoRef, handlePlay, handlePause])
+  }, [visible, handleFadeOut])
 
   return (
     <PlayPauseButtonBase
