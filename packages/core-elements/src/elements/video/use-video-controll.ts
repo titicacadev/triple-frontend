@@ -4,14 +4,17 @@ import { formatTime } from './utils'
 
 export function useVideoControll({
   videoRef,
+  initialMuted,
 }: {
   videoRef: React.RefObject<HTMLVideoElement>
+  initialMuted: boolean
 }) {
   const [duration, setDuartion] = useState<number>(0)
   const [progress, setProgress] = useState<number>(0)
   const [currentTime, setCurrentTime] = useState<string>('')
   const [seek, setSeek] = useState<string>('')
   const [playing, setPlaying] = useState(false)
+  const [muted, setMuted] = useState(initialMuted)
 
   const handleDuartionChange = useCallback(() => {
     if (videoRef.current) {
@@ -33,6 +36,12 @@ export function useVideoControll({
   const handlePlay = useCallback(() => setPlaying(true), [setPlaying])
   const handlePause = useCallback(() => setPlaying(false), [setPlaying])
 
+  const handleSync = useCallback(() => {
+    if (videoRef.current) {
+      setMuted(videoRef.current.muted)
+    }
+  }, [videoRef, setMuted])
+
   useEffect(() => {
     const currentRef = videoRef.current
     if (currentRef) {
@@ -41,6 +50,7 @@ export function useVideoControll({
       currentRef.addEventListener('timeupdate', handleTimeUpdate)
       currentRef.addEventListener('play', handlePlay)
       currentRef.addEventListener('pause', handlePause)
+      currentRef.addEventListener('volumechange', handleSync)
     } else {
       throw new Error('Cannot use Vidoe Controll State')
     }
@@ -52,6 +62,7 @@ export function useVideoControll({
         currentRef.removeEventListener('timeupdate', handleTimeUpdate)
         currentRef.removeEventListener('play', handlePlay)
         currentRef.removeEventListener('pause', handlePause)
+        currentRef.removeEventListener('volumechange', handleSync)
       }
     }
   }, [
@@ -60,6 +71,7 @@ export function useVideoControll({
     handleTimeUpdate,
     handlePlay,
     handlePause,
+    handleSync,
   ])
 
   return {
@@ -68,5 +80,6 @@ export function useVideoControll({
     progress,
     seek,
     playing,
+    muted,
   }
 }
