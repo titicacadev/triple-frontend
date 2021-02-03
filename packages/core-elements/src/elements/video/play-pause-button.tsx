@@ -57,16 +57,17 @@ export default function PlayPauseButton({
         playing ? videoRef.current.pause() : videoRef.current.play()
         e.stopPropagation()
         onPlayPause()
+        handleFadeOut()
       }
     },
-    [videoRef, playing, forceVisible, visible, onPlayPause],
+    [videoRef, playing, forceVisible, visible, onPlayPause, handleFadeOut],
   )
 
-  useEffect(() => {
-    if (visible) {
-      handleFadeOut()
-    }
-  }, [visible, handleFadeOut])
+  // useEffect(() => {
+  //   if (visible) {
+  //     handleFadeOut()
+  //   }
+  // }, [visible, handleFadeOut])
 
   return (
     <PlayPauseButtonBase
