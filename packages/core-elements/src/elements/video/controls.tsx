@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
+import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import { debounce } from '@titicaca/view-utilities'
 import { getColor } from '@titicaca/color-palette'
@@ -7,7 +7,7 @@ import Seeker from './seeker'
 import PlayPauseButton from './play-pause-button'
 import MuteUnmuteButton from './mute-unmute-button'
 import { formatTime } from './utils'
-
+import { useVideoControll } from './use-vidoe-controll'
 const ControlsContainer = styled.div<{ visible: boolean }>`
   position: absolute;
   top: 0;
@@ -71,53 +71,11 @@ export default function Controls({
   muted: boolean
   videoRef: React.RefObject<HTMLVideoElement>
 }) {
+  const { duration, currentTime, progress, seek } = useVideoControll({
+    videoRef,
+  })
+
   const [visible, setVisible] = useState(false)
-  const [duration, setDuration] = useState<number>(0)
-  const currentTimeRef = useRef<HTMLDivElement>(null)
-  const progressRef = useRef<HTMLProgressElement>(null)
-  const seekerRef = useRef<HTMLInputElement>(null)
-
-  const handleDurationChange = useCallback(() => {
-    if (videoRef.current) {
-      const duration = videoRef.current.duration
-
-      !isNaN(duration) && setDuration(Math.floor(videoRef.current.duration))
-    }
-  }, [videoRef, setDuration])
-
-  const handleTimeUpdate = useCallback(() => {
-    if (currentTimeRef.current && videoRef.current) {
-      currentTimeRef.current.innerHTML = formatTime(
-        Math.floor(videoRef.current.currentTime),
-      )
-    }
-
-    if (progressRef.current && videoRef.current) {
-      progressRef.current.value = videoRef.current.currentTime
-    }
-
-    if (seekerRef.current && videoRef.current) {
-      seekerRef.current.value = String(videoRef.current.currentTime)
-    }
-  }, [currentTimeRef, videoRef, progressRef, seekerRef])
-
-  useEffect(() => {
-    const currentRef = videoRef.current
-
-    if (currentRef) {
-      currentRef.addEventListener('durationchange', handleDurationChange)
-      currentRef.addEventListener('progress', handleDurationChange)
-      currentRef.addEventListener('timeupdate', handleTimeUpdate)
-    }
-
-    return () => {
-      if (currentRef) {
-        currentRef.removeEventListener('durationchange', handleDurationChange)
-        currentRef.removeEventListener('progress', handleDurationChange)
-        currentRef.removeEventListener('timeupdate', handleTimeUpdate)
-      }
-    }
-  }, [videoRef, handleDurationChange, handleTimeUpdate])
 
   // TODO: useDebouncedState 사용하기
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -156,14 +114,12 @@ export default function Controls({
         visible={visible}
         onClick={visible ? () => setVisible(false) : handleFadeIn}
       >
-        <CurrentTime ref={currentTimeRef}>00:00</CurrentTime>
+        <CurrentTime>{currentTime || '00:00'}</CurrentTime>
         {duration ? <Duration>{formatTime(duration)}</Duration> : null}
-        {duration ? (
-          <Progress max={duration} value={0} ref={progressRef} />
-        ) : null}
+        {duration ? <Progress max={duration} value={progress} /> : null}
         <Seeker
           visible={visible}
-          ref={seekerRef}
+          seek={seek}
           duration={duration}
           onClick={handleSeekerClick}
           onChange={handleSeekerChange}

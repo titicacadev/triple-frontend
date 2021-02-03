@@ -57,20 +57,19 @@ const SeekerBase = styled.input<{ handleVisible: boolean }>`
   }
 `
 
-export default forwardRef(function Seeker(
-  {
-    duration,
-    visible,
-    onClick,
-    onChange,
-  }: {
-    duration: number
-    visible: boolean
-    onClick: (e: React.SyntheticEvent) => void
-    onChange: (e: React.SyntheticEvent) => void
-  },
-  ref: React.Ref<HTMLInputElement>,
-) {
+export default function Seeker({
+  seek,
+  duration,
+  visible,
+  onClick,
+  onChange,
+}: {
+  seek: string
+  duration: number
+  visible: boolean
+  onClick: (e: React.SyntheticEvent) => void
+  onChange: (e: React.SyntheticEvent) => void
+}) {
   const [handleVisible, setHandleVisible] = useState(false)
   // TODO: useDebouncedState 사용하기
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -93,7 +92,7 @@ export default forwardRef(function Seeker(
   return (
     <SeekerBase
       handleVisible={handleVisible}
-      ref={ref}
+      value={seek}
       type="range"
       max={duration}
       min={0}
@@ -102,4 +101,4 @@ export default forwardRef(function Seeker(
       onChange={handleChange}
     />
   )
-})
+}
