@@ -68,7 +68,7 @@ export default function Controls({
   autoPlay,
   videoRef,
 }: {
-  autoPlay?: boolean
+  autoPlay: boolean
   videoRef: React.RefObject<HTMLVideoElement>
 }) {
   const {
@@ -80,7 +80,7 @@ export default function Controls({
     muted,
   } = useVideoControll({
     videoRef,
-    autoPlay: autoPlay || false,
+    autoPlay,
   })
 
   const [visible, setVisible] = useState(false)
