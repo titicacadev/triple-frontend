@@ -112,7 +112,7 @@ export default function Video({
       </VideoFrame>
       {pending && <Pending />}
       {videoRef && !hideControls && (
-        <Controls videoRef={videoRef} muted={!!autoPlay} />
+        <Controls videoRef={videoRef} autoPlay={!!autoPlay} />
       )}
     </VideoContainer>
   )

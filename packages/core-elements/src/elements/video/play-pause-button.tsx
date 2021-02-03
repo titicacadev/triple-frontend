@@ -35,15 +35,17 @@ const PlayPauseButtonBase = styled.button<{
 export default function PlayPauseButton({
   forceVisible,
   videoRef,
+  autoPlay,
   playing,
   onPlayPause,
 }: {
   forceVisible: boolean
+  autoPlay?: boolean
   playing: boolean
   videoRef: React.RefObject<HTMLVideoElement>
   onPlayPause: (e?: React.SyntheticEvent) => void
 }) {
-  const [visible, setVisible] = useState(true)
+  const [visible, setVisible] = useState(!autoPlay)
   // TODO: useDebouncedState 사용하기
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleFadeOut = useCallback(
@@ -62,12 +64,6 @@ export default function PlayPauseButton({
     },
     [videoRef, playing, forceVisible, visible, onPlayPause, handleFadeOut],
   )
-
-  // useEffect(() => {
-  //   if (visible) {
-  //     handleFadeOut()
-  //   }
-  // }, [visible, handleFadeOut])
 
   return (
     <PlayPauseButtonBase
