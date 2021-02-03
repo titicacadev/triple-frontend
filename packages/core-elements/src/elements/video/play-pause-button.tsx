@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import { debounce } from '@titicaca/view-utilities'
 
@@ -40,7 +40,7 @@ export default function PlayPauseButton({
   onPlayPause,
 }: {
   forceVisible: boolean
-  autoPlay?: boolean
+  autoPlay: boolean
   playing: boolean
   videoRef: React.RefObject<HTMLVideoElement>
   onPlayPause: (e?: React.SyntheticEvent) => void
