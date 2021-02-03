@@ -1,9 +1,10 @@
-import React, { useRef, useState, useCallback, useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 import { MEDIA_FRAME_OPTIONS, FrameRatioAndSizes } from '../../commons'
 import { formatMarginPadding } from '../../mixins'
 
+import { useVideoRef } from './use-video-ref'
 import Sources from './sources'
 import Controls from './controls'
 
@@ -84,31 +85,7 @@ export default function Video({
   hideControls?: boolean
   showNativeControls?: boolean
 }) {
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const [pending, setPending] = useState(true)
-
-  const handlePending = useCallback(() => setPending(true), [setPending])
-  const handleReady = useCallback(() => setPending(false), [setPending])
-
-  useEffect(() => {
-    const currentRef = videoRef.current
-
-    if (currentRef) {
-      currentRef.addEventListener('canplaythrough', handleReady)
-      currentRef.addEventListener('canplay', handleReady)
-      currentRef.addEventListener('play', handleReady)
-      currentRef.addEventListener('waiting', handlePending)
-    }
-
-    return () => {
-      if (currentRef) {
-        currentRef.removeEventListener('canplaythrough', handleReady)
-        currentRef.removeEventListener('canplay', handleReady)
-        currentRef.removeEventListener('play', handleReady)
-        currentRef.removeEventListener('waiting', handlePending)
-      }
-    }
-  }, [videoRef, handleReady, handlePending])
+  const { videoRef, pending } = useVideoRef()
 
   return (
     <VideoContainer
