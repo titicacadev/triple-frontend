@@ -4,17 +4,17 @@ import { formatTime } from './utils'
 
 export function useVideoControll({
   videoRef,
-  initialMuted,
+  autoPlay,
 }: {
   videoRef: React.RefObject<HTMLVideoElement>
-  initialMuted: boolean
+  autoPlay: boolean
 }) {
   const [duration, setDuartion] = useState<number>(0)
   const [progress, setProgress] = useState<number>(0)
   const [currentTime, setCurrentTime] = useState<string>('')
   const [seek, setSeek] = useState<string>('')
   const [playing, setPlaying] = useState(false)
-  const [muted, setMuted] = useState(initialMuted)
+  const [muted, setMuted] = useState(autoPlay)
 
   const handleDuartionChange = useCallback(() => {
     if (videoRef.current) {

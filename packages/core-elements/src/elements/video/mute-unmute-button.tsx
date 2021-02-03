@@ -71,13 +71,13 @@ export default function MuteUnmuteButton({
     if (visible) {
       handleFadeOut()
     }
-  }, [visible, handleFadeOut])
+  }, [visible, forceVisible, handleFadeOut])
 
   useEffect(() => {
     if (playing) {
       setVisible(true)
     }
-  }, [playing])
+  }, [playing, setVisible])
 
   return (
     <MuteUnmuteButtonBase
