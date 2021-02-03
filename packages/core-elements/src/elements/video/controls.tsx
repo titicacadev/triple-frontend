@@ -7,7 +7,7 @@ import Seeker from './seeker'
 import PlayPauseButton from './play-pause-button'
 import MuteUnmuteButton from './mute-unmute-button'
 import { formatTime } from './utils'
-import { useVideoControll } from './use-vidoe-controll'
+import { useVideoControll } from './use-video-controll'
 const ControlsContainer = styled.div<{ visible: boolean }>`
   position: absolute;
   top: 0;
@@ -71,7 +71,7 @@ export default function Controls({
   muted: boolean
   videoRef: React.RefObject<HTMLVideoElement>
 }) {
-  const { duration, currentTime, progress, seek } = useVideoControll({
+  const { duration, currentTime, progress, seek, playing } = useVideoControll({
     videoRef,
   })
 

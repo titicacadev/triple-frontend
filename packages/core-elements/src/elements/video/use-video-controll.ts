@@ -11,6 +11,7 @@ export function useVideoControll({
   const [progress, setProgress] = useState<number>(0)
   const [currentTime, setCurrentTime] = useState<string>('')
   const [seek, setSeek] = useState<string>('')
+  const [playing, setPlaying] = useState(false)
 
   const handleDuartionChange = useCallback(() => {
     if (videoRef.current) {
@@ -29,12 +30,17 @@ export function useVideoControll({
     }
   }, [videoRef, setCurrentTime, setProgress, setSeek])
 
+  const handlePlay = useCallback(() => setPlaying(true), [setPlaying])
+  const handlePause = useCallback(() => setPlaying(false), [setPlaying])
+
   useEffect(() => {
     const currentRef = videoRef.current
     if (currentRef) {
       currentRef.addEventListener('durationchange', handleDuartionChange)
       currentRef.addEventListener('progress', handleDuartionChange)
       currentRef.addEventListener('timeupdate', handleTimeUpdate)
+      currentRef.addEventListener('play', handlePlay)
+      currentRef.addEventListener('pause', handlePause)
     } else {
       throw new Error('Cannot use Vidoe Controll State')
     }
@@ -44,14 +50,23 @@ export function useVideoControll({
         currentRef.removeEventListener('durationchange', handleDuartionChange)
         currentRef.removeEventListener('progress', handleDuartionChange)
         currentRef.removeEventListener('timeupdate', handleTimeUpdate)
+        currentRef.removeEventListener('play', handlePlay)
+        currentRef.removeEventListener('pause', handlePause)
       }
     }
-  }, [videoRef, handleDuartionChange, handleTimeUpdate])
+  }, [
+    videoRef,
+    handleDuartionChange,
+    handleTimeUpdate,
+    handlePlay,
+    handlePause,
+  ])
 
   return {
     duration,
     currentTime,
     progress,
     seek,
+    playing,
   }
 }
