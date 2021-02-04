@@ -3,7 +3,6 @@ import {
   Video,
   ImageSourceType,
   Image,
-  VideoFrame,
   MarginPadding,
   OptimizedImgProps,
 } from '@titicaca/core-elements'
@@ -50,23 +49,25 @@ export default function Media({
 
   if (type && type === 'video' && video) {
     return (
-      <VideoFrame
-        frame={mediaFrame || frame || 'large'}
-        fallbackImageUrl={sizes.large.url}
-        borderRadius={borderRadius}
-      >
-        <Video
-          frame={mediaFrame || frame || 'large'}
-          src={video.large.url}
-          fallbackImageUrl={sizes.large.url}
-          cloudinaryBucket={cloudinaryBucket}
-          cloudinaryId={cloudinaryId}
-          autoPlay={autoPlay}
-          borderRadius={borderRadius}
-          hideControls={!!hideControls}
-          showNativeControls={showNativeControls}
-        />
-      </VideoFrame>
+      <Image borderRadius={borderRadius}>
+        <Image.FixedRatioFrame
+          margin={margin}
+          frame={mediaFrame || frame}
+          onClick={onClick && ((e: React.SyntheticEvent) => onClick(e, media))}
+        >
+          <Video
+            frame={mediaFrame || frame || 'large'}
+            src={video.large.url}
+            fallbackImageUrl={sizes.large.url}
+            cloudinaryBucket={cloudinaryBucket}
+            cloudinaryId={cloudinaryId}
+            autoPlay={autoPlay}
+            borderRadius={borderRadius}
+            hideControls={!!hideControls}
+            showNativeControls={showNativeControls}
+          />
+        </Image.FixedRatioFrame>
+      </Image>
     )
   }
 
