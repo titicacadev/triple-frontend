@@ -34,7 +34,7 @@ export default function VideoFrame({
 }: React.PropsWithChildren<{
   frame: FrameRatioAndSizes
   fallbackImageUrl: string
-  borderRadius: number
+  borderRadius?: number
 }>) {
   return (
     <VideoContainer
