@@ -5,6 +5,7 @@ import { generateImageUrl, Version, Quality } from '@titicaca/content-utilities'
 
 import { useImageState } from './context'
 import { useContentAbsolute } from './fixed-ratio-frame'
+import { Placeholder } from './placeholder'
 
 export interface OptimizedImgProps {
   placeholderSrc?: string
@@ -39,26 +40,36 @@ const Img = styled.img<{
 `
 
 export default function ImageOptimizedImg({
+  placeholderSrc = 'https://assets.triple.guide/images/ico-blank-see@3x.png',
   mediaUrlBase = 'https://media.triple.guide',
   cloudinaryBucket = 'triple-cms',
   cloudinaryId,
   version = 'full',
   quality = 'original',
   format = 'jpeg',
+  loading = 'lazy',
   deviceSizes = [640, 768, 1024, 1080, 1280],
 }: Omit<Parameters<typeof Img>[0], 'borderRadius' | 'dimmed' | 'absolute'> &
   OptimizedImgProps) {
   const { borderRadius, overlayMounted } = useImageState()
 
-  const blurLazyPlaceholderImage = `${mediaUrlBase}/${cloudinaryBucket}/c_limit,f_auto,h_1024,w_1024/e_blur:1000,q_2/${cloudinaryId}.${format}`
-
+  const [isVisible, setIsVisible] = useState(false)
   const [imgAttributes, setImgAttributes] = useState({
-    src: blurLazyPlaceholderImage,
+    src: generateImageUrl({
+      mediaUrlBase,
+      cloudinaryBucket,
+      cloudinaryId,
+      version,
+      quality,
+      format,
+    }),
     srcSet: '',
     sizes: '',
   })
 
   const absolute = useContentAbsolute()
+
+  const isLazy = loading === 'lazy' || typeof loading === 'undefined'
 
   const handleLazyLoad = useCallback(
     (event, unobserve) => {
@@ -83,20 +94,12 @@ export default function ImageOptimizedImg({
         )
         .join(', ')
 
+      setIsVisible(event.isIntersecting)
+
       setImgAttributes((prev) => ({
         ...prev,
-        ...(event.isIntersecting && {
-          src: generateImageUrl({
-            mediaUrlBase,
-            cloudinaryBucket,
-            cloudinaryId,
-            version,
-            quality,
-            format,
-          }),
-          srcSet,
-          sizes: '100vw',
-        }),
+        srcSet,
+        sizes: '100vw',
       }))
     },
     [
@@ -112,13 +115,17 @@ export default function ImageOptimizedImg({
 
   return (
     <IntersectionObserver rootMargin="200px" onChange={handleLazyLoad}>
-      <Img
-        {...imgAttributes}
-        borderRadius={borderRadius}
-        dimmed={overlayMounted}
-        absolute={absolute}
-        decoding="async"
-      />
+      {isLazy && isVisible ? (
+        <Img
+          {...imgAttributes}
+          borderRadius={borderRadius}
+          dimmed={overlayMounted}
+          absolute={absolute}
+          decoding="async"
+        />
+      ) : (
+        <Placeholder src={placeholderSrc} absolute={absolute} />
+      )}
     </IntersectionObserver>
   )
 }
