@@ -37,7 +37,7 @@ const OverlayContainer = styled.div<{
   ${({ overlayType = 'gradient' }) => OverlayStyle[overlayType]}
 
   ${paddingMixin}
-  z-index: 2;
+  z-index: 1;
 `
 
 export default function ImageOverlay({
