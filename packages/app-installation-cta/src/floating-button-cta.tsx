@@ -13,7 +13,7 @@ import {
 } from './constants'
 import { CTAProps } from './interfaces'
 import {
-  FloatingButton,
+  FloatingButtonContainer,
   InstallDescription,
   InstallAnchor,
   Description,
@@ -21,6 +21,7 @@ import {
   CloseButton,
   LeftContainer,
   RightContainer,
+  FloatingButton,
 } from './elements'
 
 interface FloatingButtonCTAProps extends CTAProps {
@@ -128,28 +129,30 @@ export default function FloatingButtonCTA({
       mountOnEnter={unmountOnExit}
       unmountOnExit={unmountOnExit}
     >
-      <FloatingButton
+      <FloatingButtonContainer
         visibility={buttonVisibility ? 1 : 0}
         fixed={fixed ? 1 : 0}
         margin={margin}
         zTier={zTier}
         zIndex={zIndex}
       >
-        <LeftContainer>
-          <InstallAnchor href={appInstallLink} onClick={handleClick}>
-            <InstallDescription>
-              <Text floated="left" color="white">
-                {title}
-              </Text>
-              <GoAppButton src="https://assets.triple.guide/images/ico-arrow@4x.png" />
-            </InstallDescription>
-            <Description>{description}</Description>
-          </InstallAnchor>
-        </LeftContainer>
-        <RightContainer onClick={handleDismiss}>
-          <CloseButton src="https://assets.triple.guide/images/btn-closebanner@3x.png" />
-        </RightContainer>
-      </FloatingButton>
+        <FloatingButton>
+          <LeftContainer>
+            <InstallAnchor href={appInstallLink} onClick={handleClick}>
+              <InstallDescription>
+                <Text floated="left" color="white">
+                  {title}
+                </Text>
+                <GoAppButton src="https://assets.triple.guide/images/ico-arrow@4x.png" />
+              </InstallDescription>
+              <Description>{description}</Description>
+            </InstallAnchor>
+          </LeftContainer>
+          <RightContainer onClick={handleDismiss}>
+            <CloseButton src="https://assets.triple.guide/images/btn-closebanner@3x.png" />
+          </RightContainer>
+        </FloatingButton>
+      </FloatingButtonContainer>
     </CSSTransition>
   )
 }

@@ -202,14 +202,10 @@ interface FloatingButtonProps {
   margin?: MarginPadding
 }
 
-export const FloatingButton = styled.div<
+export const FloatingButtonContainer = styled.div<
   FloatingButtonProps & LayeringMixinProps
 >`
   height: 84px;
-  border-radius: 42px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
-  background-color: ${blue980};
-  overflow: hidden;
 
   ${layeringMixin(1)}
 
@@ -251,6 +247,16 @@ export const FloatingButton = styled.div<
     ${inactiveFloatingButtonStyle}
     display: none;
   }
+`
+
+export const FloatingButton = styled.div`
+  border-radius: 42px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
+  background-color: ${blue980};
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 768px;
 `
 
 // ChatbotCTA
