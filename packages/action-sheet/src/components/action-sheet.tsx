@@ -10,6 +10,7 @@ import {
   layeringMixin,
   LayeringMixinProps,
 } from '@titicaca/core-elements'
+import { white } from '@titicaca/color-palette'
 
 const unit = (value: number | string, suffix = 'px') =>
   typeof value === 'string' ? value : value !== 0 ? `${value}${suffix}` : value
@@ -50,10 +51,11 @@ const Sheet = styled.div<SheetProps & LayeringMixinProps>`
   position: fixed;
   left: 0;
   right: 0;
-  background-color: #fff;
+  margin: 0 auto;
   box-sizing: border-box;
-  margin: 0;
+  max-width: 768px;
   user-select: none;
+  background-color: ${white};
 
   ${layeringMixin(0)}
 
