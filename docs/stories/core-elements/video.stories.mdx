@@ -1,6 +1,6 @@
 import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
 import { boolean, select, text } from '@storybook/addon-knobs'
-import { Video, VideoFrame } from '@titicaca/core-elements'
+import { VideoWrapper, Video, VideoFrame } from '@titicaca/core-elements'
 
 <Meta title="Core-Elements | Video" component={Video} />
 
@@ -11,7 +11,7 @@ import { Video, VideoFrame } from '@titicaca/core-elements'
 <Preview>
   <Story name="비디오 with Autoplay">
     {boolean('Visible', true) ? (
-      <VideoFrame
+      <VideoWrapper
         frame={select(
           'Frame',
           ['mini', 'small', 'medium', 'large', 'big', 'huge'],
@@ -22,35 +22,28 @@ import { Video, VideoFrame } from '@titicaca/core-elements'
           'https://media.triple.guide/triple-dev/video/upload/c_limit,f_auto,h_1024,w_1024/580e50be-d1d5-4ad8-a477-ad13f4faec9d.jpeg',
         )}
       >
-        <Video
-          autoPlay
-          frame={select(
-            'Frame',
-            ['mini', 'small', 'medium', 'large', 'big', 'huge'],
-            'small',
-          )}
-          src={text(
-            'URL',
-            'https://media.triple.guide/triple-dev/video/upload/c_fill,h_256,w_256,f_auto/580e50be-d1d5-4ad8-a477-ad13f4faec9d.mp4',
-          )}
-          fallbackImageUrl={text(
-            'Fallback URL',
-            'https://media.triple.guide/triple-dev/video/upload/c_limit,f_auto,h_1024,w_1024/580e50be-d1d5-4ad8-a477-ad13f4faec9d.jpeg',
-          )}
-          cloudinaryId={text(
-            'Cloudinary ID',
-            '580e50be-d1d5-4ad8-a477-ad13f4faec9d',
-          )}
-          cloudinaryBucket={text('Cloudinary Bucket', 'triple-dev')}
-        />
-      </VideoFrame>
+        <VideoFrame>
+          <Video
+            autoPlay
+            src={text(
+              'URL',
+              'https://media.triple.guide/triple-dev/video/upload/c_fill,h_256,w_256,f_auto/580e50be-d1d5-4ad8-a477-ad13f4faec9d.mp4',
+            )}
+            cloudinaryId={text(
+              'Cloudinary ID',
+              '580e50be-d1d5-4ad8-a477-ad13f4faec9d',
+            )}
+            cloudinaryBucket={text('Cloudinary Bucket', 'triple-dev')}
+          />
+        </VideoFrame>
+      </VideoWrapper>
     ) : (
       <div>Hidden</div>
     )}
   </Story>
   <Story name="비디오 without Autoplay">
     {boolean('Visible', true) ? (
-      <VideoFrame
+      <VideoWrapper
         frame={select(
           'Frame',
           ['mini', 'small', 'medium', 'large', 'big', 'huge'],
@@ -61,27 +54,20 @@ import { Video, VideoFrame } from '@titicaca/core-elements'
           'https://media.triple.guide/triple-dev/video/upload/c_limit,f_auto,h_1024,w_1024/580e50be-d1d5-4ad8-a477-ad13f4faec9d.jpeg',
         )}
       >
-        <Video
-          frame={select(
-            'Frame',
-            ['mini', 'small', 'medium', 'large', 'big', 'huge'],
-            'small',
-          )}
-          src={text(
-            'URL',
-            'https://media.triple.guide/triple-dev/video/upload/c_fill,h_256,w_256,f_auto/580e50be-d1d5-4ad8-a477-ad13f4faec9d.mp4',
-          )}
-          fallbackImageUrl={text(
-            'Fallback URL',
-            'https://media.triple.guide/triple-dev/video/upload/c_limit,f_auto,h_1024,w_1024/580e50be-d1d5-4ad8-a477-ad13f4faec9d.jpeg',
-          )}
-          cloudinaryId={text(
-            'Cloudinary ID',
-            '580e50be-d1d5-4ad8-a477-ad13f4faec9d',
-          )}
-          cloudinaryBucket={text('Cloudinary Bucket', 'triple-dev')}
-        />
-      </VideoFrame>
+        <VideoFrame>
+          <Video
+            src={text(
+              'URL',
+              'https://media.triple.guide/triple-dev/video/upload/c_fill,h_256,w_256,f_auto/580e50be-d1d5-4ad8-a477-ad13f4faec9d.mp4',
+            )}
+            cloudinaryId={text(
+              'Cloudinary ID',
+              '580e50be-d1d5-4ad8-a477-ad13f4faec9d',
+            )}
+            cloudinaryBucket={text('Cloudinary Bucket', 'triple-dev')}
+          />
+        </VideoFrame>
+      </VideoWrapper>
     ) : (
       <div>Hidden</div>
     )}

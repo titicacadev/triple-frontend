@@ -1,4 +1,5 @@
 import VideoFrame from './video-frame'
 import Video from './video'
+import { VideoWrapper } from './context'
 
-export { VideoFrame, Video }
+export { VideoWrapper, VideoFrame, Video }
