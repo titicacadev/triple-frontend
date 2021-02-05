@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { MEDIA_FRAME_OPTIONS, FrameRatioAndSizes } from '../../commons'
 import { formatMarginPadding } from '../../mixins'
 
+import { useVideoState } from './context'
+
 const VideoContainer = styled.div<{
   frame: FrameRatioAndSizes
   fallbackImageUrl: string
@@ -27,20 +29,17 @@ const VideoContainer = styled.div<{
 `
 
 export default function VideoFrame({
-  frame,
-  fallbackImageUrl,
   borderRadius,
   children,
 }: React.PropsWithChildren<{
-  frame: FrameRatioAndSizes
-  fallbackImageUrl: string
   borderRadius?: number
 }>) {
+  const { frame, fallbackImageUrl } = useVideoState()
   return (
     <VideoContainer
+      borderRadius={borderRadius}
       frame={frame}
       fallbackImageUrl={fallbackImageUrl}
-      borderRadius={borderRadius}
     >
       {children}
     </VideoContainer>

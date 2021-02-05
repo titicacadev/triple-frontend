@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { FrameRatioAndSizes } from '../../commons'
-
 import { useVideoRef } from './use-video-ref'
+import { useVideoState } from './context'
 import Sources from './sources'
 import Controls from './controls'
 
@@ -45,8 +44,6 @@ export default function Video({
   srcType = 'video/mp4',
   cloudinaryBucket,
   cloudinaryId,
-  fallbackImageUrl,
-  frame,
   autoPlay,
   hideControls,
   showNativeControls,
@@ -55,15 +52,12 @@ export default function Video({
   srcType?: string
   cloudinaryBucket?: string
   cloudinaryId?: string
-  fallbackImageUrl: string
-  frame: FrameRatioAndSizes
   autoPlay?: boolean
-  borderRadius?: number
   hideControls?: boolean
   showNativeControls?: boolean
 }) {
   const { videoRef, pending } = useVideoRef()
-
+  const { frame, fallbackImageUrl } = useVideoState()
   return (
     <>
       <VideoFrame
