@@ -15,6 +15,7 @@ import reducer, {
   loadImagesRequest,
   loadImagesSuccess,
   loadImagesFail,
+  initializeImages,
 } from './reducer'
 
 interface ImagesContext {
@@ -23,6 +24,7 @@ interface ImagesContext {
   loading: boolean
   actions: {
     fetch: (cb?: () => void) => Promise<void>
+    reFetch: (cb?: () => void) => Promise<void>
     indexOf: (target: { id: string }) => Promise<number>
   }
 }
@@ -46,6 +48,7 @@ const Context = React.createContext<ImagesContext>({
   loading: false,
   actions: {
     fetch: () => Promise.resolve(),
+    reFetch: () => Promise.resolve(),
     indexOf: () => Promise.resolve(-1),
   },
 })
@@ -86,6 +89,37 @@ export function ImagesProvider({
       return {}
     },
     [fetchImages, id, images.length, type],
+  )
+
+  const reFetch = useCallback(
+    async (cb?: () => void) => {
+      if (loading) {
+        return
+      }
+
+      dispatch(loadImagesRequest())
+      dispatch(
+        initializeImages({
+          initialImages: initialImages || [],
+          initialTotal: initialTotal || 0,
+        }),
+      )
+
+      try {
+        const { data: fetchedImages, total } = await sendFetchRequest()
+
+        if (fetchedImages) {
+          dispatch(loadImagesSuccess({ images: fetchedImages, total }))
+        } else {
+          throw new Error('Response has no data property')
+        }
+      } catch (error) {
+        dispatch(loadImagesFail(error))
+      }
+
+      cb && cb()
+    },
+    [loading, initialImages, initialTotal, sendFetchRequest],
   )
 
   const fetch = useCallback(
@@ -141,11 +175,12 @@ export function ImagesProvider({
       total,
       actions: {
         fetch,
+        reFetch,
         indexOf,
       },
       loading,
     }),
-    [fetch, images, indexOf, total, loading],
+    [fetch, images, indexOf, total, loading, reFetch],
   )
 
   return <Context.Provider value={value}>{children}</Context.Provider>
