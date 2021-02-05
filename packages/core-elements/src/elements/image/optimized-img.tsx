@@ -17,6 +17,7 @@ export interface OptimizedImgProps {
   format?: string
   loading?: 'lazy' | 'eager'
   deviceSizes?: number[]
+  ProgressiveMode?: 'semi' | 'steep' | 'none'
 }
 
 const Img = styled.img<{
@@ -47,8 +48,8 @@ export default function ImageOptimizedImg({
   version = 'full',
   quality = 'original',
   format = 'jpeg',
-  loading = 'lazy',
   deviceSizes = [640, 768, 1024, 1080, 1280],
+  progressiveMode = 'steep',
 }: Omit<Parameters<typeof Img>[0], 'borderRadius' | 'dimmed' | 'absolute'> &
   OptimizedImgProps) {
   const { borderRadius, overlayMounted } = useImageState()
@@ -62,14 +63,15 @@ export default function ImageOptimizedImg({
       version,
       quality,
       format,
+      width: 2048,
+      height: 2048,
+      progressiveMode,
     }),
     srcSet: '',
     sizes: '',
   })
 
   const absolute = useContentAbsolute()
-
-  const isLazy = loading === 'lazy' || typeof loading === 'undefined'
 
   const handleLazyLoad = useCallback(
     (event, unobserve) => {
@@ -90,6 +92,7 @@ export default function ImageOptimizedImg({
               format,
               width,
               height: width,
+              progressiveMode,
             })} ${width}w`,
         )
         .join(', ')
@@ -108,6 +111,7 @@ export default function ImageOptimizedImg({
       deviceSizes,
       format,
       mediaUrlBase,
+      progressiveMode,
       quality,
       version,
     ],
@@ -115,7 +119,7 @@ export default function ImageOptimizedImg({
 
   return (
     <IntersectionObserver rootMargin="200px" onChange={handleLazyLoad}>
-      {isLazy && isVisible ? (
+      {isVisible ? (
         <Img
           {...imgAttributes}
           borderRadius={borderRadius}
