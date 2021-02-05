@@ -4,6 +4,8 @@ import { CSSTransition } from 'react-transition-group'
 
 import { layeringMixin, LayeringMixinProps } from '../mixins'
 
+import Container from './container'
+
 const TRANSITION_DURATION = 300
 
 interface DrawerContainerProps {
@@ -94,7 +96,9 @@ export default function Drawer({
         zTier={zTier}
         zIndex={zIndex}
       >
-        {children}
+        <Container maxWidth={768} centered>
+          {children}
+        </Container>
       </DrawerContainer>
     </CSSTransition>
   )
