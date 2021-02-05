@@ -9,12 +9,11 @@ const MIN_DESKTOP_WIDTH = 1142
 const CLOSE_INSTALL_BUTTON_KEY = 'close_install_button'
 const DEFAULT_DESCRIPTION_TEXT = '가이드북, 일정짜기, 길찾기, 맛집'
 
-const FloatingButton = styled.div<{ fixed?: boolean; margin?: MarginPadding }>`
+const FloatingButtonContainer = styled.div<{
+  fixed?: boolean
+  margin?: MarginPadding
+}>`
   height: 84px;
-  border-radius: 42px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
-  background-color: rgba(${getColor('blue980')});
-  overflow: hidden;
 
   @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
     display: none;
@@ -38,6 +37,15 @@ const FloatingButton = styled.div<{ fixed?: boolean; margin?: MarginPadding }>`
       margin-left: ${margin.left || 0}px;
       margin-right: ${margin.right || 0}px;
     `};
+`
+
+const FloatingButton = styled.div`
+  border-radius: 42px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
+  background-color: rgba(${getColor('blue980')});
+  overflow: hidden;
+  max-width: 768px;
+  margin: 0 auto;
 `
 
 const InstallDescription = styled(Text)`
@@ -154,21 +162,23 @@ export default function FloatingInstallButton({
   }
 
   return buttonVisibility ? (
-    <FloatingButton fixed={fixed} margin={margin}>
-      <LeftContainer>
-        <InstallAnchor href={appInstallLink} onClick={onSelect}>
-          <InstallDescription>
-            <Text floated="left" color="white">
-              트리플 앱 설치하기
-            </Text>
-            <GoAppButton src="https://assets.triple.guide/images/ico-arrow@4x.png" />
-          </InstallDescription>
-          <Description>{description}</Description>
-        </InstallAnchor>
-      </LeftContainer>
-      <RightContainer onClick={onClose}>
-        <CloseButton src="https://assets.triple.guide/images/btn-closebanner@3x.png" />
-      </RightContainer>
-    </FloatingButton>
+    <FloatingButtonContainer fixed={fixed} margin={margin}>
+      <FloatingButton>
+        <LeftContainer>
+          <InstallAnchor href={appInstallLink} onClick={onSelect}>
+            <InstallDescription>
+              <Text floated="left" color="white">
+                트리플 앱 설치하기
+              </Text>
+              <GoAppButton src="https://assets.triple.guide/images/ico-arrow@4x.png" />
+            </InstallDescription>
+            <Description>{description}</Description>
+          </InstallAnchor>
+        </LeftContainer>
+        <RightContainer onClick={onClose}>
+          <CloseButton src="https://assets.triple.guide/images/btn-closebanner@3x.png" />
+        </RightContainer>
+      </FloatingButton>
+    </FloatingButtonContainer>
   ) : null
 }
