@@ -6,6 +6,10 @@
 
 - npm@7 사용 이후 의존성 설치에 실패하는 문제 수정 (#1213)
 
+### react-contexts
+
+- [images-context] reFetch Action 추가 (#1210)
+
 ### triple-document
 
 - [tag-label] 태그라벨 안 이미지 변경, square 모서리 부분 수정 (#1195)
