@@ -274,7 +274,7 @@ export const ChatbotAction = styled.a`
   color: ${blue980};
   padding-right: 14px;
   background-size: 14px 14px;
-  background-image: url(https://assets.triple.guide/images/ico-right-blue-arrow-s@3x.png);
+  background-image: url('https://assets.triple.guide/images/ico-right-blue-arrow-s@3x.png');
   background-repeat: no-repeat;
   background-position: right 1px;
   margin-top: 10px;
@@ -293,7 +293,7 @@ export const ChatbotCloseButton = styled.button`
   border-radius: 12px;
   box-sizing: border-box;
   background-color: transparent;
-  background-image: url(https://assets.triple-dev.titicaca-corp.com/images/btn-gray-close-circle-s@3x.png);
+  background-image: url('https://assets.triple-dev.titicaca-corp.com/images/btn-gray-close-circle-s@3x.png');
   background-size: 24px 24px;
   background-position: left top;
   background-repeat: no-repeat;
@@ -316,7 +316,7 @@ export const ChatbotIcon = styled.a`
   overflow: hidden;
   text-indent: -1000px;
   background-color: transparent;
-  background-image: url(https://assets.triple-dev.titicaca-corp.com/images/ico-circle-triple-bi@3x.png);
+  background-image: url('https://assets.triple-dev.titicaca-corp.com/images/ico-circle-triple-bi@3x.png');
   background-size: 40px 40px;
   background-position: left top;
   background-repeat: no-repeat;
