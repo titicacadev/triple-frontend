@@ -10,6 +10,7 @@ import qs from 'qs'
 import fetch from 'isomorphic-fetch'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { DeepPartial } from 'utility-types'
+import isEqual from 'react-fast-compare'
 
 import reducer, {
   loadImagesRequest,
@@ -91,36 +92,18 @@ export function ImagesProvider({
     [fetchImages, id, images.length, type],
   )
 
-  const reFetch = useCallback(
-    async (cb?: () => void) => {
-      if (loading) {
-        return
-      }
+  const reFetch = useCallback(async () => {
+    if (loading) {
+      return
+    }
 
-      dispatch(loadImagesRequest())
-      dispatch(
-        initializeImages({
-          initialImages: initialImages || [],
-          initialTotal: initialTotal || 0,
-        }),
-      )
-
-      try {
-        const { data: fetchedImages, total } = await sendFetchRequest()
-
-        if (fetchedImages) {
-          dispatch(loadImagesSuccess({ images: fetchedImages, total }))
-        } else {
-          throw new Error('Response has no data property')
-        }
-      } catch (error) {
-        dispatch(loadImagesFail(error))
-      }
-
-      cb && cb()
-    },
-    [loading, initialImages, initialTotal, sendFetchRequest],
-  )
+    dispatch(
+      initializeImages({
+        initialImages: initialImages || [],
+        initialTotal: initialTotal || 0,
+      }),
+    )
+  }, [loading, initialImages, initialTotal])
 
   const fetch = useCallback(
     async (cb?: () => void, force?: boolean) => {
@@ -166,8 +149,10 @@ export function ImagesProvider({
   )
 
   useEffect(() => {
-    fetch(undefined, true)
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    if (isEqual(images, initialImages)) {
+      fetch(undefined, true)
+    }
+  }, [images]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const value = useMemo(
     () => ({
