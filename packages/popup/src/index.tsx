@@ -10,6 +10,7 @@ import {
   Navbar,
   layeringMixin,
   LayeringMixinProps,
+  Container,
 } from '@titicaca/core-elements'
 
 type NavbarIcon = 'close' | 'back'
@@ -133,7 +134,9 @@ export default function Popup({
           </Navbar>
         )}
 
-        {children}
+        <Container maxWidth={768} centered>
+          {children}
+        </Container>
       </PopupContainer>
     </CSSTransition>
   )
