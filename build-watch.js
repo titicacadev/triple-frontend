@@ -1,3 +1,5 @@
+const { log, error } = require('console')
+
 const chokidar = require('chokidar')
 const concurrently = require('concurrently')
 const debounce = require('lodash.debounce')
@@ -15,7 +17,7 @@ let isReady = false
 
 function handleClose() {
   watcher.close().then(() => {
-    console.log('Bye.')
+    log('Bye.')
   })
 }
 
@@ -23,7 +25,7 @@ const BUILDERS = {}
 
 function createBuilder(packageName) {
   return () => {
-    console.log(`@titicaca/${packageName} is changed`)
+    log(`@titicaca/${packageName} is changed`)
 
     concurrently(
       [
@@ -42,10 +44,10 @@ function createBuilder(packageName) {
       },
     )
       .then(() => {
-        console.log(`Built @titicaca/${packageName}`)
+        log(`Built @titicaca/${packageName}`)
       })
-      .catch((error) => {
-        console.error(error)
+      .catch((err) => {
+        error(err)
       })
   }
 }
