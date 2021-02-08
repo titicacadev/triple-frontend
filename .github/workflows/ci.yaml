@@ -1,10 +1,7 @@
 name: CI
 on:
-  push:
-    branches:
-      - '**'
-    tags-ignore:
-      - '**'
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 env:
   SLACK_CHANNEL: '#triple-web-dev-notifications'
