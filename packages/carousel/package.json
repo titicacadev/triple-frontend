@@ -23,9 +23,11 @@
     "@titicaca/core-elements": "^2.10.1",
     "@titicaca/icons": "^2.10.1",
     "@titicaca/intersection-observer": "^2.10.1",
-    "@titicaca/react-contexts": "^2.10.1",
     "@titicaca/type-definitions": "^2.10.1",
     "@egjs/flicking": "3.4.0",
     "@egjs/react-flicking": "3.1.0"
+  },
+  "peerDependencies": {
+    "@titicaca/react-contexts": "*"
   }
 }

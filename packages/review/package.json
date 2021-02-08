@@ -19,7 +19,6 @@
     "@titicaca/core-elements": "^2.10.1",
     "@titicaca/intersection-observer": "^2.10.1",
     "@titicaca/modals": "^2.10.1",
-    "@titicaca/react-contexts": "^2.10.1",
     "@titicaca/react-hooks": "^2.10.1",
     "@titicaca/ui-flow": "^2.10.1",
     "@titicaca/view-utilities": "^2.10.1",
@@ -36,5 +35,8 @@
     "@types/isomorphic-fetch": "^0.0.35",
     "@types/qs": "^6.9.0",
     "@types/semver": "^7.1.0"
+  },
+  "peerDependencies": {
+    "@titicaca/react-contexts": "*"
   }
 }
