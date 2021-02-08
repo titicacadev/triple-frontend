@@ -7,7 +7,7 @@
     "version": "lerna version --no-push --force-publish",
     "build": "npm run build-resources && npm run build-declarations",
     "build-resources": "lerna exec --ignore @titicaca/triple-frontend-docs 'BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --delete-dir-on-start --no-comments'",
-    "build-declarations": "lerna exec --ignore @titicaca/triple-frontend-docs tsc",
+    "build-declarations": "tsc -b packages/*",
     "build:storybook": "lerna exec --scope @titicaca/triple-frontend-docs 'npm run build'",
     "dev-docs": "lerna exec --scope @titicaca/triple-frontend-docs npm run dev",
     "lint-etc": "prettier --check '**/*.{json,md,yaml}'",
@@ -20,6 +20,7 @@
     "test:ci": "jest --ci",
     "test:watch": "jest --watch",
     "clean-lock": "lerna exec --ignore @titicaca/triple-frontend-docs -- rm -rf ./package-lock.json",
+    "clean:declarations": "npm run build:declarations -- --clean",
     "clean": "lerna exec -- rm -rf ./node_modules ./lib ./*.tsbuildinfo"
   },
   "devDependencies": {
