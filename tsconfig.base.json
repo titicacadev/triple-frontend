@@ -10,7 +10,8 @@
     "esModuleInterop": true,
     "strict": true,
     "emitDeclarationOnly": true,
-    "types": ["react", "node", "jest"]
+    "types": ["react", "node", "jest"],
+    "composite": true
   },
   "exclude": ["node_modules", "lib", "**/*.test.*", "**/*.spec.*"]
 }
