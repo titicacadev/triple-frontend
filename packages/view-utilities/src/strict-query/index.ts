@@ -17,6 +17,10 @@ function normalizeToArray<T extends string = string>(query: RawQuery): T[] {
   return []
 }
 
+function normalizeToBoolean(query: RawQuery) {
+  return (Array.isArray(query) ? query[0] : query) === 'true'
+}
+
 class StrictQuery<Resolved = {}> {
   private raw: { [key: string]: RawQuery }
 
@@ -112,11 +116,9 @@ class StrictQuery<Resolved = {}> {
         [key in Key]: boolean
       }
   > {
-    const checkValue = (value: unknown): boolean => value === 'true'
-
     const { [key]: value, ...restRaw } = this.raw
     const normalized = {
-      [key]: checkValue(Array.isArray(value) ? value[0] : value),
+      [key]: normalizeToBoolean(value),
     } as { [key in Key]: boolean }
 
     return new StrictQuery(restRaw, {
