@@ -25,7 +25,7 @@ export default function RecommendedArticles({
   appInstallationCta?: {
     href: string
     inventoryId: string
-    onClick: () => void
+    onClick?: () => void
   }
 }) {
   const [recommendedArticles, setRecommendedArticles] = useState<
