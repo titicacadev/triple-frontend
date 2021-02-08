@@ -8,7 +8,7 @@ import {
 } from '@titicaca/app-installation-cta'
 
 import { fetchRecommendedArticles } from './api-client'
-import { ArticleListingData } from './types'
+import { ArticleListingData, InventoryItem } from './types'
 import ArticleEntry from './article-entry'
 import MoreButton from './more-button'
 
@@ -31,7 +31,7 @@ export default function RecommendedArticles({
   const [recommendedArticles, setRecommendedArticles] = useState<
     ArticleListingData[]
   >([])
-  const [articleCardCTA, setArticleCardCTA] = useState(null)
+  const [articleCardCTA, setArticleCardCTA] = useState<InventoryItem>(null)
 
   const { show } = useTransitionModal()
   const { trackEvent } = useEventTrackingContext()
