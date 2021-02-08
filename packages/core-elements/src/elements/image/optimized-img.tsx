@@ -8,16 +8,16 @@ import { useContentAbsolute } from './fixed-ratio-frame'
 import { Placeholder } from './placeholder'
 
 export interface OptimizedImgProps {
-  placeholderSrc?: string
   mediaUrlBase?: string
   cloudinaryBucket?: string
   cloudinaryId: string
   version?: Version
   quality?: Quality
   format?: string
-  loading?: 'lazy' | 'eager'
   deviceSizes?: number[]
-  ProgressiveMode?: 'semi' | 'steep' | 'none'
+  width?: number
+  height?: number
+  ProgressiveMode?: 'semi' | 'steep'
 }
 
 const Img = styled.img<{
@@ -41,7 +41,6 @@ const Img = styled.img<{
 `
 
 export default function ImageOptimizedImg({
-  placeholderSrc = 'https://assets.triple.guide/images/ico-blank-see@3x.png',
   mediaUrlBase = 'https://media.triple.guide',
   cloudinaryBucket = 'triple-cms',
   cloudinaryId,
@@ -49,13 +48,19 @@ export default function ImageOptimizedImg({
   quality = 'original',
   format = 'jpeg',
   deviceSizes = [640, 768, 1024, 1080, 1280],
+  width = 1024,
+  height = 1024,
   progressiveMode = 'steep',
 }: Omit<Parameters<typeof Img>[0], 'borderRadius' | 'dimmed' | 'absolute'> &
   OptimizedImgProps) {
   const { borderRadius, overlayMounted } = useImageState()
 
-  const [isVisible, setIsVisible] = useState(false)
-  const [imgAttributes, setImgAttributes] = useState({
+  const [isLoad, setIsLoad] = useState(false)
+  const [imgAttributes, setImgAttributes] = useState<{
+    src?: string
+    srcSet?: string
+    sizes?: string
+  }>({
     src: generateImageUrl({
       mediaUrlBase,
       cloudinaryBucket,
@@ -63,12 +68,10 @@ export default function ImageOptimizedImg({
       version,
       quality,
       format,
-      width: 2048,
-      height: 2048,
+      width,
+      height,
       progressiveMode,
     }),
-    srcSet: '',
-    sizes: '',
   })
 
   const absolute = useContentAbsolute()
@@ -82,7 +85,7 @@ export default function ImageOptimizedImg({
       const srcSet = deviceSizes
         .sort((a, b) => a - b)
         .map(
-          (width) =>
+          (deviceWidth) =>
             `${generateImageUrl({
               mediaUrlBase,
               cloudinaryBucket,
@@ -90,20 +93,21 @@ export default function ImageOptimizedImg({
               version,
               quality,
               format,
-              width,
-              height: width,
-              progressiveMode,
-            })} ${width}w`,
+              width: deviceWidth,
+              height: deviceWidth,
+            })} ${deviceWidth}w`,
         )
         .join(', ')
 
-      setIsVisible(event.isIntersecting)
+      if (event.isIntersecting) {
+        setIsLoad(event.isIntersecting)
 
-      setImgAttributes((prev) => ({
-        ...prev,
-        srcSet,
-        sizes: '100vw',
-      }))
+        setImgAttributes((prev) => ({
+          ...prev,
+          srcSet,
+          sizes: '100vw',
+        }))
+      }
     },
     [
       cloudinaryBucket,
@@ -111,7 +115,6 @@ export default function ImageOptimizedImg({
       deviceSizes,
       format,
       mediaUrlBase,
-      progressiveMode,
       quality,
       version,
     ],
@@ -119,16 +122,15 @@ export default function ImageOptimizedImg({
 
   return (
     <IntersectionObserver rootMargin="200px" onChange={handleLazyLoad}>
-      {isVisible ? (
+      {!isLoad ? (
+        <Placeholder absolute={absolute} />
+      ) : (
         <Img
           {...imgAttributes}
           borderRadius={borderRadius}
           dimmed={overlayMounted}
           absolute={absolute}
-          decoding="async"
         />
-      ) : (
-        <Placeholder src={placeholderSrc} absolute={absolute} />
       )}
     </IntersectionObserver>
   )
