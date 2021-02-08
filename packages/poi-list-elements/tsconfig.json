@@ -5,5 +5,13 @@
     "baseUrl": ".",
     "rootDir": "src"
   },
-  "include": ["./src"]
+  "include": ["./src"],
+  "references": [
+    { "path": "../core-elements" },
+    { "path": "../react-contexts" },
+    { "path": "../resource-list-element" },
+    { "path": "../scrap-button" },
+    { "path": "../type-definitions" },
+    { "path": "../view-utilities" }
+  ]
 }

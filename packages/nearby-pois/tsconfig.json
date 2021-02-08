@@ -5,5 +5,13 @@
     "baseUrl": ".",
     "rootDir": "src"
   },
-  "include": ["./src"]
+  "include": ["./src"],
+  "references": [
+    { "path": "../core-elements" },
+    { "path": "../i18n" },
+    { "path": "../intersection-observer" },
+    { "path": "../poi-list-elements" },
+    { "path": "../type-definitions" },
+    { "path": "../view-utilities" }
+  ]
 }

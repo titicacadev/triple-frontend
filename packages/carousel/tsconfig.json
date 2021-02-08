@@ -5,5 +5,12 @@
     "baseUrl": ".",
     "rootDir": "src"
   },
-  "include": ["./src"]
+  "include": ["./src"],
+  "references": [
+    { "path": "../icons" },
+    { "path": "../core-elements" },
+    { "path": "../intersection-observer" },
+    { "path": "../react-contexts" },
+    { "path": "../type-definitions" }
+  ]
 }

@@ -5,5 +5,12 @@
     "baseUrl": ".",
     "rootDir": "src"
   },
-  "include": ["./src"]
+  "include": ["./src"],
+  "references": [
+    { "path": "../action-sheet" },
+    { "path": "../core-elements" },
+    { "path": "../i18n" },
+    { "path": "../react-contexts" },
+    { "path": "../type-definitions" }
+  ]
 }
