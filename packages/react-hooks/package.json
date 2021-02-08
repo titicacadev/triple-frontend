@@ -19,7 +19,6 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/react-contexts": "^2.10.1",
     "isomorphic-fetch": "^2.2.1",
     "lottie-web": "^5.7.4",
     "react-fast-compare": "^2.0.4",
@@ -30,6 +29,7 @@
     "@types/scroll-to-element": "^2.0.0"
   },
   "peerDependencies": {
+    "@titicaca/react-contexts": "*",
     "react": ">=16.8.0"
   }
 }

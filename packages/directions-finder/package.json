@@ -17,7 +17,9 @@
   "dependencies": {
     "@titicaca/core-elements": "^2.10.1",
     "@titicaca/i18n": "^2.10.1",
-    "@titicaca/popup": "^2.10.1",
-    "@titicaca/react-contexts": "^2.10.1"
+    "@titicaca/popup": "^2.10.1"
+  },
+  "peerDependencies": {
+    "@titicaca/react-contexts": "*"
   }
 }

@@ -31,7 +31,7 @@
   },
   "peerDependencies": {
     "@sentry/browser": "^5.4.3",
-    "@titicaca/react-contexts": "^2.10.1"
+    "@titicaca/react-contexts": "*"
   },
   "devDependencies": {
     "@sentry/browser": "^5.4.3",

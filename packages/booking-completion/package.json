@@ -16,7 +16,9 @@
   },
   "dependencies": {
     "@titicaca/core-elements": "^2.10.1",
-    "@titicaca/react-contexts": "^2.10.1",
     "@titicaca/type-definitions": "^2.10.1"
+  },
+  "peerDependencies": {
+    "@titicaca/react-contexts": "*"
   }
 }

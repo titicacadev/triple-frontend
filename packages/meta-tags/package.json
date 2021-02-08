@@ -12,9 +12,7 @@
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
   },
   "peerDependencies": {
+    "@titicaca/react-contexts": "*",
     "next": "*"
-  },
-  "dependencies": {
-    "@titicaca/react-contexts": "^2.10.1"
   }
 }
