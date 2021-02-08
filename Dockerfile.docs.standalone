@@ -1,4 +1,4 @@
-FROM node:12 AS docs-build
+FROM node:15 AS docs-build
 WORKDIR /app
 
 ARG NPM_TOKEN
