@@ -68,6 +68,7 @@
     "babel-loader": "^8.1.0",
     "babel-preset-react-app": "^9.1.2",
     "next": "*",
-    "react-docgen-typescript-loader": "^3.7.2"
+    "react-docgen-typescript-loader": "^3.7.2",
+    "typescript": "^3.9.7"
   }
 }
