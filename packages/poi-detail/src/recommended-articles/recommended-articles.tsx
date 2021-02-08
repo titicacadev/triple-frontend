@@ -2,25 +2,36 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { Section, Carousel, Responsive, H1 } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'
+import {
+  ArticleCardCTA,
+  fetchArticleCardCTA,
+} from '@titicaca/app-installation-cta'
 
 import { fetchRecommendedArticles } from './api-client'
-import { ArticleListingData } from './types'
+import { ArticleListingData, InventoryItem } from './types'
 import ArticleEntry from './article-entry'
 import MoreButton from './more-button'
 
 export default function RecommendedArticles({
   regionId,
   onArticleClick,
+  appInstallationCta,
 }: {
   regionId: string
   onArticleClick: (
     e: React.SyntheticEvent,
     clickedArticle: ArticleListingData,
   ) => void
+  appInstallationCta?: {
+    href: string
+    inventoryId: string
+    onClick?: () => void
+  }
 }) {
   const [recommendedArticles, setRecommendedArticles] = useState<
     ArticleListingData[]
   >([])
+  const [articleCardCTA, setArticleCardCTA] = useState<InventoryItem>({})
 
   const { show } = useTransitionModal()
   const { trackEvent } = useEventTrackingContext()
@@ -29,9 +40,18 @@ export default function RecommendedArticles({
     async function fetchAndSetRecommendedArticles() {
       setRecommendedArticles(await fetchRecommendedArticles({ regionId }))
     }
+    async function fetchAndSetArticleCardCTA() {
+      const response = await fetchArticleCardCTA({
+        inventoryId: appInstallationCta?.inventoryId,
+      })
+      setArticleCardCTA(response[0])
+    }
 
     fetchAndSetRecommendedArticles()
-  }, [regionId, setRecommendedArticles])
+    if (appInstallationCta?.inventoryId) {
+      fetchAndSetArticleCardCTA()
+    }
+  }, [appInstallationCta, regionId, setRecommendedArticles, setArticleCardCTA])
 
   const handleIntersect = useCallback(
     (intersectingArticle: ArticleListingData) => {
@@ -64,6 +84,15 @@ export default function RecommendedArticles({
           margin={{ top: 20 }}
           containerPadding={{ left: 110, right: 110 }}
         >
+          {articleCardCTA && (
+            <Carousel.Item size="medium">
+              <ArticleCardCTA
+                cta={articleCardCTA}
+                href={appInstallationCta?.href}
+                onClick={appInstallationCta?.onClick}
+              />
+            </Carousel.Item>
+          )}
           {recommendedArticles.map((article) => (
             <Carousel.Item key={article.id} size="medium">
               <ArticleEntry
@@ -86,6 +115,15 @@ export default function RecommendedArticles({
           margin={{ top: 20 }}
           containerPadding={{ left: 30, right: 30 }}
         >
+          {articleCardCTA && (
+            <Carousel.Item size="medium">
+              <ArticleCardCTA
+                cta={articleCardCTA}
+                href={appInstallationCta?.href}
+                onClick={appInstallationCta?.onClick}
+              />
+            </Carousel.Item>
+          )}
           {recommendedArticles.map((article) => (
             <Carousel.Item key={article.id} size="medium">
               <ArticleEntry

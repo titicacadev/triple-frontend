@@ -4,6 +4,7 @@ import AppInstallationCTA from './app-installation-cta'
 import BannerCTA from './banner-cta'
 import FloatingButtonCTA from './floating-button-cta'
 import ChatbotCTA from './chatbot-cta'
+import { ArticleCardCTA, fetchArticleCardCTA } from './article-card-cta'
 
 export * from './constants'
 export {
@@ -13,4 +14,6 @@ export {
   BannerCTA,
   FloatingButtonCTA,
   ChatbotCTA,
+  ArticleCardCTA,
+  fetchArticleCardCTA,
 }

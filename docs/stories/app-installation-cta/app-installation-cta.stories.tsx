@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { action } from '@storybook/addon-actions'
 import { text, boolean } from '@storybook/addon-knobs'
 import {
@@ -6,7 +6,10 @@ import {
   TextBanner,
   BannerCTA,
   FloatingButtonCTA,
+  ArticleCardCTA,
+  fetchArticleCardCTA,
 } from '@titicaca/app-installation-cta'
+import { Carousel } from '@titicaca/core-elements'
 
 export default {
   title: 'app-installation-cta | AppInstallationCTA',
@@ -81,4 +84,38 @@ export function BaseBannerCTA() {
 
 BaseBannerCTA.story = {
   name: '배너 CTA',
+}
+
+export function BaseArticleCardCTA() {
+  const [articleCTA, setArticleCTA] = useState(null)
+
+  useEffect(() => {
+    async function fetchAndSetArticleCardCTA() {
+      const response = await fetchArticleCardCTA({
+        inventoryId: 'app-install-cta-footer-hotel-v1',
+      })
+      setArticleCTA(response[0])
+    }
+
+    fetchAndSetArticleCardCTA()
+  }, [])
+
+  return (
+    <div>
+      <Carousel
+        margin={{ top: 20 }}
+        containerPadding={{ left: 110, right: 110 }}
+      >
+        <Carousel.Item key={'d'} size="medium">
+          {articleCTA ? (
+            <ArticleCardCTA
+              cta={articleCTA}
+              href={text('설치 URL', 'https://triple-dev.titicaca-corp.com')}
+              onClick={action('onCTAClick')}
+            />
+          ) : null}
+        </Carousel.Item>
+      </Carousel>
+    </div>
+  )
 }
