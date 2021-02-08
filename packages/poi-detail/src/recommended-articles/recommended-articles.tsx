@@ -85,7 +85,7 @@ export default function RecommendedArticles({
           containerPadding={{ left: 110, right: 110 }}
         >
           {articleCardCTA && (
-            <Carousel.Item key={appInstallationCta?.inventoryId} size="medium">
+            <Carousel.Item size="medium">
               <ArticleCardCTA
                 cta={articleCardCTA}
                 href={appInstallationCta?.href}
@@ -116,7 +116,7 @@ export default function RecommendedArticles({
           containerPadding={{ left: 30, right: 30 }}
         >
           {articleCardCTA && (
-            <Carousel.Item key={appInstallationCta?.inventoryId} size="medium">
+            <Carousel.Item size="medium">
               <ArticleCardCTA
                 cta={articleCardCTA}
                 href={appInstallationCta?.href}
