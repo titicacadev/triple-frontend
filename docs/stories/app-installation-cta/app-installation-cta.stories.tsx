@@ -98,7 +98,8 @@ export function BaseArticleCardCTA() {
     }
 
     fetchAndSetArticleCardCTA()
-  }, [setArticleCTA])
+  }, [])
+
   return (
     <div>
       <Carousel

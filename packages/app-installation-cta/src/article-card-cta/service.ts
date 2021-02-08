@@ -1,8 +1,10 @@
+import { InventoryItem } from '../interfaces'
+
 export default async function fetchArticleCardCTA({
   inventoryId,
 }: {
   inventoryId?: string
-}): Promise<any> {
+}): Promise<InventoryItem[]> {
   const response = await fetch(`/api/inventories/v1/${inventoryId}/items`, {
     credentials: 'same-origin',
   })
