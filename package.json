@@ -3,7 +3,9 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap --no-ci && npm run clean-lock",
-    "dev": "npm run build && concurrently --names watch,docs --kill-others 'node build-watch' 'npm run dev-docs'",
+    "dev": "npm run build && concurrently --names watch:resources,watch:declarations,docs --kill-others 'npm:watch:resources' 'npm:watch:declarations' 'npm:dev-docs'",
+    "watch:resources": "node build-watch",
+    "watch:declarations": "npm run build-declarations -- --watch",
     "version": "lerna version --no-push --force-publish",
     "build": "concurrently --names resources,declarations 'npm:build-resources' 'npm:build-declarations'",
     "prebuild": "npm run clean:build",

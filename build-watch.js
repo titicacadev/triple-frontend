@@ -6,7 +6,6 @@ const debounce = require('lodash.debounce')
 
 const BUILD_RESOURCES =
   'BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments'
-const BUILD_DECLARATIONS = 'tsc --incremental'
 
 const watcher = chokidar.watch('packages/', {
   ignored: /(node_modules|lib|tsconfig\.tsbuildinfo|(^|[/\\])\..)/,
@@ -27,15 +26,12 @@ function createBuilder(packageName) {
   return () => {
     log(`@titicaca/${packageName} is changed`)
 
+    // TODO: 굳이 concurrently 사용할 필요 없음
     concurrently(
       [
         {
           command: `lerna exec --scope=@titicaca/${packageName} '${BUILD_RESOURCES}'`,
           name: 'resources',
-        },
-        {
-          command: `lerna exec --scope=@titicaca/${packageName} '${BUILD_DECLARATIONS}'`,
-          name: 'declarations',
         },
       ],
       {
