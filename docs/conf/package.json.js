@@ -1,4 +1,5 @@
 const util = require('util')
+const path = require('path')
 const fsPromises = require('fs').promises
 const exec = util.promisify(require('child_process').exec)
 
@@ -37,7 +38,7 @@ async function main() {
   }
 
   await fsPromises.writeFile(
-    'package.json',
+    path.resolve(__dirname, '../package.json'),
     `${JSON.stringify(packageJSON, null, '  ')}
 
     `,
