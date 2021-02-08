@@ -10,7 +10,6 @@ import qs from 'qs'
 import fetch from 'isomorphic-fetch'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { DeepPartial } from 'utility-types'
-import isEqual from 'react-fast-compare'
 
 import reducer, {
   loadImagesRequest,
@@ -97,13 +96,27 @@ export function ImagesProvider({
       return
     }
 
-    dispatch(
-      initializeImages({
-        initialImages: initialImages || [],
-        initialTotal: initialTotal || 0,
-      }),
-    )
-  }, [loading, initialImages, initialTotal])
+    dispatch(loadImagesRequest())
+
+    try {
+      const response = await fetchImages(
+        { type: TYPE_MAPPING[type] || type, id },
+        { from: initialImages?.length || 0, size: 15 },
+      )
+
+      if (response.ok) {
+        const { data: fetchedImages, total } = await response.json()
+        dispatch(
+          initializeImages({
+            images: [...(initialImages || []), ...fetchedImages],
+            total,
+          }),
+        )
+      }
+    } catch (error) {
+      dispatch(loadImagesFail(error))
+    }
+  }, [loading, initialImages, fetchImages, id, type])
 
   const fetch = useCallback(
     async (cb?: () => void, force?: boolean) => {
@@ -149,10 +162,8 @@ export function ImagesProvider({
   )
 
   useEffect(() => {
-    if (isEqual(images, initialImages)) {
-      fetch(undefined, true)
-    }
-  }, [images]) // eslint-disable-line react-hooks/exhaustive-deps
+    fetch(undefined, true)
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const value = useMemo(
     () => ({
