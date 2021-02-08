@@ -23,8 +23,6 @@
     "react-i18next": "^11.3.3"
   },
   "devDependencies": {
-    "@types/i18next": "^13.0.0",
-    "@types/isomorphic-fetch": "^0.0.35",
-    "@types/react-i18next": "^8.1.0"
+    "@types/isomorphic-fetch": "^0.0.35"
   }
 }
