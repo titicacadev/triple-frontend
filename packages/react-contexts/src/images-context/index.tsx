@@ -15,7 +15,7 @@ import reducer, {
   loadImagesRequest,
   loadImagesSuccess,
   loadImagesFail,
-  initializeImages,
+  reinitializeImages,
 } from './reducer'
 
 interface ImagesContext {
@@ -101,14 +101,14 @@ export function ImagesProvider({
     try {
       const response = await fetchImages(
         { type: TYPE_MAPPING[type] || type, id },
-        { from: initialImages?.length || 0, size: 15 },
+        { from: 0, size: 15 },
       )
 
       if (response.ok) {
         const { data: fetchedImages, total } = await response.json()
         dispatch(
-          initializeImages({
-            images: [...(initialImages || []), ...fetchedImages],
+          reinitializeImages({
+            images: fetchedImages,
             total,
           }),
         )
@@ -116,7 +116,7 @@ export function ImagesProvider({
     } catch (error) {
       dispatch(loadImagesFail(error))
     }
-  }, [loading, initialImages, fetchImages, id, type])
+  }, [loading, fetchImages, id, type])
 
   const fetch = useCallback(
     async (cb?: () => void, force?: boolean) => {

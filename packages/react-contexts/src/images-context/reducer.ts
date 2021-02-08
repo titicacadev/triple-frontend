@@ -7,7 +7,7 @@ interface ImagesState {
   hasMore: boolean
 }
 
-const INITIALIZE_IMAGES = 'INITIALIZE_IMAGES'
+const REINITIALIZE_IMAGES = 'INITIALIZE_IMAGES'
 const LOAD_IMAGES_REQUEST = 'LOAD_IMAGES_REQUEST'
 const LOAD_IMAGES_SUCCESS = 'LOAD_IMAGES_SUCCESS'
 const LOAD_IMAGES_FAIL = 'LOAD_IMAGES_FAIL'
@@ -36,12 +36,12 @@ export function loadImagesFail(error: unknown) {
   } as const
 }
 
-export function initializeImages(payload: {
+export function reinitializeImages(payload: {
   images: ImageMeta[]
   total: number
 }) {
   return {
-    type: INITIALIZE_IMAGES,
+    type: REINITIALIZE_IMAGES,
     payload,
   } as const
 }
@@ -52,11 +52,11 @@ export default function reducer(
     | typeof loadImagesRequest
     | typeof loadImagesSuccess
     | typeof loadImagesFail
-    | typeof initializeImages
+    | typeof reinitializeImages
   >,
 ): ImagesState {
   switch (action.type) {
-    case INITIALIZE_IMAGES:
+    case REINITIALIZE_IMAGES:
       return {
         loading: !action.payload.images,
         images: action.payload.images,
