@@ -47,12 +47,6 @@ export default function MuteUnmuteButton({
   onMuteUnmute: (e: React.SyntheticEvent) => void
 }) {
   const [visible, setVisible] = useState(false)
-  // TODO: useDebouncedState 사용하기
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleFadeOut = useCallback(
-    debounce(() => setVisible(false), 5000),
-    [setVisible],
-  )
 
   const handleMuteUnmute = useCallback(
     (e: React.SyntheticEvent) => {
@@ -68,16 +62,17 @@ export default function MuteUnmuteButton({
   )
 
   useEffect(() => {
-    if (visible) {
-      handleFadeOut()
-    }
-  }, [visible, forceVisible, handleFadeOut])
-
-  useEffect(() => {
     if (playing) {
       setVisible(true)
     }
   }, [playing, setVisible])
+
+  useEffect(() => {
+    const handleFadeOut = debounce(() => setVisible(false), 5000)
+    if (visible) {
+      handleFadeOut()
+    }
+  }, [visible, forceVisible])
 
   return (
     <MuteUnmuteButtonBase
