@@ -1,8 +1,14 @@
-import { css } from 'styled-components'
+import { css, BaseThemedCssFunction } from 'styled-components'
 
 import { MarginPadding } from '../types'
 
-export const margin = (defaultValue?: MarginPadding) => css<{
+export const margin: (
+  defaultValue?: MarginPadding,
+) => ReturnType<
+  BaseThemedCssFunction<{
+    padding?: MarginPadding
+  }>
+> = (defaultValue) => css<{
   margin?: MarginPadding
 }>`
   ${({ margin }) => {
