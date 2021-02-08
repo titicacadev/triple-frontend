@@ -56,7 +56,6 @@
     "http-proxy-middleware": "^0.20.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.2",
     "@babel/runtime-corejs2": "^7.10.2",
     "@sentry/browser": "^5.20.0",
     "@storybook/addon-actions": "^5.3.19",
@@ -69,8 +68,6 @@
     "babel-loader": "^8.1.0",
     "babel-preset-react-app": "^9.1.2",
     "next": "*",
-    "react": "^16.8.0",
-    "react-docgen-typescript-loader": "^3.7.2",
-    "typescript": "^3.9.5"
+    "react-docgen-typescript-loader": "^3.7.2"
   }
 }
