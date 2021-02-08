@@ -9,7 +9,7 @@ COPY . .
 ARG TAG_NAME
 RUN node ./docs/conf/package.json.js $TAG_NAME
 
-WORKDIR /docs
+WORKDIR /app/docs
 RUN npm ci
 RUN npm run build
 
