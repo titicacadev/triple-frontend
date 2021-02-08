@@ -1,4 +1,4 @@
-FROM node:15 AS docs-build
+FROM node:12 AS docs-build
 WORKDIR /app
 
 ARG NPM_TOKEN
@@ -8,8 +8,10 @@ COPY . .
 
 ARG TAG_NAME
 RUN node ./docs/conf/package.json.js $TAG_NAME
+
+WORKDIR /docs
 RUN npm ci
-RUN npm run build:storybook
+RUN npm run build
 
 FROM nginx:latest as docs-release
 
