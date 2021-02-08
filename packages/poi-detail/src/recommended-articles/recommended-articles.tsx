@@ -31,7 +31,7 @@ export default function RecommendedArticles({
   const [recommendedArticles, setRecommendedArticles] = useState<
     ArticleListingData[]
   >([])
-  const [articleCardCTA, setArticleCardCTA] = useState<InventoryItem>(null)
+  const [articleCardCTA, setArticleCardCTA] = useState<InventoryItem>({})
 
   const { show } = useTransitionModal()
   const { trackEvent } = useEventTrackingContext()
