@@ -7,8 +7,9 @@ RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 COPY . .
 
 ARG TAG_NAME
-RUN cd docs && node ./conf/package.json.js $TAG_NAME
-RUN cd docs && npm install && npm run build
+RUN node ./docs/conf/package.json.js $TAG_NAME
+RUN npm ci
+RUN npm run build:storybook
 
 FROM nginx:latest as docs-release
 
