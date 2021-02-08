@@ -5,5 +5,12 @@
     "baseUrl": ".",
     "rootDir": "src"
   },
-  "include": ["./src"]
+  "include": ["./src"],
+  "references": [
+    { "path": "../action-sheet" },
+
+    { "path": "../color-palette" },
+    { "path": "../core-elements" },
+    { "path": "../drawer-button" }
+  ]
 }

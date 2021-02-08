@@ -5,5 +5,11 @@
     "baseUrl": ".",
     "rootDir": "src"
   },
-  "include": ["./src"]
+  "include": ["./src"],
+  "references": [
+    { "path": "../core-elements" },
+    { "path": "../resource-list-element" },
+    { "path": "../type-definitions" },
+    { "path": "../view-utilities" }
+  ]
 }

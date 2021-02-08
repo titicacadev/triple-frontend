@@ -5,5 +5,19 @@
     "baseUrl": ".",
     "rootDir": "src"
   },
-  "include": ["./src"]
+  "include": ["./src"],
+  "references": [
+    { "path": "../color-palette" },
+    { "path": "../core-elements" },
+    { "path": "../intersection-observer" },
+    { "path": "../map" },
+    { "path": "../modals" },
+    { "path": "../poi-list-elements" },
+    { "path": "../react-contexts" },
+    { "path": "../standard-action-handler" },
+    { "path": "../triple-media" },
+    { "path": "../type-definitions" },
+    { "path": "../ui-flow" },
+    { "path": "../view-utilities" }
+  ]
 }

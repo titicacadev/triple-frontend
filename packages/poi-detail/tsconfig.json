@@ -5,5 +5,16 @@
     "baseUrl": ".",
     "rootDir": "src"
   },
-  "include": ["./src"]
+  "include": ["./src"],
+  "references": [
+    { "path": "../action-sheet" },
+    { "path": "../core-elements" },
+    { "path": "../i18n" },
+    { "path": "../image-carousel" },
+    { "path": "../intersection-observer" },
+    { "path": "../modals" },
+    { "path": "../react-contexts" },
+    { "path": "../type-definitions" },
+    { "path": "../view-utilities" }
+  ]
 }
