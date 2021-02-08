@@ -37,8 +37,8 @@ export function loadImagesFail(error: unknown) {
 }
 
 export function initializeImages(payload: {
-  initialImages: ImageMeta[]
-  initialTotal: number
+  images: ImageMeta[]
+  total: number
 }) {
   return {
     type: INITIALIZE_IMAGES,
@@ -58,9 +58,9 @@ export default function reducer(
   switch (action.type) {
     case INITIALIZE_IMAGES:
       return {
-        loading: !action.payload.initialImages,
-        images: action.payload.initialImages,
-        total: action.payload.initialTotal,
+        loading: !action.payload.images,
+        images: action.payload.images,
+        total: action.payload.total,
         hasMore: true,
       }
     case LOAD_IMAGES_REQUEST:
