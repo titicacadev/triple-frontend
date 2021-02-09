@@ -5,6 +5,7 @@ import { MEDIA_FRAME_OPTIONS, FrameRatioAndSizes } from '../../commons'
 import { formatMarginPadding } from '../../mixins'
 
 import { VideoWrapper } from './context'
+
 const VideoContainer = styled.div<{
   frame: FrameRatioAndSizes
   fallbackImageUrl: string
