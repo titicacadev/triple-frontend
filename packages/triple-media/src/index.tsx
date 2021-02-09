@@ -50,6 +50,7 @@ export default function Media({
   if (type && type === 'video' && video) {
     return (
       <Video
+        borderRadius={borderRadius}
         frame={mediaFrame || frame || 'large'}
         fallbackImageUrl={sizes.large.url}
         src={video.large.url}
