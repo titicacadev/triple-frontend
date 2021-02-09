@@ -192,9 +192,9 @@ const PickerFrame = styled.div<PickerFrameProps>`
 
     ${({ height }) => `height: ${height};`}
 
-    .DayPicker-wrapper{
+    .DayPicker-wrapper {
       max-width: 768px;
-      margin:0 auto;
+      margin: 0 auto;
     }
 
     .DayPicker-Month {
