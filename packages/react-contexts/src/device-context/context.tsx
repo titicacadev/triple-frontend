@@ -5,27 +5,34 @@ import React, {
   PropsWithChildren,
   useState,
 } from 'react'
-import { DeepPartial } from 'utility-types'
+import { DeepPartial, Optional } from 'utility-types'
+
+import { DeviceState, DEFAULT_DEVICE_STATE } from './device-state'
 
 interface DeviceContextValue {
   inRegion: boolean
   latitude: number | null
   longitude: number | null
+  deviceState: DeviceState
 }
 
 const Context = createContext<DeviceContextValue>({
   inRegion: false,
   latitude: null,
   longitude: null,
+  deviceState: DEFAULT_DEVICE_STATE,
 })
 
 export function DeviceProvider({
   value: initialValue,
   children,
 }: PropsWithChildren<{
-  value: DeviceContextValue
+  value: Optional<DeviceContextValue, 'deviceState'>
 }>) {
-  const [deviceContext] = useState(initialValue)
+  const [deviceContext] = useState<DeviceContextValue>({
+    ...initialValue,
+    deviceState: initialValue.deviceState || DEFAULT_DEVICE_STATE,
+  })
   return <Context.Provider value={deviceContext}>{children}</Context.Provider>
 }
 
