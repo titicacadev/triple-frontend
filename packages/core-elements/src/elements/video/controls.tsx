@@ -92,11 +92,6 @@ export default function Controls({
     [setVisible],
   )
 
-  const handleFadeIn = useCallback(() => {
-    setVisible(true)
-    handleFadeOut()
-  }, [setVisible, handleFadeOut])
-
   const handleSeekerChange = useCallback(
     (e) => {
       if (videoRef.current) {
@@ -116,12 +111,18 @@ export default function Controls({
     [handleFadeOut],
   )
 
+  const handleControls = useCallback(() => {
+    if (visible) {
+      setVisible(false)
+    } else {
+      setVisible(true)
+      handleFadeOut()
+    }
+  }, [visible, setVisible, handleFadeOut])
+
   return (
     <>
-      <ControlsContainer
-        visible={visible}
-        onClick={visible ? () => setVisible(false) : handleFadeIn}
-      >
+      <ControlsContainer visible={visible} onClick={handleControls}>
         <CurrentTime>{currentTime || '00:00'}</CurrentTime>
         {duration ? <Duration>{formatTime(duration)}</Duration> : null}
         {duration ? <Progress max={duration} value={progress} /> : null}
