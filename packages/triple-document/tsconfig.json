@@ -41,9 +41,6 @@
       "path": "../view-utilities"
     },
     {
-      "path": "../content-utilities"
-    },
-    {
       "path": "../react-contexts"
     }
   ]

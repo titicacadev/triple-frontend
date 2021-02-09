@@ -43,7 +43,7 @@ function dependenciesToReferences(deps) {
   }
   return Object.keys(deps)
     .filter((packageName) => packageName.startsWith('@titicaca/'))
-    .map((packageName) => ({
-      path: `../${packageName.replace('@titicaca/', '')}`,
-    }))
+    .map((packageName) => `../${packageName.replace('@titicaca/', '')}`)
+    .filter((packagePath) => fs.existsSync(packagePath))
+    .map((path) => ({ path }))
 }

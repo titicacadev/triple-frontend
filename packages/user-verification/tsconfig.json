@@ -18,9 +18,6 @@
     },
     {
       "path": "../react-contexts"
-    },
-    {
-      "path": "../triple-web-to-native-interfaces"
     }
   ]
 }

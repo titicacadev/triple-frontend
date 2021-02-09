@@ -18,9 +18,6 @@
     },
     {
       "path": "../view-utilities"
-    },
-    {
-      "path": "../triple-web-to-native-interfaces"
     }
   ]
 }
