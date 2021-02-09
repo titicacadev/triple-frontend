@@ -5,6 +5,8 @@
 ### common
 
 - npm@7 사용 이후 의존성 설치에 실패하는 문제 수정 (#1213)
+- `react-contexts` 패키지를 사용할 때 peer Dependency로 의존하도록 수정 (#1215)
+- 빌드, 개발 과정에 [TypeScript의 Project Reference 설정](https://www.typescriptlang.org/docs/handbook/project-references.html) 적용 (#1215)
 
 ### react-contexts
 
