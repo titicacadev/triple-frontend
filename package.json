@@ -25,7 +25,7 @@
     "clean:build": "lerna exec --ignore @titicaca/triple-frontend-docs -- rm -rf ./lib ./*.tsbuildinfo",
     "clean-lock": "lerna exec --ignore @titicaca/triple-frontend-docs -- rm -rf ./package-lock.json",
     "clean": "lerna exec -- rm -rf ./node_modules ./lib ./*.tsbuildinfo",
-    "references": "lerna exec --ignore @titicaca/triple-frontend-docs --parallel -- node ../../scripts/make-references.js"
+    "references": "lerna exec --ignore @titicaca/triple-frontend-docs --parallel -- node \\$LERNA_ROOT_PATH/scripts/make-references.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
