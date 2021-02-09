@@ -1,7 +1,5 @@
 import React from 'react'
 import {
-  VideoWrapper,
-  VideoFrame,
   Video,
   ImageSourceType,
   Image,
@@ -51,21 +49,16 @@ export default function Media({
 
   if (type && type === 'video' && video) {
     return (
-      <VideoWrapper
+      <Video
         frame={mediaFrame || frame || 'large'}
         fallbackImageUrl={sizes.large.url}
-      >
-        <VideoFrame borderRadius={borderRadius}>
-          <Video
-            src={video.large.url}
-            cloudinaryBucket={cloudinaryBucket}
-            cloudinaryId={cloudinaryId}
-            autoPlay={autoPlay}
-            hideControls={!!hideControls}
-            showNativeControls={showNativeControls}
-          />
-        </VideoFrame>
-      </VideoWrapper>
+        src={video.large.url}
+        cloudinaryBucket={cloudinaryBucket}
+        cloudinaryId={cloudinaryId}
+        autoPlay={autoPlay}
+        hideControls={!!hideControls}
+        showNativeControls={showNativeControls}
+      />
     )
   }
 

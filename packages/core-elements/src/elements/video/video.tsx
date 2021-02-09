@@ -1,20 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { FrameRatioAndSizes } from '../../commons'
+
 import { useVideoRef } from './use-video-ref'
-import { useVideoState } from './context'
-import Sources from './sources'
 import Controls from './controls'
-
-const VideoFrame = styled.video`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-
-  overflow: hidden;
-  object-fit: cover;
-`
+import VideoFrame from './video-frame'
+import VideoElement from './video-element'
 
 const Pending = styled.div`
   position: absolute;
@@ -47,40 +39,43 @@ export default function Video({
   autoPlay,
   hideControls,
   showNativeControls,
+  frame,
+  fallbackImageUrl,
+  removeFrame,
 }: {
   src?: string
   srcType?: string
   cloudinaryBucket?: string
   cloudinaryId?: string
+  fallbackImageUrl: string
+  frame: FrameRatioAndSizes
   autoPlay?: boolean
+  borderRadius?: number
   hideControls?: boolean
   showNativeControls?: boolean
+  removeFrame?: boolean
 }) {
   const { videoRef, pending } = useVideoRef()
-  const { frame, fallbackImageUrl } = useVideoState()
+
   return (
-    <>
-      <VideoFrame
-        controls={!!showNativeControls}
+    <VideoFrame
+      removeFrame={removeFrame}
+      frame={frame}
+      fallbackImageUrl={fallbackImageUrl}
+    >
+      <VideoElement
+        videoRef={videoRef}
+        src={src}
+        srcType={srcType}
+        cloudinaryBucket={cloudinaryBucket}
+        cloudinaryId={cloudinaryId}
         autoPlay={autoPlay}
-        loop
-        playsInline
-        muted={autoPlay}
-        ref={videoRef}
-        poster={fallbackImageUrl}
-      >
-        <Sources
-          src={src}
-          srcType={srcType}
-          cloudinaryBucket={cloudinaryBucket}
-          cloudinaryId={cloudinaryId}
-          frame={frame}
-        />
-      </VideoFrame>
+        showNativeControls={showNativeControls}
+      />
       {pending && <Pending />}
       {videoRef && !hideControls && (
         <Controls videoRef={videoRef} autoPlay={!!autoPlay} />
       )}
-    </>
+    </VideoFrame>
   )
 }
