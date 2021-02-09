@@ -12,7 +12,7 @@
 
 - DayPicker-wrapper를 768로 제한 (#1216)
 
-### max-width
+### core-elements, action-sheet, app-installation-cta, floating-install-button, popup 
 
 - 화면 레이아웃을 벗어나는 UI의 최대 너비 제한 (#1212)
 
