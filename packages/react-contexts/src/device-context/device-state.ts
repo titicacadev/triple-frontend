@@ -7,6 +7,11 @@ export interface DeviceState {
   networkType: 'wifi' | 'cellular' | 'unknown'
 }
 
+export const DEFAULT_DEVICE_STATE: DeviceState = {
+  autoplay: 'never',
+  networkType: 'unknown',
+}
+
 /**
  * request headers에서 디바이스의 상태 값을 가져옵니다.
  * @param headers
@@ -15,10 +20,7 @@ export function getDeviceState(
   headers: IncomingHttpHeaders | undefined,
 ): DeviceState {
   if (!headers) {
-    return {
-      autoplay: 'never',
-      networkType: 'unknown',
-    }
+    return DEFAULT_DEVICE_STATE
   }
 
   const {
@@ -32,7 +34,7 @@ export function getDeviceState(
     .use()
 
   return {
-    autoplay: autoplay || 'never',
-    networkType: networkType || 'unknown',
+    autoplay: autoplay || DEFAULT_DEVICE_STATE.autoplay,
+    networkType: networkType || DEFAULT_DEVICE_STATE.networkType,
   }
 }
