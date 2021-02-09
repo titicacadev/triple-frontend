@@ -7,9 +7,17 @@
   },
   "include": ["./src"],
   "references": [
-    { "path": "../core-elements" },
-    { "path": "../i18n" },
-    { "path": "../popup" },
-    { "path": "../react-contexts" }
+    {
+      "path": "../core-elements"
+    },
+    {
+      "path": "../i18n"
+    },
+    {
+      "path": "../popup"
+    },
+    {
+      "path": "../react-contexts"
+    }
   ]
 }

@@ -7,7 +7,11 @@
   },
   "include": ["./src", "src/.tsx"],
   "references": [
-    { "path": "../core-elements" },
-    { "path": "../view-utilities" }
+    {
+      "path": "../core-elements"
+    },
+    {
+      "path": "../view-utilities"
+    }
   ]
 }

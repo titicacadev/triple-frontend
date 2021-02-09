@@ -7,9 +7,20 @@
   },
   "include": ["./src"],
   "references": [
-    { "path": "../constants" },
-    { "path": "../fetcher" },
-    { "path": "../type-definitions" },
-    { "path": "../view-utilities" }
+    {
+      "path": "../constants"
+    },
+    {
+      "path": "../fetcher"
+    },
+    {
+      "path": "../type-definitions"
+    },
+    {
+      "path": "../view-utilities"
+    },
+    {
+      "path": "../triple-web-to-native-interfaces"
+    }
   ]
 }

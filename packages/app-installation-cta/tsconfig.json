@@ -6,5 +6,12 @@
     "rootDir": "src"
   },
   "include": ["./src"],
-  "references": [{ "path": "../color-palette" }, { "path": "../core-elements" }]
+  "references": [
+    {
+      "path": "../color-palette"
+    },
+    {
+      "path": "../core-elements"
+    }
+  ]
 }

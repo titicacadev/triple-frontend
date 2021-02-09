@@ -6,5 +6,9 @@
     "rootDir": "src"
   },
   "include": ["./src"],
-  "references": [{ "path": "../type-definitions" }]
+  "references": [
+    {
+      "path": "../type-definitions"
+    }
+  ]
 }

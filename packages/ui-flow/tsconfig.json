@@ -6,5 +6,12 @@
     "rootDir": "src"
   },
   "include": ["./src"],
-  "references": [{ "path": "../modals" }, { "path": "../react-contexts" }]
+  "references": [
+    {
+      "path": "../modals"
+    },
+    {
+      "path": "../react-contexts"
+    }
+  ]
 }

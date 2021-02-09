@@ -7,9 +7,17 @@
   },
   "include": ["./src"],
   "references": [
-    { "path": "../core-elements" },
-    { "path": "../resource-list-element" },
-    { "path": "../type-definitions" },
-    { "path": "../view-utilities" }
+    {
+      "path": "../core-elements"
+    },
+    {
+      "path": "../resource-list-element"
+    },
+    {
+      "path": "../type-definitions"
+    },
+    {
+      "path": "../view-utilities"
+    }
   ]
 }

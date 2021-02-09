@@ -7,9 +7,20 @@
   },
   "include": ["./src"],
   "references": [
-    { "path": "../core-elements" },
-    { "path": "../react-contexts" },
-    { "path": "../react-hooks" },
-    { "path": "../view-utilities" }
+    {
+      "path": "../core-elements"
+    },
+    {
+      "path": "../react-hooks"
+    },
+    {
+      "path": "../triple-web-to-native-interfaces"
+    },
+    {
+      "path": "../view-utilities"
+    },
+    {
+      "path": "../react-contexts"
+    }
   ]
 }

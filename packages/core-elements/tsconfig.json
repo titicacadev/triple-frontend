@@ -7,8 +7,17 @@
   },
   "include": ["./src"],
   "references": [
-    { "path": "../color-palette" },
-    { "path": "../view-utilities" },
-    { "path": "../intersection-observer" }
+    {
+      "path": "../color-palette"
+    },
+    {
+      "path": "../content-utilities"
+    },
+    {
+      "path": "../intersection-observer"
+    },
+    {
+      "path": "../view-utilities"
+    }
   ]
 }

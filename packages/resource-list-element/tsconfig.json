@@ -7,10 +7,20 @@
   },
   "include": ["./src"],
   "references": [
-    { "path": "../core-elements" },
-    { "path": "../pricing" },
-    { "path": "../scrap-button" },
-    { "path": "../type-definitions" },
-    { "path": "../view-utilities" }
+    {
+      "path": "../core-elements"
+    },
+    {
+      "path": "../pricing"
+    },
+    {
+      "path": "../scrap-button"
+    },
+    {
+      "path": "../type-definitions"
+    },
+    {
+      "path": "../view-utilities"
+    }
   ]
 }

@@ -7,9 +7,17 @@
   },
   "include": ["./src"],
   "references": [
-    { "path": "../action-sheet" },
-    { "path": "../color-palette" },
-    { "path": "../core-elements" },
-    { "path": "../drawer-button" }
+    {
+      "path": "../action-sheet"
+    },
+    {
+      "path": "../color-palette"
+    },
+    {
+      "path": "../core-elements"
+    },
+    {
+      "path": "../drawer-button"
+    }
   ]
 }

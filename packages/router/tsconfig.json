@@ -5,10 +5,15 @@
     "rootDir": "src"
   },
   "include": ["./src"],
-
   "references": [
-    { "path": "../modals" },
-    { "path": "../react-contexts" },
-    { "path": "../view-utilities" }
+    {
+      "path": "../modals"
+    },
+    {
+      "path": "../view-utilities"
+    },
+    {
+      "path": "../react-contexts"
+    }
   ]
 }

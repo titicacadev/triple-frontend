@@ -6,5 +6,12 @@
     "rootDir": "src"
   },
   "include": ["./src"],
-  "references": [{ "path": "../core-elements" }]
+  "references": [
+    {
+      "path": "../core-elements"
+    },
+    {
+      "path": "../i18n"
+    }
+  ]
 }
