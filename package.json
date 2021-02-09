@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap --no-ci && npm run clean-lock",
+    "bootstrap:docs": "lerna bootstrap --scope=@titicaca/triple-frontend-docs --force-local",
     "dev": "npm run build && concurrently --names watch:resources,watch:declarations,docs --kill-others 'npm:watch:resources' 'npm:watch:declarations' 'npm:dev-docs'",
     "watch:resources": "node build-watch",
     "watch:declarations": "npm run build-declarations -- --watch",
