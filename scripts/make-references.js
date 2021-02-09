@@ -21,7 +21,7 @@ const references = [
 
 const newTsconfig = {
   ...tsconfig,
-  ...(references.length > 0 ? { references } : {}),
+  references: references.length > 0 ? references : undefined,
 }
 
 fs.writeFile(
