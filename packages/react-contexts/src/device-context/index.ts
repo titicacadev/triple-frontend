@@ -4,3 +4,4 @@ export {
   withDeviceContext,
   WithDeviceContextBaseProps,
 } from './context'
+export { getDeviceState, DeviceState } from './device-state'
