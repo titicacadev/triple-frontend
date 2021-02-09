@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+## 2.11.0
+
+### app-installation-cta
+
+- article-card-cta 컴포넌트 추가 및 story doc 추가 (#1197)
+
+### date-picker
+
+- DayPicker-wrapper를 768로 제한 (#1216)
+
+### core-elements, action-sheet, app-installation-cta, floating-install-button, popup
+
+- 화면 레이아웃을 벗어나는 UI의 최대 너비 제한 (#1212)
+
 ### common
 
 - npm@7 사용 이후 의존성 설치에 실패하는 문제 수정 (#1213)
