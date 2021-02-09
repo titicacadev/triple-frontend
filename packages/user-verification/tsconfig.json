@@ -7,9 +7,20 @@
   },
   "include": ["./src"],
   "references": [
-    { "path": "../core-elements" },
-    { "path": "../modals" },
-    { "path": "../react-contexts" },
-    { "path": "../react-hooks" }
+    {
+      "path": "../core-elements"
+    },
+    {
+      "path": "../modals"
+    },
+    {
+      "path": "../react-hooks"
+    },
+    {
+      "path": "../react-contexts"
+    },
+    {
+      "path": "../triple-web-to-native-interfaces"
+    }
   ]
 }

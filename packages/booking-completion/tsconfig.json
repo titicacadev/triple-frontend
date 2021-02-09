@@ -7,8 +7,14 @@
   },
   "include": ["./src"],
   "references": [
-    { "path": "../core-elements" },
-    { "path": "../react-contexts" },
-    { "path": "../type-definitions" }
+    {
+      "path": "../core-elements"
+    },
+    {
+      "path": "../type-definitions"
+    },
+    {
+      "path": "../react-contexts"
+    }
   ]
 }

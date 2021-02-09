@@ -7,10 +7,20 @@
   },
   "include": ["./src"],
   "references": [
-    { "path": "../action-sheet" },
-    { "path": "../core-elements" },
-    { "path": "../i18n" },
-    { "path": "../react-contexts" },
-    { "path": "../type-definitions" }
+    {
+      "path": "../action-sheet"
+    },
+    {
+      "path": "../core-elements"
+    },
+    {
+      "path": "../i18n"
+    },
+    {
+      "path": "../type-definitions"
+    },
+    {
+      "path": "../react-contexts"
+    }
   ]
 }

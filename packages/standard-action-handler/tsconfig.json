@@ -6,5 +6,12 @@
     "rootDir": "src"
   },
   "include": ["./src"],
-  "references": [{ "path": "../view-utilities" }]
+  "references": [
+    {
+      "path": "../view-utilities"
+    },
+    {
+      "path": "../triple-web-to-native-interfaces"
+    }
+  ]
 }

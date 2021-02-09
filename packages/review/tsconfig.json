@@ -7,13 +7,29 @@
   },
   "include": ["./src"],
   "references": [
-    { "path": "../action-sheet" },
-    { "path": "../core-elements" },
-    { "path": "../intersection-observer" },
-    { "path": "../modals" },
-    { "path": "../react-contexts" },
-    { "path": "../react-hooks" },
-    { "path": "../ui-flow" },
-    { "path": "../view-utilities" }
+    {
+      "path": "../action-sheet"
+    },
+    {
+      "path": "../core-elements"
+    },
+    {
+      "path": "../intersection-observer"
+    },
+    {
+      "path": "../modals"
+    },
+    {
+      "path": "../react-hooks"
+    },
+    {
+      "path": "../ui-flow"
+    },
+    {
+      "path": "../view-utilities"
+    },
+    {
+      "path": "../react-contexts"
+    }
   ]
 }

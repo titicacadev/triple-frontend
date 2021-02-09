@@ -6,5 +6,12 @@
     "rootDir": "src"
   },
   "include": ["./src"],
-  "references": [{ "path": "../color-palette" }, { "path": "../fetcher" }]
+  "references": [
+    {
+      "path": "../color-palette"
+    },
+    {
+      "path": "../fetcher"
+    }
+  ]
 }

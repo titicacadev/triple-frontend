@@ -7,10 +7,20 @@
   },
   "include": ["./src"],
   "references": [
-    { "path": "../icons" },
-    { "path": "../core-elements" },
-    { "path": "../intersection-observer" },
-    { "path": "../react-contexts" },
-    { "path": "../type-definitions" }
+    {
+      "path": "../core-elements"
+    },
+    {
+      "path": "../icons"
+    },
+    {
+      "path": "../intersection-observer"
+    },
+    {
+      "path": "../type-definitions"
+    },
+    {
+      "path": "../react-contexts"
+    }
   ]
 }
