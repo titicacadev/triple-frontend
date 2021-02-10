@@ -61,6 +61,9 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Build storybook
+        run: npm run build:storybook
+
       - name: Test
         run: npm run test:ci
 
