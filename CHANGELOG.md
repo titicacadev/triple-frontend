@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### common
+
+- 버전을 올리고 `package-lock.json`, `docs/package-lock.json` 업데이트 하는 스크립트 추가 (#1222)
+
 ## 2.11.0
 
 ### app-installation-cta
