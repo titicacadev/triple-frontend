@@ -10,10 +10,3 @@ export interface ArticleListingData {
   reviewed: boolean
   scraped: boolean
 }
-
-export interface InventoryItem {
-  image?: string
-  desc?: string
-  detailedDesc?: string
-  text?: string
-}

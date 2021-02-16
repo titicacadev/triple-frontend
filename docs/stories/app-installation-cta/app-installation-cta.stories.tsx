@@ -7,7 +7,7 @@ import {
   BannerCTA,
   FloatingButtonCTA,
   ArticleCardCTA,
-  fetchArticleCardCTA,
+  fetchInventoryCTA,
 } from '@titicaca/app-installation-cta'
 import { Carousel } from '@titicaca/core-elements'
 
@@ -91,7 +91,7 @@ export function BaseArticleCardCTA() {
 
   useEffect(() => {
     async function fetchAndSetArticleCardCTA() {
-      const response = await fetchArticleCardCTA({
+      const response = await fetchInventoryCTA({
         inventoryId: 'app-install-cta-footer-hotel-v1',
       })
       setArticleCTA(response[0])

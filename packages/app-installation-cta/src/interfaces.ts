@@ -1,12 +1,7 @@
-export interface InventoryItem {
-  image?: string
-  desc?: string
-  detailedDesc?: string
-  text?: string
-}
+import { InventoryMeta } from '@titicaca/type-definitions'
 
 export interface CTAProps {
-  onShow?: (item?: InventoryItem) => void
-  onClick?: (item?: InventoryItem) => void
-  onDismiss?: (item?: InventoryItem) => void
+  onShow?: (item?: InventoryMeta) => void
+  onClick?: (item?: InventoryMeta) => void
+  onDismiss?: (item?: InventoryMeta) => void
 }

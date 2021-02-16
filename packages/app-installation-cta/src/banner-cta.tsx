@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { LayeringMixinProps } from '@titicaca/core-elements'
+import { InventoryMeta } from '@titicaca/type-definitions'
 
 import { Overlay, BottomFixedContainer } from './elements'
 import ImageBanner from './image-banner'
 import TextBanner from './text-banner'
-import { InventoryItem, CTAProps } from './interfaces'
-
+import { CTAProps } from './interfaces'
+import { fetchInventoryCTA } from './service'
 interface BannerCTAProps extends CTAProps {
   inventoryId: string
   installUrl: string
@@ -26,19 +27,15 @@ export default function BannerCTA({
   zTier,
   zIndex,
 }: BannerCTAProps & LayeringMixinProps) {
-  const [inventoryItem, setInventoryItem] = useState<InventoryItem>()
+  const [inventoryItem, setInventoryItem] = useState<InventoryMeta>()
   const [isImageBannerOpen, setIsImageBannerOpen] = useState(true)
   const { image = '', desc = '' } = inventoryItem || {}
 
   useEffect(() => {
     async function fetchCTAImage() {
-      const response = await fetch(`/api/inventories/v1/${inventoryId}/items`, {
-        credentials: 'same-origin',
-      })
+      const items = await fetchInventoryCTA({ inventoryId })
 
-      if (response.ok) {
-        const { items } = await response.json()
-
+      if (items) {
         if (items.length > 0) {
           const item = items[0]
 
@@ -73,7 +70,7 @@ export default function BannerCTA({
       </Overlay>
     ) : (
       <TextBanner
-        message={desc}
+        message={desc || ''}
         installUrl={installUrl}
         onShow={onShow}
         onClick={onClick}

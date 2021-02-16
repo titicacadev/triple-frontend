@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { Text, LayeringMixinProps } from '@titicaca/core-elements'
 import { CSSTransition } from 'react-transition-group'
+import { InventoryMeta } from '@titicaca/type-definitions'
 
 import {
   CHATBOT_CLOSED_STORAGE_KEY,
   EVENT_CHATBOT_CTA_READY,
 } from './constants'
-import { InventoryItem, CTAProps } from './interfaces'
+import { CTAProps } from './interfaces'
 import {
   ChatbotContainer,
   ChatBalloon,
@@ -41,7 +42,7 @@ export default function ChatbotCTA({
   zIndex,
   unmountOnExit,
 }: ChatbotCTAProps & LayeringMixinProps) {
-  const [inventoryItem, setInventoryItem] = useState<InventoryItem>()
+  const [inventoryItem, setInventoryItem] = useState<InventoryMeta>()
   const [visibility, setVisibility] = useState(false)
   const { detailedDesc = '', text = '' } = inventoryItem || {}
 
@@ -61,7 +62,7 @@ export default function ChatbotCTA({
       })
 
       if (response.ok) {
-        const { items } = (await response.json()) as { items: InventoryItem[] }
+        const { items } = (await response.json()) as { items: InventoryMeta[] }
         const [item] = items
 
         if (item) {
