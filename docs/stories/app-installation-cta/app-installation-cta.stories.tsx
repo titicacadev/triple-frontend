@@ -94,7 +94,7 @@ export function BaseArticleCardCTA() {
       const items = await fetchInventoryCTA({
         inventoryId: 'app-install-cta-footer-hotel-v1',
       })
-      if(items) {
+      if (items) {
         setArticleCTA(items[0])
       }
     }
