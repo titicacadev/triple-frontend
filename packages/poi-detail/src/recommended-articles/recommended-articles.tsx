@@ -33,7 +33,9 @@ export default function RecommendedArticles({
   const [recommendedArticles, setRecommendedArticles] = useState<
     ArticleListingData[]
   >([])
-  const [articleCardCTA, setArticleCardCTA] = useState<InventoryMeta>({})
+  const [articleCardCTA, setArticleCardCTA] = useState<InventoryMeta | null>(
+    null,
+  )
 
   const { show } = useTransitionModal()
   const { trackEvent } = useEventTrackingContext()
@@ -43,10 +45,12 @@ export default function RecommendedArticles({
       setRecommendedArticles(await fetchRecommendedArticles({ regionId }))
     }
     async function fetchAndSetArticleCardCTA() {
-      const response = await fetchInventoryCTA({
+      const items = await fetchInventoryCTA({
         inventoryId: appInstallationCta?.inventoryId,
       })
-      setArticleCardCTA(response[0])
+      if (items) {
+        setArticleCardCTA(items[0])
+      }
     }
 
     fetchAndSetRecommendedArticles()

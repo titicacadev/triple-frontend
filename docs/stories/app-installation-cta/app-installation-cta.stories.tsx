@@ -91,10 +91,12 @@ export function BaseArticleCardCTA() {
 
   useEffect(() => {
     async function fetchAndSetArticleCardCTA() {
-      const response = await fetchInventoryCTA({
+      const items = await fetchInventoryCTA({
         inventoryId: 'app-install-cta-footer-hotel-v1',
       })
-      setArticleCTA(response[0])
+      if(items) {
+        setArticleCTA(items[0])
+      }
     }
 
     fetchAndSetArticleCardCTA()
