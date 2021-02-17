@@ -230,6 +230,74 @@
                 },
                 {
                   "memo": "",
+                  "schedule": "23:15",
+                  "transportation": [
+                    {
+                      "type": "transporation",
+                      "value": {
+                        "transportation": "tram",
+                        "duration": "23'15\""
+                      }
+                    }
+                  ],
+                  "poi": {
+                    "id": "1736e019-48a1-411d-a980-14cb0f7352db",
+                    "type": "restaurant",
+                    "source": {
+                      "id": "1736e019-48a1-411d-a980-14cb0f7352db",
+                      "type": "restaurant",
+                      "regionId": "edf1982d-c835-43a7-b06b-af43acbb6f38",
+                      "names": {
+                        "ko": "크루아 압쏜 카오산로드점",
+                        "en": "Krua Apsorn",
+                        "local": null
+                      },
+                      "areas": [
+                        {
+                          "name": "올드시티"
+                        }
+                      ],
+                      "categories": [
+                        {
+                          "name": "음식점"
+                        }
+                      ],
+                      "grade": 1100,
+                      "image": {
+                        "cloudinaryId": "6e631d6a-ee9e-4f05-8fce-413fb14019ad",
+                        "id": "ac5fdd8f-9d45-441d-b877-8aece348bb0d",
+                        "type": "image",
+                        "sizes": {
+                          "full": {
+                            "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/6e631d6a-ee9e-4f05-8fce-413fb14019ad.jpeg"
+                          },
+                          "large": {
+                            "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/6e631d6a-ee9e-4f05-8fce-413fb14019ad.jpeg"
+                          },
+                          "small_square": {
+                            "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/6e631d6a-ee9e-4f05-8fce-413fb14019ad.jpeg"
+                          }
+                        },
+                        "source": {},
+                        "cloudinaryBucket": "triple-cms",
+                        "sourceUrl": "http://blog.naver.com/myolongi/220756541352"
+                      },
+                      "location": [100.501555, 13.755277],
+                      "pointGeolocation": {
+                        "type": "Point",
+                        "coordinates": [100.501555, 13.755277]
+                      },
+                      "tags": [
+                        {
+                          "name": "가성비 베스트"
+                        }
+                      ],
+                      "permanentlyClosed": false
+                    }
+                  }
+                },
+                {
+                  "memo": "",
                   "schedule": "",
                   "transportation": [
                     {

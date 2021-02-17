@@ -4,7 +4,7 @@
 
 ### triple-document
 
-- add ship icon
+- `Ship` 아이콘 추가
 
 ### common
 
