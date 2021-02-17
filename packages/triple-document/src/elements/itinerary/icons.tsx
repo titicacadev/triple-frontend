@@ -105,6 +105,17 @@ export function Train(props: IconDefaultProps) {
   )
 }
 
+export function Ship(props: IconDefaultProps) {
+  return (
+    <ImageIcon
+      name="ico_contents_trans_ship@3x"
+      width={11}
+      height={11}
+      {...props}
+    />
+  )
+}
+
 export function Download({
   color,
   width = 18,

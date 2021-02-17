@@ -300,7 +300,7 @@
                     {
                       "type": "transporation",
                       "value": {
-                        "transportation": "tram",
+                        "transportation": "ship",
                         "duration": "23'15\""
                       }
                     }
