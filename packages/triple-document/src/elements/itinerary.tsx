@@ -25,6 +25,7 @@ import {
   Tram,
   Cable,
   Plane,
+  Ship,
   Download,
 } from './itinerary/icons'
 import useHandleAddPoisToTrip from './itinerary/use-handle-add-pois-to-trip'
@@ -270,6 +271,8 @@ function TransportationIcon(type?: TransportationType) {
       return Tram
     case 'cable':
       return Cable
+    case 'ship':
+      return Ship
     default:
       return () => null
   }
