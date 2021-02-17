@@ -48,7 +48,7 @@ export default function RecommendedArticles({
       const items = await fetchInventoryCTA({
         inventoryId: appInstallationCta?.inventoryId,
       })
-      if (items) {
+      if (items && items.length > 0) {
         setArticleCardCTA(items[0])
       }
     }
