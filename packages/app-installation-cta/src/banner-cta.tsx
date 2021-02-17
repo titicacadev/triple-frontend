@@ -70,7 +70,7 @@ export default function BannerCTA({
       </Overlay>
     ) : (
       <TextBanner
-        message={desc || ''}
+        message={desc}
         installUrl={installUrl}
         onShow={onShow}
         onClick={onClick}
