@@ -17,7 +17,7 @@ export interface OptimizedImgProps {
   deviceSizes?: number[]
   width?: number
   height?: number
-  ProgressiveMode?: 'semi' | 'steep'
+  progressiveMode?: 'semi' | 'steep'
 }
 
 const Img = styled.img<{
