@@ -1,15 +1,15 @@
-import { InventoryMeta } from '@titicaca/type-definitions'
-export async function fetchInventoryCTA({
+import { InventoryItemMeta } from '@titicaca/type-definitions'
+export async function fetchInventoryItems({
   inventoryId,
 }: {
   inventoryId?: string
-}): Promise<InventoryMeta[] | null> {
+}): Promise<InventoryItemMeta[] | null> {
   const response = await fetch(`/api/inventories/v1/${inventoryId}/items`, {
     credentials: 'same-origin',
   })
 
   if (response.ok) {
-    const { items = [] }: { items: InventoryMeta[] } = await response.json()
+    const { items = [] }: { items: InventoryItemMeta[] } = await response.json()
     return items
   } else {
     return null

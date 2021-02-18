@@ -1,4 +1,4 @@
-export interface InventoryMeta {
+export interface InventoryItemMeta {
   id?: string
   image?: string
   desc?: string
