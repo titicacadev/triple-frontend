@@ -50,7 +50,7 @@ export default function PlayPauseButton({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleFadeOut = useCallback(
     debounce(() => setVisible(false), 500),
-    [setVisible],
+    [],
   )
 
   const handlePlayPause = useCallback(

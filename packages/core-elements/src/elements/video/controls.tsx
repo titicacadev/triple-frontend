@@ -89,7 +89,7 @@ export default function Controls({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleFadeOut = useCallback(
     debounce(() => setVisible(false), 2500),
-    [setVisible],
+    [],
   )
 
   const handleSeekerChange = useCallback(
