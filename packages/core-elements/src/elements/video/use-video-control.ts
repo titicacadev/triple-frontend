@@ -19,45 +19,35 @@ export function useVideoControl({
   useEffect(() => {
     const currentRef = videoRef.current
 
-    const handleDuartionChange = () => {
-      if (currentRef) {
+    const handlePlay = () => setPlaying(true)
+    const handlePause = () => setPlaying(false)
+
+    if (currentRef) {
+      const handleDuartionChange = () => {
         const duration = currentRef.duration
         !isNaN(duration) && setDuartion(Math.floor(duration))
       }
-    }
 
-    const handleTimeUpdate = () => {
-      if (currentRef) {
+      const handleTimeUpdate = () => {
         const currentTime = formatTime(Math.floor(currentRef.currentTime))
 
         setCurrentTime(currentTime)
         setProgress(currentRef.currentTime)
         setSeek(String(currentRef.currentTime))
       }
-    }
 
-    const handlePlay = () => setPlaying(true)
-    const handlePause = () => setPlaying(false)
-
-    const handleSync = () => {
-      if (currentRef) {
+      const handleSync = () => {
         setMuted(currentRef.muted)
       }
-    }
 
-    if (currentRef) {
       currentRef.addEventListener('durationchange', handleDuartionChange)
       currentRef.addEventListener('progress', handleDuartionChange)
       currentRef.addEventListener('timeupdate', handleTimeUpdate)
       currentRef.addEventListener('play', handlePlay)
       currentRef.addEventListener('pause', handlePause)
       currentRef.addEventListener('volumechange', handleSync)
-    } else {
-      throw new Error('Cannot use Vidoe Controll State')
-    }
 
-    return () => {
-      if (currentRef) {
+      return () => {
         currentRef.removeEventListener('durationchange', handleDuartionChange)
         currentRef.removeEventListener('progress', handleDuartionChange)
         currentRef.removeEventListener('timeupdate', handleTimeUpdate)
@@ -65,6 +55,8 @@ export function useVideoControl({
         currentRef.removeEventListener('pause', handlePause)
         currentRef.removeEventListener('volumechange', handleSync)
       }
+    } else {
+      throw new Error('Cannot use Vidoe Control State')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
