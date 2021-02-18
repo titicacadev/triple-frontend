@@ -50,7 +50,7 @@ export default function ImageOptimizedImg({
   deviceSizes = [640, 768, 1024, 1080, 1280],
   width = 1024,
   height = 1024,
-  progressiveMode = 'steep',
+  progressiveMode,
 }: Omit<Parameters<typeof Img>[0], 'borderRadius' | 'dimmed' | 'absolute'> &
   OptimizedImgProps) {
   const { borderRadius, overlayMounted } = useImageState()
@@ -70,7 +70,7 @@ export default function ImageOptimizedImg({
       format,
       width,
       height,
-      progressiveMode,
+      ...(progressiveMode && { progressiveMode }),
     }),
   })
 
