@@ -65,7 +65,7 @@ export default function MuteUnmuteButton({
     if (playing) {
       setVisible(true)
     }
-  }, [playing, setVisible])
+  }, [playing])
 
   useEffect(() => {
     const handleFadeOut = debounce(() => setVisible(false), 5000)

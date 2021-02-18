@@ -118,7 +118,7 @@ export default function Controls({
       setVisible(true)
       handleFadeOut()
     }
-  }, [visible, setVisible, handleFadeOut])
+  }, [visible, handleFadeOut])
 
   return (
     <>
