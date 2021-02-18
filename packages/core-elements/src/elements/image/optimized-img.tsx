@@ -80,26 +80,24 @@ export default function ImageOptimizedImg({
     (event, unobserve) => {
       if (event.isIntersecting) {
         unobserve()
-      }
 
-      const srcSet = deviceSizes
-        .sort((a, b) => a - b)
-        .map(
-          (deviceWidth) =>
-            `${generateImageUrl({
-              mediaUrlBase,
-              cloudinaryBucket,
-              cloudinaryId,
-              version,
-              quality,
-              format,
-              width: deviceWidth,
-              height: deviceWidth,
-            })} ${deviceWidth}w`,
-        )
-        .join(', ')
+        const srcSet = deviceSizes
+          .sort((a, b) => a - b)
+          .map(
+            (deviceWidth) =>
+              `${generateImageUrl({
+                mediaUrlBase,
+                cloudinaryBucket,
+                cloudinaryId,
+                version,
+                quality,
+                format,
+                width: deviceWidth,
+                height: deviceWidth,
+              })} ${deviceWidth}w`,
+          )
+          .join(', ')
 
-      if (event.isIntersecting) {
         setIsLoad(event.isIntersecting)
 
         setImgAttributes((prev) => ({
