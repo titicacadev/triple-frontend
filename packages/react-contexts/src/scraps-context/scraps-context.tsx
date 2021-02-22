@@ -245,16 +245,19 @@ export function ScrapsProvider({
     [updating, beforeScrapedChange, afterScrapedChange],
   )
 
-  const handleSubscribeEvent = useCallback(
-    ({ scraped, id }) => dispatch({ type: scraped ? SCRAPE : UNSCRAPE, id }),
-    [],
-  )
-
   useEffect(() => {
+    const handleSubscribeEvent = ({
+      scraped,
+      id,
+    }: {
+      scraped: boolean
+      id: string
+    }) => dispatch({ type: scraped ? SCRAPE : UNSCRAPE, id })
+
     subscribeScrapedChangeEvent(handleSubscribeEvent)
 
     return () => unsubscribeScrapedChangeEvent(handleSubscribeEvent)
-  }, [handleSubscribeEvent])
+  }, [])
 
   const value: ScrapsContext = useMemo(
     () => ({
