@@ -1,4 +1,4 @@
-import { useReducer, useMemo } from 'react'
+import { useReducer, useMemo, createContext } from 'react'
 
 export type Scraps = { [key: string]: boolean }
 
@@ -76,3 +76,7 @@ export function useScrapsReducer({
 
   return useMemo(() => ({ scraps, updating, dispatch }), [scraps, updating])
 }
+
+export const ScrapsReducerContext = createContext<ReturnType<
+  typeof useScrapsReducer
+> | null>(null)
