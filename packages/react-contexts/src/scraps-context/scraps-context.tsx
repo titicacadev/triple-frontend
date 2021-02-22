@@ -103,6 +103,7 @@ export function ScrapsProvider({
   const localScrapsReducer = useScrapsReducer({ initialScraps })
   const scrapsReducer = parentScrapsReducer ?? localScrapsReducer
   const { scraps, updating, dispatch } = scrapsReducer
+  const hasParentContext = !!parentScrapsReducer
 
   const deriveCurrentStateAndCount: ScrapsContext['deriveCurrentStateAndCount'] = useCallback(
     ({ id, scraped, scrapsCount: originalScrapsCount }) => {
@@ -192,6 +193,10 @@ export function ScrapsProvider({
   )
 
   useEffect(() => {
+    if (hasParentContext) {
+      return
+    }
+
     const handleSubscribeEvent = ({
       scraped,
       id,
@@ -203,7 +208,7 @@ export function ScrapsProvider({
     subscribeScrapedChangeEvent(handleSubscribeEvent)
 
     return () => unsubscribeScrapedChangeEvent(handleSubscribeEvent)
-  }, [dispatch])
+  }, [dispatch, hasParentContext])
 
   const value: ScrapsContext = useMemo(
     () => ({
