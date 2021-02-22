@@ -29,6 +29,7 @@ import {
   START_UNSCRAPE,
   UNSCRAPE,
   UNSCRAPE_FAILED,
+  ScrapsReducerContext,
 } from './use-reducer'
 
 interface ScrapsContext {
@@ -98,7 +99,10 @@ export function ScrapsProvider({
   afterScrapedChange,
   children,
 }: PropsWithChildren<ScrapsProviderProps>) {
-  const { scraps, updating, dispatch } = useScrapsReducer({ initialScraps })
+  const parentScrapsReducer = useContext(ScrapsReducerContext)
+  const localScrapsReducer = useScrapsReducer({ initialScraps })
+  const scrapsReducer = parentScrapsReducer ?? localScrapsReducer
+  const { scraps, updating, dispatch } = scrapsReducer
 
   const deriveCurrentStateAndCount: ScrapsContext['deriveCurrentStateAndCount'] = useCallback(
     ({ id, scraped, scrapsCount: originalScrapsCount }) => {
@@ -247,7 +251,11 @@ export function ScrapsProvider({
     [deriveCurrentStateAndCount, scrape, scraps, unscrape],
   )
 
-  return <Context.Provider value={value}>{children}</Context.Provider>
+  return (
+    <ScrapsReducerContext.Provider value={scrapsReducer}>
+      <Context.Provider value={value}>{children}</Context.Provider>
+    </ScrapsReducerContext.Provider>
+  )
 }
 
 export function useScrapsContext() {
