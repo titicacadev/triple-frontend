@@ -6,7 +6,6 @@ import React, {
   useContext,
   useEffect,
   useMemo,
-  useReducer,
 } from 'react'
 import { DeepPartial } from 'utility-types'
 import {
@@ -21,8 +20,16 @@ import {
   scrape as nativeScrape,
   unscrape as nativeUnscrape,
 } from './api-client'
-
-type Scraps = { [key: string]: boolean }
+import {
+  Scraps,
+  useScrapsReducer,
+  START_SCRAPE,
+  SCRAPE,
+  SCRAPE_FAILED,
+  START_UNSCRAPE,
+  UNSCRAPE,
+  UNSCRAPE_FAILED,
+} from './use-reducer'
 
 interface ScrapsContext {
   scraps: Scraps
@@ -79,68 +86,6 @@ const Context = createContext<ScrapsContext>({
   isDefault: true,
 })
 
-const START_SCRAPE = 'START_SCRAPE'
-const SCRAPE = 'SCRAPE'
-const SCRAPE_FAILED = 'SCRAPE_FAILED'
-const START_UNSCRAPE = 'START_UNSCRAPE'
-const UNSCRAPE = 'UNSCRAPE'
-const UNSCRAPE_FAILED = 'UNSCRAPE_FAILED'
-
-type ActionType =
-  | typeof START_SCRAPE
-  | typeof SCRAPE
-  | typeof SCRAPE_FAILED
-  | typeof START_UNSCRAPE
-  | typeof UNSCRAPE
-  | typeof UNSCRAPE_FAILED
-
-const reducer = (
-  {
-    scraps,
-    updating,
-  }: {
-    scraps: Scraps
-    updating: {
-      [id: string]: boolean
-    }
-  },
-  action: { type: ActionType; id: string },
-) => {
-  const { [action.id]: _, ...restUpdating } = updating
-
-  switch (action.type) {
-    case START_SCRAPE:
-      return {
-        scraps,
-        updating: { ...updating, [action.id]: true },
-      }
-
-    case SCRAPE:
-      return {
-        scraps: { ...scraps, [action.id]: true },
-        updating: restUpdating,
-      }
-
-    case SCRAPE_FAILED:
-      return { scraps, updating: restUpdating }
-
-    case START_UNSCRAPE:
-      return {
-        scraps,
-        updating: { ...updating, [action.id]: false },
-      }
-
-    case UNSCRAPE:
-      return {
-        scraps: { ...scraps, [action.id]: false },
-        updating: restUpdating,
-      }
-
-    case UNSCRAPE_FAILED:
-      return { scraps, updating: restUpdating }
-  }
-}
-
 interface ScrapsProviderProps {
   scraps?: Scraps
   beforeScrapedChange?: (target: Target, scraped: boolean) => boolean
@@ -153,10 +98,7 @@ export function ScrapsProvider({
   afterScrapedChange,
   children,
 }: PropsWithChildren<ScrapsProviderProps>) {
-  const [{ scraps, updating }, dispatch] = useReducer(reducer, {
-    scraps: initialScraps || {},
-    updating: {},
-  })
+  const { scraps, updating, dispatch } = useScrapsReducer({ initialScraps })
 
   const deriveCurrentStateAndCount: ScrapsContext['deriveCurrentStateAndCount'] = useCallback(
     ({ id, scraped, scrapsCount: originalScrapsCount }) => {
@@ -212,7 +154,7 @@ export function ScrapsProvider({
         dispatch({ type: SCRAPE_FAILED, id })
       }
     },
-    [updating, beforeScrapedChange, afterScrapedChange],
+    [updating, beforeScrapedChange, dispatch, afterScrapedChange],
   )
 
   const unscrape = useCallback(
@@ -242,7 +184,7 @@ export function ScrapsProvider({
         dispatch({ type: UNSCRAPE_FAILED, id })
       }
     },
-    [updating, beforeScrapedChange, afterScrapedChange],
+    [updating, beforeScrapedChange, dispatch, afterScrapedChange],
   )
 
   useEffect(() => {
@@ -257,7 +199,7 @@ export function ScrapsProvider({
     subscribeScrapedChangeEvent(handleSubscribeEvent)
 
     return () => unsubscribeScrapedChangeEvent(handleSubscribeEvent)
-  }, [])
+  }, [dispatch])
 
   const value: ScrapsContext = useMemo(
     () => ({
