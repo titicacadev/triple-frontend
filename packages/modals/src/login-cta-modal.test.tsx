@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import { fireEvent, render } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {
@@ -18,12 +18,15 @@ function OpenLoginModal() {
   )
 }
 
-function Wrappers({ children }) {
+function Wrappers({ children }: PropsWithChildren<{}>) {
   return (
     <EnvProvider
       appUrlScheme="triple"
       webUrlBase="https://triple.guide"
       authBasePath="MOCK_AUTH_BASE_PATH"
+      facebookAppId="MOCK_FB_APP_ID"
+      defaultPageTitle="MOCK_PAGE_TITLE"
+      defaultPageDescription="MOCK_PAGE_DESCRIPTION"
     >
       <SessionContextProvider>
         <HistoryProvider>{children}</HistoryProvider>

@@ -9,19 +9,24 @@ import { LoginCTAModalProvider } from '@titicaca/modals'
 
 import { useSessionCallback } from './use-session-callback'
 
+function Wrapper({
+  sessionId,
+  children,
+}: React.PropsWithChildren<{ sessionId?: string }>) {
+  return (
+    <SessionContextProvider sessionId={sessionId} authBasePath="/login">
+      <HistoryProvider
+        appUrlScheme="dev-soto"
+        webUrlBase="https://triple-dev.titicaca-corp.com"
+      >
+        <LoginCTAModalProvider>{children}</LoginCTAModalProvider>
+      </HistoryProvider>
+    </SessionContextProvider>
+  )
+}
+
 describe('useSessionCallback', () => {
   describe('when user has not logged in', () => {
-    const wrapper = ({ children }) => (
-      <SessionContextProvider sessionId={undefined} authBasePath="/login">
-        <HistoryProvider
-          appUrlScheme="dev-soto"
-          webUrlBase="https://triple-dev.titicaca-corp.com"
-        >
-          <LoginCTAModalProvider>{children}</LoginCTAModalProvider>
-        </HistoryProvider>
-      </SessionContextProvider>
-    )
-
     it('updates uri hash when callback is fired', () => {
       const { result } = renderHook(
         () => {
@@ -31,7 +36,7 @@ describe('useSessionCallback', () => {
           return { uriHash, doAction }
         },
         {
-          wrapper,
+          wrapper: Wrapper,
         },
       )
 
@@ -51,7 +56,7 @@ describe('useSessionCallback', () => {
           return { uriHash, doAction }
         },
         {
-          wrapper,
+          wrapper: Wrapper,
         },
       )
 
@@ -67,7 +72,7 @@ describe('useSessionCallback', () => {
           return { uriHash, doAction }
         },
         {
-          wrapper,
+          wrapper: Wrapper,
         },
       )
 
@@ -76,17 +81,6 @@ describe('useSessionCallback', () => {
   })
 
   describe('when user has logged in', () => {
-    const wrapper = ({ children }) => (
-      <SessionContextProvider sessionId="sessionid" authBasePath="/login">
-        <HistoryProvider
-          appUrlScheme="dev-soto"
-          webUrlBase="https://triple-dev.titicaca-corp.com"
-        >
-          <LoginCTAModalProvider>{children}</LoginCTAModalProvider>
-        </HistoryProvider>
-      </SessionContextProvider>
-    )
-
     it('does not update uri hash when callback is fired', () => {
       const { result } = renderHook(
         () => {
@@ -96,7 +90,8 @@ describe('useSessionCallback', () => {
           return { uriHash, doAction }
         },
         {
-          wrapper,
+          wrapper: Wrapper,
+          initialProps: { sessionId: 'session-id' },
         },
       )
 
@@ -116,7 +111,8 @@ describe('useSessionCallback', () => {
           return { uriHash, doAction }
         },
         {
-          wrapper,
+          wrapper: Wrapper,
+          initialProps: { sessionId: 'session-id' },
         },
       )
 
