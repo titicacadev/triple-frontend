@@ -10,21 +10,26 @@ import { TransitionType } from '@titicaca/modals'
 
 import { useAppCallback } from './use-app-callback'
 
+function Wrapper({
+  isPublic,
+  children,
+}: React.PropsWithChildren<{ isPublic: boolean }>) {
+  return (
+    <UserAgentProvider value={{ isPublic, isMobile: false, app: null, os: {} }}>
+      <SessionContextProvider authBasePath="/login">
+        <HistoryProvider
+          appUrlScheme="dev-soto"
+          webUrlBase="https://triple-dev.titicaca-corp.com"
+        >
+          {children}
+        </HistoryProvider>
+      </SessionContextProvider>
+    </UserAgentProvider>
+  )
+}
+
 describe('useAppCallback', () => {
   describe('when user is in app', () => {
-    const wrapper = ({ children }) => (
-      <UserAgentProvider value={{ isPublic: false }}>
-        <SessionContextProvider authBasePath="/login">
-          <HistoryProvider
-            appUrlScheme="dev-soto"
-            webUrlBase="https://triple-dev.titicaca-corp.com"
-          >
-            {children}
-          </HistoryProvider>
-        </SessionContextProvider>
-      </UserAgentProvider>
-    )
-
     it('does not update uri hash', () => {
       const { result } = renderHook(
         () => {
@@ -36,7 +41,7 @@ describe('useAppCallback', () => {
 
           return { doAction, uriHash }
         },
-        { wrapper },
+        { wrapper: Wrapper, initialProps: { isPublic: false } },
       )
 
       act(() => {
@@ -48,19 +53,6 @@ describe('useAppCallback', () => {
   })
 
   describe('when user is not in app', () => {
-    const wrapper = ({ children }) => (
-      <UserAgentProvider value={{ isPublic: true }}>
-        <SessionContextProvider authBasePath="/login">
-          <HistoryProvider
-            appUrlScheme="dev-soto"
-            webUrlBase="https://triple-dev.titicaca-corp.com"
-          >
-            {children}
-          </HistoryProvider>
-        </SessionContextProvider>
-      </UserAgentProvider>
-    )
-
     it('updates uri hash', () => {
       const { result } = renderHook(
         () => {
@@ -72,7 +64,7 @@ describe('useAppCallback', () => {
 
           return { doAction, uriHash }
         },
-        { wrapper },
+        { wrapper: Wrapper, initialProps: { isPublic: true } },
       )
 
       act(() => {
