@@ -1,3 +1,6 @@
+/**
+ * @deprecated :root에 선언된 colorSet를 사용해주세요.
+ */
 export const gray = 'rgba(58, 58, 58, 1)'
 export const gray20 = 'rgba(58, 58, 58, 0.02)'
 export const gray50 = 'rgba(58, 58, 58, 0.05)'
