@@ -73,7 +73,7 @@ const MODAL_CONTENT: {
   [TransitionType.Article]: {
     icon: 'https://assets.triple.guide/images/ico-popup-guidebook@4x.png',
     description:
-      '여행의 핵심 정보만 쏙쏙! 여행에 꼭 필요한 가이드를 모두 확인할 수 있어요.',
+      '여행의 핵심 정보만 쏙쏙! 여행에 꼭 필요한 정보를 무료로 확인하세요.',
     eventLabel: '추천가이드_더보기',
   },
   [TransitionType.Tna]: {
