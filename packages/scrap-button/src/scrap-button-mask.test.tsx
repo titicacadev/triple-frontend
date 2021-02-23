@@ -1,5 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react'
+import '@testing-library/jest-dom'
 import { ScrapsProvider } from '@titicaca/react-contexts'
 
 import { OverlayScrapButton, OutlineScrapButton } from './scrap-button'
