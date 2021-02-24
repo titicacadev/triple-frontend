@@ -12,7 +12,7 @@
     "build": "concurrently --names resources,declarations 'npm:build-resources' 'npm:build-declarations'",
     "prebuild": "npm run clean:build",
     "build-resources": "lerna exec --ignore @titicaca/triple-frontend-docs 'BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments'",
-    "build-declarations": "tsc -b packages/*",
+    "build-declarations": "tsc -b packages/*/tsconfig.build.json",
     "build:storybook": "lerna exec --scope @titicaca/triple-frontend-docs 'npm run build'",
     "dev-docs": "lerna exec --scope @titicaca/triple-frontend-docs npm run dev",
     "lint-etc": "prettier --check '**/*.{json,md,yaml}'",
