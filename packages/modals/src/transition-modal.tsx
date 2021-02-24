@@ -129,7 +129,7 @@ export function TransitionModal({ deepLink }: { deepLink: string }) {
             onClick: back,
           }}
           positive={{
-            text: '트리플가기',
+            text: '트리플 가기',
             onClick: () => {
               trackEvent({
                 ga: [
