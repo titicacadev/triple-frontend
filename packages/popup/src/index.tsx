@@ -125,7 +125,6 @@ export default function Popup({
       mountOnEnter={unmountOnExit}
       unmountOnExit={unmountOnExit}
     >
-      {/* https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451 */}
       <PopupContainer ref={popupRef} zTier={zTier} zIndex={zIndex}>
         {noNavbar ? null : (
           <Navbar borderless={borderless} title={title}>
