@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 2.12.1
+
+### poi-detail
+
+- RecommendedArticles 하단 링크 TEXT 수정 (#1237)
+
 ## 2.12.0
 
 ### type-definitions
