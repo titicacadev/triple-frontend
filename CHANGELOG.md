@@ -7,6 +7,10 @@
 - 개발 환경에서 테스트 파일에 동일한 타입스크립트 설정을 적용하도록 변경 (#1234)
 - 테스트 파일이 빌드되지 않도록 babel 설정 수정 (#1234)
 
+### react-contexts
+
+- [Device Context] `autoplay`와 `networkType` 값 추가 및 request header에서 이들을 파싱하는 함수 추가 (#1221)
+
 ## 2.12.1
 
 ### poi-detail
