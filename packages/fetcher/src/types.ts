@@ -6,9 +6,11 @@ export type RequestOptions = {
   /** request object ssr only */
   req?: IncomingMessage
   /** request body object */
-  body?: { [key: string]: any }
+  body?: BodyInit | { [key: string]: any }
   /** header object */
-  headers?: { [key: string]: any }
+  headers?: HeadersInit
+  /** don't stringfy body */
+  noStringfyBody?: boolean
   [key: string]: any
 }
 
