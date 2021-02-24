@@ -27,4 +27,15 @@ module.exports = {
     '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-proposal-nullish-coalescing-operator',
   ],
+  ignore:
+    process.env.NODE_ENV !== 'test'
+      ? [
+          '**/*.test.ts',
+          '**/*.test.tsx',
+          '**/*.test.js',
+          '**/*.spec.ts',
+          '**/*.spec.tsx',
+          '**/*.spec.js',
+        ]
+      : undefined,
 }
