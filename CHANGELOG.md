@@ -11,6 +11,10 @@
 
 - [Device Context] `autoplay`와 `networkType` 값 추가 및 request header에서 이들을 파싱하는 함수 추가 (#1221)
 
+### fetcher
+
+- Body의 Stringfy하지 않는 옵션 추가 (#1241)
+
 ## 2.12.1
 
 ### poi-detail
