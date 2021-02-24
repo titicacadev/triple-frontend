@@ -4,9 +4,13 @@
 
 ## 2.12.0
 
+### type-definitions
+
+- [type-definitions] 인벤토리 API 응답 타이핑 (#1223)
+
 ### poi-detail
 
-RecommendedArticles, TransitionModal Text 수정 (#1232)
+- RecommendedArticles, TransitionModal Text 수정 (#1232)
 
 ### core-elements
 
