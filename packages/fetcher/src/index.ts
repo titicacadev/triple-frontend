@@ -8,7 +8,7 @@ export * from './error'
 
 export async function fetcher<T = any>(
   url: string,
-  { req, body, ...rest }: RequestOptions,
+  { req, body, noStringfyBody, ...rest }: RequestOptions,
 ): Promise<HttpResponse<T>> {
   if (req && !process.env.API_URI_BASE) {
     throw new Error(
@@ -34,7 +34,7 @@ export async function fetcher<T = any>(
     credentials: 'same-origin',
     headers,
     ...rest,
-    body: rawBody,
+    body: noStringfyBody ? (body as BodyInit) : rawBody,
   })
 
   try {
