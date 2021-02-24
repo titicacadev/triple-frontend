@@ -29,7 +29,7 @@ const ICON_LIST = [
 ] as const
 
 export default {
-  title: 'Core-Elements | Navbar',
+  title: 'Core-Elements / Navbar',
 }
 
 export function twoButtons() {

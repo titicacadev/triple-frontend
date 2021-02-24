@@ -7,7 +7,7 @@ import { PoiListElement } from '@titicaca/poi-list-elements'
 import { ListingPOI } from '@titicaca/type-definitions'
 
 export default {
-  title: 'search | Search',
+  title: 'search / Search',
 }
 
 export function uncontrolledExample() {

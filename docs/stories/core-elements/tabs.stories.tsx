@@ -4,7 +4,7 @@ import { number, select } from '@storybook/addon-knobs'
 import { Tabs } from '@titicaca/core-elements'
 
 export default {
-  title: 'Core-Elements | Tabs',
+  title: 'Core-Elements / Tabs',
 }
 
 export function nearbyPlaces() {

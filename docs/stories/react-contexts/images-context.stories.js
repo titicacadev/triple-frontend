@@ -104,7 +104,7 @@ function RenderingTester() {
   )
 }
 
-storiesOf('react-contexts | ImagesContext', module)
+storiesOf('react-contexts / ImagesContext', module)
   .add('데이터 확인', () => (
     <ImagesProvider source={SAMPLE_SOURCE} fetchImages={fetchImages}>
       <ImagesContextMonitor onFetched={handleFetched} />

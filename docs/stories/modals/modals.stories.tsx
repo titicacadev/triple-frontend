@@ -3,7 +3,7 @@ import { Text } from '@titicaca/core-elements'
 import { Modal, Confirm, Alert } from '@titicaca/modals'
 
 export default {
-  title: 'modals | Modal',
+  title: 'modals / Modal',
 }
 
 export function BaseModal() {

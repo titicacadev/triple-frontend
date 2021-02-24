@@ -4,7 +4,7 @@ import NearbyPois from '@titicaca/nearby-pois'
 import { select } from '@storybook/addon-knobs'
 
 export default {
-  title: 'i18n | I18nProvider',
+  title: 'i18n / I18nProvider',
 }
 
 export function ComponentWithI18nProvider() {

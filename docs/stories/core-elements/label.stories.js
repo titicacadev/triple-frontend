@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { text, select, boolean } from '@storybook/addon-knobs'
 import { Label } from '@titicaca/core-elements'
 
-storiesOf('Core-Elements | Label', module)
+storiesOf('Core-Elements / Label', module)
   .add('라디오', () => (
     <Label radio selected={boolean('선택됨', false)}>
       {text('텍스트', '최신순')}

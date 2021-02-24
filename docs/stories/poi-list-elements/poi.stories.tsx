@@ -31,7 +31,7 @@ function PricingDescription() {
 const [POI] = (POIS as unknown[]) as Exclude<POIData, HotelData>[]
 
 export default {
-  title: 'poi-list-elements | POI',
+  title: 'poi-list-elements / POI',
 }
 
 export function PoiList() {

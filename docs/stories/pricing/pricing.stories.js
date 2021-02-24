@@ -25,7 +25,7 @@ function PricingLabel() {
   )
 }
 
-storiesOf('pricing | Pricing', module)
+storiesOf('pricing / Pricing', module)
   .addDecorator(withKnobs)
   .add('일반', () => (
     <Pricing

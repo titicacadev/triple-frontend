@@ -8,7 +8,7 @@ const LongPage = styled.div`
 `
 
 export default {
-  title: 'drawer-button | DrawerButton',
+  title: 'drawer-button / DrawerButton',
 }
 
 export function BaseDrawerButton() {

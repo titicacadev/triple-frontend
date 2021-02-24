@@ -13,7 +13,7 @@ import { Carousel } from '@titicaca/core-elements'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
 
 export default {
-  title: 'app-installation-cta | AppInstallationCTA',
+  title: 'app-installation-cta / AppInstallationCTA',
 }
 
 export function FloatingButton() {

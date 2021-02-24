@@ -4,7 +4,7 @@ import { boolean } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { Actions } from '@titicaca/poi-detail'
 
-storiesOf('poi-detail | Actions', module)
+storiesOf('poi-detail / Actions', module)
   .add('일반', () => (
     <Actions
       poiId="e889ae22-0336-4cf9-8fbb-742b95fd09d0"

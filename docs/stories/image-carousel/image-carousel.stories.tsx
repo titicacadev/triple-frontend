@@ -34,7 +34,7 @@ const OverlayContent = () => {
   )
 }
 
-storiesOf('image-carousel | Image Carousel', module).add('일반', () => {
+storiesOf('image-carousel / Image Carousel', module).add('일반', () => {
   return (
     <ImageCarousel
       size="medium"

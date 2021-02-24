@@ -8,7 +8,7 @@ import ExtendedResourceListElement, {
 import Pricing from '@titicaca/pricing'
 import { Container } from '@titicaca/core-elements'
 
-storiesOf('resource-list-element | resource-list-element', module)
+storiesOf('resource-list-element / resource-list-element', module)
   .add('ReviewScrapStat', () => (
     <ReviewScrapStat
       reviewsCount={number('reviewsCount', 2)}

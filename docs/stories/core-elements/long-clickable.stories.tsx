@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { Container, HR1, longClickable } from '@titicaca/core-elements'
 import { action } from '@storybook/addon-actions'
 
-storiesOf('Core-Elements | longClickable', module).add('Container', () => {
+storiesOf('Core-Elements / longClickable', module).add('Container', () => {
   const LongClickableContainer = longClickable(Container)
 
   return (

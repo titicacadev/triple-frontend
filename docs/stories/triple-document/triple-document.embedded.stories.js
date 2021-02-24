@@ -4,7 +4,7 @@ import { ELEMENTS } from '@titicaca/triple-document'
 
 const { embedded: Embedded } = ELEMENTS
 
-storiesOf('TripleDocument | TripleDocument', module).add('임베딩', () => (
+storiesOf('TripleDocument / TripleDocument', module).add('임베딩', () => (
   <Embedded
     value={{
       entries: [

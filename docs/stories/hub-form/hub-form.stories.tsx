@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions'
 import { HubForm, Cell, Cta } from '@titicaca/hub-form'
 
 export default {
-  title: 'hub-form | HubForm',
+  title: 'hub-form / HubForm',
 }
 
 export function HotelHubForm() {

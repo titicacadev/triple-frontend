@@ -10,7 +10,7 @@ const EmptyArea = styled.div`
 `
 
 export default {
-  title: 'TripleDocument | TripleDocument.Anchor',
+  title: 'TripleDocument / TripleDocument/Anchor',
 }
 
 export function BaseAnchor() {

@@ -8,7 +8,7 @@ import IMAGES_FRAME from '../__mocks__/images-frame.sample.json'
 
 const { images: Images } = ELEMENTS
 
-storiesOf('TripleDocument | TripleDocument.이미지', module)
+storiesOf('TripleDocument / TripleDocument/이미지', module)
   .add('1개', () => {
     const [image] = IMAGES
     return (

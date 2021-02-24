@@ -79,7 +79,7 @@ const initialHolidays = [
   .map((date) => formatDate(date))
 
 export default {
-  title: 'date-picker | DatePicker',
+  title: 'date-picker / DatePicker',
 }
 
 function padZero(num: number): string {

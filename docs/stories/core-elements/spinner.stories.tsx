@@ -8,7 +8,7 @@ import {
 } from '@titicaca/core-elements'
 
 export default {
-  title: 'Core-Elements | Spinner',
+  title: 'Core-Elements / Spinner',
 }
 
 const TextElement = () => (

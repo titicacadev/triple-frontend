@@ -2,7 +2,7 @@ import React from 'react'
 import SocialReviews from '@titicaca/social-reviews'
 
 export default {
-  title: 'Social-Reviews | SocialReviews',
+  title: 'Social-Reviews / SocialReviews',
 }
 
 export function BaseSocialReviews() {

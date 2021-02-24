@@ -15,7 +15,7 @@ import {
 } from '../../decorators'
 
 export default {
-  title: 'Reviews | Reviews',
+  title: 'Reviews / Reviews',
   decorators: [
     (storyFn: StoryFn<JSX.Element>) => (
       <>
