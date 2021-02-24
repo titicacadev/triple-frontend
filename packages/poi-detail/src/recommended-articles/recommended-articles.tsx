@@ -112,7 +112,7 @@ export default function RecommendedArticles({
         </Carousel>
 
         <MoreButton margin={{ top: 20 }} center onClick={handleShowMoreClick}>
-          가이드 더보기
+          더 알아보기
         </MoreButton>
       </Responsive>
       <Responsive maxWidth={767}>
@@ -147,7 +147,7 @@ export default function RecommendedArticles({
           margin={{ top: 20, right: 20 }}
           floated="right"
         >
-          가이드 더보기
+          더 알아보기
         </MoreButton>
       </Responsive>
     </Section>
