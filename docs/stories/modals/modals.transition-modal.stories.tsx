@@ -9,7 +9,7 @@ import { select } from '@storybook/addon-knobs'
 import { historyProviderDecorator } from '../../decorators'
 
 export default {
-  title: 'modals / Modal',
+  title: 'modals / TransitionModal',
 }
 
 export function BaseTransitionModal() {
