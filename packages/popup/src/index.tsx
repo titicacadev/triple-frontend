@@ -40,10 +40,8 @@ const PopupContainer = styled.div<LayeringMixinProps>`
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
-  padding-bottom: 13px;
-
-  @supports (padding: max(0px)) and (padding: env(safe-area-inset-bottom)) {
-    padding-bottom: max(13px, calc(env(safe-area-inset-bottom) + 17px));
+  @supports (padding: env(safe-area-inset-bottom)) {
+    padding-bottom: env(safe-area-inset-bottom);
   }
   &::-webkit-scrollbar {
     display: none;
