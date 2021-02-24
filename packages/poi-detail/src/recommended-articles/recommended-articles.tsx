@@ -4,12 +4,13 @@ import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'
 import {
   ArticleCardCTA,
-  fetchArticleCardCTA,
+  fetchInventoryItems,
 } from '@titicaca/app-installation-cta'
+import { InventoryItemMeta } from '@titicaca/type-definitions'
 import { Carousel } from '@titicaca/carousel'
 
 import { fetchRecommendedArticles } from './api-client'
-import { ArticleListingData, InventoryItem } from './types'
+import { ArticleListingData } from './types'
 import ArticleEntry from './article-entry'
 import MoreButton from './more-button'
 
@@ -32,7 +33,10 @@ export default function RecommendedArticles({
   const [recommendedArticles, setRecommendedArticles] = useState<
     ArticleListingData[]
   >([])
-  const [articleCardCTA, setArticleCardCTA] = useState<InventoryItem>({})
+  const [
+    articleCardCTA,
+    setArticleCardCTA,
+  ] = useState<InventoryItemMeta | null>(null)
 
   const { show } = useTransitionModal()
   const { trackEvent } = useEventTrackingContext()
@@ -42,10 +46,12 @@ export default function RecommendedArticles({
       setRecommendedArticles(await fetchRecommendedArticles({ regionId }))
     }
     async function fetchAndSetArticleCardCTA() {
-      const response = await fetchArticleCardCTA({
+      const items = await fetchInventoryItems({
         inventoryId: appInstallationCta?.inventoryId,
       })
-      setArticleCardCTA(response[0])
+      if (items && items.length > 0) {
+        setArticleCardCTA(items[0])
+      }
     }
 
     fetchAndSetRecommendedArticles()
