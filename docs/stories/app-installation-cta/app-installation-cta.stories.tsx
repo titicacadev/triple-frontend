@@ -10,6 +10,7 @@ import {
   fetchInventoryItems,
 } from '@titicaca/app-installation-cta'
 import { Carousel } from '@titicaca/core-elements'
+import { InventoryItemMeta } from '@titicaca/type-definitions'
 
 export default {
   title: 'app-installation-cta | AppInstallationCTA',
@@ -87,7 +88,7 @@ BaseBannerCTA.story = {
 }
 
 export function BaseArticleCardCTA() {
-  const [articleCTA, setArticleCTA] = useState(null)
+  const [articleCTA, setArticleCTA] = useState<InventoryItemMeta | null>(null)
 
   useEffect(() => {
     async function fetchAndSetArticleCardCTA() {
