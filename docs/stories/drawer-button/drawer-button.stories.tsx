@@ -33,6 +33,4 @@ export function BaseDrawerButton() {
   )
 }
 
-BaseDrawerButton.story = {
-  name: '기본 버튼',
-}
+BaseDrawerButton.storyName = '기본 버튼'

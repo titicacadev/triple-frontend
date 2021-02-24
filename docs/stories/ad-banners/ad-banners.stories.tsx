@@ -68,16 +68,14 @@ export function ContentDetailsBanners() {
   )
 }
 
-ContentDetailsBanners.story = {
-  name: '콘텐츠 디테일 배너',
-  decorators: [
-    (storyFn: StoryFn<JSX.Element>) => (
-      <ProviderWrapper>
-        <div>{storyFn()}</div>
-      </ProviderWrapper>
-    ),
-  ],
-}
+ContentDetailsBanners.storyName = '콘텐츠 디테일 배너'
+ContentDetailsBanners.decorators = [
+  (storyFn: StoryFn<JSX.Element>) => (
+    <ProviderWrapper>
+      <div>{storyFn()}</div>
+    </ProviderWrapper>
+  ),
+]
 
 export function ListTopAdBanners() {
   return (
@@ -110,16 +108,14 @@ export function ListTopAdBanners() {
   )
 }
 
-ListTopAdBanners.story = {
-  name: '메뉴상단 배너',
-  decorators: [
-    (storyFn: StoryFn<JSX.Element>) => (
-      <ProviderWrapper>
-        <div>{storyFn()}</div>
-      </ProviderWrapper>
-    ),
-  ],
-}
+ListTopAdBanners.storyName = '메뉴상단 배너'
+ListTopAdBanners.decorators = [
+  (storyFn: StoryFn<JSX.Element>) => (
+    <ProviderWrapper>
+      <div>{storyFn()}</div>
+    </ProviderWrapper>
+  ),
+]
 
 export function HotelListAdBanners() {
   return (
@@ -144,13 +140,11 @@ export function HotelListAdBanners() {
   )
 }
 
-HotelListAdBanners.story = {
-  name: '호텔 목록 광고 배너',
-  decorators: [
-    (storyFn: StoryFn<JSX.Element>) => (
-      <ProviderWrapper>
-        <div>{storyFn()}</div>
-      </ProviderWrapper>
-    ),
-  ],
-}
+HotelListAdBanners.storyName = '호텔 목록 광고 배너'
+HotelListAdBanners.decorators = [
+  (storyFn: StoryFn<JSX.Element>) => (
+    <ProviderWrapper>
+      <div>{storyFn()}</div>
+    </ProviderWrapper>
+  ),
+]

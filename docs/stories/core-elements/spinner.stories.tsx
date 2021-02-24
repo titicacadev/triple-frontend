@@ -33,9 +33,7 @@ export function BaseSpinner() {
   )
 }
 
-BaseSpinner.story = {
-  name: '기본 스피너',
-}
+BaseSpinner.storyName = '기본 스피너'
 
 export function BaseRollingSpinner() {
   const logos = [
@@ -63,6 +61,4 @@ export function BaseRollingSpinner() {
   )
 }
 
-BaseRollingSpinner.story = {
-  name: '롤링 스피너',
-}
+BaseRollingSpinner.storyName = '롤링 스피너'

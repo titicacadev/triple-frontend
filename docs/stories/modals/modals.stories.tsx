@@ -22,9 +22,7 @@ export function BaseModal() {
   )
 }
 
-BaseModal.story = {
-  name: 'Modal',
-}
+BaseModal.storyName = 'Modal'
 
 export function BaseConfirm() {
   return (
@@ -34,9 +32,7 @@ export function BaseConfirm() {
   )
 }
 
-BaseConfirm.story = {
-  name: 'Confirm',
-}
+BaseConfirm.storyName = 'Confirm'
 
 export function BaseAlert() {
   return (
@@ -50,6 +46,4 @@ export function BaseAlert() {
   )
 }
 
-BaseAlert.story = {
-  name: 'Alert',
-}
+BaseAlert.storyName = 'Alert'

@@ -16,6 +16,4 @@ export function BaseAppBanner() {
   )
 }
 
-BaseAppBanner.story = {
-  name: '공유페이지',
-}
+BaseAppBanner.storyName = '공유페이지'

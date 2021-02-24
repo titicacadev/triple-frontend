@@ -23,10 +23,8 @@ export function BaseNearbyPois() {
   )
 }
 
-BaseNearbyPois.story = {
-  name: '기본 NearbyPois',
-  decorators: [historyProviderDecorator],
-}
+BaseNearbyPois.storyName = '기본 NearbyPois'
+BaseNearbyPois.decorators = [historyProviderDecorator]
 
 export function NearbyPoisWithRecommended() {
   return (
@@ -43,7 +41,5 @@ export function NearbyPoisWithRecommended() {
   )
 }
 
-NearbyPoisWithRecommended.story = {
-  name: '추천 일정이 있는',
-  decorators: [historyProviderDecorator],
-}
+NearbyPoisWithRecommended.storyName = '추천 일정이 있는'
+NearbyPoisWithRecommended.decorators = [historyProviderDecorator]

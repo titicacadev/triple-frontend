@@ -25,9 +25,7 @@ export function uncontrolledExample() {
   )
 }
 
-uncontrolledExample.story = {
-  name: 'Uncontrolled',
-}
+uncontrolledExample.storyName = 'Uncontrolled'
 
 function ControlledExampleComponent() {
   const [keyword, setKeyword] = useState('')
@@ -54,9 +52,7 @@ export function controlledExample() {
   return <ControlledExampleComponent />
 }
 
-controlledExample.story = {
-  name: 'Controlled',
-}
+controlledExample.storyName = 'Controlled'
 
 function APIUsageExampleComponent() {
   const [results, setResults] = useState<ListingPOI[]>([])
@@ -101,6 +97,4 @@ export function apiUsageExample() {
   return <APIUsageExampleComponent />
 }
 
-apiUsageExample.story = {
-  name: 'Sample',
-}
+apiUsageExample.storyName = 'Sample'

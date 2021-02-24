@@ -20,6 +20,4 @@ export function reviewPlaceholder() {
   )
 }
 
-reviewPlaceholder.story = {
-  name: '플레이스홀더',
-}
+reviewPlaceholder.storyName = '플레이스홀더'

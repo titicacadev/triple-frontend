@@ -29,10 +29,8 @@ export function BaseTransitionModal() {
   )
 }
 
-BaseTransitionModal.story = {
-  name: 'TransitionModal',
-  decorators: [historyProviderDecorator],
-}
+BaseTransitionModal.storyName = 'TransitionModal'
+BaseTransitionModal.decorators = [historyProviderDecorator]
 
 function UriHashHistoryManipulator({ uriHash }: { uriHash: string }) {
   const { show } = useTransitionModal()

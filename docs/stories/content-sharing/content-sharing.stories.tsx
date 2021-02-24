@@ -15,6 +15,4 @@ export function BaseContentSharing() {
   )
 }
 
-BaseContentSharing.story = {
-  name: '기본 컨텐츠 공유',
-}
+BaseContentSharing.storyName = '기본 컨텐츠 공유'

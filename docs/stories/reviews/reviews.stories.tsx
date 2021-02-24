@@ -77,6 +77,4 @@ export function reviewSection() {
   )
 }
 
-reviewSection.story = {
-  name: '일반',
-}
+reviewSection.storyName = '일반'

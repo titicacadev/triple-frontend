@@ -10,6 +10,4 @@ export function ExampleVerificationRequest() {
   return <VerificationRequest onCancel={action('onCancel')} />
 }
 
-ExampleVerificationRequest.story = {
-  name: '기본',
-}
+ExampleVerificationRequest.storyName = '기본'

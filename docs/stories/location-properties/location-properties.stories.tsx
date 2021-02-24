@@ -49,21 +49,19 @@ export function BaseLocationProperties() {
   )
 }
 
-BaseLocationProperties.story = {
-  name: '기본 LocationProperties',
-  decorators: [
-    (storyFn: StoryFn<JSX.Element>) => (
-      <UserAgentProvider
-        value={{
-          isPublic: boolean('isPublic', true),
-          isMobile: true,
-          os: {},
-          app: null,
-        }}
-      >
-        <div>{storyFn()}</div>
-      </UserAgentProvider>
-    ),
-    historyProviderDecorator,
-  ],
-}
+BaseLocationProperties.storyName = '기본 LocationProperties'
+BaseLocationProperties.decorators = [
+  (storyFn: StoryFn<JSX.Element>) => (
+    <UserAgentProvider
+      value={{
+        isPublic: boolean('isPublic', true),
+        isMobile: true,
+        os: {},
+        app: null,
+      }}
+    >
+      <div>{storyFn()}</div>
+    </UserAgentProvider>
+  ),
+  historyProviderDecorator,
+]

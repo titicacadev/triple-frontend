@@ -38,9 +38,7 @@ export function BaseListingFilter() {
   )
 }
 
-BaseListingFilter.story = {
-  name: '전체 필터 타입',
-}
+BaseListingFilter.storyName = '전체 필터 타입'
 
 export function BaseFilterEntry() {
   return (
@@ -55,9 +53,7 @@ export function BaseFilterEntry() {
   )
 }
 
-BaseFilterEntry.story = {
-  name: '기본 FilterEntry',
-}
+BaseFilterEntry.storyName = '기본 FilterEntry'
 
 export function UnderlineFilterEntry() {
   return (
@@ -75,9 +71,7 @@ export function UnderlineFilterEntry() {
   )
 }
 
-UnderlineFilterEntry.story = {
-  name: 'Underline FilterEntry',
-}
+UnderlineFilterEntry.storyName = 'Underline FilterEntry'
 
 export function FilterEntryWithIconImage() {
   return (
@@ -94,9 +88,7 @@ export function FilterEntryWithIconImage() {
   )
 }
 
-FilterEntryWithIconImage.story = {
-  name: 'FilterEntry (with Icon Image)',
-}
+FilterEntryWithIconImage.storyName = 'FilterEntry (with Icon Image)'
 
 export function ExpandingFilter() {
   return (
@@ -112,9 +104,7 @@ export function ExpandingFilter() {
   )
 }
 
-ExpandingFilter.story = {
-  name: 'Expanding 타입',
-}
+ExpandingFilter.storyName = 'Expanding 타입'
 
 export function PrimaryFilter() {
   return (
@@ -126,6 +116,4 @@ export function PrimaryFilter() {
   )
 }
 
-PrimaryFilter.story = {
-  name: 'Primary 타입',
-}
+PrimaryFilter.storyName = 'Primary 타입'

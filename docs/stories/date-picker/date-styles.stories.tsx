@@ -126,13 +126,11 @@ const DayContainer = styled.tbody`
   ${generateSelectedCircleStyle('.DayPicker-Day--selected')}
 `
 
-dayPicker.story = {
-  decorators: [
-    (storyFn: StoryFn<JSX.Element>) => (
-      <DayContainer className="DayPicker-Body">{storyFn()}</DayContainer>
-    ),
-  ],
-}
+dayPicker.decorators = [
+  (storyFn: StoryFn<JSX.Element>) => (
+    <DayContainer className="DayPicker-Body">{storyFn()}</DayContainer>
+  ),
+]
 
 export function rangePicker() {
   return (
@@ -217,10 +215,8 @@ const RangeContainer = styled.tbody`
   )}
 `
 
-rangePicker.story = {
-  decorators: [
-    (storyFn: StoryFn<JSX.Element>) => (
-      <RangeContainer className="DayPicker-Body">{storyFn()}</RangeContainer>
-    ),
-  ],
-}
+rangePicker.decorators = [
+  (storyFn: StoryFn<JSX.Element>) => (
+    <RangeContainer className="DayPicker-Body">{storyFn()}</RangeContainer>
+  ),
+]
