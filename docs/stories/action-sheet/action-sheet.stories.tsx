@@ -6,7 +6,7 @@ import ActionSheet from '@titicaca/action-sheet'
 import { RangePicker } from '@titicaca/date-picker'
 
 export default {
-  title: 'action-sheet | action-sheet',
+  title: 'action-sheet / action-sheet',
 }
 
 export function BaseActionSheet() {

@@ -4,7 +4,7 @@ import { text, boolean } from '@storybook/addon-knobs'
 import ListingFilter from '@titicaca/listing-filter'
 
 export default {
-  title: 'listing-filter | ListingFilter',
+  title: 'listing-filter / ListingFilter',
 }
 
 export function BaseListingFilter() {

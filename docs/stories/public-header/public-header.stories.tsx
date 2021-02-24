@@ -3,7 +3,7 @@ import { text, boolean, number } from '@storybook/addon-knobs'
 import PublicHeader from '@titicaca/public-header'
 
 export default {
-  title: 'public-header | PublicHeader',
+  title: 'public-header / PublicHeader',
 }
 
 export function BasePublicHeader() {

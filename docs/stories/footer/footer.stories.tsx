@@ -4,7 +4,7 @@ import { select, boolean } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
 export default {
-  title: 'footer | Footer',
+  title: 'footer / Footer',
   decorators: [],
 }
 

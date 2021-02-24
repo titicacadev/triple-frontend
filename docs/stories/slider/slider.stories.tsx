@@ -22,7 +22,7 @@ function RangeLabel({
 }
 
 export default {
-  title: 'slider | Slider',
+  title: 'slider / Slider',
 }
 
 export function BaseSingleSlider() {

@@ -4,7 +4,7 @@ import { select } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
 export default {
-  title: 'Reviews | Review Placeholder',
+  title: 'Reviews / Review Placeholder',
 }
 
 export function reviewPlaceholder() {

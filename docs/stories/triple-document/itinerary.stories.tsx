@@ -32,7 +32,7 @@ function envProviderDecorator(storyFn: StoryFn<JSX.Element>) {
 }
 
 export default {
-  title: 'TripleDocument | 추천코스',
+  title: 'TripleDocument / 추천코스',
   decorators: [envProviderDecorator],
 }
 

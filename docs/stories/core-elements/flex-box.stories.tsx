@@ -4,7 +4,7 @@ import { select, text, boolean, number } from '@storybook/addon-knobs'
 import { FlexBox, Container, Text } from '@titicaca/core-elements'
 
 export default {
-  title: 'Core-Elements | FlexBox',
+  title: 'Core-Elements / FlexBox',
   components: FlexBox,
 }
 

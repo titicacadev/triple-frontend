@@ -8,7 +8,7 @@ import { StoryFn } from '@storybook/addons'
 import { historyProviderDecorator } from '../../decorators'
 
 export default {
-  title: 'Location-Properties | LocationProperties',
+  title: 'Location-Properties / LocationProperties',
 }
 
 export function BaseLocationProperties() {

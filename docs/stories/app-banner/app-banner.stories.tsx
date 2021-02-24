@@ -3,7 +3,7 @@ import { text } from '@storybook/addon-knobs'
 import AppBanner from '@titicaca/app-banner'
 
 export default {
-  title: 'app-banner | AppBanner',
+  title: 'app-banner / AppBanner',
 }
 
 export function BaseAppBanner() {

@@ -6,7 +6,7 @@ import RecommendedContents from '@titicaca/recommended-contents'
 import { contents } from '../__mocks__/recommended-contents.sample.json'
 
 export default {
-  title: 'recommended-contents | RecommendedContents',
+  title: 'recommended-contents / RecommendedContents',
 }
 
 export function Primary() {

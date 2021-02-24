@@ -8,7 +8,7 @@ import { StoryFn } from '@storybook/addons'
 import { historyProviderDecorator } from '../../decorators'
 
 export default {
-  title: 'poi-detail | DetailHeader',
+  title: 'poi-detail / DetailHeader',
   decorators: [
     historyProviderDecorator,
     (storyFn: StoryFn<JSX.Element>) => (

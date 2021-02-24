@@ -5,7 +5,7 @@ import NearbyPois from '@titicaca/nearby-pois'
 import { historyProviderDecorator } from '../../decorators'
 
 export default {
-  title: 'Nearby-Pois | NearbyPois',
+  title: 'Nearby-Pois / NearbyPois',
 }
 
 export function BaseNearbyPois() {

@@ -12,7 +12,7 @@ const LongPage = styled.div`
 `
 
 export default {
-  title: 'directions-finder | DirectionsFinder',
+  title: 'directions-finder / DirectionsFinder',
 }
 
 export function BaseDirectionsFinder() {

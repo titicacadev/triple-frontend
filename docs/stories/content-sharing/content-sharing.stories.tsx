@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions'
 import ContentSharing from '@titicaca/content-sharing'
 
 export default {
-  title: 'content-sharing | ContentSharing',
+  title: 'content-sharing / ContentSharing',
 }
 
 export function BaseContentSharing() {

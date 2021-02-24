@@ -4,6 +4,6 @@ import { Table } from '@titicaca/core-elements'
 
 import SAMPLE from '../__mocks__/table.sample.json'
 
-storiesOf('Core-Elements | Table', module)
+storiesOf('Core-Elements / Table', module)
   .add('가로 테이블', () => <Table {...SAMPLE[0].table} />)
   .add('세로 테이블', () => <Table {...SAMPLE[1].table} />)

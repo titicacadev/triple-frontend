@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { boolean } from '@storybook/addon-knobs'
 import { Button, Container, Drawer, Text } from '@titicaca/core-elements'
 
-storiesOf('Core-Elements | Drawer', module)
+storiesOf('Core-Elements / Drawer', module)
   .add('버튼', () => (
     <Drawer active={boolean('활성', true)}>
       <Button fluid borderRadius={'0'}>

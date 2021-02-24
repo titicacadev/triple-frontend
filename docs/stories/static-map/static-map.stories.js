@@ -4,7 +4,7 @@ import StaticMap from '@titicaca/static-map'
 import { number, select, text } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
-storiesOf('static-map | StaticMap', module).add('기본', () => {
+storiesOf('static-map / StaticMap', module).add('기본', () => {
   return (
     <StaticMap
       type={select(

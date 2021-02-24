@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions'
 import { text, number, select, boolean } from '@storybook/addon-knobs'
 import { Button } from '@titicaca/core-elements'
 
-storiesOf('Core-Elements | Button', module)
+storiesOf('Core-Elements / Button', module)
   .add('일반', () => (
     <Button
       as={select('as prop', ['a', 'button'], 'a')}

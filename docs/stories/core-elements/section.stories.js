@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { select } from '@storybook/addon-knobs'
 import { Section, Text } from '@titicaca/core-elements'
 
-storiesOf('Core-Elements | Section', module).add('일반', () => (
+storiesOf('Core-Elements / Section', module).add('일반', () => (
   <Section divider={select('구분선', ['none', 'top', 'bottom'], 'none')}>
     <Text>
       기타노 이진칸 거리에 위치한 풍향계의 집은 1900년대에 독일인이 살았던

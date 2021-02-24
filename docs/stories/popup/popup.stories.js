@@ -9,7 +9,7 @@ const EmptyScroll = styled.div`
   height: 200vh;
 `
 
-storiesOf('popup | Popup', module)
+storiesOf('popup / Popup', module)
   .add('일반', () => (
     <Popup
       title={text('팝업 제목', '테스트')}

@@ -29,7 +29,7 @@ import {
 const GOOGLE_MAPS_API_KEY = 'AIzaSyBaOSog5Kc4PkNw1JiSIcvz8WHt1Y78lNU'
 
 export default {
-  title: 'Map | Map',
+  title: 'Map / Map',
 }
 
 export function Map() {

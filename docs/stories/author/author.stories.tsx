@@ -3,7 +3,7 @@ import { text } from '@storybook/addon-knobs'
 import Author from '@titicaca/author'
 
 export default {
-  title: 'author | Author',
+  title: 'author / Author',
 }
 
 export function BaseAuthor() {

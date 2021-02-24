@@ -11,7 +11,7 @@ import { boolean } from '@storybook/addon-knobs'
 import logos from '../__mocks__/lottie.sample.json'
 
 export default {
-  title: 'react-hooks | hooks',
+  title: 'react-hooks / hooks',
 }
 
 const LottieContainer = styled.div`

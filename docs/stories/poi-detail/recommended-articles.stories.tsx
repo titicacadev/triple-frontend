@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions'
 import { RecommendedArticles } from '@titicaca/poi-detail'
 import { Container } from '@titicaca/core-elements'
 
-storiesOf('poi-detail | RecommendedArticles', module).add('일반', () => (
+storiesOf('poi-detail / RecommendedArticles', module).add('일반', () => (
   <Container padding={{ left: 30, right: 30 }}>
     <RecommendedArticles
       appInstallationCta={{

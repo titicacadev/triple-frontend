@@ -3,7 +3,7 @@ import { text, boolean } from '@storybook/addon-knobs'
 import FloatingInstallButton from '@titicaca/floating-install-button'
 
 export default {
-  title: 'floating-install-button | FloatingInstallButton',
+  title: 'floating-install-button / FloatingInstallButton',
 }
 
 export function BaseFloatingInstallButton() {

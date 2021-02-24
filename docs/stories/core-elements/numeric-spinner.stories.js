@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { storiesOf } from '@storybook/react'
 import { NumericSpinner } from '@titicaca/core-elements'
 
-storiesOf('Core-Elements | NumericSpinner', module)
+storiesOf('Core-Elements / NumericSpinner', module)
   .add('숙박 인원', () => (
     <NumericSpinner
       size="big"

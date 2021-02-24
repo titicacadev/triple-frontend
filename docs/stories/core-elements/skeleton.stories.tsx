@@ -8,7 +8,7 @@ import {
 } from '@titicaca/core-elements'
 
 export default {
-  title: 'core-elements | Skeleton',
+  title: 'core-elements / Skeleton',
 }
 
 export function BaseSkeleton() {

@@ -3,7 +3,7 @@ import { VerificationRequest } from '@titicaca/user-verification'
 import { action } from '@storybook/addon-actions'
 
 export default {
-  title: 'user-verification | VerificationRequest',
+  title: 'user-verification / VerificationRequest',
 }
 
 export function ExampleVerificationRequest() {

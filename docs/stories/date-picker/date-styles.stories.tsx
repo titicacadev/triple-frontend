@@ -21,7 +21,7 @@ const Table = styled.table`
 `
 
 export default {
-  title: 'date-picker | 날짜 스타일',
+  title: 'date-picker / 날짜 스타일',
   decorators: [
     (storyFn: StoryFn<JSX.Element>) => (
       <PickerFrame height="500px" sideSpacing={10} monthPadding="0">

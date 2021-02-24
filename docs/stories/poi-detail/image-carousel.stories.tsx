@@ -10,7 +10,7 @@ import {
 } from '@titicaca/react-contexts'
 import { ImageMeta } from '@titicaca/type-definitions'
 
-storiesOf('poi-detail | ImageCarousel', module)
+storiesOf('poi-detail / ImageCarousel', module)
   .add('Attraction / Restaurant', () => {
     const resourceId = text('POI ID', 'e889ae22-0336-4cf9-8fbb-742b95fd09d0')
     const resourceType = select(
