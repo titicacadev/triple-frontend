@@ -2,9 +2,19 @@
 
 ## Unreleased
 
+## 2.12.0
+
+### poi-detail
+
+RecommendedArticles, TransitionModal Text 수정 (#1232)
+
+### core-elements
+
+- optimizedImg를 사용함에 필요한 optimized Prop 추가 (#1185)
+
 ### triple-document
 
-- `Ship` 아이콘 추가
+- `Ship` 아이콘 추가 (#1226)
 
 ### common
 
