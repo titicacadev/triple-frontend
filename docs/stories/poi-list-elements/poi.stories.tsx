@@ -38,9 +38,7 @@ export function PoiList() {
   return <PoiListElement as={text('as', 'div') as any} poi={POI} />
 }
 
-PoiList.story = {
-  name: 'POI 리스트',
-}
+PoiList.storyName = 'POI 리스트'
 
 export function HotelList() {
   return (
@@ -67,9 +65,7 @@ export function HotelList() {
   )
 }
 
-HotelList.story = {
-  name: '호텔 리스트',
-}
+HotelList.storyName = '호텔 리스트'
 
 export function TripleDocument() {
   return (
@@ -105,17 +101,13 @@ export function TripleDocument() {
   )
 }
 
-TripleDocument.story = {
-  name: 'TripleDocument',
-}
+TripleDocument.storyName = 'TripleDocument'
 
 export function TripleDocumentList() {
   return <PoiListElement compact poi={POI} />
 }
 
-TripleDocumentList.story = {
-  name: 'TripleDocument 리스트',
-}
+TripleDocumentList.storyName = 'TripleDocument 리스트'
 
 export function PoiCardElementsTypeHotel() {
   return (
@@ -223,6 +215,4 @@ export function PoiCardElementsTypePoi() {
   )
 }
 
-PoiCardElementsTypePoi.story = {
-  name: 'POI Card Element (POI)',
-}
+PoiCardElementsTypePoi.storyName = 'POI Card Element (POI)'

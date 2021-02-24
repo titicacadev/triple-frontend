@@ -45,6 +45,4 @@ export function DocumentItinerary() {
   )
 }
 
-DocumentItinerary.story = {
-  name: '추천코스 기본',
-}
+DocumentItinerary.storyName = '추천코스 기본'

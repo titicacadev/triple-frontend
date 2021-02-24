@@ -48,4 +48,4 @@ export function baseExample() {
   )
 }
 
-baseExample.story = { name: '기본' }
+baseExample.storyName = '기본'

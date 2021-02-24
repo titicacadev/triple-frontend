@@ -139,9 +139,7 @@ export function DayPickerStory() {
   )
 }
 
-DayPickerStory.story = {
-  name: '단일 날짜 선택 컴포넌트',
-}
+DayPickerStory.storyName = '단일 날짜 선택 컴포넌트'
 
 export function RangePickerStory() {
   const [{ startDate, endDate }, setDateRange] = useState<{
@@ -205,6 +203,4 @@ export function RangePickerStory() {
   )
 }
 
-RangePickerStory.story = {
-  name: '날짜 구간 선택 컴포넌트',
-}
+RangePickerStory.storyName = '날짜 구간 선택 컴포넌트'

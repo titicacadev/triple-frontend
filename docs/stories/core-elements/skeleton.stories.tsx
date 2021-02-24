@@ -29,6 +29,4 @@ export function BaseSkeleton() {
   )
 }
 
-BaseSkeleton.story = {
-  name: '기본 스켈레톤',
-}
+BaseSkeleton.storyName = '기본 스켈레톤'

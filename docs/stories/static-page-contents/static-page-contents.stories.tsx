@@ -19,9 +19,7 @@ export function Basic() {
   return <StaticPageContents src="static-mock.html" />
 }
 
-Basic.story = {
-  name: 'Basic usage',
-}
+Basic.storyName = 'Basic usage'
 
 export function withPopup() {
   return (
@@ -38,9 +36,7 @@ export function withPopup() {
   )
 }
 
-withPopup.story = {
-  name: 'with Popup Component',
-}
+withPopup.storyName = 'with Popup Component'
 
 export function withFallback() {
   return (
@@ -51,14 +47,10 @@ export function withFallback() {
   )
 }
 
-withFallback.story = {
-  name: 'with Fallback',
-}
+withFallback.storyName = 'with Fallback'
 
 export function withCustomStyle() {
   return <CustomStyledStaticContents src="static-mock.html" />
 }
 
-withCustomStyle.story = {
-  name: 'with Styled Component',
-}
+withCustomStyle.storyName = 'with Styled Component'

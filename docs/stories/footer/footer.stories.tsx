@@ -12,14 +12,12 @@ export function BaseFooter() {
   return <DefaultFooter />
 }
 
-BaseFooter.story = {
-  name: '기본 푸터',
-}
+BaseFooter.storyName = '기본 푸터'
 
 export function BaseCSFooter() {
   return (
     <CSFooter
-      serviceType={select('서비스', ['AIR', 'TNA', 'HOTEL'], 'AIR')}
+      service={select('서비스', ['AIR', 'TNA', 'HOTEL'], 'AIR')}
       csTime={'오전 9시 - 오후 6시 (한국시간 기준, 연중무휴)'}
       csMessage={
         '현지사용 긴급문의 카카오톡 @트리플서비스\n(오전 9시 - 오후 10시)'
@@ -31,13 +29,9 @@ export function BaseCSFooter() {
   )
 }
 
-BaseCSFooter.story = {
-  name: 'CS 푸터',
-}
+BaseCSFooter.storyName = 'CS 푸터'
 
 export function BaseLogoFooter() {
   return <LogoFooter />
 }
-BaseLogoFooter.story = {
-  name: '로고 푸터',
-}
+BaseLogoFooter.storyName = '로고 푸터'

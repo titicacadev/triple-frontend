@@ -22,6 +22,4 @@ export function BaseFloatingInstallButton() {
   )
 }
 
-BaseFloatingInstallButton.story = {
-  name: '기본 플로팅 버튼',
-}
+BaseFloatingInstallButton.storyName = '기본 플로팅 버튼'

@@ -47,9 +47,7 @@ export function Map() {
   )
 }
 
-Map.story = {
-  name: '기본 맵',
-}
+Map.storyName = '기본 맵'
 
 export function MapWithProps() {
   return (
@@ -75,9 +73,7 @@ export function MapWithProps() {
   )
 }
 
-MapWithProps.story = {
-  name: '사이즈 설정',
-}
+MapWithProps.storyName = '사이즈 설정'
 
 export function MapWithPolyline() {
   return (
@@ -103,9 +99,7 @@ export function MapWithPolyline() {
   )
 }
 
-MapWithPolyline.story = {
-  name: 'Polyline',
-}
+MapWithPolyline.storyName = 'Polyline'
 
 export function PolylineWithMarker() {
   return (
@@ -143,9 +137,7 @@ export function PolylineWithMarker() {
   )
 }
 
-PolylineWithMarker.story = {
-  name: 'Polyline with CircleMarker',
-}
+PolylineWithMarker.storyName = 'Polyline with CircleMarker'
 
 export function PolygonWithMarker() {
   return (
@@ -174,9 +166,7 @@ export function PolygonWithMarker() {
   )
 }
 
-PolygonWithMarker.story = {
-  name: 'Polygon with CircleMarker',
-}
+PolygonWithMarker.storyName = 'Polygon with CircleMarker'
 
 export function PolygonWithPolyline() {
   return (
@@ -210,9 +200,7 @@ export function PolygonWithPolyline() {
   )
 }
 
-PolygonWithPolyline.story = {
-  name: 'Polygon with Polyline',
-}
+PolygonWithPolyline.storyName = 'Polygon with Polyline'
 
 export function PolygonWithPolylineAndMarker() {
   return (
@@ -258,6 +246,4 @@ export function PolygonWithPolylineAndMarker() {
   )
 }
 
-PolygonWithPolylineAndMarker.story = {
-  name: 'Polygon with Polyline, Marker',
-}
+PolygonWithPolylineAndMarker.storyName = 'Polygon with Polyline, Marker'

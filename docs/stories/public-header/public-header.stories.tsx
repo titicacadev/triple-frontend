@@ -18,9 +18,7 @@ export function BasePublicHeader() {
   )
 }
 
-BasePublicHeader.story = {
-  name: '기본',
-}
+BasePublicHeader.storyName = '기본'
 
 export function HeightPublicHeader() {
   return (
@@ -35,9 +33,7 @@ export function HeightPublicHeader() {
   )
 }
 
-HeightPublicHeader.story = {
-  name: 'height',
-}
+HeightPublicHeader.storyName = 'height'
 
 export function BorderlessPublicHeader() {
   return (
@@ -52,6 +48,4 @@ export function BorderlessPublicHeader() {
   )
 }
 
-BorderlessPublicHeader.story = {
-  name: 'borderless',
-}
+BorderlessPublicHeader.storyName = 'borderless'

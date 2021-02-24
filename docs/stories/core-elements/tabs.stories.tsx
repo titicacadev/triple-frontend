@@ -20,9 +20,7 @@ export function nearbyPlaces() {
   )
 }
 
-nearbyPlaces.story = {
-  name: '이 근처 장소',
-}
+nearbyPlaces.storyName = '이 근처 장소'
 
 export function lineTab() {
   const options = [
@@ -68,6 +66,4 @@ export function lineTab() {
   )
 }
 
-lineTab.story = {
-  name: '라인 탭',
-}
+lineTab.storyName = '라인 탭'

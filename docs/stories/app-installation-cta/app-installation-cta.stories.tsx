@@ -36,9 +36,7 @@ export function FloatingButton() {
   )
 }
 
-FloatingButton.story = {
-  name: '트리플 앱 설치하기 버튼',
-}
+FloatingButton.storyName = '트리플 앱 설치하기 버튼'
 
 export function BaseImageBanner() {
   return (
@@ -50,9 +48,7 @@ export function BaseImageBanner() {
   )
 }
 
-BaseImageBanner.story = {
-  name: '이미지 배너',
-}
+BaseImageBanner.storyName = '이미지 배너'
 
 export function BaseTextBanner() {
   return (
@@ -63,9 +59,7 @@ export function BaseTextBanner() {
   )
 }
 
-BaseTextBanner.story = {
-  name: '텍스트 배너',
-}
+BaseTextBanner.storyName = '텍스트 배너'
 
 export function BaseBannerCTA() {
   return (
@@ -83,9 +77,7 @@ export function BaseBannerCTA() {
   )
 }
 
-BaseBannerCTA.story = {
-  name: '배너 CTA',
-}
+BaseBannerCTA.storyName = '배너 CTA'
 
 export function BaseArticleCardCTA() {
   const [articleCTA, setArticleCTA] = useState<InventoryItemMeta | null>(null)

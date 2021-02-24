@@ -41,9 +41,7 @@ export function BaseActionSheet() {
   )
 }
 
-BaseActionSheet.story = {
-  name: '기본 액션시트',
-}
+BaseActionSheet.storyName = '기본 액션시트'
 
 export function ActionSheetWithTextMenu() {
   return (
@@ -81,9 +79,7 @@ export function ActionSheetWithTextMenu() {
   )
 }
 
-ActionSheetWithTextMenu.story = {
-  name: '텍스트 메뉴',
-}
+ActionSheetWithTextMenu.storyName = '텍스트 메뉴'
 
 export function ActionSheetWithIconMenu() {
   return (
@@ -115,9 +111,7 @@ export function ActionSheetWithIconMenu() {
   )
 }
 
-ActionSheetWithIconMenu.story = {
-  name: '아이콘 메뉴',
-}
+ActionSheetWithIconMenu.storyName = '아이콘 메뉴'
 
 export function ActionSheetWithForm() {
   return (
@@ -162,9 +156,7 @@ export function ActionSheetWithForm() {
   )
 }
 
-ActionSheetWithForm.story = {
-  name: '액션시트 방향 조절',
-}
+ActionSheetWithForm.storyName = '액션시트 방향 조절'
 
 export function ActionSheetWithCustomHeader() {
   const Title = styled.h1`
@@ -198,9 +190,7 @@ export function ActionSheetWithCustomHeader() {
   )
 }
 
-ActionSheetWithCustomHeader.story = {
-  name: '커스텀 헤더',
-}
+ActionSheetWithCustomHeader.storyName = '커스텀 헤더'
 
 export function ActionSheetWithExtendStyle() {
   const NewStyledActionSheet = styled(ActionSheet)`
@@ -223,6 +213,4 @@ export function ActionSheetWithExtendStyle() {
   )
 }
 
-ActionSheetWithExtendStyle.story = {
-  name: '스타일 확장',
-}
+ActionSheetWithExtendStyle.storyName = '스타일 확장'

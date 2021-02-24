@@ -24,6 +24,4 @@ export function ComponentWithI18nProvider() {
   )
 }
 
-ComponentWithI18nProvider.story = {
-  name: '다국어 지원',
-}
+ComponentWithI18nProvider.storyName = '다국어 지원'

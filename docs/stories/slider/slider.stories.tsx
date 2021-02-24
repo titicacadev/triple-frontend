@@ -44,9 +44,7 @@ export function BaseSingleSlider() {
   )
 }
 
-BaseSingleSlider.story = {
-  name: 'SingleSlider',
-}
+BaseSingleSlider.storyName = 'SingleSlider'
 
 export function BaseRangeSlider() {
   const [values, setValues] = useState([0, 500000])
@@ -68,9 +66,7 @@ export function BaseRangeSlider() {
   )
 }
 
-BaseRangeSlider.story = {
-  name: 'RangeSlider',
-}
+BaseRangeSlider.storyName = 'RangeSlider'
 
 export function AdjustedRangeSlider() {
   const [values, setValues] = useState([1, 31])
@@ -94,6 +90,4 @@ export function AdjustedRangeSlider() {
   )
 }
 
-AdjustedRangeSlider.story = {
-  name: 'AdjustedRangeSlider',
-}
+AdjustedRangeSlider.storyName = 'AdjustedRangeSlider'

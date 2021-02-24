@@ -51,6 +51,4 @@ export function BaseSocialReviews() {
   )
 }
 
-BaseSocialReviews.story = {
-  name: '기본 SocialReviews',
-}
+BaseSocialReviews.storyName = '기본 SocialReviews'

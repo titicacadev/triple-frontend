@@ -51,9 +51,7 @@ export function twoButtons() {
     </Navbar>
   )
 }
-twoButtons.story = {
-  name: '버튼 2개 (좌1+우1)',
-}
+twoButtons.storyName = '버튼 2개 (좌1+우1)'
 
 export function threeButtons() {
   return (
@@ -73,9 +71,7 @@ export function threeButtons() {
     </Navbar>
   )
 }
-threeButtons.story = {
-  name: '버튼 3개 (좌1+우2)',
-}
+threeButtons.storyName = '버튼 3개 (좌1+우2)'
 
 export function fourButtons() {
   return (
@@ -99,9 +95,7 @@ export function fourButtons() {
     </Navbar>
   )
 }
-fourButtons.story = {
-  name: '버튼 4개 (좌1+우3)',
-}
+fourButtons.storyName = '버튼 4개 (좌1+우3)'
 
 export function secondaryNavbar() {
   return (
@@ -118,9 +112,7 @@ export function secondaryNavbar() {
     </>
   )
 }
-secondaryNavbar.story = {
-  name: '보조 Navbar (리스트 필터링)',
-}
+secondaryNavbar.storyName = '보조 Navbar (리스트 필터링)'
 
 export function wrappedNavbar() {
   return (
@@ -137,9 +129,7 @@ export function wrappedNavbar() {
     </NavbarWrapper>
   )
 }
-wrappedNavbar.story = {
-  name: 'wrapper로 감싼 Navbar',
-}
+wrappedNavbar.storyName = 'wrapper로 감싼 Navbar'
 
 export function toc() {
   return (
@@ -161,9 +151,7 @@ export function toc() {
     </Navbar>
   )
 }
-toc.story = {
-  name: '목차',
-}
+toc.storyName = '목차'
 
 export function backgroundExample() {
   return (
@@ -179,9 +167,7 @@ export function backgroundExample() {
     </>
   )
 }
-backgroundExample.story = {
-  name: 'backgroundColor',
-}
+backgroundExample.storyName = 'backgroundColor'
 
 export function searchExample() {
   return (
@@ -199,4 +185,4 @@ export function searchExample() {
   )
 }
 
-searchExample.story = { name: '검색' }
+searchExample.storyName = '검색'

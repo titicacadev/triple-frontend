@@ -28,10 +28,8 @@ export function BaseDirectionsFinder() {
   )
 }
 
-BaseDirectionsFinder.story = {
-  name: 'directions-finder',
-  decorators: [
-    (storyFn: StoryFn<JSX.Element>) => <LongPage>{storyFn()}</LongPage>,
-    historyProviderDecorator,
-  ],
-}
+BaseDirectionsFinder.storyName = 'directions-finder'
+BaseDirectionsFinder.decorators = [
+  (storyFn: StoryFn<JSX.Element>) => <LongPage>{storyFn()}</LongPage>,
+  historyProviderDecorator,
+]
