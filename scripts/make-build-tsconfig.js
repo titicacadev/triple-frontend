@@ -3,14 +3,16 @@ const fs = require('fs')
 
 const prettier = require('prettier')
 
+const EXCLUDED_FOR_BUILD = ['node_modules', 'lib', '**/*.test.*', '**/*.spec.*']
+
 async function main() {
   const tsconfig = await fs.promises.readFile(
     path.resolve(process.cwd(), './tsconfig.json'),
   )
-  const { references, ...rest } = JSON.parse(tsconfig)
+  const { references } = JSON.parse(tsconfig)
   const buildTsconfig = {
-    ...rest,
-    exclude: ['node_modules', 'lib', '**/*.test.*', '**/*.spec.*'],
+    extends: './tsconfig.json',
+    exclude: EXCLUDED_FOR_BUILD,
     references: references
       ? references.map(({ path }) => ({
           path: `${path}/tsconfig.build.json`,
