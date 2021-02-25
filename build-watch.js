@@ -7,8 +7,7 @@ const debounce = require('lodash.debounce')
 const BUILD_RESOURCES =
   'BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments'
 
-const watcher = chokidar.watch('packages/', {
-  ignored: /(node_modules|lib|tsconfig\.tsbuildinfo|(^|[/\\])\..)/,
+const watcher = chokidar.watch('packages/*/src/**/*', {
   persistent: true,
 })
 
