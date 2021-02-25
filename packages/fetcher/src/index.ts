@@ -8,7 +8,7 @@ export * from './error'
 
 export async function fetcher<T = any>(
   url: string,
-  { req, body, noStringfyBody, ...rest }: RequestOptions,
+  { req, body, useBodyAsRaw, ...rest }: RequestOptions,
 ): Promise<HttpResponse<T>> {
   if (req && !process.env.API_URI_BASE) {
     throw new Error(
@@ -28,13 +28,13 @@ export async function fetcher<T = any>(
   const headers = sessionId
     ? { ...defaultHeaders, 'X-Soto-Session': sessionId }
     : { ...defaultHeaders }
-  const rawBody = body ? JSON.stringify(body) : undefined
+  const stringifiedBody = body ? JSON.stringify(body) : undefined
 
   const response: HttpResponse<T> = await fetch(reqUrl, {
     credentials: 'same-origin',
     headers,
     ...rest,
-    body: noStringfyBody ? (body as BodyInit) : rawBody,
+    body: useBodyAsRaw ? (body as BodyInit) : stringifiedBody,
   })
 
   try {
