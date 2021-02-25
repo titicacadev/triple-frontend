@@ -24,16 +24,13 @@ const BUILDERS = {}
 
 function createBuilder(packageName) {
   return () => {
-    log(`@titicaca/${packageName} is changed`)
-
     exec(
-      `lerna exec --scope=@titicaca/${packageName} '${BUILD_RESOURCES}'`,
+      `lerna exec --stream --scope=@titicaca/${packageName} '${BUILD_RESOURCES}'`,
       (err, stdout) => {
         if (err) {
           error(err)
         } else {
           log(stdout)
-          log(`Built @titicaca/${packageName}`)
         }
       },
     )
