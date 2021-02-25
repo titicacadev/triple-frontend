@@ -10,7 +10,7 @@ export type RequestOptions = {
   /** header object */
   headers?: HeadersInit
   /** don't stringfy body */
-  noStringfyBody?: boolean
+  useBodyAsRaw?: boolean
   [key: string]: any
 }
 
