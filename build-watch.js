@@ -8,6 +8,7 @@ const BUILD_RESOURCES =
   'BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments'
 
 const watcher = chokidar.watch('packages/*/src/**/*', {
+  ignored: /test|spec|__test__/,
   persistent: true,
 })
 
