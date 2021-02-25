@@ -1,7 +1,7 @@
 const { log, error } = require('console')
+const { exec } = require('child_process')
 
 const chokidar = require('chokidar')
-const concurrently = require('concurrently')
 const debounce = require('lodash.debounce')
 
 const BUILD_RESOURCES =
@@ -26,25 +26,17 @@ function createBuilder(packageName) {
   return () => {
     log(`@titicaca/${packageName} is changed`)
 
-    // TODO: 굳이 concurrently 사용할 필요 없음
-    concurrently(
-      [
-        {
-          command: `lerna exec --scope=@titicaca/${packageName} '${BUILD_RESOURCES}'`,
-          name: 'resources',
-        },
-      ],
-      {
-        prefix: 'name',
-        killOthers: ['failure'],
+    exec(
+      `lerna exec --scope=@titicaca/${packageName} '${BUILD_RESOURCES}'`,
+      (err, stdout) => {
+        if (err) {
+          error(err)
+        } else {
+          log(stdout)
+          log(`Built @titicaca/${packageName}`)
+        }
       },
     )
-      .then(() => {
-        log(`Built @titicaca/${packageName}`)
-      })
-      .catch((err) => {
-        error(err)
-      })
   }
 }
 
