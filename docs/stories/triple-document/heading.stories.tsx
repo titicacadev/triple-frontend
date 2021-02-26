@@ -1,5 +1,5 @@
 import React from 'react'
-import { Meta } from '@storybook/react'
+import { Meta, Story } from '@storybook/react'
 import { ELEMENTS } from '@titicaca/triple-document'
 
 const {
@@ -11,27 +11,29 @@ const {
 
 export default { title: 'triple-document/heading' } as Meta
 
-export function Heading1Normal() {
-  return <Heading1 value={{ text: '제목1: bold 21' }} />
+const Heading1Template: Story<{
+  // FIXME: HeadingProps
+  value: { text: string; href?: string; emphasize?: boolean; headline?: string }
+}> = (args) => <Heading1 {...args} />
+
+export const Heading1Normal = Heading1Template.bind({})
+Heading1Normal.args = {
+  value: { text: '제목1: bold 21' },
 }
 Heading1Normal.storyName = '제목 1 기본'
 
-export function Heading1Emphasized() {
-  return (
-    <Heading1 value={{ emphasize: true, text: '제목0: bold 21 #2987F0' }} />
-  )
+export const Heading1Emphasized = Heading1Template.bind({})
+Heading1Emphasized.args = {
+  value: { emphasize: true, text: '제목0: bold 21 #2987F0' },
 }
 Heading1Emphasized.storyName = '제목 1 강조'
 
-export function Heading1WithHeadline() {
-  return (
-    <Heading1
-      value={{
-        text: '제목1: bold 21',
-        headline: '보조: bold 13 #2987F0',
-      }}
-    />
-  )
+export const Heading1WithHeadline = Heading1Template.bind({})
+Heading1WithHeadline.args = {
+  value: {
+    text: '제목1: bold 21',
+    headline: '보조: bold 13 #2987F0',
+  },
 }
 Heading1WithHeadline.storyName = '보조 문구가 있는 제목 1'
 
