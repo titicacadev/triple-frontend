@@ -11,10 +11,6 @@ import MOCK_ITINERARY from '../__mocks__/triple-document.itinerary.json'
 import { sessionContextProviderDecorator } from '../../decorators'
 
 const {
-  heading1: Heading1,
-  heading2: Heading2,
-  heading3: Heading3,
-  heading4: Heading4,
   text: Text,
   note: Note,
   video: Video,
@@ -38,17 +34,6 @@ Sample.storyName = '샘플'
 export function TextExample() {
   return (
     <>
-      <Heading1 value={{ emphasize: true, text: '제목0: bold 21 #2987F0' }} />
-      <Heading1 value={{ text: '제목1: bold 21' }} />
-      <Heading1
-        value={{
-          text: '제목1: bold 21',
-          headline: '보조: bold 13 #2987F0',
-        }}
-      />
-      <Heading2 value={{ text: '제목2: medium 19' }} />
-      <Heading3 value={{ text: '제목3: bold 16' }} />
-      <Heading4 value={{ text: '제목4: bold 16 #2987F0' }} />
       <Text value={{ text: '텍스트: medium 16 80%' }} />
       <Text
         value={{
