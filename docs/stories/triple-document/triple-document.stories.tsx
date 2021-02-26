@@ -16,12 +16,6 @@ const {
   heading3: Heading3,
   heading4: Heading4,
   text: Text,
-  hr1: HR1,
-  hr2: HR2,
-  hr3: HR3,
-  hr4: HR4,
-  hr5: HR5,
-  hr6: HR6,
   note: Note,
   video: Video,
   table: Table,
@@ -67,26 +61,6 @@ export function TextExample() {
   )
 }
 TextExample.storyName = '텍스트'
-
-export function Divider() {
-  return (
-    <>
-      <Text value={{ text: '구분선1' }} />
-      <HR1 />
-      <Text value={{ text: '구분선2' }} />
-      <HR2 />
-      <Text value={{ text: '구분선3' }} />
-      <HR3 />
-      <Text value={{ text: '구분선4' }} />
-      <HR4 />
-      <Text value={{ text: '구분선5' }} />
-      <HR5 />
-      <Text value={{ text: '구분선6' }} />
-      <HR6 />
-    </>
-  )
-}
-Divider.storyName = '구분선'
 
 export function NoteExample() {
   return (
