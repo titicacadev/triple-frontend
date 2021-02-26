@@ -8,7 +8,7 @@ import { sessionContextProviderDecorator } from '../../decorators'
 const { itinerary: Itinerary } = ELEMENTS
 
 export default {
-  title: 'TripleDocument / 추천코스',
+  title: 'triple-document / 추천코스',
   decorators: [sessionContextProviderDecorator],
 }
 

@@ -569,6 +569,6 @@ const REGIONS = [
 ]
 /* eslint-enable */
 
-storiesOf('TripleDocument / TripleDocument', module).add('도시', () => (
+storiesOf('triple-document / 도시', module).add('도시', () => (
   <Regions value={{ regions: REGIONS }} />
 ))
