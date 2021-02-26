@@ -4,7 +4,7 @@ import { ELEMENTS } from '@titicaca/triple-document'
 
 const { list: ListElement } = ELEMENTS
 
-storiesOf('TripleDocument / TripleDocument/리스트', module)
+storiesOf('triple-document / 리스트', module)
   .add('점', () => (
     <ListElement
       value={{

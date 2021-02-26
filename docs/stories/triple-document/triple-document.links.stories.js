@@ -4,7 +4,7 @@ import { ELEMENTS } from '@titicaca/triple-document'
 
 const { links: Links } = ELEMENTS
 
-storiesOf('TripleDocument / TripleDocument/링크', module)
+storiesOf('triple-document / 링크', module)
   .add('일반', () => (
     <Links
       value={{

@@ -7,7 +7,7 @@ import HOTEL from '../__mocks__/hotel.sample.json'
 
 const { pois: Pois } = ELEMENTS
 
-storiesOf('TripleDocument / TripleDocument/POI', module)
+storiesOf('triple-document / POI', module)
   .add('일반', () => (
     <Pois
       resourceScraps={{}}

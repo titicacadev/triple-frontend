@@ -25,7 +25,7 @@ const {
 // storybook의 jsxDecoration에는 Object를 표현하는 기능이 없어 Proxy를 호출하게 해두었습니다.
 const Proxy = ({ sample }) => <TripleDocument>{sample}</TripleDocument>
 
-storiesOf('TripleDocument / TripleDocument', module)
+storiesOf('triple-document', module)
   .add('샘플', () => <Proxy sample={SAMPLE} />)
   .add('텍스트', () => (
     <>
