@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions'
 import TripleDocument, { ELEMENTS } from '@titicaca/triple-document'
 
 import SAMPLE from '../__mocks__/triple-document.sample.json'
+import MOCK_REGIONS from '../__mocks__/triple-document.regions.json'
 
 const {
   heading1: Heading1,
@@ -20,6 +21,7 @@ const {
   note: Note,
   video: Video,
   table: Table,
+  regions: Regions,
 } = ELEMENTS
 
 // storybook의 jsxDecoration에는 Object를 표현하는 기능이 없어 Proxy를 호출하게 해두었습니다.
@@ -102,3 +104,4 @@ storiesOf('triple-document', module)
       }}
     />
   ))
+  .add('리전', () => <Regions value={{ regions: MOCK_REGIONS }} />)
