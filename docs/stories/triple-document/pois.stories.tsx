@@ -1,5 +1,5 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
+import { Meta } from '@storybook/react'
 import { ELEMENTS } from '@titicaca/triple-document'
 
 import POIS from '../__mocks__/pois.sample.json'
@@ -7,8 +7,10 @@ import HOTEL from '../__mocks__/hotel.sample.json'
 
 const { pois: Pois } = ELEMENTS
 
-storiesOf('triple-document / POI', module)
-  .add('일반', () => (
+export default { title: 'triple-document / POI', component: Pois } as Meta
+
+export function Normal() {
+  return (
     <Pois
       resourceScraps={{}}
       value={{
@@ -16,8 +18,12 @@ storiesOf('triple-document / POI', module)
         display: 'default',
       }}
     />
-  ))
-  .add('일반 w/ 이미지 Placeholder', () => (
+  )
+}
+Normal.storyName = '일반'
+
+export function NormalWithImagePlaceholder() {
+  return (
     <Pois
       resourceScraps={{}}
       value={{
@@ -28,8 +34,12 @@ storiesOf('triple-document / POI', module)
         display: 'default',
       }}
     />
-  ))
-  .add('리스트', () => (
+  )
+}
+NormalWithImagePlaceholder.storyName = '일반 w/ 이미지 Placeholder'
+
+export function List() {
+  return (
     <Pois
       resourceScraps={{}}
       value={{
@@ -37,8 +47,12 @@ storiesOf('triple-document / POI', module)
         display: 'list',
       }}
     />
-  ))
-  .add('리스트 w/ 이미지 Placeholder', () => (
+  )
+}
+List.storyName = '리스트'
+
+export function ListWithImagePlaceholder() {
+  return (
     <Pois
       resourceScraps={{}}
       value={{
@@ -49,8 +63,12 @@ storiesOf('triple-document / POI', module)
         display: 'list',
       }}
     />
-  ))
-  .add('리스트 (호텔 w/ 가격)', () => (
+  )
+}
+ListWithImagePlaceholder.storyName = '리스트 w/ 이미지 Placeholder'
+
+export function HotelListWithPrice() {
+  return (
     <Pois
       resourceScraps={{}}
       value={{
@@ -58,4 +76,6 @@ storiesOf('triple-document / POI', module)
         display: 'list',
       }}
     />
-  ))
+  )
+}
+HotelListWithPrice.storyName = '리스트 (호텔 w/ 가격)'
