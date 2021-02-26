@@ -144,6 +144,9 @@ function getDefaultImageUrl(image: ImageMeta | undefined) {
 const LINK_CONTAINERS = {
   button: ButtonContainer,
   block: BlockContainer,
+  /**
+   * @deprecated 어드민에서 만들 수 없어서 기본 타입으로 fallback합니다.
+   */
   list: LinksContainer,
   default: LinksContainer,
   image: ResourceList,
@@ -152,6 +155,9 @@ const LINK_CONTAINERS = {
 const LINK_ELEMENTS = {
   button: ButtonLink,
   block: BlockLink,
+  /**
+   * @deprecated 어드민에서 만들 수 없어서 기본 타입으로 fallback합니다.
+   */
   list: SimpleLink,
   default: SimpleLink,
   image: ImageLink,
