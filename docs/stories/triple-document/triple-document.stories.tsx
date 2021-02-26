@@ -1,10 +1,7 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
+import { Meta } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import TripleDocument, {
-  ELEMENTS,
-  TripleDocumentElementData,
-} from '@titicaca/triple-document'
+import TripleDocument, { ELEMENTS } from '@titicaca/triple-document'
 
 import SAMPLE from '../__mocks__/triple-document.sample.json'
 import MOCK_REGIONS from '../__mocks__/triple-document.regions.json'
@@ -29,14 +26,18 @@ const {
   embedded: Embedded,
 } = ELEMENTS
 
-// storybook의 jsxDecoration에는 Object를 표현하는 기능이 없어 Proxy를 호출하게 해두었습니다.
-const Proxy = ({ sample }: { sample: TripleDocumentElementData[] }) => (
-  <TripleDocument>{sample}</TripleDocument>
-)
+export default {
+  title: 'triple-document',
+} as Meta
 
-storiesOf('triple-document', module)
-  .add('샘플', () => <Proxy sample={SAMPLE} />)
-  .add('텍스트', () => (
+export function Sample() {
+  // FIXME: 샘플 JSON에서 table이 잘못되어있음
+  return <TripleDocument>{SAMPLE}</TripleDocument>
+}
+Sample.storyName = '샘플'
+
+export function TextExample() {
+  return (
     <>
       <Heading1 value={{ emphasize: true, text: '제목0: bold 21 #2987F0' }} />
       <Heading1 value={{ text: '제목1: bold 21' }} />
@@ -58,8 +59,12 @@ storiesOf('triple-document', module)
       />
       <Text bold value={{ text: '강조 텍스트: bold 16 100%' }} alpha={1} />
     </>
-  ))
-  .add('구분선', () => (
+  )
+}
+TextExample.storyName = '텍스트'
+
+export function Divider() {
+  return (
     <>
       <Text value={{ text: '구분선1' }} />
       <HR1 />
@@ -74,8 +79,12 @@ storiesOf('triple-document', module)
       <Text value={{ text: '구분선6' }} />
       <HR6 />
     </>
-  ))
-  .add('노트', () => (
+  )
+}
+Divider.storyName = '구분선'
+
+export function NoteExample() {
+  return (
     <Note
       value={{
         body:
@@ -83,16 +92,24 @@ storiesOf('triple-document', module)
         title: '잠깐! 스탑오버(Stopover)란?',
       }}
     />
-  ))
-  .add('비디오', () => (
+  )
+}
+NoteExample.storyName = '노트'
+
+export function VideoExample() {
+  return (
     <Video
       value={{
         provider: 'youtube',
         identifier: 'hYIe4VrfHoA',
       }}
     />
-  ))
-  .add('표', () => (
+  )
+}
+VideoExample.storyName = '비디오'
+
+export function TableExample() {
+  return (
     <Table
       value={{
         table: {
@@ -110,6 +127,16 @@ storiesOf('triple-document', module)
         },
       }}
     />
-  ))
-  .add('리전', () => <Regions value={{ regions: MOCK_REGIONS }} />)
-  .add('임베딩', () => <Embedded value={MOCK_EMBEDDED} />)
+  )
+}
+TableExample.storyName = '표'
+
+export function Region() {
+  return <Regions value={{ regions: MOCK_REGIONS }} />
+}
+Region.storyName = '리전'
+
+export function EmbeddedExample() {
+  return <Embedded value={MOCK_EMBEDDED} />
+}
+EmbeddedExample.storyName = '임베딩'
