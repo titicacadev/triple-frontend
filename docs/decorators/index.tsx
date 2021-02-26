@@ -14,6 +14,10 @@ export function historyProviderDecorator(storyFn: StoryFn<JSX.Element>) {
       appUrlScheme="dev-soto"
       webUrlBase="https://triple-dev.titicaca-corp.com"
       authBasePath="MOCK_AUTH_BASE_PATH"
+      facebookAppId=""
+      defaultPageTitle=""
+      defaultPageDescription=""
+      googleMapsApiKey="AIzaSyBaOSog5Kc4PkNw1JiSIcvz8WHt1Y78lNU"
     >
       <HistoryProvider
         isPublic={false}
@@ -32,6 +36,10 @@ export function sessionContextProviderDecorator(storyFn: StoryFn<JSX.Element>) {
       appUrlScheme="dev-soto"
       webUrlBase="https://triple-dev.titicaca-corp.com"
       authBasePath="MOCK_AUTH_BASE_PATH"
+      facebookAppId=""
+      defaultPageTitle=""
+      defaultPageDescription=""
+      googleMapsApiKey="AIzaSyBaOSog5Kc4PkNw1JiSIcvz8WHt1Y78lNU"
     >
       <SessionContextProvider
         sessionId={
