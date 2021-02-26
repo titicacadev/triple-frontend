@@ -7,6 +7,8 @@ import { useScrollToAnchor } from '@titicaca/react-hooks'
 import SAMPLE from '../__mocks__/triple-document.sample.json'
 import MOCK_REGIONS from '../__mocks__/triple-document.regions.json'
 import MOCK_EMBEDDED from '../__mocks__/triple-document.embedded.json'
+import MOCK_ITINERARY from '../__mocks__/triple-document.itinerary.json'
+import { sessionContextProviderDecorator } from '../../decorators'
 
 const {
   heading1: Heading1,
@@ -26,6 +28,7 @@ const {
   regions: Regions,
   embedded: Embedded,
   anchor: Anchor,
+  itinerary: Itinerary,
 } = ELEMENTS
 
 export default {
@@ -162,3 +165,15 @@ export function AnchorExample() {
   )
 }
 AnchorExample.storyName = 'Anchor'
+
+export function DocumentItinerary() {
+  return (
+    <Itinerary
+      value={MOCK_ITINERARY.article.source.body[1].value}
+      onClickSaveToItinerary={action('onClickSaveToItinerary')}
+    />
+  )
+}
+
+DocumentItinerary.storyName = '추천코스 기본'
+DocumentItinerary.decorators = [sessionContextProviderDecorator]
