@@ -26,7 +26,6 @@ export default {
 } as Meta
 
 export function Sample() {
-  // FIXME: 샘플 JSON에서 table이 잘못되어있음
   return <TripleDocument>{SAMPLE}</TripleDocument>
 }
 Sample.storyName = '샘플'
