@@ -27,7 +27,8 @@ export function NormalWithImagePlaceholder() {
     <Pois
       resourceScraps={{}}
       value={{
-        pois: POIS.map(({ source: { ...source }, ...rest }) => ({
+        // image를 제외해서 placeholder 확인
+        pois: POIS.map(({ source: { image, ...source }, ...rest }) => ({
           source,
           ...rest,
         })),
@@ -56,7 +57,8 @@ export function ListWithImagePlaceholder() {
     <Pois
       resourceScraps={{}}
       value={{
-        pois: POIS.map(({ source: { ...source }, ...rest }) => ({
+        // image를 제외해서 placeholder 확인
+        pois: POIS.map(({ source: { image, ...source }, ...rest }) => ({
           source,
           ...rest,
         })),
