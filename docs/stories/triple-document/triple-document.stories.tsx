@@ -1,7 +1,10 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import TripleDocument, { ELEMENTS } from '@titicaca/triple-document'
+import TripleDocument, {
+  ELEMENTS,
+  TripleDocumentElementData,
+} from '@titicaca/triple-document'
 
 import SAMPLE from '../__mocks__/triple-document.sample.json'
 import MOCK_REGIONS from '../__mocks__/triple-document.regions.json'
@@ -27,7 +30,9 @@ const {
 } = ELEMENTS
 
 // storybook의 jsxDecoration에는 Object를 표현하는 기능이 없어 Proxy를 호출하게 해두었습니다.
-const Proxy = ({ sample }) => <TripleDocument>{sample}</TripleDocument>
+const Proxy = ({ sample }: { sample: TripleDocumentElementData[] }) => (
+  <TripleDocument>{sample}</TripleDocument>
+)
 
 storiesOf('triple-document', module)
   .add('샘플', () => <Proxy sample={SAMPLE} />)
