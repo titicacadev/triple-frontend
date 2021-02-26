@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Meta } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import TripleDocument, { ELEMENTS } from '@titicaca/triple-document'
+import { useScrollToAnchor } from '@titicaca/react-hooks'
 
 import SAMPLE from '../__mocks__/triple-document.sample.json'
 import MOCK_REGIONS from '../__mocks__/triple-document.regions.json'
@@ -24,6 +25,7 @@ const {
   table: Table,
   regions: Regions,
   embedded: Embedded,
+  anchor: Anchor,
 } = ELEMENTS
 
 export default {
@@ -140,3 +142,23 @@ export function EmbeddedExample() {
   return <Embedded value={MOCK_EMBEDDED} />
 }
 EmbeddedExample.storyName = '임베딩'
+
+export function AnchorExample() {
+  useEffect(() => {
+    window.history.pushState(null, '', '#android')
+  }, [])
+
+  useScrollToAnchor({ delayTime: 0 })
+
+  return (
+    <div>
+      <div style={{ height: '200vh' }} />
+      <div>Android</div>
+      <Anchor value={{ href: 'android' }} />
+      <div style={{ height: '200vh' }} />
+      <div>ios</div>
+      <Anchor value={{ href: 'ios' }} />
+    </div>
+  )
+}
+AnchorExample.storyName = 'Anchor'
