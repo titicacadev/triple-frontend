@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { getColor } from '@titicaca/color-palette'
 import {
   ButtonProps,
   Button,
@@ -24,22 +23,6 @@ const LinksContainer = styled.div<{ compact?: boolean }>`
     display: inline-block;
     margin-bottom: ${({ compact }) => (compact ? '10px' : '20px')};
     margin-right: ${({ compact }) => (compact ? '10px' : '20px')};
-  }
-`
-
-const ListLinkContainer = styled.div`
-  display: inline;
-  margin-left: 8px;
-  line-height: 1.63;
-`
-
-const ListLink = styled.a`
-  color: rgba(${getColor('gray900')});
-  font-weight: 500;
-
-  /* HACK: global-style의 underline 설정보다 우선하도록 수정 */
-  && {
-    text-decoration: underline;
   }
 `
 
@@ -161,7 +144,7 @@ function getDefaultImageUrl(image: ImageMeta | undefined) {
 const LINK_CONTAINERS = {
   button: ButtonContainer,
   block: BlockContainer,
-  list: ListLinkContainer,
+  list: LinksContainer,
   default: LinksContainer,
   image: ResourceList,
 }
@@ -169,7 +152,7 @@ const LINK_CONTAINERS = {
 const LINK_ELEMENTS = {
   button: ButtonLink,
   block: BlockLink,
-  list: ListLink,
+  list: SimpleLink,
   default: SimpleLink,
   image: ImageLink,
 }
