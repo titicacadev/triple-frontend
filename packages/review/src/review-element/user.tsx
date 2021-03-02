@@ -23,7 +23,12 @@ const Badge = styled.img`
 `
 
 export default function User({
-  user: { photo, name, mileage },
+  user: {
+    photo,
+    name,
+    userBoard: { reviews },
+    mileage,
+  },
   onClick,
   children,
 }: PropsWithChildren<{
@@ -32,25 +37,17 @@ export default function User({
 }>) {
   const {
     badges: [badge],
-    level,
-    point,
-  } = mileage || { badges: [undefined], level: 0, point: 0 }
+  } = mileage || { badges: [undefined] }
 
   return (
     <Container padding={{ bottom: 2 }}>
       <UserPhoto src={photo} onClick={onClick} />
       {badge && <Badge src={badge.icon.imageUrl} />}
       <Name onClick={onClick}>{name}</Name>
-      {level || point ? (
-        <UserExtra>
-          <span onClick={onClick}>
-            {[level && `LEVEL ${level}`, point && `${point}포인트`]
-              .filter(Boolean)
-              .join(' · ') || null}
-          </span>
-        </UserExtra>
-      ) : null}
-      {children}
+      <UserExtra>
+        <span onClick={onClick}>{reviews}개의 리뷰</span>
+        {children}
+      </UserExtra>
     </Container>
   )
 }
