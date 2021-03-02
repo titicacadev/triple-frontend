@@ -48,9 +48,9 @@ export default function User({
               .filter(Boolean)
               .join(' · ') || null}
           </span>
-          {children}
         </UserExtra>
       ) : null}
+      {children}
     </Container>
   )
 }
