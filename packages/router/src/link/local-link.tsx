@@ -39,6 +39,7 @@ export function LocalLink({
   relList,
   allowSource,
   replace,
+  query,
   onClick,
   children,
 }: PropsWithChildren<{
@@ -47,6 +48,10 @@ export function LocalLink({
   relList?: LinkType[]
   allowSource?: AllowSource
   replace?: boolean
+  query?: {
+    noNavbar?: boolean
+    swipeToClose?: boolean
+  }
   onClick?: () => void
 }>) {
   const { webUrlBase } = useEnv()
