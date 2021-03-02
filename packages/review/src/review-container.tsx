@@ -33,6 +33,8 @@ import MyReviewActionSheet from './my-review-action-sheet'
 import { useClientActions } from './use-client-actions'
 
 const REVIEWS_SECTION_ID = 'reviews'
+const DEFAULT_REVIEWS_COUNT_PER_PAGE = 20
+const SHORTENED_REVIEWS_COUNT_PER_PAGE = 4
 
 const WriteIcon = styled.img`
   margin-top: -5px;
@@ -287,7 +289,9 @@ function ReviewContainer({
     sortingOption,
     resourceId,
     resourceType,
-    perPage: shortened ? 5 : 20,
+    perPage: shortened
+      ? SHORTENED_REVIEWS_COUNT_PER_PAGE + 1
+      : DEFAULT_REVIEWS_COUNT_PER_PAGE,
   })
 
   return (
@@ -333,7 +337,7 @@ function ReviewContainer({
           </Container>
 
           <ReviewsList
-            maxLength={shortened ? 4 : undefined}
+            maxLength={shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined}
             myReview={myReview}
             reviews={reviews.filter((review) => !myReviewIds.has(review.id))}
             regionId={regionId}
@@ -352,7 +356,7 @@ function ReviewContainer({
         />
       )}
 
-      {reviewsCount > 4 && shortened ? (
+      {reviewsCount > SHORTENED_REVIEWS_COUNT_PER_PAGE && shortened ? (
         <Container margin={{ top: 40 }}>
           <Button
             basic
@@ -365,7 +369,7 @@ function ReviewContainer({
                 : handleFullListButtonClick
             }
           >
-            {reviewsCount - 4}개 리뷰 더보기
+            {reviewsCount - SHORTENED_REVIEWS_COUNT_PER_PAGE}개 리뷰 더보기
           </Button>
         </Container>
       ) : null}
