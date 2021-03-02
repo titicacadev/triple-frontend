@@ -28,13 +28,16 @@ export async function fetcher<T = any>(
   const headers = sessionId
     ? { ...defaultHeaders, 'X-Soto-Session': sessionId }
     : { ...defaultHeaders }
-  const stringifiedBody = body ? JSON.stringify(body) : undefined
 
   const response: HttpResponse<T> = await fetch(reqUrl, {
     credentials: 'same-origin',
     headers,
     ...rest,
-    body: useBodyAsRaw ? (body as BodyInit) : stringifiedBody,
+    body: body
+      ? useBodyAsRaw
+        ? (body as BodyInit)
+        : JSON.stringify(body)
+      : undefined,
   })
 
   try {
