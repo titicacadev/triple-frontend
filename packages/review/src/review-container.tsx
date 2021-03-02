@@ -286,7 +286,7 @@ function ReviewContainer({
     sortingOption,
     resourceId,
     resourceType,
-    perPage: shortened ? 4 : 20,
+    perPage: shortened ? 5 : 20,
   })
 
   return (
@@ -332,7 +332,7 @@ function ReviewContainer({
           </Container>
 
           <ReviewsList
-            maxLength={shortened ? 3 : undefined}
+            maxLength={shortened ? 4 : undefined}
             myReview={myReview}
             reviews={reviews.filter((review) => !myReviewIds.has(review.id))}
             regionId={regionId}
@@ -351,7 +351,7 @@ function ReviewContainer({
         />
       )}
 
-      {reviewsCount > 3 && shortened ? (
+      {reviewsCount > 4 && shortened ? (
         <Container margin={{ top: 40 }}>
           <Button
             basic
@@ -364,7 +364,7 @@ function ReviewContainer({
                 : handleFullListButtonClick
             }
           >
-            {reviewsCount - 3}개 리뷰 더보기
+            {reviewsCount - 4}개 리뷰 더보기
           </Button>
         </Container>
       ) : null}
