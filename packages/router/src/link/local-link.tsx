@@ -10,58 +10,29 @@ import { ANCHOR_TARGET_MAP, TargetType } from './target'
 import { AllowSource, RouterGuardedLink } from './router-guarded-link'
 import { addWebUrlBase } from './add-web-url-base'
 
-function addBasePath(
-  href: string,
-  basePath: string,
-  query?: {
-    regionId?: string
-    zoneId?: string
-    noNavbar?: boolean
-    swipeToClose?: boolean
-  },
-): string {
+function addBasePath(href: string, basePath: string): string {
   const { path } = parseUrl(href)
-  const queryString = getQueryStringify({ query })
 
-  if (queryString) {
-    return generateUrl(
-      {
-        path: path === '/' ? basePath : `${basePath}${path}`,
-        query: queryString,
-      },
-      href,
-    )
-  }
-  return generateUrl(
-    {
-      path: path === '/' ? basePath : `${basePath}${path}`,
-    },
-    href,
-  )
+  return path === '/' ? basePath : `${basePath}${path}`
 }
 
-function getQueryStringify({
-  query,
-}: {
-  query?: {
-    regionId?: string
-    zoneId?: string
-    noNavbar?: boolean
-    swipeToClose?: boolean
-  }
+function composeStringifiedQuery(query?: {
+  target?: string
+  regionId?: string
+  zoneId?: string
+  tripId?: string
+  noNavbar?: boolean
+  swipeToClose?: boolean
 }) {
   const stringifyQuery = qs.stringify({
-    regionId: query?.regionId,
-    zoneId: query?.zoneId,
-    // eslint-disable-next-line @typescript-eslint/naming-convention
+    _triple_target: query?.target,
+    _triple_lnb_region_id: query?.regionId,
+    _triple_lnb_zone_id: query?.zoneId,
+    _triple_lnb_trip_id: query?.tripId,
     _triple_no_navbar: query?.noNavbar,
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     _triple_swipe_to_close: query?.swipeToClose,
+    _triple_should_present: query?.swipeToClose,
   })
-
-  if (stringifyQuery) {
-    stringifyQuery.replace('=true', '')
-  }
 
   return stringifyQuery
 }
@@ -95,8 +66,10 @@ export function LocalLink({
   allowSource?: AllowSource
   replace?: boolean
   query?: {
+    target?: string
     regionId?: string
     zoneId?: string
+    tripId?: string
     noNavbar?: boolean
     swipeToClose?: boolean
   }
@@ -107,8 +80,13 @@ export function LocalLink({
   const { openInlink, openOutlink } = useAppBridge()
   const { basePath } = useRouter()
 
-  const hrefWithBasePath = addBasePath(href, basePath, query)
-
+  const finalHref = generateUrl(
+    {
+      path: addBasePath(href, basePath),
+      query: composeStringifiedQuery(query),
+    },
+    href,
+  )
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     if (onClick) {
       onClick()
@@ -130,7 +108,7 @@ export function LocalLink({
         if (!isPublic) {
           e.preventDefault()
 
-          openInlink(hrefWithBasePath)
+          openInlink(finalHref)
         }
         return
 
@@ -138,7 +116,7 @@ export function LocalLink({
         if (!isPublic) {
           e.preventDefault()
 
-          openOutlink(addWebUrlBase(hrefWithBasePath, webUrlBase), {
+          openOutlink(addWebUrlBase(finalHref, webUrlBase), {
             target: 'browser',
           })
         }
@@ -147,7 +125,7 @@ export function LocalLink({
 
   return (
     <RouterGuardedLink
-      href={hrefWithBasePath}
+      href={finalHref}
       relList={relList}
       allowSource={allowSource}
       onClick={handleClick}

@@ -44,6 +44,13 @@ const excludes = [
   'experiment_name',
   'experiment_id',
   'variant_id',
+  '_triple_target',
+  '_triple_lnb_region_id',
+  '_triple_lnb_zone_id',
+  '_triple_lnb_trip_id',
+  '_triple_swipe_to_close',
+  '_triple_no_navbar',
+  '_triple_should_present',
 ]
 const regex = `^(${excludes.join('|')})$`
 
