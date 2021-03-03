@@ -67,6 +67,7 @@
     "@storybook/react": "^6.1.20",
     "babel-loader": "^8.1.0",
     "babel-preset-react-app": "^9.1.2",
+    "core-js": "^3.9.1",
     "next": "*",
     "react-docgen-typescript-loader": "^3.7.2",
     "typescript": "^3.9.7"
