@@ -3,6 +3,18 @@ import { getGeometry } from '@titicaca/map'
 import type { LatLngLiteral } from '@titicaca/type-definitions'
 import type { ItineraryItemType } from '@titicaca/content-utilities'
 
+type Poi = {
+  poi: ItineraryItemType['poi']
+  position: LatLngLiteral
+}
+
+type MapData = {
+  totalPois: number
+  pois: Poi[]
+  polyline: LatLngLiteral[]
+  mapOptions: { center: LatLngLiteral; zoom?: number }
+  bounds?: google.maps.LatLngBoundsLiteral
+}
 /**
  * TODO: move to use-safety-poi
  */
@@ -28,7 +40,7 @@ function extracPathMap(items: ItineraryItemType[]): LatLngLiteral[] {
  * TripleDocument 추천코스 목록 데이터에서 MapView 표시해야 할 정보들을 추출하는 로직들을 담습니다.
  * @param param0 TripleDoucment Itinerary Day Items
  */
-export default function useMapData(items: ItineraryItemType[]) {
+export default function useMapData(items: ItineraryItemType[]): MapData {
   return useMemo(() => {
     const coordinates = extractPoiCoordinate(items)
     const polyline = extracPathMap(items)
