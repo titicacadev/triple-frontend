@@ -2,14 +2,32 @@
 
 ## Unreleased
 
+## 2.13.0
+
 ### common
 
 - 개발 환경에서 테스트 파일에 동일한 타입스크립트 설정을 적용하도록 변경 (#1234)
 - 테스트 파일이 빌드되지 않도록 babel 설정 수정 (#1234)
+- `build-watch`가 지켜보는 파일 범위 축소 및 로그 간소화 (#1243)
+- docs.standalone 빌드 실패 문제 해결 (#1252)
+- 사용하지 않는 Dockerfile 제거 (#1255)
+- 사용 빈도가 낮은 GCP, GHA Manifest 삭제 (#1254)
+- 패키지 의존성 그래프 개선 (#1244)
+
+### color-palette
+
+- 색상 변수 및 `getColor` 함수 deprecate 처리 (#1230)
+
+### core-elements
+
+- `global-style`에 기본 색상을 CSS 상수로 추가 (#1230)
+- `VideoFrame`, `VideoElement` 컴포넌트 추가 (#1206)
+- `Video` 컴포넌트 구조 정리 (#1206)
 
 ### react-contexts
 
 - [Device Context] `autoplay`와 `networkType` 값 추가 및 request header에서 이들을 파싱하는 함수 추가 (#1221)
+- [Scraps Context] 스크랩 여부를 컴포넌트 트리 전체가 한 객체에 저장하도록 처리 (#1231)
 
 ### fetcher
 
@@ -18,6 +36,15 @@
 ### popup
 
 - 팝업 컨테이너 하단 패딩 제거 (#1236)
+
+### triple-document
+
+- links 컴포넌트 중 "list" 타입의 links를 기본 links 컴포넌트로 fallback 처리 (#1247)
+
+### docs
+
+- Storybook 6 사용 (#1245)
+- `triple-document` 스토리 정비 (#1246)
 
 ## 2.12.1
 
