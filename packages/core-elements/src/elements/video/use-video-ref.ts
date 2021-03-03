@@ -22,8 +22,8 @@ export function useVideoRef() {
         currentRef.removeEventListener('canplaythrough', handleReady)
         currentRef.removeEventListener('canplay', handleReady)
         currentRef.removeEventListener('play', handleReady)
-        currentRef.addEventListener('loadeddata', handleReady)
-        currentRef.addEventListener('waiting', handlePending)
+        currentRef.removeEventListener('loadeddata', handleReady)
+        currentRef.removeEventListener('waiting', handlePending)
       }
     } else {
       throw new Error('Cannot use Video State')
