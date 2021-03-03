@@ -1,5 +1,6 @@
 import React, { MouseEvent, MouseEventHandler, PropsWithChildren } from 'react'
 import Router, { useRouter } from 'next/router'
+import qs from 'qs'
 import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
 import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 
@@ -9,15 +10,60 @@ import { ANCHOR_TARGET_MAP, TargetType } from './target'
 import { AllowSource, RouterGuardedLink } from './router-guarded-link'
 import { addWebUrlBase } from './add-web-url-base'
 
-function addBasePath(href: string, basePath: string): string {
+function addBasePath(
+  href: string,
+  basePath: string,
+  query?: {
+    regionId?: string
+    zoneId?: string
+    noNavbar?: boolean
+    swipeToClose?: boolean
+  },
+): string {
   const { path } = parseUrl(href)
+  const queryString = getQueryStringify({ query })
 
+  if (queryString) {
+    return generateUrl(
+      {
+        path: path === '/' ? basePath : `${basePath}${path}`,
+        query: queryString,
+      },
+      href,
+    )
+  }
   return generateUrl(
     {
       path: path === '/' ? basePath : `${basePath}${path}`,
     },
     href,
   )
+}
+
+function getQueryStringify({
+  query,
+}: {
+  query?: {
+    regionId?: string
+    zoneId?: string
+    noNavbar?: boolean
+    swipeToClose?: boolean
+  }
+}) {
+  const stringifyQuery = qs.stringify({
+    regionId: query?.regionId,
+    zoneId: query?.zoneId,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    _triple_no_navbar: query?.noNavbar,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    _triple_swipe_to_close: query?.swipeToClose,
+  })
+
+  if (stringifyQuery) {
+    stringifyQuery.replace('=true', '')
+  }
+
+  return stringifyQuery
 }
 
 /**
@@ -49,6 +95,8 @@ export function LocalLink({
   allowSource?: AllowSource
   replace?: boolean
   query?: {
+    regionId?: string
+    zoneId?: string
     noNavbar?: boolean
     swipeToClose?: boolean
   }
@@ -59,7 +107,7 @@ export function LocalLink({
   const { openInlink, openOutlink } = useAppBridge()
   const { basePath } = useRouter()
 
-  const hrefWithBasePath = addBasePath(href, basePath)
+  const hrefWithBasePath = addBasePath(href, basePath, query)
 
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     if (onClick) {
