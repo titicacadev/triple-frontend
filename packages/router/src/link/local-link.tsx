@@ -9,21 +9,14 @@ import { LinkType } from './use-rel'
 import { ANCHOR_TARGET_MAP, TargetType } from './target'
 import { AllowSource, RouterGuardedLink } from './router-guarded-link'
 import { addWebUrlBase } from './add-web-url-base'
-
+import { TripleQueryType } from './type'
 function addBasePath(href: string, basePath: string): string {
   const { path } = parseUrl(href)
 
   return path === '/' ? basePath : `${basePath}${path}`
 }
 
-function composeStringifiedQuery(query?: {
-  target?: string
-  regionId?: string
-  zoneId?: string
-  tripId?: string
-  noNavbar?: boolean
-  swipeToClose?: boolean
-}) {
+function composeStringifiedQuery(query?: TripleQueryType) {
   const stringifyQuery = qs.stringify({
     _triple_target: query?.target,
     _triple_lnb_region_id: query?.regionId,
@@ -31,7 +24,7 @@ function composeStringifiedQuery(query?: {
     _triple_lnb_trip_id: query?.tripId,
     _triple_no_navbar: query?.noNavbar,
     _triple_swipe_to_close: query?.swipeToClose,
-    _triple_should_present: query?.swipeToClose,
+    _triple_should_present: query?.shouldPresent,
   })
 
   return stringifyQuery
@@ -65,14 +58,7 @@ export function LocalLink({
   relList?: LinkType[]
   allowSource?: AllowSource
   replace?: boolean
-  query?: {
-    target?: string
-    regionId?: string
-    zoneId?: string
-    tripId?: string
-    noNavbar?: boolean
-    swipeToClose?: boolean
-  }
+  query?: TripleQueryType
   onClick?: () => void
 }>) {
   const { webUrlBase } = useEnv()
