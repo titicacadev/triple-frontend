@@ -10,6 +10,7 @@ import { ANCHOR_TARGET_MAP, TargetType } from './target'
 import { AllowSource, RouterGuardedLink } from './router-guarded-link'
 import { addWebUrlBase } from './add-web-url-base'
 import { TripleQueryType } from './type'
+
 function addBasePath(href: string, basePath: string): string {
   const { path } = parseUrl(href)
 
@@ -66,13 +67,24 @@ export function LocalLink({
   const { openInlink, openOutlink } = useAppBridge()
   const { basePath } = useRouter()
 
-  const finalHref = generateUrl(
-    {
-      path: addBasePath(href, basePath),
-      query: composeStringifiedQuery(query),
-    },
-    href,
-  )
+  const finalHref = () => {
+    if (query) {
+      return generateUrl(
+        {
+          path: addBasePath(href, basePath),
+          query: composeStringifiedQuery(query),
+        },
+        href,
+      )
+    }
+    return generateUrl(
+      {
+        path: addBasePath(href, basePath),
+      },
+      href,
+    )
+  }
+
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     if (onClick) {
       onClick()
@@ -94,7 +106,7 @@ export function LocalLink({
         if (!isPublic) {
           e.preventDefault()
 
-          openInlink(finalHref)
+          openInlink(finalHref())
         }
         return
 
@@ -102,7 +114,7 @@ export function LocalLink({
         if (!isPublic) {
           e.preventDefault()
 
-          openOutlink(addWebUrlBase(finalHref, webUrlBase), {
+          openOutlink(addWebUrlBase(finalHref(), webUrlBase), {
             target: 'browser',
           })
         }
@@ -111,7 +123,7 @@ export function LocalLink({
 
   return (
     <RouterGuardedLink
-      href={finalHref}
+      href={finalHref()}
       relList={relList}
       allowSource={allowSource}
       onClick={handleClick}
