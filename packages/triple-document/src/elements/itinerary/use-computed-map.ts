@@ -8,7 +8,7 @@ type Poi = {
   position: LatLngLiteral
 }
 
-type MapData = {
+type ItineraryMapData = {
   totalPois: number
   pois: Poi[]
   polyline: LatLngLiteral[]
@@ -40,7 +40,9 @@ function extracPathMap(items: ItineraryItemType[]): LatLngLiteral[] {
  * TripleDocument 추천코스 목록 데이터에서 MapView 표시해야 할 정보들을 추출하는 로직들을 담습니다.
  * @param param0 TripleDoucment Itinerary Day Items
  */
-export default function useMapData(items: ItineraryItemType[]): MapData {
+export default function useMapData(
+  items: ItineraryItemType[],
+): ItineraryMapData {
   return useMemo(() => {
     const coordinates = extractPoiCoordinate(items)
     const polyline = extracPathMap(items)
