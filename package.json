@@ -55,7 +55,6 @@
     "babel-plugin-styled-components": "^1.10.6",
     "chokidar": "^3.4.0",
     "concurrently": "^6.0.0",
-    "core-js": "^3.9.0",
     "csstype": "^3.0.2",
     "eslint-plugin-mdx": "^1.7.0",
     "husky": "^3.0.5",
