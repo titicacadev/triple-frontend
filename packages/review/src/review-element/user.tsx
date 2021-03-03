@@ -26,7 +26,7 @@ export default function User({
   user: {
     photo,
     name,
-    userBoard: { reviews },
+    userBoard: { reviewsV2 },
     mileage,
   },
   onClick,
@@ -45,7 +45,7 @@ export default function User({
       {badge && <Badge src={badge.icon.imageUrl} />}
       <Name onClick={onClick}>{name}</Name>
       <UserExtra>
-        <span onClick={onClick}>{reviews}개의 리뷰</span>
+        <span onClick={onClick}>{reviewsV2}개의 리뷰</span>
         {children}
       </UserExtra>
     </Container>

@@ -6,7 +6,13 @@ export interface UserData {
   photo: string
   name: string
   userBoard: {
+    itineraries: number
+    reports: number
     reviews: number
+    reviewsV2: number
+    scraps: number
+    thanks: number
+    trips: number
   }
   mileage: {
     badges: {
