@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/hub-form",
-  "version": "2.12.1",
+  "version": "2.13.0",
   "description": "Form for hub-like pages",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -21,7 +21,7 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^2.12.1",
-    "@titicaca/core-elements": "^2.12.1"
+    "@titicaca/color-palette": "^2.13.0",
+    "@titicaca/core-elements": "^2.13.0"
   }
 }
