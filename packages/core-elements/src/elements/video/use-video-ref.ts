@@ -12,14 +12,14 @@ export function useVideoRef() {
     const handleReady = () => setPending(false)
 
     if (currentRef) {
+      currentRef.addEventListener('loadstart', handlePending)
       currentRef.addEventListener('canplay', handleReady)
       currentRef.addEventListener('waiting', handlePending)
-      currentRef.addEventListener('progress', handlePending)
 
       return () => {
+        currentRef.removeEventListener('loadstart', handlePending)
         currentRef.removeEventListener('canplay', handleReady)
         currentRef.removeEventListener('waiting', handlePending)
-        currentRef.removeEventListener('progress', handlePending)
       }
     } else {
       throw new Error('Cannot use Video State')
