@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react'
 
 export function useVideoRef() {
-  const [pending, setPending] = useState(true)
+  const [pending, setPending] = useState(false)
 
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -12,18 +12,14 @@ export function useVideoRef() {
     const handleReady = () => setPending(false)
 
     if (currentRef) {
-      currentRef.addEventListener('canplaythrough', handleReady)
       currentRef.addEventListener('canplay', handleReady)
-      currentRef.addEventListener('play', handleReady)
-      currentRef.addEventListener('loadeddata', handleReady)
       currentRef.addEventListener('waiting', handlePending)
+      currentRef.addEventListener('progress', handlePending)
 
       return () => {
-        currentRef.removeEventListener('canplaythrough', handleReady)
         currentRef.removeEventListener('canplay', handleReady)
-        currentRef.removeEventListener('play', handleReady)
-        currentRef.removeEventListener('loadeddata', handleReady)
         currentRef.removeEventListener('waiting', handlePending)
+        currentRef.removeEventListener('progress', handlePending)
       }
     } else {
       throw new Error('Cannot use Video State')
