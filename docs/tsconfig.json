@@ -3,5 +3,142 @@
   "compilerOptions": {
     "resolveJsonModule": true
   },
-  "include": ["stories", "stories/__mocks__/**/*.json", "decorators"]
+  "include": ["stories", "stories/__mocks__/**/*.json", "decorators"],
+  "references": [
+    {
+      "path": "../packages/action-sheet"
+    },
+    {
+      "path": "../packages/ad-banners"
+    },
+    {
+      "path": "../packages/app-banner"
+    },
+    {
+      "path": "../packages/app-installation-cta"
+    },
+    {
+      "path": "../packages/author"
+    },
+    {
+      "path": "../packages/booking-completion"
+    },
+    {
+      "path": "../packages/color-palette"
+    },
+    {
+      "path": "../packages/constants"
+    },
+    {
+      "path": "../packages/content-sharing"
+    },
+    {
+      "path": "../packages/core-elements"
+    },
+    {
+      "path": "../packages/date-picker"
+    },
+    {
+      "path": "../packages/directions-finder"
+    },
+    {
+      "path": "../packages/drawer-button"
+    },
+    {
+      "path": "../packages/floating-install-button"
+    },
+    {
+      "path": "../packages/footer"
+    },
+    {
+      "path": "../packages/form"
+    },
+    {
+      "path": "../packages/hub-form"
+    },
+    {
+      "path": "../packages/i18n"
+    },
+    {
+      "path": "../packages/icons"
+    },
+    {
+      "path": "../packages/image-carousel"
+    },
+    {
+      "path": "../packages/listing-filter"
+    },
+    {
+      "path": "../packages/location-properties"
+    },
+    {
+      "path": "../packages/map"
+    },
+    {
+      "path": "../packages/modals"
+    },
+    {
+      "path": "../packages/nearby-pois"
+    },
+    {
+      "path": "../packages/poi-detail"
+    },
+    {
+      "path": "../packages/poi-list-elements"
+    },
+    {
+      "path": "../packages/popup"
+    },
+    {
+      "path": "../packages/pricing"
+    },
+    {
+      "path": "../packages/public-header"
+    },
+    {
+      "path": "../packages/react-contexts"
+    },
+    {
+      "path": "../packages/react-hooks"
+    },
+    {
+      "path": "../packages/recommended-contents"
+    },
+    {
+      "path": "../packages/resource-list-element"
+    },
+    {
+      "path": "../packages/review"
+    },
+    {
+      "path": "../packages/scrap-button"
+    },
+    {
+      "path": "../packages/search"
+    },
+    {
+      "path": "../packages/slider"
+    },
+    {
+      "path": "../packages/social-reviews"
+    },
+    {
+      "path": "../packages/static-map"
+    },
+    {
+      "path": "../packages/static-page-contents"
+    },
+    {
+      "path": "../packages/style-box"
+    },
+    {
+      "path": "../packages/triple-document"
+    },
+    {
+      "path": "../packages/type-definitions"
+    },
+    {
+      "path": "../packages/user-verification"
+    }
+  ]
 }
