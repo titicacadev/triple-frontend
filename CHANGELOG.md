@@ -5,6 +5,7 @@
 ## 2.13.1
 
 ### view-utilities
+
 - strictQuery가 boolean 값을 결정하는 기준을 완화합니다. (#1264)
 
 ### triple-document
