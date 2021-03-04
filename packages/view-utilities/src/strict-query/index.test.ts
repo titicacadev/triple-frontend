@@ -84,6 +84,7 @@ describe('query utils', () => {
       duplicateValue1: ['true', 'false'],
       duplicateValue2: ['false', 'true'],
       lodging: '',
+      weirdBoolean: 'asdfsaf',
     }
 
     const {
@@ -93,6 +94,7 @@ describe('query utils', () => {
       duplicateValue2,
       closeWindow,
       lodging,
+      weirdBoolean,
     } = strictQuery(query)
       .boolean('inRegion')
       .boolean('hideButton')
@@ -100,6 +102,7 @@ describe('query utils', () => {
       .boolean('duplicateValue2')
       .boolean('closeWindow')
       .boolean('lodging')
+      .boolean('weirdBoolean')
       .use()
 
     expect(inRegion).toBe(true)
@@ -108,5 +111,6 @@ describe('query utils', () => {
     expect(duplicateValue2).toBe(false)
     expect(closeWindow).toBe(false)
     expect(lodging).toBe(true)
+    expect(weirdBoolean).toBe(true)
   })
 })
