@@ -14,11 +14,13 @@ export function useVideoRef() {
     if (currentRef) {
       currentRef.addEventListener('loadstart', handlePending)
       currentRef.addEventListener('canplay', handleReady)
+      currentRef.addEventListener('canplaythrough', handleReady)
       currentRef.addEventListener('waiting', handlePending)
 
       return () => {
         currentRef.removeEventListener('loadstart', handlePending)
         currentRef.removeEventListener('canplay', handleReady)
+        currentRef.removeEventListener('canplaythrough', handleReady)
         currentRef.removeEventListener('waiting', handlePending)
       }
     } else {
