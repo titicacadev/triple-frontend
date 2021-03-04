@@ -64,6 +64,7 @@ export default function VideoElement({
       <Video
         loop
         playsInline
+        preload="metadata"
         controls={!!showNativeControls}
         autoPlay={autoPlay}
         muted={autoPlay}
