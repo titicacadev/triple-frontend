@@ -43,7 +43,16 @@ function dependenciesToReferences(deps) {
   }
   return Object.keys(deps)
     .filter((packageName) => packageName.startsWith('@titicaca/'))
-    .map((packageName) => `../${packageName.replace('@titicaca/', '')}`)
+    .map((packageName) =>
+      path.relative(
+        process.cwd(),
+        path.join(
+          process.env.LERNA_ROOT_PATH,
+          './packages',
+          packageName.replace('@titicaca/', ''),
+        ),
+      ),
+    )
     .filter((packagePath) => fs.existsSync(packagePath))
     .map((path) => ({ path }))
 }
