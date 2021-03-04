@@ -3,10 +3,10 @@ WORKDIR /app
 
 COPY . .
 
-ARG TAG_NAME
-RUN node ./docs/conf/package.json.js $TAG_NAME
-
 WORKDIR /app/docs
+
+ARG TAG_NAME
+RUN node ./conf/package.json.js $TAG_NAME
 
 ARG NPM_TOKEN
 RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
