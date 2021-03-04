@@ -17,8 +17,15 @@ function normalizeToArray<T extends string = string>(query: RawQuery): T[] {
   return []
 }
 
+/**
+ * query의 value가 undefined이거나 false일 때 false.
+ * 그 외의 value를 가지고 있으면 모두 true
+ * @param query
+ */
 function normalizeToBoolean(query: RawQuery) {
-  return (Array.isArray(query) ? query[0] : query) === 'true'
+  return !(
+    query === undefined || (Array.isArray(query) ? query[0] : query) === 'false'
+  )
 }
 
 class StrictQuery<Resolved = {}> {
