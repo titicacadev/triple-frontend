@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+## 2.13.1
+
+### view-utilities
+- strictQuery가 boolean 값을 결정하는 기준을 완화합니다. (#1264)
+
+### triple-document
+
+- local 빌드시 type에러를 수정합니다 (#1259)
+
+### core-elements
+
+- Video 컴포넌트 Pending 로직 변경을 위한 리스너 추가 (#1263)
+
 ## 2.13.0
 
 ### common
