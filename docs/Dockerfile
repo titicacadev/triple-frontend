@@ -3,8 +3,6 @@ WORKDIR /app
 
 COPY . .
 
-WORKDIR /app/docs
-
 ARG TAG_NAME
 RUN node ./conf/package.json.js $TAG_NAME
 
@@ -17,5 +15,5 @@ RUN npm run build
 
 FROM nginx:latest as docs-release
 
-COPY --from=docs-build /app/docs/storybook-static /usr/share/nginx/html/
-COPY ./docs/conf/nginx.conf /etc/nginx/nginx.conf
+COPY --from=docs-build /app/storybook-static /usr/share/nginx/html/
+COPY ./conf/nginx.conf /etc/nginx/nginx.conf
