@@ -1,16 +1,17 @@
 FROM node:15 AS docs-build
 WORKDIR /app
 
-ARG NPM_TOKEN
-RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-
 COPY . .
 
 ARG TAG_NAME
 RUN node ./docs/conf/package.json.js $TAG_NAME
 
 WORKDIR /app/docs
+
+ARG NPM_TOKEN
+RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 RUN npm ci
+
 RUN npm run build
 
 FROM nginx:latest as docs-release
