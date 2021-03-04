@@ -83,6 +83,7 @@ describe('query utils', () => {
       hideButton: 'false',
       duplicateValue1: ['true', 'false'],
       duplicateValue2: ['false', 'true'],
+      lodging: '',
     }
 
     const {
@@ -91,12 +92,14 @@ describe('query utils', () => {
       duplicateValue1,
       duplicateValue2,
       closeWindow,
+      lodging,
     } = strictQuery(query)
       .boolean('inRegion')
       .boolean('hideButton')
       .boolean('duplicateValue1')
       .boolean('duplicateValue2')
       .boolean('closeWindow')
+      .boolean('lodging')
       .use()
 
     expect(inRegion).toBe(true)
@@ -104,5 +107,6 @@ describe('query utils', () => {
     expect(duplicateValue1).toBe(true)
     expect(duplicateValue2).toBe(false)
     expect(closeWindow).toBe(false)
+    expect(lodging).toBe(true)
   })
 })
