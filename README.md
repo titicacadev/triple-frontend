@@ -19,7 +19,7 @@ Slack `@frontend` 그룹, `#triple-web-dev` 채널 및 GitHub `@frontend` 팀
 
 ### Project Structure
 
-- `docs/`: [Storybook](https://storybook.js.org)으로 생성하는 Documentation page
+- `docs/`: [Storybook](https://storybook.js.org)으로 생성하는 Documentation page. [스토리 작성법 for Storybook 6.0](https://www.notion.so/Storybook-6-36430db04f7a450287d9b03cc8c04439)
 - `packages/`: npm에 배포하는 트리플 프론트엔드 패키지
 
 ### Package Versioning
