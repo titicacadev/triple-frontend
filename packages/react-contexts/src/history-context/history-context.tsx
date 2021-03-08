@@ -276,8 +276,9 @@ export function HistoryProvider({
         href: rawHref,
         webUrlBase,
         expandInlinkStrictly: false,
+        allowRawOutlink: true,
       })
-      const { scheme } = parseUrl(canonizedHref)
+      const { scheme, path } = parseUrl(canonizedHref)
 
       if (scheme === 'http' || scheme === 'https') {
         const outlinkParams = qs.stringify({
@@ -286,7 +287,11 @@ export function HistoryProvider({
         })
 
         window.location.href = `${appUrlScheme}:///outlink?${outlinkParams}`
-      } else if (hasSessionId || checkIfRoutable({ href: canonizedHref })) {
+      } else if (
+        hasSessionId ||
+        path === '/outlink' ||
+        checkIfRoutable({ href: canonizedHref })
+      ) {
         window.location.href = generateUrl({ scheme: appUrlScheme }, rawHref)
       } else {
         loginCTAModalHash && push(loginCTAModalHash)
