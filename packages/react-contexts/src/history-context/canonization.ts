@@ -5,10 +5,12 @@ export function canonizeTargetAddress({
   href,
   webUrlBase,
   expandInlinkStrictly,
+  allowRawOutlink,
 }: {
   href: string
   webUrlBase: string
   expandInlinkStrictly: boolean
+  allowRawOutlink?: boolean
 }): string {
   const { host: webUrlBaseHost } = parseUrl(webUrlBase)
   const { host, path, query, ...rest } = parseUrl(href)
@@ -24,7 +26,7 @@ export function canonizeTargetAddress({
     return !expandInlinkStrictly || shouldExpandOnStrictMode
       ? (path as string)
       : href
-  } else if (path === '/outlink') {
+  } else if (!allowRawOutlink && path === '/outlink') {
     const { url } = parse(query as string)
 
     return canonizeTargetAddress({
