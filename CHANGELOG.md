@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 2.14.1
+
+### react-contexts
+
+- [Hitory Context] Canonization 시 유실되는 `/outlink` query param을 보존합니다. (#1270)
+
+### poi-list-elements
+
+- POI 목록 요소에 area 정보를 표시합니다. (#1271)
+
 ## 2.14.0
 
 ### common
