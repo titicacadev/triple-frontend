@@ -16,8 +16,8 @@ function addBasePath(href: string, basePath: string): string {
   return path === '/' ? basePath : `${basePath}${path}`
 }
 
-function getlnbTaget(target: string, id: string) {
-  switch (target) {
+function getlnbTaget(type: string, id: string) {
+  switch (type) {
     case 'region':
       return { _triple_lnb_region_id: id }
     case 'trip':
