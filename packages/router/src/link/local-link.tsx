@@ -9,7 +9,6 @@ import { LinkType } from './use-rel'
 import { ANCHOR_TARGET_MAP, TargetType } from './target'
 import { AllowSource, RouterGuardedLink } from './router-guarded-link'
 import { addWebUrlBase } from './add-web-url-base'
-import { TripleQueryType } from './type'
 
 function addBasePath(href: string, basePath: string): string {
   const { path } = parseUrl(href)
@@ -17,18 +16,43 @@ function addBasePath(href: string, basePath: string): string {
   return path === '/' ? basePath : `${basePath}${path}`
 }
 
-function composeStringifiedQuery(query?: TripleQueryType) {
-  const stringifyQuery = qs.stringify({
-    _triple_target: query?.target,
-    _triple_lnb_region_id: query?.regionId,
-    _triple_lnb_zone_id: query?.zoneId,
-    _triple_lnb_trip_id: query?.tripId,
-    _triple_no_navbar: query?.noNavbar,
-    _triple_swipe_to_close: query?.swipeToClose,
-    _triple_should_present: query?.shouldPresent,
+function getlnbTaget(target: string, id: string) {
+  switch (target) {
+    case 'region':
+      return { _triple_lnb_region_id: id }
+    case 'trip':
+      return { _triple_lnb_trip_id: id }
+    case 'zone':
+      return { _triple_lnb_zone_id: id }
+    default:
+      return undefined
+  }
+}
+
+function composeStringifiedQuery({
+  lnbTarget,
+  noNavbar,
+  swipeToClose,
+  shouldPresent,
+}: {
+  lnbTarget?: {
+    [key: string]: string | undefined
+  }
+  regionId?: string
+  zoneId?: string
+  tripId?: string
+  noNavbar?: boolean
+  swipeToClose?: boolean
+  shouldPresent?: boolean
+}) {
+  const composedQuery = qs.stringify({
+    ...lnbTarget,
+    _triple_no_navbar: noNavbar,
+    _triple_swipe_to_close: swipeToClose,
+    _triple_should_present: shouldPresent,
   })
 
-  return stringifyQuery
+  return composedQuery
 }
 
 /**
@@ -50,7 +74,10 @@ export function LocalLink({
   relList,
   allowSource,
   replace,
-  query,
+  lnbTarget,
+  noNavbar,
+  swipeToClose,
+  shouldPresent,
   onClick,
   children,
 }: PropsWithChildren<{
@@ -59,7 +86,13 @@ export function LocalLink({
   relList?: LinkType[]
   allowSource?: AllowSource
   replace?: boolean
-  query?: TripleQueryType
+  lnbTarget?: {
+    type: 'trip' | 'zone' | 'region'
+    id: string
+  }
+  noNavbar?: boolean
+  swipeToClose?: boolean
+  shouldPresent?: boolean
   onClick?: () => void
 }>) {
   const { webUrlBase } = useEnv()
@@ -67,23 +100,22 @@ export function LocalLink({
   const { openInlink, openOutlink } = useAppBridge()
   const { basePath } = useRouter()
 
-  const finalHref = () => {
-    if (query) {
-      return generateUrl(
-        {
-          path: addBasePath(href, basePath),
-          query: composeStringifiedQuery(query),
-        },
-        href,
-      )
-    }
-    return generateUrl(
-      {
-        path: addBasePath(href, basePath),
-      },
-      href,
-    )
-  }
+  const finalHref =
+    lnbTarget || noNavbar || shouldPresent
+      ? generateUrl(
+          {
+            path: addBasePath(href, basePath),
+            query: composeStringifiedQuery({
+              lnbTarget: lnbTarget
+                ? getlnbTaget(lnbTarget.type, lnbTarget.id)
+                : undefined,
+              noNavbar,
+              shouldPresent,
+            }),
+          },
+          href,
+        )
+      : generateUrl({ path: addBasePath(href, basePath) }, href)
 
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     if (onClick) {
@@ -106,7 +138,7 @@ export function LocalLink({
         if (!isPublic) {
           e.preventDefault()
 
-          openInlink(finalHref())
+          openInlink(finalHref)
         }
         return
 
@@ -114,7 +146,7 @@ export function LocalLink({
         if (!isPublic) {
           e.preventDefault()
 
-          openOutlink(addWebUrlBase(finalHref(), webUrlBase), {
+          openOutlink(addWebUrlBase(finalHref, webUrlBase), {
             target: 'browser',
           })
         }
@@ -123,7 +155,7 @@ export function LocalLink({
 
   return (
     <RouterGuardedLink
-      href={finalHref()}
+      href={finalHref}
       relList={relList}
       allowSource={allowSource}
       onClick={handleClick}

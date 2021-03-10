@@ -71,12 +71,31 @@ describe('LocalLink', () => {
     )
   })
 
+  it('shoud add tripleQuery to href', () => {
+    const { getByRole } = render(
+      <LocalLink
+        href="/5b700a4e-4b0f-4266-81db-eb42f834bdd9"
+        target="current"
+        lnbTarget={{
+          type: 'region',
+          id: '71476976-cf9a-4ae8-a60f-76e6fb26900d',
+        }}
+      >
+        <a>테스트 링크</a>
+      </LocalLink>,
+    )
+
+    expect(getByRole('link').getAttribute('href')).toBe(
+      '/hotels/5b700a4e-4b0f-4266-81db-eb42f834bdd9?_triple_lnb_region_id=71476976-cf9a-4ae8-a60f-76e6fb26900d',
+    )
+  })
+
   it('should not use next/router when click with key pressing.', () => {
     const handleClick = jest.fn()
 
     const { getByRole } = render(
       <LocalLink
-        href="/5b700a4e-4b0f-4266-81db-eb42f834bdd9?regionId=71476976-cf9a-4ae8-a60f-76e6fb26900d"
+        href="/5b700a4e-4b0f-4266-81db-eb42f834bdd9?_triple_lnb_region_id=71476976-cf9a-4ae8-a60f-76e6fb26900d"
         target="current"
         onClick={handleClick}
       >
