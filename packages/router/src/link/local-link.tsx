@@ -110,6 +110,7 @@ export function LocalLink({
                 ? getlnbTaget(lnbTarget.type, lnbTarget.id)
                 : undefined,
               noNavbar,
+              swipeToClose,
               shouldPresent,
             }),
           },
