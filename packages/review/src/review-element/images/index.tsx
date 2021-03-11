@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 
 import { ImageEntity } from '../../types'
 
-import { MultipleImageElement, SingleImage, SquareFrame } from './image'
+import { ImageElement, SquareFrame } from './elements'
 
 const IMAGES_CONTAINER_HEIGHTS = [217, 292, 328]
 const IMAGE_HEIGHTS = [217, 143, 105]
@@ -70,13 +70,13 @@ export default function Images({ images }: { images: ImageEntity[] }) {
             height={IMAGES_CONTAINER_HEIGHTS[images.length - 2]}
           >
             <FlexItemContainer flexShrink={1}>
-              <MultipleImageElement src={images[0].sizes.large.url} />
+              <ImageElement src={images[0].sizes.large.url} fullHeight />
             </FlexItemContainer>
 
             <FlexItemContainer flexShrink={images.length - 1}>
               <ImagesContainer flexDirection="column">
                 {images.slice(1, images.length).map(({ id, sizes }, index) => (
-                  <MultipleImageElement
+                  <ImageElement
                     key={`review-img.${id}.${index}`}
                     src={sizes.large.url}
                     height={IMAGE_HEIGHTS[images.length - 2]}
@@ -91,8 +91,9 @@ export default function Images({ images }: { images: ImageEntity[] }) {
           <ImagesContainer flexDirection="row">
             <FlexItemContainer flexShrink={1}>
               <SquareFrame>
-                <MultipleImageElement
+                <ImageElement
                   src={images[0].sizes.large.url}
+                  fullHeight
                   absolute
                 />
               </SquareFrame>
@@ -106,7 +107,7 @@ export default function Images({ images }: { images: ImageEntity[] }) {
                     flexShrink={1}
                   >
                     <SquareFrame>
-                      <MultipleImageElement src={sizes.large.url} absolute />
+                      <ImageElement src={sizes.large.url} absolute fullHeight />
                     </SquareFrame>
                   </FlexItemContainer>
                 ))}
@@ -121,10 +122,19 @@ export default function Images({ images }: { images: ImageEntity[] }) {
   const image = images[0]
 
   return (
-    <SingleImage
-      width={image.width}
-      height={image.height}
-      sourceUrl={image.sizes.large.url}
-    />
+    <>
+      <Responsive maxWidth={499}>
+        {image.width > image.height ? (
+          <ImageElement src={image.sizes.large.url} />
+        ) : (
+          <SquareFrame>
+            <ImageElement src={image.sizes.large.url} absolute fullHeight />
+          </SquareFrame>
+        )}
+      </Responsive>
+      <Responsive minWidth={500}>
+        <ImageElement src={image.sizes.large.url} height={293} />
+      </Responsive>
+    </>
   )
 }
