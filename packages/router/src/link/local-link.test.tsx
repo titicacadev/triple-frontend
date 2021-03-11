@@ -51,7 +51,7 @@ describe('LocalLink', () => {
   const basePath = '/hotels'
   mockedUseRouter.mockImplementation(() => ({ basePath }))
 
-  mockedUseUserAgentContext.mockImplementation(() => ({ isPublic: true }))
+  mockedUseUserAgentContext.mockImplementation(() => ({ isPublic: false }))
   mockedUseSessionContext.mockImplementation(() => ({ hasSessionId: true }))
   mockedUseTransitionModal.mockImplementation(() => ({ show: jest.fn() }))
   mockedUseLoginCTAModal.mockImplementation(() => ({ show: jest.fn() }))
@@ -95,7 +95,7 @@ describe('LocalLink', () => {
 
     const { getByRole } = render(
       <LocalLink
-        href="/5b700a4e-4b0f-4266-81db-eb42f834bdd9?_triple_lnb_region_id=71476976-cf9a-4ae8-a60f-76e6fb26900d"
+        href="/5b700a4e-4b0f-4266-81db-eb42f834bdd9?regionId=71476976-cf9a-4ae8-a60f-76e6fb26900d"
         target="current"
         onClick={handleClick}
       >
