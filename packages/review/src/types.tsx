@@ -29,8 +29,8 @@ export interface UserData {
 
 export interface ImageEntity {
   id: string
-  width: unknown
-  height: unknown
+  width: number
+  height: number
   sizes: {
     full: { url: string }
     large: { url: string }
