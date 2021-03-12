@@ -32,6 +32,7 @@ export const GlobalStyle = createGlobalStyle`
     --color-emerald: rgba(13, 208, 175, 1);
     --color-white: rgba(255, 255, 255, 1);
     --color-white600: rgba(255, 255, 255, 0.6);
+    --color-white900: rgba(255, 255, 255, 0.9);
 
     /** genie */
     --color-azul: rgba(31, 87, 250, 1);

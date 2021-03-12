@@ -147,6 +147,10 @@ export const white = 'rgba(255, 255, 255, 1)'
  * @deprecated :root에 선언된 --color-white600를 사용해주세요.
  */
 export const white600 = 'rgba(255, 255, 255, 0.6)'
+/**
+ * @deprecated :root에 선언된 --color-white600를 사용해주세요.
+ */
+export const white900 = 'rgba(255, 255, 255, 0.9)'
 
 /** genie */
 /**
