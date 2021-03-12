@@ -85,3 +85,44 @@ export type CarouselSizes = Exclude<
   GlobalSizes,
   'mini' | 'tiny' | 'huge' | 'massive'
 >
+
+export type Color =
+  | 'gray'
+  | 'gray20'
+  | 'gray50'
+  | 'gray100'
+  | 'gray200'
+  | 'gray300'
+  | 'gray400'
+  | 'gray500'
+  | 'gray600'
+  | 'gray700'
+  | 'gray800'
+  | 'gray900'
+  | 'brightGray'
+  | 'blue'
+  | 'blue60'
+  | 'blue100'
+  | 'blue980'
+  | 'mint'
+  | 'mint100'
+  | 'orange'
+  | 'red'
+  | 'red100'
+  | 'deepOrange'
+  | 'mediumRed'
+  | 'deepRed'
+  | 'purple'
+  | 'purple100'
+  | 'emerald'
+  | 'white'
+  | 'white600'
+  | 'azul'
+  | 'azul500'
+  | 'teal'
+  | 'teal100'
+  | 'teal900'
+
+export function getCssVariableColor(color: Color) {
+  return `var(--color-${color})`
+}
