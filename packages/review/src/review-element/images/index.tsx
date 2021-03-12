@@ -68,7 +68,13 @@ const Dimmer = styled.div`
   }
 `
 
-export default function Images({ images }: { images: ImageEntity[] }) {
+export default function Images({
+  images,
+  onImageClick,
+}: {
+  images: ImageEntity[]
+  onImageClick: (e: React.SyntheticEvent, index: number) => void
+}) {
   const isMultiple = images.length > 1
 
   if (images.length < 0) {
@@ -87,7 +93,12 @@ export default function Images({ images }: { images: ImageEntity[] }) {
                   flexShrink={1}
                 >
                   <SquareFrame>
-                    <ImageElement src={sizes.large.url} absolute fullHeight />
+                    <ImageElement
+                      src={sizes.large.url}
+                      absolute
+                      fullHeight
+                      onClick={(e) => onImageClick(e, index)}
+                    />
                   </SquareFrame>
                 </FlexItemContainer>
               ))}
@@ -106,7 +117,12 @@ export default function Images({ images }: { images: ImageEntity[] }) {
                         </Text>
                       </Dimmer>
                     ) : null}
-                    <ImageElement src={sizes.large.url} absolute fullHeight />
+                    <ImageElement
+                      src={sizes.large.url}
+                      absolute
+                      fullHeight
+                      onClick={(e) => onImageClick(e, index)}
+                    />
                   </SquareFrame>
                 </FlexItemContainer>
               ))}
@@ -121,7 +137,11 @@ export default function Images({ images }: { images: ImageEntity[] }) {
                   key={`review-img.${id}.${index}`}
                   flexShrink={1}
                 >
-                  <ImageElement src={sizes.large.url} fullHeight />
+                  <ImageElement
+                    src={sizes.large.url}
+                    fullHeight
+                    onClick={(e) => onImageClick(e, index)}
+                  />
                 </FlexItemContainer>
               ))}
             </ImagesContainer>
@@ -138,7 +158,11 @@ export default function Images({ images }: { images: ImageEntity[] }) {
                       </Text>
                     </Dimmer>
                   ) : null}
-                  <ImageElement src={sizes.large.url} fullHeight />
+                  <ImageElement
+                    src={sizes.large.url}
+                    fullHeight
+                    onClick={(e) => onImageClick(e, index)}
+                  />
                 </FlexItemContainer>
               ))}
             </ImagesContainer>
@@ -157,7 +181,11 @@ export default function Images({ images }: { images: ImageEntity[] }) {
             height={IMAGES_CONTAINER_HEIGHTS[images.length - 2]}
           >
             <FlexItemContainer flexShrink={1}>
-              <ImageElement src={images[0].sizes.large.url} fullHeight />
+              <ImageElement
+                src={images[0].sizes.large.url}
+                fullHeight
+                onClick={(e) => onImageClick(e, 0)}
+              />
             </FlexItemContainer>
 
             <FlexItemContainer flexShrink={images.length - 1}>
@@ -167,6 +195,7 @@ export default function Images({ images }: { images: ImageEntity[] }) {
                     key={`review.img.${id}.${index}`}
                     src={sizes.large.url}
                     height={IMAGE_HEIGHTS[images.length - 2]}
+                    onClick={(e) => onImageClick(e, index)}
                   />
                 ))}
               </ImagesContainer>
@@ -182,6 +211,7 @@ export default function Images({ images }: { images: ImageEntity[] }) {
                   src={images[0].sizes.large.url}
                   fullHeight
                   absolute
+                  onClick={(e) => onImageClick(e, 0)}
                 />
               </SquareFrame>
             </FlexItemContainer>
@@ -194,7 +224,12 @@ export default function Images({ images }: { images: ImageEntity[] }) {
                     flexShrink={1}
                   >
                     <SquareFrame>
-                      <ImageElement src={sizes.large.url} absolute fullHeight />
+                      <ImageElement
+                        src={sizes.large.url}
+                        absolute
+                        fullHeight
+                        onClick={(e) => onImageClick(e, index)}
+                      />
                     </SquareFrame>
                   </FlexItemContainer>
                 ))}
@@ -212,15 +247,27 @@ export default function Images({ images }: { images: ImageEntity[] }) {
     <>
       <Responsive maxWidth={499}>
         {image.width > image.height ? (
-          <ImageElement src={image.sizes.large.url} />
+          <ImageElement
+            src={image.sizes.large.url}
+            onClick={(e) => onImageClick(e, 0)}
+          />
         ) : (
           <SquareFrame>
-            <ImageElement src={image.sizes.large.url} absolute fullHeight />
+            <ImageElement
+              src={image.sizes.large.url}
+              absolute
+              fullHeight
+              onClick={(e) => onImageClick(e, 0)}
+            />
           </SquareFrame>
         )}
       </Responsive>
       <Responsive minWidth={500}>
-        <ImageElement src={image.sizes.large.url} height={293} />
+        <ImageElement
+          src={image.sizes.large.url}
+          height={293}
+          onClick={(e) => onImageClick(e, 0)}
+        />
       </Responsive>
     </>
   )
