@@ -47,7 +47,7 @@ interface Props {
 
 const Timeline = styled(FlexBox)`
   position: relative;
-  width: 55px;
+  min-width: 55px;
 
   :before {
     content: '';
