@@ -22,6 +22,7 @@ import { ReviewData, ImageEntity } from '../types'
 import User from './user'
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
+import Images from './images'
 
 type ReviewEventHandler<T = Element, E = Event> = (
   e: React.SyntheticEvent<T, E>,
@@ -62,41 +63,6 @@ const MoreIcon = styled.img`
   height: 30px;
   vertical-align: middle;
   cursor: pointer;
-`
-const SoloImageContainer = styled.div`
-  margin-top: 17px;
-  white-space: nowrap;
-  overflow-x: hidden;
-
-  img {
-    width: 100%;
-    height: 175px;
-    border-radius: 4px;
-    object-fit: cover;
-    cursor: pointer;
-  }
-`
-const Images = styled.div`
-  margin-top: 17px;
-  white-space: nowrap;
-  overflow-x: scroll;
-  -webkit-overflow-scrolling: touch;
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
-
-  img {
-    width: 275px;
-    height: 175px;
-    border-radius: 4px;
-    object-fit: cover;
-    cursor: pointer;
-
-    &:not(:first-child) {
-      margin-left: 9px;
-    }
-  }
 `
 
 const LikeButton = styled.div<{ liked?: boolean }>`
@@ -172,6 +138,27 @@ export default function ReviewElement({
     ),
   )
 
+  const handleImageClick = useCallback(
+    (e: React.SyntheticEvent, index: number) => {
+      if (
+        (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) ||
+        !media
+      ) {
+        return
+      }
+      trackEvent({
+        ga: ['리뷰_리뷰사진썸네일'],
+        fa: {
+          action: '리뷰_리뷰사진썸네일',
+          item_id: resourceId,
+          photo_id: media[index].id,
+        },
+      })
+      onImageClick(e, review, media[index])
+    },
+    [media, appVersion, onImageClick, review, resourceId, trackEvent],
+  )
+
   return (
     <IntersectionObserver
       onChange={({ isIntersecting }) =>
@@ -221,60 +208,11 @@ export default function ReviewElement({
               reviewRateDescriptions={reviewRateDescriptions}
             />
           )}
-          {!blindedAt && (media || []).length > 0 && (
-            <>
-              {media && media.length === 1 ? (
-                <SoloImageContainer>
-                  <img
-                    onClick={(e) => {
-                      if (
-                        appVersion &&
-                        semver.gte(appVersion, LOUNGE_APP_VERSION)
-                      ) {
-                        return
-                      }
-                      trackEvent({
-                        ga: ['리뷰_리뷰사진썸네일'],
-                        fa: {
-                          action: '리뷰_리뷰사진썸네일',
-                          item_id: resourceId,
-                          photo_id: media[0].id,
-                        },
-                      })
-                      onImageClick(e, review, media[0])
-                    }}
-                    src={media[0].sizes.large.url}
-                  />
-                </SoloImageContainer>
-              ) : (
-                <Images>
-                  {(media || []).map((image, i) => (
-                    <img
-                      key={i}
-                      src={image.sizes.large.url}
-                      onClick={(e) => {
-                        if (
-                          appVersion &&
-                          semver.gte(appVersion, LOUNGE_APP_VERSION)
-                        ) {
-                          return
-                        }
-                        trackEvent({
-                          ga: ['리뷰_리뷰사진썸네일'],
-                          fa: {
-                            action: '리뷰_리뷰사진썸네일',
-                            item_id: resourceId,
-                            photo_id: image.id,
-                          },
-                        })
-                        onImageClick(e, review, image)
-                      }}
-                    />
-                  ))}
-                </Images>
-              )}
-            </>
-          )}
+          {!blindedAt && media && media.length > 0 ? (
+            <Container margin={{ top: 10 }}>
+              <Images images={media} onImageClick={handleImageClick} />
+            </Container>
+          ) : null}
         </Content>
         <Meta>
           {!blindedAt && likeVisible !== false ? (
