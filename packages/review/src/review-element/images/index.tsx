@@ -1,4 +1,4 @@
-import { Responsive } from '@titicaca/core-elements'
+import { Responsive, Text } from '@titicaca/core-elements'
 import React from 'react'
 import styled, { css } from 'styled-components'
 
@@ -12,6 +12,7 @@ const IMAGE_HEIGHTS = [217, 143, 105]
 const ImagesContainer = styled.div<{
   flexDirection: 'column' | 'row'
   height?: number
+  topMargin?: boolean
 }>`
   display: flex;
   justify-content: space-between;
@@ -39,6 +40,7 @@ const ImagesContainer = styled.div<{
 `
 
 const FlexItemContainer = styled.div<{ flexShrink?: number }>`
+  position: relative;
   flex-basis: 100%;
 
   ${({ flexShrink = 1 }) => css`
@@ -50,6 +52,22 @@ const FlexItemContainer = styled.div<{ flexShrink?: number }>`
   }
 `
 
+const Dimmer = styled.div`
+  display: table;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-gray500);
+  border-radius: 4px;
+  z-index: 1;
+
+  & > div {
+    display: table-cell;
+    vertical-align: middle;
+  }
+`
+
 export default function Images({ images }: { images: ImageEntity[] }) {
   const isMultiple = images.length > 1
 
@@ -57,8 +75,77 @@ export default function Images({ images }: { images: ImageEntity[] }) {
     return null
   }
 
-  if (images.length > 5) {
-    return null
+  if (images.length >= 5) {
+    return (
+      <>
+        <Responsive maxWidth={499}>
+          <ImagesContainer flexDirection="column">
+            <ImagesContainer flexDirection="row">
+              {images.slice(0, 2).map(({ id, sizes }, index) => (
+                <FlexItemContainer
+                  key={`review-img.${id}.${index}`}
+                  flexShrink={1}
+                >
+                  <SquareFrame>
+                    <ImageElement src={sizes.large.url} absolute fullHeight />
+                  </SquareFrame>
+                </FlexItemContainer>
+              ))}
+            </ImagesContainer>
+            <ImagesContainer flexDirection="row">
+              {images.slice(2, 5).map(({ id, sizes }, index) => (
+                <FlexItemContainer
+                  key={`review-img.${id}.${index}`}
+                  flexShrink={1}
+                >
+                  <SquareFrame>
+                    {images.length > 5 && index === 2 ? (
+                      <Dimmer>
+                        <Text bold color="white900" textAlign="center">
+                          + {images.length - 5}
+                        </Text>
+                      </Dimmer>
+                    ) : null}
+                    <ImageElement src={sizes.large.url} absolute fullHeight />
+                  </SquareFrame>
+                </FlexItemContainer>
+              ))}
+            </ImagesContainer>
+          </ImagesContainer>
+        </Responsive>
+        <Responsive minWidth={500}>
+          <ImagesContainer flexDirection="column">
+            <ImagesContainer flexDirection="row" height={217}>
+              {images.slice(0, 2).map(({ id, sizes }, index) => (
+                <FlexItemContainer
+                  key={`review-img.${id}.${index}`}
+                  flexShrink={1}
+                >
+                  <ImageElement src={sizes.large.url} fullHeight />
+                </FlexItemContainer>
+              ))}
+            </ImagesContainer>
+            <ImagesContainer flexDirection="row" height={143}>
+              {images.slice(2, 5).map(({ id, sizes }, index) => (
+                <FlexItemContainer
+                  key={`review-img.${id}.${index}`}
+                  flexShrink={1}
+                >
+                  {images.length > 5 && index === 2 ? (
+                    <Dimmer>
+                      <Text bold color="white900" textAlign="center">
+                        + {images.length - 5}
+                      </Text>
+                    </Dimmer>
+                  ) : null}
+                  <ImageElement src={sizes.large.url} fullHeight />
+                </FlexItemContainer>
+              ))}
+            </ImagesContainer>
+          </ImagesContainer>
+        </Responsive>
+      </>
+    )
   }
 
   if (isMultiple) {
@@ -77,7 +164,7 @@ export default function Images({ images }: { images: ImageEntity[] }) {
               <ImagesContainer flexDirection="column">
                 {images.slice(1, images.length).map(({ id, sizes }, index) => (
                   <ImageElement
-                    key={`review-img.${id}.${index}`}
+                    key={`review.img.${id}.${index}`}
                     src={sizes.large.url}
                     height={IMAGE_HEIGHTS[images.length - 2]}
                   />
@@ -103,7 +190,7 @@ export default function Images({ images }: { images: ImageEntity[] }) {
               <ImagesContainer flexDirection="column">
                 {images.slice(1, images.length).map(({ id, sizes }, index) => (
                   <FlexItemContainer
-                    key={`review-img.${id}.${index}`}
+                    key={`review.img.${id}.${index}`}
                     flexShrink={1}
                   >
                     <SquareFrame>
