@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+### color-palette
+
+- `white900` 추가 (#1277)
+
+### core-elements
+
+- global-style `--color-white900` 추가 (#1277)
+
+### reviews
+
+- Images 컴포넌트 추가 (#1277)
+
 ## 2.14.1
 
 ### react-contexts
