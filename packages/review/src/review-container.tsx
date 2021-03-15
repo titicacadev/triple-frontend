@@ -5,7 +5,7 @@ import { formatNumber } from '@titicaca/view-utilities'
 import {
   useUserAgentContext,
   useEventTrackingContext,
-  // useSessionContext,
+  useSessionContext,
 } from '@titicaca/react-contexts'
 import { TransitionType, withLoginCTAModal } from '@titicaca/modals'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
@@ -120,8 +120,8 @@ function ReviewContainer({
     sortingOption?: string,
   ) => void
 }) {
-  // const { hasSessionId } = useSessionContext()
-  const hasSessionId = false
+  const { hasSessionId } = useSessionContext()
+
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
