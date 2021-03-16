@@ -66,19 +66,6 @@ export const ImagesContainer = styled.div<{
   }
 `
 
-export const FlexItemContainer = styled.div<{ flexShrink?: number }>`
-  position: relative;
-  flex-basis: 100%;
-
-  ${({ flexShrink = 1 }) => css`
-    flex-shrink: ${flexShrink};
-  `}
-
-  & > div:not(${SquareFrame}) {
-    height: 100%;
-  }
-`
-
 export const Dimmer = styled.div`
   display: table;
   position: absolute;
@@ -92,5 +79,19 @@ export const Dimmer = styled.div`
   & > div {
     display: table-cell;
     vertical-align: middle;
+  }
+`
+
+export const FlexItemContainer = styled.div<{ flexShrink?: number }>`
+  position: relative;
+  flex-basis: 100%;
+
+  ${({ flexShrink = 1 }) => css`
+    flex-shrink: ${flexShrink};
+  `}
+
+  /* stylelint-disable-next-line selector-type-no-unknown */
+  & > div:not(${SquareFrame}) {
+    height: 100%;
   }
 `
