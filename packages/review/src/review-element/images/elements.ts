@@ -66,8 +66,7 @@ export const ImagesContainer = styled.div<{
   }
 `
 
-export const Dimmer = styled.div`
-  display: table;
+export const Dimmer = styled.table`
   position: absolute;
   top: 0;
   width: 100%;
@@ -76,8 +75,7 @@ export const Dimmer = styled.div`
   border-radius: 4px;
   z-index: 1;
 
-  & > div {
-    display: table-cell;
+  & > td {
     vertical-align: middle;
   }
 `

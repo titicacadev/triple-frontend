@@ -47,9 +47,11 @@ export default function PentaImages({
                 <SquareFrame>
                   {images.length > 5 && index === 2 ? (
                     <Dimmer>
-                      <Text bold color="white900" textAlign="center">
-                        + {images.length - 5}
-                      </Text>
+                      <td>
+                        <Text bold color="white900" textAlign="center">
+                          + {images.length - 5}
+                        </Text>
+                      </td>
                     </Dimmer>
                   ) : null}
                   <ImageElement
