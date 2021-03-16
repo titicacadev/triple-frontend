@@ -74,7 +74,7 @@ export const FlexItemContainer = styled.div<{ flexShrink?: number }>`
     flex-shrink: ${flexShrink};
   `}
 
-  & > div {
+  & > div:not(${SquareFrame}) {
     height: 100%;
   }
 `

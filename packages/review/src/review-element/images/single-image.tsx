@@ -1,7 +1,6 @@
 import { Responsive } from '@titicaca/core-elements'
+import { ImageMeta } from '@titicaca/type-definitions'
 import React from 'react'
-
-import { ImageEntity } from '../../types'
 
 import { ImageElement, SquareFrame } from './elements'
 
@@ -9,13 +8,13 @@ export default function SigleImage({
   image,
   onImageClick,
 }: {
-  image: ImageEntity
+  image: ImageMeta
   onImageClick: (e: React.SyntheticEvent, index: number) => void
 }) {
   return (
     <>
       <Responsive maxWidth={499}>
-        {image.width > image.height ? (
+        {image.width && image.height && image.width > image.height ? (
           <ImageElement
             src={image.sizes.large.url}
             onClick={(e) => onImageClick(e, 0)}

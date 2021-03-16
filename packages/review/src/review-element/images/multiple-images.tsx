@@ -1,7 +1,6 @@
 import { Responsive } from '@titicaca/core-elements'
+import { ImageMeta } from '@titicaca/type-definitions'
 import React from 'react'
-
-import { ImageEntity } from '../../types'
 
 import {
   ImageElement,
@@ -17,7 +16,7 @@ export default function MultipleImages({
   images,
   onImageClick,
 }: {
-  images: ImageEntity[]
+  images: ImageMeta[]
   onImageClick: (e: React.SyntheticEvent, index: number) => void
 }) {
   return (

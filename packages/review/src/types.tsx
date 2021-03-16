@@ -1,4 +1,5 @@
 import React from 'react'
+import { ImageMeta } from '@titicaca/type-definitions'
 
 export type ResourceType = 'article' | string
 
@@ -27,17 +28,6 @@ export interface UserData {
   unregister?: boolean | null
 }
 
-export interface ImageEntity {
-  id: string
-  width: number
-  height: number
-  sizes: {
-    full: { url: string }
-    large: { url: string }
-    smallSquare: { url: string }
-  }
-}
-
 export interface ReviewData {
   id: string
   liked: boolean
@@ -47,7 +37,7 @@ export interface ReviewData {
   createdAt: string
   blindedAt?: string | null
   rating?: number | null
-  media?: ImageEntity[] | null
+  media?: ImageMeta[] | null
 }
 
 export type ReviewDeleteHandler = (

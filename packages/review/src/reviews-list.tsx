@@ -8,6 +8,7 @@ import {
 } from '@titicaca/react-contexts'
 import { TransitionType } from '@titicaca/modals'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
+import { ImageMeta } from '@titicaca/type-definitions'
 
 import ReviewElement, { ReviewElementProps } from './review-element'
 import ReviewTimestamp from './review-timestamp'
@@ -17,7 +18,7 @@ import OthersReviewActionSheet, {
 } from './others-review-action-sheet'
 import { likeReview, unlikeReview } from './review-api-clients'
 import { useReviewLikesContext } from './review-likes-context'
-import { AppNativeActionProps, ReviewData, ImageEntity } from './types'
+import { AppNativeActionProps, ReviewData } from './types'
 import { useClientActions } from './use-client-actions'
 
 export default function ReviewsList({
@@ -132,9 +133,9 @@ export default function ReviewsList({
         (
           e: React.SyntheticEvent,
           { user: { name }, comment, media, createdAt }: ReviewData,
-          image: ImageEntity,
+          image: ImageMeta,
         ) => {
-          const convertImage = (convertingImage: ImageEntity) => ({
+          const convertImage = (convertingImage: ImageMeta) => ({
             id: convertingImage.id,
             title: '',
             description: (comment || '').replace(/\n\s*\n/g, '\n'),
@@ -144,7 +145,10 @@ export default function ReviewsList({
             sizes: {
               full: convertingImage.sizes.full,
               large: convertingImage.sizes.large,
-              small_square: convertingImage.sizes.smallSquare,
+              small_square:
+                'smallSquare' in convertingImage.sizes
+                  ? convertingImage.sizes.smallSquare
+                  : convertingImage.sizes.small_square,
             },
           })
 

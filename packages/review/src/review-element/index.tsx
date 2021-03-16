@@ -15,9 +15,10 @@ import {
 } from '@titicaca/react-contexts'
 import { TransitionType } from '@titicaca/modals'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
+import { ImageMeta } from '@titicaca/type-definitions'
 
 import { useReviewLikesContext } from '../review-likes-context'
-import { ReviewData, ImageEntity } from '../types'
+import { ReviewData } from '../types'
 
 import User from './user'
 import Comment from './comment'
@@ -40,7 +41,7 @@ export interface ReviewElementProps {
   onImageClick: (
     e: React.SyntheticEvent,
     review: ReviewData,
-    image: ImageEntity,
+    image: ImageMeta,
   ) => void
   onShow?: (index: number) => void
   reviewRateDescriptions?: string[]
