@@ -11,6 +11,7 @@ import {
   layeringMixin,
   LayeringMixinProps,
 } from '@titicaca/core-elements'
+import { CSSTransitionProps } from 'react-transition-group/CSSTransition'
 
 type NavbarIcon = 'close' | 'back'
 
@@ -95,6 +96,7 @@ export default function Popup({
   zTier,
   zIndex,
   unmountOnExit,
+  ...restProps
 }: PropsWithChildren<
   {
     open: boolean
@@ -104,7 +106,8 @@ export default function Popup({
     icon?: NavbarIcon
     noNavbar?: boolean
     unmountOnExit?: boolean
-  } & LayeringMixinProps
+  } & LayeringMixinProps &
+    Partial<CSSTransitionProps>
 >) {
   const popupRef = useRef<HTMLDivElement>(null)
 
@@ -122,6 +125,7 @@ export default function Popup({
       appear
       mountOnEnter={unmountOnExit}
       unmountOnExit={unmountOnExit}
+      {...restProps}
     >
       <PopupContainer ref={popupRef} zTier={zTier} zIndex={zIndex}>
         {noNavbar ? null : (
