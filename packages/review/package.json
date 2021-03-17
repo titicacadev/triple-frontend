@@ -20,7 +20,6 @@
     "@titicaca/intersection-observer": "^2.14.1",
     "@titicaca/modals": "^2.14.1",
     "@titicaca/react-hooks": "^2.14.1",
-    "@titicaca/style-box": "^2.14.1",
     "@titicaca/type-definitions": "^2.14.1",
     "@titicaca/ui-flow": "^2.14.1",
     "@titicaca/view-utilities": "^2.14.1",
