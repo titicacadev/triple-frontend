@@ -11,25 +11,50 @@ type VerificationState = {
   phoneNumber?: string
   verified?: boolean
   error?: string
+  payload?: unknown
+}
+
+type VerificationType =
+  | 'sms-verification'
+  | 'personal-id-verification-with-residence'
+  | 'personal-id-verification'
+
+const TARGET_PAGE_PATH: Record<VerificationType, string> = {
+  'sms-verification': '/verifications/',
+  'personal-id-verification-with-residence': '/verifications/residence',
+  'personal-id-verification': '/verifications/personal-id',
+}
+
+const CONFIRMATION_API_PATH: Record<VerificationType, string> = {
+  'sms-verification': '/api/users/smscert',
+  'personal-id-verification-with-residence':
+    '/api/users/personal-id-with-residence',
+  'personal-id-verification': '/api/users/personal-id',
 }
 
 export default function useVerification({
+  verificationType = 'sms-verification',
   verificationContext = 'purchase',
   forceVerification,
 }: {
+  verificationType?: VerificationType
   verificationContext?: 'purchase' | 'cash'
   forceVerification: boolean
 }) {
   const [verificationState, setVerificationState] = useState<VerificationState>(
-    { phoneNumber: undefined, verified: undefined, error: undefined },
+    {
+      phoneNumber: undefined,
+      verified: undefined,
+      error: undefined,
+    },
   )
   const { openWindow } = useHistoryFunctions()
 
   const initiateVerification = useCallback(() => {
     openWindow(
-      `/verifications/?_triple_no_navbar&context=${verificationContext}`,
+      `${TARGET_PAGE_PATH[verificationType]}?_triple_no_navbar&context=${verificationContext}`,
     )
-  }, [openWindow, verificationContext])
+  }, [openWindow, verificationType, verificationContext])
 
   const handleVerifiedMessageReceive = useCallback(
     ({ type, phoneNumber }: { type: string; phoneNumber?: string }) => {
@@ -45,12 +70,12 @@ export default function useVerification({
 
   const fetchAndSetVerificationState = useCallback(
     async (force: boolean) => {
-      const response = await fetch('/api/users/smscert')
+      const response = await fetch(CONFIRMATION_API_PATH[verificationType])
 
       if (response.ok) {
-        const { rawPhoneNumber: phoneNumber } = await response.json()
+        const { rawPhoneNumber: phoneNumber, payload } = await response.json()
 
-        setVerificationState({ phoneNumber, verified: true })
+        setVerificationState({ phoneNumber, payload, verified: true })
       } else if (response.status === 404) {
         setVerificationState({ verified: false })
 
@@ -62,7 +87,7 @@ export default function useVerification({
         })
       }
     },
-    [setVerificationState, initiateVerification],
+    [verificationType, setVerificationState, initiateVerification],
   )
 
   useEffect(() => {
