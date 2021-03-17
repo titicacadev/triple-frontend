@@ -21,11 +21,12 @@ export default function PentaImages({
     <>
       <Responsive maxWidth={499}>
         <ImagesContainer flexDirection="column">
-          <ImagesContainer flexDirection="row">
+          <ImagesContainer flexDirection="row" margin={{ bottom: 5 }}>
             {images.slice(0, 2).map(({ id, sizes }, index) => (
               <FlexItemContainer
                 key={`review-img.${id}.${index}`}
                 flexShrink={1}
+                margin={{ right: index === 0 ? 5 : 0 }}
               >
                 <SquareFrame>
                   <ImageElement
@@ -43,6 +44,7 @@ export default function PentaImages({
               <FlexItemContainer
                 key={`review-img.${id}.${index}`}
                 flexShrink={1}
+                margin={{ right: index < 2 ? 5 : 0 }}
               >
                 <SquareFrame>
                   {images.length > 5 && index === 2 ? (
@@ -68,31 +70,62 @@ export default function PentaImages({
       </Responsive>
       <Responsive minWidth={500}>
         <ImagesContainer flexDirection="column">
-          <ImagesContainer flexDirection="row" height={217}>
-            {images.slice(0, 2).map(({ id, sizes }, index) => (
-              <FlexItemContainer
-                key={`review-img.${id}.${index}`}
-                flexShrink={1}
-              >
-                <ImageElement
-                  src={sizes.large.url}
-                  fullHeight
-                  onClick={(e) => onImageClick(e, index)}
-                />
-              </FlexItemContainer>
-            ))}
-          </ImagesContainer>
+          <Responsive maxWidth={767}>
+            <ImagesContainer
+              flexDirection="row"
+              height={217}
+              margin={{ bottom: 6 }}
+            >
+              {images.slice(0, 2).map(({ id, sizes }, index) => (
+                <FlexItemContainer
+                  key={`review-img.${id}.${index}`}
+                  flexShrink={1}
+                  margin={{ right: index === 0 ? 6 : 0 }}
+                >
+                  <ImageElement
+                    src={sizes.large.url}
+                    fullHeight
+                    onClick={(e) => onImageClick(e, index)}
+                  />
+                </FlexItemContainer>
+              ))}
+            </ImagesContainer>
+          </Responsive>
+          <Responsive minWidth={768}>
+            <ImagesContainer
+              flexDirection="row"
+              height={217}
+              margin={{ bottom: 6 }}
+            >
+              {images.slice(0, 2).map(({ id, sizes }, index) => (
+                <FlexItemContainer
+                  key={`review-img.${id}.${index}`}
+                  flexShrink={1}
+                  margin={{ right: index === 0 ? 9 : 0 }}
+                >
+                  <ImageElement
+                    src={sizes.large.url}
+                    fullHeight
+                    onClick={(e) => onImageClick(e, index)}
+                  />
+                </FlexItemContainer>
+              ))}
+            </ImagesContainer>
+          </Responsive>
           <ImagesContainer flexDirection="row" height={143}>
             {images.slice(2, 5).map(({ id, sizes }, index) => (
               <FlexItemContainer
                 key={`review-img.${id}.${index}`}
                 flexShrink={1}
+                margin={{ right: index < 2 ? 9 : 0 }}
               >
                 {images.length > 5 && index === 2 ? (
                   <Dimmer>
-                    <Text bold color="white900" textAlign="center">
-                      + {images.length - 5}
-                    </Text>
+                    <td>
+                      <Text bold color="white900" textAlign="center">
+                        + {images.length - 5}
+                      </Text>
+                    </td>
                   </Dimmer>
                 ) : null}
                 <ImageElement

@@ -1,9 +1,12 @@
 import styled, { css } from 'styled-components'
+import { marginMixin } from '@titicaca/core-elements'
+import { MarginPadding } from '@titicaca/style-box'
 
 export const ImageElement = styled.img<{
   absolute?: boolean
   height?: number
   fullHeight?: boolean
+  margin?: MarginPadding
 }>`
   ${({ absolute }) =>
     absolute &&
@@ -27,6 +30,8 @@ export const ImageElement = styled.img<{
   border-radius: 4px;
   width: 100%;
   object-fit: cover;
+
+  ${marginMixin}
 `
 
 export const SquareFrame = styled.div`
@@ -39,7 +44,7 @@ export const SquareFrame = styled.div`
 export const ImagesContainer = styled.div<{
   flexDirection: 'column' | 'row'
   height?: number
-  topMargin?: boolean
+  margin?: MarginPadding
 }>`
   display: flex;
   justify-content: space-between;
@@ -52,18 +57,7 @@ export const ImagesContainer = styled.div<{
       height: ${height}px;
     `}
 
-  @media (max-width: 500px) {
-    gap: 5px;
-  }
-
-  @media (min-width: 499px) and (max-width: 768px) {
-    gap: 6px;
-  }
-
-  @media (min-width: 767px) {
-    column-gap: 10px;
-    row-gap: 6px;
-  }
+  ${marginMixin}
 `
 
 export const Dimmer = styled.table`
@@ -80,7 +74,10 @@ export const Dimmer = styled.table`
   }
 `
 
-export const FlexItemContainer = styled.div<{ flexShrink?: number }>`
+export const FlexItemContainer = styled.div<{
+  flexShrink?: number
+  margin?: MarginPadding
+}>`
   position: relative;
   flex-basis: 100%;
 
@@ -92,4 +89,6 @@ export const FlexItemContainer = styled.div<{ flexShrink?: number }>`
   & > div:not(${SquareFrame}) {
     height: 100%;
   }
+
+  ${marginMixin}
 `
