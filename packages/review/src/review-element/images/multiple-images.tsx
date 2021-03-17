@@ -21,37 +21,9 @@ export default function MultipleImages({
 }) {
   return (
     <>
-      <Responsive minWidth={500}>
-        <ImagesContainer
-          flexDirection="row"
-          height={IMAGES_CONTAINER_HEIGHTS[images.length - 2]}
-        >
-          <FlexItemContainer flexShrink={1}>
-            <ImageElement
-              src={images[0].sizes.large.url}
-              fullHeight
-              onClick={(e) => onImageClick(e, 0)}
-            />
-          </FlexItemContainer>
-
-          <FlexItemContainer flexShrink={images.length - 1}>
-            <ImagesContainer flexDirection="column">
-              {images.slice(1, images.length).map(({ id, sizes }, index) => (
-                <ImageElement
-                  key={`review.img.${id}.${index}`}
-                  src={sizes.large.url}
-                  height={IMAGE_HEIGHTS[images.length - 2]}
-                  onClick={(e) => onImageClick(e, index)}
-                />
-              ))}
-            </ImagesContainer>
-          </FlexItemContainer>
-        </ImagesContainer>
-      </Responsive>
-
       <Responsive maxWidth={499}>
         <ImagesContainer flexDirection="row">
-          <FlexItemContainer flexShrink={1}>
+          <FlexItemContainer flexShrink={1} margin={{ right: 5 }}>
             <SquareFrame>
               <ImageElement
                 src={images[0].sizes.large.url}
@@ -68,6 +40,7 @@ export default function MultipleImages({
                 <FlexItemContainer
                   key={`review.img.${id}.${index}`}
                   flexShrink={1}
+                  margin={{ bottom: index < images.length - 2 ? 5 : 0 }}
                 >
                   <SquareFrame>
                     <ImageElement
@@ -80,6 +53,51 @@ export default function MultipleImages({
                 </FlexItemContainer>
               ))}
             </ImagesContainer>
+          </FlexItemContainer>
+        </ImagesContainer>
+      </Responsive>
+      <Responsive minWidth={500}>
+        <ImagesContainer
+          flexDirection="row"
+          height={IMAGES_CONTAINER_HEIGHTS[images.length - 2]}
+        >
+          <FlexItemContainer flexShrink={1} margin={{ right: 9 }}>
+            <ImageElement
+              src={images[0].sizes.large.url}
+              fullHeight
+              onClick={(e) => onImageClick(e, 0)}
+            />
+          </FlexItemContainer>
+
+          <FlexItemContainer flexShrink={images.length - 1}>
+            <Responsive maxWidth={767}>
+              <ImagesContainer flexDirection="column">
+                {images.slice(1, images.length).map(({ id, sizes }, index) => (
+                  <ImageElement
+                    key={`review.img.${id}.${index}`}
+                    src={sizes.large.url}
+                    height={IMAGE_HEIGHTS[images.length - 2]}
+                    onClick={(e) => onImageClick(e, index)}
+                    margin={{ bottom: index < images.length - 2 ? 6 : 0 }}
+                  />
+                ))}
+              </ImagesContainer>
+            </Responsive>
+            <Responsive minWidth={768}>
+              <ImagesContainer flexDirection="column">
+                {images.slice(1, images.length).map(({ id, sizes }, index) => (
+                  <>
+                    <ImageElement
+                      key={`review.img.${id}.${index}`}
+                      src={sizes.large.url}
+                      height={IMAGE_HEIGHTS[images.length - 2]}
+                      onClick={(e) => onImageClick(e, index)}
+                      margin={{ bottom: index < images.length - 2 ? 6 : 0 }}
+                    />
+                  </>
+                ))}
+              </ImagesContainer>
+            </Responsive>
           </FlexItemContainer>
         </ImagesContainer>
       </Responsive>
