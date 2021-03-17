@@ -9,8 +9,8 @@ const Responsive = styled.div<{
   ${({ maxWidth, minWidth }) =>
     minWidth && maxWidth
       ? css`
-          @media (max-width: ${minWidth - 1}px) and (min-width: ${maxWidth +
-            1}px) {
+          @media (max-width: ${minWidth - 1}px),
+            (min-width: ${maxWidth + 1}px) {
             display: none;
           }
         `
