@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components'
-import { marginMixin } from '@titicaca/core-elements'
-import { MarginPadding } from '@titicaca/style-box'
+import { marginMixin, MarginPadding } from '@titicaca/core-elements'
 
 export const ImageElement = styled.img<{
   absolute?: boolean
