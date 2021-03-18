@@ -8,7 +8,7 @@ import { ANCHOR_TARGET_MAP, TargetType } from './target'
 import { AllowSource, RouterGuardedLink } from './router-guarded-link'
 import { addWebUrlBase } from './add-web-url-base'
 import { AppSpecificLinkProps } from './type'
-import { composeFinalHref } from './utils'
+import { appSpecificLinkOptions } from './app-specific-link-options'
 
 export function ExternalLink({
   href,
@@ -45,7 +45,7 @@ export function ExternalLink({
 
   const finalHref =
     (lnbTarget || noNavbar || shouldPresent) && !isPublic
-      ? composeFinalHref({
+      ? appSpecificLinkOptions({
           href,
           lnbTarget,
           noNavbar,
