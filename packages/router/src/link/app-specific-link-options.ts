@@ -3,7 +3,10 @@ import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 
 import { AppSpecificLinkProps } from './type'
 
-export function addBasePath(href: string, basePath: string): string {
+export function addBasePath(
+  href: string,
+  basePath?: string,
+): string | undefined {
   const { path } = parseUrl(href)
 
   return path === '/' ? basePath : `${basePath}${path}`
@@ -45,7 +48,7 @@ function composeStringifiedQuery({
   return composedQuery
 }
 
-export function composeFinalHref({
+export function appSpecificLinkOptions({
   href,
   basePath,
   lnbTarget,
@@ -58,7 +61,7 @@ export function composeFinalHref({
 } & AppSpecificLinkProps) {
   return generateUrl(
     {
-      path: basePath ? addBasePath(href, basePath) : undefined,
+      path: addBasePath(href, basePath),
       query: composeStringifiedQuery({
         lnbTarget: lnbTarget
           ? getlnbTaget(lnbTarget.type, lnbTarget.id)

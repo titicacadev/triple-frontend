@@ -9,7 +9,10 @@ import { ANCHOR_TARGET_MAP, TargetType } from './target'
 import { AllowSource, RouterGuardedLink } from './router-guarded-link'
 import { addWebUrlBase } from './add-web-url-base'
 import { AppSpecificLinkProps } from './type'
-import { composeFinalHref, addBasePath } from './utils'
+import {
+  appSpecificLinkOptions,
+  addBasePath,
+} from './app-specific-link-options'
 
 /**
  * https://github.com/vercel/next.js/blob/7d48241949bc7bac7b8e30fda6be71f37286886f/packages/next/client/link.tsx#L64
@@ -53,7 +56,7 @@ export function LocalLink({
 
   const finalHref =
     (lnbTarget || noNavbar || shouldPresent) && !isPublic
-      ? composeFinalHref({
+      ? appSpecificLinkOptions({
           href,
           basePath,
           lnbTarget,
