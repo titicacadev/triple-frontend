@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { storiesOf } from '@storybook/react'
 import { boolean, select, text } from '@storybook/addon-knobs'
+import { action } from '@storybook/addon-actions'
 import Popup from '@titicaca/popup'
 import ActionSheet from '@titicaca/action-sheet'
 
@@ -49,4 +50,21 @@ storiesOf('popup / Popup', module)
         </ActionSheet>
       </Popup>
     </>
+  ))
+  .add('팝업 이벤트', () => (
+    <Popup
+      title={text('팝업 제목', '테스트')}
+      noNavbar={boolean('Navbar 숨김', false)}
+      borderless={boolean('네비바 경계선 없음', true)}
+      open={boolean('팝업 열기', false)}
+      icon={select('네비바 아이콘', ['close', 'back'], 'close')}
+      onEnter={action('onEnter')}
+      onEntered={action('onEntered')}
+      onEntering={action('onEntering')}
+      onExit={action('onExit')}
+      onExited={action('onExited')}
+      onExiting={action('onExiting')}
+    >
+      다양한 이벤트가 있습니다.
+    </Popup>
   ))

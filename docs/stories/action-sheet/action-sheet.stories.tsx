@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { text, boolean, number, select, object } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
@@ -214,3 +214,36 @@ export function ActionSheetWithExtendStyle() {
 }
 
 ActionSheetWithExtendStyle.storyName = '스타일 확장'
+
+export function ActionSheetWithEvents() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <p>
+        open 과 동시에 onEnter - onEntering - onEntered 가 순서대로 발생하고
+        close 와 동시에 onExit - onExiting - onExited 가 발생합니다.
+      </p>
+      <button onClick={() => setOpen(true)}>open</button>
+
+      <ActionSheet
+        open={open}
+        title={text('제목', '샘플 액션 시트')}
+        onClose={action('onClose')}
+        onEnter={action('onEnter')}
+        onEntered={action('onEntered')}
+        onEntering={action('onEntering')}
+        onExit={action('onExit')}
+        onExited={action('onExited')}
+        onExiting={action('onExiting')}
+      >
+        <ActionSheet.Item>메뉴 1</ActionSheet.Item>
+        <ActionSheet.Item>메뉴 2</ActionSheet.Item>
+
+        <button onClick={() => setOpen(false)}>close</button>
+      </ActionSheet>
+    </>
+  )
+}
+
+ActionSheetWithEvents.storyName = '이벤트'
