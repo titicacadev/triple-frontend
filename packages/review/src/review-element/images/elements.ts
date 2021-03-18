@@ -42,7 +42,7 @@ export const SquareFrame = styled.div`
   position: relative;
   width: 100%;
   padding-top: 100%;
-  height: 0 !important;
+  height: 0;
 `
 
 export const ImagesContainer = styled.div<

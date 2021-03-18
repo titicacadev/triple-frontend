@@ -36,7 +36,7 @@ export default function MultipleImages({
             </SquareFrame>
           </FlexItemContainer>
 
-          <FlexItemContainer flexShrink={restImages.length - 1 - 1}>
+          <FlexItemContainer flexShrink={restImages.length}>
             <ImagesContainer flexDirection="column">
               {restImages.map(({ id, sizes }, index) => (
                 <FlexItemContainer
