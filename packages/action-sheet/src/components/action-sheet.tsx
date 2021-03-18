@@ -11,6 +11,7 @@ import {
   LayeringMixinProps,
 } from '@titicaca/core-elements'
 import { white } from '@titicaca/color-palette'
+import type { CSSTransitionProps } from 'react-transition-group/CSSTransition'
 
 const unit = (value: number | string, suffix = 'px') =>
   typeof value === 'string' ? value : value !== 0 ? `${value}${suffix}` : value
@@ -193,6 +194,7 @@ export default function ActionSheet({
   zTier,
   zIndex,
   unmountOnExit,
+  ...restProps
 }: PropsWithChildren<
   {
     open?: boolean
@@ -205,7 +207,8 @@ export default function ActionSheet({
     padding?: MarginPadding
     className?: string
     unmountOnExit?: boolean
-  } & LayeringMixinProps
+  } & LayeringMixinProps &
+    Partial<CSSTransitionProps>
 >) {
   const actionSheetTitle = title ? (
     typeof title === 'string' ? (
@@ -234,6 +237,7 @@ export default function ActionSheet({
       timeout={TRANSITION_DURATION}
       mountOnEnter={unmountOnExit}
       unmountOnExit={unmountOnExit}
+      {...restProps}
     >
       <Overlay
         duration={TRANSITION_DURATION}
