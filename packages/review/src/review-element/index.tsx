@@ -170,9 +170,8 @@ export default function ReviewElement({
         <User
           user={user}
           onClick={onUserClick && ((e) => onUserClick(e, review))}
-        >
-          {!blindedAt && !!rating ? <Score score={rating} /> : null}
-        </User>
+        />
+        {!blindedAt && !!rating ? <Score score={rating} /> : null}
         <Content onClick={handleSelectReview}>
           {blindedAt ? (
             '신고가 접수되어 블라인드 처리되었습니다.'
