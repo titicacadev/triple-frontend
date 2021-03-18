@@ -1,12 +1,17 @@
 import styled, { css } from 'styled-components'
 import { marginMixin, MarginPadding } from '@titicaca/core-elements'
 
-export const ImageElement = styled.img<{
-  absolute?: boolean
-  height?: number
-  fullHeight?: boolean
+interface Margin {
   margin?: MarginPadding
-}>`
+}
+
+export const ImageElement = styled.img<
+  {
+    absolute?: boolean
+    height?: number
+    fullHeight?: boolean
+  } & Margin
+>`
   ${({ absolute }) =>
     absolute &&
     css`
@@ -40,11 +45,12 @@ export const SquareFrame = styled.div`
   height: 0 !important;
 `
 
-export const ImagesContainer = styled.div<{
-  flexDirection: 'column' | 'row'
-  height?: number
-  margin?: MarginPadding
-}>`
+export const ImagesContainer = styled.div<
+  {
+    flexDirection: 'column' | 'row'
+    height?: number
+  } & Margin
+>`
   display: flex;
   justify-content: space-between;
   ${({ flexDirection }) => css`
@@ -73,10 +79,11 @@ export const Dimmer = styled.table`
   }
 `
 
-export const FlexItemContainer = styled.div<{
-  flexShrink?: number
-  margin?: MarginPadding
-}>`
+export const FlexItemContainer = styled.div<
+  {
+    flexShrink?: number
+  } & Margin
+>`
   position: relative;
   flex-basis: 100%;
 
