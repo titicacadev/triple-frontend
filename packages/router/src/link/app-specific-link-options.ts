@@ -1,5 +1,5 @@
 import qs from 'qs'
-import { generateUrl, parseUrl } from '@titicaca/view-utilities'
+import { generateUrl } from '@titicaca/view-utilities'
 
 export interface AppSpecificLinkProps {
   /**
@@ -28,15 +28,6 @@ export interface AppSpecificLinkProps {
    *@param lnbTarget
    */
   shouldPresent?: boolean
-}
-
-export function addBasePath(
-  href: string,
-  basePath?: string,
-): string | undefined {
-  const { path } = parseUrl(href)
-
-  return path === '/' ? basePath : `${basePath}${path}`
 }
 
 function getlnbTaget(type: string, id: string) {
@@ -77,18 +68,15 @@ function composeStringifiedQuery({
 
 export function appSpecificLinkOptions({
   href,
-  basePath,
   lnbTarget,
   noNavbar,
   swipeToClose,
   shouldPresent,
 }: {
   href: string
-  basePath?: string
 } & AppSpecificLinkProps) {
   return generateUrl(
     {
-      path: addBasePath(href, basePath),
       query: composeStringifiedQuery({
         lnbTarget: lnbTarget
           ? getlnbTaget(lnbTarget.type, lnbTarget.id)

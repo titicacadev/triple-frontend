@@ -1,7 +1,7 @@
 import React, { MouseEvent, MouseEventHandler, PropsWithChildren } from 'react'
 import Router, { useRouter } from 'next/router'
 import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
-import { generateUrl } from '@titicaca/view-utilities'
+import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 
 import { useAppBridge } from './use-app-bridge'
 import { LinkType } from './use-rel'
@@ -10,7 +10,6 @@ import { AllowSource, RouterGuardedLink } from './router-guarded-link'
 import { addWebUrlBase } from './add-web-url-base'
 import {
   appSpecificLinkOptions,
-  addBasePath,
   AppSpecificLinkProps,
 } from './app-specific-link-options'
 
@@ -20,6 +19,12 @@ import {
  *
  * @param e 앵커 태그 클릭 이벤트
  */
+
+function addBasePath(href: string, basePath: string): string {
+  const { path } = parseUrl(href)
+  return path === '/' ? basePath : `${basePath}${path}`
+}
+
 export function isKeyPressingClick(e: MouseEvent<HTMLAnchorElement>): boolean {
   return e.metaKey || e.ctrlKey || e.shiftKey || e.altKey
 }
@@ -57,8 +62,7 @@ export function LocalLink({
   const finalHref =
     (lnbTarget || noNavbar || shouldPresent) && !isPublic
       ? appSpecificLinkOptions({
-          href,
-          basePath,
+          href: addBasePath(href, basePath),
           lnbTarget,
           noNavbar,
           swipeToClose,
