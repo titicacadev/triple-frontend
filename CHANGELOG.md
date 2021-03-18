@@ -14,6 +14,10 @@
 
 - Images 컴포넌트 추가 (#1277)
 
+### popup, action-sheet
+
+- CSSTransion 컴포넌트 props 로 추가합니다. (#1279)
+
 ## 2.14.1
 
 ### react-contexts
