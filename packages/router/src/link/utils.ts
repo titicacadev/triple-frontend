@@ -1,5 +1,15 @@
 import qs from 'qs'
-export function getlnbTaget(type: string, id: string) {
+import { generateUrl, parseUrl } from '@titicaca/view-utilities'
+
+import { AppSpecificLinkProps } from './type'
+
+export function addBasePath(href: string, basePath: string): string {
+  const { path } = parseUrl(href)
+
+  return path === '/' ? basePath : `${basePath}${path}`
+}
+
+function getlnbTaget(type: string, id: string) {
   switch (type) {
     case 'region':
       return { _triple_lnb_region_id: id }
@@ -12,7 +22,7 @@ export function getlnbTaget(type: string, id: string) {
   }
 }
 
-export function composeStringifiedQuery({
+function composeStringifiedQuery({
   lnbTarget,
   noNavbar,
   swipeToClose,
@@ -33,4 +43,31 @@ export function composeStringifiedQuery({
   })
 
   return composedQuery
+}
+
+export function composeFinalHref({
+  href,
+  basePath,
+  lnbTarget,
+  noNavbar,
+  swipeToClose,
+  shouldPresent,
+}: {
+  href: string
+  basePath?: string
+} & AppSpecificLinkProps) {
+  return generateUrl(
+    {
+      path: basePath ? addBasePath(href, basePath) : undefined,
+      query: composeStringifiedQuery({
+        lnbTarget: lnbTarget
+          ? getlnbTaget(lnbTarget.type, lnbTarget.id)
+          : undefined,
+        noNavbar,
+        swipeToClose,
+        shouldPresent,
+      }),
+    },
+    href,
+  )
 }

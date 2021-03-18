@@ -1,7 +1,7 @@
 import React, { MouseEvent, MouseEventHandler, PropsWithChildren } from 'react'
 import Router, { useRouter } from 'next/router'
 import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
-import { generateUrl, parseUrl } from '@titicaca/view-utilities'
+import { generateUrl } from '@titicaca/view-utilities'
 
 import { useAppBridge } from './use-app-bridge'
 import { LinkType } from './use-rel'
@@ -9,13 +9,7 @@ import { ANCHOR_TARGET_MAP, TargetType } from './target'
 import { AllowSource, RouterGuardedLink } from './router-guarded-link'
 import { addWebUrlBase } from './add-web-url-base'
 import { AppSpecificLinkProps } from './type'
-import { getlnbTaget, composeStringifiedQuery } from './utils'
-
-function addBasePath(href: string, basePath: string): string {
-  const { path } = parseUrl(href)
-
-  return path === '/' ? basePath : `${basePath}${path}`
-}
+import { composeFinalHref, addBasePath } from './utils'
 
 /**
  * https://github.com/vercel/next.js/blob/7d48241949bc7bac7b8e30fda6be71f37286886f/packages/next/client/link.tsx#L64
@@ -59,20 +53,14 @@ export function LocalLink({
 
   const finalHref =
     (lnbTarget || noNavbar || shouldPresent) && !isPublic
-      ? generateUrl(
-          {
-            path: addBasePath(href, basePath),
-            query: composeStringifiedQuery({
-              lnbTarget: lnbTarget
-                ? getlnbTaget(lnbTarget.type, lnbTarget.id)
-                : undefined,
-              noNavbar,
-              swipeToClose,
-              shouldPresent,
-            }),
-          },
+      ? composeFinalHref({
           href,
-        )
+          basePath,
+          lnbTarget,
+          noNavbar,
+          swipeToClose,
+          shouldPresent,
+        })
       : generateUrl({ path: addBasePath(href, basePath) }, href)
 
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {

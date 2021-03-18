@@ -1,6 +1,6 @@
 import React, { MouseEventHandler, PropsWithChildren, useEffect } from 'react'
 import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
-import { generateUrl, parseUrl } from '@titicaca/view-utilities'
+import { parseUrl } from '@titicaca/view-utilities'
 
 import { useAppBridge } from './use-app-bridge'
 import { LinkType } from './use-rel'
@@ -8,7 +8,7 @@ import { ANCHOR_TARGET_MAP, TargetType } from './target'
 import { AllowSource, RouterGuardedLink } from './router-guarded-link'
 import { addWebUrlBase } from './add-web-url-base'
 import { AppSpecificLinkProps } from './type'
-import { getlnbTaget, composeStringifiedQuery } from './utils'
+import { composeFinalHref } from './utils'
 
 export function ExternalLink({
   href,
@@ -45,19 +45,13 @@ export function ExternalLink({
 
   const finalHref =
     (lnbTarget || noNavbar || shouldPresent) && !isPublic
-      ? generateUrl(
-          {
-            query: composeStringifiedQuery({
-              lnbTarget: lnbTarget
-                ? getlnbTaget(lnbTarget.type, lnbTarget.id)
-                : undefined,
-              noNavbar,
-              swipeToClose,
-              shouldPresent,
-            }),
-          },
+      ? composeFinalHref({
           href,
-        )
+          lnbTarget,
+          noNavbar,
+          swipeToClose,
+          shouldPresent,
+        })
       : href
 
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
