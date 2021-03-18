@@ -28,26 +28,34 @@ export default function User({
     name,
     userBoard: { reviewsV2 },
     mileage,
+    unregister,
   },
   onClick,
-  children,
-}: PropsWithChildren<{
+}: {
   onClick?: MouseEventHandler
   user: UserData
-}>) {
+}) {
   const {
     badges: [badge],
+    level,
   } = mileage || { badges: [undefined] }
 
   return (
-    <Container padding={{ bottom: 2 }}>
+    <Container padding={{ bottom: 2 }} height={38}>
       <UserPhoto src={photo} onClick={onClick} />
       {badge && <Badge src={badge.icon.imageUrl} />}
       <Name onClick={onClick}>{name}</Name>
-      <UserExtra>
-        <span onClick={onClick}>{reviewsV2}개의 리뷰</span>
-        {children}
-      </UserExtra>
+      {!unregister ? (
+        <Text
+          margin={{ top: 3 }}
+          size="mini"
+          color="gray"
+          alpha={0.4}
+          onClick={onClick}
+        >
+          {level > 0 ? `LEVEL${level} / ` : ''}${reviewsV2}개의 리뷰
+        </Text>
+      ) : null}
     </Container>
   )
 }
@@ -58,25 +66,6 @@ function Name({
 }: PropsWithChildren<{ onClick?: MouseEventHandler<HTMLDivElement> }>) {
   return (
     <Text bold size="medium" onClick={onClick}>
-      {children}
-    </Text>
-  )
-}
-
-function UserExtra({
-  onClick,
-  children,
-}: PropsWithChildren<{
-  onClick?: MouseEventHandler<HTMLDivElement>
-}>) {
-  return (
-    <Text
-      margin={{ top: 3 }}
-      size="mini"
-      color="gray"
-      alpha={0.4}
-      onClick={onClick}
-    >
       {children}
     </Text>
   )
