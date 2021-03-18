@@ -7,8 +7,10 @@ import { LinkType } from './use-rel'
 import { ANCHOR_TARGET_MAP, TargetType } from './target'
 import { AllowSource, RouterGuardedLink } from './router-guarded-link'
 import { addWebUrlBase } from './add-web-url-base'
-import { AppSpecificLinkProps } from './type'
-import { appSpecificLinkOptions } from './app-specific-link-options'
+import {
+  appSpecificLinkOptions,
+  AppSpecificLinkProps,
+} from './app-specific-link-options'
 
 export function ExternalLink({
   href,
