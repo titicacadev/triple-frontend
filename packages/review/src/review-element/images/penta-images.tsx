@@ -17,12 +17,14 @@ export default function PentaImages({
   images: ImageMeta[]
   onImageClick: (e: React.SyntheticEvent, index: number) => void
 }) {
+  const [firstImage, secondImage, ...lowerImages] = images.slice(0, 5)
+  const upperImages = [firstImage, secondImage]
   return (
     <>
       <Responsive maxWidth={499}>
         <ImagesContainer flexDirection="column">
           <ImagesContainer flexDirection="row" margin={{ bottom: 5 }}>
-            {images.slice(0, 2).map(({ id, sizes }, index) => (
+            {upperImages.map(({ id, sizes }, index) => (
               <FlexItemContainer
                 key={`review-img.${id}.${index}`}
                 flexShrink={1}
@@ -40,7 +42,7 @@ export default function PentaImages({
             ))}
           </ImagesContainer>
           <ImagesContainer flexDirection="row">
-            {images.slice(2, 5).map(({ id, sizes }, index) => (
+            {lowerImages.map(({ id, sizes }, index) => (
               <FlexItemContainer
                 key={`review-img.${id}.${index}`}
                 flexShrink={1}
@@ -76,7 +78,7 @@ export default function PentaImages({
               height={217}
               margin={{ bottom: 6 }}
             >
-              {images.slice(0, 2).map(({ id, sizes }, index) => (
+              {upperImages.map(({ id, sizes }, index) => (
                 <FlexItemContainer
                   key={`review-img.${id}.${index}`}
                   flexShrink={1}
@@ -97,7 +99,7 @@ export default function PentaImages({
               height={217}
               margin={{ bottom: 6 }}
             >
-              {images.slice(0, 2).map(({ id, sizes }, index) => (
+              {upperImages.map(({ id, sizes }, index) => (
                 <FlexItemContainer
                   key={`review-img.${id}.${index}`}
                   flexShrink={1}
@@ -113,7 +115,7 @@ export default function PentaImages({
             </ImagesContainer>
           </Responsive>
           <ImagesContainer flexDirection="row" height={143}>
-            {images.slice(2, 5).map(({ id, sizes }, index) => (
+            {lowerImages.map(({ id, sizes }, index) => (
               <FlexItemContainer
                 key={`review-img.${id}.${index}`}
                 flexShrink={1}
