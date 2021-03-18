@@ -53,7 +53,8 @@ export default function User({
           alpha={0.4}
           onClick={onClick}
         >
-          {level > 0 ? `LEVEL${level} / ` : ''}${reviewsV2}개의 리뷰
+          {level > 0 ? `LEVEL${level} / ` : ''}
+          {reviewsV2}개의 리뷰
         </Text>
       ) : null}
     </Container>
