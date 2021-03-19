@@ -13,17 +13,17 @@ import {
   AppSpecificLinkProps,
 } from './app-specific-link-options'
 
+function addBasePath(href: string, basePath: string): string {
+  const { path } = parseUrl(href)
+  return path === '/' ? basePath : `${basePath}${path}`
+}
+
 /**
  * https://github.com/vercel/next.js/blob/7d48241949bc7bac7b8e30fda6be71f37286886f/packages/next/client/link.tsx#L64
  * which 속성은 deprecated 됐다고 하여 사용하지 않습니다.
  *
  * @param e 앵커 태그 클릭 이벤트
  */
-
-function addBasePath(href: string, basePath: string): string {
-  const { path } = parseUrl(href)
-  return path === '/' ? basePath : `${basePath}${path}`
-}
 
 export function isKeyPressingClick(e: MouseEvent<HTMLAnchorElement>): boolean {
   return e.metaKey || e.ctrlKey || e.shiftKey || e.altKey
