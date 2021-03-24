@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 2.15.0
+
+### router
+
+- Link 컴포넌트에 `트리플 전용 쿼리 파라미터`를 Optional Props 으로 추가 (#1256)
+
+### triple-document 
+
+- `triple-document` 타임라인 영역 min-width 적용 (#1276)
+
 ### color-palette
 
 - `white900` 추가 (#1277)
@@ -9,6 +19,8 @@
 ### core-elements
 
 - global-style `--color-white900` 추가 (#1277)
+- root에 정의된 colorSet만 사용하도록 `getCssVariableColor` 함수를 추가합니다. (#1275)
+- Version up `content-utilities` (#1274)
 
 ### reviews
 
