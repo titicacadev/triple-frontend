@@ -22,14 +22,13 @@ type VerificationType =
 const TARGET_PAGE_PATH: Record<VerificationType, string> = {
   'sms-verification': '/verifications/',
   'personal-id-verification-with-residence': '/verifications/residence',
-  'personal-id-verification': '/verifications/personal-id',
+  'personal-id-verification': '/verifications/personal-id-verification',
 }
 
 const CONFIRMATION_API_PATH: Record<VerificationType, string> = {
   'sms-verification': '/api/users/smscert',
-  'personal-id-verification-with-residence':
-    '/api/users/personal-id-with-residence',
-  'personal-id-verification': '/api/users/personal-id',
+  'personal-id-verification-with-residence': '/api/users/kto-stay-2021',
+  'personal-id-verification': '/api/users/kto-stay-2021',
 }
 
 export default function useVerification({
@@ -73,7 +72,7 @@ export default function useVerification({
       const response = await fetch(CONFIRMATION_API_PATH[verificationType])
 
       if (response.ok) {
-        const { rawPhoneNumber: phoneNumber, payload } = await response.json()
+        const { phoneNumber, ...payload } = await response.json()
 
         setVerificationState({ phoneNumber, payload, verified: true })
       } else if (response.status === 404) {
