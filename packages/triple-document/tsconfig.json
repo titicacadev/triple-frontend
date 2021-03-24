@@ -37,6 +37,9 @@
       "path": "../ui-flow"
     },
     {
+      "path": "../user-verification"
+    },
+    {
       "path": "../view-utilities"
     },
     {
