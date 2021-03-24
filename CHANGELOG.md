@@ -8,7 +8,7 @@
 
 - Link 컴포넌트에 `트리플 전용 쿼리 파라미터`를 Optional Props 으로 추가 (#1256)
 
-### triple-document 
+### triple-document
 
 - `triple-document` 타임라인 영역 min-width 적용 (#1276)
 
