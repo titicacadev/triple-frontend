@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Modal } from '@titicaca/modals'
 import { Text } from '@titicaca/core-elements'
 
-import useUserVerification from './use-user-verification'
+import { useUserVerification } from './use-user-verification'
 
 export default function VerificationRequest({
   forceVerification,
