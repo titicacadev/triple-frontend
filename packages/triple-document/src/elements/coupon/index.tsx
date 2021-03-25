@@ -27,7 +27,7 @@ const BaseCouponDownloadButton = styled(Button)`
   width: 100%;
 `
 
-const PublicCouponDownloadButton = () => {
+function PublicCouponDownloadButton() {
   const { push } = useHistoryFunctions()
 
   const onDownloadButtonClick = useCallback(() => {
