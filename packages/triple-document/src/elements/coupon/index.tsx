@@ -139,13 +139,16 @@ function InAppCouponDownloadButton({
       const {
         id,
         message,
-      }: { id?: string; message: string } = await response.json()
+        code,
+      }: { id?: string; message: string; code?: string } = await response.json()
 
       if (response.ok) {
         if (id) {
           push(HASH_COMPLETE_DOWNLOAD_COUPON)
           setDownloaded(true)
         }
+      } else if (code === 'NO_CI_AUTHENTICATION') {
+        initiateVerification()
       } else {
         captureException(
           new Error(`[${response.status}] Failed to download coupon`),
