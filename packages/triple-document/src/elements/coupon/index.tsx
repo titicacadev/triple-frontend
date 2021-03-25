@@ -22,6 +22,48 @@ import {
   CouponTransitionModal,
 } from './modals'
 
+export default function Coupon({
+  value: { identifier: slugId, description, verificationType },
+  deepLink,
+}: {
+  value: {
+    identifier: string
+    description: string
+    verificationType?: VerificationType
+  }
+  deepLink: string
+}) {
+  const { isPublic } = useUserAgentContext()
+
+  return (
+    <Container margin={{ top: 44, right: 30, left: 30, bottom: 42 }}>
+      {isPublic ? (
+        <PublicCouponDownloadButton />
+      ) : (
+        <InAppCouponDownloadButton
+          slugId={slugId}
+          verificationType={verificationType}
+        />
+      )}
+
+      {description ? (
+        <Text
+          color="gray"
+          alpha={0.5}
+          margin={{ top: 13 }}
+          lineHeight={1.46}
+          size="tiny"
+        >
+          {description}
+        </Text>
+      ) : null}
+
+      <CouponModal />
+      <CouponTransitionModal deepLink={deepLink} />
+    </Container>
+  )
+}
+
 const BaseCouponDownloadButton = styled(Button)`
   border-radius: 6px;
   width: 100%;
@@ -132,47 +174,5 @@ function InAppCouponDownloadButton({
       </BaseCouponDownloadButton>
       <CouponAlertModal errorMessage={errorMessage} />
     </>
-  )
-}
-
-export default function Coupon({
-  value: { identifier: slugId, description, verificationType },
-  deepLink,
-}: {
-  value: {
-    identifier: string
-    description: string
-    verificationType?: VerificationType
-  }
-  deepLink: string
-}) {
-  const { isPublic } = useUserAgentContext()
-
-  return (
-    <Container margin={{ top: 44, right: 30, left: 30, bottom: 42 }}>
-      {isPublic ? (
-        <PublicCouponDownloadButton />
-      ) : (
-        <InAppCouponDownloadButton
-          slugId={slugId}
-          verificationType={verificationType}
-        />
-      )}
-
-      {description ? (
-        <Text
-          color="gray"
-          alpha={0.5}
-          margin={{ top: 13 }}
-          lineHeight={1.46}
-          size="tiny"
-        >
-          {description}
-        </Text>
-      ) : null}
-
-      <CouponModal />
-      <CouponTransitionModal deepLink={deepLink} />
-    </Container>
   )
 }
