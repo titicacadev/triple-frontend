@@ -136,12 +136,13 @@ function InAppCouponDownloadButton({
 }
 
 export default function Coupon({
-  value: { identifier: slugId, description },
+  value: { identifier: slugId, description, verificationType },
   deepLink,
 }: {
   value: {
     identifier: string
     description: string
+    verificationType?: VerificationType
   }
   deepLink: string
 }) {
@@ -152,7 +153,10 @@ export default function Coupon({
       {isPublic ? (
         <PublicCouponDownloadButton />
       ) : (
-        <InAppCouponDownloadButton slugId={slugId} />
+        <InAppCouponDownloadButton
+          slugId={slugId}
+          verificationType={verificationType}
+        />
       )}
 
       {description ? (
