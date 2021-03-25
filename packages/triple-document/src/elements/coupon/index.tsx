@@ -127,7 +127,7 @@ function InAppCouponDownloadButton({
   const pushHashDownloaded = () => push(HASH_ALREADY_DOWNLOAD_COUPON)
   const downloadCoupon = useCallback(async () => {
     try {
-      if (verificationType && !verificationState) {
+      if (verificationType && !verificationState.verified) {
         initiateVerification()
 
         return
