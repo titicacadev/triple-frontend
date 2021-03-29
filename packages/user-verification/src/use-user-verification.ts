@@ -69,7 +69,9 @@ export function useUserVerification({
 
   const fetchAndSetVerificationState = useCallback(
     async (force: boolean) => {
-      const response = await fetch(CONFIRMATION_API_PATH[verificationType])
+      const response = await fetch(CONFIRMATION_API_PATH[verificationType], {
+        credentials: 'same-origin',
+      })
 
       if (response.ok) {
         const { phoneNumber, ...payload } = await response.json()
