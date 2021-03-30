@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### review
+
+- Image Dimmer의 z-index를 제거합니다.
+
 ## 2.15.0
 
 ### router
