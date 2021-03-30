@@ -49,8 +49,14 @@ export default function PentaImages({
                 margin={{ right: index < 2 ? 5 : 0 }}
               >
                 <SquareFrame>
+                  <ImageElement
+                    src={sizes.large.url}
+                    absolute
+                    fullHeight
+                    onClick={(e) => onImageClick(e, index)}
+                  />
                   {images.length > 5 && index === 2 ? (
-                    <Dimmer>
+                    <Dimmer onClick={(e) => onImageClick(e, index)}>
                       <td>
                         <Text bold color="white900" textAlign="center">
                           + {images.length - 5}
@@ -58,12 +64,6 @@ export default function PentaImages({
                       </td>
                     </Dimmer>
                   ) : null}
-                  <ImageElement
-                    src={sizes.large.url}
-                    absolute
-                    fullHeight
-                    onClick={(e) => onImageClick(e, index)}
-                  />
                 </SquareFrame>
               </FlexItemContainer>
             ))}
@@ -121,8 +121,13 @@ export default function PentaImages({
                 flexShrink={1}
                 margin={{ right: index < 2 ? 9 : 0 }}
               >
+                <ImageElement
+                  src={sizes.large.url}
+                  fullHeight
+                  onClick={(e) => onImageClick(e, index)}
+                />
                 {images.length > 5 && index === 2 ? (
-                  <Dimmer>
+                  <Dimmer onClick={(e) => onImageClick(e, index)}>
                     <td>
                       <Text bold color="white900" textAlign="center">
                         + {images.length - 5}
@@ -130,11 +135,6 @@ export default function PentaImages({
                     </td>
                   </Dimmer>
                 ) : null}
-                <ImageElement
-                  src={sizes.large.url}
-                  fullHeight
-                  onClick={(e) => onImageClick(e, index)}
-                />
               </FlexItemContainer>
             ))}
           </ImagesContainer>
