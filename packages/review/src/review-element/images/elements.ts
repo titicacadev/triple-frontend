@@ -72,7 +72,6 @@ export const Dimmer = styled.table`
   height: 100%;
   background-color: var(--color-gray500);
   border-radius: 4px;
-  z-index: 1;
 
   & > td {
     vertical-align: middle;
