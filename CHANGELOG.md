@@ -2,9 +2,13 @@
 
 ## Unreleased
 
+### core-elements
+
+- Image.Overlay 컴포넌트 z-index 제거 (#1286)
+
 ### review
 
-- Image Dimmer의 z-index를 제거합니다.
+- Image Dimmer의 z-index를 제거합니다. (#1286)
 
 ## 2.15.0
 
