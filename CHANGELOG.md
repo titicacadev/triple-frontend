@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.15.1
+
 ### core-elements
 
 - Image.Overlay 컴포넌트 z-index 제거 (#1286)
