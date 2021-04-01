@@ -4,6 +4,10 @@
 
 ## 2.15.1
 
+### common
+
+- @egjs/flicking, @egjs/react-flicking을 최신 버전으로 업그레이드합니다. (#1287)
+
 ### core-elements
 
 - Image.Overlay 컴포넌트 z-index 제거 (#1286)
