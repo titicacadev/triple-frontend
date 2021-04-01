@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, ReactNode, MouseEvent } from 'react'
+import React, { PropsWithChildren, ReactNode, MouseEvent, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
 import {
@@ -210,6 +210,9 @@ export default function ActionSheet({
   } & LayeringMixinProps &
     Partial<CSSTransitionProps>
 >) {
+  const overlayRef = useRef<HTMLDivElement>(null)
+  const sheetRef = useRef<HTMLDivElement>(null)
+
   const actionSheetTitle = title ? (
     typeof title === 'string' ? (
       <Container height="16px" margin={{ bottom: 10, left: 27 }}>
@@ -231,6 +234,7 @@ export default function ActionSheet({
 
   return (
     <CSSTransition
+      nodeRef={overlayRef}
       in={open}
       appear
       classNames="action-sheet-fade"
@@ -240,6 +244,7 @@ export default function ActionSheet({
       {...restProps}
     >
       <Overlay
+        ref={overlayRef}
         duration={TRANSITION_DURATION}
         onClick={(e) => {
           silenceEvent(e)
@@ -252,6 +257,7 @@ export default function ActionSheet({
         data-testid="overlay"
       >
         <CSSTransition
+          nodeRef={sheetRef}
           in={open}
           classNames="action-sheet-slide"
           timeout={TRANSITION_DURATION}
@@ -260,6 +266,7 @@ export default function ActionSheet({
           unmountOnExit={unmountOnExit}
         >
           <Sheet
+            ref={sheetRef}
             duration={TRANSITION_DURATION}
             from={from}
             borderRadius={borderRadius}

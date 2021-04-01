@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect, useRef } from 'react'
 import {
   Text,
   MarginPadding,
@@ -67,6 +67,7 @@ export default function FloatingButtonCTA({
 }: FloatingButtonCTAProps & LayeringMixinProps) {
   const [buttonVisibility, setButtonVisibility] = useState(false)
   const [available, setAvailable] = useState(true)
+  const floatingButtonContainerRef = useRef<HTMLDivElement>(null)
 
   const sendTrackEventRequest = useCallback(
     (param) => {
@@ -122,6 +123,7 @@ export default function FloatingButtonCTA({
 
   return (
     <CSSTransition
+      nodeRef={floatingButtonContainerRef}
       in={available}
       appear
       classNames="floating-button-slide"
@@ -130,6 +132,7 @@ export default function FloatingButtonCTA({
       unmountOnExit={unmountOnExit}
     >
       <FloatingButtonContainer
+        ref={floatingButtonContainerRef}
         visibility={buttonVisibility ? 1 : 0}
         fixed={fixed ? 1 : 0}
         margin={margin}
