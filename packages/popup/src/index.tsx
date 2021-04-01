@@ -119,6 +119,7 @@ export default function Popup({
 
   return (
     <CSSTransition
+      nodeRef={popupRef}
       timeout={TRANSITION_DURATION}
       in={open}
       classNames="popup-slide"

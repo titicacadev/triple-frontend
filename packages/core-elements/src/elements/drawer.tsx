@@ -81,8 +81,11 @@ export default function Drawer({
   unmountOnExit?: boolean
   children?: React.ReactNode
 } & LayeringMixinProps) {
+  const drawerContainerRef = React.useRef<HTMLDivElement>(null)
+
   return (
     <CSSTransition
+      nodeRef={drawerContainerRef}
       in={active}
       appear
       classNames="drawer-slide"
@@ -91,6 +94,7 @@ export default function Drawer({
       unmountOnExit={unmountOnExit}
     >
       <DrawerContainer
+        ref={drawerContainerRef}
         duration={TRANSITION_DURATION}
         overflow={overflow}
         zTier={zTier}
