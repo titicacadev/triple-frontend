@@ -52,7 +52,9 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
 
   const makeBannerClickHandler = (index: number) => {
     return (banner: Banner) => {
-      onBannerClick(banner, index)
+      if (!flickingRef.current?.isPlaying()) {
+        onBannerClick(banner, index)
+      }
     }
   }
 
