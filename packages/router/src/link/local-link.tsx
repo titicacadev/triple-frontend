@@ -34,14 +34,14 @@ function isKeyPressingClick(e: MouseEvent<HTMLAnchorElement>): boolean {
  * 스크롤 위치가 이전 페이지의 위치로 남아있습니다.
  * 이를 초기화하는 작업도 같이 수행합니다.
  * @param href 이동할 주소
- * @param replace replace를 사용하는지 여부
+ * @param options replace: replace를 사용하는지 여부, scroll: 이동 후 화면 위로 스크롤 하는지 여부
  */
 async function handleNextJSRouting(
   href: string,
-  replace?: boolean,
+  { replace, scroll }: { replace?: boolean; scroll: boolean },
 ): Promise<void> {
   const success = await Router[replace ? 'replace' : 'push'](href)
-  if (success) {
+  if (success && scroll) {
     window.scrollTo(0, 0)
   }
 }
@@ -55,6 +55,7 @@ export function LocalLink({
   relList,
   allowSource,
   replace,
+  scroll = true,
   lnbTarget,
   noNavbar,
   swipeToClose,
@@ -68,6 +69,11 @@ export function LocalLink({
     relList?: LinkType[]
     allowSource?: AllowSource
     replace?: boolean
+    /**
+     * 현재창에서 라우팅할 때 페이지 스크롤을 상단으로 올릴지 여부를 결정합니다.
+     * 기본 값 true
+     */
+    scroll?: boolean
     onClick?: () => void
   } & AppSpecificLinkProps
 >) {
@@ -98,7 +104,7 @@ export function LocalLink({
           return
         }
         e.preventDefault()
-        handleNextJSRouting(href, replace)
+        handleNextJSRouting(href, { replace, scroll })
         return
 
       case 'new':
