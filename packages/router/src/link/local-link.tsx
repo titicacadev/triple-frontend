@@ -40,7 +40,9 @@ async function handleNextJSRouting(
   href: string,
   { replace, scroll }: { replace?: boolean; scroll: boolean },
 ): Promise<void> {
-  const success = await Router[replace ? 'replace' : 'push'](href)
+  const success = await Router[replace ? 'replace' : 'push'](href, undefined, {
+    scroll,
+  })
   if (success && scroll) {
     window.scrollTo(0, 0)
   }
