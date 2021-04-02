@@ -29,6 +29,24 @@ function isKeyPressingClick(e: MouseEvent<HTMLAnchorElement>): boolean {
 }
 
 /**
+ * Next.js의 라우터를 사용하여 주어진 주소로 이동합니다.
+ * 클라이언트에서 라우팅하기 때문에
+ * 스크롤 위치가 이전 페이지의 위치로 남아있습니다.
+ * 이를 초기화하는 작업도 같이 수행합니다.
+ * @param href 이동할 주소
+ * @param replace replace를 사용하는지 여부
+ */
+async function handleNextJSRouting(
+  href: string,
+  replace?: boolean,
+): Promise<void> {
+  const success = await Router[replace ? 'replace' : 'push'](href)
+  if (success) {
+    window.scrollTo(0, 0)
+  }
+}
+
+/**
  * 같은 도메인의 페이지로 이동할 때 사용하는 링크 컴포넌트
  */
 export function LocalLink({
@@ -79,11 +97,8 @@ export function LocalLink({
         if (isKeyPressingClick(e)) {
           return
         }
-
         e.preventDefault()
-
-        Router[replace ? 'replace' : 'push'](href)
-        window.scrollTo(0, 0)
+        handleNextJSRouting(href, replace)
         return
 
       case 'new':
