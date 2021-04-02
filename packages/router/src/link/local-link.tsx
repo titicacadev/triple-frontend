@@ -24,7 +24,7 @@ function addBasePath(href: string, basePath: string): string {
  *
  * @param e 앵커 태그 클릭 이벤트
  */
-export function isKeyPressingClick(e: MouseEvent<HTMLAnchorElement>): boolean {
+function isKeyPressingClick(e: MouseEvent<HTMLAnchorElement>): boolean {
   return e.metaKey || e.ctrlKey || e.shiftKey || e.altKey
 }
 
