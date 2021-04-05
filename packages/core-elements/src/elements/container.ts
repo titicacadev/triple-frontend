@@ -8,6 +8,7 @@ import {
   formatMarginPadding,
   shadowMixin,
   positioningMixin,
+  safariStackingContextWorkaround,
 } from '../mixins'
 import { unit } from '../utils/unit'
 
@@ -111,7 +112,7 @@ const Container = styled.div<ContainerPropsFromTemplate>`
     `
       border-radius: ${borderRadius}px;
       overflow: hidden;
-      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      ${safariStackingContextWorkaround};
     `};
 
   ${({ clearing }) =>
