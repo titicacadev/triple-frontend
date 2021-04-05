@@ -24,3 +24,7 @@ export const marginMixin = css<{ margin?: MarginPadding }>`
 export const paddingMixin = css<{ padding?: MarginPadding }>`
   ${({ padding }) => formatMarginPadding(padding, 'padding')}
 `
+
+export const safariStackingContextWorkaround = css`
+  mask-image: radial-gradient(white, black);
+`
