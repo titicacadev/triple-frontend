@@ -7,14 +7,14 @@ import {
 } from '@titicaca/triple-web-to-native-interfaces'
 import { useVisibilityChange } from '@titicaca/react-hooks'
 
-export type VerificationState = {
+type VerificationState = {
   phoneNumber?: string
   verified?: boolean
   error?: string
   payload?: unknown
 }
 
-type VerificationType =
+export type VerificationType =
   | 'sms-verification'
   | 'personal-id-verification-with-residence'
   | 'personal-id-verification'
