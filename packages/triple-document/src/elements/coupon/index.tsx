@@ -7,6 +7,10 @@ import {
   useHistoryFunctions,
 } from '@titicaca/react-contexts'
 import { captureException } from '@sentry/browser'
+import {
+  useUserVerification,
+  VerificationType,
+} from '@titicaca/user-verification'
 
 import {
   HASH_ALREADY_DOWNLOAD_COUPON,
@@ -37,13 +41,23 @@ const PublicCouponDownloadButton = () => {
   )
 }
 
-const InAppCouponDownloadButton = ({ slugId }: { slugId: string }) => {
+function InAppCouponDownloadButton({
+  slugId,
+  verificationType,
+}: {
+  slugId: string
+  verificationType?: VerificationType
+}) {
   const [enabled, setEnabled] = useState(false)
   const [downloaded, setDownloaded] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined,
   )
   const { push } = useHistoryFunctions()
+  const { verificationState, initiateVerification } = useUserVerification({
+    verificationType,
+    forceVerification: false,
+  })
 
   useEffect(() => {
     async function fetchCoupon() {
@@ -71,6 +85,12 @@ const InAppCouponDownloadButton = ({ slugId }: { slugId: string }) => {
   const pushHashDownloaded = () => push(HASH_ALREADY_DOWNLOAD_COUPON)
   const downloadCoupon = useCallback(async () => {
     try {
+      if (verificationType && !verificationState) {
+        initiateVerification()
+
+        return
+      }
+
       const response = await fetch(`/api/benefit/coupons/${slugId}/download`, {
         credentials: 'same-origin',
       })
@@ -94,7 +114,7 @@ const InAppCouponDownloadButton = ({ slugId }: { slugId: string }) => {
     } catch (e) {
       captureException(e)
     }
-  }, [push, slugId])
+  }, [push, slugId, initiateVerification, verificationType, verificationState])
 
   return (
     <>
