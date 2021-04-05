@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import * as CSS from 'csstype'
 
 import { GlobalSizes, MarginPadding } from '../../commons'
-import { marginMixin } from '../../mixins'
+import { marginMixin, safariStackingContextWorkaround } from '../../mixins'
 
 import { useImageState } from './context'
 
@@ -41,8 +41,7 @@ const FixedDimensionsFrameContainer = styled.div<{
   /**
    * overflow: hidden과 border-radius 사용 시 사파리에서 발생하는 버그를 위한  CSS 추가
    */
-
-  mask-image: radial-gradient(white, black);
+  ${safariStackingContextWorkaround}
 `
 
 export default function ImageFixedDimensionsFrame({
