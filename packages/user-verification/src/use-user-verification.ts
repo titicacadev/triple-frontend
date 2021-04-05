@@ -7,7 +7,7 @@ import {
 } from '@titicaca/triple-web-to-native-interfaces'
 import { useVisibilityChange } from '@titicaca/react-hooks'
 
-type VerificationState = {
+export type VerificationState = {
   phoneNumber?: string
   verified?: boolean
   error?: string
@@ -31,7 +31,7 @@ const CONFIRMATION_API_PATH: Record<VerificationType, string> = {
   'personal-id-verification': '/api/users/kto-stay-2021',
 }
 
-export default function useVerification({
+export function useUserVerification({
   verificationType = 'sms-verification',
   verificationContext = 'purchase',
   forceVerification,
