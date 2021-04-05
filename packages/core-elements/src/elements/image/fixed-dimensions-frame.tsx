@@ -37,6 +37,12 @@ const FixedDimensionsFrameContainer = styled.div<{
   float: ${({ floated }) => floated || 'none'};
 
   ${marginMixin}
+
+  /**
+   * overflow: hidden과 border-radius 사용 시 사파리에서 발생하는 버그를 위한  CSS 추가
+   */
+
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 `
 
 export default function ImageFixedDimensionsFrame({
