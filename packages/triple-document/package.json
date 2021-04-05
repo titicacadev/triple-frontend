@@ -30,7 +30,7 @@
     "semver": "^7.3.2"
   },
   "peerDependencies": {
-    "@sentry/browser": "^5.4.3",
+    "@sentry/browser": ">=5 <7",
     "@titicaca/react-contexts": "*"
   },
   "devDependencies": {
