@@ -8,7 +8,7 @@ import {
   formatMarginPadding,
   shadowMixin,
   positioningMixin,
-  safariStackingContextWorkaround,
+  borderRadiusMixin,
 } from '../mixins'
 import { unit } from '../utils/unit'
 
@@ -107,14 +107,6 @@ const Container = styled.div<ContainerPropsFromTemplate>`
       text-align: ${textAlign};
     `};
 
-  ${({ borderRadius }) =>
-    borderRadius &&
-    `
-      border-radius: ${borderRadius}px;
-      overflow: hidden;
-      ${safariStackingContextWorkaround};
-    `};
-
   ${({ clearing }) =>
     clearing &&
     `
@@ -154,6 +146,7 @@ const Container = styled.div<ContainerPropsFromTemplate>`
 
   ${shadowMixin}
   ${positioningMixin}
+  ${borderRadiusMixin}
 `
 
 export default Container

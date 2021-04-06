@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import * as CSS from 'csstype'
 
 import { GlobalSizes, MarginPadding } from '../../commons'
-import { marginMixin, safariStackingContextWorkaround } from '../../mixins'
+import { marginMixin, borderRadiusMixin } from '../../mixins'
 
 import { useImageState } from './context'
 
@@ -23,7 +23,6 @@ const FixedDimensionsFrameContainer = styled.div<{
   margin?: MarginPadding
 }>`
   background-color: #f5f5f5;
-  overflow: hidden;
 
   font-size: 0;
   position: relative;
@@ -32,16 +31,10 @@ const FixedDimensionsFrameContainer = styled.div<{
   height: ${({ height, size }) =>
     (height && `${height}px`) || (size ? IMAGE_HEIGHT_OPTIONS[size] : '')};
 
-  ${({ borderRadius }) => `border-radius: ${borderRadius}px;`}
-
   float: ${({ floated }) => floated || 'none'};
 
   ${marginMixin}
-
-  /**
-   * overflow: hidden과 border-radius 사용 시 사파리에서 발생하는 버그를 위한  CSS 추가
-   */
-  ${safariStackingContextWorkaround}
+  ${borderRadiusMixin}
 `
 
 export default function ImageFixedDimensionsFrame({
