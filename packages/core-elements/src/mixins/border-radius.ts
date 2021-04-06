@@ -4,18 +4,12 @@ import { css } from 'styled-components'
  * @param safariStackingContextWorkaround
  */
 
-export const safariStackingContextWorkaround = (borderRadius?: number) => {
-  if (!borderRadius) {
-    return ''
-  }
-
-  return css`
+export const borderRadiusMixin = css<{ borderRadius?: number }>`
+  ${({ borderRadius }) =>
+    borderRadius &&
+    `
     overflow: hidden;
     mask-image: radial-gradient(white, black);
     border-radius: ${borderRadius}px;
-  `
-}
-
-export const borderRadiusMixin = css<{ borderRadius?: number }>`
-  ${({ borderRadius }) => safariStackingContextWorkaround(borderRadius)}
+  `}
 `
