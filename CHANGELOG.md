@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### fetcher
+
+- 특정 ErrorStatus에서 reFetch 시도합니다 (##1295)
+
 ## 2.15.1
 
 ### common
