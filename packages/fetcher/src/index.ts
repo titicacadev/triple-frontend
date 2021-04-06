@@ -86,35 +86,35 @@ export const get = async <T extends {}>(
   url: string,
   options?: RequestOptions,
 ): Promise<HttpResponse<T>> =>
-  (await fetcher(url, {
+  fetcher<T>(url, {
     ...options,
     method: HTTPMethods.GET,
-  })) as HttpResponse<T>
+  })
 
 export const put = async <T extends {}>(
   url: string,
   options?: RequestOptions,
 ): Promise<HttpResponse<T>> =>
-  (await fetcher(url, {
+  fetcher<T>(url, {
     ...options,
     method: HTTPMethods.PUT,
-  })) as HttpResponse<T>
+  })
 
 export const post = async <T extends {}>(
   url: string,
   options?: RequestOptions,
 ): Promise<HttpResponse<T>> =>
-  (await fetcher(url, {
+  fetcher<T>(url, {
     url,
     ...options,
     method: HTTPMethods.POST,
-  })) as HttpResponse<T>
+  })
 
 export const del = async <T extends {}>(
   url: string,
   options?: RequestOptions,
 ): Promise<HttpResponse<T>> =>
-  (await fetcher(url, {
+  fetcher<T>(url, {
     ...options,
     method: HTTPMethods.DELETE,
-  })) as HttpResponse<T>
+  })
