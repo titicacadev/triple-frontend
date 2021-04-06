@@ -6,7 +6,7 @@ import { HttpResponse, RequestOptions, HTTPMethods } from './types'
 export * from './types'
 export * from './error'
 
-const refetchStatuses = [502]
+const refetchStatuses = [502, 503, 504]
 
 export async function fetcher<T = any>(
   url: string,
