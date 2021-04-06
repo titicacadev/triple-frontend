@@ -1,9 +1,11 @@
 import { css } from 'styled-components'
-/**
- * overflow: hidden과 border-radius 사용 시 사파리에서 발생하는 버그를 위한  CSS 추가
- * @param borderRadiusMixin
- */
 
+/**
+ * border-radius를 지정하는 mixin
+ * 자식 엘리먼트가 border-radius를 무시하지 않도록 overflow: hidden이 추가됩니다.
+ * 또한, 관련한 safari 버그를 우회하는 workaround도 포함합니다.
+ * @param  borderRadiusMixin
+ */
 export const borderRadiusMixin = css<{ borderRadius?: number }>`
   ${({ borderRadius }) =>
     borderRadius &&

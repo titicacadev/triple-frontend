@@ -1,14 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
+import { borderRadiusMixin } from '@titicaca/core-elements'
 
-const VideoContainer = styled.div`
+const VideoContainer = styled.div<{ borderRadius: number }>`
   position: relative;
   margin: 30px 30px 0 30px;
   height: 0;
   padding-bottom: 56.25%;
-  border-radius: 6px;
-  overflow: hidden;
-  mask-image: radial-gradient(white, black);
+  ${borderRadiusMixin}
 `
 
 const VideoPlayer = styled.iframe`
@@ -25,7 +24,7 @@ export default function ExternalVideo({
   value: { provider: string; identifier: string }
 }) {
   return provider === 'youtube' ? (
-    <VideoContainer>
+    <VideoContainer borderRadius={6}>
       <VideoPlayer
         src={`https://www.youtube.com/embed/${identifier}?rel=0&amp;showinfo=0`}
         frameBorder="0"
