@@ -6,6 +6,8 @@ import { HttpResponse, RequestOptions, HTTPMethods } from './types'
 export * from './types'
 export * from './error'
 
+const refetchStatuses = [502]
+
 export async function fetcher<T = any>(
   url: string,
   { req, body, useBodyAsRaw, ...rest }: RequestOptions,
@@ -29,16 +31,26 @@ export async function fetcher<T = any>(
     ? { ...defaultHeaders, 'X-Soto-Session': sessionId }
     : { ...defaultHeaders }
 
-  const response: HttpResponse<T> = await fetch(reqUrl, {
-    credentials: 'same-origin',
-    headers,
-    ...rest,
-    body: body
-      ? useBodyAsRaw
-        ? (body as BodyInit)
-        : JSON.stringify(body)
-      : undefined,
-  })
+  const getResponse: (retry: number) => Promise<HttpResponse<T>> = async (
+    retry: number,
+  ) => {
+    const response: HttpResponse<T> = await fetch(reqUrl, {
+      credentials: 'same-origin',
+      headers,
+      ...rest,
+      body: body
+        ? useBodyAsRaw
+          ? (body as BodyInit)
+          : JSON.stringify(body)
+        : undefined,
+    })
+
+    return retry <= 0 || !refetchStatuses.includes(response.status)
+      ? response
+      : getResponse(retry - 1)
+  }
+
+  const response = await getResponse(5)
 
   try {
     /**
