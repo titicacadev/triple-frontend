@@ -27,9 +27,10 @@ export async function fetcher<T = any>(
   const sessionId = req
     ? new Cookies(req.headers.cookie).get('x-soto-session')
     : undefined
-  const headers = sessionId
-    ? { ...defaultHeaders, 'X-Soto-Session': sessionId }
-    : { ...defaultHeaders }
+  const headers = {
+    ...defaultHeaders,
+    ...(sessionId && { 'X-Soto-Session': sessionId }),
+  }
 
   const getResponse: (retry: number) => Promise<HttpResponse<T>> = async (
     retry: number,
@@ -45,9 +46,16 @@ export async function fetcher<T = any>(
         : undefined,
     })
 
-    return retry <= 0 || !refetchStatuses.includes(response.status)
-      ? response
-      : getResponse(retry - 1)
+    if (
+      response.body ||
+      rest.method !== HTTPMethods.GET ||
+      retry <= 0 ||
+      !refetchStatuses.includes(response.status)
+    ) {
+      return response
+    }
+
+    return getResponse(retry - 1)
   }
 
   const response = await getResponse(5)
