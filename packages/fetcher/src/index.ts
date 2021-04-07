@@ -10,7 +10,7 @@ const refetchStatuses = [502, 503, 504]
 
 export async function fetcher<T = any>(
   url: string,
-  { req, body, useBodyAsRaw, ...rest }: RequestOptions,
+  { req, body, useBodyAsRaw, retryable, ...rest }: RequestOptions,
 ): Promise<HttpResponse<T>> {
   if (req && !process.env.API_URI_BASE) {
     throw new Error(
@@ -55,10 +55,16 @@ export async function fetcher<T = any>(
       return response
     }
 
+    const jitterDelay = Math.random() + 1
+
+    await new Promise((resolve) =>
+      setTimeout(resolve, 100 * (Math.pow(2, 3 - retry) + jitterDelay)),
+    )
+
     return getResponse(retry - 1)
   }
 
-  const response = await getResponse(5)
+  const response = await getResponse(retryable ? 3 : 0)
 
   try {
     /**

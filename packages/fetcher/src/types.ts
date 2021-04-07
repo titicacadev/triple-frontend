@@ -11,6 +11,7 @@ export type RequestOptions = {
   headers?: HeadersInit
   /** don't stringfy body */
   useBodyAsRaw?: boolean
+  retryable?: boolean
   [key: string]: any
 }
 
