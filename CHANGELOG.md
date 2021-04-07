@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### core-elements
+
+- Dark 테마 일 시 배경색 white 지정 (#1300)
+
 ## 2.16.0
 
 ### fetcher
