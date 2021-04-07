@@ -35,59 +35,39 @@ export enum TransitionType {
 
 const MODAL_CONTENT: {
   [type in TransitionType]: {
-    icon?: string
     title?: string
     description?: string
     eventLabel?: string
   }
 } = {
   [TransitionType.General]: {
-    icon: 'https://assets.triple.guide/images/ico-popup-app@4x.png',
-    description: '더 많은 정보를 보려면\n트리플에 방문해보세요!',
+    description: '트리플 앱에서 더욱 다양한 기능을\n편리하게 이용해보세요.',
   },
   [TransitionType.Gallery]: {
-    icon: 'https://assets.triple.guide/images/ico-popup-gallery@4x.png',
-    description: '사진은 앱에서 더 편리하게\n확인할 수 있어요.',
     eventLabel: '대표사진_선택',
   },
   [TransitionType.Scrap]: {
-    icon: 'https://assets.triple.guide/images/ico-popup-scrap@4x.png',
     title: '저장은 앱에서만 가능해요',
-    description: '가고 싶은 장소를 저장하고, 여행할 때 실시간으로 꺼내 보세요.',
   },
   [TransitionType.Review]: {
-    icon: 'https://assets.triple.guide/images/ico-popup-review@4x.png',
-    description: '리뷰는 앱에서 더 편리하게\n확인할 수 있어요.',
     eventLabel: '리뷰_리뷰글더보기',
   },
   [TransitionType.ReviewWrite]: {
-    icon: 'https://assets.triple.guide/images/ico-popup-review@4x.png',
-    description: '리뷰는 앱에서 작성할 수 있어요.',
     eventLabel: '리뷰_리뷰쓰기',
   },
   [TransitionType.ReviewThumbnail]: {
-    icon: 'https://assets.triple.guide/images/ico-popup-gallery@4x.png',
-    description: '사진은 앱에서 더 편리하게\n확인할 수 있어요.',
     eventLabel: '리뷰_리뷰사진썸네일',
   },
   [TransitionType.Article]: {
-    icon: 'https://assets.triple.guide/images/ico-popup-guidebook@4x.png',
-    description:
-      '여행의 핵심 정보만 쏙쏙! 여행에 꼭 필요한 정보를 무료로 확인하세요.',
     eventLabel: '추천가이드_더보기',
   },
   [TransitionType.Tna]: {
-    icon: 'https://assets.triple.guide/images/ico-popup-tna@4x.png',
-    description: '투어티켓 예약은\n앱에서 더 편리하게 할 수 있어요',
     eventLabel: '투어티켓_상품선택',
   },
   [TransitionType.Hotel]: {
-    icon: 'https://assets.triple.guide/images/ico-popup-hotel@4x.png',
-    description: '호텔 예약은\n앱에서 더 편리하게 할 수 있어요.',
     eventLabel: '호텔_선택',
   },
   [TransitionType.View]: {
-    icon: 'https://assets.triple.guide/images/ico-popup-app@4x.png',
     description:
       '일정 짜기부터 호텔, 투어・티켓 예약까지!\n트리플로 한 번에 여행 준비하세요.',
     eventLabel: '컨텐츠_연속보기',
@@ -101,8 +81,10 @@ export function TransitionModal({ deepLink }: { deepLink: string }) {
   const matchData = (uriHash || '').match(/^transition\.(.+)$/)
 
   if (matchData && Object.keys(MODAL_CONTENT).includes(matchData[1])) {
-    const { icon, title, description, eventLabel } =
+    const { title, description, eventLabel } =
       MODAL_CONTENT[matchData[1] as TransitionType] || {}
+
+    const icon = 'https://assets.triple.guide/images/ico-popup-app@4x.png'
 
     return (
       <Modal open onClose={back}>
@@ -119,7 +101,8 @@ export function TransitionModal({ deepLink }: { deepLink: string }) {
             size="small"
             margin={{ bottom: 30, left: 30, right: 30 }}
           >
-            {description}
+            {description ||
+              '트리플 앱에서 더욱 다양한 기능을\n편리하게 이용해보세요.'}
           </Text>
         ) : null}
 
