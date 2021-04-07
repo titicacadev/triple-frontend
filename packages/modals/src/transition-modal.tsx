@@ -35,7 +35,6 @@ export enum TransitionType {
 
 const MODAL_CONTENT: {
   [type: string]: {
-    title?: string
     description?: string
     eventLabel?: string
   }
@@ -76,7 +75,6 @@ export function TransitionModal({ deepLink }: { deepLink: string }) {
 
   if (matchData && Object.keys(MODAL_CONTENT).includes(matchData[1])) {
     const {
-      title,
       description = '트리플 앱에서 더욱 다양한 기능을\n편리하게 이용해보세요.',
       eventLabel,
     } = MODAL_CONTENT[matchData[1] as TransitionType] || {}
@@ -86,11 +84,6 @@ export function TransitionModal({ deepLink }: { deepLink: string }) {
     return (
       <Modal open onClose={back}>
         <IconImage src={icon} />
-        {title ? (
-          <Text bold center size="big" color="gray" padding={{ bottom: 10 }}>
-            {title}
-          </Text>
-        ) : null}
         {description ? (
           <Text
             center
