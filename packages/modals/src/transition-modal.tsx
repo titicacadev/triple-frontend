@@ -34,7 +34,7 @@ export enum TransitionType {
 }
 
 const MODAL_CONTENT: {
-  [type in Exclude<TransitionType, TransitionType.General>]: {
+  [type: string]: {
     title?: string
     description?: string
     eventLabel?: string
@@ -42,9 +42,6 @@ const MODAL_CONTENT: {
 } = {
   [TransitionType.Gallery]: {
     eventLabel: '대표사진_선택',
-  },
-  [TransitionType.Scrap]: {
-    title: '저장은 앱에서만 가능해요',
   },
   [TransitionType.Review]: {
     eventLabel: '리뷰_리뷰글더보기',
