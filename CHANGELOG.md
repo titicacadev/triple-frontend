@@ -4,11 +4,11 @@
 
 ### fetcher
 
-- 특정 ErrorStatus에서 reFetch 시도합니다 (##1295)
+- 특정 ErrorStatus에서 reFetch 시도합니다 (#1295)
 
 ### modals
 
-- transition-modal 디자인 통일 (icon. description) (##1297)
+- transition-modal 디자인 통일 (icon. description) (#1297)
 
 ## 2.15.1
 
