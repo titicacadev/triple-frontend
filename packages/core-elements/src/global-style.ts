@@ -188,4 +188,10 @@ export const GlobalStyle = createGlobalStyle`
   a:any-link {
     text-decoration: none;
   }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: var(--color-white);
+    }
+  }
 `
