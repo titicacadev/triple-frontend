@@ -35,7 +35,6 @@ export enum TransitionType {
 const MODAL_CONTENT: {
   [type in TransitionType]: {
     title?: string
-    description?: string
     eventLabel?: string
   }
 } = {
