@@ -12,6 +12,19 @@
 
 - transition-modal 디자인 통일 (icon. description) (#1297)
 
+### core-elements
+
+- 사파리에서 발생하는 border-radius 버그 수정 (#1292)
+
+
+### triple-documents
+
+- 사용자 인증 플로우를 확장합니다. (#1280)
+
+### router
+
+- local-link 스크롤 이슈 수정 (#1289)
+
 ## 2.15.1
 
 ### common
