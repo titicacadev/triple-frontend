@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.16.1
+
 ### core-elements
 
 - Dark 테마 일 시 배경색 white 지정 (#1300)
