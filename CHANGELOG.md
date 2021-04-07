@@ -16,7 +16,7 @@
 
 - 사파리에서 발생하는 border-radius 버그 수정 (#1292)
 
-### triple-documents
+### triple-document, user-verification
 
 - 사용자 인증 플로우를 확장합니다. (#1280)
 
