@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Modals
+
+- 앱 설치 전환 Dialog 디자인 통일 (icon, description)
+
 ## 2.15.1
 
 ### common
