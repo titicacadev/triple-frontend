@@ -34,15 +34,12 @@ export enum TransitionType {
 }
 
 const MODAL_CONTENT: {
-  [type in TransitionType]: {
+  [type in string]: {
     title?: string
     description?: string
     eventLabel?: string
   }
 } = {
-  [TransitionType.General]: {
-    description: '트리플 앱에서 더욱 다양한 기능을\n편리하게 이용해보세요.',
-  },
   [TransitionType.Gallery]: {
     eventLabel: '대표사진_선택',
   },
