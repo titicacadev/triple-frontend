@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.16.0
+
 ### fetcher
 
 - 특정 ErrorStatus에서 reFetch 시도합니다 (#1295)
