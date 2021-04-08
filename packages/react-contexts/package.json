@@ -24,7 +24,7 @@
     "next": "*"
   },
   "devDependencies": {
-    "@types/humps": "^1.1.2",
+    "@types/humps": "^2.0.0",
     "@types/isomorphic-fetch": "^0.0.35",
     "@types/qs": "^6.9.2",
     "@types/ua-parser-js": "^0.7.33"
