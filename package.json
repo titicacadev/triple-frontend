@@ -28,7 +28,8 @@
     "clean-lock": "lerna exec --ignore @titicaca/triple-frontend-docs -- rm -rf ./package-lock.json",
     "clean": "lerna exec -- rm -rf ./node_modules ./lib ./*.tsbuildinfo",
     "references": "lerna exec --parallel -- node \\$LERNA_ROOT_PATH/scripts/make-references.js",
-    "make-build-tsconfig": "lerna exec --ignore @titicaca/triple-frontend-docs --parallel -- node \\$LERNA_ROOT_PATH/scripts/make-build-tsconfig.js"
+    "make-build-tsconfig": "lerna exec --ignore @titicaca/triple-frontend-docs --parallel -- node \\$LERNA_ROOT_PATH/scripts/make-build-tsconfig.js",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
@@ -68,11 +69,6 @@
     "styled-components": "^5.1.1",
     "typescript": "^3.9.5",
     "utility-types": "^3.10.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged -q 2> /dev/null"
-    }
   },
   "lint-staged": {
     "**/*.{js,ts,tsx}": [
