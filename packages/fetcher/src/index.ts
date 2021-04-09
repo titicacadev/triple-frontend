@@ -67,13 +67,18 @@ export async function fetcher<T = any>(
   const response = await getResponse(retryable ? 3 : 0)
 
   try {
+    const responseContentType = response.headers.get('content-type')
+
     /**
      * TODO:
-     * - [ ] 서버에서 모든 응답값 response.body 가 json 이여야 한다.
      * - [ ] 서버에서 모든 에러 포맷이 json 이 보장되거나 status 코드로만 처리할 수 있도록 한다.
      * - 현재 string like boolean | undefined | json string 이 2xx, 4xx 에서 혼용되고 있다.
      */
-    if (response.status === 200) {
+    if (
+      response.status === 200 &&
+      responseContentType &&
+      /json/.test(responseContentType)
+    ) {
       response.result = await response.json()
     }
 
