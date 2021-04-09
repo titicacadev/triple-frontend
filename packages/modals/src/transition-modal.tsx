@@ -39,9 +39,11 @@ const MODAL_CONTENT: {
     eventLabel?: string
   }
 } = {
+  [TransitionType.General]: {},
   [TransitionType.Gallery]: {
     eventLabel: '대표사진_선택',
   },
+  [TransitionType.Scrap]: {},
   [TransitionType.Review]: {
     eventLabel: '리뷰_리뷰글더보기',
   },
