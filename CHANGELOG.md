@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### modals
+
+- transition-modal 팝업 오류 수정 (#1306)
+
 ## 2.16.1
 
 ### core-elements
