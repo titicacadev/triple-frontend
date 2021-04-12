@@ -79,6 +79,9 @@ export default function POICardElement({
   id: string
   type: ListingPOI['type']
   scraped: boolean
+  /**
+   * @deprecated 더이상 사용하지 않습니다.
+   */
   regionId?: string
   image: ImageMeta | undefined
   names: TranslatedProperty
