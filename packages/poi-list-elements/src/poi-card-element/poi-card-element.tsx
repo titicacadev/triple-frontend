@@ -61,7 +61,6 @@ export default function POICardElement({
   id,
   type,
   names: { ko, en, local },
-  regionId,
   image,
   comment,
   reviewsRating,
@@ -142,11 +141,9 @@ export default function POICardElement({
             </Image.FixedDimensionsFrame>
           </Image>
 
-          {regionId ? (
-            <ScrapButtonContainer>
-              <OverlayScrapButton resource={{ id, type, scraped }} size={30} />
-            </ScrapButtonContainer>
-          ) : null}
+          <ScrapButtonContainer>
+            <OverlayScrapButton resource={{ id, type, scraped }} size={30} />
+          </ScrapButtonContainer>
         </ImageContainer>
 
         <Container
