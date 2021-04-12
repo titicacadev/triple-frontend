@@ -25,6 +25,7 @@ import {
 export default function Coupon({
   value: { identifier: slugId, description, verificationType },
   deepLink,
+  couponFetchDisabled,
 }: {
   value: {
     identifier: string
@@ -32,6 +33,7 @@ export default function Coupon({
     verificationType?: VerificationType
   }
   deepLink: string
+  couponFetchDisabled?: boolean
 }) {
   const { isPublic } = useUserAgentContext()
 
@@ -43,6 +45,7 @@ export default function Coupon({
         <InAppCouponDownloadButton
           slugId={slugId}
           verificationType={verificationType}
+          couponFetchDisabled={couponFetchDisabled}
         />
       )}
 
@@ -86,9 +89,11 @@ function PublicCouponDownloadButton() {
 function InAppCouponDownloadButton({
   slugId,
   verificationType,
+  couponFetchDisabled,
 }: {
   slugId: string
   verificationType?: VerificationType
+  couponFetchDisabled?: boolean
 }) {
   const [enabled, setEnabled] = useState(false)
   const [downloaded, setDownloaded] = useState(false)
@@ -121,8 +126,13 @@ function InAppCouponDownloadButton({
         captureException(e)
       }
     }
+    if (couponFetchDisabled) {
+      setEnabled(false)
+      return
+    }
+
     fetchCoupon()
-  }, [slugId])
+  }, [slugId, couponFetchDisabled])
 
   const pushHashDownloaded = () => push(HASH_ALREADY_DOWNLOAD_COUPON)
   const downloadCoupon = useCallback(async () => {

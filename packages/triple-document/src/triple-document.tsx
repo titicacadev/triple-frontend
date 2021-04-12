@@ -59,6 +59,7 @@ interface TripleDocumentProps {
   videoAutoPlay?: boolean
   hideVideoControls?: boolean
   optimized?: boolean
+  couponFetchDisabled?: boolean
 }
 
 export const ELEMENTS: ElementSet = {
@@ -102,6 +103,7 @@ export function TripleDocument({
   videoAutoPlay,
   hideVideoControls,
   optimized = false,
+  couponFetchDisabled,
 }: TripleDocumentProps) {
   const { navigate } = useHistoryFunctions()
   const handleAction = useMemo(() => initialize({ cta, navigate }), [
@@ -145,6 +147,7 @@ export function TripleDocument({
               videoAutoPlay={videoAutoPlay}
               hideVideoControls={hideVideoControls}
               optimized={optimized}
+              couponFetchDisabled={couponFetchDisabled}
             />
           )
         )
