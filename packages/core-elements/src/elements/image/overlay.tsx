@@ -2,7 +2,7 @@ import React, { PropsWithChildren, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 
 import { MarginPadding } from '../../commons'
-import { paddingMixin, layeringMixin } from '../../mixins'
+import { paddingMixin, layeringMixin, LayeringMixinProps } from '../../mixins'
 
 import { useImageState } from './context'
 
@@ -21,11 +21,13 @@ const OverlayStyle: { [key in OverlayType]: ReturnType<typeof css> } = {
   `,
 }
 
-const OverlayContainer = styled.div<{
-  borderRadius: number
-  padding?: MarginPadding
-  overlayType?: OverlayType
-}>`
+const OverlayContainer = styled.div<
+  {
+    borderRadius: number
+    padding?: MarginPadding
+    overlayType?: OverlayType
+  } & LayeringMixinProps
+>`
   box-sizing: border-box;
   position: absolute;
   top: 0;
@@ -37,17 +39,21 @@ const OverlayContainer = styled.div<{
   ${({ overlayType = 'gradient' }) => OverlayStyle[overlayType]}
 
   ${paddingMixin}
-  ${layeringMixin(1)}
+  ${layeringMixin(0)}
 `
 
 export default function ImageOverlay({
   overlayType = 'gradient',
   padding,
+  zTier,
+  zIndex,
   children,
-}: PropsWithChildren<{
-  overlayType?: OverlayType
-  padding?: MarginPadding
-}>) {
+}: PropsWithChildren<
+  {
+    overlayType?: OverlayType
+    padding?: MarginPadding
+  } & LayeringMixinProps
+>) {
   const { borderRadius, setOverlayMounted } = useImageState()
 
   useEffect(() => {
@@ -63,6 +69,8 @@ export default function ImageOverlay({
       overlayType={overlayType}
       padding={padding}
       borderRadius={borderRadius}
+      zTier={zTier}
+      zIndex={zIndex}
     >
       {children}
     </OverlayContainer>
