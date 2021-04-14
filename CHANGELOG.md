@@ -2,6 +2,36 @@
 
 ## Unreleased
 
+## 2.17.0
+
+### package.json
+
+- 의존성을 추가하는 스크립트 작성 (#1309)
+
+### core-elements
+
+- Image.Overlay 컴포넌트에 기본 zTier 값을 추가합니다 (#1308)
+
+### poi-list-elements
+
+- POICardElement의 스크랩 버튼을 무조건 표시합니다 (#1307)
+
+### modals
+
+- transition-modal 팝업 오류 수정 (#1306)
+
+### fetcher
+
+- 응답의 content-type에 json이 포함되어있을 때만 json 파싱 (#1305)
+
+### view-utilities, react-contexts
+
+- normalize-query-keys 모듈을 추가합니다. (#1304)
+
+### husky
+
+- Husky v6 적용 (#1303)
+
 ### modals
 
 - transition-modal 팝업 오류 수정 (#1306)
