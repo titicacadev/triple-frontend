@@ -24,25 +24,28 @@ export default function StaticMap({
   type,
   lat,
   lon,
+  zoom = 16,
+  frame = 'mini',
   markerImage,
   onClick,
 }: {
   type?: PoiType
   lat: number | string
   lon: number | string
+  zoom?: number | string
+  frame?: Parameters<typeof Image.FixedRatioFrame>['0']['frame']
   markerImage?: string
   onClick?: (e: React.SyntheticEvent) => void
 }) {
   return (
     <Container position="relative" onClick={onClick}>
       <Image>
-        <Image.FixedRatioFrame frame="mini">
+        <Image.FixedRatioFrame frame={frame}>
           <Image.Img
-            src={`/api/maps/static-map?size=320x120&scale=2&center=${lat}%2C${lon}&zoom=16`}
+            src={`/api/maps/static-map?size=320x120&scale=2&center=${lat}%2C${lon}&zoom=${zoom}`}
           />
         </Image.FixedRatioFrame>
       </Image>
-
       <Marker src={markerImage || (type && MARKER_SOURCES[type])} />
     </Container>
   )
