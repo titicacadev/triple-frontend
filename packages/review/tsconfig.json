@@ -22,6 +22,9 @@
       "path": "../react-hooks"
     },
     {
+      "path": "../type-definitions"
+    },
+    {
       "path": "../ui-flow"
     },
     {
