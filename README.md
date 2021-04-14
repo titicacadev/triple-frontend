@@ -150,6 +150,8 @@ $ lerna bootstrap
 npm run add -- --scope=<의존성을 추가할 대상 패키지> <추가할 패키지>
 ```
 
+devDependency이면 --dev를, peer dependency이면 --peer를 추가합니다.
+
 ### Testing
 
 각 패키지별 유닛 테스트를 추가할 예정입니다.
