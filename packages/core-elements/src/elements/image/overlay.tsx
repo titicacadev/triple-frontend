@@ -2,7 +2,7 @@ import React, { PropsWithChildren, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 
 import { MarginPadding } from '../../commons'
-import { paddingMixin } from '../../mixins'
+import { paddingMixin, layeringMixin } from '../../mixins'
 
 import { useImageState } from './context'
 
@@ -37,6 +37,7 @@ const OverlayContainer = styled.div<{
   ${({ overlayType = 'gradient' }) => OverlayStyle[overlayType]}
 
   ${paddingMixin}
+  ${layeringMixin(1)}
 `
 
 export default function ImageOverlay({
