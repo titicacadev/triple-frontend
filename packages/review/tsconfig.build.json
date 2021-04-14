@@ -18,6 +18,9 @@
       "path": "../react-hooks/tsconfig.build.json"
     },
     {
+      "path": "../type-definitions/tsconfig.build.json"
+    },
+    {
       "path": "../ui-flow/tsconfig.build.json"
     },
     {
