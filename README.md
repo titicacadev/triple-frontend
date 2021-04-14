@@ -144,6 +144,12 @@ $ lerna bootstrap
 9. `/release` 커맨드로 배포
 10. 배포 (Optional): CD에서 패키지 publish, npm 페이지 통해서 확인
 
+#### 패키지에 의존성 추가
+
+```bash
+npm run add -- --scope=<의존성을 추가할 대상 패키지> <추가할 패키지>
+```
+
 ### Testing
 
 각 패키지별 유닛 테스트를 추가할 예정입니다.
