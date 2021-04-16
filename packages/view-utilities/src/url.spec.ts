@@ -286,4 +286,13 @@ describe('generateUrl', function () {
 
     expect(query).toMatch(/(?=.*asdf=asdf)/)
   })
+
+  it('should preserve key only query', () => {
+    expect(generateUrl({}, '/path?_triple_no_navbar')).toBe(
+      '/path?_triple_no_navbar',
+    )
+    expect(generateUrl({ query: '_triple_no_navbar' })).toBe(
+      '?_triple_no_navbar',
+    )
+  })
 })
