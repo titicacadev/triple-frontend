@@ -1,36 +1,8 @@
 import React, { useMemo, useCallback } from 'react'
-import {
-  HR1,
-  HR2,
-  HR3,
-  HR4,
-  HR5,
-  HR6,
-  ImageSourceType,
-} from '@titicaca/core-elements'
+import { ImageSourceType } from '@titicaca/core-elements'
 import { useHistoryFunctions } from '@titicaca/react-contexts'
 import { initialize } from '@titicaca/standard-action-handler'
 
-import {
-  Coupon,
-  Text,
-  MH1,
-  MH2,
-  MH3,
-  MH4,
-  Embedded,
-  ExternalVideo,
-  Images,
-  Links,
-  List,
-  Note,
-  Pois,
-  Regions,
-  Table,
-  TnaProductsList,
-  Itinerary,
-  Anchor,
-} from './elements'
 import {
   TripleElementData,
   ImageEventHandler,
@@ -51,6 +23,7 @@ import {
 import { ImageSourceProvider } from './prop-context/image-source'
 import { DeepLinkProvider } from './prop-context/deep-link'
 import { MediaConfig, MediaConfigProvider } from './prop-context/media-config'
+import ELEMENTS from './elements'
 
 type TripleDocumentProps = {
   customElements?: ElementSet
@@ -66,33 +39,6 @@ type TripleDocumentProps = {
   deepLink?: string
   cta?: string
 } & MediaConfig
-
-export const ELEMENTS: ElementSet = {
-  heading1: MH1,
-  heading2: MH2,
-  heading3: MH3,
-  heading4: MH4,
-  text: Text,
-  images: Images,
-  hr1: HR1,
-  hr2: HR2,
-  hr3: HR3,
-  hr4: HR4,
-  hr5: HR5,
-  hr6: HR6,
-  pois: Pois,
-  links: Links,
-  embedded: Embedded,
-  note: Note,
-  list: List,
-  regions: Regions,
-  video: ExternalVideo,
-  tnaProducts: TnaProductsList,
-  table: Table,
-  coupon: Coupon,
-  itinerary: Itinerary,
-  anchor: Anchor,
-}
 
 export function TripleDocument({
   children,
