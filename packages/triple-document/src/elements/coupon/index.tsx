@@ -12,6 +12,8 @@ import {
   VerificationType,
 } from '@titicaca/user-verification'
 
+import { useDeepLink } from '../../prop-context/deep-link'
+
 import {
   HASH_ALREADY_DOWNLOAD_COUPON,
   HASH_COMPLETE_DOWNLOAD_COUPON,
@@ -24,16 +26,20 @@ import {
 
 export default function Coupon({
   value: { identifier: slugId, description, verificationType },
-  deepLink,
 }: {
   value: {
     identifier: string
     description: string
     verificationType?: VerificationType
   }
-  deepLink: string
 }) {
   const { isPublic } = useUserAgentContext()
+  const deepLink = useDeepLink()
+
+  if (!deepLink) {
+    // TODO: triple-document 에러 처리 방법 설계
+    return null
+  }
 
   return (
     <Container margin={{ top: 44, right: 30, left: 30, bottom: 42 }}>
