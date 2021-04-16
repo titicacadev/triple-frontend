@@ -44,6 +44,10 @@ import {
   TNAProductClickHandler,
   TNAProductClickHandlerProvider,
 } from './prop-context/tna-product-click-handler'
+import {
+  TNAProductsFetcher,
+  TNAProductsFetcherProvider,
+} from './prop-context/tna-products-fetcher'
 
 interface TripleDocumentProps {
   customElements?: ElementSet
@@ -54,7 +58,7 @@ interface TripleDocumentProps {
   onImageClick?: ImageEventHandler
   onLinkClick?: LinkEventHandler
   onTNAProductClick?: TNAProductClickHandler
-  onTNAProductsFetch?: (slotId: number) => Promise<unknown>
+  onTNAProductsFetch?: TNAProductsFetcher
   imageSourceComponent?: ImageSourceType
   deepLink?: string
   cta?: string
@@ -134,24 +138,25 @@ export function TripleDocument({
       <ImageClickHandlerProvider value={onImageClick}>
         <LinkClickHandlerProvider value={onLinkClick || defaultHandleLinkClick}>
           <TNAProductClickHandlerProvider value={onTNAProductClick}>
-            {children.map(({ type, value }, i) => {
-              const Element = { ...ELEMENTS, ...customElements }[type]
+            <TNAProductsFetcherProvider value={onTNAProductsFetch}>
+              {children.map(({ type, value }, i) => {
+                const Element = { ...ELEMENTS, ...customElements }[type]
 
-              return (
-                Element && (
-                  <Element
-                    key={i}
-                    value={value}
-                    onTNAProductsFetch={onTNAProductsFetch}
-                    ImageSource={imageSourceComponent}
-                    deepLink={deepLink}
-                    videoAutoPlay={videoAutoPlay}
-                    hideVideoControls={hideVideoControls}
-                    optimized={optimized}
-                  />
+                return (
+                  Element && (
+                    <Element
+                      key={i}
+                      value={value}
+                      ImageSource={imageSourceComponent}
+                      deepLink={deepLink}
+                      videoAutoPlay={videoAutoPlay}
+                      hideVideoControls={hideVideoControls}
+                      optimized={optimized}
+                    />
+                  )
                 )
-              )
-            })}
+              })}
+            </TNAProductsFetcherProvider>
           </TNAProductClickHandlerProvider>
         </LinkClickHandlerProvider>
       </ImageClickHandlerProvider>

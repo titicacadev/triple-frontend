@@ -15,6 +15,7 @@ import { useEventTrackingContext } from '@titicaca/react-contexts'
 import IntersectionObserver from '@titicaca/intersection-observer'
 
 import { useTNAProductClickHandler } from '../prop-context/tna-product-click-handler'
+import { useTNAProductsFetcher } from '../prop-context/tna-products-fetcher'
 
 type Price = string | number
 
@@ -32,7 +33,6 @@ interface TnaProductsListProps {
   value: {
     slotId?: number
   }
-  onTNAProductsFetch?: (slotId?: number) => Promise<Response>
 }
 
 interface TnaProductsListState {
@@ -101,11 +101,9 @@ export function TnaProduct({
   )
 }
 
-export function TnaProductsList({
-  onTNAProductsFetch,
-  value: { slotId },
-}: TnaProductsListProps) {
+export function TnaProductsList({ value: { slotId } }: TnaProductsListProps) {
   const onTNAProductClick = useTNAProductClickHandler()
+  const onTNAProductsFetch = useTNAProductsFetcher()
   const [{ products, showMore, title }, setProductsList] = useState<
     TnaProductsListState
   >({
