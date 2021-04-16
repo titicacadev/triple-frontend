@@ -14,6 +14,7 @@ import { useUserAgentContext } from '@titicaca/react-contexts'
 import { useImageClickHandler } from '../prop-context/image-click-handler'
 import { useLinkClickHandler } from '../prop-context/link-click-handler'
 import { useImageSource } from '../prop-context/image-source'
+import { useMediaConfig } from '../prop-context/media-config'
 
 import DocumentCarousel from './shared/document-carousel'
 import generateClickHandler from './shared/generate-click-handler'
@@ -24,21 +25,16 @@ const PLAYS_INLINE_APP_VERSION = '4.10.0'
 
 export default function Images({
   value: { images, display },
-  videoAutoPlay,
-  hideVideoControls,
-  optimized,
 }: {
   value: {
     images: ImageMeta[]
     display: MediaDisplayProperty
   }
-  videoAutoPlay?: boolean
-  hideVideoControls?: boolean
-  optimized?: boolean
 }) {
   const onImageClick = useImageClickHandler()
   const onLinkClick = useLinkClickHandler()
   const ImageSource = useImageSource()
+  const { videoAutoPlay, hideVideoControls, optimized } = useMediaConfig()
 
   const ImagesContainer = ['block', 'gapless-block'].includes(display)
     ? Container
