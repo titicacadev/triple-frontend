@@ -1,14 +1,9 @@
 import React from 'react'
-import { ImageSourceType, Carousel, Container } from '@titicaca/core-elements'
+import { Carousel, Container } from '@titicaca/core-elements'
 import TripleMedia from '@titicaca/triple-media'
 import { ImageMeta } from '@titicaca/type-definitions'
 
-import {
-  TripleElementData,
-  LinkEventHandler,
-  ImageEventHandler,
-  ElementSet,
-} from '../types'
+import { TripleElementData, ElementSet } from '../types'
 import { useImageClickHandler } from '../prop-context/image-click-handler'
 import { useLinkClickHandler } from '../prop-context/link-click-handler'
 import { useImageSource } from '../prop-context/image-source'
@@ -31,20 +26,17 @@ function EmbeddedImage({
   value: {
     images: [image],
   },
-  onImageClick,
-  onLinkClick,
-  ImageSource,
-  optimized,
   ...props
 }: {
   value: {
     images: ImageMeta[]
   }
-  onImageClick: ImageEventHandler
-  onLinkClick: LinkEventHandler
-  ImageSource: ImageSourceType
-  optimized?: boolean
 } & Parameters<typeof Container>[0]) {
+  const onImageClick = useImageClickHandler()
+  const onLinkClick = useLinkClickHandler()
+  const ImageSource = useImageSource()
+  const { optimized } = useMediaConfig()
+
   if (image) {
     const handleClick = generateClickHandler(onLinkClick, onImageClick)
 
@@ -78,11 +70,6 @@ export default function Embedded({
     entries: TripleElementData[][]
   }
 }) {
-  const onImageClick = useImageClickHandler()
-  const onLinkClick = useLinkClickHandler()
-  const ImageSource = useImageSource()
-  const { optimized } = useMediaConfig()
-
   return (
     <DocumentCarousel margin={{ top: 20 }}>
       {entries.map((elements, i) => (
@@ -95,10 +82,6 @@ export default function Embedded({
                 <Element
                   key={j}
                   value={value}
-                  onLinkClick={onLinkClick}
-                  onImageClick={onImageClick}
-                  ImageSource={ImageSource}
-                  optimized={optimized}
                   {...(j === 0 ? { margin: { top: 0 } } : {})}
                 />
               )
