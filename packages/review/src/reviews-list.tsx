@@ -9,6 +9,7 @@ import {
 import { TransitionType } from '@titicaca/modals'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { ImageMeta } from '@titicaca/type-definitions'
+import semver from 'semver'
 
 import ReviewElement, { ReviewElementProps } from './review-element'
 import ReviewTimestamp from './review-timestamp'
@@ -21,6 +22,7 @@ import { useReviewLikesContext } from './review-likes-context'
 import { AppNativeActionProps, ReviewData } from './types'
 import { useClientActions } from './use-client-actions'
 
+const LOUNGE_APP_VERSION = '4.3.0'
 export default function ReviewsList({
   myReview,
   reviews,
@@ -52,6 +54,7 @@ export default function ReviewsList({
   const { trackEvent } = useEventTrackingContext()
   const { updateLikedStatus } = useReviewLikesContext()
   const { push } = useHistoryFunctions()
+  const appVersion = semver.coerce(useUserAgentContext()?.app?.version)
   const {
     navigateUserDetail,
     navigateImages,
@@ -134,7 +137,23 @@ export default function ReviewsList({
           e: React.SyntheticEvent,
           { user: { name }, comment, media, createdAt }: ReviewData,
           image: ImageMeta,
+          index,
         ) => {
+          if (
+            (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) ||
+            !media
+          ) {
+            return
+          }
+          trackEvent({
+            ga: ['리뷰_리뷰사진썸네일'],
+            fa: {
+              action: '리뷰_리뷰사진썸네일',
+              item_id: resourceId,
+              photo_id: media[index].id,
+            },
+          })
+
           const convertImage = (convertingImage: ImageMeta) => ({
             id: convertingImage.id,
             title: '',
@@ -161,8 +180,29 @@ export default function ReviewsList({
             media.findIndex(({ id }) => id === image.id),
           )
         },
-        [navigateImages],
+        [appVersion, navigateImages, resourceId, trackEvent],
       ),
+    ),
+  )
+
+  const handleReviewClick = useSessionCallback(
+    useCallback(
+      (e: React.SyntheticEvent, review) => {
+        if (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) {
+          e.preventDefault()
+          e.stopPropagation()
+          trackEvent({
+            ga: ['리뷰_리뷰선택', resourceId],
+            fa: {
+              action: '리뷰_리뷰선택',
+              item_id: resourceId,
+              review_id: review.id,
+            },
+          })
+          navigateReviewDetail({ reviewId: review.id, regionId, resourceId })
+        }
+      },
+      [appVersion, trackEvent, resourceId, navigateReviewDetail, regionId],
     ),
   )
 
@@ -189,14 +229,12 @@ export default function ReviewsList({
             onLikeButtonClick={handleLikeButtonClick}
             onMenuClick={handleMenuClick}
             onImageClick={handleImageClick}
+            onReviewClick={handleReviewClick}
             likeVisible={!isPublic}
             menuVisible={!isPublic}
             resourceId={resourceId}
             DateFormatter={ReviewTimestamp}
             onShow={handleShow}
-            onMoveToDetail={(reviewId) =>
-              navigateReviewDetail({ reviewId, regionId, resourceId })
-            }
           />
         ))}
       </List>

@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  useCallback,
-  PropsWithChildren,
-  ComponentType,
-} from 'react'
+import React, { useState, PropsWithChildren, ComponentType } from 'react'
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import semver from 'semver'
@@ -13,8 +8,6 @@ import {
   useEventTrackingContext,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
-import { TransitionType } from '@titicaca/modals'
-import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { ImageMeta } from '@titicaca/type-definitions'
 
 import { useReviewLikesContext } from '../review-likes-context'
@@ -42,14 +35,15 @@ export interface ReviewElementProps {
     e: React.SyntheticEvent,
     review: ReviewData,
     image: ImageMeta,
+    index: number,
   ) => void
+  onReviewClick: (e: React.SyntheticEvent, reviewId: string) => void
   onShow?: (index: number) => void
   reviewRateDescriptions?: string[]
   likeVisible?: boolean
   menuVisible?: boolean
   DateFormatter?: ComponentType<{ date: string }>
   resourceId: string
-  onMoveToDetail: (reviewId: string) => void
 }
 
 const MetaContainer = styled.div`
@@ -95,13 +89,13 @@ export default function ReviewElement({
   onLikeButtonClick,
   onMenuClick,
   onImageClick,
+  onReviewClick,
   onShow,
   likeVisible,
   menuVisible,
   DateFormatter,
   reviewRateDescriptions,
   resourceId,
-  onMoveToDetail,
 }: ReviewElementProps) {
   const [unfolded, setUnfolded] = useState(false)
   const { deriveCurrentStateAndCount } = useReviewLikesContext()
@@ -113,52 +107,6 @@ export default function ReviewElement({
     liked: review.liked,
     likesCount: review.likesCount,
   })
-
-  const handleSelectReview = useAppCallback(
-    TransitionType.Review,
-    useSessionCallback(
-      useCallback(
-        (e: React.SyntheticEvent) => {
-          if (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) {
-            e.preventDefault()
-            e.stopPropagation()
-            trackEvent({
-              ga: ['리뷰_리뷰선택', resourceId],
-              fa: {
-                action: '리뷰_리뷰선택',
-                item_id: resourceId,
-                review_id: review.id,
-              },
-            })
-
-            onMoveToDetail(review.id)
-          }
-        },
-        [appVersion, trackEvent, resourceId, review.id, onMoveToDetail],
-      ),
-    ),
-  )
-
-  const handleImageClick = useCallback(
-    (e: React.SyntheticEvent, index: number) => {
-      if (
-        (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) ||
-        !media
-      ) {
-        return
-      }
-      trackEvent({
-        ga: ['리뷰_리뷰사진썸네일'],
-        fa: {
-          action: '리뷰_리뷰사진썸네일',
-          item_id: resourceId,
-          photo_id: media[index].id,
-        },
-      })
-      onImageClick(e, review, media[index])
-    },
-    [media, appVersion, onImageClick, review, resourceId, trackEvent],
-  )
 
   return (
     <IntersectionObserver
@@ -172,7 +120,9 @@ export default function ReviewElement({
           onClick={onUserClick && ((e) => onUserClick(e, review))}
         />
         {!blindedAt && !!rating ? <Score score={rating} /> : null}
-        <Content onClick={handleSelectReview}>
+        <Content
+          onClick={(e: React.SyntheticEvent) => onReviewClick(e, review.id)}
+        >
           {blindedAt ? (
             '신고가 접수되어 블라인드 처리되었습니다.'
           ) : comment ? (
@@ -189,6 +139,7 @@ export default function ReviewElement({
                   ) {
                     return
                   }
+
                   trackEvent({
                     ga: ['리뷰_리뷰글더보기'],
                     fa: {
@@ -210,7 +161,12 @@ export default function ReviewElement({
           )}
           {!blindedAt && media && media.length > 0 ? (
             <Container margin={{ top: 10 }}>
-              <Images images={media} onImageClick={handleImageClick} />
+              <Images
+                images={media}
+                onImageClick={(e) =>
+                  onImageClick(e, review, media[index], index)
+                }
+              />
             </Container>
           ) : null}
         </Content>
