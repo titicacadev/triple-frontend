@@ -7,7 +7,7 @@ const MAX_COMMENT_WITH_IMAGE_LINES = 3
 const MAX_COMMENT_LINES = 6
 const CHARACTERS_PER_LINE = 25
 
-const Unfold = styled.a`
+const Unfold = styled.button`
   display: inline-block;
   color: #2987f0;
   text-decoration: none;
@@ -21,7 +21,7 @@ export default function FoldableComment({
 }: {
   comment: string
   hasImage: boolean
-  onUnfoldButtonClick: MouseEventHandler<HTMLAnchorElement>
+  onUnfoldButtonClick: MouseEventHandler<HTMLButtonElement>
 }) {
   const foldedPosition = findFoldedPosition(
     hasImage ? MAX_COMMENT_WITH_IMAGE_LINES : MAX_COMMENT_LINES,
@@ -43,7 +43,7 @@ function FoldedComment({
   onUnfoldButtonClick,
 }: {
   comment: string
-  onUnfoldButtonClick: MouseEventHandler<HTMLAnchorElement>
+  onUnfoldButtonClick: MouseEventHandler<HTMLButtonElement>
 }) {
   return (
     <Comment>
