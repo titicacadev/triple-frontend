@@ -3,23 +3,24 @@ import styled from 'styled-components'
 import { ResourceListItem, Image } from '@titicaca/core-elements'
 
 import { RegionData } from '../types'
+import { useResourceClickHandler } from '../prop-context/resource-click-handler'
 
 import ResourceList from './shared/resource-list'
 
 export default function Regions({
   value: { regions },
-  onResourceClick,
 }: {
   value: { regions: RegionData[] }
-  onResourceClick?: (e: React.SyntheticEvent, region: RegionData) => void
 }) {
+  const onResourceClick = useResourceClickHandler()
+
   return (
     <ResourceList>
       {regions.map((region, index) => (
         <RegionListElement
           key={index}
           value={region}
-          onClick={onResourceClick && ((e) => onResourceClick(e, region))}
+          onClick={(e) => onResourceClick(e, region)}
         />
       ))}
     </ResourceList>

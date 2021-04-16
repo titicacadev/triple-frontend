@@ -8,6 +8,8 @@ import {
 import { Text } from '@titicaca/core-elements'
 import { ListingPOI } from '@titicaca/type-definitions'
 
+import { useResourceClickHandler } from '../prop-context/resource-click-handler'
+
 import ResourceList from './shared/resource-list'
 import DocumentCarousel from './shared/document-carousel'
 
@@ -36,18 +38,15 @@ type PoisDisplay = 'list' | string
 export default function Pois<T extends ExtendedPOIListElementData>({
   value: { display, pois },
   actionButtonElement,
-  onResourceClick,
 }: {
   value: {
     display: PoisDisplay
     pois: T[]
   }
   actionButtonElement: JSX.Element | null
-  onResourceClick?: (
-    e: React.MouseEvent<HTMLLIElement, MouseEvent>,
-    poi: T,
-  ) => void
 }) {
+  const onResourceClick = useResourceClickHandler()
+
   const Container = display === 'list' ? ResourceList : DocumentCarousel
   const margin =
     display === 'list' ? { top: 20, left: 30, right: 30 } : { top: 20 }
@@ -66,13 +65,7 @@ export default function Pois<T extends ExtendedPOIListElementData>({
         <Element
           key={poi.id}
           poi={poi}
-          onClick={
-            onResourceClick
-              ? (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-                  onResourceClick(e, poi)
-                }
-              : undefined
-          }
+          onClick={(e) => onResourceClick(e, poi)}
           actionButtonElement={renderPoiListActionButton({
             actionButtonElement,
             display,
