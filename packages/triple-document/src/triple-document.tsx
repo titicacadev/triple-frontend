@@ -37,6 +37,7 @@ import {
   LinkEventHandler,
   ElementSet,
 } from './types'
+import { ResourceClickHandlerProvider } from './prop-context/resource-click-handler'
 
 interface TripleDocumentProps {
   customElements?: ElementSet
@@ -126,7 +127,9 @@ export function TripleDocument({
   )
 
   return (
-    <>
+    <ResourceClickHandlerProvider
+      value={onResourceClick || defaultHandleResourceClick}
+    >
       {children.map(({ type, value }, i) => {
         const Element = { ...ELEMENTS, ...customElements }[type]
 
@@ -135,7 +138,6 @@ export function TripleDocument({
             <Element
               key={i}
               value={value}
-              onResourceClick={onResourceClick || defaultHandleResourceClick}
               onImageClick={onImageClick}
               onLinkClick={onLinkClick || defaultHandleLinkClick}
               onTNAProductClick={onTNAProductClick}
@@ -149,7 +151,7 @@ export function TripleDocument({
           )
         )
       })}
-    </>
+    </ResourceClickHandlerProvider>
   )
 }
 
