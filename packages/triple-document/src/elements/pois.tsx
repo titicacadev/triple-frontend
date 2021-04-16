@@ -37,13 +37,11 @@ type PoisDisplay = 'list' | string
 
 export default function Pois<T extends ExtendedPOIListElementData>({
   value: { display, pois },
-  actionButtonElement,
 }: {
   value: {
     display: PoisDisplay
     pois: T[]
   }
-  actionButtonElement: JSX.Element | null
 }) {
   const onResourceClick = useResourceClickHandler()
 
@@ -67,7 +65,6 @@ export default function Pois<T extends ExtendedPOIListElementData>({
           poi={poi}
           onClick={(e) => onResourceClick(e, poi)}
           actionButtonElement={renderPoiListActionButton({
-            actionButtonElement,
             display,
             poi,
           })}
@@ -78,20 +75,12 @@ export default function Pois<T extends ExtendedPOIListElementData>({
 }
 
 function renderPoiListActionButton({
-  actionButtonElement,
   display,
   poi,
 }: {
-  actionButtonElement: JSX.Element | null
   display: PoisDisplay
   poi: ExtendedPOIListElementData
 }) {
-  if (actionButtonElement === null) {
-    return <span />
-  } else if (actionButtonElement) {
-    return actionButtonElement
-  }
-
   const {
     source: { pricing },
   } = poi
