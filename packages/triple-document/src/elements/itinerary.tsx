@@ -34,15 +34,6 @@ interface Props {
   value: {
     itinerary: Itinerary
   }
-  /**
-   * 내 일정으로 담기 클릭 이벤트 핸들러
-   */
-  onClickSaveToItinerary: (
-    /** 추천코스의 기준이 되는 regionId */
-    regionId: string,
-    /** 추천코스에 포함된 POI id 리스트 */
-    poiIds: string[],
-  ) => void
 }
 
 const Timeline = styled(FlexBox)`
