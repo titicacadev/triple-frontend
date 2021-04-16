@@ -40,6 +40,10 @@ import {
 import { ResourceClickHandlerProvider } from './prop-context/resource-click-handler'
 import { ImageClickHandlerProvider } from './prop-context/image-click-handler'
 import { LinkClickHandlerProvider } from './prop-context/link-click-handler'
+import {
+  TNAProductClickHandler,
+  TNAProductClickHandlerProvider,
+} from './prop-context/tna-product-click-handler'
 
 interface TripleDocumentProps {
   customElements?: ElementSet
@@ -49,12 +53,7 @@ interface TripleDocumentProps {
   onResourceClick?: (e: React.SyntheticEvent, resource: unknown) => void
   onImageClick?: ImageEventHandler
   onLinkClick?: LinkEventHandler
-  onTNAProductClick?: (
-    e: React.SyntheticEvent,
-    product: unknown,
-    slotId?: number,
-    index?: number,
-  ) => void
+  onTNAProductClick?: TNAProductClickHandler
   onTNAProductsFetch?: (slotId: number) => Promise<unknown>
   imageSourceComponent?: ImageSourceType
   deepLink?: string
@@ -134,25 +133,26 @@ export function TripleDocument({
     >
       <ImageClickHandlerProvider value={onImageClick}>
         <LinkClickHandlerProvider value={onLinkClick || defaultHandleLinkClick}>
-          {children.map(({ type, value }, i) => {
-            const Element = { ...ELEMENTS, ...customElements }[type]
+          <TNAProductClickHandlerProvider value={onTNAProductClick}>
+            {children.map(({ type, value }, i) => {
+              const Element = { ...ELEMENTS, ...customElements }[type]
 
-            return (
-              Element && (
-                <Element
-                  key={i}
-                  value={value}
-                  onTNAProductClick={onTNAProductClick}
-                  onTNAProductsFetch={onTNAProductsFetch}
-                  ImageSource={imageSourceComponent}
-                  deepLink={deepLink}
-                  videoAutoPlay={videoAutoPlay}
-                  hideVideoControls={hideVideoControls}
-                  optimized={optimized}
-                />
+              return (
+                Element && (
+                  <Element
+                    key={i}
+                    value={value}
+                    onTNAProductsFetch={onTNAProductsFetch}
+                    ImageSource={imageSourceComponent}
+                    deepLink={deepLink}
+                    videoAutoPlay={videoAutoPlay}
+                    hideVideoControls={hideVideoControls}
+                    optimized={optimized}
+                  />
+                )
               )
-            )
-          })}
+            })}
+          </TNAProductClickHandlerProvider>
         </LinkClickHandlerProvider>
       </ImageClickHandlerProvider>
     </ResourceClickHandlerProvider>
