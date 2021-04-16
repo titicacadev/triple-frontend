@@ -50,8 +50,9 @@ import {
 } from './prop-context/tna-products-fetcher'
 import { ImageSourceProvider } from './prop-context/image-source'
 import { DeepLinkProvider } from './prop-context/deep-link'
+import { MediaConfig, MediaConfigProvider } from './prop-context/media-config'
 
-interface TripleDocumentProps {
+type TripleDocumentProps = {
   customElements?: ElementSet
   children: TripleElementData[]
 
@@ -64,10 +65,7 @@ interface TripleDocumentProps {
   imageSourceComponent?: ImageSourceType
   deepLink?: string
   cta?: string
-  videoAutoPlay?: boolean
-  hideVideoControls?: boolean
-  optimized?: boolean
-}
+} & MediaConfig
 
 export const ELEMENTS: ElementSet = {
   heading1: MH1,
@@ -143,21 +141,17 @@ export function TripleDocument({
             <TNAProductsFetcherProvider value={onTNAProductsFetch}>
               <ImageSourceProvider value={imageSourceComponent}>
                 <DeepLinkProvider value={deepLink}>
-                  {children.map(({ type, value }, i) => {
-                    const Element = { ...ELEMENTS, ...customElements }[type]
+                  <MediaConfigProvider
+                    videoAutoPlay={videoAutoPlay}
+                    hideVideoControls={hideVideoControls}
+                    optimized={optimized}
+                  >
+                    {children.map(({ type, value }, i) => {
+                      const Element = { ...ELEMENTS, ...customElements }[type]
 
-                    return (
-                      Element && (
-                        <Element
-                          key={i}
-                          value={value}
-                          videoAutoPlay={videoAutoPlay}
-                          hideVideoControls={hideVideoControls}
-                          optimized={optimized}
-                        />
-                      )
-                    )
-                  })}
+                      return Element && <Element key={i} value={value} />
+                    })}
+                  </MediaConfigProvider>
                 </DeepLinkProvider>
               </ImageSourceProvider>
             </TNAProductsFetcherProvider>
