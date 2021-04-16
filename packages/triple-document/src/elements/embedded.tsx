@@ -11,6 +11,7 @@ import {
 } from '../types'
 import { useImageClickHandler } from '../prop-context/image-click-handler'
 import { useLinkClickHandler } from '../prop-context/link-click-handler'
+import { useImageSource } from '../prop-context/image-source'
 
 import DocumentCarousel from './shared/document-carousel'
 import generateClickHandler from './shared/generate-click-handler'
@@ -71,17 +72,16 @@ const EMBEDDED_ELEMENTS: ElementSet = {
 
 export default function Embedded({
   value: { entries },
-  ImageSource,
   optimized,
 }: {
   value: {
     entries: TripleElementData[][]
   }
-  ImageSource: ImageSourceType
   optimized?: boolean
 }) {
   const onImageClick = useImageClickHandler()
   const onLinkClick = useLinkClickHandler()
+  const ImageSource = useImageSource()
 
   return (
     <DocumentCarousel margin={{ top: 20 }}>
