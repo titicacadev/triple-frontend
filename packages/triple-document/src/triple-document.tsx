@@ -49,6 +49,7 @@ import {
   TNAProductsFetcherProvider,
 } from './prop-context/tna-products-fetcher'
 import { ImageSourceProvider } from './prop-context/image-source'
+import { DeepLinkProvider } from './prop-context/deep-link'
 
 interface TripleDocumentProps {
   customElements?: ElementSet
@@ -141,22 +142,23 @@ export function TripleDocument({
           <TNAProductClickHandlerProvider value={onTNAProductClick}>
             <TNAProductsFetcherProvider value={onTNAProductsFetch}>
               <ImageSourceProvider value={imageSourceComponent}>
-                {children.map(({ type, value }, i) => {
-                  const Element = { ...ELEMENTS, ...customElements }[type]
+                <DeepLinkProvider value={deepLink}>
+                  {children.map(({ type, value }, i) => {
+                    const Element = { ...ELEMENTS, ...customElements }[type]
 
-                  return (
-                    Element && (
-                      <Element
-                        key={i}
-                        value={value}
-                        deepLink={deepLink}
-                        videoAutoPlay={videoAutoPlay}
-                        hideVideoControls={hideVideoControls}
-                        optimized={optimized}
-                      />
+                    return (
+                      Element && (
+                        <Element
+                          key={i}
+                          value={value}
+                          videoAutoPlay={videoAutoPlay}
+                          hideVideoControls={hideVideoControls}
+                          optimized={optimized}
+                        />
+                      )
                     )
-                  )
-                })}
+                  })}
+                </DeepLinkProvider>
               </ImageSourceProvider>
             </TNAProductsFetcherProvider>
           </TNAProductClickHandlerProvider>
