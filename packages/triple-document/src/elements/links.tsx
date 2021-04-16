@@ -10,7 +10,8 @@ import {
 } from '@titicaca/core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
 
-import { Link, LinkEventHandler } from '../types'
+import { Link } from '../types'
+import { useLinkClickHandler } from '../prop-context/link-click-handler'
 
 import ResourceList from './shared/resource-list'
 
@@ -165,7 +166,6 @@ const LINK_ELEMENTS = {
 
 export default function Links({
   value: { display, links },
-  onLinkClick,
   ...props
 }: {
   value: {
@@ -174,9 +174,10 @@ export default function Links({
       | string
     links: Link[]
   }
-  onLinkClick?: LinkEventHandler
   compact?: boolean
 }) {
+  const onLinkClick = useLinkClickHandler()
+
   const Container =
     LINK_CONTAINERS[display as keyof typeof LINK_CONTAINERS] || LinksContainer
   const Element =

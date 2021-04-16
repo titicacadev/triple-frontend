@@ -1,12 +1,15 @@
 import React, { useCallback } from 'react'
 import { Text, Paragraph } from '@titicaca/core-elements'
 
+import { useLinkClickHandler } from '../../prop-context/link-click-handler'
+
 export default function TextElement({
   value: { text, rawHTML },
   compact,
-  onLinkClick,
   ...props
 }: any) {
+  const onLinkClick = useLinkClickHandler()
+
   const handleClick = useCallback(
     (e: React.SyntheticEvent) => {
       const target = e.target as HTMLElement
@@ -15,8 +18,13 @@ export default function TextElement({
         e.preventDefault()
         e.stopPropagation()
 
+        if (!onLinkClick) {
+          // TODO: triple-document 에러 리포팅 로직 설계하기
+          throw new Error('link 클릭 핸들러가 없습니다.')
+        }
+
         onLinkClick(e, {
-          href: target?.getAttribute('href'),
+          href: target?.getAttribute('href') || undefined,
           label: (target as HTMLAnchorElement)?.text,
         })
       }

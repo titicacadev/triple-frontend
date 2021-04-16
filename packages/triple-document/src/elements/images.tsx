@@ -12,8 +12,8 @@ import TripleMedia from '@titicaca/triple-media'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 
-import { LinkEventHandler } from '../types'
 import { useImageClickHandler } from '../prop-context/image-click-handler'
+import { useLinkClickHandler } from '../prop-context/link-click-handler'
 
 import DocumentCarousel from './shared/document-carousel'
 import generateClickHandler from './shared/generate-click-handler'
@@ -24,7 +24,6 @@ const PLAYS_INLINE_APP_VERSION = '4.10.0'
 
 export default function Images({
   value: { images, display },
-  onLinkClick,
   ImageSource,
   videoAutoPlay,
   hideVideoControls,
@@ -34,13 +33,13 @@ export default function Images({
     images: ImageMeta[]
     display: MediaDisplayProperty
   }
-  onLinkClick: LinkEventHandler
   ImageSource: ImageSourceType
   videoAutoPlay?: boolean
   hideVideoControls?: boolean
   optimized?: boolean
 }) {
   const onImageClick = useImageClickHandler()
+  const onLinkClick = useLinkClickHandler()
 
   const ImagesContainer = ['block', 'gapless-block'].includes(display)
     ? Container

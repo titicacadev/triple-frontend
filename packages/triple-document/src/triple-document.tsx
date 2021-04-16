@@ -39,6 +39,7 @@ import {
 } from './types'
 import { ResourceClickHandlerProvider } from './prop-context/resource-click-handler'
 import { ImageClickHandlerProvider } from './prop-context/image-click-handler'
+import { LinkClickHandlerProvider } from './prop-context/link-click-handler'
 
 interface TripleDocumentProps {
   customElements?: ElementSet
@@ -132,26 +133,27 @@ export function TripleDocument({
       value={onResourceClick || defaultHandleResourceClick}
     >
       <ImageClickHandlerProvider value={onImageClick}>
-        {children.map(({ type, value }, i) => {
-          const Element = { ...ELEMENTS, ...customElements }[type]
+        <LinkClickHandlerProvider value={onLinkClick || defaultHandleLinkClick}>
+          {children.map(({ type, value }, i) => {
+            const Element = { ...ELEMENTS, ...customElements }[type]
 
-          return (
-            Element && (
-              <Element
-                key={i}
-                value={value}
-                onLinkClick={onLinkClick || defaultHandleLinkClick}
-                onTNAProductClick={onTNAProductClick}
-                onTNAProductsFetch={onTNAProductsFetch}
-                ImageSource={imageSourceComponent}
-                deepLink={deepLink}
-                videoAutoPlay={videoAutoPlay}
-                hideVideoControls={hideVideoControls}
-                optimized={optimized}
-              />
+            return (
+              Element && (
+                <Element
+                  key={i}
+                  value={value}
+                  onTNAProductClick={onTNAProductClick}
+                  onTNAProductsFetch={onTNAProductsFetch}
+                  ImageSource={imageSourceComponent}
+                  deepLink={deepLink}
+                  videoAutoPlay={videoAutoPlay}
+                  hideVideoControls={hideVideoControls}
+                  optimized={optimized}
+                />
+              )
             )
-          )
-        })}
+          })}
+        </LinkClickHandlerProvider>
       </ImageClickHandlerProvider>
     </ResourceClickHandlerProvider>
   )

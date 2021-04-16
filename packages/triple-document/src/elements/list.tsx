@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Container } from '@titicaca/core-elements'
 
-import { TripleElementData, Link, LinkEventHandler } from '../types'
+import { TripleElementData, Link } from '../types'
 
 import { Text } from './text'
 import Links from './links'
@@ -44,14 +44,12 @@ type LinksElementData = TripleElementData<'links', { links: Link[] }>
 
 export default function List({
   value: { bulletType, items },
-  onLinkClick,
   ...props
 }: {
   value: {
     bulletType?: string
     items: (TextElementData | LinksElementData)[]
   }
-  onLinkClick: LinkEventHandler
 }) {
   return (
     <Container margin={{ top: 10, left: 30, right: 30 }} {...props}>
@@ -62,10 +60,7 @@ export default function List({
               <ListTextElement value={item.value} compact={true} />
             ) : null}
             {item.type === 'links' ? (
-              <Links
-                value={{ display: 'list', links: item.value.links }}
-                onLinkClick={onLinkClick}
-              />
+              <Links value={{ display: 'list', links: item.value.links }} />
             ) : null}
           </ListItemContainer>
         ))}
