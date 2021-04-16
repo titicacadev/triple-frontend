@@ -264,4 +264,26 @@ describe('generateUrl', function () {
       ),
     ).toBe('/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3#nearby')
   })
+
+  it('should merge query in base URL', () => {
+    const [, query] = generateUrl(
+      {
+        query: 'asdf=asdf',
+      },
+      '/path?someQuery=value',
+    ).split('?')
+
+    expect(query).toMatch(/(?=.*asdf=asdf)(?=.*someQuery=value)/)
+  })
+
+  it('should override base URL query with element query', () => {
+    const [, query] = generateUrl(
+      {
+        query: 'asdf=asdf',
+      },
+      '/path?asdf=value',
+    ).split('?')
+
+    expect(query).toMatch(/(?=.*asdf=asdf)/)
+  })
 })
