@@ -1,3 +1,5 @@
+import qs from 'qs'
+
 export interface UrlElements {
   href?: string
   scheme?: string
@@ -22,11 +24,23 @@ export function parseUrl(rawHref?: string): UrlElements {
   return { href, scheme, host, path, query, hash }
 }
 
-export function generateUrl(elements: UrlElements, baseUrl?: string) {
-  const { scheme, host, path, query, hash } = {
-    ...(baseUrl && parseUrl(baseUrl)),
-    ...elements,
+export function generateUrl(
+  { query: elementQuery, ...restElements }: UrlElements,
+  baseUrl?: string,
+) {
+  const { query: baseUrlQuery, ...restBaseUrl }: UrlElements = baseUrl
+    ? parseUrl(baseUrl)
+    : {}
+
+  const { scheme, host, path, hash } = {
+    ...restBaseUrl,
+    ...restElements,
   }
+
+  const query = qs.stringify({
+    ...(baseUrlQuery && qs.parse(baseUrlQuery)),
+    ...(elementQuery && qs.parse(elementQuery)),
+  })
 
   return [
     scheme && `${scheme}://`,
