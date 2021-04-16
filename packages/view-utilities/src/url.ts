@@ -37,10 +37,13 @@ export function generateUrl(
     ...restElements,
   }
 
-  const query = qs.stringify({
-    ...(baseUrlQuery && qs.parse(baseUrlQuery)),
-    ...(elementQuery && qs.parse(elementQuery)),
-  })
+  const query = qs.stringify(
+    {
+      ...(baseUrlQuery && qs.parse(baseUrlQuery, { strictNullHandling: true })),
+      ...(elementQuery && qs.parse(elementQuery, { strictNullHandling: true })),
+    },
+    { strictNullHandling: true },
+  )
 
   return [
     scheme && `${scheme}://`,
