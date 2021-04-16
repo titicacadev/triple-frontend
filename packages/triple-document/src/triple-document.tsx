@@ -38,6 +38,7 @@ import {
   ElementSet,
 } from './types'
 import { ResourceClickHandlerProvider } from './prop-context/resource-click-handler'
+import { ImageClickHandlerProvider } from './prop-context/image-click-handler'
 
 interface TripleDocumentProps {
   customElements?: ElementSet
@@ -130,27 +131,28 @@ export function TripleDocument({
     <ResourceClickHandlerProvider
       value={onResourceClick || defaultHandleResourceClick}
     >
-      {children.map(({ type, value }, i) => {
-        const Element = { ...ELEMENTS, ...customElements }[type]
+      <ImageClickHandlerProvider value={onImageClick}>
+        {children.map(({ type, value }, i) => {
+          const Element = { ...ELEMENTS, ...customElements }[type]
 
-        return (
-          Element && (
-            <Element
-              key={i}
-              value={value}
-              onImageClick={onImageClick}
-              onLinkClick={onLinkClick || defaultHandleLinkClick}
-              onTNAProductClick={onTNAProductClick}
-              onTNAProductsFetch={onTNAProductsFetch}
-              ImageSource={imageSourceComponent}
-              deepLink={deepLink}
-              videoAutoPlay={videoAutoPlay}
-              hideVideoControls={hideVideoControls}
-              optimized={optimized}
-            />
+          return (
+            Element && (
+              <Element
+                key={i}
+                value={value}
+                onLinkClick={onLinkClick || defaultHandleLinkClick}
+                onTNAProductClick={onTNAProductClick}
+                onTNAProductsFetch={onTNAProductsFetch}
+                ImageSource={imageSourceComponent}
+                deepLink={deepLink}
+                videoAutoPlay={videoAutoPlay}
+                hideVideoControls={hideVideoControls}
+                optimized={optimized}
+              />
+            )
           )
-        )
-      })}
+        })}
+      </ImageClickHandlerProvider>
     </ResourceClickHandlerProvider>
   )
 }
