@@ -2,6 +2,8 @@ import { SyntheticEvent } from 'react'
 import { TranslatedProperty, ImageMeta } from '@titicaca/type-definitions'
 
 export interface RegionData {
+  id: string
+  type: string
   nameOverride: string | null
   source: {
     id: string

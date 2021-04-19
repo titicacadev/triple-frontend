@@ -1,6 +1,13 @@
 import { createContext, SyntheticEvent, useContext } from 'react'
 
-type ResourceClickHandler = (e: SyntheticEvent, resource: unknown) => void
+export type ResourceClickHandler = (
+  e: SyntheticEvent,
+  resource: {
+    id: string
+    type: string
+    source: unknown
+  },
+) => void
 
 const ResourceClickHandlerContext = createContext<ResourceClickHandler | null>(
   null,
