@@ -185,25 +185,23 @@ export default function ReviewsList({
     ),
   )
 
-  const handleReviewClick = useSessionCallback(
-    useCallback(
-      (e: React.SyntheticEvent, review) => {
-        if (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) {
-          e.preventDefault()
-          e.stopPropagation()
-          trackEvent({
-            ga: ['리뷰_리뷰선택', resourceId],
-            fa: {
-              action: '리뷰_리뷰선택',
-              item_id: resourceId,
-              review_id: review.id,
-            },
-          })
-          navigateReviewDetail({ reviewId: review.id, regionId, resourceId })
-        }
-      },
-      [appVersion, trackEvent, resourceId, navigateReviewDetail, regionId],
-    ),
+  const handleReviewClick = useCallback(
+    (e: React.SyntheticEvent, review) => {
+      if (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) {
+        e.preventDefault()
+        e.stopPropagation()
+        trackEvent({
+          ga: ['리뷰_리뷰선택', resourceId],
+          fa: {
+            action: '리뷰_리뷰선택',
+            item_id: resourceId,
+            review_id: review.id,
+          },
+        })
+        navigateReviewDetail({ reviewId: review.id, regionId, resourceId })
+      }
+    },
+    [appVersion, trackEvent, resourceId, navigateReviewDetail, regionId],
   )
 
   const handleShow = fetchNext
