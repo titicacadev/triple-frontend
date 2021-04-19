@@ -9,24 +9,36 @@ type HashKeyValue = {
 }
 
 export const HASH_COMPLETE_DOWNLOAD_COUPON = 'coupon.download-complete.modal'
+export const HASH_COMPLETE_DOWNLOAD_COUPON_GROUP =
+  'coupon.group-download-complete.modal'
+export const HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP =
+  'coupon.part-of-group-download-complete.modal'
 export const HASH_ALREADY_DOWNLOAD_COUPON = 'coupon.download-already.modal'
 export const HASH_ERROR_COUPON = 'coupon.error.modal'
 export const HASH_COUPON_APP_TRANSITION_MODAL = 'coupon.app-transition.modal'
 
 const MODAL_HASHES = [
   HASH_COMPLETE_DOWNLOAD_COUPON,
+  HASH_COMPLETE_DOWNLOAD_COUPON_GROUP,
+  HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP,
   HASH_ALREADY_DOWNLOAD_COUPON,
 ]
 
 const TITLE_TYPES: HashKeyValue = {
   [HASH_ALREADY_DOWNLOAD_COUPON]: '이미 받은 쿠폰입니다.',
   [HASH_COMPLETE_DOWNLOAD_COUPON]: '쿠폰 받기 완료',
+  [HASH_COMPLETE_DOWNLOAD_COUPON_GROUP]: '쿠폰 받기 완료',
+  [HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP]: '쿠폰 받기 완료',
 }
 
 const MESSAGE_TYPES: HashKeyValue = {
   [HASH_COMPLETE_DOWNLOAD_COUPON]:
     '쿠폰을 받았습니다!\n쿠폰함에서 확인 할 수 있어요~!',
+  [HASH_COMPLETE_DOWNLOAD_COUPON_GROUP]:
+    '쿠폰이 모두 발급되었습니다.\n발급된 쿠폰은 쿠폰함에서 확인할 수 있습니다.',
   [HASH_ALREADY_DOWNLOAD_COUPON]: '쿠폰함에서 쿠폰을 확인하세요.',
+  [HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP]:
+    '쿠폰이 모두 발급되었습니다. (이미 받은 쿠폰 제외)\n발급된 쿠폰은 쿠폰함에서 확인할 수 있습니다.',
 }
 
 const ICON_TYPES: HashKeyValue = {
