@@ -9,7 +9,10 @@ import {
   LinkEventHandler,
   ElementSet,
 } from './types'
-import { ResourceClickHandlerProvider } from './prop-context/resource-click-handler'
+import {
+  ResourceClickHandler,
+  ResourceClickHandlerProvider,
+} from './prop-context/resource-click-handler'
 import { ImageClickHandlerProvider } from './prop-context/image-click-handler'
 import { LinkClickHandlerProvider } from './prop-context/link-click-handler'
 import {
@@ -30,7 +33,7 @@ type TripleDocumentProps = {
   children: TripleElementData[]
 
   // merged...
-  onResourceClick?: (e: React.SyntheticEvent, resource: unknown) => void
+  onResourceClick?: ResourceClickHandler
   onImageClick?: ImageEventHandler
   onLinkClick?: LinkEventHandler
   onTNAProductClick?: TNAProductClickHandler
@@ -68,8 +71,8 @@ export function TripleDocument({
     [handleAction],
   )
 
-  const defaultHandleResourceClick = useCallback(
-    (e: React.SyntheticEvent, resource) => {
+  const defaultHandleResourceClick: ResourceClickHandler = useCallback(
+    (e, resource) => {
       const url = composeResourceUrl(resource)
 
       url && handleAction(url)
@@ -108,11 +111,7 @@ export function TripleDocument({
   )
 }
 
-function composeResourceUrl(resource: {
-  id: string
-  type: string
-  source: unknown
-}) {
+function composeResourceUrl(resource: Parameters<ResourceClickHandler>[1]) {
   switch (resource.type) {
     case 'attraction':
       return `/inlink?path=${encodeURIComponent(
