@@ -84,7 +84,27 @@ export function TripleDocument({
                     {children.map(({ type, value }, i) => {
                       const Element = { ...ELEMENTS, ...customElements }[type]
 
-                      return Element && <Element key={i} value={value} />
+                      return (
+                        Element && (
+                          <Element
+                            key={i}
+                            value={value}
+                            // TODO: 3.0에서 prop 없애기
+                            onResourceClick={
+                              onResourceClick || defaultHandleResourceClick
+                            }
+                            onImageClick={onImageClick}
+                            onLinkClick={onLinkClick || defaultHandleLinkClick}
+                            onTNAProductClick={onTNAProductClick}
+                            onTNAProductsFetch={onTNAProductsFetch}
+                            ImageSource={imageSourceComponent}
+                            deepLink={deepLink}
+                            videoAutoPlay={videoAutoPlay}
+                            hideVideoControls={hideVideoControls}
+                            optimized={optimized}
+                          />
+                        )
+                      )
                     })}
                   </MediaConfigProvider>
                 </DeepLinkProvider>
