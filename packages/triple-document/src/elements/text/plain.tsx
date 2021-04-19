@@ -20,7 +20,7 @@ export default function TextElement({
 
         if (!onLinkClick) {
           // TODO: triple-document 에러 리포팅 로직 설계하기
-          throw new Error('link 클릭 핸들러가 없습니다.')
+          return null
         }
 
         onLinkClick(e, {
