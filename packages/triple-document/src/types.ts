@@ -1,5 +1,11 @@
 import { SyntheticEvent } from 'react'
 import { TranslatedProperty, ImageMeta } from '@titicaca/type-definitions'
+import { ImageSourceType } from '@titicaca/core-elements'
+
+import { MediaConfig } from './prop-context/media-config'
+import { ResourceClickHandler } from './prop-context/resource-click-handler'
+import { TNAProductClickHandler } from './prop-context/tna-product-click-handler'
+import { TNAProductsFetcher } from './prop-context/tna-products-fetcher'
 
 export interface RegionData {
   id: string
@@ -28,6 +34,16 @@ export type Link = {
 }
 
 export type LinkEventHandler = (e: React.SyntheticEvent, link: Link) => void
+
+export type TripleDocumentContext = {
+  onResourceClick?: ResourceClickHandler
+  onImageClick?: ImageEventHandler
+  onLinkClick?: LinkEventHandler
+  onTNAProductClick?: TNAProductClickHandler
+  onTNAProductsFetch?: TNAProductsFetcher
+  imageSourceComponent?: ImageSourceType
+  deepLink?: string
+} & MediaConfig
 
 export interface ElementSet {
   [type: string]: React.ComponentType<any>
