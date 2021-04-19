@@ -10,6 +10,9 @@ const CHARACTERS_PER_LINE = 25
 const Unfold = styled.button`
   display: inline-block;
   color: #2987f0;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
   text-decoration: none;
   cursor: pointer;
 `
