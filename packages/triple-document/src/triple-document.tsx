@@ -2,7 +2,12 @@ import React, { useMemo, useCallback } from 'react'
 import { useHistoryFunctions } from '@titicaca/react-contexts'
 import { initialize } from '@titicaca/standard-action-handler'
 
-import { TripleElementData, ElementSet, TripleDocumentContext } from './types'
+import {
+  TripleElementData,
+  ElementSet,
+  TripleDocumentContext,
+  LinkEventHandler,
+} from './types'
 import {
   ResourceClickHandler,
   ResourceClickHandlerProvider,
@@ -41,8 +46,12 @@ export function TripleDocument({
     navigate,
   ])
 
-  const defaultHandleLinkClick = useCallback(
-    (e: React.SyntheticEvent, { href, target }) => {
+  const defaultHandleLinkClick: LinkEventHandler = useCallback(
+    (e, { href, target }) => {
+      if (!href) {
+        // TODO: triple-document 에러 처리 방법 설계
+        return
+      }
       handleAction(href, { target })
     },
     [handleAction],
