@@ -30,3 +30,31 @@ export type LinkEventHandler = (e: React.SyntheticEvent, link: Link) => void
 export interface ElementSet {
   [type: string]: React.ComponentType<any>
 }
+
+export interface CouponData {
+  id: string
+  name: string
+  description: string
+  publicationPeriod?: {
+    startAt: string
+    endAt: string
+  }
+  validityPeriod?: {
+    startAt: string
+    endAt: string
+  }
+  status?: string
+  expired?: true
+  maxDiscountAmount: number
+  discountPolicy: {
+    type: string
+    value: number
+  }
+  useConditions: [
+    {
+      type: string
+      value: string
+    },
+  ]
+  downloaded?: true
+}
