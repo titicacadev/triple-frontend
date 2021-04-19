@@ -31,6 +31,7 @@ export type Link = {
   href?: string
   label?: string
   level?: string
+  target?: string
 }
 
 export type LinkEventHandler = (e: React.SyntheticEvent, link: Link) => void
