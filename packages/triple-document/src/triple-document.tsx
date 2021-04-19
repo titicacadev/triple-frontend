@@ -1,42 +1,20 @@
 import React, { useMemo, useCallback } from 'react'
-import { ImageSourceType } from '@titicaca/core-elements'
 import { useHistoryFunctions } from '@titicaca/react-contexts'
 import { initialize } from '@titicaca/standard-action-handler'
 
-import {
-  TripleElementData,
-  ImageEventHandler,
-  LinkEventHandler,
-  ElementSet,
-} from './types'
+import { TripleElementData, ElementSet, TripleDocumentContext } from './types'
 import {
   ResourceClickHandler,
   ResourceClickHandlerProvider,
 } from './prop-context/resource-click-handler'
 import { ImageClickHandlerProvider } from './prop-context/image-click-handler'
 import { LinkClickHandlerProvider } from './prop-context/link-click-handler'
-import {
-  TNAProductClickHandler,
-  TNAProductClickHandlerProvider,
-} from './prop-context/tna-product-click-handler'
-import {
-  TNAProductsFetcher,
-  TNAProductsFetcherProvider,
-} from './prop-context/tna-products-fetcher'
+import { TNAProductClickHandlerProvider } from './prop-context/tna-product-click-handler'
+import { TNAProductsFetcherProvider } from './prop-context/tna-products-fetcher'
 import { ImageSourceProvider } from './prop-context/image-source'
 import { DeepLinkProvider } from './prop-context/deep-link'
-import { MediaConfig, MediaConfigProvider } from './prop-context/media-config'
+import { MediaConfigProvider } from './prop-context/media-config'
 import ELEMENTS from './elements'
-
-type TripleDocumentContext = {
-  onResourceClick?: ResourceClickHandler
-  onImageClick?: ImageEventHandler
-  onLinkClick?: LinkEventHandler
-  onTNAProductClick?: TNAProductClickHandler
-  onTNAProductsFetch?: TNAProductsFetcher
-  imageSourceComponent?: ImageSourceType
-  deepLink?: string
-} & MediaConfig
 
 export function TripleDocument({
   children,
