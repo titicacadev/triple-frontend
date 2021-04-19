@@ -28,11 +28,7 @@ import { DeepLinkProvider } from './prop-context/deep-link'
 import { MediaConfig, MediaConfigProvider } from './prop-context/media-config'
 import ELEMENTS from './elements'
 
-type TripleDocumentProps = {
-  customElements?: ElementSet
-  children: TripleElementData[]
-
-  // merged...
+type TripleDocumentContext = {
   onResourceClick?: ResourceClickHandler
   onImageClick?: ImageEventHandler
   onLinkClick?: LinkEventHandler
@@ -40,7 +36,6 @@ type TripleDocumentProps = {
   onTNAProductsFetch?: TNAProductsFetcher
   imageSourceComponent?: ImageSourceType
   deepLink?: string
-  cta?: string
 } & MediaConfig
 
 export function TripleDocument({
@@ -57,7 +52,11 @@ export function TripleDocument({
   videoAutoPlay,
   hideVideoControls,
   optimized = false,
-}: TripleDocumentProps) {
+}: {
+  customElements?: ElementSet
+  children: TripleElementData[]
+  cta?: string
+} & TripleDocumentContext) {
   const { navigate } = useHistoryFunctions()
   const handleAction = useMemo(() => initialize({ cta, navigate }), [
     cta,
