@@ -20,7 +20,13 @@ export default function Regions({
         <RegionListElement
           key={index}
           value={region}
-          onClick={(e) => onResourceClick(e, region)}
+          onClick={(e) => {
+            if (!onResourceClick) {
+              // TODO: triple-document 에러 처리 방법 설계
+              return null
+            }
+            onResourceClick(e, region)
+          }}
         />
       ))}
     </ResourceList>

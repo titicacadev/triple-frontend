@@ -9,17 +9,11 @@ export type ResourceClickHandler = (
   },
 ) => void
 
-const ResourceClickHandlerContext = createContext<ResourceClickHandler | null>(
-  null,
-)
+const ResourceClickHandlerContext = createContext<
+  ResourceClickHandler | undefined
+>(undefined)
 export const ResourceClickHandlerProvider = ResourceClickHandlerContext.Provider
 
 export function useResourceClickHandler() {
-  const handleResourceClick = useContext(ResourceClickHandlerContext)
-
-  if (!handleResourceClick) {
-    throw new Error('Resource click handler context가 없습니다.')
-  }
-
-  return handleResourceClick
+  return useContext(ResourceClickHandlerContext)
 }

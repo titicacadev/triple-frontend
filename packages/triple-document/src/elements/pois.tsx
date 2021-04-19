@@ -63,7 +63,13 @@ export default function Pois<T extends ExtendedPOIListElementData>({
         <Element
           key={poi.id}
           poi={poi}
-          onClick={(e) => onResourceClick(e, poi)}
+          onClick={(e) => {
+            if (!onResourceClick) {
+              // TODO: triple-document 에러 처리 방법 설계
+              return null
+            }
+            onResourceClick(e, poi)
+          }}
           actionButtonElement={renderPoiListActionButton({
             display,
             poi,
