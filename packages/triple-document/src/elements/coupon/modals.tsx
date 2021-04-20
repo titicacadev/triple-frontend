@@ -58,12 +58,18 @@ const CouponIcon = styled.img`
   margin: 40px auto 10px auto;
 `
 
-export function CouponModal() {
+export function CouponModal({ identifier }: { identifier: string }) {
   const uriHash = useURIHash()
   const { back, navigate } = useHistoryFunctions()
 
   return (
-    <Modal open={MODAL_HASHES.includes(uriHash)} onClose={back}>
+    <Modal
+      open={
+        uriHash.includes(identifier) &&
+        MODAL_HASHES.includes(uriHash.replace(`${identifier}.`, ''))
+      }
+      onClose={back}
+    >
       {ICON_TYPES[uriHash] ? <CouponIcon src={ICON_TYPES[uriHash]} /> : null}
       <Text
         center
@@ -117,14 +123,20 @@ export function CouponModal() {
   )
 }
 
-export function CouponAlertModal({ errorMessage }: { errorMessage?: string }) {
+export function CouponAlertModal({
+  identifier,
+  errorMessage,
+}: {
+  identifier: string
+  errorMessage?: string
+}) {
   const uriHash = useURIHash()
   const { back } = useHistoryFunctions()
 
   return (
     <Alert
       title="쿠폰 다운로드 오류"
-      open={uriHash === HASH_ERROR_COUPON}
+      open={uriHash === `${identifier}.${HASH_ERROR_COUPON}`}
       onConfirm={back}
     >
       {errorMessage}
@@ -139,12 +151,21 @@ const IconImage = styled.img`
   margin: 32px auto 10px auto;
 `
 
-export function CouponTransitionModal({ deepLink }: { deepLink: string }) {
+export function CouponTransitionModal({
+  identifier,
+  deepLink,
+}: {
+  identifier: string
+  deepLink: string
+}) {
   const uriHash = useURIHash()
   const { back } = useHistoryFunctions()
 
   return (
-    <Modal open={uriHash === HASH_COUPON_APP_TRANSITION_MODAL} onClose={back}>
+    <Modal
+      open={uriHash === `${identifier}.${HASH_COUPON_APP_TRANSITION_MODAL}`}
+      onClose={back}
+    >
       <IconImage src="https://assets.triple.guide/images/img-popup-coupon@3x.png" />
       <Text
         center

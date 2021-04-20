@@ -37,7 +37,6 @@
   "devDependencies": {
     "@sentry/browser": "^6.2.5",
     "@titicaca/content-utilities": "^2.9.0",
-    "@types/isomorphic-fetch": "^0.0.35",
     "@types/semver": "^7.3.4"
   }
 }
