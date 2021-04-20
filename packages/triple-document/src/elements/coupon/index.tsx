@@ -60,8 +60,8 @@ export default function Coupon({
         </Text>
       ) : null}
 
-      <CouponModal />
-      <CouponTransitionModal deepLink={deepLink} />
+      <CouponModal identifier={identifier} />
+      <CouponTransitionModal identifier={identifier} deepLink={deepLink} />
     </Container>
   )
 }

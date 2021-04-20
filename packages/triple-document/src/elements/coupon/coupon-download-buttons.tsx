@@ -45,7 +45,7 @@ export function InAppCouponDownloadButton({
   verificationType,
   couponFetchDisabled,
 }: {
-  slugId?: string
+  slugId: string
   verificationType?: VerificationType
   couponFetchDisabled?: boolean
 }) {
@@ -137,7 +137,7 @@ export function InAppCouponDownloadButton({
       >
         쿠폰 받기
       </BaseCouponDownloadButton>
-      <CouponAlertModal errorMessage={errorMessage} />
+      <CouponAlertModal identifier={slugId} errorMessage={errorMessage} />
     </>
   )
 }
@@ -147,7 +147,7 @@ export function InAppCouponGroupDownloadButton({
   couponFetchDisabled,
   verificationType,
 }: {
-  groupId?: string
+  groupId: string
   verificationType?: VerificationType
   couponFetchDisabled?: boolean
 }) {
@@ -242,7 +242,7 @@ export function InAppCouponGroupDownloadButton({
       >
         쿠폰 받기
       </BaseCouponDownloadButton>
-      <CouponAlertModal errorMessage={errorMessage} />
+      <CouponAlertModal identifier={groupId} errorMessage={errorMessage} />
     </>
   )
 }
