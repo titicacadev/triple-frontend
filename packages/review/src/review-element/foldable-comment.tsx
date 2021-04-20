@@ -13,7 +13,7 @@ const Unfold = styled.button`
   background-color: transparent;
   border: 0;
   outline: 0;
-  font-size: 16px;
+  font-size: inherit;
   text-decoration: none;
   cursor: pointer;
 `
