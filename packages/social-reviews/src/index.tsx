@@ -19,12 +19,6 @@ const SocialReviewEntry = styled(List.Item)`
   cursor: pointer;
 `
 
-const PublisherText = styled(Text)`
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-`
-
 export interface SocialReview {
   imageUrl?: string
   publisher?: string
@@ -93,9 +87,9 @@ export default function SocialReviews({
 
               <Container padding={{ top: 20 }}>
                 <H3 maxLines={2}>{title}</H3>
-                <PublisherText size="small" alpha={0.5} margin={{ top: 8 }}>
+                <Text size="small" alpha={0.5} margin={{ top: 8 }} ellipsis>
                   {publisher}
-                </PublisherText>
+                </Text>
               </Container>
             </SocialReviewEntry>
           ),
