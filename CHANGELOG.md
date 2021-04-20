@@ -10,6 +10,10 @@
 
 - Navbar Item 버튼이미지를 추가합니다 (#1311)
 
+### intersection-observer
+
+- useIntersection Hook을 추가합니다 (#1326)
+
 ## 2.17.0
 
 ### package.json
