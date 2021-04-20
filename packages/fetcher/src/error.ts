@@ -31,4 +31,12 @@ export class HttpError extends CustomError {
   is(code: number) {
     return this._statusCode === code
   }
+
+  get responseError() {
+    try {
+      return JSON.parse(this._errorData.message)
+    } catch (error) {
+      return null
+    }
+  }
 }
