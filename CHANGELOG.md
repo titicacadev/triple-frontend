@@ -14,6 +14,10 @@
 
 - useIntersection Hook을 추가합니다 (#1326)
 
+### fetcher
+
+- responseError를 get하는 로직을 추가합니다. (#1324)
+
 ## 2.17.0
 
 ### package.json
