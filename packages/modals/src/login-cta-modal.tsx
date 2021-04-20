@@ -6,6 +6,7 @@ import React, {
   useMemo,
 } from 'react'
 import {
+  useEventTrackingContext,
   useHistoryFunctions,
   useURIHash,
   useUserAgentContext,
@@ -22,6 +23,7 @@ const LoginCTAFlagContext = createContext(false)
 
 export function LoginCTAModalProvider({ children }: PropsWithChildren<{}>) {
   const uriHash = useURIHash()
+  const { trackEvent } = useEventTrackingContext()
   const { back, navigate } = useHistoryFunctions()
   const hasParentModal = useContext(LoginCTAFlagContext)
   const { isPublic, os, app } = useUserAgentContext()
@@ -55,6 +57,13 @@ export function LoginCTAModalProvider({ children }: PropsWithChildren<{}>) {
           onClose={back}
           onCancel={back}
           onConfirm={() => {
+            trackEvent({
+              ga: ['로그인유도팝업_선택'],
+              fa: {
+                action: '로그인유도팝업_선택',
+              },
+            })
+
             navigate('/login')
           }}
         >
