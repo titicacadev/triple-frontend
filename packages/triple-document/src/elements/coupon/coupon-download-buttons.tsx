@@ -86,7 +86,8 @@ export function InAppCouponDownloadButton({
     fetchCoupon()
   }, [slugId, couponFetchDisabled])
 
-  const pushHashDownloaded = () => push(HASH_ALREADY_DOWNLOAD_COUPON)
+  const pushHashDownloaded = () =>
+    push(`${slugId}.HASH_ALREADY_DOWNLOAD_COUPON`)
   const downloadCoupon = useCallback(async () => {
     try {
       if (verificationType && !verificationState.verified) {
@@ -106,7 +107,7 @@ export function InAppCouponDownloadButton({
 
       if (response.ok) {
         if (id) {
-          push(HASH_COMPLETE_DOWNLOAD_COUPON)
+          push(`${slugId}.${HASH_COMPLETE_DOWNLOAD_COUPON}`)
           setDownloaded(true)
         }
       } else if (code === 'NO_CI_AUTHENTICATION') {
@@ -116,7 +117,7 @@ export function InAppCouponDownloadButton({
           new Error(`[${response.status}] Failed to download coupon`),
         )
         setErrorMessage(message)
-        push(HASH_ERROR_COUPON)
+        push(`${slugId}.${HASH_ERROR_COUPON}`)
       }
     } catch (e) {
       captureException(e)
@@ -165,7 +166,8 @@ export function InAppCouponGroupDownloadButton({
   const downloaded =
     coupons.length === 0 && coupons.every(({ downloaded }) => downloaded)
 
-  const pushHashDownloaded = () => push(HASH_ALREADY_DOWNLOAD_COUPON)
+  const pushHashDownloaded = () =>
+    push(`${groupId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
 
   useEffect(() => {
     async function fetchCoupons() {
@@ -218,15 +220,22 @@ export function InAppCouponGroupDownloadButton({
       const succeedCoupons = results.filter(({ success }) => success).length
 
       if (succeedCoupons === coupons.length) {
-        push(HASH_COMPLETE_DOWNLOAD_COUPON_GROUP)
+        push(`${groupId}.${HASH_COMPLETE_DOWNLOAD_COUPON_GROUP}`)
       } else if (succeedCoupons > 0) {
-        push(HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP)
+        push(`${groupId}.${HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP}`)
       } else if (succeedCoupons === 0) {
         setErrorMessage(results[0].errorMessage)
-        push(HASH_ERROR_COUPON)
+        push(`${groupId}.${HASH_ERROR_COUPON}`)
       }
     }
-  }, [coupons, push, initiateVerification, verificationState, verificationType])
+  }, [
+    coupons,
+    push,
+    initiateVerification,
+    verificationState,
+    verificationType,
+    groupId,
+  ])
 
   return (
     <>
