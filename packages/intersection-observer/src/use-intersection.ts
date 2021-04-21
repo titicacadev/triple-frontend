@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 
-const useInterSection = ({ threshold }: { threshold?: number }) => {
+const useIntersection = ({ threshold }: { threshold?: number }) => {
   const ref = useRef<HTMLDivElement>(null)
   const [isIntersection, setIsIntersection] = useState(false)
 
@@ -28,4 +28,4 @@ const useInterSection = ({ threshold }: { threshold?: number }) => {
   }
 }
 
-export default useInterSection
+export default useIntersection
