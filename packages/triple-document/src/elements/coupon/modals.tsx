@@ -49,6 +49,8 @@ const ICON_TYPES: HashKeyValue = {
 const CONFIRM_MESSAGE_TYPES: HashKeyValue = {
   [HASH_ALREADY_DOWNLOAD_COUPON]: '쿠폰함 가기',
   [HASH_COMPLETE_DOWNLOAD_COUPON]: '쿠폰 확인',
+  [HASH_COMPLETE_DOWNLOAD_COUPON_GROUP]: '쿠폰 확인',
+  [HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP]: '쿠폰 확인',
 }
 
 const CouponIcon = styled.img`
