@@ -151,21 +151,12 @@ const IconImage = styled.img`
   margin: 32px auto 10px auto;
 `
 
-export function CouponTransitionModal({
-  identifier,
-  deepLink,
-}: {
-  identifier: string
-  deepLink: string
-}) {
+export function CouponTransitionModal({ deepLink }: { deepLink: string }) {
   const uriHash = useURIHash()
   const { back } = useHistoryFunctions()
 
   return (
-    <Modal
-      open={uriHash === `${identifier}.${HASH_COUPON_APP_TRANSITION_MODAL}`}
-      onClose={back}
-    >
+    <Modal open={uriHash === HASH_COUPON_APP_TRANSITION_MODAL} onClose={back}>
       <IconImage src="https://assets.triple.guide/images/img-popup-coupon@3x.png" />
       <Text
         center
