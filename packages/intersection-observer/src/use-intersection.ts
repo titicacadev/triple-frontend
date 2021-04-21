@@ -5,7 +5,7 @@ export default function useIntersection({
   rootMargin,
 }: {
   threshold?: number
-  rootMargin?: string
+  rootMargin?: number
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const [isIntersecting, setIsIntersecting] = useState(false)
@@ -23,7 +23,7 @@ export default function useIntersection({
 
     const observer = new IntersectionObserver(handleScroll, {
       threshold: threshold ?? 0,
-      rootMargin: rootMargin ?? '0px',
+      rootMargin: rootMargin ? `${rootMargin}px` : '0px',
     })
 
     return () => observer && observer.disconnect()
