@@ -87,7 +87,7 @@ export function InAppCouponDownloadButton({
   }, [slugId, couponFetchDisabled])
 
   const pushHashDownloaded = () =>
-    push(`${slugId}.HASH_ALREADY_DOWNLOAD_COUPON`)
+    push(`${slugId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
   const downloadCoupon = useCallback(async () => {
     try {
       if (verificationType && !verificationState.verified) {
