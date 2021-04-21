@@ -6,7 +6,6 @@ import { HttpErrorResponse } from './types'
 const DEFAULT_HTTP_ERROR_RESPONSE: HttpErrorResponse = {
   code: 'UNKNOWN',
   message: '알수 없는 에러가 발생하였습니다.',
-  status: 400,
   name: 'UNKNOWN',
 }
 
@@ -46,9 +45,13 @@ export class HttpError<T extends HttpErrorResponse> extends CustomError {
       return {
         ...DEFAULT_HTTP_ERROR_RESPONSE,
         ...JSON.parse(this._errorData.message),
+        status: this._statusCode,
       } as T
     } catch (error) {
-      return DEFAULT_HTTP_ERROR_RESPONSE
+      return {
+        ...DEFAULT_HTTP_ERROR_RESPONSE,
+        status: this._statusCode,
+      }
     }
   }
 }
