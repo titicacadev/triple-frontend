@@ -1,31 +1,36 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
-const useIntersection = ({ threshold }: { threshold?: number }) => {
+export default function useIntersection({
+  threshold,
+  rootMargin,
+}: {
+  threshold?: number
+  rootMargin?: string
+}) {
   const ref = useRef<HTMLDivElement>(null)
-  const [isIntersection, setIsIntersection] = useState(false)
-
-  const handleScroll = useCallback(([entry]) => {
-    if (entry.isIntersecting) {
-      setIsIntersection(true)
-    }
-  }, [])
+  const [isIntersecting, setIsIntersecting] = useState(false)
 
   useEffect(() => {
     if (!ref.current) {
       return
     }
 
+    function handleScroll([entry]: any) {
+      if (entry.isIntersecting) {
+        setIsIntersecting(true)
+      }
+    }
+
     const observer = new IntersectionObserver(handleScroll, {
       threshold: threshold ?? 0,
+      rootMargin: rootMargin ?? '0px',
     })
 
     return () => observer && observer.disconnect()
-  }, [ref, threshold, handleScroll])
+  }, [ref, threshold, rootMargin])
 
   return {
     ref,
-    isIntersection,
+    isIntersecting,
   }
 }
-
-export default useIntersection
