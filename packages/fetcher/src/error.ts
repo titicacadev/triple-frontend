@@ -1,6 +1,15 @@
 import { CustomError } from 'ts-custom-error'
 
 import { HttpErrorResponse } from './types'
+
+// 미리 정의된 공통 에러 포맷
+const DEFAULT_HTTP_ERROR_RESPONSE: HttpErrorResponse = {
+  code: 'UNKNOWN',
+  message: '알수 없는 에러가 발생하였습니다.',
+  status: 400,
+  name: 'UNKNOWN',
+}
+
 /**
  * 공통 에러 모듈
  *
@@ -14,7 +23,7 @@ import { HttpErrorResponse } from './types'
  *
  * ref - https://github.com/adriengibrat/ts-custom-error
  */
-export class HttpError extends CustomError {
+export class HttpError<T extends HttpErrorResponse> extends CustomError {
   private readonly _statusCode: number
 
   private readonly _errorData: HttpErrorResponse
@@ -34,9 +43,12 @@ export class HttpError extends CustomError {
 
   get responseError() {
     try {
-      return JSON.parse(this._errorData.message)
+      return {
+        ...DEFAULT_HTTP_ERROR_RESPONSE,
+        ...JSON.parse(this._errorData.message),
+      } as T
     } catch (error) {
-      return null
+      return DEFAULT_HTTP_ERROR_RESPONSE
     }
   }
 }
