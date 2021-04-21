@@ -62,15 +62,16 @@ export function CouponModal({ identifier }: { identifier: string }) {
   const uriHash = useURIHash()
   const { back, navigate } = useHistoryFunctions()
 
+  const modalHash = uriHash.replace(`${identifier}.`, '')
+
   return (
     <Modal
-      open={
-        uriHash.includes(identifier) &&
-        MODAL_HASHES.includes(uriHash.replace(`${identifier}.`, ''))
-      }
+      open={uriHash.includes(identifier) && MODAL_HASHES.includes(modalHash)}
       onClose={back}
     >
-      {ICON_TYPES[uriHash] ? <CouponIcon src={ICON_TYPES[uriHash]} /> : null}
+      {ICON_TYPES[modalHash] ? (
+        <CouponIcon src={ICON_TYPES[modalHash]} />
+      ) : null}
       <Text
         center
         bold
@@ -78,13 +79,13 @@ export function CouponModal({ identifier }: { identifier: string }) {
         lineHeight={1.38}
         color="gray"
         margin={{
-          top: ICON_TYPES[uriHash] ? 0 : 40,
+          top: ICON_TYPES[modalHash] ? 0 : 40,
           left: 30,
           right: 30,
           bottom: 10,
         }}
       >
-        {TITLE_TYPES[uriHash]}
+        {TITLE_TYPES[modalHash]}
       </Text>
       <Text
         center
@@ -98,7 +99,7 @@ export function CouponModal({ identifier }: { identifier: string }) {
         }}
         alpha={0.7}
       >
-        {MESSAGE_TYPES[uriHash]}
+        {MESSAGE_TYPES[modalHash]}
       </Text>
 
       <Modal.Actions>
@@ -116,7 +117,7 @@ export function CouponModal({ identifier }: { identifier: string }) {
             )
           }}
         >
-          {CONFIRM_MESSAGE_TYPES[uriHash]}
+          {CONFIRM_MESSAGE_TYPES[modalHash]}
         </Modal.Action>
       </Modal.Actions>
     </Modal>
