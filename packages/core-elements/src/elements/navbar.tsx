@@ -113,7 +113,7 @@ const ICON_URL_BY_NAMES: { [key in IconNames]: string } = {
   message: 'https://assets.triple.guide/images/btn-com-message@3x.png',
   unreadMessage:
     'https://assets.triple.guide/images/btn-com-message-noti@3x.png',
-  viewAll: 'https://assets.triple.guide/images/btn_end_viewAll@3x.png',
+  viewAll: 'https://assets.triple.guide/images/btn-end-view-all@3x.png',
 }
 
 type NavbarItemProps = {
