@@ -14,8 +14,7 @@ const InputText = styled.input`
   padding: 0 35px 0 40px;
   white-space: nowrap;
   width: 100%;
-  height: 34px;
-  line-height: 34px;
+  height: 100%;
   outline: none;
 
   ${({ value }) =>
