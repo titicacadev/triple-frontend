@@ -89,19 +89,23 @@ export function TripleDocument({
                           <Element
                             key={i}
                             value={value}
-                            // TODO: 3.0에서 prop 없애기
-                            onResourceClick={
-                              onResourceClick || defaultHandleResourceClick
-                            }
-                            onImageClick={onImageClick}
-                            onLinkClick={onLinkClick || defaultHandleLinkClick}
-                            onTNAProductClick={onTNAProductClick}
-                            onTNAProductsFetch={onTNAProductsFetch}
-                            ImageSource={imageSourceComponent}
-                            deepLink={deepLink}
-                            videoAutoPlay={videoAutoPlay}
-                            hideVideoControls={hideVideoControls}
-                            optimized={optimized}
+                            {...(customElements
+                              ? {
+                                  onResourceClick:
+                                    onResourceClick ||
+                                    defaultHandleResourceClick,
+                                  onImageClick: onImageClick,
+                                  onLinkClick:
+                                    onLinkClick || defaultHandleLinkClick,
+                                  onTNAProductClick: onTNAProductClick,
+                                  onTNAProductsFetch: onTNAProductsFetch,
+                                  ImageSource: imageSourceComponent,
+                                  deepLink: deepLink,
+                                  videoAutoPlay: videoAutoPlay,
+                                  hideVideoControls: hideVideoControls,
+                                  optimized: optimized,
+                                }
+                              : {})}
                           />
                         )
                       )
