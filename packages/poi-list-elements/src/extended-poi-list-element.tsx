@@ -39,6 +39,7 @@ export function ExtendedPoiListElement<T extends ListingPOI>({
       reviewsCount: rawReviewsCount,
       scrapsCount: rawScrapsCount,
       reviewsRating,
+      vicinity,
     },
     distance,
   },
@@ -74,7 +75,7 @@ export function ExtendedPoiListElement<T extends ListingPOI>({
   const note = (
     notes || [
       starRating ? `${starRating}성급` : category ? category.name : null,
-      area ? area.name : null,
+      Array.isArray(areas) && areas?.length !== 0 ? area.name : vicinity,
     ]
   )
     .filter((v) => v)

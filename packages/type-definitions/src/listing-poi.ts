@@ -15,6 +15,7 @@ interface ListingPOISourceBase {
   reviewsRating?: number
   reviewsCount?: number
   scrapsCount?: number
+  vicinity?: string
 }
 
 interface ListingPOIBase {
