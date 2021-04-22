@@ -1,13 +1,14 @@
-import { useState, useEffect, useRef } from 'react'
+import 'intersection-observer'
+import { useState, useEffect, useRef, MutableRefObject } from 'react'
 
-export default function useIntersection({
+export default function useIntersection<T>({
   threshold,
   rootMargin,
 }: {
   threshold?: number
   rootMargin?: number
 }) {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref: MutableRefObject<T | null> = useRef(null)
   const [isIntersecting, setIsIntersecting] = useState(false)
 
   useEffect(() => {
@@ -15,10 +16,8 @@ export default function useIntersection({
       return
     }
 
-    function handleScroll([entry]: any) {
-      if (entry.isIntersecting) {
-        setIsIntersecting(true)
-      }
+    function handleScroll([entry]: IntersectionObserverEntry[]) {
+      setIsIntersecting(entry.isIntersecting)
     }
 
     const observer = new IntersectionObserver(handleScroll, {
