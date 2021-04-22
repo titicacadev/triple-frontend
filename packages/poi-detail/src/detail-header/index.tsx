@@ -35,6 +35,7 @@ export default function DetailHeader({
   reviewsRating,
   onReviewsRatingClick,
   onCopy,
+  vicinity,
   ...props
 }: {
   names: TranslatedProperty
@@ -44,6 +45,7 @@ export default function DetailHeader({
   reviewsRating: number
   onReviewsRatingClick: () => void
   onCopy: (value: string) => void
+  vicinity?: string
 } & Parameters<typeof Section>['0']) {
   const { isPublic } = useUserAgentContext()
 
@@ -89,7 +91,7 @@ export default function DetailHeader({
             )}
           </Container>
         )}
-        <AreaNames areas={areas} />
+        <AreaNames areas={areas} vicinity={vicinity} />
       </LongClickableSection>
       <CopyActionSheet
         open={uriHash === HASH_COPY_ACTION_SHEET}
@@ -101,8 +103,9 @@ export default function DetailHeader({
   )
 }
 
-function AreaNames({ areas }: { areas?: Area[] }) {
-  const names = (areas || []).map(({ name }) => name).join(' / ')
+function AreaNames({ areas, vicinity }: { areas?: Area[]; vicinity?: string }) {
+  const names =
+    Array.isArray(areas) && areas?.length !== 0 ? areas[0]?.name : vicinity
   return names ? (
     <AreaContainer>
       <Text size="tiny" bold margin={{ top: 10 }} alpha={0.8} lineHeight={1.38}>
