@@ -66,12 +66,13 @@ export function TripleDocument({
     [handleAction],
   )
 
+  const resourceClickHandler = onResourceClick || defaultHandleResourceClick
+  const linkClickHandler = onLinkClick || defaultHandleLinkClick
+
   return (
-    <ResourceClickHandlerProvider
-      value={onResourceClick || defaultHandleResourceClick}
-    >
+    <ResourceClickHandlerProvider value={resourceClickHandler}>
       <ImageClickHandlerProvider value={onImageClick}>
-        <LinkClickHandlerProvider value={onLinkClick || defaultHandleLinkClick}>
+        <LinkClickHandlerProvider value={linkClickHandler}>
           <TNAProductClickHandlerProvider value={onTNAProductClick}>
             <TNAProductsFetcherProvider value={onTNAProductsFetch}>
               <ImageSourceProvider value={imageSourceComponent}>
@@ -91,12 +92,9 @@ export function TripleDocument({
                             value={value}
                             {...(customElements
                               ? {
-                                  onResourceClick:
-                                    onResourceClick ||
-                                    defaultHandleResourceClick,
+                                  onResourceClick: resourceClickHandler,
                                   onImageClick: onImageClick,
-                                  onLinkClick:
-                                    onLinkClick || defaultHandleLinkClick,
+                                  onLinkClick: linkClickHandler,
                                   onTNAProductClick: onTNAProductClick,
                                   onTNAProductsFetch: onTNAProductsFetch,
                                   ImageSource: imageSourceComponent,
