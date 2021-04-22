@@ -9,17 +9,18 @@ import Navbar from './navbar'
 const InputText = styled.input`
   box-sizing: border-box;
   border-style: none;
-  font-size: 17px;
+  font-size: 18px;
   text-overflow: ellipsis;
-  padding: 2px 35px 0px 40px;
+  padding: 0 35px 0 40px;
   white-space: nowrap;
   width: 100%;
-  height: 100%;
+  height: 34px;
+  line-height: 34px;
   outline: none;
 
   ${({ value }) =>
     value
-      ? `padding: 2px 95px 0px 40px;`
+      ? `padding: 0 95px 0 40px;`
       : `
       background: url(https://assets.triple.guide/images/btn-com-search@3x.png) no-repeat;
       background-size: 34px 34px;
@@ -30,8 +31,6 @@ const InputText = styled.input`
 const MainNavbarFrame = styled(Navbar.NavbarFrame)<
   { noBorder?: boolean } & LayeringMixinProps
 >`
-  height: 58px;
-  padding: 12px;
   ${({ noBorder }) =>
     noBorder ? '' : ` border-bottom: 1px solid rgba(${getColor('gray50')});`}
   ${layeringMixin(0)}
