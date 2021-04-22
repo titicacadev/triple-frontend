@@ -22,7 +22,7 @@ const ContentsContainer = styled(Container)<{ isIOS: boolean }>`
     ${({ isIOS }) =>
       isIOS &&
       css`
-        max-height: calc(100vh - 58px);
+        max-height: calc(100vh - 52px);
         overflow: scroll;
       `}
   }
