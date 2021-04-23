@@ -39,6 +39,7 @@ export function baseExample() {
         { id: 1, name: '도쿄' },
         { id: 2, name: '오사카' },
       ]}
+      vicinity={'서울 은평구'}
       scrapsCount={number('저장수', 682)}
       reviewsCount={number('리뷰수', 13859)}
       reviewsRating={number('리뷰평점', 4.45)}
