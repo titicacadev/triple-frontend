@@ -19,9 +19,14 @@ const HorizontalContainer = styled.div`
 
 const Box = styled.div`
   border: 1px solid red;
-  width: 50px;
+  width: 100px;
   height: 50px;
   margin: 10px;
+  padding: 10px;
+  font-size: 0.825rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 const Box2 = styled(Box)`
@@ -31,39 +36,69 @@ const Box2 = styled(Box)`
 
 export function StackBasic() {
   return (
-    <VerticalContainer>
-      <Stack vertical>
-        <Box />
-        <Box />
-        <Box />
-      </Stack>
-    </VerticalContainer>
+    <>
+      <p>
+        보통 POI 목록이나 상품목록 등과 같이 세로 나열형 아이템을 표시할 때 상하
+        여백(padding, margin) 을 0으로 초기화 하기 위한 컴포넌트 입니다.
+      </p>
+      <br />
+
+      <VerticalContainer>
+        <Stack>
+          <Box>margin: 10px</Box>
+          <Box />
+          <Box />
+        </Stack>
+      </VerticalContainer>
+    </>
   )
 }
 
 export function StackHorizontal() {
   return (
-    <HorizontalContainer>
-      <Stack horizontal>
-        <Box2 />
-        <Box2 />
-        <Box2 />
-        <Box2 />
-        <Box2 />
-        <Box2 />
-      </Stack>
-    </HorizontalContainer>
+    <>
+      <p>
+        가로 나열형 아이템을 표시할 때 좌우 여백(padding, margin) 을 0으로
+        초기화 하기 위한 컴포넌트 입니다.
+        <br />
+        <code>horizontal</code> 속성을 부여하므로써 좌우 여백을 0으로 초기화하게
+        됩니다.
+      </p>
+      <br />
+
+      <HorizontalContainer>
+        <Stack horizontal>
+          <Box2 />
+          <Box2 />
+          <Box2 />
+          <Box2 />
+          <Box2 />
+          <Box2 />
+        </Stack>
+      </HorizontalContainer>
+    </>
   )
 }
 
 export function StackVertical() {
   return (
-    <VerticalContainer>
-      <Stack vertical>
-        <Box />
-        <Box />
-        <Box />
-      </Stack>
-    </VerticalContainer>
+    <>
+      <p>
+        세로 나열형 아이템을 표시할 때 상하 여백(padding, margin) 을 0으로
+        초기화 하기 위한 컴포넌트 입니다.
+        <br />
+        <code>vertical</code> 속성을 부여하므로써 상하 여백을 0으로 초기화하게
+        됩니다.
+      </p>
+      <br />
+
+      <VerticalContainer>
+        <Stack vertical>
+          <Box />
+          <Box />
+          <Box />
+        </Stack>
+      </VerticalContainer>
+    </>
   )
 }
