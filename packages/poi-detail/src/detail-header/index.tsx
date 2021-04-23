@@ -104,15 +104,15 @@ export default function DetailHeader({
 }
 
 function AreaNames({ areas, vicinity }: { areas?: Area[]; vicinity?: string }) {
-  const names =
-    Array.isArray(areas) && areas?.length !== 0 ? areas[0]?.name : vicinity
-  return names ? (
+  const names = areas && areas.length > 0 ? areas[0]?.name : vicinity
+
+  return (
     <AreaContainer>
       <Text size="tiny" bold margin={{ top: 10 }} alpha={0.8} lineHeight={1.38}>
         {names}
       </Text>
     </AreaContainer>
-  ) : null
+  )
 }
 
 const AreaContainer = styled(Container)`
