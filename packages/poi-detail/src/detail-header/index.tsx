@@ -29,7 +29,7 @@ interface Area {
 
 export default function DetailHeader({
   names,
-  areas = [],
+  areas,
   scrapsCount,
   reviewsCount,
   reviewsRating,
@@ -39,7 +39,7 @@ export default function DetailHeader({
   ...props
 }: {
   names: TranslatedProperty
-  areas: Area[]
+  areas?: Area[]
   scrapsCount: number
   reviewsCount: number
   reviewsRating: number
@@ -103,8 +103,9 @@ export default function DetailHeader({
   )
 }
 
-function AreaNames({ areas, vicinity }: { areas: Area[]; vicinity?: string }) {
-  const names = areas[0]?.name ?? vicinity
+function AreaNames({ areas, vicinity }: { areas?: Area[]; vicinity?: string }) {
+  const names =
+    Array.isArray(areas) && areas?.length !== 0 ? areas[0]?.name : vicinity
 
   return names ? (
     <AreaContainer>
