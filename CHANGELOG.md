@@ -17,6 +17,7 @@
 
 ### core-elements
 
+- Stack 컴포넌트를 추가합니다. (#1248)
 - Navbar Item 버튼이미지를 추가합니다 (#1311)
 
 ### intersection-observer
