@@ -63,7 +63,6 @@ export function ExtendedPoiListElement<T extends ListingPOI>({
           source: { starRating: undefined },
         }
 
-  const [area] = areas
   const [category] = categories
 
   const { scrapsCount } = deriveCurrentStateAndCount({
@@ -75,7 +74,7 @@ export function ExtendedPoiListElement<T extends ListingPOI>({
   const note = (
     notes || [
       starRating ? `${starRating}성급` : category ? category.name : null,
-      area ? area?.name : vicinity,
+      areas[0]?.name ?? vicinity,
     ]
   )
     .filter((v) => v)
