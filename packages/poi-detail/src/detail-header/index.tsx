@@ -29,7 +29,7 @@ interface Area {
 
 export default function DetailHeader({
   names,
-  areas,
+  areas = [],
   scrapsCount,
   reviewsCount,
   reviewsRating,
@@ -39,7 +39,7 @@ export default function DetailHeader({
   ...props
 }: {
   names: TranslatedProperty
-  areas?: Area[]
+  areas: Area[]
   scrapsCount: number
   reviewsCount: number
   reviewsRating: number
@@ -103,16 +103,16 @@ export default function DetailHeader({
   )
 }
 
-function AreaNames({ areas, vicinity }: { areas?: Area[]; vicinity?: string }) {
-  const names = areas && areas.length > 0 ? areas[0]?.name : vicinity
+function AreaNames({ areas, vicinity }: { areas: Area[]; vicinity?: string }) {
+  const names = areas[0]?.name ?? vicinity
 
-  return (
+  return names ? (
     <AreaContainer>
       <Text size="tiny" bold margin={{ top: 10 }} alpha={0.8} lineHeight={1.38}>
         {names}
       </Text>
     </AreaContainer>
-  )
+  ) : null
 }
 
 const AreaContainer = styled(Container)`
