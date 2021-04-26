@@ -104,7 +104,7 @@ export default function DetailHeader({
 }
 
 function AreaNames({ areas, vicinity }: { areas: Area[]; vicinity?: string }) {
-  const names = areas.length > 0 ? areas[0]?.name : vicinity
+  const names = areas[0]?.name || vicinity
 
   return names ? (
     <AreaContainer>
