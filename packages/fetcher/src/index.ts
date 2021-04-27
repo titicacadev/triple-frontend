@@ -1,17 +1,22 @@
 import Cookies from 'universal-cookie'
 
 import { HttpError } from './error'
-import { HttpResponse, RequestOptions, HTTPMethods } from './types'
+import {
+  HttpResponse,
+  RequestOptions,
+  HTTPMethods,
+  HttpErrorResponse,
+} from './types'
 
 export * from './types'
 export * from './error'
 
 const refetchStatuses = [502, 503, 504]
 
-export async function fetcher<T = any>(
+export async function fetcher<T = any, E = HttpErrorResponse>(
   url: string,
   { req, body, useBodyAsRaw, retryable, ...rest }: RequestOptions,
-): Promise<HttpResponse<T>> {
+): Promise<HttpResponse<T, E>> {
   if (req && !process.env.API_URI_BASE) {
     throw new Error(
       'Insufficient environment variables in `.env.*` files\n- API_URI_BASE',
@@ -32,10 +37,10 @@ export async function fetcher<T = any>(
     ...(sessionId && { 'X-Soto-Session': sessionId }),
   }
 
-  const getResponse: (retry: number) => Promise<HttpResponse<T>> = async (
+  const getResponse: (retry: number) => Promise<HttpResponse<T, E>> = async (
     retry: number,
   ) => {
-    const response: HttpResponse<T> = await fetch(reqUrl, {
+    const response: HttpResponse<T, E> = await fetch(reqUrl, {
       credentials: 'same-origin',
       headers,
       ...rest,
@@ -113,39 +118,39 @@ export async function fetcher<T = any>(
   }
 }
 
-export const get = async <T extends {}>(
+export const get = async <T extends {}, E>(
   url: string,
   options?: RequestOptions,
-): Promise<HttpResponse<T>> =>
-  fetcher<T>(url, {
+): Promise<HttpResponse<T, E>> =>
+  fetcher<T, E>(url, {
     ...options,
     method: HTTPMethods.GET,
   })
 
-export const put = async <T extends {}>(
+export const put = async <T extends {}, E>(
   url: string,
   options?: RequestOptions,
-): Promise<HttpResponse<T>> =>
-  fetcher<T>(url, {
+): Promise<HttpResponse<T, E>> =>
+  fetcher<T, E>(url, {
     ...options,
     method: HTTPMethods.PUT,
   })
 
-export const post = async <T extends {}>(
+export const post = async <T extends {}, E>(
   url: string,
   options?: RequestOptions,
-): Promise<HttpResponse<T>> =>
-  fetcher<T>(url, {
+): Promise<HttpResponse<T, E>> =>
+  fetcher<T, E>(url, {
     url,
     ...options,
     method: HTTPMethods.POST,
   })
 
-export const del = async <T extends {}>(
+export const del = async <T extends {}, E>(
   url: string,
   options?: RequestOptions,
-): Promise<HttpResponse<T>> =>
-  fetcher<T>(url, {
+): Promise<HttpResponse<T, E>> =>
+  fetcher<T, E>(url, {
     ...options,
     method: HTTPMethods.DELETE,
   })
