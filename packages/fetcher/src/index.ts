@@ -118,7 +118,7 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
   }
 }
 
-export const get = async <T extends {}, E>(
+export const get = async <T extends {}, E = HttpErrorResponse>(
   url: string,
   options?: RequestOptions,
 ): Promise<HttpResponse<T, E>> =>
@@ -127,7 +127,7 @@ export const get = async <T extends {}, E>(
     method: HTTPMethods.GET,
   })
 
-export const put = async <T extends {}, E>(
+export const put = async <T extends {}, E = HttpErrorResponse>(
   url: string,
   options?: RequestOptions,
 ): Promise<HttpResponse<T, E>> =>
@@ -136,7 +136,7 @@ export const put = async <T extends {}, E>(
     method: HTTPMethods.PUT,
   })
 
-export const post = async <T extends {}, E>(
+export const post = async <T extends {}, E = HttpErrorResponse>(
   url: string,
   options?: RequestOptions,
 ): Promise<HttpResponse<T, E>> =>
@@ -146,7 +146,7 @@ export const post = async <T extends {}, E>(
     method: HTTPMethods.POST,
   })
 
-export const del = async <T extends {}, E>(
+export const del = async <T extends {}, E = HttpErrorResponse>(
   url: string,
   options?: RequestOptions,
 ): Promise<HttpResponse<T, E>> =>

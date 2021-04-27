@@ -22,7 +22,7 @@ const DEFAULT_HTTP_ERROR_RESPONSE: HttpErrorResponse = {
  *
  * ref - https://github.com/adriengibrat/ts-custom-error
  */
-export class HttpError<T, E = HttpErrorResponse> extends CustomError {
+export class HttpError<E> extends CustomError {
   private readonly _statusCode: number
 
   private readonly _errorData: HttpErrorResponse
