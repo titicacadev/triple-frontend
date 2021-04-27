@@ -25,9 +25,9 @@ const DEFAULT_HTTP_ERROR_RESPONSE: HttpErrorResponse = {
 export class HttpError<T, E = HttpErrorResponse> extends CustomError {
   private readonly _statusCode: number
 
-  private readonly _errorData: E
+  private readonly _errorData: HttpErrorResponse
 
-  constructor(errorData: E, response: Response) {
+  constructor(errorData: HttpErrorResponse, response: Response) {
     const { status, statusText } = response
     super(statusText)
     this._statusCode = status
@@ -46,7 +46,7 @@ export class HttpError<T, E = HttpErrorResponse> extends CustomError {
         ...DEFAULT_HTTP_ERROR_RESPONSE,
         ...JSON.parse(this._errorData.message),
         status: this._statusCode,
-      } as T
+      } as E
     } catch (error) {
       return {
         ...DEFAULT_HTTP_ERROR_RESPONSE,
