@@ -13,7 +13,7 @@ import {
 } from './coupon-download-buttons'
 
 export default function Coupon({
-  value: { identifier: slugId, description, verificationType = 'single' },
+  value: { identifier, description, verificationType, couponType = 'single' },
 }: {
   value: {
     identifier: string
@@ -37,13 +37,11 @@ export default function Coupon({
       ) : couponType === 'single' ? (
         <InAppCouponDownloadButton
           verificationType={verificationType}
-          couponFetchDisabled={couponFetchDisabled}
           slugId={identifier}
         />
       ) : (
         <InAppCouponGroupDownloadButton
           verificationType={verificationType}
-          couponFetchDisabled={couponFetchDisabled}
           groupId={identifier}
         />
       )}

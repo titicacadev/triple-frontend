@@ -43,11 +43,9 @@ export function PublicCouponDownloadButton() {
 export function InAppCouponDownloadButton({
   slugId,
   verificationType,
-  couponFetchDisabled,
 }: {
   slugId: string
   verificationType?: VerificationType
-  couponFetchDisabled?: boolean
 }) {
   const [enabled, setEnabled] = useState(false)
   const [downloaded, setDownloaded] = useState(false)
@@ -78,13 +76,8 @@ export function InAppCouponDownloadButton({
       }
     }
 
-    if (couponFetchDisabled) {
-      setEnabled(false)
-      return
-    }
-
     fetchCoupon()
-  }, [slugId, couponFetchDisabled])
+  }, [slugId])
 
   const pushHashDownloaded = () =>
     push(`${slugId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
@@ -145,12 +138,10 @@ export function InAppCouponDownloadButton({
 
 export function InAppCouponGroupDownloadButton({
   groupId,
-  couponFetchDisabled,
   verificationType,
 }: {
   groupId: string
   verificationType?: VerificationType
-  couponFetchDisabled?: boolean
 }) {
   const [enabled, setEnabled] = useState(false)
   const [coupons, setCoupons] = useState<CouponData[]>([])
@@ -188,13 +179,8 @@ export function InAppCouponGroupDownloadButton({
       }
     }
 
-    if (couponFetchDisabled) {
-      setEnabled(false)
-      return
-    }
-
     fetchCoupons()
-  }, [groupId, couponFetchDisabled])
+  }, [groupId])
 
   const downloadCoupons = useCallback(async () => {
     if (verificationType && !verificationState.verified) {
