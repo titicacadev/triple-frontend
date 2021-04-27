@@ -155,7 +155,7 @@ export function InAppCouponGroupDownloadButton({
   })
 
   const downloaded =
-    coupons.length === 0 && coupons.every(({ downloaded }) => downloaded)
+    coupons.length === 0 || coupons.every(({ downloaded }) => downloaded)
 
   const pushHashDownloaded = () =>
     push(`${groupId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
@@ -169,7 +169,7 @@ export function InAppCouponGroupDownloadButton({
         }>(`/api/benefit/downloadable-coupons?groupCode=${groupId}`)
 
         if (ok && result) {
-          setEnabled(true)
+          setEnabled(result.items.length > 0)
           setCoupons(result.items)
         } else {
           captureException(new Error(`[${status}] Failed to fetch coupon`))
