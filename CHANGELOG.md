@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### triple-document
+
+- 쿠폰 그룹 다운로드 지원 (#1322)
+
 ### review
 
 - 리뷰 클릭 핸들러 reviewId 타입 fix (#1337)
