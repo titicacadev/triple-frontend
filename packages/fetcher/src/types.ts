@@ -31,7 +31,7 @@ export interface HttpErrorResponse extends Error {
   message: string
 }
 
-export interface HttpResponse<T> extends Response {
+export interface HttpResponse<T, E> extends Response {
   result?: T
-  error?: HttpError<HttpErrorResponse>
+  error?: HttpError<E>
 }

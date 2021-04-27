@@ -22,14 +22,12 @@ const DEFAULT_HTTP_ERROR_RESPONSE: HttpErrorResponse = {
  *
  * ref - https://github.com/adriengibrat/ts-custom-error
  */
-export class HttpError<
-  T extends HttpErrorResponse = HttpErrorResponse
-> extends CustomError {
+export class HttpError<T, E = HttpErrorResponse> extends CustomError {
   private readonly _statusCode: number
 
-  private readonly _errorData: HttpErrorResponse
+  private readonly _errorData: E
 
-  constructor(errorData: HttpErrorResponse, response: Response) {
+  constructor(errorData: E, response: Response) {
     const { status, statusText } = response
     super(statusText)
     this._statusCode = status
