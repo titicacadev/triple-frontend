@@ -1,4 +1,5 @@
 import { InventoryItemMeta } from '@titicaca/type-definitions'
+
 export async function fetchInventoryItems({
   inventoryId,
 }: {

@@ -115,7 +115,7 @@ export function ScrapsProvider({
         /* At least one of the status are unknown: Reduces to a bitwise OR operation */
         return {
           scraped: !!scraped || !!currentState,
-          scrapsCount: scrapsCount,
+          scrapsCount,
         }
       }
 

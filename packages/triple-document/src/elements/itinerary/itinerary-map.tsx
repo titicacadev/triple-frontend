@@ -61,7 +61,7 @@ export default function ItineraryMap({ onClickMarker, items }: Props) {
               </CircleMarker>
             )
           })}
-          <DotPolyline path={polyline}></DotPolyline>
+          <DotPolyline path={polyline} />
         </MapView>
       ) : null}
     </Container>

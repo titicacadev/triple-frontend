@@ -42,7 +42,7 @@ export function Map() {
           googleMapsApiKey: GOOGLE_MAPS_API_KEY,
         }}
         bounds={object('동서남북 경계', bounds)}
-      ></MapView>
+      />
     </Container>
   )
 }

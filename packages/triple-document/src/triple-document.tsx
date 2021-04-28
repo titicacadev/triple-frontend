@@ -93,15 +93,15 @@ export function TripleDocument({
                             {...(customElements
                               ? {
                                   onResourceClick: resourceClickHandler,
-                                  onImageClick: onImageClick,
+                                  onImageClick,
                                   onLinkClick: linkClickHandler,
-                                  onTNAProductClick: onTNAProductClick,
-                                  onTNAProductsFetch: onTNAProductsFetch,
+                                  onTNAProductClick,
+                                  onTNAProductsFetch,
                                   ImageSource: imageSourceComponent,
-                                  deepLink: deepLink,
-                                  videoAutoPlay: videoAutoPlay,
-                                  hideVideoControls: hideVideoControls,
-                                  optimized: optimized,
+                                  deepLink,
+                                  videoAutoPlay,
+                                  hideVideoControls,
+                                  optimized,
                                 }
                               : {})}
                           />

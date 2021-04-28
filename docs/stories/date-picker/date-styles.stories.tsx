@@ -137,11 +137,11 @@ export function rangePicker() {
     <>
       <tr className="DayPicker-Week">
         <td>outside 구간</td>
-        <td className="DayPicker-Day DayPicker-Day--outside DayPicker-Day--from DayPicker-Day--selected DayPicker-Day--included-range"></td>
-        <td className="DayPicker-Day DayPicker-Day--publicHolidays DayPicker-Day--outside DayPicker-Day--selected DayPicker-Day--included-range"></td>
-        <td className="DayPicker-Day DayPicker-Day--disabled DayPicker-Day--outside DayPicker-Day--selected DayPicker-Day--included-range"></td>
-        <td className="DayPicker-Day DayPicker-Day--outside DayPicker-Day--today DayPicker-Day--selected DayPicker-Day--included-range"></td>
-        <td className="DayPicker-Day DayPicker-Day--outside DayPicker-Day--today DayPicker-Day--publicHolidays  DayPicker-Day--selected DayPicker-Day--included-range"></td>
+        <td className="DayPicker-Day DayPicker-Day--outside DayPicker-Day--from DayPicker-Day--selected DayPicker-Day--included-range" />
+        <td className="DayPicker-Day DayPicker-Day--publicHolidays DayPicker-Day--outside DayPicker-Day--selected DayPicker-Day--included-range" />
+        <td className="DayPicker-Day DayPicker-Day--disabled DayPicker-Day--outside DayPicker-Day--selected DayPicker-Day--included-range" />
+        <td className="DayPicker-Day DayPicker-Day--outside DayPicker-Day--today DayPicker-Day--selected DayPicker-Day--included-range" />
+        <td className="DayPicker-Day DayPicker-Day--outside DayPicker-Day--today DayPicker-Day--publicHolidays  DayPicker-Day--selected DayPicker-Day--included-range" />
       </tr>
 
       <tr className="DayPicker-Week">
@@ -167,7 +167,7 @@ export function rangePicker() {
 
       <tr className="DayPicker-Week">
         <td>from, to</td>
-        <td></td>
+        <td />
         <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--from">
           1
         </td>

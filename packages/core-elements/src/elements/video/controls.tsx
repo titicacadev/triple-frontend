@@ -8,6 +8,7 @@ import PlayPauseButton from './play-pause-button'
 import MuteUnmuteButton from './mute-unmute-button'
 import { formatTime } from './utils'
 import { useVideoControl } from './use-video-control'
+
 const ControlsContainer = styled.div<{ visible: boolean }>`
   position: absolute;
   top: 0;

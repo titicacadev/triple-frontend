@@ -7,6 +7,7 @@ import ImageBanner from './image-banner'
 import TextBanner from './text-banner'
 import { CTAProps } from './interfaces'
 import { fetchInventoryItems } from './service'
+
 interface BannerCTAProps extends CTAProps {
   inventoryId: string
   installUrl: string
