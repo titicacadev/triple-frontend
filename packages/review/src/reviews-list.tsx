@@ -186,7 +186,7 @@ export default function ReviewsList({
   )
 
   const handleReviewClick = useCallback(
-    (e: React.SyntheticEvent, review) => {
+    (e: React.SyntheticEvent, reviewId) => {
       if (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) {
         e.preventDefault()
         e.stopPropagation()
@@ -195,10 +195,10 @@ export default function ReviewsList({
           fa: {
             action: '리뷰_리뷰선택',
             item_id: resourceId,
-            review_id: review.id,
+            review_id: reviewId,
           },
         })
-        navigateReviewDetail({ reviewId: review.id, regionId, resourceId })
+        navigateReviewDetail({ reviewId, regionId, resourceId })
       }
     },
     [appVersion, trackEvent, resourceId, navigateReviewDetail, regionId],
