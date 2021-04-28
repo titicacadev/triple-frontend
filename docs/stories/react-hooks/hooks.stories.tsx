@@ -24,7 +24,7 @@ export function ScrollElement() {
 
   return (
     <div>
-      <div style={{ height: '200vh' }}></div>
+      <div style={{ height: '200vh' }} />
       <div id="app">
         <h1>App</h1>
       </div>
@@ -49,11 +49,11 @@ function ScrollToAnchorComponent({ useAlias }: { useAlias: boolean }) {
 
   return (
     <div>
-      <div style={{ height: '200vh' }}></div>
+      <div style={{ height: '200vh' }} />
       <div id="app">
         <h1>App</h1>
       </div>
-      <div style={{ height: '200vh' }}></div>
+      <div style={{ height: '200vh' }} />
       <div id="alias">
         <h1>Alias</h1>
       </div>

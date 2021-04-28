@@ -58,6 +58,6 @@ storiesOf('image-carousel / Image Carousel', module).add('일반', () => {
           <PageLabel currentIndex={currentIndex} totalCount={totalCount} />
         ) : null
       }
-    ></ImageCarousel>
+    />
   )
 })

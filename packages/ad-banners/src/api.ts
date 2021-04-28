@@ -159,7 +159,7 @@ function getRequestBody(
       return JSON.stringify({
         content: {
           id: contentId,
-          regionId: regionId,
+          regionId,
           type: contentType,
         },
         eventType,
