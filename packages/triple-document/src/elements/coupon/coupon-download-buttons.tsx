@@ -89,28 +89,29 @@ export function InAppCouponDownloadButton({
         return
       }
 
-      const response = await fetch(`/api/benefit/coupons/${slugId}/download`, {
+      const { ok, result, status } = await get<{
+        id?: string
+        message?: string
+        code?: string
+      }>(`/api/benefit/coupons/${slugId}/download`, {
         credentials: 'same-origin',
       })
-      const {
-        id,
-        message,
-        code,
-      }: { id?: string; message: string; code?: string } = await response.json()
 
-      if (response.ok) {
-        if (id) {
-          push(`${slugId}.${HASH_COMPLETE_DOWNLOAD_COUPON}`)
-          setDownloaded(true)
+      if (result) {
+        if (ok) {
+          if (result.id) {
+            push(`${slugId}.${HASH_COMPLETE_DOWNLOAD_COUPON}`)
+            setDownloaded(true)
+          }
+        } else if (result?.code === 'NO_CI_AUTHENTICATION') {
+          initiateVerification()
+        } else {
+          captureException(new Error(`[${status}] Failed to download coupon`))
+          setErrorMessage(result.message)
+          push(`${slugId}.${HASH_ERROR_COUPON}`)
         }
-      } else if (code === 'NO_CI_AUTHENTICATION') {
-        initiateVerification()
       } else {
-        captureException(
-          new Error(`[${response.status}] Failed to download coupon`),
-        )
-        setErrorMessage(message)
-        push(`${slugId}.${HASH_ERROR_COUPON}`)
+        throw Error(`Coupon API Has No Response (${slugId})`)
       }
     } catch (e) {
       captureException(e)
