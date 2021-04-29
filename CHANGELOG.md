@@ -2,12 +2,21 @@
 
 ## Unreleased
 
+### static-map
+
+- `static-map` zoom level과 frame을 제어 가능하도록 합니다. #1310
+
+### view-utilities
+
+- generateUrl 함수가 base URL의 query를 보존하지 못하는 문제 수정 (#1316)
+
 ### config
 
 - eslint-config-triple@2.4.0 설치 (#1338)
 
 ### triple-document
 
+- `triple-document`에서 prop으로 전달하던 값을 Context API로 공급합니다.
 - 쿠폰 그룹 다운로드 지원 (#1322)
 
 ### poi-detail, nearby-pois, poi-list-elements
