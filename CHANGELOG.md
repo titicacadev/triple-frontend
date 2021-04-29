@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 2.18.1
+
+### poi-detail
+
+- areas type 수정 (#1342)
+
 ## 2.18.0
 
 ### static-map
