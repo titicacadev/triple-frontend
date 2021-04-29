@@ -6,6 +6,10 @@
 
 - 쿠폰 그룹 다운로드 지원 (#1322)
 
+### poi-detail, nearby-pois
+
+- 리전없는 행정구역 표기 추가 (#1332)
+
 ### review
 
 - 리뷰 클릭 핸들러 reviewId 타입 fix (#1337)
