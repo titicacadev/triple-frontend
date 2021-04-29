@@ -15,7 +15,6 @@ export const HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP =
   'coupon.part-of-group-download-complete.modal'
 export const HASH_ALREADY_DOWNLOAD_COUPON = 'coupon.download-already.modal'
 export const HASH_ERROR_COUPON = 'coupon.error.modal'
-export const HASH_ERROR_COUPON_GROUP = 'coupon-group.error.modal'
 export const HASH_COUPON_APP_TRANSITION_MODAL = 'coupon.app-transition.modal'
 
 const MODAL_HASHES = [
