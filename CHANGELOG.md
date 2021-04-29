@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### config
+
+- eslint-config-triple@2.4.0 설치 (#1338)
+
 ### triple-document
 
 - 쿠폰 그룹 다운로드 지원 (#1322)
