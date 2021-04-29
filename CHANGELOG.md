@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.18.0
+
 ### static-map
 
 - `static-map` zoom level과 frame을 제어 가능하도록 합니다. #1310
