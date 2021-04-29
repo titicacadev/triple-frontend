@@ -6,7 +6,7 @@
 
 ### static-map
 
-- `static-map` zoom level과 frame을 제어 가능하도록 합니다. #1310
+- `static-map` zoom level과 frame을 제어 가능하도록 합니다. (#1310)
 
 ### view-utilities
 
@@ -18,7 +18,7 @@
 
 ### triple-document
 
-- `triple-document`에서 prop으로 전달하던 값을 Context API로 공급합니다.
+- `triple-document`에서 prop으로 전달하던 값을 Context API로 공급합니다. (#1318)
 - 쿠폰 그룹 다운로드 지원 (#1322)
 
 ### poi-detail, nearby-pois, poi-list-elements
