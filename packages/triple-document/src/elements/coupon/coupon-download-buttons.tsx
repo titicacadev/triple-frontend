@@ -190,6 +190,12 @@ export function InAppCouponGroupDownloadButton({
       return
     }
 
+    if (coupons.every(({ downloaded }) => downloaded)) {
+      push(`${groupId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
+
+      return
+    }
+
     const { result: results, ok } = await post<
       {
         id: string
