@@ -190,7 +190,9 @@ export function InAppCouponGroupDownloadButton({
       return
     }
 
-    if (coupons.every(({ downloaded }) => downloaded)) {
+    const downloadableCoupons = coupons.filter(({ downloaded }) => !downloaded)
+
+    if (downloadableCoupons.length === 0) {
       push(`${groupId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
 
       return
@@ -210,13 +212,19 @@ export function InAppCouponGroupDownloadButton({
     })
 
     if (ok && results) {
-      const succeedCoupons = results.filter(({ success }) => success).length
+      const succeedCoupons = results.filter(({ success }) => success)
 
-      if (succeedCoupons === coupons.length) {
+      if (downloadableCoupons.length === succeedCoupons.length) {
+        setCoupons((coupons) =>
+          coupons.map((coupon) => ({ ...coupon, downloaded: true })),
+        )
+      }
+
+      if (succeedCoupons.length === coupons.length) {
         push(`${groupId}.${HASH_COMPLETE_DOWNLOAD_COUPON_GROUP}`)
-      } else if (succeedCoupons > 0) {
+      } else if (succeedCoupons.length > 0) {
         push(`${groupId}.${HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP}`)
-      } else if (succeedCoupons === 0) {
+      } else if (succeedCoupons.length === 0) {
         setErrorMessage(results[0].errorMessage)
         push(`${groupId}.${HASH_ERROR_COUPON}`)
       }
