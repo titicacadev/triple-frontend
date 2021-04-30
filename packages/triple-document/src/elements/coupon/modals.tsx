@@ -33,7 +33,7 @@ const TITLE_TYPES: HashKeyValue = {
 
 const MESSAGE_TYPES: HashKeyValue = {
   [HASH_COMPLETE_DOWNLOAD_COUPON]:
-    '쿠폰을 받았습니다!\n쿠폰함에서 확인 할 수 있어요~!',
+    '쿠폰을 받았습니다!\n쿠폰함에서 확인할 수 있어요~!',
   [HASH_COMPLETE_DOWNLOAD_COUPON_GROUP]:
     '쿠폰을 모두 받았습니다.\n쿠폰함에서 확인할 수 있어요~!',
   [HASH_ALREADY_DOWNLOAD_COUPON]: '쿠폰함에서 쿠폰을 확인하세요.',
