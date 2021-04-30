@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.18.2
+
 ### triple-document
 
 - 쿠폰 그룹 다운로드 모달, 로직 수정 (#1344)
