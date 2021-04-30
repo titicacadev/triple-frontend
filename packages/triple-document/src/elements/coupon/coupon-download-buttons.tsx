@@ -26,6 +26,8 @@ const BaseCouponDownloadButton = styled(Button)`
   width: 100%;
 `
 
+const MAX_COUPONS_PER_USER_ERROR_CODE = 'MAX_COUPONS_PER_USER'
+
 export function PublicCouponDownloadButton() {
   const { push } = useHistoryFunctions()
 
@@ -214,17 +216,15 @@ export function InAppCouponGroupDownloadButton({
     if (ok && results) {
       const succeedCoupons = results.filter(({ success }) => success)
 
-      if (downloadableCoupons.length === succeedCoupons.length) {
-        setCoupons((coupons) =>
-          coupons.map((coupon) => ({ ...coupon, downloaded: true })),
-        )
-      }
-
       if (succeedCoupons.length === coupons.length) {
         push(`${groupId}.${HASH_COMPLETE_DOWNLOAD_COUPON_GROUP}`)
       } else if (succeedCoupons.length > 0) {
         push(`${groupId}.${HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP}`)
       } else if (succeedCoupons.length === 0) {
+        if (results[0].errorCode === MAX_COUPONS_PER_USER_ERROR_CODE) {
+          push(`${groupId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
+          return
+        }
         setErrorMessage(results[0].errorMessage)
         push(`${groupId}.${HASH_ERROR_COUPON}`)
       }
