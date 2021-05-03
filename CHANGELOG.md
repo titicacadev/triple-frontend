@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.19.0
+
 ### resource-list-element
 
 - 지역명을 받을수 있도록 prop을 추가합니다. (#1348)
