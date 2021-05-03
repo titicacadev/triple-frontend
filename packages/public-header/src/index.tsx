@@ -18,7 +18,7 @@ const HeaderFrame = styled.header<{
 }>`
   background-color: ${white};
   position: sticky;
-  z-index: 1;
+  z-index: 3;
   ${({ fixed }) =>
     fixed &&
     css`
