@@ -92,8 +92,7 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
 }: React.PropsWithChildren<ResourceListElementProps<R>>) {
   const { id, type, scraped } = scrapResource || resource || {}
   const labels = tags || []
-
-  const formattedNames = [partnerName, areaName].filter((t) => t).join(' · ')
+  const formattedNames = [partnerName, areaName].filter(Boolean).join(' · ')
 
   return (
     <ResourceListItem onClick={onClick} {...props}>
@@ -168,7 +167,7 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
           margin={{ top: 5 }}
         />
 
-        {partnerName || areaName ? (
+        {formattedNames ? (
           <Container margin={{ top: 5 }}>
             <Text inlineBlock size="tiny" color="gray" alpha={0.5}>
               {formattedNames}
