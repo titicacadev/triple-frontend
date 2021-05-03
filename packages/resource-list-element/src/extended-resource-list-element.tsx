@@ -42,7 +42,7 @@ export type ResourceListElementProps<R extends ResourceMeta> = {
   maxCommentLines?: number
   isAdvertisement?: boolean
   partnerName?: string
-  areaName?: string
+  domesticAreaName?: string
   onClick?: React.MouseEventHandler<HTMLLIElement>
   optimized?: boolean
 } & Partial<Parameters<typeof List.Item>['0']>
@@ -85,7 +85,7 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
   maxCommentLines,
   isAdvertisement,
   partnerName,
-  areaName,
+  domesticAreaName,
   children,
   optimized,
   ...props
@@ -166,7 +166,7 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
           margin={{ top: 5 }}
         />
 
-        {partnerName || areaName ? (
+        {partnerName || domesticAreaName ? (
           <Container margin={{ top: 5 }}>
             {partnerName && (
               <Text inlineBlock size="tiny" color="gray" alpha={0.5}>
@@ -174,7 +174,7 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
               </Text>
             )}
 
-            {areaName && (
+            {domesticAreaName && (
               <Text
                 inlineBlock
                 size="tiny"
@@ -182,7 +182,7 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
                 alpha={0.5}
                 margin={{ left: 5 }}
               >
-                · {areaName}
+                · {domesticAreaName}
               </Text>
             )}
           </Container>
