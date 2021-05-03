@@ -30,6 +30,7 @@ storiesOf('resource-list-element / resource-list-element', module)
       reviewsRating={number('reviewsRating', 3)}
       hideScrapButton={boolean('hideScrapButton', true)}
       partnerName={text('partnerName', '브이패스')}
+      areaName={text('areaName', '서울특별시')}
     >
       <Container margin={{ top: 18 }}>
         <Pricing
