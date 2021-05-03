@@ -93,6 +93,8 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
   const { id, type, scraped } = scrapResource || resource || {}
   const labels = tags || []
 
+  const formattedNames = [partnerName, areaName].filter((t) => t).join(' · ')
+
   return (
     <ResourceListItem onClick={onClick} {...props}>
       <Container position="relative">
@@ -168,23 +170,9 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
 
         {partnerName || areaName ? (
           <Container margin={{ top: 5 }}>
-            {partnerName && (
-              <Text inlineBlock size="tiny" color="gray" alpha={0.5}>
-                {partnerName}
-              </Text>
-            )}
-
-            {areaName && (
-              <Text
-                inlineBlock
-                size="tiny"
-                color="gray"
-                alpha={0.5}
-                margin={{ left: 5 }}
-              >
-                · {areaName}
-              </Text>
-            )}
+            <Text inlineBlock size="tiny" color="gray" alpha={0.5}>
+              {formattedNames}
+            </Text>
           </Container>
         ) : null}
 
