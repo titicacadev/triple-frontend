@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### view-utilities
+
+- generateUrl 함수가 Array를 포맷할때 comma 포맷을 사용합니다. (#1354)
+
 ## 2.19.0
 
 ### resource-list-element
