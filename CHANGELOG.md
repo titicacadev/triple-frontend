@@ -4,7 +4,7 @@
 
 ### view-utilities
 
-- generateUrl 함수가 Array를 포맷할때 comma 포맷을 사용합니다. (#1354)
+- generateUrl 함수에 arrayFormat 옵션 인자를 추가합니다 (#1354)
 
 ## 2.19.0
 
