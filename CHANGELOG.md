@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.20.0
+
 ### view-utilities
 
 - generateUrl 함수에 arrayFormat 옵션 인자를 추가합니다 (#1354)
