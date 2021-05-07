@@ -43,7 +43,7 @@ export function generateUrl(
       ...(baseUrlQuery && qs.parse(baseUrlQuery, { strictNullHandling: true })),
       ...(elementQuery && qs.parse(elementQuery, { strictNullHandling: true })),
     },
-    { strictNullHandling: true, ...(option && option) },
+    { strictNullHandling: true, ...option },
   )
 
   return [
