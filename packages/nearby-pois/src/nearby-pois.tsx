@@ -53,7 +53,7 @@ export default function NearbyPois({
   ...props
 }: {
   poiId: string
-  regionId: string
+  regionId?: string
   initialTab?: PoiType
   geolocation: PointGeoJSON
   optimized?: boolean

@@ -6,7 +6,7 @@ import { PoiType, ListingPOI } from './types'
 export async function fetchPois({
   type,
   excludedIds = [],
-  regionId,
+  regionId = null,
   lat,
   lon,
   distance = 1000,
@@ -15,7 +15,7 @@ export async function fetchPois({
 }: {
   type: PoiType
   excludedIds?: string[]
-  regionId: string
+  regionId?: string | null
   lat: number
   lon: number
   distance?: number | string

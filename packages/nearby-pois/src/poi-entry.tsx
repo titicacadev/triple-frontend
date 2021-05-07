@@ -49,7 +49,9 @@ export default function PoiEntry({
       label: `${eventLabel}_${index + 1}_${id}`,
     })
 
-    navigate(`/regions/${regionId}/${type}s/${id}`)
+    navigate(
+      regionId ? `/regions/${regionId}/${type}s/${id}` : `/${type}s/${id}`,
+    )
   }, [eventLabel, id, index, navigate, regionId, trackSimpleEvent, type])
 
   return (
