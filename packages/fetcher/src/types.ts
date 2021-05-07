@@ -2,17 +2,17 @@ import { IncomingMessage } from 'http'
 
 import { HttpError } from './error'
 
-export type RequestOptions = {
+export type RequestOptions = Omit<RequestInit, 'body'> & {
   /** request object ssr only */
   req?: IncomingMessage
-  /** request body object */
-  body?: BodyInit | { [key: string]: any }
-  /** header object */
-  headers?: HeadersInit
   /** don't stringfy body */
   useBodyAsRaw?: boolean
   retryable?: boolean
-  [key: string]: any
+
+  /**
+   * RequestInit.body의 타입 오버라이드
+   */
+  body?: BodyInit | { [key: string]: any }
 }
 
 export enum HTTPMethods {
