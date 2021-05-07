@@ -139,7 +139,6 @@ export const post = async <T extends {}, E = HttpErrorResponse>(
   options?: RequestOptions,
 ): Promise<HttpResponse<T, E>> =>
   fetcher<T, E>(url, {
-    url,
     ...options,
     method: HTTPMethods.POST,
   })
