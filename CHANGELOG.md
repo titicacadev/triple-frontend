@@ -4,6 +4,10 @@
 
 ## 2.20.0
 
+### nearby-pois
+
+- regionId 의존성을 제거합니다 (#1355)
+
 ### view-utilities
 
 - generateUrl 함수에 arrayFormat 옵션 인자를 추가합니다 (#1354)
