@@ -25,15 +25,13 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
 
   const baseUrl: string = req ? (process.env.API_URI_BASE as string) : ''
   const reqUrl: string = baseUrl + url
-  const defaultHeaders = {
-    ...(body && !useBodyAsRaw && { 'Content-Type': 'application/json' }),
-    ...rest.headers,
-  }
   const sessionId = req
     ? new Cookies(req.headers.cookie).get('x-soto-session')
     : undefined
+
   const headers = {
-    ...defaultHeaders,
+    ...(body && !useBodyAsRaw && { 'Content-Type': 'application/json' }),
+    ...rest.headers,
     ...(sessionId && { 'X-Soto-Session': sessionId }),
   }
 
