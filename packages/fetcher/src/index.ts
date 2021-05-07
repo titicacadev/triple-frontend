@@ -15,7 +15,14 @@ const refetchStatuses = [502, 503, 504]
 
 export async function fetcher<T = any, E = HttpErrorResponse>(
   url: string,
-  { req, body, useBodyAsRaw, retryable, ...rest }: RequestOptions,
+  {
+    req,
+    useBodyAsRaw,
+    retryable,
+    body,
+    headers: customHeaders,
+    ...rest
+  }: RequestOptions,
 ): Promise<HttpResponse<T, E>> {
   if (req && !process.env.API_URI_BASE) {
     throw new Error(
@@ -30,8 +37,8 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
     : undefined
 
   const headers = {
+    ...customHeaders,
     ...(body && !useBodyAsRaw && { 'Content-Type': 'application/json' }),
-    ...rest.headers,
     ...(sessionId && { 'X-Soto-Session': sessionId }),
   }
 
@@ -41,12 +48,12 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
     const response: HttpResponse<T, E> = await fetch(reqUrl, {
       credentials: 'same-origin',
       headers,
-      ...rest,
       body: body
         ? useBodyAsRaw
           ? (body as BodyInit)
           : JSON.stringify(body)
         : undefined,
+      ...rest,
     })
 
     if (
