@@ -316,6 +316,7 @@ describe('generateUrl', function () {
           ),
         },
         'https://triple.guide',
+        { arrayFormat: 'comma' },
       ),
     ).toBe(
       'https://triple.guide?adult=1&child=0&infant=0&searchKeys=LJ_3ea1403a-d8ec-42c7-bf0e-f2e7f5e43e19_0%2CTW_dfc4cef3-c6fa-4c7b-88ed-cdd7f57ad501_0',
@@ -338,6 +339,7 @@ describe('generateUrl', function () {
           ),
         },
         'https://triple.guide',
+        { arrayFormat: 'comma' },
       ),
     ).toBe(
       'https://triple.guide?adult=1&child=0&infant=0&searchKeys=LJ_3ea1403a-d8ec-42c7-bf0e-f2e7f5e43e19_0%2CTW_dfc4cef3-c6fa-4c7b-88ed-cdd7f57ad501_0',
