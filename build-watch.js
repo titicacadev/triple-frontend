@@ -4,8 +4,7 @@ const { exec } = require('child_process')
 const chokidar = require('chokidar')
 const debounce = require('lodash.debounce')
 
-const BUILD_RESOURCES =
-  'BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments'
+const BUILD_RESOURCES = 'node ../../build-with-esbuild.js'
 
 const watcher = chokidar.watch('packages/*/src/**/*', {
   ignored: /test|spec|__test__/,
