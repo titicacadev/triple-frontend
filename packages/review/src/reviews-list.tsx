@@ -228,8 +228,6 @@ export default function ReviewsList({
             onMenuClick={handleMenuClick}
             onImageClick={handleImageClick}
             onReviewClick={handleReviewClick}
-            likeVisible={!isPublic}
-            menuVisible={!isPublic}
             resourceId={resourceId}
             DateFormatter={ReviewTimestamp}
             onShow={handleShow}
