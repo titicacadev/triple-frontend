@@ -40,8 +40,6 @@ export interface ReviewElementProps {
   onReviewClick: (e: React.SyntheticEvent, reviewId: string) => void
   onShow?: (index: number) => void
   reviewRateDescriptions?: string[]
-  likeVisible?: boolean
-  menuVisible?: boolean
   DateFormatter?: ComponentType<{ date: string }>
   resourceId: string
 }
@@ -115,8 +113,6 @@ export default function ReviewElement({
   onImageClick,
   onReviewClick,
   onShow,
-  likeVisible,
-  menuVisible,
   DateFormatter,
   reviewRateDescriptions,
   resourceId,
@@ -203,7 +199,7 @@ export default function ReviewElement({
           ) : null}
         </Content>
         <Meta>
-          {!blindedAt && likeVisible !== false ? (
+          {!blindedAt !== false ? (
             <LikeButton
               liked={liked}
               onClick={(e) => {
@@ -224,20 +220,18 @@ export default function ReviewElement({
           ) : null}
 
           {rootMessagesCount + childMessagesCount > 0 ? (
-            <CommentIcon commaVisible={!blindedAt && likeVisible !== false}>
+            <CommentIcon commaVisible={!blindedAt !== false}>
               {rootMessagesCount + childMessagesCount}
             </CommentIcon>
           ) : null}
 
           {!blindedAt || (blindedAt && isMyReview) ? (
-            <Date floated={likeVisible !== false ? 'right' : undefined}>
+            <Date floated="right">
               {DateFormatter ? <DateFormatter date={createdAt} /> : createdAt}
-              {menuVisible !== false && (
-                <MoreIcon
-                  src="https://assets.triple.guide/images/btn-review-more@4x.png"
-                  onClick={(e) => onMenuClick(e, review)}
-                />
-              )}
+              <MoreIcon
+                src="https://assets.triple.guide/images/btn-review-more@4x.png"
+                onClick={(e) => onMenuClick(e, review)}
+              />
             </Date>
           ) : null}
         </Meta>
