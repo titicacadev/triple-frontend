@@ -60,16 +60,35 @@ const MoreIcon = styled.img`
   cursor: pointer;
 `
 
+const CommentIcon = styled.div`
+  display: inline-block;
+  position: relative;
+  margin-top: 5px;
+  margin-left: 8px;
+  width: 18px;
+  height: 18px;
+  padding: 2px 20px;
+  font-weight: bold;
+  background-image: url('https://assets.triple.guide/images/btn-lounge-comment-off@3x.png');
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+
+  &::before {
+    position: absolute;
+    left: -10px;
+    content: '·';
+  }
+`
+
 const LikeButton = styled.div<{ liked?: boolean }>`
   display: inline-block;
   text-decoration: none;
-  width: 100px;
   height: 18px;
   background-size: 18px 18px;
   background-repeat: no-repeat;
   margin-top: 5px;
-  margin-right: 8px;
-  padding: 2px 20px;
+  padding: 2px 10px 2px 20px;
   font-weight: bold;
   ${({ liked }) => css`
     color: rgba(${liked ? '54, 143, 255, 1' : '58, 58, 58, 0.4'});
@@ -100,7 +119,15 @@ export default function ReviewElement({
   const [unfolded, setUnfolded] = useState(false)
   const { deriveCurrentStateAndCount } = useReviewLikesContext()
   const appVersion = semver.coerce(useUserAgentContext()?.app?.version)
-  const { user, blindedAt, comment, createdAt, rating, media } = review
+  const {
+    user,
+    blindedAt,
+    comment,
+    createdAt,
+    rating,
+    media,
+    replyBoard: { childMessagesCount, rootMessagesCount },
+  } = review
   const { trackEvent } = useEventTrackingContext()
   const { liked, likesCount } = deriveCurrentStateAndCount({
     reviewId: review.id,
@@ -190,6 +217,11 @@ export default function ReviewElement({
               {likesCount}
             </LikeButton>
           ) : null}
+
+          {rootMessagesCount + childMessagesCount > 0 ? (
+            <CommentIcon>{rootMessagesCount + childMessagesCount}</CommentIcon>
+          ) : null}
+
           {!blindedAt || (blindedAt && isMyReview) ? (
             <Date floated={likeVisible !== false ? 'right' : undefined}>
               {DateFormatter ? <DateFormatter date={createdAt} /> : createdAt}

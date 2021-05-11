@@ -38,6 +38,13 @@ export interface ReviewData {
   blindedAt?: string | null
   rating?: number | null
   media?: ImageMeta[] | null
+  replyBoard: {
+    childMessagesCount: number
+    pinnedMessages: []
+    resourceId: string
+    resourceType: string
+    rootMessagesCount: number
+  }
 }
 
 export type ReviewDeleteHandler = (
