@@ -60,11 +60,10 @@ const MoreIcon = styled.img`
   cursor: pointer;
 `
 
-const CommentIcon = styled.div`
+const CommentIcon = styled.div<{ commaVisible?: boolean }>`
   display: inline-block;
   position: relative;
   margin-top: 5px;
-  margin-left: 8px;
   width: 18px;
   height: 18px;
   padding: 2px 20px;
@@ -74,11 +73,17 @@ const CommentIcon = styled.div`
   background-repeat: no-repeat;
   cursor: pointer;
 
-  &::before {
-    position: absolute;
-    left: -10px;
-    content: '·';
-  }
+  ${({ commaVisible }) =>
+    commaVisible &&
+    css`
+      margin-left: 8px;
+
+      &::before {
+        position: absolute;
+        left: -10px;
+        content: '·';
+      }
+    `}
 `
 
 const LikeButton = styled.div<{ liked?: boolean }>`
@@ -219,7 +224,9 @@ export default function ReviewElement({
           ) : null}
 
           {rootMessagesCount + childMessagesCount > 0 ? (
-            <CommentIcon>{rootMessagesCount + childMessagesCount}</CommentIcon>
+            <CommentIcon commaVisible={!blindedAt && likeVisible !== false}>
+              {rootMessagesCount + childMessagesCount}
+            </CommentIcon>
           ) : null}
 
           {!blindedAt || (blindedAt && isMyReview) ? (
