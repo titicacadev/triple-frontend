@@ -27,7 +27,10 @@ export function parseUrl(rawHref?: string): UrlElements {
 export function generateUrl(
   { query: elementQuery, ...restElements }: UrlElements,
   baseUrl?: string,
-  option?: { arrayFormat?: 'indices' | 'brackets' | 'repeat' | 'comma' },
+  option?: {
+    arrayFormat?: 'indices' | 'brackets' | 'repeat' | 'comma'
+    [key: string]: any
+  },
 ) {
   const { query: baseUrlQuery, ...restBaseUrl }: UrlElements = baseUrl
     ? parseUrl(baseUrl)
@@ -40,10 +43,10 @@ export function generateUrl(
 
   const query = qs.stringify(
     {
-      ...(baseUrlQuery && qs.parse(baseUrlQuery, { strictNullHandling: true })),
-      ...(elementQuery && qs.parse(elementQuery, { strictNullHandling: true })),
+      ...(baseUrlQuery && qs.parse(baseUrlQuery)),
+      ...(elementQuery && qs.parse(elementQuery)),
     },
-    { strictNullHandling: true, ...option },
+    { ...option },
   )
 
   return [
