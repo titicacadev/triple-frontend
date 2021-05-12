@@ -58,24 +58,18 @@ const MoreIcon = styled.img`
   cursor: pointer;
 `
 
-const MessageCount = styled(Container)<{ isCommaVisible?: boolean }>`
+const MessageCount = styled(Container)`
   box-sizing: content-box;
   font-weight: bold;
   background-image: url('https://assets.triple.guide/images/btn-lounge-comment-off@3x.png');
   background-size: 18px 18px;
   background-repeat: no-repeat;
 
-  ${({ isCommaVisible }) =>
-    isCommaVisible &&
-    css`
-      margin-left: 8px;
-
-      &::before {
-        position: absolute;
-        left: -10px;
-        content: '·';
-      }
-    `}
+  &::before {
+    position: absolute;
+    left: -10px;
+    content: '·';
+  }
 `
 
 const LikeButton = styled.div<{ liked?: boolean }>`
@@ -227,9 +221,8 @@ export default function ReviewElement({
               position="relative"
               width={18}
               height={18}
-              margin={{ top: 5 }}
+              margin={{ top: 5, left: 8 }}
               padding={{ top: 2, bottom: 2, left: 20, right: 0 }}
-              isCommaVisible={!blindedAt}
             >
               {rootMessagesCount + childMessagesCount}
             </MessageCount>
