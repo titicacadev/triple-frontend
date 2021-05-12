@@ -69,7 +69,6 @@ const CommentIcon = styled.div<{ commaVisible?: boolean }>`
   background-image: url('https://assets.triple.guide/images/btn-lounge-comment-off@3x.png');
   background-size: 18px 18px;
   background-repeat: no-repeat;
-  cursor: pointer;
 
   ${({ commaVisible }) =>
     commaVisible &&
