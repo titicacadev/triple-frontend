@@ -58,7 +58,7 @@ const MoreIcon = styled.img`
   cursor: pointer;
 `
 
-const CommentIcon = styled(Container)<{ isCommaVisible?: boolean }>`
+const MessageCount = styled(Container)<{ isCommaVisible?: boolean }>`
   box-sizing: content-box;
   font-weight: bold;
   background-image: url('https://assets.triple.guide/images/btn-lounge-comment-off@3x.png');
@@ -96,7 +96,7 @@ const LikeButton = styled.div<{ liked?: boolean }>`
 `
 
 const LOUNGE_APP_VERSION = '4.3.0'
-const REPLY_BOARD_APP_VERSION = '5.5.0'
+const MESSAGE_COUNT_APP_VERSION = '5.5.0'
 
 export default function ReviewElement({
   review,
@@ -134,7 +134,7 @@ export default function ReviewElement({
   const isCommentVisible = Boolean(
     !blindedAt &&
       appVersion &&
-      semver.gte(appVersion, REPLY_BOARD_APP_VERSION) &&
+      semver.gte(appVersion, MESSAGE_COUNT_APP_VERSION) &&
       rootMessagesCount + childMessagesCount > 0,
   )
 
@@ -222,7 +222,7 @@ export default function ReviewElement({
           ) : null}
 
           {isCommentVisible ? (
-            <CommentIcon
+            <MessageCount
               display="inline-block"
               position="relative"
               width={18}
@@ -232,7 +232,7 @@ export default function ReviewElement({
               isCommaVisible={!blindedAt}
             >
               {rootMessagesCount + childMessagesCount}
-            </CommentIcon>
+            </MessageCount>
           ) : null}
 
           {!blindedAt || (blindedAt && isMyReview) ? (
