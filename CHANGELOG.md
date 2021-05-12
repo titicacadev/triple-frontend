@@ -2,9 +2,15 @@
 
 ## Unreleased
 
+## 2.20.1
+
 ### react-contexts
 
 - history-context 에서 url에 Hash 삽입 시 arrayFormat을 repeat 형태로 유지합니다. (#1363)
+
+### fetcher
+
+- customHeader를 명시해도 sessionId 보존 (#1358)
 
 ## 2.20.0
 
