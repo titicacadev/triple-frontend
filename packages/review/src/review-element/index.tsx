@@ -58,20 +58,15 @@ const MoreIcon = styled.img`
   cursor: pointer;
 `
 
-const CommentIcon = styled.div<{ commaVisible?: boolean }>`
-  display: inline-block;
-  position: relative;
-  margin-top: 5px;
-  width: 18px;
-  height: 18px;
-  padding: 2px 20px;
+const CommentIcon = styled(Container)<{ isCommaVisible?: boolean }>`
+  box-sizing: content-box;
   font-weight: bold;
   background-image: url('https://assets.triple.guide/images/btn-lounge-comment-off@3x.png');
   background-size: 18px 18px;
   background-repeat: no-repeat;
 
-  ${({ commaVisible }) =>
-    commaVisible &&
+  ${({ isCommaVisible }) =>
+    isCommaVisible &&
     css`
       margin-left: 8px;
 
@@ -93,7 +88,7 @@ const LikeButton = styled.div<{ liked?: boolean }>`
   padding: 2px 10px 2px 20px;
   font-weight: bold;
   ${({ liked }) => css`
-    color: rgba(${liked ? '54, 143, 255, 1' : '58, 58, 58, 0.4'});
+    color: (${liked ? `var(--color-blue)` : `var(--color-gray400)`});
     background-image: url('https://assets.triple.guide/images/btn-lounge-thanks-${liked
       ? 'on'
       : 'off'}@3x.png');
@@ -101,6 +96,8 @@ const LikeButton = styled.div<{ liked?: boolean }>`
 `
 
 const LOUNGE_APP_VERSION = '4.3.0'
+const REPLY_BOARD_APP_VERSION = '5.5.0'
+
 export default function ReviewElement({
   review,
   isMyReview,
@@ -134,6 +131,12 @@ export default function ReviewElement({
     liked: review.liked,
     likesCount: review.likesCount,
   })
+  const isCommentVisible = Boolean(
+    !blindedAt &&
+      appVersion &&
+      semver.gte(appVersion, REPLY_BOARD_APP_VERSION) &&
+      rootMessagesCount + childMessagesCount > 0,
+  )
 
   return (
     <IntersectionObserver
@@ -198,7 +201,7 @@ export default function ReviewElement({
           ) : null}
         </Content>
         <Meta>
-          {!blindedAt !== false ? (
+          {!blindedAt ? (
             <LikeButton
               liked={liked}
               onClick={(e) => {
@@ -218,8 +221,16 @@ export default function ReviewElement({
             </LikeButton>
           ) : null}
 
-          {rootMessagesCount + childMessagesCount > 0 ? (
-            <CommentIcon commaVisible={!blindedAt !== false}>
+          {isCommentVisible ? (
+            <CommentIcon
+              display="inline-block"
+              position="relative"
+              width={18}
+              height={18}
+              margin={{ top: 5 }}
+              padding={{ top: 2, bottom: 2, left: 20, right: 0 }}
+              isCommaVisible={!blindedAt}
+            >
               {rootMessagesCount + childMessagesCount}
             </CommentIcon>
           ) : null}
