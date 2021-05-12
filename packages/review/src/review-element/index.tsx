@@ -131,7 +131,7 @@ export default function ReviewElement({
     liked: review.liked,
     likesCount: review.likesCount,
   })
-  const isCommentVisible = Boolean(
+  const isMessageCountVisible = Boolean(
     !blindedAt &&
       appVersion &&
       semver.gte(appVersion, MESSAGE_COUNT_APP_VERSION) &&
@@ -221,7 +221,7 @@ export default function ReviewElement({
             </LikeButton>
           ) : null}
 
-          {isCommentVisible ? (
+          {isMessageCountVisible ? (
             <MessageCount
               display="inline-block"
               position="relative"
