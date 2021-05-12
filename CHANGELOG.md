@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### react-contexts
+
+- history-context 에서 url에 Hash 삽입 시 arrayFormat을 repeat 형태로 유지합니다. (#1363)
+
 ## 2.20.0
 
 ### nearby-pois
