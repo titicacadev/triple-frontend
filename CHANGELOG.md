@@ -2,9 +2,10 @@
 
 ## Unreleased
 
-## core-elements
+### core-elements
 
 - navbar의 title을 사용 시 children을 flexible하게 관리 (#1366)
+- search-navbar의 높이를 일반 navbar와 동일하게 맞춰 수정합니다. (#1329)
 
 ## 2.20.1
 
