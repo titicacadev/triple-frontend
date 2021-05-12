@@ -64,6 +64,9 @@ function addHashToCurrentUrl({
   return generateUrl(
     { hash },
     !basePathCompatible && Router.asPath === '/' ? '' : Router.asPath,
+    {
+      arrayFormat: 'repeat',
+    },
   )
 }
 
