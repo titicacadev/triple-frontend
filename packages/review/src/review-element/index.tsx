@@ -72,17 +72,13 @@ const MessageCount = styled(Container)`
   }
 `
 
-const LikeButton = styled.div<{ liked?: boolean }>`
-  display: inline-block;
+const LikeButton = styled(Container)<{ liked?: boolean }>`
+  font-weight: bold;
   text-decoration: none;
-  height: 18px;
   background-size: 18px 18px;
   background-repeat: no-repeat;
-  margin-top: 5px;
-  padding: 2px 10px 2px 20px;
-  font-weight: bold;
   ${({ liked }) => css`
-    color: (${liked ? `var(--color-blue)` : `var(--color-gray400)`});
+    color: var(${liked ? `--color-blue` : `var(--color-gray400)`});
     background-image: url('https://assets.triple.guide/images/btn-lounge-thanks-${liked
       ? 'on'
       : 'off'}@3x.png');
@@ -197,6 +193,10 @@ export default function ReviewElement({
         <Meta>
           {!blindedAt ? (
             <LikeButton
+              display="inline-block"
+              margin={{ top: 5 }}
+              padding={{ top: 2, bottom: 2, right: 10, left: 20 }}
+              height={18}
               liked={liked}
               onClick={(e) => {
                 const actionName = `리뷰_땡스${liked ? '' : '취소'}`
