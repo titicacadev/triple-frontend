@@ -48,8 +48,6 @@ function parseQuery(query: string): ParsedQuery {
         : ([decodeURIComponent(key)] as const)
     })
     .reduce((result: ParsedQuery, [key, value]) => {
-      // console.log(key, value)
-
       if (value === undefined) {
         return { ...result, [key]: { type: 'implicitBoolean' } } as ParsedQuery
       }
