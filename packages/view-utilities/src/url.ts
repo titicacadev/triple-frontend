@@ -41,11 +41,10 @@ interface ParsedQuery {
 function parseQuery(query: string): ParsedQuery {
   return query
     .split('&')
-    .map((pair) => {
-      const [key, value] = pair.split('=')
-      return value
-        ? ([decodeURIComponent(key), decodeURIComponent(value)] as const)
-        : ([decodeURIComponent(key)] as const)
+    .map((pair) => pair.split('='))
+    .map((pair): readonly [string] | readonly [string, string] => {
+      const [key, value] = pair.map((str) => decodeURIComponent(str))
+      return value ? [key, value] : [key]
     })
     .reduce((result: ParsedQuery, [key, value]) => {
       if (value === undefined) {
@@ -135,13 +134,10 @@ function stringifyQuery(obj: ParsedQuery): string {
       }
       return result
     }, [] as (readonly [string] | readonly [string, string])[])
-    .map(([key, value]) => {
-      const encodedPair = [
-        encodeURIComponent(key),
-        value ? encodeURIComponent(value) : undefined,
-      ].filter(Boolean)
-      return encodedPair.join('=')
-    })
+    .map((pair: readonly [string] | readonly [string, string]) =>
+      pair.map((str) => encodeURIComponent(str)),
+    )
+    .map((pair) => pair.join('='))
     .join('&')
 }
 
