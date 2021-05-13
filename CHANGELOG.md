@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## core-elements
+
+- navbar의 title을 사용 시 children을 flexible하게 관리 (#1366)
+
 ## 2.20.1
 
 ### react-contexts
