@@ -299,50 +299,75 @@ describe('generateUrl', function () {
   })
 
   it('should format array for comma', () => {
+    const query1 = qs.stringify(
+      {
+        adult: '1',
+        child: '0',
+        infant: '0',
+        searchKeys: [
+          'LJ_3ea1403a-d8ec-42c7-bf0e-f2e7f5e43e19_0',
+          'TW_dfc4cef3-c6fa-4c7b-88ed-cdd7f57ad501_0',
+        ],
+      },
+      { indices: false, skipNulls: true },
+    )
+
     expect(
-      generateUrl(
-        {
-          query: qs.stringify(
-            {
-              adult: '1',
-              child: '0',
-              infant: '0',
-              searchKeys: [
-                'LJ_3ea1403a-d8ec-42c7-bf0e-f2e7f5e43e19_0',
-                'TW_dfc4cef3-c6fa-4c7b-88ed-cdd7f57ad501_0',
-              ],
-            },
-            { indices: false, skipNulls: true },
-          ),
-        },
-        'https://triple.guide',
-        { arrayFormat: 'comma' },
-      ),
-    ).toBe(
-      'https://triple.guide?adult=1&child=0&infant=0&searchKeys=LJ_3ea1403a-d8ec-42c7-bf0e-f2e7f5e43e19_0%2CTW_dfc4cef3-c6fa-4c7b-88ed-cdd7f57ad501_0',
+      generateUrl({
+        query: query1,
+      }),
+    ).toBe(`?${query1}`)
+
+    const query2 = qs.stringify(
+      {
+        adult: '1',
+        child: '0',
+        infant: '0',
+        searchKeys: [
+          'LJ_3ea1403a-d8ec-42c7-bf0e-f2e7f5e43e19_0',
+          'TW_dfc4cef3-c6fa-4c7b-88ed-cdd7f57ad501_0',
+        ],
+      },
+      { skipNulls: true },
     )
 
     expect(
       generateUrl(
         {
-          query: qs.stringify(
-            {
-              adult: '1',
-              child: '0',
-              infant: '0',
-              searchKeys: [
-                'LJ_3ea1403a-d8ec-42c7-bf0e-f2e7f5e43e19_0',
-                'TW_dfc4cef3-c6fa-4c7b-88ed-cdd7f57ad501_0',
-              ],
-            },
-            { skipNulls: true },
-          ),
+          query: query2,
         },
-        'https://triple.guide',
+        undefined,
         { arrayFormat: 'comma' },
       ),
-    ).toBe(
-      'https://triple.guide?adult=1&child=0&infant=0&searchKeys=LJ_3ea1403a-d8ec-42c7-bf0e-f2e7f5e43e19_0%2CTW_dfc4cef3-c6fa-4c7b-88ed-cdd7f57ad501_0',
+    ).toBe(`?${query2}`)
+  })
+
+  it('should preserve array format indices', () => {
+    const query = qs.stringify(
+      { places: ['a', 'b'] },
+      { arrayFormat: 'indices' },
     )
+    expect(generateUrl({ query })).toBe(`?${query}`)
+  })
+
+  it('should preserve array format brackets', () => {
+    const query = qs.stringify(
+      { places: ['a', 'b'] },
+      { arrayFormat: 'brackets' },
+    )
+    expect(generateUrl({ query })).toBe(`?${query}`)
+  })
+
+  it('should preserve array format repeat', () => {
+    const query = qs.stringify(
+      { places: ['a', 'b'] },
+      { arrayFormat: 'repeat' },
+    )
+    expect(generateUrl({ query })).toBe(`?${query}`)
+  })
+
+  it('should preserve array format comma', () => {
+    const query = qs.stringify({ places: ['a', 'b'] }, { arrayFormat: 'comma' })
+    expect(generateUrl({ query })).toBe(`?${query}`)
   })
 })
