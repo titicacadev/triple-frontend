@@ -120,7 +120,7 @@ type NavbarItemProps = {
   floated?: CSS.Property.Float
   icon?: IconNames
   position?: CSS.Property.Position
-  flexible?: boolean
+  hasTitle?: boolean
 }
 
 const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
@@ -137,8 +137,8 @@ const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
   margin-left: ${({ floated }) => (!floated || floated === 'left' ? 0 : '6px')};
   margin-right: ${({ floated }) => (floated === 'right' ? 0 : '6px')};
   cursor: pointer;
-  ${({ flexible }) =>
-    flexible &&
+  ${({ hasTitle }) =>
+    hasTitle &&
     css`
       margin: 9px 0px 0px;
       width: auto;
@@ -218,7 +218,7 @@ function Navbar({
       {renderTitle && renderTitle()}
       {children}
       {title && (
-        <NavbarItem floated="none" flexible={!!title}>
+        <NavbarItem floated="none" hasTitle={!!title}>
           {title}
         </NavbarItem>
       )}
