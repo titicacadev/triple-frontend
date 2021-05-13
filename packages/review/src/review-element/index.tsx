@@ -59,7 +59,6 @@ const MoreIcon = styled.img`
 `
 
 const MessageCount = styled(Container)`
-  box-sizing: content-box;
   font-weight: bold;
   background-image: url('https://assets.triple.guide/images/btn-lounge-comment-off@3x.png');
   background-size: 18px 18px;
@@ -219,7 +218,6 @@ export default function ReviewElement({
             <MessageCount
               display="inline-block"
               position="relative"
-              width={18}
               height={18}
               margin={{ top: 5, left: 8 }}
               padding={{ top: 2, bottom: 2, left: 20, right: 0 }}
