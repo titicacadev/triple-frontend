@@ -49,7 +49,7 @@ function parseQuery(query: string): ParsedQuery {
     })
     .reduce((result: ParsedQuery, [key, value]) => {
       if (value === undefined) {
-        return { ...result, [key]: { type: 'implicitBoolean' } } as ParsedQuery
+        return { ...result, [key]: { type: 'implicitBoolean' } }
       }
 
       if (key.includes('[')) {
@@ -66,7 +66,7 @@ function parseQuery(query: string): ParsedQuery {
           [strippedKey]: {
             type,
             value: [...prevValue, value],
-          } as ArrayFormatQueryValue,
+          },
         }
       }
       if (value.includes(',')) {
@@ -95,8 +95,8 @@ function parseQuery(query: string): ParsedQuery {
         }
       }
 
-      return { ...result, [key]: value } as ParsedQuery
-    }, {} as ParsedQuery)
+      return { ...result, [key]: value }
+    }, {})
 }
 
 function stringifyQuery(obj: ParsedQuery): string {
