@@ -120,6 +120,7 @@ type NavbarItemProps = {
   floated?: CSS.Property.Float
   icon?: IconNames
   position?: CSS.Property.Position
+  flexible?: boolean
 }
 
 const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
@@ -136,6 +137,16 @@ const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
   margin-left: ${({ floated }) => (!floated || floated === 'left' ? 0 : '6px')};
   margin-right: ${({ floated }) => (floated === 'right' ? 0 : '6px')};
   cursor: pointer;
+  ${({ flexible }) =>
+    flexible &&
+    css`
+      margin: 9px 0px 0px;
+      width: auto;
+      white-space: nowrap;
+      word-break: break-word;
+      text-overflow: ellipsis;
+      overflow-x: hidden;
+    `}
 `
 
 const SecondaryNavbar = styled.div<NavbarProps & LayeringMixinProps>`
@@ -202,17 +213,15 @@ function Navbar({
 } & NavbarProps &
   LayeringMixinProps &
   React.HTMLAttributes<HTMLDivElement>) {
-  const childrenCount = React.Children.count(children)
   return (
     <NavbarFrame zTier={zTier} zIndex={zIndex} {...props}>
-      {renderTitle
-        ? renderTitle()
-        : title && (
-            <TitleContainer childrenCount={childrenCount}>
-              {title}
-            </TitleContainer>
-          )}
+      {renderTitle && renderTitle()}
       {children}
+      {title && (
+        <NavbarItem floated="none" flexible={!!title}>
+          {title}
+        </NavbarItem>
+      )}
     </NavbarFrame>
   )
 }
