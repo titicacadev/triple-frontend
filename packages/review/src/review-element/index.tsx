@@ -58,17 +58,21 @@ const MoreIcon = styled.img`
   cursor: pointer;
 `
 
-const MessageCount = styled(Container)`
+const MessageCount = styled(Container)<{ isCommaVisible?: boolean }>`
   font-weight: bold;
   background-image: url('https://assets.triple.guide/images/btn-lounge-comment-off@3x.png');
   background-size: 18px 18px;
   background-repeat: no-repeat;
 
-  &::before {
-    position: absolute;
-    left: -10px;
-    content: '·';
-  }
+  ${({ isCommaVisible }) =>
+    !isCommaVisible &&
+    css`
+      &::before {
+        position: absolute;
+        left: -10px;
+        content: '·';
+      }
+    `}
 `
 
 const LikeButton = styled(Container)<{ liked?: boolean }>`
@@ -105,6 +109,7 @@ export default function ReviewElement({
   const [unfolded, setUnfolded] = useState(false)
   const { deriveCurrentStateAndCount } = useReviewLikesContext()
   const appVersion = semver.coerce(useUserAgentContext()?.app?.version)
+  const { isPublic } = useUserAgentContext()
   const {
     user,
     blindedAt,
@@ -112,7 +117,7 @@ export default function ReviewElement({
     createdAt,
     rating,
     media,
-    replyBoard: { childMessagesCount, rootMessagesCount },
+    replyBoard,
   } = review
   const { trackEvent } = useEventTrackingContext()
   const { liked, likesCount } = deriveCurrentStateAndCount({
@@ -121,10 +126,12 @@ export default function ReviewElement({
     likesCount: review.likesCount,
   })
   const isMessageCountVisible = Boolean(
-    !blindedAt &&
+    isPublic &&
       appVersion &&
       semver.gte(appVersion, MESSAGE_COUNT_APP_VERSION) &&
-      rootMessagesCount + childMessagesCount > 0,
+      (replyBoard?.rootMessagesCount as number) +
+        (replyBoard?.childMessagesCount as number) >
+        0,
   )
 
   return (
@@ -221,8 +228,10 @@ export default function ReviewElement({
               height={18}
               margin={{ top: 5, left: 8 }}
               padding={{ top: 2, bottom: 2, left: 20, right: 0 }}
+              isCommaVisible={!blindedAt}
             >
-              {rootMessagesCount + childMessagesCount}
+              {(replyBoard?.rootMessagesCount as number) +
+                (replyBoard?.childMessagesCount as number)}
             </MessageCount>
           ) : null}
 
