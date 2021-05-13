@@ -218,7 +218,7 @@ function Navbar({
       {renderTitle && renderTitle()}
       {children}
       {title && (
-        <NavbarItem floated="none" hasTitle={!!title}>
+        <NavbarItem floated="none" hasTitle>
           {title}
         </NavbarItem>
       )}
