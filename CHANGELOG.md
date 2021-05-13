@@ -17,7 +17,7 @@
 
 ### review
 
-- commentIcon 추가 및 pc 화면 디자인 대응 (#1360)
+- messageCount 컴포넌트 추가 (#1360)
 
 ## 2.20.1
 
