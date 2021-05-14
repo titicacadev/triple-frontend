@@ -65,8 +65,9 @@ const MessageCount = styled(Container)<{ isCommaVisible?: boolean }>`
   background-repeat: no-repeat;
 
   ${({ isCommaVisible }) =>
-    !isCommaVisible &&
+    isCommaVisible &&
     css`
+      margin-left: 8px;
       &::before {
         position: absolute;
         left: -10px;
@@ -126,9 +127,8 @@ export default function ReviewElement({
     likesCount: review.likesCount,
   })
   const isMessageCountVisible = Boolean(
-    isPublic &&
-      appVersion &&
-      semver.gte(appVersion, MESSAGE_COUNT_APP_VERSION) &&
+    ((appVersion && semver.gte(appVersion, MESSAGE_COUNT_APP_VERSION)) ||
+      isPublic) &&
       replyBoard &&
       replyBoard.rootMessagesCount + replyBoard.childMessagesCount > 0,
   )
@@ -225,7 +225,7 @@ export default function ReviewElement({
               display="inline-block"
               position="relative"
               height={18}
-              margin={{ top: 5, left: 8 }}
+              margin={{ top: 5 }}
               padding={{ top: 2, bottom: 2, left: 20, right: 0 }}
               isCommaVisible={!blindedAt}
             >
