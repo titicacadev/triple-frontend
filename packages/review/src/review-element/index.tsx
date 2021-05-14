@@ -129,7 +129,7 @@ export default function ReviewElement({
     isPublic &&
       appVersion &&
       semver.gte(appVersion, MESSAGE_COUNT_APP_VERSION) &&
-      !!replyBoard &&
+      replyBoard &&
       replyBoard.rootMessagesCount + replyBoard.childMessagesCount > 0,
   )
 
@@ -229,7 +229,7 @@ export default function ReviewElement({
               padding={{ top: 2, bottom: 2, left: 20, right: 0 }}
               isCommaVisible={!blindedAt}
             >
-              {!!replyBoard &&
+              {replyBoard &&
                 replyBoard.rootMessagesCount + replyBoard.childMessagesCount}
             </MessageCount>
           ) : null}
