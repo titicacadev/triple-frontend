@@ -94,6 +94,7 @@ const MESSAGE_COUNT_APP_VERSION = '5.5.0'
 
 export default function ReviewElement({
   review,
+  review: { user, blindedAt, comment, createdAt, rating, media, replyBoard },
   isMyReview,
   index,
   onUserClick,
@@ -111,15 +112,6 @@ export default function ReviewElement({
   const { deriveCurrentStateAndCount } = useReviewLikesContext()
   const appVersion = semver.coerce(useUserAgentContext()?.app?.version)
   const { isPublic } = useUserAgentContext()
-  const {
-    user,
-    blindedAt,
-    comment,
-    createdAt,
-    rating,
-    media,
-    replyBoard,
-  } = review
   const { trackEvent } = useEventTrackingContext()
   const { liked, likesCount } = deriveCurrentStateAndCount({
     reviewId: review.id,
