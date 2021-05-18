@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### poi-list-elements
+
+- PoiListElement notes의 타입을 완화 (#1367)
+
 ### core-elements
 
 - navbar의 title을 사용 시 children을 flexible하게 관리 (#1366)
