@@ -2,9 +2,11 @@
 
 ## Unreleased
 
+## 2.21.0
+
 ### poi-list-elements
 
-- PoiListElement notes의 타입을 완화 (#1367)
+- PoiListElement notes의 타입을 완화 (#1369)
 
 ### core-elements
 
