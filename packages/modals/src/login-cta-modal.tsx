@@ -4,6 +4,7 @@ import React, {
   PropsWithChildren,
   useContext,
   useMemo,
+  useState,
 } from 'react'
 import {
   useEventTrackingContext,
@@ -19,7 +20,12 @@ export const LOGIN_CTA_MODAL_HASH = 'login-cta-modal'
 
 const WITH_LOGIN_PATH_APP_VERSION = '5.0.0'
 
-const LoginCTAFlagContext = createContext(false)
+const LoginCTAFlagContext = createContext<
+  | {
+      setReturnUrl?: (url: string, callback: Function) => void
+    }
+  | undefined
+>(undefined)
 
 export function LoginCTAModalProvider({ children }: PropsWithChildren<{}>) {
   const uriHash = useURIHash()
@@ -29,6 +35,7 @@ export function LoginCTAModalProvider({ children }: PropsWithChildren<{}>) {
   const { isPublic, os, app } = useUserAgentContext()
   const appVersion = semver.coerce(app?.version)
   const open = uriHash === LOGIN_CTA_MODAL_HASH
+  const [returnUrl, setReturnUrl] = useState<string | undefined>()
 
   if (hasParentModal) {
     return <>{children}</>
@@ -42,7 +49,7 @@ export function LoginCTAModalProvider({ children }: PropsWithChildren<{}>) {
   )
 
   return (
-    <LoginCTAFlagContext.Provider value={true}>
+    <LoginCTAFlagContext.Provider value={{ setReturnUrl }}>
       {children}
 
       {isLegacyAndroidApp ? (
@@ -64,7 +71,11 @@ export function LoginCTAModalProvider({ children }: PropsWithChildren<{}>) {
               },
             })
 
-            navigate('/login')
+            navigate(
+              `/login?returnUrl=${encodeURIComponent(
+                returnUrl || document.location.href,
+              )}`,
+            )
           }}
         >
           로그인하고 트리플을
@@ -87,13 +98,18 @@ export function withLoginCTAModal<P>(Component: ComponentType<P>) {
 
 export function useLoginCTAModal() {
   const { push } = useHistoryFunctions()
+  const contextValue = useContext(LoginCTAFlagContext)
 
   return useMemo(
     () => ({
-      show: () => {
-        push(LOGIN_CTA_MODAL_HASH)
+      show: (returnUrl?: string) => {
+        if (contextValue?.setReturnUrl && returnUrl) {
+          contextValue.setReturnUrl(returnUrl, () => push(LOGIN_CTA_MODAL_HASH))
+        } else {
+          push(LOGIN_CTA_MODAL_HASH)
+        }
       },
     }),
-    [push],
+    [push, contextValue],
   )
 }
