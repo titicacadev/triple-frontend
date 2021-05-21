@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### triple-document
+
+- fetcher 의존성 추가 (#1377)
+
 ## 2.21.0
 
 ### poi-list-elements
