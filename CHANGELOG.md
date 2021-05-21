@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### modals
+
+- `useLoginCTAModal`이 `setReturnUrl`인터페이스를 제공합니다. (#1373)
+
+### ui-flow
+
+- `useSessionCallback`에 `returnUrl`을 명시할 수 있도록 합니다. (#1373)
+
 ## 2.21.1
 
 ### triple-document
