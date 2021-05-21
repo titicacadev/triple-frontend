@@ -22,7 +22,7 @@ const WITH_LOGIN_PATH_APP_VERSION = '5.0.0'
 
 const LoginCTAContext = createContext<
   | {
-      setReturnUrl?: (url: string, callback: Function) => void
+      setReturnUrl?: (url: string) => void
     }
   | undefined
 >(undefined)
@@ -104,10 +104,10 @@ export function useLoginCTAModal() {
     () => ({
       show: (returnUrl?: string) => {
         if (contextValue?.setReturnUrl && returnUrl) {
-          contextValue.setReturnUrl(returnUrl, () => push(LOGIN_CTA_MODAL_HASH))
-        } else {
-          push(LOGIN_CTA_MODAL_HASH)
+          contextValue.setReturnUrl(returnUrl)
         }
+
+        push(LOGIN_CTA_MODAL_HASH)
       },
     }),
     [push, contextValue],
