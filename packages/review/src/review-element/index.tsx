@@ -118,11 +118,9 @@ export default function ReviewElement({
     liked: review.liked,
     likesCount: review.likesCount,
   })
-  const isMessageCountVisible = Boolean(
-    (appVersion && semver.gte(appVersion, MESSAGE_COUNT_APP_VERSION)) ||
-      isPublic ||
-      replyBoard,
-  )
+  const isMessageCountVisible =
+    (!!appVersion && semver.gte(appVersion, MESSAGE_COUNT_APP_VERSION)) ||
+    isPublic
 
   return (
     <IntersectionObserver
