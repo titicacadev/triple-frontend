@@ -13,6 +13,9 @@
       "path": "../core-elements"
     },
     {
+      "path": "../fetcher"
+    },
+    {
       "path": "../intersection-observer"
     },
     {
