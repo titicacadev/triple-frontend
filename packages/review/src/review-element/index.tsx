@@ -119,10 +119,9 @@ export default function ReviewElement({
     likesCount: review.likesCount,
   })
   const isMessageCountVisible = Boolean(
-    ((appVersion && semver.gte(appVersion, MESSAGE_COUNT_APP_VERSION)) ||
-      isPublic) &&
-      replyBoard &&
-      replyBoard.rootMessagesCount + replyBoard.childMessagesCount > 0,
+    (appVersion && semver.gte(appVersion, MESSAGE_COUNT_APP_VERSION)) ||
+      isPublic ||
+      replyBoard,
   )
 
   return (
@@ -221,8 +220,9 @@ export default function ReviewElement({
               padding={{ top: 2, bottom: 2, left: 20, right: 0 }}
               isCommaVisible={!blindedAt}
             >
-              {replyBoard &&
-                replyBoard.rootMessagesCount + replyBoard.childMessagesCount}
+              {replyBoard
+                ? replyBoard.rootMessagesCount + replyBoard.childMessagesCount
+                : 0}
             </MessageCount>
           ) : null}
 
