@@ -17,6 +17,7 @@
   "dependencies": {
     "@titicaca/color-palette": "^2.20.1",
     "@titicaca/core-elements": "^2.20.1",
+    "@titicaca/fetcher": "^2.20.1",
     "@titicaca/intersection-observer": "^2.20.1",
     "@titicaca/map": "^2.20.1",
     "@titicaca/modals": "^2.20.1",
