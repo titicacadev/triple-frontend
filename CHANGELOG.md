@@ -10,6 +10,10 @@
 
 - `useSessionCallback`에 `returnUrl`을 명시할 수 있도록 합니다. (#1373)
 
+### booking-completion
+
+- compact, myBookingButtonTitle props 추가 (#1380)
+
 ## 2.21.1
 
 ### triple-document
