@@ -11,6 +11,7 @@ interface Region {
 
 interface BookingCompletionProps {
   title?: string
+  myBookingButtonTitle?: string
   compact?: boolean
   onMoveToBookingDetail: () => void
   onMoveToMain?: () => void
@@ -44,6 +45,7 @@ const RegionButton = styled(Button)`
 
 function BookingCompletion({
   title,
+  myBookingButtonTitle,
   compact,
   onMoveToBookingDetail,
   onMoveToMain = () => {},
@@ -83,7 +85,7 @@ function BookingCompletion({
           onClick={onMoveToBookingDetail}
           fluid
         >
-          내 예약에서 확인
+          {myBookingButtonTitle || '내 예약에서 확인'}
         </Button>
       ) : (
         <>
@@ -96,7 +98,7 @@ function BookingCompletion({
                 size="small"
                 onClick={onMoveToBookingDetail}
               >
-                내 예약에서 확인
+                {myBookingButtonTitle || '내 예약에서 확인'}
               </Button>
               <Button
                 basic
