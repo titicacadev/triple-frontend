@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 2.22.0
+
+### poi-detail
+
+- `ImageCarousel`에 `padding`, `borderRadius` 인터페이스를 제공합니다. (#1381)
+
+### review
+
+- 대댓글이 없어도 댓글 아이콘 표시 (#1374)
+
 ### modals
 
 - `useLoginCTAModal`이 `setReturnUrl`인터페이스를 제공합니다. (#1373)
