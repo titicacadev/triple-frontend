@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.21.1
+
 ### triple-document
 
 - fetcher 의존성 추가 (#1377)
