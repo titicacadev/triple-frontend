@@ -69,7 +69,7 @@ export function CompactPoiListElement<T extends ListingPOI>({
           TYPE_NAMES[type],
           regionName
             ? areas?.[0]
-              ? `${regionName}(${areas?.[0]?.name})`
+              ? `${regionName}(${areas[0].name})`
               : regionName
             : vicinity || areas?.[0]?.name,
         ]
