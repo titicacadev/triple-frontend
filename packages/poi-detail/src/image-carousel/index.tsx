@@ -15,6 +15,7 @@ export default function ImageCarousel(
     | 'onPlaceholderClick'
     | 'margin'
     | 'optimized'
+    | 'padding'
   >,
 ) {
   const {
