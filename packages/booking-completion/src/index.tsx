@@ -11,6 +11,7 @@ interface Region {
 
 interface BookingCompletionProps {
   title?: string
+  compact?: boolean
   onMoveToBookingDetail: () => void
   onMoveToMain?: () => void
   onMoveToRegion?: () => void
@@ -43,6 +44,7 @@ const RegionButton = styled(Button)`
 
 function BookingCompletion({
   title,
+  compact,
   onMoveToBookingDetail,
   onMoveToMain = () => {},
   onMoveToRegion = () => {},
@@ -71,43 +73,59 @@ function BookingCompletion({
       <Text color="gray" size="mini" alpha={0.5}>
         자세한 사항은 내 예약에서 확인해주세요.
       </Text>
-      <Container margin={{ top: 30 }}>
-        <Button.Group horizontalGap={7}>
-          <Button
-            basic
-            inverted
-            color="blue"
-            size="small"
-            onClick={onMoveToBookingDetail}
-          >
-            내 예약에서 확인
-          </Button>
-          <Button
-            basic
-            inverted
-            color="gray"
-            size="small"
-            onClick={() => {
-              onMoveToMain()
-              navigate('/main')
-            }}
-          >
-            트리플 홈으로 가기
-          </Button>
-        </Button.Group>
-      </Container>
-      {region ? (
-        <RegionButton
+      {compact ? (
+        <Button
+          margin={{ top: 30 }}
+          basic
+          inverted
+          color="blue"
+          size="small"
+          onClick={onMoveToBookingDetail}
           fluid
-          margin={{ top: 6 }}
-          onClick={() => {
-            onMoveToRegion()
-            navigate(`/regions/${region.id}`)
-          }}
         >
-          {region.names.ko || region.names.en} 여행 준비하러 가기
-        </RegionButton>
-      ) : null}
+          내 예약에서 확인
+        </Button>
+      ) : (
+        <>
+          <Container margin={{ top: 30 }}>
+            <Button.Group horizontalGap={7}>
+              <Button
+                basic
+                inverted
+                color="blue"
+                size="small"
+                onClick={onMoveToBookingDetail}
+              >
+                내 예약에서 확인
+              </Button>
+              <Button
+                basic
+                inverted
+                color="gray"
+                size="small"
+                onClick={() => {
+                  onMoveToMain()
+                  navigate('/main')
+                }}
+              >
+                트리플 홈으로 가기
+              </Button>
+            </Button.Group>
+          </Container>
+          {region ? (
+            <RegionButton
+              fluid
+              margin={{ top: 6 }}
+              onClick={() => {
+                onMoveToRegion()
+                navigate(`/regions/${region.id}`)
+              }}
+            >
+              {region.names.ko || region.names.en} 여행 준비하러 가기
+            </RegionButton>
+          ) : null}
+        </>
+      )}
     </>
   )
 }
