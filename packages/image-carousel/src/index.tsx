@@ -35,6 +35,7 @@ export interface RendererProps {
 interface ImageCarouselProps extends Omit<CarouselProps, 'pageLabelRenderer'> {
   images: CarouselImageMeta[]
   size?: GlobalSizes
+  height?: number
   frame?: FrameRatioAndSizes
   ImageSource?: ImageSourceType
   onImageClick?: (e?: React.SyntheticEvent, image?: CarouselImageMeta) => void
@@ -64,6 +65,7 @@ export default class ImageCarousel extends React.PureComponent<
       borderRadius,
       defaultIndex,
       images,
+      height,
       onMoveStart,
       onMove,
       onMoveEnd,
@@ -75,6 +77,7 @@ export default class ImageCarousel extends React.PureComponent<
 
     return {
       margin,
+      height,
       borderRadius,
       defaultIndex,
       onMoveStart,
@@ -95,6 +98,7 @@ export default class ImageCarousel extends React.PureComponent<
     const {
       size: globalSize,
       frame: globalFrame,
+      height,
       images,
       onImageClick,
       ImageSource,
@@ -163,9 +167,10 @@ export default class ImageCarousel extends React.PureComponent<
 
           return (
             <Image key={i} borderRadius={0}>
-              {size ? (
+              {size || height ? (
                 <Image.FixedDimensionsFrame
                   size={size}
+                  height={height}
                   onClick={
                     onImageClick &&
                     ((e) =>
