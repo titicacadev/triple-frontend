@@ -27,6 +27,7 @@ export default function CarouselSection({
   onPlaceholderClick: () => void
   margin?: MarginPadding
   padding?: MarginPadding
+  height?: number
 } & Parameters<typeof Carousel>['0']) {
   return (
     <Section minWidth={320} maxWidth={768} padding={padding} margin={margin}>

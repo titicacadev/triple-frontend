@@ -43,6 +43,7 @@ export default function Carousel({
   onImagesFetch,
   optimized,
   borderRadius = 6,
+  height,
 }: {
   images: CarouselImageMeta[]
   totalImagesCount: number
@@ -51,6 +52,7 @@ export default function Carousel({
   onImagesFetch: () => void
   optimized?: boolean
   borderRadius?: number
+  height?: number
 }) {
   const { isPublic } = useUserAgentContext()
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
@@ -136,6 +138,7 @@ export default function Carousel({
             showMoreRenderer={CTA}
             pageLabelRenderer={ConditionalPageLabel}
             optimized={optimized}
+            height={height}
           />
         </FixedRatio>
       </Responsive>
