@@ -14,7 +14,10 @@ import { POIListElementBaseProps, ActionButtonElement } from './types'
 
 export default function PoiCarouselElement<
   T extends Pick<ListingPOI, 'id' | 'type' | 'nameOverride' | 'scraped'> & {
-    source: Pick<ListingPOI['source'], 'names' | 'image' | 'areas'>
+    source: Pick<
+      ListingPOI['source'],
+      'names' | 'image' | 'areas' | 'regionName' | 'vicinity'
+    >
   }
 >({
   poi,
@@ -44,7 +47,7 @@ export default function PoiCarouselElement<
   const {
     type,
     nameOverride,
-    source: { image, names, areas },
+    source: { image, names, areas, regionName, vicinity },
   } = poi
 
   const name = nameOverride || names.ko || names.en || names.local
@@ -78,7 +81,16 @@ export default function PoiCarouselElement<
       </Text>
       <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
         {description ||
-          [TYPE_NAMES[type], areas?.[0]?.name].filter(Boolean).join(' · ')}
+          [
+            TYPE_NAMES[type],
+            regionName
+              ? areas?.[0]
+                ? `${regionName}(${areas?.[0]?.name})`
+                : regionName
+              : vicinity,
+          ]
+            .filter(Boolean)
+            .join(' · ')}
       </Text>
 
       {actionButtonElement || (

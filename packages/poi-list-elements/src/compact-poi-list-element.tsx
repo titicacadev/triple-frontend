@@ -33,7 +33,7 @@ export function CompactPoiListElement<T extends ListingPOI>({
   poi: {
     type,
     nameOverride,
-    source: { names, image, areas },
+    source: { names, image, areas, regionName, vicinity },
   },
   onClick,
 }: CompactPoiListElementProps<T>) {
@@ -65,7 +65,16 @@ export function CompactPoiListElement<T extends ListingPOI>({
         {name}
       </Text>
       <Text size="tiny" alpha={0.7} margin={{ top: 4, left: 50 }}>
-        {[TYPE_NAMES[type], areas?.[0]?.name].filter(Boolean).join(' · ')}
+        {[
+          TYPE_NAMES[type],
+          regionName
+            ? areas?.[0]
+              ? `${regionName}(${areas?.[0]?.name})`
+              : regionName
+            : vicinity,
+        ]
+          .filter(Boolean)
+          .join(' · ')}
       </Text>
 
       {actionButtonElement ? (

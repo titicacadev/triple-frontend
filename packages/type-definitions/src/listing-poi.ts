@@ -4,6 +4,7 @@ import { PointGeoJSON } from './geojson'
 
 interface ListingPOISourceBase {
   id: string
+  regionName?: string
   areas?: { name: string }[]
   categories?: { name: string }[]
   comment?: string
