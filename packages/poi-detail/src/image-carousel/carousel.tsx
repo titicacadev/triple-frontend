@@ -42,6 +42,7 @@ export default function Carousel({
   onCTAClick,
   onImagesFetch,
   optimized,
+  borderRadius = 6,
 }: {
   images: CarouselImageMeta[]
   totalImagesCount: number
@@ -49,6 +50,7 @@ export default function Carousel({
   onCTAClick: () => void
   onImagesFetch: () => void
   optimized?: boolean
+  borderRadius?: number
 }) {
   const { isPublic } = useUserAgentContext()
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
@@ -127,7 +129,7 @@ export default function Carousel({
             images={visibleImages}
             currentPage={currentPage}
             displayedTotalCount={totalImagesCount}
-            borderRadius={6}
+            borderRadius={borderRadius}
             onImageClick={handleImageClick}
             onMoveEnd={handlePageChange}
             ImageSource={ImageSource}
@@ -143,7 +145,7 @@ export default function Carousel({
             images={visibleImages}
             currentPage={currentPage}
             displayedTotalCount={totalImagesCount}
-            borderRadius={6}
+            borderRadius={borderRadius}
             size="large"
             onImageClick={handleImageClick}
             onMoveEnd={handlePageChange}

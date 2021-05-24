@@ -14,6 +14,7 @@ export default function CarouselSection({
   onPlaceholderClick,
   onBusinessHoursClick,
   margin,
+  padding = { left: 20, right: 20 },
   ...props
 }: {
   loading: boolean
@@ -25,14 +26,10 @@ export default function CarouselSection({
   onBusinessHoursClick?: () => void
   onPlaceholderClick: () => void
   margin?: MarginPadding
+  padding?: MarginPadding
 } & Parameters<typeof Carousel>['0']) {
   return (
-    <Section
-      minWidth={320}
-      maxWidth={788}
-      padding={{ left: 20, right: 20 }}
-      margin={margin}
-    >
+    <Section minWidth={320} maxWidth={768} padding={padding} margin={margin}>
       {images.length > 0 ? (
         <Carousel images={images} {...props} />
       ) : (
