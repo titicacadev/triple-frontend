@@ -1,5 +1,5 @@
 import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
-import { boolean, withKnobs } from '@storybook/addon-knobs'
+import { boolean, withKnobs, text } from '@storybook/addon-knobs'
 import BookingCompletion from '@titicaca/booking-completion'
 
 <Meta title="booking-completion / Booking Complete" decorators={[withKnobs]} />
@@ -18,7 +18,8 @@ import BookingCompletion from '@titicaca/booking-completion'
         '예약이 확정되면 이메일로 바우처가 발송됩니다.',
       ]}
       region={{ id: '', names: { ko: '바르셀로나', en: 'Barcelona' } }}
-      compact={boolean("compact", false)}
+      compact={boolean('compact', false)}
+      myBookingButtonTitle={text('내 예약 버튼 타이틀', '')}
     />
   </Story>
 </Preview>
