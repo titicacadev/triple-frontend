@@ -16,6 +16,7 @@ export default function ImageCarousel(
     | 'margin'
     | 'optimized'
     | 'padding'
+    | 'borderRadius'
   >,
 ) {
   const {
