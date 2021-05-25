@@ -125,11 +125,11 @@ export function useClientActions({
           region_id: regionId,
           resource_id: resourceId,
         })
-        const reviewDetailHref = `${appUrlScheme}:///reviews/${reviewId}/detail?${params}`
-
-        anchor
-          ? navigate(reviewDetailHref + `#${anchor}`)
-          : (window.location.href = reviewDetailHref)
+        navigate(
+          `${appUrlScheme}:///reviews/${reviewId}/detail?${params}${
+            anchor ? `#${anchor}` : ''
+          }`,
+        )
       },
       navigateMileageIntro() {
         navigate(`${appUrlScheme}:///my/mileage/intro`)
