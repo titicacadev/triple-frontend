@@ -114,16 +114,20 @@ export function useClientActions({
         reviewId,
         regionId,
         resourceId,
+        anchor,
       }: {
         reviewId: string
         regionId?: string
         resourceId: string
+        anchor?: string
       }) {
         const params = qs.stringify({
           region_id: regionId,
           resource_id: resourceId,
         })
-        window.location.href = `${appUrlScheme}:///reviews/${reviewId}/detail?${params}`
+        window.location.href = `${appUrlScheme}:///reviews/${reviewId}/detail?${params}${
+          anchor ? `#${anchor}` : ''
+        }`
       },
       navigateMileageIntro() {
         navigate(`${appUrlScheme}:///my/mileage/intro`)
