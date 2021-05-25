@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 2.22.1
+
+### poi-detail
+
+- `ImageCarousel`에 `height` 인터페이스를 제공합니다.
+
+### image-carousel
+
+- `height` 인터페이스를 제공합니다.
+
 ## 2.22.0
 
 ### poi-detail
