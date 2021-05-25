@@ -38,6 +38,11 @@ export interface ReviewElementProps {
     index: number,
   ) => void
   onReviewClick: (e: React.SyntheticEvent, reviewId: string) => void
+  onMessageCountClick: (
+    e: React.SyntheticEvent,
+    reviewId: string,
+    anchor: string,
+  ) => void
   onShow?: (index: number) => void
   reviewRateDescriptions?: string[]
   DateFormatter?: ComponentType<{ date: string }>
@@ -103,6 +108,7 @@ export default function ReviewElement({
   onMenuClick,
   onImageClick,
   onReviewClick,
+  onMessageCountClick,
   onShow,
   DateFormatter,
   reviewRateDescriptions,
@@ -217,6 +223,9 @@ export default function ReviewElement({
               margin={{ top: 5 }}
               padding={{ top: 2, bottom: 2, left: 20, right: 0 }}
               isCommaVisible={!blindedAt}
+              onClick={(e: React.SyntheticEvent) =>
+                onMessageCountClick(e, review.id, 'reply')
+              }
             >
               {replyBoard
                 ? replyBoard.rootMessagesCount + replyBoard.childMessagesCount

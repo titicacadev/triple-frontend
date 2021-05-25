@@ -204,6 +204,17 @@ export default function ReviewsList({
     [appVersion, trackEvent, resourceId, navigateReviewDetail, regionId],
   )
 
+  const handleMessageCountClick = useCallback(
+    (e: React.SyntheticEvent, reviewId, anchor) => {
+      if (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) {
+        e.preventDefault()
+        e.stopPropagation()
+        navigateReviewDetail({ reviewId, regionId, resourceId, anchor })
+      }
+    },
+    [appVersion, resourceId, navigateReviewDetail, regionId],
+  )
+
   const handleShow = fetchNext
     ? (index: number) => index > reviews.length - 3 && fetchNext()
     : undefined
@@ -228,6 +239,7 @@ export default function ReviewsList({
             onMenuClick={handleMenuClick}
             onImageClick={handleImageClick}
             onReviewClick={handleReviewClick}
+            onMessageCountClick={handleMessageCountClick}
             resourceId={resourceId}
             DateFormatter={ReviewTimestamp}
             onShow={handleShow}
