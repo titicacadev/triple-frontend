@@ -6,11 +6,11 @@
 
 ### poi-detail
 
-- `ImageCarousel`에 `height` 인터페이스를 제공합니다.
+- `ImageCarousel`에 `height` 인터페이스를 제공합니다. (#1383)
 
 ### image-carousel
 
-- `height` 인터페이스를 제공합니다.
+- `height` 인터페이스를 제공합니다. (#1383)
 
 ## 2.22.0
 
