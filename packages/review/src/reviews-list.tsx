@@ -23,7 +23,6 @@ import { AppNativeActionProps, ReviewData } from './types'
 import { useClientActions } from './use-client-actions'
 
 const LOUNGE_APP_VERSION = '4.3.0'
-const MESSAGE_COUNT_APP_VERSION = '5.5.0'
 
 export default function ReviewsList({
   myReview,
@@ -208,12 +207,9 @@ export default function ReviewsList({
 
   const handleMessageCountClick = useSessionCallback(
     useCallback(
-      (e: React.SyntheticEvent, reviewId, anchor) => {
-        if (appVersion && semver.gte(appVersion, MESSAGE_COUNT_APP_VERSION)) {
-          navigateReviewDetail({ reviewId, regionId, resourceId, anchor })
-        }
-      },
-      [appVersion, navigateReviewDetail, regionId, resourceId],
+      (e: React.SyntheticEvent, reviewId, anchor) =>
+        navigateReviewDetail({ reviewId, regionId, resourceId, anchor }),
+      [navigateReviewDetail, regionId, resourceId],
     ),
   )
 
