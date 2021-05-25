@@ -205,14 +205,9 @@ export default function ReviewsList({
   )
 
   const handleMessageCountClick = useCallback(
-    (e: React.SyntheticEvent, reviewId, anchor) => {
-      if (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) {
-        e.preventDefault()
-        e.stopPropagation()
-        navigateReviewDetail({ reviewId, regionId, resourceId, anchor })
-      }
-    },
-    [appVersion, resourceId, navigateReviewDetail, regionId],
+    (e: React.SyntheticEvent, reviewId, anchor) =>
+      navigateReviewDetail({ reviewId, regionId, resourceId, anchor }),
+    [resourceId, navigateReviewDetail, regionId],
   )
 
   const handleShow = fetchNext
