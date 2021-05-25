@@ -187,7 +187,7 @@ export default function ReviewsList({
   )
 
   const handleReviewClick = useCallback(
-    (e: React.SyntheticEvent, reviewId) => {
+    (e: React.SyntheticEvent, reviewId: string) => {
       if (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) {
         e.preventDefault()
         e.stopPropagation()
@@ -207,7 +207,7 @@ export default function ReviewsList({
 
   const handleMessageCountClick = useSessionCallback(
     useCallback(
-      (e: React.SyntheticEvent, reviewId, anchor) =>
+      (e: React.SyntheticEvent, reviewId: string, anchor: string) =>
         navigateReviewDetail({ reviewId, regionId, resourceId, anchor }),
       [navigateReviewDetail, regionId, resourceId],
     ),
