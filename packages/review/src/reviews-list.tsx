@@ -205,11 +205,19 @@ export default function ReviewsList({
     [appVersion, trackEvent, resourceId, navigateReviewDetail, regionId],
   )
 
-  const handleMessageCountClick = useSessionCallback(
-    useCallback(
-      (e: React.SyntheticEvent, reviewId: string, anchor: string) =>
-        navigateReviewDetail({ reviewId, regionId, resourceId, anchor }),
-      [navigateReviewDetail, regionId, resourceId],
+  const handleMessageCountClick = useAppCallback(
+    TransitionType.General,
+    useSessionCallback(
+      useCallback(
+        (e: React.SyntheticEvent, reviewId: string) =>
+          navigateReviewDetail({
+            reviewId,
+            regionId,
+            resourceId,
+            anchor: 'reply',
+          }),
+        [navigateReviewDetail, regionId, resourceId],
+      ),
     ),
   )
 
