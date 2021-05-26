@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/app-installation-cta",
-  "version": "2.22.1",
+  "version": "2.22.2",
   "description": "Call to action components for app installation",
   "keywords": [
     "cta",
@@ -27,8 +27,8 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^2.22.1",
-    "@titicaca/core-elements": "^2.22.1",
+    "@titicaca/color-palette": "^2.22.2",
+    "@titicaca/core-elements": "^2.22.2",
     "react-transition-group": "^4.4.1"
   }
 }
