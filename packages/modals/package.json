@@ -15,12 +15,13 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^2.22.1"
-  },
-  "devDependencies": {
-    "@types/semver": "^7.3.4"
+    "@titicaca/core-elements": "^2.22.1",
+    "semver": "^7.3.5"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*"
+  },
+  "devDependencies": {
+    "@types/semver": "^7.3.6"
   }
 }

@@ -28,7 +28,7 @@
     "@titicaca/ui-flow": "^2.22.1",
     "@titicaca/user-verification": "^2.22.1",
     "@titicaca/view-utilities": "^2.22.1",
-    "semver": "^7.3.2"
+    "semver": "^7.3.5"
   },
   "peerDependencies": {
     "@sentry/browser": ">=5 <7",
@@ -37,6 +37,6 @@
   "devDependencies": {
     "@sentry/browser": "^6.2.5",
     "@titicaca/content-utilities": "^2.9.0",
-    "@types/semver": "^7.3.4"
+    "@types/semver": "^7.3.6"
   }
 }
