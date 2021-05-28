@@ -32,6 +32,7 @@ export interface ReviewData {
   id: string
   liked: boolean
   likesCount: number
+  resourceType: string
   user: UserData
   comment: string
   createdAt: string

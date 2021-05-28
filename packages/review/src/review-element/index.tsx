@@ -38,7 +38,11 @@ export interface ReviewElementProps {
     index: number,
   ) => void
   onReviewClick: (e: React.SyntheticEvent, reviewId: string) => void
-  onMessageCountClick: (e: React.SyntheticEvent, reviewId: string) => void
+  onMessageCountClick: (
+    e: React.SyntheticEvent,
+    reviewId: string,
+    resourceType: string,
+  ) => void
   onShow?: (index: number) => void
   reviewRateDescriptions?: string[]
   DateFormatter?: ComponentType<{ date: string }>
@@ -95,7 +99,16 @@ const MESSAGE_COUNT_APP_VERSION = '5.5.0'
 
 export default function ReviewElement({
   review,
-  review: { user, blindedAt, comment, createdAt, rating, media, replyBoard },
+  review: {
+    user,
+    blindedAt,
+    comment,
+    createdAt,
+    rating,
+    media,
+    replyBoard,
+    resourceType,
+  },
   isMyReview,
   index,
   onUserClick,
@@ -220,7 +233,7 @@ export default function ReviewElement({
               padding={{ top: 2, bottom: 2, left: 20, right: 0 }}
               isCommaVisible={!blindedAt}
               onClick={(e: React.SyntheticEvent) =>
-                onMessageCountClick(e, review.id)
+                onMessageCountClick(e, review.id, resourceType)
               }
             >
               {replyBoard

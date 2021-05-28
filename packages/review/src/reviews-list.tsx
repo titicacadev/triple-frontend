@@ -28,8 +28,7 @@ export default function ReviewsList({
   myReview,
   reviews,
   regionId,
-  poiType,
-  cityName,
+  cityName = '',
   fetchNext,
   appUrlScheme,
   resourceId,
@@ -41,7 +40,6 @@ export default function ReviewsList({
   reviews: ReviewData[]
   fetchNext?: () => void
   regionId?: string
-  poiType?: string
   cityName?: string
   /**
    * @deprecated env context를 사용하면 생략 가능
@@ -213,19 +211,17 @@ export default function ReviewsList({
     TransitionType.General,
     useSessionCallback(
       useCallback(
-        (e: React.SyntheticEvent, reviewId: string) => {
-          if (cityName && poiType) {
-            trackEvent({
-              ga: ['리뷰_댓글', cityName],
-              fa: {
-                action: '리뷰_댓글',
-                item_id: resourceId,
-                review_id: reviewId,
-                region_id: regionId,
-                content_type: poiType,
-              },
-            })
-          }
+        (e: React.SyntheticEvent, reviewId: string, resourceType: string) => {
+          trackEvent({
+            ga: ['리뷰_댓글', cityName],
+            fa: {
+              action: '리뷰_댓글',
+              item_id: resourceId,
+              review_id: reviewId,
+              region_id: regionId,
+              content_type: resourceType,
+            },
+          })
 
           navigateReviewDetail({
             reviewId,
@@ -234,14 +230,7 @@ export default function ReviewsList({
             anchor: 'reply',
           })
         },
-        [
-          cityName,
-          navigateReviewDetail,
-          poiType,
-          regionId,
-          resourceId,
-          trackEvent,
-        ],
+        [cityName, navigateReviewDetail, regionId, resourceId, trackEvent],
       ),
     ),
   )
