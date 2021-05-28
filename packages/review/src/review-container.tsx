@@ -77,7 +77,6 @@ const BulletRight = styled.img.attrs({
 
 function ReviewContainer({
   reviewsCount: initialReviewsCount,
-  cityName,
   resourceType,
   regionId,
   appUrlScheme,
@@ -97,7 +96,6 @@ function ReviewContainer({
 }: {
   resourceId: string
   resourceType: ResourceType
-  cityName?: string
   regionId?: string
   reviewsCount: number
   shortened?: boolean
@@ -342,7 +340,6 @@ function ReviewContainer({
             maxLength={shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined}
             myReview={myReview}
             reviews={reviews.filter((review) => !myReviewIds.has(review.id))}
-            cityName={cityName}
             regionId={regionId}
             appUrlScheme={appUrlScheme}
             resourceId={resourceId}
