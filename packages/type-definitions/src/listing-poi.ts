@@ -24,6 +24,11 @@ interface ListingPOIBase {
   reviewed: boolean
   scraped: boolean
   distance?: number
+  region?: {
+    source: {
+      names: TranslatedProperty
+    }
+  }
 }
 
 export interface ListingAttraction extends ListingPOIBase {
