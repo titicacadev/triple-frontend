@@ -13,11 +13,20 @@ import { POI_IMAGE_PLACEHOLDERS, TYPE_NAMES } from './constants'
 import { POIListElementBaseProps, ActionButtonElement } from './types'
 
 export default function PoiCarouselElement<
-  T extends Pick<ListingPOI, 'id' | 'type' | 'nameOverride' | 'scraped'> & {
-    source: Pick<ListingPOI['source'], 'names' | 'image' | 'areas'>
+  T extends Pick<
+    ListingPOI,
+    'id' | 'type' | 'nameOverride' | 'scraped' | 'region'
+  > & {
+    source: Pick<ListingPOI['source'], 'names' | 'image' | 'areas' | 'vicinity'>
   }
 >({
   poi,
+  poi: {
+    type,
+    region,
+    nameOverride,
+    source: { image, names, areas, vicinity },
+  },
   onClick,
   actionButtonElement,
   description,
@@ -41,13 +50,10 @@ export default function PoiCarouselElement<
     return null
   }
 
-  const {
-    type,
-    nameOverride,
-    source: { image, names, areas },
-  } = poi
+  const { names: regionNames } = region?.source || {}
 
   const name = nameOverride || names.ko || names.en || names.local
+  const regionName = regionNames?.ko || regionNames?.en || regionNames?.local
 
   return (
     <Carousel.Item
@@ -78,7 +84,14 @@ export default function PoiCarouselElement<
       </Text>
       <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
         {description ||
-          [TYPE_NAMES[type], areas?.[0]?.name].filter(Boolean).join(' · ')}
+          [
+            TYPE_NAMES[type],
+            areas?.[0]?.name
+              ? `${regionName}(${areas?.[0]?.name})`
+              : regionName || vicinity,
+          ]
+            .filter(Boolean)
+            .join(' · ')}
       </Text>
 
       {actionButtonElement || (
