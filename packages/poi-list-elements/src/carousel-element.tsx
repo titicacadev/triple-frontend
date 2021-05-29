@@ -86,9 +86,11 @@ export default function PoiCarouselElement<
         {description ||
           [
             TYPE_NAMES[type],
-            areas?.[0]?.name
-              ? `${regionName}(${areas?.[0]?.name})`
-              : regionName || vicinity,
+            regionName
+              ? areas?.[0]?.name
+                ? `${regionName}(${areas?.[0]?.name})`
+                : regionName
+              : vicinity,
           ]
             .filter(Boolean)
             .join(' · ')}
