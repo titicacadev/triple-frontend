@@ -71,9 +71,11 @@ export function CompactPoiListElement<T extends ListingPOI>({
       <Text size="tiny" alpha={0.7} margin={{ top: 4, left: 50 }}>
         {[
           TYPE_NAMES[type],
-          areas?.[0]?.name
-            ? `${regionName}(${areas?.[0]?.name})`
-            : regionName || vicinity,
+          regionName
+            ? areas?.[0]?.name
+              ? `${regionName}(${areas?.[0]?.name})`
+              : regionName
+            : vicinity,
         ]
           .filter(Boolean)
           .join(' · ')}
