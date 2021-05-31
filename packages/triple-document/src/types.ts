@@ -11,6 +11,11 @@ export interface RegionData {
   id: string
   type: string
   nameOverride: string | null
+  region?: {
+    source: {
+      names: TranslatedProperty
+    }
+  }
   source: {
     id: string
     names: TranslatedProperty

@@ -9,6 +9,7 @@ import { Text } from '@titicaca/core-elements'
 import { ListingPOI } from '@titicaca/type-definitions'
 
 import { useResourceClickHandler } from '../prop-context/resource-click-handler'
+import { RegionData } from '../types'
 
 import ResourceList from './shared/resource-list'
 import DocumentCarousel from './shared/document-carousel'
@@ -26,6 +27,7 @@ const PoiPrice = styled.div`
 `
 
 type ExtendedPOIListElementData = ListingPOI & {
+  region: RegionData['region']
   source: ListingPOI['source'] & {
     pricing?: {
       nightlyPrice?: number | null
