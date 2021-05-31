@@ -17,6 +17,7 @@ import {
   DetailHeadterReviewCount,
   DetailHeaderScrapCount,
 } from '../common/detail-header-text'
+import { PoiVersion } from '../common/types'
 
 const LongClickableSection = longClickable(Section)
 
@@ -33,6 +34,7 @@ export default function DetailHeader({
   reviewsRating,
   onReviewsRatingClick,
   onCopy,
+  onAreaClick,
   vicinity,
   ...props
 }: {
@@ -42,6 +44,7 @@ export default function DetailHeader({
   reviewsCount: number
   reviewsRating: number
   onReviewsRatingClick: () => void
+  onAreaClick?: () => void
   onCopy: (value: string) => void
   vicinity?: string
 } & Parameters<typeof Section>['0']) {
@@ -66,17 +69,26 @@ export default function DetailHeader({
         <DetailHeaderLocalText text={names.local || names.en} />
         {(reviewsCount > 0 || scrapsCount > 0) && (
           <Container margin={{ top: 14 }}>
-            {reviewsCount > 0 && (
-              <DetailHeadterReviewCount
-                rating={reviewsRating}
-                count={reviewsCount}
-                onClick={onReviewsRatingClick}
-              />
-            )}
-            {scrapsCount > 0 && <DetailHeaderScrapCount count={scrapsCount} />}
+            <>
+              {scrapsCount > 0 && (
+                <DetailHeaderScrapCount count={scrapsCount} />
+              )}
+              {reviewsCount > 0 && (
+                <DetailHeadterReviewCount
+                  count={reviewsCount}
+                  rating={reviewsRating}
+                  onClick={onReviewsRatingClick}
+                />
+              )}
+            </>
           </Container>
         )}
-        <AreaNames areas={areas} vicinity={vicinity} />
+        <AreaNames
+          version={PoiVersion.V2}
+          areas={areas}
+          vicinity={vicinity}
+          onClick={onAreaClick}
+        />
       </LongClickableSection>
       <CopyActionSheet
         open={uriHash === HASH_COPY_ACTION_SHEET}
