@@ -80,17 +80,14 @@ export default function PoiCarouselElement<
         {name}
       </Text>
       <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
-        {description ||
-          [
-            TYPE_NAMES[type],
-            regionName
-              ? areas?.[0]?.name
-                ? `${regionName}(${areas?.[0]?.name})`
-                : regionName
-              : vicinity,
-          ]
-            .filter(Boolean)
-            .join(' · ')}
+        {description || TYPE_NAMES[type]}
+      </Text>
+      <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
+        {regionName
+          ? areas?.[0]?.name
+            ? `${regionName}(${areas?.[0]?.name})`
+            : regionName
+          : vicinity}
       </Text>
 
       {actionButtonElement || (
