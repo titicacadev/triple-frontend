@@ -7,11 +7,7 @@ import {
   Image,
 } from '@titicaca/core-elements'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
-import {
-  ListingPOI,
-  FrameRatioAndSizes,
-  TranslatedProperty,
-} from '@titicaca/type-definitions'
+import { ListingPOI, FrameRatioAndSizes } from '@titicaca/type-definitions'
 
 import { POI_IMAGE_PLACEHOLDERS, TYPE_NAMES } from './constants'
 import { POIListElementBaseProps, ActionButtonElement } from './types'
@@ -46,13 +42,6 @@ export default function PoiCarouselElement<
   imageFrame?: FrameRatioAndSizes
   onImpress?: () => void
   optimized?: boolean
-  poi: {
-    region?: {
-      source: {
-        names: TranslatedProperty
-      }
-    }
-  }
 }) {
   if (!poi) {
     return null

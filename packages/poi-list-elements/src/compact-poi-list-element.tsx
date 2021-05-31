@@ -5,7 +5,7 @@ import {
   ResourceListItem,
   Container,
 } from '@titicaca/core-elements'
-import { ListingPOI, TranslatedProperty } from '@titicaca/type-definitions'
+import { ListingPOI } from '@titicaca/type-definitions'
 import { OutlineScrapButton } from '@titicaca/scrap-button'
 
 import { POIListElementBaseProps, ActionButtonElement } from './types'
@@ -37,15 +37,7 @@ export function CompactPoiListElement<T extends ListingPOI>({
     source: { names, image, areas, vicinity },
   },
   onClick,
-}: CompactPoiListElementProps<T> & {
-  poi: {
-    region?: {
-      source: {
-        names: TranslatedProperty
-      }
-    }
-  }
-}) {
+}: CompactPoiListElementProps<T>) {
   const [actionButtonWidth, setActionButtonWidth] = useState(0)
   const actionButtonRef = useRef<HTMLDivElement>(null)
 
