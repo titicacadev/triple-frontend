@@ -1,5 +1,3 @@
-import { RegionData } from '@titicaca/triple-document/src/types'
-
 import { TranslatedProperty } from './translated-property'
 import { ImageMeta } from './image'
 import { PointGeoJSON } from './geojson'
@@ -22,7 +20,11 @@ interface ListingPOISourceBase {
 
 interface ListingPOIBase {
   id: string
-  region: RegionData['region']
+  region?: {
+    source: {
+      names: TranslatedProperty
+    }
+  }
   nameOverride?: string
   reviewed: boolean
   scraped: boolean
