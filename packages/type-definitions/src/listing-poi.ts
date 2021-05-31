@@ -20,11 +20,6 @@ interface ListingPOISourceBase {
 
 interface ListingPOIBase {
   id: string
-  region?: {
-    source: {
-      names: TranslatedProperty
-    }
-  }
   nameOverride?: string
   reviewed: boolean
   scraped: boolean
