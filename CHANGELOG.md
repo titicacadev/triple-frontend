@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.22.3
+
+- 댓글 아이콘에 trackEvent를 추가 합니다 (#1391)
+
 ## 2.22.2
 
 ### review
