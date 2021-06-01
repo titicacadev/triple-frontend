@@ -2,13 +2,13 @@ import React from 'react'
 import ExtendedResourceListElement, {
   ResourceListElementProps,
 } from '@titicaca/resource-list-element'
-import { ListingPOI, ListingHotel } from '@titicaca/type-definitions'
+import { PoiResponse } from '@titicaca/type-definitions'
 import { useScrapsContext } from '@titicaca/react-contexts'
 
 import { POI_IMAGE_PLACEHOLDERS } from './constants'
 import { POIListElementBaseProps } from './types'
 
-interface ExtendedPoiListElementBaseProps<T extends ListingPOI>
+interface ExtendedPoiListElementBaseProps<T extends PoiResponse>
   extends POIListElementBaseProps<T> {
   hideScrapButton?: boolean
   maxCommentLines?: number
@@ -19,11 +19,11 @@ interface ExtendedPoiListElementBaseProps<T extends ListingPOI>
 }
 
 export type ExtendedPoiListElementProps<
-  T extends ListingPOI
+  T extends PoiResponse
 > = ExtendedPoiListElementBaseProps<T> &
   Partial<Pick<ResourceListElementProps<T>, 'as'>>
 
-export function ExtendedPoiListElement<T extends ListingPOI>({
+export function ExtendedPoiListElement<T extends PoiResponse>({
   poi,
   poi: {
     id,
@@ -58,7 +58,7 @@ export function ExtendedPoiListElement<T extends ListingPOI>({
     source: { starRating },
   } =
     type === 'hotel'
-      ? (poi as ListingHotel)
+      ? (poi as PoiResponse)
       : {
           source: { starRating: undefined },
         }

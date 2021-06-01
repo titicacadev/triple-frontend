@@ -5,29 +5,29 @@ import {
   ResourceListItem,
   Container,
 } from '@titicaca/core-elements'
-import { ListingPOI } from '@titicaca/type-definitions'
+import { PoiResponse } from '@titicaca/type-definitions'
 import { OutlineScrapButton } from '@titicaca/scrap-button'
 
 import { POIListElementBaseProps, ActionButtonElement } from './types'
 import { TYPE_NAMES } from './constants'
 
-interface CompactPoiListElementBaseProps<T extends ListingPOI>
+interface CompactPoiListElementBaseProps<T extends PoiResponse>
   extends POIListElementBaseProps<T> {
   actionButtonElement?: ActionButtonElement
 }
 
 export type CompactPoiListElementProps<
-  T extends ListingPOI
+  T extends PoiResponse
 > = CompactPoiListElementBaseProps<T> &
   Partial<Pick<Parameters<typeof ResourceListItem>['0'], 'as'>>
 
-const POI_IMAGE_PLACEHOLDERS_SMALL: { [key in ListingPOI['type']]: string } = {
+const POI_IMAGE_PLACEHOLDERS_SMALL: { [key in PoiResponse['type']]: string } = {
   attraction: 'https://assets.triple.guide/images/ico-blank-see-small@2x.png',
   restaurant: 'https://assets.triple.guide/images/ico-blank-eat-small@2x.png',
   hotel: 'https://assets.triple.guide/images/ico-blank-hotel-small@2x.png',
 }
 
-export function CompactPoiListElement<T extends ListingPOI>({
+export function CompactPoiListElement<T extends PoiResponse>({
   actionButtonElement,
   poi,
   poi: {

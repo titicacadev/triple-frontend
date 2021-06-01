@@ -1,5 +1,5 @@
 import React from 'react'
-import { ListingPOI } from '@titicaca/type-definitions'
+import { PoiResponse } from '@titicaca/type-definitions'
 
 import {
   CompactPoiListElement,
@@ -10,11 +10,11 @@ import {
   ExtendedPoiListElementProps,
 } from './extended-poi-list-element'
 
-export type PoiListElementProps<T extends ListingPOI> =
+export type PoiListElementProps<T extends PoiResponse> =
   | ({ compact: true } & CompactPoiListElementProps<T>)
   | ({ compact?: false; optimized?: boolean } & ExtendedPoiListElementProps<T>)
 
-export function PoiListElement<T extends ListingPOI>({
+export function PoiListElement<T extends PoiResponse>({
   compact,
   ...props
 }: PoiListElementProps<T>) {
