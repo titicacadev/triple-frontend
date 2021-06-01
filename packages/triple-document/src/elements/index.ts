@@ -31,7 +31,6 @@ const ELEMENTS: ElementSet = {
   hr5: HR5,
   hr6: HR6,
   pois: Pois,
-  poi: Pois,
   links: Links,
   embedded: Embedded,
   note: Note,

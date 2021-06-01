@@ -7,14 +7,17 @@ import {
   Image,
 } from '@titicaca/core-elements'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
-import { ListingPOI, FrameRatioAndSizes } from '@titicaca/type-definitions'
+import { PoiResponse, FrameRatioAndSizes } from '@titicaca/type-definitions'
 
 import { POI_IMAGE_PLACEHOLDERS, TYPE_NAMES } from './constants'
 import { POIListElementBaseProps, ActionButtonElement } from './types'
 
 export default function PoiCarouselElement<
-  T extends Pick<ListingPOI, 'id' | 'type' | 'nameOverride'> & {
-    source: Pick<ListingPOI['source'], 'names' | 'image' | 'areas' | 'vicinity'>
+  T extends Pick<PoiResponse, 'id' | 'type' | 'nameOverride' | 'region'> & {
+    source: Pick<
+      PoiResponse['source'],
+      'names' | 'image' | 'areas' | 'vicinity'
+    >
   }
 >({
   poi,
