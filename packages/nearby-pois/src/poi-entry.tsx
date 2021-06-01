@@ -6,8 +6,7 @@ import {
   useEventTrackingContext,
   useHistoryFunctions,
 } from '@titicaca/react-contexts'
-
-import { ListingPOI } from './types'
+import { PoiResponse } from '@titicaca/type-definitions'
 
 export default function PoiEntry({
   index,
@@ -21,7 +20,7 @@ export default function PoiEntry({
   optimized,
 }: {
   index: number
-  poi: ListingPOI
+  poi: PoiResponse
   eventLabel: string
   optimized?: boolean
 }) {

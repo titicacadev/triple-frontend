@@ -1,4 +1,6 @@
-import { PoiType, ListingPOI } from './types'
+import { PoiResponse } from '@titicaca/type-definitions'
+
+import { PoiType } from './types'
 
 const FETCH_POIS = 'nearby-pois/FETCH_POIS'
 const APPEND_POIS = 'nearby-pois/APPEND_POIS'
@@ -10,12 +12,12 @@ type NearbyPoisAction = ReturnType<
 
 export interface NearbyPoisState {
   attraction: {
-    pois: ListingPOI[]
+    pois: PoiResponse[]
     fetching: boolean
     hasMore: boolean | undefined
   }
   restaurant: {
-    pois: ListingPOI[]
+    pois: PoiResponse[]
     fetching: boolean
     hasMore: boolean | undefined
   }
@@ -35,7 +37,7 @@ export function appendPois({
   hasMore,
 }: {
   type: PoiType
-  pois: ListingPOI[]
+  pois: PoiResponse[]
   hasMore: boolean
 }) {
   return {
