@@ -19,7 +19,7 @@ export function DetailHeaderLocalText({ text }: { text: string | null }) {
 
 export function DetailHeadterReviewCount({
   version = PoiVersion.V1,
-  margin = { right: 10 },
+  margin,
   count,
   rating,
   onClick,
