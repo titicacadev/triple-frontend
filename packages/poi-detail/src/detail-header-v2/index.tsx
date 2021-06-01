@@ -79,7 +79,6 @@ export default function DetailHeader({
               <DetailHeadterReviewCount
                 count={reviewsCount}
                 rating={reviewsRating}
-                margin={undefined}
                 onClick={onReviewsRatingClick}
               />
             )}
