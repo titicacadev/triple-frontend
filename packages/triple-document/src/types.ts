@@ -1,11 +1,24 @@
 import { SyntheticEvent } from 'react'
-import { ImageMeta } from '@titicaca/type-definitions'
+import { ImageMeta, TranslatedProperty } from '@titicaca/type-definitions'
 import { ImageSourceType } from '@titicaca/core-elements'
 
 import { MediaConfig } from './prop-context/media-config'
 import { ResourceClickHandler } from './prop-context/resource-click-handler'
 import { TNAProductClickHandler } from './prop-context/tna-product-click-handler'
 import { TNAProductsFetcher } from './prop-context/tna-products-fetcher'
+
+export interface RegionData {
+  id: string
+  type: string
+  nameOverride: string | null
+  source: {
+    id: string
+    names: TranslatedProperty
+    style?: {
+      backgroundImageUrl: string
+    }
+  }
+}
 
 export interface TripleElementData<T = string, Value = unknown> {
   type: T

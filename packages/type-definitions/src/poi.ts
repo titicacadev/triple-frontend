@@ -1,43 +1,51 @@
-import { PoiSource, PoiType, Recommendation } from '@titicaca/pois-utilities'
+import { PoiSource, Recommendation } from '@titicaca/pois-utilities'
 
-import { ImageMeta, PointGeoJSON, TranslatedProperty } from './index'
+import { TranslatedProperty } from './translated-property'
+import { ImageMeta } from './image'
+import { PointGeoJSON } from './geojson'
+
+type PoiType = 'attraction' | 'restaurant' | 'hotel'
 
 export interface PoiResponse {
   id: string
+  type: PoiType
   nameOverride?: string
+  scraped: boolean
+  reviewed: boolean
   distance?: number
-  type: PoiType | string
   source: {
-    id: string
+    addresses: TranslatedProperty
     areas?: { name: string }[]
     categories?: { name: string }[]
     comment?: string
     grade: number
+    id: string
+    hasTnaProducts: boolean
+    image: ImageMeta
+    images: ImageMeta[]
+    geolocation?: PointGeoJSON
+    names: TranslatedProperty
+    permanentlyClosed: boolean
+    permanentlyClosedAt?: string
+    pointGeolocation: PointGeoJSON
     pricing?: {
       nightlyPrice?: number | null
     } | null
-    image: ImageMeta
-    images: ImageMeta[]
+    regionId: string
     scrapsCount: number
     reviewsCount: number
     reviewsRating: number
-    type: PoiType | string
-    regionId: string
-    pointGeolocation: PointGeoJSON
-    geolocation: PointGeoJSON
-    names: TranslatedProperty
-    addresses: TranslatedProperty
-    geotags:
+    starRating: number
+    type: PoiType
+    geotags?:
       | {
           id: string
           type: string
           osmLevel: number
         }[]
       | null
-    hasTnaProducts: boolean
-    permanentlyClosed: boolean
-    permanentlyClosedAt?: string
     vicinity?: string
+    tags: { name: string }[]
     relationshipCounts: { [key: string]: number }
     deletedAt?: string
     foreignEntities?: Array<{
@@ -45,11 +53,7 @@ export interface PoiResponse {
       identifier: string
     }>
     recommendations?: Recommendation[]
-    starRating: number
-    tags: { name: string }[]
   } & Omit<PoiSource, 'recommendations'>
-  reviewed: boolean
-  scraped: boolean
   region?: {
     id: string
     timeZone: string

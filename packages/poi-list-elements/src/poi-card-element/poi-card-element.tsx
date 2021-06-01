@@ -7,7 +7,7 @@ import {
   Image,
 } from '@titicaca/core-elements'
 import {
-  ListingPOI,
+  PoiResponse,
   ImageMeta,
   TranslatedProperty,
 } from '@titicaca/type-definitions'
@@ -77,7 +77,7 @@ export default function POICardElement({
   optimized,
 }: {
   id: string
-  type: ListingPOI['type']
+  type: PoiResponse['type']
   scraped: boolean
   /**
    * @deprecated 더이상 사용하지 않습니다.
