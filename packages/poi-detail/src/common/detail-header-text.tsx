@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Rating, Icon } from '@titicaca/core-elements'
+import { Text, Rating, Icon, MarginPadding } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 
 import { PoiVersion } from './types'
@@ -19,6 +19,7 @@ export function DetailHeaderLocalText({ text }: { text: string | null }) {
 
 export function DetailHeadterReviewCount({
   version = PoiVersion.V1,
+  margin = { right: 10 },
   count,
   rating,
   onClick,
@@ -26,6 +27,7 @@ export function DetailHeadterReviewCount({
   version?: PoiVersion
   rating: number
   count: number
+  margin?: MarginPadding
   onClick?: () => void
 }) {
   return (
@@ -34,7 +36,7 @@ export function DetailHeadterReviewCount({
       bold
       size="mini"
       alpha={1}
-      margin={{ right: 10 }}
+      margin={margin}
       onClick={version === PoiVersion.V1 ? onClick : undefined}
     >
       <Rating score={rating} />
@@ -46,9 +48,15 @@ export function DetailHeadterReviewCount({
   )
 }
 
-export function DetailHeaderScrapCount({ count }: { count: number }) {
+export function DetailHeaderScrapCount({
+  count,
+  margin,
+}: {
+  count: number
+  margin?: MarginPadding
+}) {
   return (
-    <Text inline bold size="mini" alpha={1}>
+    <Text inline bold size="mini" alpha={1} margin={margin}>
       <Icon name="save" size="tiny" />
       {` ${formatNumber(count)}`}
     </Text>

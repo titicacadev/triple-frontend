@@ -69,18 +69,20 @@ export default function DetailHeader({
         <DetailHeaderLocalText text={names.local || names.en} />
         {(reviewsCount > 0 || scrapsCount > 0) && (
           <Container margin={{ top: 14 }}>
-            <>
-              {scrapsCount > 0 && (
-                <DetailHeaderScrapCount count={scrapsCount} />
-              )}
-              {reviewsCount > 0 && (
-                <DetailHeadterReviewCount
-                  count={reviewsCount}
-                  rating={reviewsRating}
-                  onClick={onReviewsRatingClick}
-                />
-              )}
-            </>
+            {scrapsCount > 0 && (
+              <DetailHeaderScrapCount
+                margin={{ right: 10 }}
+                count={scrapsCount}
+              />
+            )}
+            {reviewsCount > 0 && (
+              <DetailHeadterReviewCount
+                count={reviewsCount}
+                rating={reviewsRating}
+                margin={undefined}
+                onClick={onReviewsRatingClick}
+              />
+            )}
           </Container>
         )}
         <AreaNames
