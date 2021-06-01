@@ -13,7 +13,7 @@ import { POI_IMAGE_PLACEHOLDERS, TYPE_NAMES } from './constants'
 import { POIListElementBaseProps, ActionButtonElement } from './types'
 
 export default function PoiCarouselElement<
-  T extends Pick<ListingPOI, 'id' | 'type' | 'nameOverride' | 'scraped'> & {
+  T extends Pick<ListingPOI, 'id' | 'type' | 'nameOverride'> & {
     source: Pick<ListingPOI['source'], 'names' | 'image' | 'areas' | 'vicinity'>
   }
 >({
