@@ -77,6 +77,7 @@ export default function DetailHeader({
             )}
             {reviewsCount > 0 && (
               <DetailHeadterReviewCount
+                version={PoiVersion.V2}
                 count={reviewsCount}
                 rating={reviewsRating}
                 onClick={onReviewsRatingClick}
