@@ -29,6 +29,9 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
     type,
     nameOverride,
     scraped,
+    reviewsCount: reviewsCountWithGraphql,
+    scrapsCount: scrapsCountWithGraphql,
+    reviewsRating: reviewsRatingWithGraphql,
     source: {
       names,
       image,
@@ -37,7 +40,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
       comment,
       reviewsCount: rawReviewsCount,
       scrapsCount: rawScrapsCount,
-      reviewsRating,
+      reviewsRating: rawReviewsRating,
       vicinity,
     },
     distance,
@@ -67,9 +70,9 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   const { scrapsCount } = deriveCurrentStateAndCount({
     id,
     scraped,
-    scrapsCount: rawScrapsCount,
+    scrapsCount: scrapsCountWithGraphql ?? rawScrapsCount,
   })
-  const reviewsCount = Number(rawReviewsCount || 0)
+  const reviewsCount = Number((reviewsCountWithGraphql ?? rawReviewsCount) || 0)
   const note = (
     notes || [
       starRating ? `${starRating}성급` : category ? category.name : null,
@@ -86,13 +89,13 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
       resource={poi}
       image={image}
       imagePlaceholder={POI_IMAGE_PLACEHOLDERS[type]}
-      name={nameOverride || names.ko || names.en || names.local || undefined}
+      name={nameOverride || names?.ko || names?.en || names?.local || undefined}
       comment={comment}
       distance={distanceOverride || distance}
       distanceSuffix={distanceSuffix}
       note={note}
       reviewsCount={reviewsCount}
-      reviewsRating={reviewsRating}
+      reviewsRating={reviewsRatingWithGraphql ?? rawReviewsRating}
       scrapsCount={scrapsCount}
       onClick={onClick}
       hideScrapButton={hideScrapButton}
