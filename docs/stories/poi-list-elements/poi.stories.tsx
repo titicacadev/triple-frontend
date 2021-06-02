@@ -7,7 +7,10 @@ import {
   PoiListElement,
   POICardElement,
 } from '@titicaca/poi-list-elements'
-import { PoiResponse as POIData } from '@titicaca/type-definitions'
+import {
+  ListingPOI as POIData,
+  ListingHotel as HotelData,
+} from '@titicaca/type-definitions'
 
 import POIS from '../__mocks__/pois.sample.json'
 import HOTELS from '../__mocks__/hotels.sample.json'
@@ -25,7 +28,7 @@ function PricingDescription() {
   )
 }
 
-const [POI] = (POIS as unknown[]) as POIData[]
+const [POI] = (POIS as unknown[]) as Exclude<POIData, HotelData>[]
 
 export default {
   title: 'poi-list-elements / POI',

@@ -4,7 +4,7 @@ import { boolean, text } from '@storybook/addon-knobs'
 import { Button, Section } from '@titicaca/core-elements'
 import Search from '@titicaca/search'
 import { PoiListElement } from '@titicaca/poi-list-elements'
-import { PoiResponse } from '@titicaca/type-definitions'
+import { ListingPOI } from '@titicaca/type-definitions'
 
 export default {
   title: 'search / Search',
@@ -55,7 +55,7 @@ export function controlledExample() {
 controlledExample.storyName = 'Controlled'
 
 function APIUsageExampleComponent() {
-  const [results, setResults] = useState<PoiResponse[]>([])
+  const [results, setResults] = useState<ListingPOI[]>([])
 
   const searchPois = useCallback(
     async (keyword) => {

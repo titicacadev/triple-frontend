@@ -16,9 +16,6 @@ interface ListingPOISourceBase {
   reviewsCount?: number
   scrapsCount?: number
   vicinity?: string
-  pricing?: {
-    nightlyPrice?: number | null
-  } | null
 }
 
 interface ListingPOIBase {

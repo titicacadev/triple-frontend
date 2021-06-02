@@ -1,7 +1,14 @@
-import {
-  ListingAttraction,
-  ListingRestaurant,
-} from '@titicaca/type-definitions'
+import { PointGeoJSON } from '@titicaca/type-definitions'
+import { PoiListElementType } from '@titicaca/poi-list-elements'
 
-export type PoiType = 'attraction' | 'restaurant'
-export type ListingPOI = ListingAttraction | ListingRestaurant
+type PoiType = 'attraction' | 'restaurant'
+
+export type NearByPoisType = {
+  id: string
+  type: PoiType
+  source: {
+    type: PoiType
+    regionId: string
+    pointGeolocation: PointGeoJSON
+  }
+} & PoiListElementType

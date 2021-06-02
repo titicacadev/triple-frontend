@@ -6,7 +6,8 @@ import {
   useEventTrackingContext,
   useHistoryFunctions,
 } from '@titicaca/react-contexts'
-import { PoiResponse } from '@titicaca/type-definitions'
+
+import { NearByPoisType } from './types'
 
 export default function PoiEntry({
   index,
@@ -20,7 +21,7 @@ export default function PoiEntry({
   optimized,
 }: {
   index: number
-  poi: PoiResponse
+  poi: NearByPoisType
   eventLabel: string
   optimized?: boolean
 }) {

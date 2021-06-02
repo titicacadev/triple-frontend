@@ -22,8 +22,5 @@
   "scripts": {},
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
-  },
-  "devDependencies": {
-    "@titicaca/pois-utilities": "^2.9.0"
   }
 }

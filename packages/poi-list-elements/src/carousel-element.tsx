@@ -7,19 +7,16 @@ import {
   Image,
 } from '@titicaca/core-elements'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
-import { PoiResponse, FrameRatioAndSizes } from '@titicaca/type-definitions'
+import { FrameRatioAndSizes } from '@titicaca/type-definitions'
 
 import { POI_IMAGE_PLACEHOLDERS, TYPE_NAMES } from './constants'
-import { POIListElementBaseProps, ActionButtonElement } from './types'
+import {
+  POIListElementBaseProps,
+  ActionButtonElement,
+  PoiListElementType,
+} from './types'
 
-export default function PoiCarouselElement<
-  T extends Pick<PoiResponse, 'id' | 'type' | 'nameOverride' | 'region'> & {
-    source: Pick<
-      PoiResponse['source'],
-      'names' | 'image' | 'areas' | 'vicinity'
-    >
-  }
->({
+export default function PoiCarouselElement<T extends PoiListElementType>({
   poi,
   poi: {
     type,

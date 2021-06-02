@@ -1,8 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import { measureDistance } from '@titicaca/view-utilities'
-import { PoiResponse } from '@titicaca/type-definitions'
 
-import { PoiType } from './types'
+import { NearByPoisType } from './types'
 
 export async function fetchPois({
   type,
@@ -14,7 +13,7 @@ export async function fetchPois({
   from = 0,
   size = 3,
 }: {
-  type: PoiType
+  type: NearByPoisType['type']
   excludedIds?: string[]
   regionId?: string | null
   lat: number
@@ -22,7 +21,7 @@ export async function fetchPois({
   distance?: number | string
   from?: number
   size?: number
-}): Promise<PoiResponse[]> {
+}): Promise<NearByPoisType[]> {
   const response = await fetch('/api/content/pois', {
     method: 'POST',
     headers: {
@@ -47,7 +46,7 @@ export async function fetchPois({
 
   const pois = await response.json()
 
-  return pois.map((poi: Omit<PoiResponse, 'distance'>) => ({
+  return pois.map((poi: Omit<NearByPoisType, 'distance'>) => ({
     ...poi,
     distance: measureDistance(poi.source.pointGeolocation, {
       type: 'Point',
