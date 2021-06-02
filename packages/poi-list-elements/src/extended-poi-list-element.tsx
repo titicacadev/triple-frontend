@@ -89,7 +89,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
       resource={poi}
       image={image}
       imagePlaceholder={POI_IMAGE_PLACEHOLDERS[type]}
-      name={nameOverride || names?.ko || names?.en || names?.local || undefined}
+      name={nameOverride || names.ko || names.en || names.local || undefined}
       comment={comment}
       distance={distanceOverride || distance}
       distanceSuffix={distanceSuffix}

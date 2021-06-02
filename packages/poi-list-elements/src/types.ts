@@ -41,7 +41,7 @@ export interface PoiListElementType {
     pointGeolocation?: PointGeoJSON
     regionId?: string
     image?: ImageMeta
-    names?: TranslatedProperty
+    names: TranslatedProperty
     starRating?: number
     vicinity?: string
     type: PoiType

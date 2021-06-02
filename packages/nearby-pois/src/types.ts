@@ -1,4 +1,4 @@
-import { PointGeoJSON } from '@titicaca/type-definitions'
+import { PointGeoJSON, TranslatedProperty } from '@titicaca/type-definitions'
 
 type PoiType = 'attraction' | 'restaurant'
 
@@ -8,6 +8,7 @@ export type NearByPoisType = {
   source: {
     type: PoiType
     regionId: string
+    names: TranslatedProperty
     pointGeolocation: PointGeoJSON
   }
 }
