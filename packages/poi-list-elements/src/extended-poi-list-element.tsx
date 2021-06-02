@@ -73,6 +73,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
     scrapsCount: scrapsCountWithGraphql ?? rawScrapsCount,
   })
   const reviewsCount = Number((reviewsCountWithGraphql ?? rawReviewsCount) || 0)
+
   const note = (
     notes || [
       starRating ? `${starRating}성급` : category ? category.name : null,
