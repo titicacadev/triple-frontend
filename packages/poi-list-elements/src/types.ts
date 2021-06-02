@@ -1,4 +1,8 @@
-import { ImageMeta, TranslatedProperty } from '@titicaca/type-definitions'
+import {
+  ImageMeta,
+  PointGeoJSON,
+  TranslatedProperty,
+} from '@titicaca/type-definitions'
 
 export type ActionButtonElement = React.ReactNode
 
@@ -13,9 +17,12 @@ export interface PoiListElementType {
   id: string
   type: PoiType
   nameOverride?: string
-  reviewed: boolean
-  scraped: boolean
+  reviewed?: boolean
+  scraped?: boolean
   distance?: number
+  scrapsCount?: number
+  reviewsCount?: number
+  reviewsRating?: number
   region?: {
     source: {
       names: TranslatedProperty
@@ -30,12 +37,13 @@ export interface PoiListElementType {
     reviewsRating?: number
     grade?: number
     id?: string
+    geolocation?: PointGeoJSON
+    pointGeolocation?: PointGeoJSON
     regionId?: string
     image?: ImageMeta
-    names: TranslatedProperty
+    names?: TranslatedProperty
     starRating?: number
     vicinity?: string
     type: PoiType
-    tags?: { name: string }[]
   }
 }

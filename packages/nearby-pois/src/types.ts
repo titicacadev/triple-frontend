@@ -1,5 +1,4 @@
 import { PointGeoJSON } from '@titicaca/type-definitions'
-import { PoiListElementType } from '@titicaca/poi-list-elements'
 
 type PoiType = 'attraction' | 'restaurant'
 
@@ -9,6 +8,7 @@ export type NearByPoisType = {
   source: {
     type: PoiType
     regionId: string
+    geolocation: PointGeoJSON
     pointGeolocation: PointGeoJSON
   }
-} & PoiListElementType
+}

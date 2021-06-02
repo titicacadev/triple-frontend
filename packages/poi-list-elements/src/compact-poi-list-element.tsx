@@ -54,7 +54,7 @@ export function CompactPoiListElement<T extends PoiListElementType>({
 
   const { names: regionNames } = region?.source || {}
 
-  const name = nameOverride || names.ko || names.en || names.local
+  const name = nameOverride || names?.ko || names?.en || names?.local
   const regionName = regionNames?.ko || regionNames?.en || regionNames?.local
 
   return (
