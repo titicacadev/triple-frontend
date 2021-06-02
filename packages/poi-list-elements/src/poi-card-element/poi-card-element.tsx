@@ -6,11 +6,7 @@ import {
   Card as OriginalCard,
   Image,
 } from '@titicaca/core-elements'
-import {
-  PoiResponse,
-  ImageMeta,
-  TranslatedProperty,
-} from '@titicaca/type-definitions'
+import { ImageMeta, TranslatedProperty } from '@titicaca/type-definitions'
 import {
   ReviewScrapStat,
   ResourceListElementStats,
@@ -18,6 +14,8 @@ import {
 import { formatNumber } from '@titicaca/view-utilities'
 import { useScrapsContext } from '@titicaca/react-contexts'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
+
+import { PoiListElementType } from '../types'
 
 import DirectionButton, { DIRECTION_BUTTON_WIDTH } from './direction-button'
 
@@ -77,7 +75,7 @@ export default function POICardElement({
   optimized,
 }: {
   id: string
-  type: PoiResponse['type']
+  type: PoiListElementType['type']
   scraped: boolean
   /**
    * @deprecated 더이상 사용하지 않습니다.

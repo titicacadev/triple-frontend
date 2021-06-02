@@ -1,5 +1,5 @@
 import { SyntheticEvent } from 'react'
-import { ImageMeta, TranslatedProperty } from '@titicaca/type-definitions'
+import { TranslatedProperty, ImageMeta } from '@titicaca/type-definitions'
 import { ImageSourceType } from '@titicaca/core-elements'
 
 import { MediaConfig } from './prop-context/media-config'

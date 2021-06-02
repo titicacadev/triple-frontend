@@ -4,9 +4,9 @@ import {
   PoiListElement,
   PoiCarouselElement,
   PoiListElementProps,
+  PoiListElementType,
 } from '@titicaca/poi-list-elements'
 import { Text } from '@titicaca/core-elements'
-import { PoiResponse } from '@titicaca/type-definitions'
 
 import { useResourceClickHandler } from '../prop-context/resource-click-handler'
 
@@ -25,9 +25,17 @@ const PoiPrice = styled.div`
   background-color: #fafafa;
 `
 
+type ExtendedPOIListElementData = PoiListElementType & {
+  source: PoiListElementType['source'] & {
+    pricing?: {
+      nightlyPrice?: number | null
+    } | null
+  }
+}
+
 type PoisDisplay = 'list' | string
 
-export default function Pois<T extends PoiResponse>({
+export default function Pois<T extends ExtendedPOIListElementData>({
   value: { display, pois },
 }: {
   value: {
@@ -42,7 +50,7 @@ export default function Pois<T extends PoiResponse>({
     display === 'list' ? { top: 20, left: 30, right: 30 } : { top: 20 }
   const Element =
     display === 'list'
-      ? function WrappedPoiListElment(
+      ? function WrappedPoiListElement(
           props: Omit<PoiListElementProps<T>, 'compact'>,
         ) {
           return <PoiListElement compact {...props} />
@@ -77,7 +85,7 @@ function renderPoiListActionButton({
   poi,
 }: {
   display: PoisDisplay
-  poi: PoiResponse
+  poi: ExtendedPOIListElementData
 }) {
   const {
     source: { pricing },

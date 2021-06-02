@@ -11,7 +11,7 @@ import {
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { PointGeoJSON } from '@titicaca/type-definitions'
 
-import { PoiType } from './types'
+import { NearByPoisType } from './types'
 import nearbyPoisReducer, {
   NearbyPoisState,
   setCurrentTab,
@@ -34,7 +34,7 @@ const INITIAL_STATE: NearbyPoisState = {
   currentTab: 'attraction',
 }
 
-const EVENT_LABELS: { [key in PoiType]: string } = {
+const EVENT_LABELS: { [key in NearByPoisType['type']]: string } = {
   attraction: '관광',
   restaurant: '맛집',
 }
@@ -54,7 +54,7 @@ export default function NearbyPois({
 }: {
   poiId: string
   regionId?: string
-  initialTab?: PoiType
+  initialTab?: NearByPoisType['type']
   geolocation: PointGeoJSON
   optimized?: boolean
 } & Parameters<typeof Section>['0']) {
@@ -70,7 +70,7 @@ export default function NearbyPois({
   useEffect(() => {
     async function fetchAndSetPois() {
       const [attractions, restaurants] = await Promise.all(
-        (['attraction', 'restaurant'] as PoiType[]).map((type) =>
+        (['attraction', 'restaurant'] as NearByPoisType['type'][]).map((type) =>
           fetchPois({
             type,
             excludedIds: [poiId],
@@ -132,11 +132,11 @@ export default function NearbyPois({
       if (newTab) {
         trackSimpleEvent({
           action: '근처추천장소_탭선택',
-          label: EVENT_LABELS[newTab as PoiType],
-          tab_name: EVENT_LABELS[newTab as PoiType],
+          label: EVENT_LABELS[newTab as NearByPoisType['type']],
+          tab_name: EVENT_LABELS[newTab as NearByPoisType['type']],
         })
 
-        dispatch(setCurrentTab({ type: newTab as PoiType }))
+        dispatch(setCurrentTab({ type: newTab as NearByPoisType['type'] }))
       }
     },
     [trackSimpleEvent, dispatch],

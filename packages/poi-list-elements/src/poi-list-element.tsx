@@ -1,6 +1,6 @@
 import React from 'react'
-import { PoiResponse } from '@titicaca/type-definitions'
 
+import { PoiListElementType } from './types'
 import {
   CompactPoiListElement,
   CompactPoiListElementProps,
@@ -10,11 +10,11 @@ import {
   ExtendedPoiListElementProps,
 } from './extended-poi-list-element'
 
-export type PoiListElementProps<T extends PoiResponse> =
+export type PoiListElementProps<T extends PoiListElementType> =
   | ({ compact: true } & CompactPoiListElementProps<T>)
   | ({ compact?: false; optimized?: boolean } & ExtendedPoiListElementProps<T>)
 
-export function PoiListElement<T extends PoiResponse>({
+export function PoiListElement<T extends PoiListElementType>({
   compact,
   ...props
 }: PoiListElementProps<T>) {
