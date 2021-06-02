@@ -8,7 +8,6 @@ export type NearByPoisType = {
   source: {
     type: PoiType
     regionId: string
-    geolocation: PointGeoJSON
     pointGeolocation: PointGeoJSON
   }
 }
