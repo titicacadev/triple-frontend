@@ -177,7 +177,11 @@ export default function PublicHeader({
           <MarketLink marketType={MarketType.appStore} href={appStoreUrl} />
         ) : null}
       </MarketLinksContainer>
-      {children}
+      {children || (
+        <ExtraActionsContainer>
+          <ExtraActionItem href="/my-bookings">내 예약</ExtraActionItem>
+        </ExtraActionsContainer>
+      )}
     </HeaderFrame>
   )
 }
