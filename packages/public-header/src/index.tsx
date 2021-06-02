@@ -143,7 +143,7 @@ const MarketLink = styled.a<{ marketType: MarketType }>`
 `
 
 export default function PublicHeader({
-  href,
+  href = 'https://triple.guide',
   playStoreUrl,
   appStoreUrl,
   children,
@@ -168,7 +168,7 @@ export default function PublicHeader({
       borderless={borderless}
       {...props}
     >
-      <Logo href={href || 'https://triple.guide'}>TRIPLE</Logo>
+      <Logo href={href}>TRIPLE</Logo>
       <MarketLinksContainer>
         {playStoreUrl ? (
           <MarketLink marketType={MarketType.playStore} href={playStoreUrl} />
