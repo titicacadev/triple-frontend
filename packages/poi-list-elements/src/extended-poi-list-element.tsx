@@ -60,7 +60,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
     source: { starRating },
   } =
     type === 'hotel'
-      ? (poi as PoiListElementType)
+      ? poi
       : {
           source: { starRating: undefined },
         }
