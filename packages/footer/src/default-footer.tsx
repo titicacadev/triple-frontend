@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Accordion, Text, Container } from '@titicaca/core-elements'
+import { useSessionContext } from '@titicaca/react-contexts'
 
 import { FooterFrame } from './elements'
 
@@ -22,7 +23,7 @@ const LinksContainer = styled.div`
   margin-top: 20px;
 `
 
-const AppButton = styled.a`
+const Button = styled.a`
   float: right;
   font-size: 12px;
   font-weight: bold;
@@ -78,6 +79,8 @@ const AccordionArrow = styled.img`
 
 export default function DefaultFooter() {
   const [businessExpanded, setBusinessExpanded] = useState(false)
+  const { login, logout, hasSessionId } = useSessionContext()
+
   return (
     <FooterFrame>
       <Container
@@ -101,13 +104,16 @@ export default function DefaultFooter() {
                 }`}
               />
             </Title>
-            <AppButton href="https://triple.onelink.me/aZP6?pid=intro_web&af_dp=triple%3A%2F%2F%2Fmain">
+            <Button href="https://triple.onelink.me/aZP6?pid=intro_web&af_dp=triple%3A%2F%2F%2Fmain">
               <span>트리플 앱</span>
               <img
                 src="https://assets.triple.guide/images/ico_download@3x.png"
                 alt="app download"
               />
-            </AppButton>
+            </Button>
+            <Button onClick={() => (hasSessionId ? logout() : login())}>
+              {hasSessionId ? '로그아웃' : '로그인'}
+            </Button>
             <Accordion.Content active={businessExpanded}>
               <Text
                 size={11}
