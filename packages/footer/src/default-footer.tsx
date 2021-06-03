@@ -2,15 +2,7 @@ import * as React from 'react'
 import { Container } from '@titicaca/core-elements'
 import styled from 'styled-components'
 
-const FooterFrame = styled.footer`
-  color: rgba(46, 46, 46, 0.5);
-  font-size: 11px;
-  font-weight: 500;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.55;
-  background-color: #fafafa;
-`
+import { FooterFrame } from './elements'
 
 const LinksContainer = styled.div`
   font-weight: bold;

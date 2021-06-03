@@ -1,5 +1,5 @@
 import React from 'react'
-import DefaultFooter, { LogoFooter, CSFooter } from '@titicaca/footer'
+import DefaultFooter, { LogoFooter, CSFooter, PublicFooter } from '@titicaca/footer'
 import { select, boolean } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
@@ -35,3 +35,9 @@ export function BaseLogoFooter() {
   return <LogoFooter />
 }
 BaseLogoFooter.storyName = '로고 푸터'
+
+export function BasePublicFooter() {
+  return <PublicFooter />
+}
+
+BasePublicFooter.storyName = 'Public 푸터'
