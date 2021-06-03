@@ -103,7 +103,18 @@ export function useUserVerification({
 
     subscribe('receiveMessage', handleVerifiedMessageReceive)
 
-    return () => unsubscribe('receiveMessage', handleVerifiedMessageReceive)
+    const handleMessage = ({
+      data,
+    }: MessageEvent<VerificationResultMessage>) => {
+      handleVerifiedMessageReceive(data)
+    }
+
+    window.addEventListener('message', handleMessage)
+
+    return () => {
+      unsubscribe('receiveMessage', handleVerifiedMessageReceive)
+      window.removeEventListener('message', handleMessage)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
