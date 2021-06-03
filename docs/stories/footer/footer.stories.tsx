@@ -1,5 +1,5 @@
 import React from 'react'
-import DefaultFooter, { LogoFooter, CSFooter, PublicFooter } from '@titicaca/footer'
+import DefaultFooter, { LogoFooter, CSFooter } from '@titicaca/footer'
 import { select, boolean } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
