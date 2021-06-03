@@ -60,7 +60,7 @@ export function useUserVerification({
         })
       }
     },
-    [setVerificationState],
+    [],
   )
 
   const fetchAndSetVerificationState = useCallback(
@@ -84,7 +84,7 @@ export function useUserVerification({
         })
       }
     },
-    [verificationType, setVerificationState, initiateVerification],
+    [initiateVerification, verificationType],
   )
 
   useEffect(() => {
