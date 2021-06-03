@@ -33,7 +33,8 @@ const Button = styled.a`
   border-radius: 4px;
   color: rgba(58, 58, 58, 0.6);
   cursor: pointer;
-  margin: 0 0 0 auto;
+  margin-left: 8px;
+  line-height: 36px;
 
   :hover {
     color: rgba(58, 58, 58, 0.6);
@@ -41,7 +42,6 @@ const Button = styled.a`
   span {
     display: inline-block;
     width: 65px;
-    line-height: 36px;
   }
 
   img {
