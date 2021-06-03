@@ -7,7 +7,7 @@ import {
   useHistoryFunctions,
 } from '@titicaca/react-contexts'
 
-import { NearByPoisType } from './types'
+import { ListingPOI } from './types'
 
 export default function PoiEntry({
   index,
@@ -21,7 +21,7 @@ export default function PoiEntry({
   optimized,
 }: {
   index: number
-  poi: NearByPoisType
+  poi: ListingPOI
   eventLabel: string
   optimized?: boolean
 }) {
