@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import { measureDistance } from '@titicaca/view-utilities'
+import { PointGeoJSON } from '@titicaca/type-definitions'
 
 import { NearByPoisType } from './types'
 
@@ -46,9 +47,9 @@ export async function fetchPois({
 
   const pois = await response.json()
 
-  return pois.map((poi: Omit<NearByPoisType, 'distance'>) => ({
+  return pois.map((poi: NearByPoisType) => ({
     ...poi,
-    distance: measureDistance(poi.source.pointGeolocation, {
+    distance: measureDistance(poi.source.pointGeolocation as PointGeoJSON, {
       type: 'Point',
       coordinates: [lon, lat],
     }),
