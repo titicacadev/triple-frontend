@@ -2,10 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import fetch from 'isomorphic-fetch'
 import { useVisibilityChange } from '@titicaca/react-hooks'
 
-import {
-  useUserVerificationResultMessageCallback,
-  VerificationResultMessage,
-} from './user-verification-result-message'
+import { useVerifiedMessageListener, VerifiedMessage } from './verified-message'
 
 type VerificationState = {
   phoneNumber?: string
@@ -55,7 +52,7 @@ export function useUserVerification({
   }, [verificationContext, verificationType])
 
   const handleVerifiedMessageReceive = useCallback(
-    ({ type, phoneNumber }: VerificationResultMessage) => {
+    ({ type, phoneNumber }: VerifiedMessage) => {
       if (type === 'USER_VERIFIED' && phoneNumber) {
         setVerificationState({
           verified: true,
@@ -95,7 +92,7 @@ export function useUserVerification({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  useUserVerificationResultMessageCallback(handleVerifiedMessageReceive)
+  useVerifiedMessageListener(handleVerifiedMessageReceive)
 
   useVisibilityChange((visible: boolean) => {
     visible && fetchAndSetVerificationState(false)
