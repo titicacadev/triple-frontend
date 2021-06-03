@@ -48,7 +48,7 @@ export function useVerifiedMessageListener(
 
   useEffect(() => {
     if (isPublic) {
-      const handleMessage = ({ data }: MessageEvent<VerifiedMessage>) => {
+      const handleMessage = ({ data }: MessageEvent) => {
         callback(data)
       }
 
