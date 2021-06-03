@@ -34,10 +34,5 @@ BaseCSFooter.storyName = 'CS 푸터'
 export function BaseLogoFooter() {
   return <LogoFooter />
 }
+
 BaseLogoFooter.storyName = '로고 푸터'
-
-export function BasePublicFooter() {
-  return <PublicFooter />
-}
-
-BasePublicFooter.storyName = 'Public 푸터'
