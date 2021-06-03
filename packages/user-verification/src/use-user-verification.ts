@@ -6,6 +6,15 @@ import {
 } from '@titicaca/triple-web-to-native-interfaces'
 import { useVisibilityChange } from '@titicaca/react-hooks'
 
+/**
+ * verifications-web에서 전송하는 인증 결과 타입
+ * 현재는 성공했을 때만 전송하므로 타입이 유일하다.
+ */
+interface VerificationResultMessage {
+  type: 'USER_VERIFIED'
+  phoneNumber: string
+}
+
 type VerificationState = {
   phoneNumber?: string
   verified?: boolean
@@ -54,7 +63,7 @@ export function useUserVerification({
   }, [verificationContext, verificationType])
 
   const handleVerifiedMessageReceive = useCallback(
-    ({ type, phoneNumber }: { type: string; phoneNumber?: string }) => {
+    ({ type, phoneNumber }: VerificationResultMessage) => {
       if (type === 'USER_VERIFIED' && phoneNumber) {
         setVerificationState({
           verified: true,
