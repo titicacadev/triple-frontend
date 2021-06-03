@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
 import fetch from 'isomorphic-fetch'
-import { useHistoryFunctions } from '@titicaca/react-contexts'
 import {
   subscribe,
   unsubscribe,
@@ -47,13 +46,12 @@ export function useUserVerification({
       error: undefined,
     },
   )
-  const { openWindow } = useHistoryFunctions()
 
   const initiateVerification = useCallback(() => {
-    openWindow(
+    window.open(
       `${TARGET_PAGE_PATH[verificationType]}?_triple_no_navbar&context=${verificationContext}`,
     )
-  }, [openWindow, verificationType, verificationContext])
+  }, [verificationContext, verificationType])
 
   const handleVerifiedMessageReceive = useCallback(
     ({ type, phoneNumber }: { type: string; phoneNumber?: string }) => {
