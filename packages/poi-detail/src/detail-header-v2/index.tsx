@@ -46,7 +46,7 @@ interface Area {
   name: string
 }
 
-export default function DetailHeader({
+export default function DetailHeaderV2({
   names,
   areas = [],
   scrapsCount,
