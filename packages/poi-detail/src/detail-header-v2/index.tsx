@@ -1,23 +1,43 @@
 import React, { useCallback } from 'react'
-import { Section, Container, longClickable } from '@titicaca/core-elements'
+import styled from 'styled-components'
+import {
+  Section,
+  Container,
+  longClickable,
+  Text,
+  Icon,
+  Rating,
+} from '@titicaca/core-elements'
 import {
   useEventTrackingContext,
   useUserAgentContext,
   useURIHash,
   useHistoryFunctions,
 } from '@titicaca/react-contexts'
+import { formatNumber } from '@titicaca/view-utilities'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 
-import CopyActionSheet from '../common/copy-action-sheet'
-import AreaNames from '../common/area-names'
-import { HASH_COPY_ACTION_SHEET } from '../common/constants'
-import {
-  DetailHeaderTitle,
-  DetailHeaderLocalText,
-  DetailHeadterReviewCount,
-  DetailHeaderScrapCount,
-} from '../common/detail-header-text'
-import { PoiVersion } from '../common/types'
+import CopyActionSheet from '../copy-action-sheet'
+import AreaNames from '../area-names'
+import { HASH_COPY_ACTION_SHEET } from '../constants'
+
+const ArrowButton = styled.button`
+  display: inline-block;
+  color: #368fff;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0 14px 0 6px;
+  background-image: url('https://assets.triple.guide/images/ico-arrow-right-blue.png');
+  background-size: 14px 14px;
+  background-position: right center;
+  background-repeat: no-repeat;
+  height: 14px;
+`
 
 const LongClickableSection = longClickable(Section)
 
@@ -65,31 +85,35 @@ export default function DetailHeader({
         onLongClick={!isPublic ? handleLongClick : undefined}
         {...props}
       >
-        <DetailHeaderTitle title={names.primary || names.ko || names.en} />
-        <DetailHeaderLocalText text={names.local || names.en} />
+        <Text.Title>{names.primary || names.ko || names.en}</Text.Title>
+        <Text size="tiny" alpha={0.5}>
+          {names.local || names.en}
+        </Text>
         {(reviewsCount > 0 || scrapsCount > 0) && (
           <Container margin={{ top: 14 }}>
             {scrapsCount > 0 && (
-              <DetailHeaderScrapCount
-                margin={{ right: 10 }}
-                count={scrapsCount}
-              />
+              <Text inline bold size="mini" alpha={1} margin={{ right: 10 }}>
+                <Icon name="save" size="tiny" />
+                {` ${formatNumber(scrapsCount)}`}
+              </Text>
             )}
             {reviewsCount > 0 && (
-              <DetailHeadterReviewCount
-                version={PoiVersion.V2}
-                count={reviewsCount}
-                rating={reviewsRating}
-                onClick={onReviewsRatingClick}
-              />
+              <Text inline bold size="mini" alpha={1}>
+                <Rating score={reviewsRating} />
+                {` ${formatNumber(reviewsCount)}`}
+                <ArrowButton onClick={onReviewsRatingClick}>
+                  리뷰보기
+                </ArrowButton>
+              </Text>
             )}
           </Container>
         )}
         <AreaNames
-          version={PoiVersion.V2}
           areas={areas}
           vicinity={vicinity}
-          onClick={onAreaClick}
+          arrowAction={
+            <ArrowButton onClick={onAreaClick}>지도보기</ArrowButton>
+          }
         />
       </LongClickableSection>
       <CopyActionSheet
