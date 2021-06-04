@@ -1,5 +1,12 @@
 import React, { useCallback } from 'react'
-import { Section, Container, longClickable } from '@titicaca/core-elements'
+import {
+  Section,
+  Container,
+  longClickable,
+  Text,
+  Rating,
+  Icon,
+} from '@titicaca/core-elements'
 import {
   useEventTrackingContext,
   useUserAgentContext,
@@ -7,16 +14,11 @@ import {
   useHistoryFunctions,
 } from '@titicaca/react-contexts'
 import { TranslatedProperty } from '@titicaca/type-definitions'
+import { formatNumber } from '@titicaca/view-utilities'
 
-import CopyActionSheet from '../common/copy-action-sheet'
-import AreaNames from '../common/area-names'
-import { HASH_COPY_ACTION_SHEET } from '../common/constants'
-import {
-  DetailHeaderTitle,
-  DetailHeaderLocalText,
-  DetailHeadterReviewCount,
-  DetailHeaderScrapCount,
-} from '../common/detail-header-text'
+import CopyActionSheet from '../copy-action-sheet'
+import AreaNames from '../area-names'
+import { HASH_COPY_ACTION_SHEET } from '../constants'
 
 const LongClickableSection = longClickable(Section)
 
@@ -62,19 +64,31 @@ export default function DetailHeader({
         onLongClick={!isPublic ? handleLongClick : undefined}
         {...props}
       >
-        <DetailHeaderTitle title={names.primary || names.ko || names.en} />
-        <DetailHeaderLocalText text={names.local || names.en} />
+        <Text.Title>{names.primary || names.ko || names.en}</Text.Title>
+        <Text size="tiny" alpha={0.5}>
+          {names.local || names.en}
+        </Text>
         {(reviewsCount > 0 || scrapsCount > 0) && (
           <Container margin={{ top: 14 }}>
             {reviewsCount > 0 && (
-              <DetailHeadterReviewCount
-                rating={reviewsRating}
-                count={reviewsCount}
+              <Text
+                inline
+                bold
+                size="mini"
+                alpha={1}
                 margin={{ right: 10 }}
                 onClick={onReviewsRatingClick}
-              />
+              >
+                <Rating score={reviewsRating} />
+                {` ${formatNumber(reviewsCount)}`}
+              </Text>
             )}
-            {scrapsCount > 0 && <DetailHeaderScrapCount count={scrapsCount} />}
+            {scrapsCount > 0 && (
+              <Text inline bold size="mini" alpha={1}>
+                <Icon name="save" size="tiny" />
+                {` ${formatNumber(scrapsCount)}`}
+              </Text>
+            )}
           </Container>
         )}
         <AreaNames areas={areas} vicinity={vicinity} />

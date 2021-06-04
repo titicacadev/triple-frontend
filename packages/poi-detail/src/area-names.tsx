@@ -2,9 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { Container, Text } from '@titicaca/core-elements'
 
-import { ArrowButton } from './arrow-button'
-import { PoiVersion } from './types'
-
 const AreaContainer = styled(Container)`
   padding-left: 20px;
   background-image: url('https://assets.triple.guide/images/ico-end-location@3x.png');
@@ -19,15 +16,13 @@ interface Area {
 }
 
 export default function AreaNames({
-  version = PoiVersion.V1,
   areas,
   vicinity,
-  onClick,
+  arrowAction,
 }: {
-  version?: PoiVersion
   areas: Area[]
   vicinity?: string
-  onClick?: () => void
+  arrowAction?: React.ReactNode
 }) {
   const names = areas[0]?.name || vicinity
 
@@ -35,9 +30,7 @@ export default function AreaNames({
     <AreaContainer>
       <Text size="tiny" bold margin={{ top: 10 }} alpha={0.8} lineHeight={1.38}>
         {names}
-        {version === PoiVersion.V2 ? (
-          <ArrowButton onClick={onClick}>지도보기</ArrowButton>
-        ) : null}
+        {arrowAction}
       </Text>
     </AreaContainer>
   ) : null
