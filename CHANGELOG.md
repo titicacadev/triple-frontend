@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.23.2
+
+### react-contexts
+
+- Logout 구현 (#1404)
+
 ## 2.23.1
 
 ### poi-list-elements
