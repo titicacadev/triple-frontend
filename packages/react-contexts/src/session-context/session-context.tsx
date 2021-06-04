@@ -43,6 +43,10 @@ export function setSessionID(sessionId: string | undefined) {
   }
 }
 
+export function unsetSessionID() {
+  new Cookies().remove(SESSION_KEY, { path: '/' })
+}
+
 /**
  * returnUrl 을 지정하지 않는 경우 자동으로 현재 url 을 returnUrl 로 설정하기 위한 유틸 함수입니다.
  * @param returnUrl
@@ -97,8 +101,8 @@ export function SessionContextProvider({
   )
 
   const logout = useCallback(() => {
-    // eslint-disable-next-line no-console
-    console.warn("Not implemented yet! Let's make PR 🧑🏻‍💻")
+    unsetSessionID()
+    window.location.href = '/'
   }, [])
 
   const value = useMemo(
