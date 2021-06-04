@@ -22,6 +22,7 @@ export interface FixedPricingProps {
   onClick?: (e?: React.SyntheticEvent) => any
   onTooltipClick?: (e?: React.SyntheticEvent) => any
   maxWidth?: number
+  tooltipColor?: string
 }
 
 const FloatedFrame = styled(Container)`
@@ -52,6 +53,7 @@ export default function FixedPricing({
   description,
   salePrice,
   tooltipLabel,
+  tooltipColor,
   onClick,
   priceLabelOverride,
   onTooltipClick,
@@ -97,6 +99,7 @@ export default function FixedPricing({
           {active && tooltipLabel && (
             <Tooltip
               borderRadius="30"
+              backgroundColor={tooltipColor}
               positioning={{ top: -34 }}
               label={tooltipLabel}
               onClick={onTooltipClick}
