@@ -44,6 +44,6 @@ export interface PoiListElementType {
     names: TranslatedProperty
     starRating?: number
     vicinity?: string
-    type: PoiType
+    type?: PoiType
   }
 }
