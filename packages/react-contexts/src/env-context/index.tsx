@@ -15,9 +15,9 @@ interface EnvContextValue {
    */
   webUrlBase: string
   /**
-   * 로그인 페이지 path. SessionContext에서 로그인 페이지를 열 때 사용합니다.
+   * @deprecated '/login' 으로 고정됩니다.
    */
-  authBasePath: string
+  authBasePath?: string
   /**
    * facebook에 등록된 App ID. Facebook Open Graph 관련 태그로 사용합니다.
    */
