@@ -1,13 +1,32 @@
 # CHANGELOG
 
+## 2.23.1
+
+### poi-list-elements
+
+- type optional 적용 (#1402)
+
 ## 2.23.0
 
+### user-verification
+
 - 일반 브라우저에서 user-verification 패키지를 사용 (#1399)
+
+### poi-list-elements
+
 - 아티클 상세 행정구역 표기 (#1392)
+
+### public-header
+
 - PublicHeader에 내 예약 목록으로 가는 링크를 추가합니다. (#1397)
+
+### footer
+
 - Default 푸터 디자인수정 (#1400)
 
 ## 2.22.3
+
+### review
 
 - 댓글 아이콘에 trackEvent를 추가 합니다 (#1391)
 
