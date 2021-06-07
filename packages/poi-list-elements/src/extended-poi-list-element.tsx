@@ -56,9 +56,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   notes,
   optimized,
   needOnlyVicinity,
-}: ExtendedPoiListElementProps<T> & {
-  optimized?: boolean
-}) {
+}: ExtendedPoiListElementProps<T> & { optimized?: boolean }) {
   const { deriveCurrentStateAndCount } = useScrapsContext()
   const {
     source: { starRating },
