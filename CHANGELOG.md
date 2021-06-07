@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 2.24.0
+
+### modals
+
+- `modals` navigate() 후 true를 반환합니다. (#1408)
+
+### react-contexts
+
+- `react-contexts` authBasePath를 deprecate합니다. (#1407)
+
+### Pricing
+
+- FixedPricing 컴포넌트의 툴팁 색상을 Props 인자값으로 받습니다. (#1406)
+
+### poi-detail
+
+- DetailHeader 스타일 확장 (#1390)
+
 ## 2.23.2
 
 ### react-contexts
