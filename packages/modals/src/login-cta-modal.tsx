@@ -76,6 +76,8 @@ export function LoginCTAModalProvider({ children }: PropsWithChildren<{}>) {
                 returnUrl || document.location.href,
               )}`,
             )
+
+            return true
           }}
         >
           로그인하고 트리플을
