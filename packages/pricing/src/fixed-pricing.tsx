@@ -12,6 +12,7 @@ import { formatNumber } from '@titicaca/view-utilities'
 export interface FixedPricingProps {
   active?: boolean
   label?: React.ReactNode
+  discountRate?: React.ReactNode
   description?: React.ReactNode
   buttonText?: string
   buttonDisabled?: boolean
@@ -54,6 +55,7 @@ export default function FixedPricing({
   salePrice,
   tooltipLabel,
   tooltipColor,
+  discountRate,
   onClick,
   priceLabelOverride,
   onTooltipClick,
@@ -108,12 +110,14 @@ export default function FixedPricing({
           <FloatedPricingContainer floated="left">
             {pricingLabel}
             <Text
+              inline
               size="huge"
               bold
               margin={{ bottom: 3 }}
               color={isSoldOut ? 'gray300' : 'gray'}
             >
               {priceLabelOverride || `${formatNumber(salePrice)}원`}
+              {discountRate}
             </Text>
             {pricingDescription}
           </FloatedPricingContainer>

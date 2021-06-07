@@ -88,6 +88,11 @@ storiesOf('pricing / Pricing', module)
             <PricingDescription />
           )
         }
+        discountRate={
+          <Text inline bold size="huge" color="red" margin={{ left: 4 }}>
+            5%
+          </Text>
+        }
         tooltipLabel={text('툴팁 라벨', '쿠폰사용시 -15,000원 더 할인!')}
         onTooltipClick={hasAction ? () => window.alert('레릿꼬오') : null}
         isSoldOut={boolean('판매완료', false)}

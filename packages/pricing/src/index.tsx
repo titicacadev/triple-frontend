@@ -234,6 +234,7 @@ export default function Pricing(props: PricingProps) {
       isSoldOut,
       maxWidth,
       tooltipColor,
+      discountRate,
     } = props
 
     return (
@@ -248,6 +249,7 @@ export default function Pricing(props: PricingProps) {
         priceLabelOverride={priceLabelOverride}
         tooltipLabel={tooltipLabel}
         tooltipColor={tooltipColor}
+        discountRate={discountRate}
         onTooltipClick={onTooltipClick}
         isSoldOut={isSoldOut}
         maxWidth={maxWidth}
