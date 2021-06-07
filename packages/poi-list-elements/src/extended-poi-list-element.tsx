@@ -54,7 +54,11 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   isAdvertisement,
   notes,
   optimized,
-}: ExtendedPoiListElementProps<T> & { optimized?: boolean }) {
+  needOnlyVicinity,
+}: ExtendedPoiListElementProps<T> & {
+  optimized?: boolean
+  needOnlyVicinity?: boolean
+}) {
   const { deriveCurrentStateAndCount } = useScrapsContext()
   const {
     source: { starRating },
@@ -76,7 +80,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   const note = (
     notes || [
       starRating ? `${starRating}성급` : category ? category.name : null,
-      area ? area.name : vicinity,
+      needOnlyVicinity ? vicinity : area ? area.name : vicinity,
     ]
   )
     .filter((v) => v)
