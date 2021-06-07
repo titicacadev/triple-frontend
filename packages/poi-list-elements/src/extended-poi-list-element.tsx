@@ -15,6 +15,7 @@ interface ExtendedPoiListElementBaseProps<T extends PoiListElementType>
   distanceSuffix?: string
   isAdvertisement?: boolean
   notes?: (string | null | undefined)[]
+  needOnlyVicinity?: boolean
 }
 
 export type ExtendedPoiListElementProps<
@@ -57,7 +58,6 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   needOnlyVicinity,
 }: ExtendedPoiListElementProps<T> & {
   optimized?: boolean
-  needOnlyVicinity?: boolean
 }) {
   const { deriveCurrentStateAndCount } = useScrapsContext()
   const {
