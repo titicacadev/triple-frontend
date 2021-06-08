@@ -31,21 +31,28 @@ export function authGuard<Props extends { [key: string]: unknown }>(
       return gssp(ctx)
     }
 
-    const { result: user } = await get<UserResponse>('/api/users/me', {
-      req,
-      retryable: true,
-    })
+    const { result: user, status, error } = await get<UserResponse>(
+      '/api/users/me',
+      {
+        req,
+        retryable: true,
+      },
+    )
 
     if (user) {
       return gssp({ ...ctx, customContext: { ...ctx.customContext, user } })
     }
 
-    return {
-      redirect: {
-        destination: `/login?returnUrl=${encodeURIComponent(returnUrl)}`,
-        basePath: false,
-        permanent: false,
-      },
+    if (status === 401) {
+      return {
+        redirect: {
+          destination: `/login?returnUrl=${encodeURIComponent(returnUrl)}`,
+          basePath: false,
+          permanent: false,
+        },
+      }
     }
+
+    throw error || new Error('Fail to check auth')
   }
 }
