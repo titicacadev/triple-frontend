@@ -31,7 +31,10 @@ export function authGuard<Props extends { [key: string]: unknown }>(
       return gssp(ctx)
     }
 
-    const { result: user } = await get<UserResponse>('/api/users/me', { req })
+    const { result: user } = await get<UserResponse>('/api/users/me', {
+      req,
+      retryable: true,
+    })
 
     if (user) {
       return gssp({ ...ctx, customContext: { ...ctx.customContext, user } })
