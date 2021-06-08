@@ -87,7 +87,7 @@ export default function DefaultFooter() {
         minWidth={320}
         maxWidth={600}
         centered
-        padding={{ top: 50, left: 30, right: 30, bottom: 50 }}
+        padding={{ top: 30, left: 30, right: 30, bottom: 40 }}
       >
         <Container>
           <Accordion style={{ width: '100%' }}>
