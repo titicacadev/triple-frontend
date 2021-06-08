@@ -1,6 +1,6 @@
 import assert from 'assert'
 
-import { generateUserAgentValues } from './user-agent-context'
+import { generateUserAgentValues } from './utils'
 
 describe('generateUserAgentValues', () => {
   it('should parse Chrome on Windows as public', () => {
