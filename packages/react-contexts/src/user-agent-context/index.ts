@@ -4,4 +4,4 @@ export {
   useUserAgentContext,
   withUserAgent,
 } from './context'
-export { generateUserAgentValues } from './utils'
+export { parseApp, generateUserAgentValues } from './utils'
