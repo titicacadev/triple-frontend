@@ -15,7 +15,12 @@ interface OS {
   version?: string
 }
 
-function parseApp(userAgent: string): App | null {
+/**
+ * user agent에서 트리플 앱 정보를 파싱합니다.
+ * @param userAgent 파싱할 user agent
+ * @returns 앱 이름과 버전
+ */
+export function parseApp(userAgent: string): App | null {
   const matchData = userAgent.match(/Triple-(iOS|Android)\/([^ ]+)/i)
 
   if (matchData) {
