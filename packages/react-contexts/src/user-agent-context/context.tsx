@@ -1,16 +1,9 @@
 import React, { ComponentType, createContext, FC, useContext } from 'react'
 import { DeepPartial } from 'utility-types'
 
-import { App, OS } from './utils'
+import { UserAgentValue } from './utils'
 
-interface UserAgentContextValue {
-  isPublic: boolean
-  isMobile: boolean
-  os: OS
-  app: App
-}
-
-const UserAgentContext = createContext<UserAgentContextValue>({
+const UserAgentContext = createContext<UserAgentValue>({
   isPublic: false,
   isMobile: false,
   os: { name: '', version: '' },
@@ -24,7 +17,7 @@ export function useUserAgentContext() {
 }
 
 export interface WithUserAgentBaseProps {
-  userAgent: UserAgentContextValue
+  userAgent: UserAgentValue
 }
 
 export function withUserAgent<P extends DeepPartial<WithUserAgentBaseProps>>(

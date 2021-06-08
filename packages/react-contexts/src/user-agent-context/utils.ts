@@ -5,17 +5,17 @@ enum AppName {
   Android = 'Triple-Android',
 }
 
-export type App = {
+interface App {
   name: AppName
   version: string
-} | null
+}
 
-export interface OS {
+interface OS {
   name?: string
   version?: string
 }
 
-function parseApp(userAgent: string): App {
+function parseApp(userAgent: string): App | null {
   const matchData = userAgent.match(/Triple-(iOS|Android)\/([^ ]+)/i)
 
   if (matchData) {
@@ -28,7 +28,14 @@ function parseApp(userAgent: string): App {
   return null
 }
 
-export function generateUserAgentValues(userAgent: string) {
+export interface UserAgentValue {
+  isPublic: boolean
+  isMobile: boolean
+  os: OS
+  app: App | null
+}
+
+export function generateUserAgentValues(userAgent: string): UserAgentValue {
   const app = parseApp(userAgent)
 
   return {
