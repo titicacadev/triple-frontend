@@ -27,21 +27,21 @@ const Button = styled.a`
   float: right;
   font-size: 12px;
   font-weight: bold;
-  padding: 0 16px;
+  padding: 0 12px;
   background-color: rgba(250, 250, 250, 1);
   border: 1px solid var(--color-gray200);
   border-radius: 4px;
   color: rgba(58, 58, 58, 0.6);
   cursor: pointer;
   margin-left: 8px;
-  line-height: 36px;
+  line-height: 32px;
 
   :hover {
     color: rgba(58, 58, 58, 0.6);
   }
   span {
     display: inline-block;
-    width: 65px;
+    width: 50px;
   }
 
   img {
