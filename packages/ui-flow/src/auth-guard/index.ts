@@ -1,5 +1,6 @@
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 import { get } from '@titicaca/fetcher'
+import { parseApp } from '@titicaca/react-contexts'
 
 interface UserResponse {
   uid: string
@@ -26,8 +27,7 @@ export function authGuard<Props extends { [key: string]: unknown }>(
       },
     } = ctx
 
-    // TODO: react-contexts의 user-agent-context와 중복 제거
-    if (userAgentString?.match(/Triple-(iOS|Android)\/([^ ]+)/i)) {
+    if (userAgentString && !!parseApp(userAgentString)) {
       return gssp(ctx)
     }
 
