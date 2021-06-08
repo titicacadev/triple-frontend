@@ -110,7 +110,6 @@ export default function FixedPricing({
           <FloatedPricingContainer floated="left">
             {pricingLabel}
             <Text
-              inline
               size="huge"
               bold
               margin={{ bottom: 3 }}
