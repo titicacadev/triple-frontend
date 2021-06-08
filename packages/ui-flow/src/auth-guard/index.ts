@@ -13,7 +13,6 @@ export function authGuard<Props extends { [key: string]: unknown }>(
       customContext?: { user?: UserResponse }
     },
   ) => Promise<GetServerSidePropsResult<Props>>,
-  returnUrl: string,
 ): (
   ctx: GetServerSidePropsContext & {
     customContext?: { [key: string]: unknown }
@@ -25,7 +24,10 @@ export function authGuard<Props extends { [key: string]: unknown }>(
       req: {
         headers: { 'user-agent': userAgentString },
       },
+      resolvedUrl,
     } = ctx
+
+    const returnUrl = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${resolvedUrl}`
 
     if (userAgentString && !!parseApp(userAgentString)) {
       return gssp(ctx)
