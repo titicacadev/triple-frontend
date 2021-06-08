@@ -10,7 +10,7 @@ const mockedGet = (get as jest.MockedFunction<
 it('트리플 앱에서 요청한 request는 아무 역할을 하지 않습니다.', async () => {
   const oldGSSP = jest.fn()
 
-  const newGSSP = authGuard(oldGSSP, '/test-url')
+  const newGSSP = authGuard(oldGSSP)
   const ctx = {
     req: {
       headers: {
@@ -30,7 +30,7 @@ it('일반 브라우저 환경이라면 fetcher로 /api/users/me를 호출합니
   const oldGSSP = jest.fn()
   mockedGet.mockResolvedValueOnce({ result: { userId: 'MOCK_USER' } } as any)
 
-  const newGSSP = authGuard(oldGSSP, '/test-url')
+  const newGSSP = authGuard(oldGSSP)
   const ctx = {
     req: {
       headers: {
@@ -51,7 +51,7 @@ it('/api/users/me가 회원 정보를 반환하면 customContext에 회원 정�
   const user = { userId: 'MOCK_USER' }
   mockedGet.mockResolvedValueOnce({ result: user } as any)
 
-  const newGSSP = authGuard(oldGSSP, '/test-url')
+  const newGSSP = authGuard(oldGSSP)
   const ctx = {
     req: {
       headers: {
@@ -75,7 +75,7 @@ it('/api/users/me가 401로 응답했다면, 로그인 페이지로 리디렉션
   const oldGSSP = jest.fn()
   mockedGet.mockResolvedValueOnce({ status: 401 } as any)
 
-  const newGSSP = authGuard(oldGSSP, '/test-url')
+  const newGSSP = authGuard(oldGSSP)
   const ctx = {
     req: {
       headers: {
@@ -83,6 +83,7 @@ it('/api/users/me가 401로 응답했다면, 로그인 페이지로 리디렉션
           'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36',
       },
     },
+    resolvedUrl: '/test-url',
     customContext: { mock: 'mock' },
   } as any
 
@@ -102,7 +103,7 @@ it('/api/users/me가 401 이외의 에러로 응답했다면, 에러를 던집�
   const oldGSSP = jest.fn()
   mockedGet.mockResolvedValueOnce({ status: 500 } as any)
 
-  const newGSSP = authGuard(oldGSSP, '/test-url')
+  const newGSSP = authGuard(oldGSSP)
   const ctx = {
     req: {
       headers: {
