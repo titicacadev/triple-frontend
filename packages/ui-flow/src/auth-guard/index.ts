@@ -7,7 +7,7 @@ interface UserResponse {
   // TODO
 }
 
-export function authGuard<Props extends { [key: string]: unknown }>(
+export function authGuard<Props>(
   gssp: (
     ctx: GetServerSidePropsContext & {
       customContext?: { user?: UserResponse }
