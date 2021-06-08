@@ -28,6 +28,7 @@
     "@titicaca/modals": "^2.24.0"
   },
   "peerDependencies": {
+    "@titicaca/fetcher": "*",
     "@titicaca/react-contexts": "*",
     "next": ">= 9.3 < 11"
   }
