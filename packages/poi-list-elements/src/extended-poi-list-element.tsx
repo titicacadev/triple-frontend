@@ -79,7 +79,11 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   const note = (
     notes || [
       starRating ? `${starRating}성급` : category ? category.name : null,
-      needOnlyVicinity ? vicinity : regionId ? area.name || vicinity : vicinity,
+      needOnlyVicinity
+        ? vicinity
+        : regionId
+        ? area?.name || vicinity
+        : vicinity,
     ]
   )
     .filter((v) => v)
