@@ -15,6 +15,7 @@ interface ExtendedPoiListElementBaseProps<T extends PoiListElementType>
   distanceSuffix?: string
   isAdvertisement?: boolean
   notes?: (string | null | undefined)[]
+  needOnlyVicinity?: boolean
 }
 
 export type ExtendedPoiListElementProps<
@@ -38,6 +39,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
       areas = [],
       categories = [],
       comment,
+      regionId,
       reviewsCount: rawReviewsCount,
       scrapsCount: rawScrapsCount,
       reviewsRating: rawReviewsRating,
@@ -54,6 +56,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   isAdvertisement,
   notes,
   optimized,
+  needOnlyVicinity,
 }: ExtendedPoiListElementProps<T> & { optimized?: boolean }) {
   const { deriveCurrentStateAndCount } = useScrapsContext()
   const {
@@ -76,7 +79,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   const note = (
     notes || [
       starRating ? `${starRating}성급` : category ? category.name : null,
-      area ? area.name : vicinity,
+      needOnlyVicinity ? vicinity : regionId ? area.name || vicinity : vicinity,
     ]
   )
     .filter((v) => v)
