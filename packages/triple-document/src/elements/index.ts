@@ -15,7 +15,7 @@ import Pois from './pois'
 import Regions from './regions'
 import Table from './table'
 import { MH1, MH2, MH3, MH4, Text } from './text'
-import { TnaProductsList } from './tna'
+import { TNAProducts } from './tna'
 
 const ELEMENTS: ElementSet = {
   heading1: MH1,
@@ -37,7 +37,7 @@ const ELEMENTS: ElementSet = {
   list: List,
   regions: Regions,
   video: ExternalVideo,
-  tnaProducts: TnaProductsList,
+  tnaProducts: TNAProducts,
   table: Table,
   coupon: Coupon,
   itinerary: ItineraryElement,
