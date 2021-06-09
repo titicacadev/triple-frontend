@@ -9,6 +9,10 @@
 
 ### react-contexts
 
+- `parseApp` 함수 외부로 노출 (#1414)
+
+### ui-flow
+
 - authGuard: getServerSideProps에서 로그인 여부를 검사하는 HOC (#1414)
 
 ### footer
