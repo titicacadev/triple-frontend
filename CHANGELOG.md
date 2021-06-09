@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 2.25.0
+
+### Pricing
+
+- `discountRate` 컴포넌트를 위한 스타일 확장을 진행합니다. (#1412)
+- `Text` Inline 속성으로 인한 `margin-bottom`이 작동하지 않는 버그를 수정합니다 (#1415)
+
+### react-contexts
+
+- authGuard: getServerSideProps에서 로그인 여부를 검사하는 HOC (#1414)
+
+### footer
+
+- `DefaultFooter` 버튼 디자인 수정 (#1413)
+
 ## 2.24.0
 
 ### modals
