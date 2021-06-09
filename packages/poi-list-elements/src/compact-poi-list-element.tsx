@@ -17,6 +17,7 @@ import { TYPE_NAMES } from './constants'
 interface CompactPoiListElementBaseProps<T extends PoiListElementType>
   extends POIListElementBaseProps<T> {
   actionButtonElement?: ActionButtonElement
+  needOnlyVicinity?: boolean
 }
 
 export type CompactPoiListElementProps<
@@ -39,9 +40,10 @@ export function CompactPoiListElement<T extends PoiListElementType>({
     type,
     nameOverride,
     region,
-    source: { names, image, areas, vicinity },
+    source: { names, image, areas, regionId, vicinity },
   },
   onClick,
+  needOnlyVicinity,
 }: CompactPoiListElementProps<T>) {
   const [actionButtonWidth, setActionButtonWidth] = useState(0)
   const actionButtonRef = useRef<HTMLDivElement>(null)
@@ -76,10 +78,14 @@ export function CompactPoiListElement<T extends PoiListElementType>({
       <Text size="tiny" alpha={0.7} margin={{ top: 4, left: 50 }}>
         {[
           TYPE_NAMES[type],
-          regionName
+          needOnlyVicinity
+            ? vicinity
+            : regionName
             ? areas?.[0]?.name
               ? `${regionName}(${areas?.[0]?.name})`
               : regionName
+            : regionId
+            ? areas?.[0]?.name || vicinity
             : vicinity,
         ]
           .filter(Boolean)
