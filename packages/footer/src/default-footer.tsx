@@ -138,19 +138,11 @@ export default function DefaultFooter() {
           거래정보 및 거래등에 대해 책임을 지지 않습니다.
         </DisclaimerMsg>
         <LinksContainer>
-          <a
-            href="https://triple.guide/pages/tos.html"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="/pages/tos.html" target="_blank" rel="noreferrer">
             서비스 이용약관
           </a>
           |
-          <a
-            href="https://triple.guide/pages/privacy-policy.html"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="/pages/privacy-policy.html" target="_blank" rel="noreferrer">
             개인정보 처리방침
           </a>
           |
@@ -158,11 +150,7 @@ export default function DefaultFooter() {
             회사 소개
           </a>
           |
-          <a
-            href="https://triple.oc.toast.com/triple/hc/article/"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="/cs-bridge/entry" target="_blank" rel="noreferrer">
             고객센터
           </a>
         </LinksContainer>
