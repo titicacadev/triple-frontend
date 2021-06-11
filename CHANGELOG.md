@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.26.0
+
+### Footer
+
+- Footer 링크를 개선합니다. (#1419)
+
 ## 2.25.0
 
 ### Pricing
