@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/fetcher",
-  "version": "2.25.0",
+  "version": "2.26.0",
   "description": "Utilities for Triple view libraries and applications",
   "main": "lib/index.js",
   "files": [
