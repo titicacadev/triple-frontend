@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Accordion, Text, Container } from '@titicaca/core-elements'
-import { useSessionContext } from '@titicaca/react-contexts'
+import {
+  useSessionContext,
+  useUserAgentContext,
+} from '@titicaca/react-contexts'
 
 import { FooterFrame } from './elements'
 
@@ -81,6 +84,21 @@ export default function DefaultFooter() {
   const [businessExpanded, setBusinessExpanded] = useState(false)
   const { login, logout, hasSessionId } = useSessionContext()
 
+  const {
+    os: { name },
+  } = useUserAgentContext()
+
+  const CONVERSION_URL = `https://triple.onelink.me/aZP6?pid=intro_web&af_dp=${encodeURIComponent(
+    'triple:///my/mileage/intro',
+  )}&af_web_dp=${encodeURIComponent(
+    'https://play.google.com/store/apps/details?id=com.titicacacorp.triple',
+  )}`
+
+  const CLASSIFICATION_OS_URL =
+    name === 'iOS'
+      ? 'https://triple.onelink.me/aZP6?pid=intro_web&af_dp=triple%3A%2F%2F%2Fmain'
+      : CONVERSION_URL
+
   return (
     <FooterFrame>
       <Container
@@ -104,7 +122,7 @@ export default function DefaultFooter() {
                 }`}
               />
             </Title>
-            <Button href="https://triple.onelink.me/aZP6?pid=intro_web&af_dp=triple%3A%2F%2F%2Fmain">
+            <Button href={CLASSIFICATION_OS_URL}>
               <span>트리플 앱</span>
               <img
                 src="https://assets.triple.guide/images/ico_download@3x.png"
