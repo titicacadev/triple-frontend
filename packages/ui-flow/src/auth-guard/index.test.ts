@@ -101,6 +101,7 @@ it('/api/users/me가 401로 응답했다면, 로그인 페이지로 리디렉션
   mockedGet.mockResolvedValueOnce({ status: 401 } as any)
   process.env.NEXT_PUBLIC_BASE_PATH = '/mock'
   const withEnvResult = await newGSSP(ctx)
+  delete process.env.NEXT_PUBLIC_BASE_PATH
 
   expect(oldGSSP).toBeCalledTimes(0)
   expect(withEnvResult).toEqual({
