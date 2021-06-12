@@ -113,6 +113,36 @@ it('/api/users/me가 401로 응답했다면, 로그인 페이지로 리디렉션
   })
 })
 
+it('/api/users/me가 401로 응답했다면, 로그인 페이지로 리디렉션하는 값을 반환합니다. 로그인 페이지의 Type을 명시할 수 있습니다.', async () => {
+  const oldGSSP = jest.fn()
+  mockedGet.mockResolvedValueOnce({ status: 401 } as any)
+
+  const newGSSP = authGuard(oldGSSP, { authType: 'bookings' })
+  const ctx = {
+    req: {
+      headers: {
+        'user-agent':
+          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36',
+      },
+    },
+    resolvedUrl: '/test-url',
+    customContext: { mock: 'mock' },
+  } as any
+
+  const result = await newGSSP(ctx)
+
+  expect(oldGSSP).toBeCalledTimes(0)
+  expect(result).toEqual({
+    redirect: {
+      destination: `/login?returnUrl=${encodeURIComponent(
+        '/test-url',
+      )}&type=bookings`,
+      basePath: false,
+      permanent: false,
+    },
+  })
+})
+
 it('/api/users/me가 401 이외의 에러로 응답했다면, 에러를 던집니다.', async () => {
   const oldGSSP = jest.fn()
   mockedGet.mockResolvedValueOnce({ status: 500 } as any)

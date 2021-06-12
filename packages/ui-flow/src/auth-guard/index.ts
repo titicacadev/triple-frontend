@@ -1,10 +1,15 @@
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 import { get } from '@titicaca/fetcher'
 import { parseApp } from '@titicaca/react-contexts'
+import qs from 'qs'
 
 interface UserResponse {
   uid: string
   // TODO
+}
+
+type AuthGuardOptions = {
+  authType?: string
 }
 
 export function authGuard<Props>(
@@ -13,6 +18,7 @@ export function authGuard<Props>(
       customContext?: { user?: UserResponse }
     },
   ) => Promise<GetServerSidePropsResult<Props>>,
+  options?: AuthGuardOptions,
 ): (
   ctx: GetServerSidePropsContext & {
     customContext?: { [key: string]: unknown }
@@ -46,9 +52,14 @@ export function authGuard<Props>(
     }
 
     if (status === 401) {
+      const query = qs.stringify({
+        returnUrl,
+        type: options?.authType,
+      })
+
       return {
         redirect: {
-          destination: `/login?returnUrl=${encodeURIComponent(returnUrl)}`,
+          destination: `/login?${query}`,
           basePath: false,
           permanent: false,
         },
