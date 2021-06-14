@@ -58,6 +58,7 @@ export function TnaProductWithPrice({
     basePrice: rawBasePrice,
     reviewRating,
     reviewsCount,
+    domesticAreas = [],
   },
   index,
   onIntersect,
@@ -76,6 +77,10 @@ export function TnaProductWithPrice({
     typeof rawSalePrice === 'string' ? parseInt(rawSalePrice) : rawSalePrice
   const basePrice =
     typeof rawBasePrice === 'string' ? parseInt(rawBasePrice) : rawBasePrice
+  const hasAreaName = domesticAreas.length > 0
+  const areaName =
+    domesticAreas.find(({ representative }) => representative)?.displayName ||
+    domesticAreas[0].displayName
 
   const handleIntersectionChange = useCallback(
     ({ isIntersecting }: IntersectionObserverEntry) => {
@@ -107,9 +112,15 @@ export function TnaProductWithPrice({
         </Image>
 
         <Container margin={{ left: 104 }}>
-          <Text bold size="large" color="gray" maxLines={2}>
+          <Text bold size="large" color="gray" ellipsis>
             {title}
           </Text>
+
+          {hasAreaName && (
+            <Text color="gray800" size="tiny">
+              {areaName}
+            </Text>
+          )}
 
           {tags && tags.length > 0 && (
             <Container margin={{ top: 3 }}>
