@@ -88,7 +88,7 @@ export class EventTrackingProvider extends React.PureComponent<
   ) => {
     try {
       if (window.ga) {
-        window.ga('send', 'pageview')
+        window.ga('send', 'pageview', path)
       }
 
       if (window.fbq && label) {
