@@ -17,8 +17,6 @@ import { HASH_MY_REVIEW_ACTION_SHEET } from './my-review-action-sheet'
 import OthersReviewActionSheet, {
   HASH_REVIEW_ACTION_SHEET,
 } from './others-review-action-sheet'
-import { likeReview, unlikeReview } from './review-api-clients'
-import { useReviewLikesContext } from './review-likes-context'
 import { AppNativeActionProps, ReviewData } from './types'
 import { useClientActions } from './use-client-actions'
 
@@ -53,7 +51,6 @@ export default function ReviewsList({
   )
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
-  const { updateLikedStatus } = useReviewLikesContext()
   const { push } = useHistoryFunctions()
   const appVersion = semver.coerce(useUserAgentContext()?.app?.version)
   const {
@@ -87,30 +84,6 @@ export default function ReviewsList({
         }
       },
       [trackEvent, resourceId, showToast, navigateUserDetail],
-    ),
-  )
-
-  const handleLikeButtonClick: ReviewElementProps['onLikeButtonClick'] = useSessionCallback(
-    useCallback(
-      async (
-        e: React.SyntheticEvent,
-        {
-          id,
-          liked,
-        }: {
-          id: string
-          liked: boolean
-        },
-      ) => {
-        const response = await (liked
-          ? unlikeReview({ id })
-          : likeReview({ id }))
-
-        if (response.ok) {
-          updateLikedStatus({ [id]: !liked }, resourceId)
-        }
-      },
-      [updateLikedStatus, resourceId],
     ),
   )
 
@@ -253,7 +226,6 @@ export default function ReviewsList({
             review={review}
             reviewRateDescriptions={reviewRateDescriptions}
             onUserClick={isPublic ? undefined : handleUserClick}
-            onLikeButtonClick={handleLikeButtonClick}
             onMenuClick={handleMenuClick}
             onImageClick={handleImageClick}
             onReviewClick={handleReviewClick}

@@ -1,4 +1,10 @@
-import React, { useState, PropsWithChildren, ComponentType } from 'react'
+import React, {
+  useState,
+  PropsWithChildren,
+  ComponentType,
+  MouseEventHandler,
+  useCallback,
+} from 'react'
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import semver from 'semver'
@@ -9,9 +15,11 @@ import {
   useUserAgentContext,
 } from '@titicaca/react-contexts'
 import { ImageMeta } from '@titicaca/type-definitions'
+import { useSessionCallback } from '@titicaca/ui-flow'
 
 import { useReviewLikesContext } from '../review-likes-context'
 import { ReviewData } from '../types'
+import { unlikeReview, likeReview } from '../review-api-clients'
 
 import User from './user'
 import Comment from './comment'
@@ -29,7 +37,6 @@ export interface ReviewElementProps {
   index: number
   onUserClick?: ReviewEventHandler
   onUnfoldButtonClick?: ReviewEventHandler
-  onLikeButtonClick: ReviewEventHandler
   onMenuClick: ReviewEventHandler
   onImageClick: (
     e: React.SyntheticEvent,
@@ -113,7 +120,6 @@ export default function ReviewElement({
   index,
   onUserClick,
   onUnfoldButtonClick,
-  onLikeButtonClick,
   onMenuClick,
   onImageClick,
   onReviewClick,
@@ -124,7 +130,10 @@ export default function ReviewElement({
   resourceId,
 }: ReviewElementProps) {
   const [unfolded, setUnfolded] = useState(false)
-  const { deriveCurrentStateAndCount } = useReviewLikesContext()
+  const {
+    deriveCurrentStateAndCount,
+    updateLikedStatus,
+  } = useReviewLikesContext()
   const appVersion = semver.coerce(useUserAgentContext()?.app?.version)
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
@@ -136,6 +145,29 @@ export default function ReviewElement({
   const isMessageCountVisible =
     (!!appVersion && semver.gte(appVersion, MESSAGE_COUNT_APP_VERSION)) ||
     isPublic
+
+  const handleLikeButtonClick: MouseEventHandler = useSessionCallback(
+    useCallback(async () => {
+      const actionName = `리뷰_땡스${liked ? '' : '취소'}`
+
+      trackEvent({
+        ga: [actionName],
+        fa: {
+          action: actionName,
+          review_id: review.id,
+          item_id: resourceId,
+        },
+      })
+
+      const response = await (liked
+        ? unlikeReview({ id: review.id })
+        : likeReview({ id: review.id }))
+
+      if (response.ok) {
+        updateLikedStatus({ [review.id]: !liked }, resourceId)
+      }
+    }, [liked, resourceId, review, trackEvent, updateLikedStatus]),
+  )
 
   return (
     <IntersectionObserver
@@ -207,18 +239,7 @@ export default function ReviewElement({
               padding={{ top: 2, bottom: 2, right: 10, left: 20 }}
               height={18}
               liked={liked}
-              onClick={(e) => {
-                const actionName = `리뷰_땡스${liked ? '' : '취소'}`
-                trackEvent({
-                  ga: [actionName],
-                  fa: {
-                    action: actionName,
-                    review_id: review.id,
-                    item_id: resourceId,
-                  },
-                })
-                onLikeButtonClick(e, { ...review, liked })
-              }}
+              onClick={handleLikeButtonClick}
             >
               {likesCount}
             </LikeButton>
