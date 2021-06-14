@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 2.27.0
+
+### ui-flow
+
+- Option을 추가합니다. `allowNonMembers`, `authType`을 지원합니다. (#1424, #1426)
+
+### footer
+
+- 다운로드 버튼 줄바뀜을 수정합니다. (#1425)
+
 ## 2.26.0
 
 ### Footer
