@@ -128,7 +128,7 @@ export function TnaProductWithPrice({
           </Text>
 
           {hasAreaName && (
-            <Text color="gray800" size="tiny">
+            <Text color="gray400" size="tiny" margin={{ top: 4 }}>
               {areaName}
             </Text>
           )}
