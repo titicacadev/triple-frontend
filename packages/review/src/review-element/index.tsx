@@ -148,7 +148,7 @@ export default function ReviewElement({
 
   const handleLikeButtonClick: MouseEventHandler = useSessionCallback(
     useCallback(async () => {
-      const actionName = `리뷰_땡스${liked ? '' : '취소'}`
+      const actionName = `리뷰_땡쓰${liked ? '' : '취소'}`
 
       trackEvent({
         ga: [actionName],
