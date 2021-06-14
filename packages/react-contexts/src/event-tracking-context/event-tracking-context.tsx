@@ -54,8 +54,8 @@ interface EventTrackingProviderProps {
 declare global {
   interface Window {
     ga?: (
-      method: 'send',
-      type: 'pageview' | 'event',
+      method: 'send' | 'set',
+      type: 'pageview' | 'event' | 'page',
       ...data: (string | undefined)[]
     ) => void
     fbq?: (
@@ -88,7 +88,8 @@ export class EventTrackingProvider extends React.PureComponent<
   ) => {
     try {
       if (window.ga) {
-        window.ga('send', 'pageview', path)
+        window.ga('set', 'page', path)
+        window.ga('send', 'pageview')
       }
 
       if (window.fbq && label) {
