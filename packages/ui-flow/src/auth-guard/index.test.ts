@@ -28,7 +28,7 @@ it('트리플 앱에서 요청한 request는 아무 역할을 하지 않습니�
 
 it('일반 브라우저 환경이라면 fetcher로 /api/users/me를 호출합니다.', async () => {
   const oldGSSP = jest.fn()
-  mockedGet.mockResolvedValueOnce({ result: { userId: 'MOCK_USER' } } as any)
+  mockedGet.mockResolvedValueOnce({ result: { uid: 'MOCK_USER' } } as any)
 
   const newGSSP = authGuard(oldGSSP)
   const ctx = {
@@ -48,7 +48,7 @@ it('일반 브라우저 환경이라면 fetcher로 /api/users/me를 호출합니
 
 it('/api/users/me가 회원 정보를 반환하면 customContext에 회원 정보를 추가하여 기존 getServerSideProps를 호출합니다.', async () => {
   const oldGSSP = jest.fn()
-  const user = { userId: 'MOCK_USER' }
+  const user = { uid: 'MOCK_USER' }
   mockedGet.mockResolvedValueOnce({ result: user } as any)
 
   const newGSSP = authGuard(oldGSSP)
@@ -110,6 +110,64 @@ it('/api/users/me가 401로 응답했다면, 로그인 페이지로 리디렉션
       basePath: false,
       permanent: false,
     },
+  })
+})
+
+it('/api/users/me가 non-member로 응답했다면, 로그인 페이지로 리디렉션하는 값을 반환합니다.', async () => {
+  const oldGSSP = jest.fn()
+  mockedGet.mockResolvedValueOnce({
+    result: { uid: '_PH_01000000000' },
+  } as any)
+
+  const newGSSP = authGuard(oldGSSP)
+  const ctx = {
+    req: {
+      headers: {
+        'user-agent':
+          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36',
+      },
+    },
+    resolvedUrl: '/test-url',
+    customContext: { mock: 'mock' },
+  } as any
+
+  const result = await newGSSP(ctx)
+
+  expect(oldGSSP).toBeCalledTimes(0)
+  expect(result).toEqual({
+    redirect: {
+      destination: `/login?returnUrl=${encodeURIComponent('/test-url')}`,
+      basePath: false,
+      permanent: false,
+    },
+  })
+})
+
+it('/api/users/me가 non-member로 응답하나, allowNonMembers가 true라면 인증을 통과한 걸로 봅니다.', async () => {
+  const oldGSSP = jest.fn()
+  const user = { uid: '_PH_01000000000' }
+  mockedGet.mockResolvedValueOnce({
+    result: user,
+  } as any)
+
+  const newGSSP = authGuard(oldGSSP, { allowNonMembers: true })
+  const ctx = {
+    req: {
+      headers: {
+        'user-agent':
+          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36',
+      },
+    },
+    resolvedUrl: '/test-url',
+    customContext: { mock: 'mock' },
+  } as any
+
+  await newGSSP(ctx)
+
+  expect(oldGSSP).toBeCalledTimes(1)
+  expect(oldGSSP).toBeCalledWith({
+    ...ctx,
+    customContext: { ...ctx.customContext, user },
   })
 })
 
