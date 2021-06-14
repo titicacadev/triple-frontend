@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 2.27.1
+
+### core-elements
+
+- PointingTab non-active 상태의 컬러를 변경합니다. (#1428)
+
+### review
+
+- 리뷰 땡쓰 이벤트가 반대로 기록되고, 액션 이름에 있던 오타를 수정합니다. (#1429)
+
 ## 2.27.0
 
 ### ui-flow
