@@ -42,6 +42,7 @@ const Button = styled.a`
   span {
     display: inline-block;
     width: 50px;
+    white-space: nowrap;
   }
 
   img {
