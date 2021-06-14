@@ -10,7 +10,10 @@ interface UserResponse {
 
 type AuthGuardOptions = {
   authType?: string
+  allowNonMembers?: boolean
 }
+
+const NON_MEMBER_REGEX = /^_PH/
 
 export function authGuard<Props>(
   gssp: (
@@ -47,11 +50,16 @@ export function authGuard<Props>(
       },
     )
 
-    if (user) {
+    const isNonMember = user && user.uid.match(NON_MEMBER_REGEX)
+
+    if (
+      (options?.allowNonMembers && user) ||
+      (!options?.allowNonMembers && user && !isNonMember)
+    ) {
       return gssp({ ...ctx, customContext: { ...ctx.customContext, user } })
     }
 
-    if (status === 401) {
+    if (status === 401 || isNonMember) {
       const query = qs.stringify({
         returnUrl,
         type: options?.authType,
