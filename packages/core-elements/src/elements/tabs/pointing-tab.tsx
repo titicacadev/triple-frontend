@@ -1,4 +1,3 @@
-import { blue, gray, gray200, gray50 } from '@titicaca/color-palette'
 import React, { useRef, useState, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 
@@ -12,7 +11,7 @@ const PointingContainer = styled(TabContainer)<{
   size?: number
   left?: number
 }>`
-  border-bottom: 1px solid ${gray50};
+  border-bottom: 1px solid var(--color-gray50);
   &:after {
     content: '';
     display: inline-block;
@@ -21,7 +20,7 @@ const PointingContainer = styled(TabContainer)<{
     width: ${({ size }) => `${size}px`};
     left: ${({ left }) => `${left}px`};
     height: 2px;
-    background: ${blue};
+    background: var(--color-blue);
     transition: all 0.2s;
   }
 `
@@ -35,7 +34,7 @@ const PointingLabel = styled(TabLabel)`
 
   ${({ active }) => css`
     font-size: 15px;
-    color: ${active ? gray : gray200};
+    color: ${active ? `var(--color-gray)` : `var(--color-gray300)`};
   `}
 
   ${({ scroll }) =>
