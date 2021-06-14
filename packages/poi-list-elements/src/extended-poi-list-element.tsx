@@ -38,7 +38,6 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
       areas = [],
       categories = [],
       comment,
-      regionId,
       reviewsCount: rawReviewsCount,
       scrapsCount: rawScrapsCount,
       reviewsRating: rawReviewsRating,
@@ -77,7 +76,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   const note = (
     notes || [
       starRating ? `${starRating}성급` : category ? category.name : null,
-      regionId ? area?.name || vicinity : vicinity,
+      area?.name || vicinity,
     ]
   )
     .filter((v) => v)
