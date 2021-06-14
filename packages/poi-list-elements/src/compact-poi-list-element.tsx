@@ -76,7 +76,6 @@ export function CompactPoiListElement<T extends PoiListElementType>({
       <Text size="tiny" alpha={0.7} margin={{ top: 4, left: 50 }}>
         {[
           TYPE_NAMES[type],
-          areas?.[0]?.name ? areas?.[0]?.name : vicinity,
           regionName
             ? areas?.[0]?.name
               ? `${regionName}(${areas?.[0]?.name})`
