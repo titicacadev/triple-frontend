@@ -4,6 +4,7 @@ import { formatNumber } from '@titicaca/view-utilities'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
 import { TNAProductData } from './types'
+import { generateProductsCouponTextByCase } from './helpers'
 
 const PLACEHOLDER_IMAGE_URL =
   'https://assets.triple.guide/images/ico-blank-see@2x.png'
@@ -59,6 +60,8 @@ export function TnaProductWithPrice({
     reviewRating,
     reviewsCount,
     domesticAreas = [],
+    applicableCoupon,
+    expectedApplicableCoupon,
   },
   index,
   onIntersect,
@@ -81,6 +84,14 @@ export function TnaProductWithPrice({
   const areaName =
     domesticAreas.find(({ representative }) => representative)?.displayName ||
     domesticAreas[0].displayName
+  const {
+    hasCoupon,
+    displayDefaultText,
+    displayDiscountPolicyText,
+  } = generateProductsCouponTextByCase({
+    applicableCoupon,
+    expectedApplicableCoupon,
+  })
 
   const handleIntersectionChange = useCallback(
     ({ isIntersecting }: IntersectionObserverEntry) => {
@@ -160,6 +171,23 @@ export function TnaProductWithPrice({
               }
             />
           ) : null}
+
+          {hasCoupon && (
+            <Container margin={{ top: 4 }}>
+              <Text bold inlineBlock size="tiny" color="gray700">
+                {displayDefaultText}
+              </Text>
+              <Text
+                bold
+                inlineBlock
+                size="tiny"
+                color="mint"
+                margin={{ left: 5 }}
+              >
+                {displayDiscountPolicyText}
+              </Text>
+            </Container>
+          )}
         </Container>
       </Container>
     </StaticIntersectionObserver>
