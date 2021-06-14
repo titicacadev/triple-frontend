@@ -3,6 +3,7 @@ import { TripleDocument } from './triple-document'
 export { default as ELEMENTS } from './elements'
 export { TripleElementData as TripleDocumentElementData } from './types'
 export * from './elements/text'
+export { generateProductsCouponTextByCase } from './elements/tna/helpers'
 
 export { useDeepLink } from './prop-context/deep-link'
 export { useImageClickHandler } from './prop-context/image-click-handler'
