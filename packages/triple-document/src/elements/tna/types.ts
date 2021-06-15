@@ -1,6 +1,15 @@
 import { TagColors } from '@titicaca/core-elements'
+import { HttpResponse } from '@titicaca/fetcher'
 
 type Price = string | number
+export type ProductsFetcher = (
+  slotId?: number,
+) => Promise<HttpResponse<TNAProductsResponse>>
+
+export interface TNAProductsResponse {
+  products: TNAProductData[]
+  title: string
+}
 
 interface DomesticArea {
   displayName: string
