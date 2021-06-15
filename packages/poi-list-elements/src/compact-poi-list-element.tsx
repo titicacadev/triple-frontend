@@ -79,7 +79,7 @@ export function CompactPoiListElement<T extends PoiListElementType>({
           regionName
             ? areas?.[0]?.name
               ? `${regionName}(${areas?.[0]?.name})`
-              : regionName || vicinity
+              : regionName
             : areas?.[0]?.name || vicinity,
         ]
           .filter(Boolean)
