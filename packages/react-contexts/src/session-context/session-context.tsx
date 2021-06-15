@@ -8,8 +8,12 @@ import React, {
   useContext,
   useCallback,
   useMemo,
+  useState,
+  useEffect,
 } from 'react'
 import { SESSION_KEY } from '@titicaca/constants'
+
+import { fetchUser, User } from './service'
 
 interface SessionContextValue {
   /** x-soto-session 쿠키 정보 유무 */
@@ -19,6 +23,7 @@ interface SessionContextValue {
   login: (options?: AuthOptions) => void
   /** 로그아웃 핸들러 */
   logout: () => void
+  user: User | null
 }
 
 type AuthOptions = {
@@ -57,14 +62,18 @@ function safeReturnUrl(returnUrl?: string) {
 
 export function SessionContextProvider({
   sessionId,
+  initialUser = null,
   children,
 }: PropsWithChildren<{
   sessionId?: string
+  initialUser?: User | null
   /**
    * @deprecated env context를 사용하세요.
    */
   authBasePath?: string
 }>) {
+  const [user, setUser] = useState(initialUser)
+
   const hasSessionId = Boolean(sessionId)
 
   const login = useCallback((options?: AuthOptions) => {
@@ -78,6 +87,7 @@ export function SessionContextProvider({
   const logout = useCallback(() => {
     unsetSessionID()
     window.location.href = '/'
+    setUser(null)
   }, [])
 
   const value = useMemo(
@@ -86,9 +96,22 @@ export function SessionContextProvider({
       sessionId,
       login,
       logout,
+      user,
     }),
-    [hasSessionId, login, logout, sessionId],
+    [hasSessionId, login, logout, sessionId, user],
   )
+
+  useEffect(() => {
+    async function fetchAndSetUser() {
+      const user = await fetchUser()
+
+      setUser(user)
+    }
+
+    if (!initialUser) {
+      fetchAndSetUser()
+    }
+  }, [initialUser])
 
   return (
     <SessionContext.Provider value={value}>{children}</SessionContext.Provider>
