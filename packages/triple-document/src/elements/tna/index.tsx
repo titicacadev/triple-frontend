@@ -4,14 +4,7 @@ import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { gray50 } from '@titicaca/color-palette'
 
 import { TnaProductWithPrice } from './product'
-import { TNAProductData } from './types'
-
-type ProductsFetcher = (slotId?: number) => Promise<Response>
-
-interface TNAProductsResponse {
-  products: TNAProductData[]
-  title: string
-}
+import { ProductsFetcher, TNAProductData, TNAProductsResponse } from './types'
 
 function useProducts({
   slotId,
@@ -31,19 +24,13 @@ function useProducts({
         return
       }
 
-      const response = await fetcher(slotId)
+      const { ok, result } = await fetcher(slotId)
 
-      if (response.ok) {
-        const {
-          title,
-          products,
-        }: {
-          title: string
-          products?: TNAProductData[]
-        } = await response.json()
+      if (ok) {
+        const { title, products } = result || {}
 
         setProductsList({
-          title,
+          title: title || '',
           products: products || [],
         })
       }
