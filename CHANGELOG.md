@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.27.2
+
+### react-contexts
+
+- Google Analytics의 SPA Event Tracking 방식을 적용합니다. (#1431)
+
 ## 2.27.1
 
 ### core-elements
