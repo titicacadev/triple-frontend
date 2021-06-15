@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.27.3
+
+### poi-list-elements
+
+- 행정구역 표기 추천검색 및 경로검색 결과 문구 반영합니다.(#1417)
+
 ## 2.27.2
 
 ### react-contexts
