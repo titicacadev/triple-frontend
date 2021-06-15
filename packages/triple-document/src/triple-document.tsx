@@ -66,6 +66,10 @@ export function TripleDocument({
     [handleAction],
   )
 
+  const handleTNAProductsFetch = useCallback((slotId) => {
+    return fetch(`/api/tna-v2/slots/${slotId}`)
+  }, [])
+
   const resourceClickHandler = onResourceClick || defaultHandleResourceClick
   const linkClickHandler = onLinkClick || defaultHandleLinkClick
 
@@ -74,7 +78,9 @@ export function TripleDocument({
       <ImageClickHandlerProvider value={onImageClick}>
         <LinkClickHandlerProvider value={linkClickHandler}>
           <TNAProductClickHandlerProvider value={onTNAProductClick}>
-            <TNAProductsFetcherProvider value={onTNAProductsFetch}>
+            <TNAProductsFetcherProvider
+              value={onTNAProductsFetch || handleTNAProductsFetch}
+            >
               <ImageSourceProvider value={imageSourceComponent}>
                 <DeepLinkProvider value={deepLink}>
                   <MediaConfigProvider
