@@ -1,4 +1,10 @@
-import React, { ComponentType } from 'react'
+import React, {
+  ComponentType,
+  PropsWithChildren,
+  useCallback,
+  useMemo,
+  useRef,
+} from 'react'
 import { DeepPartial } from 'utility-types'
 import {
   hasAccessibleTripleNativeClients,
@@ -66,105 +72,90 @@ declare global {
   }
 }
 
-export class EventTrackingProvider extends React.PureComponent<
-  EventTrackingProviderProps
-> {
-  value: EventTrackingContextValue
+export function EventTrackingProvider({
+  pageLabel,
+  onError: onErrorFromProps,
+  children,
+}: PropsWithChildren<EventTrackingProviderProps>) {
+  const onErrorRef = useRef(onErrorFromProps)
 
-  constructor(props: EventTrackingProvider['props']) {
-    super(props)
+  const trackScreen: EventTrackingContextValue['trackScreen'] = useCallback(
+    (path: string, label?: string) => {
+      try {
+        if (window.ga) {
+          window.ga('set', 'page', path)
+          window.ga('send', 'pageview')
+        }
 
-    this.value = {
+        if (window.fbq && label) {
+          window.fbq('trackCustom', `PageView_${label}`, { path })
+        }
+
+        if (hasAccessibleTripleNativeClients()) {
+          nativeTrackScreen(path, label)
+        }
+      } catch (error) {
+        onErrorRef.current?.(error)
+      }
+    },
+    [],
+  )
+
+  const trackEvent: EventTrackingContextValue['trackEvent'] = useCallback(
+    ({ ga, fa, pixel }) => {
+      try {
+        if (window.ga && ga) {
+          const [action, label] = ga
+          window.ga('send', 'event', pageLabel, action, label)
+        }
+
+        if (window.fbq && pixel) {
+          const { type = 'trackCustom', action, payload } = pixel
+
+          window.fbq(type, action, { pageLabel, ...payload })
+        }
+
+        if (hasAccessibleTripleNativeClients()) {
+          nativeTrackEvent({
+            ga: ga && [pageLabel, ...ga],
+            fa: fa && {
+              category: pageLabel,
+              event_name: DEFAULT_EVENT_NAME,
+              ...fa,
+            },
+          })
+        }
+      } catch (error) {
+        onErrorRef.current?.(error)
+      }
+    },
+    [pageLabel],
+  )
+
+  const trackSimpleEvent: EventTrackingContextValue['trackSimpleEvent'] = useCallback(
+    ({ action, label, ...rest }) => {
+      return trackEvent({
+        ga: [action, label],
+        fa: {
+          action: action as string,
+          ...rest,
+        },
+      })
+    },
+    [trackEvent],
+  )
+
+  const value = useMemo<EventTrackingContextValue>(
+    () => ({
       viewItem: nativeViewItem,
-      trackScreen: this.trackScreen,
-      trackEvent: this.trackEvent,
-      trackSimpleEvent: this.trackSimpleEvent,
-    }
-  }
+      trackScreen,
+      trackEvent,
+      trackSimpleEvent,
+    }),
+    [trackEvent, trackScreen, trackSimpleEvent],
+  )
 
-  trackScreen: EventTrackingContextValue['trackScreen'] = (
-    path: string,
-    label?: string,
-  ) => {
-    try {
-      if (window.ga) {
-        window.ga('set', 'page', path)
-        window.ga('send', 'pageview')
-      }
-
-      if (window.fbq && label) {
-        window.fbq('trackCustom', `PageView_${label}`, { path })
-      }
-
-      if (hasAccessibleTripleNativeClients()) {
-        nativeTrackScreen(path, label)
-      }
-    } catch (error) {
-      const {
-        props: { onError },
-      } = this
-
-      if (onError) {
-        onError(error)
-      }
-    }
-  }
-
-  trackEvent: EventTrackingContextValue['trackEvent'] = ({ ga, fa, pixel }) => {
-    const {
-      props: { pageLabel, onError },
-    } = this
-
-    try {
-      if (window.ga && ga) {
-        const [action, label] = ga
-        window.ga('send', 'event', pageLabel, action, label)
-      }
-
-      if (window.fbq && pixel) {
-        const { type = 'trackCustom', action, payload } = pixel
-
-        window.fbq(type, action, { pageLabel, ...payload })
-      }
-
-      if (hasAccessibleTripleNativeClients()) {
-        nativeTrackEvent({
-          ga: ga && [pageLabel, ...ga],
-          fa: fa && {
-            category: pageLabel,
-            event_name: DEFAULT_EVENT_NAME,
-            ...fa,
-          },
-        })
-      }
-    } catch (error) {
-      if (onError) {
-        onError(error)
-      }
-    }
-  }
-
-  trackSimpleEvent: EventTrackingContextValue['trackSimpleEvent'] = ({
-    action,
-    label,
-    ...rest
-  }) => {
-    return this.trackEvent({
-      ga: [action, label],
-      fa: {
-        action: action as string,
-        ...rest,
-      },
-    })
-  }
-
-  render() {
-    const {
-      props: { children },
-    } = this
-
-    return <Context.Provider value={this.value}>{children}</Context.Provider>
-  }
+  return <Context.Provider value={value}>{children}</Context.Provider>
 }
 
 export function useEventTrackingContext() {
