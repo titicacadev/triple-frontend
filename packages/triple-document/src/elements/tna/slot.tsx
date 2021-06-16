@@ -6,7 +6,7 @@ import { gray50 } from '@titicaca/color-palette'
 import { TNAProductData } from './types'
 import { TnaProductWithPrice } from './product'
 
-export default function Slot({
+export function Slot({
   id: slotId,
   title: slotTitle,
   products,
