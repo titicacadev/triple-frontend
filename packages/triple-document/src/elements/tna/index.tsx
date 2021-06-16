@@ -1,11 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { HR2, Container, H1, List, Button } from '@titicaca/core-elements'
+import { HR2 } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
-import { gray50 } from '@titicaca/color-palette'
 import { get } from '@titicaca/fetcher'
 
-import { TnaProductWithPrice } from './product'
 import { TNAProductData, TNAProductsResponse } from './types'
+import Slot from './slot'
 
 function useProducts({ slotId }: { slotId?: number }): TNAProductsResponse {
   const [response, setProductsList] = useState<TNAProductsResponse>({
@@ -58,7 +57,6 @@ export function TNAProducts({
   const { products, title } = useProducts({
     slotId,
   })
-  const [showMore, setShowMore] = useState(false)
 
   const handleClick = useCallback(
     (e: React.SyntheticEvent, product: TNAProductData, index: number) => {
@@ -83,53 +81,16 @@ export function TNAProducts({
     [trackEvent, slotId],
   )
 
-  const handleShowMoreClick = useCallback(() => {
-    trackEvent({
-      ga: ['투어티켓_더보기'],
-      fa: {
-        action: '투어티켓_더보기',
-        slot_id: slotId,
-      },
-    })
-
-    setShowMore(true)
-  }, [trackEvent, slotId])
-
   return products.length > 0 ? (
     <>
       <HR2 />
-      <Container
-        margin={{ top: 30, left: 30, right: 30 }}
-        id={`tna-slot-${slotId}`}
-      >
-        <H1 margin={{ bottom: 20 }}>{title}</H1>
-
-        <List clearing verticalGap={40} divided dividerColor={gray50}>
-          {(showMore ? products : products.slice(0, 3)).map((product, i) => (
-            <List.Item key={i}>
-              <TnaProductWithPrice
-                index={i}
-                product={product}
-                onClick={handleClick}
-                onIntersect={handleIntersect}
-              />
-            </List.Item>
-          ))}
-        </List>
-
-        {!showMore && products.length > 3 ? (
-          <Button
-            basic
-            fluid
-            compact
-            size="small"
-            margin={{ top: 20 }}
-            onClick={handleShowMoreClick}
-          >
-            더보기
-          </Button>
-        ) : null}
-      </Container>
+      <Slot
+        id={slotId}
+        title={title}
+        products={products}
+        onClick={handleClick}
+        onIntersect={handleIntersect}
+      />
     </>
   ) : null
 }
