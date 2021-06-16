@@ -2,17 +2,12 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { HR2, Container, H1, List, Button } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { gray50 } from '@titicaca/color-palette'
+import { get } from '@titicaca/fetcher'
 
 import { TnaProductWithPrice } from './product'
-import { ProductsFetcher, TNAProductData, TNAProductsResponse } from './types'
+import { TNAProductData, TNAProductsResponse } from './types'
 
-function useProducts({
-  slotId,
-  fetcher,
-}: {
-  slotId?: number
-  fetcher?: ProductsFetcher
-}): TNAProductsResponse {
+function useProducts({ slotId }: { slotId?: number }): TNAProductsResponse {
   const [response, setProductsList] = useState<TNAProductsResponse>({
     products: [],
     title: '',
@@ -20,11 +15,13 @@ function useProducts({
 
   useEffect(() => {
     async function fetchAndSetProductsList() {
-      if (!fetcher || !slotId) {
+      if (!slotId) {
         return
       }
 
-      const { ok, result } = await fetcher(slotId)
+      const { ok, result } = await get<TNAProductsResponse>(
+        `/api/tna-v2/slots/${slotId}`,
+      )
 
       if (ok) {
         const { title, products } = result || {}
@@ -37,7 +34,7 @@ function useProducts({
     }
 
     fetchAndSetProductsList()
-  }, [fetcher, slotId])
+  }, [slotId])
   return response
 }
 
@@ -45,7 +42,6 @@ interface TnaProductsListProps {
   value: {
     slotId?: number
   }
-  onTNAProductsFetch?: ProductsFetcher
   onTNAProductClick?: (
     e: React.SyntheticEvent,
     product: TNAProductData,
@@ -55,14 +51,12 @@ interface TnaProductsListProps {
 }
 
 export function TNAProducts({
-  onTNAProductsFetch,
   onTNAProductClick,
   value: { slotId },
 }: TnaProductsListProps) {
   const { trackEvent } = useEventTrackingContext()
   const { products, title } = useProducts({
     slotId,
-    fetcher: onTNAProductsFetch,
   })
   const [showMore, setShowMore] = useState(false)
 

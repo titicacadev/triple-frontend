@@ -1,7 +1,6 @@
 import React, { useMemo, useCallback } from 'react'
 import { useHistoryFunctions } from '@titicaca/react-contexts'
 import { initialize } from '@titicaca/standard-action-handler'
-import { get } from '@titicaca/fetcher'
 
 import {
   TripleElementData,
@@ -21,7 +20,6 @@ import { ImageSourceProvider } from './prop-context/image-source'
 import { DeepLinkProvider } from './prop-context/deep-link'
 import { MediaConfigProvider } from './prop-context/media-config'
 import ELEMENTS from './elements'
-import { TNAProductsResponse } from './elements/tna/types'
 
 export function TripleDocument({
   children,
@@ -68,10 +66,6 @@ export function TripleDocument({
     [handleAction],
   )
 
-  const handleTNAProductsFetch = useCallback((slotId) => {
-    return get<TNAProductsResponse>(`/api/tna-v2/slots/${slotId}`)
-  }, [])
-
   const resourceClickHandler = onResourceClick || defaultHandleResourceClick
   const linkClickHandler = onLinkClick || defaultHandleLinkClick
 
@@ -80,9 +74,7 @@ export function TripleDocument({
       <ImageClickHandlerProvider value={onImageClick}>
         <LinkClickHandlerProvider value={linkClickHandler}>
           <TNAProductClickHandlerProvider value={onTNAProductClick}>
-            <TNAProductsFetcherProvider
-              value={onTNAProductsFetch || handleTNAProductsFetch}
-            >
+            <TNAProductsFetcherProvider value={onTNAProductsFetch}>
               <ImageSourceProvider value={imageSourceComponent}>
                 <DeepLinkProvider value={deepLink}>
                   <MediaConfigProvider
