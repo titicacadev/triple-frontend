@@ -5,7 +5,7 @@ import { ELEMENTS } from '@titicaca/triple-document'
 import POIS from '../__mocks__/pois.sample.json'
 import HOTEL from '../__mocks__/hotel.sample.json'
 
-const { pois: Pois } = ELEMENTS
+const { pois: Pois, tnaProducts: TNAProducts } = ELEMENTS
 
 export default { title: 'triple-document / POI', component: Pois } as Meta
 
@@ -81,3 +81,14 @@ export function HotelListWithPrice() {
   )
 }
 HotelListWithPrice.storyName = '리스트 (호텔 w/ 가격)'
+
+export function Tna() {
+  return (
+    <TNAProducts
+      value={{
+        slotId: 1546,
+      }}
+    />
+  )
+}
+Tna.storyName = '투어티켓 슬롯'
