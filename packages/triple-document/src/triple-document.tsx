@@ -14,8 +14,6 @@ import {
 } from './prop-context/resource-click-handler'
 import { ImageClickHandlerProvider } from './prop-context/image-click-handler'
 import { LinkClickHandlerProvider } from './prop-context/link-click-handler'
-import { TNAProductClickHandlerProvider } from './prop-context/tna-product-click-handler'
-import { TNAProductsFetcherProvider } from './prop-context/tna-products-fetcher'
 import { ImageSourceProvider } from './prop-context/image-source'
 import { DeepLinkProvider } from './prop-context/deep-link'
 import { MediaConfigProvider } from './prop-context/media-config'
@@ -28,7 +26,6 @@ export function TripleDocument({
   onImageClick,
   onLinkClick,
   onTNAProductClick,
-  onTNAProductsFetch,
   imageSourceComponent,
   deepLink,
   cta,
@@ -73,46 +70,41 @@ export function TripleDocument({
     <ResourceClickHandlerProvider value={resourceClickHandler}>
       <ImageClickHandlerProvider value={onImageClick}>
         <LinkClickHandlerProvider value={linkClickHandler}>
-          <TNAProductClickHandlerProvider value={onTNAProductClick}>
-            <TNAProductsFetcherProvider value={onTNAProductsFetch}>
-              <ImageSourceProvider value={imageSourceComponent}>
-                <DeepLinkProvider value={deepLink}>
-                  <MediaConfigProvider
-                    videoAutoPlay={videoAutoPlay}
-                    hideVideoControls={hideVideoControls}
-                    optimized={optimized}
-                  >
-                    {children.map(({ type, value }, i) => {
-                      const Element = { ...ELEMENTS, ...customElements }[type]
+          <ImageSourceProvider value={imageSourceComponent}>
+            <DeepLinkProvider value={deepLink}>
+              <MediaConfigProvider
+                videoAutoPlay={videoAutoPlay}
+                hideVideoControls={hideVideoControls}
+                optimized={optimized}
+              >
+                {children.map(({ type, value }, i) => {
+                  const Element = { ...ELEMENTS, ...customElements }[type]
 
-                      return (
-                        Element && (
-                          <Element
-                            key={i}
-                            value={value}
-                            {...(customElements
-                              ? {
-                                  onResourceClick: resourceClickHandler,
-                                  onImageClick,
-                                  onLinkClick: linkClickHandler,
-                                  onTNAProductClick,
-                                  onTNAProductsFetch,
-                                  ImageSource: imageSourceComponent,
-                                  deepLink,
-                                  videoAutoPlay,
-                                  hideVideoControls,
-                                  optimized,
-                                }
-                              : {})}
-                          />
-                        )
-                      )
-                    })}
-                  </MediaConfigProvider>
-                </DeepLinkProvider>
-              </ImageSourceProvider>
-            </TNAProductsFetcherProvider>
-          </TNAProductClickHandlerProvider>
+                  return (
+                    Element && (
+                      <Element
+                        key={i}
+                        value={value}
+                        {...(customElements
+                          ? {
+                              onResourceClick: resourceClickHandler,
+                              onImageClick,
+                              onLinkClick: linkClickHandler,
+                              onTNAProductClick,
+                              ImageSource: imageSourceComponent,
+                              deepLink,
+                              videoAutoPlay,
+                              hideVideoControls,
+                              optimized,
+                            }
+                          : {})}
+                      />
+                    )
+                  )
+                })}
+              </MediaConfigProvider>
+            </DeepLinkProvider>
+          </ImageSourceProvider>
         </LinkClickHandlerProvider>
       </ImageClickHandlerProvider>
     </ResourceClickHandlerProvider>

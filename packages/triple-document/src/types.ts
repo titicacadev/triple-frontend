@@ -4,8 +4,7 @@ import { ImageSourceType } from '@titicaca/core-elements'
 
 import { MediaConfig } from './prop-context/media-config'
 import { ResourceClickHandler } from './prop-context/resource-click-handler'
-import { TNAProductClickHandler } from './prop-context/tna-product-click-handler'
-import { TNAProductsFetcher } from './prop-context/tna-products-fetcher'
+import { TNAProductClickHandler } from './elements/tna/types'
 
 export interface RegionData {
   id: string
@@ -41,7 +40,6 @@ export type TripleDocumentContext = {
   onImageClick?: ImageEventHandler
   onLinkClick?: LinkEventHandler
   onTNAProductClick?: TNAProductClickHandler
-  onTNAProductsFetch?: TNAProductsFetcher
   imageSourceComponent?: ImageSourceType
   deepLink?: string
 } & MediaConfig
