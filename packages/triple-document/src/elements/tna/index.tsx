@@ -4,7 +4,7 @@ import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { get } from '@titicaca/fetcher'
 
 import { TNAProductData, TNAProductsResponse } from './types'
-import Slot from './slot'
+import { Slot } from './slot'
 
 function useProducts({ slotId }: { slotId?: number }): TNAProductsResponse {
   const [response, setProductsList] = useState<TNAProductsResponse>({
