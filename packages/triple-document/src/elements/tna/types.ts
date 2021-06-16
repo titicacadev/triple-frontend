@@ -12,6 +12,7 @@ export type TNAProductClickHandler = (
 export interface TNAProductsResponse {
   products: TNAProductData[]
   title: string
+  description?: string
 }
 
 interface DomesticArea {
@@ -39,15 +40,21 @@ export interface TnaCoupon {
 }
 
 export interface TNAProductData {
-  id: number | string
-  heroImage?: string
-  title?: string
-  tags?: { text: string; type: TagColors; style: React.CSSProperties }[]
-  salePrice?: Price
-  basePrice?: Price
+  id: string
+  heroImage: string
+  title: string
+  tags: { text: string; type: TagColors; style: React.CSSProperties }[]
+  salePrice: Price
+  basePrice: Price
   reviewRating: number
   reviewsCount: number
-  domesticAreas: DomesticArea[]
+  domesticAreas?: DomesticArea[]
   applicableCoupon?: TnaCoupon
   expectedApplicableCoupon?: TnaCoupon
+  description?: string
+  productId: string
+  orderPrice: number
+  supplierType: string
+  eventTags?: string[]
+  userId?: number
 }
