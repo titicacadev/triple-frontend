@@ -1,6 +1,9 @@
 import React, { useCallback, useState } from 'react'
 import { Container, H1, List, Button } from '@titicaca/core-elements'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import {
+  useEventTrackingContext,
+  useHistoryFunctions,
+} from '@titicaca/react-contexts'
 import { gray50 } from '@titicaca/color-palette'
 
 import { TNAProductData } from './types'
@@ -10,22 +13,45 @@ export function Slot({
   id: slotId,
   title: slotTitle,
   products,
-  onClick,
-  onIntersect,
 }: {
   id?: number
   title: string
   products: TNAProductData[]
-  onClick: (
-    e: React.SyntheticEvent,
-    product: TNAProductData,
-    index: number,
-  ) => void
-  onIntersect: (product: TNAProductData, index: number) => void
 }) {
   const { trackEvent } = useEventTrackingContext()
+  const { navigate } = useHistoryFunctions()
 
   const [showMore, setShowMore] = useState(false)
+
+  const handleClick = useCallback(
+    (e: React.SyntheticEvent, product: TNAProductData, index: number) => {
+      trackEvent({
+        ga: ['투어티켓_상품선택', `${slotId}_${product.id}_${index}`],
+        fa: {
+          action: '투어티켓_상품선택',
+          slot_id: slotId,
+          tna_id: product.id,
+          position: index,
+        },
+      })
+      navigate(`/tna/products/${product.id}`)
+    },
+    [slotId, trackEvent, navigate],
+  )
+
+  const handleIntersect = useCallback(
+    (product: TNAProductData, index: number) => {
+      trackEvent({
+        fa: {
+          action: '투어티켓_노출',
+          slot_id: slotId,
+          tna_id: product.id,
+          position: index,
+        },
+      })
+    },
+    [trackEvent, slotId],
+  )
 
   const handleShowMoreClick = useCallback(() => {
     trackEvent({
@@ -52,8 +78,8 @@ export function Slot({
             <TnaProductWithPrice
               index={i}
               product={product}
-              onClick={onClick}
-              onIntersect={onIntersect}
+              onClick={handleClick}
+              onIntersect={handleIntersect}
             />
           </List.Item>
         ))}

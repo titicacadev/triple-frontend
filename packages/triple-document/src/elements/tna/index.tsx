@@ -1,9 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { HR2 } from '@titicaca/core-elements'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { get } from '@titicaca/fetcher'
 
-import { TNAProductData, TNAProductsResponse } from './types'
+import { TNAProductsResponse } from './types'
 import { Slot } from './slot'
 
 function useProducts({ slotId }: { slotId?: number }): TNAProductsResponse {
@@ -41,56 +40,17 @@ interface TnaProductsListProps {
   value: {
     slotId?: number
   }
-  onTNAProductClick?: (
-    e: React.SyntheticEvent,
-    product: TNAProductData,
-    slotId?: number,
-    index?: number,
-  ) => void
 }
 
-export function TNAProducts({
-  onTNAProductClick,
-  value: { slotId },
-}: TnaProductsListProps) {
-  const { trackEvent } = useEventTrackingContext()
+export function TNAProducts({ value: { slotId } }: TnaProductsListProps) {
   const { products, title } = useProducts({
     slotId,
   })
 
-  const handleClick = useCallback(
-    (e: React.SyntheticEvent, product: TNAProductData, index: number) => {
-      if (onTNAProductClick) {
-        onTNAProductClick(e, product, slotId, index)
-      }
-    },
-    [onTNAProductClick, slotId],
-  )
-
-  const handleIntersect = useCallback(
-    (product: TNAProductData, index: number) => {
-      trackEvent({
-        fa: {
-          action: '투어티켓_노출',
-          slot_id: slotId,
-          tna_id: product.id,
-          position: index,
-        },
-      })
-    },
-    [trackEvent, slotId],
-  )
-
   return products.length > 0 ? (
     <>
       <HR2 />
-      <Slot
-        id={slotId}
-        title={title}
-        products={products}
-        onClick={handleClick}
-        onIntersect={handleIntersect}
-      />
+      <Slot id={slotId} title={title} products={products} />
     </>
   ) : null
 }
