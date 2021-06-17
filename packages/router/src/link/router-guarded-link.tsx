@@ -14,9 +14,18 @@ import {
   useTransitionModal,
 } from '@titicaca/modals'
 
-import { LinkType, useRel } from './use-rel'
+import { RelListProps, useRel } from './use-rel'
 
 export type AllowSource = 'all' | 'app' | 'app-with-session' | 'none'
+
+export interface AllowSourceProps {
+  /**
+   * 링크가 작동하는 환경을 설정합니다.
+   * `all`, `app`, `app-with-session`, `none` 네 가지를 사용할 수 있습니다.
+   * 기본 값은 `all`.
+   */
+  allowSource?: AllowSource
+}
 
 /**
  * 조건부 라우팅 검사 로직을 자식 a 엘리먼트에 주입하는 컴포넌트
@@ -29,15 +38,9 @@ export function RouterGuardedLink({
   children,
   ...restProps
 }: PropsWithChildren<
-  Partial<Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'rel'>> & {
-    relList?: LinkType[]
-    /**
-     * 라우팅 가능 환경을 결정하는 prop. 기본 값은 all.
-     *
-     * all | app | app-with-session
-     */
-    allowSource?: AllowSource
-  }
+  Partial<Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'rel'>> &
+    RelListProps &
+    AllowSourceProps
 >) {
   const { hasSessionId } = useSessionContext()
   const { isPublic } = useUserAgentContext()

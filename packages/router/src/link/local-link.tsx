@@ -4,14 +4,11 @@ import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
 import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 
 import { useAppBridge } from './use-app-bridge'
-import { LinkType } from './use-rel'
-import { ANCHOR_TARGET_MAP, TargetType } from './target'
-import { AllowSource, RouterGuardedLink } from './router-guarded-link'
+import { ANCHOR_TARGET_MAP } from './target'
+import { RouterGuardedLink } from './router-guarded-link'
 import { addWebUrlBase } from './add-web-url-base'
-import {
-  appSpecificLinkOptions,
-  AppSpecificLinkProps,
-} from './app-specific-link-options'
+import { appSpecificLinkOptions } from './app-specific-link-options'
+import { LinkCommonProps } from './types'
 
 function addBasePath(href: string, basePath: string): string {
   const { path } = parseUrl(href)
@@ -65,19 +62,21 @@ export function LocalLink({
   onClick,
   children,
 }: PropsWithChildren<
-  {
+  LinkCommonProps & {
+    /**
+     * 이동할 경로. basePath를 생략한 경로를 넣어야 잘 작동합니다.
+     */
     href: string
-    target: TargetType
-    relList?: LinkType[]
-    allowSource?: AllowSource
+    /**
+     * 현재 창을 history에 남기지 않고 이동합니다. target="current"일 때만 작동합니다.
+     */
     replace?: boolean
     /**
      * 현재창에서 라우팅할 때 페이지 스크롤을 상단으로 올릴지 여부를 결정합니다.
      * 기본 값 true
      */
     scroll?: boolean
-    onClick?: () => void
-  } & AppSpecificLinkProps
+  }
 >) {
   const { webUrlBase } = useEnv()
   const { isPublic } = useUserAgentContext()
