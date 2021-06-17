@@ -87,9 +87,7 @@ function renderPoiListActionButton({
   display: PoisDisplay
   poi: ExtendedPOIListElementData
 }) {
-  const {
-    source: { pricing },
-  } = poi
+  const { pricing } = poi?.source || {}
 
   if (display === 'list' && pricing) {
     const { nightlyPrice } = pricing
