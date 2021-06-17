@@ -41,22 +41,24 @@ export default function User({
   } = mileage || { badges: [undefined] }
 
   return (
-    <Container padding={{ bottom: 2 }} height={38}>
+    <Container padding={{ bottom: 2 }} display="flex">
       <UserPhoto src={photo} onClick={onClick} />
       {badge && <Badge src={badge.icon.imageUrl} />}
-      <Name onClick={onClick}>{name}</Name>
-      {!unregister ? (
-        <Text
-          margin={{ top: 3 }}
-          size="mini"
-          color="gray"
-          alpha={0.4}
-          onClick={onClick}
-        >
-          {level && level > 0 ? `LEVEL${level} / ` : ''}
-          {reviewsV2}개의 리뷰
-        </Text>
-      ) : null}
+      <div>
+        <Name onClick={onClick}>{name}</Name>
+        {!unregister ? (
+          <Text
+            margin={{ top: 3 }}
+            size="mini"
+            color="gray"
+            alpha={0.4}
+            onClick={onClick}
+          >
+            {level && level > 0 ? `LEVEL${level} / ` : ''}
+            {reviewsV2}개의 리뷰
+          </Text>
+        ) : null}
+      </div>
     </Container>
   )
 }
