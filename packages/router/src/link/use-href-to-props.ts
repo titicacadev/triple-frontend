@@ -170,13 +170,37 @@ function getAllowSource({
     : 'app-with-session'
 }
 
+/**
+ * href를 ExternalLink의 prop으로 변환하는 함수를 반환하는 훅
+ * @returns href를 ExternalLink 컴포넌트의 prop으로 변환하는 함수
+ */
 export function useHrefToProps(params?: {
+  /**
+   * 변환 과정에서 발생한 에러 핸들러입니다.
+   */
   onError?: (error: Error) => void
 }): (
+  /**
+   * inlink나 outlink를 포함하는 href
+   */
   href: string,
 ) => {
+  /**
+   * inlink, outlink는 각각 query에 들어있는 path나 URL을 빼냅니다.
+   * 이후 트리플 도메인의 절대 경로(`https://triple.guide/...`)는 scheme과 host를 제거합니다.
+   */
   href: string
+  /**
+   * 현재 환경이 웹일 땐 `current`, 앱일 땐 `new`를 반환합니다.
+   * 단, outlink의 target query가 browser이면 `browser`를 반환합니다.
+   */
   target: TargetType
+  /**
+   * | `checkIfRoutable` | inlink with `_web_expand` |       inlink       |       그 외        |
+   * | ----------------: | :-----------------------: | :----------------: | :----------------: |
+   * |              true |           `all`           |       `app`        |       `all`        |
+   * |             false |    `app-with-session`     | `app-with-session` | `app-with-session` |
+   */
   allowSource: AllowSource
 } {
   const { webUrlBase } = useEnv()

@@ -3,14 +3,11 @@ import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
 import { parseUrl } from '@titicaca/view-utilities'
 
 import { useAppBridge } from './use-app-bridge'
-import { LinkType } from './use-rel'
-import { ANCHOR_TARGET_MAP, TargetType } from './target'
-import { AllowSource, RouterGuardedLink } from './router-guarded-link'
+import { ANCHOR_TARGET_MAP } from './target'
+import { RouterGuardedLink } from './router-guarded-link'
 import { addWebUrlBase } from './add-web-url-base'
-import {
-  appSpecificLinkOptions,
-  AppSpecificLinkProps,
-} from './app-specific-link-options'
+import { appSpecificLinkOptions } from './app-specific-link-options'
+import { LinkCommonProps } from './types'
 
 export function ExternalLink({
   href,
@@ -26,15 +23,21 @@ export function ExternalLink({
   onError,
   children,
 }: PropsWithChildren<
-  {
+  LinkCommonProps & {
+    /**
+     * 이동할 경로. 제약 사항 없이 이동할 경로를 그대로 넣습니다.
+     */
     href: string
-    target: TargetType
-    relList?: LinkType[]
-    allowSource?: AllowSource
+    /**
+     * 새로 열 창의 제목을 지정합니다. 외부 URL이고 target이 "new"이거나 "browser"일 때만 작동합니다.
+     */
     title?: string
-    onClick?: () => void
+    /**
+     * 링크 규칙 결정에 오류가 있을 때 핸들러입니다.
+     * 앱에서 트리플 외부 URL을 현재 창으로 열 수 없습니다.
+     */
     onError?: (error: Error) => void
-  } & AppSpecificLinkProps
+  }
 >) {
   const { webUrlBase } = useEnv()
   const { isPublic } = useUserAgentContext()
