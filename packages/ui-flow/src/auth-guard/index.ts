@@ -11,6 +11,11 @@ interface UserResponse {
 type AuthGuardOptions = {
   authType?: string
   allowNonMembers?: boolean
+  resolveReturnUrl?: (
+    ctx: GetServerSidePropsContext & {
+      customContext?: { [key: string]: unknown }
+    },
+  ) => string
 }
 
 const NON_MEMBER_REGEX = /^_PH/
@@ -36,7 +41,9 @@ export function authGuard<Props>(
       resolvedUrl,
     } = ctx
 
-    const returnUrl = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${resolvedUrl}`
+    const returnUrl = options?.resolveReturnUrl
+      ? options.resolveReturnUrl(ctx)
+      : `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${resolvedUrl}`
 
     if (userAgentString && !!parseApp(userAgentString)) {
       return gssp(ctx)
