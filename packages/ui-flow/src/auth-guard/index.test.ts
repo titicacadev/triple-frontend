@@ -218,3 +218,37 @@ it('/api/users/me가 401 이외의 에러로 응답했다면, 에러를 던집�
 
   await expect(newGSSP(ctx)).rejects.toThrowError()
 })
+
+it('resolveReturnUrl로 로그인 후 돌아갈 URL을 지정할 수 있습니다.', async () => {
+  const oldGSSP = jest.fn()
+  mockedGet.mockResolvedValueOnce({ status: 401 } as any)
+
+  const newGSSP = authGuard(oldGSSP, {
+    resolveReturnUrl: ({ query }) => {
+      return `/foo/${query.foo}`
+    },
+  })
+
+  const ctx = {
+    req: {
+      headers: {
+        'user-agent':
+          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36',
+      },
+    },
+    query: { foo: '1' },
+    resolvedUrl: '/air/foo',
+    customContext: { mock: 'mock' },
+  } as any
+
+  const result = await newGSSP(ctx)
+
+  expect(oldGSSP).toBeCalledTimes(0)
+  expect(result).toEqual({
+    redirect: {
+      destination: `/login?returnUrl=${encodeURIComponent('/foo/1')}`,
+      basePath: false,
+      permanent: false,
+    },
+  })
+})
