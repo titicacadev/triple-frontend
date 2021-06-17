@@ -2,6 +2,8 @@ import { TagColors } from '@titicaca/core-elements'
 
 type Price = string | number
 
+export type TNAProductsFetcher = (slotId: number) => Promise<Response>
+
 export type TNAProductClickHandler = (
   e: React.SyntheticEvent,
   product: unknown,
