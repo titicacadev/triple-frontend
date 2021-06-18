@@ -202,8 +202,6 @@ export function HistoryProvider({
 
       if (useRouter) {
         window.location.replace(`#${hash}`)
-      } else {
-        return new Promise((resolve) => resolve(true))
       }
     },
     [isAndroid],
@@ -220,8 +218,6 @@ export function HistoryProvider({
 
       if (useRouter) {
         window.location.hash = hash
-      } else {
-        return new Promise((resolve) => resolve(true))
       }
     },
     [isAndroid],
