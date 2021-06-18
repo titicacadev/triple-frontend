@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/slider",
-  "version": "2.27.4",
+  "version": "2.27.5",
   "description": "Slider component",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -18,8 +18,8 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^2.27.4",
-    "@titicaca/view-utilities": "^2.27.4",
+    "@titicaca/core-elements": "^2.27.5",
+    "@titicaca/view-utilities": "^2.27.5",
     "react-compound-slider": "^2.5.0"
   }
 }
