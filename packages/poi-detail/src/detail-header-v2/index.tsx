@@ -89,7 +89,7 @@ export default function DetailHeaderV2({
         <Text size="tiny" alpha={0.5}>
           {names.local || names.en}
         </Text>
-        {(reviewsCount > 0 || scrapsCount > 0) && (
+        {(reviewsRating || scrapsCount > 0) && (
           <Container margin={{ top: 14 }}>
             {scrapsCount > 0 && (
               <Text inline bold size="mini" alpha={1} margin={{ right: 10 }}>
@@ -97,7 +97,7 @@ export default function DetailHeaderV2({
                 {` ${formatNumber(scrapsCount)}`}
               </Text>
             )}
-            {(reviewsCount || reviewsRating) && (
+            {reviewsRating && (
               <Text inline bold size="mini" alpha={1}>
                 <Rating score={reviewsRating} />
                 {reviewsCount > 0 && `${formatNumber(reviewsCount)}`}
