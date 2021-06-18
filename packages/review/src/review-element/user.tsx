@@ -68,7 +68,7 @@ function Name({
   children,
 }: PropsWithChildren<{ onClick?: MouseEventHandler<HTMLDivElement> }>) {
   return (
-    <Text bold size="medium" onClick={onClick}>
+    <Text bold size="medium" onClick={onClick} wordBreak="break-word">
       {children}
     </Text>
   )
