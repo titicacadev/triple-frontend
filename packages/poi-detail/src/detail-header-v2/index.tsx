@@ -97,10 +97,10 @@ export default function DetailHeaderV2({
                 {` ${formatNumber(scrapsCount)}`}
               </Text>
             )}
-            {reviewsCount > 0 && (
+            {(reviewsCount || reviewsRating) && (
               <Text inline bold size="mini" alpha={1}>
                 <Rating score={reviewsRating} />
-                {` ${formatNumber(reviewsCount)}`}
+                {reviewsCount > 0 && `${formatNumber(reviewsCount)}`}
                 <ArrowButton onClick={onReviewsRatingClick}>
                   리뷰보기
                 </ArrowButton>
