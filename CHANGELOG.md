@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 2.27.4
+
+### router
+
+- router 패키지의 문서를 보강합니다. (#1440)
+
+### ui-flow
+
+- file기반 라우팅을 사용하지 않고 rewrites를 쓸 때 authGuard가 제대로 작동하지 않는 문제 수정 (#1441)
+
+### review
+
+- POI 상세 리뷰에서 텍스트 겹치는 오류를 수정합니다. (#1443)
+
 ## 2.27.3
 
 ### poi-list-elements
