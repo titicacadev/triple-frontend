@@ -14,7 +14,11 @@ function Wrapper({
   children,
 }: React.PropsWithChildren<{ sessionId?: string }>) {
   return (
-    <SessionContextProvider sessionId={sessionId} authBasePath="/login">
+    <SessionContextProvider
+      sessionId={sessionId}
+      authBasePath="/login"
+      initialUser={{ uid: '' }}
+    >
       <HistoryProvider
         appUrlScheme="dev-soto"
         webUrlBase="https://triple-dev.titicaca-corp.com"

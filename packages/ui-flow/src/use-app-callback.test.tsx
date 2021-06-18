@@ -16,7 +16,7 @@ function Wrapper({
 }: React.PropsWithChildren<{ isPublic: boolean }>) {
   return (
     <UserAgentProvider value={{ isPublic, isMobile: false, app: null, os: {} }}>
-      <SessionContextProvider authBasePath="/login">
+      <SessionContextProvider authBasePath="/login" initialUser={{ uid: '' }}>
         <HistoryProvider
           appUrlScheme="dev-soto"
           webUrlBase="https://triple-dev.titicaca-corp.com"
