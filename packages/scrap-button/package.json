@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/scrap-button",
-  "version": "2.27.3",
+  "version": "2.27.4",
   "description": "Listing filter UI",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
