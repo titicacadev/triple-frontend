@@ -54,22 +54,6 @@ interface HistoryContextValue {
 
 const NOOP = () => {}
 
-function addHashToCurrentUrl({
-  hash,
-  basePathCompatible,
-}: {
-  hash: string
-  basePathCompatible?: boolean
-}) {
-  return generateUrl(
-    { hash },
-    !basePathCompatible && Router.asPath === '/' ? '' : Router.asPath,
-    {
-      arrayFormat: 'repeat',
-    },
-  )
-}
-
 const URIHashContext = createContext<URIHash>('')
 const HistoryFunctionsContext = createContext<
   Omit<HistoryContextValue, 'uriHash'>
@@ -208,7 +192,7 @@ export function HistoryProvider({
 
   const replace = useCallback<HistoryContextValue['replace']>(
     (hash, config = {}) => {
-      const { useRouter = isAndroid, basePathCompatible } = config
+      const { useRouter = isAndroid } = config
       const hashHistories = hasHistoriesRef.current
 
       hashHistories.pop()
@@ -217,7 +201,7 @@ export function HistoryProvider({
       setUriHash(hash)
 
       if (useRouter) {
-        return Router.replace(addHashToCurrentUrl({ hash, basePathCompatible }))
+        window.location.replace(`#${hash}`)
       } else {
         return new Promise((resolve) => resolve(true))
       }
@@ -227,7 +211,7 @@ export function HistoryProvider({
 
   const push = useCallback<HistoryContextValue['push']>(
     (hash, config = {}) => {
-      const { useRouter = isAndroid, basePathCompatible } = config
+      const { useRouter = isAndroid } = config
       const hashHistories = hasHistoriesRef.current
 
       hashHistories.push({ hash, useRouter })
@@ -235,7 +219,7 @@ export function HistoryProvider({
       setUriHash(hash)
 
       if (useRouter) {
-        return Router.push(addHashToCurrentUrl({ hash, basePathCompatible }))
+        window.location.hash = hash
       } else {
         return new Promise((resolve) => resolve(true))
       }
