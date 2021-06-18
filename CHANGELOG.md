@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.27.5
+
+### poi-detail
+
+- DetailHeader V2 리뷰 섹션의 로직을 수정합니다 (#1445)
+
 ## 2.27.4
 
 ### router
