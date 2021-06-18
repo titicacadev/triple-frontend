@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/image-carousel",
-  "version": "2.27.5",
+  "version": "2.27.6",
   "description": "Triple Image Carousel",
   "main": "lib/index.js",
   "files": [
@@ -17,7 +17,7 @@
   "dependencies": {
     "@egjs/flicking": "^3.8.1",
     "@egjs/react-flicking": "^3.7.0",
-    "@titicaca/core-elements": "^2.27.5",
-    "@titicaca/type-definitions": "^2.27.5"
+    "@titicaca/core-elements": "^2.27.6",
+    "@titicaca/type-definitions": "^2.27.6"
   }
 }
