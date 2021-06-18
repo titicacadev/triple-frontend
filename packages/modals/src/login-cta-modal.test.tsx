@@ -28,7 +28,7 @@ function Wrappers({ children }: PropsWithChildren<{}>) {
       defaultPageTitle="MOCK_PAGE_TITLE"
       defaultPageDescription="MOCK_PAGE_DESCRIPTION"
     >
-      <SessionContextProvider>
+      <SessionContextProvider initialUser={{ uid: '' }}>
         <HistoryProvider>{children}</HistoryProvider>
       </SessionContextProvider>
     </EnvProvider>
