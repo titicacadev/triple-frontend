@@ -100,7 +100,7 @@ export default function DetailHeaderV2({
             {reviewsRating && (
               <Text inline bold size="mini" alpha={1}>
                 <Rating score={reviewsRating} />
-                {reviewsCount > 0 && `${formatNumber(reviewsCount)}`}
+                {reviewsCount > 0 && ` ${formatNumber(reviewsCount)}`}
                 <ArrowButton onClick={onReviewsRatingClick}>
                   리뷰보기
                 </ArrowButton>
