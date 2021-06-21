@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/carousel",
-  "version": "2.27.6",
+  "version": "2.27.7",
   "description": "Triple Carousel",
   "author": "torres-triple <torres@triple-corp.com>",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
@@ -22,10 +22,10 @@
   "dependencies": {
     "@egjs/flicking": "^3.8.1",
     "@egjs/react-flicking": "^3.7.0",
-    "@titicaca/core-elements": "^2.27.6",
-    "@titicaca/icons": "^2.27.6",
-    "@titicaca/intersection-observer": "^2.27.6",
-    "@titicaca/type-definitions": "^2.27.6"
+    "@titicaca/core-elements": "^2.27.7",
+    "@titicaca/icons": "^2.27.7",
+    "@titicaca/intersection-observer": "^2.27.7",
+    "@titicaca/type-definitions": "^2.27.7"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*"

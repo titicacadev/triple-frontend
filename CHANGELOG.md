@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.27.7
+
+### poi-detail
+
+- Detail-Header V2 리뷰 Rating과 숫자 사이의 간격을 조절합니다 (#1450)
+
 ## 2.27.6
 
 ### review
