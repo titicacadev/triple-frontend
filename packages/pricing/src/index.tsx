@@ -235,12 +235,14 @@ export default function Pricing(props: PricingProps) {
       maxWidth,
       tooltipColor,
       discountRate,
+      padding,
     } = props
 
     return (
       <FixedPricing
         active={active}
         label={label}
+        padding={padding}
         buttonText={buttonText}
         buttonDisabled={buttonDisabled}
         salePrice={salePrice}
