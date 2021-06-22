@@ -6,6 +6,7 @@ import {
   Tooltip,
   Text,
   Button,
+  MarginPadding,
 } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 
@@ -24,6 +25,7 @@ export interface FixedPricingProps {
   onTooltipClick?: (e?: React.SyntheticEvent) => any
   maxWidth?: number
   tooltipColor?: string
+  padding?: MarginPadding
 }
 
 const FloatedFrame = styled(Container)`
@@ -61,6 +63,7 @@ export default function FixedPricing({
   onTooltipClick,
   isSoldOut = false,
   maxWidth,
+  padding = { top: 14, right: 20, bottom: 14, left: 20 },
 }: FixedPricingProps) {
   const pricingLabel = label ? (
     typeof label === 'string' ? (
@@ -84,14 +87,7 @@ export default function FixedPricing({
 
   return (
     <Drawer active={active} overflow="visible">
-      <FloatedFrame
-        padding={{
-          top: 14,
-          right: 20,
-          bottom: 14,
-          left: 20,
-        }}
-      >
+      <FloatedFrame padding={padding}>
         <Container
           position="relative"
           clearing
