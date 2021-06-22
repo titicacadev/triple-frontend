@@ -85,7 +85,9 @@ export default function DetailHeaderV2({
         onLongClick={!isPublic ? handleLongClick : undefined}
         {...props}
       >
-        <Text.Title>{names.primary || names.ko || names.en}</Text.Title>
+        <Text.Title margin={{ bottom: 6 }}>
+          {names.primary || names.ko || names.en}
+        </Text.Title>
         <Text size="tiny" alpha={0.5}>
           {names.local || names.en}
         </Text>
