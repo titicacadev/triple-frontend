@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/booking-completion",
-  "version": "2.27.7",
+  "version": "2.28.0",
   "description": "Triple Booking completion Page",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,8 +15,8 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^2.27.7",
-    "@titicaca/type-definitions": "^2.27.7"
+    "@titicaca/core-elements": "^2.28.0",
+    "@titicaca/type-definitions": "^2.28.0"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*"
