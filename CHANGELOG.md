@@ -2,9 +2,17 @@
 
 ## 2.28.0
 
-### listing-filter, pricing
+### poi-detail
 
-- 호텔엔드 개선 디자인 QA 반영에 따른 컴포넌트 수정 (#1452)
+`DetailHeader` V2 타이틀고 영문 타이틀 사이의 간격을 수정합니다. (#1452)
+
+### pricing
+
+`FixedPricing` 컴포넌트의 패딩을 외부에서 수정할 수 있게 인터페이스를 추가합니다. (#1452)
+
+### listing-filter
+
+`listing-filter` container의 padding을 외부에서 수정할 수 있게 인터페이스를 추가합니다. (#1452)
 
 ### Triple-document
 
