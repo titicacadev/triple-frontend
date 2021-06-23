@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
+import { MarginPadding, paddingMixin } from '@titicaca/core-elements'
 import { blue, gray, gray200, gray300, white } from '@titicaca/color-palette'
 
 const FilterEntryBase = styled.div<{ active?: boolean; disabled?: boolean }>`
@@ -186,20 +187,22 @@ function FilterEntry({
   )
 }
 
-const ListingFilterBase = styled.div`
+const ListingFilterBase = styled.div<{ padding?: MarginPadding }>`
   white-space: nowrap;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
   cursor: pointer;
 
-  padding: 0 20px 10px 20px;
-
   ::-webkit-scrollbar {
     display: none;
   }
+
+  ${paddingMixin}
 `
 
-export default class ListingFilter extends React.PureComponent {
+export default class ListingFilter extends React.PureComponent<{
+  padding?: MarginPadding
+}> {
   static FilterEntry = FilterEntry
 
   static ExpandingFilterEntry = ExpandingFilterEntry
@@ -208,9 +211,12 @@ export default class ListingFilter extends React.PureComponent {
 
   render() {
     const {
-      props: { children },
+      props: {
+        children,
+        padding = { top: 0, right: 20, bottom: 10, left: 20 },
+      },
     } = this
 
-    return <ListingFilterBase>{children}</ListingFilterBase>
+    return <ListingFilterBase padding={padding}>{children}</ListingFilterBase>
   }
 }
