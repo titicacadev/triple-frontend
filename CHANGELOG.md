@@ -2,6 +2,18 @@
 
 ## 2.28.0
 
+### listing-filter, pricing
+
+- 호텔엔드 개선 디자인 QA 반영에 따른 컴포넌트 수정 (#1452)
+
+### Triple-document
+
+- Tna Element 교체 (#1418)
+
+### react-context
+
+- useABExperimentContext 훅 추가 (#1453)
+
 ## 2.27.7
 
 ### poi-detail
