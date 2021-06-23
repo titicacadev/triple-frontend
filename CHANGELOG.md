@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## 2.28.0
+
 ## 2.27.7
 
 ### poi-detail
