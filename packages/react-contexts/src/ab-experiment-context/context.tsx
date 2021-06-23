@@ -1,5 +1,4 @@
 import React, {
-  Context,
   createContext,
   PropsWithChildren,
   useCallback,
@@ -38,7 +37,7 @@ export function ABExperimentProvider({
 }>) {
   const { hasSessionId } = useSessionContext()
   const onErrorRef = useRef(onErrorFromProps)
-  const experimentMetas = useABExperimentContext(ABExperimentContext)
+  const experimentMetas = useContext(ABExperimentContext)
   const [meta, setMeta] = useState(metaFromSSR)
 
   useEffect(() => {
@@ -76,7 +75,7 @@ export function ABExperimentProvider({
 
 function useABExperimentMeta(slug: string, onError?: (error: Error) => void) {
   const { hasSessionId } = useSessionContext()
-  const metas = useABExperimentContext(ABExperimentContext)
+  const metas = useContext(ABExperimentContext)
   const meta = useMemo(() => metas[slug], [metas, slug])
 
   try {
@@ -200,6 +199,6 @@ export function useABExperimentVariant<
   return group && group in variants ? variants[group] : fallback
 }
 
-export function useABExperimentContext<T>(context: Context<T>): T {
-  return useContext(context)
+export function useABExperimentContext() {
+  return useContext(ABExperimentContext)
 }
