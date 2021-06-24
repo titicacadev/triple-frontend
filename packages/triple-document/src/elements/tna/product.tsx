@@ -86,8 +86,8 @@ export function TnaProductWithPrice({
     domesticAreas[0].displayName
   const {
     hasCoupon,
-    displayDefaultText,
-    displayDiscountPolicyText,
+    hasOnlyExpectedApplicableCoupon,
+    displayDiscountPolicy,
   } = generateProductsCouponTextByCase({
     applicableCoupon,
     expectedApplicableCoupon,
@@ -174,18 +174,37 @@ export function TnaProductWithPrice({
 
           {hasCoupon && (
             <Container margin={{ top: 4 }}>
-              <Text bold inlineBlock size="tiny" color="gray700">
-                {displayDefaultText}
-              </Text>
               <Text
                 bold
                 inlineBlock
                 size="tiny"
-                color="mint"
-                margin={{ left: 5 }}
+                color={hasOnlyExpectedApplicableCoupon ? 'mint' : 'gray700'}
               >
-                {displayDiscountPolicyText}
+                쿠폰할인
               </Text>
+              {displayDiscountPolicy ? (
+                <Text
+                  bold
+                  inlineBlock
+                  size="tiny"
+                  color="mint"
+                  margin={{ left: 5 }}
+                >
+                  {displayDiscountPolicy}
+                </Text>
+              ) : null}
+
+              {hasOnlyExpectedApplicableCoupon ? (
+                <Text
+                  bold
+                  inlineBlock
+                  size="tiny"
+                  color="gray700"
+                  margin={{ left: 5 }}
+                >
+                  가능
+                </Text>
+              ) : null}
             </Container>
           )}
         </Container>
