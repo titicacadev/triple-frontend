@@ -4,7 +4,7 @@ import { formatNumber } from '@titicaca/view-utilities'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
 import { TNAProductData } from './types'
-import { generateProductsCouponTextByCase } from './helpers'
+import { generateCoupon } from './helpers'
 
 const PLACEHOLDER_IMAGE_URL =
   'https://assets.triple.guide/images/ico-blank-see@2x.png'
@@ -88,7 +88,7 @@ export function TnaProductWithPrice({
     hasCoupon,
     hasOnlyExpectedApplicableCoupon,
     displayDiscountPolicy,
-  } = generateProductsCouponTextByCase({
+  } = generateCoupon({
     applicableCoupon,
     expectedApplicableCoupon,
   })
