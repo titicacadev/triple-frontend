@@ -1,4 +1,4 @@
-import { formatNumber } from '@titicaca/view-utilities'
+import { formatNumber } from './format-number'
 
 export function convertPriceInThousands(price: number) {
   if (Math.floor(price / 1000) === 0) {
