@@ -24,7 +24,7 @@ export default function AreaNames({
   vicinity?: string
   arrowAction?: React.ReactNode
 }) {
-  const names = areas[0]?.name || vicinity
+  const names = vicinity || areas[0]?.name
 
   return names ? (
     <AreaContainer>
