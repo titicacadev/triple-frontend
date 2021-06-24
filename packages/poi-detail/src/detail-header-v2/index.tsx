@@ -93,13 +93,13 @@ export default function DetailHeaderV2({
         </Text>
         {(reviewsRating || scrapsCount > 0) && (
           <Container margin={{ top: 14 }}>
-            {scrapsCount > 0 && (
+            {scrapsCount > 0 ? (
               <Text inline bold size="mini" alpha={1} margin={{ right: 10 }}>
                 <Icon name="save" size="tiny" />
                 {` ${formatNumber(scrapsCount)}`}
               </Text>
-            )}
-            {reviewsRating > 0 && (
+            ) : null}
+            {reviewsRating > 0 ? (
               <Text inline bold size="mini" alpha={1}>
                 <Rating score={reviewsRating} />
                 {reviewsCount > 0 && ` ${formatNumber(reviewsCount)}`}
@@ -107,7 +107,7 @@ export default function DetailHeaderV2({
                   리뷰보기
                 </ArrowButton>
               </Text>
-            )}
+            ) : null}
           </Container>
         )}
         <AreaNames
