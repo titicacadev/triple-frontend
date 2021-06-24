@@ -2,7 +2,7 @@ import { formatNumber } from '@titicaca/view-utilities'
 
 import { DiscountPolicy, TnaCoupon } from './types'
 
-export function generateProductsCouponTextByCase({
+export function generateCoupon({
   applicableCoupon,
   expectedApplicableCoupon,
 }: {
@@ -19,7 +19,7 @@ export function generateProductsCouponTextByCase({
     !applicableCoupon && !!expectedApplicableCoupon
   const displayDiscountPolicy =
     applicableCouponDiscountPolicy &&
-    generateDiscountPolicyText(applicableCouponDiscountPolicy)
+    getDiscountPolicy(applicableCouponDiscountPolicy)
   const displayPricePolicy =
     applicableCoupon && `${formatNumber(applicableAmountAfterUsingCoupon)}원`
 
@@ -31,7 +31,7 @@ export function generateProductsCouponTextByCase({
   }
 }
 
-export function generateDiscountPolicyText(discountPolicy: DiscountPolicy) {
+export function getDiscountPolicy(discountPolicy: DiscountPolicy) {
   const { type, value } = discountPolicy
 
   switch (type) {
@@ -42,7 +42,7 @@ export function generateDiscountPolicyText(discountPolicy: DiscountPolicy) {
   }
 }
 
-export function convertThousand(price: number) {
+export function convertPriceInThousands(price: number) {
   if (Math.floor(price / 1000) === 0) {
     return '원'
   } else {
@@ -60,10 +60,12 @@ export function convertPrice(price: number) {
       return `${formatNumber(price)}원`
 
     case price < 10000:
-      return convertThousand(price)
+      return convertPriceInThousands(price)
 
     case price < 10000000:
-      return `${Math.floor(price / 10000)}만${convertThousand(price % 10000)}`
+      return `${Math.floor(price / 10000)}만${convertPriceInThousands(
+        price % 10000,
+      )}`
 
     default: {
       return '최대 금액 초과'

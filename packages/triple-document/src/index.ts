@@ -3,7 +3,7 @@ import { TripleDocument } from './triple-document'
 export { default as ELEMENTS } from './elements'
 export { TripleElementData as TripleDocumentElementData } from './types'
 export * from './elements/text'
-export { generateProductsCouponTextByCase } from './elements/tna/helpers'
+export { generateCoupon } from './elements/tna/helpers'
 export { Slot } from './elements/tna/slot'
 
 export { useDeepLink } from './prop-context/deep-link'
