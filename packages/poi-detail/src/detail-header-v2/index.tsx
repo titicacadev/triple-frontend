@@ -99,7 +99,7 @@ export default function DetailHeaderV2({
                 {` ${formatNumber(scrapsCount)}`}
               </Text>
             )}
-            {reviewsRating && (
+            {reviewsRating > 0 && (
               <Text inline bold size="mini" alpha={1}>
                 <Rating score={reviewsRating} />
                 {reviewsCount > 0 && ` ${formatNumber(reviewsCount)}`}
