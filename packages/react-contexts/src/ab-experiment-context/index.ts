@@ -3,5 +3,6 @@ export {
   ABExperimentProvider,
   useABExperimentVariant,
   useABExperimentConversionTracker,
+  useABExperimentImpressionTracker,
   useABExperimentContext,
 } from './context'

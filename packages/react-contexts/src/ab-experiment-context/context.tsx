@@ -119,18 +119,11 @@ type EventAttributes<T = OptionalAttributes> = keyof T &
 export function useABExperimentConversionTracker(
   slug: string,
   onError?: (error: Error) => void,
-): {
-  trackExperimentSelection: <T = OptionalAttributes>(
-    params?: EventAttributes<T>,
-  ) => void
-  trackExperimentImpression: <T = OptionalAttributes>(
-    params?: EventAttributes<T>,
-  ) => void
-} {
+): <T = OptionalAttributes>(params?: EventAttributes<T>) => void {
   const { trackEvent } = useEventTrackingContext()
   const meta = useABExperimentMeta(slug, onError)
 
-  const trackExperimentSelection = useCallback(
+  return useCallback(
     (eventParams) => {
       if (meta) {
         const { testId, group } = meta
@@ -148,8 +141,23 @@ export function useABExperimentConversionTracker(
     },
     [meta, slug, trackEvent],
   )
+}
 
-  const trackExperimentImpression = useCallback(
+/**
+ * 주어진 slug의 AB 테스트 노출 이벤트를 기록합니다.
+ * 콜백 함수가 받는 파라미터는 이벤트에 따라 선택적으로 넣어줄 수 있습니다.
+ * @param slug 실험 slug
+ * @param onError
+ */
+
+export function useABExperimentImpressionTracker(
+  slug: string,
+  onError?: (error: Error) => void,
+): <T = OptionalAttributes>(params?: EventAttributes<T>) => void {
+  const { trackEvent } = useEventTrackingContext()
+  const meta = useABExperimentMeta(slug, onError)
+
+  return useCallback(
     (eventParams) => {
       if (meta) {
         const { testId, group } = meta
@@ -167,11 +175,6 @@ export function useABExperimentConversionTracker(
     },
     [meta, slug, trackEvent],
   )
-
-  return {
-    trackExperimentSelection,
-    trackExperimentImpression,
-  }
 }
 
 /**
