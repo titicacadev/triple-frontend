@@ -77,14 +77,17 @@ export function TripleDocument({
                 optimized={optimized}
               >
                 {children.map(({ type, value }, i) => {
-                  const Element = { ...ELEMENTS, ...customElements }[type]
+                  const RegularElement = ELEMENTS[type]
+                  const CustomElement = customElements[type]
+
+                  const Element = CustomElement || RegularElement
 
                   return (
                     Element && (
                       <Element
                         key={i}
                         value={value}
-                        {...(customElements
+                        {...(CustomElement
                           ? {
                               onResourceClick: resourceClickHandler,
                               onImageClick,
