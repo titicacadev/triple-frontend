@@ -43,6 +43,11 @@ interface EventTrackingContextValue {
     [key: string]: any
   }) => void
   viewItem: Function
+  /**
+   * Firebase Analytics Web 인스턴스에 User ID를 설정하는 함수.
+   * @param userId 빈 문자열이나 null을 넣으면 userId를 지울 수 있습니다.
+   */
+  setFirebaseUserId: (userId: string | null) => void
 }
 
 const Context = React.createContext<EventTrackingContextValue>({
@@ -50,6 +55,7 @@ const Context = React.createContext<EventTrackingContextValue>({
   trackEvent: NOOP,
   trackSimpleEvent: NOOP,
   viewItem: NOOP,
+  setFirebaseUserId: NOOP,
 })
 
 const DEFAULT_EVENT_NAME = 'user_interaction'
@@ -169,14 +175,22 @@ export function EventTrackingProvider({
     [trackEvent],
   )
 
+  const setFirebaseUserId: EventTrackingContextValue['setFirebaseUserId'] = useCallback(
+    (userId) => {
+      getFirebaseAnalyticsWebInstance()?.setUserId(userId || '')
+    },
+    [],
+  )
+
   const value = useMemo<EventTrackingContextValue>(
     () => ({
       viewItem: nativeViewItem,
       trackScreen,
       trackEvent,
       trackSimpleEvent,
+      setFirebaseUserId,
     }),
-    [trackEvent, trackScreen, trackSimpleEvent],
+    [setFirebaseUserId, trackEvent, trackScreen, trackSimpleEvent],
   )
 
   return <Context.Provider value={value}>{children}</Context.Provider>
