@@ -147,6 +147,7 @@ export function EventTrackingProvider({
         if (firebaseAnalyticsWebInstance) {
           firebaseAnalyticsWebInstance.logEvent('page_view', {
             page_path: path,
+            category: pageLabel,
           })
         }
 
@@ -157,7 +158,7 @@ export function EventTrackingProvider({
         onErrorRef.current?.(error)
       }
     },
-    [],
+    [pageLabel],
   )
 
   const trackEvent: EventTrackingContextValue['trackEvent'] = useCallback(
