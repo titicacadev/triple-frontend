@@ -149,31 +149,13 @@ export class EventTrackingProvider extends React.PureComponent<
     label,
     ...rest
   }) => {
-    const {
-      props: { pageLabel, onError },
-    } = this
-
-    try {
-      if (window.ga) {
-        window.ga('send', 'event', pageLabel, action, label)
-      }
-
-      if (hasAccessibleTripleNativeClients()) {
-        nativeTrackEvent({
-          ga: [pageLabel, action, label].filter((v) => v),
-          fa: {
-            category: pageLabel,
-            event_name: DEFAULT_EVENT_NAME,
-            action: action as string,
-            ...rest,
-          },
-        })
-      }
-    } catch (error) {
-      if (onError) {
-        onError(error)
-      }
-    }
+    return this.trackEvent({
+      ga: [action, label],
+      fa: {
+        action: action as string,
+        ...rest,
+      },
+    })
   }
 
   render() {
