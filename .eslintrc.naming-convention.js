@@ -50,6 +50,7 @@ const excludes = [
   '_triple_swipe_to_close',
   '_triple_no_navbar',
   '_triple_should_present',
+  'send_page_view',
 ]
 const regex = `^(${excludes.join('|')})$`
 

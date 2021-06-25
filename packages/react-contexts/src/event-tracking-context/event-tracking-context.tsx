@@ -64,12 +64,38 @@ const Context = React.createContext<EventTrackingContextValue>({
 const DEFAULT_EVENT_NAME = 'user_interaction'
 const WEB_FA_EVENT_NAME = 'web_user_interaction'
 
+declare global {
+  interface Window {
+    dataLayer: unknown[]
+  }
+}
+
+/**
+ * Firebase Analytics Web이 자동으로 page_view 이벤트를 기록하지 않게 설정하는 함수
+ *
+ * 참고: https://github.com/firebase/firebase-js-sdk/issues/3988
+ * 이후 버전(>= 9)에서 더 나은 해결책이 나올 수도 있습니다.
+ */
+function disableFirebaseAutoPageView() {
+  function gtag(..._: any[]) {
+    // eslint-disable-next-line prefer-rest-params
+    window.dataLayer.push(arguments)
+  }
+
+  if (typeof window !== 'undefined') {
+    window.dataLayer = window.dataLayer || []
+    gtag('set', { send_page_view: false })
+  }
+}
+
 function getFirebaseAnalyticsWebInstance() {
   if (
     typeof navigator !== 'undefined' &&
     !hasAccessibleTripleNativeClients() &&
     firebase.apps.length > 0
   ) {
+    disableFirebaseAutoPageView()
+
     return firebase.analytics()
   }
 
