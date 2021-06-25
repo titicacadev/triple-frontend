@@ -2,6 +2,7 @@ import React, {
   ComponentType,
   PropsWithChildren,
   useCallback,
+  useEffect,
   useMemo,
   useRef,
 } from 'react'
@@ -14,6 +15,8 @@ import {
 } from '@titicaca/triple-web-to-native-interfaces'
 import firebase from 'firebase'
 import 'firebase/analytics'
+
+import { useSessionContextSafely } from '../session-context'
 
 import { FAParams, GAParams, PixelParams } from './types'
 
@@ -98,6 +101,7 @@ export function EventTrackingProvider({
   onError: onErrorFromProps,
   children,
 }: PropsWithChildren<EventTrackingProviderProps>) {
+  const sessionContext = useSessionContextSafely() // TODO: v3에서 useSessionContext로 바꿔서 의존성 명시하기
   const onErrorRef = useRef(onErrorFromProps)
 
   const trackScreen: EventTrackingContextValue['trackScreen'] = useCallback(
@@ -192,6 +196,10 @@ export function EventTrackingProvider({
     }),
     [setFirebaseUserId, trackEvent, trackScreen, trackSimpleEvent],
   )
+
+  useEffect(() => {
+    setFirebaseUserId(sessionContext?.user?.uid || null)
+  }, [sessionContext?.user?.uid, setFirebaseUserId])
 
   return <Context.Provider value={value}>{children}</Context.Provider>
 }
