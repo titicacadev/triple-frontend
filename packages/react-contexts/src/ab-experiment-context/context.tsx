@@ -92,20 +92,22 @@ function useABExperimentMeta(slug: string, onError?: (error: Error) => void) {
   }
 }
 
+type OptionalAttributes = {
+  content_type?: string
+  item_id?: string
+  item_name?: string
+  region_id?: string
+  zone_id?: string
+}
 type ReservedAttributes =
   | 'action'
   | 'experiment_name'
   | 'experiment_id'
   | 'variant_id'
-type EventAttributes<
-  T = {
-    content_type?: string
-    item_id?: string
-    item_name?: string
-    region_id?: string
-    zone_id?: string
-  }
-> = keyof T & ReservedAttributes extends never ? T : Omit<T, ReservedAttributes>
+type EventAttributes<T = OptionalAttributes> = keyof T &
+  ReservedAttributes extends never
+  ? T
+  : Omit<T, ReservedAttributes>
 
 /**
  * 주어진 slug의 AB 테스트 전환 이벤트를 기록합니다.
@@ -117,21 +119,18 @@ type EventAttributes<
 export function useABExperimentConversionTracker(
   slug: string,
   onError?: (error: Error) => void,
-): <
-  T = {
-    content_type?: string
-    item_id?: string
-    item_name?: string
-    region_id?: string
-    zone_id?: string
-  }
->(
-  params?: EventAttributes<T>,
-) => void {
+): {
+  trackExperimentSelection: <T = OptionalAttributes>(
+    params?: EventAttributes<T>,
+  ) => void
+  trackExperimentImpression: <T = OptionalAttributes>(
+    params?: EventAttributes<T>,
+  ) => void
+} {
   const { trackEvent } = useEventTrackingContext()
   const meta = useABExperimentMeta(slug, onError)
 
-  return useCallback(
+  const trackExperimentSelection = useCallback(
     (eventParams) => {
       if (meta) {
         const { testId, group } = meta
@@ -149,6 +148,30 @@ export function useABExperimentConversionTracker(
     },
     [meta, slug, trackEvent],
   )
+
+  const trackExperimentImpression = useCallback(
+    (eventParams) => {
+      if (meta) {
+        const { testId, group } = meta
+
+        trackEvent({
+          fa: {
+            action: 'experiment_impression',
+            experiment_name: slug,
+            experiment_id: testId,
+            variant_id: group,
+            ...eventParams,
+          },
+        })
+      }
+    },
+    [meta, slug, trackEvent],
+  )
+
+  return {
+    trackExperimentSelection,
+    trackExperimentImpression,
+  }
 }
 
 /**
@@ -158,16 +181,7 @@ export function useABExperimentConversionTracker(
  * @param fallback 실험을 찾을 수 없거나 variants에 현재 실험군이 설정되어있지 않으면 반환하는 값
  * @param onError
  */
-export function useABExperimentVariant<
-  T,
-  U = {
-    content_type?: string
-    item_id?: string
-    item_name?: string
-    region_id?: string
-    zone_id?: string
-  }
->(
+export function useABExperimentVariant<T, U = OptionalAttributes>(
   slug: string,
   variants: {
     [group: string]: T
