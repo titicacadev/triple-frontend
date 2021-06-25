@@ -126,10 +126,11 @@ const experimentTargetMessage = useABExperimentVariant(
 ```tsx
 const trackComponentTestConversion = useABExperimentConversionTracker(
   COMPONENT_AB_TEST_ID,
-)
+)출
 const trackMessageTestConversion = useABExperimentConversionTracker(
   MESSAGE_AB_TEST_ID,
 )
+
 
 const handleButtonClick = () => {
   trackComponentTestConversion()
@@ -137,4 +138,33 @@ const handleButtonClick = () => {
 }
 
 return <Button onClick={handleButtonClick}>{experimentTargetMessage}</Button>
+```
+
+`useABExperimentImpressionTracker` 훅의 함수를 이용해 실험에서 측정하려는 목표 노출을 기록합니다.
+
+```tsx
+const trackComponentTestImpression = useABExperimentImpressionTracker(
+  COMPONENT_AB_TEST_ID,
+)
+const trackMessageTestImpression = useABExperimentImpressionTracker(
+  MESSAGE_AB_TEST_ID,
+)
+
+const handleButtonImpression = () => {
+  trackComponentTestImpression()
+  trackMessageTestImpression()
+}
+
+return (
+  <StaticIntersectionObserver
+    threshold={0.5}
+    onChange={({ isIntersecting }: { isIntersecting: boolean }) => {
+      if (isIntersecting) {
+        handleButtonImpression
+      }
+    }}
+  >
+    <Button onClick={handleButtonClick}>{experimentTargetMessage}</Button>
+  </StaticIntersectionObserver>
+)
 ```
