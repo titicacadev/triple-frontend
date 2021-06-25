@@ -51,6 +51,7 @@ const excludes = [
   '_triple_no_navbar',
   '_triple_should_present',
   'send_page_view',
+  'page_path',
 ]
 const regex = `^(${excludes.join('|')})$`
 

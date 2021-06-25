@@ -142,6 +142,14 @@ export function EventTrackingProvider({
           window.fbq('trackCustom', `PageView_${label}`, { path })
         }
 
+        const firebaseAnalyticsWebInstance = getFirebaseAnalyticsWebInstance()
+
+        if (firebaseAnalyticsWebInstance) {
+          firebaseAnalyticsWebInstance.logEvent('page_view', {
+            page_path: path,
+          })
+        }
+
         if (hasAccessibleTripleNativeClients()) {
           nativeTrackScreen(path, label)
         }
