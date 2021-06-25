@@ -126,11 +126,10 @@ const experimentTargetMessage = useABExperimentVariant(
 ```tsx
 const trackComponentTestConversion = useABExperimentConversionTracker(
   COMPONENT_AB_TEST_ID,
-)출
+)
 const trackMessageTestConversion = useABExperimentConversionTracker(
   MESSAGE_AB_TEST_ID,
 )
-
 
 const handleButtonClick = () => {
   trackComponentTestConversion()
