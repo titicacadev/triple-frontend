@@ -12,6 +12,8 @@ import {
   trackEvent as nativeTrackEvent,
   viewItem as nativeViewItem,
 } from '@titicaca/triple-web-to-native-interfaces'
+import firebase from 'firebase'
+import 'firebase/analytics'
 
 import { FAParams, GAParams, PixelParams } from './types'
 
@@ -51,6 +53,19 @@ const Context = React.createContext<EventTrackingContextValue>({
 })
 
 const DEFAULT_EVENT_NAME = 'user_interaction'
+const WEB_FA_EVENT_NAME = 'web_user_interaction'
+
+function getFirebaseAnalyticsWebInstance() {
+  if (
+    typeof navigator !== 'undefined' &&
+    !hasAccessibleTripleNativeClients() &&
+    firebase.apps.length > 0
+  ) {
+    return firebase.analytics()
+  }
+
+  return null
+}
 
 interface EventTrackingProviderProps {
   pageLabel: string
@@ -113,6 +128,15 @@ export function EventTrackingProvider({
           const { type = 'trackCustom', action, payload } = pixel
 
           window.fbq(type, action, { pageLabel, ...payload })
+        }
+
+        const firebaseAnalyticsWebInstance = getFirebaseAnalyticsWebInstance()
+
+        if (firebaseAnalyticsWebInstance && fa) {
+          firebaseAnalyticsWebInstance.logEvent(WEB_FA_EVENT_NAME, {
+            category: pageLabel,
+            ...fa,
+          })
         }
 
         if (hasAccessibleTripleNativeClients()) {
