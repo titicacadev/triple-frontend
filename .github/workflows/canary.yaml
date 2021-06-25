@@ -149,13 +149,8 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Notify canary publish success to slack
+      - name: Tag pull request SHA as "release-canary"
         if: success()
-        env:
-          SLACK_TITLE: ':tada: Canary publish Succeed'
-          SLACK_TOPIC: '${{ env.CANARY_VERSION }}'
-          SLACK_COLOR: good
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           TAG_NAME="release-canary"
 
@@ -181,7 +176,15 @@ jobs:
               -H 'Content-Type: application/json' \
               -d "{\"ref\":\"refs/tags/${TAG_NAME}\",\"sha\":\"${TAG_SHA}\"}"
           fi
-          npx @titicaca/gha-tools notify
+
+      - name: Notify canary publish success to slack
+        if: success()
+        env:
+          SLACK_TITLE: ':tada: Canary publish Succeed'
+          SLACK_TOPIC: '${{ env.CANARY_VERSION }}'
+          SLACK_COLOR: good
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx @titicaca/gha-tools notify
 
       - name: Notify canary publish failure to slack
         if: failure()
