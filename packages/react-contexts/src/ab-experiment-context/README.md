@@ -124,20 +124,17 @@ const experimentTargetMessage = useABExperimentVariant(
 `useABExperimentConversionTracker` 훅의 함수를 이용해 실험에서 측정하려는 목표 행동을 기록합니다.
 
 ```tsx
-const {
-  trackExperimentSelection,
-  trackExperimentImpression,
-} = useABExperimentConversionTracker(COMPONENT_AB_TEST_ID)
-
-const handleButtonSelection = () => {
-  trackExperimentSelection()
-}
-
-const handleButtonImpression = () => {
-  trackExperimentImpression()
-}
-
-return (
-  <Button onClick={handleButtonSelection}>{experimentTargetMessage}</Button>
+const trackComponentTestConversion = useABExperimentConversionTracker(
+  COMPONENT_AB_TEST_ID,
 )
+const trackMessageTestConversion = useABExperimentConversionTracker(
+  MESSAGE_AB_TEST_ID,
+)
+
+const handleButtonClick = () => {
+  trackComponentTestConversion()
+  trackMessageTestConversion()
+}
+
+return <Button onClick={handleButtonClick}>{experimentTargetMessage}</Button>
 ```
