@@ -5,6 +5,10 @@ on:
     types: [created]
 
 env:
+  # Node.js
+  NODE_VERSION: '15.x'
+  NPM_REGISTRY_URL: 'https://registry.npmjs.org'
+  # Slack Notification
   SLACK_CHANNEL: '#triple-web-dev-notifications'
   SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
   SLACK_USERNAME: 'Triple Frontend'
@@ -21,16 +25,13 @@ jobs:
   canary:
     if: github.event.issue.state == 'open' && contains(github.event.comment.html_url, '/pull/') && (endsWith(github.event.comment.body, 'canary publish') || endsWith(github.event.comment.body, 'canary release'))
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [15.x]
 
     steps:
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
-          registry-url: 'https://registry.npmjs.org'
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.NPM_REGISTRY_URL }}
 
       - name: Recognize head sha of pull request
         env:
