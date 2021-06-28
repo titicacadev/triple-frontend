@@ -124,7 +124,7 @@ jobs:
           NEXT_VERSION=$(node -e "const [major, minor, patch] = require('./lerna.json').version.split('.');console.log(['v'+major, minor, parseInt(patch, 10) + 1].join('.'))")
           REF_COUNT=$(node -p -e "Math.max(0, parseInt((\"$(git describe --always --long --dirty --match "v*.*.*")\".match(/^(?:.*@)?.*-(\d+)-.*?$/) || ['0', '0'])[1], 10) - 1)")
 
-          echo "CANARY_VERSION=$NEXT_VERSION-pr-${{ env.PR_NUMBER }}.$REF_COUNT" >> GITHUB_ENV
+          echo "CANARY_VERSION=$NEXT_VERSION-pr-${{ env.PR_NUMBER }}.$REF_COUNT" >> $GITHUB_ENV
 
       - name: Notify canary publish start to slack
         env:
