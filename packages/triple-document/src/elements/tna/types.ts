@@ -17,7 +17,7 @@ export interface TNAProductsResponse {
   description?: string
 }
 
-interface DomesticArea {
+export interface DomesticArea {
   displayName: string
   id: string
   name: string
