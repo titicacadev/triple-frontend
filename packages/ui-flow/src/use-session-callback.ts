@@ -12,14 +12,13 @@ import { useLoginCTAModal } from '@titicaca/modals'
 export function useSessionCallback<T extends (...args: any[]) => any>(
   fn: T,
   ...options:
-    | [boolean, string]
+    | [boolean | undefined, string]
     | [boolean]
-    | [undefined, string]
     | [
         {
           returnUrl?: string
           returnValue?: boolean
-          useAuthWeb?: boolean
+          skipTransitionModal?: boolean
         },
       ]
     | []
@@ -31,9 +30,9 @@ export function useSessionCallback<T extends (...args: any[]) => any>(
     (...args) => {
       if (!hasSessionId) {
         if (typeof options[0] === 'object') {
-          const { returnUrl, returnValue, useAuthWeb } = options[0]
+          const { returnUrl, returnValue, skipTransitionModal } = options[0]
 
-          if (useAuthWeb) {
+          if (skipTransitionModal) {
             login({ returnUrl })
           } else {
             show(returnUrl)
