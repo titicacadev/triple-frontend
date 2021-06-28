@@ -20,6 +20,7 @@ export interface FixedPricingProps {
   salePrice?: number
   isSoldOut?: boolean
   priceLabelOverride?: string | React.ReactNode
+  emptyOverride?: React.ReactNode
   buttonOverride?: React.ReactNode
   tooltipLabel?: string
   onClick?: (e?: React.SyntheticEvent) => any
@@ -77,6 +78,7 @@ export default function FixedPricing({
   isSoldOut = false,
   maxWidth,
   padding = { top: 14, right: 20, bottom: 14, left: 20 },
+  emptyOverride,
 }: FixedPricingProps) {
   const pricingLabel = label ? (
     typeof label === 'string' ? (
@@ -122,34 +124,37 @@ export default function FixedPricing({
           maxWidth={maxWidth}
           centered={!!maxWidth}
         >
-          {active && tooltipLabel && (
-            <Tooltip
-              borderRadius="30"
-              backgroundColor={tooltipColor}
-              positioning={{ top: -34 }}
-              label={tooltipLabel}
-              onClick={onTooltipClick}
-            />
+          {emptyOverride || (
+            <>
+              {active && tooltipLabel && (
+                <Tooltip
+                  borderRadius="30"
+                  backgroundColor={tooltipColor}
+                  positioning={{ top: -34 }}
+                  label={tooltipLabel}
+                  onClick={onTooltipClick}
+                />
+              )}
+              <FloatedPricingContainer floated="left">
+                {pricingLabel}
+                {pricing}
+                {pricingDescription}
+              </FloatedPricingContainer>
+              <PurchaseButtonContainer position="absolute">
+                <Button
+                  as="button"
+                  fluid
+                  borderRadius={4}
+                  size="small"
+                  color="blue"
+                  disabled={buttonDisabled}
+                  onClick={onClick}
+                >
+                  {buttonOverride || buttonText}
+                </Button>
+              </PurchaseButtonContainer>
+            </>
           )}
-          <FloatedPricingContainer floated="left">
-            {pricingLabel}
-            {pricing}
-            {pricingDescription}
-          </FloatedPricingContainer>
-
-          <PurchaseButtonContainer position="absolute">
-            <Button
-              as="button"
-              fluid
-              borderRadius={4}
-              size="small"
-              color="blue"
-              disabled={buttonDisabled}
-              onClick={onClick}
-            >
-              {buttonOverride || buttonText}
-            </Button>
-          </PurchaseButtonContainer>
         </Container>
       </FloatedFrame>
     </Drawer>

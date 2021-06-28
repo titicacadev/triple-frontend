@@ -237,6 +237,7 @@ export default function Pricing(props: PricingProps) {
       discountRate,
       padding,
       buttonOverride,
+      emptyOverride,
     } = props
 
     return (
@@ -257,6 +258,7 @@ export default function Pricing(props: PricingProps) {
         onTooltipClick={onTooltipClick}
         isSoldOut={isSoldOut}
         maxWidth={maxWidth}
+        emptyOverride={emptyOverride}
       />
     )
   } else {
