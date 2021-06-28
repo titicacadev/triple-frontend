@@ -19,7 +19,8 @@ export interface FixedPricingProps {
   buttonDisabled?: boolean
   salePrice?: number
   isSoldOut?: boolean
-  priceLabelOverride?: string
+  priceLabelOverride?: string | React.ReactNode
+  buttonOverride?: React.ReactNode
   tooltipLabel?: string
   onClick?: (e?: React.SyntheticEvent) => any
   onTooltipClick?: (e?: React.SyntheticEvent) => any
@@ -64,6 +65,7 @@ export default function FixedPricing({
   label,
   buttonText,
   buttonDisabled,
+  buttonOverride,
   description,
   salePrice,
   tooltipLabel,
@@ -96,6 +98,21 @@ export default function FixedPricing({
     )
   ) : null
 
+  const pricing =
+    typeof priceLabelOverride === 'string' || salePrice ? (
+      <Text
+        size="huge"
+        bold
+        margin={{ bottom: 3 }}
+        color={isSoldOut ? 'gray300' : 'gray'}
+      >
+        {priceLabelOverride || `${formatNumber(salePrice)}원`}
+        {discountRate}
+      </Text>
+    ) : typeof priceLabelOverride === 'object' ? (
+      priceLabelOverride
+    ) : null
+
   return (
     <Drawer active={active} overflow="visible">
       <FloatedFrame padding={padding}>
@@ -116,15 +133,7 @@ export default function FixedPricing({
           )}
           <FloatedPricingContainer floated="left">
             {pricingLabel}
-            <Text
-              size="huge"
-              bold
-              margin={{ bottom: 3 }}
-              color={isSoldOut ? 'gray300' : 'gray'}
-            >
-              {priceLabelOverride || `${formatNumber(salePrice)}원`}
-              {discountRate}
-            </Text>
+            {pricing}
             {pricingDescription}
           </FloatedPricingContainer>
 
@@ -138,7 +147,7 @@ export default function FixedPricing({
               disabled={buttonDisabled}
               onClick={onClick}
             >
-              {buttonText}
+              {buttonOverride || buttonText}
             </Button>
           </PurchaseButtonContainer>
         </Container>

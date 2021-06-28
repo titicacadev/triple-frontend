@@ -16,7 +16,7 @@ export type BasePrice = number | null
 interface RegularPricingProps {
   basePrice?: BasePrice
   salePrice?: number
-  priceLabelOverride?: string
+  priceLabelOverride?: string | React.ReactNode
   isSoldOut?: boolean
 }
 
@@ -27,7 +27,7 @@ interface RichPricingProps {
   label?: React.ReactNode
   pricingNote?: string
   description?: React.ReactNode
-  priceLabelOverride?: string
+  priceLabelOverride?: string | React.ReactNode
   hideDiscountRate?: boolean
   isSoldOut?: boolean
 }
