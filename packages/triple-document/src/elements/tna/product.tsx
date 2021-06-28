@@ -3,7 +3,7 @@ import { Text, Tag, Container, Image, Rating } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
-import { TNAProductData } from './types'
+import { TNAProductData, DomesticArea } from './types'
 import { generateCoupon } from './helpers'
 
 const PLACEHOLDER_IMAGE_URL =
@@ -80,10 +80,9 @@ export function TnaProductWithPrice({
     typeof rawSalePrice === 'string' ? parseInt(rawSalePrice) : rawSalePrice
   const basePrice =
     typeof rawBasePrice === 'string' ? parseInt(rawBasePrice) : rawBasePrice
-  const hasAreaName = domesticAreas.length > 0
-  const areaName =
-    domesticAreas.find(({ representative }) => representative)?.displayName ||
-    domesticAreas[0].displayName
+  const primaryDomesticArea: DomesticArea | undefined =
+    domesticAreas.find(({ representative }) => representative) ||
+    domesticAreas[0]
   const {
     hasCoupon,
     hasOnlyExpectedApplicableCoupon,
@@ -127,9 +126,9 @@ export function TnaProductWithPrice({
             {title}
           </Text>
 
-          {hasAreaName && (
+          {primaryDomesticArea && (
             <Text color="gray400" size="tiny" margin={{ top: 4 }}>
-              {areaName}
+              {primaryDomesticArea.displayName}
             </Text>
           )}
 
