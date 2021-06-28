@@ -236,6 +236,7 @@ export default function Pricing(props: PricingProps) {
       tooltipColor,
       discountRate,
       padding,
+      buttonOverride,
     } = props
 
     return (
@@ -244,6 +245,7 @@ export default function Pricing(props: PricingProps) {
         label={label}
         padding={padding}
         buttonText={buttonText}
+        buttonOverride={buttonOverride}
         buttonDisabled={buttonDisabled}
         salePrice={salePrice}
         description={description}
