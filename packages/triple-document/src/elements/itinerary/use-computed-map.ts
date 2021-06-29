@@ -19,7 +19,9 @@ type ItineraryMapData = {
  * TODO: move to use-safety-poi
  */
 function getLatLng({ source }: ItineraryItemType['poi']): LatLngLiteral {
-  const [lng, lat] = source.pointGeolocation?.coordinates
+  const [lng, lat] = source?.pointGeolocation?.coordinates
+    ? source?.pointGeolocation?.coordinates
+    : source?.geolocation?.coordinates
   return { lat, lng }
 }
 
@@ -29,7 +31,11 @@ function getLatLng({ source }: ItineraryItemType['poi']): LatLngLiteral {
  * [number, number][] -> { lat, lng } 으로 개선이 필요
  */
 function extractPoiCoordinate(items: ItineraryItemType[]) {
-  return items.map((item) => item.poi.source.pointGeolocation?.coordinates)
+  return items.map((item) =>
+    item.poi.source?.pointGeolocation
+      ? item.poi.source.pointGeolocation?.coordinates
+      : item.poi.source.geolocation?.coordinates,
+  )
 }
 
 function extracPathMap(items: ItineraryItemType[]): LatLngLiteral[] {
