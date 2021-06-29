@@ -26,26 +26,6 @@ it('트리플 앱에서 요청한 request는 아무 역할을 하지 않습니�
   expect(oldGSSP).toBeCalledWith(ctx)
 })
 
-it('일반 브라우저 환경이라면 fetcher로 /api/users/me를 호출합니다.', async () => {
-  const oldGSSP = jest.fn()
-  mockedGet.mockResolvedValueOnce({ result: { uid: 'MOCK_USER' } } as any)
-
-  const newGSSP = authGuard(oldGSSP)
-  const ctx = {
-    req: {
-      headers: {
-        'user-agent':
-          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36',
-      },
-    },
-  } as any
-
-  await newGSSP(ctx)
-
-  expect(mockedGet).toBeCalledWith('/api/users/me', expect.anything())
-  expect(mockedGet).toBeCalledTimes(1)
-})
-
 it('/api/users/me가 회원 정보를 반환하면 customContext에 회원 정보를 추가하여 기존 getServerSideProps를 호출합니다.', async () => {
   const oldGSSP = jest.fn()
   const user = { uid: 'MOCK_USER' }
