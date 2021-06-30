@@ -153,8 +153,8 @@ function RangePicker({
       }
 
       onDatesChange({
-        startDate: nextFrom && moment(nextFrom).format('YYYY-MM-DD'),
-        endDate: nextTo && moment(nextTo).format('YYYY-MM-DD'),
+        startDate: nextFrom ? moment(nextFrom).format('YYYY-MM-DD') : null,
+        endDate: nextTo ? moment(nextTo).format('YYYY-MM-DD') : null,
         nights: nextTo && nextFrom ? moment(nextTo).diff(nextFrom, 'days') : 0,
       })
     },
