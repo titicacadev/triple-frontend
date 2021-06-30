@@ -15,7 +15,7 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@react-google-maps/api": "^1.13.0",
+    "@react-google-maps/api": "^2.2.0",
     "@titicaca/color-palette": "^2.30.2",
     "@titicaca/core-elements": "^2.30.2"
   },
