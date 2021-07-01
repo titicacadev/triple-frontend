@@ -30,6 +30,7 @@ export interface FixedPricingV2Props {
   maxWidth?: number
   tooltipColor?: string
   padding?: MarginPadding
+  emptyOverride?: React.ReactNode
 }
 
 const FloatedFrame = styled(Container)`
@@ -80,6 +81,7 @@ function LoadingSkeleton() {
 }
 
 export default function FixedPricingV2({
+  emptyOverride,
   loading,
   active,
   label,
@@ -126,48 +128,56 @@ export default function FixedPricingV2({
           maxWidth={maxWidth}
           centered={!!maxWidth}
         >
-          {!loading && active && tooltipLabel && (
-            <Tooltip
-              borderRadius="30"
-              backgroundColor={tooltipColor}
-              positioning={{ top: -34 }}
-              label={tooltipLabel}
-              onClick={onTooltipClick}
-            />
-          )}
-          <FloatedPricingContainer floated="left">
-            {loading ? (
-              <LoadingSkeleton />
-            ) : (
-              <>
-                {pricingLabel}
-                <Text
-                  size="huge"
-                  bold
-                  margin={{ bottom: 3 }}
-                  color={isSoldOut ? 'gray300' : 'gray'}
-                >
-                  {priceLabelOverride || `${formatNumber(salePrice)}원`}
-                  {discountRate}
-                </Text>
-                {pricingDescription}
-              </>
-            )}
-          </FloatedPricingContainer>
+          {emptyOverride || (
+            <>
+              {!loading && active && tooltipLabel && (
+                <Tooltip
+                  borderRadius="30"
+                  backgroundColor={tooltipColor}
+                  positioning={{ top: -34 }}
+                  label={tooltipLabel}
+                  onClick={onTooltipClick}
+                />
+              )}
+              <FloatedPricingContainer floated="left">
+                {loading ? (
+                  <LoadingSkeleton />
+                ) : (
+                  <>
+                    {pricingLabel}
+                    <Text
+                      size="huge"
+                      bold
+                      margin={{ bottom: 3 }}
+                      color={isSoldOut ? 'gray300' : 'gray'}
+                    >
+                      {priceLabelOverride || `${formatNumber(salePrice)}원`}
+                      {discountRate}
+                    </Text>
+                    {pricingDescription}
+                  </>
+                )}
+              </FloatedPricingContainer>
 
-          <PurchaseButtonContainer position="absolute">
-            <Button
-              as="button"
-              fluid
-              borderRadius={4}
-              size="small"
-              color="blue"
-              disabled={buttonDisabled}
-              onClick={onClick}
-            >
-              {loading ? <LoadingIndicator loading={loading} /> : buttonText}
-            </Button>
-          </PurchaseButtonContainer>
+              <PurchaseButtonContainer position="absolute">
+                <Button
+                  as="button"
+                  fluid
+                  borderRadius={4}
+                  size="small"
+                  color="blue"
+                  disabled={buttonDisabled}
+                  onClick={onClick}
+                >
+                  {loading ? (
+                    <LoadingIndicator loading={loading} />
+                  ) : (
+                    buttonText
+                  )}
+                </Button>
+              </PurchaseButtonContainer>
+            </>
+          )}
         </Container>
       </FloatedFrame>
     </Drawer>
