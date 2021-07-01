@@ -13,7 +13,7 @@ import { formatNumber } from '@titicaca/view-utilities'
 
 import LoadingIndicator from './loading-indicator'
 
-export interface FixedLoadingPricingProps {
+export interface FixedPricingV2Props {
   loading: boolean
   active?: boolean
   label?: React.ReactNode
@@ -79,7 +79,7 @@ function LoadingSkeleton() {
   )
 }
 
-export default function FixedLoadingPricing({
+export default function FixedPricingV2({
   loading,
   active,
   label,
@@ -96,7 +96,7 @@ export default function FixedLoadingPricing({
   isSoldOut = false,
   maxWidth,
   padding = { top: 14, right: 20, bottom: 14, left: 20 },
-}: FixedLoadingPricingProps) {
+}: FixedPricingV2Props) {
   const pricingLabel = label ? (
     typeof label === 'string' ? (
       <Text color="gray" alpha={0.5} size="mini">
