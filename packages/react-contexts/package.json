@@ -21,6 +21,7 @@
   },
   "peerDependencies": {
     "@titicaca/triple-web-to-native-interfaces": "*",
+    "firebase": "^7.24.0",
     "next": "*"
   },
   "devDependencies": {
