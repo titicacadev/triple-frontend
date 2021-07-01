@@ -126,7 +126,7 @@ export default function FixedLoadingPricing({
           maxWidth={maxWidth}
           centered={!!maxWidth}
         >
-          {active && tooltipLabel && (
+          {!loading && active && tooltipLabel && (
             <Tooltip
               borderRadius="30"
               backgroundColor={tooltipColor}

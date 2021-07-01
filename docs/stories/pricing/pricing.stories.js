@@ -100,3 +100,44 @@ storiesOf('pricing / Pricing', module)
       />
     )
   })
+  .add('FixedLoading', () => {
+    const hasAction = boolean('툴팁액션', false)
+    const useStringDescription = boolean('문자 타입의 설명')
+    const useStringLabel = boolean('문자 타입의 라벨')
+
+    return (
+      <Pricing
+        fixedLoading
+        loading={false}
+        active={true}
+        basePrice={30000}
+        salePrice={25000}
+        priceLabelOverride={text('메세지')}
+        label={
+          useStringLabel ? (
+            text('라벨', '1박 세금포함')
+          ) : (
+            <Text size="mini">1박 세금포함</Text>
+          )
+        }
+        buttonText="객실예약"
+        buttonDisabled={boolean('버튼 비활성화', false)}
+        description={
+          useStringDescription ? (
+            text('설명', '쿠폰적용시 10,000원')
+          ) : (
+            <PricingDescription />
+          )
+        }
+        discountRate={
+          <Text inline bold size="huge" color="red" margin={{ left: 4 }}>
+            5%
+          </Text>
+        }
+        tooltipLabel={text('툴팁 라벨', '쿠폰사용시 -15,000원 더 할인!')}
+        onTooltipClick={hasAction ? () => window.alert('레릿꼬오') : null}
+        isSoldOut={boolean('판매완료', false)}
+        maxWidth={number('max width', 720)}
+      />
+    )
+  })
