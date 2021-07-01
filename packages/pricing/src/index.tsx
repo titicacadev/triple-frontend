@@ -10,6 +10,9 @@ import {
 import { GlobalSizes } from '@titicaca/type-definitions'
 
 import FixedPricing, { FixedPricingProps } from './fixed-pricing'
+import FixedLoadingPricing, {
+  FixedLoadingPricingProps,
+} from './fixed-loading-pricing'
 
 export type BasePrice = number | null
 
@@ -33,9 +36,18 @@ interface RichPricingProps {
 }
 
 type PricingProps =
-  | ({ rich: true; fixed?: false } & RichPricingProps)
-  | ({ rich?: false; fixed: true } & FixedPricingProps)
-  | ({ rich?: false; fixed?: false } & RegularPricingProps)
+  | ({ rich: true; fixed?: false; fixedLoading?: false } & RichPricingProps)
+  | ({ rich?: false; fixed: true; fixedLoading?: false } & FixedPricingProps)
+  | ({
+      rich?: false
+      fixed?: false
+      fixedLoading: true
+    } & FixedLoadingPricingProps)
+  | ({
+      rich?: false
+      fixed?: false
+      fixedLoading?: false
+    } & RegularPricingProps)
 
 const FONT_SIZE: Partial<Record<GlobalSizes, string>> = {
   mini: '12px',
@@ -240,6 +252,44 @@ export default function Pricing(props: PricingProps) {
 
     return (
       <FixedPricing
+        active={active}
+        label={label}
+        padding={padding}
+        buttonText={buttonText}
+        buttonDisabled={buttonDisabled}
+        salePrice={salePrice}
+        description={description}
+        onClick={onClick}
+        priceLabelOverride={priceLabelOverride}
+        tooltipLabel={tooltipLabel}
+        tooltipColor={tooltipColor}
+        discountRate={discountRate}
+        onTooltipClick={onTooltipClick}
+        isSoldOut={isSoldOut}
+        maxWidth={maxWidth}
+      />
+    )
+  } else if (props.fixedLoading) {
+    const {
+      loading,
+      active,
+      label,
+      buttonText,
+      buttonDisabled,
+      description,
+      onClick,
+      tooltipLabel,
+      onTooltipClick,
+      isSoldOut,
+      maxWidth,
+      tooltipColor,
+      discountRate,
+      padding,
+    } = props
+
+    return (
+      <FixedLoadingPricing
+        loading={loading}
         active={active}
         label={label}
         padding={padding}
