@@ -38,7 +38,7 @@ const Indicator = styled.span<{
   animation-fill-mode: both;
 `
 
-export default function LoadingIndicator({
+export default function PurchaseButtonLoadingIndicator({
   loading,
   indicatorCount = 3,
   color = 'var(--color-white)',
