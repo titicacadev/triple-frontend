@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { withKnobs, boolean, text, number } from '@storybook/addon-knobs'
-import Pricing from '@titicaca/pricing'
+import Pricing, { FixedPricingV2 } from '@titicaca/pricing'
 import { Container, Text } from '@titicaca/core-elements'
 
 function PricingDescription() {
@@ -100,15 +100,14 @@ storiesOf('pricing / Pricing', module)
       />
     )
   })
-  .add('FixedLoading', () => {
+  .add('FixedPriceV2', () => {
     const hasAction = boolean('툴팁액션', false)
     const useStringDescription = boolean('문자 타입의 설명')
     const useStringLabel = boolean('문자 타입의 라벨')
 
     return (
-      <Pricing
-        fixedLoading
-        loading={false}
+      <FixedPricingV2
+        loading={true}
         active={true}
         basePrice={30000}
         salePrice={25000}
