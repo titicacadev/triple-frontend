@@ -5,13 +5,12 @@ import {
   Drawer,
   Tooltip,
   Text,
-  Button,
   MarginPadding,
   Skeleton,
 } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 
-import LoadingIndicator from './loading-indicator'
+import PurchaseButton from './purchase-button'
 
 export interface FixedPricingV2Props {
   loading: boolean
@@ -160,21 +159,12 @@ export default function FixedPricingV2({
               </FloatedPricingContainer>
 
               <PurchaseButtonContainer position="absolute">
-                <Button
-                  as="button"
-                  fluid
-                  borderRadius={4}
-                  size="small"
-                  color="blue"
+                <PurchaseButton
+                  loading={loading}
                   disabled={buttonDisabled}
+                  buttonText={buttonText}
                   onClick={onClick}
-                >
-                  {loading ? (
-                    <LoadingIndicator loading={loading} />
-                  ) : (
-                    buttonText
-                  )}
-                </Button>
+                />
               </PurchaseButtonContainer>
             </>
           )}
