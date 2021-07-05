@@ -7,9 +7,9 @@ import { CircleMarker } from '.'
  * TODO:
  * TF 에 통합하면서 타이핑 변경이 필요합니다.
  */
-type PoiType = 'attraction' | 'restaurant' | 'hotel'
+type MarkerType = 'attraction' | 'restaurant' | 'hotel' | 'tna'
 
-function getColorOfType(type: PoiType) {
+function getColorOfType(type: MarkerType) {
   switch (type) {
     case 'hotel':
       return mint
@@ -18,12 +18,14 @@ function getColorOfType(type: PoiType) {
       return 'rgba(255, 97, 104, 1)'
     case 'attraction':
       return purple
+    case 'tna':
+      return 'rgba(255, 130, 36, 1)'
   }
 
   throw new Error('Unknown color of content type')
 }
 
-function getActivePinImageUrl(type: PoiType) {
+function getActivePinImageUrl(type: MarkerType) {
   return `https://assets.triple.guide/images/img-map-${type}-timetable-pick@3x.png`
 }
 
@@ -42,7 +44,7 @@ function getActivePinImageUrl(type: PoiType) {
 
 type HoCProps = Omit<Parameters<typeof CircleMarker>[0], 'color' | 'src'>
 
-export default function withTypeCircleMarker(type: PoiType) {
+export default function withTypeCircleMarker(type: MarkerType) {
   const color = getColorOfType(type)
   const src = getActivePinImageUrl(type)
 
