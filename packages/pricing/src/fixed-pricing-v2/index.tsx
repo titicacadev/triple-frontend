@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import {
   Container,
   Drawer,
@@ -7,6 +7,7 @@ import {
   Text,
   MarginPadding,
   Skeleton,
+  safeAreaInsetMixin,
 } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 
@@ -36,19 +37,7 @@ const FloatedFrame = styled(Container)`
   border-top: 1px solid #efefef;
   background: #fff;
 
-  @supports (padding: max(0px)) and (padding: env(safe-area-inset-bottom)) {
-    ${({ padding }) =>
-      padding?.bottom
-        ? css`
-            padding-bottom: max(
-              ${padding.bottom}px,
-              env(safe-area-inset-bottom, ${padding.bottom}px)
-            );
-          `
-        : css`
-            padding-bottom: max(14px, env(safe-area-inset-bottom, 14px));
-          `}
-  }
+  ${safeAreaInsetMixin}
 `
 
 const FloatedPricingContainer = styled(Container)`
