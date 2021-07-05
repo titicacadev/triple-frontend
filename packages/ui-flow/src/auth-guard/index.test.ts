@@ -330,10 +330,8 @@ describe('트리플 앱에서 로그인이 필요하면 토큰 새로고침을 �
       resolvedUrl: '/test-url?refreshed=true',
     } as any
 
-    process.env.NEXT_PUBLIC_APP_SCHEME = 'dev-soto'
     await expect(newGSSP(appContext)).rejects.toThrowError()
 
     expect(oldGSSP).toBeCalledTimes(0)
-    delete process.env.NEXT_PUBLIC_APP_SCHEME
   })
 })
