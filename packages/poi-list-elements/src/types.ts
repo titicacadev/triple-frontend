@@ -16,6 +16,7 @@ type PoiType = 'attraction' | 'restaurant' | 'hotel'
 export interface PoiListElementType {
   id: string
   type: PoiType
+  categories?: { id: string; name: string }[]
   nameOverride?: string
   reviewed?: boolean
   scraped?: boolean
@@ -30,7 +31,7 @@ export interface PoiListElementType {
   }
   source: {
     areas?: { name: string }[]
-    categories?: { name: string }[]
+    categories?: { id: string; filter: boolean; name: string }[]
     comment?: string
     scrapsCount?: number
     reviewsCount?: number
