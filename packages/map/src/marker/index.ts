@@ -5,5 +5,6 @@ export * from './with-type-circle-marker'
 
 /** Hotel Poi 용 pre-defined CircleMarker */
 export const HotelCircleMarker = withTypeCircleMarker('hotel')
-export const AttractionCirlceMarker = withTypeCircleMarker('attraction')
-export const RestaurantCirlceMarker = withTypeCircleMarker('restaurant')
+export const AttractionCircleMarker = withTypeCircleMarker('attraction')
+export const RestaurantCircleMarker = withTypeCircleMarker('restaurant')
+export const TnaCircleMarker = withTypeCircleMarker('tna')
