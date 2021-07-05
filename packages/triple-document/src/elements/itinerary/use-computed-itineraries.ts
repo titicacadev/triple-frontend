@@ -57,6 +57,7 @@ export default function useItinerary({ itinerary }: Props) {
     return items.map(({ poi, memo, schedule, transportation: raw }, i) => {
       const {
         type,
+        categories: gqlCategories,
         source: { id, names, categories, areas, regionId },
       } = poi
       /** NOTE: 이동수단(walk, bus, car) 은 여러개 일 수 있으나 화면에는 첫번째 것을 표시 */
@@ -65,7 +66,10 @@ export default function useItinerary({ itinerary }: Props) {
       const name = getSafetyPoiName(names)
 
       const categoryNames =
-        categories && categories.map((category) => category.name).join(',')
+        (gqlCategories &&
+          gqlCategories.map((category) => category.name).join(',')) ||
+        (categories && categories.map((category) => category.name).join(','))
+
       const areaNames = areas && areas.map((area) => area.name).join(',')
       const description = [categoryNames, areaNames]
         .filter((i) => i)
