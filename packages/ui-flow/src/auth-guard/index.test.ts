@@ -314,7 +314,7 @@ describe('트리플 앱에서 로그인이 필요하면 토큰 새로고침을 �
     })
   })
 
-  it('토큰 새로고침 이후 /api/users/me가 다시 401로 응답하면 로그인 뷰로 이동합니다.', async () => {
+  it('토큰 새로고침 이후 /api/users/me가 다시 401로 에러를 냅니다.', async () => {
     mockedGet.mockResolvedValueOnce({ status: 401 } as any)
 
     const oldGSSP = jest.fn()
@@ -331,18 +331,9 @@ describe('트리플 앱에서 로그인이 필요하면 토큰 새로고침을 �
     } as any
 
     process.env.NEXT_PUBLIC_APP_SCHEME = 'dev-soto'
-    const result = await newGSSP(appContext)
-    delete process.env.NEXT_PUBLIC_APP_SCHEME
+    await expect(newGSSP(appContext)).rejects.toThrowError()
 
     expect(oldGSSP).toBeCalledTimes(0)
-    expect(result).toEqual({
-      redirect: {
-        destination: `dev-soto:///login?returnUrl=${encodeURIComponent(
-          '/test-url?refreshed=true&attemptedLogin=true',
-        )}`,
-        basePath: false,
-        permanent: false,
-      },
-    })
+    delete process.env.NEXT_PUBLIC_APP_SCHEME
   })
 })

@@ -66,28 +66,14 @@ export function authGuard<Props>(
     if (status === 401 || isNonMember) {
       if (userAgentString && parseApp(userAgentString) && status === 401) {
         const { query: currentQuery } = parseUrl(resolvedUrl)
-        const { refreshed, attemptedLogin } = strictQuery(
+        const { refreshed } = strictQuery(
           currentQuery ? qs.parse(currentQuery) : ({} as any),
         )
           .boolean('refreshed')
-          .boolean('attemptedLogin')
           .use()
 
-        if (refreshed && !attemptedLogin) {
-          const loginReturnUrl = generateUrl(
-            { query: qs.stringify({ attemptedLogin: true }) },
-            returnUrl,
-          )
-
-          return {
-            redirect: {
-              destination: `${
-                process.env.NEXT_PUBLIC_APP_SCHEME
-              }:///login?returnUrl=${encodeURIComponent(loginReturnUrl)}`,
-              basePath: false,
-              permanent: false,
-            },
-          }
+        if (refreshed) {
+          throw new Error('세션 갱신에 실패했습니다.')
         }
 
         const destinationQuery = qs.stringify({
