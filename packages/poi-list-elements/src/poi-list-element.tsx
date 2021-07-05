@@ -1,20 +1,20 @@
 import React from 'react'
+import { PoiGQL } from '@titicaca/graphql-type-definitions'
 
-import { PoiListElementType } from './types'
-import {
-  CompactPoiListElement,
-  CompactPoiListElementProps,
-} from './compact-poi-list-element'
 import {
   ExtendedPoiListElement,
   ExtendedPoiListElementProps,
 } from './extended-poi-list-element'
+import {
+  CompactPoiListElement,
+  CompactPoiListElementProps,
+} from './compact-poi-list-element'
 
-export type PoiListElementProps<T extends PoiListElementType> =
+export type PoiListElementProps<T extends PoiGQL> =
   | ({ compact: true } & CompactPoiListElementProps<T>)
   | ({ compact?: false; optimized?: boolean } & ExtendedPoiListElementProps<T>)
 
-export function PoiListElement<T extends PoiListElementType>({
+export function PoiListElement<T extends PoiGQL>({
   compact,
   ...props
 }: PoiListElementProps<T>) {

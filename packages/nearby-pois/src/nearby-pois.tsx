@@ -10,6 +10,7 @@ import {
 } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { PointGeoJSON } from '@titicaca/type-definitions'
+import { PoiGQL } from '@titicaca/graphql-type-definitions'
 
 import { NearByPoiType } from './types'
 import nearbyPoisReducer, {
@@ -85,7 +86,7 @@ export default function NearbyPois({
       dispatch(
         appendPois({
           type: 'attraction',
-          pois: attractions,
+          pois: (attractions as unknown) as PoiGQL[],
           hasMore: attractions.length === DEFAULT_PAGE_SIZE,
         }),
       )
@@ -93,7 +94,7 @@ export default function NearbyPois({
       dispatch(
         appendPois({
           type: 'restaurant',
-          pois: restaurants,
+          pois: (restaurants as unknown) as PoiGQL[],
           hasMore: restaurants.length === DEFAULT_PAGE_SIZE,
         }),
       )
@@ -121,7 +122,7 @@ export default function NearbyPois({
     dispatch(
       appendPois({
         type: currentTab,
-        pois: additionalPois,
+        pois: (additionalPois as unknown) as PoiGQL[],
         hasMore: additionalPois.length === SUBSEQUENT_PAGE_SIZE,
       }),
     )

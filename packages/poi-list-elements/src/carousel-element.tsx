@@ -8,15 +8,12 @@ import {
 } from '@titicaca/core-elements'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
 import { FrameRatioAndSizes } from '@titicaca/type-definitions'
+import { PoiGQL } from '@titicaca/graphql-type-definitions'
 
 import { POI_IMAGE_PLACEHOLDERS, TYPE_NAMES } from './constants'
-import {
-  POIListElementBaseProps,
-  ActionButtonElement,
-  PoiListElementType,
-} from './types'
+import { POIListElementBaseProps, ActionButtonElement } from './types'
 
-export default function PoiCarouselElement<T extends PoiListElementType>({
+export default function PoiCarouselElement<T extends PoiGQL>({
   poi,
   poi: {
     type,

@@ -3,11 +3,13 @@ import ExtendedResourceListElement, {
   ResourceListElementProps,
 } from '@titicaca/resource-list-element'
 import { useScrapsContext } from '@titicaca/react-contexts'
+import { PoiGQL } from '@titicaca/graphql-type-definitions'
+import { ImageMeta } from '@titicaca/type-definitions'
 
 import { POI_IMAGE_PLACEHOLDERS } from './constants'
-import { POIListElementBaseProps, PoiListElementType } from './types'
+import { POIListElementBaseProps } from './types'
 
-interface ExtendedPoiListElementBaseProps<T extends PoiListElementType>
+interface ExtendedPoiListElementBaseProps<T extends PoiGQL>
   extends POIListElementBaseProps<T> {
   hideScrapButton?: boolean
   maxCommentLines?: number
@@ -18,16 +20,17 @@ interface ExtendedPoiListElementBaseProps<T extends PoiListElementType>
 }
 
 export type ExtendedPoiListElementProps<
-  T extends PoiListElementType
+  T extends PoiGQL
 > = ExtendedPoiListElementBaseProps<T> &
   Partial<Pick<ResourceListElementProps<T>, 'as'>>
 
-export function ExtendedPoiListElement<T extends PoiListElementType>({
+export function ExtendedPoiListElement<T extends PoiGQL>({
   poi,
   poi: {
     id,
     type,
     nameOverride,
+    categories = [],
     scraped,
     reviewsCount: reviewsCountWithGraphql,
     scrapsCount: scrapsCountWithGraphql,
@@ -36,7 +39,6 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
       names,
       image,
       areas = [],
-      categories = [],
       comment,
       reviewsCount: rawReviewsCount,
       scrapsCount: rawScrapsCount,
@@ -54,7 +56,18 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   isAdvertisement,
   notes,
   optimized,
-}: ExtendedPoiListElementProps<T> & { optimized?: boolean }) {
+}: ExtendedPoiListElementProps<T> & {
+  optimized?: boolean
+  poi: {
+    distance?: number | string
+    scraped?: boolean
+    source: PoiGQL['source'] & {
+      scrapsCount?: number
+      reviewsCount?: number
+      reviewsRating?: number
+    }
+  }
+}) {
   const { deriveCurrentStateAndCount } = useScrapsContext()
   const {
     source: { starRating },
@@ -65,7 +78,6 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
           source: { starRating: undefined },
         }
   const [area] = areas
-  const [category] = categories
 
   const { scrapsCount } = deriveCurrentStateAndCount({
     id,
@@ -75,7 +87,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   const reviewsCount = Number((reviewsCountWithGraphql ?? rawReviewsCount) || 0)
   const note = (
     notes || [
-      starRating ? `${starRating}성급` : category ? category.name : null,
+      starRating ? `${starRating}성급` : categories?.[0]?.name || null,
       area ? area.name : vicinity,
     ]
   )
@@ -87,10 +99,10 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
       as={as}
       scraped={scraped}
       resource={poi}
-      image={image}
+      image={image as ImageMeta}
       imagePlaceholder={POI_IMAGE_PLACEHOLDERS[type]}
       name={nameOverride || names.ko || names.en || names.local || undefined}
-      comment={comment}
+      comment={comment as string}
       distance={distanceOverride || distance}
       distanceSuffix={distanceSuffix}
       note={note}

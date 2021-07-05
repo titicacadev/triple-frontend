@@ -36,7 +36,8 @@
   },
   "devDependencies": {
     "@sentry/browser": "^6.2.5",
-    "@titicaca/content-utilities": "^2.9.0",
+    "@titicaca/content-utilities": "^3.8.1",
+    "@titicaca/graphql-type-definitions": "^3.8.1",
     "@types/semver": "^7.3.6"
   }
 }

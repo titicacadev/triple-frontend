@@ -6,33 +6,30 @@ import {
   Container,
 } from '@titicaca/core-elements'
 import { OutlineScrapButton } from '@titicaca/scrap-button'
+import { PoiGQL } from '@titicaca/graphql-type-definitions'
 
-import {
-  POIListElementBaseProps,
-  ActionButtonElement,
-  PoiListElementType,
-} from './types'
+import { POIListElementBaseProps, ActionButtonElement } from './types'
 import { TYPE_NAMES } from './constants'
 
-interface CompactPoiListElementBaseProps<T extends PoiListElementType>
+interface CompactPoiListElementBaseProps<T extends PoiGQL>
   extends POIListElementBaseProps<T> {
   actionButtonElement?: ActionButtonElement
 }
 
 export type CompactPoiListElementProps<
-  T extends PoiListElementType
+  T extends PoiGQL
 > = CompactPoiListElementBaseProps<T> &
   Partial<Pick<Parameters<typeof ResourceListItem>['0'], 'as'>>
 
 const POI_IMAGE_PLACEHOLDERS_SMALL: {
-  [key in PoiListElementType['type']]: string
+  [key in PoiGQL['type']]: string
 } = {
   attraction: 'https://assets.triple.guide/images/ico-blank-see-small@2x.png',
   restaurant: 'https://assets.triple.guide/images/ico-blank-eat-small@2x.png',
   hotel: 'https://assets.triple.guide/images/ico-blank-hotel-small@2x.png',
 }
 
-export function CompactPoiListElement<T extends PoiListElementType>({
+export function CompactPoiListElement<T extends PoiGQL>({
   actionButtonElement,
   poi,
   poi: {

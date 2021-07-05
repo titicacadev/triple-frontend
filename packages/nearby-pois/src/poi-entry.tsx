@@ -2,12 +2,11 @@ import React, { useCallback } from 'react'
 import { List } from '@titicaca/core-elements'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { PoiListElement } from '@titicaca/poi-list-elements'
+import { PoiGQL } from '@titicaca/graphql-type-definitions'
 import {
   useEventTrackingContext,
   useHistoryFunctions,
 } from '@titicaca/react-contexts'
-
-import { ListingPOI } from './types'
 
 export default function PoiEntry({
   index,
@@ -21,7 +20,7 @@ export default function PoiEntry({
   optimized,
 }: {
   index: number
-  poi: ListingPOI
+  poi: PoiGQL
   eventLabel: string
   optimized?: boolean
 }) {
