@@ -11,9 +11,15 @@ import { FrameRatioAndSizes } from '@titicaca/type-definitions'
 import { PoiGQL } from '@titicaca/graphql-type-definitions'
 
 import { POI_IMAGE_PLACEHOLDERS, TYPE_NAMES } from './constants'
-import { POIListElementBaseProps, ActionButtonElement } from './types'
+import {
+  POIListElementBaseProps,
+  ActionButtonElement,
+  PoiListElementType,
+} from './types'
 
-export default function PoiCarouselElement<T extends PoiGQL>({
+export default function PoiCarouselElement<
+  T extends PoiGQL | PoiListElementType
+>({
   poi,
   poi: {
     type,

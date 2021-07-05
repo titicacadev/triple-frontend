@@ -16,6 +16,8 @@ import { useScrapsContext } from '@titicaca/react-contexts'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
 import { PoiGQL } from '@titicaca/graphql-type-definitions'
 
+import { PoiListElementType } from '../types'
+
 import DirectionButton, { DIRECTION_BUTTON_WIDTH } from './direction-button'
 
 const IMAGE_WIDTH = 58
@@ -74,7 +76,7 @@ export default function POICardElement({
   optimized,
 }: {
   id: string
-  type: PoiGQL['type']
+  type: PoiListElementType['type'] | PoiGQL['type']
   scraped: boolean
   /**
    * @deprecated 더이상 사용하지 않습니다.

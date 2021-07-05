@@ -4,6 +4,7 @@ import {
   PoiListElement,
   PoiCarouselElement,
   PoiListElementProps,
+  PoiListElementType,
 } from '@titicaca/poi-list-elements'
 import { Text } from '@titicaca/core-elements'
 import { PoiGQL } from '@titicaca/graphql-type-definitions'
@@ -25,8 +26,8 @@ const PoiPrice = styled.div`
   background-color: #fafafa;
 `
 
-type ExtendedPOIListElementData = PoiGQL & {
-  source: PoiGQL['source'] & {
+type ExtendedPOIListElementData = (PoiListElementType | PoiGQL) & {
+  source: (PoiListElementType['source'] | PoiGQL['source']) & {
     pricing?: {
       nightlyPrice?: number | null
     } | null

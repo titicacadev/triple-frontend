@@ -1,6 +1,6 @@
 import { PoiGQL } from '@titicaca/graphql-type-definitions'
 
-import { NearByPoiType } from './types'
+import { ListingPOI, NearByPoiType } from './types'
 
 const FETCH_POIS = 'nearby-pois/FETCH_POIS'
 const APPEND_POIS = 'nearby-pois/APPEND_POIS'
@@ -12,12 +12,12 @@ type NearbyPoisAction = ReturnType<
 
 export interface NearbyPoisState {
   attraction: {
-    pois: PoiGQL[]
+    pois: ListingPOI[] | PoiGQL[]
     fetching: boolean
     hasMore: boolean | undefined
   }
   restaurant: {
-    pois: PoiGQL[]
+    pois: ListingPOI[] | PoiGQL[]
     fetching: boolean
     hasMore: boolean | undefined
   }
@@ -37,7 +37,7 @@ export function appendPois({
   hasMore,
 }: {
   type: NearByPoiType
-  pois: PoiGQL[]
+  pois: ListingPOI[] | PoiGQL[]
   hasMore: boolean
 }) {
   return {

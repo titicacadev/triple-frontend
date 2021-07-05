@@ -4,12 +4,11 @@ import ExtendedResourceListElement, {
 } from '@titicaca/resource-list-element'
 import { useScrapsContext } from '@titicaca/react-contexts'
 import { PoiGQL } from '@titicaca/graphql-type-definitions'
-import { ImageMeta } from '@titicaca/type-definitions'
 
 import { POI_IMAGE_PLACEHOLDERS } from './constants'
-import { POIListElementBaseProps } from './types'
+import { POIListElementBaseProps, PoiListElementType } from './types'
 
-interface ExtendedPoiListElementBaseProps<T extends PoiGQL>
+interface ExtendedPoiListElementBaseProps<T extends PoiGQL | PoiListElementType>
   extends POIListElementBaseProps<T> {
   hideScrapButton?: boolean
   maxCommentLines?: number
@@ -20,17 +19,17 @@ interface ExtendedPoiListElementBaseProps<T extends PoiGQL>
 }
 
 export type ExtendedPoiListElementProps<
-  T extends PoiGQL
+  T extends PoiGQL | PoiListElementType
 > = ExtendedPoiListElementBaseProps<T> &
   Partial<Pick<ResourceListElementProps<T>, 'as'>>
 
-export function ExtendedPoiListElement<T extends PoiGQL>({
+export function ExtendedPoiListElement<T extends PoiGQL | PoiListElementType>({
   poi,
   poi: {
     id,
     type,
     nameOverride,
-    categories = [],
+    categories: categoriesWithGraphql = [],
     scraped,
     reviewsCount: reviewsCountWithGraphql,
     scrapsCount: scrapsCountWithGraphql,
@@ -39,6 +38,7 @@ export function ExtendedPoiListElement<T extends PoiGQL>({
       names,
       image,
       areas = [],
+      categories = [],
       comment,
       reviewsCount: rawReviewsCount,
       scrapsCount: rawScrapsCount,
@@ -78,6 +78,7 @@ export function ExtendedPoiListElement<T extends PoiGQL>({
           source: { starRating: undefined },
         }
   const [area] = areas
+  const [category] = categoriesWithGraphql ?? categories
 
   const { scrapsCount } = deriveCurrentStateAndCount({
     id,
@@ -87,7 +88,7 @@ export function ExtendedPoiListElement<T extends PoiGQL>({
   const reviewsCount = Number((reviewsCountWithGraphql ?? rawReviewsCount) || 0)
   const note = (
     notes || [
-      starRating ? `${starRating}성급` : categories?.[0]?.name || null,
+      starRating ? `${starRating}성급` : category ? category.name : null,
       area ? area.name : vicinity,
     ]
   )
@@ -99,10 +100,10 @@ export function ExtendedPoiListElement<T extends PoiGQL>({
       as={as}
       scraped={scraped}
       resource={poi}
-      image={image as ImageMeta}
+      image={image}
       imagePlaceholder={POI_IMAGE_PLACEHOLDERS[type]}
       name={nameOverride || names.ko || names.en || names.local || undefined}
-      comment={comment as string}
+      comment={comment}
       distance={distanceOverride || distance}
       distanceSuffix={distanceSuffix}
       note={note}
