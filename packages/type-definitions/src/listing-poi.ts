@@ -5,7 +5,7 @@ import { PointGeoJSON } from './geojson'
 interface ListingPOISourceBase {
   id: string
   areas?: { name: string }[]
-  categories?: { name: string }[]
+  categories?: { id: string; filter: boolean; name: string }[]
   comment?: string
   grade: number
   hasTnaProducts?: boolean
@@ -24,6 +24,7 @@ interface ListingPOIBase {
   reviewed: boolean
   scraped: boolean
   distance?: number
+  categories?: { id: string; name: string }[]
 }
 
 export interface ListingAttraction extends ListingPOIBase {
