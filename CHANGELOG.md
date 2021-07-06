@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## 2.29.0
+
+- 릴리즈된 버전을 PR 댓글로 추가합니다 (#1462)
+- CANARY_VERSION 환경변수로 노출되지 않는 문제 수정 (#1464)
+
+### poi-list-element
+
+- categories 타입 변경 및 PoiGQL categories를 사용합니다 (#1473)
+
+### pricing
+
+- FixedPricingV2 컴포넌트를 새로 생성합니다. (#1470)
+
+### ui-flow
+
+- 앱 환경에서 authGuard가 작동할 수 있도록 확장 (#1468)
+- useSessionCallback 에 useAuthWeb 옵션 추가 (#1463)
+
+### react-context
+
+- Event Tracking Context에 Firebase Web 연동을 추가합니다. (#1434)
+- trackSimpleEvent 퇴장을 준비합니다. (#1460)
+- ab-experiment-context에 experiment_impression 액션의 이벤트를 추가합니다. (#1461)
+
+### triple-document
+
+- Custom element 사용 시 warning을 제거합니다. (#1459)
+- 쿠폰 관련 로직을 정리합니다. (#1457)
+
 ## 2.28.1
 
 ### poi-detail
