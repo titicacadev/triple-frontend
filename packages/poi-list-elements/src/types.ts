@@ -31,7 +31,7 @@ export interface PoiListElementType {
   }
   source: {
     areas?: { name: string }[]
-    categories?: { id: string; filter: boolean; name: string }[]
+    categories?: { id: string; filter?: boolean; name: string }[]
     comment?: string
     scrapsCount?: number
     reviewsCount?: number

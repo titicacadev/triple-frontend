@@ -5,7 +5,7 @@ import { PointGeoJSON } from './geojson'
 interface ListingPOISourceBase {
   id: string
   areas?: { name: string }[]
-  categories?: { id: string; filter: boolean; name: string }[]
+  categories?: { id: string; filter?: boolean; name: string }[]
   comment?: string
   grade: number
   hasTnaProducts?: boolean
