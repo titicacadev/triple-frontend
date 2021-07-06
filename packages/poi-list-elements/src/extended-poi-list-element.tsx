@@ -29,7 +29,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
     type,
     nameOverride,
     scraped,
-    categories = [],
+    categories: categoriesWithGraphql = [],
     reviewsCount: reviewsCountWithGraphql,
     scrapsCount: scrapsCountWithGraphql,
     reviewsRating: reviewsRatingWithGraphql,
@@ -38,6 +38,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
       image,
       areas = [],
       comment,
+      categories = [],
       reviewsCount: rawReviewsCount,
       scrapsCount: rawScrapsCount,
       reviewsRating: rawReviewsRating,
@@ -65,7 +66,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
           source: { starRating: undefined },
         }
   const [area] = areas
-  const [category] = categories
+  const [category] = categoriesWithGraphql ?? categories
 
   const { scrapsCount } = deriveCurrentStateAndCount({
     id,
