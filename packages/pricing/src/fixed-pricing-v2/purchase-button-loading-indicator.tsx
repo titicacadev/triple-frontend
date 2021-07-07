@@ -12,9 +12,9 @@ interface IndicatorProps {
 }
 
 const pulse = keyframes`
-  0% {transform: scale(1);opacity: 1}
-  45% {transform: scale(0.1);opacity: 0.7}
-  80% {transform: scale(1);opacity: 1}
+  0% {transform: translateY(5px);opacity: 1}
+  50% {transform: translateY(-5px);opacity: 0.7}
+  100% {transform: translateY(5px);opacity: 1}
 `
 
 const Indicator = styled.span<{
@@ -33,18 +33,17 @@ const Indicator = styled.span<{
   animation: ${({ index, speedMultiplier }) => css`
     ${pulse} ${0.75 / speedMultiplier}s ${(index * 0.12) /
     speedMultiplier}s infinite
-        cubic-bezier(0.2, 0.68, 0.18, 1.08);
+        cubic-bezier(0.62, 0.28, 0.23, 0.99) both;
   `};
-  animation-fill-mode: both;
 `
 
 export default function PurchaseButtonLoadingIndicator({
   loading,
   indicatorCount = 3,
   color = 'var(--color-white)',
-  size = 11,
-  margin = 2,
-  speedMultiplier = 1,
+  size = 6,
+  margin = 3,
+  speedMultiplier = 0.75,
 }: IndicatorProps) {
   return loading ? (
     <FlexBox flex alignItems="center" justifyContent="center">
