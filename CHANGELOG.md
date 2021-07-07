@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 2.29.1
+
+### pricing
+
+- FixedPricingV2 컴포넌트의 `PurchaseButtonLoadingIndicator` 애니메이션 동작 방식을 수정합니다. (#1476)
+
+### core-elements
+
+- global-style에 blue500 color set 을 추가합니다. (#1476)
+
+### color-palette
+
+- colors set에 blue500을 추가합니다. (#1476)
+
 ## 2.29.0
 
 ### poi-list-element
