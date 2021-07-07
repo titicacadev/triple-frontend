@@ -18,6 +18,7 @@ export const GlobalStyle = createGlobalStyle`
     --color-blue: rgba(54, 143, 255, 1);
     --color-blue60: rgba(54, 143, 255, 0.06);
     --color-blue100: rgba(54, 143, 255, 0.1);
+    --color-blue500: rgba(54, 143, 255, 0.5);
     --color-blue980: rgba(54, 143, 255, 0.98);
     --color-mint: rgba(38, 206, 194, 1);
     --color-mint100: rgba(38, 206, 194, 0.1);

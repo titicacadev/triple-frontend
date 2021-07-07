@@ -79,6 +79,11 @@ export const blue60 = 'rgba(54, 143, 255, 0.06)'
 export const blue100 = 'rgba(54, 143, 255, 0.1)'
 
 /**
+ * @deprecated :root에 선언된 --color-blue500를 사용해주세요.
+ */
+export const blue500 = `rgba(54, 143, 255, 0.5)`
+
+/**
  * @deprecated :root에 선언된 --color-blue980를 사용해주세요.
  */
 export const blue980 = 'rgba(54, 143, 255, 0.98)'

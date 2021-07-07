@@ -20,7 +20,7 @@ export default function PurchaseButton({
       fluid
       borderRadius={4}
       size="small"
-      color="blue"
+      color={loading ? 'blue500' : 'blue'}
       disabled={disabled}
       onClick={onClick}
     >
