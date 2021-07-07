@@ -8,11 +8,11 @@
 
 ### core-elements
 
-- global-style에 blue500 color set 을 추가합니다. (#1476)
+- `global-style` 에 blue500 color set 을 추가합니다. (#1476)
 
 ### color-palette
 
-- colors set에 blue500을 추가합니다. (#1476)
+- `colors` 에 blue500을 추가합니다. (#1476)
 
 ## 2.29.0
 
