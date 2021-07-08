@@ -55,9 +55,11 @@ function BookingCompletion({
   region,
 }: BookingCompletionProps) {
   const { navigate } = useHistoryFunctions()
+  const defaultModalType = 'general'
+  const TransitionType = defaultModalType as any
 
   const handleMoveToRegion = useAppCallback(
-    'general',
+    TransitionType,
     useCallback(() => {
       onMoveToRegion()
       navigate(`/regions/${region?.id}`)
