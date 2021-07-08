@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Container, Text, Button } from '@titicaca/core-elements'
 import { useHistoryFunctions } from '@titicaca/react-contexts'
 import styled from 'styled-components'
 import { TranslatedProperty } from '@titicaca/type-definitions'
+import { useAppCallback } from '@titicaca/ui-flow'
+import { TransitionModal, TransitionType } from '@titicaca/modals'
 
 interface Region {
   id: string
@@ -18,6 +20,7 @@ interface BookingCompletionProps {
   onMoveToRegion?: () => void
   descriptions?: string[]
   region?: Region
+  deepLink?: string
 }
 
 const DescriptionText = styled(Text)`
@@ -52,8 +55,18 @@ function BookingCompletion({
   onMoveToRegion = () => {},
   descriptions,
   region,
+  deepLink,
 }: BookingCompletionProps) {
   const { navigate } = useHistoryFunctions()
+
+  const handleMoveToRegion = useAppCallback(
+    TransitionType.General,
+    useCallback(() => {
+      onMoveToRegion()
+      navigate(`/regions/${region?.id}`)
+    }, [navigate, onMoveToRegion, region?.id]),
+  )
+
   return (
     <>
       <Container margin={{ bottom: 12 }}>
@@ -118,16 +131,15 @@ function BookingCompletion({
             <RegionButton
               fluid
               margin={{ top: 6 }}
-              onClick={() => {
-                onMoveToRegion()
-                navigate(`/regions/${region.id}`)
-              }}
+              onClick={handleMoveToRegion}
             >
               {region.names.ko || region.names.en} 여행 준비하러 가기
             </RegionButton>
           ) : null}
         </>
       )}
+
+      <TransitionModal deepLink={deepLink} />
     </>
   )
 }
