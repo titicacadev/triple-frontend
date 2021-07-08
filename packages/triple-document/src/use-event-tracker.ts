@@ -6,7 +6,6 @@ export interface EventLog {
   title?: string
   itemId?: string
   product?: boolean
-  regionId?: string
 }
 
 export enum EventTypeEnum {
@@ -129,9 +128,9 @@ export default function useCommonEventTracker({
     }: {
       id: string
       title?: string
-      buttonName: string
+      buttonName?: string
       regionId?: string
-      contentType: string
+      contentType?: string
     }) => {
       trackEvent({
         fa: {
