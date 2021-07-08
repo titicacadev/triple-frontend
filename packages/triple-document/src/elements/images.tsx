@@ -15,6 +15,10 @@ import { useImageClickHandler } from '../prop-context/image-click-handler'
 import { useLinkClickHandler } from '../prop-context/link-click-handler'
 import { useImageSource } from '../prop-context/image-source'
 import { useMediaConfig } from '../prop-context/media-config'
+import useCommonEventTracker, {
+  EventTypeEnum,
+  EventLog,
+} from '../use-event-tracker'
 
 import DocumentCarousel from './shared/document-carousel'
 import generateClickHandler from './shared/generate-click-handler'
@@ -25,11 +29,15 @@ const PLAYS_INLINE_APP_VERSION = '4.10.0'
 
 export default function Images({
   value: { images, display },
+  type,
+  event,
 }: {
   value: {
     images: ImageMeta[]
     display: MediaDisplayProperty
   }
+  type?: EventTypeEnum
+  event?: EventLog
 }) {
   const onImageClick = useImageClickHandler()
   const onLinkClick = useLinkClickHandler()
@@ -57,6 +65,7 @@ export default function Images({
       semver.lt(appVersion, PLAYS_INLINE_APP_VERSION),
   )
 
+  const { trackImageSelectEvent } = useCommonEventTracker({ type })
   return (
     <ImagesContainer
       margin={{
@@ -80,7 +89,18 @@ export default function Images({
                 hideControls={hideVideoControls || isLegacyIosApp}
                 showNativeControls={isLegacyIosApp}
                 media={image}
-                onClick={handleClick}
+                onClick={(e: React.SyntheticEvent) => {
+                  handleClick(e, image)
+                  type &&
+                    event &&
+                    trackImageSelectEvent({
+                      id: event.id,
+                      title: event.title,
+                      itemId: event.itemId,
+                      url: event.url,
+                      contentType: event.contentType,
+                    })
+                }}
                 ImageSource={ImageSource}
               />
             ) : (

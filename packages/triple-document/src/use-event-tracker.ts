@@ -1,7 +1,18 @@
 import { useCallback } from 'react'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 
-export enum EventEnum {
+export interface EventLog {
+  id: string
+  title?: string
+  url?: string
+  contentType?: string
+  buttonName?: string
+  itemId?: string
+  product?: boolean
+  regionId?: string
+}
+
+export enum EventTypeEnum {
   ARTICLE = 'article',
   HOTEL = 'hotel',
   AIR = 'air',
@@ -14,30 +25,30 @@ function getCommonEventParams({
   title,
   itemId,
 }: {
-  type?: EventEnum
+  type?: EventTypeEnum
   id: string
   title?: string
   itemId?: string
 }) {
   switch (true) {
-    case type === EventEnum.ARTICLE:
+    case type === EventTypeEnum.ARTICLE:
       return {
         article_id: id,
         ...(itemId && { item_id: itemId }),
       }
-    case type === EventEnum.HOTEL:
+    case type === EventTypeEnum.HOTEL:
       return {
         deal_id: id,
         deal_name: title,
         ...(itemId && { item_id: itemId }),
       }
-    case type === EventEnum.AIR:
+    case type === EventTypeEnum.AIR:
       return {
         item_id: id,
         deal_name: title,
         ...(itemId && { article_item_id: itemId }),
       }
-    case type === EventEnum.TNA:
+    case type === EventTypeEnum.TNA:
       return {
         article_id: id,
         article_title: title,
@@ -48,7 +59,11 @@ function getCommonEventParams({
   }
 }
 
-export default function useCommonEventTracker({ type }: { type?: EventEnum }) {
+export default function useCommonEventTracker({
+  type,
+}: {
+  type?: EventTypeEnum
+}) {
   const { trackEvent } = useEventTrackingContext()
 
   const trackLinkSelectkEvent = useCallback(
@@ -63,11 +78,11 @@ export default function useCommonEventTracker({ type }: { type?: EventEnum }) {
     }: {
       id: string
       title?: string
-      buttonName: string
-      url: string
-      product: boolean
-      contentType: string
-      itemId: string
+      buttonName?: string
+      url?: string
+      product?: boolean
+      contentType?: string
+      itemId?: string
     }) => {
       trackEvent({
         fa: {
@@ -144,9 +159,9 @@ export default function useCommonEventTracker({ type }: { type?: EventEnum }) {
     }: {
       id: string
       title?: string
-      itemId: string
-      url: string
-      contentType: string
+      itemId?: string
+      url?: string
+      contentType?: string
     }) => {
       trackEvent({
         fa: {

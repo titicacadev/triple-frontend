@@ -4,6 +4,10 @@ import { useUserAgentContext } from '@titicaca/react-contexts'
 import { VerificationType } from '@titicaca/user-verification'
 
 import { useDeepLink } from '../../prop-context/deep-link'
+import useCommonEventTracker, {
+  EventTypeEnum,
+  EventLog,
+} from '../../use-event-tracker'
 
 import { CouponModal, CouponTransitionModal } from './modals'
 import {
@@ -14,6 +18,8 @@ import {
 
 export default function Coupon({
   value: { identifier, description, verificationType, couponType = 'single' },
+  type,
+  event,
 }: {
   value: {
     identifier: string
@@ -21,8 +27,11 @@ export default function Coupon({
     verificationType?: VerificationType
     couponType?: 'single' | 'group'
   }
+  type?: EventTypeEnum
+  event?: EventLog
 }) {
   const { isPublic } = useUserAgentContext()
+  const { trackCouponDownloadEvent } = useCommonEventTracker({ type })
   const deepLink = useDeepLink()
 
   if (!deepLink) {
@@ -38,11 +47,31 @@ export default function Coupon({
         <InAppCouponDownloadButton
           verificationType={verificationType}
           slugId={identifier}
+          onClick={() => {
+            type &&
+              event &&
+              trackCouponDownloadEvent({
+                id: event.id,
+                title: event.title,
+                couponId: identifier,
+                couponType,
+              })
+          }}
         />
       ) : (
         <InAppCouponGroupDownloadButton
           verificationType={verificationType}
           groupId={identifier}
+          onClick={() => {
+            type &&
+              event &&
+              trackCouponDownloadEvent({
+                id: event.id,
+                title: event.title,
+                couponId: identifier,
+                couponType,
+              })
+          }}
         />
       )}
 

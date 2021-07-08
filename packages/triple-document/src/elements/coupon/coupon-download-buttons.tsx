@@ -45,9 +45,11 @@ export function PublicCouponDownloadButton() {
 export function InAppCouponDownloadButton({
   slugId,
   verificationType,
+  onClick,
 }: {
   slugId: string
   verificationType?: VerificationType
+  onClick?: () => void
 }) {
   const [enabled, setEnabled] = useState(false)
   const [downloaded, setDownloaded] = useState(false)
@@ -120,17 +122,17 @@ export function InAppCouponDownloadButton({
     }
   }, [push, slugId, initiateVerification, verificationType, verificationState])
 
+  const onDownLoad = () =>
+    enabled ? (downloaded ? pushHashDownloaded() : downloadCoupon()) : undefined
+
   return (
     <>
       <BaseCouponDownloadButton
         disabled={!enabled}
-        onClick={
-          enabled
-            ? downloaded
-              ? pushHashDownloaded
-              : downloadCoupon
-            : undefined
-        }
+        onClick={() => {
+          onDownLoad()
+          onClick && onClick()
+        }}
       >
         쿠폰 받기
       </BaseCouponDownloadButton>
@@ -142,9 +144,11 @@ export function InAppCouponDownloadButton({
 export function InAppCouponGroupDownloadButton({
   groupId,
   verificationType,
+  onClick,
 }: {
   groupId: string
   verificationType?: VerificationType
+  onClick?: () => void
 }) {
   const [enabled, setEnabled] = useState(false)
   const [coupons, setCoupons] = useState<CouponData[]>([])
@@ -238,17 +242,21 @@ export function InAppCouponGroupDownloadButton({
     groupId,
   ])
 
+  const onDownLoad = () =>
+    enabled
+      ? downloaded
+        ? pushHashDownloaded()
+        : downloadCoupons()
+      : undefined
+
   return (
     <>
       <BaseCouponDownloadButton
         disabled={!enabled}
-        onClick={
-          enabled
-            ? downloaded
-              ? pushHashDownloaded
-              : downloadCoupons
-            : undefined
-        }
+        onClick={() => {
+          onDownLoad()
+          onClick && onClick()
+        }}
       >
         쿠폰 받기
       </BaseCouponDownloadButton>

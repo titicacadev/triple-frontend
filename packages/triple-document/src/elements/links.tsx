@@ -12,6 +12,10 @@ import { ImageMeta } from '@titicaca/type-definitions'
 
 import { Link } from '../types'
 import { useLinkClickHandler } from '../prop-context/link-click-handler'
+import useCommonEventTracker, {
+  EventTypeEnum,
+  EventLog,
+} from '../use-event-tracker'
 
 import ResourceList from './shared/resource-list'
 
@@ -166,6 +170,8 @@ const LINK_ELEMENTS = {
 
 export default function Links({
   value: { display, links },
+  type,
+  event,
   ...props
 }: {
   value: {
@@ -175,8 +181,11 @@ export default function Links({
     links: Link[]
   }
   compact?: boolean
+  type?: EventTypeEnum
+  event?: EventLog
 }) {
   const onLinkClick = useLinkClickHandler()
+  const { trackLinkSelectkEvent } = useCommonEventTracker({ type })
 
   const Container =
     LINK_CONTAINERS[display as keyof typeof LINK_CONTAINERS] || LinksContainer
@@ -188,9 +197,20 @@ export default function Links({
       {links.map((link, i) => (
         <Element
           key={i}
-          onClick={
-            onLinkClick && ((e: React.SyntheticEvent) => onLinkClick(e, link))
-          }
+          onClick={(e: React.SyntheticEvent) => {
+            onLinkClick && onLinkClick(e, link)
+            type &&
+              event &&
+              trackLinkSelectkEvent({
+                id: event.id,
+                title: event.title,
+                buttonName: event.buttonName,
+                url: event.url,
+                product: event.product,
+                contentType: event.contentType,
+                itemId: event.itemId,
+              })
+          }}
           {...link}
           href={link.href || '#'}
         >
