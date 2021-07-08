@@ -4,7 +4,6 @@ import { useHistoryFunctions } from '@titicaca/react-contexts'
 import styled from 'styled-components'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 import { useAppCallback } from '@titicaca/ui-flow'
-import { TransitionModal, TransitionType } from '@titicaca/modals'
 
 interface Region {
   id: string
@@ -20,7 +19,6 @@ interface BookingCompletionProps {
   onMoveToRegion?: () => void
   descriptions?: string[]
   region?: Region
-  deepLink?: string
 }
 
 const DescriptionText = styled(Text)`
@@ -55,12 +53,11 @@ function BookingCompletion({
   onMoveToRegion = () => {},
   descriptions,
   region,
-  deepLink,
 }: BookingCompletionProps) {
   const { navigate } = useHistoryFunctions()
 
   const handleMoveToRegion = useAppCallback(
-    TransitionType.General,
+    'general',
     useCallback(() => {
       onMoveToRegion()
       navigate(`/regions/${region?.id}`)
@@ -138,8 +135,6 @@ function BookingCompletion({
           ) : null}
         </>
       )}
-
-      <TransitionModal deepLink={deepLink} />
     </>
   )
 }
