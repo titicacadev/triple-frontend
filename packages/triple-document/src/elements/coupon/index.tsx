@@ -10,6 +10,7 @@ import {
   InAppCouponDownloadButton,
   InAppCouponGroupDownloadButton,
   PublicCouponDownloadButton,
+  BaseCouponDownloadButton,
 } from './coupon-download-buttons'
 
 export default function Coupon({
@@ -60,6 +61,14 @@ export default function Coupon({
 
       <CouponModal identifier={identifier} />
       <CouponTransitionModal deepLink={deepLink} />
+    </Container>
+  )
+}
+
+export function InAdminCoupon() {
+  return (
+    <Container margin={{ top: 44, right: 30, left: 30, bottom: 42 }}>
+      <BaseCouponDownloadButton>쿠폰 받기</BaseCouponDownloadButton>
     </Container>
   )
 }
