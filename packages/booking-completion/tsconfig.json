@@ -13,6 +13,9 @@
       "path": "../type-definitions"
     },
     {
+      "path": "../ui-flow"
+    },
+    {
       "path": "../react-contexts"
     }
   ]
