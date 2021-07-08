@@ -25,6 +25,10 @@ function getColorOfType(type: MarkerType) {
   throw new Error('Unknown color of content type')
 }
 
+/**
+ * History: Asset의 네이밍 컨벤션이 '-' => '_' 로 변경 되었습니다.
+ * 해당 PR: https://github.com/titicacadev/triple-web-assets/pull/150
+ */
 function getActivePinImageUrl(type: MarkerType) {
   return `https://assets.triple.guide/images/img_map_${type}_timetable_pick@3x.png`
 }
