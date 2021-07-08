@@ -26,7 +26,7 @@ function getColorOfType(type: MarkerType) {
 }
 
 function getActivePinImageUrl(type: MarkerType) {
-  return `https://assets.triple.guide/images/img-map-${type}-timetable-pick@3x.png`
+  return `https://assets.triple.guide/images/img_map_${type}_timetable_pick@3x.png`
 }
 
 /**
