@@ -59,7 +59,7 @@ export default function useItinerary({ itinerary }: Props) {
         id,
         type,
         categories: gqlCategories,
-        source: { names, categories, areas, regionId },
+        source: { names, categories, areas, regionId, vicinity },
       } = poi
       /** NOTE: 이동수단(walk, bus, car) 은 여러개 일 수 있으나 화면에는 첫번째 것을 표시 */
       const transportation = raw?.[0]?.value || DEFAULT_TRANSPORTATION
@@ -70,7 +70,12 @@ export default function useItinerary({ itinerary }: Props) {
         .map((category) => category.name)
         .join(',')
 
-      const areaNames = areas && areas.map((area) => area.name).join(',')
+      let areaNames = vicinity
+
+      if (regionId && areas.length > 0) {
+        areaNames = areas && areas.map((area) => area.name).join(',')
+      }
+
       const description = [categoryNames, areaNames]
         .filter((i) => i)
         .join(' · ')
