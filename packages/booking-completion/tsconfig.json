@@ -17,6 +17,9 @@
     },
     {
       "path": "../react-contexts"
+    },
+    {
+      "path": "../modals"
     }
   ]
 }

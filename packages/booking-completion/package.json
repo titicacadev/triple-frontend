@@ -20,6 +20,7 @@
     "@titicaca/ui-flow": "^2.29.1"
   },
   "peerDependencies": {
-    "@titicaca/react-contexts": "*"
+    "@titicaca/react-contexts": "*",
+    "@titicaca/modals": "*"
   }
 }

@@ -4,6 +4,7 @@ import { useHistoryFunctions } from '@titicaca/react-contexts'
 import styled from 'styled-components'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 import { useAppCallback } from '@titicaca/ui-flow'
+import { TransitionType } from '@titicaca/modals'
 
 interface Region {
   id: string
@@ -55,11 +56,9 @@ function BookingCompletion({
   region,
 }: BookingCompletionProps) {
   const { navigate } = useHistoryFunctions()
-  const defaultModalType = 'general'
-  const TransitionType = defaultModalType as any
 
   const handleMoveToRegion = useAppCallback(
-    TransitionType,
+    TransitionType.General,
     useCallback(() => {
       onMoveToRegion()
       navigate(`/regions/${region?.id}`)
