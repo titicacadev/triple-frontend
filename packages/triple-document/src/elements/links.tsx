@@ -204,10 +204,10 @@ export default function Links({
               trackLinkSelectkEvent({
                 id: event.id,
                 title: event.title,
-                buttonName: event.buttonName,
-                url: event.url,
+                buttonName: link.label,
+                url: link.href,
                 product: event.product,
-                contentType: event.contentType,
+                contentType: 'links',
                 itemId: event.itemId,
               })
           }}

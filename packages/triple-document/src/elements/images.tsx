@@ -96,9 +96,8 @@ export default function Images({
                     trackImageSelectEvent({
                       id: event.id,
                       title: event.title,
-                      itemId: event.itemId,
-                      url: event.url,
-                      contentType: event.contentType,
+                      url: image.link?.href,
+                      contentType: 'images',
                     })
                 }}
                 ImageSource={ImageSource}
@@ -111,7 +110,17 @@ export default function Images({
                   hideControls={hideVideoControls || isLegacyIosApp}
                   showNativeControls={isLegacyIosApp}
                   media={image}
-                  onClick={handleClick}
+                  onClick={(e: React.SyntheticEvent) => {
+                    handleClick(e, image)
+                    type &&
+                      event &&
+                      trackImageSelectEvent({
+                        id: event.id,
+                        title: event.title,
+                        url: image.link?.href,
+                        contentType: 'images',
+                      })
+                  }}
                   ImageSource={ImageSource}
                 />
                 {image.title ? (

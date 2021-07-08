@@ -4,9 +4,6 @@ import { useEventTrackingContext } from '@titicaca/react-contexts'
 export interface EventLog {
   id: string
   title?: string
-  url?: string
-  contentType?: string
-  buttonName?: string
   itemId?: string
   product?: boolean
   regionId?: string
@@ -153,20 +150,18 @@ export default function useCommonEventTracker({
     ({
       id,
       title,
-      itemId,
       url,
       contentType,
     }: {
       id: string
       title?: string
-      itemId?: string
       url?: string
       contentType?: string
     }) => {
       trackEvent({
         fa: {
           action: '이미지선택',
-          ...getCommonEventParams({ type, id, title, itemId }),
+          ...getCommonEventParams({ type, id, title }),
           url,
           content_type: contentType,
         },
