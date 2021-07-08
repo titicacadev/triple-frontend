@@ -5,6 +5,7 @@ export { TripleElementData as TripleDocumentElementData } from './types'
 export * from './elements/text'
 export { generateCoupon } from './elements/tna/helpers'
 export { Slot } from './elements/tna/slot'
+export { InAdminCoupon } from './elements/coupon'
 
 export { useDeepLink } from './prop-context/deep-link'
 export { useImageClickHandler } from './prop-context/image-click-handler'

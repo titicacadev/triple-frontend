@@ -21,7 +21,7 @@ import {
   HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP,
 } from './modals'
 
-const BaseCouponDownloadButton = styled(Button)`
+export const BaseCouponDownloadButton = styled(Button)`
   border-radius: 6px;
   width: 100%;
 `
