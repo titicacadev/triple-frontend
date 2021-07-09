@@ -30,5 +30,8 @@
     "@titicaca/color-palette": "^2.30.2",
     "@titicaca/core-elements": "^2.30.2",
     "react-transition-group": "^4.4.1"
+  },
+  "peerDependencies": {
+    "@titicaca/web-storage": "*"
   }
 }
