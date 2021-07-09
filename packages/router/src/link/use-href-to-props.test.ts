@@ -104,6 +104,18 @@ describe('useHrefToProps', () => {
       expect(
         hrefToProps(
           `/inlink?path=${encodeURIComponent(
+            `/tna?_triple_no_navbar`,
+          )}&_web_expand=true`,
+        ),
+      ).toEqual({
+        href: `/tna?_triple_no_navbar`,
+        target: 'current',
+        allowSource: 'all',
+      })
+
+      expect(
+        hrefToProps(
+          `/inlink?path=${encodeURIComponent(
             `/articles/${resourceId}?_triple_no_navbar`,
           )}&_web_expand=true`,
         ),
