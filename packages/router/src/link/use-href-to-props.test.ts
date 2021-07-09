@@ -75,18 +75,6 @@ describe('useHrefToProps', () => {
       expect(
         hrefToProps(
           `/inlink?path=${encodeURIComponent(
-            `/articles/${resourceId}?_triple_no_navbar`,
-          )}`,
-        ),
-      ).toEqual({
-        href: `/articles/${resourceId}?_triple_no_navbar`,
-        target: 'current',
-        allowSource: 'app',
-      })
-
-      expect(
-        hrefToProps(
-          `/inlink?path=${encodeURIComponent(
             `/articles/${resourceId}/test?_triple_no_navbar`,
           )}`,
         ),
@@ -111,23 +99,6 @@ describe('useHrefToProps', () => {
         href: `/articles/${resourceId}?_triple_no_navbar`,
         target: 'current',
         allowSource: 'all',
-      })
-    })
-
-    test('inlink with _web_expand without routable path', () => {
-      const { result } = renderHook(useHrefToProps)
-      const hrefToProps = result.current
-
-      expect(
-        hrefToProps(
-          `/inlink?path=${encodeURIComponent(
-            `/articles/${resourceId}/test?_triple_no_navbar`,
-          )}&_web_expand=true`,
-        ),
-      ).toEqual({
-        href: `/articles/${resourceId}/test?_triple_no_navbar`,
-        target: 'current',
-        allowSource: 'app-with-session',
       })
     })
 
@@ -239,7 +210,7 @@ describe('useHrefToProps', () => {
       ).toEqual({
         href: `/articles/${resourceId}?_triple_no_navbar`,
         target: 'new',
-        allowSource: 'app',
+        allowSource: 'app-with-session',
       })
     })
 
