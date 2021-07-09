@@ -181,11 +181,11 @@ export default function useCommonEventTracker({
     }: {
       id: string
       title?: string
-      buttonName: string
-      url: string
-      itemId: string
-      product: boolean
-      contentType: string
+      buttonName?: string
+      url?: string
+      itemId?: string
+      product?: boolean
+      contentType?: string
     }) => {
       trackEvent({
         fa: {
