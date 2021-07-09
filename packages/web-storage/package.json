@@ -16,5 +16,8 @@
   },
   "dependencies": {
     "ts-custom-error": "^3.2.0"
+  },
+  "peerDependencies": {
+    "react": "*"
   }
 }
