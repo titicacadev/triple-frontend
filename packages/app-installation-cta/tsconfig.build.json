@@ -7,6 +7,9 @@
     },
     {
       "path": "../core-elements/tsconfig.build.json"
+    },
+    {
+      "path": "../web-storage/tsconfig.build.json"
     }
   ]
 }

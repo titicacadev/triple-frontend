@@ -11,6 +11,9 @@
     },
     {
       "path": "../core-elements"
+    },
+    {
+      "path": "../web-storage"
     }
   ]
 }
