@@ -26,25 +26,25 @@ function getCommonEventParams({
   title?: string
   itemId?: string
 }) {
-  switch (true) {
-    case type === EventTypeEnum.ARTICLE:
+  switch (type) {
+    case EventTypeEnum.ARTICLE:
       return {
         article_id: id,
         ...(itemId && { item_id: itemId }),
       }
-    case type === EventTypeEnum.HOTEL:
+    case EventTypeEnum.HOTEL:
       return {
         deal_id: id,
         deal_name: title,
         ...(itemId && { item_id: itemId }),
       }
-    case type === EventTypeEnum.AIR:
+    case EventTypeEnum.AIR:
       return {
         item_id: id,
         deal_name: title,
         ...(itemId && { article_item_id: itemId }),
       }
-    case type === EventTypeEnum.TNA:
+    case EventTypeEnum.TNA:
       return {
         article_id: id,
         article_title: title,
