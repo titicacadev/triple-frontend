@@ -6,7 +6,7 @@ import { VerificationType } from '@titicaca/user-verification'
 import { useDeepLink } from '../../prop-context/deep-link'
 import useCommonEventTracker, {
   EventTypeEnum,
-  EventLog,
+  EventMetaData,
 } from '../../use-event-tracker'
 
 import { CouponModal, CouponTransitionModal } from './modals'
@@ -19,7 +19,7 @@ import {
 export default function Coupon({
   value: { identifier, description, verificationType, couponType = 'single' },
   type,
-  event,
+  eventMetaData,
 }: {
   value: {
     identifier: string
@@ -28,7 +28,7 @@ export default function Coupon({
     couponType?: 'single' | 'group'
   }
   type?: EventTypeEnum
-  event?: EventLog
+  eventMetaData?: EventMetaData
 }) {
   const { isPublic } = useUserAgentContext()
   const { trackCouponDownloadEvent } = useCommonEventTracker({ type })
@@ -49,10 +49,10 @@ export default function Coupon({
           slugId={identifier}
           onClick={() => {
             type &&
-              event &&
+              eventMetaData &&
               trackCouponDownloadEvent({
-                id: event.id,
-                title: event.title,
+                id: eventMetaData.id,
+                title: eventMetaData.title,
                 couponId: identifier,
                 couponType,
               })
@@ -64,10 +64,10 @@ export default function Coupon({
           groupId={identifier}
           onClick={() => {
             type &&
-              event &&
+              eventMetaData &&
               trackCouponDownloadEvent({
-                id: event.id,
-                title: event.title,
+                id: eventMetaData.id,
+                title: eventMetaData.title,
                 couponId: identifier,
                 couponType,
               })

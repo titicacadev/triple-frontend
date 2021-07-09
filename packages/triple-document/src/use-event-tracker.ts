@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 
-export interface EventLog {
+export interface EventMetaData {
   id: string
   title?: string
   itemId?: string

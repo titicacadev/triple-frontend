@@ -18,7 +18,7 @@ import { ImageSourceProvider } from './prop-context/image-source'
 import { DeepLinkProvider } from './prop-context/deep-link'
 import { MediaConfigProvider } from './prop-context/media-config'
 import ELEMENTS from './elements'
-import { EventTypeEnum, EventLog } from './use-event-tracker'
+import { EventTypeEnum, EventMetaData } from './use-event-tracker'
 
 export function TripleDocument({
   children,
@@ -33,13 +33,13 @@ export function TripleDocument({
   hideVideoControls,
   optimized = false,
   type: eventType,
-  event,
+  eventMetaData,
 }: {
   customElements?: ElementSet
   children: TripleElementData[]
   cta?: string
   type?: EventTypeEnum
-  event?: EventLog
+  eventMetaData?: EventMetaData
 } & TripleDocumentContext) {
   const { navigate } = useHistoryFunctions()
   const handleAction = useMemo(() => initialize({ cta, navigate }), [
@@ -92,7 +92,7 @@ export function TripleDocument({
                       <Element
                         key={i}
                         type={eventType}
-                        event={event}
+                        event={eventMetaData}
                         value={value}
                         {...(CustomElement
                           ? {

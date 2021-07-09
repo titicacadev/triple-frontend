@@ -17,7 +17,7 @@ import { useImageSource } from '../prop-context/image-source'
 import { useMediaConfig } from '../prop-context/media-config'
 import useCommonEventTracker, {
   EventTypeEnum,
-  EventLog,
+  EventMetaData,
 } from '../use-event-tracker'
 
 import DocumentCarousel from './shared/document-carousel'
@@ -30,14 +30,14 @@ const PLAYS_INLINE_APP_VERSION = '4.10.0'
 export default function Images({
   value: { images, display },
   type,
-  event,
+  eventMetaData,
 }: {
   value: {
     images: ImageMeta[]
     display: MediaDisplayProperty
   }
   type?: EventTypeEnum
-  event?: EventLog
+  eventMetaData?: EventMetaData
 }) {
   const onImageClick = useImageClickHandler()
   const onLinkClick = useLinkClickHandler()
@@ -92,10 +92,10 @@ export default function Images({
                 onClick={(e: React.SyntheticEvent) => {
                   handleClick(e, image)
                   type &&
-                    event &&
+                    eventMetaData &&
                     trackImageSelectEvent({
-                      id: event.id,
-                      title: event.title,
+                      id: eventMetaData.id,
+                      title: eventMetaData.title,
                       url: image.link?.href,
                       contentType: 'images',
                     })
@@ -113,10 +113,10 @@ export default function Images({
                   onClick={(e: React.SyntheticEvent) => {
                     handleClick(e, image)
                     type &&
-                      event &&
+                      eventMetaData &&
                       trackImageSelectEvent({
-                        id: event.id,
-                        title: event.title,
+                        id: eventMetaData.id,
+                        title: eventMetaData.title,
                         url: image.link?.href,
                         contentType: 'images',
                       })

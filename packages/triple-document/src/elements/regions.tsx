@@ -5,7 +5,7 @@ import { ResourceListItem, Image } from '@titicaca/core-elements'
 import { RegionData } from '../types'
 import { useResourceClickHandler } from '../prop-context/resource-click-handler'
 import useCommonEventTracker, {
-  EventLog,
+  EventMetaData,
   EventTypeEnum,
 } from '../use-event-tracker'
 
@@ -14,11 +14,11 @@ import ResourceList from './shared/resource-list'
 export default function Regions({
   value: { regions },
   type,
-  event,
+  eventMeataData,
 }: {
   value: { regions: RegionData[] }
   type?: EventTypeEnum
-  event?: EventLog
+  eventMeataData?: EventMetaData
 }) {
   const onResourceClick = useResourceClickHandler()
   const { trackCitySelectEvent } = useCommonEventTracker({ type })
@@ -36,10 +36,10 @@ export default function Regions({
             }
             onResourceClick(e, region)
             type &&
-              event &&
+              eventMeataData &&
               trackCitySelectEvent({
-                id: event.id,
-                title: event.title,
+                id: eventMeataData.id,
+                title: eventMeataData.title,
                 buttonName: region.source.names.local || '',
                 regionId: region.id,
                 contentType: 'region',

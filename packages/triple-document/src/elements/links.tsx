@@ -14,7 +14,7 @@ import { Link } from '../types'
 import { useLinkClickHandler } from '../prop-context/link-click-handler'
 import useCommonEventTracker, {
   EventTypeEnum,
-  EventLog,
+  EventMetaData,
 } from '../use-event-tracker'
 
 import ResourceList from './shared/resource-list'
@@ -171,7 +171,7 @@ const LINK_ELEMENTS = {
 export default function Links({
   value: { display, links },
   type,
-  event,
+  eventMetaData,
   ...props
 }: {
   value: {
@@ -182,7 +182,7 @@ export default function Links({
   }
   compact?: boolean
   type?: EventTypeEnum
-  event?: EventLog
+  eventMetaData?: EventMetaData
 }) {
   const onLinkClick = useLinkClickHandler()
   const { trackLinkSelectkEvent } = useCommonEventTracker({ type })
@@ -200,15 +200,15 @@ export default function Links({
           onClick={(e: React.SyntheticEvent) => {
             onLinkClick && onLinkClick(e, link)
             type &&
-              event &&
+              eventMetaData &&
               trackLinkSelectkEvent({
-                id: event.id,
-                title: event.title,
+                id: eventMetaData.id,
+                title: eventMetaData.title,
                 buttonName: link.label,
                 url: link.href,
-                product: event.product,
+                product: eventMetaData.product,
                 contentType: 'links',
-                itemId: event.itemId,
+                itemId: eventMetaData.itemId,
               })
           }}
           {...link}
