@@ -157,7 +157,13 @@ function getAllowSource({
   if (path === '/inlink') {
     const { _web_expand: expandable } = qs.parse(query || '')
 
-    return expandable ? 'all' : 'app-with-session'
+    if (expandable) {
+      return 'all'
+    }
+
+    return checkIfRoutable({ href: stripAppBridge(href) })
+      ? 'app'
+      : 'app-with-session'
   }
 
   return checkIfRoutable({ href: canonizeHref({ href, webUrlBase }) })
