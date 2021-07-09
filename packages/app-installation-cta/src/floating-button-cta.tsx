@@ -5,6 +5,7 @@ import {
   LayeringMixinProps,
 } from '@titicaca/core-elements'
 import { CSSTransition } from 'react-transition-group'
+import { WebStorage } from '@titicaca/web-storage'
 
 import {
   BannerExitStrategy,
@@ -77,9 +78,16 @@ export default function FloatingButtonCTA({
   )
 
   useEffect(() => {
-    const visitedPages = window.sessionStorage.getItem(
-      FLOATING_BUTTON_CLOSED_STORAGE_KEY,
-    )
+    let visitedPages = false
+
+    try {
+      const storage = new WebStorage('sessionStorage')
+      visitedPages = !!storage.getItem(FLOATING_BUTTON_CLOSED_STORAGE_KEY)
+    } catch (error) {
+      // 사용자가 이전에 CTA를 닫았었는지 확인합니다.
+      // 필수적인 기능이 아니므로 에러를 조용히 넘깁니다.
+    }
+
     if (!visitedPages && !buttonVisibility) {
       setButtonVisibility(true)
     }
@@ -101,9 +109,16 @@ export default function FloatingButtonCTA({
 
   const handleDismiss = useCallback(() => {
     setButtonVisibility(false)
-    window.sessionStorage.setItem(FLOATING_BUTTON_CLOSED_STORAGE_KEY, 'true')
     sendTrackEventRequest(trackEventParams && trackEventParams.onClose)
     onDismiss && onDismiss()
+
+    try {
+      const storage = new WebStorage('sessionStorage')
+      storage.setItem(FLOATING_BUTTON_CLOSED_STORAGE_KEY, 'true')
+    } catch (error) {
+      // 사용자가 CTA를 닫았다는 것을 기록합니다.
+      // 필수적인 기능이 아니므로 에러를 조용히 넘깁니다.
+    }
   }, [onDismiss, sendTrackEventRequest, trackEventParams])
 
   useEffect(() => {
