@@ -13,7 +13,7 @@ import {
   trackEvent as nativeTrackEvent,
   viewItem as nativeViewItem,
 } from '@titicaca/triple-web-to-native-interfaces'
-import firebase from 'firebase'
+import * as firebase from 'firebase/app'
 import 'firebase/analytics'
 
 import { useSessionContextSafely } from '../session-context'
