@@ -70,11 +70,9 @@ export default function useItinerary({ itinerary }: Props) {
         .map((category) => category.name)
         .join(',')
 
-      let areaNames = vicinity
+      const [area] = areas
 
-      if (regionId && areas.length > 0) {
-        areaNames = areas && areas.map((area) => area.name).join(',')
-      }
+      const areaNames = regionId && area ? area.name : vicinity
 
       const description = [categoryNames, areaNames]
         .filter((i) => i)
