@@ -1,13 +1,15 @@
 import { CustomError } from 'ts-custom-error'
 
+import { WebStorageType } from './types'
+
 type ErrorType = 'NotBrowser' | 'Unavailable' | 'QuotaExceeded'
 
 export class WebStorageError extends CustomError {
   private type: ErrorType
 
-  private storageType: 'localStorage' | 'sessionStorage'
+  private storageType: WebStorageType
 
-  constructor(type: 'localStorage' | 'sessionStorage', errorType: ErrorType) {
+  constructor(type: WebStorageType, errorType: ErrorType) {
     const messageMap: { [key in ErrorType]: string } = {
       NotBrowser: '브라우저 환경일 때만 WebStorage API를 사용할 수 있습니다.',
       Unavailable: `${type}에 접근할 수 없습니다.`,
