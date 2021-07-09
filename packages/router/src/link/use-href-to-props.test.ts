@@ -210,7 +210,7 @@ describe('useHrefToProps', () => {
       ).toEqual({
         href: `/articles/${resourceId}?_triple_no_navbar`,
         target: 'new',
-        allowSource: 'app-with-session',
+        allowSource: 'app',
       })
     })
 
