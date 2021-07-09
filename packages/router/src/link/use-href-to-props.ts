@@ -143,8 +143,7 @@ function getTarget({
  *
  * routable한 링크는 모든 소스에서 열릴 수 있습니다.
  * routable하지 않으면 세션이 있는 app에서만 열립니다.
- * inlink는 원칙적으로 앱에서만 열 수 있습니다.
- * 단, 웹에서 열리는 URL이고, _web_expand 파라미터가 설정되어있다면 웹에서도 열립니다.
+ * inlink이고 _web_expand 파라미터가 설정되어 있으면, routable 하지 않아도 웹에서 열립니다.
  */
 function getAllowSource({
   href,
