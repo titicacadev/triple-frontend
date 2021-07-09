@@ -9,11 +9,10 @@ import React, {
   useCallback,
   useMemo,
   useState,
-  useEffect,
 } from 'react'
 import { SESSION_KEY } from '@titicaca/constants'
 
-import { fetchUser, User } from './service'
+import { User } from './service'
 
 interface SessionContextValue {
   /** x-soto-session 쿠키 정보 유무 */
@@ -100,18 +99,6 @@ export function SessionContextProvider({
     }),
     [hasSessionId, login, logout, sessionId, user],
   )
-
-  useEffect(() => {
-    async function fetchAndSetUser() {
-      const user = await fetchUser()
-
-      setUser(user)
-    }
-
-    if (!initialUser) {
-      fetchAndSetUser()
-    }
-  }, [initialUser])
 
   return (
     <SessionContext.Provider value={value}>{children}</SessionContext.Provider>
