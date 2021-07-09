@@ -75,6 +75,18 @@ describe('useHrefToProps', () => {
       expect(
         hrefToProps(
           `/inlink?path=${encodeURIComponent(
+            `/articles/${resourceId}?_triple_no_navbar`,
+          )}`,
+        ),
+      ).toEqual({
+        href: `/articles/${resourceId}?_triple_no_navbar`,
+        target: 'current',
+        allowSource: 'app',
+      })
+
+      expect(
+        hrefToProps(
+          `/inlink?path=${encodeURIComponent(
             `/articles/${resourceId}/test?_triple_no_navbar`,
           )}`,
         ),
@@ -85,7 +97,7 @@ describe('useHrefToProps', () => {
       })
     })
 
-    test('inlink with _web_expand and routable path', () => {
+    test('inlink with _web_expand', () => {
       const { result } = renderHook(useHrefToProps)
       const hrefToProps = result.current
 
