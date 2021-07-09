@@ -1,3 +1,5 @@
+import { WebStorageType } from './types'
+
 /**
  * 주어진 error가 WebStorage의 용량을 모두 사용했다는 에러인지 확인하는 함수
  * @param error
@@ -23,7 +25,7 @@ export function checkQuotaExceededError(error: any): boolean {
  * @param type 확인할 storage 이름
  * @returns 사용 가능 여부
  */
-export function storageAvailable(type: 'sessionStorage' | 'localStorage') {
+export function storageAvailable(type: WebStorageType) {
   let storage
 
   try {

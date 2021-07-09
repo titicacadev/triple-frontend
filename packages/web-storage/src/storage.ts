@@ -1,10 +1,11 @@
 import { storageAvailable, checkQuotaExceededError } from './utils'
 import { WebStorageError } from './error'
+import { WebStorageType } from './types'
 
 export class WebStorage {
-  private type: 'localStorage' | 'sessionStorage'
+  private type: WebStorageType
 
-  constructor(type: 'localStorage' | 'sessionStorage') {
+  constructor(type: WebStorageType) {
     if (typeof window === 'undefined') {
       throw new WebStorageError(type, 'NotBrowser')
     }
