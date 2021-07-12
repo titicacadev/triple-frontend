@@ -2,16 +2,12 @@ import React from 'react'
 import DefaultFooter, { LogoFooter, CSFooter } from '@titicaca/footer'
 import { select, boolean } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
-import { StoryFn } from '@storybook/addons'
 
 import { sessionContextProviderDecorator } from '../../decorators'
 
 export default {
   title: 'footer / Footer',
-  decorators: [
-    (storyFn: StoryFn<JSX.Element>) => <>{storyFn()}</>,
-    sessionContextProviderDecorator,
-  ],
+  decorators: [sessionContextProviderDecorator],
 }
 
 export function BaseFooter() {
