@@ -87,7 +87,7 @@ export default function PoiCarouselElement<T extends PoiListElementType>({
           ? areas?.[0]?.name
             ? `${regionName}(${areas?.[0]?.name})`
             : regionName
-          : vicinity}
+          : areas?.[0]?.name || vicinity}
       </Text>
 
       {actionButtonElement || (
