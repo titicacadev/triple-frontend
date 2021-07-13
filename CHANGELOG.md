@@ -8,7 +8,9 @@
 
 ### react-contexts
 
-- firebase 추가로 인한 여파를 수정합니다. (#1488)
+- `event-tracking-context`에서 firebase 참조 경로를 수정합니다. (#1488)
+
+- `SessionContextProvider`에서 `/api/users/me` 요청을 제거합니다. (#1488)
 
 ### router
 
