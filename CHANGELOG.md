@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 2.30.0
+
+### footer
+
+- Sotrybook Footer 오류 해결을 위한 Decorator 추가 (#1490)
+
+### react-contexts
+
+- firebase 추가로 인한 여파를 수정합니다. (#1488)
+
+### router
+
+- inlink일때 AllowSource를 리턴하는 로직을 개선합니다. (#1486)
+
+### booking-completion
+
+- 리전을 가지고 도시메인으로 넘길때 useAppCallback으로 감싸줍니다. (#1481)
+
+### triple-document
+
+- 아티클 추천코스에 조건 별 Poi 행정구역명 표기 추가 (#1479)
+
+### map
+
+- TNA 마커 추가 (#1472)
+
 ## 2.29.1
 
 ### pricing
