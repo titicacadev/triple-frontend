@@ -15,9 +15,10 @@ const Marker = styled.img`
 `
 
 const MARKER_SOURCES: { [key: string]: string } = {
-  restaurant: 'https://assets.triple.guide/images/img-map-pin-food@4x.png',
-  hotel: 'https://assets.triple.guide/images/img-map-pin-hotel@4x.png',
-  attraction: 'https://assets.triple.guide/images/img-map-pin-sight@4x.png',
+  restaurant: 'https://assets.triple.guide/images/img_map_pin_food@4x.png',
+  hotel: 'https://assets.triple.guide/images/img_map_pin_hotel@4x.png',
+  attraction: 'https://assets.triple.guide/images/img_map_pin_sight@4x.png',
+  tna: 'https://assets.triple.guide/images/img_map_pin_tna@4x.png',
 }
 
 export default function StaticMap({
