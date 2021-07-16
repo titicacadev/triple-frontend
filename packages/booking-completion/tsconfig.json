@@ -16,10 +16,10 @@
       "path": "../ui-flow"
     },
     {
-      "path": "../react-contexts"
+      "path": "../modals"
     },
     {
-      "path": "../modals"
+      "path": "../react-contexts"
     }
   ]
 }
