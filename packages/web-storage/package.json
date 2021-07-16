@@ -15,7 +15,8 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "ts-custom-error": "^3.2.0"
+    "ts-custom-error": "^3.2.0",
+    "universal-cookie": "^4.0.4"
   },
   "peerDependencies": {
     "@titicaca/modals": "*",
