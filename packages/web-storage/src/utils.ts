@@ -1,3 +1,5 @@
+import Cookies from 'universal-cookie'
+
 import { WebStorageType } from './types'
 
 /**
@@ -43,5 +45,18 @@ export function storageAvailable(type: WebStorageType) {
       storage &&
       storage.length !== 0
     )
+  }
+}
+
+export function cookieAvailable() {
+  try {
+    const cookie = new Cookies()
+    const testKey = '__cookie_test__'
+    cookie.set(testKey, testKey, { path: '/' })
+    const valueStored = cookie.get(testKey) === testKey
+    cookie.remove(testKey)
+    return valueStored
+  } catch (error) {
+    return false
   }
 }
