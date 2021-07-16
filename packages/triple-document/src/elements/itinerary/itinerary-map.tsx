@@ -5,11 +5,14 @@ import MapView, {
   AttractionCirlceMarker,
   RestaurantCirlceMarker,
   DotPolyline,
+  TnaCircleMarker,
 } from '@titicaca/map'
 import { useEnv } from '@titicaca/react-contexts'
 import { Itinerary, ItineraryItemType } from '@titicaca/content-utilities'
 
 import useMapData from './use-computed-map'
+
+export type ItineraryType = 'attraction' | 'restaurant' | 'hotel' | 'tna'
 
 type Props = {
   /** 몇번째 일정 */
@@ -17,7 +20,9 @@ type Props = {
   /** 추천 코스 POI 목록 */
   items: Itinerary['items']
   /** 지도상 마커 클릭 핸들러 */
-  onClickMarker: (poi: ItineraryItemType['poi']) => void
+  onClickMarker: (
+    poi: Omit<ItineraryItemType['poi'], 'type'> & { type: ItineraryType },
+  ) => void
 }
 
 export default function ItineraryMap({ onClickMarker, items }: Props) {
@@ -71,7 +76,7 @@ export default function ItineraryMap({ onClickMarker, items }: Props) {
 /**
  * NOTE: poi.type 값을 기반으로 공통 CircleMarker 컴포넌트로 맵핑하는 WrapperComponent
  */
-function ItineraryTypeCircleMarker(type: ItineraryItemType['poi']['type']) {
+function ItineraryTypeCircleMarker(type: ItineraryType) {
   switch (type) {
     case 'hotel':
       return HotelCircleMarker
@@ -79,6 +84,8 @@ function ItineraryTypeCircleMarker(type: ItineraryItemType['poi']['type']) {
       return AttractionCirlceMarker
     case 'restaurant':
       return RestaurantCirlceMarker
+    case 'tna':
+      return TnaCircleMarker
   }
 
   throw new Error(`Unknown card type of itinerary "${type}"`)

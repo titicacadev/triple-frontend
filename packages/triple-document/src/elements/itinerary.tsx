@@ -9,12 +9,13 @@ import type {
   ItineraryItemType,
 } from '@titicaca/content-utilities'
 
-import ItineraryMap from './itinerary/itinerary-map'
+import ItineraryMap, { ItineraryType } from './itinerary/itinerary-map'
 import useItinerary from './itinerary/use-computed-itineraries'
 import {
   HotelCircleBadge,
   AttractionCircleBadge,
   RestaurantCircleBadge,
+  TnaCircleBadge,
 } from './itinerary/badge'
 import { TagLabel } from './itinerary/tag-label'
 import {
@@ -104,7 +105,13 @@ export default function ItineraryElement({ value }: Props) {
   )
 
   const handleMarkerClick = useCallback(
-    ({ id, type, source: { regionId } }: ItineraryItemType['poi']) => {
+    ({
+      id,
+      type,
+      source: { regionId },
+    }: Omit<ItineraryItemType['poi'], 'type'> & {
+      type: ItineraryType
+    }) => {
       navigate(`/regions/${regionId}/${type}s/${id}`)
     },
     [navigate],
@@ -233,7 +240,7 @@ export default function ItineraryElement({ value }: Props) {
   )
 }
 
-function PoiCircleBadge(type: ItineraryItemType['poi']['type']) {
+function PoiCircleBadge(type: ItineraryType) {
   switch (type) {
     case 'hotel':
       return HotelCircleBadge
@@ -241,6 +248,8 @@ function PoiCircleBadge(type: ItineraryItemType['poi']['type']) {
       return AttractionCircleBadge
     case 'restaurant':
       return RestaurantCircleBadge
+    case 'tna':
+      return TnaCircleBadge
   }
 
   throw new Error(`Unknown card type of poi "${type}"`)

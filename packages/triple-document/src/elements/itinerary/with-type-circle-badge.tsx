@@ -1,10 +1,10 @@
 import React, { PropsWithChildren } from 'react'
-import { purple, mint } from '@titicaca/color-palette'
-import { ItineraryItemType } from '@titicaca/content-utilities'
+import { purple, mint, orange } from '@titicaca/color-palette'
 
 import { CircleBadge } from './badge'
+import { ItineraryType } from './itinerary-map'
 
-function getColorOfType(type: ItineraryItemType['poi']['type']) {
+function getColorOfType(type: ItineraryType) {
   switch (type) {
     case 'hotel':
       return mint
@@ -13,6 +13,8 @@ function getColorOfType(type: ItineraryItemType['poi']['type']) {
       return 'rgba(255, 97, 104, 1)'
     case 'attraction':
       return purple
+    case 'tna':
+      return orange
   }
 
   throw new Error('Unknown color of content type')
@@ -33,9 +35,7 @@ function getColorOfType(type: ItineraryItemType['poi']['type']) {
 
 type HoCProps = Omit<Parameters<typeof CircleBadge>[0], 'color'>
 
-export default function withTypeCircleBadge(
-  type: ItineraryItemType['poi']['type'],
-) {
+export default function withTypeCircleBadge(type: ItineraryType) {
   const color = getColorOfType(type)
 
   return function ColorBadgeComponent({
