@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.30.1
+
+### static-map
+
+- tna 아이콘 추가합니다 (#1494)
+
 ## 2.30.0
 
 ### footer
