@@ -52,6 +52,7 @@ const excludes = [
   '_triple_should_present',
   'send_page_view',
   'page_path',
+  'coupon_(id|type)',
 ]
 const regex = `^(${excludes.join('|')})$`
 

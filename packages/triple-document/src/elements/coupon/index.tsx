@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Text, Container } from '@titicaca/core-elements'
-import { useUserAgentContext } from '@titicaca/react-contexts'
+import {
+  useEventTrackingContext,
+  useUserAgentContext,
+} from '@titicaca/react-contexts'
 import { VerificationType } from '@titicaca/user-verification'
 
 import { useDeepLink } from '../../prop-context/deep-link'
+import { useEventMetaData } from '../../prop-context/event-meta-data'
 
 import { CouponModal, CouponTransitionModal } from './modals'
 import {
@@ -23,7 +27,21 @@ export default function Coupon({
   }
 }) {
   const { isPublic } = useUserAgentContext()
+  const { trackEvent } = useEventTrackingContext()
+  const eventMetaData = useEventMetaData()
   const deepLink = useDeepLink()
+
+  const handleCouponClick = useCallback(() => {
+    if (eventMetaData) {
+      trackEvent({
+        fa: {
+          action: '쿠폰받기선택',
+          coupon_id: identifier,
+          coupon_type: couponType,
+        },
+      })
+    }
+  }, [couponType, eventMetaData, identifier, trackEvent])
 
   if (!deepLink) {
     // TODO: triple-document 에러 처리 방법 설계
@@ -38,11 +56,13 @@ export default function Coupon({
         <InAppCouponDownloadButton
           verificationType={verificationType}
           slugId={identifier}
+          onClick={handleCouponClick}
         />
       ) : (
         <InAppCouponGroupDownloadButton
           verificationType={verificationType}
           groupId={identifier}
+          onClick={handleCouponClick}
         />
       )}
 
