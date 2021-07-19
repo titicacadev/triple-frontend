@@ -7,7 +7,6 @@ import {
 import { VerificationType } from '@titicaca/user-verification'
 
 import { useDeepLink } from '../../prop-context/deep-link'
-import { useEventMetaData } from '../../prop-context/event-meta-data'
 
 import { CouponModal, CouponTransitionModal } from './modals'
 import {
@@ -28,20 +27,18 @@ export default function Coupon({
 }) {
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
-  const eventMetaData = useEventMetaData()
+
   const deepLink = useDeepLink()
 
   const handleCouponClick = useCallback(() => {
-    if (eventMetaData) {
-      trackEvent({
-        fa: {
-          action: '쿠폰받기선택',
-          coupon_id: identifier,
-          coupon_type: couponType,
-        },
-      })
-    }
-  }, [couponType, eventMetaData, identifier, trackEvent])
+    trackEvent({
+      fa: {
+        action: '쿠폰받기선택',
+        coupon_id: identifier,
+        coupon_type: couponType,
+      },
+    })
+  }, [couponType, identifier, trackEvent])
 
   if (!deepLink) {
     // TODO: triple-document 에러 처리 방법 설계
