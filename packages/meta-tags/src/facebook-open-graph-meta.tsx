@@ -9,7 +9,7 @@ export function FacebookOpenGraphMeta({
   type = 'website',
   locale = 'ko_KR',
   image = {
-    url: 'https://assets.triple.guide/images/default-cover-image.jpg',
+    url: 'https://assets.triple.guide/images/img-default-page-preview.png',
     width: 1052,
     height: 1052,
   },
