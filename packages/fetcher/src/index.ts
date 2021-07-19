@@ -16,11 +16,6 @@ const refetchStatuses = [502, 503, 504]
 export async function fetcher<T = any, E = HttpErrorResponse>(
   url: string,
   {
-    /**
-     * @deprecated TF v3.x부터 req를 한번에 받지 않고 용도별로 세분화하여 받도록 합니다.
-     * cookie, absoluteUrl을 사용해주세요!
-     * 참조: https://github.com/titicacadev/triple-frontend/issues/1334
-     */
     req,
     useBodyAsRaw,
     retryable,
