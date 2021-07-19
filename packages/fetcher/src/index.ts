@@ -32,12 +32,17 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
     )
   }
 
-  const baseUrl: string = absoluteUrl
-    ? (process.env.API_URI_BASE as string)
-    : ''
+  let baseUrl: string = req ? (process.env.API_URI_BASE as string) : ''
+
+  if (absoluteUrl) {
+    baseUrl = process.env.API_URI_BASE as string
+  }
+
   const reqUrl: string = baseUrl + url
 
-  let sessionId = null
+  let sessionId = req
+    ? new Cookies(req.headers.cookie).get('x-soto-session')
+    : undefined
 
   if (cookie) {
     sessionId = new Cookies(cookie).get('x-soto-session')
