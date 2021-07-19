@@ -13,6 +13,8 @@ export type RequestOptions = Omit<RequestInit, 'body'> & {
    * RequestInit.body의 타입 오버라이드
    */
   body?: BodyInit | { [key: string]: any }
+  cookie?: string
+  absoluteUrl?: boolean
 }
 
 export enum HTTPMethods {

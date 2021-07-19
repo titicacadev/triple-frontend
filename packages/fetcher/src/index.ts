@@ -21,6 +21,8 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
     retryable,
     body,
     headers: customHeaders,
+    cookie,
+    absoluteUrl,
     ...rest
   }: RequestOptions,
 ): Promise<HttpResponse<T, E>> {
@@ -30,16 +32,21 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
     )
   }
 
-  const baseUrl: string = req ? (process.env.API_URI_BASE as string) : ''
+  const baseUrl: string = absoluteUrl
+    ? (process.env.API_URI_BASE as string)
+    : ''
   const reqUrl: string = baseUrl + url
-  const sessionId = req
-    ? new Cookies(req.headers.cookie).get('x-soto-session')
-    : undefined
+
+  let sessionId = null
+
+  if (cookie) {
+    sessionId = new Cookies(cookie).get('x-soto-session')
+  }
 
   const headers = {
     ...customHeaders,
     ...(body && !useBodyAsRaw && { 'Content-Type': 'application/json' }),
-    ...(sessionId && { 'X-Soto-Session': sessionId }),
+    ...(sessionId && { 'x-soto-session': sessionId }),
   }
 
   const getResponse: (retry: number) => Promise<HttpResponse<T, E>> = async (
