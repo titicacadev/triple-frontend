@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.30.2
+
+### poi-list-element
+
+- 관광지 리스트 poi blank image를 변경합니다 (#1498)
+
 ## 2.30.1
 
 ### static-map
