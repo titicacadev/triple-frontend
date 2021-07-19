@@ -27,9 +27,9 @@ export type CompactPoiListElementProps<
 const POI_IMAGE_PLACEHOLDERS_SMALL: {
   [key in PoiListElementType['type']]: string
 } = {
-  attraction: 'https://assets.triple.guide/images/ico-blank-see-small@2x.png',
-  restaurant: 'https://assets.triple.guide/images/ico-blank-eat-small@2x.png',
-  hotel: 'https://assets.triple.guide/images/ico-blank-hotel-small@2x.png',
+  attraction: 'https://assets.triple.guide/images/ico_blank_see_small@2x.png',
+  restaurant: 'https://assets.triple.guide/images/ico_blank_eat_small@2x.png',
+  hotel: 'https://assets.triple.guide/images/ico_blank_hotel_small@2x.png',
 }
 
 export function CompactPoiListElement<T extends PoiListElementType>({
