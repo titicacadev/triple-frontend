@@ -24,7 +24,7 @@ export function EventMetaProvider({
   )
 }
 
-export function useEventMetaContext() {
+function useEventMetaContext() {
   return useContext(EventMetaContext)
 }
 
