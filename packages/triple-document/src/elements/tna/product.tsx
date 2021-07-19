@@ -7,7 +7,7 @@ import { TNAProductData, DomesticArea } from './types'
 import { generateCoupon } from './helpers'
 
 const PLACEHOLDER_IMAGE_URL =
-  'https://assets.triple.guide/images/ico-blank-see@2x.png'
+  'https://assets.triple.guide/images/ico_blank_see@2x.png'
 
 function Pricing({
   basePrice,

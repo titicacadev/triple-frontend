@@ -88,7 +88,7 @@ const ImageLinkItem = styled.a`
 `
 
 const IMAGE_PLACEHOLDER =
-  'https://assets.triple.guide/images/ico-blank-see@2x.png'
+  'https://assets.triple.guide/images/ico_blank_see@2x.png'
 
 function ImageLink({
   href,

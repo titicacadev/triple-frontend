@@ -22,9 +22,9 @@ import DirectionButton, { DIRECTION_BUTTON_WIDTH } from './direction-button'
 const IMAGE_WIDTH = 58
 
 const IMAGE_PLACEHOLDERS = {
-  hotel: 'https://assets.triple.guide/images/ico-blank-hotel@3x.png',
-  attraction: 'https://assets.triple.guide/images/ico-blank-see@3x.png',
-  restaurant: 'https://assets.triple.guide/images/ico-blank-eat@3x.png',
+  hotel: 'https://assets.triple.guide/images/ico_blank_hotel@3x.png',
+  attraction: 'https://assets.triple.guide/images/ico_blank_see@3x.png',
+  restaurant: 'https://assets.triple.guide/images/ico_blank_eat@3x.png',
 } as const
 
 const Card = styled(OriginalCard)`
