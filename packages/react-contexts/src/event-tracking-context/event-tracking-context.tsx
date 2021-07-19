@@ -22,7 +22,7 @@ import { FAParams, GAParams, PixelParams } from './types'
 
 const NOOP = () => {}
 
-interface EventTrackingContextValue {
+export interface EventTrackingContextValue {
   trackScreen: (screenPath: string, label?: string) => void
   trackEvent: (params: {
     ga?: GAParams
