@@ -1,4 +1,4 @@
 import 'intersection-observer'
-import ReactIntersectionObserver from '@researchgate/react-intersection-observer'
+import ReactIntersectionObserver from '@titicaca/react-intersection-observer'
 
 export default ReactIntersectionObserver

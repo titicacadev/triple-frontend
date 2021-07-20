@@ -1,8 +1,8 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
-import { Props } from '@researchgate/react-intersection-observer'
+import { ReactIntersectionObserverProps } from '@titicaca/react-intersection-observer'
 
-interface IntersectionObserverProps extends Props {
+interface IntersectionObserverProps extends ReactIntersectionObserverProps {
   safe?: boolean
 }
 
@@ -19,13 +19,12 @@ async function importReactIntersectionObserver() {
       await import('intersection-observer')
     }
 
-    return import(
-      /* eslint-disable-next-line comma-dangle */
-      '@researchgate/react-intersection-observer'
-    )
+    return import('@titicaca/react-intersection-observer')
   } catch (e) {
     return Promise.resolve(
-      (({ children }) => children || null) as React.FC<Props>,
+      (({ children }) => children || null) as React.FC<
+        ReactIntersectionObserverProps
+      >,
     )
   }
 }
