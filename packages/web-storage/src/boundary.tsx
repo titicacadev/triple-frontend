@@ -46,7 +46,7 @@ export class WebStorageErrorBoundary extends Component<
     if (error) {
       return (
         <Alert open title="문제가 발생했습니다." onConfirm={onConfirm}>
-          {error?.userGuideMessage}
+          {error.userGuideMessage}
         </Alert>
       )
     }
