@@ -3,34 +3,36 @@ import React, { createContext, PropsWithChildren, useContext } from 'react'
 import { useEventTrackingContext } from './event-tracking-context'
 import { FAParams, GAParams, PixelParams } from './types'
 
-interface EventMetaContext {
+interface EventMetadataContext {
   [key: string]: string
 }
 
-const EventMetaContext = createContext<EventMetaContext | undefined>(undefined)
+const EventMetadataContext = createContext<EventMetadataContext | undefined>(
+  undefined,
+)
 
-export function EventMetaProvider({
+export function EventMetadataProvider({
   children,
-  eventMetaContext,
-}: PropsWithChildren<{ eventMetaContext?: EventMetaContext }>) {
-  const parentEventMetaContext = useContext(EventMetaContext)
+  eventMetadataContext,
+}: PropsWithChildren<{ eventMetadataContext?: EventMetadataContext }>) {
+  const parentEventMetadataContext = useContext(EventMetadataContext)
 
   return (
-    <EventMetaContext.Provider
-      value={{ ...parentEventMetaContext, ...eventMetaContext }}
+    <EventMetadataContext.Provider
+      value={{ ...parentEventMetadataContext, ...eventMetadataContext }}
     >
       {children}
-    </EventMetaContext.Provider>
+    </EventMetadataContext.Provider>
   )
 }
 
-function useEventMetaContext() {
-  return useContext(EventMetaContext)
+function useEventMetadataContext() {
+  return useContext(EventMetadataContext)
 }
 
 export function useEventTrackerWithMetadata() {
   const { trackEvent } = useEventTrackingContext()
-  const eventMetadata = useEventMetaContext()
+  const eventMetadata = useEventMetadataContext()
 
   return (prams: {
     ga?: GAParams
@@ -47,7 +49,7 @@ export function useEventTrackerWithMetadata() {
 
 function getFAWithMetadata(
   fa?: Partial<FAParams>,
-  eventMetaContext?: EventMetaContext,
+  eventMetaContext?: EventMetadataContext,
 ) {
   if (!fa) {
     return
@@ -59,7 +61,10 @@ function getFAWithMetadata(
   }
 }
 
-function getGAWithMetadata(ga?: GAParams, eventMetaContext?: EventMetaContext) {
+function getGAWithMetadata(
+  ga?: GAParams,
+  eventMetaContext?: EventMetadataContext,
+) {
   if (!ga) {
     return
   }
