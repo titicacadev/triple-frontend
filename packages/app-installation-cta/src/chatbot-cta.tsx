@@ -2,8 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { Text, LayeringMixinProps } from '@titicaca/core-elements'
 import { CSSTransition } from 'react-transition-group'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
-
-import { WebStorage } from '../../web-storage/lib'
+import { WebStorage } from '@titicaca/web-storage'
 
 import {
   CHATBOT_CLOSED_STORAGE_KEY,
