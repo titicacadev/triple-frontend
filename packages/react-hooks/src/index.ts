@@ -4,6 +4,6 @@ export * from './use-visibility-change'
 export * from './use-scroll-to-anchor'
 export * from './use-scroll-to-element'
 export * from './use-lottie'
-export * from './use-throw-error'
+export * from './use-error-handler'
 
 export { default as useDebouncedState } from './use-debounce'
