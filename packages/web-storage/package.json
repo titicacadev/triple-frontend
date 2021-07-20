@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/web-storage",
-  "version": "2.29.1",
+  "version": "2.30.2",
   "description": "WebStorage API wrapper for Triple services",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
