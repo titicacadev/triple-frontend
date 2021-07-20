@@ -21,12 +21,12 @@ export class WebStorage {
 
   constructor(type: WebStorageType = 'localStorage') {
     if (typeof window === 'undefined') {
-      throw new WebStorageError(type, 'NotBrowser')
+      throw new WebStorageError({ type: 'NotBrowser', storageType: type })
     }
 
     if (!storageAvailable(type)) {
       if (!cookieAvailable()) {
-        throw new WebStorageError(type, 'Unavailable')
+        throw new WebStorageError({ type: 'Unavailable', storageType: type })
       } else {
         this.cookieUsed = true
       }
@@ -73,7 +73,10 @@ export class WebStorage {
       return this.storage.setItem(key, value)
     } catch (error) {
       if (checkQuotaExceededError(error)) {
-        throw new WebStorageError(this.type, 'QuotaExceeded')
+        throw new WebStorageError({
+          type: 'QuotaExceeded',
+          storageType: this.type,
+        })
       }
 
       throw error
