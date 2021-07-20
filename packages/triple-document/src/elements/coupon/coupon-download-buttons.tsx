@@ -49,7 +49,7 @@ export function InAppCouponDownloadButton({
 }: {
   slugId: string
   verificationType?: VerificationType
-  onClick?: (e: React.SyntheticEvent) => void
+  onClick?: () => void
 }) {
   const [enabled, setEnabled] = useState(false)
   const [downloaded, setDownloaded] = useState(false)
@@ -129,9 +129,9 @@ export function InAppCouponDownloadButton({
     <>
       <BaseCouponDownloadButton
         disabled={!enabled}
-        onClick={(e) => {
+        onClick={() => {
           onDownload()
-          onClick && onClick(e)
+          onClick && onClick()
         }}
       >
         쿠폰 받기
@@ -148,7 +148,7 @@ export function InAppCouponGroupDownloadButton({
 }: {
   groupId: string
   verificationType?: VerificationType
-  onClick?: (e: React.SyntheticEvent) => void
+  onClick?: () => void
 }) {
   const [enabled, setEnabled] = useState(false)
   const [coupons, setCoupons] = useState<CouponData[]>([])
@@ -253,9 +253,9 @@ export function InAppCouponGroupDownloadButton({
     <>
       <BaseCouponDownloadButton
         disabled={!enabled}
-        onClick={(e) => {
+        onClick={() => {
           onDownload()
-          onClick && onClick(e)
+          onClick && onClick()
         }}
       >
         쿠폰 받기
