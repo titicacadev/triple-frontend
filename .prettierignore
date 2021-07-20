@@ -6,3 +6,4 @@ lerna.json
 
 .vscode/*
 tests/dist/*
+docs/storybook-static
