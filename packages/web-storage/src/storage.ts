@@ -19,7 +19,7 @@ export class WebStorage {
 
   private cookieUsed: boolean = false
 
-  constructor(type: WebStorageType) {
+  constructor(type: WebStorageType = 'localStorage') {
     if (typeof window === 'undefined') {
       throw new WebStorageError(type, 'NotBrowser')
     }
