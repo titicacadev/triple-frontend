@@ -9,16 +9,22 @@ export class WebStorageError extends CustomError {
 
   private storageType: WebStorageType
 
-  constructor(type: WebStorageType, errorType: ErrorType) {
+  constructor({
+    type,
+    storageType,
+  }: {
+    type: ErrorType
+    storageType: WebStorageType
+  }) {
     const messageMap: { [key in ErrorType]: string } = {
       NotBrowser: '브라우저 환경일 때만 WebStorage API를 사용할 수 있습니다.',
-      Unavailable: `${type}에 접근할 수 없습니다.`,
-      QuotaExceeded: `${type}의 허용된 용량을 모두 사용했습니다.`,
+      Unavailable: `${storageType}에 접근할 수 없습니다.`,
+      QuotaExceeded: `${storageType}의 허용된 용량을 모두 사용했습니다.`,
     }
 
-    super(messageMap[errorType])
-    this.type = errorType
-    this.storageType = type
+    super(messageMap[type])
+    this.type = type
+    this.storageType = storageType
   }
 
   get userGuideMessage() {
