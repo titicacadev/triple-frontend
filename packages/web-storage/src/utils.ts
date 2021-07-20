@@ -4,6 +4,7 @@ import { WebStorageType } from './types'
 
 /**
  * 주어진 error가 WebStorage의 용량을 모두 사용했다는 에러인지 확인하는 함수
+ * 참고: https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#testing_for_availability
  * @param error
  */
 export function checkQuotaExceededError(error: any): boolean {
