@@ -8,99 +8,106 @@ import {
 import { WebStorageError } from './error'
 import { WebStorageType } from './types'
 
-export class WebStorage {
-  private static COOKIE_KEY_PREFIX = 'alter-storage/'
+const COOKIE_KEY_PREFIX = 'alter-storage/'
 
-  private static addCookieKeyPrefix(key: string) {
-    return `${this.COOKIE_KEY_PREFIX}/${key}`
+function addCookieKeyPrefix(key: string) {
+  return `${COOKIE_KEY_PREFIX}/${key}`
+}
+
+export function WebStorage(type: WebStorageType = 'localStorage') {
+  if (typeof window === 'undefined') {
+    throw new WebStorageError({ type: 'NotBrowser', storageType: type })
   }
 
-  private type: WebStorageType
-
-  private cookieUsed: boolean = false
-
-  constructor(type: WebStorageType = 'localStorage') {
-    if (typeof window === 'undefined') {
-      throw new WebStorageError({ type: 'NotBrowser', storageType: type })
+  if (!storageAvailable(type)) {
+    if (!cookieAvailable()) {
+      throw new WebStorageError({ type: 'Unavailable', storageType: type })
     }
 
-    if (!storageAvailable(type)) {
-      if (!cookieAvailable()) {
-        throw new WebStorageError({ type: 'Unavailable', storageType: type })
-      } else {
-        this.cookieUsed = true
-      }
-    }
+    const cookie = new Cookies()
+    const keys = Object.keys(cookie.getAll()).filter((key) =>
+      key.startsWith(COOKIE_KEY_PREFIX),
+    )
 
-    this.type = type
-  }
+    return {
+      get length() {
+        return keys.length
+      },
 
-  private get storage() {
-    return window[this.type]
-  }
+      key(index: number): string | null {
+        return keys[index] ?? null
+      },
 
-  get length() {
-    return this.storage.length
-  }
-
-  key(index: number): string | null {
-    if (this.cookieUsed) {
-      const cookie = new Cookies()
-
-      return Object.keys(cookie.getAll())[index] ?? null
-    }
-    return this.storage.key(index)
-  }
-
-  getItem(key: string): string | null {
-    if (this.cookieUsed) {
-      const cookie = new Cookies()
-
-      return cookie.get(WebStorage.addCookieKeyPrefix(key), {
-        doNotParse: true,
-      })
-    }
-    return this.storage.getItem(key)
-  }
-
-  setItem(key: string, value: string) {
-    try {
-      if (this.cookieUsed) {
-        // TODO: 초기화되는 로직이 쿠키와 Storage가 약간 다르다.
-        const cookie = new Cookies()
-        return cookie.set(WebStorage.addCookieKeyPrefix(key), value)
-      }
-      return this.storage.setItem(key, value)
-    } catch (error) {
-      if (checkQuotaExceededError(error)) {
-        throw new WebStorageError({
-          type: 'QuotaExceeded',
-          storageType: this.type,
+      getItem(key: string): string | null {
+        return cookie.get(addCookieKeyPrefix(key), {
+          doNotParse: true,
         })
-      }
+      },
 
-      throw error
-    }
-  }
+      setItem(key: string, value: string) {
+        try {
+          // TODO: 초기화되는 로직이 쿠키와 Storage가 약간 다르다.
+          return cookie.set(addCookieKeyPrefix(key), value)
+        } catch (error) {
+          if (checkQuotaExceededError(error)) {
+            throw new WebStorageError({
+              type: 'QuotaExceeded',
+              storageType: type,
+            })
+          }
 
-  removeItem(key: string) {
-    if (this.cookieUsed) {
-      const cookie = new Cookies()
-      return cookie.remove(WebStorage.addCookieKeyPrefix(key))
-    }
-    return this.storage.removeItem(key)
-  }
+          throw error
+        }
+      },
 
-  clear() {
-    if (this.cookieUsed) {
-      const cookie = new Cookies()
-      Object.keys(cookie.getAll())
-        .filter((key) => key.startsWith(WebStorage.COOKIE_KEY_PREFIX))
-        .forEach((key) => {
+      removeItem(key: string) {
+        return cookie.remove(addCookieKeyPrefix(key))
+      },
+
+      clear() {
+        keys.forEach((key) => {
           cookie.remove(key)
         })
-      return
+      },
     }
-    return this.storage.clear()
+  }
+
+  const storage = window[type]
+
+  return {
+    get length() {
+      return storage.length
+    },
+
+    key(index: number): string | null {
+      return storage.key(index)
+    },
+
+    getItem(key: string): string | null {
+      return storage.getItem(key)
+    },
+
+    setItem(key: string, value: string) {
+      try {
+        return storage.setItem(key, value)
+      } catch (error) {
+        if (checkQuotaExceededError(error)) {
+          throw new WebStorageError({
+            type: 'QuotaExceeded',
+            storageType: type,
+          })
+        }
+
+        throw error
+      }
+    },
+
+    removeItem(key: string) {
+      return storage.removeItem(key)
+    },
+
+    clear() {
+      return storage.clear()
+    },
   }
 }

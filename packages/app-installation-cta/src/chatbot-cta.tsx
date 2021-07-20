@@ -53,7 +53,7 @@ export default function ChatbotCTA({
     let visited = false
 
     try {
-      const storage = new WebStorage('sessionStorage')
+      const storage = WebStorage('sessionStorage')
       visited = !!storage.getItem(CHATBOT_CLOSED_STORAGE_KEY)
     } catch (error) {
       // 사용자가 이전에 CTA를 닫았었는지 확인합니다.
@@ -105,7 +105,7 @@ export default function ChatbotCTA({
     onDismiss && onDismiss(inventoryItem)
 
     try {
-      const storage = new WebStorage('sessionStorage')
+      const storage = WebStorage('sessionStorage')
       storage.setItem(CHATBOT_CLOSED_STORAGE_KEY, 'true')
     } catch (error) {
       // 사용자가 CTA를 닫았다는 것을 기록합니다.
