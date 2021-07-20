@@ -14,7 +14,7 @@ function addCookieKeyPrefix(key: string) {
   return `${COOKIE_KEY_PREFIX}/${key}`
 }
 
-export function WebStorage(type: WebStorageType = 'localStorage') {
+export function webStorage(type: WebStorageType = 'localStorage') {
   if (typeof window === 'undefined') {
     throw new WebStorageError({ type: 'NotBrowser', storageType: type })
   }

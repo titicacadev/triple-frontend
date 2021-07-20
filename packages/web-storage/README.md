@@ -10,16 +10,16 @@ Web Storage API에서 발생할 수 있는 오류를 명확히 정의하고 이�
 
 ## 제공하는 기능
 
-### `WebStorage` 생성자
+### `webStorage` 함수
 
-window의 `localStorage`, `sessionStorage` 대신 사용할 수 있는 객체를 반환하는 생성자입니다.
+window의 `localStorage`, `sessionStorage` 대신 사용할 수 있는 객체를 반환하는 함수입니다.
 파라미터로 storage의 종류를 받습니다. 기본값은 `localStorage`입니다.
 Web Storage API와 거의 동일한 인터페이스를 제공합니다.
 `length`, `key`, `getItem`, `setItem`, `removeItem`, `clear` 속성을 제공합니다.
 단, 기존 storage와 달리 Index signature로 값에 접근하는 방식은 제공하지 않습니다.
 
 ```ts
-const storage = new WebStorage()
+const storage = webStorage()
 
 const awesomeValue = storage.getItem('my-awesome-key') // O
 storage.setItem('my-awesome-key', '42') // O
