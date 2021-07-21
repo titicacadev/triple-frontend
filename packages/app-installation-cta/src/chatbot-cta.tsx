@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { Text, LayeringMixinProps } from '@titicaca/core-elements'
 import { CSSTransition } from 'react-transition-group'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
-import { webStorage } from '@titicaca/web-storage'
+import { getWebStorage } from '@titicaca/web-storage'
 
 import {
   CHATBOT_CLOSED_STORAGE_KEY,
@@ -53,7 +53,7 @@ export default function ChatbotCTA({
     let visited = false
 
     try {
-      visited = !!webStorage('sessionStorage').getItem(
+      visited = !!getWebStorage('sessionStorage').getItem(
         CHATBOT_CLOSED_STORAGE_KEY,
       )
     } catch (error) {
@@ -106,7 +106,10 @@ export default function ChatbotCTA({
     onDismiss && onDismiss(inventoryItem)
 
     try {
-      webStorage('sessionStorage').setItem(CHATBOT_CLOSED_STORAGE_KEY, 'true')
+      getWebStorage('sessionStorage').setItem(
+        CHATBOT_CLOSED_STORAGE_KEY,
+        'true',
+      )
     } catch (error) {
       // 사용자가 CTA를 닫았다는 것을 기록합니다.
       // 필수적인 기능이 아니므로 에러를 조용히 넘깁니다.
