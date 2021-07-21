@@ -90,14 +90,10 @@ function getPixelWithMetadata(
     return
   }
 
-  if (eventMetaContext) {
-    const { payload } = pixel
-    const payloadWithMetadata = { ...eventMetaContext, ...payload }
-    return {
-      ...pixel,
-      payload: payloadWithMetadata,
-    }
+  const { payload } = pixel
+  const payloadWithMetadata = { ...eventMetaContext, ...payload }
+  return {
+    ...pixel,
+    payload: payloadWithMetadata,
   }
-
-  return pixel
 }
