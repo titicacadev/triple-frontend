@@ -260,10 +260,10 @@ export function EventTrackingProvider({
   }, [sessionContext?.user?.uid, setFirebaseUserId])
 
   useEffect(() => {
-    if (page) {
-      trackScreen(page.path, page.screenClass)
+    if (page?.path) {
+      trackScreen(page?.path, page?.screenClass)
     }
-  }, [trackScreen, page])
+  }, [trackScreen, page?.path, page?.screenClass])
 
   return <Context.Provider value={value}>{children}</Context.Provider>
 }
