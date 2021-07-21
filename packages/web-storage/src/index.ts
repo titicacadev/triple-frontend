@@ -1,2 +1,2 @@
 export { WebStorageErrorBoundary } from './boundary'
-export { webStorage } from './storage'
+export { getWebStorage } from './storage'

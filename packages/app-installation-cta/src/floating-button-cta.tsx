@@ -5,7 +5,7 @@ import {
   LayeringMixinProps,
 } from '@titicaca/core-elements'
 import { CSSTransition } from 'react-transition-group'
-import { webStorage } from '@titicaca/web-storage'
+import { getWebStorage } from '@titicaca/web-storage'
 
 import {
   BannerExitStrategy,
@@ -81,7 +81,7 @@ export default function FloatingButtonCTA({
     let visitedPages = false
 
     try {
-      const storage = webStorage('sessionStorage')
+      const storage = getWebStorage('sessionStorage')
       visitedPages = !!storage.getItem(FLOATING_BUTTON_CLOSED_STORAGE_KEY)
     } catch (error) {
       // 사용자가 이전에 CTA를 닫았었는지 확인합니다.
@@ -113,7 +113,7 @@ export default function FloatingButtonCTA({
     onDismiss && onDismiss()
 
     try {
-      const storage = webStorage('sessionStorage')
+      const storage = getWebStorage('sessionStorage')
       storage.setItem(FLOATING_BUTTON_CLOSED_STORAGE_KEY, 'true')
     } catch (error) {
       // 사용자가 CTA를 닫았다는 것을 기록합니다.
