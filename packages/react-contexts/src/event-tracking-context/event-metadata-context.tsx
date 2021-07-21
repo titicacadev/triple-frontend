@@ -42,7 +42,7 @@ export function useEventTrackerWithMetadata() {
     trackEvent({
       ga: getGAWithMetadata(prams.ga, eventMetadata),
       fa: getFAWithMetadata(prams.fa, eventMetadata),
-      pixel: prams.pixel,
+      pixel: getPixelWithMetadata(prams.pixel, eventMetadata),
     })
   }
 }
@@ -80,4 +80,24 @@ function getGAWithMetadata(
   }
 
   return [...ga]
+}
+
+function getPixelWithMetadata(
+  pixel?: PixelParams,
+  eventMetaContext?: EventMetadataContext,
+) {
+  if (!pixel) {
+    return
+  }
+
+  if (eventMetaContext) {
+    const { payload } = pixel
+    const payloadWithMetadata = { ...eventMetaContext, ...payload }
+    return {
+      ...pixel,
+      payload: payloadWithMetadata,
+    }
+  }
+
+  return pixel
 }
