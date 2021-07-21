@@ -148,7 +148,7 @@ export function EventTrackingProvider({
 
   const trackScreen: EventTrackingContextValue['trackScreen'] = useCallback(
     (path: string, label?: string) => {
-      if (page && path === page.path) {
+      if (path === page?.path) {
         /* eslint-disable-next-line no-console */
         console.warn(
           'trackScreen이 중복으로 기록될 수 있습니다. EventTrackingProvider를 확인하세요.',
@@ -181,7 +181,7 @@ export function EventTrackingProvider({
         onErrorRef.current?.(error)
       }
     },
-    [pageLabel, page],
+    [pageLabel, page?.path],
   )
 
   const trackEvent: EventTrackingContextValue['trackEvent'] = useCallback(
