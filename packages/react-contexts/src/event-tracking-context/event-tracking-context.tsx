@@ -103,7 +103,15 @@ function getFirebaseAnalyticsWebInstance() {
 }
 
 interface EventTrackingProviderProps {
-  pageLabel: string
+  /**
+   * @deprecated page prop의 label을 사용해주세요.
+   */
+  pageLabel?: string
+  page?: {
+    label: string
+    path: string
+    screenClass: string
+  }
   onError?: (error: Error) => void
 }
 
@@ -123,15 +131,30 @@ declare global {
 }
 
 export function EventTrackingProvider({
-  pageLabel,
+  pageLabel: legacyPageLabel,
+  page,
   onError: onErrorFromProps,
   children,
 }: PropsWithChildren<EventTrackingProviderProps>) {
   const sessionContext = useSessionContextSafely() // TODO: v3에서 useSessionContext로 바꿔서 의존성 명시하기
   const onErrorRef = useRef(onErrorFromProps)
+  const pageLabel = page?.label || legacyPageLabel
+
+  if (!pageLabel) {
+    throw new Error(
+      'EventTrackingProvider가 사용할 Page label은 반드시 입력해야 합니다.',
+    )
+  }
 
   const trackScreen: EventTrackingContextValue['trackScreen'] = useCallback(
     (path: string, label?: string) => {
+      if (page && path === page.path) {
+        /* eslint-disable-next-line no-console */
+        console.warn(
+          'trackScreen이 중복으로 기록될 수 있습니다. EventTrackingProvider를 확인하세요.',
+        )
+      }
+
       try {
         if (window.ga) {
           window.ga('set', 'page', path)
@@ -158,7 +181,7 @@ export function EventTrackingProvider({
         onErrorRef.current?.(error)
       }
     },
-    [pageLabel],
+    [pageLabel, page],
   )
 
   const trackEvent: EventTrackingContextValue['trackEvent'] = useCallback(
@@ -235,6 +258,12 @@ export function EventTrackingProvider({
   useEffect(() => {
     setFirebaseUserId(sessionContext?.user?.uid || null)
   }, [sessionContext?.user?.uid, setFirebaseUserId])
+
+  useEffect(() => {
+    if (page) {
+      trackScreen(page.path, page.screenClass)
+    }
+  }, [trackScreen, page])
 
   return <Context.Provider value={value}>{children}</Context.Provider>
 }
