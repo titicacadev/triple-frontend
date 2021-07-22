@@ -74,9 +74,9 @@ function getGAWithMetadata(
     const [action, label] = ga
 
     if (label) {
-      return [action, [...arrayOfContext, label].join('_')]
+      return [action, [...arrayOfContext, label].join('_').substr(0, 150)]
     }
-    return [action, [...arrayOfContext].join('_')]
+    return [action, [...arrayOfContext].join('_').substr(0, 150)]
   }
 
   return ga
