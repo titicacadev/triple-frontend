@@ -74,12 +74,12 @@ function getGAWithMetadata(
     const [action, label] = ga
 
     if (label) {
-      return [action, [...arrayOfContext, ...label.split('_')].join('_')]
+      return [action, [...arrayOfContext, label].join('_')]
     }
     return [action, [...arrayOfContext].join('_')]
   }
 
-  return [...ga]
+  return ga
 }
 
 function getPixelWithMetadata(
