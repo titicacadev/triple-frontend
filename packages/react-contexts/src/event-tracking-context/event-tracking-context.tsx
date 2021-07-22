@@ -110,7 +110,6 @@ interface EventTrackingProviderProps {
   page?: {
     label: string
     path: string
-    screenClass?: string
   }
   onError?: (error: Error) => void
 }
@@ -139,7 +138,6 @@ export function EventTrackingProvider({
   const sessionContext = useSessionContextSafely() // TODO: v3에서 useSessionContext로 바꿔서 의존성 명시하기
   const onErrorRef = useRef(onErrorFromProps)
   const pageLabel = page?.label || legacyPageLabel
-  const screenClass = page?.screenClass || pageLabel
 
   if (!pageLabel) {
     throw new Error(
@@ -262,9 +260,9 @@ export function EventTrackingProvider({
 
   useEffect(() => {
     if (page?.path) {
-      trackScreen(page?.path, screenClass)
+      trackScreen(page?.path, pageLabel)
     }
-  }, [trackScreen, page?.path, screenClass])
+  }, [trackScreen, page?.path, pageLabel])
 
   return <Context.Provider value={value}>{children}</Context.Provider>
 }
