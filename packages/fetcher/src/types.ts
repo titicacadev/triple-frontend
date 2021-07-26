@@ -21,15 +21,15 @@ export type RequestOptions = Omit<RequestInit, 'body'> & {
    */
   body?: BodyInit | { [key: string]: any }
   /**
-   * cookie를 인자로 받을 시
-   * cookie를 universal-cookie로 파싱하여 x-soto-session 값을 요청 헤더로 전달
+   * cookie를 인자로 받을 시 해당 cookie를 헤더에 삽입
+   * 브라우저의 fetch는 헤더를 무시하기 때문에 SSR시에만 유효합니다.
    */
   cookie?: string
   /**
-   * isAbsoluteUrl true일 때
-   * URL에 API base URL을 붙여 요청을 절대 경로로 보낼 수 있게 만듬
+   * withApiUriBase true일 때
+   * URL에 API base URL을 붙여 요청을 절대 경로로 보낼 수 있게 만듦
    */
-  isAbsoluteUrl?: boolean
+  withApiUriBase?: boolean
 }
 
 export enum HTTPMethods {

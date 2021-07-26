@@ -22,7 +22,7 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
     body,
     headers: customHeaders,
     cookie,
-    isAbsoluteUrl,
+    withApiUriBase,
     ...rest
   }: RequestOptions,
 ): Promise<HttpResponse<T, E>> {
@@ -32,11 +32,8 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
     )
   }
 
-  let baseUrl: string = req ? (process.env.API_URI_BASE as string) : ''
-
-  if (isAbsoluteUrl) {
-    baseUrl = process.env.API_URI_BASE as string
-  }
+  const baseUrl: string =
+    req || withApiUriBase ? (process.env.API_URI_BASE as string) : ''
 
   const reqUrl: string = baseUrl + url
 
