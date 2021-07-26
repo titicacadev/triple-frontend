@@ -1,5 +1,37 @@
 # CHANGELOG
 
+## 2.31.0
+
+### common
+
+- react 17을 준비합니다. (#1469)
+
+### react-contexts
+
+- 콜백 함수에서 발생한 에러를 React ErrorBoundary가 잡을 수 있도록 해주는 함수 `useThrowError` Hook 추가 (#1489)
+- EventTrackingProvider에서 trackScreen을 수행합니다. (#1504)
+- 공통 EventMetadata 를 추가하기 위한 Context API 를 추가합니다 (#1503)
+
+### fetcher
+
+- fetcher의 파라미터에 withApiUriBase, cookie를 추가합니다. (#1502)
+
+### meta-tags
+
+- 기본 OG 이미지 수정 (#1501)
+
+### triple-document
+
+- 아티클 내의 쿠폰선택에 관한 이벤트 로깅을 생성합니다. (#1499)
+
+### web-storage
+
+- @titicaca/web-storage: 효율적인 WebStorage API 에러 처리 (#1489)
+
+### app-installation-cta
+
+- WebStorage API 적용 (#1489)
+
 ## 2.30.2
 
 ### poi-list-element
