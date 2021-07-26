@@ -45,7 +45,7 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
     ...customHeaders,
     ...(body && !useBodyAsRaw && { 'Content-Type': 'application/json' }),
     ...(sessionId && { 'X-Soto-Session': sessionId }),
-    cookie,
+    ...(cookie && { cookie }),
   }
 
   const getResponse: (retry: number) => Promise<HttpResponse<T, E>> = async (
