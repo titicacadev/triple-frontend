@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/user-verification",
-  "version": "2.30.2",
+  "version": "2.31.0",
   "description": "user verification",
   "keywords": [
     "triple",
@@ -24,9 +24,9 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^2.30.2",
-    "@titicaca/modals": "^2.30.2",
-    "@titicaca/react-hooks": "^2.30.2",
+    "@titicaca/core-elements": "^2.31.0",
+    "@titicaca/modals": "^2.31.0",
+    "@titicaca/react-hooks": "^2.31.0",
     "isomorphic-fetch": "^2.2.1"
   },
   "devDependencies": {
