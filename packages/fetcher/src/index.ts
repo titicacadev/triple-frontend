@@ -40,18 +40,15 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
 
   const reqUrl: string = baseUrl + url
 
-  let sessionId = req
+  const sessionId = req
     ? new Cookies(req.headers.cookie).get('x-soto-session')
     : undefined
-
-  if (cookie) {
-    sessionId = new Cookies(cookie).get('x-soto-session')
-  }
 
   const headers = {
     ...customHeaders,
     ...(body && !useBodyAsRaw && { 'Content-Type': 'application/json' }),
     ...(sessionId && { 'X-Soto-Session': sessionId }),
+    cookie,
   }
 
   const getResponse: (retry: number) => Promise<HttpResponse<T, E>> = async (
