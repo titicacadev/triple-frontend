@@ -8,7 +8,7 @@
 
 ### react-contexts
 
-- 콜백 함수에서 발생한 에러를 React ErrorBoundary가 잡을 수 있도록 해주는 함수 `useThrowError` Hook 추가 (#1489)
+- 콜백 함수에서 발생한 에러를 React ErrorBoundary가 잡을 수 있도록 해주는 함수 `useErrorHandler` Hook 추가 (#1489)
 - EventTrackingProvider에서 trackScreen을 수행합니다. (#1504)
 - 공통 EventMetadata 를 추가하기 위한 Context API 를 추가합니다 (#1503)
 
