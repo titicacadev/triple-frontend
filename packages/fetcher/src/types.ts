@@ -4,10 +4,7 @@ import { HttpError } from './error'
 
 export type RequestOptions = Omit<RequestInit, 'body'> & {
   /**
-   * @deprecated req보다는 cookie, absoluteUrl의 사용을 권장합니다!
-   * req를 직접 참조할 시 생기는 이슈
-   * 1. "서버환경에서 쿠키가 필요없는 상황"에서 사용하기 애매 (우회를 해야하는 번거로움)
-   * 2. 쿠키가 누락되는 현상 발생
+   * @deprecated req보다는 cookie, withApiUriBase 사용을 권장합니다!
    *
    * 참조: https://github.com/titicacadev/triple-frontend/issues/1334
    */
