@@ -111,6 +111,13 @@ interface EventTrackingProviderProps {
     label: string
     path: string
   }
+  item?: {
+    id: string
+    type: string
+    name: string
+    regionId?: string
+    [key: string]: string | undefined
+  }
   onError?: (error: Error) => void
 }
 
@@ -132,6 +139,7 @@ declare global {
 export function EventTrackingProvider({
   pageLabel: legacyPageLabel,
   page,
+  item,
   onError: onErrorFromProps,
   children,
 }: PropsWithChildren<EventTrackingProviderProps>) {
@@ -261,6 +269,20 @@ export function EventTrackingProvider({
       trackScreen(page?.path, pageLabel)
     }
   }, [trackScreen, page?.path, pageLabel])
+
+  useEffect(() => {
+    if (item?.id) {
+      const { type, id, name, regionId, ...itemAttributes } = item
+
+      nativeViewItem({
+        contentType: type,
+        itemId: item.id,
+        itemName: name,
+        regionId,
+        ...itemAttributes,
+      })
+    }
+  }, [item?.type, item?.id, item?.name, item?.regionId]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return <Context.Provider value={value}>{children}</Context.Provider>
 }
