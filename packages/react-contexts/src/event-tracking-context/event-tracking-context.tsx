@@ -276,7 +276,7 @@ export function EventTrackingProvider({
 
       nativeViewItem({
         contentType: type,
-        itemId: item.id,
+        itemId: id,
         itemName: name,
         regionId,
         ...itemAttributes,
