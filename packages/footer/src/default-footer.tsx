@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Accordion, Text, Container } from '@titicaca/core-elements'
+import {
+  Accordion,
+  Text,
+  Container,
+  MarginPadding,
+} from '@titicaca/core-elements'
 import { useSessionContext } from '@titicaca/react-contexts'
 
 import { FooterFrame } from './elements'
@@ -78,18 +83,17 @@ const AccordionArrow = styled.img`
   height: 15px;
 `
 
-export default function DefaultFooter() {
+export default function DefaultFooter({
+  padding = { top: 30, left: 30, right: 30, bottom: 40 },
+}: {
+  padding?: MarginPadding
+}) {
   const [businessExpanded, setBusinessExpanded] = useState(false)
   const { login, logout, hasSessionId } = useSessionContext()
 
   return (
     <FooterFrame>
-      <Container
-        minWidth={320}
-        maxWidth={600}
-        centered
-        padding={{ top: 30, left: 30, right: 30, bottom: 40 }}
-      >
+      <Container minWidth={320} maxWidth={600} centered padding={padding}>
         <Container>
           <Accordion style={{ width: '100%' }}>
             <Title
