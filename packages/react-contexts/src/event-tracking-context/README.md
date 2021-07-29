@@ -5,12 +5,26 @@ Google Analytics/Pixel 이벤트를 위한 Context입니다.
 
 ## Event 정의
 
-### Screen view (page view) events
+### Screen/page view events
 
 String 형식 path로 표현하는 스크린(앱 내) 및 페이지(웹 페이지) 뷰를 기록합니다.
-페이지가 열릴 때마다 `useEffect` 훅이나 `componentDidMount`라이프사이클 이벤트를
-이용해 기록하는 것이 보통이며, 팝업이나 모달 윈도우 등이 열릴 때 별도로 기록하기도
-합니다.
+페이지가 열릴 때마다 기록하는 것이 보통이며, 팝업이나 모달 윈도우 등이 열릴 때
+별도로 기록하기도 합니다.
+
+페이지가 열릴 때마다 기록하는 Screen/page view는 `EventTrackingProvider`에
+전달하는 `page` prop의 값을 이용하게 됩니다:
+
+```
+page: {
+  label: string
+  path: string
+}
+```
+
+`label`과 `path`, 특히 `path` 값은 데이터 분석 시 사용자의 특정 페이지 진입
+여부를 체크하기 위해 사용합니다. 따라서 서비스 안에서 유일한 값을 가지도록 하는
+것이 중요합니다. 프로젝트의 `basePath`를 `path`의 가장 앞에 붙이는 것이
+보통입니다.
 
 ### Interaction events
 
