@@ -15,6 +15,7 @@ import {
 } from '@titicaca/triple-web-to-native-interfaces'
 import * as firebase from 'firebase/app'
 import 'firebase/analytics'
+import { useRouter } from 'next/router'
 
 import { useSessionContextSafely } from '../session-context'
 
@@ -23,7 +24,11 @@ import { FAParams, GAParams, PixelParams } from './types'
 const NOOP = () => {}
 
 export interface EventTrackingContextValue {
-  trackScreen: (screenPath: string, label?: string) => void
+  trackScreen: (
+    screenPath: string,
+    label?: string,
+    additionalMetadata?: { [key: string]: string },
+  ) => void
   trackEvent: (params: {
     ga?: GAParams
     fa?: Partial<FAParams>
@@ -147,6 +152,7 @@ export function EventTrackingProvider({
   const sessionContext = useSessionContextSafely() // TODO: v3에서 useSessionContext로 바꿔서 의존성 명시하기
   const onErrorRef = useRef(onErrorFromProps)
   const pageLabel = page?.label || legacyPageLabel
+  const { query } = useRouter()
 
   if (!pageLabel) {
     throw new Error(
@@ -155,7 +161,11 @@ export function EventTrackingProvider({
   }
 
   const trackScreen: EventTrackingContextValue['trackScreen'] = useCallback(
-    (path: string, label?: string) => {
+    (
+      path: string,
+      label?: string,
+      additionalMetadata?: { [key: string]: string },
+    ) => {
       try {
         if (window.ga) {
           window.ga('set', 'page', path)
@@ -175,7 +185,7 @@ export function EventTrackingProvider({
           })
         }
 
-        nativeTrackScreen(path, label)
+        nativeTrackScreen(path, label, additionalMetadata)
       } catch (error) {
         onErrorRef.current?.(error)
       }
@@ -267,9 +277,19 @@ export function EventTrackingProvider({
 
   useEffect(() => {
     if (page?.path) {
-      trackScreen(page?.path, pageLabel)
+      const utmParams = Object.keys(query || {})
+        .filter((key) => key.match(/^utm_/i))
+        .reduce(
+          (params, key) => ({
+            ...params,
+            [key.replace(/^utm_/, '')]: query[key],
+          }),
+          {},
+        )
+
+      trackScreen(page?.path, pageLabel, utmParams)
     }
-  }, [trackScreen, page?.path, pageLabel])
+  }, [trackScreen, page?.path, pageLabel, query])
 
   useEffect(() => {
     if (item?.id) {
