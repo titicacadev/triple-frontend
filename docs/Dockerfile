@@ -1,4 +1,4 @@
-FROM node:15 AS docs-build
+FROM node:16 AS docs-build
 WORKDIR /app
 
 COPY . .

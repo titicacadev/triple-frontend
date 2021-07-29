@@ -7,12 +7,14 @@ on:
     tags:
       - 'release-prod-*'
 
+env:
+  # Node.js
+  NODE_VERSION: '16.x'
+  NPM_REGISTRY_URL: 'https://registry.npmjs.org'
+
 jobs:
   release:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [15.x]
 
     env:
       SLACK_CHANNEL: '#triple-web-dev-notifications'
@@ -31,11 +33,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2-beta
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
-          registry-url: 'https://registry.npmjs.org'
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.NPM_REGISTRY_URL }}
 
       - name: Define variables
         run: |
@@ -111,15 +113,15 @@ jobs:
     needs: release
     if: success()
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [15.x]
 
     steps:
       - uses: actions/checkout@v2-beta
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.NPM_REGISTRY_URL }}
 
       - name: Tag with annotation
         run: |
