@@ -13,6 +13,6 @@
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
-    "next": "*"
+    "next": "^9.0 || ^10.0 || ^11.0"
   }
 }
