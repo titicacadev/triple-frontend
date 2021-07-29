@@ -116,7 +116,8 @@ interface EventTrackingProviderProps {
     type: string
     name: string
     regionId?: string
-    [key: string]: string | undefined
+    zoneId?: string
+    referrer?: string
   }
   onError?: (error: Error) => void
 }
@@ -272,17 +273,18 @@ export function EventTrackingProvider({
 
   useEffect(() => {
     if (item?.id) {
-      const { type, id, name, regionId, ...itemAttributes } = item
+      const { type, id, name, regionId, zoneId, referrer } = item
 
       nativeViewItem({
         contentType: type,
         itemId: id,
         itemName: name,
         regionId,
-        ...itemAttributes,
+        zoneId,
+        referrer,
       })
     }
-  }, [item?.type, item?.id, item?.name, item?.regionId]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [item?.id]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return <Context.Provider value={value}>{children}</Context.Provider>
 }
