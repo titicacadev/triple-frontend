@@ -12,6 +12,6 @@
     "intersection-observer": "^0.7.0"
   },
   "peerDependencies": {
-    "next": "*"
+    "next": "^9.0 || ^10.0 || ^11.0"
   }
 }

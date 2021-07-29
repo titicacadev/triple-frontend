@@ -22,7 +22,7 @@
   "peerDependencies": {
     "@titicaca/triple-web-to-native-interfaces": "*",
     "firebase": "^7.24.0",
-    "next": "*"
+    "next": "^9.0 || ^10.0 || ^11.0"
   },
   "devDependencies": {
     "@types/humps": "^2.0.0",
