@@ -197,16 +197,14 @@ export function EventTrackingProvider({
           })
         }
 
-        if (hasAccessibleTripleNativeClients()) {
-          nativeTrackEvent({
-            ga: ga && [pageLabel, ...ga],
-            fa: fa && {
-              category: pageLabel,
-              event_name: DEFAULT_EVENT_NAME,
-              ...fa,
-            },
-          })
-        }
+        nativeTrackEvent({
+          ga: ga && [pageLabel, ...ga],
+          fa: fa && {
+            category: pageLabel,
+            event_name: DEFAULT_EVENT_NAME,
+            ...fa,
+          },
+        })
       } catch (error) {
         onErrorRef.current?.(error)
       }
