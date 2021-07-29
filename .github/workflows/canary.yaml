@@ -6,7 +6,7 @@ on:
 
 env:
   # Node.js
-  NODE_VERSION: '15.x'
+  NODE_VERSION: '16.x'
   NPM_REGISTRY_URL: 'https://registry.npmjs.org'
   # Slack Notification
   SLACK_CHANNEL: '#triple-web-dev-notifications'
