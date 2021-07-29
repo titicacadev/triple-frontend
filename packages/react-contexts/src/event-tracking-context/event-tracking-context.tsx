@@ -166,9 +166,7 @@ export function EventTrackingProvider({
           })
         }
 
-        if (hasAccessibleTripleNativeClients()) {
-          nativeTrackScreen(path, label)
-        }
+        nativeTrackScreen(path, label)
       } catch (error) {
         onErrorRef.current?.(error)
       }
