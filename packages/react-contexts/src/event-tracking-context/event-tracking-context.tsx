@@ -145,7 +145,7 @@ export function EventTrackingProvider({
     )
   }
 
-  const actualTrackScreen: EventTrackingContextValue['trackScreen'] = useCallback(
+  const trackScreen: EventTrackingContextValue['trackScreen'] = useCallback(
     (path: string, label?: string) => {
       try {
         if (window.ga) {
@@ -174,20 +174,6 @@ export function EventTrackingProvider({
       }
     },
     [pageLabel],
-  )
-
-  const trackScreen = useCallback(
-    (path: string, label?: string) => {
-      if (path === page?.path) {
-        /* eslint-disable-next-line no-console */
-        console.warn(
-          'trackScreen이 중복으로 기록될 수 있습니다. EventTrackingProvider를 확인하세요.',
-        )
-      }
-
-      return actualTrackScreen(path, label)
-    },
-    [actualTrackScreen, page?.path],
   )
 
   const trackEvent: EventTrackingContextValue['trackEvent'] = useCallback(
@@ -253,12 +239,21 @@ export function EventTrackingProvider({
   const value = useMemo<EventTrackingContextValue>(
     () => ({
       viewItem: nativeViewItem,
-      trackScreen,
+      trackScreen: (path: string, label?: string) => {
+        if (path === page?.path) {
+          /* eslint-disable-next-line no-console */
+          console.warn(
+            'trackScreen이 중복으로 기록될 수 있습니다. EventTrackingProvider를 확인하세요.',
+          )
+        }
+
+        return trackScreen(path, label)
+      },
       trackEvent,
       trackSimpleEvent,
       setFirebaseUserId,
     }),
-    [setFirebaseUserId, trackEvent, trackScreen, trackSimpleEvent],
+    [setFirebaseUserId, trackEvent, trackScreen, page?.path, trackSimpleEvent],
   )
 
   useEffect(() => {
@@ -267,9 +262,9 @@ export function EventTrackingProvider({
 
   useEffect(() => {
     if (page?.path) {
-      actualTrackScreen(page?.path, pageLabel)
+      trackScreen(page?.path, pageLabel)
     }
-  }, [actualTrackScreen, page?.path, pageLabel])
+  }, [trackScreen, page?.path, pageLabel])
 
   return <Context.Provider value={value}>{children}</Context.Provider>
 }
