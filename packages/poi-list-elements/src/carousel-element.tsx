@@ -26,6 +26,7 @@ export default function PoiCarouselElement<T extends PoiListElementType>({
   },
   onClick,
   actionButtonElement,
+  eventLabel,
   description,
   additionalInfo = null,
   carouselSize,
@@ -35,6 +36,7 @@ export default function PoiCarouselElement<T extends PoiListElementType>({
   optimized,
 }: POIListElementBaseProps<T> & {
   actionButtonElement?: ActionButtonElement
+  eventLabel?: React.ReactNode
   description?: React.ReactNode
   additionalInfo?: React.ReactNode
   carouselSize?: CarouselSizes
@@ -75,7 +77,7 @@ export default function PoiCarouselElement<T extends PoiListElementType>({
           )}
         </Image.FixedRatioFrame>
       </Image>
-
+      {eventLabel}
       <Text bold ellipsis alpha={1} margin={{ top: titleTopSpacing }}>
         {name}
       </Text>
