@@ -86,7 +86,7 @@ export function TnaProductWithPrice({
   const {
     hasCoupon,
     hasOnlyExpectedApplicableCoupon,
-    displayDiscountPolicy,
+    displayPricePolicy,
   } = generateCoupon({
     applicableCoupon,
     expectedApplicableCoupon,
@@ -173,37 +173,37 @@ export function TnaProductWithPrice({
 
           {hasCoupon && (
             <Container margin={{ top: 4 }}>
-              <Text
-                bold
-                inlineBlock
-                size="tiny"
-                color={hasOnlyExpectedApplicableCoupon ? 'mint' : 'gray700'}
-              >
-                쿠폰할인
-              </Text>
-              {displayDiscountPolicy ? (
-                <Text
-                  bold
-                  inlineBlock
-                  size="tiny"
-                  color="mint"
-                  margin={{ left: 5 }}
-                >
-                  {displayDiscountPolicy}
-                </Text>
-              ) : null}
-
               {hasOnlyExpectedApplicableCoupon ? (
-                <Text
-                  bold
-                  inlineBlock
-                  size="tiny"
-                  color="gray700"
-                  margin={{ left: 5 }}
-                >
-                  가능
-                </Text>
-              ) : null}
+                <>
+                  <Text bold inlineBlock size="tiny" color="mint">
+                    쿠폰할인
+                  </Text>
+                  <Text
+                    bold
+                    inlineBlock
+                    size="tiny"
+                    color="gray700"
+                    margin={{ left: 5 }}
+                  >
+                    가능
+                  </Text>
+                </>
+              ) : (
+                <>
+                  <Text bold inlineBlock size="tiny" color="gray700">
+                    쿠폰할인가
+                  </Text>
+                  <Text
+                    bold
+                    inlineBlock
+                    size="tiny"
+                    color="mint"
+                    margin={{ left: 5 }}
+                  >
+                    {displayPricePolicy}
+                  </Text>
+                </>
+              )}
             </Container>
           )}
         </Container>
