@@ -86,6 +86,7 @@ export function TnaProductWithPrice({
   const {
     hasCoupon,
     hasOnlyExpectedApplicableCoupon,
+    hasAmountAfterUsingCouponPrice,
     displayPricePolicy,
   } = generateCoupon({
     applicableCoupon,
@@ -188,7 +189,7 @@ export function TnaProductWithPrice({
                     가능
                   </Text>
                 </>
-              ) : (
+              ) : hasAmountAfterUsingCouponPrice ? (
                 <>
                   <Text bold inlineBlock size="tiny" color="gray700">
                     쿠폰할인가
@@ -201,6 +202,21 @@ export function TnaProductWithPrice({
                     margin={{ left: 5 }}
                   >
                     {displayPricePolicy}
+                  </Text>
+                </>
+              ) : (
+                <>
+                  <Text bold inlineBlock size="tiny" color="gray700">
+                    쿠폰적용시
+                  </Text>
+                  <Text
+                    bold
+                    inlineBlock
+                    size="tiny"
+                    color="mint"
+                    margin={{ left: 5 }}
+                  >
+                    무료
                   </Text>
                 </>
               )}
