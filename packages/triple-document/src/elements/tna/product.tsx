@@ -5,6 +5,7 @@ import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
 import { TNAProductData, DomesticArea } from './types'
 import { generateCoupon } from './helpers'
+import { PricePolicyCouponInfo } from './price-policy-coupon-info'
 
 const PLACEHOLDER_IMAGE_URL =
   'https://assets.triple.guide/images/ico_blank_see@2x.png'
@@ -173,54 +174,11 @@ export function TnaProductWithPrice({
           ) : null}
 
           {hasCoupon && (
-            <Container margin={{ top: 4 }}>
-              {hasOnlyExpectedApplicableCoupon ? (
-                <>
-                  <Text bold inlineBlock size="tiny" color="mint">
-                    쿠폰할인
-                  </Text>
-                  <Text
-                    bold
-                    inlineBlock
-                    size="tiny"
-                    color="gray700"
-                    margin={{ left: 5 }}
-                  >
-                    가능
-                  </Text>
-                </>
-              ) : hasAmountAfterUsingCouponPrice ? (
-                <>
-                  <Text bold inlineBlock size="tiny" color="gray700">
-                    쿠폰할인가
-                  </Text>
-                  <Text
-                    bold
-                    inlineBlock
-                    size="tiny"
-                    color="mint"
-                    margin={{ left: 5 }}
-                  >
-                    {displayPricePolicy}
-                  </Text>
-                </>
-              ) : (
-                <>
-                  <Text bold inlineBlock size="tiny" color="gray700">
-                    쿠폰적용시
-                  </Text>
-                  <Text
-                    bold
-                    inlineBlock
-                    size="tiny"
-                    color="mint"
-                    margin={{ left: 5 }}
-                  >
-                    무료
-                  </Text>
-                </>
-              )}
-            </Container>
+            <PricePolicyCouponInfo
+              hasOnlyExpectedApplicableCoupon={hasOnlyExpectedApplicableCoupon}
+              hasAmountAfterUsingCouponPrice={hasAmountAfterUsingCouponPrice}
+              displayPricePolicy={displayPricePolicy}
+            />
           )}
         </Container>
       </Container>
