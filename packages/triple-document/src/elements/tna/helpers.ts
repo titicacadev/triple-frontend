@@ -1,6 +1,6 @@
-import { formatNumber, convertPrice } from '@titicaca/view-utilities'
+import { formatNumber } from '@titicaca/view-utilities'
 
-import { DiscountPolicy, TnaCoupon } from './types'
+import { TnaCoupon } from './types'
 
 export function generateCoupon({
   applicableCoupon,
@@ -9,35 +9,21 @@ export function generateCoupon({
   applicableCoupon?: TnaCoupon
   expectedApplicableCoupon?: TnaCoupon
 }) {
-  const {
-    discountPolicy: applicableCouponDiscountPolicy,
-    amountAfterUsingCoupon: applicableAmountAfterUsingCoupon,
-  } = applicableCoupon || {}
+  const { amountAfterUsingCoupon: applicableAmountAfterUsingCoupon } =
+    applicableCoupon || {}
 
   const hasCoupon = !!applicableCoupon || !!expectedApplicableCoupon
   const hasOnlyExpectedApplicableCoupon =
     !applicableCoupon && !!expectedApplicableCoupon
-  const displayDiscountPolicy =
-    applicableCouponDiscountPolicy &&
-    getDiscountPolicy(applicableCouponDiscountPolicy)
+  const hasAmountAfterUsingCouponPrice =
+    applicableAmountAfterUsingCoupon && applicableAmountAfterUsingCoupon > 0
   const displayPricePolicy =
     applicableCoupon && `${formatNumber(applicableAmountAfterUsingCoupon)}원`
 
   return {
     hasCoupon,
     hasOnlyExpectedApplicableCoupon,
-    displayDiscountPolicy,
+    hasAmountAfterUsingCouponPrice,
     displayPricePolicy,
-  }
-}
-
-export function getDiscountPolicy(discountPolicy: DiscountPolicy) {
-  const { type, value } = discountPolicy
-
-  switch (type) {
-    case 'RATE':
-      return `${value}%`
-    case 'AMOUNT':
-      return `${convertPrice(value)}`
   }
 }
