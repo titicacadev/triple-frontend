@@ -45,9 +45,7 @@ interface ImageCarouselProps extends Omit<CarouselProps, 'pageLabelRenderer'> {
   optimized?: boolean
 }
 
-export default class ImageCarousel extends React.PureComponent<
-  ImageCarouselProps
-> {
+export default class ImageCarousel extends React.PureComponent<ImageCarouselProps> {
   private flickingRef: RefObject<Flicking>
 
   static defaultProps: Partial<ImageCarousel['props']> = {
