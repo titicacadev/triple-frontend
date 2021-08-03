@@ -33,11 +33,9 @@ export function canonizeTargetAddress({
     return href
   } else if (path === '/inlink') {
     const { path, _web_expand: expandable } = parse(query as string)
-    const shouldExpandOnStrictMode = expandable !== undefined
+    const forceExpand = expandable !== undefined
 
-    return !expandInlinkStrictly || shouldExpandOnStrictMode
-      ? (path as string)
-      : href
+    return !expandInlinkStrictly || forceExpand ? (path as string) : href
   } else if (!allowRawOutlink && path === '/outlink') {
     const { url } = parse(query as string)
 
