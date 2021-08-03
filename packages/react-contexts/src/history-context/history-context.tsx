@@ -281,23 +281,24 @@ export function HistoryProvider({
         expandInlinkStrictly: false,
         allowRawOutlink: true,
       })
-      const { scheme, path } = parseUrl(canonizedHref)
+
+      if (!hasSessionId && !checkIfRoutable({ href: canonizedHref })) {
+        loginCTAModalHash && push(loginCTAModalHash)
+
+        return
+      }
+
+      const { scheme } = parseUrl(rawHref)
 
       if (scheme === 'http' || scheme === 'https') {
         const outlinkParams = qs.stringify({
-          url: canonizedHref,
+          url: rawHref,
           ...(params || {}),
         })
 
         window.location.href = `${appUrlScheme}:///outlink?${outlinkParams}`
-      } else if (
-        hasSessionId ||
-        path === '/outlink' ||
-        checkIfRoutable({ href: canonizedHref })
-      ) {
-        window.location.href = generateUrl({ scheme: appUrlScheme }, rawHref)
       } else {
-        loginCTAModalHash && push(loginCTAModalHash)
+        window.location.href = generateUrl({ scheme: appUrlScheme }, rawHref)
       }
     },
     [push, appUrlScheme, loginCTAModalHash, hasSessionId, webUrlBase],
