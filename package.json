@@ -29,6 +29,7 @@
     "clean": "lerna exec -- rm -rf ./node_modules ./lib ./*.tsbuildinfo",
     "references": "lerna exec --parallel -- node \\$LERNA_ROOT_PATH/scripts/make-references.js",
     "make-build-tsconfig": "lerna exec --ignore @titicaca/triple-frontend-docs --parallel -- node \\$LERNA_ROOT_PATH/scripts/make-build-tsconfig.js",
+    "sync-deps:ts": "npm run references && npm run make-build-tsconfig",
     "prepare": "husky install",
     "add": "lerna add --no-bootstrap",
     "postadd": "npm run references && npm run make-build-tsconfig && npm install"
