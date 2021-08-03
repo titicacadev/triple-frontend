@@ -295,7 +295,10 @@ export function HistoryProvider({
         path === '/outlink' ||
         checkIfRoutable({ href: canonizedHref })
       ) {
-        window.location.href = generateUrl({ scheme: appUrlScheme }, rawHref)
+        window.location.href = generateUrl(
+          { scheme: appUrlScheme },
+          canonizedHref,
+        )
       } else {
         loginCTAModalHash && push(loginCTAModalHash)
       }
