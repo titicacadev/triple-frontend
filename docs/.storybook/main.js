@@ -23,7 +23,6 @@ module.exports = {
             ],
           },
         },
-        require.resolve('react-docgen-typescript-loader'),
       ],
       resolve: {
         extensions: ['.js', '.ts', '.tsx', '.json'],
