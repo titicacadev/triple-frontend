@@ -30,9 +30,10 @@
     "references": "lerna exec --parallel -- node \\$LERNA_ROOT_PATH/scripts/make-references.js",
     "make-build-tsconfig": "lerna exec --ignore @titicaca/triple-frontend-docs --parallel -- node \\$LERNA_ROOT_PATH/scripts/make-build-tsconfig.js",
     "sync-deps:ts": "npm run references && npm run make-build-tsconfig",
+    "sync-deps": "npm run sync-deps:ts && npm run bootstrap:docs && npm install",
     "prepare": "husky install",
     "add": "lerna add --no-bootstrap",
-    "postadd": "npm run references && npm run make-build-tsconfig && npm install"
+    "postadd": "npm run sync-deps"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
