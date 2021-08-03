@@ -121,10 +121,9 @@ const NormalButton = styled(ButtonBase)<{
   }};
 `
 
-const BUTTON_ICON_STYLES: Partial<Record<
-  GlobalSizes,
-  ReturnType<typeof css>
->> = {
+const BUTTON_ICON_STYLES: Partial<
+  Record<GlobalSizes, ReturnType<typeof css>>
+> = {
   tiny: css`
     width: 15px;
     height: 12px;
