@@ -85,53 +85,37 @@ $ git clone git@github.com:titicacadev/triple-frontend.git && cd triple-frontend
 $ npm install
 ```
 
-#### npm@7 or above
+#### 의존성 설정
 
-[NPM Workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces) 에 의해
-root의 `node_modules` 디렉토리 밑에 Symlink로 패키지들이 링크됩니다.
+npm@7부터 [NPM Workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces)를
+사용할 수 있습니다. 그래서 `npm install` 만으로 각 패키지의 의존성이 설치됩니다.
 
-```sh
-$ ls -l node_modules/@titicaca
-total 0
-lrwxr-xr-x   1 inbeom  staff   27 Dec 27 10:47 action-sheet -> ../../packages/action-sheet
-lrwxr-xr-x   1 inbeom  staff   25 Dec 27 10:47 ad-banners -> ../../packages/ad-banners
-lrwxr-xr-x   1 inbeom  staff   25 Dec 27 10:47 app-banner -> ../../packages/app-banner
-lrwxr-xr-x   1 inbeom  staff   35 Dec 27 10:47 app-installation-cta -> ../../packages/app-installation-cta
-lrwxr-xr-x   1 inbeom  staff   21 Dec 27 10:47 author -> ../../packages/author
-...
-```
-
-#### npm < 7
-
-Workspaces를 이용하지 못하는 환경인 경우 [Lerna bootstrap](https://github.com/lerna/lerna/tree/master/commands/bootstrap)
-커맨드로 개발 환경을 구성합니다:
+하지만, 7 미만의 npm을 사용한다면, 수동으로 각 패키지의 의존성을 설치해야 합니다.
 
 ```sh
-$ lerna bootstrap
-...
+npm run bootstrap
 ```
-
-개별 패키지의 `node_modules`(`packages/*/node_modules`) 디렉토리에 개별 패키지의
-의존성 트리가 구성됩니다.
 
 ### Workflow
 
 #### 기능 추가
 
 1. 작업자가 코드 기여
-   - (npm < 7) 디펜던시에 변경이 있는 경우 `lerna bootstrap` 실행 필요
-2. 커밋 & 푸시
-3. PR 생성 & 리뷰
-4. 버전 생성 (Optional): `npm run version` (경우에 따라 PR과 함께 혹은 별도로 생성)
-5. master 머지
-6. `/release` 커맨드로 배포
-7. 배포 (Optional): CD에서 패키지 publish, npm 페이지 통해서 확인
+2. 의존성 변경이 있으면, `npm run sync-deps` 명령어 실행
+   - (npm < 7) `npm run bootstrap` 명령어 실행
+3. 커밋 & 푸시
+4. PR 생성 & 리뷰
+5. 버전 생성 (Optional): `npm run version` (경우에 따라 PR과 함께 혹은 별도로 생성)
+6. master 머지
+7. `/release` 커맨드로 배포
+8. 배포 (Optional): CD에서 패키지 publish, npm 페이지 통해서 확인
 
 #### 패키지 추가
 
 1. `lerna create [패키지명]` 커맨드로 패키지 추가
 2. 적절한 `package.json` 및 `tsconfig.json` 수정 및 생성
-3. (npm < 7) 프로젝트 루트에서 `lerna bootstrap` 커맨드 실행으로 디펜던시 링크
+3. `npm run sync-deps` 명령어 실행
+   - (npm < 7) `npm run bootstrap` 명령어 실행
 4. `src`에 코드 작성
 5. 버전 생성 (Optional): 기존 패키지에서 분리가 일어나서 API 인터페이스에
    변경이 있었다면 MAJOR, 기존 패키지와 관련 없는 패키지 추가라면 MINOR 버전
