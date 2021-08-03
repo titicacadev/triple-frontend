@@ -5,8 +5,8 @@ module.exports = {
     '@storybook/addon-links/register',
     '@storybook/addon-knobs/register',
     '@storybook/addon-viewport/register',
+    '@storybook/addon-docs',
   ],
-  presets: ['@storybook/addon-docs/preset'],
   webpackFinal: async (config, { configType }) => {
     config.mode = 'development'
     config.module.rules.push({
