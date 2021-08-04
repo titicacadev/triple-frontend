@@ -279,7 +279,8 @@ export function HistoryProvider({
         href: rawHref,
         webUrlBase,
         expandInlinkStrictly: false,
-        allowRawOutlink: true,
+        /* Routability 체크에만 사용하므로 /outlink를 해체합니다. */
+        allowRawOutlink: false,
       })
 
       if (!hasSessionId && !checkIfRoutable({ href: canonizedHref })) {
