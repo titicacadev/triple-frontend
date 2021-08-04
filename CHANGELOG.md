@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 2.32.0
+
+### common
+
+- Next.js 11 사용을 준비합니다. (#1510)
+- ⬆️ node 16 사용 (#1511)
+- sync-deps: 의존성 변경을 필요한 곳에 반영하는 명령어 (#1516)
+  Release Docs 워크플로가 실패하는 문제를 수정합니다. (#1518)
+
+### triple-document
+
+- tna element를 AB테스트 결과에 맞게 수정합니다. (#1515)
+
+### react-context
+
+- viewItem을 EventTrackingProvider에서 기록합니다. (#1507)
+- trackScreen, trackEvent 호출 시 native client accessbility를 체크하지 않습니다. (#1513)
+- EventTrackingProvider가 호출하는 trackScreen은 warn message를 출력하지 않도록 합니다. (#1512)
+
 ## 2.31.0
 
 ### common
