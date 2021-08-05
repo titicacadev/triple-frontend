@@ -10,7 +10,7 @@ import {
 import { FrameRatioAndSizes } from '@titicaca/type-definitions'
 
 export type PoiType = 'attraction' | 'restaurant' | 'hotel'
-export type SrcSet = { mapSize: string; viewPort: string }
+export type ResponsiveVariant = { mapSize: string; viewport: string }
 
 const Marker = styled.img`
   position: absolute;
@@ -81,7 +81,7 @@ export default function StaticMap({
   mapSize = '320x120',
   mapScale = '2',
   markerImage,
-  srcSet,
+  responsiveVariants,
   onClick,
 }: {
   type?: PoiType
@@ -92,23 +92,21 @@ export default function StaticMap({
   mapSize?: string
   mapScale?: string
   markerImage?: string
-  srcSet?: SrcSet[]
+  responsiveVariants?: ResponsiveVariant[]
   onClick?: (e: React.SyntheticEvent) => void
 }) {
-  const trasformScrset = srcSet
-    ? srcSet
-        .map(({ mapSize, viewPort }) => {
-          return `/api/maps/static-map?size=${mapSize}&scale=${mapScale}&center=${lat}%2C${lon}&zoom=${zoom} ${viewPort}`
-        }, [])
-        .join(', ')
-    : undefined
+  const srcSet = responsiveVariants
+    ?.map(({ mapSize, viewport }) => {
+      return `/api/maps/static-map?size=${mapSize}&scale=${mapScale}&center=${lat}%2C${lon}&zoom=${zoom} ${viewport}`
+    })
+    .join(', ')
 
   return (
     <Container position="relative" onClick={onClick}>
-      <StaticMapContainer frame={trasformScrset ? undefined : frame}>
+      <StaticMapContainer frame={srcSet ? undefined : frame}>
         <StaticMapImage
           src={`/api/maps/static-map?size=${mapSize}&scale=${mapScale}&center=${lat}%2C${lon}&zoom=${zoom}`}
-          srcSet={trasformScrset}
+          srcSet={srcSet}
         />
       </StaticMapContainer>
       <Marker src={markerImage || (type && MARKER_SOURCES[type])} />
