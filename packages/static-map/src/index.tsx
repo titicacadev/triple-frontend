@@ -38,19 +38,10 @@ const StaticMapContainer = styled.div<{ frame?: FrameRatioAndSizes }>`
           ${formatMarginPadding({ top: MEDIA_FRAME_OPTIONS[frame] }, 'padding')}
         `
       : css`
-          @media (max-width: 768px) {
-            ${formatMarginPadding(
-              { top: MEDIA_FRAME_OPTIONS['small'] },
-              'padding',
-            )}
-          }
-
-          @media (min-width: 769px) {
-            ${formatMarginPadding(
-              { top: MEDIA_FRAME_OPTIONS['medium'] },
-              'padding',
-            )}
-          }
+          ${formatMarginPadding(
+            { top: MEDIA_FRAME_OPTIONS['small'] },
+            'padding',
+          )}
         `}
 `
 
