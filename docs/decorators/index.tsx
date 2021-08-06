@@ -17,7 +17,7 @@ export function historyProviderDecorator(storyFn: StoryFn<JSX.Element>) {
       facebookAppId=""
       defaultPageTitle=""
       defaultPageDescription=""
-      googleMapsApiKey="AIzaSyBaOSog5Kc4PkNw1JiSIcvz8WHt1Y78lNU"
+      googleMapsApiKey="AIzaSyDuSWU_yBwuQzeyRFcTqhyifqNX_8oaXI4"
     >
       <HistoryProvider
         isPublic={false}
@@ -39,7 +39,7 @@ export function sessionContextProviderDecorator(storyFn: StoryFn<JSX.Element>) {
       facebookAppId=""
       defaultPageTitle=""
       defaultPageDescription=""
-      googleMapsApiKey="AIzaSyBaOSog5Kc4PkNw1JiSIcvz8WHt1Y78lNU"
+      googleMapsApiKey="AIzaSyDuSWU_yBwuQzeyRFcTqhyifqNX_8oaXI4"
     >
       <SessionContextProvider
         sessionId={
