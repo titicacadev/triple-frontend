@@ -26,7 +26,7 @@ import {
  *
  * https://console.cloud.google.com/apis/credentials/key/e2f05131-1fe0-48d7-a231-f5f05336a007?folder=&organizationId=&project=titicaca-ci
  */
-const GOOGLE_MAPS_API_KEY = 'AIzaSyBaOSog5Kc4PkNw1JiSIcvz8WHt1Y78lNU'
+const GOOGLE_MAPS_API_KEY = 'AIzaSyDuSWU_yBwuQzeyRFcTqhyifqNX_8oaXI4'
 
 export default {
   title: 'Map / Map',
