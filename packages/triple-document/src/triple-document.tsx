@@ -1,5 +1,8 @@
 import React, { useMemo, useCallback } from 'react'
-import { useHistoryFunctions } from '@titicaca/react-contexts'
+import {
+  useHistoryFunctions,
+  useEventTrackerWithMetadata,
+} from '@titicaca/react-contexts'
 import { initialize } from '@titicaca/standard-action-handler'
 
 import {
@@ -37,6 +40,8 @@ export function TripleDocument({
   cta?: string
 } & TripleDocumentContext) {
   const { navigate } = useHistoryFunctions()
+  const trackEventWithMetadata = useEventTrackerWithMetadata()
+
   const handleAction = useMemo(() => initialize({ cta, navigate }), [
     cta,
     navigate,
@@ -48,18 +53,45 @@ export function TripleDocument({
         // TODO: triple-document 에러 처리 방법 설계
         return
       }
+      trackEventWithMetadata({
+        fa: {
+          action: '링크선택',
+          url: href,
+        },
+        ga: ['링크선택', href],
+      })
       handleAction(href, { target })
     },
-    [handleAction],
+    [handleAction, trackEventWithMetadata],
   )
 
   const defaultHandleResourceClick: ResourceClickHandler = useCallback(
-    (e, resource) => {
-      const url = composeResourceUrl(resource)
+    (e, { id, type, source }) => {
+      const url = composeResourceUrl({ id, type, source })
+      if (type === 'region') {
+        trackEventWithMetadata({
+          fa: {
+            action: '도시선택',
+            region_id: source.regionId,
+            button_name: source.ko || source.en,
+            content_type: type,
+          },
+        })
+      } else {
+        trackEventWithMetadata({
+          fa: {
+            action: 'POI선택',
+            item_id: id,
+            url,
+            button_name: source.names.ko,
+            content_type: type,
+          },
+        })
+      }
 
       url && handleAction(url)
     },
-    [handleAction],
+    [handleAction, trackEventWithMetadata],
   )
 
   const resourceClickHandler = onResourceClick || defaultHandleResourceClick
