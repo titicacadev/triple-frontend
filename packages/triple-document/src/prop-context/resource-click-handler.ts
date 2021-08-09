@@ -5,7 +5,7 @@ export type ResourceClickHandler = (
   resource: {
     id: string
     type: string
-    source: unknown
+    source: any
   },
 ) => void
 

@@ -53,6 +53,7 @@ const excludes = [
   'send_page_view',
   'page_path',
   'coupon_(id|type)',
+  'button_name',
 ]
 const regex = `^(${excludes.join('|')})$`
 
