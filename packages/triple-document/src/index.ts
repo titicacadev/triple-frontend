@@ -13,5 +13,6 @@ export { useImageSource } from './prop-context/image-source'
 export { useLinkClickHandler } from './prop-context/link-click-handler'
 export { useMediaConfig } from './prop-context/media-config'
 export { useResourceClickHandler } from './prop-context/resource-click-handler'
+export { default as useResourceEventTracker } from './use-resource-event-tracker'
 
 export default TripleDocument
