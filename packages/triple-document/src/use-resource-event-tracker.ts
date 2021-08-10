@@ -15,7 +15,9 @@ export default function useResourceEventTracker() {
           },
         })
 
-      case 'hotel' || 'restaurant' || 'attraction':
+      case 'hotel':
+      case 'restaurant':
+      case 'attraction':
         return trackEventWithMetadata({
           fa: {
             action: 'POI선택',
@@ -24,6 +26,8 @@ export default function useResourceEventTracker() {
             content_type: type,
           },
         })
+      default:
+        break
     }
   }
 }
