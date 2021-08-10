@@ -72,8 +72,8 @@ export function TripleDocument({
         trackEventWithMetadata({
           fa: {
             action: '도시선택',
-            region_id: source.regionId,
-            button_name: source.ko || source.en,
+            region_id: id,
+            button_name: source.names.ko || source.names.en,
             content_type: type,
           },
         })
