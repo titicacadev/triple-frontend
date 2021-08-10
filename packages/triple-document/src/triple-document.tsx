@@ -21,6 +21,7 @@ import { ImageSourceProvider } from './prop-context/image-source'
 import { DeepLinkProvider } from './prop-context/deep-link'
 import { MediaConfigProvider } from './prop-context/media-config'
 import ELEMENTS from './elements'
+import useEventResourceTracker from './use-resource-event-tracker'
 
 export function TripleDocument({
   children,
@@ -41,6 +42,7 @@ export function TripleDocument({
 } & TripleDocumentContext) {
   const { navigate } = useHistoryFunctions()
   const trackEventWithMetadata = useEventTrackerWithMetadata()
+  const trackResourceEvent = useEventResourceTracker()
 
   const handleAction = useMemo(() => initialize({ cta, navigate }), [
     cta,
@@ -68,30 +70,12 @@ export function TripleDocument({
   const defaultHandleResourceClick: ResourceClickHandler = useCallback(
     (e, { id, type, source }) => {
       const url = composeResourceUrl({ id, type, source })
-      if (type === 'region') {
-        trackEventWithMetadata({
-          fa: {
-            action: '도시선택',
-            region_id: id,
-            button_name: source.names.ko || source.names.en,
-            content_type: type,
-          },
-        })
-      } else {
-        trackEventWithMetadata({
-          fa: {
-            action: 'POI선택',
-            item_id: id,
-            url,
-            button_name: source.names.ko,
-            content_type: type,
-          },
-        })
-      }
+
+      trackResourceEvent({ id, type, source })
 
       url && handleAction(url)
     },
-    [handleAction, trackEventWithMetadata],
+    [handleAction, trackResourceEvent],
   )
 
   const resourceClickHandler = onResourceClick || defaultHandleResourceClick
