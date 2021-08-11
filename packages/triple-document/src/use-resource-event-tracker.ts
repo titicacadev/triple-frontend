@@ -8,18 +8,24 @@ enum Resource {
   ATTRACTION = 'attraction',
 }
 
+function getObjectNamesProperty(source: any) {
+  if (Object.prototype.hasOwnProperty.call(source, 'names')) {
+    return source.names.ko || source.names.en
+  }
+}
+
 export default function useResourceEventTracker() {
   const trackEventWithMetadata = useEventTrackerWithMetadata()
 
   return useCallback(
-    ({ id, type, source }: { id: string; type: string; source: any }) => {
+    ({ id, type, source }: { id: string; type: string; source: unknown }) => {
       switch (type) {
         case Resource.REGION:
           return trackEventWithMetadata({
             fa: {
               action: '도시선택',
               region_id: id,
-              button_name: source.names.ko || source.names.en,
+              button_name: getObjectNamesProperty(source),
               content_type: type,
             },
           })
@@ -31,7 +37,7 @@ export default function useResourceEventTracker() {
             fa: {
               action: 'POI선택',
               item_id: id,
-              button_name: source.names.ko,
+              button_name: getObjectNamesProperty(source),
               content_type: type,
             },
           })
