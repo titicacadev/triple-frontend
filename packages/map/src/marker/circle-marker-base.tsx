@@ -89,7 +89,7 @@ export const CirclePin = styled.div<
     active
       ? activePointerEvents
         ? 'pointer-events: auto;'
-        : 'pointer-events: none'
+        : 'pointer-events: none;'
       : ''}
 
   ${({ src, width, height, active, zIndex }) => {
