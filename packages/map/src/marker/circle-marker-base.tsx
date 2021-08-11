@@ -7,6 +7,8 @@ export interface MarkerBaseProps {
   height?: number
   /** 마커 선택 상태값 */
   active?: boolean
+  /** active 시 image 클릭 가능 여부값 */
+  activePointerEvents?: boolean
   /** 마커 기본 색상 */
   color: string
   /** 활성화 마커 백그라운드 이미지 */
@@ -83,7 +85,12 @@ export const CirclePin = styled.div<
   position: absolute;
   transform-origin: 21px 50px;
 
-  ${({ active }) => (active ? 'pointer-events: none;' : '')}
+  ${({ active, activePointerEvents }) =>
+    active
+      ? activePointerEvents
+        ? 'pointer-events: auto;'
+        : 'pointer-events: none'
+      : ''}
 
   ${({ src, width, height, active, zIndex }) => {
     return active
