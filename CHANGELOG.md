@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 2.33.0
+
+### triple-document
+
+- TripleDocument의 DefaultClickHandler에 trackWithMetadata를 추가합니다 (#1526)
+
+### static-map
+
+- 지도영역 크기의 기본척도를 개선합니다 (#1521)
+
+### react-contexts
+
+- Canonized URL을 Routability 체크에만 이용합니다. (#1517)
+- UTM Parameter를 trackScreen의 additionalMetadata로 전달합니다. (#1509)
+
 ## 2.32.0
 
 ### common
