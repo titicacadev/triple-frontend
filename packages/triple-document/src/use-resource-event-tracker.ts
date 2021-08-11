@@ -1,7 +1,7 @@
 import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
 
 enum Resource {
-  REGIOND = 'region',
+  REGION = 'region',
   HOTEL = 'hotel',
   RESTAURANT = 'restaurant',
   ATTRACTION = 'attraction',
@@ -12,7 +12,7 @@ export default function useResourceEventTracker() {
 
   return ({ id, type, source }: { id: string; type: string; source: any }) => {
     switch (type) {
-      case Resource.REGIOND:
+      case Resource.REGION:
         return trackEventWithMetadata({
           fa: {
             action: '도시선택',
