@@ -72,3 +72,16 @@ MyApp.getInitialProps = async ({ ctx: { req } }) => {
   }
 }
 ```
+
+## `createCompositedGetServerSideProps`
+
+`getServerSideProps`에서 수행하는 작업을 모듈화할 수 있게 개별 함수를 합성하는 함수입니다.
+합성의 대상 함수는 정해진 인터페이스가 있으며, 이 규격에 맞추면 모든 개별 함수를 합쳐서 하나의 `getServerSideProps`를 생성합니다.
+
+합성 대상 함수끼리 데이터를 주고 받을 수 있습니다.
+
+합성 대상 함수의 첫 번째 파라미터는 `GetServerSidePropsContext`와 자체 context getter/setter입니다.
+두 번째 파라미터는 현재 작업 다음으로 실행할 forward 함수입니다.
+
+합성 대상 함수 내부에서 context를 이용해 새로운 context를 만들어서 forward 함수를 실행합니다.
+forward 함수의 리턴 값을 그대로 리턴하거나, context를 이용해 새로운 값을 리턴할 수 있습니다.
