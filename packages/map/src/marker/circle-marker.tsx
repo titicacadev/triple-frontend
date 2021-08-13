@@ -43,8 +43,8 @@ export function CircleMarker({
         zIndex={zIndex}
         width={width}
         height={height}
-        active={active}
         pointEvents={pointEvents}
+        active={active}
         color={color}
         src={src}
         onClick={handleClick}
