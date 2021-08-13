@@ -85,8 +85,8 @@ export const CirclePin = styled.div<
   position: absolute;
   transform-origin: 21px 50px;
 
-  pointer-events: ${({ active, alwaysClickable }) =>
-    active ? (alwaysClickable ? '' : 'none') : ''};
+  ${({ active, alwaysClickable }) =>
+    active ? (alwaysClickable ? '' : 'pointer-events: none;') : ''}
 
   ${({ src, width, height, active, zIndex }) => {
     return active
