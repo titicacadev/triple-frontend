@@ -66,6 +66,7 @@ const ACTION_COLORS: Partial<Record<GlobalColors, string>> = {
 
 const Action = styled.a<{ color?: GlobalColors }>`
   display: inline-block;
+  white-space: nowrap;
   height: 50px;
   line-height: 50px;
   font-size: 14px;
