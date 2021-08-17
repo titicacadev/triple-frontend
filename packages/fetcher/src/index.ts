@@ -9,6 +9,7 @@ import {
 
 export * from './types'
 export * from './error'
+export * from './factories'
 
 const refetchStatuses = [502, 503, 504]
 
