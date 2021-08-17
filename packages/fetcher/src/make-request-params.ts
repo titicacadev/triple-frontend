@@ -6,12 +6,12 @@ export function makeRequestParams(
   href: string,
   {
     req,
-    useBodyAsRaw,
-    retryable,
-    body,
-    headers: customHeaders,
     cookie = req?.headers.cookie,
     withApiUriBase = !!req,
+    useBodyAsRaw,
+    body,
+    headers: customHeaders,
+    retryable: _,
     ...rest
   }: RequestOptions,
 ): [string, RequestInit | undefined] {
