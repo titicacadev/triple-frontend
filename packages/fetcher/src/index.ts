@@ -16,16 +16,7 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
   url: string,
   options: RequestOptions,
 ): Promise<HttpResponse<T, E>> {
-  const {
-    req,
-    useBodyAsRaw,
-    retryable,
-    body,
-    headers: customHeaders,
-    cookie,
-    withApiUriBase,
-    ...rest
-  } = options
+  const { retryable, method } = options
 
   const getResponse: (retry: number) => Promise<HttpResponse<T, E>> = async (
     retry: number,
@@ -36,7 +27,7 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
 
     if (
       response.body ||
-      rest.method !== HTTPMethods.GET ||
+      method !== HTTPMethods.GET ||
       retry <= 0 ||
       !refetchStatuses.includes(response.status)
     ) {
