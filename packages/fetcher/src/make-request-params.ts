@@ -10,23 +10,22 @@ export function makeRequestParams(
     retryable,
     body,
     headers: customHeaders,
-    cookie: cookieFromOptions,
-    withApiUriBase,
+    cookie = req?.headers.cookie,
+    withApiUriBase = !!req,
     ...rest
   }: RequestOptions,
 ): [string, RequestInit | undefined] {
-  if (req && !process.env.API_URI_BASE) {
+  if (withApiUriBase && !process.env.API_URI_BASE) {
     throw new Error(
       'Insufficient environment variables in `.env.*` files\n- API_URI_BASE',
     )
   }
 
-  const baseUrl: string =
-    req || withApiUriBase ? (process.env.API_URI_BASE as string) : ''
+  const baseUrl: string = withApiUriBase
+    ? (process.env.API_URI_BASE as string)
+    : ''
 
   const reqUrl: string = baseUrl + href
-
-  const cookie = cookieFromOptions ?? req?.headers.cookie
 
   const sessionId = cookie
     ? new Cookies(cookie).get('x-soto-session')
