@@ -1,6 +1,5 @@
-import Cookies from 'universal-cookie'
-
 import { HttpError } from './error'
+import { makeRequestParams } from './make-request-params'
 import {
   HttpResponse,
   RequestOptions,
@@ -15,7 +14,9 @@ const refetchStatuses = [502, 503, 504]
 
 export async function fetcher<T = any, E = HttpErrorResponse>(
   url: string,
-  {
+  options: RequestOptions,
+): Promise<HttpResponse<T, E>> {
+  const {
     req,
     useBodyAsRaw,
     retryable,
@@ -24,43 +25,14 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
     cookie,
     withApiUriBase,
     ...rest
-  }: RequestOptions,
-): Promise<HttpResponse<T, E>> {
-  if (req && !process.env.API_URI_BASE) {
-    throw new Error(
-      'Insufficient environment variables in `.env.*` files\n- API_URI_BASE',
-    )
-  }
-
-  const baseUrl: string =
-    req || withApiUriBase ? (process.env.API_URI_BASE as string) : ''
-
-  const reqUrl: string = baseUrl + url
-
-  const sessionId = req
-    ? new Cookies(req.headers.cookie).get('x-soto-session')
-    : undefined
-
-  const headers = {
-    ...customHeaders,
-    ...(body && !useBodyAsRaw && { 'Content-Type': 'application/json' }),
-    ...(sessionId && { 'X-Soto-Session': sessionId }),
-    ...(cookie && { cookie }),
-  }
+  } = options
 
   const getResponse: (retry: number) => Promise<HttpResponse<T, E>> = async (
     retry: number,
   ) => {
-    const response: HttpResponse<T, E> = await fetch(reqUrl, {
-      credentials: 'same-origin',
-      headers,
-      body: body
-        ? useBodyAsRaw
-          ? (body as BodyInit)
-          : JSON.stringify(body)
-        : undefined,
-      ...rest,
-    })
+    const response: HttpResponse<T, E> = await fetch(
+      ...makeRequestParams(url, options),
+    )
 
     if (
       response.body ||
