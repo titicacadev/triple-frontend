@@ -10,7 +10,7 @@ export function makeRequestParams(
     retryable,
     body,
     headers: customHeaders,
-    cookie,
+    cookie: cookieFromOptions,
     withApiUriBase,
     ...rest
   }: RequestOptions,
@@ -26,8 +26,10 @@ export function makeRequestParams(
 
   const reqUrl: string = baseUrl + href
 
-  const sessionId = req
-    ? new Cookies(req.headers.cookie).get('x-soto-session')
+  const cookie = cookieFromOptions ?? req?.headers.cookie
+
+  const sessionId = cookie
+    ? new Cookies(cookie).get('x-soto-session')
     : undefined
 
   const headers = {
