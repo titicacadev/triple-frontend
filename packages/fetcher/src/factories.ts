@@ -1,9 +1,6 @@
-import {
-  HttpErrorResponse,
-  HttpResponse,
-  RequestOptions,
-} from '@titicaca/fetcher'
 import { generateUrl, parseUrl } from '@titicaca/view-utilities'
+
+import { HttpErrorResponse, HttpResponse, RequestOptions } from './types'
 
 type Fetcher = <Result extends {}, ErrorResponse = HttpErrorResponse>(
   href: string,
