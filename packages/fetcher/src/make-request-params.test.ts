@@ -57,4 +57,20 @@ describe('makeRequestParams', () => {
       }),
     ).not.toThrowError()
   })
+
+  test('req가 존재하면 요청 URL에 API_URI_BASE를 추가합니다.', () => {
+    process.env.API_URI_BASE = 'https://triple-dev.titicaca-corp.com'
+
+    expect(
+      makeRequestParams('/api/mock-url', { req: { headers: {} } as any })[0],
+    ).toBe('https://triple-dev.titicaca-corp.com/api/mock-url')
+  })
+
+  test('withApiUriBase가 true이면 요청 URL에 API_URI_BASE를 추가합니다.', () => {
+    process.env.API_URI_BASE = 'https://triple-dev.titicaca-corp.com'
+
+    expect(
+      makeRequestParams('/api/mock-url', { withApiUriBase: true })[0],
+    ).toBe('https://triple-dev.titicaca-corp.com/api/mock-url')
+  })
 })
