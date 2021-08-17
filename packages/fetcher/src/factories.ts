@@ -58,3 +58,70 @@ export function ssrFetcherize(
     })
   }
 }
+
+/**
+ * 주어진 fetcher를 세션이 존재할 때만 작동하도록 변환하는 함수
+ * 로그인이 필요하면 response 대신 "NEED_LOGIN" 문자열을 반환합니다.
+ */
+export function authFetcherize(
+  fetcher: Fetcher,
+  {
+    refresh,
+    handleNewCookie,
+  }: {
+    /**
+     * 액세스 토큰이 만료되었을 때 작동하는 함수입니다.
+     * 리프레시 토큰으로 액세스 토큰을 갱신하는 API 요청 함수를 넣어주세요.
+     */
+    refresh: () => Promise<HttpResponse<{}>>
+    /**
+     * 액세스 토큰을 갱신했을 때 새로운 쿠키를 파라미터로 호출하는 함수입니다.
+     * 새로운 쿠키로 다루는 작업이 필요하면 넣어주세요.
+     */
+    handleNewCookie?: (cookie: string) => void
+  },
+): <Result extends {}, ErrorResponse = HttpErrorResponse>(
+  href: string,
+  options?: RequestOptions,
+) => Promise<HttpResponse<Result, ErrorResponse> | 'NEED_LOGIN'> {
+  return async <Result extends {}, ErrorResponse = HttpErrorResponse>(
+    href: string,
+    options?: RequestOptions,
+  ): Promise<HttpResponse<Result, ErrorResponse> | 'NEED_LOGIN'> => {
+    const firstTrialResponse = await fetcher<Result, ErrorResponse>(
+      href,
+      options,
+    )
+
+    if (firstTrialResponse.status !== 401) {
+      return firstTrialResponse
+    }
+
+    const refreshResponse = await refresh()
+
+    if (refreshResponse.ok === false) {
+      if (refreshResponse.status === 400 || refreshResponse.status === 401) {
+        return 'NEED_LOGIN'
+      }
+
+      throw (
+        refreshResponse.error ||
+        new Error('액세스 토큰 갱신 중 오류가 발생했습니다.')
+      )
+    }
+
+    const newCookie = refreshResponse.headers.get('set-cookie')
+
+    const secondTrialResponse = await fetcher<Result, ErrorResponse>(href, {
+      ...options,
+      req: { headers: { cookie: newCookie } } as any,
+      headers: { ...options?.headers, ...(newCookie && { cookie: newCookie }) },
+    })
+
+    if (newCookie && handleNewCookie !== undefined) {
+      handleNewCookie(newCookie)
+    }
+
+    return secondTrialResponse
+  }
+}
