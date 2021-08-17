@@ -11,6 +11,7 @@ import React, {
   useState,
 } from 'react'
 import { SESSION_KEY } from '@titicaca/constants'
+import { put } from '@titicaca/fetcher'
 
 import { User } from './service'
 
@@ -83,10 +84,11 @@ export function SessionContextProvider({
     window.location.href = `/login?${query}`
   }, [])
 
-  const logout = useCallback(() => {
+  const logout = useCallback(async () => {
     unsetSessionID()
     window.location.href = '/'
     setUser(null)
+    await put('/api/users/logout')
   }, [])
 
   const value = useMemo(
