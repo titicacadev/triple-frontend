@@ -43,10 +43,6 @@ const ButtonBase = styled.a<ButtonBaseProp>`
   cursor: pointer;
   border: 0;
 
-  &:active {
-    border-style: solid;
-  }
-
   color: ${({ textColor = 'gray', textAlpha = 1 }) =>
     `rgba(${GetGlobalColor(textColor)}, ${textAlpha})`};
 
