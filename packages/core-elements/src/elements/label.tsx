@@ -16,6 +16,7 @@ export type LabelColor =
   | 'green'
   | 'white'
   | 'orange'
+  | 'mint'
 
 const LABEL_COLORS: {
   [key in LabelColor]: {
@@ -47,6 +48,12 @@ const LABEL_COLORS: {
     emphasizedBackground: ColorSet.gray700,
   },
   green: {
+    background: ColorSet.mint100,
+    color: ColorSet.mint,
+    emphasizedColor: ColorSet.white,
+    emphasizedBackground: ColorSet.mint,
+  },
+  mint: {
     background: ColorSet.mint100,
     color: ColorSet.mint,
     emphasizedColor: ColorSet.white,
