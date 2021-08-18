@@ -9,6 +9,7 @@ import React, {
   useCallback,
   useMemo,
   useState,
+  useRef,
 } from 'react'
 import { SESSION_KEY } from '@titicaca/constants'
 import { put } from '@titicaca/fetcher'
@@ -16,7 +17,10 @@ import { put } from '@titicaca/fetcher'
 import { User } from './service'
 
 interface SessionContextValue {
-  /** x-soto-session 쿠키 정보 유무 */
+  /**
+   * 쿠키에 인증 토큰이 존재하는지 여부
+   */
+  hasWebSession: boolean
   hasSessionId: boolean
   sessionId?: string
   /** 로그인 핸들러 */
@@ -60,11 +64,25 @@ function safeReturnUrl(returnUrl?: string) {
   )
 }
 
+/**
+ * 페이지 요청에 인증이 존재하는지 확인하는 함수입니다.
+ * @param req 페이지 요청 데이터
+ * @returns true면 인증이 존재, false면 존재하지 않음.
+ */
+export function checkWebSessionAvailability(req: IncomingMessage): boolean {
+  if (process.env.NODE_ENV !== 'production') {
+    return !!new Cookies(req.headers.cookie).get('TP_SE')
+  }
+  return !!req.headers['x-triple-web-login']
+}
+
 export function SessionContextProvider({
+  hasWebSession: hasWebSessionFromProps,
   sessionId,
   initialUser = null,
   children,
 }: PropsWithChildren<{
+  hasWebSession: boolean | undefined
   sessionId?: string
   initialUser?: User | null
   /**
@@ -73,6 +91,7 @@ export function SessionContextProvider({
   authBasePath?: string
 }>) {
   const [user, setUser] = useState(initialUser)
+  const hasWebSession = useRef(!!hasWebSessionFromProps).current
 
   const hasSessionId = Boolean(sessionId)
 
@@ -95,12 +114,13 @@ export function SessionContextProvider({
   const value = useMemo(
     () => ({
       hasSessionId,
+      hasWebSession,
       sessionId,
       login,
       logout,
       user,
     }),
-    [hasSessionId, login, logout, sessionId, user],
+    [hasSessionId, hasWebSession, login, logout, sessionId, user],
   )
 
   return (
