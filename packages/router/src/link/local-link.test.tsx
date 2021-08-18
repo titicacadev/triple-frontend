@@ -24,7 +24,7 @@ const mockedUseEnv = (useEnv as unknown) as jest.MockedFunction<
   () => Pick<ReturnType<typeof useEnv>, 'webUrlBase'>
 >
 const mockedUseSessionContext = (useSessionContext as unknown) as jest.MockedFunction<
-  () => Pick<ReturnType<typeof useSessionContext>, 'hasSessionId'>
+  typeof useSessionContext
 >
 
 jest.mock('@titicaca/modals')
@@ -52,7 +52,13 @@ describe('LocalLink', () => {
   mockedUseRouter.mockImplementation(() => ({ basePath }))
 
   mockedUseUserAgentContext.mockImplementation(() => ({ isPublic: false }))
-  mockedUseSessionContext.mockImplementation(() => ({ hasSessionId: true }))
+  mockedUseSessionContext.mockImplementation(() => ({
+    hasWebSession: true,
+    hasSessionId: true,
+    user: { uid: 'MOCK_USER' },
+    login: () => {},
+    logout: () => {},
+  }))
   mockedUseTransitionModal.mockImplementation(() => ({ show: jest.fn() }))
   mockedUseLoginCTAModal.mockImplementation(() => ({ show: jest.fn() }))
 

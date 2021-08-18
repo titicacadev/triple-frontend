@@ -80,7 +80,9 @@ const AccordionArrow = styled.img`
 
 export default function DefaultFooter() {
   const [businessExpanded, setBusinessExpanded] = useState(false)
-  const { login, logout, hasSessionId } = useSessionContext()
+  const { login, logout, hasWebSession, hasSessionId } = useSessionContext()
+
+  const isLoggedIn = hasWebSession || hasSessionId
 
   return (
     <FooterFrame>
@@ -112,9 +114,11 @@ export default function DefaultFooter() {
                 alt="app download"
               />
             </Button>
-            <Button onClick={() => (hasSessionId ? logout() : login())}>
-              {hasSessionId ? '로그아웃' : '로그인'}
+
+            <Button onClick={() => (isLoggedIn ? logout() : login())}>
+              {isLoggedIn ? '로그아웃' : '로그인'}
             </Button>
+
             <Accordion.Content active={businessExpanded}>
               <Text
                 size={11}

@@ -21,9 +21,11 @@ export function GuardedScrapsProvider({
   ...props
 }: PropsWithChildren<Parameters<typeof ScrapsProvider>[0]>) {
   const { isPublic } = useUserAgentContext()
-  const { hasSessionId } = useSessionContext()
+  const { hasWebSession, hasSessionId } = useSessionContext()
   const { show: showTransitionModal } = useTransitionModal()
   const { show: showLoginCTA } = useLoginCTAModal()
+
+  const isLoggedIn = hasWebSession || hasSessionId
 
   return (
     <ScrapsProvider
@@ -33,7 +35,7 @@ export function GuardedScrapsProvider({
           return false
         }
 
-        if (!hasSessionId) {
+        if (!isLoggedIn) {
           showLoginCTA()
           return false
         }
