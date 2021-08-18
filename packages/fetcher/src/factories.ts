@@ -2,10 +2,13 @@ import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 
 import { HttpErrorResponse, HttpResponse, RequestOptions } from './types'
 
-type Fetcher = <Result extends {}, ErrorResponse = HttpErrorResponse>(
+type ExtendedFetcher<ExtendingResponse = never> = <
+  Result extends {},
+  ErrorResponse = HttpErrorResponse
+>(
   href: string,
   options?: RequestOptions,
-) => Promise<HttpResponse<Result, ErrorResponse>>
+) => Promise<HttpResponse<Result, ErrorResponse> | ExtendingResponse>
 
 /**
  * 주어진 fetcher 함수를 SSR 단계에서 작동하도록 변환하는 함수입니다.
@@ -16,8 +19,8 @@ type Fetcher = <Result extends {}, ErrorResponse = HttpErrorResponse>(
  * * 요청에 "x-triple-from-ssr" 헤더 추가
  * * 요청에 cookie 추가
  */
-export function ssrFetcherize(
-  fetcher: Fetcher,
+export function ssrFetcherize<ExtendingResponse = never>(
+  fetcher: ExtendedFetcher<ExtendingResponse>,
   {
     apiUriBase,
     cookie,
@@ -31,7 +34,7 @@ export function ssrFetcherize(
      */
     cookie?: string
   },
-): Fetcher {
+): ExtendedFetcher<ExtendingResponse> {
   const { scheme, host } = parseUrl(apiUriBase)
 
   return (href, optionsParams) => {
@@ -60,8 +63,8 @@ export function ssrFetcherize(
  * 주어진 fetcher를 세션이 존재할 때만 작동하도록 변환하는 함수
  * 로그인이 필요하면 response 대신 "NEED_LOGIN" 문자열을 반환합니다.
  */
-export function authFetcherize(
-  fetcher: Fetcher,
+export function authFetcherize<ExtendingResponse = never>(
+  fetcher: ExtendedFetcher<ExtendingResponse>,
   {
     refresh,
     handleNewCookie,
@@ -77,18 +80,21 @@ export function authFetcherize(
      */
     handleNewCookie?: (cookie: string) => void
   },
-): <Result extends {}, ErrorResponse = HttpErrorResponse>(
-  href: string,
-  options?: RequestOptions,
-) => Promise<HttpResponse<Result, ErrorResponse> | 'NEED_LOGIN'> {
+): ExtendedFetcher<ExtendingResponse | 'NEED_LOGIN'> {
   return async <Result extends {}, ErrorResponse = HttpErrorResponse>(
     href: string,
     options?: RequestOptions,
-  ): Promise<HttpResponse<Result, ErrorResponse> | 'NEED_LOGIN'> => {
+  ): Promise<
+    HttpResponse<Result, ErrorResponse> | ExtendingResponse | 'NEED_LOGIN'
+  > => {
     const firstTrialResponse = await fetcher<Result, ErrorResponse>(
       href,
       options,
     )
+
+    if (!('status' in firstTrialResponse)) {
+      return firstTrialResponse
+    }
 
     if (firstTrialResponse.status !== 401) {
       return firstTrialResponse
