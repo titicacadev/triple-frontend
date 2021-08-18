@@ -86,9 +86,10 @@ export function SessionContextProvider({
 
   const logout = useCallback(async () => {
     unsetSessionID()
-    window.location.href = '/'
     setUser(null)
     await put('/api/users/logout')
+
+    window.location.href = '/'
   }, [])
 
   const value = useMemo(
