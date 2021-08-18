@@ -90,7 +90,12 @@ export function SessionContextProvider({
   initialUser = null,
   children,
 }: PropsWithChildren<{
-  hasWebSession: boolean | undefined
+  /**
+   * 페이지의 인증 여부를 전달하는 prop
+   *
+   * TODO: 빠뜨리는 실수를 방지하기 위해 다음 major 버전에서 optional을 제거해주세요.
+   */
+  hasWebSession?: boolean | undefined
   /**
    * @deprecated httpOnly 쿠키를 사용하면 넣어줄 수 없습니다.
    * `hasWebSession`만 공급해주세요.
