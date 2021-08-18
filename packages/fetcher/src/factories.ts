@@ -2,13 +2,28 @@ import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 
 import { HttpErrorResponse, HttpResponse, RequestOptions } from './types'
 
-type ExtendedFetcher<ExtendingResponse = never> = <
+export type BaseFetcher<Extending = any> = <
   Result extends {},
   ErrorResponse = HttpErrorResponse
 >(
   href: string,
   options?: RequestOptions,
-) => Promise<HttpResponse<Result, ErrorResponse> | ExtendingResponse>
+) => Promise<HttpResponse<Result, ErrorResponse> | Extending>
+
+export type ExtendFetcher<Fetcher extends BaseFetcher, Extending> = <
+  Result extends {},
+  ErrorResponse = HttpErrorResponse
+>(
+  href: string,
+  options?: RequestOptions,
+) => Promise<
+  | HttpResponse<Result, ErrorResponse>
+  | Exclude<
+      ReturnType<Fetcher> extends Promise<infer Resolved> ? Resolved : never,
+      HttpResponse<{}, unknown>
+    >
+  | Extending
+>
 
 /**
  * 주어진 fetcher 함수를 SSR 단계에서 작동하도록 변환하는 함수입니다.
@@ -19,8 +34,8 @@ type ExtendedFetcher<ExtendingResponse = never> = <
  * * 요청에 "x-triple-from-ssr" 헤더 추가
  * * 요청에 cookie 추가
  */
-export function ssrFetcherize<ExtendingResponse = never>(
-  fetcher: ExtendedFetcher<ExtendingResponse>,
+export function ssrFetcherize<Fetcher extends BaseFetcher>(
+  fetcher: Fetcher,
   {
     apiUriBase,
     cookie,
@@ -34,10 +49,10 @@ export function ssrFetcherize<ExtendingResponse = never>(
      */
     cookie?: string
   },
-): ExtendedFetcher<ExtendingResponse> {
+): Fetcher {
   const { scheme, host } = parseUrl(apiUriBase)
 
-  return (href, optionsParams) => {
+  return ((href, optionsParams) => {
     const {
       req,
       withApiUriBase,
@@ -56,15 +71,15 @@ export function ssrFetcherize<ExtendingResponse = never>(
         'x-triple-from-ssr': 'true',
       },
     })
-  }
+  }) as Fetcher
 }
 
 /**
  * 주어진 fetcher를 세션이 존재할 때만 작동하도록 변환하는 함수
  * 로그인이 필요하면 response 대신 "NEED_LOGIN" 문자열을 반환합니다.
  */
-export function authFetcherize<ExtendingResponse = never>(
-  fetcher: ExtendedFetcher<ExtendingResponse>,
+export function authFetcherize<Fetcher extends BaseFetcher>(
+  fetcher: Fetcher,
   {
     refresh,
     handleNewCookie,
@@ -80,19 +95,19 @@ export function authFetcherize<ExtendingResponse = never>(
      */
     handleNewCookie?: (cookie: string) => void
   },
-): ExtendedFetcher<ExtendingResponse | 'NEED_LOGIN'> {
+): ExtendFetcher<Fetcher, 'NEED_LOGIN'> {
   return async <Result extends {}, ErrorResponse = HttpErrorResponse>(
     href: string,
     options?: RequestOptions,
-  ): Promise<
-    HttpResponse<Result, ErrorResponse> | ExtendingResponse | 'NEED_LOGIN'
-  > => {
+  ) => {
     const firstTrialResponse = await fetcher<Result, ErrorResponse>(
       href,
       options,
     )
 
     if (!('status' in firstTrialResponse)) {
+      // fetcher가 확장된 응답을 반환했을 때
+      // TODO: 좀 더 분명한 구분 방법으로 대체하기
       return firstTrialResponse
     }
 
