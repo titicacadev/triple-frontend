@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 2.34.0
+
+### map
+
+- CirclePin에 alwaysClickable props를 추가합니다. (#1528)
+
+### core-elements
+
+- BaseButton의 active border-style을 제거합니다. (#1531)
+
+### modals
+
+- 액션 문구의 줄바뀜 현상을 수정합니다. (#1535)
+
+### fetcher
+
+- Fetch함수의 파라미터를 생성하는 로직을 별도 함수로 분리합니다. (#1532)
+
+### react-contexts
+
+- SessionContext의 logout 함수에서 logout API를 호출합니다. (#1534)
+- 새로운 인증 방식을 적용했을 때, 페이지의 인증 여부를 SessionContext로 공급합니다. (#1536)
+
 ## 2.33.0
 
 ### triple-document
