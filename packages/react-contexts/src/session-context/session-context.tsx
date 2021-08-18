@@ -21,7 +21,15 @@ interface SessionContextValue {
    * 쿠키에 인증 토큰이 존재하는지 여부
    */
   hasWebSession: boolean
+  /**
+   * @deprecated httpOnly 쿠키를 사용하면 존재 여부를 알 수 없습니다.
+   * `hasWebSession`을 사용하세요.
+   */
   hasSessionId: boolean
+  /**
+   * @deprecated httpOnly 쿠키를 사용하면 존재 여부를 알 수 없습니다.
+   * `hasWebSession`을 사용하세요.
+   */
   sessionId?: string
   /** 로그인 핸들러 */
   login: (options?: AuthOptions) => void
@@ -83,6 +91,10 @@ export function SessionContextProvider({
   children,
 }: PropsWithChildren<{
   hasWebSession: boolean | undefined
+  /**
+   * @deprecated httpOnly 쿠키를 사용하면 넣어줄 수 없습니다.
+   * `hasWebSession`만 공급해주세요.
+   */
   sessionId?: string
   initialUser?: User | null
   /**
