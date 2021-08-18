@@ -140,7 +140,9 @@ export function HistoryProvider({
       : [],
   )
   const sessionContext = useSessionContextSafely()
-  const hasSessionId = sessionContext ? sessionContext.hasSessionId : !isPublic
+  const isLoggedIn = sessionContext
+    ? sessionContext.hasWebSession || sessionContext.hasSessionId
+    : !isPublic
 
   const appUrlScheme = useMemo(() => {
     if (appUrlSchemeFromContext) {
@@ -283,7 +285,7 @@ export function HistoryProvider({
         allowRawOutlink: false,
       })
 
-      if (!hasSessionId && !checkIfRoutable({ href: canonizedHref })) {
+      if (!isLoggedIn && !checkIfRoutable({ href: canonizedHref })) {
         loginCTAModalHash && push(loginCTAModalHash)
 
         return
@@ -302,7 +304,7 @@ export function HistoryProvider({
         window.location.href = generateUrl({ scheme: appUrlScheme }, rawHref)
       }
     },
-    [push, appUrlScheme, loginCTAModalHash, hasSessionId, webUrlBase],
+    [push, appUrlScheme, loginCTAModalHash, isLoggedIn, webUrlBase],
   )
 
   const navigate = useCallback<HistoryContextValue['navigate']>(
@@ -336,7 +338,7 @@ export function HistoryProvider({
           query: outlinkParams,
         })
       } else if (!scheme && !host) {
-        if (hasSessionId || checkIfRoutable({ href: rawHref })) {
+        if (isLoggedIn || checkIfRoutable({ href: rawHref })) {
           window.location.href = generateUrl({
             scheme: appUrlScheme,
             path: '/inlink',
@@ -347,7 +349,7 @@ export function HistoryProvider({
         }
       }
     },
-    [appUrlScheme, hasSessionId, loginCTAModalHash, push],
+    [appUrlScheme, isLoggedIn, loginCTAModalHash, push],
   )
 
   const showTransitionModal = useCallback<

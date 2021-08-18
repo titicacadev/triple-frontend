@@ -23,12 +23,14 @@ export function useSessionCallback<T extends (...args: any[]) => any>(
       ]
     | []
 ): (...args: Parameters<T>) => ReturnType<T> | boolean | void {
-  const { hasSessionId, login } = useSessionContext()
+  const { hasWebSession, hasSessionId, login } = useSessionContext()
   const { show } = useLoginCTAModal()
+
+  const isLoggedIn = hasWebSession || hasSessionId
 
   return useCallback(
     (...args) => {
-      if (!hasSessionId) {
+      if (!isLoggedIn) {
         if (typeof options[0] === 'object') {
           const { returnUrl, returnValue, skipTransitionModal } = options[0]
 
@@ -49,6 +51,6 @@ export function useSessionCallback<T extends (...args: any[]) => any>(
       }
       return fn(...args)
     },
-    [fn, show, login, options, hasSessionId],
+    [fn, show, login, options, isLoggedIn],
   )
 }

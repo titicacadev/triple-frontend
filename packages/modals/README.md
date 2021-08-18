@@ -10,11 +10,11 @@
 
 ```ts
 function Reviews() {
-  const { hasSessionId } = useSessionContext()
+  const { hasWebSession } = useSessionContext()
   const { show: showLoginCTA } = useLoginCTAModal()
 
   const handleClick = () => {
-    if (!hasSessionId) {
+    if (!hasWebSession) {
       showLoginCTA()
     }
   }

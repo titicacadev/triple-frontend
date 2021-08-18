@@ -42,15 +42,17 @@ export function RouterGuardedLink({
     RelListProps &
     AllowSourceProps
 >) {
-  const { hasSessionId } = useSessionContext()
+  const { hasWebSession, hasSessionId } = useSessionContext()
   const { isPublic } = useUserAgentContext()
   const { show: showTransitionModal } = useTransitionModal()
   const { show: showLoginCTAModal } = useLoginCTAModal()
 
+  const isLoggedIn = hasWebSession || hasSessionId
+
   const isDisabledRoute =
     allowSource === 'none' ||
     (allowSource === 'app' && isPublic) ||
-    (allowSource === 'app-with-session' && (isPublic || !hasSessionId))
+    (allowSource === 'app-with-session' && (isPublic || !isLoggedIn))
 
   const rel = useRel(relList)
 

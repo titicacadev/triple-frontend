@@ -6,11 +6,7 @@
 ## 예시코드
 
 ```tsx
-import { SessionContextProvider } from '@titicaca/react-contexts'
-
-import User from './user-component'
-
-export default Page() {
+export default function Page({ hasWebSession }: { hasWebSession: boolean }) {
   if (!process.env.NEXT_PUBLIC_AUTH_WEB_BASE_PATH) {
     throw new Error(
       'Insufficient environment variables in `.env.*` files\n- NEXT_PUBLIC_AUTH_WEB_BASE_PATH',
@@ -20,26 +16,37 @@ export default Page() {
   return (
     <EnvProvider authBasePath={process.env.NEXT_PUBLIC_AUTH_WEB_BASE_PATH}>
       <SessionContextProvider
-        sessionId={sessionId}
+        hasWebSession={hasWebSession}
+        sessionId={sessionId} // Deprecate 되었습니다.
       >
         <User />
       </SessionContextProvider>
     </EnvProvider>
   )
 }
+
+export async function getServerSideProps({
+  req,
+}: GetServerSidePropsContext): Promise<
+  GetServerSidePropsResult<{ hasWebSession: boolean }>
+> {
+  return { props: { hasWebSession: checkWebSessionAvailability(req) } }
+}
 ```
 
-위와 같이 Context Provider 를 추가하고 다음과 같이 `hasSessionId` 값을 참조하여 로그인, 로그아웃
-을 처리합니다.
+위와 같이 Context Provider 를 추가하고 다음과 같이 로그인 여부를 참조합니다.
+로그인, 로그아웃 메서드도 사용할 수 있습니다.
 
 ```tsx
 // user-component.tsx
 import { useSessionContext } from '@titicaca/react-contexts'
 
 export default function User() {
-  const { hasSessionId, login, logout } = useSessionContext()
+  const { hasWebSession, hasSessionId, login, logout } = useSessionContext()
 
-  return { hasSessionId
+  const isLoggedIn = hasWebSession || hasSessionId
+
+  return { isLoggedIn
     ? <button onClick={logout}>login</button>
     : <button onClick={login}>logout</button>
   }

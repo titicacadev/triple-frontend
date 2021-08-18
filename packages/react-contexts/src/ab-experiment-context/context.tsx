@@ -35,10 +35,12 @@ export function ABExperimentProvider({
   meta?: ABExperimentMeta
   onError?: (error: unknown) => void
 }>) {
-  const { hasSessionId } = useSessionContext()
+  const { hasWebSession, hasSessionId } = useSessionContext()
   const onErrorRef = useRef(onErrorFromProps)
   const experimentMetas = useContext(ABExperimentContext)
   const [meta, setMeta] = useState(metaFromSSR)
+
+  const isLoggedIn = hasWebSession || hasSessionId
 
   useEffect(() => {
     const onError = onErrorRef.current
@@ -55,10 +57,10 @@ export function ABExperimentProvider({
       }
     }
 
-    if (!metaFromSSR && hasSessionId) {
+    if (!metaFromSSR && isLoggedIn) {
       fetchAndSetMeta()
     }
-  }, [slug, metaFromSSR, hasSessionId])
+  }, [slug, metaFromSSR, isLoggedIn])
 
   const value = useMemo(() => ({ ...experimentMetas, [slug]: meta }), [
     experimentMetas,
@@ -74,9 +76,11 @@ export function ABExperimentProvider({
 }
 
 function useABExperimentMeta(slug: string, onError?: (error: Error) => void) {
-  const { hasSessionId } = useSessionContext()
+  const { hasWebSession, hasSessionId } = useSessionContext()
   const metas = useContext(ABExperimentContext)
   const meta = useMemo(() => metas[slug], [metas, slug])
+
+  const isLoggedIn = hasWebSession || hasSessionId
 
   try {
     if (!meta) {
@@ -84,7 +88,7 @@ function useABExperimentMeta(slug: string, onError?: (error: Error) => void) {
     }
     return meta
   } catch (error) {
-    if (hasSessionId && onError) {
+    if (isLoggedIn && onError) {
       // session이 없을 때 발생한 에러는 리포팅 할 필요 없습니다.
       onError(error)
     }

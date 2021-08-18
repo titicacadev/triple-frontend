@@ -52,7 +52,9 @@ describe('ExternalLink', () => {
       openOutlink: jest.fn(),
     }))
     mockedUseSessionContext.mockImplementation(() => ({
+      hasWebSession: true,
       hasSessionId: true,
+      user: { uid: 'MOCK_USER' },
       login: () => {},
       logout: () => {},
     }))

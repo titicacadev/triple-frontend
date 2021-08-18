@@ -120,8 +120,8 @@ function ReviewContainer({
     sortingOption?: string,
   ) => void
 }) {
-  const { hasSessionId } = useSessionContext()
-
+  const { hasWebSession, hasSessionId } = useSessionContext()
+  const isLoggedIn = hasWebSession || hasSessionId
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
@@ -171,7 +171,7 @@ function ReviewContainer({
       if (id && id === resourceId) {
         const [fetchedReviewsCount, fetchedMyReview] = await Promise.all([
           fetchReviewsCount({ resourceType, resourceId }),
-          hasSessionId
+          isLoggedIn
             ? fetchMyReview({ resourceType, resourceId })
             : Promise.resolve(null),
         ])
@@ -204,7 +204,7 @@ function ReviewContainer({
     setMyReview,
     subscribeReviewUpdateEvent,
     unsubscribeReviewUpdateEvent,
-    hasSessionId,
+    isLoggedIn,
   ])
 
   const handleWriteButtonClick = useAppCallback(
