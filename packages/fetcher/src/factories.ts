@@ -105,7 +105,7 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
       options,
     )
 
-    if (!('status' in firstTrialResponse)) {
+    if ('status' in firstTrialResponse === false) {
       // fetcher가 확장된 응답을 반환했을 때
       // TODO: 좀 더 분명한 구분 방법으로 대체하기
       return firstTrialResponse
