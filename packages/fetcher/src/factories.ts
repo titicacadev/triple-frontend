@@ -132,8 +132,7 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
 
     const secondTrialResponse = await fetcher<Result, ErrorResponse>(href, {
       ...options,
-      req: { headers: { cookie: newCookie } } as any,
-      headers: { ...options?.headers, ...(newCookie && { cookie: newCookie }) },
+      cookie: newCookie ?? undefined,
     })
 
     if (newCookie && handleNewCookie !== undefined) {
