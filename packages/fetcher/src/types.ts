@@ -27,6 +27,11 @@ export type RequestOptions = Omit<RequestInit, 'body'> & {
    * URL에 API base URL을 붙여 요청을 절대 경로로 보낼 수 있게 만듦
    */
   withApiUriBase?: boolean
+
+  /**
+   * SecondaryApiUriBase가 있다면 baseUrl 생성시 SecondaryApiUriBase를 우선시합니다.
+   */
+  SecondaryApiUriBase?: string
 }
 
 export enum HTTPMethods {

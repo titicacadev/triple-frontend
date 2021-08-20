@@ -8,6 +8,7 @@ export function makeRequestParams(
     req,
     cookie = req?.headers.cookie,
     withApiUriBase = !!req,
+    SecondaryApiUriBase,
     useBodyAsRaw,
     body,
     headers: customHeaders,
@@ -21,9 +22,10 @@ export function makeRequestParams(
     )
   }
 
-  const baseUrl: string = withApiUriBase
-    ? (process.env.API_URI_BASE as string)
-    : ''
+  const baseUrl: string =
+    SecondaryApiUriBase || withApiUriBase
+      ? (process.env.API_URI_BASE as string)
+      : ''
 
   const reqUrl: string = baseUrl + href
 
