@@ -45,7 +45,7 @@ const DEFAULT_TRANSPORTATION = {
  * @param param0 TripleDocument Element Structure
  */
 export default function useItinerary({ itinerary }: Props) {
-  const { day, items } = itinerary
+  const { day, items, hideAddItineraryButton } = itinerary
 
   const hasItineraries = items.length > 0
   /** NOTE: 일정을 일정판에 저장하기 위해 regionId 를 특정하기 위한 로직 */
@@ -101,5 +101,6 @@ export default function useItinerary({ itinerary }: Props) {
     regionId,
     poiIds,
     hasItineraries,
+    hideAddItineraryButton,
   }
 }

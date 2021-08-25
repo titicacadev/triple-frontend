@@ -32,6 +32,7 @@
           "type": "itinerary",
           "value": {
             "itinerary": {
+              "hideAddItineraryButton": true,
               "day": 1,
               "items": [
                 {
