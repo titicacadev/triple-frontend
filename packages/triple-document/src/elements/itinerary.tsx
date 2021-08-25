@@ -89,7 +89,13 @@ const SaveToItineraryButton = styled(Button)`
 
 export default function ItineraryElement({ value }: Props) {
   const { navigate } = useHistoryFunctions()
-  const { courses, regionId, poiIds, hasItineraries } = useItinerary(value)
+  const {
+    courses,
+    regionId,
+    poiIds,
+    hasItineraries,
+    hideAddItineraryButton,
+  } = useItinerary(value)
   const addPoisToTrip = useHandleAddPoisToTrip(regionId)
 
   const generatePoiClickHandler = useCallback(
@@ -214,20 +220,22 @@ export default function ItineraryElement({ value }: Props) {
             )
           })}
         </Stack>
-        <SaveToItineraryButton
-          fluid
-          basic
-          bold
-          inverted
-          margin={{ top: 20 }}
-          onClick={handleSaveToItinerary}
-          disabled={!hasItineraries}
-        >
-          <Download />
-          <Text inline size={14} margin={{ left: 3 }} color="white">
-            내 일정으로 담기
-          </Text>
-        </SaveToItineraryButton>
+        {hideAddItineraryButton ? null : (
+          <SaveToItineraryButton
+            fluid
+            basic
+            bold
+            inverted
+            margin={{ top: 20 }}
+            onClick={handleSaveToItinerary}
+            disabled={!hasItineraries}
+          >
+            <Download />
+            <Text inline size={14} margin={{ left: 3 }} color="white">
+              내 일정으로 담기
+            </Text>
+          </SaveToItineraryButton>
+        )}
       </Container>
     </Container>
   )
