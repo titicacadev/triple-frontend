@@ -17,11 +17,11 @@ const Overlay = styled.div<LayeringMixinProps>`
   ${layeringMixin(3)}
 `
 
-const Box = styled.div<LayeringMixinProps>`
+const Box = styled.div<{ width?: number } & LayeringMixinProps>`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 295px;
+  width: ${({ width }) => (width ? `${width}px` : '295px')};
   transform: translate(-50%, -50%);
   border-radius: 6px;
   background-color: #fff;
@@ -80,18 +80,21 @@ export default function ModalBase({
   open,
   onClose,
   children,
+  width,
   zTier,
   zIndex,
 }: {
   open?: boolean
   onClose?: (e: React.SyntheticEvent) => any
   children?: React.ReactNode
+  width?: number
 } & LayeringMixinProps) {
   return open ? (
     <Overlay onClick={onClose} zTier={zTier} zIndex={zIndex}>
       <Box
         role="dialog"
         onClick={(e?: React.SyntheticEvent) => silenceEvent(e)}
+        width={width}
         zIndex={1}
       >
         {children}
