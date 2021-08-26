@@ -5,7 +5,7 @@ import {
   ItineraryItemType,
 } from '@titicaca/content-type-definitions'
 
-import { getSafetyPoiName } from './use-safety-poi'
+import { getSafetyPoiName, UnSafetyTranlations } from './use-safety-poi'
 
 interface Props {
   itinerary: Itinerary
@@ -49,31 +49,26 @@ export default function useItinerary({ itinerary }: Props) {
 
   const hasItineraries = items.length > 0
   /** NOTE: 일정을 일정판에 저장하기 위해 regionId 를 특정하기 위한 로직 */
-  const regionId = items[0]?.poi.source.regionId
+  const regionId = items[0]?.poi.source?.regionId
 
   const poiIds = useMemo(() => items.map(({ poi }) => poi.id), [items])
 
   const courses = useMemo<Course[]>(() => {
     return items.map(({ poi, memo, schedule, transportation: raw }, i) => {
-      const {
-        id,
-        type,
-        categories: gqlCategories,
-        source: { names, categories, areas, regionId, vicinity },
-      } = poi
+      const { id, type, categories: gqlCategories, source } = poi
       /** NOTE: 이동수단(walk, bus, car) 은 여러개 일 수 있으나 화면에는 첫번째 것을 표시 */
       const transportation = raw?.[0]?.value || DEFAULT_TRANSPORTATION
 
-      const name = getSafetyPoiName(names)
+      const name = getSafetyPoiName(source?.names as UnSafetyTranlations)
 
-      const categoryNames = (gqlCategories || categories || [])
+      const categoryNames = (gqlCategories || source?.categories || [])
         .map((category) => category.name)
         .join(',')
 
       const areaNames =
-        regionId && areas.length > 0
-          ? areas.map((area) => area.name).join(',')
-          : vicinity
+        regionId && source?.regionId && source?.areas && source.areas.length > 0
+          ? source.areas.map((area) => area.name).join(',')
+          : source?.vicinity
 
       const description = [categoryNames, areaNames]
         .filter((i) => i)
@@ -81,7 +76,7 @@ export default function useItinerary({ itinerary }: Props) {
 
       return {
         id,
-        regionId,
+        regionId: regionId || source?.regionId || '',
         name,
         type,
         description,
@@ -92,7 +87,7 @@ export default function useItinerary({ itinerary }: Props) {
         isLast: items.length - 1 === i,
       }
     })
-  }, [items])
+  }, [items, regionId])
 
   return {
     day,
