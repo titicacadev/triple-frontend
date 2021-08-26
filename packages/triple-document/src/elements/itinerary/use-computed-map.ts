@@ -19,8 +19,7 @@ type ItineraryMapData = {
  * TODO: move to use-safety-poi
  */
 function getLatLng({ source }: ItineraryItemType['poi']): LatLngLiteral {
-  const [lng, lat] =
-    source?.geolocation?.coordinates || source?.pointGeolocation?.coordinates
+  const [lng, lat] = source?.geolocation?.coordinates as [number, number]
   return { lat, lng }
 }
 
@@ -30,11 +29,7 @@ function getLatLng({ source }: ItineraryItemType['poi']): LatLngLiteral {
  * [number, number][] -> { lat, lng } 으로 개선이 필요
  */
 function extractPoiCoordinate(items: ItineraryItemType[]) {
-  return items.map(
-    (item) =>
-      item.poi.source?.geolocation?.coordinates ||
-      item.poi.source?.pointGeolocation?.coordinates,
-  )
+  return items.map((item) => item.poi.source?.geolocation?.coordinates)
 }
 
 function extracPathMap(items: ItineraryItemType[]): LatLngLiteral[] {
@@ -53,7 +48,9 @@ export default function useMapData(
     const polyline = extracPathMap(items)
     const totalPois = items.length
 
-    const { center, bounds, zoom } = getGeometry(coordinates)
+    const { center, bounds, zoom } = getGeometry(
+      coordinates as [[number, number]],
+    )
 
     const pois = items.map(({ poi }) => ({
       poi,
