@@ -1,6 +1,5 @@
 export * from './types'
 export * from './error'
-export * from './factories'
 export { addFetchersToGSSP } from './add-fetchers-to-gssp'
 export { fetcher } from './fetcher'
 export { get, put, post, del } from './methods'
