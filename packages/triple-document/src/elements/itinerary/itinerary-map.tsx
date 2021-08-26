@@ -7,7 +7,7 @@ import MapView, {
   DotPolyline,
 } from '@titicaca/map'
 import { useEnv } from '@titicaca/react-contexts'
-import { Itinerary, ItineraryItemType } from '@titicaca/content-utilities'
+import { Itinerary, ItineraryItemType } from '@titicaca/content-type-definitions'
 
 import useMapData from './use-computed-map'
 

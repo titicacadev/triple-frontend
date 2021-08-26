@@ -7,7 +7,7 @@ import type {
   TransportationType,
   Itinerary,
   ItineraryItemType,
-} from '@titicaca/content-utilities'
+} from '@titicaca/content-type-definitions'
 
 import ItineraryMap from './itinerary/itinerary-map'
 import useItinerary from './itinerary/use-computed-itineraries'

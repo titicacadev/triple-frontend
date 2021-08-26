@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { getGeometry } from '@titicaca/map'
 import type { LatLngLiteral } from '@titicaca/type-definitions'
-import type { ItineraryItemType } from '@titicaca/content-utilities'
+import type { ItineraryItemType } from '@titicaca/content-type-definitions'
 
 type Poi = {
   poi: ItineraryItemType['poi']

@@ -3,7 +3,7 @@ import {
   TransportationType,
   Itinerary,
   ItineraryItemType,
-} from '@titicaca/content-utilities'
+} from '@titicaca/content-type-definitions'
 
 import { getSafetyPoiName } from './use-safety-poi'
 
