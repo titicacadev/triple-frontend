@@ -96,7 +96,7 @@ export default function ItineraryElement({ value }: Props) {
     hasItineraries,
     hideAddItineraryButton,
   } = useItinerary(value)
-  const addPoisToTrip = useHandleAddPoisToTrip(regionId)
+  const addPoisToTrip = useHandleAddPoisToTrip(regionId || '')
 
   const generatePoiClickHandler = useCallback(
     (
@@ -104,16 +104,18 @@ export default function ItineraryElement({ value }: Props) {
       type: ItineraryItemType['poi']['type'],
       id: string,
     ) => () => {
-      navigate(`/regions/${regionId}/${type}s/${id}`)
+      navigate(`${regionId ? `/regions/${regionId}` : ''}/${type}s/${id}`)
     },
     [navigate],
   )
 
   const handleMarkerClick = useCallback(
-    ({ id, type, source: { regionId } }: ItineraryItemType['poi']) => {
-      navigate(`/regions/${regionId}/${type}s/${id}`)
+    ({ id, type, source }: ItineraryItemType['poi']) => {
+      navigate(
+        `${source?.regionId ? `/regions/${regionId}` : ''}/${type}s/${id}`,
+      )
     },
-    [navigate],
+    [navigate, regionId],
   )
 
   const handleSaveToItinerary = useCallback(() => {
