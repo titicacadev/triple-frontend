@@ -14,7 +14,7 @@ type SafetyPoi<T> = T & {
  * triple-frontend 와 triple-content 가 서로 다른 이슈가 있어 triple-content 쪽으로
  * 맞추기 위해 아래의 타입을 추가합니다.
  */
-type UnSafetyTranlations = Translations & { primary?: string }
+export type UnSafetyTranlations = Translations & { primary?: string }
 
 export function getSafetyPoiName({
   primary,
