@@ -42,9 +42,11 @@ const Actions = styled.div<{ children?: any }>`
   a {
     ${({ children }) => {
       const childrenCount = React.Children.count(children)
-      const width = 100 / childrenCount
+      // 모달의 width를 기준 -1을 기준로 해당 작업을 진행합니다.
+      const width = 294 / childrenCount - (childrenCount - 1) / childrenCount
+
       return css`
-        width: calc((${width}% - ${childrenCount - 1}px));
+        width: ${width}px;
       `
     }};
 
