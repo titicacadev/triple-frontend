@@ -21,7 +21,7 @@ const Box = styled.div<{ width?: number } & LayeringMixinProps>`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: ${({ width }) => (width ? `${width}px` : '295px')};
+  width: ${({ width }) => `${width}px`};
   transform: translate(-50%, -50%);
   border-radius: 6px;
   background-color: #fff;
@@ -80,7 +80,7 @@ export default function ModalBase({
   open,
   onClose,
   children,
-  width,
+  width = 295,
   zTier,
   zIndex,
 }: {
