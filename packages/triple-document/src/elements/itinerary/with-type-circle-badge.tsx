@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react'
 import { purple, mint } from '@titicaca/color-palette'
-import { ItineraryItemType } from '@titicaca/content-utilities'
+import { ItineraryItemType } from '@titicaca/content-type-definitions'
 
 import { CircleBadge } from './badge'
 
