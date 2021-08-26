@@ -42,9 +42,8 @@ const Actions = styled.div<{ children?: any }>`
   a {
     ${({ children }) => {
       const childrenCount = React.Children.count(children)
-      // 모달의 width를 기준 -1을 기준로 해당 작업을 진행합니다.
-      const width = 294 / childrenCount - (childrenCount - 1) / childrenCount
-
+      // Modal Box 의 width - 내부 Children 개수 - 1 / Children 개수
+      const width = (295 - childrenCount - 1) / childrenCount
       return css`
         width: ${width}px;
       `
