@@ -9,6 +9,14 @@ import {
 
 const refetchStatuses = [502, 503, 504]
 
+async function safeParseJSON<T>(response: Response): Promise<T | undefined> {
+  try {
+    return response.json()
+  } catch (error) {
+    return undefined
+  }
+}
+
 export async function fetcher<T = any, E = HttpErrorResponse>(
   url: string,
   options: RequestOptions,
@@ -55,7 +63,7 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
       responseContentType &&
       /json/.test(responseContentType)
     ) {
-      response.result = await response.json()
+      response.result = await safeParseJSON(response)
     }
 
     if (!response.ok || response.status >= 400) {
