@@ -42,9 +42,9 @@ const Actions = styled.div<{ children?: any }>`
   a {
     ${({ children }) => {
       const childrenCount = React.Children.count(children)
-
+      const width = 100 / childrenCount
       return css`
-        width: calc((100% - ${childrenCount - 1}px) / ${childrenCount});
+        width: calc((${width}% - ${childrenCount - 1}px));
       `
     }};
 
