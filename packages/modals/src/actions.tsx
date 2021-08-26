@@ -23,9 +23,6 @@ export default function ModalActions({
       <Modal.Action color="blue" onClick={onPositiveClick}>
         {positiveText}
       </Modal.Action>
-      <Modal.Action color="blue" onClick={onPositiveClick}>
-        {positiveText}
-      </Modal.Action>
     </Modal.Actions>
   )
 }
