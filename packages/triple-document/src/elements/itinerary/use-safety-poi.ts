@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
-import { Translations } from '@titicaca/content-utilities'
+import { Translations } from '@titicaca/content-type-definitions'
 
 type SafetyPoi<T> = T & {
   /** POI Name: primary || ko || en || local || '' */
