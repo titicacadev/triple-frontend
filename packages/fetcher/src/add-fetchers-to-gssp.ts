@@ -23,10 +23,18 @@ export function addFetchersToGSSP<Props, CustomContext = {}>(
       }
     },
   ) => Promise<GetServerSidePropsResult<Props>>,
-  { apiUriBase }: { apiUriBase: string },
+  { apiUriBase: apiUriBaseFromOptions }: { apiUriBase?: string },
 ): (
   ctx: GetServerSidePropsContext & { customContext?: CustomContext },
 ) => Promise<GetServerSidePropsResult<Props>> {
+  const apiUriBase = apiUriBaseFromOptions || process.env.API_URI_BASE
+
+  if (!apiUriBase) {
+    throw new Error(
+      'API 요청 URL을 알 수 없습니다. apiUriBase 옵션을 추가하거나 API_URI_BASE 환경 변수를 추가하세요.',
+    )
+  }
+
   return async function fetchersAddedGSSP(ctx) {
     const ssrFetcherOptions = {
       apiUriBase,
