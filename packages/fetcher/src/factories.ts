@@ -84,7 +84,7 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
   fetcher: Fetcher,
   {
     refresh,
-    handleNewCookie,
+    onCookieRenew,
   }: {
     /**
      * 액세스 토큰이 만료되었을 때 작동하는 함수입니다.
@@ -93,9 +93,9 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
     refresh: () => Promise<HttpResponse<{}>>
     /**
      * 액세스 토큰을 갱신했을 때 새로운 쿠키를 파라미터로 호출하는 함수입니다.
-     * 새로운 쿠키로 다루는 작업이 필요하면 넣어주세요.
+     * 새로운 쿠키를 다루는 작업이 필요하면 넣어주세요.
      */
-    handleNewCookie?: (cookie: string) => void
+    onCookieRenew?: (cookie: string) => void
   },
 ): ExtendFetcher<Fetcher, typeof NEED_LOGIN_IDENTIFIER> {
   return async <Result extends {}, ErrorResponse = HttpErrorResponse>(
@@ -137,8 +137,8 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
       cookie: newCookie ?? undefined,
     })
 
-    if (newCookie && handleNewCookie !== undefined) {
-      handleNewCookie(newCookie)
+    if (newCookie && onCookieRenew !== undefined) {
+      onCookieRenew(newCookie)
     }
 
     return secondTrialResponse
