@@ -18,6 +18,7 @@ interface BookingCompletionProps {
   onMoveToBookingDetail: () => void
   onMoveToMain?: () => void
   onMoveToRegion?: () => void
+  onAddToSchedule?: () => void
   descriptions?: string[]
   region?: Region
 }
@@ -35,7 +36,7 @@ const DescriptionText = styled(Text)`
   }
 `
 
-const RegionButton = styled(Button)`
+const GrayButton = styled(Button)`
   border-radius: 4px;
   background-color: #f5f5f5;
   color: #3a3a3a;
@@ -52,6 +53,7 @@ function BookingCompletion({
   onMoveToBookingDetail,
   onMoveToMain = () => {},
   onMoveToRegion = () => {},
+  onAddToSchedule,
   descriptions,
   region,
 }: BookingCompletionProps) {
@@ -126,13 +128,15 @@ function BookingCompletion({
             </Button.Group>
           </Container>
           {region ? (
-            <RegionButton
-              fluid
-              margin={{ top: 6 }}
-              onClick={handleMoveToRegion}
-            >
+            <GrayButton fluid margin={{ top: 6 }} onClick={handleMoveToRegion}>
               {region.names.ko || region.names.en} 여행 준비하러 가기
-            </RegionButton>
+            </GrayButton>
+          ) : null}
+
+          {onAddToSchedule ? (
+            <GrayButton fluid margin={{ top: 6 }} onClick={onAddToSchedule}>
+              내 일정에 등록하기
+            </GrayButton>
           ) : null}
         </>
       )}
