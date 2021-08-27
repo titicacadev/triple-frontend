@@ -1,5 +1,6 @@
 export * from './types'
 export * from './error'
+export { NEED_LOGIN_IDENTIFIER } from './factories'
 export { addFetchersToGSSP } from './add-fetchers-to-gssp'
 export { fetcher } from './fetcher'
 export { get, put, post, del } from './methods'
