@@ -20,6 +20,7 @@ import BookingCompletion from '@titicaca/booking-completion'
       region={{ id: '', names: { ko: '바르셀로나', en: 'Barcelona' } }}
       compact={boolean('compact', false)}
       myBookingButtonTitle={text('내 예약 버튼 타이틀', '')}
+      onAddToSchedule={ boolean('내 일정에 등록하기', true) ? () => {} : null}
     />
   </Story>
 </Preview>
