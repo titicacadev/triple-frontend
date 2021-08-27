@@ -222,7 +222,7 @@ export default function ItineraryElement({ value }: Props) {
             )
           })}
         </Stack>
-        {hideAddButton ? (
+        {!hideAddButton ? (
           <SaveToItineraryButton
             fluid
             basic
