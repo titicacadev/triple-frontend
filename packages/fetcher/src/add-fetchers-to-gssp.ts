@@ -1,6 +1,11 @@
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 
-import { authFetcherize, ExtendFetcher, ssrFetcherize } from './factories'
+import {
+  authFetcherize,
+  ExtendFetcher,
+  NEED_LOGIN_IDENTIFIER,
+  ssrFetcherize,
+} from './factories'
 
 import { get, post, put, del } from '.'
 
@@ -15,10 +20,10 @@ export function addFetchersToGSSP<Props, CustomContext = {}>(
     ctx: GetServerSidePropsContext & {
       customContext: {
         fetchers: {
-          get: ExtendFetcher<typeof get, 'NEED_LOGIN'>
-          post: ExtendFetcher<typeof post, 'NEED_LOGIN'>
-          put: ExtendFetcher<typeof put, 'NEED_LOGIN'>
-          del: ExtendFetcher<typeof del, 'NEED_LOGIN'>
+          get: ExtendFetcher<typeof get, typeof NEED_LOGIN_IDENTIFIER>
+          post: ExtendFetcher<typeof post, typeof NEED_LOGIN_IDENTIFIER>
+          put: ExtendFetcher<typeof put, typeof NEED_LOGIN_IDENTIFIER>
+          del: ExtendFetcher<typeof del, typeof NEED_LOGIN_IDENTIFIER>
         }
       }
     },

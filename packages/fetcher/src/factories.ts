@@ -74,9 +74,11 @@ export function ssrFetcherize<Fetcher extends BaseFetcher>(
   }) as Fetcher
 }
 
+export const NEED_LOGIN_IDENTIFIER = 'NEED_LOGIN'
+
 /**
  * 주어진 fetcher를 세션이 존재할 때만 작동하도록 변환하는 함수
- * 로그인이 필요하면 response 대신 "NEED_LOGIN" 문자열을 반환합니다.
+ * 로그인이 필요하면 response 대신 NEED_LOGIN_IDENTIFIER를 반환합니다.
  */
 export function authFetcherize<Fetcher extends BaseFetcher>(
   fetcher: Fetcher,
@@ -95,7 +97,7 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
      */
     handleNewCookie?: (cookie: string) => void
   },
-): ExtendFetcher<Fetcher, 'NEED_LOGIN'> {
+): ExtendFetcher<Fetcher, typeof NEED_LOGIN_IDENTIFIER> {
   return async <Result extends {}, ErrorResponse = HttpErrorResponse>(
     href: string,
     options?: RequestOptions,
@@ -119,7 +121,7 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
 
     if (refreshResponse.ok === false) {
       if (refreshResponse.status === 400 || refreshResponse.status === 401) {
-        return 'NEED_LOGIN'
+        return NEED_LOGIN_IDENTIFIER
       }
 
       throw (
