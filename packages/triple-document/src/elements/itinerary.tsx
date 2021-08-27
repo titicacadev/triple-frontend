@@ -94,7 +94,7 @@ export default function ItineraryElement({ value }: Props) {
     regionId,
     poiIds,
     hasItineraries,
-    hideAddItineraryButton,
+    hideAddButton,
   } = useItinerary(value)
   const addPoisToTrip = useHandleAddPoisToTrip(regionId || '')
 
@@ -222,7 +222,7 @@ export default function ItineraryElement({ value }: Props) {
             )
           })}
         </Stack>
-        {hideAddItineraryButton ? (
+        {hideAddButton ? (
           <SaveToItineraryButton
             fluid
             basic
