@@ -222,7 +222,7 @@ export default function ItineraryElement({ value }: Props) {
             )
           })}
         </Stack>
-        {hideAddItineraryButton ? null : (
+        {hideAddItineraryButton ? (
           <SaveToItineraryButton
             fluid
             basic
@@ -237,7 +237,7 @@ export default function ItineraryElement({ value }: Props) {
               내 일정으로 담기
             </Text>
           </SaveToItineraryButton>
-        )}
+        ) : null}
       </Container>
     </Container>
   )
