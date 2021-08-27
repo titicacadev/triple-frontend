@@ -6,8 +6,7 @@ import {
   NEED_LOGIN_IDENTIFIER,
   ssrFetcherize,
 } from './factories'
-
-import { get, post, put, del } from '.'
+import { del, get, post, put } from './methods'
 
 /**
  * 주어진 getServerSideProps 함수의 context에 fetcher를 추가하는 팩토리 함수
