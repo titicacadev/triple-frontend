@@ -19,7 +19,7 @@ type ItineraryMapData = {
  * TODO: move to use-safety-poi
  */
 function getLatLng({ source }: ItineraryItemType['poi']): LatLngLiteral {
-  const [lng, lat] = source?.geolocation?.coordinates as [number, number]
+  const [lng, lat] = source?.geolocation?.coordinates || [0, 0]
   return { lat, lng }
 }
 
