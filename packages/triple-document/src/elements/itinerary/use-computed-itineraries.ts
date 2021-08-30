@@ -5,7 +5,7 @@ import {
   ItineraryItemType,
 } from '@titicaca/content-type-definitions'
 
-import { getSafetyPoiName, UnSafetyTranlations } from './use-safety-poi'
+import { getSafetyPoiName, UnSafetyTranslations } from './use-safety-poi'
 
 interface Props {
   itinerary: Itinerary
@@ -59,7 +59,7 @@ export default function useItinerary({ itinerary }: Props) {
       /** NOTE: 이동수단(walk, bus, car) 은 여러개 일 수 있으나 화면에는 첫번째 것을 표시 */
       const transportation = raw?.[0]?.value || DEFAULT_TRANSPORTATION
 
-      const name = getSafetyPoiName(source?.names as UnSafetyTranlations)
+      const name = getSafetyPoiName(source?.names as UnSafetyTranslations)
 
       const categoryNames = (gqlCategories || source?.categories || [])
         .map((category) => category.name)

@@ -14,7 +14,7 @@ type SafetyPoi<T> = T & {
  * triple-frontend 와 triple-content 가 서로 다른 이슈가 있어 triple-content 쪽으로
  * 맞추기 위해 아래의 타입을 추가합니다.
  */
-export type UnSafetyTranlations = Translations & { primary?: string }
+export type UnSafetyTranslations = Translations & { primary?: string }
 
 export function getSafetyPoiName({
   primary,
@@ -22,7 +22,7 @@ export function getSafetyPoiName({
   ko,
   en,
   local,
-}: UnSafetyTranlations): string {
+}: UnSafetyTranslations): string {
   return primary || ko || en || local || ''
 }
 
@@ -65,8 +65,8 @@ export function getImage(
 export function useSafetyPoi<
   T extends {
     image?: ImageMeta
-    names?: UnSafetyTranlations
-    source?: { names: UnSafetyTranlations; image?: ImageMeta }
+    names?: UnSafetyTranslations
+    source?: { names: UnSafetyTranslations; image?: ImageMeta }
   }
 >(poi: T | undefined): SafetyPoi<T> {
   return useMemo<SafetyPoi<T>>(() => {
@@ -91,7 +91,7 @@ export function useSafetyPoi<
     return {
       ...poi,
       defaultImage: image && getImage(image, 'large'),
-      safeName: names ? getSafetyPoiName(names as UnSafetyTranlations) : '',
+      safeName: names ? getSafetyPoiName(names as UnSafetyTranslations) : '',
     } as SafetyPoi<T>
   }, [poi])
 }
