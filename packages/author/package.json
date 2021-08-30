@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/author",
-  "version": "2.34.0",
+  "version": "2.35.0",
   "description": "Triple Author UI elements",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,7 +15,7 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^2.34.0",
-    "@titicaca/core-elements": "^2.34.0"
+    "@titicaca/color-palette": "^2.35.0",
+    "@titicaca/core-elements": "^2.35.0"
   }
 }

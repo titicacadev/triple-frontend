@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 2.25.0
+
+### fetcher
+
+- fetcher 모듈에 새로운 인증 방식을 추가; getServerSideProps에서 fetcher를 쉽게 사용할 수 있는 방법 마련 (#1533)
+
+### modals
+
+- modal의 width를 조절할수 있는 prop을 추가 (#1542)
+
+### booking-completion
+
+- 내 일정으로 담기 버튼을 추가합니다. (#1545)
+
+### triple-document
+
+- 추천코스에 노출되는 내 일정으로 담기 버튼을 숨김 처리합니다. (#1543)
+
 ## 2.34.0
 
 ### map
