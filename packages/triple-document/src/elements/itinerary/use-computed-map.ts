@@ -44,13 +44,14 @@ export default function useMapData(
   items: ItineraryItemType[],
 ): ItineraryMapData {
   return useMemo(() => {
-    const coordinates = extractPoiCoordinate(items)
+    const coordinates = extractPoiCoordinate(items).filter(
+      (coordinate): coordinate is [number, number] => !!coordinate,
+    )
+
     const polyline = extracPathMap(items)
     const totalPois = items.length
 
-    const { center, bounds, zoom } = getGeometry(
-      coordinates as [[number, number]],
-    )
+    const { center, bounds, zoom } = getGeometry(coordinates)
 
     const pois = items.map(({ poi }) => ({
       poi,
