@@ -19,7 +19,7 @@ export interface FixedPricingProps {
   buttonDisabled?: boolean
   salePrice?: number
   isSoldOut?: boolean
-  priceLabelOverride?: string
+  priceLabelOverride?: React.ReactNode
   tooltipLabel?: string
   onClick?: (e?: React.SyntheticEvent) => any
   onTooltipClick?: (e?: React.SyntheticEvent) => any
