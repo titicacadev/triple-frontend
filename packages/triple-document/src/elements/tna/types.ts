@@ -59,4 +59,5 @@ export interface TNAProductData {
   supplierType: string
   eventTags?: string[]
   userId?: number
+  scraped?: boolean
 }

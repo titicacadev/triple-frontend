@@ -2,6 +2,7 @@ import React, { MouseEventHandler, useCallback } from 'react'
 import { Text, Tag, Container, Image, Rating } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
+import { OverlayScrapButton } from '@titicaca/scrap-button'
 
 import { TNAProductData, DomesticArea } from './types'
 import { generateCoupon } from './helpers'
@@ -53,6 +54,7 @@ function Pricing({
 export function TnaProductWithPrice({
   product,
   product: {
+    id,
     title,
     heroImage,
     tags,
@@ -63,6 +65,7 @@ export function TnaProductWithPrice({
     domesticAreas = [],
     applicableCoupon,
     expectedApplicableCoupon,
+    scraped,
   },
   index,
   onIntersect,
@@ -122,6 +125,13 @@ export function TnaProductWithPrice({
             )}
           </Image.FixedDimensionsFrame>
         </Image>
+
+        <Container position="absolute" positioning={{ top: 3, left: 51 }}>
+          <OverlayScrapButton
+            resource={{ id, scraped, type: 'tna' }}
+            size={36}
+          />
+        </Container>
 
         <Container margin={{ left: 104 }}>
           <Text bold size="large" color="gray" ellipsis>
