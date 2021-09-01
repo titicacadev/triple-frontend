@@ -14,13 +14,9 @@ function mapTypes(type: unknown) {
 }
 
 export function scrape({ id, type }: Target) {
-  return post(`/api/${mapTypes(type)}/${id}/scrap`, {
-    credentials: 'same-origin',
-  })
+  return post(`/api/${mapTypes(type)}/${id}/scrap`)
 }
 
 export function unscrape({ id, type }: Target) {
-  return del(`/api/${mapTypes(type)}/${id}/scrap`, {
-    credentials: 'same-origin',
-  })
+  return del(`/api/${mapTypes(type)}/${id}/scrap`)
 }
