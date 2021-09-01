@@ -32,7 +32,7 @@
 </ExternalLink>
 ```
 
-inlink나 outlink로 완성되어 있어 일일히 props를 설정하기 어려울 때 `useHrefToProps`훅을 사용합니다.
+inlink나 outlink로 완성되어 있어 일일이 props를 설정하기 어려울 때 `useHrefToProps`훅을 사용합니다.
 
 ```tsx
 const convertHrefToProps = useHrefToProps()
