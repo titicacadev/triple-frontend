@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch'
+import { post, del } from '@titicaca/fetcher'
 
 import { Target } from './types'
 
@@ -14,15 +14,13 @@ function mapTypes(type: unknown) {
 }
 
 export function scrape({ id, type }: Target) {
-  return fetch(`/api/${mapTypes(type)}/${id}/scrap`, {
-    method: 'POST',
+  return post(`/api/${mapTypes(type)}/${id}/scrap`, {
     credentials: 'same-origin',
   })
 }
 
 export function unscrape({ id, type }: Target) {
-  return fetch(`/api/${mapTypes(type)}/${id}/scrap`, {
-    method: 'DELETE',
+  return del(`/api/${mapTypes(type)}/${id}/scrap`, {
     credentials: 'same-origin',
   })
 }
