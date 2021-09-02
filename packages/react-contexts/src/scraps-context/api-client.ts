@@ -14,9 +14,9 @@ function mapTypes(type: unknown) {
 }
 
 export function scrape({ id, type }: Target) {
-  return post(`/api/scraps/${mapTypes(type)}/${id}/scrap`)
+  return post(`/api/scraps/${mapTypes(type)}/${id}`)
 }
 
 export function unscrape({ id, type }: Target) {
-  return del(`/api/scraps/${mapTypes(type)}/${id}/scrap`)
+  return del(`/api/scraps/${mapTypes(type)}/${id}`)
 }
