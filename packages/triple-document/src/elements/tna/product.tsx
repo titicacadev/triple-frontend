@@ -3,6 +3,8 @@ import { Text, Tag, Container, Image, Rating } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
+import semver from 'semver'
+import { useUserAgentContext } from '@titicaca/react-contexts'
 
 import { TNAProductData, DomesticArea } from './types'
 import { generateCoupon } from './helpers'
@@ -80,6 +82,8 @@ export function TnaProductWithPrice({
   ) => void
   onIntersect: (product: TNAProductData, index: number) => void
 }) {
+  const { app, isPublic } = useUserAgentContext()
+
   const salePrice =
     typeof rawSalePrice === 'string' ? parseInt(rawSalePrice) : rawSalePrice
   const basePrice =
@@ -96,6 +100,9 @@ export function TnaProductWithPrice({
     applicableCoupon,
     expectedApplicableCoupon,
   })
+
+  const appVersion = semver.coerce(app?.version)
+  const canScrap = isPublic || (appVersion && semver.gte(appVersion, '5.8.0'))
 
   const handleIntersectionChange = useCallback(
     ({ isIntersecting }: IntersectionObserverEntry) => {
@@ -125,13 +132,14 @@ export function TnaProductWithPrice({
             )}
           </Image.FixedDimensionsFrame>
         </Image>
-
-        <Container position="absolute" positioning={{ top: 3, left: 51 }}>
-          <OverlayScrapButton
-            resource={{ id, scraped, type: 'tna' }}
-            size={36}
-          />
-        </Container>
+        {canScrap && (
+          <Container position="absolute" positioning={{ top: 3, left: 51 }}>
+            <OverlayScrapButton
+              resource={{ id, scraped, type: 'tna' }}
+              size={36}
+            />
+          </Container>
+        )}
 
         <Container margin={{ left: 104 }}>
           <Text bold size="large" color="gray" ellipsis>
