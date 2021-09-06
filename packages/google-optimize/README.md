@@ -43,8 +43,8 @@ A/B 테스트를 진행하려는 페이지를 `GoogleOptimizeExperimentProvider`
 export default function TestPage(){
 
   return (
-  	<GoogleOptimizeExperimentProvider experimentId={process.env.NEXT_PUBLIC_EXPERIMENT_NAME_ID}>
-    	<SomeComponent>
+    <GoogleOptimizeExperimentProvider experimentId={process.env.NEXT_PUBLIC_EXPERIMENT_NAME_ID}>
+      <SomeComponent>
     </GoogleOptimizeExperimentProvider>
   )
 }
@@ -70,7 +70,6 @@ export default function TestComponent(){
 ### 2. Google Optimize Section
 
 1. 최적화 도구 계정 [기본 메뉴 > 계정](https://optimize.google.com/optimize/home/#/accounts)으로 이동합니다.
-
 2. 테스트 환경과 동일한 컨테이너로 이동합니다.
 3. `환경 만들기` 를 클릭하여 환경 이름과 테스트의 유형을 설정합니다.
 4. 페이지 타겟팅, GA 목표를 설정합니다.
