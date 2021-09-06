@@ -64,7 +64,7 @@
     "eslint-plugin-mdx": "^1.7.0",
     "husky": "^6.0.0",
     "jest": "^26.6.1",
-    "lerna": "^3.22.1",
+    "lerna": "^4.0.0",
     "lint-staged": "^10.2.9",
     "lodash.debounce": "^4.0.8",
     "react": "^17.0.2",
