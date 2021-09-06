@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 2.36.0
+
+### react-contexts
+
+- scraps context에 tna 타입 추가 (#1551)
+
+### triple-document
+
+- TNA 슬롯 컴포넌트에 저장 버튼 추가 (#1551)
+
+### pricing
+
+- Pricing 컴포넌트의 priceLabelOverride Props 의 타입을 확장합니다 (#1549)
+
 ## 2.35.0
 
 ### booking-completion
