@@ -10,7 +10,11 @@ import {
 import { FrameRatioAndSizes } from '@titicaca/type-definitions'
 
 export type PoiType = 'attraction' | 'restaurant' | 'hotel'
-export type ResponsiveVariant = { mapSize: string; viewport: string }
+export type ResponsiveVariant = {
+  mapSize: string
+  viewport: string
+  mapScale?: string
+}
 
 const Marker = styled.img`
   position: absolute;
@@ -56,6 +60,22 @@ const StaticMapImage = styled.img`
   top: 0;
 `
 
+const StaticMapPicture = styled.picture`
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  object-fit: cover;
+  z-index: 0;
+
+  position: absolute;
+  top: 0;
+`
+
+const ImageSource = styled.source`
+  width: 100%;
+  height: 100%;
+`
+
 const MARKER_SOURCES: { [key: string]: string } = {
   restaurant: 'https://assets.triple.guide/images/img_map_pin_food@4x.png',
   hotel: 'https://assets.triple.guide/images/img_map_pin_hotel@4x.png',
@@ -87,18 +107,22 @@ export default function StaticMap({
   onClick?: (e: React.SyntheticEvent) => void
 }) {
   const srcSet = responsiveVariants
-    ?.map(({ mapSize, viewport }) => {
-      return `/api/maps/static-map?size=${mapSize}&scale=${mapScale}&center=${lat}%2C${lon}&zoom=${zoom} ${viewport}`
+    ?.map(({ mapSize, viewport, mapScale: reposiveMapScale = 2 }) => {
+      return `/api/maps/static-map?size=${mapSize}&scale=${reposiveMapScale}&center=${lat}%2C${lon}&zoom=13 ${viewport}`
     })
     .join(', ')
 
   return (
     <Container position="relative" onClick={onClick}>
       <StaticMapContainer frame={srcSet ? undefined : frame}>
-        <StaticMapImage
-          src={`/api/maps/static-map?size=${mapSize}&scale=${mapScale}&center=${lat}%2C${lon}&zoom=${zoom}`}
-          srcSet={srcSet}
-        />
+        <StaticMapPicture>
+          {srcSet ? (
+            <ImageSource media="(min-width: 600px)" srcSet={srcSet} />
+          ) : null}
+          <StaticMapImage
+            src={`${`/api/maps/static-map?size=${mapSize}&scale=${mapScale}&center=${lat}%2C${lon}&zoom=${zoom}`}`}
+          />
+        </StaticMapPicture>
       </StaticMapContainer>
       <Marker src={markerImage || (type && MARKER_SOURCES[type])} />
     </Container>
