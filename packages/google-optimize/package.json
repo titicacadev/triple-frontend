@@ -1,13 +1,12 @@
 {
   "name": "@titicaca/google-optimize",
   "version": "2.35.0",
-  "description": "google-optimize package",
+  "description": "google optimize package",
   "homepage": "https:/github.com/titicacadev/triple-frontend#readme",
-  "license": "ISC",
+  "license": "UNLICENSED",
   "main": "lib/index.js",
   "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+    "lib": "lib"
   },
   "files": [
     "lib"
@@ -16,10 +15,10 @@
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
   },
-  "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
-  },
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "peerDependencies": {
+    "next": "^9.0 || ^10.0 || ^11.0"
   }
 }
