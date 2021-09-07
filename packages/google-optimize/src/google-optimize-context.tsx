@@ -7,8 +7,6 @@ import React, {
 } from 'react'
 import Head from 'next/head'
 
-const GOOGLE_OPTIMIZE_ID = process.env.NEXT_PUBLIC_GOOGLE_OPTIMIZE_ID
-
 declare global {
   interface Window {
     dataLayer: unknown[]
@@ -21,9 +19,11 @@ const ExperimentVariantContext = createContext<number | null>(null)
 
 export function GoogleOptimizeExperimentProvider({
   experimentId,
+  containerId,
   children,
 }: PropsWithChildren<{
   experimentId: string | undefined
+  containerId: string
 }>) {
   const [variant, setVariant] = useState<number>(-1)
 
@@ -60,7 +60,7 @@ export function GoogleOptimizeExperimentProvider({
         <script
           key={GOOGLE_OPTIMIZE_SCRIPT_ID}
           id={GOOGLE_OPTIMIZE_SCRIPT_ID}
-          src={`https://www.googleoptimize.com/optimize.js?id=${GOOGLE_OPTIMIZE_ID}`}
+          src={`https://www.googleoptimize.com/optimize.js?id=${containerId}`}
         />
       </Head>
 
