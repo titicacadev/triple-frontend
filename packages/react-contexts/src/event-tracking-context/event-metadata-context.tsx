@@ -34,15 +34,15 @@ export function useEventTrackerWithMetadata() {
   const { trackEvent } = useEventTrackingContext()
   const eventMetadata = useEventMetadataContext()
 
-  return (prams: {
+  return (params: {
     ga?: GAParams
     fa?: Partial<FAParams>
     pixel?: PixelParams
   }) => {
     trackEvent({
-      ga: getGAWithMetadata(prams.ga, eventMetadata),
-      fa: getFAWithMetadata(prams.fa, eventMetadata),
-      pixel: getPixelWithMetadata(prams.pixel, eventMetadata),
+      ga: getGAWithMetadata(params.ga, eventMetadata),
+      fa: getFAWithMetadata(params.fa, eventMetadata),
+      pixel: getPixelWithMetadata(params.pixel, eventMetadata),
     })
   }
 }
