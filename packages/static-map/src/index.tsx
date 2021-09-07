@@ -115,7 +115,7 @@ export default function StaticMap({
             <source media="(min-width: 600px)" srcSet={srcSet} />
           ) : null}
           <StaticMapImage
-            src={`${`/api/maps/static-map?size=${mapSize}&scale=${mapScale}&center=${lat}%2C${lon}&zoom=${zoom}`}`}
+            src={`/api/maps/static-map?size=${mapSize}&scale=${mapScale}&center=${lat}%2C${lon}&zoom=${zoom}`}
           />
         </StaticMapPicture>
       </StaticMapContainer>
