@@ -71,11 +71,6 @@ const StaticMapPicture = styled.picture`
   top: 0;
 `
 
-const ImageSource = styled.source`
-  width: 100%;
-  height: 100%;
-`
-
 const MARKER_SOURCES: { [key: string]: string } = {
   restaurant: 'https://assets.triple.guide/images/img_map_pin_food@4x.png',
   hotel: 'https://assets.triple.guide/images/img_map_pin_hotel@4x.png',
@@ -117,7 +112,7 @@ export default function StaticMap({
       <StaticMapContainer frame={srcSet ? undefined : frame}>
         <StaticMapPicture>
           {srcSet ? (
-            <ImageSource media="(min-width: 600px)" srcSet={srcSet} />
+            <source media="(min-width: 600px)" srcSet={srcSet} />
           ) : null}
           <StaticMapImage
             src={`${`/api/maps/static-map?size=${mapSize}&scale=${mapScale}&center=${lat}%2C${lon}&zoom=${zoom}`}`}
