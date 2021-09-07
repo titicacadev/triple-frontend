@@ -12,12 +12,12 @@ Google Optimize를 활용한 A/B 테스트 context입니다.
 
 | 이름         | 타입                   | 기본값      | 설명                                                            |
 | :----------- | :--------------------- | :---------- | :-------------------------------------------------------------- |
-| experimentId | `string` \ `undefined` | `undefined` | Google Optimize에서 생성한 실험 ID                              |
-| containerId  | `string` \ `undefined` | `undefined` | Google Optimize 컨테이너 ID <br />(ex. GTM-XXXXXX / OPT-XXXXXX) |
+| experimentId | `string` / `undefined` | `undefined` | Google Optimize에서 생성한 실험 ID                              |
+| containerId  | `string` / `undefined` | `undefined` | Google Optimize 컨테이너 ID <br />(ex. GTM-XXXXXX / OPT-XXXXXX) |
 
 #### `useExperimentVariant`
 
-A/B 테스트의 후보군을 파라미터로 받습니다.
+A/B 테스트의 후보군을 파라미터로 받으며, 반환 값은 후보군 중 선택된 단일값입니다.
 
 ##### props
 
