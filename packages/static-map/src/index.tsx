@@ -14,7 +14,7 @@ export type ResponsiveVariant = {
   mapSize: string
   viewport: string
   mapScale?: string
-  zoom?: string
+  zoom?: number
 }
 
 const Marker = styled.img`
