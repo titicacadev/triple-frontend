@@ -107,10 +107,10 @@ export default function StaticMap({
       ({
         mapSize,
         viewport,
-        mapScale: reposiveMapScale = 2,
+        mapScale: responsiveMapScale = 2,
         zoom: responsiveZoom = 13,
       }) => {
-        return `/api/maps/static-map?size=${mapSize}&scale=${reposiveMapScale}&center=${lat}%2C${lon}&zoom=${responsiveZoom} ${viewport}`
+        return `/api/maps/static-map?size=${mapSize}&scale=${responsiveMapScale}&center=${lat}%2C${lon}&zoom=${responsiveZoom} ${viewport}`
       },
     )
     .join(', ')
