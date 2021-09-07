@@ -10,10 +10,10 @@ Google Optimize를 활용한 A/B 테스트 context입니다.
 
 ##### props
 
-| 이름         | 타입     | 기본값      | 설명                                                            |
-| :----------- | :------- | :---------- | :-------------------------------------------------------------- |
-| experimentId | `string` | `undefined` | Google Optimize에서 생성한 실험 ID                              |
-| containerId  | `string` | `undefined` | Google Optimize 컨테이너 ID <br />(ex. GTM-XXXXXX / OPT-XXXXXX) |
+| 이름         | 타입                   | 기본값      | 설명                                                            |
+| :----------- | :--------------------- | :---------- | :-------------------------------------------------------------- |
+| experimentId | `string` \ `undefined` | `undefined` | Google Optimize에서 생성한 실험 ID                              |
+| containerId  | `string` \ `undefined` | `undefined` | Google Optimize 컨테이너 ID <br />(ex. GTM-XXXXXX / OPT-XXXXXX) |
 
 #### `useExperimentVariant`
 

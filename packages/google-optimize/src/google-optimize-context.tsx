@@ -23,7 +23,7 @@ export function GoogleOptimizeExperimentProvider({
   children,
 }: PropsWithChildren<{
   experimentId: string | undefined
-  containerId: string
+  containerId: string | undefined
 }>) {
   const [variant, setVariant] = useState<number>(-1)
 
