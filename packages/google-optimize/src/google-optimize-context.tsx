@@ -28,13 +28,11 @@ export function GoogleOptimizeExperimentProvider({
   const [variant, setVariant] = useState<number>(-1)
 
   useEffect(() => {
-    function gtag(..._: any[]) {
+    function gtag(...args: any[]) {
       if (window.dataLayer) {
-        // eslint-disable-next-line prefer-rest-params
-        window.dataLayer.push(arguments)
+        window.dataLayer.push(args)
       } else {
-        // eslint-disable-next-line prefer-rest-params
-        window.dataLayer = [arguments]
+        window.dataLayer = [args]
       }
     }
 
