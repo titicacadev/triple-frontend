@@ -48,7 +48,7 @@ export function GoogleOptimizeExperimentProvider({
     })
   }, [experimentId])
 
-  if (!experimentId) {
+  if (!experimentId || !containerId) {
     return <>{children}</>
   }
 
