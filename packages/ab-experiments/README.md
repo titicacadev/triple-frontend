@@ -1,6 +1,6 @@
-# google-optimize-context
+# ab-experiments
 
-Google Optimize를 활용한 A/B 테스트 context입니다.
+A/B 테스트를 지원하는 패키지입니다.
 
 ## 인터페이스
 

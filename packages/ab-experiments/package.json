@@ -1,7 +1,7 @@
 {
-  "name": "@titicaca/google-optimize",
-  "version": "2.35.0",
-  "description": "google optimize package",
+  "name": "@titicaca/ab-experiments",
+  "version": "2.36.0",
+  "description": "a/b experiments package",
   "homepage": "https:/github.com/titicacadev/triple-frontend#readme",
   "license": "UNLICENSED",
   "main": "lib/index.js",
