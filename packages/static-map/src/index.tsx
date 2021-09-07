@@ -14,6 +14,7 @@ export type ResponsiveVariant = {
   mapSize: string
   viewport: string
   mapScale?: string
+  zoom?: string
 }
 
 const Marker = styled.img`
@@ -102,9 +103,16 @@ export default function StaticMap({
   onClick?: (e: React.SyntheticEvent) => void
 }) {
   const srcSet = responsiveVariants
-    ?.map(({ mapSize, viewport, mapScale: reposiveMapScale = 2 }) => {
-      return `/api/maps/static-map?size=${mapSize}&scale=${reposiveMapScale}&center=${lat}%2C${lon}&zoom=13 ${viewport}`
-    })
+    ?.map(
+      ({
+        mapSize,
+        viewport,
+        mapScale: reposiveMapScale = 2,
+        zoom: responsiveZoom = 13,
+      }) => {
+        return `/api/maps/static-map?size=${mapSize}&scale=${reposiveMapScale}&center=${lat}%2C${lon}&zoom=${responsiveZoom} ${viewport}`
+      },
+    )
     .join(', ')
 
   return (
