@@ -10,10 +10,10 @@ A/B 테스트를 지원하는 패키지입니다.
 
 ##### props
 
-| 이름         | 타입                   | 기본값      | 설명                                                            |
-| :----------- | :--------------------- | :---------- | :-------------------------------------------------------------- |
-| experimentId | `string` / `undefined` | `undefined` | Google Optimize에서 생성한 실험 ID                              |
-| containerId  | `string` / `undefined` | `undefined` | Google Optimize 컨테이너 ID <br />(ex. GTM-XXXXXX / OPT-XXXXXX) |
+| 이름         | 타입     | 설명                                                            |
+| :----------- | :------- | :-------------------------------------------------------------- |
+| experimentId | `string` | Google Optimize에서 생성한 실험 ID                              |
+| containerId  | `string` | Google Optimize 컨테이너 ID <br />(ex. GTM-XXXXXX / OPT-XXXXXX) |
 
 #### `useExperimentVariant`
 
@@ -21,9 +21,9 @@ A/B 테스트의 후보군을 파라미터로 받으며, 반환 값은 후보군
 
 ##### props
 
-| 이름     | 타입  | 기본값      | 설명                                 |
-| :------- | :---- | :---------- | :----------------------------------- |
-| variants | `T[]` | `undefined` | A/B테스트에 사용될 2개 이상의 후보군 |
+| 이름     | 타입  | 설명                                 |
+| :------- | :---- | :----------------------------------- |
+| variants | `T[]` | A/B테스트에 사용될 2개 이상의 후보군 |
 
 ## 사용 예시
 
@@ -36,7 +36,7 @@ NEXT_PUBLIC_GOOGLE_OPTIMIZE_CONTAINER_ID = "Google Optimize Container ID" (ex. G
 NEXT_PUBLIC_EXPERIMENT_NAME_ID = "Google Optimize Experiment Name ID"
 ```
 
-A/B 테스트를 진행하려는 페이지를 `GoogleOptimizeExperimentProvider`로 감쌉니다.
+A/B 테스트가 필요한 페이지를 `GoogleOptimizeExperimentProvider`로 감쌉니다.
 
 ```tsx
 export default function TestPage(){
