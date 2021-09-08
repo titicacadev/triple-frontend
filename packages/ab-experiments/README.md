@@ -71,11 +71,4 @@ export default function TestComponent(){
 
 ### 2. Google Optimize
 
-> 자세한 정보는 [google-optimize A/B 테스트 만들기](https://support.google.com/optimize/answer/6211930?hl=ko#zippy=%2C%EC%9D%B4-%EB%8F%84%EC%9B%80%EB%A7%90%EC%97%90-%EB%82%98%EC%99%80-%EC%9E%88%EB%8A%94-%EB%82%B4%EC%9A%A9%EC%9D%80-%EB%8B%A4%EC%9D%8C%EA%B3%BC-%EA%B0%99%EC%8A%B5%EB%8B%88%EB%8B%A4)를 참고해주세요.
-
-1. 최적화 도구 계정 [기본 메뉴 > 계정](https://optimize.google.com/optimize/home/#/accounts)으로 이동합니다.
-2. 테스트 환경과 동일한 컨테이너로 이동합니다.
-3. `환경 만들기` 를 클릭하여 환경 이름과 테스트의 유형을 설정합니다.
-4. 페이지 타겟팅, GA 목표를 설정합니다.
-5. 테스트 환경 배포 후 설정 섹션의 `설치 확인`을 클릭하여 최적화 도구가 올바르게 설치되어있는지 확인합니다.
-6. `시작`을 클릭하여 테스트를 진행합니다.
+자세한 정보는 [google-optimize A/B 테스트 만들기](https://support.google.com/optimize/answer/6211930?hl=ko#zippy=%2C%EC%9D%B4-%EB%8F%84%EC%9B%80%EB%A7%90%EC%97%90-%EB%82%98%EC%99%80-%EC%9E%88%EB%8A%94-%EB%82%B4%EC%9A%A9%EC%9D%80-%EB%8B%A4%EC%9D%8C%EA%B3%BC-%EA%B0%99%EC%8A%B5%EB%8B%88%EB%8B%A4)를 참고해주세요.
