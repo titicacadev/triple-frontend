@@ -6,7 +6,7 @@ A/B 테스트를 지원하는 패키지입니다.
 
 #### `GoogleOptimizeExperimentProvider`
 
-자식 컴포넌트에 실험ID를 공급하여 A/B테스트 환경을 제공합니다.
+자식 컴포넌트에 실험ID와 실험 컨테이너ID를 공급하여 A/B테스트 환경을 제공합니다.
 
 ##### props
 
@@ -26,8 +26,6 @@ A/B 테스트의 후보군을 파라미터로 받으며, 반환 값은 후보군
 | variants | `T[]` | `undefined` | A/B테스트에 사용될 2개 이상의 후보군 |
 
 ## 사용 예시
-
-### 1. Code
 
 테스트 환경에 따른 `GOOGLE_OPTIMIZE_CONTAINER_ID` & `EXPERIMENT_NAME_ID`를 설정해줍니다.
 
@@ -59,7 +57,7 @@ export default function TestPage(){
 export default function TestComponent(){
   const experimentText = useExperimentVariant({
     variants: [
-      ...
+      ... // 후보군 입력
       ]
   })
 
@@ -69,6 +67,6 @@ export default function TestComponent(){
 }
 ```
 
-### 2. Google Optimize
+[Google Optimize](https://optimize.google.com/optimize/home/#/accounts)로 이동하여 A/B 테스트를 생성합니다.
 
-자세한 정보는 [google-optimize A/B 테스트 만들기](https://support.google.com/optimize/answer/6211930?hl=ko#zippy=%2C%EC%9D%B4-%EB%8F%84%EC%9B%80%EB%A7%90%EC%97%90-%EB%82%98%EC%99%80-%EC%9E%88%EB%8A%94-%EB%82%B4%EC%9A%A9%EC%9D%80-%EB%8B%A4%EC%9D%8C%EA%B3%BC-%EA%B0%99%EC%8A%B5%EB%8B%88%EB%8B%A4)를 참고해주세요.
+- A/B 테스트 생성 방법은 [google-optimize A/B 테스트 만들기](https://support.google.com/optimize/answer/6211930?hl=ko#zippy=%2C%EC%9D%B4-%EB%8F%84%EC%9B%80%EB%A7%90%EC%97%90-%EB%82%98%EC%99%80-%EC%9E%88%EB%8A%94-%EB%82%B4%EC%9A%A9%EC%9D%80-%EB%8B%A4%EC%9D%8C%EA%B3%BC-%EA%B0%99%EC%8A%B5%EB%8B%88%EB%8B%A4)를 참고해주세요.
