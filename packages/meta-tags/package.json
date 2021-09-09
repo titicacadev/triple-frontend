@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/meta-tags",
-  "version": "2.36.0",
+  "version": "2.37.0",
   "description": "Triple Web Application Meta tag modules",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
