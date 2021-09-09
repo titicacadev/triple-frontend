@@ -1,10 +1,14 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import StaticMap from '@titicaca/static-map'
 import { number, select, text } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
-storiesOf('static-map / StaticMap', module).add('기본', () => {
+export default {
+  title: 'static-map / StaticMap',
+  component: StaticMap,
+}
+
+export const Basic = () => {
   return (
     <StaticMap
       type={select(
@@ -18,4 +22,5 @@ storiesOf('static-map / StaticMap', module).add('기본', () => {
       markerImage={text('Custom marker image')}
     />
   )
-})
+}
+Basic.storyName = '기본'

@@ -1,17 +1,25 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { boolean } from '@storybook/addon-knobs'
 import { Button, Container, Drawer, Text } from '@titicaca/core-elements'
 
-storiesOf('Core-Elements / Drawer', module)
-  .add('버튼', () => (
+export default {
+  title: 'Core-Elements / Drawer',
+  component: Drawer,
+}
+
+export const ButtonDrawer = () => {
+  return (
     <Drawer active={boolean('활성', true)}>
       <Button fluid borderRadius={'0'}>
         결제하기
       </Button>
     </Drawer>
-  ))
-  .add('가격정보', () => (
+  )
+}
+ButtonDrawer.storyName = '버튼'
+
+export const PriceInfoDrawer = () => {
+  return (
     <Drawer active={boolean('활성', true)}>
       <Container
         clearing
@@ -30,4 +38,6 @@ storiesOf('Core-Elements / Drawer', module)
         </Container>
       </Container>
     </Drawer>
-  ))
+  )
+}
+PriceInfoDrawer.storyName = '가격정보'

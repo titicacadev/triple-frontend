@@ -1,9 +1,13 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { number, text, select, boolean } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { Tooltip, Navbar } from '@titicaca/core-elements'
 import styled from 'styled-components'
+
+export default {
+  title: 'Core-Elements / Tooltip',
+  component: Tooltip,
+}
 
 const Base = styled.div`
   position: relative;
@@ -12,8 +16,8 @@ const Base = styled.div`
   padding: 10px;
 `
 
-storiesOf('Core-Elements / Tooltip', module)
-  .add('기본', () => (
+export const Basic = () => {
+  return (
     <Base>
       툴팁 표시 대상
       <Tooltip
@@ -44,8 +48,12 @@ storiesOf('Core-Elements / Tooltip', module)
         nowrap={boolean('텍스트 줄바꿈 없음', false)}
       />
     </Base>
-  ))
-  .add('가격', () => (
+  )
+}
+Basic.storyName = '기본'
+
+export const Price = () => {
+  return (
     <Base>
       툴팁 표시 대상
       <Tooltip
@@ -55,8 +63,12 @@ storiesOf('Core-Elements / Tooltip', module)
         onClick={action('툴팁 클릭')}
       />
     </Base>
-  ))
-  .add('호텔 목록 아이콘', () => (
+  )
+}
+Price.storyName = '가격'
+
+export const HotelListIcon = () => {
+  return (
     <Navbar>
       <Navbar.Item floated="right" icon="list" position="relative">
         <Tooltip
@@ -77,4 +89,6 @@ storiesOf('Core-Elements / Tooltip', module)
         />
       </Navbar.Item>
     </Navbar>
-  ))
+  )
+}
+HotelListIcon.storyName = '호텔 목록 아이콘'

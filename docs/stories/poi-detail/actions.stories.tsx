@@ -1,11 +1,15 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { boolean } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { Actions } from '@titicaca/poi-detail'
 
-storiesOf('poi-detail / Actions', module)
-  .add('일반', () => (
+export default {
+  title: 'poi-detail / Actions',
+  component: Actions,
+}
+
+export const Basic = () => {
+  return (
     <Actions
       poiId="e889ae22-0336-4cf9-8fbb-742b95fd09d0"
       scraped={boolean('저장', false)}
@@ -15,8 +19,12 @@ storiesOf('poi-detail / Actions', module)
       onContentShare={action('onContentShare')}
       onReviewEdit={action('onReviewEdit')}
     />
-  ))
-  .add('호텔 (Global)', () => (
+  )
+}
+Basic.storyName = '일반'
+
+export const GlobalHotel = () => {
+  return (
     <Actions
       poiId="e889ae22-0336-4cf9-8fbb-742b95fd09d0"
       scraped={boolean('저장', false)}
@@ -24,4 +32,6 @@ storiesOf('poi-detail / Actions', module)
       onContentShare={action('onContentShare')}
       onReviewEdit={action('onReviewEdit')}
     />
-  ))
+  )
+}
+GlobalHotel.storyName = '호텔 (Global)'

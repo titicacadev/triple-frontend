@@ -1,17 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
-import { storiesOf } from '@storybook/react'
 import { boolean, select, text } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import Popup from '@titicaca/popup'
 import ActionSheet from '@titicaca/action-sheet'
 
+export default {
+  title: 'popup / Popup',
+  component: Popup,
+}
+
 const EmptyScroll = styled.div`
   height: 200vh;
 `
 
-storiesOf('popup / Popup', module)
-  .add('일반', () => (
+export const Basic = () => {
+  return (
     <Popup
       title={text('팝업 제목', '테스트')}
       noNavbar={boolean('Navbar 숨김', false)}
@@ -21,8 +25,12 @@ storiesOf('popup / Popup', module)
     >
       <EmptyScroll>Scroll........</EmptyScroll>
     </Popup>
-  ))
-  .add('팝업과 액션시트가 같은 계층에 있는 경우', () => (
+  )
+}
+Basic.storyName = '일반'
+
+export const AfterActionSheet = () => {
+  return (
     <>
       <Popup title="팝업입니다" open={true}>
         <EmptyScroll>Scroll........</EmptyScroll>
@@ -36,22 +44,28 @@ storiesOf('popup / Popup', module)
         <ActionSheet.Item>메뉴 2</ActionSheet.Item>
       </ActionSheet>
     </>
-  ))
-  .add('팝업 안에 액션시트가 있는 경우', () => (
-    <>
-      <Popup title="팝업입니다" open={true}>
-        <EmptyScroll>Scroll........</EmptyScroll>
-        <ActionSheet
-          open={boolean('액션 시트 열림', false)}
-          title="샘플 액션시트"
-        >
-          <ActionSheet.Item>메뉴 1</ActionSheet.Item>
-          <ActionSheet.Item>메뉴 2</ActionSheet.Item>
-        </ActionSheet>
-      </Popup>
-    </>
-  ))
-  .add('팝업 이벤트', () => (
+  )
+}
+AfterActionSheet.storyName = '팝업과 액션시트가 같은 계층에 있는 경우'
+
+export const WithInActionSheet = () => {
+  ;<>
+    <Popup title="팝업입니다" open={true}>
+      <EmptyScroll>Scroll........</EmptyScroll>
+      <ActionSheet
+        open={boolean('액션 시트 열림', false)}
+        title="샘플 액션시트"
+      >
+        <ActionSheet.Item>메뉴 1</ActionSheet.Item>
+        <ActionSheet.Item>메뉴 2</ActionSheet.Item>
+      </ActionSheet>
+    </Popup>
+  </>
+}
+WithInActionSheet.storyName = '팝업 안에 액션시트가 있는 경우'
+
+export const Event = () => {
+  return (
     <Popup
       title={text('팝업 제목', '테스트')}
       noNavbar={boolean('Navbar 숨김', false)}
@@ -67,4 +81,6 @@ storiesOf('popup / Popup', module)
     >
       다양한 이벤트가 있습니다.
     </Popup>
-  ))
+  )
+}
+Event.storyName = '팝업 이벤트'

@@ -1,11 +1,15 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { text, number, select, boolean } from '@storybook/addon-knobs'
 import { Button } from '@titicaca/core-elements'
 
-storiesOf('Core-Elements / Button', module)
-  .add('일반', () => (
+export default {
+  title: 'Core-Elements / Button',
+  component: Button,
+}
+
+export const Normal = () => {
+  return (
     <Button
       as={select('as prop', ['a', 'button'], 'a')}
       size={select('버튼 크기', ['tiny', 'small'], 'tiny')}
@@ -18,8 +22,12 @@ storiesOf('Core-Elements / Button', module)
     >
       {text('버튼 레이블', '안녕')}
     </Button>
-  ))
-  .add('컴팩트', () => (
+  )
+}
+Normal.storyName = '일반'
+
+export const Compact = () => {
+  return (
     <Button
       compact
       size={select('버튼 크기', ['tiny'], 'tiny')}
@@ -27,8 +35,12 @@ storiesOf('Core-Elements / Button', module)
     >
       {text('버튼 레이블', '안녕')}
     </Button>
-  ))
-  .add('일반 (채움형)', () => (
+  )
+}
+Compact.storyName = '컴팩트'
+
+export const NormalFluid = () => {
+  return (
     <Button
       fluid
       size={select('버튼 크기', ['tiny', 'small'], 'tiny')}
@@ -36,8 +48,12 @@ storiesOf('Core-Elements / Button', module)
     >
       {text('버튼 레이블', '안녕')}
     </Button>
-  ))
-  .add('컴팩트 (아이콘)', () => (
+  )
+}
+NormalFluid.storyName = '일반 (채움형)'
+
+export const CompactIcon = () => {
+  return (
     <Button
       compact
       bold
@@ -51,8 +67,12 @@ storiesOf('Core-Elements / Button', module)
       />
       {text('버튼 레이블', '저장하기')}
     </Button>
-  ))
-  .add('베이직', () => (
+  )
+}
+CompactIcon.storyName = '컴팩트 (아이콘)'
+
+export const Basic = () => {
+  return (
     <Button
       basic
       fluid={boolean('채움', false)}
@@ -62,14 +82,22 @@ storiesOf('Core-Elements / Button', module)
     >
       {text('버튼 레이블', '안녕')}
     </Button>
-  ))
-  .add('베이직 (아이콘)', () => (
+  )
+}
+Basic.storyName = '베이직'
+
+export const BasicIcon = () => {
+  return (
     <Button basic fluid compact onClick={action('clicked')}>
       <Button.Icon src="https://triple-dev.titicaca-corp.com/content/static/images/index@4x.png" />
       {text('버튼 레이블', '목차')}
     </Button>
-  ))
-  .add('블록형 아이콘', () => (
+  )
+}
+BasicIcon.storyName = '베이직 (아이콘)'
+
+export const BlockIcon = () => {
+  return (
     <Button
       icon={select(
         '아이콘 종류',
@@ -87,45 +115,55 @@ storiesOf('Core-Elements / Button', module)
     >
       {text('버튼 레이블', '저장하기')}
     </Button>
-  ))
-  .add('버튼 그룹', () => {
-    const buttonTag = select('as prop', ['a', 'button'], 'a')
+  )
+}
+BlockIcon.storyName = '블록형 아이콘'
 
-    return (
-      <Button.Group
-        horizontalGap={number('버튼 간격', 10)}
-        buttonCount={number('button 개수', 2)}
-      >
-        <Button as={buttonTag} basic color="gray" size="small">
-          현지에서 길묻기
-        </Button>
-        <Button as={buttonTag} basic inverted color="blue" size="small">
-          길찾기
-        </Button>
-      </Button.Group>
-    )
-  })
-  .add('버튼 컨테이너', () => {
-    const buttonTag = select('as prop', ['a', 'button'], 'a')
+export const ButtonGroup = () => {
+  const buttonTag = select('as prop', ['a', 'button'], 'a')
 
-    return (
-      <Button.Container
-        floated={select('floated', ['left', 'right', 'none'], 'none')}
-      >
-        <Button as={buttonTag} basic color="gray" size="small">
-          버튼 1
-        </Button>
-        <Button as={buttonTag} basic inverted color="blue" size="small">
-          버튼 2
-        </Button>
-      </Button.Container>
-    )
-  })
-  .add('아이콘 버튼 그룹', () => (
+  return (
+    <Button.Group
+      horizontalGap={number('버튼 간격', 10)}
+      buttonCount={number('button 개수', 2)}
+    >
+      <Button as={buttonTag} basic color="gray" size="small">
+        현지에서 길묻기
+      </Button>
+      <Button as={buttonTag} basic inverted color="blue" size="small">
+        길찾기
+      </Button>
+    </Button.Group>
+  )
+}
+ButtonGroup.storyName = '버튼 그룹'
+
+export const ButtonContainer = () => {
+  const buttonTag = select('as prop', ['a', 'button'], 'a')
+
+  return (
+    <Button.Container
+      floated={select('floated', ['left', 'right', 'none'], 'none')}
+    >
+      <Button as={buttonTag} basic color="gray" size="small">
+        버튼 1
+      </Button>
+      <Button as={buttonTag} basic inverted color="blue" size="small">
+        버튼 2
+      </Button>
+    </Button.Container>
+  )
+}
+ButtonContainer.storyName = '버튼 컨테이너'
+
+export const IconButtonGroup = () => {
+  return (
     <Button.Group horizontalGap={number('버튼 간격', 22)}>
       <Button icon="saveEmpty">저장하기</Button>
       <Button icon="schedule">일정추가</Button>
       <Button icon="starEmpty">리뷰쓰기</Button>
       <Button icon="share">공유하기</Button>
     </Button.Group>
-  ))
+  )
+}
+IconButtonGroup.storyName = '아이콘 버튼 그룹'

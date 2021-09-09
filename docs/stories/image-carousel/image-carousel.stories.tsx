@@ -1,11 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
-import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import ImageCarousel, { PageLabel } from '@titicaca/image-carousel'
 import { ImageSource } from '@titicaca/core-elements'
 
 import IMAGES from '../__mocks__/image-carousel.sample.json'
+
+export default {
+  title: 'image-carousel / Image Carousel',
+  component: ImageCarousel,
+}
 
 const MoreImageOverlayLink = styled.a`
   width: 100%;
@@ -34,7 +38,7 @@ const OverlayContent = () => {
   )
 }
 
-storiesOf('image-carousel / Image Carousel', module).add('일반', () => {
+export const Basic = () => {
   return (
     <ImageCarousel
       size="medium"
@@ -60,4 +64,5 @@ storiesOf('image-carousel / Image Carousel', module).add('일반', () => {
       }
     />
   )
-})
+}
+Basic.storyName = '일반'
