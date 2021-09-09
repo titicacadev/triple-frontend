@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Radio } from '@titicaca/core-elements'
 
 export default function RadioWrapper() {
-  const [value, setValue] = useState(undefined)
+  const [value, setValue] = useState<string | null | undefined>(undefined)
 
   return (
     <Radio
