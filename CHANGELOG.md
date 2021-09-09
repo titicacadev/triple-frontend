@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 2.37.0
+
+### fetcher
+
+- README 재작성 (#1559)
+
+### react-contexts
+
+- 오타수정 (#1558)
+
+### static-map
+
+- 반응형 이미지 지원을 위해 source 태그를 사용합니다. (#1555)
+
+### ab-experiments
+
+- A/B 테스트 패키지를 추가합니다. (#1552)
+
 ## 2.36.0
 
 ### react-contexts
