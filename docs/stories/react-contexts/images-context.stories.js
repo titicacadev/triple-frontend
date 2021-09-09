@@ -1,8 +1,12 @@
 import React, { useState, memo } from 'react'
 import styled from 'styled-components'
-import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { ImagesProvider, useImagesContext } from '@titicaca/react-contexts'
+
+export default {
+  title: 'react-contexts / ImagesContext',
+  component: ImagesProvider,
+}
 
 const Section = styled.div`
   margin: 20px 0;
@@ -104,10 +108,16 @@ function RenderingTester() {
   )
 }
 
-storiesOf('react-contexts / ImagesContext', module)
-  .add('데이터 확인', () => (
+export const Basic = () => {
+  return (
     <ImagesProvider source={SAMPLE_SOURCE} fetchImages={fetchImages}>
       <ImagesContextMonitor onFetched={handleFetched} />
     </ImagesProvider>
-  ))
-  .add('자식 렌더링 될 때 value 유지 테스트', () => <RenderingTester />)
+  )
+}
+Basic.storyName = '데이터 확인'
+
+export const Tester = () => {
+  return <RenderingTester />
+}
+Tester.storyName = '자식 렌더링 될 때 value 유지 테스트'

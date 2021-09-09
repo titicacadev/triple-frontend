@@ -1,9 +1,13 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { Container, HR1, longClickable } from '@titicaca/core-elements'
 import { action } from '@storybook/addon-actions'
 
-storiesOf('Core-Elements / longClickable', module).add('Container', () => {
+export default {
+  title: 'Core-Elements / longClickable',
+  component: longClickable,
+}
+
+export const LongClickable = () => {
   const LongClickableContainer = longClickable(Container)
 
   return (
@@ -22,4 +26,4 @@ storiesOf('Core-Elements / longClickable', module).add('Container', () => {
       </LongClickableContainer>
     </>
   )
-})
+}

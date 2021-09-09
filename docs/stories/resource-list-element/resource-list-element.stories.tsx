@@ -1,5 +1,4 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { boolean, text, number, array } from '@storybook/addon-knobs'
 import ExtendedResourceListElement, {
   ReviewScrapStat,
@@ -8,18 +7,29 @@ import ExtendedResourceListElement, {
 import Pricing from '@titicaca/pricing'
 import { Container } from '@titicaca/core-elements'
 
-storiesOf('resource-list-element / resource-list-element', module)
-  .add('ReviewScrapStat', () => (
+export default {
+  title: 'resource-list-element / resource-list-element',
+  component: ExtendedResourceListElement,
+}
+
+export const ReviewScrapStatStory = () => {
+  return (
     <ReviewScrapStat
       reviewsCount={number('reviewsCount', 2)}
       scrapsCount={number('scrapsCount', 0)}
       reviewsRating={number('reviewsRating', 3.7, { min: 1, max: 5 })}
     />
-  ))
-  .add('ResourceListElementStats', () => (
-    <ResourceListElementStats stats={array('stats', ['볼거리', '판교'])} />
-  ))
-  .add('ExtendedResourceListElement', () => (
+  )
+}
+ReviewScrapStatStory.storyName = 'ReviewScrapStat'
+
+export const ResourceListElementStatsStory = () => {
+  return <ResourceListElementStats stats={array('stats', ['볼거리', '판교'])} />
+}
+ResourceListElementStatsStory.storyName = 'ResourceListElementStats'
+
+export const ExtendedResourceListElementStory = () => {
+  return (
     <ExtendedResourceListElement
       name={text('name', '카멜리아 힐 입장권')}
       comment={text(
@@ -41,4 +51,6 @@ storiesOf('resource-list-element / resource-list-element', module)
         />
       </Container>
     </ExtendedResourceListElement>
-  ))
+  )
+}
+ExtendedResourceListElementStory.storyName = 'ExtendedResourceListElement'
