@@ -24,6 +24,9 @@
       "path": "../poi-list-elements/tsconfig.build.json"
     },
     {
+      "path": "../scrap-button/tsconfig.build.json"
+    },
+    {
       "path": "../standard-action-handler/tsconfig.build.json"
     },
     {
