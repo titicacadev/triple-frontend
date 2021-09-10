@@ -50,6 +50,7 @@ interface ScrapsContext {
   /** @deprecated Use `unscrape()` instead */
   unscrapePoi: (id: string) => Promise<void>
   isDefault?: boolean
+  enableTrackEvent?: boolean
 }
 
 function createNOOPFunctions(name: string) {
@@ -89,12 +90,14 @@ const Context = createContext<ScrapsContext>({
 
 interface ScrapsProviderProps {
   scraps?: Scraps
+  enableTrackEvent?: boolean
   beforeScrapedChange?: (target: Target, scraped: boolean) => boolean
   afterScrapedChange?: (target: Target, scraped: boolean) => void
 }
 
 export function ScrapsProvider({
   scraps: initialScraps,
+  enableTrackEvent,
   beforeScrapedChange,
   afterScrapedChange,
   children,
@@ -252,8 +255,9 @@ export function ScrapsProvider({
         }
         return unscrape({ id, type: 'poi' })
       },
+      enableTrackEvent,
     }),
-    [deriveCurrentStateAndCount, scrape, scraps, unscrape],
+    [deriveCurrentStateAndCount, enableTrackEvent, scrape, scraps, unscrape],
   )
 
   return (
