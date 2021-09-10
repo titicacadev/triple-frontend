@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/ab-experiments",
-  "version": "2.37.0",
+  "version": "2.38.0",
   "description": "a/b experiments package",
   "homepage": "https:/github.com/titicacadev/triple-frontend#readme",
   "license": "UNLICENSED",
