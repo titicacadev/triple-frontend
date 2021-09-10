@@ -74,14 +74,17 @@ function useScraped<R extends ScrapableResource>({ id, type, scraped }: R) {
 
   const { scraped: actualScraped } = deriveCurrentStateAndCount({ id, scraped })
 
-  const handleScrape = () => {
-    scrape({ id, type })
+  const handleToggleScrape = () => {
+    const toggleScrape = actualScraped ? unscrape : scrape
+    toggleScrape({ id, type })
 
     if (enableTrackEvent) {
+      const action = actualScraped ? 'POI저장취소' : 'POI저장'
+
       trackEventWithMetadata({
-        ga: ['POI저장', `${id}`],
+        ga: [action, `${id}`],
         fa: {
-          action: 'POI저장',
+          action,
           item_id: id,
           content_type: type,
         },
@@ -89,22 +92,7 @@ function useScraped<R extends ScrapableResource>({ id, type, scraped }: R) {
     }
   }
 
-  const handleUnscrape = () => {
-    unscrape({ id, type })
-
-    if (enableTrackEvent) {
-      trackEventWithMetadata({
-        ga: ['POI저장취소', `${id}`],
-        fa: {
-          action: 'POI저장취소',
-          item_id: id,
-          content_type: type,
-        },
-      })
-    }
-  }
-
-  return [actualScraped, actualScraped ? handleUnscrape : handleScrape] as const
+  return [actualScraped, handleToggleScrape] as const
 }
 
 /**
