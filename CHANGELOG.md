@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 2.38.0
+
+### docs
+
+- storieOf API 대신 CSF 포맷으로 스토리 변경 (#1562)
+
+### triple-document
+
+- @titicaca/scrap-button 의존성을 추가합니다. (#1564)
+
+### react-contexts
+
+- ScrapsProvider에 enableTrackEvent prop 추가 (#1565)
+
+### scrap-button
+
+- 스크랩 버튼에 이벤트 추가 (#1565)
+
 ## 2.37.0
 
 ### fetcher
