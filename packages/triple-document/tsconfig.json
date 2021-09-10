@@ -28,6 +28,9 @@
       "path": "../poi-list-elements"
     },
     {
+      "path": "../scrap-button"
+    },
+    {
       "path": "../standard-action-handler"
     },
     {
