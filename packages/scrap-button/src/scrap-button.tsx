@@ -1,4 +1,7 @@
-import { useScrapsContext } from '@titicaca/react-contexts'
+import {
+  useEventTrackerWithMetadata,
+  useScrapsContext,
+} from '@titicaca/react-contexts'
 import React, { ComponentType, MouseEventHandler } from 'react'
 import styled from 'styled-components'
 
@@ -61,16 +64,47 @@ function OverlayHeart({ pressed, size }: ScrapIconProps) {
 }
 
 function useScraped<R extends ScrapableResource>({ id, type, scraped }: R) {
-  const { scrape, unscrape, deriveCurrentStateAndCount } = useScrapsContext()
+  const {
+    scrape,
+    unscrape,
+    deriveCurrentStateAndCount,
+    enableTrackEvent,
+  } = useScrapsContext()
+  const trackEventWithMetadata = useEventTrackerWithMetadata()
 
   const { scraped: actualScraped } = deriveCurrentStateAndCount({ id, scraped })
 
-  return [
-    actualScraped,
-    () => {
-      actualScraped ? unscrape({ id, type }) : scrape({ id, type })
-    },
-  ] as const
+  const handleScrape = () => {
+    scrape({ id, type })
+
+    if (enableTrackEvent) {
+      trackEventWithMetadata({
+        ga: ['POI저장', `${id}`],
+        fa: {
+          action: 'POI저장',
+          item_id: id,
+          content_type: type,
+        },
+      })
+    }
+  }
+
+  const handleUnscrape = () => {
+    unscrape({ id, type })
+
+    if (enableTrackEvent) {
+      trackEventWithMetadata({
+        ga: ['POI저장취소', `${id}`],
+        fa: {
+          action: 'POI저장취소',
+          item_id: id,
+          content_type: type,
+        },
+      })
+    }
+  }
+
+  return [actualScraped, actualScraped ? handleUnscrape : handleScrape] as const
 }
 
 /**
