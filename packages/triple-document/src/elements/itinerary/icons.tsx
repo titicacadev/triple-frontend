@@ -64,7 +64,7 @@ export function Walk(props: IconDefaultProps) {
 export function Plane(props: IconDefaultProps) {
   return (
     <ImageIcon
-      name="ico_contents_trans_cable@3x"
+      name="ico_contents_trans_plane@3x"
       width={11}
       height={11}
       {...props}
