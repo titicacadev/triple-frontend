@@ -135,7 +135,7 @@ function BookingCompletion({
 
           {onAddToSchedule ? (
             <GrayButton fluid margin={{ top: 6 }} onClick={onAddToSchedule}>
-              내 일정에 등록하기
+              내 일정에 추가하기
             </GrayButton>
           ) : null}
         </>
