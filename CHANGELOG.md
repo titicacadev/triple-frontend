@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.38.1
+
+### booking-completion
+
+- 일정추가 버튼의 텍스트를 수정합니다. (#1567)
+
 ## 2.38.0
 
 ### docs
