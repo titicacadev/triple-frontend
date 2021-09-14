@@ -1,3 +1,5 @@
+import { getSessionID } from '@titicaca/react-contexts'
+
 import { RequestOptions } from './types'
 
 export function makeRequestParams(
@@ -25,7 +27,7 @@ export function makeRequestParams(
 
   const reqUrl: string = baseUrl + href
 
-  const sessionId = cookie || undefined
+  const sessionId = getSessionID(req)
 
   const headers = {
     ...customHeaders,
