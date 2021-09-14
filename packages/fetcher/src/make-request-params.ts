@@ -1,5 +1,3 @@
-import Cookies from 'universal-cookie'
-
 import { RequestOptions } from './types'
 
 export function makeRequestParams(
@@ -27,9 +25,7 @@ export function makeRequestParams(
 
   const reqUrl: string = baseUrl + href
 
-  const sessionId = cookie
-    ? new Cookies(cookie).get('x-soto-session')
-    : undefined
+  const sessionId = cookie || undefined
 
   const headers = {
     ...customHeaders,
