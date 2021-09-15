@@ -63,7 +63,7 @@ const Icon = styled.span<{ active?: boolean; backgroundImageSrc?: string }>`
   cursor: pointer;
 `
 
-export default function NumricSpinner({
+export default function NumericSpinner({
   label,
   sublabel,
   strikeLabel,
