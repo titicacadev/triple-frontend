@@ -1,5 +1,6 @@
 import { HttpError } from './error'
 import { makeRequestParams } from './make-request-params'
+import safeParseJSON from './safe-parse-json'
 import {
   HttpErrorResponse,
   HTTPMethods,
@@ -8,14 +9,6 @@ import {
 } from './types'
 
 const refetchStatuses = [502, 503, 504]
-
-async function safeParseJSON<T>(response: Response): Promise<T | undefined> {
-  try {
-    return response.json()
-  } catch (error) {
-    return undefined
-  }
-}
 
 export async function fetcher<T = any, E = HttpErrorResponse>(
   url: string,
