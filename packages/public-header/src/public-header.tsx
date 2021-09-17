@@ -2,12 +2,13 @@ import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { white, brightGray } from '@titicaca/color-palette'
 
+import { MIN_DESKTOP_WIDTH } from './constants'
+
 enum MarketType {
   appStore = 'appStore',
   playStore = 'playStore',
 }
 
-const MIN_DESKTOP_WIDTH = 1142
 const MAX_PHONE_WIDTH = 1141
 
 const HeaderFrame = styled.header<{
@@ -24,13 +25,10 @@ const HeaderFrame = styled.header<{
     css`
       top: 0;
     `};
+  height: ${({ mobileViewHeight }) => mobileViewHeight || 50}px;
 
   @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
     height: 80px;
-  }
-
-  @media (max-width: ${MAX_PHONE_WIDTH}px) {
-    height: ${({ mobileViewHeight }) => mobileViewHeight || 50}px;
   }
 
   ${({ borderless }) =>
@@ -50,7 +48,7 @@ const HeaderFrame = styled.header<{
 
 const Logo = styled.a`
   background-repeat: no-repeat;
-  background-image: url(https://triple.guide/images/img-intro-logo-dark@2x.png);
+  background-image: url('https://triple.guide/images/img-intro-logo-dark@2x.png');
   text-indent: -9999px;
   margin: 0;
   padding: 0;
@@ -142,7 +140,7 @@ const MarketLink = styled.a<{ marketType: MarketType }>`
   padding: 0;
 `
 
-export default function PublicHeader({
+export function PublicHeader({
   href = 'https://triple.guide',
   playStoreUrl,
   appStoreUrl,
