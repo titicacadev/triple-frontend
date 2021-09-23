@@ -9,8 +9,6 @@ enum MarketType {
   playStore = 'playStore',
 }
 
-const MAX_PHONE_WIDTH = 1141
-
 const HeaderFrame = styled.header<{
   fixed?: boolean
   minWidth?: number
@@ -55,6 +53,11 @@ const Logo = styled.a`
   top: 50%;
   position: absolute;
   text-decoration: none;
+  left: 14px;
+  width: 56px;
+  height: 20px;
+  background-size: cover;
+  margin-top: -10px;
 
   @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
     left: 50px;
@@ -62,14 +65,6 @@ const Logo = styled.a`
     height: 24px;
     background-size: cover;
     margin-top: -12px;
-  }
-
-  @media (max-width: ${MAX_PHONE_WIDTH}px) {
-    left: 14px;
-    width: 56px;
-    height: 20px;
-    background-size: cover;
-    margin-top: -10px;
   }
 `
 
@@ -85,13 +80,10 @@ const ExtraActionsContainer = styled.div`
   right: 0;
   top: 0;
   bottom: 0;
+  padding-right: 14px;
 
   @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
     padding-right: 50px;
-  }
-
-  @media (max-width: ${MAX_PHONE_WIDTH}px) {
-    padding-right: 14px;
   }
 `
 
@@ -99,19 +91,16 @@ const ExtraActionItem = styled.a`
   text-decoration: none;
   display: inline-block;
   color: rgba(58, 58, 58, 0.8);
+  line-height: 50px;
+  font-size: 14px;
+  margin: 0 0 0 14px;
+  height: 50px;
 
   @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
     line-height: 80px;
     font-size: 17px;
     margin: 0 0 0 34px;
     height: 80px;
-  }
-
-  @media (max-width: ${MAX_PHONE_WIDTH}px) {
-    line-height: 50px;
-    font-size: 14px;
-    margin: 0 0 0 14px;
-    height: 50px;
   }
 `
 
