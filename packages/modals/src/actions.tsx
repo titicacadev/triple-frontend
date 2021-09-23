@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Modal from './modal-base'
+import Modal, { silenceEvent } from './modal-base'
 
 export default function ModalActions({
   negative: { text: negativeText, onClick: onNegativeClick },
@@ -17,10 +17,22 @@ export default function ModalActions({
 }) {
   return (
     <Modal.Actions>
-      <Modal.Action color="gray" onClick={onNegativeClick}>
+      <Modal.Action
+        color="gray"
+        onClick={(e) => {
+          silenceEvent(e)
+          onNegativeClick && onNegativeClick(e)
+        }}
+      >
         {negativeText}
       </Modal.Action>
-      <Modal.Action color="blue" onClick={onPositiveClick}>
+      <Modal.Action
+        color="blue"
+        onClick={(e) => {
+          silenceEvent(e)
+          onPositiveClick && onPositiveClick(e)
+        }}
+      >
         {positiveText}
       </Modal.Action>
     </Modal.Actions>

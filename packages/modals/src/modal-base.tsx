@@ -103,7 +103,8 @@ export default function ModalBase({
   ) : null
 }
 
-function silenceEvent(e?: React.SyntheticEvent) {
+export function silenceEvent(e?: React.SyntheticEvent) {
+  e && e.preventDefault()
   e && e.stopPropagation()
   e && e.nativeEvent && e.nativeEvent.stopImmediatePropagation()
 }
