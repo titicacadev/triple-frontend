@@ -104,9 +104,11 @@ export default function ModalBase({
 }
 
 export function silenceEvent(e?: React.SyntheticEvent) {
-  e && e.preventDefault()
-  e && e.stopPropagation()
-  e && e.nativeEvent && e.nativeEvent.stopImmediatePropagation()
+  if (e) {
+    e.preventDefault()
+    e.stopPropagation()
+    e.nativeEvent && e.nativeEvent.stopImmediatePropagation()
+  }
 }
 
 ModalBase.Actions = Actions
