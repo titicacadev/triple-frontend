@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import * as CSS from 'csstype'
 
 import { GlobalSizes } from '../commons'
 import { marginMixin, paddingMixin } from '../mixins'
@@ -30,7 +29,6 @@ const Icon = styled.div<{
   name?: Icons
   padding?: MarginPadding
   margin?: MarginPadding
-  cursor?: CSS.Property.Cursor
 }>`
   display: inline-block;
   width: ${({ size }) => SIZES[size || 'small']};
@@ -41,7 +39,6 @@ const Icon = styled.div<{
     `${SIZES[size || 'small']} ${SIZES[size || 'small']}`};
   background-repeat: no-repeat;
   vertical-align: text-bottom;
-  cursor: ${({ cursor }) => cursor};
 
   ${marginMixin}
   ${paddingMixin}
