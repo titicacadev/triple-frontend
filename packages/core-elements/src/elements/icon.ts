@@ -41,7 +41,7 @@ const Icon = styled.div<{
     `${SIZES[size || 'small']} ${SIZES[size || 'small']}`};
   background-repeat: no-repeat;
   vertical-align: text-bottom;
-  cursor: ${({ cursor }) => cursor || 'default'};
+  cursor: ${({ cursor }) => cursor};
 
   ${marginMixin}
   ${paddingMixin}
