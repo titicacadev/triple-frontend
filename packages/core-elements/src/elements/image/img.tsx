@@ -36,7 +36,7 @@ const Img = styled.img<{
 export default function ImageImg(
   props: Omit<
     Parameters<typeof Img>[0],
-    'borderRadius' | 'dimmed' | 'fitHeight'
+    'borderRadius' | 'dimmed' | 'fitHeight' | 'cursor'
   >,
 ) {
   const { borderRadius, overlayMounted } = useImageState()
