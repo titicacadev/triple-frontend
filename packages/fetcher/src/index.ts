@@ -1,5 +1,6 @@
 export * from './types'
 export * from './error'
+export { authFetcherize, ssrFetcherize } from './factories'
 export { NEED_LOGIN_IDENTIFIER } from './factories'
 export { addFetchersToGSSP } from './add-fetchers-to-gssp'
 export { fetcher } from './fetcher'
