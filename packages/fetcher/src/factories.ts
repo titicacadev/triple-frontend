@@ -90,7 +90,9 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
      * 액세스 토큰이 만료되었을 때 작동하는 함수입니다.
      * 리프레시 토큰으로 액세스 토큰을 갱신하는 API 요청 함수를 넣어주세요.
      */
-    refresh: () => Promise<HttpResponse<{}>>
+    refresh: (
+      options?: Pick<RequestInit, 'signal'>,
+    ) => Promise<HttpResponse<{}>>
     /**
      * 액세스 토큰을 갱신했을 때 새로운 쿠키를 파라미터로 호출하는 함수입니다.
      * 새로운 쿠키를 다루는 작업이 필요하면 넣어주세요.
@@ -117,7 +119,7 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
       return firstTrialResponse
     }
 
-    const refreshResponse = await refresh()
+    const refreshResponse = await refresh({ signal: options?.signal })
 
     if (refreshResponse.ok === false) {
       if (refreshResponse.status === 400 || refreshResponse.status === 401) {
