@@ -15,7 +15,12 @@ import { unit } from '../utils/unit'
 export interface ContainerPropsFromTemplate
   extends Pick<
     CSS.Properties,
-    'position' | 'textAlign' | 'whiteSpace' | 'userSelect' | 'display'
+    | 'position'
+    | 'textAlign'
+    | 'whiteSpace'
+    | 'userSelect'
+    | 'display'
+    | 'cursor'
   > {
   centered?: boolean
   margin?: MarginPadding
@@ -34,6 +39,7 @@ export interface ContainerPropsFromTemplate
   horizontalScroll?: boolean
   shadow?: BaseSizes
   backgroundColor?: Color
+  cursor?: CSS.Property.Cursor
 }
 
 export type ContainerProps = StyledComponentProps<
@@ -142,6 +148,12 @@ const Container = styled.div<ContainerPropsFromTemplate>`
       white-space: nowrap;
       overflow-x: auto;
       overflow-y: hidden;
+    `}
+
+  ${({ cursor }) =>
+    cursor &&
+    `
+      cursor: ${cursor};
     `}
 
   ${shadowMixin}
