@@ -10,38 +10,58 @@ import {
 
 const refetchStatuses = [502, 503, 504]
 
+function makeFetchRetryable({
+  fetch,
+  retryCount,
+}: {
+  fetch: (href: string, requestInit?: RequestInit) => Promise<Response>
+  retryCount: number
+}) {
+  return function retryableFetch(
+    href: string,
+    requestInit?: RequestInit,
+  ): Promise<Response> {
+    async function retryer(remainRetry: number): Promise<Response> {
+      const response = await fetch(href, requestInit)
+
+      if (
+        remainRetry <= 0 ||
+        !!response.body ||
+        !refetchStatuses.includes(response.status)
+      ) {
+        return response
+      }
+
+      const jitterDelay = Math.random() + 1
+
+      await new Promise((resolve) =>
+        setTimeout(resolve, 100 * (Math.pow(2, 3 - remainRetry) + jitterDelay)),
+      )
+
+      return retryer(remainRetry - 1)
+    }
+
+    return retryer(retryCount)
+  }
+}
+
 export async function fetcher<T = any, E = HttpErrorResponse>(
   url: string,
   options: RequestOptions,
 ): Promise<HttpResponse<T, E>> {
-  const { retryable, method } = options
+  const { retryable, method = HTTPMethods.GET } = options
 
-  const getResponse: (retry: number) => Promise<HttpResponse<T, E>> = async (
-    retry: number,
-  ) => {
-    const response: HttpResponse<T, E> = await fetch(
-      ...makeRequestParams(url, options),
-    )
+  const fetchFunction =
+    method === HTTPMethods.GET && retryable
+      ? makeFetchRetryable({
+          fetch,
+          retryCount: 3,
+        })
+      : fetch
 
-    if (
-      response.body ||
-      method !== HTTPMethods.GET ||
-      retry <= 0 ||
-      !refetchStatuses.includes(response.status)
-    ) {
-      return response
-    }
-
-    const jitterDelay = Math.random() + 1
-
-    await new Promise((resolve) =>
-      setTimeout(resolve, 100 * (Math.pow(2, 3 - retry) + jitterDelay)),
-    )
-
-    return getResponse(retry - 1)
-  }
-
-  const response = await getResponse(retryable ? 3 : 0)
+  const response: HttpResponse<T, E> = await fetchFunction(
+    ...makeRequestParams(url, options),
+  )
   const body = await readResponseBody(response)
 
   if (response.status === 200) {
