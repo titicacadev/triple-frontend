@@ -1,5 +1,6 @@
 import { captureException } from '@sentry/browser'
 
+import safeParseJSON from './safe-parse-json'
 import { HttpResponse } from './types'
 
 function captureHttpError<Response extends HttpResponse<any, any>>(
@@ -10,4 +11,14 @@ function captureHttpError<Response extends HttpResponse<any, any>>(
   }
 }
 
-export { captureHttpError }
+function readResponseBody<T, E>(response: HttpResponse<T, E>) {
+  const contentType = response.headers.get('content-type')
+
+  if (contentType && /json/.test(contentType)) {
+    return safeParseJSON<T>(response)
+  }
+
+  return response.text()
+}
+
+export { captureHttpError, readResponseBody }

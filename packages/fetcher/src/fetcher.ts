@@ -1,6 +1,6 @@
 import { HttpError } from './error'
 import { makeRequestParams } from './make-request-params'
-import safeParseJSON from './safe-parse-json'
+import { readResponseBody } from './response-handler'
 import {
   HttpErrorResponse,
   HTTPMethods,
@@ -42,15 +42,10 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
   }
 
   const response = await getResponse(retryable ? 3 : 0)
+  const body = await readResponseBody(response)
 
-  const responseContentType = response.headers.get('content-type')
-
-  if (
-    response.status === 200 &&
-    responseContentType &&
-    /json/.test(responseContentType)
-  ) {
-    response.result = await safeParseJSON(response)
+  if (response.status === 200) {
+    response.result = body as T | undefined
   }
 
   if (!response.ok) {
@@ -74,7 +69,10 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
      * 비지니스 로직단에서 에러 로직이 필요한 경우에는 아래와 같이 통일된 형태로 에러 객체를 전달하여 처리
      * const { result, error } = fetchSomething(...args)
      */
-    response.error = new HttpError(new Error(await response.text()), response)
+    response.error = new HttpError(
+      new Error(body as string | undefined),
+      response,
+    )
   }
 
   return response
