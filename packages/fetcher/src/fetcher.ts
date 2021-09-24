@@ -59,7 +59,7 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
       response.result = await safeParseJSON(response)
     }
 
-    if (!response.ok || response.status >= 400) {
+    if (!response.ok) {
       throw new Error(await response.text())
     }
 
