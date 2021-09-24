@@ -129,6 +129,17 @@ const MarketLink = styled.a<{ marketType: MarketType }>`
   padding: 0;
 `
 
+export interface PublicHeaderProps {
+  href?: string
+  playStoreUrl?: string
+  appStoreUrl?: string
+  fixed?: boolean
+  minWidth?: number
+  mobileViewHeight?: number
+  borderless?: boolean
+  children?: React.ReactNode
+}
+
 export function PublicHeader({
   href = 'https://triple.guide',
   playStoreUrl,
@@ -138,16 +149,7 @@ export function PublicHeader({
   minWidth,
   borderless = false,
   ...props
-}: {
-  href?: string
-  playStoreUrl?: string
-  appStoreUrl?: string
-  fixed?: boolean
-  minWidth?: number
-  mobileViewHeight?: number
-  borderless?: boolean
-  children?: React.ReactNode
-}) {
+}: PublicHeaderProps) {
   return (
     <HeaderFrame
       fixed={fixed}
