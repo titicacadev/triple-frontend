@@ -77,6 +77,20 @@ export function ssrFetcherize<Fetcher extends BaseFetcher>(
 export const NEED_LOGIN_IDENTIFIER = 'NEED_LOGIN'
 
 /**
+ * 주어진 주소가 트리플 도메인인지 확인하는 함수입니다.
+ * 호스트가 없거나 환경 변수 값 NEXT_PUBLIC_WEB_URL_BASE의 호스트와 동일하면 트리플 도메인입니다.
+ *
+ * @param href
+ * @returns
+ */
+function isTripleHref(href: string): boolean {
+  const { host } = parseUrl(href)
+  const { host: tripleHost } = parseUrl(process.env.NEXT_PUBLIC_WEB_URL_BASE)
+
+  return host === undefined || host === tripleHost
+}
+
+/**
  * 주어진 fetcher를 세션이 존재할 때만 작동하도록 변환하는 함수
  * 로그인이 필요하면 response 대신 NEED_LOGIN_IDENTIFIER를 반환합니다.
  */
@@ -108,6 +122,10 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
       href,
       options,
     )
+
+    if (isTripleHref(href) === false) {
+      return firstTrialResponse
+    }
 
     if ('status' in firstTrialResponse === false) {
       // fetcher가 확장된 응답을 반환했을 때
