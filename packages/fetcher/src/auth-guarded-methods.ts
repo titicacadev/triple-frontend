@@ -2,8 +2,8 @@ import { authFetcherize } from './factories'
 import { fetcher } from './fetcher'
 import { del, get, post, put } from './methods'
 
-const authFetcherizeOptions = {
-  refresh: () => post('/api/users/web-session/token'),
+const authFetcherizeOptions: Parameters<typeof authFetcherize>[1] = {
+  refresh: (options) => post('/api/users/web-session/token', options),
 }
 
 export const authGuardedFetchers = {
