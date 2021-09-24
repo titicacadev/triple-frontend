@@ -63,7 +63,6 @@ const Logo = styled.a`
     left: 50px;
     width: 68px;
     height: 24px;
-    background-size: cover;
     margin-top: -12px;
   }
 `
