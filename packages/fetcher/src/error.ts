@@ -5,7 +5,7 @@ import { HttpErrorResponse } from './types'
 // 미리 정의된 공통 에러 포맷
 const DEFAULT_HTTP_ERROR_RESPONSE: HttpErrorResponse = {
   code: 'UNKNOWN',
-  message: '알수 없는 에러가 발생하였습니다.',
+  message: '알 수 없는 에러가 발생하였습니다.',
   name: 'UNKNOWN',
 }
 
