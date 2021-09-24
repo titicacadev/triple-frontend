@@ -13,7 +13,10 @@ import {
 } from '../mixins'
 
 interface TextBaseProps
-  extends Pick<CSS.Properties, 'wordBreak' | 'whiteSpace' | 'textAlign'> {
+  extends Pick<
+    CSS.Properties,
+    'wordBreak' | 'whiteSpace' | 'textAlign' | 'cursor'
+  > {
   size?: GlobalSizes | number
   textStyle?: KeyOfTextStyleMap
   bold?: boolean
@@ -31,6 +34,7 @@ interface TextBaseProps
   ellipsis?: boolean
   maxLines?: number
   strikethrough?: boolean
+  cursor?: CSS.Property.Cursor
 }
 
 interface TitleBaseProps {
@@ -160,6 +164,12 @@ const TextBase = styled.div<TextBaseProps>`
         width: 100%;
         display: block;
       }
+    `};
+
+  ${({ cursor }) =>
+    cursor &&
+    css`
+      cursor: ${cursor};
     `};
 `
 

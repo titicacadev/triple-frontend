@@ -16,6 +16,7 @@ export interface FlexBoxProps
     | 'alignContent'
     | 'alignSelf'
     | 'order'
+    | 'cursor'
   > {
   flex?: boolean
 }
@@ -33,4 +34,5 @@ export default styled(Container)<FlexBoxProps>`
   ${({ flexBasis }) => flexBasis && `flex-basis: ${flexBasis};`}
   ${({ justifyContent }) =>
     justifyContent && `justify-content: ${justifyContent};`}
+  ${({ cursor }) => cursor && `cursor: ${cursor};`}
 `
