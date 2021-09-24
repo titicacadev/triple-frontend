@@ -43,34 +43,22 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
 
   const response = await getResponse(retryable ? 3 : 0)
 
-  try {
-    const responseContentType = response.headers.get('content-type')
+  const responseContentType = response.headers.get('content-type')
 
+  if (
+    response.status === 200 &&
+    responseContentType &&
+    /json/.test(responseContentType)
+  ) {
+    response.result = await safeParseJSON(response)
+  }
+
+  if (!response.ok) {
     /**
-     * TODO:
-     * - [ ] 서버에서 모든 에러 포맷이 json 이 보장되거나 status 코드로만 처리할 수 있도록 한다.
-     * - 현재 string like boolean | undefined | json string 이 2xx, 4xx 에서 혼용되고 있다.
-     */
-    if (
-      response.status === 200 &&
-      responseContentType &&
-      /json/.test(responseContentType)
-    ) {
-      response.result = await safeParseJSON(response)
-    }
-
-    if (!response.ok) {
-      throw new Error(await response.text())
-    }
-
-    return response
-  } catch (error) {
-    response.error = new HttpError(error, response)
-
-    // captureException()
-
-    /**
-     * TODO: 공통 에러처리
+     * 서버에서 모든 에러 포맷이 json 이 보장되거나 status 코드로만 처리할 수 있도록 한다.
+     * 현재 string like boolean | undefined | json string 이 2xx, 4xx 에서 혼용되고 있다.
+     *
+     * 공통 에러처리
      * idea1: 에러 객체를 response.error 에 던져주고 before/after hook 이나 middleware 형태로
      * fetcher 에서는 로깅 관련 로직을 분리해서 sentry logging 을 할 수 있도록 한다.
      *
@@ -86,6 +74,8 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
      * 비지니스 로직단에서 에러 로직이 필요한 경우에는 아래와 같이 통일된 형태로 에러 객체를 전달하여 처리
      * const { result, error } = fetchSomething(...args)
      */
-    return response
+    response.error = new HttpError(new Error(await response.text()), response)
   }
+
+  return response
 }
