@@ -45,9 +45,9 @@ export function addFetchersToGSSP<Props, CustomContext = {}>(
       cookie: ctx.req.headers.cookie,
     }
     const ssrPost = ssrFetcherize(post, ssrFetcherOptions)
-    const authGuardOptions = {
+    const authGuardOptions: Parameters<typeof authFetcherize>[1] = {
       refresh: () => ssrPost('/api/users/web-session/token'),
-      handleNewCookie: (cookie: string) => {
+      onCookieRenew: (cookie: string) => {
         ctx.res.setHeader('set-cookie', cookie)
       },
     }
