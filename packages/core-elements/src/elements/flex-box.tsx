@@ -33,5 +33,4 @@ export default styled(Container)<FlexBoxProps>`
   ${({ flexBasis }) => flexBasis && `flex-basis: ${flexBasis};`}
   ${({ justifyContent }) =>
     justifyContent && `justify-content: ${justifyContent};`}
-  ${({ cursor }) => cursor && `cursor: ${cursor};`}
 `
