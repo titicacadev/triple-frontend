@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import * as CSS from 'csstype'
 
 import { useImageState } from './context'
 import { useContentAbsolute } from './fixed-ratio-frame'
@@ -8,6 +9,7 @@ const Img = styled.img<{
   borderRadius: number
   dimmed?: boolean
   absolute: boolean
+  cursor?: CSS.Property.Cursor
 }>`
   width: 100%;
   height: 100%;
