@@ -16,7 +16,6 @@ export interface FlexBoxProps
     | 'alignContent'
     | 'alignSelf'
     | 'order'
-    | 'cursor'
   > {
   flex?: boolean
 }
