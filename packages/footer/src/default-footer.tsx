@@ -79,11 +79,11 @@ const AccordionArrow = styled.img`
 `
 
 interface DefaultFooterProps {
-  noDownloadButton?: boolean
+  hideAppDownloadButton?: boolean
 }
 
 export default function DefaultFooter({
-  noDownloadButton,
+  hideAppDownloadButton,
 }: DefaultFooterProps) {
   const [businessExpanded, setBusinessExpanded] = useState(false)
   const { login, logout, hasWebSession, hasSessionId } = useSessionContext()
@@ -113,7 +113,7 @@ export default function DefaultFooter({
                 }`}
               />
             </Title>
-            {!noDownloadButton ? (
+            {!hideAppDownloadButton ? (
               <Button href="https://triple.onelink.me/aZP6?pid=intro_web&af_dp=triple%3A%2F%2F%2Fmain">
                 <span>트리플 앱</span>
                 <img
