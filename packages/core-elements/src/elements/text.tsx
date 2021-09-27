@@ -34,7 +34,6 @@ interface TextBaseProps
   ellipsis?: boolean
   maxLines?: number
   strikethrough?: boolean
-  cursor?: CSS.Property.Cursor
 }
 
 interface TitleBaseProps {
@@ -168,7 +167,7 @@ const TextBase = styled.div<TextBaseProps>`
 
   ${({ cursor }) =>
     cursor &&
-    css`
+    `
       cursor: ${cursor};
     `};
 `

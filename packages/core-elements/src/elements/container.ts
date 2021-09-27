@@ -39,7 +39,6 @@ export interface ContainerPropsFromTemplate
   horizontalScroll?: boolean
   shadow?: BaseSizes
   backgroundColor?: Color
-  cursor?: CSS.Property.Cursor
 }
 
 export type ContainerProps = StyledComponentProps<
