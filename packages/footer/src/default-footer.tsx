@@ -78,7 +78,13 @@ const AccordionArrow = styled.img`
   height: 15px;
 `
 
-export default function DefaultFooter() {
+interface DefaultFooterProps {
+  noDownloadButton?: boolean
+}
+
+export default function DefaultFooter({
+  noDownloadButton,
+}: DefaultFooterProps) {
   const [businessExpanded, setBusinessExpanded] = useState(false)
   const { login, logout, hasWebSession, hasSessionId } = useSessionContext()
 
@@ -107,13 +113,15 @@ export default function DefaultFooter() {
                 }`}
               />
             </Title>
-            <Button href="https://triple.onelink.me/aZP6?pid=intro_web&af_dp=triple%3A%2F%2F%2Fmain">
-              <span>트리플 앱</span>
-              <img
-                src="https://assets.triple.guide/images/ico_download@3x.png"
-                alt="app download"
-              />
-            </Button>
+            {!noDownloadButton ? (
+              <Button href="https://triple.onelink.me/aZP6?pid=intro_web&af_dp=triple%3A%2F%2F%2Fmain">
+                <span>트리플 앱</span>
+                <img
+                  src="https://assets.triple.guide/images/ico_download@3x.png"
+                  alt="app download"
+                />
+              </Button>
+            ) : null}
 
             <Button onClick={() => (isLoggedIn ? logout() : login())}>
               {isLoggedIn ? '로그아웃' : '로그인'}
