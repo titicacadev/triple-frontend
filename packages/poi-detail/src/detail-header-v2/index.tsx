@@ -114,7 +114,9 @@ export default function DetailHeaderV2({
           areas={areas}
           vicinity={vicinity}
           arrowAction={
-            <ArrowButton onClick={onAreaClick}>지도보기</ArrowButton>
+            onAreaClick ? (
+              <ArrowButton onClick={onAreaClick}>지도보기</ArrowButton>
+            ) : null
           }
         />
       </LongClickableSection>
