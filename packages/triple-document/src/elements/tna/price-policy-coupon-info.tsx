@@ -2,11 +2,13 @@ import React from 'react'
 import { Container, Text, MarginPadding } from '@titicaca/core-elements'
 
 export function PricePolicyCouponInfo({
+  emphasisColor = 'mint',
   hasOnlyExpectedApplicableCoupon,
   hasAmountAfterUsingCouponPrice,
   displayPricePolicy,
   margin,
 }: {
+  emphasisColor?: Parameters<typeof Text>[0]['color']
   hasOnlyExpectedApplicableCoupon?: boolean
   hasAmountAfterUsingCouponPrice?: boolean | 0
   displayPricePolicy?: string
@@ -17,7 +19,7 @@ export function PricePolicyCouponInfo({
       <Container margin={margin || { top: 4 }}>
         {hasOnlyExpectedApplicableCoupon ? (
           <>
-            <Text bold inlineBlock size="tiny" color="mint">
+            <Text bold inlineBlock size="tiny" color={emphasisColor}>
               쿠폰할인
             </Text>
             <Text
@@ -39,7 +41,7 @@ export function PricePolicyCouponInfo({
               bold
               inlineBlock
               size="tiny"
-              color="mint"
+              color={emphasisColor}
               margin={{ left: 5 }}
             >
               {displayPricePolicy}
@@ -54,7 +56,7 @@ export function PricePolicyCouponInfo({
               bold
               inlineBlock
               size="tiny"
-              color="mint"
+              color={emphasisColor}
               margin={{ left: 5 }}
             >
               무료
