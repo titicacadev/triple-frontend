@@ -18,6 +18,7 @@ export default function RecommendedArticles({
   regionId,
   zoneId,
   onArticleClick,
+  onMoreClick,
   appInstallationCta,
 }: {
   regionId?: string
@@ -26,6 +27,7 @@ export default function RecommendedArticles({
     e: React.SyntheticEvent,
     clickedArticle: ArticleListingData,
   ) => void
+  onMoreClick?: () => void
   appInstallationCta?: {
     href: string
     inventoryId: string
@@ -80,8 +82,8 @@ export default function RecommendedArticles({
   )
 
   const handleShowMoreClick = useCallback(() => {
-    show(TransitionType.Article)
-  }, [show])
+    onMoreClick ? onMoreClick() : show(TransitionType.Article)
+  }, [onMoreClick, show])
 
   if (!recommendedArticles || recommendedArticles.length === 0) {
     return null
