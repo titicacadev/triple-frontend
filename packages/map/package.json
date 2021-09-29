@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/map",
-  "version": "2.38.1",
+  "version": "2.39.0",
   "description": "Map component",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "@react-google-maps/api": "^2.2.0",
-    "@titicaca/color-palette": "^2.38.1",
-    "@titicaca/core-elements": "^2.38.1"
+    "@titicaca/color-palette": "^2.39.0",
+    "@titicaca/core-elements": "^2.39.0"
   },
   "devDependencies": {
     "@types/googlemaps": "^3.43.3"
