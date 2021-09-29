@@ -1,5 +1,38 @@
 # CHANGELOG
 
+## 2.39.0
+
+### core-elements
+
+- numeric-spinner 오타 수정 (#1574)
+- cursor option을 추가합니다 (#1580)
+
+### fetcher
+
+- JSON 파싱 에러를 조용히 넘기도록 수정 (#1575)
+- 새로운 fetcher 개선사항 (#1579)
+
+### footer
+
+- DefaultFooter 앱 다운 버튼 숨김 옵션 추가 (#1581)
+
+### modals
+
+- 모달의 Default Action 을 방지하는 로직을 추가합니다 (#1577)
+
+### poi-detail
+
+- POI DetailHeader V2 버전 지도보기에 대한 액션이 존재할때만 노출합니다 (#1583)
+- RecommendedArticles가 zoneId를 받을 수 있도록 합니다 (#1585)
+
+### public-header
+
+- AutoHidingPublicHeader 추가 (#1578)
+
+### triple-document
+
+- PricePolicyCouponInfo의 쿠폰 노출 정책에 대한 강조색상을 확장합니다 (#1584)
+
 ## 2.38.1
 
 ### triple-document
