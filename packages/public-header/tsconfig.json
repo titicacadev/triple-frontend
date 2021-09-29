@@ -8,6 +8,9 @@
   "references": [
     {
       "path": "../color-palette"
+    },
+    {
+      "path": "../react-contexts"
     }
   ]
 }
