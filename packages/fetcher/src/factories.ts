@@ -87,7 +87,7 @@ function isTripleHref(href: string): boolean {
   const { host } = parseUrl(href)
   const { host: tripleHost } = parseUrl(process.env.API_URI_BASE)
 
-  return host === undefined || host === tripleHost
+  return !host || host === tripleHost
 }
 
 /**
