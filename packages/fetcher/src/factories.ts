@@ -85,7 +85,7 @@ export const NEED_LOGIN_IDENTIFIER = 'NEED_LOGIN'
  */
 function isTripleHref(href: string): boolean {
   const { host } = parseUrl(href)
-  const { host: tripleHost } = parseUrl(process.env.NEXT_PUBLIC_WEB_URL_BASE)
+  const { host: tripleHost } = parseUrl(process.env.API_URI_BASE)
 
   return host === undefined || host === tripleHost
 }
