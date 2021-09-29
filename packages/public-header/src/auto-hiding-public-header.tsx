@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
+import { useUserAgentContext } from '@titicaca/react-contexts'
 
 import { MIN_DESKTOP_WIDTH } from './constants'
 import { PublicHeader, PublicHeaderProps } from './public-header'
@@ -83,6 +84,7 @@ const AnimationWrapper = styled.div<{ visible: boolean }>`
 
 export function AutoHidingPublicHeader(props: PublicHeaderProps) {
   const [publicHeaderVisible, setPublicHeaderVisible] = useState(false)
+  const { app } = useUserAgentContext()
 
   useEffect(() => {
     const detectScrollDirection = createScrollDirectionDetector({
@@ -124,6 +126,10 @@ export function AutoHidingPublicHeader(props: PublicHeaderProps) {
       clearInterval(intervalId)
     }
   }, [])
+
+  if (app) {
+    return null
+  }
 
   return (
     <AnimationWrapper visible={publicHeaderVisible}>
