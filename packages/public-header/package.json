@@ -18,6 +18,7 @@
     "@titicaca/color-palette": "^2.40.0"
   },
   "peerDependencies": {
+    "@titicaca/react-contexts": "*",
     "react": "*",
     "styled-components": ">=4.4.1 < 6"
   }
