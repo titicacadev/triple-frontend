@@ -1,15 +1,26 @@
 import fetch from 'isomorphic-fetch'
 import { ImageMeta } from '@titicaca/type-definitions'
+import qs from 'qs'
 
 import { ArticleListingData } from './types'
 
 export async function fetchRecommendedArticles({
   regionId,
+  zoneId,
 }: {
-  regionId: string
+  regionId?: string
+  zoneId?: string
 }): Promise<ArticleListingData[]> {
   const response = await fetch(
-    `/api/content/articles?regionId=${regionId}&sortBy=scrap`,
+    `/api/content/articles?${qs.stringify({
+      ...((regionId || zoneId) && {
+        geotags: [
+          ...(regionId ? [{ type: 'triple-region', id: regionId }] : []),
+          ...(zoneId ? [{ type: 'triple-zone', id: zoneId }] : []),
+        ],
+      }),
+      sortBy: 'scrap',
+    })}`,
   )
 
   if (!response.ok) {

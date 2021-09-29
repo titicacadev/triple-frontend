@@ -16,10 +16,12 @@ import MoreButton from './more-button'
 
 export default function RecommendedArticles({
   regionId,
+  zoneId,
   onArticleClick,
   appInstallationCta,
 }: {
-  regionId: string
+  regionId?: string
+  zoneId?: string
   onArticleClick: (
     e: React.SyntheticEvent,
     clickedArticle: ArticleListingData,
@@ -43,7 +45,9 @@ export default function RecommendedArticles({
 
   useEffect(() => {
     async function fetchAndSetRecommendedArticles() {
-      setRecommendedArticles(await fetchRecommendedArticles({ regionId }))
+      setRecommendedArticles(
+        await fetchRecommendedArticles({ regionId, zoneId }),
+      )
     }
     async function fetchAndSetArticleCardCTA() {
       const items = await fetchInventoryItems({
@@ -58,7 +62,13 @@ export default function RecommendedArticles({
     if (appInstallationCta?.inventoryId) {
       fetchAndSetArticleCardCTA()
     }
-  }, [appInstallationCta, regionId, setRecommendedArticles, setArticleCardCTA])
+  }, [
+    appInstallationCta,
+    regionId,
+    zoneId,
+    setRecommendedArticles,
+    setArticleCardCTA,
+  ])
 
   const handleIntersect = useCallback(
     (intersectingArticle: ArticleListingData) => {
