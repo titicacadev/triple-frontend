@@ -27,7 +27,7 @@ export function addFetchersToGSSP<Props, CustomContext = {}>(
       }
     },
   ) => Promise<GetServerSidePropsResult<Props>>,
-  { apiUriBase: apiUriBaseFromOptions }: { apiUriBase?: string },
+  { apiUriBase: apiUriBaseFromOptions }: { apiUriBase?: string } = {},
 ): (
   ctx: GetServerSidePropsContext & { customContext?: CustomContext },
 ) => Promise<GetServerSidePropsResult<Props>> {
