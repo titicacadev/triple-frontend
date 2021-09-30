@@ -41,7 +41,7 @@ export default function ArticleCardCTA({
     >
       <a href={href}>
         <Image borderRadius={6}>
-          <Image.FixedRatioFrame frame="huge" onClick={handleCTAClick}>
+          <Image.FixedRatioFrame frame="big" onClick={handleCTAClick}>
             <Image.Img src={cta?.image} />
           </Image.FixedRatioFrame>
         </Image>
