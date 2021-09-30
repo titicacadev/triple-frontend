@@ -29,7 +29,7 @@ export default function RecommendedArticles({
     clickedArticle: ArticleListingData,
   ) => void
   appInstallationCta?: {
-    href: string
+    href?: string
     inventoryId: string
     onClick?: () => void
   }
