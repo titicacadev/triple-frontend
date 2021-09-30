@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { Section, Responsive, H1 } from '@titicaca/core-elements'
+import { Section, Responsive, Container, H1 } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'
 import {
@@ -123,9 +123,11 @@ export default function RecommendedArticles({
           ))}
         </Carousel>
 
-        <MoreButton basic compact onClick={handleShowMoreClick}>
-          정보 더 보러가기
-        </MoreButton>
+        <Container padding={{ left: 110, right: 110 }}>
+          <MoreButton basic compact onClick={handleShowMoreClick}>
+            정보 더 보러가기
+          </MoreButton>
+        </Container>
       </Responsive>
       <Responsive maxWidth={767}>
         <H1 margin={{ left: 30 }}>{`놓치기 아까운\n이 지역 꿀 정보 `}</H1>
@@ -154,9 +156,11 @@ export default function RecommendedArticles({
           ))}
         </Carousel>
 
-        <MoreButton basic compact onClick={handleShowMoreClick}>
-          정보 더 보러가기
-        </MoreButton>
+        <Container padding={{ left: 30, right: 30 }}>
+          <MoreButton basic compact onClick={handleShowMoreClick}>
+            정보 더 보러가기
+          </MoreButton>
+        </Container>
       </Responsive>
     </Section>
   )
