@@ -31,7 +31,7 @@ export default function RecommendedArticles({
   ) => void
   onMoreClick?: () => void
   appInstallationCta?: {
-    href: string
+    href?: string
     inventoryId: string
     onClick?: () => void
   }
