@@ -30,7 +30,7 @@ export default function ArticleEntry({
     >
       <div>
         <Image borderRadius={6}>
-          <Image.FixedRatioFrame frame="huge" onClick={handleClick}>
+          <Image.FixedRatioFrame frame="big" onClick={handleClick}>
             <Image.Img src={image && image.sizes.large.url} />
 
             <Image.Overlay
