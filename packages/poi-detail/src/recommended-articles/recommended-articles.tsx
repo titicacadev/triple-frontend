@@ -123,8 +123,8 @@ export default function RecommendedArticles({
           ))}
         </Carousel>
 
-        <MoreButton margin={{ top: 20 }} center onClick={handleShowMoreClick}>
-          더 알아보기
+        <MoreButton basic compact onClick={handleShowMoreClick}>
+          정보 더 보러가기
         </MoreButton>
       </Responsive>
       <Responsive maxWidth={767}>
@@ -154,12 +154,8 @@ export default function RecommendedArticles({
           ))}
         </Carousel>
 
-        <MoreButton
-          onClick={handleShowMoreClick}
-          margin={{ top: 20, right: 20 }}
-          floated="right"
-        >
-          더 알아보기
+        <MoreButton basic compact onClick={handleShowMoreClick}>
+          정보 더 보러가기
         </MoreButton>
       </Responsive>
     </Section>
