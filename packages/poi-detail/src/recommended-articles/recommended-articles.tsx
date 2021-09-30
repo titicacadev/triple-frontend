@@ -17,11 +17,13 @@ import MoreButton from './more-button'
 export default function RecommendedArticles({
   regionId,
   zoneId,
+  containerPadding,
   onArticleClick,
   appInstallationCta,
 }: {
   regionId?: string
   zoneId?: string
+  containerPadding?: { left: number; right: number }
   onArticleClick: (
     e: React.SyntheticEvent,
     clickedArticle: ArticleListingData,
@@ -99,7 +101,7 @@ export default function RecommendedArticles({
 
         <Carousel
           margin={{ top: 20 }}
-          containerPadding={{ left: 110, right: 110 }}
+          containerPadding={containerPadding || { left: 110, right: 110 }}
         >
           {articleCardCTA && (
             <Carousel.Item size="medium">
@@ -121,7 +123,7 @@ export default function RecommendedArticles({
           ))}
         </Carousel>
 
-        <Container padding={{ left: 110, right: 110 }}>
+        <Container padding={containerPadding || { left: 110, right: 110 }}>
           <MoreButton basic compact onClick={handleShowMoreClick}>
             정보 더 보러가기
           </MoreButton>
@@ -132,7 +134,7 @@ export default function RecommendedArticles({
 
         <Carousel
           margin={{ top: 20 }}
-          containerPadding={{ left: 30, right: 30 }}
+          containerPadding={containerPadding || { left: 30, right: 30 }}
         >
           {articleCardCTA && (
             <Carousel.Item size="medium">
@@ -154,7 +156,7 @@ export default function RecommendedArticles({
           ))}
         </Carousel>
 
-        <Container padding={{ left: 30, right: 30 }}>
+        <Container padding={containerPadding || { left: 30, right: 30 }}>
           <MoreButton basic compact onClick={handleShowMoreClick}>
             정보 더 보러가기
           </MoreButton>
