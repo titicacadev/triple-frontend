@@ -26,14 +26,16 @@ export interface SocialReview {
   url: string
 }
 
+export type SocialReviewsProps = {
+  placeholderImageUrl?: string
+  socialReviews?: SocialReview[]
+} & Parameters<typeof Section>['0']
+
 export default function SocialReviews({
   placeholderImageUrl,
   socialReviews,
   ...props
-}: {
-  placeholderImageUrl?: string
-  socialReviews?: SocialReview[]
-} & Parameters<typeof Section>['0']) {
+}: SocialReviewsProps) {
   const { trackSimpleEvent } = useEventTrackingContext()
   const { navigate } = useHistoryFunctions()
   const { t } = useI18n()
