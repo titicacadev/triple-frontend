@@ -4,7 +4,6 @@ module.exports = {
     '@storybook/addon-actions/register',
     '@storybook/addon-controls',
     '@storybook/addon-links/register',
-    '@storybook/addon-knobs',
     '@storybook/addon-viewport/register',
     '@storybook/addon-docs',
     'storybook-addon-next-router',
