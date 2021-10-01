@@ -70,7 +70,7 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
 
   if (!response.ok) {
     response.error = new HttpError(
-      new Error(body as string | undefined),
+      new Error(typeof body !== 'string' ? JSON.stringify(body) : body),
       response,
     )
   }
