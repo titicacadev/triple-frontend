@@ -137,7 +137,7 @@ export function PublicHeader({
   const visible = useAutoHide(disableAutohide)
   const generateDeeplink = useDeeplinkGenerator()
 
-  if (!app) {
+  if (app) {
     return null
   }
 
