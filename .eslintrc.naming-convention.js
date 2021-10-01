@@ -9,6 +9,8 @@ const excludes = [
   'af_ad',
   'af_channel',
   'af_prt',
+  'af_click_lookback',
+  'is_retargeting',
   'small_square',
   'slot_id',
   'tna_id',

@@ -22,6 +22,8 @@ interface GeneratorParams {
   ad?: string
   channel?: string
   partner?: string
+  clickLookBack?: string
+  isRetargeting?: boolean
 }
 
 type DeepLinkGenerator = (params: GeneratorParams) => string
@@ -38,7 +40,17 @@ export function makeDeepLinkGenerator({
   appScheme,
   webURLBase,
 }: FactoryParams): DeepLinkGenerator {
-  return ({ path, pid, campaign, adSet, ad, channel, partner }) => {
+  return ({
+    path,
+    pid,
+    campaign,
+    adSet,
+    ad,
+    channel,
+    partner,
+    clickLookBack,
+    isRetargeting,
+  }) => {
     const appLink = generateUrl({ scheme: appScheme, path })
 
     const query = qs.stringify({
@@ -51,6 +63,8 @@ export function makeDeepLinkGenerator({
       af_ad: ad,
       af_channel: channel,
       af_prt: partner,
+      af_click_lookback: clickLookBack,
+      is_retargeting: isRetargeting,
     })
 
     return generateUrl({
