@@ -30,9 +30,22 @@ interface EnvContextValue {
    * 페이지의 기본 설명. meta[name="description"] 태그의 기본 content가 됩니다.
    */
   defaultPageDescription: string
-
-  /** 구글 맵 API Key */
+  /**
+   *  구글 맵 API Key
+   */
   googleMapsApiKey?: string
+  /**
+   * 디퍼드 딥링크의 도메인을 생성할 때 필요한 값입니다.
+   */
+  afOnelinkSubdomain: string
+  /**
+   * AppsFlyer에 등록된 앱 ID입니다.
+   */
+  afOnelinkId: string
+  /**
+   * 미디어 소스 이름을 의미하며, 모든 측정 링크에서 반드시 포함되어야 할 유일하고 중요한 파라미터입니다.
+   */
+  afOnelinkPid: string
 }
 
 const EnvContext = createContext<EnvContextValue>({
@@ -42,6 +55,9 @@ const EnvContext = createContext<EnvContextValue>({
   facebookAppId: '',
   defaultPageTitle: '모바일 여행 가이드 - 트리플',
   defaultPageDescription: '',
+  afOnelinkId: '',
+  afOnelinkPid: '',
+  afOnelinkSubdomain: '',
 })
 
 export function EnvProvider({
@@ -51,6 +67,9 @@ export function EnvProvider({
   facebookAppId,
   defaultPageTitle,
   defaultPageDescription,
+  afOnelinkId,
+  afOnelinkPid,
+  afOnelinkSubdomain,
   children,
   ...rest
 }: PropsWithChildren<EnvContextValue>) {
@@ -62,15 +81,21 @@ export function EnvProvider({
       facebookAppId,
       defaultPageTitle,
       defaultPageDescription,
+      afOnelinkId,
+      afOnelinkPid,
+      afOnelinkSubdomain,
       ...rest,
     }),
     [
       appUrlScheme,
-      authBasePath,
-      defaultPageDescription,
-      defaultPageTitle,
-      facebookAppId,
       webUrlBase,
+      authBasePath,
+      facebookAppId,
+      defaultPageTitle,
+      defaultPageDescription,
+      afOnelinkId,
+      afOnelinkPid,
+      afOnelinkSubdomain,
       rest,
     ],
   )
