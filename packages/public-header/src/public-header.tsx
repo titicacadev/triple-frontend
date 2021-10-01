@@ -154,11 +154,11 @@ export function PublicHeader({
           title={getCategoryTitle(category)}
         >
           <LogoImage
-            alt=""
+            alt="Triple"
             src="https://assets.triple.guide/images/img_intro_logo_dark.svg"
           />
           {category && (
-            <LogoCategoryImage alt="" {...getCategoryImageProps(category)} />
+            <LogoCategoryImage {...getCategoryImageProps(category)} />
           )}
         </Logo>
 
