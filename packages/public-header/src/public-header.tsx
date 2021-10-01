@@ -1,14 +1,44 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { white, brightGray, gray100, gray800 } from '@titicaca/color-palette'
+import { useUserAgentContext } from '@titicaca/react-contexts'
 
-import { MIN_DESKTOP_WIDTH } from './constants'
+import { MIN_DESKTOP_WIDTH, TRANSITION_TIME } from './constants'
 import type { Category } from './types'
 import {
   getCategoryHref,
   getCategoryImageProps,
   getCategoryTitle,
 } from './categories'
+import { useAutoHide } from './useAutoHide'
+import { useDeeplinkGenerator } from './useDeeplinkGenerator'
+
+const AnimationWrapper = styled.div<{ visible: boolean }>`
+  transition: height ease ${TRANSITION_TIME}ms;
+  overflow: hidden;
+  ${({ visible }) =>
+    css`
+      height: ${visible ? '51px' : '0px'};
+    `}
+
+  @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
+    ${({ visible }) =>
+      css`
+        height: ${visible ? '81px' : '0px'};
+      `}
+  }
+
+  > header {
+    /**
+     * HACK: header가 사라질 때 그래픽이 깨지는 문제 때문에 position을 static으로 초기화합니다.
+     * 참고: https://github.com/titicacadev/triple-hotels-web/pull/2346#issuecomment-871214559
+     * HACK: header의 자식이 absolute position이 적용되어있어 쌓임 맥락이 필요합니다.
+     * 그래서 position 대신 transform으로 쌓임 맥락을 만듭니다.
+     */
+    position: static;
+    transform: translate(0);
+  }
+`
 
 const HeaderFrame = styled.header<{ fixed?: boolean }>`
   background-color: ${white};
@@ -91,38 +121,54 @@ const ExtraActionSeperator = styled.div`
 `
 
 export interface PublicHeaderProps {
-  fixed?: boolean
-  deeplinkHref?: string
   category?: Category
+  deeplinkPath?: string
+  disableAutohide?: boolean
+  fixed?: boolean
 }
 
 export function PublicHeader({
-  fixed,
-  deeplinkHref,
   category,
-  ...props
+  deeplinkPath,
+  disableAutohide,
+  fixed,
 }: PublicHeaderProps) {
-  return (
-    <HeaderFrame fixed={fixed} {...props}>
-      <Logo href={getCategoryHref(category)} title={getCategoryTitle(category)}>
-        <LogoImage
-          alt=""
-          src="https://assets.triple.guide/images/img_intro_logo_dark.svg"
-        />
-        {category && (
-          <LogoCategoryImage alt="" {...getCategoryImageProps(category)} />
-        )}
-      </Logo>
+  const { app } = useUserAgentContext()
+  const visible = useAutoHide(disableAutohide)
+  const generateDeeplink = useDeeplinkGenerator()
 
-      <ExtraActionsContainer>
-        <ExtraActionItem href="/my-bookings">내 예약</ExtraActionItem>
-        {deeplinkHref && (
-          <>
-            <ExtraActionSeperator />
-            <ExtraActionItem href={deeplinkHref}>앱에서 보기</ExtraActionItem>
-          </>
-        )}
-      </ExtraActionsContainer>
-    </HeaderFrame>
+  if (!app) {
+    return null
+  }
+
+  return (
+    <AnimationWrapper visible={visible}>
+      <HeaderFrame fixed={fixed}>
+        <Logo
+          href={getCategoryHref(category)}
+          title={getCategoryTitle(category)}
+        >
+          <LogoImage
+            alt=""
+            src="https://assets.triple.guide/images/img_intro_logo_dark.svg"
+          />
+          {category && (
+            <LogoCategoryImage alt="" {...getCategoryImageProps(category)} />
+          )}
+        </Logo>
+
+        <ExtraActionsContainer>
+          <ExtraActionItem href="/my-bookings">내 예약</ExtraActionItem>
+          {deeplinkPath && (
+            <>
+              <ExtraActionSeperator />
+              <ExtraActionItem href={generateDeeplink({ path: deeplinkPath })}>
+                앱에서 보기
+              </ExtraActionItem>
+            </>
+          )}
+        </ExtraActionsContainer>
+      </HeaderFrame>
+    </AnimationWrapper>
   )
 }
