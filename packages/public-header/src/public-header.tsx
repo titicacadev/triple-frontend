@@ -123,18 +123,18 @@ const ExtraActionSeperator = styled.div`
 export interface PublicHeaderProps {
   category?: Category
   deeplinkPath?: string
-  disableAutohide?: boolean
+  disableAutoHide?: boolean
   fixed?: boolean
 }
 
 export function PublicHeader({
   category,
   deeplinkPath,
-  disableAutohide,
+  disableAutoHide,
   fixed,
 }: PublicHeaderProps) {
   const { app } = useUserAgentContext()
-  const visible = useAutoHide(disableAutohide)
+  const visible = useAutoHide(disableAutoHide)
   const generateDeeplink = useDeeplinkGenerator()
 
   if (app) {

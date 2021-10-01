@@ -47,5 +47,5 @@ Basic.args = {
 export const DisableAutoHide = Template.bind({})
 DisableAutoHide.args = {
   ...Basic.args,
-  disableAutohide: true,
+  disableAutoHide: true,
 }
