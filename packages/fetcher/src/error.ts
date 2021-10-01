@@ -22,6 +22,7 @@ export class HttpError<E> extends CustomError {
     this._statusCode = status
     this._errorData = errorData
     this.response = response
+    this.capture = this.capture.bind(this)
   }
 
   is(code: number) {
