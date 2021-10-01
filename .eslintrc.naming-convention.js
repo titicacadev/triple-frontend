@@ -5,7 +5,7 @@ const excludes = [
   '__DISASTER_FALLBACK_HANDLER__',
   'af_dp',
   'af_web_dp',
-  'f_adset',
+  'af_adset',
   'af_ad',
   'af_channel',
   'af_prt',

@@ -47,7 +47,7 @@ export function makeDeepLinkGenerator({
       pid: pid || defaultPID,
 
       c: campaign,
-      f_adset: adSet,
+      af_adset: adSet,
       af_ad: ad,
       af_channel: channel,
       af_prt: partner,
