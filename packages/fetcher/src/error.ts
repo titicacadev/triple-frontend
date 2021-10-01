@@ -47,13 +47,13 @@ export class HttpError<E> extends CustomError {
   capture() {
     const {
       _errorData: error,
-      response: { status },
+      response: { status, url },
     } = this
 
     withScope((scope) => {
       scope.setTag('errorType', 'HTTPError')
       scope.setExtra('body', error.message)
-      captureException(new Error(`HTTPError: ${status}`))
+      captureException(new Error(`${status} - ${url}`))
     })
   }
 }
