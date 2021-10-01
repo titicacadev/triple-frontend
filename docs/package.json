@@ -59,6 +59,7 @@
     "@babel/core": "^7.14.8",
     "@sentry/browser": "^5.20.0",
     "@storybook/addon-actions": "^6.3.6",
+    "@storybook/addon-controls": "^6.3.6",
     "@storybook/addon-docs": "^6.3.6",
     "@storybook/addon-knobs": "^6.3.0",
     "@storybook/addon-links": "^6.3.6",
