@@ -1,14 +1,11 @@
-import { captureException } from '@sentry/browser'
-
 import safeParseJSON from './safe-parse-json'
 import { HttpResponse } from './types'
 
 function captureHttpError<Response extends HttpResponse<any, any>>(
   response: Response,
 ): void {
-  if (response.error) {
-    captureException(response.error)
-  }
+  const { error: { capture } = { capture: () => {} } } = response
+  capture()
 }
 
 function readResponseBody<T, E>(response: HttpResponse<T, E>) {
