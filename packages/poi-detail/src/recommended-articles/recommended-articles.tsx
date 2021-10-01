@@ -30,7 +30,7 @@ export default function RecommendedArticles({
    * https://triple-dev.titicaca-corp.com/hotels/375458d2-09fb-408b-b2dd-53932ed6ce89?regionId=759174cc-0814-4400-a420-5668a0517edd&cityId=KM1861798255&_triple_no_navbar=true&from=public-list
    * 예시 2 (공유 일정)
    * https://triple-staging.titicaca-corp.com/trips/lounge/itineraries/797d148d-4769-4bf1-8f36-839ef2801979
-   * 위의 예시 링크들의 하단을 보면 디자인이 달라 내부 padding을 커스텀할 때 사용하는 props
+   * 위의 예시 링크들의 하단을 보면 디자인이 달라 mobile, desktop 각각 내부 padding을 커스텀할 때 사용하는 props
    */
   mobilePadding?: { left: number; right: number }
   deskTopPadding?: { left: number; right: number }
