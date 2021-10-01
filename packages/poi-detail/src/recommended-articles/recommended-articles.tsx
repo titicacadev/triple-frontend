@@ -17,14 +17,24 @@ import MoreButton from './more-button'
 export default function RecommendedArticles({
   regionId,
   zoneId,
-  containerPadding,
+  mobilePadding,
+  deskTopPadding,
   onArticleClick,
   onMoreClick,
   appInstallationCta,
 }: {
   regionId?: string
   zoneId?: string
-  containerPadding?: { left: number; right: number }
+  /**
+   * mobilePadding, deskTopPadding
+   * 예시 1 (호텔)
+   * https://triple-dev.titicaca-corp.com/hotels/375458d2-09fb-408b-b2dd-53932ed6ce89?regionId=759174cc-0814-4400-a420-5668a0517edd&cityId=KM1861798255&_triple_no_navbar=true&from=public-list
+   * 예시 2 (공유 일정)
+   * https://triple-staging.titicaca-corp.com/trips/lounge/itineraries/797d148d-4769-4bf1-8f36-839ef2801979
+   * 위의 예시 링크들의 하단을 보면 디자인이 달라 내부 padding을 커스텀할 때 사용하는 props
+   */
+  mobilePadding?: { left: number; right: number }
+  deskTopPadding?: { left: number; right: number }
   onArticleClick: (
     e: React.SyntheticEvent,
     clickedArticle: ArticleListingData,
@@ -103,7 +113,7 @@ export default function RecommendedArticles({
 
         <Carousel
           margin={{ top: 20 }}
-          containerPadding={containerPadding || { left: 110, right: 110 }}
+          containerPadding={deskTopPadding || { left: 110, right: 110 }}
         >
           {articleCardCTA && (
             <Carousel.Item size="medium">
@@ -125,7 +135,7 @@ export default function RecommendedArticles({
           ))}
         </Carousel>
 
-        <Container padding={containerPadding || { left: 110, right: 110 }}>
+        <Container padding={deskTopPadding || { left: 110, right: 110 }}>
           <MoreButton basic compact onClick={handleShowMoreClick}>
             정보 더 보러가기
           </MoreButton>
@@ -136,7 +146,7 @@ export default function RecommendedArticles({
 
         <Carousel
           margin={{ top: 20 }}
-          containerPadding={containerPadding || { left: 30, right: 30 }}
+          containerPadding={mobilePadding || { left: 30, right: 30 }}
         >
           {articleCardCTA && (
             <Carousel.Item size="medium">
@@ -158,7 +168,7 @@ export default function RecommendedArticles({
           ))}
         </Carousel>
 
-        <Container padding={containerPadding || { left: 30, right: 30 }}>
+        <Container padding={mobilePadding || { left: 30, right: 30 }}>
           <MoreButton basic compact onClick={handleShowMoreClick}>
             정보 더 보러가기
           </MoreButton>
