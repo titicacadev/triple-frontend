@@ -1,3 +1,4 @@
+import { captureException, withScope } from '@sentry/browser'
 import { CustomError } from 'ts-custom-error'
 
 import { HttpErrorResponse } from './types'
@@ -13,11 +14,14 @@ export class HttpError<E> extends CustomError {
 
   private readonly _errorData: HttpErrorResponse
 
+  private readonly response: Response
+
   constructor(errorData: HttpErrorResponse, response: Response) {
     const { status, statusText } = response
     super(statusText)
     this._statusCode = status
     this._errorData = errorData
+    this.response = response
   }
 
   is(code: number) {
@@ -37,5 +41,18 @@ export class HttpError<E> extends CustomError {
         status: this._statusCode,
       }
     }
+  }
+
+  capture() {
+    const {
+      _errorData: error,
+      response: { status },
+    } = this
+
+    withScope((scope) => {
+      scope.setTag('errorType', 'HTTPError')
+      scope.setExtra('body', error.message)
+      captureException(new Error(`HTTPError: ${status}`))
+    })
   }
 }
