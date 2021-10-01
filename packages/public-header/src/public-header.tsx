@@ -3,7 +3,12 @@ import styled, { css } from 'styled-components'
 import { white, brightGray, gray100, gray800 } from '@titicaca/color-palette'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 
-import { MIN_DESKTOP_WIDTH, TRANSITION_TIME } from './constants'
+import {
+  HEADER_DESKTOP_HEIGHT,
+  HEADER_MOBILE_HEIGHT,
+  MIN_DESKTOP_WIDTH,
+  TRANSITION_TIME,
+} from './constants'
 import type { Category } from './types'
 import {
   getCategoryHref,
@@ -47,7 +52,7 @@ const HeaderFrame = styled.header<{ fixed?: boolean }>`
   position: sticky;
   border-bottom: 1px solid ${brightGray};
   padding: 0 6px;
-  height: 50px;
+  height: ${HEADER_MOBILE_HEIGHT}px;
   z-index: 1;
   ${({ fixed }) =>
     fixed &&
@@ -56,7 +61,7 @@ const HeaderFrame = styled.header<{ fixed?: boolean }>`
     `};
 
   @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
-    height: 80px;
+    height: ${HEADER_DESKTOP_HEIGHT}px;
     padding: 0 42px;
   }
 `
