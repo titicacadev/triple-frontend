@@ -135,7 +135,7 @@ export default function RecommendedArticles({
 
         <Container padding={deskTopPadding || { left: 110, right: 110 }}>
           <MoreButton basic compact onClick={handleShowMoreClick}>
-            정보 더 보러가기
+            여행 정보 더보기
           </MoreButton>
         </Container>
       </Responsive>
@@ -168,7 +168,7 @@ export default function RecommendedArticles({
 
         <Container padding={mobilePadding || { left: 30, right: 30 }}>
           <MoreButton basic compact onClick={handleShowMoreClick}>
-            정보 더 보러가기
+            여행 정보 더보기
           </MoreButton>
         </Container>
       </Responsive>
