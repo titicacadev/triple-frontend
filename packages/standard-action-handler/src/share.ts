@@ -22,20 +22,19 @@ function getSharingParams() {
   return { title, description, image, webUrl, appUrl }
 }
 
-function copyUrlToClipboard() {
+function copyUrlToClipboard({ webUrl }: { webUrl?: string | null }) {
   if (!navigator.clipboard) {
-    fallbackCopyUrlToClipboard()
+    fallbackCopyUrlToClipboard({ webUrl })
   }
 
-  const currentUrl = window.location.href
-  navigator.clipboard.writeText(currentUrl).then(() => {
+  navigator.clipboard.writeText(webUrl as string).then(() => {
     alert('링크가 복사되었습니다.')
   })
 }
 
-function fallbackCopyUrlToClipboard() {
+function fallbackCopyUrlToClipboard({ webUrl }: { webUrl?: string | null }) {
   const inputElement = document.createElement('input')
-  inputElement.value = window.location.href
+  inputElement.value = webUrl as string
   document.body.appendChild(inputElement)
   inputElement.select()
   document.execCommand('copy')
@@ -74,7 +73,7 @@ function shareFunctionByEnv(params: SharingParams, isPublic?: boolean) {
     if (typeof navigator !== 'undefined' && navigator.share) {
       navigatorShare({ title, description, webUrl })
     } else {
-      copyUrlToClipboard()
+      copyUrlToClipboard({ webUrl })
     }
   } else {
     shareLink({
