@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 2.40.0
+
+### poi-detail
+
+- 추천 아티클 '더 알아보기' 영역에 onClick을 추가합니다 (#1588)
+- 추천 아티클 size 및 button을 변경합니다 (#1589)
+
+### fetcher
+
+- HttpError를 좀 더 유용하게 기록합니다. (#1594)
+
+### view-utillities
+
+- appsflyer 어트리뷰션 오타를 수정합니다 (#1595)
+- 필요한 appsflyer 어트리뷰션를 추가합니다 (#1597)
+
 ## 2.39.0
 
 ### core-elements
