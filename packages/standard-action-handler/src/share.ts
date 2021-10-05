@@ -118,7 +118,7 @@ export default async function share({ path }: UrlElements) {
     const shareType = defineType()
     const shareByEnv = createShareFuntion(params, shareType)
 
-    shareByEnv && shareByEnv()
+    shareByEnv()
 
     return true
   }
