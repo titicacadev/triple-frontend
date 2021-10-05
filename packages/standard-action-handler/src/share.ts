@@ -99,14 +99,14 @@ function defineType(isPublic?: boolean) {
   }
 }
 
-function createShareFuntion(type: string) {
+function createShareFuntion(params: SharingParams, type: string) {
   switch (type) {
     case 'shareWithNavigator':
-      return navigatorShare
+      return navigatorShare(params)
     case 'copyWitchNavigator':
-      return copyUrlToClipboard
+      return copyUrlToClipboard(params)
     case 'shareWithNativeInterface':
-      return shareNativeInterface
+      return shareNativeInterface(params)
   }
 }
 
@@ -117,9 +117,9 @@ export default async function share(
   if (path === '/web-action/share') {
     const params = getSharingParams()
     const shareType = defineType(isPublic)
-    const shareByEnv = createShareFuntion(shareType)
+    const shareByEnv = createShareFuntion(params, shareType)
 
-    shareByEnv && shareByEnv(params)
+    shareByEnv && shareByEnv()
 
     return true
   }
