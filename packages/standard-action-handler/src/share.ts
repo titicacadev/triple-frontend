@@ -11,6 +11,9 @@ interface SharingParams {
   appUrl: string
 }
 
+const DEFAULT_IMAGE =
+  'https://assets.triple.guide/images/default-cover-image.jpg'
+
 function getMetadata({ property }: { property: string }) {
   return document
     .querySelector(`meta[property='${property}']`)
@@ -30,7 +33,18 @@ function getSharingParams() {
   return { title, description, image, webUrl, appUrl }
 }
 
-function copyUrlToClipboard({ webUrl }: { webUrl?: string | null }) {
+function navigatorShare(params: SharingParams) {
+  const { title, description, webUrl } = params
+
+  navigator.share({
+    title: title as string,
+    text: description as string,
+    url: webUrl as string,
+  })
+}
+
+function copyUrlToClipboard(params: SharingParams) {
+  const { webUrl } = params
   if (!navigator.clipboard) {
     fallbackCopyUrlToClipboard({ webUrl })
   }
@@ -51,18 +65,25 @@ function fallbackCopyUrlToClipboard({ webUrl }: { webUrl?: string | null }) {
   alert('링크가 복사되었습니다.')
 }
 
-const DEFAULT_IMAGE =
-  'https://assets.triple.guide/images/default-cover-image.jpg'
+function shareNativeInterface(params: SharingParams) {
+  const { title, description, image, webUrl, appUrl } = params
 
-function navigatorShare({
-  title,
-  description,
-  webUrl,
-}: Pick<SharingParams, 'title' | 'description' | 'webUrl'>) {
-  navigator.share({
+  return shareLink({
+    link: webUrl as string,
     title: title as string,
-    text: description as string,
-    url: webUrl as string,
+    description: description as string,
+    imageUrl: image || DEFAULT_IMAGE,
+    buttons: [
+      {
+        title: '웹에서 보기',
+        webUrl: webUrl as string,
+      },
+      {
+        title: '트리플에서 보기',
+        webUrl: webUrl as string,
+        appUrl,
+      },
+    ],
   })
 }
 
@@ -78,34 +99,14 @@ function defineType(isPublic?: boolean) {
   }
 }
 
-function createShareFuntion(params: SharingParams, isPublic?: boolean) {
-  const { title, description, image, webUrl, appUrl } = params
-
-  const shareType = defineType(isPublic)
-
-  switch (shareType) {
+function createShareFuntion(type: string) {
+  switch (type) {
     case 'shareWithNavigator':
-      return navigatorShare({ title, description, webUrl })
+      return navigatorShare
     case 'copyWitchNavigator':
-      return copyUrlToClipboard({ webUrl })
+      return copyUrlToClipboard
     case 'shareWithNativeInterface':
-      return shareLink({
-        link: webUrl as string,
-        title: title as string,
-        description: description as string,
-        imageUrl: image || DEFAULT_IMAGE,
-        buttons: [
-          {
-            title: '웹에서 보기',
-            webUrl: webUrl as string,
-          },
-          {
-            title: '트리플에서 보기',
-            webUrl: webUrl as string,
-            appUrl,
-          },
-        ],
-      })
+      return shareNativeInterface
   }
 }
 
@@ -115,9 +116,10 @@ export default async function share(
 ) {
   if (path === '/web-action/share') {
     const params = getSharingParams()
-    const shareFunc = createShareFuntion(params, isPublic)
+    const shareType = defineType(isPublic)
+    const shareByEnv = createShareFuntion(shareType)
 
-    shareFunc()
+    shareByEnv && shareByEnv(params)
 
     return true
   }
