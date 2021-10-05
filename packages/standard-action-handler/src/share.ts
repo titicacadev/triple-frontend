@@ -45,17 +45,16 @@ function navigatorShare(params: SharingParams) {
 
 function copyUrlToClipboard(params: SharingParams) {
   const { webUrl } = params
-  if (!navigator.clipboard) {
-    fallbackCopyUrlToClipboard({ webUrl })
-  }
 
   navigator.clipboard.writeText(webUrl as string).then(() => {
     alert('링크가 복사되었습니다.')
   })
 }
 
-function fallbackCopyUrlToClipboard({ webUrl }: { webUrl?: string | null }) {
+function copyUrlWithDOMAPI(params: SharingParams) {
+  const { webUrl } = params
   const inputElement = document.createElement('input')
+
   inputElement.value = webUrl as string
   document.body.appendChild(inputElement)
   inputElement.select()
@@ -89,11 +88,11 @@ function shareNativeInterface(params: SharingParams) {
 
 function defineType(isPublic?: boolean) {
   if (isPublic) {
-    if (typeof navigator !== 'undefined' && navigator.share) {
-      return 'shareWithNavigator'
-    } else {
-      return 'copyWitchNavigator'
-    }
+    return typeof navigator !== 'undefined' && navigator.share
+      ? 'shareWithNavigator'
+      : navigator.clipboard
+      ? 'copyWithClipboardAPI'
+      : 'copyWithDOMAPI'
   } else {
     return 'shareWithNativeInterface'
   }
@@ -103,10 +102,12 @@ function createShareFuntion(params: SharingParams, type: string) {
   switch (type) {
     case 'shareWithNavigator':
       return navigatorShare(params)
-    case 'copyWitchNavigator':
-      return copyUrlToClipboard(params)
     case 'shareWithNativeInterface':
       return shareNativeInterface(params)
+    case 'copyWithClipboardAPI':
+      return copyUrlToClipboard(params)
+    case 'copyWithDOMAPI':
+      return copyUrlWithDOMAPI(params)
   }
 }
 
