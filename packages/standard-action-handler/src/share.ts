@@ -7,6 +7,19 @@ function getMetadata({ property }: { property: string }) {
     ?.getAttribute('content')
 }
 
+function getSharingParams() {
+  const title = getMetadata({ property: 'og:title' })
+  const description = getMetadata({ property: 'og:description' })
+  const image = getMetadata({ property: 'og:image' })
+  const webUrl = getMetadata({ property: 'og:url' })
+  const rawAppUrl = getMetadata({ property: 'al:ios:url' })
+
+  const { path: sharePath, query } = parseUrl(rawAppUrl as string)
+  const appUrl = generateUrl({ path: sharePath, query })
+
+  return { title, description, image, webUrl, appUrl }
+}
+
 function copyUrlToClipboard() {
   if (!navigator.clipboard) {
     fallbackCopyUrlToClipboard()
@@ -25,49 +38,66 @@ function fallbackCopyUrlToClipboard() {
   inputElement.select()
   document.execCommand('copy')
   document.body.removeChild(inputElement)
+
+  alert('링크가 복사되었습니다.')
 }
 
 const DEFAULT_IMAGE =
   'https://assets.triple.guide/images/default-cover-image.jpg'
 
-export default async function share({ path }: UrlElements) {
+function navigatorShare({
+  title,
+  description,
+  webUrl,
+}: Pick<SharingParams, 'title' | 'description' | 'webUrl'>) {
+  navigator.share({
+    title: title as string,
+    text: description as string,
+    url: webUrl as string,
+  })
+}
+
+interface SharingParams {
+  title?: string | null
+  description?: string | null
+  image?: string | null
+  webUrl?: string | null
+  appUrl: string
+}
+
+function shareFunctionByEnv(params: SharingParams) {
+  const { title, description, image, webUrl, appUrl } = params
+
+  if (typeof navigator !== 'undefined' && navigator.share) {
+    navigatorShare({ title, description, webUrl })
+  } else {
+    copyUrlToClipboard()
+  }
+
+  shareLink({
+    link: webUrl as string,
+    title: title as string,
+    description: description as string,
+    imageUrl: image || DEFAULT_IMAGE,
+    buttons: [
+      {
+        title: '웹에서 보기',
+        webUrl: webUrl as string,
+      },
+      {
+        title: '트리플에서 보기',
+        webUrl: webUrl as string,
+        appUrl,
+      },
+    ],
+  })
+}
+
+export default function share({ path }: UrlElements) {
   if (path === '/web-action/share') {
-    const title = getMetadata({ property: 'og:title' })
-    const description = getMetadata({ property: 'og:description' })
-    const webUrl = getMetadata({ property: 'og:url' })
-    const image = getMetadata({ property: 'og:image' })
-    const rawAppUrl = getMetadata({ property: 'al:ios:url' })
+    const params = getSharingParams()
 
-    const { path: sharePath, query } = parseUrl(rawAppUrl as string)
-    const appUrl = generateUrl({ path: sharePath, query })
-
-    if (typeof navigator !== 'undefined' && navigator.share) {
-      navigator.share({
-        title: title as string,
-        text: description as string,
-        url: webUrl as string,
-      })
-    } else {
-      copyUrlToClipboard()
-    }
-
-    shareLink({
-      link: webUrl as string,
-      title: title as string,
-      description: description as string,
-      imageUrl: image || DEFAULT_IMAGE,
-      buttons: [
-        {
-          title: '웹에서 보기',
-          webUrl: webUrl as string,
-        },
-        {
-          title: '트리플에서 보기',
-          webUrl: webUrl as string,
-          appUrl,
-        },
-      ],
-    })
+    shareFunctionByEnv(params)
 
     return true
   }
