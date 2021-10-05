@@ -1,6 +1,8 @@
 import { generateUrl, parseUrl, UrlElements } from '@titicaca/view-utilities'
 import { shareLink } from '@titicaca/triple-web-to-native-interfaces'
 
+import { ContextOptions } from './types'
+
 function getMetadata({ property }: { property: string }) {
   return document
     .querySelector(`meta[property='${property}']`)
@@ -65,39 +67,44 @@ interface SharingParams {
   appUrl: string
 }
 
-function shareFunctionByEnv(params: SharingParams) {
+function shareFunctionByEnv(params: SharingParams, isPublic?: boolean) {
   const { title, description, image, webUrl, appUrl } = params
 
-  if (typeof navigator !== 'undefined' && navigator.share) {
-    navigatorShare({ title, description, webUrl })
+  if (isPublic) {
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      navigatorShare({ title, description, webUrl })
+    } else {
+      copyUrlToClipboard()
+    }
   } else {
-    copyUrlToClipboard()
+    shareLink({
+      link: webUrl as string,
+      title: title as string,
+      description: description as string,
+      imageUrl: image || DEFAULT_IMAGE,
+      buttons: [
+        {
+          title: '웹에서 보기',
+          webUrl: webUrl as string,
+        },
+        {
+          title: '트리플에서 보기',
+          webUrl: webUrl as string,
+          appUrl,
+        },
+      ],
+    })
   }
-
-  shareLink({
-    link: webUrl as string,
-    title: title as string,
-    description: description as string,
-    imageUrl: image || DEFAULT_IMAGE,
-    buttons: [
-      {
-        title: '웹에서 보기',
-        webUrl: webUrl as string,
-      },
-      {
-        title: '트리플에서 보기',
-        webUrl: webUrl as string,
-        appUrl,
-      },
-    ],
-  })
 }
 
-export default async function share({ path }: UrlElements) {
+export default async function share(
+  { path }: UrlElements,
+  { isPublic }: ContextOptions,
+) {
   if (path === '/web-action/share') {
     const params = getSharingParams()
 
-    shareFunctionByEnv(params)
+    shareFunctionByEnv(params, isPublic)
 
     return true
   }

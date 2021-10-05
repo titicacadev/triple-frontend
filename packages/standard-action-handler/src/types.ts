@@ -2,6 +2,7 @@ import { UrlElements } from '@titicaca/view-utilities'
 
 export type ContextOptions = {
   cta?: string
+  isPublic?: boolean
   navigate: (rawHref: string, params?: any) => string | undefined | void
 }
 
