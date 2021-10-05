@@ -87,38 +87,24 @@ function shareNativeInterface(params: SharingParams) {
   })
 }
 
-function defineType() {
+function createShareFuntion() {
   if (!hasAccessibleTripleNativeClients()) {
     return typeof navigator !== 'undefined' && navigator.share
-      ? 'shareWithNavigator'
-      : navigator.clipboard
-      ? 'copyWithClipboardAPI'
-      : 'copyWithDOMAPI'
+      ? navigatorShare
+      : typeof navigator.clipboard !== 'undefined' && navigator.clipboard
+      ? copyUrlToClipboard
+      : copyUrlWithDOMAPI
   } else {
-    return 'shareWithNativeInterface'
-  }
-}
-
-function createShareFuntion(params: SharingParams, type: string) {
-  switch (type) {
-    case 'shareWithNavigator':
-      return navigatorShare(params)
-    case 'shareWithNativeInterface':
-      return shareNativeInterface(params)
-    case 'copyWithClipboardAPI':
-      return copyUrlToClipboard(params)
-    case 'copyWithDOMAPI':
-      return copyUrlWithDOMAPI(params)
+    return shareNativeInterface
   }
 }
 
 export default async function share({ path }: UrlElements) {
   if (path === '/web-action/share') {
     const params = getSharingParams()
-    const shareType = defineType()
-    const shareByEnv = createShareFuntion(params, shareType)
+    const shareFuncByEnv = createShareFuntion()
 
-    shareByEnv()
+    shareFuncByEnv && shareFuncByEnv(params)
 
     return true
   }
