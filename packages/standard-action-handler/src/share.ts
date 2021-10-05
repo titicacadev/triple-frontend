@@ -93,7 +93,7 @@ function shareFunctionByEnv(params: SharingParams) {
   })
 }
 
-export default function share({ path }: UrlElements) {
+export default async function share({ path }: UrlElements) {
   if (path === '/web-action/share') {
     const params = getSharingParams()
 
