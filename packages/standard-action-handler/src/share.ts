@@ -3,6 +3,14 @@ import { shareLink } from '@titicaca/triple-web-to-native-interfaces'
 
 import { ContextOptions } from './types'
 
+interface SharingParams {
+  title?: string | null
+  description?: string | null
+  image?: string | null
+  webUrl?: string | null
+  appUrl: string
+}
+
 function getMetadata({ property }: { property: string }) {
   return document
     .querySelector(`meta[property='${property}']`)
@@ -58,41 +66,46 @@ function navigatorShare({
   })
 }
 
-interface SharingParams {
-  title?: string | null
-  description?: string | null
-  image?: string | null
-  webUrl?: string | null
-  appUrl: string
-}
-
-function shareFunctionByEnv(params: SharingParams, isPublic?: boolean) {
-  const { title, description, image, webUrl, appUrl } = params
-
+function defineType(isPublic?: boolean) {
   if (isPublic) {
     if (typeof navigator !== 'undefined' && navigator.share) {
-      navigatorShare({ title, description, webUrl })
+      return 'shareWithNavigator'
     } else {
-      copyUrlToClipboard({ webUrl })
+      return 'copyWitchNavigator'
     }
   } else {
-    shareLink({
-      link: webUrl as string,
-      title: title as string,
-      description: description as string,
-      imageUrl: image || DEFAULT_IMAGE,
-      buttons: [
-        {
-          title: '웹에서 보기',
-          webUrl: webUrl as string,
-        },
-        {
-          title: '트리플에서 보기',
-          webUrl: webUrl as string,
-          appUrl,
-        },
-      ],
-    })
+    return 'shareWithNativeInterface'
+  }
+}
+
+function createShareFuntion(params: SharingParams, isPublic?: boolean) {
+  const { title, description, image, webUrl, appUrl } = params
+
+  const shareType = defineType(isPublic)
+
+  switch (shareType) {
+    case 'shareWithNavigator':
+      return navigatorShare({ title, description, webUrl })
+    case 'copyWitchNavigator':
+      return copyUrlToClipboard({ webUrl })
+    case 'shareWithNativeInterface':
+      return shareLink({
+        link: webUrl as string,
+        title: title as string,
+        description: description as string,
+        imageUrl: image || DEFAULT_IMAGE,
+        buttons: [
+          {
+            title: '웹에서 보기',
+            webUrl: webUrl as string,
+          },
+          {
+            title: '트리플에서 보기',
+            webUrl: webUrl as string,
+            appUrl,
+          },
+        ],
+      })
   }
 }
 
@@ -102,8 +115,9 @@ export default async function share(
 ) {
   if (path === '/web-action/share') {
     const params = getSharingParams()
+    const shareFunc = createShareFuntion(params, isPublic)
 
-    shareFunctionByEnv(params, isPublic)
+    shareFunc()
 
     return true
   }
