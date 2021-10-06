@@ -1,8 +1,14 @@
-import { useEnv } from '@titicaca/react-contexts'
-import { makeDeepLinkGenerator } from '@titicaca/view-utilities'
 import { useMemo } from 'react'
+import qs from 'qs'
+import { useEnv, useUTMContext } from '@titicaca/react-contexts'
+import {
+  generateUrl,
+  injectIsSearchAd,
+  injectUTMContext,
+  makeDeepLinkGenerator,
+} from '@titicaca/view-utilities'
 
-export function useDeeplinkGenerator() {
+export function useDeeplinkHref(path?: string) {
   const {
     appUrlScheme,
     webUrlBase,
@@ -10,6 +16,7 @@ export function useDeeplinkGenerator() {
     afOnelinkPid,
     afOnelinkId,
   } = useEnv()
+  const utmContext = useUTMContext()
 
   const deeplinkGenerator = useMemo(
     () =>
@@ -25,5 +32,14 @@ export function useDeeplinkGenerator() {
     [afOnelinkId, afOnelinkPid, afOnelinkSubdomain, appUrlScheme, webUrlBase],
   )
 
-  return deeplinkGenerator
+  return deeplinkGenerator({
+    ...injectIsSearchAd(utmContext),
+    ...injectUTMContext(utmContext),
+    path: generateUrl({
+      path: '/inlink',
+      query: qs.stringify({
+        path,
+      }),
+    }),
+  })
 }
