@@ -19,7 +19,7 @@ import {
   getCategoryTitle,
 } from './categories'
 import { useAutoHide } from './useAutoHide'
-import { useDeeplinkGenerator } from './useDeeplinkGenerator'
+import { useDeeplinkHref } from './useDeeplinkHref'
 
 const Wrapper = styled.div<{ visible: boolean }>`
   transition: height ease ${TRANSITION_TIME}ms;
@@ -129,7 +129,7 @@ export function PublicHeader({
   const { app } = useUserAgentContext()
   const trackEventWithMetadata = useEventTrackerWithMetadata()
   const visible = useAutoHide(disableAutoHide)
-  const generateDeeplink = useDeeplinkGenerator()
+  const deeplinkHref = useDeeplinkHref(deeplinkPath)
 
   if (app) {
     return null
@@ -157,7 +157,7 @@ export function PublicHeader({
             <>
               <ExtraActionSeperator />
               <ExtraActionItem
-                href={generateDeeplink({ path: deeplinkPath })}
+                href={deeplinkHref}
                 onClick={() =>
                   trackEventWithMetadata({
                     ga: ['헤더_설치유도_선택', '앱에서 보기'],
