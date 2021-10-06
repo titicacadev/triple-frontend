@@ -27,9 +27,17 @@ const Wrapper = styled.div<{ visible: boolean }>`
   top: 0;
   height: ${({ visible }) => (visible ? `${HEADER_MOBILE_HEIGHT}px` : '0px')};
 
+  &:focus-within {
+    height: ${HEADER_MOBILE_HEIGHT}px;
+  }
+
   @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
     height: ${({ visible }) =>
       visible ? `${HEADER_DESKTOP_HEIGHT}px` : '0px'};
+
+    &:focus-within {
+      height: ${HEADER_DESKTOP_HEIGHT}px;
+    }
   }
 `
 
