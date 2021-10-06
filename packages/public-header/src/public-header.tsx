@@ -1,7 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { white, brightGray, gray100, gray800 } from '@titicaca/color-palette'
-import { useUserAgentContext } from '@titicaca/react-contexts'
+import {
+  useEventTrackerWithMetadata,
+  useUserAgentContext,
+} from '@titicaca/react-contexts'
 
 import {
   HEADER_DESKTOP_HEIGHT,
@@ -116,6 +119,7 @@ export function PublicHeader({
   disableAutoHide,
 }: PublicHeaderProps) {
   const { app } = useUserAgentContext()
+  const trackEventWithMetadata = useEventTrackerWithMetadata()
   const visible = useAutoHide(disableAutoHide)
   const generateDeeplink = useDeeplinkGenerator()
 
@@ -144,7 +148,17 @@ export function PublicHeader({
           {deeplinkPath && (
             <>
               <ExtraActionSeperator />
-              <ExtraActionItem href={generateDeeplink({ path: deeplinkPath })}>
+              <ExtraActionItem
+                href={generateDeeplink({ path: deeplinkPath })}
+                onClick={() =>
+                  trackEventWithMetadata({
+                    ga: ['헤더_설치유도_선택', '앱에서 보기'],
+                    pixel: {
+                      action: '헤더_설치유도_선택',
+                    },
+                  })
+                }
+              >
                 앱에서 보기
               </ExtraActionItem>
             </>
