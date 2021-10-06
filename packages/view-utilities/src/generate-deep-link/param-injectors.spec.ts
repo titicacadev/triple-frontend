@@ -1,6 +1,10 @@
 import assert from 'assert'
 
-import { injectContentSource, injectUTMContext } from './param-injectors'
+import {
+  injectContentSource,
+  injectIsSearchAd,
+  injectUTMContext,
+} from './param-injectors'
 
 describe('injectContentSource', function () {
   it('should make object with path made of content source.', function () {
@@ -50,4 +54,15 @@ describe('injectUTMContext', function () {
   it('should ignore undefiend parameter', function () {
     assert.deepStrictEqual(injectUTMContext(undefined), {})
   })
+})
+
+describe('injectSearchAd', function () {
+  assert.deepStrictEqual(
+    injectIsSearchAd({
+      medium: 'search_ad',
+    }),
+    {
+      pid: 'searchad',
+    },
+  )
 })
