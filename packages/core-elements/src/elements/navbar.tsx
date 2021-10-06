@@ -36,7 +36,7 @@ const WrapperContainer = styled.div<
     `};
 `
 
-const NavbarFrame = styled.header<NavbarProps & LayeringMixinProps>`
+const NavbarFrame = styled.div<NavbarProps & LayeringMixinProps>`
   background-color: ${({ backgroundColor = 'white' }) =>
     `rgba(${getColor(backgroundColor)})`};
   position: ${({ position = 'sticky' }) => position};
