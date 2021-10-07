@@ -38,7 +38,7 @@ export function useDeeplinkHref(path?: string) {
     path: generateUrl({
       path: '/inlink',
       query: qs.stringify({
-        path,
+        path: generateUrl({ path, query: '_triple_no_navbar' }),
       }),
     }),
   })
