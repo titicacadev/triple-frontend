@@ -52,15 +52,11 @@ export default function Comment({
     return <HasNotReply onClick={onClick} />
   }
 
-  const {
-    writer,
-    createdAt,
-    reactions,
-    childrenCount,
-    content: { text },
-  } = reply[0]
+  const { writer, createdAt, reactions, childrenCount, content } = reply[0]
 
-  const foldedPosition = findFoldedPosition(5, text)
+  const foldedPosition = content?.text
+    ? findFoldedPosition(5, content.text)
+    : null
 
   return (
     <>
@@ -106,7 +102,7 @@ export default function Comment({
               {foldedPosition && !unfolded ? (
                 <>
                   <Text inline padding={{ top: 3, bottom: 5 }} size={15}>
-                    {text.slice(0, foldedPosition)}
+                    {content?.text.slice(0, foldedPosition)}
                   </Text>
                   <Text
                     inline
@@ -125,7 +121,7 @@ export default function Comment({
                   size={15}
                   wordBreak="keep-all"
                 >
-                  {text}
+                  {content?.text}
                 </Text>
               )}
             </Container>
