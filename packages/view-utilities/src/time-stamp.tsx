@@ -12,7 +12,7 @@ moment.relativeTimeThreshold('m', 60)
 moment.relativeTimeThreshold('h', 24)
 moment.locale('ko')
 
-function formatReviewTimestamp(date: string) {
+export function formatTimestamp(date: string) {
   const createdAt = moment(date)
 
   if (moment().subtract(1, 'minute').isBefore(createdAt)) {
@@ -24,6 +24,6 @@ function formatReviewTimestamp(date: string) {
   return createdAt.format('YYYY.M.D')
 }
 
-export default function ReviewTimestamp({ date }: { date: string }) {
-  return <>{formatReviewTimestamp(date)}</>
+export function timeStamp({ date }: { date: string }) {
+  return <>{formatTimestamp(date)}</>
 }

@@ -9,7 +9,7 @@ npm install @titicaca/view-utilities
 ```
 
 ```js
-//index.ts
+//index.tsx
 
 import { debounce, formatNumber } from '@titicaca/view-utilities'
 ```

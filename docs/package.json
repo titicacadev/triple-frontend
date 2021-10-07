@@ -42,6 +42,7 @@
     "@titicaca/react-hooks": "^2.40.0",
     "@titicaca/recommended-contents": "^2.40.0",
     "@titicaca/resource-list-element": "^2.40.0",
+    "@titicaca/reply": "^2.40.0",
     "@titicaca/review": "^2.40.0",
     "@titicaca/scrap-button": "^2.40.0",
     "@titicaca/search": "^2.40.0",

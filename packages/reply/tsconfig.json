@@ -1,0 +1,19 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "rootDir": "src"
+  },
+  "include": ["./src"],
+  "references": [
+    {
+      "path": "../poi-list-elements"
+    },
+    {
+      "path": "../review"
+    },
+    {
+      "path": "../view-utilities"
+    }
+  ]
+}
