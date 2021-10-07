@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Dispatch, SetStateAction, useState } from 'react'
 import {
   Text,
   HR1,
@@ -52,7 +52,14 @@ export default function Comment({
     return <HasNotReply onClick={onClick} />
   }
 
-  const { writer, createdAt, reactions, childrenCount, content } = reply[0]
+  const {
+    writer,
+    blinded,
+    createdAt,
+    reactions,
+    childrenCount,
+    content,
+  } = reply[0]
 
   const foldedPosition = content?.text
     ? findFoldedPosition(5, content.text)
@@ -99,31 +106,17 @@ export default function Comment({
             </FlexBox>
 
             <Container padding={{ top: 3 }}>
-              {foldedPosition && !unfolded ? (
-                <>
-                  <Text inline padding={{ top: 3, bottom: 5 }} size={15}>
-                    {content?.text.slice(0, foldedPosition)}
-                  </Text>
-                  <Text
-                    inline
-                    color="blue"
-                    size={15}
-                    cursor="pointer"
-                    onClick={() => setUnfolded((prevState) => !prevState)}
-                  >
-                    …더보기
-                  </Text>
-                </>
-              ) : (
-                <Text
-                  inline
-                  padding={{ top: 3, bottom: 5 }}
-                  size={15}
-                  wordBreak="keep-all"
-                >
-                  {content?.text}
-                </Text>
-              )}
+              <Content
+                foldable={!!(!blinded && foldedPosition && !unfolded)}
+                text={
+                  blinded
+                    ? '신고가 접수되어 블라인드 처리되었습니다.'
+                    : foldedPosition && !unfolded
+                    ? content?.text.slice(0, foldedPosition)
+                    : content?.text
+                }
+                setUnfolded={setUnfolded}
+              />
             </Container>
 
             <CountFlexBox
@@ -191,6 +184,40 @@ function HasNotReply({ onClick }: { onClick: () => void }) {
       <Register onClick={onClick} />
 
       <HR1 margin={{ top: 0 }} color="var(--color-gray50)" />
+    </>
+  )
+}
+
+function Content({
+  text = '',
+  foldable,
+  setUnfolded,
+}: {
+  text?: string
+  foldable: boolean
+  setUnfolded: Dispatch<SetStateAction<boolean>>
+}) {
+  return (
+    <>
+      <Text
+        inline
+        padding={{ top: 3, bottom: 5 }}
+        size={15}
+        wordBreak="keep-all"
+      >
+        {text}
+      </Text>
+      {foldable ? (
+        <Text
+          inline
+          color="blue"
+          size={15}
+          cursor="pointer"
+          onClick={() => setUnfolded((prevState) => !prevState)}
+        >
+          …더보기
+        </Text>
+      ) : null}
     </>
   )
 }
