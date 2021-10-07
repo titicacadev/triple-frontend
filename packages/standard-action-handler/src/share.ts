@@ -1,7 +1,8 @@
 import { generateUrl, parseUrl, UrlElements } from '@titicaca/view-utilities'
-import { shareLink } from '@titicaca/triple-web-to-native-interfaces'
-
-import { ContextOptions } from './types'
+import {
+  shareLink,
+  hasAccessibleTripleNativeClients,
+} from '@titicaca/triple-web-to-native-interfaces'
 
 interface SharingParams {
   title?: string | null
@@ -78,8 +79,8 @@ function shareNativeInterface(params: SharingParams) {
   })
 }
 
-function createShareFunction(isPublic?: boolean) {
-  if (isPublic) {
+function createShareFunction() {
+  if (!hasAccessibleTripleNativeClients()) {
     return typeof navigator !== 'undefined' && navigator.share
       ? navigatorShare
       : copyUrlWithDOMAPI
@@ -88,13 +89,10 @@ function createShareFunction(isPublic?: boolean) {
   }
 }
 
-export default async function share(
-  { path }: UrlElements,
-  { isPublic }: ContextOptions,
-) {
+export default async function share({ path }: UrlElements) {
   if (path === '/web-action/share') {
     const params = getSharingParams()
-    const shareFuncByEnv = createShareFunction(isPublic)
+    const shareFuncByEnv = createShareFunction()
 
     shareFuncByEnv && shareFuncByEnv(params)
 
