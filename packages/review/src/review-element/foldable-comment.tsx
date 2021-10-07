@@ -1,11 +1,12 @@
 import React, { MouseEventHandler } from 'react'
 import styled from 'styled-components'
 
+import { findFoldedPosition } from '../find-folded-position'
+
 import Comment from './comment'
 
 const MAX_COMMENT_WITH_IMAGE_LINES = 3
 const MAX_COMMENT_LINES = 6
-const CHARACTERS_PER_LINE = 25
 
 const Unfold = styled.button`
   display: inline-block;
@@ -55,23 +56,4 @@ function FoldedComment({
       <Unfold onClick={onUnfoldButtonClick}>더보기</Unfold>
     </Comment>
   )
-}
-
-function findFoldedPosition(maxLines: number, comment?: string | null) {
-  const lines = (comment || '').split('\n')
-
-  let linesCount = 0
-  let foldedIndex = 0
-  for (const line of lines) {
-    const rest = (maxLines - linesCount) * CHARACTERS_PER_LINE
-
-    if (line.length > rest) {
-      return foldedIndex + rest
-    }
-
-    foldedIndex = foldedIndex + line.length
-    linesCount = linesCount + 1 + Math.floor(line.length / CHARACTERS_PER_LINE)
-  }
-
-  return null
 }
