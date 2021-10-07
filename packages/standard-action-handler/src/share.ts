@@ -1,8 +1,7 @@
 import { generateUrl, parseUrl, UrlElements } from '@titicaca/view-utilities'
-import {
-  shareLink,
-  hasAccessibleTripleNativeClients,
-} from '@titicaca/triple-web-to-native-interfaces'
+import { shareLink } from '@titicaca/triple-web-to-native-interfaces'
+
+import { ContextOptions } from './types'
 
 interface SharingParams {
   title?: string | null
@@ -87,8 +86,8 @@ function shareNativeInterface(params: SharingParams) {
   })
 }
 
-function createShareFuntion() {
-  if (!hasAccessibleTripleNativeClients()) {
+function createShareFunction(isPublic?: boolean) {
+  if (isPublic) {
     return typeof navigator !== 'undefined' && navigator.share
       ? navigatorShare
       : typeof navigator.clipboard !== 'undefined' && navigator.clipboard
@@ -99,10 +98,13 @@ function createShareFuntion() {
   }
 }
 
-export default async function share({ path }: UrlElements) {
+export default async function share(
+  { path }: UrlElements,
+  { isPublic }: ContextOptions,
+) {
   if (path === '/web-action/share') {
     const params = getSharingParams()
-    const shareFuncByEnv = createShareFuntion()
+    const shareFuncByEnv = createShareFunction(isPublic)
 
     shareFuncByEnv && shareFuncByEnv(params)
 
