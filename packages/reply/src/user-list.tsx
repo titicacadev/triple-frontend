@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 
 import { Reaction } from './types'
 
-const ReactionUserPhoto = styled.img<{ index: number }>`
+const UserPhoto = styled.img<{ index: number }>`
   ${({ index }) => css`
     margin-left: ${index !== 0 ? '-3px' : ''};
   `}
@@ -20,8 +20,8 @@ const ThanksIcon = styled.img`
   cursor: pointer;
 `
 
-export default function ReplyUserList({
-  reactions: initialReactions,
+export default function UserList({
+  reactions: { reactions },
   totalCount = 0,
   onClick,
 }: {
@@ -29,8 +29,6 @@ export default function ReplyUserList({
   totalCount: number
   onClick: () => void
 }) {
-  const { reactions } = initialReactions
-
   return (
     <Container padding={{ left: 30, right: 30 }}>
       <FlexBox
@@ -41,7 +39,7 @@ export default function ReplyUserList({
       >
         <FlexBox flex alignItems="center" cursor="pointer" onClick={onClick}>
           {reactions.slice(0, 3)?.map(({ user: { photo } }, idx) => (
-            <ReactionUserPhoto key={idx} index={idx} src={photo} />
+            <UserPhoto key={idx} index={idx} src={photo} />
           ))}
           <ThanksIcon
             src="https://assets.triple.guide/images/img-lounge-thanks-list@3x.png"
