@@ -27,7 +27,7 @@ const ShareFlexBox = styled(FlexBox)`
 const CountFlexBox = styled(FlexBox)`
   div:first-of-type {
     :after {
-      font-size: 13px;
+      font-size: 12px;
       padding: 0 3px 0 4px;
       content: '·';
     }
@@ -137,7 +137,7 @@ export default function Comment({
               cursor="pointer"
               onClick={onClick}
             >
-              <img width={15} height={15} src={THANKS_IMAGE_URL} />
+              <img width={14} height={14} src={THANKS_IMAGE_URL} />
               <Text padding={{ left: 2 }} size={12} color="gray300" bold>
                 {reactions?.like?.count || 0}
               </Text>
