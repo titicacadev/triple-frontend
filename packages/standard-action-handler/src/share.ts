@@ -79,7 +79,7 @@ function shareNativeInterface(params: SharingParams) {
   })
 }
 
-function createShareFuntion() {
+function createShareFunction() {
   if (!hasAccessibleTripleNativeClients()) {
     return typeof navigator !== 'undefined' && navigator.share
       ? navigatorShare
@@ -92,7 +92,7 @@ function createShareFuntion() {
 export default async function share({ path }: UrlElements) {
   if (path === '/web-action/share') {
     const params = getSharingParams()
-    const shareFuncByEnv = createShareFuntion()
+    const shareFuncByEnv = createShareFunction()
 
     shareFuncByEnv && shareFuncByEnv(params)
 
