@@ -36,7 +36,10 @@ export { default as NumericSpinner } from './elements/numeric-spinner'
 export { default as Drawer } from './elements/drawer'
 export { default as SearchNavbar } from './elements/search-navbar'
 export { default as Tooltip } from './elements/tooltip'
-export { default as StickyHeader } from './elements/sticky-header'
+export {
+  default as StickyHeader,
+  StickyHeaderProps,
+} from './elements/sticky-header'
 export * from './elements/stack'
 export * from './elements/video'
 export { default as FlexBox } from './elements/flex-box'
