@@ -48,7 +48,7 @@ function copyUrlToClipboard(params: SharingParams) {
   const { webUrl } = params
 
   navigator.clipboard
-    .writeText(webUrl as string)
+    .writeText(webUrl || window.location.href)
     .then(() => {
       alert('링크를 복사했습니다.')
     })
@@ -58,7 +58,7 @@ function copyUrlToClipboard(params: SharingParams) {
 function copyUrlWithDOMAPI({ webUrl }: { webUrl?: string | null }) {
   const inputElement = document.createElement('input')
 
-  inputElement.value = webUrl as string
+  inputElement.value = webUrl || window.location.href
   document.body.appendChild(inputElement)
   inputElement.select()
   document.execCommand('copy')
