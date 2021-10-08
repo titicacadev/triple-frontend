@@ -69,19 +69,21 @@ export function InAppCouponDownloadButton({
 
   useEffect(() => {
     async function fetchCoupon() {
-      try {
-        const { ok, result, status } = await get<CouponData>(
-          `/api/benefit/coupons/${slugId}`,
-        )
+      const response = await authGuardedFetchers.get<CouponData>(
+        `/api/benefit/coupons/${slugId}`,
+      )
 
-        if (ok && result) {
-          setEnabled(true)
-          setDownloaded(!!result.downloaded)
-        } else {
-          captureException(new Error(`[${status}] Failed to fetch coupon`))
-        }
-      } catch (e) {
-        captureException(e)
+      if (response === 'NEED_LOGIN') {
+        return
+      }
+
+      captureHttpError(response)
+
+      const { ok, result } = response
+
+      if (ok && result) {
+        setEnabled(true)
+        setDownloaded(!!result.downloaded)
       }
     }
 
