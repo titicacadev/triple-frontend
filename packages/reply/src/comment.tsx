@@ -179,7 +179,7 @@ function HasNotReply({ onClick }: { onClick: () => void }) {
 function Content({ text, blinded }: { text: string; blinded: boolean }) {
   const [unfolded, setUnfolded] = useState(false)
 
-  const foldedPosition = text ? findFoldedPosition(5, text) : null
+  const foldedPosition = findFoldedPosition(5, text)
 
   return (
     <>
