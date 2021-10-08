@@ -155,7 +155,6 @@ export function InAppCouponGroupDownloadButton({
   verificationType?: VerificationType
   onClick?: () => void
 }) {
-  const [enabled, setEnabled] = useState(false)
   const [coupons, setCoupons] = useState<CouponData[]>([])
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined,
@@ -165,6 +164,8 @@ export function InAppCouponGroupDownloadButton({
     verificationType,
     forceVerification: false,
   })
+
+  const enabled = coupons.length > 0
 
   const downloaded =
     coupons.length === 0 || coupons.every(({ downloaded }) => downloaded)
@@ -187,7 +188,6 @@ export function InAppCouponGroupDownloadButton({
       const { result: { items } = {} } = response
 
       if (items) {
-        setEnabled(items.length > 0)
         setCoupons(items)
       }
     }
