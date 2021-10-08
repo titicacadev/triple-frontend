@@ -1,6 +1,5 @@
 import React from 'react'
 import Reply from '@titicaca/reply'
-import { TransitionModal } from '@titicaca/modals'
 import { text } from '@storybook/addon-knobs'
 
 import {
@@ -15,15 +14,12 @@ export default {
 
 export function Replies() {
   return (
-    <>
-      <Reply
-        itinerary={ItineraryData}
-        reactions={ReactionsData}
-        reply={ReplyData}
-        onClick={() => alert(text('알림 내용 ', 'onClick 테스트'))}
-      />
-      <TransitionModal deepLink="" />
-    </>
+    <Reply
+      itinerary={ItineraryData}
+      reactions={ReactionsData}
+      reply={ReplyData}
+      onClick={() => alert(text('알림 내용 ', 'onClick 테스트'))}
+    />
   )
 }
 
