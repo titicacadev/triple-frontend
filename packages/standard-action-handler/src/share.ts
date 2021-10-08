@@ -93,7 +93,9 @@ function createShareFunction() {
   if (!hasAccessibleTripleNativeClients()) {
     return typeof navigator !== 'undefined' && navigator.share
       ? navigatorShare
-      : copyUrlToClipboard
+      : typeof navigator !== 'undefined' && navigator.clipboard
+      ? copyUrlToClipboard
+      : copyUrlWithDOMAPI
   } else {
     return shareNativeInterface
   }
