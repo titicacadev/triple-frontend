@@ -1,18 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const StyledHeader = styled.header`
+import { layeringMixin, LayeringMixinProps } from '../mixins'
+
+const StyledHeader = styled.header<LayeringMixinProps>`
   position: sticky;
   top: 0;
-  z-index: 10;
+  ${layeringMixin(10)}
 `
 
-interface Props {
-  children?: React.ReactNode
-}
+export type StickyHeaderProps = React.PropsWithChildren<LayeringMixinProps>
 
-function StickyHeader({ children }: Props) {
-  return <StyledHeader>{children}</StyledHeader>
+function StickyHeader({ children, zIndex, zTier }: StickyHeaderProps) {
+  return (
+    <StyledHeader zIndex={zIndex} zTier={zTier}>
+      {children}
+    </StyledHeader>
+  )
 }
 
 export default StickyHeader
