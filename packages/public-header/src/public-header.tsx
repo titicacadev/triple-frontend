@@ -1,10 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { white, brightGray, gray100, gray800 } from '@titicaca/color-palette'
-import {
-  useEventTrackerWithMetadata,
-  useUserAgentContext,
-} from '@titicaca/react-contexts'
+import { white, brightGray } from '@titicaca/color-palette'
+import { useUserAgentContext } from '@titicaca/react-contexts'
 
 import {
   HEADER_DESKTOP_HEIGHT,
@@ -19,7 +16,9 @@ import {
   getCategoryTitle,
 } from './categories'
 import { useAutoHide } from './useAutoHide'
-import { useDeeplinkHref } from './useDeeplinkHref'
+import { ExtraActionsContainer } from './extra-actions-container'
+import { ExtraActionItem } from './extra-action-item'
+import { PublicHeaderDeeplink } from './public-header-deeplink'
 
 const Wrapper = styled.div<{ visible: boolean }>`
   transition: height ease ${TRANSITION_TIME}ms;
@@ -85,36 +84,6 @@ const LogoCategoryImage = styled.img`
   }
 `
 
-const ExtraActionsContainer = styled.div`
-  margin-left: auto;
-`
-
-const ExtraActionItem = styled.a`
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  color: ${gray800};
-  font-size: 14px;
-  padding: 10px 8px;
-
-  @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
-    font-size: 17px;
-    padding: 10px 14px;
-  }
-`
-
-const ExtraActionSeperator = styled.div`
-  display: inline-block;
-  width: 1px;
-  margin: 0 2px;
-  height: 10px;
-  background-color: ${gray100};
-
-  @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
-    height: 14px;
-  }
-`
-
 export interface PublicHeaderProps {
   category?: Category
   deeplinkPath?: string
@@ -127,9 +96,7 @@ export function PublicHeader({
   disableAutoHide,
 }: PublicHeaderProps) {
   const { app } = useUserAgentContext()
-  const trackEventWithMetadata = useEventTrackerWithMetadata()
   const visible = useAutoHide(disableAutoHide)
-  const deeplinkHref = useDeeplinkHref(deeplinkPath)
 
   if (app) {
     return null
@@ -153,24 +120,7 @@ export function PublicHeader({
 
         <ExtraActionsContainer>
           <ExtraActionItem href="/my-bookings">내 예약</ExtraActionItem>
-          {deeplinkPath && (
-            <>
-              <ExtraActionSeperator />
-              <ExtraActionItem
-                href={deeplinkHref}
-                onClick={() =>
-                  trackEventWithMetadata({
-                    ga: ['헤더_설치유도_선택', '앱에서 보기'],
-                    pixel: {
-                      action: '헤더_설치유도_선택',
-                    },
-                  })
-                }
-              >
-                앱에서 보기
-              </ExtraActionItem>
-            </>
-          )}
+          {deeplinkPath && <PublicHeaderDeeplink deeplinkPath={deeplinkPath} />}
         </ExtraActionsContainer>
       </HeaderFrame>
     </Wrapper>
