@@ -50,7 +50,7 @@ function copyUrlToClipboard(params: SharingParams) {
   navigator.clipboard
     .writeText(webUrl as string)
     .then(() => {
-      alert('링크가 복사되었습니다.')
+      alert('링크를 복사했습니다.')
     })
     .catch((_) => copyUrlWithDOMAPI({ webUrl }))
 }
@@ -64,7 +64,7 @@ function copyUrlWithDOMAPI({ webUrl }: { webUrl?: string | null }) {
   document.execCommand('copy')
   document.body.removeChild(inputElement)
 
-  alert('링크가 복사되었습니다.')
+  alert('링크를 복사했습니다.')
 }
 
 function shareNativeInterface(params: SharingParams) {
