@@ -6,7 +6,7 @@ import {
   useUserVerification,
   VerificationType,
 } from '@titicaca/user-verification'
-import { authGuardedFetchers, captureHttpError, post } from '@titicaca/fetcher'
+import { authGuardedFetchers, captureHttpError } from '@titicaca/fetcher'
 
 import { CouponData } from '../../types'
 
@@ -204,7 +204,7 @@ export function InAppCouponGroupDownloadButton({
       return
     }
 
-    const { result: results, ok } = await post<
+    const response = await authGuardedFetchers.post<
       {
         id: string
         success: boolean
@@ -216,6 +216,14 @@ export function InAppCouponGroupDownloadButton({
         ids: coupons.map(({ id }) => id),
       },
     })
+
+    if (response === 'NEED_LOGIN') {
+      return
+    }
+
+    captureHttpError(response)
+
+    const { result: results, ok } = response
 
     if (ok && results) {
       const succeedCoupons = results.filter(({ success }) => success)
