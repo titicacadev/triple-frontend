@@ -52,10 +52,11 @@ function copyUrlToClipboard(params: SharingParams) {
     .then(() => {
       alert('링크를 복사했습니다.')
     })
-    .catch((_) => copyUrlWithDOMAPI({ webUrl }))
+    .catch((_) => copyUrlWithDOMAPI(params))
 }
 
-function copyUrlWithDOMAPI({ webUrl }: { webUrl?: string | null }) {
+function copyUrlWithDOMAPI(params: SharingParams) {
+  const { webUrl } = params
   const inputElement = document.createElement('input')
 
   inputElement.value = webUrl || window.location.href
