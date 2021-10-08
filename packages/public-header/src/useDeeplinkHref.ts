@@ -1,14 +1,12 @@
 import { useMemo } from 'react'
-import qs from 'qs'
 import { useEnv, useUTMContext } from '@titicaca/react-contexts'
 import {
-  generateUrl,
   injectIsSearchAd,
   injectUTMContext,
   makeDeepLinkGenerator,
 } from '@titicaca/view-utilities'
 
-export function useDeeplinkHref(path?: string) {
+export function useDeeplinkHref(path: string) {
   const {
     appUrlScheme,
     webUrlBase,
@@ -35,11 +33,6 @@ export function useDeeplinkHref(path?: string) {
   return deeplinkGenerator({
     ...injectIsSearchAd(utmContext),
     ...injectUTMContext(utmContext),
-    path: generateUrl({
-      path: '/inlink',
-      query: qs.stringify({
-        path: generateUrl({ path, query: '_triple_no_navbar' }),
-      }),
-    }),
+    path,
   })
 }
