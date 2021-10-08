@@ -44,8 +44,18 @@ function navigatorShare(params: SharingParams) {
   })
 }
 
-function copyUrlWithDOMAPI(params: SharingParams) {
+function copyUrlToClipboard(params: SharingParams) {
   const { webUrl } = params
+
+  navigator.clipboard
+    .writeText(webUrl as string)
+    .then(() => {
+      alert('링크가 복사되었습니다.')
+    })
+    .catch((_) => copyUrlWithDOMAPI({ webUrl }))
+}
+
+function copyUrlWithDOMAPI({ webUrl }: { webUrl?: string | null }) {
   const inputElement = document.createElement('input')
 
   inputElement.value = webUrl as string
@@ -83,7 +93,7 @@ function createShareFunction() {
   if (!hasAccessibleTripleNativeClients()) {
     return typeof navigator !== 'undefined' && navigator.share
       ? navigatorShare
-      : copyUrlWithDOMAPI
+      : copyUrlToClipboard
   } else {
     return shareNativeInterface
   }
