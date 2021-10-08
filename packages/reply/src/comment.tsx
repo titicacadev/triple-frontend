@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react'
+import React, { useState } from 'react'
 import {
   Text,
   HR1,
@@ -46,8 +46,6 @@ export default function Comment({
   reply: Reply[]
   onClick: () => void
 }) {
-  const [unfolded, setUnfolded] = useState(false)
-
   if (reply.length <= 0) {
     return <HasNotReply onClick={onClick} />
   }
@@ -60,10 +58,6 @@ export default function Comment({
     childrenCount,
     content,
   } = reply[0]
-
-  const foldedPosition = content?.text
-    ? findFoldedPosition(5, content.text)
-    : null
 
   return (
     <>
@@ -90,7 +84,11 @@ export default function Comment({
               <Text size={15} bold>
                 {writer.name}
               </Text>
-              <ShareFlexBox padding={{ top: 3 }} flex alignItems="start">
+              <ShareFlexBox
+                padding={{ top: 3, left: 5 }}
+                flex
+                alignItems="start"
+              >
                 <Text size={12} padding={{ right: 5 }} bold color="gray300">
                   {formatTimestamp(createdAt)}
                 </Text>
@@ -106,17 +104,7 @@ export default function Comment({
             </FlexBox>
 
             <Container padding={{ top: 3 }}>
-              <Content
-                foldable={!!(!blinded && foldedPosition && !unfolded)}
-                text={
-                  blinded
-                    ? '신고가 접수되어 블라인드 처리되었습니다.'
-                    : foldedPosition && !unfolded
-                    ? content?.text.slice(0, foldedPosition)
-                    : content?.text
-                }
-                setUnfolded={setUnfolded}
-              />
+              <Content blinded={!!blinded} text={content?.text || ''} />
             </Container>
 
             <CountFlexBox
@@ -188,15 +176,11 @@ function HasNotReply({ onClick }: { onClick: () => void }) {
   )
 }
 
-function Content({
-  text = '',
-  foldable,
-  setUnfolded,
-}: {
-  text?: string
-  foldable: boolean
-  setUnfolded: Dispatch<SetStateAction<boolean>>
-}) {
+function Content({ text, blinded }: { text: string; blinded: boolean }) {
+  const [unfolded, setUnfolded] = useState(false)
+
+  const foldedPosition = findFoldedPosition(5, text)
+
   return (
     <>
       <Text
@@ -205,9 +189,13 @@ function Content({
         size={15}
         wordBreak="keep-all"
       >
-        {text}
+        {blinded
+          ? '신고가 접수되어 블라인드 처리되었습니다.'
+          : !unfolded && foldedPosition
+          ? text.slice(0, foldedPosition)
+          : text}
       </Text>
-      {foldable ? (
+      {!unfolded ? (
         <Text
           inline
           color="blue"
