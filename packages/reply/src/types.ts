@@ -3,13 +3,6 @@ import {
   GeoPoint,
   Translations,
 } from '@titicaca/content-type-definitions'
-import { PoiListElementType } from '@titicaca/poi-list-elements'
-
-export const TYPE_NAMES: { [key in PoiListElementType['type']]: string } = {
-  attraction: '관광명소',
-  restaurant: '음식점',
-  hotel: '호텔',
-}
 
 export type ItineraryPoi = Pick<
   PoiGQL,
@@ -58,7 +51,7 @@ export interface Itinerary {
   days: Day[]
   description: string
   id: string
-  month?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | null
+  month: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | null
   reactions: { thanks?: { count: number } }
   keywords: string[]
   regionId?: string
