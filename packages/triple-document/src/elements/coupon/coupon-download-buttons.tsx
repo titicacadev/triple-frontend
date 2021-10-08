@@ -7,7 +7,12 @@ import {
   useUserVerification,
   VerificationType,
 } from '@titicaca/user-verification'
-import { get, post } from '@titicaca/fetcher'
+import {
+  authGuardedFetchers,
+  captureHttpError,
+  get,
+  post,
+} from '@titicaca/fetcher'
 
 import { CouponData } from '../../types'
 
@@ -169,20 +174,21 @@ export function InAppCouponGroupDownloadButton({
 
   useEffect(() => {
     async function fetchCoupons() {
-      try {
-        const { result, ok, status } = await get<{
-          items: CouponData[]
-          nextPageToken: string
-        }>(`/api/benefit/downloadable-coupons?groupCode=${groupId}`)
+      const response = await authGuardedFetchers.get<{
+        items: CouponData[]
+        nextPageToken: string
+      }>(`/api/benefit/downloadable-coupons?groupCode=${groupId}`)
 
-        if (ok && result) {
-          setEnabled(result.items.length > 0)
-          setCoupons(result.items)
-        } else {
-          captureException(new Error(`[${status}] Failed to fetch coupon`))
-        }
-      } catch (e) {
-        captureException(e)
+      if (response === 'NEED_LOGIN') {
+        return
+      }
+
+      captureHttpError(response)
+      const { result: { items } = {} } = response
+
+      if (items) {
+        setEnabled(items.length > 0)
+        setCoupons(items)
       }
     }
 
