@@ -104,7 +104,7 @@ export default function Comment({
             </FlexBox>
 
             <Container padding={{ top: 3 }}>
-              <Content blinded={!!blinded} text={content?.text || ''} />
+              <Content blinded={!!blinded} text={content.text} />
             </Container>
 
             <CountFlexBox
@@ -179,7 +179,7 @@ function HasNotReply({ onClick }: { onClick: () => void }) {
 function Content({ text, blinded }: { text: string; blinded: boolean }) {
   const [unfolded, setUnfolded] = useState(false)
 
-  const foldedPosition = findFoldedPosition(5, text)
+  const foldedPosition = text ? findFoldedPosition(5, text) : null
 
   return (
     <>
@@ -195,7 +195,7 @@ function Content({ text, blinded }: { text: string; blinded: boolean }) {
           ? text.slice(0, foldedPosition)
           : text}
       </Text>
-      {!unfolded ? (
+      {!blinded && !unfolded && foldedPosition ? (
         <Text
           inline
           color="blue"
