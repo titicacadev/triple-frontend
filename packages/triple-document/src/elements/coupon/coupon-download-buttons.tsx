@@ -2,17 +2,11 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { Button } from '@titicaca/core-elements'
 import styled from 'styled-components'
 import { useHistoryFunctions } from '@titicaca/react-contexts'
-import { captureException } from '@sentry/browser'
 import {
   useUserVerification,
   VerificationType,
 } from '@titicaca/user-verification'
-import {
-  authGuardedFetchers,
-  captureHttpError,
-  get,
-  post,
-} from '@titicaca/fetcher'
+import { authGuardedFetchers, captureHttpError, post } from '@titicaca/fetcher'
 
 import { CouponData } from '../../types'
 
@@ -93,39 +87,37 @@ export function InAppCouponDownloadButton({
   const pushHashDownloaded = () =>
     push(`${slugId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
   const downloadCoupon = useCallback(async () => {
-    try {
-      if (verificationType && !verificationState.verified) {
-        initiateVerification()
+    if (verificationType && !verificationState.verified) {
+      initiateVerification()
 
-        return
-      }
+      return
+    }
 
-      const { ok, result, status } = await get<{
-        id?: string
-        message?: string
-        code?: string
-      }>(`/api/benefit/coupons/${slugId}/download`, {
-        credentials: 'same-origin',
-      })
+    const response = await authGuardedFetchers.get<{
+      id?: string
+      message?: string
+      code?: string
+    }>(`/api/benefit/coupons/${slugId}/download`)
 
-      if (result) {
-        if (ok) {
-          if (result.id) {
-            push(`${slugId}.${HASH_COMPLETE_DOWNLOAD_COUPON}`)
-            setDownloaded(true)
-          }
-        } else if (result?.code === 'NO_CI_AUTHENTICATION') {
-          initiateVerification()
-        } else {
-          captureException(new Error(`[${status}] Failed to download coupon`))
-          setErrorMessage(result.message)
-          push(`${slugId}.${HASH_ERROR_COUPON}`)
+    if (response === 'NEED_LOGIN') {
+      return
+    }
+    captureHttpError(response)
+
+    const { result, ok } = response
+
+    if (result) {
+      if (ok) {
+        if (result.id) {
+          push(`${slugId}.${HASH_COMPLETE_DOWNLOAD_COUPON}`)
+          setDownloaded(true)
         }
+      } else if (result?.code === 'NO_CI_AUTHENTICATION') {
+        initiateVerification()
       } else {
-        throw Error(`Coupon API Has No Response (${slugId})`)
+        setErrorMessage(result.message)
+        push(`${slugId}.${HASH_ERROR_COUPON}`)
       }
-    } catch (e) {
-      captureException(e)
     }
   }, [push, slugId, initiateVerification, verificationType, verificationState])
 
