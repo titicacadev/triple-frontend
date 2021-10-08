@@ -81,9 +81,11 @@ export default function Comment({
           />
           <Container padding={{ left: 50, bottom: 3 }}>
             <FlexBox flex justifyContent="space-between" alignItems="start">
-              <Text size={15} bold>
-                {writer.name}
-              </Text>
+              <Container minWidth={80}>
+                <Text size={15} bold>
+                  {writer.name}
+                </Text>
+              </Container>
               <ShareFlexBox
                 padding={{ top: 3, left: 5 }}
                 flex
@@ -183,12 +185,7 @@ function Content({ text, blinded }: { text: string; blinded: boolean }) {
 
   return (
     <>
-      <Text
-        inline
-        padding={{ top: 3, bottom: 5 }}
-        size={15}
-        wordBreak="keep-all"
-      >
+      <Text inline padding={{ top: 3, bottom: 5 }} size={15}>
         {blinded
           ? '신고가 접수되어 블라인드 처리되었습니다.'
           : !unfolded && foldedPosition
