@@ -51,6 +51,7 @@ interface InputProps extends Omit<HTMLInputElementProps, 'onChange'> {
   focused?: string
   onChange?: (e: React.SyntheticEvent, value: string) => any
   onBlur?: (e: React.FocusEvent<any>) => any
+  inputRef?: React.Ref<HTMLInputElement>
 }
 
 function Input({ onChange, ...props }: InputProps) {
