@@ -9,19 +9,17 @@ import {
   Image,
 } from '@titicaca/core-elements'
 import styled from 'styled-components'
-import { formatTimestamp } from '@titicaca/view-utilities'
-import { findFoldedPosition } from '@titicaca/review'
+import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
 
 import { Reply } from './types'
-import { COMMENT_IMAGE_URL, THANKS_IMAGE_URL, ImageIcon } from './reply'
+import { COMMENT_IMAGE_URL, THANKS_IMAGE_URL } from './reply'
 
-const ShareFlexBox = styled(FlexBox)`
-  img {
-    width: 19px;
-    height: 19px;
-    padding-left: 3px;
-    margin-top: -3px;
-  }
+const SmallMoreIcon = styled.img`
+  width: 19px;
+  height: 19px;
+  padding-left: 3px;
+  margin-top: -3px;
+  cursor: pointer;
 `
 
 const CountFlexBox = styled(FlexBox)`
@@ -47,7 +45,7 @@ export default function Comment({
   onClick: () => void
 }) {
   if (reply.length <= 0) {
-    return <HasNotReply onClick={onClick} />
+    return <NoReplyPlaceholder onClick={onClick} />
   }
 
   const {
@@ -86,23 +84,17 @@ export default function Comment({
                   {writer.name}
                 </Text>
               </Container>
-              <ShareFlexBox
-                padding={{ top: 3, left: 5 }}
-                flex
-                alignItems="start"
-              >
+              <FlexBox padding={{ top: 3, left: 5 }} flex alignItems="start">
                 <Text size={12} padding={{ right: 5 }} bold color="gray300">
                   {formatTimestamp(createdAt)}
                 </Text>
                 <Image>
-                  <ImageIcon
-                    isMoreIcon
-                    cursor="pointer"
+                  <SmallMoreIcon
                     src="https://assets.triple.guide/images/btn-review-more@4x.png"
                     onClick={onClick}
                   />
                 </Image>
-              </ShareFlexBox>
+              </FlexBox>
             </FlexBox>
 
             <Container padding={{ top: 3 }}>
@@ -158,7 +150,7 @@ function Register({ onClick }: { onClick: () => void }) {
   )
 }
 
-function HasNotReply({ onClick }: { onClick: () => void }) {
+function NoReplyPlaceholder({ onClick }: { onClick: () => void }) {
   return (
     <>
       <HR1

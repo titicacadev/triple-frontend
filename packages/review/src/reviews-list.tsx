@@ -10,7 +10,7 @@ import { TransitionType } from '@titicaca/modals'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { ImageMeta } from '@titicaca/type-definitions'
 import semver from 'semver'
-import { timeStamp } from '@titicaca/view-utilities'
+import { Timestamp } from '@titicaca/view-utilities'
 
 import ReviewElement, { ReviewElementProps } from './review-element'
 import { HASH_MY_REVIEW_ACTION_SHEET } from './my-review-action-sheet'
@@ -231,7 +231,7 @@ export default function ReviewsList({
             onReviewClick={handleReviewClick}
             onMessageCountClick={handleMessageCountClick}
             resourceId={resourceId}
-            DateFormatter={timeStamp}
+            DateFormatter={Timestamp}
             onShow={handleShow}
           />
         ))}

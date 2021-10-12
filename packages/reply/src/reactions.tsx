@@ -1,10 +1,9 @@
 import React from 'react'
-import { Image, FlexBox, Text } from '@titicaca/core-elements'
+import { FlexBox, Text } from '@titicaca/core-elements'
 import styled, { css } from 'styled-components'
 import { formatTimestamp } from '@titicaca/view-utilities'
 
 import { Itinerary } from './types'
-import { ImageIcon } from './reply'
 
 const ReactionDataText = styled(Text)<{ index: number }>`
   ${({ index }) =>
@@ -15,6 +14,17 @@ const ReactionDataText = styled(Text)<{ index: number }>`
         font-size: 14px;
         content: '·';
       `}
+`
+
+const Icon = styled.img<{
+  isMoreIcon?: boolean
+}>`
+  position: relative;
+  cursor: pointer;
+  width: ${({ isMoreIcon }) => `${isMoreIcon ? 25 : 19}px`};
+  height: ${({ isMoreIcon }) => `${isMoreIcon ? 25 : 19}px`};
+
+  padding-right: ${({ isMoreIcon }) => !isMoreIcon && '3px'};
 `
 
 export default function Reactions({
@@ -64,9 +74,7 @@ export default function Reactions({
             alignItems="center"
             onClick={idx !== 2 ? onClick : undefined}
           >
-            <Image>
-              <ImageIcon src={url} cursor="pointer" />
-            </Image>
+            <Icon src={url} />
             <ReactionDataText inline size={14} color="gray300" index={idx} bold>
               {value}
             </ReactionDataText>
@@ -77,14 +85,11 @@ export default function Reactions({
         <Text padding={{ right: 11 }} size={12} color="gray300" bold>
           {formatTimestamp(createdAt)}
         </Text>
-        <Image>
-          <ImageIcon
-            isMoreIcon
-            cursor="pointer"
-            src="https://assets.triple.guide/images/btn-review-more@4x.png"
-            onClick={onClick}
-          />
-        </Image>
+        <Icon
+          isMoreIcon
+          src="https://assets.triple.guide/images/btn-review-more@4x.png"
+          onClick={onClick}
+        />
       </FlexBox>
     </FlexBox>
   )

@@ -1,21 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Image } from '@titicaca/core-elements'
 
 import Reactions from './reactions'
 import UserList from './user-list'
 import Comment from './comment'
 import { Itinerary, Reaction, Reply as ReplyType } from './types'
-
-export const ImageIcon = styled(Image.Img)<{
-  isMoreIcon?: boolean
-}>`
-  position: relative;
-  width: ${({ isMoreIcon }) => `${isMoreIcon ? 25 : 19}px`};
-  height: ${({ isMoreIcon }) => `${isMoreIcon ? 25 : 19}px`};
-
-  padding-right: ${({ isMoreIcon }) => !isMoreIcon && '3px'};
-`
 
 export const THANKS_IMAGE_URL =
   'https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png'

@@ -1,5 +1,6 @@
 import React from 'react'
 import Reply from '@titicaca/reply'
+import { action } from '@storybook/addon-actions'
 
 import {
   itinerary as ItineraryData,
@@ -17,7 +18,7 @@ export function Replies() {
       itinerary={ItineraryData}
       reactions={ReactionsData}
       reply={ReplyData}
-      onClick={() => alert('onClick 옵션을 custom하게 사용하세요.')}
+      onClick={action('onClick 적용된 아이콘, 버튼 클릭')}
     />
   )
 }
