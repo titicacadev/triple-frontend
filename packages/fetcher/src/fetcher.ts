@@ -24,11 +24,7 @@ function makeFetchRetryable({
     response: Response
     remainRetry: number
   }): boolean {
-    return (
-      remainRetry > 0 &&
-      !response.body &&
-      refetchStatuses.includes(response.status)
-    )
+    return remainRetry > 0 && refetchStatuses.includes(response.status)
   }
 
   return function retryableFetch(
