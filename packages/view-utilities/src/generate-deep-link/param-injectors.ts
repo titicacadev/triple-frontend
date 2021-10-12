@@ -45,3 +45,14 @@ export function injectUTMContext({
     ...(partner ? { partner } : {}),
   }
 }
+
+/**
+ * 검색 광고라면 pid 값으로 'searched'을 사용합니다.
+ *
+ * @param utmContext
+ */
+export function injectIsSearchAd({ medium }: Partial<UTMContext> = {}) {
+  return {
+    pid: medium === 'search_ad' ? 'searchad' : undefined,
+  }
+}
