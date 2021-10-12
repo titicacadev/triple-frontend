@@ -17,6 +17,20 @@ function makeFetchRetryable({
   fetch: (href: string, requestInit?: RequestInit) => Promise<Response>
   retryCount: number
 }) {
+  function isRetryable({
+    response,
+    remainRetry,
+  }: {
+    response: Response
+    remainRetry: number
+  }): boolean {
+    return (
+      remainRetry > 0 &&
+      !response.body &&
+      refetchStatuses.includes(response.status)
+    )
+  }
+
   return function retryableFetch(
     href: string,
     requestInit?: RequestInit,
@@ -24,11 +38,7 @@ function makeFetchRetryable({
     async function retryer(remainRetry: number): Promise<Response> {
       const response = await fetch(href, requestInit)
 
-      if (
-        remainRetry <= 0 ||
-        !!response.body ||
-        !refetchStatuses.includes(response.status)
-      ) {
+      if (isRetryable({ response, remainRetry }) === false) {
         return response
       }
 
