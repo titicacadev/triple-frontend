@@ -15,7 +15,7 @@ import {
   getCategoryImageProps,
   getCategoryTitle,
 } from './categories'
-import { useAutoHide } from './useAutoHide'
+import { useAutoHide } from './use-auto-hide'
 import { ExtraActionsContainer } from './extra-actions-container'
 import { ExtraActionItem } from './extra-action-item'
 import { PublicHeaderDeeplink } from './public-header-deeplink'
