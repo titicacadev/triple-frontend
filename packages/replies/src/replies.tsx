@@ -38,14 +38,14 @@ const ResourceListItem = styled(List.Item)`
 export default function Replies({
   replies,
   registerPlaceholder,
-  customOnClick,
+  onClick,
 }: {
   replies: ReplyType[]
   registerPlaceholder?: string
-  customOnClick: () => void
+  onClick: () => void
 }) {
   if (replies.length <= 0) {
-    return <NoReplyPlaceholder customOnClick={customOnClick} />
+    return <NoReplyPlaceholder onClick={onClick} />
   }
 
   const {
@@ -61,7 +61,7 @@ export default function Replies({
     <>
       <Container padding={{ bottom: 30, left: 30, right: 30 }}>
         {replies.length > 1 ? (
-          <Container cursor="pointer" onClick={customOnClick}>
+          <Container cursor="pointer" onClick={onClick}>
             <Text padding={{ top: 20 }} color="blue" size={14} bold>
               이전 댓글 더보기
             </Text>
@@ -90,7 +90,7 @@ export default function Replies({
                 </Text>
                 <SmallMoreIcon
                   src="https://assets.triple.guide/images/btn-review-more@4x.png"
-                  onClick={customOnClick}
+                  onClick={onClick}
                 />
               </FlexBox>
             </FlexBox>
@@ -104,7 +104,7 @@ export default function Replies({
               flex
               alignItems="center"
               cursor="pointer"
-              onClick={customOnClick}
+              onClick={onClick}
             >
               <img
                 width={14}
@@ -130,23 +130,20 @@ export default function Replies({
         </ResourceListItem>
       </Container>
 
-      <Register
-        registerPlaceholder={registerPlaceholder}
-        customOnClick={customOnClick}
-      />
+      <Register registerPlaceholder={registerPlaceholder} onClick={onClick} />
     </>
   )
 }
 
 function Register({
   registerPlaceholder,
-  customOnClick,
+  onClick,
 }: {
   registerPlaceholder?: string
-  customOnClick: () => void
+  onClick: () => void
 }) {
   return (
-    <Container cursor="pointer" onClick={customOnClick}>
+    <Container cursor="pointer" onClick={onClick}>
       <HR1 margin={{ top: 0 }} />
       <FlexBox
         flex
@@ -164,7 +161,7 @@ function Register({
     </Container>
   )
 }
-function NoReplyPlaceholder({ customOnClick }: { customOnClick: () => void }) {
+function NoReplyPlaceholder({ onClick }: { onClick: () => void }) {
   return (
     <>
       <HR1
@@ -177,7 +174,7 @@ function NoReplyPlaceholder({ customOnClick }: { customOnClick: () => void }) {
           가장 먼저 댓글을 작성해보세요!
         </Text>
       </Container>
-      <Register customOnClick={customOnClick} />
+      <Register onClick={onClick} />
 
       <HR1 margin={{ top: 0 }} color="var(--color-gray50)" />
     </>

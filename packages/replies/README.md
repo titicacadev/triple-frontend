@@ -15,7 +15,7 @@ return (
   <Replies
     replies={replies}
     registerPlaceholder={registerPlaceholder}
-    customOnClick={customOnClick}
+    onClick={onClick}
   />
 )
 ```
@@ -29,4 +29,4 @@ return (
   https://github.com/titicacadev/triple-reply
 - registerPlaceholder: Register 컴포넌트 내부의 문구를 커스터마이징하는 prop (optional)
   default: 이 일정에 궁금한 점은 댓글로 써주세요.
-- customOnClick: customizing한 onClick을 icon, text에 적용합니다. (required)
+- onClick: customizing한 onClick을 icon, text에 적용합니다. (required)
