@@ -26,7 +26,7 @@ interface GeneratorParams {
   isRetargeting?: boolean
 }
 
-type DeepLinkGenerator = (params: GeneratorParams) => string
+export type DeepLinkGenerator = (params: GeneratorParams) => string
 
 /**
  * 프로젝트에 고정되어있는 값을 받아 딥링크 제너레이터를 반환합니다.
