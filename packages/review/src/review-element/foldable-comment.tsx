@@ -1,7 +1,6 @@
 import React, { MouseEventHandler } from 'react'
 import styled from 'styled-components'
-
-import { findFoldedPosition } from '../find-folded-position'
+import { findFoldedPosition } from '@titicaca/view-utilities/lib/find-folded-position'
 
 import Comment from './comment'
 

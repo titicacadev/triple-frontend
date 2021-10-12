@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, FlexBox, Text } from '@titicaca/core-elements'
 import styled, { css } from 'styled-components'
 
-import { Reaction } from './types'
+import { Itinerary } from './types'
 
 const UserPhoto = styled.img<{ index: number }>`
   ${({ index }) => css`
@@ -25,7 +25,7 @@ export default function UserList({
   totalCount = 0,
   onClick,
 }: {
-  reactions: Reaction
+  reactions: { reactions: { user: Itinerary['user'] }[] }
   totalCount: number
   onClick: () => void
 }) {

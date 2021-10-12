@@ -24,6 +24,6 @@ export function formatTimestamp(date: string) {
   return createdAt.format('YYYY.M.D')
 }
 
-export function timeStamp({ date }: { date: string }) {
+export function Timestamp({ date }: { date: string }) {
   return <>{formatTimestamp(date)}</>
 }
