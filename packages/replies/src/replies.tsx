@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
 import {
-  Text,
+  Container,
+  FlexBox,
   HR1,
   List,
   SquareImage,
-  FlexBox,
-  Container,
-  Image,
+  Text,
 } from '@titicaca/core-elements'
+import { findFoldedPosition, formatTimestamp } from '@titicaca/view-utilities'
 import styled from 'styled-components'
-import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
 
-import { Reply } from './types'
+import { Reply as ReplyType } from './types'
 
 const SmallMoreIcon = styled.img`
   width: 19px;
@@ -36,15 +35,17 @@ const ResourceListItem = styled(List.Item)`
   margin-top: 20px;
 `
 
-export default function Comment({
-  reply,
-  onClick,
+export default function Replies({
+  replies,
+  registerPlaceholder,
+  customOnClick,
 }: {
-  reply: Reply[]
-  onClick: () => void
+  replies: ReplyType[]
+  registerPlaceholder?: string
+  customOnClick: () => void
 }) {
-  if (reply.length <= 0) {
-    return <NoReplyPlaceholder onClick={onClick} />
+  if (replies.length <= 0) {
+    return <NoReplyPlaceholder customOnClick={customOnClick} />
   }
 
   const {
@@ -54,13 +55,13 @@ export default function Comment({
     reactions,
     childrenCount,
     content,
-  } = reply[0]
+  } = replies[0]
 
   return (
     <>
       <Container padding={{ bottom: 30, left: 30, right: 30 }}>
-        {reply.length > 1 ? (
-          <Container cursor="pointer" onClick={onClick}>
+        {replies.length > 1 ? (
+          <Container cursor="pointer" onClick={customOnClick}>
             <Text padding={{ top: 20 }} color="blue" size={14} bold>
               이전 댓글 더보기
             </Text>
@@ -87,12 +88,10 @@ export default function Comment({
                 <Text size={12} padding={{ right: 5 }} bold color="gray300">
                   {formatTimestamp(createdAt)}
                 </Text>
-                <Image>
-                  <SmallMoreIcon
-                    src="https://assets.triple.guide/images/btn-review-more@4x.png"
-                    onClick={onClick}
-                  />
-                </Image>
+                <SmallMoreIcon
+                  src="https://assets.triple.guide/images/btn-review-more@4x.png"
+                  onClick={customOnClick}
+                />
               </FlexBox>
             </FlexBox>
 
@@ -105,7 +104,7 @@ export default function Comment({
               flex
               alignItems="center"
               cursor="pointer"
-              onClick={onClick}
+              onClick={customOnClick}
             >
               <img
                 width={14}
@@ -131,14 +130,23 @@ export default function Comment({
         </ResourceListItem>
       </Container>
 
-      <Register onClick={onClick} />
+      <Register
+        registerPlaceholder={registerPlaceholder}
+        customOnClick={customOnClick}
+      />
     </>
   )
 }
 
-function Register({ onClick }: { onClick: () => void }) {
+function Register({
+  registerPlaceholder,
+  customOnClick,
+}: {
+  registerPlaceholder?: string
+  customOnClick: () => void
+}) {
   return (
-    <Container cursor="pointer" onClick={onClick}>
+    <Container cursor="pointer" onClick={customOnClick}>
       <HR1 margin={{ top: 0 }} />
       <FlexBox
         flex
@@ -146,7 +154,7 @@ function Register({ onClick }: { onClick: () => void }) {
         padding={{ top: 20, bottom: 20, left: 30, right: 30 }}
       >
         <Text size={15} color="gray300" wordBreak="keep-all">
-          이 일정에 궁금한 점은 댓글로 써주세요.
+          {registerPlaceholder || '이 일정에 궁금한 점은 댓글로 써주세요.'}
         </Text>
         <Text size={15} color="blue" bold wordBreak="keep-all">
           등록
@@ -156,8 +164,7 @@ function Register({ onClick }: { onClick: () => void }) {
     </Container>
   )
 }
-
-function NoReplyPlaceholder({ onClick }: { onClick: () => void }) {
+function NoReplyPlaceholder({ customOnClick }: { customOnClick: () => void }) {
   return (
     <>
       <HR1
@@ -170,7 +177,7 @@ function NoReplyPlaceholder({ onClick }: { onClick: () => void }) {
           가장 먼저 댓글을 작성해보세요!
         </Text>
       </Container>
-      <Register onClick={onClick} />
+      <Register customOnClick={customOnClick} />
 
       <HR1 margin={{ top: 0 }} color="var(--color-gray50)" />
     </>

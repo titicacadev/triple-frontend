@@ -1,7 +1,7 @@
 {
-  "name": "@titicaca/reply",
+  "name": "@titicaca/replies",
   "version": "2.40.0",
-  "description": "Reply Component",
+  "description": "Replies Component",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
   "files": [
