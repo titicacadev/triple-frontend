@@ -86,6 +86,9 @@ const LogoCategoryImage = styled.img`
 
 export interface PublicHeaderProps {
   category?: Category
+  /**
+   * 앱에서 열 수 있는 path. ex) inlink or 네이티브 딥링크
+   */
   deeplinkPath?: string
   disableAutoHide?: boolean
 }
