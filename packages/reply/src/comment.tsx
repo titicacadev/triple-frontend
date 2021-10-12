@@ -12,7 +12,6 @@ import styled from 'styled-components'
 import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
 
 import { Reply } from './types'
-import { COMMENT_IMAGE_URL, THANKS_IMAGE_URL } from './reply'
 
 const SmallMoreIcon = styled.img`
   width: 19px;
@@ -108,13 +107,21 @@ export default function Comment({
               cursor="pointer"
               onClick={onClick}
             >
-              <img width={14} height={14} src={THANKS_IMAGE_URL} />
+              <img
+                width={14}
+                height={14}
+                src="https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png"
+              />
               <Text padding={{ left: 2 }} size={12} color="gray300" bold>
                 {reactions?.like?.count || 0}
               </Text>
 
               {childrenCount ? (
-                <img width={15} height={15} src={COMMENT_IMAGE_URL} />
+                <img
+                  width={15}
+                  height={15}
+                  src="https://assets.triple.guide/images/btn-lounge-comment-off@3x.png"
+                />
               ) : null}
               <Text padding={{ left: 2 }} size={12} color="gray300" bold>
                 {childrenCount || '답글달기'}

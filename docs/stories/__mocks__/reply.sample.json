@@ -1,49 +1,4 @@
 {
-  "itinerary": {
-    "applicationCount": 0,
-    "createdAt": "2021-09-03T05:40:51.143Z",
-    "reactions": {
-      "thanks": {
-        "count": 1,
-        "haveMine": true
-      }
-    },
-    "replyBoard": {
-      "id": "ITINERARY.14a66dcf-b170-4edf-967b-b830d2362109",
-      "resourceType": "itinerary",
-      "resourceId": "14a66dcf-b170-4edf-967b-b830d2362109",
-      "rootMessagesCount": 2,
-      "childMessagesCount": 2,
-      "pinnedMessages": []
-    }
-  },
-  "reactions": {
-    "reactions": [
-      {
-        "user": {
-          "userBoard": {
-            "trips": 7,
-            "reviews": 0,
-            "thanks": 2,
-            "reports": 2,
-            "reviewsV2": 1,
-            "itineraries": 1
-          },
-          "name": "박기성",
-          "unregister": false,
-          "uid": "_KA1602047988-1611665037888",
-          "photo": "https://k.kakaocdn.net/dn/btrcFe/btqRxSQdbbI/EL6XMyQQr32KmUZ5LTFLy1/img_640x640.jpg",
-          "mileage": {
-            "level": 1,
-            "point": 15,
-            "badges": []
-          }
-        }
-      }
-    ],
-    "totalCount": 1,
-    "type": "thanks"
-  },
   "reply": [
     {
       "id": "d080be24-dfb2-43a5-9d35-4de10b46b68c",
