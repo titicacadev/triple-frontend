@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 3.0.0
+
+### public-header
+
+- BREAKING CHANGE: 디자인 변경 사항 반영 (#1586)
+
+### react-contexts
+
+- BREAKING CHANGE: env-context에 필수 props 추가 afOnelinkSubdomain, afOnelinkId, afOnelinkPid (#1586)
+
+### core-elements
+
+- sticky-header 컴포넌트 추가 (#1586)
+
 ## 2.41.0
 
 ### replies
