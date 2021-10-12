@@ -3,7 +3,7 @@ import React from 'react'
 
 import { ExtraActionItem } from './extra-action-item'
 import { ExtraActionSeperator } from './extra-action-seperator'
-import { useDeeplinkHref } from './useDeeplinkHref'
+import { useDeeplinkHref } from './use-deeplink-href'
 
 interface Props {
   deeplinkPath: string
