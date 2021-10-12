@@ -7,7 +7,7 @@
   "include": ["./src"],
   "references": [
     {
-      "path": "../review"
+      "path": "../core-elements"
     },
     {
       "path": "../view-utilities"
