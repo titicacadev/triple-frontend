@@ -44,23 +44,25 @@ export default function Replies({
   resourceId,
   resourceType,
   registerPlaceholder,
+  size,
   onClick,
 }: {
   resourceId: string
   resourceType: string
   registerPlaceholder?: string
+  size?: number
   onClick: () => void
 }) {
   const [replies, setReplies] = useState<ReplyType[]>([])
 
   useEffect(() => {
     async function fetchAndSet() {
-      const response = await fetchReplies({ resourceId, resourceType })
+      const response = await fetchReplies({ resourceId, resourceType, size })
 
       setReplies(response || [])
     }
     fetchAndSet()
-  }, [resourceId, resourceType])
+  }, [resourceId, resourceType, size])
 
   if (replies.length <= 0) {
     return <NoReplyPlaceholder onClick={onClick} />
