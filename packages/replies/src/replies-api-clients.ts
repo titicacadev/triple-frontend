@@ -2,7 +2,7 @@ import { authGuardedFetchers, captureHttpError } from '@titicaca/fetcher'
 import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
 
-import { Reply } from './types'
+import { ResourceType, Reply } from './types'
 
 export async function fetchReplies({
   resourceId,
@@ -10,7 +10,7 @@ export async function fetchReplies({
   size,
 }: {
   resourceId: string
-  resourceType: 'review' | 'itinerary'
+  resourceType: ResourceType
   size?: number
 }) {
   const response = await authGuardedFetchers.get<Reply[]>(
