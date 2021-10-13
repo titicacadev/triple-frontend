@@ -15,7 +15,7 @@ export async function fetchReplies({
 }) {
   const response = await authGuardedFetchers.get<ReplyType[]>(
     generateUrl({
-      path: `/reply-api/messages`,
+      path: `/api/reply/messages`,
       query: qs.stringify({
         page: 0,
         resourceId,
