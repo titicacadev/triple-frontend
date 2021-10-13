@@ -2,8 +2,6 @@ import React from 'react'
 import { action } from '@storybook/addon-actions'
 import Replies from '@titicaca/replies'
 
-import { reply as repliesData } from '../__mocks__/replies.sample.json'
-
 export default {
   title: 'Replies',
 }
@@ -11,7 +9,8 @@ export default {
 export function RepliesStory() {
   return (
     <Replies
-      replies={repliesData}
+      resourceId="14a66dcf-b170-4edf-967b-b830d2362109"
+      resourceType="itinerary"
       onClick={action('onClick 적용된 아이콘, 버튼 클릭')}
     />
   )
