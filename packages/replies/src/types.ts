@@ -1,3 +1,5 @@
+export type ResourceType = 'review' | 'itinerary'
+
 export interface Reply {
   id: string
   parentId?: string

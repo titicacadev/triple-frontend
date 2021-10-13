@@ -2,7 +2,7 @@ import { authGuardedFetchers, captureHttpError } from '@titicaca/fetcher'
 import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
 
-import { Reply as ReplyType } from './types'
+import { ResourceType, Reply } from './types'
 
 export async function fetchReplies({
   resourceId,
@@ -10,10 +10,10 @@ export async function fetchReplies({
   size,
 }: {
   resourceId: string
-  resourceType: string
+  resourceType: ResourceType
   size?: number
 }) {
-  const response = await authGuardedFetchers.get<ReplyType[]>(
+  const response = await authGuardedFetchers.get<Reply[]>(
     generateUrl({
       path: `/api/reply/messages`,
       query: qs.stringify({
@@ -31,9 +31,7 @@ export async function fetchReplies({
 
   captureHttpError(response)
 
-  const { ok, result } = response
+  const { result } = response
 
-  if (ok && result) {
-    return result
-  }
+  return result
 }
