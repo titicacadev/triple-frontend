@@ -11,7 +11,7 @@ import { findFoldedPosition, formatTimestamp } from '@titicaca/view-utilities'
 import styled from 'styled-components'
 
 import { fetchReplies } from './replies-api-clients'
-import { Reply as ReplyType } from './types'
+import { Reply, ResourceType } from './types'
 
 const MoreButton = styled.button`
   width: 19px;
@@ -48,12 +48,12 @@ export default function Replies({
   onClick,
 }: {
   resourceId: string
-  resourceType: string
+  resourceType: ResourceType
   registerPlaceholder?: string
   size?: number
   onClick: () => void
 }) {
-  const [replies, setReplies] = useState<ReplyType[]>([])
+  const [replies, setReplies] = useState<Reply[]>([])
 
   useEffect(() => {
     async function fetchAndSet() {
