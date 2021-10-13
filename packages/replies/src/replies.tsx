@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Container,
   FlexBox,
@@ -10,6 +10,7 @@ import {
 import { findFoldedPosition, formatTimestamp } from '@titicaca/view-utilities'
 import styled from 'styled-components'
 
+import { fetchReplies } from './replies-api-clients'
 import { Reply as ReplyType } from './types'
 
 const SmallMoreIcon = styled.img`
@@ -36,14 +37,27 @@ const ResourceListItem = styled(List.Item)`
 `
 
 export default function Replies({
-  replies,
+  resourceId,
+  resourceType,
   registerPlaceholder,
   onClick,
 }: {
-  replies: ReplyType[]
+  resourceId: string
+  resourceType: string
   registerPlaceholder?: string
   onClick: () => void
 }) {
+  const [replies, setReplies] = useState<ReplyType[]>([])
+
+  useEffect(() => {
+    async function fetchAndSet() {
+      const response = await fetchReplies({ resourceId, resourceType })
+
+      setReplies(response || [])
+    }
+    fetchAndSet()
+  }, [resourceId, resourceType])
+
   if (replies.length <= 0) {
     return <NoReplyPlaceholder onClick={onClick} />
   }
