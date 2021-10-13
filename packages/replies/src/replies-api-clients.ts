@@ -1,4 +1,4 @@
-import { get } from '@titicaca/fetcher'
+import { authGuardedFetchers, captureHttpError } from '@titicaca/fetcher'
 import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
 
@@ -13,7 +13,7 @@ export async function fetchReplies({
   resourceType: string
   size?: number
 }) {
-  const response = await get<ReplyType[]>(
+  const response = await authGuardedFetchers.get<ReplyType[]>(
     generateUrl({
       path: `/reply-api/messages`,
       query: qs.stringify({
@@ -25,11 +25,15 @@ export async function fetchReplies({
     }),
   )
 
-  const { ok, result, error } = response
-
-  if (!ok && !result) {
-    throw error || new Error(`Fail to fetch replies`)
+  if (response === 'NEED_LOGIN') {
+    return
   }
 
-  return result
+  captureHttpError(response)
+
+  const { ok, result } = response
+
+  if (ok && result) {
+    return result
+  }
 }
