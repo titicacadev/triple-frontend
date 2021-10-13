@@ -13,12 +13,16 @@ import styled from 'styled-components'
 import { fetchReplies } from './replies-api-clients'
 import { Reply as ReplyType } from './types'
 
-const SmallMoreIcon = styled.img`
+const MoreButton = styled.button`
   width: 19px;
   height: 19px;
   padding-left: 3px;
   margin-top: -3px;
-  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(https://assets.triple.guide/images/btn-review-more@4x.png);
 `
 
 const CountFlexBox = styled(FlexBox)`
@@ -102,10 +106,7 @@ export default function Replies({
                 <Text size={12} padding={{ right: 5 }} bold color="gray300">
                   {formatTimestamp(createdAt)}
                 </Text>
-                <SmallMoreIcon
-                  src="https://assets.triple.guide/images/btn-review-more@4x.png"
-                  onClick={onClick}
-                />
+                <MoreButton onClick={onClick} />
               </FlexBox>
             </FlexBox>
 
@@ -167,7 +168,7 @@ function Register({
         <Text size={15} color="gray300" wordBreak="keep-all">
           {registerPlaceholder || '이 일정에 궁금한 점은 댓글로 써주세요.'}
         </Text>
-        <Text size={15} color="blue" bold wordBreak="keep-all">
+        <Text size={15} color="blue" bold>
           등록
         </Text>
       </FlexBox>
