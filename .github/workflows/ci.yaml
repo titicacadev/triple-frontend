@@ -38,6 +38,8 @@ jobs:
       - uses: actions/checkout@v2
 
       - run: npm install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - run: npm run sync-deps
 
