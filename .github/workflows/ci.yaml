@@ -58,6 +58,10 @@ jobs:
           SLACK_TOPIC: '의존성 변경이 있습니다. `npm run sync-deps`로 변경을 반영해주세요.'
         run: npx @titicaca/gha-tools notify
 
+      - name: Shutdown workflow
+        if: steps.check-working-tree.outputs.clean != 'true'
+        run: node -e 'process.exit(1)'
+
   build:
     runs-on: ubuntu-latest
 
