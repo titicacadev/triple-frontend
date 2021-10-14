@@ -61,7 +61,7 @@ jobs:
       - name: Notify build start to slack
         env:
           SLACK_TITLE: ':rocket: Build/Deploy Started'
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NODE_AUTH_TOKEN: ${{secrets.READ_ONLY_NPM_TOKEN}}
         run: |
           npx @titicaca/gha-tools notify
 
@@ -101,7 +101,7 @@ jobs:
             -H 'Content-Type: application/json' \
             -d "{\"state\":\"success\"}"
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
           OPS_API_KEY: ${{ secrets.OPS_API_KEY }}
 
       - name: Notify deploy success to slack
@@ -109,7 +109,7 @@ jobs:
         env:
           SLACK_TITLE: ':tada: Deploy Succeed'
           SLACK_COLOR: success
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
         run: |
           npx @titicaca/gha-tools notify
 
@@ -118,6 +118,6 @@ jobs:
         env:
           SLACK_TITLE: ':pleading: Deploy Failed'
           SLACK_COLOR: fail
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
         run: |
           npx @titicaca/gha-tools notify
