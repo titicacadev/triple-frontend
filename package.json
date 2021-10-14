@@ -31,7 +31,7 @@
     "make-build-tsconfig": "lerna exec --ignore @titicaca/triple-frontend-docs --parallel -- node \\$LERNA_ROOT_PATH/scripts/make-build-tsconfig.js",
     "sync-deps:ts": "npm run references && npm run make-build-tsconfig",
     "sync-deps": "npm run sync-deps:ts && npm run bootstrap:docs && npm install",
-    "prepare": "husky install",
+    "prepare": "[ $PREPARE_HUSKY_DISABLED ] || husky install",
     "add": "lerna add --no-bootstrap",
     "postadd": "npm run sync-deps"
   },
@@ -62,10 +62,10 @@
     "concurrently": "^6.0.0",
     "csstype": "^3.0.2",
     "eslint-plugin-mdx": "^1.7.0",
-    "husky": "^6.0.0",
+    "husky": "^7.0.2",
     "jest": "^26.6.1",
     "lerna": "^4.0.0",
-    "lint-staged": "^10.2.9",
+    "lint-staged": "^11.2.3",
     "lodash.debounce": "^4.0.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -74,20 +74,16 @@
     "typescript": "^4.3.5",
     "utility-types": "^3.10.0"
   },
-  "lint-staged": {
-    "**/*.{js,ts,tsx}": [
-      "eslint",
-      "stylelint"
-    ],
-    "**/*.mdx": [
-      "eslint"
-    ],
-    "**/*.{json,md,yaml}": [
-      "prettier --check"
-    ]
-  },
   "workspaces": [
     "packages/*",
     "docs"
-  ]
+  ],
+  "lint-staged": {
+    "**/*.{js,ts,tsx}": [
+      "eslint"
+    ],
+    "**/*.{json,yaml,md}": [
+      "prettier --check"
+    ]
+  }
 }
