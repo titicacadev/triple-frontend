@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/view-utilities",
-  "version": "2.41.0",
+  "version": "3.0.0",
   "description": "Utilities for Triple view libraries and applications",
   "main": "lib/index.js",
   "files": [
@@ -15,12 +15,12 @@
   },
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
-    "@titicaca/type-definitions": "^2.40.0",
+    "@titicaca/type-definitions": "^3.0.0",
     "@types/qs": "^6.9.0",
     "haversine": "^1.1.1",
     "humps": "^2.0.1",
-    "qs": "^6.9.0",
-    "moment-timezone": "^0.5.26"
+    "moment-timezone": "^0.5.26",
+    "qs": "^6.9.0"
   },
   "devDependencies": {
     "@types/haversine": "^1.1.4",

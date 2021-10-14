@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/standard-action-handler",
-  "version": "2.41.0",
+  "version": "3.0.0",
   "description": "Standard action handler for Triple service applications",
   "main": "lib/index.js",
   "files": [
@@ -8,7 +8,7 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "@titicaca/view-utilities": "^2.40.0",
+    "@titicaca/view-utilities": "^3.0.0",
     "qs": "^6.9.4"
   },
   "devDependencies": {
