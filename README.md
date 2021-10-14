@@ -160,27 +160,17 @@ devDependency이면 --dev를, peer dependency이면 --peer를 추가합니다.
 git switch -c release/v2.9.0
 ```
 
-새로운 버전을 올립니다. 원하는 버전을 선택하면 lerna가 알아서 모든 패키지의 버전을 바꿉니다.
+[npm version](https://docs.npmjs.com/cli/v7/commands/npm-version) 명령을 사용하여 버전을 변경합니다.
+이 때 `--workspaces` 옵션을 사용해 주세요.
 
 ```bash
-$ npm run version
+npm version minor --workspaces
+```
 
-> version
-> lerna version --no-push --force-publish
+버전을 올린 다음 변경된 버전을 package-lock에 반영해줘야 합니다. 다음 명령을 실행하세요.
 
-lerna notice cli v3.22.1
-lerna info current version 2.8.0
-lerna WARN force-publish all packages
-lerna info Assuming all packages changed
-? Select a new version (currently 2.8.0) (Use arrow keys)
-  Patch (2.8.1)
-❯ Minor (2.9.0)
-  Major (3.0.0)
-  Prepatch (2.8.1-alpha.0)
-  Preminor (2.9.0-alpha.0)
-  Premajor (3.0.0-alpha.0)
-  Custom Prerelease
-  Custom Version
+```bash
+npm run sync-deps
 ```
 
 새로운 버전의 마일스톤이나 커밋 히스토리를 참고하여 `CHANGELOG.md`에 변경 사항을 작성합니다.
