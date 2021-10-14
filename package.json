@@ -1,6 +1,9 @@
 {
   "name": "root",
   "private": true,
+  "engines": {
+    "npm": ">= 7"
+  },
   "scripts": {
     "bootstrap": "lerna bootstrap --no-ci && npm run clean-lock",
     "bootstrap:docs": "lerna bootstrap --scope=@titicaca/triple-frontend-docs --force-local",
