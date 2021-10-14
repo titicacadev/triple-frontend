@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/location-properties",
-  "version": "2.40.0",
+  "version": "2.41.0",
   "description": "Location properties: addresses, contact, URL, ...",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",

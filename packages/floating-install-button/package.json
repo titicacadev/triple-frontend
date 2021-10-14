@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/floating-install-button",
-  "version": "2.40.0",
+  "version": "2.41.0",
   "description": "floating triple install button",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

@@ -1,5 +1,36 @@
 # CHANGELOG
 
+## 2.41.0
+
+### replies
+
+- 댓글 컴포넌트를 추가합니다 (#1599)
+
+### standard-action-handler
+
+- Clipboard API에 fallback 함수로 execCommand 함수를 추가합니다. (#1601)
+
+### triple-document
+
+- 쿠폰 다운로드 버튼에서 사용하는 API 요청에 새로운 fetcher 인터페이스 사용 (#1602)
+
+### fetcher
+
+- fetcher 재시도 조건에서 body 존재유무를 제거합니다. (#1604)
+
+### view-utilities
+
+- param-injector에 injectIsSearchAd 추가 (#1605)
+
+### core-elements
+
+- input에 ref prop을 추가합니다. (#1606)
+
+### common
+
+- 패키지의 버전을 올릴 때 lerna 의존성을 제거합니다. 그리고 의존성 변경을 누락했는지 확인하는 job을 추가합니다. (#1607)
+- package-lock 업데이트 (#1608)
+
 ## 2.40.0
 
 ### poi-detail

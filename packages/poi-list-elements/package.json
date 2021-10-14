@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/poi-list-elements",
-  "version": "2.40.0",
+  "version": "2.41.0",
   "description": "Triple POI UI Elements",
   "main": "lib/index.js",
   "files": [

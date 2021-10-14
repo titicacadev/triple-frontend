@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-document",
-  "version": "2.40.0",
+  "version": "2.41.0",
   "description": "TripleDocument: Formatted Content System",
   "main": "lib/index.js",
   "files": [
