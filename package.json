@@ -32,7 +32,9 @@
     "sync-deps": "npm run sync-deps:ts && npm install",
     "prepare": "[ $PREPARE_HUSKY_DISABLED ] || husky install",
     "add": "lerna add --no-bootstrap",
-    "postadd": "npm run sync-deps"
+    "postadd": "npm run sync-deps",
+    "version": "lerna version --no-push --force-publish",
+    "postversion": "npm run sync-deps && git commit --amend -a -C HEAD"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
