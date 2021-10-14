@@ -25,6 +25,37 @@ env:
   SLACK_DETAIL_URL: 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'
 
 jobs:
+  check-dependencies:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.NPM_REGISTRY_URL }}
+
+      - uses: actions/checkout@v2
+
+      - run: npm install
+
+      - run: npm run sync-deps
+
+      - name: Check working tree clean
+        id: check-working-tree
+        run: |
+          DIFF=$(git diff)
+          echo "::set-output name=clean::$([ -z $DIFF ] && echo 'true')"
+
+      - name: Notify checking dependency failure
+        if: steps.check-working-tree.outputs.clean != 'true'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
+          SLACK_COLOR: fail
+          SLACK_TITLE: ':pleading: Deps check FAILURE'
+          SLACK_TOPIC: '의존성 변경이 있습니다. `npm run sync-deps`로 변경을 반영해주세요.'
+        run: npx @titicaca/gha-tools notify
+
   build:
     runs-on: ubuntu-latest
 
