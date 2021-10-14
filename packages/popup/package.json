@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/popup",
-  "version": "2.40.0",
+  "version": "2.41.0",
   "description": "Triple Popup",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

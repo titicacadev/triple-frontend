@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/review",
-  "version": "2.40.0",
+  "version": "2.41.0",
   "description": "UI Components for User Reviews from Triple Service",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",

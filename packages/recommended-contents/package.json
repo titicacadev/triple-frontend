@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/recommended-contents",
-  "version": "2.40.0",
+  "version": "2.41.0",
   "description": "Recommended contents list",
   "main": "lib/index.js",
   "files": [

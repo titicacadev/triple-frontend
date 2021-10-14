@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/date-picker",
-  "version": "2.40.0",
+  "version": "2.41.0",
   "description": "Triple - Date Picker",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",

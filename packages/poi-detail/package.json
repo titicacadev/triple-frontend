@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/poi-detail",
-  "version": "2.40.0",
+  "version": "2.41.0",
   "description": "Components for POI detail page",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",

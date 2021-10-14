@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/resource-list-element",
-  "version": "2.40.0",
+  "version": "2.41.0",
   "description": "Triple - resource-list-element",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
