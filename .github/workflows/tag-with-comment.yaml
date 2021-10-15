@@ -6,7 +6,6 @@ on:
       - 'created'
 
 env:
-  TAG_NAME: release-canary
   GITHUB_API_URL_BASE: https://api.github.com/repos/${{ github.repository }}
   # Node.js
   NODE_VERSION: '16.x'
@@ -50,6 +49,7 @@ jobs:
           echo "SLACK_GITHUB_REF=$PR_REF" >> $GITHUB_ENV
           echo "PR_SHORT_SHA=${PR_SHA:0:7}" >> $GITHUB_ENV
           echo "PR_TITLE=$(cat ./pr.json | jq -r '.title')" >> $GITHUB_ENV
+          echo "TAG_NAME=release-pr-${{ github.event.issue.number }}" >> $GITHUB_ENV
 
       - name: Leave reaction to comment
         run: |
