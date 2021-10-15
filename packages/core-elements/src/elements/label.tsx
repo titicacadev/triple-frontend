@@ -1,6 +1,5 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { ColorSet } from '@titicaca/color-palette'
 import CSS from 'csstype'
 
 import { MarginPadding } from '../commons'
@@ -16,6 +15,8 @@ export type LabelColor =
   | 'green'
   | 'white'
   | 'orange'
+  | 'skyblue'
+  | 'lightpurple'
 
 const LABEL_COLORS: {
   [key in LabelColor]: {
@@ -23,50 +24,62 @@ const LABEL_COLORS: {
   }
 } = {
   blue: {
-    background: ColorSet.blue100,
-    color: ColorSet.blue,
-    emphasizedColor: ColorSet.white,
-    emphasizedBackground: ColorSet.blue,
+    background: 'var(--color-blue100)',
+    color: 'var(--color-blue)',
+    emphasizedColor: 'var(--color-white)',
+    emphasizedBackground: 'var(--color-blue)',
   },
   red: {
-    background: ColorSet.red100,
-    color: ColorSet.red,
-    emphasizedColor: ColorSet.white,
-    emphasizedBackground: ColorSet.red,
+    background: 'var(--color-red100)',
+    color: 'var(--color-red)',
+    emphasizedColor: 'var(--color-wthie)',
+    emphasizedBackground: 'var(--color-red)',
   },
   purple: {
-    background: ColorSet.purple100,
-    color: ColorSet.purple,
-    emphasizedColor: ColorSet.white,
-    emphasizedBackground: ColorSet.purple,
+    background: 'var(--color-purple100)',
+    color: 'var(--color-purple)',
+    emphasizedColor: 'var(--color-white)',
+    emphasizedBackground: 'var(--color-purple)',
   },
   gray: {
-    background: ColorSet.gray50,
-    color: ColorSet.gray700,
-    emphasizedColor: ColorSet.white,
-    emphasizedBackground: ColorSet.gray700,
+    background: 'var(--color-gray50)',
+    color: 'var(--color-gray700)',
+    emphasizedColor: 'var(--color-white)',
+    emphasizedBackground: 'var(--color-gray700)',
   },
   green: {
-    background: ColorSet.mint100,
-    color: ColorSet.mint,
-    emphasizedColor: ColorSet.white,
-    emphasizedBackground: ColorSet.mint,
+    background: 'var(--color-mint100)',
+    color: 'var(--color-mint)',
+    emphasizedColor: 'var(--color-white)',
+    emphasizedBackground: 'var(--color-mint)',
   },
   /**
    * white, orange 의 경우 강조 타입만 정의된 상태
    */
   white: {
-    background: ColorSet.white,
-    color: ColorSet.gray,
-    emphasizedColor: ColorSet.gray,
-    emphasizedBackground: ColorSet.white,
-    borderColor: ColorSet.gray200,
+    background: 'var(--color-white)',
+    color: 'var(--color-gray)',
+    emphasizedColor: 'var(--color-gray)',
+    emphasizedBackground: 'var(--color-white)',
+    borderColor: 'var(--color-gray200)',
   },
   orange: {
-    background: ColorSet.white,
-    color: ColorSet.orange,
-    emphasizedColor: ColorSet.white,
-    emphasizedBackground: ColorSet.orange,
+    background: 'var(--color-white)',
+    color: 'var(--color-orange)',
+    emphasizedColor: 'var(--color-white)',
+    emphasizedBackground: 'var(--color-orange)',
+  },
+  skyblue: {
+    background: 'var(--color-mint)',
+    color: 'var(--color-white)',
+    emphasizedColor: 'var(--color-mint)',
+    emphasizedBackground: 'var--color-white)',
+  },
+  lightpurple: {
+    background: 'var(--color-lightpurple)',
+    color: 'var(--color-white)',
+    emphasizedColor: 'var(--color-lightpurple)',
+    emphasizedBackground: 'var--color-white)',
   },
 }
 
