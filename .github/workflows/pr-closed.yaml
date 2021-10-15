@@ -31,6 +31,7 @@ jobs:
 
       - name: Delete release tag of this pull request
         if: ${{ steps.check-tag-ref.outputs.status == '200' }}
+        # https://docs.github.com/en/rest/reference/git#delete-a-reference
         run: |
           curl --url $GITHUB_API_URL_BASE/git/refs/tags/$TAG_NAME \
             -X DELETE \
