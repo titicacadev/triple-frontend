@@ -34,6 +34,8 @@ export const GlobalStyle = createGlobalStyle`
     --color-white: rgba(255, 255, 255, 1);
     --color-white600: rgba(255, 255, 255, 0.6);
     --color-white900: rgba(255, 255, 255, 0.9);
+    --color-skyblue: rgba(55, 168, 255, 1);
+    --color-lightpurple: rgba(151, 95, 254, 1);
 
     /** genie */
     --color-azul: rgba(31, 87, 250, 1);
