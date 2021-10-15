@@ -32,7 +32,7 @@ const LABEL_COLORS: {
   red: {
     background: 'var(--color-red100)',
     color: 'var(--color-red)',
-    emphasizedColor: 'var(--color-wthie)',
+    emphasizedColor: 'var(--color-white)',
     emphasizedBackground: 'var(--color-red)',
   },
   purple: {
