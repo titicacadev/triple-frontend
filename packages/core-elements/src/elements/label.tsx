@@ -70,16 +70,16 @@ const LABEL_COLORS: {
     emphasizedBackground: 'var(--color-orange)',
   },
   skyblue: {
-    background: 'var(--color-mint)',
+    background: 'var(--color-skyblue)',
     color: 'var(--color-white)',
-    emphasizedColor: 'var(--color-mint)',
-    emphasizedBackground: 'var--color-white)',
+    emphasizedColor: 'var(--color-white)',
+    emphasizedBackground: 'var(--color-skyblue)',
   },
   lightpurple: {
     background: 'var(--color-lightpurple)',
     color: 'var(--color-white)',
-    emphasizedColor: 'var(--color-lightpurple)',
-    emphasizedBackground: 'var--color-white)',
+    emphasizedColor: 'var(--color-white)',
+    emphasizedBackground: 'var(--color-lightpurple)',
   },
 }
 
