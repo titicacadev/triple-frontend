@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 3.0.1
+
+## common
+
+- CI/CD에서 의존성을 설치할 때 .npm을 캐싱 ([#1615](https://github.com/titicacadev/triple-frontend/pull/1615))
+- 버전 관리 방법을 lerna로 원상복구 ([#1613](https://github.com/titicacadev/triple-frontend/pull/1613))
+- lerna bootstrap 관련 스크립트 제거 ([#1613](https://github.com/titicacadev/triple-frontend/pull/1613))
+
+## core-elements
+
+- z-index의 기본 값이 중복으로 설정되는 것을 방지 ([#1618](https://github.com/titicacadev/triple-frontend/pull/1618))
+
+## fetcher
+
+- 응답이 ok일 때 `result`에 할당 ([#1619](https://github.com/titicacadev/triple-frontend/pull/1619))
+
 ## 3.0.0
 
 ### public-header
