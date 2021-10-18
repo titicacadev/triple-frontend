@@ -8,6 +8,37 @@ import {
   RequestOptions,
 } from './types'
 
+export async function fetcher<T = any, E = HttpErrorResponse>(
+  url: string,
+  options: RequestOptions,
+): Promise<HttpResponse<T, E>> {
+  const { retryable, method = HTTPMethods.GET } = options
+
+  const fetchFunction =
+    method === HTTPMethods.GET && retryable
+      ? makeFetchRetryable({
+          fetch,
+          retryCount: 3,
+        })
+      : fetch
+
+  const response: HttpResponse<T, E> = await fetchFunction(
+    ...makeRequestParams(url, options),
+  )
+  const body = await readResponseBody(response)
+
+  if (response.ok === true) {
+    response.result = body as T | undefined
+  } else {
+    response.error = new HttpError(
+      new Error(typeof body !== 'string' ? JSON.stringify(body) : body),
+      response,
+    )
+  }
+
+  return response
+}
+
 const refetchStatuses = [502, 503, 504]
 
 function makeFetchRetryable({
@@ -49,35 +80,4 @@ function makeFetchRetryable({
 
     return retryer(retryCount)
   }
-}
-
-export async function fetcher<T = any, E = HttpErrorResponse>(
-  url: string,
-  options: RequestOptions,
-): Promise<HttpResponse<T, E>> {
-  const { retryable, method = HTTPMethods.GET } = options
-
-  const fetchFunction =
-    method === HTTPMethods.GET && retryable
-      ? makeFetchRetryable({
-          fetch,
-          retryCount: 3,
-        })
-      : fetch
-
-  const response: HttpResponse<T, E> = await fetchFunction(
-    ...makeRequestParams(url, options),
-  )
-  const body = await readResponseBody(response)
-
-  if (response.ok === true) {
-    response.result = body as T | undefined
-  } else {
-    response.error = new HttpError(
-      new Error(typeof body !== 'string' ? JSON.stringify(body) : body),
-      response,
-    )
-  }
-
-  return response
 }
