@@ -70,11 +70,9 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
   )
   const body = await readResponseBody(response)
 
-  if (response.status === 200) {
+  if (response.ok === true) {
     response.result = body as T | undefined
-  }
-
-  if (!response.ok) {
+  } else {
     response.error = new HttpError(
       new Error(typeof body !== 'string' ? JSON.stringify(body) : body),
       response,
