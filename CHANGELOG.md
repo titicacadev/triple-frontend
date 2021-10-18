@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 3.0.2
+
+### core-elements
+
+- sticky-header의 zTier, zIndex 기본 값 수정 (#1621)
+
+### view-utilities
+
+- 오타 수정 (#1622)
+
 ## 3.0.1
 
 ## common
