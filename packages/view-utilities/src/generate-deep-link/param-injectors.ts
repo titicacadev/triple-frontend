@@ -47,7 +47,7 @@ export function injectUTMContext({
 }
 
 /**
- * 검색 광고라면 pid 값으로 'searched'을 사용합니다.
+ * 검색 광고라면 pid 값으로 'searchad'을 사용합니다.
  *
  * @param utmContext
  */
