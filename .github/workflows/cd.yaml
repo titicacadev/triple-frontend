@@ -6,6 +6,7 @@ on:
       - '**'
     tags:
       - 'release-prod-*'
+      - 'release-pr-*'
 
 env:
   GITHUB_API_URL_BASE: https://api.github.com/repos/${{ github.repository }}
@@ -68,6 +69,7 @@ jobs:
 
   release:
     needs: wait-for-ci
+    if: startsWith(github.event.ref, 'refs/tags/release-prod-')
     runs-on: ubuntu-latest
 
     steps:
@@ -189,3 +191,78 @@ jobs:
             -H 'Authorization: token ${{ secrets.TRIPLE_BOT_GITHUB_TOKEN }}' \
             -H 'Content-Type: application/json' \
             -d "{\"force\":true,\"sha\":\"${TAG_SHA}\"}"
+
+  canary-release:
+    needs: wait-for-ci
+    if: startsWith(github.event.ref, 'refs/tags/release-pr-')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.NPM_REGISTRY_URL }}
+
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Get release version
+        env:
+          TAG_NAME: ${{ github.event.ref }}
+        run: |
+          NEXT_VERSION=$(node -e "const [major, minor, patch] = require('./lerna.json').version.split('.');console.log(['v'+major, minor, parseInt(patch, 10) + 1].join('.'))")
+
+          PR_NUMBER=${TAG_NAME:11} # release-pr-<num>에서 <num>만 추출
+
+          REF_COUNT=$(node -p -e "Math.max(0, parseInt((\"$(git describe --always --long --dirty --match "v*.*.*")\".match(/^(?:.*@)?.*-(\d+)-.*?$/) || ['0', '0'])[1], 10) - 1)")
+
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
+          echo "DEPLOY_VERSION=$NEXT_VERSION-pr-$PR_NUMBER.$REF_COUNT" >> $GITHUB_ENV
+
+      - name: Notify release start to Slack
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
+          SLACK_COLOR: gray
+          SLACK_TITLE: ':rocket: Release WORKING'
+          SLACK_TOPIC: ${{ env.DEPLOY_VERSION }}
+        run: npx @titicaca/gha-tools notify
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-npm-cache-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache-
+
+      - name: Install dependencies
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
+        run: npm ci
+
+      - run: npm run build
+
+      - name: Publish as canary
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READ_WRITE_NPM_TOKEN }}
+        run: npx lerna publish --canary --force-publish --yes --preid "pr-${{ env.PR_NUMBER }}"
+
+      - name: Notify release success to Slack
+        if: success()
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
+          SLACK_COLOR: success
+          SLACK_TITLE: ':tada: Release SUCCESS'
+          SLACK_TOPIC: ${{ env.DEPLOY_VERSION }}
+        run: npx @titicaca/gha-tools notify
+
+      - name: Notify release failure to Slack
+        if: failure()
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
+          SLACK_COLOR: fail
+          SLACK_TITLE: ':pleading: Release FAILURE'
+          SLACK_TOPIC: ${{ env.DEPLOY_VERSION }}
+        run: npx @titicaca/gha-tools notify
