@@ -249,6 +249,15 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.READ_WRITE_NPM_TOKEN }}
         run: npx lerna publish --canary --force-publish --yes --preid "pr-${{ env.PR_NUMBER }}"
 
+      - name: Notify released version on pull request
+        run: |
+          curl -v \
+            --url $GITHUB_API_URL_BASE/issues/${{ env.PR_NUMBER }}/comments \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -f --request POST \
+            -d "{\"body\":\"${{ env.DEPLOY_VERSION }} has been published!\"}"
+
       - name: Notify release success to Slack
         if: success()
         env:
