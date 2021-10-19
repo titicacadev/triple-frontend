@@ -42,14 +42,14 @@ jobs:
         run: |
           VERSION="v$(cat ./lerna.json | jq -r '.version')"
           echo "DEPLOY_VERSION=$VERSION" >> GITHUB_ENV
-          echo "SLACK_TOPIC=$VERSION" >> GITHUB_ENV
 
-      - name: Notify build start to slack
+      - name: Notify deploy start to slack
         env:
-          SLACK_TITLE: ':rocket: Build Started'
           NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
-        run: |
-          npx @titicaca/gha-tools notify
+          SLACK_COLOR: gray
+          SLACK_TITLE: ':rocket: Release WORKING'
+          SLACK_TOPIC: ${{ env.DEPLOY_VERSION }}
+        run: npx @titicaca/gha-tools notify
 
       - name: Cache dependencies
         uses: actions/cache@v2
@@ -68,31 +68,6 @@ jobs:
         run: |
           npm run build
 
-      - name: Notify build success to slack
-        if: success()
-        env:
-          SLACK_TITLE: ':tada: Build Succeed'
-          SLACK_COLOR: success
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
-        run: |
-          npx @titicaca/gha-tools notify
-
-      - name: Notify build fail to slack
-        if: failure()
-        env:
-          SLACK_TITLE: ':pleading: Build Failed'
-          SLACK_COLOR: fail
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
-        run: |
-          npx @titicaca/gha-tools notify
-
-      - name: Notify deploy start to slack
-        env:
-          SLACK_TITLE: ':rocket: Deploy Started'
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
-        run: |
-          npx @titicaca/gha-tools notify
-
       - name: Release
         run: |
           git stash
@@ -103,20 +78,20 @@ jobs:
       - name: Notify deploy success to slack
         if: success()
         env:
-          SLACK_TITLE: ':tada: Deploy Succeed'
-          SLACK_COLOR: success
           NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
-        run: |
-          npx @titicaca/gha-tools notify
+          SLACK_COLOR: success
+          SLACK_TITLE: ':tada: Release SUCCESS'
+          SLACK_TOPIC: ${{ env.DEPLOY_VERSION }}
+        run: npx @titicaca/gha-tools notify
 
       - name: Notify deploy fail to slack
         if: failure()
         env:
-          SLACK_TITLE: ':pleading: Deploy Failed'
-          SLACK_COLOR: fail
           NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
-        run: |
-          npx @titicaca/gha-tools notify
+          SLACK_COLOR: fail
+          SLACK_TITLE: ':pleading: Release FAILURE'
+          SLACK_TOPIC: ${{ env.DEPLOY_VERSION }}
+        run: npx @titicaca/gha-tools notify
 
   tag:
     needs: release
