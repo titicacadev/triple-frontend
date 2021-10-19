@@ -214,7 +214,7 @@ jobs:
         run: |
           NEXT_VERSION=$(node -e "const [major, minor, patch] = require('./lerna.json').version.split('.');console.log(['v'+major, minor, parseInt(patch, 10) + 1].join('.'))")
 
-          PR_NUMBER=${TAG_NAME:11} # release-pr-<num>에서 <num>만 추출
+          PR_NUMBER=${TAG_NAME:21} # refs/tags/release-pr-<num>에서 <num>만 추출
 
           REF_COUNT=$(node -p -e "Math.max(0, parseInt((\"$(git describe --always --long --dirty --match "v*.*.*")\".match(/^(?:.*@)?.*-(\d+)-.*?$/) || ['0', '0'])[1], 10) - 1)")
 
