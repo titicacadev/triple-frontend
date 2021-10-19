@@ -30,12 +30,10 @@ jobs:
           echo "::set-output name=status::$(cat status)"
 
       - name: Delete release tag of this pull request
-        if: ${{ steps.check-tag-ref.outputs.status == '200' }}
-        # https://docs.github.com/en/rest/reference/git#delete-a-reference
-        run: |
-          curl --url $GITHUB_API_URL_BASE/git/refs/tags/$TAG_NAME \
-            -X DELETE \
-            -H "Accept: application/vnd.github.v3+json" \
-            -H "Authorization token ${{ secrets.TRIPLE_BOT_GITHUB_TOKEN }}" \
-            -sI \
-            -o /dev/null \
+        uses: dev-drprasad/delete-tag-and-release@v0.2.0
+        with:
+          delete_release: true
+          tag_name: ${{ env.TAG_NAME }}
+          repo: ${{ github.repository }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
