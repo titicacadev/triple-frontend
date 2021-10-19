@@ -142,35 +142,57 @@ jobs:
     steps:
       - uses: actions/checkout@v2-beta
 
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          registry-url: ${{ env.NPM_REGISTRY_URL }}
-
-      - name: Tag with annotation
+      - name: Get released version
         run: |
-          VERSION="v$(cat ./lerna.json | jq -r '.version')"
+          echo "TAG_NAME=v$(cat ./lerna.json | jq -r '.version')" >> $GITHUB_ENV
 
-          curl -f --request POST --url https://api.github.com/repos/${{ github.repository }}/git/tags \
-            -H 'Authorization: token ${{ secrets.GHA_TOKEN }}' \
+      - name: Create tag object
+        id: create-tag-object
+        # https://docs.github.com/en/free-pro-team@latest/rest/reference/git#create-a-tag-object
+        run: |
+          curl --url $GITHUB_API_URL_BASE/git/tags \
+            -f \
+            --request POST \
+            -H 'Authorization: token ${{ secrets.TRIPLE_BOT_GITHUB_TOKEN }}' \
             -H 'Content-Type: application/json' \
-            -d "{\"tag\":\"${VERSION}\",\"message\":\"${VERSION}\",\"object\":\"${GITHUB_SHA}\",\"type\":\"commit\"}" > tag.json
+            -d "{\"tag\":\"$TAG_NAME\",\"message\":\"released at \`${{ github.event.updated_at }}\`\",\"object\":\"${PR_SHA}\",\"type\":\"commit\"}" \
+          > tag.json
+          echo "::set-output name=tag-sha::$(node -p -e 'require(`./tag.json`).sha')"
 
-          TAG_SHA="$(node -p -e 'require(`./tag.json`).sha')"
+      - name: Check tag ref exist
+        id: check-tag-ref
+        # https://docs.github.com/en/free-pro-team@latest/rest/reference/git#get-a-reference
+        run: |
+          curl --url $GITHUB_API_URL_BASE/git/refs/tags/$TAG_NAME \
+            -sI \
+            -o /dev/null \
+            -w "%{http_code}" \
+            -H 'Authorization: token ${{ secrets.TRIPLE_BOT_GITHUB_TOKEN }}' \
+          > status
+          echo "::set-output name=status::$(cat status)"
 
-          curl -s -o /dev/null -I -w "%{http_code}" \
-            --url https://api.github.com/repos/${{ github.repository }}/git/refs/tags/${VERSION} \
-            -H 'Authorization: token ${{ secrets.GHA_TOKEN }}' > status
+      - name: Create new tag ref
+        if: ${{ steps.check-tag-ref.outputs.status != '200' }}
+        env:
+          TAG_SHA: ${{ steps.create-tag-object.outputs.tag-sha }}
+        # https://docs.github.com/en/free-pro-team@latest/rest/reference/git#create-a-reference
+        run: |
+          curl --url $GITHUB_API_URL_BASE/git/refs \
+            -f \
+            --request POST \
+            -H 'Authorization: token ${{ secrets.TRIPLE_BOT_GITHUB_TOKEN }}' \
+            -H 'Content-Type: application/json' \
+            -d "{\"ref\":\"refs/tags/$TAG_NAME\",\"sha\":\"$TAG_SHA\"}"
 
-          if [[ `cat status` == "200" ]]; then
-            curl -f --request PATCH --url https://api.github.com/repos/${{ github.repository }}/git/refs/tags/${VERSION} \
-              -H 'Authorization: token ${{ secrets.GHA_TOKEN }}' \
-              -H 'Content-Type: application/json' \
-              -d "{\"force\":true,\"sha\":\"${TAG_SHA}\"}"
-          else
-            curl -f --request POST --url https://api.github.com/repos/${{ github.repository }}/git/refs \
-              -H 'Authorization: token ${{ secrets.GHA_TOKEN }}' \
-              -H 'Content-Type: application/json' \
-              -d "{\"ref\":\"refs/tags/${VERSION}\",\"sha\":\"${TAG_SHA}\"}"
-          fi
+      - name: Update tag ref
+        if: ${{ steps.check-tag-ref.outputs.status == '200' }}
+        env:
+          TAG_SHA: ${{ steps.create-tag-object.outputs.tag-sha }}
+        # https://docs.github.com/en/free-pro-team@latest/rest/reference/git#update-a-reference
+        run: |
+          curl --url $GITHUB_API_URL_BASE/git/refs/tags/$TAG_NAME \
+            -f \
+            --request PATCH \
+            -H 'Authorization: token ${{ secrets.TRIPLE_BOT_GITHUB_TOKEN }}' \
+            -H 'Content-Type: application/json' \
+            -d "{\"force\":true,\"sha\":\"${TAG_SHA}\"}"
