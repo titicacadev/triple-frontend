@@ -79,10 +79,8 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.NPM_REGISTRY_URL }}
 
-      - name: Define variables
-        run: |
-          VERSION="v$(cat ./lerna.json | jq -r '.version')"
-          echo "DEPLOY_VERSION=$VERSION" >> GITHUB_ENV
+      - name: Get release version
+        run: echo "DEPLOY_VERSION=v$(cat ./lerna.json | jq -r '.version')" >> GITHUB_ENV
 
       - name: Notify deploy start to slack
         env:
@@ -105,16 +103,12 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
         run: npm ci
 
-      - name: Build
-        run: |
-          npm run build
+      - run: npm run build
 
       - name: Release
-        run: |
-          git stash
-          npx lerna publish from-package --yes
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READ_WRITE_NPM_TOKEN }}
+        run: npx lerna publish from-package --yes
 
       - name: Notify deploy success to slack
         if: success()
@@ -143,8 +137,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Get released version
-        run: |
-          echo "TAG_NAME=v$(cat ./lerna.json | jq -r '.version')" >> $GITHUB_ENV
+        run: echo "TAG_NAME=v$(cat ./lerna.json | jq -r '.version')" >> $GITHUB_ENV
 
       - name: Create tag object
         id: create-tag-object
