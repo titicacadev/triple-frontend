@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 3.1.0
+
+### core-elements
+
+- GlobalColorSet (skyblue, lightpurple)을 추가합니다. (#1617)
+
+### view-utilities
+
+- 호텔의 라우터 경로중 요금 상세에 대한 ROUTERLIST_REGEXES 를 추가합니다 (#1616)
+
+### common
+
+- PR에 붙이는 태그에 PR 넘버 추가 (#1614)
+
 ## 3.0.2
 
 ### core-elements
