@@ -251,7 +251,7 @@ jobs:
 
       - name: Notify released version on pull request
         run: |
-          curl -v \
+          curl \
             --url $GITHUB_API_URL_BASE/issues/${{ env.PR_NUMBER }}/comments \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Content-Type: application/json" \
