@@ -9,6 +9,7 @@ const PUBLIC_ROUTELIST_REGEXES = [
   /^\/hotels\/list(\/.+)?$/,
   /^\/hotels\/curation(\/.+)?$/,
   /^\/hotels\/[^/]+\/rate(\/.+?)?$/,
+  /^\/hotels\/[^/]+\/breakdown(\/.+?)?$/,
   /^(\/hotels)?\/regions\/[^/]+\/hotel-areas$/,
   /^\/tna\/regions\/[^/]+\/products\/[^/]+$/,
   /^\/tna\/products\/[^/]+$/,
