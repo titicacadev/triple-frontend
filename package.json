@@ -14,12 +14,6 @@
     "build-declarations": "tsc -b packages/*/tsconfig.build.json",
     "build:storybook": "lerna exec --scope @titicaca/triple-frontend-docs 'npm run build'",
     "dev-docs": "lerna exec --scope @titicaca/triple-frontend-docs npm run dev",
-    "lint-etc": "prettier --check '**/*.{json,md,yaml}'",
-    "lint-etc-fix": "prettier --write '**/*.{json,md,yaml}'",
-    "lint-es": "eslint '{docs,packages,tests/src}/**/*.{ts,tsx,js,mdx}'",
-    "lint-es-fix": "npm run lint-es -- --fix",
-    "lint-style": "stylelint './**/*.{ts,tsx,js}'",
-    "lint": "concurrently --names eslint,stylelint,jsonlint 'npm:lint-es' 'npm:lint-style' 'npm:lint-etc'",
     "test": "jest",
     "test:ci": "jest --ci",
     "test:watch": "jest --watch",
@@ -34,7 +28,14 @@
     "add": "lerna add --no-bootstrap",
     "postadd": "npm run sync-deps",
     "version": "lerna version --no-push --force-publish",
-    "postversion": "npm run sync-deps && git commit --amend -a -C HEAD"
+    "postversion": "npm run sync-deps && git commit --amend -a -C HEAD",
+    "lint:es": "eslint '**/*.{ts,tsx,js,mdx}'",
+    "lint:es:fix": "npm run lint:es -- --fix",
+    "lint:etc": "prettier --check '**/*.{json,md,yaml}'",
+    "lint:etc:fix": "npm run lint:etc -- --write",
+    "lint:style": "stylelint '**/*.{ts,tsx,js}'",
+    "lint": "concurrently --names es,style,etc 'npm:lint:es' 'npm:lint:style' 'npm:lint:etc'",
+    "lint:fix": "concurrently --names es,style,etc 'npm:lint:es:fix' 'npm:lint:style' 'npm:lint:etc:fix'"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
