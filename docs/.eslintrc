@@ -1,9 +1,0 @@
-{
-  "extends": ["../.eslintrc"],
-  "overrides": [
-    {
-      "files": ["*.mdx"],
-      "extends": "plugin:mdx/recommended"
-    }
-  ]
-}

@@ -5,5 +5,11 @@
   },
   "globals": {
     "google": true
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.mdx"],
+      "extends": "plugin:mdx/recommended"
+    }
+  ]
 }
