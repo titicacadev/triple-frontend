@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 3.2.0
+
+### common
+
+- doc의 자체 eslint 규칙을 root로 통합합니다. (#1635)
+- 린트 관련 스크립트 정리 (#1634)
+- CD 워크플로에 카나리 릴리즈 job을 추가합니다. (#1628)
+- 태그 삭제 API를 Github Actions로 대체 (#1627)
+
+### view-utilities
+
+- 호텔의 라우터 경로 중 요금 상세페이지에 대한 ROUTERLIST_REGEXES를 추가합니다. (#1632)
+
 ## 3.1.0
 
 ### core-elements
