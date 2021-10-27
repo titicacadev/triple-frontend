@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 3.2.1
+
+### modal
+
+- 버튼에 box-sizing css 추가 (#1638)
+
 ## 3.2.0
 
 ### common
