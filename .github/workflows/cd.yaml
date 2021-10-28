@@ -150,7 +150,7 @@ jobs:
             --request POST \
             -H 'Authorization: token ${{ secrets.TRIPLE_BOT_GITHUB_TOKEN }}' \
             -H 'Content-Type: application/json' \
-            -d "{\"tag\":\"$TAG_NAME\",\"message\":\"released at \`${{ github.event.updated_at }}\`\",\"object\":\"${PR_SHA}\",\"type\":\"commit\"}" \
+            -d "{\"tag\":\"$TAG_NAME\",\"message\":\"released at \`${{ github.event.updated_at }}\`\",\"object\":\"${GITHUB_SHA}\",\"type\":\"commit\"}" \
           > tag.json
           echo "::set-output name=tag-sha::$(node -p -e 'require(`./tag.json`).sha')"
 
