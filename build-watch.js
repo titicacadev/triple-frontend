@@ -4,8 +4,7 @@ const { exec } = require('child_process')
 const chokidar = require('chokidar')
 const debounce = require('lodash.debounce')
 
-const BUILD_RESOURCES =
-  'BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments'
+const BUILD_RESOURCES = 'swc src -d lib --config-file \\$LERNA_ROOT_PATH/.swcrc'
 
 const watcher = chokidar.watch('packages/*/src/**/*', {
   ignored: /test|spec|__test__/,
@@ -25,7 +24,7 @@ const BUILDERS = {}
 function createBuilder(packageName) {
   return () => {
     exec(
-      `lerna exec --stream --scope=@titicaca/${packageName} '${BUILD_RESOURCES}'`,
+      `lerna exec --stream --scope=@titicaca/${packageName} -- ${BUILD_RESOURCES}`,
       (err, stdout) => {
         if (err) {
           error(err)
