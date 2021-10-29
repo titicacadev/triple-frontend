@@ -1,19 +1,47 @@
 import React from 'react'
-import { action } from '@storybook/addon-actions'
-import Replies from '@titicaca/replies'
+import Replies, { ResourceType } from '@titicaca/replies'
+import { Story } from '@storybook/react'
 
 export default {
   title: 'Replies',
+  component: Replies,
+  argTypes: {
+    resourceId: {
+      type: 'string',
+      required: true,
+    },
+    resourceType: {
+      options: ['itinerary', 'review', 'article'],
+      control: {
+        type: 'select',
+        required: true,
+      },
+    },
+    registerPlaceholder: {
+      type: 'string',
+      required: false,
+    },
+    size: {
+      type: 'number',
+      required: false,
+      defaultValue: 10,
+    },
+  },
 }
 
-export function RepliesStory() {
-  return (
-    <Replies
-      resourceId="14a66dcf-b170-4edf-967b-b830d2362109"
-      resourceType="itinerary"
-      onClick={action('onClick 적용된 아이콘, 버튼 클릭')}
-    />
-  )
+const RepliesTemplate: Story<{
+  resourceId: string
+  resourceType: ResourceType
+  registerPlaceholder?: string
+  size?: number
+  onClick: () => void
+}> = (args) => <Replies {...args} />
+
+export const BaseReplies = RepliesTemplate.bind({})
+
+BaseReplies.args = {
+  resourceId: '14a66dcf-b170-4edf-967b-b830d2362109',
+  resourceType: 'itinerary',
 }
 
-RepliesStory.storyName = '기본 댓글'
+BaseReplies.storyName = '기본 댓글'
