@@ -7,6 +7,7 @@ module.exports = {
     '@storybook/addon-knobs',
     '@storybook/addon-viewport/register',
     '@storybook/addon-docs',
+    'storybook-addon-next-router',
   ],
   webpackFinal: async (config, { configType }) => {
     config.mode = 'development'
