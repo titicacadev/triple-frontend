@@ -49,7 +49,7 @@ export const AfterActionSheet = () => {
 AfterActionSheet.storyName = '팝업과 액션시트가 같은 계층에 있는 경우'
 
 export const WithInActionSheet = () => {
-  ;<>
+  return (
     <Popup title="팝업입니다" open={true}>
       <EmptyScroll>Scroll........</EmptyScroll>
       <ActionSheet
@@ -60,7 +60,7 @@ export const WithInActionSheet = () => {
         <ActionSheet.Item>메뉴 2</ActionSheet.Item>
       </ActionSheet>
     </Popup>
-  </>
+  )
 }
 WithInActionSheet.storyName = '팝업 안에 액션시트가 있는 경우'
 
