@@ -1,4 +1,4 @@
-export type ResourceType = 'review' | 'itinerary'
+export type ResourceType = 'review' | 'itinerary' | 'article'
 
 export interface Reply {
   id: string
