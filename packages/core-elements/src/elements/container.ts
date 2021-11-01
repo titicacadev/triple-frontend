@@ -115,7 +115,7 @@ const Container = styled.div<ContainerPropsFromTemplate>`
   ${({ clearing }) =>
     clearing &&
     `
-      &:after {
+      &::after {
         content: '';
         display: block;
         clear: both;
