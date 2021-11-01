@@ -76,7 +76,8 @@ it('should accept sizing props', () => {
 it('should accept centered mixin', () => {
   const tree = renderer.create(<Container centered />).toJSON()
 
-  expect(tree).toHaveStyleRule('margin', '0 auto 0 auto')
+  expect(tree).toHaveStyleRule('margin-left', 'auto')
+  expect(tree).toHaveStyleRule('margin-right', 'auto')
 })
 
 it('should accept borderRadius mixin', () => {
@@ -105,4 +106,12 @@ it('should accept shadow mixin', () => {
   const tree = renderer.create(<Container shadow="large" />).toJSON()
 
   expect(tree).toHaveStyleRule('box-shadow', '0 0 30px 0 rgba(0,0,0,0.1)')
+})
+
+it('should override style with css prop', () => {
+  const tree = renderer
+    .create(<Container position="absolute" css={{ position: 'fixed' }} />)
+    .toJSON()
+
+  expect(tree).toHaveStyleRule('position', 'fixed')
 })
