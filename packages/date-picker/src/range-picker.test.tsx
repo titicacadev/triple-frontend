@@ -9,9 +9,9 @@ jest.mock('./use-public-holidays', () => ({
 }))
 
 describe('RangePicker', () => {
-  it('should select today when enableSameDay is false', async () => {
+  it('should select today when enableSameDay is false', () => {
     const handleDatesChange = jest.fn()
-    const { findAllByRole } = render(
+    const { getAllByRole } = render(
       <RangePicker
         startDate={null}
         endDate={null}
@@ -20,7 +20,7 @@ describe('RangePicker', () => {
       />,
     )
 
-    const dateCells = await findAllByRole('gridcell')
+    const dateCells = getAllByRole('gridcell')
     const todayCell = dateCells.find((el) =>
       el.classList.contains('DayPicker-Day--today'),
     )
@@ -36,13 +36,13 @@ describe('RangePicker', () => {
     })
   })
 
-  it('should not select same day without enableSameDay', async () => {
+  it('should not select same day without enableSameDay', () => {
     let startDate = null
     const handleDatesChange = jest.fn(({ startDate: newStartDate }) => {
       startDate = newStartDate
     })
 
-    const { queryAllByRole, rerender } = render(
+    const { getAllByRole, rerender } = render(
       <RangePicker
         startDate={null}
         endDate={null}
@@ -51,7 +51,7 @@ describe('RangePicker', () => {
       />,
     )
 
-    const dateCells = queryAllByRole('gridcell')
+    const dateCells = getAllByRole('gridcell')
     const targetCell = dateCells[0]
     if (!targetCell) {
       throw new Error('Cannot find target cell')
