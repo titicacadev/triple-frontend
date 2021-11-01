@@ -39,7 +39,9 @@ export default function AutoResizingTextarea({
     const previousRows = event.target.rows
     event.target.rows = minRows
 
-    const currentRows = ~~(event.target.scrollHeight / TEXTAREA_LINE_HEIGHT)
+    const currentRows = Math.floor(
+      event.target.scrollHeight / TEXTAREA_LINE_HEIGHT,
+    )
 
     if (currentRows === previousRows) {
       event.target.rows = currentRows
