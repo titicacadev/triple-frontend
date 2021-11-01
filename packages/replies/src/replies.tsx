@@ -11,7 +11,7 @@ import { findFoldedPosition, formatTimestamp } from '@titicaca/view-utilities'
 import styled from 'styled-components'
 
 import { fetchReplies, writeReply } from './replies-api-clients'
-import { Reply, ResourceType } from './types'
+import { Reply, ResourceType, Writer } from './types'
 import AutoResizingTextarea from './auto-resizing-textarea'
 
 const MoreButton = styled.button`
@@ -57,6 +57,11 @@ const RegisterButton = styled.button`
 const NestedResourceListItem = styled(List.Item)`
   margin-top: 20px;
   padding-left: 40px;
+`
+
+const MentionUserLink = styled.a`
+  color: var(--color-blue);
+  margin-right: 5px;
 `
 
 export default function Replies({
@@ -213,7 +218,15 @@ function NoReplyPlaceholder({
   )
 }
 
-function Content({ text, blinded }: { text: string; blinded: boolean }) {
+function Content({
+  text,
+  mentionedUser,
+  blinded,
+}: {
+  text: string
+  mentionedUser?: Writer
+  blinded: boolean
+}) {
   const [unfolded, setUnfolded] = useState(false)
 
   const foldedPosition = findFoldedPosition(5, text)
@@ -221,11 +234,20 @@ function Content({ text, blinded }: { text: string; blinded: boolean }) {
   return (
     <>
       <Text inline padding={{ top: 3, bottom: 5 }} size={15}>
-        {blinded
-          ? '신고가 접수되어 블라인드 처리되었습니다.'
-          : !unfolded && foldedPosition
-          ? text.slice(0, foldedPosition)
-          : text}
+        {blinded ? (
+          '신고가 접수되어 블라인드 처리되었습니다.'
+        ) : !unfolded && foldedPosition ? (
+          text.slice(0, foldedPosition)
+        ) : (
+          <>
+            {mentionedUser && (
+              <MentionUserLink href={mentionedUser?.href as string}>
+                {mentionedUser?.name}
+              </MentionUserLink>
+            )}
+            <span>{text}</span>
+          </>
+        )}
       </Text>
 
       {!blinded && !unfolded && foldedPosition ? (
@@ -275,6 +297,7 @@ function BaseReply({ reply, onClick }: { reply: Reply; onClick: () => void }) {
 
         <Container padding={{ top: 3 }}>
           <Content
+            mentionedUser={content.mentionedUser}
             blinded={!!blinded}
             text={content.text || content.markdownText || ''}
           />
