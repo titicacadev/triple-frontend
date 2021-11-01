@@ -2,6 +2,8 @@ import React, { ChangeEvent, useState } from 'react'
 import styled from 'styled-components'
 
 const Textarea = styled.textarea`
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   resize: none;
   width: calc(100% - 46px);
   font-size: 15px;
@@ -10,12 +12,14 @@ const Textarea = styled.textarea`
   border: none;
   padding: 0;
   color: var(--color-gray);
+
   ::placeholder {
     color: var(--color-gray300);
   }
 `
 
 const TEXTAREA_LINE_HEIGHT = 19
+
 export default function ResizableTextarea({
   value,
   minRows,
