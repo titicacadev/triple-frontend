@@ -1,5 +1,16 @@
 export type ResourceType = 'review' | 'itinerary' | 'article'
 
+export interface Writer {
+  href: string
+  name: string
+  profileImage: string
+  badges: {
+    type: string
+    label: string | null
+    icon: string
+  }[]
+}
+
 export interface Reply {
   id: string
   parentId?: string
@@ -15,16 +26,7 @@ export interface Reply {
       haveMine: boolean
     }
   }
-  content: { text?: string; markdownText?: string }
+  content: { text?: string; markdownText?: string; mentionedUser?: Writer }
   children: Reply[]
-  writer: {
-    href: string
-    name: string
-    profileImage: string
-    badges: {
-      type: string
-      label: string | null
-      icon: string
-    }[]
-  }
+  writer: Writer
 }
