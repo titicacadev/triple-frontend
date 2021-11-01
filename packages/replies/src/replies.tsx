@@ -12,6 +12,7 @@ import styled from 'styled-components'
 
 import { fetchReplies } from './replies-api-clients'
 import { Reply, ResourceType } from './types'
+import ResizableTextarea from './resizable-textarea'
 
 const MoreButton = styled.button`
   width: 19px;
@@ -159,17 +160,26 @@ function Register({
   registerPlaceholder?: string
   onClick: () => void
 }) {
+  const [message, setMessage] = useState('')
+
   return (
     <Container cursor="pointer" onClick={onClick}>
       <HR1 margin={{ top: 0 }} />
       <FlexBox
         flex
+        alignItems="flex-end"
         justifyContent="space-between"
-        padding={{ top: 20, bottom: 20, left: 30, right: 30 }}
+        padding={{ top: 20, bottom: 20, left: 20, right: 20 }}
       >
-        <Text size={15} color="gray300" wordBreak="keep-all">
-          {registerPlaceholder || '이 일정에 궁금한 점은 댓글로 써주세요.'}
-        </Text>
+        <ResizableTextarea
+          placeholder={
+            registerPlaceholder || '이 일정에 궁금한 점은 댓글로 써주세요.'
+          }
+          minRows={1}
+          maxRows={4}
+          value={message}
+          onChange={setMessage}
+        />
         <Text size={15} color="blue" bold>
           등록
         </Text>
