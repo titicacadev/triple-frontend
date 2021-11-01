@@ -5,13 +5,13 @@ const Textarea = styled.textarea<{ lineHeight: number }>`
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
     sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   resize: none;
-  width: calc(100% - 46px);
   font-size: 15px;
   outline: none;
   border: none;
   padding: 0;
   color: var(--color-gray);
   line-height: ${({ lineHeight }) => lineHeight}px;
+  flex-grow: 2;
 
   ::placeholder {
     color: var(--color-gray300);

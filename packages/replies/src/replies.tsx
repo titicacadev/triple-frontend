@@ -192,7 +192,6 @@ function Register({
       <FlexBox
         flex
         alignItems="flex-end"
-        justifyContent="space-between"
         padding={{ top: 20, bottom: 20, left: 20, right: 20 }}
       >
         <AutoResizingTextarea
@@ -204,7 +203,13 @@ function Register({
           value={message}
           onChange={setMessage}
         />
-        <Text size={15} color="blue" bold onClick={onClick || handleRegister}>
+        <Text
+          size={15}
+          color="blue"
+          bold
+          onClick={onClick || handleRegister}
+          margin={{ left: 20 }}
+        >
           등록
         </Text>
       </FlexBox>
