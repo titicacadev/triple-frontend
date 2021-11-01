@@ -33,22 +33,19 @@ export default function AutoResizingTextarea({
   placeholder?: string
   onChange: (message: string) => void
 }) {
-  const [rows, setRows] = useState(1)
+  const [rows, setRows] = useState(minRows)
 
   const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    const previousRows = event.target.rows
-    event.target.rows = minRows
-
     const currentRows = Math.floor(
       event.target.scrollHeight / TEXTAREA_LINE_HEIGHT,
     )
 
-    if (currentRows === previousRows) {
-      event.target.rows = currentRows
+    if (currentRows === rows) {
+      setRows(currentRows)
     }
 
     if (currentRows >= maxRows) {
-      event.target.rows = maxRows
+      setRows(maxRows)
       event.target.scrollTop = event.target.scrollHeight
     }
 
