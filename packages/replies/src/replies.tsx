@@ -274,7 +274,10 @@ function BaseReply({ reply, onClick }: { reply: Reply; onClick: () => void }) {
         </FlexBox>
 
         <Container padding={{ top: 3 }}>
-          <Content blinded={!!blinded} text={content.text} />
+          <Content
+            blinded={!!blinded}
+            text={content.text || content.markdownText || ''}
+          />
         </Container>
 
         <CountFlexBox

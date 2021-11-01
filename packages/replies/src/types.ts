@@ -15,7 +15,7 @@ export interface Reply {
       haveMine: boolean
     }
   }
-  content: { text: string }
+  content: { text?: string; markdownText?: string }
   children: Reply[]
   writer: {
     href: string
