@@ -132,7 +132,7 @@ const Container = styled.div<ContainerPropsFromTemplate>`
     userSelect &&
     `
       -webkit-user-select: ${userSelect};
-      -user-select: ${userSelect};
+      user-select: ${userSelect};
     `}
 
   ${({ display }) =>
