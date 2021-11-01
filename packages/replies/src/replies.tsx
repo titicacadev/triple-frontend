@@ -12,7 +12,7 @@ import styled from 'styled-components'
 
 import { fetchReplies, writeReply } from './replies-api-clients'
 import { Reply, ResourceType } from './types'
-import ResizableTextarea from './resizable-textarea'
+import AutoResizingTextarea from './auto-resizing-textarea'
 
 const MoreButton = styled.button`
   width: 19px;
@@ -195,7 +195,7 @@ function Register({
         justifyContent="space-between"
         padding={{ top: 20, bottom: 20, left: 20, right: 20 }}
       >
-        <ResizableTextarea
+        <AutoResizingTextarea
           placeholder={
             registerPlaceholder || '이 일정에 궁금한 점은 댓글로 써주세요.'
           }

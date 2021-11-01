@@ -20,7 +20,7 @@ const Textarea = styled.textarea`
 
 const TEXTAREA_LINE_HEIGHT = 19
 
-export default function ResizableTextarea({
+export default function AutoResizingTextarea({
   value,
   minRows,
   maxRows,
