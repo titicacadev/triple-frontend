@@ -1,7 +1,7 @@
 module.exports = {
   presets: [
     [
-      '@babel/env',
+      '@babel/preset-env',
       {
         targets: {
           ie: '11',
@@ -9,12 +9,12 @@ module.exports = {
         },
       },
     ],
-    '@babel/react',
-    '@babel/typescript',
+    '@babel/preset-react',
+    '@babel/preset-typescript',
   ],
   plugins: [
     [
-      'styled-components',
+      'babel-plugin-styled-components',
       {
         ssr: true,
         displayName: true,
@@ -38,4 +38,14 @@ module.exports = {
           '**/*.spec.js',
         ]
       : undefined,
+  env: {
+    test: {
+      plugins: [
+        [
+          'babel-plugin-styled-components',
+          { ssr: false, displayName: false, namespace: 'sc-' },
+        ],
+      ],
+    },
+  },
 }
