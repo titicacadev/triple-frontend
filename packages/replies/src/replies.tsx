@@ -54,6 +54,11 @@ const RegisterButton = styled.button`
   outline: none;
 `
 
+const NestedResourceListItem = styled(List.Item)`
+  margin-top: 20px;
+  padding-left: 40px;
+`
+
 export default function Replies({
   resourceId,
   resourceType,
@@ -89,15 +94,6 @@ export default function Replies({
     )
   }
 
-  const {
-    writer,
-    blinded,
-    createdAt,
-    reactions,
-    childrenCount,
-    content,
-  } = replies[0]
-
   return (
     <>
       <Container padding={{ bottom: 30, left: 30, right: 30 }}>
@@ -110,62 +106,19 @@ export default function Replies({
         ) : null}
         <HR1 margin={{ top: 20 }} color="var(--color-gray50)" />
 
-        <ResourceListItem>
-          <SquareImage
-            floated="left"
-            size="small"
-            src={writer.profileImage}
-            borderRadius={20}
-            alt={writer.name || ''}
-          />
-          <Container padding={{ left: 50, bottom: 3 }}>
-            <FlexBox flex justifyContent="space-between" alignItems="start">
-              <Container minWidth={80}>
-                <Text size={15} bold>
-                  {writer.name}
-                </Text>
-              </Container>
-              <FlexBox padding={{ top: 3, left: 5 }} flex alignItems="start">
-                <Text size={12} padding={{ right: 5 }} bold color="gray300">
-                  {formatTimestamp(createdAt)}
-                </Text>
-                <MoreButton onClick={onClick} />
-              </FlexBox>
-            </FlexBox>
+        {replies.map((reply) => (
+          <>
+            <ResourceListItem key={reply.id}>
+              <BaseReply reply={reply} onClick={onClick} />
+            </ResourceListItem>
 
-            <Container padding={{ top: 3 }}>
-              <Content blinded={!!blinded} text={content.text} />
-            </Container>
-
-            <CountFlexBox
-              padding={{ top: 7 }}
-              flex
-              alignItems="center"
-              cursor="pointer"
-              onClick={onClick}
-            >
-              <img
-                width={14}
-                height={14}
-                src="https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png"
-              />
-              <Text padding={{ left: 2 }} size={12} color="gray300" bold>
-                {reactions?.like?.count || 0}
-              </Text>
-
-              {childrenCount ? (
-                <img
-                  width={15}
-                  height={15}
-                  src="https://assets.triple.guide/images/btn-lounge-comment-off@3x.png"
-                />
-              ) : null}
-              <Text padding={{ left: 2 }} size={12} color="gray300" bold>
-                {childrenCount || '답글달기'}
-              </Text>
-            </CountFlexBox>
-          </Container>
-        </ResourceListItem>
+            {reply.children.map((nestedReply) => (
+              <NestedResourceListItem key={nestedReply.id}>
+                <BaseReply reply={nestedReply} onClick={onClick} />
+              </NestedResourceListItem>
+            ))}
+          </>
+        ))}
       </Container>
 
       <Register
@@ -274,6 +227,7 @@ function Content({ text, blinded }: { text: string; blinded: boolean }) {
           ? text.slice(0, foldedPosition)
           : text}
       </Text>
+
       {!blinded && !unfolded && foldedPosition ? (
         <Text
           inline
@@ -285,6 +239,66 @@ function Content({ text, blinded }: { text: string; blinded: boolean }) {
           …더보기
         </Text>
       ) : null}
+    </>
+  )
+}
+
+function BaseReply({ reply, onClick }: { reply: Reply; onClick: () => void }) {
+  const { writer, blinded, createdAt, content, reactions } = reply
+
+  return (
+    <>
+      <SquareImage
+        floated="left"
+        size="small"
+        src={writer.profileImage}
+        borderRadius={20}
+        alt={writer.name || ''}
+      />
+
+      <Container padding={{ left: 50, bottom: 3 }}>
+        <FlexBox flex justifyContent="space-between" alignItems="start">
+          <Container minWidth={80}>
+            <Text size={15} bold>
+              {writer.name}
+            </Text>
+          </Container>
+
+          <FlexBox padding={{ top: 3, left: 5 }} flex alignItems="start">
+            <Text size={12} padding={{ right: 5 }} bold color="gray300">
+              {formatTimestamp(createdAt)}
+            </Text>
+
+            <MoreButton onClick={onClick} />
+          </FlexBox>
+        </FlexBox>
+
+        <Container padding={{ top: 3 }}>
+          <Content blinded={!!blinded} text={content.text} />
+        </Container>
+
+        <CountFlexBox
+          padding={{ top: 7 }}
+          flex
+          alignItems="center"
+          cursor="pointer"
+          onClick={onClick}
+        >
+          <img
+            width={14}
+            height={14}
+            src="https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png"
+          />
+
+          <Text padding={{ left: 2 }} size={12} color="gray300" bold>
+            {reactions?.like?.count || 0}
+          </Text>
+
+          <Text padding={{ left: 2 }} size={12} color="gray300" bold>
+            답글달기
+          </Text>
+        </CountFlexBox>
+      </Container>
     </>
   )
 }
