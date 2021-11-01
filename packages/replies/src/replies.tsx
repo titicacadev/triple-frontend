@@ -26,9 +26,9 @@ const MoreButton = styled.button`
   background-image: url(https://assets.triple.guide/images/btn-review-more@4x.png);
 `
 
-const CountFlexBox = styled(FlexBox)`
-  div:first-of-type {
-    :after {
+const ReactionBox = styled(FlexBox)`
+  div {
+    :before {
       font-size: 12px;
       padding: 0 3px 0 4px;
       content: '·';
@@ -303,27 +303,37 @@ function BaseReply({ reply, onClick }: { reply: Reply; onClick: () => void }) {
           />
         </Container>
 
-        <CountFlexBox
+        <ReactionBox
           padding={{ top: 7 }}
           flex
           alignItems="center"
           cursor="pointer"
           onClick={onClick}
         >
-          <img
-            width={14}
-            height={14}
-            src="https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png"
-          />
+          {reactions.like?.haveMine ? (
+            <img
+              width={14}
+              height={14}
+              src="https://assets.triple.guide/images/btn-lounge-thanks-on@3x.png"
+            />
+          ) : (
+            <img
+              width={14}
+              height={14}
+              src="https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png"
+            />
+          )}
 
-          <Text padding={{ left: 2 }} size={12} color="gray300" bold>
-            {reactions?.like?.count || 0}
-          </Text>
+          {reactions.like && reactions.like.count > 0 ? (
+            <Text padding={{ left: 2 }} size={12} color="gray300" bold>
+              좋아요 {reactions.like?.count}
+            </Text>
+          ) : null}
 
           <Text padding={{ left: 2 }} size={12} color="gray300" bold>
             답글달기
           </Text>
-        </CountFlexBox>
+        </ReactionBox>
       </Container>
     </>
   )
