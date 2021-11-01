@@ -37,11 +37,13 @@ export async function fetchReplies({
 }
 
 export async function writeReply({
+  contentFormat = 'plaintext',
   resourceId,
   resourceType,
   content,
   mentionedUserUid,
 }: {
+  contentFormat?: 'plaintext' | 'markdownText'
   resourceId: string
   resourceType: string
   content: string
@@ -51,7 +53,7 @@ export async function writeReply({
     generateUrl({
       path: `/api/reply/messages`,
       query: qs.stringify({
-        contentFormat: 'plaintext',
+        contentFormat,
       }),
     }),
     {
