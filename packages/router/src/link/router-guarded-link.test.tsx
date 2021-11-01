@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { fireEvent, render } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { useTransitionModal, useLoginCTAModal } from '@titicaca/modals'
 import {
@@ -41,6 +41,22 @@ describe('RouterGuardedLink', () => {
   }))
   mockedUseTransitionModal.mockImplementation(() => ({ show: jest.fn() }))
   mockedUseLoginCTAModal.mockImplementation(() => ({ show: jest.fn() }))
+
+  test('자식 태그의 href, onClick 속성은 덮어쓰입니다.', () => {
+    // eslint-disable-next-line no-console
+    console.warn = jest.fn()
+    const clickHandler = jest.fn()
+    const { getByRole } = render(
+      <RouterGuardedLink href="https://triple.guide">
+        <a href="https://triple.guide/hotels" onClick={clickHandler}>
+          테스트링크
+        </a>
+      </RouterGuardedLink>,
+    )
+    expect(getByRole('link')).toHaveAttribute('href', 'https://triple.guide')
+    fireEvent.click(getByRole('link'))
+    expect(clickHandler).not.toBeCalled()
+  })
 
   test('자식 태그가 덮어쓰일 속성을 가지고 있으면 경고를 보냅니다.', () => {
     /* eslint-disable no-console */
