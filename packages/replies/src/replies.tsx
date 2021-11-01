@@ -10,7 +10,7 @@ import {
 import { findFoldedPosition, formatTimestamp } from '@titicaca/view-utilities'
 import styled from 'styled-components'
 
-import { fetchReplies } from './replies-api-clients'
+import { fetchReplies, writeReply } from './replies-api-clients'
 import { Reply, ResourceType } from './types'
 import ResizableTextarea from './resizable-textarea'
 
@@ -66,7 +66,14 @@ export default function Replies({
   }, [resourceId, resourceType, size])
 
   if (replies.length <= 0) {
-    return <NoReplyPlaceholder onClick={onClick} />
+    return (
+      <NoReplyPlaceholder
+        resourceId={resourceId}
+        resourceType={resourceType}
+        registerPlaceholder={registerPlaceholder}
+        onClick={onClick}
+      />
+    )
   }
 
   const {
@@ -148,22 +155,39 @@ export default function Replies({
         </ResourceListItem>
       </Container>
 
-      <Register registerPlaceholder={registerPlaceholder} onClick={onClick} />
+      <Register
+        resourceId={resourceId}
+        resourceType={resourceType}
+        registerPlaceholder={registerPlaceholder}
+        onClick={onClick}
+      />
     </>
   )
 }
 
 function Register({
+  resourceId,
+  resourceType,
   registerPlaceholder,
   onClick,
 }: {
+  resourceId: string
+  resourceType: string
   registerPlaceholder?: string
   onClick: () => void
 }) {
   const [message, setMessage] = useState('')
 
+  const handleRegister = async () => {
+    await writeReply({
+      resourceId,
+      resourceType,
+      content: message,
+    })
+  }
+
   return (
-    <Container cursor="pointer" onClick={onClick}>
+    <Container cursor="pointer">
       <HR1 margin={{ top: 0 }} />
       <FlexBox
         flex
@@ -180,7 +204,7 @@ function Register({
           value={message}
           onChange={setMessage}
         />
-        <Text size={15} color="blue" bold>
+        <Text size={15} color="blue" bold onClick={onClick || handleRegister}>
           등록
         </Text>
       </FlexBox>
@@ -188,7 +212,18 @@ function Register({
     </Container>
   )
 }
-function NoReplyPlaceholder({ onClick }: { onClick: () => void }) {
+
+function NoReplyPlaceholder({
+  resourceId,
+  resourceType,
+  registerPlaceholder,
+  onClick,
+}: {
+  resourceId: string
+  resourceType: string
+  registerPlaceholder?: string
+  onClick: () => void
+}) {
   return (
     <>
       <HR1
@@ -201,7 +236,12 @@ function NoReplyPlaceholder({ onClick }: { onClick: () => void }) {
           가장 먼저 댓글을 작성해보세요!
         </Text>
       </Container>
-      <Register onClick={onClick} />
+      <Register
+        resourceId={resourceId}
+        resourceType={resourceType}
+        registerPlaceholder={registerPlaceholder}
+        onClick={onClick}
+      />
 
       <HR1 margin={{ top: 0 }} color="var(--color-gray50)" />
     </>
