@@ -85,5 +85,21 @@ export function RouterGuardedLink({
     return <>{children}</>
   }
 
+  warnDuplicateAttributes(child.props, anchorProps)
+
   return cloneElement(child, anchorProps)
+}
+
+function warnDuplicateAttributes(
+  originalProps: Record<string, unknown>,
+  overridingProps: Record<string, unknown>,
+) {
+  const originalPropKeys = Object.keys(originalProps)
+
+  originalPropKeys.forEach((key) => {
+    if (overridingProps[key]) {
+      // eslint-disable-next-line no-console
+      console.warn(`Link 컴포넌트의 자식 태그의 속성이 덮어쓰였습니다. ${key}`)
+    }
+  })
 }
