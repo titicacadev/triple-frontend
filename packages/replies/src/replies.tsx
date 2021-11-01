@@ -41,6 +41,19 @@ const ResourceListItem = styled(List.Item)`
   margin-top: 20px;
 `
 
+const RegisterButton = styled.button`
+  width: 26px;
+  padding: 0;
+  margin-left: 20px;
+  line-height: 1.2;
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--color-blue);
+  background: inherit;
+  border: none;
+  outline: none;
+`
+
 export default function Replies({
   resourceId,
   resourceType,
@@ -203,15 +216,9 @@ function Register({
           value={message}
           onChange={setMessage}
         />
-        <Text
-          size={15}
-          color="blue"
-          bold
-          onClick={onClick || handleRegister}
-          margin={{ left: 20 }}
-        >
+        <RegisterButton onClick={onClick || handleRegister}>
           등록
-        </Text>
+        </RegisterButton>
       </FlexBox>
       <HR1 margin={{ top: 0 }} />
     </Container>
