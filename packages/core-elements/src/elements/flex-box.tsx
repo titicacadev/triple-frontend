@@ -1,36 +1,37 @@
 import styled from 'styled-components'
-import * as CSS from 'csstype'
+import { Property } from 'csstype'
 
-import Container from './container'
+import Container, { ContainerProps } from './container'
 
-export interface FlexBoxProps
-  extends Pick<
-    CSS.Properties,
-    | 'flexGrow'
-    | 'flexShrink'
-    | 'flexBasis'
-    | 'flexDirection'
-    | 'flexWrap'
-    | 'justifyContent'
-    | 'alignItems'
-    | 'alignContent'
-    | 'alignSelf'
-    | 'order'
-  > {
+export interface FlexBoxProps extends ContainerProps {
   flex?: boolean
+  flexGrow?: Property.FlexGrow
+  flexShrink?: Property.FlexShrink
+  flexBasis?: Property.FlexBasis
+  flexDirection?: Property.FlexDirection
+  flexWrap?: Property.FlexWrap
+  justifyContent?: Property.JustifyContent
+  alignItems?: Property.AlignItems
+  alignContent?: Property.AlignContent
+  alignSelf?: Property.AlignSelf
+  order?: Property.Order
 }
 
-export default styled(Container)<FlexBoxProps>`
-  ${({ flex }) => flex && `display: flex;`}
-  ${({ flexGrow }) => flexGrow && `flex-grow: ${flexGrow};`}
-  ${({ order }) => order && `order: ${order};`}
-  ${({ flexShrink }) => flexShrink && `flex-shrink: ${flexShrink};`}
-  ${({ flexDirection }) => flexDirection && `flex-direction: ${flexDirection};`}
-  ${({ flexWrap }) => flexWrap && `flex-wrap: ${flexWrap};`}
-  ${({ alignItems }) => alignItems && `align-items: ${alignItems};`}
-  ${({ alignSelf }) => alignSelf && `align-self: ${alignSelf};`}
-  ${({ alignContent }) => alignContent && `align-content: ${alignContent};`}
-  ${({ flexBasis }) => flexBasis && `flex-basis: ${flexBasis};`}
-  ${({ justifyContent }) =>
-    justifyContent && `justify-content: ${justifyContent};`}
-`
+const FlexBox = styled(Container)<FlexBoxProps>(
+  (props) => ({
+    display: props.flex ? 'flex' : undefined,
+    flexGrow: props.flexGrow,
+    flexShrink: props.flexShrink,
+    flexBasis: props.flexBasis,
+    flexDirection: props.flexDirection,
+    flexWrap: props.flexWrap,
+    justifyContent: props.justifyContent,
+    alignItems: props.alignItems,
+    alignContent: props.alignContent,
+    alignSelf: props.alignSelf,
+    order: props.order,
+  }),
+  (props) => props.css,
+)
+
+export default FlexBox
