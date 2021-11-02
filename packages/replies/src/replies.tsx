@@ -78,6 +78,8 @@ export default function Replies({
   onClick: () => void
 }) {
   const [replies, setReplies] = useState<Reply[]>([])
+  const [replyMoreOpen, setReplyMoreOepn] = useState(false)
+  const [nestedReplyMoreOpen, setNestedReplyMoreOpen] = useState(false)
 
   useEffect(() => {
     async function fetchAndSet() {
@@ -87,6 +89,14 @@ export default function Replies({
     }
     fetchAndSet()
   }, [resourceId, resourceType, size])
+
+  const handleReplyMoreToggle = () => {
+    setReplyMoreOepn(!replyMoreOpen)
+  }
+
+  const handleNestedReplyMoreToggle = () => {
+    setNestedReplyMoreOpen(!nestedReplyMoreOpen)
+  }
 
   if (replies.length <= 0) {
     return (
@@ -102,22 +112,39 @@ export default function Replies({
   return (
     <>
       <Container padding={{ bottom: 30, left: 30, right: 30 }}>
-        {replies.length > 1 ? (
-          <Container cursor="pointer" onClick={onClick}>
+        {replies.length > 4 ? (
+          <Container cursor="pointer" onClick={handleReplyMoreToggle}>
             <Text padding={{ top: 20 }} color="blue" size={14} bold>
-              이전 댓글 더보기
+              {replyMoreOpen ? '이전 댓글 닫기' : '이전 댓글 더보기'}
             </Text>
           </Container>
         ) : null}
-        <HR1 margin={{ top: 20 }} color="var(--color-gray50)" />
 
-        {replies.map((reply) => (
+        {(replyMoreOpen ? replies : replies.slice(0, 4)).map((reply) => (
           <>
+            <HR1 margin={{ top: 20 }} color="var(--color-gray50)" />
+
             <ResourceListItem key={reply.id}>
               <BaseReply reply={reply} onClick={onClick} />
             </ResourceListItem>
 
-            {reply.children.map((nestedReply) => (
+            {reply.children.length > 2 ? (
+              <Container cursor="pointer" onClick={handleNestedReplyMoreToggle}>
+                <Text
+                  padding={{ top: 20, left: 40 }}
+                  color="blue"
+                  size={14}
+                  bold
+                >
+                  {nestedReplyMoreOpen ? '이전 답글 닫기' : '이전 답글 더보기'}
+                </Text>
+              </Container>
+            ) : null}
+
+            {(nestedReplyMoreOpen
+              ? reply.children
+              : reply.children.slice(0, 2)
+            ).map((nestedReply) => (
               <NestedResourceListItem key={nestedReply.id}>
                 <BaseReply reply={nestedReply} onClick={onClick} />
               </NestedResourceListItem>
