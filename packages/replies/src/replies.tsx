@@ -52,6 +52,7 @@ const RegisterButton = styled.button`
   background: inherit;
   border: none;
   outline: none;
+  cursor: pointer;
 `
 
 const NestedResourceListItem = styled(List.Item)`
@@ -172,7 +173,7 @@ function Register({
   resourceId: string
   resourceType: string
   registerPlaceholder?: string
-  onClick: () => void
+  onClick?: () => void
 }) {
   const [message, setMessage] = useState('')
 
@@ -185,7 +186,7 @@ function Register({
   }
 
   return (
-    <Container cursor="pointer">
+    <Container cursor="pointer" onClick={onClick}>
       <HR1 margin={{ top: 0 }} />
       <FlexBox
         flex
@@ -201,9 +202,7 @@ function Register({
           value={message}
           onChange={setMessage}
         />
-        <RegisterButton onClick={onClick || handleRegister}>
-          등록
-        </RegisterButton>
+        <RegisterButton onClick={handleRegister}>등록</RegisterButton>
       </FlexBox>
       <HR1 margin={{ top: 0 }} />
     </Container>
