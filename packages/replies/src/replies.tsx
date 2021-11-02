@@ -201,6 +201,7 @@ function Register({
           maxRows={4}
           value={message}
           onChange={setMessage}
+          readOnly={!!onClick}
         />
         <RegisterButton onClick={handleRegister}>등록</RegisterButton>
       </FlexBox>
