@@ -290,14 +290,19 @@ function Content({
 }
 
 function DetailReply({
-  reply,
+  reply: {
+    writer: { profileImage, name },
+    blinded,
+    createdAt,
+    content: { mentionedUser, text, markdownText },
+    reactions,
+    children,
+  },
   onClick,
 }: {
   reply: Reply
   onClick: () => void
 }) {
-  const { writer, blinded, createdAt, content, reactions } = reply
-
   const [nestedReplyMoreOpen, setNestedReplyMoreOpen] = useState(true)
 
   const handleNestedReplyMoreClick = () => {
@@ -309,16 +314,16 @@ function DetailReply({
       <SquareImage
         floated="left"
         size="small"
-        src={writer.profileImage}
+        src={profileImage}
         borderRadius={20}
-        alt={writer.name || ''}
+        alt={name || ''}
       />
 
       <Container padding={{ left: 50, bottom: 3 }}>
         <FlexBox flex justifyContent="space-between" alignItems="start">
           <Container minWidth={80}>
             <Text size={15} bold>
-              {writer.name}
+              {name}
             </Text>
           </Container>
 
@@ -333,9 +338,9 @@ function DetailReply({
 
         <Container padding={{ top: 3 }}>
           <Content
-            mentionedUser={content.mentionedUser}
+            mentionedUser={mentionedUser}
             blinded={!!blinded}
-            text={content.text || content.markdownText || ''}
+            text={text || markdownText || ''}
           />
         </Container>
 
@@ -372,7 +377,7 @@ function DetailReply({
         </ReactionBox>
       </Container>
 
-      {reply.children.length > 2 && nestedReplyMoreOpen ? (
+      {children.length > 2 && nestedReplyMoreOpen ? (
         <Container cursor="pointer" onClick={handleNestedReplyMoreClick}>
           <Text padding={{ top: 20, left: 40 }} color="blue" size={14} bold>
             이전 답글 더보기
@@ -380,7 +385,7 @@ function DetailReply({
         </Container>
       ) : null}
 
-      {(nestedReplyMoreOpen ? reply.children.slice(0, 2) : reply.children).map(
+      {(nestedReplyMoreOpen ? children.slice(0, 2) : children).map(
         (nestedReply) => (
           <NestedResourceListItem key={nestedReply.id}>
             <DetailReply reply={nestedReply} onClick={onClick} />
