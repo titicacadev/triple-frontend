@@ -80,7 +80,6 @@ export default function Replies({
 }) {
   const [replies, setReplies] = useState<Reply[]>([])
   const [replyMoreOpen, setReplyMoreOepn] = useState(false)
-  const [nestedReplyMoreOpen, setNestedReplyMoreOpen] = useState(false)
 
   useEffect(() => {
     async function fetchAndSet() {
@@ -93,10 +92,6 @@ export default function Replies({
 
   const handleReplyMoreToggle = () => {
     setReplyMoreOepn(!replyMoreOpen)
-  }
-
-  const handleNestedReplyMoreToggle = () => {
-    setNestedReplyMoreOpen(!nestedReplyMoreOpen)
   }
 
   if (replies.length <= 0) {
@@ -128,28 +123,6 @@ export default function Replies({
             <ResourceListItem key={reply.id}>
               <BaseReply reply={reply} onClick={onClick} />
             </ResourceListItem>
-
-            {reply.children.length > 2 ? (
-              <Container cursor="pointer" onClick={handleNestedReplyMoreToggle}>
-                <Text
-                  padding={{ top: 20, left: 40 }}
-                  color="blue"
-                  size={14}
-                  bold
-                >
-                  {nestedReplyMoreOpen ? '이전 답글 닫기' : '이전 답글 더보기'}
-                </Text>
-              </Container>
-            ) : null}
-
-            {(nestedReplyMoreOpen
-              ? reply.children
-              : reply.children.slice(0, 2)
-            ).map((nestedReply) => (
-              <NestedResourceListItem key={nestedReply.id}>
-                <BaseReply reply={nestedReply} onClick={onClick} />
-              </NestedResourceListItem>
-            ))}
           </>
         ))}
       </Container>
@@ -295,6 +268,12 @@ function Content({
 function BaseReply({ reply, onClick }: { reply: Reply; onClick: () => void }) {
   const { writer, blinded, createdAt, content, reactions } = reply
 
+  const [nestedReplyMoreOpen, setNestedReplyMoreOpen] = useState(false)
+
+  const handleNestedReplyMoreToggle = () => {
+    setNestedReplyMoreOpen(!nestedReplyMoreOpen)
+  }
+
   return (
     <>
       <SquareImage
@@ -362,6 +341,22 @@ function BaseReply({ reply, onClick }: { reply: Reply; onClick: () => void }) {
           </Text>
         </ReactionBox>
       </Container>
+
+      {reply.children.length > 2 ? (
+        <Container cursor="pointer" onClick={handleNestedReplyMoreToggle}>
+          <Text padding={{ top: 20, left: 40 }} color="blue" size={14} bold>
+            {nestedReplyMoreOpen ? '이전 답글 닫기' : '이전 답글 더보기'}
+          </Text>
+        </Container>
+      ) : null}
+
+      {(nestedReplyMoreOpen ? reply.children : reply.children.slice(0, 2)).map(
+        (nestedReply) => (
+          <NestedResourceListItem key={nestedReply.id}>
+            <BaseReply reply={nestedReply} onClick={onClick} />
+          </NestedResourceListItem>
+        ),
+      )}
     </>
   )
 }
