@@ -10,7 +10,11 @@ import {
 import { findFoldedPosition, formatTimestamp } from '@titicaca/view-utilities'
 import styled from 'styled-components'
 
-import { fetchReplies, writeReply } from './replies-api-clients'
+import {
+  fetchReplies,
+  writeReply,
+  fetchReplyBoard,
+} from './replies-api-clients'
 import { Reply, ResourceType, Writer } from './types'
 import AutoResizingTextarea from './auto-resizing-textarea'
 
@@ -79,19 +83,39 @@ export default function Replies({
   onClick: () => void
 }) {
   const [replies, setReplies] = useState<Reply[]>([])
-  const [replyMoreOpen, setReplyMoreOepn] = useState(false)
+  const [replyMoreOpen, setReplyMoreOpen] = useState(true)
+  const [page, setPage] = useState(0)
 
   useEffect(() => {
     async function fetchAndSet() {
-      const response = await fetchReplies({ resourceId, resourceType, size })
+      const repliesResponse = await fetchReplies({
+        resourceId,
+        resourceType,
+        size,
+        page,
+      })
 
-      setReplies(response || [])
+      const replyBoardResponse = await fetchReplyBoard({
+        resourceType,
+        resourceId,
+      })
+
+      setReplies((prevReplies) => {
+        const newReplies = [...(repliesResponse || []), ...prevReplies]
+
+        if (newReplies.length === replyBoardResponse?.rootMessagesCount) {
+          setReplyMoreOpen(false)
+        }
+
+        return newReplies
+      })
     }
-    fetchAndSet()
-  }, [resourceId, resourceType, size])
 
-  const handleReplyMoreToggle = () => {
-    setReplyMoreOepn(!replyMoreOpen)
+    fetchAndSet()
+  }, [resourceId, resourceType, size, page])
+
+  const handleReplyMoreClick = () => {
+    setPage(page + 1)
   }
 
   if (replies.length <= 0) {
@@ -108,15 +132,15 @@ export default function Replies({
   return (
     <>
       <Container padding={{ bottom: 30, left: 30, right: 30 }}>
-        {replies.length > 4 ? (
-          <Container cursor="pointer" onClick={handleReplyMoreToggle}>
+        {replies.length >= 10 && replyMoreOpen ? (
+          <Container cursor="pointer" onClick={handleReplyMoreClick}>
             <Text padding={{ top: 20 }} color="blue" size={14} bold>
-              {replyMoreOpen ? '이전 댓글 닫기' : '이전 댓글 더보기'}
+              {replyMoreOpen ? '이전 댓글 더보기' : null}
             </Text>
           </Container>
         ) : null}
 
-        {(replyMoreOpen ? replies : replies.slice(0, 4)).map((reply) => (
+        {replies.map((reply) => (
           <>
             <HR1 margin={{ top: 20 }} color="var(--color-gray50)" />
 
@@ -274,10 +298,10 @@ function DetailReply({
 }) {
   const { writer, blinded, createdAt, content, reactions } = reply
 
-  const [nestedReplyMoreOpen, setNestedReplyMoreOpen] = useState(false)
+  const [nestedReplyMoreOpen, setNestedReplyMoreOpen] = useState(true)
 
-  const handleNestedReplyMoreToggle = () => {
-    setNestedReplyMoreOpen(!nestedReplyMoreOpen)
+  const handleNestedReplyMoreClick = () => {
+    setNestedReplyMoreOpen(false)
   }
 
   return (
@@ -348,15 +372,15 @@ function DetailReply({
         </ReactionBox>
       </Container>
 
-      {reply.children.length > 2 ? (
-        <Container cursor="pointer" onClick={handleNestedReplyMoreToggle}>
+      {reply.children.length > 2 && nestedReplyMoreOpen ? (
+        <Container cursor="pointer" onClick={handleNestedReplyMoreClick}>
           <Text padding={{ top: 20, left: 40 }} color="blue" size={14} bold>
-            {nestedReplyMoreOpen ? '이전 답글 닫기' : '이전 답글 더보기'}
+            {nestedReplyMoreOpen ? '이전 답글 더보기' : null}
           </Text>
         </Container>
       ) : null}
 
-      {(nestedReplyMoreOpen ? reply.children : reply.children.slice(0, 2)).map(
+      {(nestedReplyMoreOpen ? reply.children.slice(0, 2) : reply.children).map(
         (nestedReply) => (
           <NestedResourceListItem key={nestedReply.id}>
             <DetailReply reply={nestedReply} onClick={onClick} />
