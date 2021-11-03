@@ -14,7 +14,7 @@ export async function fetchReplies({
   resourceType: ResourceType
   size?: number
   page?: number
-}) {
+}): Promise<Reply[]> {
   const response = await authGuardedFetchers.get<Reply[]>(
     generateUrl({
       path: `/api/reply/messages`,
@@ -35,7 +35,7 @@ export async function fetchReplies({
 
   const { result } = response
 
-  return result
+  return result || []
 }
 
 export async function writeReply({
@@ -81,7 +81,7 @@ export async function fetchReplyBoard({
 }: {
   resourceType: string
   resourceId: string
-}) {
+}): Promise<ReplyBoard> {
   const response = await authGuardedFetchers.get<ReplyBoard>(
     `/api/reply/resources/${resourceType}/${resourceId}/board`,
   )
@@ -91,6 +91,10 @@ export async function fetchReplyBoard({
   }
 
   const { result } = response
+
+  if (!result) {
+    throw new Error('요청에 의한 응답이 없습니다.')
+  }
 
   return result
 }

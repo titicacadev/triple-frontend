@@ -101,12 +101,12 @@ export default function Replies({
         resourceId,
       })
 
-      setTotalRepliesCount(replyBoardResponse?.rootMessagesCount as number)
+      setTotalRepliesCount(replyBoardResponse.rootMessagesCount)
 
       setReplies((prevReplies) => {
-        const newReplies = [...(repliesResponse || []), ...prevReplies]
+        const newReplies = [...repliesResponse, ...prevReplies]
 
-        if (newReplies.length === replyBoardResponse?.rootMessagesCount) {
+        if (newReplies.length === replyBoardResponse.rootMessagesCount) {
           setReplyMoreOpen(false)
         }
 
