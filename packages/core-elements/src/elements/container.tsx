@@ -42,7 +42,7 @@ export interface ContainerProps extends CSSProps {
   backgroundColor?: Color
 }
 
-export const Container = styled.div<ContainerProps>(
+const Container = styled.div<ContainerProps>(
   (props) => ({
     boxSizing: 'border-box',
     position: props.position,
