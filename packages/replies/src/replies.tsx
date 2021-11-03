@@ -121,7 +121,7 @@ export default function Replies({
             <HR1 margin={{ top: 20 }} color="var(--color-gray50)" />
 
             <ResourceListItem key={reply.id}>
-              <BaseReply reply={reply} onClick={onClick} />
+              <DetailReply reply={reply} onClick={onClick} />
             </ResourceListItem>
           </>
         ))}
@@ -265,7 +265,13 @@ function Content({
   )
 }
 
-function BaseReply({ reply, onClick }: { reply: Reply; onClick: () => void }) {
+function DetailReply({
+  reply,
+  onClick,
+}: {
+  reply: Reply
+  onClick: () => void
+}) {
   const { writer, blinded, createdAt, content, reactions } = reply
 
   const [nestedReplyMoreOpen, setNestedReplyMoreOpen] = useState(false)
@@ -353,7 +359,7 @@ function BaseReply({ reply, onClick }: { reply: Reply; onClick: () => void }) {
       {(nestedReplyMoreOpen ? reply.children : reply.children.slice(0, 2)).map(
         (nestedReply) => (
           <NestedResourceListItem key={nestedReply.id}>
-            <BaseReply reply={nestedReply} onClick={onClick} />
+            <DetailReply reply={nestedReply} onClick={onClick} />
           </NestedResourceListItem>
         ),
       )}
