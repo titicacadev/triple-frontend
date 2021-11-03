@@ -28,7 +28,7 @@ export async function fetchReplies({
   )
 
   if (response === 'NEED_LOGIN') {
-    return
+    throw new Error('로그인이 필요한 호출입니다.')
   }
 
   captureHttpError(response)
@@ -69,7 +69,7 @@ export async function writeReply({
   )
 
   if (response === 'NEED_LOGIN') {
-    return
+    throw new Error('로그인이 필요한 호출입니다.')
   }
 
   captureHttpError(response)
@@ -87,7 +87,7 @@ export async function fetchReplyBoard({
   )
 
   if (response === 'NEED_LOGIN') {
-    return
+    throw new Error('로그인이 필요한 호출입니다.')
   }
 
   const { result } = response
