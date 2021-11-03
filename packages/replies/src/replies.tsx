@@ -85,6 +85,7 @@ export default function Replies({
   const [replies, setReplies] = useState<Reply[]>([])
   const [replyMoreOpen, setReplyMoreOpen] = useState(true)
   const [page, setPage] = useState(0)
+  const [totalRepliesCount, setTotalRepliesCount] = useState(0)
 
   useEffect(() => {
     async function fetchAndSet() {
@@ -99,6 +100,8 @@ export default function Replies({
         resourceType,
         resourceId,
       })
+
+      setTotalRepliesCount(replyBoardResponse?.rootMessagesCount as number)
 
       setReplies((prevReplies) => {
         const newReplies = [...(repliesResponse || []), ...prevReplies]
@@ -132,7 +135,7 @@ export default function Replies({
   return (
     <>
       <Container padding={{ bottom: 30, left: 30, right: 30 }}>
-        {replies.length >= 10 && replyMoreOpen ? (
+        {totalRepliesCount > replies.length && replyMoreOpen ? (
           <Container cursor="pointer" onClick={handleReplyMoreClick}>
             <Text padding={{ top: 20 }} color="blue" size={14} bold>
               이전 댓글 더보기
