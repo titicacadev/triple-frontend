@@ -18,7 +18,7 @@ export type StickyHeaderProps = React.PropsWithChildren<
 
 function StickyHeader({
   css,
-  zIndex,
+  zIndex = 3,
   zTier,
   children,
   ...props
