@@ -135,7 +135,7 @@ export default function Replies({
         {replies.length >= 10 && replyMoreOpen ? (
           <Container cursor="pointer" onClick={handleReplyMoreClick}>
             <Text padding={{ top: 20 }} color="blue" size={14} bold>
-              {replyMoreOpen ? '이전 댓글 더보기' : null}
+              이전 댓글 더보기
             </Text>
           </Container>
         ) : null}
@@ -375,7 +375,7 @@ function DetailReply({
       {reply.children.length > 2 && nestedReplyMoreOpen ? (
         <Container cursor="pointer" onClick={handleNestedReplyMoreClick}>
           <Text padding={{ top: 20, left: 40 }} color="blue" size={14} bold>
-            {nestedReplyMoreOpen ? '이전 답글 더보기' : null}
+            이전 답글 더보기
           </Text>
         </Container>
       ) : null}
