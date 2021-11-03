@@ -30,3 +30,12 @@ export interface Reply {
   children: Reply[]
   writer: Writer
 }
+
+export interface ReplyBoard {
+  id: string
+  resourceId: string
+  resourceType: ResourceType
+  rootMessagesCount: number
+  childMessagesCount: number
+  pinnedMessages: number
+}
