@@ -99,7 +99,7 @@ export async function fetchReplyBoard({
   return result
 }
 
-export async function fetchNestedReply({
+export async function fetchNestedReplies({
   id,
   page,
 }: {
