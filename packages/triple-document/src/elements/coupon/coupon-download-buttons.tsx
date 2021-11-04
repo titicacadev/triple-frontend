@@ -210,12 +210,6 @@ export function InAppCouponGroupDownloadButton({
   }, [groupId])
 
   const downloadCoupons = useCallback(async () => {
-    if (isUnverifiedUser) {
-      initiateVerification()
-
-      return
-    }
-
     const downloadableCoupons = coupons.filter(({ downloaded }) => !downloaded)
 
     if (downloadableCoupons.length === 0) {
@@ -261,14 +255,18 @@ export function InAppCouponGroupDownloadButton({
         push(`${groupId}.${HASH_ERROR_COUPON}`)
       }
     }
-  }, [coupons, groupId, initiateVerification, isUnverifiedUser, push])
+  }, [coupons, groupId, push])
 
   const handleCouponDownloadButtonClick = () => {
     if (enabled === true) {
       if (downloaded === true) {
         pushHashDownloaded()
       } else {
-        downloadCoupons()
+        if (isUnverifiedUser === true) {
+          initiateVerification()
+        } else {
+          downloadCoupons()
+        }
       }
     }
     onClick && onClick()
