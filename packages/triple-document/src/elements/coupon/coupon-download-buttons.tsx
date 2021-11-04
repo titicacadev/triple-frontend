@@ -110,13 +110,13 @@ export function InAppCouponDownloadButton({
     fetchCoupon()
   }, [slugId])
 
-  const pushHashDownloaded = () =>
+  const raiseDownloadedAlert = () =>
     push(`${slugId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
 
   const handleCouponDownloadButtonClick = async () => {
     if (enabled === true) {
       if (downloaded === true) {
-        pushHashDownloaded()
+        raiseDownloadedAlert()
       } else {
         if (isUnverifiedUser === true) {
           initiateVerification()
