@@ -88,36 +88,32 @@ export function InAppCouponDownloadButton({
 
   const pushHashDownloaded = () =>
     push(`${slugId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
+
   const downloadCoupon = useCallback(async () => {
     const response = await authGuardedFetchers.get<{
       id?: string
-      message?: string
-      code?: string
     }>(`/api/benefit/coupons/${slugId}/download`)
 
     if (response === 'NEED_LOGIN') {
-      return
+      return { type: 'NEED_LOGIN' } as const
     }
-    captureHttpError(response)
 
-    const { result, ok } = response
+    const { ok, error, result } = response
 
-    if (result) {
-      if (ok) {
-        if (result.id) {
-          push(`${slugId}.${HASH_COMPLETE_DOWNLOAD_COUPON}`)
-          setDownloaded(true)
-        }
-      } else if (result?.code === 'NO_CI_AUTHENTICATION') {
-        initiateVerification()
-      } else {
-        setErrorMessage(result.message)
-        push(`${slugId}.${HASH_ERROR_COUPON}`)
-      }
+    if (ok === true && !!result?.id) {
+      return { type: 'SUCCESS' } as const
     }
-  }, [initiateVerification, push, slugId])
 
-  const handleCouponDownloadButtonClick = () => {
+    const { code, message } = error?.responseError || {}
+
+    if (code === 'NO_CI_AUTHENTICATION') {
+      return { type: 'NEED_USER_VERIFICATION' } as const
+    }
+
+    return { type: 'UNKNOWN_ERROR', message } as const
+  }, [slugId])
+
+  const handleCouponDownloadButtonClick = async () => {
     if (enabled === true) {
       if (downloaded === true) {
         pushHashDownloaded()
@@ -127,7 +123,24 @@ export function InAppCouponDownloadButton({
           return
         }
 
-        downloadCoupon()
+        const response = await downloadCoupon()
+
+        const responseHandlers = {
+          /* eslint-disable @typescript-eslint/naming-convention */
+          SUCCESS: () => {
+            push(`${slugId}.${HASH_COMPLETE_DOWNLOAD_COUPON}`)
+            setDownloaded(true)
+          },
+          NEED_LOGIN: () => {},
+          NEED_USER_VERIFICATION: () => initiateVerification(),
+          UNKNOWN_ERROR: ({ message }: { message?: string }) => {
+            setErrorMessage(message)
+            push(`${slugId}.${HASH_ERROR_COUPON}`)
+          },
+          /* eslint-enable @typescript-eslint/naming-convention */
+        }
+        const handleResponse = responseHandlers[response.type]
+        handleResponse(response)
       }
     }
 
