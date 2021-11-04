@@ -14,7 +14,6 @@ import {
   HASH_ALREADY_DOWNLOAD_COUPON,
   HASH_COMPLETE_DOWNLOAD_COUPON,
   HASH_ERROR_COUPON,
-  HASH_COUPON_APP_TRANSITION_MODAL,
   CouponAlertModal,
   HASH_COMPLETE_DOWNLOAD_COUPON_GROUP,
   HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP,
@@ -34,20 +33,6 @@ const BaseCouponDownloadButton = styled(Button)`
 `
 
 const MAX_COUPONS_PER_USER_ERROR_CODE = 'MAX_COUPONS_PER_USER'
-
-export function PublicCouponDownloadButton() {
-  const { push } = useHistoryFunctions()
-
-  const onDownloadButtonClick = useCallback(() => {
-    push(HASH_COUPON_APP_TRANSITION_MODAL)
-  }, [push])
-
-  return (
-    <BaseCouponDownloadButton onClick={onDownloadButtonClick}>
-      쿠폰 받기
-    </BaseCouponDownloadButton>
-  )
-}
 
 async function downloadCoupon(slugId: string) {
   const response = await authGuardedFetchers.get<

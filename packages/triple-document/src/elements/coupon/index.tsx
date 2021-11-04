@@ -1,18 +1,14 @@
 import React, { useCallback } from 'react'
 import { Text, Container } from '@titicaca/core-elements'
-import {
-  useUserAgentContext,
-  useEventTrackerWithMetadata,
-} from '@titicaca/react-contexts'
+import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
 import { VerificationType } from '@titicaca/user-verification'
 
 import { useDeepLink } from '../../prop-context/deep-link'
 
-import { CouponModal, CouponTransitionModal } from './modals'
+import { CouponModal } from './modals'
 import {
   InAppCouponDownloadButton,
   InAppCouponGroupDownloadButton,
-  PublicCouponDownloadButton,
 } from './coupon-download-buttons'
 
 export default function Coupon({
@@ -25,7 +21,6 @@ export default function Coupon({
     couponType?: 'single' | 'group'
   }
 }) {
-  const { isPublic } = useUserAgentContext()
   const trackEventWithMetadata = useEventTrackerWithMetadata()
 
   const deepLink = useDeepLink()
@@ -47,9 +42,7 @@ export default function Coupon({
 
   return (
     <Container margin={{ top: 44, right: 30, left: 30, bottom: 42 }}>
-      {isPublic ? (
-        <PublicCouponDownloadButton />
-      ) : couponType === 'single' ? (
+      {couponType === 'single' ? (
         <InAppCouponDownloadButton
           verificationType={verificationType}
           slugId={identifier}
@@ -76,7 +69,6 @@ export default function Coupon({
       ) : null}
 
       <CouponModal identifier={identifier} />
-      <CouponTransitionModal deepLink={deepLink} />
     </Container>
   )
 }
