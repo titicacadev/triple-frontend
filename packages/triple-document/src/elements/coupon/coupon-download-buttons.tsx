@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from '@titicaca/core-elements'
 import styled from 'styled-components'
 import { useHistoryFunctions } from '@titicaca/react-contexts'
@@ -159,6 +159,57 @@ export function InAppCouponDownloadButton({
   )
 }
 
+async function downloadCoupons(coupons: CouponData[]) {
+  const downloadableCoupons = coupons.filter(({ downloaded }) => !downloaded)
+
+  if (downloadableCoupons.length === 0) {
+    return { type: 'NO_DOWNLOADABLE_COUPONS' } as const
+  }
+
+  const response = await authGuardedFetchers.post<
+    {
+      id: string
+      success: boolean
+      errorCode: string
+      errorMessage: string
+    }[]
+  >('/api/benefit/coupons', {
+    body: {
+      ids: coupons.map(({ id }) => id),
+    },
+  })
+
+  if (response === 'NEED_LOGIN') {
+    return { type: 'NEED_LOGIN' } as const
+  }
+
+  captureHttpError(response)
+
+  const { result: results, ok } = response
+
+  if (ok && results) {
+    const succeedCoupons = results.filter(({ success }) => success)
+
+    if (succeedCoupons.length === coupons.length) {
+      return { type: 'EVERY_COUPONS_DOWNLOADED' } as const
+    }
+    if (succeedCoupons.length > 0) {
+      return { type: 'SOME_COUPONS_DOWNLOADED' } as const
+    }
+    if (
+      succeedCoupons.length === 0 &&
+      results[0].errorCode === MAX_COUPONS_PER_USER_ERROR_CODE
+    ) {
+      return { type: 'NO_DOWNLOADABLE_COUPONS' } as const
+    }
+  }
+
+  return {
+    type: 'UNKNOWN_ERROR',
+    message: results?.[0].errorMessage,
+  } as const
+}
+
 export function InAppCouponGroupDownloadButton({
   groupId,
   verificationType,
@@ -209,57 +260,6 @@ export function InAppCouponGroupDownloadButton({
     fetchCoupons()
   }, [groupId])
 
-  const downloadCoupons = useCallback(async () => {
-    const downloadableCoupons = coupons.filter(({ downloaded }) => !downloaded)
-
-    if (downloadableCoupons.length === 0) {
-      return { type: 'NO_DOWNLOADABLE_COUPONS' } as const
-    }
-
-    const response = await authGuardedFetchers.post<
-      {
-        id: string
-        success: boolean
-        errorCode: string
-        errorMessage: string
-      }[]
-    >('/api/benefit/coupons', {
-      body: {
-        ids: coupons.map(({ id }) => id),
-      },
-    })
-
-    if (response === 'NEED_LOGIN') {
-      return { type: 'NEED_LOGIN' } as const
-    }
-
-    captureHttpError(response)
-
-    const { result: results, ok } = response
-
-    if (ok && results) {
-      const succeedCoupons = results.filter(({ success }) => success)
-
-      if (succeedCoupons.length === coupons.length) {
-        return { type: 'EVERY_COUPONS_DOWNLOADED' } as const
-      }
-      if (succeedCoupons.length > 0) {
-        return { type: 'SOME_COUPONS_DOWNLOADED' } as const
-      }
-      if (
-        succeedCoupons.length === 0 &&
-        results[0].errorCode === MAX_COUPONS_PER_USER_ERROR_CODE
-      ) {
-        return { type: 'NO_DOWNLOADABLE_COUPONS' } as const
-      }
-    }
-
-    return {
-      type: 'UNKNOWN_ERROR',
-      message: results?.[0].errorMessage,
-    } as const
-  }, [coupons])
-
   const handleCouponDownloadButtonClick = async () => {
     if (enabled === true) {
       if (downloaded === true) {
@@ -268,7 +268,7 @@ export function InAppCouponGroupDownloadButton({
         if (isUnverifiedUser === true) {
           initiateVerification()
         } else {
-          const response = await downloadCoupons()
+          const response = await downloadCoupons(coupons)
 
           const responseHandlers = {
             /* eslint-disable @typescript-eslint/naming-convention */
