@@ -280,7 +280,7 @@ export function InAppCouponGroupDownloadButton({
               push(`${groupId}.${HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP}`)
             },
             NO_DOWNLOADABLE_COUPONS: () => {
-              push(`${groupId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
+              raiseDownloadedAlert()
             },
             UNKNOWN_ERROR: ({ message }: { message?: string }) => {
               setErrorMessage(message)
