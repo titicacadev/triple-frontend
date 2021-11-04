@@ -269,15 +269,14 @@ export function InAppCouponGroupDownloadButton({
     groupId,
   ])
 
-  const onDownload = () =>
-    enabled
-      ? downloaded
-        ? pushHashDownloaded()
-        : downloadCoupons()
-      : undefined
-
   const handleCouponDownloadButtonClick = () => {
-    onDownload()
+    if (enabled === true) {
+      if (downloaded === true) {
+        pushHashDownloaded()
+      } else {
+        downloadCoupons()
+      }
+    }
     onClick && onClick()
   }
 
