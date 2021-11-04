@@ -7,8 +7,8 @@ import { useDeepLink } from '../../prop-context/deep-link'
 
 import { CouponModal } from './modals'
 import {
-  InAppCouponDownloadButton,
-  InAppCouponGroupDownloadButton,
+  CouponDownloadButton,
+  CouponGroupDownloadButton,
 } from './coupon-download-buttons'
 
 export default function Coupon({
@@ -43,13 +43,13 @@ export default function Coupon({
   return (
     <Container margin={{ top: 44, right: 30, left: 30, bottom: 42 }}>
       {couponType === 'single' ? (
-        <InAppCouponDownloadButton
+        <CouponDownloadButton
           verificationType={verificationType}
           slugId={identifier}
           onClick={handleCouponClick}
         />
       ) : (
-        <InAppCouponGroupDownloadButton
+        <CouponGroupDownloadButton
           verificationType={verificationType}
           groupId={identifier}
           onClick={handleCouponClick}
