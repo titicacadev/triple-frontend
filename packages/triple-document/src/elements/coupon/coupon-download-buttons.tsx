@@ -1,7 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from '@titicaca/core-elements'
 import styled from 'styled-components'
-import { useHistoryFunctions } from '@titicaca/react-contexts'
+import {
+  useHistoryFunctions,
+  useSessionContext,
+} from '@titicaca/react-contexts'
 import {
   useUserVerification,
   VerificationType,
@@ -83,6 +86,7 @@ export function CouponDownloadButton({
     verificationType,
     forceVerification: false,
   })
+  const { login } = useSessionContext()
 
   const isUnverifiedUser = verificationType && !verificationState.verified
 
@@ -93,6 +97,7 @@ export function CouponDownloadButton({
       )
 
       if (response === 'NEED_LOGIN') {
+        login()
         return
       }
 
@@ -107,7 +112,7 @@ export function CouponDownloadButton({
     }
 
     fetchCoupon()
-  }, [slugId])
+  }, [login, slugId])
 
   const raiseDownloadedAlert = () =>
     push(`${slugId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
@@ -128,7 +133,9 @@ export function CouponDownloadButton({
               push(`${slugId}.${HASH_COMPLETE_DOWNLOAD_COUPON}`)
               setDownloaded(true)
             },
-            NEED_LOGIN: () => {},
+            NEED_LOGIN: () => {
+              login()
+            },
             NEED_USER_VERIFICATION: () => initiateVerification(),
             UNKNOWN_ERROR: ({ message }: { message?: string }) => {
               setErrorMessage(message)
@@ -227,6 +234,7 @@ export function CouponGroupDownloadButton({
     verificationType,
     forceVerification: false,
   })
+  const { login } = useSessionContext()
 
   const enabled = coupons.length > 0
 
@@ -245,6 +253,7 @@ export function CouponGroupDownloadButton({
       }>(`/api/benefit/downloadable-coupons?groupCode=${groupId}`)
 
       if (response === 'NEED_LOGIN') {
+        login()
         return
       }
 
@@ -257,7 +266,7 @@ export function CouponGroupDownloadButton({
     }
 
     fetchCoupons()
-  }, [groupId])
+  }, [groupId, login])
 
   const handleCouponDownloadButtonClick = async () => {
     if (enabled === true) {
@@ -271,7 +280,9 @@ export function CouponGroupDownloadButton({
 
           const responseHandlers = {
             /* eslint-disable @typescript-eslint/naming-convention */
-            NEED_LOGIN: () => {},
+            NEED_LOGIN: () => {
+              login()
+            },
             EVERY_COUPONS_DOWNLOADED: () => {
               push(`${groupId}.${HASH_COMPLETE_DOWNLOAD_COUPON_GROUP}`)
             },
