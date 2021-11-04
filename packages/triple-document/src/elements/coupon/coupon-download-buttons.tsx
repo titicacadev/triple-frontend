@@ -64,7 +64,7 @@ async function downloadCoupon(slugId: string) {
   return { type: 'UNKNOWN_ERROR', message } as const
 }
 
-export function InAppCouponDownloadButton({
+export function CouponDownloadButton({
   slugId,
   verificationType,
   onClick,
@@ -209,7 +209,7 @@ async function downloadCoupons(coupons: CouponData[]) {
   } as const
 }
 
-export function InAppCouponGroupDownloadButton({
+export function CouponGroupDownloadButton({
   groupId,
   verificationType,
   onClick,
