@@ -121,11 +121,15 @@ export function InAppCouponDownloadButton({
     }
   }, [push, slugId, initiateVerification, verificationType, verificationState])
 
-  const onDownload = () =>
-    enabled ? (downloaded ? pushHashDownloaded() : downloadCoupon()) : undefined
-
   const handleCouponDownloadButtonClick = () => {
-    onDownload()
+    if (enabled === true) {
+      if (downloaded === true) {
+        pushHashDownloaded()
+      } else {
+        downloadCoupon()
+      }
+    }
+
     onClick && onClick()
   }
 
