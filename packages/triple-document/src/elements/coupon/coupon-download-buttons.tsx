@@ -213,9 +213,7 @@ export function InAppCouponGroupDownloadButton({
     const downloadableCoupons = coupons.filter(({ downloaded }) => !downloaded)
 
     if (downloadableCoupons.length === 0) {
-      push(`${groupId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
-
-      return
+      return { type: 'NO_DOWNLOADABLE_COUPONS' } as const
     }
 
     const response = await authGuardedFetchers.post<
@@ -232,7 +230,7 @@ export function InAppCouponGroupDownloadButton({
     })
 
     if (response === 'NEED_LOGIN') {
-      return
+      return { type: 'NEED_LOGIN' } as const
     }
 
     captureHttpError(response)
@@ -243,21 +241,26 @@ export function InAppCouponGroupDownloadButton({
       const succeedCoupons = results.filter(({ success }) => success)
 
       if (succeedCoupons.length === coupons.length) {
-        push(`${groupId}.${HASH_COMPLETE_DOWNLOAD_COUPON_GROUP}`)
-      } else if (succeedCoupons.length > 0) {
-        push(`${groupId}.${HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP}`)
-      } else if (succeedCoupons.length === 0) {
-        if (results[0].errorCode === MAX_COUPONS_PER_USER_ERROR_CODE) {
-          push(`${groupId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
-          return
-        }
-        setErrorMessage(results[0].errorMessage)
-        push(`${groupId}.${HASH_ERROR_COUPON}`)
+        return { type: 'EVERY_COUPONS_DOWNLOADED' } as const
+      }
+      if (succeedCoupons.length > 0) {
+        return { type: 'SOME_COUPONS_DOWNLOADED' } as const
+      }
+      if (
+        succeedCoupons.length === 0 &&
+        results[0].errorCode === MAX_COUPONS_PER_USER_ERROR_CODE
+      ) {
+        return { type: 'NO_DOWNLOADABLE_COUPONS' } as const
       }
     }
-  }, [coupons, groupId, push])
 
-  const handleCouponDownloadButtonClick = () => {
+    return {
+      type: 'UNKNOWN_ERROR',
+      message: results?.[0].errorMessage,
+    } as const
+  }, [coupons])
+
+  const handleCouponDownloadButtonClick = async () => {
     if (enabled === true) {
       if (downloaded === true) {
         pushHashDownloaded()
@@ -265,7 +268,29 @@ export function InAppCouponGroupDownloadButton({
         if (isUnverifiedUser === true) {
           initiateVerification()
         } else {
-          downloadCoupons()
+          const response = await downloadCoupons()
+
+          const responseHandlers = {
+            /* eslint-disable @typescript-eslint/naming-convention */
+            NEED_LOGIN: () => {},
+            EVERY_COUPONS_DOWNLOADED: () => {
+              push(`${groupId}.${HASH_COMPLETE_DOWNLOAD_COUPON_GROUP}`)
+            },
+            SOME_COUPONS_DOWNLOADED: () => {
+              push(`${groupId}.${HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP}`)
+            },
+            NO_DOWNLOADABLE_COUPONS: () => {
+              push(`${groupId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
+            },
+            UNKNOWN_ERROR: ({ message }: { message?: string }) => {
+              setErrorMessage(message)
+              push(`${groupId}.${HASH_ERROR_COUPON}`)
+            },
+            /* eslint-enable @typescript-eslint/naming-convention */
+          }
+
+          const handleResponse = responseHandlers[response.type]
+          handleResponse(response)
         }
       }
     }
