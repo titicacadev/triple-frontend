@@ -196,10 +196,7 @@ async function downloadCoupons(coupons: CouponData[]) {
     if (succeedCoupons.length > 0) {
       return { type: 'SOME_COUPONS_DOWNLOADED' } as const
     }
-    if (
-      succeedCoupons.length === 0 &&
-      results[0].errorCode === MAX_COUPONS_PER_USER_ERROR_CODE
-    ) {
+    if (results[0].errorCode === MAX_COUPONS_PER_USER_ERROR_CODE) {
       return { type: 'NO_DOWNLOADABLE_COUPONS' } as const
     }
   }
