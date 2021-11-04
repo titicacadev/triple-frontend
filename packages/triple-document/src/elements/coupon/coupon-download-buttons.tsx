@@ -213,6 +213,9 @@ async function downloadCoupons(coupons: CouponData[]) {
     if (results[0].errorCode === MAX_COUPONS_PER_USER_ERROR_CODE) {
       return { type: 'NO_DOWNLOADABLE_COUPONS' } as const
     }
+    if (results[0].errorCode === 'NO_CI_AUTHENTICATION') {
+      return { type: 'NEED_USER_VERIFICATION' } as const
+    }
   }
 
   return {
@@ -292,6 +295,9 @@ export function InAppCouponGroupDownloadButton({
             },
             NO_DOWNLOADABLE_COUPONS: () => {
               raiseDownloadedAlert()
+            },
+            NEED_USER_VERIFICATION: () => {
+              initiateVerification()
             },
             UNKNOWN_ERROR: ({ message }: { message?: string }) => {
               setErrorMessage(message)
