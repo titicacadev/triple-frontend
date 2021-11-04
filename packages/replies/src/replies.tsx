@@ -14,7 +14,7 @@ import {
   fetchReplies,
   writeReply,
   fetchReplyBoard,
-  fetchNestedReply,
+  fetchNestedReplies,
 } from './replies-api-clients'
 import { Reply, ResourceType, Writer } from './types'
 import AutoResizingTextarea from './auto-resizing-textarea'
@@ -308,7 +308,7 @@ function DetailReply({
 
   useEffect(() => {
     async function fetchAndSet() {
-      const response = await fetchNestedReply({ id, page: nestedPage })
+      const response = await fetchNestedReplies({ id, page: nestedPage })
 
       setNestedReplies((prevNestedReplies) => {
         const newNestedReplies = [...response, ...prevNestedReplies]
