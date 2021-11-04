@@ -14,6 +14,7 @@ import {
   fetchReplies,
   writeReply,
   fetchReplyBoard,
+  fetchNestedReply,
 } from './replies-api-clients'
 import { Reply, ResourceType, Writer } from './types'
 import AutoResizingTextarea from './auto-resizing-textarea'
@@ -297,16 +298,32 @@ function DetailReply({
     content: { mentionedUser, text, markdownText },
     reactions,
     children,
+    id,
   },
   onClick,
 }: {
   reply: Reply
   onClick: () => void
 }) {
-  const [nestedReplyMoreOpen, setNestedReplyMoreOpen] = useState(true)
+  const [nestedReplies, setNestedReplies] = useState<Reply[]>([])
+  const [nestedPage, setNestedPage] = useState(0)
+
+  useEffect(() => {
+    async function fetchAndSet() {
+      const response = await fetchNestedReply({ id, page: nestedPage })
+
+      setNestedReplies((prevNestedReplies) => {
+        const newNestedReplies = [...response, ...prevNestedReplies]
+
+        return newNestedReplies
+      })
+    }
+
+    fetchAndSet()
+  }, [id, nestedPage])
 
   const handleNestedReplyMoreClick = () => {
-    setNestedReplyMoreOpen(false)
+    setNestedPage((prevPage) => prevPage + 1)
   }
 
   return (
@@ -377,7 +394,7 @@ function DetailReply({
         </ReactionBox>
       </Container>
 
-      {children.length > 2 && nestedReplyMoreOpen ? (
+      {children.length > nestedReplies.length ? (
         <Container cursor="pointer" onClick={handleNestedReplyMoreClick}>
           <Text padding={{ top: 20, left: 40 }} color="blue" size={14} bold>
             이전 답글 더보기
@@ -385,13 +402,11 @@ function DetailReply({
         </Container>
       ) : null}
 
-      {(nestedReplyMoreOpen ? children.slice(0, 2) : children).map(
-        (nestedReply) => (
-          <NestedResourceListItem key={nestedReply.id}>
-            <DetailReply reply={nestedReply} onClick={onClick} />
-          </NestedResourceListItem>
-        ),
-      )}
+      {nestedReplies.map((nestedReply) => (
+        <NestedResourceListItem key={nestedReply.id}>
+          <DetailReply reply={nestedReply} onClick={onClick} />
+        </NestedResourceListItem>
+      ))}
     </>
   )
 }
