@@ -235,7 +235,7 @@ export function InAppCouponGroupDownloadButton({
     coupons.length === 0 || coupons.every(({ downloaded }) => downloaded)
   const isUnverifiedUser = verificationType && !verificationState.verified
 
-  const pushHashDownloaded = () =>
+  const raiseDownloadedAlert = () =>
     push(`${groupId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
 
   useEffect(() => {
@@ -263,7 +263,7 @@ export function InAppCouponGroupDownloadButton({
   const handleCouponDownloadButtonClick = async () => {
     if (enabled === true) {
       if (downloaded === true) {
-        pushHashDownloaded()
+        raiseDownloadedAlert()
       } else {
         if (isUnverifiedUser === true) {
           initiateVerification()
