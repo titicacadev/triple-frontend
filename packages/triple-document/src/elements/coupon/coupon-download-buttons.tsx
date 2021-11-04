@@ -41,6 +41,30 @@ export function PublicCouponDownloadButton() {
   )
 }
 
+async function downloadCoupon(slugId: string) {
+  const response = await authGuardedFetchers.get<{
+    id?: string
+  }>(`/api/benefit/coupons/${slugId}/download`)
+
+  if (response === 'NEED_LOGIN') {
+    return { type: 'NEED_LOGIN' } as const
+  }
+
+  const { ok, error, result } = response
+
+  if (ok === true && !!result?.id) {
+    return { type: 'SUCCESS' } as const
+  }
+
+  const { code, message } = error?.responseError || {}
+
+  if (code === 'NO_CI_AUTHENTICATION') {
+    return { type: 'NEED_USER_VERIFICATION' } as const
+  }
+
+  return { type: 'UNKNOWN_ERROR', message } as const
+}
+
 export function InAppCouponDownloadButton({
   slugId,
   verificationType,
@@ -89,30 +113,6 @@ export function InAppCouponDownloadButton({
   const pushHashDownloaded = () =>
     push(`${slugId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
 
-  const downloadCoupon = useCallback(async () => {
-    const response = await authGuardedFetchers.get<{
-      id?: string
-    }>(`/api/benefit/coupons/${slugId}/download`)
-
-    if (response === 'NEED_LOGIN') {
-      return { type: 'NEED_LOGIN' } as const
-    }
-
-    const { ok, error, result } = response
-
-    if (ok === true && !!result?.id) {
-      return { type: 'SUCCESS' } as const
-    }
-
-    const { code, message } = error?.responseError || {}
-
-    if (code === 'NO_CI_AUTHENTICATION') {
-      return { type: 'NEED_USER_VERIFICATION' } as const
-    }
-
-    return { type: 'UNKNOWN_ERROR', message } as const
-  }, [slugId])
-
   const handleCouponDownloadButtonClick = async () => {
     if (enabled === true) {
       if (downloaded === true) {
@@ -123,7 +123,7 @@ export function InAppCouponDownloadButton({
           return
         }
 
-        const response = await downloadCoupon()
+        const response = await downloadCoupon(slugId)
 
         const responseHandlers = {
           /* eslint-disable @typescript-eslint/naming-convention */
