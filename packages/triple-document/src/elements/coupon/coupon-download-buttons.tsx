@@ -89,12 +89,6 @@ export function InAppCouponDownloadButton({
   const pushHashDownloaded = () =>
     push(`${slugId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
   const downloadCoupon = useCallback(async () => {
-    if (isUnverifiedUser === true) {
-      initiateVerification()
-
-      return
-    }
-
     const response = await authGuardedFetchers.get<{
       id?: string
       message?: string
@@ -121,13 +115,18 @@ export function InAppCouponDownloadButton({
         push(`${slugId}.${HASH_ERROR_COUPON}`)
       }
     }
-  }, [initiateVerification, isUnverifiedUser, push, slugId])
+  }, [initiateVerification, push, slugId])
 
   const handleCouponDownloadButtonClick = () => {
     if (enabled === true) {
       if (downloaded === true) {
         pushHashDownloaded()
       } else {
+        if (isUnverifiedUser === true) {
+          initiateVerification()
+          return
+        }
+
         downloadCoupon()
       }
     }
