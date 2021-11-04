@@ -20,6 +20,14 @@ import {
   HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP,
 } from './modals'
 
+type CouponErrorCode =
+  | 'COUPON_NOT_PUBLICATION_PERIOD'
+  | 'CLOSED_COUPON'
+  | 'MAX_COUPONS_PER_USER'
+  | 'ALL_COUPONS_EXHAUSTED'
+  | 'MISMATCH_PUBLISH_CRITERIA'
+  | 'NO_CI_AUTHENTICATION'
+
 const BaseCouponDownloadButton = styled(Button)`
   border-radius: 6px;
   width: 100%;
@@ -42,9 +50,15 @@ export function PublicCouponDownloadButton() {
 }
 
 async function downloadCoupon(slugId: string) {
-  const response = await authGuardedFetchers.get<{
-    id?: string
-  }>(`/api/benefit/coupons/${slugId}/download`)
+  const response = await authGuardedFetchers.get<
+    {
+      id?: string
+    },
+    {
+      code: CouponErrorCode
+      message: string
+    }
+  >(`/api/benefit/coupons/${slugId}/download`)
 
   if (response === 'NEED_LOGIN') {
     return { type: 'NEED_LOGIN' } as const
@@ -170,7 +184,7 @@ async function downloadCoupons(coupons: CouponData[]) {
     {
       id: string
       success: boolean
-      errorCode: string
+      errorCode: CouponErrorCode
       errorMessage: string
     }[]
   >('/api/benefit/coupons', {
