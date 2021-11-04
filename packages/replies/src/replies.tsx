@@ -113,7 +113,7 @@ export default function Replies({
   }, [resourceId, resourceType, size, page])
 
   const handleReplyMoreClick = () => {
-    setPage(page + 1)
+    setPage((page) => page + 1)
   }
 
   const replyMoreOpen = replies.length === totalRepliesCount
