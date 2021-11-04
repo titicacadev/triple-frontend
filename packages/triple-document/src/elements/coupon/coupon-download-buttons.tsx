@@ -124,14 +124,16 @@ export function InAppCouponDownloadButton({
   const onDownload = () =>
     enabled ? (downloaded ? pushHashDownloaded() : downloadCoupon()) : undefined
 
+  const handleCouponDownloadButtonClick = () => {
+    onDownload()
+    onClick && onClick()
+  }
+
   return (
     <>
       <BaseCouponDownloadButton
         disabled={!enabled}
-        onClick={() => {
-          onDownload()
-          onClick && onClick()
-        }}
+        onClick={handleCouponDownloadButtonClick}
       >
         쿠폰 받기
       </BaseCouponDownloadButton>
