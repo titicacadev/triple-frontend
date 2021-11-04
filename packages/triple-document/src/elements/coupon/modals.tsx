@@ -15,7 +15,6 @@ export const HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP =
   'coupon.part-of-group-download-complete.modal'
 export const HASH_ALREADY_DOWNLOAD_COUPON = 'coupon.download-already.modal'
 export const HASH_ERROR_COUPON = 'coupon.error.modal'
-export const HASH_COUPON_APP_TRANSITION_MODAL = 'coupon.app-transition.modal'
 
 const MODAL_HASHES = [
   HASH_COMPLETE_DOWNLOAD_COUPON,
@@ -148,47 +147,5 @@ export function CouponAlertModal({
     >
       {errorMessage}
     </Alert>
-  )
-}
-
-const IconImage = styled.img`
-  display: block;
-  width: 48px;
-  height: 48px;
-  margin: 32px auto 10px auto;
-`
-
-export function CouponTransitionModal({ deepLink }: { deepLink: string }) {
-  const uriHash = useURIHash()
-  const { back } = useHistoryFunctions()
-
-  return (
-    <Modal open={uriHash === HASH_COUPON_APP_TRANSITION_MODAL} onClose={back}>
-      <IconImage src="https://assets.triple.guide/images/img-popup-coupon@3x.png" />
-      <Text
-        center
-        size="small"
-        lineHeight={1.43}
-        color="gray"
-        alpha={0.7}
-        padding={{ bottom: 30, left: 30, right: 30 }}
-      >
-        {'쿠폰 저장을 위해\n트리플에 로그인해주세요!'}
-      </Text>
-
-      <Modal.Actions>
-        <Modal.Action color="gray" onClick={back}>
-          취소
-        </Modal.Action>
-        <Modal.Action
-          color="blue"
-          onClick={() => {
-            window.location.href = deepLink
-          }}
-        >
-          트리플가기
-        </Modal.Action>
-      </Modal.Actions>
-    </Modal>
   )
 }
