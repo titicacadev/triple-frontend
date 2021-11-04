@@ -98,3 +98,33 @@ export async function fetchReplyBoard({
 
   return result
 }
+
+export async function fetchNestedReply({
+  id,
+  page,
+}: {
+  id: string
+  page: number
+}): Promise<Reply[]> {
+  const response = await authGuardedFetchers.get<Reply[]>(
+    generateUrl({
+      path: `/api/reply/messages/${id}/messages`,
+      query: qs.stringify({
+        page: page || 0,
+        size: 2,
+      }),
+    }),
+  )
+
+  if (response === 'NEED_LOGIN') {
+    throw new Error('로그인이 필요한 호출입니다.')
+  }
+
+  const { result } = response
+
+  if (!result) {
+    throw new Error('요청에 의한 응답이 없습니다.')
+  }
+
+  return result
+}
