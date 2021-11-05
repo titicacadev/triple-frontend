@@ -90,6 +90,7 @@ export function CouponDownloadButton({
   const [needLogin, setNeedLogin] = useState(false)
 
   const isUnverifiedUser = verificationType && !verificationState.verified
+  const buttonDisabled = !enabled
 
   useEffect(() => {
     async function fetchCoupon() {
@@ -158,7 +159,7 @@ export function CouponDownloadButton({
   return (
     <>
       <BaseCouponDownloadButton
-        disabled={!enabled}
+        disabled={buttonDisabled}
         onClick={handleCouponDownloadButtonClick}
       >
         쿠폰 받기
@@ -245,6 +246,7 @@ export function CouponGroupDownloadButton({
   const downloaded =
     coupons.length === 0 || coupons.every(({ downloaded }) => downloaded)
   const isUnverifiedUser = verificationType && !verificationState.verified
+  const buttonDisabled = !enabled
 
   const raiseDownloadedAlert = () =>
     push(`${groupId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
@@ -319,7 +321,7 @@ export function CouponGroupDownloadButton({
   return (
     <>
       <BaseCouponDownloadButton
-        disabled={!enabled}
+        disabled={buttonDisabled}
         onClick={handleCouponDownloadButtonClick}
       >
         쿠폰 받기
