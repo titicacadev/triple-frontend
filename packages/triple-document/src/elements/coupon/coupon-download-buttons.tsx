@@ -113,7 +113,7 @@ export function CouponDownloadButton({
     }
 
     fetchCoupon()
-  }, [login, slugId])
+  }, [slugId])
 
   const raiseDownloadedAlert = () =>
     push(`${slugId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
@@ -270,7 +270,7 @@ export function CouponGroupDownloadButton({
     }
 
     fetchCoupons()
-  }, [groupId, login])
+  }, [groupId])
 
   const handleCouponDownloadButtonClick = async () => {
     if (enabled === true) {
