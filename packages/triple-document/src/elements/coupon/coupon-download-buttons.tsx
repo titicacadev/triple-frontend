@@ -90,7 +90,7 @@ export function CouponDownloadButton({
   const [needLogin, setNeedLogin] = useState(false)
 
   const isUnverifiedUser = verificationType && !verificationState.verified
-  const buttonDisabled = !enabled
+  const buttonDisabled = !enabled && needLogin === false
 
   useEffect(() => {
     async function fetchCoupon() {
@@ -120,7 +120,7 @@ export function CouponDownloadButton({
     push(`${slugId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
 
   const handleCouponDownloadButtonClick = async () => {
-    if (enabled === true) {
+    if (buttonDisabled === false) {
       if (needLogin === true) {
         login()
       } else if (downloaded === true) {
@@ -246,7 +246,7 @@ export function CouponGroupDownloadButton({
   const downloaded =
     coupons.length === 0 || coupons.every(({ downloaded }) => downloaded)
   const isUnverifiedUser = verificationType && !verificationState.verified
-  const buttonDisabled = !enabled
+  const buttonDisabled = !enabled && needLogin === false
 
   const raiseDownloadedAlert = () =>
     push(`${groupId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
@@ -275,7 +275,7 @@ export function CouponGroupDownloadButton({
   }, [groupId])
 
   const handleCouponDownloadButtonClick = async () => {
-    if (enabled === true) {
+    if (buttonDisabled === false) {
       if (needLogin === true) {
         login()
       } else if (downloaded === true) {
