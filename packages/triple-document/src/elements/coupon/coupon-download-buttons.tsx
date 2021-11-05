@@ -82,14 +82,13 @@ export function CouponDownloadButton({
     undefined,
   )
   const { push } = useHistoryFunctions()
-  const { verificationState, initiateVerification } = useUserVerification({
+  const { initiateVerification } = useUserVerification({
     verificationType,
     forceVerification: false,
   })
   const { login } = useSessionContext()
   const [needLogin, setNeedLogin] = useState(false)
 
-  const isUnverifiedUser = verificationType && !verificationState.verified
   const buttonDisabled = couponFetched === false && needLogin === false
 
   useEffect(() => {
@@ -126,30 +125,26 @@ export function CouponDownloadButton({
       } else if (downloaded === true) {
         raiseDownloadedAlert()
       } else {
-        if (isUnverifiedUser === true) {
-          initiateVerification()
-        } else {
-          const response = await downloadCoupon(slugId)
+        const response = await downloadCoupon(slugId)
 
-          const responseHandlers = {
-            /* eslint-disable @typescript-eslint/naming-convention */
-            SUCCESS: () => {
-              push(`${slugId}.${HASH_COMPLETE_DOWNLOAD_COUPON}`)
-              setDownloaded(true)
-            },
-            NEED_LOGIN: () => {
-              login()
-            },
-            NEED_USER_VERIFICATION: () => initiateVerification(),
-            UNKNOWN_ERROR: ({ message }: { message?: string }) => {
-              setErrorMessage(message)
-              push(`${slugId}.${HASH_ERROR_COUPON}`)
-            },
-            /* eslint-enable @typescript-eslint/naming-convention */
-          }
-          const handleResponse = responseHandlers[response.type]
-          handleResponse(response)
+        const responseHandlers = {
+          /* eslint-disable @typescript-eslint/naming-convention */
+          SUCCESS: () => {
+            push(`${slugId}.${HASH_COMPLETE_DOWNLOAD_COUPON}`)
+            setDownloaded(true)
+          },
+          NEED_LOGIN: () => {
+            login()
+          },
+          NEED_USER_VERIFICATION: () => initiateVerification(),
+          UNKNOWN_ERROR: ({ message }: { message?: string }) => {
+            setErrorMessage(message)
+            push(`${slugId}.${HASH_ERROR_COUPON}`)
+          },
+          /* eslint-enable @typescript-eslint/naming-convention */
         }
+        const handleResponse = responseHandlers[response.type]
+        handleResponse(response)
       }
     }
 
@@ -234,7 +229,7 @@ export function CouponGroupDownloadButton({
     undefined,
   )
   const { push } = useHistoryFunctions()
-  const { verificationState, initiateVerification } = useUserVerification({
+  const { initiateVerification } = useUserVerification({
     verificationType,
     forceVerification: false,
   })
@@ -243,7 +238,6 @@ export function CouponGroupDownloadButton({
 
   const downloaded =
     coupons.length === 0 || coupons.every(({ downloaded }) => downloaded)
-  const isUnverifiedUser = verificationType && !verificationState.verified
   const buttonDisabled = coupons.length === 0 && needLogin === false
 
   const raiseDownloadedAlert = () =>
@@ -279,38 +273,34 @@ export function CouponGroupDownloadButton({
       } else if (downloaded === true) {
         raiseDownloadedAlert()
       } else {
-        if (isUnverifiedUser === true) {
-          initiateVerification()
-        } else {
-          const response = await downloadCoupons(coupons)
+        const response = await downloadCoupons(coupons)
 
-          const responseHandlers = {
-            /* eslint-disable @typescript-eslint/naming-convention */
-            NEED_LOGIN: () => {
-              login()
-            },
-            EVERY_COUPONS_DOWNLOADED: () => {
-              push(`${groupId}.${HASH_COMPLETE_DOWNLOAD_COUPON_GROUP}`)
-            },
-            SOME_COUPONS_DOWNLOADED: () => {
-              push(`${groupId}.${HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP}`)
-            },
-            NO_DOWNLOADABLE_COUPONS: () => {
-              raiseDownloadedAlert()
-            },
-            NEED_USER_VERIFICATION: () => {
-              initiateVerification()
-            },
-            UNKNOWN_ERROR: ({ message }: { message?: string }) => {
-              setErrorMessage(message)
-              push(`${groupId}.${HASH_ERROR_COUPON}`)
-            },
-            /* eslint-enable @typescript-eslint/naming-convention */
-          }
-
-          const handleResponse = responseHandlers[response.type]
-          handleResponse(response)
+        const responseHandlers = {
+          /* eslint-disable @typescript-eslint/naming-convention */
+          NEED_LOGIN: () => {
+            login()
+          },
+          EVERY_COUPONS_DOWNLOADED: () => {
+            push(`${groupId}.${HASH_COMPLETE_DOWNLOAD_COUPON_GROUP}`)
+          },
+          SOME_COUPONS_DOWNLOADED: () => {
+            push(`${groupId}.${HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP}`)
+          },
+          NO_DOWNLOADABLE_COUPONS: () => {
+            raiseDownloadedAlert()
+          },
+          NEED_USER_VERIFICATION: () => {
+            initiateVerification()
+          },
+          UNKNOWN_ERROR: ({ message }: { message?: string }) => {
+            setErrorMessage(message)
+            push(`${groupId}.${HASH_ERROR_COUPON}`)
+          },
+          /* eslint-enable @typescript-eslint/naming-convention */
         }
+
+        const handleResponse = responseHandlers[response.type]
+        handleResponse(response)
       }
     }
     onClick && onClick()
