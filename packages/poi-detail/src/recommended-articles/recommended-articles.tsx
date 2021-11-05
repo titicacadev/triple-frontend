@@ -105,7 +105,6 @@ export default function RecommendedArticles({
     <Section
       margin={{ top: 50, bottom: 50 }}
       divider="top"
-      maxWidth={0}
       padding={{ left: 0, right: 0 }}
     >
       <Responsive minWidth={768}>
