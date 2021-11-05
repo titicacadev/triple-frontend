@@ -87,6 +87,7 @@ export function CouponDownloadButton({
     forceVerification: false,
   })
   const { login } = useSessionContext()
+  const [needLogin, setNeedLogin] = useState(false)
 
   const isUnverifiedUser = verificationType && !verificationState.verified
 
@@ -97,7 +98,7 @@ export function CouponDownloadButton({
       )
 
       if (response === 'NEED_LOGIN') {
-        login()
+        setNeedLogin(true)
         return
       }
 
@@ -119,7 +120,9 @@ export function CouponDownloadButton({
 
   const handleCouponDownloadButtonClick = async () => {
     if (enabled === true) {
-      if (downloaded === true) {
+      if (needLogin === true) {
+        login()
+      } else if (downloaded === true) {
         raiseDownloadedAlert()
       } else {
         if (isUnverifiedUser === true) {
@@ -235,6 +238,7 @@ export function CouponGroupDownloadButton({
     forceVerification: false,
   })
   const { login } = useSessionContext()
+  const [needLogin, setNeedLogin] = useState(false)
 
   const enabled = coupons.length > 0
 
@@ -253,7 +257,7 @@ export function CouponGroupDownloadButton({
       }>(`/api/benefit/downloadable-coupons?groupCode=${groupId}`)
 
       if (response === 'NEED_LOGIN') {
-        login()
+        setNeedLogin(true)
         return
       }
 
@@ -270,7 +274,9 @@ export function CouponGroupDownloadButton({
 
   const handleCouponDownloadButtonClick = async () => {
     if (enabled === true) {
-      if (downloaded === true) {
+      if (needLogin === true) {
+        login()
+      } else if (downloaded === true) {
         raiseDownloadedAlert()
       } else {
         if (isUnverifiedUser === true) {
