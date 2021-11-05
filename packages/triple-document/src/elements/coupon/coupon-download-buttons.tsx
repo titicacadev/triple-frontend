@@ -241,12 +241,10 @@ export function CouponGroupDownloadButton({
   const { login } = useSessionContext()
   const [needLogin, setNeedLogin] = useState(false)
 
-  const enabled = coupons.length > 0
-
   const downloaded =
     coupons.length === 0 || coupons.every(({ downloaded }) => downloaded)
   const isUnverifiedUser = verificationType && !verificationState.verified
-  const buttonDisabled = !enabled && needLogin === false
+  const buttonDisabled = coupons.length === 0 && needLogin === false
 
   const raiseDownloadedAlert = () =>
     push(`${groupId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
