@@ -29,7 +29,6 @@
     "@types/scroll-to-element": "^2.0.0"
   },
   "peerDependencies": {
-    "@titicaca/react-contexts": "*",
     "react": ">=16.8.0"
   }
 }
