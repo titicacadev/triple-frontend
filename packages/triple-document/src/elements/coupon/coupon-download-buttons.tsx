@@ -76,7 +76,7 @@ export function CouponDownloadButton({
   verificationType?: VerificationType
   onClick?: () => void
 }) {
-  const [enabled, setEnabled] = useState(false)
+  const [couponFetched, setCouponFetched] = useState(false)
   const [downloaded, setDownloaded] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined,
@@ -90,7 +90,7 @@ export function CouponDownloadButton({
   const [needLogin, setNeedLogin] = useState(false)
 
   const isUnverifiedUser = verificationType && !verificationState.verified
-  const buttonDisabled = !enabled && needLogin === false
+  const buttonDisabled = couponFetched === false && needLogin === false
 
   useEffect(() => {
     async function fetchCoupon() {
@@ -108,7 +108,7 @@ export function CouponDownloadButton({
       const { ok, result } = response
 
       if (ok && result) {
-        setEnabled(true)
+        setCouponFetched(true)
         setDownloaded(!!result.downloaded)
       }
     }
