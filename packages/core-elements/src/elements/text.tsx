@@ -1,182 +1,82 @@
-import * as React from 'react'
-import styled, { css, StyledComponentProps } from 'styled-components'
-import * as CSS from 'csstype'
+import styled from 'styled-components'
+import { Property } from 'csstype'
 import { getColor, Color } from '@titicaca/color-palette'
 
 import { MarginPadding, GlobalSizes, GetGlobalColor } from '../commons'
 import {
-  marginMixin,
-  paddingMixin,
-  getTextStyle,
-  _unsafeTextStyle,
   KeyOfTextStyleMap,
+  ellipsisMixin,
+  marginMixin,
+  maxLinesMixin,
+  paddingMixin,
+  textStyleMixin,
 } from '../mixins'
-
-interface TextBaseProps
-  extends Pick<
-    CSS.Properties,
-    'wordBreak' | 'whiteSpace' | 'textAlign' | 'cursor'
-  > {
-  size?: GlobalSizes | number
-  textStyle?: KeyOfTextStyleMap
-  bold?: boolean
-  alpha?: number
-  color?: Color
-  floated?: CSS.Property.Float
-  letterSpacing?: number
-  lineHeight?: number | string
-  center?: boolean
-  underline?: boolean
-  inline?: boolean
-  inlineBlock?: boolean
-  margin?: MarginPadding
-  padding?: MarginPadding
-  ellipsis?: boolean
-  maxLines?: number
-  strikethrough?: boolean
-}
-
-interface TitleBaseProps {
-  margin?: MarginPadding
-}
-
-export type TextProps = React.PropsWithChildren<
-  StyledComponentProps<'div', any, TextBaseProps, never>
->
-
-function Line({ children }: React.PropsWithChildren<{}>) {
-  return (
-    <>
-      {children}
-      <br />
-    </>
-  )
-}
-
-export function LineBreak({ children }: { children?: string }) {
-  const texts = (children || '').split('\n')
-
-  return (
-    <>
-      {texts.map((text: string, i: number) =>
-        i === texts.length - 1 ? text : <Line key={i}>{text}</Line>,
-      )}
-    </>
-  )
-}
+import { CSSProps } from '../css'
 
 function rgba({ color, alpha }: { color?: string; alpha?: number }) {
   return `rgba(${GetGlobalColor(color || 'gray')}, ${alpha || 1})`
 }
 
-const TextBase = styled.div<TextBaseProps>`
-  ${({ textStyle, size, lineHeight, letterSpacing }) => {
-    if (textStyle && (size || lineHeight || letterSpacing)) {
-      // TODO: development 환경에서만 기록하는 logger 만들기
-      // eslint-disable-next-line no-console
-      console.warn(
-        "🙅🏻‍♂️\n[Warn] Please don't use `size`, `lineHeight` and `letterSpacing` with `textStyle` together. \nIf they are used together, `size` and `lineHeight` will be omit. See \nhttps://github.com/titicacadev/triple-frontend/issues/401",
-      )
-    }
-
-    return textStyle
-      ? getTextStyle(textStyle)
-      : _unsafeTextStyle(size, lineHeight, letterSpacing)
-  }}
-
-  font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
-  color: ${({ color = 'gray', alpha }) =>
-    alpha ? rgba({ color, alpha }) : `rgba(${getColor(color)})`};
-  word-wrap: break-word;
-
-  float: ${({ floated }) => floated || 'none'};
-
-  ${({ wordBreak }) =>
-    wordBreak &&
-    css`
-      word-break: ${wordBreak};
-    `};
-
-  ${({ whiteSpace }) =>
-    whiteSpace &&
-    css`
-      white-space: ${whiteSpace};
-    `};
-
-  ${({ underline }) =>
-    underline &&
-    css`
-      text-decoration: underline;
-    `};
-
-  ${({ center, textAlign }) =>
-    css`
-      text-align: ${textAlign ?? (center ? 'center' : 'inherit')};
-    `}
-
-  ${({ inline }) =>
-    inline &&
-    css`
-      display: inline;
-    `};
-
-  ${({ inlineBlock }) =>
-    inlineBlock &&
-    css`
-      display: inline-block;
-    `};
-
-  ${marginMixin}
-
-  ${paddingMixin}
-
-  ${({ ellipsis }) =>
-    ellipsis &&
-    css`
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    `};
-
-  ${({ maxLines }) =>
-    maxLines &&
-    css`
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: ${maxLines};
-      text-overflow: ellipsis;
-      overflow: hidden;
-    `};
-
-  ${({ strikethrough }) =>
-    strikethrough &&
-    css<{ color?: Color; alpha?: number }>`
-      position: relative;
-      &:after {
-        position: absolute;
-        left: 0;
-        top: 45%;
-        height: 1px;
-        background: ${({ color = 'gray', alpha }) =>
-          alpha ? rgba({ color, alpha }) : `rgba(${getColor(color)})`};
-        content: '';
-        width: 100%;
-        display: block;
-      }
-    `};
-
-  ${({ cursor }) =>
-    cursor &&
-    `
-      cursor: ${cursor};
-    `};
-`
-
-function Text({ children, ...props }: TextProps) {
-  return <TextBase {...props}>{ChildrenWithLineBreaks(children)}</TextBase>
+export interface TextProps extends CSSProps {
+  alpha?: number
+  bold?: boolean
+  center?: boolean
+  color?: Color
+  cursor?: Property.Cursor
+  ellipsis?: boolean
+  floated?: Property.Float
+  inline?: boolean
+  inlineBlock?: boolean
+  letterSpacing?: number
+  lineHeight?: number | string
+  margin?: MarginPadding
+  maxLines?: number
+  padding?: MarginPadding
+  size?: GlobalSizes | number
+  strikethrough?: boolean
+  textAlign?: Property.TextAlign
+  textStyle?: KeyOfTextStyleMap
+  underline?: boolean
+  whiteSpace?: Property.WhiteSpace
+  wordBreak?: Property.WordBreak
 }
 
-const Html = styled(TextBase)`
+const Text = styled.div<TextProps>(
+  (props) => ({
+    boxSizing: 'border-box',
+    overflowWrap: 'break-word',
+    color: props.alpha
+      ? rgba({ color: props.color, alpha: props.alpha })
+      : `rgba(${getColor(props.color ?? 'gray')})`,
+    cursor: props.cursor,
+    display: props.inlineBlock
+      ? 'inline-block'
+      : props.inline
+      ? 'inline'
+      : undefined,
+    float: props.floated ?? 'none',
+    fontWeight: props.bold ? 'bold' : 500,
+    textAlign: props.textAlign
+      ? props.textAlign
+      : props.center
+      ? 'center'
+      : undefined,
+    textDecoration: props.strikethrough
+      ? 'line-through'
+      : props.underline
+      ? 'underline'
+      : undefined,
+    whiteSpace: props.whiteSpace ?? 'pre-line',
+    wordBreak: props.wordBreak,
+  }),
+  marginMixin,
+  paddingMixin,
+  textStyleMixin,
+  ellipsisMixin,
+  maxLinesMixin,
+  (props) => props.css,
+)
+const TextHtml = styled(Text)`
   line-height: 1.63;
 
   p {
@@ -202,53 +102,24 @@ const Html = styled(TextBase)`
   }
 `
 
-const TitleBase = styled.h1<TitleBaseProps>`
+const TextTitle = styled(Text)`
   margin: 0;
   line-height: 1.2;
   font-size: 24px;
   font-weight: bold;
   color: #3a3a3a;
-
-  ${marginMixin}
 `
 
-function TextTitle({
-  children,
-  ...props
-}: React.PropsWithChildren<
-  StyledComponentProps<'h1', any, TitleBaseProps, never>
->) {
-  return (
-    <TitleBase {...props}>
-      {React.Children.toArray(children).map((child, i) =>
-        typeof child === 'string' ? (
-          <LineBreak key={i}>{child}</LineBreak>
-        ) : (
-          child
-        ),
-      )}
-    </TitleBase>
-  )
+type CompoundedText = typeof Text & {
+  Html: typeof TextHtml
+  Title: typeof TextTitle
+  /**
+   * @deprecated
+   */
+  WithRef: typeof Text
 }
+;(Text as CompoundedText).Html = TextHtml
+;(Text as CompoundedText).Title = TextTitle
+;(Text as CompoundedText).WithRef = Text
 
-const TextWithRef = React.forwardRef<HTMLDivElement, TextProps>(
-  ({ children, ...props }, ref) => (
-    <TextBase ref={ref} {...props}>
-      {ChildrenWithLineBreaks(children)}
-    </TextBase>
-  ),
-)
-
-function ChildrenWithLineBreaks(children: React.ReactNode) {
-  return React.Children.toArray(children).map((child, i) =>
-    typeof child === 'string' ? <LineBreak key={i}>{child}</LineBreak> : child,
-  )
-}
-
-TextWithRef.displayName = 'TextWithRef'
-
-Text.Html = Html
-Text.Title = TextTitle
-Text.WithRef = TextWithRef
-
-export default Text
+export default Text as CompoundedText

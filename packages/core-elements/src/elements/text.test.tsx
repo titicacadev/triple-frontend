@@ -8,11 +8,11 @@ import 'jest-styled-components'
 it('should have default styles', () => {
   const tree = renderer.create(<Text />).toJSON()
 
-  // expect(tree).toHaveStyleRule('box-sizing', 'border-box')
-  expect(tree).toHaveStyleRule('word-wrap', 'break-word')
+  expect(tree).toHaveStyleRule('box-sizing', 'border-box')
+  expect(tree).toHaveStyleRule('overflow-wrap', 'break-word')
   expect(tree).toHaveStyleRule('float', 'none')
   expect(tree).toHaveStyleRule('font-weight', '500')
-  // expect(tree).toHaveStyleRule('white-space', 'pre-line')
+  expect(tree).toHaveStyleRule('white-space', 'pre-line')
 })
 
 it('should accept style shortcut props', () => {
@@ -71,11 +71,11 @@ it('should take on textAlign than center when both are passed', () => {
   expect(tree).toHaveStyleRule('text-align', 'right')
 })
 
-// it('should accept strikethrough prop', () => {
-//   const tree = renderer.create(<Text strikethrough />).toJSON()
+it('should accept strikethrough prop', () => {
+  const tree = renderer.create(<Text strikethrough />).toJSON()
 
-//   expect(tree).toHaveStyleRule('text-decoration', 'line-through')
-// })
+  expect(tree).toHaveStyleRule('text-decoration', 'line-through')
+})
 
 it('should accept underline prop', () => {
   const tree = renderer.create(<Text underline />).toJSON()
@@ -83,11 +83,11 @@ it('should accept underline prop', () => {
   expect(tree).toHaveStyleRule('text-decoration', 'underline')
 })
 
-// it('should take on strikethrough than underline when both are passed', () => {
-//   const tree = renderer.create(<Text strikethrough underline />).toJSON()
+it('should take on strikethrough than underline when both are passed', () => {
+  const tree = renderer.create(<Text strikethrough underline />).toJSON()
 
-//   expect(tree).toHaveStyleRule('text-decoration', 'line-through')
-// })
+  expect(tree).toHaveStyleRule('text-decoration', 'line-through')
+})
 
 it('should accept color prop', () => {
   const tree = renderer.create(<Text color="white" />).toJSON()
