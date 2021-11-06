@@ -89,3 +89,29 @@ export function getTextStyle(type: KeyOfTextStyleMap) {
 
 export type KeyOfTextStyleMap = keyof typeof TextStyleMap
 export type TextStyleMapType = { [key in KeyOfTextStyleMap]: string }
+
+interface Params {
+  textStyle?: KeyOfTextStyleMap
+  size?: GlobalSizes | number
+  lineHeight?: number | string
+  letterSpacing?: number
+}
+
+export const textStyleMixin = ({
+  textStyle,
+  size,
+  lineHeight,
+  letterSpacing,
+}: Params) => {
+  if (textStyle && (size || lineHeight || letterSpacing)) {
+    // TODO: development 환경에서만 기록하는 logger 만들기
+    // eslint-disable-next-line no-console
+    console.warn(
+      "🙅🏻‍♂️\n[Warn] Please don't use `size`, `lineHeight` and `letterSpacing` with `textStyle` together. \nIf they are used together, `size` and `lineHeight` will be omit. See \nhttps://github.com/titicacadev/triple-frontend/issues/401",
+    )
+  }
+
+  return textStyle
+    ? getTextStyle(textStyle)
+    : _unsafeTextStyle(size, lineHeight, letterSpacing)
+}
