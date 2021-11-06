@@ -128,6 +128,9 @@ function TextTitle({ css, children, margin }: TextTitleProps) {
     </TextTitleBase>
   )
 }
+;(Text as CompoundedText).Html = TextHtml
+;(Text as CompoundedText).Title = TextTitle
+;(Text as CompoundedText).WithRef = Text
 
 type CompoundedText = typeof Text & {
   Html: typeof TextHtml
