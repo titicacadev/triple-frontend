@@ -88,20 +88,13 @@ export default function Replies({
   const [totalRepliesCount, setTotalRepliesCount] = useState(0)
 
   useEffect(() => {
-    async function fetchAndSet() {
+    async function fetchRepliesAndSet() {
       const repliesResponse = await fetchReplies({
         resourceId,
         resourceType,
         size,
         page,
       })
-
-      const replyBoardResponse = await fetchReplyBoard({
-        resourceType,
-        resourceId,
-      })
-
-      setTotalRepliesCount(replyBoardResponse.rootMessagesCount)
 
       setReplies((prevReplies) => {
         const newReplies = [...repliesResponse, ...prevReplies]
@@ -110,11 +103,24 @@ export default function Replies({
       })
     }
 
-    fetchAndSet()
+    fetchRepliesAndSet()
   }, [resourceId, resourceType, size, page])
 
+  useEffect(() => {
+    async function fetchReplyBoardAndSet() {
+      const replyBoardResponse = await fetchReplyBoard({
+        resourceType,
+        resourceId,
+      })
+
+      setTotalRepliesCount(replyBoardResponse.rootMessagesCount)
+    }
+
+    fetchReplyBoardAndSet()
+  }, [resourceId, resourceType])
+
   const handleReplyMoreClick = () => {
-    setPage((page) => page + 1)
+    setPage((prevPage) => prevPage + 1)
   }
 
   if (replies.length <= 0) {
