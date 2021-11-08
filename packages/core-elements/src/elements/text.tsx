@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from 'styled-components'
 import { Property } from 'csstype'
 import { getColor, Color } from '@titicaca/color-palette'
@@ -102,13 +103,29 @@ const TextHtml = styled(Text)`
   }
 `
 
-const TextTitle = styled(Text)`
+interface TextTitleBaseProps extends CSSProps {
+  margin?: MarginPadding
+}
+
+const TextTitleBase = styled(Text)<TextTitleBaseProps>`
   margin: 0;
   line-height: 1.2;
   font-size: 24px;
   font-weight: bold;
   color: #3a3a3a;
+  ${marginMixin}
+  ${(props) => props.css}
 `
+
+export type TextTitleProps = React.PropsWithChildren<TextTitleBaseProps>
+
+function TextTitle({ css, children, margin }: TextTitleProps) {
+  return (
+    <TextTitleBase as="h1" css={css} margin={margin}>
+      {children}
+    </TextTitleBase>
+  )
+}
 
 type CompoundedText = typeof Text & {
   Html: typeof TextHtml
