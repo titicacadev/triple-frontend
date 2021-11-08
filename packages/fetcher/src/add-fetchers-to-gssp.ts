@@ -48,6 +48,7 @@ export function addFetchersToGSSP<Props, CustomContext = {}>(
     }
     const ssrPost = ssrFetcherize(post, ssrFetcherOptions)
     let promise: Promise<HttpResponse<{}>>
+    let newCookie: string | undefined
     const authGuardOptions: Parameters<typeof authFetcherize>[1] = {
       refresh: (options) => {
         if (promise !== undefined) {
@@ -58,15 +59,30 @@ export function addFetchersToGSSP<Props, CustomContext = {}>(
       },
       onCookieRenew: (cookie: string) => {
         ctx.res.setHeader('set-cookie', cookie)
+        newCookie = cookie
       },
+    }
+
+    const addNewCookieFetcherize = <Fetcher extends BaseFetcher>(
+      fetcher: Fetcher,
+    ) => {
+      return function newCookieAddingFetcher(href, options) {
+        if (newCookie === undefined) {
+          return fetcher(href, options)
+        }
+
+        return fetcher(href, { ...options, cookie: newCookie })
+      } as Fetcher
     }
 
     const combinedMiddlewars = <Fetcher extends BaseFetcher>(
       fetcher: Fetcher,
     ) =>
-      authFetcherize(
-        ssrFetcherize(fetcher, ssrFetcherOptions),
-        authGuardOptions,
+      addNewCookieFetcherize(
+        authFetcherize(
+          ssrFetcherize(fetcher, ssrFetcherOptions),
+          authGuardOptions,
+        ),
       )
 
     return gssp({
