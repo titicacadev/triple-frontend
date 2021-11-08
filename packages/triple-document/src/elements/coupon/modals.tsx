@@ -141,7 +141,7 @@ export function CouponAlertModal({
 
   return (
     <Alert
-      title="쿠폰 다운로드 오류"
+      title="쿠폰 다운로드 안내"
       open={uriHash === `${identifier}.${HASH_ERROR_COUPON}`}
       onConfirm={back}
     >
