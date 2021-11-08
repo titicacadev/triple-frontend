@@ -307,7 +307,11 @@ function DetailReply({
 
   useEffect(() => {
     async function fetchAndSet() {
-      const response = await fetchNestedReplies({ id, page: nestedPage })
+      const response = await fetchNestedReplies({
+        id,
+        page: nestedPage,
+        size: 2,
+      })
 
       setNestedReplies((prevNestedReplies) => {
         const newNestedReplies = [...response, ...prevNestedReplies]

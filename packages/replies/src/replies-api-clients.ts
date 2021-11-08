@@ -7,8 +7,8 @@ import { ResourceType, Reply, ReplyBoard } from './types'
 export async function fetchReplies({
   resourceId,
   resourceType,
-  size,
-  page,
+  page = 0,
+  size = 10,
 }: {
   resourceId: string
   resourceType: ResourceType
@@ -19,10 +19,10 @@ export async function fetchReplies({
     generateUrl({
       path: `/api/reply/messages`,
       query: qs.stringify({
-        page: page || 0,
+        page,
         resourceId,
         resourceType,
-        size: size || 10,
+        size,
       }),
     }),
   )
@@ -101,17 +101,19 @@ export async function fetchReplyBoard({
 
 export async function fetchNestedReplies({
   id,
-  page,
+  page = 0,
+  size = 2,
 }: {
   id: string
-  page: number
+  page?: number
+  size?: number
 }): Promise<Reply[]> {
   const response = await authGuardedFetchers.get<Reply[]>(
     generateUrl({
       path: `/api/reply/messages/${id}/messages`,
       query: qs.stringify({
-        page: page || 0,
-        size: 2,
+        page,
+        size,
       }),
     }),
   )
