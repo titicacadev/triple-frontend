@@ -121,9 +121,9 @@ export function SessionContextProvider({
   }, [])
 
   const logout = useCallback(async () => {
-    const { error } = await put('/api/users/logout')
+    const { ok } = await put('/api/users/logout')
 
-    if (!error) {
+    if (ok) {
       setUser(null)
 
       window.location.href = '/'
