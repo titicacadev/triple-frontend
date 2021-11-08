@@ -303,7 +303,7 @@ function DetailReply({
   reply: Reply
   onClick: () => void
 }) {
-  const [nestedReplies, setNestedReplies] = useState<Reply[]>([])
+  const [nestedReplies, setNestedReplies] = useState<Reply[]>(children)
   const [nestedPage, setNestedPage] = useState(0)
 
   useEffect(() => {
