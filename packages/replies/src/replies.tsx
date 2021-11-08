@@ -33,7 +33,7 @@ const MoreButton = styled.button`
 
 const ReactionBox = styled(FlexBox)`
   div {
-    :before {
+    ::before {
       font-size: 12px;
       padding: 0 3px 0 4px;
       content: '·';
