@@ -294,7 +294,7 @@ function DetailReply({
     createdAt,
     content: { mentionedUser, text, markdownText },
     reactions,
-    children,
+    childrenCount,
     id,
   },
   onClick,
@@ -395,7 +395,7 @@ function DetailReply({
         </ReactionBox>
       </Container>
 
-      {children.length > nestedReplies.length ? (
+      {childrenCount > nestedReplies.length ? (
         <Container cursor="pointer" onClick={handleNestedReplyMoreClick}>
           <Text padding={{ left: 40 }} color="blue" size={14} bold>
             이전 답글 더보기
