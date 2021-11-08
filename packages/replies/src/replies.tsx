@@ -78,7 +78,7 @@ export default function Replies({
   onClick: () => void
 }) {
   const [totalRepliesCount, setTotalRepliesCount] = useState(0)
-  const [repliesInfo, setRepliesInfo] = useState<{
+  const [{ replies, page }, setRepliesInfo] = useState<{
     replies: Reply[]
     page: number
   }>({
@@ -92,7 +92,7 @@ export default function Replies({
         resourceId,
         resourceType,
         size,
-        page: repliesInfo.page,
+        page,
       })
 
       setRepliesInfo((prev) => ({
@@ -102,7 +102,7 @@ export default function Replies({
     }
 
     fetchRepliesAndSet()
-  }, [repliesInfo.page, resourceId, resourceType, size])
+  }, [resourceId, resourceType, size, page])
 
   useEffect(() => {
     async function fetchReplyBoardAndSet() {
@@ -126,7 +126,7 @@ export default function Replies({
     })
   }
 
-  if (repliesInfo.replies.length <= 0) {
+  if (replies.length <= 0) {
     return (
       <NoReplyPlaceholder
         resourceId={resourceId}
@@ -140,7 +140,7 @@ export default function Replies({
   return (
     <>
       <Container padding={{ bottom: 30, left: 30, right: 30 }}>
-        {totalRepliesCount > repliesInfo.replies.length ? (
+        {totalRepliesCount > replies.length ? (
           <Container cursor="pointer" onClick={handleReplyMoreClick}>
             <Text padding={{ top: 20 }} color="blue" size={14} bold>
               이전 댓글 더보기
@@ -149,7 +149,7 @@ export default function Replies({
         ) : null}
 
         <List margin={{ top: 20 }}>
-          {repliesInfo.replies.map((reply) => (
+          {replies.map((reply) => (
             <List.Item key={reply.id}>
               <HR1 margin={{ bottom: 20 }} color="var(--color-gray50)" />
               <DetailReply reply={reply} onClick={onClick} />
@@ -312,7 +312,7 @@ function DetailReply({
   reply: Reply
   onClick: () => void
 }) {
-  const [nesetdRepliesInfo, setNestedRepliesInfo] = useState<{
+  const [{ nestedReplies, nestedPage }, setNestedRepliesInfo] = useState<{
     nestedReplies: Reply[]
     nestedPage: number
   }>({ nestedReplies: children, nestedPage: 0 })
@@ -321,7 +321,7 @@ function DetailReply({
     async function fetchAndSet() {
       const response = await fetchNestedReplies({
         id,
-        page: nesetdRepliesInfo.nestedPage,
+        page: nestedPage,
         size: 2,
       })
 
@@ -331,10 +331,10 @@ function DetailReply({
       }))
     }
 
-    if (nesetdRepliesInfo.nestedPage > 0) {
+    if (nestedPage > 0) {
       fetchAndSet()
     }
-  }, [id, nesetdRepliesInfo.nestedPage])
+  }, [id, nestedPage])
 
   const handleNestedReplyMoreClick = () => {
     setNestedRepliesInfo((prevNestedReplies) => {
@@ -413,7 +413,7 @@ function DetailReply({
         </ReactionBox>
       </Container>
 
-      {childrenCount > nesetdRepliesInfo.nestedReplies.length ? (
+      {childrenCount > nestedReplies.length ? (
         <Container cursor="pointer" onClick={handleNestedReplyMoreClick}>
           <Text padding={{ left: 40 }} color="blue" size={14} bold>
             이전 답글 더보기
@@ -421,9 +421,9 @@ function DetailReply({
         </Container>
       ) : null}
 
-      {nesetdRepliesInfo.nestedReplies.length > 0 ? (
+      {nestedReplies.length > 0 ? (
         <List margin={{ top: 20 }}>
-          {nesetdRepliesInfo.nestedReplies.map((nestedReply) => (
+          {nestedReplies.map((nestedReply) => (
             <NestedResourceListItem
               key={nestedReply.id}
               margin={{ bottom: 20 }}
