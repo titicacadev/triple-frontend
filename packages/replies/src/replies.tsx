@@ -322,7 +322,7 @@ function DetailReply({
       const response = await fetchNestedReplies({
         id,
         page: nestedPage,
-        size: 2,
+        size: 3,
       })
 
       setNestedRepliesInfo((prev) => ({
