@@ -77,9 +77,14 @@ export default function Replies({
   size?: number
   onClick: () => void
 }) {
-  const [replies, setReplies] = useState<Reply[]>([])
-  const [page, setPage] = useState(0)
   const [totalRepliesCount, setTotalRepliesCount] = useState(0)
+  const [repliesInfo, setRepliesInfo] = useState<{
+    replies: Reply[]
+    page: number
+  }>({
+    replies: [],
+    page: 0,
+  })
 
   useEffect(() => {
     async function fetchRepliesAndSet() {
@@ -87,18 +92,21 @@ export default function Replies({
         resourceId,
         resourceType,
         size,
-        page,
+        page: repliesInfo.page,
       })
 
-      setReplies((prevReplies) => {
-        const newReplies = [...repliesResponse, ...prevReplies]
+      setRepliesInfo((prevReplies) => {
+        const newReplies = [...repliesResponse, ...prevReplies.replies]
 
-        return newReplies
+        return {
+          ...prevReplies,
+          replies: newReplies,
+        }
       })
     }
 
     fetchRepliesAndSet()
-  }, [resourceId, resourceType, size, page])
+  }, [repliesInfo.page, resourceId, resourceType, size])
 
   useEffect(() => {
     async function fetchReplyBoardAndSet() {
@@ -114,10 +122,15 @@ export default function Replies({
   }, [resourceId, resourceType])
 
   const handleReplyMoreClick = () => {
-    setPage((prevPage) => prevPage + 1)
+    setRepliesInfo((prevReplies) => {
+      return {
+        ...prevReplies,
+        page: prevReplies.page + 1,
+      }
+    })
   }
 
-  if (replies.length <= 0) {
+  if (repliesInfo.replies.length <= 0) {
     return (
       <NoReplyPlaceholder
         resourceId={resourceId}
@@ -131,7 +144,7 @@ export default function Replies({
   return (
     <>
       <Container padding={{ bottom: 30, left: 30, right: 30 }}>
-        {totalRepliesCount > replies.length ? (
+        {totalRepliesCount > repliesInfo.replies.length ? (
           <Container cursor="pointer" onClick={handleReplyMoreClick}>
             <Text padding={{ top: 20 }} color="blue" size={14} bold>
               이전 댓글 더보기
@@ -140,7 +153,7 @@ export default function Replies({
         ) : null}
 
         <List margin={{ top: 20 }}>
-          {replies.map((reply) => (
+          {repliesInfo.replies.map((reply) => (
             <List.Item key={reply.id}>
               <HR1 margin={{ bottom: 20 }} color="var(--color-gray50)" />
               <DetailReply reply={reply} onClick={onClick} />
@@ -302,29 +315,42 @@ function DetailReply({
   reply: Reply
   onClick: () => void
 }) {
-  const [nestedReplies, setNestedReplies] = useState<Reply[]>([])
-  const [nestedPage, setNestedPage] = useState(0)
+  const [nesetdRepliesInfo, setNestedRepliesInfo] = useState<{
+    nestedReplies: Reply[]
+    nestedPage: number
+  }>({ nestedReplies: [], nestedPage: 0 })
 
   useEffect(() => {
     async function fetchAndSet() {
       const response = await fetchNestedReplies({
         id,
-        page: nestedPage,
+        page: nesetdRepliesInfo.nestedPage,
         size: 2,
       })
 
-      setNestedReplies((prevNestedReplies) => {
-        const newNestedReplies = [...response, ...prevNestedReplies]
+      setNestedRepliesInfo((prevNestedReplies) => {
+        const newNestedReplies = [
+          ...response,
+          ...prevNestedReplies.nestedReplies,
+        ]
 
-        return newNestedReplies
+        return {
+          ...prevNestedReplies,
+          nestedReplies: newNestedReplies,
+        }
       })
     }
 
     fetchAndSet()
-  }, [id, nestedPage])
+  }, [id, nesetdRepliesInfo.nestedPage])
 
   const handleNestedReplyMoreClick = () => {
-    setNestedPage((prevPage) => prevPage + 1)
+    setNestedRepliesInfo((prevNestedReplies) => {
+      return {
+        ...prevNestedReplies,
+        nestedPage: prevNestedReplies.nestedPage + 1,
+      }
+    })
   }
 
   return (
@@ -395,7 +421,7 @@ function DetailReply({
         </ReactionBox>
       </Container>
 
-      {childrenCount > nestedReplies.length ? (
+      {childrenCount > nesetdRepliesInfo.nestedReplies.length ? (
         <Container cursor="pointer" onClick={handleNestedReplyMoreClick}>
           <Text padding={{ left: 40 }} color="blue" size={14} bold>
             이전 답글 더보기
@@ -403,9 +429,9 @@ function DetailReply({
         </Container>
       ) : null}
 
-      {nestedReplies.length > 0 ? (
+      {nesetdRepliesInfo.nestedReplies.length > 0 ? (
         <List margin={{ top: 20 }}>
-          {nestedReplies.map((nestedReply) => (
+          {nesetdRepliesInfo.nestedReplies.map((nestedReply) => (
             <NestedResourceListItem
               key={nestedReply.id}
               margin={{ bottom: 20 }}
