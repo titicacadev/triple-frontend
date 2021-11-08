@@ -1,5 +1,61 @@
 # CHANGELOG
 
+## 3.3.0
+
+### react-contexts
+
+- API 요청이 성공했을 때에만 로그아웃 후 처리를 수행합니다. (#1665)
+
+### triple-document
+
+- 쿠폰 다운로드 Alert 타이틀 문구를 개선합니다. (#1663)
+- 쿠폰 다운로드 시도 시, API 호출 전 verification state 체크하는 부분을 제거합니다. (#1662)
+- 웹 브라우저에서 쿠폰을 다운로드할 수 있는 기능 추가 (#1658)
+- 쿠폰 그룹 다운로드할 때 인증에 실패하면 인증 프로세슷 시작 (#1657)
+- 쿠폰 그룹 다운로드 컴포넌트 리팩토링 (#1656)
+- `InAppCouponDownloadButton` 리팩토링 (#1655)
+
+### poi-detail
+
+- maxWidth={0} 제거 (#1661)
+
+### react-hooks
+
+- Public 환경에서 visibilitychange 이벤트에 subscribe합니다. (#1660)
+
+### core-elements
+
+- container, flex-box, sticky-header에 css prop 추가 및 코드 개선 (#1654)
+- Container 유닛 테스트 추가 (#1650)
+- as, css prop을 지원하는 컴포넌트와 타입 추가 (#1643)
+
+### date-picker
+
+- range-picker test에서 query 함수로 getAllBy 사용 (#1652)
+
+### replies
+
+- 댓글을 작성할 수 있도록 수정합니다. (#1649)
+
+### docs
+
+- popup 스토리 수정 (#1648)
+- 댓글 컴포넌트의 스토리북에 control 기능을 추가합니다. (#1647)
+- storybook-addon-next-router 추가 (#1646)
+
+### router
+
+- Link 컴포넌트의 자식 노드에 덮어쓰이는 속성이 있을 때 경고를 추가합니다. (#1645)
+
+### form
+
+- action-sheet-selector default label 수정 (#1641)
+
+### etc
+
+- swc를 사용해 빌드합니다. (#1642)
+- tag object를 만들 때 SHA 참조 수정 (#1640)
+
 ## 3.2.1
 
 ### modal
