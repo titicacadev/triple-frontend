@@ -2,6 +2,7 @@ import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 
 import {
   authFetcherize,
+  BaseFetcher,
   ExtendFetcher,
   NEED_LOGIN_IDENTIFIER,
   ssrFetcherize,
@@ -59,24 +60,24 @@ export function addFetchersToGSSP<Props, CustomContext = {}>(
         ctx.res.setHeader('set-cookie', cookie)
       },
     }
+
+    const combinedMiddlewars = <Fetcher extends BaseFetcher>(
+      fetcher: Fetcher,
+    ) =>
+      authFetcherize(
+        ssrFetcherize(fetcher, ssrFetcherOptions),
+        authGuardOptions,
+      )
+
     return gssp({
       ...ctx,
       customContext: {
         ...ctx.customContext,
         fetchers: {
-          get: authFetcherize(
-            ssrFetcherize(get, ssrFetcherOptions),
-            authGuardOptions,
-          ),
-          put: authFetcherize(
-            ssrFetcherize(put, ssrFetcherOptions),
-            authGuardOptions,
-          ),
-          post: authFetcherize(ssrPost, authGuardOptions),
-          del: authFetcherize(
-            ssrFetcherize(del, ssrFetcherOptions),
-            authGuardOptions,
-          ),
+          get: combinedMiddlewars(get),
+          put: combinedMiddlewars(put),
+          post: combinedMiddlewars(post),
+          del: combinedMiddlewars(del),
         },
       },
     })
