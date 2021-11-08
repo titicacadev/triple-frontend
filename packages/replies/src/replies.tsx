@@ -95,14 +95,10 @@ export default function Replies({
         page: repliesInfo.page,
       })
 
-      setRepliesInfo((prevReplies) => {
-        const newReplies = [...repliesResponse, ...prevReplies.replies]
-
-        return {
-          ...prevReplies,
-          replies: newReplies,
-        }
-      })
+      setRepliesInfo((prev) => ({
+        ...prev,
+        replies: [...repliesResponse, ...prev.replies],
+      }))
     }
 
     fetchRepliesAndSet()
@@ -329,17 +325,10 @@ function DetailReply({
         size: 2,
       })
 
-      setNestedRepliesInfo((prevNestedReplies) => {
-        const newNestedReplies = [
-          ...response,
-          ...prevNestedReplies.nestedReplies,
-        ]
-
-        return {
-          ...prevNestedReplies,
-          nestedReplies: newNestedReplies,
-        }
-      })
+      setNestedRepliesInfo((prev) => ({
+        ...prev,
+        nestedReplies: [...response, ...prev.nestedReplies],
+      }))
     }
 
     if (nesetdRepliesInfo.nestedPage > 0) {
