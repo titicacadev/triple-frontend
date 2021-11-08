@@ -10,6 +10,7 @@ const mockedPost = post as jest.MockedFunction<typeof post>
 
 const baseContext: any = {
   req: { headers: { cookie: '' } },
+  res: { setHeader: () => {} },
 }
 const customAPIURIBase = 'https://my-base-path.co.kr'
 
@@ -178,4 +179,51 @@ test('API를 여러 번 호출하더라도 유효한 쿠키 하나만 사용합�
     }),
   )
   expect(setHeader).toBeCalledWith('set-cookie', `${validCookie}-1`)
+})
+
+test('토큰을 갱신하면 갱신한 쿠키 값으로 다음 API를 요청합니다.', async () => {
+  const validCookie = 'VALID_COOKIE'
+  const dAPIRecorder = jest.fn()
+
+  mockedGet.mockImplementation(async (href, { cookie } = {}) => {
+    if (href.includes('/api/d')) {
+      dAPIRecorder(cookie)
+    }
+
+    if (cookie === validCookie) {
+      return new Response('', { status: 200 })
+    }
+    return new Response('', { status: 401 })
+  })
+  mockedPost.mockImplementation(() => {
+    return Promise.resolve({
+      ok: true,
+      headers: {
+        get() {
+          return validCookie
+        },
+      },
+    } as any)
+  })
+
+  const gssp = addFetchersToGSSP(
+    async ({
+      customContext: {
+        fetchers: { get },
+      },
+    }): Promise<GetServerSidePropsResult<{}>> => {
+      const [a, b, c] = await Promise.all([
+        get('/api/a'),
+        get('/api/b'),
+        get('/api/c'),
+      ])
+      const d = await get('/api/d')
+      return { props: { responses: [a, b, c, d] } }
+    },
+    { apiUriBase: 'https://triple-dev.titicaca-corp.com' },
+  )
+  await gssp(baseContext)
+
+  expect(dAPIRecorder).toBeCalledTimes(1)
+  expect(dAPIRecorder).toBeCalledWith(validCookie)
 })
