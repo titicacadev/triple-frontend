@@ -120,3 +120,62 @@ test('API 요청을 여러 번 해도 refresh는 한 번만 호출합니다.', a
 
   expect(mockedPost).toBeCalledTimes(1)
 })
+
+test('API를 여러 번 호출하더라도 유효한 쿠키 하나만 사용합니다.', async () => {
+  const validCookie = 'VALID_COOKIE'
+  mockedGet.mockImplementation(async (_, { cookie } = {}) => {
+    if (cookie === `${validCookie}-1`) {
+      return new Response('', { status: 200 })
+    }
+    return new Response('', { status: 401 })
+  })
+
+  let refreshCount = 0
+  mockedPost.mockImplementation(() => {
+    refreshCount += 1
+    const cookie = `${validCookie}-${refreshCount}`
+    return Promise.resolve({
+      ok: true,
+      headers: {
+        get() {
+          return cookie
+        },
+      },
+    } as any)
+  })
+
+  const setHeader = jest.fn()
+
+  const gssp = addFetchersToGSSP(
+    async ({
+      customContext: {
+        fetchers: { get },
+      },
+    }): Promise<GetServerSidePropsResult<{}>> => {
+      const [a, b, c] = await Promise.all([
+        get('/api/a'),
+        get('/api/b'),
+        get('/api/c'),
+      ])
+      const d = await get('/api/d')
+      return { props: { responses: [a, b, c, d] } }
+    },
+    { apiUriBase: 'https://triple-dev.titicaca-corp.com' },
+  )
+
+  const gsspResponse = await gssp({ ...baseContext, res: { setHeader } } as any)
+
+  expect(gsspResponse).toEqual(
+    expect.objectContaining({
+      props: expect.objectContaining({
+        responses: [
+          expect.objectContaining({ ok: true }),
+          expect.objectContaining({ ok: true }),
+          expect.objectContaining({ ok: true }),
+          expect.objectContaining({ ok: true }),
+        ],
+      }),
+    }),
+  )
+  expect(setHeader).toBeCalledWith('set-cookie', `${validCookie}-1`)
+})
