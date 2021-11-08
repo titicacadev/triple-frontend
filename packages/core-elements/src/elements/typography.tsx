@@ -16,10 +16,10 @@ export type H1Props = PropsWithChildren<
   }
 >
 
-export type H2Props = TextProps
-export type H3Props = TextProps
-export type H4Props = TextProps
-export type ParagraphProps = TextProps
+export type H2Props = PropsWithChildren<TextProps>
+export type H3Props = PropsWithChildren<TextProps>
+export type H4Props = PropsWithChildren<TextProps>
+export type ParagraphProps = PropsWithChildren<TextProps>
 
 export function H1({
   href,
