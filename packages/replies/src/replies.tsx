@@ -41,11 +41,6 @@ const ReactionBox = styled(FlexBox)`
   }
 `
 
-const ResourceListItem = styled(List.Item)`
-  min-height: 100%;
-  margin-top: 20px;
-`
-
 const RegisterButton = styled.button`
   width: 26px;
   padding: 0;
@@ -61,7 +56,6 @@ const RegisterButton = styled.button`
 `
 
 const NestedResourceListItem = styled(List.Item)`
-  margin-top: 20px;
   padding-left: 40px;
 `
 
@@ -145,15 +139,14 @@ export default function Replies({
           </Container>
         ) : null}
 
-        {replies.map((reply) => (
-          <>
-            <HR1 margin={{ top: 20 }} color="var(--color-gray50)" />
-
-            <ResourceListItem key={reply.id}>
+        <List margin={{ top: 20 }}>
+          {replies.map((reply) => (
+            <List.Item key={reply.id}>
+              <HR1 margin={{ bottom: 20 }} color="var(--color-gray50)" />
               <DetailReply reply={reply} onClick={onClick} />
-            </ResourceListItem>
-          </>
-        ))}
+            </List.Item>
+          ))}
+        </List>
       </Container>
 
       <Register
@@ -309,7 +302,7 @@ function DetailReply({
   reply: Reply
   onClick: () => void
 }) {
-  const [nestedReplies, setNestedReplies] = useState<Reply[]>(children)
+  const [nestedReplies, setNestedReplies] = useState<Reply[]>([])
   const [nestedPage, setNestedPage] = useState(0)
 
   useEffect(() => {
@@ -340,7 +333,7 @@ function DetailReply({
         alt={name || ''}
       />
 
-      <Container padding={{ left: 50, bottom: 3 }}>
+      <Container padding={{ left: 50, bottom: 3 }} margin={{ bottom: 20 }}>
         <FlexBox flex justifyContent="space-between" alignItems="start">
           <Container minWidth={80}>
             <Text size={15} bold>
@@ -400,17 +393,24 @@ function DetailReply({
 
       {children.length > nestedReplies.length ? (
         <Container cursor="pointer" onClick={handleNestedReplyMoreClick}>
-          <Text padding={{ top: 20, left: 40 }} color="blue" size={14} bold>
+          <Text padding={{ left: 40 }} color="blue" size={14} bold>
             이전 답글 더보기
           </Text>
         </Container>
       ) : null}
 
-      {nestedReplies.map((nestedReply) => (
-        <NestedResourceListItem key={nestedReply.id}>
-          <DetailReply reply={nestedReply} onClick={onClick} />
-        </NestedResourceListItem>
-      ))}
+      {nestedReplies.length > 0 ? (
+        <List margin={{ top: 20 }}>
+          {nestedReplies.map((nestedReply) => (
+            <NestedResourceListItem
+              key={nestedReply.id}
+              margin={{ bottom: 20 }}
+            >
+              <DetailReply reply={nestedReply} onClick={onClick} />
+            </NestedResourceListItem>
+          ))}
+        </List>
+      ) : null}
     </>
   )
 }
