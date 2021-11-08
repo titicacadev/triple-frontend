@@ -308,6 +308,7 @@ function DetailReply({
     content: { mentionedUser, text, markdownText },
     reactions,
     childrenCount,
+    children,
     id,
   },
   onClick,
@@ -318,7 +319,7 @@ function DetailReply({
   const [nesetdRepliesInfo, setNestedRepliesInfo] = useState<{
     nestedReplies: Reply[]
     nestedPage: number
-  }>({ nestedReplies: [], nestedPage: 0 })
+  }>({ nestedReplies: children, nestedPage: 0 })
 
   useEffect(() => {
     async function fetchAndSet() {
@@ -341,7 +342,9 @@ function DetailReply({
       })
     }
 
-    fetchAndSet()
+    if (nesetdRepliesInfo.nestedPage > 0) {
+      fetchAndSet()
+    }
   }, [id, nesetdRepliesInfo.nestedPage])
 
   const handleNestedReplyMoreClick = () => {
