@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/replies",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "description": "Replies Component",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,8 +15,8 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^3.3.0",
-    "@titicaca/fetcher": "^3.3.0",
-    "@titicaca/view-utilities": "^3.3.0"
+    "@titicaca/core-elements": "^3.3.1",
+    "@titicaca/fetcher": "^3.3.1",
+    "@titicaca/view-utilities": "^3.3.1"
   }
 }
