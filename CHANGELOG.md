@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 3.3.1
+
+### common
+
+- 배포용 패키지는 babel로 빌드합니다. (#1669)
+
 ## 3.3.0
 
 ### react-contexts
