@@ -75,7 +75,7 @@ export function addFetchersToGSSP<Props, CustomContext = {}>(
       } as Fetcher
     }
 
-    const combinedMiddlewars = <Fetcher extends BaseFetcher>(
+    const combinedMiddlewares = <Fetcher extends BaseFetcher>(
       fetcher: Fetcher,
     ) =>
       addNewCookieFetcherize(
@@ -90,10 +90,10 @@ export function addFetchersToGSSP<Props, CustomContext = {}>(
       customContext: {
         ...ctx.customContext,
         fetchers: {
-          get: combinedMiddlewars(get),
-          put: combinedMiddlewars(put),
-          post: combinedMiddlewars(post),
-          del: combinedMiddlewars(del),
+          get: combinedMiddlewares(get),
+          put: combinedMiddlewares(put),
+          post: combinedMiddlewares(post),
+          del: combinedMiddlewares(del),
         },
       },
     })
