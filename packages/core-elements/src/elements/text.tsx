@@ -18,7 +18,7 @@ function rgba({ color, alpha }: { color?: string; alpha?: number }) {
   return `rgba(${GetGlobalColor(color || 'gray')}, ${alpha || 1})`
 }
 
-export interface TextProps extends CSSProps {
+export type TextProps = React.PropsWithChildren<{
   alpha?: number
   bold?: boolean
   center?: boolean
@@ -40,7 +40,8 @@ export interface TextProps extends CSSProps {
   underline?: boolean
   whiteSpace?: Property.WhiteSpace
   wordBreak?: Property.WordBreak
-}
+}> &
+  CSSProps
 
 const Text = styled.div<TextProps>(
   (props) => ({
@@ -77,6 +78,7 @@ const Text = styled.div<TextProps>(
   maxLinesMixin,
   (props) => props.css,
 )
+
 const TextHtml = styled(Text)`
   line-height: 1.63;
 

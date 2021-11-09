@@ -15,7 +15,7 @@ import {
   horizontalScrollMixin,
 } from '../mixins'
 
-export interface ContainerProps extends CSSProps {
+export type ContainerProps = React.PropsWithChildren<{
   position?: Property.Position
   textAlign?: Property.TextAlign
   whiteSpace?: Property.WhiteSpace
@@ -40,7 +40,8 @@ export interface ContainerProps extends CSSProps {
   horizontalScroll?: boolean
   shadow?: BaseSizes
   backgroundColor?: Color
-}
+}> &
+  CSSProps
 
 const Container = styled.div<ContainerProps>(
   (props) => ({
