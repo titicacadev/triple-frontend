@@ -1,7 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import Responsive from './Responsive'
+import Responsive from './responsive'
 
 import 'jest-styled-components'
 
