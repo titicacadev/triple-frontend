@@ -41,7 +41,7 @@ export function addFetchersToGSSP<Props, CustomContext = {}>(
     )
   }
 
-  return async function fetchersAddedGSSP(ctx) {
+  return function fetchersAddedGSSP(ctx) {
     const ssrFetcherOptions = {
       apiUriBase,
       cookie: ctx.req.headers.cookie,
