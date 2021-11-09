@@ -134,3 +134,36 @@ export async function fetchNestedReplies({
 
   return result
 }
+
+export async function writeNestedReply({
+  messageId,
+  content,
+  contentFormat,
+  mentionedUserUid,
+}: {
+  messageId: string
+  content: string
+  contentFormat: 'plaintext' | 'markdownText'
+  mentionedUserUid: string
+}) {
+  const response = await authGuardedFetchers.post(
+    generateUrl({
+      path: `/api/reply/messages/${messageId}/messages`,
+      query: qs.stringify({
+        contentFormat,
+      }),
+    }),
+    {
+      body: {
+        content,
+        mentionedUserUid,
+      },
+    },
+  )
+
+  if (response === 'NEED_LOGIN') {
+    throw new Error('로그인이 필요한 호출입니다.')
+  }
+
+  captureHttpError(response)
+}
