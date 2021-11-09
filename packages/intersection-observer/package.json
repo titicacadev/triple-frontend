@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/intersection-observer",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "description": "Shared IntersecionObserver component",
   "main": "lib/index.js",
   "files": [

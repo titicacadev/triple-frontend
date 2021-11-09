@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/static-page-contents",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "description": "Static page pomponent",
   "main": "lib/index.js",
   "files": [
@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
-    "@titicaca/color-palette": "^3.3.0",
+    "@titicaca/color-palette": "^3.3.1",
     "isomorphic-fetch": "^2.2.1"
   },
   "devDependencies": {

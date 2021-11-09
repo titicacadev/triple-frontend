@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-media",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "description": "Media object of Triple",
   "main": "lib/index.js",
   "files": [
@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
-    "@titicaca/core-elements": "^3.3.0",
-    "@titicaca/type-definitions": "^3.3.0"
+    "@titicaca/core-elements": "^3.3.1",
+    "@titicaca/type-definitions": "^3.3.1"
   }
 }
