@@ -29,6 +29,21 @@ export interface Reply {
   content: { text?: string; markdownText?: string; mentionedUser?: Writer }
   children: Reply[]
   writer: Writer
+  actionSpecifications: {
+    delete: boolean
+    edite: {
+      text?: string
+      plainttext?: string
+    }
+    reaction: boolean
+    reply: {
+      mentioningUserHref: string
+      mentioningUserName: string
+      mentioningUserUid: string
+      toMessageId: string
+    }
+    report: boolean
+  }
 }
 
 export interface ReplyBoard {
