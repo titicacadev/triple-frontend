@@ -1,5 +1,4 @@
 import React from 'react'
-import { css } from 'styled-components'
 
 import Container, { ContainerProps } from './container'
 import { HR2 } from './hr'
@@ -10,7 +9,7 @@ export interface SectionProps extends ContainerProps {
 }
 
 function Section({
-  css: _css,
+  css,
   children,
   divider,
   anchor,
@@ -28,16 +27,13 @@ function Section({
       {divider === 'top' && <HR2 compact />}
       <Container
         id={anchor}
-        css={css`
-          position: relative;
-          margin-left: auto;
-          margin-right: auto;
-          ${_css}
-        `}
+        css={css}
+        centered
         clearing
         minWidth={minWidth}
         maxWidth={maxWidth}
         padding={padding}
+        position="relative"
         {...props}
       >
         {children}
