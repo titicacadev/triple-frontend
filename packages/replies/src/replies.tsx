@@ -118,12 +118,10 @@ export default function Replies({
   }, [resourceId, resourceType])
 
   const handleReplyMoreClick = () => {
-    setRepliesInfo((prevReplies) => {
-      return {
-        ...prevReplies,
-        page: prevReplies.page + 1,
-      }
-    })
+    setRepliesInfo((prevReplies) => ({
+      ...prevReplies,
+      page: prevReplies.page + 1,
+    }))
   }
 
   if (replies.length <= 0) {
@@ -337,12 +335,10 @@ function DetailReply({
   }, [id, nestedPage])
 
   const handleNestedReplyMoreClick = () => {
-    setNestedRepliesInfo((prevNestedReplies) => {
-      return {
-        ...prevNestedReplies,
-        nestedPage: prevNestedReplies.nestedPage + 1,
-      }
-    })
+    setNestedRepliesInfo((prevNestedReplies) => ({
+      ...prevNestedReplies,
+      nestedPage: prevNestedReplies.nestedPage + 1,
+    }))
   }
 
   return (
