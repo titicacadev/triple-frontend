@@ -5,7 +5,7 @@ import Container from './container'
 
 import 'jest-styled-components'
 
-it('should render without crash', () => {
+it('should have default styles', () => {
   const tree = renderer.create(<Container />).toJSON()
 
   expect(tree).toHaveStyleRule('box-sizing', 'border-box')
