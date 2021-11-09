@@ -46,11 +46,12 @@ export function addFetchersToGSSP<Props, CustomContext = {}>(
       apiUriBase,
       cookie: ctx.req.headers.cookie,
     }
-    const ssrPost = ssrFetcherize(post, ssrFetcherOptions)
+
     let promise: Promise<HttpResponse<{}>>
     let newCookie: string | undefined
     const authGuardOptions: Parameters<typeof authFetcherize>[1] = {
       refresh: (options) => {
+        const ssrPost = ssrFetcherize(post, ssrFetcherOptions)
         if (promise !== undefined) {
           return promise
         }
