@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react'
+import React from 'react'
 import * as CSS from 'csstype'
 
 import { MarginPadding } from '../commons'
@@ -6,20 +6,18 @@ import { MarginPadding } from '../commons'
 import Text, { TextProps } from './text'
 import Container from './container'
 
-export type H1Props = PropsWithChildren<
-  TextProps & {
-    href?: string
-    headline?: string
-    emphasize?: boolean
-    margin?: MarginPadding
-    textAlign?: CSS.Property.TextAlign
-  }
->
+export type H1Props = TextProps & {
+  href?: string
+  headline?: string
+  emphasize?: boolean
+  margin?: MarginPadding
+  textAlign?: CSS.Property.TextAlign
+}
 
-export type H2Props = PropsWithChildren<TextProps>
-export type H3Props = PropsWithChildren<TextProps>
-export type H4Props = PropsWithChildren<TextProps>
-export type ParagraphProps = PropsWithChildren<TextProps>
+export type H2Props = TextProps
+export type H3Props = TextProps
+export type H4Props = TextProps
+export type ParagraphProps = TextProps
 
 export function H1({
   href,
