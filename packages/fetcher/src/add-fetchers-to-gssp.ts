@@ -52,10 +52,7 @@ export function addFetchersToGSSP<Props, CustomContext = {}>(
     const authGuardOptions: Parameters<typeof authFetcherize>[1] = {
       refresh: (options) => {
         const ssrPost = ssrFetcherize(post, ssrFetcherOptions)
-        if (promise !== undefined) {
-          return promise
-        }
-        promise = ssrPost('/api/users/web-session/token', options)
+        promise ||= ssrPost('/api/users/web-session/token', options)
         return promise
       },
       onCookieRenew: (cookie: string) => {
