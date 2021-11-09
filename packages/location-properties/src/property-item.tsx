@@ -1,6 +1,5 @@
-import React, { useEffect, useCallback, useRef, useState } from 'react'
-import styled from 'styled-components'
-import { List, Text, longClickable } from '@titicaca/core-elements'
+import React, { useCallback } from 'react'
+import { List, Text, longClickable, FlexBox } from '@titicaca/core-elements'
 import {
   useEventTrackingContext,
   useUserAgentContext,
@@ -18,21 +17,7 @@ export interface PropertyItemProps {
   onClick?: () => void
 }
 
-const PropertyItemContainer = styled.div`
-  white-space: nowrap;
-
-  * {
-    vertical-align: top;
-    line-height: 1.43;
-  }
-`
-
-const PropertyValueContainer = styled.div<{ width: string }>`
-  display: inline-block;
-  width: ${({ width }) => width};
-`
-
-const LongClickableItemContainer = longClickable(PropertyItemContainer)
+const LongClickableItemContainer = longClickable(FlexBox)
 
 export default function PropertyItem({
   identifier,
@@ -43,17 +28,9 @@ export default function PropertyItem({
   eventActionFragment,
 }: PropertyItemProps) {
   const { isPublic } = useUserAgentContext()
-  const titleTextRef = useRef<HTMLDivElement>(null)
-  const [titleTextWidth, setTitleTextWidth] = useState(0)
 
   const { push } = useHistoryFunctions()
   const { trackSimpleEvent } = useEventTrackingContext()
-
-  useEffect(() => {
-    if (titleTextRef.current !== null) {
-      setTitleTextWidth((titleTextRef?.current as any)?.offsetWidth)
-    }
-  }, [titleTextRef, title])
 
   const handleLongClick = useCallback(() => {
     if (eventActionFragment) {
@@ -66,30 +43,27 @@ export default function PropertyItem({
   return (
     <List.Item>
       <LongClickableItemContainer
+        flex
+        alignItems="flex-start"
         onLongClick={!isPublic ? handleLongClick : undefined}
         onClick={onClick}
       >
-        <Text.WithRef
-          inlineBlock
-          whiteSpace="nowrap"
-          bold
-          size="small"
-          ref={titleTextRef}
-        >
+        <Text bold size="small" css={{ flexShrink: 1, lineHeight: 1.43 }}>
           {title}
-        </Text.WithRef>
-        <PropertyValueContainer width={`calc(100% - ${titleTextWidth}px)`}>
-          <Text
-            margin={{ left: 10 }}
-            size="small"
-            alpha={0.7}
-            wordBreak="break-all"
-            whiteSpace="normal"
-            {...(singleLine && { ellipsis: true, whiteSpace: 'nowrap' })}
-          >
-            {value}
-          </Text>
-        </PropertyValueContainer>
+        </Text>
+        <Text
+          size="small"
+          alpha={0.7}
+          ellipsis={singleLine}
+          css={{
+            marginLeft: 10,
+            flex: 1,
+            lineHeight: 1.43,
+            wordBreak: 'break-all',
+          }}
+        >
+          {value}
+        </Text>
       </LongClickableItemContainer>
     </List.Item>
   )
