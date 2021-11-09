@@ -1,10 +1,12 @@
 import styled, { css } from 'styled-components'
 
-const Responsive = styled.div<{
+export type ResponsiveProps = React.PropsWithChildren<{
   inline?: boolean
   maxWidth?: number
   minWidth?: number
-}>`
+}>
+
+const Responsive = styled.div<ResponsiveProps>`
   display: ${({ inline }) => (inline ? 'inline' : 'block')};
 
   ${({ minWidth }) =>
