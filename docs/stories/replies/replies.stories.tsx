@@ -2,9 +2,12 @@ import React from 'react'
 import Replies, { ResourceType } from '@titicaca/replies'
 import { Story } from '@storybook/react'
 
+import { sessionContextProviderDecorator } from '../../decorators'
+
 export default {
   title: 'Replies',
   component: Replies,
+  decorators: [sessionContextProviderDecorator],
   argTypes: {
     resourceId: {
       type: 'string',
@@ -40,7 +43,7 @@ const RepliesTemplate: Story<{
 export const BaseReplies = RepliesTemplate.bind({})
 
 BaseReplies.args = {
-  resourceId: '14a66dcf-b170-4edf-967b-b830d2362109',
+  resourceId: 'bb3addcf-1390-4f42-8a44-d7fc32d4a084',
   resourceType: 'itinerary',
 }
 
