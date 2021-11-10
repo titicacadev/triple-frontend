@@ -47,31 +47,20 @@ export function addFetchersToGSSP<Props, CustomContext = {}>(
       cookie: ctx.req.headers.cookie,
     }
 
-    let newCookie: string | undefined
+    const { setCookie, cookieOverrider } = createCookieOverrider()
+
     const authGuardOptions: Parameters<typeof authFetcherize>[1] = {
       refresh: createRefresh({ ssrFetcherOptions }),
       onCookieRenew: (cookie: string) => {
         ctx.res.setHeader('set-cookie', cookie)
-        newCookie = cookie
+        setCookie(cookie)
       },
-    }
-
-    const addNewCookieFetcherize = <Fetcher extends BaseFetcher>(
-      fetcher: Fetcher,
-    ) => {
-      return function newCookieAddingFetcher(href, options) {
-        if (newCookie === undefined) {
-          return fetcher(href, options)
-        }
-
-        return fetcher(href, { ...options, cookie: newCookie })
-      } as Fetcher
     }
 
     const combinedMiddlewares = <Fetcher extends BaseFetcher>(
       fetcher: Fetcher,
     ) =>
-      addNewCookieFetcherize(
+      cookieOverrider(
         authFetcherize(
           ssrFetcherize(fetcher, ssrFetcherOptions),
           authGuardOptions,
@@ -103,5 +92,26 @@ function createRefresh({
     const ssrPost = ssrFetcherize(post, ssrFetcherOptions)
     promise ||= ssrPost('/api/users/web-session/token', options)
     return promise
+  }
+}
+
+function createCookieOverrider() {
+  let cookie: string | undefined
+
+  function cookieOverrider<Fetcher extends BaseFetcher>(fetcher: Fetcher) {
+    return function cookieOverridingFetcher(href, options) {
+      if (cookie === undefined) {
+        return fetcher(href, options)
+      }
+
+      return fetcher(href, { ...options, cookie })
+    } as Fetcher
+  }
+
+  return {
+    cookieOverrider,
+    setCookie: (newCookie: string) => {
+      cookie = newCookie
+    },
   }
 }
