@@ -9,6 +9,7 @@ import {
 } from '@titicaca/core-elements'
 import { findFoldedPosition, formatTimestamp } from '@titicaca/view-utilities'
 import styled from 'styled-components'
+import { ExternalLink } from '@titicaca/router'
 
 import {
   fetchReplies,
@@ -59,7 +60,7 @@ const NestedResourceListItem = styled(List.Item)`
   padding-left: 40px;
 `
 
-const MentionUserLink = styled.a`
+const MentionUser = styled.a`
   color: var(--color-blue);
   margin-right: 5px;
 `
@@ -259,7 +260,6 @@ function Content({
   blinded: boolean
 }) {
   const [unfolded, setUnfolded] = useState(false)
-
   const foldedPosition = findFoldedPosition(5, text)
 
   return (
@@ -272,9 +272,9 @@ function Content({
         ) : (
           <>
             {mentionedUser && (
-              <MentionUserLink href={mentionedUser?.href as string}>
-                {mentionedUser?.name}
-              </MentionUserLink>
+              <ExternalLink href={mentionedUser?.href as string} target="new">
+                <MentionUser>{mentionedUser?.name}</MentionUser>
+              </ExternalLink>
             )}
             <span>{text}</span>
           </>
