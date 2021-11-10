@@ -77,7 +77,9 @@ export default function Replies({
   size?: number
   onClick: () => void
 }) {
-  const [totalRepliesCount, setTotalRepliesCount] = useState(0)
+  const [totalRepliesCount, setTotalRepliesCount] = useState<
+    number | undefined
+  >(undefined)
   const [{ replies, page }, setRepliesInfo] = useState<{
     replies: Reply[]
     page: number
@@ -138,7 +140,7 @@ export default function Replies({
   return (
     <>
       <Container padding={{ bottom: 30, left: 30, right: 30 }}>
-        {totalRepliesCount > replies.length ? (
+        {totalRepliesCount && totalRepliesCount > replies.length ? (
           <Container cursor="pointer" onClick={handleReplyMoreClick}>
             <Text padding={{ top: 20 }} color="blue" size={14} bold>
               이전 댓글 더보기
