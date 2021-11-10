@@ -8,7 +8,7 @@ import {
   ssrFetcherize,
 } from './factories'
 import { del, get, post, put } from './methods'
-import { HttpResponse } from './types'
+import { RequestOptions, HttpResponse } from './types'
 
 /**
  * 주어진 getServerSideProps 함수의 context에 fetcher를 추가하는 팩토리 함수
@@ -47,14 +47,9 @@ export function addFetchersToGSSP<Props, CustomContext = {}>(
       cookie: ctx.req.headers.cookie,
     }
 
-    let promise: Promise<HttpResponse<{}>>
     let newCookie: string | undefined
     const authGuardOptions: Parameters<typeof authFetcherize>[1] = {
-      refresh: (options) => {
-        const ssrPost = ssrFetcherize(post, ssrFetcherOptions)
-        promise ||= ssrPost('/api/users/web-session/token', options)
-        return promise
-      },
+      refresh: createRefresh({ ssrFetcherOptions }),
       onCookieRenew: (cookie: string) => {
         ctx.res.setHeader('set-cookie', cookie)
         newCookie = cookie
@@ -95,5 +90,18 @@ export function addFetchersToGSSP<Props, CustomContext = {}>(
         },
       },
     })
+  }
+}
+
+function createRefresh({
+  ssrFetcherOptions,
+}: {
+  ssrFetcherOptions: Parameters<typeof ssrFetcherize>[1]
+}) {
+  let promise: Promise<HttpResponse<{}>> | undefined
+  return function refresh(options?: RequestOptions) {
+    const ssrPost = ssrFetcherize(post, ssrFetcherOptions)
+    promise ||= ssrPost('/api/users/web-session/token', options)
+    return promise
   }
 }
