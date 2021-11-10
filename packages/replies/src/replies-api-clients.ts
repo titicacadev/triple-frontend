@@ -90,6 +90,8 @@ export async function fetchReplyBoard({
     throw new Error('로그인이 필요한 호출입니다.')
   }
 
+  captureHttpError(response)
+
   const { result } = response
 
   if (!result) {
@@ -121,6 +123,8 @@ export async function fetchNestedReplies({
   if (response === 'NEED_LOGIN') {
     throw new Error('로그인이 필요한 호출입니다.')
   }
+
+  captureHttpError(response)
 
   const { result } = response
 
