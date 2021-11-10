@@ -20,3 +20,9 @@ it('should have media query when minWidth is passed', () => {
     media: '(max-width:999px)',
   })
 })
+
+it('should accept inline prop', () => {
+  const tree = renderer.create(<Responsive inline />).toJSON()
+
+  expect(tree).toHaveStyleRule('display', 'inline')
+})
