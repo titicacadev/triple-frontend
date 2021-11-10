@@ -296,6 +296,10 @@ function Content({
   )
 }
 
+function removeDuplicateNestedReply(nestedReply: Reply[]) {
+  return [...new Map(nestedReply.map((item) => [item.id, item])).values()]
+}
+
 function DetailReply({
   reply: {
     writer: { profileImage, name },
@@ -318,19 +322,6 @@ function DetailReply({
   }>({ nestedReplies: children, nestedPage: 0 })
 
   useEffect(() => {
-    function removeDuplicateNestedReply(nestedRepies: Reply[]) {
-      const temp: string[] = []
-
-      const result = nestedRepies.filter((item) => {
-        if (!temp.includes(item.id)) {
-          temp.push(item.id)
-          return true
-        }
-      })
-
-      return result
-    }
-
     async function fetchAndSet() {
       const response = await fetchNestedReplies({
         id,
