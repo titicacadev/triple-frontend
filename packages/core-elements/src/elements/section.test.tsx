@@ -11,6 +11,14 @@ it('should render null if children is empty', () => {
   expect(tree).toBeNull()
 })
 
+it('should accept anchor prop', () => {
+  const tree = renderer
+    .create(<Section anchor="anchorValue">Sectioon</Section>)
+    .toJSON()
+
+  expect(tree).toHaveProperty('props.id', 'anchorValue')
+})
+
 it('should show top divider', () => {
   const tree = renderer
     .create(<Section divider="top">Section</Section>)
