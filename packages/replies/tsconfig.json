@@ -13,6 +13,9 @@
       "path": "../fetcher"
     },
     {
+      "path": "../router"
+    },
+    {
       "path": "../view-utilities"
     }
   ]
