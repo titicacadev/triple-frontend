@@ -269,7 +269,11 @@ function Content({
         ) : (
           <>
             {mentionedUser && (
-              <ExternalLink href={mentionedUser?.href as string} target="new">
+              <ExternalLink
+                href={mentionedUser?.href as string}
+                target="new"
+                allowSource="app"
+              >
                 <MentionUser>{mentionedUser?.name}</MentionUser>
               </ExternalLink>
             )}
