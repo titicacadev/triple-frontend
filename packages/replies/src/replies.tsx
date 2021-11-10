@@ -76,7 +76,7 @@ export default function Replies({
   resourceType: ResourceType
   registerPlaceholder?: string
   size?: number
-  onClick: () => void
+  onClick?: () => void
 }) {
   const [totalRepliesCount, setTotalRepliesCount] = useState<
     number | undefined
@@ -139,7 +139,7 @@ export default function Replies({
   }
 
   return (
-    <>
+    <Container onClick={onClick}>
       <Container padding={{ bottom: 30, left: 30, right: 30 }}>
         {totalRepliesCount && totalRepliesCount > replies.length ? (
           <Container cursor="pointer" onClick={handleReplyMoreClick}>
@@ -153,7 +153,7 @@ export default function Replies({
           {replies.map((reply) => (
             <List.Item key={reply.id}>
               <HR1 margin={{ bottom: 20 }} color="var(--color-gray50)" />
-              <DetailReply reply={reply} onClick={onClick} />
+              <DetailReply reply={reply} />
             </List.Item>
           ))}
         </List>
@@ -163,9 +163,8 @@ export default function Replies({
         resourceId={resourceId}
         resourceType={resourceType}
         registerPlaceholder={registerPlaceholder}
-        onClick={onClick}
       />
-    </>
+    </Container>
   )
 }
 
@@ -173,12 +172,10 @@ function Register({
   resourceId,
   resourceType,
   registerPlaceholder,
-  onClick,
 }: {
   resourceId: string
   resourceType: string
   registerPlaceholder?: string
-  onClick?: () => void
 }) {
   const [message, setMessage] = useState('')
 
@@ -191,7 +188,7 @@ function Register({
   }
 
   return (
-    <Container cursor="pointer" onClick={onClick}>
+    <Container cursor="pointer">
       <HR1 margin={{ top: 0 }} />
       <FlexBox
         flex
@@ -206,7 +203,6 @@ function Register({
           maxRows={4}
           value={message}
           onChange={setMessage}
-          readOnly={!!onClick}
         />
         <RegisterButton onClick={handleRegister}>등록</RegisterButton>
       </FlexBox>
@@ -224,29 +220,30 @@ function NoReplyPlaceholder({
   resourceId: string
   resourceType: string
   registerPlaceholder?: string
-  onClick: () => void
+  onClick?: () => void
 }) {
   return (
-    <>
+    <Container onClick={onClick}>
       <HR1
         margin={{ top: 20, left: 30, right: 30 }}
         color="var(--color-gray50)"
       />
+
       <Container padding={{ top: 40, bottom: 50 }} textAlign="center">
         <Text size={14} lineHeight={1.2} color="gray300">
           아직 댓글이 없어요. <br />
           가장 먼저 댓글을 작성해보세요!
         </Text>
       </Container>
+
       <Register
         resourceId={resourceId}
         resourceType={resourceType}
         registerPlaceholder={registerPlaceholder}
-        onClick={onClick}
       />
 
       <HR1 margin={{ top: 0 }} color="var(--color-gray50)" />
-    </>
+    </Container>
   )
 }
 
@@ -311,10 +308,8 @@ function DetailReply({
     children,
     id,
   },
-  onClick,
 }: {
   reply: Reply
-  onClick: () => void
 }) {
   const [{ nestedReplies, nestedPage }, setNestedRepliesInfo] = useState<{
     nestedReplies: Reply[]
@@ -373,7 +368,7 @@ function DetailReply({
               {formatTimestamp(createdAt)}
             </Text>
 
-            <MoreButton onClick={onClick} />
+            <MoreButton />
           </FlexBox>
         </FlexBox>
 
@@ -390,7 +385,6 @@ function DetailReply({
           flex
           alignItems="center"
           cursor="pointer"
-          onClick={onClick}
         >
           {reactions.like?.haveMine ? (
             <img
@@ -433,7 +427,7 @@ function DetailReply({
               key={nestedReply.id}
               margin={{ bottom: 20 }}
             >
-              <DetailReply reply={nestedReply} onClick={onClick} />
+              <DetailReply reply={nestedReply} />
             </NestedResourceListItem>
           ))}
         </List>

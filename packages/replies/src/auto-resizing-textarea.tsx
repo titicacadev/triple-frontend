@@ -26,14 +26,12 @@ export default function AutoResizingTextarea({
   maxRows,
   placeholder,
   onChange,
-  readOnly,
 }: {
   value: string
   minRows: number
   maxRows: number
   placeholder?: string
   onChange: (message: string) => void
-  readOnly: boolean
 }) {
   const [rows, setRows] = useState(minRows)
 
@@ -62,7 +60,6 @@ export default function AutoResizingTextarea({
       placeholder={placeholder || '이 일정에 궁금한 점은 댓글로 써주세요.'}
       onChange={handleChange}
       lineHeight={TEXTAREA_LINE_HEIGHT}
-      readOnly={readOnly}
     />
   )
 }
