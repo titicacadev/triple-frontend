@@ -46,15 +46,20 @@ export function ABExperimentProvider({
     const onError = onErrorRef.current
 
     async function fetchAndSetMeta() {
-      const { result, error } = await getABExperiment(slug)
+      const response = await getABExperiment(slug)
 
-      if (error && onError) {
-        onError(error)
+      if (response.ok === false) {
+        const { status, url } = response
+
+        if (onError !== undefined) {
+          onError(new Error(`${status} - ${url}`))
+        }
+        return
       }
 
-      if (result) {
-        setMeta(result)
-      }
+      const { parsedBody } = response
+
+      setMeta(parsedBody)
     }
 
     if (!metaFromSSR && isLoggedIn) {
