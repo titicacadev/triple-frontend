@@ -206,10 +206,7 @@ export default function Replies({
           {replies.map((reply) => (
             <List.Item key={reply.id}>
               <HR1 margin={{ bottom: 20 }} color="var(--color-gray50)" />
-              <DetailReply
-                reply={reply}
-                onWriteNestedReply={setMentioningUserReply}
-              />
+              <DetailReply reply={reply} onClick={setMentioningUserReply} />
             </List.Item>
           ))}
         </List>
@@ -334,7 +331,7 @@ function Content({
   const foldedPosition = findFoldedPosition(5, text)
 
   return (
-    <>
+    <Container padding={{ top: 3 }}>
       <Text inline padding={{ top: 3, bottom: 5 }} size={15}>
         {blinded ? (
           '신고가 접수되어 블라인드 처리되었습니다.'
@@ -367,7 +364,7 @@ function Content({
           …더보기
         </Text>
       ) : null}
-    </>
+    </Container>
   )
 }
 
@@ -383,10 +380,10 @@ function DetailReply({
     children,
     id,
   },
-  onWriteNestedReply,
+  onClick,
 }: {
   reply: Reply
-  onWriteNestedReply: ({
+  onClick: ({
     toMessageId,
     mentioningUserUid,
     mentioningUserName,
@@ -398,7 +395,7 @@ function DetailReply({
   }>({ nestedReplies: [...children].reverse(), nestedPage: 0 })
 
   const writeNestedReply = () => {
-    onWriteNestedReply({
+    onClick({
       ...mentioningUserReply,
     })
   }
@@ -456,13 +453,11 @@ function DetailReply({
           </FlexBox>
         </FlexBox>
 
-        <Container padding={{ top: 3 }}>
-          <Content
-            mentionedUser={mentionedUser}
-            blinded={!!blinded}
-            text={text || markdownText || ''}
-          />
-        </Container>
+        <Content
+          mentionedUser={mentionedUser}
+          blinded={!!blinded}
+          text={text || markdownText || ''}
+        />
 
         <ReactionBox
           padding={{ top: 7 }}
@@ -484,7 +479,7 @@ function DetailReply({
             />
           )}
 
-          {reactions.like && reactions.like.count > 0 ? (
+          {reactions.like && reactions.like?.count > 0 ? (
             <Text padding={{ left: 2 }} size={12} color="gray300" bold>
               좋아요 {reactions.like?.count}
             </Text>
@@ -517,10 +512,7 @@ function DetailReply({
               key={nestedReply.id}
               margin={{ bottom: 20 }}
             >
-              <DetailReply
-                reply={nestedReply}
-                onWriteNestedReply={onWriteNestedReply}
-              />
+              <DetailReply reply={nestedReply} onClick={onClick} />
             </NestedResourceListItem>
           ))}
         </List>
