@@ -101,7 +101,7 @@ export async function fetchReplyBoard({
   return result
 }
 
-export async function fetchNestedReplies({
+export async function fetchChildrenReplies({
   id,
   page = 0,
   size = 2,
@@ -135,7 +135,7 @@ export async function fetchNestedReplies({
   return result
 }
 
-export async function writeNestedReply({
+export async function writeChildrenReply({
   messageId,
   content,
   contentFormat,

@@ -55,7 +55,7 @@ export interface ReplyBoard {
   pinnedMessages: Reply[]
 }
 
-export interface MentioningUserReply {
+export interface DataForGeneratingReply {
   toMessageId: null | string
   mentioningUserUid: null | string
   mentioningUserName: null | string
