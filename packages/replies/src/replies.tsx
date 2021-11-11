@@ -6,6 +6,7 @@ import {
   List,
   SquareImage,
   Text,
+  Icon,
 } from '@titicaca/core-elements'
 import { findFoldedPosition, formatTimestamp } from '@titicaca/view-utilities'
 import styled from 'styled-components'
@@ -16,8 +17,9 @@ import {
   writeReply,
   fetchReplyBoard,
   fetchNestedReplies,
+  writeNestedReply,
 } from './replies-api-clients'
-import { Reply, ResourceType, Writer } from './types'
+import { Reply, ResourceType, Writer, MentioningUserReply } from './types'
 import AutoResizingTextarea from './auto-resizing-textarea'
 
 const MoreButton = styled.button`
@@ -99,6 +101,16 @@ export default function Replies({
     page: 0,
   })
 
+  const [messages, setMessages] = useState('')
+  const [
+    mentioningUserReply,
+    setMentioningUserReply,
+  ] = useState<MentioningUserReply>({
+    toMessageId: null,
+    mentioningUserUid: null,
+    mentioningUserName: null,
+  })
+
   useEffect(() => {
     async function fetchRepliesAndSet() {
       const repliesResponse = await fetchReplies({
@@ -163,7 +175,10 @@ export default function Replies({
           {replies.map((reply) => (
             <List.Item key={reply.id}>
               <HR1 margin={{ bottom: 20 }} color="var(--color-gray50)" />
-              <DetailReply reply={reply} />
+              <DetailReply
+                reply={reply}
+                onWriteNestedReply={setMentioningUserReply}
+              />
             </List.Item>
           ))}
         </List>
@@ -173,6 +188,11 @@ export default function Replies({
         resourceId={resourceId}
         resourceType={resourceType}
         registerPlaceholder={registerPlaceholder}
+        messages={messages}
+        mentioningUserReply={mentioningUserReply}
+        onClick={onClick}
+        onMessagesChange={setMessages}
+        onWriteNestedReply={setMentioningUserReply}
       />
     </Container>
   )
@@ -182,23 +202,73 @@ function Register({
   resourceId,
   resourceType,
   registerPlaceholder,
+  messages,
+  mentioningUserReply,
+  onClick,
+  onMessagesChange,
+  onWriteNestedReply,
 }: {
   resourceId: string
   resourceType: string
   registerPlaceholder?: string
+  messages?: string
+  mentioningUserReply?: {
+    toMessageId: string | null
+    mentioningUserUid: string | null
+    mentioningUserName: string | null
+  }
+  onClick?: () => void
+  onMessagesChange?: (message: string) => void
+  onWriteNestedReply?: ({
+    toMessageId,
+    mentioningUserUid,
+    mentioningUserName,
+  }: MentioningUserReply) => void
 }) {
-  const [message, setMessage] = useState('')
-
   const handleRegister = async () => {
-    await writeReply({
-      resourceId,
-      resourceType,
-      content: message,
-    })
+    mentioningUserReply?.toMessageId
+      ? await writeNestedReply({
+          messageId: mentioningUserReply?.toMessageId as string,
+          contentFormat: 'plaintext',
+          content: messages as string,
+          mentionedUserUid: mentioningUserReply?.mentioningUserUid as string,
+        })
+      : await writeReply({
+          resourceId,
+          resourceType,
+          content: messages as string,
+        })
+
+    onMessagesChange && onMessagesChange('')
   }
 
   return (
-    <Container cursor="pointer">
+    <Container cursor="pointer" onClick={onClick}>
+      {mentioningUserReply?.toMessageId ? (
+        <FlexBox
+          flex
+          padding={{ top: 10, bottom: 10, left: 20, right: 20 }}
+          alignItems="center"
+          justifyContent="space-between"
+          backgroundColor="gray50"
+        >
+          <Text size={12} lineHeight="19px" bold color="gray700">
+            {mentioningUserReply?.mentioningUserName}에게 답글 다는 중...
+          </Text>
+          <Icon
+            onClick={() =>
+              onWriteNestedReply &&
+              onWriteNestedReply({
+                toMessageId: null,
+                mentioningUserUid: null,
+                mentioningUserName: null,
+              })
+            }
+            src="https://assets.triple.guide/images/btn-com-close@3x.png"
+          />
+        </FlexBox>
+      ) : null}
+
       <HR1 margin={{ top: 0 }} />
       <FlexBox
         flex
@@ -211,8 +281,9 @@ function Register({
           }
           minRows={1}
           maxRows={4}
-          value={message}
-          onChange={setMessage}
+          value={messages || ''}
+          onChange={onMessagesChange}
+          isFocusing={Boolean(mentioningUserReply?.toMessageId)}
         />
         <RegisterButton onClick={handleRegister}>등록</RegisterButton>
       </FlexBox>
@@ -310,6 +381,7 @@ function Content({
 function DetailReply({
   reply: {
     writer: { profileImage, name },
+    actionSpecifications: { reply: mentioningUserReply },
     blinded,
     createdAt,
     content: { mentionedUser, text, markdownText },
@@ -318,13 +390,25 @@ function DetailReply({
     children,
     id,
   },
+  onWriteNestedReply,
 }: {
   reply: Reply
+  onWriteNestedReply: ({
+    toMessageId,
+    mentioningUserUid,
+    mentioningUserName,
+  }: MentioningUserReply) => void
 }) {
   const [{ nestedReplies, nestedPage }, setNestedRepliesInfo] = useState<{
     nestedReplies: Reply[]
     nestedPage: number
   }>({ nestedReplies: [...children].reverse(), nestedPage: 0 })
+
+  const writeNestedReply = () => {
+    onWriteNestedReply({
+      ...mentioningUserReply,
+    })
+  }
 
   useEffect(() => {
     async function fetchAndSet() {
@@ -413,7 +497,13 @@ function DetailReply({
             </Text>
           ) : null}
 
-          <Text padding={{ left: 2 }} size={12} color="gray300" bold>
+          <Text
+            padding={{ left: 2 }}
+            size={12}
+            color="gray300"
+            bold
+            onClick={writeNestedReply}
+          >
             답글달기
           </Text>
         </ReactionBox>
@@ -434,7 +524,10 @@ function DetailReply({
               key={nestedReply.id}
               margin={{ bottom: 20 }}
             >
-              <DetailReply reply={nestedReply} />
+              <DetailReply
+                reply={nestedReply}
+                onWriteNestedReply={onWriteNestedReply}
+              />
             </NestedResourceListItem>
           ))}
         </List>
