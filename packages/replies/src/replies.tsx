@@ -103,7 +103,7 @@ export default function Replies({
 
   const [replyContentMessage, setReplyContentMessage] = useState('')
   const [
-    mentioningUserReply,
+    { toMessageId, mentioningUserUid, mentioningUserName },
     setMentioningUserReply,
   ] = useState<MentioningUserReply>({
     toMessageId: null,
@@ -162,17 +162,17 @@ export default function Replies({
       return
     }
 
-    mentioningUserReply?.toMessageId
+    toMessageId
       ? await writeNestedReply({
-          messageId: mentioningUserReply?.toMessageId as string,
+          messageId: toMessageId,
           contentFormat: 'plaintext',
-          content: replyContentMessage as string,
-          mentionedUserUid: mentioningUserReply?.mentioningUserUid as string,
+          content: replyContentMessage,
+          mentionedUserUid: mentioningUserUid,
         })
       : await writeReply({
           resourceId,
           resourceType,
-          content: replyContentMessage as string,
+          content: replyContentMessage,
         })
 
     setReplyContentMessage('')
@@ -213,7 +213,7 @@ export default function Replies({
       </Container>
 
       <Container>
-        {mentioningUserReply?.toMessageId ? (
+        {toMessageId ? (
           <FlexBox
             flex
             padding={{ top: 10, bottom: 10, left: 20, right: 20 }}
@@ -222,7 +222,7 @@ export default function Replies({
             backgroundColor="gray50"
           >
             <Text size={12} lineHeight="19px" bold color="gray700">
-              {mentioningUserReply?.mentioningUserName}에게 답글 다는 중...
+              {mentioningUserName}에게 답글 다는 중...
             </Text>
             <Icon
               onClick={handleCloseWriteNestedReply}
@@ -234,7 +234,7 @@ export default function Replies({
         <Register
           registerPlaceholder={registerPlaceholder}
           messages={replyContentMessage}
-          isFocusing={Boolean(mentioningUserReply.toMessageId)}
+          isFocusing={Boolean(toMessageId)}
           onMessageChange={setReplyContentMessage}
           onClick={handleRegister}
         />
