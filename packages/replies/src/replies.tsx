@@ -65,14 +65,14 @@ const MentionUser = styled.a`
   margin-right: 5px;
 `
 
-function checkUniqueReply(baseReply: Reply[], responseReply: Reply[]) {
-  const baseReplyIds = new Set(baseReply.map(({ id }) => id))
-  const combinedReply = [
-    ...responseReply.filter(({ id }) => !baseReplyIds.has(id)).reverse(),
-    ...baseReply,
-  ]
+function checkUniqueReply(reply: Reply[]) {
+  const result = [
+    ...new Map(reply.map((item) => [item.id, item])).values(),
+  ].sort(
+    (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
+  )
 
-  return combinedReply
+  return result
 }
 
 export default function Replies({
@@ -110,7 +110,7 @@ export default function Replies({
 
       setRepliesInfo((prev) => ({
         ...prev,
-        replies: checkUniqueReply(prev.replies, repliesResponse),
+        replies: checkUniqueReply([...repliesResponse, ...prev.replies]),
       }))
     }
 
@@ -336,7 +336,7 @@ function DetailReply({
 
       setNestedRepliesInfo((prev) => ({
         ...prev,
-        nestedReplies: checkUniqueReply(prev.nestedReplies, response),
+        nestedReplies: checkUniqueReply([...response, ...prev.nestedReplies]),
       }))
     }
 
