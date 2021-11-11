@@ -31,10 +31,10 @@ export interface Reply {
   writer: Writer
   actionSpecifications: {
     delete: boolean
-    edite: {
+    edit: {
       text?: string
       plainttext?: string
-    }
+    } | null
     reaction: boolean
     reply: {
       mentioningUserHref: string
@@ -52,5 +52,5 @@ export interface ReplyBoard {
   resourceType: ResourceType
   rootMessagesCount: number
   childMessagesCount: number
-  pinnedMessages: number
+  pinnedMessages: Reply[]
 }
