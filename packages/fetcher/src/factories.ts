@@ -2,25 +2,22 @@ import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 
 import { HttpErrorResponse, HttpResponse, RequestOptions } from './types'
 
-export type BaseFetcher<Extending = any> = <
-  Result extends {},
-  ErrorResponse = HttpErrorResponse
->(
+export type BaseFetcher<Extending = any> = <SuccessBody, FailureBody = unknown>(
   href: string,
   options?: RequestOptions,
-) => Promise<HttpResponse<Result, ErrorResponse> | Extending>
+) => Promise<HttpResponse<SuccessBody, FailureBody> | Extending>
 
 export type ExtendFetcher<Fetcher extends BaseFetcher, Extending> = <
-  Result extends {},
-  ErrorResponse = HttpErrorResponse
+  SuccessBody,
+  FailureBody = unknown
 >(
   href: string,
   options?: RequestOptions,
 ) => Promise<
-  | HttpResponse<Result, ErrorResponse>
+  | HttpResponse<SuccessBody, FailureBody>
   | Exclude<
       ReturnType<Fetcher> extends Promise<infer Resolved> ? Resolved : never,
-      HttpResponse<{}, unknown>
+      HttpResponse<unknown, unknown>
     >
   | Extending
 >
@@ -145,10 +142,7 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
         return NEED_LOGIN_IDENTIFIER
       }
 
-      throw (
-        refreshResponse.error ||
-        new Error('액세스 토큰 갱신 중 오류가 발생했습니다.')
-      )
+      throw new Error(`${refreshResponse.status} - ${refreshResponse.url}`)
     }
 
     const newCookie = refreshResponse.headers.get('set-cookie')
