@@ -215,14 +215,33 @@ export default function Replies({
         </List>
       </Container>
 
-      <Register
-        registerPlaceholder={registerPlaceholder}
-        messages={messages}
-        mentioningUserReply={mentioningUserReply}
-        onMessagesChange={setMessages}
-        onClose={handleCloseWriteNestedReply}
-        onClick={handleRegister}
-      />
+      <Container>
+        {mentioningUserReply?.toMessageId ? (
+          <FlexBox
+            flex
+            padding={{ top: 10, bottom: 10, left: 20, right: 20 }}
+            alignItems="center"
+            justifyContent="space-between"
+            backgroundColor="gray50"
+          >
+            <Text size={12} lineHeight="19px" bold color="gray700">
+              {mentioningUserReply?.mentioningUserName}에게 답글 다는 중...
+            </Text>
+            <Icon
+              onClick={handleCloseWriteNestedReply}
+              src="https://assets.triple.guide/images/btn-com-close@3x.png"
+            />
+          </FlexBox>
+        ) : null}
+
+        <Register
+          registerPlaceholder={registerPlaceholder}
+          messages={messages}
+          isFocusing={Boolean(mentioningUserReply.toMessageId)}
+          onMessagesChange={setMessages}
+          onClick={handleRegister}
+        />
+      </Container>
     </Container>
   )
 }
@@ -230,38 +249,18 @@ export default function Replies({
 function Register({
   registerPlaceholder,
   messages,
-  mentioningUserReply,
+  isFocusing,
   onMessagesChange,
-  onClose,
   onClick,
 }: {
   registerPlaceholder?: string
   messages: string
-  mentioningUserReply?: MentioningUserReply
+  isFocusing: boolean
   onMessagesChange: (message: string) => void
-  onClose?: () => void
   onClick?: () => void
 }) {
   return (
     <Container cursor="pointer">
-      {mentioningUserReply?.toMessageId ? (
-        <FlexBox
-          flex
-          padding={{ top: 10, bottom: 10, left: 20, right: 20 }}
-          alignItems="center"
-          justifyContent="space-between"
-          backgroundColor="gray50"
-        >
-          <Text size={12} lineHeight="19px" bold color="gray700">
-            {mentioningUserReply?.mentioningUserName}에게 답글 다는 중...
-          </Text>
-          <Icon
-            onClick={onClose}
-            src="https://assets.triple.guide/images/btn-com-close@3x.png"
-          />
-        </FlexBox>
-      ) : null}
-
       <HR1 margin={{ top: 0 }} />
       <FlexBox
         flex
@@ -274,9 +273,9 @@ function Register({
           }
           minRows={1}
           maxRows={4}
-          value={messages || ''}
+          value={messages}
           onChange={onMessagesChange}
-          isFocusing={Boolean(mentioningUserReply?.toMessageId)}
+          isFocusing={isFocusing}
         />
         <RegisterButton onClick={onClick}>등록</RegisterButton>
       </FlexBox>
@@ -314,6 +313,7 @@ function NoReplyPlaceholder({
         registerPlaceholder={registerPlaceholder}
         messages={messages}
         onMessagesChange={onMessagesChange}
+        isFocusing={false}
       />
 
       <HR1 margin={{ top: 0 }} color="var(--color-gray50)" />
