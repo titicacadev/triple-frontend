@@ -149,11 +149,40 @@ export default function Replies({
     }))
   }
 
+  const handleCloseWriteNestedReply = () => {
+    setMentioningUserReply({
+      toMessageId: null,
+      mentioningUserUid: null,
+      mentioningUserName: null,
+    })
+  }
+
+  const handleRegister = async () => {
+    if (!messages) {
+      return
+    }
+
+    mentioningUserReply?.toMessageId
+      ? await writeNestedReply({
+          messageId: mentioningUserReply?.toMessageId as string,
+          contentFormat: 'plaintext',
+          content: messages as string,
+          mentionedUserUid: mentioningUserReply?.mentioningUserUid as string,
+        })
+      : await writeReply({
+          resourceId,
+          resourceType,
+          content: messages as string,
+        })
+
+    setMessages('')
+
+    handleCloseWriteNestedReply()
+  }
+
   if (replies.length <= 0) {
     return (
       <NoReplyPlaceholder
-        resourceId={resourceId}
-        resourceType={resourceType}
         registerPlaceholder={registerPlaceholder}
         messages={messages}
         onMessagesChange={setMessages}
@@ -187,71 +216,32 @@ export default function Replies({
       </Container>
 
       <Register
-        resourceId={resourceId}
-        resourceType={resourceType}
         registerPlaceholder={registerPlaceholder}
         messages={messages}
         mentioningUserReply={mentioningUserReply}
         onMessagesChange={setMessages}
-        onWriteNestedReply={setMentioningUserReply}
+        onClose={handleCloseWriteNestedReply}
+        onClick={handleRegister}
       />
     </Container>
   )
 }
 
 function Register({
-  resourceId,
-  resourceType,
   registerPlaceholder,
   messages,
   mentioningUserReply,
   onMessagesChange,
-  onWriteNestedReply,
+  onClose,
+  onClick,
 }: {
-  resourceId: string
-  resourceType: string
   registerPlaceholder?: string
-  messages?: string
+  messages: string
   mentioningUserReply?: MentioningUserReply
-  onMessagesChange?: (message: string) => void
-  onWriteNestedReply?: ({
-    toMessageId,
-    mentioningUserUid,
-    mentioningUserName,
-  }: MentioningUserReply) => void
+  onMessagesChange: (message: string) => void
+  onClose?: () => void
+  onClick?: () => void
 }) {
-  const handleCloseWriteNestedReply = () => {
-    onWriteNestedReply &&
-      onWriteNestedReply({
-        toMessageId: null,
-        mentioningUserUid: null,
-        mentioningUserName: null,
-      })
-  }
-
-  const handleRegister = async () => {
-    if (!messages) {
-      return
-    }
-
-    mentioningUserReply?.toMessageId
-      ? await writeNestedReply({
-          messageId: mentioningUserReply?.toMessageId as string,
-          contentFormat: 'plaintext',
-          content: messages as string,
-          mentionedUserUid: mentioningUserReply?.mentioningUserUid as string,
-        })
-      : await writeReply({
-          resourceId,
-          resourceType,
-          content: messages as string,
-        })
-
-    onMessagesChange && onMessagesChange('')
-
-    handleCloseWriteNestedReply()
-  }
-
   return (
     <Container cursor="pointer">
       {mentioningUserReply?.toMessageId ? (
@@ -266,7 +256,7 @@ function Register({
             {mentioningUserReply?.mentioningUserName}에게 답글 다는 중...
           </Text>
           <Icon
-            onClick={handleCloseWriteNestedReply}
+            onClick={onClose}
             src="https://assets.triple.guide/images/btn-com-close@3x.png"
           />
         </FlexBox>
@@ -288,7 +278,7 @@ function Register({
           onChange={onMessagesChange}
           isFocusing={Boolean(mentioningUserReply?.toMessageId)}
         />
-        <RegisterButton onClick={handleRegister}>등록</RegisterButton>
+        <RegisterButton onClick={onClick}>등록</RegisterButton>
       </FlexBox>
       <HR1 margin={{ top: 0 }} />
     </Container>
@@ -296,18 +286,14 @@ function Register({
 }
 
 function NoReplyPlaceholder({
-  resourceId,
-  resourceType,
   registerPlaceholder,
   messages,
   onMessagesChange,
   onClick,
 }: {
-  resourceId: string
-  resourceType: string
   registerPlaceholder?: string
-  messages?: string
-  onMessagesChange?: (message: string) => void
+  messages: string
+  onMessagesChange: (message: string) => void
   onClick?: () => void
 }) {
   return (
@@ -325,8 +311,6 @@ function NoReplyPlaceholder({
       </Container>
 
       <Register
-        resourceId={resourceId}
-        resourceType={resourceType}
         registerPlaceholder={registerPlaceholder}
         messages={messages}
         onMessagesChange={onMessagesChange}
