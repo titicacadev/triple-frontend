@@ -101,7 +101,7 @@ export default function Replies({
     page: 0,
   })
 
-  const [messages, setMessages] = useState('')
+  const [replyContentMessage, setReplyContentMessage] = useState('')
   const [
     mentioningUserReply,
     setMentioningUserReply,
@@ -158,7 +158,7 @@ export default function Replies({
   }
 
   const handleRegister = async () => {
-    if (!messages) {
+    if (!replyContentMessage) {
       return
     }
 
@@ -166,16 +166,16 @@ export default function Replies({
       ? await writeNestedReply({
           messageId: mentioningUserReply?.toMessageId as string,
           contentFormat: 'plaintext',
-          content: messages as string,
+          content: replyContentMessage as string,
           mentionedUserUid: mentioningUserReply?.mentioningUserUid as string,
         })
       : await writeReply({
           resourceId,
           resourceType,
-          content: messages as string,
+          content: replyContentMessage as string,
         })
 
-    setMessages('')
+    setReplyContentMessage('')
 
     handleCloseWriteNestedReply()
   }
@@ -184,8 +184,8 @@ export default function Replies({
     return (
       <NoReplyPlaceholder
         registerPlaceholder={registerPlaceholder}
-        messages={messages}
-        onMessagesChange={setMessages}
+        messages={replyContentMessage}
+        onMessageChange={setReplyContentMessage}
         onClick={onClick}
       />
     )
@@ -233,9 +233,9 @@ export default function Replies({
 
         <Register
           registerPlaceholder={registerPlaceholder}
-          messages={messages}
+          messages={replyContentMessage}
           isFocusing={Boolean(mentioningUserReply.toMessageId)}
-          onMessagesChange={setMessages}
+          onMessageChange={setReplyContentMessage}
           onClick={handleRegister}
         />
       </Container>
@@ -247,13 +247,13 @@ function Register({
   registerPlaceholder,
   messages,
   isFocusing,
-  onMessagesChange,
+  onMessageChange,
   onClick,
 }: {
   registerPlaceholder?: string
   messages: string
   isFocusing: boolean
-  onMessagesChange: (message: string) => void
+  onMessageChange: (message: string) => void
   onClick?: () => void
 }) {
   return (
@@ -271,7 +271,7 @@ function Register({
           minRows={1}
           maxRows={4}
           value={messages}
-          onChange={onMessagesChange}
+          onChange={onMessageChange}
           isFocusing={isFocusing}
         />
         <RegisterButton onClick={onClick}>등록</RegisterButton>
@@ -284,12 +284,12 @@ function Register({
 function NoReplyPlaceholder({
   registerPlaceholder,
   messages,
-  onMessagesChange,
+  onMessageChange,
   onClick,
 }: {
   registerPlaceholder?: string
   messages: string
-  onMessagesChange: (message: string) => void
+  onMessageChange: (message: string) => void
   onClick?: () => void
 }) {
   return (
@@ -309,7 +309,7 @@ function NoReplyPlaceholder({
       <Register
         registerPlaceholder={registerPlaceholder}
         messages={messages}
-        onMessagesChange={onMessagesChange}
+        onMessageChange={onMessageChange}
         isFocusing={false}
       />
 
