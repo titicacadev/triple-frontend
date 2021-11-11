@@ -1,6 +1,6 @@
-export default async function safeParseJSON<T>(
+export default async function safeParseJSON(
   response: Response,
-): Promise<T | undefined> {
+): Promise<unknown> {
   try {
     const json = await response.json()
     return json

@@ -12,7 +12,7 @@ function readResponseBody<T, E>(response: HttpResponse<T, E>) {
   const contentType = response.headers.get('content-type')
 
   if (contentType && /json/.test(contentType)) {
-    return safeParseJSON<T>(response)
+    return safeParseJSON(response) as Promise<T | undefined>
   }
 
   return response.text()
