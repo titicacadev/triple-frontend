@@ -25,15 +25,15 @@ export default function AutoResizingTextarea({
   minRows,
   maxRows,
   placeholder,
-  onChange,
   isFocusing,
+  onChange,
 }: {
   value: string
   minRows: number
   maxRows: number
   placeholder?: string
-  onChange?: (message: string) => void
-  isFocusing?: boolean
+  isFocusing: boolean
+  onChange: (message: string) => void
 }) {
   const [rows, setRows] = useState(minRows)
 
@@ -53,7 +53,7 @@ export default function AutoResizingTextarea({
       event.target.scrollTop = event.target.scrollHeight
     }
 
-    onChange && onChange(event.target.value)
+    onChange(event.target.value)
     setRows(currentRows < maxRows ? currentRows : maxRows)
   }
 
