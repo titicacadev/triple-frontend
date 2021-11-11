@@ -45,7 +45,8 @@ export interface HttpErrorResponse extends Error {
   message: string
 }
 
-export interface HttpResponse<T, E = HttpErrorResponse> extends Response {
+export interface HttpResponse<T, E = HttpErrorResponse>
+  extends Omit<Response, 'clone' | keyof Body> {
   result?: T
   error?: HttpError<E>
 }
