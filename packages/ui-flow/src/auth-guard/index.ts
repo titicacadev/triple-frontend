@@ -46,15 +46,14 @@ export function authGuard<Props>(
       ? options.resolveReturnUrl(ctx)
       : `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${resolvedUrl}`
 
-    const { ok, result: user, status } = await get<UserResponse>(
-      '/api/users/me',
-      {
-        req,
-        retryable: true,
-      },
-    )
+    const response = await get<UserResponse>('/api/users/me', {
+      req,
+      retryable: true,
+    })
 
-    if (ok === false) {
+    if (response.ok === false) {
+      const { status } = response
+
       if (status === 401) {
         if (userAgentString && parseApp(userAgentString)) {
           return refreshInAppSession({ resolvedUrl, returnUrl })
@@ -66,9 +65,7 @@ export function authGuard<Props>(
       throw new Error(`Fail to fetch User: ${status}`)
     }
 
-    if (user === undefined) {
-      throw new Error('Fail to check auth')
-    }
+    const { parsedBody: user } = response
 
     const isNonMember = user.uid.match(NON_MEMBER_REGEX)
 
