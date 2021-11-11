@@ -16,10 +16,10 @@ import {
   fetchReplies,
   writeReply,
   fetchReplyBoard,
-  fetchNestedReplies,
-  writeNestedReply,
+  fetchChildrenReplies,
+  writeChildrenReply,
 } from './replies-api-clients'
-import { Reply, ResourceType, Writer, MentioningUserReply } from './types'
+import { Reply, ResourceType, Writer, DataForGeneratingReply } from './types'
 import AutoResizingTextarea from './auto-resizing-textarea'
 
 const MoreButton = styled.button`
@@ -58,7 +58,7 @@ const RegisterButton = styled.button`
   cursor: pointer;
 `
 
-const NestedResourceListItem = styled(List.Item)`
+const ChildrenResourceListItem = styled(List.Item)`
   padding-left: 40px;
 `
 
@@ -104,8 +104,8 @@ export default function Replies({
   const [replyContentMessage, setReplyContentMessage] = useState('')
   const [
     { toMessageId, mentioningUserUid, mentioningUserName },
-    setMentioningUserReply,
-  ] = useState<MentioningUserReply>({
+    setDataForGeneratingReply,
+  ] = useState<DataForGeneratingReply>({
     toMessageId: null,
     mentioningUserUid: null,
     mentioningUserName: null,
@@ -149,8 +149,8 @@ export default function Replies({
     }))
   }
 
-  const handleCloseWriteNestedReply = () => {
-    setMentioningUserReply({
+  const handleCloseChildrenReply = () => {
+    setDataForGeneratingReply({
       toMessageId: null,
       mentioningUserUid: null,
       mentioningUserName: null,
@@ -163,11 +163,11 @@ export default function Replies({
     }
 
     toMessageId
-      ? await writeNestedReply({
+      ? await writeChildrenReply({
           messageId: toMessageId,
           contentFormat: 'plaintext',
           content: replyContentMessage,
-          mentionedUserUid: mentioningUserUid,
+          mentionedUserUid: mentioningUserUid || '',
         })
       : await writeReply({
           resourceId,
@@ -177,7 +177,7 @@ export default function Replies({
 
     setReplyContentMessage('')
 
-    handleCloseWriteNestedReply()
+    handleCloseChildrenReply()
   }
 
   if (replies.length <= 0) {
@@ -196,7 +196,13 @@ export default function Replies({
       <Container padding={{ bottom: 30, left: 30, right: 30 }}>
         {totalRepliesCount && totalRepliesCount > replies.length ? (
           <Container cursor="pointer" onClick={handleReplyMoreClick}>
-            <Text padding={{ top: 20 }} color="blue" size={14} bold>
+            <Text
+              padding={{ top: 20 }}
+              color="blue"
+              size={14}
+              bold
+              onClick={handleReplyMoreClick}
+            >
               이전 댓글 더보기
             </Text>
           </Container>
@@ -206,7 +212,10 @@ export default function Replies({
           {replies.map((reply) => (
             <List.Item key={reply.id}>
               <HR1 margin={{ bottom: 20 }} color="var(--color-gray50)" />
-              <DetailReply reply={reply} onClick={setMentioningUserReply} />
+              <DetailReply
+                reply={reply}
+                onWriteChildrenReply={setDataForGeneratingReply}
+              />
             </List.Item>
           ))}
         </List>
@@ -225,7 +234,7 @@ export default function Replies({
               {mentioningUserName}에게 답글 다는 중...
             </Text>
             <Icon
-              onClick={handleCloseWriteNestedReply}
+              onClick={handleCloseChildrenReply}
               src="https://assets.triple.guide/images/btn-com-close@3x.png"
             />
           </FlexBox>
@@ -371,7 +380,7 @@ function Content({
 function DetailReply({
   reply: {
     writer: { profileImage, name },
-    actionSpecifications: { reply: mentioningUserReply },
+    actionSpecifications: { reply: dataForGeneratingReply },
     blinded,
     createdAt,
     content: { mentionedUser, text, markdownText },
@@ -380,49 +389,52 @@ function DetailReply({
     children,
     id,
   },
-  onClick,
+  onWriteChildrenReply,
 }: {
   reply: Reply
-  onClick: ({
+  onWriteChildrenReply: ({
     toMessageId,
     mentioningUserUid,
     mentioningUserName,
-  }: MentioningUserReply) => void
+  }: DataForGeneratingReply) => void
 }) {
-  const [{ nestedReplies, nestedPage }, setNestedRepliesInfo] = useState<{
-    nestedReplies: Reply[]
-    nestedPage: number
-  }>({ nestedReplies: [...children].reverse(), nestedPage: 0 })
+  const [{ childrenReplies, childrenPage }, setChildrenRepliesInfo] = useState<{
+    childrenReplies: Reply[]
+    childrenPage: number
+  }>({ childrenReplies: [...children].reverse(), childrenPage: 0 })
 
-  const writeNestedReply = () => {
-    onClick({
-      ...mentioningUserReply,
+  const handleWriteChildrenReply = () => {
+    onWriteChildrenReply({
+      ...dataForGeneratingReply,
     })
   }
 
   useEffect(() => {
     async function fetchAndSet() {
-      const response = await fetchNestedReplies({
+      const response = await fetchChildrenReplies({
         id,
-        page: nestedPage,
+        page: childrenPage,
         size: 3,
       })
 
-      setNestedRepliesInfo((prev) => ({
+      setChildrenRepliesInfo((prev) => ({
         ...prev,
-        nestedReplies: checkUniqueReply([...response, ...prev.nestedReplies]),
+        childrenReplies: checkUniqueReply([
+          ...response,
+          ...prev.childrenReplies,
+        ]),
       }))
     }
 
-    if (nestedPage > 0) {
+    if (childrenPage > 0) {
       fetchAndSet()
     }
-  }, [id, nestedPage])
+  }, [id, childrenPage])
 
-  const handleNestedReplyMoreClick = () => {
-    setNestedRepliesInfo((prevNestedReplies) => ({
-      ...prevNestedReplies,
-      nestedPage: prevNestedReplies.nestedPage + 1,
+  const handleChildrenReplyMoreClick = () => {
+    setChildrenRepliesInfo((prev) => ({
+      ...prev,
+      childrenPage: prev.childrenPage + 1,
     }))
   }
 
@@ -490,30 +502,33 @@ function DetailReply({
             size={12}
             color="gray300"
             bold
-            onClick={writeNestedReply}
+            onClick={handleWriteChildrenReply}
           >
             답글달기
           </Text>
         </ReactionBox>
       </Container>
 
-      {childrenCount > nestedReplies.length ? (
-        <Container cursor="pointer" onClick={handleNestedReplyMoreClick}>
+      {childrenCount > childrenReplies.length ? (
+        <Container cursor="pointer" onClick={handleChildrenReplyMoreClick}>
           <Text padding={{ left: 40 }} color="blue" size={14} bold>
             이전 답글 더보기
           </Text>
         </Container>
       ) : null}
 
-      {nestedReplies.length > 0 ? (
+      {childrenReplies.length > 0 ? (
         <List margin={{ top: 20 }}>
-          {nestedReplies.map((nestedReply) => (
-            <NestedResourceListItem
-              key={nestedReply.id}
+          {childrenReplies.map((childrenReply) => (
+            <ChildrenResourceListItem
+              key={childrenReply.id}
               margin={{ bottom: 20 }}
             >
-              <DetailReply reply={nestedReply} onClick={onClick} />
-            </NestedResourceListItem>
+              <DetailReply
+                reply={childrenReply}
+                onWriteChildrenReply={onWriteChildrenReply}
+              />
+            </ChildrenResourceListItem>
           ))}
         </List>
       ) : null}
