@@ -17,17 +17,16 @@ function useProducts({ slotId }: { slotId?: number }): TNAProductsResponse {
         return
       }
 
-      const { ok, result } = await get<TNAProductsResponse>(
+      const response = await get<TNAProductsResponse>(
         `/api/tna-v2/slots/${slotId}`,
       )
 
-      if (ok) {
-        const { title, products } = result || {}
+      if (response.ok) {
+        const {
+          parsedBody: { title, products },
+        } = response
 
-        setProductsList({
-          title: title || '',
-          products: products || [],
-        })
+        setProductsList({ title, products })
       }
     }
 
