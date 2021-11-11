@@ -22,21 +22,24 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
         })
       : fetch
 
-  const response: HttpResponse<T, E> = await fetchFunction(
-    ...makeRequestParams(url, options),
-  )
+  const response = await fetchFunction(...makeRequestParams(url, options))
   const body = await readResponseBody(response)
+  const restResponse = removeBodyRelatedProperties(response)
 
   if (response.ok === true) {
-    response.result = body as T | undefined
-  } else {
-    response.error = new HttpError(
-      new Error(typeof body !== 'string' ? JSON.stringify(body) : body),
-      response,
-    )
+    return {
+      ...restResponse,
+      result: body as T | undefined,
+    }
   }
 
-  return response
+  return {
+    ...restResponse,
+    error: new HttpError(
+      new Error(typeof body !== 'string' ? JSON.stringify(body) : body),
+      response,
+    ),
+  }
 }
 
 const refetchStatuses = [502, 503, 504]
@@ -91,4 +94,18 @@ function readResponseBody(response: Response) {
   }
 
   return response.text()
+}
+
+function removeBodyRelatedProperties({
+  clone,
+  body,
+  bodyUsed,
+  arrayBuffer,
+  blob,
+  formData,
+  json,
+  text,
+  ...restResponse
+}: Response) {
+  return restResponse
 }
