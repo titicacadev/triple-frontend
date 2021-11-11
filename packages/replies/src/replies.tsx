@@ -230,6 +230,10 @@ function Register({
   }
 
   const handleRegister = async () => {
+    if (!messages) {
+      return
+    }
+
     mentioningUserReply?.toMessageId
       ? await writeNestedReply({
           messageId: mentioningUserReply?.toMessageId as string,
