@@ -46,13 +46,25 @@ export function authGuard<Props>(
       ? options.resolveReturnUrl(ctx)
       : `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${resolvedUrl}`
 
-    const { result: user, status, error } = await get<UserResponse>(
+    const { ok, result: user, status, error } = await get<UserResponse>(
       '/api/users/me',
       {
         req,
         retryable: true,
       },
     )
+
+    if (ok === false) {
+      if (status === 401) {
+        if (userAgentString && parseApp(userAgentString)) {
+          return refreshInAppSession({ resolvedUrl, returnUrl })
+        }
+
+        return redirectToLogin({ returnUrl, authType: options?.authType })
+      }
+
+      throw new Error(`Fail to fetch User: ${status}`)
+    }
 
     const isNonMember = user && user.uid.match(NON_MEMBER_REGEX)
 
@@ -63,11 +75,7 @@ export function authGuard<Props>(
       return gssp({ ...ctx, customContext: { ...ctx.customContext, user } })
     }
 
-    if (status === 401 || isNonMember) {
-      if (userAgentString && parseApp(userAgentString) && status === 401) {
-        return refreshInAppSession({ resolvedUrl, returnUrl })
-      }
-
+    if (isNonMember) {
       return redirectToLogin({ returnUrl, authType: options?.authType })
     }
 
