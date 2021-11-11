@@ -65,6 +65,16 @@ const MentionUser = styled.a`
   margin-right: 5px;
 `
 
+function checkUniqueReply(baseReply: Reply[], responseReply: Reply[]) {
+  const baseReplyIds = new Set(baseReply.map(({ id }) => id))
+  const combinedReply = [
+    ...responseReply.filter(({ id }) => !baseReplyIds.has(id)).reverse(),
+    ...baseReply,
+  ]
+
+  return combinedReply
+}
+
 export default function Replies({
   resourceId,
   resourceType,
@@ -100,7 +110,7 @@ export default function Replies({
 
       setRepliesInfo((prev) => ({
         ...prev,
-        replies: [...repliesResponse, ...prev.replies],
+        replies: checkUniqueReply(prev.replies, repliesResponse),
       }))
     }
 
@@ -297,17 +307,6 @@ function Content({
   )
 }
 
-function checkUniqueNestedReply(nestedReplies: Reply[]) {
-  const temp: string[] = []
-
-  return nestedReplies.filter((item) => {
-    if (!temp.includes(item.id)) {
-      temp.push(item.id)
-      return true
-    }
-  })
-}
-
 function DetailReply({
   reply: {
     writer: { profileImage, name },
@@ -325,7 +324,7 @@ function DetailReply({
   const [{ nestedReplies, nestedPage }, setNestedRepliesInfo] = useState<{
     nestedReplies: Reply[]
     nestedPage: number
-  }>({ nestedReplies: children, nestedPage: 0 })
+  }>({ nestedReplies: [...children].reverse(), nestedPage: 0 })
 
   useEffect(() => {
     async function fetchAndSet() {
@@ -337,10 +336,7 @@ function DetailReply({
 
       setNestedRepliesInfo((prev) => ({
         ...prev,
-        nestedReplies: checkUniqueNestedReply([
-          ...prev.nestedReplies,
-          ...response,
-        ]),
+        nestedReplies: checkUniqueReply(prev.nestedReplies, response),
       }))
     }
 
