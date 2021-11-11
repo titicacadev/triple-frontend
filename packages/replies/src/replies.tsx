@@ -155,6 +155,8 @@ export default function Replies({
         resourceId={resourceId}
         resourceType={resourceType}
         registerPlaceholder={registerPlaceholder}
+        messages={messages}
+        onMessagesChange={setMessages}
         onClick={onClick}
       />
     )
@@ -293,11 +295,15 @@ function NoReplyPlaceholder({
   resourceId,
   resourceType,
   registerPlaceholder,
+  messages,
+  onMessagesChange,
   onClick,
 }: {
   resourceId: string
   resourceType: string
   registerPlaceholder?: string
+  messages?: string
+  onMessagesChange?: (message: string) => void
   onClick?: () => void
 }) {
   return (
@@ -318,6 +324,8 @@ function NoReplyPlaceholder({
         resourceId={resourceId}
         resourceType={resourceType}
         registerPlaceholder={registerPlaceholder}
+        messages={messages}
+        onMessagesChange={onMessagesChange}
       />
 
       <HR1 margin={{ top: 0 }} color="var(--color-gray50)" />
