@@ -33,9 +33,13 @@ export async function fetchReplies({
 
   captureHttpError(response)
 
-  const { result } = response
+  if (response.ok === false) {
+    return []
+  }
 
-  return result || []
+  const { parsedBody } = response
+
+  return parsedBody
 }
 
 export async function writeReply({
@@ -90,13 +94,13 @@ export async function fetchReplyBoard({
 
   captureHttpError(response)
 
-  const { result } = response
-
-  if (!result) {
-    throw new Error('요청에 의한 응답이 없습니다.')
+  if (response.ok === false) {
+    const { status, url } = response
+    throw new Error(`${status} - ${url}`)
   }
 
-  return result
+  const { parsedBody } = response
+  return parsedBody
 }
 
 export async function fetchChildReplies({
@@ -124,13 +128,13 @@ export async function fetchChildReplies({
 
   captureHttpError(response)
 
-  const { result } = response
-
-  if (!result) {
+  if (response.ok === false) {
     return []
   }
 
-  return result
+  const { parsedBody } = response
+
+  return parsedBody
 }
 
 export async function writeChildReply({
