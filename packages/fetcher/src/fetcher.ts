@@ -1,6 +1,6 @@
 import { HttpError } from './error'
 import { makeRequestParams } from './make-request-params'
-import { readResponseBody } from './response-handler'
+import safeParseJSON from './safe-parse-json'
 import {
   HttpErrorResponse,
   HTTPMethods,
@@ -80,4 +80,15 @@ function makeFetchRetryable({
 
     return retryer(retryCount)
   }
+}
+
+function readResponseBody(response: Response) {
+  const contentType = response.headers.get('content-type')
+  const jsonParseAvailable = contentType && /json/.test(contentType)
+
+  if (jsonParseAvailable) {
+    return safeParseJSON(response)
+  }
+
+  return response.text()
 }
