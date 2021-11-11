@@ -54,3 +54,9 @@ export interface ReplyBoard {
   childMessagesCount: number
   pinnedMessages: Reply[]
 }
+
+export interface MentioningUserReply {
+  toMessageId: null | string
+  mentioningUserUid: null | string
+  mentioningUserName: null | string
+}

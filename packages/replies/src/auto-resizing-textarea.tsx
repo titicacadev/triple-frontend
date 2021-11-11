@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 
 const Textarea = styled.textarea<{ lineHeight: number }>`
@@ -26,14 +26,18 @@ export default function AutoResizingTextarea({
   maxRows,
   placeholder,
   onChange,
+  isFocusing,
 }: {
   value: string
   minRows: number
   maxRows: number
   placeholder?: string
-  onChange: (message: string) => void
+  onChange?: (message: string) => void
+  isFocusing?: boolean
 }) {
   const [rows, setRows] = useState(minRows)
+
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const currentRows = Math.floor(
@@ -49,9 +53,15 @@ export default function AutoResizingTextarea({
       event.target.scrollTop = event.target.scrollHeight
     }
 
-    onChange(event.target.value)
+    onChange && onChange(event.target.value)
     setRows(currentRows < maxRows ? currentRows : maxRows)
   }
+
+  useEffect(() => {
+    if (isFocusing) {
+      textareaRef.current?.focus()
+    }
+  }, [isFocusing, textareaRef])
 
   return (
     <Textarea
@@ -60,6 +70,7 @@ export default function AutoResizingTextarea({
       placeholder={placeholder || '이 일정에 궁금한 점은 댓글로 써주세요.'}
       onChange={handleChange}
       lineHeight={TEXTAREA_LINE_HEIGHT}
+      ref={textareaRef}
     />
   )
 }
