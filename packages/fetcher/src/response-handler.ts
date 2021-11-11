@@ -8,11 +8,12 @@ function captureHttpError<Response extends HttpResponse<any, any>>(
   capture()
 }
 
-function readResponseBody<T, E>(response: HttpResponse<T, E>) {
+function readResponseBody(response: Response) {
   const contentType = response.headers.get('content-type')
+  const jsonParseAvailable = contentType && /json/.test(contentType)
 
-  if (contentType && /json/.test(contentType)) {
-    return safeParseJSON(response) as Promise<T | undefined>
+  if (jsonParseAvailable) {
+    return safeParseJSON(response)
   }
 
   return response.text()
