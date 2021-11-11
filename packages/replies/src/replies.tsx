@@ -225,6 +225,15 @@ function Register({
     mentioningUserName,
   }: MentioningUserReply) => void
 }) {
+  const handleCloseWriteNestedReply = () => {
+    onWriteNestedReply &&
+      onWriteNestedReply({
+        toMessageId: null,
+        mentioningUserUid: null,
+        mentioningUserName: null,
+      })
+  }
+
   const handleRegister = async () => {
     mentioningUserReply?.toMessageId
       ? await writeNestedReply({
@@ -240,6 +249,8 @@ function Register({
         })
 
     onMessagesChange && onMessagesChange('')
+
+    handleCloseWriteNestedReply()
   }
 
   return (
@@ -256,14 +267,7 @@ function Register({
             {mentioningUserReply?.mentioningUserName}에게 답글 다는 중...
           </Text>
           <Icon
-            onClick={() =>
-              onWriteNestedReply &&
-              onWriteNestedReply({
-                toMessageId: null,
-                mentioningUserUid: null,
-                mentioningUserName: null,
-              })
-            }
+            onClick={handleCloseWriteNestedReply}
             src="https://assets.triple.guide/images/btn-com-close@3x.png"
           />
         </FlexBox>
