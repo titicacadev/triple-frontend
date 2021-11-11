@@ -46,7 +46,7 @@ export function authGuard<Props>(
       ? options.resolveReturnUrl(ctx)
       : `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${resolvedUrl}`
 
-    const { ok, result: user, status, error } = await get<UserResponse>(
+    const { ok, result: user, status } = await get<UserResponse>(
       '/api/users/me',
       {
         req,
@@ -72,18 +72,11 @@ export function authGuard<Props>(
 
     const isNonMember = user.uid.match(NON_MEMBER_REGEX)
 
-    if (
-      options?.allowNonMembers ||
-      (!options?.allowNonMembers && !isNonMember)
-    ) {
-      return gssp({ ...ctx, customContext: { ...ctx.customContext, user } })
-    }
-
-    if (isNonMember) {
+    if (!options?.allowNonMembers && isNonMember) {
       return redirectToLogin({ returnUrl, authType: options?.authType })
     }
 
-    throw error || new Error('Fail to check auth')
+    return gssp({ ...ctx, customContext: { ...ctx.customContext, user } })
   }
 }
 
