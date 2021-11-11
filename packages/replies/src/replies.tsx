@@ -190,7 +190,6 @@ export default function Replies({
         registerPlaceholder={registerPlaceholder}
         messages={messages}
         mentioningUserReply={mentioningUserReply}
-        onClick={onClick}
         onMessagesChange={setMessages}
         onWriteNestedReply={setMentioningUserReply}
       />
@@ -204,7 +203,6 @@ function Register({
   registerPlaceholder,
   messages,
   mentioningUserReply,
-  onClick,
   onMessagesChange,
   onWriteNestedReply,
 }: {
@@ -213,7 +211,6 @@ function Register({
   registerPlaceholder?: string
   messages?: string
   mentioningUserReply?: MentioningUserReply
-  onClick?: () => void
   onMessagesChange?: (message: string) => void
   onWriteNestedReply?: ({
     toMessageId,
@@ -250,7 +247,7 @@ function Register({
   }
 
   return (
-    <Container cursor="pointer" onClick={onClick}>
+    <Container cursor="pointer">
       {mentioningUserReply?.toMessageId ? (
         <FlexBox
           flex
