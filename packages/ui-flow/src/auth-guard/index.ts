@@ -68,18 +68,7 @@ export function authGuard<Props>(
         return refreshInAppSession({ resolvedUrl, returnUrl })
       }
 
-      const query = qs.stringify({
-        returnUrl,
-        type: options?.authType,
-      })
-
-      return {
-        redirect: {
-          destination: `/login?${query}`,
-          basePath: false,
-          permanent: false,
-        },
-      }
+      return redirectToLogin({ returnUrl, authType: options?.authType })
     }
 
     throw error || new Error('Fail to check auth')
@@ -109,6 +98,27 @@ function refreshInAppSession({
   return {
     redirect: {
       destination: `/landing/refresh?${destinationQuery}`,
+      basePath: false,
+      permanent: false,
+    },
+  } as const
+}
+
+function redirectToLogin({
+  returnUrl,
+  authType,
+}: {
+  returnUrl: string
+  authType?: string
+}) {
+  const query = qs.stringify({
+    returnUrl,
+    type: authType,
+  })
+
+  return {
+    redirect: {
+      destination: `/login?${query}`,
       basePath: false,
       permanent: false,
     },
