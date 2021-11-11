@@ -129,7 +129,7 @@ export async function fetchChildrenReplies({
   const { result } = response
 
   if (!result) {
-    throw new Error('요청에 의한 응답이 없습니다.')
+    return []
   }
 
   return result
