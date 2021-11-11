@@ -212,11 +212,7 @@ function Register({
   resourceType: string
   registerPlaceholder?: string
   messages?: string
-  mentioningUserReply?: {
-    toMessageId: string | null
-    mentioningUserUid: string | null
-    mentioningUserName: string | null
-  }
+  mentioningUserReply?: MentioningUserReply
   onClick?: () => void
   onMessagesChange?: (message: string) => void
   onWriteNestedReply?: ({
