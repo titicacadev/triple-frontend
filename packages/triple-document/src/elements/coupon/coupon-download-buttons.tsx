@@ -52,13 +52,21 @@ async function downloadCoupon(slugId: string) {
     return { type: 'NEED_LOGIN' } as const
   }
 
-  const { ok, error, result } = response
+  if (response.ok === true) {
+    const {
+      parsedBody: { id },
+    } = response
 
-  if (ok === true && !!result?.id) {
-    return { type: 'SUCCESS' } as const
+    if (id) {
+      return { type: 'SUCCESS' } as const
+    }
+
+    return { type: 'UNKNOWN_ERROR' } as const
   }
 
-  const { code, message } = error?.responseError || {}
+  const {
+    parsedBody: { code, message },
+  } = response
 
   if (code === 'NO_CI_AUTHENTICATION') {
     return { type: 'NEED_USER_VERIFICATION' } as const
@@ -104,11 +112,13 @@ export function CouponDownloadButton({
 
       captureHttpError(response)
 
-      const { ok, result } = response
+      if (response.ok === true) {
+        const {
+          parsedBody: { downloaded },
+        } = response
 
-      if (ok && result) {
         setCouponFetched(true)
-        setDownloaded(!!result.downloaded)
+        setDownloaded(!!downloaded)
       }
     }
 
@@ -190,29 +200,33 @@ async function downloadCoupons(coupons: CouponData[]) {
 
   captureHttpError(response)
 
-  const { result: results, ok } = response
-
-  if (ok && results) {
+  if (response.ok === true) {
+    const { parsedBody: results } = response
     const succeedCoupons = results.filter(({ success }) => success)
 
     if (succeedCoupons.length === coupons.length) {
       return { type: 'EVERY_COUPONS_DOWNLOADED' } as const
     }
+
     if (succeedCoupons.length > 0) {
       return { type: 'SOME_COUPONS_DOWNLOADED' } as const
     }
+
     if (results[0].errorCode === MAX_COUPONS_PER_USER_ERROR_CODE) {
       return { type: 'NO_DOWNLOADABLE_COUPONS' } as const
     }
+
     if (results[0].errorCode === 'NO_CI_AUTHENTICATION') {
       return { type: 'NEED_USER_VERIFICATION' } as const
     }
+
+    return {
+      type: 'UNKNOWN_ERROR',
+      message: results?.[0].errorMessage,
+    } as const
   }
 
-  return {
-    type: 'UNKNOWN_ERROR',
-    message: results?.[0].errorMessage,
-  } as const
+  return { type: 'UNKNOWN_ERROR' } as const
 }
 
 export function CouponGroupDownloadButton({
@@ -256,9 +270,12 @@ export function CouponGroupDownloadButton({
       }
 
       captureHttpError(response)
-      const { result: { items } = {} } = response
 
-      if (items) {
+      if (response.ok === true) {
+        const {
+          parsedBody: { items },
+        } = response
+
         setCoupons(items)
       }
     }
