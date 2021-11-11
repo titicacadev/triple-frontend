@@ -297,8 +297,15 @@ function Content({
   )
 }
 
-function removeDuplicateNestedReply(nestedReply: Reply[]) {
-  return [...new Map(nestedReply.map((item) => [item.id, item])).values()]
+function checkUniqueNestedReply(nestedReplies: Reply[]) {
+  const temp: string[] = []
+
+  return nestedReplies.filter((item) => {
+    if (!temp.includes(item.id)) {
+      temp.push(item.id)
+      return true
+    }
+  })
 }
 
 function DetailReply({
@@ -330,7 +337,7 @@ function DetailReply({
 
       setNestedRepliesInfo((prev) => ({
         ...prev,
-        nestedReplies: removeDuplicateNestedReply([
+        nestedReplies: checkUniqueNestedReply([
           ...prev.nestedReplies,
           ...response,
         ]),
