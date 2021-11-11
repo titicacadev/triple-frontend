@@ -65,28 +65,7 @@ export function authGuard<Props>(
 
     if (status === 401 || isNonMember) {
       if (userAgentString && parseApp(userAgentString) && status === 401) {
-        const { query: currentQuery } = parseUrl(resolvedUrl)
-        const { refreshed } = strictQuery(
-          currentQuery ? qs.parse(currentQuery) : ({} as any),
-        )
-          .boolean('refreshed')
-          .use()
-
-        if (refreshed) {
-          throw new Error('세션 갱신에 실패했습니다.')
-        }
-
-        const destinationQuery = qs.stringify({
-          returnUrl: generateUrl({ query: 'refreshed=true' }, returnUrl),
-        })
-
-        return {
-          redirect: {
-            destination: `/landing/refresh?${destinationQuery}`,
-            basePath: false,
-            permanent: false,
-          },
-        }
+        return refreshInAppSession({ resolvedUrl, returnUrl })
       }
 
       const query = qs.stringify({
@@ -105,4 +84,33 @@ export function authGuard<Props>(
 
     throw error || new Error('Fail to check auth')
   }
+}
+
+function refreshInAppSession({
+  resolvedUrl,
+  returnUrl,
+}: {
+  resolvedUrl: string
+  returnUrl: string
+}) {
+  const { query } = parseUrl(resolvedUrl)
+  const { refreshed } = strictQuery(query ? qs.parse(query) : ({} as any))
+    .boolean('refreshed')
+    .use()
+
+  if (refreshed) {
+    throw new Error('세션 갱신에 실패했습니다.')
+  }
+
+  const destinationQuery = qs.stringify({
+    returnUrl: generateUrl({ query: 'refreshed=true' }, returnUrl),
+  })
+
+  return {
+    redirect: {
+      destination: `/landing/refresh?${destinationQuery}`,
+      basePath: false,
+      permanent: false,
+    },
+  } as const
 }
