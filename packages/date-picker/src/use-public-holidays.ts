@@ -21,12 +21,15 @@ export function usePublicHolidays({
   useEffect(() => {
     if (from && to) {
       const fetchData = async () => {
-        const { result } = await fetchPublicHolidays({ from, to }, {})
+        const response = await fetchPublicHolidays({ from, to }, {})
 
-        if (result) {
-          setPublicHolidays(result)
+        if (response.ok === true) {
+          const { parsedBody } = response
+
+          setPublicHolidays(parsedBody)
         }
       }
+
       fetchData()
     }
   }, [from, to])
