@@ -66,11 +66,15 @@ export function authGuard<Props>(
       throw new Error(`Fail to fetch User: ${status}`)
     }
 
-    const isNonMember = user && user.uid.match(NON_MEMBER_REGEX)
+    if (user === undefined) {
+      throw new Error('Fail to check auth')
+    }
+
+    const isNonMember = user.uid.match(NON_MEMBER_REGEX)
 
     if (
-      (options?.allowNonMembers && user) ||
-      (!options?.allowNonMembers && user && !isNonMember)
+      options?.allowNonMembers ||
+      (!options?.allowNonMembers && !isNonMember)
     ) {
       return gssp({ ...ctx, customContext: { ...ctx.customContext, user } })
     }
