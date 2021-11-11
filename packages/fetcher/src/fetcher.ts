@@ -1,17 +1,11 @@
-import { HttpError } from './error'
 import { makeRequestParams } from './make-request-params'
 import safeParseJSON from './safe-parse-json'
-import {
-  HttpErrorResponse,
-  HTTPMethods,
-  HttpResponse,
-  RequestOptions,
-} from './types'
+import { HTTPMethods, HttpResponse, RequestOptions } from './types'
 
-export async function fetcher<T = any, E = HttpErrorResponse>(
+export async function fetcher<SuccessBody, FailureBody = unknown>(
   url: string,
   options: RequestOptions,
-): Promise<HttpResponse<T, E>> {
+): Promise<HttpResponse<SuccessBody, FailureBody>> {
   const { retryable, method = HTTPMethods.GET } = options
 
   const fetchFunction =
@@ -29,16 +23,15 @@ export async function fetcher<T = any, E = HttpErrorResponse>(
   if (response.ok === true) {
     return {
       ...restResponse,
-      result: body as T | undefined,
+      ok: true,
+      parsedBody: body as SuccessBody,
     }
   }
 
   return {
     ...restResponse,
-    error: new HttpError(
-      new Error(typeof body !== 'string' ? JSON.stringify(body) : body),
-      response,
-    ),
+    ok: false,
+    parsedBody: body as FailureBody,
   }
 }
 

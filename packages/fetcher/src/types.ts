@@ -1,7 +1,5 @@
 import { IncomingMessage } from 'http'
 
-import { HttpError } from './error'
-
 export type RequestOptions = Omit<RequestInit, 'body'> & {
   /**
    * @deprecated req보다는 cookie, withApiUriBase 사용을 권장합니다!
@@ -45,8 +43,12 @@ export interface HttpErrorResponse extends Error {
   message: string
 }
 
-export interface HttpResponse<T, E = HttpErrorResponse>
-  extends Omit<Response, 'clone' | keyof Body> {
-  result?: T
-  error?: HttpError<E>
-}
+export type SuccessOrFailureBody<SuccessBody, FailureBody> =
+  | { ok: true; parsedBody: SuccessBody }
+  | { ok: false; parsedBody: FailureBody }
+
+export type HttpResponse<SuccessBody, FailureBody = unknown> = Omit<
+  Response,
+  keyof Body | 'clone'
+> &
+  SuccessOrFailureBody<SuccessBody, FailureBody>
