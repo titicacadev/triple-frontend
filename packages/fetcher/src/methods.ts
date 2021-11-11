@@ -6,38 +6,20 @@ import {
   RequestOptions,
 } from './types'
 
-export const get = async <T extends {}, E = HttpErrorResponse>(
-  url: string,
-  options?: RequestOptions,
-): Promise<HttpResponse<T, E>> =>
-  fetcher<T, E>(url, {
-    ...options,
-    method: HTTPMethods.GET,
-  })
+export const get = addMethod(fetcher, HTTPMethods.GET)
+export const put = addMethod(fetcher, HTTPMethods.PUT)
+export const post = addMethod(fetcher, HTTPMethods.POST)
+export const del = addMethod(fetcher, HTTPMethods.DELETE)
 
-export const put = async <T extends {}, E = HttpErrorResponse>(
-  url: string,
-  options?: RequestOptions,
-): Promise<HttpResponse<T, E>> =>
-  fetcher<T, E>(url, {
-    ...options,
-    method: HTTPMethods.PUT,
-  })
-
-export const post = async <T extends {}, E = HttpErrorResponse>(
-  url: string,
-  options?: RequestOptions,
-): Promise<HttpResponse<T, E>> =>
-  fetcher<T, E>(url, {
-    ...options,
-    method: HTTPMethods.POST,
-  })
-
-export const del = async <T extends {}, E = HttpErrorResponse>(
-  url: string,
-  options?: RequestOptions,
-): Promise<HttpResponse<T, E>> =>
-  fetcher<T, E>(url, {
-    ...options,
-    method: HTTPMethods.DELETE,
-  })
+function addMethod(
+  fetcher: <T, E>(
+    href: string,
+    options: RequestOptions,
+  ) => Promise<HttpResponse<T, E>>,
+  method: HTTPMethods,
+) {
+  return <T extends {}, E = HttpErrorResponse>(
+    href: string,
+    options?: RequestOptions,
+  ): Promise<HttpResponse<T, E>> => fetcher<T, E>(href, { ...options, method })
+}
