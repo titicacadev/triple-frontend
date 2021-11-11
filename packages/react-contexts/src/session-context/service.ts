@@ -5,11 +5,19 @@ export interface User {
 }
 
 export async function fetchUser(options?: RequestOptions) {
-  const { result, error, status } = await get<User>('/api/users/me', options)
+  const response = await get<User>('/api/users/me', options)
 
-  if ((!result || error) && status !== 401) {
-    throw error || new Error('Fail to fetch User')
+  if (response.ok === false) {
+    const { status } = response
+
+    if (status === 401) {
+      return null
+    }
+
+    throw new Error(`Fail to fetch User: ${status}`)
   }
 
-  return result || null
+  const { parsedBody } = response
+
+  return parsedBody || null
 }
