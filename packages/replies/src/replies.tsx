@@ -195,17 +195,17 @@ export default function Replies({
     <Container onClick={onClick}>
       <Container padding={{ bottom: 30, left: 30, right: 30 }}>
         {totalRepliesCount && totalRepliesCount > replies.length ? (
-          <Container cursor="pointer" onClick={handleReplyMoreClick}>
-            <Text
-              padding={{ top: 20 }}
-              color="blue"
-              size={14}
-              bold
-              onClick={handleReplyMoreClick}
-            >
-              이전 댓글 더보기
-            </Text>
-          </Container>
+          <Text
+            padding={{ top: 20 }}
+            color="blue"
+            size={14}
+            bold
+            cursor="pointer"
+            inlineBlock
+            onClick={handleReplyMoreClick}
+          >
+            이전 댓글 더보기
+          </Text>
         ) : null}
 
         <List margin={{ top: 20 }}>
@@ -510,11 +510,17 @@ function DetailReply({
       </Container>
 
       {childrenCount > childrenReplies.length ? (
-        <Container cursor="pointer" onClick={handleChildrenReplyMoreClick}>
-          <Text padding={{ left: 40 }} color="blue" size={14} bold>
-            이전 답글 더보기
-          </Text>
-        </Container>
+        <Text
+          padding={{ left: 40 }}
+          color="blue"
+          size={14}
+          bold
+          cursor="pointer"
+          inlineBlock
+          onClick={handleChildrenReplyMoreClick}
+        >
+          이전 답글 더보기
+        </Text>
       ) : null}
 
       {childrenReplies.length > 0 ? (
