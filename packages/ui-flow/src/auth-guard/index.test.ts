@@ -13,7 +13,10 @@ afterEach(() => {
 
 it('/api/users/me가 회원 정보를 반환하면 customContext에 회원 정보를 추가하여 기존 getServerSideProps를 호출합니다.', async () => {
   const user = { uid: 'MOCK_USER' }
-  mockedGet.mockResolvedValue({ result: user } as any)
+  mockedGet.mockResolvedValue({
+    ...new Response(JSON.stringify(user), { status: 200 }),
+    result: user,
+  })
 
   const oldGSSP = jest.fn()
   const newGSSP = authGuard(oldGSSP)
@@ -58,8 +61,9 @@ it('/api/users/me가 회원 정보를 반환하면 customContext에 회원 정�
 it('/api/users/me가 non-member로 응답하나, allowNonMembers가 true라면 인증을 통과한 걸로 봅니다.', async () => {
   const user = { uid: '_PH_01000000000' }
   mockedGet.mockResolvedValue({
+    ...new Response(JSON.stringify(user), { status: 200 }),
     result: user,
-  } as any)
+  })
 
   const oldGSSP = jest.fn()
   const newGSSP = authGuard(oldGSSP, { allowNonMembers: true })
@@ -106,7 +110,7 @@ it('/api/users/me가 non-member로 응답하나, allowNonMembers가 true라면 �
 })
 
 it('/api/users/me가 401 이외의 에러로 응답했다면, 에러를 던집니다.', async () => {
-  mockedGet.mockResolvedValue({ status: 500 } as any)
+  mockedGet.mockResolvedValue(new Response(undefined, { status: 500 }))
 
   const oldGSSP = jest.fn()
   const newGSSP = authGuard(oldGSSP)
@@ -141,7 +145,7 @@ it('/api/users/me가 401 이외의 에러로 응답했다면, 에러를 던집�
 })
 
 it('resolveReturnUrl 함수로 로그인 후 돌아갈 URL을 만들 수 있습니다.', async () => {
-  mockedGet.mockResolvedValue({ status: 401 } as any)
+  mockedGet.mockResolvedValue(new Response(undefined, { status: 401 }))
 
   const oldGSSP = jest.fn()
   const newGSSP = authGuard(oldGSSP, {
@@ -212,7 +216,7 @@ describe('일반 브라우저에서 로그인이 필요하면 로그인 페이�
   } as any
 
   it('/api/users/me가 401로 응답', async () => {
-    mockedGet.mockResolvedValue({ status: 401 } as any)
+    mockedGet.mockResolvedValue(new Response(undefined, { status: 401 }))
 
     const oldGSSP = jest.fn()
     const newGSSP = authGuard(oldGSSP)
@@ -263,7 +267,7 @@ describe('일반 브라우저에서 로그인이 필요하면 로그인 페이�
   })
 
   it('authType을 이용해 로그인 페이지의 Type을 명시할 수 있습니다.', async () => {
-    mockedGet.mockResolvedValueOnce({ status: 401 } as any)
+    mockedGet.mockResolvedValueOnce(new Response(undefined, { status: 401 }))
 
     const oldGSSP = jest.fn()
     const newGSSP = authGuard(oldGSSP, { authType: 'bookings' })
@@ -285,7 +289,7 @@ describe('일반 브라우저에서 로그인이 필요하면 로그인 페이�
 
 describe('트리플 앱에서 로그인이 필요하면 토큰 새로고침을 시도하고, 로그인 뷰로 이동합니다.', () => {
   it('/api/users/me가 401로 응답하면 토큰 새로고침을 시도합니다.', async () => {
-    mockedGet.mockResolvedValueOnce({ status: 401 } as any)
+    mockedGet.mockResolvedValueOnce(new Response(undefined, { status: 401 }))
 
     const oldGSSP = jest.fn()
     const newGSSP = authGuard(oldGSSP)
@@ -315,7 +319,7 @@ describe('트리플 앱에서 로그인이 필요하면 토큰 새로고침을 �
   })
 
   it('토큰 새로고침 이후 /api/users/me가 다시 401로 에러를 냅니다.', async () => {
-    mockedGet.mockResolvedValueOnce({ status: 401 } as any)
+    mockedGet.mockResolvedValueOnce(new Response(undefined, { status: 401 }))
 
     const oldGSSP = jest.fn()
     const newGSSP = authGuard(oldGSSP)
