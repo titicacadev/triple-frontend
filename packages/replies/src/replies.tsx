@@ -242,7 +242,7 @@ export default function Replies({
             backgroundColor="gray50"
           >
             <Text size={12} lineHeight="19px" bold color="gray700">
-              {mentionedUserName}에게 답글 다는 중...
+              {mentionedUserName}님께 답글 다는중...
             </Text>
             <Icon
               onClick={handleChildReplyContentClose}
