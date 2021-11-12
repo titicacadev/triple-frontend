@@ -409,10 +409,10 @@ function DetailReply({
     mentioningUserName,
   }: DataForGeneratingReply) => void
 }) {
-  const [{ childrenReplies, childrenPage }, setChildrenRepliesInfo] = useState<{
-    childrenReplies: Reply[]
-    childrenPage: number
-  }>({ childrenReplies: checkUniqueReply([...children]), childrenPage: 0 })
+  const [{ childReplies, childPage }, setChildRepliesInfo] = useState<{
+    childReplies: Reply[]
+    childPage: number
+  }>({ childReplies: checkUniqueReply([...children]), childPage: 0 })
 
   const handleChildReplyWrite = () => {
     onReplyTypeChange({
@@ -427,7 +427,7 @@ function DetailReply({
         size: 3,
       })
 
-      setChildrenRepliesInfo((prev) => ({
+      setChildRepliesInfo((prev) => ({
         ...prev,
         childrenReplies: checkUniqueReply([...response]),
       }))
@@ -440,15 +440,15 @@ function DetailReply({
     const response = await fetchChildReplies({
       id,
       size: 3,
-      page: childrenPage + 1,
+      page: childPage + 1,
     })
 
-    setChildrenRepliesInfo((prev) => ({
+    setChildRepliesInfo((prev) => ({
       ...prev,
-      childrenReplies: checkUniqueReply([...response, ...prev.childrenReplies]),
-      childrenPage: prev.childrenPage + 1,
+      childReplies: checkUniqueReply([...response, ...prev.childReplies]),
+      childPage: prev.childPage + 1,
     }))
-  }, [id, childrenPage])
+  }, [id, childPage])
 
   return (
     <>
@@ -521,7 +521,7 @@ function DetailReply({
         </ReactionBox>
       </Container>
 
-      {childrenCount > childrenReplies.length ? (
+      {childrenCount > childReplies.length ? (
         <Text
           padding={{ left: 40 }}
           color="blue"
@@ -535,15 +535,12 @@ function DetailReply({
         </Text>
       ) : null}
 
-      {childrenReplies.length > 0 ? (
+      {childReplies.length > 0 ? (
         <List margin={{ top: 20 }}>
-          {childrenReplies.map((childrenReply) => (
-            <ChildResourceListItem
-              key={childrenReply.id}
-              margin={{ bottom: 20 }}
-            >
+          {childReplies.map((childReply) => (
+            <ChildResourceListItem key={childReply.id} margin={{ bottom: 20 }}>
               <DetailReply
-                reply={childrenReply}
+                reply={childReply}
                 onReplyTypeChange={onReplyTypeChange}
               />
             </ChildResourceListItem>
