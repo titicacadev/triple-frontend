@@ -1,3 +1,25 @@
+/**
+ * Pick2 type utils
+ * ref - https://gist.github.com/staltz/368866ea6b8a167fbdac58cddf79c1bf
+ *
+ * type AAA = {
+ *   content: {
+ *     source: {
+ *       name: string
+ *     }
+ *   }
+ * }
+ *
+ * type A-1 = Pick2<AAA, 'content', 'source'>
+ *
+ * A-1 = {
+ *   name: string
+ * }
+
+*/
+
+export type Pick2<T, K1 extends keyof T, K2 extends keyof T[K1]> = T[K1][K2]
+
 export type ResourceType = 'review' | 'itinerary' | 'article'
 
 export interface Writer {
@@ -37,10 +59,10 @@ export interface Reply {
     } | null
     reaction: boolean
     reply: {
-      mentioningUserHref: string
-      mentioningUserName: string
-      mentioningUserUid: string
-      toMessageId: string
+      mentioningUserHref?: string
+      mentioningUserName: string | null
+      mentioningUserUid: string | null
+      toMessageId: string | null
     }
     report: boolean
   }
@@ -55,8 +77,8 @@ export interface ReplyBoard {
   pinnedMessages: Reply[]
 }
 
-export interface DataForGeneratingReply {
-  toMessageId: null | string
-  mentioningUserUid: null | string
-  mentioningUserName: null | string
-}
+export type DataForGeneratingReply = Pick2<
+  Reply,
+  'actionSpecifications',
+  'reply'
+>
