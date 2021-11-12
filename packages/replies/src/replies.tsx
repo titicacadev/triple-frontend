@@ -16,8 +16,8 @@ import {
   fetchReplies,
   writeReply,
   fetchReplyBoard,
-  fetchChildrenReplies,
-  writeChildrenReply,
+  fetchChildReplies,
+  writeChildReply,
 } from './replies-api-clients'
 import { Reply, ResourceType, Writer, DataForGeneratingReply } from './types'
 import AutoResizingTextarea from './auto-resizing-textarea'
@@ -58,7 +58,7 @@ const RegisterButton = styled.button`
   cursor: pointer;
 `
 
-const ChildrenResourceListItem = styled(List.Item)`
+const ChildResourceListItem = styled(List.Item)`
   padding-left: 40px;
 `
 
@@ -156,7 +156,7 @@ export default function Replies({
     }))
   }, [resourceId, resourceType, size, page])
 
-  const handleCloseChildrenReply = () => {
+  const handleChildReplyContentClose = () => {
     setDataForGeneratingReply({
       toMessageId: null,
       mentioningUserUid: null,
@@ -170,7 +170,7 @@ export default function Replies({
     }
 
     toMessageId
-      ? await writeChildrenReply({
+      ? await writeChildReply({
           messageId: toMessageId,
           contentFormat: 'plaintext',
           content: replyContent,
@@ -184,15 +184,15 @@ export default function Replies({
 
     setReplyContent('')
 
-    handleCloseChildrenReply()
+    handleChildReplyContentClose()
   }
 
   if (replies.length <= 0) {
     return (
       <NoReplyPlaceholder
         registerPlaceholder={registerPlaceholder}
-        messages={replyContent}
-        onMessageChange={setReplyContent}
+        replyContent={replyContent}
+        onReplyContentChange={setReplyContent}
         onClick={onClick}
       />
     )
@@ -221,7 +221,7 @@ export default function Replies({
               <HR1 margin={{ bottom: 20 }} color="var(--color-gray50)" />
               <DetailReply
                 reply={reply}
-                onWriteChildrenReply={setDataForGeneratingReply}
+                onChildReplyWrite={setDataForGeneratingReply}
               />
             </List.Item>
           ))}
@@ -241,7 +241,7 @@ export default function Replies({
               {mentioningUserName}에게 답글 다는 중...
             </Text>
             <Icon
-              onClick={handleCloseChildrenReply}
+              onClick={handleChildReplyContentClose}
               src="https://assets.triple.guide/images/btn-com-close@3x.png"
             />
           </FlexBox>
@@ -249,9 +249,9 @@ export default function Replies({
 
         <Register
           registerPlaceholder={registerPlaceholder}
-          messages={replyContent}
+          replyContent={replyContent}
           isFocusing={Boolean(toMessageId)}
-          onMessageChange={setReplyContent}
+          onReplyContentChange={setReplyContent}
           onClick={handleRegister}
         />
       </Container>
@@ -261,15 +261,15 @@ export default function Replies({
 
 function Register({
   registerPlaceholder,
-  messages,
+  replyContent,
   isFocusing,
-  onMessageChange,
+  onReplyContentChange,
   onClick,
 }: {
   registerPlaceholder?: string
-  messages: string
+  replyContent: string
   isFocusing: boolean
-  onMessageChange: (message: string) => void
+  onReplyContentChange: (replyContent: string) => void
   onClick?: () => void
 }) {
   return (
@@ -286,8 +286,8 @@ function Register({
           }
           minRows={1}
           maxRows={4}
-          value={messages}
-          onChange={onMessageChange}
+          value={replyContent}
+          onChange={onReplyContentChange}
           isFocusing={isFocusing}
         />
         <RegisterButton onClick={onClick}>등록</RegisterButton>
@@ -299,13 +299,13 @@ function Register({
 
 function NoReplyPlaceholder({
   registerPlaceholder,
-  messages,
-  onMessageChange,
+  replyContent,
+  onReplyContentChange,
   onClick,
 }: {
   registerPlaceholder?: string
-  messages: string
-  onMessageChange: (message: string) => void
+  replyContent: string
+  onReplyContentChange: (replyContent: string) => void
   onClick?: () => void
 }) {
   return (
@@ -324,8 +324,8 @@ function NoReplyPlaceholder({
 
       <Register
         registerPlaceholder={registerPlaceholder}
-        messages={messages}
-        onMessageChange={onMessageChange}
+        replyContent={replyContent}
+        onReplyContentChange={onReplyContentChange}
         isFocusing={false}
       />
 
@@ -396,10 +396,10 @@ function DetailReply({
     children,
     id,
   },
-  onWriteChildrenReply,
+  onChildReplyWrite,
 }: {
   reply: Reply
-  onWriteChildrenReply: ({
+  onChildReplyWrite: ({
     toMessageId,
     mentioningUserUid,
     mentioningUserName,
@@ -410,15 +410,15 @@ function DetailReply({
     childrenPage: number
   }>({ childrenReplies: checkUniqueReply([...children]), childrenPage: 0 })
 
-  const handleWriteChildrenReply = () => {
-    onWriteChildrenReply({
+  const handleChildReplyWrite = () => {
+    onChildReplyWrite({
       ...dataForGeneratingReply,
     })
   }
 
   useEffect(() => {
-    async function fetchChildrenRepliesAndSet() {
-      const response = await fetchChildrenReplies({
+    async function fetchChildRepliesAndSet() {
+      const response = await fetchChildReplies({
         id,
         size: 3,
       })
@@ -429,11 +429,11 @@ function DetailReply({
       }))
     }
 
-    fetchChildrenRepliesAndSet()
+    fetchChildRepliesAndSet()
   }, [id])
 
-  const handleChildrenReplyMoreClick = useCallback(async () => {
-    const response = await fetchChildrenReplies({
+  const handleChildReplyMoreClick = useCallback(async () => {
+    const response = await fetchChildReplies({
       id,
       size: 3,
       page: childrenPage + 1,
@@ -510,7 +510,7 @@ function DetailReply({
             size={12}
             color="gray300"
             bold
-            onClick={handleWriteChildrenReply}
+            onClick={handleChildReplyWrite}
           >
             답글달기
           </Text>
@@ -525,7 +525,7 @@ function DetailReply({
           bold
           cursor="pointer"
           inlineBlock
-          onClick={handleChildrenReplyMoreClick}
+          onClick={handleChildReplyMoreClick}
         >
           이전 답글 더보기
         </Text>
@@ -534,15 +534,15 @@ function DetailReply({
       {childrenReplies.length > 0 ? (
         <List margin={{ top: 20 }}>
           {childrenReplies.map((childrenReply) => (
-            <ChildrenResourceListItem
+            <ChildResourceListItem
               key={childrenReply.id}
               margin={{ bottom: 20 }}
             >
               <DetailReply
                 reply={childrenReply}
-                onWriteChildrenReply={onWriteChildrenReply}
+                onChildReplyWrite={onChildReplyWrite}
               />
-            </ChildrenResourceListItem>
+            </ChildResourceListItem>
           ))}
         </List>
       ) : null}

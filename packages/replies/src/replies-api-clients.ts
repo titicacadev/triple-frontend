@@ -101,7 +101,7 @@ export async function fetchReplyBoard({
   return result
 }
 
-export async function fetchChildrenReplies({
+export async function fetchChildReplies({
   id,
   page = 0,
   size = 2,
@@ -135,7 +135,7 @@ export async function fetchChildrenReplies({
   return result
 }
 
-export async function writeChildrenReply({
+export async function writeChildReply({
   messageId,
   content,
   contentFormat,
