@@ -59,7 +59,7 @@ export interface Reply {
     } | null
     reaction: boolean
     reply: {
-      mentioningUserHref?: string
+      mentioningUserHref: string | null
       mentioningUserName: string | null
       mentioningUserUid: string | null
       toMessageId: string | null
@@ -77,8 +77,6 @@ export interface ReplyBoard {
   pinnedMessages: Reply[]
 }
 
-export type DataForGeneratingReply = Pick2<
-  Reply,
-  'actionSpecifications',
-  'reply'
+export type DataForGeneratingReply = Partial<
+  Pick2<Reply, 'actionSpecifications', 'reply'>
 >
