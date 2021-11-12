@@ -103,7 +103,11 @@ export default function Replies({
 
   const [replyContent, setReplyContent] = useState('')
   const [
-    { toMessageId, mentioningUserUid, mentioningUserName },
+    {
+      toMessageId,
+      mentioningUserUid: mentionedUserUid,
+      mentioningUserName: mentionedUserName,
+    },
     setDataForGeneratingReply,
   ] = useState<DataForGeneratingReply>({
     toMessageId: null,
@@ -174,7 +178,7 @@ export default function Replies({
           messageId: toMessageId,
           contentFormat: 'plaintext',
           content: replyContent,
-          mentionedUserUid: mentioningUserUid || '',
+          mentionedUserUid: mentionedUserUid || '',
         })
       : await writeReply({
           resourceId,
@@ -238,7 +242,7 @@ export default function Replies({
             backgroundColor="gray50"
           >
             <Text size={12} lineHeight="19px" bold color="gray700">
-              {mentioningUserName}에게 답글 다는 중...
+              {mentionedUserName}에게 답글 다는 중...
             </Text>
             <Icon
               onClick={handleChildReplyContentClose}
