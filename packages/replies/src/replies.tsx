@@ -121,7 +121,7 @@ export default function Replies({
 
       setRepliesInfo((prev) => ({
         ...prev,
-        replies: [...repliesResponse].reverse(),
+        replies: checkUniqueReply([...repliesResponse]),
       }))
     }
 
@@ -408,7 +408,7 @@ function DetailReply({
   const [{ childrenReplies, childrenPage }, setChildrenRepliesInfo] = useState<{
     childrenReplies: Reply[]
     childrenPage: number
-  }>({ childrenReplies: [...children].reverse(), childrenPage: 0 })
+  }>({ childrenReplies: checkUniqueReply([...children]), childrenPage: 0 })
 
   const handleWriteChildrenReply = () => {
     onWriteChildrenReply({
@@ -425,7 +425,7 @@ function DetailReply({
 
       setChildrenRepliesInfo((prev) => ({
         ...prev,
-        childrenReplies: [...response].reverse(),
+        childrenReplies: checkUniqueReply([...response]),
       }))
     }
 
