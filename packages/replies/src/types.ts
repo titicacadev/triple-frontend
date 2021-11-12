@@ -18,7 +18,7 @@
 
 */
 
-export type Pick2<T, K1 extends keyof T, K2 extends keyof T[K1]> = T[K1][K2]
+type Pick2<T, K1 extends keyof T, K2 extends keyof T[K1]> = T[K1][K2]
 
 export type ResourceType = 'review' | 'itinerary' | 'article'
 
