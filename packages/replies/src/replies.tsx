@@ -225,7 +225,7 @@ export default function Replies({
               <HR1 margin={{ bottom: 20 }} color="var(--color-gray50)" />
               <DetailReply
                 reply={reply}
-                onChildReplyWrite={setDataForGeneratingReply}
+                onReplyTypeChange={setDataForGeneratingReply}
               />
             </List.Item>
           ))}
@@ -400,10 +400,10 @@ function DetailReply({
     children,
     id,
   },
-  onChildReplyWrite,
+  onReplyTypeChange,
 }: {
   reply: Reply
-  onChildReplyWrite: ({
+  onReplyTypeChange: ({
     toMessageId,
     mentioningUserUid,
     mentioningUserName,
@@ -415,7 +415,7 @@ function DetailReply({
   }>({ childrenReplies: checkUniqueReply([...children]), childrenPage: 0 })
 
   const handleChildReplyWrite = () => {
-    onChildReplyWrite({
+    onReplyTypeChange({
       ...dataForGeneratingReply,
     })
   }
@@ -544,7 +544,7 @@ function DetailReply({
             >
               <DetailReply
                 reply={childrenReply}
-                onChildReplyWrite={onChildReplyWrite}
+                onReplyTypeChange={onReplyTypeChange}
               />
             </ChildResourceListItem>
           ))}
