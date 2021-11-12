@@ -101,7 +101,7 @@ export default function Replies({
     page: 0,
   })
 
-  const [replyContentMessage, setReplyContentMessage] = useState('')
+  const [replyContent, setReplyContent] = useState('')
   const [
     { toMessageId, mentioningUserUid, mentioningUserName },
     setDataForGeneratingReply,
@@ -165,7 +165,7 @@ export default function Replies({
   }
 
   const handleRegister = async () => {
-    if (!replyContentMessage) {
+    if (!replyContent) {
       return
     }
 
@@ -173,16 +173,16 @@ export default function Replies({
       ? await writeChildrenReply({
           messageId: toMessageId,
           contentFormat: 'plaintext',
-          content: replyContentMessage,
+          content: replyContent,
           mentionedUserUid: mentioningUserUid || '',
         })
       : await writeReply({
           resourceId,
           resourceType,
-          content: replyContentMessage,
+          content: replyContent,
         })
 
-    setReplyContentMessage('')
+    setReplyContent('')
 
     handleCloseChildrenReply()
   }
@@ -191,8 +191,8 @@ export default function Replies({
     return (
       <NoReplyPlaceholder
         registerPlaceholder={registerPlaceholder}
-        messages={replyContentMessage}
-        onMessageChange={setReplyContentMessage}
+        messages={replyContent}
+        onMessageChange={setReplyContent}
         onClick={onClick}
       />
     )
@@ -249,9 +249,9 @@ export default function Replies({
 
         <Register
           registerPlaceholder={registerPlaceholder}
-          messages={replyContentMessage}
+          messages={replyContent}
           isFocusing={Boolean(toMessageId)}
-          onMessageChange={setReplyContentMessage}
+          onMessageChange={setReplyContent}
           onClick={handleRegister}
         />
       </Container>
