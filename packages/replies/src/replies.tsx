@@ -1,5 +1,6 @@
 import React, {
   Dispatch,
+  Ref,
   SetStateAction,
   useEffect,
   useRef,
@@ -120,6 +121,8 @@ export default function Replies({
     mentioningUserName: null,
   })
 
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+
   useEffect(() => {
     async function fetchRepliesAndSet() {
       const repliesResponse = await fetchReplies({
@@ -150,6 +153,12 @@ export default function Replies({
 
     fetchReplyBoardAndSet()
   }, [resourceId, resourceType])
+
+  useEffect(() => {
+    if (!!toMessageId && textareaRef.current) {
+      textareaRef.current.focus()
+    }
+  }, [toMessageId])
 
   const handleReplyMoreClick = () => {
     setRepliesInfo((prevReplies) => ({
@@ -257,7 +266,7 @@ export default function Replies({
 
         <Register
           registerPlaceholder={registerPlaceholder}
-          isFocusing={!!toMessageId}
+          textareaRef={textareaRef}
           onSubmit={handleRegister}
         />
       </Container>
@@ -267,25 +276,17 @@ export default function Replies({
 
 function Register({
   registerPlaceholder,
-  isFocusing,
+  textareaRef,
   onSubmit,
 }: {
   registerPlaceholder?: string
-  isFocusing: boolean
+  textareaRef?: Ref<HTMLTextAreaElement>
   onSubmit?: (
     replyContent: string,
     setReplyContent: Dispatch<SetStateAction<string>>,
   ) => void
 }) {
   const [replyContent, setReplyContent] = useState('')
-
-  const textareaRef = useRef<HTMLTextAreaElement>(null)
-
-  useEffect(() => {
-    if (isFocusing && textareaRef.current) {
-      textareaRef.current.focus()
-    }
-  }, [isFocusing])
 
   return (
     <Container cursor="pointer">
@@ -337,7 +338,7 @@ function NoReplyPlaceholder({
         </Text>
       </Container>
 
-      <Register registerPlaceholder={registerPlaceholder} isFocusing={false} />
+      <Register registerPlaceholder={registerPlaceholder} />
 
       <HR1 margin={{ top: 0 }} color="var(--color-gray50)" />
     </Container>
