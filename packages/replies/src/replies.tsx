@@ -168,6 +168,10 @@ export default function Replies({
     })
   }
 
+  const changeReplyType = (baseReply: Reply) => {
+    setDataForGeneratingReply(baseReply.actionSpecifications.reply)
+  }
+
   const handleRegister = async () => {
     if (!replyContent) {
       return
@@ -225,7 +229,7 @@ export default function Replies({
               <HR1 margin={{ bottom: 20 }} color="var(--color-gray50)" />
               <DetailReply
                 reply={reply}
-                onReplyTypeChange={setDataForGeneratingReply}
+                onReplyTypeChange={() => changeReplyType(reply)}
               />
             </List.Item>
           ))}
@@ -391,7 +395,6 @@ function Content({
 function DetailReply({
   reply: {
     writer: { profileImage, name },
-    actionSpecifications: { reply: dataForGeneratingReply },
     blinded,
     createdAt,
     content: { mentionedUser, text, markdownText },
@@ -403,22 +406,12 @@ function DetailReply({
   onReplyTypeChange,
 }: {
   reply: Reply
-  onReplyTypeChange: ({
-    toMessageId,
-    mentioningUserUid,
-    mentioningUserName,
-  }: DataForGeneratingReply) => void
+  onReplyTypeChange: () => void
 }) {
   const [{ childReplies, childPage }, setChildRepliesInfo] = useState<{
     childReplies: Reply[]
     childPage: number
   }>({ childReplies: checkUniqueReply([...children]), childPage: 0 })
-
-  const handleChildReplyWrite = () => {
-    onReplyTypeChange({
-      ...dataForGeneratingReply,
-    })
-  }
 
   useEffect(() => {
     async function fetchChildRepliesAndSet() {
@@ -514,7 +507,7 @@ function DetailReply({
             size={12}
             color="gray300"
             bold
-            onClick={handleChildReplyWrite}
+            onClick={onReplyTypeChange}
           >
             답글달기
           </Text>
