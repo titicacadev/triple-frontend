@@ -1,341 +1,329 @@
-import { get } from '@titicaca/fetcher'
+import { get, HttpError, HttpResponse } from '@titicaca/fetcher'
+import { generateUrl } from '@titicaca/view-utilities'
 
 import { authGuard } from './index'
 
+const validMemberCookie = 'VALID_MEMBER_COOKIE'
+const validNonMemberCookie = 'VALID_NON_MEMBER_COOKIE'
+const invalidCookie = 'INVALID_COOKIE'
+
+const browserUserAgent =
+  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36'
+const appUserAgent =
+  'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/5.4.0'
+
 jest.mock('@titicaca/fetcher')
-const mockedGet = (get as jest.MockedFunction<
-  typeof get
->).mockImplementation(() => Promise.resolve({} as any))
+const mockedGet = (get as jest.MockedFunction<typeof get>).mockImplementation(
+  (href, options) => {
+    if (href !== '/api/users/me') {
+      throw new Error('Mock하지 않은 API입니다.')
+    }
+    const { req: { headers: { cookie } = { cookie: undefined } } = {} } =
+      options || {}
+
+    if (cookie === validMemberCookie) {
+      const user = { uid: 'MOCK_USER_UID' }
+      const response: HttpResponse<{ uid: string }> = new Response(
+        JSON.stringify(user),
+        {
+          status: 200,
+        },
+      )
+      response.result = user
+
+      return Promise.resolve(response)
+    } else if (cookie === validNonMemberCookie) {
+      const user = { uid: '_PH_01000000000' }
+      const response: HttpResponse<{
+        uid: string
+      }> = new Response(JSON.stringify(user), { status: 200 })
+      response.result = user
+
+      return Promise.resolve(response)
+    }
+
+    const response: HttpResponse<{ uid: string }> = new Response('', {
+      status: 401,
+    })
+    response.error = new HttpError(new Error(''), response)
+
+    return Promise.resolve(response)
+  },
+)
 
 afterEach(() => {
   mockedGet.mockClear()
 })
 
-it('/api/users/me가 회원 정보를 반환하면 customContext에 회원 정보를 추가하여 기존 getServerSideProps를 호출합니다.', async () => {
-  const user = { uid: 'MOCK_USER' }
-  mockedGet.mockResolvedValue({
-    ...new Response(JSON.stringify(user), { status: 200 }),
-    result: user,
+describe('유효한 쿠키와 함께 요청할 때', () => {
+  const validMemberContext = createContext({
+    cookie: validMemberCookie,
   })
 
-  const oldGSSP = jest.fn()
-  const newGSSP = authGuard(oldGSSP)
+  test('기존 gssp를 호출합니다.', async () => {
+    const oldGSSP = jest.fn()
+    const newGSSP = authGuard(oldGSSP)
 
-  const browserContext = {
-    req: {
-      headers: {
-        'user-agent':
-          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36',
-      },
-    },
-  } as any
+    await newGSSP(validMemberContext)
 
-  await newGSSP(browserContext)
-
-  expect(oldGSSP).toBeCalledTimes(1)
-  expect(oldGSSP).toBeCalledWith({
-    ...browserContext,
-    customContext: { user },
+    expect(oldGSSP).toBeCalledTimes(1)
   })
 
-  oldGSSP.mockClear()
+  test('기존 gssp는 customContext.user 파라미터를 사용할 수 있습니다.', async () => {
+    const oldGSSP = jest.fn()
+    const newGSSP = authGuard(oldGSSP)
 
-  const appContext = {
-    req: {
-      headers: {
-        'user-agent':
-          'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/5.4.0',
-      },
-    },
-  } as any
+    await newGSSP(validMemberContext)
 
-  await newGSSP(appContext)
-
-  expect(oldGSSP).toBeCalledTimes(1)
-  expect(oldGSSP).toBeCalledWith({
-    ...appContext,
-    customContext: { user },
+    expect(oldGSSP).toBeCalledWith(
+      expect.objectContaining({
+        customContext: expect.objectContaining({
+          user: expect.objectContaining({ uid: expect.any(String) }),
+        }),
+      }),
+    )
   })
 })
 
-it('/api/users/me가 non-member로 응답하나, allowNonMembers가 true라면 인증을 통과한 걸로 봅니다.', async () => {
-  const user = { uid: '_PH_01000000000' }
-  mockedGet.mockResolvedValue({
-    ...new Response(JSON.stringify(user), { status: 200 }),
-    result: user,
+test('allowNonMembers 옵션을 켜면 휴대폰 번호로 가입한 계정의 쿠키와 함께 요청할 때 기존 GSSP를 호출합니다.', async () => {
+  const validNonMemberContext = createContext({
+    cookie: validNonMemberCookie,
   })
 
   const oldGSSP = jest.fn()
   const newGSSP = authGuard(oldGSSP, { allowNonMembers: true })
 
-  const browserContext = {
-    req: {
-      headers: {
-        'user-agent':
-          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36',
-      },
-    },
-    resolvedUrl: '/test-url',
-    customContext: { mock: 'mock' },
-  } as any
-
-  await newGSSP(browserContext)
+  await newGSSP(validNonMemberContext)
 
   expect(oldGSSP).toBeCalledTimes(1)
-  expect(oldGSSP).toBeCalledWith({
-    ...browserContext,
-    customContext: { ...browserContext.customContext, user },
-  })
-
-  oldGSSP.mockClear()
-
-  const appContext = {
-    req: {
-      headers: {
-        'user-agent':
-          'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/5.4.0',
-      },
-    },
-    resolvedUrl: '/test-url',
-    customContext: { mock: 'mock' },
-  } as any
-
-  await newGSSP(appContext)
-
-  expect(oldGSSP).toBeCalledTimes(1)
-  expect(oldGSSP).toBeCalledWith({
-    ...appContext,
-    customContext: { ...appContext.customContext, user },
-  })
+  expect(oldGSSP).toBeCalledWith(
+    expect.objectContaining({
+      customContext: expect.objectContaining({
+        user: expect.objectContaining({ uid: expect.any(String) }),
+      }),
+    }),
+  )
 })
 
-it('/api/users/me가 401 이외의 에러로 응답했다면, 에러를 던집니다.', async () => {
-  mockedGet.mockResolvedValue(new Response(undefined, { status: 500 }))
+test('/api/users/me가 401 이외의 에러로 응답했다면 에러를 던집니다.', async () => {
+  mockedGet.mockResolvedValueOnce(new Response(undefined, { status: 500 }))
 
   const oldGSSP = jest.fn()
   const newGSSP = authGuard(oldGSSP)
+  const context = createContext({})
 
-  const browserContext = {
-    req: {
-      headers: {
-        'user-agent':
-          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36',
-      },
-    },
-    resolvedUrl: '/test-url',
-    customContext: { mock: 'mock' },
-  } as any
-
-  await expect(newGSSP(browserContext)).rejects.toThrowError()
-
-  oldGSSP.mockClear()
-
-  const appContext = {
-    req: {
-      headers: {
-        'user-agent':
-          'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/5.4.0',
-      },
-    },
-    resolvedUrl: '/test-url',
-    customContext: { mock: 'mock' },
-  } as any
-
-  await expect(newGSSP(appContext)).rejects.toThrowError()
+  await expect(newGSSP(context)).rejects.toThrowError()
 })
 
-it('resolveReturnUrl 함수로 로그인 후 돌아갈 URL을 만들 수 있습니다.', async () => {
-  mockedGet.mockResolvedValue(new Response(undefined, { status: 401 }))
-
+test('resolveReturnUrl 함수 속성으로 로그인 후 돌아갈 URL을 만들 수 있습니다.', async () => {
   const oldGSSP = jest.fn()
   const newGSSP = authGuard(oldGSSP, {
     resolveReturnUrl: ({ query }) => `/foo/${query.foo}`,
   })
-
-  const browserContext = {
-    req: {
-      headers: {
-        'user-agent':
-          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36',
-      },
-    },
-    customContext: { mock: 'mock' },
-    query: { foo: '1' },
+  const context = createContext({
+    userAgent: '',
     resolvedUrl: '/air/foo',
-  } as any
+  })
 
-  const browserResult = await newGSSP(browserContext)
+  const result = await newGSSP({ ...context, query: { foo: 1 } })
 
   expect(oldGSSP).toBeCalledTimes(0)
-  expect(browserResult).toEqual({
+  expect(result).toEqual({
     redirect: {
       destination: `/login?returnUrl=${encodeURIComponent('/foo/1')}`,
       basePath: false,
       permanent: false,
     },
   })
+})
 
-  oldGSSP.mockClear()
+describe('브라우저에서 페이지 접근을 막아야 하면 로그인 페이지로 리디렉션하는 값을 반환합니다.', () => {
+  const resolvedUrl = '/test-url?_triple_no_navbar'
 
-  const appContext = {
-    req: {
-      headers: {
-        'user-agent':
-          'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/5.4.0',
+  test('쿠키가 없을 때', async () => {
+    const oldGSSP = jest.fn()
+    const newGSSP = authGuard(oldGSSP)
+    const context = createContext({ userAgent: browserUserAgent, resolvedUrl })
+
+    const result = await newGSSP(context)
+
+    expect(oldGSSP).toBeCalledTimes(0)
+    expect(result).toEqual({
+      redirect: {
+        destination: `/login?returnUrl=${encodeURIComponent(resolvedUrl)}`,
+        basePath: false,
+        permanent: false,
       },
-    },
-    customContext: { mock: 'mock' },
-    query: { foo: '1' },
-    resolvedUrl: '/air/foo',
-  } as any
+    })
+  })
 
-  const appResult = await newGSSP(appContext)
+  test('쿠키가 유효하지 않을 때', async () => {
+    const oldGSSP = jest.fn()
+    const newGSSP = authGuard(oldGSSP)
+    const context = createContext({
+      userAgent: browserUserAgent,
+      resolvedUrl,
+      cookie: invalidCookie,
+    })
+
+    const result = await newGSSP(context)
+
+    expect(oldGSSP).toBeCalledTimes(0)
+    expect(result).toEqual({
+      redirect: {
+        destination: `/login?returnUrl=${encodeURIComponent(resolvedUrl)}`,
+        basePath: false,
+        permanent: false,
+      },
+    })
+  })
+
+  test('휴대전화 로그인한 회원 정보를 반환하고 allowNonMember 옵션이 꺼져있을 때', async () => {
+    const oldGSSP = jest.fn()
+    const newGSSP = authGuard(oldGSSP)
+    const context = createContext({
+      userAgent: browserUserAgent,
+      cookie: validNonMemberCookie,
+      resolvedUrl,
+    })
+
+    const result = await newGSSP(context)
+
+    expect(oldGSSP).toBeCalledTimes(0)
+    expect(result).toEqual({
+      redirect: {
+        destination: `/login?returnUrl=${encodeURIComponent(resolvedUrl)}`,
+        basePath: false,
+        permanent: false,
+      },
+    })
+  })
+})
+
+test('authType을 이용해 로그인 페이지의 Type을 명시할 수 있습니다.', async () => {
+  const resolvedUrl = '/test-url?_triple_no_navbar'
+  const oldGSSP = jest.fn()
+  const newGSSP = authGuard(oldGSSP, { authType: 'bookings' })
+  const context = createContext({
+    userAgent: browserUserAgent,
+    cookie: invalidCookie,
+    resolvedUrl,
+  })
+
+  const result = await newGSSP(context)
 
   expect(oldGSSP).toBeCalledTimes(0)
-  expect(appResult).toEqual({
+  expect(result).toEqual({
     redirect: {
-      destination: `/landing/refresh?returnUrl=${encodeURIComponent(
-        '/foo/1?refreshed=true',
-      )}`,
+      destination: `/login?returnUrl=${encodeURIComponent(
+        resolvedUrl,
+      )}&type=bookings`,
       basePath: false,
       permanent: false,
     },
   })
 })
 
-describe('일반 브라우저에서 로그인이 필요하면 로그인 페이지로 리디렉션하는 값을 반환합니다.', () => {
-  const ctx = {
+describe('앱에서', () => {
+  describe('로그인이 필요하면 로그인 페이지 리디렉션 대신 토큰 새로고침을 시도합니다.', () => {
+    const resolvedUrl = '/test-url?_triple_no_navbar'
+
+    test('쿠키가 없을 때', async () => {
+      const oldGSSP = jest.fn()
+      const newGSSP = authGuard(oldGSSP)
+      const context = createContext({ userAgent: appUserAgent, resolvedUrl })
+
+      const result = await newGSSP(context)
+
+      expect(oldGSSP).toBeCalledTimes(0)
+      expect(result).toEqual({
+        redirect: {
+          destination: `/landing/refresh?returnUrl=${encodeURIComponent(
+            generateUrl(
+              {
+                query: 'refreshed=true',
+              },
+              resolvedUrl,
+            ),
+          )}`,
+          basePath: false,
+          permanent: false,
+        },
+      })
+    })
+
+    test('쿠키가 유효하지 않을 때', async () => {
+      const oldGSSP = jest.fn()
+      const newGSSP = authGuard(oldGSSP)
+      const context = createContext({
+        userAgent: appUserAgent,
+        resolvedUrl,
+        cookie: invalidCookie,
+      })
+
+      const result = await newGSSP(context)
+
+      expect(oldGSSP).toBeCalledTimes(0)
+      expect(result).toEqual({
+        redirect: {
+          destination: `/landing/refresh?returnUrl=${encodeURIComponent(
+            generateUrl(
+              {
+                query: 'refreshed=true',
+              },
+              resolvedUrl,
+            ),
+          )}`,
+          basePath: false,
+          permanent: false,
+        },
+      })
+    })
+  })
+
+  describe('토큰 새로고침 이후에도 쿠키가 유효하지 않으면 오류를 던집니다.', () => {
+    test('쿠키가 없을 때', async () => {
+      const oldGSSP = jest.fn()
+      const newGSSP = authGuard(oldGSSP)
+      const context = createContext({
+        userAgent: appUserAgent,
+        resolvedUrl: '/test-url?refreshed=true',
+      })
+
+      await expect(newGSSP(context)).rejects.toThrowError()
+
+      expect(oldGSSP).toBeCalledTimes(0)
+    })
+
+    test('쿠키가 유효하지 않을 때', async () => {
+      const oldGSSP = jest.fn()
+      const newGSSP = authGuard(oldGSSP)
+      const context = createContext({
+        userAgent: appUserAgent,
+        resolvedUrl: '/test-url?refreshed=true',
+        cookie: invalidCookie,
+      })
+
+      await expect(newGSSP(context)).rejects.toThrowError()
+
+      expect(oldGSSP).toBeCalledTimes(0)
+    })
+  })
+})
+
+function createContext({
+  userAgent,
+  cookie,
+  resolvedUrl,
+}: {
+  userAgent?: string
+  cookie?: string
+  resolvedUrl?: string
+}): any {
+  return {
     req: {
-      headers: {
-        'user-agent':
-          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36',
-      },
+      headers: { 'user-agent': userAgent, cookie },
     },
-    resolvedUrl: '/test-url',
-    customContext: { mock: 'mock' },
-  } as any
-
-  it('/api/users/me가 401로 응답', async () => {
-    mockedGet.mockResolvedValue(new Response(undefined, { status: 401 }))
-
-    const oldGSSP = jest.fn()
-    const newGSSP = authGuard(oldGSSP)
-
-    const result = await newGSSP(ctx)
-
-    expect(oldGSSP).toBeCalledTimes(0)
-    expect(result).toEqual({
-      redirect: {
-        destination: `/login?returnUrl=${encodeURIComponent('/test-url')}`,
-        basePath: false,
-        permanent: false,
-      },
-    })
-
-    process.env.NEXT_PUBLIC_BASE_PATH = '/mock'
-    const withEnvResult = await newGSSP(ctx)
-    delete process.env.NEXT_PUBLIC_BASE_PATH
-
-    expect(oldGSSP).toBeCalledTimes(0)
-    expect(withEnvResult).toEqual({
-      redirect: {
-        destination: `/login?returnUrl=${encodeURIComponent('/mock/test-url')}`,
-        basePath: false,
-        permanent: false,
-      },
-    })
-  })
-
-  it('/api/users/me가 non-member로 응답', async () => {
-    mockedGet.mockResolvedValueOnce({
-      result: { uid: '_PH_01000000000' },
-    } as any)
-
-    const oldGSSP = jest.fn()
-    const newGSSP = authGuard(oldGSSP)
-
-    const result = await newGSSP(ctx)
-
-    expect(oldGSSP).toBeCalledTimes(0)
-    expect(result).toEqual({
-      redirect: {
-        destination: `/login?returnUrl=${encodeURIComponent('/test-url')}`,
-        basePath: false,
-        permanent: false,
-      },
-    })
-  })
-
-  it('authType을 이용해 로그인 페이지의 Type을 명시할 수 있습니다.', async () => {
-    mockedGet.mockResolvedValueOnce(new Response(undefined, { status: 401 }))
-
-    const oldGSSP = jest.fn()
-    const newGSSP = authGuard(oldGSSP, { authType: 'bookings' })
-
-    const result = await newGSSP(ctx)
-
-    expect(oldGSSP).toBeCalledTimes(0)
-    expect(result).toEqual({
-      redirect: {
-        destination: `/login?returnUrl=${encodeURIComponent(
-          '/test-url',
-        )}&type=bookings`,
-        basePath: false,
-        permanent: false,
-      },
-    })
-  })
-})
-
-describe('트리플 앱에서 로그인이 필요하면 토큰 새로고침을 시도합니다. 로그인 화면을 보지 않습니다.', () => {
-  it('/api/users/me가 401로 응답하면 토큰 새로고침을 시도합니다.', async () => {
-    mockedGet.mockResolvedValueOnce(new Response(undefined, { status: 401 }))
-
-    const oldGSSP = jest.fn()
-    const newGSSP = authGuard(oldGSSP)
-
-    const appContext = {
-      req: {
-        headers: {
-          'user-agent':
-            'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/5.4.0',
-        },
-      },
-      resolvedUrl: '/test-url?_triple_no_navbar',
-    } as any
-
-    const result = await newGSSP(appContext)
-
-    expect(oldGSSP).toBeCalledTimes(0)
-    expect(result).toEqual({
-      redirect: {
-        destination: `/landing/refresh?returnUrl=${encodeURIComponent(
-          '/test-url?_triple_no_navbar&refreshed=true',
-        )}`,
-        basePath: false,
-        permanent: false,
-      },
-    })
-  })
-
-  it('토큰 새로고침 이후에도 /api/users/me가 401로 응답하면 오류를 던집니다.', async () => {
-    mockedGet.mockResolvedValueOnce(new Response(undefined, { status: 401 }))
-
-    const oldGSSP = jest.fn()
-    const newGSSP = authGuard(oldGSSP)
-
-    const appContext = {
-      req: {
-        headers: {
-          'user-agent':
-            'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/5.4.0',
-        },
-      },
-      resolvedUrl: '/test-url?refreshed=true',
-    } as any
-
-    await expect(newGSSP(appContext)).rejects.toThrowError()
-
-    expect(oldGSSP).toBeCalledTimes(0)
-  })
-})
+    resolvedUrl,
+  }
+}
