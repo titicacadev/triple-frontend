@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
   Container,
   FlexBox,
@@ -258,7 +258,7 @@ export default function Replies({
         <Register
           registerPlaceholder={registerPlaceholder}
           replyContent={replyContent}
-          isFocusing={Boolean(toMessageId)}
+          isFocusing={!!toMessageId}
           onReplyContentChange={setReplyContent}
           onClick={handleRegister}
         />
@@ -280,6 +280,14 @@ function Register({
   onReplyContentChange: (replyContent: string) => void
   onClick?: () => void
 }) {
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+
+  useEffect(() => {
+    if (isFocusing && textareaRef.current) {
+      textareaRef.current.focus()
+    }
+  }, [isFocusing])
+
   return (
     <Container cursor="pointer">
       <HR1 margin={{ top: 0 }} />
@@ -296,7 +304,7 @@ function Register({
           maxRows={4}
           value={replyContent}
           onChange={onReplyContentChange}
-          isFocusing={isFocusing}
+          ref={textareaRef}
         />
         <RegisterButton onClick={onClick}>등록</RegisterButton>
       </FlexBox>
