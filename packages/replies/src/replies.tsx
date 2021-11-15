@@ -1,4 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import {
   Container,
   FlexBox,
@@ -101,7 +107,6 @@ export default function Replies({
     page: 0,
   })
 
-  const [replyContent, setReplyContent] = useState('')
   const [
     {
       toMessageId,
@@ -162,10 +167,14 @@ export default function Replies({
   }
 
   const changeReplyType = (baseReply: Reply) => {
-    setDataForGeneratingReply(baseReply.actionSpecifications.reply)
+    const { reply } = baseReply.actionSpecifications
+    setDataForGeneratingReply(reply)
   }
 
-  const handleRegister = async () => {
+  const handleRegister = async (
+    replyContent: string,
+    setReplyContent: Dispatch<SetStateAction<string>>,
+  ) => {
     if (!replyContent) {
       return
     }
@@ -192,8 +201,6 @@ export default function Replies({
     return (
       <NoReplyPlaceholder
         registerPlaceholder={registerPlaceholder}
-        replyContent={replyContent}
-        onReplyContentChange={setReplyContent}
         onClick={onClick}
       />
     )
@@ -250,10 +257,8 @@ export default function Replies({
 
         <Register
           registerPlaceholder={registerPlaceholder}
-          replyContent={replyContent}
           isFocusing={!!toMessageId}
-          onReplyContentChange={setReplyContent}
-          onClick={handleRegister}
+          onSubmit={handleRegister}
         />
       </Container>
     </Container>
@@ -262,17 +267,18 @@ export default function Replies({
 
 function Register({
   registerPlaceholder,
-  replyContent,
   isFocusing,
-  onReplyContentChange,
-  onClick,
+  onSubmit,
 }: {
   registerPlaceholder?: string
-  replyContent: string
   isFocusing: boolean
-  onReplyContentChange: (replyContent: string) => void
-  onClick?: () => void
+  onSubmit?: (
+    replyContent: string,
+    setReplyContent: Dispatch<SetStateAction<string>>,
+  ) => void
 }) {
+  const [replyContent, setReplyContent] = useState('')
+
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
@@ -296,10 +302,14 @@ function Register({
           minRows={1}
           maxRows={4}
           value={replyContent}
-          onChange={onReplyContentChange}
+          onChange={setReplyContent}
           ref={textareaRef}
         />
-        <RegisterButton onClick={onClick}>등록</RegisterButton>
+        <RegisterButton
+          onClick={() => onSubmit && onSubmit(replyContent, setReplyContent)}
+        >
+          등록
+        </RegisterButton>
       </FlexBox>
       <HR1 margin={{ top: 0 }} />
     </Container>
@@ -308,13 +318,9 @@ function Register({
 
 function NoReplyPlaceholder({
   registerPlaceholder,
-  replyContent,
-  onReplyContentChange,
   onClick,
 }: {
   registerPlaceholder?: string
-  replyContent: string
-  onReplyContentChange: (replyContent: string) => void
   onClick?: () => void
 }) {
   return (
@@ -331,12 +337,7 @@ function NoReplyPlaceholder({
         </Text>
       </Container>
 
-      <Register
-        registerPlaceholder={registerPlaceholder}
-        replyContent={replyContent}
-        onReplyContentChange={onReplyContentChange}
-        isFocusing={false}
-      />
+      <Register registerPlaceholder={registerPlaceholder} isFocusing={false} />
 
       <HR1 margin={{ top: 0 }} color="var(--color-gray50)" />
     </Container>
