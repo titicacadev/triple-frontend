@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, useRef, useEffect } from 'react'
+import React, { ChangeEvent, useState, forwardRef, ForwardedRef } from 'react'
 import styled from 'styled-components'
 
 const Textarea = styled.textarea<{ lineHeight: number }>`
@@ -20,24 +20,19 @@ const Textarea = styled.textarea<{ lineHeight: number }>`
 
 const TEXTAREA_LINE_HEIGHT = 19
 
-export default function AutoResizingTextarea({
-  value,
-  minRows,
-  maxRows,
-  placeholder,
-  isFocusing,
-  onChange,
-}: {
+interface TextareaProps {
   value: string
   minRows: number
   maxRows: number
   placeholder?: string
-  isFocusing: boolean
   onChange: (message: string) => void
-}) {
-  const [rows, setRows] = useState(minRows)
+}
 
-  const textareaRef = useRef<HTMLTextAreaElement>(null)
+function AutoResizingTextarea(
+  { value, minRows, maxRows, placeholder, onChange }: TextareaProps,
+  ref: ForwardedRef<HTMLTextAreaElement>,
+) {
+  const [rows, setRows] = useState(minRows)
 
   const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const currentRows = Math.floor(
@@ -57,12 +52,6 @@ export default function AutoResizingTextarea({
     setRows(currentRows < maxRows ? currentRows : maxRows)
   }
 
-  useEffect(() => {
-    if (isFocusing) {
-      textareaRef.current?.focus()
-    }
-  }, [isFocusing, textareaRef])
-
   return (
     <Textarea
       rows={rows}
@@ -70,7 +59,11 @@ export default function AutoResizingTextarea({
       placeholder={placeholder || '이 일정에 궁금한 점은 댓글로 써주세요.'}
       onChange={handleChange}
       lineHeight={TEXTAREA_LINE_HEIGHT}
-      ref={textareaRef}
+      ref={ref}
     />
   )
 }
+
+export default forwardRef<HTMLTextAreaElement, TextareaProps>(
+  AutoResizingTextarea,
+)
