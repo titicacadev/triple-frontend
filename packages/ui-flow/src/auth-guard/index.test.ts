@@ -1,4 +1,4 @@
-import { get, HttpError, HttpResponse } from '@titicaca/fetcher'
+import { get, HttpResponse } from '@titicaca/fetcher'
 import { generateUrl } from '@titicaca/view-utilities'
 
 import { authGuard } from './index'
@@ -23,29 +23,33 @@ const mockedGet = (get as jest.MockedFunction<typeof get>).mockImplementation(
 
     if (cookie === validMemberCookie) {
       const user = { uid: 'MOCK_USER_UID' }
-      const response: HttpResponse<{ uid: string }> = new Response(
-        JSON.stringify(user),
-        {
+      const response: HttpResponse<{ uid: string }> = {
+        ...new Response(JSON.stringify(user), {
           status: 200,
-        },
-      )
-      response.result = user
+        }),
+        parsedBody: user,
+      }
 
       return Promise.resolve(response)
     } else if (cookie === validNonMemberCookie) {
       const user = { uid: '_PH_01000000000' }
       const response: HttpResponse<{
         uid: string
-      }> = new Response(JSON.stringify(user), { status: 200 })
-      response.result = user
+      }> = {
+        ...new Response(JSON.stringify(user), { status: 200 }),
+        parsedBody: user,
+      }
 
       return Promise.resolve(response)
     }
 
-    const response: HttpResponse<{ uid: string }> = new Response('', {
-      status: 401,
-    })
-    response.error = new HttpError(new Error(''), response)
+    const response: HttpResponse<{ uid: string }> = {
+      ...new Response('', {
+        status: 401,
+      }),
+      ok: false,
+      parsedBody: '',
+    }
 
     return Promise.resolve(response)
   },
@@ -106,7 +110,11 @@ test('allowNonMembers 옵션을 켜면 휴대폰 번호로 가입한 계정의 �
 })
 
 test('/api/users/me가 401 이외의 에러로 응답했다면 에러를 던집니다.', async () => {
-  mockedGet.mockResolvedValueOnce(new Response(undefined, { status: 500 }))
+  mockedGet.mockResolvedValueOnce({
+    ...new Response(undefined, { status: 500 }),
+    ok: false,
+    parsedBody: '',
+  })
 
   const oldGSSP = jest.fn()
   const newGSSP = authGuard(oldGSSP)
