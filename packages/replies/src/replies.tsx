@@ -1,4 +1,4 @@
-import React, { Ref, useEffect, useRef, useState } from 'react'
+import React, { Ref, useEffect, useRef, useState, useCallback } from 'react'
 import {
   Container,
   FlexBox,
@@ -128,17 +128,16 @@ export default function Replies({
         resourceId,
         resourceType,
         size,
-        page,
       })
 
       setRepliesInfo((prev) => ({
         ...prev,
-        replies: checkUniqueReply([...repliesResponse, ...prev.replies]),
+        replies: checkUniqueReply([...repliesResponse]),
       }))
     }
 
     fetchRepliesAndSet()
-  }, [resourceId, resourceType, size, page])
+  }, [resourceId, resourceType, size])
 
   useEffect(() => {
     async function fetchReplyBoardAndSet() {
@@ -153,12 +152,20 @@ export default function Replies({
     fetchReplyBoardAndSet()
   }, [resourceId, resourceType])
 
-  const handleReplyMoreClick = () => {
-    setRepliesInfo((prevReplies) => ({
-      ...prevReplies,
-      page: prevReplies.page + 1,
+  const handleReplyMoreClick = useCallback(async () => {
+    const repliesResponse = await fetchReplies({
+      resourceId,
+      resourceType,
+      size,
+      page: page + 1,
+    })
+
+    setRepliesInfo((prev) => ({
+      ...prev,
+      replies: checkUniqueReply([...repliesResponse, ...prev.replies]),
+      page: prev.page + 1,
     }))
-  }
+  }, [resourceId, resourceType, size, page])
 
   const handleChildReplyContentClose = () => {
     setReplyActionSpecification({
@@ -398,27 +405,31 @@ function DetailReply({
     async function fetchChildRepliesAndSet() {
       const response = await fetchChildReplies({
         id,
-        page: childPage,
         size: 3,
       })
 
       setChildRepliesInfo((prev) => ({
         ...prev,
-        childReplies: checkUniqueReply([...response, ...prev.childReplies]),
+        childrenReplies: checkUniqueReply([...response]),
       }))
     }
 
-    if (childPage > 0) {
-      fetchChildRepliesAndSet()
-    }
-  }, [id, childPage])
+    fetchChildRepliesAndSet()
+  }, [id])
 
-  const handleChildReplyMoreClick = () => {
+  const handleChildReplyMoreClick = useCallback(async () => {
+    const response = await fetchChildReplies({
+      id,
+      size: 3,
+      page: childPage + 1,
+    })
+
     setChildRepliesInfo((prev) => ({
       ...prev,
+      childReplies: checkUniqueReply([...response, ...prev.childReplies]),
       childPage: prev.childPage + 1,
     }))
-  }
+  }, [id, childPage])
 
   return (
     <>
