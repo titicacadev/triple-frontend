@@ -206,44 +206,39 @@ export default function Replies({
     handleChildReplyContentClose()
   }
 
-  if (replies.length <= 0) {
-    return (
-      <NoReplyPlaceholder
-        registerPlaceholder={registerPlaceholder}
-        onClick={onClick}
-      />
-    )
-  }
-
   return (
     <Container onClick={onClick}>
-      <Container padding={{ bottom: 30, left: 30, right: 30 }}>
-        {totalRepliesCount && totalRepliesCount > replies.length ? (
-          <Text
-            padding={{ top: 20 }}
-            color="blue"
-            size={14}
-            bold
-            cursor="pointer"
-            inlineBlock
-            onClick={handleReplyMoreClick}
-          >
-            이전 댓글 더보기
-          </Text>
-        ) : null}
+      {replies.length <= 0 ? (
+        <NoReplyPlaceholder />
+      ) : (
+        <Container padding={{ bottom: 30, left: 30, right: 30 }}>
+          {totalRepliesCount && totalRepliesCount > replies.length ? (
+            <Text
+              padding={{ top: 20 }}
+              color="blue"
+              size={14}
+              bold
+              cursor="pointer"
+              inlineBlock
+              onClick={handleReplyMoreClick}
+            >
+              이전 댓글 더보기
+            </Text>
+          ) : null}
 
-        <List margin={{ top: 20 }}>
-          {replies.map((reply) => (
-            <List.Item key={reply.id}>
-              <HR1 margin={{ bottom: 20 }} color="var(--color-gray50)" />
-              <DetailReply
-                reply={reply}
-                onReplyTypeChange={() => changeReplyType(reply)}
-              />
-            </List.Item>
-          ))}
-        </List>
-      </Container>
+          <List margin={{ top: 20 }}>
+            {replies.map((reply) => (
+              <List.Item key={reply.id}>
+                <HR1 margin={{ bottom: 20 }} color="var(--color-gray50)" />
+                <DetailReply
+                  reply={reply}
+                  onReplyTypeChange={() => changeReplyType(reply)}
+                />
+              </List.Item>
+            ))}
+          </List>
+        </Container>
+      )}
 
       <Container>
         {toMessageId ? (
@@ -317,15 +312,9 @@ function Register({
   )
 }
 
-function NoReplyPlaceholder({
-  registerPlaceholder,
-  onClick,
-}: {
-  registerPlaceholder?: string
-  onClick?: () => void
-}) {
+function NoReplyPlaceholder() {
   return (
-    <Container onClick={onClick}>
+    <>
       <HR1
         margin={{ top: 20, left: 30, right: 30 }}
         color="var(--color-gray50)"
@@ -338,10 +327,8 @@ function NoReplyPlaceholder({
         </Text>
       </Container>
 
-      <Register registerPlaceholder={registerPlaceholder} />
-
       <HR1 margin={{ top: 0 }} color="var(--color-gray50)" />
-    </Container>
+    </>
   )
 }
 
