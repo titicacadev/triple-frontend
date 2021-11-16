@@ -173,7 +173,7 @@ export default function Replies({
     const { reply } = baseReply.actionSpecifications
     setDataForGeneratingReply(reply)
 
-    if (!toMessageId && textareaRef.current) {
+    if (!!reply.toMessageId && textareaRef.current) {
       textareaRef.current.focus()
     }
   }
