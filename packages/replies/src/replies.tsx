@@ -154,12 +154,6 @@ export default function Replies({
     fetchReplyBoardAndSet()
   }, [resourceId, resourceType])
 
-  useEffect(() => {
-    if (!!toMessageId && textareaRef.current) {
-      textareaRef.current.focus()
-    }
-  }, [toMessageId])
-
   const handleReplyMoreClick = () => {
     setRepliesInfo((prevReplies) => ({
       ...prevReplies,
@@ -178,6 +172,10 @@ export default function Replies({
   const changeReplyType = (baseReply: Reply) => {
     const { reply } = baseReply.actionSpecifications
     setDataForGeneratingReply(reply)
+
+    if (!toMessageId && textareaRef.current) {
+      textareaRef.current.focus()
+    }
   }
 
   const handleRegister = async (
