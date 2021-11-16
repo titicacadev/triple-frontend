@@ -132,7 +132,7 @@ export default function Replies({
 
       setRepliesInfo((prev) => ({
         ...prev,
-        replies: checkUniqueReply([...repliesResponse]),
+        replies: checkUniqueReply(repliesResponse),
       }))
     }
 
@@ -399,7 +399,7 @@ function DetailReply({
   const [{ childReplies, childPage }, setChildRepliesInfo] = useState<{
     childReplies: Reply[]
     childPage: number
-  }>({ childReplies: checkUniqueReply([...children]), childPage: 0 })
+  }>({ childReplies: checkUniqueReply(children), childPage: 0 })
 
   useEffect(() => {
     async function fetchChildRepliesAndSet() {
@@ -410,7 +410,7 @@ function DetailReply({
 
       setChildRepliesInfo((prev) => ({
         ...prev,
-        childrenReplies: checkUniqueReply([...response]),
+        childrenReplies: checkUniqueReply(response),
       }))
     }
 
