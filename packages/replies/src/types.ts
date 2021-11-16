@@ -1,5 +1,3 @@
-type Pick2<T, K1 extends keyof T, K2 extends keyof T[K1]> = T[K1][K2]
-
 export type ResourceType = 'review' | 'itinerary' | 'article'
 
 export interface Writer {
@@ -56,7 +54,3 @@ export interface ReplyBoard {
   childMessagesCount: number
   pinnedMessages: Reply[]
 }
-
-export type DataForGeneratingReply = Partial<
-  Pick2<Reply, 'actionSpecifications', 'reply'>
->

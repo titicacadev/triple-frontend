@@ -19,7 +19,7 @@ import {
   fetchChildReplies,
   writeChildReply,
 } from './replies-api-clients'
-import { Reply, ResourceType, Writer, DataForGeneratingReply } from './types'
+import { Reply, ResourceType, Writer } from './types'
 import AutoResizingTextarea from './auto-resizing-textarea'
 
 const MoreButton = styled.button`
@@ -66,6 +66,12 @@ const MentionUser = styled.a`
   color: var(--color-blue);
   margin-right: 5px;
 `
+
+type Pick2<T, K1 extends keyof T, K2 extends keyof T[K1]> = T[K1][K2]
+
+type DataForGeneratingReply = Partial<
+  Pick2<Reply, 'actionSpecifications', 'reply'>
+>
 
 function checkUniqueReply(reply: Reply[]) {
   const result = [
