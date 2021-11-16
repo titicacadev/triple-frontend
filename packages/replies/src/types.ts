@@ -55,7 +55,7 @@ export interface Reply {
     delete: boolean
     edit: {
       text?: string
-      plainttext?: string
+      plaintext?: string
     } | null
     reaction: boolean
     reply: {
