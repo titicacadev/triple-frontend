@@ -276,7 +276,7 @@ function Register({
 }: {
   registerPlaceholder?: string
   textareaRef?: Ref<HTMLTextAreaElement>
-  onSubmit?: (
+  onSubmit: (
     replyContent: string,
     setReplyContent: Dispatch<SetStateAction<string>>,
   ) => void
@@ -301,9 +301,7 @@ function Register({
           onChange={setReplyContent}
           ref={textareaRef}
         />
-        <RegisterButton
-          onClick={() => onSubmit && onSubmit(replyContent, setReplyContent)}
-        >
+        <RegisterButton onClick={() => onSubmit(replyContent, setReplyContent)}>
           등록
         </RegisterButton>
       </FlexBox>
