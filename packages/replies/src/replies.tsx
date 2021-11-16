@@ -1,11 +1,4 @@
-import React, {
-  Dispatch,
-  Ref,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { Ref, useEffect, useRef, useState } from 'react'
 import {
   Container,
   FlexBox,
@@ -178,10 +171,7 @@ export default function Replies({
     }
   }
 
-  const handleRegister = async (
-    replyContent: string,
-    setReplyContent: Dispatch<SetStateAction<string>>,
-  ) => {
+  const handleRegister = async (replyContent: string) => {
     if (!replyContent) {
       return
     }
@@ -198,8 +188,6 @@ export default function Replies({
           resourceType,
           content: replyContent,
         })
-
-    setReplyContent('')
 
     handleChildReplyContentClose()
   }
@@ -274,10 +262,7 @@ function Register({
 }: {
   registerPlaceholder?: string
   textareaRef?: Ref<HTMLTextAreaElement>
-  onSubmit: (
-    replyContent: string,
-    setReplyContent: Dispatch<SetStateAction<string>>,
-  ) => void
+  onSubmit: (replyContent: string) => void
 }) {
   const [replyContent, setReplyContent] = useState('')
 
@@ -299,7 +284,12 @@ function Register({
           onChange={setReplyContent}
           ref={textareaRef}
         />
-        <RegisterButton onClick={() => onSubmit(replyContent, setReplyContent)}>
+        <RegisterButton
+          onClick={() => {
+            onSubmit(replyContent)
+            setReplyContent('')
+          }}
+        >
           등록
         </RegisterButton>
       </FlexBox>
