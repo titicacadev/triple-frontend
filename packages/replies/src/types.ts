@@ -1,23 +1,3 @@
-/**
- * Pick2 type utils
- * ref - https://gist.github.com/staltz/368866ea6b8a167fbdac58cddf79c1bf
- *
- * type AAA = {
- *   content: {
- *     source: {
- *       name: string
- *     }
- *   }
- * }
- *
- * type A-1 = Pick2<AAA, 'content', 'source'>
- *
- * A-1 = {
- *   name: string
- * }
-
-*/
-
 type Pick2<T, K1 extends keyof T, K2 extends keyof T[K1]> = T[K1][K2]
 
 export type ResourceType = 'review' | 'itinerary' | 'article'
