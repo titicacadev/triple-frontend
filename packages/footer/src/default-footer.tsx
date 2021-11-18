@@ -94,7 +94,7 @@ export default function DefaultFooter({
     <FooterFrame>
       <Container
         minWidth={320}
-        maxWidth={600}
+        maxWidth={768}
         centered
         padding={{ top: 30, left: 30, right: 30, bottom: 40 }}
       >
