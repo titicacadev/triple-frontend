@@ -1,70 +1,62 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Accordion, Text, Container } from '@titicaca/core-elements'
+import { Accordion, Text, Container, FlexBox } from '@titicaca/core-elements'
 import { useSessionContext } from '@titicaca/react-contexts'
 
-import { FooterFrame } from './elements'
+const MAX_PHONE_WIDTH = 360
 
-const LinksContainer = styled.div`
-  font-size: 11px;
-  font-weight: bold;
-  line-height: 13.2px;
-  color: #3a3a3a;
-  a {
-    color: rgba(58, 58, 58, 1);
-    text-decoration: none;
-    margin: 6px;
+const FooterFrame = styled(Container)`
+  background-color: rgba(250, 250, 250, 1);
+`
+
+const AccordionHeader = styled(FlexBox)`
+  @media (max-width: ${MAX_PHONE_WIDTH}px) {
+    flex-direction: column-reverse;
+    align-items: flex-start;
   }
-
-  a:first-child {
-    margin-left: 0;
-  }
-
-  margin-top: 20px;
 `
 
 const Button = styled.a`
-  float: right;
-  font-size: 12px;
+  box-sizing: border-box;
+  height: 32px;
+  padding: 9px 12px;
+  font-size: 11px;
   font-weight: bold;
-  padding: 0 12px;
-  background-color: rgba(250, 250, 250, 1);
+  line-height: 13px;
+  color: var(--color-gray600);
+  text-align: center;
   border: 1px solid var(--color-gray200);
   border-radius: 4px;
-  color: rgba(58, 58, 58, 0.6);
+  background-color: rgba(250, 250, 250, 1);
   cursor: pointer;
-  margin-left: 8px;
-  line-height: 32px;
-
-  :hover {
-    color: rgba(58, 58, 58, 0.6);
-  }
-  span {
-    display: inline-block;
-    width: 50px;
-    white-space: nowrap;
-  }
 
   img {
     width: 16px;
+    margin-left: 6px;
     vertical-align: middle;
+  }
+
+  @media (max-width: ${MAX_PHONE_WIDTH}px) {
+    width: 100%;
   }
 `
 
-const DisclaimerMsg = styled.div`
-  font-size: 11px;
-  font-weight: 500;
-  color: rgba(58, 58, 58, 0.5);
-  line-height: 17px;
-  margin-top: 16px;
+const ButtonContainer = styled(FlexBox)`
+  ${Button}:first-child {
+    margin-right: 6px;
+  }
+
+  @media (max-width: ${MAX_PHONE_WIDTH}px) {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 `
 
 const Title = styled(Accordion.Title)`
   display: inline-block;
-  color: rgba(58, 58, 58, 0.5) !important;
+  color: var(--color-gray500) !important;
   font-size: 12px !important;
   font-weight: 700;
-  padding-top: 10px !important;
 
   ::after {
     display: none;
@@ -76,6 +68,23 @@ const AccordionArrow = styled.img`
   margin-left: 3px;
   width: 15px;
   height: 15px;
+`
+
+const LinksContainer = styled(Container)`
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 20px;
+  color: var(--color-gray);
+
+  a {
+    color: var(--color-gray);
+    text-decoration: none;
+    margin: 6px;
+  }
+
+  a:first-child {
+    margin-left: 0;
+  }
 `
 
 interface DefaultFooterProps {
@@ -91,29 +100,38 @@ export default function DefaultFooter({
   const isLoggedIn = hasWebSession || hasSessionId
 
   return (
-    <FooterFrame>
-      <Container
-        minWidth={320}
-        maxWidth={768}
-        centered
-        padding={{ top: 30, left: 30, right: 30, bottom: 40 }}
-      >
-        <Container>
-          <Accordion style={{ width: '100%' }}>
-            <Title
-              active={businessExpanded}
-              onClick={() => setBusinessExpanded(!businessExpanded)}
-            >
-              트리플 사업자 정보
-              <AccordionArrow
-                src={`https://assets.triple.guide/images/${
-                  businessExpanded
-                    ? 'ico_arrow_fold@3x.png'
-                    : 'ico_arrow_more@3x.png'
-                }`}
-              />
-            </Title>
-            {!hideAppDownloadButton ? (
+    <FooterFrame
+      minWidth={280}
+      maxWidth={768}
+      centered
+      padding={{ top: 30, left: 30, right: 30, bottom: 40 }}
+    >
+      <Accordion>
+        <AccordionHeader
+          flex
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Title
+            active={businessExpanded}
+            onClick={() => setBusinessExpanded(!businessExpanded)}
+          >
+            트리플 사업자 정보
+            <AccordionArrow
+              src={`https://assets.triple.guide/images/${
+                businessExpanded
+                  ? 'ico_arrow_fold@3x.png'
+                  : 'ico_arrow_more@3x.png'
+              }`}
+            />
+          </Title>
+
+          {!hideAppDownloadButton ? (
+            <ButtonContainer flex>
+              <Button onClick={() => (isLoggedIn ? logout() : login())}>
+                {isLoggedIn ? '로그아웃' : '로그인'}
+              </Button>
+
               <Button href="https://triple.onelink.me/aZP6?pid=intro_web&af_dp=triple%3A%2F%2F%2Fmain">
                 <span>트리플 앱</span>
                 <img
@@ -121,53 +139,56 @@ export default function DefaultFooter({
                   alt="app download"
                 />
               </Button>
-            ) : null}
+            </ButtonContainer>
+          ) : null}
+        </AccordionHeader>
 
-            <Button onClick={() => (isLoggedIn ? logout() : login())}>
-              {isLoggedIn ? '로그아웃' : '로그인'}
-            </Button>
+        <Accordion.Content active={businessExpanded}>
+          <Text
+            size={11}
+            lineHeight="17px"
+            color="gray500"
+            padding={{ top: 20 }}
+          >
+            주식회사 트리플 | 대표 김연정, 최휘영 <br />
+            사업자 등록번호 581-87-00266
+            <br />
+            통신판매업 신고번호 2017-성남분당-0275
+            <br />
+            경기도 성남시 분당구 판교역로 14번길 16, 3층 <br />
+            항공, 숙소 및 투어·티켓 문의 1588-2539 <br />
+            help@triple-corp.com
+          </Text>
+        </Accordion.Content>
+      </Accordion>
 
-            <Accordion.Content active={businessExpanded}>
-              <Text
-                size={11}
-                lineHeight="17px"
-                color="gray500"
-                padding={{ top: 14 }}
-              >
-                주식회사 트리플 | 대표 김연정, 최휘영 <br />
-                사업자 등록번호 581-87-00266
-                <br />
-                통신판매업 신고번호 2017-성남분당-0275
-                <br />
-                경기도 성남시 분당구 판교역로 14번길 16, 3층 <br />
-                항공, 숙소 및 투어·티켓 문의 1588-2539 <br />
-                help@triple-corp.com
-              </Text>
-            </Accordion.Content>
-          </Accordion>
-        </Container>
-        <DisclaimerMsg>
-          (주) 트리플은 통신판매중개로서 통신판매의 당사자가 아니며 상품
-          거래정보 및 거래등에 대해 책임을 지지 않습니다.
-        </DisclaimerMsg>
-        <LinksContainer>
-          <a href="/pages/tos.html" target="_blank" rel="noreferrer">
-            서비스 이용약관
-          </a>
-          |
-          <a href="/pages/privacy-policy.html" target="_blank" rel="noreferrer">
-            개인정보 처리방침
-          </a>
-          |
-          <a href="https://triple-corp.com/" target="_blank" rel="noreferrer">
-            회사 소개
-          </a>
-          |
-          <a href="/cs-bridge/entry" target="_blank" rel="noreferrer">
-            고객센터
-          </a>
-        </LinksContainer>
-      </Container>
+      <Text
+        size={11}
+        lineHeight="17px"
+        color="gray500"
+        margin={{ top: businessExpanded ? 10 : 25, bottom: 20 }}
+      >
+        (주) 트리플은 통신판매중개로서 통신판매의 당사자가 아니며 상품 거래정보
+        및 거래등에 대해 책임을 지지 않습니다.
+      </Text>
+
+      <LinksContainer>
+        <a href="/pages/tos.html" target="_blank" rel="noreferrer">
+          서비스 이용약관
+        </a>
+        |
+        <a href="/pages/privacy-policy.html" target="_blank" rel="noreferrer">
+          개인정보 처리방침
+        </a>
+        |
+        <a href="https://triple-corp.com/" target="_blank" rel="noreferrer">
+          회사 소개
+        </a>
+        |
+        <a href="/cs-bridge/entry" target="_blank" rel="noreferrer">
+          고객센터
+        </a>
+      </LinksContainer>
     </FooterFrame>
   )
 }
