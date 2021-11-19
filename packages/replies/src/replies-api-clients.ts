@@ -39,13 +39,11 @@ export async function fetchReplies({
 }
 
 export async function writeReply({
-  contentFormat = 'plaintext',
   resourceId,
   resourceType,
   content,
   mentionedUserUid,
 }: {
-  contentFormat?: 'plaintext' | 'markdownText'
   resourceId: string
   resourceType: string
   content: string
@@ -55,7 +53,7 @@ export async function writeReply({
     generateUrl({
       path: `/api/reply/messages`,
       query: qs.stringify({
-        contentFormat,
+        contentFormat: 'plaintext',
       }),
     }),
     {
@@ -138,19 +136,17 @@ export async function fetchChildReplies({
 export async function writeChildReply({
   messageId,
   content,
-  contentFormat,
   mentionedUserUid,
 }: {
   messageId: string
   content: string
-  contentFormat: 'plaintext' | 'markdownText'
   mentionedUserUid: string
 }) {
   const response = await authGuardedFetchers.post(
     generateUrl({
       path: `/api/reply/messages/${messageId}/messages`,
       query: qs.stringify({
-        contentFormat,
+        contentFormat: 'plaintext',
       }),
     }),
     {
