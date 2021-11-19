@@ -185,7 +185,6 @@ export default function Replies({
     toMessageId
       ? await writeChildReply({
           messageId: toMessageId,
-          contentFormat: 'plaintext',
           content: replyContent,
           mentionedUserUid: mentionedUserUid || '',
         })
