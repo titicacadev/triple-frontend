@@ -69,7 +69,7 @@ const MentionUser = styled.a`
 
 type Pick2<T, K1 extends keyof T, K2 extends keyof T[K1]> = T[K1][K2]
 
-type DataForGeneratingReply = Partial<
+type ReplyActionSpecification = Partial<
   Pick2<Reply, 'actionSpecifications', 'reply'>
 >
 
@@ -113,8 +113,8 @@ export default function Replies({
       mentioningUserUid: mentionedUserUid,
       mentioningUserName: mentionedUserName,
     },
-    setDataForGeneratingReply,
-  ] = useState<DataForGeneratingReply>({
+    setReplyActionSpecification,
+  ] = useState<ReplyActionSpecification>({
     toMessageId: null,
     mentioningUserUid: null,
     mentioningUserName: null,
@@ -161,7 +161,7 @@ export default function Replies({
   }
 
   const handleChildReplyContentClose = () => {
-    setDataForGeneratingReply({
+    setReplyActionSpecification({
       toMessageId: null,
       mentioningUserUid: null,
       mentioningUserName: null,
@@ -170,7 +170,7 @@ export default function Replies({
 
   const changeReplyType = (baseReply: Reply) => {
     const { reply } = baseReply.actionSpecifications
-    setDataForGeneratingReply(reply)
+    setReplyActionSpecification(reply)
 
     if (!!reply.toMessageId && textareaRef.current) {
       textareaRef.current.focus()
