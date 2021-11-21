@@ -41,17 +41,6 @@ const Button = styled.a`
   }
 `
 
-const ButtonContainer = styled(FlexBox)`
-  ${Button}:first-child {
-    margin-right: 6px;
-  }
-
-  @media (max-width: ${MAX_PHONE_WIDTH}px) {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-`
-
 const Title = styled(Accordion.Title)`
   display: inline-block;
   color: var(--color-gray500) !important;
@@ -84,6 +73,17 @@ const LinksContainer = styled(Container)`
 
   a:first-child {
     margin-left: 0;
+  }
+`
+
+const ButtonContainer = styled(FlexBox)`
+  a:first-child {
+    margin-right: 6px;
+  }
+
+  @media (max-width: ${MAX_PHONE_WIDTH}px) {
+    width: 100%;
+    margin-bottom: 20px;
   }
 `
 
