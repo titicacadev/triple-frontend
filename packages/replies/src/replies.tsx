@@ -410,7 +410,7 @@ function DetailReply({
 
       setChildRepliesInfo((prev) => ({
         ...prev,
-        childrenReplies: checkUniqueReply(response),
+        childReplies: checkUniqueReply(response),
       }))
     }
 
