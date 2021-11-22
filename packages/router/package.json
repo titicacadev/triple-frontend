@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/router",
-  "version": "3.3.1",
+  "version": "3.4.0",
   "description": "Triple Universal Router Component and Functions",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -18,8 +18,8 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/modals": "^3.3.1",
-    "@titicaca/view-utilities": "^3.3.1",
+    "@titicaca/modals": "^3.4.0",
+    "@titicaca/view-utilities": "^3.4.0",
     "qs": "^6.9.4"
   },
   "devDependencies": {
