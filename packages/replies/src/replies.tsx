@@ -152,7 +152,7 @@ export default function Replies({
     fetchReplyBoardAndSet()
   }, [resourceId, resourceType])
 
-  const handleReplyMoreClick = useCallback(async () => {
+  const fetchMoreReplies = useCallback(async () => {
     const repliesResponse = await fetchReplies({
       resourceId,
       resourceType,
@@ -218,7 +218,7 @@ export default function Replies({
               bold
               cursor="pointer"
               inlineBlock
-              onClick={handleReplyMoreClick}
+              onClick={fetchMoreReplies}
             >
               이전 댓글 더보기
             </Text>
@@ -417,7 +417,7 @@ function DetailReply({
     fetchChildRepliesAndSet()
   }, [id])
 
-  const handleChildReplyMoreClick = useCallback(async () => {
+  const fetchMoreChildReplies = useCallback(async () => {
     const response = await fetchChildReplies({
       id,
       size: 3,
@@ -510,7 +510,7 @@ function DetailReply({
           bold
           cursor="pointer"
           inlineBlock
-          onClick={handleChildReplyMoreClick}
+          onClick={fetchMoreChildReplies}
         >
           이전 답글 더보기
         </Text>
