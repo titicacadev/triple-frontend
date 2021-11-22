@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/poi-detail",
-  "version": "3.3.1",
+  "version": "3.4.0",
   "description": "Components for POI detail page",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,15 +15,15 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/action-sheet": "^3.3.1",
-    "@titicaca/carousel": "^3.3.1",
-    "@titicaca/core-elements": "^3.3.1",
-    "@titicaca/i18n": "^3.3.1",
-    "@titicaca/image-carousel": "^3.3.1",
-    "@titicaca/intersection-observer": "^3.3.1",
-    "@titicaca/modals": "^3.3.1",
-    "@titicaca/type-definitions": "^3.3.1",
-    "@titicaca/view-utilities": "^3.3.1",
+    "@titicaca/action-sheet": "^3.4.0",
+    "@titicaca/carousel": "^3.4.0",
+    "@titicaca/core-elements": "^3.4.0",
+    "@titicaca/i18n": "^3.4.0",
+    "@titicaca/image-carousel": "^3.4.0",
+    "@titicaca/intersection-observer": "^3.4.0",
+    "@titicaca/modals": "^3.4.0",
+    "@titicaca/type-definitions": "^3.4.0",
+    "@titicaca/view-utilities": "^3.4.0",
     "isomorphic-fetch": "^2.2.1",
     "qs": "^6.10.1"
   },
