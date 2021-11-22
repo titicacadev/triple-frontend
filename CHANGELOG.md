@@ -1,5 +1,37 @@
 # CHANGELOG
 
+## 3.4.0
+
+### ui-flow
+
+- authGuard 테스트 재작성 (#1681)
+- ui-flow의 authGuard 코드를 정리합니다. (#1674)
+
+### footer
+
+- 320px 이하 화면을 대응합니다. (#1680)
+- maxWidth의 값을 변경합니다. (#1679)
+
+### replies
+
+- 이전 댓글&답글 더보기 로직을 수정합니다. (#1676)
+- 대댓글 작성 기능을 추가합니다. (#1668)
+- 댓글&답글 마크업 및 디자인을 수정합니다. (#1651)
+
+### fetcher
+
+- fetcher 코드를 정리합니다. (#1673)
+- addFetchersToGSSP 함수가 토큰을 갱신할 때 API 낭비를 줄입니다. (#1667)
+
+### core-elements
+
+- stack, responsive, section 리팩토링 (#1672)
+- text에 css prop 추가 및 코드 개선 (#1664)
+
+### location-properies
+
+- property-item 리팩토링 (#1671)
+
 ## 3.3.1
 
 ### common
