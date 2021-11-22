@@ -21,7 +21,6 @@
     "@titicaca/date-picker": "^3.4.1",
     "@titicaca/directions-finder": "^3.4.1",
     "@titicaca/drawer-button": "^3.4.1",
-    "@titicaca/floating-install-button": "^3.4.1",
     "@titicaca/footer": "^3.4.1",
     "@titicaca/form": "^3.4.1",
     "@titicaca/hub-form": "^3.4.1",
