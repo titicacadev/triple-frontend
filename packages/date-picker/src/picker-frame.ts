@@ -153,6 +153,35 @@ export const rangeStyle = css`
   }
 `
 
+const navStyle = css`
+  .DayPicker-NavButton--prev {
+    margin-right: 24px;
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    background-image: url(https://assets.triple.guide/images/ic-paging-next@3x.png);
+  }
+
+  .DayPicker-NavButton--next {
+    background-image: url('https://assets.triple.guide/images/ic-paging-next@3x.png');
+  }
+
+  .DayPicker-NavButton {
+    position: absolute;
+    top: 15px;
+    right: 13px;
+    left: auto;
+    display: inline-block;
+    margin-top: 2px;
+    width: 36px;
+    height: 36px;
+    background-position: center;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    color: #8b9898;
+    cursor: pointer;
+  }
+`
+
 export function generateDateLabelStyle(selector: string, label: string) {
   return css`
     ${selector} {
@@ -178,6 +207,7 @@ interface PickerFrameProps {
   sideSpacing: number
   monthPadding: string
   showTodayLabel: boolean
+  canChangeMonth: boolean
 }
 
 const PickerFrame = styled.div<PickerFrameProps>`
@@ -196,6 +226,12 @@ const PickerFrame = styled.div<PickerFrameProps>`
     .DayPicker-wrapper {
       max-width: 768px;
       margin: 0 auto;
+    }
+
+    .DayPicker-NavBar {
+      position: relative;
+      z-index: 1;
+      ${({ canChangeMonth }) => canChangeMonth && navStyle}
     }
 
     .DayPicker-Month {
