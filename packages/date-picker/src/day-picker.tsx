@@ -23,10 +23,12 @@ function DatePicker({
   disabledDays: disabledDaysFromProps,
   height,
   publicHolidays: publicHolidaysFromProps,
+  showTodayLabel = true,
 }: DislableDaysProps & {
   day: string | null
   onDateChange: (date: Date) => void
   numberOfMonths?: number
+  showTodayLabel?: boolean
   height?: string
   /**
    * @deprecated TF에서 공휴일을 Fetch하고 있습니다.
@@ -71,6 +73,7 @@ function DatePicker({
       height={height || '300px'}
       sideSpacing={10}
       monthPadding="40px 0 0 0"
+      showTodayLabel={showTodayLabel}
     >
       <MemoDayPicker
         locale={LOCALE}

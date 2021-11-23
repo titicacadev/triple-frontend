@@ -24,7 +24,12 @@ export default {
   title: 'date-picker / 날짜 스타일',
   decorators: [
     (storyFn: StoryFn<JSX.Element>) => (
-      <PickerFrame height="500px" sideSpacing={10} monthPadding="0">
+      <PickerFrame
+        height="500px"
+        sideSpacing={10}
+        monthPadding="0"
+        showTodayLabel={true}
+      >
         <div className="DayPicker">
           <Table className="DayPicker-Month">{storyFn()}</Table>
         </div>
