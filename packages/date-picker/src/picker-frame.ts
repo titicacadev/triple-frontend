@@ -177,6 +177,7 @@ interface PickerFrameProps {
   height: string
   sideSpacing: number
   monthPadding: string
+  showTodayLabel: boolean
 }
 
 const PickerFrame = styled.div<PickerFrameProps>`
@@ -246,7 +247,7 @@ const PickerFrame = styled.div<PickerFrameProps>`
         .DayPicker-Week {
           display: table-row;
 
-          ${todayStyle}
+          ${({ showTodayLabel }) => showTodayLabel && todayStyle}
 
           .DayPicker-Day {
             position: relative;
