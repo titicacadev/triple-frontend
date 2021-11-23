@@ -3,6 +3,7 @@ import React, {
   KeyboardEvent,
   useCallback,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   MouseEventHandler,
@@ -43,6 +44,7 @@ export default function FullScreenSearchView({
   placeholder,
   defaultKeyword,
   keyword: controlledKeyword,
+  focusedOnInput,
   ...rest
 }: React.PropsWithChildren<
   {
@@ -57,6 +59,7 @@ export default function FullScreenSearchView({
     keyword?: string
     borderless?: boolean
     backIconType?: 'back' | 'close'
+    focusedOnInput?: boolean
   } & LayeringMixinProps
 >) {
   const {
@@ -115,6 +118,10 @@ export default function FullScreenSearchView({
       inputRef.current.focus()
     }
   }, [inputRef])
+
+  useLayoutEffect(() => {
+    focusedOnInput && handleInputFocus()
+  }, [handleInputFocus, focusedOnInput])
 
   const handleChange = useCallback(
     (e: SyntheticEvent, value: string) => {
