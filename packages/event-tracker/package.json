@@ -22,7 +22,8 @@
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "^3.4.1",
-    "firebase": "^7.24.0"
+    "firebase": "^7.24.0",
+    "next": "^11.0.1"
   },
   "dependencies": {
     "@titicaca/triple-web-to-native-interfaces": "^1.4.0"
