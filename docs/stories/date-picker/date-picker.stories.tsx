@@ -85,7 +85,7 @@ const initialHolidays = [
   .map((offset) => new Date(offset))
   .map((date) => formatDate(date))
 
-const initialRenderDays = {
+const initialRenderDayInfo = {
   [new Date().toISOString().split('T')[0]]: 'Hello',
 }
 
@@ -148,7 +148,7 @@ export function DayPickerStory() {
         .filter(checkValidDate)
         .map((date) => new Date(date))}
       numberOfMonths={number('표시할 개월 수', 3)}
-      renderDays={object('커스텀 day 컴포넌트', initialRenderDays, '\n')}
+      renderDayInfo={object('커스텀 day 컴포넌트', initialRenderDayInfo, '\n')}
     />
   )
 }

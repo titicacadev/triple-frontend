@@ -18,7 +18,7 @@ const DateContainer = styled.div`
   position: relative;
 `
 
-const ContentContainer = styled.div`
+const DayInfoContainer = styled.div`
   position: absolute;
   top: 25px;
   width: 100%;
@@ -39,11 +39,11 @@ function DatePicker({
   publicHolidays: publicHolidaysFromProps,
   hideTodayLabel = false,
   canChangeMonth = false,
-  renderDays,
+  renderDayInfo,
 }: DislableDaysProps & {
   day: string | null
   onDateChange: (date: Date) => void
-  renderDays?: Record<string, React.ReactNode>
+  renderDayInfo?: Record<string, React.ReactNode>
   numberOfMonths?: number
   hideTodayLabel?: boolean
   height?: string
@@ -83,13 +83,13 @@ function DatePicker({
       return (
         <DateContainer>
           <div>{convertedDay}</div>
-          {renderDays?.[date] && (
-            <ContentContainer>{renderDays?.[date]}</ContentContainer>
+          {renderDayInfo?.[date] && (
+            <DayInfoContainer>{renderDayInfo?.[date]}</DayInfoContainer>
           )}
         </DateContainer>
       )
     },
-    [renderDays],
+    [renderDayInfo],
   )
 
   const handleDayClick = React.useCallback(
