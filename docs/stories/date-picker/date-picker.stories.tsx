@@ -125,7 +125,7 @@ export function DayPickerStory() {
       }}
       beforeBlock={beforeBlock}
       afterBlock={afterBlock}
-      showTodayLabel={boolean('showTodayLabel 활성화', true)}
+      hideTodayLabel={boolean('hideTodayLabel 활성화', false)}
       canChangeMonth={boolean('canChangeMonth 활성화', false)}
       disabledDays={
         disabledDays
@@ -201,7 +201,7 @@ export function RangePickerStory() {
       numberOfMonths={number('표시할 개월 수', 3)}
       height={text('높이', '300px')}
       enableSameDay={boolean('enableSameDay 활성화', false)}
-      showTodayLabel={boolean('showTodayLabel 활성화', true)}
+      hideTodayLabel={boolean('hideTodayLabel 활성화', true)}
     />
   )
 }

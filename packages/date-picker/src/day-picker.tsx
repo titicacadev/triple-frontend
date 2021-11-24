@@ -23,13 +23,13 @@ function DatePicker({
   disabledDays: disabledDaysFromProps,
   height,
   publicHolidays: publicHolidaysFromProps,
-  showTodayLabel = true,
+  hideTodayLabel = false,
   canChangeMonth = false,
 }: DislableDaysProps & {
   day: string | null
   onDateChange: (date: Date) => void
   numberOfMonths?: number
-  showTodayLabel?: boolean
+  hideTodayLabel?: boolean
   height?: string
   canChangeMonth?: boolean
   /**
@@ -75,7 +75,7 @@ function DatePicker({
       height={height || '300px'}
       sideSpacing={10}
       monthPadding="40px 0 0 0"
-      showTodayLabel={showTodayLabel}
+      hideTodayLabel={hideTodayLabel}
       canChangeMonth={canChangeMonth}
     >
       <MemoDayPicker
