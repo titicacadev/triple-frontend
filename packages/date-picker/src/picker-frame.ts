@@ -154,6 +154,9 @@ export const rangeStyle = css`
 `
 
 const navStyle = css`
+  position: relative;
+  z-index: 1;
+
   .DayPicker-NavButton--prev {
     margin-right: 24px;
     transform: rotate(180deg);
@@ -228,8 +231,6 @@ const PickerFrame = styled.div<PickerFrameProps>`
     }
 
     .DayPicker-NavBar {
-      position: relative;
-      z-index: 1;
       ${({ canChangeMonth }) => canChangeMonth && navStyle}
     }
 
