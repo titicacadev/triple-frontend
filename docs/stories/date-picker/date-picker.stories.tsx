@@ -126,6 +126,7 @@ export function DayPickerStory() {
       beforeBlock={beforeBlock}
       afterBlock={afterBlock}
       showTodayLabel={boolean('showTodayLabel 활성화', true)}
+      canChangeMonth={boolean('canChangeMonth 활성화', false)}
       disabledDays={
         disabledDays
           ? disabledDays.filter(checkValidISODateFormat).filter(checkValidDate)
