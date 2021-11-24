@@ -5,7 +5,7 @@ import { getColor } from '@titicaca/color-palette'
 
 import { withField } from '../utils/form-field'
 
-const BaseInput = styled(InputMask)<{ focused?: string; error?: string }>`
+const BaseInput = styled(InputMask)<{ focused?: string; error?: string | boolean }>`
   appearance: none;
   margin: 0;
   outline: none;
@@ -47,7 +47,7 @@ type HTMLInputElementProps = React.InputHTMLAttributes<HTMLInputElement> &
 
 interface InputProps extends Omit<HTMLInputElementProps, 'onChange'> {
   id?: string
-  error?: string
+  error?: string | boolean
   focused?: string
   onChange?: (e: React.SyntheticEvent, value: string) => any
   onBlur?: (e: React.FocusEvent<any>) => any

@@ -15,14 +15,14 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   placeholder?: string
   options?: SelectOption[]
   focused?: string
-  error?: string
+  error?: string | boolean
   onBlur?: (e: React.FocusEvent<any>) => any
   onChange?: (e?: React.SyntheticEvent, value?: any) => any
 }
 
 const SelectFrame = styled.div<{
   focused?: string
-  error?: string
+  error?: string | boolean
   disabled?: boolean
 }>`
   padding: 14px 16px;
@@ -51,7 +51,7 @@ const SelectFrame = styled.div<{
 
 const BaseSelect = styled.select<{
   selected?: boolean
-  error?: string
+  error?: string | boolean
 }>`
   width: 100%;
   font-size: 16px;
