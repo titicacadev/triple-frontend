@@ -21,7 +21,8 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "peerDependencies": {
-    "@titicaca/react-contexts": "^3.4.1"
+    "@titicaca/react-contexts": "^3.4.1",
+    "firebase": "^7.24.0"
   },
   "dependencies": {
     "@titicaca/triple-web-to-native-interfaces": "^1.4.0"
