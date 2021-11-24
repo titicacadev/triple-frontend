@@ -14,6 +14,20 @@ const DayContainer = styled(PickerFrame)`
   ${generateSelectedCircleStyle('.DayPicker-Day--selected')}
 `
 
+const DateContainer = styled.div`
+  position: relative;
+`
+
+const ContentContainer = styled.div`
+  position: absolute;
+  top: 25px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gray);
+`
+
 function DatePicker({
   day,
   beforeBlock,
@@ -25,9 +39,11 @@ function DatePicker({
   publicHolidays: publicHolidaysFromProps,
   hideTodayLabel = false,
   canChangeMonth = false,
+  renderDays,
 }: DislableDaysProps & {
   day: string | null
   onDateChange: (date: Date) => void
+  renderDays?: Record<string, React.ReactNode>
   numberOfMonths?: number
   hideTodayLabel?: boolean
   height?: string
@@ -60,6 +76,22 @@ function DatePicker({
     [publicHolidaysFromProps, publicHolidays],
   )
 
+  const renderDay = React.useCallback(
+    (day: Date, _: DayModifiers) => {
+      const convertedDay = day.getDate()
+      const date = day.toISOString().split('T')[0]
+      return (
+        <DateContainer>
+          <div>{convertedDay}</div>
+          {renderDays?.[date] && (
+            <ContentContainer>{renderDays?.[date]}</ContentContainer>
+          )}
+        </DateContainer>
+      )
+    },
+    [renderDays],
+  )
+
   const handleDayClick = React.useCallback(
     (day: Date, modifiers: DayModifiers): void => {
       if (modifiers.disabled) {
@@ -88,6 +120,7 @@ function DatePicker({
         modifiers={modifiers}
         disabledDays={disabledDays}
         canChangeMonth={canChangeMonth}
+        renderDay={renderDay}
       />
     </DayContainer>
   )
