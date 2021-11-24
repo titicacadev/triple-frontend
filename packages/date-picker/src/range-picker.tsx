@@ -61,14 +61,14 @@ function RangePicker({
   height,
   publicHolidays: publicHolidaysFromProps,
   enableSameDay,
-  showTodayLabel = true,
+  hideTodayLabel = false,
 }: DislableDaysProps & {
   startDate: string | null
   endDate: string | null
   startDateLabel?: string
   endDateLabel?: string
   sameDateLabel?: string
-  showTodayLabel?: boolean
+  hideTodayLabel?: boolean
   onDatesChange: (params: {
     startDate: string | null
     endDate: string | null
@@ -173,7 +173,7 @@ function RangePicker({
       startDateLabel={startDateLabel}
       endDateLabel={endDateLabel}
       sameDateLabel={sameDateLabel}
-      showTodayLabel={showTodayLabel}
+      hideTodayLabel={hideTodayLabel}
     >
       <MemoDayPicker
         locale={LOCALE}

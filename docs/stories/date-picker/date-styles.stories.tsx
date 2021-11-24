@@ -28,7 +28,7 @@ export default {
         height="500px"
         sideSpacing={10}
         monthPadding="0"
-        showTodayLabel={true}
+        hideTodayLabel={false}
       >
         <div className="DayPicker">
           <Table className="DayPicker-Month">{storyFn()}</Table>
