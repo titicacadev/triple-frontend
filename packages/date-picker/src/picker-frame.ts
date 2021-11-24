@@ -156,8 +156,7 @@ export const rangeStyle = css`
 const navStyle = css`
   .DayPicker-NavButton--prev {
     margin-right: 24px;
-    -moz-transform: rotate(180deg);
-    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
     background-image: url(https://assets.triple.guide/images/ic-paging-next@3x.png);
   }
 
