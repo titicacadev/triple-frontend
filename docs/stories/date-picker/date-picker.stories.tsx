@@ -1,5 +1,12 @@
 import React, { useState } from 'react'
-import { array, text, number, button, boolean } from '@storybook/addon-knobs'
+import {
+  array,
+  text,
+  number,
+  button,
+  boolean,
+  object,
+} from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { DayPicker, RangePicker } from '@titicaca/date-picker'
 
@@ -78,6 +85,10 @@ const initialHolidays = [
   .map((offset) => new Date(offset))
   .map((date) => formatDate(date))
 
+const initialRenderDays = {
+  [new Date().toISOString().split('T')[0]]: 'Hello',
+}
+
 export default {
   title: 'date-picker / DatePicker',
 }
@@ -125,7 +136,7 @@ export function DayPickerStory() {
       }}
       beforeBlock={beforeBlock}
       afterBlock={afterBlock}
-      hideTodayLabel={boolean('hideTodayLabel 활성화', false)}
+      hideTodayLabel={boolean('hideTodayLabel 활성화', true)}
       canChangeMonth={boolean('canChangeMonth 활성화', false)}
       disabledDays={
         disabledDays
@@ -137,6 +148,7 @@ export function DayPickerStory() {
         .filter(checkValidDate)
         .map((date) => new Date(date))}
       numberOfMonths={number('표시할 개월 수', 3)}
+      renderDays={object('커스텀 day 컴포넌트', initialRenderDays, '\n')}
     />
   )
 }
