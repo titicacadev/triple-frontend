@@ -19,5 +19,8 @@
   },
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "peerDependencies": {
+    "@titicaca/react-contexts": "^3.4.1"
   }
 }
