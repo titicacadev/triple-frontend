@@ -5,7 +5,10 @@ import { getColor } from '@titicaca/color-palette'
 
 import { withField } from '../utils/form-field'
 
-const BaseInput = styled(InputMask)<{ focused?: string; error?: string | boolean }>`
+const BaseInput = styled(InputMask)<{
+  focused?: string
+  error?: string | boolean
+}>`
   appearance: none;
   margin: 0;
   outline: none;
