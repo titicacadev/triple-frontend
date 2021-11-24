@@ -6,7 +6,7 @@ import { GlobalColors } from '../commons'
 
 interface BaseTextareaProps {
   focused?: string
-  error?: string
+  error?: string | boolean
 }
 
 interface TextareaProps
