@@ -300,7 +300,7 @@ export function EventTrackingProvider({
         regionId,
         zoneId,
         referrer,
-      } as any)
+      })
     }
   }, [item?.id]) // eslint-disable-line react-hooks/exhaustive-deps
 
