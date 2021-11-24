@@ -206,7 +206,7 @@ interface PickerFrameProps {
   sideSpacing: number
   monthPadding: string
   showTodayLabel: boolean
-  canChangeMonth: boolean
+  canChangeMonth?: boolean
 }
 
 const PickerFrame = styled.div<PickerFrameProps>`
