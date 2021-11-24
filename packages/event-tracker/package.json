@@ -1,0 +1,23 @@
+{
+  "name": "@titicaca/event-tracker",
+  "version": "3.4.1",
+  "description": "",
+  "keywords": [],
+  "homepage": "https://github.com/titicacadev/triple-frontend",
+  "license": "UNLICENSED",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  }
+}
