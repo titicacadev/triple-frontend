@@ -46,8 +46,7 @@ export function withField<T>(WrappedComponent: React.ComponentType<T>) {
     } & T
   > = ({ label, error, help, ...props }) => {
     const [focused, setFocused] = useState(false)
-    const isStringErrorType = typeof error === 'string'
-    const hasError = isStringErrorType ? !!error : error
+    const hasError = !!error
 
     return (
       <Container
@@ -64,7 +63,7 @@ export function withField<T>(WrappedComponent: React.ComponentType<T>) {
           error={hasError ? 'true' : undefined}
           {...(props as T)}
         />
-        {isStringErrorType && hasError ? (
+        {hasError ? (
           <MessageContainer padding={{ top: 6 }}>
             <Label absolute={!help} error={true}>
               {error}
