@@ -63,7 +63,7 @@ export function withField<T>(WrappedComponent: React.ComponentType<T>) {
           error={hasError ? 'true' : undefined}
           {...(props as T)}
         />
-        {hasError ? (
+        {typeof error === 'string' && hasError ? (
           <MessageContainer padding={{ top: 6 }}>
             <Label absolute={!help} error={true}>
               {error}
