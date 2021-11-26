@@ -124,7 +124,7 @@ export default function FullScreenSearchView({
   }, [inputRef])
 
   useLayoutEffect(() => {
-    focusedOnInput && setTimeout(() => handleInputFocus(), 300)
+    focusedOnInput && handleInputFocus()
   }, [handleInputFocus, focusedOnInput])
 
   const handleChange = useCallback(
