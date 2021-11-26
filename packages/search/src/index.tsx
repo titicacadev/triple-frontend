@@ -15,7 +15,10 @@ import {
   SearchNavbar,
 } from '@titicaca/core-elements'
 import { useUserAgentContext } from '@titicaca/react-contexts'
-import { closeKeyboard } from '@titicaca/triple-web-to-native-interfaces'
+import {
+  openKeyboard,
+  closeKeyboard,
+} from '@titicaca/triple-web-to-native-interfaces'
 import { useDebouncedState } from '@titicaca/react-hooks'
 
 const ContentsContainer = styled(Container)<{ isIOS: boolean }>`
@@ -116,6 +119,7 @@ export default function FullScreenSearchView({
   const handleInputFocus = useCallback(() => {
     if (inputRef && inputRef.current) {
       inputRef.current.focus()
+      openKeyboard()
     }
   }, [inputRef])
 
