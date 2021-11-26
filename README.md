@@ -54,7 +54,7 @@ Slack `@frontend` 그룹, `#triple-web-dev` 채널 및 GitHub `@frontend` 팀
 ### Documentation
 
 [Triple Frontend Documentation](https://frontend-docs.dev.admin.triple-corp.com) 페이지에서 컴포넌트
-목록과 뷰, 동작을 볼 수 있습니다. `master` 브랜치에 변경 사항을 푸시할 때마다
+목록과 뷰, 동작을 볼 수 있습니다. `main` 브랜치에 변경 사항을 푸시할 때마다
 페이지를 업데이트합니다.
 
 ### CI/CD
@@ -108,7 +108,7 @@ npm install
 3. 커밋 & 푸시
 4. PR 생성 & 리뷰
 5. 버전 생성 (Optional): `npm run version` (경우에 따라 PR과 함께 혹은 별도로 생성)
-6. master 머지
+6. main 머지
 7. `/release` 커맨드로 배포
 8. 배포 (Optional): CD에서 패키지 publish, npm 페이지 통해서 확인
 
@@ -125,7 +125,7 @@ npm install
    - `npm run version -- minor`
 6. 커밋 & 푸시
 7. PR 생성 & 리뷰
-8. master 머지
+8. main 머지
 9. `/release` 커맨드로 배포
 10. 배포 (Optional): CD에서 패키지 publish, npm 페이지 통해서 확인
 
