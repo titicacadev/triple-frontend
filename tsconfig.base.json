@@ -11,7 +11,8 @@
     "emitDeclarationOnly": true,
     "types": ["react", "node", "jest"],
     "composite": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "declarationMap": true
   },
   "exclude": ["node_modules", "lib"]
 }
