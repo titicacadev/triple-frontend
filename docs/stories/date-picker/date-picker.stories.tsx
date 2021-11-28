@@ -6,6 +6,7 @@ import {
   button,
   boolean,
   object,
+  date,
 } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { DayPicker, RangePicker } from '@titicaca/date-picker'
@@ -149,6 +150,8 @@ export function DayPickerStory() {
         .map((date) => new Date(date))}
       numberOfMonths={number('표시할 개월 수', 3)}
       renderDayInfo={object('커스텀 day 컴포넌트', initialRenderDayInfo, '\n')}
+      fromMonth={new Date(date('시작 노출일', new Date()))}
+      toMonth={new Date(date('마지막 노출일', new Date()))}
     />
   )
 }
