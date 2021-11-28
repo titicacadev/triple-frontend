@@ -40,6 +40,8 @@ function DatePicker({
   hideTodayLabel = false,
   canChangeMonth = false,
   renderDayInfo,
+  fromMonth,
+  toMonth,
 }: DislableDaysProps & {
   day: string | null
   onDateChange: (date: Date) => void
@@ -48,6 +50,8 @@ function DatePicker({
   hideTodayLabel?: boolean
   height?: string
   canChangeMonth?: boolean
+  fromMonth?: Date
+  toMonth?: Date
   /**
    * @deprecated TF에서 공휴일을 Fetch하고 있습니다.
    */
@@ -120,6 +124,8 @@ function DatePicker({
         modifiers={modifiers}
         disabledDays={disabledDays}
         canChangeMonth={canChangeMonth}
+        fromMonth={fromMonth}
+        toMonth={toMonth}
         renderDay={renderDay}
       />
     </DayContainer>
