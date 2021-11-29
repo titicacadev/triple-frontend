@@ -9,8 +9,8 @@ import React, {
   useState,
 } from 'react'
 
-import { useSessionContext } from '../session-context'
 import { useEventTrackingContext } from '../event-tracking-context'
+import { useSessionAvailability } from '../session-context'
 
 import { ABExperimentMeta, getABExperiment } from './service'
 
@@ -35,12 +35,10 @@ export function ABExperimentProvider({
   meta?: ABExperimentMeta
   onError?: (error: unknown) => void
 }>) {
-  const { hasWebSession, hasSessionId } = useSessionContext()
+  const sessionAvailable = useSessionAvailability()
   const onErrorRef = useRef(onErrorFromProps)
   const experimentMetas = useContext(ABExperimentContext)
   const [meta, setMeta] = useState(metaFromSSR)
-
-  const isLoggedIn = hasWebSession || hasSessionId
 
   useEffect(() => {
     const onError = onErrorRef.current
@@ -62,10 +60,10 @@ export function ABExperimentProvider({
       setMeta(parsedBody)
     }
 
-    if (!metaFromSSR && isLoggedIn) {
+    if (!metaFromSSR && sessionAvailable === true) {
       fetchAndSetMeta()
     }
-  }, [slug, metaFromSSR, isLoggedIn])
+  }, [metaFromSSR, sessionAvailable, slug])
 
   const value = useMemo(() => ({ ...experimentMetas, [slug]: meta }), [
     experimentMetas,
@@ -81,11 +79,10 @@ export function ABExperimentProvider({
 }
 
 function useABExperimentMeta(slug: string, onError?: (error: Error) => void) {
-  const { hasWebSession, hasSessionId } = useSessionContext()
+  const sessionAvailable = useSessionAvailability()
+
   const metas = useContext(ABExperimentContext)
   const meta = useMemo(() => metas[slug], [metas, slug])
-
-  const isLoggedIn = hasWebSession || hasSessionId
 
   try {
     if (!meta) {
@@ -93,7 +90,7 @@ function useABExperimentMeta(slug: string, onError?: (error: Error) => void) {
     }
     return meta
   } catch (error) {
-    if (isLoggedIn && onError) {
+    if (sessionAvailable === true && onError) {
       // session이 없을 때 발생한 에러는 리포팅 할 필요 없습니다.
       onError(error)
     }

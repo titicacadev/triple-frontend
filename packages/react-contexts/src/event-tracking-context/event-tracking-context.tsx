@@ -17,7 +17,7 @@ import * as firebase from 'firebase/app'
 import 'firebase/analytics'
 import { useRouter } from 'next/router'
 
-import { useSessionContextSafely } from '../session-context'
+import { useUser } from '../session-context'
 
 import { FAParams, GAParams, PixelParams } from './types'
 
@@ -149,7 +149,8 @@ export function EventTrackingProvider({
   onError: onErrorFromProps,
   children,
 }: PropsWithChildren<EventTrackingProviderProps>) {
-  const sessionContext = useSessionContextSafely() // TODO: v3에서 useSessionContext로 바꿔서 의존성 명시하기
+  const user = useUser()
+
   const onErrorRef = useRef(onErrorFromProps)
   const pageLabel = page?.label || legacyPageLabel
   const { query } = useRouter()
@@ -272,8 +273,8 @@ export function EventTrackingProvider({
   )
 
   useEffect(() => {
-    setFirebaseUserId(sessionContext?.user?.uid || null)
-  }, [sessionContext?.user?.uid, setFirebaseUserId])
+    setFirebaseUserId(user?.uid || null)
+  }, [setFirebaseUserId, user?.uid])
 
   useEffect(() => {
     if (page?.path) {
