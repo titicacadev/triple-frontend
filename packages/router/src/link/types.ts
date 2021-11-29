@@ -1,7 +1,7 @@
 import { AppSpecificLinkProps } from '../common/app-specific-link-options'
+import { TargetProps } from '../common/target'
 
 import { AllowSourceProps } from './router-guarded-link'
-import { TargetProps } from './target'
 import { RelListProps } from './use-rel'
 
 export interface HrefProps {
