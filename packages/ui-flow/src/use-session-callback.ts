@@ -1,6 +1,9 @@
 import { useCallback } from 'react'
-import { useSessionContext } from '@titicaca/react-contexts'
 import { useLoginCTAModal } from '@titicaca/modals'
+import {
+  useSessionAvailability,
+  useSessionControllers,
+} from '@titicaca/react-contexts'
 
 /**
  * sessionId가 있는 환경에서만 주어진 콜백을 실행하는 함수를 반환하는 훅
@@ -23,14 +26,13 @@ export function useSessionCallback<T extends (...args: any[]) => any>(
       ]
     | []
 ): (...args: Parameters<T>) => ReturnType<T> | boolean | void {
-  const { hasWebSession, hasSessionId, login } = useSessionContext()
+  const sessionAvailable = useSessionAvailability()
+  const { login } = useSessionControllers()
   const { show } = useLoginCTAModal()
-
-  const isLoggedIn = hasWebSession || hasSessionId
 
   return useCallback(
     (...args) => {
-      if (!isLoggedIn) {
+      if (sessionAvailable === false) {
         if (typeof options[0] === 'object') {
           const { returnUrl, returnValue, skipTransitionModal } = options[0]
 
@@ -51,6 +53,6 @@ export function useSessionCallback<T extends (...args: any[]) => any>(
       }
       return fn(...args)
     },
-    [fn, show, login, options, isLoggedIn],
+    [fn, login, options, sessionAvailable, show],
   )
 }
