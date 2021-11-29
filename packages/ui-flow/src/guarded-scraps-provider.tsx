@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react'
 import {
   ScrapsProvider,
-  useSessionContext,
+  useSessionAvailability,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
 import {
@@ -21,11 +21,9 @@ export function GuardedScrapsProvider({
   ...props
 }: PropsWithChildren<Parameters<typeof ScrapsProvider>[0]>) {
   const { isPublic } = useUserAgentContext()
-  const { hasWebSession, hasSessionId } = useSessionContext()
+  const sessionAvailable = useSessionAvailability()
   const { show: showTransitionModal } = useTransitionModal()
   const { show: showLoginCTA } = useLoginCTAModal()
-
-  const isLoggedIn = hasWebSession || hasSessionId
 
   return (
     <ScrapsProvider
@@ -35,7 +33,7 @@ export function GuardedScrapsProvider({
           return false
         }
 
-        if (!isLoggedIn) {
+        if (sessionAvailable === false) {
           showLoginCTA()
           return false
         }
