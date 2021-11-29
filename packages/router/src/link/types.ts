@@ -1,4 +1,5 @@
-import { AppSpecificLinkProps } from './app-specific-link-options'
+import { AppSpecificLinkProps } from '../common/app-specific-link-options'
+
 import { AllowSourceProps } from './router-guarded-link'
 import { TargetProps } from './target'
 import { RelListProps } from './use-rel'
