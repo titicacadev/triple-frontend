@@ -40,8 +40,7 @@ export function ExternalLink({
   const { openInlink, openOutlink } = useAppBridge()
   const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
 
-  const { host } = parseUrl(href)
-  const outOfTriple = !!host
+  const outOfTriple = checkHrefIsOutOfTriple(href)
   const forbiddenLinkCondition =
     !isPublic && outOfTriple && target === 'current'
 
@@ -115,4 +114,9 @@ export function ExternalLink({
       {children}
     </RouterGuardedLink>
   )
+}
+
+function checkHrefIsOutOfTriple(href: string): boolean {
+  const { host } = parseUrl(href)
+  return !!host
 }
