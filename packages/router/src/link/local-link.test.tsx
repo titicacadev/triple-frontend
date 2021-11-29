@@ -3,7 +3,7 @@ import Router, { useRouter } from 'next/router'
 import { fireEvent, render } from '@testing-library/react'
 import {
   useEnv,
-  useSessionContext,
+  useSessionAvailability,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
 import { useLoginCTAModal, useTransitionModal } from '@titicaca/modals'
@@ -23,9 +23,6 @@ const mockedUseUserAgentContext = (useUserAgentContext as unknown) as jest.Mocke
 const mockedUseEnv = (useEnv as unknown) as jest.MockedFunction<
   () => Pick<ReturnType<typeof useEnv>, 'webUrlBase'>
 >
-const mockedUseSessionContext = (useSessionContext as unknown) as jest.MockedFunction<
-  typeof useSessionContext
->
 
 jest.mock('@titicaca/modals')
 const mockedUseTransitionModal = (useTransitionModal as unknown) as jest.MockedFunction<
@@ -41,6 +38,12 @@ const mockedUseAppBridge = (useAppBridge as unknown) as jest.MockedFunction<
 >
 
 describe('LocalLink', () => {
+  beforeEach(() => {
+    ;((useSessionAvailability as unknown) as jest.MockedFunction<
+      () => boolean
+    >).mockImplementation(() => false)
+  })
+
   mockedUseAppBridge.mockImplementation(() => ({
     openInlink: jest.fn(),
     openOutlink: jest.fn(),
@@ -52,13 +55,6 @@ describe('LocalLink', () => {
   mockedUseRouter.mockImplementation(() => ({ basePath }))
 
   mockedUseUserAgentContext.mockImplementation(() => ({ isPublic: false }))
-  mockedUseSessionContext.mockImplementation(() => ({
-    hasWebSession: true,
-    hasSessionId: true,
-    user: { uid: 'MOCK_USER' },
-    login: () => {},
-    logout: () => {},
-  }))
   mockedUseTransitionModal.mockImplementation(() => ({ show: jest.fn() }))
   mockedUseLoginCTAModal.mockImplementation(() => ({ show: jest.fn() }))
 
