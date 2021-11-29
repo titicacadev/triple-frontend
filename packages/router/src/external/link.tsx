@@ -9,8 +9,9 @@ import {
 import { ANCHOR_TARGET_MAP, TargetProps } from '../common/target'
 import { OutlinkOptions, useAppBridge } from '../common/use-app-bridge'
 import { useWebUrlBaseAdder } from '../common/add-web-url-base'
+import { HrefProps } from '../common/types'
 import { RouterGuardedLink } from '../link/router-guarded-link'
-import { HrefProps, LinkCommonProps } from '../link/types'
+import { LinkCommonProps } from '../link/types'
 
 export function ExternalLink({
   href,

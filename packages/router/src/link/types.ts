@@ -1,12 +1,9 @@
 import { AppSpecificLinkProps } from '../common/app-specific-link-options'
 import { TargetProps } from '../common/target'
+import { HrefProps } from '../common/types'
 
 import { AllowSourceProps } from './router-guarded-link'
 import { RelListProps } from './use-rel'
-
-export interface HrefProps {
-  href: string
-}
 
 /**
  * LocalLink, ExternalLink 공통으로 쓰는 props
