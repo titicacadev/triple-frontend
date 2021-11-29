@@ -1,4 +1,4 @@
-type TargetType = 'current' | 'new' | 'browser'
+export type TargetType = 'current' | 'new' | 'browser'
 
 export interface TargetProps {
   /**
