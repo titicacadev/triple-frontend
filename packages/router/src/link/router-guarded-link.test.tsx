@@ -3,8 +3,8 @@ import { fireEvent, render } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { useTransitionModal, useLoginCTAModal } from '@titicaca/modals'
 import {
+  useSessionAvailability,
   useUserAgentContext,
-  useSessionContext,
 } from '@titicaca/react-contexts'
 
 import { RouterGuardedLink } from './router-guarded-link'
@@ -13,10 +13,6 @@ jest.mock('@titicaca/react-contexts')
 const mockedUseUserAgentContext = (useUserAgentContext as unknown) as jest.MockedFunction<
   () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
 >
-const mockedUseSessionContext = (useSessionContext as unknown) as jest.MockedFunction<
-  typeof useSessionContext
->
-
 jest.mock('@titicaca/modals')
 const mockedUseTransitionModal = (useTransitionModal as unknown) as jest.MockedFunction<
   () => ReturnType<typeof useTransitionModal>
@@ -32,13 +28,9 @@ describe('RouterGuardedLink', () => {
     os: {},
     app: null,
   }))
-  mockedUseSessionContext.mockImplementation(() => ({
-    hasWebSession: true,
-    hasSessionId: true,
-    user: { uid: 'MOCK_USER' },
-    login: () => {},
-    logout: () => {},
-  }))
+  ;((useSessionAvailability as unknown) as jest.MockedFunction<
+    () => boolean
+  >).mockImplementation(() => false)
   mockedUseTransitionModal.mockImplementation(() => ({ show: jest.fn() }))
   mockedUseLoginCTAModal.mockImplementation(() => ({ show: jest.fn() }))
 

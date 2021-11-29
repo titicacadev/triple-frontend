@@ -5,7 +5,7 @@ import React, {
   PropsWithChildren,
 } from 'react'
 import {
-  useSessionContext,
+  useSessionAvailability,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
 import {
@@ -42,17 +42,16 @@ export function RouterGuardedLink({
     RelListProps &
     AllowSourceProps
 >) {
-  const { hasWebSession, hasSessionId } = useSessionContext()
+  const sessionAvailable = useSessionAvailability()
   const { isPublic } = useUserAgentContext()
   const { show: showTransitionModal } = useTransitionModal()
   const { show: showLoginCTAModal } = useLoginCTAModal()
 
-  const isLoggedIn = hasWebSession || hasSessionId
-
   const isDisabledRoute =
     allowSource === 'none' ||
     (allowSource === 'app' && isPublic) ||
-    (allowSource === 'app-with-session' && (isPublic || !isLoggedIn))
+    (allowSource === 'app-with-session' &&
+      (isPublic || sessionAvailable === false))
 
   const rel = useRel(relList)
 

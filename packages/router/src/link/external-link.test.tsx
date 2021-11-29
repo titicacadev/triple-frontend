@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from '@testing-library/react'
 import {
   useEnv,
-  useSessionContext,
+  useSessionAvailability,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
 import { useLoginCTAModal, useTransitionModal } from '@titicaca/modals'
@@ -21,9 +21,6 @@ const mockedUseEnv = useEnv as jest.MockedFunction<typeof useEnv>
 const mockedUseAppBridge = useAppBridge as jest.MockedFunction<
   typeof useAppBridge
 >
-const mockedUseSessionContext = useSessionContext as jest.MockedFunction<
-  typeof useSessionContext
->
 const mockedUseTransitionModal = useTransitionModal as jest.MockedFunction<
   typeof useTransitionModal
 >
@@ -32,6 +29,12 @@ const mockedUseLoginCTAModal = useLoginCTAModal as jest.MockedFunction<
 >
 
 describe('ExternalLink', () => {
+  beforeEach(() => {
+    ;((useSessionAvailability as unknown) as jest.MockedFunction<
+      () => boolean
+    >).mockImplementation(() => false)
+  })
+
   it('should raise error and disable link with external URL in app with current target.', () => {
     mockedUseUserAgentContext.mockImplementation(() => ({
       isPublic: false,
@@ -50,13 +53,6 @@ describe('ExternalLink', () => {
     mockedUseAppBridge.mockImplementation(() => ({
       openInlink: jest.fn(),
       openOutlink: jest.fn(),
-    }))
-    mockedUseSessionContext.mockImplementation(() => ({
-      hasWebSession: true,
-      hasSessionId: true,
-      user: { uid: 'MOCK_USER' },
-      login: () => {},
-      logout: () => {},
     }))
     mockedUseTransitionModal.mockImplementation(() => ({ show: jest.fn() }))
     mockedUseLoginCTAModal.mockImplementation(() => ({ show: jest.fn() }))
