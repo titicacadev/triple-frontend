@@ -31,31 +31,35 @@ export interface AppSpecificLinkProps {
   shouldPresent?: boolean
 }
 
-export function useHrefWithAppSpecificLinkOptions({
-  href,
-  lnbTarget,
-  noNavbar,
-  shouldPresent,
-  swipeToClose,
-}: {
-  href: string
-} & AppSpecificLinkProps) {
+export function useTripleAppRoutingOptionsAdder() {
   const { isPublic } = useUserAgentContext()
 
-  if (
-    isPublic === false &&
-    (lnbTarget || noNavbar || shouldPresent || swipeToClose)
-  ) {
-    return appSpecificLinkOptions({
-      href,
-      lnbTarget,
-      noNavbar,
-      shouldPresent,
-      swipeToClose,
-    })
+  const addTripleAppRoutingOptions = ({
+    href,
+    lnbTarget,
+    noNavbar,
+    shouldPresent,
+    swipeToClose,
+  }: {
+    href: string
+  } & AppSpecificLinkProps) => {
+    if (
+      isPublic === false &&
+      (lnbTarget || noNavbar || shouldPresent || swipeToClose)
+    ) {
+      return appSpecificLinkOptions({
+        href,
+        lnbTarget,
+        noNavbar,
+        shouldPresent,
+        swipeToClose,
+      })
+    }
+
+    return href
   }
 
-  return href
+  return addTripleAppRoutingOptions
 }
 
 function getlnbTaget(type: string, id: string) {
