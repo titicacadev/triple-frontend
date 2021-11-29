@@ -43,29 +43,23 @@ export function RouterGuardedLink({
     RelListProps &
     AllowSourceProps
 >) {
-  const sessionAvailable = useSessionAvailability()
-  const { isPublic } = useUserAgentContext()
-  const { show: showTransitionModal } = useTransitionModal()
-  const { show: showLoginCTAModal } = useLoginCTAModal()
-
-  const isDisabledRoute =
-    allowSource === 'none' ||
-    (allowSource === 'app' && isPublic) ||
-    (allowSource === 'app-with-session' &&
-      (isPublic || sessionAvailable === false))
-
   const rel = useRel(relList)
+  const createDisabledLinkNotifier = useDisabledLinkNotifierCreator()
+
+  const disabledLinkNotifier = createDisabledLinkNotifier({ allowSource })
+
+  const isDisabledRoute = disabledLinkNotifier !== undefined
 
   const disabledLinkClickHandler: MouseEventHandler<HTMLAnchorElement> = (
     e,
   ) => {
+    if (disabledLinkNotifier === undefined) {
+      return
+    }
+
     e.preventDefault()
 
-    if (isPublic) {
-      showTransitionModal(TransitionType.General)
-    } else {
-      showLoginCTAModal()
-    }
+    disabledLinkNotifier()
   }
 
   const anchorProps: Partial<AnchorHTMLAttributes<HTMLAnchorElement>> = {
@@ -98,4 +92,36 @@ function warnDuplicateAttributes(
       console.warn(`Link 컴포넌트의 자식 태그의 속성이 덮어쓰였습니다. ${key}`)
     }
   })
+}
+
+function useDisabledLinkNotifierCreator() {
+  const { isPublic } = useUserAgentContext()
+  const sessionAvailable = useSessionAvailability()
+  const { show: showTransitionModal } = useTransitionModal()
+  const { show: showLoginCtaModal } = useLoginCTAModal()
+
+  const createDisabledLinkNotifier = ({
+    allowSource = 'all',
+  }: AllowSourceProps) => {
+    if (allowSource === 'none') {
+      return () => {
+        window.alert('접근할 수 없는 링크입니다.')
+      }
+    }
+
+    if (
+      isPublic === true &&
+      (allowSource === 'app' || allowSource === 'app-with-session')
+    ) {
+      return () => {
+        showTransitionModal(TransitionType.General)
+      }
+    }
+
+    if (sessionAvailable === false && allowSource === 'app-with-session') {
+      return showLoginCtaModal
+    }
+  }
+
+  return createDisabledLinkNotifier
 }
