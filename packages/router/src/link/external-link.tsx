@@ -1,11 +1,11 @@
 import React, { MouseEventHandler, PropsWithChildren, useEffect } from 'react'
-import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
+import { useUserAgentContext } from '@titicaca/react-contexts'
 import { parseUrl } from '@titicaca/view-utilities'
 
 import { OutlinkOptions, useAppBridge } from './use-app-bridge'
 import { ANCHOR_TARGET_MAP, TargetProps } from './target'
 import { RouterGuardedLink } from './router-guarded-link'
-import { addWebUrlBase } from './add-web-url-base'
+import { useWebUrlBaseAdder } from './add-web-url-base'
 import {
   AppSpecificLinkProps,
   useTripleAppRoutingOptionsAdder,
@@ -98,10 +98,10 @@ export function ExternalLink({
 }
 
 function useExternalHrefHandler() {
-  const { webUrlBase } = useEnv()
   const { isPublic } = useUserAgentContext()
   const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
   const { openInlink, openOutlink } = useAppBridge()
+  const addWebUrlBase = useWebUrlBaseAdder()
 
   const handleHrefExternally = ({
     href,
@@ -147,10 +147,10 @@ function useExternalHrefHandler() {
     if (target === 'browser' && isPublic === false) {
       stopDefaultHandler()
 
-      openOutlink(
-        outOfTriple ? finalHref : addWebUrlBase(finalHref, webUrlBase),
-        { target: 'browser', title },
-      )
+      openOutlink(outOfTriple ? finalHref : addWebUrlBase(finalHref), {
+        target: 'browser',
+        title,
+      })
     }
   }
 
