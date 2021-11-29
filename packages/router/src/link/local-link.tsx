@@ -4,11 +4,14 @@ import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
 import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 
 import { useAppBridge } from './use-app-bridge'
-import { ANCHOR_TARGET_MAP } from './target'
+import { ANCHOR_TARGET_MAP, TargetProps } from './target'
 import { RouterGuardedLink } from './router-guarded-link'
 import { addWebUrlBase } from './add-web-url-base'
-import { useTripleAppRoutingOptionsAdder } from './app-specific-link-options'
-import { LinkCommonProps } from './types'
+import {
+  AppSpecificLinkProps,
+  useTripleAppRoutingOptionsAdder,
+} from './app-specific-link-options'
+import { HrefProps, LinkCommonProps } from './types'
 
 function addBasePath(href: string, basePath: string): string {
   const { path, ...rest } = parseUrl(href)
@@ -77,11 +80,9 @@ export function LocalLink({
   onClick,
   children,
 }: PropsWithChildren<LinkCommonProps & NextjsRoutingOptions>) {
-  const { webUrlBase } = useEnv()
-  const { isPublic } = useUserAgentContext()
-  const { openInlink, openOutlink } = useAppBridge()
   const { basePath } = useRouter()
   const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
+  const handleHrefLocally = useLocalHrefHandler()
 
   const finalHref = addTripleAppRoutingOptions({
     href: addBasePath(href, basePath),
@@ -91,37 +92,25 @@ export function LocalLink({
     swipeToClose,
   })
 
-  const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
+  const handleClick: MouseEventHandler<HTMLAnchorElement> = async (e) => {
     if (onClick) {
       onClick()
     }
 
-    switch (target) {
-      case 'current':
-        if (isKeyPressingClick(e)) {
-          return
-        }
+    await handleHrefLocally({
+      href,
+      target,
+      lnbTarget,
+      noNavbar,
+      shouldPresent,
+      swipeToClose,
+      replace,
+      scroll,
+      isKeyPressing: isKeyPressingClick(e),
+      stopDefaultHandler: () => {
         e.preventDefault()
-        handleNextJSRouting(href, { replace, scroll })
-        return
-
-      case 'new':
-        if (!isPublic) {
-          e.preventDefault()
-
-          openInlink(finalHref)
-        }
-        return
-
-      case 'browser':
-        if (!isPublic) {
-          e.preventDefault()
-
-          openOutlink(addWebUrlBase(finalHref, webUrlBase), {
-            target: 'browser',
-          })
-        }
-    }
+      },
+    })
   }
 
   return (
@@ -135,4 +124,65 @@ export function LocalLink({
       {children}
     </RouterGuardedLink>
   )
+}
+
+function useLocalHrefHandler() {
+  const { basePath } = useRouter()
+  const { webUrlBase } = useEnv()
+  const { isPublic } = useUserAgentContext()
+  const { openInlink, openOutlink } = useAppBridge()
+  const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
+
+  const handleHrefLocally = async ({
+    href,
+    target,
+    lnbTarget,
+    noNavbar,
+    shouldPresent,
+    swipeToClose,
+    replace,
+    scroll,
+    isKeyPressing,
+    stopDefaultHandler,
+  }: HrefProps &
+    TargetProps &
+    NextjsRoutingOptions &
+    AppSpecificLinkProps & {
+      isKeyPressing: boolean
+      stopDefaultHandler: () => void
+    }) => {
+    if (target === 'current' && isKeyPressing === false) {
+      stopDefaultHandler()
+
+      await handleNextJSRouting(href, { replace, scroll })
+
+      return
+    }
+
+    const finalHref = addTripleAppRoutingOptions({
+      href: addBasePath(href, basePath),
+      lnbTarget,
+      noNavbar,
+      shouldPresent,
+      swipeToClose,
+    })
+
+    if (target === 'new' && isPublic === false) {
+      stopDefaultHandler()
+
+      openInlink(finalHref)
+
+      return
+    }
+
+    if (target === 'browser' && isPublic === false) {
+      stopDefaultHandler()
+
+      openOutlink(addWebUrlBase(finalHref, webUrlBase), {
+        target: 'browser',
+      })
+    }
+  }
+
+  return handleHrefLocally
 }
