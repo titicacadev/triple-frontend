@@ -49,6 +49,7 @@ async function handleNextJSRouting(
 
 /**
  * 같은 도메인의 페이지로 이동할 때 사용하는 링크 컴포넌트
+ * href에 basePath를 제외한 값을 넣습니다.
  */
 export function LocalLink({
   href,
@@ -65,10 +66,6 @@ export function LocalLink({
   children,
 }: PropsWithChildren<
   LinkCommonProps & {
-    /**
-     * 이동할 경로. basePath를 생략한 경로를 넣어야 잘 작동합니다.
-     */
-    href: string
     /**
      * 현재 창을 history에 남기지 않고 이동합니다. target="current"일 때만 작동합니다.
      */

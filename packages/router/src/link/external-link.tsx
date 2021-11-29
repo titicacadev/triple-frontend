@@ -25,10 +25,6 @@ export function ExternalLink({
 }: PropsWithChildren<
   LinkCommonProps & {
     /**
-     * 이동할 경로. 제약 사항 없이 이동할 경로를 그대로 넣습니다.
-     */
-    href: string
-    /**
      * 새로 열 창의 제목을 지정합니다. 외부 URL이고 target이 "new"이거나 "browser"일 때만 작동합니다.
      */
     title?: string
