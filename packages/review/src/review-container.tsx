@@ -5,7 +5,7 @@ import { formatNumber } from '@titicaca/view-utilities'
 import {
   useUserAgentContext,
   useEventTrackingContext,
-  useSessionContext,
+  useSessionAvailability,
 } from '@titicaca/react-contexts'
 import { TransitionType, withLoginCTAModal } from '@titicaca/modals'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
@@ -120,8 +120,8 @@ function ReviewContainer({
     sortingOption?: string,
   ) => void
 }) {
-  const { hasWebSession, hasSessionId } = useSessionContext()
-  const isLoggedIn = hasWebSession || hasSessionId
+  const sessionAvailable = useSessionAvailability()
+
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
@@ -171,7 +171,7 @@ function ReviewContainer({
       if (id && id === resourceId) {
         const [fetchedReviewsCount, fetchedMyReview] = await Promise.all([
           fetchReviewsCount({ resourceType, resourceId }),
-          isLoggedIn
+          sessionAvailable === true
             ? fetchMyReview({ resourceType, resourceId })
             : Promise.resolve(null),
         ])
@@ -199,12 +199,12 @@ function ReviewContainer({
     }
   }, [
     isPublic,
-    resourceType,
     resourceId,
+    resourceType,
+    sessionAvailable,
     setMyReview,
     subscribeReviewUpdateEvent,
     unsubscribeReviewUpdateEvent,
-    isLoggedIn,
   ])
 
   const handleWriteButtonClick = useAppCallback(
