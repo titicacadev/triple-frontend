@@ -2,12 +2,15 @@ import React, { MouseEventHandler, PropsWithChildren, useEffect } from 'react'
 import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
 import { parseUrl } from '@titicaca/view-utilities'
 
-import { useAppBridge } from './use-app-bridge'
-import { ANCHOR_TARGET_MAP } from './target'
+import { OutlinkOptions, useAppBridge } from './use-app-bridge'
+import { ANCHOR_TARGET_MAP, TargetProps } from './target'
 import { RouterGuardedLink } from './router-guarded-link'
 import { addWebUrlBase } from './add-web-url-base'
-import { useTripleAppRoutingOptionsAdder } from './app-specific-link-options'
-import { LinkCommonProps } from './types'
+import {
+  AppSpecificLinkProps,
+  useTripleAppRoutingOptionsAdder,
+} from './app-specific-link-options'
+import { HrefProps, LinkCommonProps } from './types'
 
 export function ExternalLink({
   href,
@@ -35,10 +38,9 @@ export function ExternalLink({
     onError?: (error: Error) => void
   }
 >) {
-  const { webUrlBase } = useEnv()
   const { isPublic } = useUserAgentContext()
-  const { openInlink, openOutlink } = useAppBridge()
   const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
+  const handleHrefExternally = useExternalHrefHandler()
 
   const outOfTriple = checkHrefIsOutOfTriple(href)
   const forbiddenLinkCondition =
@@ -57,39 +59,18 @@ export function ExternalLink({
       onClick()
     }
 
-    switch (target) {
-      case 'current':
-        if (!isPublic && outOfTriple) {
-          e.preventDefault()
-        }
-        return
-
-      case 'new':
-        if (!isPublic) {
-          e.preventDefault()
-
-          if (outOfTriple) {
-            openOutlink(finalHref, { title })
-          } else {
-            openInlink(finalHref)
-          }
-        }
-
-        return
-
-      case 'browser':
-        if (!isPublic) {
-          e.preventDefault()
-
-          openOutlink(
-            outOfTriple ? finalHref : addWebUrlBase(finalHref, webUrlBase),
-            {
-              target: 'browser',
-              title,
-            },
-          )
-        }
-    }
+    handleHrefExternally({
+      href,
+      target,
+      lnbTarget,
+      noNavbar,
+      shouldPresent,
+      swipeToClose,
+      title,
+      stopDefaultHandler: () => {
+        e.preventDefault()
+      },
+    })
   }
 
   useEffect(
@@ -114,6 +95,66 @@ export function ExternalLink({
       {children}
     </RouterGuardedLink>
   )
+}
+
+function useExternalHrefHandler() {
+  const { webUrlBase } = useEnv()
+  const { isPublic } = useUserAgentContext()
+  const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
+  const { openInlink, openOutlink } = useAppBridge()
+
+  const handleHrefExternally = ({
+    href,
+    target,
+    lnbTarget,
+    noNavbar,
+    shouldPresent,
+    swipeToClose,
+    title,
+    stopDefaultHandler,
+  }: HrefProps &
+    TargetProps &
+    AppSpecificLinkProps &
+    Pick<OutlinkOptions, 'title'> & { stopDefaultHandler: () => void }) => {
+    const outOfTriple = checkHrefIsOutOfTriple(href)
+
+    if (target === 'current' && isPublic === false && outOfTriple === true) {
+      stopDefaultHandler()
+
+      return
+    }
+
+    const finalHref = addTripleAppRoutingOptions({
+      href,
+      lnbTarget,
+      noNavbar,
+      shouldPresent,
+      swipeToClose,
+    })
+
+    if (target === 'new' && isPublic === false) {
+      stopDefaultHandler()
+
+      if (outOfTriple === true) {
+        openOutlink(finalHref, { title })
+      } else {
+        openInlink(finalHref)
+      }
+
+      return
+    }
+
+    if (target === 'browser' && isPublic === false) {
+      stopDefaultHandler()
+
+      openOutlink(
+        outOfTriple ? finalHref : addWebUrlBase(finalHref, webUrlBase),
+        { target: 'browser', title },
+      )
+    }
+  }
+
+  return handleHrefExternally
 }
 
 function checkHrefIsOutOfTriple(href: string): boolean {
