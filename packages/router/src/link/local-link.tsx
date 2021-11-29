@@ -1,12 +1,12 @@
 import React, { MouseEvent, MouseEventHandler, PropsWithChildren } from 'react'
 import Router, { useRouter } from 'next/router'
-import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
+import { useUserAgentContext } from '@titicaca/react-contexts'
 import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 
 import { useAppBridge } from './use-app-bridge'
 import { ANCHOR_TARGET_MAP, TargetProps } from './target'
 import { RouterGuardedLink } from './router-guarded-link'
-import { addWebUrlBase } from './add-web-url-base'
+import { useWebUrlBaseAdder } from './add-web-url-base'
 import {
   AppSpecificLinkProps,
   useTripleAppRoutingOptionsAdder,
@@ -128,10 +128,10 @@ export function LocalLink({
 
 function useLocalHrefHandler() {
   const { basePath } = useRouter()
-  const { webUrlBase } = useEnv()
   const { isPublic } = useUserAgentContext()
   const { openInlink, openOutlink } = useAppBridge()
   const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
+  const addWebUrlBase = useWebUrlBaseAdder()
 
   const handleHrefLocally = async ({
     href,
@@ -178,7 +178,7 @@ function useLocalHrefHandler() {
     if (target === 'browser' && isPublic === false) {
       stopDefaultHandler()
 
-      openOutlink(addWebUrlBase(finalHref, webUrlBase), {
+      openOutlink(addWebUrlBase(finalHref), {
         target: 'browser',
       })
     }

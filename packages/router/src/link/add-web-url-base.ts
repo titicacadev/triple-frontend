@@ -1,7 +1,14 @@
+import { useEnv } from '@titicaca/react-contexts'
 import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 
-export function addWebUrlBase(href: string, webUrlBase: string): string {
-  const { scheme, host } = parseUrl(webUrlBase)
+export function useWebUrlBaseAdder() {
+  const { webUrlBase } = useEnv()
 
-  return generateUrl({ scheme, host }, href)
+  const addWebUrlBaseToHref = (href: string) => {
+    const { scheme, host } = parseUrl(webUrlBase)
+
+    return generateUrl({ scheme, host }, href)
+  }
+
+  return addWebUrlBaseToHref
 }
