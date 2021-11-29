@@ -1,5 +1,6 @@
 import qs from 'qs'
 import { generateUrl } from '@titicaca/view-utilities'
+import { useUserAgentContext } from '@titicaca/react-contexts'
 
 export interface AppSpecificLinkProps {
   /**
@@ -28,6 +29,33 @@ export interface AppSpecificLinkProps {
    *@param lnbTarget
    */
   shouldPresent?: boolean
+}
+
+export function useHrefWithAppSpecificLinkOptions({
+  href,
+  lnbTarget,
+  noNavbar,
+  shouldPresent,
+  swipeToClose,
+}: {
+  href: string
+} & AppSpecificLinkProps) {
+  const { isPublic } = useUserAgentContext()
+
+  if (
+    isPublic === false &&
+    (lnbTarget || noNavbar || shouldPresent || swipeToClose)
+  ) {
+    return appSpecificLinkOptions({
+      href,
+      lnbTarget,
+      noNavbar,
+      shouldPresent,
+      swipeToClose,
+    })
+  }
+
+  return href
 }
 
 function getlnbTaget(type: string, id: string) {
@@ -66,7 +94,7 @@ function composeStringifiedQuery({
   return composedQuery
 }
 
-export function appSpecificLinkOptions({
+function appSpecificLinkOptions({
   href,
   lnbTarget,
   noNavbar,

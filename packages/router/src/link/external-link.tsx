@@ -6,7 +6,7 @@ import { useAppBridge } from './use-app-bridge'
 import { ANCHOR_TARGET_MAP } from './target'
 import { RouterGuardedLink } from './router-guarded-link'
 import { addWebUrlBase } from './add-web-url-base'
-import { appSpecificLinkOptions } from './app-specific-link-options'
+import { useHrefWithAppSpecificLinkOptions } from './app-specific-link-options'
 import { LinkCommonProps } from './types'
 
 export function ExternalLink({
@@ -42,22 +42,18 @@ export function ExternalLink({
   const { webUrlBase } = useEnv()
   const { isPublic } = useUserAgentContext()
   const { openInlink, openOutlink } = useAppBridge()
+  const finalHref = useHrefWithAppSpecificLinkOptions({
+    href,
+    lnbTarget,
+    noNavbar,
+    shouldPresent,
+    swipeToClose,
+  })
 
   const { host } = parseUrl(href)
   const outOfTriple = !!host
   const forbiddenLinkCondition =
     !isPublic && outOfTriple && target === 'current'
-
-  const finalHref =
-    (lnbTarget || noNavbar || shouldPresent) && !isPublic
-      ? appSpecificLinkOptions({
-          href,
-          lnbTarget,
-          noNavbar,
-          swipeToClose,
-          shouldPresent,
-        })
-      : href
 
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     if (onClick) {
