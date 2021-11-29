@@ -3,7 +3,7 @@ import { Button } from '@titicaca/core-elements'
 import styled from 'styled-components'
 import {
   useHistoryFunctions,
-  useSessionContext,
+  useSessionControllers,
 } from '@titicaca/react-contexts'
 import {
   useUserVerification,
@@ -94,7 +94,8 @@ export function CouponDownloadButton({
     verificationType,
     forceVerification: false,
   })
-  const { login } = useSessionContext()
+  const { login } = useSessionControllers()
+
   const [needLogin, setNeedLogin] = useState(false)
 
   const buttonDisabled = couponFetched === false && needLogin === false
@@ -247,7 +248,8 @@ export function CouponGroupDownloadButton({
     verificationType,
     forceVerification: false,
   })
-  const { login } = useSessionContext()
+  const { login } = useSessionControllers()
+
   const [needLogin, setNeedLogin] = useState(false)
 
   const downloaded =
