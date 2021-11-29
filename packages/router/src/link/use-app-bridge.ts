@@ -3,6 +3,11 @@ import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
 import { useMemo } from 'react'
 
+export interface OutlinkOptions {
+  target?: 'browser'
+  title?: string
+}
+
 export function useAppBridge() {
   const { appUrlScheme } = useEnv()
 
@@ -18,10 +23,7 @@ export function useAppBridge() {
         })
       },
 
-      openOutlink(
-        url: string,
-        params?: { target?: 'browser'; title?: string },
-      ) {
+      openOutlink(url: string, params?: OutlinkOptions) {
         window.location.href = generateUrl({
           scheme: appUrlScheme,
           path: '/outlink',
