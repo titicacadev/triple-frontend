@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Accordion, Text, Container, FlexBox } from '@titicaca/core-elements'
-import { useSessionContext } from '@titicaca/react-contexts'
+import {
+  useSessionAvailability,
+  useSessionControllers,
+} from '@titicaca/react-contexts'
 
 const MAX_PHONE_WIDTH = 360
 
@@ -94,10 +97,10 @@ interface DefaultFooterProps {
 export default function DefaultFooter({
   hideAppDownloadButton,
 }: DefaultFooterProps) {
-  const [businessExpanded, setBusinessExpanded] = useState(false)
-  const { login, logout, hasWebSession, hasSessionId } = useSessionContext()
+  const sessionAvailable = useSessionAvailability()
+  const { login, logout } = useSessionControllers()
 
-  const isLoggedIn = hasWebSession || hasSessionId
+  const [businessExpanded, setBusinessExpanded] = useState(false)
 
   return (
     <FooterFrame>
@@ -129,8 +132,12 @@ export default function DefaultFooter({
 
             {!hideAppDownloadButton ? (
               <ButtonContainer flex>
-                <Button onClick={() => (isLoggedIn ? logout() : login())}>
-                  {isLoggedIn ? '로그아웃' : '로그인'}
+                <Button
+                  onClick={() =>
+                    sessionAvailable === true ? logout() : login()
+                  }
+                >
+                  {sessionAvailable === true ? '로그아웃' : '로그인'}
                 </Button>
 
                 <Button href="https://triple.onelink.me/aZP6?pid=intro_web&af_dp=triple%3A%2F%2F%2Fmain">
