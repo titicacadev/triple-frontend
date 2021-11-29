@@ -50,8 +50,8 @@ function DatePicker({
   hideTodayLabel?: boolean
   height?: string
   canChangeMonth?: boolean
-  fromMonth?: Date
-  toMonth?: Date
+  fromMonth?: string
+  toMonth?: string
   /**
    * @deprecated TF에서 공휴일을 Fetch하고 있습니다.
    */
@@ -71,6 +71,17 @@ function DatePicker({
     () => (day ? moment(day).toDate() : undefined),
     [day],
   )
+
+  const formattedFromMonth = React.useMemo(
+    () => (fromMonth ? moment(fromMonth).toDate() : undefined),
+    [fromMonth],
+  )
+
+  const formattedToMonth = React.useMemo(
+    () => (toMonth ? moment(toMonth).toDate() : undefined),
+    [toMonth],
+  )
+
   const modifiers: Partial<Modifiers> = React.useMemo(
     () => ({
       publicHolidays: publicHolidaysFromProps || publicHolidays,
@@ -124,8 +135,8 @@ function DatePicker({
         modifiers={modifiers}
         disabledDays={disabledDays}
         canChangeMonth={canChangeMonth}
-        fromMonth={fromMonth}
-        toMonth={toMonth}
+        fromMonth={formattedFromMonth}
+        toMonth={formattedToMonth}
         renderDay={renderDay}
       />
     </DayContainer>
