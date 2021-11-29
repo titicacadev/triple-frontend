@@ -129,4 +129,20 @@ describe('LocalLink', () => {
     expect(Router.push).toBeCalledTimes(0)
     handleClick.mockClear()
   })
+
+  test('앱 전용 쿼리를 추가할 때 기존 쿼리를 보존합니다.', () => {
+    const { getByRole } = render(
+      <LocalLink
+        href="/5b700a4e-4b0f-4266-81db-eb42f834bdd9?regionId=71476976-cf9a-4ae8-a60f-76e6fb26900d"
+        target="current"
+        noNavbar
+      >
+        <a>테스트링크</a>
+      </LocalLink>,
+    )
+
+    expect(getByRole('link').getAttribute('href')).toBe(
+      '/hotels/5b700a4e-4b0f-4266-81db-eb42f834bdd9?regionId=71476976-cf9a-4ae8-a60f-76e6fb26900d&_triple_no_navbar=true',
+    )
+  })
 })
