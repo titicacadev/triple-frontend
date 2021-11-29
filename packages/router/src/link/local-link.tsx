@@ -27,6 +27,18 @@ function isKeyPressingClick(e: MouseEvent<HTMLAnchorElement>): boolean {
   return e.metaKey || e.ctrlKey || e.shiftKey || e.altKey
 }
 
+interface NextjsRoutingOptions {
+  /**
+   * 현재 창을 history에 남기지 않고 이동합니다. target="current"일 때만 작동합니다.
+   */
+  replace?: boolean
+  /**
+   * 현재창에서 라우팅할 때 페이지 스크롤을 상단으로 올릴지 여부를 결정합니다.
+   * 기본 값 true
+   */
+  scroll?: boolean
+}
+
 /**
  * Next.js의 라우터를 사용하여 주어진 주소로 이동합니다.
  * 클라이언트에서 라우팅하기 때문에
@@ -37,7 +49,7 @@ function isKeyPressingClick(e: MouseEvent<HTMLAnchorElement>): boolean {
  */
 async function handleNextJSRouting(
   href: string,
-  { replace, scroll }: { replace?: boolean; scroll: boolean },
+  { replace, scroll = true }: NextjsRoutingOptions,
 ): Promise<void> {
   const success = await Router[replace ? 'replace' : 'push'](href, undefined, {
     scroll,
@@ -64,19 +76,7 @@ export function LocalLink({
   shouldPresent,
   onClick,
   children,
-}: PropsWithChildren<
-  LinkCommonProps & {
-    /**
-     * 현재 창을 history에 남기지 않고 이동합니다. target="current"일 때만 작동합니다.
-     */
-    replace?: boolean
-    /**
-     * 현재창에서 라우팅할 때 페이지 스크롤을 상단으로 올릴지 여부를 결정합니다.
-     * 기본 값 true
-     */
-    scroll?: boolean
-  }
->) {
+}: PropsWithChildren<LinkCommonProps & NextjsRoutingOptions>) {
   const { webUrlBase } = useEnv()
   const { isPublic } = useUserAgentContext()
   const { openInlink, openOutlink } = useAppBridge()
