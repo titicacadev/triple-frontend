@@ -8,8 +8,9 @@ import {
 } from '@titicaca/react-contexts'
 import { useLoginCTAModal, useTransitionModal } from '@titicaca/modals'
 
-import { LocalLink } from './local-link'
-import { useAppBridge } from './use-app-bridge'
+import { useAppBridge } from '../link/use-app-bridge'
+
+import { LocalLink } from './link'
 
 jest.mock('next/router')
 const mockedUseRouter = (useRouter as unknown) as jest.MockedFunction<
@@ -32,7 +33,7 @@ const mockedUseLoginCtaModal = (useLoginCTAModal as unknown) as jest.MockedFunct
   () => ReturnType<typeof useLoginCTAModal>
 >
 
-jest.mock('./use-app-bridge')
+jest.mock('../link/use-app-bridge')
 const mockedUseAppBridge = (useAppBridge as unknown) as jest.MockedFunction<
   typeof useAppBridge
 >
