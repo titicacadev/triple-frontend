@@ -20,7 +20,7 @@ import { hasAccessibleTripleNativeClients } from '@titicaca/triple-web-to-native
 import { DeepPartial } from 'utility-types'
 
 import { useEnv } from '../env-context'
-import { useSessionContextSafely } from '../session-context'
+import { useSessionAvailability } from '../session-context'
 
 import { canonizeTargetAddress } from './canonization'
 
@@ -126,6 +126,7 @@ export function HistoryProvider({
     appUrlScheme: appUrlSchemeFromContext,
     webUrlBase: webUrlBaseFromContext,
   } = useEnv()
+  const sessionAvailable = useSessionAvailability()
 
   const [uriHash, setUriHash] = useState<URIHash>(() => {
     if (initialHashStrategy === HashStrategy.NONE) {
@@ -139,10 +140,6 @@ export function HistoryProvider({
       ? [{ hash: getInitialHash(), useRouter: isAndroid }]
       : [],
   )
-  const sessionContext = useSessionContextSafely()
-  const isLoggedIn = sessionContext
-    ? sessionContext.hasWebSession || sessionContext.hasSessionId
-    : !isPublic
 
   const appUrlScheme = useMemo(() => {
     if (appUrlSchemeFromContext) {
@@ -285,7 +282,10 @@ export function HistoryProvider({
         allowRawOutlink: false,
       })
 
-      if (!isLoggedIn && !checkIfRoutable({ href: canonizedHref })) {
+      if (
+        sessionAvailable === false &&
+        !checkIfRoutable({ href: canonizedHref })
+      ) {
         loginCTAModalHash && push(loginCTAModalHash)
 
         return
@@ -304,7 +304,7 @@ export function HistoryProvider({
         window.location.href = generateUrl({ scheme: appUrlScheme }, rawHref)
       }
     },
-    [push, appUrlScheme, loginCTAModalHash, isLoggedIn, webUrlBase],
+    [appUrlScheme, loginCTAModalHash, push, sessionAvailable, webUrlBase],
   )
 
   const navigate = useCallback<HistoryContextValue['navigate']>(
@@ -338,7 +338,7 @@ export function HistoryProvider({
           query: outlinkParams,
         })
       } else if (!scheme && !host) {
-        if (isLoggedIn || checkIfRoutable({ href: rawHref })) {
+        if (sessionAvailable === true || checkIfRoutable({ href: rawHref })) {
           window.location.href = generateUrl({
             scheme: appUrlScheme,
             path: '/inlink',
@@ -349,7 +349,7 @@ export function HistoryProvider({
         }
       }
     },
-    [appUrlScheme, isLoggedIn, loginCTAModalHash, push],
+    [appUrlScheme, loginCTAModalHash, push, sessionAvailable],
   )
 
   const showTransitionModal = useCallback<
