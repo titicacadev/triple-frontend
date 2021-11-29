@@ -55,7 +55,11 @@ describe('RouterGuardedLink', () => {
     console.warn = jest.fn()
 
     render(
-      <RouterGuardedLink href="https://triple.guide" className="asdf">
+      <RouterGuardedLink
+        href="https://triple.guide"
+        className="asdf"
+        onClick={jest.fn()}
+      >
         <a
           href="https://triple.guide/hotels"
           onClick={jest.fn()}
