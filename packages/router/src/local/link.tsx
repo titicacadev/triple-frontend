@@ -3,15 +3,15 @@ import { useRouter } from 'next/router'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 
-import { useAppBridge } from './use-app-bridge'
-import { ANCHOR_TARGET_MAP, TargetProps } from './target'
-import { RouterGuardedLink } from './router-guarded-link'
-import { useWebUrlBaseAdder } from './add-web-url-base'
+import { useAppBridge } from '../link/use-app-bridge'
+import { ANCHOR_TARGET_MAP, TargetProps } from '../link/target'
+import { RouterGuardedLink } from '../link/router-guarded-link'
+import { useWebUrlBaseAdder } from '../link/add-web-url-base'
 import {
   AppSpecificLinkProps,
   useTripleAppRoutingOptionsAdder,
-} from './app-specific-link-options'
-import { HrefProps, LinkCommonProps } from './types'
+} from '../link/app-specific-link-options'
+import { HrefProps, LinkCommonProps } from '../link/types'
 
 function addBasePath(href: string, basePath: string): string {
   const { path, ...rest } = parseUrl(href)
