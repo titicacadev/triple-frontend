@@ -7,7 +7,8 @@ import {
   parseUrl,
 } from '@titicaca/view-utilities'
 
-import { TargetType } from './target'
+import { TargetType } from '../common/target'
+
 import { AllowSource } from './router-guarded-link'
 
 /**
