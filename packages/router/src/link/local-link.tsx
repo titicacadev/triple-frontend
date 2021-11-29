@@ -11,8 +11,10 @@ import { appSpecificLinkOptions } from './app-specific-link-options'
 import { LinkCommonProps } from './types'
 
 function addBasePath(href: string, basePath: string): string {
-  const { path } = parseUrl(href)
-  return path === '/' ? basePath : `${basePath}${path}`
+  const { path, ...rest } = parseUrl(href)
+  const newPath = path === '/' ? basePath : `${basePath}${path}`
+
+  return generateUrl({ path: newPath, ...rest })
 }
 
 /**
@@ -83,16 +85,17 @@ export function LocalLink({
   const { openInlink, openOutlink } = useAppBridge()
   const { basePath } = useRouter()
 
+  const basePathAddedHref = addBasePath(href, basePath)
   const finalHref =
     (lnbTarget || noNavbar || shouldPresent) && !isPublic
       ? appSpecificLinkOptions({
-          href: addBasePath(href, basePath),
+          href: basePathAddedHref,
           lnbTarget,
           noNavbar,
           swipeToClose,
           shouldPresent,
         })
-      : generateUrl({ path: addBasePath(href, basePath) }, href)
+      : basePathAddedHref
 
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     if (onClick) {
