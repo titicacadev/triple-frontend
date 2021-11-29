@@ -2,6 +2,7 @@ import React, {
   AnchorHTMLAttributes,
   Children,
   cloneElement,
+  MouseEventHandler,
   PropsWithChildren,
 } from 'react'
 import {
@@ -55,27 +56,23 @@ export function RouterGuardedLink({
 
   const rel = useRel(relList)
 
+  const disabledLinkClickHandler: MouseEventHandler<HTMLAnchorElement> = (
+    e,
+  ) => {
+    e.preventDefault()
+
+    if (isPublic) {
+      showTransitionModal(TransitionType.General)
+    } else {
+      showLoginCTAModal()
+    }
+  }
+
   const anchorProps: Partial<AnchorHTMLAttributes<HTMLAnchorElement>> = {
     ...restProps,
     href: isDisabledRoute ? undefined : href,
     rel,
-    onClick: (e) => {
-      if (isDisabledRoute) {
-        e.preventDefault()
-
-        if (isPublic) {
-          showTransitionModal(TransitionType.General)
-        } else {
-          showLoginCTAModal()
-        }
-
-        return
-      }
-
-      if (onClick) {
-        onClick(e)
-      }
-    },
+    onClick: isDisabledRoute ? disabledLinkClickHandler : onClick,
   }
 
   const child = Children.only(children)
