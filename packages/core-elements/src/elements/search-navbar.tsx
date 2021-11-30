@@ -104,6 +104,7 @@ export default function SearchNavbar({
   value,
   inputRef,
   borderless: noBorder,
+  iconType = 'back',
   ...rest
 }: {
   onSearch: () => void
@@ -112,13 +113,14 @@ export default function SearchNavbar({
   onDeleteClick?: (event: React.SyntheticEvent) => void
   inputRef?: React.Ref<HTMLInputElement>
   borderless?: boolean
+  iconType?: 'back' | 'close'
 } & InputProps &
   LayeringMixinProps) {
   return (
     // borderless는 NavbarFrame의 기본 border(box-shadow)를 비활성화 시킴.
     // noBorder는 MainNavbarFrame의 border(border-bottom)를 비활성화 시킴.
     <MainNavbarFrame borderless noBorder={noBorder} {...rest}>
-      <Icon icon="back" onClick={onBackClick} visible={true} />
+      <Icon icon={iconType} onClick={onBackClick} visible={true} />
       <Input
         placeholder={placeholder}
         onInputChange={onInputChange}
