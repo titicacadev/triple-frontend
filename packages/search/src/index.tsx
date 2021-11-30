@@ -56,6 +56,7 @@ export default function FullScreenSearchView({
     defaultKeyword?: string
     keyword?: string
     borderless?: boolean
+    iconType?: 'back' | 'close'
   } & LayeringMixinProps
 >) {
   const {
