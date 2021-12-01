@@ -115,7 +115,7 @@ function createSessionIdSaver() {
 
 const SESSION_ID_KEY = 'x-soto-session'
 
-function getSessionIdFromRequest(req: IncomingMessage | undefined) {
+export function getSessionIdFromRequest(req: IncomingMessage | undefined) {
   return new Cookies(req?.headers.cookie).get(SESSION_ID_KEY)
 }
 

@@ -136,7 +136,7 @@ InBrowserSessionContextProvider.getInitialProps = async function ({
   }
 }
 
-function getWebSessionAvailabilityFromRequest(
+export function getWebSessionAvailabilityFromRequest(
   req: IncomingMessage | undefined,
 ) {
   if (process.env.NODE_ENV !== 'production') {
