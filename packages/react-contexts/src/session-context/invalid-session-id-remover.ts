@@ -6,7 +6,7 @@ import { generateUserAgentValues } from '../user-agent-context'
 
 import { SESSION_ID_KEY } from './app'
 
-export function putInvalidSessionRemover({
+export function putInvalidSessionIdRemover({
   res: { setHeader },
   req: {
     headers: { 'user-agent': userAgent = '' },
@@ -29,7 +29,7 @@ export function putInvalidSessionRemover({
   }
 
   const handleInvalidSessionInApp: ReturnType<
-    typeof putInvalidSessionRemover
+    typeof putInvalidSessionIdRemover
   > = () => {
     const { redirected } = strictQuery(query).boolean('redirected').use()
 
