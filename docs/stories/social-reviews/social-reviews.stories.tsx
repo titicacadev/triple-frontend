@@ -1,12 +1,12 @@
-import { Meta, StoryObj } from '@storybook/react'
-import SocialReviews, { SocialReviewsProps } from '@titicaca/social-reviews'
+import { ComponentStoryObj, ComponentMeta } from '@storybook/react'
+import SocialReviews from '@titicaca/social-reviews'
 
 export default {
   title: 'Social-Reviews / SocialReviews',
   component: SocialReviews,
-} as Meta
+} as ComponentMeta<typeof SocialReviews>
 
-export const BaseSocialReviews: StoryObj<SocialReviewsProps> = {
+export const BaseSocialReviews: ComponentStoryObj<typeof SocialReviews> = {
   args: {
     placeholderImageUrl:
       'https://assets.triple-dev.titicaca-corp.com/images/img-empty-contents@3x.png',
