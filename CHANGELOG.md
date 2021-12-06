@@ -49,7 +49,7 @@
 
 #### router
 
-- `LocalLink가 앱 전용 쿼리를 추가할 때 기존 쿼리를 보존하지 않는 문제 수정 [#1699](https://github.com/titicacadev/triple-frontend/pull/1699)
+- `LocalLink`가 앱 전용 쿼리를 추가할 때 기존 쿼리를 보존하지 않는 문제 수정 [#1699](https://github.com/titicacadev/triple-frontend/pull/1699)
 
 ### Etc.
 
