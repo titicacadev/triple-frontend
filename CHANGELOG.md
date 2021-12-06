@@ -1,5 +1,63 @@
 # CHANGELOG
 
+## 4.0.0
+
+### Breaking Change
+
+- floating-install-button 패키지 제거 [#1683](https://github.com/titicacadev/triple-frontend/pull/1683)
+- frontend-devtools 패키지 제거 [#1696](https://github.com/titicacadev/triple-frontend/pull/1696)
+
+#### fetcher
+
+- fetcher 응답 타입에서 `error`, `result`, body 관련 속성 제거 [#1624](https://github.com/titicacadev/triple-frontend/pull/1624)
+
+#### react-contexts
+
+- `SessionContextProvider`의 prop 변경 [#1705](https://github.com/titicacadev/triple-frontend/pull/1705)
+- `useSessionContext` 훅 제거 [#1705](https://github.com/titicacadev/triple-frontend/pull/1705)
+
+### New Feature
+
+#### fetcher
+
+- fetcher 응답 타입에 `parsedBody` 추가 [#1624](https://github.com/titicacadev/triple-frontend/pull/1624)
+
+#### date-picker
+
+- `DayPicker`, `RangePicker` 컴포넌트에 오늘 날짜 표시를 숨길 수 있는 prop 추가 [#1688](https://github.com/titicacadev/triple-frontend/pull/1688)
+- `DayPicker` 컴포넌트에 달 페이지를 바꿀 수 있는 버튼을 표시하는 prop 추가 [#1688](https://github.com/titicacadev/triple-frontend/pull/1688)
+- `DayPicker` 컴포넌트의 날짜 영역 컴포넌트를 커스텀할 수 있는 기능 추가 [#1692](https://github.com/titicacadev/triple-frontend/pull/1692)
+
+#### react-contexts
+
+- humps 패키지 제거 [#1691](https://github.com/titicacadev/triple-frontend/pull/1691)
+- `SessionContextProvider`에 `getInitialProps` 메서드 추가 [#1705](https://github.com/titicacadev/triple-frontend/pull/1705)
+- `useSessionAvailability`, `useSessionControllers`, `useUser` 훅 추가 [#1705](https://github.com/titicacadev/triple-frontend/pull/1705)
+- `getSessionAvailablityFromRequest` 함수 추가 [#1705](https://github.com/titicacadev/triple-frontend/pull/1705)
+- `putInvalidSessionRemover` 함수 추가 [#1705](https://github.com/titicacadev/triple-frontend/pull/1705)
+
+#### core-elements
+
+- 폼 컴포넌트의 error 타입에 boolean 값도 들어갈 수 있도록 변경 [#1694](https://github.com/titicacadev/triple-frontend/pull/1694)
+- `SearchNavbar` 컴포넌트의 뒤로가기 아이콘 타입을 prop으로 받도록 처리 [#1706](https://github.com/titicacadev/triple-frontend/pull/1706)
+
+#### search
+
+- `FullScreenSearchView` 컴포넌트의 뒤로가기 아이콘 타입을 prop으로 받도록 처리 [#1706](https://github.com/titicacadev/triple-frontend/pull/1706)
+
+### Bug Fix
+
+#### router
+
+- `LocalLink가 앱 전용 쿼리를 추가할 때 기존 쿼리를 보존하지 않는 문제 수정 [#1699](https://github.com/titicacadev/triple-frontend/pull/1699)
+
+### Etc.
+
+- `@swc/core` patch 버전 업그레이드 [#1687](https://github.com/titicacadev/triple-frontend/pull/1687)
+- README에서 브랜치 이름을 "master"에서 "main"으로 교정합니다. [#1695](https://github.com/titicacadev/triple-frontend/pull/1695)
+- tsc 설정을 개선합니다. [#1697](https://github.com/titicacadev/triple-frontend/pull/1697)
+- router 패키지의 코드를 정리합니다. [#1701](https://github.com/titicacadev/triple-frontend/pull/1701)
+
 ## 3.4.1
 
 ### footer
