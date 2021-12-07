@@ -14,6 +14,7 @@ const Label = styled(Text)<{
   focused?: boolean
   error?: boolean
   absolute?: boolean
+  required?: boolean
 }>`
   font-size: 13px;
 
@@ -35,6 +36,18 @@ const Label = styled(Text)<{
       position: absolute;
       top: 6px;
     `}
+
+  ${({ required }) =>
+    required &&
+    css`
+      &::after {
+        content: ${required ? "'*'" : undefined};
+        display: inline;
+        color: rgba(${getColor('mediumRed')});
+        font-weight: normal;
+        margin-left: 4px;
+      }
+    `}
 `
 
 export function withField<T>(WrappedComponent: React.ComponentType<T>) {
@@ -43,8 +56,9 @@ export function withField<T>(WrappedComponent: React.ComponentType<T>) {
       label?: string
       error?: string | boolean
       help?: string
+      required?: boolean
     } & T
-  > = ({ label, error, help, ...props }) => {
+  > = ({ label, error, help, required, ...props }) => {
     const [focused, setFocused] = useState(false)
     const hasError = !!error
 
@@ -54,13 +68,19 @@ export function withField<T>(WrappedComponent: React.ComponentType<T>) {
         onBlur={() => setFocused(false)}
       >
         {label && (
-          <Label focused={focused} error={hasError} margin={{ bottom: 6 }}>
+          <Label
+            focused={focused}
+            error={hasError}
+            required={required}
+            margin={{ bottom: 6 }}
+          >
             {label}
           </Label>
         )}
         <WrappedComponent
           focused={focused ? 'true' : undefined}
           error={hasError ? 'true' : undefined}
+          required={required}
           {...(props as T)}
         />
         {typeof error === 'string' && hasError ? (
