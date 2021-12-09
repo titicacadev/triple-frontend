@@ -7,8 +7,10 @@ import {
   SquareImage,
   Text,
 } from '@titicaca/core-elements'
+import { useURIHash, useHistoryFunctions } from '@titicaca/react-contexts'
 import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
 import { ExternalLink } from '@titicaca/router'
+import ActionSheet from '@titicaca/action-sheet'
 
 import { Reply as ReplyType, Writer } from '../types'
 import { fetchChildReplies } from '../replies-api-clients'
@@ -45,6 +47,8 @@ const MentionUser = styled.a`
   margin-right: 5px;
 `
 
+const HASH_MORE_ACTION_SHEET = 'reply.more-action-sheet'
+
 export default function Reply({
   reply: {
     writer: { profileImage, name },
@@ -55,6 +59,7 @@ export default function Reply({
     childrenCount,
     children,
     id,
+    actionSpecifications: { delete: isDelete },
   },
   onReplyTypeChange,
 }: {
@@ -65,6 +70,9 @@ export default function Reply({
     childReplies: ReplyType[]
     childPage: number
   }>({ childReplies: checkUniqueReply(children), childPage: 0 })
+
+  const uriHash = useURIHash()
+  const { push, back } = useHistoryFunctions()
 
   useEffect(() => {
     async function fetchChildRepliesAndSet() {
@@ -96,6 +104,10 @@ export default function Reply({
     }))
   }, [id, childPage])
 
+  const handleMoreClick = useCallback(() => {
+    push(HASH_MORE_ACTION_SHEET)
+  }, [push])
+
   return (
     <>
       <SquareImage
@@ -119,7 +131,7 @@ export default function Reply({
               {formatTimestamp(createdAt)}
             </Text>
 
-            <MoreButton />
+            <MoreButton onClick={handleMoreClick} />
           </FlexBox>
         </FlexBox>
 
@@ -190,6 +202,21 @@ export default function Reply({
           ))}
         </List>
       ) : null}
+
+      <ActionSheet
+        open={uriHash === HASH_MORE_ACTION_SHEET}
+        onClose={back}
+        title={isDelete ? '내 댓글' : '댓글'}
+      >
+        {isDelete ? (
+          <>
+            <ActionSheet.Item>수정하기</ActionSheet.Item>
+            <ActionSheet.Item>삭제하기</ActionSheet.Item>
+          </>
+        ) : (
+          <ActionSheet.Item>신고하기</ActionSheet.Item>
+        )}
+      </ActionSheet>
     </>
   )
 }
