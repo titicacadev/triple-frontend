@@ -6,17 +6,22 @@ import React, {
   MouseEvent,
 } from 'react'
 import { Container, FlexBox, Text, Icon } from '@titicaca/core-elements'
+import { Confirm } from '@titicaca/modals'
+import { useURIHash, useHistoryFunctions } from '@titicaca/react-contexts'
 
 import {
   fetchReplies,
   fetchReplyBoard,
   writeReply,
   writeChildReply,
+  modifyReply,
 } from './replies-api-clients'
 import { Reply, ResourceType } from './types'
 import ReplyList from './list'
 import Register from './register'
 import { checkUniqueReply } from './utils'
+
+const HASH_MODIFY_CLOSE_MODAL = 'reply.modify-close-modal'
 
 export default function Replies({
   resourceId,
@@ -53,6 +58,12 @@ export default function Replies({
     mentioningUserUid: null,
     mentioningUserName: null,
   })
+  const [actionType, setActionType] = useState<
+    'writeReply' | 'writeChildReply' | 'modifyReply'
+  >('writeReply')
+
+  const [content, setContent] = useState('')
+  const { push, back } = useHistoryFunctions()
 
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
@@ -101,42 +112,96 @@ export default function Replies({
     }))
   }, [resourceId, resourceType, size, page])
 
-  const changeReplyType = (baseReply: Reply) => {
-    const { reply } = baseReply.actionSpecifications
-    setReplyActionSpecification(reply)
-
-    if (!!reply.toMessageId && textareaRef.current) {
+  const focusing = () => {
+    if (textareaRef.current) {
       textareaRef.current.focus()
     }
   }
 
-  const handleChildReplyContentClose = () => {
+  const handleWriteReplyClick = (
+    reply: Partial<Reply['actionSpecifications']['reply']>,
+    type: 'writeChildReply',
+  ) => {
+    setReplyActionSpecification(reply)
+    setActionType(type)
+    focusing()
+  }
+
+  const handleWriteCancel = () => {
     setReplyActionSpecification({
       toMessageId: null,
       mentioningUserUid: null,
       mentioningUserName: null,
     })
+    setActionType('writeReply')
   }
 
-  const handleRegister = async (content: string) => {
+  const handleModifyReplyClick = (
+    reply: Partial<Reply['actionSpecifications']['reply']>,
+    type: 'modifyReply',
+    text: string,
+  ) => {
+    setContent(text)
+    setReplyActionSpecification(reply)
+    setActionType(type)
+    focusing()
+  }
+
+  const handleModifyCancel = () => {
+    back()
+    setReplyActionSpecification({
+      toMessageId: null,
+      mentioningUserUid: null,
+      mentioningUserName: null,
+    })
+    setContent('')
+    setActionType('writeReply')
+  }
+
+  const wrtieReplyFunc = async (content: string) => {
+    await writeReply({
+      resourceId,
+      resourceType,
+      content,
+    })
+  }
+
+  const writeChildReplyFunc = async (content: string) => {
+    await writeChildReply({
+      messageId: toMessageId || '',
+      content,
+      mentionedUserUid: mentioningUserUid || '',
+    })
+  }
+
+  const modifyReplyFunc = async (content: string) => {
+    await modifyReply({
+      messageId: toMessageId || '',
+      content,
+      mentionedUserUid: mentioningUserUid || '',
+    })
+  }
+
+  const REGISTER_ACTIONS: { [key: string]: (content: string) => void } = {
+    writeReply: wrtieReplyFunc,
+    writeChildReply: writeChildReplyFunc,
+    modifyReply: modifyReplyFunc,
+  }
+
+  const handleRegister = (content: string) => {
     if (!content) {
       return
     }
 
-    toMessageId
-      ? await writeChildReply({
-          messageId: toMessageId,
-          content,
-          mentionedUserUid: mentioningUserUid || '',
-        })
-      : await writeReply({
-          resourceId,
-          resourceType,
-          content,
-        })
+    REGISTER_ACTIONS[actionType](content)
 
-    handleChildReplyContentClose()
+    handleWriteCancel()
   }
+
+  const handleClose =
+    actionType === 'modifyReply'
+      ? () => push(HASH_MODIFY_CLOSE_MODAL)
+      : handleWriteCancel
 
   return (
     <Container onClickCapture={onClickCapture}>
@@ -144,10 +209,11 @@ export default function Replies({
         replies={replies}
         totalRepliesCount={totalRepliesCount}
         fetchMoreReplies={fetchMoreReplies}
-        changeReplyType={changeReplyType}
+        handleWriteReplyClick={handleWriteReplyClick}
+        handleModifyReplyClick={handleModifyReplyClick}
       />
 
-      {toMessageId ? (
+      {actionType === 'writeChildReply' || actionType === 'modifyReply' ? (
         <FlexBox
           flex
           padding={{ top: 10, bottom: 10, left: 20, right: 20 }}
@@ -156,21 +222,60 @@ export default function Replies({
           backgroundColor="gray50"
         >
           <Text size={12} lineHeight="19px" bold color="gray700">
-            {mentioningUserName}님께 답글 작성 중
+            {actionType === 'modifyReply'
+              ? mentioningUserUid
+                ? `${mentioningUserName}님에게 작성한 답글 수정 중`
+                : '댓글 수정 중'
+              : `${mentioningUserName}님께 답글 작성 중`}
           </Text>
 
           <Icon
-            onClick={handleChildReplyContentClose}
+            onClick={handleClose}
             src="https://assets.triple.guide/images/btn-com-close@3x.png"
           />
         </FlexBox>
       ) : null}
 
       <Register
+        content={content}
         registerPlaceholder={registerPlaceholder}
         textareaRef={textareaRef}
         onSubmit={handleRegister}
       />
+
+      <ConfirmModal
+        onConfirm={handleModifyCancel}
+        onCancel={() => {
+          back()
+          setActionType('modifyReply')
+        }}
+      />
     </Container>
+  )
+}
+
+function ConfirmModal({
+  onConfirm,
+  onCancel,
+}: {
+  onConfirm: () => void
+  onCancel: () => void
+}) {
+  const uriHash = useURIHash()
+  const { back } = useHistoryFunctions()
+
+  return (
+    <Confirm
+      open={uriHash === HASH_MODIFY_CLOSE_MODAL}
+      onClose={back}
+      // eslint-disable-next-line react/no-children-prop
+      children={
+        <div>
+          수정을 취소하시겠습니까? <br /> 수정한 내용은 저장되지 않습니다.
+        </div>
+      }
+      onConfirm={onConfirm}
+      onCancel={onCancel}
+    />
   )
 }
