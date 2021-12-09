@@ -10,7 +10,7 @@ import {
 import { FrameRatioAndSizes } from '@titicaca/type-definitions'
 
 export type PoiType = 'attraction' | 'restaurant' | 'hotel'
-export type ResponsiveVariant = {
+export interface ResponsiveVariant {
   mapSize: string
   viewport: string
   mapScale?: string
@@ -43,10 +43,7 @@ const StaticMapContainer = styled.div<{ frame?: FrameRatioAndSizes }>`
           ${formatMarginPadding({ top: MEDIA_FRAME_OPTIONS[frame] }, 'padding')}
         `
       : css`
-          ${formatMarginPadding(
-            { top: MEDIA_FRAME_OPTIONS['small'] },
-            'padding',
-          )}
+          ${formatMarginPadding({ top: MEDIA_FRAME_OPTIONS.small }, 'padding')}
         `}
 `
 

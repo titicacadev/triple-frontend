@@ -1,6 +1,8 @@
 import { useReducer, useMemo, createContext } from 'react'
 
-export type Scraps = { [key: string]: boolean }
+export interface Scraps {
+  [key: string]: boolean
+}
 
 export const START_SCRAPE = 'START_SCRAPE'
 export const SCRAPE = 'SCRAPE'

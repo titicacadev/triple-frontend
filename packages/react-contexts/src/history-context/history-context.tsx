@@ -34,7 +34,7 @@ export interface OutlinkParams {
 
 type URLElement = ReturnType<typeof parseUrl>
 
-type NavigateFunctionConfig = {
+interface NavigateFunctionConfig {
   useRouter?: boolean
   basePathCompatible?: boolean
 }

@@ -24,7 +24,7 @@ export type Overflow = CSS.Property.Overflow
 export type WhiteSpace = CSS.Property.WhiteSpace
 export type Position = BasePosition | RichPosition
 export type BasePosition = CSS.Property.Position
-export type RichPosition = {
+export interface RichPosition {
   type: CSS.Property.Position
   top?: number
   right?: number

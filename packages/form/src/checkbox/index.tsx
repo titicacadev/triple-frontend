@@ -71,7 +71,7 @@ const CheckboxInput = styled.input`
   }
 `
 
-type Item<T> = {
+interface Item<T> {
   key: string
   label: string
   value: T

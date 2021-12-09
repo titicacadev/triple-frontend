@@ -14,7 +14,7 @@ import {
 
 import useMapData from './use-computed-map'
 
-type Props = {
+interface Props {
   /** 몇번째 일정 */
   day: Itinerary['day']
   /** 추천 코스 POI 목록 */

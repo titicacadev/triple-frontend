@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import fetch from 'isomorphic-fetch'
 import isEqual from 'react-fast-compare'
 
-type FetchResponse = {
+interface FetchResponse {
   data?: any
   response?: Response
   error?: Error

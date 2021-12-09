@@ -9,7 +9,7 @@ interface UserResponse {
   // TODO
 }
 
-type AuthGuardOptions = {
+interface AuthGuardOptions {
   authType?: string
   allowNonMembers?: boolean
   resolveReturnUrl?: (

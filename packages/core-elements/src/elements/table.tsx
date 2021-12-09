@@ -9,7 +9,9 @@ import Text from './text'
 
 type TableType = 'vertical' | 'horizontal'
 
-type TableEntity = { text: string }
+interface TableEntity {
+  text: string
+}
 type TableRow = TableEntity[]
 
 interface TableBodyProps {

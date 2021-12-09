@@ -19,7 +19,7 @@ export default {
 export function FloatingButton() {
   return (
     <FloatingButtonCTA
-      appInstallLink={'https://triple.onelink.me/aZP6/21d43a81'}
+      appInstallLink="https://triple.onelink.me/aZP6/21d43a81"
       fixed={boolean('화면 고정', true)}
       title={text('제목', '제목을 입력하세요.')}
       description={text('설명', '설명 텍스트가 들어갑니다.')}
@@ -101,7 +101,7 @@ export function BaseArticleCardCTA() {
         margin={{ top: 20 }}
         containerPadding={{ left: 110, right: 110 }}
       >
-        <Carousel.Item key={'d'} size="medium">
+        <Carousel.Item key="d" size="medium">
           {articleCTA ? (
             <ArticleCardCTA
               cta={articleCTA}

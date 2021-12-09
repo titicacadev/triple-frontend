@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { text, boolean } from '@storybook/addon-knobs'
 import { ActionSheetSelector } from '@titicaca/form'
 
-type Option = {
+interface Option {
   key: string
   label: string
   value: string | number | null
