@@ -167,3 +167,34 @@ export async function writeChildReply({
 
   captureHttpError(response)
 }
+
+export async function modifyReply({
+  messageId,
+  content,
+  mentionedUserUid,
+}: {
+  messageId: string
+  content: string
+  mentionedUserUid: string
+}) {
+  const response = await authGuardedFetchers.put(
+    generateUrl({
+      path: `/api/reply/messages/${messageId}`,
+      query: qs.stringify({
+        contentFormat: 'plaintext',
+      }),
+    }),
+    {
+      body: {
+        content,
+        mentionedUserUid,
+      },
+    },
+  )
+
+  if (response === 'NEED_LOGIN') {
+    throw new Error('로그인이 필요한 호출입니다.')
+  }
+
+  captureHttpError(response)
+}
