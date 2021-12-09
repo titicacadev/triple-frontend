@@ -59,20 +59,28 @@ export default function Reply({
     childrenCount,
     children,
     id,
-    actionSpecifications: { delete: isDelete },
+    actionSpecifications,
   },
-  onReplyTypeChange,
+  handleWriteReplyClick,
+  handleModifyReplyClick,
 }: {
   reply: ReplyType
-  onReplyTypeChange: () => void
+  handleWriteReplyClick: (
+    reply: Partial<ReplyType['actionSpecifications']['reply']>,
+    type: 'writeChildReply',
+  ) => void
+  handleModifyReplyClick: (
+    reply: Partial<ReplyType['actionSpecifications']['reply']>,
+    type: 'modifyReply',
+    text: string,
+  ) => void
 }) {
   const [{ childReplies, childPage }, setChildRepliesInfo] = useState<{
     childReplies: ReplyType[]
     childPage: number
   }>({ childReplies: checkUniqueReply(children), childPage: 0 })
 
-  const uriHash = useURIHash()
-  const { push, back } = useHistoryFunctions()
+  const { push } = useHistoryFunctions()
 
   useEffect(() => {
     async function fetchChildRepliesAndSet() {
@@ -172,7 +180,12 @@ export default function Reply({
             size={12}
             color="gray300"
             bold
-            onClick={onReplyTypeChange}
+            onClick={() => {
+              handleWriteReplyClick(
+                actionSpecifications.reply,
+                'writeChildReply',
+              )
+            }}
           >
             답글달기
           </Text>
@@ -197,26 +210,32 @@ export default function Reply({
         <List margin={{ top: 20 }}>
           {childReplies.map((childReply) => (
             <ChildResourceListItem key={childReply.id} margin={{ bottom: 20 }}>
-              <Reply reply={childReply} onReplyTypeChange={onReplyTypeChange} />
+              <Reply
+                reply={childReply}
+                handleWriteReplyClick={handleWriteReplyClick}
+                handleModifyReplyClick={handleModifyReplyClick}
+              />
             </ChildResourceListItem>
           ))}
         </List>
       ) : null}
 
-      <ActionSheet
-        open={uriHash === HASH_MORE_ACTION_SHEET}
-        onClose={back}
-        title={isDelete ? '내 댓글' : '댓글'}
-      >
-        {isDelete ? (
-          <>
-            <ActionSheet.Item>수정하기</ActionSheet.Item>
-            <ActionSheet.Item>삭제하기</ActionSheet.Item>
-          </>
-        ) : (
-          <ActionSheet.Item>신고하기</ActionSheet.Item>
-        )}
-      </ActionSheet>
+      <FeatureActionSheet
+        actionSpecifications={actionSpecifications}
+        onClick={() =>
+          handleModifyReplyClick(
+            {
+              ...actionSpecifications.reply,
+              toMessageId: id,
+              mentioningUserUid: mentionedUser
+                ? actionSpecifications.reply.mentioningUserUid
+                : '',
+            },
+            'modifyReply',
+            text as string,
+          )
+        }
+      />
     </>
   )
 }
@@ -268,5 +287,33 @@ function Content({
         </Text>
       ) : null}
     </Container>
+  )
+}
+
+function FeatureActionSheet({
+  actionSpecifications,
+  onClick,
+}: {
+  actionSpecifications: ReplyType['actionSpecifications']
+  onClick: () => void
+}) {
+  const uriHash = useURIHash()
+  const { back } = useHistoryFunctions()
+
+  return (
+    <ActionSheet
+      open={uriHash === HASH_MORE_ACTION_SHEET}
+      onClose={back}
+      title={actionSpecifications.delete ? '내 댓글' : '댓글'}
+    >
+      {actionSpecifications.delete ? (
+        <>
+          <ActionSheet.Item onClick={onClick}>수정하기</ActionSheet.Item>
+          <ActionSheet.Item>삭제하기</ActionSheet.Item>
+        </>
+      ) : (
+        <ActionSheet.Item>신고하기</ActionSheet.Item>
+      )}
+    </ActionSheet>
   )
 }
