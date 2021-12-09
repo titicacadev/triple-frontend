@@ -19,6 +19,7 @@
     "@titicaca/core-elements": "^4.1.4",
     "@titicaca/fetcher": "^4.1.4",
     "@titicaca/router": "^4.1.4",
-    "@titicaca/view-utilities": "^4.1.4"
+    "@titicaca/view-utilities": "^4.1.4",
+    "@titicaca/modals": "^4.1.4"
   }
 }
