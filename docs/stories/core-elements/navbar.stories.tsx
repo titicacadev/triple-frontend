@@ -101,7 +101,7 @@ export function secondaryNavbar() {
   return (
     <>
       <Navbar title={text('제목', '도쿄 관광지')} borderless>
-        <Navbar.Item icon={'back'} />
+        <Navbar.Item icon="back" />
         <Navbar.Item floated="right" icon="more" />
       </Navbar>
       <Navbar.Secondary>
@@ -118,7 +118,7 @@ export function wrappedNavbar() {
   return (
     <NavbarWrapper>
       <Navbar title={text('제목', '도쿄 관광지')} borderless>
-        <Navbar.Item icon={'back'} />
+        <Navbar.Item icon="back" />
         <Navbar.Item floated="right" icon="more" />
       </Navbar>
       <Navbar.Secondary>
@@ -146,7 +146,7 @@ export function toc() {
         </TOC>
       )}
     >
-      <Navbar.Item icon={'back'} />
+      <Navbar.Item icon="back" />
       <Navbar.Item floated="right" icon="more" />
     </Navbar>
   )
@@ -158,11 +158,11 @@ export function backgroundExample() {
     <>
       <Navbar borderless backgroundColor="azul" title="컬러가 적용된 Navbar">
         <Navbar.Item icon="back" />
-        <Navbar.Item floated="right" icon={'more'} />
+        <Navbar.Item floated="right" icon="more" />
       </Navbar>
       <Navbar borderless backgroundColor="teal" title="컬러가 적용된 Navbar">
         <Navbar.Item icon="back" />
-        <Navbar.Item floated="right" icon={'more'} />
+        <Navbar.Item floated="right" icon="more" />
       </Navbar>
     </>
   )

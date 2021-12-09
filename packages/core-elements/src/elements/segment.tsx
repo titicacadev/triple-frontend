@@ -24,7 +24,7 @@ export const Segment = styled.div<{
   }
 `
 
-export type BoxProps = {
+export interface BoxProps {
   radius: number
   margin: MarginPadding
   padding: MarginPadding

@@ -14,7 +14,7 @@ export enum BannerTypes {
   ContentDetailsBanner = 'content_details_ad_v0',
 }
 
-type UserLocation = {
+interface UserLocation {
   latitude?: number | null
   longitude?: number | null
 }

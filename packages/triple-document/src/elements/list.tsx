@@ -57,7 +57,7 @@ export default function List({
         {items.map((item, index) => (
           <ListItemContainer bulletType={bulletType} key={index}>
             {item.type === 'text' ? (
-              <ListTextElement value={item.value} compact={true} />
+              <ListTextElement value={item.value} compact />
             ) : null}
             {item.type === 'links' ? (
               <Links value={{ display: 'list', links: item.value.links }} />

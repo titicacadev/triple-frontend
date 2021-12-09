@@ -1,6 +1,6 @@
 import { UrlElements } from '@titicaca/view-utilities'
 
-export type ContextOptions = {
+export interface ContextOptions {
   cta?: string
   navigate: (rawHref: string, params?: any) => string | undefined | void
 }

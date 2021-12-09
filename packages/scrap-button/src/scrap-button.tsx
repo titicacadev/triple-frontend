@@ -7,7 +7,7 @@ import styled from 'styled-components'
 
 import { withMask } from './scrap-button-mask'
 
-type ScrapableResource = {
+interface ScrapableResource {
   id: string
   type: string
   scraped?: boolean

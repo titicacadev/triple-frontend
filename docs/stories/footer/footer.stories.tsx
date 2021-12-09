@@ -20,7 +20,7 @@ export function BaseCSFooter() {
   return (
     <CSFooter
       service={select('서비스', ['AIR', 'TNA', 'HOTEL'], 'AIR')}
-      csTime={'오전 9시 - 오후 6시 (한국시간 기준, 연중무휴)'}
+      csTime="오전 9시 - 오후 6시 (한국시간 기준, 연중무휴)"
       csMessage={
         '현지사용 긴급문의 카카오톡 @트리플서비스\n(오전 9시 - 오후 10시)'
       }

@@ -51,7 +51,7 @@ export function ContentDetailsBanners() {
       contentType={select(
         '콘텐츠 타입',
         CONTENT_TYPE_SET,
-        CONTENT_TYPE_SET['restaurant'] as any,
+        CONTENT_TYPE_SET.restaurant as any,
       )}
       contentId={text('콘텐츠 ID', 'a897fe29-f947-4364-b994-9a40157e54cb')}
       contentRegionId={text('리전 ID', '759174cc-0814-4400-a420-5668a0517edd')}
@@ -87,7 +87,7 @@ export function ListTopAdBanners() {
         contentType={select(
           '콘텐츠 타입',
           CONTENT_TYPE_SET,
-          CONTENT_TYPE_SET['air'] as any,
+          CONTENT_TYPE_SET.air as any,
         )}
         contentId={text('콘텐츠 ID', '81977f84-ddd0-4112-8057-6cc9dab9aa70')}
         regionId={text('리전 ID', '759174cc-0814-4400-a420-5668a0517edd')}

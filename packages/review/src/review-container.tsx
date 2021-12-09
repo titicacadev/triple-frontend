@@ -206,7 +206,7 @@ function ReviewContainer({
     TransitionType.ReviewWrite,
     useSessionCallback(
       useCallback(
-        (e: React.SyntheticEvent, rating: number = 0) => {
+        (e: React.SyntheticEvent, rating = 0) => {
           e.stopPropagation()
 
           trackEvent({

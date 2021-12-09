@@ -1,4 +1,4 @@
-export type IconBaseProps = {
+export interface IconBaseProps {
   /** stroke color */
   color?: string
   width?: number

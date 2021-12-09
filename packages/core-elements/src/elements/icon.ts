@@ -1,9 +1,7 @@
 import styled from 'styled-components'
 
-import { GlobalSizes } from '../commons'
+import { GlobalSizes, MarginPadding } from '../commons'
 import { marginMixin, paddingMixin } from '../mixins'
-
-import { MarginPadding } from './../commons'
 
 type Icons = 'save' | 'web' | 'call' | 'map' | 'arrowRight'
 

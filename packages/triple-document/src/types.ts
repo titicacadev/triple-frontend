@@ -29,7 +29,7 @@ export interface TripleElementData<T = string, Value = unknown> {
 
 export type ImageEventHandler = (e: SyntheticEvent, image: ImageMeta) => void
 
-export type Link = {
+export interface Link {
   href?: string
   label?: string
   level?: string
