@@ -15,11 +15,11 @@ const ImageCircular = styled.img<{
   width?: number
 }>`
   width: ${({ size, width }) =>
-    (size && ROUND_SIZES[size]) || width || ROUND_SIZES['small']}px;
+    (size && ROUND_SIZES[size]) || width || ROUND_SIZES.small}px;
   height: ${({ size, width }) =>
-    (size && ROUND_SIZES[size]) || width || ROUND_SIZES['small']}px;
+    (size && ROUND_SIZES[size]) || width || ROUND_SIZES.small}px;
   border-radius: ${({ size, width }) =>
-    ((size && ROUND_SIZES[size]) || width || (ROUND_SIZES['small'] as number)) /
+    ((size && ROUND_SIZES[size]) || width || (ROUND_SIZES.small as number)) /
     2}px;
   background-color: rgba(${getColor('brightGray')});
   object-fit: cover;

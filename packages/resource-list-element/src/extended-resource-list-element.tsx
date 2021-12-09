@@ -13,7 +13,7 @@ import { ImageMeta } from '@titicaca/type-definitions'
 
 import ReviewScrapStat from './review-scrap-stat'
 
-type ResourceMeta = {
+interface ResourceMeta {
   id: string
   type?: string
   scraped?: boolean

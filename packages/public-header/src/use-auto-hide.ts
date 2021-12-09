@@ -7,7 +7,7 @@ import {
   TRANSITION_TIME,
 } from './constants'
 
-export function useAutoHide(disabled: boolean = false) {
+export function useAutoHide(disabled = false) {
   const [publicHeaderVisible, setPublicHeaderVisible] = useState(disabled)
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export function useAutoHide(disabled: boolean = false) {
  * @param heightCompensation 동적으로 표시했다 가렸다 하는 엘리먼트의 높이를 보정하는 파라미터
  * @returns
  */
-function getScrollTop(heightCompensation: number = 0) {
+function getScrollTop(heightCompensation = 0) {
   const maxScrollTop = document.body.clientHeight - window.innerHeight
 
   return Math.min(

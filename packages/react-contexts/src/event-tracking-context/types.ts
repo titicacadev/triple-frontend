@@ -6,7 +6,9 @@ export interface FAParams {
 
 export type GAParams = (string | undefined)[]
 
-type PixelPayload = { [key: string]: unknown }
+interface PixelPayload {
+  [key: string]: unknown
+}
 
 /**
  * Pixel 표준 이벤트입니다.

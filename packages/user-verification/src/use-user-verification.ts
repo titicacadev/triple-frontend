@@ -8,7 +8,7 @@ import {
 
 import { useVerifiedMessageListener, VerifiedMessage } from './verified-message'
 
-type VerificationState = {
+interface VerificationState {
   phoneNumber?: string
   verified?: boolean
   error?: string

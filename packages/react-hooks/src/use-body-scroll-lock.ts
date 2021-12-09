@@ -12,7 +12,7 @@ export interface BodyScrollLockState {
 
 const bodyScrollLockStates: BodyScrollLockState[] = []
 
-export function useBodyScrollLock(lock: boolean = false) {
+export function useBodyScrollLock(lock = false) {
   useEffect(() => {
     const body = document.body as HTMLBodyElement
 

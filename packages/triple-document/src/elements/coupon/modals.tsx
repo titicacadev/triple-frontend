@@ -4,7 +4,7 @@ import { Modal, Alert } from '@titicaca/modals'
 import styled from 'styled-components'
 import { useURIHash, useHistoryFunctions } from '@titicaca/react-contexts'
 
-type HashKeyValue = {
+interface HashKeyValue {
   [hash: string]: string
 }
 

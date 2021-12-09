@@ -100,7 +100,7 @@ function useTripleABExperimentMeta(
   }
 }
 
-type OptionalAttributes = {
+interface OptionalAttributes {
   content_type?: string
   item_id?: string
   item_name?: string

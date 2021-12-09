@@ -22,7 +22,9 @@ export function parseUrl(rawHref?: string): UrlElements {
   return { href, scheme, host, path, query, hash }
 }
 
-type ImplicitBooleanQueryValue = { type: 'implicitBoolean' }
+interface ImplicitBooleanQueryValue {
+  type: 'implicitBoolean'
+}
 
 interface ArrayFormatQueryValue {
   type: 'indices' | 'brackets' | 'repeat' | 'comma'
