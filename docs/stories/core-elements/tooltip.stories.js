@@ -83,9 +83,9 @@ export const HotelListIcon = () => {
             horizontal: 'right',
             horizontalOffset: 24,
           }}
-          hasShadow={true}
+          hasShadow
           backgroundColor="#368fff"
-          nowrap={true}
+          nowrap
         />
       </Navbar.Item>
     </Navbar>

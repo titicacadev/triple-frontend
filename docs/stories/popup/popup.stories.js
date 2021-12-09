@@ -32,7 +32,7 @@ Basic.storyName = '일반'
 export const AfterActionSheet = () => {
   return (
     <>
-      <Popup title="팝업입니다" open={true}>
+      <Popup title="팝업입니다" open>
         <EmptyScroll>Scroll........</EmptyScroll>
       </Popup>
 
@@ -50,7 +50,7 @@ AfterActionSheet.storyName = '팝업과 액션시트가 같은 계층에 있는 
 
 export const WithInActionSheet = () => {
   return (
-    <Popup title="팝업입니다" open={true}>
+    <Popup title="팝업입니다" open>
       <EmptyScroll>Scroll........</EmptyScroll>
       <ActionSheet
         open={boolean('액션 시트 열림', false)}

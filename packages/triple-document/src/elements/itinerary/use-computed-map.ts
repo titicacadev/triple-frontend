@@ -3,12 +3,12 @@ import { getGeometry } from '@titicaca/map'
 import type { LatLngLiteral } from '@titicaca/type-definitions'
 import type { ItineraryItemType } from '@titicaca/content-type-definitions'
 
-type Poi = {
+interface Poi {
   poi: ItineraryItemType['poi']
   position: LatLngLiteral
 }
 
-type ItineraryMapData = {
+interface ItineraryMapData {
   totalPois: number
   pois: Poi[]
   polyline: LatLngLiteral[]

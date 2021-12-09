@@ -4,7 +4,7 @@ import type {
   ImageMeta,
 } from '@titicaca/type-definitions'
 
-type BaseResourceType = {
+interface BaseResourceType {
   id: string
   name: string
 }
@@ -18,7 +18,7 @@ enum PoiType {
   air = 'air',
 }
 
-type Price = {
+interface Price {
   promoText: string // "최대 8%",
   nightlyPrice: number // 79228,
   clubPromotionTarget: boolean // true,
@@ -29,7 +29,7 @@ type Price = {
   clubPromotionType: 'STATIC'
 }
 
-export type HotelResourceType = {
+export interface HotelResourceType {
   id: string
   source: {
     id: string
@@ -49,14 +49,14 @@ export type HotelResourceType = {
   scraped: boolean
 }
 
-export type RecommendationHotelResourceType = {
+export interface RecommendationHotelResourceType {
   id: string
   hotel: HotelResourceType
   price: Price
   reasons: string[]
 }
 
-export type RecommendationItineraryCardResourceType = {
+export interface RecommendationItineraryCardResourceType {
   cardType: string
   content: {
     pois?: RecommendationItineraryPoiCard[]
@@ -77,7 +77,7 @@ export interface RecommendationItineraryResourceType {
   cards: RecommendationItineraryCardResourceType[]
 }
 
-export type RecommendationItineraryPoiCard = {
+export interface RecommendationItineraryPoiCard {
   id?: string
   source: {
     type: PoiType

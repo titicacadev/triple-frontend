@@ -116,8 +116,8 @@ export const FixedPriceV2 = () => {
 
   return (
     <FixedPricingV2
-      loading={true}
-      active={true}
+      loading
+      active
       basePrice={30000}
       salePrice={25000}
       priceLabelOverride={text('메세지')}

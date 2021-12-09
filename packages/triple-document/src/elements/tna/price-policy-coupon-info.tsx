@@ -15,55 +15,53 @@ export function PricePolicyCouponInfo({
   margin?: MarginPadding
 }) {
   return (
-    <>
-      <Container margin={margin || { top: 4 }}>
-        {hasOnlyExpectedApplicableCoupon ? (
-          <>
-            <Text bold inlineBlock size="tiny" color={emphasisColor}>
-              쿠폰할인
-            </Text>
-            <Text
-              bold
-              inlineBlock
-              size="tiny"
-              color="gray700"
-              margin={{ left: 5 }}
-            >
-              가능
-            </Text>
-          </>
-        ) : hasAmountAfterUsingCouponPrice ? (
-          <>
-            <Text bold inlineBlock size="tiny" color="gray700">
-              쿠폰할인가
-            </Text>
-            <Text
-              bold
-              inlineBlock
-              size="tiny"
-              color={emphasisColor}
-              margin={{ left: 5 }}
-            >
-              {displayPricePolicy}
-            </Text>
-          </>
-        ) : (
-          <>
-            <Text bold inlineBlock size="tiny" color="gray700">
-              쿠폰적용시
-            </Text>
-            <Text
-              bold
-              inlineBlock
-              size="tiny"
-              color={emphasisColor}
-              margin={{ left: 5 }}
-            >
-              무료
-            </Text>
-          </>
-        )}
-      </Container>
-    </>
+    <Container margin={margin || { top: 4 }}>
+      {hasOnlyExpectedApplicableCoupon ? (
+        <>
+          <Text bold inlineBlock size="tiny" color={emphasisColor}>
+            쿠폰할인
+          </Text>
+          <Text
+            bold
+            inlineBlock
+            size="tiny"
+            color="gray700"
+            margin={{ left: 5 }}
+          >
+            가능
+          </Text>
+        </>
+      ) : hasAmountAfterUsingCouponPrice ? (
+        <>
+          <Text bold inlineBlock size="tiny" color="gray700">
+            쿠폰할인가
+          </Text>
+          <Text
+            bold
+            inlineBlock
+            size="tiny"
+            color={emphasisColor}
+            margin={{ left: 5 }}
+          >
+            {displayPricePolicy}
+          </Text>
+        </>
+      ) : (
+        <>
+          <Text bold inlineBlock size="tiny" color="gray700">
+            쿠폰적용시
+          </Text>
+          <Text
+            bold
+            inlineBlock
+            size="tiny"
+            color={emphasisColor}
+            margin={{ left: 5 }}
+          >
+            무료
+          </Text>
+        </>
+      )}
+    </Container>
   )
 }

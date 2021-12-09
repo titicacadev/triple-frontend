@@ -31,4 +31,6 @@ export interface ReviewData {
   media?: ImageMeta[] | null
 }
 
-export type MyReviews = { [key: string]: boolean }
+export interface MyReviews {
+  [key: string]: boolean
+}

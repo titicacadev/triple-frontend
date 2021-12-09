@@ -8,7 +8,7 @@ import { layeringMixin, LayeringMixinProps, paddingMixin } from '../mixins'
 import { unit } from '../utils/unit'
 import { MarginPadding } from '../commons'
 
-type NavbarProps = {
+interface NavbarProps {
   maxWidth?: number
   borderless?: boolean
   backgroundColor?: Color
@@ -116,7 +116,7 @@ const ICON_URL_BY_NAMES: { [key in IconNames]: string } = {
   viewAll: 'https://assets.triple.guide/images/btn-end-view-all@3x.png',
 }
 
-type NavbarItemProps = {
+interface NavbarItemProps {
   floated?: CSS.Property.Float
   icon?: IconNames
   position?: CSS.Property.Position

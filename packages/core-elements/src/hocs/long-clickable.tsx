@@ -9,10 +9,10 @@ interface LongClickableComponentProps {
 
 export default function longClickable<T extends LongClickableComponentProps>(
   Component: React.ComponentType<T>,
-  duration: number = 500,
+  duration = 500,
 ): React.ComponentType<T & { onLongClick?: () => void }> {
   let timeoutId: ReturnType<typeof setTimeout> | undefined
-  let isScrolled: boolean = false
+  let isScrolled = false
 
   return function LongClickComponent({ onLongClick, onClick, ...props }) {
     const onTouchStart = useCallback(() => {

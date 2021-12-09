@@ -1,1 +1,4 @@
-export type Target = { id: string; type: unknown }
+export interface Target {
+  id: string
+  type: unknown
+}
