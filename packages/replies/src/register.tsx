@@ -1,4 +1,4 @@
-import React, { Ref, useState } from 'react'
+import React, { Ref, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Container, FlexBox, HR1 } from '@titicaca/core-elements'
 
@@ -11,7 +11,8 @@ const RegisterButton = styled.button`
   line-height: 1.2;
   font-size: 15px;
   font-weight: bold;
-  color: var(--color-blue);
+  color: ${(props) =>
+    props.disabled ? 'var(--color-blue500)' : 'var(--color-blue)'};
   background: inherit;
   border: none;
   outline: none;
@@ -21,13 +22,21 @@ const RegisterButton = styled.button`
 export default function Register({
   registerPlaceholder,
   textareaRef,
+  content,
   onSubmit,
 }: {
   registerPlaceholder?: string
   textareaRef?: Ref<HTMLTextAreaElement>
+  content: string
   onSubmit: (replyContent: string) => void
 }) {
   const [replyContent, setReplyContent] = useState('')
+
+  useEffect(() => {
+    setReplyContent(content)
+  }, [content])
+
+  const disabled = replyContent === content
 
   return (
     <Container cursor="pointer">
@@ -54,6 +63,7 @@ export default function Register({
             onSubmit(replyContent)
             setReplyContent('')
           }}
+          disabled={disabled}
         >
           등록
         </RegisterButton>
