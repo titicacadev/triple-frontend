@@ -10,12 +10,21 @@ export default function ReplyList({
   replies,
   totalRepliesCount,
   fetchMoreReplies,
-  changeReplyType,
+  handleWriteReplyClick,
+  handleModifyReplyClick,
 }: {
   replies: ReplyType[]
   totalRepliesCount?: number
   fetchMoreReplies: () => void
-  changeReplyType: (baseReply: ReplyType) => void
+  handleWriteReplyClick: (
+    reply: Partial<ReplyType['actionSpecifications']['reply']>,
+    type: 'writeChildReply',
+  ) => void
+  handleModifyReplyClick: (
+    reply: Partial<ReplyType['actionSpecifications']['reply']>,
+    type: 'modifyReply',
+    text: string,
+  ) => void
 }) {
   return (
     <>
@@ -44,7 +53,8 @@ export default function ReplyList({
 
                 <Reply
                   reply={reply}
-                  onReplyTypeChange={() => changeReplyType(reply)}
+                  handleWriteReplyClick={handleWriteReplyClick}
+                  handleModifyReplyClick={handleModifyReplyClick}
                 />
               </List.Item>
             ))}
