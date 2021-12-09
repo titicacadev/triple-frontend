@@ -16,6 +16,9 @@
       "path": "../fetcher"
     },
     {
+      "path": "../modals"
+    },
+    {
       "path": "../router"
     },
     {
