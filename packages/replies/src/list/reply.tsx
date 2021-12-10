@@ -7,10 +7,8 @@ import {
   SquareImage,
   Text,
 } from '@titicaca/core-elements'
-import { useURIHash, useHistoryFunctions } from '@titicaca/react-contexts'
 import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
 import { ExternalLink } from '@titicaca/router'
-import ActionSheet from '@titicaca/action-sheet'
 
 import { Reply as ReplyType, Writer } from '../types'
 import { fetchChildReplies } from '../replies-api-clients'
@@ -47,8 +45,6 @@ const MentionUser = styled.a`
   margin-right: 5px;
 `
 
-const HASH_MORE_ACTION_SHEET = 'reply.more-action-sheet'
-
 export default function Reply({
   reply: {
     writer: { profileImage, name },
@@ -63,24 +59,26 @@ export default function Reply({
   },
   handleWriteReplyClick,
   handleModifyReplyClick,
+  setIsMine,
+  actionSheetOpen,
 }: {
   reply: ReplyType
   handleWriteReplyClick: (
     reply: Partial<ReplyType['actionSpecifications']['reply']>,
-    type: 'writeChildReply',
+    type: string,
   ) => void
   handleModifyReplyClick: (
     reply: Partial<ReplyType['actionSpecifications']['reply']>,
-    type: 'modifyReply',
     text: string,
+    type?: string,
   ) => void
+  setIsMine: (isMine: boolean) => void
+  actionSheetOpen: () => void
 }) {
   const [{ childReplies, childPage }, setChildRepliesInfo] = useState<{
     childReplies: ReplyType[]
     childPage: number
   }>({ childReplies: checkUniqueReply(children), childPage: 0 })
-
-  const { push } = useHistoryFunctions()
 
   useEffect(() => {
     async function fetchChildRepliesAndSet() {
@@ -113,8 +111,28 @@ export default function Reply({
   }, [id, childPage])
 
   const handleMoreClick = useCallback(() => {
-    push(HASH_MORE_ACTION_SHEET)
-  }, [push])
+    setIsMine(actionSpecifications.delete)
+
+    if (actionSpecifications.delete) {
+      handleModifyReplyClick(
+        {
+          toMessageId: id,
+          mentioningUserName: actionSpecifications.reply.mentioningUserName,
+          mentioningUserUid: mentionedUser
+            ? actionSpecifications.reply.mentioningUserUid
+            : '',
+        },
+        text as string,
+      )
+    }
+  }, [
+    setIsMine,
+    actionSpecifications,
+    handleModifyReplyClick,
+    id,
+    mentionedUser,
+    text,
+  ])
 
   return (
     <>
@@ -214,28 +232,13 @@ export default function Reply({
                 reply={childReply}
                 handleWriteReplyClick={handleWriteReplyClick}
                 handleModifyReplyClick={handleModifyReplyClick}
+                setIsMine={setIsMine}
+                actionSheetOpen={actionSheetOpen}
               />
             </ChildResourceListItem>
           ))}
         </List>
       ) : null}
-
-      <FeatureActionSheet
-        actionSpecifications={actionSpecifications}
-        onClick={() =>
-          handleModifyReplyClick(
-            {
-              toMessageId: id,
-              mentioningUserName: actionSpecifications.reply.mentioningUserName,
-              mentioningUserUid: mentionedUser
-                ? actionSpecifications.reply.mentioningUserUid
-                : '',
-            },
-            'modifyReply',
-            text as string,
-          )
-        }
-      />
     </>
   )
 }
@@ -287,33 +290,5 @@ function Content({
         </Text>
       ) : null}
     </Container>
-  )
-}
-
-function FeatureActionSheet({
-  actionSpecifications,
-  onClick,
-}: {
-  actionSpecifications: ReplyType['actionSpecifications']
-  onClick: () => void
-}) {
-  const uriHash = useURIHash()
-  const { back } = useHistoryFunctions()
-
-  return (
-    <ActionSheet
-      open={uriHash === HASH_MORE_ACTION_SHEET}
-      onClose={back}
-      title={actionSpecifications.delete ? '내 댓글' : '댓글'}
-    >
-      {actionSpecifications.delete ? (
-        <>
-          <ActionSheet.Item onClick={onClick}>수정하기</ActionSheet.Item>
-          <ActionSheet.Item>삭제하기</ActionSheet.Item>
-        </>
-      ) : (
-        <ActionSheet.Item>신고하기</ActionSheet.Item>
-      )}
-    </ActionSheet>
   )
 }
