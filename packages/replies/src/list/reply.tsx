@@ -225,8 +225,8 @@ export default function Reply({
         onClick={() =>
           handleModifyReplyClick(
             {
-              ...actionSpecifications.reply,
               toMessageId: id,
+              mentioningUserName: actionSpecifications.reply.mentioningUserName,
               mentioningUserUid: mentionedUser
                 ? actionSpecifications.reply.mentioningUserUid
                 : '',
