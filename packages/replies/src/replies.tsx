@@ -141,10 +141,12 @@ export default function Replies({
     type?: string,
   ) => {
     setActionType(type as string)
-    // setContent(text)
 
     setReplyActionSpecification(reply)
-    focusing()
+
+    if (type) {
+      focusing()
+    }
   }
 
   const handleModifyCancel = () => {
