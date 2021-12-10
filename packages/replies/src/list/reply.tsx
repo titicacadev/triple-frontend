@@ -16,7 +16,7 @@ import { Reply as ReplyType, Writer } from '../types'
 import { fetchChildReplies } from '../replies-api-clients'
 import { checkUniqueReply } from '../utils'
 
-const MoreButton = styled.button`
+const MoreActionsButton = styled.button`
   width: 19px;
   height: 19px;
   padding-left: 3px;
@@ -148,7 +148,7 @@ export default function Reply({
               {formatTimestamp(createdAt)}
             </Text>
 
-            <MoreButton onClick={() => handleMoreClick(id)} />
+            <MoreActionsButton onClick={() => handleMoreClick(id)} />
           </FlexBox>
         </FlexBox>
 
