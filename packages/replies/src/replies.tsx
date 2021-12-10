@@ -58,7 +58,9 @@ export default function Replies({
     mentioningUserUid: null,
     mentioningUserName: null,
   })
-  const [actionType, setActionType] = useState<string>('writeReply')
+  const [actionType, setActionType] = useState<
+    'writeReply' | 'writeChildReply' | 'modifyReply'
+  >('writeReply')
 
   const [content, setContent] = useState('')
   const { push, back } = useHistoryFunctions()
@@ -119,7 +121,7 @@ export default function Replies({
 
   const handleWriteReplyClick = (
     reply: Partial<Reply['actionSpecifications']['reply']>,
-    type: string,
+    type: 'writeReply' | 'writeChildReply',
   ) => {
     setReplyActionSpecification(reply)
     setActionType(type)
@@ -135,18 +137,18 @@ export default function Replies({
     setActionType('writeReply')
   }
 
+  // 로컬 테스트용 코드
+  // const [modalOpen, setModalOpen] = useState(false)
+
   const handleModifyReplyClick = (
     reply: Partial<Reply['actionSpecifications']['reply']>,
+    type: 'modifyReply',
     text: string,
-    type?: string,
   ) => {
-    setActionType(type as string)
-
+    setActionType(type)
     setReplyActionSpecification(reply)
-
-    if (type) {
-      focusing()
-    }
+    setContent(text)
+    focusing()
   }
 
   const handleModifyCancel = () => {
@@ -158,6 +160,9 @@ export default function Replies({
     })
     setContent('')
     setActionType('writeReply')
+
+    // 로컬 테스트용 코드
+    // setModalOpen(true)
   }
 
   const wrtieReplyFunc = async (content: string) => {
@@ -203,17 +208,14 @@ export default function Replies({
   const handleClose =
     actionType === 'modifyReply'
       ? () => push(HASH_MODIFY_CLOSE_MODAL)
-      : handleWriteCancel
+      : // () => setModalOpen(true) // 로컬 테스트용 코드
+        handleWriteCancel
 
   return (
     <Container onClickCapture={onClickCapture}>
       <ReplyList
         replies={replies}
         totalRepliesCount={totalRepliesCount}
-        toMessageId={toMessageId}
-        mentioningUserUid={mentioningUserUid}
-        mentioningUserName={mentioningUserName}
-        content={content}
         fetchMoreReplies={fetchMoreReplies}
         handleWriteReplyClick={handleWriteReplyClick}
         handleModifyReplyClick={handleModifyReplyClick}
@@ -250,6 +252,9 @@ export default function Replies({
       />
 
       <ConfirmModal
+        // 로컬 테스트용 코드
+        // open={modalOpen}
+        // onClose={() => setModalOpen(false)}
         onConfirm={handleModifyCancel}
         onCancel={() => {
           back()
@@ -261,9 +266,15 @@ export default function Replies({
 }
 
 function ConfirmModal({
+  // 로컬 테스트용 코드
+  // open,
+  // onClose,
   onConfirm,
   onCancel,
 }: {
+  // 로컬 테스트용 코드
+  // open: boolean
+  // onClose: () => void
   onConfirm: () => void
   onCancel: () => void
 }) {
@@ -272,6 +283,9 @@ function ConfirmModal({
 
   return (
     <Confirm
+      // 로컬 테스트용 코드
+      // open={open}
+      // onClose={onClose}
       open={uriHash === HASH_MODIFY_CLOSE_MODAL}
       onClose={back}
       // eslint-disable-next-line react/no-children-prop
