@@ -112,6 +112,7 @@ export default function Reply({
 
   const handleMoreClick = useCallback(() => {
     setIsMine(actionSpecifications.delete)
+    actionSheetOpen()
 
     if (actionSpecifications.delete) {
       handleModifyReplyClick(
@@ -127,6 +128,7 @@ export default function Reply({
     }
   }, [
     setIsMine,
+    actionSheetOpen,
     actionSpecifications,
     handleModifyReplyClick,
     id,
