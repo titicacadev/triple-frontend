@@ -58,9 +58,7 @@ export default function Replies({
     mentioningUserUid: null,
     mentioningUserName: null,
   })
-  const [actionType, setActionType] = useState<
-    'writeReply' | 'writeChildReply' | 'modifyReply'
-  >('writeReply')
+  const [actionType, setActionType] = useState<string>('writeReply')
 
   const [content, setContent] = useState('')
   const { push, back } = useHistoryFunctions()
@@ -97,6 +95,7 @@ export default function Replies({
     fetchReplyBoardAndSet()
   }, [resourceId, resourceType])
 
+  // 댓글 더보기
   const fetchMoreReplies = useCallback(async () => {
     const repliesResponse = await fetchReplies({
       resourceId,
@@ -120,7 +119,7 @@ export default function Replies({
 
   const handleWriteReplyClick = (
     reply: Partial<Reply['actionSpecifications']['reply']>,
-    type: 'writeChildReply',
+    type: string,
   ) => {
     setReplyActionSpecification(reply)
     setActionType(type)
@@ -138,12 +137,13 @@ export default function Replies({
 
   const handleModifyReplyClick = (
     reply: Partial<Reply['actionSpecifications']['reply']>,
-    type: 'modifyReply',
     text: string,
+    type?: string,
   ) => {
-    setContent(text)
+    setActionType(type as string)
+    // setContent(text)
+
     setReplyActionSpecification(reply)
-    setActionType(type)
     focusing()
   }
 
@@ -208,6 +208,10 @@ export default function Replies({
       <ReplyList
         replies={replies}
         totalRepliesCount={totalRepliesCount}
+        toMessageId={toMessageId}
+        mentioningUserUid={mentioningUserUid}
+        mentioningUserName={mentioningUserName}
+        content={content}
         fetchMoreReplies={fetchMoreReplies}
         handleWriteReplyClick={handleWriteReplyClick}
         handleModifyReplyClick={handleModifyReplyClick}
