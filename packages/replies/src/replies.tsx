@@ -134,9 +134,6 @@ export default function Replies({
     setRegisterType('writeReply')
   }
 
-  // 로컬 테스트용 코드
-  // const [modalOpen, setModalOpen] = useState(false)
-
   const handleModifyReplyClick = (
     reply: Partial<Reply['actionSpecifications']['reply']>,
     type: 'modifyReply',
@@ -157,9 +154,6 @@ export default function Replies({
     })
     setContent('')
     setRegisterType('writeReply')
-
-    // 로컬 테스트용 코드
-    // setModalOpen(true)
   }
 
   const handleRegister = (content: string) => {
@@ -182,8 +176,7 @@ export default function Replies({
   const handleClose =
     registerType === 'modifyReply'
       ? () => push(HASH_MODIFY_CLOSE_MODAL)
-      : // () => setModalOpen(true) // 로컬 테스트용 코드
-        handleWriteCancel
+      : handleWriteCancel
 
   return (
     <Container onClickCapture={onClickCapture}>
@@ -231,9 +224,6 @@ export default function Replies({
           back()
           setRegisterType('modifyReply')
         }}
-        // 로컬 테스트용 코드
-        // open={modalOpen}
-        // onClose={() => setModalOpen(false)}
       />
     </Container>
   )
@@ -242,15 +232,9 @@ export default function Replies({
 function ConfirmModal({
   onConfirm,
   onCancel,
-}: // 로컬 테스트용 코드
-// open,
-// onClose,
-{
+}: {
   onConfirm: () => void
   onCancel: () => void
-  // 로컬 테스트용 코드
-  // open: boolean
-  // onClose: () => void
 }) {
   const uriHash = useURIHash()
   const { back } = useHistoryFunctions()
@@ -259,9 +243,6 @@ function ConfirmModal({
     <Confirm
       open={uriHash === HASH_MODIFY_CLOSE_MODAL}
       onClose={back}
-      // 로컬 테스트용 코드
-      // open={open}
-      // onClose={onClose}
       // eslint-disable-next-line react/no-children-prop
       children={
         <div>

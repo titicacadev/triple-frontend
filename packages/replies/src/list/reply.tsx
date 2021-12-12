@@ -82,9 +82,6 @@ export default function Reply({
 
   const { push } = useHistoryFunctions()
 
-  // 로컬 테스트용 코드
-  // const [modalOpen, setModalOpen] = useState(false)
-
   useEffect(() => {
     async function fetchChildRepliesAndSet() {
       const response = await fetchChildReplies({
@@ -118,9 +115,6 @@ export default function Reply({
   const handleMoreClick = useCallback(
     (id) => {
       push(`${HASH_MORE_ACTION_SHEET}.${id}`)
-
-      // 로컬 테스트용 코드
-      // setModalOpen(true)
     },
     [push],
   )
@@ -240,9 +234,6 @@ export default function Reply({
             text as string,
           )
         }
-        // 로컬 테스트용 코드
-        // modalOpen={modalOpen}
-        // onClose={() => setModalOpen(false)}
       />
     </>
   )
@@ -302,16 +293,10 @@ function FeatureActionSheet({
   isMine,
   actionSheetHash,
   onModifyClick,
-}: // 로컬 테스트용 코드
-// modalOpen,
-// onClose,
-{
+}: {
   isMine: boolean
   actionSheetHash: string
   onModifyClick: () => void
-  // 로컬 테스트용 코드
-  // modalOpen: boolean
-  // onClose: () => void
 }) {
   const uriHash = useURIHash()
   const { back } = useHistoryFunctions()
@@ -321,9 +306,6 @@ function FeatureActionSheet({
       open={uriHash === actionSheetHash}
       onClose={back}
       title={isMine ? '내 댓글' : '댓글'}
-      // 로컬 테스트용 코드
-      // open={modalOpen}
-      // onClose={onClose}
     >
       {isMine ? (
         <>
