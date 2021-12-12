@@ -42,41 +42,6 @@ export async function fetchReplies({
   return parsedBody
 }
 
-export async function writeReply({
-  resourceId,
-  resourceType,
-  content,
-  mentionedUserUid,
-}: {
-  resourceId: string
-  resourceType: string
-  content: string
-  mentionedUserUid?: string
-}) {
-  const response = await authGuardedFetchers.post<Reply>(
-    generateUrl({
-      path: `/api/reply/messages`,
-      query: qs.stringify({
-        contentFormat: 'plaintext',
-      }),
-    }),
-    {
-      body: {
-        resourceId,
-        resourceType,
-        content,
-        mentionedUserUid,
-      },
-    },
-  )
-
-  if (response === 'NEED_LOGIN') {
-    throw new Error('로그인이 필요한 호출입니다.')
-  }
-
-  captureHttpError(response)
-}
-
 export async function fetchReplyBoard({
   resourceType,
   resourceId,
@@ -137,24 +102,32 @@ export async function fetchChildReplies({
   return parsedBody
 }
 
-export async function writeChildReply({
+export async function registerReply({
+  resourceId,
+  resourceType,
   messageId,
   content,
   mentionedUserUid,
+  registerType,
 }: {
+  resourceId?: string
+  resourceType?: ResourceType
   messageId: string
   content: string
   mentionedUserUid: string
+  registerType: 'writeReply' | 'writeChildReply' | 'modifyReply'
 }) {
-  const response = await authGuardedFetchers.post(
+  const { fetcher, path } = defineRegisterRequest({ registerType, messageId })
+
+  const response = await fetcher(
     generateUrl({
-      path: `/api/reply/messages/${messageId}/messages`,
-      query: qs.stringify({
-        contentFormat: 'plaintext',
-      }),
+      path,
+      query: qs.stringify({ contentFormat: 'plaintext' }),
     }),
     {
       body: {
+        resourceId,
+        resourceType,
         content,
         mentionedUserUid,
       },
@@ -168,33 +141,29 @@ export async function writeChildReply({
   captureHttpError(response)
 }
 
-export async function modifyReply({
+function defineRegisterRequest({
+  registerType,
   messageId,
-  content,
-  mentionedUserUid,
 }: {
+  registerType: 'writeReply' | 'writeChildReply' | 'modifyReply'
   messageId: string
-  content: string
-  mentionedUserUid: string
 }) {
-  const response = await authGuardedFetchers.put(
-    generateUrl({
-      path: `/api/reply/messages/${messageId}`,
-      query: qs.stringify({
-        contentFormat: 'plaintext',
-      }),
-    }),
-    {
-      body: {
-        content,
-        mentionedUserUid,
-      },
+  const registerRequest = {
+    writeReply: {
+      fetcher: authGuardedFetchers.post,
+      path: `/api/reply/messages`,
     },
-  )
-
-  if (response === 'NEED_LOGIN') {
-    throw new Error('로그인이 필요한 호출입니다.')
+    writeChildReply: {
+      fetcher: authGuardedFetchers.post,
+      path: `/api/reply/messages/${messageId}/messages`,
+    },
+    modifyReply: {
+      fetcher: authGuardedFetchers.put,
+      path: `/api/reply/messages/${messageId}`,
+    },
   }
 
-  captureHttpError(response)
+  const { fetcher, path } = registerRequest[registerType]
+
+  return { fetcher, path }
 }
