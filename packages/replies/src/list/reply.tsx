@@ -227,9 +227,6 @@ export default function Reply({
       ) : null}
 
       <FeatureActionSheet
-        // 로컬 테스트용 코드
-        // modalOpen={modalOpen}
-        // onClose={() => setModalOpen(false)}
         isMine={isMine}
         actionSheetHash={`${HASH_MORE_ACTION_SHEET}.${id}`}
         onModifyClick={() =>
@@ -243,6 +240,9 @@ export default function Reply({
             text as string,
           )
         }
+        // 로컬 테스트용 코드
+        // modalOpen={modalOpen}
+        // onClose={() => setModalOpen(false)}
       />
     </>
   )
@@ -299,31 +299,31 @@ function Content({
 }
 
 function FeatureActionSheet({
-  // 로컬 테스트용 코드
-  // modalOpen,
-  // onClose,
   isMine,
   actionSheetHash,
   onModifyClick,
-}: {
-  // 로컬 테스트용 코드
-  // modalOpen: boolean
-  // onClose: () => void
+}: // 로컬 테스트용 코드
+// modalOpen,
+// onClose,
+{
   isMine: boolean
   actionSheetHash: string
   onModifyClick: () => void
+  // 로컬 테스트용 코드
+  // modalOpen: boolean
+  // onClose: () => void
 }) {
   const uriHash = useURIHash()
   const { back } = useHistoryFunctions()
 
   return (
     <ActionSheet
-      // 로컬 테스트용 코드
-      // open={modalOpen}
-      // onClose={onClose}
       open={uriHash === actionSheetHash}
       onClose={back}
       title={isMine ? '내 댓글' : '댓글'}
+      // 로컬 테스트용 코드
+      // open={modalOpen}
+      // onClose={onClose}
     >
       {isMine ? (
         <>

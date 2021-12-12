@@ -12,9 +12,7 @@ import { useURIHash, useHistoryFunctions } from '@titicaca/react-contexts'
 import {
   fetchReplies,
   fetchReplyBoard,
-  writeReply,
-  writeChildReply,
-  modifyReply,
+  registerReply,
 } from './replies-api-clients'
 import { Reply, ResourceType } from './types'
 import ReplyList from './list'
@@ -58,7 +56,7 @@ export default function Replies({
     mentioningUserUid: null,
     mentioningUserName: null,
   })
-  const [actionType, setActionType] = useState<
+  const [registerType, setRegisterType] = useState<
     'writeReply' | 'writeChildReply' | 'modifyReply'
   >('writeReply')
 
@@ -97,7 +95,6 @@ export default function Replies({
     fetchReplyBoardAndSet()
   }, [resourceId, resourceType])
 
-  // 댓글 더보기
   const fetchMoreReplies = useCallback(async () => {
     const repliesResponse = await fetchReplies({
       resourceId,
@@ -124,7 +121,7 @@ export default function Replies({
     type: 'writeReply' | 'writeChildReply',
   ) => {
     setReplyActionSpecification(reply)
-    setActionType(type)
+    setRegisterType(type)
     focusing()
   }
 
@@ -134,7 +131,7 @@ export default function Replies({
       mentioningUserUid: null,
       mentioningUserName: null,
     })
-    setActionType('writeReply')
+    setRegisterType('writeReply')
   }
 
   // 로컬 테스트용 코드
@@ -145,7 +142,7 @@ export default function Replies({
     type: 'modifyReply',
     text: string,
   ) => {
-    setActionType(type)
+    setRegisterType(type)
     setReplyActionSpecification(reply)
     setContent(text)
     focusing()
@@ -159,40 +156,10 @@ export default function Replies({
       mentioningUserName: null,
     })
     setContent('')
-    setActionType('writeReply')
+    setRegisterType('writeReply')
 
     // 로컬 테스트용 코드
     // setModalOpen(true)
-  }
-
-  const wrtieReplyFunc = async (content: string) => {
-    await writeReply({
-      resourceId,
-      resourceType,
-      content,
-    })
-  }
-
-  const writeChildReplyFunc = async (content: string) => {
-    await writeChildReply({
-      messageId: toMessageId || '',
-      content,
-      mentionedUserUid: mentioningUserUid || '',
-    })
-  }
-
-  const modifyReplyFunc = async (content: string) => {
-    await modifyReply({
-      messageId: toMessageId || '',
-      content,
-      mentionedUserUid: mentioningUserUid || '',
-    })
-  }
-
-  const REGISTER_ACTIONS: { [key: string]: (content: string) => void } = {
-    writeReply: wrtieReplyFunc,
-    writeChildReply: writeChildReplyFunc,
-    modifyReply: modifyReplyFunc,
   }
 
   const handleRegister = (content: string) => {
@@ -200,13 +167,20 @@ export default function Replies({
       return
     }
 
-    REGISTER_ACTIONS[actionType](content)
+    registerReply({
+      resourceId,
+      resourceType,
+      messageId: toMessageId || '',
+      content,
+      mentionedUserUid: mentioningUserUid || '',
+      registerType,
+    })
 
     handleWriteCancel()
   }
 
   const handleClose =
-    actionType === 'modifyReply'
+    registerType === 'modifyReply'
       ? () => push(HASH_MODIFY_CLOSE_MODAL)
       : // () => setModalOpen(true) // 로컬 테스트용 코드
         handleWriteCancel
@@ -221,7 +195,7 @@ export default function Replies({
         handleModifyReplyClick={handleModifyReplyClick}
       />
 
-      {actionType === 'writeChildReply' || actionType === 'modifyReply' ? (
+      {registerType === 'writeChildReply' || registerType === 'modifyReply' ? (
         <FlexBox
           flex
           padding={{ top: 10, bottom: 10, left: 20, right: 20 }}
@@ -230,7 +204,7 @@ export default function Replies({
           backgroundColor="gray50"
         >
           <Text size={12} lineHeight="19px" bold color="gray700">
-            {actionType === 'modifyReply'
+            {registerType === 'modifyReply'
               ? mentioningUserUid
                 ? `${mentioningUserName}님에게 작성한 답글 수정 중`
                 : '댓글 수정 중'
@@ -252,42 +226,42 @@ export default function Replies({
       />
 
       <ConfirmModal
-        // 로컬 테스트용 코드
-        // open={modalOpen}
-        // onClose={() => setModalOpen(false)}
         onConfirm={handleModifyCancel}
         onCancel={() => {
           back()
-          setActionType('modifyReply')
+          setRegisterType('modifyReply')
         }}
+        // 로컬 테스트용 코드
+        // open={modalOpen}
+        // onClose={() => setModalOpen(false)}
       />
     </Container>
   )
 }
 
 function ConfirmModal({
-  // 로컬 테스트용 코드
-  // open,
-  // onClose,
   onConfirm,
   onCancel,
-}: {
+}: // 로컬 테스트용 코드
+// open,
+// onClose,
+{
+  onConfirm: () => void
+  onCancel: () => void
   // 로컬 테스트용 코드
   // open: boolean
   // onClose: () => void
-  onConfirm: () => void
-  onCancel: () => void
 }) {
   const uriHash = useURIHash()
   const { back } = useHistoryFunctions()
 
   return (
     <Confirm
+      open={uriHash === HASH_MODIFY_CLOSE_MODAL}
+      onClose={back}
       // 로컬 테스트용 코드
       // open={open}
       // onClose={onClose}
-      open={uriHash === HASH_MODIFY_CLOSE_MODAL}
-      onClose={back}
       // eslint-disable-next-line react/no-children-prop
       children={
         <div>
