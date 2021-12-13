@@ -18,11 +18,9 @@ export default function ReplyList({
   fetchMoreReplies: () => void
   handleWriteReplyClick: (
     reply: Partial<ReplyType['actionSpecifications']['reply']>,
-    type: 'writeReply' | 'writeChildReply',
   ) => void
   handleModifyReplyClick: (
     reply: Partial<ReplyType['actionSpecifications']['reply']>,
-    type: 'modifyReply',
     text: string,
   ) => void
 }) {

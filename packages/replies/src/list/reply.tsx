@@ -67,11 +67,9 @@ export default function Reply({
   reply: ReplyType
   handleWriteReplyClick: (
     reply: Partial<ReplyType['actionSpecifications']['reply']>,
-    type: 'writeReply' | 'writeChildReply',
   ) => void
   handleModifyReplyClick: (
     reply: Partial<ReplyType['actionSpecifications']['reply']>,
-    type: 'modifyReply',
     text: string,
   ) => void
 }) {
@@ -184,7 +182,7 @@ export default function Reply({
             color="gray300"
             bold
             onClick={() => {
-              handleWriteReplyClick(reply, 'writeChildReply')
+              handleWriteReplyClick(reply)
             }}
           >
             답글달기
@@ -230,7 +228,6 @@ export default function Reply({
               mentioningUserName: reply.mentioningUserName,
               mentioningUserUid: mentionedUser ? reply.mentioningUserUid : '',
             },
-            'modifyReply',
             text as string,
           )
         }

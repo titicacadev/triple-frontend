@@ -118,10 +118,9 @@ export default function Replies({
 
   const handleWriteReplyClick = (
     reply: Partial<Reply['actionSpecifications']['reply']>,
-    type: 'writeReply' | 'writeChildReply',
   ) => {
+    setRegisterType('writeChildReply')
     setReplyActionSpecification(reply)
-    setRegisterType(type)
     focusing()
   }
 
@@ -136,24 +135,23 @@ export default function Replies({
 
   const handleModifyReplyClick = (
     reply: Partial<Reply['actionSpecifications']['reply']>,
-    type: 'modifyReply',
     text: string,
   ) => {
-    setRegisterType(type)
+    setRegisterType('modifyReply')
     setReplyActionSpecification(reply)
     setContent(text)
     focusing()
   }
 
   const handleModifyCancel = () => {
-    back()
+    setRegisterType('writeReply')
     setReplyActionSpecification({
       toMessageId: null,
       mentioningUserUid: null,
       mentioningUserName: null,
     })
     setContent('')
-    setRegisterType('writeReply')
+    back()
   }
 
   const handleRegister = (content: string) => {
@@ -221,8 +219,8 @@ export default function Replies({
       <ConfirmModal
         onConfirm={handleModifyCancel}
         onCancel={() => {
-          back()
           setRegisterType('modifyReply')
+          back()
         }}
       />
     </Container>
