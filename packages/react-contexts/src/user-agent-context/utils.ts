@@ -25,3 +25,6 @@ export function generateUserAgentValues(userAgent: string): UserAgentValue {
     app,
   }
 }
+
+/* For backward-compatibility */
+export { parseApp }
