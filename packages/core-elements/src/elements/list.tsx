@@ -34,41 +34,35 @@ const ListBase = styled.ul<ListBaseProp & DividerOptions>`
     `};
   }
 
+  ${({ clearing }) =>
+    clearing
+      ? css`
+          > li::after {
+            content: '';
+            display: block;
+            clear: both;
+          }
+        `
+      : ''}
+
   ${({
-    verticalGap = 0,
-    divided = false,
-    dividerColor = '#efefef',
+    divided,
     dividerWeight = 1,
-    clearing = false,
+    dividerColor = '#efefef',
+    verticalGap = 0,
   }) =>
-    (divided || clearing) &&
-    css`
-      ${clearing &&
-      css`
-        > li:after {
-          content: '';
-          display: block;
-          clear: both;
-        }
-      `}
-      ${divided
-        ? css`
-            > li:not(:last-child):after {
-              content: '';
-              display: block;
-              height: 0;
-              overflow: hidden;
-              border-bottom: solid ${dividerWeight}px ${dividerColor};
-              margin: ${verticalGap / 2}px 0 ${verticalGap / 2}px 0;
-            }
-          `
-        : !clearing &&
-          css`
-            > li:not(:last-child):after {
-              display: none;
-            }
-          `}
-    `}
+    divided
+      ? css`
+          > li:not(:last-child)::after {
+            content: '';
+            display: block;
+            height: 0;
+            overflow: hidden;
+            border-bottom: solid ${dividerWeight}px ${dividerColor};
+            margin: ${verticalGap / 2}px 0 ${verticalGap / 2}px 0;
+          }
+        `
+      : ''}
 `
 
 const ListItem = styled.li<ListItemProps>`
