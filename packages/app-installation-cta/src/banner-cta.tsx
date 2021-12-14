@@ -13,6 +13,7 @@ interface BannerCTAProps extends CTAProps {
   installUrl: string
   installText?: string
   dismissText?: string
+  disableTextBanner?: boolean
 }
 
 /**
@@ -29,6 +30,7 @@ export default function BannerCTA({
   onDismiss,
   installText,
   dismissText,
+  disableTextBanner,
   zTier,
   zIndex,
 }: BannerCTAProps & LayeringMixinProps) {
@@ -75,13 +77,13 @@ export default function BannerCTA({
           />
         </BottomFixedContainer>
       </Overlay>
-    ) : (
+    ) : !disableTextBanner ? (
       <TextBanner
         message={desc}
         installUrl={installUrl}
         onShow={onShow}
         onClick={onClick}
       />
-    )
+    ) : null
   ) : null
 }
