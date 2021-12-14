@@ -18,7 +18,7 @@ export async function fetcher<SuccessBody, FailureBody = unknown>(
 
   const response = await fetchFunction(...makeRequestParams(url, options))
   const body = await readResponseBody(response)
-  const restResponse = removeBodyRelatedProperties(response)
+  const restResponse = pickUsableProperties(response)
 
   if (response.ok === true) {
     return {
@@ -89,16 +89,6 @@ function readResponseBody(response: Response) {
   return response.text()
 }
 
-function removeBodyRelatedProperties({
-  clone,
-  body,
-  bodyUsed,
-  arrayBuffer,
-  blob,
-  formData,
-  json,
-  text,
-  ...restResponse
-}: Response) {
-  return restResponse
+function pickUsableProperties({ headers, ok, status, url }: Response) {
+  return { headers, ok, status, url }
 }
