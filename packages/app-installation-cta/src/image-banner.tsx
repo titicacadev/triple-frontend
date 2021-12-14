@@ -12,15 +12,15 @@ import { CTAProps } from './interfaces'
 interface ImageBannerProps extends CTAProps {
   imgUrl?: string
   installUrl: string
-  linkText?: string
-  buttonText?: string
+  installText?: string
+  dismissText?: string
 }
 
 export default function ImageBanner({
   imgUrl,
   installUrl,
-  linkText,
-  buttonText,
+  installText,
+  dismissText,
   onShow,
   onClick,
   onDismiss,
@@ -53,11 +53,11 @@ export default function ImageBanner({
       </ImageWrapper>
 
       <InstallLink href={installUrl} onClick={handleClick}>
-        👀&nbsp;&nbsp;{linkText || '편하게 앱에서 보기'}
+        👀&nbsp;&nbsp;{installText || '편하게 앱에서 보기'}
       </InstallLink>
 
       <DismissButton onClick={handleDismiss}>
-        {buttonText || '아깝지만 나중에 받을게요'}
+        {dismissText || '아깝지만 나중에 받을게요'}
       </DismissButton>
     </ImageBannerWrapper>
   )

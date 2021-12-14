@@ -11,8 +11,8 @@ import { fetchInventoryItems } from './service'
 interface BannerCTAProps extends CTAProps {
   inventoryId: string
   installUrl: string
-  linkText?: string
-  buttonText?: string
+  installText?: string
+  dismissText?: string
 }
 
 /**
@@ -27,8 +27,8 @@ export default function BannerCTA({
   onShow,
   onClick,
   onDismiss,
-  linkText,
-  buttonText,
+  installText,
+  dismissText,
   zTier,
   zIndex,
 }: BannerCTAProps & LayeringMixinProps) {
@@ -64,8 +64,8 @@ export default function BannerCTA({
           <ImageBanner
             imgUrl={image}
             installUrl={installUrl}
-            linkText={linkText}
-            buttonText={buttonText}
+            installText={installText}
+            dismissText={dismissText}
             onShow={onShow}
             onClick={onClick}
             onDismiss={() => {
