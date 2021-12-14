@@ -1,5 +1,48 @@
 # CHANGELOG
 
+## 4.1.0
+
+## search
+
+- 렌더링 직후 input 엘리먼트의 focus 메서드를 호출 [#1684](https://github.com/titicacadev/triple-frontend/pull/1684)
+
+## core-elements
+
+- form-field에 required 디자인 추가 [#1709](https://github.com/titicacadev/triple-frontend/pull/1709)
+
+## replies
+
+- 댓글 컴포넌트 리팩토링 [#1711](https://github.com/titicacadev/triple-frontend/pull/1711)
+
+## ab-experiments
+
+- Peer 의존성으로 Next.js 12 허용 [#1713](https://github.com/titicacadev/triple-frontend/pull/1713)
+
+## fetcher
+
+- Peer 의존성으로 Next.js 12 허용 [#1713](https://github.com/titicacadev/triple-frontend/pull/1713)
+- 응답 객체에 status, url이 없는 문제 해결 [#1717](https://github.com/titicacadev/triple-frontend/pull/1717)
+
+## intersection-observer
+
+- Peer 의존성으로 Next.js 12 허용 [#1713](https://github.com/titicacadev/triple-frontend/pull/1713)
+
+## meta-tags
+
+- Peer 의존성으로 Next.js 12 허용 [#1713](https://github.com/titicacadev/triple-frontend/pull/1713)
+
+## react-contexts
+
+- Peer 의존성으로 Next.js 12 허용 [#1713](https://github.com/titicacadev/triple-frontend/pull/1713)
+
+## router
+
+- Peer 의존성으로 Next.js 12 허용 [#1713](https://github.com/titicacadev/triple-frontend/pull/1713)
+
+## ui-flow
+
+- Peer 의존성으로 Next.js 12 허용 [#1713](https://github.com/titicacadev/triple-frontend/pull/1713)
+
 ## 4.0.0
 
 ### Breaking Change
