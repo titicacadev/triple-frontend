@@ -47,8 +47,8 @@ export type SuccessOrFailureBody<SuccessBody, FailureBody> =
   | { ok: true; parsedBody: SuccessBody }
   | { ok: false; parsedBody: FailureBody }
 
-export type HttpResponse<SuccessBody, FailureBody = unknown> = Omit<
+export type HttpResponse<SuccessBody, FailureBody = unknown> = Pick<
   Response,
-  keyof Body | 'clone'
+  'headers' | 'ok' | 'status' | 'url'
 > &
   SuccessOrFailureBody<SuccessBody, FailureBody>
