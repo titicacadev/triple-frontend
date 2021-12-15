@@ -6,7 +6,7 @@ import {
   layeringMixin,
   LayeringMixinProps,
 } from '@titicaca/core-elements'
-import { white, white600, blue980, gray500 } from '@titicaca/color-palette'
+import { white, blue980, gray500 } from '@titicaca/color-palette'
 
 export const Overlay = styled.div<LayeringMixinProps>`
   position: fixed;
@@ -123,15 +123,17 @@ export const InstallDescription = styled(Text)`
   height: 21px;
   font-size: 18px;
   font-weight: bold;
-  padding: 23px 0px 0px 32px;
   color: ${white};
 `
 
 export const InstallAnchor = styled.a`
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
   display: block;
   text-decoration: none;
+  padding: 23px 0px 22px 32px;
+
   &:visited,
   &:hover,
   &:active {
@@ -139,14 +141,12 @@ export const InstallAnchor = styled.a`
   }
 `
 
-export const Description = styled(Text)`
-  width: 200px;
-  height: 15px;
-  font-size: 12px;
-  font-weight: 500;
-  color: ${white600};
-  margin: 3px 0px 22px 32px;
-`
+export const Description = styled(Text).attrs({
+  size: 12,
+  margin: { top: 3 },
+  lineHeight: '15px',
+  color: 'white600',
+})``
 
 export const GoAppButton = styled.img`
   width: 20px;
@@ -160,16 +160,12 @@ export const CloseButton = styled.img`
 `
 
 export const LeftContainer = styled(Container)`
-  float: left;
   width: 100%;
-  height: 100%;
-  margin-right: -46px;
-  padding-right: 46px;
+
   box-sizing: border-box;
 `
 
 export const RightContainer = styled(Container)`
-  float: right;
   width: 46px;
 `
 
@@ -250,6 +246,7 @@ export const FloatingButtonContainer = styled.div<
 `
 
 export const FloatingButton = styled.div`
+  display: flex;
   border-radius: 42px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
   background-color: ${blue980};
