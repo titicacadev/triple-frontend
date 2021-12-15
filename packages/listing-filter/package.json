@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/listing-filter",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "Listing filter UI",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,7 +15,7 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^4.1.0"
+    "@titicaca/color-palette": "^4.1.1"
   },
   "peerDependencies": {
     "react": "*",
