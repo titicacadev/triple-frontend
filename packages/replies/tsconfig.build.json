@@ -12,13 +12,13 @@
       "path": "../fetcher/tsconfig.build.json"
     },
     {
-      "path": "../modals/tsconfig.build.json"
-    },
-    {
       "path": "../router/tsconfig.build.json"
     },
     {
       "path": "../view-utilities/tsconfig.build.json"
+    },
+    {
+      "path": "../modals/tsconfig.build.json"
     }
   ]
 }
