@@ -12,7 +12,7 @@ import { useURIHash, useHistoryFunctions } from '@titicaca/react-contexts'
 import {
   fetchReplies,
   fetchReplyBoard,
-  registerReply,
+  replyActions,
 } from './replies-api-clients'
 import { Reply, ResourceType } from './types'
 import ReplyList from './list'
@@ -49,18 +49,21 @@ export default function Replies({
   })
 
   const [
-    { toMessageId, mentioningUserUid, mentioningUserName },
+    { messageId, toMessageId, mentioningUserUid, mentioningUserName, content },
     setReplyActionSpecification,
-  ] = useState<Partial<Reply['actionSpecifications']['reply']>>({
+  ] = useState<
+    Partial<Reply['actionSpecifications']['reply']> & {
+      messageId?: string | null
+      content?: string
+    }
+  >({
+    messageId: null,
     toMessageId: null,
     mentioningUserUid: null,
     mentioningUserName: null,
+    content: '',
   })
-  const [registerType, setRegisterType] = useState<
-    'writeReply' | 'writeChildReply' | 'modifyReply'
-  >('writeReply')
 
-  const [content, setContent] = useState('')
   const { push, back } = useHistoryFunctions()
 
   const textareaRef = useRef<HTMLTextAreaElement>(null)
@@ -119,39 +122,54 @@ export default function Replies({
   const handleWriteReplyClick = (
     reply: Partial<Reply['actionSpecifications']['reply']>,
   ) => {
-    setRegisterType('writeChildReply')
     setReplyActionSpecification(reply)
     focusing()
   }
 
   const handleWriteCancel = () => {
     setReplyActionSpecification({
+      messageId: null,
       toMessageId: null,
       mentioningUserUid: null,
       mentioningUserName: null,
+      content: '',
     })
-    setRegisterType('writeReply')
   }
 
-  const handleModifyReplyClick = (
-    reply: Partial<Reply['actionSpecifications']['reply']>,
-    text: string,
-  ) => {
-    setRegisterType('modifyReply')
-    setReplyActionSpecification(reply)
-    setContent(text)
+  const handleModifyReplyClick = ({
+    mentionedUserName,
+    mentionedUserUid,
+    messageId,
+    toMessageId,
+    plaintext,
+  }: Partial<
+    Reply['actionSpecifications']['edit'] & {
+      toMessageId?: string | null
+      messageId?: string | null
+    }
+  >) => {
+    const convertedEdit = {
+      mentioningUserName: mentionedUserName,
+      mentioningUserUid: mentionedUserUid,
+      messageId,
+      toMessageId,
+      content: plaintext,
+    }
+
+    setReplyActionSpecification(convertedEdit)
+
     focusing()
   }
 
   const handleModifyCancel = () => {
-    setRegisterType('writeReply')
+    back()
     setReplyActionSpecification({
       toMessageId: null,
       mentioningUserUid: null,
       mentioningUserName: null,
+      messageId: null,
+      content: '',
     })
-    setContent('')
-    back()
   }
 
   const handleRegister = (content: string) => {
@@ -159,20 +177,27 @@ export default function Replies({
       return
     }
 
-    registerReply({
+    replyActions({
       resourceId,
       resourceType,
-      messageId: toMessageId || '',
+      toMessageId: toMessageId || '',
+      messageId: messageId || '',
       content,
       mentionedUserUid: mentioningUserUid || '',
-      registerType,
     })
 
     handleWriteCancel()
   }
 
+  const handleContentChange = (content: string) => {
+    setReplyActionSpecification((prev) => ({
+      ...prev,
+      content,
+    }))
+  }
+
   const handleClose =
-    registerType === 'modifyReply'
+    toMessageId && messageId
       ? () => push(HASH_MODIFY_CLOSE_MODAL)
       : handleWriteCancel
 
@@ -186,7 +211,7 @@ export default function Replies({
         handleModifyReplyClick={handleModifyReplyClick}
       />
 
-      {registerType === 'writeChildReply' || registerType === 'modifyReply' ? (
+      {toMessageId ? (
         <FlexBox
           flex
           padding={{ top: 10, bottom: 10, left: 20, right: 20 }}
@@ -195,11 +220,11 @@ export default function Replies({
           backgroundColor="gray50"
         >
           <Text size={12} lineHeight="19px" bold color="gray700">
-            {registerType === 'modifyReply'
-              ? mentioningUserUid
-                ? `${mentioningUserName}님에게 작성한 답글 수정 중`
-                : '댓글 수정 중'
-              : `${mentioningUserName}님께 답글 작성 중`}
+            {mentioningUserUid && !messageId
+              ? `${mentioningUserName}님께 답글 작성 중`
+              : messageId === toMessageId
+              ? '댓글 수정 중'
+              : `${mentioningUserName}님에게 작성한 답글 수정 중`}
           </Text>
 
           <Icon
@@ -210,17 +235,21 @@ export default function Replies({
       ) : null}
 
       <Register
-        content={content}
+        content={content || ''}
         registerPlaceholder={registerPlaceholder}
         textareaRef={textareaRef}
+        handleContentChange={handleContentChange}
         onSubmit={handleRegister}
       />
 
       <ConfirmModal
         onConfirm={handleModifyCancel}
         onCancel={() => {
-          setRegisterType('modifyReply')
           back()
+          setReplyActionSpecification((prev) => ({
+            ...prev,
+            isEdit: true,
+          }))
         }}
       />
     </Container>

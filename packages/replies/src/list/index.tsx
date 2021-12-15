@@ -20,8 +20,12 @@ export default function ReplyList({
     reply: Partial<ReplyType['actionSpecifications']['reply']>,
   ) => void
   handleModifyReplyClick: (
-    reply: Partial<ReplyType['actionSpecifications']['reply']>,
-    text: string,
+    edit: Partial<
+      ReplyType['actionSpecifications']['edit'] & {
+        toMessageId?: string | null
+        messageId?: string | null
+      }
+    >,
   ) => void
 }) {
   return (
