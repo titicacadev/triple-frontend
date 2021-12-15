@@ -246,10 +246,6 @@ export default function Replies({
         onConfirm={handleModifyCancel}
         onCancel={() => {
           back()
-          setReplyActionSpecification((prev) => ({
-            ...prev,
-            isEdit: true,
-          }))
         }}
       />
     </Container>
