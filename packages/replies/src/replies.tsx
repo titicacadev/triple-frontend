@@ -130,7 +130,7 @@ export default function Replies({
   }
 
   return (
-    <Container onClick={onClick}>
+    <Container onClickCapture={onClick}>
       <ReplyList
         replies={replies}
         totalRepliesCount={totalRepliesCount}
