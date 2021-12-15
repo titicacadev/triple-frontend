@@ -1,4 +1,10 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react'
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+  MouseEvent,
+} from 'react'
 import { Container, FlexBox, Text, Icon } from '@titicaca/core-elements'
 
 import {
@@ -23,7 +29,7 @@ export default function Replies({
   resourceType: ResourceType
   registerPlaceholder?: string
   size?: number
-  onClick?: () => void
+  onClick?: (event: MouseEvent<HTMLDivElement>) => void
 }) {
   const [totalRepliesCount, setTotalRepliesCount] = useState<
     number | undefined
