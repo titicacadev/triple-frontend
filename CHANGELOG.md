@@ -43,6 +43,11 @@
 
 - Peer 의존성으로 Next.js 12 허용 [#1713](https://github.com/titicacadev/triple-frontend/pull/1713)
 
+## app-installation-cta
+
+- `BannerCTA`의 이미지 배너의 앱으로 가는 버튼과 배너를 닫는 버튼의 문구를 prop으로 받는 기능 추가 [#1714](https://github.com/titicacadev/triple-frontend/pull/1714)
+- `BannerCTA`의 텍스트 배너를 비활성화하는 prop 추가 [#1714](https://github.com/titicacadev/triple-frontend/pull/1714)
+
 ## 4.0.0
 
 ### Breaking Change
