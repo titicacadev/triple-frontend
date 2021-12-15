@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 4.1.1
+
+### react-contexts
+
+- `SessionContextProvider.getInitialProps`를 클라이언트에서 실행할 때 인앱 환경을 제대로 감지하지 못하는 문제 수정 [#1720](https://github.com/titicacadev/triple-frontend/pull/1720)
+
 ## 4.1.0
 
 ## search
