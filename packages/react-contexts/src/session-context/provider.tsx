@@ -1,6 +1,3 @@
-import { IncomingMessage } from 'http'
-
-import { hasAccessibleTripleNativeClients } from '@titicaca/triple-web-to-native-interfaces'
 import { NextPageContext } from 'next'
 import React, { PropsWithChildren } from 'react'
 
@@ -52,24 +49,19 @@ SessionContextProvider.getInitialProps = async function (
   context: NextPageContext,
 ): Promise<SessionContextProviderProps> {
   const { req } = context
-  const isAppRequest =
+  const userAgent =
     req !== undefined
-      ? checkReqFromApp(req)
-      : hasAccessibleTripleNativeClients()
+      ? req.headers['user-agent'] || ''
+      : window.navigator.userAgent
+  const { isPublic } = generateUserAgentValues(userAgent)
 
-  if (isAppRequest) {
-    const props = await InAppSessionContextProvider.getInitialProps(context)
+  if (isPublic === true) {
+    const props = await InBrowserSessionContextProvider.getInitialProps(context)
 
-    return { type: 'app', props }
+    return { type: 'browser', props }
   }
 
-  const props = await InBrowserSessionContextProvider.getInitialProps(context)
+  const props = await InAppSessionContextProvider.getInitialProps(context)
 
-  return { type: 'browser', props }
-}
-
-function checkReqFromApp(req: IncomingMessage) {
-  const { app } = generateUserAgentValues(req.headers['user-agent'] || '')
-
-  return app !== null
+  return { type: 'app', props }
 }
