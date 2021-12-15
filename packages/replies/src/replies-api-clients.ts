@@ -102,22 +102,26 @@ export async function fetchChildReplies({
   return parsedBody
 }
 
-export async function registerReply({
+export async function replyActions({
   resourceId,
   resourceType,
+  toMessageId,
   messageId,
   content,
   mentionedUserUid,
-  registerType,
 }: {
   resourceId?: string
   resourceType?: ResourceType
+  toMessageId: string
   messageId: string
   content: string
   mentionedUserUid: string
-  registerType: 'writeReply' | 'writeChildReply' | 'modifyReply'
 }) {
-  const { fetcher, path } = defineRegisterRequest({ registerType, messageId })
+  const { fetcher, path } = defineRegisterRequest({
+    messageId,
+    toMessageId,
+    mentionedUserUid,
+  })
 
   const response = await fetcher(
     generateUrl({
@@ -142,20 +146,30 @@ export async function registerReply({
 }
 
 function defineRegisterRequest({
-  registerType,
   messageId,
+  toMessageId,
+  mentionedUserUid,
 }: {
-  registerType: 'writeReply' | 'writeChildReply' | 'modifyReply'
   messageId: string
+  toMessageId: string
+  mentionedUserUid: string
 }) {
-  const registerRequest = {
+  const type = toMessageId
+    ? mentionedUserUid && !messageId
+      ? 'writeChildReply'
+      : 'modifyReply'
+    : 'writeReply'
+
+  const registerRequest: {
+    [key: string]: { fetcher: Function; path: string }
+  } = {
     writeReply: {
       fetcher: authGuardedFetchers.post,
       path: `/api/reply/messages`,
     },
     writeChildReply: {
       fetcher: authGuardedFetchers.post,
-      path: `/api/reply/messages/${messageId}/messages`,
+      path: `/api/reply/messages/${toMessageId}/messages`,
     },
     modifyReply: {
       fetcher: authGuardedFetchers.put,
@@ -163,7 +177,7 @@ function defineRegisterRequest({
     },
   }
 
-  const { fetcher, path } = registerRequest[registerType]
+  const { fetcher, path } = registerRequest[type]
 
   return { fetcher, path }
 }

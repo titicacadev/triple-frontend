@@ -1,4 +1,4 @@
-import React, { Ref, useEffect, useState } from 'react'
+import React, { Ref } from 'react'
 import styled from 'styled-components'
 import { Container, FlexBox, HR1 } from '@titicaca/core-elements'
 
@@ -20,24 +20,18 @@ const RegisterButton = styled.button`
 `
 
 export default function Register({
+  content,
   registerPlaceholder,
   textareaRef,
-  content,
+  handleContentChange,
   onSubmit,
 }: {
   registerPlaceholder?: string
   textareaRef?: Ref<HTMLTextAreaElement>
   content: string
+  handleContentChange: (content: string) => void
   onSubmit: (replyContent: string) => void
 }) {
-  const [replyContent, setReplyContent] = useState('')
-
-  useEffect(() => {
-    setReplyContent(content)
-  }, [content])
-
-  const disabled = replyContent === content
-
   return (
     <Container cursor="pointer">
       <HR1 margin={{ top: 0 }} />
@@ -53,17 +47,17 @@ export default function Register({
           }
           minRows={1}
           maxRows={4}
-          value={replyContent}
-          onChange={setReplyContent}
+          value={content}
+          onChange={handleContentChange}
           ref={textareaRef}
         />
 
         <RegisterButton
           onClick={() => {
-            onSubmit(replyContent)
-            setReplyContent('')
+            onSubmit(content)
+            handleContentChange('')
           }}
-          disabled={disabled}
+          disabled={!content}
         >
           등록
         </RegisterButton>

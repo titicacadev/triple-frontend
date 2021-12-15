@@ -34,7 +34,10 @@ export interface Reply {
     edit: {
       text?: string
       plaintext?: string
-    } | null
+      mentionedUserHref?: string | null
+      mentionedUserName?: string | null
+      mentionedUserUid?: string | null
+    }
     reaction: boolean
     reply: {
       mentioningUserHref: string | null

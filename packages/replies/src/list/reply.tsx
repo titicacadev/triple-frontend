@@ -59,7 +59,7 @@ export default function Reply({
     childrenCount,
     children,
     id,
-    actionSpecifications: { delete: isMine, reply },
+    actionSpecifications: { delete: isMine, reply, edit },
   },
   handleWriteReplyClick,
   handleModifyReplyClick,
@@ -69,8 +69,12 @@ export default function Reply({
     reply: Partial<ReplyType['actionSpecifications']['reply']>,
   ) => void
   handleModifyReplyClick: (
-    reply: Partial<ReplyType['actionSpecifications']['reply']>,
-    text: string,
+    edit: Partial<
+      ReplyType['actionSpecifications']['edit'] & {
+        toMessageId?: string | null
+        messageId?: string | null
+      }
+    >,
   ) => void
 }) {
   const [{ childReplies, childPage }, setChildRepliesInfo] = useState<{
@@ -222,14 +226,11 @@ export default function Reply({
         isMine={isMine}
         actionSheetHash={`${HASH_MORE_ACTION_SHEET}.${id}`}
         onModifyClick={() =>
-          handleModifyReplyClick(
-            {
-              toMessageId: id,
-              mentioningUserName: reply.mentioningUserName,
-              mentioningUserUid: mentionedUser ? reply.mentioningUserUid : '',
-            },
-            text as string,
-          )
+          handleModifyReplyClick({
+            ...edit,
+            toMessageId: reply.toMessageId,
+            messageId: id,
+          })
         }
       />
     </>
