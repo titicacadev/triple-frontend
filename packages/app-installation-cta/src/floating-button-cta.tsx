@@ -3,6 +3,7 @@ import {
   Text,
   MarginPadding,
   LayeringMixinProps,
+  Container,
 } from '@titicaca/core-elements'
 import { CSSTransition } from 'react-transition-group'
 import { getWebStorage } from '@titicaca/web-storage'
@@ -15,13 +16,9 @@ import {
 import { CTAProps } from './interfaces'
 import {
   FloatingButtonContainer,
-  InstallDescription,
   InstallAnchor,
-  Description,
   GoAppButton,
   CloseButton,
-  LeftContainer,
-  RightContainer,
   FloatingButton,
 } from './elements'
 
@@ -155,20 +152,27 @@ export default function FloatingButtonCTA({
         zIndex={zIndex}
       >
         <FloatingButton>
-          <LeftContainer>
+          <Container width="100%">
             <InstallAnchor href={appInstallLink} onClick={handleClick}>
-              <InstallDescription>
+              <Text size={18} lineHeight="21px" bold color="white">
                 <Text floated="left" color="white">
                   {title}
                 </Text>
                 <GoAppButton src="https://assets.triple.guide/images/ico-arrow@4x.png" />
-              </InstallDescription>
-              <Description>{description}</Description>
+              </Text>
+              <Text
+                size={12}
+                lineHeight="15px"
+                color="white600"
+                margin={{ top: 3 }}
+              >
+                {description}
+              </Text>
             </InstallAnchor>
-          </LeftContainer>
-          <RightContainer onClick={handleDismiss}>
+          </Container>
+          <Container width={46} onClick={handleDismiss}>
             <CloseButton src="https://assets.triple.guide/images/btn-closebanner@3x.png" />
-          </RightContainer>
+          </Container>
         </FloatingButton>
       </FloatingButtonContainer>
     </CSSTransition>
