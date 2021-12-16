@@ -120,6 +120,8 @@ interface EventTrackingProviderProps {
     id: string
     type: string
     name: string
+
+    /* TODO: 웹 FA에서 viewItem 이벤트 수집을 시작할 경우 함께 기록해야 합니다. */
     regionId?: string
     zoneId?: string
     referrer?: string
