@@ -1,5 +1,5 @@
 import * as WebToNativeInterfaces from '@titicaca/triple-web-to-native-interfaces'
-import semver from 'semver'
+import * as semver from 'semver'
 
 import { useClientContext } from './client-context'
 
