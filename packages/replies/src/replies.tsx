@@ -23,13 +23,13 @@ export default function Replies({
   resourceType,
   registerPlaceholder,
   size,
-  onClick,
+  onClickCapture,
 }: {
   resourceId: string
   resourceType: ResourceType
   registerPlaceholder?: string
   size?: number
-  onClick?: (event: MouseEvent<HTMLDivElement>) => void
+  onClickCapture?: (event: MouseEvent<HTMLDivElement>) => void
 }) {
   const [totalRepliesCount, setTotalRepliesCount] = useState<
     number | undefined
@@ -136,7 +136,7 @@ export default function Replies({
   }
 
   return (
-    <Container onClickCapture={onClick}>
+    <Container onClickCapture={onClickCapture}>
       <ReplyList
         replies={replies}
         totalRepliesCount={totalRepliesCount}
