@@ -195,6 +195,16 @@ export default function Replies({
     })
   }
 
+  const handleContentChange = (content: string) => {
+    setReplyActionSpecification((prev) => ({
+      ...prev,
+      content: {
+        ...prev.content,
+        plaintext: content,
+      },
+    }))
+  }
+
   const handleRegister = (content: string) => {
     if (!content) {
       return
@@ -210,16 +220,8 @@ export default function Replies({
     })
 
     handleWriteCancel()
-  }
 
-  const handleContentChange = (content: string) => {
-    setReplyActionSpecification((prev) => ({
-      ...prev,
-      content: {
-        ...prev.content,
-        plaintext: content,
-      },
-    }))
+    handleContentChange('')
   }
 
   const handleClose =

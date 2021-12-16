@@ -55,7 +55,6 @@ export default function Register({
         <RegisterButton
           onClick={() => {
             onSubmit(content)
-            handleContentChange('')
           }}
           disabled={!content}
         >
