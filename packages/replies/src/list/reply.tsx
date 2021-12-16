@@ -66,7 +66,7 @@ export default function Reply({
 }: {
   reply: ReplyType
   handleWriteReplyClick: (
-    reply: Partial<ReplyType['actionSpecifications']['reply']>,
+    reply: ReplyType['actionSpecifications']['reply'],
   ) => void
   handleModifyReplyClick: (
     edit: Partial<

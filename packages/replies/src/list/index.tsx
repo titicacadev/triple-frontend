@@ -17,7 +17,7 @@ export default function ReplyList({
   totalRepliesCount?: number
   fetchMoreReplies: () => void
   handleWriteReplyClick: (
-    reply: Partial<ReplyType['actionSpecifications']['reply']>,
+    reply: ReplyType['actionSpecifications']['reply'],
   ) => void
   handleModifyReplyClick: (
     edit: Partial<
