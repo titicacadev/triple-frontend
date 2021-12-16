@@ -12,7 +12,7 @@ import { useURIHash, useHistoryFunctions } from '@titicaca/react-contexts'
 import {
   fetchReplies,
   fetchReplyBoard,
-  replyActions,
+  actionReply,
 } from './replies-api-clients'
 import { Reply, ResourceType } from './types'
 import ReplyList from './list'
@@ -210,7 +210,7 @@ export default function Replies({
       return
     }
 
-    replyActions({
+    actionReply({
       resourceId,
       resourceType,
       parentMessageId: parentMessageId || '',
