@@ -117,7 +117,7 @@ export async function replyActions({
   content: string
   mentionedUserUid: string
 }) {
-  const { fetcher, path } = defineRegisterRequest({
+  const { fetcher, path } = deriveRegisterRequest({
     currentMessageId,
     parentMessageId,
     mentionedUserUid,
@@ -145,7 +145,7 @@ export async function replyActions({
   captureHttpError(response)
 }
 
-function defineRegisterRequest({
+function deriveRegisterRequest({
   currentMessageId,
   parentMessageId,
   mentionedUserUid,
