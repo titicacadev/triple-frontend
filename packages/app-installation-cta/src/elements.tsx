@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components'
 import {
   Text,
-  Container,
   MarginPadding,
   layeringMixin,
   LayeringMixinProps,
@@ -141,13 +140,6 @@ export const InstallAnchor = styled.a`
   }
 `
 
-export const Description = styled(Text).attrs({
-  size: 12,
-  margin: { top: 3 },
-  lineHeight: '15px',
-  color: 'white600',
-})``
-
 export const GoAppButton = styled.img`
   width: 20px;
   height: 20px;
@@ -157,16 +149,6 @@ export const CloseButton = styled.img`
   width: 30px;
   height: 30px;
   margin: 27px 16px 27px 0;
-`
-
-export const LeftContainer = styled(Container)`
-  width: 100%;
-
-  box-sizing: border-box;
-`
-
-export const RightContainer = styled(Container)`
-  width: 46px;
 `
 
 const inactiveFloatingButtonStyle = css<{
