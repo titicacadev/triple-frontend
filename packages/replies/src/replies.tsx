@@ -49,19 +49,28 @@ export default function Replies({
   })
 
   const [
-    { messageId, toMessageId, mentioningUserUid, mentioningUserName, content },
+    {
+      currentMessageId,
+      parentMessageId,
+      content: { plaintext, mentioningUserUid, mentioningUserName },
+    },
     setReplyActionSpecification,
-  ] = useState<
-    Partial<Reply['actionSpecifications']['reply']> & {
-      messageId?: string | null
-      content?: string
+  ] = useState<{
+    currentMessageId?: string | null
+    parentMessageId?: string | null
+    content: {
+      plaintext?: string
+      mentioningUserUid?: string | null
+      mentioningUserName?: string | null
     }
-  >({
-    messageId: null,
-    toMessageId: null,
-    mentioningUserUid: null,
-    mentioningUserName: null,
-    content: '',
+  }>({
+    currentMessageId: null,
+    parentMessageId: null,
+    content: {
+      plaintext: '',
+      mentioningUserUid: null,
+      mentioningUserName: null,
+    },
   })
 
   const { push, back } = useHistoryFunctions()
@@ -119,20 +128,31 @@ export default function Replies({
     }
   }
 
-  const handleWriteReplyClick = (
-    reply: Partial<Reply['actionSpecifications']['reply']>,
-  ) => {
-    setReplyActionSpecification(reply)
+  const handleWriteReplyClick = ({
+    toMessageId,
+    mentioningUserUid,
+    mentioningUserName,
+  }: Reply['actionSpecifications']['reply']) => {
+    const convertReply = {
+      parentMessageId: toMessageId,
+      content: {
+        mentioningUserUid,
+        mentioningUserName,
+      },
+    }
+    setReplyActionSpecification(convertReply)
     focusing()
   }
 
   const handleWriteCancel = () => {
     setReplyActionSpecification({
-      messageId: null,
-      toMessageId: null,
-      mentioningUserUid: null,
-      mentioningUserName: null,
-      content: '',
+      currentMessageId: null,
+      parentMessageId: null,
+      content: {
+        plaintext: '',
+        mentioningUserUid: null,
+        mentioningUserName: null,
+      },
     })
   }
 
@@ -148,27 +168,30 @@ export default function Replies({
       messageId?: string | null
     }
   >) => {
-    const convertedEdit = {
-      mentioningUserName: mentionedUserName,
-      mentioningUserUid: mentionedUserUid,
-      messageId,
-      toMessageId,
-      content: plaintext,
-    }
-
-    setReplyActionSpecification(convertedEdit)
+    setReplyActionSpecification({
+      currentMessageId: messageId,
+      parentMessageId: toMessageId,
+      content: {
+        plaintext,
+        mentioningUserUid: mentionedUserUid,
+        mentioningUserName: mentionedUserName,
+      },
+    })
 
     focusing()
   }
 
   const handleModifyCancel = () => {
     back()
+
     setReplyActionSpecification({
-      toMessageId: null,
-      mentioningUserUid: null,
-      mentioningUserName: null,
-      messageId: null,
-      content: '',
+      currentMessageId: null,
+      parentMessageId: null,
+      content: {
+        plaintext: '',
+        mentioningUserUid: null,
+        mentioningUserName: null,
+      },
     })
   }
 
@@ -180,9 +203,9 @@ export default function Replies({
     replyActions({
       resourceId,
       resourceType,
-      toMessageId: toMessageId || '',
-      messageId: messageId || '',
-      content,
+      parentMessageId: parentMessageId || '',
+      currentMessageId: currentMessageId || '',
+      content: plaintext || '',
       mentionedUserUid: mentioningUserUid || '',
     })
 
@@ -192,12 +215,15 @@ export default function Replies({
   const handleContentChange = (content: string) => {
     setReplyActionSpecification((prev) => ({
       ...prev,
-      content,
+      content: {
+        ...prev.content,
+        plaintext: content,
+      },
     }))
   }
 
   const handleClose =
-    toMessageId && messageId
+    currentMessageId && parentMessageId
       ? () => push(HASH_MODIFY_CLOSE_MODAL)
       : handleWriteCancel
 
@@ -211,7 +237,7 @@ export default function Replies({
         handleModifyReplyClick={handleModifyReplyClick}
       />
 
-      {toMessageId ? (
+      {parentMessageId ? (
         <FlexBox
           flex
           padding={{ top: 10, bottom: 10, left: 20, right: 20 }}
@@ -220,9 +246,9 @@ export default function Replies({
           backgroundColor="gray50"
         >
           <Text size={12} lineHeight="19px" bold color="gray700">
-            {mentioningUserUid && !messageId
+            {mentioningUserUid && !currentMessageId
               ? `${mentioningUserName}님께 답글 작성 중`
-              : messageId === toMessageId
+              : currentMessageId === parentMessageId
               ? '댓글 수정 중'
               : `${mentioningUserName}님에게 작성한 답글 수정 중`}
           </Text>
@@ -235,7 +261,7 @@ export default function Replies({
       ) : null}
 
       <Register
-        content={content || ''}
+        content={plaintext || ''}
         registerPlaceholder={registerPlaceholder}
         textareaRef={textareaRef}
         handleContentChange={handleContentChange}

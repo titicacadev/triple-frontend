@@ -105,21 +105,21 @@ export async function fetchChildReplies({
 export async function replyActions({
   resourceId,
   resourceType,
-  toMessageId,
-  messageId,
+  currentMessageId,
+  parentMessageId,
   content,
   mentionedUserUid,
 }: {
   resourceId?: string
   resourceType?: ResourceType
-  toMessageId: string
-  messageId: string
+  currentMessageId: string
+  parentMessageId: string
   content: string
   mentionedUserUid: string
 }) {
   const { fetcher, path } = defineRegisterRequest({
-    messageId,
-    toMessageId,
+    currentMessageId,
+    parentMessageId,
     mentionedUserUid,
   })
 
@@ -146,16 +146,16 @@ export async function replyActions({
 }
 
 function defineRegisterRequest({
-  messageId,
-  toMessageId,
+  currentMessageId,
+  parentMessageId,
   mentionedUserUid,
 }: {
-  messageId: string
-  toMessageId: string
+  currentMessageId: string
+  parentMessageId: string
   mentionedUserUid: string
 }) {
-  const type = toMessageId
-    ? mentionedUserUid && !messageId
+  const type = parentMessageId
+    ? mentionedUserUid && !currentMessageId
       ? 'writeChildReply'
       : 'modifyReply'
     : 'writeReply'
@@ -169,11 +169,11 @@ function defineRegisterRequest({
     },
     writeChildReply: {
       fetcher: authGuardedFetchers.post,
-      path: `/api/reply/messages/${toMessageId}/messages`,
+      path: `/api/reply/messages/${parentMessageId}/messages`,
     },
     modifyReply: {
       fetcher: authGuardedFetchers.put,
-      path: `/api/reply/messages/${messageId}`,
+      path: `/api/reply/messages/${currentMessageId}`,
     },
   }
 
