@@ -5,23 +5,26 @@ import React, {
   useMemo,
 } from 'react'
 import { NextPageContext } from 'next'
-import { parseAppUserAgent } from '@titicaca/view-utilities'
+import { parseAppUserAgent, AppName } from '@titicaca/view-utilities'
 
 type ClientContextProps = {
+  appName?: AppName
   appVersion?: string
 }
 
 const ClientContext = createContext<ClientContextProps | null>(null)
 
 export function ClientContextProvider({
+  appName,
   appVersion,
   children,
 }: React.PropsWithChildren<ClientContextProps>) {
   const value = useMemo(
     () => ({
+      appName,
       appVersion,
     }),
-    [appVersion],
+    [appName, appVersion],
   )
 
   return (
@@ -38,6 +41,7 @@ ClientContextProvider.getInitialProps = async function (
 
   if (parsedApp) {
     return {
+      appName: parsedApp.name,
       appVersion: parsedApp.version,
     }
   }
