@@ -13,7 +13,7 @@ interface App {
  * @param userAgent 파싱할 user agent
  * @returns 앱 이름과 버전
  */
-export function parseApp(userAgent: string): App | null {
+export function parseAppUserAgent(userAgent: string): App | null {
   const matchData = userAgent.match(/Triple-(iOS|Android)\/([^ ]+)/i)
 
   if (matchData) {
