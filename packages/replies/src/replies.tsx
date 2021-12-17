@@ -1,25 +1,13 @@
-import React, {
-  useEffect,
-  useRef,
-  useState,
-  useCallback,
-  MouseEvent,
-} from 'react'
-import { Container, FlexBox, Text, Icon } from '@titicaca/core-elements'
-import { Confirm } from '@titicaca/modals'
-import { useURIHash, useHistoryFunctions } from '@titicaca/react-contexts'
+import React, { useEffect, useState, useCallback, MouseEvent } from 'react'
+import { Container } from '@titicaca/core-elements'
 
-import {
-  fetchReplies,
-  fetchReplyBoard,
-  actionReply,
-} from './replies-api-clients'
+import { fetchReplies, fetchReplyBoard } from './replies-api-clients'
 import { Reply, ResourceType } from './types'
 import ReplyList from './list'
+import GuideText from './guide-text'
 import Register from './register'
 import { checkUniqueReply } from './utils'
-
-const HASH_MODIFY_CLOSE_MODAL = 'reply.modify-close-modal'
+import { RepliesProvider } from './context'
 
 export default function Replies({
   resourceId,
@@ -47,35 +35,6 @@ export default function Replies({
     replies: [],
     page: 0,
   })
-
-  const [
-    {
-      currentMessageId,
-      parentMessageId,
-      content: { plaintext, mentioningUserUid, mentioningUserName },
-    },
-    setReplyActionSpecification,
-  ] = useState<{
-    currentMessageId?: string | null
-    parentMessageId?: string | null
-    content: {
-      plaintext?: string
-      mentioningUserUid?: string | null
-      mentioningUserName?: string | null
-    }
-  }>({
-    currentMessageId: null,
-    parentMessageId: null,
-    content: {
-      plaintext: '',
-      mentioningUserUid: null,
-      mentioningUserName: null,
-    },
-  })
-
-  const { push, back } = useHistoryFunctions()
-
-  const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
     async function fetchRepliesAndSet() {
@@ -122,186 +81,23 @@ export default function Replies({
     }))
   }, [resourceId, resourceType, size, page])
 
-  const focusing = () => {
-    if (textareaRef.current) {
-      textareaRef.current.focus()
-    }
-  }
-
-  const handleWriteReplyClick = ({
-    toMessageId,
-    mentioningUserUid,
-    mentioningUserName,
-  }: Reply['actionSpecifications']['reply']) => {
-    const convertReply = {
-      parentMessageId: toMessageId,
-      content: {
-        mentioningUserUid,
-        mentioningUserName,
-      },
-    }
-    setReplyActionSpecification(convertReply)
-    focusing()
-  }
-
-  const handleWriteCancel = () => {
-    setReplyActionSpecification({
-      currentMessageId: null,
-      parentMessageId: null,
-      content: {
-        plaintext: '',
-        mentioningUserUid: null,
-        mentioningUserName: null,
-      },
-    })
-  }
-
-  const handleModifyReplyClick = ({
-    mentionedUserName,
-    mentionedUserUid,
-    messageId,
-    toMessageId,
-    plaintext,
-  }: Partial<
-    Reply['actionSpecifications']['edit'] & {
-      toMessageId?: string | null
-      messageId?: string | null
-    }
-  >) => {
-    setReplyActionSpecification({
-      currentMessageId: messageId,
-      parentMessageId: toMessageId,
-      content: {
-        plaintext,
-        mentioningUserUid: mentionedUserUid,
-        mentioningUserName: mentionedUserName,
-      },
-    })
-
-    focusing()
-  }
-
-  const handleModifyCancel = () => {
-    back()
-
-    setReplyActionSpecification({
-      currentMessageId: null,
-      parentMessageId: null,
-      content: {
-        plaintext: '',
-        mentioningUserUid: null,
-        mentioningUserName: null,
-      },
-    })
-  }
-
-  const handleContentChange = (content: string) => {
-    setReplyActionSpecification((prev) => ({
-      ...prev,
-      content: {
-        ...prev.content,
-        plaintext: content,
-      },
-    }))
-  }
-
-  const handleRegister = (content: string) => {
-    if (!content) {
-      return
-    }
-
-    actionReply({
-      resourceId,
-      resourceType,
-      parentMessageId: parentMessageId || '',
-      currentMessageId: currentMessageId || '',
-      content: plaintext || '',
-      mentionedUserUid: mentioningUserUid || '',
-    })
-
-    handleWriteCancel()
-
-    handleContentChange('')
-  }
-
-  const handleClose =
-    currentMessageId && parentMessageId
-      ? () => push(HASH_MODIFY_CLOSE_MODAL)
-      : handleWriteCancel
-
   return (
-    <Container onClickCapture={onClickCapture}>
-      <ReplyList
-        replies={replies}
-        totalRepliesCount={totalRepliesCount}
-        fetchMoreReplies={fetchMoreReplies}
-        handleWriteReplyClick={handleWriteReplyClick}
-        handleModifyReplyClick={handleModifyReplyClick}
-      />
+    <RepliesProvider>
+      <Container onClick={onClickCapture}>
+        <ReplyList
+          replies={replies}
+          totalRepliesCount={totalRepliesCount}
+          fetchMoreReplies={fetchMoreReplies}
+        />
 
-      {parentMessageId ? (
-        <FlexBox
-          flex
-          padding={{ top: 10, bottom: 10, left: 20, right: 20 }}
-          alignItems="center"
-          justifyContent="space-between"
-          backgroundColor="gray50"
-        >
-          <Text size={12} lineHeight="19px" bold color="gray700">
-            {mentioningUserUid && !currentMessageId
-              ? `${mentioningUserName}님께 답글 작성 중`
-              : currentMessageId === parentMessageId
-              ? '댓글 수정 중'
-              : `${mentioningUserName}님에게 작성한 답글 수정 중`}
-          </Text>
+        <GuideText />
 
-          <Icon
-            onClick={handleClose}
-            src="https://assets.triple.guide/images/btn-com-close@3x.png"
-          />
-        </FlexBox>
-      ) : null}
-
-      <Register
-        content={plaintext || ''}
-        registerPlaceholder={registerPlaceholder}
-        textareaRef={textareaRef}
-        handleContentChange={handleContentChange}
-        onSubmit={handleRegister}
-      />
-
-      <ConfirmModal
-        onConfirm={handleModifyCancel}
-        onCancel={() => {
-          back()
-        }}
-      />
-    </Container>
-  )
-}
-
-function ConfirmModal({
-  onConfirm,
-  onCancel,
-}: {
-  onConfirm: () => void
-  onCancel: () => void
-}) {
-  const uriHash = useURIHash()
-  const { back } = useHistoryFunctions()
-
-  return (
-    <Confirm
-      open={uriHash === HASH_MODIFY_CLOSE_MODAL}
-      onClose={back}
-      // eslint-disable-next-line react/no-children-prop
-      children={
-        <div>
-          수정을 취소하시겠습니까? <br /> 수정한 내용은 저장되지 않습니다.
-        </div>
-      }
-      onConfirm={onConfirm}
-      onCancel={onCancel}
-    />
+        <Register
+          resourceId={resourceId}
+          resourceType={resourceType}
+          registerPlaceholder={registerPlaceholder}
+        />
+      </Container>
+    </RepliesProvider>
   )
 }
