@@ -1,33 +1,28 @@
 import React from 'react'
 import { Container, HR1, List, Text } from '@titicaca/core-elements'
+import { Confirm } from '@titicaca/modals'
+import { useURIHash, useHistoryFunctions } from '@titicaca/react-contexts'
 
 import { Reply as ReplyType } from '../types'
+import { useRepliesContext } from '../context'
 
 import NotExistReplies from './not-exist-replies'
 import Reply from './reply'
+
+const HASH_MODIFY_CLOSE_MODAL = 'reply.modify-close-modal'
 
 export default function ReplyList({
   replies,
   totalRepliesCount,
   fetchMoreReplies,
-  handleWriteReplyClick,
-  handleModifyReplyClick,
 }: {
   replies: ReplyType[]
   totalRepliesCount?: number
   fetchMoreReplies: () => void
-  handleWriteReplyClick: (
-    reply: ReplyType['actionSpecifications']['reply'],
-  ) => void
-  handleModifyReplyClick: (
-    edit: Partial<
-      ReplyType['actionSpecifications']['edit'] & {
-        toMessageId?: string | null
-        messageId?: string | null
-      }
-    >,
-  ) => void
 }) {
+  const { initializeReplyActionSpecification } = useRepliesContext()
+  const { back } = useHistoryFunctions()
+
   return (
     <>
       {replies.length <= 0 ? (
@@ -52,17 +47,48 @@ export default function ReplyList({
             {replies.map((reply) => (
               <List.Item key={reply.id}>
                 <HR1 margin={{ bottom: 20 }} color="var(--color-gray50)" />
-
-                <Reply
-                  reply={reply}
-                  handleWriteReplyClick={handleWriteReplyClick}
-                  handleModifyReplyClick={handleModifyReplyClick}
-                />
+                <Reply reply={reply} />
               </List.Item>
             ))}
           </List>
+
+          <ConfirmModal
+            onConfirm={() => {
+              initializeReplyActionSpecification()
+              back()
+            }}
+            onCancel={() => {
+              back()
+            }}
+          />
         </Container>
       )}
     </>
+  )
+}
+
+function ConfirmModal({
+  onConfirm,
+  onCancel,
+}: {
+  onConfirm: () => void
+  onCancel: () => void
+}) {
+  const uriHash = useURIHash()
+  const { back } = useHistoryFunctions()
+
+  return (
+    <Confirm
+      open={uriHash === HASH_MODIFY_CLOSE_MODAL}
+      onClose={back}
+      // eslint-disable-next-line react/no-children-prop
+      children={
+        <div>
+          수정을 취소하시겠습니까? <br /> 수정한 내용은 저장되지 않습니다.
+        </div>
+      }
+      onConfirm={onConfirm}
+      onCancel={onCancel}
+    />
   )
 }
