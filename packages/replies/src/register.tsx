@@ -1,8 +1,11 @@
-import React, { Ref } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Container, FlexBox, HR1 } from '@titicaca/core-elements'
 
+import { actionReply } from './replies-api-clients'
 import AutoResizingTextarea from './auto-resizing-textarea'
+import { useRepliesContext } from './context'
+import { ResourceType } from './types'
 
 const RegisterButton = styled.button`
   width: 26px;
@@ -20,18 +23,42 @@ const RegisterButton = styled.button`
 `
 
 export default function Register({
-  content,
+  resourceId,
+  resourceType,
   registerPlaceholder,
-  textareaRef,
-  handleContentChange,
-  onSubmit,
 }: {
+  resourceId: string
+  resourceType: ResourceType
   registerPlaceholder?: string
-  textareaRef?: Ref<HTMLTextAreaElement>
-  content: string
-  handleContentChange: (content: string) => void
-  onSubmit: (replyContent: string) => void
 }) {
+  const {
+    parentMessageId,
+    currentMessageId,
+    content: { plaintext, mentioningUserUid },
+    textareaRef,
+    initializeReplyActionSpecification,
+    handleContentChange,
+  } = useRepliesContext()
+
+  const handleRegister = () => {
+    if (!plaintext) {
+      return
+    }
+
+    actionReply({
+      resourceId,
+      resourceType,
+      parentMessageId: parentMessageId || '',
+      currentMessageId: currentMessageId || '',
+      content: plaintext || '',
+      mentionedUserUid: mentioningUserUid || '',
+    })
+
+    initializeReplyActionSpecification()
+
+    handleContentChange('')
+  }
+
   return (
     <Container cursor="pointer">
       <HR1 margin={{ top: 0 }} />
@@ -47,16 +74,16 @@ export default function Register({
           }
           minRows={1}
           maxRows={4}
-          value={content}
+          value={plaintext || ''}
           onChange={handleContentChange}
           ref={textareaRef}
         />
 
         <RegisterButton
           onClick={() => {
-            onSubmit(content)
+            handleRegister()
           }}
-          disabled={!content}
+          disabled={!plaintext}
         >
           등록
         </RegisterButton>
