@@ -15,6 +15,7 @@ import ActionSheet from '@titicaca/action-sheet'
 import { Reply as ReplyType, Writer } from '../types'
 import { fetchChildReplies } from '../replies-api-clients'
 import { checkUniqueReply } from '../utils'
+import { useRepliesContext } from '../context'
 
 const MoreActionsButton = styled.button`
   width: 19px;
@@ -61,26 +62,15 @@ export default function Reply({
     id,
     actionSpecifications: { delete: isMine, reply, edit },
   },
-  handleWriteReplyClick,
-  handleModifyReplyClick,
 }: {
   reply: ReplyType
-  handleWriteReplyClick: (
-    reply: ReplyType['actionSpecifications']['reply'],
-  ) => void
-  handleModifyReplyClick: (
-    edit: Partial<
-      ReplyType['actionSpecifications']['edit'] & {
-        toMessageId?: string | null
-        messageId?: string | null
-      }
-    >,
-  ) => void
 }) {
   const [{ childReplies, childPage }, setChildRepliesInfo] = useState<{
     childReplies: ReplyType[]
     childPage: number
   }>({ childReplies: checkUniqueReply(children), childPage: 0 })
+
+  const { setReplyActionSpecification, focusing } = useRepliesContext()
 
   const { push } = useHistoryFunctions()
 
@@ -120,6 +110,47 @@ export default function Reply({
     },
     [push],
   )
+
+  const handleWriteReplyClick = ({
+    toMessageId,
+    mentioningUserUid,
+    mentioningUserName,
+  }: ReplyType['actionSpecifications']['reply']) => {
+    setReplyActionSpecification({
+      parentMessageId: toMessageId,
+      content: {
+        mentioningUserUid,
+        mentioningUserName,
+      },
+    })
+
+    focusing()
+  }
+
+  const handleModifyReplyClick = ({
+    mentionedUserName,
+    mentionedUserUid,
+    messageId,
+    toMessageId,
+    plaintext,
+  }: Partial<
+    ReplyType['actionSpecifications']['edit'] & {
+      toMessageId?: string | null
+      messageId?: string | null
+    }
+  >) => {
+    setReplyActionSpecification({
+      currentMessageId: messageId,
+      parentMessageId: toMessageId,
+      content: {
+        plaintext,
+        mentioningUserUid: mentionedUserUid,
+        mentioningUserName: mentionedUserName,
+      },
+    })
+
+    focusing()
+  }
 
   return (
     <>
@@ -212,11 +243,7 @@ export default function Reply({
         <List margin={{ top: 20 }}>
           {childReplies.map((childReply) => (
             <ChildResourceListItem key={childReply.id} margin={{ bottom: 20 }}>
-              <Reply
-                reply={childReply}
-                handleWriteReplyClick={handleWriteReplyClick}
-                handleModifyReplyClick={handleModifyReplyClick}
-              />
+              <Reply reply={childReply} />
             </ChildResourceListItem>
           ))}
         </List>
