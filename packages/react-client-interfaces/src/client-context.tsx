@@ -8,7 +8,7 @@ import { NextPageContext } from 'next'
 import { parseApp } from '@titicaca/view-utilities'
 
 type ClientContextProps = {
-  appVersion: string
+  appVersion?: string
 }
 
 const ClientContext = createContext<ClientContextProps | null>(null)
@@ -31,16 +31,24 @@ export function ClientContextProvider({
 
 ClientContextProvider.getInitialProps = async function ({
   req,
-}: NextPageContext): Promise<ClientContextProps | null> {
-  const parsedApp = parseApp(req?.headers.userAgent as string)
+}: NextPageContext): Promise<ClientContextProps> {
+  const userAgent = req
+    ? (req.headers.userAgent as string)
+    : typeof window !== 'undefined'
+    ? window.navigator.userAgent
+    : undefined
 
-  if (parsedApp) {
-    return {
-      appVersion: parsedApp.version,
+  if (userAgent) {
+    const parsedApp = parseApp(userAgent)
+
+    if (parsedApp) {
+      return {
+        appVersion: parsedApp.version,
+      }
     }
   }
 
-  return null
+  return {}
 }
 
 export function useClientContext() {
