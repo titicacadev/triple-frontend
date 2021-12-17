@@ -1,4 +1,4 @@
-import { parseApp } from '@titicaca/view-utilities'
+import { parseAppUserAgent as parseApp } from '@titicaca/view-utilities'
 import UAParser from 'ua-parser-js'
 
 interface Os {
