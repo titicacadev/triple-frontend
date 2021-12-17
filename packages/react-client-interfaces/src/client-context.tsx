@@ -11,7 +11,7 @@ type ClientContextProps = {
   appVersion: string
 }
 
-export const ClientContext = createContext<ClientContextProps | null>(null)
+const ClientContext = createContext<ClientContextProps | null>(null)
 
 export function ClientContextProvider({
   appVersion,
