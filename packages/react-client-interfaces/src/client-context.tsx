@@ -5,7 +5,7 @@ import React, {
   useMemo,
 } from 'react'
 import { NextPageContext } from 'next'
-import { parseApp } from '@titicaca/view-utilities'
+import { parseAppUserAgent } from '@titicaca/view-utilities'
 
 type ClientContextProps = {
   appVersion?: string
@@ -29,26 +29,32 @@ export function ClientContextProvider({
   )
 }
 
-ClientContextProvider.getInitialProps = async function ({
+ClientContextProvider.getInitialProps = async function (
+  nextPageContext: NextPageContext,
+): Promise<ClientContextProps> {
+  const parsedApp = extractClientAppUserAgentFromNextPageContext(
+    nextPageContext,
+  )
+
+  if (parsedApp) {
+    return {
+      appVersion: parsedApp.version,
+    }
+  }
+
+  return {}
+}
+
+export function extractClientAppUserAgentFromNextPageContext({
   req,
-}: NextPageContext): Promise<ClientContextProps> {
+}: NextPageContext): ReturnType<typeof parseAppUserAgent> | null {
   const userAgent = req
     ? (req.headers.userAgent as string)
     : typeof window !== 'undefined'
     ? window.navigator.userAgent
     : undefined
 
-  if (userAgent) {
-    const parsedApp = parseApp(userAgent)
-
-    if (parsedApp) {
-      return {
-        appVersion: parsedApp.version,
-      }
-    }
-  }
-
-  return {}
+  return userAgent ? parseAppUserAgent(userAgent) : null
 }
 
 export function useClientContext() {
