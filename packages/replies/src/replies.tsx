@@ -18,14 +18,14 @@ import ReplyList from './list'
 import Register from './register'
 import { checkUniqueReply } from './utils'
 
-// FIXME: 개발 완료 후 onClickCapture props를 제거합니다.
-// 제공되는 댓글의 일부 기능을 노출하지 않기 위해서 추가한 임시 핸들러 props이며,
-// 개발이 완료되면 없어질 props입니다.
 export default function Replies({
   resourceId,
   resourceType,
   registerPlaceholder,
   size,
+  // FIXME: 개발 완료 후 onClickCapture props를 제거합니다.
+  // 제공되는 댓글의 일부 기능을 노출하지 않기 위해서 추가한 임시 핸들러 props이며,
+  // 개발이 완료되면 없어질 props입니다.
   onClickCapture,
 }: {
   resourceId: string
