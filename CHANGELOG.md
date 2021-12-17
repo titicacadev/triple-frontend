@@ -2,9 +2,13 @@
 
 ## 4.1.2
 
+### app-installation-cta
+
+- floating-button-cta 디자인 오류를 해결합니다. [#1724](https://github.com/titicacadev/triple-frontend/pull/1724)
+
 ### replies
 
-- [replies] 자식 컴포넌트의 이벤트를 막습니다. [#1723](https://github.com/titicacadev/triple-frontend/pull/1723)
+- 자식 컴포넌트의 이벤트를 막습니다. [#1723](https://github.com/titicacadev/triple-frontend/pull/1723)
 
 ## 4.1.1
 
