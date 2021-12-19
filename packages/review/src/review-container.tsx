@@ -79,7 +79,6 @@ function ReviewContainer({
   reviewsCount: initialReviewsCount,
   resourceType,
   regionId,
-  appUrlScheme,
   resourceId,
   placeholderText,
   appNativeActions: {
@@ -100,10 +99,6 @@ function ReviewContainer({
   reviewsCount: number
   shortened?: boolean
   reviewed?: boolean
-  /**
-   * @deprecated env context를 사용하면 생략 가능
-   */
-  appUrlScheme?: string
   deepLink?: string
   placeholderText?: string
   appNativeActions: AppNativeActionProps
@@ -137,7 +132,7 @@ function ReviewContainer({
     editReview,
     navigateReviewList,
     navigateMileageIntro,
-  } = useClientActions({ appUrlScheme })
+  } = useClientActions()
 
   const setMyReview = useCallback(
     (review) =>
@@ -341,7 +336,6 @@ function ReviewContainer({
             myReview={myReview}
             reviews={reviews.filter((review) => !myReviewIds.has(review.id))}
             regionId={regionId}
-            appUrlScheme={appUrlScheme}
             resourceId={resourceId}
             showToast={showToast}
             reviewRateDescriptions={reviewRateDescriptions}

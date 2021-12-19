@@ -56,7 +56,6 @@ export default {
 export function reviewSection() {
   return (
     <Reviews
-      appUrlScheme=""
       shortened={boolean('Shortened', false)}
       reviewsCount={number('Review count', 120)}
       appNativeActions={{
