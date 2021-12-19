@@ -1,6 +1,6 @@
 # ab-experiment-context
 
-A/B 테스트를 도와주는 context입니다.
+**트리플의 사용자 ID(내부 API를 이용)**를 이용하여 A/B 테스트를 도와주는 context입니다.
 
 ## 인터페이스
 
