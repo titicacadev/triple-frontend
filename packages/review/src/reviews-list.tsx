@@ -27,7 +27,6 @@ export default function ReviewsList({
   reviews,
   regionId,
   fetchNext,
-  appUrlScheme,
   resourceId,
   maxLength,
   reviewRateDescriptions,
@@ -37,10 +36,6 @@ export default function ReviewsList({
   reviews: ReviewData[]
   fetchNext?: () => void
   regionId?: string
-  /**
-   * @deprecated env context를 사용하면 생략 가능
-   */
-  appUrlScheme?: string
   resourceId: string
   maxLength?: number
   reviewRateDescriptions?: string[]
@@ -58,7 +53,7 @@ export default function ReviewsList({
     navigateImages,
     navigateReviewDetail,
     reportReview,
-  } = useClientActions({ appUrlScheme })
+  } = useClientActions()
 
   const handleUserClick: ReviewElementProps['onUserClick'] = useSessionCallback(
     useCallback(
