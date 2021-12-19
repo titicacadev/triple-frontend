@@ -8,9 +8,10 @@ import React, {
   useRef,
   useState,
 } from 'react'
-
-import { useEventTrackingContext } from '../event-tracking-context'
-import { useSessionAvailability } from '../session-context'
+import {
+  useEventTrackingContext,
+  useSessionAvailability,
+} from '@titicaca/react-contexts'
 
 import { ABExperimentMeta, getABExperiment } from './service'
 
