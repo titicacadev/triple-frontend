@@ -1,25 +1,25 @@
-# ab-experiments
+# google-optimize-context
 
-A/B 테스트를 지원하는 패키지입니다.
+**Google Optimize**를 이용하여 세션을 통해 A/B 테스트를 도와주는 context입니다.
 
 ## 인터페이스
 
-#### `GoogleOptimizeExperimentProvider`
+### `GoogleOptimizeExperimentProvider`
 
 자식 컴포넌트에 실험ID와 실험 컨테이너ID를 공급하여 A/B테스트 환경을 제공합니다.
 
-##### props
+#### props
 
 | 이름         | 타입     | 설명                                                            |
 | :----------- | :------- | :-------------------------------------------------------------- |
 | experimentId | `string` | Google Optimize에서 생성한 실험 ID                              |
 | containerId  | `string` | Google Optimize 컨테이너 ID <br />(ex. GTM-XXXXXX / OPT-XXXXXX) |
 
-#### `useExperimentVariant`
+### `useExperimentVariant`
 
 A/B 테스트의 후보군을 파라미터로 받으며, 반환 값은 후보군 중 선택된 단일값입니다.
 
-##### props
+#### props
 
 | 이름     | 타입  | 설명                                 |
 | :------- | :---- | :----------------------------------- |
