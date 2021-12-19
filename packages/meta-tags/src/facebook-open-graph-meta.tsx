@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import Head from 'next/head'
 import { useEnv } from '@titicaca/react-contexts'
 
@@ -13,7 +13,6 @@ export function FacebookOpenGraphMeta({
     width: 1052,
     height: 1052,
   },
-  fbAppId: fbAppIdFromProps,
 }: {
   title?: string
   description?: string
@@ -21,35 +20,8 @@ export function FacebookOpenGraphMeta({
   type?: string
   locale?: string
   image?: { url: string; width?: number; height?: number }
-  /**
-   * @deprecated env context를 사용하세요.
-   */
-  fbAppId?: string
 }) {
-  const {
-    facebookAppId: fbAppIdFromContext,
-    defaultPageTitle,
-    defaultPageDescription,
-  } = useEnv()
-
-  const fbAppId = useMemo(() => {
-    if (fbAppIdFromContext) {
-      return fbAppIdFromContext
-    }
-    if (typeof fbAppIdFromProps === 'string') {
-      // TODO: 개발용 logger 만들기
-      if (process.env.NODE_ENV === 'development') {
-        // eslint-disable-next-line no-console
-        console.warn(
-          'fbAppId prop은 deprecate되었습니다.\n다음 메이저 버전부터 env context를 사용해야 합니다.\nhttps://github.com/titicacadev/triple-frontend/blob/ab1648a7cdb684ee2752eb5b80eed02940106964/packages/react-contexts/src/env-context/README.md#%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98-%ED%95%98%EB%8A%94-%EB%B2%95',
-        )
-      }
-
-      return fbAppIdFromProps
-    }
-
-    return '136540730081853'
-  }, [fbAppIdFromContext, fbAppIdFromProps])
+  const { facebookAppId, defaultPageTitle, defaultPageDescription } = useEnv()
 
   const title = titleFromProps || defaultPageTitle
   const description = descriptionFromProps || defaultPageDescription
@@ -80,7 +52,7 @@ export function FacebookOpenGraphMeta({
         property="og:description"
         content={description}
       />
-      <meta key="fb-app-id" property="fb:app_id" content={fbAppId} />
+      <meta key="fb-app-id" property="fb:app_id" content={facebookAppId} />
     </Head>
   )
 }
