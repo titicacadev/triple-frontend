@@ -4,8 +4,6 @@ import React, {
   useContext,
   useMemo,
   useState,
-  useRef,
-  RefObject,
 } from 'react'
 
 export interface ActionReplyData {
@@ -18,9 +16,7 @@ export interface ActionReplyData {
   }
 }
 
-interface RepliesState extends ActionReplyData {
-  textareaRef: RefObject<HTMLTextAreaElement>
-}
+type RepliesState = ActionReplyData
 
 interface RepliesFunc {
   setActionReplyData: ({
@@ -29,13 +25,12 @@ interface RepliesFunc {
     content: { plaintext, mentioningUserUid, mentioningUserName },
   }: ActionReplyData) => void
   initializeActionReplyData: () => void
-  focusing: () => void
   handleContentChange: (content: string) => void
 }
 
-const RepliesContext = createContext<(RepliesState & RepliesFunc) | undefined>(
-  undefined,
-)
+const RepliesContext = createContext<
+  (ActionReplyData & RepliesFunc) | undefined
+>(undefined)
 
 export function RepliesProvider({ children }: PropsWithChildren<{}>) {
   const [
@@ -54,8 +49,6 @@ export function RepliesProvider({ children }: PropsWithChildren<{}>) {
       mentioningUserName: undefined,
     },
   })
-
-  const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   const initializeActionReplyData = () => {
     setActionReplyData({
@@ -79,12 +72,6 @@ export function RepliesProvider({ children }: PropsWithChildren<{}>) {
     }))
   }
 
-  const focusing = () => {
-    if (textareaRef.current) {
-      textareaRef.current.focus()
-    }
-  }
-
   const value = useMemo(
     () => ({
       currentMessageId,
@@ -94,10 +81,8 @@ export function RepliesProvider({ children }: PropsWithChildren<{}>) {
         mentioningUserUid,
         mentioningUserName,
       },
-      textareaRef,
       setActionReplyData,
       initializeActionReplyData,
-      focusing,
       handleContentChange,
     }),
     [
