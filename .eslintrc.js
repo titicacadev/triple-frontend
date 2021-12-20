@@ -71,5 +71,11 @@ module.exports = {
       files: ['*.mdx'],
       extends: 'plugin:mdx/recommended',
     },
+    {
+      files: ['*.test.ts', '*.test.tsx', '*.spec.ts', '*.spec.tsx'],
+      rules: {
+        'jsx-a11y/anchor-is-valid': 'off',
+      },
+    },
   ],
 }
