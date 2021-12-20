@@ -9,14 +9,6 @@ import ImageCircular from './circular'
 import ImagePlaceholder from './placeholder'
 import ImageOptimizedImg, { OptimizedImgProps } from './optimized-img'
 
-/**
- * @deprecated children: string
- */
-// TODO: 두번째 타입 없애기
-export type ImageSourceType =
-  | React.ComponentType<{ sourceUrl: string }>
-  | ((props: { children: string }) => any)
-
 export {
   Image,
   ImageImg,
