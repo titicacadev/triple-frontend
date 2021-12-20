@@ -125,7 +125,7 @@ export function useRepliesContext() {
   const context = useContext(RepliesContext)
 
   if (context === undefined) {
-    throw new Error('RepliesContext의 Provider가 없습ㄴ디ㅏ.')
+    throw new Error('RepliesContext의 Provider가 없습니다.')
   }
 
   return context
