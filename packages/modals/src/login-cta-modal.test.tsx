@@ -1,96 +1,124 @@
-import React, { PropsWithChildren } from 'react'
-import { fireEvent, render } from '@testing-library/react'
 import '@testing-library/jest-dom'
+import React from 'react'
+import { render } from '@testing-library/react'
+import { renderHook, act } from '@testing-library/react-hooks'
 import {
-  EnvProvider,
-  HistoryProvider,
-  SessionContextProvider,
+  useEventTrackingContext,
+  useHistoryFunctions,
+  useURIHash,
+  useUserAgentContext,
 } from '@titicaca/react-contexts'
 
-import { LoginCTAModalProvider, useLoginCTAModal } from './login-cta-modal'
+import {
+  LoginCTAModalProvider,
+  LOGIN_CTA_MODAL_HASH,
+  useLoginCTAModal,
+} from './login-cta-modal'
 
-function OpenLoginModal() {
-  const { show } = useLoginCTAModal()
-  return (
-    <button data-testid="modal-open-button" onClick={() => show()}>
-      열기
-    </button>
-  )
-}
+jest.mock('@titicaca/react-contexts')
 
-function Wrappers({ children }: PropsWithChildren<{}>) {
-  return (
-    <EnvProvider
-      appUrlScheme="triple"
-      webUrlBase="https://triple.guide"
-      authBasePath="MOCK_AUTH_BASE_PATH"
-      facebookAppId="MOCK_FB_APP_ID"
-      defaultPageTitle="MOCK_PAGE_TITLE"
-      defaultPageDescription="MOCK_PAGE_DESCRIPTION"
-      afOnelinkId=""
-      afOnelinkPid=""
-      afOnelinkSubdomain=""
-    >
-      <SessionContextProvider
-        type="browser"
-        props={{ initialSessionAvailability: false, initialUser: undefined }}
-      >
-        <HistoryProvider>{children}</HistoryProvider>
-      </SessionContextProvider>
-    </EnvProvider>
-  )
-}
-
-describe('Login CTA Modal', () => {
-  it('should render children.', () => {
-    const { getByTestId } = render(
-      <LoginCTAModalProvider>
-        <div data-testid="child-element-1">42</div>
-
-        <LoginCTAModalProvider>
-          <div data-testid="child-element-2">4242</div>
-        </LoginCTAModalProvider>
-      </LoginCTAModalProvider>,
-      { wrapper: Wrappers },
-    )
-
-    expect(getByTestId('child-element-1')).toHaveTextContent('42')
-    expect(getByTestId('child-element-2')).toHaveTextContent('4242')
-  })
-
-  it('should render login cta modal using hook.', () => {
-    const { getByRole, getByTestId } = render(
-      <LoginCTAModalProvider>
-        <div data-testid="child-element-1">42</div>
-        <OpenLoginModal />
-      </LoginCTAModalProvider>,
-      {
-        wrapper: Wrappers,
-      },
-    )
-
-    fireEvent.click(getByTestId('modal-open-button'))
-
-    expect(getByRole('dialog')).toHaveTextContent('로그인이 필요합니다.')
-  })
-
-  it('should render single dialog with multiple providers.', () => {
-    const { getAllByRole, getByTestId } = render(
-      <LoginCTAModalProvider>
-        <div data-testid="child-element-1">42</div>
-
-        <LoginCTAModalProvider>
-          <div data-testid="child-element-2">4242</div>
-          <OpenLoginModal />
-        </LoginCTAModalProvider>
-      </LoginCTAModalProvider>,
-      {
-        wrapper: Wrappers,
-      },
-    )
-
-    fireEvent.click(getByTestId('modal-open-button'))
-
-    expect(getAllByRole('dialog')).toHaveLength(1)
-  })
+beforeEach(() => {
+  mockHistoryFunctions()
+  mockEventTrackingContext()
+  mockUserAgentContext()
 })
+
+test('children을 렌더링합니다.', () => {
+  const { getByTestId } = render(
+    <LoginCTAModalProvider>
+      <div data-testid="child-element-1">42</div>
+
+      <LoginCTAModalProvider>
+        <div data-testid="child-element-2">4242</div>
+      </LoginCTAModalProvider>
+    </LoginCTAModalProvider>,
+  )
+
+  expect(getByTestId('child-element-1')).toHaveTextContent('42')
+  expect(getByTestId('child-element-2')).toHaveTextContent('4242')
+})
+
+test('useLoginCtaModal 훅은 history context에 해시 값을 push합니다.', () => {
+  const { push } = mockHistoryFunctions()
+
+  const { result } = renderHook(useLoginCTAModal)
+
+  act(() => {
+    result.current.show()
+  })
+
+  expect(push).toBeCalledWith(LOGIN_CTA_MODAL_HASH)
+})
+
+test('history context가 LOGIN_CTA_MODAL_HASH를 반환할 때 로그인 dialog를 렌더링합니다.', () => {
+  mockUseUriHash(LOGIN_CTA_MODAL_HASH)
+
+  const { getByRole } = render(<LoginCTAModalProvider />)
+
+  expect(getByRole('dialog')).toHaveTextContent('로그인이 필요합니다.')
+})
+
+test('여러 개의 provider가 있어도 하나의 dialog를 렌더링합니다.', () => {
+  mockUseUriHash(LOGIN_CTA_MODAL_HASH)
+
+  const { getAllByRole } = render(
+    <LoginCTAModalProvider>
+      <LoginCTAModalProvider />
+    </LoginCTAModalProvider>,
+  )
+
+  expect(getAllByRole('dialog')).toHaveLength(1)
+})
+
+function mockUseUriHash(hash: string) {
+  const mockedUseUriHash = useURIHash as jest.MockedFunction<typeof useURIHash>
+  mockedUseUriHash.mockImplementation(() => {
+    return hash
+  })
+}
+
+function mockHistoryFunctions() {
+  const mockedUseHistoryFunction = useHistoryFunctions as jest.MockedFunction<
+    typeof useHistoryFunctions
+  >
+
+  const functions = {
+    push: jest.fn(),
+    back: jest.fn(),
+    navigate: jest.fn(),
+    replace: jest.fn(),
+    openWindow: jest.fn(),
+    showTransitionModal: jest.fn(),
+  }
+
+  mockedUseHistoryFunction.mockImplementation(() => functions)
+
+  return functions
+}
+
+function mockEventTrackingContext() {
+  const mockedUseEventTrackingContext = useEventTrackingContext as jest.MockedFunction<
+    typeof useEventTrackingContext
+  >
+
+  mockedUseEventTrackingContext.mockImplementation(() => ({
+    trackEvent: jest.fn(),
+    trackScreen: jest.fn(),
+    trackSimpleEvent: jest.fn(),
+    setFirebaseUserId: jest.fn(),
+    viewItem: jest.fn(),
+  }))
+}
+
+function mockUserAgentContext() {
+  const mockedUseUserAgentContext = useUserAgentContext as jest.MockedFunction<
+    typeof useUserAgentContext
+  >
+
+  mockedUseUserAgentContext.mockImplementation(() => ({
+    isPublic: true,
+    isMobile: false,
+    os: {},
+    app: null,
+  }))
+}
