@@ -38,7 +38,7 @@ function Register(
     parentMessageId,
     currentMessageId,
     content: { plaintext, mentioningUserUid },
-    initializeActionReplyData,
+    initializeWaitingActionReply,
     handleContentChange,
   } = useRepliesContext()
 
@@ -56,7 +56,7 @@ function Register(
       mentionedUserUid: mentioningUserUid,
     })
 
-    initializeActionReplyData()
+    initializeWaitingActionReply()
 
     handleContentChange('')
   }

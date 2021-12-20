@@ -22,7 +22,7 @@ export default function ReplyList({
   fetchMoreReplies: () => void
   onFocusInput: () => void
 }) {
-  const { initializeActionReplyData } = useRepliesContext()
+  const { initializeWaitingActionReply } = useRepliesContext()
   const { back } = useHistoryFunctions()
 
   return (
@@ -56,7 +56,7 @@ export default function ReplyList({
 
           <ConfirmModal
             onConfirm={() => {
-              initializeActionReplyData()
+              initializeWaitingActionReply()
               back()
             }}
             onCancel={() => {
