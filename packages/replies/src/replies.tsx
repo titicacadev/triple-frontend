@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useCallback, MouseEvent } from 'react'
+import React, {
+  useEffect,
+  useState,
+  useCallback,
+  MouseEvent,
+  useRef,
+} from 'react'
 import { Container } from '@titicaca/core-elements'
 
 import { fetchReplies, fetchReplyBoard } from './replies-api-clients'
@@ -81,6 +87,12 @@ export default function Replies({
     }))
   }, [resourceId, resourceType, size, page])
 
+  const registerRef = useRef<HTMLTextAreaElement>(null)
+
+  const onFocusInput = () => {
+    registerRef.current?.focus()
+  }
+
   return (
     <RepliesProvider>
       <Container onClick={onClickCapture}>
@@ -88,11 +100,13 @@ export default function Replies({
           replies={replies}
           totalRepliesCount={totalRepliesCount}
           fetchMoreReplies={fetchMoreReplies}
+          onFocusInput={onFocusInput}
         />
 
         <GuideText />
 
         <Register
+          ref={registerRef}
           resourceId={resourceId}
           resourceType={resourceType}
           registerPlaceholder={registerPlaceholder}

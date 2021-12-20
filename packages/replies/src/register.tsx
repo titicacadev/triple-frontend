@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef, ForwardedRef } from 'react'
 import styled from 'styled-components'
 import { Container, FlexBox, HR1 } from '@titicaca/core-elements'
 
@@ -22,20 +22,22 @@ const RegisterButton = styled.button`
   cursor: pointer;
 `
 
-export default function Register({
-  resourceId,
-  resourceType,
-  registerPlaceholder,
-}: {
-  resourceId: string
-  resourceType: ResourceType
-  registerPlaceholder?: string
-}) {
+function Register(
+  {
+    resourceId,
+    resourceType,
+    registerPlaceholder,
+  }: {
+    resourceId: string
+    resourceType: ResourceType
+    registerPlaceholder?: string
+  },
+  ref: ForwardedRef<HTMLTextAreaElement>,
+) {
   const {
     parentMessageId,
     currentMessageId,
     content: { plaintext, mentioningUserUid },
-    textareaRef,
     initializeActionReplyData,
     handleContentChange,
   } = useRepliesContext()
@@ -76,7 +78,7 @@ export default function Register({
           maxRows={4}
           value={plaintext || ''}
           onChange={handleContentChange}
-          ref={textareaRef}
+          ref={ref}
         />
 
         <RegisterButton
@@ -93,3 +95,5 @@ export default function Register({
     </Container>
   )
 }
+
+export default forwardRef(Register)

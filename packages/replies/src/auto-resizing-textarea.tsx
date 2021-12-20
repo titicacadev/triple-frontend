@@ -64,6 +64,4 @@ function AutoResizingTextarea(
   )
 }
 
-export default forwardRef<HTMLTextAreaElement, TextareaProps>(
-  AutoResizingTextarea,
-)
+export default forwardRef(AutoResizingTextarea)
