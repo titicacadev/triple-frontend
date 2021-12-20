@@ -1,9 +1,6 @@
+.vscode
+.next
 node_modules
-lib
-examples
 package-lock.json
-lerna.json
-
-.vscode/*
-tests/dist/*
+packages/*/lib/**
 docs/storybook-static
