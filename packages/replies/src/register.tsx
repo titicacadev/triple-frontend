@@ -48,10 +48,10 @@ export default function Register({
     actionReply({
       resourceId,
       resourceType,
-      parentMessageId: parentMessageId || '',
-      currentMessageId: currentMessageId || '',
-      content: plaintext || '',
-      mentionedUserUid: mentioningUserUid || '',
+      currentMessageId,
+      parentMessageId,
+      content: plaintext,
+      mentionedUserUid: mentioningUserUid,
     })
 
     initializeReplyActionSpecification()

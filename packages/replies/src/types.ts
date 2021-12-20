@@ -34,16 +34,16 @@ export interface Reply {
     edit: {
       text?: string
       plaintext?: string
-      mentionedUserHref?: string | null
-      mentionedUserName?: string | null
-      mentionedUserUid?: string | null
+      mentionedUserHref?: string
+      mentionedUserName?: string
+      mentionedUserUid?: string
     }
     reaction: boolean
     reply: {
-      mentioningUserHref: string | null
-      mentioningUserName: string | null
-      mentioningUserUid: string | null
-      toMessageId: string | null
+      mentioningUserHref: string
+      mentioningUserName: string
+      mentioningUserUid: string
+      toMessageId: string
     }
     report: boolean
   }

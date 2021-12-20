@@ -112,10 +112,10 @@ export async function actionReply({
 }: {
   resourceId?: string
   resourceType?: ResourceType
-  currentMessageId: string
-  parentMessageId: string
+  currentMessageId?: string
+  parentMessageId?: string
   content: string
-  mentionedUserUid: string
+  mentionedUserUid?: string
 }) {
   const { fetcher, path } = deriveRegisterRequest({
     currentMessageId,
@@ -150,9 +150,9 @@ function deriveRegisterRequest({
   parentMessageId,
   mentionedUserUid,
 }: {
-  currentMessageId: string
-  parentMessageId: string
-  mentionedUserUid: string
+  currentMessageId?: string
+  parentMessageId?: string
+  mentionedUserUid?: string
 }) {
   const type = parentMessageId
     ? mentionedUserUid && !currentMessageId
