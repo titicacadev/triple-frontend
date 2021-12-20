@@ -79,32 +79,6 @@ const Text = styled.div<TextProps>(
   (props) => props.css,
 )
 
-const TextHtml = styled(Text)`
-  line-height: 1.63;
-
-  p {
-    margin: 1.5rem 0 0 0;
-  }
-
-  p:first-of-type {
-    margin-top: 0;
-  }
-
-  strong {
-    color: ${({ color = 'gray' }) => rgba({ color, alpha: 1 })};
-  }
-
-  /* HACK: global-style의 underline 설정보다 우선하도록 수정 */
-  && {
-    a {
-      font-size: 15px;
-      font-weight: bold;
-      color: #2987f0;
-      text-decoration: underline;
-    }
-  }
-`
-
 interface TextTitleBaseProps extends CSSProps {
   margin?: MarginPadding
 }
@@ -130,14 +104,12 @@ function TextTitle({ css, children, margin }: TextTitleProps) {
 }
 
 type CompoundedText = typeof Text & {
-  Html: typeof TextHtml
   Title: typeof TextTitle
   /**
    * @deprecated
    */
   WithRef: typeof Text
 }
-;(Text as CompoundedText).Html = TextHtml
 ;(Text as CompoundedText).Title = TextTitle
 ;(Text as CompoundedText).WithRef = Text
 

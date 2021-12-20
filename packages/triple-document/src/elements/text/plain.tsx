@@ -1,9 +1,36 @@
 import React, { useCallback } from 'react'
 import { Text, Paragraph } from '@titicaca/core-elements'
+import styled from 'styled-components'
 
 import { useLinkClickHandler } from '../../prop-context/link-click-handler'
 
 import { fixLineBreak } from './fix-line-break'
+
+const TextHtml = styled(Text)`
+  line-height: 1.63;
+
+  p {
+    margin: 1.5rem 0 0 0;
+  }
+
+  p:first-of-type {
+    margin-top: 0;
+  }
+
+  strong {
+    color: var(--color-gray);
+  }
+
+  /* HACK: global-style의 underline 설정보다 우선하도록 수정 */
+  && {
+    a {
+      font-size: 15px;
+      font-weight: bold;
+      color: #2987f0;
+      text-decoration: underline;
+    }
+  }
+`
 
 export default function TextElement({
   value: { text, rawHTML },
@@ -36,7 +63,7 @@ export default function TextElement({
 
   if (rawHTML) {
     return (
-      <Text.Html
+      <TextHtml
         margin={compact ? { top: 4 } : { top: 10, left: 30, right: 30 }}
         alpha={0.9}
         dangerouslySetInnerHTML={{ __html: fixLineBreak(rawHTML) }}
