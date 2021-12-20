@@ -4,8 +4,6 @@ import styled from 'styled-components'
 
 import { useLinkClickHandler } from '../../prop-context/link-click-handler'
 
-import { fixLineBreak } from './fix-line-break'
-
 const TextHtml = styled(Text)`
   line-height: 1.63;
 
@@ -66,7 +64,7 @@ export default function TextElement({
       <TextHtml
         margin={compact ? { top: 4 } : { top: 10, left: 30, right: 30 }}
         alpha={0.9}
-        dangerouslySetInnerHTML={{ __html: fixLineBreak(rawHTML) }}
+        dangerouslySetInnerHTML={{ __html: rawHTML }}
         onClick={handleClick}
         {...props}
       />
