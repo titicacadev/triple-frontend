@@ -7,6 +7,7 @@ import {
   UserAgentProvider,
 } from '@titicaca/react-contexts'
 import { boolean } from '@storybook/addon-knobs'
+import {} from '@titicaca/react-contexts/src/session-context/context'
 
 export function historyProviderDecorator(storyFn: StoryFn<JSX.Element>) {
   return (
@@ -22,13 +23,18 @@ export function historyProviderDecorator(storyFn: StoryFn<JSX.Element>) {
       afOnelinkPid=""
       afOnelinkSubdomain=""
     >
-      <HistoryProvider
-        isPublic={false}
-        isAndroid={false}
-        transitionModalHash="transition.general"
+      <SessionContextProvider
+        type="browser"
+        props={{ initialSessionAvailability: false, initialUser: undefined }}
       >
-        {storyFn()}
-      </HistoryProvider>
+        <HistoryProvider
+          isPublic={false}
+          isAndroid={false}
+          transitionModalHash="transition.general"
+        >
+          {storyFn()}
+        </HistoryProvider>
+      </SessionContextProvider>
     </EnvProvider>
   )
 }
