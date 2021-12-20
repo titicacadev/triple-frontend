@@ -60,6 +60,7 @@ const { overrides, ...rest } = createConfig({
     'page_path',
     'coupon_(id|type)',
     'button_name',
+    'rawHTML',
   ],
 })
 
