@@ -1,13 +1,13 @@
 import { get, HttpResponse, RequestOptions } from '@titicaca/fetcher'
 
-export interface ABExperimentMeta {
+export interface TripleABExperimentMeta {
   testId: number
   group: string
 }
 
-export async function getABExperiment(
+export async function getTripleABExperiment(
   slug: string,
   options?: RequestOptions,
-): Promise<HttpResponse<ABExperimentMeta>> {
+): Promise<HttpResponse<TripleABExperimentMeta>> {
   return get(`/api/abtest/${slug}`, options)
 }

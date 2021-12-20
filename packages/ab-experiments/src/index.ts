@@ -4,11 +4,11 @@ export {
 } from './google-optimize-context'
 
 export {
-  getABExperiment,
-  ABExperimentMeta,
-  ABExperimentProvider,
-  useABExperimentVariant,
-  useABExperimentConversionTracker,
-  useABExperimentImpressionTracker,
-  useABExperimentContext,
-} from './ab-experiment-context'
+  getTripleABExperiment,
+  TripleABExperimentMeta,
+  TripleABExperimentProvider,
+  useTripleABExperimentVariant,
+  useTripleABExperimentConversionTracker,
+  useTripleABExperimentImpressionTracker,
+  useTripleABExperimentContext,
+} from './triple-ab-experiment-context'

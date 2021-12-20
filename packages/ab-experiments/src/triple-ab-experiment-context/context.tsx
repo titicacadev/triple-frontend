@@ -13,17 +13,15 @@ import {
   useSessionAvailability,
 } from '@titicaca/react-contexts'
 
-import { ABExperimentMeta, getABExperiment } from './service'
+import { TripleABExperimentMeta, getTripleABExperiment } from './service'
 
-interface ABExperimentMetas {
-  [key: string]: ABExperimentMeta | undefined
+interface TripleABExperimentMetas {
+  [key: string]: TripleABExperimentMeta | undefined
 }
 
-type ABExperimentContextValue = ABExperimentMetas
+const TripleABExperimentContext = createContext<TripleABExperimentMetas>({})
 
-const ABExperimentContext = createContext<ABExperimentContextValue>({})
-
-export function ABExperimentProvider({
+export function TripleABExperimentProvider({
   slug,
   meta: metaFromSSR,
   onError: onErrorFromProps,
@@ -33,19 +31,19 @@ export function ABExperimentProvider({
   /**
    * SSR 단계에서 조회한 값을 넣어 줄 수 있는 prop
    */
-  meta?: ABExperimentMeta
+  meta?: TripleABExperimentMeta
   onError?: (error: unknown) => void
 }>) {
   const sessionAvailable = useSessionAvailability()
   const onErrorRef = useRef(onErrorFromProps)
-  const experimentMetas = useContext(ABExperimentContext)
+  const experimentMetas = useContext(TripleABExperimentContext)
   const [meta, setMeta] = useState(metaFromSSR)
 
   useEffect(() => {
     const onError = onErrorRef.current
 
     async function fetchAndSetMeta() {
-      const response = await getABExperiment(slug)
+      const response = await getTripleABExperiment(slug)
 
       if (response.ok === false) {
         const { status, url } = response
@@ -73,16 +71,19 @@ export function ABExperimentProvider({
   ])
 
   return (
-    <ABExperimentContext.Provider value={value}>
+    <TripleABExperimentContext.Provider value={value}>
       {children}
-    </ABExperimentContext.Provider>
+    </TripleABExperimentContext.Provider>
   )
 }
 
-function useABExperimentMeta(slug: string, onError?: (error: Error) => void) {
+function useTripleABExperimentMeta(
+  slug: string,
+  onError?: (error: Error) => void,
+) {
   const sessionAvailable = useSessionAvailability()
 
-  const metas = useContext(ABExperimentContext)
+  const metas = useContext(TripleABExperimentContext)
   const meta = useMemo(() => metas[slug], [metas, slug])
 
   try {
@@ -123,12 +124,12 @@ type EventAttributes<T = OptionalAttributes> = keyof T &
  * @param onError
  */
 
-export function useABExperimentConversionTracker(
+export function useTripleABExperimentConversionTracker(
   slug: string,
   onError?: (error: Error) => void,
 ): <T = OptionalAttributes>(params?: EventAttributes<T>) => void {
   const { trackEvent } = useEventTrackingContext()
-  const meta = useABExperimentMeta(slug, onError)
+  const meta = useTripleABExperimentMeta(slug, onError)
 
   return useCallback(
     (eventParams) => {
@@ -157,12 +158,12 @@ export function useABExperimentConversionTracker(
  * @param onError
  */
 
-export function useABExperimentImpressionTracker(
+export function useTripleABExperimentImpressionTracker(
   slug: string,
   onError?: (error: Error) => void,
 ): <T = OptionalAttributes>(params?: EventAttributes<T>) => void {
   const { trackEvent } = useEventTrackingContext()
-  const meta = useABExperimentMeta(slug, onError)
+  const meta = useTripleABExperimentMeta(slug, onError)
 
   return useCallback(
     (eventParams) => {
@@ -191,7 +192,7 @@ export function useABExperimentImpressionTracker(
  * @param fallback 실험을 찾을 수 없거나 variants에 현재 실험군이 설정되어있지 않으면 반환하는 값
  * @param onError
  */
-export function useABExperimentVariant<T, U = OptionalAttributes>(
+export function useTripleABExperimentVariant<T, U = OptionalAttributes>(
   slug: string,
   variants: {
     [group: string]: T
@@ -201,7 +202,7 @@ export function useABExperimentVariant<T, U = OptionalAttributes>(
   eventAttributesFromProps?: EventAttributes<U>,
 ): T {
   const { trackEvent } = useEventTrackingContext()
-  const meta = useABExperimentMeta(slug, onError)
+  const meta = useTripleABExperimentMeta(slug, onError)
   const eventAttributesRef = useRef(eventAttributesFromProps)
 
   const { testId, group } = meta || {}
@@ -223,6 +224,12 @@ export function useABExperimentVariant<T, U = OptionalAttributes>(
   return group && group in variants ? variants[group] : fallback
 }
 
-export function useABExperimentContext() {
-  return useContext(ABExperimentContext)
+export function useTripleABExperimentContext() {
+  const context = useContext(TripleABExperimentContext)
+
+  if (context === undefined) {
+    throw new Error('TripleABExperimentProvider is required')
+  }
+
+  return context
 }
