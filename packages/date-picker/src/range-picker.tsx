@@ -5,9 +5,10 @@ import DayPicker, { DayModifiers, Modifiers } from 'react-day-picker'
 
 import { isValidDate, generatePaddedRange } from './utils'
 import PickerFrame, {
-  generateSelectedCircleStyle,
+  generateSelectedStyle,
   rangeStyle,
   generateDateLabelStyle,
+  SelectorStyle,
 } from './picker-frame'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
 import useDisabledDays, { DislableDaysProps } from './use-disabled-days'
@@ -21,8 +22,14 @@ const RangeContainer = styled(PickerFrame)<{
   startDateLabel?: string
   endDateLabel?: string
   sameDateLabel?: string
+  selectorStyle?: SelectorStyle
 }>`
-  ${generateSelectedCircleStyle('.DayPicker-Day--from,.DayPicker-Day--to')}
+  ${({ selectorStyle }) => css`
+    ${generateSelectedStyle({
+      selector: '.DayPicker-Day--from,.DayPicker-Day--to',
+      selectorStyle,
+    })}
+  `}
 
   ${({ selectedAll, startDateLabel, endDateLabel, sameDateLabel }) =>
     selectedAll &&
@@ -62,6 +69,7 @@ function RangePicker({
   publicHolidays: publicHolidaysFromProps,
   enableSameDay,
   hideTodayLabel = false,
+  selectorStyle,
 }: DislableDaysProps & {
   startDate: string | null
   endDate: string | null
@@ -81,6 +89,7 @@ function RangePicker({
    */
   publicHolidays?: Date[]
   enableSameDay?: boolean
+  selectorStyle?: SelectorStyle
 }) {
   const disabledDays = useDisabledDays({
     disabledDays: disabledDaysFromProps,
@@ -174,6 +183,7 @@ function RangePicker({
       endDateLabel={endDateLabel}
       sameDateLabel={sameDateLabel}
       hideTodayLabel={hideTodayLabel}
+      selectorStyle={selectorStyle}
     >
       <MemoDayPicker
         locale={LOCALE}

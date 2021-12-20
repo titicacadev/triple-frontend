@@ -3,7 +3,7 @@ import moment from 'moment'
 import styled from 'styled-components'
 import DayPicker, { DayModifiers, Modifiers } from 'react-day-picker'
 
-import PickerFrame, { generateSelectedCircleStyle } from './picker-frame'
+import PickerFrame, { generateSelectedStyle } from './picker-frame'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
 import useDisabledDays, { DislableDaysProps } from './use-disabled-days'
 import { usePublicHolidays } from './use-public-holidays'
@@ -11,7 +11,7 @@ import { usePublicHolidays } from './use-public-holidays'
 const MemoDayPicker = React.memo(DayPicker)
 
 const DayContainer = styled(PickerFrame)`
-  ${generateSelectedCircleStyle('.DayPicker-Day--selected')}
+  ${generateSelectedStyle({ selector: '.DayPicker-Day--selected' })}
 `
 
 const DateContainer = styled.div`

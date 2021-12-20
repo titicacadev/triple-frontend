@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 
+export type SelectorStyle = 'circle' | 'squre'
+
 const sideSpacingMixin = css<{ sideSpacing: number }>`
   ${({ sideSpacing }) => `
     .DayPicker-Weekday {
@@ -49,7 +51,13 @@ const sideSpacingMixin = css<{ sideSpacing: number }>`
   `}
 `
 
-export function generateSelectedCircleStyle(selector: string) {
+export function generateSelectedStyle({
+  selector,
+  selectorStyle = 'circle',
+}: {
+  selector: string
+  selectorStyle?: SelectorStyle
+}) {
   return css`
     ${selector} {
       z-index: 0;
@@ -71,7 +79,7 @@ export function generateSelectedCircleStyle(selector: string) {
         transform: translate(-50%, -50%);
         background-color: rgba(${getColor('blue')});
         content: '';
-        border-radius: 100%;
+        border-radius: ${selectorStyle === 'circle' ? '100%' : '4px'};
       }
 
       &.DayPicker-Day--outside {
