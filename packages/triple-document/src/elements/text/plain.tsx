@@ -3,6 +3,8 @@ import { Text, Paragraph } from '@titicaca/core-elements'
 
 import { useLinkClickHandler } from '../../prop-context/link-click-handler'
 
+import { fixLineBreak } from './fix-line-break'
+
 export default function TextElement({
   value: { text, rawHTML },
   compact,
@@ -37,7 +39,7 @@ export default function TextElement({
       <Text.Html
         margin={compact ? { top: 4 } : { top: 10, left: 30, right: 30 }}
         alpha={0.9}
-        dangerouslySetInnerHTML={{ __html: rawHTML }}
+        dangerouslySetInnerHTML={{ __html: fixLineBreak(rawHTML) }}
         onClick={handleClick}
         {...props}
       />
