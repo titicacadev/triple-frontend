@@ -37,7 +37,7 @@ const RepliesContext = createContext<(RepliesState & RepliesFunc) | undefined>(
   undefined,
 )
 
-export function RepliesProvider({ children }: PropsWithChildren<any>) {
+export function RepliesProvider({ children }: PropsWithChildren<{}>) {
   const [
     {
       currentMessageId,
