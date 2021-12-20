@@ -48,17 +48,7 @@ interface EnvContextValue {
   afOnelinkPid: string
 }
 
-const EnvContext = createContext<EnvContextValue>({
-  appUrlScheme: '',
-  webUrlBase: '',
-  authBasePath: '',
-  facebookAppId: '',
-  defaultPageTitle: '모바일 여행 가이드 - 트리플',
-  defaultPageDescription: '',
-  afOnelinkId: '',
-  afOnelinkPid: '',
-  afOnelinkSubdomain: '',
-})
+const EnvContext = createContext<EnvContextValue | null>(null)
 
 export function EnvProvider({
   appUrlScheme,
@@ -103,5 +93,11 @@ export function EnvProvider({
 }
 
 export function useEnv(): EnvContextValue {
-  return useContext(EnvContext)
+  const context = useContext(EnvContext)
+
+  if (context === null) {
+    throw new Error('env context의 provider가 없습니다.')
+  }
+
+  return context
 }
