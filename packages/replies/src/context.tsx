@@ -8,7 +8,7 @@ import React, {
   RefObject,
 } from 'react'
 
-export interface ActionSpecifiaction {
+export interface ActionReplyData {
   currentMessageId?: string
   parentMessageId?: string
   content: {
@@ -18,23 +18,16 @@ export interface ActionSpecifiaction {
   }
 }
 
-interface RepliesState {
-  currentMessageId?: string
-  parentMessageId?: string
-  content: {
-    plaintext?: string
-    mentioningUserUid?: string
-    mentioningUserName?: string
-  }
+interface RepliesState extends ActionReplyData {
   textareaRef: RefObject<HTMLTextAreaElement>
 }
 
 interface RepliesFunc {
-  setReplyActionSpecification: ({
+  setActionReplyData: ({
     currentMessageId,
     parentMessageId,
     content: { plaintext, mentioningUserUid, mentioningUserName },
-  }: ActionSpecifiaction) => void
+  }: ActionReplyData) => void
   initializeReplyActionSpecification: () => void
   focusing: () => void
   handleContentChange: (content: string) => void
@@ -51,8 +44,8 @@ export function RepliesProvider({ children }: PropsWithChildren<any>) {
       parentMessageId,
       content: { plaintext, mentioningUserUid, mentioningUserName },
     },
-    setReplyActionSpecification,
-  ] = useState<ActionSpecifiaction>({
+    setActionReplyData,
+  ] = useState<ActionReplyData>({
     currentMessageId: undefined,
     parentMessageId: undefined,
     content: {
@@ -65,7 +58,7 @@ export function RepliesProvider({ children }: PropsWithChildren<any>) {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   const initializeReplyActionSpecification = () => {
-    setReplyActionSpecification({
+    setActionReplyData({
       currentMessageId: undefined,
       parentMessageId: undefined,
       content: {
@@ -77,7 +70,7 @@ export function RepliesProvider({ children }: PropsWithChildren<any>) {
   }
 
   const handleContentChange = (content: string) => {
-    setReplyActionSpecification((prev) => ({
+    setActionReplyData((prev) => ({
       ...prev,
       content: {
         ...prev.content,
@@ -102,7 +95,7 @@ export function RepliesProvider({ children }: PropsWithChildren<any>) {
         mentioningUserName,
       },
       textareaRef,
-      setReplyActionSpecification,
+      setActionReplyData,
       initializeReplyActionSpecification,
       focusing,
       handleContentChange,
