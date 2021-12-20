@@ -1,3 +1,6 @@
+.vscode
+.next
 node_modules
-lib
+package-lock.json
+packages/*/lib/**
 docs/storybook-static

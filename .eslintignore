@@ -1,5 +1,6 @@
-node_modules/
-dist/
-packages/*/lib/**
+.vscode
+.next
+node_modules
 package-lock.json
+packages/*/lib/**
 docs/storybook-static
