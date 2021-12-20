@@ -28,7 +28,7 @@ interface RepliesFunc {
     parentMessageId,
     content: { plaintext, mentioningUserUid, mentioningUserName },
   }: ActionReplyData) => void
-  initializeReplyActionSpecification: () => void
+  initializeActionReplyData: () => void
   focusing: () => void
   handleContentChange: (content: string) => void
 }
@@ -57,7 +57,7 @@ export function RepliesProvider({ children }: PropsWithChildren<any>) {
 
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
-  const initializeReplyActionSpecification = () => {
+  const initializeActionReplyData = () => {
     setActionReplyData({
       currentMessageId: undefined,
       parentMessageId: undefined,
@@ -96,7 +96,7 @@ export function RepliesProvider({ children }: PropsWithChildren<any>) {
       },
       textareaRef,
       setActionReplyData,
-      initializeReplyActionSpecification,
+      initializeActionReplyData,
       focusing,
       handleContentChange,
     }),

@@ -36,7 +36,7 @@ export default function Register({
     currentMessageId,
     content: { plaintext, mentioningUserUid },
     textareaRef,
-    initializeReplyActionSpecification,
+    initializeActionReplyData,
     handleContentChange,
   } = useRepliesContext()
 
@@ -54,7 +54,7 @@ export default function Register({
       mentionedUserUid: mentioningUserUid,
     })
 
-    initializeReplyActionSpecification()
+    initializeActionReplyData()
 
     handleContentChange('')
   }
