@@ -6,6 +6,7 @@ import { useLinkClickHandler } from '../../prop-context/link-click-handler'
 
 const TextHtml = styled(Text)`
   line-height: 1.63;
+  white-space: ${({ whiteSpace }) => whiteSpace || 'normal'};
 
   p {
     margin: 1.5rem 0 0 0;
