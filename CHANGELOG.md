@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 4.1.3
+
+### triple-document
+
+- Text의 중복 줄바꿈을 제거하는 함수 추가 [#1735](https://github.com/titicacadev/triple-frontend/pull/1735)
+
 ## 4.1.2
 
 ### app-installation-cta
