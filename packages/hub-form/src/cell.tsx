@@ -2,7 +2,10 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { Text } from '@titicaca/core-elements'
 
-const STYLE_BY_TYPES: { [type: string]: ReturnType<typeof css> } = {
+type StyleType = 'SCHEDULE' | 'PEOPLE' | 'ORIGIN' | 'DESTINATION' | 'SEARCH'
+
+const STYLE_BY_TYPES: { [type in StyleType]: ReturnType<typeof css> } = {
+  /* eslint-disable @typescript-eslint/naming-convention */
   SCHEDULE: css`
     background: url('https://assets.triple.guide/images/img-hub-date@3x.png')
       center center no-repeat;
@@ -23,9 +26,10 @@ const STYLE_BY_TYPES: { [type: string]: ReturnType<typeof css> } = {
     background: url('https://assets.triple.guide/images/img-hub-search@3x.png')
       center center no-repeat;
   `,
+  /* eslint-enable @typescript-eslint/naming-convention */
 }
 
-const CellContainer = styled.div<{ type: string }>`
+const CellContainer = styled.div<{ type: StyleType }>`
   position: relative;
   line-height: 17px;
   padding: 20px 0 20px 35px;
@@ -51,7 +55,7 @@ export default function Cell({
   value,
   onClick,
 }: {
-  type: string
+  type: StyleType
   placeholder?: string
   value?: string
   onClick?: (e: React.SyntheticEvent) => void
