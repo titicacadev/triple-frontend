@@ -71,6 +71,7 @@ function RangePicker({
   enableSameDay,
   hideTodayLabel = false,
   selectorStyle,
+  threshold,
   onMonthIntersect,
 }: DislableDaysProps & {
   startDate: string | null
@@ -92,6 +93,7 @@ function RangePicker({
   publicHolidays?: Date[]
   enableSameDay?: boolean
   selectorStyle?: SelectorStyle
+  threshold?: number
   onMonthIntersect?: (date: Date) => void
 }) {
   const disabledDays = useDisabledDays({
@@ -200,6 +202,7 @@ function RangePicker({
         disabledDays={disabledDays}
         captionElement={({ date, locale }) => (
           <StaticIntersectionObserver
+            threshold={threshold}
             onChange={({ isIntersecting }) =>
               isIntersecting && onMonthIntersect && onMonthIntersect(date)
             }
