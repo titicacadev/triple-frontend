@@ -4,7 +4,7 @@ A/B 테스트를 지원하는 패키지입니다.
 
 ## 인터페이스 종류
 
-### 1. ab-experiment-context
+### 1. triple-ab-experiment-context
 
 **트리플의 사용자 ID(내부 API를 이용)**를 이용하여 A/B 테스트를 도와주는 context입니다.
 
