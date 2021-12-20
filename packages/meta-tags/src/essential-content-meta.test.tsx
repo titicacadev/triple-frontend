@@ -1,3 +1,4 @@
+import { useEnv } from '@titicaca/react-contexts'
 import React from 'react'
 import renderer from 'react-test-renderer'
 
@@ -13,10 +14,26 @@ jest.mock('next/head', () => {
     default: MockHead,
   }
 })
+jest.mock('@titicaca/react-contexts')
 
 describe('EssentialContentMeta', () => {
+  const title = '모바일 여행 가이드북 - 트리플'
+  const description = '최고의 여행 가이드에요! 이것만 있으면 만사형통!'
+  const canonicalUrl = 'https://triple.guide/hotels'
+
+  beforeEach(() => {
+    const mockedUseEnv = useEnv as jest.MockedFunction<typeof useEnv>
+
+    mockedUseEnv.mockImplementation(
+      () =>
+        ({
+          defaultPageTitle: title,
+          defaultPageDescription: description,
+        } as ReturnType<typeof useEnv>),
+    )
+  })
+
   it('should render title.', () => {
-    const title = '모바일 여행 가이드북 - 트리플'
     const instance = renderer.create(<EssentialContentMeta title={title} />)
       .root
 
@@ -24,8 +41,6 @@ describe('EssentialContentMeta', () => {
   })
 
   it('should render description.', () => {
-    const description = '최고의 여행 가이드에요! 이것만 있으면 만사형통!'
-
     const instance = renderer.create(
       <EssentialContentMeta description={description} />,
     ).root
@@ -38,8 +53,6 @@ describe('EssentialContentMeta', () => {
   })
 
   it('should render canonical url tag.', () => {
-    const canonicalUrl = 'https://triple.guide/hotels'
-
     const instance = renderer.create(
       <EssentialContentMeta canonicalUrl={canonicalUrl} />,
     ).root
