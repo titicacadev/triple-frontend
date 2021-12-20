@@ -9,22 +9,22 @@ import React, {
 } from 'react'
 
 export interface ActionSpecifiaction {
-  currentMessageId?: string | null
-  parentMessageId?: string | null
+  currentMessageId?: string
+  parentMessageId?: string
   content: {
     plaintext?: string
-    mentioningUserUid?: string | null
-    mentioningUserName?: string | null
+    mentioningUserUid?: string
+    mentioningUserName?: string
   }
 }
 
 interface RepliesState {
-  currentMessageId?: string | null
-  parentMessageId?: string | null
+  currentMessageId?: string
+  parentMessageId?: string
   content: {
     plaintext?: string
-    mentioningUserUid?: string | null
-    mentioningUserName?: string | null
+    mentioningUserUid?: string
+    mentioningUserName?: string
   }
   textareaRef: RefObject<HTMLTextAreaElement>
 }
@@ -53,12 +53,12 @@ export function RepliesProvider({ children }: PropsWithChildren<any>) {
     },
     setReplyActionSpecification,
   ] = useState<ActionSpecifiaction>({
-    currentMessageId: null,
-    parentMessageId: null,
+    currentMessageId: undefined,
+    parentMessageId: undefined,
     content: {
       plaintext: '',
-      mentioningUserUid: null,
-      mentioningUserName: null,
+      mentioningUserUid: undefined,
+      mentioningUserName: undefined,
     },
   })
 
@@ -66,12 +66,12 @@ export function RepliesProvider({ children }: PropsWithChildren<any>) {
 
   const initializeReplyActionSpecification = () => {
     setReplyActionSpecification({
-      currentMessageId: null,
-      parentMessageId: null,
+      currentMessageId: undefined,
+      parentMessageId: undefined,
       content: {
         plaintext: '',
-        mentioningUserUid: null,
-        mentioningUserName: null,
+        mentioningUserUid: undefined,
+        mentioningUserName: undefined,
       },
     })
   }

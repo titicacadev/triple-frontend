@@ -133,12 +133,10 @@ export default function Reply({
     messageId,
     toMessageId,
     plaintext,
-  }: Partial<
-    ReplyType['actionSpecifications']['edit'] & {
-      toMessageId?: string | null
-      messageId?: string | null
-    }
-  >) => {
+  }: ReplyType['actionSpecifications']['edit'] & {
+    toMessageId?: string
+    messageId?: string
+  }) => {
     setReplyActionSpecification({
       currentMessageId: messageId,
       parentMessageId: toMessageId,
