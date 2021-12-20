@@ -2,8 +2,9 @@ import * as React from 'react'
 import moment from 'moment'
 import styled, { css } from 'styled-components'
 import DayPicker, { DayModifiers, Modifiers } from 'react-day-picker'
+import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
-import { isValidDate, generatePaddedRange } from './utils'
+import { isValidDate, generatePaddedRange, formatMonthTitle } from './utils'
 import PickerFrame, {
   generateSelectedStyle,
   rangeStyle,
@@ -70,6 +71,7 @@ function RangePicker({
   enableSameDay,
   hideTodayLabel = false,
   selectorStyle,
+  onMonthIntersect,
 }: DislableDaysProps & {
   startDate: string | null
   endDate: string | null
@@ -90,6 +92,7 @@ function RangePicker({
   publicHolidays?: Date[]
   enableSameDay?: boolean
   selectorStyle?: SelectorStyle
+  onMonthIntersect?: (date: Date) => void
 }) {
   const disabledDays = useDisabledDays({
     disabledDays: disabledDaysFromProps,
@@ -195,6 +198,21 @@ function RangePicker({
         numberOfMonths={numberOfMonths}
         modifiers={modifiers}
         disabledDays={disabledDays}
+        captionElement={({ date, locale }) => (
+          <StaticIntersectionObserver
+            onChange={({ isIntersecting }) =>
+              isIntersecting && onMonthIntersect && onMonthIntersect(date)
+            }
+          >
+            <div
+              className="DayPicker-Caption"
+              role="heading"
+              aria-live="polite"
+            >
+              {formatMonthTitle(date, locale)}
+            </div>
+          </StaticIntersectionObserver>
+        )}
       />
     </RangeContainer>
   )
