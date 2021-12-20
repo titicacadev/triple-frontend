@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react'
 
-export interface ActionReplyData {
+export interface WaitingActionReply {
   currentMessageId?: string
   parentMessageId?: string
   content: {
@@ -16,20 +16,18 @@ export interface ActionReplyData {
   }
 }
 
-type RepliesState = ActionReplyData
-
-interface RepliesFunc {
-  setActionReplyData: ({
+interface ReplyAssistantActions {
+  setWaitingActionReply: ({
     currentMessageId,
     parentMessageId,
     content: { plaintext, mentioningUserUid, mentioningUserName },
-  }: ActionReplyData) => void
-  initializeActionReplyData: () => void
+  }: WaitingActionReply) => void
+  initializeWaitingActionReply: () => void
   handleContentChange: (content: string) => void
 }
 
 const RepliesContext = createContext<
-  (ActionReplyData & RepliesFunc) | undefined
+  (WaitingActionReply & ReplyAssistantActions) | undefined
 >(undefined)
 
 export function RepliesProvider({ children }: PropsWithChildren<{}>) {
@@ -39,8 +37,8 @@ export function RepliesProvider({ children }: PropsWithChildren<{}>) {
       parentMessageId,
       content: { plaintext, mentioningUserUid, mentioningUserName },
     },
-    setActionReplyData,
-  ] = useState<ActionReplyData>({
+    setWaitingActionReply,
+  ] = useState<WaitingActionReply>({
     currentMessageId: undefined,
     parentMessageId: undefined,
     content: {
@@ -50,8 +48,8 @@ export function RepliesProvider({ children }: PropsWithChildren<{}>) {
     },
   })
 
-  const initializeActionReplyData = () => {
-    setActionReplyData({
+  const initializeWaitingActionReply = () => {
+    setWaitingActionReply({
       currentMessageId: undefined,
       parentMessageId: undefined,
       content: {
@@ -63,7 +61,7 @@ export function RepliesProvider({ children }: PropsWithChildren<{}>) {
   }
 
   const handleContentChange = (content: string) => {
-    setActionReplyData((prev) => ({
+    setWaitingActionReply((prev) => ({
       ...prev,
       content: {
         ...prev.content,
@@ -81,8 +79,8 @@ export function RepliesProvider({ children }: PropsWithChildren<{}>) {
         mentioningUserUid,
         mentioningUserName,
       },
-      setActionReplyData,
-      initializeActionReplyData,
+      setWaitingActionReply,
+      initializeWaitingActionReply,
       handleContentChange,
     }),
     [
