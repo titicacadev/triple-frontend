@@ -20,7 +20,7 @@ export default function ReplyList({
   totalRepliesCount?: number
   fetchMoreReplies: () => void
 }) {
-  const { initializeReplyActionSpecification } = useRepliesContext()
+  const { initializeActionReplyData } = useRepliesContext()
   const { back } = useHistoryFunctions()
 
   return (
@@ -54,7 +54,7 @@ export default function ReplyList({
 
           <ConfirmModal
             onConfirm={() => {
-              initializeReplyActionSpecification()
+              initializeActionReplyData()
               back()
             }}
             onCancel={() => {
