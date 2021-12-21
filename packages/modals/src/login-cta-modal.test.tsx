@@ -27,8 +27,14 @@ function Wrappers({ children }: PropsWithChildren<{}>) {
       facebookAppId="MOCK_FB_APP_ID"
       defaultPageTitle="MOCK_PAGE_TITLE"
       defaultPageDescription="MOCK_PAGE_DESCRIPTION"
+      afOnelinkId=""
+      afOnelinkPid=""
+      afOnelinkSubdomain=""
     >
-      <SessionContextProvider initialUser={{ uid: '' }}>
+      <SessionContextProvider
+        type="browser"
+        props={{ initialSessionAvailability: false, initialUser: undefined }}
+      >
         <HistoryProvider>{children}</HistoryProvider>
       </SessionContextProvider>
     </EnvProvider>
