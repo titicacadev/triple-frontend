@@ -5,6 +5,7 @@ import {
   HistoryProvider,
   SessionContextProvider,
   useURIHash,
+  EnvProvider,
 } from '@titicaca/react-contexts'
 import { TransitionType } from '@titicaca/modals'
 
@@ -15,16 +16,42 @@ function Wrapper({
   children,
 }: React.PropsWithChildren<{ isPublic: boolean }>) {
   return (
-    <UserAgentProvider value={{ isPublic, isMobile: false, app: null, os: {} }}>
-      <SessionContextProvider authBasePath="/login" initialUser={{ uid: '' }}>
-        <HistoryProvider
-          appUrlScheme="dev-soto"
-          webUrlBase="https://triple-dev.titicaca-corp.com"
+    <EnvProvider
+      afOnelinkId=""
+      afOnelinkPid=""
+      afOnelinkSubdomain=""
+      appUrlScheme="APP_URL_SCHEME"
+      defaultPageDescription="기본설명"
+      defaultPageTitle="기본 제목"
+      facebookAppId="FACEBOOK_APP_ID"
+      webUrlBase="WEB_URL_BASE"
+    >
+      <UserAgentProvider
+        value={{ isPublic, isMobile: false, app: null, os: {} }}
+      >
+        <SessionContextProvider
+          {...(isPublic
+            ? {
+                type: 'browser',
+                props: {
+                  initialUser: undefined,
+                  initialSessionAvailability: false,
+                },
+              }
+            : {
+                type: 'app',
+                props: { initialUser: undefined, initialSessionId: undefined },
+              })}
         >
-          {children}
-        </HistoryProvider>
-      </SessionContextProvider>
-    </UserAgentProvider>
+          <HistoryProvider
+            appUrlScheme="dev-soto"
+            webUrlBase="https://triple-dev.titicaca-corp.com"
+          >
+            {children}
+          </HistoryProvider>
+        </SessionContextProvider>
+      </UserAgentProvider>
+    </EnvProvider>
   )
 }
 
