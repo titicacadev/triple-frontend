@@ -72,6 +72,7 @@ function RangePicker({
   hideTodayLabel = false,
   selectorStyle,
   threshold,
+  renderDay,
   onMonthIntersect,
 }: DislableDaysProps & {
   startDate: string | null
@@ -94,6 +95,7 @@ function RangePicker({
   enableSameDay?: boolean
   selectorStyle?: SelectorStyle
   threshold?: number
+  renderDay?: (date: Date, modifiers?: DayModifiers) => React.ReactNode
   onMonthIntersect?: (date: Date) => void
 }) {
   const disabledDays = useDisabledDays({
@@ -200,6 +202,7 @@ function RangePicker({
         numberOfMonths={numberOfMonths}
         modifiers={modifiers}
         disabledDays={disabledDays}
+        renderDay={renderDay}
         captionElement={({ date, locale }) => (
           <StaticIntersectionObserver
             threshold={threshold}
