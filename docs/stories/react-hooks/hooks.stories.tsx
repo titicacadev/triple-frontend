@@ -7,6 +7,7 @@ import {
   useLottie,
 } from '@titicaca/react-hooks'
 import { boolean } from '@storybook/addon-knobs'
+import isChromatic from 'chromatic/isChromatic'
 
 import logos from '../__mocks__/lottie.sample.json'
 
@@ -85,6 +86,7 @@ export function Lottie() {
     rendererSettings: {
       viewBoxSize: `0 0 57px 57px`,
     },
+    autoplay: !isChromatic(),
   })
 
   return <LottieContainer ref={animationRef} />

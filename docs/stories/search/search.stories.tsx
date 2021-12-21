@@ -98,3 +98,8 @@ export function apiUsageExample() {
 }
 
 apiUsageExample.storyName = 'Sample'
+apiUsageExample.parameters = {
+  chromatic: {
+    disableSnapshot: true,
+  },
+}
