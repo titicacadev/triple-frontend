@@ -30,6 +30,7 @@ fs.writeFile(
     parser: 'json',
   }),
   { encoding: 'utf8' },
+  // eslint-disable-next-line promise/prefer-await-to-callbacks
   (err) => {
     if (err) {
       error(err)
