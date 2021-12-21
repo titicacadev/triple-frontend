@@ -95,7 +95,7 @@ function RangePicker({
   enableSameDay?: boolean
   selectorStyle?: SelectorStyle
   threshold?: number
-  renderDay?: (date: Date, modifiers?: DayModifiers) => React.ReactNode
+  renderDay?: (date: Date, _?: DayModifiers) => React.ReactNode
   onMonthIntersect?: (date: Date) => void
 }) {
   const disabledDays = useDisabledDays({
