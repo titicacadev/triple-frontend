@@ -1,7 +1,9 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "emitDeclarationOnly": false
   },
   "include": ["stories", "stories/__mocks__/**/*.json", "decorators"],
   "references": [
