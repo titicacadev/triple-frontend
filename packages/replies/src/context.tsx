@@ -16,7 +16,7 @@ export interface WaitingActionReply {
   }
 }
 
-interface ReplyAssistantActions {
+interface ReplyBaseActions {
   setWaitingActionReply: ({
     currentMessageId,
     parentMessageId,
@@ -27,7 +27,7 @@ interface ReplyAssistantActions {
 }
 
 const RepliesContext = createContext<
-  (WaitingActionReply & ReplyAssistantActions) | undefined
+  (WaitingActionReply & ReplyBaseActions) | undefined
 >(undefined)
 
 export function RepliesProvider({ children }: PropsWithChildren<{}>) {
