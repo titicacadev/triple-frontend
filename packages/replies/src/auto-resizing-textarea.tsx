@@ -1,4 +1,11 @@
-import React, { ChangeEvent, useState, forwardRef, ForwardedRef } from 'react'
+import React, {
+  ChangeEvent,
+  useState,
+  forwardRef,
+  ForwardedRef,
+  useImperativeHandle,
+  useRef,
+} from 'react'
 import styled from 'styled-components'
 
 const Textarea = styled.textarea<{ lineHeight: number }>`
@@ -28,11 +35,17 @@ interface TextareaProps {
   onChange: (message: string) => void
 }
 
+export type TextAreaHandle = {
+  onFocusInput: () => void
+}
+
 function AutoResizingTextarea(
   { value, minRows, maxRows, placeholder, onChange }: TextareaProps,
-  ref: ForwardedRef<HTMLTextAreaElement>,
+  ref: ForwardedRef<TextAreaHandle>,
 ) {
   const [rows, setRows] = useState(minRows)
+
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const currentRows = Math.floor(
@@ -52,6 +65,12 @@ function AutoResizingTextarea(
     setRows(currentRows < maxRows ? currentRows : maxRows)
   }
 
+  useImperativeHandle(ref, () => ({
+    onFocusInput: () => {
+      textareaRef.current?.focus()
+    },
+  }))
+
   return (
     <Textarea
       rows={rows}
@@ -59,7 +78,7 @@ function AutoResizingTextarea(
       placeholder={placeholder || '이 일정에 궁금한 점은 댓글로 써주세요.'}
       onChange={handleChange}
       lineHeight={TEXTAREA_LINE_HEIGHT}
-      ref={ref}
+      ref={textareaRef}
     />
   )
 }
