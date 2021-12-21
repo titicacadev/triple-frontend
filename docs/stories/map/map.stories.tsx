@@ -48,6 +48,11 @@ export function Map() {
 }
 
 Map.storyName = '기본 맵'
+Map.parameters = {
+  chromatic: {
+    disableSnapshot: true,
+  },
+}
 
 export function MapWithProps() {
   return (
@@ -74,6 +79,11 @@ export function MapWithProps() {
 }
 
 MapWithProps.storyName = '사이즈 설정'
+MapWithProps.parameters = {
+  chromatic: {
+    disableSnapshot: true,
+  },
+}
 
 export function MapWithPolyline() {
   return (
@@ -100,6 +110,11 @@ export function MapWithPolyline() {
 }
 
 MapWithPolyline.storyName = 'Polyline'
+MapWithPolyline.parameters = {
+  chromatic: {
+    disableSnapshot: true,
+  },
+}
 
 export function PolylineWithMarker() {
   return (
@@ -139,6 +154,12 @@ export function PolylineWithMarker() {
 
 PolylineWithMarker.storyName = 'Polyline with CircleMarker'
 
+PolylineWithMarker.parameters = {
+  chromatic: {
+    disableSnapshot: true,
+  },
+}
+
 export function PolygonWithMarker() {
   return (
     <Container
@@ -167,6 +188,11 @@ export function PolygonWithMarker() {
 }
 
 PolygonWithMarker.storyName = 'Polygon with CircleMarker'
+PolygonWithMarker.parameters = {
+  chromatic: {
+    disableSnapshot: true,
+  },
+}
 
 export function PolygonWithPolyline() {
   return (
@@ -201,6 +227,11 @@ export function PolygonWithPolyline() {
 }
 
 PolygonWithPolyline.storyName = 'Polygon with Polyline'
+PolygonWithPolyline.parameters = {
+  chromatic: {
+    disableSnapshot: true,
+  },
+}
 
 export function PolygonWithPolylineAndMarker() {
   return (
@@ -247,3 +278,8 @@ export function PolygonWithPolylineAndMarker() {
 }
 
 PolygonWithPolylineAndMarker.storyName = 'Polygon with Polyline, Marker'
+PolygonWithPolylineAndMarker.parameters = {
+  chromatic: {
+    disableSnapshot: true,
+  },
+}
