@@ -10,7 +10,7 @@ export default {
 export const ButtonDrawer = () => {
   return (
     <Drawer active={boolean('활성', true)}>
-      <Button fluid borderRadius={'0'}>
+      <Button fluid borderRadius={0}>
         결제하기
       </Button>
     </Drawer>

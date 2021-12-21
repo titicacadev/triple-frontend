@@ -17,8 +17,6 @@ export function ComponentWithI18nProvider() {
           coordinates: [125.50129726256557, 34.668727308992935],
         }}
         regionId="71476976-cf9a-4ae8-a60f-76e6fb26900d"
-        scraps={{}}
-        onScrapedChange={() => {}}
       />
     </I18nProvider>
   )

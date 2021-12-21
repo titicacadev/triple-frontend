@@ -39,7 +39,6 @@ const Template: Story<PublicHeaderProps> = (args) => {
 
 export const Basic = Template.bind({})
 Basic.args = {
-  fixed: false,
   deeplinkPath: 'https://triple.guide',
   category: undefined,
 }
