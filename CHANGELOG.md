@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 4.1.4
+
+### triple-document
+
+- TextHtml을 TripleDocument의 마크다운을 위한 컴포넌트로 구현합니다 [#1739](https://github.com/titicacadev/triple-frontend/pull/1739)
+
 ## 4.1.3
 
 ### triple-document
