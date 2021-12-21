@@ -18,9 +18,19 @@ const references = [
   ...dependenciesToReferences(devDependencies),
   ...dependenciesToReferences(peerDependencies),
 ].sort()
+const paths = dependenciesToPaths({
+  ...dependencies,
+  ...devDependencies,
+  ...peerDependencies,
+})
 
 const newTsconfig = {
   ...tsconfig,
+  compilerOptions: {
+    ...tsconfig.compilerOptions,
+    baseUrl: '.',
+    paths,
+  },
   references: references.length > 0 ? references : undefined,
 }
 
@@ -56,4 +66,30 @@ function dependenciesToReferences(deps) {
     )
     .filter((packagePath) => fs.existsSync(packagePath))
     .map((path) => ({ path }))
+}
+
+function dependenciesToPaths(deps) {
+  if (!deps) {
+    return undefined
+  }
+
+  return Object.keys(deps)
+    .filter((packageName) => packageName.startsWith('@titicaca/'))
+    .map((packageName) => ({
+      name: packageName,
+      path: path.relative(
+        process.cwd(),
+        path.join(
+          process.env.LERNA_ROOT_PATH,
+          './packages',
+          packageName.replace('@titicaca/', ''),
+        ),
+      ),
+    }))
+    .filter(({ path: packagePath }) => fs.existsSync(packagePath))
+    .sort(({ name: aName }, { name: bName }) => aName.localeCompare(bName))
+    .reduce(
+      (paths, { name, path }) => ({ ...paths, [name]: [`${path}/src`] }),
+      {},
+    )
 }
