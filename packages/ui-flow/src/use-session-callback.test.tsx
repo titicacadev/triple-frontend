@@ -41,7 +41,10 @@ describe('useSessionCallback', () => {
 
     it('returns fallback value if provided', () => {
       const { result } = renderHook(() => {
-        const doAction = useSessionCallback(() => 'login', 'fallback')
+        const doAction = useSessionCallback(() => 'login', {
+          returnUrl: undefined,
+          returnValue: 'fallback',
+        } as any)
         const uriHash = useURIHash()
 
         return { uriHash, doAction }
