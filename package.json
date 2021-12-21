@@ -37,7 +37,8 @@
     "lint:etc:fix": "npm run lint:etc -- --write",
     "lint:style": "stylelint '**/*.{ts,tsx,js}'",
     "lint": "concurrently --names es,style,etc 'npm:lint:es' 'npm:lint:style' 'npm:lint:etc'",
-    "lint:fix": "concurrently --names es,style,etc 'npm:lint:es:fix' 'npm:lint:style' 'npm:lint:etc:fix'"
+    "lint:fix": "concurrently --names es,style,etc 'npm:lint:es:fix' 'npm:lint:style' 'npm:lint:etc:fix'",
+    "typecheck": "tsc -b packages/*/tsconfig.json docs/tsconfig.json"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
