@@ -13,10 +13,9 @@ const watcher = chokidar.watch('packages/*/src/**/*', {
 
 let isReady = false
 
-function handleClose() {
-  watcher.close().then(() => {
-    log('Bye.')
-  })
+async function handleClose() {
+  await watcher.close()
+  log('Bye.')
 }
 
 const BUILDERS = {}
@@ -25,6 +24,7 @@ function createBuilder(packageName) {
   return () => {
     exec(
       `lerna exec --stream --scope=@titicaca/${packageName} -- ${BUILD_RESOURCES}`,
+      // eslint-disable-next-line promise/prefer-await-to-callbacks
       (err, stdout) => {
         if (err) {
           error(err)
