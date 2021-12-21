@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import { Meta } from '@storybook/react'
 import { ELEMENTS, Slot } from '@titicaca/triple-document'
 
@@ -23,23 +23,8 @@ export function InTripleDocument() {
 InTripleDocument.storyName = 'Triple-document에 포함된 Slot'
 
 export function Slots() {
-  const handleClick = useCallback(() => {
-    // TODO
-  }, [])
-
-  const handleIntersect = useCallback(() => {
-    // TODO
-  }, [])
-
   return SLOTS.map((slot, i) => (
-    <Slot
-      key={i}
-      id={slot.id}
-      title={slot.title}
-      products={slot.products}
-      onClick={handleClick}
-      onIntersect={handleIntersect}
-    />
+    <Slot key={i} id={slot.id} title={slot.title} products={slot.products} />
   ))
 }
 

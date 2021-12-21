@@ -1,5 +1,4 @@
 import React from 'react'
-import { action } from '@storybook/addon-actions'
 import NearbyPois from '@titicaca/nearby-pois'
 
 import { historyProviderDecorator } from '../../decorators'
@@ -17,8 +16,6 @@ export function BaseNearbyPois() {
         coordinates: [125.50129726256557, 34.668727308992935],
       }}
       regionId="71476976-cf9a-4ae8-a60f-76e6fb26900d"
-      scraps={{}}
-      onScrapedChange={action('onScrapedChange')}
     />
   )
 }
@@ -35,8 +32,6 @@ export function NearbyPoisWithRecommended() {
         coordinates: [135.50129726256557, 34.668727308992935],
       }}
       regionId="71476976-cf9a-4ae8-a60f-76e6fb26900d"
-      scraps={{}}
-      onScrapedChange={action('onScrapedChange')}
     />
   )
 }
