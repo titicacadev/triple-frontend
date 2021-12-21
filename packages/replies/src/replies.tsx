@@ -14,6 +14,7 @@ import GuideText from './guide-text'
 import Register from './register'
 import { checkUniqueReply } from './utils'
 import { RepliesProvider } from './context'
+import { TextAreaHandle } from './auto-resizing-textarea'
 
 export default function Replies({
   resourceId,
@@ -87,10 +88,10 @@ export default function Replies({
     }))
   }, [resourceId, resourceType, size, page])
 
-  const registerRef = useRef<HTMLTextAreaElement>(null)
+  const registerRef = useRef<TextAreaHandle>(null)
 
   const onFocusInput = () => {
-    registerRef.current?.focus()
+    registerRef.current?.onFocusInput()
   }
 
   return (

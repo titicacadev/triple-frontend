@@ -1,9 +1,9 @@
-import React, { forwardRef, ForwardedRef } from 'react'
+import React, { ForwardedRef, forwardRef } from 'react'
 import styled from 'styled-components'
 import { Container, FlexBox, HR1 } from '@titicaca/core-elements'
 
 import { actionReply } from './replies-api-clients'
-import AutoResizingTextarea from './auto-resizing-textarea'
+import AutoResizingTextarea, { TextAreaHandle } from './auto-resizing-textarea'
 import { useRepliesContext } from './context'
 import { ResourceType } from './types'
 
@@ -32,7 +32,7 @@ function Register(
     resourceType: ResourceType
     registerPlaceholder?: string
   },
-  ref: ForwardedRef<HTMLTextAreaElement>,
+  ref: ForwardedRef<TextAreaHandle>,
 ) {
   const {
     parentMessageId,
