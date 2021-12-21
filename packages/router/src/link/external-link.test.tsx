@@ -49,6 +49,9 @@ describe('ExternalLink', () => {
       facebookAppId: '',
       defaultPageTitle: '',
       defaultPageDescription: '',
+      afOnelinkId: '',
+      afOnelinkPid: '',
+      afOnelinkSubdomain: '',
     }))
     mockedUseAppBridge.mockImplementation(() => ({
       openInlink: jest.fn(),
