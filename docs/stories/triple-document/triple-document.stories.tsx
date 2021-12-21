@@ -3,6 +3,7 @@ import { Meta } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import TripleDocument, { ELEMENTS } from '@titicaca/triple-document'
 import { useScrollToAnchor } from '@titicaca/react-hooks'
+import { TripleElementData } from '@titicaca/triple-document/src/types'
 
 import SAMPLE from '../__mocks__/triple-document.sample.json'
 import MOCK_REGIONS from '../__mocks__/triple-document.regions.json'
@@ -26,7 +27,11 @@ export default {
 } as Meta
 
 export function Sample() {
-  return <TripleDocument>{SAMPLE}</TripleDocument>
+  return (
+    <TripleDocument>
+      {SAMPLE as TripleElementData<string, unknown>[]}
+    </TripleDocument>
+  )
 }
 Sample.storyName = '샘플'
 

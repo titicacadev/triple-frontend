@@ -10,7 +10,11 @@ export default {
 export const Basic = () => {
   return (
     <Rating
-      size={select('크기', ['tiny', 'small', 'medium'])}
+      size={select<'tiny' | 'small' | 'medium'>(
+        '크기',
+        ['tiny', 'small', 'medium'],
+        'tiny',
+      )}
       score={number('점수', 5)}
     />
   )

@@ -18,6 +18,9 @@ export function historyProviderDecorator(storyFn: StoryFn<JSX.Element>) {
       defaultPageTitle=""
       defaultPageDescription=""
       googleMapsApiKey="AIzaSyDuSWU_yBwuQzeyRFcTqhyifqNX_8oaXI4"
+      afOnelinkId=""
+      afOnelinkPid=""
+      afOnelinkSubdomain=""
     >
       <HistoryProvider
         isPublic={false}
@@ -40,11 +43,16 @@ export function sessionContextProviderDecorator(storyFn: StoryFn<JSX.Element>) {
       defaultPageTitle=""
       defaultPageDescription=""
       googleMapsApiKey="AIzaSyDuSWU_yBwuQzeyRFcTqhyifqNX_8oaXI4"
+      afOnelinkId=""
+      afOnelinkPid=""
+      afOnelinkSubdomain=""
     >
       <SessionContextProvider
-        sessionId={
-          boolean('hasSessionId', false) ? 'MOCK_SESSION_ID' : undefined
-        }
+        type="browser"
+        props={{
+          initialUser: undefined,
+          initialSessionAvailability: boolean('세션 유무', false),
+        }}
       >
         {storyFn()}
       </SessionContextProvider>
