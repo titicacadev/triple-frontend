@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react'
 
-export interface WaitingActionReply {
+export interface EditingMessage {
   currentMessageId?: string
   parentMessageId?: string
   content: {
@@ -17,17 +17,17 @@ export interface WaitingActionReply {
 }
 
 interface ReplyBaseActions {
-  setWaitingActionReply: ({
+  setEditingMessage: ({
     currentMessageId,
     parentMessageId,
     content: { plaintext, mentioningUserUid, mentioningUserName },
-  }: WaitingActionReply) => void
-  initializeWaitingActionReply: () => void
+  }: EditingMessage) => void
+  initializeEditingMessage: () => void
   handleContentChange: (content: string) => void
 }
 
 const RepliesContext = createContext<
-  (WaitingActionReply & ReplyBaseActions) | undefined
+  (EditingMessage & ReplyBaseActions) | undefined
 >(undefined)
 
 export function RepliesProvider({ children }: PropsWithChildren<{}>) {
@@ -37,8 +37,8 @@ export function RepliesProvider({ children }: PropsWithChildren<{}>) {
       parentMessageId,
       content: { plaintext, mentioningUserUid, mentioningUserName },
     },
-    setWaitingActionReply,
-  ] = useState<WaitingActionReply>({
+    setEditingMessage,
+  ] = useState<EditingMessage>({
     currentMessageId: undefined,
     parentMessageId: undefined,
     content: {
@@ -48,8 +48,8 @@ export function RepliesProvider({ children }: PropsWithChildren<{}>) {
     },
   })
 
-  const initializeWaitingActionReply = () => {
-    setWaitingActionReply({
+  const initializeEditingMessage = () => {
+    setEditingMessage({
       currentMessageId: undefined,
       parentMessageId: undefined,
       content: {
@@ -61,7 +61,7 @@ export function RepliesProvider({ children }: PropsWithChildren<{}>) {
   }
 
   const handleContentChange = (content: string) => {
-    setWaitingActionReply((prev) => ({
+    setEditingMessage((prev) => ({
       ...prev,
       content: {
         ...prev.content,
@@ -79,8 +79,8 @@ export function RepliesProvider({ children }: PropsWithChildren<{}>) {
         mentioningUserUid,
         mentioningUserName,
       },
-      setWaitingActionReply,
-      initializeWaitingActionReply,
+      setEditingMessage,
+      initializeEditingMessage,
       handleContentChange,
     }),
     [

@@ -11,7 +11,7 @@ export default function GuideText() {
     currentMessageId,
     parentMessageId,
     content: { mentioningUserUid, mentioningUserName },
-    initializeWaitingActionReply,
+    initializeEditingMessage,
   } = useRepliesContext()
 
   const { push } = useHistoryFunctions()
@@ -19,7 +19,7 @@ export default function GuideText() {
   const handleClose =
     currentMessageId && parentMessageId
       ? () => push(HASH_MODIFY_CLOSE_MODAL)
-      : () => initializeWaitingActionReply()
+      : () => initializeEditingMessage()
 
   return (
     <>
