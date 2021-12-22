@@ -72,7 +72,7 @@ export default function Reply({
     childPage: number
   }>({ childReplies: checkUniqueReply(children), childPage: 0 })
 
-  const { setWaitingActionReply } = useRepliesContext()
+  const { setEditingMessage } = useRepliesContext()
 
   const { push } = useHistoryFunctions()
 
@@ -118,7 +118,7 @@ export default function Reply({
     mentioningUserUid,
     mentioningUserName,
   }: ReplyType['actionSpecifications']['reply']) => {
-    setWaitingActionReply({
+    setEditingMessage({
       parentMessageId: toMessageId,
       content: {
         mentioningUserUid,
@@ -139,7 +139,7 @@ export default function Reply({
     toMessageId?: string
     messageId?: string
   }) => {
-    setWaitingActionReply({
+    setEditingMessage({
       currentMessageId: messageId,
       parentMessageId: toMessageId,
       content: {
