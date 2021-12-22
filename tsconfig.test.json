@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "./packages",
+    "paths": {
+      "@titicaca/color-palette": ["color-palette/src"],
+      "@titicaca/type-definitions": ["type-definitions/src"],
+      "@titicaca/react-contexts": ["react-contexts/src"],
+      "@titicaca/fetcher": ["fetcher/src"],
+      "@titicaca/view-utilities": ["view-utilities/src"],
+      "@titicaca/core-elements": ["core-elements/src"],
+      "@titicaca/modals": ["modals/src"],
+      "@titicaca/intersection-observer": ["intersection-observer/src"]
+    }
+  },
+  "exclude": ["docs"]
+}
