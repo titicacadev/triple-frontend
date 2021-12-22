@@ -79,37 +79,6 @@ const Text = styled.div<TextProps>(
   (props) => props.css,
 )
 
-/**
- * @deprecated 곧 core-elements에서 Text.Html을 지원하지 않을 예정입니다.
- * 사용하던 프로젝트에서는 각자 필요한 styled component를 직접 선언해서 사용하면 됩니다.
- */
-const TextHtml = styled(Text)`
-  line-height: 1.63;
-  white-space: ${({ whiteSpace }) => whiteSpace || 'normal'};
-
-  p {
-    margin: 1.5rem 0 0 0;
-  }
-
-  p:first-of-type {
-    margin-top: 0;
-  }
-
-  strong {
-    color: ${({ color = 'gray' }) => rgba({ color, alpha: 1 })};
-  }
-
-  /* HACK: global-style의 underline 설정보다 우선하도록 수정 */
-  && {
-    a {
-      font-size: 15px;
-      font-weight: bold;
-      color: #2987f0;
-      text-decoration: underline;
-    }
-  }
-`
-
 interface TextTitleBaseProps extends CSSProps {
   margin?: MarginPadding
 }
@@ -135,14 +104,12 @@ function TextTitle({ css, children, margin }: TextTitleProps) {
 }
 
 type CompoundedText = typeof Text & {
-  Html: typeof TextHtml
   Title: typeof TextTitle
   /**
    * @deprecated
    */
   WithRef: typeof Text
 }
-;(Text as CompoundedText).Html = TextHtml
 ;(Text as CompoundedText).Title = TextTitle
 ;(Text as CompoundedText).WithRef = Text
 
