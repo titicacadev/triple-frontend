@@ -36,7 +36,7 @@ interface TextareaProps {
 }
 
 export type TextAreaHandle = {
-  onFocusInput: () => void
+  focusInput: () => void
 }
 
 function AutoResizingTextarea(
@@ -66,7 +66,7 @@ function AutoResizingTextarea(
   }
 
   useImperativeHandle(ref, () => ({
-    onFocusInput: () => {
+    focusInput: () => {
       textareaRef.current?.focus()
     },
   }))

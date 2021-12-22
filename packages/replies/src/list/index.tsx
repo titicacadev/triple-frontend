@@ -15,12 +15,12 @@ export default function ReplyList({
   replies,
   totalRepliesCount,
   fetchMoreReplies,
-  onFocusInput,
+  focusInput,
 }: {
   replies: ReplyType[]
   totalRepliesCount?: number
   fetchMoreReplies: () => void
-  onFocusInput: () => void
+  focusInput: () => void
 }) {
   const { initializeEditingMessage } = useRepliesContext()
   const { back } = useHistoryFunctions()
@@ -49,7 +49,7 @@ export default function ReplyList({
             {replies.map((reply) => (
               <List.Item key={reply.id}>
                 <HR1 margin={{ bottom: 20 }} color="var(--color-gray50)" />
-                <Reply reply={reply} onFocusInput={onFocusInput} />
+                <Reply reply={reply} focusInput={focusInput} />
               </List.Item>
             ))}
           </List>
