@@ -129,7 +129,7 @@ export default function Reply({
     onFocusInput()
   }
 
-  const handleModifyReplyClick = ({
+  const handleEditReplyClick = ({
     mentionedUserName,
     mentionedUserUid,
     messageId,
@@ -252,8 +252,8 @@ export default function Reply({
       <FeatureActionSheet
         isMine={isMine}
         actionSheetHash={`${HASH_MORE_ACTION_SHEET}.${id}`}
-        onModifyClick={() =>
-          handleModifyReplyClick({
+        onEditClick={() =>
+          handleEditReplyClick({
             ...edit,
             toMessageId: reply.toMessageId,
             messageId: id,
@@ -317,11 +317,11 @@ function Content({
 function FeatureActionSheet({
   isMine,
   actionSheetHash,
-  onModifyClick,
+  onEditClick,
 }: {
   isMine: boolean
   actionSheetHash: string
-  onModifyClick: () => void
+  onEditClick: () => void
 }) {
   const uriHash = useURIHash()
   const { back } = useHistoryFunctions()
@@ -334,7 +334,7 @@ function FeatureActionSheet({
     >
       {isMine ? (
         <>
-          <ActionSheet.Item onClick={onModifyClick}>수정하기</ActionSheet.Item>
+          <ActionSheet.Item onClick={onEditClick}>수정하기</ActionSheet.Item>
           <ActionSheet.Item>삭제하기</ActionSheet.Item>
         </>
       ) : (

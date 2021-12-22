@@ -4,7 +4,7 @@ import { useHistoryFunctions } from '@titicaca/react-contexts'
 
 import { useRepliesContext } from './context'
 
-const HASH_MODIFY_CLOSE_MODAL = 'reply.modify-close-modal'
+const HASH_EDIT_CLOSE_MODAL = 'reply.edit-close-modal'
 
 export default function GuideText() {
   const {
@@ -18,7 +18,7 @@ export default function GuideText() {
 
   const handleClose =
     currentMessageId && parentMessageId
-      ? () => push(HASH_MODIFY_CLOSE_MODAL)
+      ? () => push(HASH_EDIT_CLOSE_MODAL)
       : () => initializeEditingMessage()
 
   return (

@@ -9,7 +9,7 @@ import { useRepliesContext } from '../context'
 import NotExistReplies from './not-exist-replies'
 import Reply from './reply'
 
-const HASH_MODIFY_CLOSE_MODAL = 'reply.modify-close-modal'
+const HASH_EDIT_CLOSE_MODAL = 'reply.edit-close-modal'
 
 export default function ReplyList({
   replies,
@@ -81,7 +81,7 @@ function ConfirmModal({
 
   return (
     <Confirm
-      open={uriHash === HASH_MODIFY_CLOSE_MODAL}
+      open={uriHash === HASH_EDIT_CLOSE_MODAL}
       onClose={back}
       // eslint-disable-next-line react/no-children-prop
       children={

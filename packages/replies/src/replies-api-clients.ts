@@ -157,7 +157,7 @@ function deriveAuthoringRequest({
   const type = parentMessageId
     ? mentionedUserUid && !currentMessageId
       ? 'writeChildReply'
-      : 'modifyReply'
+      : 'editReply'
     : 'writeReply'
 
   const registerRequest: {
@@ -171,7 +171,7 @@ function deriveAuthoringRequest({
       fetcher: authGuardedFetchers.post,
       path: `/api/reply/messages/${parentMessageId}/messages`,
     },
-    modifyReply: {
+    editReply: {
       fetcher: authGuardedFetchers.put,
       path: `/api/reply/messages/${currentMessageId}`,
     },
