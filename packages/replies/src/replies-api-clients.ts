@@ -117,7 +117,7 @@ export async function authorMessage({
   content: string
   mentionedUserUid?: string
 }) {
-  const { fetcher, path } = deriveRegisterRequest({
+  const { fetcher, path } = deriveAuthoringRequest({
     currentMessageId,
     parentMessageId,
     mentionedUserUid,
@@ -145,7 +145,7 @@ export async function authorMessage({
   captureHttpError(response)
 }
 
-function deriveRegisterRequest({
+function deriveAuthoringRequest({
   currentMessageId,
   parentMessageId,
   mentionedUserUid,
