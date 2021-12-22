@@ -7,7 +7,6 @@ import {
   UserAgentProvider,
 } from '@titicaca/react-contexts'
 import { boolean } from '@storybook/addon-knobs'
-import {} from '@titicaca/react-contexts/src/session-context/context'
 
 export function historyProviderDecorator(storyFn: StoryFn<JSX.Element>) {
   return (
@@ -25,7 +24,10 @@ export function historyProviderDecorator(storyFn: StoryFn<JSX.Element>) {
     >
       <SessionContextProvider
         type="browser"
-        props={{ initialSessionAvailability: false, initialUser: undefined }}
+        props={{
+          initialUser: undefined,
+          initialSessionAvailability: boolean('세션 유무', false),
+        }}
       >
         <HistoryProvider
           isPublic={false}
