@@ -94,7 +94,7 @@ function useTripleABExperimentMeta(
   } catch (error) {
     if (sessionAvailable === true && onError) {
       // session이 없을 때 발생한 에러는 리포팅 할 필요 없습니다.
-      onError(error)
+      onError(error as Error)
     }
     return null
   }
