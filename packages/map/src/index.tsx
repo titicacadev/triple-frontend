@@ -12,7 +12,6 @@ import {
   useLoadScript,
 } from '@react-google-maps/api'
 import { Spinner } from '@titicaca/core-elements'
-import { Libraries } from '@react-google-maps/api/dist/utils/make-load-script-url'
 
 export * from './utilities'
 export * from './marker'
@@ -65,7 +64,7 @@ export interface WithGoogleMapProps extends GoogleMapProps {
   onLoad?: (map: google.maps.Map) => void
 }
 
-const GOOGLE_MAP_LIBRARIES: Libraries = ['geometry']
+const GOOGLE_MAP_LIBRARIES = ['geometry' as const]
 
 export default function MapView({
   options: _options,

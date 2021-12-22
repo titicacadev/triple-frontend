@@ -23,5 +23,8 @@
   },
   "devDependencies": {
     "@types/isomorphic-fetch": "^0.0.35"
+  },
+  "peerDependencies": {
+    "@titicaca/react-contexts": "*"
   }
 }

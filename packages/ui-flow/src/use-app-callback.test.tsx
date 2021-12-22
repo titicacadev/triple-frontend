@@ -43,12 +43,7 @@ function Wrapper({
                 props: { initialUser: undefined, initialSessionId: undefined },
               })}
         >
-          <HistoryProvider
-            appUrlScheme="dev-soto"
-            webUrlBase="https://triple-dev.titicaca-corp.com"
-          >
-            {children}
-          </HistoryProvider>
+          <HistoryProvider>{children}</HistoryProvider>
         </SessionContextProvider>
       </UserAgentProvider>
     </EnvProvider>
