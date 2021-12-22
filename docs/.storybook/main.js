@@ -9,6 +9,9 @@ module.exports = {
     '@storybook/addon-docs',
     'storybook-addon-next-router',
   ],
+  typescript: {
+    check: true,
+  },
   webpackFinal: async (config, { configType }) => {
     config.mode = 'development'
     config.module.rules.push({
