@@ -5,7 +5,7 @@ export default function useDebouncedState<T>(
   timeout: number,
 ): { debounced: T; clearDebounce: () => void } {
   const [debounced, setDebounced] = useState(value)
-  const timerRef = useRef<NodeJS.Timeout | null>(null)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const clearDebounce = useCallback(() => {
     const currentTimerId = timerRef.current
