@@ -90,8 +90,8 @@ export default function Replies({
 
   const registerRef = useRef<TextAreaHandle>(null)
 
-  const onFocusInput = () => {
-    registerRef.current?.onFocusInput()
+  const focusInput = () => {
+    registerRef.current?.focusInput()
   }
 
   return (
@@ -101,7 +101,7 @@ export default function Replies({
           replies={replies}
           totalRepliesCount={totalRepliesCount}
           fetchMoreReplies={fetchMoreReplies}
-          onFocusInput={onFocusInput}
+          focusInput={focusInput}
         />
 
         <GuideText />

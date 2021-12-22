@@ -62,10 +62,10 @@ export default function Reply({
     id,
     actionSpecifications: { delete: isMine, reply, edit },
   },
-  onFocusInput,
+  focusInput,
 }: {
   reply: ReplyType
-  onFocusInput: () => void
+  focusInput: () => void
 }) {
   const [{ childReplies, childPage }, setChildRepliesInfo] = useState<{
     childReplies: ReplyType[]
@@ -126,7 +126,7 @@ export default function Reply({
       },
     })
 
-    onFocusInput()
+    focusInput()
   }
 
   const handleEditReplyClick = ({
@@ -149,7 +149,7 @@ export default function Reply({
       },
     })
 
-    onFocusInput()
+    focusInput()
   }
 
   return (
@@ -243,7 +243,7 @@ export default function Reply({
         <List margin={{ top: 20 }}>
           {childReplies.map((childReply) => (
             <ChildResourceListItem key={childReply.id} margin={{ bottom: 20 }}>
-              <Reply reply={childReply} onFocusInput={onFocusInput} />
+              <Reply reply={childReply} focusInput={focusInput} />
             </ChildResourceListItem>
           ))}
         </List>
