@@ -110,22 +110,64 @@ export async function authorMessage({
   content,
   mentionedUserUid,
 }: {
-  resourceId?: string
-  resourceType?: ResourceType
+  resourceId: string
+  resourceType: ResourceType
   currentMessageId?: string
   parentMessageId?: string
   content: string
   mentionedUserUid?: string
 }) {
-  const { fetcher, path } = deriveAuthoringRequest({
+  const authoringRequestType = deriveAuthoringRequestType({
     currentMessageId,
     parentMessageId,
     mentionedUserUid,
   })
 
-  const response = await fetcher(
+  if (authoringRequestType === 'writeReply') {
+    await writeReply({ resourceId, resourceType, content, mentionedUserUid })
+  }
+
+  if (authoringRequestType === 'writeChildReply') {
+    await writeChildReply({ parentMessageId, content, mentionedUserUid })
+  }
+
+  if (authoringRequestType === 'editReply') {
+    await editReply({ currentMessageId, content, mentionedUserUid })
+  }
+}
+
+function deriveAuthoringRequestType({
+  currentMessageId,
+  parentMessageId,
+  mentionedUserUid,
+}: {
+  currentMessageId?: string
+  parentMessageId?: string
+  mentionedUserUid?: string
+}) {
+  const type = parentMessageId
+    ? mentionedUserUid && !currentMessageId
+      ? 'writeChildReply'
+      : 'editReply'
+    : 'writeReply'
+
+  return type
+}
+
+async function writeReply({
+  resourceId,
+  resourceType,
+  content,
+  mentionedUserUid,
+}: {
+  resourceId: string
+  resourceType: string
+  content: string
+  mentionedUserUid?: string
+}) {
+  const response = await authGuardedFetchers.post(
     generateUrl({
-      path,
+      path: `/api/reply/messages`,
       query: qs.stringify({ contentFormat: 'plaintext' }),
     }),
     {
@@ -145,39 +187,61 @@ export async function authorMessage({
   captureHttpError(response)
 }
 
-function deriveAuthoringRequest({
-  currentMessageId,
+async function writeChildReply({
   parentMessageId,
+  content,
+  mentionedUserUid,
+}: {
+  parentMessageId?: string
+  content: string
+  mentionedUserUid?: string
+}) {
+  const response = await authGuardedFetchers.post(
+    generateUrl({
+      path: `/api/reply/messages/${parentMessageId}/messages`,
+      query: qs.stringify({ contentFormat: 'plaintext' }),
+    }),
+    {
+      body: {
+        messageId: parentMessageId,
+        content,
+        mentionedUserUid,
+      },
+    },
+  )
+
+  if (response === 'NEED_LOGIN') {
+    throw new Error('로그인이 필요한 호출입니다.')
+  }
+
+  captureHttpError(response)
+}
+
+async function editReply({
+  currentMessageId,
+  content,
   mentionedUserUid,
 }: {
   currentMessageId?: string
-  parentMessageId?: string
+  content: string
   mentionedUserUid?: string
 }) {
-  const type = parentMessageId
-    ? mentionedUserUid && !currentMessageId
-      ? 'writeChildReply'
-      : 'editReply'
-    : 'writeReply'
-
-  const registerRequest: {
-    [key: string]: { fetcher: Function; path: string }
-  } = {
-    writeReply: {
-      fetcher: authGuardedFetchers.post,
-      path: `/api/reply/messages`,
-    },
-    writeChildReply: {
-      fetcher: authGuardedFetchers.post,
-      path: `/api/reply/messages/${parentMessageId}/messages`,
-    },
-    editReply: {
-      fetcher: authGuardedFetchers.put,
+  const response = await authGuardedFetchers.put(
+    generateUrl({
       path: `/api/reply/messages/${currentMessageId}`,
+      query: qs.stringify({ contentFormat: 'plaintext' }),
+    }),
+    {
+      body: {
+        content,
+        mentionedUserUid,
+      },
     },
+  )
+
+  if (response === 'NEED_LOGIN') {
+    throw new Error('로그인이 필요한 호출입니다.')
   }
 
-  const { fetcher, path } = registerRequest[type]
-
-  return { fetcher, path }
+  captureHttpError(response)
 }
