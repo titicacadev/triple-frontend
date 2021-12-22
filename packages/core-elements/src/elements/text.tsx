@@ -105,12 +105,7 @@ function TextTitle({ css, children, margin }: TextTitleProps) {
 
 type CompoundedText = typeof Text & {
   Title: typeof TextTitle
-  /**
-   * @deprecated
-   */
-  WithRef: typeof Text
 }
 ;(Text as CompoundedText).Title = TextTitle
-;(Text as CompoundedText).WithRef = Text
 
 export default Text as CompoundedText
