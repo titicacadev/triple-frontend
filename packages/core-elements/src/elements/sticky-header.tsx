@@ -10,6 +10,8 @@ const StyledContainer = styled(Container)`
   position: sticky;
   top: 0;
   ${layeringMixin(0)}
+
+  ${({ css }: CSSProps) => css}
 `
 
 export type StickyHeaderProps = React.PropsWithChildren<
