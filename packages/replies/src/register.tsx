@@ -2,7 +2,7 @@ import React, { ForwardedRef, forwardRef } from 'react'
 import styled from 'styled-components'
 import { Container, FlexBox, HR1 } from '@titicaca/core-elements'
 
-import { actionReply } from './replies-api-clients'
+import { authorMessage } from './replies-api-clients'
 import AutoResizingTextarea, { TextAreaHandle } from './auto-resizing-textarea'
 import { useRepliesContext } from './context'
 import { ResourceType } from './types'
@@ -47,7 +47,7 @@ function Register(
       return
     }
 
-    actionReply({
+    authorMessage({
       resourceId,
       resourceType,
       currentMessageId,

@@ -102,7 +102,7 @@ export async function fetchChildReplies({
   return parsedBody
 }
 
-export async function actionReply({
+export async function authorMessage({
   resourceId,
   resourceType,
   currentMessageId,
