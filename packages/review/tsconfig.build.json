@@ -15,9 +15,6 @@
       "path": "../modals/tsconfig.build.json"
     },
     {
-      "path": "../react-contexts/tsconfig.build.json"
-    },
-    {
       "path": "../react-hooks/tsconfig.build.json"
     },
     {
