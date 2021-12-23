@@ -37,7 +37,6 @@
   },
   "devDependencies": {
     "@sentry/browser": "^6.2.5",
-    "@titicaca/content-utilities": "^4.6.1",
     "@types/semver": "^7.3.6"
   }
 }
