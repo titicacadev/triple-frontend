@@ -14,7 +14,7 @@ export type RequestOptions = Omit<RequestInit, 'body'> & {
   /**
    * RequestInit.body의 타입 오버라이드
    */
-  body?: BodyInit | { [key: string]: any }
+  body?: BodyInit | { [key: string]: unknown }
   /**
    * cookie를 인자로 받을 시 해당 cookie를 헤더에 삽입
    * 브라우저의 fetch는 쿠키를 보내거나 받지 않기 때문에 SSR시에만 유효합니다.
