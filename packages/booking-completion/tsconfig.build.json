@@ -9,13 +9,10 @@
       "path": "../type-definitions/tsconfig.build.json"
     },
     {
-      "path": "../ui-flow/tsconfig.build.json"
-    },
-    {
-      "path": "../modals/tsconfig.build.json"
-    },
-    {
       "path": "../react-contexts/tsconfig.build.json"
+    },
+    {
+      "path": "../router/tsconfig.build.json"
     }
   ]
 }
