@@ -62,6 +62,7 @@ const MoreIcon = styled.img`
 `
 
 const MessageCount = styled(Container)<{ isCommaVisible?: boolean }>`
+  color: var(--color-gray400);
   font-weight: bold;
   background-image: url('https://assets.triple.guide/images/btn-lounge-comment-off@3x.png');
   background-size: 18px 18px;
@@ -191,6 +192,7 @@ export default function ReviewElement({
               })}
               target="new"
               allowSource="app"
+              noNavbar
               onClick={() => onReviewClick(review.id)}
             >
               <a>
@@ -279,6 +281,7 @@ export default function ReviewElement({
                 })}
                 target="new"
                 allowSource="app-with-session"
+                noNavbar
                 onClick={() => onMessageCountClick(review.id, resourceType)}
               >
                 <a>
