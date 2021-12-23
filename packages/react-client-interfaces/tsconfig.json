@@ -8,10 +8,5 @@
       "@titicaca/view-utilities": ["../view-utilities/src"]
     }
   },
-  "include": ["./src"],
-  "references": [
-    {
-      "path": "../view-utilities"
-    }
-  ]
+  "include": ["./src"]
 }
