@@ -13,9 +13,6 @@
     },
     {
       "path": "../type-definitions/tsconfig.build.json"
-    },
-    {
-      "path": "../react-contexts/tsconfig.build.json"
     }
   ]
 }
