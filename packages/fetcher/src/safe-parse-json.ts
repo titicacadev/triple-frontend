@@ -1,4 +1,4 @@
-export default async function safeParseJSON(
+export default async function safeParseJson(
   response: Response,
 ): Promise<unknown> {
   try {

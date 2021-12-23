@@ -1,5 +1,5 @@
 import { makeRequestParams } from './make-request-params'
-import safeParseJSON from './safe-parse-json'
+import safeParseJson from './safe-parse-json'
 import { HTTPMethods, HttpResponse, RequestOptions } from './types'
 
 export async function fetcher<SuccessBody, FailureBody = unknown>(
@@ -83,7 +83,7 @@ function readResponseBody(response: Response) {
   const jsonParseAvailable = contentType && /json/.test(contentType)
 
   if (jsonParseAvailable) {
-    return safeParseJSON(response)
+    return safeParseJson(response)
   }
 
   return response.text()

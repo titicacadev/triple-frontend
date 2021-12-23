@@ -1,6 +1,6 @@
 import { Response } from 'node-fetch'
 
-import safeParseJSON from './safe-parse-json'
+import safeParseJson from './safe-parse-json'
 
 it('JSON 파싱 에러를 조용히 넘깁니다.', async () => {
   const response = new Response('', {
@@ -10,6 +10,6 @@ it('JSON 파싱 에러를 조용히 넘깁니다.', async () => {
   })
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const json = await safeParseJSON(response as any)
+  const json = await safeParseJson(response as any)
   expect(json).toBe(undefined)
 })
