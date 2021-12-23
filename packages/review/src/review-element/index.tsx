@@ -189,8 +189,8 @@ export default function ReviewElement({
                   resource_id: resourceId,
                 }),
               })}
-              target={isPublic ? 'current' : 'new'}
-              allowSource="all"
+              target="new"
+              allowSource="app"
               onClick={() => onReviewClick(review.id)}
             >
               <a>
