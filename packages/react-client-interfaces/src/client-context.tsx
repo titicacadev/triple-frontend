@@ -1,10 +1,11 @@
+import type { IncomingMessage } from 'http'
+
 import React, {
   createContext,
   useContext,
   PropsWithChildren,
   useMemo,
 } from 'react'
-import { NextPageContext } from 'next'
 
 import { parseClientAppUserAgent } from './client-user-agent'
 import type { App } from './types'
@@ -31,12 +32,12 @@ export function ClientContextProvider({
   )
 }
 
-ClientContextProvider.getInitialProps = async function (
-  nextPageContext: NextPageContext,
-): Promise<ClientContextProps> {
-  const parsedApp = extractClientAppUserAgentFromNextPageContext(
-    nextPageContext,
-  )
+ClientContextProvider.getInitialProps = async function ({
+  req,
+}: {
+  req?: IncomingMessage
+}): Promise<ClientContextProps> {
+  const parsedApp = extractClientAppUserAgentFromNextPageContext({ req })
 
   if (parsedApp) {
     return parsedApp
@@ -47,7 +48,9 @@ ClientContextProvider.getInitialProps = async function (
 
 export function extractClientAppUserAgentFromNextPageContext({
   req,
-}: NextPageContext): ReturnType<typeof parseClientAppUserAgent> | null {
+}: {
+  req?: IncomingMessage
+}): ReturnType<typeof parseClientAppUserAgent> | null {
   const userAgent = req
     ? (req.headers.userAgent as string)
     : typeof window !== 'undefined'
