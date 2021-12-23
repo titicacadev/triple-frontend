@@ -1,9 +1,7 @@
 import moment from 'moment'
 import { css } from 'styled-components'
 
-import { LOCALE } from './constants'
-
-export function formatMonthTitle(d: Date, locale: string = LOCALE): string {
+export function formatMonthTitle(d: Date, locale: string = 'ko'): string {
   moment.locale(locale)
   return moment(d).format('YYYY년 Mo')
 }
