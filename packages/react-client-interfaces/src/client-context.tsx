@@ -5,7 +5,8 @@ import React, {
   useMemo,
 } from 'react'
 import { NextPageContext } from 'next'
-import { parseAppUserAgent } from '@titicaca/view-utilities'
+
+import { parseAppUserAgent } from './app-user-agent'
 
 type ClientContextProps = {
   appVersion?: string
