@@ -28,7 +28,7 @@ function PricingDescription() {
   )
 }
 
-const [POI] = (POIS as unknown[]) as Exclude<POIData, HotelData>[]
+const [POI, POI2] = (POIS as unknown[]) as Exclude<POIData, HotelData>[]
 
 export default {
   title: 'poi-list-elements / POI',
@@ -104,7 +104,12 @@ export function TripleDocument() {
 TripleDocument.storyName = 'TripleDocument'
 
 export function TripleDocumentList() {
-  return <PoiListElement compact poi={POI} />
+  return (
+    <>
+      <PoiListElement compact poi={POI} />
+      <PoiListElement compact poi={POI2} />
+    </>
+  )
 }
 
 TripleDocumentList.storyName = 'TripleDocument 리스트'
