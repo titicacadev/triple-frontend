@@ -102,7 +102,9 @@ TripleDocument.storyName = 'TripleDocument'
 export function TripleDocumentList() {
   return (
     <>
-      <PoiListElement compact poi={POI} />
+      <Container maxWidth={280}>
+        <PoiListElement compact poi={POI} />
+      </Container>
       <PoiListElement compact poi={POI2} />
     </>
   )
