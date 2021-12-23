@@ -1,52 +1,6 @@
 import styled, { css } from 'styled-components'
 
-const sideSpacingMixin = css<{ sideSpacing: number }>`
-  ${({ sideSpacing }) => `
-    .DayPicker-Weekday {
-      &:first-child {
-        padding-left: ${sideSpacing}px;
-      }
-      &:last-child {
-        padding-right: ${sideSpacing}px;
-      }
-    }
-
-    .DayPicker-Day {
-      &--sunday {
-        padding-left: ${sideSpacing}px !important;
-
-        &:before {
-          /* date label */
-          transform: translate(${sideSpacing / 2}px) !important;
-        }
-
-        &:after {
-          /* Select circle */
-          transform: translate(calc(-50% + ${
-            sideSpacing / 2
-          }px), -50%) !important;
-        }
-      }
-
-      &--saturday {
-        padding-right: ${sideSpacing}px !important;
-
-        &:before {
-          /* date label */
-          transform: translate(${(sideSpacing / 2) * -1}px) !important;
-        }
-
-        &:after {
-          /* Select circle */
-          transform: translate(
-            calc(-50% + ${(sideSpacing / 2) * -1}px),
-            -50%
-          ) !important;
-        }
-      }
-    }
-  `}
-`
+import { generateTodayStyle, sideSpacingMixin } from '../utils'
 
 export function generateSelectedStyle({
   selectedAll,
@@ -98,93 +52,6 @@ export function generateSelectedStyle({
         border-bottom-right-radius: 4px;
       }
     `}
-  `
-}
-
-const todayStyle = css`
-  .DayPicker-Day--today:not(.DayPicker-Day--selected):not(.DayPicker-Day--outside) {
-    color: var(--color-blue);
-
-    &:before {
-      top: 28px;
-      left: 0;
-      content: '오늘';
-      position: absolute;
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 500;
-      width: 100%;
-      color: var(--color-blue);
-    }
-
-    &.DayPicker-Day--sunday,
-    &.DayPicker-Day--saturday,
-    &.DayPicker-Day--publicHolidays {
-      color: var(--color-blue);
-
-      &:before {
-        color: var(--color-red);
-      }
-    }
-
-    &.DayPicker-Day--disabled {
-      color: var(--color-gray500);
-
-      &:before {
-        color: var(--color-gray500);
-      }
-    }
-  }
-`
-
-export const rangeStyle = css`
-  .DayPicker-Day--selected {
-    background: var(--color-blue100);
-  }
-
-  .DayPicker-Day--from {
-    background: linear-gradient(
-      to right,
-      #fafafa 50%,
-      var(--color-blue100) 50%
-    );
-  }
-
-  .DayPicker-Day--to {
-    background: linear-gradient(to left, #fafafa 50%, var(--color-blue100) 50%);
-  }
-
-  .DayPicker-Day--from.DayPicker-Day--to {
-    background: none;
-  }
-
-  .DayPicker-Day--outside {
-    background: none;
-
-    &.DayPicker-Day--included-range {
-      background: var(--color-100);
-    }
-  }
-`
-
-export function generateDateLabelStyle(selector: string, label: string) {
-  return css`
-    ${selector} {
-      &:not(.DayPicker-Day--outside):before {
-        color: var(--color-white);
-        position: absolute;
-        top: 45px;
-        left: 0px;
-        display: inline-block;
-        font-size: 10px;
-        font-weight: 500 !important;
-        width: 100%;
-        transform: translateY(0px);
-        background-color: transparent;
-        height: auto !important;
-        content: '${label}';
-      }
-    }
   `
 }
 
@@ -263,7 +130,13 @@ const PickerFrame = styled.div<PickerFrameProps>`
           display: table-row;
           height: 45px;
 
-          ${({ hideTodayLabel }) => !hideTodayLabel && todayStyle}
+          ${({ hideTodayLabel }) =>
+            !hideTodayLabel &&
+            generateTodayStyle({
+              top: '28px',
+              fontSize: '10px',
+              fontWeight: 500,
+            })}
 
           .DayPicker-Day {
             position: relative;
