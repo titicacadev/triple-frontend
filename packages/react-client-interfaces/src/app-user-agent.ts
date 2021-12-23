@@ -1,4 +1,4 @@
-export enum AppName {
+enum AppName {
   iOS = 'Triple-iOS',
   Android = 'Triple-Android',
 }
