@@ -22,6 +22,9 @@
       "path": "../react-hooks"
     },
     {
+      "path": "../router"
+    },
+    {
       "path": "../type-definitions"
     },
     {
@@ -32,9 +35,6 @@
     },
     {
       "path": "../react-contexts"
-    },
-    {
-      "path": "../router"
     }
   ]
 }
