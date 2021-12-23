@@ -6,13 +6,14 @@ import DayPicker, { DayModifiers, Modifiers } from 'react-day-picker'
 import { usePublicHolidays } from '../use-public-holidays'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from '../constants'
 import useDisabledDays, { DislableDaysProps } from '../use-disabled-days'
-import { isValidDate, generatePaddedRange } from '../utils'
-
-import PickerFrame, {
-  generateSelectedStyle,
-  rangeStyle,
+import {
+  isValidDate,
+  generatePaddedRange,
+  generateRangeStyle,
   generateDateLabelStyle,
-} from './picker-frame' // generateDateLabelStyle,  // generateSelectedStyle,
+} from '../utils'
+
+import PickerFrame, { generateSelectedStyle } from './picker-frame'
 
 const MemoDayPicker = React.memo(DayPicker)
 
@@ -26,14 +27,26 @@ const RangeContainer = styled(PickerFrame)<{
   ${({ selectedAll, startDateLabel, endDateLabel }) => css`
     ${generateSelectedStyle({ selectedAll })}
 
-    ${selectedAll && rangeStyle}
+    ${selectedAll && generateRangeStyle()}
 
 
     ${startDateLabel &&
-    generateDateLabelStyle('.DayPicker-Day--from', startDateLabel)}
+    generateDateLabelStyle({
+      selector: '.DayPicker-Day--from',
+      label: startDateLabel,
+      fontSize: '10px',
+      color: 'var(---color-white)',
+      fontWeight: 500,
+    })}
 
       ${endDateLabel &&
-    generateDateLabelStyle('.DayPicker-Day--to', endDateLabel)}
+    generateDateLabelStyle({
+      selector: '.DayPicker-Day--to',
+      label: endDateLabel,
+      fontSize: '10px',
+      color: 'var(---color-white)',
+      fontWeight: 500,
+    })}
   `}
 `
 
