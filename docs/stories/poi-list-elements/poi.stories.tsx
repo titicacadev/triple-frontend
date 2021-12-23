@@ -32,6 +32,9 @@ const [POI, POI2] = (POIS as unknown[]) as Exclude<POIData, HotelData>[]
 
 export default {
   title: 'poi-list-elements / POI',
+  parameters: {
+    chromatic: { viewports: [320, 1200] },
+  },
 }
 
 export function PoiList() {
@@ -106,7 +109,7 @@ TripleDocument.storyName = 'TripleDocument'
 export function TripleDocumentList() {
   return (
     <>
-      <Container maxWidth={280}>
+      <Container maxWidth={320}>
         <PoiListElement compact poi={POI} />
       </Container>
       <PoiListElement compact poi={POI2} />
