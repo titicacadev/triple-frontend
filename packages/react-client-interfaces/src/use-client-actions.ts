@@ -53,7 +53,7 @@ export function useClientActions() {
         [interfaceName]: interfaceValue as Function,
       }
     },
-    {} as Partial<typeof WebToNativeInterfaces>,
+    {},
   )
 
   return filteredAccessibleWebToNativeInterfaces
