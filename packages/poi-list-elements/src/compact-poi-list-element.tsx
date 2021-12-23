@@ -70,6 +70,7 @@ export function CompactPoiListElement<T extends PoiListElementType>({
         ellipsis
         alpha={1}
         margin={{ left: 50, right: actionButtonWidth }}
+        padding={{ right: 40 }}
       >
         {name}
       </Text>
