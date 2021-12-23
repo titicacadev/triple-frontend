@@ -28,21 +28,22 @@ function normalizeToBoolean(query: RawQuery) {
   )
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 class StrictQuery<Resolved = {}> {
   private raw: { [key: string]: RawQuery }
 
   private resolved: Resolved
 
-  constructor(raw: { [key: string]: RawQuery }, resolved?: Resolved) {
+  public constructor(raw: { [key: string]: RawQuery }, resolved?: Resolved) {
     this.raw = raw
     this.resolved = resolved || ({} as Resolved)
   }
 
-  use(): Resolved {
+  public use(): Resolved {
     return this.resolved
   }
 
-  string<Key extends string, Value extends string = string>(
+  public string<Key extends string, Value extends string = string>(
     key: Key,
   ): StrictQuery<
     Resolved &
@@ -60,7 +61,7 @@ class StrictQuery<Resolved = {}> {
     })
   }
 
-  number<Key extends string>(
+  public number<Key extends string>(
     key: Key,
   ): StrictQuery<
     Resolved &
@@ -79,7 +80,7 @@ class StrictQuery<Resolved = {}> {
     })
   }
 
-  stringArray<Key extends string>(
+  public stringArray<Key extends string>(
     key: Key,
   ): StrictQuery<
     Resolved &
@@ -97,7 +98,7 @@ class StrictQuery<Resolved = {}> {
     })
   }
 
-  numberArray<Key extends string>(
+  public numberArray<Key extends string>(
     key: Key,
   ): StrictQuery<
     Resolved &
@@ -115,7 +116,7 @@ class StrictQuery<Resolved = {}> {
     })
   }
 
-  boolean<Key extends string>(
+  public boolean<Key extends string>(
     key: Key,
   ): StrictQuery<
     Resolved &

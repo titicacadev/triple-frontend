@@ -61,6 +61,9 @@ const { overrides, ...rest } = createConfig({
     'coupon_(id|type)',
     'button_name',
     'rawHTML',
+    'injectUTMContext',
+    'UTMContext',
+    'webURLBase',
   ],
 })
 

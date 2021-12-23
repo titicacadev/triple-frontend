@@ -16,7 +16,6 @@ packages/web-storage
 packages/date-picker
 packages/listing-filter
 packages/static-page-contents
-packages/view-utilities
 packages/core-elements
 packages/public-header
 packages/react-contexts

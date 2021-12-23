@@ -36,7 +36,7 @@ export type DeepLinkGenerator = (params: GeneratorParams) => string
  * @param webURLBase
  */
 export function makeDeepLinkGenerator({
-  oneLinkParams: { subdomain, id, pid: defaultPID },
+  oneLinkParams: { subdomain, id, pid: defaultPid },
   appScheme,
   webURLBase,
 }: FactoryParams): DeepLinkGenerator {
@@ -56,7 +56,7 @@ export function makeDeepLinkGenerator({
     const query = qs.stringify({
       af_dp: appLink,
       af_web_dp: webURLBase || appLink,
-      pid: pid || defaultPID,
+      pid: pid || defaultPid,
 
       c: campaign,
       af_adset: adSet,
