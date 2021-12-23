@@ -9,7 +9,7 @@ import {
 import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
 
-import { ExternalLink } from '../../router/src'
+import { ExternalLink } from '@titicaca/router'
 
 import { deleteReview as deleteReviewApi } from './review-api-clients'
 import { ResourceType, ReviewData, ReviewDeleteHandler } from './types'
