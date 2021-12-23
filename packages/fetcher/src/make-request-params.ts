@@ -33,8 +33,8 @@ export function makeRequestParams(
 
   const headers = {
     ...customHeaders,
-    ...(body && !useBodyAsRaw && { 'Content-Type': 'application/json' }),
-    ...(sessionId && { 'X-Soto-Session': sessionId }),
+    ...(body && !useBodyAsRaw && { 'content-type': 'application/json' }),
+    ...(sessionId && { 'x-soto-session': sessionId }),
     ...(cookie && { cookie }),
   }
 
