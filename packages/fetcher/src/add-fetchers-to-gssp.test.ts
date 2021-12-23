@@ -1,18 +1,19 @@
-import { GetServerSidePropsResult } from 'next'
+import 'isomorphic-fetch'
+import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 
 import { addFetchersToGSSP } from './add-fetchers-to-gssp'
 import { get, post } from './methods'
-import 'isomorphic-fetch'
+import { HttpResponse } from './types'
 
 jest.mock('./methods')
 const mockedGet = get as jest.MockedFunction<typeof get>
 const mockedPost = post as jest.MockedFunction<typeof post>
 
-const baseContext: any = {
+const baseContext = ({
   req: { headers: { cookie: '' } },
   res: { setHeader: () => {} },
-}
-const customAPIURIBase = 'https://my-base-path.co.kr'
+} as unknown) as GetServerSidePropsContext
+const customApiUriBase = 'https://my-base-path.co.kr'
 
 beforeEach(() => {
   mockedGet.mockClear()
@@ -35,12 +36,12 @@ test('apiUriBase 파라미터를 요청의 base href로 사용합니다.', async
       const response = await get('/api/a')
       return { props: { response } }
     },
-    { apiUriBase: customAPIURIBase },
+    { apiUriBase: customApiUriBase },
   )
 
   await gssp(baseContext)
   expect(mockedGet).toBeCalledWith(
-    expect.stringContaining(customAPIURIBase),
+    expect.stringContaining(customApiUriBase),
     expect.any(Object),
   )
 })
@@ -52,20 +53,19 @@ test('토큰을 갱신했을 때 context.res의 setHeader를 이용해 쿠키 �
 
     return Promise.resolve({ headers, ok, status, url, parsedBody: '' })
   })
-  mockedPost.mockImplementation(
-    () =>
-      ({
-        ok: true,
-        headers: {
-          get(key: string) {
-            if (key === 'set-cookie') {
-              return validCookie
-            }
-            return ''
-          },
+  mockedPost.mockImplementation(() => {
+    return Promise.resolve(({
+      ok: true,
+      headers: {
+        get(key: string) {
+          if (key === 'set-cookie') {
+            return validCookie
+          }
+          return ''
         },
-      } as any),
-  )
+      },
+    } as unknown) as HttpResponse<unknown>)
+  })
 
   const setHeader = jest.fn()
 
@@ -78,10 +78,13 @@ test('토큰을 갱신했을 때 context.res의 setHeader를 이용해 쿠키 �
       const response = await get('/api/a')
       return { props: { response } }
     },
-    { apiUriBase: customAPIURIBase },
+    { apiUriBase: customApiUriBase },
   )
 
-  await gssp({ ...baseContext, res: { setHeader } })
+  await gssp(({
+    ...baseContext,
+    res: { setHeader },
+  } as unknown) as GetServerSidePropsContext)
 
   expect(setHeader).toBeCalledWith('set-cookie', validCookie)
 })
@@ -98,14 +101,14 @@ test('API 요청을 여러 번 해도 refresh는 한 번만 호출합니다.', a
   })
 
   mockedPost.mockImplementation(() => {
-    return Promise.resolve({
+    return Promise.resolve(({
       ok: true,
       headers: {
         get() {
           return validCookie
         },
       },
-    } as any)
+    } as unknown) as HttpResponse<unknown>)
   })
 
   const setHeader = jest.fn()
@@ -115,7 +118,7 @@ test('API 요청을 여러 번 해도 refresh는 한 번만 호출합니다.', a
       customContext: {
         fetchers: { get },
       },
-    }): Promise<GetServerSidePropsResult<{}>> => {
+    }): Promise<GetServerSidePropsResult<Record<string, never>>> => {
       await Promise.all([get('/api/a'), get('/api/b'), get('/api/c')])
       await get('/api/d')
       return { props: {} }
@@ -123,7 +126,10 @@ test('API 요청을 여러 번 해도 refresh는 한 번만 호출합니다.', a
     { apiUriBase: 'https://triple-dev.titicaca-corp.com' },
   )
 
-  await gssp({ ...baseContext, res: { setHeader } } as any)
+  await gssp(({
+    ...baseContext,
+    res: { setHeader },
+  } as unknown) as GetServerSidePropsContext)
 
   expect(mockedPost).toBeCalledTimes(1)
 })
@@ -143,14 +149,14 @@ test('API를 여러 번 호출하더라도 유효한 쿠키 하나만 사용합�
   mockedPost.mockImplementation(() => {
     refreshCount += 1
     const cookie = `${validCookie}-${refreshCount}`
-    return Promise.resolve({
+    return Promise.resolve(({
       ok: true,
       headers: {
         get() {
           return cookie
         },
       },
-    } as any)
+    } as unknown) as HttpResponse<unknown>)
   })
 
   const setHeader = jest.fn()
@@ -160,7 +166,11 @@ test('API를 여러 번 호출하더라도 유효한 쿠키 하나만 사용합�
       customContext: {
         fetchers: { get },
       },
-    }): Promise<GetServerSidePropsResult<{}>> => {
+    }): Promise<
+      GetServerSidePropsResult<{
+        responses: [unknown, unknown, unknown, unknown]
+      }>
+    > => {
       const [a, b, c] = await Promise.all([
         get('/api/a'),
         get('/api/b'),
@@ -172,7 +182,10 @@ test('API를 여러 번 호출하더라도 유효한 쿠키 하나만 사용합�
     { apiUriBase: 'https://triple-dev.titicaca-corp.com' },
   )
 
-  const gsspResponse = await gssp({ ...baseContext, res: { setHeader } } as any)
+  const gsspResponse = await gssp(({
+    ...baseContext,
+    res: { setHeader },
+  } as unknown) as GetServerSidePropsContext)
 
   expect(gsspResponse).toEqual(
     expect.objectContaining({
@@ -191,11 +204,11 @@ test('API를 여러 번 호출하더라도 유효한 쿠키 하나만 사용합�
 
 test('토큰을 갱신하면 갱신한 쿠키 값으로 다음 API를 요청합니다.', async () => {
   const validCookie = 'VALID_COOKIE'
-  const dAPIRecorder = jest.fn()
+  const dapiRecorder = jest.fn()
 
   mockedGet.mockImplementation(async (href, { cookie } = {}) => {
     if (href.includes('/api/d')) {
-      dAPIRecorder(cookie)
+      dapiRecorder(cookie)
     }
 
     const { headers, ok, status, url } =
@@ -212,14 +225,14 @@ test('토큰을 갱신하면 갱신한 쿠키 값으로 다음 API를 요청합�
     }
   })
   mockedPost.mockImplementation(() => {
-    return Promise.resolve({
+    return Promise.resolve(({
       ok: true,
       headers: {
         get() {
           return validCookie
         },
       },
-    } as any)
+    } as unknown) as HttpResponse<unknown>)
   })
 
   const gssp = addFetchersToGSSP(
@@ -227,7 +240,11 @@ test('토큰을 갱신하면 갱신한 쿠키 값으로 다음 API를 요청합�
       customContext: {
         fetchers: { get },
       },
-    }): Promise<GetServerSidePropsResult<{}>> => {
+    }): Promise<
+      GetServerSidePropsResult<{
+        responses: [unknown, unknown, unknown, unknown]
+      }>
+    > => {
       const [a, b, c] = await Promise.all([
         get('/api/a'),
         get('/api/b'),
@@ -240,6 +257,6 @@ test('토큰을 갱신하면 갱신한 쿠키 값으로 다음 API를 요청합�
   )
   await gssp(baseContext)
 
-  expect(dAPIRecorder).toBeCalledTimes(1)
-  expect(dAPIRecorder).toBeCalledWith(validCookie)
+  expect(dapiRecorder).toBeCalledTimes(1)
+  expect(dapiRecorder).toBeCalledWith(validCookie)
 })
