@@ -20,7 +20,6 @@
     "@titicaca/type-definitions": "^5.0.0"
   },
   "peerDependencies": {
-    "@titicaca/modals": "*",
     "@titicaca/react-contexts": "*"
   }
 }
