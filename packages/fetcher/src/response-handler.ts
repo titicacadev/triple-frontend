@@ -2,9 +2,9 @@ import { withScope, captureException } from '@sentry/browser'
 
 import { HttpResponse } from './types'
 
-export function captureHttpError<Response extends HttpResponse<any, any>>(
-  response: Response,
-): void {
+export function captureHttpError<
+  Response extends HttpResponse<unknown, unknown>
+>(response: Response): void {
   if (response.ok === false) {
     withScope((scope) => {
       scope.setTag('errorType', 'HTTPError')
