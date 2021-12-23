@@ -48,6 +48,7 @@ export default function User({
         href={`/users/${uid}`}
         target="new"
         allowSource="app-with-session"
+        noNavbar
         onClick={onClick}
       >
         <a>

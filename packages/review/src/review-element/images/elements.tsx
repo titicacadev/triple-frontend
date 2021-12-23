@@ -154,6 +154,7 @@ export const ExternalLinkImage = ({
           !media
         ) {
           e.preventDefault()
+          return
         }
       }}
     >
@@ -166,6 +167,7 @@ export const ExternalLinkImage = ({
           }),
         })}
         target="new"
+        noNavbar
         allowSource="app-with-session"
         onClick={onClick}
       >

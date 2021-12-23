@@ -352,7 +352,7 @@ function ReviewContainer({
           <ExternalLink
             href={isPublic ? '/pages/mileage-intro.html' : '/my/mileage/intro'}
             target="new"
-            allowSource="app"
+            allowSource="all"
             onClick={() => {
               trackEvent({
                 ga: ['리뷰_여행자클럽선택'],
