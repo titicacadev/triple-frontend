@@ -153,7 +153,7 @@ export const rangeStyle = css`
   }
 
   .DayPicker-Day--to {
-    background: linear-gradient(to left, #fafafa 50%, var(--color-100) 50%);
+    background: linear-gradient(to left, #fafafa 50%, var(--color-blue100) 50%);
   }
 
   .DayPicker-Day--from.DayPicker-Day--to {
