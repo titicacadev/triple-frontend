@@ -281,7 +281,6 @@ export function RangePickerV2Story() {
       numberOfMonths={number('표시할 개월 수', 3)}
       height={text('높이', '300px')}
       enableSameDay={boolean('enableSameDay 활성화', false)}
-      // hideTodayLabel={boolean('hideTodayLabel 활성화', true)}
     />
   )
 }

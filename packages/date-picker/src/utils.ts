@@ -1,6 +1,13 @@
 import moment from 'moment'
 import { css } from 'styled-components'
 
+import { LOCALE } from './constants'
+
+export function formatMonthTitle(d: Date, locale: string = LOCALE): string {
+  moment.locale(locale)
+  return moment(d).format('YYYY년 Mo')
+}
+
 export function isValidDate(d: unknown): boolean {
   return d instanceof Date && !isNaN(d.getTime())
 }
