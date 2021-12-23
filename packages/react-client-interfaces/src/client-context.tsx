@@ -6,23 +6,24 @@ import React, {
 } from 'react'
 import { NextPageContext } from 'next'
 
-import { parseAppUserAgent } from './client-user-agent'
+import { parseClientAppUserAgent } from './client-user-agent'
+import type { App } from './types'
 
-type ClientContextProps = {
-  appVersion?: string
-}
+type ClientContextProps = App | null
 
 const ClientContext = createContext<ClientContextProps | null>(null)
 
 export function ClientContextProvider({
+  appName,
   appVersion,
   children,
 }: React.PropsWithChildren<ClientContextProps>) {
   const value = useMemo(
     () => ({
+      appName,
       appVersion,
     }),
-    [appVersion],
+    [appName, appVersion],
   )
 
   return (
@@ -38,24 +39,22 @@ ClientContextProvider.getInitialProps = async function (
   )
 
   if (parsedApp) {
-    return {
-      appVersion: parsedApp.version,
-    }
+    return parsedApp
   }
 
-  return {}
+  return null
 }
 
 export function extractClientAppUserAgentFromNextPageContext({
   req,
-}: NextPageContext): ReturnType<typeof parseAppUserAgent> | null {
+}: NextPageContext): ReturnType<typeof parseClientAppUserAgent> | null {
   const userAgent = req
     ? (req.headers.userAgent as string)
     : typeof window !== 'undefined'
     ? window.navigator.userAgent
     : undefined
 
-  return userAgent ? parseAppUserAgent(userAgent) : null
+  return userAgent ? parseClientAppUserAgent(userAgent) : null
 }
 
 export function useClientContext() {
