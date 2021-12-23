@@ -10,8 +10,8 @@ interface ParsedUrlQuery {
  * humps의 camelizeKey에 타입을 지정해주기 위한 래퍼입니다.
  * @param query
  */
-function camelizeURLQuery(query: any): ParsedUrlQuery {
-  return camelizeKeys(query) as any
+function camelizeUrlQuery(query: object | object[]): ParsedUrlQuery {
+  return (camelizeKeys(query) as unknown) as ParsedUrlQuery
 }
 
 /**
@@ -25,7 +25,7 @@ function camelizeURLQuery(query: any): ParsedUrlQuery {
  * @param rawQuery
  */
 function mergeIndexedKeys(rawQuery: ParsedUrlQuery): ParsedUrlQuery {
-  return qs.parse(qs.stringify(rawQuery)) as any
+  return (qs.parse(qs.stringify(rawQuery)) as unknown) as ParsedUrlQuery
 }
 
 /**
@@ -35,5 +35,5 @@ function mergeIndexedKeys(rawQuery: ParsedUrlQuery): ParsedUrlQuery {
  * @param rawQuery 가공되기 전 query string (ex. getServerSideProps의 파라미터)
  */
 export function normalizeQueryKeys(rawQuery: ParsedUrlQuery): ParsedUrlQuery {
-  return mergeIndexedKeys(camelizeURLQuery(rawQuery))
+  return mergeIndexedKeys(camelizeUrlQuery(rawQuery))
 }
