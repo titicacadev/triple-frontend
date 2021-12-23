@@ -7,7 +7,7 @@ import React, {
   useMemo,
 } from 'react'
 
-import { parseClientAppUserAgent } from './client-user-agent'
+import { parseNativeClientUserAgent } from './client-user-agent'
 import type { App } from './types'
 
 type ClientContextProps = App | null
@@ -50,14 +50,14 @@ export function extractClientAppUserAgentFromNextPageContext({
   req,
 }: {
   req?: IncomingMessage
-}): ReturnType<typeof parseClientAppUserAgent> | null {
+}): ReturnType<typeof parseNativeClientUserAgent> | null {
   const userAgent = req
     ? (req.headers.userAgent as string)
     : typeof window !== 'undefined'
     ? window.navigator.userAgent
     : undefined
 
-  return userAgent ? parseClientAppUserAgent(userAgent) : null
+  return userAgent ? parseNativeClientUserAgent(userAgent) : null
 }
 
 export function useClientContext() {
