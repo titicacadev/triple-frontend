@@ -9,7 +9,7 @@ import { writeReview } from './review-api-clients'
  * @deprecated 링크컴포넌트로 전환하여 사용하지 않습니다.
  */
 export function useClientActions() {
-  const { appUrlScheme: appUrlSchemeFromContext } = useEnv()
+  const { appUrlScheme } = useEnv()
   const { navigate } = useHistoryFunctions()
 
   return useMemo(() => {
