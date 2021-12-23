@@ -29,9 +29,6 @@
     },
     {
       "path": "../view-utilities"
-    },
-    {
-      "path": "../react-contexts"
     }
   ]
 }

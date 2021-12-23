@@ -49,9 +49,6 @@
     },
     {
       "path": "../view-utilities/tsconfig.build.json"
-    },
-    {
-      "path": "../react-contexts/tsconfig.build.json"
     }
   ]
 }
