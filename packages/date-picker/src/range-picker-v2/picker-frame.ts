@@ -148,8 +148,6 @@ export const rangeStyle = css`
       #fafafa 50%,
       var(--color-blue100) 50%
     );
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
   }
 
   .DayPicker-Day--to {
