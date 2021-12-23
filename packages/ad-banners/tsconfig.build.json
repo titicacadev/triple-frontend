@@ -13,6 +13,9 @@
     },
     {
       "path": "../router/tsconfig.build.json"
+    },
+    {
+      "path": "../react-contexts/tsconfig.build.json"
     }
   ]
 }
