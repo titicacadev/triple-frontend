@@ -24,9 +24,6 @@
       "path": "../poi-list-elements/tsconfig.build.json"
     },
     {
-      "path": "../react-contexts/tsconfig.build.json"
-    },
-    {
       "path": "../router/tsconfig.build.json"
     },
     {
@@ -49,6 +46,9 @@
     },
     {
       "path": "../view-utilities/tsconfig.build.json"
+    },
+    {
+      "path": "../react-contexts/tsconfig.build.json"
     }
   ]
 }

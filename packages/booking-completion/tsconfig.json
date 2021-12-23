@@ -10,13 +10,13 @@
       "path": "../core-elements"
     },
     {
-      "path": "../react-contexts"
-    },
-    {
       "path": "../router"
     },
     {
       "path": "../type-definitions"
+    },
+    {
+      "path": "../react-contexts"
     }
   ]
 }
