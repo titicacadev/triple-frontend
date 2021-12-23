@@ -6,7 +6,7 @@ import React, {
 } from 'react'
 import { NextPageContext } from 'next'
 
-import { parseAppUserAgent } from './app-user-agent'
+import { parseAppUserAgent } from './client-user-agent'
 
 type ClientContextProps = {
   appVersion?: string

@@ -1,4 +1,4 @@
-import { parseAppUserAgent } from './app-user-agent'
+import { parseAppUserAgent } from './client-user-agent'
 
 describe('parseAppUserAgent', () => {
   it('should parse Chrome on Windows as a non-app', () => {
