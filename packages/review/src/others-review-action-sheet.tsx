@@ -3,16 +3,13 @@ import ActionSheet from '@titicaca/action-sheet'
 import {
   useURIHash,
   useHistoryFunctions,
-  useUserAgentContext,
+  useEnv,
 } from '@titicaca/react-contexts'
-import { ExternalLink as OriginExternalLink } from '@titicaca/router'
+import { ExternalLink } from '@titicaca/router'
 
 import { ReviewData } from './types'
-import styled from 'styled-components'
-
-const ExternalLink = styled(OriginExternalLink)`
-  color: black;
-`
+import { generateUrl } from '@titicaca/view-utilities'
+import ActionItem from '@titicaca/action-sheet/src/components/action-item'
 
 export const HASH_REVIEW_ACTION_SHEET =
   'common.reviews-list.review-action-sheet'
@@ -23,7 +20,8 @@ export default function OthersReviewActionSheet({
   selectedReview?: ReviewData | null
 }) {
   const uriHash = useURIHash()
-  const { isPublic } = useUserAgentContext()
+  const { appUrlScheme } = useEnv()
+
   const { back } = useHistoryFunctions()
 
   return (
@@ -32,21 +30,24 @@ export default function OthersReviewActionSheet({
       onClose={back}
       zTier={3}
     >
-      <ActionSheet.Item
+      <ActionItem
         icon="report"
         onClick={() => {
           back()
         }}
       >
         <ExternalLink
-          href={`/reviews/${selectedReview?.id}/report`}
-          target={isPublic ? 'current' : 'new'}
+          href={generateUrl({
+            scheme: appUrlScheme,
+            path: `/reviews/${selectedReview?.id}/report`,
+          })}
+          target="new"
           noNavbar
-          allowSource="all"
+          allowSource="app"
         >
           <a>신고하기</a>
         </ExternalLink>
-      </ActionSheet.Item>
+      </ActionItem>
     </ActionSheet>
   )
 }

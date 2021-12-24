@@ -11,6 +11,7 @@ import semver from 'semver'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { List, Container, Text, Rating } from '@titicaca/core-elements'
 import {
+  useEnv,
   useEventTrackingContext,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
@@ -127,6 +128,7 @@ export default function ReviewElement({
     deriveCurrentStateAndCount,
     updateLikedStatus,
   } = useReviewLikesContext()
+  const { appUrlScheme } = useEnv()
   const appVersion = semver.coerce(useUserAgentContext()?.app?.version)
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
@@ -184,6 +186,7 @@ export default function ReviewElement({
           >
             <ExternalLink
               href={generateUrl({
+                scheme: appUrlScheme,
                 path: `/reviews/${review.id}/detail`,
                 query: qs.stringify({
                   region_id: regionId,
@@ -261,37 +264,38 @@ export default function ReviewElement({
           ) : null}
 
           {isMessageCountVisible ? (
-            <MessageCount
-              display="inline-block"
-              position="relative"
-              height={18}
-              margin={{ top: 5 }}
-              padding={{ top: 2, bottom: 2, left: 20, right: 0 }}
-              isCommaVisible={!blindedAt}
+            <ExternalLink
+              href={generateUrl({
+                scheme: appUrlScheme,
+                path: `/reviews/${review.id}/detail?#reply`,
+                query: qs.stringify({
+                  reviewId: review.id,
+                  regionId,
+                  resourceId,
+                  anchor: 'reply',
+                }),
+              })}
+              target="new"
+              allowSource="app-with-session"
+              noNavbar
+              onClick={() => onMessageCountClick(review.id, resourceType)}
             >
-              <ExternalLink
-                href={generateUrl({
-                  path: `/reviews/${review.id}/detail?#reply`,
-                  query: qs.stringify({
-                    reviewId: review.id,
-                    regionId,
-                    resourceId,
-                    anchor: 'reply',
-                  }),
-                })}
-                target="new"
-                allowSource="app-with-session"
-                noNavbar
-                onClick={() => onMessageCountClick(review.id, resourceType)}
-              >
-                <a>
+              <a>
+                <MessageCount
+                  display="inline-block"
+                  position="relative"
+                  height={18}
+                  margin={{ top: 5 }}
+                  padding={{ top: 2, bottom: 2, left: 20, right: 0 }}
+                  isCommaVisible={!blindedAt}
+                >
                   {replyBoard
                     ? replyBoard.rootMessagesCount +
                       replyBoard.childMessagesCount
                     : 0}
-                </a>
-              </ExternalLink>
-            </MessageCount>
+                </MessageCount>
+              </a>
+            </ExternalLink>
           ) : null}
 
           {!blindedAt || (blindedAt && isMyReview) ? (

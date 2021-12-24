@@ -7,7 +7,7 @@ import React, { PropsWithChildren } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
 import moment from 'moment'
 import semver from 'semver'
-import { useUserAgentContext } from '@titicaca/react-contexts'
+import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
 
 import { ReviewData } from '../../types'
 
@@ -120,6 +120,7 @@ export const ExternalLinkImage = ({
   image: ImageMeta
   onClick: () => void
 }>) => {
+  const { appUrlScheme } = useEnv()
   const appVersion = semver.coerce(useUserAgentContext()?.app?.version)
 
   const {
@@ -160,6 +161,7 @@ export const ExternalLinkImage = ({
     >
       <ExternalLink
         href={generateUrl({
+          scheme: appUrlScheme,
           path: `/images`,
           query: qs.stringify({
             images: JSON.stringify(media?.map(convertImage)),
