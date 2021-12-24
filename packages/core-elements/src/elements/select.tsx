@@ -25,10 +25,10 @@ const SelectFrame = styled.div<{
   error?: string | boolean
   disabled?: boolean
 }>`
-  padding: 14px 16px;
   border: 1px solid rgba(${getColor('gray100')});
   border-radius: 2px;
   position: relative;
+  max-height: 47px;
 
   ${({ focused }) =>
     focused &&
@@ -54,6 +54,7 @@ const BaseSelect = styled.select<{
   error?: string | boolean
 }>`
   width: 100%;
+  padding: 14px 16px;
   font-size: 16px;
   color: rgba(${getColor('gray')});
 
