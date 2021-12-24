@@ -2,7 +2,7 @@
 
 ## 5.0.0
 
-### Breaking Change
+### Breaking Changes
 
 #### common
 
@@ -17,7 +17,7 @@
 - env context의 기본값 null로 설정 [#1731](https://github.com/titicacadev/triple-frontend/pull/1731)
 - ab-experiment-context를 triple-ab-experiment-context로 이름 변경 후, ab-experiment 패키지로 이전합니다. [#1730](https://github.com/titicacadev/triple-frontend/pull/1730)
 
-### New Feature
+### New Features
 
 #### common
 
@@ -119,7 +119,7 @@
 
 ## 4.0.0
 
-### Breaking Change
+### Breaking Changes
 
 - floating-install-button 패키지 제거 [#1683](https://github.com/titicacadev/triple-frontend/pull/1683)
 - frontend-devtools 패키지 제거 [#1696](https://github.com/titicacadev/triple-frontend/pull/1696)
@@ -133,7 +133,7 @@
 - `SessionContextProvider`의 prop 변경 [#1705](https://github.com/titicacadev/triple-frontend/pull/1705)
 - `useSessionContext` 훅 제거 [#1705](https://github.com/titicacadev/triple-frontend/pull/1705)
 
-### New Feature
+### New Features
 
 #### fetcher
 
