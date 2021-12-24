@@ -18,7 +18,6 @@ export function ExternalLink({
   relList = [],
   allowSource,
   title,
-  useSchemeLink = false,
   lnbTarget,
   noNavbar,
   swipeToClose,
@@ -32,10 +31,6 @@ export function ExternalLink({
      * 새로 열 창의 제목을 지정합니다. 외부 URL이고 target이 "new"이거나 "browser"일 때만 작동합니다.
      */
     title?: string
-    /**
-     * inOfTriple의 경우 scheme link의 경우 inlink가 필요하지 않는 링크인 경우 활성화시켜 적용합니다.
-     */
-    useSchemeLink?: boolean
     /**
      * 링크 규칙 결정에 오류가 있을 때 핸들러입니다.
      * 앱에서 트리플 외부 URL을 현재 창으로 열 수 없습니다.
@@ -72,7 +67,6 @@ export function ExternalLink({
       shouldPresent,
       swipeToClose,
       title,
-      useSchemeLink,
       stopDefaultHandler: () => {
         e.preventDefault()
       },
@@ -106,7 +100,7 @@ export function ExternalLink({
 function useExternalHrefHandler() {
   const { isPublic } = useUserAgentContext()
   const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
-  const { openInlink, openOutlink, openSchemeLink } = useAppBridge()
+  const { openInlink, openOutlink } = useAppBridge()
   const addWebUrlBase = useWebUrlBaseAdder()
 
   const handleHrefExternally = ({
@@ -117,15 +111,11 @@ function useExternalHrefHandler() {
     shouldPresent,
     swipeToClose,
     title,
-    useSchemeLink,
     stopDefaultHandler,
   }: HrefProps &
     TargetProps &
     AppSpecificLinkProps &
-    Pick<OutlinkOptions, 'title'> & {
-      useSchemeLink?: boolean
-      stopDefaultHandler: () => void
-    }) => {
+    Pick<OutlinkOptions, 'title'> & { stopDefaultHandler: () => void }) => {
     const outOfTriple = checkHrefIsOutOfTriple(href)
 
     if (target === 'current' && isPublic === false && outOfTriple === true) {
@@ -148,11 +138,7 @@ function useExternalHrefHandler() {
       if (outOfTriple === true) {
         openOutlink(finalHref, { title })
       } else {
-        if (useSchemeLink) {
-          openSchemeLink(finalHref)
-        } else {
-          openInlink(finalHref)
-        }
+        openInlink(finalHref)
       }
 
       return

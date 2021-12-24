@@ -47,7 +47,6 @@ describe('LocalLink', () => {
   mockedUseAppBridge.mockImplementation(() => ({
     openInlink: jest.fn(),
     openOutlink: jest.fn(),
-    openSchemeLink: jest.fn(),
   }))
   const webUrlBase = 'https://triple.guide'
   mockedUseEnv.mockImplementation(() => ({ webUrlBase }))
