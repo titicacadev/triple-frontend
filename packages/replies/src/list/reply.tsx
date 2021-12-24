@@ -153,23 +153,26 @@ export default function Reply({
     focusInput()
   }
 
-  const handleDeleteReplyClick = ({
-    mentionedUserName,
-    mentionedUserUid,
-    messageId,
-  }: ReplyType['actionSpecifications']['edit'] & {
-    messageId?: string
-  }) => {
-    setEditingMessage({
-      currentMessageId: messageId,
-      content: {
-        mentioningUserUid: mentionedUserUid,
-        mentioningUserName: mentionedUserName,
-      },
-    })
+  const handleDeleteReplyClick = useCallback(
+    ({
+      mentionedUserName,
+      mentionedUserUid,
+      messageId,
+    }: ReplyType['actionSpecifications']['edit'] & {
+      messageId?: string
+    }) => {
+      setEditingMessage({
+        currentMessageId: messageId,
+        content: {
+          mentioningUserUid: mentionedUserUid,
+          mentioningUserName: mentionedUserName,
+        },
+      })
 
-    push(HASH_DELETE_CLOSE_MODAL)
-  }
+      push(HASH_DELETE_CLOSE_MODAL)
+    },
+    [push],
+  )
 
   return (
     <>
