@@ -18,7 +18,7 @@ export function ExternalLink({
   relList = [],
   allowSource,
   title,
-  activeRawSchemeLink = false,
+  useNativeLink = false,
   lnbTarget,
   noNavbar,
   swipeToClose,
@@ -33,9 +33,10 @@ export function ExternalLink({
      */
     title?: string
     /**
-     * inOfTriple의 경우 raw or inlink한 scheme link가 필요한데 활성화 시 raw 링크를 적용합니다.
+     * inOfTriple의 경우 raw or inlink link를 사용할 수 있습니다 (default: inlink)
+     * 해당 props을 주면 nativel link를 사용합니다.
      */
-    activeRawSchemeLink?: boolean
+    useNativeLink?: boolean
     /**
      * 링크 규칙 결정에 오류가 있을 때 핸들러입니다.
      * 앱에서 트리플 외부 URL을 현재 창으로 열 수 없습니다.
@@ -72,7 +73,7 @@ export function ExternalLink({
       shouldPresent,
       swipeToClose,
       title,
-      activeRawSchemeLink,
+      useNativeLink,
       stopDefaultHandler: () => {
         e.preventDefault()
       },
@@ -106,7 +107,7 @@ export function ExternalLink({
 function useExternalHrefHandler() {
   const { isPublic } = useUserAgentContext()
   const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
-  const { openInlink, openOutlink, openSchemeLink } = useAppBridge()
+  const { openInlink, openOutlink, openNativeLink } = useAppBridge()
   const addWebUrlBase = useWebUrlBaseAdder()
 
   const handleHrefExternally = ({
@@ -117,13 +118,13 @@ function useExternalHrefHandler() {
     shouldPresent,
     swipeToClose,
     title,
-    activeRawSchemeLink,
+    useNativeLink,
     stopDefaultHandler,
   }: HrefProps &
     TargetProps &
     AppSpecificLinkProps &
     Pick<OutlinkOptions, 'title'> & {
-      activeRawSchemeLink?: boolean
+      useNativeLink?: boolean
       stopDefaultHandler: () => void
     }) => {
     const outOfTriple = checkHrefIsOutOfTriple(href)
@@ -148,8 +149,8 @@ function useExternalHrefHandler() {
       if (outOfTriple === true) {
         openOutlink(finalHref, { title })
       } else {
-        if (activeRawSchemeLink) {
-          openSchemeLink(finalHref)
+        if (useNativeLink) {
+          openNativeLink(finalHref)
         } else {
           openInlink(finalHref)
         }

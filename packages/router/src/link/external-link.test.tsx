@@ -56,6 +56,7 @@ describe('ExternalLink', () => {
     mockedUseAppBridge.mockImplementation(() => ({
       openInlink: jest.fn(),
       openOutlink: jest.fn(),
+      openNativeLink: jest.fn(),
     }))
     mockedUseTransitionModal.mockImplementation(() => ({ show: jest.fn() }))
     mockedUseLoginCTAModal.mockImplementation(() => ({ show: jest.fn() }))

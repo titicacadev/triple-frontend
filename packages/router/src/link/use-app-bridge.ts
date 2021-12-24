@@ -34,7 +34,7 @@ export function useAppBridge() {
         })
       },
 
-      openSchemeLink(path: string) {
+      openNativeLink(path: string) {
         window.location.href = generateUrl({
           scheme: appUrlScheme,
           path: path,
