@@ -59,6 +59,7 @@ const BaseSelect = styled.select<{
   text-indent: 16px;
   font-size: 16px;
   color: rgba(${getColor('gray')});
+  font-weight: 500;
 
   ${({ error }) =>
     error &&
