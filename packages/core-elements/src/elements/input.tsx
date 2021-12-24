@@ -11,9 +11,10 @@ const BaseInput = styled(InputMask)<{
 }>`
   appearance: none;
   margin: 0;
+  padding: 0 16px;
   outline: none;
-  padding: 14px 16px;
   font-size: 16px;
+  height: 48px;
   font-weight: 500;
   border: 1px solid rgba(${getColor('gray100')});
   border-radius: 2px;
