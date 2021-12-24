@@ -9,7 +9,7 @@ import { ExternalLink } from '@titicaca/router'
 
 import { ReviewData } from './types'
 import { generateUrl } from '@titicaca/view-utilities'
-import { ActionItem } from './my-review-action-sheet'
+import { generateDeepLink } from './deep-link'
 
 export const HASH_REVIEW_ACTION_SHEET =
   'common.reviews-list.review-action-sheet'
@@ -30,24 +30,28 @@ export default function OthersReviewActionSheet({
       onClose={back}
       zTier={3}
     >
-      <ActionItem
-        icon="report"
-        onClick={() => {
-          back()
-        }}
-      >
-        <ExternalLink
-          href={generateUrl({
+      <ExternalLink
+        href={generateDeepLink({
+          path: generateUrl({
             scheme: appUrlScheme,
             path: `/reviews/${selectedReview?.id}/report`,
-          })}
-          target="new"
-          noNavbar
-          allowSource="app"
-        >
-          <a>신고하기</a>
-        </ExternalLink>
-      </ActionItem>
+          }),
+        })}
+        target="new"
+        noNavbar
+        allowSource="app"
+      >
+        <a>
+          <ActionSheet.Item
+            icon="report"
+            onClick={() => {
+              back()
+            }}
+          >
+            신고하기
+          </ActionSheet.Item>
+        </a>
+      </ExternalLink>
     </ActionSheet>
   )
 }

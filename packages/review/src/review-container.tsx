@@ -32,6 +32,7 @@ import SortingOptions, {
 } from './sorting-options'
 import usePaging from './use-paging'
 import MyReviewActionSheet from './my-review-action-sheet'
+import { generateDeepLink } from './deep-link'
 
 const REVIEWS_SECTION_ID = 'reviews'
 const DEFAULT_REVIEWS_COUNT_PER_PAGE = 20
@@ -249,14 +250,16 @@ function ReviewContainer({
       <Container>
         {shortened ? (
           <ExternalLink
-            href={generateUrl({
-              scheme: appUrlScheme,
-              path: `/reviews/new`,
-              query: qs.stringify({
-                region_id: regionId,
-                resource_type: resourceType,
-                resource_id: resourceId,
-                rating: 0,
+            href={generateDeepLink({
+              path: generateUrl({
+                scheme: appUrlScheme,
+                path: `/reviews/new`,
+                query: qs.stringify({
+                  region_id: regionId,
+                  resource_type: resourceType,
+                  resource_id: resourceId,
+                  rating: 0,
+                }),
               }),
             })}
             target="new"
@@ -323,14 +326,16 @@ function ReviewContainer({
       {reviewsCount > SHORTENED_REVIEWS_COUNT_PER_PAGE && shortened ? (
         <Container margin={{ top: 40 }}>
           <ExternalLink
-            href={generateUrl({
-              scheme: appUrlScheme,
-              path: `/reviews/list`,
-              query: qs.stringify({
-                region_id: regionId,
-                resource_id: resourceId,
-                resource_type: resourceType,
-                sorting_option: sortingOption,
+            href={generateDeepLink({
+              path: generateUrl({
+                scheme: appUrlScheme,
+                path: `/reviews/list`,
+                query: qs.stringify({
+                  region_id: regionId,
+                  resource_id: resourceId,
+                  resource_type: resourceType,
+                  sorting_option: sortingOption,
+                }),
               }),
             })}
             target="new"
@@ -354,12 +359,16 @@ function ReviewContainer({
       {shortened ? (
         <MileageButton>
           <ExternalLink
-            href={generateUrl({
-              scheme: !isPublic ? appUrlScheme : undefined,
-              path: isPublic
+            href={
+              isPublic
                 ? '/pages/mileage-intro.html'
-                : '/my/mileage/intro',
-            })}
+                : generateDeepLink({
+                    path: generateUrl({
+                      scheme: appUrlScheme,
+                      path: '/my/mileage/intro',
+                    }),
+                  })
+            }
             target="new"
             allowSource="all"
             onClick={() => {
