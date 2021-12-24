@@ -3,7 +3,6 @@
   "compilerOptions": {
     "baseUrl": "./packages",
     "paths": {
-      "@titicaca/__tests__": ["__tests__/src"],
       "@titicaca/ab-experiments": ["ab-experiments/src"],
       "@titicaca/action-sheet": ["action-sheet/src"],
       "@titicaca/ad-banners": ["ad-banners/src"],
@@ -27,7 +26,6 @@
       "@titicaca/icons": ["icons/src"],
       "@titicaca/image-carousel": ["image-carousel/src"],
       "@titicaca/intersection-observer": ["intersection-observer/src"],
-      "@titicaca/lib": ["lib/src"],
       "@titicaca/listing-filter": ["listing-filter/src"],
       "@titicaca/location-properties": ["location-properties/src"],
       "@titicaca/map": ["map/src"],
