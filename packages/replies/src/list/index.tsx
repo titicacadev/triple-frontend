@@ -7,7 +7,8 @@ import { Reply as ReplyType } from '../types'
 import { useRepliesContext } from '../context'
 
 import NotExistReplies from './not-exist-replies'
-import Reply from './reply'
+import Reply, { HASH_DELETE_CLOSE_MODAL } from './reply'
+import { deleteReply } from '../replies-api-clients'
 
 const HASH_EDIT_CLOSE_MODAL = 'reply.edit-close-modal'
 
@@ -22,8 +23,11 @@ export default function ReplyList({
   fetchMoreReplies: () => void
   focusInput: () => void
 }) {
-  const { initializeEditingMessage } = useRepliesContext()
-  const { back } = useHistoryFunctions()
+  const {
+    currentMessageId,
+    content: { mentioningUserName },
+    initializeEditingMessage,
+  } = useRepliesContext()
 
   return (
     <>
@@ -54,14 +58,17 @@ export default function ReplyList({
             ))}
           </List>
 
-          <ConfirmModal
+          <ConfirmEditModal
             onConfirm={() => {
               initializeEditingMessage()
-              back()
             }}
-            onCancel={() => {
-              back()
+          />
+
+          <ConfirmDeleteModal
+            onConfirm={() => {
+              deleteReply({ currentMessageId })
             }}
+            replyType={mentioningUserName ? '답글' : '댓글'}
           />
         </Container>
       )}
@@ -69,13 +76,7 @@ export default function ReplyList({
   )
 }
 
-function ConfirmModal({
-  onConfirm,
-  onCancel,
-}: {
-  onConfirm: () => void
-  onCancel: () => void
-}) {
+function ConfirmEditModal({ onConfirm }: { onConfirm: () => void }) {
   const uriHash = useURIHash()
   const { back } = useHistoryFunctions()
 
@@ -90,7 +91,27 @@ function ConfirmModal({
         </div>
       }
       onConfirm={onConfirm}
-      onCancel={onCancel}
+    />
+  )
+}
+
+function ConfirmDeleteModal({
+  replyType,
+  onConfirm,
+}: {
+  replyType: string
+  onConfirm: () => void
+}) {
+  const uriHash = useURIHash()
+  const { back } = useHistoryFunctions()
+
+  return (
+    <Confirm
+      open={uriHash === HASH_DELETE_CLOSE_MODAL}
+      onClose={back}
+      // eslint-disable-next-line react/no-children-prop
+      children={<div>{replyType}을 삭제하시겠습니까?</div>}
+      onConfirm={onConfirm}
     />
   )
 }
