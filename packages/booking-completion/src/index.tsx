@@ -109,6 +109,7 @@ function BookingCompletion({
                 target={isPublic ? 'current' : 'new'}
                 allowSource="all"
               >
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a>
                   <Button
                     basic
@@ -132,6 +133,7 @@ function BookingCompletion({
               allowSource="app-with-session"
               onClick={() => onMoveToRegion && onMoveToRegion()}
             >
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <a>
                 <GrayButton fluid margin={{ top: 6 }}>
                   {region.names.ko || region.names.en} 여행 준비하러 가기
