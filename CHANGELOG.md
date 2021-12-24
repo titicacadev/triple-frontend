@@ -39,7 +39,7 @@
 #### replies
 
 - 댓글/답글 서비스 로직을 개선합니다. [#1745](https://github.com/titicacadev/triple-frontend/pull/1745)
-- 댓글 & 답글 수정하기 기능을 추가합니다 [#1712](https://github.com/titicacadev/triple-frontend/pull/1712)
+- 댓글/답글 수정하기 기능을 추가합니다 [#1712](https://github.com/titicacadev/triple-frontend/pull/1712)
 
 ## 4.1.4
 
