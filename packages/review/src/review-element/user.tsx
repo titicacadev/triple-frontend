@@ -49,6 +49,7 @@ export default function User({
         href={generateUrl({
           path: `/users/${uid}`,
         })}
+        useSchemeLink
         target="new"
         allowSource="app-with-session"
         noNavbar
