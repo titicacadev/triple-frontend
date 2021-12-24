@@ -6,6 +6,7 @@ import {
   useUserAgentContext,
   useEventTrackingContext,
   useSessionAvailability,
+  useEnv,
 } from '@titicaca/react-contexts'
 import { withLoginCTAModal } from '@titicaca/modals'
 import { ExternalLink } from '@titicaca/router'
@@ -118,6 +119,7 @@ function ReviewContainer({
   const sessionAvailable = useSessionAvailability()
 
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
+  const { appUrlScheme } = useEnv()
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
   const [[myReview, myReviewIds], setMyReviewStatus] = useState<
@@ -248,6 +250,7 @@ function ReviewContainer({
         {shortened ? (
           <ExternalLink
             href={generateUrl({
+              scheme: appUrlScheme,
               path: `/reviews/new`,
               query: qs.stringify({
                 region_id: regionId,
@@ -321,16 +324,17 @@ function ReviewContainer({
         <Container margin={{ top: 40 }}>
           <ExternalLink
             href={generateUrl({
+              scheme: appUrlScheme,
               path: `/reviews/list`,
               query: qs.stringify({
                 region_id: regionId,
                 resource_id: resourceId,
                 resource_type: resourceType,
                 sorting_option: sortingOption,
-                _triple_no_navbar: true,
               }),
             })}
             target="new"
+            noNavbar
             allowSource="app-with-session"
             onClick={
               onFullListButtonClick
@@ -350,7 +354,12 @@ function ReviewContainer({
       {shortened ? (
         <MileageButton>
           <ExternalLink
-            href={isPublic ? '/pages/mileage-intro.html' : '/my/mileage/intro'}
+            href={generateUrl({
+              scheme: !isPublic ? appUrlScheme : undefined,
+              path: isPublic
+                ? '/pages/mileage-intro.html'
+                : '/my/mileage/intro',
+            })}
             target="new"
             allowSource="all"
             onClick={() => {

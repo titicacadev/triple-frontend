@@ -4,6 +4,9 @@ import { Container, Text } from '@titicaca/core-elements'
 import { ExternalLink } from '@titicaca/router'
 
 import { UserData } from '../types'
+import { generateUrl } from '@titicaca/view-utilities'
+import qs from 'qs'
+import { useEnv } from '@titicaca/react-contexts'
 
 const UserPhoto = styled.img`
   margin-right: 9px;
@@ -37,6 +40,7 @@ export default function User({
   onClick?: () => void
   user: UserData
 }) {
+  const { appUrlScheme } = useEnv()
   const {
     badges: [badge],
     level,
@@ -45,7 +49,10 @@ export default function User({
   return (
     <Container padding={{ bottom: 2 }} display="flex">
       <ExternalLink
-        href={`/users/${uid}`}
+        href={generateUrl({
+          scheme: appUrlScheme,
+          path: `/users/${uid}`,
+        })}
         target="new"
         allowSource="app-with-session"
         noNavbar

@@ -5,6 +5,7 @@ import {
   useMyReviewsContext,
   useURIHash,
   useHistoryFunctions,
+  useEnv,
 } from '@titicaca/react-contexts'
 import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
@@ -13,6 +14,11 @@ import { ExternalLink } from '@titicaca/router'
 
 import { deleteReview as deleteReviewApi } from './review-api-clients'
 import { ResourceType, ReviewData, ReviewDeleteHandler } from './types'
+import styled from 'styled-components'
+
+export const ActionItem = styled(ActionSheet.Item)`
+  color: black;
+`
 
 interface MyReviewActionSheetProps {
   myReview: ReviewData
@@ -44,6 +50,7 @@ export default function MyReviewActionSheet({
   onReviewDelete,
 }: MyReviewActionSheetProps) {
   const uriHash = useURIHash()
+  const { appUrlScheme } = useEnv()
   const { replace, back } = useHistoryFunctions()
   const { deleteMyReview } = useMyReviewsContext()
 
@@ -73,9 +80,10 @@ export default function MyReviewActionSheet({
         zTier={3}
       >
         {!myReview.blindedAt ? (
-          <ActionSheet.Item icon="review" onClick={onReviewEdit}>
+          <ActionItem icon="review" onClick={onReviewEdit}>
             <ExternalLink
               href={generateUrl({
+                scheme: appUrlScheme,
                 path: `/reviews/edit`,
                 query: qs.stringify({
                   region_id: regionId,
@@ -88,11 +96,11 @@ export default function MyReviewActionSheet({
             >
               <a>수정하기</a>
             </ExternalLink>
-          </ActionSheet.Item>
+          </ActionItem>
         ) : null}
-        <ActionSheet.Item icon="delete" onClick={handleDeleteMenuClick}>
+        <ActionItem icon="delete" onClick={handleDeleteMenuClick}>
           삭제하기
-        </ActionSheet.Item>
+        </ActionItem>
       </ActionSheet>
 
       <Confirm
