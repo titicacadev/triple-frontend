@@ -33,6 +33,13 @@ export function useAppBridge() {
           }),
         })
       },
+
+      openSchemeLink(path: string) {
+        window.location.href = generateUrl({
+          scheme: appUrlScheme,
+          path: path,
+        })
+      },
     }),
     [appUrlScheme],
   )

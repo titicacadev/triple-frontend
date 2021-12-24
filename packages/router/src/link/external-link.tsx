@@ -18,6 +18,7 @@ export function ExternalLink({
   relList = [],
   allowSource,
   title,
+  activeRawSchemeLink = false,
   lnbTarget,
   noNavbar,
   swipeToClose,
@@ -31,6 +32,10 @@ export function ExternalLink({
      * 새로 열 창의 제목을 지정합니다. 외부 URL이고 target이 "new"이거나 "browser"일 때만 작동합니다.
      */
     title?: string
+    /**
+     * inOfTriple의 경우 raw or inlink한 scheme link가 필요한데 활성화 시 raw 링크를 적용합니다.
+     */
+    activeRawSchemeLink?: boolean
     /**
      * 링크 규칙 결정에 오류가 있을 때 핸들러입니다.
      * 앱에서 트리플 외부 URL을 현재 창으로 열 수 없습니다.
@@ -67,6 +72,7 @@ export function ExternalLink({
       shouldPresent,
       swipeToClose,
       title,
+      activeRawSchemeLink,
       stopDefaultHandler: () => {
         e.preventDefault()
       },
@@ -100,7 +106,7 @@ export function ExternalLink({
 function useExternalHrefHandler() {
   const { isPublic } = useUserAgentContext()
   const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
-  const { openInlink, openOutlink } = useAppBridge()
+  const { openInlink, openOutlink, openSchemeLink } = useAppBridge()
   const addWebUrlBase = useWebUrlBaseAdder()
 
   const handleHrefExternally = ({
@@ -111,11 +117,15 @@ function useExternalHrefHandler() {
     shouldPresent,
     swipeToClose,
     title,
+    activeRawSchemeLink,
     stopDefaultHandler,
   }: HrefProps &
     TargetProps &
     AppSpecificLinkProps &
-    Pick<OutlinkOptions, 'title'> & { stopDefaultHandler: () => void }) => {
+    Pick<OutlinkOptions, 'title'> & {
+      activeRawSchemeLink?: boolean
+      stopDefaultHandler: () => void
+    }) => {
     const outOfTriple = checkHrefIsOutOfTriple(href)
 
     if (target === 'current' && isPublic === false && outOfTriple === true) {
@@ -138,7 +148,11 @@ function useExternalHrefHandler() {
       if (outOfTriple === true) {
         openOutlink(finalHref, { title })
       } else {
-        openInlink(finalHref)
+        if (activeRawSchemeLink) {
+          openSchemeLink(finalHref)
+        } else {
+          openInlink(finalHref)
+        }
       }
 
       return
