@@ -33,7 +33,7 @@ export function ExternalLink({
      */
     title?: string
     /**
-     * 새로 열 창의 제목을 지정합니다. 외부 URL이고 target이 "new"이거나 "browser"일 때만 작동합니다.
+     * inOfTriple의 경우 scheme link의 경우 inlink가 필요하지 않는 링크인 경우 활성화시켜 적용합니다.
      */
     useSchemeLink?: boolean
     /**
