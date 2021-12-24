@@ -55,7 +55,7 @@ const BaseSelect = styled.select<{
 }>`
   width: 100%;
   font-size: 16px;
-  color: rgba(${({ selected }) => getColor(selected ? 'gray' : 'gray300')});
+  color: rgba(${getColor('gray')});
 
   ${({ error }) =>
     error &&
