@@ -190,6 +190,7 @@ export default function ReviewElement({
                   resource_id: resourceId,
                 }),
               })}
+              useSchemeLink
               target="new"
               allowSource="app"
               noNavbar
@@ -271,6 +272,7 @@ export default function ReviewElement({
                   anchor: 'reply',
                 }),
               })}
+              useSchemeLink
               target="new"
               allowSource="app-with-session"
               noNavbar

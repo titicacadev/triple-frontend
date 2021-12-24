@@ -82,6 +82,7 @@ export default function MyReviewActionSheet({
                 resource_id: resourceId,
               }),
             })}
+            useSchemeLink
             allowSource="app"
             target="new"
           >

@@ -16,6 +16,7 @@ export function useAppBridge() {
       openInlink(path: string) {
         window.location.href = generateUrl({
           scheme: appUrlScheme,
+          path: '/inlink',
           query: qs.stringify({
             path,
           }),
@@ -30,6 +31,13 @@ export function useAppBridge() {
             url,
             ...params,
           }),
+        })
+      },
+
+      openSchemeLink(path: string) {
+        window.location.href = generateUrl({
+          scheme: appUrlScheme,
+          path: path,
         })
       },
     }),
