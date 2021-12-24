@@ -21,7 +21,6 @@
 
 #### common
 
-- Chromatic CI 추가 [#1732](https://github.com/titicacadev/triple-frontend/pull/1732)
 - content-utilities 패키지 정리 [#1760](https://github.com/titicacadev/triple-frontend/pull/1760)
 - Resolve lint errors of view-utilities package [#1758](https://github.com/titicacadev/triple-frontend/pull/1758)
 - 수정할 린트 오류가 없는 패키지의 린트 검사를 활성화합니다. [#1757](https://github.com/titicacadev/triple-frontend/pull/1757)
@@ -31,6 +30,7 @@
 - ts-jest를 설정하고, 실패하는 테스트를 수정합니다. [#1742](https://github.com/titicacadev/triple-frontend/pull/1742)
 - eslint 오류 수정 과정에서 작업한 리팩토링 [#1738](https://github.com/titicacadev/triple-frontend/pull/1738)
 - eslint-config-triple v3 적용 [#1737](https://github.com/titicacadev/triple-frontend/pull/1737)
+- Chromatic CI 추가 [#1732](https://github.com/titicacadev/triple-frontend/pull/1732)
 
 #### poi-list-elements
 
