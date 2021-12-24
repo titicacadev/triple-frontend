@@ -1,10 +1,6 @@
 import React from 'react'
 import ActionSheet from '@titicaca/action-sheet'
-import {
-  useURIHash,
-  useHistoryFunctions,
-  useEnv,
-} from '@titicaca/react-contexts'
+import { useURIHash, useHistoryFunctions } from '@titicaca/react-contexts'
 import { ExternalLink } from '@titicaca/router'
 
 import { ReviewData } from './types'
@@ -19,7 +15,6 @@ export default function OthersReviewActionSheet({
   selectedReview?: ReviewData | null
 }) {
   const uriHash = useURIHash()
-  const { appUrlScheme } = useEnv()
 
   const { back } = useHistoryFunctions()
 
@@ -32,7 +27,6 @@ export default function OthersReviewActionSheet({
       <ExternalLink
         href={generateUrl({
           path: `/reviews/${selectedReview?.id}/report`,
-          scheme: appUrlScheme,
         })}
         target="new"
         noNavbar
