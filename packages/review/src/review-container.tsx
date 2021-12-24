@@ -249,18 +249,16 @@ function ReviewContainer({
       <Container>
         {shortened ? (
           <ExternalLink
-            href={generateUrl(
-              {
-                scheme: appUrlScheme,
-                query: qs.stringify({
-                  region_id: regionId,
-                  resource_type: resourceType,
-                  resource_id: resourceId,
-                  rating: 0,
-                }),
-              },
-              `/reviews/new`,
-            )}
+            href={generateUrl({
+              scheme: appUrlScheme,
+              path: `/reviews/new`,
+              query: qs.stringify({
+                region_id: regionId,
+                resource_type: resourceType,
+                resource_id: resourceId,
+                rating: 0,
+              }),
+            })}
             target="new"
             allowSource="app-with-session"
             onClick={onReviewWrite || handleWriteButtonClick}
@@ -325,18 +323,16 @@ function ReviewContainer({
       {reviewsCount > SHORTENED_REVIEWS_COUNT_PER_PAGE && shortened ? (
         <Container margin={{ top: 40 }}>
           <ExternalLink
-            href={generateUrl(
-              {
-                scheme: appUrlScheme,
-                query: qs.stringify({
-                  region_id: regionId,
-                  resource_id: resourceId,
-                  resource_type: resourceType,
-                  sorting_option: sortingOption,
-                }),
-              },
-              `/reviews/list`,
-            )}
+            href={generateUrl({
+              scheme: appUrlScheme,
+              path: `/reviews/list`,
+              query: qs.stringify({
+                region_id: regionId,
+                resource_id: resourceId,
+                resource_type: resourceType,
+                sorting_option: sortingOption,
+              }),
+            })}
             target="new"
             noNavbar
             allowSource="app-with-session"
@@ -361,12 +357,10 @@ function ReviewContainer({
             href={
               isPublic
                 ? '/pages/mileage-intro.html'
-                : generateUrl(
-                    {
-                      scheme: appUrlScheme,
-                    },
-                    '/my/mileage/intro',
-                  )
+                : generateUrl({
+                    path: '/my/mileage/intro',
+                    scheme: appUrlScheme,
+                  })
             }
             target="new"
             allowSource="all"

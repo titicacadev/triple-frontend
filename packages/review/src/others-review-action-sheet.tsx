@@ -30,12 +30,10 @@ export default function OthersReviewActionSheet({
       zTier={3}
     >
       <ExternalLink
-        href={generateUrl(
-          {
-            scheme: appUrlScheme,
-          },
-          `/reviews/${selectedReview?.id}/report`,
-        )}
+        href={generateUrl({
+          path: `/reviews/${selectedReview?.id}/report`,
+          scheme: appUrlScheme,
+        })}
         target="new"
         noNavbar
         allowSource="app"

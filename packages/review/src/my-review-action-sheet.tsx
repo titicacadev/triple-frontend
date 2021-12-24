@@ -76,17 +76,15 @@ export default function MyReviewActionSheet({
       >
         {!myReview.blindedAt ? (
           <ExternalLink
-            href={generateUrl(
-              {
-                scheme: appUrlScheme,
-                query: qs.stringify({
-                  region_id: regionId,
-                  resource_type: resourceType,
-                  resource_id: resourceId,
-                }),
-              },
-              `/reviews/edit`,
-            )}
+            href={generateUrl({
+              scheme: appUrlScheme,
+              path: `/reviews/edit`,
+              query: qs.stringify({
+                region_id: regionId,
+                resource_type: resourceType,
+                resource_id: resourceId,
+              }),
+            })}
             allowSource="app"
             target="new"
           >

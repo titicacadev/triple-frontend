@@ -48,12 +48,10 @@ export default function User({
   return (
     <Container padding={{ bottom: 2 }} display="flex">
       <ExternalLink
-        href={generateUrl(
-          {
-            scheme: appUrlScheme,
-          },
-          `/users/${uid}`,
-        )}
+        href={generateUrl({
+          scheme: appUrlScheme,
+          path: `/users/${uid}`,
+        })}
         target="new"
         allowSource="app-with-session"
         noNavbar
