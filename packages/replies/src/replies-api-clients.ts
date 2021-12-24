@@ -245,3 +245,24 @@ async function editReply({
 
   captureHttpError(response)
 }
+
+export async function deleteReply({
+  currentMessageId,
+}: {
+  currentMessageId?: string
+}) {
+  const response = await authGuardedFetchers.del(
+    `/api/reply/messages/${currentMessageId}`,
+    {
+      body: {
+        messageId: currentMessageId,
+      },
+    },
+  )
+
+  if (response === 'NEED_LOGIN') {
+    throw new Error('로그인이 필요한 호출입니다.')
+  }
+
+  captureHttpError(response)
+}
