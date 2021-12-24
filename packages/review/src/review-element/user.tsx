@@ -5,9 +5,7 @@ import { ExternalLink } from '@titicaca/router'
 
 import { UserData } from '../types'
 import { generateUrl } from '@titicaca/view-utilities'
-import qs from 'qs'
 import { useEnv } from '@titicaca/react-contexts'
-import { generateDeepLink } from '../deep-link'
 
 const UserPhoto = styled.img`
   margin-right: 9px;
@@ -50,12 +48,12 @@ export default function User({
   return (
     <Container padding={{ bottom: 2 }} display="flex">
       <ExternalLink
-        href={generateDeepLink({
-          path: generateUrl({
+        href={generateUrl(
+          {
             scheme: appUrlScheme,
-            path: `/users/${uid}`,
-          }),
-        })}
+          },
+          `/users/${uid}`,
+        )}
         target="new"
         allowSource="app-with-session"
         noNavbar

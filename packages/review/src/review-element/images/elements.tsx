@@ -10,7 +10,6 @@ import semver from 'semver'
 import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
 
 import { ReviewData } from '../../types'
-import { generateDeepLink } from '../../deep-link'
 
 interface Margin {
   margin?: MarginPadding
@@ -161,16 +160,16 @@ export const ExternalLinkImage = ({
       }}
     >
       <ExternalLink
-        href={generateDeepLink({
-          path: generateUrl({
+        href={generateUrl(
+          {
             scheme: appUrlScheme,
-            path: `/images`,
             query: qs.stringify({
               images: JSON.stringify(media?.map(convertImage)),
               index: media?.findIndex(({ id }) => id === image.id),
             }),
-          }),
-        })}
+          },
+          '/images',
+        )}
         target="new"
         noNavbar
         allowSource="app-with-session"
