@@ -1,5 +1,46 @@
 # CHANGELOG
 
+## 5.0.0
+
+### Breaking Change
+
+#### common
+
+- deprecate된 환경 변수 prop을 제거합니다. [#1729](https://github.com/titicacadev/triple-frontend/pull/1729)
+
+#### core-elements
+
+- Text.Html/Text.WithRef 삭제 [#1747](https://github.com/titicacadev/triple-frontend/pull/1747)
+
+#### react-contexts
+
+- env context의 기본값 null로 설정 [#1731](https://github.com/titicacadev/triple-frontend/pull/1731)
+- ab-experiment-context를 triple-ab-experiment-context로 이름 변경 후, ab-experiment 패키지로 이전합니다. [#1730](https://github.com/titicacadev/triple-frontend/pull/1730)
+
+### New Feature
+
+#### common
+
+- Chromatic CI 추가 [#1732](https://github.com/titicacadev/triple-frontend/pull/1732)
+- content-utilities 패키지 정리 [#1760](https://github.com/titicacadev/triple-frontend/pull/1760)
+- Resolve lint errors of view-utilities package [#1758](https://github.com/titicacadev/triple-frontend/pull/1758)
+- 수정할 린트 오류가 없는 패키지의 린트 검사를 활성화합니다. [#1757](https://github.com/titicacadev/triple-frontend/pull/1757)
+- CI에서 빌드와 테스트 순서 변경 [#1748](https://github.com/titicacadev/triple-frontend/pull/1748)
+- 타입 에러 해결 [#1746](https://github.com/titicacadev/triple-frontend/pull/1746)
+- storybook이 타입 체크를 하는 옵션 추가 및 스토리북 파일의 타입 오류 수정 [#1743](https://github.com/titicacadev/triple-frontend/pull/1743)
+- ts-jest를 설정하고, 실패하는 테스트를 수정합니다. [#1742](https://github.com/titicacadev/triple-frontend/pull/1742)
+- eslint 오류 수정 과정에서 작업한 리팩토링 [#1738](https://github.com/titicacadev/triple-frontend/pull/1738)
+- eslint-config-triple v3 적용 [#1737](https://github.com/titicacadev/triple-frontend/pull/1737)
+
+#### poi-list-elements
+
+- 저장버튼과 poi name이 겹치는 문제를 해결합니다 [#1754](https://github.com/titicacadev/triple-frontend/pull/1754)
+
+#### replies
+
+- 댓글/답글 서비스 로직을 개선합니다. [#1745](https://github.com/titicacadev/triple-frontend/pull/1745)
+- 댓글 & 답글 수정하기 기능을 추가합니다 [#1712](https://github.com/titicacadev/triple-frontend/pull/1712)
+
 ## 4.1.4
 
 ### triple-document
