@@ -33,8 +33,8 @@ export function ExternalLink({
      */
     title?: string
     /**
-     * inOfTriple의 경우 raw or inlink link를 사용할 수 있습니다 (default: inlink)
-     * 해당 props을 주면 nativel link를 사용합니다.
+     * inOfTriple의 경우 native or inlink link를 사용할 수 있습니다 (default: inlink)
+     * 해당 props이 true이면 native link를 사용합니다.
      */
     useNativeLink?: boolean
     /**
