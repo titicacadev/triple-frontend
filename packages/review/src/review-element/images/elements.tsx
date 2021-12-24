@@ -160,16 +160,14 @@ export const ExternalLinkImage = ({
       }}
     >
       <ExternalLink
-        href={generateUrl(
-          {
-            scheme: appUrlScheme,
-            query: qs.stringify({
-              images: JSON.stringify(media?.map(convertImage)),
-              index: media?.findIndex(({ id }) => id === image.id),
-            }),
-          },
-          '/images',
-        )}
+        href={generateUrl({
+          scheme: appUrlScheme,
+          path: '/images',
+          query: qs.stringify({
+            images: JSON.stringify(media?.map(convertImage)),
+            index: media?.findIndex(({ id }) => id === image.id),
+          }),
+        })}
         target="new"
         noNavbar
         allowSource="app-with-session"

@@ -185,16 +185,14 @@ export default function ReviewElement({
             }}
           >
             <ExternalLink
-              href={generateUrl(
-                {
-                  scheme: appUrlScheme,
-                  query: qs.stringify({
-                    region_id: regionId,
-                    resource_id: resourceId,
-                  }),
-                },
-                `/reviews/${review.id}/detail`,
-              )}
+              href={generateUrl({
+                scheme: appUrlScheme,
+                path: `/reviews/${review.id}/detail`,
+                query: qs.stringify({
+                  region_id: regionId,
+                  resource_id: resourceId,
+                }),
+              })}
               target="new"
               allowSource="app"
               noNavbar
@@ -267,18 +265,16 @@ export default function ReviewElement({
 
           {isMessageCountVisible ? (
             <ExternalLink
-              href={generateUrl(
-                {
-                  scheme: appUrlScheme,
-                  query: qs.stringify({
-                    reviewId: review.id,
-                    regionId,
-                    resourceId,
-                    anchor: 'reply',
-                  }),
-                },
-                `/reviews/${review.id}/detail?#reply`,
-              )}
+              href={generateUrl({
+                scheme: appUrlScheme,
+                path: `/reviews/${review.id}/detail?#reply`,
+                query: qs.stringify({
+                  reviewId: review.id,
+                  regionId,
+                  resourceId,
+                  anchor: 'reply',
+                }),
+              })}
               target="new"
               allowSource="app-with-session"
               noNavbar
