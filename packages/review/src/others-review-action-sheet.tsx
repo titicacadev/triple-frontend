@@ -28,7 +28,6 @@ export default function OthersReviewActionSheet({
         href={generateUrl({
           path: `/reviews/${selectedReview?.id}/report`,
         })}
-        useSchemeLink
         target="new"
         noNavbar
         allowSource="app"

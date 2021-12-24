@@ -256,7 +256,6 @@ function ReviewContainer({
                 rating: 0,
               }),
             })}
-            useSchemeLink
             target="new"
             allowSource="app-with-session"
             onClick={onReviewWrite || handleWriteButtonClick}
@@ -330,7 +329,6 @@ function ReviewContainer({
                 sorting_option: sortingOption,
               }),
             })}
-            useSchemeLink
             target="new"
             noNavbar
             allowSource="app-with-session"
@@ -359,7 +357,6 @@ function ReviewContainer({
                     path: '/my/mileage/intro',
                   })
             }
-            useSchemeLink
             target="new"
             allowSource="all"
             onClick={() => {
