@@ -175,76 +175,77 @@ export default function ReviewElement({
         />
         {!blindedAt && !!rating ? <Score score={rating} /> : null}
         <Content>
-          <div
-            onClick={(e) => {
-              if (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) {
-                e.preventDefault()
-              }
-            }}
+          <ExternalLink
+            href={generateUrl({
+              path: `/reviews/${review.id}/detail`,
+              query: qs.stringify({
+                region_id: regionId,
+                resource_id: resourceId,
+              }),
+            })}
+            target="new"
+            allowSource="app"
+            noNavbar
+            onClick={() => onReviewClick(review.id)}
           >
-            <ExternalLink
-              href={generateUrl({
-                path: `/reviews/${review.id}/detail`,
-                query: qs.stringify({
-                  region_id: regionId,
-                  resource_id: resourceId,
-                }),
-              })}
-              target="new"
-              allowSource="app"
-              noNavbar
-              onClick={() => onReviewClick(review.id)}
+            <a
+              onClick={(e: React.SyntheticEvent) => {
+                if (
+                  !(appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION))
+                ) {
+                  e.preventDefault()
+                  e.stopPropagation()
+                }
+              }}
             >
-              <a>
-                {blindedAt ? (
-                  '신고가 접수되어 블라인드 처리되었습니다.'
-                ) : comment ? (
-                  unfolded ? (
-                    comment
-                  ) : (
-                    <FoldableComment
-                      comment={comment}
-                      hasImage={(media || []).length > 0}
-                      onUnfoldButtonClick={() => {
-                        if (
-                          appVersion &&
-                          semver.gte(appVersion, LOUNGE_APP_VERSION)
-                        ) {
-                          return
-                        }
-
-                        trackEvent({
-                          ga: ['리뷰_리뷰글더보기'],
-                          fa: {
-                            action: '리뷰_리뷰글더보기',
-                            item_id: resourceId,
-                          },
-                        })
-                        setUnfolded(true)
-
-                        onUnfoldButtonClick && onUnfoldButtonClick(review)
-                      }}
-                    />
-                  )
+              {blindedAt ? (
+                '신고가 접수되어 블라인드 처리되었습니다.'
+              ) : comment ? (
+                unfolded ? (
+                  comment
                 ) : (
-                  <RateDescription
-                    rating={rating}
-                    reviewRateDescriptions={reviewRateDescriptions}
+                  <FoldableComment
+                    comment={comment}
+                    hasImage={(media || []).length > 0}
+                    onUnfoldButtonClick={() => {
+                      if (
+                        appVersion &&
+                        semver.gte(appVersion, LOUNGE_APP_VERSION)
+                      ) {
+                        return
+                      }
+
+                      trackEvent({
+                        ga: ['리뷰_리뷰글더보기'],
+                        fa: {
+                          action: '리뷰_리뷰글더보기',
+                          item_id: resourceId,
+                        },
+                      })
+                      setUnfolded(true)
+
+                      onUnfoldButtonClick && onUnfoldButtonClick(review)
+                    }}
                   />
-                )}
-                {!blindedAt && media && media.length > 0 ? (
-                  <Container margin={{ top: 10 }}>
-                    <Images
-                      review={review}
-                      images={media}
-                      image={media[index]}
-                      onImageClick={() => onImageClick(review, index)}
-                    />
-                  </Container>
-                ) : null}
-              </a>
-            </ExternalLink>
-          </div>
+                )
+              ) : (
+                <RateDescription
+                  rating={rating}
+                  reviewRateDescriptions={reviewRateDescriptions}
+                />
+              )}
+              {!blindedAt && media && media.length > 0 ? (
+                <Container margin={{ top: 10 }}>
+                  <Images
+                    review={review}
+                    images={media}
+                    image={media[index]}
+                    onImageClick={() => onImageClick(review, index)}
+                  />
+                </Container>
+              ) : null}
+            </a>
+          </ExternalLink>
         </Content>
         <Meta>
           {!blindedAt ? (

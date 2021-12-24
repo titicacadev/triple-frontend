@@ -147,32 +147,34 @@ export const ExternalLinkImage = ({
   })
 
   return (
-    <div
-      onClick={(e) => {
-        if (
-          (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) ||
-          !media
-        ) {
-          e.preventDefault()
-          return
-        }
-      }}
+    <ExternalLink
+      href={generateUrl({
+        path: '/images',
+        query: qs.stringify({
+          images: JSON.stringify(media?.map(convertImage)),
+          index: media?.findIndex(({ id }) => id === image.id),
+        }),
+      })}
+      target="new"
+      noNavbar
+      allowSource="app-with-session"
+      onClick={onClick}
     >
-      <ExternalLink
-        href={generateUrl({
-          path: '/images',
-          query: qs.stringify({
-            images: JSON.stringify(media?.map(convertImage)),
-            index: media?.findIndex(({ id }) => id === image.id),
-          }),
-        })}
-        target="new"
-        noNavbar
-        allowSource="app-with-session"
-        onClick={onClick}
+      <a
+        onClick={(e: React.SyntheticEvent) => {
+          if (
+            !(
+              (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) ||
+              !media
+            )
+          ) {
+            e.preventDefault()
+            e.stopPropagation()
+          }
+        }}
       >
-        <a>{children}</a>
-      </ExternalLink>
-    </div>
+        {children}
+      </a>
+    </ExternalLink>
   )
 }

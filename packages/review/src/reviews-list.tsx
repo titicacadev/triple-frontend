@@ -81,7 +81,7 @@ export default function ReviewsList({
   )
 
   const handleImageClick: ReviewElementProps['onImageClick'] = useCallback(
-    ({ media }: ReviewData, index) => {
+    ({ media }: ReviewData, index: number) => {
       if (!media) {
         return
       }
