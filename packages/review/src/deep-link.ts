@@ -2,7 +2,7 @@ import { makeDeepLinkGenerator } from '@titicaca/view-utilities'
 
 export const generateDeepLink = makeDeepLinkGenerator({
   oneLinkParams: {
-    subdomain: process.env.NEXT_PUBLIC_AF_ONELINK_SUBDOMAIN,
+    subdomain: process.env.NEXT_PUBLIC_AF_ONELINK_SUBDOMAIN as string,
     id: process.env.NEXT_PUBLIC_AF_ONELINK_ID as string,
     pid: process.env.NEXT_PUBLIC_AF_ONELINK_PID as string,
   },
