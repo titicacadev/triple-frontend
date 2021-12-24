@@ -15,10 +15,7 @@ import { ExternalLink } from '@titicaca/router'
 import { deleteReview as deleteReviewApi } from './review-api-clients'
 import { ResourceType, ReviewData, ReviewDeleteHandler } from './types'
 import styled from 'styled-components'
-
-export const ActionItem = styled(ActionSheet.Item)`
-  color: black;
-`
+import { generateDeepLink } from './deep-link'
 
 interface MyReviewActionSheetProps {
   myReview: ReviewData
@@ -80,9 +77,9 @@ export default function MyReviewActionSheet({
         zTier={3}
       >
         {!myReview.blindedAt ? (
-          <ActionItem icon="review" onClick={onReviewEdit}>
-            <ExternalLink
-              href={generateUrl({
+          <ExternalLink
+            href={generateDeepLink({
+              path: generateUrl({
                 scheme: appUrlScheme,
                 path: `/reviews/edit`,
                 query: qs.stringify({
@@ -90,17 +87,21 @@ export default function MyReviewActionSheet({
                   resource_type: resourceType,
                   resource_id: resourceId,
                 }),
-              })}
-              allowSource="app"
-              target="new"
-            >
-              <a>수정하기</a>
-            </ExternalLink>
-          </ActionItem>
+              }),
+            })}
+            allowSource="app"
+            target="new"
+          >
+            <a>
+              <ActionSheet.Item icon="review" onClick={onReviewEdit}>
+                수정하기
+              </ActionSheet.Item>
+            </a>
+          </ExternalLink>
         ) : null}
-        <ActionItem icon="delete" onClick={handleDeleteMenuClick}>
+        <ActionSheet.Item icon="delete" onClick={handleDeleteMenuClick}>
           삭제하기
-        </ActionItem>
+        </ActionSheet.Item>
       </ActionSheet>
 
       <Confirm
