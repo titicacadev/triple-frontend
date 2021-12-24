@@ -16,13 +16,13 @@
       "path": "../fetcher"
     },
     {
+      "path": "../modals"
+    },
+    {
       "path": "../router"
     },
     {
       "path": "../view-utilities"
-    },
-    {
-      "path": "../modals"
     }
   ]
 }
