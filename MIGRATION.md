@@ -1,5 +1,65 @@
 # 마이그레이션 가이드
 
+## v4 to v5
+
+### deprecated props 제거 및 사용 방법
+
+아래에 정의되어있는 컴포넌트들의 `appUrlScheme`, `webUrlBase`, `fbAppId` props가 제거되었습니다. props를 사용하고 있다면 제거해주세요.
+
+해당 props가 필요하면 `EnvProvider`를 사용해주세요.
+
+- HistoryProvider (appUrlScheme, webUrlBase)
+- CSFooter (appUrlScheme)
+- Review (appUrlScheme)
+- FacebookOpenGraphMeta (appUrlScheme, fbAppId)
+- FacebookAppLinkMeta (appUrlScheme)
+- AppleSmartBannerMeta (appUrlScheme)
+
+```tsx
+<EnvProvider
+  appUrlScheme={process.env.APP_URL_SCHEME}
+  webUrlBase={process.env.WEB_URL_BASE}
+  fbAppId={process.env.FB_APP_ID}
+>
+  <HistoryProvider {...props}>
+    {children}
+  </HisotryProvider>
+</EnvProvider>
+```
+
+### Text.Html/Text.WithRef 삭제
+
+core-elements 패키지에서 Text.Html/Text.WithRef 컴포넌트를 더이상 지원하지 않습니다.
+
+`<Text.Html />` 컴포넌트를 사용하던 곳에서는 직접 styled(Text)를 만들어서 필요한 css를 선언하면 됩니다.
+`<Text.WithRef />` 컴포넌트는 Text 컴포넌트와 동일합니다.
+
+```tsx
+// v4
+const TextHtml = styled(Text.Html)`
+  font-size: 14px;
+  ...
+`
+
+// v5
+const TextHtml = styled(Text)`
+  font-size : 14px;
+  ...
+`
+```
+
+```tsx
+// v4
+<Text.WithRef {...props}>
+  {children}
+</Text.WithRef>
+
+// v5
+<Text {...props}>
+  {children}
+</Text>
+```
+
 ## v3 to v4
 
 ### floating-install-button 패키지 제거
