@@ -112,7 +112,7 @@ export function CouponModal({ identifier }: { identifier: string }) {
         <Modal.Action color="gray" onClick={back}>
           취소
         </Modal.Action>
-        <Modal.Action color="blue">
+        <Modal.Action color="blue" onClick={back}>
           <ExternalLink
             href="/benefit/coupons/my?_triple_no_navbar"
             target="new"

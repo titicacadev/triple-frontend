@@ -54,6 +54,7 @@ export default function SocialReviews({
                   trackSimpleEvent({ action: '소셜리뷰선택' })
                 }}
               >
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a>
                   <Container
                     floated="right"
@@ -63,7 +64,23 @@ export default function SocialReviews({
                   >
                     <Image borderRadius={4}>
                       <Image.FixedRatioFrame frame="big">
-                        <Image.Img src={imageUrl} alt={`${title} 썸네일`} />
+                        <Image.Img
+                          src={
+                            imageUrl &&
+                            `/api/images/cast?url=${encodeURIComponent(
+                              imageUrl,
+                            )}&transformation=${encodeURIComponent(
+                              'c_fill,f_auto,q_auto,h_256,w_256',
+                            )}${
+                              placeholderImageUrl
+                                ? `&placeholder=${encodeURIComponent(
+                                    placeholderImageUrl,
+                                  )}`
+                                : ''
+                            }`
+                          }
+                          alt={`${title} 썸네일`}
+                        />
                       </Image.FixedRatioFrame>
                     </Image>
                   </Container>
