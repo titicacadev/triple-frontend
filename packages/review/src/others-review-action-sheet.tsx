@@ -9,7 +9,6 @@ import { ExternalLink } from '@titicaca/router'
 
 import { ReviewData } from './types'
 import { generateUrl } from '@titicaca/view-utilities'
-import { generateDeepLink } from './deep-link'
 
 export const HASH_REVIEW_ACTION_SHEET =
   'common.reviews-list.review-action-sheet'
@@ -31,12 +30,12 @@ export default function OthersReviewActionSheet({
       zTier={3}
     >
       <ExternalLink
-        href={generateDeepLink({
-          path: generateUrl({
+        href={generateUrl(
+          {
             scheme: appUrlScheme,
-            path: `/reviews/${selectedReview?.id}/report`,
-          }),
-        })}
+          },
+          `/reviews/${selectedReview?.id}/report`,
+        )}
         target="new"
         noNavbar
         allowSource="app"

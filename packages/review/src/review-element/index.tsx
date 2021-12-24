@@ -28,7 +28,6 @@ import User from './user'
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
 import Images from './images'
-import { generateDeepLink } from '../deep-link'
 
 type ReviewHandler = (review: ReviewData) => void
 
@@ -186,16 +185,16 @@ export default function ReviewElement({
             }}
           >
             <ExternalLink
-              href={generateDeepLink({
-                path: generateUrl({
+              href={generateUrl(
+                {
                   scheme: appUrlScheme,
-                  path: `/reviews/${review.id}/detail`,
                   query: qs.stringify({
                     region_id: regionId,
                     resource_id: resourceId,
                   }),
-                }),
-              })}
+                },
+                `/reviews/${review.id}/detail`,
+              )}
               target="new"
               allowSource="app"
               noNavbar
@@ -268,18 +267,18 @@ export default function ReviewElement({
 
           {isMessageCountVisible ? (
             <ExternalLink
-              href={generateDeepLink({
-                path: generateUrl({
+              href={generateUrl(
+                {
                   scheme: appUrlScheme,
-                  path: `/reviews/${review.id}/detail?#reply`,
                   query: qs.stringify({
                     reviewId: review.id,
                     regionId,
                     resourceId,
                     anchor: 'reply',
                   }),
-                }),
-              })}
+                },
+                `/reviews/${review.id}/detail?#reply`,
+              )}
               target="new"
               allowSource="app-with-session"
               noNavbar

@@ -14,8 +14,6 @@ import { ExternalLink } from '@titicaca/router'
 
 import { deleteReview as deleteReviewApi } from './review-api-clients'
 import { ResourceType, ReviewData, ReviewDeleteHandler } from './types'
-import styled from 'styled-components'
-import { generateDeepLink } from './deep-link'
 
 interface MyReviewActionSheetProps {
   myReview: ReviewData
@@ -78,17 +76,17 @@ export default function MyReviewActionSheet({
       >
         {!myReview.blindedAt ? (
           <ExternalLink
-            href={generateDeepLink({
-              path: generateUrl({
+            href={generateUrl(
+              {
                 scheme: appUrlScheme,
-                path: `/reviews/edit`,
                 query: qs.stringify({
                   region_id: regionId,
                   resource_type: resourceType,
                   resource_id: resourceId,
                 }),
-              }),
-            })}
+              },
+              `/reviews/edit`,
+            )}
             allowSource="app"
             target="new"
           >
