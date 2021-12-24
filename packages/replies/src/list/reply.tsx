@@ -280,12 +280,12 @@ export default function Reply({
             messageId: id,
           })
         }
-        onDeleteClick={() => {
+        onDeleteClick={() =>
           handleDeleteReplyClick({
             ...edit,
             messageId: id,
           })
-        }}
+        }
       />
     </>
   )
