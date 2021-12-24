@@ -9,7 +9,7 @@ import { ExternalLink } from '@titicaca/router'
 
 import { ReviewData } from './types'
 import { generateUrl } from '@titicaca/view-utilities'
-import ActionItem from '@titicaca/action-sheet/src/components/action-item'
+import { ActionItem } from './my-review-action-sheet'
 
 export const HASH_REVIEW_ACTION_SHEET =
   'common.reviews-list.review-action-sheet'
