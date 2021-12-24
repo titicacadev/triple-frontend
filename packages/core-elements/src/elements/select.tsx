@@ -69,18 +69,23 @@ const BaseSelect = styled.select<{
     color: rgba(${getColor('gray300')});
   }
 `
-
-const Icon = styled.span`
+const Icon = styled.span<{ disabled?: boolean }>`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: 16px;
   display: inline-block;
   width: 10px;
-  height: 24px;
-  background-size: 10px 24px;
+  height: 100%;
+  background-size: 10px 19px;
   background-repeat: no-repeat;
-  background-image: url('https://assets.triple.guide/images/ico-category-select@3x.png');
+  background-image: url('https://assets.triple.guide/images/ico-category-select-on@3x.png');
+  background-position: center center;
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      opacity: 0.3;
+    `};
 `
 
 function Select({
@@ -114,7 +119,7 @@ function Select({
           </option>
         ))}
       </BaseSelect>
-      <Icon />
+      <Icon disabled={props.disabled} />
     </SelectFrame>
   )
 }
