@@ -5,7 +5,6 @@ import {
   useMyReviewsContext,
   useURIHash,
   useHistoryFunctions,
-  useEnv,
 } from '@titicaca/react-contexts'
 import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
@@ -45,7 +44,6 @@ export default function MyReviewActionSheet({
   onReviewDelete,
 }: MyReviewActionSheetProps) {
   const uriHash = useURIHash()
-  const { appUrlScheme } = useEnv()
   const { replace, back } = useHistoryFunctions()
   const { deleteMyReview } = useMyReviewsContext()
 
@@ -77,7 +75,6 @@ export default function MyReviewActionSheet({
         {!myReview.blindedAt ? (
           <ExternalLink
             href={generateUrl({
-              scheme: appUrlScheme,
               path: `/reviews/edit`,
               query: qs.stringify({
                 region_id: regionId,

@@ -6,7 +6,6 @@ import {
   useUserAgentContext,
   useEventTrackingContext,
   useSessionAvailability,
-  useEnv,
 } from '@titicaca/react-contexts'
 import { withLoginCTAModal } from '@titicaca/modals'
 import { ExternalLink } from '@titicaca/router'
@@ -119,7 +118,6 @@ function ReviewContainer({
   const sessionAvailable = useSessionAvailability()
 
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
-  const { appUrlScheme } = useEnv()
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
   const [[myReview, myReviewIds], setMyReviewStatus] = useState<
@@ -250,7 +248,6 @@ function ReviewContainer({
         {shortened ? (
           <ExternalLink
             href={generateUrl({
-              scheme: appUrlScheme,
               path: `/reviews/new`,
               query: qs.stringify({
                 region_id: regionId,
@@ -324,7 +321,6 @@ function ReviewContainer({
         <Container margin={{ top: 40 }}>
           <ExternalLink
             href={generateUrl({
-              scheme: appUrlScheme,
               path: `/reviews/list`,
               query: qs.stringify({
                 region_id: regionId,
@@ -359,7 +355,6 @@ function ReviewContainer({
                 ? '/pages/mileage-intro.html'
                 : generateUrl({
                     path: '/my/mileage/intro',
-                    scheme: appUrlScheme,
                   })
             }
             target="new"
