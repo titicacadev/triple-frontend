@@ -49,6 +49,7 @@ const MentionUser = styled.a`
 `
 
 const HASH_MORE_ACTION_SHEET = 'reply.more-action-sheet'
+export const HASH_DELETE_CLOSE_MODAL = 'reply.delete-close-modal'
 
 export default function Reply({
   reply: {
@@ -150,6 +151,24 @@ export default function Reply({
     })
 
     focusInput()
+  }
+
+  const handleDeleteReplyClick = ({
+    mentionedUserName,
+    mentionedUserUid,
+    messageId,
+  }: ReplyType['actionSpecifications']['edit'] & {
+    messageId?: string
+  }) => {
+    setEditingMessage({
+      currentMessageId: messageId,
+      content: {
+        mentioningUserUid: mentionedUserUid,
+        mentioningUserName: mentionedUserName,
+      },
+    })
+
+    push(HASH_DELETE_CLOSE_MODAL)
   }
 
   return (
@@ -261,6 +280,12 @@ export default function Reply({
             messageId: id,
           })
         }
+        onDeleteClick={() => {
+          handleDeleteReplyClick({
+            ...edit,
+            messageId: id,
+          })
+        }}
       />
     </>
   )
@@ -320,10 +345,12 @@ function FeatureActionSheet({
   isMine,
   actionSheetHash,
   onEditClick,
+  onDeleteClick,
 }: {
   isMine: boolean
   actionSheetHash: string
   onEditClick: () => void
+  onDeleteClick: () => void
 }) {
   const uriHash = useURIHash()
   const { back } = useHistoryFunctions()
@@ -337,7 +364,7 @@ function FeatureActionSheet({
       {isMine ? (
         <>
           <ActionSheet.Item onClick={onEditClick}>수정하기</ActionSheet.Item>
-          <ActionSheet.Item>삭제하기</ActionSheet.Item>
+          <ActionSheet.Item onClick={onDeleteClick}>삭제하기</ActionSheet.Item>
         </>
       ) : (
         <ActionSheet.Item>신고하기</ActionSheet.Item>
