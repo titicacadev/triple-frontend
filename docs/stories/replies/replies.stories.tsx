@@ -1,6 +1,5 @@
-import React from 'react'
-import Replies, { ResourceType } from '@titicaca/replies'
-import { Story } from '@storybook/react'
+import Replies from '@titicaca/replies'
+import { ComponentStoryObj, Meta } from '@storybook/react'
 
 import { sessionContextProviderDecorator } from '../../decorators'
 
@@ -30,21 +29,12 @@ export default {
       defaultValue: 10,
     },
   },
+} as Meta
+
+export const BaseReplies: ComponentStoryObj<typeof Replies> = {
+  storyName: '기본 댓글',
+  args: {
+    resourceId: 'bb3addcf-1390-4f42-8a44-d7fc32d4a084',
+    resourceType: 'itinerary',
+  },
 }
-
-const RepliesTemplate: Story<{
-  resourceId: string
-  resourceType: ResourceType
-  registerPlaceholder?: string
-  size?: number
-  onClick: () => void
-}> = (args) => <Replies {...args} />
-
-export const BaseReplies = RepliesTemplate.bind({})
-
-BaseReplies.args = {
-  resourceId: 'bb3addcf-1390-4f42-8a44-d7fc32d4a084',
-  resourceType: 'itinerary',
-}
-
-BaseReplies.storyName = '기본 댓글'

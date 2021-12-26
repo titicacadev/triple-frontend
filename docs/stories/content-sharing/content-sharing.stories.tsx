@@ -1,18 +1,14 @@
-import React from 'react'
-import { action } from '@storybook/addon-actions'
 import ContentSharing from '@titicaca/content-sharing'
+import { Meta, StoryObj } from '@storybook/react'
 
 export default {
   title: 'content-sharing / ContentSharing',
-}
+  component: ContentSharing,
+} as Meta
 
-export function BaseContentSharing() {
-  return (
-    <ContentSharing
-      label="친구들과 여행 정보를 공유하세요"
-      onShareClick={action('onShareClick')}
-    />
-  )
+export const Basic: StoryObj = {
+  storyName: '기본 컨텐츠 공유',
+  args: {
+    label: '친구들과 여행 정보를 공유하세요',
+  },
 }
-
-BaseContentSharing.storyName = '기본 컨텐츠 공유'

@@ -26,8 +26,7 @@ export default function RadioWrapper() {
           value: '4',
         },
         {
-          text:
-            '아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 긴 텍스트',
+          text: '아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 아주 긴 텍스트',
           value: '5',
         },
       ]}

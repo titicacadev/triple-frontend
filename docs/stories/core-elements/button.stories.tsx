@@ -1,132 +1,123 @@
 import React from 'react'
-import { action } from '@storybook/addon-actions'
-import { text, number, select, boolean } from '@storybook/addon-knobs'
-import { Button } from '@titicaca/core-elements'
+import { Button, ButtonProps, GlobalSizes } from '@titicaca/core-elements'
+import { Meta, Story } from '@storybook/react'
+import { Property } from 'csstype'
 
 export default {
   title: 'Core-Elements / Button',
   component: Button,
-}
+  argTypes: { onClick: { action: 'clicked' } },
+} as Meta
 
-export const Normal = () => {
-  return (
-    <Button
-      as={select('as prop', ['a', 'button'], 'a')}
-      size={select('버튼 크기', ['tiny', 'small'], 'tiny')}
-      lineHeight={select(
-        '버튼 높이',
-        ['15px', '16px', '17px', '18px', '19px', '1', '2', '3'],
-        '16',
-      )}
-      onClick={action('clicked')}
-    >
-      {text('버튼 레이블', '안녕')}
-    </Button>
-  )
+export const Normal: Story<ButtonProps> = (args) => {
+  return <Button {...args} />
 }
 Normal.storyName = '일반'
+Normal.args = {
+  children: '안녕',
+  as: 'a',
+  size: 'tiny',
+  lineHeight: '16px',
+}
 
-export const Compact = () => {
-  return (
-    <Button
-      compact
-      size={select('버튼 크기', ['tiny'], 'tiny')}
-      onClick={action('clicked')}
-    >
-      {text('버튼 레이블', '안녕')}
-    </Button>
-  )
+export const Compact: Story<ButtonProps> = (args) => {
+  return <Button {...args} />
 }
 Compact.storyName = '컴팩트'
+Compact.args = {
+  children: '안녕',
+  compact: true,
+  size: 'tiny',
+}
 
-export const NormalFluid = () => {
-  return (
-    <Button
-      fluid
-      size={select('버튼 크기', ['tiny', 'small'], 'tiny')}
-      onClick={action('clicked')}
-    >
-      {text('버튼 레이블', '안녕')}
-    </Button>
-  )
+export const NormalFluid: Story<ButtonProps> = (args) => {
+  return <Button {...args} />
 }
 NormalFluid.storyName = '일반 (채움형)'
+NormalFluid.args = {
+  children: '안녕',
+  fluid: true,
+  size: 'tiny',
+}
 
-export const CompactIcon = () => {
+interface CompactIconCustomArgs {
+  iconSize: GlobalSizes
+}
+
+export const CompactIcon: Story<ButtonProps & CompactIconCustomArgs> = ({
+  iconSize,
+  children,
+  ...args
+}) => {
   return (
-    <Button
-      compact
-      bold
-      size={select('버튼 크기', ['tiny', 'small', 'large'], 'tiny')}
-      onClick={action('clicked')}
-      color={select('버튼 색', ['gray', 'blue'], 'blue')}
-    >
+    <Button {...args}>
       <Button.Icon
         src="https://assets.triple-dev.titicaca-corp.com/images/save@4x.png"
-        size={select('아이콘 크기', ['tiny', 'small'], 'small')}
+        size={iconSize}
       />
-      {text('버튼 레이블', '저장하기')}
+      {children}
     </Button>
   )
 }
 CompactIcon.storyName = '컴팩트 (아이콘)'
+CompactIcon.args = {
+  children: '저장하기',
+  bold: true,
+  compact: true,
+  size: 'tiny',
+  color: 'blue',
+}
 
-export const Basic = () => {
-  return (
-    <Button
-      basic
-      fluid={boolean('채움', false)}
-      compact={boolean('콤팩트', false)}
-      inverted={boolean('색반전', false)}
-      onClick={action('clicked')}
-    >
-      {text('버튼 레이블', '안녕')}
-    </Button>
-  )
+export const Basic: Story<ButtonProps> = (args) => {
+  return <Button {...args} />
 }
 Basic.storyName = '베이직'
+Basic.args = {
+  children: '안녕',
+  basic: true,
+  fluid: false,
+  compact: false,
+  inverted: false,
+}
 
-export const BasicIcon = () => {
+export const BasicIcon: Story<ButtonProps> = ({ children, ...args }) => {
   return (
-    <Button basic fluid compact onClick={action('clicked')}>
+    <Button {...args}>
       <Button.Icon src="https://triple-dev.titicaca-corp.com/content/static/images/index@4x.png" />
-      {text('버튼 레이블', '목차')}
+      {children}
     </Button>
   )
 }
 BasicIcon.storyName = '베이직 (아이콘)'
+BasicIcon.args = {
+  children: '목차',
+  basic: true,
+  fluid: true,
+  compact: true,
+}
 
-export const BlockIcon = () => {
-  return (
-    <Button
-      icon={select(
-        '아이콘 종류',
-        [
-          'saveEmpty',
-          'saveFilled',
-          'starEmpty',
-          'starFilled',
-          'map',
-          'share',
-          'schedule',
-        ],
-        'saveEmpty',
-      )}
-    >
-      {text('버튼 레이블', '저장하기')}
-    </Button>
-  )
+export const BlockIcon: Story<ButtonProps> = (args) => {
+  return <Button {...args}> </Button>
 }
 BlockIcon.storyName = '블록형 아이콘'
+BlockIcon.args = {
+  children: '저장하기',
+  icon: 'saveEmpty',
+}
 
-export const ButtonGroup = () => {
-  const buttonTag = select('as prop', ['a', 'button'], 'a')
+interface ButtonGroupCustomArgs {
+  horizontalGap: number
+  buttonCount: number
+  buttonTag: 'a' | 'button'
+}
 
+export const ButtonGroup: Story<ButtonGroupCustomArgs> = ({
+  horizontalGap,
+  buttonCount,
+  buttonTag,
+}) => {
   return (
-    <Button.Group
-      horizontalGap={number('버튼 간격', 10)}
-      buttonCount={number('button 개수', 2)}
-    >
+    <Button.Group horizontalGap={horizontalGap} buttonCount={buttonCount}>
       <Button as={buttonTag} basic color="gray" size="small">
         현지에서 길묻기
       </Button>
@@ -137,14 +128,23 @@ export const ButtonGroup = () => {
   )
 }
 ButtonGroup.storyName = '버튼 그룹'
+ButtonGroup.args = {
+  horizontalGap: 10,
+  buttonCount: 2,
+  buttonTag: 'a',
+}
 
-export const ButtonContainer = () => {
-  const buttonTag = select('as prop', ['a', 'button'], 'a')
+interface ButtonContainerCustomArgs {
+  floated: Property.Float
+  buttonTag: 'a' | 'button'
+}
 
+export const ButtonContainer: Story<ButtonContainerCustomArgs> = ({
+  floated,
+  buttonTag,
+}) => {
   return (
-    <Button.Container
-      floated={select('floated', ['left', 'right', 'none'], 'none')}
-    >
+    <Button.Container floated={floated}>
       <Button as={buttonTag} basic color="gray" size="small">
         버튼 1
       </Button>
@@ -155,10 +155,20 @@ export const ButtonContainer = () => {
   )
 }
 ButtonContainer.storyName = '버튼 컨테이너'
+ButtonContainer.args = {
+  floated: 'none',
+  buttonTag: 'a',
+}
 
-export const IconButtonGroup = () => {
+interface IconButtonGroupCustomArgs {
+  horizontalGap: number
+}
+
+export const IconButtonGroup: Story<IconButtonGroupCustomArgs> = ({
+  horizontalGap,
+}) => {
   return (
-    <Button.Group horizontalGap={number('버튼 간격', 22)}>
+    <Button.Group horizontalGap={horizontalGap}>
       <Button icon="saveEmpty">저장하기</Button>
       <Button icon="schedule">일정추가</Button>
       <Button icon="starEmpty">리뷰쓰기</Button>
@@ -167,3 +177,6 @@ export const IconButtonGroup = () => {
   )
 }
 IconButtonGroup.storyName = '아이콘 버튼 그룹'
+IconButtonGroup.args = {
+  horizontalGap: 22,
+}

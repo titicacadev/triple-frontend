@@ -1,7 +1,5 @@
 import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
 import { Text } from '@titicaca/core-elements'
-import { action } from '@storybook/addon-actions'
-import { select, text, boolean } from '@storybook/addon-knobs'
 
 <Meta title="Core-Elements / Text" component={Text} />
 
@@ -11,22 +9,8 @@ Text 를 표현할때 사용하는 컴포넌트입니다.
 
 <Preview>
   <Story name="Basic">
-    <Text
-      size={select(
-        '크기',
-        ['mini', 'tiny', 'small', 'medium', 'large', 'big', 'huge', 'massive'],
-        'tiny',
-      )}
-      color={select(
-        '색깔',
-        ['blue', 'gray', 'gray20', 'gray100', 'white'],
-        'gray',
-      )}
-      center={boolean('중앙정렬')}
-      textAlign={select('정렬', [undefined, 'left', 'center', 'right'])}
-      onClick={action('clicked')}
-    >
-      {text('텍스트', '호텔 최저가 보상!')}
+    <Text size={'tiny'} color={'gray'} center={false}>
+      {'호텔 최저가 보상!'}
     </Text>
   </Story>
 </Preview>

@@ -14,8 +14,7 @@ const DOT_LIST_MOCK_VALUE = {
     {
       type: 'text',
       value: {
-        text:
-          '와그만의 핑크미가 뿜뿜나는 LTE 포켓와이파이로 더 편한 일본 여행을 즐겨보세요.',
+        text: '와그만의 핑크미가 뿜뿜나는 LTE 포켓와이파이로 더 편한 일본 여행을 즐겨보세요.',
       },
     },
     {
@@ -33,8 +32,7 @@ const DOT_LIST_MOCK_VALUE = {
     {
       type: 'text',
       value: {
-        text:
-          '일본 공항에서 수령할 수 있는 일본 공항 수령 LTE 포켓와이파이도 있어요.',
+        text: '일본 공항에서 수령할 수 있는 일본 공항 수령 LTE 포켓와이파이도 있어요.',
       },
     },
     {
@@ -74,8 +72,7 @@ const CHECK_LIST_MOCK_VALUE = {
     {
       type: 'text',
       value: {
-        text:
-          '와그만의 핑크미가 뿜뿜나는 LTE 포켓와이파이로 더 편한 일본 여행을 즐겨보세요.',
+        text: '와그만의 핑크미가 뿜뿜나는 LTE 포켓와이파이로 더 편한 일본 여행을 즐겨보세요.',
       },
     },
     {
@@ -93,8 +90,7 @@ const CHECK_LIST_MOCK_VALUE = {
     {
       type: 'text',
       value: {
-        text:
-          '일본 공항에서 수령할 수 있는 일본 공항 수령 LTE 포켓와이파이도 있어요.',
+        text: '일본 공항에서 수령할 수 있는 일본 공항 수령 LTE 포켓와이파이도 있어요.',
       },
     },
     {

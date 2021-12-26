@@ -4,10 +4,9 @@ import HOTELS from '../__mocks__/map/hotel-recommandations.json'
 
 import { RecommendationHotelResourceType } from './types'
 
-export const coordinates: [
-  number,
-  number,
-][] = ((HOTELS as unknown) as RecommendationHotelResourceType[])
+export const coordinates: [number, number][] = (
+  HOTELS as unknown as RecommendationHotelResourceType[]
+)
   .map(({ hotel }) => hotel)
   .map(
     ({

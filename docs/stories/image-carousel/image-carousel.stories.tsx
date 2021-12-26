@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { action } from '@storybook/addon-actions'
 import ImageCarousel, { PageLabel } from '@titicaca/image-carousel'
 import { ImageSource } from '@titicaca/core-elements'
 
@@ -43,10 +42,6 @@ export const Basic = () => {
       images={IMAGES}
       currentPage={0}
       borderRadius={6}
-      onImageClick={action('image-click')}
-      onMoveStart={action('move-start')}
-      onMove={action('move')}
-      onMoveEnd={action('move-end')}
       ImageSource={ImageSource}
       showMoreRenderer={({ currentIndex, totalCount }) => {
         const result =

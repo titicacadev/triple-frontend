@@ -1,6 +1,4 @@
-import React from 'react'
-import { Meta } from '@storybook/react'
-import { select, text } from '@storybook/addon-knobs'
+import { Meta, StoryObj } from '@storybook/react'
 import { ELEMENTS } from '@titicaca/triple-document'
 
 import IMAGES from '../__mocks__/images.sample.json'
@@ -13,86 +11,63 @@ export default {
   component: Images,
 } as Meta
 
-export function OneImage() {
-  const [image] = IMAGES
-
-  return (
-    <Images
-      value={{
-        images: [
-          {
-            ...image,
-            frame: select(
-              '크기',
-              ['mini', 'small', 'medium', 'large', 'big', 'huge', 'original'],
-              'small',
-            ),
-            title: text('캡션', 'TripleDocument 샘플 1'),
-            sourceUrl: text('출처', 'https://triple.guide'),
-          },
-        ],
-      }}
-    />
-  )
+export const OneImage: StoryObj = {
+  storyName: '1개',
+  args: {
+    value: {
+      images: [
+        {
+          ...IMAGES[0],
+          frame: 'small',
+          title: 'TripleDocument 샘플 1',
+          sourceUrl: 'https://triple.guide',
+        },
+      ],
+    },
+  },
 }
-OneImage.storyName = '1개'
 
-export function OneImageWithFrame() {
-  const [image] = IMAGES_FRAME
-  return (
-    <Images
-      value={{
-        images: [
-          {
-            ...image,
-            frame: select(
-              '크기',
-              ['mini', 'small', 'medium', 'large', 'big', 'huge', 'original'],
-              'small',
-            ),
-            title: text('캡션', 'TripleDocument 샘플 1'),
-            sourceUrl: text('출처', 'https://triple.guide'),
-          },
-        ],
-      }}
-    />
-  )
+export const OneImageWithFrame: StoryObj = {
+  storyName: '1개, 프레임',
+  args: {
+    value: {
+      images: [
+        {
+          ...IMAGES_FRAME[0],
+          frame: 'small',
+          title: 'TripleDocument 샘플 1',
+          sourceUrl: 'https://triple.guide',
+        },
+      ],
+    },
+  },
 }
-OneImageWithFrame.storyName = '1개, 프레임'
 
-export function TwoImages() {
-  return (
-    <Images
-      value={{
-        images: IMAGES.map((value) => ({
-          ...value,
-          title: '',
-        })),
-      }}
-    />
-  )
+export const TwoImages: StoryObj = {
+  storyName: '2개',
+  args: {
+    value: {
+      images: IMAGES.map((value) => ({
+        ...value,
+        title: '',
+      })),
+    },
+  },
 }
-TwoImages.storyName = '2개'
 
-export function TwoImagesWithCaption() {
-  return (
-    <Images
-      value={{
-        images: IMAGES,
-      }}
-    />
-  )
+export const TwoImagesWithCaption: StoryObj = {
+  storyName: '2개, 캡션',
+  args: {
+    value: IMAGES,
+  },
 }
-TwoImagesWithCaption.storyName = '2개, 캡션'
 
-export function TwoBlockImages() {
-  return (
-    <Images
-      value={{
-        images: IMAGES.map((value) => ({ ...value, title: '' })),
-        display: 'block',
-      }}
-    />
-  )
+export const TwoBlockImages: StoryObj = {
+  storyName: '2개, 블록',
+  args: {
+    value: {
+      images: IMAGES.map((value) => ({ ...value, title: '' })),
+      display: 'block',
+    },
+  },
 }
-TwoBlockImages.storyName = '2개, 블록'

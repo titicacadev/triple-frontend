@@ -1,22 +1,15 @@
-import React from 'react'
 import { Rating } from '@titicaca/core-elements'
-import { number, select } from '@storybook/addon-knobs'
+import { ComponentStoryObj, Meta } from '@storybook/react'
 
 export default {
   title: 'Core-Elements / Rating',
   component: Rating,
-}
+} as Meta
 
-export const Basic = () => {
-  return (
-    <Rating
-      size={select<'tiny' | 'small' | 'medium'>(
-        '크기',
-        ['tiny', 'small', 'medium'],
-        'tiny',
-      )}
-      score={number('점수', 5)}
-    />
-  )
+export const Basic: ComponentStoryObj<typeof Rating> = {
+  storyName: '리뷰점수',
+  args: {
+    size: 'tiny',
+    score: 5,
+  },
 }
-Basic.storyName = '리뷰점수'

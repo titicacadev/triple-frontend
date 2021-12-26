@@ -1,6 +1,4 @@
 import React from 'react'
-import { text, number, select, object } from '@storybook/addon-knobs'
-import { action } from '@storybook/addon-actions'
 import { Container } from '@titicaca/core-elements'
 import MapView, {
   Polyline,
@@ -8,6 +6,7 @@ import MapView, {
   Polygon,
   HotelCircleMarker,
 } from '@titicaca/map'
+import { ComponentStory, Meta } from '@storybook/react'
 
 import {
   mapOptions,
@@ -30,103 +29,80 @@ const GOOGLE_MAPS_API_KEY = 'AIzaSyDuSWU_yBwuQzeyRFcTqhyifqNX_8oaXI4'
 
 export default {
   title: 'Map / Map',
-}
+  component: MapView,
+} as Meta
 
-export function Map() {
+export const Basic: ComponentStory<typeof MapView> = (args) => {
   return (
     <Container width="100vw" height="100vh">
-      <MapView
-        options={mapOptions}
-        onLoad={action('맵 로드 완료 액션')}
-        googleMapLoadOptions={{
-          googleMapsApiKey: GOOGLE_MAPS_API_KEY,
-        }}
-        bounds={object('동서남북 경계', bounds)}
-      />
+      <MapView {...args} />
     </Container>
   )
 }
-
-Map.storyName = '기본 맵'
-Map.parameters = {
+Basic.storyName = '기본 맵'
+Basic.args = {
+  options: mapOptions,
+  googleMapLoadOptions: { googleMapsApiKey: GOOGLE_MAPS_API_KEY },
+  bounds,
+}
+Basic.parameters = {
   chromatic: {
     disableSnapshot: true,
   },
 }
 
-export function MapWithProps() {
+export const WithProps: ComponentStory<typeof MapView> = (args) => {
   return (
-    <Container
-      width={text('맵 컨테이너 가로 사이즈', '50%')}
-      height={number('맵 컨테이너 세로 사이즈', 200)}
-    >
-      <MapView
-        options={mapOptions}
-        onLoad={action('맵 로드 완료 액션')}
-        googleMapLoadOptions={{
-          googleMapsApiKey: GOOGLE_MAPS_API_KEY,
-        }}
-        padding={object('맵 내부 여백', {
-          top: 10,
-          left: 10,
-          right: 10,
-          bottom: 10,
-        })}
-        bounds={object('동서남북 경계', bounds)}
-      />
+    <Container width={'50%'} height={200}>
+      <MapView {...args} />
     </Container>
   )
 }
-
-MapWithProps.storyName = '사이즈 설정'
-MapWithProps.parameters = {
+WithProps.storyName = '사이즈 설정'
+WithProps.args = {
+  options: mapOptions,
+  googleMapLoadOptions: { googleMapsApiKey: GOOGLE_MAPS_API_KEY },
+  bounds,
+  padding: {
+    top: 10,
+    left: 10,
+    right: 10,
+    bottom: 10,
+  },
+}
+WithProps.parameters = {
   chromatic: {
     disableSnapshot: true,
   },
 }
 
-export function MapWithPolyline() {
+export const WithPolyline: ComponentStory<typeof MapView> = (args) => {
   return (
     <Container width="100vw" height={200}>
-      <MapView
-        options={{ ...polylineGeometry, zoom: number('zoom', 12) }}
-        onLoad={action('맵 로드 완료 액션')}
-        googleMapLoadOptions={{
-          googleMapsApiKey: GOOGLE_MAPS_API_KEY,
-        }}
-        bounds={object('동서남북 경계', bounds)}
-      >
-        <Polyline
-          path={polylinePaths}
-          strokeColor={select(
-            'line color',
-            ['red', 'blue', 'green'],
-            '#000000',
-          )}
-        />
+      <MapView {...args}>
+        <Polyline path={polylinePaths} strokeColor="#000000" />
       </MapView>
     </Container>
   )
 }
-
-MapWithPolyline.storyName = 'Polyline'
-MapWithPolyline.parameters = {
+WithPolyline.storyName = 'Polyline'
+WithPolyline.args = {
+  options: { ...polylineGeometry, zoom: 12 },
+  googleMapLoadOptions: {
+    googleMapsApiKey: GOOGLE_MAPS_API_KEY,
+  },
+  bounds,
+}
+WithPolyline.parameters = {
   chromatic: {
     disableSnapshot: true,
   },
 }
 
-export function PolylineWithMarker() {
+export const WithMarker: ComponentStory<typeof MapView> = (args) => {
   return (
     <Container width="100vw" height={200}>
-      <MapView
-        options={{ ...polylineGeometry, zoom: number('zoom', 12) }}
-        onLoad={action('맵 로드 완료 액션')}
-        googleMapLoadOptions={{
-          googleMapsApiKey: GOOGLE_MAPS_API_KEY,
-        }}
-        bounds={object('동서남북 경계', bounds)}
-      >
+      <MapView {...args}>
         {polylinePaths.map((path, i) => (
           <HotelCircleMarker
             key={i}
@@ -139,110 +115,78 @@ export function PolylineWithMarker() {
           </HotelCircleMarker>
         ))}
 
-        <Polyline
-          path={polylinePaths}
-          strokeColor={select(
-            'line color',
-            ['red', 'blue', 'green'],
-            '#000000',
-          )}
-        />
+        <Polyline path={polylinePaths} strokeColor="#000000" />
       </MapView>
     </Container>
   )
 }
 
-PolylineWithMarker.storyName = 'Polyline with CircleMarker'
-
-PolylineWithMarker.parameters = {
+WithMarker.storyName = 'Polyline with CircleMarker'
+WithMarker.args = {
+  options: { ...polylineGeometry, zoom: 12 },
+  googleMapLoadOptions: {
+    googleMapsApiKey: GOOGLE_MAPS_API_KEY,
+  },
+  bounds,
+}
+WithMarker.parameters = {
   chromatic: {
     disableSnapshot: true,
   },
 }
 
-export function PolygonWithMarker() {
+export const WithCircleMarker: ComponentStory<typeof MapView> = (args) => {
   return (
-    <Container
-      width={text('맵 컨테이너 가로 사이즈', '50%')}
-      height={number('맵 컨테이너 세로 사이즈', 300)}
-    >
-      <MapView
-        options={{ ...polygonGeometry, zoom: number('zoom', 10) }}
-        onLoad={action('맵 로드 완료 액션')}
-        googleMapLoadOptions={{
-          googleMapsApiKey: GOOGLE_MAPS_API_KEY,
-        }}
-        bounds={object('동서남북 경계', bounds)}
-      >
-        <Polygon
-          paths={polygonPaths}
-          strokeColor={select(
-            'line color',
-            ['red', 'blue', 'green'],
-            '#000000',
-          )}
-        />
+    <Container width={'50%'} height={300}>
+      <MapView {...args}>
+        <Polygon paths={polygonPaths} strokeColor={'#000000'} />
       </MapView>
     </Container>
   )
 }
 
-PolygonWithMarker.storyName = 'Polygon with CircleMarker'
-PolygonWithMarker.parameters = {
+WithCircleMarker.storyName = 'Polygon with CircleMarker'
+WithCircleMarker.args = {
+  options: { ...polylineGeometry, zoom: 12 },
+  googleMapLoadOptions: {
+    googleMapsApiKey: GOOGLE_MAPS_API_KEY,
+  },
+  bounds,
+}
+WithCircleMarker.parameters = {
   chromatic: {
     disableSnapshot: true,
   },
 }
 
-export function PolygonWithPolyline() {
+export const WithWithPolyline: ComponentStory<typeof MapView> = (args) => {
   return (
     <Container height={300}>
-      <MapView
-        options={{ ...polygonGeometry, zoom: number('zoom', 10) }}
-        onLoad={action('맵 로드 완료 액션')}
-        googleMapLoadOptions={{
-          googleMapsApiKey: GOOGLE_MAPS_API_KEY,
-        }}
-      >
-        <DotPolyline
-          path={polygonLinePath}
-          strokeColor={select(
-            'line color',
-            ['red', 'blue', 'green'],
-            '#000000',
-          )}
-        />
-        <Polygon
-          paths={polygonPaths}
-          fillColor={select(
-            'polygon color',
-            ['red', 'blue', 'green'],
-            '#000000',
-          )}
-          fillOpacity={select('polygon opacity', [1, 0.7, 0.5, 0.2], 0.2)}
-        />
+      <MapView {...args}>
+        <DotPolyline path={polygonLinePath} strokeColor={'#000000'} />
+        <Polygon paths={polygonPaths} fillColor={'#000000'} fillOpacity={0.2} />
       </MapView>
     </Container>
   )
 }
-
-PolygonWithPolyline.storyName = 'Polygon with Polyline'
-PolygonWithPolyline.parameters = {
+WithWithPolyline.storyName = 'Polygon with Polyline'
+WithWithPolyline.args = {
+  options: { ...polylineGeometry, zoom: 12 },
+  googleMapLoadOptions: {
+    googleMapsApiKey: GOOGLE_MAPS_API_KEY,
+  },
+  bounds,
+}
+WithWithPolyline.parameters = {
   chromatic: {
     disableSnapshot: true,
   },
 }
 
-export function PolygonWithPolylineAndMarker() {
+export const WithPolylineAndMarker: ComponentStory<typeof MapView> = (args) => {
   return (
     <Container height={300}>
-      <MapView
-        options={{ ...polygonGeometry, zoom: number('zoom', 10) }}
-        onLoad={action('맵 로드 완료 액션')}
-        googleMapLoadOptions={{
-          googleMapsApiKey: GOOGLE_MAPS_API_KEY,
-        }}
-      >
+      <MapView {...args}>
         {polygonPaths.map((path, i) => (
           <HotelCircleMarker
             key={i}
@@ -255,30 +199,21 @@ export function PolygonWithPolylineAndMarker() {
           </HotelCircleMarker>
         ))}
 
-        <DotPolyline
-          path={polygonLinePath}
-          strokeColor={select(
-            'line color',
-            ['red', 'blue', 'green'],
-            '#000000',
-          )}
-        />
-        <Polygon
-          paths={polygonPaths}
-          fillColor={select(
-            'polygon color',
-            ['red', 'blue', 'green'],
-            '#000000',
-          )}
-          fillOpacity={select('polygon opacity', [1, 0.7, 0.5, 0.2], 0.2)}
-        />
+        <DotPolyline path={polygonLinePath} strokeColor={'#000000'} />
+        <Polygon paths={polygonPaths} fillColor={'#000000'} fillOpacity={0.2} />
       </MapView>
     </Container>
   )
 }
-
-PolygonWithPolylineAndMarker.storyName = 'Polygon with Polyline, Marker'
-PolygonWithPolylineAndMarker.parameters = {
+WithPolylineAndMarker.storyName = 'Polygon with Polyline, Marker'
+WithPolylineAndMarker.args = {
+  options: { ...polygonGeometry, zoom: 10 },
+  googleMapLoadOptions: {
+    googleMapsApiKey: GOOGLE_MAPS_API_KEY,
+  },
+  bounds,
+}
+WithPolylineAndMarker.parameters = {
   chromatic: {
     disableSnapshot: true,
   },

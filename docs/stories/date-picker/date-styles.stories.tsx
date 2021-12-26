@@ -1,6 +1,4 @@
 import React from 'react'
-import { StoryFn } from '@storybook/addons'
-import { array } from '@storybook/addon-knobs'
 import styled from 'styled-components'
 import PickerFrame, {
   generateSelectedCircleStyle,
@@ -9,9 +7,9 @@ import {
   generateRangeStyle,
   generateDateLabelStyle,
 } from '@titicaca/date-picker/lib/utils'
+import { Meta, Story } from '@storybook/react'
 
 const Table = styled.table`
-  table-layout: fixed;
   border-collapse: separate;
   border-spacing: 8px;
   text-align: center;
@@ -25,7 +23,7 @@ const Table = styled.table`
 export default {
   title: 'date-picker / 날짜 스타일',
   decorators: [
-    (storyFn: StoryFn<JSX.Element>) => (
+    (Story) => (
       <PickerFrame
         height="500px"
         sideSpacing={10}
@@ -33,14 +31,14 @@ export default {
         hideTodayLabel={false}
       >
         <div className="DayPicker">
-          <Table className="DayPicker-Month">{storyFn()}</Table>
+          <Table className="DayPicker-Month">{Story()}</Table>
         </div>
       </PickerFrame>
     ),
   ],
-}
+} as Meta
 
-export function common() {
+export const common: Story = () => {
   return (
     <tbody className="DayPicker-Body">
       <tr className="DayPicker-Week">
@@ -78,20 +76,13 @@ export function common() {
 
       <tr className="DayPicker-Week">
         <td>knob</td>
-        <td
-          className={[
-            'DayPicker-Day',
-            ...array('조건', ['']).map((type) => `DayPicker-Day--${type}`),
-          ].join(' ')}
-        >
-          42
-        </td>
+        <td className={['DayPicker-Day'].join(' ')}>42</td>
       </tr>
     </tbody>
   )
 }
 
-export function dayPicker() {
+export const dayPicker: Story = () => {
   return (
     <>
       <tr className="DayPicker-Week">
@@ -116,14 +107,7 @@ export function dayPicker() {
 
       <tr className="DayPicker-Week">
         <td>knob</td>
-        <td
-          className={[
-            'DayPicker-Day',
-            ...array('조건', ['']).map((type) => `DayPicker-Day--${type}`),
-          ].join(' ')}
-        >
-          42
-        </td>
+        <td className={['DayPicker-Day'].join(' ')}>42</td>
       </tr>
     </>
   )
@@ -134,12 +118,10 @@ const DayContainer = styled.tbody`
 `
 
 dayPicker.decorators = [
-  (storyFn: StoryFn<JSX.Element>) => (
-    <DayContainer className="DayPicker-Body">{storyFn()}</DayContainer>
-  ),
+  (Story) => <DayContainer className="DayPicker-Body">{Story}</DayContainer>,
 ]
 
-export function rangePicker() {
+export const rangePicker: Story = () => {
   return (
     <>
       <tr className="DayPicker-Week">
@@ -194,14 +176,7 @@ export function rangePicker() {
 
       <tr className="DayPicker-Week">
         <td>knob</td>
-        <td
-          className={[
-            'DayPicker-Day',
-            ...array('조건', ['']).map((type) => `DayPicker-Day--${type}`),
-          ].join(' ')}
-        >
-          42
-        </td>
+        <td className={['DayPicker-Day'].join(' ')}>42</td>
       </tr>
     </>
   )
@@ -226,7 +201,7 @@ const RangeContainer = styled.tbody`
 `
 
 rangePicker.decorators = [
-  (storyFn: StoryFn<JSX.Element>) => (
-    <RangeContainer className="DayPicker-Body">{storyFn()}</RangeContainer>
+  (Story) => (
+    <RangeContainer className="DayPicker-Body">{Story()}</RangeContainer>
   ),
 ]

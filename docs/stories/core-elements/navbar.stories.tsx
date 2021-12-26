@@ -1,5 +1,4 @@
 import React from 'react'
-import { action } from '@storybook/addon-actions'
 import {
   Navbar,
   Text,
@@ -7,7 +6,6 @@ import {
   NavbarWrapper,
 } from '@titicaca/core-elements'
 import ListingFilter from '@titicaca/listing-filter'
-import { text, boolean, select } from '@storybook/addon-knobs'
 import styled from 'styled-components'
 
 const TOC = styled.div`
@@ -15,18 +13,18 @@ const TOC = styled.div`
   left: 52px;
 `
 
-const ICON_LIST = [
-  'more',
-  'map',
-  'write',
-  'scraped',
-  'unscraped',
-  'share',
-  'route',
-  'search',
-  'list',
-  'hamburger',
-] as const
+// const ICON_LIST = [
+//   'more',
+//   'map',
+//   'write',
+//   'scraped',
+//   'unscraped',
+//   'share',
+//   'route',
+//   'search',
+//   'list',
+//   'hamburger',
+// ] as const
 
 export default {
   title: 'Core-Elements / Navbar',
@@ -34,20 +32,9 @@ export default {
 
 export function twoButtons() {
   return (
-    <Navbar
-      title={text('제목', '도쿄 관광지')}
-      borderless={boolean('Border 생략', true)}
-      backgroundColor={select('배경 색', ['gray', 'blue'], 'white')}
-    >
-      <Navbar.Item
-        className="boxer gg"
-        icon={select('좌측 아이콘', ['back', 'close'], 'back')}
-      />
-      <Navbar.Item
-        floated="right"
-        className="boxer gg"
-        icon={select('우측 아이콘', ICON_LIST, 'more')}
-      />
+    <Navbar title={'도쿄 관광지'} borderless={true} backgroundColor={'white'}>
+      <Navbar.Item className="boxer gg" icon={'back'} />
+      <Navbar.Item floated="right" className="boxer gg" icon={'more'} />
     </Navbar>
   )
 }
@@ -55,19 +42,10 @@ twoButtons.storyName = '버튼 2개 (좌1+우1)'
 
 export function threeButtons() {
   return (
-    <Navbar
-      title={text('제목', '도쿄 관광지')}
-      borderless={boolean('Border 생략', true)}
-    >
-      <Navbar.Item icon={select('좌측 아이콘', ['back', 'close'], 'back')} />
-      <Navbar.Item
-        floated="right"
-        icon={select('우측 아이콘 1', ICON_LIST, 'more')}
-      />
-      <Navbar.Item
-        floated="right"
-        icon={select('우측 아이콘 2', ICON_LIST, 'route')}
-      />
+    <Navbar title={'도쿄 관광지'} borderless={true}>
+      <Navbar.Item icon={'back'} />
+      <Navbar.Item floated="right" icon={'more'} />
+      <Navbar.Item floated="right" icon={'route'} />
     </Navbar>
   )
 }
@@ -75,23 +53,11 @@ threeButtons.storyName = '버튼 3개 (좌1+우2)'
 
 export function fourButtons() {
   return (
-    <Navbar
-      title={text('제목', '도쿄 관광지')}
-      borderless={boolean('Border 생략', true)}
-    >
-      <Navbar.Item icon={select('좌측 아이콘', ['back', 'close'], 'back')} />
-      <Navbar.Item
-        floated="right"
-        icon={select('우측 아이콘 1', ICON_LIST, 'more')}
-      />
-      <Navbar.Item
-        floated="right"
-        icon={select('우측 아이콘 2', ICON_LIST, 'route')}
-      />
-      <Navbar.Item
-        floated="right"
-        icon={select('우측 아이콘 3', ICON_LIST, 'list')}
-      />
+    <Navbar title={'도쿄 관광지'} borderless={true}>
+      <Navbar.Item icon={'back'} />
+      <Navbar.Item floated="right" icon={'more'} />
+      <Navbar.Item floated="right" icon={'route'} />
+      <Navbar.Item floated="right" icon={'list'} />
     </Navbar>
   )
 }
@@ -100,8 +66,8 @@ fourButtons.storyName = '버튼 4개 (좌1+우3)'
 export function secondaryNavbar() {
   return (
     <>
-      <Navbar title={text('제목', '도쿄 관광지')} borderless>
-        <Navbar.Item icon="back" />
+      <Navbar title={'도쿄 관광지'} borderless>
+        <Navbar.Item icon={'back'} />
         <Navbar.Item floated="right" icon="more" />
       </Navbar>
       <Navbar.Secondary>
@@ -117,8 +83,8 @@ secondaryNavbar.storyName = '보조 Navbar (리스트 필터링)'
 export function wrappedNavbar() {
   return (
     <NavbarWrapper>
-      <Navbar title={text('제목', '도쿄 관광지')} borderless>
-        <Navbar.Item icon="back" />
+      <Navbar title={'도쿄 관광지'} borderless>
+        <Navbar.Item icon={'back'} />
         <Navbar.Item floated="right" icon="more" />
       </Navbar>
       <Navbar.Secondary>
@@ -173,14 +139,14 @@ export function searchExample() {
   return (
     <SearchNavbar
       placeholder="“호텔예약” 도시이름으로 검색"
-      borderless={boolean('borderless', false)}
-      onBackClick={action('onBackClick')}
-      onDeleteClick={action('onDeleteClick')}
-      onInputChange={action('onInputChange')}
-      onKeyUp={action('onKeyUp')}
-      onBlur={action('onBlur')}
-      onFocus={action('onFocus')}
-      onSearch={action('onSearch')}
+      borderless={false}
+      onBackClick={() => {}}
+      onDeleteClick={() => {}}
+      onInputChange={() => {}}
+      onKeyUp={() => {}}
+      onBlur={() => {}}
+      onFocus={() => {}}
+      onSearch={() => {}}
     />
   )
 }

@@ -1,6 +1,5 @@
 import React, { useState, memo } from 'react'
 import styled from 'styled-components'
-import { action } from '@storybook/addon-actions'
 import { ImagesProvider, useImagesContext } from '@titicaca/react-contexts'
 
 export default {
@@ -86,8 +85,6 @@ const SAMPLE_SOURCE = {
   id: 'a86a3f55-9f89-4540-a124-f8c4db07ab34',
 }
 
-const handleFetched = action('fetch 완료 콜백')
-
 function RenderingTester() {
   const [count, setCount] = useState(0)
 
@@ -101,7 +98,7 @@ function RenderingTester() {
         <div style={{ border: 'dotted black 1px', padding: '5px' }}>
           {count}
 
-          <MemeoizedImagesContextMonitor onFetched={handleFetched} />
+          <MemeoizedImagesContextMonitor />
         </div>
       </ImagesProvider>
     </>
@@ -111,7 +108,7 @@ function RenderingTester() {
 export const Basic = () => {
   return (
     <ImagesProvider source={SAMPLE_SOURCE} fetchImages={fetchImages}>
-      <ImagesContextMonitor onFetched={handleFetched} />
+      <ImagesContextMonitor />
     </ImagesProvider>
   )
 }

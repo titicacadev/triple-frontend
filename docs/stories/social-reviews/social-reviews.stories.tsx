@@ -7,6 +7,7 @@ export default {
 } as ComponentMeta<typeof SocialReviews>
 
 export const BaseSocialReviews: ComponentStoryObj<typeof SocialReviews> = {
+  storyName: '기본 SocialReviews',
   args: {
     placeholderImageUrl:
       'https://assets.triple-dev.titicaca-corp.com/images/img-empty-contents@3x.png',
@@ -50,5 +51,3 @@ export const BaseSocialReviews: ComponentStoryObj<typeof SocialReviews> = {
     ],
   },
 }
-
-BaseSocialReviews.storyName = '기본 SocialReviews'
