@@ -3,7 +3,7 @@ import { ComponentStoryObj, Meta } from '@storybook/react'
 
 export default {
   title: 'booking-completion / Booking Complete',
-  compoennt: BookingCompletion,
+  component: BookingCompletion,
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof BookingCompletion> = {

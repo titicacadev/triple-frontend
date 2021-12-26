@@ -7,6 +7,7 @@ import { historyProviderDecorator } from '../../decorators'
 
 export default {
   title: 'poi-detail / DetailHeader V2',
+  component: DetailHeaderV2,
   decorators: [
     historyProviderDecorator,
     (Story) => (

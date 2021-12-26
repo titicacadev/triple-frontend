@@ -7,7 +7,7 @@ import { historyProviderDecorator } from '../../decorators'
 
 export default {
   title: 'Location-Properties / LocationProperties',
-  comoonent: LocationProperties,
+  component: LocationProperties,
   decorators: [
     (Story) => (
       <UserAgentProvider

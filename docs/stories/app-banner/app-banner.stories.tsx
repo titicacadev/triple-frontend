@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 
 export default {
   title: 'app-banner / AppBanner',
-  compoennt: AppBanner,
+  component: AppBanner,
 } as Meta
 
 export const Basic: StoryObj = {

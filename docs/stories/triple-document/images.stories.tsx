@@ -58,7 +58,9 @@ export const TwoImages: StoryObj = {
 export const TwoImagesWithCaption: StoryObj = {
   storyName: '2개, 캡션',
   args: {
-    value: IMAGES,
+    value: {
+      images: IMAGES,
+    },
   },
 }
 
