@@ -1,6 +1,6 @@
 import React from 'react'
 import { GlobalStyle } from '@titicaca/core-elements'
-import { RouterContext } from "next/dist/shared/lib/router-context"; // next 12
+import { RouterContext } from 'next/dist/shared/lib/router-context' // next 12
 
 export const decorators = [
   (Story) => (
@@ -12,6 +12,9 @@ export const decorators = [
 ]
 
 export const parameters = {
+  actions: {
+    argTypesRegex: '^on.*',
+  },
   nextRouter: {
     Provider: RouterContext.Provider,
   },
