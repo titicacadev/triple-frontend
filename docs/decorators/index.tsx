@@ -1,14 +1,13 @@
 import React from 'react'
-import { StoryFn } from '@storybook/addons'
+import { StoryFn } from '@storybook/react'
 import {
   HistoryProvider,
   SessionContextProvider,
   EnvProvider,
   UserAgentProvider,
 } from '@titicaca/react-contexts'
-import { boolean } from '@storybook/addon-knobs'
 
-export function historyProviderDecorator(storyFn: StoryFn<JSX.Element>) {
+export function historyProviderDecorator(Story: StoryFn) {
   return (
     <EnvProvider
       appUrlScheme="dev-soto"
@@ -26,7 +25,7 @@ export function historyProviderDecorator(storyFn: StoryFn<JSX.Element>) {
         type="browser"
         props={{
           initialUser: undefined,
-          initialSessionAvailability: boolean('세션 유무', false),
+          initialSessionAvailability: false,
         }}
       >
         <HistoryProvider
@@ -34,14 +33,14 @@ export function historyProviderDecorator(storyFn: StoryFn<JSX.Element>) {
           isAndroid={false}
           transitionModalHash="transition.general"
         >
-          {storyFn()}
+          <Story />
         </HistoryProvider>
       </SessionContextProvider>
     </EnvProvider>
   )
 }
 
-export function sessionContextProviderDecorator(storyFn: StoryFn<JSX.Element>) {
+export function sessionContextProviderDecorator(Story: StoryFn) {
   return (
     <EnvProvider
       appUrlScheme="dev-soto"
@@ -59,26 +58,26 @@ export function sessionContextProviderDecorator(storyFn: StoryFn<JSX.Element>) {
         type="browser"
         props={{
           initialUser: undefined,
-          initialSessionAvailability: boolean('세션 유무', false),
+          initialSessionAvailability: false,
         }}
       >
-        {storyFn()}
+        <Story />
       </SessionContextProvider>
     </EnvProvider>
   )
 }
 
-export function userAgentProviderDecorator(storyFn: StoryFn<JSX.Element>) {
+export function userAgentProviderDecorator(Story: StoryFn) {
   return (
     <UserAgentProvider
       value={{
-        isPublic: boolean('isPublic', true),
-        isMobile: boolean('isMobile', false),
+        isPublic: true,
+        isMobile: false,
         os: {},
         app: null,
       }}
     >
-      {storyFn()}
+      <Story />
     </UserAgentProvider>
   )
 }
