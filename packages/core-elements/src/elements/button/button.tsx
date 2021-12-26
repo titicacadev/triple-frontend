@@ -55,6 +55,7 @@ const BASIC_INVERTED_COLORS: Partial<Record<Color, string>> = {
 }
 
 interface BasicButtonProp {
+  children?: React.ReactNode
   compact?: boolean
   inverted?: boolean
   color?: Color
@@ -121,22 +122,21 @@ const NormalButton = styled(ButtonBase)<{
   }};
 `
 
-const BUTTON_ICON_STYLES: Partial<
-  Record<GlobalSizes, ReturnType<typeof css>>
-> = {
-  tiny: css`
-    width: 15px;
-    height: 12px;
-    background-size: 15px 12px;
-    margin: 2px 5px 0 0;
-  `,
-  small: css`
-    width: 16px;
-    height: 16px;
-    background-size: 16px 16px;
-    margin: 0 3px 0 -3px;
-  `,
-}
+const BUTTON_ICON_STYLES: Partial<Record<GlobalSizes, ReturnType<typeof css>>> =
+  {
+    tiny: css`
+      width: 15px;
+      height: 12px;
+      background-size: 15px 12px;
+      margin: 2px 5px 0 0;
+    `,
+    small: css`
+      width: 16px;
+      height: 16px;
+      background-size: 16px 16px;
+      margin: 0 3px 0 -3px;
+    `,
+  }
 
 const ButtonIcon = styled.div<{ size?: GlobalSizes; src?: string }>`
   display: inline-block;
