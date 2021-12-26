@@ -5,7 +5,7 @@ import {
   UserAgentProvider,
   generateUserAgentValues,
 } from '@titicaca/react-contexts'
-import { Meta, StoryObj } from '@storybook/react'
+import { ComponentStoryObj, Meta } from '@storybook/react'
 
 import {
   historyProviderDecorator,
@@ -45,7 +45,7 @@ export default {
   ],
 } as Meta
 
-export const Basic: StoryObj = {
+export const Basic: ComponentStoryObj<typeof Reviews> = {
   storyName: '일반',
   args: {
     shortened: false,
@@ -53,5 +53,9 @@ export const Basic: StoryObj = {
     resourceId: 'f939b4cb-ea3b-34b6-b430-eb5d28fbf467',
     resourceType: 'tna',
     placeholderText: '이 투어·티켓 어떠셨나요?',
+    appNativeActions: {
+      notifyReviewDeleted: () => {},
+      showToast: () => {},
+    },
   },
 }
