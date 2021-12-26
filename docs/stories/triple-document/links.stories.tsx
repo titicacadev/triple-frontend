@@ -9,16 +9,13 @@ const MOCK_IMAGE_LINKS_VALUE = {
       image: {
         sizes: {
           full: {
-            url:
-              'https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/1c22ae37-108f-44a7-b96b-1d70179b0b3f.jpeg',
+            url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/1c22ae37-108f-44a7-b96b-1d70179b0b3f.jpeg',
           },
           large: {
-            url:
-              'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/1c22ae37-108f-44a7-b96b-1d70179b0b3f.jpeg',
+            url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/1c22ae37-108f-44a7-b96b-1d70179b0b3f.jpeg',
           },
           small_square: {
-            url:
-              'https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/1c22ae37-108f-44a7-b96b-1d70179b0b3f.jpeg',
+            url: 'https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/1c22ae37-108f-44a7-b96b-1d70179b0b3f.jpeg',
           },
         },
       },
@@ -29,16 +26,13 @@ const MOCK_IMAGE_LINKS_VALUE = {
       image: {
         sizes: {
           full: {
-            url:
-              'https://media.triple.guide/triple-dev/c_limit,f_auto,h_2048,w_2048/fc59cda3-056b-41ca-9c87-242d6f15074d.jpeg',
+            url: 'https://media.triple.guide/triple-dev/c_limit,f_auto,h_2048,w_2048/fc59cda3-056b-41ca-9c87-242d6f15074d.jpeg',
           },
           large: {
-            url:
-              'https://media.triple.guide/triple-dev/c_limit,f_auto,h_1024,w_1024/fc59cda3-056b-41ca-9c87-242d6f15074d.jpeg',
+            url: 'https://media.triple.guide/triple-dev/c_limit,f_auto,h_1024,w_1024/fc59cda3-056b-41ca-9c87-242d6f15074d.jpeg',
           },
           small_square: {
-            url:
-              'https://media.triple.guide/triple-dev/c_fill,f_auto,h_256,w_256/fc59cda3-056b-41ca-9c87-242d6f15074d.jpeg',
+            url: 'https://media.triple.guide/triple-dev/c_fill,f_auto,h_256,w_256/fc59cda3-056b-41ca-9c87-242d6f15074d.jpeg',
           },
         },
       },

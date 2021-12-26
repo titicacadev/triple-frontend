@@ -6,8 +6,8 @@ import {
   useVisibilityChange,
   useLottie,
 } from '@titicaca/react-hooks'
-import { boolean } from '@storybook/addon-knobs'
 import isChromatic from 'chromatic/isChromatic'
+import { Story } from '@storybook/react'
 
 import logos from '../__mocks__/lottie.sample.json'
 
@@ -62,12 +62,19 @@ function ScrollToAnchorComponent({ useAlias }: { useAlias: boolean }) {
   )
 }
 
-export function ScrollToAnchor() {
-  const useAlias = boolean('use alias', false)
+interface ScrollToAnchorCustomArgs {
+  useAlias: boolean
+}
 
+export const ScrollToAnchor: Story<ScrollToAnchorCustomArgs> = ({
+  useAlias,
+}) => {
   return (
     <ScrollToAnchorComponent key={Math.random() * 10} useAlias={useAlias} />
   )
+}
+ScrollToAnchor.args = {
+  useAlias: false,
 }
 
 export function VisibilityChange() {

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Container, HR1, longClickable } from '@titicaca/core-elements'
-import { action } from '@storybook/addon-actions'
 
 export default {
   title: 'Core-Elements / longClickable',
@@ -12,16 +11,11 @@ export const LongClickable = () => {
 
   return (
     <>
-      <LongClickableContainer
-        onClick={action('LongClickable onClick')}
-        onLongClick={action('LongClickable onLongClick')}
-      >
-        This receives long click
-      </LongClickableContainer>
+      <LongClickableContainer>This receives long click</LongClickableContainer>
 
       <HR1 />
 
-      <LongClickableContainer onClick={action('non-LongClickable onClick')}>
+      <LongClickableContainer>
         This does not receive long click
       </LongClickableContainer>
     </>

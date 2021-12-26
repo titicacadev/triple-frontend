@@ -1,23 +1,14 @@
-import React from 'react'
 import ReviewsPlaceholder from '@titicaca/review/lib/review-placeholder-with-rating'
-import { select } from '@storybook/addon-knobs'
-import { action } from '@storybook/addon-actions'
+import { Meta, StoryObj } from '@storybook/react'
 
 export default {
   title: 'Reviews / Review Placeholder',
-}
+  component: ReviewsPlaceholder,
+} as Meta
 
-export function reviewPlaceholder() {
-  return (
-    <ReviewsPlaceholder
-      resourceType={select(
-        'Resource Type',
-        ['poi', 'tna', 'article', 'hotel', 'default'],
-        'tna',
-      )}
-      onClick={action('clicked')}
-    />
-  )
+export const Basic: StoryObj = {
+  storyName: '플레이스홀더',
+  args: {
+    resourceType: 'tna',
+  },
 }
-
-reviewPlaceholder.storyName = '플레이스홀더'

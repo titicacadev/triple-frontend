@@ -1,19 +1,16 @@
-import React from 'react'
-import { text } from '@storybook/addon-knobs'
 import AppBanner from '@titicaca/app-banner'
+import { Meta, StoryObj } from '@storybook/react'
 
 export default {
   title: 'app-banner / AppBanner',
-}
+  compoennt: AppBanner,
+} as Meta
 
-export function BaseAppBanner() {
-  return (
-    <AppBanner
-      title={text('제목', '트리플 - 해외여행 가이드')}
-      description={text('설명', '가이드북, 일정짜기, 길찾기, 맛집')}
-      cta={text('버튼 레이블', '앱에서 보기')}
-    />
-  )
+export const Basic: StoryObj = {
+  storyName: '공유페이지',
+  args: {
+    title: '트리플 - 해외여행 가이드',
+    description: '가이드북, 일정짜기, 길찾기, 맛집',
+    cta: '앱에서 보기',
+  },
 }
-
-BaseAppBanner.storyName = '공유페이지'

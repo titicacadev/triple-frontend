@@ -1,13 +1,11 @@
-import React from 'react'
 import { VerificationRequest } from '@titicaca/user-verification'
-import { action } from '@storybook/addon-actions'
+import { Meta, StoryObj } from '@storybook/react'
 
 export default {
   title: 'user-verification / VerificationRequest',
-}
+  component: VerificationRequest,
+} as Meta
 
-export function ExampleVerificationRequest() {
-  return <VerificationRequest onCancel={action('onCancel')} />
+export const ExampleVerificationRequest: StoryObj = {
+  storyName: '기본',
 }
-
-ExampleVerificationRequest.storyName = '기본'

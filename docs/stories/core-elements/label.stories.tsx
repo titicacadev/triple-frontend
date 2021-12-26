@@ -1,35 +1,26 @@
-import React from 'react'
-import { text, select, boolean } from '@storybook/addon-knobs'
 import { Label } from '@titicaca/core-elements'
+import { ComponentStoryObj, Meta } from '@storybook/react'
 
 export default {
   title: 'Core-Elements / Label',
   component: Label,
+} as Meta
+
+export const Radio: ComponentStoryObj<typeof Label> = {
+  storyName: '라디오',
+  args: {
+    radio: true,
+    selected: false,
+    children: '최신순',
+  },
 }
 
-export const Radio = () => {
-  return (
-    <Label radio selected={boolean('선택됨', false)}>
-      {text('텍스트', '최신순')}
-    </Label>
-  )
+export const Promo: ComponentStoryObj<typeof Label> = {
+  storyName: '최대 24%',
+  args: {
+    promo: true,
+    size: 'medium',
+    color: 'purple',
+    children: '최대 24%',
+  },
 }
-Radio.storyName = '라디오'
-
-export const Promo = () => {
-  return (
-    <Label
-      promo
-      size={select('크기', ['tiny', 'small', 'medium', 'large'], 'medium')}
-      color={select(
-        '색깔',
-        ['white', 'purple', 'blue', 'red', 'gray', 'green', 'orange'],
-        'purple',
-      )}
-      emphasized={boolean('강조', true)}
-    >
-      {text('텍스트', '최대 24%')}
-    </Label>
-  )
-}
-Promo.storyName = '프로모'

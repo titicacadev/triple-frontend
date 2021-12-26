@@ -1,13 +1,11 @@
 import React from 'react'
-import { number, text, select, boolean } from '@storybook/addon-knobs'
-import { action } from '@storybook/addon-actions'
-import { StoryFn } from '@storybook/addons'
 import { TransitionModal } from '@titicaca/modals'
 import { Reviews, ReviewLikesProvider } from '@titicaca/review'
 import {
   UserAgentProvider,
   generateUserAgentValues,
 } from '@titicaca/react-contexts'
+import { Meta, StoryObj } from '@storybook/react'
 
 import {
   historyProviderDecorator,
@@ -16,64 +14,44 @@ import {
 
 export default {
   title: 'Reviews / Reviews',
+  component: Reviews,
   decorators: [
-    (storyFn: StoryFn<JSX.Element>) => (
+    (Story) => (
       <>
-        {storyFn()}
+        <Story />
         <TransitionModal deepLink="/" />
       </>
     ),
-    (storyFn: StoryFn<JSX.Element>) => (
+    (Story) => (
       <ReviewLikesProvider
-        subscribeLikedChangeEvent={action('subscribeLikedChangeEvent')}
-        notifyReviewLiked={action('notifyReviewLiked')}
-        notifyReviewUnliked={action('notifyReviewUnliked')}
+        subscribeLikedChangeEvent={() => {}}
+        notifyReviewLiked={() => {}}
+        notifyReviewUnliked={() => {}}
       >
-        {storyFn()}
+        <Story />
       </ReviewLikesProvider>
     ),
-    (storyFn: StoryFn<JSX.Element>) => (
+    (Story) => (
       <UserAgentProvider
         value={generateUserAgentValues(
-          select(
-            'User-Agent',
-            [
-              'Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/3.0.0',
-              'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
-            ],
-            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
-          ),
+          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
         )}
       >
-        {storyFn()}
+        <Story />
       </UserAgentProvider>
     ),
     historyProviderDecorator,
     sessionContextProviderDecorator,
   ],
-}
+} as Meta
 
-export function reviewSection() {
-  return (
-    <Reviews
-      shortened={boolean('Shortened', false)}
-      reviewsCount={number('Review count', 120)}
-      appNativeActions={{
-        subscribeReviewUpdateEvent: action('subscribeReviewUpdateEvent'),
-        unsubscribeReviewUpdateEvent: action('unsubscribeReviewUpdateEvent'),
-        notifyReviewDeleted: action('notifyReviewDeleted'),
-        showToast: action('showToast'),
-      }}
-      resourceId={text('Resource ID', 'f939b4cb-ea3b-34b6-b430-eb5d28fbf467')}
-      resourceType={select(
-        'Resource Type',
-        ['poi', 'tna', 'article', 'hotel'],
-        'tna',
-      )}
-      placeholderText={text('placeholder text', '이 투어·티켓 어떠셨나요?')}
-      onFullListButtonClick={action('onFullListButtonClick')}
-    />
-  )
+export const Basic: StoryObj = {
+  storyName: '일반',
+  args: {
+    shortened: false,
+    reviewsCount: 120,
+    resourceId: 'f939b4cb-ea3b-34b6-b430-eb5d28fbf467',
+    resourceType: 'tna',
+    placeholderText: '이 투어·티켓 어떠셨나요?',
+  },
 }
-
-reviewSection.storyName = '일반'

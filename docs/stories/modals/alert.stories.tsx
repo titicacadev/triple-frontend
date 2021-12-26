@@ -1,10 +1,12 @@
 import React from 'react'
 import { Text } from '@titicaca/core-elements'
 import { Modal, Confirm, Alert } from '@titicaca/modals'
+import { Meta } from '@storybook/react'
 
 export default {
   title: 'modals / Modal',
-}
+  component: Modal,
+} as Meta
 
 export function BaseModal() {
   return (
