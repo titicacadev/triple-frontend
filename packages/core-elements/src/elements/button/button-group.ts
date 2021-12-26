@@ -5,10 +5,12 @@ import Container from '../container'
 
 import ButtonBase from './button-base'
 
-const ButtonGroup = styled(Container)<{
+export interface ButtonGroupProps {
   horizontalGap?: number
   buttonCount?: number
-}>`
+}
+
+const ButtonGroup = styled(Container)<ButtonGroupProps>`
   width: 100%;
 
   ${ButtonBase} {
