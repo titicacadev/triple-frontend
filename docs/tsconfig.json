@@ -59,7 +59,7 @@
       "@titicaca/user-verification": ["../packages/user-verification/src"]
     }
   },
-  "include": ["stories/**/*", "decorators"],
+  "include": ["stories/**/*", "stories/__mocks__/**/*.json", "decorators"],
   "references": [
     {
       "path": "../packages/action-sheet"
