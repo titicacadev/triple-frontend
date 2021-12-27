@@ -1,5 +1,5 @@
 import React from 'react'
-import Router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { fireEvent, render } from '@testing-library/react'
 import {
   useEnv,
@@ -28,7 +28,7 @@ jest.mock('@titicaca/modals')
 const mockedUseTransitionModal = (useTransitionModal as unknown) as jest.MockedFunction<
   () => ReturnType<typeof useTransitionModal>
 >
-const mockedUseLoginCTAModal = (useLoginCTAModal as unknown) as jest.MockedFunction<
+const mockedUseLoginCtaModal = (useLoginCTAModal as unknown) as jest.MockedFunction<
   () => ReturnType<typeof useLoginCTAModal>
 >
 
@@ -56,7 +56,7 @@ describe('LocalLink', () => {
 
   mockedUseUserAgentContext.mockImplementation(() => ({ isPublic: false }))
   mockedUseTransitionModal.mockImplementation(() => ({ show: jest.fn() }))
-  mockedUseLoginCTAModal.mockImplementation(() => ({ show: jest.fn() }))
+  mockedUseLoginCtaModal.mockImplementation(() => ({ show: jest.fn() }))
 
   it('should add basePath to href and give it to anchor', () => {
     const { getByRole } = render(
@@ -94,6 +94,11 @@ describe('LocalLink', () => {
 
   it('should not use next/router when click with key pressing.', () => {
     const handleClick = jest.fn()
+    const nextRouter = {
+      basePath,
+      push: jest.fn(),
+    }
+    mockedUseRouter.mockImplementation(() => nextRouter)
 
     const { getByRole } = render(
       <LocalLink
@@ -107,22 +112,22 @@ describe('LocalLink', () => {
 
     fireEvent.click(getByRole('link'), { metaKey: true })
     expect(handleClick).toBeCalled()
-    expect(Router.push).toBeCalledTimes(0)
+    expect(nextRouter.push).toBeCalledTimes(0)
     handleClick.mockClear()
 
     fireEvent.click(getByRole('link'), { shiftKey: true })
     expect(handleClick).toBeCalled()
-    expect(Router.push).toBeCalledTimes(0)
+    expect(nextRouter.push).toBeCalledTimes(0)
     handleClick.mockClear()
 
     fireEvent.click(getByRole('link'), { altKey: true })
     expect(handleClick).toBeCalled()
-    expect(Router.push).toBeCalledTimes(0)
+    expect(nextRouter.push).toBeCalledTimes(0)
     handleClick.mockClear()
 
     fireEvent.click(getByRole('link'), { ctrlKey: true })
     expect(handleClick).toBeCalled()
-    expect(Router.push).toBeCalledTimes(0)
+    expect(nextRouter.push).toBeCalledTimes(0)
     handleClick.mockClear()
   })
 
