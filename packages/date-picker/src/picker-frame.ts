@@ -1,59 +1,12 @@
 import styled, { css } from 'styled-components'
-import { getColor } from '@titicaca/color-palette'
 
-const sideSpacingMixin = css<{ sideSpacing: number }>`
-  ${({ sideSpacing }) => `
-    .DayPicker-Weekday {
-      &:first-child {
-        padding-left: ${sideSpacing}px;
-      }
-      &:last-child {
-        padding-right: ${sideSpacing}px;
-      }
-    }
-
-    .DayPicker-Day {
-      &--sunday {
-        padding-left: ${sideSpacing}px !important;
-
-        &:before {
-          /* date label */
-          transform: translate(${sideSpacing / 2}px) !important;
-        }
-
-        &:after {
-          /* Select circle */
-          transform: translate(calc(-50% + ${
-            sideSpacing / 2
-          }px), -50%) !important;
-        }
-      }
-
-      &--saturday {
-        padding-right: ${sideSpacing}px !important;
-
-        &:before {
-          /* date label */
-          transform: translate(${(sideSpacing / 2) * -1}px) !important;
-        }
-
-        &:after {
-          /* Select circle */
-          transform: translate(
-            calc(-50% + ${(sideSpacing / 2) * -1}px),
-            -50%
-          ) !important;
-        }
-      }
-    }
-  `}
-`
+import { generateTodayStyle, sideSpacingMixin } from './utils'
 
 export function generateSelectedCircleStyle(selector: string) {
   return css`
     ${selector} {
       z-index: 0;
-      color: rgba(${getColor('white')}) !important;
+      color: var(--color-white) !important;
 
       &:before {
         top: 35px !important;
@@ -69,7 +22,7 @@ export function generateSelectedCircleStyle(selector: string) {
         bottom: 0px;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: rgba(${getColor('blue')});
+        background-color: var(--color-blue);
         content: '';
         border-radius: 100%;
       }
@@ -83,75 +36,6 @@ export function generateSelectedCircleStyle(selector: string) {
     }
   `
 }
-
-const todayStyle = css`
-  .DayPicker-Day--today:not(.DayPicker-Day--selected):not(.DayPicker-Day--outside) {
-    color: rgba(${getColor('blue')});
-
-    &:before {
-      top: 30px;
-      left: 0;
-      content: '오늘';
-      position: absolute;
-      display: inline-block;
-      font-size: 11px;
-      width: 100%;
-      color: rgba(${getColor('blue')});
-    }
-
-    &.DayPicker-Day--sunday,
-    &.DayPicker-Day--saturday,
-    &.DayPicker-Day--publicHolidays {
-      color: rgba(${getColor('red')});
-
-      &:before {
-        color: rgba(${getColor('red')});
-      }
-    }
-
-    &.DayPicker-Day--disabled {
-      color: rgba(${getColor('gray500')});
-
-      &:before {
-        color: rgba(${getColor('gray500')});
-      }
-    }
-  }
-`
-
-export const rangeStyle = css`
-  .DayPicker-Day--selected {
-    background: rgba(${getColor('blue100')});
-  }
-
-  .DayPicker-Day--from {
-    background: linear-gradient(
-      to right,
-      #fafafa 50%,
-      rgba(${getColor('blue100')}) 50%
-    );
-  }
-
-  .DayPicker-Day--to {
-    background: linear-gradient(
-      to left,
-      #fafafa 50%,
-      rgba(${getColor('blue100')}) 50%
-    );
-  }
-
-  .DayPicker-Day--from.DayPicker-Day--to {
-    background: none;
-  }
-
-  .DayPicker-Day--outside {
-    background: none;
-
-    &.DayPicker-Day--included-range {
-      background: rgba(${getColor('blue100')});
-    }
-  }
-`
 
 const navStyle = css`
   position: relative;
@@ -184,26 +68,6 @@ const navStyle = css`
   }
 `
 
-export function generateDateLabelStyle(selector: string, label: string) {
-  return css`
-    ${selector} {
-      &:not(.DayPicker-Day--outside):before {
-        color: rgba(${getColor('blue')});
-        position: absolute;
-        top: 35px;
-        left: 0px;
-        display: inline-block;
-        font-size: 11px;
-        width: 100%;
-        transform: translateY(0px);
-        background-color: transparent;
-        height: auto !important;
-        content: '${label}';
-      }
-    }
-  `
-}
-
 interface PickerFrameProps {
   height: string
   sideSpacing: number
@@ -213,8 +77,8 @@ interface PickerFrameProps {
 }
 
 const PickerFrame = styled.div<PickerFrameProps>`
-  border-top: 1px solid rgba(${getColor('gray100')});
-  border-bottom: 1px solid rgba(${getColor('gray100')});
+  border-top: 1px solid var(--color-gray100);
+  border-bottom: 1px solid var(--color-gray100);
 
   .DayPicker {
     overflow: auto;
@@ -270,7 +134,7 @@ const PickerFrame = styled.div<PickerFrameProps>`
 
             abbr {
               text-decoration: none;
-              color: rgba(${getColor('gray500')});
+              color: var(--color-gray500);
               font-size: 12px;
             }
           }
@@ -283,7 +147,7 @@ const PickerFrame = styled.div<PickerFrameProps>`
         .DayPicker-Week {
           display: table-row;
 
-          ${({ hideTodayLabel }) => !hideTodayLabel && todayStyle}
+          ${({ hideTodayLabel }) => !hideTodayLabel && generateTodayStyle({})}
 
           .DayPicker-Day {
             position: relative;
@@ -296,11 +160,11 @@ const PickerFrame = styled.div<PickerFrameProps>`
             &--sunday,
             &--saturday,
             &--publicHolidays {
-              color: rgba(${getColor('red')});
+              color: var(--color-red);
             }
 
             &--disabled {
-              color: rgba(${getColor('gray500')});
+              color: var(--color-gray500);
             }
           }
         }

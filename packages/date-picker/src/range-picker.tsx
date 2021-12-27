@@ -3,12 +3,13 @@ import moment from 'moment'
 import styled, { css } from 'styled-components'
 import DayPicker, { DayModifiers, Modifiers } from 'react-day-picker'
 
-import { isValidDate, generatePaddedRange } from './utils'
-import PickerFrame, {
-  generateSelectedCircleStyle,
-  rangeStyle,
+import {
+  isValidDate,
+  generatePaddedRange,
   generateDateLabelStyle,
-} from './picker-frame'
+  generateRangeStyle,
+} from './utils'
+import PickerFrame, { generateSelectedCircleStyle } from './picker-frame'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
 import useDisabledDays, { DislableDaysProps } from './use-disabled-days'
 import { usePublicHolidays } from './use-public-holidays'
@@ -27,19 +28,25 @@ const RangeContainer = styled(PickerFrame)<{
   ${({ selectedAll, startDateLabel, endDateLabel, sameDateLabel }) =>
     selectedAll &&
     css`
-      ${rangeStyle}
+      ${generateRangeStyle()}
 
       ${startDateLabel &&
-      generateDateLabelStyle('.DayPicker-Day--from', startDateLabel)}
+      generateDateLabelStyle({
+        selector: '.DayPicker-Day--from',
+        label: startDateLabel,
+      })}
 
       ${endDateLabel &&
-      generateDateLabelStyle('.DayPicker-Day--to', endDateLabel)}
+      generateDateLabelStyle({
+        selector: '.DayPicker-Day--to',
+        label: endDateLabel,
+      })}
 
       ${sameDateLabel &&
-      generateDateLabelStyle(
-        '.DayPicker-Day--from.DayPicker-Day--to',
-        sameDateLabel,
-      )}
+      generateDateLabelStyle({
+        selector: '.DayPicker-Day--from.DayPicker-Day--to',
+        label: sameDateLabel,
+      })}
     `}
 `
 
@@ -130,9 +137,8 @@ function RangePicker({
       const { from: nextFrom, to: nextTo } = DayPicker.DateUtils.addDayToRange(
         day,
         {
-          // HACK: 코드는 falsy값을 처리할 수 있게되어있지만, 타입 정의가 잘못되어있음
-          from: from as any,
-          to: to as any,
+          from,
+          to,
         },
       )
 
