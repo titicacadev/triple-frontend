@@ -1,3 +1,5 @@
+import { IncomingMessage } from 'http'
+
 import { ssrFetcherize } from './factories'
 
 function makeTestSuite(testingFunction: typeof ssrFetcherize) {
@@ -62,7 +64,7 @@ function makeTestSuite(testingFunction: typeof ssrFetcherize) {
     })
 
     ssrFetcher('/api/mock-url', {
-      req: { headers: { cookie: 'my-own-cookie' } } as any,
+      req: { headers: { cookie: 'my-own-cookie' } } as IncomingMessage,
     })
     expect(fetcher).toBeCalledWith(
       expect.any(String),
