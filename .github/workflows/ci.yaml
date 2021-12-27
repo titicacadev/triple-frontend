@@ -175,3 +175,36 @@ jobs:
           buildScriptName: build
           workingDir: docs
           autoAcceptChanges: true
+
+  test-coverage-deployment:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.NPM_REGISTRY_URL }}
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-npm-cache-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache-
+
+      - run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
+
+      - name: Generate coverage report
+        run: npm run test:coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./coverage
