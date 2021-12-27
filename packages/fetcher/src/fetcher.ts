@@ -6,10 +6,10 @@ export async function fetcher<SuccessBody, FailureBody = unknown>(
   url: string,
   options: RequestOptions,
 ): Promise<HttpResponse<SuccessBody, FailureBody>> {
-  const { retryable, method = HttpMethods.GET } = options
+  const { retryable, method = HttpMethods.Get } = options
 
   const fetchFunction =
-    method === HttpMethods.GET && retryable
+    method === HttpMethods.Get && retryable
       ? makeFetchRetryable({
           fetch,
           retryCount: 3,
