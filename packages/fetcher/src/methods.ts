@@ -1,17 +1,17 @@
 import { fetcher } from './fetcher'
-import { HTTPMethods, HttpResponse, RequestOptions } from './types'
+import { HttpMethods, HttpResponse, RequestOptions } from './types'
 
-export const get = addMethod(fetcher, HTTPMethods.GET)
-export const put = addMethod(fetcher, HTTPMethods.PUT)
-export const post = addMethod(fetcher, HTTPMethods.POST)
-export const del = addMethod(fetcher, HTTPMethods.DELETE)
+export const get = addMethod(fetcher, HttpMethods.GET)
+export const put = addMethod(fetcher, HttpMethods.PUT)
+export const post = addMethod(fetcher, HttpMethods.POST)
+export const del = addMethod(fetcher, HttpMethods.DELETE)
 
 function addMethod(
   fetcher: <SuccessBody, FailureBody = unknown>(
     href: string,
     options: RequestOptions,
   ) => Promise<HttpResponse<SuccessBody, FailureBody>>,
-  method: HTTPMethods,
+  method: HttpMethods,
 ) {
   return <SuccessBody, FailureBody = unknown>(
     href: string,
