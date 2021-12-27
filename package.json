@@ -19,6 +19,7 @@
     "test": "jest",
     "test:ci": "jest --ci",
     "test:watch": "jest --watch",
+    "test:coverage": "jest --ci --coverage",
     "clean:build": "lerna exec --ignore @titicaca/triple-frontend-docs -- rm -rf ./lib ./*.tsbuildinfo",
     "clean-lock": "lerna exec --ignore @titicaca/triple-frontend-docs -- rm -rf ./package-lock.json",
     "clean": "lerna exec -- rm -rf ./node_modules ./lib ./*.tsbuildinfo",
