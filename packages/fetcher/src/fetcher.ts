@@ -1,15 +1,15 @@
 import { makeRequestParams } from './make-request-params'
 import safeParseJson from './safe-parse-json'
-import { HTTPMethods, HttpResponse, RequestOptions } from './types'
+import { HttpMethods, HttpResponse, RequestOptions } from './types'
 
 export async function fetcher<SuccessBody, FailureBody = unknown>(
   url: string,
   options: RequestOptions,
 ): Promise<HttpResponse<SuccessBody, FailureBody>> {
-  const { retryable, method = HTTPMethods.GET } = options
+  const { retryable, method = HttpMethods.GET } = options
 
   const fetchFunction =
-    method === HTTPMethods.GET && retryable
+    method === HttpMethods.GET && retryable
       ? makeFetchRetryable({
           fetch,
           retryCount: 3,
