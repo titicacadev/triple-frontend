@@ -24,7 +24,7 @@ const mockedUseAppBridge = useAppBridge as jest.MockedFunction<
 const mockedUseTransitionModal = useTransitionModal as jest.MockedFunction<
   typeof useTransitionModal
 >
-const mockedUseLoginCTAModal = useLoginCTAModal as jest.MockedFunction<
+const mockedUseLoginCtaModal = useLoginCTAModal as jest.MockedFunction<
   typeof useLoginCTAModal
 >
 
@@ -58,7 +58,7 @@ describe('ExternalLink', () => {
       openOutlink: jest.fn(),
     }))
     mockedUseTransitionModal.mockImplementation(() => ({ show: jest.fn() }))
-    mockedUseLoginCTAModal.mockImplementation(() => ({ show: jest.fn() }))
+    mockedUseLoginCtaModal.mockImplementation(() => ({ show: jest.fn() }))
 
     const handleError = jest.fn()
 
