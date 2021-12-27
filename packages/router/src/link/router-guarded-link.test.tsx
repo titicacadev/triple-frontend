@@ -17,7 +17,7 @@ jest.mock('@titicaca/modals')
 const mockedUseTransitionModal = (useTransitionModal as unknown) as jest.MockedFunction<
   () => ReturnType<typeof useTransitionModal>
 >
-const mockedUseLoginCTAModal = (useLoginCTAModal as unknown) as jest.MockedFunction<
+const mockedUseLoginCtaModal = (useLoginCTAModal as unknown) as jest.MockedFunction<
   () => ReturnType<typeof useLoginCTAModal>
 >
 
@@ -32,7 +32,7 @@ describe('RouterGuardedLink', () => {
     () => boolean
   >).mockImplementation(() => false)
   mockedUseTransitionModal.mockImplementation(() => ({ show: jest.fn() }))
-  mockedUseLoginCTAModal.mockImplementation(() => ({ show: jest.fn() }))
+  mockedUseLoginCtaModal.mockImplementation(() => ({ show: jest.fn() }))
 
   test('자식 태그의 href, onClick 속성은 덮어쓰입니다.', () => {
     // eslint-disable-next-line no-console
