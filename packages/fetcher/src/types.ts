@@ -24,13 +24,11 @@ export type RequestOptions = Omit<RequestInit, 'body'> & {
 }
 
 export enum HttpMethods {
-  /* eslint-disable @typescript-eslint/naming-convention */
-  GET = 'GET',
-  POST = 'POST',
-  DELETE = 'DELETE',
-  PUT = 'PUT',
-  PATCH = 'PATCH',
-  /* eslint-enable @typescript-eslint/naming-convention */
+  Get = 'GET',
+  Post = 'POST',
+  Delete = 'DELETE',
+  Put = 'PUT',
+  Patch = 'PATCH',
 }
 
 export interface HttpErrorResponse extends Error {

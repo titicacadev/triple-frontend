@@ -1,10 +1,10 @@
 import { fetcher } from './fetcher'
 import { HttpMethods, HttpResponse, RequestOptions } from './types'
 
-export const get = addMethod(fetcher, HttpMethods.GET)
-export const put = addMethod(fetcher, HttpMethods.PUT)
-export const post = addMethod(fetcher, HttpMethods.POST)
-export const del = addMethod(fetcher, HttpMethods.DELETE)
+export const get = addMethod(fetcher, HttpMethods.Get)
+export const put = addMethod(fetcher, HttpMethods.Put)
+export const post = addMethod(fetcher, HttpMethods.Post)
+export const del = addMethod(fetcher, HttpMethods.Delete)
 
 function addMethod(
   fetcher: <SuccessBody, FailureBody = unknown>(
