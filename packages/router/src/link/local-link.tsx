@@ -1,5 +1,5 @@
 import React, { MouseEvent, MouseEventHandler, PropsWithChildren } from 'react'
-import Router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 
@@ -40,26 +40,6 @@ interface NextjsRoutingOptions {
    * 기본 값 true
    */
   scroll?: boolean
-}
-
-/**
- * Next.js의 라우터를 사용하여 주어진 주소로 이동합니다.
- * 클라이언트에서 라우팅하기 때문에
- * 스크롤 위치가 이전 페이지의 위치로 남아있습니다.
- * 이를 초기화하는 작업도 같이 수행합니다.
- * @param href 이동할 주소
- * @param options replace: replace를 사용하는지 여부, scroll: 이동 후 화면 위로 스크롤 하는지 여부
- */
-async function handleNextJSRouting(
-  href: string,
-  { replace, scroll = true }: NextjsRoutingOptions,
-): Promise<void> {
-  const success = await Router[replace ? 'replace' : 'push'](href, undefined, {
-    scroll,
-  })
-  if (success && scroll) {
-    window.scrollTo(0, 0)
-  }
 }
 
 /**
@@ -127,11 +107,29 @@ export function LocalLink({
 }
 
 function useLocalHrefHandler() {
-  const { basePath } = useRouter()
+  const router = useRouter()
   const { isPublic } = useUserAgentContext()
   const { openInlink, openOutlink } = useAppBridge()
   const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
   const addWebUrlBase = useWebUrlBaseAdder()
+
+  const { basePath } = router
+
+  const handleNextjsRouting = async (
+    href: string,
+    { replace, scroll = true }: NextjsRoutingOptions,
+  ): Promise<void> => {
+    const success = await router[replace ? 'replace' : 'push'](
+      href,
+      undefined,
+      {
+        scroll,
+      },
+    )
+    if (success && scroll) {
+      window.scrollTo(0, 0)
+    }
+  }
 
   const handleHrefLocally = async ({
     href,
@@ -154,7 +152,7 @@ function useLocalHrefHandler() {
     if (target === 'current' && isKeyPressing === false) {
       stopDefaultHandler()
 
-      await handleNextJSRouting(href, { replace, scroll })
+      await handleNextjsRouting(href, { replace, scroll })
 
       return
     }
