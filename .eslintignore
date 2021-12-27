@@ -12,7 +12,6 @@ packages/scrap-button
 packages/style-box
 packages/type-definitions
 packages/web-storage
-packages/date-picker
 packages/listing-filter
 packages/static-page-contents
 packages/core-elements
