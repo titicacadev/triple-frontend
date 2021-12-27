@@ -43,6 +43,7 @@ export const Price = () => {
         borderRadius="30"
         positioning={{ top: -12 }}
         label={'쿠폰사용시 -15,000원 더 할인!'}
+        onClick={() => {}}
       />
     </Base>
   )
@@ -56,6 +57,10 @@ export const HotelListIcon = () => {
         <Tooltip
           label={`${'호찌민'} 모든 호텔 보기`}
           borderRadius="12"
+          positioning={{
+            bottom: -25,
+            right: -14,
+          }}
           pointing={{
             vertical: 'top',
             horizontal: 'right',

@@ -6,7 +6,13 @@ import { Meta, StoryObj } from '@storybook/react'
 export default {
   title: 'ScrapButton / OverlayScrapButton',
   component: OverlayScrapButton,
-  decorators: [(Story) => <ScrapsProvider>{Story()}</ScrapsProvider>],
+  decorators: [
+    (Story) => (
+      <ScrapsProvider>
+        <Story />
+      </ScrapsProvider>
+    ),
+  ],
 } as Meta
 
 export const Basic: StoryObj = {

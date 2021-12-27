@@ -31,7 +31,9 @@ export default {
         hideTodayLabel={false}
       >
         <div className="DayPicker">
-          <Table className="DayPicker-Month">{Story()}</Table>
+          <Table className="DayPicker-Month">
+            <Story />
+          </Table>
         </div>
       </PickerFrame>
     ),
@@ -118,7 +120,11 @@ const DayContainer = styled.tbody`
 `
 
 dayPicker.decorators = [
-  (Story) => <DayContainer className="DayPicker-Body">{Story}</DayContainer>,
+  (Story) => (
+    <DayContainer className="DayPicker-Body">
+      <Story />
+    </DayContainer>
+  ),
 ]
 
 export const rangePicker: Story = () => {
@@ -202,6 +208,8 @@ const RangeContainer = styled.tbody`
 
 rangePicker.decorators = [
   (Story) => (
-    <RangeContainer className="DayPicker-Body">{Story()}</RangeContainer>
+    <RangeContainer className="DayPicker-Body">
+      <Story />
+    </RangeContainer>
   ),
 ]
