@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import { getColor } from '@titicaca/color-palette'
 
 const sideSpacingMixin = css<{ sideSpacing: number }>`
   ${({ sideSpacing }) => `
@@ -53,7 +52,7 @@ export function generateSelectedCircleStyle(selector: string) {
   return css`
     ${selector} {
       z-index: 0;
-      color: rgba(${getColor('white')}) !important;
+      color: var(--color-white) !important;
 
       &:before {
         top: 35px !important;
@@ -69,7 +68,7 @@ export function generateSelectedCircleStyle(selector: string) {
         bottom: 0px;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: rgba(${getColor('blue')});
+        background-color: var(--color-blue);
         content: '';
         border-radius: 100%;
       }
@@ -86,7 +85,7 @@ export function generateSelectedCircleStyle(selector: string) {
 
 const todayStyle = css`
   .DayPicker-Day--today:not(.DayPicker-Day--selected):not(.DayPicker-Day--outside) {
-    color: rgba(${getColor('blue')});
+    color: var(--color-blue);
 
     &:before {
       top: 30px;
@@ -96,24 +95,24 @@ const todayStyle = css`
       display: inline-block;
       font-size: 11px;
       width: 100%;
-      color: rgba(${getColor('blue')});
+      color: var(--color-blue);
     }
 
     &.DayPicker-Day--sunday,
     &.DayPicker-Day--saturday,
     &.DayPicker-Day--publicHolidays {
-      color: rgba(${getColor('red')});
+      color: var(--color-red);
 
       &:before {
-        color: rgba(${getColor('red')});
+        color: var(--color-red);
       }
     }
 
     &.DayPicker-Day--disabled {
-      color: rgba(${getColor('gray500')});
+      color: var(--color-gray500);
 
       &:before {
-        color: rgba(${getColor('gray500')});
+        color: var(--color-gray500);
       }
     }
   }
@@ -121,23 +120,19 @@ const todayStyle = css`
 
 export const rangeStyle = css`
   .DayPicker-Day--selected {
-    background: rgba(${getColor('blue100')});
+    background: var(--color-blue100);
   }
 
   .DayPicker-Day--from {
     background: linear-gradient(
       to right,
       #fafafa 50%,
-      rgba(${getColor('blue100')}) 50%
+      var(--color-blue100) 50%
     );
   }
 
   .DayPicker-Day--to {
-    background: linear-gradient(
-      to left,
-      #fafafa 50%,
-      rgba(${getColor('blue100')}) 50%
-    );
+    background: linear-gradient(to left, #fafafa 50%, var(--color-blue100) 50%);
   }
 
   .DayPicker-Day--from.DayPicker-Day--to {
@@ -148,7 +143,7 @@ export const rangeStyle = css`
     background: none;
 
     &.DayPicker-Day--included-range {
-      background: rgba(${getColor('blue100')});
+      background: var(--color-blue100);
     }
   }
 `
@@ -188,7 +183,7 @@ export function generateDateLabelStyle(selector: string, label: string) {
   return css`
     ${selector} {
       &:not(.DayPicker-Day--outside):before {
-        color: rgba(${getColor('blue')});
+        color: var(--color-blue);
         position: absolute;
         top: 35px;
         left: 0px;
@@ -213,8 +208,8 @@ interface PickerFrameProps {
 }
 
 const PickerFrame = styled.div<PickerFrameProps>`
-  border-top: 1px solid rgba(${getColor('gray100')});
-  border-bottom: 1px solid rgba(${getColor('gray100')});
+  border-top: 1px solid var(--color-gray100);
+  border-bottom: 1px solid var(--color-gray100);
 
   .DayPicker {
     overflow: auto;
@@ -270,7 +265,7 @@ const PickerFrame = styled.div<PickerFrameProps>`
 
             abbr {
               text-decoration: none;
-              color: rgba(${getColor('gray500')});
+              color: var(--color-gray500);
               font-size: 12px;
             }
           }
@@ -296,11 +291,11 @@ const PickerFrame = styled.div<PickerFrameProps>`
             &--sunday,
             &--saturday,
             &--publicHolidays {
-              color: rgba(${getColor('red')});
+              color: var(--color-red);
             }
 
             &--disabled {
-              color: rgba(${getColor('gray500')});
+              color: var(--color-gray500);
             }
           }
         }
