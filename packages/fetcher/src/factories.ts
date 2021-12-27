@@ -1,8 +1,11 @@
 import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 
-import { HttpErrorResponse, HttpResponse, RequestOptions } from './types'
+import { HttpResponse, RequestOptions } from './types'
 
-export type BaseFetcher<Extending = any> = <SuccessBody, FailureBody = unknown>(
+export type BaseFetcher<Extending = unknown> = <
+  SuccessBody,
+  FailureBody = unknown
+>(
   href: string,
   options?: RequestOptions,
 ) => Promise<HttpResponse<SuccessBody, FailureBody> | Extending>
@@ -104,7 +107,7 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
      */
     refresh: (
       options?: Pick<RequestInit, 'signal'>,
-    ) => Promise<HttpResponse<{}>>
+    ) => Promise<HttpResponse<Record<string, never>>>
     /**
      * 액세스 토큰을 갱신했을 때 새로운 쿠키를 파라미터로 호출하는 함수입니다.
      * 새로운 쿠키를 다루는 작업이 필요하면 넣어주세요.
@@ -112,11 +115,11 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
     onCookieRenew?: (cookie: string) => void
   },
 ): ExtendFetcher<Fetcher, typeof NEED_LOGIN_IDENTIFIER> {
-  return async <Result extends {}, ErrorResponse = HttpErrorResponse>(
+  return ((async <SuccessBody, FailureBody = unknown>(
     href: string,
     options?: RequestOptions,
   ) => {
-    const firstTrialResponse = await fetcher<Result, ErrorResponse>(
+    const firstTrialResponse = await fetcher<SuccessBody, FailureBody>(
       href,
       options,
     )
@@ -125,13 +128,21 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
       return firstTrialResponse
     }
 
-    if ('status' in firstTrialResponse === false) {
+    if (
+      typeof firstTrialResponse !== 'object' ||
+      firstTrialResponse === null ||
+      'status' in firstTrialResponse === false
+    ) {
       // fetcher가 확장된 응답을 반환했을 때
       // TODO: 좀 더 분명한 구분 방법으로 대체하기
       return firstTrialResponse
     }
 
-    if (firstTrialResponse.status !== 401) {
+    const {
+      status: firstTrialResponseStatus,
+    } = firstTrialResponse as HttpResponse<SuccessBody, FailureBody>
+
+    if (firstTrialResponseStatus !== 401) {
       return firstTrialResponse
     }
 
@@ -147,7 +158,7 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
 
     const newCookie = refreshResponse.headers.get('set-cookie')
 
-    const secondTrialResponse = await fetcher<Result, ErrorResponse>(href, {
+    const secondTrialResponse = await fetcher<SuccessBody, FailureBody>(href, {
       ...options,
       cookie: newCookie ?? undefined,
     })
@@ -157,5 +168,5 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
     }
 
     return secondTrialResponse
-  }
+  }) as unknown) as ExtendFetcher<Fetcher, typeof NEED_LOGIN_IDENTIFIER>
 }
