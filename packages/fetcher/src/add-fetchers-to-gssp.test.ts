@@ -1,7 +1,7 @@
 import 'isomorphic-fetch'
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 
-import { addFetchersToGSSP } from './add-fetchers-to-gssp'
+import { addFetchersToGssp } from './add-fetchers-to-gssp'
 import { get, post } from './methods'
 import { HttpResponse } from './types'
 
@@ -27,7 +27,7 @@ test('apiUriBase 파라미터를 요청의 base href로 사용합니다.', async
     return Promise.resolve({ headers, ok, status, url, parsedBody: '' })
   })
 
-  const gssp = addFetchersToGSSP(
+  const gssp = addFetchersToGssp(
     async ({
       customContext: {
         fetchers: { get },
@@ -69,7 +69,7 @@ test('토큰을 갱신했을 때 context.res의 setHeader를 이용해 쿠키 �
 
   const setHeader = jest.fn()
 
-  const gssp = addFetchersToGSSP(
+  const gssp = addFetchersToGssp(
     async ({
       customContext: {
         fetchers: { get },
@@ -113,7 +113,7 @@ test('API 요청을 여러 번 해도 refresh는 한 번만 호출합니다.', a
 
   const setHeader = jest.fn()
 
-  const gssp = addFetchersToGSSP(
+  const gssp = addFetchersToGssp(
     async ({
       customContext: {
         fetchers: { get },
@@ -161,7 +161,7 @@ test('API를 여러 번 호출하더라도 유효한 쿠키 하나만 사용합�
 
   const setHeader = jest.fn()
 
-  const gssp = addFetchersToGSSP(
+  const gssp = addFetchersToGssp(
     async ({
       customContext: {
         fetchers: { get },
@@ -235,7 +235,7 @@ test('토큰을 갱신하면 갱신한 쿠키 값으로 다음 API를 요청합�
     } as unknown) as HttpResponse<unknown>)
   })
 
-  const gssp = addFetchersToGSSP(
+  const gssp = addFetchersToGssp(
     async ({
       customContext: {
         fetchers: { get },
