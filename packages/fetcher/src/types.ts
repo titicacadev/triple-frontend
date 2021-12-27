@@ -27,6 +27,7 @@ export type RequestOptions = Omit<RequestInit, 'body'> & {
   withApiUriBase?: boolean
 }
 
+/* eslint-disable @typescript-eslint/naming-convention */
 export enum HTTPMethods {
   GET = 'GET',
   POST = 'POST',
@@ -34,6 +35,7 @@ export enum HTTPMethods {
   PUT = 'PUT',
   PATCH = 'PATCH',
 }
+/* eslint-enable @typescript-eslint/naming-convention */
 
 export interface HttpErrorResponse extends Error {
   status?: number
