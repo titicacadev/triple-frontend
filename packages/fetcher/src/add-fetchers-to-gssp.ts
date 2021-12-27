@@ -16,8 +16,7 @@ import { RequestOptions, HttpResponse } from './types'
  * @param options 추가 옵션
  * @returns getServerSideProps로 전달할 수 있는 함수
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export function addFetchersToGSSP<Props, CustomContext = Record<string, never>>(
+export function addFetchersToGssp<Props, CustomContext = Record<string, never>>(
   gssp: (
     ctx: GetServerSidePropsContext & {
       customContext: {
