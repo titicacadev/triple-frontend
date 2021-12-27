@@ -2,7 +2,11 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./lib",
-    "rootDir": "src"
+    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "@titicaca/react-contexts": ["../react-contexts/src"]
+    }
   },
   "include": ["./src"],
   "references": [
