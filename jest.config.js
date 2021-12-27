@@ -15,4 +15,9 @@ module.exports = {
       tsconfig: 'tsconfig.test.json',
     },
   },
+  collectCoverageFrom: [
+    '<rootDir>/packages/**/*.{js,jsx,ts,tsx}',
+    '!**/lib/**',
+    '!**/node_modules/**',
+  ],
 }
