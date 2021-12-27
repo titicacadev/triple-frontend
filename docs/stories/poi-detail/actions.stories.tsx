@@ -12,6 +12,10 @@ export const Basic: ComponentStoryObj<typeof Actions> = {
     poiId: 'e889ae22-0336-4cf9-8fbb-742b95fd09d0',
     scraped: false,
     reviewed: false,
+    onContentShare: () => {},
+    onReviewEdit: () => {},
+    onScheduleAdd: () => {},
+    onScrapedChange: () => {},
   },
 }
 
@@ -21,5 +25,7 @@ export const GlobalHotel: ComponentStoryObj<typeof Actions> = {
     poiId: 'e889ae22-0336-4cf9-8fbb-742b95fd09d0',
     scraped: false,
     reviewed: false,
+    onContentShare: () => {},
+    onReviewEdit: () => {},
   },
 }
