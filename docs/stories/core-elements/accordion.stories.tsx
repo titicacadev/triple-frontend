@@ -37,13 +37,5 @@ export const BusinessHours: Story<BusinessHoursCustomArgs> = ({
 BusinessHours.storyName = '영업시간'
 BusinessHours.args = {
   active: false,
-  title: '제목',
-}
-BusinessHours.argTypes = {
-  title: {
-    control: {
-      type: 'select',
-    },
-    options: ['제목', '이용가능시간, 휴무일'],
-  },
+  title: '이용가능시간, 휴무일',
 }

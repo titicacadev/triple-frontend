@@ -97,7 +97,7 @@ BasicIcon.args = {
 }
 
 export const BlockIcon: Story<ButtonProps> = (args) => {
-  return <Button {...args}> </Button>
+  return <Button {...args} />
 }
 BlockIcon.storyName = '블록형 아이콘'
 BlockIcon.args = {

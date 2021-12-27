@@ -11,7 +11,6 @@ export const Basic: ComponentStoryObj<typeof Pricing> = {
     basePrice: 30000,
     salePrice: 25000,
     isSoldOut: false,
-    priceLabelOverride: '메세지',
   },
 }
 
@@ -23,7 +22,6 @@ export const Rich: ComponentStoryObj<typeof Pricing> = {
     pricingNote: '1박, 세금포함',
     salePrice: 25000,
     label: '트리플가',
-    priceLabelOverride: '메세지',
     hideDiscountRate: false,
     isSoldOut: false,
     description: '쿠폰적용시 10,000원',
@@ -35,7 +33,7 @@ export const Fixed: ComponentStoryObj<typeof Pricing> = {
     fixed: true,
     active: true,
     salePrice: 25000,
-    priceLabelOverride: '메세지',
+    priceLabelOverride: '25,000원',
     label: '1박 세금포함',
     buttonText: '객실예약',
     buttonDisabled: false,
