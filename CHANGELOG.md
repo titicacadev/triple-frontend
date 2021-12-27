@@ -5,7 +5,6 @@
 ### core-elements
 
 - Select, Input의 css를 수정합니다. [#1762](https://github.com/titicacadev/triple-frontend/pull/1762)
-- Select, Input의 css를 수정합니다. [#1762](https://github.com/titicacadev/triple-frontend/pull/1762)
 
 ## 5.0.0
 
