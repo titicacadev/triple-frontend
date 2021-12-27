@@ -127,14 +127,10 @@ function RangePicker({
         return
       }
 
-      const { from: nextFrom, to: nextTo } = DayPicker.DateUtils.addDayToRange(
-        day,
-        {
-          // HACK: 코드는 falsy값을 처리할 수 있게되어있지만, 타입 정의가 잘못되어있음
-          from: from as any,
-          to: to as any,
-        },
-      )
+      const {
+        from: nextFrom,
+        to: nextTo,
+      } = DayPicker.DateUtils.addDayToRange(day, { from, to })
 
       if (
         !enableSameDay &&
