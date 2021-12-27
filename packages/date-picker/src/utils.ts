@@ -123,7 +123,7 @@ export function generateRangeStyle() {
 export function generateDateLabelStyle({
   selector,
   label,
-  top,
+  top = '35px',
   fontSize = '11px',
   fontWeight,
 }: {
