@@ -173,7 +173,7 @@ jobs:
           workingDir: docs
           autoAcceptChanges: true
 
-  test-coverage-deployment:
+  upload-coverage:
     runs-on: ubuntu-latest
 
     steps:
