@@ -1,5 +1,12 @@
 # 마이그레이션 가이드
 
+## next
+
+### fetcher 패키지의 일부 인터페이스 이름 변경
+
+`addFetchersToGSSP`는 `addFetchersToGssp`가 되었습니다.
+`HTTPMethods`는 `HttpMethods`가 되었고, 멤버 이름도 PascalCase가 되었습니다. 예를 들어 `HttpMethods.Get` 형태로 사용합니다.
+
 ## v4 to v5
 
 ### deprecated props 제거 및 사용 방법
