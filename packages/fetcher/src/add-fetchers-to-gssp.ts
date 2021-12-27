@@ -16,7 +16,8 @@ import { RequestOptions, HttpResponse } from './types'
  * @param options 추가 옵션
  * @returns getServerSideProps로 전달할 수 있는 함수
  */
-export function addFetchersToGSSP<Props, CustomContext = {}>(
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function addFetchersToGSSP<Props, CustomContext = Record<string, never>>(
   gssp: (
     ctx: GetServerSidePropsContext & {
       customContext: {
@@ -41,7 +42,7 @@ export function addFetchersToGSSP<Props, CustomContext = {}>(
     )
   }
 
-  return function fetchersAddedGSSP(ctx) {
+  return function fetchersAddedGssp(ctx) {
     const ssrFetcherOptions = {
       apiUriBase,
       cookie: ctx.req.headers.cookie,
@@ -87,7 +88,7 @@ function createRefresh({
 }: {
   ssrFetcherOptions: Parameters<typeof ssrFetcherize>[1]
 }) {
-  let promise: Promise<HttpResponse<{}>> | undefined
+  let promise: Promise<HttpResponse<Record<string, never>>> | undefined
   return function refresh(options?: RequestOptions) {
     const ssrPost = ssrFetcherize(post, ssrFetcherOptions)
     promise ||= ssrPost('/api/users/web-session/token', options)
