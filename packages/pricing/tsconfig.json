@@ -2,7 +2,13 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./lib",
-    "rootDir": "src"
+    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/type-definitions": ["../type-definitions/src"],
+      "@titicaca/view-utilities": ["../view-utilities/src"]
+    }
   },
   "include": ["./src"],
   "references": [

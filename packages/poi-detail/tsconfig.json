@@ -2,7 +2,20 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./lib",
-    "rootDir": "src"
+    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "@titicaca/action-sheet": ["../action-sheet/src"],
+      "@titicaca/carousel": ["../carousel/src"],
+      "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/i18n": ["../i18n/src"],
+      "@titicaca/image-carousel": ["../image-carousel/src"],
+      "@titicaca/intersection-observer": ["../intersection-observer/src"],
+      "@titicaca/modals": ["../modals/src"],
+      "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/type-definitions": ["../type-definitions/src"],
+      "@titicaca/view-utilities": ["../view-utilities/src"]
+    }
   },
   "include": ["./src"],
   "references": [
