@@ -2,14 +2,12 @@ import * as React from 'react'
 import moment from 'moment'
 import styled, { css } from 'styled-components'
 import DayPicker, { DayModifiers, Modifiers } from 'react-day-picker'
-import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
 import { usePublicHolidays } from '../use-public-holidays'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from '../constants'
 import useDisabledDays, { DislableDaysProps } from '../use-disabled-days'
 import {
   isValidDate,
-  formatMonthTitle,
   generatePaddedRange,
   generateRangeStyle,
   generateDateLabelStyle,
@@ -71,8 +69,7 @@ function RangePicker({
   enableSameDay,
   hideTodayLabel = false,
   renderDay,
-  onMonthIntersect,
-  rootMargin,
+  renderCaptionElement,
 }: DislableDaysProps & {
   startDate: string | null
   endDate: string | null
@@ -89,8 +86,13 @@ function RangePicker({
   height?: string
   enableSameDay?: boolean
   renderDay?: (date: Date, modifiers?: DayModifiers) => React.ReactNode
-  rootMargin?: string
-  onMonthIntersect?: (date: Date) => void
+  renderCaptionElement?: ({
+    date,
+    modifiers,
+  }: {
+    date: Date
+    modifiers?: DayModifiers
+  }) => React.ReactElement
 }) {
   const disabledDays = useDisabledDays({
     disabledDays: disabledDaysFromProps,
@@ -140,9 +142,8 @@ function RangePicker({
       const { from: nextFrom, to: nextTo } = DayPicker.DateUtils.addDayToRange(
         day,
         {
-          // HACK: 코드는 falsy값을 처리할 수 있게되어있지만, 타입 정의가 잘못되어있음
-          from: from as any,
-          to: to as any,
+          from,
+          to,
         },
       )
 
@@ -196,22 +197,7 @@ function RangePicker({
         modifiers={modifiers}
         disabledDays={disabledDays}
         renderDay={renderDay}
-        captionElement={({ date, locale }) => (
-          <StaticIntersectionObserver
-            rootMargin={rootMargin}
-            onChange={({ isIntersecting }) =>
-              isIntersecting && onMonthIntersect && onMonthIntersect(date)
-            }
-          >
-            <div
-              className="DayPicker-Caption"
-              role="heading"
-              aria-live="polite"
-            >
-              {formatMonthTitle(date, locale)}
-            </div>
-          </StaticIntersectionObserver>
-        )}
+        captionElement={renderCaptionElement}
       />
     </RangeContainer>
   )
