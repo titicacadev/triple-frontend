@@ -1,302 +1,172 @@
 import { renderHook } from '@testing-library/react-hooks'
 import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
+import { checkIfRoutable } from '@titicaca/view-utilities'
 
 import { useHrefToProps } from './use-href-to-props'
 
 jest.mock('@titicaca/react-contexts')
+jest.mock('@titicaca/view-utilities', () => ({
+  ...jest.requireActual('@titicaca/view-utilities'),
+  checkIfRoutable: jest.fn(),
+}))
 
-const mockedUseUserAgentContext = (useUserAgentContext as unknown) as jest.MockedFunction<
-  () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
->
-const mockedUseEnv = (useEnv as unknown) as jest.MockedFunction<
-  () => Pick<ReturnType<typeof useEnv>, 'webUrlBase'>
->
+describe('href', () => {
+  test('href에서 트리플 도메인을 제거합니다.', () => {
+    const { webUrlBase } = prepareTest({ isPublic: true })
 
-describe('useHrefToProps', () => {
-  const resourceId = '79b938c5-1b4c-45e1-9c9f-6551adae38a2'
-  const webUrlBase = 'https://triple.guide'
+    const {
+      result: { current: hrefToProps },
+    } = renderHook(useHrefToProps)
 
-  mockedUseEnv.mockImplementation(() => ({ webUrlBase }))
+    const path = '/my-path'
+    const { href } = hrefToProps(`${webUrlBase}${path}`)
 
-  describe('In public', () => {
-    beforeEach(() => {
-      mockedUseUserAgentContext.mockImplementation(() => ({ isPublic: true }))
-    })
-
-    test('external URL', () => {
-      const { result } = renderHook(useHrefToProps)
-      const hrefToProps = result.current
-
-      expect(hrefToProps('https://www.google.com')).toEqual({
-        href: 'https://www.google.com',
-        target: 'current',
-        allowSource: 'all',
-      })
-    })
-
-    test('routable path', () => {
-      const { result } = renderHook(useHrefToProps)
-      const hrefToProps = result.current
-
-      expect(hrefToProps(`/articles/${resourceId}?_triple_no_navbar`)).toEqual({
-        href: `/articles/${resourceId}?_triple_no_navbar`,
-        target: 'current',
-        allowSource: 'all',
-      })
-
-      expect(
-        hrefToProps(
-          `https://triple.guide/articles/${resourceId}?_triple_no_navbar`,
-        ),
-      ).toEqual({
-        href: `/articles/${resourceId}?_triple_no_navbar`,
-        target: 'current',
-        allowSource: 'all',
-      })
-    })
-
-    test('not routable path', () => {
-      const { result } = renderHook(useHrefToProps)
-      const hrefToProps = result.current
-
-      expect(
-        hrefToProps(`/articles/${resourceId}/test?_triple_no_navbar`),
-      ).toEqual({
-        href: `/articles/${resourceId}/test?_triple_no_navbar`,
-        target: 'current',
-        allowSource: 'app-with-session',
-      })
-    })
-
-    test('inlink without _web_expand', () => {
-      const { result } = renderHook(useHrefToProps)
-      const hrefToProps = result.current
-
-      expect(
-        hrefToProps(
-          `/inlink?path=${encodeURIComponent(
-            `/articles/${resourceId}?_triple_no_navbar`,
-          )}`,
-        ),
-      ).toEqual({
-        href: `/articles/${resourceId}?_triple_no_navbar`,
-        target: 'current',
-        allowSource: 'app',
-      })
-
-      expect(
-        hrefToProps(
-          `/inlink?path=${encodeURIComponent(
-            `/articles/${resourceId}/test?_triple_no_navbar`,
-          )}`,
-        ),
-      ).toEqual({
-        href: `/articles/${resourceId}/test?_triple_no_navbar`,
-        target: 'current',
-        allowSource: 'app-with-session',
-      })
-    })
-
-    test('inlink with _web_expand', () => {
-      const { result } = renderHook(useHrefToProps)
-      const hrefToProps = result.current
-
-      expect(
-        hrefToProps(
-          `/inlink?path=${encodeURIComponent(
-            `/tna?_triple_no_navbar`,
-          )}&_web_expand=true`,
-        ),
-      ).toEqual({
-        href: `/tna?_triple_no_navbar`,
-        target: 'current',
-        allowSource: 'all',
-      })
-
-      expect(
-        hrefToProps(
-          `/inlink?path=${encodeURIComponent(
-            `/articles/${resourceId}?_triple_no_navbar`,
-          )}&_web_expand=true`,
-        ),
-      ).toEqual({
-        href: `/articles/${resourceId}?_triple_no_navbar`,
-        target: 'current',
-        allowSource: 'all',
-      })
-    })
-
-    test('outlink with routable URL', () => {
-      const { result } = renderHook(useHrefToProps)
-      const hrefToProps = result.current
-
-      expect(
-        hrefToProps(
-          `/outlink?url=${encodeURIComponent('https://www.google.com')}`,
-        ),
-      ).toEqual({
-        href: 'https://www.google.com',
-        target: 'current',
-        allowSource: 'all',
-      })
-
-      expect(
-        hrefToProps(
-          `/outlink?url=${encodeURIComponent(
-            `https://triple.guide/articles/${resourceId}?_triple_no_navbar`,
-          )}`,
-        ),
-      ).toEqual({
-        href: `/articles/${resourceId}?_triple_no_navbar`,
-        target: 'current',
-        allowSource: 'all',
-      })
-    })
-
-    test('outlink without routable URL', () => {
-      const { result } = renderHook(useHrefToProps)
-      const hrefToProps = result.current
-
-      expect(
-        hrefToProps(
-          `/outlink?url=${encodeURIComponent(
-            `https://triple.guide/articles/${resourceId}/test?_triple_no_navbar`,
-          )}`,
-        ),
-      ).toEqual({
-        href: `/articles/${resourceId}/test?_triple_no_navbar`,
-        target: 'current',
-        allowSource: 'app-with-session',
-      })
-    })
+    expect(href).toEqual(path)
   })
 
-  describe('In app', () => {
-    beforeEach(() => {
-      mockedUseUserAgentContext.mockImplementation(() => ({ isPublic: false }))
-    })
+  test('href에서 inlink를 제거합니다.', () => {
+    prepareTest({ isPublic: true })
 
-    test('external URL', () => {
-      const { result } = renderHook(useHrefToProps)
-      const hrefToProps = result.current
+    const {
+      result: { current: hrefToProps },
+    } = renderHook(useHrefToProps)
 
-      expect(hrefToProps('https://www.google.com')).toEqual({
-        href: 'https://www.google.com',
-        target: 'new',
-        allowSource: 'all',
-      })
-    })
+    const path = '/my-path'
+    const { href } = hrefToProps(`/inlink?path=${encodeURIComponent(path)}`)
 
-    test('routable path', () => {
-      const { result } = renderHook(useHrefToProps)
-      const hrefToProps = result.current
+    expect(href).toEqual(path)
+  })
 
-      expect(hrefToProps(`/articles/${resourceId}?_triple_no_navbar`)).toEqual({
-        href: `/articles/${resourceId}?_triple_no_navbar`,
-        target: 'new',
-        allowSource: 'all',
-      })
+  test('href에서 outlink를 제거합니다.', () => {
+    prepareTest({ isPublic: true })
 
-      expect(
-        hrefToProps(
-          `https://triple.guide/articles/${resourceId}?_triple_no_navbar`,
-        ),
-      ).toEqual({
-        href: `/articles/${resourceId}?_triple_no_navbar`,
-        target: 'new',
-        allowSource: 'all',
-      })
-    })
+    const {
+      result: { current: hrefToProps },
+    } = renderHook(useHrefToProps)
 
-    test('not routable path', () => {
-      const { result } = renderHook(useHrefToProps)
-      const hrefToProps = result.current
+    const path = 'https://www.google.com/my-path'
+    const { href } = hrefToProps(`/outlink?url=${encodeURIComponent(path)}`)
 
-      expect(
-        hrefToProps(`/articles/${resourceId}/test?_triple_no_navbar`),
-      ).toEqual({
-        href: `/articles/${resourceId}/test?_triple_no_navbar`,
-        target: 'new',
-        allowSource: 'app-with-session',
-      })
-    })
-
-    test('inlink with routable path', () => {
-      const { result } = renderHook(useHrefToProps)
-      const hrefToProps = result.current
-
-      expect(
-        hrefToProps(
-          `/inlink?path=${encodeURIComponent(
-            `/articles/${resourceId}?_triple_no_navbar`,
-          )}`,
-        ),
-      ).toEqual({
-        href: `/articles/${resourceId}?_triple_no_navbar`,
-        target: 'new',
-        allowSource: 'app',
-      })
-    })
-
-    test('inlink without routable path', () => {
-      const { result } = renderHook(useHrefToProps)
-      const hrefToProps = result.current
-
-      expect(
-        hrefToProps(
-          `/inlink?path=${encodeURIComponent(
-            `/articles/${resourceId}/test?_triple_no_navbar`,
-          )}`,
-        ),
-      ).toEqual({
-        href: `/articles/${resourceId}/test?_triple_no_navbar`,
-        target: 'new',
-        allowSource: 'app-with-session',
-      })
-    })
-
-    test('outlink with routable URL', () => {
-      const { result } = renderHook(useHrefToProps)
-      const hrefToProps = result.current
-
-      expect(
-        hrefToProps(
-          `/outlink?url=${encodeURIComponent('https://www.google.com')}`,
-        ),
-      ).toEqual({
-        href: 'https://www.google.com',
-        target: 'new',
-        allowSource: 'all',
-      })
-
-      expect(
-        hrefToProps(
-          `/outlink?url=${encodeURIComponent(
-            `https://triple.guide/articles/${resourceId}?_triple_no_navbar`,
-          )}`,
-        ),
-      ).toEqual({
-        href: `/articles/${resourceId}?_triple_no_navbar`,
-        target: 'new',
-        allowSource: 'all',
-      })
-    })
-
-    test('outlink without routable URL', () => {
-      const { result } = renderHook(useHrefToProps)
-      const hrefToProps = result.current
-
-      expect(
-        hrefToProps(
-          `/outlink?url=${encodeURIComponent(
-            `https://triple.guide/articles/${resourceId}/test?_triple_no_navbar`,
-          )}`,
-        ),
-      ).toEqual({
-        href: `/articles/${resourceId}/test?_triple_no_navbar`,
-        target: 'new',
-        allowSource: 'app-with-session',
-      })
-    })
+    expect(href).toEqual(path)
   })
 })
+
+describe('target', () => {
+  test('일반 브라우저 환경에선 target을 "current"로 설정합니다.', () => {
+    prepareTest({ isPublic: true })
+
+    const {
+      result: { current: hrefToProps },
+    } = renderHook(useHrefToProps)
+
+    const path = '/my-path'
+    const { target } = hrefToProps(path)
+
+    expect(target).toEqual('current')
+  })
+
+  test('앱에선 target을 "new"로 설정합니다.', () => {
+    prepareTest({ isPublic: false })
+
+    const {
+      result: { current: hrefToProps },
+    } = renderHook(useHrefToProps)
+
+    const path = '/my-path'
+    const { target } = hrefToProps(path)
+
+    expect(target).toEqual('new')
+  })
+
+  test('outlink의 target이 "browser"이면 target을 "browser"로 설정합니다.', () => {
+    const runTest = (isPublic: boolean) => {
+      prepareTest({ isPublic })
+
+      const {
+        result: { current: hrefToProps },
+      } = renderHook(useHrefToProps)
+
+      const path = `/outlink?url=${encodeURIComponent(
+        '/my-path',
+      )}&target=browser`
+      const { target } = hrefToProps(path)
+
+      expect(target).toEqual('browser')
+    }
+
+    runTest(true)
+    runTest(false)
+  })
+})
+
+describe('allowSource', () => {
+  const routablePath = 'ROUTABLE_PATH'
+
+  beforeEach(() => {
+    prepareTest({ isPublic: false })
+    ;(checkIfRoutable as jest.MockedFunction<
+      typeof checkIfRoutable
+    >).mockImplementation(({ href }) => {
+      return href === routablePath
+    })
+  })
+
+  test('routable한 링크는 allowSource를 "all"로 설정합니다.', () => {
+    const {
+      result: { current: hrefToProps },
+    } = renderHook(useHrefToProps)
+
+    const { allowSource } = hrefToProps(routablePath)
+
+    expect(allowSource).toEqual('all')
+  })
+
+  test('routable하지 않은 링크는 allowSource를 "app-with-session"으로 설정합니다.', () => {
+    const {
+      result: { current: hrefToProps },
+    } = renderHook(useHrefToProps)
+
+    const { allowSource } = hrefToProps('not-routable')
+
+    expect(allowSource).toEqual('app-with-session')
+  })
+
+  test('inlink는 path가 routable하면 allowSource를 "app"으로 설정합니다.', () => {
+    const {
+      result: { current: hrefToProps },
+    } = renderHook(useHrefToProps)
+
+    const href = `/inlink?path=${encodeURIComponent(routablePath)}`
+    const { allowSource } = hrefToProps(href)
+
+    expect(allowSource).toEqual('app')
+  })
+
+  test('inlink의 _web_expand 파라미터가 있으면 routable하지 않아도 allowSource를 "all"로 설정합니다.', () => {
+    prepareTest({ isPublic: false })
+
+    const {
+      result: { current: hrefToProps },
+    } = renderHook(useHrefToProps)
+
+    const href = `/inlink?path=${encodeURIComponent(
+      '/my-wonderful-path',
+    )}&_web_expand=true`
+    const { allowSource } = hrefToProps(href)
+
+    expect(allowSource).toEqual('all')
+  })
+})
+
+function prepareTest({ isPublic }: { isPublic: boolean }) {
+  const webUrlBase = 'https://triple.guide'
+
+  ;((useUserAgentContext as unknown) as jest.MockedFunction<
+    () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
+  >).mockImplementation(() => ({ isPublic }))
+  ;((useEnv as unknown) as jest.MockedFunction<
+    () => Pick<ReturnType<typeof useEnv>, 'webUrlBase'>
+  >).mockImplementation(() => ({ webUrlBase }))
+
+  return { webUrlBase }
+}
