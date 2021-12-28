@@ -39,8 +39,8 @@
     "lint:etc:fix": "prettier '**/*.{json,yaml,md}' --write",
     "lint:style": "stylelint '**/*.{js,ts,tsx}'",
     "lint:style:fix": "stylelint '**/*.{js,ts,tsx}' --fix",
-    "lint": "npm run lint:es; npm run lint:etc; npm run lint:style",
-    "lint:fix": "npm run lint:es:fix; npm run lint:etc:fix; npm run lint:style:fix"
+    "lint": "npm run lint:es && npm run lint:etc && npm run lint:style",
+    "lint:fix": "npm run lint:es:fix && npm run lint:etc:fix && npm run lint:style:fix"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
