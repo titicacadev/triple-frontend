@@ -8,32 +8,44 @@ export interface OutlinkOptions {
   title?: string
 }
 
-export function useAppBridge() {
+export function useAppBridge({
+  changeLocation = defaultChangeLocation,
+}: {
+  changeLocation?: (href: string) => void
+} = {}) {
   const { appUrlScheme } = useEnv()
 
   return useMemo(
     () => ({
       openInlink(path: string) {
-        window.location.href = generateUrl({
-          scheme: appUrlScheme,
-          path: '/inlink',
-          query: qs.stringify({
-            path,
+        changeLocation(
+          generateUrl({
+            scheme: appUrlScheme,
+            path: '/inlink',
+            query: qs.stringify({
+              path,
+            }),
           }),
-        })
+        )
       },
 
       openOutlink(url: string, params?: OutlinkOptions) {
-        window.location.href = generateUrl({
-          scheme: appUrlScheme,
-          path: '/outlink',
-          query: qs.stringify({
-            url,
-            ...params,
+        changeLocation(
+          generateUrl({
+            scheme: appUrlScheme,
+            path: '/outlink',
+            query: qs.stringify({
+              url,
+              ...params,
+            }),
           }),
-        })
+        )
       },
     }),
-    [appUrlScheme],
+    [appUrlScheme, changeLocation],
   )
+}
+
+function defaultChangeLocation(href: string) {
+  window.location.href = href
 }
