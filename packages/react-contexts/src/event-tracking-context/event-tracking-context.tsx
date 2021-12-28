@@ -294,15 +294,12 @@ export function EventTrackingProvider({
 
   useEffect(() => {
     if (item?.id) {
-      const { type, id, name, regionId, zoneId, referrer } = item
+      const { type, id, name } = item
 
       nativeViewItem({
         contentType: type,
         itemId: id,
         itemName: name,
-        regionId,
-        zoneId,
-        referrer,
       })
     }
   }, [item?.id]) // eslint-disable-line react-hooks/exhaustive-deps
