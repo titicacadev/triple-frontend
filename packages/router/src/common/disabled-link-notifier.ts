@@ -19,7 +19,11 @@ export interface AllowSourceProps {
   allowSource?: AllowSource
 }
 
-export function useDisabledLinkNotifierCreator() {
+export function useDisabledLinkNotifierCreator({
+  alert = window.alert,
+}: {
+  alert?: (message: string) => void
+} = {}) {
   const { isPublic } = useUserAgentContext()
   const sessionAvailable = useSessionAvailability()
   const { show: showTransitionModal } = useTransitionModal()
@@ -30,7 +34,7 @@ export function useDisabledLinkNotifierCreator() {
   }: AllowSourceProps) => {
     if (allowSource === 'none') {
       return () => {
-        window.alert('접근할 수 없는 링크입니다.')
+        alert('접근할 수 없는 링크입니다.')
       }
     }
 
