@@ -1,5 +1,7 @@
 # Triple Frontend Monorepo
 
+[![codecov](https://codecov.io/gh/titicacadev/triple-frontend/branch/main/graph/badge.svg?token=B1ME2OJD68)](https://codecov.io/gh/titicacadev/triple-frontend)
+
 트리플 프론트엔드 공용 컴포넌트 및 라이브러리의 [Monorepo](https://en.wikipedia.org/wiki/Monorepo)입니다.
 
 [Lerna](https://lerna.js.org/)를 이용해서 작업하고 있습니다.
