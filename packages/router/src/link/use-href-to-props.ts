@@ -7,9 +7,8 @@ import {
   parseUrl,
 } from '@titicaca/view-utilities'
 
+import { AllowSource } from '../common/disabled-link-notifier'
 import { TargetType } from '../common/target'
-
-import { AllowSource } from './router-guarded-link'
 
 /**
  * 주어진 href가 절대 경로일 때 트리플의 URL이면 상대 경로로 바꿉니다.
