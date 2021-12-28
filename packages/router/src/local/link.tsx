@@ -8,7 +8,7 @@ import {
   useTripleAppRoutingOptionsAdder,
 } from '../common/app-specific-link-options'
 import { ANCHOR_TARGET_MAP, TargetProps } from '../common/target'
-import { useAppBridge } from '../common/use-app-bridge'
+import { useAppBridge } from '../common/app-bridge'
 import { useWebUrlBaseAdder } from '../common/add-web-url-base'
 import { HrefProps } from '../common/types'
 import { RouterGuardedLink } from '../link/router-guarded-link'
