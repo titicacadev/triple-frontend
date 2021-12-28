@@ -88,10 +88,10 @@ function RangePicker({
   renderDay?: (date: Date, modifiers?: DayModifiers) => React.ReactNode
   renderCaptionElement?: ({
     date,
-    modifiers,
+    locale,
   }: {
     date: Date
-    modifiers?: DayModifiers
+    locale: string
   }) => React.ReactElement
 }) {
   const disabledDays = useDisabledDays({
