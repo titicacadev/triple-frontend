@@ -1,8 +1,8 @@
 import { AppSpecificLinkProps } from '../common/app-specific-link-options'
+import { AllowSourceProps } from '../common/disabled-link-notifier'
 import { TargetProps } from '../common/target'
 import { HrefProps } from '../common/types'
 
-import { AllowSourceProps } from './router-guarded-link'
 import { RelListProps } from './use-rel'
 
 /**
