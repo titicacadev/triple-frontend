@@ -66,7 +66,7 @@ export function generateTodayStyle({
       &.DayPicker-Day--sunday,
       &.DayPicker-Day--saturday,
       &.DayPicker-Day--publicHolidays {
-        color: var(--color-blue);
+        color: var(--color-red);
 
         &:before {
           color: var(--color-red);
@@ -126,17 +126,19 @@ export function generateDateLabelStyle({
   top = '35px',
   fontSize = '11px',
   fontWeight,
+  color = 'var(--color-blue)',
 }: {
   selector: string
   label: string
   top?: string
   fontSize?: string
   fontWeight?: number
+  color?: string
 }) {
   return css`
     ${selector} {
       &:not(.DayPicker-Day--outside):before {
-        color: var(--color-white);
+        color: ${color};
         position: absolute;
         top: ${top};
         left: 0px;
