@@ -7,12 +7,12 @@ import {
 } from '@titicaca/react-contexts'
 import { useLoginCTAModal, useTransitionModal } from '@titicaca/modals'
 
-import { useAppBridge } from '../common/use-app-bridge'
+import { useAppBridge } from '../common/app-bridge'
 
 import { ExternalLink } from './link'
 
 jest.mock('@titicaca/react-contexts')
-jest.mock('../common/use-app-bridge')
+jest.mock('../common/app-bridge')
 jest.mock('@titicaca/modals')
 
 const mockedUseUserAgentContext = useUserAgentContext as jest.MockedFunction<
