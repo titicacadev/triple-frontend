@@ -7,6 +7,10 @@ export function useWebUrlBaseAdder() {
   const addWebUrlBaseToHref = (href: string) => {
     const { scheme, host } = parseUrl(webUrlBase)
 
+    if (href === '/') {
+      return webUrlBase
+    }
+
     return generateUrl({ scheme, host }, href)
   }
 
