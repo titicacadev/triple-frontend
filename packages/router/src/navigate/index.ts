@@ -14,9 +14,8 @@ import {
   useSessionAvailability,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
-import qs from 'qs'
 
-import { OutlinkOptions } from '../common/app-bridge'
+import { OutlinkOptions, useAppBridge } from '../common/app-bridge'
 
 import canonizeTargetAddress from './canonization'
 
@@ -28,6 +27,7 @@ export function useNavigate({
   const sessionAvailable = useSessionAvailability()
   const { show: showTransitionModal } = useTransitionModal()
   const { show: showLoginCtaModal } = useLoginCTAModal()
+  const { openOutlink } = useAppBridge()
 
   const navigateInBrowser = useCallback(
     (rawHref: string) => {
@@ -69,17 +69,18 @@ export function useNavigate({
       const { scheme } = parseUrl(rawHref)
 
       if (scheme === 'http' || scheme === 'https') {
-        const outlinkParams = qs.stringify({
-          url: rawHref,
-          ...(params || {}),
-        })
-
-        window.location.href = `${appUrlScheme}:///outlink?${outlinkParams}`
+        openOutlink(rawHref, params)
       } else {
         window.location.href = generateUrl({ scheme: appUrlScheme }, rawHref)
       }
     },
-    [appUrlScheme, sessionAvailable, showLoginCtaModal, webUrlBase],
+    [
+      appUrlScheme,
+      openOutlink,
+      sessionAvailable,
+      showLoginCtaModal,
+      webUrlBase,
+    ],
   )
 
   return isPublic ? navigateInBrowser : navigateInApp
