@@ -73,9 +73,11 @@ export default function Reply({
     childPage: number
   }>({ childReplies: checkUniqueReply(children), childPage: 0 })
 
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false)
+
   const { setEditingMessage } = useRepliesContext()
 
-  const { push } = useHistoryFunctions()
+  const { push, back } = useHistoryFunctions()
 
   useEffect(() => {
     async function fetchChildRepliesAndSet() {
@@ -153,26 +155,34 @@ export default function Reply({
     focusInput()
   }
 
-  const handleDeleteReplyClick = useCallback(
-    ({
-      mentionedUserName,
-      mentionedUserUid,
-      messageId,
-    }: ReplyType['actionSpecifications']['edit'] & {
-      messageId?: string
-    }) => {
-      setEditingMessage({
-        currentMessageId: messageId,
-        content: {
-          mentioningUserUid: mentionedUserUid,
-          mentioningUserName: mentionedUserName,
-        },
-      })
+  const handleDeleteReplyClick = ({
+    mentionedUserName,
+    mentionedUserUid,
+    messageId,
+  }: ReplyType['actionSpecifications']['edit'] & {
+    messageId?: string
+  }) => {
+    setEditingMessage({
+      currentMessageId: messageId,
+      content: {
+        mentioningUserUid: mentionedUserUid,
+        mentioningUserName: mentionedUserName,
+      },
+    })
 
+    setDeleteModalOpen(true)
+  }
+
+  const handleOnClose = () => {
+    if (deleteModalOpen) {
+      back()
       push(HASH_DELETE_CLOSE_MODAL)
-    },
-    [push],
-  )
+    } else {
+      back()
+    }
+
+    setDeleteModalOpen(false)
+  }
 
   return (
     <>
@@ -276,6 +286,7 @@ export default function Reply({
       <FeatureActionSheet
         isMine={isMine}
         actionSheetHash={`${HASH_MORE_ACTION_SHEET}.${id}`}
+        onClose={handleOnClose}
         onEditClick={() =>
           handleEditReplyClick({
             ...edit,
@@ -347,21 +358,22 @@ function Content({
 function FeatureActionSheet({
   isMine,
   actionSheetHash,
+  onClose,
   onEditClick,
   onDeleteClick,
 }: {
   isMine: boolean
   actionSheetHash: string
+  onClose: () => void
   onEditClick: () => void
   onDeleteClick: () => void
 }) {
   const uriHash = useURIHash()
-  const { back } = useHistoryFunctions()
 
   return (
     <ActionSheet
       open={uriHash === actionSheetHash}
-      onClose={back}
+      onClose={onClose}
       title={isMine ? '내 댓글' : '댓글'}
     >
       {isMine ? (
