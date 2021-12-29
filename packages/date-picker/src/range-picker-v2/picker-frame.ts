@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-import { generateTodayStyle, sideSpacingMixin } from '../utils'
+import { todayMixin, sideSpacingMixin } from '../mixins'
 
 export function generateSelectedStyle({
   selectedAll,
@@ -132,7 +132,7 @@ const PickerFrame = styled.div<PickerFrameProps>`
 
           ${({ hideTodayLabel }) =>
             !hideTodayLabel &&
-            generateTodayStyle({
+            todayMixin({
               top: '28px',
               fontSize: '10px',
               fontWeight: 500,

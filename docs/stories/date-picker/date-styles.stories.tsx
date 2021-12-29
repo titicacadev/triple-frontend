@@ -3,11 +3,9 @@ import styled from 'styled-components'
 import PickerFrame, {
   generateSelectedCircleStyle,
 } from '@titicaca/date-picker/lib/picker-frame'
-import {
-  generateRangeStyle,
-  generateDateLabelStyle,
-} from '@titicaca/date-picker/lib/utils'
+
 import { Meta, Story } from '@storybook/react'
+import { rangeMixin, dateLabelMixin } from '@titicaca/date-picker/lib/mixins'
 
 const Table = styled.table`
   border-collapse: separate;
@@ -191,16 +189,16 @@ export const rangePicker: Story = () => {
 const RangeContainer = styled.tbody`
   ${generateSelectedCircleStyle('.DayPicker-Day--from,.DayPicker-Day--to')}
 
-  ${generateRangeStyle()}
+  ${rangeMixin()}
 
-  ${generateDateLabelStyle({
+  ${dateLabelMixin({
     selector: '.DayPicker-Day--from',
     label: '출발일',
   })}
 
-  ${generateDateLabelStyle({ selector: '.DayPicker-Day--to', label: '귀국일' })}
+  ${dateLabelMixin({ selector: '.DayPicker-Day--to', label: '귀국일' })}
 
-  ${generateDateLabelStyle({
+  ${dateLabelMixin({
     selector: '.DayPicker-Day--from.DayPicker-Day--to',
     label: '당일왕복',
   })}

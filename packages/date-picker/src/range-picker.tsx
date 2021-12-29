@@ -3,12 +3,8 @@ import moment from 'moment'
 import styled, { css } from 'styled-components'
 import DayPicker, { DayModifiers, Modifiers } from 'react-day-picker'
 
-import {
-  isValidDate,
-  generatePaddedRange,
-  generateDateLabelStyle,
-  generateRangeStyle,
-} from './utils'
+import { isValidDate, generatePaddedRange } from './utils'
+import { rangeMixin, dateLabelMixin } from './mixins'
 import PickerFrame, { generateSelectedCircleStyle } from './picker-frame'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
 import useDisabledDays, { DislableDaysProps } from './use-disabled-days'
@@ -28,22 +24,22 @@ const RangeContainer = styled(PickerFrame)<{
   ${({ selectedAll, startDateLabel, endDateLabel, sameDateLabel }) =>
     selectedAll &&
     css`
-      ${generateRangeStyle()}
+      ${rangeMixin()}
 
       ${startDateLabel &&
-      generateDateLabelStyle({
+      dateLabelMixin({
         selector: '.DayPicker-Day--from',
         label: startDateLabel,
       })}
 
       ${endDateLabel &&
-      generateDateLabelStyle({
+      dateLabelMixin({
         selector: '.DayPicker-Day--to',
         label: endDateLabel,
       })}
 
       ${sameDateLabel &&
-      generateDateLabelStyle({
+      dateLabelMixin({
         selector: '.DayPicker-Day--from.DayPicker-Day--to',
         label: sameDateLabel,
       })}

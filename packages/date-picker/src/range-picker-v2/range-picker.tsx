@@ -6,12 +6,8 @@ import DayPicker, { DayModifiers, Modifiers } from 'react-day-picker'
 import { usePublicHolidays } from '../use-public-holidays'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from '../constants'
 import useDisabledDays, { DislableDaysProps } from '../use-disabled-days'
-import {
-  isValidDate,
-  generatePaddedRange,
-  generateRangeStyle,
-  generateDateLabelStyle,
-} from '../utils'
+import { isValidDate, generatePaddedRange } from '../utils'
+import { rangeMixin, dateLabelMixin } from '../mixins'
 
 import PickerFrame, { generateSelectedStyle } from './picker-frame'
 
@@ -27,11 +23,11 @@ const RangeContainer = styled(PickerFrame)<{
   ${({ selectedAll, startDateLabel, endDateLabel }) => css`
     ${generateSelectedStyle({ selectedAll })}
 
-    ${selectedAll && generateRangeStyle()}
+    ${selectedAll && rangeMixin()}
 
 
     ${startDateLabel &&
-    generateDateLabelStyle({
+    dateLabelMixin({
       selector: '.DayPicker-Day--from',
       label: startDateLabel,
       fontSize: '10px',
@@ -40,7 +36,7 @@ const RangeContainer = styled(PickerFrame)<{
     })}
 
       ${endDateLabel &&
-    generateDateLabelStyle({
+    dateLabelMixin({
       selector: '.DayPicker-Day--to',
       label: endDateLabel,
       fontSize: '10px',
