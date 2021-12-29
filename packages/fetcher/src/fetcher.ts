@@ -18,18 +18,23 @@ export async function fetcher<SuccessBody, FailureBody = unknown>(
 
   const response = await fetchFunction(...makeRequestParams(url, options))
   const body = await readResponseBody(response)
-  const restResponse = pickUsableProperties(response)
+
+  const { headers, status, url: responseUrl } = response
 
   if (response.ok === true) {
     return {
-      ...restResponse,
+      headers,
+      status,
+      url: responseUrl,
       ok: true,
       parsedBody: body as SuccessBody,
     }
   }
 
   return {
-    ...restResponse,
+    headers,
+    status,
+    url: responseUrl,
     ok: false,
     parsedBody: body as FailureBody,
   }
@@ -87,8 +92,4 @@ function readResponseBody(response: Response) {
   }
 
   return response.text()
-}
-
-function pickUsableProperties({ headers, ok, status, url }: Response) {
-  return { headers, ok, status, url }
 }
