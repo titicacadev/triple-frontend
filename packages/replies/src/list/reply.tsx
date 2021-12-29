@@ -73,6 +73,8 @@ export default function Reply({
     childPage: number
   }>({ childReplies: checkUniqueReply(children), childPage: 0 })
 
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false)
+
   const { setEditingMessage } = useRepliesContext()
 
   const { push } = useHistoryFunctions()
@@ -92,6 +94,13 @@ export default function Reply({
 
     fetchChildRepliesAndSet()
   }, [id])
+
+  useEffect(() => {
+    if (deleteModalOpen) {
+      push(HASH_DELETE_CLOSE_MODAL)
+      setDeleteModalOpen(false)
+    }
+  }, [deleteModalOpen, push])
 
   const fetchMoreChildReplies = useCallback(async () => {
     const response = await fetchChildReplies({
@@ -152,15 +161,6 @@ export default function Reply({
 
     focusInput()
   }
-
-  const [deleteModalOpen, setDeleteModalOpen] = useState(false)
-
-  useEffect(() => {
-    if (deleteModalOpen) {
-      push(HASH_DELETE_CLOSE_MODAL)
-      setDeleteModalOpen(false)
-    }
-  }, [deleteModalOpen, push])
 
   const handleDeleteReplyClick = ({
     mentionedUserName,
