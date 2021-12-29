@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-import { generateTodayStyle, sideSpacingMixin } from './utils'
+import { todayMixin, sideSpacingMixin } from './mixins'
 
 export function generateSelectedCircleStyle(selector: string) {
   return css`
@@ -147,7 +147,7 @@ const PickerFrame = styled.div<PickerFrameProps>`
         .DayPicker-Week {
           display: table-row;
 
-          ${({ hideTodayLabel }) => !hideTodayLabel && generateTodayStyle({})}
+          ${({ hideTodayLabel }) => !hideTodayLabel && todayMixin({})}
 
           .DayPicker-Day {
             position: relative;
