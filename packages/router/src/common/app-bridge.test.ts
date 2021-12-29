@@ -70,3 +70,35 @@ describe('openOutlink', () => {
     )
   })
 })
+
+describe('openNativeLink', () => {
+  test('주어진 상대 경로에 앱 스킴을 붙여서 라우팅합니다.', () => {
+    const changeLocation = jest.fn()
+    const href = '/this/is/native/url'
+    const {
+      result: {
+        current: { openNativeLink },
+      },
+    } = renderHook(useAppBridge, { initialProps: { changeLocation } })
+
+    openNativeLink(href)
+
+    expect(changeLocation).toBeCalledWith(`${MOCK_APP_SCHEME}://${href}`)
+  })
+
+  describe('절대 경로를 넣으면 오류를 냅니다.', () => {
+    test.each([['https://www.google.com', 'triple.guide/hotels']])(
+      '%p',
+      (href: string) => {
+        const changeLocation = jest.fn()
+        const {
+          result: {
+            current: { openNativeLink },
+          },
+        } = renderHook(useAppBridge, { initialProps: { changeLocation } })
+
+        expect(() => openNativeLink(href)).toThrowError()
+      },
+    )
+  })
+})

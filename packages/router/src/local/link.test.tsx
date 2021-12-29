@@ -168,33 +168,31 @@ function prepareTest({
   const showLoginCtaModal = jest.fn()
   const webUrlBase = 'https://triple.guide'
 
-  ;(
-    useRouter as unknown as jest.MockedFunction<
-      () => Pick<ReturnType<typeof useRouter>, 'basePath'>
-    >
-  ).mockImplementation(() => ({ basePath, push: nextPush }))
-  ;(
-    useUserAgentContext as unknown as jest.MockedFunction<
-      () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
-    >
-  ).mockImplementation(() => ({ isPublic }))
-  ;(
-    useSessionAvailability as jest.MockedFunction<typeof useSessionAvailability>
-  ).mockImplementation(() => sessionAvailability)
-  ;(
-    useTransitionModal as jest.MockedFunction<typeof useTransitionModal>
-  ).mockImplementation(() => ({ show: showTransitionModal }))
-  ;(
-    useLoginCTAModal as jest.MockedFunction<typeof useLoginCTAModal>
-  ).mockImplementation(() => ({ show: showLoginCtaModal }))
-  ;(
-    useAppBridge as jest.MockedFunction<typeof useAppBridge>
-  ).mockImplementation(() => ({ openInlink, openOutlink }))
-  ;(
-    useWebUrlBaseAdder as unknown as jest.MockedFunction<
-      typeof useWebUrlBaseAdder
-    >
-  ).mockImplementation(() => (href) => `${webUrlBase}${href}`)
+  ;((useRouter as unknown) as jest.MockedFunction<
+    () => Pick<ReturnType<typeof useRouter>, 'basePath'>
+  >).mockImplementation(() => ({ basePath, push: nextPush }))
+  ;((useUserAgentContext as unknown) as jest.MockedFunction<
+    () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
+  >).mockImplementation(() => ({ isPublic }))
+  ;(useSessionAvailability as jest.MockedFunction<
+    typeof useSessionAvailability
+  >).mockImplementation(() => sessionAvailability)
+  ;(useTransitionModal as jest.MockedFunction<
+    typeof useTransitionModal
+  >).mockImplementation(() => ({ show: showTransitionModal }))
+  ;(useLoginCTAModal as jest.MockedFunction<
+    typeof useLoginCTAModal
+  >).mockImplementation(() => ({ show: showLoginCtaModal }))
+  ;(useAppBridge as jest.MockedFunction<
+    typeof useAppBridge
+  >).mockImplementation(() => ({
+    openInlink,
+    openOutlink,
+    openNativeLink: jest.fn(),
+  }))
+  ;((useWebUrlBaseAdder as unknown) as jest.MockedFunction<
+    typeof useWebUrlBaseAdder
+  >).mockImplementation(() => (href) => `${webUrlBase}${href}`)
 
   return {
     basePath,
