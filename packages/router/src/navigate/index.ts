@@ -20,7 +20,9 @@ import { OutlinkOptions } from '../common/app-bridge'
 
 import canonizeTargetAddress from './canonization'
 
-export function useNavigate() {
+export function useNavigate({
+  changeLocationHref = defaultChangeLocationHref,
+}: { changeLocationHref?: (href: string) => void } = {}) {
   const { webUrlBase, appUrlScheme } = useEnv()
   const { isPublic } = useUserAgentContext()
   const sessionAvailable = useSessionAvailability()
@@ -36,12 +38,13 @@ export function useNavigate() {
       })
 
       if (checkIfRoutable({ href })) {
-        return (window.location.href = href)
+        changeLocationHref(href)
+        return
       }
 
       showTransitionModal(TransitionType.General)
     },
-    [showTransitionModal, webUrlBase],
+    [changeLocationHref, showTransitionModal, webUrlBase],
   )
 
   const navigateInApp = useCallback(
@@ -80,4 +83,8 @@ export function useNavigate() {
   )
 
   return isPublic ? navigateInBrowser : navigateInApp
+}
+
+function defaultChangeLocationHref(href: string) {
+  window.location.href = href
 }
