@@ -176,27 +176,37 @@ function prepareTest({
   const showLoginCtaModal = jest.fn()
   const webUrlBase = 'https://triple.guide'
 
-  ;((useUserAgentContext as unknown) as jest.MockedFunction<
-    () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
-  >).mockImplementation(() => ({ isPublic }))
-  ;(useTripleAppRoutingOptionsAdder as jest.MockedFunction<
-    typeof useTripleAppRoutingOptionsAdder
-  >).mockImplementation(() => ({ href }) => href)
-  ;(useAppBridge as jest.MockedFunction<
-    typeof useAppBridge
-  >).mockImplementation(() => ({ openInlink, openOutlink }))
-  ;(useSessionAvailability as jest.MockedFunction<
-    typeof useSessionAvailability
-  >).mockImplementation(() => sessionAvailability)
-  ;(useTransitionModal as jest.MockedFunction<
-    typeof useTransitionModal
-  >).mockImplementation(() => ({ show: showTransitionModal }))
-  ;(useLoginCTAModal as jest.MockedFunction<
-    typeof useLoginCTAModal
-  >).mockImplementation(() => ({ show: showLoginCtaModal }))
-  ;((useWebUrlBaseAdder as unknown) as jest.MockedFunction<
-    typeof useWebUrlBaseAdder
-  >).mockImplementation(() => (href) => `${webUrlBase}${href}`)
+  ;(
+    useUserAgentContext as unknown as jest.MockedFunction<
+      () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
+    >
+  ).mockImplementation(() => ({ isPublic }))
+  ;(
+    useTripleAppRoutingOptionsAdder as jest.MockedFunction<
+      typeof useTripleAppRoutingOptionsAdder
+    >
+  ).mockImplementation(
+    () =>
+      ({ href }) =>
+        href,
+  )
+  ;(
+    useAppBridge as jest.MockedFunction<typeof useAppBridge>
+  ).mockImplementation(() => ({ openInlink, openOutlink }))
+  ;(
+    useSessionAvailability as jest.MockedFunction<typeof useSessionAvailability>
+  ).mockImplementation(() => sessionAvailability)
+  ;(
+    useTransitionModal as jest.MockedFunction<typeof useTransitionModal>
+  ).mockImplementation(() => ({ show: showTransitionModal }))
+  ;(
+    useLoginCTAModal as jest.MockedFunction<typeof useLoginCTAModal>
+  ).mockImplementation(() => ({ show: showLoginCtaModal }))
+  ;(
+    useWebUrlBaseAdder as unknown as jest.MockedFunction<
+      typeof useWebUrlBaseAdder
+    >
+  ).mockImplementation(() => (href) => `${webUrlBase}${href}`)
 
   return {
     openInlink,

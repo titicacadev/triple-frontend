@@ -104,9 +104,9 @@ describe('allowSource', () => {
 
   beforeEach(() => {
     prepareTest({ isPublic: false })
-    ;(checkIfRoutable as jest.MockedFunction<
-      typeof checkIfRoutable
-    >).mockImplementation(({ href }) => {
+    ;(
+      checkIfRoutable as jest.MockedFunction<typeof checkIfRoutable>
+    ).mockImplementation(({ href }) => {
       return href === routablePath
     })
   })
@@ -161,12 +161,16 @@ describe('allowSource', () => {
 function prepareTest({ isPublic }: { isPublic: boolean }) {
   const webUrlBase = 'https://triple.guide'
 
-  ;((useUserAgentContext as unknown) as jest.MockedFunction<
-    () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
-  >).mockImplementation(() => ({ isPublic }))
-  ;((useEnv as unknown) as jest.MockedFunction<
-    () => Pick<ReturnType<typeof useEnv>, 'webUrlBase'>
-  >).mockImplementation(() => ({ webUrlBase }))
+  ;(
+    useUserAgentContext as unknown as jest.MockedFunction<
+      () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
+    >
+  ).mockImplementation(() => ({ isPublic }))
+  ;(
+    useEnv as unknown as jest.MockedFunction<
+      () => Pick<ReturnType<typeof useEnv>, 'webUrlBase'>
+    >
+  ).mockImplementation(() => ({ webUrlBase }))
 
   return { webUrlBase }
 }

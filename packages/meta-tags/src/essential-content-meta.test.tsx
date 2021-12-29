@@ -34,8 +34,9 @@ describe('EssentialContentMeta', () => {
   })
 
   it('should render title.', () => {
-    const instance = renderer.create(<EssentialContentMeta title={title} />)
-      .root
+    const instance = renderer.create(
+      <EssentialContentMeta title={title} />,
+    ).root
 
     expect(instance.findByType('title').children).toEqual([title])
   })

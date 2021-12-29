@@ -51,13 +51,11 @@ AB 테스트의 전환을 기록합니다.
 
 ```ts
 FooPage.getServerSideProps = async ({ req }) => {
-  const [
-    { result: messageMeta },
-    { result: componentMeta },
-  ] = await Promise.all([
-    getTripleABExperiment(MESSAGE_AB_TEST_ID, { req }),
-    getTripleABExperiment(COMPONENT_AB_TEST_ID, { req }),
-  ])
+  const [{ result: messageMeta }, { result: componentMeta }] =
+    await Promise.all([
+      getTripleABExperiment(MESSAGE_AB_TEST_ID, { req }),
+      getTripleABExperiment(COMPONENT_AB_TEST_ID, { req }),
+    ])
 
   return {
     props: {
@@ -124,12 +122,10 @@ const experimentTargetMessage = useTripleABExperimentVariant(
 `useTripleABExperimentConversionTracker` 훅의 함수를 이용해 실험에서 측정하려는 목표 행동을 기록합니다.
 
 ```tsx
-const trackComponentTestConversion = useTripleABExperimentConversionTracker(
-  COMPONENT_AB_TEST_ID,
-)
-const trackMessageTestConversion = useTripleABExperimentConversionTracker(
-  MESSAGE_AB_TEST_ID,
-)
+const trackComponentTestConversion =
+  useTripleABExperimentConversionTracker(COMPONENT_AB_TEST_ID)
+const trackMessageTestConversion =
+  useTripleABExperimentConversionTracker(MESSAGE_AB_TEST_ID)
 
 const handleButtonClick = () => {
   trackComponentTestConversion()
@@ -142,12 +138,10 @@ return <Button onClick={handleButtonClick}>{experimentTargetMessage}</Button>
 `useTripleABExperimentImpressionTracker` 훅의 함수를 이용해 실험에서 측정하려는 목표 노출을 기록합니다.
 
 ```tsx
-const trackComponentTestImpression = useTripleABExperimentImpressionTracker(
-  COMPONENT_AB_TEST_ID,
-)
-const trackMessageTestImpression = useTripleABExperimentImpressionTracker(
-  MESSAGE_AB_TEST_ID,
-)
+const trackComponentTestImpression =
+  useTripleABExperimentImpressionTracker(COMPONENT_AB_TEST_ID)
+const trackMessageTestImpression =
+  useTripleABExperimentImpressionTracker(MESSAGE_AB_TEST_ID)
 
 const handleButtonImpression = () => {
   trackComponentTestImpression()

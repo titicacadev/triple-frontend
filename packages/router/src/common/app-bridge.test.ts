@@ -6,9 +6,11 @@ import { useAppBridge } from './app-bridge'
 const MOCK_APP_SCHEME = 'test-triple'
 
 jest.mock('@titicaca/react-contexts')
-;((useEnv as unknown) as jest.MockedFunction<
-  () => Pick<ReturnType<typeof useEnv>, 'appUrlScheme'>
->).mockImplementation(() => ({ appUrlScheme: MOCK_APP_SCHEME }))
+;(
+  useEnv as unknown as jest.MockedFunction<
+    () => Pick<ReturnType<typeof useEnv>, 'appUrlScheme'>
+  >
+).mockImplementation(() => ({ appUrlScheme: MOCK_APP_SCHEME }))
 
 describe('openInlink', () => {
   test('주어진 href를 inlink로 엽니다.', () => {

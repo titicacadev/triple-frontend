@@ -11,7 +11,7 @@ interface ParsedUrlQuery {
  * @param query
  */
 function camelizeUrlQuery(query: object | object[]): ParsedUrlQuery {
-  return (camelizeKeys(query) as unknown) as ParsedUrlQuery
+  return camelizeKeys(query) as unknown as ParsedUrlQuery
 }
 
 /**
@@ -25,7 +25,7 @@ function camelizeUrlQuery(query: object | object[]): ParsedUrlQuery {
  * @param rawQuery
  */
 function mergeIndexedKeys(rawQuery: ParsedUrlQuery): ParsedUrlQuery {
-  return (qs.parse(qs.stringify(rawQuery)) as unknown) as ParsedUrlQuery
+  return qs.parse(qs.stringify(rawQuery)) as unknown as ParsedUrlQuery
 }
 
 /**

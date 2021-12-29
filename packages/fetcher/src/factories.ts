@@ -4,7 +4,7 @@ import { HttpResponse, RequestOptions } from './types'
 
 export type BaseFetcher<Extending = unknown> = <
   SuccessBody,
-  FailureBody = unknown
+  FailureBody = unknown,
 >(
   href: string,
   options?: RequestOptions,
@@ -12,7 +12,7 @@ export type BaseFetcher<Extending = unknown> = <
 
 export type ExtendFetcher<Fetcher extends BaseFetcher, Extending> = <
   SuccessBody,
-  FailureBody = unknown
+  FailureBody = unknown,
 >(
   href: string,
   options?: RequestOptions,
@@ -115,7 +115,7 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
     onCookieRenew?: (cookie: string) => void
   },
 ): ExtendFetcher<Fetcher, typeof NEED_LOGIN_IDENTIFIER> {
-  return ((async <SuccessBody, FailureBody = unknown>(
+  return (async <SuccessBody, FailureBody = unknown>(
     href: string,
     options?: RequestOptions,
   ) => {
@@ -138,9 +138,8 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
       return firstTrialResponse
     }
 
-    const {
-      status: firstTrialResponseStatus,
-    } = firstTrialResponse as HttpResponse<SuccessBody, FailureBody>
+    const { status: firstTrialResponseStatus } =
+      firstTrialResponse as HttpResponse<SuccessBody, FailureBody>
 
     if (firstTrialResponseStatus !== 401) {
       return firstTrialResponse
@@ -168,5 +167,5 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
     }
 
     return secondTrialResponse
-  }) as unknown) as ExtendFetcher<Fetcher, typeof NEED_LOGIN_IDENTIFIER>
+  }) as unknown as ExtendFetcher<Fetcher, typeof NEED_LOGIN_IDENTIFIER>
 }
