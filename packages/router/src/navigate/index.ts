@@ -3,11 +3,7 @@ import {
   useLoginCTAModal,
   useTransitionModal,
 } from '@titicaca/modals'
-import {
-  checkIfRoutable,
-  generateUrl,
-  parseUrl,
-} from '@titicaca/view-utilities'
+import { checkIfRoutable, parseUrl } from '@titicaca/view-utilities'
 import { useCallback } from 'react'
 import {
   useEnv,
@@ -22,12 +18,12 @@ import canonizeTargetAddress from './canonization'
 export function useNavigate({
   changeLocationHref = defaultChangeLocationHref,
 }: { changeLocationHref?: (href: string) => void } = {}) {
-  const { webUrlBase, appUrlScheme } = useEnv()
+  const { webUrlBase } = useEnv()
   const { isPublic } = useUserAgentContext()
   const sessionAvailable = useSessionAvailability()
   const { show: showTransitionModal } = useTransitionModal()
   const { show: showLoginCtaModal } = useLoginCTAModal()
-  const { openOutlink } = useAppBridge()
+  const { openOutlink, openNativeLink } = useAppBridge()
 
   const navigateInBrowser = useCallback(
     (rawHref: string) => {
@@ -71,11 +67,11 @@ export function useNavigate({
       if (scheme === 'http' || scheme === 'https') {
         openOutlink(rawHref, params)
       } else {
-        window.location.href = generateUrl({ scheme: appUrlScheme }, rawHref)
+        openNativeLink(rawHref)
       }
     },
     [
-      appUrlScheme,
+      openNativeLink,
       openOutlink,
       sessionAvailable,
       showLoginCtaModal,
