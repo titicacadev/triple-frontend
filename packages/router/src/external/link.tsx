@@ -43,9 +43,9 @@ export function ExternalLink({
   const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
   const handleHrefExternally = useExternalHrefHandler()
 
-  const outOfTriple = checkHrefIsOutOfTriple(href)
+  const hrefIsAbsoluteUrl = checkHrefIsAbsoluteUrl(href)
   const forbiddenLinkCondition =
-    !isPublic && outOfTriple && target === 'current'
+    !isPublic && hrefIsAbsoluteUrl && target === 'current'
 
   const finalHref = addTripleAppRoutingOptions({
     href,
@@ -77,7 +77,7 @@ export function ExternalLink({
   useEffect(
     () => {
       if (forbiddenLinkCondition && onError) {
-        onError(new Error('현재 창에서 외부 URL로 이동할 수 없습니다.'))
+        onError(new Error('현재 창에서 절대 경로로 이동할 수 없습니다.'))
       }
     },
     // onError 변경에 대응하지 않습니다.
@@ -88,7 +88,7 @@ export function ExternalLink({
   return (
     <RouterGuardedLink
       href={finalHref}
-      relList={outOfTriple ? ['external', ...relList] : relList}
+      relList={hrefIsAbsoluteUrl ? ['external', ...relList] : relList}
       allowSource={forbiddenLinkCondition ? 'none' : allowSource}
       onClick={handleClick}
       target={ANCHOR_TARGET_MAP[target]}
@@ -117,7 +117,7 @@ function useExternalHrefHandler() {
     TargetProps &
     AppSpecificLinkProps &
     Pick<OutlinkOptions, 'title'> & { stopDefaultHandler: () => void }) => {
-    const outOfTriple = checkHrefIsOutOfTriple(href)
+    const outOfTriple = checkHrefIsAbsoluteUrl(href)
 
     if (target === 'current' && isPublic === false && outOfTriple === true) {
       stopDefaultHandler()
@@ -158,7 +158,7 @@ function useExternalHrefHandler() {
   return handleHrefExternally
 }
 
-function checkHrefIsOutOfTriple(href: string): boolean {
+function checkHrefIsAbsoluteUrl(href: string): boolean {
   const { host } = parseUrl(href)
   return !!host
 }
