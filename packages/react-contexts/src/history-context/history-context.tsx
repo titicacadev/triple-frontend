@@ -44,6 +44,9 @@ interface HistoryContextValue {
   push: (hash: string, config?: NavigateFunctionConfig) => void
   replace: (hash: string, config?: NavigateFunctionConfig) => void
   back: () => void
+  /**
+   * @deprecated router 패키지를 이용하세요.
+   */
   navigate: (
     rawHref: string,
     params?: OutlinkParams,
