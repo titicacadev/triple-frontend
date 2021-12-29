@@ -140,22 +140,24 @@ function prepareTest({
   isPublic: boolean
   sessionAvailable: boolean
 }) {
-  ;((useUserAgentContext as unknown) as jest.MockedFunction<
-    () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
-  >).mockImplementation(() => ({ isPublic }))
-  ;(useSessionAvailability as jest.MockedFunction<
-    typeof useSessionAvailability
-  >).mockImplementation(() => sessionAvailable)
+  ;(
+    useUserAgentContext as unknown as jest.MockedFunction<
+      () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
+    >
+  ).mockImplementation(() => ({ isPublic }))
+  ;(
+    useSessionAvailability as jest.MockedFunction<typeof useSessionAvailability>
+  ).mockImplementation(() => sessionAvailable)
 
   const showTransitionModal = jest.fn()
   const showLoginCtaModal = jest.fn()
 
-  ;(useTransitionModal as jest.MockedFunction<
-    typeof useTransitionModal
-  >).mockImplementation(() => ({ show: showTransitionModal }))
-  ;(useLoginCTAModal as jest.MockedFunction<
-    typeof useLoginCTAModal
-  >).mockImplementation(() => ({ show: showLoginCtaModal }))
+  ;(
+    useTransitionModal as jest.MockedFunction<typeof useTransitionModal>
+  ).mockImplementation(() => ({ show: showTransitionModal }))
+  ;(
+    useLoginCTAModal as jest.MockedFunction<typeof useLoginCTAModal>
+  ).mockImplementation(() => ({ show: showLoginCtaModal }))
 
   return { showTransitionModal, showLoginCtaModal }
 }

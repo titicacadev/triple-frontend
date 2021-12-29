@@ -3,7 +3,7 @@ import { withScope, captureException } from '@sentry/browser'
 import { HttpResponse } from './types'
 
 export function captureHttpError<
-  Response extends HttpResponse<unknown, unknown>
+  Response extends HttpResponse<unknown, unknown>,
 >(response: Response): void {
   if (response.ok === false) {
     withScope((scope) => {

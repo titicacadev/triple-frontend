@@ -9,10 +9,10 @@ jest.mock('./methods')
 const mockedGet = get as jest.MockedFunction<typeof get>
 const mockedPost = post as jest.MockedFunction<typeof post>
 
-const baseContext = ({
+const baseContext = {
   req: { headers: { cookie: '' } },
   res: { setHeader: () => {} },
-} as unknown) as GetServerSidePropsContext
+} as unknown as GetServerSidePropsContext
 const customApiUriBase = 'https://my-base-path.co.kr'
 
 beforeEach(() => {
@@ -54,7 +54,7 @@ test('토큰을 갱신했을 때 context.res의 setHeader를 이용해 쿠키 �
     return Promise.resolve({ headers, ok, status, url, parsedBody: '' })
   })
   mockedPost.mockImplementation(() => {
-    return Promise.resolve(({
+    return Promise.resolve({
       ok: true,
       headers: {
         get(key: string) {
@@ -64,7 +64,7 @@ test('토큰을 갱신했을 때 context.res의 setHeader를 이용해 쿠키 �
           return ''
         },
       },
-    } as unknown) as HttpResponse<unknown>)
+    } as unknown as HttpResponse<unknown>)
   })
 
   const setHeader = jest.fn()
@@ -81,10 +81,10 @@ test('토큰을 갱신했을 때 context.res의 setHeader를 이용해 쿠키 �
     { apiUriBase: customApiUriBase },
   )
 
-  await gssp(({
+  await gssp({
     ...baseContext,
     res: { setHeader },
-  } as unknown) as GetServerSidePropsContext)
+  } as unknown as GetServerSidePropsContext)
 
   expect(setHeader).toBeCalledWith('set-cookie', validCookie)
 })
@@ -101,14 +101,14 @@ test('API 요청을 여러 번 해도 refresh는 한 번만 호출합니다.', a
   })
 
   mockedPost.mockImplementation(() => {
-    return Promise.resolve(({
+    return Promise.resolve({
       ok: true,
       headers: {
         get() {
           return validCookie
         },
       },
-    } as unknown) as HttpResponse<unknown>)
+    } as unknown as HttpResponse<unknown>)
   })
 
   const setHeader = jest.fn()
@@ -126,10 +126,10 @@ test('API 요청을 여러 번 해도 refresh는 한 번만 호출합니다.', a
     { apiUriBase: 'https://triple-dev.titicaca-corp.com' },
   )
 
-  await gssp(({
+  await gssp({
     ...baseContext,
     res: { setHeader },
-  } as unknown) as GetServerSidePropsContext)
+  } as unknown as GetServerSidePropsContext)
 
   expect(mockedPost).toBeCalledTimes(1)
 })
@@ -149,14 +149,14 @@ test('API를 여러 번 호출하더라도 유효한 쿠키 하나만 사용합�
   mockedPost.mockImplementation(() => {
     refreshCount += 1
     const cookie = `${validCookie}-${refreshCount}`
-    return Promise.resolve(({
+    return Promise.resolve({
       ok: true,
       headers: {
         get() {
           return cookie
         },
       },
-    } as unknown) as HttpResponse<unknown>)
+    } as unknown as HttpResponse<unknown>)
   })
 
   const setHeader = jest.fn()
@@ -182,10 +182,10 @@ test('API를 여러 번 호출하더라도 유효한 쿠키 하나만 사용합�
     { apiUriBase: 'https://triple-dev.titicaca-corp.com' },
   )
 
-  const gsspResponse = await gssp(({
+  const gsspResponse = await gssp({
     ...baseContext,
     res: { setHeader },
-  } as unknown) as GetServerSidePropsContext)
+  } as unknown as GetServerSidePropsContext)
 
   expect(gsspResponse).toEqual(
     expect.objectContaining({
@@ -225,14 +225,14 @@ test('토큰을 갱신하면 갱신한 쿠키 값으로 다음 API를 요청합�
     }
   })
   mockedPost.mockImplementation(() => {
-    return Promise.resolve(({
+    return Promise.resolve({
       ok: true,
       headers: {
         get() {
           return validCookie
         },
       },
-    } as unknown) as HttpResponse<unknown>)
+    } as unknown as HttpResponse<unknown>)
   })
 
   const gssp = addFetchersToGssp(
