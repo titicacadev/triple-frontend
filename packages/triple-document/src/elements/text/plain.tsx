@@ -35,7 +35,10 @@ export default function TextElement({
   value: { text, rawHTML },
   compact,
   ...props
-}: any) {
+}: {
+  value: { text: string; rawHTML: string }
+  compact: boolean
+}) {
   const onLinkClick = useLinkClickHandler()
 
   const handleClick = useCallback(

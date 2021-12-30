@@ -44,10 +44,10 @@ export function TripleDocument({
   const trackEventWithMetadata = useEventTrackerWithMetadata()
   const trackResourceEvent = useEventResourceTracker()
 
-  const handleAction = useMemo(() => initialize({ cta, navigate }), [
-    cta,
-    navigate,
-  ])
+  const handleAction = useMemo(
+    () => initialize({ cta, navigate }),
+    [cta, navigate],
+  )
 
   const defaultHandleLinkClick: LinkEventHandler = useCallback(
     (e, { href, target }) => {
@@ -108,6 +108,7 @@ export function TripleDocument({
                               onResourceClick: resourceClickHandler,
                               onImageClick,
                               onLinkClick: linkClickHandler,
+                              // eslint-disable-next-line @typescript-eslint/naming-convention
                               ImageSource: imageSourceComponent,
                               deepLink,
                               videoAutoPlay,

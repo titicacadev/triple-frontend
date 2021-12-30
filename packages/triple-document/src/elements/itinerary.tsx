@@ -89,23 +89,15 @@ const SaveToItineraryButton = styled(Button)`
 
 export default function ItineraryElement({ value }: Props) {
   const { navigate } = useHistoryFunctions()
-  const {
-    courses,
-    regionId,
-    poiIds,
-    hasItineraries,
-    hideAddButton,
-  } = useItinerary(value)
+  const { courses, regionId, poiIds, hasItineraries, hideAddButton } =
+    useItinerary(value)
   const addPoisToTrip = useHandleAddPoisToTrip(regionId || '')
 
   const generatePoiClickHandler = useCallback(
-    (
-      regionId: string,
-      type: ItineraryItemType['poi']['type'],
-      id: string,
-    ) => () => {
-      navigate(`${regionId ? `/regions/${regionId}` : ''}/${type}s/${id}`)
-    },
+    (regionId: string, type: ItineraryItemType['poi']['type'], id: string) =>
+      () => {
+        navigate(`${regionId ? `/regions/${regionId}` : ''}/${type}s/${id}`)
+      },
     [navigate],
   )
 

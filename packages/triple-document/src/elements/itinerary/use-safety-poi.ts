@@ -67,7 +67,7 @@ export function useSafetyPoi<
     image?: ImageMeta
     names?: UnSafetyTranslations
     source?: { names: UnSafetyTranslations; image?: ImageMeta }
-  }
+  },
 >(poi: T | undefined): SafetyPoi<T> {
   return useMemo<SafetyPoi<T>>(() => {
     const { names, source, image } =

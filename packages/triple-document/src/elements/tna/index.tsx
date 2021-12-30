@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { HR2 } from '@titicaca/core-elements'
 import { get } from '@titicaca/fetcher'
 
-import { TNAProductsResponse } from './types'
+import { TnaProductsResponse } from './types'
 import { Slot } from './slot'
 
-function useProducts({ slotId }: { slotId?: number }): TNAProductsResponse {
-  const [response, setProductsList] = useState<TNAProductsResponse>({
+function useProducts({ slotId }: { slotId?: number }): TnaProductsResponse {
+  const [response, setProductsList] = useState<TnaProductsResponse>({
     products: [],
     title: '',
   })
@@ -17,7 +17,7 @@ function useProducts({ slotId }: { slotId?: number }): TNAProductsResponse {
         return
       }
 
-      const response = await get<TNAProductsResponse>(
+      const response = await get<TnaProductsResponse>(
         `/api/tna-v2/slots/${slotId}`,
       )
 
@@ -41,7 +41,7 @@ interface TnaProductsListProps {
   }
 }
 
-export function TNAProducts({ value: { slotId } }: TnaProductsListProps) {
+export function TnaProducts({ value: { slotId } }: TnaProductsListProps) {
   const { products, title } = useProducts({
     slotId,
   })

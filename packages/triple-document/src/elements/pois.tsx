@@ -25,7 +25,7 @@ const PoiPrice = styled.div`
   background-color: #fafafa;
 `
 
-type ExtendedPOIListElementData = PoiListElementType & {
+type ExtendedPoiListElementData = PoiListElementType & {
   source: PoiListElementType['source'] & {
     pricing?: {
       nightlyPrice?: number | null
@@ -35,7 +35,7 @@ type ExtendedPOIListElementData = PoiListElementType & {
 
 type PoisDisplay = 'list' | string
 
-export default function Pois<T extends ExtendedPOIListElementData>({
+export default function Pois<T extends ExtendedPoiListElementData>({
   value: { display, pois },
 }: {
   value: {
@@ -85,7 +85,7 @@ function renderPoiListActionButton({
   poi,
 }: {
   display: PoisDisplay
-  poi: ExtendedPOIListElementData
+  poi: ExtendedPoiListElementData
 }) {
   const {
     source: { pricing },
