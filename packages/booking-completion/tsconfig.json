@@ -8,6 +8,7 @@
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/modals": ["../modals/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/router": ["../router/src"],
       "@titicaca/type-definitions": ["../type-definitions/src"],
       "@titicaca/ui-flow": ["../ui-flow/src"]
     }
@@ -16,6 +17,9 @@
   "references": [
     {
       "path": "../core-elements"
+    },
+    {
+      "path": "../router"
     },
     {
       "path": "../type-definitions"
