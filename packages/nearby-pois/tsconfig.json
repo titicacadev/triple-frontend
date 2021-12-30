@@ -10,6 +10,7 @@
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
       "@titicaca/poi-list-elements": ["../poi-list-elements/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/router": ["../router/src"],
       "@titicaca/type-definitions": ["../type-definitions/src"],
       "@titicaca/view-utilities": ["../view-utilities/src"]
     }
@@ -27,6 +28,9 @@
     },
     {
       "path": "../poi-list-elements"
+    },
+    {
+      "path": "../router"
     },
     {
       "path": "../type-definitions"
