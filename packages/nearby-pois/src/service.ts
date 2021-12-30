@@ -25,7 +25,7 @@ export async function fetchPois({
   const response = await fetch('/api/content/pois', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'content-type': 'application/json',
     },
     credentials: 'same-origin',
     body: JSON.stringify({
