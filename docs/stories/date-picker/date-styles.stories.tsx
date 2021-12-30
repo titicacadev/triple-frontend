@@ -1,10 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Meta, Story } from '@storybook/react'
 import PickerFrame, {
   generateSelectedCircleStyle,
 } from '@titicaca/date-picker/lib/picker-frame'
-
-import { Meta, Story } from '@storybook/react'
 import { rangeMixin, dateLabelMixin } from '@titicaca/date-picker/lib/mixins'
 
 const Table = styled.table`

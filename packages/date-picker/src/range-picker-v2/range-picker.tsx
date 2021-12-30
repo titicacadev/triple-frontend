@@ -25,7 +25,6 @@ const RangeContainer = styled(PickerFrame)<{
 
     ${selectedAll && rangeMixin()}
 
-
     ${startDateLabel &&
     dateLabelMixin({
       selector: '.DayPicker-Day--from',
