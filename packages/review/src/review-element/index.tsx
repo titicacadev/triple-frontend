@@ -4,6 +4,7 @@ import React, {
   ComponentType,
   MouseEventHandler,
   useCallback,
+  SyntheticEvent,
 } from 'react'
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
@@ -130,10 +131,8 @@ export default function ReviewElement({
   resourceId,
 }: ReviewElementProps) {
   const [unfolded, setUnfolded] = useState(false)
-  const {
-    deriveCurrentStateAndCount,
-    updateLikedStatus,
-  } = useReviewLikesContext()
+  const { deriveCurrentStateAndCount, updateLikedStatus } =
+    useReviewLikesContext()
   const appVersion = semver.coerce(useUserAgentContext()?.app?.version)
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
@@ -286,9 +285,13 @@ function Score({ score }: { score?: number }) {
   )
 }
 
-function Content({ onClick, children }: PropsWithChildren<{ onClick?: any }>) {
+function Content({
+  onClick,
+  children,
+}: PropsWithChildren<{ onClick?: (e: SyntheticEvent) => void }>) {
   return (
     <Container margin={{ top: 6 }} clearing>
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
       <a onClick={onClick}>
         <Comment>{children}</Comment>
       </a>
@@ -296,7 +299,7 @@ function Content({ onClick, children }: PropsWithChildren<{ onClick?: any }>) {
   )
 }
 
-function Meta({ children }: PropsWithChildren<{}>) {
+function Meta({ children }: PropsWithChildren<unknown>) {
   return (
     <MetaContainer>
       <Text size="mini" color="gray" alpha={0.4}>

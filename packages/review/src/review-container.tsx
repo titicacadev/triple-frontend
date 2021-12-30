@@ -62,8 +62,7 @@ const MileageButton = styled.div`
 `
 
 const BulletRight = styled.img.attrs({
-  src:
-    'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMjk4N0YwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNNy4wNyAxNkwxMyAxMC4wMzUgNyA0Ii8+Cjwvc3ZnPgo=',
+  src: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxwYXRoIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMjk4N0YwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMS42IiBkPSJNNy4wNyAxNkwxMyAxMC4wMzUgNyA0Ii8+Cjwvc3ZnPgo=',
 })`
   position: absolute;
   right: 20px;
@@ -108,7 +107,7 @@ function ReviewContainer({
    * 다양한 방어 로직을 중복 구현하게 됩니다.
    * 이 prop을 사용하지 말아주세요.
    */
-  onReviewWrite?: (e?: React.SyntheticEvent, rating?: number) => any
+  onReviewWrite?: (e?: React.SyntheticEvent, rating?: number) => void
   onReviewDelete?: ReviewDeleteHandler
   onFullListButtonClick?: (
     e: React.SyntheticEvent,
@@ -127,12 +126,8 @@ function ReviewContainer({
   const [reviewRateDescriptions, setReviewRateDescriptions] = useState<
     string[]
   >([])
-  const {
-    writeReview,
-    editReview,
-    navigateReviewList,
-    navigateMileageIntro,
-  } = useClientActions()
+  const { writeReview, editReview, navigateReviewList, navigateMileageIntro } =
+    useClientActions()
 
   const setMyReview = useCallback(
     (review) =>
