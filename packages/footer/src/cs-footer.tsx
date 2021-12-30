@@ -19,8 +19,7 @@ export default function CsFooter({
   data,
   showCsButton = true,
   onFaqButtonClick = () => {},
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  onCSButtonClick = () => {},
+  onCsButtonClick = () => {},
 }: {
   service: string
   type?: string
@@ -30,8 +29,7 @@ export default function CsFooter({
   data?: { [key: string]: string | number | boolean | undefined }
   showCsButton?: boolean
   onFaqButtonClick?: () => void
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  onCSButtonClick?: () => void
+  onCsButtonClick?: () => void
 }) {
   const { appUrlScheme } = useEnv()
   const { navigate } = useHistoryFunctions()
@@ -48,7 +46,7 @@ export default function CsFooter({
   }
 
   const moveToCsInquiry = React.useCallback(async () => {
-    onCSButtonClick()
+    onCsButtonClick()
 
     const response = await fetch('/api/users/me', {
       credentials: 'same-origin',
@@ -73,7 +71,7 @@ export default function CsFooter({
         )}`,
       )
     }
-  }, [appUrlScheme, data, identifier, navigate, onCSButtonClick, service, type])
+  }, [appUrlScheme, data, identifier, navigate, onCsButtonClick, service, type])
 
   return (
     <SupportContainer>
