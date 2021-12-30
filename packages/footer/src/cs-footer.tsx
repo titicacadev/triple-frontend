@@ -10,8 +10,7 @@ const SupportContainer = styled.footer`
   padding: 32px 30px 0 30px;
 `
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export default function CSFooter({
+export default function CsFooter({
   service,
   type,
   identifier,

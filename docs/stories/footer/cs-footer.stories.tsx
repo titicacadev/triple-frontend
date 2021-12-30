@@ -1,11 +1,11 @@
-import { CSFooter } from '@titicaca/footer'
+import { CsFooter } from '@titicaca/footer'
 import { Meta, StoryObj } from '@storybook/react'
 
 import { sessionContextProviderDecorator } from '../../decorators'
 
 export default {
   title: 'footer / Footer',
-  component: CSFooter,
+  component: CsFooter,
   decorators: [sessionContextProviderDecorator],
 } as Meta
 
