@@ -1,4 +1,4 @@
-import { NearByPoiType, ListingPOI } from './types'
+import { NearByPoiType, ListingPoi } from './types'
 
 const FETCH_POIS = 'nearby-pois/FETCH_POIS'
 const APPEND_POIS = 'nearby-pois/APPEND_POIS'
@@ -10,12 +10,12 @@ type NearbyPoisAction = ReturnType<
 
 export interface NearbyPoisState {
   attraction: {
-    pois: ListingPOI[]
+    pois: ListingPoi[]
     fetching: boolean
     hasMore: boolean | undefined
   }
   restaurant: {
-    pois: ListingPOI[]
+    pois: ListingPoi[]
     fetching: boolean
     hasMore: boolean | undefined
   }
@@ -35,7 +35,7 @@ export function appendPois({
   hasMore,
 }: {
   type: NearByPoiType
-  pois: ListingPOI[]
+  pois: ListingPoi[]
   hasMore: boolean
 }) {
   return {

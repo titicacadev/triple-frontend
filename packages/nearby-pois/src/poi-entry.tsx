@@ -7,7 +7,7 @@ import {
   useHistoryFunctions,
 } from '@titicaca/react-contexts'
 
-import { ListingPOI } from './types'
+import { ListingPoi } from './types'
 
 export default function PoiEntry({
   index,
@@ -21,7 +21,7 @@ export default function PoiEntry({
   optimized,
 }: {
   index: number
-  poi: ListingPOI
+  poi: ListingPoi
   eventLabel: string
   optimized?: boolean
 }) {
