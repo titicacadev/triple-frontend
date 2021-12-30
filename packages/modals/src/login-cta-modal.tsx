@@ -27,8 +27,7 @@ const LoginCtaContext = createContext<
   | undefined
 >(undefined)
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export function LoginCTAModalProvider({
+export function LoginCtaModalProvider({
   children,
 }: PropsWithChildren<unknown>) {
   const uriHash = useURIHash()
@@ -95,9 +94,9 @@ export function LoginCTAModalProvider({
 export function withLoginCTAModal<P>(Component: ComponentType<P>) {
   return function WithLoginCtaModal(props: P) {
     return (
-      <LoginCTAModalProvider>
+      <LoginCtaModalProvider>
         <Component {...props} />
-      </LoginCTAModalProvider>
+      </LoginCtaModalProvider>
     )
   }
 }

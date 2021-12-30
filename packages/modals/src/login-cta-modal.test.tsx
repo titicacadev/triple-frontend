@@ -10,7 +10,7 @@ import {
 } from '@titicaca/react-contexts'
 
 import {
-  LoginCTAModalProvider,
+  LoginCtaModalProvider,
   LOGIN_CTA_MODAL_HASH,
   useLoginCTAModal,
 } from './login-cta-modal'
@@ -25,13 +25,13 @@ beforeEach(() => {
 
 test('children을 렌더링합니다.', () => {
   const { getByTestId } = render(
-    <LoginCTAModalProvider>
+    <LoginCtaModalProvider>
       <div data-testid="child-element-1">42</div>
 
-      <LoginCTAModalProvider>
+      <LoginCtaModalProvider>
         <div data-testid="child-element-2">4242</div>
-      </LoginCTAModalProvider>
-    </LoginCTAModalProvider>,
+      </LoginCtaModalProvider>
+    </LoginCtaModalProvider>,
   )
 
   expect(getByTestId('child-element-1')).toHaveTextContent('42')
@@ -53,7 +53,7 @@ test('useLoginCtaModal 훅은 history context에 해시 값을 push합니다.', 
 test('history context가 LOGIN_CTA_MODAL_HASH를 반환할 때 로그인 dialog를 렌더링합니다.', () => {
   mockUseUriHash(LOGIN_CTA_MODAL_HASH)
 
-  const { getByRole } = render(<LoginCTAModalProvider />)
+  const { getByRole } = render(<LoginCtaModalProvider />)
 
   expect(getByRole('dialog')).toHaveTextContent('로그인이 필요합니다.')
 })
@@ -62,9 +62,9 @@ test('여러 개의 provider가 있어도 하나의 dialog를 렌더링합니다
   mockUseUriHash(LOGIN_CTA_MODAL_HASH)
 
   const { getAllByRole } = render(
-    <LoginCTAModalProvider>
-      <LoginCTAModalProvider />
-    </LoginCTAModalProvider>,
+    <LoginCtaModalProvider>
+      <LoginCtaModalProvider />
+    </LoginCtaModalProvider>,
   )
 
   expect(getAllByRole('dialog')).toHaveLength(1)
