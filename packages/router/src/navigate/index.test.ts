@@ -149,23 +149,27 @@ describe('앱', () => {
 })
 
 function mockUserAgentContext({ isPublic }: { isPublic: boolean }) {
-  ;((useUserAgentContext as unknown) as jest.MockedFunction<
-    () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
-  >).mockImplementation(() => ({ isPublic }))
+  ;(
+    useUserAgentContext as unknown as jest.MockedFunction<
+      () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
+    >
+  ).mockImplementation(() => ({ isPublic }))
 }
 
 function mockWebUrlBase() {
   const webUrlBase = 'https://triple.guide'
-  ;((useEnv as unknown) as jest.MockedFunction<
-    () => Pick<ReturnType<typeof useEnv>, 'webUrlBase'>
-  >).mockImplementation(() => ({ webUrlBase }))
+  ;(
+    useEnv as unknown as jest.MockedFunction<
+      () => Pick<ReturnType<typeof useEnv>, 'webUrlBase'>
+    >
+  ).mockImplementation(() => ({ webUrlBase }))
   return webUrlBase
 }
 
 function mockRoutablePath(routablePath = '/this/is/routable/path') {
-  ;(checkIfRoutable as jest.MockedFunction<
-    typeof checkIfRoutable
-  >).mockImplementation(({ href }) => {
+  ;(
+    checkIfRoutable as jest.MockedFunction<typeof checkIfRoutable>
+  ).mockImplementation(({ href }) => {
     return href === routablePath
   })
   return routablePath
@@ -180,18 +184,18 @@ function prepareTest({
   const openOutlink = jest.fn()
   const openNativeLink = jest.fn()
 
-  ;(useTransitionModal as jest.MockedFunction<
-    typeof useTransitionModal
-  >).mockImplementation(() => ({ show: showTransitionModal }))
-  ;(useLoginCTAModal as jest.MockedFunction<
-    typeof useLoginCTAModal
-  >).mockImplementation(() => ({ show: showLoginCtaModal }))
-  ;(useSessionAvailability as jest.MockedFunction<
-    typeof useSessionAvailability
-  >).mockImplementation(() => sessionAvailable)
-  ;(useAppBridge as jest.MockedFunction<
-    typeof useAppBridge
-  >).mockImplementation(() => ({ openInlink, openOutlink, openNativeLink }))
+  ;(
+    useTransitionModal as jest.MockedFunction<typeof useTransitionModal>
+  ).mockImplementation(() => ({ show: showTransitionModal }))
+  ;(
+    useLoginCTAModal as jest.MockedFunction<typeof useLoginCTAModal>
+  ).mockImplementation(() => ({ show: showLoginCtaModal }))
+  ;(
+    useSessionAvailability as jest.MockedFunction<typeof useSessionAvailability>
+  ).mockImplementation(() => sessionAvailable)
+  ;(
+    useAppBridge as jest.MockedFunction<typeof useAppBridge>
+  ).mockImplementation(() => ({ openInlink, openOutlink, openNativeLink }))
 
   return {
     showTransitionModal,
