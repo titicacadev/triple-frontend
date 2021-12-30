@@ -10,6 +10,7 @@ const SupportContainer = styled.footer`
   padding: 32px 30px 0 30px;
 `
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export default function CSFooter({
   service,
   type,
@@ -17,8 +18,11 @@ export default function CSFooter({
   csTime,
   csMessage,
   data,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   showCSButton = true,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   onFAQButtonClick = () => {},
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   onCSButtonClick = () => {},
 }: {
   service: string
@@ -27,14 +31,17 @@ export default function CSFooter({
   csTime: string
   csMessage?: string
   data?: { [key: string]: string | number | boolean | undefined }
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   showCSButton?: boolean
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   onFAQButtonClick?: () => void
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   onCSButtonClick?: () => void
 }) {
   const { appUrlScheme } = useEnv()
   const { navigate } = useHistoryFunctions()
 
-  const movetoFAQ = () => {
+  const moveToFaq = () => {
     onFAQButtonClick()
 
     navigate(
@@ -114,7 +121,7 @@ export default function CSFooter({
           horizontalGap={7}
           buttonCount={showCSButton ? 2 : 1}
         >
-          <Button basic color="gray" onClick={movetoFAQ}>
+          <Button basic color="gray" onClick={moveToFaq}>
             자주 묻는 질문
           </Button>
           {showCSButton ? (
