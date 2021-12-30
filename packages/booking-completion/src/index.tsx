@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react'
 import { Container, Text, Button } from '@titicaca/core-elements'
-import { useHistoryFunctions } from '@titicaca/react-contexts'
 import styled from 'styled-components'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 import { useAppCallback } from '@titicaca/ui-flow'
 import { TransitionType } from '@titicaca/modals'
+import { useNavigate } from '@titicaca/router'
 
 interface Region {
   id: string
@@ -57,7 +57,7 @@ function BookingCompletion({
   descriptions,
   region,
 }: BookingCompletionProps) {
-  const { navigate } = useHistoryFunctions()
+  const navigate = useNavigate()
 
   const handleMoveToRegion = useAppCallback(
     TransitionType.General,
