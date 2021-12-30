@@ -4,4 +4,4 @@ import {
 } from '@titicaca/type-definitions'
 
 export type NearByPoiType = 'attraction' | 'restaurant'
-export type ListingPOI = ListingAttraction | ListingRestaurant
+export type ListingPoi = ListingAttraction | ListingRestaurant
