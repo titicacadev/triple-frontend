@@ -56,7 +56,7 @@ type AdBannersProps = {
 
 const NOOP = () => {}
 
-function isPropsForInventoryAPI(
+function isPropsForInventoryApi(
   props: AdBannersProps,
 ): props is InventoryBannerProps {
   return 'onBannersFetch' in props
@@ -67,11 +67,11 @@ function useAdBannerProps(props: AdBannersProps) {
   const { trackEvent } = useEventTrackingContext()
   const { navigate } = useHistoryFunctions()
 
-  if (isPropsForInventoryAPI(props)) {
+  if (isPropsForInventoryApi(props)) {
     const { onBannersFetch, onBannerIntersect, onBannerClick } = props
 
     return {
-      getBannersAPI: onBannersFetch,
+      getBannersApi: onBannersFetch,
       handleBannerIntersecting: onBannerIntersect || NOOP,
       handleBannerClick: (banner: Banner, index: number) => {
         if (onBannerClick) {
@@ -90,7 +90,7 @@ function useAdBannerProps(props: AdBannersProps) {
     } = props
 
     return {
-      getBannersAPI: () =>
+      getBannersApi: () =>
         getAdBanners({
           contentType,
           regionId: contentRegionId,
@@ -160,18 +160,15 @@ function useAdBannerProps(props: AdBannersProps) {
 
 export default function ContentDetailsBanner(props: AdBannersProps) {
   const { margin, padding } = props
-  const {
-    getBannersAPI,
-    handleBannerIntersecting,
-    handleBannerClick,
-  } = useAdBannerProps(props)
+  const { getBannersApi, handleBannerIntersecting, handleBannerClick } =
+    useAdBannerProps(props)
   const [banners, setBanners] = useState([])
 
   useEffect(() => {
     let handle: number | undefined
 
     async function fetchBanners() {
-      const response = await getBannersAPI()
+      const response = await getBannersApi()
 
       setBanners(response || [])
     }

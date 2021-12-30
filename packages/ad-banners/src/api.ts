@@ -106,7 +106,7 @@ export async function postAdBannerEvent({
     body,
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'content-type': 'application/json',
     },
     credentials: 'same-origin',
   })
