@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@titicaca/core-elements": "^5.1.2",
+    "@titicaca/router": "^5.1.2",
     "@titicaca/type-definitions": "^5.1.2",
     "@titicaca/ui-flow": "^5.1.2"
   },
