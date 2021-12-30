@@ -6,8 +6,6 @@ export interface Banner {
 }
 
 export enum ListDirection {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  VERTICAL = 'vertical',
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  HORIZONTAL = 'horizontal',
+  Vertical = 'vertical',
+  Horizontal = 'horizontal',
 }

@@ -59,8 +59,8 @@ type AdBannersProps = {
 const NOOP = () => {}
 
 const COMPONENT_SET = {
-  [ListDirection.VERTICAL]: VerticalListView,
-  [ListDirection.HORIZONTAL]: HorizontalListView,
+  [ListDirection.Vertical]: VerticalListView,
+  [ListDirection.Horizontal]: HorizontalListView,
 }
 
 function isPropsForInventoryApi(
@@ -160,7 +160,7 @@ function useAdBannerProps(props: AdBannersProps) {
 }
 
 const ListTopBanners: FC<AdBannersProps> = (props) => {
-  const { margin, padding, direction = ListDirection.VERTICAL } = props
+  const { margin, padding, direction = ListDirection.Vertical } = props
   const { getBannersApi, handleBannerIntersecting, handleBannerClick } =
     useAdBannerProps(props)
   const [banners, setBanners] = useState([])
