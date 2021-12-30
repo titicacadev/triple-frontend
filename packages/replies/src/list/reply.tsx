@@ -51,6 +51,32 @@ const MentionUser = styled.a`
 const HASH_MORE_ACTION_SHEET = 'reply.more-action-sheet'
 export const HASH_DELETE_CLOSE_MODAL = 'reply.delete-close-modal'
 
+const CONTENT_TEXT = {
+  deleted: '작성자가 삭제한 댓글입니다.',
+  blinded: '다른 사용자의 신고로 블라인드 되었습니다.',
+}
+
+function deriveContent({
+  text,
+  deleted,
+  blinded,
+  childrenCount,
+}: {
+  text: string
+  deleted: boolean
+  blinded: boolean
+  childrenCount: number
+}) {
+  const type =
+    deleted || blinded
+      ? deleted && childrenCount > 0
+        ? 'deleted'
+        : 'blinded'
+      : 'default'
+
+  return type === 'default' ? text : CONTENT_TEXT[type]
+}
+
 export default function Reply({
   reply: {
     writer: { profileImage, name },
@@ -61,6 +87,7 @@ export default function Reply({
     childrenCount,
     children,
     id,
+    deleted,
     actionSpecifications: { delete: isMine, reply, edit },
   },
   focusInput,
@@ -180,6 +207,13 @@ export default function Reply({
     setDeleteModalOpen(true)
   }
 
+  const derivedText = deriveContent({
+    text: text || markdownText || '',
+    deleted,
+    blinded,
+    childrenCount,
+  })
+
   return (
     <>
       <SquareImage
@@ -210,7 +244,8 @@ export default function Reply({
         <Content
           mentionedUser={mentionedUser}
           blinded={!!blinded}
-          text={text || markdownText || ''}
+          deleted={!!deleted}
+          text={derivedText}
         />
 
         <ReactionBox
@@ -304,10 +339,12 @@ function Content({
   text,
   mentionedUser,
   blinded,
+  deleted,
 }: {
   text: string
   mentionedUser?: Writer
   blinded: boolean
+  deleted: boolean
 }) {
   const [unfolded, setUnfolded] = useState(false)
   const foldedPosition = findFoldedPosition(5, text)
@@ -315,13 +352,11 @@ function Content({
   return (
     <Container padding={{ top: 3 }}>
       <Text inline padding={{ top: 3, bottom: 5 }} size={15}>
-        {blinded ? (
-          '신고가 접수되어 블라인드 처리되었습니다.'
-        ) : !unfolded && foldedPosition ? (
+        {!unfolded && foldedPosition ? (
           text.slice(0, foldedPosition)
         ) : (
           <>
-            {mentionedUser && (
+            {mentionedUser && !blinded && (
               <ExternalLink
                 href={mentionedUser?.href as string}
                 target="new"
@@ -330,12 +365,19 @@ function Content({
                 <MentionUser>{mentionedUser?.name}</MentionUser>
               </ExternalLink>
             )}
-            <span>{text}</span>
+            <Text
+              size={15}
+              lineHeight="18px"
+              inlineBlock
+              color={blinded || deleted ? 'gray300' : 'gray'}
+            >
+              {text}
+            </Text>
           </>
         )}
       </Text>
 
-      {!blinded && !unfolded && foldedPosition ? (
+      {!unfolded && foldedPosition ? (
         <Text
           inline
           color="blue"
