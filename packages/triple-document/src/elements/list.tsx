@@ -39,7 +39,10 @@ const ListTextElement = styled(Text)`
   }
 `
 
-type TextElementData = TripleElementData<'text', string>
+type TextElementData = TripleElementData<
+  'text',
+  { text: string; rawHTML: string }
+>
 type LinksElementData = TripleElementData<'links', { links: Link[] }>
 
 export default function List({
