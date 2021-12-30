@@ -84,12 +84,7 @@ function ConfirmEditModal({ onConfirm }: { onConfirm: () => void }) {
     <Confirm
       open={uriHash === HASH_EDIT_CLOSE_MODAL}
       onClose={back}
-      // eslint-disable-next-line react/no-children-prop
-      children={
-        <div>
-          수정을 취소하시겠습니까? <br /> 수정한 내용은 저장되지 않습니다.
-        </div>
-      }
+      children={`수정을 취소하시겠습니까? \n 수정한 내용은 저장되지 않습니다.`}
       onConfirm={onConfirm}
     />
   )
@@ -109,8 +104,7 @@ function ConfirmDeleteModal({
     <Confirm
       open={uriHash === HASH_DELETE_CLOSE_MODAL}
       onClose={back}
-      // eslint-disable-next-line react/no-children-prop
-      children={<div>{replyType}을 삭제하시겠습니까?</div>}
+      children={`${replyType}을 삭제하시겠습니까?`}
       onConfirm={onConfirm}
     />
   )
