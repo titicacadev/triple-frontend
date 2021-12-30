@@ -18,8 +18,7 @@ export default function CsFooter({
   csMessage,
   data,
   showCsButton = true,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  onFAQButtonClick = () => {},
+  onFaqButtonClick = () => {},
   // eslint-disable-next-line @typescript-eslint/naming-convention
   onCSButtonClick = () => {},
 }: {
@@ -30,8 +29,7 @@ export default function CsFooter({
   csMessage?: string
   data?: { [key: string]: string | number | boolean | undefined }
   showCsButton?: boolean
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  onFAQButtonClick?: () => void
+  onFaqButtonClick?: () => void
   // eslint-disable-next-line @typescript-eslint/naming-convention
   onCSButtonClick?: () => void
 }) {
@@ -39,7 +37,7 @@ export default function CsFooter({
   const { navigate } = useHistoryFunctions()
 
   const moveToFaq = () => {
-    onFAQButtonClick()
+    onFaqButtonClick()
 
     navigate(
       `${appUrlScheme}:///outlink?${qs.stringify({
