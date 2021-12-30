@@ -7,7 +7,8 @@
     "paths": {
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
-      "@titicaca/react-contexts": ["../react-contexts/src"]
+      "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/router": ["../router/src"]
     }
   },
   "include": ["./src"],
@@ -17,6 +18,9 @@
     },
     {
       "path": "../intersection-observer"
+    },
+    {
+      "path": "../router"
     },
     {
       "path": "../react-contexts"

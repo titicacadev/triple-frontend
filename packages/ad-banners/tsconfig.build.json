@@ -9,6 +9,9 @@
       "path": "../intersection-observer/tsconfig.build.json"
     },
     {
+      "path": "../router/tsconfig.build.json"
+    },
+    {
       "path": "../react-contexts/tsconfig.build.json"
     }
   ]
