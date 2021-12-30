@@ -17,8 +17,7 @@ export default function CsFooter({
   csTime,
   csMessage,
   data,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  showCSButton = true,
+  showCsButton = true,
   // eslint-disable-next-line @typescript-eslint/naming-convention
   onFAQButtonClick = () => {},
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -30,8 +29,7 @@ export default function CsFooter({
   csTime: string
   csMessage?: string
   data?: { [key: string]: string | number | boolean | undefined }
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  showCSButton?: boolean
+  showCsButton?: boolean
   // eslint-disable-next-line @typescript-eslint/naming-convention
   onFAQButtonClick?: () => void
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -118,12 +116,12 @@ export default function CsFooter({
         <Button.Group
           margin={{ top: 20 }}
           horizontalGap={7}
-          buttonCount={showCSButton ? 2 : 1}
+          buttonCount={showCsButton ? 2 : 1}
         >
           <Button basic color="gray" onClick={moveToFaq}>
             자주 묻는 질문
           </Button>
-          {showCSButton ? (
+          {showCsButton ? (
             <Button basic color="gray" onClick={moveToCsInquiry}>
               1:1 문의
             </Button>
