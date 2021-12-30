@@ -11,7 +11,7 @@ const NOOP = () => {}
 
 interface ReviewLikesContextProps {
   deriveCurrentStateAndCount: (currentState: {
-    reviewId: any
+    reviewId: string
     liked: boolean
     likesCount: number
   }) => { liked: boolean; likesCount: number }
@@ -34,13 +34,9 @@ interface ReviewLikesProviderProps {
   subscribeLikedChangeEvent?: (
     handler: (params: { id: string; liked: boolean }) => void,
   ) => void
-  notifyReviewLiked: Function
-  notifyReviewUnliked: Function
+  notifyReviewLiked: (resourceId: string, reviewId: string) => void
+  notifyReviewUnliked: (resourceId: string, reviewId: string) => void
   children: React.ReactNode
-}
-
-interface ReviewLikesProviderState {
-  likes: { [key: string]: boolean }
 }
 
 export function ReviewLikesProvider({
@@ -129,7 +125,7 @@ export interface WithReviewLikesBaseProps {
 }
 
 export function withReviewLikes<
-  P extends DeepPartial<WithReviewLikesBaseProps>
+  P extends DeepPartial<WithReviewLikesBaseProps>,
 >(Component: ComponentType<P>) {
   return function ReviewLikesComponent(
     props: Omit<P, keyof WithReviewLikesBaseProps>,

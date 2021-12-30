@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Label } from '@titicaca/core-elements'
 
 export interface SortingOptionsProps {
-  onSelect: (e: React.SyntheticEvent, key: string) => any
+  onSelect: (e: React.SyntheticEvent, key: string) => void
   selected: string
 }
 
@@ -33,6 +33,7 @@ export default function SortingOptions({
     <OptionsContainer>
       {SORTING_OPTIONS.map(({ key, text }) => (
         <Label key={key} radio selected={selected === key}>
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
           <span onClick={onSelect && ((e) => onSelect(e, key))}>{text}</span>
         </Label>
       ))}
