@@ -2,7 +2,8 @@ import * as React from 'react'
 import qs from 'qs'
 import styled from 'styled-components'
 import { Button, Container, Text } from '@titicaca/core-elements'
-import { useHistoryFunctions, useEnv } from '@titicaca/react-contexts'
+import { useEnv } from '@titicaca/react-contexts'
+import { useNavigate } from '@titicaca/router'
 
 const SupportContainer = styled.footer`
   background-color: #f5f5f5;
@@ -39,8 +40,7 @@ export default function CSFooter({
   onCSButtonClick?: () => void
 }) {
   const { appUrlScheme } = useEnv()
-  const { navigate } = useHistoryFunctions()
-
+  const navigate = useNavigate()
   const moveToFaq = () => {
     onFAQButtonClick()
 
