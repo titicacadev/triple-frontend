@@ -2,10 +2,8 @@ import React, { useCallback } from 'react'
 import { List } from '@titicaca/core-elements'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { PoiListElement } from '@titicaca/poi-list-elements'
-import {
-  useEventTrackingContext,
-  useHistoryFunctions,
-} from '@titicaca/react-contexts'
+import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useNavigate } from '@titicaca/router'
 
 import { ListingPoi } from './types'
 
@@ -26,7 +24,7 @@ export default function PoiEntry({
   optimized?: boolean
 }) {
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
-  const { navigate } = useHistoryFunctions()
+  const navigate = useNavigate()
 
   const handleIntersectionChange = useCallback(
     ({ isIntersecting }: { isIntersecting: boolean }) => {
