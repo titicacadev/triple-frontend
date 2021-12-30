@@ -97,9 +97,10 @@ function mockHistoryFunctions() {
 }
 
 function mockEventTrackingContext() {
-  const mockedUseEventTrackingContext = useEventTrackingContext as jest.MockedFunction<
-    typeof useEventTrackingContext
-  >
+  const mockedUseEventTrackingContext =
+    useEventTrackingContext as jest.MockedFunction<
+      typeof useEventTrackingContext
+    >
 
   mockedUseEventTrackingContext.mockImplementation(() => ({
     trackEvent: jest.fn(),

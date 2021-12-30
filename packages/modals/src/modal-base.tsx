@@ -31,7 +31,7 @@ const Box = styled.div<{ width?: number } & LayeringMixinProps>`
   ${layeringMixin(0)}
 `
 
-const Actions = styled.div<{ children?: any }>`
+const Actions = styled.div<{ children?: React.ReactNode }>`
   display: block;
   width: 100%;
   height: 50px;
@@ -86,7 +86,7 @@ export default function ModalBase({
   zIndex,
 }: {
   open?: boolean
-  onClose?: (e: React.SyntheticEvent) => any
+  onClose?: (e: React.SyntheticEvent) => unknown
   children?: React.ReactNode
   width?: number
 } & LayeringMixinProps) {

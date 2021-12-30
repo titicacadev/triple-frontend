@@ -134,7 +134,7 @@ export interface WithTransitionModalBaseProps {
 }
 
 export function withTransitionModal<
-  P extends DeepPartial<WithTransitionModalBaseProps>
+  P extends DeepPartial<WithTransitionModalBaseProps>,
 >(Component: ComponentType<P>): FC<Omit<P, 'showTransitionModal'>> {
   return function TransitionModalComponent(props) {
     const { push } = useHistoryFunctions()
