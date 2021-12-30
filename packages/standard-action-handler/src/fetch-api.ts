@@ -4,7 +4,11 @@ import { UrlElements } from '@titicaca/view-utilities'
 
 export default async function fetchApi({ path, query }: UrlElements) {
   if (path === '/web-action/fetch-api' && query) {
-    const { path: apiPath, method, body } = qs.parse(query, {
+    const {
+      path: apiPath,
+      method,
+      body,
+    } = qs.parse(query, {
       ignoreQueryPrefix: true,
     })
 

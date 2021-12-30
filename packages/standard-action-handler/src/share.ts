@@ -44,18 +44,19 @@ function navigatorShare(params: SharingParams) {
   })
 }
 
-function copyUrlToClipboard(params: SharingParams) {
+async function copyUrlToClipboard(params: SharingParams) {
   const { webUrl } = params
 
-  navigator.clipboard
-    .writeText(webUrl || window.location.href)
-    .then(() => {
-      alert('링크를 복사했습니다.')
-    })
-    .catch((_) => copyUrlWithDOMAPI(params))
+  try {
+    await navigator.clipboard.writeText(webUrl || window.location.href)
+
+    alert('링크를 복사했습니다.')
+  } catch (error) {
+    copyUrlWithDomApi(params)
+  }
 }
 
-function copyUrlWithDOMAPI(params: SharingParams) {
+function copyUrlWithDomApi(params: SharingParams) {
   const { webUrl } = params
   const inputElement = document.createElement('input')
 
@@ -96,7 +97,7 @@ function createShareFunction() {
       ? navigatorShare
       : typeof navigator !== 'undefined' && navigator.clipboard
       ? copyUrlToClipboard
-      : copyUrlWithDOMAPI
+      : copyUrlWithDomApi
   } else {
     return shareNativeInterface
   }

@@ -3,11 +3,11 @@ import { parseUrl } from '@titicaca/view-utilities'
 import { WebAction, ContextOptions } from './types'
 
 export default class Handler {
-  options: ContextOptions
+  private options: ContextOptions
 
-  handlers: WebAction[]
+  private handlers: WebAction[]
 
-  constructor({
+  public constructor({
     handlers,
     options,
   }: {
@@ -18,7 +18,7 @@ export default class Handler {
     this.options = options
   }
 
-  async execute(
+  public async execute(
     url: string,
     params?: Parameters<ContextOptions['navigate']>[1],
   ) {
@@ -37,7 +37,7 @@ export default class Handler {
     }
   }
 
-  toFunction() {
+  public toFunction() {
     return this.execute.bind(this)
   }
 }
