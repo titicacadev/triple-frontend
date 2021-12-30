@@ -6,13 +6,17 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/core-elements": ["../core-elements/src"],
-      "@titicaca/react-contexts": ["../react-contexts/src"]
+      "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/router": ["../router/src"]
     }
   },
   "include": ["./src"],
   "references": [
     {
       "path": "../core-elements"
+    },
+    {
+      "path": "../router"
     },
     {
       "path": "../react-contexts"
