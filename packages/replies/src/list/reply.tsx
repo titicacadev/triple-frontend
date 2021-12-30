@@ -248,46 +248,48 @@ export default function Reply({
           text={derivedText}
         />
 
-        <ReactionBox
-          padding={{ top: 7 }}
-          flex
-          alignItems="center"
-          cursor="pointer"
-        >
-          {reactions.like?.haveMine ? (
-            <img
-              width={14}
-              height={14}
-              src="https://assets.triple.guide/images/btn-lounge-thanks-on@3x.png"
-              alt="thanks on icon"
-            />
-          ) : (
-            <img
-              width={14}
-              height={14}
-              src="https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png"
-              alt="thanks off icon"
-            />
-          )}
-
-          {reactions.like && reactions.like?.count > 0 ? (
-            <Text padding={{ left: 2 }} size={12} color="gray300" bold>
-              좋아요 {reactions.like?.count}
-            </Text>
-          ) : null}
-
-          <Text
-            padding={{ left: 2 }}
-            size={12}
-            color="gray300"
-            bold
-            onClick={() => {
-              handleWriteReplyClick(reply)
-            }}
+        {!deleted ? (
+          <ReactionBox
+            padding={{ top: 7 }}
+            flex
+            alignItems="center"
+            cursor="pointer"
           >
-            답글달기
-          </Text>
-        </ReactionBox>
+            {reactions.like?.haveMine ? (
+              <img
+                width={14}
+                height={14}
+                src="https://assets.triple.guide/images/btn-lounge-thanks-on@3x.png"
+                alt="thanks on icon"
+              />
+            ) : (
+              <img
+                width={14}
+                height={14}
+                src="https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png"
+                alt="thanks off icon"
+              />
+            )}
+
+            {reactions.like && reactions.like?.count > 0 ? (
+              <Text padding={{ left: 2 }} size={12} color="gray300" bold>
+                좋아요 {reactions.like?.count}
+              </Text>
+            ) : null}
+
+            <Text
+              padding={{ left: 2 }}
+              size={12}
+              color="gray300"
+              bold
+              onClick={() => {
+                handleWriteReplyClick(reply)
+              }}
+            >
+              답글달기
+            </Text>
+          </ReactionBox>
+        ) : null}
       </Container>
 
       {childrenCount > childReplies.length ? (
