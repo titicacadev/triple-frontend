@@ -25,7 +25,7 @@ function ImageIcon({
   ...props
 }: ImageIconProps) {
   const src = `https://assets.triple.guide/images/${name}.png`
-  return <img width={width} height={height} {...props} src={src} />
+  return <img width={width} height={height} {...props} src={src} alt="" />
 }
 
 export function Bus(props: IconDefaultProps) {

@@ -6,7 +6,7 @@ import {
 } from '@titicaca/react-contexts'
 import { gray50 } from '@titicaca/color-palette'
 
-import { TNAProductData } from './types'
+import { TnaProductData } from './types'
 import { TnaProductWithPrice } from './product'
 
 export function Slot({
@@ -16,7 +16,7 @@ export function Slot({
 }: {
   id?: number
   title: string
-  products: TNAProductData[]
+  products: TnaProductData[]
 }) {
   const { trackEvent } = useEventTrackingContext()
   const { navigate } = useHistoryFunctions()
@@ -24,7 +24,7 @@ export function Slot({
   const [showMore, setShowMore] = useState(false)
 
   const handleClick = useCallback(
-    (e: React.SyntheticEvent, product: TNAProductData, index: number) => {
+    (e: React.SyntheticEvent, product: TnaProductData, index: number) => {
       trackEvent({
         ga: ['투어티켓_상품선택', `${slotId}_${product.id}_${index}`],
         fa: {
@@ -40,7 +40,7 @@ export function Slot({
   )
 
   const handleIntersect = useCallback(
-    (product: TNAProductData, index: number) => {
+    (product: TnaProductData, index: number) => {
       trackEvent({
         fa: {
           action: '투어티켓_노출',

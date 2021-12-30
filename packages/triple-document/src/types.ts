@@ -5,8 +5,8 @@ import { ImageSourceType } from '@titicaca/core-elements'
 import { MediaConfig } from './prop-context/media-config'
 import { ResourceClickHandler } from './prop-context/resource-click-handler'
 import {
-  TNAProductClickHandler,
-  TNAProductsFetcher,
+  TnaProductsClickHandler,
+  TnaProductsFetcher,
 } from './elements/tna/types'
 
 export interface RegionData {
@@ -42,13 +42,16 @@ export type TripleDocumentContext = {
   onResourceClick?: ResourceClickHandler
   onImageClick?: ImageEventHandler
   onLinkClick?: LinkEventHandler
-  onTNAProductClick?: TNAProductClickHandler
-  onTNAProductsFetch?: TNAProductsFetcher
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  onTNAProductClick?: TnaProductsClickHandler
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  onTNAProductsFetch?: TnaProductsFetcher
   imageSourceComponent?: ImageSourceType
   deepLink?: string
 } & MediaConfig
 
 export interface ElementSet {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [type: string]: React.ComponentType<any>
 }
 

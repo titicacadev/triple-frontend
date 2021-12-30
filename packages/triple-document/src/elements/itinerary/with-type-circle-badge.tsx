@@ -31,7 +31,7 @@ function getColorOfType(type: ItineraryItemType['poi']['type']) {
  *  const RestaurantCirlceBadge = withTypeCircleBadge('restaurant')
  */
 
-type HoCProps = Omit<Parameters<typeof CircleBadge>[0], 'color'>
+type HocProps = Omit<Parameters<typeof CircleBadge>[0], 'color'>
 
 export default function withTypeCircleBadge(
   type: ItineraryItemType['poi']['type'],
@@ -41,7 +41,7 @@ export default function withTypeCircleBadge(
   return function ColorBadgeComponent({
     children,
     ...rest
-  }: PropsWithChildren<HoCProps>) {
+  }: PropsWithChildren<HocProps>) {
     return (
       <CircleBadge {...rest} color={color}>
         {children}

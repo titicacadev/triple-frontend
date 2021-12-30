@@ -2,15 +2,25 @@ import { useCallback } from 'react'
 import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
 
 enum Resource {
-  REGION = 'region',
-  HOTEL = 'hotel',
-  RESTAURANT = 'restaurant',
-  ATTRACTION = 'attraction',
+  Region = 'region',
+  Hotel = 'hotel',
+  Restaurant = 'restaurant',
+  Attraction = 'attraction',
 }
 
-function getObjectNamesProperty(source: any) {
-  if (Object.prototype.hasOwnProperty.call(source, 'names')) {
-    return source.names.ko || source.names.en
+function getObjectNamesProperty(source: unknown) {
+  if (
+    typeof source === 'object' &&
+    source !== null &&
+    Object.prototype.hasOwnProperty.call(source, 'names')
+  ) {
+    const { names } = source as { names: unknown }
+
+    if (typeof names === 'object' && names !== null) {
+      const { ko, en } = names as { ko?: unknown; en?: unknown }
+
+      return ko || en
+    }
   }
 }
 
@@ -20,7 +30,7 @@ export default function useResourceEventTracker() {
   return useCallback(
     ({ id, type, source }: { id: string; type: string; source: unknown }) => {
       switch (type) {
-        case Resource.REGION:
+        case Resource.Region:
           return trackEventWithMetadata({
             fa: {
               action: '도시선택',
@@ -30,9 +40,9 @@ export default function useResourceEventTracker() {
             },
           })
 
-        case Resource.HOTEL:
-        case Resource.RESTAURANT:
-        case Resource.ATTRACTION:
+        case Resource.Hotel:
+        case Resource.Restaurant:
+        case Resource.Attraction:
           return trackEventWithMetadata({
             fa: {
               action: 'POI선택',

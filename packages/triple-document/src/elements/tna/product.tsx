@@ -6,7 +6,7 @@ import { OverlayScrapButton } from '@titicaca/scrap-button'
 import semver from 'semver'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 
-import { TNAProductData, DomesticArea } from './types'
+import { TnaProductData, DomesticArea } from './types'
 import { generateCoupon } from './helpers'
 import { PricePolicyCouponInfo } from './price-policy-coupon-info'
 
@@ -74,13 +74,13 @@ export function TnaProductWithPrice({
   onClick,
 }: {
   index: number
-  product: TNAProductData
+  product: TnaProductData
   onClick: (
     e: React.SyntheticEvent,
-    product: TNAProductData,
+    product: TnaProductData,
     index: number,
   ) => void
-  onIntersect: (product: TNAProductData, index: number) => void
+  onIntersect: (product: TnaProductData, index: number) => void
 }) {
   const { app, isPublic } = useUserAgentContext()
 

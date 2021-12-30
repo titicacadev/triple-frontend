@@ -2,17 +2,17 @@ import { TagColors } from '@titicaca/core-elements'
 
 type Price = string | number
 
-export type TNAProductsFetcher = (slotId: number) => Promise<Response>
+export type TnaProductsFetcher = (slotId: number) => Promise<Response>
 
-export type TNAProductClickHandler = (
+export type TnaProductsClickHandler = (
   e: React.SyntheticEvent,
   product: unknown,
   slotId?: number,
   index?: number,
 ) => void
 
-export interface TNAProductsResponse {
-  products: TNAProductData[]
+export interface TnaProductsResponse {
+  products: TnaProductData[]
   title: string
   description?: string
 }
@@ -41,7 +41,7 @@ export interface TnaCoupon {
   name: string
 }
 
-export interface TNAProductData {
+export interface TnaProductData {
   id: string
   heroImage: string
   title: string
