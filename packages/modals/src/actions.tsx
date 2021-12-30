@@ -8,11 +8,11 @@ export default function ModalActions({
 }: {
   negative: {
     text?: string
-    onClick?: (e?: React.SyntheticEvent) => any
+    onClick?: (e?: React.SyntheticEvent) => unknown
   }
   positive: {
     text?: string
-    onClick?: (e?: React.SyntheticEvent) => any
+    onClick?: (e?: React.SyntheticEvent) => unknown
   }
 }) {
   return (

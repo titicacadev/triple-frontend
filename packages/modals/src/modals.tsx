@@ -20,9 +20,9 @@ export function Confirm({
   cancelText?: string
   confirmText?: string
   messageType?: string
-  onClose?: (e?: React.SyntheticEvent) => any
-  onCancel?: (e?: React.SyntheticEvent) => any
-  onConfirm?: (e?: React.SyntheticEvent) => any
+  onClose?: (e?: React.SyntheticEvent) => unknown
+  onCancel?: (e?: React.SyntheticEvent) => unknown
+  onConfirm?: (e?: React.SyntheticEvent) => unknown
 }) {
   return (
     <Modal open={open} onClose={onClose}>
@@ -60,8 +60,8 @@ export function Alert({
   open?: boolean
   confirmText?: string | React.ReactNode
   messageType?: string
-  onClose?: (e?: React.SyntheticEvent) => any
-  onConfirm?: (e?: React.SyntheticEvent) => any
+  onClose?: (e?: React.SyntheticEvent) => unknown
+  onConfirm?: (e?: React.SyntheticEvent) => unknown
 }) {
   return (
     <Modal open={open} onClose={onClose}>

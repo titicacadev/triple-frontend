@@ -20,18 +20,21 @@ export const LOGIN_CTA_MODAL_HASH = 'login-cta-modal'
 
 const WITH_LOGIN_PATH_APP_VERSION = '5.0.0'
 
-const LoginCTAContext = createContext<
+const LoginCtaContext = createContext<
   | {
       setReturnUrl?: (url: string) => void
     }
   | undefined
 >(undefined)
 
-export function LoginCTAModalProvider({ children }: PropsWithChildren<{}>) {
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function LoginCTAModalProvider({
+  children,
+}: PropsWithChildren<unknown>) {
   const uriHash = useURIHash()
   const { trackEvent } = useEventTrackingContext()
   const { back, navigate } = useHistoryFunctions()
-  const hasParentModal = useContext(LoginCTAContext)
+  const hasParentModal = useContext(LoginCtaContext)
   const { isPublic, os, app } = useUserAgentContext()
   const appVersion = semver.coerce(app?.version)
   const open = uriHash === LOGIN_CTA_MODAL_HASH
@@ -49,7 +52,7 @@ export function LoginCTAModalProvider({ children }: PropsWithChildren<{}>) {
   )
 
   return (
-    <LoginCTAContext.Provider value={{ setReturnUrl }}>
+    <LoginCtaContext.Provider value={{ setReturnUrl }}>
       {children}
 
       {isLegacyAndroidApp ? (
@@ -84,12 +87,13 @@ export function LoginCTAModalProvider({ children }: PropsWithChildren<{}>) {
           <br />더 편하게 이용하세요🙂
         </Confirm>
       )}
-    </LoginCTAContext.Provider>
+    </LoginCtaContext.Provider>
   )
 }
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export function withLoginCTAModal<P>(Component: ComponentType<P>) {
-  return function WithLoginCTAModal(props: P) {
+  return function WithLoginCtaModal(props: P) {
     return (
       <LoginCTAModalProvider>
         <Component {...props} />
@@ -98,9 +102,10 @@ export function withLoginCTAModal<P>(Component: ComponentType<P>) {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export function useLoginCTAModal() {
   const { push } = useHistoryFunctions()
-  const contextValue = useContext(LoginCTAContext)
+  const contextValue = useContext(LoginCtaContext)
 
   return useMemo(
     () => ({
