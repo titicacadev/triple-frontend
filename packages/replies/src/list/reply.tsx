@@ -9,7 +9,11 @@ import {
 } from '@titicaca/core-elements'
 import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
 import { ExternalLink } from '@titicaca/router'
-import { useURIHash, useHistoryFunctions } from '@titicaca/react-contexts'
+import {
+  useURIHash,
+  useHistoryFunctions,
+  useIsomorphicNavigation,
+} from '@titicaca/react-contexts'
 import ActionSheet from '@titicaca/action-sheet'
 
 import { Reply as ReplyType, Writer } from '../types'
@@ -104,7 +108,7 @@ export default function Reply({
 
   const { setEditingMessage } = useRepliesContext()
 
-  const { push } = useHistoryFunctions()
+  const { push, back } = useHistoryFunctions()
 
   useEffect(() => {
     async function fetchChildRepliesAndSet() {
@@ -121,13 +125,6 @@ export default function Reply({
 
     fetchChildRepliesAndSet()
   }, [id])
-
-  useEffect(() => {
-    if (deleteModalOpen) {
-      push(HASH_DELETE_CLOSE_MODAL)
-      setDeleteModalOpen(false)
-    }
-  }, [deleteModalOpen, push])
 
   const fetchMoreChildReplies = useCallback(async () => {
     const response = await fetchChildReplies({
@@ -213,6 +210,25 @@ export default function Reply({
     blinded,
     childrenCount,
   })
+
+  const { asyncBack } = useIsomorphicNavigation()
+
+  const asyncPush = (): Promise<void> => {
+    return new Promise((resolve) => {
+      resolve()
+      push(HASH_DELETE_CLOSE_MODAL)
+    })
+  }
+
+  const handleClose = useCallback(async () => {
+    await asyncBack(back)
+
+    if (deleteModalOpen) {
+      await asyncPush()
+    }
+
+    setDeleteModalOpen(false)
+  }, [])
 
   return (
     <>
@@ -332,6 +348,7 @@ export default function Reply({
             messageId: id,
           })
         }
+        onClose={handleClose}
       />
     </>
   )
@@ -399,19 +416,20 @@ function FeatureActionSheet({
   actionSheetHash,
   onEditClick,
   onDeleteClick,
+  onClose,
 }: {
   isMine: boolean
   actionSheetHash: string
   onEditClick: () => void
   onDeleteClick: () => void
+  onClose: () => void
 }) {
   const uriHash = useURIHash()
-  const { back } = useHistoryFunctions()
 
   return (
     <ActionSheet
       open={uriHash === actionSheetHash}
-      onClose={back}
+      onClose={onClose}
       title={isMine ? '내 댓글' : '댓글'}
     >
       {isMine ? (
