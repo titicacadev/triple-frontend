@@ -215,8 +215,8 @@ export default function Reply({
 
   const asyncPush = (): Promise<void> => {
     return new Promise((resolve) => {
-      resolve()
       push(HASH_DELETE_CLOSE_MODAL)
+      resolve()
     })
   }
 
