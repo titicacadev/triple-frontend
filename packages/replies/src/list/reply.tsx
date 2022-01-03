@@ -106,7 +106,7 @@ export default function Reply({
 
   const { setEditingMessage } = useRepliesContext()
 
-  const { push } = useHistoryFunctions()
+  const { push, back } = useHistoryFunctions()
 
   const { asyncBack } = useIsomorphicNavigation()
 
@@ -202,7 +202,7 @@ export default function Reply({
         },
       })
 
-      await asyncBack()
+      await asyncBack(back)
       push(HASH_DELETE_CLOSE_MODAL)
 
       return true
