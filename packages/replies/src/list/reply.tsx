@@ -202,12 +202,11 @@ export default function Reply({
         },
       })
 
-      await asyncBack(back)
-      push(HASH_DELETE_CLOSE_MODAL)
+      await asyncBack(back).then(() => push(HASH_DELETE_CLOSE_MODAL))
 
       return true
     },
-    [push],
+    [back, push],
   )
 
   const derivedText = deriveContent({
