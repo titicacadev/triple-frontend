@@ -212,7 +212,6 @@ export default function Reply({
   })
 
   useEffect(() => {
-    console.log('deleteModalOpen', deleteModalOpen)
     if (deleteModalOpen) {
       push(HASH_DELETE_CLOSE_MODAL)
     }
