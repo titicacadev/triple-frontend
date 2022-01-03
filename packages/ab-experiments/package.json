@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/ab-experiments",
-  "version": "5.0.1",
+  "version": "5.1.0",
   "description": "a/b experiments package",
   "homepage": "https:/github.com/titicacadev/triple-frontend#readme",
   "license": "UNLICENSED",
@@ -22,6 +22,6 @@
     "next": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0"
   },
   "dependencies": {
-    "@titicaca/react-contexts": "^5.0.1"
+    "@titicaca/react-contexts": "^5.1.0"
   }
 }
