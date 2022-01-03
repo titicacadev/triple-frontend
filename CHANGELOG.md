@@ -21,6 +21,7 @@
 
 ### date-picker
 
+- RangePicker V2 컴포넌트를 생성합니다. [#1749](https://github.com/titicacadev/triple-frontend/pull/1749)
 - RangePickerV2 작업 중, deprecated된 요소를 분리 합니다 [#1775](https://github.com/titicacadev/triple-frontend/pull/1775)
 
 ### common
