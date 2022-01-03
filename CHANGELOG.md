@@ -2,9 +2,31 @@
 
 ## 5.1.0
 
+### ESLint 검사
+
+- triple-document 디렉토리 ESLint 검사 활성화 및 린트 오류 수정 [#1795](https://github.com/titicacadev/triple-frontend/pull/1795)
+- standard-action-handler 디렉토리 ESLint 검사 활성화 및 린트 오류 수정 [#1794](https://github.com/titicacadev/triple-frontend/pull/1794)
+- review 디렉토리 ESLint 오류 수정 [#1793](https://github.com/titicacadev/triple-frontend/pull/1793)
+- modals 디렉토리의 ESLint 검사 활성화 [#1790](https://github.com/titicacadev/triple-frontend/pull/1790)
+- footer 디렉토리의 ESLint 검사를 활성화합니다. [#1788](https://github.com/titicacadev/triple-frontend/pull/1788)
+- ad-banners 패키지의 ESLint 검사를 활성화합니다. [#1786](https://github.com/titicacadev/triple-frontend/pull/1786)
+
+### fetcher
+
+- 응답 형식을 수정합니다 [#1785](https://github.com/titicacadev/triple-frontend/pull/1785)
+
+### router
+
+- router 패키지에 useNavigate 훅을 추가합니다. [#1784](https://github.com/titicacadev/triple-frontend/pull/1784)
+
+### date-picker
+
+- RangePickerV2 작업 중, deprecated된 요소를 분리 합니다 [#1775](https://github.com/titicacadev/triple-frontend/pull/1775)
+
 ### common
 
-- PR 템플릿 업데이트 (#1773)
+- codecov를 연결합니다 [#1776](https://github.com/titicacadev/triple-frontend/pull/1776)
+- PR 템플릿 업데이트 [#1773](https://github.com/titicacadev/triple-frontend/pull/1773)
 
 ## 5.0.1
 
