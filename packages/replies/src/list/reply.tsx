@@ -104,11 +104,11 @@ export default function Reply({
     childPage: number
   }>({ childReplies: checkUniqueReply(children), childPage: 0 })
 
-  const [deleteModalOpen, setDeleteModalOpen] = useState(false)
-
   const { setEditingMessage } = useRepliesContext()
 
   const { push } = useHistoryFunctions()
+
+  const { asyncBack } = useIsomorphicNavigation()
 
   useEffect(() => {
     async function fetchChildRepliesAndSet() {
@@ -186,23 +186,29 @@ export default function Reply({
     focusInput()
   }
 
-  const handleDeleteReplyClick = ({
-    mentionedUserName,
-    mentionedUserUid,
-    messageId,
-  }: ReplyType['actionSpecifications']['edit'] & {
-    messageId?: string
-  }) => {
-    setEditingMessage({
-      currentMessageId: messageId,
-      content: {
-        mentioningUserUid: mentionedUserUid,
-        mentioningUserName: mentionedUserName,
-      },
-    })
+  const handleDeleteReplyClick = useCallback(
+    async ({
+      mentionedUserName,
+      mentionedUserUid,
+      messageId,
+    }: ReplyType['actionSpecifications']['edit'] & {
+      messageId?: string
+    }) => {
+      setEditingMessage({
+        currentMessageId: messageId,
+        content: {
+          mentioningUserUid: mentionedUserUid,
+          mentioningUserName: mentionedUserName,
+        },
+      })
 
-    setDeleteModalOpen(true)
-  }
+      await asyncBack()
+      push(HASH_DELETE_CLOSE_MODAL)
+
+      return true
+    },
+    [push],
+  )
 
   const derivedText = deriveContent({
     text: text || markdownText || '',
@@ -210,12 +216,6 @@ export default function Reply({
     blinded,
     childrenCount,
   })
-
-  useEffect(() => {
-    if (deleteModalOpen) {
-      push(HASH_DELETE_CLOSE_MODAL)
-    }
-  }, [deleteModalOpen])
 
   return (
     <>
