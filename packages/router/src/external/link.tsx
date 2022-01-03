@@ -1,17 +1,13 @@
 import React, { MouseEventHandler, PropsWithChildren, useEffect } from 'react'
 import { useUserAgentContext } from '@titicaca/react-contexts'
-import { parseUrl } from '@titicaca/view-utilities'
 
-import {
-  AppSpecificLinkProps,
-  useTripleAppRoutingOptionsAdder,
-} from '../common/app-specific-link-options'
-import { ANCHOR_TARGET_MAP, TargetProps } from '../common/target'
-import { OutlinkOptions, useAppBridge } from '../common/app-bridge'
-import { useWebUrlBaseAdder } from '../common/add-web-url-base'
-import { HrefProps } from '../common/types'
+import { useTripleAppRoutingOptionsAdder } from '../common/app-specific-link-options'
+import { ANCHOR_TARGET_MAP } from '../common/target'
 import { RouterGuardedLink } from '../link/router-guarded-link'
 import { LinkCommonProps } from '../link/types'
+
+import { useExternalHrefHandler } from './href-handler'
+import { checkHrefIsAbsoluteUrl } from './utils'
 
 export function ExternalLink({
   href,
@@ -96,69 +92,4 @@ export function ExternalLink({
       {children}
     </RouterGuardedLink>
   )
-}
-
-function useExternalHrefHandler() {
-  const { isPublic } = useUserAgentContext()
-  const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
-  const { openInlink, openOutlink } = useAppBridge()
-  const addWebUrlBase = useWebUrlBaseAdder()
-
-  const handleHrefExternally = ({
-    href,
-    target,
-    lnbTarget,
-    noNavbar,
-    shouldPresent,
-    swipeToClose,
-    title,
-    stopDefaultHandler,
-  }: HrefProps &
-    TargetProps &
-    AppSpecificLinkProps &
-    Pick<OutlinkOptions, 'title'> & { stopDefaultHandler: () => void }) => {
-    const outOfTriple = checkHrefIsAbsoluteUrl(href)
-
-    if (target === 'current' && isPublic === false && outOfTriple === true) {
-      stopDefaultHandler()
-
-      return
-    }
-
-    const finalHref = addTripleAppRoutingOptions({
-      href,
-      lnbTarget,
-      noNavbar,
-      shouldPresent,
-      swipeToClose,
-    })
-
-    if (target === 'new' && isPublic === false) {
-      stopDefaultHandler()
-
-      if (outOfTriple === true) {
-        openOutlink(finalHref, { title })
-      } else {
-        openInlink(finalHref)
-      }
-
-      return
-    }
-
-    if (target === 'browser' && isPublic === false) {
-      stopDefaultHandler()
-
-      openOutlink(outOfTriple ? finalHref : addWebUrlBase(finalHref), {
-        target: 'browser',
-        title,
-      })
-    }
-  }
-
-  return handleHrefExternally
-}
-
-function checkHrefIsAbsoluteUrl(href: string): boolean {
-  const { host } = parseUrl(href)
-  return !!host
 }
