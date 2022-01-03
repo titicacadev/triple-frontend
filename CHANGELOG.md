@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 5.1.0
+
+### common
+
+- PR 템플릿 업데이트 (#1773)
+
 ## 5.0.1
 
 ### core-elements
