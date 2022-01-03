@@ -8,6 +8,8 @@ import { TargetProps } from '../common/target'
 import { HrefProps } from '../common/types'
 import { OutlinkOptions } from '../common/app-bridge'
 
+import { useExternalHrefHandler } from './href-handler'
+
 export default function useExternalRouter() {
   const customRouter = useExternalHrefHandler()
   const createDisabledLinkNotifier = useDisabledLinkNotifierCreator()
