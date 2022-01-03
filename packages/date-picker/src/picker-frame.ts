@@ -172,16 +172,6 @@ const PickerFrame = styled.div<PickerFrameProps>`
     }
 
     ${sideSpacingMixin}
-
-    /* unknown class */
-    .DayPicker-WeekNumber {
-      position: relative;
-      display: table-cell;
-      padding: 9px 0;
-      width: 2%;
-      vertical-align: middle;
-      outline: none;
-    }
   }
 `
 export default PickerFrame
