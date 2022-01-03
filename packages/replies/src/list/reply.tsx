@@ -108,7 +108,7 @@ export default function Reply({
 
   const { setEditingMessage } = useRepliesContext()
 
-  const { push, back } = useHistoryFunctions()
+  const { push } = useHistoryFunctions()
 
   useEffect(() => {
     async function fetchChildRepliesAndSet() {
@@ -211,24 +211,12 @@ export default function Reply({
     childrenCount,
   })
 
-  const { asyncBack } = useIsomorphicNavigation()
-
-  const asyncPush = (): Promise<void> => {
-    return new Promise((resolve) => {
-      push(HASH_DELETE_CLOSE_MODAL)
-      resolve()
-    })
-  }
-
-  const handleClose = useCallback(async () => {
-    await asyncBack(back)
-
+  useEffect(() => {
+    console.log('deleteModalOpen', deleteModalOpen)
     if (deleteModalOpen) {
-      await asyncPush()
+      push(HASH_DELETE_CLOSE_MODAL)
     }
-
-    setDeleteModalOpen(false)
-  }, [])
+  }, [deleteModalOpen])
 
   return (
     <>
@@ -348,7 +336,6 @@ export default function Reply({
             messageId: id,
           })
         }
-        onClose={handleClose}
       />
     </>
   )
@@ -416,20 +403,19 @@ function FeatureActionSheet({
   actionSheetHash,
   onEditClick,
   onDeleteClick,
-  onClose,
 }: {
   isMine: boolean
   actionSheetHash: string
   onEditClick: () => void
   onDeleteClick: () => void
-  onClose: () => void
 }) {
   const uriHash = useURIHash()
+  const { back } = useHistoryFunctions()
 
   return (
     <ActionSheet
       open={uriHash === actionSheetHash}
-      onClose={onClose}
+      onClose={back}
       title={isMine ? '내 댓글' : '댓글'}
     >
       {isMine ? (
