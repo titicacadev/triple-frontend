@@ -1,7 +1,6 @@
 import React, { MouseEvent, MouseEventHandler, PropsWithChildren } from 'react'
 import { useRouter } from 'next/router'
 import { useUserAgentContext } from '@titicaca/react-contexts'
-import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 
 import {
   AppSpecificLinkProps,
@@ -14,12 +13,7 @@ import { HrefProps } from '../common/types'
 import { RouterGuardedLink } from '../link/router-guarded-link'
 import { LinkCommonProps } from '../link/types'
 
-function addBasePath(href: string, basePath: string): string {
-  const { path, ...rest } = parseUrl(href)
-  const newPath = path === '/' ? basePath : `${basePath}${path}`
-
-  return generateUrl({ path: newPath, ...rest })
-}
+import { useBasePathAdder } from './base-path'
 
 /**
  * https://github.com/vercel/next.js/blob/7d48241949bc7bac7b8e30fda6be71f37286886f/packages/next/client/link.tsx#L64
@@ -61,12 +55,12 @@ export function LocalLink({
   onClick,
   children,
 }: PropsWithChildren<LinkCommonProps & NextjsRoutingOptions>) {
-  const { basePath } = useRouter()
   const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
   const handleHrefLocally = useLocalHrefHandler()
+  const addBasePath = useBasePathAdder()
 
   const finalHref = addTripleAppRoutingOptions({
-    href: addBasePath(href, basePath),
+    href: addBasePath(href),
     lnbTarget,
     noNavbar,
     shouldPresent,
@@ -113,8 +107,7 @@ function useLocalHrefHandler() {
   const { openInlink, openOutlink } = useAppBridge()
   const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
   const addWebUrlBase = useWebUrlBaseAdder()
-
-  const { basePath } = router
+  const addBasePath = useBasePathAdder()
 
   const handleNextjsRouting = async (
     href: string,
@@ -159,7 +152,7 @@ function useLocalHrefHandler() {
     }
 
     const finalHref = addTripleAppRoutingOptions({
-      href: addBasePath(href, basePath),
+      href: addBasePath(href),
       lnbTarget,
       noNavbar,
       shouldPresent,
