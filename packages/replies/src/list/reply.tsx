@@ -206,7 +206,7 @@ export default function Reply({
 
       return true
     },
-    [back, push],
+    [asyncBack, back, push],
   )
 
   const derivedText = deriveContent({
