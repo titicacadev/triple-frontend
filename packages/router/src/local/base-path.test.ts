@@ -28,7 +28,7 @@ test('주어진 href가 "/"이면 그냥 basePath를 반환합니다.', () => {
   expect(addBasePath(href)).toEqual(basePath)
 })
 
-function mockNextRouter() {
+export function mockNextRouter() {
   const basePath = '/test-env'
 
   ;(
