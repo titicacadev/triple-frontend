@@ -1,19 +1,12 @@
 import React, { MouseEvent, MouseEventHandler, PropsWithChildren } from 'react'
-import { useRouter } from 'next/router'
-import { useUserAgentContext } from '@titicaca/react-contexts'
 
-import {
-  AppSpecificLinkProps,
-  useTripleAppRoutingOptionsAdder,
-} from '../common/app-specific-link-options'
-import { ANCHOR_TARGET_MAP, TargetProps } from '../common/target'
-import { useAppBridge } from '../common/app-bridge'
-import { useWebUrlBaseAdder } from '../common/add-web-url-base'
-import { HrefProps } from '../common/types'
+import { useTripleAppRoutingOptionsAdder } from '../common/app-specific-link-options'
+import { ANCHOR_TARGET_MAP } from '../common/target'
 import { RouterGuardedLink } from '../link/router-guarded-link'
 import { LinkCommonProps } from '../link/types'
 
 import { useBasePathAdder } from './base-path'
+import { NextjsRoutingOptions, useLocalHrefHandler } from './href-handler'
 
 /**
  * https://github.com/vercel/next.js/blob/7d48241949bc7bac7b8e30fda6be71f37286886f/packages/next/client/link.tsx#L64
@@ -23,18 +16,6 @@ import { useBasePathAdder } from './base-path'
  */
 function isKeyPressingClick(e: MouseEvent<HTMLAnchorElement>): boolean {
   return e.metaKey || e.ctrlKey || e.shiftKey || e.altKey
-}
-
-interface NextjsRoutingOptions {
-  /**
-   * 현재 창을 history에 남기지 않고 이동합니다. target="current"일 때만 작동합니다.
-   */
-  replace?: boolean
-  /**
-   * 현재창에서 라우팅할 때 페이지 스크롤을 상단으로 올릴지 여부를 결정합니다.
-   * 기본 값 true
-   */
-  scroll?: boolean
 }
 
 /**
@@ -99,82 +80,4 @@ export function LocalLink({
       {children}
     </RouterGuardedLink>
   )
-}
-
-function useLocalHrefHandler() {
-  const router = useRouter()
-  const { isPublic } = useUserAgentContext()
-  const { openInlink, openOutlink } = useAppBridge()
-  const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
-  const addWebUrlBase = useWebUrlBaseAdder()
-  const addBasePath = useBasePathAdder()
-
-  const handleNextjsRouting = async (
-    href: string,
-    { replace, scroll = true }: NextjsRoutingOptions,
-  ): Promise<void> => {
-    const success = await router[replace ? 'replace' : 'push'](
-      href,
-      undefined,
-      {
-        scroll,
-      },
-    )
-    if (success && scroll) {
-      window.scrollTo(0, 0)
-    }
-  }
-
-  const handleHrefLocally = async ({
-    href,
-    target,
-    lnbTarget,
-    noNavbar,
-    shouldPresent,
-    swipeToClose,
-    replace,
-    scroll,
-    isKeyPressing,
-    stopDefaultHandler,
-  }: HrefProps &
-    TargetProps &
-    NextjsRoutingOptions &
-    AppSpecificLinkProps & {
-      isKeyPressing: boolean
-      stopDefaultHandler: () => void
-    }) => {
-    if (target === 'current' && isKeyPressing === false) {
-      stopDefaultHandler()
-
-      await handleNextjsRouting(href, { replace, scroll })
-
-      return
-    }
-
-    const finalHref = addTripleAppRoutingOptions({
-      href: addBasePath(href),
-      lnbTarget,
-      noNavbar,
-      shouldPresent,
-      swipeToClose,
-    })
-
-    if (target === 'new' && isPublic === false) {
-      stopDefaultHandler()
-
-      openInlink(finalHref)
-
-      return
-    }
-
-    if (target === 'browser' && isPublic === false) {
-      stopDefaultHandler()
-
-      openOutlink(addWebUrlBase(finalHref), {
-        target: 'browser',
-      })
-    }
-  }
-
-  return handleHrefLocally
 }
