@@ -1,13 +1,14 @@
 import { useMemo } from 'react'
 import qs from 'qs'
-import { useHistoryFunctions, useEnv } from '@titicaca/react-contexts'
+import { useEnv } from '@titicaca/react-contexts'
+import { useNavigate } from '@titicaca/router'
 
 import { ResourceType } from './types'
 import { writeReview } from './review-api-clients'
 
 export function useClientActions() {
   const { appUrlScheme } = useEnv()
-  const { navigate } = useHistoryFunctions()
+  const navigate = useNavigate()
 
   return useMemo(() => {
     return {
