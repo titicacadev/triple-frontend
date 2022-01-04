@@ -23,6 +23,7 @@
     "@titicaca/map": "^5.1.2",
     "@titicaca/modals": "^5.1.2",
     "@titicaca/poi-list-elements": "^5.1.2",
+    "@titicaca/router": "^5.1.2",
     "@titicaca/scrap-button": "^5.1.2",
     "@titicaca/standard-action-handler": "^5.1.2",
     "@titicaca/triple-media": "^5.1.2",

@@ -13,6 +13,7 @@
       "@titicaca/modals": ["../modals/src"],
       "@titicaca/poi-list-elements": ["../poi-list-elements/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/router": ["../router/src"],
       "@titicaca/scrap-button": ["../scrap-button/src"],
       "@titicaca/standard-action-handler": ["../standard-action-handler/src"],
       "@titicaca/triple-media": ["../triple-media/src"],
@@ -44,6 +45,9 @@
     },
     {
       "path": "../poi-list-elements"
+    },
+    {
+      "path": "../router"
     },
     {
       "path": "../scrap-button"
