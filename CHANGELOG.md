@@ -1,5 +1,42 @@
 # CHANGELOG
 
+## Unreleased
+
+### ad-banners
+
+- router 패키지 의존성 추가 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
+- history-context의 `navigate` 대신 router 패키지의 `useNavigate` 사용 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
+
+### booking-completion
+
+- router 패키지 의존성 추가 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
+- history-context의 `navigate` 대신 router 패키지의 `useNavigate` 사용 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
+
+### footer
+
+- router 패키지 의존성 추가 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
+- history-context의 `navigate` 대신 router 패키지의 `useNavigate` 사용 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
+
+### nearby-pois
+
+- router 패키지 의존성 추가 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
+- history-context의 `navigate` 대신 router 패키지의 `useNavigate` 사용 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
+
+### review
+
+- router 패키지 의존성 추가 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
+- history-context의 `navigate` 대신 router 패키지의 `useNavigate` 사용 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
+
+### social-reviews
+
+- router 패키지 의존성 추가 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
+- history-context의 `navigate` 대신 router 패키지의 `useNavigate` 사용 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
+
+### triple-document
+
+- router 패키지 의존성 추가 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
+- history-context의 `navigate` 대신 router 패키지의 `useNavigate` 사용 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
+
 ## 5.1.2
 
 ### ESLint 검사
