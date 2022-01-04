@@ -1,14 +1,14 @@
 import { renderHook, act } from '@testing-library/react-hooks'
-import { useUserAgentContext } from '@titicaca/react-contexts'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'
 
 import { useAppCallback } from './use-app-callback'
 
-jest.mock('@titicaca/react-contexts')
+jest.mock('@titicaca/react-client-interfaces')
 jest.mock('@titicaca/modals')
 
 test('일반 브라우저에서 앱 전환 모달 표시 함수를 호출합니다.', () => {
-  mockUserAgentContext({ isPublic: true })
+  mockClientContext({ appName: 'Triple-iOS', appVersion: '5.11.0' } as const)
   const mockShow = mockTransitionModalContext()
 
   const { result } = renderHook(() => {
@@ -25,7 +25,10 @@ test('일반 브라우저에서 앱 전환 모달 표시 함수를 호출합니�
 })
 
 test('앱에서 앱 전환 모달 표시 함수를 호출하지 않습니다.', () => {
-  mockUserAgentContext({ isPublic: false })
+  mockClientContext({
+    appName: 'Triple-Android',
+    appVersion: '5.11.0',
+  })
   const mockShow = mockTransitionModalContext()
 
   const { result } = renderHook(() => {
@@ -41,16 +44,13 @@ test('앱에서 앱 전환 모달 표시 함수를 호출하지 않습니다.', 
   expect(mockShow).toBeCalledTimes(0)
 })
 
-function mockUserAgentContext({ isPublic }: { isPublic: boolean }) {
-  const mockedUseUserAgentContext = useUserAgentContext as jest.MockedFunction<
-    typeof useUserAgentContext
+function mockClientContext(app: ReturnType<typeof useClientContext>) {
+  const mockedUseClientContext = useClientContext as jest.MockedFunction<
+    typeof useClientContext
   >
 
-  mockedUseUserAgentContext.mockImplementation(
-    () =>
-      ({
-        isPublic,
-      } as ReturnType<typeof useUserAgentContext>),
+  mockedUseClientContext.mockImplementation(
+    () => app as ReturnType<typeof useClientContext>,
   )
 }
 

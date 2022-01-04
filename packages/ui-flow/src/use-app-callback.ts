@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'
-import { useUserAgentContext } from '@titicaca/react-contexts'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 
 /**
  * User Agent가 앱 환경일 때만 주어진 콜백을 실행하는 함수를 반환하는 훅
@@ -15,12 +15,12 @@ export function useAppCallback<T extends (...args: any[]) => any>(
   fn: T,
   returnValue?: any,
 ): (...args: Parameters<T>) => ReturnType<T> | void {
-  const { isPublic } = useUserAgentContext()
+  const app = useClientContext()
   const { show } = useTransitionModal()
 
   return useCallback(
     (...args) => {
-      if (!isPublic) {
+      if (app) {
         return fn(...args)
       }
 
@@ -28,6 +28,6 @@ export function useAppCallback<T extends (...args: any[]) => any>(
 
       return returnValue
     },
-    [fn, isPublic, show, transitionType, returnValue],
+    [fn, app, show, transitionType, returnValue],
   )
 }

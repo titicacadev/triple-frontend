@@ -2,13 +2,13 @@ import React, { PropsWithChildren } from 'react'
 import {
   ScrapsProvider,
   useSessionAvailability,
-  useUserAgentContext,
 } from '@titicaca/react-contexts'
 import {
   useTransitionModal,
   TransitionType,
   useLoginCTAModal,
 } from '@titicaca/modals'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 
 /**
  * 전역 스크랩 context에 가드를 추가하는 컴포넌트
@@ -20,7 +20,7 @@ export function GuardedScrapsProvider({
   beforeScrapedChange,
   ...props
 }: PropsWithChildren<Parameters<typeof ScrapsProvider>[0]>) {
-  const { isPublic } = useUserAgentContext()
+  const app = useClientContext()
   const sessionAvailable = useSessionAvailability()
   const { show: showTransitionModal } = useTransitionModal()
   const { show: showLoginCTA } = useLoginCTAModal()
@@ -28,7 +28,7 @@ export function GuardedScrapsProvider({
   return (
     <ScrapsProvider
       beforeScrapedChange={(target, scraped) => {
-        if (isPublic) {
+        if (!app) {
           showTransitionModal(TransitionType.Scrap)
           return false
         }

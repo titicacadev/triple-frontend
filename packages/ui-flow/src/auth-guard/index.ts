@@ -1,8 +1,8 @@
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 import { get } from '@titicaca/fetcher'
-import { parseApp } from '@titicaca/react-contexts'
 import qs from 'qs'
 import { generateUrl, parseUrl, strictQuery } from '@titicaca/view-utilities'
+import { extractClientAppUserAgentFromNextPageContext } from '@titicaca/react-client-interfaces'
 
 interface UserResponse {
   uid: string
@@ -34,13 +34,9 @@ export function authGuard<Props>(
   },
 ) => Promise<GetServerSidePropsResult<Props>> {
   return async (ctx) => {
-    const {
-      req,
-      req: {
-        headers: { 'user-agent': userAgentString },
-      },
-      resolvedUrl,
-    } = ctx
+    const app = extractClientAppUserAgentFromNextPageContext(ctx)
+
+    const { req, resolvedUrl } = ctx
 
     const returnUrl = options?.resolveReturnUrl
       ? options.resolveReturnUrl(ctx)
@@ -55,7 +51,7 @@ export function authGuard<Props>(
       const { status } = response
 
       if (status === 401) {
-        if (userAgentString && parseApp(userAgentString)) {
+        if (app) {
           return refreshInAppSession({ resolvedUrl, returnUrl })
         }
 
