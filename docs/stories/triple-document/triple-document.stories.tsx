@@ -9,7 +9,10 @@ import SAMPLE from '../__mocks__/triple-document.sample.json'
 import MOCK_REGIONS from '../__mocks__/triple-document.regions.json'
 import MOCK_EMBEDDED from '../__mocks__/triple-document.embedded.json'
 import MOCK_ITINERARY from '../__mocks__/triple-document.itinerary.json'
-import { sessionContextProviderDecorator } from '../../decorators'
+import {
+  envProviderDecorator,
+  sessionContextProviderDecorator,
+} from '../../decorators'
 
 const {
   text: Text,
@@ -24,6 +27,7 @@ const {
 
 export default {
   title: 'triple-document',
+  decorators: [envProviderDecorator, sessionContextProviderDecorator],
 } as Meta
 
 export function Sample() {
