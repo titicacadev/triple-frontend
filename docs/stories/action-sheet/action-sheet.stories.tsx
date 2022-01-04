@@ -47,7 +47,7 @@ export const WithTextMenu: ComponentStoryObj<typeof ActionSheet> = {
       <>
         <ActionSheet.Item checked>메뉴 1</ActionSheet.Item>
         <ActionSheet.Item checked={false}>메뉴 2</ActionSheet.Item>
-        <ActionSheet.Item icon={'save'}>샘플 메뉴</ActionSheet.Item>
+        <ActionSheet.Item icon="save">샘플 메뉴</ActionSheet.Item>
         <ActionSheet.Item buttonLabel="액션">샘플 메뉴</ActionSheet.Item>
       </>
     ),

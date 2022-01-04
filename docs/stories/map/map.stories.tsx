@@ -53,7 +53,7 @@ Basic.parameters = {
 
 export const WithProps: ComponentStory<typeof MapView> = (args) => {
   return (
-    <Container width={'50%'} height={200}>
+    <Container width="50%" height={200}>
       <MapView {...args} />
     </Container>
   )
@@ -137,9 +137,9 @@ WithMarker.parameters = {
 
 export const WithCircleMarker: ComponentStory<typeof MapView> = (args) => {
   return (
-    <Container width={'50%'} height={300}>
+    <Container width="50%" height={300}>
       <MapView {...args}>
-        <Polygon paths={polygonPaths} strokeColor={'#000000'} />
+        <Polygon paths={polygonPaths} strokeColor="#000000" />
       </MapView>
     </Container>
   )
@@ -163,8 +163,8 @@ export const WithWithPolyline: ComponentStory<typeof MapView> = (args) => {
   return (
     <Container height={300}>
       <MapView {...args}>
-        <DotPolyline path={polygonLinePath} strokeColor={'#000000'} />
-        <Polygon paths={polygonPaths} fillColor={'#000000'} fillOpacity={0.2} />
+        <DotPolyline path={polygonLinePath} strokeColor="#000000" />
+        <Polygon paths={polygonPaths} fillColor="#000000" fillOpacity={0.2} />
       </MapView>
     </Container>
   )
@@ -199,8 +199,8 @@ export const WithPolylineAndMarker: ComponentStory<typeof MapView> = (args) => {
           </HotelCircleMarker>
         ))}
 
-        <DotPolyline path={polygonLinePath} strokeColor={'#000000'} />
-        <Polygon paths={polygonPaths} fillColor={'#000000'} fillOpacity={0.2} />
+        <DotPolyline path={polygonLinePath} strokeColor="#000000" />
+        <Polygon paths={polygonPaths} fillColor="#000000" fillOpacity={0.2} />
       </MapView>
     </Container>
   )
