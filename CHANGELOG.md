@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 5.1.1
+
+### fetcher
+
+- request의 body 타입을 "unknown"으로 완화 [#1802](https://github.com/titicacadev/triple-frontend/pull/1802)
+
+### ESLint 검사
+
+- react-contexts [#1797](https://github.com/titicacadev/triple-frontend/pull/1797)
+- docs [#1801](https://github.com/titicacadev/triple-frontend/pull/1801)
+
 ## 5.1.0
 
 ### ESLint 검사
