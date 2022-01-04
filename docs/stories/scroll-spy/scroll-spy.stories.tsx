@@ -21,7 +21,7 @@ function ScrollSpy() {
     >
       {ENTITIES.map(({ id }) => (
         <ScrollSpyEntity key={id} id={id}>
-          <Container width={200} height={150} onClick={() => setActiveId(id)}>
+          <Container width={300} height={150} onClick={() => setActiveId(id)}>
             {`[${id}] 해당 Entity의 위치로 scrolling`}
           </Container>
         </ScrollSpyEntity>
