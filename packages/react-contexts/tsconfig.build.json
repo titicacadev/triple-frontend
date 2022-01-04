@@ -13,6 +13,9 @@
     },
     {
       "path": "../view-utilities/tsconfig.build.json"
+    },
+    {
+      "path": "../react-client-interfaces/tsconfig.build.json"
     }
   ]
 }

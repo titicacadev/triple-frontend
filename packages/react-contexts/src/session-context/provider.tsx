@@ -1,7 +1,6 @@
 import { NextPageContext } from 'next'
 import React, { PropsWithChildren } from 'react'
-
-import { generateUserAgentValues } from '../user-agent-context'
+import { parseNativeClientUserAgent } from '@titicaca/react-client-interfaces'
 
 import {
   InAppSessionContextProviderProps,
@@ -53,9 +52,9 @@ SessionContextProvider.getInitialProps = async function (
     req !== undefined
       ? req.headers['user-agent'] || ''
       : window.navigator.userAgent
-  const { isPublic } = generateUserAgentValues(userAgent)
+  const app = parseNativeClientUserAgent(userAgent)
 
-  if (isPublic === true) {
+  if (!app) {
     const props = await InBrowserSessionContextProvider.getInitialProps(context)
 
     return { type: 'browser', props }

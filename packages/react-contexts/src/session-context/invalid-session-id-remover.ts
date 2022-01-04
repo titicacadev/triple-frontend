@@ -1,8 +1,7 @@
 import { generateUrl, strictQuery } from '@titicaca/view-utilities'
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 import qs from 'qs'
-
-import { generateUserAgentValues } from '../user-agent-context'
+import { parseNativeClientUserAgent } from '@titicaca/react-client-interfaces'
 
 import { SESSION_ID_KEY } from './app'
 
@@ -17,7 +16,7 @@ export function putInvalidSessionIdRemover({
   GetServerSidePropsResult<unknown>,
   { redirect: unknown }
 > {
-  const { isPublic } = generateUserAgentValues(userAgent)
+  const app = parseNativeClientUserAgent(userAgent)
 
   const handleInvalidSessionInBrowser = () => {
     setHeader(
@@ -56,7 +55,7 @@ export function putInvalidSessionIdRemover({
     }
   }
 
-  return isPublic ? handleInvalidSessionInBrowser : handleInvalidSessionInApp
+  return app ? handleInvalidSessionInApp : handleInvalidSessionInBrowser
 }
 
 function addBasePath(href: string) {

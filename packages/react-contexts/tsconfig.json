@@ -24,6 +24,9 @@
     },
     {
       "path": "../view-utilities"
+    },
+    {
+      "path": "../react-client-interfaces"
     }
   ]
 }

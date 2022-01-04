@@ -1,6 +1,6 @@
 import { IncomingMessage } from 'http'
 
-import { generateUserAgentValues } from '..'
+import { parseNativeClientUserAgent } from '@titicaca/react-client-interfaces'
 
 import { getSessionIdFromRequest } from './app'
 import { getWebSessionAvailabilityFromRequest } from './browser'
@@ -8,9 +8,9 @@ import { getWebSessionAvailabilityFromRequest } from './browser'
 export default function getSessionAvailabilityFromRequest(
   req: IncomingMessage | undefined,
 ) {
-  const { isPublic } = generateUserAgentValues(req?.headers['user-agent'] || '')
+  const app = parseNativeClientUserAgent(req?.headers['user-agent'] || '')
 
-  if (isPublic === true) {
+  if (!app) {
     return getWebSessionAvailabilityFromRequest(req)
   }
 
