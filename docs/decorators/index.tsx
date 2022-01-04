@@ -7,6 +7,25 @@ import {
   UserAgentProvider,
 } from '@titicaca/react-contexts'
 
+export function envProviderDecorator(Story: StoryFn) {
+  return (
+    <EnvProvider
+      appUrlScheme="dev-soto"
+      webUrlBase="https://triple-dev.titicaca-corp.com"
+      authBasePath="MOCK_AUTH_BASE_PATH"
+      facebookAppId=""
+      defaultPageTitle=""
+      defaultPageDescription=""
+      googleMapsApiKey="AIzaSyDuSWU_yBwuQzeyRFcTqhyifqNX_8oaXI4"
+      afOnelinkId=""
+      afOnelinkPid=""
+      afOnelinkSubdomain=""
+    >
+      <Story />
+    </EnvProvider>
+  )
+}
+
 export function historyProviderDecorator(Story: StoryFn) {
   return (
     <EnvProvider
