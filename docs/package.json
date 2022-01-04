@@ -45,6 +45,7 @@
     "@titicaca/resource-list-element": "^5.1.2",
     "@titicaca/review": "^5.1.2",
     "@titicaca/scrap-button": "^5.1.2",
+    "@titicaca/scroll-spy": "^5.1.2",
     "@titicaca/search": "^5.1.2",
     "@titicaca/slider": "^5.1.2",
     "@titicaca/social-reviews": "^5.1.2",

@@ -46,6 +46,7 @@
       ],
       "@titicaca/review": ["../packages/review/src"],
       "@titicaca/scrap-button": ["../packages/scrap-button/src"],
+      "@titicaca/scroll-spy": ["../packages/scroll-spy/src"],
       "@titicaca/search": ["../packages/search/src"],
       "@titicaca/slider": ["../packages/slider/src"],
       "@titicaca/social-reviews": ["../packages/social-reviews/src"],
@@ -168,6 +169,9 @@
     },
     {
       "path": "../packages/scrap-button"
+    },
+    {
+      "path": "../packages/scroll-spy"
     },
     {
       "path": "../packages/search"
