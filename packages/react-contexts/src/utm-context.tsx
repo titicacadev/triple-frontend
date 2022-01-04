@@ -66,8 +66,7 @@ const Context = createContext<UtmContextValue>({
   campaign: '',
 })
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export const UTMProvider = Context.Provider
+export const UtmProvider = Context.Provider
 
 /**
  * Functional 컴포넌트에 utm context를 inject할 때 사용하는 함수
