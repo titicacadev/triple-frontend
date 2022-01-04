@@ -1,4 +1,4 @@
-import ReviewsPlaceholder from '@titicaca/review/lib/review-placeholder-with-rating'
+import { ReviewsPlaceholder } from '@titicaca/review'
 import { Meta, StoryObj } from '@storybook/react'
 
 export default {
