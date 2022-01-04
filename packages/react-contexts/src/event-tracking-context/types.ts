@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export interface FAParams {
+export interface FirebaseAnalyticsParams {
   category: string
   event_name: string
   [key: string]: unknown
