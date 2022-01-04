@@ -8,6 +8,7 @@ import {
   useURIHash,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 
 import {
   LoginCTAModalProvider,
@@ -16,11 +17,13 @@ import {
 } from './login-cta-modal'
 
 jest.mock('@titicaca/react-contexts')
+jest.mock('@titicaca/react-client-interfaces')
 
 beforeEach(() => {
   mockHistoryFunctions()
   mockEventTrackingContext()
   mockUserAgentContext()
+  mockClientContext()
 })
 
 test('children을 렌더링합니다.', () => {
@@ -122,4 +125,12 @@ function mockUserAgentContext() {
     os: {},
     app: null,
   }))
+}
+
+function mockClientContext() {
+  const mockedClientContext = useClientContext as jest.MockedFunction<
+    typeof useClientContext
+  >
+
+  mockedClientContext.mockImplementation(() => null)
 }

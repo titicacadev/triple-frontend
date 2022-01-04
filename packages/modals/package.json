@@ -19,7 +19,8 @@
     "semver": "^7.3.5"
   },
   "peerDependencies": {
-    "@titicaca/react-contexts": "*"
+    "@titicaca/react-contexts": "*",
+    "@titicaca/react-client-interfaces": "*"
   },
   "devDependencies": {
     "@types/semver": "^7.3.6"

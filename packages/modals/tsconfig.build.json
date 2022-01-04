@@ -7,6 +7,9 @@
     },
     {
       "path": "../react-contexts/tsconfig.build.json"
+    },
+    {
+      "path": "../react-client-interfaces/tsconfig.build.json"
     }
   ]
 }
