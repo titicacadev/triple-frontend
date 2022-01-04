@@ -83,8 +83,7 @@ export interface WithUtmContextBaseProps {
  * class 컴포넌트에서 utm context를 inject할 때 사용하는 함수
  * @param Component
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export function withUTMContext<P extends DeepPartial<WithUtmContextBaseProps>>(
+export function withUtmContext<P extends DeepPartial<WithUtmContextBaseProps>>(
   Component: ComponentType<P>,
 ) {
   return function WithUtmContext(
