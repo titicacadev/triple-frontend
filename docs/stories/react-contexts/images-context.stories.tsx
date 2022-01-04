@@ -25,11 +25,11 @@ const Code = styled.code`
   overflow: auto;
 `
 
-function formatJSON(json) {
+function formatJson(json: unknown) {
   return JSON.stringify(json, null, 4)
 }
 
-function ImagesContextMonitor({ onFetched }) {
+function ImagesContextMonitor({ onFetched }: { onFetched?: () => void }) {
   const { images, total, actions } = useImagesContext()
   const [searchedIndex, setSearchedIndex] = useState(-1)
 
@@ -58,14 +58,14 @@ function ImagesContextMonitor({ onFetched }) {
       <Section>
         <h2>images</h2>
         <SectionBody>
-          <Code>{formatJSON(images)}</Code>
+          <Code>{formatJson(images)}</Code>
         </SectionBody>
       </Section>
 
       <Section>
         <h2>total</h2>
         <SectionBody>
-          <Code>{formatJSON(total)}</Code>
+          <Code>{formatJson(total)}</Code>
         </SectionBody>
       </Section>
     </div>
@@ -74,7 +74,10 @@ function ImagesContextMonitor({ onFetched }) {
 
 const MemeoizedImagesContextMonitor = memo(ImagesContextMonitor)
 
-function fetchImages({ id, type }, { from, size }) {
+function fetchImages(
+  { id, type }: { id: string; type: string },
+  { from, size }: { from: number; size: number },
+) {
   return window.fetch(
     `/api/content/${type}s/${id}/images?from=${from}&size=${size}`,
     {
@@ -83,7 +86,7 @@ function fetchImages({ id, type }, { from, size }) {
   )
 }
 
-const SAMPLE_SOURCE = {
+const SAMPLE_SOURCE: Parameters<typeof ImagesProvider>[0]['source'] = {
   type: 'attraction',
   id: 'a86a3f55-9f89-4540-a124-f8c4db07ab34',
 }
