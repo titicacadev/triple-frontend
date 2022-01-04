@@ -3,6 +3,7 @@ import { Text } from '@titicaca/core-elements'
 import { Modal, Alert } from '@titicaca/modals'
 import styled from 'styled-components'
 import { useURIHash, useHistoryFunctions } from '@titicaca/react-contexts'
+import { useNavigate } from '@titicaca/router'
 
 interface HashKeyValue {
   [hash: string]: string
@@ -65,7 +66,8 @@ const CouponIcon = styled.img`
 
 export function CouponModal({ identifier }: { identifier: string }) {
   const uriHash = useURIHash()
-  const { back, navigate } = useHistoryFunctions()
+  const { back } = useHistoryFunctions()
+  const navigate = useNavigate()
 
   const modalHash = uriHash.replace(`${identifier}.`, '')
 
