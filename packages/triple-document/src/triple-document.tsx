@@ -1,9 +1,8 @@
 import React, { useMemo, useCallback } from 'react'
-import {
-  useHistoryFunctions,
-  useEventTrackerWithMetadata,
-} from '@titicaca/react-contexts'
+import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
 import { initialize } from '@titicaca/standard-action-handler'
+import { useNavigate } from '@titicaca/router'
+import { ContextOptions } from '@titicaca/standard-action-handler/src/types'
 
 import {
   TripleElementData,
@@ -40,12 +39,12 @@ export function TripleDocument({
   children: TripleElementData[]
   cta?: string
 } & TripleDocumentContext) {
-  const { navigate } = useHistoryFunctions()
   const trackEventWithMetadata = useEventTrackerWithMetadata()
   const trackResourceEvent = useEventResourceTracker()
+  const navigate = useNavigate()
 
   const handleAction = useMemo(
-    () => initialize({ cta, navigate }),
+    () => initialize({ cta, navigate: navigate as ContextOptions['navigate'] }),
     [cta, navigate],
   )
 

@@ -2,12 +2,12 @@ import React, { useCallback } from 'react'
 import styled from 'styled-components'
 import { Container, Card, Text, FlexBox, Button } from '@titicaca/core-elements'
 import { gray100, white } from '@titicaca/color-palette'
-import { useHistoryFunctions } from '@titicaca/react-contexts'
 import type {
   TransportationType,
   Itinerary,
   ItineraryItemType,
 } from '@titicaca/content-type-definitions'
+import { useNavigate } from '@titicaca/router'
 
 import ItineraryMap from './itinerary/itinerary-map'
 import useItinerary from './itinerary/use-computed-itineraries'
@@ -88,10 +88,10 @@ const SaveToItineraryButton = styled(Button)`
 `
 
 export default function ItineraryElement({ value }: Props) {
-  const { navigate } = useHistoryFunctions()
   const { courses, regionId, poiIds, hasItineraries, hideAddButton } =
     useItinerary(value)
   const addPoisToTrip = useHandleAddPoisToTrip(regionId || '')
+  const navigate = useNavigate()
 
   const generatePoiClickHandler = useCallback(
     (regionId: string, type: ItineraryItemType['poi']['type'], id: string) =>

@@ -1,10 +1,8 @@
 import React, { useCallback, useState } from 'react'
 import { Container, H1, List, Button } from '@titicaca/core-elements'
-import {
-  useEventTrackingContext,
-  useHistoryFunctions,
-} from '@titicaca/react-contexts'
+import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { gray50 } from '@titicaca/color-palette'
+import { useNavigate } from '@titicaca/router'
 
 import { TnaProductData } from './types'
 import { TnaProductWithPrice } from './product'
@@ -19,7 +17,7 @@ export function Slot({
   products: TnaProductData[]
 }) {
   const { trackEvent } = useEventTrackingContext()
-  const { navigate } = useHistoryFunctions()
+  const navigate = useNavigate()
 
   const [showMore, setShowMore] = useState(false)
 
