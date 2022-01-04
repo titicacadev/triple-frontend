@@ -9,11 +9,9 @@ import {
   H1,
   H3,
 } from '@titicaca/core-elements'
-import {
-  useEventTrackingContext,
-  useHistoryFunctions,
-} from '@titicaca/react-contexts'
+import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useI18n } from '@titicaca/i18n'
+import { useNavigate } from '@titicaca/router'
 
 const SocialReviewEntry = styled(List.Item)`
   cursor: pointer;
@@ -37,8 +35,8 @@ export default function SocialReviews({
   ...props
 }: SocialReviewsProps) {
   const { trackSimpleEvent } = useEventTrackingContext()
-  const { navigate } = useHistoryFunctions()
   const { t } = useI18n()
+  const navigate = useNavigate()
 
   if (!socialReviews || socialReviews.length === 0) {
     return null
