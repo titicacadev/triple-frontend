@@ -4,8 +4,7 @@ export interface FirebaseAnalyticsParams {
   [key: string]: unknown
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export type GAParams = (string | undefined)[]
+export type GoogleAnalyticsParams = (string | undefined)[]
 
 interface PixelPayload {
   [key: string]: unknown
