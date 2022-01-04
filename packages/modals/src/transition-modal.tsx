@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { Text } from '@titicaca/core-elements'
 import {
   useEventTrackingContext,
-  useURIHash,
   useHistoryFunctions,
+  useUriHash,
 } from '@titicaca/react-contexts'
 import { DeepPartial } from 'utility-types'
 
@@ -70,7 +70,7 @@ const MODAL_CONTENT: {
 }
 
 export function TransitionModal({ deepLink }: { deepLink: string }) {
-  const uriHash = useURIHash()
+  const uriHash = useUriHash()
   const { back } = useHistoryFunctions()
   const { trackEvent } = useEventTrackingContext()
   const matchData = (uriHash || '').match(/^transition\.(.+)$/)

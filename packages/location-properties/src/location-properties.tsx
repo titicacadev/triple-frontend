@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react'
 import { Segment, List } from '@titicaca/core-elements'
 import ActionSheet from '@titicaca/action-sheet'
 import { useI18n } from '@titicaca/i18n'
-import { useURIHash, useHistoryFunctions } from '@titicaca/react-contexts'
+import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 
 import PropertyItem, {
@@ -38,7 +38,7 @@ export default function LocationProperties({
   onCopy: (value: string) => void
 } & Parameters<typeof Segment>['0']) {
   const { t } = useI18n()
-  const uriHash = useURIHash()
+  const uriHash = useUriHash()
   const { back } = useHistoryFunctions()
 
   const properties: Map<

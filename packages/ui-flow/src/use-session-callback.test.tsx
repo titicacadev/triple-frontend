@@ -1,9 +1,9 @@
 import { renderHook, act } from '@testing-library/react-hooks'
 import { useLoginCTAModal } from '@titicaca/modals'
 import {
-  useURIHash,
   useSessionAvailability,
   useSessionControllers,
+  useUriHash,
 } from '@titicaca/react-contexts'
 
 import { useSessionCallback } from './use-session-callback'
@@ -31,7 +31,7 @@ describe('useSessionCallback', () => {
     it('returns undefined value', () => {
       const { result } = renderHook(() => {
         const doAction = useSessionCallback(() => 'login')
-        const uriHash = useURIHash()
+        const uriHash = useUriHash()
 
         return { uriHash, doAction }
       })
@@ -45,7 +45,7 @@ describe('useSessionCallback', () => {
           returnUrl: undefined,
           returnValue: 'fallback',
         } as any)
-        const uriHash = useURIHash()
+        const uriHash = useUriHash()
 
         return { uriHash, doAction }
       })
@@ -64,7 +64,7 @@ describe('useSessionCallback', () => {
     it('returns the return value of fn', () => {
       const { result } = renderHook(() => {
         const doAction = useSessionCallback(() => 'login')
-        const uriHash = useURIHash()
+        const uriHash = useUriHash()
 
         return { uriHash, doAction }
       })

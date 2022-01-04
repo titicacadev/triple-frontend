@@ -2,7 +2,7 @@ import React from 'react'
 import { Text } from '@titicaca/core-elements'
 import { Modal, Alert } from '@titicaca/modals'
 import styled from 'styled-components'
-import { useURIHash, useHistoryFunctions } from '@titicaca/react-contexts'
+import { useUriHash, useHistoryFunctions } from '@titicaca/react-contexts'
 import { useNavigate } from '@titicaca/router'
 
 interface HashKeyValue {
@@ -65,7 +65,7 @@ const CouponIcon = styled.img`
 `
 
 export function CouponModal({ identifier }: { identifier: string }) {
-  const uriHash = useURIHash()
+  const uriHash = useUriHash()
   const { back } = useHistoryFunctions()
   const navigate = useNavigate()
 
@@ -138,7 +138,7 @@ export function CouponAlertModal({
   identifier: string
   errorMessage?: string
 }) {
-  const uriHash = useURIHash()
+  const uriHash = useUriHash()
   const { back } = useHistoryFunctions()
 
   return (

@@ -10,7 +10,7 @@ import {
 import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
 import { ExternalLink } from '@titicaca/router'
 import {
-  useURIHash,
+  useUriHash,
   useHistoryFunctions,
   useIsomorphicNavigation,
 } from '@titicaca/react-contexts'
@@ -388,7 +388,7 @@ function FeatureActionSheet({
   onEditClick: () => void
   onDeleteClick: () => void
 }) {
-  const uriHash = useURIHash()
+  const uriHash = useUriHash()
   const { back } = useHistoryFunctions()
 
   return (

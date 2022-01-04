@@ -2,8 +2,8 @@ import React, { useCallback } from 'react'
 import {
   useUserAgentContext,
   useEventTrackingContext,
-  useURIHash,
   useHistoryFunctions,
+  useUriHash,
 } from '@titicaca/react-contexts'
 import { Button } from '@titicaca/core-elements'
 import { useI18n } from '@titicaca/i18n'
@@ -28,7 +28,7 @@ export default function DirectionButtons({
 }) {
   const { t } = useI18n()
   const { isPublic } = useUserAgentContext()
-  const uriHash = useURIHash()
+  const uriHash = useUriHash()
   const { push, back, showTransitionModal } = useHistoryFunctions()
   const { trackSimpleEvent } = useEventTrackingContext()
 
