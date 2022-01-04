@@ -20,7 +20,7 @@ export interface AllowSourceProps {
 }
 
 export function useDisabledLinkNotifierCreator({
-  alert = window.alert,
+  alert: originAlert,
 }: {
   alert?: (message: string) => void
 } = {}) {
@@ -35,6 +35,8 @@ export function useDisabledLinkNotifierCreator({
     if (allowSource === 'none') {
       return () => {
         if (typeof window !== 'undefined') {
+          const alert = originAlert || window.alert
+
           alert('접근할 수 없는 링크입니다.')
         }
       }
