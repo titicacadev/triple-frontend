@@ -351,8 +351,7 @@ export function useHistoryContext(): HistoryContextValue {
   )
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export function useURIHash(): UriHash {
+export function useUriHash(): UriHash {
   return useContext(UriHashContext)
 }
 
