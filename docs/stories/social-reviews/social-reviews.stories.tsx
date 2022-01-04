@@ -1,9 +1,15 @@
 import { ComponentStoryObj, ComponentMeta } from '@storybook/react'
 import SocialReviews from '@titicaca/social-reviews'
 
+import {
+  envProviderDecorator,
+  sessionContextProviderDecorator,
+} from '../../decorators'
+
 export default {
   title: 'Social-Reviews / SocialReviews',
   component: SocialReviews,
+  decorators: [envProviderDecorator, sessionContextProviderDecorator],
 } as ComponentMeta<typeof SocialReviews>
 
 export const BaseSocialReviews: ComponentStoryObj<typeof SocialReviews> = {
