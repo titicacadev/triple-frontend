@@ -1,7 +1,6 @@
 import UAParser from 'ua-parser-js'
 
 enum AppName {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   iOS = 'Triple-iOS',
   Android = 'Triple-Android',
 }
