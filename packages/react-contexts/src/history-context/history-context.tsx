@@ -24,15 +24,13 @@ import { useSessionAvailability } from '../session-context'
 
 import { canonizeTargetAddress } from './canonization'
 
-type URIHash = string
+type UriHash = string
 
 export interface OutlinkParams {
   target?: string
   title?: string
-  [key: string]: any
+  [key: string]: unknown
 }
-
-type URLElement = ReturnType<typeof parseUrl>
 
 interface NavigateFunctionConfig {
   useRouter?: boolean
@@ -40,7 +38,7 @@ interface NavigateFunctionConfig {
 }
 
 interface HistoryContextValue {
-  uriHash: URIHash
+  uriHash: UriHash
   push: (hash: string, config?: NavigateFunctionConfig) => void
   replace: (hash: string, config?: NavigateFunctionConfig) => void
   back: () => void
@@ -73,7 +71,7 @@ function addHashToCurrentUrl({
   )
 }
 
-const URIHashContext = createContext<URIHash>('')
+const UriHashContext = createContext<UriHash>('')
 const HistoryFunctionsContext = createContext<
   Omit<HistoryContextValue, 'uriHash'>
 >({
@@ -95,12 +93,16 @@ function getInitialHash() {
 }
 
 export enum HashStrategy {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   NONE,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   NO_PUSH,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   PUSH,
 }
 export type HistoryProviderProps = PropsWithChildren<{
   transitionModalHash?: string
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   loginCTAModalHash?: string
   isAndroid?: boolean
   isPublic?: boolean
@@ -109,6 +111,7 @@ export type HistoryProviderProps = PropsWithChildren<{
 
 export function HistoryProvider({
   transitionModalHash = '',
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   loginCTAModalHash = '',
   isAndroid = false,
   isPublic = false,
@@ -118,7 +121,7 @@ export function HistoryProvider({
   const { appUrlScheme, webUrlBase } = useEnv()
   const sessionAvailable = useSessionAvailability()
 
-  const [uriHash, setUriHash] = useState<URIHash>(() => {
+  const [uriHash, setUriHash] = useState<UriHash>(() => {
     if (initialHashStrategy === HashStrategy.NONE) {
       return ''
     }
@@ -307,11 +310,10 @@ export function HistoryProvider({
 
   const showTransitionModal = useCallback<
     HistoryContextValue['showTransitionModal']
-  >(() => isPublic && transitionModalHash && push(transitionModalHash), [
-    push,
-    transitionModalHash,
-    isPublic,
-  ])
+  >(
+    () => isPublic && transitionModalHash && push(transitionModalHash),
+    [push, transitionModalHash, isPublic],
+  )
 
   const functions = useMemo<Omit<HistoryContextValue, 'uriHash'>>(
     () => ({
@@ -326,11 +328,11 @@ export function HistoryProvider({
   )
 
   return (
-    <URIHashContext.Provider value={uriHash}>
+    <UriHashContext.Provider value={uriHash}>
       <HistoryFunctionsContext.Provider value={functions}>
         {children}
       </HistoryFunctionsContext.Provider>
-    </URIHashContext.Provider>
+    </UriHashContext.Provider>
   )
 }
 
@@ -342,7 +344,7 @@ export function HistoryProvider({
  * 를 사용해주세요.
  */
 export function useHistoryContext(): HistoryContextValue {
-  const uriHash = useContext(URIHashContext)
+  const uriHash = useContext(UriHashContext)
   const functions = useContext(HistoryFunctionsContext)
 
   return useMemo(
@@ -354,8 +356,9 @@ export function useHistoryContext(): HistoryContextValue {
   )
 }
 
-export function useURIHash(): URIHash {
-  return useContext(URIHashContext)
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function useURIHash(): UriHash {
+  return useContext(UriHashContext)
 }
 
 export function useHistoryFunctions(): Omit<HistoryContextValue, 'uriHash'> {
@@ -363,7 +366,7 @@ export function useHistoryFunctions(): Omit<HistoryContextValue, 'uriHash'> {
 }
 
 export interface WithHistoryBaseProps {
-  uriHash: URIHash
+  uriHash: UriHash
   historyActions: Pick<
     HistoryContextValue,
     'back' | 'navigate' | 'push' | 'replace' | 'showTransitionModal'
@@ -375,7 +378,7 @@ export function withHistory<P extends DeepPartial<WithHistoryBaseProps>>(
 ) {
   return function HistoryComponent(props: Omit<P, keyof WithHistoryBaseProps>) {
     return (
-      <URIHashContext.Consumer>
+      <UriHashContext.Consumer>
         {(uriHash) => (
           <HistoryFunctionsContext.Consumer>
             {({ push, replace, back, navigate, showTransitionModal }) => (
@@ -395,7 +398,7 @@ export function withHistory<P extends DeepPartial<WithHistoryBaseProps>>(
             )}
           </HistoryFunctionsContext.Consumer>
         )}
-      </URIHashContext.Consumer>
+      </UriHashContext.Consumer>
     )
   }
 }

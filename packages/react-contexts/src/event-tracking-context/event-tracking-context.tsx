@@ -48,9 +48,9 @@ export interface EventTrackingContextValue {
   trackSimpleEvent: (params: {
     action?: string
     label?: string
-    [key: string]: any
+    [key: string]: unknown
   }) => void
-  viewItem: Function
+  viewItem: typeof nativeViewItem
   /**
    * Firebase Analytics Web 인스턴스에 User ID를 설정하는 함수.
    * @param userId 빈 문자열이나 null을 넣으면 userId를 지울 수 있습니다.
@@ -82,7 +82,7 @@ declare global {
  * 이후 버전(>= 9)에서 더 나은 해결책이 나올 수도 있습니다.
  */
 function disableFirebaseAutoPageView() {
-  function gtag(..._: any[]) {
+  function gtag(..._: unknown[]) {
     // eslint-disable-next-line prefer-rest-params
     window.dataLayer.push(arguments)
   }
@@ -232,25 +232,24 @@ export function EventTrackingProvider({
     [pageLabel],
   )
 
-  const trackSimpleEvent: EventTrackingContextValue['trackSimpleEvent'] = useCallback(
-    ({ action, label, ...rest }) => {
-      return trackEvent({
-        ga: [action, label],
-        fa: {
-          action: action as string,
-          ...rest,
-        },
-      })
-    },
-    [trackEvent],
-  )
+  const trackSimpleEvent: EventTrackingContextValue['trackSimpleEvent'] =
+    useCallback(
+      ({ action, label, ...rest }) => {
+        return trackEvent({
+          ga: [action, label],
+          fa: {
+            action: action as string,
+            ...rest,
+          },
+        })
+      },
+      [trackEvent],
+    )
 
-  const setFirebaseUserId: EventTrackingContextValue['setFirebaseUserId'] = useCallback(
-    (userId) => {
+  const setFirebaseUserId: EventTrackingContextValue['setFirebaseUserId'] =
+    useCallback((userId) => {
       getFirebaseAnalyticsWebInstance()?.setUserId(userId || '')
-    },
-    [],
-  )
+    }, [])
 
   const value = useMemo<EventTrackingContextValue>(
     () => ({
@@ -314,7 +313,7 @@ export function useEventTrackingContext() {
 export type WithEventTrackingBaseProps = EventTrackingContextValue
 
 export function withEventTracking<
-  P extends DeepPartial<WithEventTrackingBaseProps>
+  P extends DeepPartial<WithEventTrackingBaseProps>,
 >(Component: ComponentType<P>) {
   return function EventTrackingComponent(
     props: Omit<P, keyof WithEventTrackingBaseProps>,

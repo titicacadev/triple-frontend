@@ -1,9 +1,11 @@
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export interface FAParams {
   category: string
   event_name: string
-  [key: string]: any
+  [key: string]: unknown
 }
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export type GAParams = (string | undefined)[]
 
 interface PixelPayload {
