@@ -99,8 +99,7 @@ export enum HashStrategy {
 }
 export type HistoryProviderProps = PropsWithChildren<{
   transitionModalHash?: string
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  loginCTAModalHash?: string
+  loginCtaModalHash?: string
   isAndroid?: boolean
   isPublic?: boolean
   initialHashStrategy?: HashStrategy
@@ -108,8 +107,7 @@ export type HistoryProviderProps = PropsWithChildren<{
 
 export function HistoryProvider({
   transitionModalHash = '',
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  loginCTAModalHash = '',
+  loginCtaModalHash = '',
   isAndroid = false,
   isPublic = false,
   initialHashStrategy = HashStrategy.None,
@@ -239,7 +237,7 @@ export function HistoryProvider({
         sessionAvailable === false &&
         !checkIfRoutable({ href: canonizedHref })
       ) {
-        loginCTAModalHash && push(loginCTAModalHash)
+        loginCtaModalHash && push(loginCtaModalHash)
 
         return
       }
@@ -257,7 +255,7 @@ export function HistoryProvider({
         window.location.href = generateUrl({ scheme: appUrlScheme }, rawHref)
       }
     },
-    [appUrlScheme, loginCTAModalHash, push, sessionAvailable, webUrlBase],
+    [appUrlScheme, loginCtaModalHash, push, sessionAvailable, webUrlBase],
   )
 
   const navigate = useCallback<HistoryContextValue['navigate']>(
@@ -298,11 +296,11 @@ export function HistoryProvider({
             query: `path=${encodeURIComponent(rawHref)}`,
           })
         } else {
-          loginCTAModalHash && push(loginCTAModalHash)
+          loginCtaModalHash && push(loginCtaModalHash)
         }
       }
     },
-    [appUrlScheme, loginCTAModalHash, push, sessionAvailable],
+    [appUrlScheme, loginCtaModalHash, push, sessionAvailable],
   )
 
   const showTransitionModal = useCallback<
