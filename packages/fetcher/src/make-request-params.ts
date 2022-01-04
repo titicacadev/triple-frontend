@@ -33,7 +33,7 @@ export function makeRequestParams(
 
   const headers = {
     ...customHeaders,
-    ...(body && !useBodyAsRaw && { 'content-type': 'application/json' }),
+    ...(!!body && !useBodyAsRaw && { 'content-type': 'application/json' }),
     ...(sessionId && { 'x-soto-session': sessionId }),
     ...(cookie && { cookie }),
   }
