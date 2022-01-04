@@ -1,7 +1,7 @@
 import React, { createContext, PropsWithChildren, useContext } from 'react'
 
 import { useEventTrackingContext } from './event-tracking-context'
-import { FAParams, GAParams, PixelParams } from './types'
+import { FirebaseAnalyticsParams, GAParams, PixelParams } from './types'
 
 interface EventMetadataContext {
   [key: string]: string
@@ -36,7 +36,7 @@ export function useEventTrackerWithMetadata() {
 
   return (params: {
     ga?: GAParams
-    fa?: Partial<FAParams>
+    fa?: Partial<FirebaseAnalyticsParams>
     pixel?: PixelParams
   }) => {
     trackEvent({
@@ -48,7 +48,7 @@ export function useEventTrackerWithMetadata() {
 }
 
 function getFirebaseAnalyticsWithMetadata(
-  fa?: Partial<FAParams>,
+  fa?: Partial<FirebaseAnalyticsParams>,
   eventMetaContext?: EventMetadataContext,
 ) {
   if (!fa) {

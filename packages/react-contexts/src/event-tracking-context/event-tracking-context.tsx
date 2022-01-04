@@ -19,7 +19,7 @@ import { useRouter } from 'next/router'
 
 import { useUser } from '../session-context'
 
-import { FAParams, GAParams, PixelParams } from './types'
+import { FirebaseAnalyticsParams, GAParams, PixelParams } from './types'
 
 const NOOP = () => {}
 
@@ -31,7 +31,7 @@ export interface EventTrackingContextValue {
   ) => void
   trackEvent: (params: {
     ga?: GAParams
-    fa?: Partial<FAParams>
+    fa?: Partial<FirebaseAnalyticsParams>
     /**
      * Facebook Pixel 이벤트 파라미터
      *
