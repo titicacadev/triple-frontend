@@ -75,8 +75,7 @@ export function useUtmContext() {
   return useContext(Context)
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export interface WithUTMContextBaseProps {
+export interface WithUtmContextBaseProps {
   utmContext: UtmContextValue
 }
 
@@ -85,11 +84,11 @@ export interface WithUTMContextBaseProps {
  * @param Component
  */
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function withUTMContext<P extends DeepPartial<WithUTMContextBaseProps>>(
+export function withUTMContext<P extends DeepPartial<WithUtmContextBaseProps>>(
   Component: ComponentType<P>,
 ) {
   return function WithUtmContext(
-    props: Omit<P, keyof WithUTMContextBaseProps>,
+    props: Omit<P, keyof WithUtmContextBaseProps>,
   ) {
     return (
       <Context.Consumer>
