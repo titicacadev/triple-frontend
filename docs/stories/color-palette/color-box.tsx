@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 import { Container, Text } from '@titicaca/core-elements'
 
-const ColorFrame = styled.div`
+const ColorFrame = styled.div<{ color: string }>`
   position: relative;
   width: 100%;
   height: 40px;
@@ -11,7 +11,7 @@ const ColorFrame = styled.div`
   margin-bottom: 2px;
 `
 
-const ColorLabel = styled(Text)`
+const ColorLabel = styled(Text)<{ labelColor: string }>`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -19,7 +19,11 @@ const ColorLabel = styled(Text)`
   color: rgba(${({ labelColor }) => getColor(labelColor || 'white')});
 `
 
-export const FlexBox = styled(Container)`
+export const FlexBox = styled(Container)<{
+  flex: string
+  flexFlow: string
+  space: boolean
+}>`
   display: flex;
   flex: ${({ flex }) => flex || 0};
   flex-flow: ${({ flexFlow }) => flexFlow || 'row'};
@@ -31,7 +35,13 @@ export const FlexBox = styled(Container)`
     `}
 `
 
-export function ColorBox({ color, labelColor }) {
+export function ColorBox({
+  color,
+  labelColor,
+}: {
+  color: string
+  labelColor: string
+}) {
   return (
     <ColorFrame color={color}>
       <ColorLabel labelColor={labelColor}>{color}</ColorLabel>
