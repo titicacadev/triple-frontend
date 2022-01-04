@@ -93,12 +93,9 @@ function getInitialHash() {
 }
 
 export enum HashStrategy {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  NONE,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  NO_PUSH,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  PUSH,
+  None,
+  NoPush,
+  Push,
 }
 export type HistoryProviderProps = PropsWithChildren<{
   transitionModalHash?: string
@@ -115,21 +112,21 @@ export function HistoryProvider({
   loginCTAModalHash = '',
   isAndroid = false,
   isPublic = false,
-  initialHashStrategy = HashStrategy.NONE,
+  initialHashStrategy = HashStrategy.None,
   children,
 }: HistoryProviderProps) {
   const { appUrlScheme, webUrlBase } = useEnv()
   const sessionAvailable = useSessionAvailability()
 
   const [uriHash, setUriHash] = useState<UriHash>(() => {
-    if (initialHashStrategy === HashStrategy.NONE) {
+    if (initialHashStrategy === HashStrategy.None) {
       return ''
     }
 
     return getInitialHash()
   })
   const hasHistoriesRef = useRef<HashHistory[]>(
-    initialHashStrategy === HashStrategy.PUSH
+    initialHashStrategy === HashStrategy.Push
       ? [{ hash: getInitialHash(), useRouter: isAndroid }]
       : [],
   )
