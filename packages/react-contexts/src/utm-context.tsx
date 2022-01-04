@@ -31,8 +31,7 @@ interface UtmContextValue {
 /**
  * query 객체에서 utm context 객체를 추출합니다.
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export function extractUTMContextFromQuery({
+export function extractUtmContextFromQuery({
   utm_source,
   utm_medium,
   utm_campaign,
