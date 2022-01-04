@@ -71,8 +71,7 @@ export const UtmProvider = Context.Provider
 /**
  * Functional 컴포넌트에 utm context를 inject할 때 사용하는 함수
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export function useUTMContext() {
+export function useUtmContext() {
   return useContext(Context)
 }
 
