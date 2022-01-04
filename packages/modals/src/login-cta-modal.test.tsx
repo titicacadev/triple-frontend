@@ -5,7 +5,7 @@ import { renderHook, act } from '@testing-library/react-hooks'
 import {
   useEventTrackingContext,
   useHistoryFunctions,
-  useURIHash,
+  useUriHash,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
 
@@ -71,7 +71,7 @@ test('여러 개의 provider가 있어도 하나의 dialog를 렌더링합니다
 })
 
 function mockUseUriHash(hash: string) {
-  const mockedUseUriHash = useURIHash as jest.MockedFunction<typeof useURIHash>
+  const mockedUseUriHash = useUriHash as jest.MockedFunction<typeof useUriHash>
   mockedUseUriHash.mockImplementation(() => {
     return hash
   })

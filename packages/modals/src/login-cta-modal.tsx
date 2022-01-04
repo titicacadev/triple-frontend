@@ -9,7 +9,7 @@ import React, {
 import {
   useEventTrackingContext,
   useHistoryFunctions,
-  useURIHash,
+  useUriHash,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
 import semver from 'semver'
@@ -30,7 +30,7 @@ const LoginCtaContext = createContext<
 export function LoginCtaModalProvider({
   children,
 }: PropsWithChildren<unknown>) {
-  const uriHash = useURIHash()
+  const uriHash = useUriHash()
   const { trackEvent } = useEventTrackingContext()
   const { back, navigate } = useHistoryFunctions()
   const hasParentModal = useContext(LoginCtaContext)

@@ -11,8 +11,8 @@ import {
 import {
   useEventTrackingContext,
   useUserAgentContext,
-  useURIHash,
   useHistoryFunctions,
+  useUriHash,
 } from '@titicaca/react-contexts'
 import { formatNumber } from '@titicaca/view-utilities'
 import { TranslatedProperty } from '@titicaca/type-definitions'
@@ -70,7 +70,7 @@ export default function DetailHeaderV2({
 } & Parameters<typeof Section>['0']) {
   const { isPublic } = useUserAgentContext()
 
-  const uriHash = useURIHash()
+  const uriHash = useUriHash()
   const { push, back } = useHistoryFunctions()
   const { trackEvent } = useEventTrackingContext()
 

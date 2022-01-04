@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, HR1, List, Text } from '@titicaca/core-elements'
 import { Confirm } from '@titicaca/modals'
-import { useURIHash, useHistoryFunctions } from '@titicaca/react-contexts'
+import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
 
 import { Reply as ReplyType } from '../types'
 import { useRepliesContext } from '../context'
@@ -81,7 +81,7 @@ export default function ReplyList({
 }
 
 function ConfirmEditModal({ onConfirm }: { onConfirm: () => void }) {
-  const uriHash = useURIHash()
+  const uriHash = useUriHash()
   const { back } = useHistoryFunctions()
 
   return (
@@ -102,7 +102,7 @@ function ConfirmDeleteModal({
   description: string
   onConfirm: () => void
 }) {
-  const uriHash = useURIHash()
+  const uriHash = useUriHash()
   const { back } = useHistoryFunctions()
 
   return (
