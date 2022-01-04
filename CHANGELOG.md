@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## Unreleased
+
+### react-contexts
+
+- useURIHash -> useUriHash [#1798](https://github.com/titicacadev/triple-frontend/pull/1798)
+- HistoryProvider의 prop 이름 변경: loginCTAModalHash -> loginCtaModalHash [#1798](https://github.com/titicacadev/triple-frontend/pull/1798)
+- HashStrategy의 멤버 네이밍 변경 [#1798](https://github.com/titicacadev/triple-frontend/pull/1798)
+- GAParams -> GoogleAnalyticsParams [#1798](https://github.com/titicacadev/triple-frontend/pull/1798)
+- FAParams -> FirebaseAnalyticsParams [#1798](https://github.com/titicacadev/triple-frontend/pull/1798)
+- withUTMContext -> withUtmContext [#1798](https://github.com/titicacadev/triple-frontend/pull/1798)
+- WithUTMContextBaseProps -> WithUtmContextBaseProps [#1798](https://github.com/titicacadev/triple-frontend/pull/1798)
+- useUTMContext -> useUtmContext [#1798](https://github.com/titicacadev/triple-frontend/pull/1798)
+- UTMProvider -> UtmProvider [#1798](https://github.com/titicacadev/triple-frontend/pull/1798)
+- extractUTMContextFromQuery -> extractUtmContextFromQuery [#1798](https://github.com/titicacadev/triple-frontend/pull/1798)
+
 ## 5.2.1
 
 ### router
