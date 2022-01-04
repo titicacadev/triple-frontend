@@ -1,10 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Meta, Story } from '@storybook/react'
-import PickerFrame, {
+import {
+  rangeMixin,
+  dateLabelMixin,
   generateSelectedCircleStyle,
-} from '@titicaca/date-picker/lib/picker-frame'
-import { rangeMixin, dateLabelMixin } from '@titicaca/date-picker'
+  PickerFrame,
+} from '@titicaca/date-picker'
 
 const Table = styled.table`
   border-collapse: separate;
