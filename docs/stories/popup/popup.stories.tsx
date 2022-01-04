@@ -15,11 +15,11 @@ const EmptyScroll = styled.div`
 export const Basic = () => {
   return (
     <Popup
-      title={'테스트'}
+      title="테스트"
       noNavbar={false}
-      borderless={true}
+      borderless
       open={false}
-      icon={'close'}
+      icon="close"
       onClose={() => {}}
     >
       <EmptyScroll>Scroll........</EmptyScroll>
@@ -31,7 +31,7 @@ Basic.storyName = '일반'
 export const AfterActionSheet = () => {
   return (
     <>
-      <Popup title="팝업입니다" open={true} onClose={() => {}}>
+      <Popup title="팝업입니다" open onClose={() => {}}>
         <EmptyScroll>Scroll........</EmptyScroll>
       </Popup>
 
@@ -46,7 +46,7 @@ AfterActionSheet.storyName = '팝업과 액션시트가 같은 계층에 있는 
 
 export const WithInActionSheet = () => {
   return (
-    <Popup title="팝업입니다" open={true} onClose={() => {}}>
+    <Popup title="팝업입니다" open onClose={() => {}}>
       <EmptyScroll>Scroll........</EmptyScroll>
       <ActionSheet open={false} title="샘플 액션시트">
         <ActionSheet.Item>메뉴 1</ActionSheet.Item>
@@ -60,11 +60,11 @@ WithInActionSheet.storyName = '팝업 안에 액션시트가 있는 경우'
 export const Event = () => {
   return (
     <Popup
-      title={'테스트'}
+      title="테스트"
       noNavbar={false}
-      borderless={true}
+      borderless
       open={false}
-      icon={'close'}
+      icon="close"
       onClose={() => {}}
     >
       다양한 이벤트가 있습니다.

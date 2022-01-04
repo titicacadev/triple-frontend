@@ -8,7 +8,7 @@ import {
 import ListingFilter from '@titicaca/listing-filter'
 import styled from 'styled-components'
 
-const TOC = styled.div`
+const Toc = styled.div`
   position: absolute;
   left: 52px;
 `
@@ -32,9 +32,9 @@ export default {
 
 export function twoButtons() {
   return (
-    <Navbar title={'도쿄 관광지'} borderless={true} backgroundColor={'white'}>
-      <Navbar.Item className="boxer gg" icon={'back'} />
-      <Navbar.Item floated="right" className="boxer gg" icon={'more'} />
+    <Navbar title="도쿄 관광지" borderless backgroundColor="white">
+      <Navbar.Item className="boxer gg" icon="back" />
+      <Navbar.Item floated="right" className="boxer gg" icon="more" />
     </Navbar>
   )
 }
@@ -42,10 +42,10 @@ twoButtons.storyName = '버튼 2개 (좌1+우1)'
 
 export function threeButtons() {
   return (
-    <Navbar title={'도쿄 관광지'} borderless={true}>
-      <Navbar.Item icon={'back'} />
-      <Navbar.Item floated="right" icon={'more'} />
-      <Navbar.Item floated="right" icon={'route'} />
+    <Navbar title="도쿄 관광지" borderless>
+      <Navbar.Item icon="back" />
+      <Navbar.Item floated="right" icon="more" />
+      <Navbar.Item floated="right" icon="route" />
     </Navbar>
   )
 }
@@ -53,11 +53,11 @@ threeButtons.storyName = '버튼 3개 (좌1+우2)'
 
 export function fourButtons() {
   return (
-    <Navbar title={'도쿄 관광지'} borderless={true}>
-      <Navbar.Item icon={'back'} />
-      <Navbar.Item floated="right" icon={'more'} />
-      <Navbar.Item floated="right" icon={'route'} />
-      <Navbar.Item floated="right" icon={'list'} />
+    <Navbar title="도쿄 관광지" borderless>
+      <Navbar.Item icon="back" />
+      <Navbar.Item floated="right" icon="more" />
+      <Navbar.Item floated="right" icon="route" />
+      <Navbar.Item floated="right" icon="list" />
     </Navbar>
   )
 }
@@ -66,8 +66,8 @@ fourButtons.storyName = '버튼 4개 (좌1+우3)'
 export function secondaryNavbar() {
   return (
     <>
-      <Navbar title={'도쿄 관광지'} borderless>
-        <Navbar.Item icon={'back'} />
+      <Navbar title="도쿄 관광지" borderless>
+        <Navbar.Item icon="back" />
         <Navbar.Item floated="right" icon="more" />
       </Navbar>
       <Navbar.Secondary>
@@ -83,8 +83,8 @@ secondaryNavbar.storyName = '보조 Navbar (리스트 필터링)'
 export function wrappedNavbar() {
   return (
     <NavbarWrapper>
-      <Navbar title={'도쿄 관광지'} borderless>
-        <Navbar.Item icon={'back'} />
+      <Navbar title="도쿄 관광지" borderless>
+        <Navbar.Item icon="back" />
         <Navbar.Item floated="right" icon="more" />
       </Navbar>
       <Navbar.Secondary>
@@ -101,7 +101,7 @@ export function toc() {
   return (
     <Navbar
       renderTitle={() => (
-        <TOC>
+        <Toc>
           <Text size="small" bold alpha={1}>
             도쿄에서 반드시 먹어봐야 할 음식
           </Text>
@@ -109,7 +109,7 @@ export function toc() {
           <Text size="mini" alpha={0.5} margin={{ top: 1 }}>
             라멘
           </Text>
-        </TOC>
+        </Toc>
       )}
     >
       <Navbar.Item icon="back" />

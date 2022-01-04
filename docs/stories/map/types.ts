@@ -10,12 +10,12 @@ interface BaseResourceType {
 }
 
 enum PoiType {
-  attraction = 'attraction',
-  restaurant = 'restaurant',
-  article = 'article',
-  hotel = 'hotel',
-  tna = 'tna',
-  air = 'air',
+  Attraction = 'attraction',
+  Restaurant = 'restaurant',
+  Article = 'article',
+  Hotel = 'hotel',
+  Tna = 'tna',
+  Air = 'air',
 }
 
 interface Price {

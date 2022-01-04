@@ -27,23 +27,23 @@ context를 만들어주는 컴포넌트, 프레임 관련 컴포넌트, 실제 �
 <Story name="이미지 최적화 및 lazy loading">
   <Container>
     <Image>
-      <Image.FixedRatioFrame frame={'mini'}>
+      <Image.FixedRatioFrame frame="mini">
         <Image.OptimizedImg cloudinaryId="45a36898-b412-4d51-882c-fdefad5a164d" />
       </Image.FixedRatioFrame>
     </Image>
     <Image>
-      <Image.FixedRatioFrame frame={'mini'}>
+      <Image.FixedRatioFrame frame="mini">
         <Image.OptimizedImg cloudinaryId="45a36898-b412-4d51-882c-fdefad5a164d" />
       </Image.FixedRatioFrame>
     </Image>
     <Container minHeight={10000} />
     <Image>
-      <Image.FixedRatioFrame frame={'mini'}>
+      <Image.FixedRatioFrame frame="mini">
         <Image.OptimizedImg cloudinaryId="45a36898-b412-4d51-882c-fdefad5a164d" />
       </Image.FixedRatioFrame>
     </Image>
     <Image>
-      <Image.FixedRatioFrame frame={'mini'}>
+      <Image.FixedRatioFrame frame="mini">
         <Image.OptimizedImg cloudinaryId="45a36898-b412-4d51-882c-fdefad5a164d" />
       </Image.FixedRatioFrame>
     </Image>
@@ -63,7 +63,7 @@ context를 만들어주는 컴포넌트, 프레임 관련 컴포넌트, 실제 �
 
 <Story name="비율 고정 프레임">
   <Image>
-    <Image.FixedRatioFrame frame={'mini'}>
+    <Image.FixedRatioFrame frame="mini">
       <Image.Img src="https://triple-corp.com/static/images/img-bg-0.jpg" />
     </Image.FixedRatioFrame>
   </Image>
@@ -82,7 +82,7 @@ context를 만들어주는 컴포넌트, 프레임 관련 컴포넌트, 실제 �
 
 <Story name="가로, 세로 고정 프레임">
   <Image>
-    <Image.FixedDimensionsFrame size={'medium'} width={320} height={180}>
+    <Image.FixedDimensionsFrame size="medium" width={320} height={180}>
       <Image.Img src="https://triple-corp.com/static/images/img-bg-0.jpg" />
     </Image.FixedDimensionsFrame>
   </Image>
@@ -170,7 +170,7 @@ OptimizedImg 컴포넌트를 사용하게됨에 따라서 마크업 구조를 �
   <Image>
     <Image.FixedRatioFrame frame="mini">
       <Image.Img src="https://triple-corp.com/static/images/img-bg-0.jpg" />
-      <Image.Overlay overlayType={'dark'} padding={{ top: 20, bottom: 20 }}>
+      <Image.Overlay overlayType="dark" padding={{ top: 20, bottom: 20 }}>
         <div style={{ fontSize: 14, color: 'white' }}>오버레이입니다.</div>
       </Image.Overlay>
     </Image.FixedRatioFrame>
@@ -227,7 +227,7 @@ Frame 관련 컴포넌트의 자식으로 들어갑니다.
 <Story name="원형 이미지">
   <Image.Circular
     src="https://triple-corp.com/static/images/img-bg-0.jpg"
-    size={'medium'}
+    size="medium"
   />
 </Story>
 

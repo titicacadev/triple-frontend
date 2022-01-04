@@ -75,9 +75,12 @@ function ImagesContextMonitor({ onFetched }) {
 const MemeoizedImagesContextMonitor = memo(ImagesContextMonitor)
 
 function fetchImages({ id, type }, { from, size }) {
-  return fetch(`/api/content/${type}s/${id}/images?from=${from}&size=${size}`, {
-    credentials: 'same-origin',
-  })
+  return window.fetch(
+    `/api/content/${type}s/${id}/images?from=${from}&size=${size}`,
+    {
+      credentials: 'same-origin',
+    },
+  )
 }
 
 const SAMPLE_SOURCE = {

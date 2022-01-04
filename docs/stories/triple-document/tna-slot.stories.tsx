@@ -4,16 +4,16 @@ import { ELEMENTS, Slot } from '@titicaca/triple-document'
 
 import SLOTS from '../__mocks__/slots.sample.json'
 
-const { tnaProducts: TNAProducts } = ELEMENTS
+const { tnaProducts: TnaProducts } = ELEMENTS
 
 export default {
   title: 'triple-document / T&A Slot',
-  component: TNAProducts,
+  component: TnaProducts,
 } as Meta
 
 export function InTripleDocument() {
   return (
-    <TNAProducts
+    <TnaProducts
       value={{
         slotId: 1546,
       }}

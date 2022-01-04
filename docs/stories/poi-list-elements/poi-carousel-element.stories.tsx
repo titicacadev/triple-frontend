@@ -12,6 +12,7 @@ const [POI] = POIS
 
 export const TripleDocument: ComponentStoryObj<typeof PoiCarouselElement> = {
   args: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     poi: POI as any,
     titleTopSpacing: 10,
   },

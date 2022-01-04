@@ -20,13 +20,13 @@ export const Basic = () => {
     <Base>
       툴팁 표시 대상
       <Tooltip
-        label={'모든 호텔 보기'}
+        label="모든 호텔 보기"
         pointing={{
           vertical: 'bottom',
           horizontal: 'left',
           horizontalOffset: 26,
         }}
-        backgroundColor={'rgba(13, 208, 175, 1)'}
+        backgroundColor="rgba(13, 208, 175, 1)"
         nowrap={false}
       />
     </Base>
@@ -42,7 +42,7 @@ export const Price = () => {
       <Tooltip
         borderRadius="30"
         positioning={{ top: -12 }}
-        label={'쿠폰사용시 -15,000원 더 할인!'}
+        label="쿠폰사용시 -15,000원 더 할인!"
         onClick={() => {}}
       />
     </Base>
@@ -66,9 +66,9 @@ export const HotelListIcon = () => {
             horizontal: 'right',
             horizontalOffset: 24,
           }}
-          hasShadow={true}
+          hasShadow
           backgroundColor="#368fff"
-          nowrap={true}
+          nowrap
         />
       </Navbar.Item>
     </Navbar>

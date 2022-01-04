@@ -1,12 +1,5 @@
-import {
-  RangePickerV2,
-  rangeMixin,
-  dateLabelMixin,
-} from '@titicaca/date-picker'
-import PickFrame, {
-  generateSelectedStyle,
-} from '@titicaca/date-picker/lib/range-picker-v2/picker-frame'
-import styled from 'styled-components'
+import { RangePickerV2 } from '@titicaca/date-picker'
+import PickFrame from '@titicaca/date-picker/lib/range-picker-v2/picker-frame'
 import { ComponentStoryObj, Meta } from '@storybook/react'
 import React from 'react'
 
