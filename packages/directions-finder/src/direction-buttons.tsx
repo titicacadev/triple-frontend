@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react'
 import {
-  useUserAgentContext,
   useEventTrackingContext,
   useURIHash,
   useHistoryFunctions,
 } from '@titicaca/react-contexts'
 import { Button } from '@titicaca/core-elements'
 import { useI18n } from '@titicaca/i18n'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 
 import AskToTheLocal from './ask-to-the-local'
 import { HASH_ASK_TO_LOCALS_POPUP } from './constants'
@@ -27,7 +27,7 @@ export default function DirectionButtons({
   isDomestic?: boolean
 }) {
   const { t } = useI18n()
-  const { isPublic } = useUserAgentContext()
+  const app = useClientContext()
   const uriHash = useURIHash()
   const { push, back, showTransitionModal } = useHistoryFunctions()
   const { trackSimpleEvent } = useEventTrackingContext()
@@ -35,8 +35,8 @@ export default function DirectionButtons({
   const handleAskToLocalsClick = useCallback(() => {
     trackSimpleEvent({ action: '기본정보_현지에서길묻기' })
 
-    isPublic ? showTransitionModal() : push(HASH_ASK_TO_LOCALS_POPUP)
-  }, [trackSimpleEvent, push, showTransitionModal, isPublic])
+    app ? push(HASH_ASK_TO_LOCALS_POPUP) : showTransitionModal()
+  }, [trackSimpleEvent, push, showTransitionModal, app])
 
   return (
     <>
