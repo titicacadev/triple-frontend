@@ -1,6 +1,6 @@
 # scroll-spy
 
-activeId 값을 이용하여 scroll 시 해당위치로 이동할 수 있는 컴포넌트
+activeId 값을 이용하여 해당위치로 scrolling 해주는 컴포넌트
 
 ## How to use
 
