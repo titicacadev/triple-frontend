@@ -41,7 +41,7 @@ export interface WithDeviceContextBaseProps {
 }
 
 export function withDeviceContext<
-  P extends DeepPartial<WithDeviceContextBaseProps>
+  P extends DeepPartial<WithDeviceContextBaseProps>,
 >(Component: ComponentType<P>) {
   return function WithDeviceComponent(props: Omit<P, 'deviceContext'>) {
     return (

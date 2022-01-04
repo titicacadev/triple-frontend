@@ -119,7 +119,7 @@ export function ImagesProvider({
   }, [loading, fetchImages, id, type])
 
   const fetch = useCallback(
-    async (cb?: () => void, force?: boolean) => {
+    async (onFetchAfter?: () => void, force?: boolean) => {
       if (!force && (loading || !hasMore)) {
         return
       }
@@ -138,7 +138,7 @@ export function ImagesProvider({
         dispatch(loadImagesFail(error))
       }
 
-      cb && cb()
+      onFetchAfter && onFetchAfter()
     },
     [hasMore, loading, sendFetchRequest],
   )

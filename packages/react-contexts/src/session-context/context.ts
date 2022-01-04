@@ -7,6 +7,5 @@ export interface SessionControllers {
   logout: () => Promise<void>
 }
 
-export const SessionControllerContext = createContext<SessionControllers | null>(
-  null,
-)
+export const SessionControllerContext =
+  createContext<SessionControllers | null>(null)

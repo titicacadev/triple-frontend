@@ -1,6 +1,7 @@
 import UAParser from 'ua-parser-js'
 
 enum AppName {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   iOS = 'Triple-iOS',
   Android = 'Triple-Android',
 }
@@ -10,7 +11,7 @@ interface App {
   version: string
 }
 
-interface OS {
+interface Os {
   name?: string
   version?: string
 }
@@ -36,7 +37,7 @@ export function parseApp(userAgent: string): App | null {
 export interface UserAgentValue {
   isPublic: boolean
   isMobile: boolean
-  os: OS
+  os: Os
   app: App | null
 }
 
@@ -45,10 +46,11 @@ export function generateUserAgentValues(userAgent: string): UserAgentValue {
 
   return {
     isPublic: !app,
-    isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      userAgent,
-    ),
-    os: new UAParser(userAgent).getOS() as OS,
+    isMobile:
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        userAgent,
+      ),
+    os: new UAParser(userAgent).getOS() as Os,
     app,
   }
 }

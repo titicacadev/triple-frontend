@@ -40,14 +40,14 @@ export function useEventTrackerWithMetadata() {
     pixel?: PixelParams
   }) => {
     trackEvent({
-      ga: getGAWithMetadata(params.ga, eventMetadata),
-      fa: getFAWithMetadata(params.fa, eventMetadata),
+      ga: getGoogleAnalyticsWithMetadata(params.ga, eventMetadata),
+      fa: getFirebaseAnalyticsWithMetadata(params.fa, eventMetadata),
       pixel: getPixelWithMetadata(params.pixel, eventMetadata),
     })
   }
 }
 
-function getFAWithMetadata(
+function getFirebaseAnalyticsWithMetadata(
   fa?: Partial<FAParams>,
   eventMetaContext?: EventMetadataContext,
 ) {
@@ -61,7 +61,7 @@ function getFAWithMetadata(
   }
 }
 
-function getGAWithMetadata(
+function getGoogleAnalyticsWithMetadata(
   ga?: GAParams,
   eventMetaContext?: EventMetadataContext,
 ) {

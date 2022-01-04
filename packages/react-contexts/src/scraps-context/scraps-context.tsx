@@ -53,7 +53,7 @@ interface ScrapsContext {
   enableTrackEvent?: boolean
 }
 
-function createNOOPFunctions(name: string) {
+function createNoOpFunctions(name: string) {
   return () => {
     if (process.env.NODE_ENV === 'development') {
       if (
@@ -79,12 +79,12 @@ const Context = createContext<ScrapsContext>({
     scraped,
     scrapsCount,
   }),
-  scrape: createNOOPFunctions('scrape'),
-  unscrape: createNOOPFunctions('unscrape'),
-  scrapeArticle: createNOOPFunctions('scrapeArticle'),
-  unscrapeArticle: createNOOPFunctions('unscrapeArticle'),
-  scrapePoi: createNOOPFunctions('scrapePoi'),
-  unscrapePoi: createNOOPFunctions('unscrapePoi'),
+  scrape: createNoOpFunctions('scrape'),
+  unscrape: createNoOpFunctions('unscrape'),
+  scrapeArticle: createNoOpFunctions('scrapeArticle'),
+  unscrapeArticle: createNoOpFunctions('unscrapeArticle'),
+  scrapePoi: createNoOpFunctions('scrapePoi'),
+  unscrapePoi: createNoOpFunctions('unscrapePoi'),
   isDefault: true,
 })
 
@@ -108,32 +108,33 @@ export function ScrapsProvider({
   const { scraps, updating, dispatch } = scrapsReducer
   const hasParentContext = !!parentScrapsReducer
 
-  const deriveCurrentStateAndCount: ScrapsContext['deriveCurrentStateAndCount'] = useCallback(
-    ({ id, scraped, scrapsCount: originalScrapsCount }) => {
-      const currentState =
-        typeof updating[id] !== 'undefined' ? updating[id] : scraps[id]
-      const scrapsCount = Number(originalScrapsCount || 0)
+  const deriveCurrentStateAndCount: ScrapsContext['deriveCurrentStateAndCount'] =
+    useCallback(
+      ({ id, scraped, scrapsCount: originalScrapsCount }) => {
+        const currentState =
+          typeof updating[id] !== 'undefined' ? updating[id] : scraps[id]
+        const scrapsCount = Number(originalScrapsCount || 0)
 
-      if (typeof scraped !== 'boolean' || typeof currentState !== 'boolean') {
-        /* At least one of the status are unknown: Reduces to a bitwise OR operation */
-        return {
-          scraped: !!scraped || !!currentState,
-          scrapsCount,
+        if (typeof scraped !== 'boolean' || typeof currentState !== 'boolean') {
+          /* At least one of the status are unknown: Reduces to a bitwise OR operation */
+          return {
+            scraped: !!scraped || !!currentState,
+            scrapsCount,
+          }
         }
-      }
 
-      return {
-        scraped: currentState,
-        scrapsCount:
-          scraped === currentState
-            ? scrapsCount
-            : currentState
-            ? scrapsCount + 1
-            : scrapsCount - 1,
-      }
-    },
-    [scraps, updating],
-  )
+        return {
+          scraped: currentState,
+          scrapsCount:
+            scraped === currentState
+              ? scrapsCount
+              : currentState
+              ? scrapsCount + 1
+              : scrapsCount - 1,
+        }
+      },
+      [scraps, updating],
+    )
 
   const scrape = useCallback(
     async ({ id, type }) => {
@@ -289,11 +290,8 @@ export function withScraps<P extends DeepPartial<WithScrapsBaseProps>>(
   Component: ComponentType<P>,
 ) {
   return function ScrapsComponent(props: Omit<P, keyof WithScrapsBaseProps>) {
-    const {
-      deriveCurrentStateAndCount,
-      scraps,
-      ...actions
-    } = useScrapsContext()
+    const { deriveCurrentStateAndCount, scraps, ...actions } =
+      useScrapsContext()
 
     return (
       <Component

@@ -13,7 +13,7 @@ export function withEventTrackingProvider<P>(
     onError?: (error: Error) => void
   },
 ): React.ComponentType<P> {
-  const Page: React.ComponentType<P> = function (props: P) {
+  const Page: React.ComponentType<P> = (props: P) => {
     return (
       <EventTrackingProvider pageLabel={pageLabel} {...(options || {})}>
         <Component {...props} />
