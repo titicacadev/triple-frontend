@@ -20,7 +20,7 @@ export interface AllowSourceProps {
 }
 
 export function useDisabledLinkNotifierCreator({
-  alert = window.alert,
+  alert: originAlert,
 }: {
   alert?: (message: string) => void
 } = {}) {
@@ -28,6 +28,8 @@ export function useDisabledLinkNotifierCreator({
   const sessionAvailable = useSessionAvailability()
   const { show: showTransitionModal } = useTransitionModal()
   const { show: showLoginCtaModal } = useLoginCTAModal()
+
+  const alert = originAlert || window.alert
 
   const createDisabledLinkNotifier = ({
     allowSource = 'all',
