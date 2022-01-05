@@ -9,10 +9,11 @@ npm install @titicaca/scroll-spy
 ```
 
 ```js
+import React, { useState } from 'react'
 import { ScrollSpyContainer, ScrollSpyEntity } from '@titicaca/scroll-spy'
 
 function ScrollSpy() {
-  const [activeId, setActiveId] = (useState < string) | (null > null)
+  const [activeId, setActiveId] = useState(null)
 
   return (
     <ScrollSpyContainer
@@ -33,8 +34,8 @@ function ScrollSpy() {
 ### ScrollSpyContainer
 
 - activeId: ScrollSpyEntity의 사용되는 값으로 ScrollSpyContainer의 children에 대한 각각의 id 값 (required)
-- scrollOffset: 해당 child의 위치를 기준으로 제외해야 할 값(부모 컴포넌트의 padding, margin 등) (required)
 - onChange: activeId를 변경하는 핸들러
+- scrollOffset: 해당 child의 위치를 기준으로 제외해야 할 값(부모 컴포넌트의 padding, margin 등) (optional)
 - preventInitialScroll: true일 때 스크롤을 방지하는 값 (optional)
 
 ### ScrollSpyEntity
