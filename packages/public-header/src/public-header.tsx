@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { white, brightGray } from '@titicaca/color-palette'
-import { useUserAgentContext } from '@titicaca/react-contexts'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 
 import {
   HEADER_DESKTOP_HEIGHT,
@@ -98,7 +98,7 @@ export function PublicHeader({
   deeplinkPath,
   disableAutoHide,
 }: PublicHeaderProps) {
-  const { app } = useUserAgentContext()
+  const app = useClientContext()
   const visible = useAutoHide(disableAutoHide)
 
   if (app) {

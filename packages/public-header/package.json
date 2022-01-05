@@ -20,6 +20,7 @@
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
+    "@titicaca/react-client-interfaces": "*",
     "react": "*",
     "styled-components": ">=4.4.1 < 6"
   }
