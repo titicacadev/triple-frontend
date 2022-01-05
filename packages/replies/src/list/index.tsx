@@ -88,9 +88,10 @@ function ConfirmEditModal({ onConfirm }: { onConfirm: () => void }) {
     <Confirm
       open={uriHash === HASH_EDIT_CLOSE_MODAL}
       onClose={back}
-      children={`수정을 취소하시겠습니까? \n 수정한 내용은 저장되지 않습니다.`}
       onConfirm={onConfirm}
-    />
+    >
+      {`수정을 취소하시겠습니까? \n 수정한 내용은 저장되지 않습니다.`}
+    </Confirm>
   )
 }
 
@@ -108,8 +109,9 @@ function ConfirmDeleteModal({
     <Confirm
       open={uriHash === HASH_DELETE_CLOSE_MODAL}
       onClose={back}
-      children={description}
       onConfirm={onConfirm}
-    />
+    >
+      {description}
+    </Confirm>
   )
 }
