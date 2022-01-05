@@ -21,7 +21,14 @@ const LottieContainer = styled.div`
 `
 
 export function ScrollElement() {
-  useScrollToElement('#app')
+  const { scrollToElement } = useScrollToElement()
+
+  useEffect(() => {
+    scrollToElement(document.getElementById('app'), {
+      offset: 52,
+      duration: 600,
+    })
+  }, [scrollToElement])
 
   return (
     <div>
