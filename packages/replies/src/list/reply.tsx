@@ -156,7 +156,7 @@ export default function Reply({
 
   const handleMoreClick = useCallback(
     (id, deleted) => {
-      !deleted && push(`${HASH_MORE_ACTION_SHEET}.${id}`)
+      !deleted && push(`${HASH_MORE_ACTION_SHEET}.${id}`, { useRouter: true })
     },
     [push],
   )
@@ -217,7 +217,8 @@ export default function Reply({
       })
 
       await asyncBack(back)
-      await asyncPush(push)
+
+      push(HASH_DELETE_CLOSE_MODAL)
 
       return true
     },
