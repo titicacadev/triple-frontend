@@ -12,7 +12,7 @@ export default function VerificationRequest({
 }: {
   forceVerification?: boolean
   verificationContext?: 'purchase' | 'cash'
-  onCancel: Function
+  onCancel: () => void
 }) {
   const {
     verificationState: { verified },
