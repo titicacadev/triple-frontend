@@ -35,7 +35,7 @@ interface TextareaProps {
   onChange: (message: string) => void
 }
 
-export type TextAreaHandle = {
+export interface TextAreaHandle {
   focusInput: () => void
 }
 

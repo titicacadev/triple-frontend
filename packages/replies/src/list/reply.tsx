@@ -196,12 +196,14 @@ export default function Reply({
               width={14}
               height={14}
               src="https://assets.triple.guide/images/btn-lounge-thanks-on@3x.png"
+              alt="thanks on icon"
             />
           ) : (
             <img
               width={14}
               height={14}
               src="https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png"
+              alt="thanks off icon"
             />
           )}
 
