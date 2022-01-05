@@ -5,10 +5,8 @@ import ImageCarousel, {
   CarouselImageMeta,
 } from '@titicaca/image-carousel'
 import { Container, Responsive, ImageSource } from '@titicaca/core-elements'
-import {
-  useUserAgentContext,
-  useEventTrackingContext,
-} from '@titicaca/react-contexts'
+import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 import { ImageMeta } from '@titicaca/type-definitions'
 
 import CtaOverlay from './cta-overlay'
@@ -54,20 +52,18 @@ export default function Carousel({
   borderRadius?: number
   height?: number
 }) {
-  const { isPublic } = useUserAgentContext()
+  const app = useClientContext()
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
   const [currentPage, setCurrentPage] = useState(0)
-  const visibleImages = isPublic
-    ? images.slice(0, SHOW_CTA_FROM_INDEX + 1)
-    : images
+  const visibleImages = app ? images : images.slice(0, SHOW_CTA_FROM_INDEX + 1)
 
   const handleImageClick = useCallback(() => {
-    if (isPublic && currentPage === SHOW_CTA_FROM_INDEX) {
+    if (!app && currentPage === SHOW_CTA_FROM_INDEX) {
       return onCTAClick()
     }
 
     onImageClick(images[currentPage])
-  }, [onImageClick, onCTAClick, images, currentPage, isPublic])
+  }, [onImageClick, onCTAClick, images, currentPage, app])
 
   const handlePageChange = useCallback(
     ({ index }) => {
@@ -77,7 +73,7 @@ export default function Carousel({
 
       setCurrentPage(index)
 
-      if (isPublic && index === SHOW_CTA_FROM_INDEX) {
+      if (!app && index === SHOW_CTA_FROM_INDEX) {
         return trackSimpleEvent({ action: '대표사진_앱에서더보기_노출' })
       }
 
@@ -98,7 +94,7 @@ export default function Carousel({
         })
       }
 
-      if (!isPublic && index > images.length - 5) {
+      if (app && index > images.length - 5) {
         onImagesFetch()
       }
     },
@@ -106,22 +102,22 @@ export default function Carousel({
       setCurrentPage,
       currentPage,
       images,
-      isPublic,
+      app,
       onImagesFetch,
       trackEvent,
       trackSimpleEvent,
     ],
   )
 
-  const ConditionalPageLabel = isPublic
-    ? ({ currentIndex }: { currentIndex: number }) =>
+  const ConditionalPageLabel = app
+    ? undefined
+    : ({ currentIndex }: { currentIndex: number }) =>
         !totalImagesCount || currentIndex === SHOW_CTA_FROM_INDEX ? null : (
           <PageLabel currentIndex={currentPage} totalCount={totalImagesCount} />
         )
-    : undefined
 
   const CTA = ({ currentIndex }: { currentIndex: number }) =>
-    isPublic && currentIndex === SHOW_CTA_FROM_INDEX ? <CtaOverlay /> : null
+    !app && currentIndex === SHOW_CTA_FROM_INDEX ? <CtaOverlay /> : null
 
   return (
     <>
