@@ -18,5 +18,8 @@
     "@titicaca/intersection-observer": "^5.1.2",
     "react-use": "^17.2.1",
     "scroll-to-element": "^2.0.3"
+  },
+  "peerDependencies": {
+    "react": "*"
   }
 }
