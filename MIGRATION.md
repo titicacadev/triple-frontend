@@ -152,3 +152,7 @@ deprecated된 props을 제거합니다.
   <PublicHeader>
 </StickyHeader>
 ```
+
+## v1 to v2
+
+https://github.com/titicacadev/triple-frontend/issues/1008
