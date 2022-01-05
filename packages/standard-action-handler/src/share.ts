@@ -105,7 +105,7 @@ function createShareFunction() {
   }
 }
 
-export default function share({ path, query }: UrlElements) {
+export default async function share({ path, query }: UrlElements) {
   const { url, text } = qs.parse(query as string)
 
   if (url && path === '/web-action/share') {
