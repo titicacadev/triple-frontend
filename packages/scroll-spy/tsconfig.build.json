@@ -4,6 +4,9 @@
   "references": [
     {
       "path": "../intersection-observer/tsconfig.build.json"
+    },
+    {
+      "path": "../react-hooks/tsconfig.build.json"
     }
   ]
 }

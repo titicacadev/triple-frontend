@@ -17,7 +17,7 @@ function ScrollSpy() {
   return (
     <ScrollSpyContainer
       activeId={activeId}
-      scrollOffset={number}
+      scrollOffset={30}
       onChange={setActiveId}
     >
       {ENTITIES.map((entity) => (
@@ -35,7 +35,7 @@ function ScrollSpy() {
 - activeId: ScrollSpyEntity의 사용되는 값으로 ScrollSpyContainer의 children에 대한 각각의 id 값 (required)
 - scrollOffset: 해당 child의 위치를 기준으로 제외해야 할 값(부모 컴포넌트의 padding, margin 등) (required)
 - onChange: activeId를 변경하는 핸들러
-- preventInitialScroll: 첫 스크롤을 방지하는 설정 값 (optional)
+- preventInitialScroll: true일 때 스크롤을 방지하는 값 (optional)
 
 ### ScrollSpyEntity
 

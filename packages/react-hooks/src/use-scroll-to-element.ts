@@ -1,27 +1,39 @@
-import { useEffect } from 'react'
+import { useMemo, useRef } from 'react'
 import scrollToElement from 'scroll-to-element'
 
-export function useScrollToElement(
-  selector: string | HTMLElement | Element,
-  option?: {
-    delayTime: number
-    offset: number
-    duration?: number
-    align?: 'top' | 'bottom' | 'middle'
-  },
-) {
-  useEffect(() => {
-    if (selector) {
-      const {
-        offset = -52, // HACK: 헤더 높이
-        delayTime = 1500,
-        duration,
-        align,
-      } = option || {}
+/**
+ * 주어진 DOM 엘리먼트로 스크롤하는 함수를 제공하는 훅
+ *
+ * 현재 스크롤 되고 있는지를 반환하는 `isScrolling` 함수와 스크롤 함수를 반환합니다.
+ */
+export function useScrollToElement() {
+  const scrollingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-      setTimeout(() => {
-        scrollToElement(selector, { offset, duration, align })
-      }, delayTime)
-    }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  return useMemo(
+    () => ({
+      isScrolling: () => {
+        return scrollingTimerRef.current !== null
+      },
+      scrollToElement: (
+        el: Parameters<typeof scrollToElement>[0] | null,
+        options: Parameters<typeof scrollToElement>[1],
+      ) => {
+        if (!el) {
+          return
+        }
+        const duration = options?.duration || 1000
+        const prevScrollTimer = scrollingTimerRef.current
+
+        if (prevScrollTimer) {
+          clearTimeout(prevScrollTimer)
+        }
+
+        scrollingTimerRef.current = setTimeout(() => {
+          scrollingTimerRef.current = null
+        }, duration)
+        scrollToElement(el, options)
+      },
+    }),
+    [],
+  )
 }
