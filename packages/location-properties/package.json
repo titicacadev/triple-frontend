@@ -21,6 +21,7 @@
     "@titicaca/type-definitions": "^5.1.2"
   },
   "peerDependencies": {
-    "@titicaca/react-contexts": "*"
+    "@titicaca/react-contexts": "*",
+    "@titicaca/react-client-interfaces": "*"
   }
 }

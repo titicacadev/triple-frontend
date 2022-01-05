@@ -2,9 +2,9 @@ import React, { useCallback } from 'react'
 import { List, Text, longClickable, FlexBox } from '@titicaca/core-elements'
 import {
   useEventTrackingContext,
-  useUserAgentContext,
   useHistoryFunctions,
 } from '@titicaca/react-contexts'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 
 export const ACTION_SHEET_PREFIX = 'location-properties.copy-action-sheet'
 
@@ -27,7 +27,7 @@ export default function PropertyItem({
   onClick,
   eventActionFragment,
 }: PropertyItemProps) {
-  const { isPublic } = useUserAgentContext()
+  const app = useClientContext()
 
   const { push } = useHistoryFunctions()
   const { trackSimpleEvent } = useEventTrackingContext()
@@ -45,7 +45,7 @@ export default function PropertyItem({
       <LongClickableItemContainer
         flex
         alignItems="flex-start"
-        onLongClick={!isPublic ? handleLongClick : undefined}
+        onLongClick={app ? handleLongClick : undefined}
         onClick={onClick}
       >
         <Text bold size="small" css={{ flexShrink: 1, lineHeight: 1.43 }}>
