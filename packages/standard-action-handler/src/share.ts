@@ -1,7 +1,9 @@
+import qs from 'qs'
 import { generateUrl, parseUrl, UrlElements } from '@titicaca/view-utilities'
 import {
   shareLink,
   hasAccessibleTripleNativeClients,
+  showToast,
 } from '@titicaca/triple-web-to-native-interfaces'
 
 interface SharingParams {
@@ -103,8 +105,10 @@ function createShareFunction() {
   }
 }
 
-export default async function share({ path }: UrlElements) {
-  if (path === '/web-action/share') {
+export default function share({ path, query }: UrlElements) {
+  const { url, text } = qs.parse(query as string)
+
+  if (url && path === '/web-action/share') {
     const params = getSharingParams()
     const shareFuncByEnv = createShareFunction()
 
@@ -113,5 +117,53 @@ export default async function share({ path }: UrlElements) {
     return true
   }
 
+  if (text && path === '/web-action/share') {
+    const shareTextFunc = createShareTextFunction()
+
+    shareTextFunc && shareTextFunc(text as string)
+
+    return true
+  }
+
   return false
+}
+
+function createShareTextFunction() {
+  if (!hasAccessibleTripleNativeClients()) {
+    return typeof navigator !== 'undefined' && navigator.clipboard
+      ? copyTextToClipboard
+      : copyTextWithDomApi
+  } else {
+    return shareTextNativeInterface
+  }
+}
+
+async function copyTextToClipboard(text: string) {
+  try {
+    await navigator.clipboard.writeText(text)
+
+    alert('클립보드에 복사되었습니다.')
+  } catch (error) {
+    copyTextWithDomApi(text)
+  }
+}
+
+function copyTextWithDomApi(text: string) {
+  const inputElement = document.createElement('input')
+
+  inputElement.value = text
+  document.body.appendChild(inputElement)
+  inputElement.select()
+  document.execCommand('copy')
+  document.body.removeChild(inputElement)
+
+  alert('클립보드에 복사되었습니다.')
+}
+
+function shareTextNativeInterface(text: string) {
+  window.location.href = `${
+    process.env.APP_URL_SCHEME
+  }:///action/copy_to_clipboard?text=${encodeURIComponent(text)}`
+
+  showToast('클립보드에 복사되었습니다.')
 }
