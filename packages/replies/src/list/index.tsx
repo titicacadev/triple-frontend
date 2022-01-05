@@ -29,6 +29,10 @@ export default function ReplyList({
     initializeEditingMessage,
   } = useRepliesContext()
 
+  const description = mentioningUserName
+    ? '답글을 삭제하시겠습니까?'
+    : '댓글을 삭제하시겠습니까?'
+
   return (
     <>
       {replies.length <= 0 ? (
@@ -68,7 +72,7 @@ export default function ReplyList({
             onConfirm={() => {
               deleteReply({ currentMessageId })
             }}
-            replyType={mentioningUserName ? '답글' : '댓글'}
+            description={description}
           />
         </Container>
       )}
@@ -91,10 +95,10 @@ function ConfirmEditModal({ onConfirm }: { onConfirm: () => void }) {
 }
 
 function ConfirmDeleteModal({
-  replyType,
+  description,
   onConfirm,
 }: {
-  replyType: string
+  description: string
   onConfirm: () => void
 }) {
   const uriHash = useURIHash()
@@ -104,7 +108,7 @@ function ConfirmDeleteModal({
     <Confirm
       open={uriHash === HASH_DELETE_CLOSE_MODAL}
       onClose={back}
-      children={`${replyType}을 삭제하시겠습니까?`}
+      children={description}
       onConfirm={onConfirm}
     />
   )
