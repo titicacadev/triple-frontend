@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/scroll-spy",
-  "version": "5.1.1",
+  "version": "5.1.2",
   "description": "Scroll Spy Component",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
@@ -15,7 +15,7 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/intersection-observer": "^5.1.1",
+    "@titicaca/intersection-observer": "^5.1.2",
     "react-use": "^17.2.1",
     "scroll-to-element": "^2.0.3"
   }
