@@ -60,27 +60,6 @@ const CONTENT_TEXT = {
   blinded: '다른 사용자의 신고로 블라인드 되었습니다.',
 }
 
-function deriveContent({
-  text,
-  deleted,
-  blinded,
-  childrenCount,
-}: {
-  text: string
-  deleted: boolean
-  blinded: boolean
-  childrenCount: number
-}) {
-  const type =
-    deleted || blinded
-      ? deleted && childrenCount > 0
-        ? 'deleted'
-        : 'blinded'
-      : 'default'
-
-  return type === 'default' ? text : CONTENT_TEXT[type]
-}
-
 export default function Reply({
   reply: {
     writer: { profileImage, name },
@@ -428,4 +407,25 @@ function FeatureActionSheet({
       )}
     </ActionSheet>
   )
+}
+
+function deriveContent({
+  text,
+  deleted,
+  blinded,
+  childrenCount,
+}: {
+  text: string
+  deleted: boolean
+  blinded: boolean
+  childrenCount: number
+}) {
+  const type =
+    deleted || blinded
+      ? deleted && childrenCount > 0
+        ? 'deleted'
+        : 'blinded'
+      : 'default'
+
+  return type === 'default' ? text : CONTENT_TEXT[type]
 }
