@@ -48,6 +48,9 @@
     },
     {
       "path": "../react-contexts"
+    },
+    {
+      "path": "../react-client-interfaces"
     }
   ]
 }
