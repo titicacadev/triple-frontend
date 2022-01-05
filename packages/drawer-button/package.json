@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/drawer-button",
-  "version": "5.1.1",
+  "version": "5.1.2",
   "description": "Button in drawer",
   "keywords": [
     "button",
@@ -27,6 +27,6 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^5.1.1"
+    "@titicaca/core-elements": "^5.1.2"
   }
 }

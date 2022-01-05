@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/i18n",
-  "version": "5.1.1",
+  "version": "5.1.2",
   "description": "Triple-frontend Internalization",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
