@@ -42,14 +42,14 @@ export function useSendVerifiedMessage() {
  * callback의 레퍼런스가 바뀌어도 반영되지 않습니다.
  */
 export function useVerifiedMessageListener(
-  callback: (message: VerifiedMessage) => void,
+  handleVerifiedMessage: (message: VerifiedMessage) => void,
 ) {
   const { isPublic } = useUserAgentContext()
 
   useEffect(() => {
     if (isPublic) {
       const handleMessage = ({ data }: MessageEvent) => {
-        callback(data)
+        handleVerifiedMessage(data)
       }
 
       window.addEventListener('message', handleMessage)
@@ -59,10 +59,10 @@ export function useVerifiedMessageListener(
       }
     }
 
-    subscribe('receiveMessage', callback)
+    subscribe('receiveMessage', handleVerifiedMessage)
 
     return () => {
-      unsubscribe('receiveMessage', callback)
+      unsubscribe('receiveMessage', handleVerifiedMessage)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
