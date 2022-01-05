@@ -1,14 +1,10 @@
 import React, { useState } from 'react'
 import { ComponentStoryObj, Meta } from '@storybook/react'
-import { Container } from '@titicaca/core-elements'
 import { ScrollSpyContainer, ScrollSpyEntity } from '@titicaca/scroll-spy'
+import { PoiListElement } from '@titicaca/poi-list-elements'
+import { ListingPoi } from '@titicaca/nearby-pois/lib/types'
 
-const ENTITIES = Array.from(
-  {
-    length: 10,
-  },
-  (ele, i) => ({ id: `${i + 1}` }),
-)
+import POIS from '../__mocks__/pois.sample.json'
 
 function ScrollSpy() {
   const [activeId, setActiveId] = useState<string | null>(null)
@@ -19,13 +15,22 @@ function ScrollSpy() {
       scrollOffset={30}
       onChange={setActiveId}
     >
-      {ENTITIES.map(({ id }) => (
-        <ScrollSpyEntity key={id} id={id}>
-          <Container width={300} height={150} onClick={() => setActiveId(id)}>
-            {`[${id}] 해당 Entity의 위치로 scrolling`}
-          </Container>
-        </ScrollSpyEntity>
-      ))}
+      {POIS.map((poi) => {
+        const {
+          source: { id },
+        } = poi
+
+        return (
+          <ScrollSpyEntity key={id} id={id}>
+            <div onClick={() => setActiveId(id)}>
+              <PoiListElement
+                as="div"
+                poi={poi as Omit<ListingPoi, 'categories'>}
+              />
+            </div>
+          </ScrollSpyEntity>
+        )
+      })}
     </ScrollSpyContainer>
   )
 }
