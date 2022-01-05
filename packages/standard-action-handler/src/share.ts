@@ -162,7 +162,7 @@ function copyTextWithDomApi(text: string) {
 
 function shareTextNativeInterface(text: string) {
   window.location.href = `${
-    process.env.APP_URL_SCHEME
+    process.env.NEXT_PUBLIC_APP_URL_SCHEME
   }:///action/copy_to_clipboard?text=${encodeURIComponent(text)}`
 
   showToast('클립보드에 복사되었습니다.')
