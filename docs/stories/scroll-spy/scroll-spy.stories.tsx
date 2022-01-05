@@ -23,10 +23,7 @@ function ScrollSpy() {
         return (
           <ScrollSpyEntity key={id} id={id}>
             <div onClick={() => setActiveId(id)}>
-              <PoiListElement
-                as="div"
-                poi={poi as Omit<ListingPoi, 'categories'>}
-              />
+              <PoiListElement as="div" poi={poi as unknown as ListingPoi} />
             </div>
           </ScrollSpyEntity>
         )
