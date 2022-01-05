@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import Router from 'next/router'
 import styled from 'styled-components'
 import {
   Container,
@@ -80,19 +79,6 @@ function deriveContent({
       : 'default'
 
   return type === 'default' ? text : CONTENT_TEXT[type]
-}
-
-function asyncPush(pusher: (hash: string) => void): Promise<void> {
-  return new Promise((resolve) => {
-    const handler = () => {
-      Router.events.off('hashChangeComplete', handler)
-      resolve()
-    }
-
-    Router.events.on('hashChangeComplete', handler)
-
-    pusher(HASH_DELETE_CLOSE_MODAL)
-  })
 }
 
 export default function Reply({
