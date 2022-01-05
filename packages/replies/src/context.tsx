@@ -30,7 +30,9 @@ const RepliesContext = createContext<
   (EditingMessage & ReplyBaseActions) | undefined
 >(undefined)
 
-export function RepliesProvider({ children }: PropsWithChildren<{}>) {
+export function RepliesProvider({
+  children,
+}: PropsWithChildren<Record<string, unknown>>) {
   const [
     {
       currentMessageId,
