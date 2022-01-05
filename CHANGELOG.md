@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 5.1.2
+
+### ESLint 검사
+
+- user-verification 디렉토리의 ESLint 검사를 활성화하고 오류를 수정합니다. [#1809](https://github.com/titicacadev/triple-frontend/pull/1809)
+
+### common
+
+- 마이그레이션 문서에 v1 to v2 문서 링크 추가 [#1808](https://github.com/titicacadev/triple-frontend/pull/1808)
+
+### router
+
+- default alert을 추가합니다. [#1806](https://github.com/titicacadev/triple-frontend/pull/1806)
+
 ## 5.1.1
 
 ### fetcher
