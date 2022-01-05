@@ -11,10 +11,8 @@ import * as CSS from 'csstype'
 import semver from 'semver'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { List, Container, Text, Rating } from '@titicaca/core-elements'
-import {
-  useEventTrackingContext,
-  useUserAgentContext,
-} from '@titicaca/react-contexts'
+import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { useSessionCallback } from '@titicaca/ui-flow'
 
@@ -133,8 +131,8 @@ export default function ReviewElement({
   const [unfolded, setUnfolded] = useState(false)
   const { deriveCurrentStateAndCount, updateLikedStatus } =
     useReviewLikesContext()
-  const appVersion = semver.coerce(useUserAgentContext()?.app?.version)
-  const { isPublic } = useUserAgentContext()
+  const app = useClientContext()
+  const appVersion = app && semver.coerce(app?.appVersion)
   const { trackEvent } = useEventTrackingContext()
   const { liked, likesCount } = deriveCurrentStateAndCount({
     reviewId: review.id,
@@ -142,8 +140,7 @@ export default function ReviewElement({
     likesCount: review.likesCount,
   })
   const isMessageCountVisible =
-    (!!appVersion && semver.gte(appVersion, MESSAGE_COUNT_APP_VERSION)) ||
-    isPublic
+    (!!appVersion && semver.gte(appVersion, MESSAGE_COUNT_APP_VERSION)) || !app
 
   const handleLikeButtonClick: MouseEventHandler = useSessionCallback(
     useCallback(async () => {

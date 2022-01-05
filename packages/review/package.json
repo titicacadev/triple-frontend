@@ -39,6 +39,7 @@
     "csstype": "^3.0.2"
   },
   "peerDependencies": {
-    "@titicaca/react-contexts": "*"
+    "@titicaca/react-contexts": "*",
+    "@titicaca/react-client-interfaces": "*"
   }
 }

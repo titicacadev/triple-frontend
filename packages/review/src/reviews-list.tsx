@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react'
 import moment from 'moment'
 import { List } from '@titicaca/core-elements'
 import {
-  useUserAgentContext,
   useEventTrackingContext,
   useHistoryFunctions,
 } from '@titicaca/react-contexts'
@@ -11,6 +10,7 @@ import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { ImageMeta } from '@titicaca/type-definitions'
 import semver from 'semver'
 import { Timestamp } from '@titicaca/view-utilities'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 
 import ReviewElement, { ReviewElementProps } from './review-element'
 import { HASH_MY_REVIEW_ACTION_SHEET } from './my-review-action-sheet'
@@ -44,10 +44,10 @@ export default function ReviewsList({
   const [selectedReview, setSelectedReview] = useState<ReviewData | undefined>(
     undefined,
   )
-  const { isPublic } = useUserAgentContext()
+  const app = useClientContext()
   const { trackEvent } = useEventTrackingContext()
   const { push } = useHistoryFunctions()
-  const appVersion = semver.coerce(useUserAgentContext()?.app?.version)
+  const appVersion = app && semver.coerce(app.appVersion)
   const {
     navigateUserDetail,
     navigateImages,
@@ -85,7 +85,7 @@ export default function ReviewsList({
   const handleMenuClick: ReviewElementProps['onMenuClick'] = useSessionCallback(
     useCallback(
       (e: React.SyntheticEvent, review: ReviewData) => {
-        if (!isPublic) {
+        if (app) {
           if (myReview && review.id === myReview.id) {
             push(HASH_MY_REVIEW_ACTION_SHEET)
           } else {
@@ -94,7 +94,7 @@ export default function ReviewsList({
           }
         }
       },
-      [isPublic, myReview, push],
+      [app, myReview, push],
     ),
   )
 
@@ -220,7 +220,7 @@ export default function ReviewsList({
             index={i}
             review={review}
             reviewRateDescriptions={reviewRateDescriptions}
-            onUserClick={isPublic ? undefined : handleUserClick}
+            onUserClick={app ? handleUserClick : undefined}
             onMenuClick={handleMenuClick}
             onImageClick={handleImageClick}
             onReviewClick={handleReviewClick}
