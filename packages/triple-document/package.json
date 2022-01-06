@@ -35,7 +35,8 @@
   },
   "peerDependencies": {
     "@sentry/browser": ">=5 <7",
-    "@titicaca/react-contexts": "*"
+    "@titicaca/react-contexts": "*",
+    "@titicaca/react-client-interfaces": "*"
   },
   "devDependencies": {
     "@sentry/browser": "^6.2.5",

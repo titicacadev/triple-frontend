@@ -9,7 +9,7 @@ import {
 } from '@titicaca/core-elements'
 import TripleMedia from '@titicaca/triple-media'
 import { ImageMeta } from '@titicaca/type-definitions'
-import { useUserAgentContext } from '@titicaca/react-contexts'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 
 import { useImageClickHandler } from '../prop-context/image-click-handler'
 import { useLinkClickHandler } from '../prop-context/link-click-handler'
@@ -47,12 +47,11 @@ export default function Images({
       : ImageCarouselElementContainer
 
   const handleClick = generateClickHandler(onLinkClick, onImageClick)
-  const { isPublic, os, app } = useUserAgentContext()
-  const appVersion = semver.coerce(app?.version)
+  const app = useClientContext()
+  const appVersion = semver.coerce(app?.appVersion)
   const isLegacyIosApp = Boolean(
-    !isPublic &&
-      os &&
-      os.name === 'iOS' &&
+    app &&
+      app.appName === 'Triple-iOS' &&
       appVersion &&
       semver.lt(appVersion, PLAYS_INLINE_APP_VERSION),
   )
