@@ -29,7 +29,8 @@ export function useClientActions() {
     WebToNativeInterfaces,
   ).reduce<Partial<typeof WebToNativeInterfaces>>(
     (accessibleWebToNativeInterfaces, interfaceName) => {
-      const interfaceNameKey = interfaceName as keyof typeof WebToNativeInterfaces
+      const interfaceNameKey =
+        interfaceName as keyof typeof WebToNativeInterfaces
       const interfaceValue = WebToNativeInterfaces[interfaceNameKey]
 
       if (typeof interfaceValue !== 'function') {
@@ -50,7 +51,7 @@ export function useClientActions() {
 
       return {
         ...accessibleWebToNativeInterfaces,
-        [interfaceName]: interfaceValue as Function,
+        [interfaceName]: interfaceValue as (...args: unknown[]) => unknown,
       }
     },
     {},

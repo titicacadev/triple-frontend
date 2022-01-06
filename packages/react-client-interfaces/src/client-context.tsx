@@ -18,7 +18,7 @@ export function ClientContextProvider({
   appName,
   appVersion,
   children,
-}: React.PropsWithChildren<ClientContextProps>) {
+}: PropsWithChildren<ClientContextProps>) {
   const value = useMemo(
     () => ({
       appName,
