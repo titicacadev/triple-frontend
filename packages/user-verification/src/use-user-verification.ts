@@ -1,10 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import fetch from 'isomorphic-fetch'
 import { useVisibilityChange } from '@titicaca/react-hooks'
-import {
-  useHistoryFunctions,
-  useUserAgentContext,
-} from '@titicaca/react-contexts'
+import { useExternalRouter } from '@titicaca/router'
 
 import { useVerifiedMessageListener, VerifiedMessage } from './verified-message'
 
@@ -41,8 +38,7 @@ export function useUserVerification({
   verificationContext?: 'purchase' | 'cash'
   forceVerification: boolean
 }) {
-  const { openWindow } = useHistoryFunctions()
-  const { isPublic } = useUserAgentContext()
+  const routeExternally = useExternalRouter()
   const [verificationState, setVerificationState] = useState<VerificationState>(
     {
       phoneNumber: undefined,
@@ -52,14 +48,10 @@ export function useUserVerification({
   )
 
   const initiateVerification = useCallback(() => {
-    const href = `${TARGET_PAGE_PATH[verificationType]}?_triple_no_navbar&context=${verificationContext}`
+    const href = `${TARGET_PAGE_PATH[verificationType]}?context=${verificationContext}`
 
-    if (isPublic) {
-      window.open(href)
-    } else {
-      openWindow(href)
-    }
-  }, [isPublic, openWindow, verificationContext, verificationType])
+    routeExternally({ href, target: 'new', noNavbar: true })
+  }, [routeExternally, verificationContext, verificationType])
 
   const handleVerifiedMessageReceive = useCallback(
     ({ type, phoneNumber }: VerifiedMessage) => {
