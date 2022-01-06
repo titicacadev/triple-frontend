@@ -12,11 +12,11 @@ test('activeId가 일치합니다.', () => {
   /* prepareTest의 IntersectionObserver에서 div를 래핑하기에 a태그를 사용 */
   const tree = renderer.create(
     <IntersectionObserver onChange={jest.fn()}>
-      <a id="a-element">테스트 태그</a>
+      <a id="target-element">테스트 태그</a>
     </IntersectionObserver>,
   ).root
 
-  expect(tree.findByProps({ id: 'a-element' })).toStrictEqual(
+  expect(tree.findByProps({ id: 'target-element' })).toStrictEqual(
     tree.findByType('a'),
   )
 })
@@ -26,11 +26,11 @@ test('intersectionObserver 동작을 체크합니다.', () => {
 
   const tree = renderer.create(
     <IntersectionObserver onChange={jest.fn()}>
-      <div id="div-element" />
+      <div id="target-element" />
     </IntersectionObserver>,
   ).root
 
-  expect(tree.findByProps({ id: 'div-element' }))
+  expect(tree.findByProps({ id: 'target-element' }))
 })
 
 function prepareTest() {
