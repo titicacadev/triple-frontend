@@ -74,6 +74,7 @@
     "eslint-plugin-mdx": "^1.7.0",
     "husky": "^7.0.2",
     "jest": "^27.3.1",
+    "jest-canvas-mock": "^2.3.1",
     "jest-styled-components": "^7.0.5",
     "lerna": "^4.0.0",
     "lint-staged": "^11.2.3",
