@@ -5,10 +5,10 @@ import { useURIHash, useHistoryFunctions } from '@titicaca/react-contexts'
 
 import { Reply as ReplyType } from '../types'
 import { useRepliesContext } from '../context'
+import { deleteReply } from '../replies-api-clients'
 
 import NotExistReplies from './not-exist-replies'
 import Reply, { HASH_DELETE_CLOSE_MODAL } from './reply'
-import { deleteReply } from '../replies-api-clients'
 
 const HASH_EDIT_CLOSE_MODAL = 'reply.edit-close-modal'
 
