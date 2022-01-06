@@ -8,7 +8,8 @@
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/modals": ["../modals/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
-      "@titicaca/react-hooks": ["../react-hooks/src"]
+      "@titicaca/react-hooks": ["../react-hooks/src"],
+      "@titicaca/router": ["../router/src"]
     }
   },
   "include": ["./src"],
@@ -21,6 +22,9 @@
     },
     {
       "path": "../react-hooks"
+    },
+    {
+      "path": "../router"
     },
     {
       "path": "../react-contexts"
