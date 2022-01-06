@@ -21,8 +21,18 @@ describe('ScrollSpy', () => {
     })
   })
 
+  test('intersectionObserver 동작을 체크합니다.', () => {
+    const tree = renderer.create(
+      <IntersectionObserver onChange={jest.fn()}>
+        <div id="target-element" />
+      </IntersectionObserver>,
+    ).root
+
+    expect(tree.findByProps({ id: 'target-element' }))
+  })
+
   test('activeId가 일치합니다.', () => {
-    /* prepareTest의 IntersectionObserver에서 div를 래핑하기에 a태그를 사용 */
+    /* mockImplementation에서 div를 래핑하기에 a태그를 사용 */
     const tree = renderer.create(
       <IntersectionObserver onChange={jest.fn()}>
         <a id="target-element">테스트 태그</a>
@@ -32,15 +42,5 @@ describe('ScrollSpy', () => {
     expect(tree.findByProps({ id: 'target-element' })).toStrictEqual(
       tree.findByType('a'),
     )
-  })
-
-  test('intersectionObserver 동작을 체크합니다.', () => {
-    const tree = renderer.create(
-      <IntersectionObserver onChange={jest.fn()}>
-        <div id="target-element" />
-      </IntersectionObserver>,
-    ).root
-
-    expect(tree.findByProps({ id: 'target-element' }))
   })
 })
