@@ -9,14 +9,14 @@ import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 import { useWindowSize } from 'react-use'
 import { useScrollToElement } from '@titicaca/react-hooks'
 
-interface Index {
+interface ScrollSpyProps {
   generateScrollSpyIntersectionChangeHandler: (
     typeId: string,
   ) => (entry: IntersectionObserverEntry) => void
   scrollOffset: number
 }
 
-const ScrollSpyContext = createContext<Index | null>(null)
+const ScrollSpyContext = createContext<ScrollSpyProps | null>(null)
 
 export function ScrollSpyContainer({
   activeId,
