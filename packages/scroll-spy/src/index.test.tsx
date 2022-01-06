@@ -1,22 +1,49 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import IntersectionObserver from '@titicaca/intersection-observer'
 import '@testing-library/jest-dom'
-import { render } from '@testing-library/react'
 import 'jest-canvas-mock'
+import renderer from 'react-test-renderer'
 
-import { ScrollSpyContainer, ScrollSpyEntity } from './index'
+jest.mock('@titicaca/intersection-observer')
 
-test('container와 entity를 렌더링 합니다..', () => {
-  const { getByTestId } = render(
-    <ScrollSpyContainer activeId="" onChange={jest.fn()}>
-      <div data-testid="container-element">
-        container
-        <ScrollSpyEntity id="">
-          <div data-testid="entity-element">entity</div>
-        </ScrollSpyEntity>
-      </div>
-    </ScrollSpyContainer>,
+test('activeId가 일치합니다.', () => {
+  const IntersectionObserver = prepareTest()
+
+  /* prepareTest의 IntersectionObserver에서 div를 래핑하기에 a태그를 사용 */
+  const tree = renderer.create(
+    <IntersectionObserver onChange={jest.fn()}>
+      <a id="a-element">테스트 태그</a>
+    </IntersectionObserver>,
+  ).root
+
+  expect(tree.findByProps({ id: 'a-element' })).toStrictEqual(
+    tree.findByType('a'),
   )
-
-  expect(getByTestId('container-element')).toHaveTextContent('container')
-  expect(getByTestId('entity-element')).toHaveTextContent('entity')
 })
+
+test('intersectionObserver 동작을 체크합니다.', () => {
+  const IntersectionObserver = prepareTest()
+
+  const tree = renderer.create(
+    <IntersectionObserver onChange={jest.fn()}>
+      <div id="div-element" />
+    </IntersectionObserver>,
+  ).root
+
+  expect(tree.findByProps({ id: 'div-element' }))
+})
+
+function prepareTest() {
+  ;(
+    IntersectionObserver as unknown as jest.MockedFunction<
+      typeof IntersectionObserver
+    >
+  ).mockImplementation(({ onChange, children }) => {
+    useEffect(() => {
+      onChange({} as IntersectionObserverEntry, jest.fn())
+    }, [onChange])
+
+    return <div>{children}</div>
+  })
+  return IntersectionObserver
+}
