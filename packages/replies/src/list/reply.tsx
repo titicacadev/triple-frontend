@@ -187,7 +187,7 @@ export default function Reply({
 
       return true
     },
-    [asyncBack, back, push],
+    [setEditingMessage, asyncBack, back, push],
   )
 
   const derivedText = deriveContent({
