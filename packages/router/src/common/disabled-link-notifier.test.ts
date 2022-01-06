@@ -1,14 +1,13 @@
 import { renderHook } from '@testing-library/react-hooks'
 import { useLoginCTAModal, useTransitionModal } from '@titicaca/modals'
-import {
-  useSessionAvailability,
-  useUserAgentContext,
-} from '@titicaca/react-contexts'
+import { useSessionAvailability } from '@titicaca/react-contexts'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 
 import { useDisabledLinkNotifierCreator } from './disabled-link-notifier'
 
 jest.mock('@titicaca/modals')
 jest.mock('@titicaca/react-contexts')
+jest.mock('@titicaca/react-client-interfaces')
 
 describe('allowSource가 "all"일 때 앱 여부, 세션 여부에 상관없이 아무 처리를 하지 않습니다.', () => {
   test.each([
@@ -141,10 +140,12 @@ function prepareTest({
   sessionAvailable: boolean
 }) {
   ;(
-    useUserAgentContext as unknown as jest.MockedFunction<
-      () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
+    useClientContext as unknown as jest.MockedFunction<
+      () => ReturnType<typeof useClientContext>
     >
-  ).mockImplementation(() => ({ isPublic }))
+  ).mockImplementation(() =>
+    isPublic ? null : { appName: 'Triple-iOS', appVersion: '5.11.0' },
+  )
   ;(
     useSessionAvailability as jest.MockedFunction<typeof useSessionAvailability>
   ).mockImplementation(() => sessionAvailable)

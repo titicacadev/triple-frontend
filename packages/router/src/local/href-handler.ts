@@ -1,4 +1,4 @@
-import { useUserAgentContext } from '@titicaca/react-contexts'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 import { useRouter } from 'next/router'
 
 import { useWebUrlBaseAdder } from '../common/add-web-url-base'
@@ -26,7 +26,7 @@ export interface NextjsRoutingOptions {
 
 export function useLocalHrefHandler() {
   const router = useRouter()
-  const { isPublic } = useUserAgentContext()
+  const app = useClientContext()
   const { openInlink, openOutlink } = useAppBridge()
   const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
   const addWebUrlBase = useWebUrlBaseAdder()
@@ -82,7 +82,7 @@ export function useLocalHrefHandler() {
       swipeToClose,
     })
 
-    if (target === 'new' && isPublic === false) {
+    if (target === 'new' && app) {
       stopDefaultHandler()
 
       openInlink(finalHref)
@@ -90,7 +90,7 @@ export function useLocalHrefHandler() {
       return
     }
 
-    if (target === 'browser' && isPublic === false) {
+    if (target === 'browser' && app) {
       stopDefaultHandler()
 
       openOutlink(addWebUrlBase(finalHref), {

@@ -6,6 +6,7 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/modals": ["../modals/src"],
+      "@titicaca/react-client-interfaces": ["../react-client-interfaces/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
       "@titicaca/view-utilities": ["../view-utilities/src"]
     }
@@ -20,6 +21,9 @@
     },
     {
       "path": "../react-contexts"
+    },
+    {
+      "path": "../react-client-interfaces"
     }
   ]
 }

@@ -1,5 +1,5 @@
 import React, { MouseEventHandler, PropsWithChildren, useEffect } from 'react'
-import { useUserAgentContext } from '@titicaca/react-contexts'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 
 import { useTripleAppRoutingOptionsAdder } from '../common/app-specific-link-options'
 import { ANCHOR_TARGET_MAP } from '../common/target'
@@ -35,13 +35,13 @@ export function ExternalLink({
     onError?: (error: Error) => void
   }
 >) {
-  const { isPublic } = useUserAgentContext()
+  const app = useClientContext()
   const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
   const handleHrefExternally = useExternalHrefHandler()
 
   const hrefIsAbsoluteUrl = checkHrefIsAbsoluteUrl(href)
   const forbiddenLinkCondition =
-    !isPublic && hrefIsAbsoluteUrl && target === 'current'
+    app && hrefIsAbsoluteUrl && target === 'current'
 
   const finalHref = addTripleAppRoutingOptions({
     href,

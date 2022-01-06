@@ -2,10 +2,8 @@ import '@testing-library/jest-dom'
 import React from 'react'
 import { useRouter } from 'next/router'
 import { fireEvent, render } from '@testing-library/react'
-import {
-  useSessionAvailability,
-  useUserAgentContext,
-} from '@titicaca/react-contexts'
+import { useSessionAvailability } from '@titicaca/react-contexts'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 import { useLoginCTAModal, useTransitionModal } from '@titicaca/modals'
 
 import { useAppBridge } from '../common/app-bridge'
@@ -15,6 +13,7 @@ import { LocalLink } from './link'
 
 jest.mock('next/router')
 jest.mock('@titicaca/react-contexts')
+jest.mock('@titicaca/react-client-interfaces')
 jest.mock('@titicaca/modals')
 jest.mock('../common/app-bridge')
 jest.mock('../common/add-web-url-base')
@@ -174,10 +173,12 @@ function prepareTest({
     >
   ).mockImplementation(() => ({ basePath, push: nextPush }))
   ;(
-    useUserAgentContext as unknown as jest.MockedFunction<
-      () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
+    useClientContext as unknown as jest.MockedFunction<
+      () => ReturnType<typeof useClientContext>
     >
-  ).mockImplementation(() => ({ isPublic }))
+  ).mockImplementation(() =>
+    isPublic ? null : { appName: 'Triple-iOS', appVersion: '5.11.0' },
+  )
   ;(
     useSessionAvailability as jest.MockedFunction<typeof useSessionAvailability>
   ).mockImplementation(() => sessionAvailability)

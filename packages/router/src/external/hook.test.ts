@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks'
-import { useUserAgentContext } from '@titicaca/react-contexts'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 
 import { useDisabledLinkNotifierCreator } from '../common/disabled-link-notifier'
 import { useAppBridge } from '../common/app-bridge'
@@ -8,7 +8,7 @@ import useDefaultRouter from '../common/default-router'
 import useExternalRouter from './hook'
 import { useExternalHrefHandler } from './href-handler'
 
-jest.mock('@titicaca/react-contexts')
+jest.mock('@titicaca/react-client-interfaces')
 jest.mock('../common/app-specific-link-options')
 jest.mock('../common/app-bridge')
 jest.mock('../common/add-web-url-base')
@@ -17,7 +17,7 @@ jest.mock('../common/default-router')
 jest.mock('./href-handler')
 
 beforeEach(() => {
-  mockUserAgentHook()
+  mockClientHook()
   mockAppBridgeHook()
   mockDisabledLinkNotifierCreatorHook({
     shouldRaiseAlert: false,
@@ -70,12 +70,14 @@ test('customRouter가 작동하면 default 라우터가 작동하지 않습니�
   expect(defaultRouter).not.toBeCalled()
 })
 
-function mockUserAgentHook({ isPublic = false }: { isPublic?: boolean } = {}) {
+function mockClientHook({ isPublic = false }: { isPublic?: boolean } = {}) {
   ;(
-    useUserAgentContext as unknown as jest.MockedFunction<
-      () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
+    useClientContext as unknown as jest.MockedFunction<
+      () => ReturnType<typeof useClientContext>
     >
-  ).mockImplementation(() => ({ isPublic }))
+  ).mockImplementation(() =>
+    isPublic ? null : { appName: 'Triple-iOS', appVersion: '5.11.0' },
+  )
 }
 
 function mockAppBridgeHook() {

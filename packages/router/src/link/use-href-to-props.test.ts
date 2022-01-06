@@ -1,10 +1,12 @@
 import { renderHook } from '@testing-library/react-hooks'
-import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
+import { useEnv } from '@titicaca/react-contexts'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 import { checkIfRoutable } from '@titicaca/view-utilities'
 
 import { useHrefToProps } from './use-href-to-props'
 
 jest.mock('@titicaca/react-contexts')
+jest.mock('@titicaca/react-client-interfaces')
 jest.mock('@titicaca/view-utilities', () => ({
   ...jest.requireActual('@titicaca/view-utilities'),
   checkIfRoutable: jest.fn(),
@@ -162,10 +164,12 @@ function prepareTest({ isPublic }: { isPublic: boolean }) {
   const webUrlBase = 'https://triple.guide'
 
   ;(
-    useUserAgentContext as unknown as jest.MockedFunction<
-      () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
+    useClientContext as unknown as jest.MockedFunction<
+      () => ReturnType<typeof useClientContext>
     >
-  ).mockImplementation(() => ({ isPublic }))
+  ).mockImplementation(() =>
+    isPublic ? null : { appName: 'Triple-iOS', appVersion: '5.11.0' },
+  )
   ;(
     useEnv as unknown as jest.MockedFunction<
       () => Pick<ReturnType<typeof useEnv>, 'webUrlBase'>

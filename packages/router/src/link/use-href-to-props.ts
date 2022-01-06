@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import qs, { ParsedQs } from 'qs'
-import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
+import { useEnv } from '@titicaca/react-contexts'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 import {
   checkIfRoutable,
   generateUrl,
@@ -205,7 +206,7 @@ export function useHrefToProps(params?: {
   allowSource: AllowSource
 } {
   const { webUrlBase } = useEnv()
-  const { isPublic } = useUserAgentContext()
+  const app = useClientContext()
 
   const { onError } = params || {}
 
@@ -214,7 +215,7 @@ export function useHrefToProps(params?: {
       try {
         return {
           href: canonizeHref({ href, webUrlBase }),
-          target: getTarget({ href, isPublic }),
+          target: getTarget({ href, isPublic: !app }),
           allowSource: getAllowSource({ href, webUrlBase }),
         }
       } catch (error) {
@@ -225,6 +226,6 @@ export function useHrefToProps(params?: {
         return { href, target: 'new', allowSource: 'app-with-session' }
       }
     },
-    [isPublic, onError, webUrlBase],
+    [app, onError, webUrlBase],
   )
 }

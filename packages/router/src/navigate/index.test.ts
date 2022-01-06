@@ -1,10 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks'
 import { useLoginCTAModal, useTransitionModal } from '@titicaca/modals'
-import {
-  useUserAgentContext,
-  useSessionAvailability,
-  useEnv,
-} from '@titicaca/react-contexts'
+import { useSessionAvailability, useEnv } from '@titicaca/react-contexts'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 import { checkIfRoutable } from '@titicaca/view-utilities'
 
 import { useAppBridge } from '../common/app-bridge'
@@ -17,6 +14,7 @@ jest.mock('@titicaca/view-utilities', () => ({
   checkIfRoutable: jest.fn(),
 }))
 jest.mock('@titicaca/react-contexts')
+jest.mock('@titicaca/react-client-interfaces')
 jest.mock('../common/app-bridge')
 
 const webUrlBase = mockWebUrlBase()
@@ -24,7 +22,7 @@ const routablePath = mockRoutablePath()
 
 describe('브라우저', () => {
   beforeEach(() => {
-    mockUserAgentContext({ isPublic: true })
+    mockClientContext({ isPublic: true })
   })
 
   describe('routable한 href를 가진 URL로 호출하면 현재 창에서 라우팅합니다.', () => {
@@ -86,7 +84,7 @@ describe('브라우저', () => {
 
 describe('앱', () => {
   beforeEach(() => {
-    mockUserAgentContext({ isPublic: false })
+    mockClientContext({ isPublic: false })
   })
 
   describe('세션이 없고 routable하지 않은 href를 가지고 있는 URL로 호출하면 로그인 유도 모달을 표시합니다.', () => {
@@ -148,12 +146,14 @@ describe('앱', () => {
   })
 })
 
-function mockUserAgentContext({ isPublic }: { isPublic: boolean }) {
+function mockClientContext({ isPublic }: { isPublic: boolean }) {
   ;(
-    useUserAgentContext as unknown as jest.MockedFunction<
-      () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
+    useClientContext as unknown as jest.MockedFunction<
+      () => ReturnType<typeof useClientContext>
     >
-  ).mockImplementation(() => ({ isPublic }))
+  ).mockImplementation(() =>
+    isPublic ? null : { appName: 'Triple-iOS', appVersion: '5.11.0' },
+  )
 }
 
 function mockWebUrlBase() {

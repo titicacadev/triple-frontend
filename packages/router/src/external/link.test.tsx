@@ -1,10 +1,8 @@
 import '@testing-library/jest-dom'
 import React from 'react'
 import { fireEvent, render } from '@testing-library/react'
-import {
-  useSessionAvailability,
-  useUserAgentContext,
-} from '@titicaca/react-contexts'
+import { useSessionAvailability } from '@titicaca/react-contexts'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 import { useLoginCTAModal, useTransitionModal } from '@titicaca/modals'
 
 import { useTripleAppRoutingOptionsAdder } from '../common/app-specific-link-options'
@@ -14,6 +12,7 @@ import { useWebUrlBaseAdder } from '../common/add-web-url-base'
 import { ExternalLink } from './link'
 
 jest.mock('@titicaca/react-contexts')
+jest.mock('@titicaca/react-client-interfaces')
 jest.mock('@titicaca/modals')
 jest.mock('../common/app-specific-link-options')
 jest.mock('../common/app-bridge')
@@ -177,10 +176,12 @@ function prepareTest({
   const webUrlBase = 'https://triple.guide'
 
   ;(
-    useUserAgentContext as unknown as jest.MockedFunction<
-      () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
+    useClientContext as unknown as jest.MockedFunction<
+      () => ReturnType<typeof useClientContext>
     >
-  ).mockImplementation(() => ({ isPublic }))
+  ).mockImplementation(() =>
+    isPublic ? null : { appName: 'Triple-iOS', appVersion: '5.11.0' },
+  )
   ;(
     useTripleAppRoutingOptionsAdder as jest.MockedFunction<
       typeof useTripleAppRoutingOptionsAdder
