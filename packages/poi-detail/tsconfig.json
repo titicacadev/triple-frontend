@@ -12,6 +12,7 @@
       "@titicaca/image-carousel": ["../image-carousel/src"],
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
       "@titicaca/modals": ["../modals/src"],
+      "@titicaca/react-client-interfaces": ["../react-client-interfaces/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
       "@titicaca/type-definitions": ["../type-definitions/src"],
       "@titicaca/view-utilities": ["../view-utilities/src"]

@@ -8,6 +8,7 @@
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/i18n": ["../i18n/src"],
       "@titicaca/popup": ["../popup/src"],
+      "@titicaca/react-client-interfaces": ["../react-client-interfaces/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"]
     }
   },

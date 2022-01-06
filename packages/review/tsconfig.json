@@ -9,6 +9,7 @@
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
       "@titicaca/modals": ["../modals/src"],
+      "@titicaca/react-client-interfaces": ["../react-client-interfaces/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
       "@titicaca/react-hooks": ["../react-hooks/src"],
       "@titicaca/router": ["../router/src"],
