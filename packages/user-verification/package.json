@@ -27,6 +27,7 @@
     "@titicaca/core-elements": "^5.1.2",
     "@titicaca/modals": "^5.1.2",
     "@titicaca/react-hooks": "^5.1.2",
+    "@titicaca/router": "^5.1.2",
     "isomorphic-fetch": "^2.2.1"
   },
   "devDependencies": {
