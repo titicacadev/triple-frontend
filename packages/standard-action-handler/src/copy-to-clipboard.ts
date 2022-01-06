@@ -5,6 +5,8 @@ import {
   showToast,
 } from '@titicaca/triple-web-to-native-interfaces'
 
+import { copyWithDomApi, copyWithClipboard } from './utils'
+
 const ALERT_MESSAGE = '클립보드에 복사되었습니다.'
 
 export default async function copyToClipboard({ path, query }: UrlElements) {
@@ -14,7 +16,7 @@ export default async function copyToClipboard({ path, query }: UrlElements) {
     if (text) {
       const copyText = createCopyText()
 
-      copyText(text as string)
+      copyText({ text: text as string, message: ALERT_MESSAGE })
     }
 
     return true
@@ -33,32 +35,16 @@ function createCopyText() {
   }
 }
 
-async function copyWithClipboard(text: string) {
-  try {
-    await navigator.clipboard.writeText(text)
-
-    alert(ALERT_MESSAGE)
-  } catch (error) {
-    copyWithDomApi(text)
-  }
-}
-
-function copyWithDomApi(text: string) {
-  const inputElement = document.createElement('input')
-
-  inputElement.value = text
-  document.body.appendChild(inputElement)
-  inputElement.select()
-  document.execCommand('copy')
-  document.body.removeChild(inputElement)
-
-  alert(ALERT_MESSAGE)
-}
-
-function copyTextNativeInterface(text: string) {
+function copyTextNativeInterface({
+  text,
+  message,
+}: {
+  text: string
+  message: string
+}) {
   window.location.href = `${
     process.env.NEXT_PUBLIC_APP_URL_SCHEME
   }:///action/copy_to_clipboard?text=${encodeURIComponent(text)}`
 
-  showToast(ALERT_MESSAGE)
+  showToast(message)
 }

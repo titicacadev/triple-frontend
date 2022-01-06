@@ -4,6 +4,8 @@ import {
   hasAccessibleTripleNativeClients,
 } from '@titicaca/triple-web-to-native-interfaces'
 
+import { copyWithDomApi, copyWithClipboard } from './utils'
+
 interface SharingParams {
   title?: string | null
   description?: string | null
@@ -14,6 +16,8 @@ interface SharingParams {
 
 const DEFAULT_IMAGE =
   'https://assets.triple.guide/images/default-cover-image.jpg'
+
+const ALERT_MESSAGE = '링크를 복사했습니다.'
 
 function getMetadata({ property }: { property: string }) {
   return document
@@ -47,26 +51,19 @@ function navigatorShare(params: SharingParams) {
 async function copyUrlToClipboard(params: SharingParams) {
   const { webUrl } = params
 
-  try {
-    await navigator.clipboard.writeText(webUrl || window.location.href)
-
-    alert('링크를 복사했습니다.')
-  } catch (error) {
-    copyUrlWithDomApi(params)
-  }
+  copyWithClipboard({
+    text: webUrl || window.location.href,
+    message: ALERT_MESSAGE,
+  })
 }
 
 function copyUrlWithDomApi(params: SharingParams) {
   const { webUrl } = params
-  const inputElement = document.createElement('input')
 
-  inputElement.value = webUrl || window.location.href
-  document.body.appendChild(inputElement)
-  inputElement.select()
-  document.execCommand('copy')
-  document.body.removeChild(inputElement)
-
-  alert('링크를 복사했습니다.')
+  copyWithDomApi({
+    text: webUrl || window.location.href,
+    message: ALERT_MESSAGE,
+  })
 }
 
 function shareNativeInterface(params: SharingParams) {
