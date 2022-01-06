@@ -34,6 +34,6 @@
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
-    "@titicaca/triple-web-to-native-interfaces": "*"
+    "@titicaca/react-client-interfaces": "*"
   }
 }

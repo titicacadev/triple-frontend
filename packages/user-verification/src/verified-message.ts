@@ -1,10 +1,11 @@
-import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
+import { useEnv } from '@titicaca/react-contexts'
 import {
   broadcastMessage,
   subscribe,
   unsubscribe,
 } from '@titicaca/triple-web-to-native-interfaces'
 import { useCallback, useEffect } from 'react'
+import { useClientContext } from '@titicaca/react-client-interfaces'
 
 /**
  * verifications-web에서 전송하는 인증 결과 타입
@@ -17,21 +18,21 @@ export interface VerifiedMessage {
 
 export function useSendVerifiedMessage() {
   const { webUrlBase } = useEnv()
-  const { isPublic } = useUserAgentContext()
+  const app = useClientContext()
 
   const sendVerifiedMessage = useCallback(
     (message: VerifiedMessage) => {
-      if (isPublic) {
+      if (app) {
+        broadcastMessage(message)
+      } else {
         const parentWindow: Window | null = window.opener
 
         if (parentWindow) {
           parentWindow.postMessage(message, webUrlBase)
         }
-      } else {
-        broadcastMessage(message)
       }
     },
-    [isPublic, webUrlBase],
+    [app, webUrlBase],
   )
 
   return sendVerifiedMessage
@@ -44,10 +45,10 @@ export function useSendVerifiedMessage() {
 export function useVerifiedMessageListener(
   handleVerifiedMessage: (message: VerifiedMessage) => void,
 ) {
-  const { isPublic } = useUserAgentContext()
+  const app = useClientContext()
 
   useEffect(() => {
-    if (isPublic) {
+    if (!app) {
       const handleMessage = ({ data }: MessageEvent) => {
         handleVerifiedMessage(data)
       }
