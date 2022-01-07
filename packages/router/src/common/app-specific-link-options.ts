@@ -1,6 +1,7 @@
 import qs from 'qs'
 import { generateUrl } from '@titicaca/view-utilities'
 import { useUserAgentContext } from '@titicaca/react-contexts'
+import { useCallback } from 'react'
 
 export interface AppSpecificLinkProps {
   /**
@@ -34,30 +35,33 @@ export interface AppSpecificLinkProps {
 export function useTripleAppRoutingOptionsAdder() {
   const { isPublic } = useUserAgentContext()
 
-  const addTripleAppRoutingOptions = ({
-    href,
-    lnbTarget,
-    noNavbar,
-    shouldPresent,
-    swipeToClose,
-  }: {
-    href: string
-  } & AppSpecificLinkProps) => {
-    if (
-      isPublic === false &&
-      (lnbTarget || noNavbar || shouldPresent || swipeToClose)
-    ) {
-      return appSpecificLinkOptions({
-        href,
-        lnbTarget,
-        noNavbar,
-        shouldPresent,
-        swipeToClose,
-      })
-    }
+  const addTripleAppRoutingOptions = useCallback(
+    ({
+      href,
+      lnbTarget,
+      noNavbar,
+      shouldPresent,
+      swipeToClose,
+    }: {
+      href: string
+    } & AppSpecificLinkProps) => {
+      if (
+        isPublic === false &&
+        (lnbTarget || noNavbar || shouldPresent || swipeToClose)
+      ) {
+        return appSpecificLinkOptions({
+          href,
+          lnbTarget,
+          noNavbar,
+          shouldPresent,
+          swipeToClose,
+        })
+      }
 
-    return href
-  }
+      return href
+    },
+    [isPublic],
+  )
 
   return addTripleAppRoutingOptions
 }

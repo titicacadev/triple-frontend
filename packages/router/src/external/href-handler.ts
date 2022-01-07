@@ -2,10 +2,7 @@ import { useUserAgentContext } from '@titicaca/react-contexts'
 
 import { useWebUrlBaseAdder } from '../common/add-web-url-base'
 import { useAppBridge, OutlinkOptions } from '../common/app-bridge'
-import {
-  useTripleAppRoutingOptionsAdder,
-  AppSpecificLinkProps,
-} from '../common/app-specific-link-options'
+import { AppSpecificLinkProps } from '../common/app-specific-link-options'
 import { TargetProps } from '../common/target'
 import { HrefProps } from '../common/types'
 
@@ -13,7 +10,6 @@ import { checkHrefIsAbsoluteUrl } from './utils'
 
 export function useExternalHrefHandler() {
   const { isPublic } = useUserAgentContext()
-  const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
   const { openInlink, openOutlink } = useAppBridge()
   const addWebUrlBase = useWebUrlBaseAdder()
 
@@ -38,21 +34,18 @@ export function useExternalHrefHandler() {
       return
     }
 
-    const finalHref = addTripleAppRoutingOptions({
-      href,
-      lnbTarget,
-      noNavbar,
-      shouldPresent,
-      swipeToClose,
-    })
-
     if (target === 'new' && isPublic === false) {
       stopDefaultHandler()
 
       if (outOfTriple === true) {
-        openOutlink(finalHref, { title })
+        openOutlink(href, { title })
       } else {
-        openInlink(finalHref)
+        openInlink(href, {
+          lnbTarget,
+          noNavbar,
+          shouldPresent,
+          swipeToClose,
+        })
       }
 
       return
@@ -61,7 +54,7 @@ export function useExternalHrefHandler() {
     if (target === 'browser' && isPublic === false) {
       stopDefaultHandler()
 
-      openOutlink(outOfTriple ? finalHref : addWebUrlBase(finalHref), {
+      openOutlink(outOfTriple ? href : addWebUrlBase(href), {
         target: 'browser',
         title,
       })

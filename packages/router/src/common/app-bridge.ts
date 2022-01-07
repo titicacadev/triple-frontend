@@ -3,6 +3,11 @@ import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
 import { useMemo } from 'react'
 
+import {
+  AppSpecificLinkProps,
+  useTripleAppRoutingOptionsAdder,
+} from './app-specific-link-options'
+
 export interface OutlinkOptions {
   target?: 'browser'
   title?: string
@@ -14,16 +19,20 @@ export function useAppBridge({
   changeLocation?: (href: string) => void
 } = {}) {
   const { appUrlScheme } = useEnv()
+  const addAppSpecificLinkOptions = useTripleAppRoutingOptionsAdder()
 
   return useMemo(
     () => ({
-      openInlink(path: string) {
+      openInlink(path: string, options?: AppSpecificLinkProps) {
         changeLocation(
           generateUrl({
             scheme: appUrlScheme,
             path: '/inlink',
             query: qs.stringify({
-              path,
+              path: addAppSpecificLinkOptions({
+                href: path,
+                ...options,
+              }),
             }),
           }),
         )
@@ -52,7 +61,7 @@ export function useAppBridge({
         changeLocation(generateUrl({ scheme: appUrlScheme, ...rest }))
       },
     }),
-    [appUrlScheme, changeLocation],
+    [addAppSpecificLinkOptions, appUrlScheme, changeLocation],
   )
 }
 

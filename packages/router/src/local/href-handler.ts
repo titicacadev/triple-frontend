@@ -3,10 +3,7 @@ import { useRouter } from 'next/router'
 
 import { useWebUrlBaseAdder } from '../common/add-web-url-base'
 import { useAppBridge } from '../common/app-bridge'
-import {
-  AppSpecificLinkProps,
-  useTripleAppRoutingOptionsAdder,
-} from '../common/app-specific-link-options'
+import { AppSpecificLinkProps } from '../common/app-specific-link-options'
 import { HrefProps } from '../common/types'
 import { TargetProps } from '../common/target'
 
@@ -28,7 +25,6 @@ export function useLocalHrefHandler() {
   const router = useRouter()
   const { isPublic } = useUserAgentContext()
   const { openInlink, openOutlink } = useAppBridge()
-  const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
   const addWebUrlBase = useWebUrlBaseAdder()
   const addBasePath = useBasePathAdder()
 
@@ -74,18 +70,17 @@ export function useLocalHrefHandler() {
       return
     }
 
-    const finalHref = addTripleAppRoutingOptions({
-      href: addBasePath(href),
-      lnbTarget,
-      noNavbar,
-      shouldPresent,
-      swipeToClose,
-    })
+    const finalHref = addBasePath(href)
 
     if (target === 'new' && isPublic === false) {
       stopDefaultHandler()
 
-      openInlink(finalHref)
+      openInlink(finalHref, {
+        lnbTarget,
+        noNavbar,
+        shouldPresent,
+        swipeToClose,
+      })
 
       return
     }

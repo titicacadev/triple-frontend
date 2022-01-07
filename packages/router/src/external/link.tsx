@@ -1,7 +1,6 @@
 import React, { MouseEventHandler, PropsWithChildren, useEffect } from 'react'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 
-import { useTripleAppRoutingOptionsAdder } from '../common/app-specific-link-options'
 import { ANCHOR_TARGET_MAP } from '../common/target'
 import { RouterGuardedLink } from '../link/router-guarded-link'
 import { LinkCommonProps } from '../link/types'
@@ -36,20 +35,11 @@ export function ExternalLink({
   }
 >) {
   const { isPublic } = useUserAgentContext()
-  const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
   const handleHrefExternally = useExternalHrefHandler()
 
   const hrefIsAbsoluteUrl = checkHrefIsAbsoluteUrl(href)
   const forbiddenLinkCondition =
     !isPublic && hrefIsAbsoluteUrl && target === 'current'
-
-  const finalHref = addTripleAppRoutingOptions({
-    href,
-    lnbTarget,
-    noNavbar,
-    shouldPresent,
-    swipeToClose,
-  })
 
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     if (onClick) {
@@ -83,7 +73,7 @@ export function ExternalLink({
 
   return (
     <RouterGuardedLink
-      href={finalHref}
+      href={href}
       relList={hrefIsAbsoluteUrl ? ['external', ...relList] : relList}
       allowSource={forbiddenLinkCondition ? 'none' : allowSource}
       onClick={handleClick}
