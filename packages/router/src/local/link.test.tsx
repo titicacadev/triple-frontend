@@ -59,25 +59,6 @@ test('키를 누르고 클릭할 때는 next/router를 사용하지 않습니다
   expect(nextPush).toBeCalledTimes(0)
 })
 
-test('앱 전용 쿼리를 추가할 때 기존 쿼리를 보존합니다.', () => {
-  prepareTest()
-
-  const { getByRole } = render(
-    <LocalLink
-      href="/5b700a4e-4b0f-4266-81db-eb42f834bdd9?regionId=71476976-cf9a-4ae8-a60f-76e6fb26900d"
-      target="current"
-      noNavbar
-    >
-      <a>테스트링크</a>
-    </LocalLink>,
-  )
-
-  expect(getByRole('link')).toHaveAttribute(
-    'href',
-    expect.stringContaining('regionId=71476976-cf9a-4ae8-a60f-76e6fb26900d'),
-  )
-})
-
 test('현재 창에서 이동할 때 next/router를 사용합니다.', () => {
   const { nextPush } = prepareTest()
   const href =
