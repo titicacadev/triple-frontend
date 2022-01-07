@@ -2,13 +2,15 @@ import qs from 'qs'
 import { generateUrl } from '@titicaca/view-utilities'
 import { useCallback } from 'react'
 
+type LnbTargetType = 'trip' | 'zone' | 'region'
+
 export interface AppSpecificLinkProps {
   /**
    *lnb를 위한 속성값. type과 id를 전달 받습니다
    *@param lnbTarget
    */
   lnbTarget?: {
-    type: 'trip' | 'zone' | 'region'
+    type: LnbTargetType
     id: string
   }
   /**
@@ -60,7 +62,7 @@ export function useTripleAppRoutingOptionsAdder() {
   return addTripleAppRoutingOptions
 }
 
-function getlnbTaget(type: string, id: string) {
+function getlnbTaget(type: LnbTargetType, id: string) {
   switch (type) {
     case 'region':
       return { _triple_lnb_region_id: id }
@@ -68,8 +70,6 @@ function getlnbTaget(type: string, id: string) {
       return { _triple_lnb_trip_id: id }
     case 'zone':
       return { _triple_lnb_zone_id: id }
-    default:
-      return undefined
   }
 }
 
