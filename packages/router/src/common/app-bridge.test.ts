@@ -33,6 +33,88 @@ describe('openInlink', () => {
       `${MOCK_APP_SCHEME}:///inlink?path=${encodeURIComponent(href)}`,
     )
   })
+
+  describe('lnbTarget 옵션을 사용하면 타겟 URL에 LNB를 표시하는 쿼리를 추가합니다.', () => {
+    test.each([
+      [{ type: 'trip', id: 'MOCK_ID' }, '_triple_lnb_trip_id=MOCK_ID'],
+      [{ type: 'zone', id: 'MOCK_ID' }, '_triple_lnb_zone_id=MOCK_ID'],
+      [{ type: 'region', id: 'MOCK_ID' }, '_triple_lnb_region_id=MOCK_ID'],
+    ] as const)('%p', (lnbTarget, containingQuery) => {
+      const changeLocation = jest.fn()
+      const {
+        result: {
+          current: { openInlink },
+        },
+      } = renderHook(useAppBridge, { initialProps: { changeLocation } })
+
+      const href = '/my-path/to-wonderland'
+
+      openInlink(href, { lnbTarget })
+
+      expect(changeLocation).toBeCalledWith(
+        `${MOCK_APP_SCHEME}:///inlink?path=${encodeURIComponent(
+          `${href}?${containingQuery}`,
+        )}`,
+      )
+    })
+  })
+
+  test('noNavbar 옵션을 사용하면 타겟 URL에 _triple_no_navbar 쿼리를 추가합니다.', () => {
+    const changeLocation = jest.fn()
+    const {
+      result: {
+        current: { openInlink },
+      },
+    } = renderHook(useAppBridge, { initialProps: { changeLocation } })
+
+    const href = '/my-path/to-wonderland'
+
+    openInlink(href, { noNavbar: true })
+
+    expect(changeLocation).toBeCalledWith(
+      `${MOCK_APP_SCHEME}:///inlink?path=${encodeURIComponent(
+        `${href}?_triple_no_navbar=true`,
+      )}`,
+    )
+  })
+
+  test('swipeToClose 옵션을 사용하면 타겟 URL에 _triple_swipe_to_close 쿼리를 추가합니다.', () => {
+    const changeLocation = jest.fn()
+    const {
+      result: {
+        current: { openInlink },
+      },
+    } = renderHook(useAppBridge, { initialProps: { changeLocation } })
+
+    const href = '/my-path/to-wonderland'
+
+    openInlink(href, { swipeToClose: true })
+
+    expect(changeLocation).toBeCalledWith(
+      `${MOCK_APP_SCHEME}:///inlink?path=${encodeURIComponent(
+        `${href}?_triple_swipe_to_close=true`,
+      )}`,
+    )
+  })
+
+  test('shouldPreset 옵션을 사용하면 타겟 URL에 _triple_should_present 쿼리를 추가합니다.', () => {
+    const changeLocation = jest.fn()
+    const {
+      result: {
+        current: { openInlink },
+      },
+    } = renderHook(useAppBridge, { initialProps: { changeLocation } })
+
+    const href = '/my-path/to-wonderland'
+
+    openInlink(href, { shouldPresent: true })
+
+    expect(changeLocation).toBeCalledWith(
+      `${MOCK_APP_SCHEME}:///inlink?path=${encodeURIComponent(
+        `${href}?_triple_should_present=true`,
+      )}`,
+    )
+  })
 })
 
 describe('openOutlink', () => {
