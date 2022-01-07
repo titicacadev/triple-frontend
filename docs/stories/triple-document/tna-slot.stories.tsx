@@ -6,6 +6,7 @@ import SLOTS from '../__mocks__/slots.sample.json'
 import {
   envProviderDecorator,
   sessionContextProviderDecorator,
+  clientContextProviderDecorator,
 } from '../../decorators'
 
 const { tnaProducts: TnaProducts } = ELEMENTS
@@ -13,7 +14,11 @@ const { tnaProducts: TnaProducts } = ELEMENTS
 export default {
   title: 'triple-document / T&A Slot',
   component: TnaProducts,
-  decorators: [envProviderDecorator, sessionContextProviderDecorator],
+  decorators: [
+    envProviderDecorator,
+    sessionContextProviderDecorator,
+    clientContextProviderDecorator,
+  ],
 } as Meta
 
 export function InTripleDocument() {

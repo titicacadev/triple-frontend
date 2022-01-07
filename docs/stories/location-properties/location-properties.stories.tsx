@@ -3,7 +3,10 @@ import { UserAgentProvider } from '@titicaca/react-contexts'
 import LocationProperties from '@titicaca/location-properties'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { historyProviderDecorator } from '../../decorators'
+import {
+  historyProviderDecorator,
+  clientContextProviderDecorator,
+} from '../../decorators'
 
 export default {
   title: 'Location-Properties / LocationProperties',
@@ -20,6 +23,7 @@ export default {
       </UserAgentProvider>
     ),
     historyProviderDecorator,
+    clientContextProviderDecorator,
   ],
 } as Meta
 

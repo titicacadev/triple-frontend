@@ -3,12 +3,14 @@ import { ELEMENTS } from '@titicaca/triple-document'
 
 import IMAGES from '../__mocks__/images.sample.json'
 import IMAGES_FRAME from '../__mocks__/images-frame.sample.json'
+import { clientContextProviderDecorator } from '../../decorators'
 
 const { images: Images } = ELEMENTS
 
 export default {
   title: 'triple-document / 이미지',
   component: Images,
+  decorators: [clientContextProviderDecorator],
 } as Meta
 
 export const OneImage: StoryObj = {
