@@ -13,7 +13,7 @@ jest.mock('isomorphic-fetch', () => () => {
 jest.mock('./verified-message')
 
 describe('인증 시작함수를 호출하면 인증 페이지를 엽니다.', () => {
-  function prepareTest({
+  async function prepareTest({
     forceVerification = false,
     verificationType,
     verificationContext,
@@ -24,6 +24,7 @@ describe('인증 시작함수를 호출하면 인증 페이지를 엽니다.', (
       result: {
         current: { initiateVerification },
       },
+      waitForNextUpdate,
     } = renderHook(useUserVerification, {
       initialProps: {
         forceVerification,
@@ -31,6 +32,8 @@ describe('인증 시작함수를 호출하면 인증 페이지를 엽니다.', (
         verificationContext,
       },
     })
+
+    await waitForNextUpdate()
 
     initiateVerification()
 
@@ -45,8 +48,8 @@ describe('인증 시작함수를 호출하면 인증 페이지를 엽니다.', (
       ['personal-id-verification', '/verifications/personal-id-verification'],
     ] as const)(
       'VerificationType: %s, path: %s',
-      (verificationType: VerificationType | undefined, href: string) => {
-        const { routeExternally } = prepareTest({ verificationType })
+      async (verificationType: VerificationType | undefined, href: string) => {
+        const { routeExternally } = await prepareTest({ verificationType })
 
         expect(routeExternally).toBeCalledWith(
           expect.objectContaining({
@@ -64,8 +67,8 @@ describe('인증 시작함수를 호출하면 인증 페이지를 엽니다.', (
       ['cash', 'context=cash'],
     ] as const)(
       'verificationContext: %s, should contain: %s',
-      (verificationContext, containingQuery) => {
-        const { routeExternally } = prepareTest({ verificationContext })
+      async (verificationContext, containingQuery) => {
+        const { routeExternally } = await prepareTest({ verificationContext })
 
         expect(routeExternally).toBeCalledWith(
           expect.objectContaining({
@@ -76,16 +79,16 @@ describe('인증 시작함수를 호출하면 인증 페이지를 엽니다.', (
     )
   })
 
-  test('인증 페이지를 새 창으로 엽니다.', () => {
-    const { routeExternally } = prepareTest()
+  test('인증 페이지를 새 창으로 엽니다.', async () => {
+    const { routeExternally } = await prepareTest()
 
     expect(routeExternally).toBeCalledWith(
       expect.objectContaining({ target: 'new' }),
     )
   })
 
-  test('noNavbar 옵션을 사용합니다.', () => {
-    const { routeExternally } = prepareTest()
+  test('noNavbar 옵션을 사용합니다.', async () => {
+    const { routeExternally } = await prepareTest()
 
     expect(routeExternally).toBeCalledWith(
       expect.objectContaining({ noNavbar: true }),
