@@ -115,6 +115,24 @@ describe('openInlink', () => {
       )}`,
     )
   })
+
+  test('앱 전용 옵션을 사용할 때 기존 쿼리를 보존합니다.', () => {
+    const changeLocation = jest.fn()
+    const {
+      result: {
+        current: { openInlink },
+      },
+    } = renderHook(useAppBridge, { initialProps: { changeLocation } })
+
+    const href =
+      '/my-path/to-wonderland?regionId=71476976-cf9a-4ae8-a60f-76e6fb26900d'
+
+    openInlink(href, { noNavbar: true })
+
+    expect(changeLocation).toBeCalledWith(
+      expect.stringContaining('regionId=71476976-cf9a-4ae8-a60f-76e6fb26900d'),
+    )
+  })
 })
 
 describe('openOutlink', () => {
