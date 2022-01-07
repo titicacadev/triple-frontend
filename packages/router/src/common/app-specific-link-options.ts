@@ -62,7 +62,7 @@ export function useTripleAppRoutingOptionsAdder() {
   return addTripleAppRoutingOptions
 }
 
-function getlnbTaget(type: LnbTargetType, id: string) {
+function getLnbTarget(type: LnbTargetType, id: string) {
   switch (type) {
     case 'region':
       return { _triple_lnb_region_id: id }
@@ -109,7 +109,7 @@ function appSpecificLinkOptions({
     {
       query: composeStringifiedQuery({
         lnbTarget: lnbTarget
-          ? getlnbTaget(lnbTarget.type, lnbTarget.id)
+          ? getLnbTarget(lnbTarget.type, lnbTarget.id)
           : undefined,
         noNavbar,
         swipeToClose,
