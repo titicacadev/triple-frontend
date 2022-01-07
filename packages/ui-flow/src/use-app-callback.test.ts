@@ -8,7 +8,7 @@ jest.mock('@titicaca/react-client-interfaces')
 jest.mock('@titicaca/modals')
 
 test('일반 브라우저에서 앱 전환 모달 표시 함수를 호출합니다.', () => {
-  mockClientContext({ appName: 'Triple-iOS', appVersion: '5.11.0' } as const)
+  mockClientContext(null)
   const mockShow = mockTransitionModalContext()
 
   const { result } = renderHook(() => {
