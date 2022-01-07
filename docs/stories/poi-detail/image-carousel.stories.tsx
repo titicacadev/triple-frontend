@@ -5,6 +5,10 @@ import {
   UserAgentProvider,
   generateUserAgentValues,
 } from '@titicaca/react-contexts'
+import {
+  ClientContextProvider,
+  parseNativeClientUserAgent,
+} from '@titicaca/react-client-interfaces'
 import { ComponentStoryObj, Meta } from '@storybook/react'
 
 export default {
@@ -21,14 +25,20 @@ export const AttractionOrRestaurant: ComponentStoryObj<typeof ImageCarousel> = {
           'Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-Android/4.2.0',
         )}
       >
-        <ImagesProvider
-          source={{
-            id: 'e889ae22-0336-4cf9-8fbb-742b95fd09d0',
-            type: 'attraction',
-          }}
+        <ClientContextProvider
+          {...parseNativeClientUserAgent(
+            'Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-Android/4.2.0',
+          )}
         >
-          <Story />
-        </ImagesProvider>
+          <ImagesProvider
+            source={{
+              id: 'e889ae22-0336-4cf9-8fbb-742b95fd09d0',
+              type: 'attraction',
+            }}
+          >
+            <Story />
+          </ImagesProvider>
+        </ClientContextProvider>
       </UserAgentProvider>
     ),
   ],
@@ -43,14 +53,20 @@ export const Hotel: ComponentStoryObj<typeof ImageCarousel> = {
           'Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-Android/4.2.0',
         )}
       >
-        <ImagesProvider
-          source={{
-            id: '1ff98b6f-ca34-4961-ae29-fa52c8ca2e21',
-            type: 'hotel',
-          }}
+        <ClientContextProvider
+          {...parseNativeClientUserAgent(
+            'Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-Android/4.2.0',
+          )}
         >
-          <Story />
-        </ImagesProvider>
+          <ImagesProvider
+            source={{
+              id: '1ff98b6f-ca34-4961-ae29-fa52c8ca2e21',
+              type: 'hotel',
+            }}
+          >
+            <Story />
+          </ImagesProvider>
+        </ClientContextProvider>
       </UserAgentProvider>
     ),
   ],

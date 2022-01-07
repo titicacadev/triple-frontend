@@ -6,6 +6,10 @@ import {
   generateUserAgentValues,
   UserAgentProvider,
 } from '@titicaca/react-contexts'
+import {
+  ClientContextProvider,
+  parseNativeClientUserAgent,
+} from '@titicaca/react-client-interfaces'
 
 export default {
   title: 'public-header / PublicHeader',
@@ -31,7 +35,11 @@ const Template: Story<PublicHeaderProps> = (args) => {
       webUrlBase=""
     >
       <UserAgentProvider value={generateUserAgentValues(navigator.userAgent)}>
-        <PublicHeader {...args} />
+        <ClientContextProvider
+          {...parseNativeClientUserAgent(navigator.userAgent)}
+        >
+          <PublicHeader {...args} />
+        </ClientContextProvider>
       </UserAgentProvider>
     </EnvProvider>
   )

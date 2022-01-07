@@ -12,10 +12,8 @@ export default {
     (Story) => (
       <UserAgentProvider
         value={{
-          isPublic: true,
           isMobile: true,
           os: {},
-          app: null,
         }}
       >
         <Story />

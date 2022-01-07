@@ -3,20 +3,22 @@ import { DetailHeader } from '@titicaca/poi-detail'
 import { UserAgentProvider } from '@titicaca/react-contexts'
 import { ComponentStoryObj, Meta } from '@storybook/react'
 
-import { historyProviderDecorator } from '../../decorators'
+import {
+  historyProviderDecorator,
+  clientContextProviderDecorator,
+} from '../../decorators'
 
 export default {
   title: 'poi-detail / DetailHeader',
   component: DetailHeader,
   decorators: [
     historyProviderDecorator,
+    clientContextProviderDecorator,
     (Story) => (
       <UserAgentProvider
         value={{
-          isPublic: true,
           isMobile: true,
           os: {},
-          app: null,
         }}
       >
         <Story />

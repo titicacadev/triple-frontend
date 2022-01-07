@@ -6,6 +6,7 @@ import {
   EnvProvider,
   UserAgentProvider,
 } from '@titicaca/react-contexts'
+import { ClientContextProvider } from '@titicaca/react-client-interfaces'
 
 export function envProviderDecorator(Story: StoryFn) {
   return (
@@ -90,13 +91,19 @@ export function userAgentProviderDecorator(Story: StoryFn) {
   return (
     <UserAgentProvider
       value={{
-        isPublic: true,
         isMobile: false,
         os: {},
-        app: null,
       }}
     >
       <Story />
     </UserAgentProvider>
+  )
+}
+
+export function clientContextProviderDecorator(Story: StoryFn) {
+  return (
+    <ClientContextProvider {...null}>
+      <Story />
+    </ClientContextProvider>
   )
 }
