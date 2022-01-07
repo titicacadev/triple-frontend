@@ -1,21 +1,6 @@
 import { generateUrl, parseUrl, UrlElements } from '@titicaca/view-utilities'
-import {
-  shareLink,
-  hasAccessibleTripleNativeClients,
-} from '@titicaca/triple-web-to-native-interfaces'
 
-import { copyToClipboard } from './utils'
-
-interface SharingParams {
-  title?: string | null
-  description?: string | null
-  image?: string | null
-  webUrl?: string | null
-  appUrl: string
-}
-
-const DEFAULT_IMAGE =
-  'https://assets.triple.guide/images/default-cover-image.jpg'
+import { createShareUrl } from './factories'
 
 const ALERT_MESSAGE = '링크를 복사했습니다.'
 
@@ -38,65 +23,12 @@ function getSharingParams() {
   return { title, description, image, webUrl, appUrl }
 }
 
-function navigatorShare(params: SharingParams) {
-  const { title, description, webUrl } = params
-
-  navigator.share({
-    title: title as string,
-    text: description as string,
-    url: webUrl as string,
-  })
-}
-
-function shareNativeInterface(params: SharingParams) {
-  const { title, description, image, webUrl, appUrl } = params
-
-  return shareLink({
-    link: webUrl as string,
-    title: title as string,
-    description: description as string,
-    imageUrl: image || DEFAULT_IMAGE,
-    buttons: [
-      {
-        title: '웹에서 보기',
-        webUrl: webUrl as string,
-      },
-      {
-        title: '트리플에서 보기',
-        webUrl: webUrl as string,
-        appUrl,
-      },
-    ],
-  })
-}
-
-function createShareFunction() {
-  if (!hasAccessibleTripleNativeClients()) {
-    return typeof navigator !== 'undefined' && navigator.share
-      ? navigatorShare
-      : copyUrlToClipboard
-  } else {
-    return shareNativeInterface
-  }
-}
-
-function copyUrlToClipboard(params: SharingParams) {
-  const { webUrl } = params
-
-  const copy = copyToClipboard()
-
-  return copy({
-    text: webUrl || window.location.href,
-    message: ALERT_MESSAGE,
-  })
-}
-
 export default async function share({ path }: UrlElements) {
   if (path === '/web-action/share') {
     const params = getSharingParams()
-    const shareFuncByEnv = createShareFunction()
+    const shareUrl = createShareUrl()
 
-    shareFuncByEnv(params)
+    shareUrl({ params, message: ALERT_MESSAGE })
 
     return true
   }
