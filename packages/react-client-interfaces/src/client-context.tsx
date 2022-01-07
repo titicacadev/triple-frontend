@@ -51,7 +51,7 @@ export function extractClientAppUserAgentFromNextPageContext({
   req?: IncomingMessage
 }): ReturnType<typeof parseNativeClientUserAgent> {
   const userAgent = req
-    ? (req.headers.userAgent as string)
+    ? (req.headers.userAgent as string) || (req.headers['user-agent'] as string)
     : typeof window !== 'undefined'
     ? window.navigator.userAgent
     : undefined
