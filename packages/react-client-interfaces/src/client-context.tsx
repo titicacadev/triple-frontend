@@ -12,7 +12,7 @@ import type { App } from './types'
 
 type ClientContextProps = App | null
 
-const ClientContext = createContext<ClientContextProps>(null)
+const ClientContext = createContext<ClientContextProps | undefined>(undefined)
 
 export function ClientContextProvider({
   appName,
@@ -60,5 +60,11 @@ export function extractClientAppUserAgentFromNextPageContext({
 }
 
 export function useClientContext() {
-  return useContext(ClientContext)
+  const value = useContext(ClientContext)
+
+  if (value === undefined) {
+    throw new Error('ClientContextProvider is not mounted')
+  }
+
+  return value
 }
