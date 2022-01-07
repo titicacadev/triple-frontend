@@ -4,7 +4,7 @@ import {
   hasAccessibleTripleNativeClients,
 } from '@titicaca/triple-web-to-native-interfaces'
 
-import { copyWithDomApi, copyWithClipboard } from './utils'
+import { copyToClipboard } from './utils'
 
 interface SharingParams {
   title?: string | null
@@ -48,24 +48,6 @@ function navigatorShare(params: SharingParams) {
   })
 }
 
-async function copyUrlToClipboard(params: SharingParams) {
-  const { webUrl } = params
-
-  copyWithClipboard({
-    text: webUrl || window.location.href,
-    message: ALERT_MESSAGE,
-  })
-}
-
-function copyUrlWithDomApi(params: SharingParams) {
-  const { webUrl } = params
-
-  copyWithDomApi({
-    text: webUrl || window.location.href,
-    message: ALERT_MESSAGE,
-  })
-}
-
 function shareNativeInterface(params: SharingParams) {
   const { title, description, image, webUrl, appUrl } = params
 
@@ -92,12 +74,21 @@ function createShareFunction() {
   if (!hasAccessibleTripleNativeClients()) {
     return typeof navigator !== 'undefined' && navigator.share
       ? navigatorShare
-      : typeof navigator !== 'undefined' && navigator.clipboard
-      ? copyUrlToClipboard
-      : copyUrlWithDomApi
+      : copyUrlToClipboard
   } else {
     return shareNativeInterface
   }
+}
+
+function copyUrlToClipboard(params: SharingParams) {
+  const { webUrl } = params
+
+  const copy = copyToClipboard()
+
+  return copy({
+    text: webUrl || window.location.href,
+    message: ALERT_MESSAGE,
+  })
 }
 
 export default async function share({ path }: UrlElements) {
@@ -105,7 +96,7 @@ export default async function share({ path }: UrlElements) {
     const params = getSharingParams()
     const shareFuncByEnv = createShareFunction()
 
-    shareFuncByEnv && shareFuncByEnv(params)
+    shareFuncByEnv(params)
 
     return true
   }
