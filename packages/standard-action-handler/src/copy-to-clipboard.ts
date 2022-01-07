@@ -5,11 +5,14 @@ import {
   showToast,
 } from '@titicaca/triple-web-to-native-interfaces'
 
-import { copyWithDomApi, copyWithClipboard } from './utils'
+import { copyToClipboard } from './utils'
 
 const ALERT_MESSAGE = '클립보드에 복사되었습니다.'
 
-export default async function copyToClipboard({ path, query }: UrlElements) {
+export default async function copyTextToClipboard({
+  path,
+  query,
+}: UrlElements) {
   if (path === '/web-action/copy-to-clipboard' && query) {
     const { text } = qs.parse(query || '')
 
@@ -27,9 +30,7 @@ export default async function copyToClipboard({ path, query }: UrlElements) {
 
 function createCopyText() {
   if (!hasAccessibleTripleNativeClients()) {
-    return typeof navigator !== 'undefined' && navigator.clipboard
-      ? copyWithClipboard
-      : copyWithDomApi
+    return copyToClipboard
   } else {
     return copyTextNativeInterface
   }
