@@ -33,30 +33,6 @@ test('주어진 href에 basePath를 더해서 anchor에 제공합니다.', () =>
   expect(getByRole('link')).toHaveAttribute('href', `${basePath}${href}`)
 })
 
-test('href에 트리플 앱 전용 쿼리를 추가합니다.', () => {
-  prepareTest({ isPublic: false })
-
-  const { getByRole } = render(
-    <LocalLink
-      href="/5b700a4e-4b0f-4266-81db-eb42f834bdd9"
-      target="current"
-      lnbTarget={{
-        type: 'region',
-        id: '71476976-cf9a-4ae8-a60f-76e6fb26900d',
-      }}
-    >
-      <a>테스트 링크</a>
-    </LocalLink>,
-  )
-
-  expect(getByRole('link')).toHaveAttribute(
-    'href',
-    expect.stringContaining(
-      '?_triple_lnb_region_id=71476976-cf9a-4ae8-a60f-76e6fb26900d',
-    ),
-  )
-})
-
 test('키를 누르고 클릭할 때는 next/router를 사용하지 않습니다.', () => {
   const { nextPush } = prepareTest()
 
@@ -133,7 +109,7 @@ test('앱에서 새창으로 이동할 때 inlink를 사용합니다.', () => {
 
   fireEvent.click(link)
 
-  expect(openInlink).toBeCalledWith(`${basePath}${href}`)
+  expect(openInlink).toBeCalledWith(`${basePath}${href}`, expect.any(Object))
 })
 
 test('앱에서 브라우저로 이동할 때 outlink를 사용합니다.', () => {

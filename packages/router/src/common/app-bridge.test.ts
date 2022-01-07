@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks'
-import { useEnv } from '@titicaca/react-contexts'
+import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
 
 import { useAppBridge } from './app-bridge'
 
@@ -11,6 +11,10 @@ jest.mock('@titicaca/react-contexts')
     () => Pick<ReturnType<typeof useEnv>, 'appUrlScheme'>
   >
 ).mockImplementation(() => ({ appUrlScheme: MOCK_APP_SCHEME }))
+
+beforeEach(() => {
+  mockUserAgentContext(true)
+})
 
 describe('openInlink', () => {
   test('주어진 href를 inlink로 엽니다.', () => {
@@ -102,3 +106,13 @@ describe('openNativeLink', () => {
     )
   })
 })
+
+function mockUserAgentContext(isPublic = true) {
+  ;(
+    useUserAgentContext as unknown as jest.MockedFunction<
+      () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
+    >
+  ).mockReturnValue({
+    isPublic,
+  })
+}

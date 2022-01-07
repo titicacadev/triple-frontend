@@ -1,6 +1,5 @@
 import React, { MouseEvent, MouseEventHandler, PropsWithChildren } from 'react'
 
-import { useTripleAppRoutingOptionsAdder } from '../common/app-specific-link-options'
 import { ANCHOR_TARGET_MAP } from '../common/target'
 import { RouterGuardedLink } from '../link/router-guarded-link'
 import { LinkCommonProps } from '../link/types'
@@ -36,17 +35,10 @@ export function LocalLink({
   onClick,
   children,
 }: PropsWithChildren<LinkCommonProps & NextjsRoutingOptions>) {
-  const addTripleAppRoutingOptions = useTripleAppRoutingOptionsAdder()
   const handleHrefLocally = useLocalHrefHandler()
   const addBasePath = useBasePathAdder()
 
-  const finalHref = addTripleAppRoutingOptions({
-    href: addBasePath(href),
-    lnbTarget,
-    noNavbar,
-    shouldPresent,
-    swipeToClose,
-  })
+  const finalHref = addBasePath(href)
 
   const handleClick: MouseEventHandler<HTMLAnchorElement> = async (e) => {
     if (onClick) {

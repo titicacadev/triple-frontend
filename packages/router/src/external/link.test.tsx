@@ -7,7 +7,6 @@ import {
 } from '@titicaca/react-contexts'
 import { useLoginCTAModal, useTransitionModal } from '@titicaca/modals'
 
-import { useTripleAppRoutingOptionsAdder } from '../common/app-specific-link-options'
 import { useAppBridge } from '../common/app-bridge'
 import { useWebUrlBaseAdder } from '../common/add-web-url-base'
 
@@ -15,7 +14,6 @@ import { ExternalLink } from './link'
 
 jest.mock('@titicaca/react-contexts')
 jest.mock('@titicaca/modals')
-jest.mock('../common/app-specific-link-options')
 jest.mock('../common/app-bridge')
 jest.mock('../common/add-web-url-base')
 
@@ -115,7 +113,7 @@ test('앱에서 트리플 URL을 새 창으로 열면 inlink를 사용합니다.
 
   fireEvent.click(link)
 
-  expect(openInlink).toBeCalledWith(TRIPLE_URL)
+  expect(openInlink).toBeCalledWith(TRIPLE_URL, expect.any(Object))
 })
 
 describe('앱에서 브라우저로 열면 outlink를 사용합니다.', () => {
@@ -181,15 +179,6 @@ function prepareTest({
       () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
     >
   ).mockImplementation(() => ({ isPublic }))
-  ;(
-    useTripleAppRoutingOptionsAdder as jest.MockedFunction<
-      typeof useTripleAppRoutingOptionsAdder
-    >
-  ).mockImplementation(
-    () =>
-      ({ href }) =>
-        href,
-  )
   ;(
     useAppBridge as jest.MockedFunction<typeof useAppBridge>
   ).mockImplementation(() => ({
