@@ -130,7 +130,9 @@ describe('openInlink', () => {
     openInlink(href, { noNavbar: true })
 
     expect(changeLocation).toBeCalledWith(
-      expect.stringContaining('regionId=71476976-cf9a-4ae8-a60f-76e6fb26900d'),
+      expect.stringContaining(
+        encodeURIComponent('regionId=71476976-cf9a-4ae8-a60f-76e6fb26900d'),
+      ),
     )
   })
 })
