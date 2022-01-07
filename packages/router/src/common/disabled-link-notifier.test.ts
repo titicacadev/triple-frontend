@@ -1,5 +1,4 @@
 import { renderHook } from '@testing-library/react-hooks'
-import { useLoginCtaModal } from '@titicaca/modals'
 import {
   useSessionAvailability,
   useUserAgentContext,
@@ -7,10 +6,11 @@ import {
 
 import { useDisabledLinkNotifierCreator } from './disabled-link-notifier'
 import { useOnClientRequired } from './on-client-required'
+import { useOnSessionRequired } from './on-session-required'
 
-jest.mock('@titicaca/modals')
 jest.mock('@titicaca/react-contexts')
 jest.mock('./on-client-required')
+jest.mock('./on-session-required')
 
 describe('allowSource가 "all"일 때 앱 여부, 세션 여부에 상관없이 아무 처리를 하지 않습니다.', () => {
   test.each([
@@ -70,13 +70,13 @@ describe('allowSource가 "app-with-session"일 때 앱이 아니면 앱 설치 �
     [true, true, 'onClientRequired'],
     [true, false, 'onClientRequired'],
     [false, true, undefined],
-    [false, false, 'showLoginCtaModal'],
+    [false, false, 'onSessionRequired'],
   ] as const)(
     'isPublic: %s, sessionAvailable: %s, 호출 함수: %s',
     (
       isPublic,
       sessionAvailable,
-      functionType: 'onClientRequired' | 'showLoginCtaModal' | undefined,
+      functionType: 'onClientRequired' | 'onSessionRequired' | undefined,
     ) => {
       const fns = prepareTest({ isPublic, sessionAvailable })
 
@@ -152,14 +152,14 @@ function prepareTest({
   ).mockImplementation(() => sessionAvailable)
 
   const onClientRequired = jest.fn()
-  const showLoginCtaModal = jest.fn()
+  const onSessionRequired = jest.fn()
 
   ;(
     useOnClientRequired as jest.MockedFunction<typeof useOnClientRequired>
   ).mockReturnValue(onClientRequired)
   ;(
-    useLoginCtaModal as jest.MockedFunction<typeof useLoginCtaModal>
-  ).mockImplementation(() => ({ show: showLoginCtaModal }))
+    useOnSessionRequired as jest.MockedFunction<typeof useOnSessionRequired>
+  ).mockReturnValue(onSessionRequired)
 
-  return { onClientRequired, showLoginCtaModal }
+  return { onClientRequired, onSessionRequired }
 }

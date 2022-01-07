@@ -5,19 +5,19 @@ import {
   useSessionAvailability,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
-import { useLoginCtaModal } from '@titicaca/modals'
 
 import { useAppBridge } from '../common/app-bridge'
 import { useWebUrlBaseAdder } from '../common/add-web-url-base'
 import { useOnClientRequired } from '../common/on-client-required'
+import { useOnSessionRequired } from '../common/on-session-required'
 
 import { ExternalLink } from './link'
 
 jest.mock('@titicaca/react-contexts')
-jest.mock('@titicaca/modals')
 jest.mock('../common/app-bridge')
 jest.mock('../common/add-web-url-base')
 jest.mock('../common/on-client-required')
+jest.mock('../common/on-session-required')
 
 const ABSOLUTE_URL = 'https://www.google.com'
 const TRIPLE_URL = '/articles'
@@ -173,7 +173,7 @@ function prepareTest({
   const openInlink = jest.fn()
   const openOutlink = jest.fn()
   const onClientRequired = jest.fn()
-  const showLoginCtaModal = jest.fn()
+  const onSessionRequired = jest.fn()
   const webUrlBase = 'https://triple.guide'
 
   ;(
@@ -195,8 +195,8 @@ function prepareTest({
     useOnClientRequired as jest.MockedFunction<typeof useOnClientRequired>
   ).mockReturnValue(onClientRequired)
   ;(
-    useLoginCtaModal as jest.MockedFunction<typeof useLoginCtaModal>
-  ).mockImplementation(() => ({ show: showLoginCtaModal }))
+    useOnSessionRequired as jest.MockedFunction<typeof useOnSessionRequired>
+  ).mockReturnValue(onSessionRequired)
   ;(
     useWebUrlBaseAdder as unknown as jest.MockedFunction<
       typeof useWebUrlBaseAdder
@@ -207,7 +207,7 @@ function prepareTest({
     openInlink,
     openOutlink,
     onClientRequired,
-    showLoginCtaModal,
+    onSessionRequired,
     webUrlBase,
   }
 }

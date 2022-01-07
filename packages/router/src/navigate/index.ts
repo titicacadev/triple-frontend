@@ -1,4 +1,3 @@
-import { useLoginCtaModal } from '@titicaca/modals'
 import { checkIfRoutable, parseUrl } from '@titicaca/view-utilities'
 import { useCallback } from 'react'
 import {
@@ -9,6 +8,7 @@ import {
 
 import { OutlinkOptions, useAppBridge } from '../common/app-bridge'
 import { useOnClientRequired } from '../common/on-client-required'
+import { useOnSessionRequired } from '../common/on-session-required'
 
 import canonizeTargetAddress from './canonization'
 
@@ -18,9 +18,9 @@ export function useNavigate({
   const { webUrlBase } = useEnv()
   const { isPublic } = useUserAgentContext()
   const sessionAvailable = useSessionAvailability()
-  const { show: showLoginCtaModal } = useLoginCtaModal()
   const { openOutlink, openNativeLink } = useAppBridge()
   const onClientRequired = useOnClientRequired()
+  const onSessionRequired = useOnSessionRequired()
 
   const navigateInBrowser = useCallback(
     (rawHref: string) => {
@@ -54,7 +54,7 @@ export function useNavigate({
         sessionAvailable === false &&
         !checkIfRoutable({ href: canonizedHref })
       ) {
-        showLoginCtaModal()
+        onSessionRequired()
 
         return
       }
@@ -71,7 +71,7 @@ export function useNavigate({
       openNativeLink,
       openOutlink,
       sessionAvailable,
-      showLoginCtaModal,
+      onSessionRequired,
       webUrlBase,
     ],
   )

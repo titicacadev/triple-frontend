@@ -1,10 +1,10 @@
-import { useLoginCtaModal } from '@titicaca/modals'
 import {
   useSessionAvailability,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
 
 import { useOnClientRequired } from './on-client-required'
+import { useOnSessionRequired } from './on-session-required'
 
 export type AllowSource = 'all' | 'app' | 'app-with-session' | 'none'
 
@@ -24,8 +24,8 @@ export function useDisabledLinkNotifierCreator({
 } = {}) {
   const { isPublic } = useUserAgentContext()
   const sessionAvailable = useSessionAvailability()
-  const { show: showLoginCtaModal } = useLoginCtaModal()
   const onClientRequired = useOnClientRequired()
+  const onSessionRequired = useOnSessionRequired()
 
   const createDisabledLinkNotifier = ({
     allowSource = 'all',
@@ -44,7 +44,7 @@ export function useDisabledLinkNotifierCreator({
     }
 
     if (sessionAvailable === false && allowSource === 'app-with-session') {
-      return showLoginCtaModal
+      return onSessionRequired
     }
   }
 

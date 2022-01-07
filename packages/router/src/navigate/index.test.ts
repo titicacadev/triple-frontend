@@ -1,5 +1,4 @@
 import { renderHook } from '@testing-library/react-hooks'
-import { useLoginCtaModal } from '@titicaca/modals'
 import {
   useUserAgentContext,
   useSessionAvailability,
@@ -9,10 +8,10 @@ import { checkIfRoutable } from '@titicaca/view-utilities'
 
 import { useAppBridge } from '../common/app-bridge'
 import { useOnClientRequired } from '../common/on-client-required'
+import { useOnSessionRequired } from '../common/on-session-required'
 
 import { useNavigate } from '.'
 
-jest.mock('@titicaca/modals')
 jest.mock('@titicaca/view-utilities', () => ({
   ...jest.requireActual('@titicaca/view-utilities'),
   checkIfRoutable: jest.fn(),
@@ -20,6 +19,7 @@ jest.mock('@titicaca/view-utilities', () => ({
 jest.mock('@titicaca/react-contexts')
 jest.mock('../common/app-bridge')
 jest.mock('../common/on-client-required')
+jest.mock('../common/on-session-required')
 
 const webUrlBase = mockWebUrlBase()
 const routablePath = mockRoutablePath()
@@ -100,7 +100,7 @@ describe('앱', () => {
       [`/inlink?path=${encodeURIComponent(href)}`],
       [`/outlink?url=${encodeURIComponent(`${webUrlBase}${href}`)}`],
     ])('href: %s', (href) => {
-      const { showLoginCtaModal } = prepareTest({
+      const { onSessionRequired } = prepareTest({
         sessionAvailable: false,
       })
       const changeLocationHref = jest.fn()
@@ -112,7 +112,7 @@ describe('앱', () => {
       navigate(href)
 
       expect(changeLocationHref).not.toBeCalled()
-      expect(showLoginCtaModal).toBeCalled()
+      expect(onSessionRequired).toBeCalled()
     })
   })
 
@@ -181,7 +181,7 @@ function prepareTest({
   sessionAvailable = false,
 }: { sessionAvailable?: boolean } = {}) {
   const onClientRequired = jest.fn()
-  const showLoginCtaModal = jest.fn()
+  const onSessionRequired = jest.fn()
   const openInlink = jest.fn()
   const openOutlink = jest.fn()
   const openNativeLink = jest.fn()
@@ -190,8 +190,8 @@ function prepareTest({
     useOnClientRequired as jest.MockedFunction<typeof useOnClientRequired>
   ).mockReturnValue(onClientRequired)
   ;(
-    useLoginCtaModal as jest.MockedFunction<typeof useLoginCtaModal>
-  ).mockImplementation(() => ({ show: showLoginCtaModal }))
+    useOnSessionRequired as jest.MockedFunction<typeof useOnSessionRequired>
+  ).mockReturnValue(onSessionRequired)
   ;(
     useSessionAvailability as jest.MockedFunction<typeof useSessionAvailability>
   ).mockImplementation(() => sessionAvailable)
@@ -201,7 +201,7 @@ function prepareTest({
 
   return {
     onClientRequired,
-    showLoginCtaModal,
+    onSessionRequired,
     openInlink,
     openOutlink,
     openNativeLink,
