@@ -42,6 +42,9 @@
       "path": "../modals"
     },
     {
+      "path": "../react-client-interfaces"
+    },
+    {
       "path": "../type-definitions"
     },
     {
@@ -49,9 +52,6 @@
     },
     {
       "path": "../react-contexts"
-    },
-    {
-      "path": "../react-client-interfaces"
     }
   ]
 }

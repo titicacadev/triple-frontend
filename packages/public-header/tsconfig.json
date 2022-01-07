@@ -17,13 +17,13 @@
       "path": "../color-palette"
     },
     {
+      "path": "../react-client-interfaces"
+    },
+    {
       "path": "../view-utilities"
     },
     {
       "path": "../react-contexts"
-    },
-    {
-      "path": "../react-client-interfaces"
     }
   ]
 }

@@ -26,6 +26,7 @@
   "dependencies": {
     "@titicaca/core-elements": "^5.1.2",
     "@titicaca/modals": "^5.1.2",
+    "@titicaca/react-client-interfaces": "^5.1.2",
     "@titicaca/react-hooks": "^5.1.2",
     "isomorphic-fetch": "^2.2.1"
   },
@@ -33,7 +34,6 @@
     "@types/isomorphic-fetch": "^0.0.35"
   },
   "peerDependencies": {
-    "@titicaca/react-contexts": "*",
-    "@titicaca/react-client-interfaces": "*"
+    "@titicaca/react-contexts": "*"
   }
 }

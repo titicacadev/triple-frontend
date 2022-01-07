@@ -16,11 +16,11 @@
   },
   "dependencies": {
     "@titicaca/color-palette": "^5.1.2",
+    "@titicaca/react-client-interfaces": "^5.1.2",
     "@titicaca/view-utilities": "^5.1.2"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
-    "@titicaca/react-client-interfaces": "*",
     "react": "*",
     "styled-components": ">=4.4.1 < 6"
   }

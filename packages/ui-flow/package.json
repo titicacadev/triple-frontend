@@ -26,12 +26,12 @@
   },
   "dependencies": {
     "@titicaca/modals": "^5.1.2",
+    "@titicaca/react-client-interfaces": "^5.1.2",
     "qs": "^6.9.0"
   },
   "peerDependencies": {
     "@titicaca/fetcher": "*",
     "@titicaca/react-contexts": "*",
-    "@titicaca/react-client-interfaces": "*",
     "next": "^9.3.0 || ^10.0.0 || ^11.0.0 || ^12.0.0"
   }
 }

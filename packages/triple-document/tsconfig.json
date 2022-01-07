@@ -48,6 +48,9 @@
       "path": "../poi-list-elements"
     },
     {
+      "path": "../react-client-interfaces"
+    },
+    {
       "path": "../router"
     },
     {
@@ -73,9 +76,6 @@
     },
     {
       "path": "../react-contexts"
-    },
-    {
-      "path": "../react-client-interfaces"
     }
   ]
 }

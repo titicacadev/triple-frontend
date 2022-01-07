@@ -18,10 +18,10 @@
     "@titicaca/action-sheet": "^5.1.2",
     "@titicaca/core-elements": "^5.1.2",
     "@titicaca/i18n": "^5.1.2",
+    "@titicaca/react-client-interfaces": "^5.1.2",
     "@titicaca/type-definitions": "^5.1.2"
   },
   "peerDependencies": {
-    "@titicaca/react-contexts": "*",
-    "@titicaca/react-client-interfaces": "*"
+    "@titicaca/react-contexts": "*"
   }
 }

@@ -19,6 +19,7 @@
     "@titicaca/core-elements": "^5.1.2",
     "@titicaca/intersection-observer": "^5.1.2",
     "@titicaca/modals": "^5.1.2",
+    "@titicaca/react-client-interfaces": "^5.1.2",
     "@titicaca/react-hooks": "^5.1.2",
     "@titicaca/router": "^5.1.2",
     "@titicaca/type-definitions": "^5.1.2",
@@ -39,7 +40,6 @@
     "csstype": "^3.0.2"
   },
   "peerDependencies": {
-    "@titicaca/react-contexts": "*",
-    "@titicaca/react-client-interfaces": "*"
+    "@titicaca/react-contexts": "*"
   }
 }

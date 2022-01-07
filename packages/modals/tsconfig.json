@@ -16,10 +16,10 @@
       "path": "../core-elements"
     },
     {
-      "path": "../react-contexts"
+      "path": "../react-client-interfaces"
     },
     {
-      "path": "../react-client-interfaces"
+      "path": "../react-contexts"
     }
   ]
 }

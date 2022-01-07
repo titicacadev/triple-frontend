@@ -24,10 +24,10 @@
       "path": "../type-definitions"
     },
     {
-      "path": "../view-utilities"
+      "path": "../react-client-interfaces"
     },
     {
-      "path": "../react-client-interfaces"
+      "path": "../view-utilities"
     }
   ]
 }

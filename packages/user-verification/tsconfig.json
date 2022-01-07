@@ -21,13 +21,13 @@
       "path": "../modals"
     },
     {
+      "path": "../react-client-interfaces"
+    },
+    {
       "path": "../react-hooks"
     },
     {
       "path": "../react-contexts"
-    },
-    {
-      "path": "../react-client-interfaces"
     }
   ]
 }

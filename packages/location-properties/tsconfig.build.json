@@ -12,13 +12,13 @@
       "path": "../i18n/tsconfig.build.json"
     },
     {
+      "path": "../react-client-interfaces/tsconfig.build.json"
+    },
+    {
       "path": "../type-definitions/tsconfig.build.json"
     },
     {
       "path": "../react-contexts/tsconfig.build.json"
-    },
-    {
-      "path": "../react-client-interfaces/tsconfig.build.json"
     }
   ]
 }

@@ -23,6 +23,7 @@
     "@titicaca/map": "^5.1.2",
     "@titicaca/modals": "^5.1.2",
     "@titicaca/poi-list-elements": "^5.1.2",
+    "@titicaca/react-client-interfaces": "^5.1.2",
     "@titicaca/router": "^5.1.2",
     "@titicaca/scrap-button": "^5.1.2",
     "@titicaca/standard-action-handler": "^5.1.2",
@@ -35,8 +36,7 @@
   },
   "peerDependencies": {
     "@sentry/browser": ">=5 <7",
-    "@titicaca/react-contexts": "*",
-    "@titicaca/react-client-interfaces": "*"
+    "@titicaca/react-contexts": "*"
   },
   "devDependencies": {
     "@sentry/browser": "^6.2.5",
