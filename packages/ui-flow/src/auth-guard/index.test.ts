@@ -1,3 +1,4 @@
+import 'isomorphic-fetch'
 import { get, HttpResponse } from '@titicaca/fetcher'
 import { generateUrl } from '@titicaca/view-utilities'
 
