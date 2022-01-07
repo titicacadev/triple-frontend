@@ -35,6 +35,9 @@
       "@titicaca/popup": ["../packages/popup/src"],
       "@titicaca/pricing": ["../packages/pricing/src"],
       "@titicaca/public-header": ["../packages/public-header/src"],
+      "@titicaca/react-client-interfaces": [
+        "../packages/react-client-interfaces/src"
+      ],
       "@titicaca/react-contexts": ["../packages/react-contexts/src"],
       "@titicaca/react-hooks": ["../packages/react-hooks/src"],
       "@titicaca/recommended-contents": [
@@ -147,6 +150,9 @@
     },
     {
       "path": "../packages/public-header"
+    },
+    {
+      "path": "../packages/react-client-interfaces"
     },
     {
       "path": "../packages/react-contexts"
