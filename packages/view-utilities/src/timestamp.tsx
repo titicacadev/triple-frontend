@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from 'moment'
+import 'moment/locale/ko'
 
 moment.updateLocale('ko', {
   relativeTime: {
@@ -10,7 +11,6 @@ moment.relativeTimeRounding(Math.floor)
 moment.relativeTimeThreshold('s', 60)
 moment.relativeTimeThreshold('m', 60)
 moment.relativeTimeThreshold('h', 24)
-moment.locale('ko')
 
 export function formatTimestamp(date: string) {
   const createdAt = moment(date)
