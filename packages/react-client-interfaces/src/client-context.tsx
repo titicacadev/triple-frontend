@@ -12,18 +12,21 @@ import type { App } from './types'
 
 type ClientContextProps = App | null
 
-const ClientContext = createContext<ClientContextProps | null>(null)
+const ClientContext = createContext<ClientContextProps>(null)
 
 export function ClientContextProvider({
   appName,
   appVersion,
   children,
-}: PropsWithChildren<ClientContextProps>) {
-  const value = useMemo(
-    () => ({
-      appName,
-      appVersion,
-    }),
+}: PropsWithChildren<Partial<App>>) {
+  const value: App | null = useMemo(
+    () =>
+      appName && appVersion
+        ? {
+            appName,
+            appVersion,
+          }
+        : null,
     [appName, appVersion],
   )
 
@@ -39,25 +42,21 @@ ClientContextProvider.getInitialProps = async function ({
 }): Promise<ClientContextProps> {
   const parsedApp = extractClientAppUserAgentFromNextPageContext({ req })
 
-  if (parsedApp) {
-    return parsedApp
-  }
-
-  return null
+  return parsedApp
 }
 
 export function extractClientAppUserAgentFromNextPageContext({
   req,
 }: {
   req?: IncomingMessage
-}): ReturnType<typeof parseNativeClientUserAgent> | null {
+}): ReturnType<typeof parseNativeClientUserAgent> {
   const userAgent = req
     ? (req.headers.userAgent as string)
     : typeof window !== 'undefined'
     ? window.navigator.userAgent
     : undefined
 
-  return userAgent ? parseNativeClientUserAgent(userAgent) : null
+  return parseNativeClientUserAgent(userAgent || '')
 }
 
 export function useClientContext() {
