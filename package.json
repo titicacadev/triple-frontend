@@ -88,7 +88,8 @@
   },
   "workspaces": [
     "packages/*",
-    "docs"
+    "docs",
+    "integration-test"
   ],
   "lint-staged": {
     "**/*.{js,ts,tsx}": [

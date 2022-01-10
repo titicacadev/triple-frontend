@@ -1,7 +1,8 @@
 {
   "packages": [
     "docs",
-    "packages/*"
+    "packages/*",
+    "integration-test"
   ],
   "version": "5.1.2"
 }
