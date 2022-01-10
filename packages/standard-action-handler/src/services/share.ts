@@ -3,7 +3,7 @@ import {
   shareLink,
 } from '@titicaca/triple-web-to-native-interfaces'
 
-import { createCopyToClipboard } from './copy'
+import { createClipboardCopier } from './copy'
 
 const DEFAULT_IMAGE =
   'https://assets.triple.guide/images/default-cover-image.jpg'
@@ -45,7 +45,7 @@ function copyUrlToClipboard({
 }) {
   const { webUrl } = params
 
-  const clipboardCopier = createCopyToClipboard()
+  const clipboardCopier = createClipboardCopier()
 
   return clipboardCopier({
     text: webUrl || window.location.href,
