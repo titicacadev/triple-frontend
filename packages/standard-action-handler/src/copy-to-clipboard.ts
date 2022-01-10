@@ -1,7 +1,7 @@
 import qs from 'qs'
 import { UrlElements } from '@titicaca/view-utilities'
 
-import { createClipboardCopier } from './factories'
+import { createClipboardCopier } from './services/copy'
 
 const ALERT_MESSAGE = '클립보드에 복사되었습니다.'
 
