@@ -6,6 +6,9 @@
       "path": "../packages/modals/tsconfig.build.json"
     },
     {
+      "path": "../packages/react-contexts/tsconfig.build.json"
+    },
+    {
       "path": "../packages/router/tsconfig.build.json"
     }
   ]
