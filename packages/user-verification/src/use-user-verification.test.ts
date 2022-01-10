@@ -7,9 +7,12 @@ jest.mock('@titicaca/react-hooks', () => ({
   useVisibilityChange: jest.fn(),
 }))
 jest.mock('@titicaca/router')
-jest.mock('isomorphic-fetch', () => () => {
-  return new Response('{"phoneNumber": "01000000000"}', { status: 200 })
-})
+jest.mock('isomorphic-fetch', () => () => ({
+  ok: 200,
+  json: () => ({
+    phoneNumber: '01000000000',
+  }),
+}))
 jest.mock('./verified-message')
 
 describe('인증 시작함수를 호출하면 인증 페이지를 엽니다.', () => {
