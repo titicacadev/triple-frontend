@@ -1,13 +1,20 @@
 import { generateUrl, parseUrl, UrlElements } from '@titicaca/view-utilities'
 
-import { createShareUrl } from './factories'
+import { createShareUrl } from './services/share'
 
 const ALERT_MESSAGE = '링크를 복사했습니다.'
 
-function getMetadata({ property }: { property: string }) {
-  return document
-    .querySelector(`meta[property='${property}']`)
-    ?.getAttribute('content')
+export default async function share({ path }: UrlElements) {
+  if (path === '/web-action/share') {
+    const params = getSharingParams()
+    const shareUrl = createShareUrl()
+
+    shareUrl({ params, message: ALERT_MESSAGE })
+
+    return true
+  }
+
+  return false
 }
 
 function getSharingParams() {
@@ -23,15 +30,8 @@ function getSharingParams() {
   return { title, description, image, webUrl, appUrl }
 }
 
-export default async function share({ path }: UrlElements) {
-  if (path === '/web-action/share') {
-    const params = getSharingParams()
-    const shareUrl = createShareUrl()
-
-    shareUrl({ params, message: ALERT_MESSAGE })
-
-    return true
-  }
-
-  return false
+function getMetadata({ property }: { property: string }) {
+  return document
+    .querySelector(`meta[property='${property}']`)
+    ?.getAttribute('content')
 }
