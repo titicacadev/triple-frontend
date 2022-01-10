@@ -5,7 +5,9 @@ import {
 
 export function createClipboardCopier() {
   if (!hasAccessibleTripleNativeClients()) {
-    return createCopyToClipboard
+    return typeof navigator !== 'undefined' && navigator.clipboard
+      ? copyWithClipboard
+      : copyWithDomApi
   } else {
     return copyTextNativeInterface
   }
@@ -47,10 +49,4 @@ function copyTextNativeInterface({
   }:///action/copy_to_clipboard?text=${encodeURIComponent(text)}`
 
   showToast(message)
-}
-
-export function createCopyToClipboard() {
-  return typeof navigator !== 'undefined' && navigator.clipboard
-    ? copyWithClipboard
-    : copyWithDomApi
 }
