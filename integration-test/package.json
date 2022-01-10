@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@titicaca/modals": "^5.1.2",
+    "@titicaca/react-contexts": "^5.1.2",
     "@titicaca/router": "^5.1.2"
   }
 }
