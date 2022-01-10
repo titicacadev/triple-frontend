@@ -7,12 +7,12 @@ const ALERT_MESSAGE = '클립보드에 복사되었습니다.'
 
 export default async function copyToClipboard({ path, query }: UrlElements) {
   if (path === '/web-action/copy-to-clipboard' && query) {
-    const { text } = qs.parse(query || '')
+    const { text } = qs.parse(query || '') as { text?: string }
 
     if (text) {
       const textClipboardCopier = createClipboardCopier()
 
-      textClipboardCopier({ text: text as string, message: ALERT_MESSAGE })
+      textClipboardCopier({ text, message: ALERT_MESSAGE })
     }
 
     return true
