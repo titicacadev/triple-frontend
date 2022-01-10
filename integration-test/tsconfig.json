@@ -3,10 +3,14 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@titicaca/modals": ["../packages/modals/src"],
       "@titicaca/router": ["../packages/router/src"]
     }
   },
   "references": [
+    {
+      "path": "../packages/modals"
+    },
     {
       "path": "../packages/router"
     }

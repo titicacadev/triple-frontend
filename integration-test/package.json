@@ -17,6 +17,7 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
+    "@titicaca/modals": "^5.1.2",
     "@titicaca/router": "^5.1.2"
   }
 }
