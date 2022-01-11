@@ -3,13 +3,18 @@ import { ComponentStoryObj, Meta } from '@storybook/react'
 
 import {
   envProviderDecorator,
+  forRouter,
   sessionContextProviderDecorator,
 } from '../../decorators'
 
 export default {
   title: 'booking-completion / Booking Complete',
   component: BookingCompletion,
-  decorators: [envProviderDecorator, sessionContextProviderDecorator],
+  decorators: [
+    envProviderDecorator,
+    sessionContextProviderDecorator,
+    forRouter,
+  ],
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof BookingCompletion> = {

@@ -8,6 +8,7 @@ import {
 import { ComponentStoryObj, Meta } from '@storybook/react'
 
 import {
+  forRouter,
   historyProviderDecorator,
   sessionContextProviderDecorator,
 } from '../../decorators'
@@ -42,6 +43,7 @@ export default {
     ),
     historyProviderDecorator,
     sessionContextProviderDecorator,
+    forRouter,
   ],
 } as Meta
 

@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 
 import {
   envProviderDecorator,
+  forRouter,
   sessionContextProviderDecorator,
   userAgentProviderDecorator,
 } from '../../decorators'
@@ -14,6 +15,7 @@ export default {
     userAgentProviderDecorator,
     envProviderDecorator,
     sessionContextProviderDecorator,
+    forRouter,
   ],
 } as Meta
 

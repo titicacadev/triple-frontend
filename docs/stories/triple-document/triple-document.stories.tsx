@@ -11,6 +11,7 @@ import MOCK_EMBEDDED from '../__mocks__/triple-document.embedded.json'
 import MOCK_ITINERARY from '../__mocks__/triple-document.itinerary.json'
 import {
   envProviderDecorator,
+  forRouter,
   sessionContextProviderDecorator,
 } from '../../decorators'
 
@@ -27,7 +28,11 @@ const {
 
 export default {
   title: 'triple-document',
-  decorators: [envProviderDecorator, sessionContextProviderDecorator],
+  decorators: [
+    envProviderDecorator,
+    sessionContextProviderDecorator,
+    forRouter,
+  ],
 } as Meta
 
 export function Sample() {

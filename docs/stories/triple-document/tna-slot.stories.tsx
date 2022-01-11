@@ -5,6 +5,7 @@ import { ELEMENTS, Slot } from '@titicaca/triple-document'
 import SLOTS from '../__mocks__/slots.sample.json'
 import {
   envProviderDecorator,
+  forRouter,
   sessionContextProviderDecorator,
 } from '../../decorators'
 
@@ -13,7 +14,11 @@ const { tnaProducts: TnaProducts } = ELEMENTS
 export default {
   title: 'triple-document / T&A Slot',
   component: TnaProducts,
-  decorators: [envProviderDecorator, sessionContextProviderDecorator],
+  decorators: [
+    envProviderDecorator,
+    sessionContextProviderDecorator,
+    forRouter,
+  ],
 } as Meta
 
 export function InTripleDocument() {
