@@ -13,7 +13,7 @@ interface ItineraryMapData {
   pois: Poi[]
   polyline: LatLngLiteral[]
   mapOptions: { center: LatLngLiteral; zoom?: number }
-  bounds?: google.maps.LatLngBoundsLiteral
+  coordinates: [number, number][]
 }
 /**
  * TODO: move to use-safety-poi
@@ -59,6 +59,7 @@ export default function useMapData(
     }))
 
     return {
+      coordinates,
       totalPois,
       pois,
       polyline,

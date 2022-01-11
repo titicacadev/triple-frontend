@@ -25,7 +25,8 @@ interface Props {
 
 export default function ItineraryMap({ onClickMarker, items }: Props) {
   const { googleMapsApiKey } = useEnv()
-  const { totalPois, polyline, pois, mapOptions, bounds } = useMapData(items)
+  const { totalPois, polyline, pois, mapOptions, coordinates } =
+    useMapData(items)
 
   const generateClickMarkerHandle = useCallback(
     (poi: ItineraryItemType['poi']) => (e: MouseEvent) => {
@@ -42,8 +43,8 @@ export default function ItineraryMap({ onClickMarker, items }: Props) {
     <Container width="100%" height={180} className="chromatic-ignore">
       {googleMapsApiKey ? (
         <MapView
+          coordinates={coordinates}
           options={mapOptions}
-          bounds={bounds}
           googleMapLoadOptions={{
             googleMapsApiKey,
           }}
