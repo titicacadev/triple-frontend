@@ -28,10 +28,10 @@ describe('injectUTMContext', () => {
         content: 'video',
       }),
     ).toEqual({
-      source: 'test1',
+      channel: 'test1',
       campaign: 'winter_sale',
-      adKeyword: 'test',
-      content: 'video',
+      keywords: 'test',
+      ad: 'video',
     })
   })
 
