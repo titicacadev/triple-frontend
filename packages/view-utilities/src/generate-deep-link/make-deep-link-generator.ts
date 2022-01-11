@@ -17,7 +17,6 @@ interface GeneratorParams {
 
   // one link parameter에 들어가는 값
   pid?: string
-  channel?: string
   campaign?: string
   /**
    * @deprecated
@@ -27,6 +26,7 @@ interface GeneratorParams {
   adSet?: string
   keywords?: string
   ad?: string
+  channel?: string
   partner?: string
   clickLookBack?: string
   isRetargeting?: boolean
@@ -49,11 +49,11 @@ export function makeDeepLinkGenerator({
   return ({
     path,
     pid,
-    channel,
-    adSet,
     campaign,
+    adSet,
     keywords,
     ad,
+    channel,
     partner,
     clickLookBack,
     isRetargeting,
@@ -66,8 +66,8 @@ export function makeDeepLinkGenerator({
       pid: pid || defaultPid,
 
       c: campaign,
-      af_ad: ad,
       af_adset: adSet,
+      af_ad: ad,
       af_keywords: keywords,
       af_channel: channel,
       af_prt: partner,
