@@ -1,11 +1,6 @@
 import styled from 'styled-components'
-import { Container } from '@titicaca/core-elements'
+import { Container, LayeringMixinProps } from '@titicaca/core-elements'
 
-export const StickyMapContainer = styled(Container)<{
-  top: number
-}>`
+export const StickyMapContainer = styled(Container)<LayeringMixinProps>`
   position: sticky;
-  top: ${({ top }) => `${top}px`};
-  background-color: #ffffff;
-  z-index: 3;
 `
