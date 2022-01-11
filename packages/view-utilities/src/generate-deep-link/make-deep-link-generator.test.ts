@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom'
 import qs from 'qs'
 
 import { generateUrl, parseUrl } from '../url'
@@ -30,10 +29,10 @@ test('Deep Link를 생성합니다.', () => {
 
   const rawDeepLink = generateDeepLink({
     path,
-    source: 'naver',
+    channel: 'naver',
     campaign: 'promotion',
-    adKeyword: '트리플',
-    content: 'video',
+    keywords: '트리플',
+    ad: 'video',
   })
 
   const { href, ...parsedDeepLink } = parseUrl(rawDeepLink)
