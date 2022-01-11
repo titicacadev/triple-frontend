@@ -19,6 +19,12 @@ interface GeneratorParams {
   pid?: string
   channel?: string
   campaign?: string
+  /**
+   * @deprecated
+   * adSet보다 source를 사용해주세요.
+   * 참고 : https://docs.google.com/spreadsheets/d/1W01wso5gWwr-3ODCdgZsrC7fpzq0FX954m4Y3NgfCYg/edit#gid=0
+   */
+  adSet?: string
   keywords?: string
   ad?: string
   partner?: string
@@ -44,6 +50,7 @@ export function makeDeepLinkGenerator({
     path,
     pid,
     channel,
+    adSet,
     campaign,
     keywords,
     ad,
@@ -60,6 +67,7 @@ export function makeDeepLinkGenerator({
 
       c: campaign,
       af_ad: ad,
+      af_adset: adSet,
       af_keywords: keywords,
       af_channel: channel,
       af_prt: partner,
