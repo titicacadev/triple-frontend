@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/style-box",
-  "version": "5.1.2",
+  "version": "5.2.0",
   "description": "Triple Style Box",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "main": "lib/index.js",
