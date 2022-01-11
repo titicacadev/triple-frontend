@@ -51,7 +51,7 @@ describe('injectUTMContext', () => {
   })
 })
 
-describe('injectSearchAd', () => {
+test('injectSearchAd', () => {
   expect(
     injectIsSearchAd({
       medium: 'search_ad',
