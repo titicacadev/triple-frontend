@@ -5,17 +5,17 @@ import MapView, {
   DotPolyline,
   Polygon,
   HotelCircleMarker,
+  StickyMapContainer,
 } from '@titicaca/map'
 import { ComponentStory, Meta } from '@storybook/react'
 
 import {
-  mapOptions,
-  bounds,
   polylineGeometry,
   polylinePaths,
   polygonGeometry,
   polygonLinePath,
   polygonPaths,
+  coordinates,
 } from './mock'
 
 /**
@@ -33,17 +33,12 @@ export default {
 } as Meta
 
 export const Basic: ComponentStory<typeof MapView> = (args) => {
-  return (
-    <Container width="100vw" height="100vh">
-      <MapView {...args} />
-    </Container>
-  )
+  return <MapView {...args} />
 }
 Basic.storyName = '기본 맵'
 Basic.args = {
-  options: mapOptions,
+  coordinates,
   googleMapLoadOptions: { googleMapsApiKey: GOOGLE_MAPS_API_KEY },
-  bounds,
 }
 Basic.parameters = {
   chromatic: {
@@ -51,24 +46,40 @@ Basic.parameters = {
   },
 }
 
-export const WithProps: ComponentStory<typeof MapView> = (args) => {
+export const StickyMap: ComponentStory<typeof MapView> = (args) => {
   return (
-    <Container width="50%" height={200}>
-      <MapView {...args} />
+    <Container height={2500}>
+      <StickyMapContainer top={200}>
+        <MapView {...args} />
+      </StickyMapContainer>
     </Container>
   )
 }
+StickyMap.storyName = 'Sticky 적용 맵'
+StickyMap.args = {
+  coordinates,
+  googleMapLoadOptions: { googleMapsApiKey: GOOGLE_MAPS_API_KEY },
+}
+StickyMap.parameters = {
+  chromatic: {
+    disableSnapshot: true,
+  },
+}
+
+export const WithProps: ComponentStory<typeof MapView> = (args) => {
+  return <MapView {...args} />
+}
 WithProps.storyName = '사이즈 설정'
 WithProps.args = {
-  options: mapOptions,
+  coordinates,
   googleMapLoadOptions: { googleMapsApiKey: GOOGLE_MAPS_API_KEY },
-  bounds,
   padding: {
     top: 10,
     left: 10,
     right: 10,
     bottom: 10,
   },
+  mapContainerStyle: { width: '50%', height: 200 },
 }
 WithProps.parameters = {
   chromatic: {
@@ -87,11 +98,11 @@ export const WithPolyline: ComponentStory<typeof MapView> = (args) => {
 }
 WithPolyline.storyName = 'Polyline'
 WithPolyline.args = {
+  coordinates,
   options: { ...polylineGeometry, zoom: 12 },
   googleMapLoadOptions: {
     googleMapsApiKey: GOOGLE_MAPS_API_KEY,
   },
-  bounds,
 }
 WithPolyline.parameters = {
   chromatic: {
@@ -123,11 +134,11 @@ export const WithMarker: ComponentStory<typeof MapView> = (args) => {
 
 WithMarker.storyName = 'Polyline with CircleMarker'
 WithMarker.args = {
+  coordinates,
   options: { ...polylineGeometry, zoom: 12 },
   googleMapLoadOptions: {
     googleMapsApiKey: GOOGLE_MAPS_API_KEY,
   },
-  bounds,
 }
 WithMarker.parameters = {
   chromatic: {
@@ -147,11 +158,11 @@ export const WithCircleMarker: ComponentStory<typeof MapView> = (args) => {
 
 WithCircleMarker.storyName = 'Polygon with CircleMarker'
 WithCircleMarker.args = {
+  coordinates,
   options: { ...polylineGeometry, zoom: 12 },
   googleMapLoadOptions: {
     googleMapsApiKey: GOOGLE_MAPS_API_KEY,
   },
-  bounds,
 }
 WithCircleMarker.parameters = {
   chromatic: {
@@ -171,11 +182,11 @@ export const WithWithPolyline: ComponentStory<typeof MapView> = (args) => {
 }
 WithWithPolyline.storyName = 'Polygon with Polyline'
 WithWithPolyline.args = {
+  coordinates: polygonPaths.map(({ lat, lng }) => [lng, lat]),
   options: { ...polylineGeometry, zoom: 12 },
   googleMapLoadOptions: {
     googleMapsApiKey: GOOGLE_MAPS_API_KEY,
   },
-  bounds,
 }
 WithWithPolyline.parameters = {
   chromatic: {
@@ -207,11 +218,11 @@ export const WithPolylineAndMarker: ComponentStory<typeof MapView> = (args) => {
 }
 WithPolylineAndMarker.storyName = 'Polygon with Polyline, Marker'
 WithPolylineAndMarker.args = {
+  coordinates: polygonPaths.map(({ lat, lng }) => [lng, lat]),
   options: { ...polygonGeometry, zoom: 10 },
   googleMapLoadOptions: {
     googleMapsApiKey: GOOGLE_MAPS_API_KEY,
   },
-  bounds,
 }
 WithPolylineAndMarker.parameters = {
   chromatic: {
