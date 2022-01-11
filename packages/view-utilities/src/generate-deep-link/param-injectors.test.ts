@@ -22,16 +22,18 @@ describe('injectUTMContext', () => {
   test('should make object with path made of utm context.', () => {
     expect(
       injectUTMContext({
-        source: 'test1',
+        source: 'naver',
         campaign: 'winter_sale',
-        term: 'test',
+        medium: 'email',
+        term: 'triple',
         content: 'video',
       }),
     ).toEqual({
-      channel: 'test1',
+      channel: 'naver',
       campaign: 'winter_sale',
-      keywords: 'test',
+      keywords: 'triple',
       ad: 'video',
+      adSet: 'naver_email',
     })
   })
 
@@ -40,6 +42,7 @@ describe('injectUTMContext', () => {
       injectUTMContext({
         source: '',
         campaign: '',
+        medium: '',
         term: '',
         content: '',
       }),
