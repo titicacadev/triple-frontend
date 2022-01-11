@@ -4,6 +4,7 @@ import {
   LoginCtaModalProvider,
   TransitionModal,
   TransitionType,
+  useLoginCtaModal,
   useTransitionModal,
 } from '@titicaca/modals'
 import {
@@ -12,7 +13,11 @@ import {
   SessionContextProvider,
   UserAgentProvider,
 } from '@titicaca/react-contexts'
-import { ExternalLink, RouterOnClientRequiredProvider } from '@titicaca/router'
+import {
+  ExternalLink,
+  RouterOnClientRequiredProvider,
+  RouterOnSessionRequiredProvider,
+} from '@titicaca/router'
 import React, { PropsWithChildren } from 'react'
 
 import { mockLocation } from './utils/location'
@@ -41,10 +46,13 @@ test('브라우저를 허용하지 않는 링크라면 브라우저 환경에서
           <UserAgentProvider>
             <SessionProvider>
               <HistoryProvider>
-                <RouterOnClientRequiredProviderWrapper>
-                  {children}
-                </RouterOnClientRequiredProviderWrapper>
-
+                <LoginCtaModalProvider>
+                  <RouterOnClientRequiredProviderWrapper>
+                    <RouterOnSessionRequiredProviderWrapper>
+                      {children}
+                    </RouterOnSessionRequiredProviderWrapper>
+                  </RouterOnClientRequiredProviderWrapper>
+                </LoginCtaModalProvider>
                 <TransitionModal deepLink="MOCK_DEEP_LINK" />
               </HistoryProvider>
             </SessionProvider>
@@ -86,7 +94,9 @@ test('로그인한 앱에서만 열리는 링크라면 로그인하지 않은 �
               <HistoryProvider>
                 <LoginCtaModalProvider>
                   <RouterOnClientRequiredProviderWrapper>
-                    {children}
+                    <RouterOnSessionRequiredProviderWrapper>
+                      {children}
+                    </RouterOnSessionRequiredProviderWrapper>
                   </RouterOnClientRequiredProviderWrapper>
                 </LoginCtaModalProvider>
               </HistoryProvider>
@@ -188,5 +198,17 @@ function RouterOnClientRequiredProviderWrapper({
     <RouterOnClientRequiredProvider value={() => show(TransitionType.General)}>
       {children}
     </RouterOnClientRequiredProvider>
+  )
+}
+
+function RouterOnSessionRequiredProviderWrapper({
+  children,
+}: PropsWithChildren<unknown>) {
+  const { show } = useLoginCtaModal()
+
+  return (
+    <RouterOnSessionRequiredProvider value={show}>
+      {children}
+    </RouterOnSessionRequiredProvider>
   )
 }
