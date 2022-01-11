@@ -85,4 +85,32 @@ describe('ClientContextProvider.getInitialProps', () => {
       appVersion: '5.11.0',
     })
   })
+
+  it('should extract app user agent from window if available', () => {
+    const userAgentSpy = jest.spyOn(global.window.navigator, 'userAgent', 'get')
+
+    userAgentSpy.mockImplementation(
+      () =>
+        'Mozilla/5.0 (Linux; Android 10; SM-G965N Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/97.0.4692.70 Mobile Safari/537.36 Triple-Android/5.11.0',
+    )
+
+    expect(ClientContextProvider.getInitialProps({})).resolves.toStrictEqual({
+      appName: 'Triple-Android',
+      appVersion: '5.11.0',
+    })
+
+    userAgentSpy.mockRestore()
+  })
+
+  it('should fall back safely', () => {
+    const windowSpy = jest.spyOn(global, 'window', 'get')
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    windowSpy.mockImplementation(() => undefined)
+
+    expect(ClientContextProvider.getInitialProps({})).resolves.toBeNull()
+
+    windowSpy.mockRestore()
+  })
 })
