@@ -32,8 +32,6 @@ const DEFAULT_BOUNDS_PADDING = {
 }
 
 const DEFAULT_MAP_OPTIONS: google.maps.MapOptions = {
-  zoom: 13,
-  center: { lat: 37.7577627, lng: -122.4726194 },
   noClear: true,
   // MapOptions에서 명시된 disableDefaultUI props을 사용하기 위해 naming-convention을 disabled 합니다.
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -108,7 +106,7 @@ export default function MapView({
       zoom,
       ...originOptions,
     }
-  }, [center, zoom, originOptions])
+  }, [coordinates, originOptions])
 
   const mapContainerStyle: CSSProperties = useMemo(
     () => ({
