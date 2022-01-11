@@ -37,10 +37,10 @@ export function injectUTMContext({
   partner,
 }: Partial<UTMContext> = {}) {
   return {
-    ...(source ? { source } : {}),
+    ...(source ? { channel: source } : {}),
     ...(campaign ? { campaign } : {}),
-    ...(term ? { adKeyword: term } : {}),
-    ...(content ? { content } : {}),
+    ...(term ? { keywords: term } : {}),
+    ...(content ? { ad: content } : {}),
     ...(partner ? { partner } : {}),
   }
 }
