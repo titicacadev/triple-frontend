@@ -2,8 +2,8 @@ import React, { MouseEventHandler, PropsWithChildren, useEffect } from 'react'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 
 import { ANCHOR_TARGET_MAP } from '../common/target'
-import { RouterGuardedLink } from '../link/router-guarded-link'
-import { LinkCommonProps } from '../link/types'
+import { RouterGuardedLink } from '../common/router-guarded-link'
+import { LinkCommonProps } from '../common/types'
 
 import { useExternalHrefHandler } from './href-handler'
 import { checkHrefIsAbsoluteUrl } from './utils'

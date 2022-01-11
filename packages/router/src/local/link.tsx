@@ -1,8 +1,8 @@
 import React, { MouseEvent, MouseEventHandler, PropsWithChildren } from 'react'
 
 import { ANCHOR_TARGET_MAP } from '../common/target'
-import { RouterGuardedLink } from '../link/router-guarded-link'
-import { LinkCommonProps } from '../link/types'
+import { RouterGuardedLink } from '../common/router-guarded-link'
+import { LinkCommonProps } from '../common/types'
 
 import { useBasePathAdder } from './base-path'
 import { NextjsRoutingOptions, useLocalHrefHandler } from './href-handler'
