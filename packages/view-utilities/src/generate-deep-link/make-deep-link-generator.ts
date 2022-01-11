@@ -17,10 +17,10 @@ interface GeneratorParams {
 
   // one link parameter에 들어가는 값
   pid?: string
-  source?: string
+  channel?: string
   campaign?: string
-  adKeyword?: string
-  content?: string
+  keywords?: string
+  ad?: string
   partner?: string
   clickLookBack?: string
   isRetargeting?: boolean
@@ -43,10 +43,10 @@ export function makeDeepLinkGenerator({
   return ({
     path,
     pid,
-    source,
+    channel,
     campaign,
-    adKeyword,
-    content,
+    keywords,
+    ad,
     partner,
     clickLookBack,
     isRetargeting,
@@ -59,9 +59,9 @@ export function makeDeepLinkGenerator({
       pid: pid || defaultPid,
 
       c: campaign,
-      af_ad: content,
-      af_keywords: adKeyword,
-      af_channel: source,
+      af_ad: ad,
+      af_keywords: keywords,
+      af_channel: channel,
       af_prt: partner,
       af_click_lookback: clickLookBack,
       is_retargeting: isRetargeting,
