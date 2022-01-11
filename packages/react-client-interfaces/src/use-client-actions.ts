@@ -20,11 +20,6 @@ export function useClientActions() {
   const { appVersion } = clientContextValue
   const appVersionSemver = semver.coerce(appVersion)
 
-  if (!appVersionSemver) {
-    /* The page is not being rendered on Triple iOS/Android */
-    return {}
-  }
-
   const filteredAccessibleWebToNativeInterfaces = Object.keys(
     WebToNativeInterfaces,
   ).reduce<Partial<typeof WebToNativeInterfaces>>(
@@ -41,7 +36,7 @@ export function useClientActions() {
       if (
         KNOWN_INITIAL_VERSIONS[interfaceNameKey] &&
         !semver.gte(
-          appVersionSemver,
+          appVersionSemver as semver.SemVer,
           KNOWN_INITIAL_VERSIONS[interfaceNameKey] as string,
         )
       ) {
