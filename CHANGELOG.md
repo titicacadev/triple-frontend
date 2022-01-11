@@ -36,7 +36,7 @@
 
 - router 패키지의 link 모듈을 제거합니다. [#1828](https://github.com/titicacadev/triple-frontend/pull/1828)
 - 앱 전용 쿼리를 inlink일 때만 사용하도록 변경 [#1816](https://github.com/titicacadev/triple-frontend/pull/1816)
-- router 패키지에 라우터 훅 함수를 구현[#1703](https://github.com/titicacadev/triple-frontend/pull/1703)
+- router 패키지에 라우터 훅 함수를 구현 [#1703](https://github.com/titicacadev/triple-frontend/pull/1703)
 
 ### scroll-spy
 
