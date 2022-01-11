@@ -17,7 +17,6 @@ export const coordinates: [number, number][] = (
   )
 
 export const { center, bounds, zoom } = getGeometry(coordinates)
-export const mapOptions = { center, zoom }
 export const polylinePaths = [
   { lat: 16.0563348, lng: 108.2025533 },
   { lat: 16.0131183, lng: 108.2637083 },
@@ -28,10 +27,6 @@ export const polylinePaths = [
   { lat: 16.0694295, lng: 108.2422102 },
   { lat: 16.0131183, lng: 108.2637083 },
 ]
-
-export const polylineGeometry = getGeometry(
-  polylinePaths.map((path) => [path.lng, path.lat]),
-)
 
 export const polygonPaths = [
   { lat: 33.22410952604817, lng: 126.57855753182952 },
@@ -1167,7 +1162,3 @@ export const polygonLinePath = [
   { lat: 33.55537645729078, lng: 126.79694256358034 },
   { lat: 33.5557152955662, lng: 126.79613151507387 },
 ]
-
-export const polygonGeometry = getGeometry(
-  polygonPaths.map(({ lat, lng }) => [lng, lat]),
-)
