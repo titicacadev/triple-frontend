@@ -13,10 +13,16 @@ import {
 } from '@react-google-maps/api'
 import { Spinner } from '@titicaca/core-elements'
 
+import { getGeometry, literalToString } from './utilities'
+
+export * from './map'
 export * from './utilities'
 export * from './marker'
 export * from './polygon'
 export * from './polyline'
+
+const MAX_LAT = (Math.atan(Math.sinh(Math.PI)) * 180) / Math.PI
+const DEFAULT_MAP_HEIGHT = 180
 
 const DEFAULT_BOUNDS_PADDING = {
   top: 20,
@@ -34,14 +40,25 @@ const DEFAULT_MAP_OPTIONS: google.maps.MapOptions = {
   disableDefaultUI: true,
   clickableIcons: false,
   gestureHandling: 'greedy',
+  // 지도 뷰를 제외한 회색 영역으로 움직임을 방지
+  restriction: {
+    latLngBounds: {
+      north: MAX_LAT,
+      south: -MAX_LAT,
+      west: -180,
+      east: 180,
+    },
+    strictBounds: true,
+  },
 }
 
 const DEFAULT_MAP_CONTAINER_STYLE: CSSProperties = {
   width: '100%',
-  height: '100%',
+  height: DEFAULT_MAP_HEIGHT,
 }
 
 export interface WithGoogleMapProps extends GoogleMapProps {
+  coordinates: [number, number][]
   googleMapLoadOptions: {
     /** goole map api key */
     googleMapsApiKey: string
@@ -52,9 +69,6 @@ export interface WithGoogleMapProps extends GoogleMapProps {
      * default: ['geometry'] - https://developers.google.com/maps/documentation/javascript/libraries */
     // libraries?: Libraries
   }
-  /**
-   * https://developers.google.com/maps/documentation/javascript/reference/coordinates#LatLngBoundsLiteral */
-  bounds?: google.maps.LatLngBoundsLiteral
   padding?:
     | number
     | {
@@ -69,10 +83,10 @@ export interface WithGoogleMapProps extends GoogleMapProps {
 const GOOGLE_MAP_LIBRARIES = ['geometry' as const]
 
 export default function MapView({
+  coordinates,
   options: originOptions,
   mapContainerStyle: originMapContainerStyle,
   googleMapLoadOptions: { googleMapsApiKey, region = 'kr' },
-  bounds,
   padding = DEFAULT_BOUNDS_PADDING,
   children,
   onLoad,
@@ -85,13 +99,16 @@ export default function MapView({
   })
   const [map, setMap] = useState<google.maps.Map>()
 
-  const options: google.maps.MapOptions = useMemo(
-    () => ({
+  const { center, bounds, zoom } = getGeometry(coordinates)
+
+  const options = useMemo(() => {
+    return {
       ...DEFAULT_MAP_OPTIONS,
+      center,
+      zoom,
       ...originOptions,
-    }),
-    [originOptions],
-  )
+    }
+  }, [center, zoom, originOptions])
 
   const mapContainerStyle: CSSProperties = useMemo(
     () => ({
@@ -119,16 +136,19 @@ export default function MapView({
   )
 
   useEffect(() => {
-    bounds && map?.fitBounds(bounds, padding)
-  }, [map, bounds, padding])
+    if (!bounds) {
+      return
+    }
+    map?.fitBounds(bounds)
+  }, [literalToString(bounds)]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return loadError ? (
     <div>Map cannot be loaded right now, sorry.</div>
   ) : isLoaded ? (
     <GoogleMap
       options={options}
-      mapContainerStyle={mapContainerStyle}
       onLoad={handleOnLoad}
+      mapContainerStyle={mapContainerStyle}
       {...(props as GoogleMapProps)}
     >
       {children}
