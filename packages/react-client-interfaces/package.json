@@ -1,0 +1,21 @@
+{
+  "name": "@titicaca/react-client-interfaces",
+  "version": "5.1.2",
+  "description": "React module for Triple native client interfaces",
+  "main": "lib/index.js",
+  "files": [
+    "lib/*"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@titicaca/triple-web-to-native-interfaces": "^1.5.0",
+    "semver": "^7.3.5"
+  },
+  "devDependencies": {
+    "@types/semver": "^7.3.6"
+  },
+  "peerDependencies": {
+    "next": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0"
+  }
+}
