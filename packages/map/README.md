@@ -14,6 +14,8 @@
 
 ```ts
 {
+  /** 중앙좌표 값과 bounds를 계산하기 위한 poi들의 좌표값 */
+  coordinates: [number,number][]
   /** 맵을 그리기 위한 중앙좌표와 맵의 동서남북 경계범위의 좌표를 포함하는 옵션 */
   options: google.maps.MapOptions
   /** Map Container 에 인라인 스타일 적용이 필요한 경우 */
@@ -31,26 +33,20 @@
    * Map SDK loaded 콜백 핸들러
    */
   onLoad: (map: google.maps.Map) => void
-  /**
-   * bounds 는 계산된 순수 영역이고 padding 은 맵 내부에 애니메이션 핀이나 마커가 들어가면서
-   * 가상의 추가 여백이 필요하여 보정하기 위한 여백값입니다.
-   */
+  /** 맵 내부에 애니메이션 핀이나 마커가 들어가면서 가상의 추가 여백이 필요하여 보정하기 위한 여백값입니다. */
   padding?: number | { top, left, right, bottom }
-  bounds?: google.maps.LatLngBoundsLiteral
 }
 ```
 
 ```tsx
-import MapView from '@titicaca/map'
+import MapView, { StickyMapContainer } from '@titicaca/map'
+import { FocusTracker } from "./focus-tracker";
+
 
 function Page() {
   const [mapOptions] = useState({ center: { lat: 25.061425, lng: 121.380241 } })
-  const bounds = {
-    south: 25.0331,
-    west: 121.234206,
-    north: 25.08975,
-    east: 121.526276,
-  }
+  const poi = { source:{ pointGeolocation: { coordinates } } }
+  const coordinates = [[114.14238, 22.28804],[130.408868, 33.592528],[125.50129726256557, 34.668727308992935]]
   const padding = { top: 10, left: 10, right: 10, bottom: 10 } // or 10
 
   const handleMapLoaded = useCallback((map: google.maps.Map) => {
@@ -58,15 +54,21 @@ function Page() {
   }, [])
 
   return (
+  // 맵을 고정시켜야 할 경우에 사용하는 Container (zIndex는 default:3)
+  <StickyMapContainer positioning={{ top: 200 }} >
     <MapView
+      coordinates={coordinates}
       options={mapOptions}
       onLoad={handleMapLoaded}
       googleMapLoadOptions={{
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
       }}
       padding={padding}
-      bounds={bounds}
-    />
+    >
+        // 지도 상의 Focus를 움직이기 위한 좌표 값 (해당 좌표값 위치로 초점 변경)
+        <FocusTracker focusGeolocation={poi.source.pointGeolocation.coordinates}/>
+    </>
+  </StickyMapContainer>
   )
 }
 ```
