@@ -30,9 +30,10 @@ test('Deep Link를 생성합니다.', () => {
   const rawDeepLink = generateDeepLink({
     path,
     channel: 'naver',
-    campaign: 'promotion',
-    keywords: '트리플',
+    campaign: 'winter_sale',
+    keywords: 'triple',
     ad: 'video',
+    adSet: 'naver_email',
   })
 
   const { href, ...parsedDeepLink } = parseUrl(rawDeepLink)
@@ -52,9 +53,10 @@ test('Deep Link를 생성합니다.', () => {
         'triple:///inlink?path=%2Fhotels%2Fc2eb4fba-cad1-4c08-94b2-9430039d181e%3F_triple_no_navbar',
       af_web_dp: 'https://triple.guide',
       pid: 'triple-web',
-      c: 'promotion',
+      af_adset: 'naver_email',
+      c: 'winter_sale',
       af_ad: 'video',
-      af_keywords: '트리플',
+      af_keywords: 'triple',
       af_channel: 'naver',
     },
     hash: '',
