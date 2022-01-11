@@ -1,13 +1,18 @@
 import '@testing-library/jest-dom'
 import { fireEvent, render } from '@testing-library/react'
-import { LoginCtaModalProvider, TransitionModal } from '@titicaca/modals'
+import {
+  LoginCtaModalProvider,
+  TransitionModal,
+  TransitionType,
+  useTransitionModal,
+} from '@titicaca/modals'
 import {
   EnvProvider,
   HistoryProvider,
   SessionContextProvider,
   UserAgentProvider,
 } from '@titicaca/react-contexts'
-import { ExternalLink } from '@titicaca/router'
+import { ExternalLink, RouterOnClientRequiredProvider } from '@titicaca/router'
 import React, { PropsWithChildren } from 'react'
 
 import { mockLocation } from './utils/location'
@@ -36,7 +41,9 @@ test('브라우저를 허용하지 않는 링크라면 브라우저 환경에서
           <UserAgentProvider>
             <SessionProvider>
               <HistoryProvider>
-                {children}
+                <RouterOnClientRequiredProviderWrapper>
+                  {children}
+                </RouterOnClientRequiredProviderWrapper>
 
                 <TransitionModal deepLink="MOCK_DEEP_LINK" />
               </HistoryProvider>
@@ -77,7 +84,11 @@ test('로그인한 앱에서만 열리는 링크라면 로그인하지 않은 �
           <UserAgentProvider>
             <SessionProvider>
               <HistoryProvider>
-                <LoginCtaModalProvider>{children}</LoginCtaModalProvider>
+                <LoginCtaModalProvider>
+                  <RouterOnClientRequiredProviderWrapper>
+                    {children}
+                  </RouterOnClientRequiredProviderWrapper>
+                </LoginCtaModalProvider>
               </HistoryProvider>
             </SessionProvider>
           </UserAgentProvider>
@@ -166,4 +177,16 @@ function createUserAgentProvider({ isPublic }: { isPublic: boolean }) {
       </UserAgentProvider>
     )
   }
+}
+
+function RouterOnClientRequiredProviderWrapper({
+  children,
+}: PropsWithChildren<unknown>) {
+  const { show } = useTransitionModal()
+
+  return (
+    <RouterOnClientRequiredProvider value={() => show(TransitionType.General)}>
+      {children}
+    </RouterOnClientRequiredProvider>
+  )
 }
