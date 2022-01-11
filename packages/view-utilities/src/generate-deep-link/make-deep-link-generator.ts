@@ -20,7 +20,8 @@ interface GeneratorParams {
   campaign?: string
   /**
    * @deprecated
-   * adSet보다 source를 사용해주세요.
+   * channel 사용을 권장합니다.
+   * onelink의 af_adset을 측정하지않고, af_channel을 측정합니다.
    * 참고 : https://docs.google.com/spreadsheets/d/1W01wso5gWwr-3ODCdgZsrC7fpzq0FX954m4Y3NgfCYg/edit#gid=0
    */
   adSet?: string
