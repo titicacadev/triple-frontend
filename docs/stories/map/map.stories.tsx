@@ -49,7 +49,7 @@ Basic.parameters = {
 export const StickyMap: ComponentStory<typeof MapView> = (args) => {
   return (
     <Container height={2500}>
-      <StickyMapContainer top={200}>
+      <StickyMapContainer positioning={{ top: 200 }} zIndex={3}>
         <MapView {...args} />
       </StickyMapContainer>
     </Container>
