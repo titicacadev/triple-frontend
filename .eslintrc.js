@@ -9,6 +9,7 @@ const { overrides, ...rest } = createConfig({
     '__DISASTER_FALLBACK_HANDLER__',
     'af_dp',
     'af_web_dp',
+    'af_adset',
     'af_keywords',
     'af_ad',
     'af_channel',

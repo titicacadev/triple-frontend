@@ -32,11 +32,15 @@ export function injectContentSource({ regionId, type, id }: ContentSource) {
 export function injectUTMContext({
   source,
   campaign,
+  medium,
   term,
   content,
   partner,
 }: Partial<UTMContext> = {}) {
+  const adProvider = source && medium ? `${source}_${medium}` : undefined
+
   return {
+    ...(adProvider ? { adSet: adProvider, channel: adProvider } : {}),
     ...(source ? { channel: source } : {}),
     ...(campaign ? { campaign } : {}),
     ...(term ? { keywords: term } : {}),
