@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 5.2.0
 
 ### ad-banners
 
@@ -22,20 +22,57 @@
 - router 패키지 의존성 추가 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
 - history-context의 `navigate` 대신 router 패키지의 `useNavigate` 사용 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
 
+### replies
+
+- replies 디렉토리의 ESLint 검사를 활성화하고 오류를 수정합니다. [#1810](https://github.com/titicacadev/triple-frontend/pull/1810)
+- 댓글/답글 삭제하기 기능을 추가합니다. [#1761](https://github.com/titicacadev/triple-frontend/pull/1761)
+
 ### review
 
 - router 패키지 의존성 추가 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
 - history-context의 `navigate` 대신 router 패키지의 `useNavigate` 사용 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
+
+### router
+
+- router 패키지의 link 모듈을 제거합니다. [#1828](https://github.com/titicacadev/triple-frontend/pull/1828)
+- 앱 전용 쿼리를 inlink일 때만 사용하도록 변경 [#1816](https://github.com/titicacadev/triple-frontend/pull/1816)
+- router 패키지에 라우터 훅 함수를 구현[#1703](https://github.com/titicacadev/triple-frontend/pull/1703)
+
+### scroll-spy
+
+- scroll-spy 패키지를 추가합니다. [#1803](https://github.com/titicacadev/triple-frontend/pull/1803)
 
 ### social-reviews
 
 - router 패키지 의존성 추가 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
 - history-context의 `navigate` 대신 router 패키지의 `useNavigate` 사용 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
 
+### standard-action-handler
+
+- 텍스트 복사 기능을 추가합니다. [#1813](https://github.com/titicacadev/triple-frontend/pull/1813)
+
 ### triple-document
 
 - router 패키지 의존성 추가 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
 - history-context의 `navigate` 대신 router 패키지의 `useNavigate` 사용 [#1800](https://github.com/titicacadev/triple-frontend/pull/1800)
+
+### user-verification
+
+- use-user-verification 테스트 과정에서 발생하는 워닝 제거 [#1818](https://github.com/titicacadev/triple-frontend/pull/1818)
+- triple-frontend에서 사용하는 openWindow를 router 함수로 대체합니다. [#1814](https://github.com/titicacadev/triple-frontend/pull/1814)
+
+### view-utilities
+
+- moment 의존성 수정 및 date format이 영어로 표기되는 문제를 fix합니다. [#1824](https://github.com/titicacadev/triple-frontend/pull/1824)
+- 항공 기획전, 투어티켓 기획전 라우터 추가 [#1815](https://github.com/titicacadev/triple-frontend/pull/1815)
+
+### integration-test
+
+- router 패키지와 modals 패키지의 상호작용을 테스트하는 코드를 추가합니다. 이를 위해 "integration-test" 패키지를 추가합니다. [#1825](https://github.com/titicacadev/triple-frontend/pull/1825)
+
+### Etc.
+
+- storybook 배포 제거 [#1817](https://github.com/titicacadev/triple-frontend/pull/1817)
 
 ## 5.1.2
 
