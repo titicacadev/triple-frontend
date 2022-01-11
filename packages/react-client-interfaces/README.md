@@ -13,11 +13,16 @@ User-Agent 값을 파싱하여 페이지 렌더링에 사용한 네이티브 클
 
 ```jsx
 import { ClientContextProvider } from '@titicaca/react-client-interfaces'
-;<ClientContextProvider
-  {...ClientContextProvider.getInitialProps(nextPageContext)}
->
-  <YourPageModule />
-</ClientContextProvider>
+
+function ThePageComponent() {
+  return (
+    <ClientContextProvider
+      {...ClientContextProvider.getInitialProps(nextPageContext)}
+    >
+      <YourPageModule />
+    </ClientContextProvider>
+  )
+}
 ```
 
 ### `useClientContext`
