@@ -1,5 +1,4 @@
 import { useMemo } from 'react'
-import { getGeometry } from '@titicaca/map'
 import type { LatLngLiteral } from '@titicaca/type-definitions'
 import type { ItineraryItemType } from '@titicaca/content-type-definitions'
 
@@ -12,7 +11,6 @@ interface ItineraryMapData {
   totalPois: number
   pois: Poi[]
   polyline: LatLngLiteral[]
-  mapOptions: { center: LatLngLiteral; zoom?: number }
   coordinates: [number, number][]
 }
 /**
@@ -51,8 +49,6 @@ export default function useMapData(
     const polyline = extracPathMap(items)
     const totalPois = items.length
 
-    const { center, bounds, zoom } = getGeometry(coordinates)
-
     const pois = items.map(({ poi }) => ({
       poi,
       position: getLatLng(poi),
@@ -63,8 +59,6 @@ export default function useMapData(
       totalPois,
       pois,
       polyline,
-      mapOptions: { center, zoom },
-      bounds,
     }
   }, [items])
 }
