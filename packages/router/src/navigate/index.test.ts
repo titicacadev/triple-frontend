@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks'
-import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'
+import { useLoginCtaModal } from '@titicaca/modals'
 import {
   useUserAgentContext,
   useSessionAvailability,
@@ -8,6 +8,7 @@ import {
 import { checkIfRoutable } from '@titicaca/view-utilities'
 
 import { useAppBridge } from '../common/app-bridge'
+import { useOnClientRequired } from '../common/on-client-required'
 
 import { useNavigate } from '.'
 
@@ -18,6 +19,7 @@ jest.mock('@titicaca/view-utilities', () => ({
 }))
 jest.mock('@titicaca/react-contexts')
 jest.mock('../common/app-bridge')
+jest.mock('../common/on-client-required')
 
 const webUrlBase = mockWebUrlBase()
 const routablePath = mockRoutablePath()
@@ -56,7 +58,7 @@ describe('브라우저', () => {
       [`/inlink?path=${encodeURIComponent(href)}&_web_expand=true`],
       [`/outlink?url=${encodeURIComponent(`${webUrlBase}${href}`)}`],
     ])('href: %s', (href) => {
-      const { showTransitionModal } = prepareTest()
+      const { onClientRequired } = prepareTest()
       const changeLocationHref = jest.fn()
 
       const {
@@ -65,12 +67,12 @@ describe('브라우저', () => {
       navigate(href)
 
       expect(changeLocationHref).not.toBeCalled()
-      expect(showTransitionModal).toBeCalled()
+      expect(onClientRequired).toBeCalled()
     })
   })
 
   test('inlink에 web_expand 파라미터가 없으면 routable하더라도 앱 설치 유도 모달을 표시합니다.', () => {
-    const { showTransitionModal } = prepareTest()
+    const { onClientRequired } = prepareTest()
     const changeLocationHref = jest.fn()
 
     const {
@@ -80,7 +82,7 @@ describe('브라우저', () => {
     navigate(`/inlink?path=${encodeURIComponent(routablePath)}`)
 
     expect(changeLocationHref).not.toBeCalled()
-    expect(showTransitionModal).toBeCalled()
+    expect(onClientRequired).toBeCalled()
   })
 })
 
@@ -178,15 +180,15 @@ function mockRoutablePath(routablePath = '/this/is/routable/path') {
 function prepareTest({
   sessionAvailable = false,
 }: { sessionAvailable?: boolean } = {}) {
-  const showTransitionModal = jest.fn()
+  const onClientRequired = jest.fn()
   const showLoginCtaModal = jest.fn()
   const openInlink = jest.fn()
   const openOutlink = jest.fn()
   const openNativeLink = jest.fn()
 
   ;(
-    useTransitionModal as jest.MockedFunction<typeof useTransitionModal>
-  ).mockImplementation(() => ({ show: showTransitionModal }))
+    useOnClientRequired as jest.MockedFunction<typeof useOnClientRequired>
+  ).mockReturnValue(onClientRequired)
   ;(
     useLoginCtaModal as jest.MockedFunction<typeof useLoginCtaModal>
   ).mockImplementation(() => ({ show: showLoginCtaModal }))
@@ -198,7 +200,7 @@ function prepareTest({
   ).mockImplementation(() => ({ openInlink, openOutlink, openNativeLink }))
 
   return {
-    showTransitionModal,
+    onClientRequired,
     showLoginCtaModal,
     openInlink,
     openOutlink,

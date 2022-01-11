@@ -1,8 +1,4 @@
-import {
-  TransitionType,
-  useLoginCtaModal,
-  useTransitionModal,
-} from '@titicaca/modals'
+import { useLoginCtaModal } from '@titicaca/modals'
 import { checkIfRoutable, parseUrl } from '@titicaca/view-utilities'
 import { useCallback } from 'react'
 import {
@@ -12,6 +8,7 @@ import {
 } from '@titicaca/react-contexts'
 
 import { OutlinkOptions, useAppBridge } from '../common/app-bridge'
+import { useOnClientRequired } from '../common/on-client-required'
 
 import canonizeTargetAddress from './canonization'
 
@@ -21,9 +18,9 @@ export function useNavigate({
   const { webUrlBase } = useEnv()
   const { isPublic } = useUserAgentContext()
   const sessionAvailable = useSessionAvailability()
-  const { show: showTransitionModal } = useTransitionModal()
   const { show: showLoginCtaModal } = useLoginCtaModal()
   const { openOutlink, openNativeLink } = useAppBridge()
+  const onClientRequired = useOnClientRequired()
 
   const navigateInBrowser = useCallback(
     (rawHref: string) => {
@@ -38,9 +35,9 @@ export function useNavigate({
         return
       }
 
-      showTransitionModal(TransitionType.General)
+      onClientRequired()
     },
-    [changeLocationHref, showTransitionModal, webUrlBase],
+    [changeLocationHref, onClientRequired, webUrlBase],
   )
 
   const navigateInApp = useCallback(

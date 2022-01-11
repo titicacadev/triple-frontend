@@ -6,10 +6,11 @@ import {
   useSessionAvailability,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
-import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'
+import { useLoginCtaModal } from '@titicaca/modals'
 
 import { useAppBridge } from '../common/app-bridge'
 import { useWebUrlBaseAdder } from '../common/add-web-url-base'
+import { useOnClientRequired } from '../common/on-client-required'
 
 import { LocalLink } from './link'
 
@@ -18,6 +19,7 @@ jest.mock('@titicaca/react-contexts')
 jest.mock('@titicaca/modals')
 jest.mock('../common/app-bridge')
 jest.mock('../common/add-web-url-base')
+jest.mock('../common/on-client-required')
 
 test('주어진 href에 basePath를 더해서 anchor에 제공합니다.', () => {
   const { basePath } = prepareTest()
@@ -121,7 +123,7 @@ function prepareTest({
   const nextPush = jest.fn()
   const openInlink = jest.fn()
   const openOutlink = jest.fn()
-  const showTransitionModal = jest.fn()
+  const onClientRequired = jest.fn()
   const showLoginCtaModal = jest.fn()
   const webUrlBase = 'https://triple.guide'
 
@@ -139,8 +141,8 @@ function prepareTest({
     useSessionAvailability as jest.MockedFunction<typeof useSessionAvailability>
   ).mockImplementation(() => sessionAvailability)
   ;(
-    useTransitionModal as jest.MockedFunction<typeof useTransitionModal>
-  ).mockImplementation(() => ({ show: showTransitionModal }))
+    useOnClientRequired as jest.MockedFunction<typeof useOnClientRequired>
+  ).mockReturnValue(onClientRequired)
   ;(
     useLoginCtaModal as jest.MockedFunction<typeof useLoginCtaModal>
   ).mockImplementation(() => ({ show: showLoginCtaModal }))
@@ -162,7 +164,7 @@ function prepareTest({
     nextPush,
     openInlink,
     openOutlink,
-    showTransitionModal,
+    onClientRequired,
     showLoginCtaModal,
     webUrlBase,
   }

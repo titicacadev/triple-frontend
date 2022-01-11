@@ -1,12 +1,10 @@
-import {
-  useTransitionModal,
-  useLoginCtaModal,
-  TransitionType,
-} from '@titicaca/modals'
+import { useLoginCtaModal } from '@titicaca/modals'
 import {
   useSessionAvailability,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
+
+import { useOnClientRequired } from './on-client-required'
 
 export type AllowSource = 'all' | 'app' | 'app-with-session' | 'none'
 
@@ -26,8 +24,8 @@ export function useDisabledLinkNotifierCreator({
 } = {}) {
   const { isPublic } = useUserAgentContext()
   const sessionAvailable = useSessionAvailability()
-  const { show: showTransitionModal } = useTransitionModal()
   const { show: showLoginCtaModal } = useLoginCtaModal()
+  const onClientRequired = useOnClientRequired()
 
   const createDisabledLinkNotifier = ({
     allowSource = 'all',
@@ -42,9 +40,7 @@ export function useDisabledLinkNotifierCreator({
       isPublic === true &&
       (allowSource === 'app' || allowSource === 'app-with-session')
     ) {
-      return () => {
-        showTransitionModal(TransitionType.General)
-      }
+      return onClientRequired
     }
 
     if (sessionAvailable === false && allowSource === 'app-with-session') {

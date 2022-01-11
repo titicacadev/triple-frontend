@@ -1,14 +1,16 @@
 import { renderHook } from '@testing-library/react-hooks'
-import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'
+import { useLoginCtaModal } from '@titicaca/modals'
 import {
   useSessionAvailability,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
 
 import { useDisabledLinkNotifierCreator } from './disabled-link-notifier'
+import { useOnClientRequired } from './on-client-required'
 
 jest.mock('@titicaca/modals')
 jest.mock('@titicaca/react-contexts')
+jest.mock('./on-client-required')
 
 describe('allowSource가 "all"일 때 앱 여부, 세션 여부에 상관없이 아무 처리를 하지 않습니다.', () => {
   test.each([
@@ -38,7 +40,7 @@ describe('allowSource가 "app"일 때 앱이 아니면 앱 설치 유도 모달 
   ])(
     'isPublic: %s, sessionAvailable: %s, 호출 여부: %s',
     (isPublic, sessionAvailable, transitionModalFunctionCalled) => {
-      const { showTransitionModal } = prepareTest({
+      const { onClientRequired } = prepareTest({
         isPublic,
         sessionAvailable,
       })
@@ -57,7 +59,7 @@ describe('allowSource가 "app"일 때 앱이 아니면 앱 설치 유도 모달 
         notifier()
 
         expect(transitionModalFunctionCalled).toBe(true)
-        expect(showTransitionModal).toBeCalled()
+        expect(onClientRequired).toBeCalled()
       }
     },
   )
@@ -65,8 +67,8 @@ describe('allowSource가 "app"일 때 앱이 아니면 앱 설치 유도 모달 
 
 describe('allowSource가 "app-with-session"일 때 앱이 아니면 앱 설치 유도 모달을, 인증 정보가 없으면 로그인 유도 모달을 표시함수를 호출합니다.', () => {
   test.each([
-    [true, true, 'showTransitionModal'],
-    [true, false, 'showTransitionModal'],
+    [true, true, 'onClientRequired'],
+    [true, false, 'onClientRequired'],
     [false, true, undefined],
     [false, false, 'showLoginCtaModal'],
   ] as const)(
@@ -74,7 +76,7 @@ describe('allowSource가 "app-with-session"일 때 앱이 아니면 앱 설치 �
     (
       isPublic,
       sessionAvailable,
-      functionType: 'showTransitionModal' | 'showLoginCtaModal' | undefined,
+      functionType: 'onClientRequired' | 'showLoginCtaModal' | undefined,
     ) => {
       const fns = prepareTest({ isPublic, sessionAvailable })
 
@@ -149,15 +151,15 @@ function prepareTest({
     useSessionAvailability as jest.MockedFunction<typeof useSessionAvailability>
   ).mockImplementation(() => sessionAvailable)
 
-  const showTransitionModal = jest.fn()
+  const onClientRequired = jest.fn()
   const showLoginCtaModal = jest.fn()
 
   ;(
-    useTransitionModal as jest.MockedFunction<typeof useTransitionModal>
-  ).mockImplementation(() => ({ show: showTransitionModal }))
+    useOnClientRequired as jest.MockedFunction<typeof useOnClientRequired>
+  ).mockReturnValue(onClientRequired)
   ;(
     useLoginCtaModal as jest.MockedFunction<typeof useLoginCtaModal>
   ).mockImplementation(() => ({ show: showLoginCtaModal }))
 
-  return { showTransitionModal, showLoginCtaModal }
+  return { onClientRequired, showLoginCtaModal }
 }
