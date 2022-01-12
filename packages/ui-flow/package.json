@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/ui-flow",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "description": "Functions, hooks, and/or components used to construct general UI flow",
   "keywords": [
     "session",
@@ -25,7 +25,7 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/modals": "^5.2.0",
+    "@titicaca/modals": "^5.2.1",
     "qs": "^6.9.0"
   },
   "peerDependencies": {
