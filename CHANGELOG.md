@@ -2,6 +2,10 @@
 
 ## 5.2.1
 
+### router
+
+- useNavigate 훅으로 특정 URL을 라우팅하지 못하는 문제를 수정합니다. [#1836](https://github.com/titicacadev/triple-frontend/pull/1836)
+
 ### react-hooks
 
 - scrollToElement의 props을 수정합니다. [#1833](https://github.com/titicacadev/triple-frontend/pull/1833)
