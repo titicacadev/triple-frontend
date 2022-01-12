@@ -39,9 +39,7 @@
 ```
 
 ```tsx
-import MapView, { StickyMapContainer } from '@titicaca/map'
-import { FocusTracker } from "./focus-tracker";
-
+import { MapView, StickyMapContainer, FocusTracker } from '@titicaca/map'
 
 function Page() {
   const [mapOptions] = useState({ center: { lat: 25.061425, lng: 121.380241 } })
