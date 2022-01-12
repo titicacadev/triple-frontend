@@ -331,26 +331,6 @@ export function HistoryProvider({
   )
 }
 
-/**
- * @deprecated #928 참고
- *
- * uriHash가 필요하면 `useURIHash`를,
- * 기타 함수가 필요하면 `useHistoryFunctions`
- * 를 사용해주세요.
- */
-export function useHistoryContext(): HistoryContextValue {
-  const uriHash = useContext(UriHashContext)
-  const functions = useContext(HistoryFunctionsContext)
-
-  return useMemo(
-    () => ({
-      uriHash,
-      ...functions,
-    }),
-    [functions, uriHash],
-  )
-}
-
 export function useUriHash(): UriHash {
   return useContext(UriHashContext)
 }
