@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react'
 import { Container } from '@titicaca/core-elements'
-import MapView, {
+import {
+  MapView,
   HotelCircleMarker,
   AttractionCirlceMarker,
   RestaurantCirlceMarker,
