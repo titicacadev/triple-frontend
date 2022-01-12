@@ -79,7 +79,7 @@ CircleMarker 컴포넌트 입니다.
 
 ```tsx
 import { white } from '@titicaca/color-palette'
-import MapView, { CircleMarker } from '@titicaca/map'
+import { MapView, CircleMarker } from '@titicaca/map'
 
 const coordinates = [
   { lat: 33.24577929502035, lng: 126.57157193028415 },
@@ -132,7 +132,7 @@ Polyline 컴포넌트 입니다.
 
 ```tsx
 import { black } from '@titicaca/color-palette'
-import MapView, { Polyline } from '@titicaca/map'
+import { MapView, Polyline } from '@titicaca/map'
 
 const path = [
   { lat: 33.24577929502035, lng: 126.57157193028415 },
@@ -171,7 +171,7 @@ Polygon 컴포넌트입니다.
 
 ```tsx
 import { black } from '@titicaca/color-palette'
-import MapView, { Polygon } from '@titicaca/map'
+import { MapView, Polygon } from '@titicaca/map'
 
 const paths = [
   { lat: 33.22410952604817, lng: 126.57855753182952 },
