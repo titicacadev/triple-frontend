@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 5.2.1
+
+### react-hooks
+
+- scrollToElement의 props을 수정합니다. [#1833](https://github.com/titicacadev/triple-frontend/pull/1833)
+
+### view-utilities
+
+- 앱스플라이어 UTM 파라미터 규칙을 수정합니다. [#1827](https://github.com/titicacadev/triple-frontend/pull/1827)
+
 ## 5.2.0
 
 ### ad-banners
