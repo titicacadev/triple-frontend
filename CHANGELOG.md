@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+
+### Breaking Change
+
+#### router
+
+- modals 의존성 제거 [#1829](https://github.com/titicacadev/triple-frontend/pull/1829)
+- 앱 설치가 필요할 때 호출하는 함수와 로그인이 필요할 때 호출하는 함수를 Context API로 받도록 처리 [#1829](https://github.com/titicacadev/triple-frontend/pull/1829)
+
 ### react-contexts
 
 - useURIHash -> useUriHash [#1798](https://github.com/titicacadev/triple-frontend/pull/1798)
