@@ -12,7 +12,7 @@ import {
   useLoadScript,
 } from '@react-google-maps/api'
 import { Spinner } from '@titicaca/core-elements'
-import { getGeometry, literalToString } from './utilities'
+import { getGeometry } from './utilities'
 
 const MAX_LAT = (Math.atan(Math.sinh(Math.PI)) * 180) / Math.PI
 const DEFAULT_MAP_HEIGHT = 180
