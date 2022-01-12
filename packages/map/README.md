@@ -39,7 +39,7 @@
 ```
 
 ```tsx
-import { MapView, StickyMapContainer, FocusTracker } from '@titicaca/map'
+import { MapView, StickyMapContainer, FocusTracker, DEFAULT_MAP_HEIGHT} from '@titicaca/map'
 
 function Page() {
   const [mapOptions] = useState({ center: { lat: 25.061425, lng: 121.380241 } })
@@ -53,7 +53,7 @@ function Page() {
 
   return (
   // 맵을 고정시켜야 할 경우에 사용하는 Container (zIndex는 default:3)
-  <StickyMapContainer positioning={{ top: 200 }} >
+  <StickyMapContainer positioning={{ top: 200 }} height={DEFAULT_MAP_HEIGHT}>
     <MapView
       coordinates={coordinates}
       options={mapOptions}
