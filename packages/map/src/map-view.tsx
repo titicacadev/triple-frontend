@@ -58,6 +58,7 @@ export interface WithGoogleMapProps extends GoogleMapProps {
      * default: ['geometry'] - https://developers.google.com/maps/documentation/javascript/libraries */
     // libraries?: Libraries
   }
+  bounds?: google.maps.LatLngBoundsLiteral
   padding?:
     | number
     | {
@@ -79,6 +80,7 @@ export default function MapView({
   padding = DEFAULT_BOUNDS_PADDING,
   children,
   onLoad,
+  bounds: originBounds,
   ...props
 }: PropsWithChildren<WithGoogleMapProps>) {
   const { isLoaded, loadError } = useLoadScript({
@@ -111,13 +113,13 @@ export default function MapView({
     (map: google.maps.Map) => {
       onLoad && onLoad(map)
 
-      if (!bounds) {
+      if (!originBounds) {
         setMap(map)
         return
       }
 
       google.maps.event.addListenerOnce(map, 'idle', () => {
-        map.fitBounds(bounds, padding)
+        map.fitBounds(originBounds, padding)
         setMap(map)
       })
     },
@@ -125,10 +127,14 @@ export default function MapView({
   )
 
   useEffect(() => {
+    originBounds && map?.fitBounds(originBounds, padding)
+  }, [map, bounds, padding])
+
+  useEffect(() => {
     if (!bounds) {
       return
     }
-    map?.fitBounds(bounds)
+    map?.fitBounds(bounds, padding)
   }, [literalToString(bounds)]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return loadError ? (
