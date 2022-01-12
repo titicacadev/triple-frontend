@@ -11,11 +11,13 @@ const PUBLIC_ROUTELIST_REGEXES = [
   /^\/hotels\/[^/]+\/rate(\/.+?)?$/,
   /^\/hotels\/[^/]+\/breakdown(\/.+?)?$/,
   /^(\/hotels)?\/regions\/[^/]+\/hotel-areas$/,
+  /^\/air\/$/,
   /^\/air\/curation(\/.+)?$/,
   /^\/tna\/curation(\/.+)?$/,
   /^\/tna\/regions\/[^/]+\/products\/[^/]+$/,
   /^\/tna\/products\/[^/]+$/,
   /^\/tna\/products\/[^/]+\/display$/,
+  /^\/content\/covid19-status\$/,
 ]
 
 export function checkIfRoutable({ href }: { href: string }) {
