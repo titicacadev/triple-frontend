@@ -27,6 +27,17 @@
 제거했습니다. `uriHash`는 `useURIHash`로 참조할 수 있고, 나머지 함수는 `useHistoryFunctions`로 참조할 수 있습니다.
 자세한 내용은 [#928](https://github.com/titicacadev/triple-frontend/pull/928)을 확인하세요.
 
+### router 코드에서 앱 설치가 필요할 때나 로그인이 필요할 때 처리 방식 변경
+
+기존엔 modals 의존성을 가지고 자동으로 모달을 띄워주었습니다.
+하지만 v6부터 이러한 상황에서 호출하는 함수를 Context API로 공급합니다.
+다음과 같은 코드를 `pages/_app.tsx`에 추가해주세요.
+
+```tsx
+<RouterOnClientRequiredProvider value={() => showTransitionModal(TransitionType.General)}>
+  <RouterOnSessionRequiredProvider value={showLoginCtaModal}>
+```
+
 ## v4 to v5
 
 ### deprecated props 제거 및 사용 방법
