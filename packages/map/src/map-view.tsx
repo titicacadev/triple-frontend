@@ -12,7 +12,7 @@ import {
   useLoadScript,
 } from '@react-google-maps/api'
 import { Spinner } from '@titicaca/core-elements'
-import { getGeometry } from './utilities'
+import { getGeometry, literalToString } from './utilities'
 
 const MAX_LAT = (Math.atan(Math.sinh(Math.PI)) * 180) / Math.PI
 const DEFAULT_MAP_HEIGHT = 180
@@ -58,7 +58,6 @@ export interface WithGoogleMapProps extends GoogleMapProps {
      * default: ['geometry'] - https://developers.google.com/maps/documentation/javascript/libraries */
     // libraries?: Libraries
   }
-  bounds?: google.maps.LatLngBoundsLiteral
   padding?:
     | number
     | {
@@ -80,7 +79,6 @@ export default function MapView({
   padding = DEFAULT_BOUNDS_PADDING,
   children,
   onLoad,
-  bounds,
   ...props
 }: PropsWithChildren<WithGoogleMapProps>) {
   const { isLoaded, loadError } = useLoadScript({
@@ -90,7 +88,7 @@ export default function MapView({
   })
   const [map, setMap] = useState<google.maps.Map>()
 
-  const { center, zoom } = getGeometry(coordinates)
+  const { center, zoom, bounds } = getGeometry(coordinates)
 
   const options = useMemo(() => {
     return {
@@ -127,8 +125,11 @@ export default function MapView({
   )
 
   useEffect(() => {
-    bounds && map?.fitBounds(bounds, padding)
-  }, [map, bounds, padding])
+    if (!bounds) {
+      return
+    }
+    map?.fitBounds(bounds, padding)
+  }, [literalToString(bounds)]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return loadError ? (
     <div>Map cannot be loaded right now, sorry.</div>
