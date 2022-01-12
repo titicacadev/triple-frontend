@@ -39,7 +39,7 @@
 ```
 
 ```tsx
-import { MapView, FocusTracker, DEFAULT_MAP_HEIGHT} from '@titicaca/map'
+import { MapView, FocusTracker, DEFAULT_MAP_HEIGHT } from '@titicaca/map'
 
 function Page() {
   const [mapOptions] = useState({ center: { lat: 25.061425, lng: 121.380241 } })
