@@ -80,7 +80,7 @@ export default function MapView({
   padding = DEFAULT_BOUNDS_PADDING,
   children,
   onLoad,
-  bounds: originBounds,
+  bounds,
   ...props
 }: PropsWithChildren<WithGoogleMapProps>) {
   const { isLoaded, loadError } = useLoadScript({
@@ -90,7 +90,7 @@ export default function MapView({
   })
   const [map, setMap] = useState<google.maps.Map>()
 
-  const { center, bounds, zoom } = getGeometry(coordinates)
+  const { center, zoom } = getGeometry(coordinates)
 
   const options = useMemo(() => {
     return {
@@ -113,13 +113,13 @@ export default function MapView({
     (map: google.maps.Map) => {
       onLoad && onLoad(map)
 
-      if (!originBounds) {
+      if (!bounds) {
         setMap(map)
         return
       }
 
       google.maps.event.addListenerOnce(map, 'idle', () => {
-        map.fitBounds(originBounds, padding)
+        map.fitBounds(bounds, padding)
         setMap(map)
       })
     },
@@ -127,15 +127,8 @@ export default function MapView({
   )
 
   useEffect(() => {
-    originBounds && map?.fitBounds(originBounds, padding)
+    bounds && map?.fitBounds(bounds, padding)
   }, [map, bounds, padding])
-
-  useEffect(() => {
-    if (!bounds) {
-      return
-    }
-    map?.fitBounds(bounds, padding)
-  }, [literalToString(bounds)]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return loadError ? (
     <div>Map cannot be loaded right now, sorry.</div>
