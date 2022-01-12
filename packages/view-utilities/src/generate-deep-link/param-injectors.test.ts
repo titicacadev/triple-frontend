@@ -24,7 +24,6 @@ describe('injectUTMContext', () => {
       injectUTMContext({
         source: 'naver',
         campaign: 'winter_sale',
-        medium: 'email',
         term: 'triple',
         content: 'video',
       }),
@@ -33,7 +32,6 @@ describe('injectUTMContext', () => {
       campaign: 'winter_sale',
       keywords: 'triple',
       ad: 'video',
-      adSet: 'naver_email',
     })
   })
 
@@ -42,7 +40,6 @@ describe('injectUTMContext', () => {
       injectUTMContext({
         source: '',
         campaign: '',
-        medium: '',
         term: '',
         content: '',
       }),
