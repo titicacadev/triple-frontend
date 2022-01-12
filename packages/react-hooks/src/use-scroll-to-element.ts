@@ -16,7 +16,7 @@ export function useScrollToElement() {
       },
       scrollToElement: (
         el: Parameters<typeof scrollToElement>[0] | null,
-        options: Parameters<typeof scrollToElement>[1],
+        options?: Parameters<typeof scrollToElement>[1],
       ) => {
         if (!el) {
           return
