@@ -14,8 +14,8 @@ import {
 import { Spinner } from '@titicaca/core-elements'
 import { getGeometry, literalToString } from './utilities'
 
+export const DEFAULT_MAP_HEIGHT = 180
 const MAX_LAT = (Math.atan(Math.sinh(Math.PI)) * 180) / Math.PI
-const DEFAULT_MAP_HEIGHT = 180
 
 const DEFAULT_BOUNDS_PADDING = {
   top: 20,
@@ -43,7 +43,7 @@ const DEFAULT_MAP_OPTIONS: google.maps.MapOptions = {
 
 const DEFAULT_MAP_CONTAINER_STYLE: CSSProperties = {
   width: '100%',
-  height: DEFAULT_MAP_HEIGHT,
+  height: '100%',
 }
 
 export interface WithGoogleMapProps extends GoogleMapProps {
