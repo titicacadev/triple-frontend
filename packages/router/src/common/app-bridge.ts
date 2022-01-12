@@ -54,10 +54,6 @@ export function useAppBridge({
       openNativeLink: (rawHref: string) => {
         const { scheme, host, ...rest } = parseUrl(rawHref)
 
-        if (!!scheme || !!host) {
-          throw new Error('네이티브 라우팅은 상대 경로만 가능합니다.')
-        }
-
         changeLocation(generateUrl({ scheme: appUrlScheme, ...rest }))
       },
     }),

@@ -191,22 +191,6 @@ describe('openNativeLink', () => {
 
     expect(changeLocation).toBeCalledWith(`${MOCK_APP_SCHEME}://${href}`)
   })
-
-  describe('절대 경로를 넣으면 오류를 냅니다.', () => {
-    test.each([['https://www.google.com', 'triple.guide/hotels']])(
-      '%p',
-      (href: string) => {
-        const changeLocation = jest.fn()
-        const {
-          result: {
-            current: { openNativeLink },
-          },
-        } = renderHook(useAppBridge, { initialProps: { changeLocation } })
-
-        expect(() => openNativeLink(href)).toThrowError()
-      },
-    )
-  })
 })
 
 function mockUserAgentContext(isPublic = true) {
