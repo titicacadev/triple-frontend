@@ -1,6 +1,6 @@
 # 마이그레이션 가이드
 
-## next
+## v5 to v6
 
 ### fetcher 패키지의 일부 인터페이스 이름 변경
 
@@ -21,6 +21,11 @@
 - useUTMContext -> useUtmContext
 - UTMProvider -> UtmProvider
 - extractUTMContextFromQuery -> extractUtmContextFromQuery
+
+### `useHistoryContext`
+
+제거했습니다. `uriHash`는 `useURIHash`로 참조할 수 있고, 나머지 함수는 `useHistoryFunctions`로 참조할 수 있습니다.
+자세한 내용은 [#928](https://github.com/titicacadev/triple-frontend/pull/928)을 확인하세요.
 
 ## v4 to v5
 
