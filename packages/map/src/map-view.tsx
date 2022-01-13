@@ -2,9 +2,7 @@ import React, {
   CSSProperties,
   useMemo,
   PropsWithChildren,
-  useEffect,
   useCallback,
-  useState,
 } from 'react'
 import {
   GoogleMap,
@@ -88,7 +86,6 @@ export default function MapView({
     region,
     libraries: GOOGLE_MAP_LIBRARIES,
   })
-  const [map, setMap] = useState<google.maps.Map>()
 
   const { center, zoom, bounds } = getGeometry(coordinates)
 
@@ -112,17 +109,17 @@ export default function MapView({
   const handleOnLoad = useCallback(
     (map: google.maps.Map) => {
       onLoad && onLoad(map)
-      setMap(map)
-    },
-    [bounds, onLoad, padding],
-  )
 
-  useEffect(() => {
-    if (!bounds) {
-      return
-    }
-    map?.fitBounds(bounds, padding)
-  }, [literalToString(bounds)]) // eslint-disable-line react-hooks/exhaustive-deps
+      if (!bounds) {
+        return
+      }
+
+      google.maps.event.addListenerOnce(map, 'idle', () => {
+        map.fitBounds(bounds, padding)
+      })
+    },
+    [literalToString(bounds), onLoad, padding],
+  )
 
   return loadError ? (
     <div>Map cannot be loaded right now, sorry.</div>
