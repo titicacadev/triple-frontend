@@ -14,7 +14,7 @@
 
 ```ts
 {
-  /** 중앙좌표 값과 bounds를 계산하기 위한 poi들의 좌표값 */
+  /** 중앙좌표 값과 bounds를 계산하기 위한 좌표값 */
   coordinates: [number,number][]
   /** 맵을 그리기 위한 중앙좌표와 맵의 동서남북 경계범위의 좌표를 포함하는 옵션 */
   options: google.maps.MapOptions
@@ -52,8 +52,6 @@ function Page() {
   }, [])
 
   return (
-  // 맵을 고정시켜야 할 경우에 사용하는 Container (zIndex는 default:3)
-  <StickyMapContainer positioning={{ top: 200 }} height={DEFAULT_MAP_HEIGHT}>
     <MapView
       coordinates={coordinates}
       options={mapOptions}
@@ -66,7 +64,6 @@ function Page() {
         // 지도 상의 Focus를 움직이기 위한 좌표 값 (해당 좌표값 위치로 초점 변경)
         <FocusTracker focusGeolocation={poi.source.pointGeolocation.coordinates}/>
     </>
-  </StickyMapContainer>
   )
 }
 ```
