@@ -1,5 +1,5 @@
 {
-  "name": "@titicaca/react-client-interfaces",
+  "name": "@titicaca/react-triple-client-interfaces",
   "version": "5.2.1",
   "description": "React module for Triple native client interfaces",
   "main": "lib/index.js",
