@@ -7,6 +7,21 @@
 `addFetchersToGSSP`는 `addFetchersToGssp`가 되었습니다.
 `HTTPMethods`는 `HttpMethods`가 되었고, 멤버 이름도 PascalCase가 되었습니다. 예를 들어 `HttpMethods.Get` 형태로 사용합니다.
 
+### react-contexts 인터페이스의 네이밍 변경
+
+다음과 같은 네이밍 변경이 있었습니다.
+
+- useURIHash -> useUriHash
+- HistoryProvider의 prop 이름 변경: loginCTAModalHash -> loginCtaModalHash
+- HashStrategy의 멤버 네이밍 변경
+- GAParams -> GoogleAnalyticsParams
+- FAParams -> FirebaseAnalyticsParams
+- withUTMContext -> withUtmContext
+- WithUTMContextBaseProps -> WithUtmContextBaseProps
+- useUTMContext -> useUtmContext
+- UTMProvider -> UtmProvider
+- extractUTMContextFromQuery -> extractUtmContextFromQuery
+
 ## v4 to v5
 
 ### deprecated props 제거 및 사용 방법
