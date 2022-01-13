@@ -1,3 +1,3 @@
-export * from './client-context'
-export * from './use-client-actions'
-export * from './client-user-agent'
+export * from './triple-client-metadata-context'
+export * from './use-triple-client-actions'
+export * from './triple-client-user-agent'

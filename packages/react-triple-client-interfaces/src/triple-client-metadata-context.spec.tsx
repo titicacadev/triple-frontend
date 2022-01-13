@@ -4,17 +4,22 @@ import React from 'react'
 import type { PropsWithChildren } from 'react'
 import { renderHook } from '@testing-library/react-hooks'
 
-import { ClientContextProvider, useClientContext } from './client-context'
+import {
+  TripleClientMetadataProvider,
+  useTripleClientMetadata,
+} from './triple-client-metadata-context'
 
 describe('useClientContext', () => {
   it('should return null when provider has received no app props', () => {
     const wrapper = ({
       children,
     }: PropsWithChildren<Record<string, never>>) => (
-      <ClientContextProvider {...null}>{children}</ClientContextProvider>
+      <TripleClientMetadataProvider {...null}>
+        {children}
+      </TripleClientMetadataProvider>
     )
 
-    const { result } = renderHook(() => useClientContext(), { wrapper })
+    const { result } = renderHook(() => useTripleClientMetadata(), { wrapper })
 
     expect(result.current).toBe(null)
   })
@@ -23,12 +28,12 @@ describe('useClientContext', () => {
     const wrapper = ({
       children,
     }: PropsWithChildren<Record<string, never>>) => (
-      <ClientContextProvider appName="Triple-iOS">
+      <TripleClientMetadataProvider appName="Triple-iOS">
         {children}
-      </ClientContextProvider>
+      </TripleClientMetadataProvider>
     )
 
-    const { result } = renderHook(() => useClientContext(), { wrapper })
+    const { result } = renderHook(() => useTripleClientMetadata(), { wrapper })
 
     expect(result.current).toBe(null)
   })
@@ -37,12 +42,12 @@ describe('useClientContext', () => {
     const wrapper = ({
       children,
     }: PropsWithChildren<Record<string, never>>) => (
-      <ClientContextProvider appName="Triple-iOS" appVersion="5.11.0">
+      <TripleClientMetadataProvider appName="Triple-iOS" appVersion="5.11.0">
         {children}
-      </ClientContextProvider>
+      </TripleClientMetadataProvider>
     )
 
-    const { result } = renderHook(() => useClientContext(), { wrapper })
+    const { result } = renderHook(() => useTripleClientMetadata(), { wrapper })
 
     expect(result.current).toStrictEqual({
       appName: 'Triple-iOS',
@@ -54,16 +59,18 @@ describe('useClientContext', () => {
     const wrapper = ({
       children,
     }: PropsWithChildren<Record<string, never>>) => (
-      <ClientContextProvider {...null}>{children}</ClientContextProvider>
+      <TripleClientMetadataProvider {...null}>
+        {children}
+      </TripleClientMetadataProvider>
     )
 
-    const { result } = renderHook(() => useClientContext(), { wrapper })
+    const { result } = renderHook(() => useTripleClientMetadata(), { wrapper })
 
     expect(result.error).not.toBeTruthy()
   })
 
   it('should raise error when no context provider is mounted before', () => {
-    const { result } = renderHook(() => useClientContext())
+    const { result } = renderHook(() => useTripleClientMetadata())
 
     expect(result.error).toBeTruthy()
   })
@@ -79,7 +86,7 @@ describe('ClientContextProvider.getInitialProps', () => {
     } as unknown as IncomingMessage
 
     expect(
-      ClientContextProvider.getInitialProps({ req }),
+      TripleClientMetadataProvider.getInitialProps({ req }),
     ).resolves.toStrictEqual({
       appName: 'Triple-Android',
       appVersion: '5.11.0',
@@ -94,7 +101,9 @@ describe('ClientContextProvider.getInitialProps', () => {
         'Mozilla/5.0 (Linux; Android 10; SM-G965N Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/97.0.4692.70 Mobile Safari/537.36 Triple-Android/5.11.0',
     )
 
-    expect(ClientContextProvider.getInitialProps({})).resolves.toStrictEqual({
+    expect(
+      TripleClientMetadataProvider.getInitialProps({}),
+    ).resolves.toStrictEqual({
       appName: 'Triple-Android',
       appVersion: '5.11.0',
     })
@@ -109,7 +118,7 @@ describe('ClientContextProvider.getInitialProps', () => {
     // @ts-ignore
     windowSpy.mockImplementation(() => undefined)
 
-    expect(ClientContextProvider.getInitialProps({})).resolves.toBeNull()
+    expect(TripleClientMetadataProvider.getInitialProps({})).resolves.toBeNull()
 
     windowSpy.mockRestore()
   })

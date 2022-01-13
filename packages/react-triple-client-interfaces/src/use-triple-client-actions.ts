@@ -1,7 +1,7 @@
 import * as WebToNativeInterfaces from '@titicaca/triple-web-to-native-interfaces'
 import * as semver from 'semver'
 
-import { useClientContext } from './client-context'
+import { useTripleClientMetadata } from './triple-client-metadata-context'
 
 const KNOWN_INITIAL_VERSIONS: Partial<
   Record<keyof typeof WebToNativeInterfaces, string>
@@ -10,8 +10,8 @@ const KNOWN_INITIAL_VERSIONS: Partial<
   unsubscribeTripUpdateEvent: '5.11.0',
 }
 
-export function useClientActions() {
-  const clientContextValue = useClientContext()
+export function useTripleClientActions() {
+  const clientContextValue = useTripleClientMetadata()
 
   if (!clientContextValue) {
     return {}

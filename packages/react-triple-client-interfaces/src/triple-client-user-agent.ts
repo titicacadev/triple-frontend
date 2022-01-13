@@ -5,7 +5,7 @@ import { AppName, App } from './types'
  * @param userAgent 파싱할 user agent
  * @returns 앱 이름과 버전
  */
-export function parseNativeClientUserAgent(userAgent: string): App | null {
+export function parseTripleClientUserAgent(userAgent: string): App | null {
   const matchData = userAgent.match(/Triple-(iOS|Android)\/([^ ]+)/i)
 
   if (matchData) {
