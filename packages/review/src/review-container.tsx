@@ -7,7 +7,7 @@ import {
   useEventTrackingContext,
   useSessionAvailability,
 } from '@titicaca/react-contexts'
-import { TransitionType, withLoginCTAModal } from '@titicaca/modals'
+import { TransitionType, withLoginCtaModal } from '@titicaca/modals'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 
 import {
@@ -415,4 +415,4 @@ function ReviewContainer({
   )
 }
 
-export default withLoginCTAModal(ReviewContainer)
+export default withLoginCtaModal(ReviewContainer)
