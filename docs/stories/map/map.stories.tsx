@@ -40,6 +40,9 @@ export const Basic: ComponentStory<typeof MapView> = (args) => {
 Basic.storyName = '기본 맵'
 Basic.args = {
   coordinates,
+  options: {
+    zoom: 10,
+  },
   googleMapLoadOptions: { googleMapsApiKey: GOOGLE_MAPS_API_KEY },
 }
 Basic.parameters = {
@@ -59,6 +62,9 @@ WithProps.storyName = '사이즈 설정'
 WithProps.args = {
   coordinates,
   googleMapLoadOptions: { googleMapsApiKey: GOOGLE_MAPS_API_KEY },
+  options: {
+    zoom: 9,
+  },
   padding: {
     top: 10,
     left: 10,
