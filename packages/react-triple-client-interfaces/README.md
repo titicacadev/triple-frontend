@@ -1,4 +1,4 @@
-# `@titicaca/react-client-interfaces`
+# `@titicaca/react-triple-client-interfaces`
 
 [triple-web-to-native-interfaces](https://github.com/titicacadev/triple-web-to-native-interfaces/)
 패키지에서 관리하고 있는 클라이언트 인터페이스를 React 컴포넌트에서 이용할 수
@@ -6,32 +6,38 @@
 
 ## Usage
 
-### `ClientContextProvider`
+### `TripleClientMetadataProvider`
 
 User-Agent 값을 파싱하여 페이지 렌더링에 사용한 네이티브 클라이언트 정보를 하위
 컴포넌트에 제공합니다. 클라이언트 연동이 필요한 페이지엔 꼭 Mount해야 합니다.
 
 ```jsx
-import { ClientContextProvider } from '@titicaca/react-client-interfaces'
+import { TripleClientMetadataProvider } from '@titicaca/react-triple-client-interfaces'
 
-function ThePageComponent() {
-  return (
+class CustomNextjsApp() {
+  static async getInitialProps(ctx) {
+    const tripleClientMetadataProps = await TripleClientMetadataProvider.getInitialProps(ctx)
+
+    return { tripleClientMetadataProps }
+  }
+
+  render() {
     <ClientContextProvider
-      {...ClientContextProvider.getInitialProps(nextPageContext)}
+      {...this.props.tripleClientMetadataProps}
     >
       <YourPageModule />
     </ClientContextProvider>
-  )
+  }
 }
 ```
 
-### `useClientContext`
+### `useTripleClientMetadata`
 
-`ClientContextProvider`가 제공하는 클라이언트 정보를 Hook으로 노출합니다.
+`TripleClientMetadataProvider`가 제공하는 클라이언트 정보를 Hook으로 노출합니다.
 
 ```jsx
 function YourComponent() {
-  const app = useClientContext()
+  const app = useTripleClientMetadata()
 
   if (app) {
     /* 네이티브 클라이언트 앱 사용 중 */
@@ -45,7 +51,7 @@ function YourComponent() {
 }
 ```
 
-### `useClientActions`
+### `useTripleClientActions`
 
 페이지 구현에 필요한 클라이언트 인터페이스를 Hook으로 노출합니다. 클라이언트 앱
 버전에 따라 지원하는 인터페이스 종류가 달라질 수 있는데, 사용 중인 클라이언트에서
@@ -53,7 +59,7 @@ function YourComponent() {
 
 ```jsx
 function YourComponent() {
-  const { showToast } = useClientActions()
+  const { showToast } = useTripleClientActions()
 
   if (showToast) {
     /* showToast 인터페이스를 갖춘 네이티브 클라이언트 앱 사용 중 */
