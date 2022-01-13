@@ -37,9 +37,11 @@
       "@titicaca/popup": ["popup/src"],
       "@titicaca/pricing": ["pricing/src"],
       "@titicaca/public-header": ["public-header/src"],
-      "@titicaca/react-client-interfaces": ["react-client-interfaces/src"],
       "@titicaca/react-contexts": ["react-contexts/src"],
       "@titicaca/react-hooks": ["react-hooks/src"],
+      "@titicaca/react-triple-client-interfaces": [
+        "react-triple-client-interfaces/src"
+      ],
       "@titicaca/recommended-contents": ["recommended-contents/src"],
       "@titicaca/replies": ["replies/src"],
       "@titicaca/resource-list-element": ["resource-list-element/src"],
