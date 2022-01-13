@@ -18,6 +18,9 @@
       "path": "../router/tsconfig.build.json"
     },
     {
+      "path": "../ui-flow/tsconfig.build.json"
+    },
+    {
       "path": "../view-utilities/tsconfig.build.json"
     }
   ]

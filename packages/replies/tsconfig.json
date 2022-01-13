@@ -10,6 +10,7 @@
       "@titicaca/fetcher": ["../fetcher/src"],
       "@titicaca/modals": ["../modals/src"],
       "@titicaca/router": ["../router/src"],
+      "@titicaca/ui-flow": ["../ui-flow/src"],
       "@titicaca/view-utilities": ["../view-utilities/src"]
     }
   },
@@ -29,6 +30,9 @@
     },
     {
       "path": "../router"
+    },
+    {
+      "path": "../ui-flow"
     },
     {
       "path": "../view-utilities"
