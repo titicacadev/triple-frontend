@@ -9,7 +9,7 @@ import {
   useTripleClientMetadata,
 } from './triple-client-metadata-context'
 
-describe('useClientContext', () => {
+describe('useTripleClientMetadata', () => {
   it('should return null when provider has received no app props', () => {
     const wrapper = ({
       children,
@@ -76,7 +76,7 @@ describe('useClientContext', () => {
   })
 })
 
-describe('ClientContextProvider.getInitialProps', () => {
+describe('TripleClientMetadataProvider.getInitialProps', () => {
   it('should extract app user agent from req', () => {
     const req = {
       headers: {
