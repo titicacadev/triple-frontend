@@ -90,8 +90,7 @@ export function LoginCtaModalProvider({
   )
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export function withLoginCTAModal<P>(Component: ComponentType<P>) {
+export function withLoginCtaModal<P>(Component: ComponentType<P>) {
   return function WithLoginCtaModal(props: P) {
     return (
       <LoginCtaModalProvider>
