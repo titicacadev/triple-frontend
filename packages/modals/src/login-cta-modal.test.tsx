@@ -12,7 +12,7 @@ import {
 import {
   LoginCtaModalProvider,
   LOGIN_CTA_MODAL_HASH,
-  useLoginCTAModal,
+  useLoginCtaModal,
 } from './login-cta-modal'
 
 jest.mock('@titicaca/react-contexts')
@@ -41,7 +41,7 @@ test('children을 렌더링합니다.', () => {
 test('useLoginCtaModal 훅은 history context에 해시 값을 push합니다.', () => {
   const { push } = mockHistoryFunctions()
 
-  const { result } = renderHook(useLoginCTAModal)
+  const { result } = renderHook(useLoginCtaModal)
 
   act(() => {
     result.current.show()
