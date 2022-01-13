@@ -8,6 +8,8 @@ import {
   Text,
 } from '@titicaca/core-elements'
 import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
+import { useAppCallback } from '@titicaca/ui-flow'
+import { TransitionType } from '@titicaca/modals'
 import { ExternalLink } from '@titicaca/router'
 import {
   useUriHash,
@@ -21,6 +23,7 @@ import {
   fetchChildReplies,
   likeReply,
   unlikeReply,
+  blindReply,
 } from '../replies-api-clients'
 import { checkUniqueReply } from '../utils'
 import { useRepliesContext } from '../context'
@@ -227,6 +230,13 @@ export default function Reply({
     }))
   }
 
+  const handleBlindReplyClick = useAppCallback(
+    TransitionType.General,
+    useCallback(async ({ messageId }: { messageId: string }) => {
+      await blindReply({ currentMessageId: messageId })
+    }, []),
+  )
+
   const derivedText = deriveContent({
     text: text || markdownText || '',
     deleted,
@@ -362,6 +372,7 @@ export default function Reply({
             messageId: id,
           })
         }
+        onBlindClick={() => handleBlindReplyClick({ messageId: id })}
       />
     </>
   )
@@ -429,11 +440,13 @@ function FeatureActionSheet({
   actionSheetHash,
   onEditClick,
   onDeleteClick,
+  onBlindClick,
 }: {
   isMine: boolean
   actionSheetHash: string
   onEditClick: () => void
   onDeleteClick: () => void
+  onBlindClick: () => void
 }) {
   const uriHash = useUriHash()
   const { back } = useHistoryFunctions()
@@ -450,7 +463,7 @@ function FeatureActionSheet({
           <ActionSheet.Item onClick={onDeleteClick}>삭제하기</ActionSheet.Item>
         </>
       ) : (
-        <ActionSheet.Item>신고하기</ActionSheet.Item>
+        <ActionSheet.Item onClick={onBlindClick}>신고하기</ActionSheet.Item>
       )}
     </ActionSheet>
   )
