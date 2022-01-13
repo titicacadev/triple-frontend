@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import { fireEvent, render } from '@testing-library/react'
-import { LoginCTAModalProvider, TransitionModal } from '@titicaca/modals'
+import { LoginCtaModalProvider, TransitionModal } from '@titicaca/modals'
 import {
   EnvProvider,
   HistoryProvider,
@@ -77,7 +77,7 @@ test('로그인한 앱에서만 열리는 링크라면 로그인하지 않은 �
           <UserAgentProvider>
             <SessionProvider>
               <HistoryProvider>
-                <LoginCTAModalProvider>{children}</LoginCTAModalProvider>
+                <LoginCtaModalProvider>{children}</LoginCtaModalProvider>
               </HistoryProvider>
             </SessionProvider>
           </UserAgentProvider>
