@@ -282,7 +282,7 @@ export default function Reply({
           text={derivedText}
         />
 
-        {!deleted ? (
+        {!deleted && !blinded ? (
           <ReactionBox
             padding={{ top: 7 }}
             flex
