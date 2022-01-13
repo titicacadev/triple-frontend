@@ -31,13 +31,16 @@ export default {
 } as Meta
 
 export const Basic: ComponentStory<typeof MapView> = (args) => {
-  return <MapView {...args} />
+  return (
+    <Container width="100vw" height="100vh">
+      <MapView {...args} />
+    </Container>
+  )
 }
 Basic.storyName = '기본 맵'
 Basic.args = {
   coordinates,
   googleMapLoadOptions: { googleMapsApiKey: GOOGLE_MAPS_API_KEY },
-  mapContainerStyle: { width: '100vw', height: '100vh' },
 }
 Basic.parameters = {
   chromatic: {
@@ -46,7 +49,11 @@ Basic.parameters = {
 }
 
 export const WithProps: ComponentStory<typeof MapView> = (args) => {
-  return <MapView {...args} />
+  return (
+    <Container width="50%" height={200}>
+      <MapView {...args} />
+    </Container>
+  )
 }
 WithProps.storyName = '사이즈 설정'
 WithProps.args = {
@@ -58,7 +65,6 @@ WithProps.args = {
     right: 10,
     bottom: 10,
   },
-  mapContainerStyle: { width: '50%', height: 200 },
 }
 WithProps.parameters = {
   chromatic: {
@@ -148,10 +154,12 @@ WithCircleMarker.parameters = {
 
 export const WithWithPolyline: ComponentStory<typeof MapView> = (args) => {
   return (
-    <MapView {...args}>
-      <DotPolyline path={polygonLinePath} strokeColor="#000000" />
-      <Polygon paths={polygonPaths} fillColor="#000000" fillOpacity={0.2} />
-    </MapView>
+    <Container height={300}>
+      <MapView {...args}>
+        <DotPolyline path={polygonLinePath} strokeColor="#000000" />
+        <Polygon paths={polygonPaths} fillColor="#000000" fillOpacity={0.2} />
+      </MapView>
+    </Container>
   )
 }
 WithWithPolyline.storyName = 'Polygon with Polyline'
@@ -160,7 +168,6 @@ WithWithPolyline.args = {
   googleMapLoadOptions: {
     googleMapsApiKey: GOOGLE_MAPS_API_KEY,
   },
-  mapContainerStyle: { height: 300 },
 }
 WithWithPolyline.parameters = {
   chromatic: {
@@ -170,22 +177,24 @@ WithWithPolyline.parameters = {
 
 export const WithPolylineAndMarker: ComponentStory<typeof MapView> = (args) => {
   return (
-    <MapView {...args}>
-      {polygonPaths.map((path, i) => (
-        <HotelCircleMarker
-          key={i}
-          zIndex={polygonPaths.length - i}
-          active={false}
-          position={{ ...path }}
-          onClick={() => {}}
-        >
-          {i + 1}
-        </HotelCircleMarker>
-      ))}
+    <Container height={300}>
+      <MapView {...args}>
+        {polygonPaths.map((path, i) => (
+          <HotelCircleMarker
+            key={i}
+            zIndex={polygonPaths.length - i}
+            active={false}
+            position={{ ...path }}
+            onClick={() => {}}
+          >
+            {i + 1}
+          </HotelCircleMarker>
+        ))}
 
-      <DotPolyline path={polygonLinePath} strokeColor="#000000" />
-      <Polygon paths={polygonPaths} fillColor="#000000" fillOpacity={0.2} />
-    </MapView>
+        <DotPolyline path={polygonLinePath} strokeColor="#000000" />
+        <Polygon paths={polygonPaths} fillColor="#000000" fillOpacity={0.2} />
+      </MapView>
+    </Container>
   )
 }
 WithPolylineAndMarker.storyName = 'Polygon with Polyline, Marker'
@@ -194,7 +203,6 @@ WithPolylineAndMarker.args = {
   googleMapLoadOptions: {
     googleMapsApiKey: GOOGLE_MAPS_API_KEY,
   },
-  mapContainerStyle: { height: 300 },
 }
 WithPolylineAndMarker.parameters = {
   chromatic: {
