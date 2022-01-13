@@ -6,7 +6,6 @@ import {
   DotPolyline,
   Polygon,
   HotelCircleMarker,
-  StickyMapContainer,
 } from '@titicaca/map'
 import { ComponentStory, Meta } from '@storybook/react'
 
@@ -41,26 +40,6 @@ Basic.args = {
   mapContainerStyle: { width: '100vw', height: '100vh' },
 }
 Basic.parameters = {
-  chromatic: {
-    disableSnapshot: true,
-  },
-}
-
-export const StickyMap: ComponentStory<typeof MapView> = (args) => {
-  return (
-    <Container height={2500}>
-      <StickyMapContainer positioning={{ top: 10 }}>
-        <MapView {...args} />
-      </StickyMapContainer>
-    </Container>
-  )
-}
-StickyMap.storyName = 'Sticky 적용 맵'
-StickyMap.args = {
-  coordinates,
-  googleMapLoadOptions: { googleMapsApiKey: GOOGLE_MAPS_API_KEY },
-}
-StickyMap.parameters = {
   chromatic: {
     disableSnapshot: true,
   },
