@@ -29,6 +29,8 @@ const DEFAULT_MAP_OPTIONS: google.maps.MapOptions = {
   zoom: 13,
   center: { lat: 37.7577627, lng: -122.4726194 },
   noClear: true,
+  // MapOptions에서 명시된 disableDefaultUI props을 사용하기 위해 naming-convention을 disabled 합니다.
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   disableDefaultUI: true,
   clickableIcons: false,
   gestureHandling: 'greedy',
@@ -67,8 +69,8 @@ export interface WithGoogleMapProps extends GoogleMapProps {
 const GOOGLE_MAP_LIBRARIES = ['geometry' as const]
 
 export default function MapView({
-  options: _options,
-  mapContainerStyle: _mapContainerStyle,
+  options: originOptions,
+  mapContainerStyle: originMapContainerStyle,
   googleMapLoadOptions: { googleMapsApiKey, region = 'kr' },
   bounds,
   padding = DEFAULT_BOUNDS_PADDING,
@@ -86,17 +88,17 @@ export default function MapView({
   const options: google.maps.MapOptions = useMemo(
     () => ({
       ...DEFAULT_MAP_OPTIONS,
-      ..._options,
+      ...originOptions,
     }),
-    [_options],
+    [originOptions],
   )
 
   const mapContainerStyle: CSSProperties = useMemo(
     () => ({
       ...DEFAULT_MAP_CONTAINER_STYLE,
-      ..._mapContainerStyle,
+      ...originMapContainerStyle,
     }),
-    [_mapContainerStyle],
+    [originMapContainerStyle],
   )
 
   const handleOnLoad = useCallback(

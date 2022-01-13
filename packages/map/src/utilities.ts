@@ -37,12 +37,8 @@ export function literalToString(
   if (!latLngOrBounds) {
     return ''
   } else if ('south' in latLngOrBounds) {
-    const {
-      south,
-      west,
-      north,
-      east,
-    } = latLngOrBounds as google.maps.LatLngBoundsLiteral
+    const { south, west, north, east } =
+      latLngOrBounds as google.maps.LatLngBoundsLiteral
 
     return `((${south}, ${west}), (${north}, ${east}))`
   } else if ('lat' in latLngOrBounds) {
