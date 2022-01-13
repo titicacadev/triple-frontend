@@ -42,7 +42,7 @@ function getActivePinImageUrl(type: MarkerType) {
  *  const RestaurantCirlceMarker = withTypeCircleMarker('restaurant')
  */
 
-type HoCProps = Omit<Parameters<typeof CircleMarker>[0], 'color' | 'src'>
+type HocProps = Omit<Parameters<typeof CircleMarker>[0], 'color' | 'src'>
 
 export default function withTypeCircleMarker(type: MarkerType) {
   const color = getColorOfType(type)
@@ -51,7 +51,7 @@ export default function withTypeCircleMarker(type: MarkerType) {
   return function ColorMarkerComponent({
     children,
     ...rest
-  }: PropsWithChildren<HoCProps>) {
+  }: PropsWithChildren<HocProps>) {
     return (
       <CircleMarker {...rest} color={color} src={src}>
         {children}
