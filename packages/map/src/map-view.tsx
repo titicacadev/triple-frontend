@@ -112,16 +112,7 @@ export default function MapView({
   const handleOnLoad = useCallback(
     (map: google.maps.Map) => {
       onLoad && onLoad(map)
-
-      if (!bounds) {
-        setMap(map)
-        return
-      }
-
-      google.maps.event.addListenerOnce(map, 'idle', () => {
-        map.fitBounds(bounds, padding)
-        setMap(map)
-      })
+      setMap(map)
     },
     [bounds, onLoad, padding],
   )
