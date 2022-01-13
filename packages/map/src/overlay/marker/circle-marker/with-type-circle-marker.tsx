@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react'
 import { purple, mint } from '@titicaca/color-palette'
 
-import { CircleMarker } from '.'
+import { CircleMarker } from './index'
 
 /**
  * TODO:
