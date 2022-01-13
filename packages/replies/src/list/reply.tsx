@@ -376,7 +376,10 @@ export default function Reply({
             messageId: id,
           })
         }
-        onBlindClick={() => handleBlindReplyClick({ messageId: id })}
+        onBlindClick={async () => {
+          await asyncBack(back)
+          handleBlindReplyClick({ messageId: id })
+        }}
       />
     </>
   )
