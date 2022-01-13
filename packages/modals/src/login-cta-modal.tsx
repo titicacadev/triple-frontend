@@ -100,8 +100,7 @@ export function withLoginCtaModal<P>(Component: ComponentType<P>) {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export function useLoginCTAModal() {
+export function useLoginCtaModal() {
   const { push } = useHistoryFunctions()
   const contextValue = useContext(LoginCtaContext)
 
