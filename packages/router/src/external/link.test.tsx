@@ -5,7 +5,7 @@ import {
   useSessionAvailability,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
-import { useLoginCTAModal, useTransitionModal } from '@titicaca/modals'
+import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'
 
 import { useAppBridge } from '../common/app-bridge'
 import { useWebUrlBaseAdder } from '../common/add-web-url-base'
@@ -193,7 +193,7 @@ function prepareTest({
     useTransitionModal as jest.MockedFunction<typeof useTransitionModal>
   ).mockImplementation(() => ({ show: showTransitionModal }))
   ;(
-    useLoginCTAModal as jest.MockedFunction<typeof useLoginCTAModal>
+    useLoginCtaModal as jest.MockedFunction<typeof useLoginCtaModal>
   ).mockImplementation(() => ({ show: showLoginCtaModal }))
   ;(
     useWebUrlBaseAdder as unknown as jest.MockedFunction<

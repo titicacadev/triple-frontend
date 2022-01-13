@@ -1,6 +1,6 @@
 import {
   TransitionType,
-  useLoginCTAModal,
+  useLoginCtaModal,
   useTransitionModal,
 } from '@titicaca/modals'
 import { checkIfRoutable, parseUrl } from '@titicaca/view-utilities'
@@ -22,7 +22,7 @@ export function useNavigate({
   const { isPublic } = useUserAgentContext()
   const sessionAvailable = useSessionAvailability()
   const { show: showTransitionModal } = useTransitionModal()
-  const { show: showLoginCtaModal } = useLoginCTAModal()
+  const { show: showLoginCtaModal } = useLoginCtaModal()
   const { openOutlink, openNativeLink } = useAppBridge()
 
   const navigateInBrowser = useCallback(
