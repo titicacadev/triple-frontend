@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useLoginCTAModal } from '@titicaca/modals'
+import { useLoginCtaModal } from '@titicaca/modals'
 import {
   useSessionAvailability,
   useSessionControllers,
@@ -28,7 +28,7 @@ export function useSessionCallback<T extends (...args: any[]) => any>(
 ): (...args: Parameters<T>) => ReturnType<T> | boolean | void {
   const sessionAvailable = useSessionAvailability()
   const { login } = useSessionControllers()
-  const { show } = useLoginCTAModal()
+  const { show } = useLoginCtaModal()
 
   return useCallback(
     (...args) => {

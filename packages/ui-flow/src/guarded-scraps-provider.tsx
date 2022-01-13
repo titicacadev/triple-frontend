@@ -7,7 +7,7 @@ import {
 import {
   useTransitionModal,
   TransitionType,
-  useLoginCTAModal,
+  useLoginCtaModal,
 } from '@titicaca/modals'
 
 /**
@@ -23,7 +23,7 @@ export function GuardedScrapsProvider({
   const { isPublic } = useUserAgentContext()
   const sessionAvailable = useSessionAvailability()
   const { show: showTransitionModal } = useTransitionModal()
-  const { show: showLoginCTA } = useLoginCTAModal()
+  const { show: showLoginCTA } = useLoginCtaModal()
 
   return (
     <ScrapsProvider

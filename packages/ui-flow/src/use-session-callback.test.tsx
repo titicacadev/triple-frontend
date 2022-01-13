@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks'
-import { useLoginCTAModal } from '@titicaca/modals'
+import { useLoginCtaModal } from '@titicaca/modals'
 import {
   useURIHash,
   useSessionAvailability,
@@ -16,8 +16,8 @@ describe('useSessionCallback', () => {
     ;((useSessionControllers as unknown) as jest.MockedFunction<
       () => Pick<ReturnType<typeof useSessionControllers>, 'login'>
     >).mockImplementation(() => ({ login: jest.fn() }))
-    ;((useLoginCTAModal as unknown) as jest.MockedFunction<
-      () => Pick<ReturnType<typeof useLoginCTAModal>, 'show'>
+    ;((useLoginCtaModal as unknown) as jest.MockedFunction<
+      () => Pick<ReturnType<typeof useLoginCtaModal>, 'show'>
     >).mockImplementation(() => ({ show: jest.fn() }))
   })
 

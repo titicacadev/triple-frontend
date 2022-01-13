@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks'
-import { useLoginCTAModal, useTransitionModal } from '@titicaca/modals'
+import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'
 import {
   useSessionAvailability,
   useUserAgentContext,
@@ -156,7 +156,7 @@ function prepareTest({
     useTransitionModal as jest.MockedFunction<typeof useTransitionModal>
   ).mockImplementation(() => ({ show: showTransitionModal }))
   ;(
-    useLoginCTAModal as jest.MockedFunction<typeof useLoginCTAModal>
+    useLoginCtaModal as jest.MockedFunction<typeof useLoginCtaModal>
   ).mockImplementation(() => ({ show: showLoginCtaModal }))
 
   return { showTransitionModal, showLoginCtaModal }

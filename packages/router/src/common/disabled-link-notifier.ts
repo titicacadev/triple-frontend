@@ -1,6 +1,6 @@
 import {
   useTransitionModal,
-  useLoginCTAModal,
+  useLoginCtaModal,
   TransitionType,
 } from '@titicaca/modals'
 import {
@@ -27,7 +27,7 @@ export function useDisabledLinkNotifierCreator({
   const { isPublic } = useUserAgentContext()
   const sessionAvailable = useSessionAvailability()
   const { show: showTransitionModal } = useTransitionModal()
-  const { show: showLoginCtaModal } = useLoginCTAModal()
+  const { show: showLoginCtaModal } = useLoginCtaModal()
 
   const createDisabledLinkNotifier = ({
     allowSource = 'all',
