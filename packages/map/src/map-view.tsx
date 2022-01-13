@@ -114,7 +114,7 @@ export default function MapView({
       onLoad && onLoad(map)
       setMap(map)
     },
-    [onLoad, padding],
+    [onLoad],
   )
 
   useEffect(() => {
