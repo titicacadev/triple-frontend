@@ -12,6 +12,7 @@ import {
   useLoadScript,
 } from '@react-google-maps/api'
 import { Spinner } from '@titicaca/core-elements'
+
 import { getGeometry, literalToString } from './utilities'
 
 const MAX_LAT = (Math.atan(Math.sinh(Math.PI)) * 180) / Math.PI
@@ -25,6 +26,8 @@ const DEFAULT_BOUNDS_PADDING = {
 
 const DEFAULT_MAP_OPTIONS: google.maps.MapOptions = {
   noClear: true,
+  // MapOptions에서 명시된 disableDefaultUI props을 사용하기 위해 naming-convention을 disabled 합니다.
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   disableDefaultUI: true,
   clickableIcons: false,
   gestureHandling: 'greedy',
@@ -72,8 +75,8 @@ const GOOGLE_MAP_LIBRARIES = ['geometry' as const]
 
 export default function MapView({
   coordinates,
-  options: _options,
-  mapContainerStyle: _mapContainerStyle,
+  options: originOptions,
+  mapContainerStyle: originMapContainerStyle,
   googleMapLoadOptions: { googleMapsApiKey, region = 'kr' },
   padding = DEFAULT_BOUNDS_PADDING,
   children,
@@ -94,16 +97,16 @@ export default function MapView({
       ...DEFAULT_MAP_OPTIONS,
       center,
       zoom,
-      ..._options,
+      ...originOptions,
     }
-  }, [coordinates, _options])
+  }, [coordinates, originOptions])
 
   const mapContainerStyle: CSSProperties = useMemo(
     () => ({
       ...DEFAULT_MAP_CONTAINER_STYLE,
-      ..._mapContainerStyle,
+      ...originMapContainerStyle,
     }),
-    [_mapContainerStyle],
+    [originMapContainerStyle],
   )
 
   const handleOnLoad = useCallback(
