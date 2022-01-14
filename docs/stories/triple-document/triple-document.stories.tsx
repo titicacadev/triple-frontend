@@ -78,6 +78,11 @@ export function VideoExample() {
   )
 }
 VideoExample.storyName = '비디오'
+VideoExample.parameters = {
+  chromatic: {
+    disableSnapshot: true,
+  },
+}
 
 export function TableExample() {
   return (
@@ -143,3 +148,8 @@ export function DocumentItinerary() {
 
 DocumentItinerary.storyName = '추천코스 기본'
 DocumentItinerary.decorators = [sessionContextProviderDecorator]
+DocumentItinerary.parameters = {
+  chromatic: {
+    disableSnapshot: true,
+  },
+}
