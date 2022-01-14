@@ -17,7 +17,11 @@ import {
 import ActionSheet from '@titicaca/action-sheet'
 
 import { Reply as ReplyType, Writer } from '../types'
-import { fetchChildReplies } from '../replies-api-clients'
+import {
+  fetchChildReplies,
+  likeReply,
+  unlikeReply,
+} from '../replies-api-clients'
 import { checkUniqueReply } from '../utils'
 import { useRepliesContext } from '../context'
 
@@ -66,7 +70,7 @@ export default function Reply({
     blinded,
     createdAt,
     content: { mentionedUser, text, markdownText },
-    reactions,
+    reactions: defaultReactions,
     childrenCount,
     children,
     id,
@@ -82,6 +86,7 @@ export default function Reply({
     childReplies: ReplyType[]
     childPage: number
   }>({ childReplies: checkUniqueReply(children), childPage: 0 })
+  const [reactions, setReactions] = useState(defaultReactions)
 
   const { setEditingMessage } = useRepliesContext()
 
@@ -190,6 +195,34 @@ export default function Reply({
     [setEditingMessage, asyncBack, back, push],
   )
 
+  const handleLikeReplyClick = async ({ messageId }: { messageId: string }) => {
+    await likeReply({ messageId })
+
+    setReactions((prev) => ({
+      ...prev,
+      like: {
+        count: (prev?.like?.count || 0) + 1,
+        haveMine: true,
+      },
+    }))
+  }
+
+  const handleUnLikeReplyClick = async ({
+    messageId,
+  }: {
+    messageId: string
+  }) => {
+    await unlikeReply({ messageId })
+
+    setReactions((prev) => ({
+      ...prev,
+      like: {
+        count: (prev?.like?.count || 0) - 1,
+        haveMine: false,
+      },
+    }))
+  }
+
   const derivedText = deriveContent({
     text: text || markdownText || '',
     deleted,
@@ -244,6 +277,8 @@ export default function Reply({
                 height={14}
                 src="https://assets.triple.guide/images/btn-lounge-thanks-on@3x.png"
                 alt="thanks on icon"
+                onClick={() => handleUnLikeReplyClick({ messageId: id })}
+                role="presentation"
               />
             ) : (
               <img
@@ -251,6 +286,8 @@ export default function Reply({
                 height={14}
                 src="https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png"
                 alt="thanks off icon"
+                onClick={() => handleLikeReplyClick({ messageId: id })}
+                role="presentation"
               />
             )}
 
