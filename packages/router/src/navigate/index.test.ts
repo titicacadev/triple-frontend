@@ -7,7 +7,7 @@ import {
 import { checkIfRoutable } from '@titicaca/view-utilities'
 
 import { useAppBridge } from '../common/app-bridge'
-import { useOnClientRequired } from '../common/on-client-required'
+import { useOnTripleClientRequired } from '../common/on-client-required'
 import { useOnSessionRequired } from '../common/on-session-required'
 
 import { useNavigate } from '.'
@@ -187,7 +187,9 @@ function prepareTest({
   const openNativeLink = jest.fn()
 
   ;(
-    useOnClientRequired as jest.MockedFunction<typeof useOnClientRequired>
+    useOnTripleClientRequired as jest.MockedFunction<
+      typeof useOnTripleClientRequired
+    >
   ).mockReturnValue(onClientRequired)
   ;(
     useOnSessionRequired as jest.MockedFunction<typeof useOnSessionRequired>

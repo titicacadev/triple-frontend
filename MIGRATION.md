@@ -34,7 +34,7 @@
 다음과 같은 코드를 `pages/_app.tsx`에 추가해주세요.
 
 ```tsx
-<RouterOnClientRequiredProvider value={() => showTransitionModal(TransitionType.General)}>
+<RouterOnTripleClientRequiredProvider value={() => showTransitionModal(TransitionType.General)}>
   <RouterOnSessionRequiredProvider value={showLoginCtaModal}>
 ```
 

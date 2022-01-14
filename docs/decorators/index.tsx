@@ -7,8 +7,8 @@ import {
   UserAgentProvider,
 } from '@titicaca/react-contexts'
 import {
-  RouterOnClientRequiredProvider,
   RouterOnSessionRequiredProvider,
+  RouterOnTripleClientRequiredProvider,
 } from '@titicaca/router'
 
 export function envProviderDecorator(Story: StoryFn) {
@@ -107,10 +107,10 @@ export function userAgentProviderDecorator(Story: StoryFn) {
 
 export function forRouter(Story: StoryFn) {
   return (
-    <RouterOnClientRequiredProvider value={() => {}}>
+    <RouterOnTripleClientRequiredProvider value={() => {}}>
       <RouterOnSessionRequiredProvider value={() => {}}>
         <Story />
       </RouterOnSessionRequiredProvider>
-    </RouterOnClientRequiredProvider>
+    </RouterOnTripleClientRequiredProvider>
   )
 }

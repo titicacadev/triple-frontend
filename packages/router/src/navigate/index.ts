@@ -7,7 +7,7 @@ import {
 } from '@titicaca/react-contexts'
 
 import { OutlinkOptions, useAppBridge } from '../common/app-bridge'
-import { useOnClientRequired } from '../common/on-client-required'
+import { useOnTripleClientRequired } from '../common/on-client-required'
 import { useOnSessionRequired } from '../common/on-session-required'
 
 import canonizeTargetAddress from './canonization'
@@ -19,7 +19,7 @@ export function useNavigate({
   const { isPublic } = useUserAgentContext()
   const sessionAvailable = useSessionAvailability()
   const { openOutlink, openNativeLink } = useAppBridge()
-  const onClientRequired = useOnClientRequired()
+  const onClientRequired = useOnTripleClientRequired()
   const onSessionRequired = useOnSessionRequired()
 
   const navigateInBrowser = useCallback(

@@ -15,8 +15,8 @@ import {
 } from '@titicaca/react-contexts'
 import {
   ExternalLink,
-  RouterOnClientRequiredProvider,
   RouterOnSessionRequiredProvider,
+  RouterOnTripleClientRequiredProvider,
 } from '@titicaca/router'
 import React, { PropsWithChildren } from 'react'
 
@@ -47,11 +47,11 @@ test('브라우저를 허용하지 않는 링크라면 브라우저 환경에서
             <SessionProvider>
               <HistoryProvider>
                 <LoginCtaModalProvider>
-                  <RouterOnClientRequiredProviderWrapper>
+                  <RouterOnTripleClientRequiredProviderWrapper>
                     <RouterOnSessionRequiredProviderWrapper>
                       {children}
                     </RouterOnSessionRequiredProviderWrapper>
-                  </RouterOnClientRequiredProviderWrapper>
+                  </RouterOnTripleClientRequiredProviderWrapper>
                 </LoginCtaModalProvider>
                 <TransitionModal deepLink="MOCK_DEEP_LINK" />
               </HistoryProvider>
@@ -93,11 +93,11 @@ test('로그인한 앱에서만 열리는 링크라면 로그인하지 않은 �
             <SessionProvider>
               <HistoryProvider>
                 <LoginCtaModalProvider>
-                  <RouterOnClientRequiredProviderWrapper>
+                  <RouterOnTripleClientRequiredProviderWrapper>
                     <RouterOnSessionRequiredProviderWrapper>
                       {children}
                     </RouterOnSessionRequiredProviderWrapper>
-                  </RouterOnClientRequiredProviderWrapper>
+                  </RouterOnTripleClientRequiredProviderWrapper>
                 </LoginCtaModalProvider>
               </HistoryProvider>
             </SessionProvider>
@@ -189,15 +189,17 @@ function createUserAgentProvider({ isPublic }: { isPublic: boolean }) {
   }
 }
 
-function RouterOnClientRequiredProviderWrapper({
+function RouterOnTripleClientRequiredProviderWrapper({
   children,
 }: PropsWithChildren<unknown>) {
   const { show } = useTransitionModal()
 
   return (
-    <RouterOnClientRequiredProvider value={() => show(TransitionType.General)}>
+    <RouterOnTripleClientRequiredProvider
+      value={() => show(TransitionType.General)}
+    >
       {children}
-    </RouterOnClientRequiredProvider>
+    </RouterOnTripleClientRequiredProvider>
   )
 }
 

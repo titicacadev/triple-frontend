@@ -3,7 +3,7 @@ import {
   useUserAgentContext,
 } from '@titicaca/react-contexts'
 
-import { useOnClientRequired } from './on-client-required'
+import { useOnTripleClientRequired } from './on-client-required'
 import { useOnSessionRequired } from './on-session-required'
 
 export type AllowSource = 'all' | 'app' | 'app-with-session' | 'none'
@@ -24,7 +24,7 @@ export function useDisabledLinkNotifierCreator({
 } = {}) {
   const { isPublic } = useUserAgentContext()
   const sessionAvailable = useSessionAvailability()
-  const onClientRequired = useOnClientRequired()
+  const onClientRequired = useOnTripleClientRequired()
   const onSessionRequired = useOnSessionRequired()
 
   const createDisabledLinkNotifier = ({

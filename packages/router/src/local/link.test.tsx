@@ -9,7 +9,7 @@ import {
 
 import { useAppBridge } from '../common/app-bridge'
 import { useWebUrlBaseAdder } from '../common/add-web-url-base'
-import { useOnClientRequired } from '../common/on-client-required'
+import { useOnTripleClientRequired } from '../common/on-client-required'
 import { useOnSessionRequired } from '../common/on-session-required'
 
 import { LocalLink } from './link'
@@ -141,7 +141,9 @@ function prepareTest({
     useSessionAvailability as jest.MockedFunction<typeof useSessionAvailability>
   ).mockImplementation(() => sessionAvailability)
   ;(
-    useOnClientRequired as jest.MockedFunction<typeof useOnClientRequired>
+    useOnTripleClientRequired as jest.MockedFunction<
+      typeof useOnTripleClientRequired
+    >
   ).mockReturnValue(onClientRequired)
   ;(
     useOnSessionRequired as jest.MockedFunction<typeof useOnSessionRequired>

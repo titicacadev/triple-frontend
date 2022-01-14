@@ -5,7 +5,7 @@ import {
 } from '@titicaca/react-contexts'
 
 import { useDisabledLinkNotifierCreator } from './disabled-link-notifier'
-import { useOnClientRequired } from './on-client-required'
+import { useOnTripleClientRequired } from './on-client-required'
 import { useOnSessionRequired } from './on-session-required'
 
 jest.mock('@titicaca/react-contexts')
@@ -155,7 +155,9 @@ function prepareTest({
   const onSessionRequired = jest.fn()
 
   ;(
-    useOnClientRequired as jest.MockedFunction<typeof useOnClientRequired>
+    useOnTripleClientRequired as jest.MockedFunction<
+      typeof useOnTripleClientRequired
+    >
   ).mockReturnValue(onClientRequired)
   ;(
     useOnSessionRequired as jest.MockedFunction<typeof useOnSessionRequired>

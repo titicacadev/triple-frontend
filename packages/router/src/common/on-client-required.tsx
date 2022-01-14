@@ -1,15 +1,18 @@
 import { createContext, useContext } from 'react'
 
-const OnClientRequiredContext = createContext<(() => void) | null>(null)
+const OnTripleClientRequiredContext = createContext<(() => void) | null>(null)
 
-export function useOnClientRequired() {
-  const context = useContext(OnClientRequiredContext)
+export function useOnTripleClientRequired() {
+  const context = useContext(OnTripleClientRequiredContext)
 
   if (context === null) {
-    throw new Error('OnClientRequiredContext의 Provider를 찾을 수 없습니다.')
+    throw new Error(
+      'OnTripleClientRequiredContext의 Provider를 찾을 수 없습니다.',
+    )
   }
 
   return context
 }
 
-export const RouterOnClientRequiredProvider = OnClientRequiredContext.Provider
+export const RouterOnTripleClientRequiredProvider =
+  OnTripleClientRequiredContext.Provider
