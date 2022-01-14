@@ -266,3 +266,37 @@ export async function deleteReply({
 
   captureHttpError(response)
 }
+
+export async function likeReply({ messageId }: { messageId: string }) {
+  const response = await authGuardedFetchers.put(
+    `/api/reply/messages/${messageId}/like`,
+    {
+      body: {
+        messageId,
+      },
+    },
+  )
+
+  if (response === 'NEED_LOGIN') {
+    throw new Error('로그인이 필요한 호출입니다.')
+  }
+
+  captureHttpError(response)
+}
+
+export async function unlikeReply({ messageId }: { messageId: string }) {
+  const response = await authGuardedFetchers.del(
+    `/api/reply/messages/${messageId}/like`,
+    {
+      body: {
+        messageId,
+      },
+    },
+  )
+
+  if (response === 'NEED_LOGIN') {
+    throw new Error('로그인이 필요한 호출입니다.')
+  }
+
+  captureHttpError(response)
+}
