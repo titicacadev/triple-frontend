@@ -307,7 +307,7 @@ export async function blindReply({
   currentMessageId: string
 }) {
   const response = await authGuardedFetchers.put(
-    `/api/internal/messages/${currentMessageId}/blind`,
+    `/api/reply/internal/messages/${currentMessageId}/blind`,
     {
       body: {
         id: currentMessageId,
