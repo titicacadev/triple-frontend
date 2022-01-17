@@ -239,3 +239,14 @@ test('뒤로 가기로 오버레이를 닫습니다.', () => {
 
   expect(result.current.isVisible).toBe(false)
 })
+
+test('hash가 처음부터 존재하면 해당 오버레이가 보여야 합니다.', () => {
+  const targetHash = 'target.hash'
+  mockHistory.histories = [`#${targetHash}`]
+  const { result } = renderHook(useOverlayController, {
+    initialProps: targetHash,
+    wrapper: OverlayControllerProvider,
+  })
+
+  expect(result.current.isVisible).toBe(true)
+})
