@@ -97,7 +97,7 @@ test('useOverlayController는 isVisible, show, hide 속성을 반환합니다.',
     expect.objectContaining({
       isVisible: expect.any(Boolean),
       show: expect.any(Function),
-      hide: expect.any(Function),
+      close: expect.any(Function),
     }),
   )
 })
