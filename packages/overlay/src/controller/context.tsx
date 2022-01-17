@@ -41,19 +41,27 @@ export function OverlayControllerProvider({
   const [hash, setHash] = useState<string>()
 
   const show = useCallback<OverlayControllerContextValue['show']>(
-    (hash) => {
-      setHash(hash)
+    (newHash) => {
+      if (newHash === hash) {
+        return
+      }
 
-      push(`#${hash}`)
+      setHash(newHash)
+
+      push(`#${newHash}`)
     },
-    [push],
+    [hash, push],
   )
 
   const hide = useCallback<OverlayControllerContextValue['hide']>(() => {
+    if (hash === undefined) {
+      return
+    }
+
     setHash(undefined)
 
     back()
-  }, [back])
+  }, [back, hash])
 
   const value = useMemo(() => ({ hash, show, hide }), [hash, hide, show])
 

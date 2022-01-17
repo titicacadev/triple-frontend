@@ -12,6 +12,11 @@ jest.mock('next/router', () => ({
   }),
 }))
 
+afterEach(() => {
+  nextRouterBack.mockClear()
+  nextRouterPush.mockClear()
+})
+
 test('OverlayControllerProvider가 없을 때 useOverlayController를 호출하면 오류를 냅니다.', () => {
   const {
     result: { error },
@@ -60,6 +65,9 @@ test('useOverlayController의 hide를 호출하면 true였던 isVisible이 false
 
   act(() => {
     result.current.show()
+  })
+
+  act(() => {
     result.current.hide()
   })
 
@@ -114,6 +122,9 @@ test('열린 오버레이를 한 번 더 열어도 아무 행동을 하지 않�
 
   act(() => {
     result.current.show()
+  })
+
+  act(() => {
     result.current.show()
   })
 
@@ -129,7 +140,14 @@ test('닫힌 오버레이를 한 번 더 닫아도 아무 행동을 하지 않�
   })
 
   act(() => {
+    result.current.show()
+  })
+
+  act(() => {
     result.current.hide()
+  })
+
+  act(() => {
     result.current.hide()
   })
 
