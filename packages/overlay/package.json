@@ -1,0 +1,23 @@
+{
+  "name": "@titicaca/overlay",
+  "version": "5.2.1",
+  "description": "Overlay components",
+  "keywords": [
+    "react"
+  ],
+  "homepage": "https://github.com/titicacadev/triple-frontend",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  }
+}

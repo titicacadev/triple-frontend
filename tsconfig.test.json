@@ -32,6 +32,7 @@
       "@titicaca/meta-tags": ["meta-tags/src"],
       "@titicaca/modals": ["modals/src"],
       "@titicaca/nearby-pois": ["nearby-pois/src"],
+      "@titicaca/overlay": ["overlay/src"],
       "@titicaca/poi-detail": ["poi-detail/src"],
       "@titicaca/poi-list-elements": ["poi-list-elements/src"],
       "@titicaca/popup": ["popup/src"],
