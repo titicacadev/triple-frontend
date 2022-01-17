@@ -66,3 +66,41 @@ test('useOverlayController의 hide를 호출하면 true였던 isVisible이 false
   expect(result.current.isVisible).toBe(false)
   expect(nextRouterBack).toBeCalled()
 })
+
+test('여러 개의 오버레이를 연속해서 표시할 수 있어야 합니다.', () => {
+  const overlay1Hash = 'this.is.overlay.one'
+  const overlay2Hash = 'this.is.overlay.two'
+
+  function useCombinedOverlay() {
+    const overlay1 = useOverlayController(overlay1Hash)
+    const overlay2 = useOverlayController(overlay2Hash)
+
+    return {
+      visible: overlay1.isVisible
+        ? 'overlay1'
+        : overlay2.isVisible
+        ? 'overlay2'
+        : 'none',
+      overlay1,
+      overlay2,
+    }
+  }
+
+  const { result } = renderHook(useCombinedOverlay, {
+    wrapper: OverlayControllerProvider,
+  })
+
+  act(() => {
+    result.current.overlay1.show()
+    result.current.overlay1.hide()
+    result.current.overlay2.show()
+  })
+
+  expect(result.current.visible).toBe('overlay2')
+
+  act(() => {
+    result.current.overlay1.show()
+  })
+
+  expect(result.current.visible).toBe('overlay1')
+})
