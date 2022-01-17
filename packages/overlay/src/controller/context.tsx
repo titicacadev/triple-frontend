@@ -60,6 +60,12 @@ export function OverlayControllerProvider({
   }, [])
 
   useEffect(() => {
+    if (window.location.hash !== '') {
+      setHash(window.location.hash.replace('#', ''))
+    }
+  }, [])
+
+  useEffect(() => {
     const handleHashChange = ({ newURL: newUrl }: HashChangeEvent) => {
       const [, hash] = newUrl.split('#')
 
