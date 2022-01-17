@@ -2,10 +2,28 @@ import { renderHook, act } from '@testing-library/react-hooks'
 
 import { OverlayControllerProvider, useOverlayController } from './context'
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const listeners: ((event: { newURL: string }) => void)[] = []
+
+const mockAddEventListener = (
+  eventType: string,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  handleHashChange: (event: { newURL: string }) => void,
+) => {
+  if (eventType === 'hashchange') {
+    listeners.push(handleHashChange)
+  }
+}
+
 const mockHistory: { histories: string[]; back: () => void } = {
   histories: [],
   back() {
-    this.histories.shift()
+    const hash = this.histories.shift()
+
+    listeners.forEach((handler) => {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      handler({ newURL: `#${hash}` })
+    })
   },
 }
 
@@ -25,6 +43,11 @@ const mockLocation = {
     } else {
       mockHistory.histories.unshift(`#${hash}`)
     }
+
+    listeners.forEach((handler) => {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      handler({ newURL: `#${hash}` })
+    })
   },
 }
 
@@ -38,6 +61,11 @@ window.history = mockHistory
 delete window.location
 // @ts-ignore
 window.location = mockLocation
+
+// @ts-ignore
+delete window.addEventListener
+// @ts-ignore
+window.addEventListener = mockAddEventListener
 /* eslint-enable @typescript-eslint/ban-ts-comment */
 
 const spySetHash = jest.spyOn(window.location, 'hash', 'set')

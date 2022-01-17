@@ -3,6 +3,7 @@ import React, {
   PropsWithChildren,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from 'react'
@@ -56,6 +57,19 @@ export function OverlayControllerProvider({
     setHash(undefined)
 
     window.location.hash = ''
+  }, [])
+
+  useEffect(() => {
+    const handleHashChange = ({ newURL: newUrl }: HashChangeEvent) => {
+      const [, hash] = newUrl.split('#')
+
+      setHash(hash)
+    }
+
+    window.addEventListener('hashchange', handleHashChange)
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange)
+    }
   }, [])
 
   const value = useMemo(() => ({ hash, show, hide }), [hash, hide, show])
