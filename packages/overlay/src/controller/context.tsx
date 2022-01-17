@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import React, {
   createContext,
   PropsWithChildren,
@@ -37,27 +38,33 @@ export function useOverlayController(hash: string) {
 export function OverlayControllerProvider({
   children,
 }: PropsWithChildren<unknown>) {
+  const router = useRouter()
   const [hash, setHash] = useState<string>()
 
-  const show = useCallback<OverlayControllerContextValue['show']>((newHash) => {
-    if (window.location.hash === `#${newHash}`) {
-      return
-    }
+  const show = useCallback<OverlayControllerContextValue['show']>(
+    async (newHash) => {
+      if (window.location.hash === `#${newHash}`) {
+        return
+      }
 
-    setHash(newHash)
+      setHash(newHash)
 
-    window.location.hash = newHash
-  }, [])
+      await router.push(`#${newHash}`)
+    },
+    [router],
+  )
 
-  const close = useCallback<OverlayControllerContextValue['close']>(() => {
+  const close = useCallback<
+    OverlayControllerContextValue['close']
+  >(async () => {
     if (window.location.hash === '') {
       return
     }
 
     setHash(undefined)
 
-    window.location.hash = ''
-  }, [])
+    await router.push('#')
+  }, [router])
 
   useEffect(() => {
     if (window.location.hash !== '') {
@@ -66,17 +73,17 @@ export function OverlayControllerProvider({
   }, [])
 
   useEffect(() => {
-    const handleHashChange = ({ newURL: newUrl }: HashChangeEvent) => {
-      const [, hash] = newUrl.split('#')
+    const handleHashChange = (url: string) => {
+      const [, hash] = url.split('#')
 
       setHash(hash)
     }
 
-    window.addEventListener('hashchange', handleHashChange)
+    router.events.on('hashChangeStart', handleHashChange)
     return () => {
-      window.removeEventListener('hashchange', handleHashChange)
+      router.events.off('hashChangeStart', handleHashChange)
     }
-  }, [])
+  }, [router.events])
 
   const value = useMemo<OverlayControllerContextValue>(
     () => ({ hash, show, close }),
