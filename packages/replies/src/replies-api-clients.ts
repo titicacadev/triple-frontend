@@ -300,24 +300,3 @@ export async function unlikeReply({ messageId }: { messageId: string }) {
 
   captureHttpError(response)
 }
-
-export async function blindReply({
-  currentMessageId,
-}: {
-  currentMessageId: string
-}) {
-  const response = await authGuardedFetchers.put(
-    `/api/reply/internal/messages/${currentMessageId}/blind`,
-    {
-      body: {
-        id: currentMessageId,
-      },
-    },
-  )
-
-  if (response === 'NEED_LOGIN') {
-    throw new Error('로그인이 필요한 호출입니다.')
-  }
-
-  captureHttpError(response)
-}
