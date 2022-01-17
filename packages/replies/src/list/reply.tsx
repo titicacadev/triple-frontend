@@ -56,6 +56,16 @@ const MentionUser = styled.a`
   margin-right: 5px;
 `
 
+const ThanksButton = styled.button`
+  border: none;
+  outline: none;
+  background: white;
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  cursor: pointer;
+`
+
 const HASH_MORE_ACTION_SHEET = 'reply.more-action-sheet'
 export const HASH_DELETE_CLOSE_MODAL = 'reply.delete-close-modal'
 
@@ -272,23 +282,27 @@ export default function Reply({
             cursor="pointer"
           >
             {reactions.like?.haveMine ? (
-              <img
-                width={14}
-                height={14}
-                src="https://assets.triple.guide/images/btn-lounge-thanks-on@3x.png"
-                alt="thanks on icon"
+              <ThanksButton
                 onClick={() => handleUnLikeReplyClick({ messageId: id })}
-                role="presentation"
-              />
+              >
+                <img
+                  width={14}
+                  height={14}
+                  src="https://assets.triple.guide/images/btn-lounge-thanks-on@3x.png"
+                  alt="thanks on icon"
+                />
+              </ThanksButton>
             ) : (
-              <img
-                width={14}
-                height={14}
-                src="https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png"
-                alt="thanks off icon"
+              <ThanksButton
                 onClick={() => handleLikeReplyClick({ messageId: id })}
-                role="presentation"
-              />
+              >
+                <img
+                  width={14}
+                  height={14}
+                  src="https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png"
+                  alt="thanks off icon"
+                />
+              </ThanksButton>
             )}
 
             {reactions.like && reactions.like?.count > 0 ? (
