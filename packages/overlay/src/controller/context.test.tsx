@@ -2,19 +2,39 @@ import { renderHook, act } from '@testing-library/react-hooks'
 
 import { OverlayControllerProvider, useOverlayController } from './context'
 
-const nextRouterPush = jest.fn()
-const nextRouterBack = jest.fn()
+const mockLocation = {
+  hashValue: '',
+  get hash() {
+    if (this.hashValue === '#') {
+      return ''
+    }
 
-jest.mock('next/router', () => ({
-  useRouter: () => ({
-    push: nextRouterPush,
-    back: nextRouterBack,
-  }),
-}))
+    return this.hashValue
+  },
+  set hash(hash: string) {
+    if (hash.startsWith('#')) {
+      this.hashValue = hash
+    } else {
+      this.hashValue = `#${hash}`
+    }
+  },
+}
+
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-ignore
+delete window.location
+// @ts-ignore
+window.location = mockLocation
+/* eslint-enable @typescript-eslint/ban-ts-comment */
+
+const spySetHash = jest.spyOn(window.location, 'hash', 'set')
+
+beforeEach(() => {
+  mockLocation.hashValue = ''
+})
 
 afterEach(() => {
-  nextRouterBack.mockClear()
-  nextRouterPush.mockClear()
+  spySetHash.mockClear()
 })
 
 test('OverlayControllerProvider가 없을 때 useOverlayController를 호출하면 오류를 냅니다.', () => {
@@ -41,7 +61,7 @@ test('useOverlayController는 isVisible, show, hide 속성을 반환합니다.',
   )
 })
 
-test('useOverlayController의 show를 호출하면 isVisible이 true로 바뀌고, next/router의 push를 호출합니다.', () => {
+test('useOverlayController의 show를 호출하면 isVisible이 true로 바뀌고, location.hash가 바뀝니다.', () => {
   const targetHash = 'target.hash'
   const { result } = renderHook(useOverlayController, {
     initialProps: targetHash,
@@ -53,10 +73,10 @@ test('useOverlayController의 show를 호출하면 isVisible이 true로 바뀌�
   })
 
   expect(result.current.isVisible).toBe(true)
-  expect(nextRouterPush).toBeCalledWith(`#${targetHash}`)
+  expect(window.location.hash).toBe(`#${targetHash}`)
 })
 
-test('useOverlayController의 hide를 호출하면 true였던 isVisible이 false로 바뀌고, next/router의 back을 호출합니다.', () => {
+test('useOverlayController의 hide를 호출하면 true였던 isVisible이 false로 바뀌고, location.hash가 빈 문자열로 바뀝니다.', () => {
   const targetHash = 'target.hash'
   const { result } = renderHook(useOverlayController, {
     initialProps: targetHash,
@@ -72,7 +92,7 @@ test('useOverlayController의 hide를 호출하면 true였던 isVisible이 false
   })
 
   expect(result.current.isVisible).toBe(false)
-  expect(nextRouterBack).toBeCalled()
+  expect(window.location.hash).toBe('')
 })
 
 test('여러 개의 오버레이를 연속해서 표시할 수 있어야 합니다.', () => {
@@ -129,7 +149,6 @@ test('열린 오버레이를 한 번 더 열어도 아무 행동을 하지 않�
   })
 
   expect(result.current.isVisible).toBe(true)
-  expect(nextRouterPush).toBeCalledTimes(1)
 })
 
 test('닫힌 오버레이를 한 번 더 닫아도 아무 행동을 하지 않아야 합니다.', () => {
@@ -138,6 +157,13 @@ test('닫힌 오버레이를 한 번 더 닫아도 아무 행동을 하지 않�
     initialProps: targetHash,
     wrapper: OverlayControllerProvider,
   })
+
+  act(() => {
+    result.current.hide()
+  })
+
+  expect(result.current.isVisible).toBe(false)
+  expect(spySetHash).toBeCalledTimes(0)
 
   act(() => {
     result.current.show()
@@ -152,5 +178,5 @@ test('닫힌 오버레이를 한 번 더 닫아도 아무 행동을 하지 않�
   })
 
   expect(result.current.isVisible).toBe(false)
-  expect(nextRouterBack).toBeCalledTimes(1)
+  expect(spySetHash).toBeCalledTimes(2)
 })

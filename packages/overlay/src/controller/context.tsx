@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import React, {
   createContext,
   PropsWithChildren,
@@ -37,31 +36,27 @@ export function useOverlayController(hash: string) {
 export function OverlayControllerProvider({
   children,
 }: PropsWithChildren<unknown>) {
-  const { push, back } = useRouter()
   const [hash, setHash] = useState<string>()
 
-  const show = useCallback<OverlayControllerContextValue['show']>(
-    (newHash) => {
-      if (newHash === hash) {
-        return
-      }
+  const show = useCallback<OverlayControllerContextValue['show']>((newHash) => {
+    if (window.location.hash === `#${newHash}`) {
+      return
+    }
 
-      setHash(newHash)
+    setHash(newHash)
 
-      push(`#${newHash}`)
-    },
-    [hash, push],
-  )
+    window.location.hash = newHash
+  }, [])
 
   const hide = useCallback<OverlayControllerContextValue['hide']>(() => {
-    if (hash === undefined) {
+    if (window.location.hash === '') {
       return
     }
 
     setHash(undefined)
 
-    back()
-  }, [back, hash])
+    window.location.hash = ''
+  }, [])
 
   const value = useMemo(() => ({ hash, show, hide }), [hash, hide, show])
 
