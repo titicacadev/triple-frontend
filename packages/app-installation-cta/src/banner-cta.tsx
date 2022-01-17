@@ -61,7 +61,14 @@ export default function BannerCTA({
 
   return inventoryItem ? (
     isImageBannerOpen && image ? (
-      <Overlay zTier={zTier} zIndex={zIndex}>
+      <Overlay
+        zTier={zTier}
+        zIndex={zIndex}
+        onClick={(e) => {
+          setIsImageBannerOpen(false)
+          onDismiss && onDismiss(inventoryItem)
+        }}
+      >
         <BottomFixedContainer>
           <ImageBanner
             imgUrl={image}
