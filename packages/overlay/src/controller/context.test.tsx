@@ -38,15 +38,12 @@ const mockLocation = {
     return hash
   },
   set hash(hash: string) {
-    if (hash.startsWith('#')) {
-      mockHistory.histories.unshift(hash)
-    } else {
-      mockHistory.histories.unshift(`#${hash}`)
-    }
+    const finalHash = hash.startsWith('#') ? hash : `#${hash}`
 
+    mockHistory.histories.unshift(finalHash)
     listeners.forEach((handler) => {
       // eslint-disable-next-line @typescript-eslint/naming-convention
-      handler({ newURL: `#${hash}` })
+      handler({ newURL: finalHash })
     })
   },
 }
