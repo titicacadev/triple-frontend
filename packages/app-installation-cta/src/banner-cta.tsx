@@ -64,7 +64,7 @@ export default function BannerCTA({
       <Overlay
         zTier={zTier}
         zIndex={zIndex}
-        onClick={(e) => {
+        onClick={() => {
           setIsImageBannerOpen(false)
           onDismiss && onDismiss(inventoryItem)
         }}

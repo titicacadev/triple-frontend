@@ -39,16 +39,16 @@ export default function ImageBanner({
   }, [onShow, inventoryItem])
 
   const handleClick = useCallback(
-    (e?: React.SyntheticEvent) => {
-      e?.stopPropagation()
+    (e: React.SyntheticEvent) => {
+      e.stopPropagation()
       onClick && onClick(inventoryItem)
     },
     [onClick, inventoryItem],
   )
 
   const handleDismiss = useCallback(
-    (e?: React.SyntheticEvent) => {
-      e?.stopPropagation()
+    (e) => {
+      e.stopPropagation()
       onDismiss && onDismiss(inventoryItem)
     },
     [onDismiss, inventoryItem],
