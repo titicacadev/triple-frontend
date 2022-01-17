@@ -104,3 +104,35 @@ test('여러 개의 오버레이를 연속해서 표시할 수 있어야 합니�
 
   expect(result.current.visible).toBe('overlay1')
 })
+
+test('열린 오버레이를 한 번 더 열어도 아무 행동을 하지 않아야 합니다.', () => {
+  const targetHash = 'target.hash'
+  const { result } = renderHook(useOverlayController, {
+    initialProps: targetHash,
+    wrapper: OverlayControllerProvider,
+  })
+
+  act(() => {
+    result.current.show()
+    result.current.show()
+  })
+
+  expect(result.current.isVisible).toBe(true)
+  expect(nextRouterPush).toBeCalledTimes(1)
+})
+
+test('닫힌 오버레이를 한 번 더 닫아도 아무 행동을 하지 않아야 합니다.', () => {
+  const targetHash = 'target.hash'
+  const { result } = renderHook(useOverlayController, {
+    initialProps: targetHash,
+    wrapper: OverlayControllerProvider,
+  })
+
+  act(() => {
+    result.current.hide()
+    result.current.hide()
+  })
+
+  expect(result.current.isVisible).toBe(false)
+  expect(nextRouterBack).toBeCalledTimes(1)
+})
