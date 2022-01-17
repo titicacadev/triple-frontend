@@ -11,7 +11,7 @@ import React, {
 interface OverlayControllerContextValue {
   hash: string | undefined
   show: (hash: string) => void
-  hide: () => void
+  close: () => void
 }
 
 const OverlayControllerContext = createContext<
@@ -25,12 +25,12 @@ export function useOverlayController(hash: string) {
     throw new Error('OverlayControllerContext의 Provider가 없습니다.')
   }
 
-  const { hash: currentHash, show, hide } = context
+  const { hash: currentHash, show, close } = context
 
   return {
     isVisible: currentHash === hash,
     show: () => show(hash),
-    hide,
+    close,
   }
 }
 
@@ -49,7 +49,7 @@ export function OverlayControllerProvider({
     window.location.hash = newHash
   }, [])
 
-  const hide = useCallback<OverlayControllerContextValue['hide']>(() => {
+  const close = useCallback<OverlayControllerContextValue['close']>(() => {
     if (window.location.hash === '') {
       return
     }
@@ -78,7 +78,10 @@ export function OverlayControllerProvider({
     }
   }, [])
 
-  const value = useMemo(() => ({ hash, show, hide }), [hash, hide, show])
+  const value = useMemo<OverlayControllerContextValue>(
+    () => ({ hash, show, close }),
+    [hash, close, show],
+  )
 
   return (
     <OverlayControllerContext.Provider value={value}>

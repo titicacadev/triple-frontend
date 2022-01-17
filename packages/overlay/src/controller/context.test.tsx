@@ -129,7 +129,7 @@ test('useOverlayController의 hide를 호출하면 true였던 isVisible이 false
   })
 
   act(() => {
-    result.current.hide()
+    result.current.close()
   })
 
   expect(result.current.isVisible).toBe(false)
@@ -161,7 +161,7 @@ test('여러 개의 오버레이를 연속해서 표시할 수 있어야 합니�
 
   act(() => {
     result.current.overlay1.show()
-    result.current.overlay1.hide()
+    result.current.overlay1.close()
     result.current.overlay2.show()
   })
 
@@ -200,7 +200,7 @@ test('닫힌 오버레이를 한 번 더 닫아도 아무 행동을 하지 않�
   })
 
   act(() => {
-    result.current.hide()
+    result.current.close()
   })
 
   expect(result.current.isVisible).toBe(false)
@@ -211,11 +211,11 @@ test('닫힌 오버레이를 한 번 더 닫아도 아무 행동을 하지 않�
   })
 
   act(() => {
-    result.current.hide()
+    result.current.close()
   })
 
   act(() => {
-    result.current.hide()
+    result.current.close()
   })
 
   expect(result.current.isVisible).toBe(false)
