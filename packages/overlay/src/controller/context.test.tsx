@@ -67,6 +67,28 @@ window.addEventListener = mockAddEventListener
 
 const spySetHash = jest.spyOn(window.location, 'hash', 'set')
 
+jest.mock('next/router', () => ({
+  useRouter: () => {
+    let listeners: ((url: string) => void)[] = []
+    return {
+      events: {
+        on: (type: string, fn: (url: string) => void) => {
+          listeners.push(fn)
+          window.addEventListener('hashchange', ({ newURL: newUrl }) => {
+            fn(newUrl)
+          })
+        },
+        off: (type: string, fn: (url: string) => void) => {
+          listeners = listeners.filter((listener) => listener === fn)
+        },
+      },
+      push: (hash: string) => {
+        window.location.hash = hash
+      },
+    }
+  },
+}))
+
 beforeEach(() => {
   mockHistory.histories = []
 })
