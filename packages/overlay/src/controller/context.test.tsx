@@ -2,25 +2,38 @@ import { renderHook, act } from '@testing-library/react-hooks'
 
 import { OverlayControllerProvider, useOverlayController } from './context'
 
+const mockHistory: { histories: string[]; back: () => void } = {
+  histories: [],
+  back() {
+    this.histories.shift()
+  },
+}
+
 const mockLocation = {
-  hashValue: '',
   get hash() {
-    if (this.hashValue === '#') {
+    const hash = mockHistory.histories[0] ?? ''
+
+    if (hash === '#') {
       return ''
     }
 
-    return this.hashValue
+    return hash
   },
   set hash(hash: string) {
     if (hash.startsWith('#')) {
-      this.hashValue = hash
+      mockHistory.histories.unshift(hash)
     } else {
-      this.hashValue = `#${hash}`
+      mockHistory.histories.unshift(`#${hash}`)
     }
   },
 }
 
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-ignore
+delete window.history
+// @ts-ignore
+window.history = mockHistory
+
 // @ts-ignore
 delete window.location
 // @ts-ignore
@@ -30,7 +43,7 @@ window.location = mockLocation
 const spySetHash = jest.spyOn(window.location, 'hash', 'set')
 
 beforeEach(() => {
-  mockLocation.hashValue = ''
+  mockHistory.histories = []
 })
 
 afterEach(() => {
@@ -179,4 +192,22 @@ test('닫힌 오버레이를 한 번 더 닫아도 아무 행동을 하지 않�
 
   expect(result.current.isVisible).toBe(false)
   expect(spySetHash).toBeCalledTimes(2)
+})
+
+test('뒤로 가기로 오버레이를 닫습니다.', () => {
+  const targetHash = 'target.hash'
+  const { result } = renderHook(useOverlayController, {
+    initialProps: targetHash,
+    wrapper: OverlayControllerProvider,
+  })
+
+  act(() => {
+    result.current.show()
+  })
+
+  act(() => {
+    window.history.back()
+  })
+
+  expect(result.current.isVisible).toBe(false)
 })
