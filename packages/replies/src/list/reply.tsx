@@ -10,7 +10,7 @@ import {
 import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
 import { useAppCallback } from '@titicaca/ui-flow'
 import { TransitionType } from '@titicaca/modals'
-import { ExternalLink } from '@titicaca/router'
+import { ExternalLink, useNavigate } from '@titicaca/router'
 import {
   useUriHash,
   useHistoryFunctions,
@@ -23,7 +23,6 @@ import {
   fetchChildReplies,
   likeReply,
   unlikeReply,
-  blindReply,
 } from '../replies-api-clients'
 import { checkUniqueReply } from '../utils'
 import { useRepliesContext } from '../context'
@@ -106,6 +105,8 @@ export default function Reply({
   const { push, back } = useHistoryFunctions()
 
   const { asyncBack } = useIsomorphicNavigation()
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     async function fetchChildRepliesAndSet() {
@@ -234,9 +235,12 @@ export default function Reply({
 
   const handleBlindReplyClick = useAppCallback(
     TransitionType.General,
-    useCallback(async ({ messageId }: { messageId: string }) => {
-      await blindReply({ currentMessageId: messageId })
-    }, []),
+    useCallback(
+      ({ messageId }: { messageId: string }) => {
+        navigate(`/reply/${messageId}/report`)
+      },
+      [navigate],
+    ),
   )
 
   const derivedText = deriveContent({
