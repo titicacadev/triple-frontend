@@ -80,7 +80,7 @@ export default function Reply({
     blinded,
     createdAt,
     content: { mentionedUser, text, markdownText },
-    reactions: defaultReactions,
+    reactions,
     childrenCount,
     children,
     id,
@@ -96,7 +96,7 @@ export default function Reply({
     childReplies: ReplyType[]
     childPage: number
   }>({ childReplies: checkUniqueReply(children), childPage: 0 })
-  const [reactions, setReactions] = useState(defaultReactions)
+  const [likeReaction, setLikeReactions] = useState(reactions.like)
 
   const { setEditingMessage } = useRepliesContext()
 
@@ -208,12 +208,10 @@ export default function Reply({
   const handleLikeReplyClick = async ({ messageId }: { messageId: string }) => {
     await likeReply({ messageId })
 
-    setReactions((prev) => ({
+    setLikeReactions((prev) => ({
       ...prev,
-      like: {
-        count: (prev?.like?.count || 0) + 1,
-        haveMine: true,
-      },
+      count: (prev?.count || 0) + 1,
+      haveMine: true,
     }))
   }
 
@@ -224,12 +222,10 @@ export default function Reply({
   }) => {
     await unlikeReply({ messageId })
 
-    setReactions((prev) => ({
+    setLikeReactions((prev) => ({
       ...prev,
-      like: {
-        count: (prev?.like?.count || 0) - 1,
-        haveMine: false,
-      },
+      count: (prev?.count || 0) - 1,
+      haveMine: false,
     }))
   }
 
@@ -281,7 +277,7 @@ export default function Reply({
             alignItems="center"
             cursor="pointer"
           >
-            {reactions.like?.haveMine ? (
+            {likeReaction?.haveMine ? (
               <ThanksButton
                 onClick={() => handleUnlikeReplyClick({ messageId: id })}
               >
@@ -305,9 +301,9 @@ export default function Reply({
               </ThanksButton>
             )}
 
-            {reactions.like && reactions.like?.count > 0 ? (
+            {likeReaction && likeReaction.count > 0 ? (
               <Text padding={{ left: 2 }} size={12} color="gray300" bold>
-                좋아요 {reactions.like?.count}
+                좋아요 {likeReaction.count}
               </Text>
             ) : null}
 
