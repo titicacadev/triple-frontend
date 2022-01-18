@@ -148,7 +148,7 @@ const ButtonIcon = styled.div<{ size?: GlobalSizes; src?: string }>`
   background-image: url(${({ src }) => src});
 `
 
-interface ButtonAProps {
+interface ButtonStyleAnchorProps {
   // HTML
   a: React.DetailedHTMLProps<
     React.AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -164,18 +164,21 @@ export interface ButtonProps extends BasicButtonProp, ButtonBaseProp {
   basic?: boolean
   icon?: string
   borderRadius?: number
-  onClick?: (e: React.SyntheticEvent) => any
-  as?: keyof ButtonAProps
+  onClick?: (e: React.SyntheticEvent) => unknown
+  as?: keyof ButtonStyleAnchorProps
 }
 
 class Button extends React.PureComponent<ButtonProps> {
-  static Container = ButtonContainer
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  public static Container = ButtonContainer
 
-  static Group = ButtonGroup
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  public static Group = ButtonGroup
 
-  static Icon = ButtonIcon
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  public static Icon = ButtonIcon
 
-  render() {
+  public render() {
     const {
       props: {
         basic,

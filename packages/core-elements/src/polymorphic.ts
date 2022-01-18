@@ -14,6 +14,6 @@ export type PolymorphicProps<P, C extends Polymorphic> = Merge<
     ? React.PropsWithoutRef<JSX.IntrinsicElements[C]>
     : C extends React.ComponentType
     ? React.ComponentPropsWithoutRef<C>
-    : {},
+    : Record<string, never>,
   PropsWithAsProp<P, C>
 >

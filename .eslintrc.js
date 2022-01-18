@@ -66,6 +66,7 @@ const { overrides, ...rest } = createConfig({
     'UTMContext',
     'webURLBase',
     'iOS',
+    '_css',
   ],
 })
 

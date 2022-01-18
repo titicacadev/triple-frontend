@@ -39,7 +39,7 @@ export type CardProps = Partial<
 
 const borderRadius = ({
   radius = 0,
-}: ThemedStyledProps<any, { radius?: number }>) => css`
+}: ThemedStyledProps<{ radius?: number }, unknown>) => css`
   border-radius: ${radius}px;
 `
 

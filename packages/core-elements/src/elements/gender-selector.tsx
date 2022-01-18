@@ -9,7 +9,7 @@ import Container from './container'
 interface GenderSelectorProps {
   name?: string
   value?: string
-  onChange?: (e: React.SyntheticEvent, arg1: string) => any
+  onChange?: (e: React.SyntheticEvent, arg1: string) => unknown
 }
 
 const GenderContainer = styled.div<{

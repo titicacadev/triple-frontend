@@ -23,12 +23,14 @@ export type GlobalSizes =
   | 'massive'
   | BaseSizes
 
+/* eslint-disable @typescript-eslint/naming-convention */
 enum GlobalColorSet {
   blue = '54, 143, 255',
   gray = '58, 58, 58',
   white = '255, 255, 255',
   red = '255, 33, 60',
 }
+/* eslint-enable @typescript-eslint/naming-convention */
 
 export type GlobalColors = 'blue' | 'gray' | 'white' | 'red'
 
