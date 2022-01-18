@@ -217,7 +217,7 @@ export default function Reply({
     }))
   }
 
-  const handleUnLikeReplyClick = async ({
+  const handleUnlikeReplyClick = async ({
     messageId,
   }: {
     messageId: string
@@ -283,7 +283,7 @@ export default function Reply({
           >
             {reactions.like?.haveMine ? (
               <ThanksButton
-                onClick={() => handleUnLikeReplyClick({ messageId: id })}
+                onClick={() => handleUnlikeReplyClick({ messageId: id })}
               >
                 <img
                   width={14}
