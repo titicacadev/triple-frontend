@@ -3,13 +3,13 @@ import styled, { css } from 'styled-components'
 import { MarginPadding } from '../commons'
 import { marginMixin } from '../mixins'
 
-interface HRProp {
+interface HrProps {
   compact?: boolean
   margin?: MarginPadding
   color?: string
 }
 
-export const HR1 = styled.div<HRProp>`
+export const HR1 = styled.div<HrProps>`
   margin: 50px 30px;
   height: 1px;
   background-color: ${({ color }) => color || '#efefef'};
@@ -23,7 +23,7 @@ export const HR1 = styled.div<HRProp>`
   ${marginMixin}
 `
 
-export const HR2 = styled.div<HRProp>`
+export const HR2 = styled.div<HrProps>`
   margin: 50px 0;
   height: 10px;
   background-color: #efefef;
@@ -70,7 +70,7 @@ export const HR6 = styled.div`
   background-image: url(https://assets.triple.guide/images/img-line3@2x.png);
 `
 
-export const HR7 = styled.div<HRProp>`
+export const HR7 = styled.div<HrProps>`
   margin: 30px auto;
   ${({ compact }) =>
     compact &&

@@ -106,9 +106,10 @@ const ListItem = styled.li<ListItemProps>`
 export default class List extends React.PureComponent<
   React.PropsWithChildren<ListItemProps & ListBaseProp & DividerOptions>
 > {
-  static Item = ListItem
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  public static Item = ListItem
 
-  render() {
+  public render() {
     const {
       props: { children, ...props },
     } = this

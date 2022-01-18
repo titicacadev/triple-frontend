@@ -147,9 +147,8 @@ export const PromoLabel = styled.div<PromoLabelProps>`
   ${marginMixin}
 
   ${({ size = 'small' }) => {
-    const { padding, borderRadius, height, fontSize } = PROMO_SIZES[
-      size || 'small'
-    ]
+    const { padding, borderRadius, height, fontSize } =
+      PROMO_SIZES[size || 'small']
     return `
       padding: ${padding};
       border-radius: ${borderRadius}px;
@@ -170,11 +169,8 @@ export const PromoLabel = styled.div<PromoLabelProps>`
       ? css<Pick<PromoLabelProps, 'color'>>`
           font-weight: bold;
           ${({ color = 'purple' }) => {
-            const {
-              emphasizedColor,
-              emphasizedBackground,
-              borderColor,
-            } = LABEL_COLORS[color]
+            const { emphasizedColor, emphasizedBackground, borderColor } =
+              LABEL_COLORS[color]
 
             return css`
               background-color: ${emphasizedBackground};
@@ -212,9 +208,10 @@ export default class Label extends React.PureComponent<
   LabelProps,
   React.HTMLAttributes<HTMLElement>
 > {
-  static Group = LabelGroup
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  public static Group = LabelGroup
 
-  render() {
+  public render() {
     const {
       props: {
         radio,

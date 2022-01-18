@@ -11,10 +11,15 @@ interface BaseTextareaProps {
 
 interface TextareaProps
   extends Omit<
-    StyledComponentProps<'textarea', any, BaseTextareaProps, never>,
+    StyledComponentProps<
+      'textarea',
+      Record<string, unknown>,
+      BaseTextareaProps,
+      never
+    >,
     'onChange'
   > {
-  onChange?: (e: React.SyntheticEvent, value: string) => any
+  onChange?: (e: React.SyntheticEvent, value: string) => unknown
 }
 
 const COLORS: Partial<Record<GlobalColors, string>> = {

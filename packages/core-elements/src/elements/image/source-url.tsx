@@ -15,6 +15,8 @@ const SourceUrlContainer = styled.div`
   z-index: 1;
 `
 
-export default function ImageSourceUrl({ children }: PropsWithChildren<{}>) {
+export default function ImageSourceUrl({
+  children,
+}: PropsWithChildren<unknown>) {
   return <SourceUrlContainer>{children}</SourceUrlContainer>
 }

@@ -46,15 +46,15 @@ const BaseInput = styled(InputMask)<{
     `};
 `
 
-type HTMLInputElementProps = React.InputHTMLAttributes<HTMLInputElement> &
+type HtmlInputElementProps = React.InputHTMLAttributes<HTMLInputElement> &
   MaskOptions
 
-interface InputProps extends Omit<HTMLInputElementProps, 'onChange'> {
+interface InputProps extends Omit<HtmlInputElementProps, 'onChange'> {
   id?: string
   error?: string | boolean
   focused?: string
-  onChange?: (e: React.SyntheticEvent, value: string) => any
-  onBlur?: (e: React.FocusEvent<any>) => any
+  onChange?: (e: React.SyntheticEvent, value: string) => unknown
+  onBlur?: (e: React.FocusEvent<unknown>) => unknown
   inputRef?: React.Ref<HTMLInputElement>
 }
 

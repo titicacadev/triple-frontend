@@ -53,7 +53,7 @@ export default function Rating({
   size?: GlobalSizes
   score?: number
   verticalAlign?: CSS.Property.VerticalAlign<string>
-  onClick?: (event: React.SyntheticEvent, rating: number) => any
+  onClick?: (event: React.SyntheticEvent, rating: number) => unknown
 }) {
   const full = Math.floor(score)
   const half = Math.floor((score - full) * 2)

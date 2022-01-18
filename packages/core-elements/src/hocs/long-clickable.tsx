@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react'
 
 interface LongClickableComponentProps {
-  onTouchStart?: ((e: React.TouchEvent<any>) => void) | null
-  onTouchMove?: ((e: React.TouchEvent<any>) => void) | null
-  onTouchEnd?: ((e: React.TouchEvent<any>) => void) | null
-  onClick?: ((e: React.MouseEvent<any>) => void) | null
+  onTouchStart?: ((e: React.TouchEvent<unknown>) => void) | null
+  onTouchMove?: ((e: React.TouchEvent<unknown>) => void) | null
+  onTouchEnd?: ((e: React.TouchEvent<unknown>) => void) | null
+  onClick?: ((e: React.MouseEvent<unknown>) => void) | null
 }
 
 export default function longClickable<T extends LongClickableComponentProps>(

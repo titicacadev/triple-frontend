@@ -50,6 +50,7 @@ export const _unsafeTextStyle = (
   `
 }
 
+/* eslint-disable @typescript-eslint/naming-convention */
 export const TextStyleMap = {
   /* 가계부 금액 */
   L6: textStyle(36, 47, -0.3),
@@ -82,6 +83,7 @@ export const TextStyleMap = {
   /* 부가설명, 일정판 요일 */
   S2: textStyle(12, 22, 0),
 }
+/* eslint-enable @typescript-eslint/naming-convention */
 
 export function getTextStyle(type: KeyOfTextStyleMap) {
   return TextStyleMap[type]

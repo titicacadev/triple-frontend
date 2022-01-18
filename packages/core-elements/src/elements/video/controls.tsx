@@ -72,17 +72,11 @@ export default function Controls({
   autoPlay: boolean
   videoRef: React.RefObject<HTMLVideoElement>
 }) {
-  const {
-    duration,
-    currentTime,
-    progress,
-    seek,
-    playing,
-    muted,
-  } = useVideoControl({
-    videoRef,
-    initialMuted: autoPlay,
-  })
+  const { duration, currentTime, progress, seek, playing, muted } =
+    useVideoControl({
+      videoRef,
+      initialMuted: autoPlay,
+    })
 
   const [visible, setVisible] = useState(false)
 

@@ -10,7 +10,7 @@ const ShadowSizeMap: { [key in BaseSizes]: string } = {
 
 export type ShadowMixinProps = ThemedStyledProps<
   { shadow?: KeyOfShadowSize; shadowValue?: string },
-  any
+  unknown
 >
 
 /**

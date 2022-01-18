@@ -192,9 +192,14 @@ export function NavbarWrapper({
       zIndex={zIndex}
     >
       {React.Children.map(children, (child) => {
-        return React.cloneElement(child as React.ReactElement<any>, {
-          position: 'relative',
-        })
+        return React.cloneElement(
+          child as React.ReactElement<{
+            position: 'relative'
+          }>,
+          {
+            position: 'relative',
+          },
+        )
       })}
     </WrapperContainer>
   )
@@ -208,7 +213,7 @@ function Navbar({
   zIndex = 2,
   ...props
 }: {
-  renderTitle?: (props?: any) => JSX.Element
+  renderTitle?: (props?: unknown) => JSX.Element
   children?: React.ReactNode
 } & NavbarProps &
   LayeringMixinProps &

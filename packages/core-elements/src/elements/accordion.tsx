@@ -48,15 +48,25 @@ function Folded({
 }
 
 export default class Accordion extends React.PureComponent<
-  React.PropsWithChildren<StyledComponentProps<'div', any, {}, never>>
+  React.PropsWithChildren<
+    StyledComponentProps<
+      'div',
+      Record<string, unknown>,
+      Record<string, never>,
+      never
+    >
+  >
 > {
-  static Title = Title
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  public static Title = Title
 
-  static Content = Content
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  public static Content = Content
 
-  static Folded = Folded
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  public static Folded = Folded
 
-  render() {
+  public render() {
     const {
       props: { children, ...props },
     } = this

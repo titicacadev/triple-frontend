@@ -82,7 +82,7 @@ export default function NumericSpinner({
   value?: number
   max?: number
   min?: number
-  onChange?: (arg1: number) => any
+  onChange?: (arg1: number) => unknown
   borderless?: boolean
   padding?: MarginPadding
   size?: GlobalSizes | number

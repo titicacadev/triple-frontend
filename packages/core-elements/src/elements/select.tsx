@@ -6,18 +6,18 @@ import { withField } from '../utils/form-field'
 
 interface SelectOption {
   label: string
-  value: any
+  value: unknown
 }
 
 interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   id?: string
-  value?: any
+  value?: unknown
   placeholder?: string
   options?: SelectOption[]
   focused?: string
   error?: string | boolean
-  onBlur?: (e: React.FocusEvent<any>) => any
-  onChange?: (e?: React.SyntheticEvent, value?: any) => any
+  onBlur?: (e: React.FocusEvent<unknown>) => unknown
+  onChange?: (e?: React.SyntheticEvent, value?: unknown) => unknown
 }
 
 const SelectFrame = styled.div<{
