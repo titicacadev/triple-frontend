@@ -34,9 +34,17 @@ export function parseApp(userAgent: string): App | null {
 }
 
 export interface UserAgentValue {
+  /**
+   * @deprecated react-triple-client-interfaces의 TripleClientMetadataContext
+   * 를 이용해주세요.
+   */
   isPublic: boolean
   isMobile: boolean
   os: Os
+  /**
+   * @deprecated react-triple-client-interfaces의 TripleClientMetadataContext
+   * 를 이용해주세요.
+   */
   app: App | null
 }
 
