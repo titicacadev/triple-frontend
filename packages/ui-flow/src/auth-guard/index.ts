@@ -85,7 +85,11 @@ function refreshInAppSession({
   returnUrl: string
 }) {
   const { query } = parseUrl(resolvedUrl)
-  const { refreshed } = strictQuery(query ? qs.parse(query) : ({} as any))
+  const { refreshed } = strictQuery(
+    query
+      ? (qs.parse(query) as Record<string, string | string[] | undefined>)
+      : {},
+  )
     .boolean('refreshed')
     .use()
 

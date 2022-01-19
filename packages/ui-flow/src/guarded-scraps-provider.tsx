@@ -23,7 +23,7 @@ export function GuardedScrapsProvider({
   const { isPublic } = useUserAgentContext()
   const sessionAvailable = useSessionAvailability()
   const { show: showTransitionModal } = useTransitionModal()
-  const { show: showLoginCTA } = useLoginCtaModal()
+  const { show: showLoginCta } = useLoginCtaModal()
 
   return (
     <ScrapsProvider
@@ -34,7 +34,7 @@ export function GuardedScrapsProvider({
         }
 
         if (sessionAvailable === false) {
-          showLoginCTA()
+          showLoginCta()
           return false
         }
 

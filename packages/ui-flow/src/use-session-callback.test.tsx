@@ -13,19 +13,23 @@ jest.mock('@titicaca/modals')
 
 describe('useSessionCallback', () => {
   beforeEach(() => {
-    ;((useSessionControllers as unknown) as jest.MockedFunction<
-      () => Pick<ReturnType<typeof useSessionControllers>, 'login'>
-    >).mockImplementation(() => ({ login: jest.fn() }))
-    ;((useLoginCtaModal as unknown) as jest.MockedFunction<
-      () => Pick<ReturnType<typeof useLoginCtaModal>, 'show'>
-    >).mockImplementation(() => ({ show: jest.fn() }))
+    ;(
+      useSessionControllers as unknown as jest.MockedFunction<
+        () => Pick<ReturnType<typeof useSessionControllers>, 'login'>
+      >
+    ).mockImplementation(() => ({ login: jest.fn() }))
+    ;(
+      useLoginCtaModal as unknown as jest.MockedFunction<
+        () => Pick<ReturnType<typeof useLoginCtaModal>, 'show'>
+      >
+    ).mockImplementation(() => ({ show: jest.fn() }))
   })
 
   describe('when user has not logged in', () => {
     beforeEach(() => {
-      ;((useSessionAvailability as unknown) as jest.MockedFunction<
-        () => boolean
-      >).mockImplementation(() => false)
+      ;(
+        useSessionAvailability as unknown as jest.MockedFunction<() => boolean>
+      ).mockImplementation(() => false)
     })
 
     it('returns undefined value', () => {
@@ -44,6 +48,7 @@ describe('useSessionCallback', () => {
         const doAction = useSessionCallback(() => 'login', {
           returnUrl: undefined,
           returnValue: 'fallback',
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any)
         const uriHash = useUriHash()
 
@@ -56,9 +61,9 @@ describe('useSessionCallback', () => {
 
   describe('when user has logged in', () => {
     beforeEach(() => {
-      ;((useSessionAvailability as unknown) as jest.MockedFunction<
-        () => boolean
-      >).mockImplementation(() => true)
+      ;(
+        useSessionAvailability as unknown as jest.MockedFunction<() => boolean>
+      ).mockImplementation(() => true)
     })
 
     it('returns the return value of fn', () => {
