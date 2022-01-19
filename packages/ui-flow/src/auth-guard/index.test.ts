@@ -60,8 +60,12 @@ afterEach(() => {
 })
 
 describe('유효한 쿠키와 함께 요청할 때', () => {
-  const validMemberContext = createContext({
-    cookie: validMemberCookie,
+  let validMemberContext: ReturnType<typeof createContext>
+
+  beforeEach(() => {
+    validMemberContext = createContext({
+      cookie: validMemberCookie,
+    })
   })
 
   test('기존 gssp를 호출합니다.', async () => {
