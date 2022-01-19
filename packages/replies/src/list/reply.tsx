@@ -237,7 +237,7 @@ export default function Reply({
     TransitionType.General,
     useCallback(
       ({ messageId }: { messageId: string }) => {
-        navigate(`/reviews/${messageId}/report`)
+        navigate(`/reply/${messageId}/report`)
       },
       [navigate],
     ),
