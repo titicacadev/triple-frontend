@@ -222,7 +222,7 @@ export default function Reply({
     await unlikeReply({ messageId })
 
     setLikeReactions((prev) => ({
-      count: (prev?.count || 0) - 1,
+      count: Math.max(0, (prev?.count || 0) - 1),
       haveMine: false,
     }))
   }
