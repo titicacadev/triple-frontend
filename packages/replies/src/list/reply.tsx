@@ -302,14 +302,7 @@ export default function Reply({
             )}
 
             {likeReaction && likeReaction.count > 0 ? (
-              <Text
-                padding={{ left: 2 }}
-                size={12}
-                color="gray300"
-                bold
-                aria-label="like-count"
-                role="article"
-              >
+              <Text padding={{ left: 2 }} size={12} color="gray300" bold>
                 좋아요 {likeReaction.count}
               </Text>
             ) : null}
