@@ -1,5 +1,5 @@
 import React from 'react'
-import { fireEvent, render } from '@testing-library/react'
+import { fireEvent, render, waitFor } from '@testing-library/react'
 
 import '@testing-library/jest-dom'
 import { RepliesProvider } from './context'
@@ -136,6 +136,8 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
     )
     const likeCountElement = queryByRole('like-count')
 
-    expect(likeCountElement).not.toBeInTheDocument()
+    await waitFor(() => {
+      expect(likeCountElement).not.toBeInTheDocument()
+    })
   })
 })
