@@ -1,4 +1,4 @@
-import { withScope, captureException } from '@sentry/browser'
+import { withScope, captureException } from '@sentry/nextjs'
 
 import { HttpResponse } from './types'
 
