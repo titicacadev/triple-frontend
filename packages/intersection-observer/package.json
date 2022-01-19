@@ -2,11 +2,19 @@
   "name": "@titicaca/intersection-observer",
   "version": "5.2.1",
   "description": "Shared IntersecionObserver component",
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/intersection-observer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
   "main": "lib/index.js",
   "files": [
-    "lib/*"
+    "lib"
   ],
-  "license": "ISC",
   "dependencies": {
     "@titicaca/react-intersection-observer": "1.6.0",
     "intersection-observer": "^0.7.0"

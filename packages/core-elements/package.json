@@ -2,26 +2,25 @@
   "name": "@titicaca/core-elements",
   "version": "5.2.1",
   "description": "Core elements of Triple Design System",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "files": [
-    "lib/"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/titicacadev/triple-frontend.git"
-  },
   "keywords": [
     "triple",
     "design",
     "system",
     "library"
   ],
-  "license": "UNLICENSED",
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/core-elements",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
-  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "@titicaca/color-palette": "^5.2.1",
     "@titicaca/content-utilities": "4.11.0",

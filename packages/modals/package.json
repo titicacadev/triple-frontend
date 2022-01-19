@@ -2,11 +2,8 @@
   "name": "@titicaca/modals",
   "version": "5.2.1",
   "description": "Triple modal dialog components",
-  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
-  "main": "lib/index.js",
-  "files": [
-    "lib"
-  ],
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/modals",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
@@ -14,14 +11,18 @@
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "@titicaca/core-elements": "^5.2.1",
     "semver": "^7.3.5"
   },
-  "peerDependencies": {
-    "@titicaca/react-contexts": "*"
-  },
   "devDependencies": {
     "@types/semver": "^7.3.6"
+  },
+  "peerDependencies": {
+    "@titicaca/react-contexts": "*"
   }
 }

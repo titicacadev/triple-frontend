@@ -2,24 +2,19 @@
   "name": "@titicaca/form",
   "version": "5.2.1",
   "description": "Triple Form Components",
-  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
-  "main": "lib/index.js",
-  "directories": {
-    "lib": "lib"
-  },
-  "files": [
-    "lib"
-  ],
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/form",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
   },
-  "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
-  },
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "@titicaca/action-sheet": "^5.2.1",
     "@titicaca/color-palette": "^5.2.1",

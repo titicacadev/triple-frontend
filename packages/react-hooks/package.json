@@ -2,22 +2,19 @@
   "name": "@titicaca/react-hooks",
   "version": "5.2.1",
   "description": "triple frontend custom hooks",
-  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
-  "license": "ISC",
-  "main": "lib/index.js",
-  "files": [
-    "lib/*"
-  ],
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/react-hooks",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
   },
-  "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
-  },
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
     "lottie-web": "^5.7.4",

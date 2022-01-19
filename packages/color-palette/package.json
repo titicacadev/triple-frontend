@@ -2,16 +2,17 @@
   "name": "@titicaca/color-palette",
   "version": "5.2.1",
   "description": "Triple Color Palette",
-  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
-  "main": "lib/index.js",
-  "files": [
-    "lib"
-  ],
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/color-palette",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
   },
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
-  }
+  },
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ]
 }

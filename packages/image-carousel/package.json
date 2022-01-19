@@ -2,10 +2,8 @@
   "name": "@titicaca/image-carousel",
   "version": "5.2.1",
   "description": "Triple Image Carousel",
-  "main": "lib/index.js",
-  "files": [
-    "lib/"
-  ],
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/image-carousel",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
@@ -13,7 +11,10 @@
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
-  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "@egjs/flicking": "^3.8.1",
     "@egjs/react-flicking": "^3.7.0",

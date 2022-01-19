@@ -2,10 +2,8 @@
   "name": "@titicaca/triple-document",
   "version": "5.2.1",
   "description": "TripleDocument: Formatted Content System",
-  "main": "lib/index.js",
-  "files": [
-    "lib/"
-  ],
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/triple-document",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
@@ -13,7 +11,10 @@
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
-  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "@titicaca/color-palette": "^5.2.1",
     "@titicaca/content-type-definitions": "4.11.0",
@@ -33,10 +34,10 @@
     "@titicaca/view-utilities": "^5.2.1",
     "semver": "^7.3.5"
   },
-  "peerDependencies": {
-    "@titicaca/react-contexts": "*"
-  },
   "devDependencies": {
     "@types/semver": "^7.3.6"
+  },
+  "peerDependencies": {
+    "@titicaca/react-contexts": "*"
   }
 }

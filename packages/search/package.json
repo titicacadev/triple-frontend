@@ -2,19 +2,22 @@
   "name": "@titicaca/search",
   "version": "5.2.1",
   "description": "search",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "files": [
-    "lib/"
+  "keywords": [
+    "search"
   ],
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/search",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
   },
-  "keywords": [
-    "search"
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "main": "lib/index.js",
+  "files": [
+    "lib"
   ],
-  "license": "UNLICENSED",
   "dependencies": {
     "@titicaca/core-elements": "^5.2.1",
     "@titicaca/react-hooks": "^5.2.1",

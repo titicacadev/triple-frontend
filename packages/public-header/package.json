@@ -2,11 +2,8 @@
   "name": "@titicaca/public-header",
   "version": "5.2.1",
   "description": "Common Header for Public Pages",
-  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
-  "main": "lib/index.js",
-  "files": [
-    "lib"
-  ],
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/public-header",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
@@ -14,6 +11,10 @@
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "@titicaca/color-palette": "^5.2.1",
     "@titicaca/view-utilities": "^5.2.1"
