@@ -54,19 +54,21 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
     const reply = await fetchReply()
     const onFocusInput = jest.fn()
 
-    const { findByTestId } = render(
+    const { getByRole, findByRole } = render(
       <RepliesProvider>
         <Reply reply={reply} focusInput={onFocusInput} />
       </RepliesProvider>,
     )
 
-    const unlikeButtonElement = await findByTestId('unlike-button')
+    const unlikeButtonElement = getByRole('button', {
+      name: /unlike-button/i,
+    })
 
     const beforeLikeCount = reply.reactions.like?.count || 0
 
     fireEvent.click(unlikeButtonElement)
 
-    const afterLikeCount = await findByTestId('like-count')
+    const afterLikeCount = await findByRole('article', { name: /like-count/i })
 
     expect(afterLikeCount.textContent).toEqual(`좋아요 ${beforeLikeCount - 1}`)
   })
@@ -118,19 +120,23 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
 
     const onFocusInput = jest.fn()
 
-    const { findByTestId } = render(
+    const { getByRole, findByRole } = render(
       <RepliesProvider>
         <Reply reply={reply} focusInput={onFocusInput} />
       </RepliesProvider>,
     )
 
-    const likeButtonElement = await findByTestId('like-button')
+    const likeButtonElement = getByRole('button', {
+      name: /like-button/i,
+    })
 
     const beforeLikeCount = reply.reactions.like?.count || 0
 
     fireEvent.click(likeButtonElement)
 
-    const afterLikeCount = await findByTestId('like-count')
+    const afterLikeCount = await findByRole('article', {
+      name: /like-count/i,
+    })
 
     expect(afterLikeCount.textContent).toEqual(`좋아요 ${beforeLikeCount + 1}`)
   })

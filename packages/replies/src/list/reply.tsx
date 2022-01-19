@@ -278,7 +278,7 @@ export default function Reply({
             {likeReaction?.haveMine ? (
               <ThanksButton
                 onClick={() => handleUnlikeReplyClick({ messageId: id })}
-                data-testid="unlike-button"
+                aria-label="unlike-button"
               >
                 <img
                   width={14}
@@ -290,7 +290,7 @@ export default function Reply({
             ) : (
               <ThanksButton
                 onClick={() => handleLikeReplyClick({ messageId: id })}
-                data-testid="like-button"
+                aria-label="like-button"
               >
                 <img
                   width={14}
@@ -307,7 +307,8 @@ export default function Reply({
                 size={12}
                 color="gray300"
                 bold
-                data-testid="like-count"
+                aria-label="like-count"
+                role="article"
               >
                 좋아요 {likeReaction.count}
               </Text>
