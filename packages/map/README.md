@@ -68,6 +68,46 @@ function Page() {
 }
 ```
 
+### Overlay Wrapper, Marker
+
+MapView 위에 커스터마이징한 컴포넌트 or Marker를 사용합니다.
+
+```tsx
+import { white } from '@titicaca/color-palette'
+import { OverlayWrapper, OverlayMarker } from '@titicaca/map'
+
+const coordinates = [
+  { lat: 33.24577929502035, lng: 126.57157193028415 },
+  { lat: 33.24588206713943, lng: 126.57193023026494 },
+]
+
+function Page() {
+  const mapRef = useRef<google.maps.Map>(null)
+  const handleMapLoaded = useCallback((map: google.maps.Map) => {
+    // do some after loaded google map
+    mapRef.current = map
+  }, [])
+
+  return (
+    <MapView
+      options={mapOptions}
+      onLoad={handleMapLoaded}
+      googleMapLoadOptions={{
+        googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
+      }}
+    >
+      {coordinates.map((position, i) => (
+        <OverlayWrapper position={{ bottom: 0 }}>
+          <OverlayMarker key={i} position={position}>
+            {i + 1}
+          </OverlayMarker>
+        </OverlayWrapper>
+      ))}
+    </MapView>
+  )
+}
+```
+
 ### CircleMarker
 
 CircleMarker 컴포넌트 입니다.
