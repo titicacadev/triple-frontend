@@ -38,7 +38,7 @@
     "@titicaca/react-contexts": "*"
   },
   "devDependencies": {
-    "@sentry/browser": "^6.2.5",
+    "@sentry/browser": "6.16.1",
     "@types/semver": "^7.3.6"
   }
 }
