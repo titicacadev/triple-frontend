@@ -4,6 +4,7 @@ import { fireEvent, render, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { RepliesProvider } from './context'
 import Reply from './list/reply'
+import { Reply as ReplyType } from './types'
 
 jest.mock('./replies-api-clients')
 
@@ -44,9 +45,7 @@ const MOCKED_REPLY = {
 
 describe('리액션 관련 기능을 테스트합니다.', () => {
   test('좋아요를 클릭했던 사용자가 다시 클릭하면, 좋아요 갯수를 -1 합니다.', async () => {
-    const mockedFetchReply = jest.fn()
-    const fetchReply = mockedFetchReply.mockResolvedValue({
-      ...MOCKED_REPLY,
+    const { reply, onFocusInput } = await setup({
       reactions: {
         like: {
           count: 2,
@@ -55,10 +54,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
       },
     })
 
-    const reply = await fetchReply()
-    const onFocusInput = jest.fn()
-
-    const { getByRole, findByRole } = render(
+    const { getByRole, findByText } = render(
       <RepliesProvider>
         <Reply reply={reply} focusInput={onFocusInput} />
       </RepliesProvider>,
@@ -72,15 +68,13 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
 
     fireEvent.click(unlikeButtonElement)
 
-    const afterLikeCount = await findByRole('article', { name: /like-count/i })
+    const afterLikeCount = await findByText(/좋아요/)
 
     expect(afterLikeCount.textContent).toEqual(`좋아요 ${beforeLikeCount - 1}`)
   })
 
   test('좋아요를 클릭하지 않았던 사용자가 클릭하면, 좋아요 갯수를 +1 합니다.', async () => {
-    const mockedFetchReply = jest.fn()
-    const fetchReply = mockedFetchReply.mockResolvedValue({
-      ...MOCKED_REPLY,
+    const { reply, onFocusInput } = await setup({
       reactions: {
         like: {
           count: 1,
@@ -89,11 +83,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
       },
     })
 
-    const reply = await fetchReply()
-
-    const onFocusInput = jest.fn()
-
-    const { getByRole, findByRole } = render(
+    const { getByRole, findByText } = render(
       <RepliesProvider>
         <Reply reply={reply} focusInput={onFocusInput} />
       </RepliesProvider>,
@@ -107,17 +97,13 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
 
     fireEvent.click(likeButtonElement)
 
-    const afterLikeCount = await findByRole('article', {
-      name: /like-count/i,
-    })
+    const afterLikeCount = await findByText(/좋아요/)
 
     expect(afterLikeCount.textContent).toEqual(`좋아요 ${beforeLikeCount + 1}`)
   })
 
-  test('좋아요 갯수가 0 이하일 때, 좋아요 문구 및 갯수를 노출하지 않습니다.', async () => {
-    const mockedFetchReply = jest.fn()
-    const fetchReply = mockedFetchReply.mockResolvedValue({
-      ...MOCKED_REPLY,
+  test('좋아요 갯수가 0이하 일 때, 좋아요 문구 및 갯수를 노출하지 않습니다.', async () => {
+    const { reply, onFocusInput } = await setup({
       reactions: {
         like: {
           count: -1,
@@ -125,19 +111,31 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       },
     })
-    const reply = await fetchReply()
 
-    const onFocusInput = jest.fn()
-
-    const { queryByRole } = render(
+    const { queryByText } = render(
       <RepliesProvider>
         <Reply reply={reply} focusInput={onFocusInput} />
       </RepliesProvider>,
     )
-    const likeCountElement = queryByRole('like-count')
+
+    const likeCountElement = queryByText(/좋아요/)
 
     await waitFor(() => {
       expect(likeCountElement).not.toBeInTheDocument()
     })
   })
 })
+
+async function setup(reactions: Pick<ReplyType, 'reactions'>) {
+  const mockedFetchReply = jest.fn()
+  const fetchReply = mockedFetchReply.mockResolvedValue({
+    ...MOCKED_REPLY,
+    ...reactions,
+  })
+
+  const reply = await fetchReply()
+
+  const onFocusInput = jest.fn()
+
+  return { reply, onFocusInput }
+}
