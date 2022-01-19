@@ -5,6 +5,5 @@ package-lock.json
 packages/*/lib/**
 docs/storybook-static
 
-packages/core-elements
 packages/author
 packages/form
