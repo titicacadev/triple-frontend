@@ -8,7 +8,7 @@ import Reply from './list/reply'
 jest.mock('./replies-api-clients')
 
 describe('리액션 관련 기능을 테스트합니다.', () => {
-  test('사용자가 기존에 눌렀던 댓글&답글에 좋아요 버튼을 클릭하면, 좋아요 갯수를 -1 합니다.', async () => {
+  test('좋아요를 클릭했던 사용자가 다시 클릭하면, 좋아요 갯수를 -1 합니다.', async () => {
     const mockedFetchReply = jest.fn()
     const fetchReply = mockedFetchReply.mockResolvedValue({
       id: '00000000-0000-0000-0000-00000000000',
@@ -66,12 +66,12 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
 
     fireEvent.click(unlikeButtonElement)
 
-    const afterLikeCount = await findByTestId('likes-count')
+    const afterLikeCount = await findByTestId('like-count')
 
     expect(afterLikeCount.textContent).toEqual(`좋아요 ${beforeLikeCount - 1}`)
   })
 
-  test('사용자가 댓글&답글에 좋아요 버튼을 클릭하면, 좋아요 갯수를 +1 합니다.', async () => {
+  test('좋아요를 클릭하지 않았던 사용자가 클릭하면, 좋아요 갯수를 +1 합니다.', async () => {
     const mockedFetchReply = jest.fn()
     const fetchReply = mockedFetchReply.mockResolvedValue({
       id: '00000000-0000-0000-0000-00000000000',
@@ -130,7 +130,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
 
     fireEvent.click(likeButtonElement)
 
-    const afterLikeCount = await findByTestId('likes-count')
+    const afterLikeCount = await findByTestId('like-count')
 
     expect(afterLikeCount.textContent).toEqual(`좋아요 ${beforeLikeCount + 1}`)
   })
