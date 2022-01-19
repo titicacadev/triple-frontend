@@ -99,9 +99,9 @@ const Icon = styled.span<{ borderless?: boolean; checked?: boolean }>`
 
 interface ConfirmSelectorProps {
   name?: string
-  value: unknown
+  value: boolean
   placeholder: string
-  onChange?: (e?: React.SyntheticEvent, value?: unknown) => unknown
+  onChange?: (e?: React.SyntheticEvent, value?: boolean) => unknown
   textAlign?: CSS.Property.TextAlign
   borderless?: boolean
   fillType?: FillType

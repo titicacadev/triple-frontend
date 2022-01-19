@@ -50,13 +50,13 @@ interface RefValuesProps {
   refLeft: number | undefined
 }
 
-export default function PointingTab({
+export default function PointingTab<Value>({
   options,
   value: currentValue,
   onChange,
   scroll,
   labelPadding,
-}: TabProps & {
+}: TabProps<Value> & {
   labelPadding?: MarginPadding
 }) {
   const pointingRef = useRef<(HTMLDivElement | null)[]>([])

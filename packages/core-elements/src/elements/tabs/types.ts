@@ -1,11 +1,11 @@
-interface Option {
+interface Option<Value> {
   label: string
-  value: unknown
+  value: Value
 }
 
-export interface TabProps {
-  value: unknown
-  options: Option[]
-  onChange: (e?: React.SyntheticEvent, value?: unknown) => unknown
+export interface TabProps<Value> {
+  value: Value
+  options: Option<Value>[]
+  onChange: (e?: React.SyntheticEvent, value?: Value) => unknown
   scroll?: boolean
 }
