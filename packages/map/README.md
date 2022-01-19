@@ -61,8 +61,8 @@ function Page() {
       }}
       padding={padding}
     >
-        // 지도 상의 Focus를 움직이기 위한 좌표 값 (해당 좌표값 위치로 초점 변경)
-        <FocusTracker focusGeolocation={poi.source.pointGeolocation.coordinates}/>
+      // 지도 상의 Focus를 움직이기 위한 좌표 값 (해당 좌표값 위치로 초점 변경)
+      <FocusTracker focusGeolocation={poi.source.pointGeolocation.coordinates}/>
     </>
   )
 }

@@ -58,7 +58,6 @@ export interface WithGoogleMapProps extends GoogleMapProps {
     /**
      * google map additional libraries
      * default: ['geometry'] - https://developers.google.com/maps/documentation/javascript/libraries */
-    // libraries?: Libraries
   }
   padding?:
     | number
