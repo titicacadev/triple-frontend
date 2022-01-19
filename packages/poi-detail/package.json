@@ -2,11 +2,8 @@
   "name": "@titicaca/poi-detail",
   "version": "5.2.1",
   "description": "Components for POI detail page",
-  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
-  "main": "lib/index.js",
-  "files": [
-    "lib"
-  ],
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/poi-detail",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
@@ -14,6 +11,10 @@
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "@titicaca/action-sheet": "^5.2.1",
     "@titicaca/carousel": "^5.2.1",

@@ -2,15 +2,8 @@
   "name": "@titicaca/ab-experiments",
   "version": "5.2.1",
   "description": "a/b experiments package",
-  "homepage": "https:/github.com/titicacadev/triple-frontend#readme",
-  "license": "UNLICENSED",
-  "main": "lib/index.js",
-  "directories": {
-    "lib": "lib"
-  },
-  "files": [
-    "lib"
-  ],
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/ab-experiments",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
@@ -18,10 +11,14 @@
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
-  "peerDependencies": {
-    "next": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0"
-  },
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "@titicaca/react-contexts": "^5.2.1"
+  },
+  "peerDependencies": {
+    "next": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0"
   }
 }

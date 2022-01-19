@@ -2,11 +2,19 @@
   "name": "@titicaca/standard-action-handler",
   "version": "5.2.1",
   "description": "Standard action handler for Triple service applications",
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/standard-action-handler",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
   "main": "lib/index.js",
   "files": [
-    "lib/*"
+    "lib"
   ],
-  "license": "ISC",
   "dependencies": {
     "@titicaca/view-utilities": "^5.2.1",
     "qs": "^6.9.4"

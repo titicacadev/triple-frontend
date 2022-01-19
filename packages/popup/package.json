@@ -2,24 +2,23 @@
   "name": "@titicaca/popup",
   "version": "5.2.1",
   "description": "Triple Popup",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "files": [
-    "lib/"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/titicacadev/triple-frontend.git"
-  },
   "keywords": [
     "triple",
     "popup"
   ],
-  "license": "UNLICENSED",
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/popup",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
-  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "@titicaca/core-elements": "^5.2.1",
     "react-transition-group": "^4.4.1"
