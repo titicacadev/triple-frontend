@@ -5,17 +5,17 @@
     "rootDir": "src",
     "baseUrl": ".",
     "paths": {
-      "@titicaca/color-palette": ["../color-palette/src"],
-      "@titicaca/core-elements": ["../core-elements/src"]
+      "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/router": ["../router/src"]
     }
   },
   "include": ["./src"],
   "references": [
     {
-      "path": "../color-palette"
+      "path": "../core-elements"
     },
     {
-      "path": "../core-elements"
+      "path": "../router"
     }
   ]
 }

@@ -1,5 +1,4 @@
 import styled, { css, keyframes } from 'styled-components'
-import { white } from '@titicaca/color-palette'
 
 export interface MarkerBaseProps {
   /** 마커 사이즈, 단위 px */
@@ -73,7 +72,7 @@ function withActive({
 export const Circle = styled.div`
   position: absolute;
   z-index: 1;
-  color: ${white};
+  color: var(--color-white);
   font-size: 12px;
   text-align: center;
   border-radius: 50%;

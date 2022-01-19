@@ -1,15 +1,19 @@
-import React, { PropsWithChildren, useCallback, useRef } from 'react'
-import { OverlayView, OverlayViewProps } from '@react-google-maps/api'
+import React, { PropsWithChildren, useCallback } from 'react'
+import { OverlayViewProps } from '@react-google-maps/api'
+
+import { OverlayMarker } from '../../overlay-base'
 
 import { Circle, CirclePin, MarkerBaseProps } from './circle-marker-base'
 
 export interface CircleMarkerProps
   extends MarkerBaseProps,
-    Omit<OverlayViewProps, 'mapPaneName'> {
-  onClick?: (e: MouseEvent) => void
+    Omit<OverlayViewProps, 'mapPaneName' | 'position'> {
+  position: google.maps.LatLng | google.maps.LatLngLiteral
+  onClick?: (e: React.SyntheticEvent) => void
 }
 
 export function CircleMarker({
+  position,
   color,
   src,
   zIndex = 1,
@@ -22,8 +26,6 @@ export function CircleMarker({
   children,
   ...overlayViewProps
 }: PropsWithChildren<CircleMarkerProps>) {
-  const overlayViewRef = useRef<OverlayView>(null)
-
   const handleClick = useCallback(
     (e) => {
       onClick && onClick(e)
@@ -32,13 +34,7 @@ export function CircleMarker({
   )
 
   return (
-    <OverlayView
-      {...overlayViewProps}
-      mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-      ref={overlayViewRef}
-      onLoad={onLoad}
-    >
-      {/* TODO: active/inactive 상태에 따른 컴포넌트를 갖도록 개선 */}
+    <OverlayMarker {...overlayViewProps} position={position} onLoad={onLoad}>
       <CirclePin
         zIndex={zIndex}
         width={width}
@@ -51,6 +47,6 @@ export function CircleMarker({
       >
         <Circle>{children}</Circle>
       </CirclePin>
-    </OverlayView>
+    </OverlayMarker>
   )
 }
