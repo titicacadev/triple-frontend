@@ -54,7 +54,7 @@
     "@babel/preset-typescript": "^7.10.1",
     "@babel/runtime": "^7.10.2",
     "@swc/cli": "0.1.55",
-    "@swc/core": "1.2.123",
+    "@swc/core": "1.2.130",
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.0",
     "@testing-library/react-hooks": "^3.4.2",
