@@ -16,7 +16,7 @@
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "dependencies": {
     "@titicaca/color-palette": "^5.2.1",
-    "@titicaca/content-type-definitions": "^4.8.0",
+    "@titicaca/content-type-definitions": "4.10.0",
     "@titicaca/core-elements": "^5.2.1",
     "@titicaca/fetcher": "^5.2.1",
     "@titicaca/intersection-observer": "^5.2.1",
