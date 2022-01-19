@@ -280,6 +280,7 @@ export default function Reply({
             {likeReaction?.haveMine ? (
               <ThanksButton
                 onClick={() => handleUnlikeReplyClick({ messageId: id })}
+                data-testid="unlike-button"
               >
                 <img
                   width={14}
@@ -291,6 +292,7 @@ export default function Reply({
             ) : (
               <ThanksButton
                 onClick={() => handleLikeReplyClick({ messageId: id })}
+                data-testid="like-button"
               >
                 <img
                   width={14}
@@ -302,7 +304,13 @@ export default function Reply({
             )}
 
             {likeReaction && likeReaction.count > 0 ? (
-              <Text padding={{ left: 2 }} size={12} color="gray300" bold>
+              <Text
+                padding={{ left: 2 }}
+                size={12}
+                color="gray300"
+                bold
+                data-testid="like-count"
+              >
                 좋아요 {likeReaction.count}
               </Text>
             ) : null}
