@@ -1,4 +1,4 @@
-export * from './polygon'
+export * from './overlay-base'
+export * from './marker'
 export * from './polyline'
-export * from './marker/circle-marker'
-export * from './wrapper'
+export * from './polygon'

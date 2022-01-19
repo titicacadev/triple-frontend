@@ -3,8 +3,8 @@ import { Container } from '@titicaca/core-elements'
 import {
   MapView,
   HotelCircleMarker,
-  AttractionCirlceMarker,
-  RestaurantCirlceMarker,
+  AttractionCircleMarker,
+  RestaurantCircleMarker,
   DotPolyline,
 } from '@titicaca/map'
 import { useEnv } from '@titicaca/react-contexts'
@@ -29,7 +29,7 @@ export default function ItineraryMap({ onClickMarker, items }: Props) {
   const { totalPois, polyline, pois, coordinates } = useMapData(items)
 
   const generateClickMarkerHandle = useCallback(
-    (poi: ItineraryItemType['poi']) => (e: MouseEvent) => {
+    (poi: ItineraryItemType['poi']) => (e: React.SyntheticEvent) => {
       e.preventDefault()
 
       if (onClickMarker) {
@@ -79,9 +79,9 @@ function ItineraryTypeCircleMarker(type: ItineraryItemType['poi']['type']) {
     case 'hotel':
       return HotelCircleMarker
     case 'attraction':
-      return AttractionCirlceMarker
+      return AttractionCircleMarker
     case 'restaurant':
-      return RestaurantCirlceMarker
+      return RestaurantCircleMarker
   }
 
   throw new Error(`Unknown card type of itinerary "${type}"`)
