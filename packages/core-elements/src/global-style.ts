@@ -43,6 +43,7 @@ export const GlobalStyle = createGlobalStyle`
     --color-teal: rgba(10, 219, 143, 1);
     --color-teal100: rgba(10, 219, 143, 0.1);
     --color-teal900: rgba(10, 219, 143, 0.9);
+    --color-vermilion: rgb(255, 97, 105, 1);
   }
 
   html,
