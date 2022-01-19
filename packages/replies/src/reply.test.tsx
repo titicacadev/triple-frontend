@@ -44,84 +44,138 @@ const MOCKED_REPLY = {
 }
 
 describe('리액션 관련 기능을 테스트합니다.', () => {
-  test('좋아요를 클릭했던 사용자가 다시 클릭하면, 좋아요 갯수를 -1 합니다.', async () => {
-    const { reply, onFocusInput } = await setup({
-      reactions: {
-        like: {
-          count: 2,
-          haveMine: true,
+  describe('좋아요 수에 따른 문구 노출 조건을 테스트합니다.', () => {
+    test('갯수가 양수일 때, 좋아요 문구 및 갯수를 노출합니다.', async () => {
+      const { reply, onFocusInput } = await setup({
+        reactions: {
+          like: {
+            count: 1,
+            haveMine: false,
+          },
         },
-      },
+      })
+
+      const { queryByText } = render(
+        <RepliesProvider>
+          <Reply reply={reply} focusInput={onFocusInput} />
+        </RepliesProvider>,
+      )
+
+      const likeCountElement = queryByText(/좋아요/)
+
+      await waitFor(() => {
+        expect(likeCountElement).toBeInTheDocument()
+      })
     })
 
-    const { getByRole, findByText } = render(
-      <RepliesProvider>
-        <Reply reply={reply} focusInput={onFocusInput} />
-      </RepliesProvider>,
-    )
+    test('갯수가 0일 때, 좋아요 문구 및 갯수를 노출하지 않습니다.', async () => {
+      const { reply, onFocusInput } = await setup({
+        reactions: {
+          like: {
+            count: 0,
+            haveMine: false,
+          },
+        },
+      })
 
-    const unlikeButtonElement = getByRole('button', {
-      name: /unlike-button/i,
+      const { queryByText } = render(
+        <RepliesProvider>
+          <Reply reply={reply} focusInput={onFocusInput} />
+        </RepliesProvider>,
+      )
+
+      const likeCountElement = queryByText(/좋아요/)
+
+      await waitFor(() => {
+        expect(likeCountElement).not.toBeInTheDocument()
+      })
     })
 
-    const beforeLikeCount = reply.reactions.like?.count || 0
+    test('갯수가 음수일 때, 좋아요 문구 및 갯수를 노출하지 않습니다.', async () => {
+      const { reply, onFocusInput } = await setup({
+        reactions: {
+          like: {
+            count: -1,
+            haveMine: false,
+          },
+        },
+      })
 
-    fireEvent.click(unlikeButtonElement)
+      const { queryByText } = render(
+        <RepliesProvider>
+          <Reply reply={reply} focusInput={onFocusInput} />
+        </RepliesProvider>,
+      )
 
-    const afterLikeCount = await findByText(/좋아요/)
+      const likeCountElement = queryByText(/좋아요/)
 
-    expect(afterLikeCount.textContent).toEqual(`좋아요 ${beforeLikeCount - 1}`)
+      await waitFor(() => {
+        expect(likeCountElement).not.toBeInTheDocument()
+      })
+    })
   })
 
-  test('좋아요를 클릭하지 않았던 사용자가 클릭하면, 좋아요 갯수를 +1 합니다.', async () => {
-    const { reply, onFocusInput } = await setup({
-      reactions: {
-        like: {
-          count: 1,
-          haveMine: false,
+  describe('사용자의 좋아요 클릭 액션을 테스트합니다.', () => {
+    test('좋아요를 클릭했던 사용자가 다시 클릭하면, 좋아요 갯수를 -1 합니다.', async () => {
+      const { reply, onFocusInput } = await setup({
+        reactions: {
+          like: {
+            count: 2,
+            haveMine: true,
+          },
         },
-      },
+      })
+
+      const { getByRole, findByText } = render(
+        <RepliesProvider>
+          <Reply reply={reply} focusInput={onFocusInput} />
+        </RepliesProvider>,
+      )
+
+      const unlikeButtonElement = getByRole('button', {
+        name: /unlike-button/i,
+      })
+
+      const beforeLikeCount = reply.reactions.like?.count || 0
+
+      fireEvent.click(unlikeButtonElement)
+
+      const afterLikeCount = await findByText(/좋아요/)
+
+      expect(afterLikeCount.textContent).toEqual(
+        `좋아요 ${beforeLikeCount - 1}`,
+      )
     })
 
-    const { getByRole, findByText } = render(
-      <RepliesProvider>
-        <Reply reply={reply} focusInput={onFocusInput} />
-      </RepliesProvider>,
-    )
-
-    const likeButtonElement = getByRole('button', {
-      name: /like-button/i,
-    })
-
-    const beforeLikeCount = reply.reactions.like?.count || 0
-
-    fireEvent.click(likeButtonElement)
-
-    const afterLikeCount = await findByText(/좋아요/)
-
-    expect(afterLikeCount.textContent).toEqual(`좋아요 ${beforeLikeCount + 1}`)
-  })
-
-  test('좋아요 갯수가 0이하 일 때, 좋아요 문구 및 갯수를 노출하지 않습니다.', async () => {
-    const { reply, onFocusInput } = await setup({
-      reactions: {
-        like: {
-          count: -1,
-          haveMine: false,
+    test('좋아요를 클릭하지 않았던 사용자가 클릭하면, 좋아요 갯수를 +1 합니다.', async () => {
+      const { reply, onFocusInput } = await setup({
+        reactions: {
+          like: {
+            count: 1,
+            haveMine: false,
+          },
         },
-      },
-    })
+      })
 
-    const { queryByText } = render(
-      <RepliesProvider>
-        <Reply reply={reply} focusInput={onFocusInput} />
-      </RepliesProvider>,
-    )
+      const { getByRole, findByText } = render(
+        <RepliesProvider>
+          <Reply reply={reply} focusInput={onFocusInput} />
+        </RepliesProvider>,
+      )
 
-    const likeCountElement = queryByText(/좋아요/)
+      const likeButtonElement = getByRole('button', {
+        name: /like-button/i,
+      })
 
-    await waitFor(() => {
-      expect(likeCountElement).not.toBeInTheDocument()
+      const beforeLikeCount = reply.reactions.like?.count || 0
+
+      fireEvent.click(likeButtonElement)
+
+      const afterLikeCount = await findByText(/좋아요/)
+
+      expect(afterLikeCount.textContent).toEqual(
+        `좋아요 ${beforeLikeCount + 1}`,
+      )
     })
   })
 })
