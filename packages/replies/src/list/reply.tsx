@@ -209,7 +209,6 @@ export default function Reply({
     await likeReply({ messageId })
 
     setLikeReactions((prev) => ({
-      ...prev,
       count: (prev?.count || 0) + 1,
       haveMine: true,
     }))
@@ -223,7 +222,6 @@ export default function Reply({
     await unlikeReply({ messageId })
 
     setLikeReactions((prev) => ({
-      ...prev,
       count: (prev?.count || 0) - 1,
       haveMine: false,
     }))
