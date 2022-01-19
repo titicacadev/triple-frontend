@@ -55,9 +55,6 @@ export interface WithGoogleMapProps extends GoogleMapProps {
     googleMapsApiKey: string
     /** region default: kr - https://developers.google.com/maps/faq#languagesupport */
     region?: string
-    /**
-     * google map additional libraries
-     * default: ['geometry'] - https://developers.google.com/maps/documentation/javascript/libraries */
   }
   padding?:
     | number
