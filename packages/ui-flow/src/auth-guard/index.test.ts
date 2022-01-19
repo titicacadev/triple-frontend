@@ -24,9 +24,11 @@ const mockedGet = (get as jest.MockedFunction<typeof get>).mockImplementation(
     if (cookie === validMemberCookie) {
       const user = { uid: 'MOCK_USER_UID' }
       const response: HttpResponse<{ uid: string }> = {
-        ...new Response(JSON.stringify(user), {
-          status: 200,
-        }),
+        ok: true,
+        url: '/api/users/me',
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        headers: {} as any,
+        status: 200,
         parsedBody: user,
       }
 
@@ -36,7 +38,11 @@ const mockedGet = (get as jest.MockedFunction<typeof get>).mockImplementation(
       const response: HttpResponse<{
         uid: string
       }> = {
-        ...new Response(JSON.stringify(user), { status: 200 }),
+        ok: true,
+        url: '/api/users/me',
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        headers: {} as any,
+        status: 200,
         parsedBody: user,
       }
 
@@ -44,10 +50,11 @@ const mockedGet = (get as jest.MockedFunction<typeof get>).mockImplementation(
     }
 
     const response: HttpResponse<{ uid: string }> = {
-      ...new Response('', {
-        status: 401,
-      }),
       ok: false,
+      url: '/api/users/me',
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      headers: {} as any,
+      status: 401,
       parsedBody: '',
     }
 
@@ -115,7 +122,10 @@ test('allowNonMembers 옵션을 켜면 휴대폰 번호로 가입한 계정의 �
 
 test('/api/users/me가 401 이외의 에러로 응답했다면 에러를 던집니다.', async () => {
   mockedGet.mockResolvedValueOnce({
-    ...new Response(undefined, { status: 500 }),
+    url: '/api/users/me',
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    headers: {} as any,
+    status: 500,
     ok: false,
     parsedBody: '',
   })
