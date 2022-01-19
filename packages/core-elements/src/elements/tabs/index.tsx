@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { MarginPadding } from '../../commons'
+
 import BasicTab from './basic-tab'
 import PointingTab from './pointing-tab'
 import { TabProps as TabPropsBase } from './types'
@@ -13,8 +15,12 @@ const TAB_TYPE: { [key in TabType]: React.ElementType } = {
 
 type TabsProps<Value> =
   | ({ type: 'basic' } & TabPropsBase<Value>)
-  | ({ type: 'pointing' } & TabPropsBase<Value>)
-  | ({ type?: never } & TabPropsBase<Value>)
+  | ({ type?: 'pointing' } & TabPropsBase<Value> & {
+        labelPadding?: MarginPadding
+      })
+  | ({ type?: never } & TabPropsBase<Value> & {
+        labelPadding?: MarginPadding
+      })
 
 export default function Tabs<Value>({
   type = 'basic',
