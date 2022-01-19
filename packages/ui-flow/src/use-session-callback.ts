@@ -12,6 +12,7 @@ import {
  * @param returnValue sessionId가 없을 때 리턴할 값
  * @param returnUrl 로그인 완료 후 복귀할 페이지 주소
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useSessionCallback<T extends (...args: any[]) => any>(
   fn: T,
   ...options:

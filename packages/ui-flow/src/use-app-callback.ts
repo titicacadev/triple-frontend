@@ -10,9 +10,11 @@ import { useUserAgentContext } from '@titicaca/react-contexts'
  *
  * const invokeNativeFn= useAppCallback(TransitionType.Some, () => {})
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useAppCallback<T extends (...args: any[]) => any>(
   transitionType: TransitionType,
   fn: T,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   returnValue?: any,
 ): (...args: Parameters<T>) => ReturnType<T> | void {
   const { isPublic } = useUserAgentContext()

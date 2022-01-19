@@ -65,21 +65,21 @@ describe('유효한 쿠키와 함께 요청할 때', () => {
   })
 
   test('기존 gssp를 호출합니다.', async () => {
-    const oldGSSP = jest.fn()
-    const newGSSP = authGuard(oldGSSP)
+    const oldGssp = jest.fn()
+    const newGssp = authGuard(oldGssp)
 
-    await newGSSP(validMemberContext)
+    await newGssp(validMemberContext)
 
-    expect(oldGSSP).toBeCalledTimes(1)
+    expect(oldGssp).toBeCalledTimes(1)
   })
 
   test('기존 gssp는 customContext.user 파라미터를 사용할 수 있습니다.', async () => {
-    const oldGSSP = jest.fn()
-    const newGSSP = authGuard(oldGSSP)
+    const oldGssp = jest.fn()
+    const newGssp = authGuard(oldGssp)
 
-    await newGSSP(validMemberContext)
+    await newGssp(validMemberContext)
 
-    expect(oldGSSP).toBeCalledWith(
+    expect(oldGssp).toBeCalledWith(
       expect.objectContaining({
         customContext: expect.objectContaining({
           user: expect.objectContaining({ uid: expect.any(String) }),
@@ -94,13 +94,13 @@ test('allowNonMembers 옵션을 켜면 휴대폰 번호로 가입한 계정의 �
     cookie: validNonMemberCookie,
   })
 
-  const oldGSSP = jest.fn()
-  const newGSSP = authGuard(oldGSSP, { allowNonMembers: true })
+  const oldGssp = jest.fn()
+  const newGssp = authGuard(oldGssp, { allowNonMembers: true })
 
-  await newGSSP(validNonMemberContext)
+  await newGssp(validNonMemberContext)
 
-  expect(oldGSSP).toBeCalledTimes(1)
-  expect(oldGSSP).toBeCalledWith(
+  expect(oldGssp).toBeCalledTimes(1)
+  expect(oldGssp).toBeCalledWith(
     expect.objectContaining({
       customContext: expect.objectContaining({
         user: expect.objectContaining({ uid: expect.any(String) }),
@@ -116,16 +116,16 @@ test('/api/users/me가 401 이외의 에러로 응답했다면 에러를 던집�
     parsedBody: '',
   })
 
-  const oldGSSP = jest.fn()
-  const newGSSP = authGuard(oldGSSP)
+  const oldGssp = jest.fn()
+  const newGssp = authGuard(oldGssp)
   const context = createContext({})
 
-  await expect(newGSSP(context)).rejects.toThrowError()
+  await expect(newGssp(context)).rejects.toThrowError()
 })
 
 test('resolveReturnUrl 함수 속성으로 로그인 후 돌아갈 URL을 만들 수 있습니다.', async () => {
-  const oldGSSP = jest.fn()
-  const newGSSP = authGuard(oldGSSP, {
+  const oldGssp = jest.fn()
+  const newGssp = authGuard(oldGssp, {
     resolveReturnUrl: ({ query }) => `/foo/${query.foo}`,
   })
   const context = createContext({
@@ -133,9 +133,9 @@ test('resolveReturnUrl 함수 속성으로 로그인 후 돌아갈 URL을 만들
     resolvedUrl: '/air/foo',
   })
 
-  const result = await newGSSP({ ...context, query: { foo: 1 } })
+  const result = await newGssp({ ...context, query: { foo: 1 } })
 
-  expect(oldGSSP).toBeCalledTimes(0)
+  expect(oldGssp).toBeCalledTimes(0)
   expect(result).toEqual({
     redirect: {
       destination: `/login?returnUrl=${encodeURIComponent('/foo/1')}`,
@@ -149,13 +149,13 @@ describe('브라우저에서 페이지 접근을 막아야 하면 로그인 페�
   const resolvedUrl = '/test-url?_triple_no_navbar'
 
   test('쿠키가 없을 때', async () => {
-    const oldGSSP = jest.fn()
-    const newGSSP = authGuard(oldGSSP)
+    const oldGssp = jest.fn()
+    const newGssp = authGuard(oldGssp)
     const context = createContext({ userAgent: browserUserAgent, resolvedUrl })
 
-    const result = await newGSSP(context)
+    const result = await newGssp(context)
 
-    expect(oldGSSP).toBeCalledTimes(0)
+    expect(oldGssp).toBeCalledTimes(0)
     expect(result).toEqual({
       redirect: {
         destination: `/login?returnUrl=${encodeURIComponent(resolvedUrl)}`,
@@ -166,17 +166,17 @@ describe('브라우저에서 페이지 접근을 막아야 하면 로그인 페�
   })
 
   test('쿠키가 유효하지 않을 때', async () => {
-    const oldGSSP = jest.fn()
-    const newGSSP = authGuard(oldGSSP)
+    const oldGssp = jest.fn()
+    const newGssp = authGuard(oldGssp)
     const context = createContext({
       userAgent: browserUserAgent,
       resolvedUrl,
       cookie: invalidCookie,
     })
 
-    const result = await newGSSP(context)
+    const result = await newGssp(context)
 
-    expect(oldGSSP).toBeCalledTimes(0)
+    expect(oldGssp).toBeCalledTimes(0)
     expect(result).toEqual({
       redirect: {
         destination: `/login?returnUrl=${encodeURIComponent(resolvedUrl)}`,
@@ -187,17 +187,17 @@ describe('브라우저에서 페이지 접근을 막아야 하면 로그인 페�
   })
 
   test('휴대전화 로그인한 회원 정보를 반환하고 allowNonMember 옵션이 꺼져있을 때', async () => {
-    const oldGSSP = jest.fn()
-    const newGSSP = authGuard(oldGSSP)
+    const oldGssp = jest.fn()
+    const newGssp = authGuard(oldGssp)
     const context = createContext({
       userAgent: browserUserAgent,
       cookie: validNonMemberCookie,
       resolvedUrl,
     })
 
-    const result = await newGSSP(context)
+    const result = await newGssp(context)
 
-    expect(oldGSSP).toBeCalledTimes(0)
+    expect(oldGssp).toBeCalledTimes(0)
     expect(result).toEqual({
       redirect: {
         destination: `/login?returnUrl=${encodeURIComponent(resolvedUrl)}`,
@@ -210,17 +210,17 @@ describe('브라우저에서 페이지 접근을 막아야 하면 로그인 페�
 
 test('authType을 이용해 로그인 페이지의 Type을 명시할 수 있습니다.', async () => {
   const resolvedUrl = '/test-url?_triple_no_navbar'
-  const oldGSSP = jest.fn()
-  const newGSSP = authGuard(oldGSSP, { authType: 'bookings' })
+  const oldGssp = jest.fn()
+  const newGssp = authGuard(oldGssp, { authType: 'bookings' })
   const context = createContext({
     userAgent: browserUserAgent,
     cookie: invalidCookie,
     resolvedUrl,
   })
 
-  const result = await newGSSP(context)
+  const result = await newGssp(context)
 
-  expect(oldGSSP).toBeCalledTimes(0)
+  expect(oldGssp).toBeCalledTimes(0)
   expect(result).toEqual({
     redirect: {
       destination: `/login?returnUrl=${encodeURIComponent(
@@ -237,13 +237,13 @@ describe('앱에서', () => {
     const resolvedUrl = '/test-url?_triple_no_navbar'
 
     test('쿠키가 없을 때', async () => {
-      const oldGSSP = jest.fn()
-      const newGSSP = authGuard(oldGSSP)
+      const oldGssp = jest.fn()
+      const newGssp = authGuard(oldGssp)
       const context = createContext({ userAgent: appUserAgent, resolvedUrl })
 
-      const result = await newGSSP(context)
+      const result = await newGssp(context)
 
-      expect(oldGSSP).toBeCalledTimes(0)
+      expect(oldGssp).toBeCalledTimes(0)
       expect(result).toEqual({
         redirect: {
           destination: `/landing/refresh?returnUrl=${encodeURIComponent(
@@ -261,17 +261,17 @@ describe('앱에서', () => {
     })
 
     test('쿠키가 유효하지 않을 때', async () => {
-      const oldGSSP = jest.fn()
-      const newGSSP = authGuard(oldGSSP)
+      const oldGssp = jest.fn()
+      const newGssp = authGuard(oldGssp)
       const context = createContext({
         userAgent: appUserAgent,
         resolvedUrl,
         cookie: invalidCookie,
       })
 
-      const result = await newGSSP(context)
+      const result = await newGssp(context)
 
-      expect(oldGSSP).toBeCalledTimes(0)
+      expect(oldGssp).toBeCalledTimes(0)
       expect(result).toEqual({
         redirect: {
           destination: `/landing/refresh?returnUrl=${encodeURIComponent(
@@ -291,30 +291,30 @@ describe('앱에서', () => {
 
   describe('토큰 새로고침 이후에도 쿠키가 유효하지 않으면 오류를 던집니다.', () => {
     test('쿠키가 없을 때', async () => {
-      const oldGSSP = jest.fn()
-      const newGSSP = authGuard(oldGSSP)
+      const oldGssp = jest.fn()
+      const newGssp = authGuard(oldGssp)
       const context = createContext({
         userAgent: appUserAgent,
         resolvedUrl: '/test-url?refreshed=true',
       })
 
-      await expect(newGSSP(context)).rejects.toThrowError()
+      await expect(newGssp(context)).rejects.toThrowError()
 
-      expect(oldGSSP).toBeCalledTimes(0)
+      expect(oldGssp).toBeCalledTimes(0)
     })
 
     test('쿠키가 유효하지 않을 때', async () => {
-      const oldGSSP = jest.fn()
-      const newGSSP = authGuard(oldGSSP)
+      const oldGssp = jest.fn()
+      const newGssp = authGuard(oldGssp)
       const context = createContext({
         userAgent: appUserAgent,
         resolvedUrl: '/test-url?refreshed=true',
         cookie: invalidCookie,
       })
 
-      await expect(newGSSP(context)).rejects.toThrowError()
+      await expect(newGssp(context)).rejects.toThrowError()
 
-      expect(oldGSSP).toBeCalledTimes(0)
+      expect(oldGssp).toBeCalledTimes(0)
     })
   })
 })
@@ -327,6 +327,7 @@ function createContext({
   userAgent?: string
   cookie?: string
   resolvedUrl?: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 }): any {
   return {
     req: {
