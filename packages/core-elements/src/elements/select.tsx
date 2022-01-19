@@ -4,20 +4,21 @@ import { getColor } from '@titicaca/color-palette'
 
 import { withField } from '../utils/form-field'
 
-interface SelectOption {
+interface SelectOption<Value extends string | number | readonly string[]> {
   label: string
-  value: unknown
+  value: Value
 }
 
-interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+interface SelectProps<Value extends string | number | readonly string[]>
+  extends React.SelectHTMLAttributes<HTMLSelectElement> {
   id?: string
-  value?: unknown
+  value?: Value
   placeholder?: string
-  options?: SelectOption[]
+  options?: SelectOption<Value>[]
   focused?: string
   error?: string | boolean
   onBlur?: (e: React.FocusEvent<unknown>) => unknown
-  onChange?: (e?: React.SyntheticEvent, value?: unknown) => unknown
+  onChange?: (e?: React.SyntheticEvent, value?: Value) => unknown
 }
 
 const SelectFrame = styled.div<{
@@ -89,7 +90,7 @@ const Icon = styled.span<{ disabled?: boolean }>`
     `};
 `
 
-function Select({
+function Select<Value extends string | number | readonly string[]>({
   id,
   name,
   value,
@@ -100,12 +101,13 @@ function Select({
   error,
   onBlur,
   ...props
-}: SelectProps) {
+}: SelectProps<Value>) {
   return (
     <SelectFrame focused={focused} error={error} disabled={props.disabled}>
       <BaseSelect
         id={id}
-        onChange={(e) => onChange && onChange(e, e.target.value)}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        onChange={(e) => onChange && onChange(e, e.target.value as any)}
         onBlur={onBlur}
         value={value}
         error={error}

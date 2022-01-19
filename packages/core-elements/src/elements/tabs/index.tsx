@@ -2,6 +2,7 @@ import React from 'react'
 
 import BasicTab from './basic-tab'
 import PointingTab from './pointing-tab'
+import { TabProps as TabPropsBase } from './types'
 
 type TabType = 'basic' | 'pointing'
 
@@ -10,12 +11,15 @@ const TAB_TYPE: { [key in TabType]: React.ElementType } = {
   pointing: PointingTab,
 }
 
-type TabsProps =
-  | ({ type: 'basic' } & Parameters<typeof BasicTab>[0])
-  | ({ type: 'pointing' } & Parameters<typeof PointingTab>[0])
-  | ({ type?: never } & Parameters<typeof PointingTab>[0])
+type TabsProps<Value> =
+  | ({ type: 'basic' } & TabPropsBase<Value>)
+  | ({ type: 'pointing' } & TabPropsBase<Value>)
+  | ({ type?: never } & TabPropsBase<Value>)
 
-export default function Tabs({ type = 'basic', ...props }: TabsProps) {
+export default function Tabs<Value>({
+  type = 'basic',
+  ...props
+}: TabsProps<Value>) {
   const Component = TAB_TYPE[type]
 
   return <Component {...props} />

@@ -22,11 +22,11 @@ const BasicLabel = styled(TabLabel)`
   `}
 `
 
-export default function BasicTab({
+export default function BasicTab<Value>({
   options,
   value: currentValue,
   onChange,
-}: TabProps) {
+}: TabProps<Value>) {
   return (
     <BasicContainer>
       {options.map(({ label, value }, i) => (

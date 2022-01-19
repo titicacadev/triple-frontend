@@ -52,7 +52,7 @@ export default class Accordion extends React.PureComponent<
     StyledComponentProps<
       'div',
       Record<string, unknown>,
-      Record<string, never>,
+      Record<string, unknown>,
       never
     >
   >
