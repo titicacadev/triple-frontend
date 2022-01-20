@@ -19,17 +19,11 @@ jest.mock('@react-google-maps/api', () => ({
     loadError: undefined,
   })),
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  GoogleMap: ({ children }: { children: React.ReactChildren }) => (
-    <div data-testid="google-map">{children}</div>
-  ),
+  GoogleMap: () => <div data-testid="google-map" />,
 }))
 
 test('MapView의 로드 여부를 체크합니다.', () => {
-  const { getByTestId } = render(
-    <MapView {...MOCK_MAP_VIEW}>
-      <div />
-    </MapView>,
-  )
+  const { getByTestId } = render(<MapView {...MOCK_MAP_VIEW} />)
 
   expect(getByTestId('google-map')).toBeTruthy()
 })
