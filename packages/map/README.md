@@ -98,7 +98,12 @@ function Page() {
       }}
     >
       {coordinates.map((position, i) => (
-        <OverlayWrapper position={{ bottom: 0 }}>
+        <>
+          <OverlayWrapper position={{ bottom: 0 }}>
+            <OverlayMarker key={i} position={position}>
+              <Component />
+            </OverlayMarker>
+          </OverlayWrapper>
           <OverlayMarker key={i} position={position}>
             <Icon viewBox="0 0 34 34" {...rest}>
               <path
@@ -111,7 +116,7 @@ function Page() {
               />
             </Icon>
           </OverlayMarker>
-        </OverlayWrapper>
+        </>
       ))}
     </MapView>
   )
