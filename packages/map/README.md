@@ -100,10 +100,9 @@ function Page() {
       {coordinates.map((position, i) => (
         <>
           <OverlayWrapper position={{ bottom: 0 }}>
-            <OverlayMarker key={i} position={position}>
-              <Component />
-            </OverlayMarker>
+            <Component />
           </OverlayWrapper>
+
           <OverlayMarker key={i} position={position}>
             <Icon viewBox="0 0 34 34" {...rest}>
               <path
