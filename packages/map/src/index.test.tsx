@@ -9,7 +9,7 @@ const MOCK_MAP_VIEW: WithGoogleMapProps = {
     [135.50260942822263, 34.6685201467736],
   ],
   googleMapLoadOptions: {
-    googleMapsApiKey: '',
+    googleMapsApiKey: 'AIzaSyDuSWU_yBwuQzeyRFcTqhyifqNX_8oaXI4',
   },
 }
 
