@@ -12,7 +12,7 @@ const defaultPolylineStyle: google.maps.PolylineOptions = {
   zIndex: 1,
 }
 
-function PolylineBase({ path, ...rest }: google.maps.PolylineOptions) {
+export function PolylineBase({ path, ...rest }: google.maps.PolylineOptions) {
   const options = useMemo(() => ({ ...defaultPolylineStyle, ...rest }), [rest])
 
   return <GoogleMapPolyline path={path} options={options} />
@@ -27,7 +27,7 @@ function PolylineBase({ path, ...rest }: google.maps.PolylineOptions) {
  *  strokeOpacity: 0.8
  * })
  */
-function withCustomOptions(options: google.maps.PolylineOptions) {
+export function withCustomOptions(options: google.maps.PolylineOptions) {
   return function PolylineComponent({
     path,
     ...rest
@@ -38,11 +38,6 @@ function withCustomOptions(options: google.maps.PolylineOptions) {
   }
 }
 
-/**
- * Line-Style Polyline
- *
- * e.g. 체크리스트 v2 일정짜기 결과 페이지
- */
 export const DotPolyline = withCustomOptions({
   icons: [
     {
@@ -58,10 +53,6 @@ export const DotPolyline = withCustomOptions({
   ],
 })
 
-/**
- * Dot-style Polyline
- * e.g. 체크리스트 v2 경로상 추천 결과 페이지
- */
 export const Polyline = withCustomOptions({
   strokeColor: '#FF0000',
   strokeOpacity: 0.8,
