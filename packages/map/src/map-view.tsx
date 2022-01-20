@@ -69,7 +69,7 @@ export interface WithGoogleMapProps extends GoogleMapProps {
 
 const GOOGLE_MAP_LIBRARIES = ['geometry' as const]
 
-export default function MapView({
+export function MapView({
   coordinates,
   options: originOptions,
   mapContainerStyle: originMapContainerStyle,
