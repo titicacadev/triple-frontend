@@ -72,3 +72,25 @@ function YourComponent() {
   }
 }
 ```
+
+### `useTripleClientFeatureFlag`
+
+특정 기능이나 뷰를 트리플 클라이언트 버전에 따라 노출하거나 숨겨야 할 때
+이용할 수 있는 Hook 함수입니다.
+
+```jsx
+function YourComponent() {
+  const isFeatureVisible = useTripleClientFeatureFlag({
+    appName: 'Triple-iOS',
+    appVersion: '5.10.0',
+    operator: 'gt',
+    availableOnPublic: true,
+  })
+
+  if (isFeatureVisible) {
+    /* 기능을 지원하는 클라이언트 */
+  } else {
+    return null
+  }
+}
+```
