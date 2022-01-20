@@ -23,9 +23,8 @@ jest.mock('@react-google-maps/api', () => ({
     <div data-testid="google-map">{children}</div>
   ),
 }))
-jest.mock('./overlay/marker/circle-marker')
 
-test('GoogleMap이 로드 됐는지 체크합니다.', () => {
+test('MapView의 로드 여부를 체크합니다.', () => {
   const { getByTestId } = render(
     <MapView {...MOCK_MAP_VIEW}>
       <div />
