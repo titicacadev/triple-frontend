@@ -71,6 +71,7 @@ function Page() {
 ### Overlay Wrapper, Marker
 
 MapView 위에 커스터마이징한 컴포넌트 or Marker를 사용합니다.
+이미지는 아래와 같이 svg 이미지를 inline으로 사용합니다.
 
 ```tsx
 import { white } from '@titicaca/color-palette'
@@ -99,7 +100,16 @@ function Page() {
       {coordinates.map((position, i) => (
         <OverlayWrapper position={{ bottom: 0 }}>
           <OverlayMarker key={i} position={position}>
-            {i + 1}
+            <Icon viewBox="0 0 34 34" {...rest}>
+              <path
+                fill="none"
+                fillRule="evenodd"
+                stroke="var(--color-white)"
+                strokeLinejoin="round"
+                strokeWidth="1.65"
+                d="M17 11.229C17.877 9.683 19.55 8 22.005 8 24.994 8 27 10.426 27 13.374c0 5.83-5.768 9.873-10 12.626-4.232-2.753-10-6.796-10-12.626C7 10.426 9.006 8 11.995 8 14.45 8 16.123 9.683 17 11.229z"
+              />
+            </Icon>
           </OverlayMarker>
         </OverlayWrapper>
       ))}
