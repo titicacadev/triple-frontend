@@ -104,7 +104,7 @@ function Page() {
           </OverlayWrapper>
 
           <OverlayMarker key={i} position={position}>
-            <Icon viewBox="0 0 34 34" {...rest}>
+            <svg viewBox="0 0 34 34">
               <path
                 fill="none"
                 fillRule="evenodd"
@@ -113,7 +113,7 @@ function Page() {
                 strokeWidth="1.65"
                 d="M17 11.229C17.877 9.683 19.55 8 22.005 8 24.994 8 27 10.426 27 13.374c0 5.83-5.768 9.873-10 12.626-4.232-2.753-10-6.796-10-12.626C7 10.426 9.006 8 11.995 8 14.45 8 16.123 9.683 17 11.229z"
               />
-            </Icon>
+            </svg>
           </OverlayMarker>
         </>
       ))}
