@@ -46,9 +46,7 @@ const withActive = ({
         box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.15);
       `
 
-const CirclePin = styled.div<
-  Pick<BubbleMarkerProps, 'color' | 'width' | 'height' | 'active'>
->`
+const CirclePin = styled.div<Pick<BubbleMarkerProps, 'color' | 'active'>>`
   position: absolute;
   z-index: 1;
   animation-duration: 400ms;
@@ -64,12 +62,7 @@ const CirclePin = styled.div<
       transform: scale(1);
     }
   }
-  ${({
-    color = 'var(--color-purple)',
-    width = 28,
-    height = 28,
-    active = false,
-  }) => {
+  ${({ color = 'var(--color-purple)', active = false }) => {
     let typeOfColor = 'attraction'
     switch (color) {
       case 'var(--color-vermilion)':
@@ -84,17 +77,17 @@ const CirclePin = styled.div<
       ? css`
           left: -21px;
           top: -50px;
-          background: url(https://assets.triple-dev.titicaca-corp.com/images/img-map-pin-${typeOfColor}-on@3x.png)
+          background: url(https://assets.triple.guide/images/img-map-pin-${typeOfColor}-on@3x.png)
             no-repeat 0 0;
           background-size: 42px 50px;
           width: 42px;
           height: 50px;
         `
       : css`
-          left: -${width / 2}px;
-          top: -${height / 2}px;
-          width: ${width}px;
-          height: ${height}px;
+          left: -14px;
+          top: -14px;
+          width: 28px;
+          height: 28px;
         `
   }}
   ${BubbleCircle} {
@@ -105,9 +98,6 @@ const CirclePin = styled.div<
 export default function ScrapCircleMarker({
   id: poiId,
   type: poiType,
-  width = 28,
-  height = 28,
-  margin = 3,
   zIndex = 1,
   active = false,
   bubbleText,
@@ -119,7 +109,7 @@ export default function ScrapCircleMarker({
   ...overlayViewProps
 }: PropsWithChildren<BubbleMarkerProps>) {
   const overlayViewRef = useRef() as React.RefObject<OverlayView>
-  const adjestZindex = useCallback(() => {
+  const adjustZindex = useCallback(() => {
     const containerEl = overlayViewRef?.current?.containerRef?.current
 
     /** FIXME:
@@ -137,16 +127,16 @@ export default function ScrapCircleMarker({
 
   const handleLoad = useCallback(
     (overlay: google.maps.OverlayView) => {
-      adjestZindex()
+      adjustZindex()
 
       onLoad && onLoad(overlay)
     },
-    [adjestZindex, onLoad],
+    [adjustZindex, onLoad],
   )
 
   useEffect(() => {
-    adjestZindex()
-  }, [zIndex, overlayViewRef, active, adjestZindex])
+    adjustZindex()
+  }, [zIndex, overlayViewRef, active, adjustZindex])
 
   const handleClick = useCallback<MouseEventHandler<HTMLDivElement>>(
     (e) => {
@@ -197,12 +187,7 @@ export default function ScrapCircleMarker({
     >
       {active && bubbleText ? (
         <>
-          <BubbleBox
-            margin={margin}
-            width={13}
-            height={13}
-            onClick={handleBubbleClick}
-          >
+          <BubbleBox onClick={handleBubbleClick}>
             <ExternalLink href={`/${poiType}s/${poiId}`} target="new" noNavbar>
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <a>
@@ -211,16 +196,8 @@ export default function ScrapCircleMarker({
             </ExternalLink>
           </BubbleBox>
 
-          <BubbleMarkerContainer
-            onClick={handleClick}
-            active={active}
-            width={13}
-            height={13}
-            margin={margin}
-          >
-            <BubbleCircle width={13} height={13} margin={margin} color={color}>
-              {children}
-            </BubbleCircle>
+          <BubbleMarkerContainer onClick={handleClick} active={active}>
+            <BubbleCircle color={color}>{children}</BubbleCircle>
           </BubbleMarkerContainer>
         </>
       ) : (
@@ -228,17 +205,10 @@ export default function ScrapCircleMarker({
           ref={circlePinRef}
           active={active}
           color={color}
-          width={width}
-          height={height}
           onClick={handleClick}
           onAnimationEnd={handleAnimationEnd}
         >
-          <BubbleCircle
-            width={width}
-            height={height}
-            margin={margin}
-            color={color}
-          >
+          <BubbleCircle color={color}>
             {!active && (
               <Icon viewBox="0 0 34 34" width={24} height={22}>
                 <path

@@ -19,9 +19,6 @@ import {
 export default function SmallCircleMarker({
   id: poiId,
   type: poiType,
-  width = 13,
-  height = 13,
-  margin = 3,
   zIndex = 1,
   active = false,
   bubbleText,
@@ -81,12 +78,7 @@ export default function SmallCircleMarker({
     >
       <>
         {active && bubbleText && (
-          <BubbleBox
-            margin={margin}
-            width={width}
-            height={height}
-            onClick={handleBubbleClick}
-          >
+          <BubbleBox onClick={handleBubbleClick}>
             <ExternalLink href={`/${poiType}s/${poiId}`} target="new" noNavbar>
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <a>
@@ -95,21 +87,8 @@ export default function SmallCircleMarker({
             </ExternalLink>
           </BubbleBox>
         )}
-        <BubbleMarkerContainer
-          onClick={handleClick}
-          active={active}
-          width={width}
-          height={height}
-          margin={margin}
-        >
-          <BubbleCircle
-            width={width}
-            height={height}
-            margin={margin}
-            color={color}
-          >
-            {children}
-          </BubbleCircle>
+        <BubbleMarkerContainer onClick={handleClick} active={active}>
+          <BubbleCircle color={color}>{children}</BubbleCircle>
         </BubbleMarkerContainer>
       </>
     </OverlayView>

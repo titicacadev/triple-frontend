@@ -5,12 +5,11 @@ import styled, { css } from 'styled-components'
 import { MarkerBaseProps } from '../circle-marker/circle-marker-base'
 
 export interface BubbleMarkerProps
-  extends Pick<MarkerBaseProps, 'width' | 'height' | 'active' | 'zIndex'>,
+  extends Pick<MarkerBaseProps, 'active' | 'zIndex'>,
     Omit<OverlayViewProps, 'mapPaneName'> {
   id: string
   type: string
   color?: string
-  margin?: number
   bubbleText?: string | null
   onClick?: (e: React.SyntheticEvent) => void
   onBubbleClick?: (e: React.SyntheticEvent) => void
@@ -19,34 +18,32 @@ export interface BubbleMarkerProps
 const BUBBLE_HEIGHT = 32
 
 export const BubbleMarkerContainer = styled.div<
-  Pick<BubbleMarkerProps, 'width' | 'height' | 'margin' | 'active'>
+  Pick<BubbleMarkerProps, 'active'>
 >`
   position: relative;
-  ${({ width = 13, height = 13, margin = 3, active }) =>
+  ${({ active }) =>
     css`
-      left: -${(width + margin) / 2}px;
-      top: -${(height + margin) / 2 + (active ? BUBBLE_HEIGHT : 0)}px;
-      width: ${width + margin * 2}px;
-      height: ${height + margin * 2}px;
+      left: -8px;
+      top: -${8 + (active ? BUBBLE_HEIGHT : 0)}px;
+      width: 32px;
+      height: 32px;
       pointer-events: ${active ? 'none' : 'auto'};
     `}
 `
 
-export const BubbleCircle = styled.div<
-  Pick<BubbleMarkerProps, 'color' | 'width' | 'height' | 'margin'>
->`
+export const BubbleCircle = styled.div<Pick<BubbleMarkerProps, 'color'>>`
   position: absolute;
   z-index: 1;
   color: #fff;
   text-align: center;
   border-radius: 50%;
   box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.15);
-  ${({ color = 'var(--color-purple)', width = 13, height = 13, margin = 3 }) =>
+  ${({ color = 'var(--color-purple)' }) =>
     css`
-      left: ${margin}px;
-      top: ${margin}px;
-      width: ${width}px;
-      height: ${height}px;
+      left: 3px;
+      top: 3px;
+      width: 13px;
+      height: 13px;
       background-color: ${color};
     `}
   > svg {
@@ -54,16 +51,12 @@ export const BubbleCircle = styled.div<
   }
 `
 
-export const BubbleBox = styled.div<
-  Pick<BubbleMarkerProps, 'width' | 'height' | 'margin'>
->`
+export const BubbleBox = styled.div`
   position: relative;
   background: #ffffff;
   height: ${BUBBLE_HEIGHT}px;
-  ${({ height = 13 }) => css`
-    top: -${height + BUBBLE_HEIGHT}px;
-    left: calc(-50% + 1px);
-  `}
+  top: -${13 + BUBBLE_HEIGHT}px;
+  left: calc(-50% + 1px);
   border-radius: 16px;
   line-height: ${BUBBLE_HEIGHT}px;
   font-size: 13px;
