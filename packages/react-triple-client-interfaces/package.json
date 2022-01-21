@@ -9,7 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@titicaca/triple-web-to-native-interfaces": "^1.5.0",
+    "@titicaca/triple-web-to-native-interfaces": "1.5.0",
     "semver": "^7.3.5"
   },
   "devDependencies": {
