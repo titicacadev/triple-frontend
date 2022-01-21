@@ -1,5 +1,6 @@
 import React from 'react'
 import { fireEvent, render } from '@testing-library/react'
+import { useGoogleMap } from '@react-google-maps/api'
 
 import { MapView, WithGoogleMapProps } from './map-view'
 import { FocusTracker } from './focus-tracker'
@@ -19,6 +20,7 @@ jest.mock('@react-google-maps/api', () => ({
     isLoaded: true,
     loadError: undefined,
   })),
+  useGoogleMap: jest.fn(),
   // eslint-disable-next-line @typescript-eslint/naming-convention
   GoogleMap: () => <div data-testid="google-map" />,
 }))
@@ -30,40 +32,32 @@ test('MapView의 로드 여부를 체크합니다.', () => {
 })
 
 test('올바르게 focusGeolocation prop이 바뀌었는지 체크합니다.', () => {
-  let coordinates: [number, number] = MOCK_MAP_VIEW.coordinates[0]
-  const handleCoordinatesChange = jest.fn(() => {
-    coordinates = MOCK_MAP_VIEW.coordinates[1]
-  })
+  const panToMock = jest.fn()
 
-  const { getByTestId, rerender } = render(
+  ;(
+    useGoogleMap as unknown as jest.MockedFunction<
+      () => Pick<google.maps.Map, 'panTo'>
+    >
+  ).mockReturnValue({ panTo: panToMock })
+
+  const { getByTestId } = render(
     <MapView {...MOCK_MAP_VIEW}>
       <FocusTracker
         focusGeolocation={{
           type: 'Point',
-          coordinates,
+          coordinates: MOCK_MAP_VIEW.coordinates[0],
         }}
       />
     </MapView>,
     {
-      wrapper: ({ children }) => (
-        <div data-testid="marker" onClick={handleCoordinatesChange}>
-          {children}
-        </div>
+      wrapper: () => (
+        <div
+          data-testid="marker"
+          onClick={() => panToMock(MOCK_MAP_VIEW.coordinates[1])}
+        />
       ),
     },
   )
-
   fireEvent.click(getByTestId('marker'))
-
-  rerender(
-    <MapView {...MOCK_MAP_VIEW}>
-      <FocusTracker
-        focusGeolocation={{
-          type: 'Point',
-          coordinates,
-        }}
-      />
-    </MapView>,
-  )
-  expect(handleCoordinatesChange).toBeCalled()
+  expect(panToMock).toBeCalledWith(MOCK_MAP_VIEW.coordinates[1])
 })
