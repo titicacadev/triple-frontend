@@ -4,7 +4,7 @@ import {
   layeringMixin,
 } from '@titicaca/core-elements'
 import styled from 'styled-components'
-import React, { PropsWithChildren, useRef } from 'react'
+import React, { PropsWithChildren } from 'react'
 import { OverlayView, OverlayViewProps } from '@react-google-maps/api'
 
 interface OverlayMarkerProps
@@ -24,14 +24,11 @@ export function OverlayMarker({
   children,
   ...overlayViewProps
 }: PropsWithChildren<OverlayMarkerProps>) {
-  const overlayViewRef = useRef<OverlayView>(null)
-
   return (
     <OverlayView
       {...overlayViewProps}
       position={position}
       mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-      ref={overlayViewRef}
       onLoad={onLoad}
     >
       {children}

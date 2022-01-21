@@ -29,7 +29,7 @@ test('MapView의 로드 여부를 체크합니다.', () => {
   expect(getByTestId('google-map')).toBeTruthy()
 })
 
-test('marker 클릭 시 focus가 바뀌는지 체크합니다.', () => {
+test('올바르게 focusGeolocation prop이 바뀌었는지 체크합니다.', () => {
   let coordinates: [number, number] = MOCK_MAP_VIEW.coordinates[0]
   const handleCoordinatesChange = jest.fn(() => {
     coordinates = MOCK_MAP_VIEW.coordinates[1]
