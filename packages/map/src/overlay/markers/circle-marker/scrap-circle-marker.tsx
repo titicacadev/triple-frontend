@@ -14,7 +14,7 @@ import {
   ScrapBubbleMarker,
 } from '../bubble-marker'
 
-import { CIRCLE_MARKER } from './circle-marker-base'
+import { CIRCLE_MARKER, CircleType } from './circle-marker-base'
 
 const Icon = styled.svg`
   width: ${(props) => props.width || 36}px;
@@ -25,7 +25,7 @@ const withActive = ({
   type,
   active = false,
 }: {
-  type: string
+  type: CircleType
   active?: boolean
 }) =>
   active
