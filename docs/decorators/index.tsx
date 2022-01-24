@@ -6,6 +6,7 @@ import {
   EnvProvider,
   UserAgentProvider,
 } from '@titicaca/react-contexts'
+import { TripleClientMetadataProvider } from '@titicaca/react-triple-client-interfaces'
 
 export function envProviderDecorator(Story: StoryFn) {
   return (
@@ -98,5 +99,13 @@ export function userAgentProviderDecorator(Story: StoryFn) {
     >
       <Story />
     </UserAgentProvider>
+  )
+}
+
+export function tripleClientMetadataDecorator(Story: StoryFn) {
+  return (
+    <TripleClientMetadataProvider {...null}>
+      <Story />
+    </TripleClientMetadataProvider>
   )
 }

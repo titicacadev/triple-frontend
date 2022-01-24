@@ -40,6 +40,7 @@
     "@titicaca/public-header": "^5.2.1",
     "@titicaca/react-contexts": "^5.2.1",
     "@titicaca/react-hooks": "^5.2.1",
+    "@titicaca/react-triple-client-interfaces": "^5.2.1",
     "@titicaca/recommended-contents": "^5.2.1",
     "@titicaca/replies": "^5.2.1",
     "@titicaca/resource-list-element": "^5.2.1",
