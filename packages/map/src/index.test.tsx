@@ -31,7 +31,7 @@ test('MapView의 로드 여부를 체크합니다.', () => {
   expect(getByTestId('google-map')).toBeTruthy()
 })
 
-test('올바르게 focusGeolocation prop이 바뀌었는지 체크합니다.', () => {
+test('marker click 시 focusGeolocation prop가 바뀌었는지 체크합니다.', () => {
   const panToMock = jest.fn()
 
   ;(
