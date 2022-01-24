@@ -18,19 +18,7 @@ export interface BubbleMarkerProps
 
 const BUBBLE_HEIGHT = 32
 
-const BubbleMarkerContainer = styled.div<Pick<BubbleMarkerProps, 'active'>>`
-  position: relative;
-  ${({ active }) =>
-    css`
-      left: -8px;
-      top: -${8 + (active ? BUBBLE_HEIGHT : 0)}px;
-      width: 32px;
-      height: 32px;
-      pointer-events: ${active ? 'none' : 'auto'};
-    `}
-`
-
-const BubbleCircle = styled.div<Pick<BubbleMarkerProps, 'color'>>`
+export const BubbleCircle = styled.div<Pick<BubbleMarkerProps, 'color'>>`
   position: absolute;
   z-index: 1;
   color: #fff;
@@ -48,6 +36,18 @@ const BubbleCircle = styled.div<Pick<BubbleMarkerProps, 'color'>>`
   > svg {
     padding-top: 4px;
   }
+`
+
+const BubbleMarkerContainer = styled.div<Pick<BubbleMarkerProps, 'active'>>`
+  position: relative;
+  ${({ active }) =>
+    css`
+      left: -8px;
+      top: -${8 + (active ? BUBBLE_HEIGHT : 0)}px;
+      width: 32px;
+      height: 32px;
+      pointer-events: ${active ? 'none' : 'auto'};
+    `}
 `
 
 const NavigateToPoiDetailLink = styled.div`
