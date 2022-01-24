@@ -9,6 +9,9 @@
       "@titicaca/modals": ["../modals/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
       "@titicaca/react-hooks": ["../react-hooks/src"],
+      "@titicaca/react-triple-client-interfaces": [
+        "../react-triple-client-interfaces/src"
+      ],
       "@titicaca/router": ["../router/src"]
     }
   },
@@ -22,6 +25,9 @@
     },
     {
       "path": "../react-hooks"
+    },
+    {
+      "path": "../react-triple-client-interfaces"
     },
     {
       "path": "../router"
