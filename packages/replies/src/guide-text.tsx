@@ -10,7 +10,7 @@ export default function GuideText() {
   const {
     currentMessageId,
     parentMessageId,
-    content: { mentioningUserUid, mentioningUserName },
+    content: { mentioningUserName },
     initializeEditingMessage,
   } = useRepliesContext()
 
@@ -32,7 +32,7 @@ export default function GuideText() {
           backgroundColor="gray50"
         >
           <Text size={12} lineHeight="19px" bold color="gray700">
-            {mentioningUserUid && !currentMessageId
+            {!currentMessageId
               ? `${mentioningUserName}님께 답글 작성 중`
               : currentMessageId === parentMessageId
               ? '댓글 수정 중'
