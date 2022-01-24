@@ -1,4 +1,3 @@
-export * from './overlay-base'
-export * from './marker'
+export * from './markers'
 export * from './polyline'
 export * from './polygon'

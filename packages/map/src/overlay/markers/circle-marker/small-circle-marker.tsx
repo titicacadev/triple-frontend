@@ -6,22 +6,15 @@ import React, {
   useRef,
 } from 'react'
 import { OverlayView } from '@react-google-maps/api'
-import { ExternalLink } from '@titicaca/router'
 
-import {
-  BubbleBox,
-  BubbleMarkerProps,
-  BubbleMarkerContainer,
-  BubbleText,
-  BubbleCircle,
-} from './bubble-marker-base'
+import { BubbleMarkerProps, SmallBubbleMarker } from '../bubble-marker'
 
-export default function SmallCircleMarker({
+export function SmallCircleMarker({
   id: poiId,
   type: poiType,
   zIndex = 1,
   active = false,
-  bubbleText,
+  linkText,
   onLoad,
   onClick,
   onBubbleClick,
@@ -76,21 +69,15 @@ export default function SmallCircleMarker({
       ref={overlayViewRef}
       onLoad={handleLoad}
     >
-      <>
-        {active && bubbleText && (
-          <BubbleBox onClick={handleBubbleClick}>
-            <ExternalLink href={`/${poiType}s/${poiId}`} target="new" noNavbar>
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-              <a>
-                <BubbleText>{bubbleText}</BubbleText>
-              </a>
-            </ExternalLink>
-          </BubbleBox>
-        )}
-        <BubbleMarkerContainer onClick={handleClick} active={active}>
-          <BubbleCircle color={color}>{children}</BubbleCircle>
-        </BubbleMarkerContainer>
-      </>
+      <SmallBubbleMarker
+        id={poiId}
+        type={poiType}
+        color={color}
+        linkText={linkText}
+        active={active}
+        onClick={handleClick}
+        onBubbleClick={handleBubbleClick}
+      />
     </OverlayView>
   )
 }
