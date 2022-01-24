@@ -37,6 +37,9 @@
       "@titicaca/public-header": ["../packages/public-header/src"],
       "@titicaca/react-contexts": ["../packages/react-contexts/src"],
       "@titicaca/react-hooks": ["../packages/react-hooks/src"],
+      "@titicaca/react-triple-client-interfaces": [
+        "../packages/react-triple-client-interfaces/src"
+      ],
       "@titicaca/recommended-contents": [
         "../packages/recommended-contents/src"
       ],
@@ -154,6 +157,9 @@
     },
     {
       "path": "../packages/react-hooks"
+    },
+    {
+      "path": "../packages/react-triple-client-interfaces"
     },
     {
       "path": "../packages/recommended-contents"
