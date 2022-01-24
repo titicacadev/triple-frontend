@@ -102,6 +102,7 @@ export default function Replies({
           totalRepliesCount={totalRepliesCount}
           fetchMoreReplies={fetchMoreReplies}
           focusInput={focusInput}
+          onChangeReplies={setRepliesInfo}
         />
 
         <GuideText />
@@ -111,6 +112,7 @@ export default function Replies({
           resourceId={resourceId}
           resourceType={resourceType}
           registerPlaceholder={registerPlaceholder}
+          onChangeReplies={setRepliesInfo}
         />
       </Container>
     </RepliesProvider>
