@@ -9,6 +9,8 @@ import { OverlayView } from '@react-google-maps/api'
 
 import { BubbleMarkerProps, SmallBubbleMarker } from '../bubble-marker'
 
+import { CIRCLE_MARKER } from './circle-marker-base'
+
 export function SmallCircleMarker({
   id: poiId,
   type: poiType,
@@ -19,9 +21,8 @@ export function SmallCircleMarker({
   onClick,
   onBubbleClick,
   children,
-  color,
   ...overlayViewProps
-}: PropsWithChildren<BubbleMarkerProps>) {
+}: PropsWithChildren<Omit<BubbleMarkerProps, 'color'>>) {
   const overlayViewRef = useRef() as React.RefObject<OverlayView>
   const adjustZindex = useCallback(() => {
     const containerEl = overlayViewRef?.current?.containerRef?.current
@@ -71,8 +72,8 @@ export function SmallCircleMarker({
     >
       <SmallBubbleMarker
         id={poiId}
+        color={CIRCLE_MARKER[poiType].color}
         type={poiType}
-        color={color}
         linkText={linkText}
         active={active}
         onClick={handleClick}

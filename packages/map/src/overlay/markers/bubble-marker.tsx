@@ -6,11 +6,10 @@ import { ExternalLink } from '@titicaca/router'
 import { MarkerBaseProps } from './circle-marker/circle-marker-base'
 
 export interface BubbleMarkerProps
-  extends Pick<MarkerBaseProps, 'active' | 'zIndex'>,
+  extends Pick<MarkerBaseProps, 'active' | 'zIndex' | 'color'>,
     Omit<OverlayViewProps, 'mapPaneName'> {
   id: string
   type: string
-  color?: string
   linkText?: string | null
   onClick?: (e: MouseEvent) => void
   onBubbleClick?: (e: MouseEvent) => void
@@ -18,21 +17,18 @@ export interface BubbleMarkerProps
 
 const BUBBLE_HEIGHT = 32
 
-export const BubbleCircle = styled.div<Pick<BubbleMarkerProps, 'color'>>`
+export const BubbleCircle = styled.div<{ color: string }>`
   position: absolute;
   z-index: 1;
   color: #fff;
   text-align: center;
   border-radius: 50%;
   box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.15);
-  ${({ color = 'var(--color-purple)' }) =>
-    css`
-      left: 3px;
-      top: 3px;
-      width: 13px;
-      height: 13px;
-      background-color: ${color};
-    `}
+  left: 3px;
+  top: 3px;
+  width: 13px;
+  height: 13px;
+  background-color: ${({ color }) => color};
   > svg {
     padding-top: 4px;
   }
@@ -78,14 +74,14 @@ const NavigateToPoiDetailLink = styled.div`
     border-width: 7px;
     margin-left: -7px;
   }
+`
 
-  a > div {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 170px;
-    color: black;
-  }
+const LinkLabel = styled.div`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 170px;
+  color: black;
 `
 
 export function ScrapBubbleMarker({
@@ -109,7 +105,7 @@ export function ScrapBubbleMarker({
         <ExternalLink href={`/${poiType}s/${poiId}`} target="new" noNavbar>
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <a>
-            <div>{linkText}</div>
+            <LinkLabel>{linkText}</LinkLabel>
           </a>
         </ExternalLink>
       </NavigateToPoiDetailLink>
@@ -143,7 +139,7 @@ export function SmallBubbleMarker({
           <ExternalLink href={`/${poiType}s/${poiId}`} target="new" noNavbar>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a>
-              <div>{linkText}</div>
+              <LinkLabel>{linkText}</LinkLabel>
             </a>
           </ExternalLink>
         </NavigateToPoiDetailLink>

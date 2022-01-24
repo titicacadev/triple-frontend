@@ -1,4 +1,27 @@
 import styled, { css, keyframes } from 'styled-components'
+import { Required } from 'utility-types'
+
+export const CIRCLE_MARKER: {
+  [key in string]: {
+    color: string
+    imageUrl: string
+  }
+} = {
+  attraction: {
+    color: 'var(--color-purple)',
+    imageUrl:
+      'https://assets.triple.guide/images/img-map-pin-attraction-on@3x.png',
+  },
+  restaurant: {
+    color: 'var(--color-vermilion)',
+    imageUrl:
+      'https://assets.triple.guide/images/img-map-pin-restaurant-on@3x.png',
+  },
+  hotel: {
+    color: 'var(--color-purple)',
+    imageUrl: 'https://assets.triple.guide/images/img-map-pin-hotel-on@3x.png',
+  },
+}
 
 export interface MarkerBaseProps {
   /** 마커 사이즈, 단위 px */
@@ -79,7 +102,9 @@ export const Circle = styled.div`
 `
 
 export const CirclePin = styled.div<
-  Required<MarkerBaseProps> & { animationDuration?: number }
+  Required<MarkerBaseProps> & {
+    animationDuration?: number
+  }
 >`
   position: absolute;
   transform-origin: 21px 50px;

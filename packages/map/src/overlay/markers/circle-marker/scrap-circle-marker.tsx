@@ -14,15 +14,19 @@ import {
   ScrapBubbleMarker,
 } from '../bubble-marker'
 
+import { CIRCLE_MARKER } from './circle-marker-base'
+
 const Icon = styled.svg`
   width: ${(props) => props.width || 36}px;
   height: ${(props) => props.height || 36}px;
 `
 
 const withActive = ({
-  color = 'var(--color-purple)',
-  size: { width = 28, height = 28 } = {},
+  type,
   active = false,
+}: {
+  type: string
+  active?: boolean
 }) =>
   active
     ? css`
@@ -36,14 +40,14 @@ const withActive = ({
     : css`
         left: 0;
         top: 0;
-        width: ${width}px;
-        height: ${height}px;
-        line-height: ${height}px;
-        background-color: ${color};
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+        background-color: ${CIRCLE_MARKER[type].color};
         box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.15);
       `
 
-const CirclePin = styled.div<Pick<BubbleMarkerProps, 'color' | 'active'>>`
+const CirclePin = styled.div<Pick<BubbleMarkerProps, 'active' | 'type'>>`
   position: absolute;
   z-index: 1;
   animation-duration: 400ms;
@@ -59,23 +63,12 @@ const CirclePin = styled.div<Pick<BubbleMarkerProps, 'color' | 'active'>>`
       transform: scale(1);
     }
   }
-  ${({ color = 'var(--color-purple)', active = false }) => {
-    let typeOfColor = 'attraction'
-    switch (color) {
-      case 'var(--color-vermilion)':
-        typeOfColor = 'restaurant'
-        break
-      case 'var(--color-purple)':
-      default:
-        typeOfColor = 'attraction'
-        break
-    }
-    return active
+  ${({ type, active = false }) =>
+    active
       ? css`
           left: -21px;
           top: -50px;
-          background: url(https://assets.triple.guide/images/img-map-pin-${typeOfColor}-on@3x.png)
-            no-repeat 0 0;
+          background: url(${CIRCLE_MARKER[type].imageUrl}) no-repeat 0 0;
           background-size: 42px 50px;
           width: 42px;
           height: 50px;
@@ -85,8 +78,8 @@ const CirclePin = styled.div<Pick<BubbleMarkerProps, 'color' | 'active'>>`
           top: -14px;
           width: 28px;
           height: 28px;
-        `
-  }}
+        `}
+
   ${BubbleCircle} {
     ${(props) => withActive(props)}
   }
@@ -98,7 +91,6 @@ export function ScrapCircleMarker({
   zIndex = 1,
   active = false,
   linkText,
-  color,
   onLoad,
   onClick,
   onBubbleClick,
@@ -186,7 +178,7 @@ export function ScrapCircleMarker({
         <ScrapBubbleMarker
           id={poiId}
           type={poiType}
-          color={color}
+          color={CIRCLE_MARKER[poiType].color}
           linkText={linkText}
           active={active}
           onClick={handleClick}
@@ -194,13 +186,14 @@ export function ScrapCircleMarker({
         />
       ) : (
         <CirclePin
+          type={poiType}
           ref={circlePinRef}
           active={active}
-          color={color}
+          color={CIRCLE_MARKER[poiType].color}
           onClick={handleClick}
           onAnimationEnd={handleAnimationEnd}
         >
-          <BubbleCircle color={color}>
+          <BubbleCircle color={CIRCLE_MARKER[poiType].color}>
             {!active && (
               <Icon viewBox="0 0 34 34" width={24} height={22}>
                 <path
