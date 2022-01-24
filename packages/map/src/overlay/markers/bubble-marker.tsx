@@ -3,13 +3,13 @@ import { OverlayViewProps } from '@react-google-maps/api'
 import styled, { css } from 'styled-components'
 import { ExternalLink } from '@titicaca/router'
 
-import { MarkerBaseProps } from './circle-marker/circle-marker-base'
+import { CircleType, MarkerBaseProps } from './circle-marker/circle-marker-base'
 
 export interface BubbleMarkerProps
   extends Pick<MarkerBaseProps, 'active' | 'zIndex' | 'color'>,
     Omit<OverlayViewProps, 'mapPaneName'> {
   id: string
-  type: string
+  type: CircleType
   linkText?: string | null
   onClick?: (e: MouseEvent) => void
   onBubbleClick?: (e: MouseEvent) => void
