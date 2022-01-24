@@ -233,7 +233,7 @@ export default function Reply({
     }))
   }
 
-  const handleBlindReplyClick = useAppCallback(
+  const handleReportReplyClick = useAppCallback(
     TransitionType.General,
     useCallback(
       ({ messageId }: { messageId: string }) => {
@@ -380,9 +380,9 @@ export default function Reply({
             messageId: id,
           })
         }
-        onBlindClick={async () => {
+        onReportClick={async () => {
           await asyncBack(back)
-          handleBlindReplyClick({ messageId: id })
+          handleReportReplyClick({ messageId: id })
         }}
       />
     </>
@@ -451,13 +451,13 @@ function FeatureActionSheet({
   actionSheetHash,
   onEditClick,
   onDeleteClick,
-  onBlindClick,
+  onReportClick,
 }: {
   isMine: boolean
   actionSheetHash: string
   onEditClick: () => void
   onDeleteClick: () => void
-  onBlindClick: () => void
+  onReportClick: () => void
 }) {
   const uriHash = useUriHash()
   const { back } = useHistoryFunctions()
@@ -474,7 +474,7 @@ function FeatureActionSheet({
           <ActionSheet.Item onClick={onDeleteClick}>삭제하기</ActionSheet.Item>
         </>
       ) : (
-        <ActionSheet.Item onClick={onBlindClick}>신고하기</ActionSheet.Item>
+        <ActionSheet.Item onClick={onReportClick}>신고하기</ActionSheet.Item>
       )}
     </ActionSheet>
   )
