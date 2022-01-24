@@ -89,10 +89,14 @@ export default function Reply({
     deleted,
     actionSpecifications: { delete: isMine, reply, edit },
   },
+  modeDelete,
   focusInput,
+  onModeDelete,
 }: {
   reply: ReplyType
+  modeDelete: boolean
   focusInput: () => void
+  onModeDelete: () => void
 }) {
   const [{ childReplies, childPage }, setChildRepliesInfo] = useState<{
     childReplies: ReplyType[]
@@ -109,20 +113,13 @@ export default function Reply({
   const navigate = useNavigate()
 
   useEffect(() => {
-    async function fetchChildRepliesAndSet() {
-      const response = await fetchChildReplies({
-        id,
-        size: 3,
-      })
-
-      setChildRepliesInfo((prev) => ({
-        ...prev,
-        childReplies: checkUniqueReply(response),
-      }))
-    }
-
-    fetchChildRepliesAndSet()
-  }, [id])
+    setChildRepliesInfo((prev) => ({
+      childReplies: checkUniqueReply(
+        modeDelete ? [...children] : [...prev.childReplies, ...children],
+      ),
+      childPage: 0,
+    }))
+  }, [children, modeDelete])
 
   const fetchMoreChildReplies = useCallback(async () => {
     const response = await fetchChildReplies({
@@ -132,7 +129,6 @@ export default function Reply({
     })
 
     setChildRepliesInfo((prev) => ({
-      ...prev,
       childReplies: checkUniqueReply([...response, ...prev.childReplies]),
       childPage: prev.childPage + 1,
     }))
@@ -159,6 +155,7 @@ export default function Reply({
     })
 
     focusInput()
+    onModeDelete()
   }
 
   const handleEditReplyClick = ({
@@ -182,6 +179,7 @@ export default function Reply({
     })
 
     focusInput()
+    onModeDelete()
   }
 
   const handleDeleteReplyClick = useCallback(
@@ -189,11 +187,14 @@ export default function Reply({
       mentionedUserName,
       mentionedUserUid,
       messageId,
+      toMessageId,
     }: ReplyType['actionSpecifications']['edit'] & {
       messageId?: string
+      toMessageId?: string
     }) => {
       setEditingMessage({
         currentMessageId: messageId,
+        parentMessageId: toMessageId,
         content: {
           mentioningUserUid: mentionedUserUid,
           mentioningUserName: mentionedUserName,
@@ -358,7 +359,12 @@ export default function Reply({
         <List margin={{ top: 20 }}>
           {childReplies.map((childReply) => (
             <ChildResourceListItem key={childReply.id} margin={{ bottom: 20 }}>
-              <Reply reply={childReply} focusInput={focusInput} />
+              <Reply
+                reply={childReply}
+                modeDelete={modeDelete}
+                focusInput={focusInput}
+                onModeDelete={onModeDelete}
+              />
             </ChildResourceListItem>
           ))}
         </List>
@@ -377,6 +383,7 @@ export default function Reply({
         onDeleteClick={() =>
           handleDeleteReplyClick({
             ...edit,
+            toMessageId: reply.toMessageId,
             messageId: id,
           })
         }
@@ -493,7 +500,7 @@ function deriveContent({
 }) {
   const type =
     deleted || blinded
-      ? deleted && childrenCount > 0
+      ? deleted && childrenCount >= 0
         ? 'deleted'
         : 'blinded'
       : 'default'

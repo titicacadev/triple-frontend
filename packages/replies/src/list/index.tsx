@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction, useState } from 'react'
 import { Container, HR1, List, Text } from '@titicaca/core-elements'
 import { Confirm } from '@titicaca/modals'
 import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
@@ -6,6 +6,7 @@ import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
 import { Reply as ReplyType } from '../types'
 import { useRepliesContext } from '../context'
 import { deleteReply } from '../replies-api-clients'
+import { checkUniqueReply } from '../utils'
 
 import NotExistReplies from './not-exist-replies'
 import Reply, { HASH_DELETE_CLOSE_MODAL } from './reply'
@@ -17,21 +18,98 @@ export default function ReplyList({
   totalRepliesCount,
   fetchMoreReplies,
   focusInput,
+  onChangeReplies,
 }: {
   replies: ReplyType[]
   totalRepliesCount?: number
   fetchMoreReplies: () => void
   focusInput: () => void
+  onChangeReplies: Dispatch<
+    SetStateAction<{ replies: ReplyType[]; page: number }>
+  >
 }) {
   const {
+    parentMessageId,
     currentMessageId,
-    content: { mentioningUserName },
+    content: { mentioningUserName, mentioningUserUid },
     initializeEditingMessage,
   } = useRepliesContext()
 
   const description = mentioningUserName
     ? '답글을 삭제하시겠습니까?'
     : '댓글을 삭제하시겠습니까?'
+
+  const [modeDelete, setModeDelete] = useState(false)
+
+  const handleReplyDelete = async () => {
+    const response = (await deleteReply({ currentMessageId })) as ReplyType
+
+    if (mentioningUserUid) {
+      onChangeReplies((prev) => {
+        const parentReply = prev.replies.filter(
+          (reply) => reply.id === parentMessageId,
+        )
+        const deleteId = (parentReply[0].children || []).filter(
+          (reply) => reply.id === response.id,
+        )
+
+        const deleteIndex = parentReply[0].children.indexOf(deleteId[0])
+
+        let newChildReply = null
+
+        if (deleteIndex === 0) {
+          newChildReply = [...parentReply[0].children.slice(1)]
+        } else if (deleteIndex > 0) {
+          newChildReply = [
+            ...parentReply[0].children.slice(0, deleteIndex),
+            ...parentReply[0].children.slice(deleteIndex + 1),
+          ]
+        }
+
+        parentReply[0].children = newChildReply || []
+        parentReply[0].childrenCount -= 1
+
+        return {
+          ...prev,
+          replies: checkUniqueReply([...prev.replies, ...parentReply]),
+        }
+      })
+    } else {
+      onChangeReplies((prev) => {
+        const deleteId = prev.replies.filter(
+          (reply) => reply.id === response.id,
+        )
+        const deleteIndex = prev.replies.indexOf(deleteId[0])
+        const children = deleteId[0].children || []
+        let deletedReply = null
+
+        if (deleteIndex === 0) {
+          if (children.length === 0) {
+            deletedReply = [...prev.replies.slice(1)]
+          }
+
+          deleteId[0].deleted = true
+        } else if (deleteIndex > 0) {
+          if (children.length === 0) {
+            deletedReply = [
+              ...prev.replies.slice(0, deleteIndex),
+              ...prev.replies.slice(deleteIndex + 1),
+            ]
+          } else {
+            deleteId[0].deleted = true
+            deleteId[0].content = {}
+          }
+        }
+
+        return {
+          ...prev,
+          replies: checkUniqueReply([...(deletedReply || prev.replies)]),
+        }
+      })
+    }
+
+    setModeDelete(true)
+  }
 
   return (
     <>
@@ -57,20 +135,23 @@ export default function ReplyList({
             {replies.map((reply) => (
               <List.Item key={reply.id}>
                 <HR1 margin={{ bottom: 20 }} color="var(--color-gray50)" />
-                <Reply reply={reply} focusInput={focusInput} />
+                <Reply
+                  reply={reply}
+                  modeDelete={modeDelete}
+                  focusInput={focusInput}
+                  onModeDelete={() => setModeDelete(false)}
+                />
               </List.Item>
             ))}
           </List>
-
           <ConfirmEditModal
             onConfirm={() => {
               initializeEditingMessage()
             }}
           />
-
           <ConfirmDeleteModal
             onConfirm={() => {
-              deleteReply({ currentMessageId })
+              handleReplyDelete()
             }}
             description={description}
           />
