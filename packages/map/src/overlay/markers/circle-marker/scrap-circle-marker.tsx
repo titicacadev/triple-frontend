@@ -14,7 +14,7 @@ import {
   ScrapBubbleMarker,
 } from '../bubble-marker'
 
-import { CIRCLE_MARKER, CircleType } from './circle-marker-base'
+import { CIRCLE_MARKER } from './circle-marker-base'
 
 const Icon = styled.svg`
   width: ${(props) => props.width || 36}px;
@@ -22,10 +22,10 @@ const Icon = styled.svg`
 `
 
 const withActive = ({
-  type,
+  color,
   active = false,
 }: {
-  type: CircleType
+  color: string
   active?: boolean
 }) =>
   active
@@ -43,11 +43,13 @@ const withActive = ({
         width: 28px;
         height: 28px;
         line-height: 28px;
-        background-color: ${CIRCLE_MARKER[type].color};
+        background-color: ${color};
         box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.15);
       `
 
-const CirclePin = styled.div<Pick<BubbleMarkerProps, 'active' | 'type'>>`
+const CirclePin = styled.div<
+  Pick<BubbleMarkerProps, 'active' | 'color' | 'imageUrl'>
+>`
   position: absolute;
   z-index: 1;
   animation-duration: 400ms;
@@ -63,12 +65,12 @@ const CirclePin = styled.div<Pick<BubbleMarkerProps, 'active' | 'type'>>`
       transform: scale(1);
     }
   }
-  ${({ type, active = false }) =>
+  ${({ imageUrl, active = false }) =>
     active
       ? css`
           left: -21px;
           top: -50px;
-          background: url(${CIRCLE_MARKER[type].imageUrl}) no-repeat 0 0;
+          background: url(${imageUrl}) no-repeat 0 0;
           background-size: 42px 50px;
           width: 42px;
           height: 50px;
@@ -186,10 +188,10 @@ export function ScrapCircleMarker({
         />
       ) : (
         <CirclePin
-          type={poiType}
+          color={CIRCLE_MARKER[poiType].color}
+          imageUrl={CIRCLE_MARKER[poiType].imageUrl}
           ref={circlePinRef}
           active={active}
-          color={CIRCLE_MARKER[poiType].color}
           onClick={handleClick}
           onAnimationEnd={handleAnimationEnd}
         >

@@ -10,6 +10,7 @@ export interface BubbleMarkerProps
     Omit<OverlayViewProps, 'mapPaneName'> {
   id: string
   type: CircleType
+  imageUrl: string
   linkText?: string | null
   onClick?: (e: MouseEvent) => void
   onBubbleClick?: (e: MouseEvent) => void
@@ -94,7 +95,7 @@ export function ScrapBubbleMarker({
   onBubbleClick,
   children,
 }: PropsWithChildren<
-  Omit<BubbleMarkerProps, 'onClick' | 'onBubbleClick'> & {
+  Omit<BubbleMarkerProps, 'imageUrl' | 'onClick' | 'onBubbleClick'> & {
     onClick: MouseEventHandler<HTMLDivElement>
     onBubbleClick: MouseEventHandler<HTMLDivElement>
   }
@@ -127,7 +128,7 @@ export function SmallBubbleMarker({
   onBubbleClick,
   children,
 }: PropsWithChildren<
-  Omit<BubbleMarkerProps, 'onClick' | 'onBubbleClick'> & {
+  Omit<BubbleMarkerProps, 'imageUrl' | 'onClick' | 'onBubbleClick'> & {
     onClick: MouseEventHandler<HTMLDivElement>
     onBubbleClick: MouseEventHandler<HTMLDivElement>
   }
