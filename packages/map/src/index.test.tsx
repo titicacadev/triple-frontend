@@ -1,9 +1,7 @@
 import React from 'react'
-import { fireEvent, render } from '@testing-library/react'
-import { useGoogleMap } from '@react-google-maps/api'
+import { render } from '@testing-library/react'
 
 import { MapView, WithGoogleMapProps } from './map-view'
-import { FocusTracker } from './focus-tracker'
 
 const MOCK_MAP_VIEW: WithGoogleMapProps = {
   coordinates: [
@@ -29,35 +27,4 @@ test('MapView의 로드 여부를 체크합니다.', () => {
   const { getByTestId } = render(<MapView {...MOCK_MAP_VIEW} />)
 
   expect(getByTestId('google-map')).toBeTruthy()
-})
-
-test('marker click 시 focusGeolocation prop가 바뀌었는지 체크합니다.', () => {
-  const panToMock = jest.fn()
-
-  ;(
-    useGoogleMap as unknown as jest.MockedFunction<
-      () => Pick<google.maps.Map, 'panTo'>
-    >
-  ).mockReturnValue({ panTo: panToMock })
-
-  const { getByTestId } = render(
-    <MapView {...MOCK_MAP_VIEW}>
-      <FocusTracker
-        focusGeolocation={{
-          type: 'Point',
-          coordinates: MOCK_MAP_VIEW.coordinates[0],
-        }}
-      />
-    </MapView>,
-    {
-      wrapper: () => (
-        <div
-          data-testid="marker"
-          onClick={() => panToMock(MOCK_MAP_VIEW.coordinates[1])}
-        />
-      ),
-    },
-  )
-  fireEvent.click(getByTestId('marker'))
-  expect(panToMock).toBeCalledWith(MOCK_MAP_VIEW.coordinates[1])
 })
