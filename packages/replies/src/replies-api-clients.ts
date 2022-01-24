@@ -124,15 +124,34 @@ export async function authorMessage({
   })
 
   if (authoringRequestType === 'writeReply') {
-    await writeReply({ resourceId, resourceType, content, mentionedUserUid })
+    const response = await writeReply({
+      resourceId,
+      resourceType,
+      content,
+      mentionedUserUid,
+    })
+
+    return { response, authoringRequestType }
   }
 
   if (authoringRequestType === 'writeChildReply') {
-    await writeChildReply({ parentMessageId, content, mentionedUserUid })
+    const response = await writeChildReply({
+      parentMessageId,
+      content,
+      mentionedUserUid,
+    })
+
+    return { response, authoringRequestType }
   }
 
   if (authoringRequestType === 'editReply') {
-    await editReply({ currentMessageId, content, mentionedUserUid })
+    const response = await editReply({
+      currentMessageId,
+      content,
+      mentionedUserUid,
+    })
+
+    return { response, authoringRequestType }
   }
 }
 
@@ -185,6 +204,12 @@ async function writeReply({
   }
 
   captureHttpError(response)
+
+  if (response.ok) {
+    const { parsedBody } = response
+
+    return parsedBody
+  }
 }
 
 async function writeChildReply({
@@ -215,6 +240,12 @@ async function writeChildReply({
   }
 
   captureHttpError(response)
+
+  if (response.ok) {
+    const { parsedBody } = response
+
+    return parsedBody
+  }
 }
 
 async function editReply({
@@ -244,6 +275,12 @@ async function editReply({
   }
 
   captureHttpError(response)
+
+  if (response.ok) {
+    const { parsedBody } = response
+
+    return parsedBody
+  }
 }
 
 export async function deleteReply({
@@ -265,6 +302,12 @@ export async function deleteReply({
   }
 
   captureHttpError(response)
+
+  if (response.ok) {
+    const { parsedBody } = response
+
+    return parsedBody
+  }
 }
 
 export async function likeReply({ messageId }: { messageId: string }) {
