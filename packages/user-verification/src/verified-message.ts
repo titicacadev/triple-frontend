@@ -1,9 +1,8 @@
-import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
+import { useEnv } from '@titicaca/react-contexts'
 import {
-  broadcastMessage,
-  subscribe,
-  unsubscribe,
-} from '@titicaca/triple-web-to-native-interfaces'
+  useTripleClientMetadata,
+  useTripleClientActions,
+} from '@titicaca/react-triple-client-interfaces'
 import { useCallback, useEffect } from 'react'
 
 /**
@@ -17,21 +16,22 @@ export interface VerifiedMessage {
 
 export function useSendVerifiedMessage() {
   const { webUrlBase } = useEnv()
-  const { isPublic } = useUserAgentContext()
+  const app = useTripleClientMetadata()
+  const { broadcastMessage } = useTripleClientActions()
 
   const sendVerifiedMessage = useCallback(
     (message: VerifiedMessage) => {
-      if (isPublic) {
+      if (app) {
+        broadcastMessage && broadcastMessage(message)
+      } else {
         const parentWindow: Window | null = window.opener
 
         if (parentWindow) {
           parentWindow.postMessage(message, webUrlBase)
         }
-      } else {
-        broadcastMessage(message)
       }
     },
-    [isPublic, webUrlBase],
+    [app, webUrlBase, broadcastMessage],
   )
 
   return sendVerifiedMessage
@@ -44,10 +44,11 @@ export function useSendVerifiedMessage() {
 export function useVerifiedMessageListener(
   handleVerifiedMessage: (message: VerifiedMessage) => void,
 ) {
-  const { isPublic } = useUserAgentContext()
+  const app = useTripleClientMetadata()
+  const { subscribe, unsubscribe } = useTripleClientActions()
 
   useEffect(() => {
-    if (isPublic) {
+    if (!app) {
       const handleMessage = ({ data }: MessageEvent) => {
         handleVerifiedMessage(data)
       }
@@ -57,12 +58,12 @@ export function useVerifiedMessageListener(
       return () => {
         window.removeEventListener('message', handleMessage)
       }
-    }
+    } else if (subscribe && unsubscribe) {
+      subscribe('receiveMessage', handleVerifiedMessage)
 
-    subscribe('receiveMessage', handleVerifiedMessage)
-
-    return () => {
-      unsubscribe('receiveMessage', handleVerifiedMessage)
+      return () => {
+        unsubscribe('receiveMessage', handleVerifiedMessage)
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
