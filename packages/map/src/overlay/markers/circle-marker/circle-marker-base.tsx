@@ -3,22 +3,6 @@ import { Required } from 'utility-types'
 
 export type CircleType = 'attraction' | 'restaurant' | 'hotel'
 
-export interface MarkerBaseProps {
-  /** 마커 사이즈, 단위 px */
-  width?: number
-  height?: number
-  /** 마커 선택 상태값 */
-  active?: boolean
-  /** active 시 image 클릭 가능 여부값 */
-  alwaysClickable?: boolean
-  /** 마커 기본 색상 */
-  color: string
-  /** 활성화 마커 백그라운드 이미지 */
-  src: string
-  /** 마커 zIndex */
-  zIndex?: number
-}
-
 /** 마커 종류의 따른 css 값 */
 export const CIRCLE_MARKER: {
   [key in CircleType]: {
@@ -40,6 +24,22 @@ export const CIRCLE_MARKER: {
     color: 'var(--color-purple)',
     imageUrl: 'https://assets.triple.guide/images/img-map-pin-hotel-on@3x.png',
   },
+}
+
+export interface MarkerBaseProps {
+  /** 마커 사이즈, 단위 px */
+  width?: number
+  height?: number
+  /** 마커 선택 상태값 */
+  active?: boolean
+  /** active 시 image 클릭 가능 여부값 */
+  alwaysClickable?: boolean
+  /** 마커 기본 색상 */
+  color: string
+  /** 활성화 마커 백그라운드 이미지 */
+  src: string
+  /** 마커 zIndex */
+  zIndex?: number
 }
 
 /** 맵 상에 표시해야할 마커의 총 개수 */
