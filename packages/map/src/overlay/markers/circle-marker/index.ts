@@ -1,6 +1,8 @@
 import withTypeCircleMarker from './with-type-circle-marker'
 
 export * from './circle-marker'
+export * from './small-circle-marker'
+export * from './scrap-circle-marker'
 
 /** 공통으로 사용되는 poi 마커 */
 

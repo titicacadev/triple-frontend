@@ -7,15 +7,12 @@ import React, {
 } from 'react'
 import styled, { css } from 'styled-components'
 import { OverlayView } from '@react-google-maps/api'
-import { ExternalLink } from '@titicaca/router'
 
 import {
-  BubbleBox,
   BubbleCircle,
-  BubbleMarkerContainer,
   BubbleMarkerProps,
-  BubbleText,
-} from './bubble-marker-base'
+  ScrapBubbleMarker,
+} from '../bubble-marker'
 
 const Icon = styled.svg`
   width: ${(props) => props.width || 36}px;
@@ -95,12 +92,12 @@ const CirclePin = styled.div<Pick<BubbleMarkerProps, 'color' | 'active'>>`
   }
 `
 
-export default function ScrapCircleMarker({
+export function ScrapCircleMarker({
   id: poiId,
   type: poiType,
   zIndex = 1,
   active = false,
-  bubbleText,
+  linkText,
   color,
   onLoad,
   onClick,
@@ -185,21 +182,16 @@ export default function ScrapCircleMarker({
       ref={overlayViewRef}
       onLoad={handleLoad}
     >
-      {active && bubbleText ? (
-        <>
-          <BubbleBox onClick={handleBubbleClick}>
-            <ExternalLink href={`/${poiType}s/${poiId}`} target="new" noNavbar>
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-              <a>
-                <BubbleText>{bubbleText}</BubbleText>
-              </a>
-            </ExternalLink>
-          </BubbleBox>
-
-          <BubbleMarkerContainer onClick={handleClick} active={active}>
-            <BubbleCircle color={color}>{children}</BubbleCircle>
-          </BubbleMarkerContainer>
-        </>
+      {active && linkText ? (
+        <ScrapBubbleMarker
+          id={poiId}
+          type={poiType}
+          color={color}
+          linkText={linkText}
+          active={active}
+          onClick={handleClick}
+          onBubbleClick={handleBubbleClick}
+        />
       ) : (
         <CirclePin
           ref={circlePinRef}

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, MouseEvent } from 'react'
 import { Container } from '@titicaca/core-elements'
 import {
   MapView,
@@ -28,8 +28,8 @@ export default function ItineraryMap({ onClickMarker, items }: Props) {
   const { googleMapsApiKey } = useEnv()
   const { totalPois, polyline, pois, coordinates } = useMapData(items)
 
-  const generateClickMarkerHandle = useCallback(
-    (poi: ItineraryItemType['poi']) => (e: React.SyntheticEvent) => {
+  const generateClickMarkerHandler = useCallback(
+    (poi: ItineraryItemType['poi']) => (e: MouseEvent) => {
       e.preventDefault()
 
       if (onClickMarker) {
@@ -58,7 +58,7 @@ export default function ItineraryMap({ onClickMarker, items }: Props) {
                 width={22}
                 height={22}
                 position={position}
-                onClick={generateClickMarkerHandle(poi)}
+                onClick={generateClickMarkerHandler(poi)}
               >
                 <strong>{i + 1}</strong>
               </CircleMarker>
