@@ -1,7 +1,6 @@
-import React, { MouseEvent, MouseEventHandler, PropsWithChildren } from 'react'
+import { MouseEvent } from 'react'
 import { OverlayViewProps } from '@react-google-maps/api'
 import styled, { css } from 'styled-components'
-import { ExternalLink } from '@titicaca/router'
 
 import { CircleType, MarkerBaseProps } from './circle-marker/circle-marker-base'
 
@@ -35,7 +34,9 @@ export const BubbleCircle = styled.div<{ color: string }>`
   }
 `
 
-const BubbleMarkerContainer = styled.div<Pick<BubbleMarkerProps, 'active'>>`
+export const BubbleMarkerContainer = styled.div<
+  Pick<BubbleMarkerProps, 'active'>
+>`
   position: relative;
   ${({ active }) =>
     css`
@@ -47,7 +48,7 @@ const BubbleMarkerContainer = styled.div<Pick<BubbleMarkerProps, 'active'>>`
     `}
 `
 
-const NavigateToPoiDetailLink = styled.div`
+export const NavigateToPoiDetailLink = styled.div`
   position: relative;
   background: #ffffff;
   height: ${BUBBLE_HEIGHT}px;
@@ -77,77 +78,10 @@ const NavigateToPoiDetailLink = styled.div`
   }
 `
 
-const LinkLabel = styled.div`
+export const LinkLabel = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 170px;
   color: black;
 `
-
-export function ScrapBubbleMarker({
-  id: poiId,
-  type: poiType,
-  color,
-  active,
-  linkText,
-  onClick,
-  onBubbleClick,
-  children,
-}: PropsWithChildren<
-  Omit<BubbleMarkerProps, 'imageUrl' | 'onClick' | 'onBubbleClick'> & {
-    onClick: MouseEventHandler<HTMLDivElement>
-    onBubbleClick: MouseEventHandler<HTMLDivElement>
-  }
->) {
-  return (
-    <>
-      <NavigateToPoiDetailLink onClick={onClick}>
-        <ExternalLink href={`/${poiType}s/${poiId}`} target="new" noNavbar>
-          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <a>
-            <LinkLabel>{linkText}</LinkLabel>
-          </a>
-        </ExternalLink>
-      </NavigateToPoiDetailLink>
-
-      <BubbleMarkerContainer onClick={onBubbleClick} active={active}>
-        <BubbleCircle color={color}>{children}</BubbleCircle>
-      </BubbleMarkerContainer>
-    </>
-  )
-}
-
-export function SmallBubbleMarker({
-  id: poiId,
-  type: poiType,
-  color,
-  active,
-  linkText,
-  onClick,
-  onBubbleClick,
-  children,
-}: PropsWithChildren<
-  Omit<BubbleMarkerProps, 'imageUrl' | 'onClick' | 'onBubbleClick'> & {
-    onClick: MouseEventHandler<HTMLDivElement>
-    onBubbleClick: MouseEventHandler<HTMLDivElement>
-  }
->) {
-  return (
-    <>
-      {active && linkText && (
-        <NavigateToPoiDetailLink onClick={onBubbleClick}>
-          <ExternalLink href={`/${poiType}s/${poiId}`} target="new" noNavbar>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a>
-              <LinkLabel>{linkText}</LinkLabel>
-            </a>
-          </ExternalLink>
-        </NavigateToPoiDetailLink>
-      )}
-      <BubbleMarkerContainer onClick={onClick} active={active}>
-        <BubbleCircle color={color}>{children}</BubbleCircle>
-      </BubbleMarkerContainer>
-    </>
-  )
-}

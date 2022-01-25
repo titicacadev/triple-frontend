@@ -7,11 +7,14 @@ import React, {
 } from 'react'
 import styled, { css } from 'styled-components'
 import { OverlayView } from '@react-google-maps/api'
+import { ExternalLink } from '@titicaca/router'
 
 import {
   BubbleCircle,
+  BubbleMarkerContainer,
   BubbleMarkerProps,
-  ScrapBubbleMarker,
+  LinkLabel,
+  NavigateToPoiDetailLink,
 } from '../bubble-marker'
 
 import { CIRCLE_MARKER } from './circle-marker-base'
@@ -177,7 +180,7 @@ export function ScrapCircleMarker({
       onLoad={handleLoad}
     >
       {active && linkText ? (
-        <ScrapBubbleMarker
+        <BubbleMarker
           id={poiId}
           type={poiType}
           color={CIRCLE_MARKER[poiType].color}
@@ -212,5 +215,38 @@ export function ScrapCircleMarker({
         </CirclePin>
       )}
     </OverlayView>
+  )
+}
+
+function BubbleMarker({
+  id: poiId,
+  type: poiType,
+  color,
+  active,
+  linkText,
+  onClick,
+  onBubbleClick,
+  children,
+}: PropsWithChildren<
+  Omit<BubbleMarkerProps, 'imageUrl' | 'onClick' | 'onBubbleClick'> & {
+    onClick: MouseEventHandler<HTMLDivElement>
+    onBubbleClick: MouseEventHandler<HTMLDivElement>
+  }
+>) {
+  return (
+    <>
+      <NavigateToPoiDetailLink onClick={onClick}>
+        <ExternalLink href={`/${poiType}s/${poiId}`} target="new" noNavbar>
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+          <a>
+            <LinkLabel>{linkText}</LinkLabel>
+          </a>
+        </ExternalLink>
+      </NavigateToPoiDetailLink>
+
+      <BubbleMarkerContainer onClick={onBubbleClick} active={active}>
+        <BubbleCircle color={color}>{children}</BubbleCircle>
+      </BubbleMarkerContainer>
+    </>
   )
 }
