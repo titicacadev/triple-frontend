@@ -1,7 +1,5 @@
 import React, { MouseEvent, PropsWithChildren, useCallback } from 'react'
-import { OverlayViewProps } from '@react-google-maps/api'
-
-import { MarkerBase } from '../marker-base'
+import { OverlayViewProps, OverlayView } from '@react-google-maps/api'
 
 import { Circle, CirclePin, MarkerBaseProps } from './circle-marker-base'
 
@@ -34,7 +32,12 @@ export function CircleMarker({
   )
 
   return (
-    <MarkerBase {...overlayViewProps} position={position} onLoad={onLoad}>
+    <OverlayView
+      {...overlayViewProps}
+      mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+      position={position}
+      onLoad={onLoad}
+    >
       <CirclePin
         zIndex={zIndex}
         width={width}
@@ -47,6 +50,6 @@ export function CircleMarker({
       >
         <Circle>{children}</Circle>
       </CirclePin>
-    </MarkerBase>
+    </OverlayView>
   )
 }

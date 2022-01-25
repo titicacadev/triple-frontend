@@ -15,11 +15,11 @@
 ```ts
 {
   /** 중앙좌표 값과 bounds를 계산하기 위한 좌표값 */
-  coordinates: [number,number][]
+  coordinates?: [number,number][]
   /** 맵을 그리기 위한 중앙좌표와 맵의 동서남북 경계범위의 좌표를 포함하는 옵션 */
-  options: google.maps.MapOptions
+  options?: google.maps.MapOptions
   /** Map Container 에 인라인 스타일 적용이 필요한 경우 */
-  mapContainerStyle: CSSProperties
+  mapContainerStyle?: CSSProperties
   /**
    * Google Map SDK 로드를 위해 필요한 configuration
    * 여러 옵션이 있지만 googleMapApiKey 정도만 설정하면 되고 기본값을 갖습니다.
@@ -32,14 +32,14 @@
   /**
    * Map SDK loaded 콜백 핸들러
    */
-  onLoad: (map: google.maps.Map) => void
+  onLoad?: (map: google.maps.Map) => void
   /** 맵 내부에 애니메이션 핀이나 마커가 들어가면서 가상의 추가 여백이 필요하여 보정하기 위한 여백값입니다. */
   padding?: number | { top, left, right, bottom }
 }
 ```
 
 ```tsx
-import { MapView, FocusTracker, DEFAULT_MAP_HEIGHT } from '@titicaca/map'
+import { MapView, FocusTracker } from '@titicaca/map'
 
 function Page() {
   const [mapOptions] = useState({ center: { lat: 25.061425, lng: 121.380241 } })
@@ -68,14 +68,13 @@ function Page() {
 }
 ```
 
-### Overlay Wrapper, Marker
+### Overlay
 
-MapView 위에 커스터마이징한 컴포넌트 or Marker를 사용합니다.
 이미지는 아래와 같이 svg 이미지를 inline으로 사용합니다.
 
 ```tsx
 import { white } from '@titicaca/color-palette'
-import { OverlayWrapper, OverlayMarker } from '@titicaca/map'
+import { OverlayView } from '@react-google-maps/api'
 
 const coordinates = [
   { lat: 33.24577929502035, lng: 126.57157193028415 },
@@ -98,24 +97,25 @@ function Page() {
       }}
     >
       {coordinates.map((position, i) => (
-        <>
-          <OverlayWrapper position={{ bottom: 0 }}>
-            <Component />
-          </OverlayWrapper>
+        <OverlayView key={i} position={position}>
+          <svg viewBox="0 0 34 34">
+            <path
+              fill="none"
+              fillRule="evenodd"
+              stroke="var(--color-white)"
+              strokeLinejoin="round"
+              strokeWidth="1.65"
+              d="M17 11.229C17.877 9.683 19.55 8 22.005 8 24.994 8 27 10.426 27 13.374c0 5.83-5.768 9.873-10 12.626-4.232-2.753-10-6.796-10-12.626C7 10.426 9.006 8 11.995 8 14.45 8 16.123 9.683 17 11.229z"
+            />
+          </svg>
+        </OverlayView>
 
-          <OverlayMarker key={i} position={position}>
-            <svg viewBox="0 0 34 34">
-              <path
-                fill="none"
-                fillRule="evenodd"
-                stroke="var(--color-white)"
-                strokeLinejoin="round"
-                strokeWidth="1.65"
-                d="M17 11.229C17.877 9.683 19.55 8 22.005 8 24.994 8 27 10.426 27 13.374c0 5.83-5.768 9.873-10 12.626-4.232-2.753-10-6.796-10-12.626C7 10.426 9.006 8 11.995 8 14.45 8 16.123 9.683 17 11.229z"
-              />
-            </svg>
-          </OverlayMarker>
-        </>
+        // 아래 호텔 예시 페이지 처럼 필요에 따라 wrapper 형식의 컴포넌트를 붙이는 경우
+        // core-elements의 Container를 래핑하여 컴포넌트를 렌더시킵니다.
+        // 예시 페이지 경로 - /hotels/d0316375-7cbf-4fd0-9ec9-5912ec7bd944
+        <Container position={{ bottom: 0 }} position='absoulte'>
+          <Component />
+        </OverlayWrapper>
       ))}
     </MapView>
   )
