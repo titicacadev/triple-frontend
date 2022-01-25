@@ -139,10 +139,8 @@ export default function Reply({
   }, [id, childPage])
 
   const handleMoreClick = useCallback(
-    (id, deleted, blinded) => {
-      !deleted &&
-        !blinded &&
-        push(`${HASH_MORE_ACTION_SHEET}.${id}`, { useRouter: true })
+    (id) => {
+      push(`${HASH_MORE_ACTION_SHEET}.${id}`, { useRouter: true })
     },
     [push],
   )
@@ -274,7 +272,9 @@ export default function Reply({
             </Text>
 
             <MoreActionsButton
-              onClick={() => handleMoreClick(id, deleted, blinded)}
+              onClick={
+                !deleted && !blinded ? () => handleMoreClick(id) : undefined
+              }
             />
           </FlexBox>
         </FlexBox>
