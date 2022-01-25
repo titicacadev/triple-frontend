@@ -1,6 +1,7 @@
 import styled, { css, keyframes } from 'styled-components'
 import { Required } from 'utility-types'
 
+// tna 추가예정
 export type CircleType = 'attraction' | 'restaurant' | 'hotel'
 
 /** 마커 종류의 따른 css 값 */

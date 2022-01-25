@@ -49,7 +49,7 @@ const DEFAULT_MAP_CONTAINER_STYLE: CSSProperties = {
 }
 
 export interface WithGoogleMapProps extends GoogleMapProps {
-  coordinates: [number, number][]
+  coordinates?: [number, number][]
   googleMapLoadOptions: {
     /** goole map api key */
     googleMapsApiKey: string
@@ -70,7 +70,7 @@ export interface WithGoogleMapProps extends GoogleMapProps {
 const GOOGLE_MAP_LIBRARIES = ['geometry' as const]
 
 export function MapView({
-  coordinates,
+  coordinates = [],
   options: originOptions,
   mapContainerStyle: originMapContainerStyle,
   googleMapLoadOptions: { googleMapsApiKey, region = 'kr' },
