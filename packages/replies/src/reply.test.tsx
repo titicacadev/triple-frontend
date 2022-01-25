@@ -1,7 +1,8 @@
 import React from 'react'
-import { fireEvent, render, waitFor } from '@testing-library/react'
-
 import '@testing-library/jest-dom'
+import { fireEvent, render, waitFor } from '@testing-library/react'
+import { EnvProvider, SessionContextProvider } from '@titicaca/react-contexts'
+
 import { RepliesProvider } from './context'
 import Reply from './list/reply'
 import { Reply as ReplyType } from './types'
@@ -46,7 +47,7 @@ const MOCKED_REPLY = {
 describe('리액션 관련 기능을 테스트합니다.', () => {
   describe('좋아요 수에 따른 문구 노출 조건을 테스트합니다.', () => {
     test('갯수가 양수일 때, 좋아요 문구 및 갯수를 노출합니다.', async () => {
-      const { reply, onFocusInput } = await setup({
+      const reply = await fetchInitialReply({
         reactions: {
           like: {
             count: 1,
@@ -55,11 +56,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const { queryByText } = render(
-        <RepliesProvider>
-          <Reply reply={reply} focusInput={onFocusInput} />
-        </RepliesProvider>,
-      )
+      const { queryByText } = render(<ReplyComponent reply={reply} />)
 
       const likeCountElement = queryByText(/좋아요/)
 
@@ -69,7 +66,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
     })
 
     test('갯수가 0일 때, 좋아요 문구 및 갯수를 노출하지 않습니다.', async () => {
-      const { reply, onFocusInput } = await setup({
+      const reply = await fetchInitialReply({
         reactions: {
           like: {
             count: 0,
@@ -78,11 +75,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const { queryByText } = render(
-        <RepliesProvider>
-          <Reply reply={reply} focusInput={onFocusInput} />
-        </RepliesProvider>,
-      )
+      const { queryByText } = render(<ReplyComponent reply={reply} />)
 
       const likeCountElement = queryByText(/좋아요/)
 
@@ -92,7 +85,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
     })
 
     test('갯수가 음수일 때, 좋아요 문구 및 갯수를 노출하지 않습니다.', async () => {
-      const { reply, onFocusInput } = await setup({
+      const reply = await fetchInitialReply({
         reactions: {
           like: {
             count: -1,
@@ -101,11 +94,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const { queryByText } = render(
-        <RepliesProvider>
-          <Reply reply={reply} focusInput={onFocusInput} />
-        </RepliesProvider>,
-      )
+      const { queryByText } = render(<ReplyComponent reply={reply} />)
 
       const likeCountElement = queryByText(/좋아요/)
 
@@ -117,7 +106,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
 
   describe('사용자의 좋아요 클릭 액션을 테스트합니다.', () => {
     test('좋아요를 클릭했던 사용자가 다시 클릭하면, 좋아요 갯수를 -1 합니다.', async () => {
-      const { reply, onFocusInput } = await setup({
+      const reply = await fetchInitialReply({
         reactions: {
           like: {
             count: 2,
@@ -126,11 +115,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const { getByRole, findByText } = render(
-        <RepliesProvider>
-          <Reply reply={reply} focusInput={onFocusInput} />
-        </RepliesProvider>,
-      )
+      const { getByRole, findByText } = render(<ReplyComponent reply={reply} />)
 
       const unlikeButtonElement = getByRole('button', {
         name: /unlike-button/i,
@@ -148,7 +133,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
     })
 
     test('좋아요를 클릭하지 않았던 사용자가 클릭하면, 좋아요 갯수를 +1 합니다.', async () => {
-      const { reply, onFocusInput } = await setup({
+      const reply = await fetchInitialReply({
         reactions: {
           like: {
             count: 1,
@@ -157,11 +142,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const { getByRole, findByText } = render(
-        <RepliesProvider>
-          <Reply reply={reply} focusInput={onFocusInput} />
-        </RepliesProvider>,
-      )
+      const { getByRole, findByText } = render(<ReplyComponent reply={reply} />)
 
       const likeButtonElement = getByRole('button', {
         name: /like-button/i,
@@ -180,7 +161,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
   })
 })
 
-async function setup(reactions: Pick<ReplyType, 'reactions'>) {
+async function fetchInitialReply(reactions: Pick<ReplyType, 'reactions'>) {
   const mockedFetchReply = jest.fn()
   const fetchReply = mockedFetchReply.mockResolvedValue({
     ...MOCKED_REPLY,
@@ -189,7 +170,36 @@ async function setup(reactions: Pick<ReplyType, 'reactions'>) {
 
   const reply = await fetchReply()
 
+  return reply
+}
+
+function ReplyComponent({ reply }: { reply: ReplyType }) {
   const onFocusInput = jest.fn()
 
-  return { reply, onFocusInput }
+  return (
+    <EnvProvider
+      appUrlScheme=""
+      webUrlBase=""
+      authBasePath="/"
+      facebookAppId=""
+      defaultPageTitle=""
+      defaultPageDescription=""
+      googleMapsApiKey=""
+      afOnelinkId=""
+      afOnelinkPid=""
+      afOnelinkSubdomain=""
+    >
+      <SessionContextProvider
+        type="browser"
+        props={{
+          initialUser: undefined,
+          initialSessionAvailability: false,
+        }}
+      >
+        <RepliesProvider>
+          <Reply reply={reply} focusInput={onFocusInput} />
+        </RepliesProvider>
+      </SessionContextProvider>
+    </EnvProvider>
+  )
 }
