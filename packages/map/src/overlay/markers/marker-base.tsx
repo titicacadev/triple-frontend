@@ -7,23 +7,23 @@ import styled from 'styled-components'
 import React, { PropsWithChildren } from 'react'
 import { OverlayView, OverlayViewProps } from '@react-google-maps/api'
 
-interface OverlayMarkerProps
+interface MarkerBaseProps
   extends Omit<OverlayViewProps, 'mapPaneName' | 'position'> {
   position: google.maps.LatLng | google.maps.LatLngLiteral
 }
 
-export const OverlayWrapper = styled(Container)<LayeringMixinProps>`
+export const MarkerBaseWrapper = styled(Container)<LayeringMixinProps>`
   width: 100%;
   position: absolute;
   ${layeringMixin(5)}
 `
 
-export function OverlayMarker({
+export function MarkerBase({
   onLoad,
   position,
   children,
   ...overlayViewProps
-}: PropsWithChildren<OverlayMarkerProps>) {
+}: PropsWithChildren<MarkerBaseProps>) {
   return (
     <OverlayView
       {...overlayViewProps}
