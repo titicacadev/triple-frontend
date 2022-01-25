@@ -273,7 +273,7 @@ export default function Reply({
 
             <MoreActionsButton
               onClick={
-                !deleted && !blinded ? () => handleMoreClick(id) : undefined
+                reply ? () => handleMoreClick(reply.toMessageId) : undefined
               }
             />
           </FlexBox>
