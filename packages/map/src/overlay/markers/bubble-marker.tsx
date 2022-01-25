@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 
 import { CircleType, MarkerBaseProps } from './circle-marker/circle-marker-base'
 
-export interface BubbleMarkerProps
+export interface BubbleBaseProps
   extends Pick<MarkerBaseProps, 'active' | 'zIndex' | 'color'>,
     Omit<OverlayViewProps, 'mapPaneName'> {
   id: string
@@ -35,7 +35,7 @@ export const BubbleCircle = styled.div<{ color: string }>`
 `
 
 export const BubbleMarkerContainer = styled.div<
-  Pick<BubbleMarkerProps, 'active'>
+  Pick<BubbleBaseProps, 'active'>
 >`
   position: relative;
   ${({ active }) =>

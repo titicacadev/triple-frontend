@@ -12,7 +12,7 @@ import { ExternalLink } from '@titicaca/router'
 import {
   BubbleCircle,
   BubbleMarkerContainer,
-  BubbleMarkerProps,
+  BubbleBaseProps,
   LinkLabel,
   NavigateToPoiDetailLink,
 } from '../bubble-marker'
@@ -51,7 +51,7 @@ const withActive = ({
       `
 
 const CirclePin = styled.div<
-  Pick<BubbleMarkerProps, 'active' | 'color' | 'imageUrl'>
+  Pick<BubbleBaseProps, 'active' | 'color' | 'imageUrl'>
 >`
   position: absolute;
   z-index: 1;
@@ -101,7 +101,7 @@ export function ScrapCircleMarker({
   onBubbleClick,
   children,
   ...overlayViewProps
-}: PropsWithChildren<BubbleMarkerProps>) {
+}: PropsWithChildren<BubbleBaseProps>) {
   const overlayViewRef = useRef() as React.RefObject<OverlayView>
   const adjustZindex = useCallback(() => {
     const containerEl = overlayViewRef?.current?.containerRef?.current
@@ -228,7 +228,7 @@ function BubbleMarker({
   onBubbleClick,
   children,
 }: PropsWithChildren<
-  Omit<BubbleMarkerProps, 'imageUrl' | 'onClick' | 'onBubbleClick'> & {
+  Omit<BubbleBaseProps, 'imageUrl' | 'onClick' | 'onBubbleClick'> & {
     onClick: MouseEventHandler<HTMLDivElement>
     onBubbleClick: MouseEventHandler<HTMLDivElement>
   }
