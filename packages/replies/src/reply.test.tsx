@@ -47,7 +47,7 @@ const MOCKED_REPLY = {
 describe('리액션 관련 기능을 테스트합니다.', () => {
   describe('좋아요 수에 따른 문구 노출 조건을 테스트합니다.', () => {
     test('갯수가 양수일 때, 좋아요 문구 및 갯수를 노출합니다.', async () => {
-      const reply = await fetchInitialReply({
+      const reply = generateMockReply({
         reactions: {
           like: {
             count: 1,
@@ -71,7 +71,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
     })
 
     test('갯수가 0일 때, 좋아요 문구 및 갯수를 노출하지 않습니다.', async () => {
-      const reply = await fetchInitialReply({
+      const reply = generateMockReply({
         reactions: {
           like: {
             count: 0,
@@ -95,7 +95,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
     })
 
     test('갯수가 음수일 때, 좋아요 문구 및 갯수를 노출하지 않습니다.', async () => {
-      const reply = await fetchInitialReply({
+      const reply = generateMockReply({
         reactions: {
           like: {
             count: -1,
@@ -121,7 +121,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
 
   describe('사용자의 좋아요 클릭 액션을 테스트합니다.', () => {
     test('좋아요를 클릭했던 사용자가 다시 클릭하면, 좋아요 갯수를 -1 합니다.', async () => {
-      const reply = await fetchInitialReply({
+      const reply = generateMockReply({
         reactions: {
           like: {
             count: 2,
@@ -153,7 +153,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
     })
 
     test('좋아요를 클릭하지 않았던 사용자가 클릭하면, 좋아요 갯수를 +1 합니다.', async () => {
-      const reply = await fetchInitialReply({
+      const reply = generateMockReply({
         reactions: {
           like: {
             count: 1,
@@ -186,16 +186,8 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
   })
 })
 
-async function fetchInitialReply(reactions: Pick<ReplyType, 'reactions'>) {
-  const mockedFetchReply = jest.fn()
-  const fetchReply = mockedFetchReply.mockResolvedValue({
-    ...MOCKED_REPLY,
-    ...reactions,
-  })
-
-  const reply = await fetchReply()
-
-  return reply
+function generateMockReply(reactions: Pick<ReplyType, 'reactions'>) {
+  return { ...MOCKED_REPLY, ...reactions }
 }
 
 function ReplyWrapper({ children }: PropsWithChildren<unknown>) {
