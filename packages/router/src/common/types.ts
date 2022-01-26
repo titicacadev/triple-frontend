@@ -17,6 +17,7 @@ export type LinkCommonProps = {
    * `allowSource` 조건에 의해 사용할 수 없는 링크이면 클릭해도 작동하지 않습니다.
    */
   onClick?: () => void
+  className?: string
 } & HrefProps &
   TargetProps &
   RelListProps &

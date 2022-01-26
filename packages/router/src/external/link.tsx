@@ -20,6 +20,7 @@ export function ExternalLink({
   shouldPresent,
   onClick,
   onError,
+  className,
   children,
 }: PropsWithChildren<
   LinkCommonProps & {
@@ -73,6 +74,7 @@ export function ExternalLink({
 
   return (
     <RouterGuardedLink
+      className={className}
       href={href}
       relList={hrefIsAbsoluteUrl ? ['external', ...relList] : relList}
       allowSource={forbiddenLinkCondition ? 'none' : allowSource}
