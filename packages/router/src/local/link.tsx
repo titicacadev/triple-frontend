@@ -33,6 +33,7 @@ export function LocalLink({
   swipeToClose,
   shouldPresent,
   onClick,
+  className,
   children,
 }: PropsWithChildren<LinkCommonProps & NextjsRoutingOptions>) {
   const handleHrefLocally = useLocalHrefHandler()
@@ -63,6 +64,7 @@ export function LocalLink({
 
   return (
     <RouterGuardedLink
+      className={className}
       href={finalHref}
       relList={relList}
       allowSource={allowSource}
