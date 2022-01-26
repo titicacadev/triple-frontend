@@ -14,6 +14,12 @@ const Button = styled.button`
   background-color: transparent;
   border: 0;
   padding: 0;
+  text-align: left;
+`
+
+const A = styled.a`
+  box-sizing: border-box;
+  display: inline-block;
 `
 
 /**
@@ -44,8 +50,8 @@ export function RouterGuardedLink({
   }
 
   return (
-    <a className={className} rel={rel} {...restProps}>
+    <A className={className} rel={rel} {...restProps}>
       {children}
-    </a>
+    </A>
   )
 }
