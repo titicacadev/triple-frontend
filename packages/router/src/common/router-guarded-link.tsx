@@ -13,6 +13,7 @@ const Button = styled.button`
   font-size: 16px;
   background-color: transparent;
   border: 0;
+  margin: 0;
   padding: 0;
   text-align: left;
 `
@@ -20,6 +21,7 @@ const Button = styled.button`
 const A = styled.a`
   box-sizing: border-box;
   display: inline-block;
+  line-height: normal;
 `
 
 /**
