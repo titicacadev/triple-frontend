@@ -81,7 +81,7 @@ describe('라우팅할 수 있는 환경일 때', () => {
 
     const link = getByRole('link')
 
-    expect(link).toHaveAttribute('class', className)
+    expect(link).toHaveAttribute('class', expect.stringContaining(className))
   })
 
   test('relList prop을 rel로 전달합니다.', () => {
