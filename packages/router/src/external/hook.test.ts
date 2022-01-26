@@ -9,7 +9,6 @@ import useExternalRouter from './hook'
 import { useExternalHrefHandler } from './href-handler'
 
 jest.mock('@titicaca/react-contexts')
-jest.mock('../common/app-specific-link-options')
 jest.mock('@titicaca/react-triple-client-interfaces')
 jest.mock('../common/add-web-url-base')
 jest.mock('../common/disabled-link-notifier')
