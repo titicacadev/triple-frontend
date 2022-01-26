@@ -44,6 +44,8 @@ const MOCKED_REPLY = {
   },
 }
 
+const onFocusInput = jest.fn()
+
 describe('리액션 관련 기능을 테스트합니다.', () => {
   describe('좋아요 수에 따른 문구 노출 조건을 테스트합니다.', () => {
     test('갯수가 양수일 때, 좋아요 문구 및 갯수를 노출합니다.', async () => {
@@ -55,8 +57,6 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
           },
         },
       })
-
-      const onFocusInput = jest.fn()
 
       const { queryByText } = render(
         <Reply reply={reply} focusInput={onFocusInput} />,
@@ -80,8 +80,6 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const onFocusInput = jest.fn()
-
       const { queryByText } = render(
         <Reply reply={reply} focusInput={onFocusInput} />,
         { wrapper: ReplyWrapper },
@@ -103,8 +101,6 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
           },
         },
       })
-
-      const onFocusInput = jest.fn()
 
       const { queryByText } = render(
         <Reply reply={reply} focusInput={onFocusInput} />,
@@ -129,8 +125,6 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
           },
         },
       })
-
-      const onFocusInput = jest.fn()
 
       const { getByRole, findByText } = render(
         <Reply reply={reply} focusInput={onFocusInput} />,
@@ -161,8 +155,6 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
           },
         },
       })
-
-      const onFocusInput = jest.fn()
 
       const { getByRole, findByText } = render(
         <Reply reply={reply} focusInput={onFocusInput} />,
