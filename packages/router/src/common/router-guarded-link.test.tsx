@@ -52,7 +52,7 @@ describe('라우팅할 수 없는 환경일 때', () => {
 
     const button = getByRole('button')
 
-    expect(button).toHaveAttribute('class', className)
+    expect(button).toHaveAttribute('class', expect.stringContaining(className))
   })
 })
 
