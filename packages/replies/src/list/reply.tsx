@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import {
   Container,
@@ -19,11 +19,7 @@ import {
 import ActionSheet from '@titicaca/action-sheet'
 
 import { Reply as ReplyType, Writer } from '../types'
-import {
-  fetchChildReplies,
-  likeReply,
-  unlikeReply,
-} from '../replies-api-clients'
+import { likeReply, unlikeReply } from '../replies-api-clients'
 import { checkUniqueReply } from '../utils'
 import { useRepliesContext } from '../context'
 
@@ -89,19 +85,11 @@ export default function Reply({
     deleted,
     actionSpecifications: { delete: isMine, reply, edit },
   },
-  modeDelete,
   focusInput,
-  onModeDelete,
 }: {
   reply: ReplyType
-  modeDelete: boolean
   focusInput: () => void
-  onModeDelete: () => void
 }) {
-  const [{ childReplies, childPage }, setChildRepliesInfo] = useState<{
-    childReplies: ReplyType[]
-    childPage: number
-  }>({ childReplies: checkUniqueReply(children), childPage: 0 })
   const [likeReaction, setLikeReactions] = useState(reactions.like)
 
   const { setEditingMessage } = useRepliesContext()
@@ -112,27 +100,9 @@ export default function Reply({
 
   const navigate = useNavigate()
 
-  useEffect(() => {
-    setChildRepliesInfo((prev) => ({
-      childReplies: checkUniqueReply(
-        modeDelete ? [...children] : [...prev.childReplies, ...children],
-      ),
-      childPage: 0,
-    }))
-  }, [children, modeDelete])
-
   const fetchMoreChildReplies = useCallback(async () => {
-    const response = await fetchChildReplies({
-      id,
-      size: 3,
-      page: childPage + 1,
-    })
-
-    setChildRepliesInfo((prev) => ({
-      childReplies: checkUniqueReply([...response, ...prev.childReplies]),
-      childPage: prev.childPage + 1,
-    }))
-  }, [id, childPage])
+    // TOOD
+  }, [])
 
   const handleMoreClick = useCallback(
     (id) => {
@@ -155,7 +125,6 @@ export default function Reply({
     })
 
     focusInput()
-    onModeDelete()
   }
 
   const handleEditReplyClick = ({
@@ -179,7 +148,6 @@ export default function Reply({
     })
 
     focusInput()
-    onModeDelete()
   }
 
   const handleDeleteReplyClick = useCallback(
@@ -187,14 +155,11 @@ export default function Reply({
       mentionedUserName,
       mentionedUserUid,
       messageId,
-      toMessageId,
     }: ReplyType['actionSpecifications']['edit'] & {
       messageId?: string
-      toMessageId?: string
     }) => {
       setEditingMessage({
         currentMessageId: messageId,
-        parentMessageId: toMessageId,
         content: {
           mentioningUserUid: mentionedUserUid,
           mentioningUserName: mentionedUserName,
@@ -341,7 +306,7 @@ export default function Reply({
         ) : null}
       </Container>
 
-      {childrenCount > childReplies.length ? (
+      {childrenCount > children.length ? (
         <Text
           padding={{ left: 40 }}
           color="blue"
@@ -355,16 +320,11 @@ export default function Reply({
         </Text>
       ) : null}
 
-      {childReplies.length > 0 ? (
+      {children.length > 0 ? (
         <List margin={{ top: 20 }}>
-          {childReplies.map((childReply) => (
+          {checkUniqueReply(children).map((childReply) => (
             <ChildResourceListItem key={childReply.id} margin={{ bottom: 20 }}>
-              <Reply
-                reply={childReply}
-                modeDelete={modeDelete}
-                focusInput={focusInput}
-                onModeDelete={onModeDelete}
-              />
+              <Reply reply={childReply} focusInput={focusInput} />
             </ChildResourceListItem>
           ))}
         </List>
@@ -383,7 +343,6 @@ export default function Reply({
         onDeleteClick={() =>
           handleDeleteReplyClick({
             ...edit,
-            toMessageId: reply.toMessageId,
             messageId: id,
           })
         }

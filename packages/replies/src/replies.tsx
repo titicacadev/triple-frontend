@@ -15,6 +15,7 @@ import Register from './register'
 import { checkUniqueReply } from './utils'
 import { RepliesProvider } from './context'
 import { TextAreaHandle } from './auto-resizing-textarea'
+import { addReply, deleteReply, editReply } from './reply-tree-manipulators'
 
 export default function Replies({
   resourceId,
@@ -35,13 +36,34 @@ export default function Replies({
   const [totalRepliesCount, setTotalRepliesCount] = useState<
     number | undefined
   >(undefined)
-  const [{ replies, page }, setRepliesInfo] = useState<{
-    replies: Reply[]
-    page: number
-  }>({
-    replies: [],
-    page: 0,
-  })
+  const [replies, setReplies] = useState<Reply[]>([])
+  const [page, setPage] = useState(0)
+
+  const handleReplyAdd = (response: Reply): void => {
+    if (response.parentId) {
+      const newReplies = replies.map((reply) => addReply(response, reply))
+
+      setReplies(newReplies)
+    } else {
+      setReplies((prev) => [...prev, response])
+    }
+  }
+
+  const handleReplyDelete = (response: Reply): void => {
+    const deletedReplies = replies
+      .map((reply) => deleteReply(response, reply))
+      .filter(Boolean) as Reply[]
+
+    setReplies(deletedReplies)
+  }
+
+  const handleReplyEdit = (response: Reply): void => {
+    const editedReplies = replies.map((reply) =>
+      editReply(response, response, reply),
+    )
+
+    setReplies(editedReplies)
+  }
 
   useEffect(() => {
     async function fetchRepliesAndSet() {
@@ -51,10 +73,7 @@ export default function Replies({
         size,
       })
 
-      setRepliesInfo((prev) => ({
-        ...prev,
-        replies: checkUniqueReply(repliesResponse),
-      }))
+      setReplies(checkUniqueReply(repliesResponse))
     }
 
     fetchRepliesAndSet()
@@ -81,12 +100,9 @@ export default function Replies({
       page: page + 1,
     })
 
-    setRepliesInfo((prev) => ({
-      ...prev,
-      replies: checkUniqueReply([...repliesResponse, ...prev.replies]),
-      page: prev.page + 1,
-    }))
-  }, [resourceId, resourceType, size, page])
+    setReplies((prev) => checkUniqueReply([...repliesResponse, ...prev]))
+    setPage((prev) => prev + 1)
+  }, [resourceId, resourceType, size, page, setPage])
 
   const registerRef = useRef<TextAreaHandle>(null)
 
@@ -102,7 +118,7 @@ export default function Replies({
           totalRepliesCount={totalRepliesCount}
           fetchMoreReplies={fetchMoreReplies}
           focusInput={focusInput}
-          onChangeReplies={setRepliesInfo}
+          onReplyDelete={handleReplyDelete}
         />
 
         <GuideText />
@@ -112,7 +128,8 @@ export default function Replies({
           resourceId={resourceId}
           resourceType={resourceType}
           registerPlaceholder={registerPlaceholder}
-          onChangeReplies={setRepliesInfo}
+          onReplyAdd={handleReplyAdd}
+          onReplyEdit={handleReplyEdit}
         />
       </Container>
     </RepliesProvider>
