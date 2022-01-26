@@ -1,4 +1,5 @@
 import { Reply } from './types'
+import { checkUniqueReply } from './utils'
 
 export function addReply(reply: Reply, tree: Reply): Reply {
   if (reply.parentId === tree.id) {
@@ -58,6 +59,26 @@ export function editReply(
       ...tree,
       children: tree.children.map((child) =>
         editReply(originalReply, updatedAttributes, child),
+      ),
+    }
+  }
+}
+
+export function appendReplyChildren(
+  originalReply: Reply,
+  appendingChildren: Reply[],
+  tree: Reply,
+): Reply {
+  if (originalReply.id === tree.id) {
+    return {
+      ...tree,
+      children: checkUniqueReply([...tree.children, ...appendingChildren]),
+    }
+  } else {
+    return {
+      ...tree,
+      children: tree.children.map((child) =>
+        appendReplyChildren(originalReply, appendingChildren, child),
       ),
     }
   }
