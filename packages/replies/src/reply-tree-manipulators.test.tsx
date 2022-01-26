@@ -1,4 +1,5 @@
-import { addReply } from './reply-tree-manipulators'
+import { addReply, deleteReply } from './reply-tree-manipulators'
+import { Reply } from './types'
 
 const MOCK_BASE_REPLY = {
   id: '00000000-0000-0000-0000-00000000000',
@@ -68,5 +69,54 @@ describe('Reply 추가 기능을 테스트합니다.', () => {
     const addedReply = addReply(mockAddingReply, rootTree)
 
     expect(addedReply.childrenCount).toBe(2)
+  })
+})
+
+describe('Reply 삭제 기능을 테스트합니다.', () => {
+  test('댓글을 제거합니다.', () => {
+    const mockDeletingReply = {
+      ...MOCK_BASE_REPLY,
+      id: '00000000-0000-0000-0000-00000000000',
+      children: [],
+      childrenCount: 0,
+    }
+
+    const tree = {
+      ...MOCK_BASE_REPLY,
+      children: [],
+      childrenCount: 0,
+    }
+
+    const deletedReply = deleteReply(mockDeletingReply, tree)
+
+    expect(deletedReply).toBeUndefined()
+  })
+
+  test('답글을 제거합니다.', () => {
+    const mockDeletingChildReply = {
+      ...MOCK_BASE_REPLY,
+      id: '11111111-1111-1111-1111-11111111111',
+      parentId: MOCK_BASE_REPLY.id,
+      children: [],
+      childrenCount: 0,
+    }
+
+    const tree = {
+      ...MOCK_BASE_REPLY,
+      children: [
+        {
+          ...MOCK_BASE_REPLY,
+          id: '11111111-1111-1111-1111-11111111111',
+          parentId: MOCK_BASE_REPLY.id,
+          children: [],
+          childrenCount: 0,
+        },
+      ],
+      childrenCount: 1,
+    }
+
+    const deletedReply = deleteReply(mockDeletingChildReply, tree) as Reply
+
+    expect(deletedReply.childrenCount).toBe(0)
   })
 })
