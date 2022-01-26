@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import '@testing-library/jest-dom'
 import { fireEvent, render, waitFor } from '@testing-library/react'
 import { EnvProvider, SessionContextProvider } from '@titicaca/react-contexts'
@@ -56,7 +56,12 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const { queryByText } = render(<ReplyComponent reply={reply} />)
+      const onFocusInput = jest.fn()
+
+      const { queryByText } = render(
+        <Reply reply={reply} focusInput={onFocusInput} />,
+        { wrapper: ReplyWrapper },
+      )
 
       const likeCountElement = queryByText(/좋아요/)
 
@@ -75,7 +80,12 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const { queryByText } = render(<ReplyComponent reply={reply} />)
+      const onFocusInput = jest.fn()
+
+      const { queryByText } = render(
+        <Reply reply={reply} focusInput={onFocusInput} />,
+        { wrapper: ReplyWrapper },
+      )
 
       const likeCountElement = queryByText(/좋아요/)
 
@@ -94,7 +104,12 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const { queryByText } = render(<ReplyComponent reply={reply} />)
+      const onFocusInput = jest.fn()
+
+      const { queryByText } = render(
+        <Reply reply={reply} focusInput={onFocusInput} />,
+        { wrapper: ReplyWrapper },
+      )
 
       const likeCountElement = queryByText(/좋아요/)
 
@@ -115,7 +130,12 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const { getByRole, findByText } = render(<ReplyComponent reply={reply} />)
+      const onFocusInput = jest.fn()
+
+      const { getByRole, findByText } = render(
+        <Reply reply={reply} focusInput={onFocusInput} />,
+        { wrapper: ReplyWrapper },
+      )
 
       const unlikeButtonElement = getByRole('button', {
         name: /unlike-button/i,
@@ -142,7 +162,12 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const { getByRole, findByText } = render(<ReplyComponent reply={reply} />)
+      const onFocusInput = jest.fn()
+
+      const { getByRole, findByText } = render(
+        <Reply reply={reply} focusInput={onFocusInput} />,
+        { wrapper: ReplyWrapper },
+      )
 
       const likeButtonElement = getByRole('button', {
         name: /like-button/i,
@@ -173,9 +198,7 @@ async function fetchInitialReply(reactions: Pick<ReplyType, 'reactions'>) {
   return reply
 }
 
-function ReplyComponent({ reply }: { reply: ReplyType }) {
-  const onFocusInput = jest.fn()
-
+function ReplyWrapper({ children }: PropsWithChildren<unknown>) {
   return (
     <EnvProvider
       appUrlScheme=""
@@ -196,9 +219,7 @@ function ReplyComponent({ reply }: { reply: ReplyType }) {
           initialSessionAvailability: false,
         }}
       >
-        <RepliesProvider>
-          <Reply reply={reply} focusInput={onFocusInput} />
-        </RepliesProvider>
+        <RepliesProvider>{children}</RepliesProvider>
       </SessionContextProvider>
     </EnvProvider>
   )
