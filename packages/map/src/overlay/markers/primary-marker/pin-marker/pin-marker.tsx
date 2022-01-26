@@ -1,10 +1,10 @@
 import React, { PropsWithChildren } from 'react'
 
-import { CircleMarker } from './circle-marker'
+import { CircleMarker } from '../circle-marker'
 
-type MarkerType = 'attraction' | 'restaurant' | 'hotel' | 'tna'
+export type PinMarkerType = 'attraction' | 'restaurant' | 'hotel' | 'tna'
 
-function getColorOfType(type: MarkerType) {
+function getColorOfType(type: PinMarkerType) {
   switch (type) {
     case 'hotel':
       return 'var(--color-mint)'
@@ -19,7 +19,7 @@ function getColorOfType(type: MarkerType) {
   throw new Error('Unknown color of poi color type')
 }
 
-function getActivePinImageUrl(type: MarkerType) {
+function getActivePinImageUrl(type: PinMarkerType) {
   return `https://assets.triple.guide/images/img_map_${type}_timetable_pick@3x.png`
 }
 
@@ -31,7 +31,7 @@ function getActivePinImageUrl(type: MarkerType) {
 
 type HocProps = Omit<Parameters<typeof CircleMarker>[0], 'color' | 'src'>
 
-export default function withTypeCircleMarker(type: MarkerType) {
+export function PinWithCircleMarker(type: PinMarkerType) {
   const color = getColorOfType(type)
   const src = getActivePinImageUrl(type)
 

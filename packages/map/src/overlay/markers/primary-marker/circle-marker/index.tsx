@@ -5,8 +5,7 @@ import { Circle, CirclePin, MarkerBaseProps } from './circle-marker-base'
 
 export interface CircleMarkerProps
   extends MarkerBaseProps,
-    Omit<OverlayViewProps, 'mapPaneName' | 'position'> {
-  position: google.maps.LatLng | google.maps.LatLngLiteral
+    Omit<OverlayViewProps, 'mapPaneName'> {
   onClick?: (e: MouseEvent) => void
 }
 
