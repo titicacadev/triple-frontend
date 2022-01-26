@@ -1,4 +1,5 @@
 import React, { AnchorHTMLAttributes, PropsWithChildren } from 'react'
+import styled from 'styled-components'
 
 import {
   AllowSourceProps,
@@ -6,6 +7,14 @@ import {
 } from '../common/disabled-link-notifier'
 
 import { RelListProps, useRel } from './use-rel'
+
+const Button = styled.button`
+  cursor: pointer;
+  font-size: 16px;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+`
 
 /**
  * 조건부 라우팅 검사 로직을 자식 a 엘리먼트에 주입하는 컴포넌트
@@ -28,9 +37,9 @@ export function RouterGuardedLink({
 
   if (disabledLinkNotifier !== undefined) {
     return (
-      <button className={className} onClick={() => disabledLinkNotifier()}>
+      <Button className={className} onClick={() => disabledLinkNotifier()}>
         {children}
-      </button>
+      </Button>
     )
   }
 
