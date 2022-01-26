@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks'
 import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
 
-import { useAppBridge } from './app-bridge'
+import { useTripleClientNavigate } from './app-bridge'
 
 const MOCK_APP_SCHEME = 'test-triple'
 
@@ -23,7 +23,9 @@ describe('openInlink', () => {
       result: {
         current: { openInlink },
       },
-    } = renderHook(useAppBridge, { initialProps: { changeLocation } })
+    } = renderHook(useTripleClientNavigate, {
+      initialProps: { changeLocation },
+    })
 
     const href = '/my-path/to-wonderland'
 
@@ -45,7 +47,9 @@ describe('openInlink', () => {
         result: {
           current: { openInlink },
         },
-      } = renderHook(useAppBridge, { initialProps: { changeLocation } })
+      } = renderHook(useTripleClientNavigate, {
+        initialProps: { changeLocation },
+      })
 
       const href = '/my-path/to-wonderland'
 
@@ -65,7 +69,9 @@ describe('openInlink', () => {
       result: {
         current: { openInlink },
       },
-    } = renderHook(useAppBridge, { initialProps: { changeLocation } })
+    } = renderHook(useTripleClientNavigate, {
+      initialProps: { changeLocation },
+    })
 
     const href = '/my-path/to-wonderland'
 
@@ -84,7 +90,9 @@ describe('openInlink', () => {
       result: {
         current: { openInlink },
       },
-    } = renderHook(useAppBridge, { initialProps: { changeLocation } })
+    } = renderHook(useTripleClientNavigate, {
+      initialProps: { changeLocation },
+    })
 
     const href = '/my-path/to-wonderland'
 
@@ -103,7 +111,9 @@ describe('openInlink', () => {
       result: {
         current: { openInlink },
       },
-    } = renderHook(useAppBridge, { initialProps: { changeLocation } })
+    } = renderHook(useTripleClientNavigate, {
+      initialProps: { changeLocation },
+    })
 
     const href = '/my-path/to-wonderland'
 
@@ -122,7 +132,9 @@ describe('openInlink', () => {
       result: {
         current: { openInlink },
       },
-    } = renderHook(useAppBridge, { initialProps: { changeLocation } })
+    } = renderHook(useTripleClientNavigate, {
+      initialProps: { changeLocation },
+    })
 
     const href =
       '/my-path/to-wonderland?regionId=71476976-cf9a-4ae8-a60f-76e6fb26900d'
@@ -144,7 +156,9 @@ describe('openOutlink', () => {
       result: {
         current: { openOutlink },
       },
-    } = renderHook(useAppBridge, { initialProps: { changeLocation } })
+    } = renderHook(useTripleClientNavigate, {
+      initialProps: { changeLocation },
+    })
 
     const href = '/my-path/to-wonderland'
 
@@ -161,7 +175,9 @@ describe('openOutlink', () => {
       result: {
         current: { openOutlink },
       },
-    } = renderHook(useAppBridge, { initialProps: { changeLocation } })
+    } = renderHook(useTripleClientNavigate, {
+      initialProps: { changeLocation },
+    })
 
     const href = '/my-path/to-wonderland'
     const target = 'browser'
@@ -185,7 +201,9 @@ describe('openNativeLink', () => {
       result: {
         current: { openNativeLink },
       },
-    } = renderHook(useAppBridge, { initialProps: { changeLocation } })
+    } = renderHook(useTripleClientNavigate, {
+      initialProps: { changeLocation },
+    })
 
     openNativeLink(href)
 

@@ -7,7 +7,7 @@ import {
   useUserAgentContext,
 } from '@titicaca/react-contexts'
 import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'
-import { useAppBridge } from '@titicaca/react-triple-client-interfaces'
+import { useTripleClientNavigate } from '@titicaca/react-triple-client-interfaces'
 
 import { useWebUrlBaseAdder } from '../common/add-web-url-base'
 
@@ -145,7 +145,9 @@ function prepareTest({
     useLoginCtaModal as jest.MockedFunction<typeof useLoginCtaModal>
   ).mockImplementation(() => ({ show: showLoginCtaModal }))
   ;(
-    useAppBridge as jest.MockedFunction<typeof useAppBridge>
+    useTripleClientNavigate as jest.MockedFunction<
+      typeof useTripleClientNavigate
+    >
   ).mockImplementation(() => ({
     openInlink,
     openOutlink,

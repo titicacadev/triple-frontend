@@ -13,7 +13,7 @@ export interface OutlinkOptions {
   title?: string
 }
 
-export function useAppBridge({
+export function useTripleClientNavigate({
   changeLocation = defaultChangeLocation,
 }: {
   changeLocation?: (href: string) => void

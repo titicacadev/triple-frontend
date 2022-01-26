@@ -6,7 +6,7 @@ import {
   useEnv,
 } from '@titicaca/react-contexts'
 import { checkIfRoutable } from '@titicaca/view-utilities'
-import { useAppBridge } from '@titicaca/react-triple-client-interfaces'
+import { useTripleClientNavigate } from '@titicaca/react-triple-client-interfaces'
 
 import { useNavigate } from '.'
 
@@ -193,7 +193,9 @@ function prepareTest({
     useSessionAvailability as jest.MockedFunction<typeof useSessionAvailability>
   ).mockImplementation(() => sessionAvailable)
   ;(
-    useAppBridge as jest.MockedFunction<typeof useAppBridge>
+    useTripleClientNavigate as jest.MockedFunction<
+      typeof useTripleClientNavigate
+    >
   ).mockImplementation(() => ({ openInlink, openOutlink, openNativeLink }))
 
   return {
