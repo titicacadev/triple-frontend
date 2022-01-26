@@ -234,8 +234,8 @@ export default function Reply({
   const handleReportReplyClick = useAppCallback(
     TransitionType.General,
     useCallback(
-      ({ messageId }: { messageId: string }) => {
-        navigate(`/reply/${messageId}/report`)
+      (id: string) => {
+        navigate(`/reply/${id}/report`)
       },
       [navigate],
     ),
@@ -382,7 +382,7 @@ export default function Reply({
         }
         onReportClick={async () => {
           await asyncBack(back)
-          handleReportReplyClick({ messageId: id })
+          handleReportReplyClick(id)
         }}
       />
     </>
