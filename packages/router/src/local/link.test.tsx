@@ -26,7 +26,7 @@ test('주어진 href에 basePath를 더해서 anchor에 제공합니다.', () =>
 
   const { getByRole } = render(
     <LocalLink href={href} target="current">
-      <a>테스트링크</a>
+      테스트링크
     </LocalLink>,
   )
 
@@ -41,7 +41,7 @@ test('키를 누르고 클릭할 때는 next/router를 사용하지 않습니다
       href="/5b700a4e-4b0f-4266-81db-eb42f834bdd9?regionId=71476976-cf9a-4ae8-a60f-76e6fb26900d"
       target="current"
     >
-      <a>테스트링크</a>
+      테스트링크
     </LocalLink>,
   )
   const link = getByRole('link')
@@ -66,7 +66,7 @@ test('현재 창에서 이동할 때 next/router를 사용합니다.', () => {
 
   const { getByRole } = render(
     <LocalLink href={href} target="current">
-      <a>테스트링크</a>
+      테스트링크
     </LocalLink>,
   )
   const link = getByRole('link')
@@ -83,7 +83,7 @@ test('앱에서 새창으로 이동할 때 inlink를 사용합니다.', () => {
 
   const { getByRole } = render(
     <LocalLink href={href} target="new">
-      <a>테스트링크</a>
+      테스트링크
     </LocalLink>,
   )
   const link = getByRole('link')
@@ -100,7 +100,7 @@ test('앱에서 브라우저로 이동할 때 outlink를 사용합니다.', () =
 
   const { getByRole } = render(
     <LocalLink href={href} target="browser">
-      <a>테스트링크</a>
+      테스트링크
     </LocalLink>,
   )
   const link = getByRole('link')
