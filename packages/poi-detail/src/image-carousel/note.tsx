@@ -1,8 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Container, Text } from '@titicaca/core-elements'
+import styled, { css } from 'styled-components'
+import { Text } from '@titicaca/core-elements'
 
-const NoteContainer = styled.div<{ warning?: boolean }>`
+const NoteContainer = styled.div<{ warning?: boolean; borderRaidus?: number }>`
   position: absolute;
   bottom: 0;
   left: 0;
@@ -14,25 +14,37 @@ const NoteContainer = styled.div<{ warning?: boolean }>`
     margin: 0 13px;
     line-height: 40px;
   }
+
+  ${({ borderRaidus }) =>
+    borderRaidus &&
+    css`
+      border-bottom-left-radius: ${borderRaidus}px;
+      border-bottom-right-radius: ${borderRaidus}px;
+    `}
+  z-index: 2;
 `
 
-export function PermanentlyClosedNote() {
+export function PermanentlyClosedNote({
+  borderRadius = 6,
+}: {
+  borderRadius?: number
+}) {
   return (
-    <Container position="relative">
-      <NoteContainer warning>
-        <Text bold size="small" color="white">
-          더이상 운영하지 않습니다.
-        </Text>
-      </NoteContainer>
-    </Container>
+    <NoteContainer warning borderRaidus={borderRadius}>
+      <Text bold size="small" color="white">
+        더이상 운영하지 않습니다.
+      </Text>
+    </NoteContainer>
   )
 }
 
 export function BusinessHoursNote({
+  borderRadius = 6,
   currentBusinessHours,
   todayBusinessHours,
   onClick,
 }: {
+  borderRadius?: number
   currentBusinessHours?:
     | string
     | { from: number; to: number; dayOfWeek: number }
@@ -40,16 +52,18 @@ export function BusinessHoursNote({
   onClick: () => void
 }) {
   return (
-    <Container position="relative">
-      <NoteContainer onClick={onClick} warning={!currentBusinessHours}>
-        <Text bold size="small" color="white">
-          {currentBusinessHours
-            ? `영업중 ${todayBusinessHours || ''}`
-            : todayBusinessHours
-            ? `영업준비중 ${todayBusinessHours}`
-            : '휴무일'}
-        </Text>
-      </NoteContainer>
-    </Container>
+    <NoteContainer
+      onClick={onClick}
+      warning={!currentBusinessHours}
+      borderRaidus={borderRadius}
+    >
+      <Text bold size="small" color="white">
+        {currentBusinessHours
+          ? `영업중 ${todayBusinessHours || ''}`
+          : todayBusinessHours
+          ? `영업준비중 ${todayBusinessHours}`
+          : '휴무일'}
+      </Text>
+    </NoteContainer>
   )
 }
