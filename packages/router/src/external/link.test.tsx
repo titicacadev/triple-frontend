@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom'
+import 'jest-styled-components'
 import React from 'react'
 import { fireEvent, render } from '@testing-library/react'
 import {
@@ -7,6 +8,8 @@ import {
 } from '@titicaca/react-contexts'
 import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'
 import { useTripleClientNavigate } from '@titicaca/react-triple-client-interfaces'
+import styled from 'styled-components'
+import renderer from 'react-test-renderer'
 
 import { useWebUrlBaseAdder } from '../common/add-web-url-base'
 
@@ -162,6 +165,24 @@ describe('앱에서 브라우저로 열면 outlink를 사용합니다.', () => {
       expect.objectContaining({ target: 'browser' }),
     )
   })
+})
+
+test('styled-components로 스타일을 확장할 수 있습니다.', () => {
+  prepareTest({ isPublic: true })
+
+  const StyledExternalLink = styled(ExternalLink)`
+    color: red;
+    background-color: green;
+    border-radius: 4px;
+  `
+
+  const tree = renderer
+    .create(<StyledExternalLink href="/foo" target="browser" />)
+    .toJSON()
+
+  expect(tree).toHaveStyleRule('color', 'red')
+  expect(tree).toHaveStyleRule('background-color', 'green')
+  expect(tree).toHaveStyleRule('border-radius', '4px')
 })
 
 function prepareTest({
