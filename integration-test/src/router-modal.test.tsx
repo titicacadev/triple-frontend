@@ -18,7 +18,6 @@ afterEach(() => {
 
 test('브라우저를 허용하지 않는 링크라면 브라우저 환경에서 클릭했을 때 링크를 열지 않고 앱 유도 모달을 표시합니다.', () => {
   const href = 'https://www.google.com'
-  const testId = 'disabled-link'
   const { assign } = mockLocation()
   const SessionProvider = createSessionContextProvider({
     type: 'browser',
@@ -26,9 +25,9 @@ test('브라우저를 허용하지 않는 링크라면 브라우저 환경에서
   })
   const UserAgentProvider = createUserAgentProvider({ isPublic: true })
 
-  const { getByTestId, getByRole } = render(
+  const { getByRole } = render(
     <ExternalLink href={href} target="new" allowSource="app">
-      <a data-testid={testId}>테스트링크</a>
+      테스트링크
     </ExternalLink>,
     {
       wrapper: ({ children }) => (
@@ -47,9 +46,9 @@ test('브라우저를 허용하지 않는 링크라면 브라우저 환경에서
     },
   )
 
-  const anchor = getByTestId(testId)
+  const button = getByRole('button')
 
-  fireEvent.click(anchor)
+  fireEvent.click(button)
 
   const dialog = getByRole('dialog')
 
@@ -59,7 +58,6 @@ test('브라우저를 허용하지 않는 링크라면 브라우저 환경에서
 
 test('로그인한 앱에서만 열리는 링크라면 로그인하지 않은 앱 환경에서 클릭했을 때 링크를 열지않고 로그인 유도 모달을 표시합니다.', () => {
   const href = ' https://www.google.com'
-  const testId = 'disabled-link'
   const { assign } = mockLocation()
   const SessionProvider = createSessionContextProvider({
     type: 'app',
@@ -67,9 +65,9 @@ test('로그인한 앱에서만 열리는 링크라면 로그인하지 않은 �
   })
   const UserAgentProvider = createUserAgentProvider({ isPublic: false })
 
-  const { getByTestId, getByRole } = render(
+  const { getByRole } = render(
     <ExternalLink href={href} target="new" allowSource="app-with-session">
-      <a data-testid={testId}>테스트링크</a>
+      테스트링크
     </ExternalLink>,
     {
       wrapper: ({ children }) => (
@@ -86,9 +84,9 @@ test('로그인한 앱에서만 열리는 링크라면 로그인하지 않은 �
     },
   )
 
-  const anchor = getByTestId(testId)
+  const button = getByRole('button')
 
-  fireEvent.click(anchor)
+  fireEvent.click(button)
 
   const dialog = getByRole('dialog')
 
