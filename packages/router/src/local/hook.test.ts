@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks'
 import { useUserAgentContext } from '@titicaca/react-contexts'
-import { useAppBridge } from '@titicaca/react-triple-client-interfaces'
+import { useTripleClientNavigate } from '@titicaca/react-triple-client-interfaces'
 
 import useDefaultRouter from '../common/default-router'
 import { useDisabledLinkNotifierCreator } from '../common/disabled-link-notifier'
@@ -81,7 +81,9 @@ function mockAppBridgeHook() {
   const openOutlink = jest.fn()
 
   ;(
-    useAppBridge as jest.MockedFunction<typeof useAppBridge>
+    useTripleClientNavigate as jest.MockedFunction<
+      typeof useTripleClientNavigate
+    >
   ).mockImplementation(() => ({
     openInlink,
     openOutlink,

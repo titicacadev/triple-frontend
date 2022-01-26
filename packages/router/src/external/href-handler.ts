@@ -1,6 +1,6 @@
 import { useUserAgentContext } from '@titicaca/react-contexts'
 import {
-  useAppBridge,
+  useTripleClientNavigate,
   OutlinkOptions,
   AppSpecificLinkProps,
 } from '@titicaca/react-triple-client-interfaces'
@@ -13,7 +13,7 @@ import { checkHrefIsAbsoluteUrl } from './utils'
 
 export function useExternalHrefHandler() {
   const { isPublic } = useUserAgentContext()
-  const { openInlink, openOutlink } = useAppBridge()
+  const { openInlink, openOutlink } = useTripleClientNavigate()
   const addWebUrlBase = useWebUrlBaseAdder()
 
   const handleHrefExternally = ({

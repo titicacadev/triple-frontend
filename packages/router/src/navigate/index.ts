@@ -12,7 +12,7 @@ import {
 } from '@titicaca/react-contexts'
 import {
   OutlinkOptions,
-  useAppBridge,
+  useTripleClientNavigate,
 } from '@titicaca/react-triple-client-interfaces'
 
 import canonizeTargetAddress from './canonization'
@@ -25,7 +25,7 @@ export function useNavigate({
   const sessionAvailable = useSessionAvailability()
   const { show: showTransitionModal } = useTransitionModal()
   const { show: showLoginCtaModal } = useLoginCtaModal()
-  const { openOutlink, openNativeLink } = useAppBridge()
+  const { openOutlink, openNativeLink } = useTripleClientNavigate()
 
   const navigateInBrowser = useCallback(
     (rawHref: string) => {
