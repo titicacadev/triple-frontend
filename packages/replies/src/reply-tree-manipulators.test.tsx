@@ -1,4 +1,4 @@
-import { addReply, deleteReply } from './reply-tree-manipulators'
+import { addReply, deleteReply, editReply } from './reply-tree-manipulators'
 import { Reply } from './types'
 
 const MOCK_BASE_REPLY = {
@@ -118,5 +118,51 @@ describe('Reply 삭제 기능을 테스트합니다.', () => {
     const deletedReply = deleteReply(mockDeletingChildReply, tree) as Reply
 
     expect(deletedReply.childrenCount).toBe(0)
+  })
+})
+
+describe('Reply 수정 기능을 테스트합니다.', () => {
+  test('댓글을 수정합니다.', () => {
+    const mockEditingReply = {
+      ...MOCK_BASE_REPLY,
+      content: { text: '수정된 텍스트' },
+    }
+
+    const tree = {
+      ...MOCK_BASE_REPLY,
+      content: { text: '원본 텍스트' },
+    }
+
+    const editedReply = editReply(mockEditingReply, mockEditingReply, tree)
+
+    expect(editedReply.content.text).toBe('수정된 텍스트')
+  })
+
+  test('답글을 수정합니다.', () => {
+    const mockEditingReply = {
+      ...MOCK_BASE_REPLY,
+      id: '11111111-1111-1111-1111-11111111111',
+      parentId: MOCK_BASE_REPLY.id,
+    }
+
+    const tree = {
+      ...MOCK_BASE_REPLY,
+      children: [
+        {
+          ...MOCK_BASE_REPLY,
+          id: '11111111-1111-1111-1111-11111111111',
+          parentId: MOCK_BASE_REPLY.id,
+          content: { text: '원본 텍스트' },
+        },
+      ],
+    }
+
+    const editedChildReply = editReply(
+      mockEditingReply,
+      { content: { text: '수정된 텍스트' } },
+      tree,
+    )
+
+    expect(editedChildReply.children[0].content.text).toBe('수정된 텍스트')
   })
 })
