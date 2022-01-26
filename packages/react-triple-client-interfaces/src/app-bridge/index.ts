@@ -1,2 +1,2 @@
-export * from './app-specific-link-options'
+export { AppSpecificLinkProps } from './app-specific-link-options'
 export * from './app-bridge'
