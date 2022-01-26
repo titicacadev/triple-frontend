@@ -1,8 +1,17 @@
-import { addReply, deleteReply, editReply } from './reply-tree-manipulators'
+import {
+  addReply,
+  deleteReply,
+  editReply,
+  appendReplyChildren,
+} from './reply-tree-manipulators'
 import { Reply } from './types'
 
+const MOCK_REPLY_TEST_ID_ZERO = '00000000-0000-0000-0000-00000000000'
+const MOCK_REPLY_TEST_ID_ONE = '11111111-1111-1111-1111-11111111111'
+const MOCK_REPLY_TEST_ID_TWO = '22222222-2222-2222-2222-22222222222'
+
 const MOCK_BASE_REPLY = {
-  id: '00000000-0000-0000-0000-00000000000',
+  id: MOCK_REPLY_TEST_ID_ZERO,
   writer: {
     href: '/my',
     name: '테스트_닉네임',
@@ -25,11 +34,11 @@ const MOCK_BASE_REPLY = {
   blinded: false,
   deleted: false,
   actionSpecifications: {
-    reaction: true,
+    reaction: false,
     report: false,
-    delete: true,
+    delete: false,
     reply: {
-      toMessageId: '00000000-0000-0000-0000-00000000000',
+      toMessageId: MOCK_REPLY_TEST_ID_ZERO,
       mentioningUserName: '테스트_닉네임',
       mentioningUserUid: 'USER_UUID',
       mentioningUserHref: '/users/USER_UUID',
@@ -43,28 +52,23 @@ const MOCK_BASE_REPLY = {
 }
 
 describe('Reply 추가 기능을 테스트합니다.', () => {
-  test('Reply를 추가합니다.', () => {
-    const mockAddingReply = {
-      ...MOCK_BASE_REPLY,
-      id: '22222222-2222-2222-2222-22222222222',
+  test('답글을 추가합니다.', () => {
+    const mockAddingReply = generateMockReply({
+      id: MOCK_REPLY_TEST_ID_TWO,
       parentId: MOCK_BASE_REPLY.id,
-      children: [],
-      childrenCount: 0,
-    }
+    })
 
-    const rootTree = {
-      ...MOCK_BASE_REPLY,
+    const rootTree = generateMockReply({
       children: [
         {
-          ...MOCK_BASE_REPLY,
-          id: '11111111-1111-1111-1111-11111111111',
-          parentId: MOCK_BASE_REPLY.id,
-          children: [],
-          childrenCount: 0,
+          ...generateMockReply({
+            id: MOCK_REPLY_TEST_ID_ONE,
+            parentId: MOCK_BASE_REPLY.id,
+          }),
         },
       ],
       childrenCount: 1,
-    }
+    })
 
     const addedReply = addReply(mockAddingReply, rootTree)
 
@@ -74,18 +78,8 @@ describe('Reply 추가 기능을 테스트합니다.', () => {
 
 describe('Reply 삭제 기능을 테스트합니다.', () => {
   test('댓글을 제거합니다.', () => {
-    const mockDeletingReply = {
-      ...MOCK_BASE_REPLY,
-      id: '00000000-0000-0000-0000-00000000000',
-      children: [],
-      childrenCount: 0,
-    }
-
-    const tree = {
-      ...MOCK_BASE_REPLY,
-      children: [],
-      childrenCount: 0,
-    }
+    const mockDeletingReply = generateMockReply()
+    const tree = generateMockReply()
 
     const deletedReply = deleteReply(mockDeletingReply, tree)
 
@@ -93,27 +87,22 @@ describe('Reply 삭제 기능을 테스트합니다.', () => {
   })
 
   test('답글을 제거합니다.', () => {
-    const mockDeletingChildReply = {
-      ...MOCK_BASE_REPLY,
-      id: '11111111-1111-1111-1111-11111111111',
+    const mockDeletingChildReply = generateMockReply({
+      id: MOCK_REPLY_TEST_ID_ONE,
       parentId: MOCK_BASE_REPLY.id,
-      children: [],
-      childrenCount: 0,
-    }
+    })
 
-    const tree = {
-      ...MOCK_BASE_REPLY,
+    const tree = generateMockReply({
       children: [
         {
-          ...MOCK_BASE_REPLY,
-          id: '11111111-1111-1111-1111-11111111111',
-          parentId: MOCK_BASE_REPLY.id,
-          children: [],
-          childrenCount: 0,
+          ...generateMockReply({
+            id: MOCK_REPLY_TEST_ID_ONE,
+            parentId: MOCK_BASE_REPLY.id,
+          }),
         },
       ],
       childrenCount: 1,
-    }
+    })
 
     const deletedReply = deleteReply(mockDeletingChildReply, tree) as Reply
 
@@ -123,15 +112,13 @@ describe('Reply 삭제 기능을 테스트합니다.', () => {
 
 describe('Reply 수정 기능을 테스트합니다.', () => {
   test('댓글을 수정합니다.', () => {
-    const mockEditingReply = {
-      ...MOCK_BASE_REPLY,
+    const mockEditingReply = generateMockReply({
       content: { text: '수정된 텍스트' },
-    }
+    })
 
-    const tree = {
-      ...MOCK_BASE_REPLY,
+    const tree = generateMockReply({
       content: { text: '원본 텍스트' },
-    }
+    })
 
     const editedReply = editReply(mockEditingReply, mockEditingReply, tree)
 
@@ -139,23 +126,22 @@ describe('Reply 수정 기능을 테스트합니다.', () => {
   })
 
   test('답글을 수정합니다.', () => {
-    const mockEditingReply = {
-      ...MOCK_BASE_REPLY,
-      id: '11111111-1111-1111-1111-11111111111',
+    const mockEditingReply = generateMockReply({
+      id: MOCK_REPLY_TEST_ID_ONE,
       parentId: MOCK_BASE_REPLY.id,
-    }
+    })
 
-    const tree = {
-      ...MOCK_BASE_REPLY,
+    const tree = generateMockReply({
       children: [
         {
-          ...MOCK_BASE_REPLY,
-          id: '11111111-1111-1111-1111-11111111111',
-          parentId: MOCK_BASE_REPLY.id,
-          content: { text: '원본 텍스트' },
+          ...generateMockReply({
+            id: MOCK_REPLY_TEST_ID_ONE,
+            parentId: MOCK_BASE_REPLY.id,
+            content: { text: '원본 텍스트' },
+          }),
         },
       ],
-    }
+    })
 
     const editedChildReply = editReply(
       mockEditingReply,
@@ -166,3 +152,33 @@ describe('Reply 수정 기능을 테스트합니다.', () => {
     expect(editedChildReply.children[0].content.text).toBe('수정된 텍스트')
   })
 })
+
+test('Reply 페이징 기능을 테스트합니다.', () => {
+  const originalReply = {
+    id: MOCK_BASE_REPLY.id,
+    children: [MOCK_BASE_REPLY],
+  } as unknown as Reply
+
+  const appendingReply = [
+    generateMockReply({ id: MOCK_REPLY_TEST_ID_ONE }),
+    generateMockReply({ id: MOCK_REPLY_TEST_ID_TWO }),
+  ]
+  const tree = {
+    id: MOCK_BASE_REPLY.id,
+    children: [MOCK_BASE_REPLY],
+  } as unknown as Reply
+
+  const { children: newReplies } = appendReplyChildren(
+    originalReply,
+    appendingReply,
+    tree,
+  )
+  expect(newReplies.length).toBe(3)
+})
+
+function generateMockReply(updatedAttributes?: Partial<Reply>): Reply {
+  return {
+    ...MOCK_BASE_REPLY,
+    ...updatedAttributes,
+  }
+}
