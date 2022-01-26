@@ -1,6 +1,6 @@
-import { Reply as ReplyType } from './types'
+import { Reply } from './types'
 
-export function checkUniqueReply(reply: ReplyType[]) {
+export function checkUniqueReply(reply: Reply[]): Reply[] {
   const result = [
     ...new Map((reply || []).map((item) => [item.id, item])).values(),
   ].sort(
