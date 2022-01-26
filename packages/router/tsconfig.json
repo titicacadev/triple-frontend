@@ -7,6 +7,9 @@
     "paths": {
       "@titicaca/modals": ["../modals/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-triple-client-interfaces": [
+        "../react-triple-client-interfaces/src"
+      ],
       "@titicaca/view-utilities": ["../view-utilities/src"]
     }
   },
@@ -14,6 +17,9 @@
   "references": [
     {
       "path": "../modals"
+    },
+    {
+      "path": "../react-triple-client-interfaces"
     },
     {
       "path": "../view-utilities"

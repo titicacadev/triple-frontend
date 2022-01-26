@@ -1,8 +1,11 @@
 import { useUserAgentContext } from '@titicaca/react-contexts'
+import {
+  useAppBridge,
+  OutlinkOptions,
+  AppSpecificLinkProps,
+} from '@titicaca/react-triple-client-interfaces'
 
 import { useWebUrlBaseAdder } from '../common/add-web-url-base'
-import { useAppBridge, OutlinkOptions } from '../common/app-bridge'
-import { AppSpecificLinkProps } from '../common/app-specific-link-options'
 import { TargetProps } from '../common/target'
 import { HrefProps } from '../common/types'
 

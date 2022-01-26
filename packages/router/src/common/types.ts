@@ -1,4 +1,5 @@
-import { AppSpecificLinkProps } from './app-specific-link-options'
+import { AppSpecificLinkProps } from '@titicaca/react-triple-client-interfaces'
+
 import { AllowSourceProps } from './disabled-link-notifier'
 import { TargetProps } from './target'
 import { RelListProps } from './use-rel'

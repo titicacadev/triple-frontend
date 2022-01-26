@@ -10,8 +10,10 @@ import {
   useSessionAvailability,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
-
-import { OutlinkOptions, useAppBridge } from '../common/app-bridge'
+import {
+  OutlinkOptions,
+  useAppBridge,
+} from '@titicaca/react-triple-client-interfaces'
 
 import canonizeTargetAddress from './canonization'
 

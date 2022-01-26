@@ -1,9 +1,11 @@
 import { useUserAgentContext } from '@titicaca/react-contexts'
 import { useRouter } from 'next/router'
+import {
+  useAppBridge,
+  AppSpecificLinkProps,
+} from '@titicaca/react-triple-client-interfaces'
 
 import { useWebUrlBaseAdder } from '../common/add-web-url-base'
-import { useAppBridge } from '../common/app-bridge'
-import { AppSpecificLinkProps } from '../common/app-specific-link-options'
 import { HrefProps } from '../common/types'
 import { TargetProps } from '../common/target'
 
