@@ -41,7 +41,7 @@ export function PinWithCircleMarker(type: PinMarkerType) {
   }: PropsWithChildren<HocProps>) {
     return (
       <CircleMarker {...rest} color={color} src={src}>
-        {children}둠
+        {children}
       </CircleMarker>
     )
   }
