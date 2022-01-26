@@ -6,8 +6,7 @@ import {
   useEnv,
 } from '@titicaca/react-contexts'
 import { checkIfRoutable } from '@titicaca/view-utilities'
-
-import { useAppBridge } from '../common/app-bridge'
+import { useAppBridge } from '@titicaca/react-triple-client-interfaces'
 
 import { useNavigate } from '.'
 
@@ -17,7 +16,7 @@ jest.mock('@titicaca/view-utilities', () => ({
   checkIfRoutable: jest.fn(),
 }))
 jest.mock('@titicaca/react-contexts')
-jest.mock('../common/app-bridge')
+jest.mock('@titicaca/react-triple-client-interfaces')
 
 const webUrlBase = mockWebUrlBase()
 const routablePath = mockRoutablePath()

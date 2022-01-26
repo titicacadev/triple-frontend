@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks'
 import { useUserAgentContext } from '@titicaca/react-contexts'
+import { useAppBridge } from '@titicaca/react-triple-client-interfaces'
 
-import { useAppBridge } from '../common/app-bridge'
 import useDefaultRouter from '../common/default-router'
 import { useDisabledLinkNotifierCreator } from '../common/disabled-link-notifier'
 
@@ -10,7 +10,7 @@ import { mockNextRouter } from './base-path.test'
 import useLocalRouter from './hook'
 
 jest.mock('@titicaca/react-contexts')
-jest.mock('../common/app-bridge')
+jest.mock('@titicaca/react-triple-client-interfaces')
 jest.mock('../common/disabled-link-notifier')
 jest.mock('../common/default-router')
 jest.mock('./href-handler')

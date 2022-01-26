@@ -7,8 +7,8 @@ import {
   useUserAgentContext,
 } from '@titicaca/react-contexts'
 import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'
+import { useAppBridge } from '@titicaca/react-triple-client-interfaces'
 
-import { useAppBridge } from '../common/app-bridge'
 import { useWebUrlBaseAdder } from '../common/add-web-url-base'
 
 import { LocalLink } from './link'
@@ -16,7 +16,7 @@ import { LocalLink } from './link'
 jest.mock('next/router')
 jest.mock('@titicaca/react-contexts')
 jest.mock('@titicaca/modals')
-jest.mock('../common/app-bridge')
+jest.mock('@titicaca/react-triple-client-interfaces')
 jest.mock('../common/add-web-url-base')
 
 test('주어진 href에 basePath를 더해서 anchor에 제공합니다.', () => {
