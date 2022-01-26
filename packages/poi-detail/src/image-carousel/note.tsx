@@ -9,7 +9,7 @@ const NoteContainer = styled.div<{ warning?: boolean; borderRaidus?: number }>`
   right: 0;
   height: 40px;
   background-color: ${({ warning }) => (warning ? '#ff3636' : '#2987f0')};
-  border-radius: 0 0 6px 6px;
+
   & > div {
     margin: 0 13px;
     line-height: 40px;

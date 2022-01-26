@@ -15,6 +15,7 @@ export default function CarouselSection({
   onBusinessHoursClick,
   margin,
   padding = { left: 20, right: 20 },
+  borderRadius,
   ...props
 }: {
   loading: boolean
@@ -38,18 +39,21 @@ export default function CarouselSection({
       margin={margin}
     >
       {images.length > 0 ? (
-        <Carousel images={images} {...props} />
+        <Carousel images={images} borderRadius={borderRadius} {...props} />
       ) : (
         <Placeholder onClick={onPlaceholderClick} noContent={loading} />
       )}
       {!permanentlyClosed && onBusinessHoursClick ? (
         <BusinessHoursNote
+          borderRadius={borderRadius}
           currentBusinessHours={currentBusinessHours}
           todayBusinessHours={todayBusinessHours}
           onClick={onBusinessHoursClick}
         />
       ) : null}
-      {permanentlyClosed ? <PermanentlyClosedNote /> : null}
+      {permanentlyClosed ? (
+        <PermanentlyClosedNote borderRadius={borderRadius} />
+      ) : null}
     </Section>
   )
 }
