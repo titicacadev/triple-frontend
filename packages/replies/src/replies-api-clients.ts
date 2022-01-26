@@ -184,7 +184,7 @@ async function writeReply({
   content: string
   mentionedUserUid?: string
 }) {
-  const response = await authGuardedFetchers.post(
+  const response = await authGuardedFetchers.post<Reply>(
     generateUrl({
       path: `/api/reply/messages`,
       query: qs.stringify({ contentFormat: 'plaintext' }),
@@ -221,7 +221,7 @@ async function writeChildReply({
   content: string
   mentionedUserUid?: string
 }) {
-  const response = await authGuardedFetchers.post(
+  const response = await authGuardedFetchers.post<Reply>(
     generateUrl({
       path: `/api/reply/messages/${parentMessageId}/messages`,
       query: qs.stringify({ contentFormat: 'plaintext' }),
@@ -257,7 +257,7 @@ async function editReply({
   content: string
   mentionedUserUid?: string
 }) {
-  const response = await authGuardedFetchers.put(
+  const response = await authGuardedFetchers.put<Reply>(
     generateUrl({
       path: `/api/reply/messages/${currentMessageId}`,
       query: qs.stringify({ contentFormat: 'plaintext' }),
@@ -288,7 +288,7 @@ export async function deleteReply({
 }: {
   currentMessageId?: string
 }) {
-  const response = await authGuardedFetchers.del(
+  const response = await authGuardedFetchers.del<Reply>(
     `/api/reply/messages/${currentMessageId}`,
     {
       body: {
