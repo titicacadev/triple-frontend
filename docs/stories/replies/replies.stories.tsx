@@ -34,7 +34,7 @@ export default {
 export const BaseReplies: ComponentStoryObj<typeof Replies> = {
   storyName: '기본 댓글',
   args: {
-    resourceId: 'bb3addcf-1390-4f42-8a44-d7fc32d4a084',
-    resourceType: 'itinerary',
+    resourceId: 'c31a0e75-0053-4ef2-9407-d2bdc7f116e3',
+    resourceType: 'article',
   },
 }
