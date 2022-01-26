@@ -36,7 +36,9 @@ const LinkContainer = styled.div`
     margin-left: -7px;
   }
 `
-
+/**
+ * 말풍선 마커 컴포넌트
+ */
 export function BubbleMarker({
   onClick,
   children,

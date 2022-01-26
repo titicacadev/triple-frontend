@@ -36,9 +36,9 @@ export interface MarkerBaseProps {
   /** active 시 image 클릭 가능 여부값 */
   alwaysClickable?: boolean
   /** 마커 기본 색상 */
-  color: string
+  color?: string
   /** 활성화 마커 백그라운드 이미지 */
-  src: string
+  src?: string
   /** 마커 zIndex */
   zIndex?: number
 }
@@ -75,7 +75,10 @@ function withActive({
   width,
   height,
   active,
-}: Required<MarkerBaseProps>) {
+}: Required<Omit<MarkerBaseProps, 'color' | 'src'>> & {
+  color?: string
+  src?: string
+}) {
   return active
     ? css`
         left: 6px;
@@ -106,7 +109,9 @@ export const Circle = styled.div`
 `
 
 export const CirclePin = styled.div<
-  Required<MarkerBaseProps> & {
+  Required<Omit<MarkerBaseProps, 'color' | 'src'>> & {
+    color?: string
+    src?: string
     animationDuration?: number
   }
 >`

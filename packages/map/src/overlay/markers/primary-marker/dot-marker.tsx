@@ -37,7 +37,9 @@ const DotCircle = styled.div<{ color?: string }>`
     padding-top: 4px;
   }
 `
-
+/**
+ * Poi를 나타내는 작은 점 마커 컴포넌트
+ */
 export function DotMarker({ active, color, onClick }: DotMarkerProps) {
   return (
     <DotMarkerContainer onClick={onClick} active={active}>

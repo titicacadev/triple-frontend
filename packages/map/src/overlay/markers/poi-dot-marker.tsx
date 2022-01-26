@@ -26,6 +26,10 @@ export interface DotWithPopOverMarkerProps
   onBubbleClick?: (e: MouseEvent) => void
 }
 
+/**
+ * 말풍선 텍스트 및 poi dot marker를 렌더링하기 위한 컴포넌트
+ */
+
 export function PoiDotMarker({ ...props }: DotWithPopOverMarkerProps) {
   return <DotWithPopOverMarker {...props} />
 }
