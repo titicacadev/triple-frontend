@@ -1,4 +1,8 @@
-import { AppSpecificLinkProps } from '../common/app-specific-link-options'
+import {
+  OutlinkOptions,
+  AppSpecificLinkProps,
+} from '@titicaca/react-triple-client-interfaces'
+
 import useDefaultRouter from '../common/default-router'
 import {
   AllowSourceProps,
@@ -6,7 +10,6 @@ import {
 } from '../common/disabled-link-notifier'
 import { TargetProps } from '../common/target'
 import { HrefProps } from '../common/types'
-import { OutlinkOptions } from '../common/app-bridge'
 
 import { useExternalHrefHandler } from './href-handler'
 
