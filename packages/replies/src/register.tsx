@@ -1,9 +1,4 @@
-import React, {
-  Dispatch,
-  ForwardedRef,
-  forwardRef,
-  SetStateAction,
-} from 'react'
+import React, { ForwardedRef, forwardRef } from 'react'
 import styled from 'styled-components'
 import { Container, FlexBox, HR1 } from '@titicaca/core-elements'
 
@@ -11,7 +6,6 @@ import { authorMessage } from './replies-api-clients'
 import AutoResizingTextarea, { TextAreaHandle } from './auto-resizing-textarea'
 import { useRepliesContext } from './context'
 import { ResourceType, Reply } from './types'
-import { checkUniqueReply } from './utils'
 
 const RegisterButton = styled.button`
   width: 26px;
@@ -33,14 +27,14 @@ function Register(
     resourceId,
     resourceType,
     registerPlaceholder,
-    onChangeReplies,
+    onReplyAdd,
+    onReplyEdit,
   }: {
     resourceId: string
     resourceType: ResourceType
     registerPlaceholder?: string
-    onChangeReplies: Dispatch<
-      SetStateAction<{ replies: Reply[]; page: number }>
-    >
+    onReplyAdd: (response: Reply) => void
+    onReplyEdit: (response: Reply) => void
   },
   ref: ForwardedRef<TextAreaHandle>,
 ) {
@@ -51,59 +45,6 @@ function Register(
     initializeEditingMessage,
     handleContentChange,
   } = useRepliesContext()
-
-  const handleReplyWriteUpdate = (response: Reply) => {
-    if (mentioningUserUid) {
-      onChangeReplies((prev) => {
-        const parentReply = prev.replies.filter(
-          (reply) => reply.id === parentMessageId,
-        )
-        const newChildReply = checkUniqueReply([
-          ...(parentReply[0].children || []),
-          response,
-        ])
-
-        parentReply[0].children = newChildReply
-        parentReply[0].childrenCount += 1
-
-        return {
-          ...prev,
-          replies: checkUniqueReply([...prev.replies, ...parentReply]),
-        }
-      })
-    } else {
-      onChangeReplies((prev) => ({
-        ...prev,
-        replies: checkUniqueReply([...prev.replies, response]),
-      }))
-    }
-  }
-
-  const handleReplyEditUpdate = (response: Reply) => {
-    if (mentioningUserUid) {
-      onChangeReplies((prev) => {
-        const parentReply = prev.replies.filter(
-          (reply) => reply.id === parentMessageId,
-        )
-        const newChildReply = checkUniqueReply([
-          ...(parentReply[0].children || []),
-          response,
-        ])
-
-        parentReply[0].children = newChildReply
-
-        return {
-          ...prev,
-          replies: checkUniqueReply([...prev.replies, ...parentReply]),
-        }
-      })
-    } else {
-      onChangeReplies((prev) => ({
-        ...prev,
-        replies: checkUniqueReply([...prev.replies, response]),
-      }))
-    }
-  }
 
   const handleRegister = async () => {
     if (!plaintext) {
@@ -120,9 +61,9 @@ function Register(
     })) as { response: Reply; authoringRequestType: string }
 
     if (authoringRequestType === 'editReply') {
-      handleReplyEditUpdate(response)
+      onReplyEdit(response)
     } else {
-      handleReplyWriteUpdate(response)
+      onReplyAdd(response)
     }
 
     initializeEditingMessage()
