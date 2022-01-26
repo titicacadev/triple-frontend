@@ -45,6 +45,7 @@ const MOCKED_REPLY = {
 }
 
 const onFocusInput = jest.fn()
+const fetchMoreReplies = jest.fn()
 
 describe('리액션 관련 기능을 테스트합니다.', () => {
   describe('좋아요 수에 따른 문구 노출 조건을 테스트합니다.', () => {
@@ -59,7 +60,11 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
       })
 
       const { queryByText } = render(
-        <Reply reply={reply} focusInput={onFocusInput} />,
+        <Reply
+          reply={reply}
+          focusInput={onFocusInput}
+          fetchMoreReplies={fetchMoreReplies}
+        />,
         { wrapper: ReplyWrapper },
       )
 
@@ -81,7 +86,11 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
       })
 
       const { queryByText } = render(
-        <Reply reply={reply} focusInput={onFocusInput} />,
+        <Reply
+          reply={reply}
+          focusInput={onFocusInput}
+          fetchMoreReplies={fetchMoreReplies}
+        />,
         { wrapper: ReplyWrapper },
       )
 
@@ -103,7 +112,11 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
       })
 
       const { queryByText } = render(
-        <Reply reply={reply} focusInput={onFocusInput} />,
+        <Reply
+          reply={reply}
+          focusInput={onFocusInput}
+          fetchMoreReplies={fetchMoreReplies}
+        />,
         { wrapper: ReplyWrapper },
       )
 
@@ -127,7 +140,11 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
       })
 
       const { getByRole, findByText } = render(
-        <Reply reply={reply} focusInput={onFocusInput} />,
+        <Reply
+          reply={reply}
+          focusInput={onFocusInput}
+          fetchMoreReplies={fetchMoreReplies}
+        />,
         { wrapper: ReplyWrapper },
       )
 
@@ -157,7 +174,11 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
       })
 
       const { getByRole, findByText } = render(
-        <Reply reply={reply} focusInput={onFocusInput} />,
+        <Reply
+          reply={reply}
+          focusInput={onFocusInput}
+          fetchMoreReplies={fetchMoreReplies}
+        />,
         { wrapper: ReplyWrapper },
       )
 
