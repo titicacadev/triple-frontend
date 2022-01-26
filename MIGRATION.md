@@ -31,6 +31,19 @@
 
 - `TripleClientMetadataProvider`가 Mount된 페이지에서만 사용할 수 있습니다.
 
+### `LocalLink`, `ExternalLink`가 a 태그를 직접 렌더링
+
+이제 `LocalLink`와 `ExternalLink`의 자식 엘리먼트로 a 태그를 넣어줄 필요가 없습니다.
+a 태그를 직접 렌더링합니다.
+
+a 태그에 스타일링이 필요하다면 styled-components로 확장하세요.
+
+```ts
+const StyledLocalLink = styled(LocalLink)`
+  /* 확장할 스타일을 넣으세요 */
+`
+```
+
 ## v4 to v5
 
 ### deprecated props 제거 및 사용 방법
