@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks'
 import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
 
-import { useTripleClientNavigate } from './app-bridge'
+import { useTripleClientNavigate } from './use-triple-client-navigate'
 
 const MOCK_APP_SCHEME = 'test-triple'
 
