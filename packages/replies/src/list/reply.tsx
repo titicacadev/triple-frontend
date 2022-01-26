@@ -51,7 +51,7 @@ const ChildResourceListItem = styled(List.Item)`
   padding-left: 40px;
 `
 
-const MentionUser = styled.a`
+const MentionUser = styled.span`
   color: var(--color-blue);
   margin-right: 5px;
 `

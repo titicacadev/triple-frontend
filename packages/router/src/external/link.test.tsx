@@ -26,7 +26,7 @@ test('주어진 href를 가진 anchor 태그를 렌더링합니다.', () => {
 
   const { queryByRole } = render(
     <ExternalLink href={href} target="current">
-      <a>테스트링크</a>
+      테스트링크
     </ExternalLink>,
   )
 
@@ -41,7 +41,7 @@ test('절대 경로를 사용할 때는 anchor의 rel 속성에 "external"을 �
 
   const { queryByRole } = render(
     <ExternalLink href={href} target="current">
-      <a>테스트링크</a>
+      테스트링크
     </ExternalLink>,
   )
 
@@ -56,7 +56,7 @@ describe('앱에서 절대 경로를 현재 창에서 열도록 설정했을 때
 
     render(
       <ExternalLink href={ABSOLUTE_URL} target="current" onError={handleError}>
-        <a>테스트링크</a>
+        테스트링크
       </ExternalLink>,
     )
 
@@ -68,7 +68,7 @@ describe('앱에서 절대 경로를 현재 창에서 열도록 설정했을 때
 
     const { queryByRole } = render(
       <ExternalLink href={ABSOLUTE_URL} target="current">
-        <a>테스트링크</a>
+        테스트링크
       </ExternalLink>,
     )
 
@@ -81,7 +81,7 @@ test('앱에서 절대 경로 URL을 새 창으로 열면 outlink를 사용합�
 
   const { queryByRole } = render(
     <ExternalLink href={ABSOLUTE_URL} target="new">
-      <a>테스트링크</a>
+      테스트링크
     </ExternalLink>,
   )
 
@@ -101,7 +101,7 @@ test('앱에서 트리플 URL을 새 창으로 열면 inlink를 사용합니다.
 
   const { queryByRole } = render(
     <ExternalLink href={TRIPLE_URL} target="new">
-      <a>테스트링크</a>
+      테스트링크
     </ExternalLink>,
   )
 
@@ -122,7 +122,7 @@ describe('앱에서 브라우저로 열면 outlink를 사용합니다.', () => {
 
     const { queryByRole } = render(
       <ExternalLink href={ABSOLUTE_URL} target="browser">
-        <a>테스트링크</a>
+        테스트링크
       </ExternalLink>,
     )
 
@@ -145,7 +145,7 @@ describe('앱에서 브라우저로 열면 outlink를 사용합니다.', () => {
 
     const { queryByRole } = render(
       <ExternalLink href={TRIPLE_URL} target="browser">
-        <a>테스트링크</a>
+        테스트링크
       </ExternalLink>,
     )
 
