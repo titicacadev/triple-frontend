@@ -1,12 +1,12 @@
 import Replies from '@titicaca/replies'
 import { ComponentStoryObj, Meta } from '@storybook/react'
 
-import { sessionContextProviderDecorator } from '../../decorators'
+import { historyProviderDecorator } from '../../decorators'
 
 export default {
   title: 'Replies',
   component: Replies,
-  decorators: [sessionContextProviderDecorator],
+  decorators: [historyProviderDecorator],
   argTypes: {
     resourceId: {
       type: 'string',
