@@ -7,6 +7,16 @@ import {
   UserAgentProvider,
 } from '@titicaca/react-contexts'
 import { TripleClientMetadataProvider } from '@titicaca/react-triple-client-interfaces'
+import { GlobalStyle } from '@titicaca/core-elements'
+
+export function globalStyleDecorator(Story: StoryFn) {
+  return (
+    <>
+      <GlobalStyle />
+      <Story />
+    </>
+  )
+}
 
 export function envProviderDecorator(Story: StoryFn) {
   return (
