@@ -7,7 +7,11 @@ import React, {
 } from 'react'
 import { Container } from '@titicaca/core-elements'
 
-import { fetchReplies, fetchReplyBoard } from './replies-api-clients'
+import {
+  fetchReplies,
+  fetchReplyBoard,
+  fetchChildReplies,
+} from './replies-api-clients'
 import { Reply, ResourceType } from './types'
 import ReplyList from './list'
 import GuideText from './guide-text'
@@ -15,13 +19,18 @@ import Register from './register'
 import { checkUniqueReply } from './utils'
 import { RepliesProvider } from './context'
 import { TextAreaHandle } from './auto-resizing-textarea'
-import { addReply, deleteReply, editReply } from './reply-tree-manipulators'
+import {
+  addReply,
+  appendReplyChildren,
+  deleteReply,
+  editReply,
+} from './reply-tree-manipulators'
 
 export default function Replies({
   resourceId,
   resourceType,
   registerPlaceholder,
-  size,
+  size = 10,
   // FIXME: 개발 완료 후 onClickCapture props를 제거합니다.
   // 제공되는 댓글의 일부 기능을 노출하지 않기 위해서 추가한 임시 핸들러 props이며,
   // 개발이 완료되면 없어질 props입니다.
@@ -37,7 +46,6 @@ export default function Replies({
     number | undefined
   >(undefined)
   const [replies, setReplies] = useState<Reply[]>([])
-  const [page, setPage] = useState(0)
 
   const handleReplyAdd = (response: Reply): void => {
     if (response.parentId) {
@@ -92,17 +100,48 @@ export default function Replies({
     fetchReplyBoardAndSet()
   }, [resourceId, resourceType])
 
-  const fetchMoreReplies = useCallback(async () => {
-    const repliesResponse = await fetchReplies({
-      resourceId,
-      resourceType,
-      size,
-      page: page + 1,
-    })
+  const fetchMoreReplies = useCallback(
+    async (reply?: Reply) => {
+      if (!size) {
+        return
+      }
 
-    setReplies((prev) => checkUniqueReply([...repliesResponse, ...prev]))
-    setPage((prev) => prev + 1)
-  }, [resourceId, resourceType, size, page, setPage])
+      const actualTree =
+        reply ||
+        ({
+          id: null,
+          children: replies,
+        } as unknown as Reply)
+
+      const childrenCount = actualTree.children.length
+      const pageNumber = Number(childrenCount / size)
+
+      const repliesResponse: Reply[] = actualTree.id
+        ? await fetchChildReplies({
+            id: actualTree.id,
+            size,
+            page: pageNumber,
+          })
+        : await fetchReplies({
+            resourceId,
+            resourceType,
+            size,
+            page: pageNumber,
+          })
+
+      const { children: newReplies } = appendReplyChildren(
+        actualTree,
+        repliesResponse,
+        {
+          id: null,
+          children: replies,
+        } as unknown as Reply,
+      )
+
+      setReplies(newReplies)
+    },
+    [resourceId, resourceType, size, replies],
+  )
 
   const registerRef = useRef<TextAreaHandle>(null)
 

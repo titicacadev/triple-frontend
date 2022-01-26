@@ -20,7 +20,6 @@ import ActionSheet from '@titicaca/action-sheet'
 
 import { Reply as ReplyType, Writer } from '../types'
 import { likeReply, unlikeReply } from '../replies-api-clients'
-import { checkUniqueReply } from '../utils'
 import { useRepliesContext } from '../context'
 
 const MoreActionsButton = styled.button`
@@ -73,6 +72,7 @@ const CONTENT_TEXT = {
 }
 
 export default function Reply({
+  reply,
   reply: {
     writer: { profileImage, name },
     blinded,
@@ -83,12 +83,14 @@ export default function Reply({
     children,
     id,
     deleted,
-    actionSpecifications: { delete: isMine, reply, edit },
+    actionSpecifications: { delete: isMine, reply: actionReply, edit },
   },
   focusInput,
+  fetchMoreReplies,
 }: {
   reply: ReplyType
   focusInput: () => void
+  fetchMoreReplies: (reply?: ReplyType) => void
 }) {
   const [likeReaction, setLikeReactions] = useState(reactions.like)
 
@@ -99,10 +101,6 @@ export default function Reply({
   const { asyncBack } = useIsomorphicNavigation()
 
   const navigate = useNavigate()
-
-  const fetchMoreChildReplies = useCallback(async () => {
-    // TOOD
-  }, [])
 
   const handleMoreClick = useCallback(
     (id) => {
@@ -297,7 +295,7 @@ export default function Reply({
               color="gray300"
               bold
               onClick={() => {
-                handleWriteReplyClick(reply)
+                handleWriteReplyClick(actionReply)
               }}
             >
               답글달기
@@ -314,17 +312,21 @@ export default function Reply({
           bold
           cursor="pointer"
           inlineBlock
-          onClick={fetchMoreChildReplies}
+          onClick={() => fetchMoreReplies(reply)}
         >
           이전 답글 더보기
         </Text>
       ) : null}
 
-      {children.length > 0 ? (
+      {childrenCount > 0 ? (
         <List margin={{ top: 20 }}>
-          {checkUniqueReply(children).map((childReply) => (
+          {children.map((childReply) => (
             <ChildResourceListItem key={childReply.id} margin={{ bottom: 20 }}>
-              <Reply reply={childReply} focusInput={focusInput} />
+              <Reply
+                reply={childReply}
+                focusInput={focusInput}
+                fetchMoreReplies={fetchMoreReplies}
+              />
             </ChildResourceListItem>
           ))}
         </List>
@@ -336,7 +338,7 @@ export default function Reply({
         onEditClick={() =>
           handleEditReplyClick({
             ...edit,
-            toMessageId: reply.toMessageId,
+            toMessageId: actionReply.toMessageId,
             messageId: id,
           })
         }

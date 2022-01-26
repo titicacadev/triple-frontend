@@ -21,7 +21,7 @@ export default function ReplyList({
 }: {
   replies: ReplyType[]
   totalRepliesCount?: number
-  fetchMoreReplies: () => void
+  fetchMoreReplies: (reply?: ReplyType) => void
   focusInput: () => void
   onReplyDelete: (response: ReplyType) => void
 }) {
@@ -59,7 +59,7 @@ export default function ReplyList({
               bold
               cursor="pointer"
               inlineBlock
-              onClick={fetchMoreReplies}
+              onClick={() => fetchMoreReplies()}
             >
               이전 댓글 더보기
             </Text>
@@ -69,7 +69,11 @@ export default function ReplyList({
             {replies.map((reply) => (
               <List.Item key={reply.id}>
                 <HR1 margin={{ bottom: 20 }} color="var(--color-gray50)" />
-                <Reply reply={reply} focusInput={focusInput} />
+                <Reply
+                  reply={reply}
+                  focusInput={focusInput}
+                  fetchMoreReplies={fetchMoreReplies}
+                />
               </List.Item>
             ))}
           </List>
