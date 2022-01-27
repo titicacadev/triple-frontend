@@ -59,7 +59,7 @@ export function BusinessHoursNote({
     >
       <Text bold size="small" color="white">
         {currentBusinessHours
-          ? `영업중 ${todayBusinessHours || ''}`
+          ? `영업중 ${todayBusinessHours}`
           : todayBusinessHours
           ? `영업준비중 ${todayBusinessHours}`
           : '휴무일'}
