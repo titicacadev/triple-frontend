@@ -48,6 +48,7 @@ jobs:
       - run: npm install
 
       - name: If working tree dirty, shutdown job
+        id: check-working-tree-clean
         run: |
           if [[ $(git diff --stat) != '' ]]; then
             git diff --stat
@@ -55,7 +56,7 @@ jobs:
           fi
 
       - name: Notify checking dependency failure
-        if: failure()
+        if: steps.check-working-tree-clean.outcome == 'failure'
         env:
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: Deps check FAILURE'
@@ -86,7 +87,16 @@ jobs:
         run: npm i -E @titicaca/eslint-config-triple
 
       - name: Lint
+        id: lint
         run: npm run lint
+
+      - name: Notify linting failure
+        if: steps.lint.outcome == 'failure'
+        env:
+          SLACK_COLOR: fail
+          SLACK_TITLE: ':pleading: Lint FAILURE'
+          SLACK_TOPIC: ''
+        run: npx @titicaca/gha-tools notify
 
   chromatic-deployment:
     runs-on: ubuntu-latest
@@ -113,16 +123,34 @@ jobs:
       - run: npm ci
 
       - name: Build
+        id: build
         run: npm run build
+
+      - name: Notify building failure
+        if: steps.build.outcome == 'failure'
+        env:
+          SLACK_COLOR: fail
+          SLACK_TITLE: ':pleading: Build FAILURE'
+          SLACK_TOPIC: ''
+        run: npx @titicaca/gha-tools notify
 
       - name: Publish to Chromatic
         if: github.ref != 'refs/heads/main'
+        id: publish-to-chromatic
         uses: chromaui/action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           buildScriptName: build
           workingDir: docs
+
+      - name: Notify publishing to Chromatic failure
+        if: steps.publish-to-chromatic.outcome == 'failure'
+        env:
+          SLACK_COLOR: fail
+          SLACK_TITLE: ':pleading: Publish to Chromatic FAILURE'
+          SLACK_TOPIC: ''
+        run: npx @titicaca/gha-tools notify
 
       - name: Publish to Chromatic and auto accept changes
         if: github.ref == 'refs/heads/main'
@@ -159,10 +187,28 @@ jobs:
       - run: npm ci
 
       - name: Generate coverage report
+        id: test
         run: npm run test:coverage
 
+      - name: Notify testing failure
+        if: steps.test.outcome == 'failure'
+        env:
+          SLACK_COLOR: fail
+          SLACK_TITLE: ':pleading: Test FAILURE'
+          SLACK_TOPIC: ''
+        run: npx @titicaca/gha-tools notify
+
       - name: Upload coverage to Codecov
+        id: upload-coverage-to-codecov
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: ./coverage
+
+      - name: Notify uploading coverage failure
+        if: steps.upload-coverage-to-codecov.outcome == 'failure'
+        env:
+          SLACK_COLOR: fail
+          SLACK_TITLE: ':pleading: Upload coverage FAILURE'
+          SLACK_TOPIC: ''
+        run: npx @titicaca/gha-tools notify
