@@ -21,7 +21,6 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --ci --coverage",
     "clean:build": "lerna exec --ignore @titicaca/triple-frontend-docs --ignore=@titicaca/frontend-integration-test -- rm -rf ./lib ./*.tsbuildinfo",
-    "clean-lock": "lerna exec --ignore @titicaca/triple-frontend-docs -- rm -rf ./package-lock.json",
     "clean": "lerna exec -- rm -rf ./node_modules ./lib ./*.tsbuildinfo",
     "make-tsconfig": "lerna exec --parallel -- node \\$LERNA_ROOT_PATH/scripts/make-tsconfig.js",
     "make-build-tsconfig": "lerna exec --ignore @titicaca/triple-frontend-docs --ignore=@titicaca/frontend-integration-test --parallel -- node \\$LERNA_ROOT_PATH/scripts/make-build-tsconfig.js",
