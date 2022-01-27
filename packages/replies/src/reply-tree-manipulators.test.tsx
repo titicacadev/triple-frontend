@@ -458,7 +458,6 @@ describe('Reply 페이징 기능을 테스트합니다.', () => {
       {
         ...mockAddingReply,
         children: [...mockAddingReply.children, ...appendingReply],
-        childrenCount: 6,
       },
     ]
 
