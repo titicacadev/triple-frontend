@@ -134,7 +134,7 @@ npm install
 #### 패키지에 의존성 추가
 
 ```bash
-npm run add -- --scope=<의존성을 추가할 대상 패키지> <추가할 패키지>
+npm install --workspace=<의존성을 추가할 대상 패키지> <추가할 패키지>
 ```
 
 devDependency이면 --dev를, peer dependency이면 --peer를 추가합니다.

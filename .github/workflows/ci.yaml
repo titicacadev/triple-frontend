@@ -48,8 +48,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
 
-      - run: npm run sync-deps
-
       - name: Check working tree clean
         id: check-working-tree
         run: |
