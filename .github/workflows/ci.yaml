@@ -10,6 +10,7 @@ env:
   # Node.js
   NODE_VERSION: '16.x'
   NPM_REGISTRY_URL: 'https://registry.npmjs.org'
+  NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
   # Slack Notifications
   SLACK_WEBHOOK: ${{ secrets.GHA_NOTIFICATIONS_WEBHOOK_URL }}
   SLACK_CHANNEL: '#triple-web-dev-notifications' # 메시지 보낼 채널
@@ -45,8 +46,6 @@ jobs:
             ${{ runner.OS }}-npm-cache-
 
       - run: npm install
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
 
       - name: If working tree dirty, shutdown job
         run: |
@@ -58,7 +57,6 @@ jobs:
       - name: Notify checking dependency failure
         if: failure()
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: Deps check FAILURE'
           SLACK_TOPIC: '의존성 변경이 있습니다. `npm run sync-deps`로 변경을 반영해주세요.'
@@ -85,8 +83,6 @@ jobs:
             ${{ runner.OS }}-npm-cache-eslint-config
 
       - name: Install @titicaca/eslint-config-triple
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
         run: npm i -E @titicaca/eslint-config-triple
 
       - name: Lint
@@ -115,8 +111,6 @@ jobs:
             ${{ runner.OS }}-npm-cache-
 
       - run: npm ci
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
 
       - name: Build
         run: npm run build
@@ -163,8 +157,6 @@ jobs:
             ${{ runner.OS }}-npm-cache-
 
       - run: npm ci
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
 
       - name: Generate coverage report
         run: npm run test:coverage
