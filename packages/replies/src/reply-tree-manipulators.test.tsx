@@ -47,14 +47,14 @@ const MOCK_BASE_REPLY = {
   childrenCount: 0,
 }
 
-describe('Reply 추가 기능을 테스트합니다.', () => {
+describe('addReply', () => {
   const addingReply = generateMockReply({
     id: '12345678-1234-1234-1234-12345678912',
     parentId: '11111111-1111-1111-1111-11111111111',
   })
 
-  describe('답글 테스트 항목', () => {
-    test('답글 추가 후, 댓글을 반환합니다. (바로 찾은 경우)', () => {
+  describe('탐색 깊이가 1보다 클 때', () => {
+    test('Reply 트리에 노드를 추가하는 경우, 노드가 추가된 Reply 트리를 반환합니다.', () => {
       const originalReply = generateMockReply({
         id: '11111111-1111-1111-1111-11111111111',
         children: [
@@ -82,7 +82,7 @@ describe('Reply 추가 기능을 테스트합니다.', () => {
       expect(addedReply).toEqual(expectedReply)
     })
 
-    test('답글 추가 후, 댓글을 반환합니다. (바로 못찾은 경우)', () => {
+    test('Child를 추가할 노드가 트리에 없어 순회를 통해 찾은 경우, Child 노드를 추가한 트리를 반환합니다.', () => {
       const mockReplies = [
         generateMockReply({
           id: '23456789-4321-4321-4321-23456789111',
@@ -132,7 +132,7 @@ describe('Reply 추가 기능을 테스트합니다.', () => {
       expect(addedReply).toEqual(expectedReply)
     })
 
-    test('댓글이 없을 때, 답글을 추가하면 기존 댓글을 반환합니다.', () => {
+    test('Child를 추가할 노드가 트리에 없어 순회를 했지만 못찾은 경우, 기존 트리를 반환합니다.', () => {
       const originalReply = generateMockReply({
         id: '00000000-0000-0000-0000-00000000000',
         children: [
@@ -150,11 +150,11 @@ describe('Reply 추가 기능을 테스트합니다.', () => {
   })
 })
 
-describe('Reply 삭제 기능을 테스트합니다.', () => {
-  describe('댓글 테스트 항목', () => {
+describe('deleteReply', () => {
+  describe('탐색 깊이가 1일 때', () => {
     const mockDeletingReply = generateMockReply()
 
-    test('댓글이 1개 있는 리스트에서 댓글을 삭제하면 undefined를 반환합니다.', () => {
+    test('Child 노드가 1개 있는 Reply 트리에서 Child 노드를 삭제할 경우, undefined를 반환합니다.', () => {
       const originalReply = generateMockReply()
 
       const deletedReply = deleteReply(mockDeletingReply, originalReply)
@@ -162,7 +162,7 @@ describe('Reply 삭제 기능을 테스트합니다.', () => {
       expect(deletedReply).toBeUndefined()
     })
 
-    test('댓글이 2개 이상 있는 리스트에서 댓글을 삭제한 후 댓글을 반환합니다.', () => {
+    test('Child 노드가 2개 이상 있는 Reply 트리에서 Child 노드를 삭제할 경우, Child 노드가 제거된 Reply 트리를 반환합니다.', () => {
       const originalReply = {
         id: null,
         children: [
@@ -197,7 +197,7 @@ describe('Reply 삭제 기능을 테스트합니다.', () => {
       expect(deletedReply).toEqual(expectedReply)
     })
 
-    test('답글이 달려있는 상태에서 댓글 삭제 시 deleted와 content의 값을 변경 후 반환합니다.', () => {
+    test('Child 노드가 있는 Reply 트리를 삭제할 경우, Reply 트리의 deleted와 content의 값을 변경 후 반환합니다.', () => {
       const mockDeletingReply = generateMockReply({
         id: '11111111-1111-1111-1111-11111111111',
       })
@@ -219,13 +219,11 @@ describe('Reply 삭제 기능을 테스트합니다.', () => {
       const expectedReply = generateMockReply({
         id: '11111111-1111-1111-1111-11111111111',
         children: [
-          {
-            ...generateMockReply({
-              id: '23456789-1234-1234-23456789123',
-              parentId: '11111111-1111-1111-1111-11111111111',
-              children: [],
-            }),
-          },
+          generateMockReply({
+            id: '23456789-1234-1234-23456789123',
+            parentId: '11111111-1111-1111-1111-11111111111',
+            children: [],
+          }),
         ],
         childrenCount: 1,
         deleted: true,
@@ -235,7 +233,7 @@ describe('Reply 삭제 기능을 테스트합니다.', () => {
       expect(deletedReply).toEqual(expectedReply)
     })
 
-    test('삭제한 댓글의 ID가 일치히지 않으면 기존 댓글을 반환합니다.', () => {
+    test('삭제해야하는 Reply 트리의 ID가 일치하지 않을 경우, 기존 Reply 트리를 반환합니다.', () => {
       const originalReply = generateMockReply({
         id: '11111111-1111-1111-1111-11111111111',
       })
@@ -246,8 +244,8 @@ describe('Reply 삭제 기능을 테스트합니다.', () => {
     })
   })
 
-  describe('답글 테스트 항목', () => {
-    test('답글 삭제 후, 댓글을 반환합니다.', () => {
+  describe('탐색 깊이가 1보다 클 때', () => {
+    test('삭제해야하는 Child 노드를 순회하여 찾은 경우, 해당 노드가 삭제된 Reply 트리를 반환합니다.', () => {
       const mockDeletingChildReply = generateMockReply({
         id: '12345678-1234-1234-1234-12345678912',
         parentId: '11111111-1111-1111-1111-11111111111',
@@ -275,7 +273,7 @@ describe('Reply 삭제 기능을 테스트합니다.', () => {
       expect(deletedReply).toEqual(expetedReply)
     })
 
-    test('삭제해야하는 답글의 ID가 일치하지 않으면 기존 답글을 반환합니다.', () => {
+    test('삭제해야하는 Child 노드의 ID가 일치하지 않을 경우, 기존 Reply 트리를 반환합니다.', () => {
       const mockDeletingChildReply = generateMockReply({
         id: '12345678-1234-1234-1234-12345678912',
       })
@@ -298,9 +296,9 @@ describe('Reply 삭제 기능을 테스트합니다.', () => {
   })
 })
 
-describe('Reply 수정 기능을 테스트합니다.', () => {
-  describe('댓글 테스트 항목', () => {
-    test('댓글을 수정합니다.', () => {
+describe('editReply', () => {
+  describe('탐색 깊이가 1일 때', () => {
+    test('수정해야하는 Reply 트리를 찾을 경우, 수정된 Reply 트리를 반환합니다.', () => {
       const mockEditingReply = generateMockReply({
         id: '11111111-1111-1111-1111-11111111111',
         content: { text: '수정된 텍스트' },
@@ -325,7 +323,7 @@ describe('Reply 수정 기능을 테스트합니다.', () => {
       expect(editedReply).toEqual(expectedReply)
     })
 
-    test('수정한 댓글의 ID가 일치하지 않으면 기존 댓글을 반환합니다.', () => {
+    test('수정해야하는 Reply 트리의 ID가 일치하지 않을 경우, 기존 Reply 트리를 반환합니다.', () => {
       const mockEditingReply = generateMockReply({
         id: '11111111-1111-1111-1111-11111111111',
         content: { text: '수정된 텍스트' },
@@ -346,8 +344,8 @@ describe('Reply 수정 기능을 테스트합니다.', () => {
     })
   })
 
-  describe('답글 테스트 항목', () => {
-    test('답글을 수정합니다.', () => {
+  describe('탐색 깊이가 1보다 클 때,', () => {
+    test('Child 노드를 순회하여 찾은 경우, 해당 Child 노드를 수정한 Reply 트리를 반환합니다.', () => {
       const mockEditingChildReply = generateMockReply({
         id: '11111111-1111-1111-1111-11111111111',
         content: { text: '수정된 텍스트' },
@@ -379,8 +377,8 @@ describe('Reply 수정 기능을 테스트합니다.', () => {
   })
 })
 
-describe('Reply 페이징 기능을 테스트합니다.', () => {
-  test('다음 페이지의 댓글을 불러옵니다.', () => {
+describe('appendReplyChildren', () => {
+  test('페이징을 이용하여 Reply 트리를 추가할 경우, 트리가 추가된 Reply 트리를 반환합니다.', () => {
     const mockAddingReply = {
       id: null,
       children: [MOCK_BASE_REPLY],
@@ -407,7 +405,7 @@ describe('Reply 페이징 기능을 테스트합니다.', () => {
     expect(newReplies).toEqual(expectedReply)
   })
 
-  test('다음 페이지의 답글을 불러옵니다.', () => {
+  test('페이징을 이용하여 Child 노드를 추가할 경우, 응답받은 Child 노드가 추가된 Reply 트리를 반환합니다.', () => {
     const mockAddingReply = generateMockReply({
       id: '11111111-1111-1111-1111-11111111111',
       children: [
