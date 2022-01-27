@@ -48,24 +48,20 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
 
-      - name: Check working tree clean
-        id: check-working-tree
+      - name: If working tree dirty, shutdown job
         run: |
-          DIFF=$(git diff)
-          echo "::set-output name=clean::$([ -z $DIFF ] && echo 'true')"
+          if [[ $(git diff --stat) != '' ]]; then
+            node -e 'process.exit(1)'
+          fi
 
       - name: Notify checking dependency failure
-        if: steps.check-working-tree.outputs.clean != 'true'
+        if: failure()
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: Deps check FAILURE'
           SLACK_TOPIC: '의존성 변경이 있습니다. `npm run sync-deps`로 변경을 반영해주세요.'
         run: npx @titicaca/gha-tools notify
-
-      - name: Shutdown workflow
-        if: steps.check-working-tree.outputs.clean != 'true'
-        run: node -e 'process.exit(1)'
 
   lint:
     runs-on: ubuntu-latest
