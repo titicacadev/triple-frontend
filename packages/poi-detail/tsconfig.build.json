@@ -6,6 +6,9 @@
       "path": "../action-sheet/tsconfig.build.json"
     },
     {
+      "path": "../app-installation-cta/tsconfig.build.json"
+    },
+    {
       "path": "../carousel/tsconfig.build.json"
     },
     {

@@ -6,6 +6,7 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/action-sheet": ["../action-sheet/src"],
+      "@titicaca/app-installation-cta": ["../app-installation-cta/src"],
       "@titicaca/carousel": ["../carousel/src"],
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/i18n": ["../i18n/src"],
@@ -21,6 +22,9 @@
   "references": [
     {
       "path": "../action-sheet"
+    },
+    {
+      "path": "../app-installation-cta"
     },
     {
       "path": "../carousel"
