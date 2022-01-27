@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "@titicaca/action-sheet": "^5.2.1",
+    "@titicaca/app-installation-cta": "^5.2.1",
     "@titicaca/carousel": "^5.2.1",
     "@titicaca/core-elements": "^5.2.1",
     "@titicaca/i18n": "^5.2.1",

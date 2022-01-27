@@ -16,7 +16,8 @@
     "lib"
   ],
   "dependencies": {
-    "@titicaca/color-palette": "^5.2.1"
+    "@titicaca/color-palette": "^5.2.1",
+    "@titicaca/core-elements": "^5.2.1"
   },
   "peerDependencies": {
     "react": "*",

@@ -19,6 +19,12 @@
     "ts-custom-error": "^3.2.0",
     "universal-cookie": "^4.0.3"
   },
+  "devDependencies": {
+    "@sentry/nextjs": "^6.17.2",
+    "@types/node-fetch": "^2.5.12",
+    "next": "^12.0.9",
+    "node-fetch": "^2.6.7"
+  },
   "peerDependencies": {
     "@sentry/nextjs": "*",
     "@titicaca/view-utilities": "*",
