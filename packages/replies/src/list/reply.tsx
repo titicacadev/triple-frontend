@@ -236,11 +236,7 @@ export default function Reply({
             </Text>
 
             <MoreActionsButton
-              onClick={
-                actionReply
-                  ? () => handleMoreClick(actionReply.toMessageId)
-                  : undefined
-              }
+              onClick={actionReply ? () => handleMoreClick(id) : undefined}
             />
           </FlexBox>
         </FlexBox>
