@@ -145,7 +145,7 @@ jobs:
           workingDir: docs
 
       - name: Notify publishing to Chromatic failure
-        if: failure() steps.publish-to-chromatic.outcome == 'failure'
+        if: failure() && steps.publish-to-chromatic.outcome == 'failure'
         env:
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: Publish to Chromatic FAILURE'
