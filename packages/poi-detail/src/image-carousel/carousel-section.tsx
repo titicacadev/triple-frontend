@@ -45,14 +45,14 @@ export default function CarouselSection({
       )}
       {!permanentlyClosed && onBusinessHoursClick ? (
         <BusinessHoursNote
-          borderRadius={borderRadius}
+          bottomBorderRadius={borderRadius}
           currentBusinessHours={currentBusinessHours}
           todayBusinessHours={todayBusinessHours}
           onClick={onBusinessHoursClick}
         />
       ) : null}
       {permanentlyClosed ? (
-        <PermanentlyClosedNote borderRadius={borderRadius} />
+        <PermanentlyClosedNote bottomBorderRadius={borderRadius} />
       ) : null}
     </Section>
   )

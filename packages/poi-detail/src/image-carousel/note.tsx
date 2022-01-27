@@ -2,7 +2,10 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { Text } from '@titicaca/core-elements'
 
-const NoteContainer = styled.div<{ warning?: boolean; borderRaidus?: number }>`
+const NoteContainer = styled.div<{
+  warning?: boolean
+  bottomBorderRadius?: number
+}>`
   position: absolute;
   bottom: 0;
   left: 0;
@@ -15,22 +18,22 @@ const NoteContainer = styled.div<{ warning?: boolean; borderRaidus?: number }>`
     line-height: 40px;
   }
 
-  ${({ borderRaidus }) =>
-    borderRaidus &&
+  ${({ bottomBorderRadius }) =>
+    bottomBorderRadius &&
     css`
-      border-bottom-left-radius: ${borderRaidus}px;
-      border-bottom-right-radius: ${borderRaidus}px;
+      border-bottom-left-radius: ${bottomBorderRadius}px;
+      border-bottom-right-radius: ${bottomBorderRadius}px;
     `}
   z-index: 2;
 `
 
 export function PermanentlyClosedNote({
-  borderRadius = 6,
+  bottomBorderRadius = 6,
 }: {
-  borderRadius?: number
+  bottomBorderRadius?: number
 }) {
   return (
-    <NoteContainer warning borderRaidus={borderRadius}>
+    <NoteContainer warning bottomBorderRadius={bottomBorderRadius}>
       <Text bold size="small" color="white">
         더이상 운영하지 않습니다.
       </Text>
@@ -39,12 +42,12 @@ export function PermanentlyClosedNote({
 }
 
 export function BusinessHoursNote({
-  borderRadius = 6,
+  bottomBorderRadius = 6,
   currentBusinessHours,
   todayBusinessHours,
   onClick,
 }: {
-  borderRadius?: number
+  bottomBorderRadius?: number
   currentBusinessHours?:
     | string
     | { from: number; to: number; dayOfWeek: number }
@@ -55,7 +58,7 @@ export function BusinessHoursNote({
     <NoteContainer
       onClick={onClick}
       warning={!currentBusinessHours}
-      borderRaidus={borderRadius}
+      bottomBorderRadius={bottomBorderRadius}
     >
       <Text bold size="small" color="white">
         {currentBusinessHours
