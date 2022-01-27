@@ -82,7 +82,7 @@ describe('addReply', () => {
       expect(addedReply).toEqual(expectedReply)
     })
 
-    test('Child를 추가할 노드가 트리에 없어 순회를 통해 찾은 경우, Child 노드를 추가한 트리를 반환합니다.', () => {
+    test('Child를 추가할 노드를 순회를 통해 찾은 경우, Child 노드가 추가된 트리를 반환합니다.', () => {
       const mockReplies = [
         generateMockReply({
           id: '23456789-4321-4321-4321-23456789111',
@@ -132,7 +132,7 @@ describe('addReply', () => {
       expect(addedReply).toEqual(expectedReply)
     })
 
-    test('Child를 추가할 노드가 트리에 없어 순회를 했지만 못찾은 경우, 기존 트리를 반환합니다.', () => {
+    test('Child를 추가할 노드를 순회 했지만 못찾은 경우, 기존 트리를 반환합니다.', () => {
       const originalReply = generateMockReply({
         id: '00000000-0000-0000-0000-00000000000',
         children: [
@@ -154,47 +154,12 @@ describe('deleteReply', () => {
   describe('탐색 깊이가 1일 때', () => {
     const mockDeletingReply = generateMockReply()
 
-    test('Child 노드가 1개 있는 Reply 트리에서 Child 노드를 삭제할 경우, undefined를 반환합니다.', () => {
+    test('Child 노드가 없는 Reply 트리를 삭제할 경우, undefined를 반환합니다.', () => {
       const originalReply = generateMockReply()
 
       const deletedReply = deleteReply(mockDeletingReply, originalReply)
 
       expect(deletedReply).toBeUndefined()
-    })
-
-    test('Child 노드가 2개 이상 있는 Reply 트리에서 Child 노드를 삭제할 경우, Child 노드가 제거된 Reply 트리를 반환합니다.', () => {
-      const originalReply = {
-        id: null,
-        children: [
-          generateMockReply({
-            id: '00000000-0000-0000-0000-00000000000',
-          }),
-          generateMockReply({
-            id: '11111111-1111-1111-1111-11111111111',
-          }),
-          generateMockReply({
-            id: '22222222-2222-2222-2222-22222222222',
-          }),
-        ],
-        childrenCount: 3,
-      } as unknown as Reply
-
-      const deletedReply = deleteReply(mockDeletingReply, originalReply)
-
-      const expectedReply = {
-        id: null,
-        children: [
-          generateMockReply({
-            id: '11111111-1111-1111-1111-11111111111',
-          }),
-          generateMockReply({
-            id: '22222222-2222-2222-2222-22222222222',
-          }),
-        ],
-        childrenCount: 2,
-      }
-
-      expect(deletedReply).toEqual(expectedReply)
     })
 
     test('Child 노드가 있는 Reply 트리를 삭제할 경우, Reply 트리의 deleted와 content의 값을 변경 후 반환합니다.', () => {
@@ -405,7 +370,7 @@ describe('appendReplyChildren', () => {
     expect(newReplies).toEqual(expectedReply)
   })
 
-  test('페이징을 이용하여 Child 노드를 추가할 경우, 응답받은 Child 노드가 추가된 Reply 트리를 반환합니다.', () => {
+  test('페이징을 이용하여 Child 노드를 추가할 경우, Child 노드가 추가된 Reply 트리를 반환합니다.', () => {
     const mockAddingReply = generateMockReply({
       id: '11111111-1111-1111-1111-11111111111',
       children: [
