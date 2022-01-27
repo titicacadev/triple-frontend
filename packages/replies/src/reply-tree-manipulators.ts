@@ -73,7 +73,6 @@ export function appendReplyChildren(
     return {
       ...tree,
       children: checkUniqueReply([...tree.children, ...appendingChildren]),
-      childrenCount: [...tree.children, ...appendingChildren].length,
     }
   } else {
     return {
