@@ -67,7 +67,7 @@ jobs:
         if: steps.check-working-tree.outputs.clean != 'true'
         run: node -e 'process.exit(1)'
 
-  build:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -79,49 +79,21 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.NPM_REGISTRY_URL }}
 
-      - name: Notify build start to slack
-        env:
-          SLACK_TITLE: ':rocket: Build Started'
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
-        run: |
-          npx @titicaca/gha-tools notify
-
       - name: Cache dependencies
         uses: actions/cache@v2
         with:
           path: ~/.npm
-          key: ${{ runner.OS }}-npm-cache-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.OS }}-npm-cache-eslint-config
           restore-keys: |
-            ${{ runner.OS }}-npm-cache-
+            ${{ runner.OS }}-npm-cache-eslint-config
 
-      - name: Install dependencies
+      - name: Install @titicaca/eslint-config-triple
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
-        run: npm ci
+        run: npm i -E @titicaca/eslint-config-triple
 
       - name: Lint
         run: npm run lint
-
-      - name: Build
-        run: npm run build
-
-      - name: Notify build success to slack
-        if: success()
-        env:
-          SLACK_TITLE: ':tada: Build Succeed'
-          SLACK_COLOR: success
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
-        run: |
-          npx @titicaca/gha-tools notify
-
-      - name: Notify build fail to slack
-        if: failure()
-        env:
-          SLACK_TITLE: ':pleading: Build Failed'
-          SLACK_COLOR: fail
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
-        run: |
-          npx @titicaca/gha-tools notify
 
   chromatic-deployment:
     runs-on: ubuntu-latest
