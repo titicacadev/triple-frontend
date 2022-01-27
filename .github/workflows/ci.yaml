@@ -51,7 +51,7 @@ jobs:
       - name: If working tree dirty, shutdown job
         run: |
           if [[ $(git diff --stat) != '' ]]; then
-            node -e 'process.exit(1)'
+            exit 1
           fi
 
       - name: Notify checking dependency failure
