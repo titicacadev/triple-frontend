@@ -56,7 +56,7 @@ jobs:
           fi
 
       - name: Notify checking dependency failure
-        if: steps.check-working-tree-clean.outcome == 'failure'
+        if: failure() && steps.check-working-tree-clean.outcome == 'failure'
         env:
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: Deps check FAILURE'
@@ -91,7 +91,7 @@ jobs:
         run: npm run lint
 
       - name: Notify linting failure
-        if: steps.lint.outcome == 'failure'
+        if: failure() && steps.lint.outcome == 'failure'
         env:
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: Lint FAILURE'
@@ -127,7 +127,7 @@ jobs:
         run: npm run build
 
       - name: Notify building failure
-        if: steps.build.outcome == 'failure'
+        if: failure() && steps.build.outcome == 'failure'
         env:
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: Build FAILURE'
@@ -145,7 +145,7 @@ jobs:
           workingDir: docs
 
       - name: Notify publishing to Chromatic failure
-        if: steps.publish-to-chromatic.outcome == 'failure'
+        if: failure() steps.publish-to-chromatic.outcome == 'failure'
         env:
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: Publish to Chromatic FAILURE'
@@ -191,7 +191,7 @@ jobs:
         run: npm run test:coverage
 
       - name: Notify testing failure
-        if: steps.test.outcome == 'failure'
+        if: failure() && steps.test.outcome == 'failure'
         env:
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: Test FAILURE'
@@ -206,7 +206,7 @@ jobs:
           directory: ./coverage
 
       - name: Notify uploading coverage failure
-        if: steps.upload-coverage-to-codecov.outcome == 'failure'
+        if: failure() && steps.upload-coverage-to-codecov.outcome == 'failure'
         env:
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: Upload coverage FAILURE'
