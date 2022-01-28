@@ -7,7 +7,7 @@ export function addReply(reply: Reply, tree: Reply): Reply {
     return {
       ...tree,
       children: addedReplyTree,
-      childrenCount: addedReplyTree.length,
+      childrenCount: tree.childrenCount + 1,
     }
   } else {
     return {

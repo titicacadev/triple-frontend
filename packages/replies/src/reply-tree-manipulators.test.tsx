@@ -63,6 +63,7 @@ describe('addReply', () => {
             parentId: '11111111-1111-1111-1111-11111111111',
           }),
         ],
+        childrenCount: 1,
       })
 
       const addedReply = addReply(addingReply, originalReply)
