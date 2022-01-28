@@ -1,9 +1,84 @@
 # CHANGELOG
 
-## Unreleased
+## 6.0.0
+
+### common
+
+- 실패 알림을 보내는 step이 job이 실패했을 때 실행되도록 처리 [#1882](https://github.com/titicacadev/triple-frontend/pull/1882)
+- package 별 누락된 dependencies 추가 [#1881](https://github.com/titicacadev/triple-frontend/pull/1881)
+- CI 워크플로의 job을 정리합니다 [#1880](https://github.com/titicacadev/triple-frontend/pull/1880)
+- npm script 정리 [#1878](https://github.com/titicacadev/triple-frontend/pull/1878)
+- 패키지별 package.json을 표준화합니다 [#1870](https://github.com/titicacadev/triple-frontend/pull/1870)
+- Sentry 패키지 의존성을 정리합니다 [#1856](https://github.com/titicacadev/triple-frontend/pull/1856)
+- Storybook 패키지 최신 버전 설치 [#1858](https://github.com/titicacadev/triple-frontend/pull/1858)
+- Create LICENSE [#1840](https://github.com/titicacadev/triple-frontend/pull/1840/files)
+- Storybook 주소를 갱신합니다 [#1839](https://github.com/titicacadev/triple-frontend/pull/1839/files)
+
+### poi-detail
+
+- image-carousel 내부의 노트 컴포넌트를 수정합니다 [#1874](https://github.com/titicacadev/triple-frontend/pull/1874)
+
+### router
+
+- LocalLink, ExternalLink가 앵커 태그를 직접 렌더링하도록 변경합니다 [#1873](https://github.com/titicacadev/triple-frontend/pull/1873)
+
+### user-verification
+
+- react-triple-client-interfaces를 이용합니다 [#1871](https://github.com/titicacadev/triple-frontend/pull/1871)
+
+### replies
+
+- 댓글&답글에 신고하기 기능을 추가합니다 [#1838](https://github.com/titicacadev/triple-frontend/pull/1838)
+- 댓글&답글 좋아요 반응 기능을 추가합니다 [#1845](https://github.com/titicacadev/triple-frontend/pull/1845)
+
+### react-triple-client-interfaces
+
+- router의 app-bridge를 이전합니다 [#1875](https://github.com/titicacadev/triple-frontend/pull/1875)
+- useTripleClientFeatureFlag 훅을 추가합니다 [#1866](https://github.com/titicacadev/triple-frontend/pull/1866)
+- react-triple-client-interfaces 패키지를 추가합니다 [#1832](https://github.com/titicacadev/triple-frontend/pull/1832)
+
+### ui-flow
+
+- ui-flow 디렉토리의 ESLint 검사를 활성화합니다 [#1857](https://github.com/titicacadev/triple-frontend/pull/1857)
+
+### core-elements
+
+- core-elements 디렉토리의 ESLint, Stylelint 검사를 활성화합니다 [#1850](https://github.com/titicacadev/triple-frontend/pull/1850)
+
+### app-installation-cta
+
+- 배너 CTA 오버레이 클릭시, 해당 배너가 닫히도록 합니다 [#1847](https://github.com/titicacadev/triple-frontend/pull/1847)
+
+### triple-document
+
+- triple-doucment의 불필요한 영역의snapshot을 ignore합니다 [#1844](https://github.com/titicacadev/triple-frontend/pull/1844)
+
+### ad-banners
+
+- ad-banners의 ListDirection enum의 멤버 네이밍 변경 [#1787](https://github.com/titicacadev/triple-frontend/pull/1787)
+
+### map
+
+- 오버레이 컴포넌트들을 정리합니다 [#1865](https://github.com/titicacadev/triple-frontend/pull/1865)
+- Map 구조 변경 및 기능을 추가합니다 [#1831](https://github.com/titicacadev/triple-frontend/pull/1831)
+- Map 디렉토리의 ESLint 검사를 활성화하고 오류를 수정합니다 [#1841](https://github.com/titicacadev/triple-frontend/pull/1841)
+
+### modals
+
+- login CTA 모달 관련 네이밍을 변경합니다 [#1791](https://github.com/titicacadev/triple-frontend/pull/1791)
+
+### fetcher
+
+- fetcher 패키지의 일부 인터페이스 이름 변경 [#1767](https://github.com/titicacadev/triple-frontend/pull/1767)
+
+### footer
+
+- CSFooter 컴포넌트 및 관련 코드 제거 [#1807](https://github.com/titicacadev/triple-frontend/pull/1807)
 
 ### react-contexts
 
+- user-agent-context의 isPublic과 app 속성에 deprecation notice를 추가합니다[#1863](https://github.com/titicacadev/triple-frontend/pull/1863)
+- useHistoryContext 제거 [#1834](https://github.com/titicacadev/triple-frontend/pull/1834)
 - useURIHash -> useUriHash [#1798](https://github.com/titicacadev/triple-frontend/pull/1798)
 - HistoryProvider의 prop 이름 변경: loginCTAModalHash -> loginCtaModalHash [#1798](https://github.com/titicacadev/triple-frontend/pull/1798)
 - HashStrategy의 멤버 네이밍 변경 [#1798](https://github.com/titicacadev/triple-frontend/pull/1798)
