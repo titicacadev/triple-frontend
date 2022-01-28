@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/ad-banners",
-  "version": "5.2.1",
+  "version": "6.0.0",
   "description": "Image banner list section for POI, hotel, article",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/ad-banners",
@@ -18,9 +18,9 @@
   "dependencies": {
     "@egjs/flicking": "^3.8.1",
     "@egjs/react-flicking": "^3.7.0",
-    "@titicaca/core-elements": "^5.2.1",
-    "@titicaca/intersection-observer": "^5.2.1",
-    "@titicaca/router": "^5.2.1",
+    "@titicaca/core-elements": "^6.0.0",
+    "@titicaca/intersection-observer": "^6.0.0",
+    "@titicaca/router": "^6.0.0",
     "@types/isomorphic-fetch": "^0.0.35",
     "isomorphic-fetch": "^2.2.1"
   },

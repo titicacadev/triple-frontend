@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/content-sharing",
-  "version": "5.2.1",
+  "version": "6.0.0",
   "description": "Content Sharing",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/content-sharing",
@@ -16,6 +16,6 @@
     "lib"
   ],
   "dependencies": {
-    "@titicaca/core-elements": "^5.2.1"
+    "@titicaca/core-elements": "^6.0.0"
   }
 }
