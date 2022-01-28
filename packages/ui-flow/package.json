@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/ui-flow",
-  "version": "5.2.1",
+  "version": "6.0.0",
   "description": "Functions, hooks, and/or components used to construct general UI flow",
   "keywords": [
     "session",
@@ -22,7 +22,7 @@
     "lib"
   ],
   "dependencies": {
-    "@titicaca/modals": "^5.2.1",
+    "@titicaca/modals": "^6.0.0",
     "qs": "^6.9.0"
   },
   "peerDependencies": {
