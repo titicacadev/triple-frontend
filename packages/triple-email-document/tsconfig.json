@@ -4,7 +4,14 @@
     "outDir": "./lib",
     "rootDir": "src",
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@titicaca/type-definitions": ["../type-definitions/src"]
+    }
   },
-  "include": ["./src"]
+  "include": ["./src"],
+  "references": [
+    {
+      "path": "../type-definitions"
+    }
+  ]
 }
