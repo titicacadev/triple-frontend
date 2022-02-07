@@ -1,5 +1,5 @@
 import React from 'react'
-import { Section, MarginPadding } from '@titicaca/core-elements'
+import { Section, Container, MarginPadding } from '@titicaca/core-elements'
 
 import Carousel from './carousel'
 import Placeholder from './placeholder'
@@ -32,22 +32,24 @@ export default function CarouselSection({
 } & Parameters<typeof Carousel>['0']) {
   return (
     <Section minWidth={320} maxWidth={768} padding={padding} margin={margin}>
-      {images.length > 0 ? (
-        <Carousel images={images} borderRadius={borderRadius} {...props} />
-      ) : (
-        <Placeholder onClick={onPlaceholderClick} noContent={loading} />
-      )}
-      {!permanentlyClosed && onBusinessHoursClick ? (
-        <BusinessHoursNote
-          bottomBorderRadius={borderRadius}
-          currentBusinessHours={currentBusinessHours}
-          todayBusinessHours={todayBusinessHours}
-          onClick={onBusinessHoursClick}
-        />
-      ) : null}
-      {permanentlyClosed ? (
-        <PermanentlyClosedNote bottomBorderRadius={borderRadius} />
-      ) : null}
+      <Container position="relative">
+        {images.length > 0 ? (
+          <Carousel images={images} borderRadius={borderRadius} {...props} />
+        ) : (
+          <Placeholder onClick={onPlaceholderClick} noContent={loading} />
+        )}
+        {!permanentlyClosed && onBusinessHoursClick ? (
+          <BusinessHoursNote
+            bottomBorderRadius={borderRadius}
+            currentBusinessHours={currentBusinessHours}
+            todayBusinessHours={todayBusinessHours}
+            onClick={onBusinessHoursClick}
+          />
+        ) : null}
+        {permanentlyClosed ? (
+          <PermanentlyClosedNote bottomBorderRadius={borderRadius} />
+        ) : null}
+      </Container>
     </Section>
   )
 }

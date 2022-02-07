@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Container, Text } from '@titicaca/core-elements'
+import { Text } from '@titicaca/core-elements'
 
 const NoteContainer = styled.div<{
   warning?: boolean
@@ -34,13 +34,11 @@ export function PermanentlyClosedNote({
   bottomBorderRadius?: number
 }) {
   return (
-    <Container position="relative">
-      <NoteContainer warning bottomBorderRadius={bottomBorderRadius}>
-        <Text bold size="small" color="white">
-          더이상 운영하지 않습니다.
-        </Text>
-      </NoteContainer>
-    </Container>
+    <NoteContainer warning bottomBorderRadius={bottomBorderRadius}>
+      <Text bold size="small" color="white">
+        더이상 운영하지 않습니다.
+      </Text>
+    </NoteContainer>
   )
 }
 
@@ -58,20 +56,18 @@ export function BusinessHoursNote({
   onClick: () => void
 }) {
   return (
-    <Container position="relative">
-      <NoteContainer
-        onClick={onClick}
-        warning={!currentBusinessHours}
-        bottomBorderRadius={bottomBorderRadius}
-      >
-        <Text bold size="small" color="white">
-          {currentBusinessHours
-            ? `영업중 ${todayBusinessHours}`
-            : todayBusinessHours
-            ? `영업준비중 ${todayBusinessHours}`
-            : '휴무일'}
-        </Text>
-      </NoteContainer>
-    </Container>
+    <NoteContainer
+      onClick={onClick}
+      warning={!currentBusinessHours}
+      bottomBorderRadius={bottomBorderRadius}
+    >
+      <Text bold size="small" color="white">
+        {currentBusinessHours
+          ? `영업중 ${todayBusinessHours}`
+          : todayBusinessHours
+          ? `영업준비중 ${todayBusinessHours}`
+          : '휴무일'}
+      </Text>
+    </NoteContainer>
   )
 }
