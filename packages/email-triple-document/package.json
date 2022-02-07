@@ -1,0 +1,18 @@
+{
+  "name": "email-triple-document",
+  "version": "6.0.0",
+  "description": "EmailDocument: Formatted Email System",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/email-triple-document",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  }
+}
