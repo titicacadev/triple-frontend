@@ -49,6 +49,14 @@ const StyledLocalLink = styled(LocalLink)`
 `ListDirection.VERTICAL`을 `ListDirection.Vertical`로 변경했습니다.
 `ListDirection.HORIZONTAL`을 `ListDirection.Horizontal`로 변경했습니다.
 
+### modals 패키지 인터페이스의 네이밍 변경
+
+다음과 같은 네이밍 변경이 있었습니다.
+
+- useLoginCTAModal -> useLoginCtaModal
+- withLoginCTAModal -> withLoginCtaModal
+- LoginCTAModalProvider -> LoginCtaModalProvider
+
 ## v4 to v5
 
 ### deprecated props 제거 및 사용 방법
