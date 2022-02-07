@@ -1,10 +1,7 @@
-import PublicHeader, { PublicHeaderProps } from '@titicaca/public-header'
+import { PublicHeader, PublicHeaderProps } from '@titicaca/public-header'
 import { Meta, Story } from '@storybook/react'
-import {
-  EnvProvider,
-  generateUserAgentValues,
-  UserAgentProvider,
-} from '@titicaca/react-contexts'
+import { EnvProvider } from '@titicaca/react-contexts'
+import { TripleClientMetadataProvider } from '@titicaca/react-triple-client-interfaces'
 
 export default {
   title: 'public-header / PublicHeader',
@@ -29,9 +26,11 @@ const Template: Story<PublicHeaderProps> = (args) => {
       facebookAppId=""
       webUrlBase=""
     >
-      <UserAgentProvider value={generateUserAgentValues(navigator.userAgent)}>
+      <TripleClientMetadataProvider
+        {...TripleClientMetadataProvider.getInitialProps({})}
+      >
         <PublicHeader {...args} />
-      </UserAgentProvider>
+      </TripleClientMetadataProvider>
     </EnvProvider>
   )
 }
