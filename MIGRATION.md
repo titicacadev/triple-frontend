@@ -11,6 +11,13 @@
 
 아래의 자세한 내용들은 map 패키지 리드미를 참고해주세요. (https://github.com/titicacadev/triple-frontend/blob/main/packages/map/README.md)
 
+마커
+
+- 말풍선 모양의 마커 => `PoiDotMarker` 사용
+- CircleMarker 중 active 및 default를 구분하는 마커 => `FlexibleMarker` 사용
+
+옵션
+
 - `MapView` 컴포넌트에 `coordinates` props이 추가되어 maptoptions을 적용하는 방법이 2가지로 변경되었습니다.
 
 1. Map에 대한 options을 직접주입
