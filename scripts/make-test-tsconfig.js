@@ -6,6 +6,7 @@
  */
 const fs = require('fs/promises')
 const path = require('path')
+const { exec } = require('child_process')
 
 const prettier = require('prettier')
 
@@ -22,8 +23,23 @@ async function main() {
   }))
 }
 
-function getPackages() {
-  return fs.readdir('./packages')
+async function getPackages() {
+  const packageNames = await new Promise((resolve, reject) => {
+    exec('lerna list', (err, stdout) => {
+      if (err) {
+        reject(err)
+      }
+
+      resolve(
+        stdout
+          .split('\n')
+          .filter((line) => !!line)
+          .map((line) => line.replace('@titicaca/', '')),
+      )
+    })
+  })
+
+  return packageNames
 }
 
 function packagesToPaths(packages) {
