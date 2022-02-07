@@ -49,7 +49,7 @@ export default function RecommendedArticles({
   const [recommendedArticles, setRecommendedArticles] = useState<
     ArticleListingData[]
   >([])
-  const [articleCardCTA, setArticleCardCTA] =
+  const [articleCardCta, setArticleCardCta] =
     useState<InventoryItemMeta | null>(null)
 
   const { show } = useTransitionModal()
@@ -61,25 +61,25 @@ export default function RecommendedArticles({
         await fetchRecommendedArticles({ regionId, zoneId }),
       )
     }
-    async function fetchAndSetArticleCardCTA() {
+    async function fetchAndSetArticleCardCta() {
       const items = await fetchInventoryItems({
         inventoryId: appInstallationCta?.inventoryId,
       })
       if (items && items.length > 0) {
-        setArticleCardCTA(items[0])
+        setArticleCardCta(items[0])
       }
     }
 
     fetchAndSetRecommendedArticles()
     if (appInstallationCta?.inventoryId) {
-      fetchAndSetArticleCardCTA()
+      fetchAndSetArticleCardCta()
     }
   }, [
     appInstallationCta,
     regionId,
     zoneId,
     setRecommendedArticles,
-    setArticleCardCTA,
+    setArticleCardCta,
   ])
 
   const handleIntersect = useCallback(
@@ -112,10 +112,10 @@ export default function RecommendedArticles({
           margin={{ top: 20 }}
           containerPadding={deskTopPadding || { left: 110, right: 110 }}
         >
-          {articleCardCTA && (
+          {articleCardCta && (
             <Carousel.Item size="medium">
               <ArticleCardCTA
-                cta={articleCardCTA}
+                cta={articleCardCta}
                 href={appInstallationCta?.href}
                 onClick={appInstallationCta?.onClick}
               />
@@ -145,10 +145,10 @@ export default function RecommendedArticles({
           margin={{ top: 20 }}
           containerPadding={mobilePadding || { left: 30, right: 30 }}
         >
-          {articleCardCTA && (
+          {articleCardCta && (
             <Carousel.Item size="medium">
               <ArticleCardCTA
-                cta={articleCardCTA}
+                cta={articleCardCta}
                 href={appInstallationCta?.href}
                 onClick={appInstallationCta?.onClick}
               />

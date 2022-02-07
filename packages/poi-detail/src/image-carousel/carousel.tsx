@@ -36,7 +36,7 @@ export default function Carousel({
   images,
   totalImagesCount,
   onImageClick,
-  onCTAClick,
+  onCtaClick,
   onImagesFetch,
   optimized,
   borderRadius = 6,
@@ -45,7 +45,7 @@ export default function Carousel({
   images: CarouselImageMeta[]
   totalImagesCount: number
   onImageClick: (image: ImageMeta) => void
-  onCTAClick: () => void
+  onCtaClick: () => void
   onImagesFetch: () => void
   optimized?: boolean
   borderRadius?: number
@@ -60,11 +60,11 @@ export default function Carousel({
 
   const handleImageClick = useCallback(() => {
     if (isPublic && currentPage === SHOW_CTA_FROM_INDEX) {
-      return onCTAClick()
+      return onCtaClick()
     }
 
     onImageClick(images[currentPage])
-  }, [onImageClick, onCTAClick, images, currentPage, isPublic])
+  }, [onImageClick, onCtaClick, images, currentPage, isPublic])
 
   const handlePageChange = useCallback(
     ({ index }) => {
