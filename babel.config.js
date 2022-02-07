@@ -9,7 +9,12 @@ module.exports = {
         },
       },
     ],
-    '@babel/preset-react',
+    [
+      '@babel/preset-react',
+      {
+        throwIfNamespace: false,
+      },
+    ],
     '@babel/preset-typescript',
   ],
   plugins: [
