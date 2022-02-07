@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react'
+import React, { HTMLAttributes } from 'react'
 import styled from 'styled-components'
 
 import Box from '../common/box'
@@ -34,13 +33,11 @@ const LinkContainer = styled.div`
   text-align: center;
 `
 
-interface Test<T> {
-  a: T
-}
+type HtmlTagAttributes<T> = HTMLAttributes<T>
 
 declare module 'react' {
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  interface AnchorHTMLAttributes<T> {
+  interface AnchorHTMLAttributes<T> extends HtmlTagAttributes<T> {
     'ses:tags'?: string
   }
 }
