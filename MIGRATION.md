@@ -44,6 +44,11 @@ const StyledLocalLink = styled(LocalLink)`
 `
 ```
 
+### ad-banners의 `ListDirection`의 멤버 네이밍 변경
+
+`ListDirection.VERTICAL`을 `ListDirection.Vertical`로 변경했습니다.
+`ListDirection.HORIZONTAL`을 `ListDirection.Horizontal`로 변경했습니다.
+
 ## v4 to v5
 
 ### deprecated props 제거 및 사용 방법
