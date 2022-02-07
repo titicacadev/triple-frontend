@@ -10,7 +10,7 @@ export default function ImageCarousel(
     | 'todayBusinessHours'
     | 'onBusinessHoursClick'
     | 'onImageClick'
-    | 'onCTAClick'
+    | 'onCtaClick'
     | 'onPlaceholderClick'
     | 'margin'
     | 'optimized'
