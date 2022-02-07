@@ -75,6 +75,15 @@ const StyledLocalLink = styled(LocalLink)`
 - withLoginCTAModal -> withLoginCtaModal
 - LoginCTAModalProvider -> LoginCtaModalProvider
 
+### `@titicaca/react-triple-client-interfaces` 사용
+
+트리플 네이티브 클라이언트를 이용하거나 클라이언트 종류에 따른 동작 분기가 필요한 경우
+`@titicaca/react-triple-client-interfaces` 패키지가 제공하는 기능을 사용해야 합니다.
+이 패키지 동작에 필요한 `TripleClientMetadataProvider`를 마운트해주세요.
+
+자세한 설명은 [패키지 README](https://github.com/titicacadev/triple-frontend/tree/main/packages/react-triple-client-interfaces)를
+참고 바랍니다.
+
 ## v4 to v5
 
 ### deprecated props 제거 및 사용 방법
