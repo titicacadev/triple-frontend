@@ -4,10 +4,16 @@ import styled from 'styled-components'
 
 import FluidTable from '../common/fluid-table'
 
+export type ExtendedImageMeta = ImageMeta & {
+  link?: ImageMeta['link'] & {
+    id?: string
+  }
+}
+
 export interface ImageDocument {
   type: 'images'
   value: {
-    images: ImageMeta[]
+    images: ExtendedImageMeta[]
     display: 'default' | 'gapless-block'
   }
 }
@@ -125,7 +131,7 @@ function Image({
     },
   },
 }: {
-  image: ImageMeta
+  image: ExtendedImageMeta
 }) {
   return (
     <FluidTable>
