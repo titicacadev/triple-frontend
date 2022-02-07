@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { white, brightGray } from '@titicaca/color-palette'
-import { useUserAgentContext } from '@titicaca/react-contexts'
+import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 
 import {
   HEADER_DESKTOP_HEIGHT,
@@ -97,7 +97,7 @@ export function PublicHeader({
   deeplinkPath,
   disableAutoHide,
 }: PublicHeaderProps) {
-  const { app } = useUserAgentContext()
+  const app = useTripleClientMetadata()
   const visible = useAutoHide(disableAutoHide)
 
   if (app) {
