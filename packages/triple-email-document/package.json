@@ -14,5 +14,8 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "dependencies": {
+    "@titicaca/type-definitions": "^6.0.0"
   }
 }
