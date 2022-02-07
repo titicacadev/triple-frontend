@@ -122,6 +122,43 @@ function Page() {
 }
 ```
 
+### Marker 종류
+
+- 말풍선 텍스트 및 poi dot marker를 렌더링하기 위한 `PoiDotMarker` 컴포넌트
+- active 및 default 시 필요한 `CircleMarker` 마커를 렌더링 하기위한 `FlexibleMarker` 컴포넌트
+
+```tsx
+import { MapView, PoiDotMarker, FlexibleMarker } from '@titicaca/map'
+
+function Page() {
+  const mapRef = useRef<google.maps.Map>(null)
+
+  return (
+    <MapView {...props}>
+      {coordinates.map((position, i) => (
+        <>
+          <PoiDotMarker
+            {...props}
+            bubbleContent="말풍선 텍스트"
+            activeWithDot={false}
+            onClick={() => {}}
+          >
+            {i + 1}
+          </PoiDotMarker>
+
+          <FlexibleMarker
+            {...CircleMarkerProps}
+            activeContent={}
+            defaultContent={}
+            onClick={() => {}}
+          />
+        </>
+      ))}
+    </MapView>
+  )
+}
+```
+
 ### CircleMarker
 
 CircleMarker 컴포넌트 입니다.
