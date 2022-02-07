@@ -10,6 +10,12 @@ export type ExtendedImageMeta = ImageMeta & {
   }
 }
 
+export type ExtendedImageMeta = ImageMeta & {
+  link?: ImageMeta['link'] & {
+    id?: string
+  }
+}
+
 export interface ImageDocument {
   type: 'images'
   value: {
