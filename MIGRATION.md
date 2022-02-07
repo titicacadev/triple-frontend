@@ -10,14 +10,15 @@
 `RestaurantCirlceMarker` => `RestaurantCircleMarker`
 
 아래의 자세한 내용들은 map 패키지 리드미를 참고해주세요. (https://github.com/titicacadev/triple-frontend/blob/main/packages/map/README.md)
-`MapView` 컴포넌트에 `coordinates` props이 추가되어 maptoptions을 적용하는 방법이 2가지로 변경되었습니다.
+
+- `MapView` 컴포넌트에 `coordinates` props이 추가되어 maptoptions을 적용하는 방법이 2가지로 변경되었습니다.
 
 1. Map에 대한 options을 직접주입
 2. `coordinates`를 통한 options 주입
 
-이미지 사용 시 inline svg 이미지를 사용합니다.
+- 이미지 사용 시 inline svg 이미지를 사용합니다.
 
-지도 상의 focus를 움직이기 위한 `FocusTracker`가 추가되었습니다.
+- 지도 상의 focus를 움직이기 위한 `FocusTracker`가 추가되었습니다.
 
 ### fetcher 패키지의 일부 인터페이스 이름 변경
 
