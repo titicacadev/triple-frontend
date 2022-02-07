@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import styled from 'styled-components'
 
@@ -33,6 +34,16 @@ const LinkContainer = styled.div`
   text-align: center;
 `
 
+interface Test<T> {
+  a: T
+}
+
+declare module 'react' {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  interface AnchorHTMLAttributes<T> {
+    'ses:tags'?: string
+  }
+}
 export default function LinkView({
   value: { label, href: givenHref, id: linkId },
 }: {
