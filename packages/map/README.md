@@ -148,8 +148,8 @@ function Page() {
 
           <FlexibleMarker
             {...CircleMarkerProps}
-            activeContent={}
-            defaultContent={}
+            activeContent={<AnyThingComponent />}
+            defaultContent={<AnyThingComponent />}
             onClick={() => {}}
           />
         </>
