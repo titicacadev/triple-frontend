@@ -18,6 +18,7 @@
       "@titicaca/date-picker": ["date-picker/src"],
       "@titicaca/directions-finder": ["directions-finder/src"],
       "@titicaca/drawer-button": ["drawer-button/src"],
+      "@titicaca/email-triple-document": ["email-triple-document/src"],
       "@titicaca/fetcher": ["fetcher/src"],
       "@titicaca/footer": ["footer/src"],
       "@titicaca/form": ["form/src"],
