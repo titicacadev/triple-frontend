@@ -7,17 +7,10 @@ import { CircleMarker, CircleMarkerProps } from './primary-marker'
  * 각 프로젝트에서 active 및 default 시 필요한 마커를 렌더링 하기위한 컴포넌트
  */
 export function FlexibleMarker({
-  width,
-  height,
-  position,
-  zIndex,
   active,
-  color,
-  alwaysClickable,
-  onLoad,
-  onClick,
   activeContent,
   defaultContent,
+  ...props
 }: CircleMarkerProps & {
   active: boolean
   activeContent: React.ComponentType
@@ -25,32 +18,13 @@ export function FlexibleMarker({
 }) {
   if (active === true) {
     return (
-      <CircleMarker
-        active
-        width={width}
-        height={height}
-        zIndex={zIndex}
-        position={position}
-        alwaysClickable={alwaysClickable}
-        onLoad={onLoad}
-        onClick={onClick}
-      >
+      <CircleMarker active {...props}>
         {activeContent}
       </CircleMarker>
     )
   }
   return (
-    <CircleMarker
-      active={false}
-      width={width}
-      height={height}
-      position={position}
-      zIndex={zIndex}
-      color={color}
-      alwaysClickable={alwaysClickable}
-      onLoad={onLoad}
-      onClick={onClick}
-    >
+    <CircleMarker active={false} {...props}>
       {defaultContent}
     </CircleMarker>
   )
