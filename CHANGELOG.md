@@ -22,7 +22,6 @@
 
 - flexibleMarker에 누락된 props을 추가합니다 [#1904](https://github.com/titicacadev/triple-frontend/pull/1904)
 - 패키지의 README를 수정합니다 [#1896](https://github.com/titicacadev/triple-frontend/pull/1896)
-- 불필요한 export를 제거합니다 [#1893](https://github.com/titicacadev/triple-frontend/pull/1893)
 
 ## 6.0.0
 
