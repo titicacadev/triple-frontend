@@ -136,7 +136,7 @@ export const CirclePin = styled.div<
           left: -${width / 2}px;
           top: -${height / 2}px;
           background: url(${src}) no-repeat 0 0;
-          background-size: ${width} ${height};
+          background-size: ${width}px ${height}px;
           width: ${width}px;
           height: ${height}px;
           z-index: ${zIndex};
