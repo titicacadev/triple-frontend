@@ -1,8 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-import FluidTable from '../common/fluid-table'
-import Box from '../common/box'
+import { FluidTable, Box } from '../common'
 
 export interface Divider1Document {
   type: 'hr1'

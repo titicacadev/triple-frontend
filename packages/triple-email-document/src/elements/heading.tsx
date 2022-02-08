@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Box from '../common/box'
-import FluidTable from '../common/fluid-table'
+import { FluidTable, Box } from '../common'
 
 export interface Heading1Document {
   type: 'heading1'
