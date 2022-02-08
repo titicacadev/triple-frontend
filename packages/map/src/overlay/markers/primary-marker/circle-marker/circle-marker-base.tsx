@@ -121,13 +121,16 @@ export const CirclePin = styled.div<
   ${({ active, alwaysClickable }) =>
     active ? (alwaysClickable ? '' : 'pointer-events: none;') : ''}
 
-  ${({ src, width, height, active, zIndex }) => {
+  ${({ src, width, height }) => css`
+    background: url(${src}) no-repeat 0 0;
+    background-size: ${width}px ${height}px;
+  `}
+
+  ${({ width, height, active, zIndex }) => {
     return active
       ? css`
           left: -21px;
           top: -50px;
-          background: url(${src}) no-repeat 0 0;
-          background-size: 42px 50px;
           width: 42px;
           height: 50px;
           z-index: ${MAX_ZINDEX_WEIGHT + zIndex};
@@ -135,8 +138,6 @@ export const CirclePin = styled.div<
       : css`
           left: -${width / 2}px;
           top: -${height / 2}px;
-          background: url(${src}) no-repeat 0 0;
-          background-size: ${width}px ${height}px;
           width: ${width}px;
           height: ${height}px;
           z-index: ${zIndex};
