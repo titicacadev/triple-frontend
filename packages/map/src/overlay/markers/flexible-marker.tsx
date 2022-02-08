@@ -16,16 +16,9 @@ export function FlexibleMarker({
   activeContent: React.ComponentType
   defaultContent: React.ComponentType
 }) {
-  if (active === true) {
-    return (
-      <CircleMarker active {...props}>
-        {activeContent}
-      </CircleMarker>
-    )
-  }
   return (
-    <CircleMarker active={false} {...props}>
-      {defaultContent}
+    <CircleMarker active={active} {...props}>
+      {active ? activeContent : defaultContent}
     </CircleMarker>
   )
 }
