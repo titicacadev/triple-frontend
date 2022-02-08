@@ -47,7 +47,7 @@ export function CircleMarker({
         src={src}
         onClick={handleClick}
       >
-        <Circle>{children}</Circle>
+        {!active ? <Circle>{children}</Circle> : null}
       </CirclePin>
     </OverlayView>
   )
