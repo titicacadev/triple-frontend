@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
 import styled from 'styled-components'
 
-import FluidTable from '../common/fluid-table'
+import { FluidTable, Box } from '../common'
 
 export type ExtendedImageMeta = ImageMeta & {
   link?: ImageMeta['link'] & {
@@ -17,20 +17,6 @@ export interface ImageDocument {
     display: 'default' | 'gapless-block'
   }
 }
-
-interface Positioning {
-  top?: number
-  bottom?: number
-  left?: number
-  right?: number
-}
-
-const Box = styled.td<{ padding?: Positioning }>`
-  padding: ${({ padding }) => {
-    const { top, bottom, left, right } = padding || {}
-    return [top, right, bottom, left].map(addUnit).join(' ')
-  }};
-`
 
 const Img = styled.img`
   width: 100%;
@@ -158,8 +144,4 @@ function Image({
       ) : null}
     </FluidTable>
   )
-}
-
-function addUnit(value: number | undefined) {
-  return value !== undefined && value !== 0 ? `${value}px` : 0
 }
