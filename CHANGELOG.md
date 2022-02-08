@@ -4,7 +4,7 @@
 
 ### common
 
-- - 스크립트 위치를 scripts/ 디렉토리로 통일합니다. make-test-tsconfig에서 패키지 목록을 만드는 로직을 개선합니다 [#1891](https://github.com/titicacadev/triple-frontend/pull/1891)
+- 스크립트 위치를 scripts/ 디렉토리로 통일합니다. make-test-tsconfig에서 패키지 목록을 만드는 로직을 개선합니다 [#1891](https://github.com/titicacadev/triple-frontend/pull/1891)
 - v6 마이그레이션 가이드에 map 패키지 내용을 수정합니다 [#1896](https://github.com/titicacadev/triple-frontend/pull/1896)
 - v6 마이그레이션 가이드에 react-triple-client-interfaces에 대응하는 내용을 추가합니다 [#1890](https://github.com/titicacadev/triple-frontend/pull/1890)
 - v6 마이그레이션 가이드에 누락된 map 패키지 내용을 작성합니다 [#1892](https://github.com/titicacadev/triple-frontend/pull/1892)
