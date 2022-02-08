@@ -13,8 +13,8 @@ export function FlexibleMarker({
   ...props
 }: CircleMarkerProps & {
   active: boolean
-  activeContent: React.ComponentType
-  defaultContent: React.ComponentType
+  activeContent: React.ReactNode
+  defaultContent: React.ReactNode
 }) {
   return (
     <CircleMarker active={active} {...props}>
