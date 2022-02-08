@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { white, brightGray } from '@titicaca/color-palette'
-import { useUserAgentContext } from '@titicaca/react-contexts'
+
+import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 
 import {
   HEADER_DESKTOP_HEIGHT,
@@ -41,10 +41,10 @@ const Wrapper = styled.div<{ visible: boolean }>`
 `
 
 const HeaderFrame = styled.div`
-  background-color: ${white};
+  background-color: var(--color-white);
   display: flex;
   align-items: center;
-  border-bottom: 1px solid ${brightGray};
+  border-bottom: 1px solid var(--color-brightGray);
   padding: 0 6px;
   height: ${HEADER_MOBILE_HEIGHT}px;
   box-sizing: border-box;
@@ -98,7 +98,7 @@ export function PublicHeader({
   deeplinkPath,
   disableAutoHide,
 }: PublicHeaderProps) {
-  const { app } = useUserAgentContext()
+  const app = useTripleClientMetadata()
   const visible = useAutoHide(disableAutoHide)
 
   if (app) {
