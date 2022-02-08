@@ -10,8 +10,6 @@ export function FlexibleMarker({
   active,
   activeContent,
   defaultContent,
-  width,
-  height,
   ...props
 }: CircleMarkerProps & {
   active: boolean
