@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 6.1.1
+
+### map
+
+- FlexibleMarker의 content type을 수정합니다. [#1906](https://github.com/titicacadev/triple-frontend/pull/1906)
+
 ## 6.1.0
 
 ### common
