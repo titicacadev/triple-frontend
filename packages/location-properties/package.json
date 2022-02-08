@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/location-properties",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "description": "Location properties: addresses, contact, URL, ...",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/location-properties",
@@ -16,10 +16,10 @@
     "lib"
   ],
   "dependencies": {
-    "@titicaca/action-sheet": "^6.0.0",
-    "@titicaca/core-elements": "^6.0.0",
-    "@titicaca/i18n": "^6.0.0",
-    "@titicaca/type-definitions": "^6.0.0"
+    "@titicaca/action-sheet": "^6.1.0",
+    "@titicaca/core-elements": "^6.1.0",
+    "@titicaca/i18n": "^6.1.0",
+    "@titicaca/type-definitions": "^6.1.0"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*"

@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/recommended-contents",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "description": "Recommended contents list",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/recommended-contents",
@@ -16,7 +16,7 @@
     "lib"
   ],
   "dependencies": {
-    "@titicaca/core-elements": "^6.0.0",
-    "@titicaca/intersection-observer": "^6.0.0"
+    "@titicaca/core-elements": "^6.1.0",
+    "@titicaca/intersection-observer": "^6.1.0"
   }
 }
