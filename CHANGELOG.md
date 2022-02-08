@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 6.1.0
+
+### common
+
+- - 스크립트 위치를 scripts/ 디렉토리로 통일합니다. make-test-tsconfig에서 패키지 목록을 만드는 로직을 개선합니다 [#1891](https://github.com/titicacadev/triple-frontend/pull/1891)
+- v6 마이그레이션 가이드에 map 패키지 내용을 수정합니다 [#1896](https://github.com/titicacadev/triple-frontend/pull/1896)
+- v6 마이그레이션 가이드에 react-triple-client-interfaces에 대응하는 내용을 추가합니다 [#1890](https://github.com/titicacadev/triple-frontend/pull/1890)
+- v6 마이그레이션 가이드에 누락된 map 패키지 내용을 작성합니다 [#1892](https://github.com/titicacadev/triple-frontend/pull/1892)
+- v6 마이그레이션 가이드에 누락된 내용을 채웁니다 [#1889](https://github.com/titicacadev/triple-frontend/pull/1889)
+
+### poi-detail
+
+- PoiDetail 의 NoteContainer 수정으로 인해 생겼던 버그를 수정합니다 [#1900](https://github.com/titicacadev/triple-frontend/pull/1900)
+
+### replies
+
+- 새로고침 이슈를 해결합니다 [#1872](https://github.com/titicacadev/triple-frontend/pull/1872)
+
+### map
+
+- flexibleMarker에 누락된 props을 추가합니다 [#1904](https://github.com/titicacadev/triple-frontend/pull/1904)
+- 패키지의 README를 수정합니다 [#1896](https://github.com/titicacadev/triple-frontend/pull/1896)
+- 불필요한 export를 제거합니다 [#1893](https://github.com/titicacadev/triple-frontend/pull/1893)
+
 ## 6.0.0
 
 ### common
