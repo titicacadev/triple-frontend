@@ -69,6 +69,10 @@ const StyledLocalLink = styled(LocalLink)`
 `
 ```
 
+`LocalLink`와 `ExternalLink`가 a 태그나 button 태그를 렌더링하면서 둘 사이의 스타일을 일정하게 유지할 필요가 있었습니다.
+그래서 a 태그에 `display: inline-block` 속성을 추가했습니다.
+스타일이 어긋나지 않는지 확인해주세요.
+
 ### ad-banners의 `ListDirection`의 멤버 네이밍 변경
 
 `ListDirection.VERTICAL`을 `ListDirection.Vertical`로 변경했습니다.
