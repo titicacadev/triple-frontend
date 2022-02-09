@@ -3,6 +3,24 @@ import { render } from '@testing-library/react'
 
 import { ELEMENTS } from '.'
 
+const IMAGE = {
+  id: 'IMAGE_ID',
+  sizes: {
+    full: {
+      url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
+    },
+    large: {
+      url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
+    },
+    small_square: {
+      url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
+    },
+    smallSquare: {
+      url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
+    },
+  },
+}
+
 describe('Heading Elements', () => {
   const mockedHeadingValue = {
     text: 'This is heading',
@@ -301,99 +319,76 @@ describe('Text Element', () => {
   })
 })
 
-// const Container = styled.div`
-//   max-width: 600px;
-// `
+describe('Image Element', () => {
+  test('이미지 크기만 있는 value를 이용하여 간격없는 이미지 1개를 렌더링합니다.', () => {
+    const Images = ELEMENTS.images
 
-// export type ExtendedImageMeta = ImageMeta & {
-//   link?: ImageMeta['link'] & {
-//     id?: string
-//   }
-// }
+    const { getByRole, getAllByRole } = render(
+      <Images
+        value={{
+          display: 'gapless-block',
+          images: [IMAGE],
+        }}
+      />,
+    )
 
-// export interface ImageDocument {
-//   type: 'images'
-//   value: {
-//     images: ExtendedImageMeta[]
-//     display: 'default' | 'gapless-block'
-//   }
-// }
+    const wrapperBox = getAllByRole('cell')[0]
+    const firstImgBox = getAllByRole('cell')[1]
 
-// describe('Image Element', () => {
-//   test.only('간격 없는 이미지 1개를 렌더링합니다.', () => {
-//     const IMAGE = {
-//       id: 'IMAGE_ID',
-//       sizes: {
-//         full: {
-//           url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
-//         },
-//         large: {
-//           url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
-//         },
-//         small_square: {
-//           url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
-//         },
-//         smallSquare: {
-//           url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
-//         },
-//       },
-//     }
+    const wrapperBoxStyle = getComputedStyle(wrapperBox)
+    const firstImgBoxStyle = getComputedStyle(firstImgBox)
 
-//     const IMAGE_WITH_TITLE = {
-//       ...IMAGE,
-//       title: '이미지 제목입니다.',
-//     }
+    const imgElementSrc = getByRole('img').getAttribute('src')
 
-//     const IMAGE_WITH_LINK = {
-//       ...IMAGE,
-//       link: {
-//         href: 'https://triple.guide',
-//         label: '여기를 눌러 확인하세요.',
-//       },
-//     }
+    const createdResult = {
+      wrapperBoxPadding: wrapperBoxStyle.padding,
+      firstImgBoxPadding: firstImgBoxStyle.padding,
+      imageSrc: imgElementSrc,
+    }
 
-//     const IMAGE_WITH_TITLE_AND_LINK = {
-//       ...IMAGE_WITH_TITLE,
-//       ...IMAGE_WITH_LINK,
-//     }
+    const expectedResult = {
+      wrapperBoxPadding: '0px 0px 0px 0px',
+      firstImgBoxPadding: '0px 0px 0px 0px',
+      imageSrc:
+        'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
+    }
 
-//     const mockedImages: Pick<ImageDocument, 'value'>[] = [
-//       {
-//         value: {
-//           display: 'gapless-block',
-//           images: [IMAGE],
-//         },
-//       },
-//       {
-//         value: {
-//           display: 'gapless-block',
-//           images: [IMAGE_WITH_TITLE],
-//         },
-//       },
-//       {
-//         value: {
-//           display: 'gapless-block',
-//           images: [IMAGE_WITH_LINK],
-//         },
-//       },
-//       {
-//         value: {
-//           display: 'gapless-block',
-//           images: [IMAGE_WITH_TITLE_AND_LINK],
-//         },
-//       },
-//     ]
+    expect(createdResult).toStrictEqual(expectedResult)
+  })
 
-//     const Images = ELEMENTS.images
+  test('이미지 크기만 있는 value를 이용하여 간격있는 이미지 1개를 렌더링합니다.', () => {
+    const Images = ELEMENTS.images
 
-//     const a = render(
-//       <Container>
-//         {mockedImages.map((props, index) => (
-//           <Images key={index} {...props} />
-//         ))}
-//       </Container>,
-//     )
+    const { getByRole, getAllByRole } = render(
+      <Images
+        value={{
+          display: 'default',
+          images: [IMAGE],
+        }}
+      />,
+    )
 
-//     console.log('a', a)
-//   })
-// })
+    const wrapperBox = getAllByRole('cell')[0]
+    const firstImgBox = getAllByRole('cell')[1]
+
+    const wrapperBoxStyle = getComputedStyle(wrapperBox)
+    const firstImgBoxStyle = getComputedStyle(firstImgBox)
+
+    const imgElementSrc = getByRole('img').getAttribute('src')
+
+    const createdResult = {
+      wrapperBoxPadding: wrapperBoxStyle.padding,
+      firstImgBoxPadding: firstImgBoxStyle.padding,
+      imageSrc: imgElementSrc,
+    }
+
+    const expectedResult = {
+      wrapperBoxPadding: '40px 0px 30px 0px',
+      firstImgBoxPadding: '0px 30px 0px 30px',
+      imageSrc:
+        'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
+    }
+
+    expect(createdResult).toStrictEqual(expectedResult)
+  })
+})
