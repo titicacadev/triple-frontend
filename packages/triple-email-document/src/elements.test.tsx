@@ -1,5 +1,4 @@
 import React from 'react'
-import '@testing-library/jest-dom'
 import { render } from '@testing-library/react'
 
 import { ELEMENTS } from '.'
@@ -301,3 +300,100 @@ describe('Text Element', () => {
     expect(textOuterElement).toBe(mockedTextValue.rawHTML)
   })
 })
+
+// const Container = styled.div`
+//   max-width: 600px;
+// `
+
+// export type ExtendedImageMeta = ImageMeta & {
+//   link?: ImageMeta['link'] & {
+//     id?: string
+//   }
+// }
+
+// export interface ImageDocument {
+//   type: 'images'
+//   value: {
+//     images: ExtendedImageMeta[]
+//     display: 'default' | 'gapless-block'
+//   }
+// }
+
+// describe('Image Element', () => {
+//   test.only('간격 없는 이미지 1개를 렌더링합니다.', () => {
+//     const IMAGE = {
+//       id: 'IMAGE_ID',
+//       sizes: {
+//         full: {
+//           url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
+//         },
+//         large: {
+//           url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
+//         },
+//         small_square: {
+//           url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
+//         },
+//         smallSquare: {
+//           url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
+//         },
+//       },
+//     }
+
+//     const IMAGE_WITH_TITLE = {
+//       ...IMAGE,
+//       title: '이미지 제목입니다.',
+//     }
+
+//     const IMAGE_WITH_LINK = {
+//       ...IMAGE,
+//       link: {
+//         href: 'https://triple.guide',
+//         label: '여기를 눌러 확인하세요.',
+//       },
+//     }
+
+//     const IMAGE_WITH_TITLE_AND_LINK = {
+//       ...IMAGE_WITH_TITLE,
+//       ...IMAGE_WITH_LINK,
+//     }
+
+//     const mockedImages: Pick<ImageDocument, 'value'>[] = [
+//       {
+//         value: {
+//           display: 'gapless-block',
+//           images: [IMAGE],
+//         },
+//       },
+//       {
+//         value: {
+//           display: 'gapless-block',
+//           images: [IMAGE_WITH_TITLE],
+//         },
+//       },
+//       {
+//         value: {
+//           display: 'gapless-block',
+//           images: [IMAGE_WITH_LINK],
+//         },
+//       },
+//       {
+//         value: {
+//           display: 'gapless-block',
+//           images: [IMAGE_WITH_TITLE_AND_LINK],
+//         },
+//       },
+//     ]
+
+//     const Images = ELEMENTS.images
+
+//     const a = render(
+//       <Container>
+//         {mockedImages.map((props, index) => (
+//           <Images key={index} {...props} />
+//         ))}
+//       </Container>,
+//     )
+
+//     console.log('a', a)
+//   })
+// })
