@@ -15,7 +15,7 @@ import {
   MarkerBaseProps,
 } from './primary-marker/circle-marker/circle-marker-base'
 
-export interface DotWithPopOverMarkerProps
+export interface PoiDotMarkerProps
   extends Pick<MarkerBaseProps, 'zIndex'>,
     Omit<OverlayViewProps, 'mapPaneName'> {
   type: CircleType
@@ -31,13 +31,6 @@ export interface DotWithPopOverMarkerProps
  */
 
 export function PoiDotMarker({
-  children,
-  ...props
-}: PropsWithChildren<DotWithPopOverMarkerProps>) {
-  return <DotWithPopOverMarker {...props}>{children}</DotWithPopOverMarker>
-}
-
-function DotWithPopOverMarker({
   type,
   active,
   activeWithDot,
@@ -48,7 +41,7 @@ function DotWithPopOverMarker({
   onLoad,
   children,
   ...overlayViewProps
-}: PropsWithChildren<DotWithPopOverMarkerProps>) {
+}: PropsWithChildren<PoiDotMarkerProps>) {
   const overlayViewRef = useRef() as React.RefObject<OverlayView>
   const adjustZindex = useCallback(() => {
     const containerEl = overlayViewRef?.current?.containerRef?.current
