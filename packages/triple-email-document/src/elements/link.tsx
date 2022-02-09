@@ -50,7 +50,6 @@ export default function LinkView({
       <tbody>
         <tr>
           <Box padding={{ top: 55, left: 30, right: 30 }}>
-            {/* triple document의 경우 자체 margin 5 0 0 0, container margin 50 30 0 30 */}
             <LinkContainer>
               <LinkStyled href={givenHref} ses:tags={`link:${linkId}`}>
                 {label}
