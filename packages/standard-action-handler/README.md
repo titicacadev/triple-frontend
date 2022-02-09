@@ -11,6 +11,7 @@
 
 ## How to use
 
+initialize 메소드로 return된 execute 함수를 사용합니다.
 ### example
 
 ```
@@ -20,7 +21,9 @@ handleStandardActions(href, {})
 
 ```
 
-initialize 메소드로 return된 execute 함수를 사용합니다.
+initialize의 argument로 사용된 navigate는 
+[react-contexts의 history-context]('https://github.com/titicacadev/triple-frontend/blob/e0f022f6f25265899ad1557fb7b4c0b6454c2e68/packages/react-contexts/src/history-context/history-context.tsx#L48')
+가 제공하는 인터페이스입니다.
 
 ## Parameter
 
