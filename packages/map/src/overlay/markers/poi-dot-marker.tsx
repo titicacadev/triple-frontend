@@ -21,6 +21,7 @@ export interface PoiDotMarkerProps
   type: CircleType
   active: boolean
   bubbleContent: React.ReactNode
+  defaultContent?: React.ReactNode
   activeWithDot?: boolean
   onClick?: (e: MouseEvent) => void
   onBubbleClick?: (e: MouseEvent) => void
@@ -34,6 +35,7 @@ export function PoiDotMarker({
   type,
   active,
   activeWithDot,
+  defaultContent,
   bubbleContent,
   zIndex,
   onClick,
@@ -91,22 +93,21 @@ export function PoiDotMarker({
       ref={overlayViewRef}
       onLoad={handleLoad}
     >
-      {active ? (
-        <>
+      <>
+        {active ? (
           <BubbleMarker onClick={handleBubbleClick}>
             {bubbleContent}
           </BubbleMarker>
-          {activeWithDot && (
-            <DotMarker active={active} color={color} onClick={handleClick} />
-          )}
-        </>
-      ) : (
-        <>{children}</>
-      )}
+        ) : null}
 
-      {!active && !activeWithDot && (
-        <DotMarker active={active} color={color} onClick={handleClick} />
-      )}
+        {activeWithDot ? (
+          <DotMarker active={active} color={color} onClick={handleClick}>
+            {children}
+          </DotMarker>
+        ) : null}
+
+        {defaultContent}
+      </>
     </OverlayView>
   )
 }
