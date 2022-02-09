@@ -9,7 +9,7 @@
 - `/web-action/share` : 현재 페이지의 URL을 복사합니다.
 - `/web-action/copy-to-clipboard` : 텍스트를 클립보드에 복사합니다.
 
-## Hot to use
+## How to use
 
 ### example
 
