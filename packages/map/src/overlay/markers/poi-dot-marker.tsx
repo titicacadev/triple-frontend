@@ -20,7 +20,7 @@ export interface DotWithPopOverMarkerProps
     Omit<OverlayViewProps, 'mapPaneName'> {
   type: CircleType
   active: boolean
-  bubbleContent: React.ComponentType
+  bubbleContent: React.ReactNode
   activeWithDot?: boolean
   onClick?: (e: MouseEvent) => void
   onBubbleClick?: (e: MouseEvent) => void
@@ -30,8 +30,11 @@ export interface DotWithPopOverMarkerProps
  * 말풍선 텍스트 및 poi dot marker를 렌더링하기 위한 컴포넌트
  */
 
-export function PoiDotMarker({ ...props }: DotWithPopOverMarkerProps) {
-  return <DotWithPopOverMarker {...props} />
+export function PoiDotMarker({
+  children,
+  ...props
+}: PropsWithChildren<DotWithPopOverMarkerProps>) {
+  return <DotWithPopOverMarker {...props}>{children}</DotWithPopOverMarker>
 }
 
 function DotWithPopOverMarker({
