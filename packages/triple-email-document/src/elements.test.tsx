@@ -21,17 +21,17 @@ describe('Heading Elements', () => {
       <Heading1WithHeadline value={mockedHeading1Value} />,
     )
 
-    const HeadlineElement = getByText(/This is headline/i)
-    const HeadingElement = getByText(/This is heading/i)
+    const headlineElement = getByText(/This is headline/i)
+    const headingElement = getByText(/This is heading/i)
 
-    const headlineFontSize = getComputedStyle(HeadlineElement).fontSize
-    const headingFontSize = getComputedStyle(HeadingElement).fontSize
+    const headlineStyle = getComputedStyle(headlineElement)
+    const headingStyle = getComputedStyle(headingElement)
 
     const createdResult = {
-      headlineFontSize,
-      headingFontSize,
-      headline: HeadlineElement.textContent,
-      text: HeadingElement.textContent,
+      headlineFontSize: headlineStyle.fontSize,
+      headingFontSize: headingStyle.fontSize,
+      headline: headlineElement.textContent,
+      text: headingElement.textContent,
     }
 
     const expectedResult = {
@@ -49,13 +49,12 @@ describe('Heading Elements', () => {
 
     const { getByText } = render(<Heading1Normal value={mockedHeadingValue} />)
 
-    const HeadingElement = getByText(/This is heading/i)
-
-    const headingFontSize = getComputedStyle(HeadingElement).fontSize
+    const headingElement = getByText(/This is heading/i)
+    const headingStyle = getComputedStyle(headingElement)
 
     const createdResult = {
-      fontSize: headingFontSize,
-      text: HeadingElement.textContent,
+      fontSize: headingStyle.fontSize,
+      text: headingElement.textContent,
     }
 
     const expectedResult = {
@@ -71,12 +70,12 @@ describe('Heading Elements', () => {
 
     const { getByText } = render(<Heading2 value={mockedHeadingValue} />)
 
-    const HeadingElement = getByText(/This is heading/i)
-    const headingStyle = getComputedStyle(HeadingElement)
+    const headingElement = getByText(/This is heading/i)
+    const headingStyle = getComputedStyle(headingElement)
 
     const createdResult = {
       fontSize: headingStyle.fontSize,
-      text: HeadingElement.textContent,
+      text: headingElement.textContent,
     }
 
     const expectedResult = {
@@ -92,12 +91,12 @@ describe('Heading Elements', () => {
 
     const { getByText } = render(<Heading3 value={mockedHeadingValue} />)
 
-    const HeadingElement = getByText(/This is heading/i)
-    const headingStyle = getComputedStyle(HeadingElement)
+    const headingElement = getByText(/This is heading/i)
+    const headingStyle = getComputedStyle(headingElement)
 
     const createdResult = {
       fontSize: headingStyle.fontSize,
-      text: HeadingElement.textContent,
+      text: headingElement.textContent,
     }
 
     const expectedResult = {
@@ -113,13 +112,12 @@ describe('Heading Elements', () => {
 
     const { getByText } = render(<Heading4 value={mockedHeadingValue} />)
 
-    const HeadingElement = getByText(/This is heading/i)
-
-    const headingFontStyle = getComputedStyle(HeadingElement)
+    const headingElement = getByText(/This is heading/i)
+    const headingFontStyle = getComputedStyle(headingElement)
 
     const createdResult = {
       fontSize: headingFontStyle.fontSize,
-      text: HeadingElement.textContent,
+      text: headingElement.textContent,
       color: headingFontStyle.color,
     }
 
@@ -139,8 +137,8 @@ describe('Divider Elements', () => {
 
     const { getByRole } = render(<Divider1 value={undefined} />)
 
-    const DividerElement = getByRole('separator')
-    const dividerStyle = getComputedStyle(DividerElement)
+    const dividerElement = getByRole('separator')
+    const dividerStyle = getComputedStyle(dividerElement)
 
     const createdResult = {
       height: dividerStyle.height,
@@ -160,8 +158,8 @@ describe('Divider Elements', () => {
 
     const { getByRole } = render(<Divider2 value={undefined} />)
 
-    const DividerElement = getByRole('separator')
-    const dividerStyle = getComputedStyle(DividerElement)
+    const dividerElement = getByRole('separator')
+    const dividerStyle = getComputedStyle(dividerElement)
 
     const createdResult = {
       height: dividerStyle.height,
@@ -181,8 +179,8 @@ describe('Divider Elements', () => {
 
     const { getByRole } = render(<Divider3 value={undefined} />)
 
-    const DividerElement = getByRole('separator')
-    const dividerStyle = getComputedStyle(DividerElement)
+    const dividerElement = getByRole('separator')
+    const dividerStyle = getComputedStyle(dividerElement)
 
     const createdResult = {
       height: dividerStyle.height,
