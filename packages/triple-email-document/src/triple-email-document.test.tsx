@@ -5,7 +5,7 @@ import { render } from '@testing-library/react'
 import TripleEmailDocument, { EmailTripleDocumentElement } from '.'
 
 describe('Triple Email Document', () => {
-  test('Email Document 컴포넌트가 렌더링되지 않습니다.', () => {
+  test('Email Document Element가 렌더링되지 않습니다.', () => {
     const mockedChildren: EmailTripleDocumentElement[] = []
 
     const { queryByRole } = render(
@@ -17,13 +17,13 @@ describe('Triple Email Document', () => {
     expect(TrElement).toEqual(null)
   })
 
-  test('Heading1 컴포넌트가 렌더링됩니다.', () => {
+  test('Heading1 Element가 렌더링됩니다.', () => {
     const mockedChildren: EmailTripleDocumentElement[] = [
       {
         type: 'heading1',
         value: {
-          headline: '보조 제목입니다.',
-          text: '제목입니다.',
+          headline: 'This is headline',
+          text: 'This is heading',
         },
       },
     ]
@@ -32,7 +32,7 @@ describe('Triple Email Document', () => {
       <TripleEmailDocument>{mockedChildren}</TripleEmailDocument>,
     )
 
-    const createdTextInHeadingComponent = getByText(/보조 제목입니다./)
+    const createdTextInHeadingComponent = getByText(/This is headline/i)
 
     expect(createdTextInHeadingComponent).toBeInTheDocument()
   })
