@@ -48,11 +48,13 @@ export default function TextView({
 }) {
   return (
     <FluidTable>
-      <tr>
-        <Box padding={{ top: 10, left: 30, right: 30 }}>
-          <HtmlContainer dangerouslySetInnerHTML={{ __html: rawHTML }} />
-        </Box>
-      </tr>
+      <tbody>
+        <tr>
+          <Box padding={{ top: 10, left: 30, right: 30 }}>
+            <HtmlContainer dangerouslySetInnerHTML={{ __html: rawHTML }} />
+          </Box>
+        </tr>
+      </tbody>
     </FluidTable>
   )
 }

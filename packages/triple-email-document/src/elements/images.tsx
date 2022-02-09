@@ -79,23 +79,27 @@ export default function Images({
 
   return (
     <FluidTable>
-      <tr>
-        <Box padding={paddings[display]}>
-          <FluidTable>
-            <ImagesRow>
-              <Box padding={firstImagePaddings[display]}>
-                <Image image={first} />
-              </Box>
+      <tbody>
+        <tr>
+          <Box padding={paddings[display]}>
+            <FluidTable>
+              <tbody>
+                <ImagesRow>
+                  <Box padding={firstImagePaddings[display]}>
+                    <Image image={first} />
+                  </Box>
 
-              {second !== undefined ? (
-                <Box padding={secondImagePaddings[display]}>
-                  <Image image={second} />
-                </Box>
-              ) : null}
-            </ImagesRow>
-          </FluidTable>
-        </Box>
-      </tr>
+                  {second !== undefined ? (
+                    <Box padding={secondImagePaddings[display]}>
+                      <Image image={second} />
+                    </Box>
+                  ) : null}
+                </ImagesRow>
+              </tbody>
+            </FluidTable>
+          </Box>
+        </tr>
+      </tbody>
     </FluidTable>
   )
 }
@@ -121,27 +125,29 @@ function Image({
 }) {
   return (
     <FluidTable>
-      <tr>
-        <Box>
-          <Img src={url} />
-        </Box>
-      </tr>
-
-      {title ? (
+      <tbody>
         <tr>
-          <Box padding={{ top: 8, bottom: 8 }}>
-            <ImageCaption>{title}</ImageCaption>
+          <Box>
+            <Img src={url} />
           </Box>
         </tr>
-      ) : null}
 
-      {link ? (
-        <tr>
-          <Box padding={{ top: title ? 0 : 8, bottom: 8 }}>
-            <ImageLink href={link.href}>{link.label}</ImageLink>
-          </Box>
-        </tr>
-      ) : null}
+        {title ? (
+          <tr>
+            <Box padding={{ top: 8, bottom: 8 }}>
+              <ImageCaption>{title}</ImageCaption>
+            </Box>
+          </tr>
+        ) : null}
+
+        {link ? (
+          <tr>
+            <Box padding={{ top: title ? 0 : 8, bottom: 8 }}>
+              <ImageLink href={link.href}>{link.label}</ImageLink>
+            </Box>
+          </tr>
+        ) : null}
+      </tbody>
     </FluidTable>
   )
 }

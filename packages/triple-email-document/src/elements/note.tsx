@@ -44,14 +44,16 @@ export default function NoteView({
 }) {
   return (
     <FluidTable>
-      <tr>
-        <Box padding={{ top: 30, bottom: 30, left: 30, right: 30 }}>
-          <SegmentStlyed>
-            <TitleStyled>{title}</TitleStyled>
-            <BodyStyled>{body}</BodyStyled>
-          </SegmentStlyed>
-        </Box>
-      </tr>
+      <tbody>
+        <tr>
+          <Box padding={{ top: 30, bottom: 30, left: 30, right: 30 }}>
+            <SegmentStlyed>
+              <TitleStyled>{title}</TitleStyled>
+              <BodyStyled>{body}</BodyStyled>
+            </SegmentStlyed>
+          </Box>
+        </tr>
+      </tbody>
     </FluidTable>
   )
 }
