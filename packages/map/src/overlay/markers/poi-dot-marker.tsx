@@ -102,13 +102,13 @@ export function PoiDotMarker({
           </BubbleMarker>
         ) : null}
 
+        {!active && inActiveContent ? inActiveContent : null}
+
         {activeWithDot || defaultWithDot ? (
           <DotMarker active={active} color={color} onClick={handleClick}>
             {children}
           </DotMarker>
         ) : null}
-
-        {!active && inActiveContent ? inActiveContent : null}
       </>
     </OverlayView>
   )
