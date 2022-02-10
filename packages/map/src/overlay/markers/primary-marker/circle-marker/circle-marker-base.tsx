@@ -4,29 +4,6 @@ import { Required } from 'utility-types'
 // tna 추가예정
 export type CircleType = 'attraction' | 'restaurant' | 'hotel'
 
-/** 마커 종류의 따른 css 값 */
-export const CIRCLE_MARKER: {
-  [key in CircleType]: {
-    color: string
-    imageUrl: string
-  }
-} = {
-  attraction: {
-    color: 'var(--color-purple)',
-    imageUrl:
-      'https://assets.triple.guide/images/img-map-pin-attraction-on@3x.png',
-  },
-  restaurant: {
-    color: 'var(--color-vermilion)',
-    imageUrl:
-      'https://assets.triple.guide/images/img-map-pin-restaurant-on@3x.png',
-  },
-  hotel: {
-    color: 'var(--color-purple)',
-    imageUrl: 'https://assets.triple.guide/images/img-map-pin-hotel-on@3x.png',
-  },
-}
-
 export interface MarkerBaseProps {
   /** 마커 사이즈, 단위 px */
   width?: number

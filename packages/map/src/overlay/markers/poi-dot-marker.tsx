@@ -8,9 +8,8 @@ import React, {
 } from 'react'
 import { OverlayView, OverlayViewProps } from '@react-google-maps/api'
 
-import { BubbleMarker, DotMarker } from './primary-marker'
+import { BubbleMarker, CIRCLE_MARKER, DotMarker } from './primary-marker'
 import {
-  CIRCLE_MARKER,
   CircleType,
   MarkerBaseProps,
 } from './primary-marker/circle-marker/circle-marker-base'
@@ -20,6 +19,7 @@ export interface DotWithPopOverMarkerProps
     Omit<OverlayViewProps, 'mapPaneName'> {
   type: CircleType
   active: boolean
+  dotSize?: { width: number; height: number }
   bubbleContent: React.ReactNode
   activeContent?: React.ReactNode
   inActiveContent?: React.ReactNode
@@ -41,6 +41,7 @@ export function PoiDotMarker({
 function DotWithPopOverMarker({
   type,
   active,
+  dotSize,
   withDot,
   activeContent,
   inActiveContent,
@@ -109,7 +110,12 @@ function DotWithPopOverMarker({
         ) : null}
 
         {withDot ? (
-          <DotMarker active={active} color={color} onClick={handleClick}>
+          <DotMarker
+            active={active}
+            size={dotSize}
+            color={color}
+            onClick={handleClick}
+          >
             {children}
           </DotMarker>
         ) : null}
