@@ -1,4 +1,5 @@
 import React from 'react'
+import 'jest-styled-components'
 import { render } from '@testing-library/react'
 
 import { ELEMENTS } from '../index'
@@ -22,24 +23,11 @@ test('헤드라인이 있는 제목 1 Element를 렌더링합니다.', () => {
   const headlineElement = getByText(/This is headline/i)
   const headingElement = getByText(/This is heading/i)
 
-  const headlineStyle = getComputedStyle(headlineElement)
-  const headingStyle = getComputedStyle(headingElement)
+  expect(headlineElement.textContent).toBe('This is headline')
+  expect(headlineElement).toHaveStyleRule('font-size', '13px')
 
-  const createdResult = {
-    headlineFontSize: headlineStyle.fontSize,
-    headingFontSize: headingStyle.fontSize,
-    headline: headlineElement.textContent,
-    text: headingElement.textContent,
-  }
-
-  const expectedResult = {
-    headlineFontSize: '13px',
-    headingFontSize: '21px',
-    headline: 'This is headline',
-    text: 'This is heading',
-  }
-
-  expect(createdResult).toStrictEqual(expectedResult)
+  expect(headingElement.textContent).toBe('This is heading')
+  expect(headingElement).toHaveStyleRule('font-size', '21px')
 })
 
 test('헤드라인이 없는 제목 1 Element를 렌더링합니다.', () => {
@@ -48,19 +36,9 @@ test('헤드라인이 없는 제목 1 Element를 렌더링합니다.', () => {
   const { getByText } = render(<Heading1Normal value={mockedHeadingValue} />)
 
   const headingElement = getByText(/This is heading/i)
-  const headingStyle = getComputedStyle(headingElement)
 
-  const createdResult = {
-    fontSize: headingStyle.fontSize,
-    text: headingElement.textContent,
-  }
-
-  const expectedResult = {
-    fontSize: '21px',
-    text: 'This is heading',
-  }
-
-  expect(createdResult).toStrictEqual(expectedResult)
+  expect(headingElement.textContent).toBe('This is heading')
+  expect(headingElement).toHaveStyleRule('font-size', '21px')
 })
 
 test('글자크기 19px, 색상 gray 인 제목 2 Element를 렌더링합니다.', () => {
@@ -69,19 +47,9 @@ test('글자크기 19px, 색상 gray 인 제목 2 Element를 렌더링합니다.
   const { getByText } = render(<Heading2 value={mockedHeadingValue} />)
 
   const headingElement = getByText(/This is heading/i)
-  const headingStyle = getComputedStyle(headingElement)
 
-  const createdResult = {
-    fontSize: headingStyle.fontSize,
-    text: headingElement.textContent,
-  }
-
-  const expectedResult = {
-    fontSize: '19px',
-    text: 'This is heading',
-  }
-
-  expect(createdResult).toStrictEqual(expectedResult)
+  expect(headingElement.textContent).toBe('This is heading')
+  expect(headingElement).toHaveStyleRule('font-size', '19px')
 })
 
 test('글자크기 16px, 색상은 gray 인 제목 3 Element를 렌더링합니다.', () => {
@@ -90,19 +58,9 @@ test('글자크기 16px, 색상은 gray 인 제목 3 Element를 렌더링합니�
   const { getByText } = render(<Heading3 value={mockedHeadingValue} />)
 
   const headingElement = getByText(/This is heading/i)
-  const headingStyle = getComputedStyle(headingElement)
 
-  const createdResult = {
-    fontSize: headingStyle.fontSize,
-    text: headingElement.textContent,
-  }
-
-  const expectedResult = {
-    fontSize: '16px',
-    text: 'This is heading',
-  }
-
-  expect(createdResult).toStrictEqual(expectedResult)
+  expect(headingElement.textContent).toBe('This is heading')
+  expect(headingElement).toHaveStyleRule('font-size', '16px')
 })
 
 test('글자크기 16px, 색상은 #2987f0 인 제목 4 Element를 렌더링합니다.', () => {
@@ -111,19 +69,8 @@ test('글자크기 16px, 색상은 #2987f0 인 제목 4 Element를 렌더링합�
   const { getByText } = render(<Heading4 value={mockedHeadingValue} />)
 
   const headingElement = getByText(/This is heading/i)
-  const headingFontStyle = getComputedStyle(headingElement)
 
-  const createdResult = {
-    fontSize: headingFontStyle.fontSize,
-    text: headingElement.textContent,
-    color: headingFontStyle.color,
-  }
-
-  const expectedResult = {
-    fontSize: '16px',
-    text: 'This is heading',
-    color: 'rgb(41, 135, 240)', // #2987f0
-  }
-
-  expect(createdResult).toStrictEqual(expectedResult)
+  expect(headingElement.textContent).toBe('This is heading')
+  expect(headingElement).toHaveStyleRule('font-size', '16px')
+  expect(headingElement).toHaveStyleRule('color', '#2987f0')
 })
