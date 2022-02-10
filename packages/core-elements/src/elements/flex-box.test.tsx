@@ -20,6 +20,7 @@ it('should accept style shortcut props', () => {
         alignContent="center"
         alignSelf="center"
         order={1}
+        gap="10px"
       />,
     )
     .toJSON()
@@ -35,6 +36,7 @@ it('should accept style shortcut props', () => {
   expect(tree).toHaveStyleRule('align-content', 'center')
   expect(tree).toHaveStyleRule('align-self', 'center')
   expect(tree).toHaveStyleRule('order', '1')
+  expect(tree).toHaveStyleRule('gap', '10px')
 })
 
 it('should override style with css prop', () => {
