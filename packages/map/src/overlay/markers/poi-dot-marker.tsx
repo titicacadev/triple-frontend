@@ -37,7 +37,7 @@ export function PoiDotMarker({
   return <DotWithPopOverMarker {...props}>{children}</DotWithPopOverMarker>
 }
 
-export function DotWithPopOverMarker({
+function DotWithPopOverMarker({
   type,
   active,
   withDot,
