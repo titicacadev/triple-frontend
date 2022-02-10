@@ -16,6 +16,8 @@ export interface FlexBoxProps extends ContainerProps {
   alignSelf?: Property.AlignSelf
   order?: Property.Order
   gap?: Property.Gap
+  columnGap?: Property.ColumnGap
+  rowGap?: Property.RowGap
 }
 
 const FlexBox = styled(Container)<FlexBoxProps>(
@@ -32,6 +34,8 @@ const FlexBox = styled(Container)<FlexBoxProps>(
     alignSelf: props.alignSelf,
     order: props.order,
     gap: props.gap,
+    columnGap: props.columnGap,
+    rowGap: props.rowGap,
   }),
   (props) => props.css,
 )
