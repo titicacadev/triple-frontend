@@ -12,8 +12,7 @@ test('rawHTML을 렌더링합니다.', () => {
 
   const { getByText } = render(<Text value={mockedTextValue} />)
 
-  const textElement = getByText(/Inline link/i)
-  const textOuterElement = textElement.outerHTML
+  const anchorElement = getByText(/Inline link/i).outerHTML
 
-  expect(textOuterElement).toBe(mockedTextValue.rawHTML)
+  expect(anchorElement).toBe(mockedTextValue.rawHTML)
 })
