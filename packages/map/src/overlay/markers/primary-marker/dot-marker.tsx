@@ -12,12 +12,12 @@ const BUBBLE_HEIGHT = 32
 
 const DotMarkerContainer = styled.div<Pick<DotMarkerProps, 'size' | 'active'>>`
   position: relative;
-  ${({ size: { width = 13, height = 13 } = {}, active }) =>
+  ${({ size: { width = 16, height = 16 } = {}, active }) =>
     css`
       left: -8px;
       top: -${8 + (active ? BUBBLE_HEIGHT : 0)}px;
-      width: ${width + 3 * 2}px;
-      height: ${height + 3 * 2}px;
+      width: ${width * 2}px;
+      height: ${height * 2}px;
       pointer-events: ${active ? 'none' : 'auto'};
     `}
 `
@@ -32,12 +32,15 @@ const DotCircle = styled.div<Pick<DotMarkerProps, 'size' | 'color'>>`
   left: 3px;
   top: 3px;
 
-  ${({ size: { width = 13, height = 13 } = {} }) =>
+  ${({ size: { width = 13, height = 13 } = {}, color }) =>
     css`
       width: ${width}px;
       height: ${height}px;
+      background-color: ${color};
     `}
-  background-color: ${({ color }) => color};
+  > svg {
+    padding-top: 4px;
+  }
 `
 
 /**
