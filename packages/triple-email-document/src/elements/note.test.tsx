@@ -1,4 +1,5 @@
 import React from 'react'
+import '@testing-library/jest-dom'
 import { render } from '@testing-library/react'
 
 import { ELEMENTS } from '../index'
@@ -13,13 +14,9 @@ test('노트 Element를 렌더링합니다.', () => {
 
   const { getByText } = render(<Note value={mockeNoteValue} />)
 
-  const noteTitle = getByText(mockeNoteValue.title).textContent
-  const noteBody = getByText(mockeNoteValue.body).textContent
+  const noteTitleElement = getByText(mockeNoteValue.title)
+  const noteBodyElement = getByText(mockeNoteValue.body)
 
-  const createdNoteContent = {
-    title: noteTitle,
-    body: noteBody,
-  }
-
-  expect(createdNoteContent).toStrictEqual(mockeNoteValue)
+  expect(noteTitleElement).toBeInTheDocument()
+  expect(noteBodyElement).toBeInTheDocument()
 })
