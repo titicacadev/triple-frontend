@@ -12,7 +12,7 @@
     - options : ContextOptions
     - handler : action을 수행할 핸들러
 - ### `/web-action/cta`
-  - Handler에 전달된 CTA 링크로 navigate합니다.
+  - CTA 링크로 navigate합니다.
   - parameter
     - { path }
     - options : ContextOptions
@@ -36,9 +36,47 @@
     - { path, query }
       - query : text=[복사할 텍스트]
 
+## Parameter
+
+### initialize(options)
+
+```
+{
+  options?: ContextOptions
+}
+
+ContextOptions: {
+    cta?: string
+    /** execute 함수에서 사용할 navigate */
+    navigate: (
+      rawHref: string,
+      parmas?: NavigateOptions
+     ) => string | undefined | void
+  }
+```
+
+initialize의 parameter로 사용되는 `navigate`는 실행되는 환경과 세션 등을 고려하여 전달받은 URL(rawHref)로 이동하는 역할을 합니다.
+
+### execute(url, params)
+
+```
+{
+  /** 이동할 URL */
+  url: string
+  /** navigate options */
+  params?: NavigateOptions
+}
+
+NavigateOptions : {
+    target?: string
+    title?: string
+    [key:string]: unknown
+  }
+```
+
 ## How to use
 
-initialize 메소드로 return된 execute 함수를 사용합니다.
+initialize 메소드에서 return된 execute 함수를 사용합니다.
 
 ### example
 
@@ -52,46 +90,4 @@ const handleStandardActions = initialize({ navigate })
 
 handleStandardActions(href, {})
 
-```
-
-initialize의 argument로 사용된 navigate는
-[react-contexts의 history-context]('https://github.com/titicacadev/triple-frontend/blob/e0f022f6f25265899ad1557fb7b4c0b6454c2e68/packages/react-contexts/src/history-context/history-context.tsx#L48')
-가 제공하는 인터페이스입니다.
-
-## Parameter
-
-### initialize(options)
-
-```
-{
-  options?: ContextOptions
-}
-```
-
-### execute(url, params)
-
-```
-{
-  /** 이동할 URL */
-  url: string
-  /** navigate options */
-  params?: NavigateOptions
-}
-```
-
-```
-ContextOptions: {
-    cta?: string
-    /** execute 함수에서 사용할 navigate */
-    navigate: {
-      rawHref: string
-      parmas?: NavigateOptions
-    }
-  }
-
-NavigateOptions : {
-    target?: string
-    title?: string
-    [key:string]: unknown
-  }
 ```
