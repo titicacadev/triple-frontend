@@ -140,3 +140,16 @@ export const AlignItems = () => {
     </Section>
   )
 }
+
+export const Gap = () => {
+  return (
+    <Section>
+      <Summary>Gap은 행과 열 사이의 간격(거터)을 설정합니다.</Summary>
+      <FlexBox flex gap="10px">
+        <Item>Item1</Item>
+        <Item>Item2</Item>
+        <Item>Item3</Item>
+      </FlexBox>
+    </Section>
+  )
+}
