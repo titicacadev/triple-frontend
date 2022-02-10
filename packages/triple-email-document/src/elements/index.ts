@@ -29,7 +29,7 @@ import LinkView, { LinkDocument } from './link'
 import NoteView, { NoteDocument } from './note'
 import ImagesView, { ImageDocument } from './images'
 
-export type TripleDocumentElement =
+export type TripleEmailElementData =
   | Heading1Document
   | Heading2Document
   | Heading3Document
@@ -46,15 +46,15 @@ export type TripleDocumentElement =
   | ImageDocument
 // 여기에 데이터 구조 타입을 추가하세요
 
-export type TripleDocumentElementType = TripleDocumentElement['type']
+export type TripleEmailElementType = TripleEmailElementData['type']
 
-export type GetValue<Key extends TripleDocumentElementType> = Extract<
-  TripleDocumentElement,
+export type GetValue<Key extends TripleEmailElementType> = Extract<
+  TripleEmailElementData,
   { type: Key }
 >['value']
 
 const ELEMENTS: {
-  [key in TripleDocumentElementType]: ComponentType<{
+  [key in TripleEmailElementType]: ComponentType<{
     value: GetValue<key>
   }>
 } = {
