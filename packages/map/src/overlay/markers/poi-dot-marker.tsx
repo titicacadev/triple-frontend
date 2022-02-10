@@ -115,6 +115,7 @@ function DotWithPopOverMarker({
         ) : null}
 
         {active && activeContent ? activeContent : null}
+
         {!active && inActiveContent ? inActiveContent : null}
       </>
     </OverlayView>
