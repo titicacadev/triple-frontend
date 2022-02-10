@@ -20,8 +20,10 @@ export interface DotWithPopOverMarkerProps
     Omit<OverlayViewProps, 'mapPaneName'> {
   type: CircleType
   active: boolean
-  bubbleContent: React.ComponentType
-  activeWithDot?: boolean
+  bubbleContent: React.ReactNode
+  activeContent?: React.ReactNode
+  inActiveContent?: React.ReactNode
+  withDot?: boolean
   onClick?: (e: MouseEvent) => void
   onBubbleClick?: (e: MouseEvent) => void
 }
@@ -29,15 +31,19 @@ export interface DotWithPopOverMarkerProps
 /**
  * 말풍선 텍스트 및 poi dot marker를 렌더링하기 위한 컴포넌트
  */
-
-export function PoiDotMarker({ ...props }: DotWithPopOverMarkerProps) {
-  return <DotWithPopOverMarker {...props} />
+export function PoiDotMarker({
+  children,
+  ...props
+}: PropsWithChildren<DotWithPopOverMarkerProps>) {
+  return <DotWithPopOverMarker {...props}>{children}</DotWithPopOverMarker>
 }
 
 function DotWithPopOverMarker({
   type,
   active,
-  activeWithDot,
+  withDot,
+  activeContent,
+  inActiveContent,
   bubbleContent,
   zIndex,
   onClick,
@@ -95,22 +101,23 @@ function DotWithPopOverMarker({
       ref={overlayViewRef}
       onLoad={handleLoad}
     >
-      {active ? (
-        <>
+      <>
+        {active ? (
           <BubbleMarker onClick={handleBubbleClick}>
             {bubbleContent}
           </BubbleMarker>
-          {activeWithDot && (
-            <DotMarker active={active} color={color} onClick={handleClick} />
-          )}
-        </>
-      ) : (
-        <>{children}</>
-      )}
+        ) : null}
 
-      {!active && !activeWithDot && (
-        <DotMarker active={active} color={color} onClick={handleClick} />
-      )}
+        {withDot ? (
+          <DotMarker active={active} color={color} onClick={handleClick}>
+            {children}
+          </DotMarker>
+        ) : null}
+
+        {active && activeContent ? activeContent : null}
+
+        {!active && inActiveContent ? inActiveContent : null}
+      </>
     </OverlayView>
   )
 }
