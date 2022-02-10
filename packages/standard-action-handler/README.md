@@ -9,13 +9,13 @@
   - parameter
     - { path, query }
       - query : actions=[action]&actions=[action] ...
-    - options
-    - handler
+    - options : ContextOptions
+    - handler : action을 수행할 핸들러
 - ### `/web-action/cta`
   - Handler에 전달된 CTA 링크로 navigate합니다.
   - parameter
     - { path }
-    - options
+    - options : ContextOptions
 - ### `/web-action/fetch-api`
   - Parameter로 정의한 API 호출을 수행합니다.
   - parameter
@@ -35,15 +35,6 @@
   - parameter
     - { path, query }
       - query : text=[복사할 텍스트]
-
-```
-{
-  path?: string
-  query?: string
-}
-options: ContextOptions
-handelr: {execute: (url: string) => Promise<void>}
-```
 
 ## How to use
 
@@ -73,14 +64,7 @@ initialize의 argument로 사용된 navigate는
 
 ```
 {
-  options?:{
-    cta?: string
-    /** execute 함수에서 사용할 navigate */
-    navigate: {
-      rawHref: string
-      parmas?: NavigateOptions
-    }
-  }
+  options?: ContextOptions
 }
 ```
 
@@ -96,6 +80,15 @@ initialize의 argument로 사용된 navigate는
 ```
 
 ```
+ContextOptions: {
+    cta?: string
+    /** execute 함수에서 사용할 navigate */
+    navigate: {
+      rawHref: string
+      parmas?: NavigateOptions
+    }
+  }
+
 NavigateOptions : {
     target?: string
     title?: string
