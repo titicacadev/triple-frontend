@@ -21,6 +21,7 @@ export interface DotWithPopOverMarkerProps
   type: CircleType
   active: boolean
   bubbleContent: React.ReactNode
+  activeContent?: React.ReactNode
   inActiveContent?: React.ReactNode
   withDot?: boolean
   onClick?: (e: MouseEvent) => void
@@ -41,6 +42,7 @@ function DotWithPopOverMarker({
   type,
   active,
   withDot,
+  activeContent,
   inActiveContent,
   bubbleContent,
   zIndex,
@@ -106,13 +108,14 @@ function DotWithPopOverMarker({
           </BubbleMarker>
         ) : null}
 
-        {!active && inActiveContent ? inActiveContent : null}
-
         {withDot ? (
           <DotMarker active={active} color={color} onClick={handleClick}>
             {children}
           </DotMarker>
         ) : null}
+
+        {active && activeContent ? activeContent : null}
+        {!active && inActiveContent ? inActiveContent : null}
       </>
     </OverlayView>
   )
