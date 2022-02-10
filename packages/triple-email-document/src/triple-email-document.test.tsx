@@ -34,7 +34,9 @@ test('type이 정의되지 않은 Element는 렌더링되지 않습니다.', () 
   ]
 
   const { queryByRole } = render(
-    <TripleEmailDocument elements={mockedChildren} />,
+    <TripleEmailDocument
+      elements={mockedChildren as TripleEmailDocumentElement[]}
+    />,
   )
 
   const TrElement = queryByRole('tr')
