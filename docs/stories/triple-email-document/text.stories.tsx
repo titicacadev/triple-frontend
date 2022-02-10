@@ -1,6 +1,5 @@
 import { ComponentMeta } from '@storybook/react'
-
-import { ELEMENTS } from '../../../packages/triple-email-document'
+import { ELEMENTS } from '@titicaca/triple-email-document'
 
 const { text: Text } = ELEMENTS
 
