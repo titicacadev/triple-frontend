@@ -1,4 +1,5 @@
 import React from 'react'
+import '@testing-library/jest-dom'
 import 'jest-styled-components'
 import { render } from '@testing-library/react'
 
@@ -48,10 +49,12 @@ test('사선(/)으로 표시하는 구분선 4 Element를 렌더링합니다.', 
 
   const { getByRole } = render(<Divider4 value={undefined} />)
 
-  const dividerImgSrc = getByRole('img').getAttribute('src')
-  const expectedImgSrc = 'https://assets.triple.guide/images/img-line1@2x.png'
+  const dividerImgElement = getByRole('img')
 
-  expect(dividerImgSrc).toBe(expectedImgSrc)
+  expect(dividerImgElement).toHaveAttribute(
+    'src',
+    'https://assets.triple.guide/images/img-line1@2x.png',
+  )
 })
 
 test('점 3개(. . .)로 표시하는 구분선 5 Element를 렌더링합니다.', () => {
@@ -59,10 +62,12 @@ test('점 3개(. . .)로 표시하는 구분선 5 Element를 렌더링합니다.
 
   const { getByRole } = render(<Divider5 value={undefined} />)
 
-  const dividerImgSrc = getByRole('img').getAttribute('src')
-  const expectedImgSrc = 'https://assets.triple.guide/images/img-line2@2x.png'
+  const dividerImgElement = getByRole('img')
 
-  expect(dividerImgSrc).toBe(expectedImgSrc)
+  expect(dividerImgElement).toHaveAttribute(
+    'src',
+    'https://assets.triple.guide/images/img-line2@2x.png',
+  )
 })
 
 test('점과 가로선(ㅡ . ㅡ)으로 표시하는 구분선 6 Element를 렌더링합니다.', () => {
@@ -70,8 +75,10 @@ test('점과 가로선(ㅡ . ㅡ)으로 표시하는 구분선 6 Element를 렌�
 
   const { getByRole } = render(<Divider6 value={undefined} />)
 
-  const dividerImgSrc = getByRole('img').getAttribute('src')
-  const expectedImgSrc = 'https://assets.triple.guide/images/img-line3@2x.png'
+  const dividerImgElement = getByRole('img')
 
-  expect(dividerImgSrc).toBe(expectedImgSrc)
+  expect(dividerImgElement).toHaveAttribute(
+    'src',
+    'https://assets.triple.guide/images/img-line3@2x.png',
+  )
 })
