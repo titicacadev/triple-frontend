@@ -1,12 +1,10 @@
 import React, { MouseEvent, PropsWithChildren, useCallback } from 'react'
 import { OverlayViewProps, OverlayView } from '@react-google-maps/api'
 
-import {
-  Circle,
-  CirclePin,
-  CircleType,
-  MarkerBaseProps,
-} from './circle-marker-base'
+import { Circle, CirclePin, MarkerBaseProps } from './circle-marker-base'
+
+// tna 추가예정
+export type CircleType = 'attraction' | 'restaurant' | 'hotel'
 
 export interface CircleMarkerProps
   extends MarkerBaseProps,
