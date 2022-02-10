@@ -1,12 +1,12 @@
 import React, { ComponentType } from 'react'
 
-import ELEMENTS, { TripleDocumentElement, GetValue } from './elements'
+import ELEMENTS, { TripleEmailElementData, GetValue } from './elements'
 import { FluidTable } from './common'
 
 export function TripleEmailDocument({
   children,
 }: {
-  children: TripleDocumentElement[]
+  children: TripleEmailElementData[]
 }) {
   return (
     <FluidTable>
