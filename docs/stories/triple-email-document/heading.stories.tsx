@@ -1,7 +1,6 @@
 import React from 'react'
 import { ComponentStory, Meta } from '@storybook/react'
-
-import { ELEMENTS } from '../../../packages/triple-email-document'
+import { ELEMENTS } from '@titicaca/triple-email-document'
 
 const {
   heading1: Heading1,
