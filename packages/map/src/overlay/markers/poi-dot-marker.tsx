@@ -8,11 +8,13 @@ import React, {
 } from 'react'
 import { OverlayView, OverlayViewProps } from '@react-google-maps/api'
 
-import { BubbleMarker, CIRCLE_MARKER, DotMarker } from './primary-marker'
 import {
+  BubbleMarker,
+  CIRCLE_MARKER,
   CircleType,
-  MarkerBaseProps,
-} from './primary-marker/circle-marker/circle-marker-base'
+  DotMarker,
+} from './primary-marker'
+import { MarkerBaseProps } from './primary-marker/circle-marker/circle-marker-base'
 
 export interface DotWithPopOverMarkerProps
   extends Pick<MarkerBaseProps, 'zIndex'>,
