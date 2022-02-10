@@ -6,22 +6,35 @@
 
 - ### `/web-action/serial`
   - URL로 표현되는 액션을 순차로 수행합니다.
-  - parameter : { path, query }, options, handler
+  - parameter
+    - { path, query }
+      - query : actions=[action]&actions=[action] ...
+    - options
+    - handler
 - ### `/web-action/cta`
   - Handler에 전달된 CTA 링크로 navigate합니다.
-  - parameter : { path }, options
+  - parameter
+    - { path }
+    - options
 - ### `/web-action/fetch-api`
   - Parameter로 정의한 API 호출을 수행합니다.
-  - parameter : { path, query }
+  - parameter
+    - { path, query }
+      - query : path=[apiPath]&method=[method]&body=[body]
 - ### `/web-action/show-toast`
   - Toast 메시지를 출력합니다.
-  - parameter : { path, query }
+  - parameter
+    - { path, query }
+      - query : text=[토스트로 출력할 텍스트]
 - ### `/web-action/share`
   - 현재 페이지의 URL을 복사합니다.
-  - parameter : { path }
+  - parameter
+    - { path }
 - ### `/web-action/copy-to-clipboard`
   - 텍스트를 클립보드에 복사합니다.
-  - parameter : { path, query }
+  - parameter
+    - { path, query }
+      - query : text=[복사할 텍스트]
 
 ```
 {
