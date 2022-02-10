@@ -4,14 +4,14 @@ import ELEMENTS, { TripleEmailElementData, GetValue } from './elements'
 import { FluidTable } from './common'
 
 export function TripleEmailDocument({
-  children,
+  elements,
 }: {
-  children: TripleEmailElementData[]
+  elements: TripleEmailElementData[]
 }) {
   return (
     <FluidTable>
       <tbody>
-        {children.map(({ type, value }, index) => {
+        {elements.map(({ type, value }, index) => {
           const Element = ELEMENTS[type] as ComponentType<{
             value: GetValue<typeof type>
           }>
