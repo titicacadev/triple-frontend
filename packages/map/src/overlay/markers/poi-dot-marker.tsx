@@ -22,8 +22,7 @@ export interface DotWithPopOverMarkerProps
   active: boolean
   bubbleContent: React.ReactNode
   inActiveContent?: React.ReactNode
-  activeWithDot?: boolean
-  defaultWithDot?: boolean
+  withDot?: boolean
   onClick?: (e: MouseEvent) => void
   onBubbleClick?: (e: MouseEvent) => void
 }
@@ -41,8 +40,7 @@ export function PoiDotMarker({
 export function DotWithPopOverMarker({
   type,
   active,
-  activeWithDot,
-  defaultWithDot,
+  withDot,
   inActiveContent,
   bubbleContent,
   zIndex,
@@ -110,7 +108,7 @@ export function DotWithPopOverMarker({
 
         {!active && inActiveContent ? inActiveContent : null}
 
-        {activeWithDot || defaultWithDot ? (
+        {withDot ? (
           <DotMarker active={active} color={color} onClick={handleClick}>
             {children}
           </DotMarker>
