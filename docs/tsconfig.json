@@ -60,6 +60,9 @@
       ],
       "@titicaca/style-box": ["../packages/style-box/src"],
       "@titicaca/triple-document": ["../packages/triple-document/src"],
+      "@titicaca/triple-email-document": [
+        "../packages/triple-email-document/src"
+      ],
       "@titicaca/type-definitions": ["../packages/type-definitions/src"],
       "@titicaca/user-verification": ["../packages/user-verification/src"]
     }
@@ -203,6 +206,9 @@
     },
     {
       "path": "../packages/triple-document"
+    },
+    {
+      "path": "../packages/triple-email-document"
     },
     {
       "path": "../packages/type-definitions"
