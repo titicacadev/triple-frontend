@@ -38,18 +38,9 @@ const ImageCaption = styled.div`
 `
 
 const ImageLink = styled.a`
-  display: block;
-  font-size: 14px;
-  line-height: 17px;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  color: var(--color-gray);
-  border-style: solid;
-  border-color: var(--color-gray200);
-  border-radius: 4px;
-  border-width: 1px;
-  padding: 7px 12px;
+  img {
+    border: 0 none;
+  }
 `
 
 export default function Images({
@@ -128,7 +119,13 @@ function Image({
       <tbody>
         <tr>
           <Box>
-            <Img src={url} />
+            {link ? (
+              <ImageLink href={link.href} ses:tags={`links:${link.id}`}>
+                <Img src={url} />
+              </ImageLink>
+            ) : (
+              <Img src={url} />
+            )}
           </Box>
         </tr>
 
@@ -136,14 +133,6 @@ function Image({
           <tr>
             <Box padding={{ top: 8, bottom: 8 }}>
               <ImageCaption>{title}</ImageCaption>
-            </Box>
-          </tr>
-        ) : null}
-
-        {link ? (
-          <tr>
-            <Box padding={{ top: title ? 0 : 8, bottom: 8 }}>
-              <ImageLink href={link.href}>{link.label}</ImageLink>
             </Box>
           </tr>
         ) : null}
