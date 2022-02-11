@@ -36,6 +36,10 @@
     - { path, query }
       - query : text=[복사할 텍스트]
 
+### 새로운 Action 추가하기
+
+standard-action-handler 내에 action을 정의하고 index.ts파일의 handler에 해당 action을 추가합니다. URL을 판단하여 액션을 실행하기 때문에 모든 action에서 path는 parameter에 필수적으로 포함되어야 합니다.
+
 ## Parameter
 
 ### initialize(options)
