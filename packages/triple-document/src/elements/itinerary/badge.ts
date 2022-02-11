@@ -52,8 +52,8 @@ export const CircleBadge = styled(BadgeBase)<{
 }>`
   font-size: 11px;
   color: white;
-  width: 20px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   padding-top: 4px;
   border-radius: 100%;
   background-color: ${({ color = purple }) => color};
