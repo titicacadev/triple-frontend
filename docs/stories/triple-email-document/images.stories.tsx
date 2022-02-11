@@ -14,14 +14,38 @@ const Container = styled.div`
   max-width: 600px;
 `
 
+const ImageContainer = styled.div`
+  margin-bottom: 30px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`
+
+const Title = styled.div`
+  margin-bottom: 10px;
+`
+
+const TITIES: { [key: string]: string } = {
+  0: '사이즈만 있는 이미지 데이터 구조',
+  1: '사이즈, 제목이 있는 데이터 구조',
+  2: '사이즈, 링크가 있는 데이터 구조',
+  3: '사이즈, 링크, 제목이 있는 데이터 구조',
+}
+
 const ImageTemplate: {
   (args: { propList: React.ComponentProps<typeof Images>[] }): JSX.Element
   storyName?: string
-  args?: { propList: React.ComponentProps<typeof Images>[] }
+  args?: {
+    propList: React.ComponentProps<typeof Images>[]
+  }
 } = (args) => (
   <Container>
     {args.propList.map((props, index) => (
-      <Images key={index} {...props} />
+      <ImageContainer key={index}>
+        <Title>{`${index} ${TITIES[index]}`}</Title>
+        <Images {...props} />
+      </ImageContainer>
     ))}
   </Container>
 )
