@@ -51,7 +51,6 @@ export type ResourceListElementProps<R extends ResourceMeta> = {
 const ResourceListItem = styled(List.Item)`
   position: relative;
   padding: 20px 0;
-  box-sizing: border-box;
   cursor: pointer;
 `
 

@@ -30,7 +30,6 @@ const SelectFrame = styled.div<{
   border-radius: 2px;
   position: relative;
   height: 48px;
-  box-sizing: border-box;
 
   ${({ focused }) =>
     focused &&

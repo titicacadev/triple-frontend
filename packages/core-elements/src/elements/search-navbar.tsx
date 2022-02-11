@@ -13,7 +13,6 @@ import { LayeringMixinProps, layeringMixin } from '../mixins'
 import Navbar from './navbar'
 
 const InputText = styled.input`
-  box-sizing: border-box;
   border-style: none;
   font-size: 18px;
   text-overflow: ellipsis;
