@@ -26,6 +26,10 @@ const Title = styled.div`
   margin-bottom: 10px;
 `
 
+const Border = styled.div`
+  border: 2px solid black;
+`
+
 const TITIES: { [key: string]: string } = {
   0: '사이즈만 있는 이미지 데이터 구조',
   1: '사이즈, 제목이 있는 데이터 구조',
@@ -44,7 +48,9 @@ const ImageTemplate: {
     {args.propList.map((props, index) => (
       <ImageContainer key={index}>
         <Title>{TITIES[index]}</Title>
-        <Images {...props} />
+        <Border>
+          <Images {...props} />
+        </Border>
       </ImageContainer>
     ))}
   </Container>
