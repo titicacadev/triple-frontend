@@ -46,7 +46,6 @@ const HeaderFrame = styled.div`
   border-bottom: 1px solid ${brightGray};
   padding: 0 6px;
   height: ${HEADER_MOBILE_HEIGHT}px;
-  box-sizing: border-box;
 
   @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
     height: ${HEADER_DESKTOP_HEIGHT}px;
