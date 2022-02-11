@@ -54,6 +54,7 @@ const BaseSelect = styled.select<{
   selected?: boolean
   error?: string | boolean
 }>`
+  appearance: none;
   width: 100%;
   height: 100%;
   text-indent: 16px;
