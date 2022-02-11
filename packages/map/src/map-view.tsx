@@ -114,7 +114,7 @@ export function MapView({
   )
 
   useEffect(() => {
-    if (!bounds) {
+    if (!bounds || coordinates.length === 0) {
       return
     }
     map?.fitBounds(bounds, padding)
