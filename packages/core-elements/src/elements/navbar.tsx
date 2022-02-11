@@ -58,7 +58,6 @@ const NavbarFrame = styled.div<NavbarProps & LayeringMixinProps>`
       : css`
           box-shadow: 0 1px 0 0 ${brightGray};
         `};
-  box-sizing: border-box;
   padding: 9px 12px;
   margin: 0 auto;
   max-width: ${({ maxWidth = '100%' }) => unit(maxWidth)};
@@ -168,7 +167,6 @@ const SecondaryNavbar = styled.div<NavbarProps & LayeringMixinProps>`
 
   left: 0;
   right: 0;
-  box-sizing: border-box;
   ${({ padding }) => !padding && 'padding: 0 0 5px 0;'}
   ${paddingMixin}
   overflow: hidden;
