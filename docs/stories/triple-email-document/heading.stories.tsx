@@ -10,7 +10,7 @@ const {
 } = ELEMENTS
 
 export default {
-  title: 'Document / triple-email-document / heading',
+  title: 'Document / triple-email-document / elements / Heading',
 } as Meta
 
 const Heading1Template: ComponentStory<typeof Heading1> = (args) => (

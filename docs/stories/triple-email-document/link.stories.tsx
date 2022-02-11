@@ -4,7 +4,7 @@ import { ELEMENTS } from '@titicaca/triple-email-document'
 const { link: Link } = ELEMENTS
 
 export default {
-  title: 'Document / triple-email-document',
+  title: 'Document / triple-email-document / elements',
   component: Link,
   argTypes: {
     value: {
