@@ -24,7 +24,7 @@ export interface DotWithPopOverMarkerProps
   dotSize?: { width: number; height: number }
   bubbleContent: React.ReactNode
   activeContent?: React.ReactNode
-  inActiveContent?: React.ReactNode
+  inactiveContent?: React.ReactNode
   withDot?: boolean
   onClick?: (e: MouseEvent) => void
   onBubbleClick?: (e: MouseEvent) => void
@@ -46,7 +46,7 @@ function DotWithPopOverMarker({
   dotSize,
   withDot,
   activeContent,
-  inActiveContent,
+  inactiveContent,
   bubbleContent,
   zIndex,
   onClick,
@@ -124,7 +124,7 @@ function DotWithPopOverMarker({
 
         {active && activeContent ? activeContent : null}
 
-        {!active && inActiveContent ? inActiveContent : null}
+        {!active && inactiveContent ? inactiveContent : null}
       </>
     </OverlayView>
   )
