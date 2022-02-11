@@ -38,7 +38,6 @@ const BaseTextarea = styled.textarea<BaseTextareaProps>`
   font-weight: 500;
   border: 1px solid #efefef;
   border-radius: 2px;
-  box-sizing: border-box;
   width: 100%;
   resize: none;
   min-height: 100px;

@@ -11,7 +11,6 @@ const FilterEntryBase = styled.div<{ active?: boolean; disabled?: boolean }>`
   color: ${({ active }) => (active ? blue : gray200)};
   background-repeat: no-repeat;
   border-radius: 2px;
-  box-sizing: border-box;
   margin-right: 6px;
   vertical-align: top;
   ${({ disabled }) =>
@@ -53,7 +52,6 @@ const ExpandingFilterEntryBadge = styled.div`
   font-size: 12px;
   font-weight: bold;
   text-align: center;
-  box-sizing: border-box;
 `
 
 const ExpandingFilterEntryContainer = styled.div<{

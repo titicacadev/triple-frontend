@@ -43,7 +43,6 @@ const CellContainer = styled.div<{ type: StyleType }>`
     left: 0;
     top: 50%;
     margin-top: -10px;
-    box-sizing: border-box;
     ${({ type }) => STYLE_BY_TYPES[type]};
     background-size: 20px 20px;
   }
