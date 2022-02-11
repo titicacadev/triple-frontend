@@ -60,7 +60,6 @@ const WriteIcon = styled.img`
 
 const MileageButton = styled.div`
   position: relative;
-  box-sizing: border-box;
   display: block;
   border-radius: 4px;
   background-color: rgba(58, 58, 58, 0.03);

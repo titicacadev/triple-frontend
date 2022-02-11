@@ -39,8 +39,6 @@ const ButtonBase = styled.a<ButtonBaseProp>`
   text-align: center;
   text-decoration: none;
   outline: none;
-  box-sizing: border-box;
-  cursor: pointer;
   border: 0;
 
   color: ${({ textColor = 'gray', textAlpha = 1 }) =>
