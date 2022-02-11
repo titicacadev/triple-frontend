@@ -6,7 +6,7 @@ import { ELEMENTS } from '@titicaca/triple-email-document'
 const { images: Images } = ELEMENTS
 
 export default {
-  title: 'Document / triple-email-document / 이미지',
+  title: 'Document / triple-email-document / elements / 이미지',
   component: Images,
 } as ComponentMeta<typeof Images>
 
