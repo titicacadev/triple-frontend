@@ -105,7 +105,6 @@ const PickerFrame = styled.div<PickerFrameProps>`
       width: 100%;
       border-spacing: 0 25px;
       user-select: none;
-      box-sizing: border-box;
 
       ${({ monthPadding }) => `padding: ${monthPadding};`}
 

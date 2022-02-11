@@ -30,7 +30,6 @@ const BACKGROUND_COLORS: { [key: string]: string } = {
 
 const Container = styled.div<{ borderRadius?: number; borderLine?: boolean }>`
   overflow: hidden;
-  box-sizing: border-box;
 
   ${({ borderRadius }) =>
     borderRadius &&
@@ -87,7 +86,6 @@ const Column = styled.div<{
   display: table-cell;
   vertical-align: middle;
   text-align: ${({ textAlign }) => textAlign || 'center'};
-  box-sizing: border-box;
 
   ${({ type }) =>
     type &&

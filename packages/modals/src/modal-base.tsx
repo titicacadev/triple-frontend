@@ -50,7 +50,6 @@ const Actions = styled.div<{ children?: ReactNode }>`
 
     padding-left: 0;
     padding-right: 0;
-    box-sizing: border-box;
   }
 
   a:not(:first-child) {

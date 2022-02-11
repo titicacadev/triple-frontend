@@ -31,7 +31,6 @@ const Label = styled.label<{ disabled?: boolean }>`
 `
 
 const CheckboxInput = styled.input`
-  box-sizing: border-box;
   position: absolute;
   top: 0;
   right: 0;

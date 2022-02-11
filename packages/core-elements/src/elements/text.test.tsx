@@ -7,7 +7,6 @@ import 'jest-styled-components'
 it('should have default styles', () => {
   const tree = renderer.create(<Text />).toJSON()
 
-  expect(tree).toHaveStyleRule('box-sizing', 'border-box')
   expect(tree).toHaveStyleRule('overflow-wrap', 'break-word')
   expect(tree).toHaveStyleRule('float', 'none')
   expect(tree).toHaveStyleRule('font-weight', '500')

@@ -4,12 +4,6 @@ import Container from './container'
 
 import 'jest-styled-components'
 
-it('should have default styles', () => {
-  const tree = renderer.create(<Container />).toJSON()
-
-  expect(tree).toHaveStyleRule('box-sizing', 'border-box')
-})
-
 it('should accept style shortcut props', () => {
   const tree = renderer
     .create(
