@@ -26,7 +26,6 @@ const CONTENT_MIN_WIDTH = 320
 const CONTENT_MAX_WIDTH = 768
 
 export const ImageBannerWrapper = styled.div`
-  box-sizing: border-box;
   min-width: ${CONTENT_MIN_WIDTH}px;
   height: 230px;
   padding: 0 20px 20px 20px;
@@ -51,7 +50,6 @@ export const BannerImage = styled.img`
 
 export const InstallLink = styled.a`
   display: block;
-  box-sizing: border-box;
   margin: 5px auto 16px auto;
   max-width: ${CONTENT_MAX_WIDTH}px;
   height: 44px;
@@ -84,7 +82,6 @@ export const DismissButton = styled.button`
 
 export const TextBannerWrapper = styled.a`
   display: block;
-  box-sizing: border-box;
   width: 100%;
   height: 54px;
   line-height: 17px;
@@ -247,7 +244,6 @@ export const ChatBalloon = styled.div`
   border-radius: 26px 26px 0 26px;
   padding: 30px;
   margin-right: 50px;
-  box-sizing: border-box;
   min-height: 132px;
 `
 
@@ -277,7 +273,6 @@ export const ChatbotCloseButton = styled.button`
   overflow: hidden;
   text-indent: -1000px;
   border-radius: 12px;
-  box-sizing: border-box;
   background-color: transparent;
   background-image: url('https://assets.triple-dev.titicaca-corp.com/images/btn-gray-close-circle-s@3x.png');
   background-size: 24px 24px;

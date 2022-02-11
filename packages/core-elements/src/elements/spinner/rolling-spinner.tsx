@@ -30,7 +30,6 @@ const RollingSpinnerContainer = styled.div<{ size: number }>`
   top: 50%;
   overflow: visible;
   text-align: center;
-  box-sizing: border-box;
 
   ${({ size }) => `
     transform: translateY(calc(-50% - ${size / 2}px));
@@ -111,7 +110,6 @@ const Image = styled.img<{ size: number }>`
   vertical-align: top;
   text-align: center;
   margin: 0 8px;
-  box-sizing: border-box;
 
   ${({ size }) => `
     height: ${size}px;

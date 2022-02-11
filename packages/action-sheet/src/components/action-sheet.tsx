@@ -53,7 +53,6 @@ const Sheet = styled.div<SheetProps & LayeringMixinProps>`
   left: 0;
   right: 0;
   margin: 0 auto;
-  box-sizing: border-box;
   max-width: 768px;
   user-select: none;
   background-color: ${white};

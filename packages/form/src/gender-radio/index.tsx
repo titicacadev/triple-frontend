@@ -23,7 +23,6 @@ const GenderContainer = styled.div<{
   display: inline-block;
   padding: 15px 0;
   border-radius: 2px;
-  box-sizing: border-box;
   text-align: center;
   font-size: 16px;
   border: 1px solid rgba(${getColor('gray100')});
