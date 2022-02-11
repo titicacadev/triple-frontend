@@ -4,6 +4,7 @@ import { Meta } from '@storybook/react'
 import { LocalLink } from './local'
 
 const StyledLocalLink = styled(LocalLink)`
+  display: inline-block;
   width: 100%;
   height: 52px;
   background-color: var(--color-blue);
