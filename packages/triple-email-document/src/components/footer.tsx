@@ -129,153 +129,155 @@ export default function EmailFooter({
   return (
     <FooterContainer>
       <FluidTable>
-        <tr>
-          <PaddingTd>
-            <FluidTable>
-              <tbody>
-                <tr>
-                  <td>
-                    <FluidTable>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <Title>국내 여행도 트리플로 한 번에</Title>
-                          </td>
-                        </tr>
+        <tbody>
+          <tr>
+            <PaddingTd>
+              <FluidTable>
+                <tbody>
+                  <tr>
+                    <td>
+                      <FluidTable>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <Title>국내 여행도 트리플로 한 번에</Title>
+                            </td>
+                          </tr>
 
-                        <tr>
-                          <td>
-                            <SubTitle>
-                              예약부터 일정까지 트리플 하나로 간편하게
-                              준비하세요.
-                            </SubTitle>
-                          </td>
-                        </tr>
+                          <tr>
+                            <td>
+                              <SubTitle>
+                                예약부터 일정까지 트리플 하나로 간편하게
+                                준비하세요.
+                              </SubTitle>
+                            </td>
+                          </tr>
 
-                        <tr>
-                          <td>
-                            <TransitionLink
-                              href={transitionLink}
-                              ses:tags="link:transitionLink"
-                            >
-                              <img
-                                width="24"
-                                height="24"
-                                src="https://assets.triple.guide/images/icon_mail_triple@3x.png"
-                                alt="triple_icon"
-                              />
-                              <TransitionLinkLabel>
-                                트리플 시작하기
-                              </TransitionLinkLabel>
-                            </TransitionLink>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <AppMarketLinkContainer>
-                              <tbody>
-                                <tr>
-                                  <td>
-                                    <AppMarketLink
-                                      href="http://play.google.com/store/apps/details?id=com.titicacacorp.triple"
-                                      ses:tags="link:playStoreLink"
-                                    >
-                                      Google Play
-                                    </AppMarketLink>
-                                  </td>
-                                  <td>
-                                    <AppMarketLink
-                                      href="https://itunes.apple.com/app/id1225499481"
-                                      ses:tags="link:appStoreLink"
-                                    >
-                                      App Store
-                                    </AppMarketLink>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </AppMarketLinkContainer>
-                          </td>
-                        </tr>
+                          <tr>
+                            <td>
+                              <TransitionLink
+                                href={transitionLink}
+                                ses:tags="link:transitionLink"
+                              >
+                                <img
+                                  width="24"
+                                  height="24"
+                                  src="https://assets.triple.guide/images/icon_mail_triple@3x.png"
+                                  alt="triple_icon"
+                                />
+                                <TransitionLinkLabel>
+                                  트리플 시작하기
+                                </TransitionLinkLabel>
+                              </TransitionLink>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <AppMarketLinkContainer>
+                                <tbody>
+                                  <tr>
+                                    <td>
+                                      <AppMarketLink
+                                        href="http://play.google.com/store/apps/details?id=com.titicacacorp.triple"
+                                        ses:tags="link:playStoreLink"
+                                      >
+                                        Google Play
+                                      </AppMarketLink>
+                                    </td>
+                                    <td>
+                                      <AppMarketLink
+                                        href="https://itunes.apple.com/app/id1225499481"
+                                        ses:tags="link:appStoreLink"
+                                      >
+                                        App Store
+                                      </AppMarketLink>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </AppMarketLinkContainer>
+                            </td>
+                          </tr>
 
-                        <tr>
-                          <Divider className="divider" />
-                        </tr>
-                      </tbody>
-                    </FluidTable>
-                  </td>
-                </tr>
+                          <tr>
+                            <Divider className="divider" />
+                          </tr>
+                        </tbody>
+                      </FluidTable>
+                    </td>
+                  </tr>
 
-                <tr>
-                  <td>
-                    <NoticeContainer>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <Notice>
-                              트리플의 여행 소식을 더 이상 받고 싶지
-                              않다면&nbsp;
-                              <HandlebarsAnchor linkId="unsubscribeLink">
-                                여기
-                              </HandlebarsAnchor>
-                              를 클릭해 주세요.
-                            </Notice>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <Notice>
-                              If you’d like to unsubscribe from Triple’s
-                              newsletters,&nbsp;
-                              <HandlebarsAnchor linkId="unsubscribeLink">
-                                click here
-                              </HandlebarsAnchor>
-                              .
-                            </Notice>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </NoticeContainer>
-                  </td>
-                </tr>
+                  <tr>
+                    <td>
+                      <NoticeContainer>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <Notice>
+                                트리플의 여행 소식을 더 이상 받고 싶지
+                                않다면&nbsp;
+                                <HandlebarsAnchor linkId="unsubscribeLink">
+                                  여기
+                                </HandlebarsAnchor>
+                                를 클릭해 주세요.
+                              </Notice>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <Notice>
+                                If you’d like to unsubscribe from Triple’s
+                                newsletters,&nbsp;
+                                <HandlebarsAnchor linkId="unsubscribeLink">
+                                  click here
+                                </HandlebarsAnchor>
+                                .
+                              </Notice>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </NoticeContainer>
+                    </td>
+                  </tr>
 
-                <tr>
-                  <td>
-                    <CompanyInfoContainer>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <CompanyInfo>
-                              주식회사 트리플 ｜ 대표 김연정, 최휘영
-                            </CompanyInfo>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <CompanyInfo>
-                              주소 경기도 성남시 분당구 판교역로14번길 16, 3층
-                            </CompanyInfo>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <CompanyInfo>
-                              문의&nbsp;
-                              <a href="mailto:help@triple-corp.com">
-                                help@triple-corp.com
-                              </a>
-                              &nbsp;/&nbsp;
-                              <a href="tel:1588-2539">1588-2539</a>
-                            </CompanyInfo>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </CompanyInfoContainer>
-                  </td>
-                </tr>
-              </tbody>
-            </FluidTable>
-          </PaddingTd>
-        </tr>
+                  <tr>
+                    <td>
+                      <CompanyInfoContainer>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <CompanyInfo>
+                                주식회사 트리플 ｜ 대표 김연정, 최휘영
+                              </CompanyInfo>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <CompanyInfo>
+                                주소 경기도 성남시 분당구 판교역로14번길 16, 3층
+                              </CompanyInfo>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <CompanyInfo>
+                                문의&nbsp;
+                                <a href="mailto:help@triple-corp.com">
+                                  help@triple-corp.com
+                                </a>
+                                &nbsp;/&nbsp;
+                                <a href="tel:1588-2539">1588-2539</a>
+                              </CompanyInfo>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </CompanyInfoContainer>
+                    </td>
+                  </tr>
+                </tbody>
+              </FluidTable>
+            </PaddingTd>
+          </tr>
+        </tbody>
       </FluidTable>
     </FooterContainer>
   )

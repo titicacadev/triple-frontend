@@ -26,11 +26,13 @@ export default function EmailPreview({
 }) {
   return (
     <FluidTable>
-      <tr>
-        <Box padding={{ top: 0, bottom: 0, left: 0, right: 0 }}>
-          <PreviewStyled>{phrase}</PreviewStyled>
-        </Box>
-      </tr>
+      <tbody>
+        <tr>
+          <Box padding={{ top: 0, bottom: 0, left: 0, right: 0 }}>
+            <PreviewStyled>{phrase}</PreviewStyled>
+          </Box>
+        </tr>
+      </tbody>
     </FluidTable>
   )
 }
