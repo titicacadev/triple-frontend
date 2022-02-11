@@ -35,8 +35,8 @@ const DEFAULT_BACKGROUND_COLOR = 'rgba(13, 208, 175, 1)'
 const POINTING_BASE_STYLE = css`
   position: absolute;
   content: '';
-  width: 1px;
-  height: 1px;
+  width: 11px;
+  height: 11px;
   border-right: 5px solid transparent;
   border-left: 5px solid transparent;
 `
@@ -55,7 +55,7 @@ const TooltipFrame = styled.div<TooltipFrameProps>`
           &::before {
             ${POINTING_BASE_STYLE}
 
-            top: -6px;
+            top: -11px;
             ${pointing.horizontal}: ${pointing.horizontalOffset}px;
             border-bottom: 5px solid ${backgroundColor};
           }
@@ -65,7 +65,7 @@ const TooltipFrame = styled.div<TooltipFrameProps>`
           &::after {
             ${POINTING_BASE_STYLE}
 
-            bottom: -6px;
+            bottom: -11px;
             ${pointing.horizontal}: ${pointing.horizontalOffset}px;
             border-top: 5px solid ${backgroundColor};
           }
