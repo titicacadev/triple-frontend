@@ -20,7 +20,6 @@ const AccordionHeader = styled(FlexBox)`
 `
 
 const Button = styled.a`
-  box-sizing: border-box;
   height: 32px;
   padding: 9px 12px;
   font-size: 11px;

@@ -8,7 +8,6 @@ const TabLabel = styled.div<{
   scroll?: boolean
   padding?: MarginPadding
 }>`
-  box-sizing: border-box;
   text-align: center;
   cursor: pointer;
 

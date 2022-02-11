@@ -18,7 +18,6 @@ const BaseInput = styled(InputMask)<{
   font-weight: 500;
   border: 1px solid rgba(${getColor('gray100')});
   border-radius: 2px;
-  box-sizing: border-box;
   width: 100%;
 
   ::placeholder {

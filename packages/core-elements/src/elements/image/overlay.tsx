@@ -28,7 +28,6 @@ const OverlayContainer = styled.div<
     overlayType?: OverlayType
   } & LayeringMixinProps
 >`
-  box-sizing: border-box;
   position: absolute;
   top: 0;
   width: 100%;

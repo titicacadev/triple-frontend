@@ -9,7 +9,6 @@ const HandleContainer = styled.div.attrs<{ percent: number }>(
   }),
 )`
   position: absolute;
-  box-sizing: border-box;
   width: 70px;
   height: 90px;
   transform: translate(-50%, -50%);
@@ -18,7 +17,6 @@ const HandleContainer = styled.div.attrs<{ percent: number }>(
 
 const HandlePeg = styled.div`
   position: absolute;
-  box-sizing: border-box;
   top: 50%;
   left: 50%;
   width: 18px;
