@@ -43,7 +43,7 @@ const ImageTemplate: {
   <Container>
     {args.propList.map((props, index) => (
       <ImageContainer key={index}>
-        <Title>{`${index} ${TITIES[index]}`}</Title>
+        <Title>{TITIES[index]}</Title>
         <Images {...props} />
       </ImageContainer>
     ))}
