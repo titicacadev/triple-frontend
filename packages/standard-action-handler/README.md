@@ -8,7 +8,7 @@
   - URL로 표현되는 액션을 순차로 수행합니다.
   - parameter
     - { path, query }
-      - query : actions=[action]&actions=[action] ...
+      - query : actions[]=[action1]&actions[]=[action2]...
     - options : ContextOptions
     - handler : action을 수행할 핸들러
 - ### `/web-action/cta`
@@ -35,6 +35,21 @@
   - parameter
     - { path, query }
       - query : text=[복사할 텍스트]
+
+### How to make URL
+
+example
+
+```
+/** show-toast URL */
+const action1 = `/web-action/show-toast?text='토스트 메시지'`
+/** fetch-api URL */
+const action2 = `/web-action/fetch-api?method=GET&path='/api/apiPath'`
+
+/** serial URL */
+const webAction = `/web-action/serial?actions[]=${action1}&actions[]=${action2}`
+
+```
 
 ### 새로운 Action 추가하기
 
