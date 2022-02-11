@@ -56,7 +56,7 @@ const Title = styled(Accordion.Title)`
 `
 
 const AccordionArrow = styled.img`
-  transform: translateY(2px);
+  transform: translateY(-2px);
   margin-left: 3px;
   width: 15px;
   height: 15px;

@@ -26,8 +26,8 @@ const RecommendedContentWithDesktopResolution = styled.li<{
 }>`
   display: inline-block;
   vertical-align: top;
-  width: calc(50% - 37.5px);
-  height: 130px;
+  width: calc(50% - 7.5px);
+  height: 150px;
   padding: 20px 15px 0 15px;
   margin-bottom: 15px;
   border-radius: 6px;
