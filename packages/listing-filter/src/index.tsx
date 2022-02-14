@@ -121,7 +121,6 @@ const UnderlineRegularFilterEntry = styled(FilterEntryBase)<{
   active?: boolean
 }>`
   position: relative;
-  margin: 0;
   border: 0;
   border-radius: 0;
   padding: 10px;

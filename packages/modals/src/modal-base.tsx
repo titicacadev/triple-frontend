@@ -25,7 +25,6 @@ const Box = styled.div<{ width?: number } & LayeringMixinProps>`
   transform: translate(-50%, -50%);
   border-radius: 6px;
   background-color: #fff;
-  margin: 0;
   user-select: none;
 
   ${layeringMixin(0)}
@@ -73,7 +72,6 @@ const Action = styled.a<{ color?: GlobalColors }>`
   font-weight: bold;
   text-align: center;
   color: ${({ color }) => ACTION_COLORS[color || 'gray']};
-  cursor: pointer;
 `
 
 function ModalBase({

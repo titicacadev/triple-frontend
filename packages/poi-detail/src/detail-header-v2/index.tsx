@@ -24,11 +24,7 @@ import { HASH_COPY_ACTION_SHEET } from '../constants'
 const ArrowButton = styled.button`
   display: inline-block;
   color: var(--color-blue);
-  background: transparent;
-  border: 0;
   outline: 0;
-  text-decoration: none;
-  cursor: pointer;
   font-size: 12px;
   font-weight: bold;
   padding: 0 14px 0 6px;
