@@ -23,8 +23,8 @@ const LinkStyled = styled.a`
   outline: none;
   cursor: pointer;
   border: 0;
-  color: var(--color-white);
-  background-color: var(--color-blue);
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(54, 143, 255, 1);
   float: none;
   border-radius: 21px;
 `

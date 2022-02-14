@@ -36,7 +36,7 @@ const H1Container = styled.h1`
   margin: 0;
   font-size: 21px;
   font-weight: bold;
-  color: var(--color-gray);
+  color: rgba(58, 58, 58, 1);
 `
 
 const HeadlineContainer = styled.p`
@@ -50,14 +50,14 @@ const H2Container = styled.h2`
   margin: 0;
   font-size: 19px;
   font-weight: 500;
-  color: var(--color-gray);
+  color: rgba(58, 58, 58, 1);
 `
 
 const H3Container = styled.h3`
   margin: 0;
   font-size: 16px;
   font-weight: bold;
-  color: var(--color-gray);
+  color: rgba(58, 58, 58, 1);
 `
 
 const H4Container = styled.h4`
