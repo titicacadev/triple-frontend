@@ -1,6 +1,6 @@
 # standard-action-handler
 
-/web-action/\* 형식으로 웹 프로젝트들이 공통으로 사용할 액션을 선언하는 Path를 정의합니다.
+웹 프로젝트들이 공통으로 사용할 액션을 정의합니다. `/web-action`으로 시작하는 URL 형식으로 액션을 표현합니다.
 
 ## Paths
 
