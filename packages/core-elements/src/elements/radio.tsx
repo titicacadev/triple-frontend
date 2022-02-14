@@ -77,11 +77,8 @@ const RadioInput = styled.input.attrs({ type: 'radio' })<{
 }>`
   position: absolute;
   top: 50%;
-  margin: 0;
   width: ${RADIO_INPUT_SIZE}px;
   height: ${RADIO_INPUT_SIZE}px;
-  border: 0;
-  padding: 0;
   background-size: ${RADIO_INPUT_SIZE}px ${RADIO_INPUT_SIZE}px;
   background-repeat: no-repeat;
   transition: all 0.3s ease;

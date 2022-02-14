@@ -80,7 +80,6 @@ export const SimpleLink = styled.a`
   font-size: 15px;
   font-weight: bold;
   color: #2987f0;
-  cursor: pointer;
 
   /* HACK: global-style의 underline 설정보다 우선하도록 수정 */
   && {
