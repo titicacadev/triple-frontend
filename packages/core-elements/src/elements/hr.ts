@@ -38,7 +38,6 @@ export const HR2 = styled.div<HrProps>`
 `
 
 export const HR3 = styled.div<{ height?: number }>`
-  margin: 0;
   height: ${({ height }) => height || 10}px;
   background-color: transparent;
 `
