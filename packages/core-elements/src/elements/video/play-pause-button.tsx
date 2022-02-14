@@ -13,7 +13,6 @@ interface BaseProps {
 
 const PlayPauseButtonBase = styled.button<BaseProps>`
   position: absolute;
-  border: none;
   background: none;
   width: 60px;
   height: 60px;

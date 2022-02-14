@@ -46,8 +46,6 @@ const Progress = styled.progress`
   left: 45px;
   right: 45px;
   bottom: 10px;
-  padding: 0;
-  margin: 0;
   width: calc(100% - 90px);
   appearance: none;
 
