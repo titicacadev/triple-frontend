@@ -30,11 +30,11 @@ const NoteTextStyled = styled.div`
 
 const TitleStyled = styled(NoteTextStyled)`
   font-weight: 700;
-  color: var(--color-gray);
+  color: rgba(58, 58, 58, 1);
 `
 
 const BodyStyled = styled(NoteTextStyled)`
-  color: var(--color-gray800);
+  color: rgba(58, 58, 58, 0.8);
 `
 
 export default function NoteView({
