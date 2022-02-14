@@ -86,11 +86,11 @@ initialize의 parameter로 사용되는 `navigate`는 실행되는 환경과 세
   params?: NavigateOptions
 }
 
-NavigateOptions : {
-    target?: string
-    title?: string
-    [key:string]: unknown
-  }
+NavigateOptions: {
+  target?: string
+  title?: string
+  [key:string]: unknown
+}
 ```
 
 ## How to use
