@@ -1,22 +1,27 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { FluidTable, Box } from '../common'
 
 export interface TextDocument {
   type: 'text'
   value: {
-    rawHTML: string
+    text?: string
+    rawHTML?: string
   }
 }
+
+const textStyle = css`
+  font-size: 16px;
+  line-height: 1.63;
+  font-weight: 500;
+  color: rgba(58, 58, 58, 0.9);
+`
 
 const HtmlContainer = styled.div`
   p {
     margin: 24px 0 0 0;
-    font-size: 16px;
-    line-height: 1.63;
-    font-weight: 500;
-    color: var(--color-gray900);
+    ${textStyle}
 
     &:first-of-type {
       margin-top: 0;
@@ -24,16 +29,14 @@ const HtmlContainer = styled.div`
   }
 
   strong {
-    font-size: 16px;
-    line-height: 1.63;
+    ${textStyle}
     font-weight: bold;
-    color: var(--color-gray);
+    color: rgba(58, 58, 58, 1);
   }
 
   && {
     a {
-      font-size: 16px;
-      line-height: 1.63;
+      ${textStyle}
       font-weight: bold;
       color: #2987f0;
       text-decoration: underline;
@@ -41,8 +44,12 @@ const HtmlContainer = styled.div`
   }
 `
 
+const TextContainer = styled.div`
+  ${textStyle}
+`
+
 export default function TextView({
-  value: { rawHTML },
+  value: { text, rawHTML },
 }: {
   value: TextDocument['value']
 }) {
@@ -51,7 +58,11 @@ export default function TextView({
       <tbody>
         <tr>
           <Box padding={{ top: 10, left: 30, right: 30 }}>
-            <HtmlContainer dangerouslySetInnerHTML={{ __html: rawHTML }} />
+            {rawHTML ? (
+              <HtmlContainer dangerouslySetInnerHTML={{ __html: rawHTML }} />
+            ) : (
+              <TextContainer>{text}</TextContainer>
+            )}
           </Box>
         </tr>
       </tbody>
