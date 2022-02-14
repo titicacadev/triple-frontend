@@ -28,8 +28,6 @@ const MoreActionsButton = styled.button`
   height: 19px;
   padding-left: 3px;
   margin-top: -3px;
-  border: 0;
-  background-color: transparent;
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url(https://assets.triple.guide/images/btn-review-more@4x.png);
@@ -55,13 +53,10 @@ const MentionUser = styled.span`
 `
 
 const ThanksButton = styled.button`
-  border: none;
   outline: none;
   background: white;
   width: 14px;
   height: 14px;
-  padding: 0;
-  cursor: pointer;
 `
 
 const HASH_MORE_ACTION_SHEET = 'reply.more-action-sheet'

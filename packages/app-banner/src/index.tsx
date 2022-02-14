@@ -37,8 +37,6 @@ const Logo = styled.h1`
   background-image: url(https://assets.triple.guide/images/app-download@2x.png);
   width: 34px;
   height: 34px;
-  margin: 0;
-  padding: 0;
   top: 50%;
   left: 20px;
   margin-top: -17px;
@@ -66,8 +64,6 @@ const CallToAction = styled.a`
   font-weight: bold;
   color: #ffffff;
   background-color: #0bd0af;
-  text-decoration: none;
-  cursor: pointer;
 `
 
 function AppBanner({

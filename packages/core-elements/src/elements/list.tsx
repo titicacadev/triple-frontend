@@ -23,9 +23,6 @@ export interface ListItemProps {
 }
 
 const ListBase = styled.ul<ListBaseProp & DividerOptions>`
-  margin: 0;
-  padding: 0;
-
   ${marginMixin}
 
   > li:not(:first-child) {

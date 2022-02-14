@@ -15,11 +15,6 @@ interface ScrapableResource {
 
 const ScrapingButton = styled.button<{ size: number }>`
   display: block;
-  margin: 0;
-  border: 0;
-  padding: 0;
-  background-color: transparent;
-  appearance: none;
   outline: none;
 
   ${({ size }) => `
