@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 6.2.0
+
+### core-elements
+
+- gap props추가 [#1916](https://github.com/titicacadev/triple-frontend/pull/1916)
+
+### map
+
+- PoiDotMarker의 props, type 및 CircleMarker의 type 등을 export 합니다. [#1917](https://github.com/titicacadev/triple-frontend/pull/1917)
+
+### router
+
+- LocalLink, ExternalLink 내용 보충 [#1911](https://github.com/titicacadev/triple-frontend/pull/1911)
+
+### triple-email-document
+
+- Migration에 필요한 Type을 내보내고, Color 표현을 수정합니다. [#1923](https://github.com/titicacadev/triple-frontend/pull/1923)
+- Text Element를 최신화합니다. [#1924](https://github.com/titicacadev/triple-frontend/pull/1924)
+- Footer, Preview를 추가합니다. [#1919](https://github.com/titicacadev/triple-frontend/pull/1919)
+- triple-email-document 관련 storybook 코드를 추가합니다. [#1903](https://github.com/titicacadev/triple-frontend/pull/1903)
+- 패키지를 추가합니다. [#1895](https://github.com/titicacadev/triple-frontend/pull/1895)
+
+### standard-action-handler
+
+- Standard Action Handler ReadMe 작성 [#1912](https://github.com/titicacadev/triple-frontend/pull/1912)
+
 ## 6.1.1
 
 ### map
