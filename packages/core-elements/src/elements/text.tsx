@@ -84,7 +84,6 @@ interface TextTitleBaseProps extends CSSProps {
 }
 
 const TextTitleBase = styled(Text)<TextTitleBaseProps>`
-  margin: 0;
   line-height: 1.2;
   font-size: 24px;
   font-weight: bold;

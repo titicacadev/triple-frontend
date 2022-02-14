@@ -12,7 +12,6 @@ const PlayPauseButtonBase = styled.button<{
   visible: boolean
 }>`
   position: absolute;
-  border: none;
   background: none;
   width: 60px;
   height: 60px;

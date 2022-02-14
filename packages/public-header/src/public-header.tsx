@@ -55,7 +55,6 @@ const HeaderFrame = styled.div`
 `
 
 const Logo = styled.a`
-  margin: 0;
   padding: 10px 8px;
   text-decoration: none;
   display: flex;

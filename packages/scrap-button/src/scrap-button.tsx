@@ -15,11 +15,6 @@ interface ScrapableResource {
 
 const ScrapingButton = styled.button<{ size: number }>`
   display: block;
-  margin: 0;
-  border: 0;
-  padding: 0;
-  background-color: transparent;
-  appearance: none;
   outline: none;
 
   ${({ size }) => `
@@ -64,12 +59,8 @@ function OverlayHeart({ pressed, size }: ScrapIconProps) {
 }
 
 function useScraped<R extends ScrapableResource>({ id, type, scraped }: R) {
-  const {
-    scrape,
-    unscrape,
-    deriveCurrentStateAndCount,
-    enableTrackEvent,
-  } = useScrapsContext()
+  const { scrape, unscrape, deriveCurrentStateAndCount, enableTrackEvent } =
+    useScrapsContext()
   const trackEventWithMetadata = useEventTrackerWithMetadata()
 
   const { scraped: actualScraped } = deriveCurrentStateAndCount({ id, scraped })

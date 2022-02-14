@@ -115,8 +115,6 @@ const TooltipContainer = styled.div<{ paddingRight?: number; nowrap: boolean }>`
 const ArrowRight = styled.span`
   width: 9px;
   height: 13px;
-  margin: 0;
-  padding: 0;
   top: 50%;
   position: absolute;
   right: 0;

@@ -9,17 +9,13 @@ import { ResourceType, Reply } from './types'
 
 const RegisterButton = styled.button`
   width: 26px;
-  padding: 0;
   margin-left: 20px;
   line-height: 1.2;
   font-size: 15px;
   font-weight: bold;
   color: ${(props) =>
     props.disabled ? 'var(--color-blue500)' : 'var(--color-blue)'};
-  background: inherit;
-  border: none;
   outline: none;
-  cursor: pointer;
 `
 
 function Register(

@@ -9,8 +9,6 @@ const BaseInput = styled(InputMask)<{
   focused?: string
   error?: string | boolean
 }>`
-  appearance: none;
-  margin: 0;
   padding: 0 16px;
   outline: none;
   font-size: 16px;

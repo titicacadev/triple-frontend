@@ -6,8 +6,6 @@ import { getColor } from '@titicaca/color-palette'
 import withField from '../with-field'
 
 const BaseInput = styled(InputMask)<{ focused?: string; error?: string }>`
-  appearance: none;
-  margin: 0;
   outline: none;
   padding: 14px 16px;
   font-size: 16px;

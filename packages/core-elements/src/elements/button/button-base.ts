@@ -37,9 +37,7 @@ const ButtonBase = styled.a<ButtonBaseProp>`
   ${({ size }) => (size ? SIZES[size] : '')}
   font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
   text-align: center;
-  text-decoration: none;
   outline: none;
-  border: 0;
 
   color: ${({ textColor = 'gray', textAlpha = 1 }) =>
     `rgba(${GetGlobalColor(textColor)}, ${textAlpha})`};
