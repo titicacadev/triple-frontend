@@ -12,15 +12,13 @@ import { ResourceType, Reply, Placeholders } from './types'
 
 const RegisterButton = styled.button<{ active: boolean }>`
   width: 26px;
-  padding: 0;
+  margin-left: 20px;
+  line-height: 1.2;
   font-size: 15px;
   font-weight: bold;
   color: ${(props) =>
     props.active ? 'var(--color-blue)' : 'var(--color-blue500)'};
-  background: inherit;
-  border: none;
   outline: none;
-  cursor: pointer;
 `
 
 function Register(

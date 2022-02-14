@@ -30,7 +30,6 @@ const Button = styled.a`
   border: 1px solid var(--color-gray200);
   border-radius: 4px;
   background-color: rgba(250, 250, 250, 1);
-  cursor: pointer;
 
   img {
     width: 16px;

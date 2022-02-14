@@ -16,8 +16,6 @@ const SORTING_OPTIONS = [
 
 const OptionsContainer = styled.div`
   float: right;
-  margin: 0;
-  padding: 0;
 
   div:not(:first-child) {
     margin-left: 12px;

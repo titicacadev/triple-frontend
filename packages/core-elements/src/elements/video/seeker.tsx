@@ -4,16 +4,13 @@ import { debounce } from '@titicaca/view-utilities'
 import { getColor } from '@titicaca/color-palette'
 
 const SeekerBase = styled.input<{ handleVisible: boolean }>`
-  appearance: none;
   background: transparent;
-  border-color: transparent;
   color: transparent;
   position: absolute;
   left: 45px;
   right: 45px;
   width: calc(100% - 90px);
   bottom: 10px;
-  margin: 0;
 
   &:focus {
     outline: none;

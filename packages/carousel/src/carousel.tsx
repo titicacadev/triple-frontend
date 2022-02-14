@@ -15,8 +15,6 @@ interface CarouselBaseProps {
 }
 
 const CarouselBase = styled.ul<CarouselBaseProps>`
-  margin: 0;
-  padding: 0;
   padding-bottom: 10px;
 
   ${marginMixin}
@@ -47,7 +45,6 @@ const FlickingScrollButton = styled.button<{
   containerPadding?: { left: number; right: number }
 }>`
   position: absolute;
-  cursor: pointer;
   width: 60px;
   height: 60px;
   top: calc(50% - 30px);
@@ -56,9 +53,6 @@ const FlickingScrollButton = styled.button<{
       ${direction}: ${(containerPadding?.[direction] || 0) - 30}px;
     `}
   z-index: 60;
-  border: none;
-  background-color: inherit;
-  padding: 0;
   outline: none;
 `
 
