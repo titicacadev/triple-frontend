@@ -36,15 +36,12 @@ const CheckboxInput = styled.input`
   position: absolute;
   top: 0;
   right: 0;
-  margin: 0;
   width: 26px;
   height: 26px;
   line-height: 26px;
   border: 1px solid #d8d8d8;
   border-radius: 6px;
-  padding: 0;
   background-color: #ffffff;
-  appearance: none;
   outline: none;
 
   &:checked,

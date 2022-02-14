@@ -61,23 +61,17 @@ export const InstallLink = styled.a`
   text-align: center;
   font-size: 14px;
   font-weight: bold;
-  cursor: pointer;
-  text-decoration: none;
 `
 
 export const DismissButton = styled.button`
   display: block;
   margin: 0 auto;
-  border: 0;
-  background-color: transparent;
   opacity: 0.6;
   font-size: 12px;
   font-weight: 500;
-  text-align: center;
   color: white;
   text-decoration: underline;
   outline: none;
-  cursor: pointer;
 `
 
 export const TextBannerWrapper = styled.a`
@@ -92,8 +86,6 @@ export const TextBannerWrapper = styled.a`
   font-size: 14px;
   font-weight: bold;
   text-align: center;
-  cursor: pointer;
-  text-decoration: none;
 `
 
 export const DownloadIcon = styled.img`
@@ -266,20 +258,15 @@ export const ChatbotCloseButton = styled.button`
   position: absolute;
   top: 10px;
   right: 10px;
-  margin: 0;
-  padding: 0;
   width: 24px;
   height: 24px;
   overflow: hidden;
   text-indent: -1000px;
   border-radius: 12px;
-  background-color: transparent;
   background-image: url('https://assets.triple-dev.titicaca-corp.com/images/btn-gray-close-circle-s@3x.png');
   background-size: 24px 24px;
   background-position: left top;
   background-repeat: no-repeat;
-  border: none;
-  cursor: pointer;
 
   &:focus {
     outline: none;
@@ -296,7 +283,6 @@ export const ChatbotIcon = styled.a`
   height: 40px;
   overflow: hidden;
   text-indent: -1000px;
-  background-color: transparent;
   background-image: url('https://assets.triple-dev.titicaca-corp.com/images/ico-circle-triple-bi@3x.png');
   background-size: 40px 40px;
   background-position: left top;
