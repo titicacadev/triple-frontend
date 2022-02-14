@@ -15,8 +15,6 @@ const backgroundImage = ({ muted }: MuteUnmutButtonBaseProps) =>
   muted ? MUTE_BUTTON_IMAGE_URL : UNMUTE_BUTTON_IMAGE_URL
 const MuteUnmuteButtonBase = styled.button<MuteUnmutButtonBaseProps>`
   position: absolute;
-  border: none;
-  background: none;
   width: 40px;
   height: 36px;
   top: 3px;

@@ -29,9 +29,7 @@ const COLORS: Partial<Record<GlobalColors, string>> = {
 }
 
 const BaseTextarea = styled.textarea<BaseTextareaProps>`
-  appearance: none;
   overflow: hidden;
-  margin: 0;
   outline: none;
   padding: 14px 16px;
   font-size: 16px;
