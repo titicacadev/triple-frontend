@@ -81,7 +81,6 @@ const BulletRight = styled.img.attrs({
 })`
   position: absolute;
   right: 20px;
-  margin: 0;
   top: 50%;
   transform: translateY(-50%);
   @media only screen and (max-width: 640px) {
