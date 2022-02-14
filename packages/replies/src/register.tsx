@@ -18,10 +18,7 @@ const RegisterButton = styled.button<{ active: boolean }>`
   font-weight: bold;
   color: ${(props) =>
     props.active ? 'var(--color-blue)' : 'var(--color-blue500)'};
-  background: inherit;
-  border: none;
   outline: none;
-  cursor: pointer;
 `
 
 function Register(

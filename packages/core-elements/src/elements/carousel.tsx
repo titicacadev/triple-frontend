@@ -26,8 +26,6 @@ interface CarouselBaseProps {
 }
 
 const CarouselBase = styled.ul<CarouselBaseProps>`
-  margin: 0;
-  padding: 0;
   padding-bottom: 10px;
   ${marginMixin}
   white-space: nowrap;
