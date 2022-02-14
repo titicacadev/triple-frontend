@@ -1,2 +1,2 @@
 export { default as EmailFooter } from './footer'
-export { default as EmailPreview } from './preview'
+export { default as EmailPreview, PreviewDocument } from './preview'
