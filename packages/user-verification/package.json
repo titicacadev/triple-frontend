@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/user-verification",
-  "version": "6.1.1",
+  "version": "6.2.0",
   "description": "user verification",
   "keywords": [
     "triple",
@@ -22,11 +22,11 @@
     "lib"
   ],
   "dependencies": {
-    "@titicaca/core-elements": "^6.1.1",
-    "@titicaca/modals": "^6.1.1",
-    "@titicaca/react-hooks": "^6.1.1",
-    "@titicaca/react-triple-client-interfaces": "^6.1.1",
-    "@titicaca/router": "^6.1.1",
+    "@titicaca/core-elements": "^6.2.0",
+    "@titicaca/modals": "^6.2.0",
+    "@titicaca/react-hooks": "^6.2.0",
+    "@titicaca/react-triple-client-interfaces": "^6.2.0",
+    "@titicaca/router": "^6.2.0",
     "isomorphic-fetch": "^2.2.1"
   },
   "devDependencies": {
