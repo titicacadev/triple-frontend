@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/popup",
-  "version": "6.1.1",
+  "version": "6.2.0",
   "description": "Triple Popup",
   "keywords": [
     "triple",
@@ -20,7 +20,7 @@
     "lib"
   ],
   "dependencies": {
-    "@titicaca/core-elements": "^6.1.1",
+    "@titicaca/core-elements": "^6.2.0",
     "react-transition-group": "^4.4.1"
   }
 }
