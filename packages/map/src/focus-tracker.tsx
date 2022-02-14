@@ -6,8 +6,10 @@ const AUTO_ZOOM_THRESHORLD = 10
 
 export function FocusTracker({
   focusGeolocation,
+  activeAutoZoom = false,
 }: {
   focusGeolocation?: PointGeoJSON
+  activeAutoZoom?: boolean
 }) {
   const map = useGoogleMap()
 
@@ -19,7 +21,7 @@ export function FocusTracker({
     const [lng, lat] = focusGeolocation.coordinates
     const zoomLevel = map.getZoom() ?? 0
 
-    if (zoomLevel < AUTO_ZOOM_THRESHORLD) {
+    if (activeAutoZoom && zoomLevel < AUTO_ZOOM_THRESHORLD) {
       map.setZoom(AUTO_ZOOM_THRESHORLD)
     }
 
