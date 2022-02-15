@@ -31,7 +31,7 @@ export interface Reply {
   writer: Writer
   actionSpecifications: {
     delete: boolean
-    edit: {
+    edit?: {
       text?: string
       plaintext?: string
       mentionedUserHref?: string
@@ -39,7 +39,7 @@ export interface Reply {
       mentionedUserUid?: string
     }
     reaction: boolean
-    reply: {
+    reply?: {
       mentioningUserHref: string
       mentioningUserName: string
       mentioningUserUid: string
