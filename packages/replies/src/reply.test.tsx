@@ -65,7 +65,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
           focusInput={onFocusInput}
           fetchMoreReplies={fetchMoreReplies}
         />,
-        { wrapper: ReplyWrapper },
+        { wrapper: ReplyWithLoginWrapper },
       )
 
       const likeCountElement = queryByText(/좋아요/)
@@ -91,7 +91,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
           focusInput={onFocusInput}
           fetchMoreReplies={fetchMoreReplies}
         />,
-        { wrapper: ReplyWrapper },
+        { wrapper: ReplyWithLoginWrapper },
       )
 
       const likeCountElement = queryByText(/좋아요/)
@@ -117,7 +117,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
           focusInput={onFocusInput}
           fetchMoreReplies={fetchMoreReplies}
         />,
-        { wrapper: ReplyWrapper },
+        { wrapper: ReplyWithLoginWrapper },
       )
 
       const likeCountElement = queryByText(/좋아요/)
@@ -128,7 +128,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
     })
   })
 
-  describe('사용자의 좋아요 클릭 액션을 테스트합니다.', () => {
+  describe('로그인한 사용자의 좋아요 클릭 액션을 테스트합니다.', () => {
     test('좋아요를 클릭했던 사용자가 다시 클릭하면, 좋아요 갯수를 -1 합니다.', async () => {
       const reply = generateMockReply({
         reactions: {
@@ -145,7 +145,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
           focusInput={onFocusInput}
           fetchMoreReplies={fetchMoreReplies}
         />,
-        { wrapper: ReplyWrapper },
+        { wrapper: ReplyWithLoginWrapper },
       )
 
       const unlikeButtonElement = getByRole('button', {
@@ -179,7 +179,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
           focusInput={onFocusInput}
           fetchMoreReplies={fetchMoreReplies}
         />,
-        { wrapper: ReplyWrapper },
+        { wrapper: ReplyWithLoginWrapper },
       )
 
       const likeButtonElement = getByRole('button', {
@@ -203,7 +203,7 @@ function generateMockReply(reactions: Pick<ReplyType, 'reactions'>) {
   return { ...MOCKED_REPLY, ...reactions }
 }
 
-function ReplyWrapper({ children }: PropsWithChildren<unknown>) {
+function ReplyWithLoginWrapper({ children }: PropsWithChildren<unknown>) {
   return (
     <EnvProvider
       appUrlScheme=""
@@ -221,7 +221,7 @@ function ReplyWrapper({ children }: PropsWithChildren<unknown>) {
         type="browser"
         props={{
           initialUser: undefined,
-          initialSessionAvailability: false,
+          initialSessionAvailability: true,
         }}
       >
         <RepliesProvider>{children}</RepliesProvider>
