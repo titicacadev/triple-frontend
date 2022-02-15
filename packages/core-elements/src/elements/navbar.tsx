@@ -9,8 +9,8 @@ import {
   ReactNode,
   HTMLAttributes,
 } from 'react'
+import { TRIPLE_FALLBACK_ACTION_CLASS_NAME } from '@titicaca/triple-fallback-action'
 
-import { FALLBACK_ACTION_CLASS_NAME } from '../constants'
 import { layeringMixin, LayeringMixinProps, paddingMixin } from '../mixins'
 import { unit } from '../utils/unit'
 import { MarginPadding } from '../commons'
@@ -132,7 +132,7 @@ interface NavbarItemProps {
 
 const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
   className: ['back', 'close'].includes(icon || '')
-    ? FALLBACK_ACTION_CLASS_NAME
+    ? TRIPLE_FALLBACK_ACTION_CLASS_NAME
     : '',
 }))<NavbarItemProps>`
   ${({ position }) => position && `position: ${position};`}

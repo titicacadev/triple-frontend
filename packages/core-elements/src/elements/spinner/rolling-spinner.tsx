@@ -1,7 +1,7 @@
+import { TRIPLE_FALLBACK_ACTION_CLASS_NAME } from '@titicaca/triple-fallback-action'
 import { useMemo, PropsWithChildren } from 'react'
 import styled, { keyframes } from 'styled-components'
 
-import { FALLBACK_ACTION_CLASS_NAME } from '../../constants'
 import { layeringMixin, LayeringMixinProps } from '../../mixins'
 import Container from '../container'
 
@@ -148,7 +148,7 @@ export default function RollingSpinner({
 
   return (
     <RollingSpinnerFrame
-      className={FALLBACK_ACTION_CLASS_NAME}
+      className={TRIPLE_FALLBACK_ACTION_CLASS_NAME}
       zTier={zTier}
       zIndex={zIndex}
     >
