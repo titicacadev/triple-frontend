@@ -4,5 +4,5 @@
     "packages/*",
     "integration-test"
   ],
-  "version": "6.2.0"
+  "version": "6.2.1"
 }
