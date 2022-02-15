@@ -1,6 +1,7 @@
 import React, {
   CSSProperties,
   useEffect,
+  useState,
   useMemo,
   PropsWithChildren,
   useCallback,
@@ -8,7 +9,6 @@ import React, {
 import {
   GoogleMap,
   GoogleMapProps,
-  useGoogleMap,
   useLoadScript,
 } from '@react-google-maps/api'
 import { Spinner } from '@titicaca/core-elements'
@@ -85,7 +85,8 @@ export function MapView({
     libraries: GOOGLE_MAP_LIBRARIES,
   })
 
-  const map = useGoogleMap()
+  const [map] = useState<google.maps.Map>()
+
   const { center, zoom, bounds } = getGeometry(coordinates)
 
   const options = useMemo(() => {
