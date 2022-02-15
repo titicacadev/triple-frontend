@@ -9,12 +9,13 @@ import {
 } from '@titicaca/core-elements'
 import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
 import { useAppCallback } from '@titicaca/ui-flow'
-import { TransitionType } from '@titicaca/modals'
+import { TransitionType, useLoginCtaModal } from '@titicaca/modals'
 import { ExternalLink, useNavigate } from '@titicaca/router'
 import {
   useUriHash,
   useHistoryFunctions,
   useIsomorphicNavigation,
+  useSessionAvailability,
 } from '@titicaca/react-contexts'
 import ActionSheet from '@titicaca/action-sheet'
 
@@ -93,14 +94,13 @@ export default function Reply({
   fetchMoreReplies: (reply?: ReplyType) => void
 }) {
   const [likeReaction, setLikeReactions] = useState(reactions.like)
-
   const { setEditingMessage } = useRepliesContext()
-
   const { push, back } = useHistoryFunctions()
-
   const { asyncBack } = useIsomorphicNavigation()
-
   const navigate = useNavigate()
+
+  const sessionAvailable = useSessionAvailability()
+  const { show: showLoginCta } = useLoginCtaModal()
 
   const handleMoreClick = useCallback(
     (id) => {
@@ -114,6 +114,11 @@ export default function Reply({
     mentioningUserUid,
     mentioningUserName,
   }: ReplyType['actionSpecifications']['reply']) => {
+    if (!sessionAvailable) {
+      showLoginCta()
+      return
+    }
+
     setEditingMessage({
       parentMessageId: toMessageId,
       content: {
@@ -174,6 +179,11 @@ export default function Reply({
   )
 
   const handleLikeReplyClick = async ({ messageId }: { messageId: string }) => {
+    if (!sessionAvailable) {
+      showLoginCta()
+      return
+    }
+
     await likeReply({ messageId })
 
     setLikeReactions((prev) => ({
@@ -187,6 +197,11 @@ export default function Reply({
   }: {
     messageId: string
   }) => {
+    if (!sessionAvailable) {
+      showLoginCta()
+      return
+    }
+
     await unlikeReply({ messageId })
 
     setLikeReactions((prev) => ({
