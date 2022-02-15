@@ -291,9 +291,7 @@ export default function Reply({
               size={12}
               color="gray300"
               bold
-              onClick={() => {
-                handleWriteReplyClick(actionReply)
-              }}
+              onClick={() => handleWriteReplyClick(actionReply)}
             >
               답글달기
             </Text>
@@ -344,7 +342,7 @@ export default function Reply({
         onEditClick={() =>
           handleEditReplyClick({
             ...edit,
-            toMessageId: actionReply.toMessageId,
+            toMessageId: actionReply ? actionReply.toMessageId : '',
             messageId: id,
           })
         }
