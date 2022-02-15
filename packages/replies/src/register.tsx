@@ -9,7 +9,7 @@ import AutoResizingTextarea, { TextAreaHandle } from './auto-resizing-textarea'
 import { useRepliesContext } from './context'
 import { ResourceType, Reply } from './types'
 
-const RegisterButton = styled.button`
+const RegisterButton = styled.button<{ active: boolean }>`
   width: 26px;
   padding: 0;
   margin-left: 20px;
@@ -17,7 +17,7 @@ const RegisterButton = styled.button`
   font-size: 15px;
   font-weight: bold;
   color: ${(props) =>
-    props.disabled ? 'var(--color-blue500)' : 'var(--color-blue)'};
+    props.active ? 'var(--color-blue500)' : 'var(--color-blue)'};
   background: inherit;
   border: none;
   outline: none;
@@ -49,7 +49,6 @@ function Register(
   } = useRepliesContext()
 
   const sessionAvailable = useSessionAvailability()
-
   const { show: showLoginCta } = useLoginCtaModal()
 
   const handleRegister = async () => {
@@ -110,7 +109,7 @@ function Register(
           onClick={() => {
             handleRegister()
           }}
-          disabled={!plaintext}
+          active={!plaintext}
         >
           등록
         </RegisterButton>
