@@ -1,7 +1,14 @@
-import * as React from 'react'
 import * as CSS from 'csstype'
 import styled, { css } from 'styled-components'
 import { Color, getColor, brightGray, white } from '@titicaca/color-palette'
+import {
+  PropsWithChildren,
+  Children,
+  cloneElement,
+  ReactElement,
+  ReactNode,
+  HTMLAttributes,
+} from 'react'
 
 import { FALLBACK_ACTION_CLASS_NAME } from '../constants'
 import { layeringMixin, LayeringMixinProps, paddingMixin } from '../mixins'
@@ -176,7 +183,7 @@ export function NavbarWrapper({
   zTier,
   zIndex,
   children,
-}: React.PropsWithChildren<
+}: PropsWithChildren<
   {
     position?: CSS.Property.Position
     top?: number | string
@@ -191,9 +198,9 @@ export function NavbarWrapper({
       zTier={zTier}
       zIndex={zIndex}
     >
-      {React.Children.map(children, (child) => {
-        return React.cloneElement(
-          child as React.ReactElement<{
+      {Children.map(children, (child) => {
+        return cloneElement(
+          child as ReactElement<{
             position: 'relative'
           }>,
           {
@@ -214,10 +221,10 @@ function Navbar({
   ...props
 }: {
   renderTitle?: (props?: unknown) => JSX.Element
-  children?: React.ReactNode
+  children?: ReactNode
 } & NavbarProps &
   LayeringMixinProps &
-  React.HTMLAttributes<HTMLDivElement>) {
+  HTMLAttributes<HTMLDivElement>) {
   return (
     <NavbarFrame zTier={zTier} zIndex={zIndex} {...props}>
       {renderTitle && renderTitle()}

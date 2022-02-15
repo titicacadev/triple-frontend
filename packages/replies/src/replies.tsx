@@ -1,10 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-  useCallback,
-  MouseEvent,
-  useRef,
-} from 'react'
+import { useEffect, useState, useCallback, MouseEvent, useRef } from 'react'
 import { Container } from '@titicaca/core-elements'
 
 import {

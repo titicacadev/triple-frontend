@@ -1,4 +1,3 @@
-import React from 'react'
 import { Section, Container, MarginPadding } from '@titicaca/core-elements'
 
 import Carousel from './carousel'

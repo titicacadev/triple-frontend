@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { EventTrackingProvider } from './event-tracking-context'
 
 export function withEventTrackingProvider<P>(

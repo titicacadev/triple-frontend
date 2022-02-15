@@ -1,4 +1,4 @@
-import React, { MouseEvent, PropsWithChildren, useCallback } from 'react'
+import { MouseEvent, PropsWithChildren, useCallback } from 'react'
 import { OverlayViewProps, OverlayView } from '@react-google-maps/api'
 
 import { Circle, CirclePin, MarkerBaseProps } from './circle-marker-base'

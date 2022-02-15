@@ -1,4 +1,3 @@
-import React from 'react'
 import { Container } from '@titicaca/core-elements'
 import {
   MapView,

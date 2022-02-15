@@ -1,4 +1,3 @@
-import React from 'react'
 import { Button } from '@titicaca/core-elements'
 
 export default function Cta({

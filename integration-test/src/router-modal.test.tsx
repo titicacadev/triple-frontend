@@ -8,7 +8,7 @@ import {
   UserAgentProvider,
 } from '@titicaca/react-contexts'
 import { ExternalLink } from '@titicaca/router'
-import React, { PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 
 import { mockLocation } from './utils/location'
 

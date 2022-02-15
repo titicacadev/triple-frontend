@@ -1,4 +1,3 @@
-import React from 'react'
 import { WithTranslation } from 'react-i18next'
 
 import useI18n from './use-i18n'

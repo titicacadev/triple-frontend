@@ -1,4 +1,3 @@
-import React from 'react'
 import { Spinner, RollingSpinner } from '@titicaca/core-elements'
 
 export default {

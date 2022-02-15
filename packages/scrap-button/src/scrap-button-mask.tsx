@@ -1,9 +1,4 @@
-import React, {
-  ComponentType,
-  createContext,
-  PropsWithChildren,
-  useContext,
-} from 'react'
+import { ComponentType, createContext, PropsWithChildren, useContext } from 'react';
 
 const MaskContext = createContext(false)
 

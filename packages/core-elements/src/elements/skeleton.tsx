@@ -1,4 +1,3 @@
-import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import { gray100, gray20 } from '@titicaca/color-palette'
 

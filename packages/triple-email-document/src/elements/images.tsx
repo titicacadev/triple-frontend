@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react'
+import { Children, PropsWithChildren } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
 import styled from 'styled-components'
 
@@ -96,9 +96,7 @@ export default function Images({
 }
 
 function ImagesRow({ children }: PropsWithChildren<unknown>) {
-  const count = React.Children.toArray(children).filter(
-    (child) => !!child,
-  ).length
+  const count = Children.toArray(children).filter((child) => !!child).length
 
   return <Tr tdWidth={100 / count}>{children}</Tr>
 }

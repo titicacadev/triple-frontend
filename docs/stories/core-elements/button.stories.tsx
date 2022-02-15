@@ -1,4 +1,3 @@
-import React from 'react'
 import { Button, ButtonProps, GlobalSizes } from '@titicaca/core-elements'
 import { Meta, Story } from '@storybook/react'
 import { Property } from 'csstype'

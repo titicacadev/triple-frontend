@@ -1,4 +1,3 @@
-import React from 'react'
 import { Container, Text } from '@titicaca/core-elements'
 
 export default function ModalBody({

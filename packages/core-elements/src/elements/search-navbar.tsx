@@ -1,6 +1,12 @@
-import * as React from 'react'
 import styled from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
+import {
+  forwardRef,
+  KeyboardEvent,
+  MouseEventHandler,
+  Ref,
+  SyntheticEvent,
+} from 'react'
 
 import { LayeringMixinProps, layeringMixin } from '../mixins'
 
@@ -55,15 +61,15 @@ const DeleteIcon = styled(Icon)`
 
 interface InputProps {
   placeholder?: string
-  onInputChange?: (e: React.SyntheticEvent, value: string) => void
-  onBlur?: (e: React.SyntheticEvent) => void
-  onFocus?: (e: React.SyntheticEvent) => void
-  onKeyUp?: (e: React.KeyboardEvent) => void
-  onClick?: React.MouseEventHandler<HTMLInputElement>
+  onInputChange?: (e: SyntheticEvent, value: string) => void
+  onBlur?: (e: SyntheticEvent) => void
+  onFocus?: (e: SyntheticEvent) => void
+  onKeyUp?: (e: KeyboardEvent) => void
+  onClick?: MouseEventHandler<HTMLInputElement>
   value?: string
 }
 
-const Input = React.forwardRef(
+const Input = forwardRef(
   (
     {
       placeholder,
@@ -74,7 +80,7 @@ const Input = React.forwardRef(
       value,
       onClick,
     }: InputProps,
-    ref?: React.Ref<HTMLInputElement>,
+    ref?: Ref<HTMLInputElement>,
   ) => (
     <InputText
       placeholder={placeholder}
@@ -108,10 +114,10 @@ export default function SearchNavbar({
   ...rest
 }: {
   onSearch: () => void
-  onInputClick?: React.MouseEventHandler<HTMLInputElement>
-  onBackClick: (event: React.SyntheticEvent) => void
-  onDeleteClick?: (event: React.SyntheticEvent) => void
-  inputRef?: React.Ref<HTMLInputElement>
+  onInputClick?: MouseEventHandler<HTMLInputElement>
+  onBackClick: (event: SyntheticEvent) => void
+  onDeleteClick?: (event: SyntheticEvent) => void
+  inputRef?: Ref<HTMLInputElement>
   borderless?: boolean
   backIconType?: 'back' | 'close'
 } & InputProps &

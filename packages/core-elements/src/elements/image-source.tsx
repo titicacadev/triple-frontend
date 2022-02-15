@@ -1,5 +1,3 @@
-import React from 'react'
-
 import formatSourceUrl from '../utils/format-source-url'
 
 export type ImageSourceType = typeof ImageSource

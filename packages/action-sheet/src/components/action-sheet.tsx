@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, ReactNode, MouseEvent, useRef } from 'react'
+import { PropsWithChildren, ReactNode, MouseEvent, useRef } from 'react';
 import styled, { css } from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
 import {

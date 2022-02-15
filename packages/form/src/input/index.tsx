@@ -1,4 +1,3 @@
-import * as React from 'react'
 import InputMask, { MaskOptions } from 'react-input-mask'
 import styled, { css } from 'styled-components'
 import { getColor } from '@titicaca/color-palette'

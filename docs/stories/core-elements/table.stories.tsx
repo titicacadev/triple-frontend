@@ -1,4 +1,3 @@
-import React from 'react'
 import { Table, TableProps } from '@titicaca/core-elements'
 
 import SAMPLE from '../__mocks__/table.sample.json'

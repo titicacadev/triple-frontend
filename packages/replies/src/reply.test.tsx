@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 import '@testing-library/jest-dom'
 import { fireEvent, render, waitFor } from '@testing-library/react'
 import { EnvProvider, SessionContextProvider } from '@titicaca/react-contexts'

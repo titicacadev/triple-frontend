@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { ComponentStoryObj, Meta } from '@storybook/react'
 import { ScrollSpyContainer, ScrollSpyEntity } from '@titicaca/scroll-spy'
 import { PoiListElement } from '@titicaca/poi-list-elements'

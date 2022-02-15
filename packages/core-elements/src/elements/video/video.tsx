@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { FrameRatioAndSizes } from '../../commons'
 
 import VideoFrame from './video-frame'

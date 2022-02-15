@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react'
+import { useMemo, useCallback } from 'react'
 import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
 import { initialize } from '@titicaca/standard-action-handler'
 import { useNavigate } from '@titicaca/router'

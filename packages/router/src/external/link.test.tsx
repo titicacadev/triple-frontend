@@ -1,6 +1,5 @@
 import '@testing-library/jest-dom'
 import 'jest-styled-components'
-import React from 'react'
 import { fireEvent, render } from '@testing-library/react'
 import {
   useSessionAvailability,

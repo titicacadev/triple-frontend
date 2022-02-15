@@ -1,5 +1,4 @@
 import { brightGray, gray, white } from '@titicaca/color-palette'
-import React from 'react'
 import styled, { css } from 'styled-components'
 
 import TabContainer from './tab-container'

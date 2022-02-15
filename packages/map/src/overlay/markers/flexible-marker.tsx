@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { CircleMarker, CircleMarkerProps } from './primary-marker'
 
 /**

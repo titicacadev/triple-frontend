@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 
 export const DIRECTION_BUTTON_WIDTH = 40

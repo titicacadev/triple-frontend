@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react';
 import { LayeringMixinProps } from '@titicaca/core-elements'
 
 import { Overlay, BottomFixedContainer } from './elements'

@@ -1,4 +1,4 @@
-import React, {
+import {
   SyntheticEvent,
   KeyboardEvent,
   useCallback,
@@ -7,7 +7,8 @@ import React, {
   useRef,
   useState,
   MouseEventHandler,
-} from 'react'
+} from 'react';
+
 import styled, { css } from 'styled-components'
 import {
   Container,

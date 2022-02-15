@@ -1,4 +1,3 @@
-import React from 'react'
 import PublicHeader, { PublicHeaderProps } from '@titicaca/public-header'
 import { Meta, Story } from '@storybook/react'
 import {

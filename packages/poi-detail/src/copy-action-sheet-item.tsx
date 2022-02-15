@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import { useCallback } from 'react';
 import ActionSheet from '@titicaca/action-sheet'
 import { useI18n } from '@titicaca/i18n'
 

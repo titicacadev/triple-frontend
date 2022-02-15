@@ -1,4 +1,3 @@
-import React from 'react'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
 import { ScrapsProvider } from '@titicaca/react-contexts'
 import { Meta, StoryObj } from '@storybook/react'

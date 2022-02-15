@@ -1,4 +1,3 @@
-import React from 'react'
 import { Image, H3 } from '@titicaca/core-elements'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 

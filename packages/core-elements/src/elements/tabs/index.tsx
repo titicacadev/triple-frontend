@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { MarginPadding } from '../../commons'
 
 import BasicTab from './basic-tab'

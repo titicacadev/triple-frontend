@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import styled from 'styled-components'
 import IntersectionObserver from '@titicaca/intersection-observer'
 import { generateImageUrl, Version, Quality } from '@titicaca/content-utilities'

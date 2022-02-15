@@ -1,4 +1,3 @@
-import React from 'react'
 import { I18nextProvider, I18nextProviderProps } from 'react-i18next'
 
 import i18n from './i18next'

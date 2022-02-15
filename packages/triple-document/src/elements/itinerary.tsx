@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import styled from 'styled-components'
 import { Container, Card, Text, FlexBox, Button } from '@titicaca/core-elements'
 import { gray100, white } from '@titicaca/color-palette'

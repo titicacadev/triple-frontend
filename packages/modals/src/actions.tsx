@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Modal, { silenceEvent } from './modal-base'
 
 export default function ModalActions({

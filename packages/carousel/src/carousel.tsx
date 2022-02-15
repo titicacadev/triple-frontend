@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import React, { PropsWithChildren, useRef, useEffect, useState } from 'react'
+import { PropsWithChildren, useRef, useEffect, useState } from 'react'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 import { ArrowIcon } from '@titicaca/icons'
 import { Container, MarginPadding, marginMixin } from '@titicaca/core-elements'

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Container, Rating } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 

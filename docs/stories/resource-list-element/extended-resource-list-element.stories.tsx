@@ -1,4 +1,3 @@
-import React from 'react'
 import ExtendedResourceListElement from '@titicaca/resource-list-element'
 import Pricing from '@titicaca/pricing'
 import { Container } from '@titicaca/core-elements'

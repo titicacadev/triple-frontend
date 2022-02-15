@@ -1,4 +1,4 @@
-import React, { RefObject } from 'react'
+import { ComponentType, PropsWithChildren, PureComponent, ReactNode, RefObject } from 'react';
 import styled from 'styled-components'
 import { FlickingEvent, FlickingOptions } from '@egjs/flicking'
 import Flicking, { FlickingProps } from '@egjs/react-flicking'
@@ -9,7 +9,7 @@ export interface CarouselProps
   flickingRef: RefObject<Flicking>
   margin?: MarginPadding
   borderRadius?: number
-  pageLabelRenderer: (params: { currentIndex: number }) => React.ReactNode
+  pageLabelRenderer: (params: { currentIndex: number }) => ReactNode
 }
 
 const CarouselContainer = styled(Container)`
@@ -26,8 +26,8 @@ const TopRightControl = styled.div`
   z-index: 2;
 `
 
-export default class Carousel extends React.PureComponent<
-  React.PropsWithChildren<CarouselProps>,
+export default class Carousel extends PureComponent<
+  PropsWithChildren<CarouselProps>,
   { currentIndex: number }
 > {
   static defaultProps: Partial<Carousel['props']> = {
@@ -101,7 +101,7 @@ export default class Carousel extends React.PureComponent<
       children,
       flickingRef,
     } = this.props
-    const PageLabel: React.ComponentType<{ currentIndex: number }> = ({
+    const PageLabel: ComponentType<{ currentIndex: number }> = ({
       currentIndex,
     }) => {
       const Label = pageLabelRenderer({ currentIndex })

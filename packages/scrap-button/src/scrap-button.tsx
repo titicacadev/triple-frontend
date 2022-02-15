@@ -2,7 +2,7 @@ import {
   useEventTrackerWithMetadata,
   useScrapsContext,
 } from '@titicaca/react-contexts'
-import React, { ComponentType, MouseEventHandler } from 'react'
+import { ComponentType, MouseEventHandler } from 'react';
 import styled from 'styled-components'
 
 import { withMask } from './scrap-button-mask'

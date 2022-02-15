@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, TouchEventHandler, useCallback } from 'react'
+import { MouseEventHandler, TouchEventHandler, useCallback } from 'react'
 
 interface LongClickableComponentProps<T = Element> {
   onTouchStart?: TouchEventHandler<T> | null

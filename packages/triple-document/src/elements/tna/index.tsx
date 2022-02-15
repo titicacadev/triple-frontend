@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { HR2 } from '@titicaca/core-elements'
 import { get } from '@titicaca/fetcher'
 

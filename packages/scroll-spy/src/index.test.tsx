@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import IntersectionObserver from '@titicaca/intersection-observer'
 import { render } from '@testing-library/react'
 

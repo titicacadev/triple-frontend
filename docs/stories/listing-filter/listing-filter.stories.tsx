@@ -1,4 +1,3 @@
-import React from 'react'
 import ListingFilter from '@titicaca/listing-filter'
 import { ComponentStory, Meta } from '@storybook/react'
 

@@ -1,4 +1,3 @@
-import React from 'react'
 import styled, { css } from 'styled-components'
 
 import withField from '../with-field'

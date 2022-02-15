@@ -1,4 +1,3 @@
-import React from 'react'
 import { Text } from '@titicaca/core-elements'
 import { Modal, Alert } from '@titicaca/modals'
 import styled from 'styled-components'

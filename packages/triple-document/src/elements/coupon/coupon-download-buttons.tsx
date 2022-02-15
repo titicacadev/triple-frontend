@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@titicaca/core-elements'
 import styled from 'styled-components'
 import {

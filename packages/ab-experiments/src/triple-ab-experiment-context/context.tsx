@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   PropsWithChildren,
   useCallback,
@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useRef,
   useState,
-} from 'react'
+} from 'react';
 import {
   useEventTrackingContext,
   useSessionAvailability,

@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 import { Text } from '@titicaca/core-elements'
 
 export default function Comment({ children }: PropsWithChildren<unknown>) {

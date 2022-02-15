@@ -1,4 +1,3 @@
-import React from 'react'
 import ExtendedResourceListElement, {
   ResourceListElementProps,
 } from '@titicaca/resource-list-element'

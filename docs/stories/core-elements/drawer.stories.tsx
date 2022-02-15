@@ -1,4 +1,3 @@
-import React from 'react'
 import { Button, Container, Drawer, Text } from '@titicaca/core-elements'
 import { ComponentStory, Meta } from '@storybook/react'
 

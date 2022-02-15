@@ -1,4 +1,3 @@
-import React from 'react'
 import '@testing-library/jest-dom'
 import 'jest-styled-components'
 import { render } from '@testing-library/react'

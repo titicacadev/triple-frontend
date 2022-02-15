@@ -1,14 +1,14 @@
-import * as React from 'react'
 import moment from 'moment'
 import styled from 'styled-components'
 import DayPicker, { DayModifiers, Modifiers } from 'react-day-picker'
+import { memo, ReactNode, useMemo, useCallback } from 'react'
 
 import PickerFrame, { generateSelectedCircleStyle } from './picker-frame'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
 import useDisabledDays, { DislableDaysProps } from './use-disabled-days'
 import { usePublicHolidays } from './use-public-holidays'
 
-const MemoDayPicker = React.memo(DayPicker)
+const MemoDayPicker = memo(DayPicker)
 
 const DayContainer = styled(PickerFrame)`
   ${generateSelectedCircleStyle('.DayPicker-Day--selected')}
@@ -45,7 +45,7 @@ function DatePicker({
 }: DislableDaysProps & {
   day: string | null
   onDateChange: (date: Date) => void
-  renderDayInfo?: Record<string, React.ReactNode>
+  renderDayInfo?: Record<string, ReactNode>
   numberOfMonths?: number
   hideTodayLabel?: boolean
   height?: string
@@ -67,22 +67,22 @@ function DatePicker({
     numberOfMonths,
   })
 
-  const selectedDay = React.useMemo(
+  const selectedDay = useMemo(
     () => (day ? moment(day).toDate() : undefined),
     [day],
   )
 
-  const formattedFromMonth = React.useMemo(
+  const formattedFromMonth = useMemo(
     () => (fromMonth ? moment(fromMonth).toDate() : undefined),
     [fromMonth],
   )
 
-  const formattedToMonth = React.useMemo(
+  const formattedToMonth = useMemo(
     () => (toMonth ? moment(toMonth).toDate() : undefined),
     [toMonth],
   )
 
-  const modifiers: Partial<Modifiers> = React.useMemo(
+  const modifiers: Partial<Modifiers> = useMemo(
     () => ({
       publicHolidays: publicHolidaysFromProps || publicHolidays,
       sunday: (day) => day.getDay() === 0,
@@ -91,7 +91,7 @@ function DatePicker({
     [publicHolidaysFromProps, publicHolidays],
   )
 
-  const renderDay = React.useCallback(
+  const renderDay = useCallback(
     (day: Date, _: DayModifiers) => {
       const convertedDay = day.getDate()
       const date = day.toISOString().split('T')[0]
@@ -107,7 +107,7 @@ function DatePicker({
     [renderDayInfo],
   )
 
-  const handleDayClick = React.useCallback(
+  const handleDayClick = useCallback(
     (day: Date, modifiers: DayModifiers): void => {
       if (modifiers.disabled) {
         return

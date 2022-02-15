@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react';
 import { Alert } from '@titicaca/modals'
 
 import { WebStorageError } from './error'

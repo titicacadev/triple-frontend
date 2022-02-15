@@ -1,4 +1,3 @@
-import React from 'react'
 import { Carousel, Container } from '@titicaca/core-elements'
 import TripleMedia from '@titicaca/triple-media'
 import { ImageMeta } from '@titicaca/type-definitions'

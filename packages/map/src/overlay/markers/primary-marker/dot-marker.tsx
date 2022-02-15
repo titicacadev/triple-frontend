@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import React, { MouseEventHandler, PropsWithChildren } from 'react'
+import { MouseEventHandler, PropsWithChildren } from 'react'
 
 interface DotMarkerProps {
   active: boolean

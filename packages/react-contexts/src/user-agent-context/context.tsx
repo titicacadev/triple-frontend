@@ -1,4 +1,4 @@
-import React, { ComponentType, createContext, FC, useContext } from 'react'
+import { ComponentType, createContext, FC, useContext } from 'react'
 import { DeepPartial } from 'utility-types'
 
 import { UserAgentValue } from './utils'

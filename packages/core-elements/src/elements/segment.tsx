@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 import styled, { css, ThemedStyledProps } from 'styled-components'
 
 import { MarginPadding } from '../commons'

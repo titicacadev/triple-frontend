@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, PropsWithChildren } from 'react'
+import { MouseEventHandler, PropsWithChildren } from 'react'
 import styled from 'styled-components'
 import { GlobalSizes } from '@titicaca/type-definitions'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'

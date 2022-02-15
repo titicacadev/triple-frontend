@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { Segment, List } from '@titicaca/core-elements'
 import ActionSheet from '@titicaca/action-sheet'
 import { useI18n } from '@titicaca/i18n'

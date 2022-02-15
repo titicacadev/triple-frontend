@@ -1,4 +1,4 @@
-import React, { FC, useRef, useEffect, useState } from 'react'
+import { FC, useRef, useEffect, useState } from 'react'
 import { MarginPadding } from '@titicaca/core-elements'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { FlickingOptions } from '@egjs/flicking'

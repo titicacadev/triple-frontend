@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import moment from 'moment'
 import { List } from '@titicaca/core-elements'
 import {

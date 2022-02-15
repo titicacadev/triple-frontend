@@ -1,5 +1,3 @@
-import * as React from 'react'
-
 import Modal from './modal-base'
 import Actions from './actions'
 import ModalBody from './body'

@@ -1,6 +1,6 @@
-import * as React from 'react'
 import styled, { css } from 'styled-components'
 import CSS from 'csstype'
+import { ReactNode, PureComponent, HTMLAttributes } from 'react'
 
 import { MarginPadding } from '../commons'
 import { marginMixin } from '../mixins'
@@ -194,7 +194,7 @@ export const PromoLabel = styled.div<PromoLabelProps>`
 interface LabelProps extends PromoLabelProps, RadioLabelProps {
   radio?: boolean
   promo?: boolean
-  children?: React.ReactNode
+  children?: ReactNode
 }
 
 const LabelGroup = styled(Container)<{ horizontalGap?: number }>`
@@ -204,9 +204,9 @@ const LabelGroup = styled(Container)<{ horizontalGap?: number }>`
     `};
   }
 `
-export default class Label extends React.PureComponent<
+export default class Label extends PureComponent<
   LabelProps,
-  React.HTMLAttributes<HTMLElement>
+  HTMLAttributes<HTMLElement>
 > {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   public static Group = LabelGroup

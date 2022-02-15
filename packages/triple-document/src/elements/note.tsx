@@ -1,4 +1,3 @@
-import React from 'react'
 import { Segment, Text } from '@titicaca/core-elements'
 
 export default function Note({

@@ -1,4 +1,3 @@
-import React from 'react'
 import styled, { css } from 'styled-components'
 import { Container, Text, withField } from '@titicaca/core-elements'
 import { getColor } from '@titicaca/color-palette'

@@ -1,4 +1,3 @@
-import React from 'react'
 import styled, { StyledComponentProps } from 'styled-components'
 
 export const TrackContainer = styled.div.attrs<{ left: number; right: number }>(

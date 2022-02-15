@@ -1,4 +1,3 @@
-import React from 'react'
 import dynamic from 'next/dynamic'
 import { ReactIntersectionObserverProps } from '@titicaca/react-intersection-observer'
 

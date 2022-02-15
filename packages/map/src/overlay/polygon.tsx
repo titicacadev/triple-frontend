@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { Polygon as GoogleMapPolygon } from '@react-google-maps/api'
 
 const defaultPolygonStyle: google.maps.PolygonOptions = {

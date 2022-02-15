@@ -1,11 +1,6 @@
 import type { IncomingMessage } from 'http'
 
-import React, {
-  createContext,
-  useContext,
-  PropsWithChildren,
-  useMemo,
-} from 'react'
+import { createContext, useContext, PropsWithChildren, useMemo } from 'react'
 
 import { parseTripleClientUserAgent } from './triple-client-user-agent'
 import type { App } from './types'

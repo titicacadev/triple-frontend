@@ -1,6 +1,5 @@
 import { LocalLink } from '@titicaca/router'
 import styled from 'styled-components'
-import React from 'react'
 import { Meta } from '@storybook/react'
 
 import {

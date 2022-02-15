@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import ActionSheet from '@titicaca/action-sheet'
 import { RangePicker } from '@titicaca/date-picker'

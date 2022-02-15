@@ -1,4 +1,3 @@
-import React from 'react'
 import { FlexBox, Text, Icon } from '@titicaca/core-elements'
 import { useHistoryFunctions } from '@titicaca/react-contexts'
 

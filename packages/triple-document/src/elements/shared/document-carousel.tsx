@@ -1,4 +1,3 @@
-import React from 'react'
 import { MarginPadding, Carousel } from '@titicaca/core-elements'
 
 export default function DocumentCarousel({

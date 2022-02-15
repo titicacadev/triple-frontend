@@ -1,4 +1,3 @@
-import * as React from 'react'
 import styled from 'styled-components'
 import { white, brightGray } from '@titicaca/color-palette'
 import { useUserAgentContext } from '@titicaca/react-contexts'

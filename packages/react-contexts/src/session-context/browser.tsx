@@ -1,7 +1,7 @@
 import { IncomingMessage } from 'http'
 
 import { NextPageContext } from 'next'
-import React, { PropsWithChildren, useRef, useCallback, useMemo } from 'react'
+import { PropsWithChildren, useRef, useCallback, useMemo } from 'react'
 import {
   fetcher,
   ssrFetcherize,
