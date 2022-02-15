@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 6.2.1
+
+### modal
+
+- 업데이트된 session-context를 반영하여 README를 수정합니다. [#1928](https://github.com/titicacadev/triple-frontend/pull/1928)
+
+### map
+
+- FocusTracker에 activeAutoZoom props을 추가합니다. [#1926](https://github.com/titicacadev/triple-frontend/pull/1926)
+
 ## 6.2.0
 
 ### core-elements
