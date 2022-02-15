@@ -31,6 +31,7 @@ interface TextareaProps {
   value: string
   minRows: number
   maxRows: number
+  readOnly: boolean
   placeholder?: string
   onChange: (message: string) => void
 }
@@ -40,7 +41,7 @@ export interface TextAreaHandle {
 }
 
 function AutoResizingTextarea(
-  { value, minRows, maxRows, placeholder, onChange }: TextareaProps,
+  { value, minRows, maxRows, readOnly, placeholder, onChange }: TextareaProps,
   ref: ForwardedRef<TextAreaHandle>,
 ) {
   const [rows, setRows] = useState(minRows)
@@ -79,6 +80,7 @@ function AutoResizingTextarea(
       onChange={handleChange}
       lineHeight={TEXTAREA_LINE_HEIGHT}
       ref={textareaRef}
+      readOnly={readOnly}
     />
   )
 }

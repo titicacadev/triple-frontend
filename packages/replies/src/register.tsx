@@ -1,6 +1,8 @@
 import { ForwardedRef, forwardRef } from 'react'
 import styled from 'styled-components'
 import { Container, FlexBox, HR1 } from '@titicaca/core-elements'
+import { useLoginCtaModal } from '@titicaca/modals'
+import { useSessionAvailability } from '@titicaca/react-contexts'
 
 import { authorMessage } from './replies-api-clients'
 import AutoResizingTextarea, { TextAreaHandle } from './auto-resizing-textarea'
@@ -46,7 +48,16 @@ function Register(
     handleContentChange,
   } = useRepliesContext()
 
+  const sessionAvailable = useSessionAvailability()
+
+  const { show: showLoginCta } = useLoginCtaModal()
+
   const handleRegister = async () => {
+    if (!sessionAvailable) {
+      showLoginCta()
+      return
+    }
+
     if (!plaintext) {
       return
     }
@@ -72,7 +83,10 @@ function Register(
   }
 
   return (
-    <Container cursor="pointer">
+    <Container
+      cursor="pointer"
+      onClick={!sessionAvailable ? () => showLoginCta() : undefined}
+    >
       <HR1 margin={{ top: 0 }} />
 
       <FlexBox
@@ -89,6 +103,7 @@ function Register(
           value={plaintext || ''}
           onChange={handleContentChange}
           ref={ref}
+          readOnly={!sessionAvailable}
         />
 
         <RegisterButton
