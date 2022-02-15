@@ -16,7 +16,7 @@
         "runtime": "automatic",
         "pragma": "React.createElement",
         "pragmaFrag": "React.Fragment",
-        "throwIfNamespace": true,
+        "throwIfNamespace": false,
         "development": false,
         "useBuiltins": false
       }
