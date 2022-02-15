@@ -1,6 +1,6 @@
+import { TRIPLE_FALLBACK_ACTION_CLASS_NAME } from '@titicaca/triple-fallback-action'
 import styled, { css, keyframes } from 'styled-components'
 
-import { FALLBACK_ACTION_CLASS_NAME } from '../../constants'
 import { layeringMixin, LayeringMixinProps } from '../../mixins'
 
 const loadingAnimation = keyframes`
@@ -52,7 +52,7 @@ export default function Spinner({
 } & LayeringMixinProps) {
   return (
     <Container full={full} zTier={zTier} zIndex={zIndex}>
-      <Wrapper className={FALLBACK_ACTION_CLASS_NAME}>
+      <Wrapper className={TRIPLE_FALLBACK_ACTION_CLASS_NAME}>
         <Icon />
         {children}
       </Wrapper>
