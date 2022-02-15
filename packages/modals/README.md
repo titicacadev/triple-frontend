@@ -9,12 +9,14 @@
 `useLoginCTAModal` 훅을 사용하세요.
 
 ```ts
+import { useSessionAvailability } from '@titicaca/react-contexts'
+
 function Reviews() {
-  const { hasWebSession } = useSessionContext()
+  const sessionAvailable = useSessionAvailability()
   const { show: showLoginCTA } = useLoginCTAModal()
 
   const handleClick = () => {
-    if (!hasWebSession) {
+    if (!sessionAvailable) {
       showLoginCTA()
     }
   }
