@@ -18,6 +18,7 @@ export function CommonMeta() {
         rel="apple-touch-icon-precomposed"
         href="https://triple.guide/icons/favicon-152x152.png"
       />
+      <link rel="manifest" href="/manifest.json" />
     </Head>
   )
 }
