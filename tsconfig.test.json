@@ -58,6 +58,7 @@
       "@titicaca/style-box": ["style-box/src"],
       "@titicaca/triple-document": ["triple-document/src"],
       "@titicaca/triple-email-document": ["triple-email-document/src"],
+      "@titicaca/triple-fallback-action": ["triple-fallback-action/src"],
       "@titicaca/triple-media": ["triple-media/src"],
       "@titicaca/type-definitions": ["type-definitions/src"],
       "@titicaca/ui-flow": ["ui-flow/src"],
