@@ -1,4 +1,3 @@
-import React from 'react'
 import { Container, Text, MarginPadding, Image } from '@titicaca/core-elements'
 
 import AuthorIntro from './author-intro'

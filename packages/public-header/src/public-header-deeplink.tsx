@@ -1,5 +1,4 @@
 import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
-import React from 'react'
 
 import { ExtraActionItem } from './extra-action-item'
 import { ExtraActionSeperator } from './extra-action-seperator'

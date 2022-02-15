@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import { Container, Text, Button } from '@titicaca/core-elements'
 import styled from 'styled-components'
 import { TranslatedProperty } from '@titicaca/type-definitions'

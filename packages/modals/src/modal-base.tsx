@@ -1,10 +1,10 @@
-import * as React from 'react'
 import styled, { css } from 'styled-components'
 import {
   GlobalColors,
   layeringMixin,
   LayeringMixinProps,
 } from '@titicaca/core-elements'
+import { ReactNode, Children, SyntheticEvent } from 'react'
 
 const Overlay = styled.div<LayeringMixinProps>`
   position: fixed;
@@ -31,7 +31,7 @@ const Box = styled.div<{ width?: number } & LayeringMixinProps>`
   ${layeringMixin(0)}
 `
 
-const Actions = styled.div<{ children?: React.ReactNode }>`
+const Actions = styled.div<{ children?: ReactNode }>`
   display: block;
   width: 100%;
   height: 50px;
@@ -41,7 +41,7 @@ const Actions = styled.div<{ children?: React.ReactNode }>`
 
   a {
     ${({ children }) => {
-      const childrenCount = React.Children.count(children)
+      const childrenCount = Children.count(children)
 
       return css`
         width: calc((100% - ${childrenCount - 1}px) / ${childrenCount});
@@ -86,15 +86,15 @@ export default function ModalBase({
   zIndex,
 }: {
   open?: boolean
-  onClose?: (e: React.SyntheticEvent) => unknown
-  children?: React.ReactNode
+  onClose?: (e: SyntheticEvent) => unknown
+  children?: ReactNode
   width?: number
 } & LayeringMixinProps) {
   return open ? (
     <Overlay onClick={onClose} zTier={zTier} zIndex={zIndex}>
       <Box
         role="dialog"
-        onClick={(e?: React.SyntheticEvent) => silenceEvent(e)}
+        onClick={(e?: SyntheticEvent) => silenceEvent(e)}
         width={width}
         zIndex={1}
       >
@@ -104,7 +104,7 @@ export default function ModalBase({
   ) : null
 }
 
-export function silenceEvent(e?: React.SyntheticEvent) {
+export function silenceEvent(e?: SyntheticEvent) {
   if (e) {
     e.preventDefault()
     e.stopPropagation()

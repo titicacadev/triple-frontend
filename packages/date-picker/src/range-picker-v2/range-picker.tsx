@@ -1,7 +1,7 @@
-import * as React from 'react'
 import moment from 'moment'
 import styled, { css } from 'styled-components'
 import DayPicker, { DayModifiers, Modifiers } from 'react-day-picker'
+import { memo, ReactElement, ReactNode, useCallback, useMemo } from 'react'
 
 import { usePublicHolidays } from '../use-public-holidays'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from '../constants'
@@ -11,7 +11,7 @@ import { rangeMixin, dateLabelMixin } from '../mixins'
 
 import PickerFrame, { generateSelectedStyle } from './picker-frame'
 
-const MemoDayPicker = React.memo(DayPicker)
+const MemoDayPicker = memo(DayPicker)
 
 const RangeContainer = styled(PickerFrame)<{
   selectedAll: boolean
@@ -80,14 +80,14 @@ function RangePicker({
   numberOfMonths?: number
   height?: string
   enableSameDay?: boolean
-  renderDay?: (date: Date, modifiers?: DayModifiers) => React.ReactNode
+  renderDay?: (date: Date, modifiers?: DayModifiers) => ReactNode
   renderCaptionElement?: ({
     date,
     locale,
   }: {
     date: Date
     locale: string
-  }) => React.ReactElement
+  }) => ReactElement
 }) {
   const disabledDays = useDisabledDays({
     disabledDays: disabledDaysFromProps,
@@ -99,24 +99,24 @@ function RangePicker({
     numberOfMonths,
   })
 
-  const initialMonth = React.useMemo(getInitialMonth, [])
+  const initialMonth = useMemo(getInitialMonth, [])
 
-  const from = React.useMemo(
+  const from = useMemo(
     () => (startDate ? moment(startDate).toDate() : undefined),
     [startDate],
   )
-  const to = React.useMemo(
+  const to = useMemo(
     () => (endDate ? moment(endDate).toDate() : undefined),
     [endDate],
   )
-  const selectedDays = React.useMemo(
+  const selectedDays = useMemo(
     () =>
       [from, from && to ? { from, to } : undefined].filter(
         (day): day is Date | { from: Date; to: Date } => !!day,
       ),
     [from, to],
   )
-  const modifiers: Partial<Modifiers> = React.useMemo(
+  const modifiers: Partial<Modifiers> = useMemo(
     () => ({
       publicHolidays,
       sunday: (day) => day.getDay() === 0,
@@ -128,7 +128,7 @@ function RangePicker({
     [from, to, publicHolidays],
   )
 
-  const handleDayClick = React.useCallback(
+  const handleDayClick = useCallback(
     (day: Date, modifiers: DayModifiers) => {
       if (modifiers.disabled) {
         return

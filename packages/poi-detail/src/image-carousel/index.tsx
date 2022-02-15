@@ -1,4 +1,3 @@
-import React from 'react'
 import { useImagesContext } from '@titicaca/react-contexts'
 
 import CarouselSection from './carousel-section'

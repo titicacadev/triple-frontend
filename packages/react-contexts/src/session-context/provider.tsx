@@ -1,5 +1,5 @@
 import { NextPageContext } from 'next'
-import React, { PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 
 import { generateUserAgentValues } from '../user-agent-context'
 

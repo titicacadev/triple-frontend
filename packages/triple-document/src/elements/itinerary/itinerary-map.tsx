@@ -1,4 +1,4 @@
-import React, { useCallback, MouseEvent } from 'react'
+import { useCallback, MouseEvent } from 'react'
 import { Container } from '@titicaca/core-elements'
 import {
   MapView,

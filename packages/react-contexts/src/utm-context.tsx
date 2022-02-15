@@ -1,4 +1,4 @@
-import React, { createContext, useContext, ComponentType } from 'react'
+import { createContext, useContext, ComponentType } from 'react'
 import { DeepPartial } from 'utility-types'
 
 interface UtmQuery {

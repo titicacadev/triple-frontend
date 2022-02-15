@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback, useEffect } from 'react'
+import { useReducer, useCallback, useEffect } from 'react'
 import { useI18n } from '@titicaca/i18n'
 import {
   Section,

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { PoiListElementType } from './types'
 import {
   CompactPoiListElement,

@@ -1,4 +1,4 @@
-import React, { createRef, RefObject } from 'react'
+import { createRef, PureComponent, ReactNode, RefObject, SyntheticEvent } from 'react';
 import styled from 'styled-components'
 import { ImageSourceType, Image } from '@titicaca/core-elements'
 import {
@@ -38,14 +38,14 @@ interface ImageCarouselProps extends Omit<CarouselProps, 'pageLabelRenderer'> {
   height?: number
   frame?: FrameRatioAndSizes
   ImageSource?: ImageSourceType
-  onImageClick?: (e?: React.SyntheticEvent, image?: CarouselImageMeta) => void
-  showMoreRenderer?: (params: RendererProps) => React.ReactNode
-  pageLabelRenderer?: (params: RendererProps) => React.ReactNode
+  onImageClick?: (e?: SyntheticEvent, image?: CarouselImageMeta) => void
+  showMoreRenderer?: (params: RendererProps) => ReactNode
+  pageLabelRenderer?: (params: RendererProps) => ReactNode
   displayedTotalCount?: number
   optimized?: boolean
 }
 
-export default class ImageCarousel extends React.PureComponent<ImageCarouselProps> {
+export default class ImageCarousel extends PureComponent<ImageCarouselProps> {
   private flickingRef: RefObject<Flicking>
 
   static defaultProps: Partial<ImageCarousel['props']> = {

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Container, { ContainerProps } from './container'
 import { HR2 } from './hr'
 

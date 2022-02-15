@@ -1,6 +1,5 @@
 import type { IncomingMessage } from 'http'
 
-import React from 'react'
 import type { PropsWithChildren } from 'react'
 import { renderHook } from '@testing-library/react-hooks'
 

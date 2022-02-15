@@ -1,4 +1,3 @@
-import React from 'react'
 import ActionSheet from '@titicaca/action-sheet'
 import { useUriHash, useHistoryFunctions } from '@titicaca/react-contexts'
 

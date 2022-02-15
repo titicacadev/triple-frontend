@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import { Section, HR1, Button, MarginPadding } from '@titicaca/core-elements'
 import { useI18n } from '@titicaca/i18n'

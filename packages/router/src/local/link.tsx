@@ -1,4 +1,4 @@
-import React, { MouseEvent, MouseEventHandler, PropsWithChildren } from 'react'
+import { MouseEvent, MouseEventHandler, PropsWithChildren } from 'react'
 
 import { ANCHOR_TARGET_MAP } from '../common/target'
 import { RouterGuardedLink } from '../common/router-guarded-link'

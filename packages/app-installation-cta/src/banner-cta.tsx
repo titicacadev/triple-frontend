@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { LayeringMixinProps } from '@titicaca/core-elements'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
 

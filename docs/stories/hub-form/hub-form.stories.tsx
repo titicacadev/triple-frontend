@@ -1,4 +1,3 @@
-import React from 'react'
 import { HubForm, Cell, Cta } from '@titicaca/hub-form'
 import { Meta } from '@storybook/react'
 

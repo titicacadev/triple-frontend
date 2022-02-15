@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect } from 'react';
 import styled from 'styled-components'
 import { gray500, gray, blue, brightGray } from '@titicaca/color-palette'
 

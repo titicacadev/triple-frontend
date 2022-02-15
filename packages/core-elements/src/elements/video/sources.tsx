@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { MEDIA_FRAME_OPTIONS, FrameRatioAndSizes } from '../../commons'
 
 const MEDIA_CDN_URL_BASE = 'https://media.triple.guide'

@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import { Property } from 'csstype'
 import { getColor, Color } from '@titicaca/color-palette'

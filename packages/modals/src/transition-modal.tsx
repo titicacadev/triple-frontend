@@ -1,4 +1,4 @@
-import React, { ComponentType, FC, useMemo } from 'react'
+import { ComponentType, FC, useMemo } from 'react'
 import styled from 'styled-components'
 import { Text } from '@titicaca/core-elements'
 import {

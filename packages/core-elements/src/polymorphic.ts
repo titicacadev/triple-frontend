@@ -1,5 +1,3 @@
-import React from 'react'
-
 type Merge<T, U> = Omit<T, keyof U> & U
 
 type PropsWithAsProp<P, C extends Polymorphic> = P & { as?: C }

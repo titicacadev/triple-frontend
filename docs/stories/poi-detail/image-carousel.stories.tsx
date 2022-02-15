@@ -1,4 +1,3 @@
-import React from 'react'
 import { ImageCarousel } from '@titicaca/poi-detail'
 import {
   ImagesProvider,

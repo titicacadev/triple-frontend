@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useCallback } from 'react'
+import { MouseEventHandler, useCallback } from 'react'
 import { Text, Tag, Container, Image, Rating } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'

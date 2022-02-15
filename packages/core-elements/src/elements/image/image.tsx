@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 
 import { ImageStateContextProvider } from './context'
 import ImageImg from './img'

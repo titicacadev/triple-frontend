@@ -1,6 +1,6 @@
-import * as React from 'react'
 import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
+import { ReactNode, useRef } from 'react'
 
 import { layeringMixin, LayeringMixinProps } from '../mixins'
 
@@ -79,9 +79,9 @@ export default function Drawer({
   active?: boolean
   overflow?: string
   unmountOnExit?: boolean
-  children?: React.ReactNode
+  children?: ReactNode
 } & LayeringMixinProps) {
-  const drawerContainerRef = React.useRef<HTMLDivElement>(null)
+  const drawerContainerRef = useRef<HTMLDivElement>(null)
 
   return (
     <CSSTransition

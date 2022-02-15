@@ -1,4 +1,4 @@
-import React from 'react'
+import { createContext } from 'react';
 
 import ActionItemUI from './components/action-item'
 import ActionSheetUI from './components/action-sheet'
@@ -8,7 +8,7 @@ type ActionSheetContextValue = Pick<
   'onClose'
 >
 
-const { Provider, Consumer } = React.createContext<ActionSheetContextValue>({})
+const { Provider, Consumer } = createContext<ActionSheetContextValue>({})
 
 function ActionItem(
   props: Omit<Parameters<typeof ActionItemUI>[0], 'onClose'>,

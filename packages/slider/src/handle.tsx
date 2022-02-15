@@ -1,4 +1,3 @@
-import React from 'react'
 import styled, { StyledComponentProps } from 'styled-components'
 
 const HandleContainer = styled.div.attrs<{ percent: number }>(

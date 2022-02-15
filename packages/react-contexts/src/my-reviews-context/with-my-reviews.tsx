@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { Context, MyReviewsContextProps } from './my-reviews-context'
 
 export default function withMyReviews<P extends MyReviewsContextProps>(

@@ -3,7 +3,6 @@ import {
   PickerFrameV2 as PickFrame,
 } from '@titicaca/date-picker'
 import { ComponentStoryObj, Meta } from '@storybook/react'
-import React from 'react'
 
 export default {
   title: 'date-picker / RangePickerV2',

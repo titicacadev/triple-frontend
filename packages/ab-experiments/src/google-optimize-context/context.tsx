@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  PropsWithChildren,
-  createContext,
-  useContext,
-} from 'react'
+import { useState, useEffect, PropsWithChildren, createContext, useContext } from 'react';
 import Head from 'next/head'
 
 declare global {

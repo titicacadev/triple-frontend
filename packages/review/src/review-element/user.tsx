@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, MouseEventHandler } from 'react'
+import { PropsWithChildren, MouseEventHandler } from 'react'
 import styled from 'styled-components'
 import { Container, Text } from '@titicaca/core-elements'
 

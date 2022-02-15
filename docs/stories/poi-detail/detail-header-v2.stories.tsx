@@ -1,4 +1,3 @@
-import React from 'react'
 import { DetailHeaderV2 } from '@titicaca/poi-detail'
 import { UserAgentProvider } from '@titicaca/react-contexts'
 import { ComponentStoryObj, Meta } from '@storybook/react'

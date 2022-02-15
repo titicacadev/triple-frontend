@@ -1,5 +1,4 @@
 import { useEnv } from '@titicaca/react-contexts'
-import React from 'react'
 import renderer from 'react-test-renderer'
 
 import { EssentialContentMeta } from './essential-content-meta'

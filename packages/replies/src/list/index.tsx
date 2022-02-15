@@ -1,4 +1,3 @@
-import React from 'react'
 import { Container, HR1, List, Text } from '@titicaca/core-elements'
 import { Confirm } from '@titicaca/modals'
 import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'

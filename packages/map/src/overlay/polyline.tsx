@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { Polyline as GoogleMapPolyline } from '@react-google-maps/api'
 
 const defaultPolylineStyle: google.maps.PolylineOptions = {

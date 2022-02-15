@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { Children } from 'react'
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 
@@ -71,7 +71,7 @@ const Row = styled.div<{
         `
       : css`
           & > div {
-            width: ${100 / React.Children.count(children)}%;
+            width: ${100 / Children.count(children)}%;
           }
         `};
 `

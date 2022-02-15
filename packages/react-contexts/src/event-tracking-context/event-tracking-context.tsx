@@ -1,4 +1,6 @@
-import React, {
+import {
+  createContext,
+  useContext,
   ComponentType,
   PropsWithChildren,
   useCallback,
@@ -62,7 +64,7 @@ export interface EventTrackingContextValue {
   setFirebaseUserId: (userId: string | null) => void
 }
 
-const Context = React.createContext<EventTrackingContextValue>({
+const Context = createContext<EventTrackingContextValue>({
   trackScreen: NOOP,
   trackEvent: NOOP,
   trackSimpleEvent: NOOP,
@@ -311,7 +313,7 @@ export function EventTrackingProvider({
 }
 
 export function useEventTrackingContext() {
-  return React.useContext(Context)
+  return useContext(Context)
 }
 
 export type WithEventTrackingBaseProps = EventTrackingContextValue

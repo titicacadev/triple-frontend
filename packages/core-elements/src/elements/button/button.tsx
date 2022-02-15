@@ -1,6 +1,13 @@
-import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { getColor, Color } from '@titicaca/color-palette'
+import {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  DetailedHTMLProps,
+  PureComponent,
+  ReactNode,
+  SyntheticEvent,
+} from 'react'
 
 import { GlobalSizes, MarginPadding } from '../../commons'
 import { formatMarginPadding } from '../../mixins'
@@ -55,7 +62,7 @@ const BASIC_INVERTED_COLORS: Partial<Record<Color, string>> = {
 }
 
 interface BasicButtonProp {
-  children?: React.ReactNode
+  children?: ReactNode
   compact?: boolean
   inverted?: boolean
   color?: Color
@@ -150,12 +157,12 @@ const ButtonIcon = styled.div<{ size?: GlobalSizes; src?: string }>`
 
 interface ButtonStyleAnchorProps {
   // HTML
-  a: React.DetailedHTMLProps<
-    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+  a: DetailedHTMLProps<
+    AnchorHTMLAttributes<HTMLAnchorElement>,
     HTMLAnchorElement
   >
-  button: React.DetailedHTMLProps<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
+  button: DetailedHTMLProps<
+    ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   >
 }
@@ -164,11 +171,11 @@ export interface ButtonProps extends BasicButtonProp, ButtonBaseProp {
   basic?: boolean
   icon?: string
   borderRadius?: number
-  onClick?: (e: React.SyntheticEvent) => unknown
+  onClick?: (e: SyntheticEvent) => unknown
   as?: keyof ButtonStyleAnchorProps
 }
 
-class Button extends React.PureComponent<ButtonProps> {
+class Button extends PureComponent<ButtonProps> {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   public static Container = ButtonContainer
 

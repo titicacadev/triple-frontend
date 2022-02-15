@@ -1,7 +1,7 @@
-import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { MarginPadding, paddingMixin } from '@titicaca/core-elements'
 import { blue, gray, gray200, gray300, white } from '@titicaca/color-palette'
+import { HTMLAttributes, ReactNode, PureComponent } from 'react'
 
 const FilterEntryBase = styled.div<{ active?: boolean; disabled?: boolean }>`
   display: inline-block;
@@ -68,10 +68,10 @@ const ExpandingFilterEntryContainer = styled.div<{
     `}
 `
 
-interface ExpandingFilterEntryProps extends React.HTMLAttributes<HTMLElement> {
+interface ExpandingFilterEntryProps extends HTMLAttributes<HTMLElement> {
   disabled?: boolean
   active?: boolean
-  badge?: React.ReactNode
+  badge?: ReactNode
 }
 function ExpandingFilterEntry({
   badge,
@@ -159,7 +159,7 @@ const PrimaryFilterEntry = styled(FilterEntryBase)`
   color: ${white};
 `
 
-interface FilterEntryProps extends React.HTMLAttributes<HTMLElement> {
+interface FilterEntryProps extends HTMLAttributes<HTMLElement> {
   disabled?: boolean
   active?: boolean
   activeIconImage?: string
@@ -200,7 +200,7 @@ const ListingFilterBase = styled.div<{ padding?: MarginPadding }>`
   ${paddingMixin}
 `
 
-export default class ListingFilter extends React.PureComponent<{
+export default class ListingFilter extends PureComponent<{
   padding?: MarginPadding
 }> {
   static FilterEntry = FilterEntry

@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react'
+import { useState, memo } from 'react'
 import styled from 'styled-components'
 import { ImagesProvider, useImagesContext } from '@titicaca/react-contexts'
 

@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 import { purple, mint } from '@titicaca/color-palette'
 import { ItineraryItemType } from '@titicaca/content-type-definitions'
 

@@ -1,4 +1,3 @@
-import * as React from 'react'
 import styled, { css, StyledComponentProps } from 'styled-components'
 
 import { withField } from '../utils/form-field'

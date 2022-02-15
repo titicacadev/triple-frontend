@@ -1,6 +1,5 @@
 import { Responsive } from '@titicaca/core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
-import React from 'react'
 
 import { ImageElement, SquareFrame } from './elements'
 

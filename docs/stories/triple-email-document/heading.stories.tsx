@@ -1,4 +1,3 @@
-import React from 'react'
 import { ComponentStory, Meta } from '@storybook/react'
 import { ELEMENTS } from '@titicaca/triple-email-document'
 

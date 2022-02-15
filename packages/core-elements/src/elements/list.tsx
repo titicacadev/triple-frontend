@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { PureComponent, PropsWithChildren } from 'react'
 import styled, { css } from 'styled-components'
 
 import { MarginPadding } from '../commons'
@@ -103,8 +103,8 @@ const ListItem = styled.li<ListItemProps>`
     `}
 `
 
-export default class List extends React.PureComponent<
-  React.PropsWithChildren<ListItemProps & ListBaseProp & DividerOptions>
+export default class List extends PureComponent<
+  PropsWithChildren<ListItemProps & ListBaseProp & DividerOptions>
 > {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   public static Item = ListItem

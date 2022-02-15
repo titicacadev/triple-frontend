@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, PropsWithChildren, useEffect } from 'react'
+import { MouseEventHandler, PropsWithChildren, useEffect } from 'react'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 
 import { ANCHOR_TARGET_MAP } from '../common/target'

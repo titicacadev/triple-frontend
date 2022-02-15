@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Meta } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import TripleDocument, { ELEMENTS } from '@titicaca/triple-document'

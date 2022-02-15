@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import { List, Text, longClickable, FlexBox } from '@titicaca/core-elements'
 import {
   useEventTrackingContext,

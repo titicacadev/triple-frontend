@@ -1,4 +1,3 @@
-import * as React from 'react'
 import styled, { css, StyledComponentProps } from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { PropsWithChildren, PureComponent } from 'react'
 import styled, { StyledComponentProps } from 'styled-components'
 
 import Container from './container'
@@ -33,22 +33,16 @@ const Title = styled(Container)<{ active?: boolean }>`
   }
 `
 
-function Content({
-  active,
-  children,
-}: React.PropsWithChildren<{ active: boolean }>) {
+function Content({ active, children }: PropsWithChildren<{ active: boolean }>) {
   return active ? <Container margin={{ top: 5 }}>{children}</Container> : null
 }
 
-function Folded({
-  active,
-  children,
-}: React.PropsWithChildren<{ active: boolean }>) {
+function Folded({ active, children }: PropsWithChildren<{ active: boolean }>) {
   return !active ? <Container margin={{ top: 5 }}>{children}</Container> : null
 }
 
-export default class Accordion extends React.PureComponent<
-  React.PropsWithChildren<
+export default class Accordion extends PureComponent<
+  PropsWithChildren<
     StyledComponentProps<
       'div',
       Record<string, unknown>,

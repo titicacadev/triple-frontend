@@ -1,4 +1,6 @@
-import React, {
+import {
+  createContext,
+  useContext,
   PropsWithChildren,
   useMemo,
   useCallback,
@@ -42,7 +44,7 @@ interface ImagesProviderProps {
   total?: number
 }
 
-const Context = React.createContext<ImagesContext>({
+const Context = createContext<ImagesContext>({
   images: [],
   total: 0,
   loading: false,
@@ -197,7 +199,7 @@ async function defaultFetchImages(
 }
 
 export function useImagesContext() {
-  return React.useContext(Context)
+  return useContext(Context)
 }
 
 export interface WithImagesBaseProps {

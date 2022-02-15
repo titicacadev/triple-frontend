@@ -1,9 +1,11 @@
-import React, {
+import {
   useState,
   useEffect,
   useCallback,
   createContext,
   ComponentType,
+  useContext,
+  ReactNode,
 } from 'react'
 import { DeepPartial } from 'utility-types'
 
@@ -36,7 +38,7 @@ interface ReviewLikesProviderProps {
   ) => void
   notifyReviewLiked: (resourceId: string, reviewId: string) => void
   notifyReviewUnliked: (resourceId: string, reviewId: string) => void
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export function ReviewLikesProvider({
@@ -116,7 +118,7 @@ export function ReviewLikesProvider({
 }
 
 export function useReviewLikesContext() {
-  return React.useContext(Context)
+  return useContext(Context)
 }
 
 export interface WithReviewLikesBaseProps {

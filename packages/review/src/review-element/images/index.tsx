@@ -1,5 +1,4 @@
 import { ImageMeta } from '@titicaca/type-definitions'
-import React from 'react'
 
 import MultipleImages from './multiple-images'
 import PentaImages from './penta-images'

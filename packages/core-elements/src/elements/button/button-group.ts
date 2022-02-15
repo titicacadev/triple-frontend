@@ -1,4 +1,4 @@
-import React from 'react'
+import { Children } from 'react'
 import styled, { css } from 'styled-components'
 
 import Container from '../container'
@@ -17,7 +17,7 @@ const ButtonGroup = styled(Container)<ButtonGroupProps>`
     ${({ horizontalGap = 0, buttonCount, children }) => {
       const childrenCount =
         buttonCount ??
-        React.Children.count(React.Children.toArray(children).filter(Boolean))
+        Children.count(Children.toArray(children).filter(Boolean))
 
       return horizontalGap > 0
         ? css`

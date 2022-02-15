@@ -1,4 +1,3 @@
-import React from 'react'
 import { Text } from '@titicaca/core-elements'
 import { Modal, Confirm, Alert } from '@titicaca/modals'
 import { Meta } from '@storybook/react'

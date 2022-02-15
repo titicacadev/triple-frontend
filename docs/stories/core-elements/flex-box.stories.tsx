@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import { FlexBox, Container, Text } from '@titicaca/core-elements'
 

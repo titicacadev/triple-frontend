@@ -1,4 +1,3 @@
-import React from 'react'
 import { List } from '@titicaca/core-elements'
 
 export default function ResourceList({

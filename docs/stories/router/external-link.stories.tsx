@@ -1,6 +1,5 @@
 import { Meta } from '@storybook/react'
 import { ExternalLink } from '@titicaca/router'
-import React from 'react'
 
 import {
   envProviderDecorator,

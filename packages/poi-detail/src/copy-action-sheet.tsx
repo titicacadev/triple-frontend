@@ -1,4 +1,3 @@
-import React from 'react'
 import ActionSheet from '@titicaca/action-sheet'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 

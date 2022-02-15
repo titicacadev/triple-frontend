@@ -1,4 +1,3 @@
-import React from 'react'
 import { UserAgentProvider } from '@titicaca/react-contexts'
 import LocationProperties from '@titicaca/location-properties'
 import { Meta, StoryObj } from '@storybook/react'

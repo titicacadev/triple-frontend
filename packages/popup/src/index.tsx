@@ -1,9 +1,4 @@
-import React, {
-  SyntheticEvent,
-  PropsWithChildren,
-  useRef,
-  useEffect,
-} from 'react'
+import { SyntheticEvent, PropsWithChildren, useRef, useEffect } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import styled from 'styled-components'
 import {

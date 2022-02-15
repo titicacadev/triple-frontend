@@ -1,4 +1,3 @@
-import React from 'react'
 import { Tooltip, Navbar } from '@titicaca/core-elements'
 import styled from 'styled-components'
 import { Meta } from '@storybook/react'

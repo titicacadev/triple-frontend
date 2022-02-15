@@ -1,4 +1,3 @@
-import React from 'react'
 import { ELEMENTS } from '@titicaca/triple-document'
 import { Meta } from '@storybook/react'
 

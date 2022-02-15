@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { MarginPadding } from '@titicaca/core-elements'
 
 import VerticalEntity from './vertical-entity'

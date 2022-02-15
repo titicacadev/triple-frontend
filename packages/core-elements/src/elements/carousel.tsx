@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import React, { PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
 import { MarginPadding, CarouselSizes } from '../commons'

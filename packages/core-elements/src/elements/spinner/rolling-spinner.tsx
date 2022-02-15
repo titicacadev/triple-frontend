@@ -1,4 +1,4 @@
-import React, { useMemo, PropsWithChildren } from 'react'
+import { useMemo, PropsWithChildren } from 'react'
 import styled, { keyframes } from 'styled-components'
 
 import { FALLBACK_ACTION_CLASS_NAME } from '../../constants'

@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import ImageCarousel, { PageLabel } from '@titicaca/image-carousel'
 import { ImageSource } from '@titicaca/core-elements'
