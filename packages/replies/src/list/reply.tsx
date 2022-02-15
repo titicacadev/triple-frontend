@@ -63,10 +63,6 @@ const ThanksButton = styled.button`
   cursor: pointer;
 `
 
-const Nickname = styled(Text)`
-  max-width: 135px;
-`
-
 const HASH_MORE_ACTION_SHEET = 'reply.more-action-sheet'
 export const HASH_DELETE_CLOSE_MODAL = 'reply.delete-close-modal'
 
@@ -228,10 +224,10 @@ export default function Reply({
 
       <Container padding={{ left: 50, bottom: 3 }} margin={{ bottom: 20 }}>
         <FlexBox flex justifyContent="space-between" alignItems="start">
-          <Container minWidth={80}>
-            <Nickname size={15} bold ellipsis>
+          <Container minWidth={80} maxWidth={135}>
+            <Text size={15} bold ellipsis>
               {name}
-            </Nickname>
+            </Text>
           </Container>
 
           <FlexBox padding={{ top: 3, left: 5 }} flex alignItems="start">
