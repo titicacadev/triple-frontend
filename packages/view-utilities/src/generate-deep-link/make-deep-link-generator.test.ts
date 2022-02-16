@@ -49,3 +49,35 @@ test('it appends proper onelink attribution queries', () => {
 
   expect(deepLink).toEqual(expectedDeepLink)
 })
+
+test('it allows pid override', () => {
+  const overridenPid = 'overriden'
+
+  const generateDeepLink = makeDeepLinkGenerator({
+    oneLinkParams: {
+      subdomain: SUBDOMAIN,
+      id: ONELINK_ID,
+      pid: PID,
+    },
+    appScheme: APP_SCHEME,
+    webURLBase: WEB_URL_BASE,
+  })
+
+  const deepLink = generateDeepLink({
+    path: APP_PATH,
+    pid: overridenPid,
+  })
+
+  const expectedDeepLink = generateUrl({
+    scheme: 'https',
+    host: `${SUBDOMAIN}.onelink.me`,
+    path: `/${ONELINK_ID}`,
+    query: qs.stringify({
+      af_dp: `${APP_SCHEME}://${APP_PATH}`,
+      af_web_dp: WEB_URL_BASE,
+      pid: overridenPid,
+    }),
+  })
+
+  expect(deepLink).toEqual(expectedDeepLink)
+})
