@@ -8,7 +8,7 @@ import { RepliesProvider } from './context'
 import Register from './register'
 
 describe('Reply 등록 버튼을 테스트합니다.', () => {
-  test('입력 창에 입력된 값이 없으면 버튼의 색상은 blue500 입니다.', () => {
+  test('입력 창에 입력된 값이 없으면 버튼의 글자 색상은 blue500 입니다.', () => {
     const mockedOnReplyAdd = jest.fn()
     const mockedOnReplyEdit = jest.fn()
 
@@ -30,7 +30,7 @@ describe('Reply 등록 버튼을 테스트합니다.', () => {
     )
   })
 
-  test('입력 창에 입력된 값이 있으면 버튼의 색상은 blue 입니다.', async () => {
+  test('입력 창에 입력된 값이 있으면 버튼의 글자 색상은 blue 입니다.', async () => {
     const mockedOnReplyAdd = jest.fn()
     const mockedOnReplyEdit = jest.fn()
 
