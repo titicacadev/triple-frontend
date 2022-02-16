@@ -107,16 +107,12 @@ export default function Reply({
   )
 
   const handleWriteReplyClick = useSessionCallback(
-    ({
-      toMessageId,
-      mentioningUserUid,
-      mentioningUserName,
-    }: ReplyType['actionSpecifications']['reply']) => {
+    (actionReply: ReplyType['actionSpecifications']['reply']) => {
       setEditingMessage({
-        parentMessageId: toMessageId,
+        parentMessageId: actionReply?.toMessageId || '',
         content: {
-          mentioningUserUid,
-          mentioningUserName,
+          mentioningUserUid: actionReply?.mentioningUserUid || '',
+          mentioningUserName: actionReply?.mentioningUserName || '',
         },
       })
 
