@@ -1,34 +1,29 @@
 import qs from 'qs'
 
-import { generateUrl, parseUrl } from '../url'
+import { generateUrl } from '../url'
 
 import { makeDeepLinkGenerator } from './make-deep-link-generator'
 
-const HOTEL_ID = 'c2eb4fba-cad1-4c08-94b2-9430039d181e' // 제주신라호텔
+const SUBDOMAIN = 'subdomain'
+const ONELINK_ID = 'onelinkid'
+const PID = 'onelinkpid'
+const APP_PATH = '/hoteles/c2eb4fba-cad1-4c08-94b2-9430039d181e'
+const APP_SCHEME = 'triple'
+const WEB_URL_BASE = 'https://triple.guide'
 
 test('Deep Link를 생성합니다.', () => {
   const generateDeepLink = makeDeepLinkGenerator({
     oneLinkParams: {
-      subdomain: 'triple',
-      id: 'aZP6',
-      pid: 'triple-web',
+      subdomain: SUBDOMAIN,
+      id: ONELINK_ID,
+      pid: PID,
     },
-    appScheme: 'triple',
-    webURLBase: 'https://triple.guide',
+    appScheme: APP_SCHEME,
+    webURLBase: WEB_URL_BASE,
   })
 
-  const path = generateUrl({
-    path: '/inlink',
-    query: qs.stringify({
-      path: generateUrl({
-        path: `/hotels/${HOTEL_ID}`,
-        query: '_triple_no_navbar',
-      }),
-    }),
-  })
-
-  const rawDeepLink = generateDeepLink({
-    path,
+  const deepLink = generateDeepLink({
+    path: APP_PATH,
     channel: 'naver',
     campaign: 'winter_sale',
     keywords: 'triple',
@@ -36,31 +31,21 @@ test('Deep Link를 생성합니다.', () => {
     adSet: 'naver_email',
   })
 
-  const { href, ...parsedDeepLink } = parseUrl(rawDeepLink)
-  const parsedDeepLinkQuery = qs.parse(parsedDeepLink.query || '')
-
-  const createdDeepLinkParameters = {
-    ...parsedDeepLink,
-    query: parsedDeepLinkQuery,
-  }
-
-  const comparisonDeepLinkParameters = {
+  const expectedDeepLink = generateUrl({
     scheme: 'https',
-    host: 'triple.onelink.me',
-    path: '/aZP6',
-    query: {
-      af_dp:
-        'triple:///inlink?path=%2Fhotels%2Fc2eb4fba-cad1-4c08-94b2-9430039d181e%3F_triple_no_navbar',
-      af_web_dp: 'https://triple.guide',
-      pid: 'triple-web',
-      af_adset: 'naver_email',
+    host: `${SUBDOMAIN}.onelink.me`,
+    path: `/${ONELINK_ID}`,
+    query: qs.stringify({
+      af_dp: `${APP_SCHEME}://${APP_PATH}`,
+      af_web_dp: WEB_URL_BASE,
+      pid: PID,
       c: 'winter_sale',
+      af_adset: 'naver_email',
       af_ad: 'video',
       af_keywords: 'triple',
       af_channel: 'naver',
-    },
-    hash: '',
-  }
+    }),
+  })
 
-  expect(createdDeepLinkParameters).toEqual(comparisonDeepLinkParameters)
+  expect(deepLink).toEqual(expectedDeepLink)
 })
