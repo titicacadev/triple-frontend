@@ -82,6 +82,7 @@ export default function Reply({
     childrenCount,
     children,
     id,
+    parentId,
     deleted,
     actionSpecifications: { delete: isMine, reply: actionReply, edit },
   },
@@ -210,6 +211,8 @@ export default function Reply({
     childrenCount,
   })
 
+  const actionSheetTitle = deriveActionSheetTitle({ isMine, parentId })
+
   return (
     <>
       <SquareImage
@@ -330,6 +333,7 @@ export default function Reply({
 
       <FeatureActionSheet
         isMine={isMine}
+        title={actionSheetTitle}
         actionSheetHash={`${HASH_MORE_ACTION_SHEET}.${id}`}
         onEditClick={() =>
           handleEditReplyClick({
@@ -412,12 +416,14 @@ function Content({
 
 function FeatureActionSheet({
   isMine,
+  title,
   actionSheetHash,
   onEditClick,
   onDeleteClick,
   onReportClick,
 }: {
   isMine: boolean
+  title: string
   actionSheetHash: string
   onEditClick: () => void
   onDeleteClick: () => void
@@ -430,7 +436,7 @@ function FeatureActionSheet({
     <ActionSheet
       open={uriHash === actionSheetHash}
       onClose={back}
-      title={isMine ? '내 댓글' : '댓글'}
+      title={title}
     >
       {isMine ? (
         <>
@@ -463,4 +469,29 @@ function deriveContent({
       : 'default'
 
   return type === 'default' ? text : CONTENT_TEXT[type]
+}
+
+const ACTION_SHEET_TITLE = {
+  myReply: '내 댓글',
+  myChildReply: '내 답글',
+  otherReply: '댓글',
+  otherChildReply: '답글',
+}
+
+function deriveActionSheetTitle({
+  isMine,
+  parentId,
+}: {
+  isMine: boolean
+  parentId?: string
+}) {
+  const type = isMine
+    ? parentId
+      ? 'myChildReply'
+      : 'myReply'
+    : parentId
+    ? 'otherChildReply'
+    : 'otherReply'
+
+  return ACTION_SHEET_TITLE[type]
 }
