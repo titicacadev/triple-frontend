@@ -471,13 +471,6 @@ function deriveContent({
   return type === 'default' ? text : CONTENT_TEXT[type]
 }
 
-const ACTION_SHEET_TITLE = {
-  myReply: '내 댓글',
-  myChildReply: '내 답글',
-  otherReply: '댓글',
-  otherChildReply: '답글',
-}
-
 function deriveActionSheetTitle({
   isMine,
   parentId,
@@ -485,13 +478,13 @@ function deriveActionSheetTitle({
   isMine: boolean
   parentId?: string
 }) {
-  const type = isMine
+  const actionSheetTitle = isMine
     ? parentId
-      ? 'myChildReply'
-      : 'myReply'
+      ? '내 답글'
+      : '내 댓글'
     : parentId
-    ? 'otherChildReply'
-    : 'otherReply'
+    ? '답글'
+    : '댓글'
 
-  return ACTION_SHEET_TITLE[type]
+  return actionSheetTitle
 }
