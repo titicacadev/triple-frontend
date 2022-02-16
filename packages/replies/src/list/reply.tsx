@@ -8,14 +8,13 @@ import {
   Text,
 } from '@titicaca/core-elements'
 import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
-import { useAppCallback } from '@titicaca/ui-flow'
-import { TransitionType, useLoginCtaModal } from '@titicaca/modals'
+import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
+import { TransitionType } from '@titicaca/modals'
 import { ExternalLink, useNavigate } from '@titicaca/router'
 import {
   useUriHash,
   useHistoryFunctions,
   useIsomorphicNavigation,
-  useSessionAvailability,
 } from '@titicaca/react-contexts'
 import ActionSheet from '@titicaca/action-sheet'
 
@@ -99,9 +98,6 @@ export default function Reply({
   const { asyncBack } = useIsomorphicNavigation()
   const navigate = useNavigate()
 
-  const sessionAvailable = useSessionAvailability()
-  const { show: showLoginCta } = useLoginCtaModal()
-
   const handleMoreClick = useCallback(
     (id) => {
       push(`${HASH_MORE_ACTION_SHEET}.${id}`, { useRouter: true })
@@ -109,26 +105,23 @@ export default function Reply({
     [push],
   )
 
-  const handleWriteReplyClick = ({
-    toMessageId,
-    mentioningUserUid,
-    mentioningUserName,
-  }: ReplyType['actionSpecifications']['reply']) => {
-    if (!sessionAvailable) {
-      showLoginCta()
-      return
-    }
+  const handleWriteReplyClick = useSessionCallback(
+    ({
+      toMessageId,
+      mentioningUserUid,
+      mentioningUserName,
+    }: ReplyType['actionSpecifications']['reply']) => {
+      setEditingMessage({
+        parentMessageId: toMessageId,
+        content: {
+          mentioningUserUid,
+          mentioningUserName,
+        },
+      })
 
-    setEditingMessage({
-      parentMessageId: toMessageId,
-      content: {
-        mentioningUserUid,
-        mentioningUserName,
-      },
-    })
-
-    focusInput()
-  }
+      focusInput()
+    },
+  )
 
   const handleEditReplyClick = ({
     mentionedUserName,
@@ -178,37 +171,27 @@ export default function Reply({
     [setEditingMessage, asyncBack, back, push],
   )
 
-  const handleLikeReplyClick = async ({ messageId }: { messageId: string }) => {
-    if (!sessionAvailable) {
-      showLoginCta()
-      return
-    }
+  const handleLikeReplyClick = useSessionCallback(
+    async ({ messageId }: { messageId: string }) => {
+      await likeReply({ messageId })
 
-    await likeReply({ messageId })
+      setLikeReactions((prev) => ({
+        count: (prev?.count || 0) + 1,
+        haveMine: true,
+      }))
+    },
+  )
 
-    setLikeReactions((prev) => ({
-      count: (prev?.count || 0) + 1,
-      haveMine: true,
-    }))
-  }
+  const handleUnlikeReplyClick = useSessionCallback(
+    async ({ messageId }: { messageId: string }) => {
+      await unlikeReply({ messageId })
 
-  const handleUnlikeReplyClick = async ({
-    messageId,
-  }: {
-    messageId: string
-  }) => {
-    if (!sessionAvailable) {
-      showLoginCta()
-      return
-    }
-
-    await unlikeReply({ messageId })
-
-    setLikeReactions((prev) => ({
-      count: Math.max(0, (prev?.count || 0) - 1),
-      haveMine: false,
-    }))
-  }
+      setLikeReactions((prev) => ({
+        count: Math.max(0, (prev?.count || 0) - 1),
+        haveMine: false,
+      }))
+    },
+  )
 
   const handleReportReplyClick = useAppCallback(
     TransitionType.General,
