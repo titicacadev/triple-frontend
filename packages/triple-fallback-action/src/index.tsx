@@ -1,6 +1,6 @@
 import { useLayoutEffect } from 'react'
 
-const FALLBACK_HANDLER_KEY = '__DISTASTER_FALLBACK_HANDLER__'
+const FALLBACK_HANDLER_KEY = '__DISASTER_FALLBACK_HANDLER__'
 
 declare global {
   interface Window {
