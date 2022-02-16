@@ -211,7 +211,13 @@ export default function Reply({
     childrenCount,
   })
 
-  const actionSheetTitle = deriveActionSheetTitle({ isMine, parentId })
+  const actionSheetTitle = isMine
+    ? parentId
+      ? '내 답글'
+      : '내 댓글'
+    : parentId
+    ? '답글'
+    : '댓글'
 
   return (
     <>
@@ -469,22 +475,4 @@ function deriveContent({
       : 'default'
 
   return type === 'default' ? text : CONTENT_TEXT[type]
-}
-
-function deriveActionSheetTitle({
-  isMine,
-  parentId,
-}: {
-  isMine: boolean
-  parentId?: string
-}) {
-  const actionSheetTitle = isMine
-    ? parentId
-      ? '내 답글'
-      : '내 댓글'
-    : parentId
-    ? '답글'
-    : '댓글'
-
-  return actionSheetTitle
 }
