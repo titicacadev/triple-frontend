@@ -6,12 +6,21 @@ export interface NavigateOptions {
   [key: string]: unknown
 }
 
+export type TargetType = 'current' | 'new' | 'browser'
+
 export interface ContextOptions {
   cta?: string
   navigate: (
     rawHref: string,
     params?: NavigateOptions,
   ) => string | undefined | void
+  routeExternally?: ({
+    href,
+    target,
+  }: {
+    href: string
+    target: TargetType
+  }) => void
 }
 
 export type WebAction = (
