@@ -11,7 +11,7 @@ const APP_PATH = '/hoteles/c2eb4fba-cad1-4c08-94b2-9430039d181e'
 const APP_SCHEME = 'triple'
 const WEB_URL_BASE = 'https://triple.guide'
 
-test('Deep Link를 생성합니다.', () => {
+test('it appends proper onelink attribution queries', () => {
   const generateDeepLink = makeDeepLinkGenerator({
     oneLinkParams: {
       subdomain: SUBDOMAIN,
