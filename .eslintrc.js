@@ -15,6 +15,7 @@ const { overrides, ...rest } = createConfig({
     'af_channel',
     'af_prt',
     'af_click_lookback',
+    'af_reengagement_window',
     'is_retargeting',
     'small_square',
     'slot_id',
