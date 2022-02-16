@@ -3,13 +3,14 @@ import styled from 'styled-components'
 import { Container, FlexBox, HR1 } from '@titicaca/core-elements'
 import { useLoginCtaModal } from '@titicaca/modals'
 import { useSessionAvailability } from '@titicaca/react-contexts'
+import { useSessionCallback } from '@titicaca/ui-flow'
 
 import { authorMessage } from './replies-api-clients'
 import AutoResizingTextarea, { TextAreaHandle } from './auto-resizing-textarea'
 import { useRepliesContext } from './context'
 import { ResourceType, Reply } from './types'
 
-const RegisterButton = styled.button<{ active: boolean }>`
+const RegisterButton = styled.button<{ disabled: boolean }>`
   width: 26px;
   padding: 0;
   margin-left: 20px;
@@ -17,7 +18,7 @@ const RegisterButton = styled.button<{ active: boolean }>`
   font-size: 15px;
   font-weight: bold;
   color: ${(props) =>
-    props.active ? 'var(--color-blue500)' : 'var(--color-blue)'};
+    props.disabled ? 'var(--color-blue500)' : 'var(--color-blue)'};
   background: inherit;
   border: none;
   outline: none;
@@ -51,12 +52,7 @@ function Register(
   const sessionAvailable = useSessionAvailability()
   const { show: showLoginCta } = useLoginCtaModal()
 
-  const handleRegister = async () => {
-    if (!sessionAvailable) {
-      showLoginCta()
-      return
-    }
-
+  const handleRegister = useSessionCallback(async () => {
     if (!plaintext) {
       return
     }
@@ -79,7 +75,7 @@ function Register(
     initializeEditingMessage()
 
     handleContentChange('')
-  }
+  })
 
   return (
     <Container
@@ -109,7 +105,7 @@ function Register(
           onClick={() => {
             handleRegister()
           }}
-          active={!plaintext}
+          disabled={!plaintext}
         >
           등록
         </RegisterButton>
