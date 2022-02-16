@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 import '@testing-library/jest-dom'
 import 'jest-styled-components'
 import { render } from '@testing-library/react'
