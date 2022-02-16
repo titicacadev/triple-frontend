@@ -211,14 +211,6 @@ export default function Reply({
     childrenCount,
   })
 
-  const actionSheetTitle = isMine
-    ? parentId
-      ? '내 답글'
-      : '내 댓글'
-    : parentId
-    ? '답글'
-    : '댓글'
-
   return (
     <>
       <SquareImage
@@ -339,7 +331,15 @@ export default function Reply({
 
       <FeatureActionSheet
         isMine={isMine}
-        title={actionSheetTitle}
+        title={
+          isMine
+            ? parentId
+              ? '내 답글'
+              : '내 댓글'
+            : parentId
+            ? '답글'
+            : '댓글'
+        }
         actionSheetHash={`${HASH_MORE_ACTION_SHEET}.${id}`}
         onEditClick={() =>
           handleEditReplyClick({
