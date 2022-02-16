@@ -1,7 +1,6 @@
 import { ContextOptions } from '@titicaca/standard-action-handler/src/types'
 import qs from 'qs'
 
-import { TargetType } from './types'
 import { UrlElements } from './../../view-utilities/src/url'
 
 export default async function newWindow(
@@ -9,12 +8,11 @@ export default async function newWindow(
   { routeExternally }: ContextOptions,
 ) {
   if (path === '/web-action/new-window' && query) {
-    const { href, target } = qs.parse(query) as {
+    const { href } = qs.parse(query) as {
       href?: string
-      target?: TargetType
     }
-    if (href && target && routeExternally) {
-      routeExternally({ href, target })
+    if (href && routeExternally) {
+      routeExternally({ href, target: 'new' })
       return true
     }
   }
