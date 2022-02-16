@@ -129,7 +129,6 @@ test('it allows af_web_dp override', () => {
   const deepLink = generateDeepLink({
     path: APP_PATH,
     webUrl: overridenUrl,
-    reengagementWindow: '7d',
   })
 
   const expectedDeepLink = generateUrl({
@@ -140,7 +139,6 @@ test('it allows af_web_dp override', () => {
       af_dp: `${APP_SCHEME}://${APP_PATH}`,
       af_web_dp: overridenUrl,
       pid: PID,
-      af_reengagement_window: '7d',
     }),
   })
 
