@@ -16,7 +16,7 @@ export function TripleFallbackActionScript() {
       dangerouslySetInnerHTML={{
         __html: `
           if (!window.${FALLBACK_HANDLER_KEY}) {
-            window.__DISASTER_FALLBACK_HANDLER__ = function (e) {
+            window.${FALLBACK_HANDLER_KEY} = function (e) {
               if (e.target.className.indexOf('${TRIPLE_FALLBACK_ACTION_CLASS_NAME}') > -1) {
                 try {
                   if (typeof Soto !== 'undefined' && Soto !== null) {
