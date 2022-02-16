@@ -112,3 +112,37 @@ test('it provides reengagement window', () => {
 
   expect(deepLink).toEqual(expectedDeepLink)
 })
+
+test('it allows af_web_dp override', () => {
+  const overridenUrl = 'https://foo.bar'
+
+  const generateDeepLink = makeDeepLinkGenerator({
+    oneLinkParams: {
+      subdomain: SUBDOMAIN,
+      id: ONELINK_ID,
+      pid: PID,
+    },
+    appScheme: APP_SCHEME,
+    webURLBase: WEB_URL_BASE,
+  })
+
+  const deepLink = generateDeepLink({
+    path: APP_PATH,
+    webUrl: overridenUrl,
+    reengagementWindow: '7d',
+  })
+
+  const expectedDeepLink = generateUrl({
+    scheme: 'https',
+    host: `${SUBDOMAIN}.onelink.me`,
+    path: `/${ONELINK_ID}`,
+    query: qs.stringify({
+      af_dp: `${APP_SCHEME}://${APP_PATH}`,
+      af_web_dp: overridenUrl,
+      pid: PID,
+      af_reengagement_window: '7d',
+    }),
+  })
+
+  expect(deepLink).toEqual(expectedDeepLink)
+})
