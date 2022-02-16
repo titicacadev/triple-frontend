@@ -31,6 +31,7 @@ interface GeneratorParams {
   partner?: string
   clickLookBack?: string
   isRetargeting?: boolean
+  reengagementWindow?: string
 }
 
 export type DeepLinkGenerator = (params: GeneratorParams) => string
@@ -58,6 +59,7 @@ export function makeDeepLinkGenerator({
     partner,
     clickLookBack,
     isRetargeting,
+    reengagementWindow,
   }) => {
     const appLink = generateUrl({ scheme: appScheme, path })
 
@@ -74,6 +76,7 @@ export function makeDeepLinkGenerator({
       af_prt: partner,
       af_click_lookback: clickLookBack,
       is_retargeting: isRetargeting,
+      af_reengagement_window: reengagementWindow,
     })
 
     return generateUrl({
