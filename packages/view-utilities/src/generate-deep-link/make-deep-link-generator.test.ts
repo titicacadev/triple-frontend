@@ -83,8 +83,6 @@ test('it allows pid override', () => {
 })
 
 test('it provides reengagement window', () => {
-  const overridenPid = 'overriden'
-
   const generateDeepLink = makeDeepLinkGenerator({
     oneLinkParams: {
       subdomain: SUBDOMAIN,
@@ -97,7 +95,6 @@ test('it provides reengagement window', () => {
 
   const deepLink = generateDeepLink({
     path: APP_PATH,
-    pid: overridenPid,
     reengagementWindow: '7d',
   })
 
@@ -108,7 +105,7 @@ test('it provides reengagement window', () => {
     query: qs.stringify({
       af_dp: `${APP_SCHEME}://${APP_PATH}`,
       af_web_dp: WEB_URL_BASE,
-      pid: overridenPid,
+      pid: PID,
       af_reengagement_window: '7d',
     }),
   })
