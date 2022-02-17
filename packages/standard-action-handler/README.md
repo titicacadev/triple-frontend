@@ -31,10 +31,17 @@
   - parameter
     - { path }
 - ### `/web-action/copy-to-clipboard`
+
   - 텍스트를 클립보드에 복사합니다.
   - parameter
     - { path, query }
       - query : text=[복사할 텍스트]
+
+- ### `/web-action/new-window`
+  - href를 새 창에서 엽니다.
+  - parameter
+    - {path, query}
+      - query : href=[이동할 URL]
 
 ### How to make URL
 
@@ -71,10 +78,19 @@ ContextOptions: {
       rawHref: string,
       parmas?: NavigateOptions
      ) => string | undefined | void
+    /** new-window action에서 사용할 routeExternally */
+    routeExternally?: ({
+      href, target,
+     }: {
+      href: string
+      target: TargetType
+     }) => void
   }
 ```
 
 initialize의 parameter로 사용되는 `navigate`는 실행되는 환경과 세션 등을 고려하여 전달받은 URL(rawHref)로 이동하는 역할을 합니다.
+
+ContextOptions 중 하나인 `routeExternally`는 이동하고자 하는 URL을 새 창으로 열 때 사용합니다. 새 창 열기 기능을 위한 함수이기 때문에 `target` parameter는 `'current' | 'new' | 'browser'` 중 `'new'`로 지정되어 있습니다.
 
 ### execute(url, params)
 
@@ -102,10 +118,12 @@ initialize 메소드에서 return된 execute 함수를 사용합니다.
 ```
 import { useHistoryFunctions } from '@titicaca/react-contexts'
 import { initialize } from '@titicaca/standard-action-handler'
+improt { useExternalRouter } from '@titicaca/router'
 
 const { navigate } = useHistoryFunctions()
+const routeExternally = useExternalRouter()
 
-const handleStandardActions = initialize({ navigate })
+const handleStandardActions = initialize({ navigate, routeExternally })
 
 handleStandardActions(href, {})
 
