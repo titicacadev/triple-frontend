@@ -1,10 +1,7 @@
 import { Container, HR1, List, Text } from '@titicaca/core-elements'
 import { Confirm, Alert } from '@titicaca/modals'
-import {
-  useHistoryFunctions,
-  useUriHash,
-  useIsomorphicNavigation,
-} from '@titicaca/react-contexts'
+import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
+import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 
 import { Reply as ReplyType } from '../types'
 import { useRepliesContext } from '../context'
@@ -31,12 +28,12 @@ export default function ReplyList({
 }) {
   const {
     currentMessageId,
+
     content: { mentioningUserName },
     initializeEditingMessage,
   } = useRepliesContext()
 
-  const { push, back } = useHistoryFunctions()
-  const { asyncBack } = useIsomorphicNavigation()
+  const { showToast } = useTripleClientActions()
 
   const description = mentioningUserName
     ? '답글을 삭제하시겠습니까?'
@@ -48,11 +45,13 @@ export default function ReplyList({
     })
 
     if (response) {
-      await asyncBack(back)
-
       onReplyDelete(response)
 
-      push(HASH_DELETE_ALERT_CLOSE_MODAL)
+      if (showToast) {
+        showToast('삭제되었습니다.')
+      } else {
+        alert('삭제되었습니다.')
+      }
     }
   }
 
