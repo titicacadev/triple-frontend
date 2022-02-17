@@ -14,14 +14,14 @@ const HASH_EDIT_CLOSE_MODAL = 'reply.edit-close-modal'
 
 export default function ReplyList({
   replies,
-  totalRepliesCount,
+  isHiddenMoreButton,
   fetchMoreReplies,
   focusInput,
   onReplyDelete,
   onReplyEdit,
 }: {
   replies: ReplyType[]
-  totalRepliesCount?: number
+  isHiddenMoreButton: boolean
   fetchMoreReplies: (reply?: ReplyType) => void
   focusInput: () => void
   onReplyDelete: (response: ReplyType) => void
@@ -66,7 +66,7 @@ export default function ReplyList({
         <NotExistReplies />
       ) : (
         <Container padding={{ bottom: 30, left: 30, right: 30 }}>
-          {totalRepliesCount && totalRepliesCount > replies.length ? (
+          {isHiddenMoreButton ? (
             <Text
               padding={{ top: 20 }}
               color="blue"

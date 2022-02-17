@@ -104,7 +104,7 @@ export default function Replies({
     }
 
     fetchReplyBoardAndSet()
-  }, [resourceId, resourceType])
+  }, [resourceId, resourceType, replies])
 
   const fetchMoreReplies = useCallback(
     async (reply?: Reply) => {
@@ -120,7 +120,7 @@ export default function Replies({
         } as unknown as Reply)
 
       const childrenCount = actualTree.children.length
-      const pageNumber = Number(childrenCount / size)
+      const pageNumber = Math.floor(Number(childrenCount / size))
 
       const repliesResponse: Reply[] = actualTree.id
         ? await fetchChildReplies({
@@ -155,12 +155,15 @@ export default function Replies({
     registerRef.current?.focusInput()
   }
 
+  const notDeletedReplies = replies.filter((reply) => reply.deleted !== true)
+  const isHiddenMoreButton = (totalRepliesCount || 0) > notDeletedReplies.length
+
   return (
     <RepliesProvider>
       <Container onClick={onClickCapture}>
         <ReplyList
           replies={replies}
-          totalRepliesCount={totalRepliesCount}
+          isHiddenMoreButton={isHiddenMoreButton}
           fetchMoreReplies={fetchMoreReplies}
           focusInput={focusInput}
           onReplyDelete={handleReplyDelete}
