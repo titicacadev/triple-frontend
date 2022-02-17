@@ -6,7 +6,7 @@ export interface NavigateOptions {
   [key: string]: unknown
 }
 
-export type TargetType = 'current' | 'new' | 'browser'
+type TargetType = 'current' | 'new' | 'browser'
 
 export interface ContextOptions {
   cta?: string

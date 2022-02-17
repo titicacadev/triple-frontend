@@ -1,7 +1,7 @@
-import { ContextOptions } from '@titicaca/standard-action-handler/src/types'
 import qs from 'qs'
+import { UrlElements } from '@titicaca/view-utilities/src/url'
 
-import { UrlElements } from './../../view-utilities/src/url'
+import { ContextOptions } from './types'
 
 export default async function newWindow(
   { path, query }: UrlElements,
