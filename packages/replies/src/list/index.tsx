@@ -1,6 +1,10 @@
 import { Container, HR1, List, Text } from '@titicaca/core-elements'
-import { Confirm } from '@titicaca/modals'
-import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
+import { Confirm, Alert } from '@titicaca/modals'
+import {
+  useHistoryFunctions,
+  useUriHash,
+  useIsomorphicNavigation,
+} from '@titicaca/react-contexts'
 
 import { Reply as ReplyType } from '../types'
 import { useRepliesContext } from '../context'
@@ -10,6 +14,7 @@ import NotExistReplies from './not-exist-replies'
 import Reply, { HASH_DELETE_CLOSE_MODAL } from './reply'
 
 const HASH_EDIT_CLOSE_MODAL = 'reply.edit-close-modal'
+const HASH_DELETE_ALERT_CLOSE_MODAL = 'reply.delete-alert-close-modal'
 
 export default function ReplyList({
   replies,
@@ -30,6 +35,9 @@ export default function ReplyList({
     initializeEditingMessage,
   } = useRepliesContext()
 
+  const { push, back } = useHistoryFunctions()
+  const { asyncBack } = useIsomorphicNavigation()
+
   const description = mentioningUserName
     ? '답글을 삭제하시겠습니까?'
     : '댓글을 삭제하시겠습니까?'
@@ -40,7 +48,11 @@ export default function ReplyList({
     })
 
     if (response) {
+      await asyncBack(back)
+
       onReplyDelete(response)
+
+      push(HASH_DELETE_ALERT_CLOSE_MODAL)
     }
   }
 
@@ -89,6 +101,8 @@ export default function ReplyList({
             }}
             description={description}
           />
+
+          <AlertDeleteModal />
         </Container>
       )}
     </>
@@ -128,5 +142,16 @@ function ConfirmDeleteModal({
     >
       {description}
     </Confirm>
+  )
+}
+
+function AlertDeleteModal() {
+  const uriHash = useUriHash()
+  const { back } = useHistoryFunctions()
+
+  return (
+    <Alert open={uriHash === HASH_DELETE_ALERT_CLOSE_MODAL} onClose={back}>
+      삭제되었습니다.
+    </Alert>
   )
 }
