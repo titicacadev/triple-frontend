@@ -9,6 +9,9 @@
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/fetcher": ["../fetcher/src"],
       "@titicaca/modals": ["../modals/src"],
+      "@titicaca/react-triple-client-interfaces": [
+        "../react-triple-client-interfaces/src"
+      ],
       "@titicaca/router": ["../router/src"],
       "@titicaca/ui-flow": ["../ui-flow/src"],
       "@titicaca/view-utilities": ["../view-utilities/src"]
@@ -27,6 +30,9 @@
     },
     {
       "path": "../modals"
+    },
+    {
+      "path": "../react-triple-client-interfaces"
     },
     {
       "path": "../router"
