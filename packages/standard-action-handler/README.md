@@ -31,6 +31,7 @@
   - parameter
     - { path }
 - ### `/web-action/copy-to-clipboard`
+
   - 텍스트를 클립보드에 복사합니다.
   - parameter
     - { path, query }
