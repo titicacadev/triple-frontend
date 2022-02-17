@@ -31,12 +31,10 @@
   - parameter
     - { path }
 - ### `/web-action/copy-to-clipboard`
-
   - 텍스트를 클립보드에 복사합니다.
   - parameter
     - { path, query }
       - query : text=[복사할 텍스트]
-
 - ### `/web-action/new-window`
   - href를 새 창에서 엽니다.
   - parameter
@@ -77,14 +75,14 @@ ContextOptions: {
     navigate: (
       rawHref: string,
       parmas?: NavigateOptions
-     ) => string | undefined | void
+    ) => string | undefined | void
     /** new-window action에서 사용할 routeExternally */
     routeExternally?: ({
       href, target,
-     }: {
+    }: {
       href: string
       target: TargetType
-     }) => void
+    }) => void
   }
 ```
 
