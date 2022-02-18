@@ -1,5 +1,35 @@
 # CHANGELOG
 
+## 6.3.0
+
+### view-utilities
+
+- makeDeepLinkGenerator가 지원하는 옵션을 확장합니다. [#1940](https://github.com/titicacadev/triple-frontend/pull/1940)
+
+### triple-fallback-action
+
+- Triple Fallback Action 패키지 추가 [#1935](https://github.com/titicacadev/triple-frontend/pull/1935)
+
+### meta-tags
+
+- CommonMeta에 manifest link 엘리먼트 추가 [#1933](https://github.com/titicacadev/triple-frontend/pull/1933)
+
+### react-triple-client-interfaces
+
+- App과 AppName을 외부로 노출 [#1931](https://github.com/titicacadev/triple-frontend/pull/1931)
+
+### triple-email-template
+
+- React 참조 코드를 제거합니다. [#1936](https://github.com/titicacadev/triple-frontend/pull/1936)
+- FullEmailTemplate를 추가합니다. [#1929](https://github.com/titicacadev/triple-frontend/pull/1929)
+
+### replies
+
+- 삭제 완료 toast를 렌더링합니다. [#1943](https://github.com/titicacadev/triple-frontend/pull/1943)
+- 액션시트 타이틀을 수정합니다. [#1942](https://github.com/titicacadev/triple-frontend/pull/1942)
+- 닉네임이 9자 이상일 때, 말줄임표로 표기합니다. [#1934](https://github.com/titicacadev/triple-frontend/pull/1934)
+- 비로그인 상태일 때, 로그인 유도 모달 노출 [#1927](https://github.com/titicacadev/triple-frontend/pull/1927)
+
 ## 6.2.1
 
 ### modal
