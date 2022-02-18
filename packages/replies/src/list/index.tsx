@@ -29,7 +29,6 @@ export default function ReplyList({
 }) {
   const {
     currentMessageId,
-
     content: { mentioningUserName },
     initializeEditingMessage,
   } = useRepliesContext()
