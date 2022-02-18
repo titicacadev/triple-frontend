@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/action-sheet",
-  "version": "6.2.1",
+  "version": "6.3.0",
   "description": "Action sheet component",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/action-sheet",
@@ -16,7 +16,7 @@
     "lib"
   ],
   "dependencies": {
-    "@titicaca/core-elements": "^6.2.1",
+    "@titicaca/core-elements": "^6.3.0",
     "react-transition-group": "^4.4.1"
   },
   "peerDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/search",
-  "version": "6.2.1",
+  "version": "6.3.0",
   "description": "search",
   "keywords": [
     "search"
@@ -19,10 +19,10 @@
     "lib"
   ],
   "dependencies": {
-    "@titicaca/core-elements": "^6.2.1",
-    "@titicaca/react-hooks": "^6.2.1",
+    "@titicaca/core-elements": "^6.3.0",
+    "@titicaca/react-hooks": "^6.3.0",
     "@titicaca/triple-web-to-native-interfaces": "1.5.0",
-    "@titicaca/view-utilities": "^6.2.1"
+    "@titicaca/view-utilities": "^6.3.0"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*"

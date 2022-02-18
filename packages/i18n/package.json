@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/i18n",
-  "version": "6.2.1",
+  "version": "6.3.0",
   "description": "Triple-frontend Internalization",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/i18n",
