@@ -156,14 +156,14 @@ export default function Replies({
   }
 
   const notDeletedReplies = replies.filter((reply) => reply.deleted !== true)
-  const isHiddenMoreButton = (totalRepliesCount || 0) > notDeletedReplies.length
+  const isActiveMoreButton = (totalRepliesCount || 0) > notDeletedReplies.length
 
   return (
     <RepliesProvider>
       <Container onClick={onClickCapture}>
         <ReplyList
           replies={replies}
-          isHiddenMoreButton={isHiddenMoreButton}
+          isActiveMoreButton={isActiveMoreButton}
           fetchMoreReplies={fetchMoreReplies}
           focusInput={focusInput}
           onReplyDelete={handleReplyDelete}
