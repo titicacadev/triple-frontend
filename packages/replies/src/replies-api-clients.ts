@@ -2,7 +2,7 @@ import { authGuardedFetchers, captureHttpError } from '@titicaca/fetcher'
 import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
 
-import { ResourceType, Reply, ReplyBoard } from './types'
+import { ResourceType, Reply } from './types'
 
 export async function fetchReplies({
   resourceId,
@@ -39,32 +39,6 @@ export async function fetchReplies({
 
   const { parsedBody } = response
 
-  return parsedBody
-}
-
-export async function fetchReplyBoard({
-  resourceType,
-  resourceId,
-}: {
-  resourceType: string
-  resourceId: string
-}): Promise<ReplyBoard> {
-  const response = await authGuardedFetchers.get<ReplyBoard>(
-    `/api/reply/resources/${resourceType}/${resourceId}/board`,
-  )
-
-  if (response === 'NEED_LOGIN') {
-    throw new Error('로그인이 필요한 호출입니다.')
-  }
-
-  captureHttpError(response)
-
-  if (response.ok === false) {
-    const { status, url } = response
-    throw new Error(`${status} - ${url}`)
-  }
-
-  const { parsedBody } = response
   return parsedBody
 }
 
