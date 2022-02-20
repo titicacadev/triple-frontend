@@ -33,6 +33,7 @@ export default function Replies({
   onClickCapture?: (event: MouseEvent<HTMLDivElement>) => void
 }) {
   const [replies, setReplies] = useState<Reply[]>([])
+  const [haveNextReplies, setHaveNextRelies] = useState(false)
 
   const handleReplyAdd = (response: Reply): void => {
     if (response.parentId) {
@@ -65,7 +66,7 @@ export default function Replies({
       const repliesResponse = await fetchReplies({
         resourceId,
         resourceType,
-        size,
+        size: size * 2,
       })
 
       const newReplies = [
@@ -115,6 +116,17 @@ export default function Replies({
             page: pageNumber,
           })
 
+      if (!actualTree.id) {
+        const nextRepliesResponse: Reply[] = await fetchReplies({
+          resourceId,
+          resourceType,
+          size,
+          page: pageNumber + 1,
+        })
+
+        setHaveNextRelies(nextRepliesResponse.length > 0)
+      }
+
       const { children: newReplies } = appendReplyChildren(
         actualTree,
         repliesResponse,
@@ -140,7 +152,7 @@ export default function Replies({
       <Container onClick={onClickCapture}>
         <ReplyList
           replies={replies}
-          isActiveMoreButton={replies.length > 0}
+          isActiveMoreButton={haveNextReplies}
           fetchMoreReplies={fetchMoreReplies}
           focusInput={focusInput}
           onReplyDelete={handleReplyDelete}
