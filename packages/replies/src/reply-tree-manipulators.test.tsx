@@ -163,7 +163,7 @@ describe('deleteReply', () => {
       expect(deletedReply).toBeUndefined()
     })
 
-    test('Child 노드가 있는 Reply 트리를 삭제할 경우, Reply 트리의 deleted & content & actionSpecfications의 값을 변경 후 반환합니다.', () => {
+    test('Child 노드가 있는 Reply 트리를 삭제할 경우, Reply 트리를 수정 후 반환합니다.', () => {
       const mockDeletingReply = generateMockReply({
         id: '11111111-1111-1111-1111-11111111111',
       })
@@ -182,18 +182,7 @@ describe('deleteReply', () => {
 
       const deletedReply = deleteReply(mockDeletingReply, originalReply)
 
-      const expectedReply = {
-        ...originalReply,
-        actionSpecifications: {
-          reaction: false,
-          report: false,
-          delete: false,
-        },
-        content: {},
-        deleted: true,
-      }
-
-      expect(deletedReply).toEqual(expectedReply)
+      expect(deletedReply).toEqual(mockDeletingReply)
     })
 
     test('삭제해야하는 Reply 트리의 ID가 일치하지 않을 경우, 기존 Reply 트리를 반환합니다.', () => {
