@@ -49,15 +49,6 @@ export interface Reply {
   }
 }
 
-export interface ReplyBoard {
-  id: string
-  resourceId: string
-  resourceType: ResourceType
-  rootMessagesCount: number
-  childMessagesCount: number
-  pinnedMessages: Reply[]
-}
-
 export interface Placeholders {
   reply?: string
   childReply?: string

@@ -1,11 +1,7 @@
 import { useEffect, useState, useCallback, MouseEvent, useRef } from 'react'
 import { Container } from '@titicaca/core-elements'
 
-import {
-  fetchReplies,
-  fetchReplyBoard,
-  fetchChildReplies,
-} from './replies-api-clients'
+import { fetchReplies, fetchChildReplies } from './replies-api-clients'
 import { Reply, ResourceType, Placeholders } from './types'
 import ReplyList from './list'
 import GuideText from './guide-text'
@@ -36,9 +32,6 @@ export default function Replies({
   size?: number
   onClickCapture?: (event: MouseEvent<HTMLDivElement>) => void
 }) {
-  const [totalRepliesCount, setTotalRepliesCount] = useState<
-    number | undefined
-  >(undefined)
   const [replies, setReplies] = useState<Reply[]>([])
 
   const handleReplyAdd = (response: Reply): void => {
@@ -93,19 +86,6 @@ export default function Replies({
     fetchRepliesAndSet()
   }, [resourceId, resourceType, size])
 
-  useEffect(() => {
-    async function fetchReplyBoardAndSet() {
-      const replyBoardResponse = await fetchReplyBoard({
-        resourceType,
-        resourceId,
-      })
-
-      setTotalRepliesCount(replyBoardResponse.rootMessagesCount)
-    }
-
-    fetchReplyBoardAndSet()
-  }, [resourceId, resourceType, replies])
-
   const fetchMoreReplies = useCallback(
     async (reply?: Reply) => {
       if (!size) {
@@ -155,15 +135,12 @@ export default function Replies({
     registerRef.current?.focusInput()
   }
 
-  const notDeletedReplies = replies.filter((reply) => reply.deleted !== true)
-  const isActiveMoreButton = (totalRepliesCount || 0) > notDeletedReplies.length
-
   return (
     <RepliesProvider>
       <Container onClick={onClickCapture}>
         <ReplyList
           replies={replies}
-          isActiveMoreButton={isActiveMoreButton}
+          isActiveMoreButton={replies.length > 0}
           fetchMoreReplies={fetchMoreReplies}
           focusInput={focusInput}
           onReplyDelete={handleReplyDelete}
