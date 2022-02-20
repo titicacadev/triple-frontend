@@ -29,13 +29,11 @@ function Register(
   {
     resourceId,
     resourceType,
-    registerPlaceholder,
     onReplyAdd,
     onReplyEdit,
   }: {
     resourceId: string
     resourceType: ResourceType
-    registerPlaceholder?: string
     onReplyAdd: (response: Reply) => void
     onReplyEdit: (response: Reply) => void
   },
@@ -91,7 +89,7 @@ function Register(
       >
         <AutoResizingTextarea
           placeholder={
-            registerPlaceholder || '이 일정에 궁금한 점은 댓글로 써주세요.'
+            parentMessageId ? '답글을 입력하세요.' : '댓글을 입력하세요.'
           }
           minRows={1}
           maxRows={4}

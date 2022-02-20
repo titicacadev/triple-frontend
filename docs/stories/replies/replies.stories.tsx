@@ -22,10 +22,6 @@ export default {
         required: true,
       },
     },
-    registerPlaceholder: {
-      type: 'string',
-      required: false,
-    },
     size: {
       type: 'number',
       required: false,

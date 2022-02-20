@@ -23,7 +23,6 @@ import {
 export default function Replies({
   resourceId,
   resourceType,
-  registerPlaceholder,
   size = 10,
   // FIXME: 개발 완료 후 onClickCapture props를 제거합니다.
   // 제공되는 댓글의 일부 기능을 노출하지 않기 위해서 추가한 임시 핸들러 props이며,
@@ -32,7 +31,6 @@ export default function Replies({
 }: {
   resourceId: string
   resourceType: ResourceType
-  registerPlaceholder?: string
   size?: number
   onClickCapture?: (event: MouseEvent<HTMLDivElement>) => void
 }) {
@@ -161,7 +159,6 @@ export default function Replies({
           ref={registerRef}
           resourceId={resourceId}
           resourceType={resourceType}
-          registerPlaceholder={registerPlaceholder}
           onReplyAdd={handleReplyAdd}
           onReplyEdit={handleReplyEdit}
         />
