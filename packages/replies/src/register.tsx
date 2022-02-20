@@ -82,11 +82,7 @@ function Register(
     >
       <HR1 margin={{ top: 0 }} />
 
-      <FlexBox
-        flex
-        alignItems="flex-end"
-        padding={{ top: 20, bottom: 20, left: 20, right: 20 }}
-      >
+      <FlexBox flex padding={{ top: 20, bottom: 20, left: 20, right: 20 }}>
         <AutoResizingTextarea
           placeholder={
             parentMessageId ? '답글을 입력하세요.' : '댓글을 입력하세요.'
