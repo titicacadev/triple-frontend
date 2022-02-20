@@ -18,7 +18,7 @@ const Textarea = styled.textarea<{ lineHeight: number }>`
   padding: 0;
   color: var(--color-gray);
   line-height: ${({ lineHeight }) => lineHeight}px;
-  flex-grow: 2;
+  width: calc(100% - 46px);
 
   ::placeholder {
     color: var(--color-gray300);
