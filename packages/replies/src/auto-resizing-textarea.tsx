@@ -32,7 +32,7 @@ interface TextareaProps {
   minRows: number
   maxRows: number
   readOnly: boolean
-  placeholder?: string
+  placeholder: string
   onChange: (message: string) => void
 }
 
@@ -76,7 +76,7 @@ function AutoResizingTextarea(
     <Textarea
       rows={rows}
       value={value}
-      placeholder={placeholder || '이 일정에 궁금한 점은 댓글로 써주세요.'}
+      placeholder={placeholder}
       onChange={handleChange}
       lineHeight={TEXTAREA_LINE_HEIGHT}
       ref={textareaRef}
