@@ -23,13 +23,13 @@ export default {
       },
     },
     placeholders: {
-      replyPlaceholder: {
+      reply: {
         type: 'string',
-        required: true,
+        required: false,
       },
-      childReplyPlaceholder: {
+      childReply: {
         type: 'string',
-        required: true,
+        required: false,
       },
     },
     size: {
@@ -46,8 +46,8 @@ export const BaseReplies: ComponentStoryObj<typeof Replies> = {
     resourceId: 'c31a0e75-0053-4ef2-9407-d2bdc7f116e3',
     resourceType: 'article',
     placeholders: {
-      childReplyPlaceholder: '답글을 입력하세요.',
-      replyPlaceholder: '댓글을 입력하세요.',
+      reply: '댓글을 입력하세요.',
+      childReply: '답글을 입력하세요.',
     },
   },
 }
