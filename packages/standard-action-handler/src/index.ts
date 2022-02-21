@@ -6,6 +6,7 @@ import fetchApi from './fetch-api'
 import share from './share'
 import copyToClipboard from './copy-to-clipboard'
 import newWindow from './new-window'
+import imageDownload from './image-download'
 import { ContextOptions } from './types'
 
 export function initialize(options: ContextOptions) {
@@ -18,6 +19,7 @@ export function initialize(options: ContextOptions) {
       share,
       copyToClipboard,
       newWindow,
+      imageDownload,
     ],
     options,
   })
