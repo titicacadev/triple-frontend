@@ -13,6 +13,6 @@ test('새창열기 기능을 테스트합니다', () => {
     },
     { navigate, routeExternally },
   )
-  expect(routeExternally.mock.calls[0][0].href).toBe(href)
-  expect(routeExternally.mock.calls[0][0].target).toBe('new')
+
+  expect(routeExternally).toHaveBeenCalledWith({ href, target: 'new' })
 })
