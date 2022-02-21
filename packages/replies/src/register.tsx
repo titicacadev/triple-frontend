@@ -13,8 +13,6 @@ import { ResourceType, Reply } from './types'
 const RegisterButton = styled.button<{ active: boolean }>`
   width: 26px;
   padding: 0;
-  margin-left: 20px;
-  line-height: 1.2;
   font-size: 15px;
   font-weight: bold;
   color: ${(props) =>
@@ -90,7 +88,11 @@ function Register(
     >
       <HR1 margin={{ top: 0 }} />
 
-      <FlexBox flex padding={{ top: 20, bottom: 20, left: 20, right: 20 }}>
+      <FlexBox
+        flex
+        padding={{ top: 20, bottom: 20, left: 20, right: 20 }}
+        justifyContent="space-between"
+      >
         <AutoResizingTextarea
           placeholder={placeholder}
           minRows={1}
