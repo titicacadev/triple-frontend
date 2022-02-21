@@ -152,6 +152,7 @@ export default function Replies({
           fetchMoreReplies={fetchMoreReplies}
           focusInput={focusInput}
           onReplyDelete={handleReplyDelete}
+          onReplyEdit={handleReplyEdit}
         />
 
         <GuideText />
