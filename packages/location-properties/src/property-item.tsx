@@ -17,7 +17,7 @@ export interface PropertyItemProps {
   onClick?: () => void
 }
 
-const LongClickableItemContainer = longClickable(FlexBox)
+const LongClickableItemFlexBox = longClickable(FlexBox)
 
 export default function PropertyItem({
   identifier,
@@ -42,29 +42,26 @@ export default function PropertyItem({
 
   return (
     <List.Item>
-      <LongClickableItemContainer
-        flex
+      <LongClickableItemFlexBox
         alignItems="flex-start"
         onLongClick={!isPublic ? handleLongClick : undefined}
         onClick={onClick}
       >
-        <Text bold size="small" css={{ flexShrink: 1, lineHeight: 1.43 }}>
+        <Text bold size="small" flexShrink={1} lineHeight={1.43}>
           {title}
         </Text>
         <Text
           size="small"
           alpha={0.7}
           ellipsis={singleLine}
-          css={{
-            marginLeft: 10,
-            flex: 1,
-            lineHeight: 1.43,
-            wordBreak: 'break-all',
-          }}
+          margin={{ left: 10 }}
+          flex={1}
+          lineHeight={1.43}
+          wordBreak="break-all"
         >
           {value}
         </Text>
-      </LongClickableItemContainer>
+      </LongClickableItemFlexBox>
     </List.Item>
   )
 }
