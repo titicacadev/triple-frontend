@@ -8,7 +8,7 @@ import { useSessionCallback } from '@titicaca/ui-flow'
 import { authorMessage } from './replies-api-clients'
 import AutoResizingTextarea, { TextAreaHandle } from './auto-resizing-textarea'
 import { useRepliesContext } from './context'
-import { ResourceType, Reply } from './types'
+import { ResourceType, Reply, Placeholders } from './types'
 
 const RegisterButton = styled.button<{ active: boolean }>`
   width: 26px;
@@ -27,15 +27,13 @@ function Register(
   {
     resourceId,
     resourceType,
-    replyPlaceholder,
-    childReplyPlaceholder,
+    placeholders,
     onReplyAdd,
     onReplyEdit,
   }: {
     resourceId: string
     resourceType: ResourceType
-    replyPlaceholder?: string
-    childReplyPlaceholder?: string
+    placeholders?: Placeholders
     onReplyAdd: (response: Reply) => void
     onReplyEdit: (response: Reply) => void
   },
@@ -78,8 +76,8 @@ function Register(
   })
 
   const placeholder = parentMessageId
-    ? childReplyPlaceholder || '답글을 입력하세요.'
-    : replyPlaceholder || '댓글을 입력하세요.'
+    ? placeholders?.childReplyPlaceholder || '답글을 입력하세요.'
+    : placeholders?.replyPlaceholder || '댓글을 입력하세요.'
 
   return (
     <Container

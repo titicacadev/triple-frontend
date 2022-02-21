@@ -57,3 +57,8 @@ export interface ReplyBoard {
   childMessagesCount: number
   pinnedMessages: Reply[]
 }
+
+export interface Placeholders {
+  replyPlaceholder: string
+  childReplyPlaceholder: string
+}

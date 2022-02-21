@@ -22,13 +22,15 @@ export default {
         required: true,
       },
     },
-    replyPlaceholder: {
-      type: 'string',
-      required: false,
-    },
-    childReplyPlaceholder: {
-      type: 'string',
-      required: false,
+    placeholders: {
+      replyPlaceholder: {
+        type: 'string',
+        required: true,
+      },
+      childReplyPlaceholder: {
+        type: 'string',
+        required: true,
+      },
     },
     size: {
       type: 'number',
@@ -43,5 +45,9 @@ export const BaseReplies: ComponentStoryObj<typeof Replies> = {
   args: {
     resourceId: 'c31a0e75-0053-4ef2-9407-d2bdc7f116e3',
     resourceType: 'article',
+    placeholders: {
+      childReplyPlaceholder: '답글을 입력하세요.',
+      replyPlaceholder: '댓글을 입력하세요.',
+    },
   },
 }
