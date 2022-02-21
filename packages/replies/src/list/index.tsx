@@ -18,12 +18,14 @@ export default function ReplyList({
   fetchMoreReplies,
   focusInput,
   onReplyDelete,
+  onReplyEdit,
 }: {
   replies: ReplyType[]
   totalRepliesCount?: number
   fetchMoreReplies: (reply?: ReplyType) => void
   focusInput: () => void
   onReplyDelete: (response: ReplyType) => void
+  onReplyEdit: (response: ReplyType) => void
 }) {
   const {
     currentMessageId,
@@ -44,7 +46,11 @@ export default function ReplyList({
     })
 
     if (response) {
-      onReplyDelete(response)
+      if (response.childrenCount > 0) {
+        onReplyEdit(response)
+      } else {
+        onReplyDelete(response)
+      }
 
       if (showToast) {
         showToast('삭제되었습니다.')
