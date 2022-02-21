@@ -29,11 +29,15 @@ function Register(
   {
     resourceId,
     resourceType,
+    replyPlaceholder,
+    childReplyPlaceholder,
     onReplyAdd,
     onReplyEdit,
   }: {
     resourceId: string
     resourceType: ResourceType
+    replyPlaceholder?: string
+    childReplyPlaceholder?: string
     onReplyAdd: (response: Reply) => void
     onReplyEdit: (response: Reply) => void
   },
@@ -75,6 +79,10 @@ function Register(
     handleContentChange('')
   })
 
+  const placeholder = parentMessageId
+    ? childReplyPlaceholder || '답글을 입력하세요.'
+    : replyPlaceholder || '댓글을 입력하세요.'
+
   return (
     <Container
       cursor="pointer"
@@ -84,9 +92,7 @@ function Register(
 
       <FlexBox flex padding={{ top: 20, bottom: 20, left: 20, right: 20 }}>
         <AutoResizingTextarea
-          placeholder={
-            parentMessageId ? '답글을 입력하세요.' : '댓글을 입력하세요.'
-          }
+          placeholder={placeholder}
           minRows={1}
           maxRows={4}
           value={plaintext || ''}

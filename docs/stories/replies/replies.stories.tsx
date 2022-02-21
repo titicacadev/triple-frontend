@@ -22,6 +22,14 @@ export default {
         required: true,
       },
     },
+    replyPlaceholder: {
+      type: 'string',
+      required: false,
+    },
+    childReplyPlaceholder: {
+      type: 'string',
+      required: false,
+    },
     size: {
       type: 'number',
       required: false,
