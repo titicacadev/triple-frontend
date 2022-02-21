@@ -8,7 +8,6 @@ it('should accept style shortcut props', () => {
   const tree = renderer
     .create(
       <FlexBox
-        flex
         flexGrow={1}
         flexShrink={1}
         flexBasis="auto"
@@ -38,12 +37,12 @@ it('should accept style shortcut props', () => {
   expect(tree).toHaveStyleRule('gap', '10px')
 })
 
-it('should override style with css prop', () => {
-  const tree = renderer
-    .create(
-      <FlexBox justifyContent="center" css={{ justifyContent: 'flex-end' }} />,
-    )
-    .toJSON()
+// it('should override style with css prop', () => {
+//   const tree = renderer
+//     .create(
+//       <FlexBox justifyContent="center" css={{ justifyContent: 'flex-end' }} />,
+//     )
+//     .toJSON()
 
-  expect(tree).toHaveStyleRule('justify-content', 'flex-end')
-})
+//   expect(tree).toHaveStyleRule('justify-content', 'flex-end')
+// })
