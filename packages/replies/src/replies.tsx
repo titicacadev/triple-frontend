@@ -152,7 +152,7 @@ export default function Replies({
       <Container onClick={onClickCapture}>
         <ReplyList
           replies={replies}
-          isActiveMoreButton={haveNextReplies}
+          isMoreButtonActive={haveNextReplies}
           fetchMoreReplies={fetchMoreReplies}
           focusInput={focusInput}
           onReplyDelete={handleReplyDelete}
