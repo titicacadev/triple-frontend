@@ -20,7 +20,11 @@ export function addReply(reply: Reply, tree: Reply): Reply {
 export function deleteReply(reply: Reply, tree: Reply): Reply | undefined {
   if (reply.id === tree.id) {
     if (tree.childrenCount > 0) {
-      return editReply(reply, reply, tree)
+      return {
+        ...tree,
+        deleted: true,
+        content: {},
+      }
     } else {
       return undefined
     }
