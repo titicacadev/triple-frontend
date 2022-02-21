@@ -59,6 +59,6 @@ export interface ReplyBoard {
 }
 
 export interface Placeholders {
-  replyPlaceholder: string
-  childReplyPlaceholder: string
+  reply?: string
+  childReply?: string
 }

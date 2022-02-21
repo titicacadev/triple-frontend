@@ -76,8 +76,8 @@ function Register(
   })
 
   const placeholder = parentMessageId
-    ? placeholders?.childReplyPlaceholder || '답글을 입력하세요.'
-    : placeholders?.replyPlaceholder || '댓글을 입력하세요.'
+    ? placeholders?.childReply || '답글을 입력하세요.'
+    : placeholders?.reply || '댓글을 입력하세요.'
 
   return (
     <Container
