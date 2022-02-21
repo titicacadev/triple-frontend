@@ -1,29 +1,32 @@
-import { css } from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import Container, { ContainerProps } from './container'
 
-const veritcalStyle = css`
-  & > :first-child {
-    margin-top: 0;
-    padding-top: 0;
-  }
+const StyledContainer = styled(Container)<{ $horizontal?: boolean }>`
+  ${({ $horizontal }) =>
+    $horizontal
+      ? css`
+          & > :first-child {
+            margin-left: 0;
+            padding-left: 0;
+          }
 
-  & > :last-child {
-    margin-bottom: 0;
-    padding-top: 0;
-  }
-`
+          & > :last-child {
+            margin-right: 0;
+            padding-right: 0;
+          }
+        `
+      : css`
+          & > :first-child {
+            margin-top: 0;
+            padding-top: 0;
+          }
 
-const horizontalStyle = css`
-  & > :first-child {
-    margin-left: 0;
-    padding-left: 0;
-  }
-
-  & > :last-child {
-    margin-right: 0;
-    padding-right: 0;
-  }
+          & > :last-child {
+            margin-bottom: 0;
+            padding-top: 0;
+          }
+        `}
 `
 
 export interface StackProps extends ContainerProps {
@@ -41,18 +44,8 @@ export interface StackProps extends ContainerProps {
  * - 가로형
  * <Stack horizontal>...</Stack>
  */
-function Stack({ css: _css, children, horizontal, ...props }: StackProps) {
-  return (
-    <Container
-      css={css`
-        ${horizontal ? horizontalStyle : veritcalStyle}
-        ${_css}
-      `}
-      {...props}
-    >
-      {children}
-    </Container>
-  )
+function Stack({ children, horizontal, ...props }: StackProps) {
+  return <StyledContainer {...props}>{children}</StyledContainer>
 }
 
 export default Stack

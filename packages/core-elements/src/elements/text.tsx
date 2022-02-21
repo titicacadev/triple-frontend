@@ -2,16 +2,14 @@ import styled from 'styled-components'
 import { Property } from 'csstype'
 import { getColor, Color } from '@titicaca/color-palette'
 
-import { MarginPadding, GlobalSizes, GetGlobalColor } from '../commons'
+import { GlobalSizes, GetGlobalColor } from '../commons'
 import {
   KeyOfTextStyleMap,
   ellipsisMixin,
-  marginMixin,
   maxLinesMixin,
-  paddingMixin,
   textStyleMixin,
 } from '../mixins'
-import { CSSProps } from '../css'
+import { primitiveProps, PrimitiveProps } from '../primitive'
 
 function rgba({ color, alpha }: { color?: string; alpha?: number }) {
   return `rgba(${GetGlobalColor(color || 'gray')}, ${alpha || 1})`
@@ -29,22 +27,18 @@ export type TextProps = React.PropsWithChildren<{
   inlineBlock?: boolean
   letterSpacing?: number
   lineHeight?: number | string
-  margin?: MarginPadding
   maxLines?: number
-  padding?: MarginPadding
   size?: GlobalSizes | number
   strikethrough?: boolean
   textAlign?: Property.TextAlign
   textStyle?: KeyOfTextStyleMap
   underline?: boolean
-  whiteSpace?: Property.WhiteSpace
   wordBreak?: Property.WordBreak
 }> &
-  CSSProps
+  PrimitiveProps
 
 const Text = styled.div<TextProps>(
   (props) => ({
-    boxSizing: 'border-box',
     overflowWrap: 'break-word',
     color: props.alpha
       ? rgba({ color: props.color, alpha: props.alpha })
@@ -70,34 +64,17 @@ const Text = styled.div<TextProps>(
     whiteSpace: props.whiteSpace ?? 'pre-line',
     wordBreak: props.wordBreak,
   }),
-  marginMixin,
-  paddingMixin,
   textStyleMixin,
   ellipsisMixin,
   maxLinesMixin,
-  (props) => props.css,
+  ...primitiveProps,
 )
 
-interface TextTitleBaseProps extends CSSProps {
-  margin?: MarginPadding
-}
-
-const TextTitleBase = styled(Text)<TextTitleBaseProps>`
-  line-height: 1.2;
-  font-size: 24px;
-  font-weight: bold;
-  color: #3a3a3a;
-  ${marginMixin}
-  ${(props) => props.css}
-`
-
-export type TextTitleProps = React.PropsWithChildren<TextTitleBaseProps>
-
-function TextTitle({ css, children, margin }: TextTitleProps) {
+function TextTitle({ children, ...props }: TextProps) {
   return (
-    <TextTitleBase as="h1" css={css} margin={margin}>
+    <Text as="h1" lineHeight={1.2} size={24} bold color="gray" {...props}>
       {children}
-    </TextTitleBase>
+    </Text>
   )
 }
 
