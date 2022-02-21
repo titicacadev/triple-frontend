@@ -24,7 +24,6 @@ export default function GuideText() {
     <>
       {parentMessageId ? (
         <FlexBox
-          flex
           padding={{ top: 10, bottom: 10, left: 20, right: 20 }}
           alignItems="center"
           justifyContent="space-between"

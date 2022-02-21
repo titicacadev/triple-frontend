@@ -109,11 +109,7 @@ export default function DefaultFooter({
         padding={{ top: 30, left: 30, right: 30, bottom: 40 }}
       >
         <Accordion>
-          <AccordionHeader
-            flex
-            alignItems="center"
-            justifyContent="space-between"
-          >
+          <AccordionHeader alignItems="center" justifyContent="space-between">
             <Title
               active={businessExpanded}
               onClick={() => setBusinessExpanded(!businessExpanded)}
@@ -129,7 +125,7 @@ export default function DefaultFooter({
             </Title>
 
             {!hideAppDownloadButton ? (
-              <ButtonContainer flex>
+              <ButtonContainer>
                 <Button
                   onClick={() =>
                     sessionAvailable === true ? logout() : login()

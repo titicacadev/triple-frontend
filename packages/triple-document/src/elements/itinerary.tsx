@@ -138,17 +138,15 @@ export default function ItineraryElement({ value }: Props) {
             const TransportIcon = TransportationIcon(transportation)
 
             return (
-              <FlexBox flex key={index}>
-                <Timeline flex>
+              <FlexBox key={index}>
+                <Timeline>
                   <FlexBox
-                    flex
                     flexGrow={1}
                     justifyContent="center"
                     alignItems="center"
                     flexDirection="column"
                   >
                     <FlexBox
-                      flex
                       flexGrow={1}
                       alignItems="center"
                       flexDirection="column"
