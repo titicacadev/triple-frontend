@@ -14,14 +14,14 @@ const HASH_EDIT_CLOSE_MODAL = 'reply.edit-close-modal'
 
 export default function ReplyList({
   replies,
-  isActiveMoreButton,
+  isMoreButtonActive,
   fetchMoreReplies,
   focusInput,
   onReplyDelete,
   onReplyEdit,
 }: {
   replies: ReplyType[]
-  isActiveMoreButton: boolean
+  isMoreButtonActive: boolean
   fetchMoreReplies: (reply?: ReplyType) => void
   focusInput: () => void
   onReplyDelete: (response: ReplyType) => void
@@ -65,7 +65,7 @@ export default function ReplyList({
         <NotExistReplies />
       ) : (
         <Container padding={{ bottom: 30, left: 30, right: 30 }}>
-          {isActiveMoreButton ? (
+          {isMoreButtonActive ? (
             <Text
               padding={{ top: 20 }}
               color="blue"
