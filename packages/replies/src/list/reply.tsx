@@ -213,14 +213,14 @@ export default function Reply({
       />
 
       <Container padding={{ left: 50, bottom: 3 }} margin={{ bottom: 20 }}>
-        <FlexBox flex justifyContent="space-between" alignItems="start">
+        <FlexBox justifyContent="space-between" alignItems="start">
           <Container minWidth={80} maxWidth={135}>
             <Text size={15} bold ellipsis>
               {name}
             </Text>
           </Container>
 
-          <FlexBox padding={{ top: 3, left: 5 }} flex alignItems="start">
+          <FlexBox padding={{ top: 3, left: 5 }} alignItems="start">
             <Text size={12} padding={{ right: 5 }} bold color="gray300">
               {formatTimestamp(createdAt)}
             </Text>
@@ -241,7 +241,6 @@ export default function Reply({
         {!deleted && !blinded ? (
           <ReactionBox
             padding={{ top: 7 }}
-            flex
             alignItems="center"
             cursor="pointer"
           >
