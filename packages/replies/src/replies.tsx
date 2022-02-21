@@ -75,7 +75,19 @@ export default function Replies({
         size,
       })
 
-      setReplies(checkUniqueReply(repliesResponse))
+      const newReplies = [
+        ...new Map(
+          (repliesResponse || []).map((reply) => [
+            reply.id,
+            {
+              ...reply,
+              children: checkUniqueReply(reply.children),
+            },
+          ]),
+        ).values(),
+      ]
+
+      setReplies(checkUniqueReply(newReplies))
     }
 
     fetchRepliesAndSet()
