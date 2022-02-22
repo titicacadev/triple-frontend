@@ -6,7 +6,6 @@ import { Reply, ResourceType, Placeholders } from './types'
 import ReplyList from './list'
 import GuideText from './guide-text'
 import Register from './register'
-import { checkUniqueReply } from './utils'
 import { RepliesProvider } from './context'
 import { TextAreaHandle } from './auto-resizing-textarea'
 import {
@@ -33,7 +32,7 @@ export default function Replies({
   onClickCapture?: (event: MouseEvent<HTMLDivElement>) => void
 }) {
   const [replies, setReplies] = useState<Reply[]>([])
-  const [haveNextReplies, setHaveNextRelies] = useState(false)
+  const [hasNextPage, setHasNextPage] = useState(false)
 
   const handleReplyAdd = (response: Reply): void => {
     if (response.parentId) {
@@ -60,32 +59,6 @@ export default function Replies({
 
     setReplies(editedReplies)
   }
-
-  useEffect(() => {
-    async function fetchRepliesAndSet() {
-      const repliesResponse = await fetchReplies({
-        resourceId,
-        resourceType,
-        size: size * 2,
-      })
-
-      const newReplies = [
-        ...new Map(
-          (repliesResponse || []).map((reply) => [
-            reply.id,
-            {
-              ...reply,
-              children: checkUniqueReply(reply.children),
-            },
-          ]),
-        ).values(),
-      ]
-
-      setReplies(checkUniqueReply(newReplies))
-    }
-
-    fetchRepliesAndSet()
-  }, [resourceId, resourceType, size])
 
   const fetchMoreReplies = useCallback(
     async (reply?: Reply) => {
@@ -124,7 +97,7 @@ export default function Replies({
           page: pageNumber + 1,
         })
 
-        setHaveNextRelies(nextRepliesResponse.length > 0)
+        setHasNextPage(nextRepliesResponse.length > 0)
       }
 
       const { children: newReplies } = appendReplyChildren(
@@ -141,6 +114,10 @@ export default function Replies({
     [resourceId, resourceType, size, replies],
   )
 
+  useEffect(() => {
+    fetchMoreReplies()
+  }, [])
+
   const registerRef = useRef<TextAreaHandle>(null)
 
   const focusInput = () => {
@@ -152,7 +129,7 @@ export default function Replies({
       <Container onClick={onClickCapture}>
         <ReplyList
           replies={replies}
-          isMoreButtonActive={haveNextReplies}
+          isMoreButtonActive={hasNextPage}
           fetchMoreReplies={fetchMoreReplies}
           focusInput={focusInput}
           onReplyDelete={handleReplyDelete}
