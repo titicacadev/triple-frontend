@@ -5,5 +5,6 @@ export * from './use-scroll-to-anchor'
 export * from './use-scroll-to-element'
 export * from './use-lottie'
 export * from './use-error-handler'
+export * from './use-interval'
 
 export { default as useDebouncedState } from './use-debounce'
