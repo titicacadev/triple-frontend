@@ -129,7 +129,9 @@ export default function Replies({
 
   useEffect(() => {
     fetchMoreReplies()
-  }, [resourceId, resourceType])
+    // fetchMoreReplies deps의 replies가 계속 업데이트되므로 제거했습니다.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resourceId, resourceType, size])
 
   const registerRef = useRef<TextAreaHandle>(null)
 
