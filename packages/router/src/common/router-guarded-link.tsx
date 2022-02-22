@@ -1,4 +1,4 @@
-import React, { AnchorHTMLAttributes, PropsWithChildren } from 'react'
+import { AnchorHTMLAttributes, PropsWithChildren } from 'react'
 
 import {
   AllowSourceProps,

@@ -27,7 +27,7 @@ export const Flex = () => {
       <Summary>
         {`flex 속성을 추가하면 display: flex 가 적용됩니다. \n FlexBox 는 Container 를 상속받아 구성되어있기 때문에 Container 의 Prop 을 그대로 이용 할 수 있습니다.`}
       </Summary>
-      <FlexBox flex>
+      <FlexBox>
         <Item>Item1</Item>
         <Item>Item2</Item>
         <Item>Item3</Item>
@@ -42,7 +42,7 @@ export const FlexGrow = () => {
       <Summary>
         flexGrow 는 컨테이너 요소 내부에서 할당 가능한 공간의 정도를 선언합니다.
       </Summary>
-      <FlexBox flex>
+      <FlexBox>
         <Item flexGrow={1}>Item1</Item>
         <Item flexGrow={1}>Item2</Item>
         <Item flexGrow={1}>Item3</Item>
@@ -55,7 +55,7 @@ export const Order = () => {
   return (
     <Section>
       <Summary>order를 이용하여 컴포넌트 순서를 조절 할 수 있습니다.</Summary>
-      <FlexBox flex>
+      <FlexBox>
         <Item order={3}>Item1</Item>
         <Item order={2}>Item2</Item>
         <Item order={1}>Item3</Item>
@@ -71,7 +71,7 @@ export const FlexShrink = () => {
         컨테이너에 속한 아이템 크기가 컨테이너 보다 클 때 flexShrink 를 이용하면
         값에 따라 컨테이너에 맞게 축소됩니다.
       </Summary>
-      <FlexBox flex width={300}>
+      <FlexBox width={300}>
         <Item flexBasis="500px" flexShrink={1}>
           Item1
         </Item>
@@ -88,7 +88,7 @@ export const FlexDirection = () => {
       <Summary>
         아이템을 배치할 때 사용할 주축 및 방향(정방향, 역방향)을 지정합니다.
       </Summary>
-      <FlexBox flex flexDirection="row">
+      <FlexBox flexDirection="row">
         <Item>Item1</Item>
         <Item>Item2</Item>
         <Item>Item3</Item>
@@ -105,7 +105,7 @@ export const FlexWrap = () => {
         영역 내에서 벗어나지 않고 여러행으로 나누어 표현 할 것인지 결정하는
         속성입니다.
       </Summary>
-      <FlexBox flex width={200} flexWrap="wrap">
+      <FlexBox width={200} flexWrap="wrap">
         <Item width={100}>Item1</Item>
         <Item width={100}>Item2</Item>
         <Item width={100}>Item3</Item>
@@ -118,7 +118,7 @@ export const JustifyContent = () => {
   return (
     <Section>
       <Summary>JustifyContent 는 주축 정렬을 제어합니다.</Summary>
-      <FlexBox flex flexDirection="row" justifyContent="space-between">
+      <FlexBox flexDirection="row" justifyContent="space-between">
         <Item>Item1</Item>
         <Item>Item2</Item>
         <Item>Item3</Item>
@@ -131,7 +131,7 @@ export const AlignItems = () => {
   return (
     <Section>
       <Summary>align-items 는 교차축 정렬을 제어합니다.</Summary>
-      <FlexBox flex flexDirection="column" alignItems="center">
+      <FlexBox flexDirection="column" alignItems="center">
         <Item>Item1</Item>
         <Item>Item2</Item>
         <Item>Item3</Item>
@@ -144,7 +144,7 @@ export const Gap = () => {
   return (
     <Section>
       <Summary>Gap은 행과 열 사이의 간격(거터)을 설정합니다.</Summary>
-      <FlexBox flex gap="10px">
+      <FlexBox gap="10px">
         <Item>Item1</Item>
         <Item>Item2</Item>
         <Item>Item3</Item>
