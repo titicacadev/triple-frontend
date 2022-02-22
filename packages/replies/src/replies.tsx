@@ -1,5 +1,4 @@
-import { useEffect, useState, useCallback, MouseEvent, useRef } from 'react'
-import { Container } from '@titicaca/core-elements'
+import { useEffect, useState, useCallback, useRef } from 'react'
 
 import { checkUniqueReply } from './utils'
 import { fetchReplies, fetchChildReplies } from './replies-api-clients'
@@ -21,16 +20,11 @@ export default function Replies({
   resourceType,
   placeholders,
   size = 10,
-  // FIXME: 개발 완료 후 onClickCapture props를 제거합니다.
-  // 제공되는 댓글의 일부 기능을 노출하지 않기 위해서 추가한 임시 핸들러 props이며,
-  // 개발이 완료되면 없어질 props입니다.
-  onClickCapture,
 }: {
   resourceId: string
   resourceType: ResourceType
   placeholders?: Placeholders
   size?: number
-  onClickCapture?: (event: MouseEvent<HTMLDivElement>) => void
 }) {
   const [replies, setReplies] = useState<Reply[]>([])
   const [hasNextPage, setHasNextPage] = useState(false)
@@ -141,27 +135,25 @@ export default function Replies({
 
   return (
     <RepliesProvider>
-      <Container onClick={onClickCapture}>
-        <ReplyList
-          replies={replies}
-          isMoreButtonActive={hasNextPage}
-          fetchMoreReplies={fetchMoreReplies}
-          focusInput={focusInput}
-          onReplyDelete={handleReplyDelete}
-          onReplyEdit={handleReplyEdit}
-        />
+      <ReplyList
+        replies={replies}
+        isMoreButtonActive={hasNextPage}
+        fetchMoreReplies={fetchMoreReplies}
+        focusInput={focusInput}
+        onReplyDelete={handleReplyDelete}
+        onReplyEdit={handleReplyEdit}
+      />
 
-        <GuideText />
+      <GuideText />
 
-        <Register
-          ref={registerRef}
-          resourceId={resourceId}
-          resourceType={resourceType}
-          placeholders={placeholders}
-          onReplyAdd={handleReplyAdd}
-          onReplyEdit={handleReplyEdit}
-        />
-      </Container>
+      <Register
+        ref={registerRef}
+        resourceId={resourceId}
+        resourceType={resourceType}
+        placeholders={placeholders}
+        onReplyAdd={handleReplyAdd}
+        onReplyEdit={handleReplyEdit}
+      />
     </RepliesProvider>
   )
 }
