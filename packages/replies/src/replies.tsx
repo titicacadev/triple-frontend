@@ -48,8 +48,13 @@ export default function Replies({
   }
 
   const handleReplyEdit = (response: Reply): void => {
+    const sortedChildReply = {
+      ...response,
+      children: checkUniqueReply(response.children),
+    }
+
     const editedReplies = replies.map((reply) =>
-      editReply(response, response, reply),
+      editReply(response, sortedChildReply, reply),
     )
 
     setReplies(editedReplies)
