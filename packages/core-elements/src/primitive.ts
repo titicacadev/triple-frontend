@@ -41,6 +41,7 @@ export interface PrimitiveProps {
 export const primitiveProps = [
   (props: PrimitiveProps) => ({
     alignSelf: props.alignSelf,
+    display: props.display,
     flex: props.flex,
     flexBasis: props.flexBasis,
     flexGrow: props.flexGrow,

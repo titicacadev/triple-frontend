@@ -15,6 +15,7 @@ export interface FlexBoxProps extends ContainerProps {
 }
 
 const FlexBox = styled(Container)<FlexBoxProps>((props) => ({
+  display: 'flex',
   flexDirection: props.flexDirection,
   flexWrap: props.flexWrap,
   justifyContent: props.justifyContent,
