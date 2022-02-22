@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback, MouseEvent, useRef } from 'react'
 import { Container } from '@titicaca/core-elements'
 
+import { checkUniqueReply } from './utils'
 import { fetchReplies, fetchChildReplies } from './replies-api-clients'
 import { Reply, ResourceType, Placeholders } from './types'
 import ReplyList from './list'
@@ -100,9 +101,21 @@ export default function Replies({
         setHasNextPage(nextRepliesResponse.length > 0)
       }
 
+      const sortedChildReplies = [
+        ...new Map(
+          (repliesResponse || []).map((reply) => [
+            reply.id,
+            {
+              ...reply,
+              children: checkUniqueReply(reply.children),
+            },
+          ]),
+        ).values(),
+      ]
+
       const { children: newReplies } = appendReplyChildren(
         actualTree,
-        repliesResponse,
+        sortedChildReplies,
         {
           id: null,
           children: replies,
@@ -116,7 +129,7 @@ export default function Replies({
 
   useEffect(() => {
     fetchMoreReplies()
-  }, [])
+  }, [resourceId, resourceType])
 
   const registerRef = useRef<TextAreaHandle>(null)
 
