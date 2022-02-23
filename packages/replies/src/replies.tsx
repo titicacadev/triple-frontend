@@ -1,6 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
 
-import { checkUniqueReply } from './utils'
 import { fetchReplies, fetchChildReplies } from './replies-api-clients'
 import { Reply, ResourceType, Placeholders } from './types'
 import ReplyList from './list'
@@ -48,13 +47,8 @@ export default function Replies({
   }
 
   const handleReplyEdit = (response: Reply): void => {
-    const sortedChildReply = {
-      ...response,
-      children: checkUniqueReply(response.children),
-    }
-
     const editedReplies = replies.map((reply) =>
-      editReply(response, sortedChildReply, reply),
+      editReply(response, response, reply),
     )
 
     setReplies(editedReplies)
@@ -100,21 +94,9 @@ export default function Replies({
         setHasNextPage(nextRepliesResponse.length > 0)
       }
 
-      const sortedChildReplies = [
-        ...new Map(
-          (repliesResponse || []).map((reply) => [
-            reply.id,
-            {
-              ...reply,
-              children: checkUniqueReply(reply.children),
-            },
-          ]),
-        ).values(),
-      ]
-
       const { children: newReplies } = appendReplyChildren(
         actualTree,
-        sortedChildReplies,
+        repliesResponse,
         {
           id: null,
           children: replies,
