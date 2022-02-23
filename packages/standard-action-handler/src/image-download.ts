@@ -22,7 +22,7 @@ export default async function imageDownload({ path, query }: UrlElements) {
     } = await response.json()
 
     const image = await fetch(imageUrl)
-    const blobImage = image.blob()
+    const blobImage = await image.blob()
 
     const windowUrl = window.URL || window.webkitURL
     const imageToDomString = windowUrl.createObjectURL(blobImage)
