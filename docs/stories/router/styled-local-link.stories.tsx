@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Meta } from '@storybook/react'
 
 import {
-  globalStyleDecorator,
   envProviderDecorator,
   sessionContextProviderDecorator,
 } from '../../decorators'
@@ -25,11 +24,7 @@ export default {
       테스트링크
     </StyledLocalLink>
   ),
-  decorators: [
-    globalStyleDecorator,
-    envProviderDecorator,
-    sessionContextProviderDecorator,
-  ],
+  decorators: [envProviderDecorator, sessionContextProviderDecorator],
 } as Meta
 
 export const Primary = {}

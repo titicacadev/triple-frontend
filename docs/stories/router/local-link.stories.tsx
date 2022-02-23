@@ -3,7 +3,6 @@ import { LocalLink } from '@titicaca/router'
 
 import {
   envProviderDecorator,
-  globalStyleDecorator,
   sessionContextProviderDecorator,
 } from '../../decorators'
 
@@ -13,11 +12,7 @@ export default {
       테스트링크
     </LocalLink>
   ),
-  decorators: [
-    globalStyleDecorator,
-    envProviderDecorator,
-    sessionContextProviderDecorator,
-  ],
+  decorators: [envProviderDecorator, sessionContextProviderDecorator],
 } as Meta
 
 export const Primary = {}
