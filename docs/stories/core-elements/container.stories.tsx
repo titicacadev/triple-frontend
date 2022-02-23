@@ -10,10 +10,3 @@ const Template: Story = (args) => <Container {...args} />
 
 export const Basic = Template.bind({})
 Basic.args = { children: 'Basic Container' }
-
-export const CustomCss = Template.bind({})
-CustomCss.args = {
-  children: 'Custom CSS Container',
-  css: { padding: 50, backgroundColor: 'gray', color: 'white' },
-  borderRadius: 10,
-}
