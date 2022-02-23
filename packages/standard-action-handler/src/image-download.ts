@@ -13,7 +13,7 @@ export default async function imageDownload({ path, query }: UrlElements) {
 
     const {
       sizes: {
-        large: { imageUrl },
+        large: { url: imageUrl },
       },
     } = await response.json()
 
