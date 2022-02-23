@@ -21,10 +21,7 @@ export default async function imageDownload({ path, query }: UrlElements) {
       ],
     } = await response.json()
 
-    const image = await fetch(imageUrl, {
-      method: 'GET',
-      headers: { 'content-type': 'image/jpeg' },
-    })
+    const image = await fetch(imageUrl)
     const blobImage = await image.blob()
 
     const windowUrl = window.URL || window.webkitURL
@@ -32,11 +29,11 @@ export default async function imageDownload({ path, query }: UrlElements) {
 
     // ie에서는 Blob 저장이 정상적으로 이루어지지 않으므로 해당 케이스 추가
     if (window.navigator.msSaveOrOpenBlob) {
-      window.navigator.msSaveOrOpenBlob(imageToDomString, 'image')
+      window.navigator.msSaveOrOpenBlob(imageToDomString, 'image.jpeg')
     } else {
       const downloadAnchor = document.createElement('a')
       downloadAnchor.setAttribute('href', imageToDomString)
-      downloadAnchor.setAttribute('download', 'image')
+      downloadAnchor.setAttribute('download', 'image.jpeg')
       downloadAnchor.click()
       downloadAnchor.remove()
 
