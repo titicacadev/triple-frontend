@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 
 const FALLBACK_HANDLER_KEY = '__DISASTER_FALLBACK_HANDLER__'
 
@@ -45,8 +45,11 @@ export function TripleFallbackActionScript() {
   )
 }
 
+const useLayoutEffectSafeInSsr =
+  typeof window === 'undefined' ? useEffect : useLayoutEffect
+
 export function useTripleFallbackActionRemover() {
-  useLayoutEffect(() => {
+  useLayoutEffectSafeInSsr(() => {
     removeDisasterFallback()
   }, [])
 }
