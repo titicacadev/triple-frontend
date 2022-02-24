@@ -23,6 +23,7 @@
   ],
   "dependencies": {
     "@titicaca/core-elements": "^6.3.0",
+    "@titicaca/fetcher": "^6.3.0",
     "@titicaca/modals": "^6.3.0",
     "@titicaca/react-hooks": "^6.3.0",
     "@titicaca/react-triple-client-interfaces": "^6.3.0",
