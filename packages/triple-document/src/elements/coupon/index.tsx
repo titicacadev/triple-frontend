@@ -12,13 +12,20 @@ import {
 } from './coupon-download-buttons'
 
 export default function Coupon({
-  value: { identifier, description, verificationType, couponType = 'single' },
+  value: {
+    identifier,
+    description,
+    verificationType,
+    couponType = 'single',
+    enabledAt,
+  },
 }: {
   value: {
     identifier: string
     description: string
     verificationType?: VerificationType
     couponType?: 'single' | 'group'
+    enabledAt?: string
   }
 }) {
   const trackEventWithMetadata = useEventTrackerWithMetadata()
@@ -46,6 +53,7 @@ export default function Coupon({
         <CouponDownloadButton
           verificationType={verificationType}
           slugId={identifier}
+          enabledAt={enabledAt}
           onClick={handleCouponClick}
         />
       ) : (
