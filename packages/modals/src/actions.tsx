@@ -1,3 +1,5 @@
+import { SyntheticEvent } from 'react'
+
 import Modal, { silenceEvent } from './modal-base'
 
 export default function ModalActions({
@@ -6,11 +8,11 @@ export default function ModalActions({
 }: {
   negative: {
     text?: string
-    onClick?: (e?: React.SyntheticEvent) => unknown
+    onClick?: (e?: SyntheticEvent) => unknown
   }
   positive: {
     text?: string
-    onClick?: (e?: React.SyntheticEvent) => unknown
+    onClick?: (e?: SyntheticEvent) => unknown
   }
 }) {
   return (

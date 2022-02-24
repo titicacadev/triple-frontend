@@ -7,7 +7,8 @@ import {
   useRef,
   useState,
   MouseEventHandler,
-} from 'react';
+  PropsWithChildren,
+} from 'react'
 
 import styled, { css } from 'styled-components'
 import {
@@ -50,7 +51,7 @@ export default function FullScreenSearchView({
   keyword: controlledKeyword,
   focusedOnInput,
   ...rest
-}: React.PropsWithChildren<
+}: PropsWithChildren<
   {
     onDelete?: (keyword: string) => void
     onAutoComplete?: (keyword: string) => void

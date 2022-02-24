@@ -1,8 +1,9 @@
+import { SyntheticEvent } from 'react'
 import styled from 'styled-components'
 import { Label } from '@titicaca/core-elements'
 
 export interface SortingOptionsProps {
-  onSelect: (e: React.SyntheticEvent, key: string) => void
+  onSelect: (e: SyntheticEvent, key: string) => void
   selected: string
 }
 

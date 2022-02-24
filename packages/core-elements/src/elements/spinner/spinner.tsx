@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import { TRIPLE_FALLBACK_ACTION_CLASS_NAME } from '@titicaca/triple-fallback-action'
 import styled, { css, keyframes } from 'styled-components'
 
@@ -48,7 +49,7 @@ export default function Spinner({
   zIndex,
 }: {
   full?: boolean
-  children?: React.ReactNode
+  children?: ReactNode
 } & LayeringMixinProps) {
   return (
     <Container full={full} zTier={zTier} zIndex={zIndex}>

@@ -1,3 +1,4 @@
+import { SyntheticEvent } from 'react'
 import styled, { css } from 'styled-components'
 import {
   Container,
@@ -96,7 +97,7 @@ export default function StaticMap({
   mapScale?: string
   markerImage?: string
   responsiveVariants?: ResponsiveVariant[]
-  onClick?: (e: React.SyntheticEvent) => void
+  onClick?: (e: SyntheticEvent) => void
 }) {
   const srcSet = responsiveVariants
     ?.map(

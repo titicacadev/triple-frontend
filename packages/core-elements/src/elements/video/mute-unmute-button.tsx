@@ -1,4 +1,10 @@
-import { useState, useCallback, useEffect } from 'react'
+import {
+  useState,
+  useCallback,
+  useEffect,
+  RefObject,
+  SyntheticEvent,
+} from 'react'
 import styled from 'styled-components'
 import { debounce } from '@titicaca/view-utilities'
 
@@ -42,14 +48,14 @@ export default function MuteUnmuteButton({
 }: {
   playing: boolean
   muted: boolean
-  videoRef: React.RefObject<HTMLVideoElement>
+  videoRef: RefObject<HTMLVideoElement>
   forceVisible: boolean
-  onMuteUnmute: (e: React.SyntheticEvent) => void
+  onMuteUnmute: (e: SyntheticEvent) => void
 }) {
   const [visible, setVisible] = useState(false)
 
   const handleMuteUnmute = useCallback(
-    (e: React.SyntheticEvent) => {
+    (e: SyntheticEvent) => {
       if (videoRef.current) {
         videoRef.current.muted = !muted
         onMuteUnmute(e)

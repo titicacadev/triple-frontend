@@ -1,3 +1,4 @@
+import { SyntheticEvent } from 'react'
 import { Responsive, Text } from '@titicaca/core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
 
@@ -14,7 +15,7 @@ export default function PentaImages({
   onImageClick,
 }: {
   images: ImageMeta[]
-  onImageClick: (e: React.SyntheticEvent, index: number) => void
+  onImageClick: (e: SyntheticEvent, index: number) => void
 }) {
   const [firstImage, secondImage, ...lowerImages] = images.slice(0, 5)
   const upperImages = [firstImage, secondImage]

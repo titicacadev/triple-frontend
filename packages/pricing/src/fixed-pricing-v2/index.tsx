@@ -1,3 +1,4 @@
+import { ReactNode, SyntheticEvent } from 'react'
 import styled from 'styled-components'
 import {
   Container,
@@ -15,21 +16,21 @@ import PurchaseButton from './purchase-button'
 export interface FixedPricingV2Props {
   loading: boolean
   active?: boolean
-  label?: React.ReactNode
-  discountRate?: React.ReactNode
-  description?: React.ReactNode
+  label?: ReactNode
+  discountRate?: ReactNode
+  description?: ReactNode
   buttonText?: string
   buttonDisabled?: boolean
   salePrice?: number
   isSoldOut?: boolean
   priceLabelOverride?: string
   tooltipLabel?: string
-  onClick?: (e?: React.SyntheticEvent) => any
-  onTooltipClick?: (e?: React.SyntheticEvent) => any
+  onClick?: (e?: SyntheticEvent) => any
+  onTooltipClick?: (e?: SyntheticEvent) => any
   maxWidth?: number
   tooltipColor?: string
   padding?: MarginPadding
-  emptyOverride?: React.ReactNode
+  emptyOverride?: ReactNode
 }
 
 const FloatedFrame = styled(Container)`

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, RefObject } from 'react'
 
 import { formatTime } from './utils'
 
@@ -6,7 +6,7 @@ export function useVideoControl({
   videoRef,
   initialMuted,
 }: {
-  videoRef: React.RefObject<HTMLVideoElement>
+  videoRef: RefObject<HTMLVideoElement>
   initialMuted: boolean
 }) {
   const [duration, setDuartion] = useState<number>(0)

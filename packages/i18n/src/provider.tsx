@@ -1,9 +1,10 @@
+import { PropsWithChildren } from 'react'
 import { I18nextProvider, I18nextProviderProps } from 'react-i18next'
 
 import i18n from './i18next'
 
 export default function I18nProvider(
-  props: React.PropsWithChildren<
+  props: PropsWithChildren<
     { language?: string } & Partial<I18nextProviderProps>
   >,
 ) {

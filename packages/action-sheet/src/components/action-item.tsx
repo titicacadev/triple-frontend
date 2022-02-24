@@ -1,3 +1,4 @@
+import { SyntheticEvent, PropsWithChildren } from 'react'
 import styled from 'styled-components'
 import * as CSS from 'csstype'
 
@@ -82,11 +83,11 @@ export default function ActionItem({
   onClick,
   onClose,
   children,
-}: React.PropsWithChildren<{
+}: PropsWithChildren<{
   buttonLabel?: string
   icon?: string
   checked?: boolean
-  onClick?: (e?: React.SyntheticEvent) => any
+  onClick?: (e?: SyntheticEvent) => any
   onClose?: () => void
 }>) {
   let textWidth = '100%'
