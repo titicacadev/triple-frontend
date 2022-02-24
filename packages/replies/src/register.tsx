@@ -85,7 +85,6 @@ function Register(
       <HR1 margin={{ top: 0 }} />
 
       <FlexBox
-        alignItems="flex-end"
         padding={{ top: 20, bottom: 20, left: 20, right: 20 }}
         justifyContent="space-between"
       >
