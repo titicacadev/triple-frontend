@@ -27,11 +27,7 @@
     "@titicaca/modals": "^6.3.0",
     "@titicaca/react-hooks": "^6.3.0",
     "@titicaca/react-triple-client-interfaces": "^6.3.0",
-    "@titicaca/router": "^6.3.0",
-    "isomorphic-fetch": "^2.2.1"
-  },
-  "devDependencies": {
-    "@types/isomorphic-fetch": "^0.0.35"
+    "@titicaca/router": "^6.3.0"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*"
