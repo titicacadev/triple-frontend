@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from 'react'
-import fetch from 'isomorphic-fetch'
 import { useVisibilityChange } from '@titicaca/react-hooks'
 import { useExternalRouter } from '@titicaca/router'
 
 import { useVerifiedMessageListener, VerifiedMessage } from './verified-message'
+import { confirmVerification } from './confirmation-services'
 import type { VerificationType } from './types'
 
 interface VerificationState {
@@ -17,12 +17,6 @@ const TARGET_PAGE_PATH: Record<VerificationType, string> = {
   'sms-verification': '/verifications/',
   'personal-id-verification-with-residence': '/verifications/residence',
   'personal-id-verification': '/verifications/personal-id-verification',
-}
-
-const CONFIRMATION_API_PATH: Record<VerificationType, string> = {
-  'sms-verification': '/api/users/smscert',
-  'personal-id-verification-with-residence': '/api/users/kto-stay-2021',
-  'personal-id-verification': '/api/users/namecheck',
 }
 
 export function useUserVerification({
@@ -63,23 +57,18 @@ export function useUserVerification({
 
   const fetchAndSetVerificationState = useCallback(
     async (force: boolean) => {
-      const response = await fetch(CONFIRMATION_API_PATH[verificationType], {
-        credentials: 'same-origin',
+      const { verified, phoneNumber, payload, error } =
+        await confirmVerification(verificationType)
+
+      setVerificationState({
+        verified,
+        phoneNumber,
+        payload,
+        error,
       })
 
-      if (response.ok) {
-        const { phoneNumber, ...payload } = await response.json()
-
-        setVerificationState({ phoneNumber, payload, verified: true })
-      } else if (response.status === 404) {
-        setVerificationState({ verified: false })
-
-        force && initiateVerification()
-      } else {
-        setVerificationState({
-          verified: undefined,
-          error: await response.text(),
-        })
+      if (verified === false && force) {
+        initiateVerification()
       }
     },
     [initiateVerification, verificationType],
