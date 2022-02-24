@@ -29,14 +29,12 @@
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.24.0",
     "qs": "^6.9.0",
-    "scroll-to-element": "^2.0.3",
-    "semver": "^7.3.5"
+    "scroll-to-element": "^2.0.3"
   },
   "devDependencies": {
     "@types/humps": "^2.0.0",
     "@types/isomorphic-fetch": "^0.0.35",
     "@types/qs": "^6.9.0",
-    "@types/semver": "^7.3.6",
     "csstype": "^3.0.2"
   },
   "peerDependencies": {

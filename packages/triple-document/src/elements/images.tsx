@@ -1,5 +1,4 @@
 import * as CSS from 'csstype'
-import semver from 'semver'
 import {
   ImageCarouselElementContainer,
   ImageBlockElementContainer,
@@ -19,8 +18,6 @@ import DocumentCarousel from './shared/document-carousel'
 import generateClickHandler from './shared/generate-click-handler'
 
 type MediaDisplayProperty = CSS.Property.Display | 'gapless-block'
-
-const PLAYS_INLINE_APP_VERSION = '4.10.0'
 
 export default function Images({
   value: { images, display },
@@ -46,15 +43,8 @@ export default function Images({
       : ImageCarouselElementContainer
 
   const handleClick = generateClickHandler(onLinkClick, onImageClick)
-  const { isPublic, os, app } = useUserAgentContext()
-  const appVersion = semver.coerce(app?.version)
-  const isLegacyIosApp = Boolean(
-    !isPublic &&
-      os &&
-      os.name === 'iOS' &&
-      appVersion &&
-      semver.lt(appVersion, PLAYS_INLINE_APP_VERSION),
-  )
+  const { isPublic, os } = useUserAgentContext()
+  const isLegacyIosApp = Boolean(!isPublic && os && os.name === 'iOS')
 
   return (
     <ImagesContainer

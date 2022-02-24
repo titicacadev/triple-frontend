@@ -3,7 +3,6 @@ import { Text, Tag, Container, Image, Rating } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
-import semver from 'semver'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 
 import { TnaProductData, DomesticArea } from './types'
@@ -78,7 +77,7 @@ export function TnaProductWithPrice({
   onClick: (e: SyntheticEvent, product: TnaProductData, index: number) => void
   onIntersect: (product: TnaProductData, index: number) => void
 }) {
-  const { app, isPublic } = useUserAgentContext()
+  const { isPublic } = useUserAgentContext()
 
   const salePrice =
     typeof rawSalePrice === 'string' ? parseInt(rawSalePrice) : rawSalePrice
@@ -97,8 +96,7 @@ export function TnaProductWithPrice({
     expectedApplicableCoupon,
   })
 
-  const appVersion = semver.coerce(app?.version)
-  const canScrap = isPublic || (appVersion && semver.gte(appVersion, '5.8.0'))
+  const canScrap = isPublic
 
   const handleIntersectionChange = useCallback(
     ({ isIntersecting }: IntersectionObserverEntry) => {
