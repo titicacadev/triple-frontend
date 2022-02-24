@@ -10,6 +10,8 @@ import {
   VerificationType,
 } from '@titicaca/user-verification'
 import { authGuardedFetchers, captureHttpError } from '@titicaca/fetcher'
+import { useInterval } from '@titicaca/react-hooks'
+import moment from 'moment'
 
 import { CouponData } from '../../types'
 
@@ -37,6 +39,15 @@ const BaseCouponDownloadButton = styled(Button)`
 
 const MAX_COUPONS_PER_USER_ERROR_CODE = 'MAX_COUPONS_PER_USER'
 
+function useDownloadTimePassed(calculator: () => boolean) {
+  const [passed, setPassed] = useState(calculator())
+
+  useInterval(() => {
+    setPassed(calculator)
+  }, 100)
+
+  return passed
+}
 async function downloadCoupon(slugId: string) {
   const response = await authGuardedFetchers.get<
     {
@@ -78,10 +89,12 @@ async function downloadCoupon(slugId: string) {
 export function CouponDownloadButton({
   slugId,
   verificationType,
+  enabledAt,
   onClick,
 }: {
   slugId: string
   verificationType?: VerificationType
+  enabledAt?: string
   onClick?: () => void
 }) {
   const [couponFetched, setCouponFetched] = useState(false)
@@ -97,8 +110,15 @@ export function CouponDownloadButton({
   const { login } = useSessionControllers()
 
   const [needLogin, setNeedLogin] = useState(false)
+  const timePassed = useDownloadTimePassed(() => {
+    return (
+      enabledAt === undefined ||
+      moment(new Date()).isSameOrAfter(new Date(enabledAt))
+    )
+  })
 
-  const buttonDisabled = couponFetched === false && needLogin === false
+  const buttonDisabled =
+    couponFetched === false && needLogin === false && !timePassed
 
   useEffect(() => {
     async function fetchCoupon() {
