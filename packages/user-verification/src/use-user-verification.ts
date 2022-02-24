@@ -4,6 +4,7 @@ import { useVisibilityChange } from '@titicaca/react-hooks'
 import { useExternalRouter } from '@titicaca/router'
 
 import { useVerifiedMessageListener, VerifiedMessage } from './verified-message'
+import type { VerificationType } from './types'
 
 interface VerificationState {
   phoneNumber?: string
@@ -11,11 +12,6 @@ interface VerificationState {
   error?: string
   payload?: unknown
 }
-
-export type VerificationType =
-  | 'sms-verification'
-  | 'personal-id-verification-with-residence'
-  | 'personal-id-verification'
 
 const TARGET_PAGE_PATH: Record<VerificationType, string> = {
   'sms-verification': '/verifications/',
@@ -26,7 +22,7 @@ const TARGET_PAGE_PATH: Record<VerificationType, string> = {
 const CONFIRMATION_API_PATH: Record<VerificationType, string> = {
   'sms-verification': '/api/users/smscert',
   'personal-id-verification-with-residence': '/api/users/kto-stay-2021',
-  'personal-id-verification': '/api/users/kto-stay-2021',
+  'personal-id-verification': '/api/users/namecheck',
 }
 
 export function useUserVerification({
