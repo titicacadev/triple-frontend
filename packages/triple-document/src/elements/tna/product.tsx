@@ -96,8 +96,6 @@ export function TnaProductWithPrice({
     expectedApplicableCoupon,
   })
 
-  const canScrap = isPublic
-
   const handleIntersectionChange = useCallback(
     ({ isIntersecting }: IntersectionObserverEntry) => {
       if (isIntersecting) {
@@ -126,7 +124,7 @@ export function TnaProductWithPrice({
             )}
           </Image.FixedDimensionsFrame>
         </Image>
-        {canScrap && (
+        {isPublic && (
           <Container position="absolute" positioning={{ top: 3, left: 51 }}>
             <OverlayScrapButton
               resource={{ id, scraped, type: 'tna' }}
