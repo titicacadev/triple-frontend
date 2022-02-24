@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, SyntheticEvent } from 'react'
 import styled from 'styled-components'
 import { debounce } from '@titicaca/view-utilities'
 import { getColor } from '@titicaca/color-palette'
@@ -67,8 +67,8 @@ export default function Seeker({
   seek: string
   duration: number
   visible: boolean
-  onClick: (e: React.SyntheticEvent) => void
-  onChange: (e: React.SyntheticEvent) => void
+  onClick: (e: SyntheticEvent) => void
+  onChange: (e: SyntheticEvent) => void
 }) {
   const [handleVisible, setHandleVisible] = useState(false)
   // TODO: useDebouncedState 사용하기
@@ -79,7 +79,7 @@ export default function Seeker({
   )
 
   const handleChange = useCallback(
-    (e: React.SyntheticEvent) => {
+    (e: SyntheticEvent) => {
       if (visible) {
         setHandleVisible(true)
         onChange(e)

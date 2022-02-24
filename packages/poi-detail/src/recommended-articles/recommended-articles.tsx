@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, SyntheticEvent } from 'react'
 import { Section, Responsive, Container, H1 } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'
@@ -36,7 +36,7 @@ export default function RecommendedArticles({
   mobilePadding?: { left: number; right: number }
   deskTopPadding?: { left: number; right: number }
   onArticleClick: (
-    e: React.SyntheticEvent,
+    e: SyntheticEvent,
     clickedArticle: ArticleListingData,
   ) => void
   onMoreClick?: () => void
@@ -49,10 +49,8 @@ export default function RecommendedArticles({
   const [recommendedArticles, setRecommendedArticles] = useState<
     ArticleListingData[]
   >([])
-  const [
-    articleCardCTA,
-    setArticleCardCTA,
-  ] = useState<InventoryItemMeta | null>(null)
+  const [articleCardCTA, setArticleCardCTA] =
+    useState<InventoryItemMeta | null>(null)
 
   const { show } = useTransitionModal()
   const { trackEvent } = useEventTrackingContext()

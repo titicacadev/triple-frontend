@@ -1,4 +1,4 @@
-import { SyntheticEvent } from 'react'
+import { ComponentType, SyntheticEvent } from 'react'
 import { TranslatedProperty, ImageMeta } from '@titicaca/type-definitions'
 import { ImageSourceType } from '@titicaca/core-elements'
 
@@ -52,7 +52,7 @@ export type TripleDocumentContext = {
 
 export interface ElementSet {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [type: string]: React.ComponentType<any>
+  [type: string]: ComponentType<any>
 }
 
 export interface CouponData {

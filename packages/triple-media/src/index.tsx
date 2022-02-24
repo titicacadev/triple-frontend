@@ -1,3 +1,4 @@
+import { SyntheticEvent } from 'react'
 import {
   Video,
   ImageSourceType,
@@ -31,7 +32,7 @@ export default function Media({
   borderRadius?: number
   margin?: MarginPadding
   frame?: FrameRatioAndSizes
-  onClick?: (e: React.SyntheticEvent, media: ImageMeta) => void
+  onClick?: (e: SyntheticEvent, media: ImageMeta) => void
 } & Omit<OptimizedImgProps, 'cloudinaryBucket' | 'cloudinaryId'>) {
   const {
     id,
@@ -67,7 +68,7 @@ export default function Media({
       <Image.FixedRatioFrame
         margin={margin}
         frame={mediaFrame || frame}
-        onClick={onClick && ((e: React.SyntheticEvent) => onClick(e, media))}
+        onClick={onClick && ((e: SyntheticEvent) => onClick(e, media))}
       >
         {sourceUrl ? (
           <Image.SourceUrl>

@@ -1,3 +1,4 @@
+import { ComponentProps } from 'react'
 import styled from 'styled-components'
 import { ComponentMeta } from '@storybook/react'
 import { ELEMENTS } from '@titicaca/triple-email-document'
@@ -37,10 +38,10 @@ const TITIES: { [key: string]: string } = {
 }
 
 const ImageTemplate: {
-  (args: { propList: React.ComponentProps<typeof Images>[] }): JSX.Element
+  (args: { propList: ComponentProps<typeof Images>[] }): JSX.Element
   storyName?: string
   args?: {
-    propList: React.ComponentProps<typeof Images>[]
+    propList: ComponentProps<typeof Images>[]
   }
 } = (args) => (
   <Container>

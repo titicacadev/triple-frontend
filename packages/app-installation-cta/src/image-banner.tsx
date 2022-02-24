@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from 'react'
+import { SyntheticEvent, useCallback, useEffect, useMemo } from 'react'
 
 import {
   ImageBannerWrapper,
@@ -39,7 +39,7 @@ export default function ImageBanner({
   }, [onShow, inventoryItem])
 
   const handleClick = useCallback(
-    (e: React.SyntheticEvent) => {
+    (e: SyntheticEvent) => {
       e.stopPropagation()
       onClick && onClick(inventoryItem)
     },

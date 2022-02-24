@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import styled, { css } from 'styled-components'
 import { formatNumber } from '@titicaca/view-utilities'
 import {
@@ -17,7 +18,7 @@ export { default as FixedPricingV2 } from './fixed-pricing-v2'
 interface RegularPricingProps {
   basePrice?: BasePrice
   salePrice?: number
-  priceLabelOverride?: React.ReactNode
+  priceLabelOverride?: ReactNode
   isSoldOut?: boolean
 }
 
@@ -25,10 +26,10 @@ interface RichPricingProps {
   basePrice?: BasePrice
   basePriceUnit?: string
   salePrice?: number
-  label?: React.ReactNode
+  label?: ReactNode
   pricingNote?: string
-  description?: React.ReactNode
-  priceLabelOverride?: React.ReactNode
+  description?: ReactNode
+  priceLabelOverride?: ReactNode
   hideDiscountRate?: boolean
   isSoldOut?: boolean
 }

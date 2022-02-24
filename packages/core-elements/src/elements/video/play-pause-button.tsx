@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, RefObject, SyntheticEvent } from 'react'
 import styled from 'styled-components'
 import { debounce } from '@titicaca/view-utilities'
 
@@ -42,8 +42,8 @@ export default function PlayPauseButton({
   forceVisible: boolean
   initialVisible: boolean
   playing: boolean
-  videoRef: React.RefObject<HTMLVideoElement>
-  onPlayPause: (e?: React.SyntheticEvent) => void
+  videoRef: RefObject<HTMLVideoElement>
+  onPlayPause: (e?: SyntheticEvent) => void
 }) {
   const [visible, setVisible] = useState(initialVisible)
   // TODO: useDebouncedState 사용하기

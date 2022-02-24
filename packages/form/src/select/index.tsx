@@ -1,3 +1,4 @@
+import { SyntheticEvent, FocusEvent, SelectHTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 
@@ -9,15 +10,15 @@ interface SelectOption {
   value: string | number
 }
 
-interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   id?: string
   value?: any
   placeholder?: string
   options?: SelectOption[]
   focused?: string
   error?: string
-  onBlur?: (e: React.FocusEvent<any>) => any
-  onChange?: (e?: React.SyntheticEvent, value?: any) => any
+  onBlur?: (e: FocusEvent<any>) => any
+  onChange?: (e?: SyntheticEvent, value?: any) => any
 }
 
 const SelectFrame = styled.div<{ focused?: string; error?: boolean }>`
