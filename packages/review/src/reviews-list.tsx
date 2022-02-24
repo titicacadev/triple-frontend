@@ -9,7 +9,6 @@ import {
 import { TransitionType } from '@titicaca/modals'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { ImageMeta } from '@titicaca/type-definitions'
-import semver from 'semver'
 import { Timestamp } from '@titicaca/view-utilities'
 
 import ReviewElement, { ReviewElementProps } from './review-element'
@@ -19,8 +18,6 @@ import OthersReviewActionSheet, {
 } from './others-review-action-sheet'
 import { AppNativeActionProps, ReviewData } from './types'
 import { useClientActions } from './use-client-actions'
-
-const LOUNGE_APP_VERSION = '4.3.0'
 
 export default function ReviewsList({
   myReview,
@@ -47,7 +44,6 @@ export default function ReviewsList({
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
   const { push } = useHistoryFunctions()
-  const appVersion = semver.coerce(useUserAgentContext()?.app?.version)
   const {
     navigateUserDetail,
     navigateImages,
@@ -108,10 +104,7 @@ export default function ReviewsList({
           image: ImageMeta,
           index,
         ) => {
-          if (
-            (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) ||
-            !media
-          ) {
+          if (!media) {
             return
           }
           trackEvent({
@@ -149,28 +142,26 @@ export default function ReviewsList({
             media.findIndex(({ id }) => id === image.id),
           )
         },
-        [appVersion, navigateImages, resourceId, trackEvent],
+        [navigateImages, resourceId, trackEvent],
       ),
     ),
   )
 
   const handleReviewClick = useCallback(
     (e: SyntheticEvent, reviewId: string) => {
-      if (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) {
-        e.preventDefault()
-        e.stopPropagation()
-        trackEvent({
-          ga: ['리뷰_리뷰선택', resourceId],
-          fa: {
-            action: '리뷰_리뷰선택',
-            item_id: resourceId,
-            review_id: reviewId,
-          },
-        })
-        navigateReviewDetail({ reviewId, regionId, resourceId })
-      }
+      e.preventDefault()
+      e.stopPropagation()
+      trackEvent({
+        ga: ['리뷰_리뷰선택', resourceId],
+        fa: {
+          action: '리뷰_리뷰선택',
+          item_id: resourceId,
+          review_id: reviewId,
+        },
+      })
+      navigateReviewDetail({ reviewId, regionId, resourceId })
     },
-    [appVersion, trackEvent, resourceId, navigateReviewDetail, regionId],
+    [trackEvent, resourceId, navigateReviewDetail, regionId],
   )
 
   const handleMessageCountClick = useAppCallback(

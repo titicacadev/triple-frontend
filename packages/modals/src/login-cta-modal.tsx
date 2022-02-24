@@ -12,13 +12,10 @@ import {
   useUriHash,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
-import semver from 'semver'
 
 import { Confirm, Alert } from './modals'
 
 export const LOGIN_CTA_MODAL_HASH = 'login-cta-modal'
-
-const WITH_LOGIN_PATH_APP_VERSION = '5.0.0'
 
 const LoginCtaContext = createContext<
   | {
@@ -34,8 +31,7 @@ export function LoginCtaModalProvider({
   const { trackEvent } = useEventTrackingContext()
   const { back, navigate } = useHistoryFunctions()
   const hasParentModal = useContext(LoginCtaContext)
-  const { isPublic, os, app } = useUserAgentContext()
-  const appVersion = semver.coerce(app?.version)
+  const { isPublic, os } = useUserAgentContext()
   const open = uriHash === LOGIN_CTA_MODAL_HASH
   const [returnUrl, setReturnUrl] = useState<string | undefined>()
 
@@ -43,12 +39,7 @@ export function LoginCtaModalProvider({
     return <>{children}</>
   }
 
-  const isLegacyAndroidApp = Boolean(
-    !isPublic &&
-      os?.name === 'Android' &&
-      appVersion &&
-      semver.lt(appVersion, WITH_LOGIN_PATH_APP_VERSION),
-  )
+  const isLegacyAndroidApp = Boolean(!isPublic && os?.name === 'Android')
 
   return (
     <LoginCtaContext.Provider value={{ setReturnUrl }}>

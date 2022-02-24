@@ -62,7 +62,7 @@ export function useClientActions() {
         )
       },
       navigateUserDetail(uid: string) {
-        window.location.href = `${appUrlScheme}:///users/${uid}`
+        navigate(`${appUrlScheme}:///users/${uid}`)
       },
       navigateImages(
         images: {
@@ -80,10 +80,12 @@ export function useClientActions() {
         }[],
         index: number,
       ) {
-        window.location.href = `${appUrlScheme}:///images?${qs.stringify({
-          images: JSON.stringify(images),
-          index,
-        })}`
+        navigate(
+          `${appUrlScheme}:///images?${qs.stringify({
+            images: JSON.stringify(images),
+            index,
+          })}`,
+        )
       },
       navigateReviewDetail({
         reviewId,

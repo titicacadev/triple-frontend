@@ -8,7 +8,6 @@ import {
 } from 'react'
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
-import semver from 'semver'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { List, Container, Text, Rating } from '@titicaca/core-elements'
 import {
@@ -102,9 +101,6 @@ const LikeButton = styled(Container)<{ liked?: boolean }>`
   `};
 `
 
-const LOUNGE_APP_VERSION = '4.3.0'
-const MESSAGE_COUNT_APP_VERSION = '5.5.0'
-
 export default function ReviewElement({
   review,
   review: {
@@ -133,7 +129,6 @@ export default function ReviewElement({
   const [unfolded, setUnfolded] = useState(false)
   const { deriveCurrentStateAndCount, updateLikedStatus } =
     useReviewLikesContext()
-  const appVersion = semver.coerce(useUserAgentContext()?.app?.version)
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
   const { liked, likesCount } = deriveCurrentStateAndCount({
@@ -141,9 +136,6 @@ export default function ReviewElement({
     liked: review.liked,
     likesCount: review.likesCount,
   })
-  const isMessageCountVisible =
-    (!!appVersion && semver.gte(appVersion, MESSAGE_COUNT_APP_VERSION)) ||
-    isPublic
 
   const handleLikeButtonClick: MouseEventHandler = useSessionCallback(
     useCallback(async () => {
@@ -191,13 +183,6 @@ export default function ReviewElement({
                 comment={comment}
                 hasImage={(media || []).length > 0}
                 onUnfoldButtonClick={(e) => {
-                  if (
-                    appVersion &&
-                    semver.gte(appVersion, LOUNGE_APP_VERSION)
-                  ) {
-                    return
-                  }
-
                   trackEvent({
                     ga: ['리뷰_리뷰글더보기'],
                     fa: {
@@ -242,7 +227,7 @@ export default function ReviewElement({
             </LikeButton>
           ) : null}
 
-          {isMessageCountVisible ? (
+          {isPublic ? (
             <MessageCount
               display="inline-block"
               position="relative"
