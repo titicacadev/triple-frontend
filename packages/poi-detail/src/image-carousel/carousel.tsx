@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, PropsWithChildren } from 'react'
 import styled from 'styled-components'
 import ImageCarousel, {
   PageLabel,
@@ -24,10 +24,7 @@ const FixedRatioContent = styled.div<{ ratio: number }>`
   margin-top: -${({ ratio }) => 100 * ratio}%;
 `
 
-function FixedRatio({
-  ratio,
-  children,
-}: React.PropsWithChildren<{ ratio: number }>) {
+function FixedRatio({ ratio, children }: PropsWithChildren<{ ratio: number }>) {
   return (
     <FixedRatioContainer ratio={ratio}>
       <FixedRatioContent ratio={ratio}>{children}</FixedRatioContent>

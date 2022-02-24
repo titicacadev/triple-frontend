@@ -1,3 +1,4 @@
+import { SyntheticEvent } from 'react'
 import styled from 'styled-components'
 import { Container, Rating, Text } from '@titicaca/core-elements'
 
@@ -23,7 +24,7 @@ export default function ReviewsPlaceholder({
 }: {
   resourceType: ResourceType
   placeholderText?: string
-  onClick?: (e: React.SyntheticEvent, rating?: number) => void
+  onClick?: (e: SyntheticEvent, rating?: number) => void
 }) {
   return (
     <PlaceholderContainer margin={{ top: 20 }} onClick={onClick}>

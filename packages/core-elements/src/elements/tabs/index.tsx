@@ -1,3 +1,5 @@
+import { ElementType } from 'react'
+
 import { MarginPadding } from '../../commons'
 
 import BasicTab from './basic-tab'
@@ -6,7 +8,7 @@ import { TabProps as TabPropsBase } from './types'
 
 type TabType = 'basic' | 'pointing'
 
-const TAB_TYPE: { [key in TabType]: React.ElementType } = {
+const TAB_TYPE: { [key in TabType]: ElementType } = {
   basic: BasicTab,
   pointing: PointingTab,
 }

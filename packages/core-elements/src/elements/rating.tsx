@@ -1,3 +1,4 @@
+import { SyntheticEvent } from 'react'
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 
@@ -52,7 +53,7 @@ export default function Rating({
   size?: GlobalSizes
   score?: number
   verticalAlign?: CSS.Property.VerticalAlign<string>
-  onClick?: (event: React.SyntheticEvent, rating: number) => unknown
+  onClick?: (event: SyntheticEvent, rating: number) => unknown
 }) {
   const full = Math.floor(score)
   const half = Math.floor((score - full) * 2)

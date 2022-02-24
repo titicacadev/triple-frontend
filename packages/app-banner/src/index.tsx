@@ -1,3 +1,4 @@
+import { SyntheticEvent } from 'react'
 import styled, { css } from 'styled-components'
 import {
   Text,
@@ -83,7 +84,7 @@ export default function AppBanner({
   description?: string
   cta?: string
   href?: string
-  onCTAClick?: (e?: React.SyntheticEvent) => any
+  onCTAClick?: (e?: SyntheticEvent) => any
 } & LayeringMixinProps) {
   return (
     <AppBannerFrame {...props} zTier={zTier} zIndex={zIndex}>

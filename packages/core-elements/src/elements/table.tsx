@@ -1,4 +1,4 @@
-import { Children } from 'react'
+import { Children, ReactNode } from 'react'
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 
@@ -50,7 +50,7 @@ const Container = styled.div<{ borderRadius?: number; borderLine?: boolean }>`
 const Row = styled.div<{
   borderRadius?: number
   verticalGap?: number
-  children?: React.ReactNode
+  children?: ReactNode
 }>`
   width: 100%;
   display: table;

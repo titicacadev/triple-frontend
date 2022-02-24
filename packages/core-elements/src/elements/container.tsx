@@ -1,3 +1,4 @@
+import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 import { Property } from 'csstype'
 import { Color, getColor } from '@titicaca/color-palette'
@@ -15,7 +16,7 @@ import {
   horizontalScrollMixin,
 } from '../mixins'
 
-export type ContainerProps = React.PropsWithChildren<{
+export type ContainerProps = PropsWithChildren<{
   position?: Property.Position
   textAlign?: Property.TextAlign
   whiteSpace?: Property.WhiteSpace

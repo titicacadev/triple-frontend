@@ -1,3 +1,4 @@
+import { MouseEventHandler, PropsWithChildren, SyntheticEvent } from 'react'
 import styled from 'styled-components'
 import {
   ButtonProps,
@@ -50,10 +51,7 @@ const BlockContainer = styled.div<{ compact?: boolean }>`
   text-align: center;
 `
 
-function ButtonLink({
-  children,
-  ...props
-}: React.PropsWithChildren<ButtonProps>) {
+function ButtonLink({ children, ...props }: PropsWithChildren<ButtonProps>) {
   return (
     <Button bold color="blue" {...props}>
       {children}
@@ -65,7 +63,7 @@ function BlockLink({
   children,
   level,
   ...props
-}: React.PropsWithChildren<ButtonProps & Link>) {
+}: PropsWithChildren<ButtonProps & Link>) {
   return (
     <Button
       basic={level !== 'primary'}
@@ -100,7 +98,7 @@ function ImageLink({
   label?: string
   description?: string
   image?: ImageMeta
-  onClick?: React.MouseEventHandler
+  onClick?: MouseEventHandler
 }) {
   return (
     <ResourceListItem onClick={onClick}>
@@ -187,9 +185,7 @@ export default function Links({
       {links.map((link, i) => (
         <Element
           key={i}
-          onClick={
-            onLinkClick && ((e: React.SyntheticEvent) => onLinkClick(e, link))
-          }
+          onClick={onLinkClick && ((e: SyntheticEvent) => onLinkClick(e, link))}
           {...link}
           href={link.href || '#'}
         >

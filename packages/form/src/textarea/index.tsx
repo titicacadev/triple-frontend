@@ -1,3 +1,4 @@
+import { SyntheticEvent } from 'react'
 import styled, { css, StyledComponentProps } from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 
@@ -13,7 +14,7 @@ interface TextareaProps
     StyledComponentProps<'textarea', any, BaseTextareaProps, never>,
     'onChange'
   > {
-  onChange?: (e: React.SyntheticEvent, value: string) => any
+  onChange?: (e: SyntheticEvent, value: string) => any
 }
 
 const BaseTextarea = styled.textarea<BaseTextareaProps>`

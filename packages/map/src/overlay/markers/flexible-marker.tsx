@@ -1,3 +1,5 @@
+import { ReactNode } from 'react'
+
 import { CircleMarker, CircleMarkerProps } from './primary-marker'
 
 /**
@@ -11,8 +13,8 @@ export function FlexibleMarker({
   ...props
 }: CircleMarkerProps & {
   active: boolean
-  activeContent: React.ReactNode
-  defaultContent: React.ReactNode
+  activeContent: ReactNode
+  defaultContent: ReactNode
 }) {
   return (
     <CircleMarker active={active} {...props}>

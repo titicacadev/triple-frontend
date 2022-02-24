@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import { Container, Text } from '@titicaca/core-elements'
 
 export default function ModalBody({
@@ -5,7 +6,7 @@ export default function ModalBody({
   description,
 }: {
   title?: string
-  description?: React.ReactNode
+  description?: ReactNode
 }) {
   return (
     <Container padding={{ top: 40, bottom: 40, left: 30, right: 30 }}>

@@ -28,7 +28,7 @@ import FoldableComment from './foldable-comment'
 import Images from './images'
 
 type ReviewEventHandler<T = Element, E = Event> = (
-  e: React.SyntheticEvent<T, E>,
+  e: SyntheticEvent<T, E>,
   review: ReviewData,
 ) => void
 
@@ -40,14 +40,14 @@ export interface ReviewElementProps {
   onUnfoldButtonClick?: ReviewEventHandler
   onMenuClick: ReviewEventHandler
   onImageClick: (
-    e: React.SyntheticEvent,
+    e: SyntheticEvent,
     review: ReviewData,
     image: ImageMeta,
     index: number,
   ) => void
-  onReviewClick: (e: React.SyntheticEvent, reviewId: string) => void
+  onReviewClick: (e: SyntheticEvent, reviewId: string) => void
   onMessageCountClick: (
-    e: React.SyntheticEvent,
+    e: SyntheticEvent,
     reviewId: string,
     resourceType: string,
   ) => void
@@ -180,9 +180,7 @@ export default function ReviewElement({
           onClick={onUserClick && ((e) => onUserClick(e, review))}
         />
         {!blindedAt && !!rating ? <Score score={rating} /> : null}
-        <Content
-          onClick={(e: React.SyntheticEvent) => onReviewClick(e, review.id)}
-        >
+        <Content onClick={(e: SyntheticEvent) => onReviewClick(e, review.id)}>
           {blindedAt ? (
             '신고가 접수되어 블라인드 처리되었습니다.'
           ) : comment ? (
@@ -252,7 +250,7 @@ export default function ReviewElement({
               margin={{ top: 5 }}
               padding={{ top: 2, bottom: 2, left: 20, right: 0 }}
               isCommaVisible={!blindedAt}
-              onClick={(e: React.SyntheticEvent) =>
+              onClick={(e: SyntheticEvent) =>
                 onMessageCountClick(e, review.id, resourceType)
               }
             >

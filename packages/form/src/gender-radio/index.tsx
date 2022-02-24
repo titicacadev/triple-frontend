@@ -1,3 +1,4 @@
+import { SyntheticEvent } from 'react'
 import styled, { css } from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 import { Container } from '@titicaca/core-elements'
@@ -9,7 +10,7 @@ type GenderValue = 'MALE' | 'FEMALE'
 interface GenderRadioProps {
   name?: string
   value?: GenderValue
-  onChange?: (e: React.SyntheticEvent, value: GenderValue) => void
+  onChange?: (e: SyntheticEvent, value: GenderValue) => void
 }
 
 const GenderContainer = styled.div<{
@@ -50,7 +51,7 @@ function GenderRadio({ name, value, onChange }: GenderRadioProps) {
         name={name}
         value="MALE"
         selected={value === 'MALE'}
-        onClick={(e: React.SyntheticEvent) => onChange && onChange(e, 'MALE')}
+        onClick={(e: SyntheticEvent) => onChange && onChange(e, 'MALE')}
       >
         남자
       </GenderContainer>
@@ -59,7 +60,7 @@ function GenderRadio({ name, value, onChange }: GenderRadioProps) {
         name={name}
         value="FEMALE"
         selected={value === 'FEMALE'}
-        onClick={(e: React.SyntheticEvent) => onChange && onChange(e, 'FEMALE')}
+        onClick={(e: SyntheticEvent) => onChange && onChange(e, 'FEMALE')}
       >
         여자
       </GenderContainer>

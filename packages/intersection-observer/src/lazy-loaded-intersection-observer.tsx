@@ -1,3 +1,5 @@
+import { FC } from 'react'
+
 import dynamic from 'next/dynamic'
 import { ReactIntersectionObserverProps } from '@titicaca/react-intersection-observer'
 
@@ -22,7 +24,7 @@ async function importReactIntersectionObserver() {
   } catch (e) {
     return Promise.resolve(
       (({ children }) =>
-        children || null) as React.FC<ReactIntersectionObserverProps>,
+        children || null) as FC<ReactIntersectionObserverProps>,
     )
   }
 }

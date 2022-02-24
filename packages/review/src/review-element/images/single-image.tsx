@@ -1,3 +1,4 @@
+import { SyntheticEvent } from 'react'
 import { Responsive } from '@titicaca/core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
 
@@ -8,7 +9,7 @@ export default function SigleImage({
   onImageClick,
 }: {
   image: ImageMeta
-  onImageClick: (e: React.SyntheticEvent, index: number) => void
+  onImageClick: (e: SyntheticEvent, index: number) => void
 }) {
   return (
     <>

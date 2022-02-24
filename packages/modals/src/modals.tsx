@@ -1,3 +1,5 @@
+import { ReactNode, SyntheticEvent } from 'react'
+
 import Modal from './modal-base'
 import Actions from './actions'
 import ModalBody from './body'
@@ -12,15 +14,15 @@ export function Confirm({
   confirmText,
   onConfirm,
 }: {
-  children?: React.ReactNode
+  children?: ReactNode
   title?: string
   open?: boolean
   cancelText?: string
   confirmText?: string
   messageType?: string
-  onClose?: (e?: React.SyntheticEvent) => unknown
-  onCancel?: (e?: React.SyntheticEvent) => unknown
-  onConfirm?: (e?: React.SyntheticEvent) => unknown
+  onClose?: (e?: SyntheticEvent) => unknown
+  onCancel?: (e?: SyntheticEvent) => unknown
+  onConfirm?: (e?: SyntheticEvent) => unknown
 }) {
   return (
     <Modal open={open} onClose={onClose}>
@@ -28,14 +30,14 @@ export function Confirm({
       <Actions
         negative={{
           text: cancelText || '취소',
-          onClick: (e?: React.SyntheticEvent) =>
+          onClick: (e?: SyntheticEvent) =>
             onCancel
               ? !onCancel(e) && onClose && onClose(e)
               : onClose && onClose(e),
         }}
         positive={{
           text: confirmText || '확인',
-          onClick: (e?: React.SyntheticEvent) =>
+          onClick: (e?: SyntheticEvent) =>
             onConfirm
               ? !onConfirm(e) && onClose && onClose(e)
               : onClose && onClose(e),
@@ -53,13 +55,13 @@ export function Alert({
   confirmText,
   onConfirm,
 }: {
-  children?: React.ReactNode
+  children?: ReactNode
   title?: string
   open?: boolean
-  confirmText?: string | React.ReactNode
+  confirmText?: string | ReactNode
   messageType?: string
-  onClose?: (e?: React.SyntheticEvent) => unknown
-  onConfirm?: (e?: React.SyntheticEvent) => unknown
+  onClose?: (e?: SyntheticEvent) => unknown
+  onConfirm?: (e?: SyntheticEvent) => unknown
 }) {
   return (
     <Modal open={open} onClose={onClose}>
@@ -67,7 +69,7 @@ export function Alert({
       <Modal.Actions>
         <Modal.Action
           color="blue"
-          onClick={(e?: React.SyntheticEvent) =>
+          onClick={(e?: SyntheticEvent) =>
             onConfirm
               ? !onConfirm(e) && onClose && onClose(e)
               : onClose && onClose(e)

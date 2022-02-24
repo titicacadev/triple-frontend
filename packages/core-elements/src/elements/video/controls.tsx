@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, RefObject } from 'react'
 import styled from 'styled-components'
 import { debounce } from '@titicaca/view-utilities'
 import { getColor } from '@titicaca/color-palette'
@@ -70,7 +70,7 @@ export default function Controls({
   videoRef,
 }: {
   autoPlay: boolean
-  videoRef: React.RefObject<HTMLVideoElement>
+  videoRef: RefObject<HTMLVideoElement>
 }) {
   const { duration, currentTime, progress, seek, playing, muted } =
     useVideoControl({

@@ -1,3 +1,5 @@
+import { SyntheticEvent } from 'react'
+
 interface Option<Value> {
   label: string
   value: Value
@@ -6,6 +8,6 @@ interface Option<Value> {
 export interface TabProps<Value> {
   value: Value
   options: Option<Value>[]
-  onChange: (e?: React.SyntheticEvent, value?: Value) => unknown
+  onChange: (e?: SyntheticEvent, value?: Value) => unknown
   scroll?: boolean
 }

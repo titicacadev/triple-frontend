@@ -1,4 +1,10 @@
-import { useEffect, useState, useCallback, useMemo } from 'react'
+import {
+  useEffect,
+  useState,
+  useCallback,
+  useMemo,
+  PropsWithChildren,
+} from 'react'
 import {
   subscribe,
   unsubscribe,
@@ -12,7 +18,7 @@ import { checkIfReviewed } from './api-client'
 export default function MyReviewsProvider({
   myReviews: initialMyReviews = {},
   children,
-}: React.PropsWithChildren<{
+}: PropsWithChildren<{
   myReviews?: MyReviews
 }>) {
   const [myReviews, setMyReviews] = useState(initialMyReviews)

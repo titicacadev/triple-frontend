@@ -1,3 +1,4 @@
+import { CSSProperties, SyntheticEvent } from 'react'
 import { TagColors } from '@titicaca/core-elements'
 
 type Price = string | number
@@ -5,7 +6,7 @@ type Price = string | number
 export type TnaProductsFetcher = (slotId: number) => Promise<Response>
 
 export type TnaProductsClickHandler = (
-  e: React.SyntheticEvent,
+  e: SyntheticEvent,
   product: unknown,
   slotId?: number,
   index?: number,
@@ -45,7 +46,7 @@ export interface TnaProductData {
   id: string
   heroImage: string
   title: string
-  tags: { text: string; type: TagColors; style: React.CSSProperties }[]
+  tags: { text: string; type: TagColors; style: CSSProperties }[]
   salePrice: Price
   basePrice: Price
   reviewRating: number

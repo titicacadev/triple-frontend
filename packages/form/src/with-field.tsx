@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, ComponentType, FC } from 'react'
 import styled, { css } from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 import { Container, Text } from '@titicaca/core-elements'
@@ -30,8 +30,8 @@ const Label = styled(Text)<{
     `}
 `
 
-export default function withField<T>(WrappedComponent: React.ComponentType<T>) {
-  const WrapperComponent: React.FC<
+export default function withField<T>(WrappedComponent: ComponentType<T>) {
+  const WrapperComponent: FC<
     {
       label?: string
       error?: string

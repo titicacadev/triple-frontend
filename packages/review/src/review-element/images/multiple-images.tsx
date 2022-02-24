@@ -1,3 +1,4 @@
+import { SyntheticEvent } from 'react'
 import { Responsive } from '@titicaca/core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
 
@@ -16,7 +17,7 @@ export default function MultipleImages({
   onImageClick,
 }: {
   images: ImageMeta[]
-  onImageClick: (e: React.SyntheticEvent, index: number) => void
+  onImageClick: (e: SyntheticEvent, index: number) => void
 }) {
   const [firstImage, ...restImages] = images
 

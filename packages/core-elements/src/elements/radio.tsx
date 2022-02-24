@@ -1,3 +1,4 @@
+import { SyntheticEvent } from 'react'
 import styled from 'styled-components'
 import { gray100 } from '@titicaca/color-palette'
 
@@ -112,7 +113,7 @@ const RadioInput = styled.input.attrs({ type: 'radio' })<{
 interface RadioProps {
   name?: string
   value?: RadioValue
-  onChange?: (e: React.SyntheticEvent, value: RadioValue) => void
+  onChange?: (e: SyntheticEvent, value: RadioValue) => void
   textAlign?: TextAlign
   multiline?: boolean
   outline?: boolean

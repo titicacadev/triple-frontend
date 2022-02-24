@@ -1,6 +1,7 @@
 import InputMask, { MaskOptions } from 'react-input-mask'
 import styled, { css } from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
+import { SyntheticEvent, FocusEvent, Ref, InputHTMLAttributes } from 'react'
 
 import { withField } from '../utils/form-field'
 
@@ -45,16 +46,15 @@ const BaseInput = styled(InputMask)<{
     `};
 `
 
-type HtmlInputElementProps = React.InputHTMLAttributes<HTMLInputElement> &
-  MaskOptions
+type HtmlInputElementProps = InputHTMLAttributes<HTMLInputElement> & MaskOptions
 
 interface InputProps extends Omit<HtmlInputElementProps, 'onChange'> {
   id?: string
   error?: string | boolean
   focused?: string
-  onChange?: (e: React.SyntheticEvent, value: string) => unknown
-  onBlur?: (e: React.FocusEvent<unknown>) => unknown
-  inputRef?: React.Ref<HTMLInputElement>
+  onChange?: (e: SyntheticEvent, value: string) => unknown
+  onBlur?: (e: FocusEvent<unknown>) => unknown
+  inputRef?: Ref<HTMLInputElement>
 }
 
 function Input({ onChange, ...props }: InputProps) {

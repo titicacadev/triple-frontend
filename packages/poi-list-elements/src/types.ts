@@ -1,14 +1,15 @@
+import { ReactNode, MouseEventHandler } from 'react'
 import {
   ImageMeta,
   PointGeoJSON,
   TranslatedProperty,
 } from '@titicaca/type-definitions'
 
-export type ActionButtonElement = React.ReactNode
+export type ActionButtonElement = ReactNode
 
 export interface POIListElementBaseProps<T extends PoiListElementType> {
   poi: T
-  onClick?: React.MouseEventHandler<HTMLLIElement>
+  onClick?: MouseEventHandler<HTMLLIElement>
 }
 
 type PoiType = 'attraction' | 'restaurant' | 'hotel'
