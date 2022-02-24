@@ -7,7 +7,6 @@ import {
 } from '@titicaca/core-elements'
 import TripleMedia from '@titicaca/triple-media'
 import { ImageMeta } from '@titicaca/type-definitions'
-import { useUserAgentContext } from '@titicaca/react-contexts'
 
 import { useImageClickHandler } from '../prop-context/image-click-handler'
 import { useLinkClickHandler } from '../prop-context/link-click-handler'
@@ -43,8 +42,6 @@ export default function Images({
       : ImageCarouselElementContainer
 
   const handleClick = generateClickHandler(onLinkClick, onImageClick)
-  const { isPublic, os } = useUserAgentContext()
-  const isLegacyIosApp = Boolean(!isPublic && os && os.name === 'iOS')
 
   return (
     <ImagesContainer
@@ -66,8 +63,8 @@ export default function Images({
                 optimized={optimized}
                 borderRadius={0}
                 autoPlay={videoAutoPlay}
-                hideControls={hideVideoControls || isLegacyIosApp}
-                showNativeControls={isLegacyIosApp}
+                hideControls={hideVideoControls}
+                showNativeControls
                 media={image}
                 onClick={handleClick}
                 ImageSource={ImageSource}
@@ -77,8 +74,8 @@ export default function Images({
                 <TripleMedia
                   optimized={optimized}
                   autoPlay={videoAutoPlay}
-                  hideControls={hideVideoControls || isLegacyIosApp}
-                  showNativeControls={isLegacyIosApp}
+                  hideControls={hideVideoControls}
+                  showNativeControls
                   media={image}
                   onClick={handleClick}
                   ImageSource={ImageSource}
