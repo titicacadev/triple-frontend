@@ -1,7 +1,8 @@
 import { renderHook } from '@testing-library/react-hooks'
 import { useExternalRouter } from '@titicaca/router'
 
-import { useUserVerification, VerificationType } from './use-user-verification'
+import { useUserVerification } from './use-user-verification'
+import type { VerificationType } from './types'
 
 jest.mock('@titicaca/react-hooks', () => ({
   useVisibilityChange: jest.fn(),
