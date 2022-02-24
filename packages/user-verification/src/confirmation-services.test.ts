@@ -68,6 +68,30 @@ describe('confirmVerification', () => {
       expect(result).toHaveProperty('verified', true)
       expect(result).toHaveProperty('phoneNumber', '+821012345678')
     })
+
+    it('returns undefined state when it is responded with an error', async () => {
+      const getMock = (
+        get as unknown as jest.MockedFunction<
+          () => Promise<{
+            status: number
+            parsedBody: unknown
+            ok: boolean
+          }>
+        >
+      ).mockImplementation(() =>
+        Promise.resolve({
+          status: 500,
+          parsedBody: {
+            message: 'internal server error',
+          },
+          ok: false,
+        }),
+      )
+      const result = await confirmVerification('sms-verification')
+
+      expect(getMock).toHaveBeenCalledWith('/api/users/smscert')
+      expect(result).toHaveProperty('verified', undefined)
+    })
   })
 
   describe('personal-id-verification-with-residence', () => {
@@ -134,6 +158,32 @@ describe('confirmVerification', () => {
       expect(result).toHaveProperty('phoneNumber', '01012345678')
       expect(getMock).toHaveBeenCalledWith('/api/users/kto-stay-2021')
     })
+
+    it('returns undefined state when it is responded with an error', async () => {
+      const getMock = (
+        get as unknown as jest.MockedFunction<
+          () => Promise<{
+            status: number
+            parsedBody: unknown
+            ok: boolean
+          }>
+        >
+      ).mockImplementation(() =>
+        Promise.resolve({
+          status: 500,
+          parsedBody: {
+            message: 'internal server error',
+          },
+          ok: false,
+        }),
+      )
+      const result = await confirmVerification(
+        'personal-id-verification-with-residence',
+      )
+
+      expect(result).toHaveProperty('verified', undefined)
+      expect(getMock).toHaveBeenCalledWith('/api/users/kto-stay-2021')
+    })
   })
 
   describe('personal-id-verification', () => {
@@ -191,6 +241,31 @@ describe('confirmVerification', () => {
       expect(getMock).toHaveBeenCalledWith('/api/users/namecheck')
       expect(result).toHaveProperty('verified', true)
       expect(result).toHaveProperty('phoneNumber', '01012345678')
+    })
+
+    it('returns undefined state when it is responded with an error', async () => {
+      const getMock = (
+        get as unknown as jest.MockedFunction<
+          () => Promise<{
+            status: number
+            parsedBody: unknown
+            ok: boolean
+          }>
+        >
+      ).mockImplementation(() =>
+        Promise.resolve({
+          status: 500,
+          parsedBody: {
+            message: 'internal server error',
+          },
+          ok: false,
+        }),
+      )
+
+      const result = await confirmVerification('personal-id-verification')
+
+      expect(getMock).toHaveBeenCalledWith('/api/users/namecheck')
+      expect(result).toHaveProperty('verified', undefined)
     })
   })
 })
