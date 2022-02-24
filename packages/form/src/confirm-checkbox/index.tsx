@@ -1,3 +1,5 @@
+import { ReactNode, SyntheticEvent } from 'react'
+
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import { getColor } from '@titicaca/color-palette'
@@ -99,11 +101,11 @@ interface ConfirmCheckboxProps {
   name?: string
   value: boolean
   placeholder: string
-  onChange?: (e?: React.SyntheticEvent, value?: boolean) => void
+  onChange?: (e?: SyntheticEvent, value?: boolean) => void
   textAlign?: CSS.Property.TextAlign
   borderless?: boolean
   fillType?: FillType
-  children?: React.ReactNode
+  children?: ReactNode
   padding?: MarginPadding
   error?: string
 }

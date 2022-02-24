@@ -1,3 +1,4 @@
+import { SyntheticEvent } from 'react'
 import styled, { css, StyledComponentProps } from 'styled-components'
 
 import { withField } from '../utils/form-field'
@@ -18,7 +19,7 @@ interface TextareaProps
     >,
     'onChange'
   > {
-  onChange?: (e: React.SyntheticEvent, value: string) => unknown
+  onChange?: (e: SyntheticEvent, value: string) => unknown
 }
 
 const COLORS: Partial<Record<GlobalColors, string>> = {

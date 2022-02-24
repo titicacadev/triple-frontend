@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, SyntheticEvent } from 'react'
 import styled from 'styled-components'
 import { Section, Container, Text, Button } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
@@ -107,12 +107,9 @@ function ReviewContainer({
    * 다양한 방어 로직을 중복 구현하게 됩니다.
    * 이 prop을 사용하지 말아주세요.
    */
-  onReviewWrite?: (e?: React.SyntheticEvent, rating?: number) => void
+  onReviewWrite?: (e?: SyntheticEvent, rating?: number) => void
   onReviewDelete?: ReviewDeleteHandler
-  onFullListButtonClick?: (
-    e: React.SyntheticEvent,
-    sortingOption?: string,
-  ) => void
+  onFullListButtonClick?: (e: SyntheticEvent, sortingOption?: string) => void
 }) {
   const sessionAvailable = useSessionAvailability()
 
@@ -201,7 +198,7 @@ function ReviewContainer({
     TransitionType.ReviewWrite,
     useSessionCallback(
       useCallback(
-        (e: React.SyntheticEvent, rating = 0) => {
+        (e: SyntheticEvent, rating = 0) => {
           e.stopPropagation()
 
           trackEvent({
@@ -228,7 +225,7 @@ function ReviewContainer({
     TransitionType.Review,
     useSessionCallback(
       useCallback(
-        (e: React.SyntheticEvent) => {
+        (e: SyntheticEvent) => {
           trackEvent({
             ga: ['리뷰_전체보기'],
             fa: {

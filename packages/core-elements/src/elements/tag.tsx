@@ -1,3 +1,4 @@
+import { CSSProperties } from 'react'
 import styled, { css } from 'styled-components'
 
 import { GlobalSizes, MarginPadding } from '../commons'
@@ -30,7 +31,7 @@ const Tag = styled.div<{
   type?: TagColors
   margin?: MarginPadding
   size?: GlobalSizes
-  style?: React.CSSProperties
+  style?: CSSProperties
 }>`
   display: inline-block;
   font-size: 12px;
@@ -55,7 +56,7 @@ const Tag = styled.div<{
     style &&
     css`
       ${Object.keys(style)
-        .map((key) => `${key}: ${style[key as keyof React.CSSProperties]};`) // HACK: style: React.CSSProperties이므로
+        .map((key) => `${key}: ${style[key as keyof CSSProperties]};`) // HACK: style: CSSProperties이므로
         .join('\n')};
     `};
 `

@@ -1,12 +1,14 @@
+import { PropsWithChildren, SyntheticEvent } from 'react'
+
 import { Button } from '@titicaca/core-elements'
 
 export default function Cta({
   available,
   onSubmit,
   children,
-}: React.PropsWithChildren<{
+}: PropsWithChildren<{
   available?: boolean
-  onSubmit: (e: React.SyntheticEvent) => void
+  onSubmit: (e: SyntheticEvent) => void
 }>) {
   return (
     <Button

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { SyntheticEvent, useCallback, useState } from 'react'
 import { Container, H1, List, Button } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { gray50 } from '@titicaca/color-palette'
@@ -22,7 +22,7 @@ export function Slot({
   const [showMore, setShowMore] = useState(false)
 
   const handleClick = useCallback(
-    (e: React.SyntheticEvent, product: TnaProductData, index: number) => {
+    (e: SyntheticEvent, product: TnaProductData, index: number) => {
       trackEvent({
         ga: ['투어티켓_상품선택', `${slotId}_${product.id}_${index}`],
         fa: {

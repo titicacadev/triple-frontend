@@ -1,3 +1,4 @@
+import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 import { Property } from 'csstype'
 import { getColor, Color } from '@titicaca/color-palette'
@@ -17,7 +18,7 @@ function rgba({ color, alpha }: { color?: string; alpha?: number }) {
   return `rgba(${GetGlobalColor(color || 'gray')}, ${alpha || 1})`
 }
 
-export type TextProps = React.PropsWithChildren<{
+export type TextProps = PropsWithChildren<{
   alpha?: number
   bold?: boolean
   center?: boolean
@@ -92,7 +93,7 @@ const TextTitleBase = styled(Text)<TextTitleBaseProps>`
   ${(props) => props.css}
 `
 
-export type TextTitleProps = React.PropsWithChildren<TextTitleBaseProps>
+export type TextTitleProps = PropsWithChildren<TextTitleBaseProps>
 
 function TextTitle({ css, children, margin }: TextTitleProps) {
   return (

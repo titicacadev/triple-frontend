@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, SyntheticEvent } from 'react'
 import { Text, Paragraph } from '@titicaca/core-elements'
 import styled from 'styled-components'
 
@@ -42,7 +42,7 @@ export default function TextElement({
   const onLinkClick = useLinkClickHandler()
 
   const handleClick = useCallback(
-    (e: React.SyntheticEvent) => {
+    (e: SyntheticEvent) => {
       const target = e.target as HTMLElement
 
       if (target.tagName === 'A') {

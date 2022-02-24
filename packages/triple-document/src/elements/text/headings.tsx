@@ -1,3 +1,4 @@
+import { ComponentType } from 'react'
 import { H1, H2, H3, H4 } from '@titicaca/core-elements'
 
 interface HeadingProps {
@@ -43,7 +44,7 @@ export const MH4 = tripleDocumentHeading(
 )
 
 function tripleDocumentHeading<P extends object>(
-  Component: React.ComponentType<P & HeadingProps>,
+  Component: ComponentType<P & HeadingProps>,
 ) {
   return function WrappedHeading({
     value: { text, href, emphasize, headline },

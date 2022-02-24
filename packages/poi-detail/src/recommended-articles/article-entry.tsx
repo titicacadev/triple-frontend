@@ -1,3 +1,5 @@
+import { SyntheticEvent } from 'react'
+
 import { Image, H3 } from '@titicaca/core-elements'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
@@ -12,10 +14,10 @@ export default function ArticleEntry({
   onIntersect,
 }: {
   article: ArticleListingData
-  onClick: (e: React.SyntheticEvent, article: ArticleListingData) => void
+  onClick: (e: SyntheticEvent, article: ArticleListingData) => void
   onIntersect: (article: ArticleListingData) => void
 }) {
-  const handleClick = (e: React.SyntheticEvent) => onClick(e, article)
+  const handleClick = (e: SyntheticEvent) => onClick(e, article)
   const handleIntersectionChange = ({
     isIntersecting,
   }: {

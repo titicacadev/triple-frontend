@@ -1,4 +1,9 @@
-import { MouseEventHandler, TouchEventHandler, useCallback } from 'react'
+import {
+  MouseEventHandler,
+  TouchEventHandler,
+  ComponentType,
+  useCallback,
+} from 'react'
 
 interface LongClickableComponentProps<T = Element> {
   onTouchStart?: TouchEventHandler<T> | null
@@ -8,9 +13,9 @@ interface LongClickableComponentProps<T = Element> {
 }
 
 export default function longClickable<T extends LongClickableComponentProps>(
-  Component: React.ComponentType<T>,
+  Component: ComponentType<T>,
   duration = 500,
-): React.ComponentType<T & { onLongClick?: () => void }> {
+): ComponentType<T & { onLongClick?: () => void }> {
   let timeoutId: ReturnType<typeof setTimeout> | undefined
   let isScrolled = false
 

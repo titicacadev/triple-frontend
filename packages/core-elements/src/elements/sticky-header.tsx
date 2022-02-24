@@ -1,3 +1,4 @@
+import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
 import { CSSProps } from '../css'
@@ -13,9 +14,7 @@ const StyledContainer = styled(Container)`
   ${({ css }: CSSProps) => css}
 `
 
-export type StickyHeaderProps = React.PropsWithChildren<
-  CSSProps & LayeringMixinProps
->
+export type StickyHeaderProps = PropsWithChildren<CSSProps & LayeringMixinProps>
 
 function StickyHeader({
   css,

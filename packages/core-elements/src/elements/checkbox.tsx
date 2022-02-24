@@ -1,3 +1,4 @@
+import { ReactNode, SyntheticEvent } from 'react'
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import { getColor } from '@titicaca/color-palette'
@@ -100,11 +101,11 @@ interface ConfirmSelectorProps {
   name?: string
   value: boolean
   placeholder: string
-  onChange?: (e?: React.SyntheticEvent, value?: boolean) => unknown
+  onChange?: (e?: SyntheticEvent, value?: boolean) => unknown
   textAlign?: CSS.Property.TextAlign
   borderless?: boolean
   fillType?: FillType
-  children?: React.ReactNode
+  children?: ReactNode
   padding?: MarginPadding
   error?: string
 }

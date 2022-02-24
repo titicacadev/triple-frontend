@@ -1,3 +1,4 @@
+import { MouseEventHandler, PropsWithChildren } from 'react'
 import styled from 'styled-components'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
 import {
@@ -42,7 +43,7 @@ export type ResourceListElementProps<R extends ResourceMeta> = {
   isAdvertisement?: boolean
   partnerName?: string
   areaName?: string
-  onClick?: React.MouseEventHandler<HTMLLIElement>
+  onClick?: MouseEventHandler<HTMLLIElement>
   optimized?: boolean
 } & Partial<Parameters<typeof List.Item>['0']>
 
@@ -88,7 +89,7 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
   children,
   optimized,
   ...props
-}: React.PropsWithChildren<ResourceListElementProps<R>>) {
+}: PropsWithChildren<ResourceListElementProps<R>>) {
   const { id, type, scraped } = scrapResource || resource || {}
   const labels = tags || []
   const formattedNames = [partnerName, areaName].filter(Boolean).join(' · ')

@@ -1,3 +1,4 @@
+import { SyntheticEvent } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
 
 export type ResourceType = 'article' | string
@@ -48,7 +49,7 @@ export interface ReviewData {
 }
 
 export type ReviewDeleteHandler = (
-  e?: React.SyntheticEvent,
+  e?: SyntheticEvent,
   id?: string,
 ) => Promise<void> | void
 

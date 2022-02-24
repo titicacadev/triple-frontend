@@ -1,3 +1,4 @@
+import { MouseEventHandler } from 'react'
 import styled, { css } from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 
@@ -19,7 +20,7 @@ interface TooltipFrameProps {
 
 interface TooltipProps extends Partial<TooltipFrameProps> {
   label: string
-  onClick?: React.MouseEventHandler<HTMLDivElement>
+  onClick?: MouseEventHandler<HTMLDivElement>
   nowrap?: boolean
 }
 

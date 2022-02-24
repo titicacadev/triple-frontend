@@ -1,3 +1,4 @@
+import { InputHTMLAttributes, SyntheticEvent, FocusEvent } from 'react'
 import InputMask, { MaskOptions } from 'react-input-mask'
 import styled, { css } from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
@@ -33,15 +34,14 @@ const BaseInput = styled(InputMask)<{ focused?: string; error?: string }>`
     `};
 `
 
-type HTMLInputElementProps = React.InputHTMLAttributes<HTMLInputElement> &
-  MaskOptions
+type HTMLInputElementProps = InputHTMLAttributes<HTMLInputElement> & MaskOptions
 
 interface InputProps extends Omit<HTMLInputElementProps, 'onChange'> {
   id?: string
   error?: string
   focused?: string
-  onChange?: (e: React.SyntheticEvent, value: string) => any
-  onBlur?: (e: React.FocusEvent<any>) => any
+  onChange?: (e: SyntheticEvent, value: string) => any
+  onBlur?: (e: FocusEvent<any>) => any
 }
 
 function Input({ onChange, ...props }: InputProps) {

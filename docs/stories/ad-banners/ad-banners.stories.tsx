@@ -27,7 +27,7 @@
 //   decorators: [historyProviderDecorator],
 // } as Meta
 
-// function ProviderWrapper({ children }: { children: React.ReactNode }) {
+// function ProviderWrapper({ children }: { children: ReactNode }) {
 //   return (
 //     <DeviceProvider
 //       value={{

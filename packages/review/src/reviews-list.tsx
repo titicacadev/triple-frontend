@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { SyntheticEvent, useCallback, useState } from 'react'
 import moment from 'moment'
 import { List } from '@titicaca/core-elements'
 import {
@@ -58,7 +58,7 @@ export default function ReviewsList({
   const handleUserClick: ReviewElementProps['onUserClick'] = useSessionCallback(
     useCallback(
       (
-        e: React.SyntheticEvent,
+        e: SyntheticEvent,
         { user: { uid, unregister, mileage } }: ReviewData,
       ) => {
         const { level } = mileage || { level: 0 }
@@ -84,7 +84,7 @@ export default function ReviewsList({
 
   const handleMenuClick: ReviewElementProps['onMenuClick'] = useSessionCallback(
     useCallback(
-      (e: React.SyntheticEvent, review: ReviewData) => {
+      (e: SyntheticEvent, review: ReviewData) => {
         if (!isPublic) {
           if (myReview && review.id === myReview.id) {
             push(HASH_MY_REVIEW_ACTION_SHEET)
@@ -103,7 +103,7 @@ export default function ReviewsList({
     useSessionCallback(
       useCallback(
         (
-          e: React.SyntheticEvent,
+          e: SyntheticEvent,
           { user: { name }, comment, media, createdAt }: ReviewData,
           image: ImageMeta,
           index,
@@ -155,7 +155,7 @@ export default function ReviewsList({
   )
 
   const handleReviewClick = useCallback(
-    (e: React.SyntheticEvent, reviewId: string) => {
+    (e: SyntheticEvent, reviewId: string) => {
       if (appVersion && semver.gte(appVersion, LOUNGE_APP_VERSION)) {
         e.preventDefault()
         e.stopPropagation()
@@ -177,7 +177,7 @@ export default function ReviewsList({
     TransitionType.General,
     useSessionCallback(
       useCallback(
-        (e: React.SyntheticEvent, reviewId: string, resourceType: string) => {
+        (e: SyntheticEvent, reviewId: string, resourceType: string) => {
           trackEvent({
             ga: ['리뷰_댓글', regionId],
             fa: {

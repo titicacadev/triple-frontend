@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, ComponentType, FC } from 'react'
 import styled, { css } from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 
@@ -50,8 +50,8 @@ const Label = styled(Text)<{
     `}
 `
 
-export function withField<T>(WrappedComponent: React.ComponentType<T>) {
-  const WrapperComponent: React.FC<
+export function withField<T>(WrappedComponent: ComponentType<T>) {
+  const WrapperComponent: FC<
     {
       label?: string
       error?: string | boolean

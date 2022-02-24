@@ -1,6 +1,7 @@
+import { PropsWithChildren } from 'react'
 import styled, { css } from 'styled-components'
 
-export type ResponsiveProps = React.PropsWithChildren<{
+export type ResponsiveProps = PropsWithChildren<{
   inline?: boolean
   maxWidth?: number
   minWidth?: number

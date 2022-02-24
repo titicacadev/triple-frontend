@@ -5,6 +5,8 @@ import {
   useEffect,
   MouseEventHandler,
   PropsWithChildren,
+  ReactNode,
+  RefObject,
 } from 'react'
 import { OverlayView, OverlayViewProps } from '@react-google-maps/api'
 
@@ -22,9 +24,9 @@ export interface DotWithPopOverMarkerProps
   type: CircleType
   active: boolean
   dotSize?: { width: number; height: number }
-  bubbleContent: React.ReactNode
-  activeContent?: React.ReactNode
-  inactiveContent?: React.ReactNode
+  bubbleContent: ReactNode
+  activeContent?: ReactNode
+  inactiveContent?: ReactNode
   withDot?: boolean
   onClick?: (e: MouseEvent) => void
   onBubbleClick?: (e: MouseEvent) => void
@@ -55,7 +57,7 @@ function DotWithPopOverMarker({
   children,
   ...overlayViewProps
 }: PropsWithChildren<DotWithPopOverMarkerProps>) {
-  const overlayViewRef = useRef() as React.RefObject<OverlayView>
+  const overlayViewRef = useRef() as RefObject<OverlayView>
   const adjustZindex = useCallback(() => {
     const containerEl = overlayViewRef?.current?.containerRef?.current
 

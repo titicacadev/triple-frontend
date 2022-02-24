@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import {
   CarouselSizes,
   Carousel,
@@ -34,8 +35,8 @@ export default function PoiCarouselElement<T extends PoiListElementType>({
   optimized,
 }: POIListElementBaseProps<T> & {
   actionButtonElement?: ActionButtonElement
-  description?: React.ReactNode
-  additionalInfo?: React.ReactNode
+  description?: ReactNode
+  additionalInfo?: ReactNode
   carouselSize?: CarouselSizes
   titleTopSpacing?: number
   imageFrame?: FrameRatioAndSizes

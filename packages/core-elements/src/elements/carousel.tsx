@@ -1,5 +1,5 @@
+import { PropsWithChildren, MouseEvent } from 'react'
 import styled, { css } from 'styled-components'
-import { PropsWithChildren } from 'react'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
 import { MarginPadding, CarouselSizes } from '../commons'
@@ -71,7 +71,7 @@ function CarouselItem({
   size?: CarouselSizes
   threshold?: number
   onImpress?: () => void
-  onClick?: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void
+  onClick?: (e: MouseEvent<HTMLLIElement>) => void
 }>) {
   if (onImpress) {
     return (

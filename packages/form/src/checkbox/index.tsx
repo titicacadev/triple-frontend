@@ -1,3 +1,4 @@
+import { InputHTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
 import {
   Container,
@@ -78,7 +79,7 @@ interface Item<T> {
 }
 
 export interface CheckboxItemProps<T>
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+  extends InputHTMLAttributes<HTMLInputElement> {
   option: Item<T>
   margin?: MarginPadding
 }

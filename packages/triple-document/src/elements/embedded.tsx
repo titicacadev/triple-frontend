@@ -1,3 +1,4 @@
+import { ComponentType } from 'react'
 import { Carousel, Container } from '@titicaca/core-elements'
 import TripleMedia from '@titicaca/triple-media'
 import { ImageMeta } from '@titicaca/type-definitions'
@@ -13,9 +14,7 @@ import generateClickHandler from './shared/generate-click-handler'
 import { Text, MH3 } from './text'
 import Links from './links'
 
-function Compact<P extends { compact?: boolean }>(
-  Component: React.ComponentType<P>,
-) {
+function Compact<P extends { compact?: boolean }>(Component: ComponentType<P>) {
   return function CompactedComponent(props: P) {
     return <Component compact {...props} />
   }

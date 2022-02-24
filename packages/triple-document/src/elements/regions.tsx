@@ -1,3 +1,4 @@
+import { MouseEventHandler } from 'react'
 import styled from 'styled-components'
 import { ResourceListItem, Image } from '@titicaca/core-elements'
 
@@ -64,7 +65,7 @@ export function RegionListElement({
   onClick,
 }: {
   value: RegionData | null
-  onClick?: React.MouseEventHandler
+  onClick?: MouseEventHandler
 }) {
   if (value) {
     const {

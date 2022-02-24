@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import styled from 'styled-components'
 import { Container, Text } from '@titicaca/core-elements'
 
@@ -21,7 +22,7 @@ export default function AreaNames({
 }: {
   areas: Area[]
   vicinity?: string
-  arrowAction?: React.ReactNode
+  arrowAction?: ReactNode
 }) {
   const names = areas[0]?.name || vicinity
 

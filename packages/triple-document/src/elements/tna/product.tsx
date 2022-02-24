@@ -1,4 +1,4 @@
-import { MouseEventHandler, useCallback } from 'react'
+import { MouseEventHandler, SyntheticEvent, useCallback } from 'react'
 import { Text, Tag, Container, Image, Rating } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
@@ -75,11 +75,7 @@ export function TnaProductWithPrice({
 }: {
   index: number
   product: TnaProductData
-  onClick: (
-    e: React.SyntheticEvent,
-    product: TnaProductData,
-    index: number,
-  ) => void
+  onClick: (e: SyntheticEvent, product: TnaProductData, index: number) => void
   onIntersect: (product: TnaProductData, index: number) => void
 }) {
   const { app, isPublic } = useUserAgentContext()

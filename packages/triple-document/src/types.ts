@@ -36,7 +36,7 @@ export interface Link {
   target?: string
 }
 
-export type LinkEventHandler = (e: React.SyntheticEvent, link: Link) => void
+export type LinkEventHandler = (e: SyntheticEvent, link: Link) => void
 
 export type TripleDocumentContext = {
   onResourceClick?: ResourceClickHandler

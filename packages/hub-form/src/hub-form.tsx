@@ -1,3 +1,5 @@
+import { PropsWithChildren } from 'react'
+
 import styled from 'styled-components'
 import { CardFrame } from '@titicaca/core-elements'
 
@@ -19,7 +21,7 @@ export default function HubForm({
   children,
   shadow,
   ...props
-}: React.PropsWithChildren<Parameters<typeof HubFormFrame>['0']>) {
+}: PropsWithChildren<Parameters<typeof HubFormFrame>['0']>) {
   return (
     <HubFormFrame
       margin={{ top: 10, bottom: 10 }}

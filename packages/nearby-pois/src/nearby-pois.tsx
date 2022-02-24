@@ -1,4 +1,4 @@
-import { useReducer, useCallback, useEffect } from 'react'
+import { useReducer, useCallback, useEffect, SyntheticEvent } from 'react'
 import { useI18n } from '@titicaca/i18n'
 import {
   Section,
@@ -128,7 +128,7 @@ export default function NearbyPois({
   }, [poiId, regionId, lat, lon, currentTab, pois, dispatch, trackSimpleEvent])
 
   const handleTabChange = useCallback(
-    (e?: React.SyntheticEvent, newTab?: string) => {
+    (e?: SyntheticEvent, newTab?: string) => {
       if (newTab) {
         trackSimpleEvent({
           action: '근처추천장소_탭선택',
