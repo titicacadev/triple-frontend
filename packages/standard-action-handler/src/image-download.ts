@@ -37,7 +37,7 @@ export default async function imageDownload({ path, query }: UrlElements) {
       downloadAnchor.remove()
 
       // URL 더이상 사용되지 않아 메모리 누수를 방지
-      setTimeout(() => windowUrl.revokeObjectURL(imageToDomString), 60)
+      windowUrl.revokeObjectURL(imageToDomString)
     }
     return true
   }
