@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Button } from '@titicaca/core-elements'
 import styled from 'styled-components'
 import {
@@ -39,7 +39,13 @@ const BaseCouponDownloadButton = styled(Button)`
 
 const MAX_COUPONS_PER_USER_ERROR_CODE = 'MAX_COUPONS_PER_USER'
 
-function useDownloadTimePassed(calculator: () => boolean) {
+function useDownloadTimePassed(time: string | undefined) {
+  const calculator = useCallback(() => {
+    return (
+      time === undefined || moment(new Date()).isSameOrAfter(new Date(time))
+    )
+  }, [time])
+
   const [passed, setPassed] = useState(calculator())
 
   useInterval(() => {
@@ -110,12 +116,7 @@ export function CouponDownloadButton({
   const { login } = useSessionControllers()
 
   const [needLogin, setNeedLogin] = useState(false)
-  const timePassed = useDownloadTimePassed(() => {
-    return (
-      enabledAt === undefined ||
-      moment(new Date()).isSameOrAfter(new Date(enabledAt))
-    )
-  })
+  const timePassed = useDownloadTimePassed(enabledAt)
 
   const buttonDisabled =
     couponFetched === false && needLogin === false && !timePassed
