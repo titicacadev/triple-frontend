@@ -1,4 +1,3 @@
-import { SyntheticEvent } from 'react'
 import { Responsive } from '@titicaca/core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
 
@@ -12,13 +11,7 @@ import {
 const IMAGES_CONTAINER_HEIGHTS = [217, 292, 328]
 const IMAGE_HEIGHTS = [217, 143, 105]
 
-export default function MultipleImages({
-  images,
-  onImageClick,
-}: {
-  images: ImageMeta[]
-  onImageClick?: (e: SyntheticEvent, index: number) => void
-}) {
+export default function MultipleImages({ images }: { images: ImageMeta[] }) {
   const [firstImage, ...restImages] = images
 
   return (
@@ -31,7 +24,6 @@ export default function MultipleImages({
                 src={firstImage.sizes.large.url}
                 fullHeight
                 absolute
-                onClick={(e) => onImageClick && onImageClick(e, 0)}
               />
             </SquareFrame>
           </FlexItemContainer>
@@ -45,12 +37,7 @@ export default function MultipleImages({
                   margin={{ bottom: index < restImages.length - 1 ? 5 : 0 }}
                 >
                   <SquareFrame>
-                    <ImageElement
-                      src={sizes.large.url}
-                      absolute
-                      fullHeight
-                      onClick={(e) => onImageClick && onImageClick(e, index)}
-                    />
+                    <ImageElement src={sizes.large.url} absolute fullHeight />
                   </SquareFrame>
                 </FlexItemContainer>
               ))}
@@ -64,11 +51,7 @@ export default function MultipleImages({
           height={IMAGES_CONTAINER_HEIGHTS[restImages.length - 1]}
         >
           <FlexItemContainer flexShrink={1} margin={{ right: 9 }}>
-            <ImageElement
-              src={firstImage.sizes.large.url}
-              fullHeight
-              onClick={(e) => onImageClick && onImageClick(e, 0)}
-            />
+            <ImageElement src={firstImage.sizes.large.url} fullHeight />
           </FlexItemContainer>
 
           <FlexItemContainer flexShrink={restImages.length}>
@@ -79,7 +62,6 @@ export default function MultipleImages({
                     key={`review.img.${id}.${index}`}
                     src={sizes.large.url}
                     height={IMAGE_HEIGHTS[restImages.length - 1]}
-                    onClick={(e) => onImageClick && onImageClick(e, index)}
                     margin={{ bottom: index < restImages.length - 1 ? 6 : 0 }}
                   />
                 ))}
@@ -92,7 +74,6 @@ export default function MultipleImages({
                     key={`review.img.${id}.${index}`}
                     src={sizes.large.url}
                     height={IMAGE_HEIGHTS[restImages.length - 1]}
-                    onClick={(e) => onImageClick && onImageClick(e, index)}
                     margin={{ bottom: index < restImages.length - 1 ? 6 : 0 }}
                   />
                 ))}
