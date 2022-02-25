@@ -1,4 +1,3 @@
-import { SyntheticEvent } from 'react'
 import { Responsive, Text } from '@titicaca/core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
 
@@ -10,13 +9,7 @@ import {
   ImagesContainer,
 } from './elements'
 
-export default function PentaImages({
-  images,
-  onImageClick,
-}: {
-  images: ImageMeta[]
-  onImageClick?: (e: SyntheticEvent, index: number) => void
-}) {
+export default function PentaImages({ images }: { images: ImageMeta[] }) {
   const [firstImage, secondImage, ...lowerImages] = images.slice(0, 5)
   const upperImages = [firstImage, secondImage]
   return (
@@ -31,12 +24,7 @@ export default function PentaImages({
                 margin={{ right: index === 0 ? 5 : 0 }}
               >
                 <SquareFrame>
-                  <ImageElement
-                    src={sizes.large.url}
-                    absolute
-                    fullHeight
-                    onClick={(e) => onImageClick && onImageClick(e, index)}
-                  />
+                  <ImageElement src={sizes.large.url} absolute fullHeight />
                 </SquareFrame>
               </FlexItemContainer>
             ))}
@@ -49,16 +37,9 @@ export default function PentaImages({
                 margin={{ right: index < 2 ? 5 : 0 }}
               >
                 <SquareFrame>
-                  <ImageElement
-                    src={sizes.large.url}
-                    absolute
-                    fullHeight
-                    onClick={(e) => onImageClick && onImageClick(e, index)}
-                  />
+                  <ImageElement src={sizes.large.url} absolute fullHeight />
                   {images.length > 5 && index === 2 ? (
-                    <Dimmer
-                      onClick={(e) => onImageClick && onImageClick(e, index)}
-                    >
+                    <Dimmer>
                       <td>
                         <Text bold color="white900" textAlign="center">
                           + {images.length - 5}
@@ -86,11 +67,7 @@ export default function PentaImages({
                   flexShrink={1}
                   margin={{ right: index === 0 ? 6 : 0 }}
                 >
-                  <ImageElement
-                    src={sizes.large.url}
-                    fullHeight
-                    onClick={(e) => onImageClick && onImageClick(e, index)}
-                  />
+                  <ImageElement src={sizes.large.url} fullHeight />
                 </FlexItemContainer>
               ))}
             </ImagesContainer>
@@ -107,11 +84,7 @@ export default function PentaImages({
                   flexShrink={1}
                   margin={{ right: index === 0 ? 9 : 0 }}
                 >
-                  <ImageElement
-                    src={sizes.large.url}
-                    fullHeight
-                    onClick={(e) => onImageClick && onImageClick(e, index)}
-                  />
+                  <ImageElement src={sizes.large.url} fullHeight />
                 </FlexItemContainer>
               ))}
             </ImagesContainer>
@@ -123,15 +96,9 @@ export default function PentaImages({
                 flexShrink={1}
                 margin={{ right: index < 2 ? 9 : 0 }}
               >
-                <ImageElement
-                  src={sizes.large.url}
-                  fullHeight
-                  onClick={(e) => onImageClick && onImageClick(e, index)}
-                />
+                <ImageElement src={sizes.large.url} fullHeight />
                 {images.length > 5 && index === 2 ? (
-                  <Dimmer
-                    onClick={(e) => onImageClick && onImageClick(e, index)}
-                  >
+                  <Dimmer>
                     <td>
                       <Text bold color="white900" textAlign="center">
                         + {images.length - 5}
