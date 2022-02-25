@@ -17,7 +17,7 @@ export default function MultipleImages({
   onImageClick,
 }: {
   images: ImageMeta[]
-  onImageClick: (e: SyntheticEvent, index: number) => void
+  onImageClick?: (e: SyntheticEvent, index: number) => void
 }) {
   const [firstImage, ...restImages] = images
 
@@ -31,7 +31,7 @@ export default function MultipleImages({
                 src={firstImage.sizes.large.url}
                 fullHeight
                 absolute
-                onClick={(e) => onImageClick(e, 0)}
+                onClick={(e) => onImageClick && onImageClick(e, 0)}
               />
             </SquareFrame>
           </FlexItemContainer>
@@ -49,7 +49,7 @@ export default function MultipleImages({
                       src={sizes.large.url}
                       absolute
                       fullHeight
-                      onClick={(e) => onImageClick(e, index)}
+                      onClick={(e) => onImageClick && onImageClick(e, index)}
                     />
                   </SquareFrame>
                 </FlexItemContainer>
@@ -67,7 +67,7 @@ export default function MultipleImages({
             <ImageElement
               src={firstImage.sizes.large.url}
               fullHeight
-              onClick={(e) => onImageClick(e, 0)}
+              onClick={(e) => onImageClick && onImageClick(e, 0)}
             />
           </FlexItemContainer>
 
@@ -79,7 +79,7 @@ export default function MultipleImages({
                     key={`review.img.${id}.${index}`}
                     src={sizes.large.url}
                     height={IMAGE_HEIGHTS[restImages.length - 1]}
-                    onClick={(e) => onImageClick(e, index)}
+                    onClick={(e) => onImageClick && onImageClick(e, index)}
                     margin={{ bottom: index < restImages.length - 1 ? 6 : 0 }}
                   />
                 ))}
@@ -92,7 +92,7 @@ export default function MultipleImages({
                     key={`review.img.${id}.${index}`}
                     src={sizes.large.url}
                     height={IMAGE_HEIGHTS[restImages.length - 1]}
-                    onClick={(e) => onImageClick(e, index)}
+                    onClick={(e) => onImageClick && onImageClick(e, index)}
                     margin={{ bottom: index < restImages.length - 1 ? 6 : 0 }}
                   />
                 ))}

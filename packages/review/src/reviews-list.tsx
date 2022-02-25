@@ -1,5 +1,4 @@
 import { SyntheticEvent, useCallback, useState } from 'react'
-import moment from 'moment'
 import { List } from '@titicaca/core-elements'
 import {
   useUserAgentContext,
@@ -8,7 +7,6 @@ import {
 } from '@titicaca/react-contexts'
 import { TransitionType } from '@titicaca/modals'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
-import { ImageMeta } from '@titicaca/type-definitions'
 import { Timestamp } from '@titicaca/view-utilities'
 
 import ReviewElement, { ReviewElementProps } from './review-element'
@@ -44,12 +42,8 @@ export default function ReviewsList({
   const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
   const { push } = useHistoryFunctions()
-  const {
-    navigateUserDetail,
-    navigateImages,
-    navigateReviewDetail,
-    reportReview,
-  } = useClientActions()
+  const { navigateUserDetail, navigateReviewDetail, reportReview } =
+    useClientActions()
 
   const handleUserClick: ReviewElementProps['onUserClick'] = useSessionCallback(
     useCallback(
@@ -91,59 +85,6 @@ export default function ReviewsList({
         }
       },
       [isPublic, myReview, push],
-    ),
-  )
-
-  const handleImageClick: ReviewElementProps['onImageClick'] = useAppCallback(
-    TransitionType.ReviewThumbnail,
-    useSessionCallback(
-      useCallback(
-        (
-          e: SyntheticEvent,
-          { user: { name }, comment, media, createdAt }: ReviewData,
-          image: ImageMeta,
-          index,
-        ) => {
-          if (!media) {
-            return
-          }
-          trackEvent({
-            ga: ['리뷰_리뷰사진썸네일'],
-            fa: {
-              action: '리뷰_리뷰사진썸네일',
-              item_id: resourceId,
-              photo_id: media[index].id,
-            },
-          })
-
-          const convertImage = (convertingImage: ImageMeta) => ({
-            id: convertingImage.id,
-            title: '',
-            description: (comment || '').replace(/\n\s*\n/g, '\n'),
-            width: convertingImage.width,
-            height: convertingImage.height,
-            sourceUrl: `${name} / ${moment(createdAt).format('YYYY.M.D')}`,
-            sizes: {
-              full: convertingImage.sizes.full,
-              large: convertingImage.sizes.large,
-              small_square:
-                'smallSquare' in convertingImage.sizes
-                  ? convertingImage.sizes.smallSquare
-                  : convertingImage.sizes.small_square,
-            },
-          })
-
-          if (!media) {
-            return
-          }
-
-          navigateImages(
-            media.map(convertImage),
-            media.findIndex(({ id }) => id === image.id),
-          )
-        },
-        [navigateImages, resourceId, trackEvent],
-      ),
     ),
   )
 
@@ -213,7 +154,6 @@ export default function ReviewsList({
             reviewRateDescriptions={reviewRateDescriptions}
             onUserClick={isPublic ? undefined : handleUserClick}
             onMenuClick={handleMenuClick}
-            onImageClick={handleImageClick}
             onReviewClick={handleReviewClick}
             onMessageCountClick={handleMessageCountClick}
             resourceId={resourceId}
