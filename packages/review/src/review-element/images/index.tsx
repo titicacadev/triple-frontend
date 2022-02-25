@@ -10,7 +10,7 @@ export default function Images({
   onImageClick,
 }: {
   images: ImageMeta[]
-  onImageClick: (e: SyntheticEvent, index: number) => void
+  onImageClick?: (e: SyntheticEvent, index: number) => void
 }) {
   if (images.length <= 0) {
     return null

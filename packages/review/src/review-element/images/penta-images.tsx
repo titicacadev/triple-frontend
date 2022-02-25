@@ -15,7 +15,7 @@ export default function PentaImages({
   onImageClick,
 }: {
   images: ImageMeta[]
-  onImageClick: (e: SyntheticEvent, index: number) => void
+  onImageClick?: (e: SyntheticEvent, index: number) => void
 }) {
   const [firstImage, secondImage, ...lowerImages] = images.slice(0, 5)
   const upperImages = [firstImage, secondImage]
@@ -35,7 +35,7 @@ export default function PentaImages({
                     src={sizes.large.url}
                     absolute
                     fullHeight
-                    onClick={(e) => onImageClick(e, index)}
+                    onClick={(e) => onImageClick && onImageClick(e, index)}
                   />
                 </SquareFrame>
               </FlexItemContainer>
@@ -53,10 +53,12 @@ export default function PentaImages({
                     src={sizes.large.url}
                     absolute
                     fullHeight
-                    onClick={(e) => onImageClick(e, index)}
+                    onClick={(e) => onImageClick && onImageClick(e, index)}
                   />
                   {images.length > 5 && index === 2 ? (
-                    <Dimmer onClick={(e) => onImageClick(e, index)}>
+                    <Dimmer
+                      onClick={(e) => onImageClick && onImageClick(e, index)}
+                    >
                       <td>
                         <Text bold color="white900" textAlign="center">
                           + {images.length - 5}
@@ -87,7 +89,7 @@ export default function PentaImages({
                   <ImageElement
                     src={sizes.large.url}
                     fullHeight
-                    onClick={(e) => onImageClick(e, index)}
+                    onClick={(e) => onImageClick && onImageClick(e, index)}
                   />
                 </FlexItemContainer>
               ))}
@@ -108,7 +110,7 @@ export default function PentaImages({
                   <ImageElement
                     src={sizes.large.url}
                     fullHeight
-                    onClick={(e) => onImageClick(e, index)}
+                    onClick={(e) => onImageClick && onImageClick(e, index)}
                   />
                 </FlexItemContainer>
               ))}
@@ -124,10 +126,12 @@ export default function PentaImages({
                 <ImageElement
                   src={sizes.large.url}
                   fullHeight
-                  onClick={(e) => onImageClick(e, index)}
+                  onClick={(e) => onImageClick && onImageClick(e, index)}
                 />
                 {images.length > 5 && index === 2 ? (
-                  <Dimmer onClick={(e) => onImageClick(e, index)}>
+                  <Dimmer
+                    onClick={(e) => onImageClick && onImageClick(e, index)}
+                  >
                     <td>
                       <Text bold color="white900" textAlign="center">
                         + {images.length - 5}

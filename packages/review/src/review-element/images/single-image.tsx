@@ -4,12 +4,12 @@ import { ImageMeta } from '@titicaca/type-definitions'
 
 import { ImageElement, SquareFrame } from './elements'
 
-export default function SigleImage({
+export default function SingleImage({
   image,
   onImageClick,
 }: {
   image: ImageMeta
-  onImageClick: (e: SyntheticEvent, index: number) => void
+  onImageClick?: (e: SyntheticEvent, index: number) => void
 }) {
   return (
     <>
@@ -17,7 +17,7 @@ export default function SigleImage({
         {image.width && image.height && image.width > image.height ? (
           <ImageElement
             src={image.sizes.large.url}
-            onClick={(e) => onImageClick(e, 0)}
+            onClick={(e) => onImageClick && onImageClick(e, 0)}
           />
         ) : (
           <SquareFrame>
@@ -25,7 +25,7 @@ export default function SigleImage({
               src={image.sizes.large.url}
               absolute
               fullHeight
-              onClick={(e) => onImageClick(e, 0)}
+              onClick={(e) => onImageClick && onImageClick(e, 0)}
             />
           </SquareFrame>
         )}
@@ -34,7 +34,7 @@ export default function SigleImage({
         <ImageElement
           src={image.sizes.large.url}
           height={293}
-          onClick={(e) => onImageClick(e, 0)}
+          onClick={(e) => onImageClick && onImageClick(e, 0)}
         />
       </Responsive>
     </>

@@ -10,11 +10,7 @@ import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { List, Container, Text, Rating } from '@titicaca/core-elements'
-import {
-  useEventTrackingContext,
-  useUserAgentContext,
-} from '@titicaca/react-contexts'
-import { ImageMeta } from '@titicaca/type-definitions'
+import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useSessionCallback } from '@titicaca/ui-flow'
 
 import { useReviewLikesContext } from '../review-likes-context'
@@ -38,12 +34,6 @@ export interface ReviewElementProps {
   onUserClick?: ReviewEventHandler
   onUnfoldButtonClick?: ReviewEventHandler
   onMenuClick: ReviewEventHandler
-  onImageClick: (
-    e: SyntheticEvent,
-    review: ReviewData,
-    image: ImageMeta,
-    index: number,
-  ) => void
   onReviewClick: (e: SyntheticEvent, reviewId: string) => void
   onMessageCountClick: (
     e: SyntheticEvent,
@@ -118,7 +108,6 @@ export default function ReviewElement({
   onUserClick,
   onUnfoldButtonClick,
   onMenuClick,
-  onImageClick,
   onReviewClick,
   onMessageCountClick,
   onShow,
@@ -129,7 +118,6 @@ export default function ReviewElement({
   const [unfolded, setUnfolded] = useState(false)
   const { deriveCurrentStateAndCount, updateLikedStatus } =
     useReviewLikesContext()
-  const { isPublic } = useUserAgentContext()
   const { trackEvent } = useEventTrackingContext()
   const { liked, likesCount } = deriveCurrentStateAndCount({
     reviewId: review.id,
@@ -204,12 +192,7 @@ export default function ReviewElement({
           )}
           {!blindedAt && media && media.length > 0 ? (
             <Container margin={{ top: 10 }}>
-              <Images
-                images={media}
-                onImageClick={(e) =>
-                  onImageClick(e, review, media[index], index)
-                }
-              />
+              <Images images={media} />
             </Container>
           ) : null}
         </Content>
@@ -227,23 +210,21 @@ export default function ReviewElement({
             </LikeButton>
           ) : null}
 
-          {isPublic ? (
-            <MessageCount
-              display="inline-block"
-              position="relative"
-              height={18}
-              margin={{ top: 5 }}
-              padding={{ top: 2, bottom: 2, left: 20, right: 0 }}
-              isCommaVisible={!blindedAt}
-              onClick={(e: SyntheticEvent) =>
-                onMessageCountClick(e, review.id, resourceType)
-              }
-            >
-              {replyBoard
-                ? replyBoard.rootMessagesCount + replyBoard.childMessagesCount
-                : 0}
-            </MessageCount>
-          ) : null}
+          <MessageCount
+            display="inline-block"
+            position="relative"
+            height={18}
+            margin={{ top: 5 }}
+            padding={{ top: 2, bottom: 2, left: 20, right: 0 }}
+            isCommaVisible={!blindedAt}
+            onClick={(e: SyntheticEvent) =>
+              onMessageCountClick(e, review.id, resourceType)
+            }
+          >
+            {replyBoard
+              ? replyBoard.rootMessagesCount + replyBoard.childMessagesCount
+              : 0}
+          </MessageCount>
 
           {!blindedAt || (blindedAt && isMyReview) ? (
             <Date floated="right">
