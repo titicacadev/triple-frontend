@@ -16,7 +16,7 @@ describe('useInterval hook test', () => {
     jest.useRealTimers()
   })
 
-  test('delay가 null인 경우', () => {
+  test('delay가 null인 경우 setInterval을 실행하지 않는다.', () => {
     const callbackFn = jest.fn()
     const intervalSpy = jest.spyOn(window, 'setInterval')
 
@@ -25,7 +25,7 @@ describe('useInterval hook test', () => {
     expect(intervalSpy).not.toHaveBeenCalled()
   })
 
-  test('delay가 null이 아닌 경우', () => {
+  test('delay가 null이 아닌 경우 setInterval이 실행되고 delay ms 후 콜백 함수가 실행된다.', () => {
     const callbackFn = jest.fn()
     const intervalSpy = jest.spyOn(window, 'setInterval')
     const delay = 1000
@@ -41,7 +41,7 @@ describe('useInterval hook test', () => {
     expect(callbackFn).toHaveBeenCalled()
   })
 
-  test('unmount 시 clearTimeout 실행', () => {
+  test('unmount 시 clearTimeout 실행되고 콜백 함수는 실행되지 않는다.', () => {
     const callbackFn = jest.fn()
     const clearIntervalSpy = jest.spyOn(window, 'clearInterval')
 
@@ -50,9 +50,10 @@ describe('useInterval hook test', () => {
     unmount()
 
     expect(clearIntervalSpy).toHaveBeenCalledTimes(1)
+    expect(callbackFn).toHaveBeenCalledTimes(0)
   })
 
-  test('실행 중 callback function 변경되어도 delay 간격으로 callback 함수 실행', () => {
+  test('실행 중 callback function 변경되어도 delay 간격으로 callback 함수 실행한다.', () => {
     const callbackFn = jest.fn()
     const delay = 500
     const intervalSpy = jest.spyOn(window, 'setInterval')
@@ -81,7 +82,7 @@ describe('useInterval hook test', () => {
     expect(newCallbackFn).toHaveBeenCalledTimes(1)
   })
 
-  test('delay 값이 바뀌었을 때 setInterval 재정의', () => {
+  test('delay 값이 바뀌었을 때 setInterval 재정의한다.', () => {
     const callbackFn = jest.fn()
     let delay = 500
     const intervalSpy = jest.spyOn(window, 'setInterval')
