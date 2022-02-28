@@ -50,7 +50,7 @@ function useDownloadTimePassed(time: string | undefined) {
 
   useInterval(() => {
     setPassed(calculator)
-  }, 100)
+  }, 500)
 
   return passed
 }
