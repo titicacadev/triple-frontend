@@ -2,7 +2,7 @@ import { authGuardedFetchers, captureHttpError } from '@titicaca/fetcher'
 import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
 
-import { sortReply } from './utils'
+import { sortChild } from './utils'
 import { ResourceType, Reply } from './types'
 
 export async function fetchReplies({
@@ -36,7 +36,7 @@ export async function fetchReplies({
 
   if (response.ok) {
     const { parsedBody } = response
-    const sortedReplies = parsedBody.map((reply) => sortReply(reply))
+    const sortedReplies = parsedBody.map((reply) => sortChild(reply))
 
     return sortedReplies
   } else {
@@ -71,7 +71,7 @@ export async function fetchChildReplies({
 
   if (response.ok) {
     const { parsedBody } = response
-    const sortedReplies = parsedBody.map((reply) => sortReply(reply))
+    const sortedReplies = parsedBody.map((reply) => sortChild(reply))
 
     return sortedReplies
   } else {
@@ -255,7 +255,7 @@ async function editReply({
 
   if (response.ok) {
     const { parsedBody } = response
-    const sortedReplies = sortReply(parsedBody)
+    const sortedReplies = sortChild(parsedBody)
 
     return sortedReplies
   }
@@ -283,7 +283,7 @@ export async function deleteReply({
 
   if (response.ok) {
     const { parsedBody } = response
-    const sortedReplies = sortReply(parsedBody)
+    const sortedReplies = sortChild(parsedBody)
 
     return sortedReplies
   }

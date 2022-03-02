@@ -10,7 +10,7 @@ export function checkUniqueReply(reply: Reply[]): Reply[] {
   return result
 }
 
-export function sortReply(reply: Reply): Reply {
+export function sortChild(reply: Reply): Reply {
   const sortedChildReply = reply.children.sort(
     (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
   )
