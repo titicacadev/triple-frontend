@@ -2,7 +2,7 @@ import { authGuardedFetchers, captureHttpError } from '@titicaca/fetcher'
 import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
 
-import { checkUniqueReply } from './utils'
+import { sortReply } from './utils'
 import { ResourceType, Reply } from './types'
 
 export async function fetchReplies({
@@ -36,12 +36,7 @@ export async function fetchReplies({
 
   if (response.ok) {
     const { parsedBody } = response
-
-    const sortedReplies = [
-      ...new Map(
-        parsedBody.map((reply) => [reply.id, sortReply(reply)]),
-      ).values(),
-    ]
+    const sortedReplies = parsedBody.map((reply) => sortReply(reply))
 
     return sortedReplies
   } else {
@@ -76,12 +71,7 @@ export async function fetchChildReplies({
 
   if (response.ok) {
     const { parsedBody } = response
-
-    const sortedReplies = [
-      ...new Map(
-        parsedBody.map((reply) => [reply.id, sortReply(reply)]),
-      ).values(),
-    ]
+    const sortedReplies = parsedBody.map((reply) => sortReply(reply))
 
     return sortedReplies
   } else {
@@ -265,8 +255,9 @@ async function editReply({
 
   if (response.ok) {
     const { parsedBody } = response
+    const sortedReplies = sortReply(parsedBody)
 
-    return sortReply(parsedBody)
+    return sortedReplies
   }
 }
 
@@ -292,8 +283,9 @@ export async function deleteReply({
 
   if (response.ok) {
     const { parsedBody } = response
+    const sortedReplies = sortReply(parsedBody)
 
-    return sortReply(parsedBody)
+    return sortedReplies
   }
 }
 
@@ -329,13 +321,4 @@ export async function unlikeReply({ messageId }: { messageId: string }) {
   }
 
   captureHttpError(response)
-}
-
-function sortReply(reply: Reply): Reply {
-  const sortedChildReply = {
-    ...reply,
-    children: checkUniqueReply(reply.children),
-  }
-
-  return sortedChildReply
 }
