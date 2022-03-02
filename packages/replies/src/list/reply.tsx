@@ -74,7 +74,7 @@ const CONTENT_TEXT = {
 export default function Reply({
   reply,
   reply: {
-    writer: { profileImage, name },
+    writer: { profileImage, name, href: writeHref },
     blinded,
     createdAt,
     content: { mentionedUser, text, markdownText },
@@ -207,11 +207,14 @@ export default function Reply({
     childrenCount,
   })
 
-  const handleMentiondUserNameClick = useAppCallback(
+  const handleProfileUserClick = useAppCallback(
     TransitionType.General,
-    useCallback(() => {
-      navigate(`${mentionedUser?.href || ''}`)
-    }, [navigate, mentionedUser?.href]),
+    useCallback(
+      (href) => {
+        navigate(href)
+      },
+      [navigate],
+    ),
   )
 
   return (
@@ -222,7 +225,7 @@ export default function Reply({
         src={profileImage}
         borderRadius={20}
         alt={name || ''}
-        onClick={() => handleMentiondUserNameClick()}
+        onClick={() => handleProfileUserClick(writeHref)}
       />
 
       <Container padding={{ left: 50, bottom: 3 }} margin={{ bottom: 20 }}>
@@ -232,7 +235,7 @@ export default function Reply({
               size={15}
               bold
               ellipsis
-              onClick={() => handleMentiondUserNameClick()}
+              onClick={() => handleProfileUserClick(writeHref)}
             >
               {name}
             </Text>
@@ -254,7 +257,6 @@ export default function Reply({
           blinded={!!blinded}
           deleted={!!deleted}
           text={derivedText}
-          onClick={handleMentiondUserNameClick}
         />
 
         {!deleted && !blinded ? (
@@ -376,16 +378,25 @@ function Content({
   mentionedUser,
   blinded,
   deleted,
-  onClick,
 }: {
   text: string
   mentionedUser?: Writer
   blinded: boolean
   deleted: boolean
-  onClick: () => void
 }) {
   const [unfolded, setUnfolded] = useState(false)
   const foldedPosition = findFoldedPosition(5, text)
+  const navigate = useNavigate()
+
+  const handleMentiondUserNameClick = useAppCallback(
+    TransitionType.General,
+    useCallback(
+      (href) => {
+        navigate(href)
+      },
+      [navigate],
+    ),
+  )
 
   return (
     <Container padding={{ top: 3 }}>
@@ -395,7 +406,11 @@ function Content({
         ) : (
           <>
             {mentionedUser && !blinded && (
-              <MentionUser onClick={onClick}>{mentionedUser?.name}</MentionUser>
+              <MentionUser
+                onClick={() => handleMentiondUserNameClick(mentionedUser.href)}
+              >
+                {mentionedUser?.name}
+              </MentionUser>
             )}
             <Text
               size={15}
