@@ -1,4 +1,8 @@
-import { authGuardedFetchers, captureHttpError } from '@titicaca/fetcher'
+import {
+  authGuardedFetchers,
+  captureHttpError,
+  HttpResponse,
+} from '@titicaca/fetcher'
 import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
 
@@ -28,20 +32,9 @@ export async function fetchReplies({
     }),
   )
 
-  if (response === 'NEED_LOGIN') {
-    throw new Error('로그인이 필요한 호출입니다.')
-  }
+  const replies = deriveReplies(response)
 
-  captureHttpError(response)
-
-  if (response.ok) {
-    const { parsedBody } = response
-    const sortedReplies = parsedBody.map((reply) => sortChild(reply))
-
-    return sortedReplies
-  } else {
-    return []
-  }
+  return replies
 }
 
 export async function fetchChildReplies({
@@ -63,20 +56,9 @@ export async function fetchChildReplies({
     }),
   )
 
-  if (response === 'NEED_LOGIN') {
-    throw new Error('로그인이 필요한 호출입니다.')
-  }
+  const replies = deriveReplies(response)
 
-  captureHttpError(response)
-
-  if (response.ok) {
-    const { parsedBody } = response
-    const sortedReplies = parsedBody.map((reply) => sortChild(reply))
-
-    return sortedReplies
-  } else {
-    return []
-  }
+  return replies
 }
 
 export async function authorMessage({
@@ -321,4 +303,23 @@ export async function unlikeReply({ messageId }: { messageId: string }) {
   }
 
   captureHttpError(response)
+}
+
+function deriveReplies(
+  response: 'NEED_LOGIN' | HttpResponse<Reply[], unknown>,
+) {
+  if (response === 'NEED_LOGIN') {
+    throw new Error('로그인이 필요한 호출입니다.')
+  }
+
+  captureHttpError(response)
+
+  if (response.ok) {
+    const { parsedBody } = response
+    const sortedReplies = parsedBody.map((reply) => sortChild(reply))
+
+    return sortedReplies
+  } else {
+    return []
+  }
 }
