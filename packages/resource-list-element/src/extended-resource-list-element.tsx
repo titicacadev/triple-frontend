@@ -8,6 +8,7 @@ import {
   Text,
   List,
   Image,
+  FlexBox,
 } from '@titicaca/core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
 
@@ -49,21 +50,19 @@ export type ResourceListElementProps<R extends ResourceMeta> = {
 
 const ResourceListItem = styled(List.Item)`
   position: relative;
-  min-height: 150px;
   padding: 20px 0;
   box-sizing: border-box;
   cursor: pointer;
 `
 
 const ContentContainer = styled.div`
-  position: absolute;
   top: 20px;
   width: calc(100% - 110px);
 `
 
 const LabelContainer = styled.div`
   position: absolute;
-  bottom: 0;
+  bottom: 20px;
 `
 
 export default function ExtendedResourceListElement<R extends ResourceMeta>({
@@ -96,112 +95,116 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
 
   return (
     <ResourceListItem onClick={onClick} {...props}>
-      <Container position="relative">
-        <Container clearing>
-          <Image>
-            <Image.FixedDimensionsFrame size="small" width={90} floated="right">
-              {image ? (
-                optimized ? (
-                  <Image.OptimizedImg
-                    cloudinaryId={image.cloudinaryId as string}
-                    cloudinaryBucket={image.cloudinaryBucket}
-                    alt={name}
-                  />
-                ) : (
-                  <Image.Img
-                    src={
-                      ('small_square' in image.sizes
-                        ? image.sizes.small_square
-                        : image.sizes.smallSquare
-                      ).url
-                    }
-                    alt={name}
-                  />
-                )
-              ) : (
-                <Image.Placeholder src={imagePlaceholder || ''} />
-              )}
-            </Image.FixedDimensionsFrame>
-          </Image>
+      <FlexBox flex alignItems="center" justifyContent="space-between">
+        <ContentContainer>
+          <Text bold maxLines={2} size="large">
+            {name}
+          </Text>
 
-          {!hideScrapButton && id && type ? (
-            <Container position="absolute" positioning={{ top: 3, right: 3 }}>
-              <OverlayScrapButton resource={{ id, type, scraped }} size={36} />
+          <Text
+            alpha={0.7}
+            maxLines={maxCommentLines}
+            size="small"
+            margin={{ top: 5 }}
+          >
+            {comment}
+          </Text>
+
+          <ReviewScrapStat
+            reviewsCount={reviewsCount}
+            scrapsCount={scrapsCount}
+            reviewsRating={reviewsRating}
+            margin={{ top: 5 }}
+          />
+
+          {formattedNames ? (
+            <Container margin={{ top: 5 }}>
+              <Text inlineBlock size="tiny" color="gray" alpha={0.5}>
+                {formattedNames}
+              </Text>
             </Container>
           ) : null}
-        </Container>
 
-        {children}
-
-        {labels.length > 0 ? (
-          <LabelContainer>
-            <Label.Group horizontalGap={5}>
-              {labels.map(({ text, color, emphasized }, index) => (
-                <Label key={index} promo color={color} emphasized={emphasized}>
-                  {text}
+          {distance || distance === 0 || note || isAdvertisement ? (
+            <Container margin={{ top: 3 }}>
+              {isAdvertisement ? (
+                <Label
+                  emphasized
+                  size="tiny"
+                  promo
+                  color="white"
+                  margin={{ right: 5 }}
+                  verticalAlign="middle"
+                >
+                  광고
                 </Label>
-              ))}
-            </Label.Group>
-          </LabelContainer>
-        ) : null}
-      </Container>
+              ) : null}
+              {distance || distance === 0 ? (
+                <Text inline color="blue" size="small" alpha={1}>
+                  {`${distance}${distanceSuffix} `}
+                </Text>
+              ) : null}
+              {note ? (
+                <Text inline size="small" alpha={0.4}>
+                  {note}
+                </Text>
+              ) : null}
+            </Container>
+          ) : null}
+        </ContentContainer>
 
-      <ContentContainer>
-        <Text bold maxLines={2} size="large">
-          {name}
-        </Text>
+        <Container position="relative">
+          <Container clearing>
+            <Image>
+              <Image.FixedDimensionsFrame size="small" width={90}>
+                {image ? (
+                  optimized ? (
+                    <Image.OptimizedImg
+                      cloudinaryId={image.cloudinaryId as string}
+                      cloudinaryBucket={image.cloudinaryBucket}
+                      alt={name}
+                    />
+                  ) : (
+                    <Image.Img
+                      src={
+                        ('small_square' in image.sizes
+                          ? image.sizes.small_square
+                          : image.sizes.smallSquare
+                        ).url
+                      }
+                      alt={name}
+                    />
+                  )
+                ) : (
+                  <Image.Placeholder src={imagePlaceholder || ''} />
+                )}
+              </Image.FixedDimensionsFrame>
+            </Image>
 
-        <Text
-          alpha={0.7}
-          maxLines={maxCommentLines}
-          size="small"
-          margin={{ top: 5 }}
-        >
-          {comment}
-        </Text>
-
-        <ReviewScrapStat
-          reviewsCount={reviewsCount}
-          scrapsCount={scrapsCount}
-          reviewsRating={reviewsRating}
-          margin={{ top: 5 }}
-        />
-
-        {formattedNames ? (
-          <Container margin={{ top: 5 }}>
-            <Text inlineBlock size="tiny" color="gray" alpha={0.5}>
-              {formattedNames}
-            </Text>
+            {!hideScrapButton && id && type ? (
+              <Container position="absolute" positioning={{ top: 3, right: 3 }}>
+                <OverlayScrapButton
+                  resource={{ id, type, scraped }}
+                  size={36}
+                />
+              </Container>
+            ) : null}
           </Container>
-        ) : null}
+        </Container>
+      </FlexBox>
+      {children}
 
-        {distance || distance === 0 || note || isAdvertisement ? (
-          <Container margin={{ top: 3 }}>
-            {isAdvertisement ? (
-              <Label
-                emphasized
-                size="tiny"
-                promo
-                color="white"
-                margin={{ right: 5 }}
-                verticalAlign="middle"
-              >
-                광고
+      {labels.length > 0 ? (
+        <LabelContainer>
+          <Label.Group horizontalGap={5}>
+            {labels.map(({ text, color, emphasized }, index) => (
+              <Label key={index} promo color={color} emphasized={emphasized}>
+                {text}
               </Label>
-            ) : null}
-            {distance || distance === 0 ? (
-              <Text inline color="blue" size="small" alpha={1}>
-                {`${distance}${distanceSuffix} `}
-              </Text>
-            ) : null}
-            {note ? (
-              <Text inline size="small" alpha={0.4}>
-                {note}
-              </Text>
-            ) : null}
-          </Container>
-        ) : null}
-      </ContentContainer>
+            ))}
+          </Label.Group>
+        </LabelContainer>
+      ) : null}
     </ResourceListItem>
   )
 }
