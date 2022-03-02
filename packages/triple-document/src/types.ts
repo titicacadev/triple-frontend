@@ -33,7 +33,7 @@ export interface Link {
   href?: string
   label?: string
   level?: string
-  target?: string
+  target?: 'browser'
 }
 
 export type LinkEventHandler = (e: SyntheticEvent, link: Link) => void
