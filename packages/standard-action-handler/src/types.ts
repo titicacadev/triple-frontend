@@ -1,7 +1,7 @@
 import { UrlElements } from '@titicaca/view-utilities'
 
 export interface NavigateOptions {
-  target?: string
+  target?: 'browser'
   title?: string
   [key: string]: unknown
 }
