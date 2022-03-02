@@ -5,7 +5,7 @@ import { useLoginCtaModal } from '@titicaca/modals'
 import { useSessionAvailability } from '@titicaca/react-contexts'
 import { useSessionCallback } from '@titicaca/ui-flow'
 
-import { authorMessage } from './replies-api-clients'
+import { authorMessage } from './replies-api-client'
 import AutoResizingTextarea, { TextAreaHandle } from './auto-resizing-textarea'
 import { useRepliesContext } from './context'
 import { ResourceType, Reply, Placeholders } from './types'
