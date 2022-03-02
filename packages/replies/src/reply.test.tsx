@@ -7,7 +7,7 @@ import { RepliesProvider } from './context'
 import Reply from './list/reply'
 import { Reply as ReplyType } from './types'
 
-jest.mock('./replies-api-clients')
+jest.mock('./replies-api-client')
 
 const MOCKED_REPLY = {
   id: '00000000-0000-0000-0000-00000000000',
