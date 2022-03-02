@@ -158,17 +158,9 @@ async function writeReply({
     },
   )
 
-  if (response === 'NEED_LOGIN') {
-    throw new Error('로그인이 필요한 호출입니다.')
-  }
+  const reply = deriveReply(response)
 
-  captureHttpError(response)
-
-  if (response.ok) {
-    const { parsedBody } = response
-
-    return parsedBody
-  }
+  return reply
 }
 
 async function writeChildReply({
@@ -194,17 +186,9 @@ async function writeChildReply({
     },
   )
 
-  if (response === 'NEED_LOGIN') {
-    throw new Error('로그인이 필요한 호출입니다.')
-  }
+  const reply = deriveReply(response)
 
-  captureHttpError(response)
-
-  if (response.ok) {
-    const { parsedBody } = response
-
-    return parsedBody
-  }
+  return reply
 }
 
 async function editReply({
@@ -229,18 +213,9 @@ async function editReply({
     },
   )
 
-  if (response === 'NEED_LOGIN') {
-    throw new Error('로그인이 필요한 호출입니다.')
-  }
+  const reply = deriveReply(response)
 
-  captureHttpError(response)
-
-  if (response.ok) {
-    const { parsedBody } = response
-    const sortedReplies = sortChild(parsedBody)
-
-    return sortedReplies
-  }
+  return reply
 }
 
 export async function deleteReply({
@@ -257,18 +232,9 @@ export async function deleteReply({
     },
   )
 
-  if (response === 'NEED_LOGIN') {
-    throw new Error('로그인이 필요한 호출입니다.')
-  }
+  const reply = deriveReply(response)
 
-  captureHttpError(response)
-
-  if (response.ok) {
-    const { parsedBody } = response
-    const sortedReplies = sortChild(parsedBody)
-
-    return sortedReplies
-  }
+  return reply
 }
 
 export async function likeReply({ messageId }: { messageId: string }) {
@@ -321,5 +287,19 @@ function deriveReplies(
     return sortedReplies
   } else {
     return []
+  }
+}
+
+function deriveReply(response: 'NEED_LOGIN' | HttpResponse<Reply, unknown>) {
+  if (response === 'NEED_LOGIN') {
+    throw new Error('로그인이 필요한 호출입니다.')
+  }
+
+  captureHttpError(response)
+
+  if (response.ok) {
+    const { parsedBody } = response
+
+    return sortChild(parsedBody)
   }
 }
