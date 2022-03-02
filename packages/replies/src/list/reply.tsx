@@ -10,7 +10,7 @@ import {
 import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { TransitionType } from '@titicaca/modals'
-import { ExternalLink, useNavigate } from '@titicaca/router'
+import { useNavigate } from '@titicaca/router'
 import {
   useUriHash,
   useHistoryFunctions,
@@ -395,14 +395,7 @@ function Content({
         ) : (
           <>
             {mentionedUser && !blinded && (
-              <ExternalLink
-                href={mentionedUser?.href as string}
-                target="new"
-                allowSource="app"
-                onClick={onClick}
-              >
-                <MentionUser>{mentionedUser?.name}</MentionUser>
-              </ExternalLink>
+              <MentionUser onClick={onClick}>{mentionedUser?.name}</MentionUser>
             )}
             <Text
               size={15}
