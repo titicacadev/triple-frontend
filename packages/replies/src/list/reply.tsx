@@ -207,6 +207,13 @@ export default function Reply({
     childrenCount,
   })
 
+  const handleMentiondUserNameClick = useAppCallback(
+    TransitionType.General,
+    useCallback(() => {
+      navigate(`${mentionedUser?.href || ''}`)
+    }, [navigate, mentionedUser?.href]),
+  )
+
   return (
     <>
       <SquareImage
@@ -215,12 +222,18 @@ export default function Reply({
         src={profileImage}
         borderRadius={20}
         alt={name || ''}
+        onClick={() => handleMentiondUserNameClick()}
       />
 
       <Container padding={{ left: 50, bottom: 3 }} margin={{ bottom: 20 }}>
         <FlexBox flex justifyContent="space-between" alignItems="start">
           <Container minWidth={80} maxWidth={135}>
-            <Text size={15} bold ellipsis>
+            <Text
+              size={15}
+              bold
+              ellipsis
+              onClick={() => handleMentiondUserNameClick()}
+            >
               {name}
             </Text>
           </Container>
@@ -241,6 +254,7 @@ export default function Reply({
           blinded={!!blinded}
           deleted={!!deleted}
           text={derivedText}
+          onClick={handleMentiondUserNameClick}
         />
 
         {!deleted && !blinded ? (
@@ -362,11 +376,13 @@ function Content({
   mentionedUser,
   blinded,
   deleted,
+  onClick,
 }: {
   text: string
   mentionedUser?: Writer
   blinded: boolean
   deleted: boolean
+  onClick: () => void
 }) {
   const [unfolded, setUnfolded] = useState(false)
   const foldedPosition = findFoldedPosition(5, text)
@@ -383,6 +399,7 @@ function Content({
                 href={mentionedUser?.href as string}
                 target="new"
                 allowSource="app"
+                onClick={onClick}
               >
                 <MentionUser>{mentionedUser?.name}</MentionUser>
               </ExternalLink>
