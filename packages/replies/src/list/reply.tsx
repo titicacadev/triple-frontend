@@ -19,7 +19,7 @@ import {
 import ActionSheet from '@titicaca/action-sheet'
 
 import { Reply as ReplyType, Writer } from '../types'
-import { likeReply, unlikeReply } from '../replies-api-clients'
+import { likeReply, unlikeReply } from '../replies-api-client'
 import { useRepliesContext } from '../context'
 
 const MoreActionsButton = styled.button`

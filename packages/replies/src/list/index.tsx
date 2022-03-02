@@ -5,7 +5,7 @@ import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces
 
 import { Reply as ReplyType } from '../types'
 import { useRepliesContext } from '../context'
-import { deleteReply } from '../replies-api-clients'
+import { deleteReply } from '../replies-api-client'
 
 import NotExistReplies from './not-exist-replies'
 import Reply, { HASH_DELETE_CLOSE_MODAL } from './reply'

@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
 
-import { fetchReplies, fetchChildReplies } from './replies-api-clients'
+import { fetchReplies, fetchChildReplies } from './replies-api-client'
 import { Reply, ResourceType, Placeholders } from './types'
 import ReplyList from './list'
 import GuideText from './guide-text'
