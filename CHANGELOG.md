@@ -1,5 +1,42 @@
 # CHANGELOG
 
+## 6.4.0
+
+### common
+
+- codecov 컨픽을 추가하고 threshold을 조금 느슨하게 설정 [#1958](https://github.com/titicacadev/triple-frontend/pull/1958)
+- TF 패키지 내 react 참조를 제거합니다. [#1959](https://github.com/titicacadev/triple-frontend/pull/1959)
+- 구버전 클라이언트 대응 분기(semver)를 제거합니다. [#1960](https://github.com/titicacadev/triple-frontend/pull/1960)
+
+### resource-list-element
+
+- ExtendedResourceListElement의 가변 높이를 보장하도록 수정합니다. [#1968](https://github.com/titicacadev/triple-frontend/pull/1968)
+
+### triple-document
+
+- 쿠폰 발급 시각 타이머 적용 [#1961](https://github.com/titicacadev/triple-frontend/pull/1961)
+
+### user-verification
+
+- 인증여부 확인 API 경로를 변경합니다. [#1963](https://github.com/titicacadev/triple-frontend/pull/1963)
+
+### triple-fallback-action
+
+- 서버에서 useLayoutEffect를 호출하지 않도록 변경 [#1955](https://github.com/titicacadev/triple-frontend/pull/1955)
+
+### replies
+
+- 답글이 달려있는 댓글 삭제 시 액션시트를 비활성화 합니다. [#1937](https://github.com/titicacadev/triple-frontend/pull/1937)
+- 이전 댓글 더보기 렌더링 조건을 수정합니다. [#1944](https://github.com/titicacadev/triple-frontend/pull/1944)
+- 입력창의 placeholder를 수정합니다. [#1948](https://github.com/titicacadev/triple-frontend/pull/1948)
+- 답글을 생성 시간 기준으로 오름차순 정렬합니다. [#1949](https://github.com/titicacadev/triple-frontend/pull/1949)
+- 불필요한 코드를 제거합니다. [#1953](https://github.com/titicacadev/triple-frontend/pull/1953)
+
+### standard-action-handler
+
+- 새창열기 기능 추가 [#1939](https://github.com/titicacadev/triple-frontend/pull/1939)
+- 이미지 다운로드 기능 추가 [#1951](https://github.com/titicacadev/triple-frontend/pull/1951)
+
 ## 6.3.0
 
 ### view-utilities
@@ -29,6 +66,8 @@
 - 액션시트 타이틀을 수정합니다. [#1942](https://github.com/titicacadev/triple-frontend/pull/1942)
 - 닉네임이 9자 이상일 때, 말줄임표로 표기합니다. [#1934](https://github.com/titicacadev/triple-frontend/pull/1934)
 - 비로그인 상태일 때, 로그인 유도 모달 노출 [#1927](https://github.com/titicacadev/triple-frontend/pull/1927)
+- 프로필 및 멘션을 클릭했을 때, 액션을 추가합니다. [#1970](https://github.com/titicacadev/triple-frontend/pull/1970)
+- 답글이 달려있는 댓글을 삭제할 때, 답글 순서가 바뀌는 오류를 수정합니다. [#1952](https://github.com/titicacadev/triple-frontend/pull/1952)
 
 ## 6.2.1
 
