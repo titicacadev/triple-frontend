@@ -11,7 +11,7 @@ import { useRepliesContext } from './context'
 import { ResourceType, Reply, Placeholders } from './types'
 
 const RegisterButton = styled.button<{ active: boolean }>`
-  width: 26px;
+  min-width: 26px;
   padding: 0;
   font-size: 15px;
   font-weight: bold;
