@@ -6,7 +6,6 @@ import {
 import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
 
-import { sortChild } from './utils'
 import { ResourceType, Reply } from './types'
 
 export async function fetchReplies({
@@ -282,7 +281,7 @@ function parseRepliesListResponse(
 ): Reply[] {
   if (response.ok) {
     const { parsedBody } = response
-    const sortedReplies = parsedBody.map((reply) => sortChild(reply))
+    const sortedReplies = parsedBody.map((reply) => sortChildren(reply))
 
     return sortedReplies
   } else {
@@ -296,7 +295,7 @@ function parseReplyResponse(
   if (response.ok) {
     const { parsedBody } = response
 
-    return sortChild(parsedBody)
+    return sortChildren(parsedBody)
   }
 }
 
@@ -310,4 +309,17 @@ function confirmAuthorization<T>(
   captureHttpError(response)
 
   return response
+}
+
+function sortChildren(reply: Reply): Reply {
+  const sortedChildReply = reply.children.sort(
+    (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
+  )
+
+  const result = {
+    ...reply,
+    children: sortedChildReply,
+  }
+
+  return result
 }
