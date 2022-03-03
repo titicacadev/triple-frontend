@@ -31,6 +31,8 @@
 - 입력창의 placeholder를 수정합니다. [#1948](https://github.com/titicacadev/triple-frontend/pull/1948)
 - 답글을 생성 시간 기준으로 오름차순 정렬합니다. [#1949](https://github.com/titicacadev/triple-frontend/pull/1949)
 - 불필요한 코드를 제거합니다. [#1953](https://github.com/titicacadev/triple-frontend/pull/1953)
+- 프로필 및 멘션을 클릭했을 때, 액션을 추가합니다. [#1970](https://github.com/titicacadev/triple-frontend/pull/1970)
+- 답글이 달려있는 댓글을 삭제할 때, 답글 순서가 바뀌는 오류를 수정합니다. [#1952](https://github.com/titicacadev/triple-frontend/pull/1952)
 
 ### standard-action-handler
 
@@ -66,8 +68,6 @@
 - 액션시트 타이틀을 수정합니다. [#1942](https://github.com/titicacadev/triple-frontend/pull/1942)
 - 닉네임이 9자 이상일 때, 말줄임표로 표기합니다. [#1934](https://github.com/titicacadev/triple-frontend/pull/1934)
 - 비로그인 상태일 때, 로그인 유도 모달 노출 [#1927](https://github.com/titicacadev/triple-frontend/pull/1927)
-- 프로필 및 멘션을 클릭했을 때, 액션을 추가합니다. [#1970](https://github.com/titicacadev/triple-frontend/pull/1970)
-- 답글이 달려있는 댓글을 삭제할 때, 답글 순서가 바뀌는 오류를 수정합니다. [#1952](https://github.com/titicacadev/triple-frontend/pull/1952)
 
 ## 6.2.1
 
