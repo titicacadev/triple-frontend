@@ -5,6 +5,7 @@ import {
   ForwardedRef,
   useImperativeHandle,
   useRef,
+  useEffect,
 } from 'react'
 import styled from 'styled-components'
 
@@ -71,6 +72,12 @@ function AutoResizingTextarea(
       textareaRef.current?.focus()
     },
   }))
+
+  useEffect(() => {
+    if (value === '') {
+      setRows(1)
+    }
+  }, [value])
 
   return (
     <Textarea
