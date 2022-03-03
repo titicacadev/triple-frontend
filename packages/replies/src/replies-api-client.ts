@@ -32,7 +32,8 @@ export async function fetchReplies({
     }),
   )
 
-  const replies = parseRepliesListResponse(response)
+  const confirmedResponse = confirmAuthorization<Reply[]>(response)
+  const replies = parseRepliesListResponse(confirmedResponse)
 
   return replies
 }
@@ -56,7 +57,8 @@ export async function fetchChildReplies({
     }),
   )
 
-  const replies = parseRepliesListResponse(response)
+  const confirmedResponse = confirmAuthorization<Reply[]>(response)
+  const replies = parseRepliesListResponse(confirmedResponse)
 
   return replies
 }
@@ -158,7 +160,8 @@ async function writeReply({
     },
   )
 
-  const reply = parseReplyResponse(response)
+  const confirmedResponse = confirmAuthorization<Reply>(response)
+  const reply = parseReplyResponse(confirmedResponse)
 
   return reply
 }
@@ -186,7 +189,8 @@ async function writeChildReply({
     },
   )
 
-  const reply = parseReplyResponse(response)
+  const confirmedResponse = confirmAuthorization<Reply>(response)
+  const reply = parseReplyResponse(confirmedResponse)
 
   return reply
 }
@@ -213,7 +217,8 @@ async function editReply({
     },
   )
 
-  const reply = parseReplyResponse(response)
+  const confirmedResponse = confirmAuthorization<Reply>(response)
+  const reply = parseReplyResponse(confirmedResponse)
 
   return reply
 }
@@ -232,7 +237,8 @@ export async function deleteReply({
     },
   )
 
-  const reply = parseReplyResponse(response)
+  const confirmedResponse = confirmAuthorization<Reply>(response)
+  const reply = parseReplyResponse(confirmedResponse)
 
   return reply
 }
@@ -272,14 +278,8 @@ export async function unlikeReply({ messageId }: { messageId: string }) {
 }
 
 function parseRepliesListResponse(
-  response: 'NEED_LOGIN' | HttpResponse<Reply[], unknown>,
-) {
-  if (response === 'NEED_LOGIN') {
-    throw new Error('로그인이 필요한 호출입니다.')
-  }
-
-  captureHttpError(response)
-
+  response: HttpResponse<Reply[], unknown>,
+): Reply[] {
   if (response.ok) {
     const { parsedBody } = response
     const sortedReplies = parsedBody.map((reply) => sortChild(reply))
@@ -291,17 +291,23 @@ function parseRepliesListResponse(
 }
 
 function parseReplyResponse(
-  response: 'NEED_LOGIN' | HttpResponse<Reply, unknown>,
-) {
+  response: HttpResponse<Reply, unknown>,
+): Reply | undefined {
+  if (response.ok) {
+    const { parsedBody } = response
+
+    return sortChild(parsedBody)
+  }
+}
+
+function confirmAuthorization<T>(
+  response: 'NEED_LOGIN' | HttpResponse<T, unknown>,
+): HttpResponse<T, unknown> {
   if (response === 'NEED_LOGIN') {
     throw new Error('로그인이 필요한 호출입니다.')
   }
 
   captureHttpError(response)
 
-  if (response.ok) {
-    const { parsedBody } = response
-
-    return sortChild(parsedBody)
-  }
+  return response
 }
