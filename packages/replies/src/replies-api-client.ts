@@ -32,7 +32,7 @@ export async function fetchReplies({
     }),
   )
 
-  const replies = deriveReplies(response)
+  const replies = parseRepliesListResponse(response)
 
   return replies
 }
@@ -56,7 +56,7 @@ export async function fetchChildReplies({
     }),
   )
 
-  const replies = deriveReplies(response)
+  const replies = parseRepliesListResponse(response)
 
   return replies
 }
@@ -271,7 +271,7 @@ export async function unlikeReply({ messageId }: { messageId: string }) {
   captureHttpError(response)
 }
 
-function deriveReplies(
+function parseRepliesListResponse(
   response: 'NEED_LOGIN' | HttpResponse<Reply[], unknown>,
 ) {
   if (response === 'NEED_LOGIN') {
