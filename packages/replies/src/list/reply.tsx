@@ -207,13 +207,15 @@ export default function Reply({
     childrenCount,
   })
 
-  const handleProfileUserClick = useAppCallback(
+  const handleUserClick = useAppCallback(
     TransitionType.General,
-    useCallback(
-      (href) => {
-        navigate(href)
-      },
-      [navigate],
+    useSessionCallback(
+      useCallback(
+        (href) => {
+          navigate(href)
+        },
+        [navigate],
+      ),
     ),
   )
 
@@ -225,7 +227,7 @@ export default function Reply({
         src={profileImage}
         borderRadius={20}
         alt={name || ''}
-        onClick={() => handleProfileUserClick(writeHref)}
+        onClick={() => handleUserClick(writeHref)}
       />
 
       <Container padding={{ left: 50, bottom: 3 }} margin={{ bottom: 20 }}>
@@ -235,7 +237,7 @@ export default function Reply({
               size={15}
               bold
               ellipsis
-              onClick={() => handleProfileUserClick(writeHref)}
+              onClick={() => handleUserClick(writeHref)}
             >
               {name}
             </Text>
