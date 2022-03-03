@@ -158,7 +158,7 @@ async function writeReply({
     },
   )
 
-  const reply = deriveReply(response)
+  const reply = parseReplyResponse(response)
 
   return reply
 }
@@ -186,7 +186,7 @@ async function writeChildReply({
     },
   )
 
-  const reply = deriveReply(response)
+  const reply = parseReplyResponse(response)
 
   return reply
 }
@@ -213,7 +213,7 @@ async function editReply({
     },
   )
 
-  const reply = deriveReply(response)
+  const reply = parseReplyResponse(response)
 
   return reply
 }
@@ -232,7 +232,7 @@ export async function deleteReply({
     },
   )
 
-  const reply = deriveReply(response)
+  const reply = parseReplyResponse(response)
 
   return reply
 }
@@ -290,7 +290,9 @@ function parseRepliesListResponse(
   }
 }
 
-function deriveReply(response: 'NEED_LOGIN' | HttpResponse<Reply, unknown>) {
+function parseReplyResponse(
+  response: 'NEED_LOGIN' | HttpResponse<Reply, unknown>,
+) {
   if (response === 'NEED_LOGIN') {
     throw new Error('로그인이 필요한 호출입니다.')
   }
