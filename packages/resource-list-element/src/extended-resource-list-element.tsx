@@ -56,7 +56,6 @@ const ResourceListItem = styled(List.Item)`
 `
 
 const ContentContainer = styled.div`
-  top: 20px;
   width: calc(100% - 110px);
 `
 
