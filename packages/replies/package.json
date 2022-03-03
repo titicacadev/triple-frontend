@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/replies",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "Replies Component",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/replies",
@@ -16,13 +16,13 @@
     "lib"
   ],
   "dependencies": {
-    "@titicaca/action-sheet": "^6.3.0",
-    "@titicaca/core-elements": "^6.3.0",
-    "@titicaca/fetcher": "^6.3.0",
-    "@titicaca/modals": "^6.3.0",
-    "@titicaca/react-triple-client-interfaces": "^6.3.0",
-    "@titicaca/router": "^6.3.0",
-    "@titicaca/ui-flow": "^6.3.0",
-    "@titicaca/view-utilities": "^6.3.0"
+    "@titicaca/action-sheet": "^6.4.0",
+    "@titicaca/core-elements": "^6.4.0",
+    "@titicaca/fetcher": "^6.4.0",
+    "@titicaca/modals": "^6.4.0",
+    "@titicaca/react-triple-client-interfaces": "^6.4.0",
+    "@titicaca/router": "^6.4.0",
+    "@titicaca/ui-flow": "^6.4.0",
+    "@titicaca/view-utilities": "^6.4.0"
   }
 }
