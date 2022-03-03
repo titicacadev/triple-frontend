@@ -94,7 +94,7 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
 
   return (
     <ResourceListItem onClick={onClick} {...props}>
-      <FlexBox flex alignItems="center" justifyContent="space-between">
+      <FlexBox flex justifyContent="space-between">
         <ContentContainer>
           <Text bold maxLines={2} size="large">
             {name}
