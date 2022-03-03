@@ -312,13 +312,13 @@ function confirmAuthorization<T>(
 }
 
 function sortChildren(reply: Reply): Reply {
-  const sortedChildReply = reply.children.sort(
+  const sortedChildReplies = reply.children.sort(
     (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
   )
 
   const result = {
     ...reply,
-    children: sortedChildReply,
+    children: sortedChildReplies,
   }
 
   return result
