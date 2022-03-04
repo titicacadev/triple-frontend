@@ -1,4 +1,4 @@
-export interface PointGeoJSON {
+export interface PointGeoJson {
   type: 'Point'
   coordinates: [number, number]
 }
