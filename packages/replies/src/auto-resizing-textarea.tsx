@@ -75,9 +75,9 @@ function AutoResizingTextarea(
 
   useEffect(() => {
     if (value === '') {
-      setRows(1)
+      setRows(minRows)
     }
-  }, [value])
+  }, [value, minRows])
 
   return (
     <Textarea
