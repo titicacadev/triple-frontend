@@ -4,6 +4,6 @@ declare module 'intersection-observer' {
     IntersectionObserverEntry: unknown
     intersectionRatio: unknown
   }
-  const content: any
+  const content: unknown
   export default content
 }
