@@ -1,6 +1,6 @@
 import { useGoogleMap } from '@react-google-maps/api'
 import { useEffect } from 'react'
-import { PointGeoJSON } from '@titicaca/type-definitions'
+import { PointGeoJson } from '@titicaca/type-definitions'
 
 const AUTO_ZOOM_THRESHORLD = 10
 
@@ -8,7 +8,7 @@ export function FocusTracker({
   focusGeolocation,
   activeAutoZoom = false,
 }: {
-  focusGeolocation?: PointGeoJSON
+  focusGeolocation?: PointGeoJson
   activeAutoZoom?: boolean
 }) {
   const map = useGoogleMap()
