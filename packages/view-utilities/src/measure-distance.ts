@@ -1,5 +1,5 @@
 import haversine from 'haversine'
-import { PointGeoJSON } from '@titicaca/type-definitions'
+import { PointGeoJson } from '@titicaca/type-definitions'
 
 /**
  * 맵상에서의 직선거리를 구하는 함수
@@ -10,8 +10,8 @@ import { PointGeoJSON } from '@titicaca/type-definitions'
  * - https://en.wikipedia.org/wiki/Haversine_formula
  */
 export function measureDistance(
-  { coordinates: [fromLon, fromLat] }: PointGeoJSON,
-  { coordinates: [toLon, toLat] }: PointGeoJSON,
+  { coordinates: [fromLon, fromLat] }: PointGeoJson,
+  { coordinates: [toLon, toLat] }: PointGeoJson,
 ) {
   return Math.round(
     haversine(
