@@ -1,5 +1,14 @@
 # 마이그레이션 가이드
 
+## v6 to v7
+
+### type-definitions 인터페이스의 네이밍 변경
+
+다음과 같은 네이밍 변경이 있었습니다.
+
+- PointGeoJSON -> PointGeoJson
+- ListingPOI -> ListingPoi
+
 ## v5 to v6
 
 ### map 구조 변경 및 기존 컴포넌트 오타 수정
