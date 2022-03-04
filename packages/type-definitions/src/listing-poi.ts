@@ -1,8 +1,8 @@
 import { TranslatedProperty } from './translated-property'
 import { ImageMeta } from './image'
-import { PointGeoJSON } from './geojson'
+import { PointGeoJson } from './geojson'
 
-interface ListingPOISourceBase {
+interface ListingPoiSourceBase {
   id: string
   areas?: { name: string }[]
   categories?: { id: string; filter?: boolean; name: string }[]
@@ -11,14 +11,14 @@ interface ListingPOISourceBase {
   hasTnaProducts?: boolean
   image?: ImageMeta
   names: TranslatedProperty
-  pointGeolocation: PointGeoJSON
+  pointGeolocation: PointGeoJson
   reviewsRating?: number
   reviewsCount?: number
   scrapsCount?: number
   vicinity?: string
 }
 
-interface ListingPOIBase {
+interface ListingPoiBase {
   id: string
   nameOverride?: string
   reviewed: boolean
@@ -27,25 +27,25 @@ interface ListingPOIBase {
   categories?: { id: string; name: string }[]
 }
 
-export interface ListingAttraction extends ListingPOIBase {
+export interface ListingAttraction extends ListingPoiBase {
   type: 'attraction'
-  source: ListingPOISourceBase & {
+  source: ListingPoiSourceBase & {
     type: 'attraction'
     regionId: string
   }
 }
 
-export interface ListingRestaurant extends ListingPOIBase {
+export interface ListingRestaurant extends ListingPoiBase {
   type: 'restaurant'
-  source: ListingPOISourceBase & {
+  source: ListingPoiSourceBase & {
     type: 'restaurant'
     regionId: string
   }
 }
 
-export interface ListingHotel extends ListingPOIBase {
+export interface ListingHotel extends ListingPoiBase {
   type: 'hotel'
-  source: ListingPOISourceBase & {
+  source: ListingPoiSourceBase & {
     type: 'hotel'
     regionId?: string
     starRating: number
@@ -53,4 +53,4 @@ export interface ListingHotel extends ListingPOIBase {
   }
 }
 
-export type ListingPOI = ListingAttraction | ListingRestaurant | ListingHotel
+export type ListingPoi = ListingAttraction | ListingRestaurant | ListingHotel
