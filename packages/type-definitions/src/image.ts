@@ -1,13 +1,13 @@
-interface ImageURL {
+interface ImageUrl {
   url: string
 }
 
 interface CamelSmallSquare {
-  smallSquare: ImageURL
+  smallSquare: ImageUrl
 }
 
 interface SnakeSmallSquare {
-  small_square: ImageURL
+  small_square: ImageUrl
 }
 
 type SmallSquare = CamelSmallSquare | SnakeSmallSquare
@@ -48,8 +48,8 @@ export interface ImageMeta {
   cloudinaryId?: string
   cloudinaryBucket?: string
   sizes: {
-    full: ImageURL
-    large: ImageURL
+    full: ImageUrl
+    large: ImageUrl
   } & SmallSquare
   video?: {
     full: { url: string }
