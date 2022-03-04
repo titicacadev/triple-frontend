@@ -6,7 +6,6 @@ packages/*/lib/**
 docs/storybook-static
 
 packages/i18n
-packages/intersection-observer
 packages/react-hooks
 packages/scrap-button
 packages/style-box
