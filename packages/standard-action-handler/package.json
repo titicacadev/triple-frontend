@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "@titicaca/view-utilities": "^6.4.0",
+    "@titicaca/router": "^6.4.0",
     "qs": "^6.9.4"
   },
   "devDependencies": {
