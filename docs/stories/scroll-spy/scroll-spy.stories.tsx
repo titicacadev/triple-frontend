@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { ComponentStoryObj, Meta } from '@storybook/react'
 import { ScrollSpyContainer, ScrollSpyEntity } from '@titicaca/scroll-spy'
 import { PoiListElement } from '@titicaca/poi-list-elements'
-import { ListingPOI } from '@titicaca/type-definitions'
+import { ListingPoi } from '@titicaca/type-definitions'
 
 import POIS from '../__mocks__/pois.sample.json'
 
@@ -23,7 +23,7 @@ function ScrollSpy() {
         return (
           <ScrollSpyEntity key={id} id={id}>
             <div onClick={() => setActiveId(id)}>
-              <PoiListElement as="div" poi={poi as unknown as ListingPOI} />
+              <PoiListElement as="div" poi={poi as unknown as ListingPoi} />
             </div>
           </ScrollSpyEntity>
         )
