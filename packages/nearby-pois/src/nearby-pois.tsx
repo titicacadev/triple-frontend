@@ -9,7 +9,7 @@ import {
   Paragraph,
 } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
-import { PointGeoJSON } from '@titicaca/type-definitions'
+import { PointGeoJson } from '@titicaca/type-definitions'
 
 import { NearByPoiType } from './types'
 import nearbyPoisReducer, {
@@ -55,7 +55,7 @@ export default function NearbyPois({
   poiId: string
   regionId?: string
   initialTab?: NearByPoiType
-  geolocation: PointGeoJSON
+  geolocation: PointGeoJson
   optimized?: boolean
 } & Parameters<typeof Section>['0']) {
   const [{ currentTab, ...state }, dispatch] = useReducer(nearbyPoisReducer, {
