@@ -7,7 +7,7 @@ docs/storybook-static
 
 packages/i18n
 packages/react-hooks
-packages/scrap-button
+packages/style-box
 packages/type-definitions
 packages/web-storage
 packages/listing-filter
