@@ -1,7 +1,7 @@
 import { ReactNode, MouseEventHandler } from 'react'
 import {
   ImageMeta,
-  PointGeoJSON,
+  PointGeoJson,
   TranslatedProperty,
 } from '@titicaca/type-definitions'
 
@@ -39,8 +39,8 @@ export interface PoiListElementType {
     reviewsRating?: number
     grade?: number
     id?: string
-    geolocation?: PointGeoJSON
-    pointGeolocation?: PointGeoJSON
+    geolocation?: PointGeoJson
+    pointGeolocation?: PointGeoJson
     regionId?: string
     image?: ImageMeta
     names: TranslatedProperty
