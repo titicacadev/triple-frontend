@@ -1,7 +1,7 @@
-export function isObject(arg: any): arg is object {
+export function isObject(arg: unknown): arg is object {
   return typeof arg === 'object'
 }
 
-export function isString(arg: any): arg is string {
+export function isString(arg: unknown): arg is string {
   return typeof arg === 'string'
 }
