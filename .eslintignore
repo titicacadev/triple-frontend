@@ -7,7 +7,6 @@ docs/storybook-static
 
 packages/i18n
 packages/style-box
-packages/type-definitions
 packages/web-storage
 packages/listing-filter
 packages/public-header
