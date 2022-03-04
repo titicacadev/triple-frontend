@@ -5,6 +5,7 @@
     "rootDir": "src",
     "baseUrl": ".",
     "paths": {
+      "@titicaca/router": ["../router/src"],
       "@titicaca/view-utilities": ["../view-utilities/src"]
     }
   },
@@ -12,6 +13,9 @@
   "references": [
     {
       "path": "../view-utilities"
+    },
+    {
+      "path": "../router"
     }
   ]
 }

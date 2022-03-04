@@ -4,6 +4,9 @@
   "references": [
     {
       "path": "../view-utilities/tsconfig.build.json"
+    },
+    {
+      "path": "../router/tsconfig.build.json"
     }
   ]
 }
