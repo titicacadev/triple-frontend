@@ -1,6 +1,6 @@
 import type {
   TranslatedProperty,
-  PointGeoJSON,
+  PointGeoJson,
   ImageMeta,
 } from '@titicaca/type-definitions'
 
@@ -36,7 +36,7 @@ export interface HotelResourceType {
     regionId: string
     names: TranslatedProperty
     comment: string
-    pointGeolocation: PointGeoJSON
+    pointGeolocation: PointGeoJson
     grade: number
     areas: BaseResourceType[]
     image: ImageMeta
@@ -87,7 +87,7 @@ export interface RecommendationItineraryPoiCard {
     addresses: TranslatedProperty
     location: number[]
     comment: string
-    pointGeolocation: PointGeoJSON
+    pointGeolocation: PointGeoJson
     grade: number
     areas: BaseResourceType[]
     categories?: BaseResourceType[] // type: [attraction, restaurant]
