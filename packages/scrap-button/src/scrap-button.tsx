@@ -2,7 +2,7 @@ import {
   useEventTrackerWithMetadata,
   useScrapsContext,
 } from '@titicaca/react-contexts'
-import { ComponentType, MouseEventHandler } from 'react';
+import { ComponentType, MouseEventHandler } from 'react'
 import styled from 'styled-components'
 
 import { withMask } from './scrap-button-mask'
@@ -44,6 +44,7 @@ function OutlineHeart({ pressed, size }: ScrapIconProps) {
       src={pressed ? OUTLINE_HEART_ON : OUTLINE_HEART_OFF}
       width={size}
       height={size}
+      alt={pressed ? 'OUTLINE_HEART_ON' : 'OUTLINE_HEART_OFF'}
     />
   )
 }
@@ -59,17 +60,14 @@ function OverlayHeart({ pressed, size }: ScrapIconProps) {
       src={pressed ? OVERLAY_HEART_ON : OVERLAY_HEART_OFF}
       width={size}
       height={size}
+      alt={pressed ? 'OVERLAY_HEART_ON' : 'OVERLAY_HEART_OFF'}
     />
   )
 }
 
 function useScraped<R extends ScrapableResource>({ id, type, scraped }: R) {
-  const {
-    scrape,
-    unscrape,
-    deriveCurrentStateAndCount,
-    enableTrackEvent,
-  } = useScrapsContext()
+  const { scrape, unscrape, deriveCurrentStateAndCount, enableTrackEvent } =
+    useScrapsContext()
   const trackEventWithMetadata = useEventTrackerWithMetadata()
 
   const { scraped: actualScraped } = deriveCurrentStateAndCount({ id, scraped })
@@ -148,12 +146,12 @@ function OverlayScrapButton<R extends ScrapableResource>({
   )
 }
 
-function composedHOCs<P>(Component: ComponentType<P>) {
+function composedHocs<P>(Component: ComponentType<P>) {
   return withMask(Component)
 }
 
-const ComposedOutlineScrapButton = composedHOCs(OutlineScrapButton)
-const ComposedOverlayScrapButton = composedHOCs(OverlayScrapButton)
+const ComposedOutlineScrapButton = composedHocs(OutlineScrapButton)
+const ComposedOverlayScrapButton = composedHocs(OverlayScrapButton)
 
 export {
   ComposedOutlineScrapButton as OutlineScrapButton,
