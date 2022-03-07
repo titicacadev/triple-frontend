@@ -43,11 +43,11 @@ export function CompactPoiListElement<T extends PoiListElementType>({
   onClick,
 }: CompactPoiListElementProps<T>) {
   const [actionButtonWidth, setActionButtonWidth] = useState(0)
-  const actionButtonRef = useRef<HTMLDivElement & { width: number }>(null)
+  const actionButtonRef = useRef<HTMLDivElement & { width?: number }>(null)
 
   useEffect(() => {
     if (actionButtonRef && actionButtonRef.current) {
-      setActionButtonWidth(actionButtonRef.current.width)
+      setActionButtonWidth(actionButtonRef.current?.width)
     }
   }, [actionButtonRef])
 
