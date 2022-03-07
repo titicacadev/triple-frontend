@@ -12,13 +12,13 @@ interface SelectOption {
 
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   id?: string
-  value?: any
+  value?: string
   placeholder?: string
   options?: SelectOption[]
   focused?: string
   error?: string
-  onBlur?: (e: FocusEvent<any>) => any
-  onChange?: (e?: SyntheticEvent, value?: any) => any
+  onBlur?: (e: FocusEvent<unknown>) => unknown
+  onChange?: (e?: SyntheticEvent, value?: unknown) => unknown
 }
 
 const SelectFrame = styled.div<{ focused?: string; error?: boolean }>`
