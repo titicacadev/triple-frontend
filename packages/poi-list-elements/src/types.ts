@@ -7,7 +7,7 @@ import {
 
 export type ActionButtonElement = ReactNode
 
-export interface POIListElementBaseProps<T extends PoiListElementType> {
+export interface PoiListElementBaseProps<T extends PoiListElementType> {
   poi: T
   onClick?: MouseEventHandler<HTMLLIElement>
 }

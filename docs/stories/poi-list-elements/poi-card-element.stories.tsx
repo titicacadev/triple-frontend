@@ -1,12 +1,12 @@
-import { POICardElement } from '@titicaca/poi-list-elements'
+import { PoiCardElement } from '@titicaca/poi-list-elements'
 import { ComponentStoryObj, Meta } from '@storybook/react'
 
 export default {
-  title: 'poi-list-elements / POICardElement',
-  component: POICardElement,
+  title: 'poi-list-elements / PoiCardElement',
+  component: PoiCardElement,
 } as Meta
 
-export const Hotel: ComponentStoryObj<typeof POICardElement> = {
+export const Hotel: ComponentStoryObj<typeof PoiCardElement> = {
   args: {
     id: 'f72d2f50-2efb-4469-a903-47ad6b0c0740',
     type: 'hotel',
@@ -43,7 +43,7 @@ export const Hotel: ComponentStoryObj<typeof POICardElement> = {
   },
 }
 
-export const Poi: ComponentStoryObj<typeof POICardElement> = {
+export const Poi: ComponentStoryObj<typeof PoiCardElement> = {
   args: {
     id: 'f72d2f50-2efb-4469-a903-47ad6b0c0740',
     type: 'attraction',

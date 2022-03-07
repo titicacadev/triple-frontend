@@ -11,7 +11,7 @@ import { FrameRatioAndSizes } from '@titicaca/type-definitions'
 
 import { POI_IMAGE_PLACEHOLDERS, TYPE_NAMES } from './constants'
 import {
-  POIListElementBaseProps,
+  PoiListElementBaseProps,
   ActionButtonElement,
   PoiListElementType,
 } from './types'
@@ -33,7 +33,7 @@ export default function PoiCarouselElement<T extends PoiListElementType>({
   imageFrame,
   onImpress,
   optimized,
-}: POIListElementBaseProps<T> & {
+}: PoiListElementBaseProps<T> & {
   actionButtonElement?: ActionButtonElement
   description?: ReactNode
   additionalInfo?: ReactNode

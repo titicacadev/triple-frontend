@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react'
 import {
   Text,
   SquareImage,
@@ -8,21 +8,20 @@ import {
 import { OutlineScrapButton } from '@titicaca/scrap-button'
 
 import {
-  POIListElementBaseProps,
+  PoiListElementBaseProps,
   ActionButtonElement,
   PoiListElementType,
 } from './types'
 import { TYPE_NAMES } from './constants'
 
 interface CompactPoiListElementBaseProps<T extends PoiListElementType>
-  extends POIListElementBaseProps<T> {
+  extends PoiListElementBaseProps<T> {
   actionButtonElement?: ActionButtonElement
 }
 
-export type CompactPoiListElementProps<
-  T extends PoiListElementType
-> = CompactPoiListElementBaseProps<T> &
-  Partial<Pick<Parameters<typeof ResourceListItem>['0'], 'as'>>
+export type CompactPoiListElementProps<T extends PoiListElementType> =
+  CompactPoiListElementBaseProps<T> &
+    Partial<Pick<Parameters<typeof ResourceListItem>['0'], 'as'>>
 
 const POI_IMAGE_PLACEHOLDERS_SMALL: {
   [key in PoiListElementType['type']]: string
@@ -48,7 +47,7 @@ export function CompactPoiListElement<T extends PoiListElementType>({
 
   useEffect(() => {
     if (actionButtonRef && actionButtonRef.current) {
-      setActionButtonWidth((actionButtonRef?.current as any)?.width)
+      setActionButtonWidth(actionButtonRef.current.offsetWidth)
     }
   }, [actionButtonRef])
 
