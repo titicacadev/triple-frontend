@@ -6,10 +6,9 @@ packages/*/lib/**
 docs/storybook-static
 
 packages/i18n
-packages/type-definitions
 packages/public-header
 packages/ab-experiments
 packages/action-sheet
 packages/app-installation-cta
-packages/author
 packages/poi-detail
+
