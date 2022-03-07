@@ -1,10 +1,10 @@
-import { useCallback } from 'react';
+import { useCallback } from 'react'
 import { Image } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
 
-export default function ArticleCardCTA({
+export default function ArticleCardCta({
   href,
   cta,
   onClick,
@@ -15,13 +15,13 @@ export default function ArticleCardCTA({
 }) {
   const { trackEvent } = useEventTrackingContext()
 
-  const handleCTAIntersect = useCallback(() => {
+  const handleCtaIntersect = useCallback(() => {
     trackEvent({
       ga: ['앱설치 유도 구좌_노출', cta?.desc || ''],
     })
   }, [cta, trackEvent])
 
-  const handleCTAClick = useCallback(() => {
+  const handleCtaClick = useCallback(() => {
     trackEvent({
       ga: ['앱설치 유도 구좌_선택', cta?.desc || ''],
     })
@@ -32,7 +32,7 @@ export default function ArticleCardCTA({
     isIntersecting,
   }: {
     isIntersecting: boolean
-  }) => isIntersecting && handleCTAIntersect()
+  }) => isIntersecting && handleCtaIntersect()
 
   return (
     <StaticIntersectionObserver
@@ -41,7 +41,7 @@ export default function ArticleCardCTA({
     >
       <a href={href}>
         <Image borderRadius={6}>
-          <Image.FixedRatioFrame frame="big" onClick={handleCTAClick}>
+          <Image.FixedRatioFrame frame="big" onClick={handleCtaClick}>
             <Image.Img src={cta?.image} />
           </Image.FixedRatioFrame>
         </Image>

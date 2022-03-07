@@ -7,9 +7,9 @@ import {
   InstallLink,
   DismissButton,
 } from './elements'
-import { CTAProps } from './interfaces'
+import { CtaProps } from './interfaces'
 
-interface ImageBannerProps extends CTAProps {
+interface ImageBannerProps extends CtaProps {
   imgUrl?: string
   installUrl: string
   installText?: string
@@ -61,7 +61,10 @@ export default function ImageBanner({
       </ImageWrapper>
 
       <InstallLink href={installUrl} onClick={handleClick}>
-        👀&nbsp;&nbsp;{installText || '편하게 앱에서 보기'}
+        <span role="img" aria-label="eyes">
+          👀
+        </span>
+        <span>&nbsp;&nbsp;{installText || '편하게 앱에서 보기'}</span>
       </InstallLink>
 
       <DismissButton onClick={handleDismiss}>

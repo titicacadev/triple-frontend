@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { Text, LayeringMixinProps } from '@titicaca/core-elements'
 import { CSSTransition } from 'react-transition-group'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
@@ -8,7 +8,7 @@ import {
   CHATBOT_CLOSED_STORAGE_KEY,
   EVENT_CHATBOT_CTA_READY,
 } from './constants'
-import { CTAProps } from './interfaces'
+import { CtaProps } from './interfaces'
 import {
   ChatbotContainer,
   ChatBalloon,
@@ -17,7 +17,7 @@ import {
   ChatbotIcon,
 } from './elements'
 
-interface ChatbotCTAProps extends CTAProps {
+interface ChatbotCtaProps extends CtaProps {
   available?: boolean
   inventoryId: string
   installUrl: string
@@ -32,7 +32,7 @@ interface ChatbotCTAProps extends CTAProps {
  * @param installUrl 앱 설치 URL
  * @param unmountOnExit 표시되지 않는 상태일 때 컴포넌트 마운트 해제
  */
-export default function ChatbotCTA({
+export default function ChatbotCta({
   available = false,
   inventoryId,
   installUrl,
@@ -42,7 +42,7 @@ export default function ChatbotCTA({
   zTier,
   zIndex,
   unmountOnExit,
-}: ChatbotCTAProps & LayeringMixinProps) {
+}: ChatbotCtaProps & LayeringMixinProps) {
   const [inventoryItem, setInventoryItem] = useState<InventoryItemMeta>()
   const [visibility, setVisibility] = useState(false)
   const chatbotContainerRef = useRef<HTMLDivElement>(null)
