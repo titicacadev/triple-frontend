@@ -203,13 +203,16 @@ const ListingFilterBase = styled.div<{ padding?: MarginPadding }>`
 export default class ListingFilter extends PureComponent<{
   padding?: MarginPadding
 }> {
-  static FilterEntry = FilterEntry
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  public static FilterEntry = FilterEntry
 
-  static ExpandingFilterEntry = ExpandingFilterEntry
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  public static ExpandingFilterEntry = ExpandingFilterEntry
 
-  static PrimaryFilterEntry = PrimaryFilterEntry
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  public static PrimaryFilterEntry = PrimaryFilterEntry
 
-  render() {
+  public render() {
     const {
       props: {
         children,
