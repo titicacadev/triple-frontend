@@ -9,7 +9,6 @@ import {
   MouseEventHandler,
   PropsWithChildren,
 } from 'react'
-
 import styled, { css } from 'styled-components'
 import {
   Container,
@@ -23,10 +22,10 @@ import {
 } from '@titicaca/triple-web-to-native-interfaces'
 import { useDebouncedState } from '@titicaca/react-hooks'
 
-const ContentsContainer = styled(Container)<{ isIOS: boolean }>`
+const ContentsContainer = styled(Container)<{ isIos: boolean }>`
   > div:first-child {
-    ${({ isIOS }) =>
-      isIOS &&
+    ${({ isIos }) =>
+      isIos &&
       css`
         max-height: calc(100vh - 52px);
         overflow: scroll;
@@ -70,7 +69,7 @@ export default function FullScreenSearchView({
   const {
     os: { name },
   } = useUserAgentContext()
-  const isIOS = name === 'iOS'
+  const isIos = name === 'iOS'
 
   const [keyword, setKeyword] = useState<string>(defaultKeyword || '')
   const { debounced: debouncedKeyword, clearDebounce } = useDebouncedState(
@@ -83,13 +82,13 @@ export default function FullScreenSearchView({
 
   useEffect(() => {
     const contentsDiv = contentsDivRef.current
-    if (contentsDiv && isIOS) {
+    if (contentsDiv && isIos) {
       contentsDiv.addEventListener('touchmove', hideKeyboard)
       return () => {
         contentsDiv.removeEventListener('touchmove', hideKeyboard)
       }
     }
-  }, [isIOS])
+  }, [isIos])
 
   useEffect(
     () => {
@@ -157,7 +156,7 @@ export default function FullScreenSearchView({
         inputRef={inputRef}
         {...rest}
       />
-      <ContentsContainer isIOS={isIOS} userSelect="none">
+      <ContentsContainer isIos={isIos} userSelect="none">
         <div ref={contentsDivRef}>{children}</div>
       </ContentsContainer>
     </>
