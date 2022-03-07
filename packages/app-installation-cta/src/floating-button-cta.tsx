@@ -1,4 +1,5 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState, useCallback, useEffect, useRef } from 'react'
 import {
   Text,
   MarginPadding,
@@ -13,7 +14,7 @@ import {
   EVENT_CHATBOT_CTA_READY,
   FLOATING_BUTTON_CLOSED_STORAGE_KEY,
 } from './constants'
-import { CTAProps } from './interfaces'
+import { CtaProps } from './interfaces'
 import {
   FloatingButtonContainer,
   InstallAnchor,
@@ -22,7 +23,7 @@ import {
   FloatingButton,
 } from './elements'
 
-interface FloatingButtonCTAProps extends CTAProps {
+interface FloatingButtonCtaProps extends CtaProps {
   exitStrategy?: BannerExitStrategy
   fixed?: boolean
   appInstallLink?: string
@@ -47,7 +48,7 @@ interface FloatingButtonCTAProps extends CTAProps {
  * @param trackEventParams GA/FA 수집 파라미터
  * @param unmountOnExit 버튼이 표시되지 않을 때 컴포넌트 마운트 해제 여부
  */
-export default function FloatingButtonCTA({
+export default function FloatingButtonCta({
   exitStrategy = BannerExitStrategy.NONE,
   fixed,
   appInstallLink,
@@ -62,7 +63,7 @@ export default function FloatingButtonCTA({
   zTier,
   zIndex,
   unmountOnExit,
-}: FloatingButtonCTAProps & LayeringMixinProps) {
+}: FloatingButtonCtaProps & LayeringMixinProps) {
   const [buttonVisibility, setButtonVisibility] = useState(false)
   const [available, setAvailable] = useState(true)
   const floatingButtonContainerRef = useRef<HTMLDivElement>(null)

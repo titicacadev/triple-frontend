@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 import { LayeringMixinProps } from '@titicaca/core-elements'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
 
 import { Overlay, BottomFixedContainer } from './elements'
 import ImageBanner from './image-banner'
 import TextBanner from './text-banner'
-import { CTAProps } from './interfaces'
+import { CtaProps } from './interfaces'
 import { fetchInventoryItems } from './service'
 
-interface BannerCTAProps extends CTAProps {
+interface BannerCtaProps extends CtaProps {
   inventoryId: string
   installUrl: string
   installText?: string
@@ -22,7 +22,7 @@ interface BannerCTAProps extends CTAProps {
  * @param inventoryId 표시할 이미지의 인벤토리 ID
  * @param installUrl 앱 설치 URL
  */
-export default function BannerCTA({
+export default function BannerCta({
   inventoryId,
   installUrl,
   onShow,
@@ -33,13 +33,13 @@ export default function BannerCTA({
   disableTextBanner,
   zTier,
   zIndex,
-}: BannerCTAProps & LayeringMixinProps) {
+}: BannerCtaProps & LayeringMixinProps) {
   const [inventoryItem, setInventoryItem] = useState<InventoryItemMeta>()
   const [isImageBannerOpen, setIsImageBannerOpen] = useState(true)
   const { image = '', desc = '' } = inventoryItem || {}
 
   useEffect(() => {
-    async function fetchCTAImage() {
+    async function fetchCtaImage() {
       const items = await fetchInventoryItems({ inventoryId })
 
       if (items) {
@@ -55,7 +55,7 @@ export default function BannerCTA({
         }
       }
     }
-    fetchCTAImage()
+    fetchCtaImage()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inventoryId])
 

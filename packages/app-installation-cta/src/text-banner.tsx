@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react'
 
 import { TextBannerWrapper, DownloadIcon } from './elements'
-import { CTAProps } from './interfaces'
+import { CtaProps } from './interfaces'
 
-interface TextBannerProps extends CTAProps {
+interface TextBannerProps extends CtaProps {
   message: string
   installUrl: string
 }
