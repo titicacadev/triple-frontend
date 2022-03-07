@@ -1,26 +1,6 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react'
 import styled from 'styled-components'
 import { gray500, gray, blue, brightGray } from '@titicaca/color-palette'
-
-function useFetchStatic(url: string) {
-  const [content, setContent] = useState<string>('')
-  const [init, setInit] = useState<boolean>(false)
-
-  const fetchStatic = useCallback(async () => {
-    const response = await fetch(`/pages/${url}`)
-
-    const html = await response.text()
-    const [, bodyHTML] = html.match(/<body[^>]*>((.|[\n\r])*)<\/body>/im) || [
-      '',
-      '',
-    ]
-
-    setContent(response.ok ? bodyHTML : '')
-    setInit(true)
-  }, [url])
-
-  return { content, init, fetchStatic }
-}
 
 const Contents = styled.div`
   padding: 20px;
@@ -113,4 +93,24 @@ export function StaticPageContents({
     default:
       return onFallback()
   }
+}
+
+function useFetchStatic(url: string) {
+  const [content, setContent] = useState<string>('')
+  const [init, setInit] = useState<boolean>(false)
+
+  const fetchStatic = useCallback(async () => {
+    const response = await fetch(`/pages/${url}`)
+
+    const html = await response.text()
+    const [, bodyHtml] = html.match(/<body[^>]*>((.|[\n\r])*)<\/body>/im) || [
+      '',
+      '',
+    ]
+
+    setContent(response.ok ? bodyHtml : '')
+    setInit(true)
+  }, [url])
+
+  return { content, init, fetchStatic }
 }
