@@ -1,5 +1,4 @@
 import { PropsWithChildren, SyntheticEvent } from 'react'
-
 import styled, { css } from 'styled-components'
 import { Text } from '@titicaca/core-elements'
 
@@ -72,7 +71,7 @@ export default function Cell({
   )
 }
 
-function Value({ children }: PropsWithChildren<{}>) {
+function Value({ children }: PropsWithChildren<unknown>) {
   return (
     <Text size="medium" bold lineHeight="17px">
       {children}
@@ -80,7 +79,7 @@ function Value({ children }: PropsWithChildren<{}>) {
   )
 }
 
-function Placeholder({ children }: PropsWithChildren<{}>) {
+function Placeholder({ children }: PropsWithChildren<unknown>) {
   return (
     <Text color="gray" size="medium" bold alpha={0.3} lineHeight="17px">
       {children}
