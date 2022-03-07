@@ -40,8 +40,8 @@ interface InputProps extends Omit<HtmlInputElementProps, 'onChange'> {
   id?: string
   error?: string
   focused?: string
-  onChange?: (e: SyntheticEvent, value: string) => unknown
-  onBlur?: (e: FocusEvent<unknown>) => unknown
+  onChange?: (e: SyntheticEvent, value: string) => void
+  onBlur?: (e: FocusEvent<unknown>) => void
 }
 
 function Input({ onChange, ...props }: InputProps) {
