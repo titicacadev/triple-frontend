@@ -14,7 +14,7 @@ interface TextareaProps
     StyledComponentProps<'textarea', never, BaseTextareaProps, never>,
     'onChange'
   > {
-  onChange?: (e: SyntheticEvent, value: string) => unknown
+  onChange?: (e: SyntheticEvent, value: string) => void
 }
 
 const BaseTextarea = styled.textarea<BaseTextareaProps>`
