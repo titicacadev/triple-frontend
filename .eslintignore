@@ -6,7 +6,6 @@ packages/*/lib/**
 docs/storybook-static
 
 packages/i18n
-packages/react-hooks
 packages/style-box
 packages/type-definitions
 packages/web-storage
