@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component } from 'react'
 import { Alert } from '@titicaca/modals'
 
 import { WebStorageError } from './error'
@@ -15,14 +15,14 @@ export class WebStorageErrorBoundary extends Component<
   WebStorageErrorBoundaryProps,
   WebStorageErrorBoundaryState
 > {
-  constructor(props: WebStorageErrorBoundaryProps) {
+  public constructor(props: WebStorageErrorBoundaryProps) {
     super(props)
 
     this.state = { error: null }
   }
 
-  static getDerivedStateFromError(
-    error: any,
+  public static getDerivedStateFromError(
+    error: Error,
   ): Partial<WebStorageErrorBoundaryState> {
     if (error instanceof WebStorageError) {
       return { error }
@@ -31,13 +31,13 @@ export class WebStorageErrorBoundary extends Component<
     return { error: null }
   }
 
-  componentDidCatch(error: Error) {
+  public componentDidCatch(error: Error) {
     if (!(error instanceof WebStorageError)) {
       throw error
     }
   }
 
-  render() {
+  public render() {
     const {
       props: { onConfirm, children },
       state: { error },
