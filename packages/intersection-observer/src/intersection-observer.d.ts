@@ -1,10 +1,10 @@
-declare module 'intersection-observer' {
+module 'intersection-observer' {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface Window {
     IntersectionObserver: unknown
     IntersectionObserverEntry: unknown
     intersectionRatio: unknown
   }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const content: any
+  const content: unknown
   export default content
 }
