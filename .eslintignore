@@ -10,7 +10,6 @@ packages/style-box
 packages/type-definitions
 packages/web-storage
 packages/listing-filter
-packages/static-page-contents
 packages/public-header
 packages/ab-experiments
 packages/action-sheet
