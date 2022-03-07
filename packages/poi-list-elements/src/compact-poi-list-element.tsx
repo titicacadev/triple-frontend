@@ -47,7 +47,7 @@ export function CompactPoiListElement<T extends PoiListElementType>({
 
   useEffect(() => {
     if (actionButtonRef && actionButtonRef.current) {
-      setActionButtonWidth(actionButtonRef.current?.width)
+      setActionButtonWidth(actionButtonRef.current?.width || 0)
     }
   }, [actionButtonRef])
 
