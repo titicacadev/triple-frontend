@@ -1,4 +1,10 @@
-import { useState, useEffect, PropsWithChildren, createContext, useContext } from 'react';
+import {
+  useState,
+  useEffect,
+  PropsWithChildren,
+  createContext,
+  useContext,
+} from 'react'
 import Head from 'next/head'
 
 declare global {
@@ -22,7 +28,7 @@ export function GoogleOptimizeExperimentProvider({
   const [variant, setVariant] = useState<number>(-1)
 
   useEffect(() => {
-    function gtag(...args: any[]) {
+    function gtag(...args: unknown[]) {
       if (window.dataLayer) {
         window.dataLayer.push(args)
       } else {
