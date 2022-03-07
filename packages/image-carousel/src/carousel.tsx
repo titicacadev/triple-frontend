@@ -1,4 +1,10 @@
-import { ComponentType, PropsWithChildren, PureComponent, ReactNode, RefObject } from 'react';
+import {
+  ComponentType,
+  PropsWithChildren,
+  PureComponent,
+  ReactNode,
+  RefObject,
+} from 'react'
 import styled from 'styled-components'
 import { FlickingEvent, FlickingOptions } from '@egjs/flicking'
 import Flicking, { FlickingProps } from '@egjs/react-flicking'
@@ -30,7 +36,7 @@ export default class Carousel extends PureComponent<
   PropsWithChildren<CarouselProps>,
   { currentIndex: number }
 > {
-  static defaultProps: Partial<Carousel['props']> = {
+  public static defaultProps: Partial<Carousel['props']> = {
     zIndex: 1,
     defaultIndex: 0,
     autoResize: true,
@@ -39,27 +45,27 @@ export default class Carousel extends PureComponent<
     duration: 100,
   }
 
-  state = { currentIndex: 0 }
+  public state = { currentIndex: 0 }
 
-  componentDidMount() {
+  public componentDidMount() {
     this.setState({
       currentIndex: this.props.defaultIndex || 0,
     })
   }
 
-  handleMoveStart = (e: FlickingEvent) => {
+  public handleMoveStart = (e: FlickingEvent) => {
     const { onMoveStart } = this.props
 
     onMoveStart && onMoveStart(e)
   }
 
-  handleMove = (e: FlickingEvent) => {
+  public handleMove = (e: FlickingEvent) => {
     const { onMove } = this.props
 
     onMove && onMove(e)
   }
 
-  handleMoveEnd = (e: FlickingEvent) => {
+  public handleMoveEnd = (e: FlickingEvent) => {
     const { onMoveEnd } = this.props
 
     this.setState({
@@ -69,15 +75,9 @@ export default class Carousel extends PureComponent<
     onMoveEnd && onMoveEnd(e)
   }
 
-  get flickingProps(): Partial<FlickingProps & FlickingOptions> {
-    const {
-      zIndex,
-      defaultIndex,
-      autoResize,
-      horizontal,
-      bounce,
-      duration,
-    } = this.props
+  public get flickingProps(): Partial<FlickingProps & FlickingOptions> {
+    const { zIndex, defaultIndex, autoResize, horizontal, bounce, duration } =
+      this.props
 
     return {
       zIndex,
@@ -93,14 +93,9 @@ export default class Carousel extends PureComponent<
     }
   }
 
-  render() {
-    const {
-      margin,
-      borderRadius,
-      pageLabelRenderer,
-      children,
-      flickingRef,
-    } = this.props
+  public render() {
+    const { margin, borderRadius, pageLabelRenderer, children, flickingRef } =
+      this.props
     const PageLabel: ComponentType<{ currentIndex: number }> = ({
       currentIndex,
     }) => {
