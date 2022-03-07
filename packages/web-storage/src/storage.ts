@@ -16,7 +16,7 @@ function addCookieKeyPrefix(key: string) {
 
 function getCookieStorage({ storageType }: { storageType: WebStorageType }) {
   if (!cookieAvailable()) {
-    throw new WebStorageError({ type: 'Unavailable', storageType })
+    throw new WebStorageError({ type: 'unavailable', storageType })
   }
 
   const cookie = new Cookies()
@@ -46,7 +46,7 @@ function getCookieStorage({ storageType }: { storageType: WebStorageType }) {
       } catch (error) {
         if (checkQuotaExceededError(error)) {
           throw new WebStorageError({
-            type: 'QuotaExceeded',
+            type: 'quotaExceeded',
             storageType,
           })
         }
@@ -69,7 +69,7 @@ function getCookieStorage({ storageType }: { storageType: WebStorageType }) {
 
 export function getWebStorage(type: WebStorageType = 'localStorage') {
   if (typeof window === 'undefined') {
-    throw new WebStorageError({ type: 'NotBrowser', storageType: type })
+    throw new WebStorageError({ type: 'notBrowser', storageType: type })
   }
 
   if (!storageAvailable(type)) {
@@ -97,7 +97,7 @@ export function getWebStorage(type: WebStorageType = 'localStorage') {
       } catch (error) {
         if (checkQuotaExceededError(error)) {
           throw new WebStorageError({
-            type: 'QuotaExceeded',
+            type: 'quotaExceeded',
             storageType: type,
           })
         }
