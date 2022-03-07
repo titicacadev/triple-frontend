@@ -25,7 +25,7 @@ export default function Track({
   ...rest
 }: { active: boolean } & StyledComponentProps<
   'div',
-  {},
+  object,
   { left: number; right: number },
   never
 >) {

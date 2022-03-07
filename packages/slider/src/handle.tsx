@@ -30,7 +30,7 @@ const HandlePeg = styled.div`
 `
 
 export default function Handle(
-  props: StyledComponentProps<'div', {}, { percent: number }, never>,
+  props: StyledComponentProps<'div', object, { percent: number }, never>,
 ) {
   return (
     <HandleContainer {...props}>
