@@ -6,8 +6,8 @@ packages/*/lib/**
 docs/storybook-static
 
 packages/i18n
-packages/style-box
-packages/web-storage
+packages/react-hooks
+packages/type-definitions
 packages/listing-filter
 packages/public-header
 packages/ab-experiments
