@@ -1,4 +1,4 @@
-import { ComponentType } from 'react';
+import { ComponentType } from 'react'
 import { Tracks } from 'react-compound-slider'
 
 import Track from './track'
