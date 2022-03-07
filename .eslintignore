@@ -6,7 +6,6 @@ packages/*/lib/**
 docs/storybook-static
 
 packages/i18n
-packages/react-hooks
 packages/type-definitions
 packages/listing-filter
 packages/public-header
