@@ -34,14 +34,14 @@ const BaseInput = styled(InputMask)<{ focused?: string; error?: string }>`
     `};
 `
 
-type HTMLInputElementProps = InputHTMLAttributes<HTMLInputElement> & MaskOptions
+type HtmlInputElementProps = InputHTMLAttributes<HTMLInputElement> & MaskOptions
 
-interface InputProps extends Omit<HTMLInputElementProps, 'onChange'> {
+interface InputProps extends Omit<HtmlInputElementProps, 'onChange'> {
   id?: string
   error?: string
   focused?: string
-  onChange?: (e: SyntheticEvent, value: string) => any
-  onBlur?: (e: FocusEvent<any>) => any
+  onChange?: (e: SyntheticEvent, value: string) => unknown
+  onBlur?: (e: FocusEvent<unknown>) => unknown
 }
 
 function Input({ onChange, ...props }: InputProps) {

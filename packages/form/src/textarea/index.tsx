@@ -11,10 +11,10 @@ interface BaseTextareaProps {
 
 interface TextareaProps
   extends Omit<
-    StyledComponentProps<'textarea', any, BaseTextareaProps, never>,
+    StyledComponentProps<'textarea', never, BaseTextareaProps, never>,
     'onChange'
   > {
-  onChange?: (e: SyntheticEvent, value: string) => any
+  onChange?: (e: SyntheticEvent, value: string) => unknown
 }
 
 const BaseTextarea = styled.textarea<BaseTextareaProps>`
