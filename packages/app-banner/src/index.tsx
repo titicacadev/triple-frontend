@@ -75,7 +75,7 @@ export default function AppBanner({
   description,
   cta,
   href,
-  onCTAClick,
+  onCtaClick,
   zTier,
   zIndex = 1,
   ...props
@@ -84,7 +84,7 @@ export default function AppBanner({
   description?: string
   cta?: string
   href?: string
-  onCTAClick?: (e?: SyntheticEvent) => any
+  onCtaClick?: (e?: SyntheticEvent) => void
 } & LayeringMixinProps) {
   return (
     <AppBannerFrame {...props} zTier={zTier} zIndex={zIndex}>
@@ -103,7 +103,7 @@ export default function AppBanner({
           {description}
         </Text>
       </ContentContainer>
-      <CallToAction href={href} onClick={onCTAClick}>
+      <CallToAction href={href} onClick={onCtaClick}>
         {cta || '앱에서 보기'}
       </CallToAction>
     </AppBannerFrame>
