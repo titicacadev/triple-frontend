@@ -4,10 +4,10 @@ import ExtendedResourceListElement, {
 import { useScrapsContext } from '@titicaca/react-contexts'
 
 import { POI_IMAGE_PLACEHOLDERS } from './constants'
-import { POIListElementBaseProps, PoiListElementType } from './types'
+import { PoiListElementBaseProps, PoiListElementType } from './types'
 
 interface ExtendedPoiListElementBaseProps<T extends PoiListElementType>
-  extends POIListElementBaseProps<T> {
+  extends PoiListElementBaseProps<T> {
   hideScrapButton?: boolean
   maxCommentLines?: number
   distance?: string | number
@@ -16,10 +16,9 @@ interface ExtendedPoiListElementBaseProps<T extends PoiListElementType>
   notes?: (string | null | undefined)[]
 }
 
-export type ExtendedPoiListElementProps<
-  T extends PoiListElementType
-> = ExtendedPoiListElementBaseProps<T> &
-  Partial<Pick<ResourceListElementProps<T>, 'as'>>
+export type ExtendedPoiListElementProps<T extends PoiListElementType> =
+  ExtendedPoiListElementBaseProps<T> &
+    Partial<Pick<ResourceListElementProps<T>, 'as'>>
 
 export function ExtendedPoiListElement<T extends PoiListElementType>({
   poi,

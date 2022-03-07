@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react'
 import styled from 'styled-components'
 import {
   Container,
@@ -31,7 +31,7 @@ const Card = styled(OriginalCard)`
   background-color: white;
 `
 
-const POICardBody = styled(Container)`
+const PoiCardBody = styled(Container)`
   height: 100%;
 `
 
@@ -55,7 +55,7 @@ const ScrapButtonContainer = styled(Container).attrs({
   right: 0;
 `
 
-export default function POICardElement({
+export default function PoiCardElement({
   id,
   type,
   names: { ko, en, local },
@@ -112,7 +112,7 @@ export default function POICardElement({
       shadowValue="0 1px 3px 0 rgba(0, 0, 0, 0.1)"
       padding={{ top: 18, right: 18, bottom: 18, left: 18 }}
     >
-      <POICardBody
+      <PoiCardBody
         position="relative"
         display="block"
         textAlign="left"
@@ -207,7 +207,7 @@ export default function POICardElement({
         <DirectionButtonContainer>
           <DirectionButton onClick={onDirectionButtonClick} />
         </DirectionButtonContainer>
-      </POICardBody>
+      </PoiCardBody>
     </Card>
   )
 }
