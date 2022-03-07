@@ -1,4 +1,5 @@
 import { Container, Text, MarginPadding, Image } from '@titicaca/core-elements'
+import { ImageMeta } from '@titicaca/type-definitions'
 
 import AuthorIntro from './author-intro'
 
@@ -11,7 +12,7 @@ export default function Author({
   source: {
     name: string
     bio?: string
-    image?: any
+    image?: ImageMeta
     intro?: { text?: string; rawHTML?: string }
   }
   bioOverride?: string
