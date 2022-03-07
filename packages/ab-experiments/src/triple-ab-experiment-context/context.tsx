@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import {
   createContext,
   PropsWithChildren,
@@ -7,7 +8,7 @@ import {
   useMemo,
   useRef,
   useState,
-} from 'react';
+} from 'react'
 import {
   useEventTrackingContext,
   useSessionAvailability,
@@ -64,11 +65,10 @@ export function TripleABExperimentProvider({
     }
   }, [metaFromSSR, sessionAvailable, slug])
 
-  const value = useMemo(() => ({ ...experimentMetas, [slug]: meta }), [
-    experimentMetas,
-    slug,
-    meta,
-  ])
+  const value = useMemo(
+    () => ({ ...experimentMetas, [slug]: meta }),
+    [experimentMetas, slug, meta],
+  )
 
   return (
     <TripleABExperimentContext.Provider value={value}>
