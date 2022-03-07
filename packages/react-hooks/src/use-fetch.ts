@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react'
 import fetch from 'isomorphic-fetch'
 import isEqual from 'react-fast-compare'
@@ -49,7 +50,9 @@ export function useFetch(url: string, options?: any): FetchStatus {
           setFetchResponse({ error: createFetchError(response) })
         }
       } catch (error) {
-        setFetchResponse({ error })
+        if (error instanceof Error || error === undefined) {
+          setFetchResponse({ error })
+        }
       }
     }
 

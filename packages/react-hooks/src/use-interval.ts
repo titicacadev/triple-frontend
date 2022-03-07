@@ -4,8 +4,11 @@ import { useEffect, useRef } from 'react'
  * @param {number|null} delay null인 경우 setInterval을 일시 중지한다.
  */
 
-export function useInterval(callback?: Function, delay: number | null = null) {
-  const savedCallback = useRef<Function>()
+export function useInterval(
+  callback?: () => void,
+  delay: number | null = null,
+) {
+  const savedCallback = useRef<() => void>()
 
   useEffect(() => {
     savedCallback.current = callback
@@ -18,7 +21,7 @@ export function useInterval(callback?: Function, delay: number | null = null) {
       }
     }
     if (delay !== null) {
-      let id = setInterval(tick, delay)
+      const id = setInterval(tick, delay)
       return () => clearInterval(id)
     }
   }, [delay])
