@@ -21,8 +21,8 @@ export interface FixedPricingProps {
   isSoldOut?: boolean
   priceLabelOverride?: ReactNode
   tooltipLabel?: string
-  onClick?: (e?: SyntheticEvent) => any
-  onTooltipClick?: (e?: SyntheticEvent) => any
+  onClick?: (e?: SyntheticEvent) => void
+  onTooltipClick?: (e?: SyntheticEvent) => void
   maxWidth?: number
   tooltipColor?: string
   padding?: MarginPadding
