@@ -2,6 +2,13 @@
 
 ## v6 to v7
 
+### poi-list-elements
+
+다음과 같은 네이밍 변경이 있었습니다.
+
+- POICardElement => PoiCardElement
+- POIListElementBaseProps => PoiListElementBaseProps
+
 ### type-definitions 인터페이스의 네이밍 변경
 
 다음과 같은 네이밍 변경이 있었습니다.
