@@ -6,7 +6,8 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/color-palette": ["../color-palette/src"],
-      "@titicaca/core-elements": ["../core-elements/src"]
+      "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/type-definitions": ["../type-definitions/src"]
     }
   },
   "include": ["./src"],
@@ -16,6 +17,9 @@
     },
     {
       "path": "../core-elements"
+    },
+    {
+      "path": "../type-definitions"
     }
   ]
 }
