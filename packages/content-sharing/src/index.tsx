@@ -17,7 +17,7 @@ export default function ContentSharing({
   onShareClick,
   label,
 }: {
-  onShareClick: ({ method }: { method: Method }) => any
+  onShareClick: ({ method }: { method: Method }) => void
   label: string
 }) {
   return (
