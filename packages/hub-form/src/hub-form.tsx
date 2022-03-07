@@ -1,5 +1,4 @@
 import { PropsWithChildren } from 'react'
-
 import styled from 'styled-components'
 import { CardFrame } from '@titicaca/core-elements'
 
