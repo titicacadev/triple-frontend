@@ -13,7 +13,7 @@ async function importReactIntersectionObserver() {
       !(
         'IntersectionObserver' in window &&
         'IntersectionObserverEntry' in window &&
-        'intersectionRatio' in window.IntersectionObserverEntry.prototype
+        'intersectionRatio' in window
       )
     ) {
       await import('intersection-observer')
