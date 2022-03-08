@@ -22,7 +22,8 @@ export class WebStorageErrorBoundary extends Component<
   }
 
   public static getDerivedStateFromError(
-    error: unknown,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    error: any,
   ): Partial<WebStorageErrorBoundaryState> {
     if (error instanceof WebStorageError) {
       return { error }

@@ -7,7 +7,8 @@ import { WebStorageType } from './types'
  * 참고: https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#testing_for_availability
  * @param error
  */
-export function checkQuotaExceededError(error: Error): boolean {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function checkQuotaExceededError(error: any): boolean {
   return (
     error instanceof DOMException &&
     // everything except Firefox
