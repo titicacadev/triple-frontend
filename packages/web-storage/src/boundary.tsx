@@ -22,7 +22,7 @@ export class WebStorageErrorBoundary extends Component<
   }
 
   public static getDerivedStateFromError(
-    error: Error,
+    error: unknown,
   ): Partial<WebStorageErrorBoundaryState> {
     if (error instanceof WebStorageError) {
       return { error }
