@@ -1,5 +1,4 @@
-module 'intersection-observer' {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+declare module 'intersection-observer' {
   interface Window {
     IntersectionObserver: unknown
     IntersectionObserverEntry: unknown
