@@ -9,10 +9,10 @@ import {
 } from '@titicaca/core-elements'
 import {
   useEventTrackingContext,
-  useUserAgentContext,
   useHistoryFunctions,
   useUriHash,
 } from '@titicaca/react-contexts'
+import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 import { formatNumber } from '@titicaca/view-utilities'
 
@@ -47,8 +47,7 @@ export default function DetailHeader({
   onCopy: (value: string) => void
   vicinity?: string
 } & Parameters<typeof Section>['0']) {
-  const { isPublic } = useUserAgentContext()
-
+  const app = useTripleClientMetadata()
   const uriHash = useUriHash()
   const { push, back } = useHistoryFunctions()
   const { trackEvent } = useEventTrackingContext()
@@ -61,7 +60,7 @@ export default function DetailHeader({
   return (
     <>
       <LongClickableSection
-        onLongClick={!isPublic ? handleLongClick : undefined}
+        onLongClick={app ? handleLongClick : undefined}
         {...props}
       >
         <Text.Title>{names.primary || names.ko || names.en}</Text.Title>
