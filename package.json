@@ -2,7 +2,7 @@
   "name": "root",
   "private": true,
   "engines": {
-    "npm": ">= 7"
+    "npm": ">= 8.5"
   },
   "scripts": {
     "dev": "npm run build && concurrently --names watch:resources,watch:declarations,docs --kill-others 'npm:watch:resources' 'npm:watch:declarations' 'npm:dev-docs'",
