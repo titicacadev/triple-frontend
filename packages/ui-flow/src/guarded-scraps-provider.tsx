@@ -2,8 +2,8 @@ import { PropsWithChildren } from 'react'
 import {
   ScrapsProvider,
   useSessionAvailability,
-  useUserAgentContext,
 } from '@titicaca/react-contexts'
+import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import {
   useTransitionModal,
   TransitionType,
@@ -20,7 +20,7 @@ export function GuardedScrapsProvider({
   beforeScrapedChange,
   ...props
 }: PropsWithChildren<Parameters<typeof ScrapsProvider>[0]>) {
-  const { isPublic } = useUserAgentContext()
+  const app = useTripleClientMetadata()
   const sessionAvailable = useSessionAvailability()
   const { show: showTransitionModal } = useTransitionModal()
   const { show: showLoginCta } = useLoginCtaModal()
@@ -28,7 +28,7 @@ export function GuardedScrapsProvider({
   return (
     <ScrapsProvider
       beforeScrapedChange={(target, scraped) => {
-        if (isPublic) {
+        if (!app) {
           showTransitionModal(TransitionType.Scrap)
           return false
         }
