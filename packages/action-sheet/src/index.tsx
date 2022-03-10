@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext } from 'react'
 
 import ActionItemUI from './components/action-item'
 import ActionSheetUI from './components/action-sheet'

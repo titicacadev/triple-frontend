@@ -87,6 +87,7 @@ export default function ActionItem({
   buttonLabel?: string
   icon?: string
   checked?: boolean
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onClick?: (e?: SyntheticEvent) => any
   onClose?: () => void
 }>) {
