@@ -5,6 +5,7 @@ import {
   envProviderDecorator,
   globalStyleDecorator,
   sessionContextProviderDecorator,
+  tripleClientMetadataDecorator,
 } from '../../decorators'
 
 export default {
@@ -17,6 +18,7 @@ export default {
     globalStyleDecorator,
     envProviderDecorator,
     sessionContextProviderDecorator,
+    tripleClientMetadataDecorator,
   ],
 } as Meta
 

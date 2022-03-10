@@ -4,12 +4,17 @@ import SocialReviews from '@titicaca/social-reviews'
 import {
   envProviderDecorator,
   sessionContextProviderDecorator,
+  tripleClientMetadataDecorator,
 } from '../../decorators'
 
 export default {
   title: 'Social-Reviews / SocialReviews',
   component: SocialReviews,
-  decorators: [envProviderDecorator, sessionContextProviderDecorator],
+  decorators: [
+    envProviderDecorator,
+    sessionContextProviderDecorator,
+    tripleClientMetadataDecorator,
+  ],
 } as ComponentMeta<typeof SocialReviews>
 
 export const BaseSocialReviews: ComponentStoryObj<typeof SocialReviews> = {

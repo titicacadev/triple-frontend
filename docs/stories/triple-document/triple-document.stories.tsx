@@ -12,6 +12,7 @@ import MOCK_ITINERARY from '../__mocks__/triple-document.itinerary.json'
 import {
   envProviderDecorator,
   sessionContextProviderDecorator,
+  tripleClientMetadataDecorator,
 } from '../../decorators'
 
 const {
@@ -27,7 +28,11 @@ const {
 
 export default {
   title: 'triple-document',
-  decorators: [envProviderDecorator, sessionContextProviderDecorator],
+  decorators: [
+    envProviderDecorator,
+    sessionContextProviderDecorator,
+    tripleClientMetadataDecorator,
+  ],
 } as Meta
 
 export function Sample() {

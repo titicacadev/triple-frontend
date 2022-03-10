@@ -6,6 +6,7 @@ import {
   globalStyleDecorator,
   envProviderDecorator,
   sessionContextProviderDecorator,
+  tripleClientMetadataDecorator,
 } from '../../decorators'
 
 const StyledLocalLink = styled(LocalLink)`
@@ -28,6 +29,7 @@ export default {
     globalStyleDecorator,
     envProviderDecorator,
     sessionContextProviderDecorator,
+    tripleClientMetadataDecorator,
   ],
 } as Meta
 
