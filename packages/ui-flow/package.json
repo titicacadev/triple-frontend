@@ -23,6 +23,7 @@
   ],
   "dependencies": {
     "@titicaca/modals": "^6.4.0",
+    "@titicaca/react-triple-client-interfaces": "^6.4.0",
     "qs": "^6.9.0"
   },
   "peerDependencies": {
