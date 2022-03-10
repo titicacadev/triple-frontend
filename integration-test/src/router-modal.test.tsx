@@ -5,8 +5,8 @@ import {
   EnvProvider,
   HistoryProvider,
   SessionContextProvider,
-  UserAgentProvider,
 } from '@titicaca/react-contexts'
+import { TripleClientMetadataProvider } from '@titicaca/react-triple-client-interfaces'
 import { ExternalLink } from '@titicaca/router'
 import { PropsWithChildren } from 'react'
 
@@ -23,7 +23,9 @@ test('브라우저를 허용하지 않는 링크라면 브라우저 환경에서
     type: 'browser',
     sessionAvailable: false,
   })
-  const UserAgentProvider = createUserAgentProvider({ isPublic: true })
+  const TripleClientMetadataProvider = createTripleClientMetadataProvider({
+    isPublic: true,
+  })
 
   const { getByRole } = render(
     <ExternalLink href={href} target="new" allowSource="app">
@@ -32,7 +34,7 @@ test('브라우저를 허용하지 않는 링크라면 브라우저 환경에서
     {
       wrapper: ({ children }) => (
         <EnvProviderWrapper>
-          <UserAgentProvider>
+          <TripleClientMetadataProvider>
             <SessionProvider>
               <HistoryProvider>
                 {children}
@@ -40,7 +42,7 @@ test('브라우저를 허용하지 않는 링크라면 브라우저 환경에서
                 <TransitionModal deepLink="MOCK_DEEP_LINK" />
               </HistoryProvider>
             </SessionProvider>
-          </UserAgentProvider>
+          </TripleClientMetadataProvider>
         </EnvProviderWrapper>
       ),
     },
@@ -63,7 +65,9 @@ test('로그인한 앱에서만 열리는 링크라면 로그인하지 않은 �
     type: 'app',
     sessionAvailable: false,
   })
-  const UserAgentProvider = createUserAgentProvider({ isPublic: false })
+  const TripleClientMetadataProvider = createTripleClientMetadataProvider({
+    isPublic: false,
+  })
 
   const { getByRole } = render(
     <ExternalLink href={href} target="new" allowSource="app-with-session">
@@ -72,13 +76,13 @@ test('로그인한 앱에서만 열리는 링크라면 로그인하지 않은 �
     {
       wrapper: ({ children }) => (
         <EnvProviderWrapper>
-          <UserAgentProvider>
+          <TripleClientMetadataProvider>
             <SessionProvider>
               <HistoryProvider>
                 <LoginCtaModalProvider>{children}</LoginCtaModalProvider>
               </HistoryProvider>
             </SessionProvider>
-          </UserAgentProvider>
+          </TripleClientMetadataProvider>
         </EnvProviderWrapper>
       ),
     },
@@ -152,16 +156,20 @@ function createSessionContextProvider({
   }
 }
 
-function createUserAgentProvider({ isPublic }: { isPublic: boolean }) {
-  return function UserAgentProviderWrapper({
+function createTripleClientMetadataProvider({
+  isPublic,
+}: {
+  isPublic: boolean
+}) {
+  return function TripleClientMetadataProviderWrapper({
     children,
   }: PropsWithChildren<unknown>) {
     return (
-      <UserAgentProvider
-        value={{ isPublic } as Parameters<typeof UserAgentProvider>[0]['value']}
+      <TripleClientMetadataProvider
+        {...(isPublic ? null : { appName: 'Triple-iOS', appVersion: '5.13.0' })}
       >
         {children}
-      </UserAgentProvider>
+      </TripleClientMetadataProvider>
     )
   }
 }
