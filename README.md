@@ -6,7 +6,7 @@
 
 [Lerna](https://lerna.js.org/)를 이용해서 작업하고 있습니다.
 
-npm 7 이상을 요구합니다. 버전이 낮으면 업그레이드 해주세요.
+npm 8.5 이상을 요구합니다. 버전이 낮으면 업그레이드 해주세요.
 
 ```sh
 npm install -g npm@latest
