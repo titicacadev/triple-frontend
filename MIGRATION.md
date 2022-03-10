@@ -2,7 +2,7 @@
 
 ## v6 to v7
 
-### 네이밍이 변경된 패키지가 있습니다.
+### 네이밍이 변경된 패키지
 
 #### app-installation-cta
 
@@ -14,10 +14,10 @@
 
 #### poi-list-elements
 
-- POICardElement => PoiCardElement
-- POIListElementBaseProps => PoiListElementBaseProps
+- POICardElement -> PoiCardElement
+- POIListElementBaseProps -> PoiListElementBaseProps
 
-### type-definitions
+#### type-definitions
 
 - PointGeoJSON -> PointGeoJson
 - ListingPOI -> ListingPoi
