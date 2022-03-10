@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 import { get } from '@titicaca/fetcher'
-import { parseApp } from '@titicaca/react-contexts'
+import { parseTripleClientUserAgent } from '@titicaca/react-triple-client-interfaces'
 import qs from 'qs'
 import { generateUrl, parseUrl, strictQuery } from '@titicaca/view-utilities'
 
@@ -55,7 +55,7 @@ export function authGuard<Props>(
       const { status } = response
 
       if (status === 401) {
-        if (userAgentString && parseApp(userAgentString)) {
+        if (userAgentString && parseTripleClientUserAgent(userAgentString)) {
           return refreshInAppSession({ resolvedUrl, returnUrl })
         }
 
