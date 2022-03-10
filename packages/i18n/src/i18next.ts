@@ -9,6 +9,7 @@ i18n
   .init({
     fallbackLng: ['ko'],
     ns: 'common',
+    /* eslint-disable @typescript-eslint/naming-convention */
     defaultNS: 'common',
 
     interpolation: {
