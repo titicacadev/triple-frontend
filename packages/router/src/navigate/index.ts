@@ -5,13 +5,10 @@ import {
 } from '@titicaca/modals'
 import { checkIfRoutable, parseUrl } from '@titicaca/view-utilities'
 import { useCallback } from 'react'
-import {
-  useEnv,
-  useSessionAvailability,
-  useUserAgentContext,
-} from '@titicaca/react-contexts'
+import { useEnv, useSessionAvailability } from '@titicaca/react-contexts'
 import {
   OutlinkOptions,
+  useTripleClientMetadata,
   useTripleClientNavigate,
 } from '@titicaca/react-triple-client-interfaces'
 
@@ -21,10 +18,10 @@ export function useNavigate({
   changeLocationHref = defaultChangeLocationHref,
 }: { changeLocationHref?: (href: string) => void } = {}) {
   const { webUrlBase } = useEnv()
-  const { isPublic } = useUserAgentContext()
   const sessionAvailable = useSessionAvailability()
   const { show: showTransitionModal } = useTransitionModal()
   const { show: showLoginCtaModal } = useLoginCtaModal()
+  const app = useTripleClientMetadata()
   const { openOutlink, openNativeLink } = useTripleClientNavigate()
 
   const navigateInBrowser = useCallback(
@@ -81,7 +78,7 @@ export function useNavigate({
     ],
   )
 
-  return isPublic ? navigateInBrowser : navigateInApp
+  return app ? navigateInApp : navigateInBrowser
 }
 
 function defaultChangeLocationHref(href: string) {

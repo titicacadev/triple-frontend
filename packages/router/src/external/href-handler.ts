@@ -1,5 +1,5 @@
-import { useUserAgentContext } from '@titicaca/react-contexts'
 import {
+  useTripleClientMetadata,
   useTripleClientNavigate,
   OutlinkOptions,
   AppSpecificLinkProps,
@@ -12,7 +12,7 @@ import { HrefProps } from '../common/types'
 import { checkHrefIsAbsoluteUrl } from './utils'
 
 export function useExternalHrefHandler() {
-  const { isPublic } = useUserAgentContext()
+  const app = useTripleClientMetadata()
   const { openInlink, openOutlink } = useTripleClientNavigate()
   const addWebUrlBase = useWebUrlBaseAdder()
 
@@ -31,13 +31,13 @@ export function useExternalHrefHandler() {
     Pick<OutlinkOptions, 'title'> & { stopDefaultHandler: () => void }) => {
     const outOfTriple = checkHrefIsAbsoluteUrl(href)
 
-    if (target === 'current' && isPublic === false && outOfTriple === true) {
+    if (target === 'current' && app && outOfTriple === true) {
       stopDefaultHandler()
 
       return
     }
 
-    if (target === 'new' && isPublic === false) {
+    if (target === 'new' && app) {
       stopDefaultHandler()
 
       if (outOfTriple === true) {
@@ -54,7 +54,7 @@ export function useExternalHrefHandler() {
       return
     }
 
-    if (target === 'browser' && isPublic === false) {
+    if (target === 'browser' && app) {
       stopDefaultHandler()
 
       openOutlink(outOfTriple ? href : addWebUrlBase(href), {
