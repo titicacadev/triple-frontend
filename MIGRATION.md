@@ -2,16 +2,22 @@
 
 ## v6 to v7
 
-### poi-list-elements
+### 네이밍이 변경된 패키지가 있습니다.
 
-다음과 같은 네이밍 변경이 있었습니다.
+#### app-installation-cta
+
+- AppInstallationCTA -> AppInstallationCta
+- ArticleCardCTA -> ArticleCardCta
+- BannerCTA -> BannerCta
+- ChatbotCTA -> ChatbotCta
+- FloatingButtonCTA -> FloatingButtonCta
+
+#### poi-list-elements
 
 - POICardElement => PoiCardElement
 - POIListElementBaseProps => PoiListElementBaseProps
 
-### type-definitions 인터페이스의 네이밍 변경
-
-다음과 같은 네이밍 변경이 있었습니다.
+### type-definitions
 
 - PointGeoJSON -> PointGeoJson
 - ListingPOI -> ListingPoi
