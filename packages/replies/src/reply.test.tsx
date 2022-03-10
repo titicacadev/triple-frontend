@@ -2,12 +2,24 @@ import { PropsWithChildren } from 'react'
 import '@testing-library/jest-dom'
 import { fireEvent, render, waitFor } from '@testing-library/react'
 import { EnvProvider, SessionContextProvider } from '@titicaca/react-contexts'
+import { useNavigate } from '@titicaca/router'
 
 import { RepliesProvider } from './context'
 import Reply from './list/reply'
 import { Reply as ReplyType } from './types'
 
+jest.mock('@titicaca/router')
 jest.mock('./replies-api-client')
+
+beforeEach(() => {
+  ;(
+    useNavigate as unknown as jest.MockedFunction<
+      () => ReturnType<typeof useNavigate>
+    >
+  ).mockImplementation(() => {
+    return () => {}
+  })
+})
 
 const MOCKED_REPLY = {
   id: '00000000-0000-0000-0000-00000000000',
