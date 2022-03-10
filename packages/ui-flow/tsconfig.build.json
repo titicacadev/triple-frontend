@@ -6,6 +6,9 @@
       "path": "../modals/tsconfig.build.json"
     },
     {
+      "path": "../react-triple-client-interfaces/tsconfig.build.json"
+    },
+    {
       "path": "../fetcher/tsconfig.build.json"
     },
     {
