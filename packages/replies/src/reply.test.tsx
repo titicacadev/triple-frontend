@@ -1,14 +1,16 @@
 import { PropsWithChildren } from 'react'
 import '@testing-library/jest-dom'
 import { fireEvent, render, waitFor } from '@testing-library/react'
-import { EnvProvider, SessionContextProvider } from '@titicaca/react-contexts'
+import { EnvProvider } from '@titicaca/react-contexts'
 import { useNavigate } from '@titicaca/router'
+import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 
 import { RepliesProvider } from './context'
 import Reply from './list/reply'
 import { Reply as ReplyType } from './types'
 
 jest.mock('@titicaca/router')
+jest.mock('@titicaca/ui-flow')
 jest.mock('./replies-api-client')
 
 beforeEach(() => {
@@ -18,6 +20,16 @@ beforeEach(() => {
     >
   ).mockImplementation(() => {
     return () => {}
+  })
+  ;(
+    useAppCallback as unknown as jest.MockedFunction<typeof useAppCallback>
+  ).mockImplementation((_, fn) => fn)
+  ;(
+    useSessionCallback as unknown as jest.MockedFunction<
+      typeof useSessionCallback
+    >
+  ).mockImplementation((fn) => {
+    return fn
   })
 })
 
@@ -229,15 +241,7 @@ function ReplyWithLoginWrapper({ children }: PropsWithChildren<unknown>) {
       afOnelinkPid=""
       afOnelinkSubdomain=""
     >
-      <SessionContextProvider
-        type="browser"
-        props={{
-          initialUser: undefined,
-          initialSessionAvailability: true,
-        }}
-      >
-        <RepliesProvider>{children}</RepliesProvider>
-      </SessionContextProvider>
+      <RepliesProvider>{children}</RepliesProvider>
     </EnvProvider>
   )
 }
