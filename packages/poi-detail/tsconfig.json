@@ -14,6 +14,9 @@
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
       "@titicaca/modals": ["../modals/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-triple-client-interfaces": [
+        "../react-triple-client-interfaces/src"
+      ],
       "@titicaca/type-definitions": ["../type-definitions/src"],
       "@titicaca/view-utilities": ["../view-utilities/src"]
     }
@@ -43,6 +46,9 @@
     },
     {
       "path": "../modals"
+    },
+    {
+      "path": "../react-triple-client-interfaces"
     },
     {
       "path": "../type-definitions"
