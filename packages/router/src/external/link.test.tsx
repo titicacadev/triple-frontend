@@ -1,12 +1,12 @@
 import '@testing-library/jest-dom'
 import 'jest-styled-components'
 import { fireEvent, render } from '@testing-library/react'
-import {
-  useSessionAvailability,
-  useUserAgentContext,
-} from '@titicaca/react-contexts'
+import { useSessionAvailability } from '@titicaca/react-contexts'
 import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'
-import { useTripleClientNavigate } from '@titicaca/react-triple-client-interfaces'
+import {
+  useTripleClientMetadata,
+  useTripleClientNavigate,
+} from '@titicaca/react-triple-client-interfaces'
 import styled from 'styled-components'
 import renderer from 'react-test-renderer'
 
@@ -195,10 +195,12 @@ function prepareTest({
   const webUrlBase = 'https://triple.guide'
 
   ;(
-    useUserAgentContext as unknown as jest.MockedFunction<
-      () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
+    useTripleClientMetadata as unknown as jest.MockedFunction<
+      () => ReturnType<typeof useTripleClientMetadata>
     >
-  ).mockImplementation(() => ({ isPublic }))
+  ).mockImplementation(() =>
+    isPublic ? null : { appName: 'Triple-iOS', appVersion: '5.13.0' },
+  )
   ;(
     useTripleClientNavigate as jest.MockedFunction<
       typeof useTripleClientNavigate

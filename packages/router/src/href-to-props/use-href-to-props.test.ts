@@ -1,6 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks'
-import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
+import { useEnv } from '@titicaca/react-contexts'
 import { checkIfRoutable } from '@titicaca/view-utilities'
+import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 
 import { useHrefToProps } from './use-href-to-props'
 
@@ -9,6 +10,7 @@ jest.mock('@titicaca/view-utilities', () => ({
   ...jest.requireActual('@titicaca/view-utilities'),
   checkIfRoutable: jest.fn(),
 }))
+jest.mock('@titicaca/react-triple-client-interfaces')
 
 describe('href', () => {
   test('href에서 트리플 도메인을 제거합니다.', () => {
@@ -162,10 +164,12 @@ function prepareTest({ isPublic }: { isPublic: boolean }) {
   const webUrlBase = 'https://triple.guide'
 
   ;(
-    useUserAgentContext as unknown as jest.MockedFunction<
-      () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
+    useTripleClientMetadata as unknown as jest.MockedFunction<
+      () => ReturnType<typeof useTripleClientMetadata>
     >
-  ).mockImplementation(() => ({ isPublic }))
+  ).mockImplementation(() =>
+    isPublic ? null : { appName: 'Triple-iOS', appVersion: '5.13.0' },
+  )
   ;(
     useEnv as unknown as jest.MockedFunction<
       () => Pick<ReturnType<typeof useEnv>, 'webUrlBase'>

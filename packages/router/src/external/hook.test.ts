@@ -1,6 +1,8 @@
 import { renderHook } from '@testing-library/react-hooks'
-import { useUserAgentContext } from '@titicaca/react-contexts'
-import { useTripleClientNavigate } from '@titicaca/react-triple-client-interfaces'
+import {
+  useTripleClientMetadata,
+  useTripleClientNavigate,
+} from '@titicaca/react-triple-client-interfaces'
 
 import { useDisabledLinkNotifierCreator } from '../common/disabled-link-notifier'
 import useDefaultRouter from '../common/default-router'
@@ -16,7 +18,7 @@ jest.mock('../common/default-router')
 jest.mock('./href-handler')
 
 beforeEach(() => {
-  mockUserAgentHook()
+  mockTripleClientMetadata()
   mockAppBridgeHook()
   mockDisabledLinkNotifierCreatorHook({
     shouldRaiseAlert: false,
@@ -69,12 +71,16 @@ test('customRouter가 작동하면 default 라우터가 작동하지 않습니�
   expect(defaultRouter).not.toBeCalled()
 })
 
-function mockUserAgentHook({ isPublic = false }: { isPublic?: boolean } = {}) {
+function mockTripleClientMetadata({
+  isPublic = false,
+}: { isPublic?: boolean } = {}) {
   ;(
-    useUserAgentContext as unknown as jest.MockedFunction<
-      () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
+    useTripleClientMetadata as unknown as jest.MockedFunction<
+      () => ReturnType<typeof useTripleClientMetadata>
     >
-  ).mockImplementation(() => ({ isPublic }))
+  ).mockImplementation(() =>
+    isPublic ? null : { appName: 'Triple-iOS', appVersion: '5.13.0' },
+  )
 }
 
 function mockAppBridgeHook() {

@@ -3,10 +3,8 @@ import {
   useLoginCtaModal,
   TransitionType,
 } from '@titicaca/modals'
-import {
-  useSessionAvailability,
-  useUserAgentContext,
-} from '@titicaca/react-contexts'
+import { useSessionAvailability } from '@titicaca/react-contexts'
+import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 
 export type AllowSource = 'all' | 'app' | 'app-with-session' | 'none'
 
@@ -24,7 +22,7 @@ export function useDisabledLinkNotifierCreator({
 }: {
   alert?: (message: string) => void
 } = {}) {
-  const { isPublic } = useUserAgentContext()
+  const app = useTripleClientMetadata()
   const sessionAvailable = useSessionAvailability()
   const { show: showTransitionModal } = useTransitionModal()
   const { show: showLoginCtaModal } = useLoginCtaModal()
@@ -38,10 +36,7 @@ export function useDisabledLinkNotifierCreator({
       }
     }
 
-    if (
-      isPublic === true &&
-      (allowSource === 'app' || allowSource === 'app-with-session')
-    ) {
+    if (!app && (allowSource === 'app' || allowSource === 'app-with-session')) {
       return () => {
         showTransitionModal(TransitionType.General)
       }

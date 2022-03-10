@@ -1,5 +1,5 @@
 import { MouseEventHandler, PropsWithChildren, useEffect } from 'react'
-import { useUserAgentContext } from '@titicaca/react-contexts'
+import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 
 import { ANCHOR_TARGET_MAP } from '../common/target'
 import { RouterGuardedLink } from '../common/router-guarded-link'
@@ -35,12 +35,12 @@ export function ExternalLink({
     onError?: (error: Error) => void
   }
 >) {
-  const { isPublic } = useUserAgentContext()
+  const app = useTripleClientMetadata()
   const handleHrefExternally = useExternalHrefHandler()
 
   const hrefIsAbsoluteUrl = checkHrefIsAbsoluteUrl(href)
   const forbiddenLinkCondition =
-    !isPublic && hrefIsAbsoluteUrl && target === 'current'
+    app && hrefIsAbsoluteUrl && target === 'current'
 
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     if (onClick) {
