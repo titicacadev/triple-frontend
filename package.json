@@ -29,8 +29,6 @@
     "sync-deps": "npm run make-tsconfig && npm run make-build-tsconfig && npm run make-test-tsconfig",
     "prepare": "[ $PREPARE_HUSKY_DISABLED ] || husky install",
     "postinstall": "npm run sync-deps",
-    "version": "lerna version --no-push --force-publish",
-    "postversion": "npm install && git commit --amend -a -C HEAD",
     "lint:es": "eslint '**/*.{js,ts,tsx,mdx}'",
     "lint:es:fix": "eslint '**/*.{js,ts,tsx,mdx}' --fix",
     "lint:etc": "prettier '**/*.{json,yaml,md}' --check",
