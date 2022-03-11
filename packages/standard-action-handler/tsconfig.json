@@ -12,10 +12,10 @@
   "include": ["./src"],
   "references": [
     {
-      "path": "../view-utilities"
+      "path": "../router"
     },
     {
-      "path": "../router"
+      "path": "../view-utilities"
     }
   ]
 }

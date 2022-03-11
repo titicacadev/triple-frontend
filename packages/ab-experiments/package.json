@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/ab-experiments",
-  "version": "6.4.0",
+  "version": "7.0.0",
   "description": "a/b experiments package",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/ab-experiments",
@@ -16,7 +16,7 @@
     "lib"
   ],
   "dependencies": {
-    "@titicaca/react-contexts": "^6.4.0"
+    "@titicaca/react-contexts": "^7.0.0"
   },
   "peerDependencies": {
     "next": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0"
