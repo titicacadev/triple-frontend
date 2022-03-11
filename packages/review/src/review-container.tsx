@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import { Section, Container, Text, Button } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import {
-  useUserAgentContext,
   useEventTrackingContext,
   useSessionAvailability,
 } from '@titicaca/react-contexts'
+import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { TransitionType, withLoginCtaModal } from '@titicaca/modals'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 
@@ -114,7 +114,7 @@ function ReviewContainer({
   const sessionAvailable = useSessionAvailability()
 
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
-  const { isPublic } = useUserAgentContext()
+  const app = useTripleClientMetadata()
   const { trackEvent } = useEventTrackingContext()
   const [[myReview, myReviewIds], setMyReviewStatus] = useState<
     [ReviewData | undefined, Set<string>]
@@ -175,17 +175,17 @@ function ReviewContainer({
 
     refreshMyReview({ id: resourceId })
 
-    !isPublic &&
+    app &&
       subscribeReviewUpdateEvent &&
       subscribeReviewUpdateEvent(refreshMyReview)
 
     return () => {
-      !isPublic &&
+      app &&
         unsubscribeReviewUpdateEvent &&
         unsubscribeReviewUpdateEvent(refreshMyReview)
     }
   }, [
-    isPublic,
+    app,
     resourceId,
     resourceType,
     sessionAvailable,
@@ -371,10 +371,10 @@ function ReviewContainer({
               },
             })
             e.preventDefault()
-            if (isPublic) {
-              window.location.href = `/pages/mileage-intro.html`
-            } else {
+            if (app) {
               navigateMileageIntro()
+            } else {
+              window.location.href = `/pages/mileage-intro.html`
             }
           }}
         >
