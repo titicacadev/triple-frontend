@@ -1,10 +1,10 @@
 import { SyntheticEvent, useCallback, useState } from 'react'
 import { List } from '@titicaca/core-elements'
 import {
-  useUserAgentContext,
   useEventTrackingContext,
   useHistoryFunctions,
 } from '@titicaca/react-contexts'
+import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { TransitionType } from '@titicaca/modals'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { Timestamp } from '@titicaca/view-utilities'
@@ -39,7 +39,7 @@ export default function ReviewsList({
   const [selectedReview, setSelectedReview] = useState<ReviewData | undefined>(
     undefined,
   )
-  const { isPublic } = useUserAgentContext()
+  const app = useTripleClientMetadata()
   const { trackEvent } = useEventTrackingContext()
   const { push } = useHistoryFunctions()
   const { navigateUserDetail, navigateReviewDetail, reportReview } =
@@ -75,7 +75,7 @@ export default function ReviewsList({
   const handleMenuClick: ReviewElementProps['onMenuClick'] = useSessionCallback(
     useCallback(
       (e: SyntheticEvent, review: ReviewData) => {
-        if (!isPublic) {
+        if (app) {
           if (myReview && review.id === myReview.id) {
             push(HASH_MY_REVIEW_ACTION_SHEET)
           } else {
@@ -84,7 +84,7 @@ export default function ReviewsList({
           }
         }
       },
-      [isPublic, myReview, push],
+      [app, myReview, push],
     ),
   )
 
@@ -152,7 +152,7 @@ export default function ReviewsList({
             index={i}
             review={review}
             reviewRateDescriptions={reviewRateDescriptions}
-            onUserClick={isPublic ? undefined : handleUserClick}
+            onUserClick={app ? handleUserClick : undefined}
             onMenuClick={handleMenuClick}
             onReviewClick={handleReviewClick}
             onMessageCountClick={handleMessageCountClick}
