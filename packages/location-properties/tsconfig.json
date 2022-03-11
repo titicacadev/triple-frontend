@@ -9,6 +9,9 @@
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/i18n": ["../i18n/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-triple-client-interfaces": [
+        "../react-triple-client-interfaces/src"
+      ],
       "@titicaca/type-definitions": ["../type-definitions/src"]
     }
   },
@@ -22,6 +25,9 @@
     },
     {
       "path": "../i18n"
+    },
+    {
+      "path": "../react-triple-client-interfaces"
     },
     {
       "path": "../type-definitions"

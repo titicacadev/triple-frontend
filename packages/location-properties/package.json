@@ -19,6 +19,7 @@
     "@titicaca/action-sheet": "^6.4.0",
     "@titicaca/core-elements": "^6.4.0",
     "@titicaca/i18n": "^6.4.0",
+    "@titicaca/react-triple-client-interfaces": "^6.4.0",
     "@titicaca/type-definitions": "^6.4.0"
   },
   "peerDependencies": {
