@@ -8,7 +8,10 @@
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/i18n": ["../i18n/src"],
       "@titicaca/popup": ["../popup/src"],
-      "@titicaca/react-contexts": ["../react-contexts/src"]
+      "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-triple-client-interfaces": [
+        "../react-triple-client-interfaces/src"
+      ]
     }
   },
   "include": ["./src"],
@@ -21,6 +24,9 @@
     },
     {
       "path": "../popup"
+    },
+    {
+      "path": "../react-triple-client-interfaces"
     },
     {
       "path": "../react-contexts"
