@@ -2,6 +2,11 @@
 
 ## v6 to v7
 
+### `@titicaca/react-triple-client-interfaces` 사용
+
+- TF 패키지 내부의 웹-앱 동작 분기가 `react-triple-client-interfaces`에 의존하게 되었습니다.
+  - `TripleClientMetadataProvider` 마운트가 필요합니다.
+
 ### 네이밍이 변경된 패키지
 
 #### app-installation-cta
@@ -21,6 +26,11 @@
 
 - PointGeoJSON -> PointGeoJson
 - ListingPOI -> ListingPoi
+
+#### poi-detail
+
+- onCTAClick -> onCtaClick
+- setArticleCardCTA -> setArticleCardCta
 
 ## v5 to v6
 
