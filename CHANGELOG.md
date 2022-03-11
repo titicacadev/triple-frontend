@@ -17,7 +17,6 @@
 
 - react-triple-client-interfaces 패키지로 웹-앱 동작을 분기합니다.
 - public-header [#1898](https://github.com/titicacadev/triple-frontend/pull/1898)
-- public-header [#1898](https://github.com/titicacadev/triple-frontend/pull/1898)
 - router [#2002](https://github.com/titicacadev/triple-frontend/pull/2002)
 - poi-detail [#2005](https://github.com/titicacadev/triple-frontend/pull/2005)
 - ui-flow [#2007](https://github.com/titicacadev/triple-frontend/pull/2007)
