@@ -18,6 +18,9 @@
       "path": "../react-hooks/tsconfig.build.json"
     },
     {
+      "path": "../react-triple-client-interfaces/tsconfig.build.json"
+    },
+    {
       "path": "../router/tsconfig.build.json"
     },
     {
