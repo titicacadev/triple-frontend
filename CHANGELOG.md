@@ -1,5 +1,36 @@
 # CHANGELOG
 
+## 7.0.0
+
+### common
+
+- Update dependency @sentry/nextjs to v6.18.1 [#1966](https://github.com/titicacadev/triple-frontend/pull/1966)
+- Update dependency @swc/core to v1.2.148 [#1975](https://github.com/titicacadev/triple-frontend/pull/1975)
+- Update titicacadev/triple-content packages to v4.13.0 [#1976](https://github.com/titicacadev/triple-frontend/pull/1976)
+- npm 버전 8.5이상으로 강제하고 node version을 17.7.0으로 변경합니다. [#2004](https://github.com/titicacadev/triple-frontend/pull/2004)
+
+### Package별 ESLint 활성화
+
+- eslint-config-triple v3의 점진적 적용을 위해 린트 검사를 비활성화했던 패키지 중 남은 25개 package에 대해 린팅을 적용하여 활성화를 완료합니다. 네이밍 컨벤션이나 no-any 규칙을 수정하면서 발생한 Breaking Change를 포함합니다. (changes on public-header, poi-detail, intersection-observer, scrap-button, style-box, type-definitions, react-hooks, web-storage, listing-filter, static-page-contents, poi-list-elements, form, ab-experiments, app-banner, slider, search, recommended-contents, pricing, app-installation-cta, image-carousel, hub-form, content-sharing, author, action-sheet, i18n) [#1755](https://github.com/titicacadev/triple-frontend/issues/1755)
+
+### react-triple-client-interfaces 적용
+
+- react-triple-client-interfaces 패키지로 웹-앱 동작을 분기합니다.
+- public-header [#1898](https://github.com/titicacadev/triple-frontend/pull/1898)
+- public-header [#1898](https://github.com/titicacadev/triple-frontend/pull/1898)
+- router [#2002](https://github.com/titicacadev/triple-frontend/pull/2002)
+- poi-detail [#2005](https://github.com/titicacadev/triple-frontend/pull/2005)
+- ui-flow [#2007](https://github.com/titicacadev/triple-frontend/pull/2007)
+- review, directions-finder, loction-properties [#2008](https://github.com/titicacadev/triple-frontend/pull/2008)
+
+### standard-action-handler
+
+- standard-action-handler Hook을 생성합니다. [#1967](https://github.com/titicacadev/triple-frontend/pull/1967)
+
+### replies
+
+- 입력창의 오류를 해결합니다. [#1972](https://github.com/titicacadev/triple-frontend/pull/1972)
+
 ## 6.4.0
 
 ### common
