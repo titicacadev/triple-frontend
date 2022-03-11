@@ -21,6 +21,7 @@
     "@titicaca/intersection-observer": "^6.4.0",
     "@titicaca/modals": "^6.4.0",
     "@titicaca/react-hooks": "^6.4.0",
+    "@titicaca/react-triple-client-interfaces": "^6.4.0",
     "@titicaca/router": "^6.4.0",
     "@titicaca/type-definitions": "^6.4.0",
     "@titicaca/ui-flow": "^6.4.0",
