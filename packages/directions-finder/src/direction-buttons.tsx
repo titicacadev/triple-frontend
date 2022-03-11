@@ -1,10 +1,10 @@
 import { useCallback } from 'react'
 import {
-  useUserAgentContext,
   useEventTrackingContext,
   useHistoryFunctions,
   useUriHash,
 } from '@titicaca/react-contexts'
+import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { Button } from '@titicaca/core-elements'
 import { useI18n } from '@titicaca/i18n'
 
@@ -27,7 +27,7 @@ export default function DirectionButtons({
   isDomestic?: boolean
 }) {
   const { t } = useI18n()
-  const { isPublic } = useUserAgentContext()
+  const app = useTripleClientMetadata()
   const uriHash = useUriHash()
   const { push, back, showTransitionModal } = useHistoryFunctions()
   const { trackSimpleEvent } = useEventTrackingContext()
@@ -35,8 +35,8 @@ export default function DirectionButtons({
   const handleAskToLocalsClick = useCallback(() => {
     trackSimpleEvent({ action: '기본정보_현지에서길묻기' })
 
-    isPublic ? showTransitionModal() : push(HASH_ASK_TO_LOCALS_POPUP)
-  }, [trackSimpleEvent, push, showTransitionModal, isPublic])
+    app ? push(HASH_ASK_TO_LOCALS_POPUP) : showTransitionModal()
+  }, [trackSimpleEvent, push, showTransitionModal, app])
 
   return (
     <>
