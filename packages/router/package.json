@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/router",
-  "version": "6.4.0",
+  "version": "7.0.0",
   "description": "Triple Universal Router Component and Functions",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/router",
@@ -16,9 +16,9 @@
     "lib"
   ],
   "dependencies": {
-    "@titicaca/modals": "^6.4.0",
-    "@titicaca/react-triple-client-interfaces": "^6.4.0",
-    "@titicaca/view-utilities": "^6.4.0",
+    "@titicaca/modals": "^7.0.0",
+    "@titicaca/react-triple-client-interfaces": "^7.0.0",
+    "@titicaca/view-utilities": "^7.0.0",
     "qs": "^6.9.4"
   },
   "devDependencies": {
