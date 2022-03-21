@@ -39,5 +39,8 @@
     "react": "*",
     "react-dom": "*",
     "styled-components": ">=4.4.1 < 6"
+  },
+  "devDependencies": {
+    "@types/react-transition-group": "^4.4.4"
   }
 }

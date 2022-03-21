@@ -234,7 +234,7 @@ export default function ActionSheet({
 
   return (
     <CSSTransition
-      nodeRef={overlayRef}
+      nodeRef={overlayRef as unknown as undefined}
       in={open}
       appear
       classNames="action-sheet-fade"
@@ -266,7 +266,7 @@ export default function ActionSheet({
           unmountOnExit={unmountOnExit}
         >
           <Sheet
-            ref={sheetRef}
+            ref={sheetRef as unknown as undefined}
             duration={TRANSITION_DURATION}
             from={from}
             borderRadius={borderRadius}

@@ -3,7 +3,13 @@
   "exclude": ["node_modules", "lib", "**/*.test.*", "**/*.spec.*"],
   "references": [
     {
+      "path": "../app-installation-cta/tsconfig.build.json"
+    },
+    {
       "path": "../core-elements/tsconfig.build.json"
+    },
+    {
+      "path": "../popup/tsconfig.build.json"
     }
   ]
 }
