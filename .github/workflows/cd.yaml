@@ -105,7 +105,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
         run: npm ci
 
-      - run: npm run build:ci
+      - run: npm run build
 
       - name: Release
         env:
@@ -242,7 +242,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
         run: npm ci
 
-      - run: npm run build:ci
+      - run: npm run build
 
       - name: Publish as canary
         env:
