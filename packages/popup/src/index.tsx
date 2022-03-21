@@ -114,7 +114,7 @@ export default function Popup({
 
   return (
     <CSSTransition
-      nodeRef={popupRef}
+      nodeRef={popupRef as unknown as undefined}
       timeout={TRANSITION_DURATION}
       in={open}
       classNames="popup-slide"

@@ -5,13 +5,21 @@
     "rootDir": "src",
     "baseUrl": ".",
     "paths": {
-      "@titicaca/core-elements": ["../core-elements/src"]
+      "@titicaca/app-installation-cta": ["../app-installation-cta/src"],
+      "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/popup": ["../popup/src"]
     }
   },
   "include": ["./src"],
   "references": [
     {
+      "path": "../app-installation-cta"
+    },
+    {
       "path": "../core-elements"
+    },
+    {
+      "path": "../popup"
     }
   ]
 }

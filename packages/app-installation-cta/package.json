@@ -34,5 +34,8 @@
   },
   "peerDependencies": {
     "@titicaca/web-storage": "*"
+  },
+  "devDependencies": {
+    "@types/react-transition-group": "^4.4.4"
   }
 }
