@@ -4,6 +4,7 @@
   "engines": {
     "npm": ">= 8.5"
   },
+  "packageManager": "npm@8.5.5",
   "scripts": {
     "dev": "npm run build && concurrently --names watch:resources,watch:declarations,docs --kill-others 'npm:watch:resources' 'npm:watch:declarations' 'npm:dev-docs'",
     "watch:resources": "node scripts/build-watch",
