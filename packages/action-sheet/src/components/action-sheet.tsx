@@ -208,7 +208,7 @@ export default function ActionSheet({
     className?: string
     unmountOnExit?: boolean
   } & LayeringMixinProps &
-    Partial<CSSTransitionProps>
+    Partial<CSSTransitionProps<HTMLDivElement>>
 >) {
   const overlayRef = useRef<HTMLDivElement>(null)
   const sheetRef = useRef<HTMLDivElement>(null)
@@ -234,7 +234,7 @@ export default function ActionSheet({
 
   return (
     <CSSTransition
-      nodeRef={overlayRef as unknown as undefined}
+      nodeRef={overlayRef}
       in={open}
       appear
       classNames="action-sheet-fade"
@@ -266,7 +266,7 @@ export default function ActionSheet({
           unmountOnExit={unmountOnExit}
         >
           <Sheet
-            ref={sheetRef as unknown as undefined}
+            ref={sheetRef}
             duration={TRANSITION_DURATION}
             from={from}
             borderRadius={borderRadius}
