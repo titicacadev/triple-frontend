@@ -24,13 +24,13 @@
     "@titicaca/app-installation-cta": "^7.1.0",
     "@titicaca/core-elements": "^7.1.0",
     "@titicaca/popup": "^7.1.0",
-    "react-transition-group": "^4.4.1"
+    "react-transition-group": "^4.4.2"
+  },
+  "devDependencies": {
+    "@types/react-transition-group": "^4.4.4"
   },
   "peerDependencies": {
     "react": ">=16.3.0",
     "styled-components": ">=4.4.1 < 6"
-  },
-  "devDependencies": {
-    "@types/react-transition-group": "^4.4.4"
   }
 }

@@ -30,12 +30,12 @@
   "dependencies": {
     "@titicaca/color-palette": "^7.1.0",
     "@titicaca/core-elements": "^7.1.0",
-    "react-transition-group": "^4.4.1"
-  },
-  "peerDependencies": {
-    "@titicaca/web-storage": "*"
+    "react-transition-group": "^4.4.2"
   },
   "devDependencies": {
     "@types/react-transition-group": "^4.4.4"
+  },
+  "peerDependencies": {
+    "@titicaca/web-storage": "*"
   }
 }
