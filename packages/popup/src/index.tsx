@@ -102,7 +102,7 @@ export default function Popup({
     noNavbar?: boolean
     unmountOnExit?: boolean
   } & LayeringMixinProps &
-    Partial<CSSTransitionProps>
+    Partial<CSSTransitionProps<HTMLDivElement>>
 >) {
   const popupRef = useRef<HTMLDivElement>(null)
 
@@ -114,7 +114,7 @@ export default function Popup({
 
   return (
     <CSSTransition
-      nodeRef={popupRef as unknown as undefined}
+      nodeRef={popupRef}
       timeout={TRANSITION_DURATION}
       in={open}
       classNames="popup-slide"
