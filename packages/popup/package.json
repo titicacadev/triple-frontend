@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@titicaca/core-elements": "^7.1.0",
-    "react-transition-group": "^4.4.1"
+    "react-transition-group": "^4.4.2"
   },
   "devDependencies": {
     "@types/react-transition-group": "^4.4.4"
