@@ -7,6 +7,7 @@ import {
 } from '@titicaca/react-contexts'
 import { TripleClientMetadataProvider } from '@titicaca/react-triple-client-interfaces'
 import { GlobalStyle } from '@titicaca/core-elements'
+import MockDate from 'mockdate'
 
 export function globalStyleDecorator(Story: StoryFn) {
   return (
@@ -117,4 +118,9 @@ export function tripleClientMetadataDecorator(Story: StoryFn) {
       <Story />
     </TripleClientMetadataProvider>
   )
+}
+
+export function newDateMockingDecorator(Story: StoryFn) {
+  MockDate.set('1/1/2022')
+  return <Story />
 }
