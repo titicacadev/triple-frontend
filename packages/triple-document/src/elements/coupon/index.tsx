@@ -60,6 +60,7 @@ export default function Coupon({
         <CouponGroupDownloadButton
           verificationType={verificationType}
           groupId={identifier}
+          enabledAt={enabledAt}
           onClick={handleCouponClick}
         />
       )}
