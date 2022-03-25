@@ -1,7 +1,7 @@
 import { DayPicker } from '@titicaca/date-picker'
 import { ComponentStoryObj, Meta } from '@storybook/react'
 
-import { newDateMockingDecorator } from 'decorators'
+import { newDateMockingDecorator } from '../../decorators'
 
 export default {
   title: 'date-picker / DayPicker',
