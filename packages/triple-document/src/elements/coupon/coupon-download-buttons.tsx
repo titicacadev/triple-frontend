@@ -119,7 +119,7 @@ export function CouponDownloadButton({
   const timePassed = useDownloadTimePassed(enabledAt)
 
   const buttonDisabled =
-    couponFetched === false && needLogin === false && !timePassed
+    (couponFetched === false && needLogin === false) || !timePassed
 
   useEffect(() => {
     async function fetchCoupon() {
