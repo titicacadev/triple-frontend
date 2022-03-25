@@ -279,7 +279,7 @@ export function CouponGroupDownloadButton({
   const downloaded =
     coupons.length === 0 || coupons.every(({ downloaded }) => downloaded)
   const buttonDisabled =
-    coupons.length === 0 && needLogin === false && !timePassed
+    (coupons.length === 0 && needLogin === false) || !timePassed
 
   const raiseDownloadedAlert = () =>
     push(`${groupId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
