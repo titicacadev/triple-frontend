@@ -254,10 +254,12 @@ async function downloadCoupons(coupons: CouponData[]) {
 export function CouponGroupDownloadButton({
   groupId,
   verificationType,
+  enabledAt,
   onClick,
 }: {
   groupId: string
   verificationType?: VerificationType
+  enabledAt?: string
   onClick?: () => void
 }) {
   const [coupons, setCoupons] = useState<CouponData[]>([])
@@ -272,10 +274,12 @@ export function CouponGroupDownloadButton({
   const { login } = useSessionControllers()
 
   const [needLogin, setNeedLogin] = useState(false)
+  const timePassed = useDownloadTimePassed(enabledAt)
 
   const downloaded =
     coupons.length === 0 || coupons.every(({ downloaded }) => downloaded)
-  const buttonDisabled = coupons.length === 0 && needLogin === false
+  const buttonDisabled =
+    coupons.length === 0 && needLogin === false && !timePassed
 
   const raiseDownloadedAlert = () =>
     push(`${groupId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
