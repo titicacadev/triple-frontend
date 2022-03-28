@@ -1,8 +1,6 @@
 import { get } from '@titicaca/fetcher'
 
-import type { VerificationType } from './types'
-
-export function confirmVerification(type: VerificationType): Promise<{
+export function confirmVerification(type: string): Promise<{
   verified: boolean | undefined
   phoneNumber?: string
   error?: string
@@ -12,6 +10,8 @@ export function confirmVerification(type: VerificationType): Promise<{
     return confirmSmsVerification()
   } else if (type === 'personal-id-verification-with-residence') {
     return confirmPersonalIdVerificationWithResidence()
+  } else if (type.match(/^external-promotion-/)) {
+    return confirmExternalPromotionEligibility(type)
   } else {
     return confirmPersonalIdVerification()
   }
@@ -58,6 +58,24 @@ async function confirmPersonalIdVerification() {
     return { verified: false }
   } else if (response.ok) {
     const { mobile: phoneNumber, ...payload } = response.parsedBody
+
+    return { verified: true, phoneNumber, payload }
+  } else {
+    return { verified: undefined, error: JSON.stringify(response.parsedBody) }
+  }
+}
+
+async function confirmExternalPromotionEligibility(type: string) {
+  const externalPromotionId = type.replace(/^external-promotion-/, '')
+
+  const response = await get<{
+    phoneNumber?: string
+  }>(`/api/users/external-promotion/${externalPromotionId}/eligibility`)
+
+  if (response.status === 404) {
+    return { verified: false }
+  } else if (response.ok) {
+    const { phoneNumber, ...payload } = response.parsedBody
 
     return { verified: true, phoneNumber, payload }
   } else {
