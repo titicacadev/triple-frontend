@@ -268,4 +268,120 @@ describe('confirmVerification', () => {
       expect(result).toHaveProperty('verified', undefined)
     })
   })
+
+  describe('external-promotion-*', () => {
+    it('invokes external-promotion eligibility check api', async () => {
+      const getMock = (
+        get as unknown as jest.MockedFunction<
+          () => Promise<{
+            status: number
+            parsedBody: unknown
+            ok: boolean
+          }>
+        >
+      ).mockImplementation(() =>
+        Promise.resolve({
+          status: 404,
+          parsedBody: { message: 'not found' },
+          ok: false,
+        }),
+      )
+
+      expect(
+        await confirmVerification('external-promotion-kto-stay-2022'),
+      ).toStrictEqual({
+        verified: false,
+      })
+      expect(getMock).toHaveBeenCalledWith(
+        '/api/users/external-promotion/kto-stay-2022/eligibility',
+      )
+    })
+
+    it('returns not-verified state when it is not verified', async () => {
+      ;(
+        get as unknown as jest.MockedFunction<
+          () => Promise<{
+            status: number
+            parsedBody: unknown
+            ok: boolean
+          }>
+        >
+      ).mockImplementation(() =>
+        Promise.resolve({
+          status: 404,
+          parsedBody: { message: 'not found' },
+          ok: false,
+        }),
+      )
+
+      expect(
+        await confirmVerification('external-promotion-kto-stay-2022'),
+      ).toStrictEqual({
+        verified: false,
+      })
+    })
+
+    it('returns verified state when it is verified', async () => {
+      ;(
+        get as unknown as jest.MockedFunction<
+          () => Promise<{
+            status: number
+            parsedBody: unknown
+            ok: boolean
+          }>
+        >
+      ).mockImplementation(() =>
+        Promise.resolve({
+          status: 200,
+          parsedBody: {
+            userId: 28,
+            residence: [
+              {
+                key: 'korea-sido',
+                value: '11',
+              },
+              {
+                key: 'korea-sgg',
+                value: '11710',
+              },
+            ],
+            nameChecked: true,
+            phoneNumber: '01012345678',
+          },
+          ok: true,
+        }),
+      )
+      const result = await confirmVerification(
+        'external-promotion-kto-stay-2022',
+      )
+
+      expect(result).toHaveProperty('verified', true)
+      expect(result).toHaveProperty('phoneNumber', '01012345678')
+    })
+
+    it('returns undefined state when it is responded with an error', async () => {
+      ;(
+        get as unknown as jest.MockedFunction<
+          () => Promise<{
+            status: number
+            parsedBody: unknown
+            ok: boolean
+          }>
+        >
+      ).mockImplementation(() =>
+        Promise.resolve({
+          status: 500,
+          parsedBody: {
+            message: 'internal server error',
+          },
+          ok: false,
+        }),
+      )
+      const result = await confirmVerification(
+        'external-promotion-kto-stay-2022',
+      )
+
+      expect(result).toHaveProperty('verified', undefined)
+    })
+  })
 })
