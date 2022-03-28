@@ -4,7 +4,6 @@ import { useExternalRouter } from '@titicaca/router'
 
 import { useVerifiedMessageListener, VerifiedMessage } from './verified-message'
 import { confirmVerification } from './confirmation-services'
-import type { VerificationType } from './types'
 
 interface VerificationState {
   phoneNumber?: string
@@ -13,18 +12,12 @@ interface VerificationState {
   payload?: unknown
 }
 
-const TARGET_PAGE_PATH: Record<VerificationType, string> = {
-  'sms-verification': '/verifications/',
-  'personal-id-verification-with-residence': '/verifications/residence',
-  'personal-id-verification': '/verifications/personal-id-verification',
-}
-
 export function useUserVerification({
   verificationType = 'sms-verification',
   verificationContext = 'purchase',
   forceVerification,
 }: {
-  verificationType?: VerificationType
+  verificationType?: string
   verificationContext?: 'purchase' | 'cash'
   forceVerification: boolean
 }) {
@@ -38,7 +31,10 @@ export function useUserVerification({
   )
 
   const initiateVerification = useCallback(() => {
-    const href = `${TARGET_PAGE_PATH[verificationType]}?context=${verificationContext}`
+    const href = getVerificationPagePath({
+      verificationType,
+      verificationContext,
+    })
 
     routeExternally({ href, target: 'new', noNavbar: true })
   }, [routeExternally, verificationContext, verificationType])
@@ -86,4 +82,32 @@ export function useUserVerification({
   })
 
   return { verificationState, initiateVerification }
+}
+
+const PREDEFINED_TARGET_PAGE_PATHS: Record<string, string> = {
+  'sms-verification': '/verifications/',
+  'personal-id-verification-with-residence': '/verifications/residence',
+  'personal-id-verification': '/verifications/personal-id-verification',
+}
+
+function getVerificationPagePath({
+  verificationType,
+  verificationContext,
+}: {
+  verificationType: string
+  verificationContext?: 'purchase' | 'cash'
+}) {
+  const predefinedTargetPagePath =
+    PREDEFINED_TARGET_PAGE_PATHS[verificationType]
+  const querystring = `?context=${verificationContext}`
+
+  if (predefinedTargetPagePath) {
+    return `${predefinedTargetPagePath}${querystring}`
+  } else if (verificationType.match(/^external-promotion-/)) {
+    const promotionId = verificationType.replace(/^external-promotion-/, '')
+
+    return `/verifications/external-promotion/${promotionId}${querystring}`
+  } else {
+    throw new Error('Unsupported user verification method')
+  }
 }

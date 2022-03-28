@@ -3,7 +3,6 @@ import { useExternalRouter } from '@titicaca/router'
 
 import { useUserVerification } from './use-user-verification'
 import './confirmation-services'
-import type { VerificationType } from './types'
 
 jest.mock('@titicaca/react-hooks', () => ({
   useVisibilityChange: jest.fn(),
@@ -51,9 +50,13 @@ describe('인증 시작함수를 호출하면 인증 페이지를 엽니다.', (
       ['sms-verification', '/verifications/'],
       ['personal-id-verification-with-residence', '/verifications/residence'],
       ['personal-id-verification', '/verifications/personal-id-verification'],
+      [
+        'external-promotion-kto-stay-2022',
+        '/verifications/external-promotion/kto-stay-2022',
+      ],
     ] as const)(
       'VerificationType: %s, path: %s',
-      async (verificationType: VerificationType | undefined, href: string) => {
+      async (verificationType: string | undefined, href: string) => {
         const { routeExternally } = await prepareTest({ verificationType })
 
         expect(routeExternally).toBeCalledWith(
