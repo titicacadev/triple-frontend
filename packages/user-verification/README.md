@@ -16,7 +16,7 @@ const {
 
 ### Props
 
-- `verificationContext`: 사용자 인중이 이루어지는 맥락을 명시합니다.
+- `verificationContext`: 사용자 인증이 이루어지는 맥락을 명시합니다.
   `purchase` (default)와 `cash`를 값으로 가질 수 있습니다.
 - `forceVerification`: 컴포넌트 Mount와 동시에 인증 플로우로 유도할지
   결정합니다.
