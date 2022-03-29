@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 7.1.0
+
+### common
+
+- Update dependency @swc/core to v1.2.159 [#2012](https://github.com/titicacadev/triple-frontend/pull/2012)
+
+### user-verification
+
+- Docs의 오타를 수정합니다. [#2019](https://github.com/titicacadev/triple-frontend/pull/2019)
+- External promotion에 대응 가능하도록 인터페이스를 확장합니다. [#2018](https://github.com/titicacadev/triple-frontend/pull/2018)
+
+### triple-document
+
+- 타이머 기능 그룹 다운로드 버튼에 적용 [#2015](https://github.com/titicacadev/triple-frontend/pull/2015)
+
 ## 7.0.0
 
 ### common
