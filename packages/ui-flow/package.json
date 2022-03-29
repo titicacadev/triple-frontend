@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/ui-flow",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "Functions, hooks, and/or components used to construct general UI flow",
   "keywords": [
     "session",
@@ -22,8 +22,8 @@
     "lib"
   ],
   "dependencies": {
-    "@titicaca/modals": "^7.0.0",
-    "@titicaca/react-triple-client-interfaces": "^7.0.0",
+    "@titicaca/modals": "^7.1.0",
+    "@titicaca/react-triple-client-interfaces": "^7.1.0",
     "qs": "^6.9.0"
   },
   "peerDependencies": {
