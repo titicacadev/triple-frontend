@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/user-verification",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "user verification",
   "keywords": [
     "triple",
@@ -22,12 +22,12 @@
     "lib"
   ],
   "dependencies": {
-    "@titicaca/core-elements": "^7.0.0",
-    "@titicaca/fetcher": "^7.0.0",
-    "@titicaca/modals": "^7.0.0",
-    "@titicaca/react-hooks": "^7.0.0",
-    "@titicaca/react-triple-client-interfaces": "^7.0.0",
-    "@titicaca/router": "^7.0.0"
+    "@titicaca/core-elements": "^7.1.0",
+    "@titicaca/fetcher": "^7.1.0",
+    "@titicaca/modals": "^7.1.0",
+    "@titicaca/react-hooks": "^7.1.0",
+    "@titicaca/react-triple-client-interfaces": "^7.1.0",
+    "@titicaca/router": "^7.1.0"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*"
