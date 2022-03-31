@@ -17,7 +17,7 @@
   ],
   "dependencies": {
     "@titicaca/color-palette": "^7.1.0",
-    "@titicaca/content-type-definitions": "4.13.0",
+    "@titicaca/content-type-definitions": "4.16.0",
     "@titicaca/core-elements": "^7.1.0",
     "@titicaca/fetcher": "^7.1.0",
     "@titicaca/intersection-observer": "^7.1.0",
