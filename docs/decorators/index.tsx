@@ -4,6 +4,7 @@ import {
   SessionContextProvider,
   EnvProvider,
   UserAgentProvider,
+  EventMetadataProvider,
 } from '@titicaca/react-contexts'
 import { TripleClientMetadataProvider } from '@titicaca/react-triple-client-interfaces'
 import { GlobalStyle } from '@titicaca/core-elements'
@@ -123,4 +124,12 @@ export function tripleClientMetadataDecorator(Story: StoryFn) {
 export function newDateMockingDecorator(Story: StoryFn) {
   MockDate.set('1/1/2022')
   return <Story />
+}
+
+export function eventMetadataDecorator(Story: StoryFn) {
+  return (
+    <EventMetadataProvider>
+      <Story />
+    </EventMetadataProvider>
+  )
 }
