@@ -19,6 +19,7 @@ export default {
       options: ['itinerary', 'review', 'article'],
       control: {
         type: 'select',
+        required: true,
       },
     },
     placeholders: {
@@ -44,7 +45,6 @@ export default {
 } as Meta
 
 export const BaseReplies: ComponentStoryObj<typeof Replies> = {
-  storyName: '기본',
   args: {
     resourceId: 'c31a0e75-0053-4ef2-9407-d2bdc7f116e3',
     resourceType: 'article',
