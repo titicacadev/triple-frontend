@@ -29,14 +29,14 @@ export default function Replies({
   resourceType,
   placeholders,
   isFixedBottomInput,
-  listPadding,
+  padding,
   size = 10,
 }: {
   resourceId: string
   resourceType: ResourceType
   placeholders?: Placeholders
   isFixedBottomInput?: boolean
-  listPadding?: MarginPadding
+  padding?: MarginPadding
   size?: number
 }) {
   const [replies, setReplies] = useState<Reply[]>([])
@@ -141,7 +141,7 @@ export default function Replies({
       <ReplyList
         replies={replies}
         isMoreButtonActive={hasNextPage}
-        listPadding={listPadding}
+        padding={padding}
         fetchMoreReplies={fetchMoreReplies}
         focusInput={focusInput}
         onReplyDelete={handleReplyDelete}

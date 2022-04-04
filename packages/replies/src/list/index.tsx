@@ -21,7 +21,7 @@ const HASH_EDIT_CLOSE_MODAL = 'reply.edit-close-modal'
 export default function ReplyList({
   replies,
   isMoreButtonActive,
-  listPadding = { left: 30, right: 30, bottom: 30 },
+  padding = { left: 30, right: 30, bottom: 30 },
   fetchMoreReplies,
   focusInput,
   onReplyDelete,
@@ -29,7 +29,7 @@ export default function ReplyList({
 }: {
   replies: ReplyType[]
   isMoreButtonActive: boolean
-  listPadding?: MarginPadding
+  padding?: MarginPadding
   fetchMoreReplies: (reply?: ReplyType) => void
   focusInput: () => void
   onReplyDelete: (response: ReplyType) => void
@@ -72,7 +72,7 @@ export default function ReplyList({
       {replies.length <= 0 ? (
         <NotExistReplies />
       ) : (
-        <Container padding={listPadding}>
+        <Container padding={padding}>
           {isMoreButtonActive ? (
             <Text
               padding={{ top: 20 }}
