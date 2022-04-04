@@ -1,4 +1,10 @@
-import { Container, HR1, List, Text } from '@titicaca/core-elements'
+import {
+  Container,
+  HR1,
+  List,
+  Text,
+  MarginPadding,
+} from '@titicaca/core-elements'
 import { Confirm } from '@titicaca/modals'
 import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
@@ -15,6 +21,7 @@ const HASH_EDIT_CLOSE_MODAL = 'reply.edit-close-modal'
 export default function ReplyList({
   replies,
   isMoreButtonActive,
+  listPadding = { left: 30, right: 30, bottom: 30 },
   fetchMoreReplies,
   focusInput,
   onReplyDelete,
@@ -22,6 +29,7 @@ export default function ReplyList({
 }: {
   replies: ReplyType[]
   isMoreButtonActive: boolean
+  listPadding?: MarginPadding
   fetchMoreReplies: (reply?: ReplyType) => void
   focusInput: () => void
   onReplyDelete: (response: ReplyType) => void
@@ -64,7 +72,7 @@ export default function ReplyList({
       {replies.length <= 0 ? (
         <NotExistReplies />
       ) : (
-        <Container padding={{ bottom: 30, left: 30, right: 30 }}>
+        <Container padding={listPadding}>
           {isMoreButtonActive ? (
             <Text
               padding={{ top: 20 }}
