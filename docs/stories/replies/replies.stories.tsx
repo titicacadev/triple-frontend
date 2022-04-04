@@ -37,7 +37,7 @@ export default {
       required: false,
       defaultValue: 10,
     },
-    isFixedBottomInput: {
+    isFormFixed: {
       type: 'boolean',
       required: false,
     },
