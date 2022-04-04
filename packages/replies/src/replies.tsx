@@ -1,4 +1,6 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
+import { Container, MarginPadding } from '@titicaca/core-elements'
+import styled from 'styled-components'
 
 import { fetchReplies, fetchChildReplies } from './replies-api-client'
 import { Reply, ResourceType, Placeholders } from './types'
@@ -14,15 +16,29 @@ import {
   editReply,
 } from './reply-tree-manipulators'
 
+const FixedBottom = styled(Container).attrs({
+  backgroundColor: 'white',
+  position: 'fixed',
+})`
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+`
+
 export default function Replies({
   resourceId,
   resourceType,
   placeholders,
+  isFixedBottomInput,
+  listPadding,
   size = 10,
 }: {
   resourceId: string
   resourceType: ResourceType
   placeholders?: Placeholders
+  isFixedBottomInput?: boolean
+  listPadding?: MarginPadding
   size?: number
 }) {
   const [replies, setReplies] = useState<Reply[]>([])
@@ -120,27 +136,32 @@ export default function Replies({
     registerRef.current?.focusInput()
   }
 
+  const InputContainer = isFixedBottomInput ? FixedBottom : Container
+
   return (
     <RepliesProvider>
       <ReplyList
         replies={replies}
         isMoreButtonActive={hasNextPage}
+        listPadding={listPadding}
         fetchMoreReplies={fetchMoreReplies}
         focusInput={focusInput}
         onReplyDelete={handleReplyDelete}
         onReplyEdit={handleReplyEdit}
       />
 
-      <GuideText />
+      <InputContainer>
+        <GuideText />
 
-      <Register
-        ref={registerRef}
-        resourceId={resourceId}
-        resourceType={resourceType}
-        placeholders={placeholders}
-        onReplyAdd={handleReplyAdd}
-        onReplyEdit={handleReplyEdit}
-      />
+        <Register
+          ref={registerRef}
+          resourceId={resourceId}
+          resourceType={resourceType}
+          placeholders={placeholders}
+          onReplyAdd={handleReplyAdd}
+          onReplyEdit={handleReplyEdit}
+        />
+      </InputContainer>
     </RepliesProvider>
   )
 }
