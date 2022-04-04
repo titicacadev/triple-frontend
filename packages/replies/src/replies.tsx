@@ -28,14 +28,14 @@ export default function Replies({
   resourceId,
   resourceType,
   placeholders,
-  isFixedBottomInput,
+  isFormFixed,
   padding,
   size = 10,
 }: {
   resourceId: string
   resourceType: ResourceType
   placeholders?: Placeholders
-  isFixedBottomInput?: boolean
+  isFormFixed?: boolean
   padding?: MarginPadding
   size?: number
 }) {
@@ -134,7 +134,7 @@ export default function Replies({
     registerRef.current?.focusInput()
   }
 
-  const InputContainer = isFixedBottomInput ? FixedBottom : Container
+  const InputContainer = isFormFixed ? FixedBottom : Container
 
   return (
     <RepliesProvider>
