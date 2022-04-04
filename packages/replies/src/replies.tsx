@@ -19,10 +19,8 @@ import {
 const FixedBottom = styled(Container).attrs({
   backgroundColor: 'white',
   position: 'fixed',
+  positioning: { left: 0, right: 0, bottom: 0 },
 })`
-  bottom: 0;
-  left: 0;
-  right: 0;
   z-index: 3;
 `
 
