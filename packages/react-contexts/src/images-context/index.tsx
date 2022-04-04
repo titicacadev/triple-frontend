@@ -20,7 +20,7 @@ import reducer, {
   reinitializeImages,
 } from './reducer'
 
-interface ImagesContext {
+interface ImagesContextValue {
   images: ImageMeta[]
   total: number
   loading: boolean
@@ -40,7 +40,7 @@ interface ImagesProviderProps {
   total?: number
 }
 
-const Context = createContext<ImagesContext>({
+const ImagesContext = createContext<ImagesContextValue>({
   images: [],
   total: 0,
   loading: false,
@@ -167,7 +167,9 @@ export function ImagesProvider({
     [fetch, images, indexOf, total, loading, reFetch],
   )
 
-  return <Context.Provider value={value}>{children}</Context.Provider>
+  return (
+    <ImagesContext.Provider value={value}>{children}</ImagesContext.Provider>
+  )
 }
 
 async function fetchImages(
@@ -194,13 +196,19 @@ async function fetchImages(
 }
 
 export function useImagesContext() {
-  return useContext(Context)
+  const context = useContext(ImagesContext)
+
+  if (context === undefined) {
+    throw new Error('ImagesProvider is not mounted')
+  }
+
+  return context
 }
 
 export interface WithImagesBaseProps {
-  images: ImagesContext['images']
-  totalImagesCount: ImagesContext['total']
-  imagesActions: ImagesContext['actions']
+  images: ImagesContextValue['images']
+  totalImagesCount: ImagesContextValue['total']
+  imagesActions: ImagesContextValue['actions']
 }
 
 export function withImages<P extends DeepPartial<WithImagesBaseProps>>(
@@ -210,7 +218,7 @@ export function withImages<P extends DeepPartial<WithImagesBaseProps>>(
     props: Omit<P, 'images' | 'totalImagesCount' | 'imagesActions'>,
   ) {
     return (
-      <Context.Consumer>
+      <ImagesContext.Consumer>
         {({ images, total, actions }) => {
           return (
             <Component
@@ -223,7 +231,7 @@ export function withImages<P extends DeepPartial<WithImagesBaseProps>>(
             />
           )
         }}
-      </Context.Consumer>
+      </ImagesContext.Consumer>
     )
   }
 }
