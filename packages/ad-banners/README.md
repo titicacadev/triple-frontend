@@ -1,5 +1,3 @@
-## chromatic 테스트용 diff
-
 # `@titicaca/ad-banners`
 
 광고 배너 목록을 표시하는 컴포넌트입니다.
