@@ -19,7 +19,6 @@ export default {
       options: ['itinerary', 'review', 'article'],
       control: {
         type: 'select',
-        required: true,
       },
     },
     placeholders: {
@@ -37,11 +36,15 @@ export default {
       required: false,
       defaultValue: 10,
     },
+    isFixedBottomInput: {
+      type: 'boolean',
+      required: false,
+    },
   },
 } as Meta
 
 export const BaseReplies: ComponentStoryObj<typeof Replies> = {
-  storyName: '기본 댓글',
+  storyName: '기본',
   args: {
     resourceId: 'c31a0e75-0053-4ef2-9407-d2bdc7f116e3',
     resourceType: 'article',
@@ -51,3 +54,5 @@ export const BaseReplies: ComponentStoryObj<typeof Replies> = {
     },
   },
 }
+
+BaseReplies.storyName = '기본'
