@@ -67,6 +67,7 @@ export function TnaProductWithPrice({
     applicableCoupon,
     expectedApplicableCoupon,
     scraped,
+    bestSelfPackageDiscountSpec,
   },
   index,
   onIntersect,
@@ -95,6 +96,7 @@ export function TnaProductWithPrice({
     applicableCoupon,
     expectedApplicableCoupon,
   })
+  const hasSelfPackageBenefit = !!bestSelfPackageDiscountSpec
 
   const handleIntersectionChange = useCallback(
     ({ isIntersecting }: IntersectionObserverEntry) => {
@@ -189,6 +191,12 @@ export function TnaProductWithPrice({
               hasAmountAfterUsingCouponPrice={hasAmountAfterUsingCouponPrice}
               displayPricePolicy={displayPricePolicy}
             />
+          )}
+
+          {hasSelfPackageBenefit && (
+            <Text bold size="small" color="gray700" margin={{ top: 4 }}>
+              셀프패키지 추가할인 가능
+            </Text>
           )}
         </Container>
       </Container>

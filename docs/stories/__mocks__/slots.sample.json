@@ -41,7 +41,26 @@
         ],
         "productId": "cb144134-401d-4450-aa1f-346686cb0f7b",
         "eventTags": [],
-        "orderPrice": 60900
+        "orderPrice": 60900,
+        "bestSelfPackageDiscountSpec": {
+          "tripId": 241624,
+          "level": 1,
+          "schedule": {
+            "from": "2022-04-17",
+            "to": "2022-04-19"
+          },
+          "destinations": [
+            {
+              "type": "triple-region",
+              "id": "759174cc-0814-4400-a420-5668a0517edd"
+            }
+          ],
+          "discountPolicy": {
+            "discountRate": 2.0,
+            "maxDiscountAmount": 100000
+          },
+          "token": "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjI0MTYyNCwibHYiOjEsImRjciI6Mi4wLCJzdWIiOiJzZWxmcGFjayJ9.e2Q0UrviSuAw17JriMR_NzjYFRr7NpmBqueXr_s0g0A"
+        }
       }
     ]
   },
