@@ -61,4 +61,21 @@ export interface TnaProductData {
   eventTags?: string[]
   userId?: number
   scraped?: boolean
+  bestSelfPackageDiscountSpec?: {
+    tripId: number
+    level: number
+    schedule: {
+      from: string
+      to: string
+    }
+    destinations: {
+      type: string
+      id: string
+    }[]
+    discountPolicy: {
+      discountRate: number
+      maxDiscountAmount: number
+    }
+    token: string
+  }
 }
