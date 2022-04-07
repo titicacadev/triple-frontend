@@ -59,7 +59,7 @@
             "discountRate": 2.0,
             "maxDiscountAmount": 100000
           },
-          "token": "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjI0MTYyNCwibHYiOjEsImRjciI6Mi4wLCJzdWIiOiJzZWxmcGFjayJ9.e2Q0UrviSuAw17JriMR_NzjYFRr7NpmBqueXr_s0g0A"
+          "token": "token"
         }
       }
     ]
