@@ -33,7 +33,8 @@
   "devDependencies": {
     "@types/isomorphic-fetch": "^0.0.35",
     "@types/qs": "^6.9.2",
-    "@types/ua-parser-js": "^0.7.33"
+    "@types/ua-parser-js": "^0.7.33",
+    "firebase": "^7.24.0"
   },
   "peerDependencies": {
     "@titicaca/triple-web-to-native-interfaces": "*",
