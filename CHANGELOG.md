@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 7.2.0
+
+### common
+
+- turborepo 추가 [#2011](https://github.com/titicacadev/triple-frontend/pull/2011)
+- codecov patch check를 끕니다. [#2026](https://github.com/titicacadev/triple-frontend/pull/2026)
+- Chromatic 변경 사항에서 오늘 날짜 제외 [#2017](https://github.com/titicacadev/triple-frontend/pull/2017)
+- Update Internal Packages to v4.16.0 [#2020](https://github.com/titicacadev/triple-frontend/pull/2020)
+- Update SWC Packages [#2013](https://github.com/titicacadev/triple-frontend/pull/2013)
+- update dependency @swc/core to v1.2.165 [#2023](https://github.com/titicacadev/triple-frontend/pull/2023)
+- update dependency next to v12.1.4 [#2016](https://github.com/titicacadev/triple-frontend/pull/2016)
+- update dependency @sentry/nextjs to v6.19.6 [#2000](https://github.com/titicacadev/triple-frontend/pull/2000)
+
+### triple-document
+
+- Tna Slot에 셀프패키지 노출 [#2024](https://github.com/titicacadev/triple-frontend/pull/2024)
+
+### replies
+
+- 입력창을 화면 최하단에 고정하는 props를 추가합니다. [#2014](https://github.com/titicacadev/triple-frontend/pull/2014)
+
 ## 7.1.0
 
 ### common
