@@ -25,6 +25,7 @@ export const GlobalStyle = createGlobalStyle`
     --color-orange: rgba(255, 150, 35, 1);
     --color-red: rgba(253, 46, 105, 1);
     --color-red100: rgba(253, 46, 105, 0.1);
+    --color-red50: rgba(253, 46, 105, 0.05);
     --color-deepOrange: rgba(255, 91, 46, 1);
     --color-mediumRed: rgba(255, 33, 60, 1);
     --color-deepRed: rgba(190, 0, 23, 1);

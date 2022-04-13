@@ -114,6 +114,11 @@ export const red = 'rgba(253, 46, 105, 1)'
 export const red100 = 'rgba(253, 46, 105, 0.1)'
 
 /**
+ * @deprecated :root에 선언된 --color-red100를 사용해주세요.
+ */
+export const red50 = 'rgba(253, 46, 105, 0.05)'
+
+/**
  * @deprecated :root에 선언된 --color-deepOrange를 사용해주세요.
  */
 export const deepOrange = 'rgba(255, 91, 46, 1)'
