@@ -20,6 +20,8 @@ import CopyActionSheet from '../copy-action-sheet'
 import AreaNames from '../area-names'
 import { HASH_COPY_ACTION_SHEET } from '../constants'
 
+import BusinessHoursNote from './business-hours-note'
+
 const LongClickableSection = longClickable(Section)
 
 interface Area {
@@ -37,6 +39,10 @@ export default function DetailHeader({
   onReviewsRatingClick,
   onCopy,
   vicinity,
+  currentBusinessHours,
+  todayBusinessHours,
+  permanentlyClosed,
+  onBusinessHoursClick,
   ...props
 }: {
   names: TranslatedProperty
@@ -54,6 +60,10 @@ export default function DetailHeader({
    * @deprecated areaName 으로 통합됩니다.
    */
   vicinity?: string
+  currentBusinessHours?: null | { from: number; to: number; dayOfWeek: number }
+  todayBusinessHours?: string
+  permanentlyClosed?: boolean
+  onBusinessHoursClick?: () => void
 } & Parameters<typeof Section>['0']) {
   const app = useTripleClientMetadata()
   const uriHash = useUriHash()
@@ -75,8 +85,21 @@ export default function DetailHeader({
         <Text size="tiny" alpha={0.5}>
           {names.local || names.en}
         </Text>
+
+        {!permanentlyClosed && onBusinessHoursClick ? (
+          <BusinessHoursNote
+            currentBusinessHours={currentBusinessHours}
+            todayBusinessHours={todayBusinessHours}
+            onClick={onBusinessHoursClick}
+          />
+        ) : null}
+
         {(reviewsCount > 0 || scrapsCount > 0) && (
-          <Container margin={{ top: 14 }}>
+          <Container
+            margin={{
+              top: !permanentlyClosed && onBusinessHoursClick ? 10 : 14,
+            }}
+          >
             {reviewsCount > 0 && (
               <Text
                 inline
