@@ -60,7 +60,6 @@ export const WithBusinessHoursNote: ComponentStoryObj<typeof DetailHeader> = {
     scrapsCount: 682,
     reviewsCount: 13859,
     reviewsRating: 4.45,
-    currentBusinessHours: { dayOfWeek: 1, from: 660, to: 1080 },
     todayBusinessHours: '11:00 - 18:00',
     onBusinessHoursClick: undefined,
     permanentlyClosed: false,
