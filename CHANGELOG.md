@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 7.3.0
+
+### color-palette
+
+- red50 color 추가 [#2030](https://github.com/titicacadev/triple-frontend/pull/2030)
+
+### core-elements
+
+- global style 에 red50 color 추가 [#2030](https://github.com/titicacadev/triple-frontend/pull/2030)
+
 ## 7.2.0
 
 ### common
