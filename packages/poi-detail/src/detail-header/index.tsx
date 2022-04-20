@@ -97,7 +97,7 @@ export default function DetailHeader({
         {(reviewsCount > 0 || scrapsCount > 0) && (
           <Container
             margin={{
-              top: !permanentlyClosed && onBusinessHoursClick ? 10 : 14,
+              top: 15,
             }}
           >
             {reviewsCount > 0 && (
