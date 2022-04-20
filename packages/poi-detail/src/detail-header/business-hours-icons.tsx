@@ -8,19 +8,16 @@ export function TimeIcon() {
       xmlns="http://www.w3.org/2000/svg"
     >
       <rect
-        x="1.68892"
-        y="1.68892"
-        width="12.6222"
-        height="12.6222"
-        rx="6.31111"
-        stroke="#FF213C"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        x="0.888916"
+        y="0.888916"
+        width="14.2222"
+        height="14.2222"
+        rx="7.11111"
+        fill="#FD2E69"
       />
       <path
         d="M10.6667 8.00004H8L8 5.33337"
-        stroke="#FF213C"
+        stroke="white"
         strokeWidth="1.6"
         strokeLinecap="round"
         strokeLinejoin="round"
