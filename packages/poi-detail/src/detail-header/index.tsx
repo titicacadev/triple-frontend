@@ -86,9 +86,8 @@ export default function DetailHeader({
           {names.local || names.en}
         </Text>
 
-        {!permanentlyClosed && onBusinessHoursClick ? (
+        {!permanentlyClosed && onBusinessHoursClick && !currentBusinessHours ? (
           <BusinessHoursNote
-            currentBusinessHours={currentBusinessHours}
             todayBusinessHours={todayBusinessHours}
             onClick={onBusinessHoursClick}
           />
