@@ -59,7 +59,7 @@ export default function DetailHeaderV2({
   ...props
 }: {
   names: TranslatedProperty
-  areas?: Area[]
+  areas?: Area[] | string
   scrapsCount: number
   reviewsCount: number
   reviewsRating: number
