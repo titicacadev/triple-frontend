@@ -96,7 +96,7 @@ export default function DetailHeader({
         {(reviewsCount > 0 || scrapsCount > 0) && (
           <Container
             margin={{
-              top: 15,
+              top: 10,
             }}
           >
             {reviewsCount > 0 && (
