@@ -57,6 +57,10 @@ function DatePicker({
    */
   publicHolidays?: Date[]
 }) {
+  const hasRangeMonth = fromMonth && toMonth
+  const diffRangeMonth = moment(toMonth).diff(moment(fromMonth), 'months')
+  const hasRangeMonthDiff = diffRangeMonth > 0
+
   const disabledDays = useDisabledDays({
     disabledDays: disabledDaysFromProps,
     beforeBlock,
@@ -78,8 +82,13 @@ function DatePicker({
   )
 
   const formattedToMonth = useMemo(
-    () => (toMonth ? moment(toMonth).toDate() : undefined),
-    [toMonth],
+    () =>
+      toMonth
+        ? hasRangeMonthDiff
+          ? moment(toMonth).toDate()
+          : moment(toMonth).add(1, 'month').toDate()
+        : undefined,
+    [hasRangeMonthDiff, toMonth],
   )
 
   const modifiers: Partial<Modifiers> = useMemo(
@@ -131,10 +140,17 @@ function DatePicker({
         localeUtils={LOCALE_UTILS}
         selectedDays={selectedDay}
         onDayClick={handleDayClick}
-        numberOfMonths={numberOfMonths}
+        numberOfMonths={
+          hasRangeMonth
+            ? hasRangeMonthDiff
+              ? diffRangeMonth + 1
+              : 1
+            : numberOfMonths
+        }
         modifiers={modifiers}
         disabledDays={disabledDays}
         canChangeMonth={canChangeMonth}
+        month={hasRangeMonth ? formattedFromMonth : undefined}
         fromMonth={formattedFromMonth}
         toMonth={formattedToMonth}
         renderDay={renderDay}
