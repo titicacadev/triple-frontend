@@ -59,7 +59,7 @@ function DatePicker({
 }) {
   const hasRangeMonth = fromMonth && toMonth
   const diffRangeMonth = moment(toMonth).diff(moment(fromMonth), 'months', true)
-  const hasRangeMonthDiff = diffRangeMonth > 0
+  const hasRangeMonthDiff = Math.ceil(diffRangeMonth) > 1
 
   const disabledDays = useDisabledDays({
     disabledDays: disabledDaysFromProps,
