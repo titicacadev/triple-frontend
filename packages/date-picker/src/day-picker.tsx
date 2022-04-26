@@ -58,7 +58,7 @@ function DatePicker({
   publicHolidays?: Date[]
 }) {
   const hasRangeMonth = fromMonth && toMonth
-  const diffRangeMonth = moment(toMonth).diff(moment(fromMonth), 'months')
+  const diffRangeMonth = moment(toMonth).diff(moment(fromMonth), 'months', true)
   const hasRangeMonthDiff = diffRangeMonth > 0
 
   const disabledDays = useDisabledDays({
