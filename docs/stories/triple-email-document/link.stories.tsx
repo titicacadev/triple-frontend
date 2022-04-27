@@ -4,7 +4,7 @@ import { ELEMENTS } from '@titicaca/triple-email-document'
 const { link: Link } = ELEMENTS
 
 export default {
-  title: 'Document / triple-email-document / elements',
+  title: 'Document / triple-email-document / elements / 링크',
   component: Link,
   argTypes: {
     value: {
@@ -28,16 +28,30 @@ export default {
   },
 } as ComponentMeta<typeof Link>
 
-export const LinkElement = {
-  storyName: '링크',
+export const ButtonLinkElement = {
+  storyName: '버튼',
   args: {
     value: {
       id: 'Link_ID',
-      label: '링크 버튼 제목',
+      label: '버튼 디자인 형식',
       href: '',
       display: 'button',
     },
   },
 }
 
-LinkElement.storyName = '링크'
+ButtonLinkElement.storyName = '버튼'
+
+export const LinkElement = {
+  storyName: '박스',
+  args: {
+    value: {
+      id: 'Link_ID',
+      label: '박스 디자인 형식',
+      href: '',
+      display: 'block',
+    },
+  },
+}
+
+LinkElement.storyName = '블락'
