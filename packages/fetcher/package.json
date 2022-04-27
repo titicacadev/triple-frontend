@@ -25,7 +25,7 @@
     "universal-cookie": "^4.0.3"
   },
   "devDependencies": {
-    "@sentry/nextjs": "6.19.6",
+    "@sentry/nextjs": "6.19.7",
     "@types/node-fetch": "^2.5.12",
     "next": "12.1.4",
     "node-fetch": "^2.6.7"
