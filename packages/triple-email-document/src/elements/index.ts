@@ -28,6 +28,7 @@ import TextView, { TextDocument } from './text'
 import LinkView, { LinkDocument } from './link'
 import NoteView, { NoteDocument } from './note'
 import ImagesView, { ImageDocument } from './images'
+import EmbeddedView, { EmbeddedDocument } from './embedded'
 
 export type TripleEmailElementData =
   | Heading1Document
@@ -44,6 +45,7 @@ export type TripleEmailElementData =
   | LinkDocument
   | NoteDocument
   | ImageDocument
+  | EmbeddedDocument
 // 여기에 데이터 구조 타입을 추가하세요
 
 export type TripleEmailElementType = TripleEmailElementData['type']
@@ -72,6 +74,7 @@ const ELEMENTS: {
   link: LinkView,
   note: NoteView,
   images: ImagesView,
+  embedded: EmbeddedView,
   // 여기에 컴포넌트를 추가하세요.
 }
 
