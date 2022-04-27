@@ -10,7 +10,7 @@ const AreaContainer = styled(Container)`
   background-position: left top;
 `
 
-export default function AreaNames({
+export default function Area({
   areaName,
   arrowAction,
 }: {

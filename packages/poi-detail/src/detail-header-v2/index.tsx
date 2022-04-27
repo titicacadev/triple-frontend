@@ -18,7 +18,7 @@ import { formatNumber } from '@titicaca/view-utilities'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 
 import CopyActionSheet from '../copy-action-sheet'
-import AreaNames from '../area-names'
+import Area from '../area'
 import { HASH_COPY_ACTION_SHEET } from '../constants'
 
 const ArrowButton = styled.button`
@@ -102,7 +102,7 @@ export default function DetailHeaderV2({
             ) : null}
           </Container>
         )}
-        <AreaNames
+        <Area
           areaName={areaName}
           arrowAction={
             onAreaClick ? (
