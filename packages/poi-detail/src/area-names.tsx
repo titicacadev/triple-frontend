@@ -10,28 +10,19 @@ const AreaContainer = styled(Container)`
   background-position: left top;
 `
 
-interface Area {
-  id: number | string
-  name: string
-}
-
 export default function AreaNames({
-  areas,
-  vicinity,
+  areaName,
   arrowAction,
 }: {
-  areas: Area[] | string
-  vicinity?: string
+  areaName: string
   arrowAction?: ReactNode
 }) {
-  const names = (Array.isArray(areas) ? areas[0]?.name : areas) || vicinity
-
-  return names ? (
+  return (
     <AreaContainer>
       <Text size="tiny" bold margin={{ top: 10 }} alpha={0.8} lineHeight={1.38}>
-        {names}
+        {areaName}
         {arrowAction}
       </Text>
     </AreaContainer>
-  ) : null
+  )
 }
