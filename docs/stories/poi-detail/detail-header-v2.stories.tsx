@@ -37,10 +37,7 @@ export const Basic: ComponentStoryObj<typeof DetailHeaderV2> = {
       en: 'Tokyo Disney land',
       local: '東京ディズニーランド',
     },
-    areas: [
-      { id: 1, name: '도쿄' },
-      { id: 2, name: '오사카' },
-    ],
+    areaName: '도쿄',
     scrapsCount: 682,
     reviewsCount: 13859,
     reviewsRating: 4.45,
