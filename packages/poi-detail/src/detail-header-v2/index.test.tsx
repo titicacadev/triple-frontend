@@ -67,6 +67,7 @@ describe('when user is on app', () => {
     render(
       <DetailHeaderV2
         names={{ ko: 'test', en: 'test', local: 'test' }}
+        areaName="테스트 지역"
         scrapsCount={1}
         reviewsCount={0}
         reviewsRating={0}
@@ -113,6 +114,7 @@ describe('when user is on web', () => {
     render(
       <DetailHeaderV2
         names={{ ko: 'test', en: 'test', local: 'test' }}
+        areaName="테스트 지역"
         scrapsCount={1}
         reviewsCount={0}
         reviewsRating={0}
