@@ -22,30 +22,23 @@ import { HASH_COPY_ACTION_SHEET } from '../constants'
 
 const LongClickableSection = longClickable(Section)
 
-interface Area {
-  id: number | string
-  name: string
-}
-
 export default function DetailHeader({
   names,
-  areas = [],
+  areaName,
   scrapsCount,
   reviewsCount,
   reviewsRating,
   onReviewsRatingClick,
   onCopy,
-  vicinity,
   ...props
 }: {
   names: TranslatedProperty
-  areas?: Area[] | string
+  areaName: string
   scrapsCount: number
   reviewsCount: number
   reviewsRating: number
   onReviewsRatingClick: () => void
   onCopy: (value: string) => void
-  vicinity?: string
 } & Parameters<typeof Section>['0']) {
   const app = useTripleClientMetadata()
   const uriHash = useUriHash()
@@ -90,7 +83,7 @@ export default function DetailHeader({
             )}
           </Container>
         )}
-        <AreaNames areas={areas} vicinity={vicinity} />
+        <AreaNames areaName={areaName} />
       </LongClickableSection>
       <CopyActionSheet
         open={uriHash === HASH_COPY_ACTION_SHEET}
