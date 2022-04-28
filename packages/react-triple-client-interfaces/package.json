@@ -14,11 +14,11 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/triple-web-to-native-interfaces": "1.5.0",
     "qs": "^6.9.4",
     "semver": "^7.3.5"
   },
   "devDependencies": {
+    "@titicaca/triple-web-to-native-interfaces": "*",
     "@types/qs": "^6.9.5",
     "@types/semver": "^7.3.6"
   },
