@@ -17,7 +17,7 @@ import { TranslatedProperty } from '@titicaca/type-definitions'
 import { formatNumber } from '@titicaca/view-utilities'
 
 import CopyActionSheet from '../copy-action-sheet'
-import Area from '../area'
+import AreaNames from '../area-names'
 import { HASH_COPY_ACTION_SHEET } from '../constants'
 
 const LongClickableSection = longClickable(Section)
@@ -83,7 +83,7 @@ export default function DetailHeader({
             )}
           </Container>
         )}
-        <Area areaName={areaName} />
+        <AreaNames areaName={areaName} />
       </LongClickableSection>
       <CopyActionSheet
         open={uriHash === HASH_COPY_ACTION_SHEET}
