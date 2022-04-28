@@ -62,7 +62,7 @@ test('이미지 크기만 있는 value를 이용하여 간격있는 이미지 1�
   const firstImgBoxElement = getAllByRole('cell')[1]
   const imgElement = getByRole('img')
 
-  expect(wrapperBoxElement).toHaveStyleRule('padding', '40px 0 30px 0')
+  expect(wrapperBoxElement).toHaveStyleRule('padding', '20px 0 20px 0')
   expect(firstImgBoxElement).toHaveStyleRule('padding', '0 30px 0 30px')
   expect(imgElement).toHaveAttribute(
     'src',
