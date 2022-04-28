@@ -41,25 +41,32 @@ const ArrowButton = styled.button`
 
 const LongClickableSection = longClickable(Section)
 
+interface Area {
+  id: number | string
+  name: string
+}
+
 export default function DetailHeaderV2({
   names,
-  areaName,
+  areas = [],
   scrapsCount,
   reviewsCount,
   reviewsRating,
   onReviewsRatingClick,
   onCopy,
   onAreaClick,
+  vicinity,
   ...props
 }: {
   names: TranslatedProperty
-  areaName: string
+  areas?: Area[] | string
   scrapsCount: number
   reviewsCount: number
   reviewsRating: number
   onReviewsRatingClick: () => void
   onAreaClick?: () => void
   onCopy: (value: string) => void
+  vicinity?: string
 } & Parameters<typeof Section>['0']) {
   const app = useTripleClientMetadata()
   const uriHash = useUriHash()
@@ -103,7 +110,8 @@ export default function DetailHeaderV2({
           </Container>
         )}
         <AreaNames
-          areaName={areaName}
+          areas={areas}
+          vicinity={vicinity}
           arrowAction={
             onAreaClick ? (
               <ArrowButton onClick={onAreaClick}>지도보기</ArrowButton>
