@@ -16,15 +16,18 @@ interface Area {
 }
 
 export default function AreaNames({
+  areaName,
   areas,
   vicinity,
   arrowAction,
 }: {
-  areas: Area[] | string
+  areaName?: string
+  areas?: Area[] | string
   vicinity?: string
   arrowAction?: ReactNode
 }) {
-  const names = (Array.isArray(areas) ? areas[0]?.name : areas) || vicinity
+  const names =
+    areaName || (Array.isArray(areas) ? areas[0]?.name : areas) || vicinity
 
   return names ? (
     <AreaContainer>
