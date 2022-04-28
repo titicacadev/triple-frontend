@@ -22,12 +22,11 @@ export default function AreaNames({
   arrowAction,
 }: {
   areaName?: string
-  areas?: Area[] | string
+  areas?: Area[]
   vicinity?: string
   arrowAction?: ReactNode
 }) {
-  const names =
-    areaName || (Array.isArray(areas) ? areas[0]?.name : areas) || vicinity
+  const names = areaName || areas[0]?.name || vicinity
 
   return names ? (
     <AreaContainer>

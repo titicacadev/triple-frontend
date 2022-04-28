@@ -44,7 +44,7 @@ export default function DetailHeader({
   /**
    * @deprecated areaName 으로 통합됩니다.
    */
-  areas?: Area[] | string
+  areas?: Area[]
   scrapsCount: number
   reviewsCount: number
   reviewsRating: number
