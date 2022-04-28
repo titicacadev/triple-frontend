@@ -46,7 +46,7 @@ const ENTRIES = [
       },
     },
     {
-      type: 'link',
+      type: 'links',
       value: {
         id: 'Link_ID',
         label: '박스 디자인 형식',
