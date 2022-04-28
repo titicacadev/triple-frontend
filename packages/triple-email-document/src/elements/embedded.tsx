@@ -3,7 +3,6 @@ import { Text } from '@titicaca/core-elements'
 
 import { FluidTable, Box } from '../common'
 
-// import { EmbeddedHeadingDocument } from './heading'
 import ImageView, { ImageDocument } from './images'
 import TextView, { TextDocument } from './text'
 import LinkView, { LinkDocument } from './link'
