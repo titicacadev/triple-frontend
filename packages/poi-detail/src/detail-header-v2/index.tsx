@@ -48,6 +48,7 @@ interface Area {
 
 export default function DetailHeaderV2({
   names,
+  areaName,
   areas = [],
   scrapsCount,
   reviewsCount,
@@ -59,6 +60,10 @@ export default function DetailHeaderV2({
   ...props
 }: {
   names: TranslatedProperty
+  areaName?: string
+  /**
+   * @deprecated areaName 으로 통합됩니다.
+   */
   areas?: Area[] | string
   scrapsCount: number
   reviewsCount: number
@@ -66,6 +71,9 @@ export default function DetailHeaderV2({
   onReviewsRatingClick: () => void
   onAreaClick?: () => void
   onCopy: (value: string) => void
+  /**
+   * @deprecated areaName 으로 통합됩니다.
+   */
   vicinity?: string
 } & Parameters<typeof Section>['0']) {
   const app = useTripleClientMetadata()
@@ -110,6 +118,7 @@ export default function DetailHeaderV2({
           </Container>
         )}
         <AreaNames
+          areaName={areaName}
           areas={areas}
           vicinity={vicinity}
           arrowAction={
