@@ -8,7 +8,6 @@ import {
 import {
   subscribe,
   unsubscribe,
-  notifyReviewDeleted,
 } from '@titicaca/triple-web-to-native-interfaces'
 
 import { Context } from './my-reviews-context'
@@ -86,12 +85,11 @@ export default function MyReviewsProvider({
   )
 
   const handleMyReviewDelete = useCallback(
-    ({ id, resourceId }: { id: string; resourceId: string }) => {
+    ({ resourceId }: { id: string; resourceId: string }) => {
       setMyReviews((currentMyReviews) => ({
         ...currentMyReviews,
         [resourceId]: false,
       }))
-      notifyReviewDeleted(resourceId, id)
     },
     [setMyReviews],
   )
