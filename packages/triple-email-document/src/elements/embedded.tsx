@@ -37,7 +37,7 @@ const EMBEDDED_ELEMENTS: ElementSet = {
   heading: EmbeddedHeading,
   images: ImageView,
   text: TextView,
-  link: LinkView,
+  links: LinkView,
 }
 
 export default function EmbeddedView({
