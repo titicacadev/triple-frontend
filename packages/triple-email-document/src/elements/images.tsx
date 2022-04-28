@@ -18,9 +18,10 @@ export interface ImageDocument {
   }
 }
 
-const Img = styled.img`
+const Img = styled.img<{ borderRadius: number }>`
   width: 100%;
   display: block;
+  border-radius: ${({ borderRadius }) => `${borderRadius}px`};
 `
 
 const Tr = styled.tr<{ tdWidth: number }>`
@@ -52,20 +53,25 @@ export default function Images({
   value: ImageDocument['value']
 }) {
   const paddings = {
-    default: { top: 40, bottom: 30 },
+    default: { top: 20, bottom: 20 },
     'gapless-block': undefined,
   }
   const firstImagePaddings = {
-    default: { left: 30, right: second !== undefined ? 15 : 30 },
+    default: { left: 30, right: second !== undefined ? 5 : 30 },
     'gapless-block': undefined,
   }
   const secondImagePaddings = {
-    default: { left: 15, right: 30 },
+    default: { left: 5, right: 30 },
     'gapless-block': undefined,
   }
 
   if (first === undefined) {
     return null
+  }
+
+  const borderRadius = {
+    default: 6,
+    'gapless-block': 0,
   }
 
   return (
@@ -77,12 +83,15 @@ export default function Images({
               <tbody>
                 <ImagesRow>
                   <Box padding={firstImagePaddings[display]}>
-                    <Image image={first} />
+                    <Image image={first} borderRadius={borderRadius[display]} />
                   </Box>
 
                   {second !== undefined ? (
                     <Box padding={secondImagePaddings[display]}>
-                      <Image image={second} />
+                      <Image
+                        image={second}
+                        borderRadius={borderRadius[display]}
+                      />
                     </Box>
                   ) : null}
                 </ImagesRow>
@@ -109,8 +118,10 @@ function Image({
       full: { url },
     },
   },
+  borderRadius,
 }: {
   image: ExtendedImageMeta
+  borderRadius: number
 }) {
   return (
     <FluidTable>
@@ -119,10 +130,10 @@ function Image({
           <Box>
             {link ? (
               <ImageLink href={link.href} ses:tags={`links:${link.id}`}>
-                <Img src={url} />
+                <Img src={url} borderRadius={borderRadius} />
               </ImageLink>
             ) : (
-              <Img src={url} />
+              <Img src={url} borderRadius={borderRadius} />
             )}
           </Box>
         </tr>

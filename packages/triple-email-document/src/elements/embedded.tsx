@@ -58,7 +58,7 @@ export default function EmbeddedView({
   )
 }
 
-export function EmbeddedHeading({
+function EmbeddedHeading({
   value: { text },
 }: {
   value: EmbeddedHeadingDocument['value']
@@ -67,8 +67,8 @@ export function EmbeddedHeading({
     <FluidTable>
       <tbody>
         <tr>
-          <Box padding={{ top: 10, left: 30, right: 30 }}>
-            <Text bold lineHeight="24px" size={16} color="gray100">
+          <Box padding={{ left: 30, right: 30 }}>
+            <Text bold lineHeight="24px" size={16} color="gray">
               {text}
             </Text>
           </Box>
