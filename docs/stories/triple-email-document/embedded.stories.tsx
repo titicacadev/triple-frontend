@@ -22,7 +22,7 @@ const Border = styled.div`
 `
 
 export default {
-  title: 'Document / triple-email-document / elements / 임베딩',
+  title: 'Document / triple-email-document / elements / 임베디드',
   component: EmbeddedView,
 } as ComponentMeta<typeof EmbeddedView>
 
@@ -76,13 +76,13 @@ DefaultEmbeddedElement.args = {
         {
           type: 'heading',
           value: {
-            text: '임베딩의 타이틀 영역입니다.',
+            text: '임베디드의 타이틀 영역입니다.',
           },
         },
         {
           type: 'text',
           value: {
-            text: '임베딩의 본문 영역입니다.',
+            text: '임베디드의 본문 영역입니다.',
           },
         },
         {
@@ -115,13 +115,13 @@ withPaddingImageEmbeddedElement.args = {
         {
           type: 'heading',
           value: {
-            text: '임베딩의 타이틀 영역입니다.',
+            text: '임베디드의 타이틀 영역입니다.',
           },
         },
         {
           type: 'text',
           value: {
-            text: '임베딩의 본문 영역입니다.',
+            text: '임베디드의 본문 영역입니다.',
           },
         },
         {
