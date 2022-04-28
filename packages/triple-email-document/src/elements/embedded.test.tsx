@@ -36,13 +36,13 @@ const ENTRIES = [
     {
       type: 'heading',
       value: {
-        text: '임베딩의 타이틀 영역입니다.',
+        text: '임베디드의 타이틀 영역입니다.',
       },
     },
     {
       type: 'text',
       value: {
-        text: '임베딩의 본문 영역입니다.',
+        text: '임베디드의 본문 영역입니다.',
       },
     },
     {
@@ -75,8 +75,8 @@ test('이미지, 타이틀, 본문, 버튼의 조합을 렌더링합니다.', ()
     'src',
     'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
   )
-  expect(titleElement.textContent).toBe('임베딩의 타이틀 영역입니다.')
-  expect(textElement.textContent).toBe('임베딩의 본문 영역입니다.')
+  expect(titleElement.textContent).toBe('임베디드의 타이틀 영역입니다.')
+  expect(textElement.textContent).toBe('임베디드의 본문 영역입니다.')
 
   expect(linkElement.textContent).toBe('박스 디자인 형식')
   expect(linkElement).toHaveStyleRule('background-color', 'rgba(255,255,255,1)')
