@@ -22,7 +22,7 @@ const Border = styled.div`
 `
 
 export default {
-  title: 'Document / triple-email-document / elements',
+  title: 'Document / triple-email-document / elements / 임베딩',
   component: EmbeddedView,
 } as ComponentMeta<typeof EmbeddedView>
 
@@ -61,7 +61,7 @@ const EmbeddedTemplate: {
 }
 
 export const DefaultEmbeddedElement = EmbeddedTemplate.bind({})
-DefaultEmbeddedElement.storyName = '임베딩'
+DefaultEmbeddedElement.storyName = '기본 (이미지 여백 X)'
 DefaultEmbeddedElement.args = {
   value: {
     entries: [
@@ -70,6 +70,45 @@ DefaultEmbeddedElement.args = {
           type: 'images',
           value: {
             display: 'gapless-block',
+            images: [IMAGE],
+          },
+        },
+        {
+          type: 'heading',
+          value: {
+            text: '임베딩의 타이틀 영역입니다.',
+          },
+        },
+        {
+          type: 'text',
+          value: {
+            text: '임베딩의 본문 영역입니다.',
+          },
+        },
+        {
+          type: 'link',
+          value: {
+            id: 'Link_ID',
+            label: '박스 디자인 형식',
+            href: '',
+            display: 'block',
+          },
+        },
+      ],
+    ],
+  },
+}
+
+export const withPaddingImageEmbeddedElement = EmbeddedTemplate.bind({})
+withPaddingImageEmbeddedElement.storyName = '기본 (이미지 여백 O)'
+withPaddingImageEmbeddedElement.args = {
+  value: {
+    entries: [
+      [
+        {
+          type: 'images',
+          value: {
+            display: 'default',
             images: [IMAGE],
           },
         },
