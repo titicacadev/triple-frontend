@@ -17,7 +17,7 @@ interface Area {
 
 export default function AreaNames({
   areaName,
-  areas,
+  areas = [],
   vicinity,
   arrowAction,
 }: {
