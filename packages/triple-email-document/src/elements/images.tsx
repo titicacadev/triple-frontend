@@ -14,7 +14,7 @@ export interface ImageDocument {
   type: 'images'
   value: {
     images: ExtendedImageMeta[]
-    display: 'default' | 'gapless-block'
+    display: 'default' | 'gapless-block' | 'default-v2'
   }
 }
 
@@ -53,15 +53,18 @@ export default function Images({
   value: ImageDocument['value']
 }) {
   const paddings = {
-    default: { top: 20, bottom: 20 },
+    default: { top: 40, bottom: 30 },
+    'default-v2': { top: 20, bottom: 20 },
     'gapless-block': undefined,
   }
   const firstImagePaddings = {
-    default: { left: 30, right: second !== undefined ? 5 : 30 },
+    default: { left: 30, right: second !== undefined ? 15 : 30 },
+    'default-v2': { left: 30, right: second !== undefined ? 5 : 30 },
     'gapless-block': undefined,
   }
   const secondImagePaddings = {
-    default: { left: 5, right: 30 },
+    default: { left: 15, right: 30 },
+    'default-v2': { left: 5, right: 30 },
     'gapless-block': undefined,
   }
 
@@ -70,7 +73,8 @@ export default function Images({
   }
 
   const borderRadius = {
-    default: 6,
+    default: 0,
+    'default-v2': 6,
     'gapless-block': 0,
   }
 
