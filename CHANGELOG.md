@@ -1,5 +1,32 @@
 # CHANGELOG
 
+## 7.4.0
+
+### common
+
+- update dependency next to v12.1.5 [#2029](https://github.com/titicacadev/triple-frontend/pull/2029)
+- update dependency @sentry/nextjs to v6.19.7 [#2037](https://github.com/titicacadev/triple-frontend/pull/2037)
+- update internal packages to v4.17.0 [#2028](https://github.com/titicacadev/triple-frontend/pull/2028)
+- update dependency @swc/core to v1.2.173 [#2042](https://github.com/titicacadev/triple-frontend/pull/2042)
+- update dependency @swc/core to v1.2.172 [#2034](https://github.com/titicacadev/triple-frontend/pull/2034)
+- update dependency @swc/core to v1.2.168 [#2033](https://github.com/titicacadev/triple-frontend/pull/2033)
+
+### date-picker
+
+- day-picker의 fromMonth, toMonth가 동작되도록 수정 [#2036](https://github.com/titicacadev/triple-frontend/pull/2036)
+
+### react-context
+
+- notifyReviewDeleted 중복 호출 제거 [#2041](https://github.com/titicacadev/triple-frontend/pull/2041)
+
+### poi-detail
+
+- areas, vicinity deprecated 처리, areaName 추가 [#2035](https://github.com/titicacadev/triple-frontend/pull/2035)
+
+### react-triple-cliend-interfaces
+
+- web-to-native-interfaces 모듈을 peerDependencies로 설정 [#2040](https://github.com/titicacadev/triple-frontend/pull/2040)
+
 ## 7.3.0
 
 ### color-palette
