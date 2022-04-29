@@ -5,7 +5,7 @@ import { FluidTable, HandlebarsAnchor } from '../common'
 const FooterContainer = styled.div`
   width: 100%;
   background-color: rgba(47, 59, 58, 1);
-  margin-top: 100px;
+  margin-top: 120px;
 `
 
 const PaddingTd = styled.td`
