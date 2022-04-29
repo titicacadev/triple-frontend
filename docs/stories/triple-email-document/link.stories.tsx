@@ -28,30 +28,43 @@ export default {
   },
 } as ComponentMeta<typeof Link>
 
-export const ButtonLinkElement = {
+export const StyledButtonLinkElement = {
   storyName: '버튼',
-  args: {
-    value: {
-      id: 'Link_ID',
-      label: '버튼 디자인 형식',
-      href: '',
-      display: 'button',
-    },
-  },
+  args: generateSampleData('button'),
 }
 
-ButtonLinkElement.storyName = '버튼'
+StyledButtonLinkElement.storyName = '버튼'
 
-export const LinkElement = {
+export const StyledBlockLinkElement = {
   storyName: '박스',
-  args: {
-    value: {
-      id: 'Link_ID',
-      label: '박스 디자인 형식',
-      href: '',
-      display: 'block',
-    },
-  },
+  args: generateSampleData('block'),
 }
 
-LinkElement.storyName = '블락'
+StyledBlockLinkElement.storyName = '블락'
+
+export const StyledLargeButtonLinkElement = {
+  storyName: '대형 버튼',
+  args: generateSampleData('largeButton'),
+}
+
+StyledLargeButtonLinkElement.storyName = '대형 버튼'
+
+export const StyledCompactLargeButtonLinkElement = {
+  storyName: 'compact한 대형 버튼',
+  args: generateSampleData('largeCompactButton'),
+}
+
+StyledCompactLargeButtonLinkElement.storyName = 'compact한 대형 버튼'
+
+type LinkDisplay = 'button' | 'block' | 'largeButton' | 'largeCompactButton'
+
+function generateSampleData(type: LinkDisplay) {
+  return {
+    value: {
+      id: 'Link_ID',
+      label: `${type} 디자인 형식`,
+      href: '',
+      display: type,
+    },
+  }
+}
