@@ -1,14 +1,16 @@
-import fetch from 'isomorphic-fetch'
+import { post } from '@titicaca/fetcher'
 
 export async function checkIfReviewed({ resourceId }: { resourceId: string }) {
-  const response = await fetch('/api/reviews/v2/check', {
-    method: 'POST',
+  const response = await post<string[]>('/api/reviews/v2/check', {
     headers: { 'content-type': 'application/json' },
     credentials: 'same-origin',
     body: JSON.stringify({ ids: [resourceId] }),
   })
 
-  const { ids } = await response.json()
-
-  return ids && ids.includes(resourceId)
+  if (response.ok === true) {
+    const { parsedBody: ids } = response
+    return ids.includes(resourceId)
+  } else {
+    throw new Error('Failed to fetch reviewed check')
+  }
 }

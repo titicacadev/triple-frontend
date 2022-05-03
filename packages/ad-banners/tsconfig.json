@@ -6,6 +6,7 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/fetcher": ["../fetcher/src"],
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
       "@titicaca/router": ["../router/src"]
@@ -15,6 +16,9 @@
   "references": [
     {
       "path": "../core-elements"
+    },
+    {
+      "path": "../fetcher"
     },
     {
       "path": "../intersection-observer"

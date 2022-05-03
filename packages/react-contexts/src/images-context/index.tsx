@@ -9,9 +9,9 @@ import {
   useEffect,
 } from 'react'
 import qs from 'qs'
-import fetch from 'isomorphic-fetch'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { DeepPartial } from 'utility-types'
+import { get } from '@titicaca/fetcher'
 
 import reducer, {
   loadImagesRequest,
@@ -195,7 +195,14 @@ async function defaultFetchImages(
     size: query.size,
   })
 
-  return fetch(`/api/content/images?${querystring}`)
+  const response = await get<Response>(`/api/content/images?${querystring}`)
+
+  if (response.ok === true) {
+    const { parsedBody } = response
+    return parsedBody
+  } else {
+    throw new Error(`Failed to fetch images`)
+  }
 }
 
 export function useImagesContext() {

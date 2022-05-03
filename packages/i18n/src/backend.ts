@@ -1,6 +1,6 @@
 /* eslint-disable promise/prefer-await-to-callbacks */
 
-import fetch from 'isomorphic-fetch'
+import { get } from '@titicaca/fetcher'
 
 export default class I18nextFetchBackend {
   public type: 'backend' = 'backend'
@@ -22,10 +22,11 @@ export default class I18nextFetchBackend {
     url: string,
     callback: (error: Error | null, data: unknown) => void,
   ) {
-    const response = await fetch(url)
+    const response = await get(url)
 
-    if (response.ok) {
-      callback(null, await response.json())
+    if (response.ok === true) {
+      const { parsedBody } = response
+      callback(null, parsedBody)
     } else {
       callback(new Error(`Failed to fetch ${url}`), false)
     }

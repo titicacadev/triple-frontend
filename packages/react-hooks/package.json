@@ -21,13 +21,12 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "isomorphic-fetch": "^2.2.1",
     "lottie-web": "^5.7.4",
     "react-fast-compare": "^2.0.4",
-    "scroll-to-element": "^2.0.3"
+    "scroll-to-element": "^2.0.3",
+    "@titicaca/fetcher": "^7.4.0"
   },
   "devDependencies": {
-    "@types/isomorphic-fetch": "^0.0.35",
     "@types/scroll-to-element": "^2.0.0"
   },
   "peerDependencies": {

@@ -7,6 +7,7 @@
     "paths": {
       "@titicaca/action-sheet": ["../action-sheet/src"],
       "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/fetcher": ["../fetcher/src"],
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
       "@titicaca/modals": ["../modals/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
@@ -27,6 +28,9 @@
     },
     {
       "path": "../core-elements"
+    },
+    {
+      "path": "../fetcher"
     },
     {
       "path": "../intersection-observer"

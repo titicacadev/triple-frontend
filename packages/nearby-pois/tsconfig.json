@@ -6,6 +6,7 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/fetcher": ["../fetcher/src"],
       "@titicaca/i18n": ["../i18n/src"],
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
       "@titicaca/poi-list-elements": ["../poi-list-elements/src"],
@@ -19,6 +20,9 @@
   "references": [
     {
       "path": "../core-elements"
+    },
+    {
+      "path": "../fetcher"
     },
     {
       "path": "../i18n"
