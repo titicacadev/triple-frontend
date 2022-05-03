@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch'
+import { get } from '@titicaca/fetcher'
 import { ImageMeta } from '@titicaca/type-definitions'
 import qs from 'qs'
 
@@ -11,7 +11,7 @@ export async function fetchRecommendedArticles({
   regionId?: string
   zoneId?: string
 }): Promise<ArticleListingData[]> {
-  const response = await fetch(
+  const response = await get<ArticleListingData[]>(
     `/api/content/articles?${qs.stringify({
       ...((regionId || zoneId) && {
         geotags: [
@@ -23,21 +23,22 @@ export async function fetchRecommendedArticles({
     })}`,
   )
 
-  if (!response.ok) {
+  if (response.ok === true) {
+    const { parsedBody } = response
+    return shuffle(
+      parsedBody.filter(
+        ({
+          source: { image },
+        }: {
+          source: {
+            image?: ImageMeta
+          }
+        }) => image,
+      ),
+    )
+  } else {
     throw new Error('Failed to fetch recommended articles')
   }
-
-  return shuffle(
-    (await response.json()).filter(
-      ({
-        source: { image },
-      }: {
-        source: {
-          image?: ImageMeta
-        }
-      }) => image,
-    ),
-  )
 }
 
 function shuffle<T>(array: T[]): T[] {

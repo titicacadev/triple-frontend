@@ -21,10 +21,6 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^7.5.0",
-    "isomorphic-fetch": "^2.2.1"
-  },
-  "devDependencies": {
-    "@types/isomorphic-fetch": "^0.0.35"
+    "@titicaca/color-palette": "^7.5.0"
   }
 }

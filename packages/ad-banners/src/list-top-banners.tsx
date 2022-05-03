@@ -163,7 +163,7 @@ const ListTopBanners: FC<AdBannersProps> = (props) => {
   const { margin, padding, direction = ListDirection.Vertical } = props
   const { getBannersApi, handleBannerIntersecting, handleBannerClick } =
     useAdBannerProps(props)
-  const [banners, setBanners] = useState([])
+  const [banners, setBanners] = useState<Banner[]>([])
 
   const Component = COMPONENT_SET[direction]
 

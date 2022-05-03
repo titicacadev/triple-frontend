@@ -9,6 +9,9 @@
       "path": "../core-elements/tsconfig.build.json"
     },
     {
+      "path": "../fetcher/tsconfig.build.json"
+    },
+    {
       "path": "../intersection-observer/tsconfig.build.json"
     },
     {

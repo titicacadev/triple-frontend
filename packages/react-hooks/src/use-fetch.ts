@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react'
-import fetch from 'isomorphic-fetch'
 import isEqual from 'react-fast-compare'
+import { get } from '@titicaca/fetcher'
 
 interface FetchResponse {
   data?: any
@@ -33,21 +33,23 @@ export function useFetch(url: string, options?: any): FetchStatus {
     async function fetchData() {
       setFetchResponse(null)
 
-      const response = await fetch(
+      const response = await get(
         url,
         ...(fetchOptions ? [{ ...fetchOptions }] : []),
       )
 
       try {
-        if (response.ok) {
-          const data = await response.json()
+        if (response.ok === true) {
+          const { parsedBody: data } = response
 
           setFetchResponse({
             data,
-            response,
+            response: response as Response | undefined,
           })
         } else {
-          setFetchResponse({ error: createFetchError(response) })
+          setFetchResponse({
+            error: createFetchError(response as unknown as Response),
+          })
         }
       } catch (error) {
         if (error instanceof Error || error === undefined) {

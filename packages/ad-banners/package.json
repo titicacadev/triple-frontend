@@ -24,10 +24,9 @@
     "@egjs/flicking": "^3.8.1",
     "@egjs/react-flicking": "^3.7.0",
     "@titicaca/core-elements": "^7.5.0",
+    "@titicaca/fetcher": "^7.5.0",
     "@titicaca/intersection-observer": "^7.5.0",
-    "@titicaca/router": "^7.5.0",
-    "@types/isomorphic-fetch": "^0.0.35",
-    "isomorphic-fetch": "^2.2.1"
+    "@titicaca/router": "^7.5.0"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*"

@@ -1,19 +1,14 @@
 import qs from 'qs'
-import fetch from 'isomorphic-fetch'
 import { UrlElements } from '@titicaca/view-utilities'
+import { get } from '@titicaca/fetcher'
 
 export default async function fetchApi({ path, query }: UrlElements) {
   if (path === '/web-action/fetch-api' && query) {
-    const {
-      path: apiPath,
-      method,
-      body,
-    } = qs.parse(query, {
+    const { path: apiPath, body } = qs.parse(query, {
       ignoreQueryPrefix: true,
     })
 
-    await fetch(apiPath as string, {
-      method: (method as string) || 'GET',
+    await get(apiPath as string, {
       ...(body ? { headers: { 'content-type': 'application/json' } } : {}),
       body: body as string,
     })

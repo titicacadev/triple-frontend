@@ -162,7 +162,7 @@ export default function ContentDetailsBanner(props: AdBannersProps) {
   const { margin, padding } = props
   const { getBannersApi, handleBannerIntersecting, handleBannerClick } =
     useAdBannerProps(props)
-  const [banners, setBanners] = useState([])
+  const [banners, setBanners] = useState<Banner[]>([])
 
   useEffect(() => {
     let handle: number | undefined

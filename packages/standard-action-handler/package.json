@@ -21,16 +21,15 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
+    "@titicaca/fetcher": "^7.5.0",
     "@titicaca/router": "^7.5.0",
     "@titicaca/view-utilities": "^7.5.0",
     "qs": "^6.9.4"
   },
   "devDependencies": {
-    "@types/isomorphic-fetch": "^0.0.35",
     "@types/qs": "^6.9.2"
   },
   "peerDependencies": {
-    "@titicaca/triple-web-to-native-interfaces": "*",
-    "isomorphic-fetch": "*"
+    "@titicaca/triple-web-to-native-interfaces": "*"
   }
 }

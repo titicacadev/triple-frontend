@@ -25,11 +25,7 @@
     "@titicaca/i18n": "^7.5.0",
     "@titicaca/router": "^7.5.0",
     "i18next": "^19.3.3",
-    "isomorphic-fetch": "^2.2.1",
     "react-i18next": "^11.3.3"
-  },
-  "devDependencies": {
-    "@types/isomorphic-fetch": "^0.0.35"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*"

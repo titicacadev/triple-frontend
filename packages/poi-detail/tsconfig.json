@@ -9,6 +9,7 @@
       "@titicaca/app-installation-cta": ["../app-installation-cta/src"],
       "@titicaca/carousel": ["../carousel/src"],
       "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/fetcher": ["../fetcher/src"],
       "@titicaca/i18n": ["../i18n/src"],
       "@titicaca/image-carousel": ["../image-carousel/src"],
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
@@ -34,6 +35,9 @@
     },
     {
       "path": "../core-elements"
+    },
+    {
+      "path": "../fetcher"
     },
     {
       "path": "../i18n"

@@ -1,6 +1,8 @@
 import qs from 'querystring'
 
-import fetch from 'isomorphic-fetch'
+import { get, post } from '@titicaca/fetcher'
+
+import { Banner } from './typing'
 
 export type ContentType =
   | 'article'
@@ -37,6 +39,7 @@ interface AdBannersFetchingParams {
  * @param userLocation
  * @param bannerType
  */
+
 export async function getAdBanners({
   contentType,
   regionId,
@@ -51,19 +54,18 @@ export async function getAdBanners({
     userLocation,
   })
 
-  const response = await fetch(
+  const response = await get<Banner[]>(
     `/api/inventories/${bannerType}/items?${search}`,
     {
       credentials: 'same-origin',
     },
   )
-
-  if (response.ok) {
-    const { items } = await response.json()
+  if (response.ok === true) {
+    const { parsedBody: items } = response
     return items
+  } else {
+    return []
   }
-
-  return []
 }
 
 /**
@@ -102,9 +104,8 @@ export async function postAdBannerEvent({
     userLocation,
   })
 
-  return fetch(`/api/inventories/${bannerType}/items/${itemId}/events`, {
+  return post(`/api/inventories/${bannerType}/items/${itemId}/events`, {
     body,
-    method: 'POST',
     headers: {
       'content-type': 'application/json',
     },
