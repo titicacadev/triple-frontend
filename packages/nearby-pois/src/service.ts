@@ -27,7 +27,7 @@ export async function fetchPois({
       'content-type': 'application/json',
     },
     credentials: 'same-origin',
-    body: JSON.stringify({
+    body: {
       types: [type],
       lat,
       lon,
@@ -36,12 +36,11 @@ export async function fetchPois({
       size,
       excludedIds,
       regionId,
-    }),
+    },
   })
 
   if (response.ok === true) {
     const { parsedBody: pois } = response
-
     return pois.map((poi) => ({
       ...poi,
       distance: measureDistance(poi.source.pointGeolocation, {
