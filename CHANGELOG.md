@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 7.5.0
+
+### common
+
+- update dependency next to v12.1.6 [#2047](https://github.com/titicacadev/triple-frontend/pull/2047)
+- update dependency @swc/core to v1.2.174 [#2046](https://github.com/titicacadev/triple-frontend/pull/2046)
+- pind dependency @titicaca/triple-web-to-native-interfaces to v1.5.0 [#2044](https://github.com/titicacadev/triple-frontend/pull/2044)
+
+### triple-email-document
+
+- elements를 확장합니다. [#2039](https://github.com/titicacadev/triple-frontend/pull/2039)
+
+### poi-detail
+
+- 운영시간, 휴무일을 조건에 따라 렌더링합니다. [#2031](https://github.com/titicacadev/triple-frontend/pull/2031)
+
 ## 7.4.0
 
 ### common
