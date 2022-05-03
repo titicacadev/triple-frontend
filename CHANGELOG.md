@@ -6,7 +6,6 @@
 
 - update dependency next to v12.1.6 [#2047](https://github.com/titicacadev/triple-frontend/pull/2047)
 - update dependency @swc/core to v1.2.174 [#2046](https://github.com/titicacadev/triple-frontend/pull/2046)
-- pind dependency @titicaca/triple-web-to-native-interfaces to v1.5.0 [#2044](https://github.com/titicacadev/triple-frontend/pull/2044)
 
 ### triple-email-document
 
