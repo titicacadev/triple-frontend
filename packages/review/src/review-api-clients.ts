@@ -84,7 +84,7 @@ export async function fetchMyReview({
   resourceType: ResourceType
   resourceId: string
 }): Promise<ReviewData | null> {
-  const response = await get(
+  const response = await get<{ review: ReviewData | null }>(
     `/api/reviews/v2/me?resource_type=${resourceType}&resource_id=${resourceId}`,
     { credentials: 'same-origin' },
   )
@@ -97,7 +97,9 @@ export async function fetchMyReview({
     throw new Error(`Failed to fetch my reviews: ${response.status}`)
   }
 
-  const { parsedBody: review } = response
+  const {
+    parsedBody: { review },
+  } = response
 
   return humps.camelizeKeys(review as object) as ReviewData
 }
@@ -123,7 +125,7 @@ export async function fetchReviewsCount({
   resourceId: string
   resourceType: ResourceType
 }): Promise<number> {
-  const response = await get<number>(
+  const response = await get<{ reviewCount: number }>(
     `/api/reviews/v2/count?resource_id=${resourceId}&resource_type=${resourceType}`,
   )
 
@@ -131,7 +133,9 @@ export async function fetchReviewsCount({
     throw new Error(`Failed to fetch reviews count: ${response.status}`)
   }
 
-  const { parsedBody: reviewCount } = response
+  const {
+    parsedBody: { reviewCount },
+  } = response
 
   return reviewCount
 }
