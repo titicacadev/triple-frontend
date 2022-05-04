@@ -54,14 +54,16 @@ export async function getAdBanners({
     userLocation,
   })
 
-  const response = await get<Banner[]>(
+  const response = await get<{ items: Banner[] }>(
     `/api/inventories/${bannerType}/items?${search}`,
     {
       credentials: 'same-origin',
     },
   )
   if (response.ok === true) {
-    const { parsedBody: items } = response
+    const {
+      parsedBody: { items },
+    } = response
     return items
   } else {
     return []
