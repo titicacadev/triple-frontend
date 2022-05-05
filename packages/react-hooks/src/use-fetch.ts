@@ -33,7 +33,7 @@ export function useFetch(url: string, options?: any): FetchStatus {
     async function fetchData() {
       setFetchResponse(null)
 
-      const response = await get<FetchResponse | null>(
+      const response = await get(
         url,
         ...(fetchOptions ? [{ ...fetchOptions }] : []),
       )
