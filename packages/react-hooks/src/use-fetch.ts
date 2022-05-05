@@ -33,7 +33,7 @@ export function useFetch(url: string, options?: any): FetchStatus {
     async function fetchData() {
       setFetchResponse(null)
 
-      const response = await get(
+      const response = await get<FetchResponse | null>(
         url,
         ...(fetchOptions ? [{ ...fetchOptions }] : []),
       )
@@ -44,7 +44,7 @@ export function useFetch(url: string, options?: any): FetchStatus {
 
           setFetchResponse({
             data,
-            response: response as Response | undefined,
+            response: response as unknown as Response,
           })
         } else {
           setFetchResponse({
