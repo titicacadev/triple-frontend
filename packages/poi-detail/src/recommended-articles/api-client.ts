@@ -1,5 +1,4 @@
 import { get } from '@titicaca/fetcher'
-import { ImageMeta } from '@titicaca/type-definitions'
 import qs from 'qs'
 
 import { ArticleListingData } from './types'
@@ -25,17 +24,7 @@ export async function fetchRecommendedArticles({
 
   if (response.ok === true) {
     const { parsedBody } = response
-    return shuffle(
-      parsedBody.filter(
-        ({
-          source: { image },
-        }: {
-          source: {
-            image?: ImageMeta
-          }
-        }) => image,
-      ),
-    )
+    return shuffle(parsedBody.filter(({ source: { image } }) => image))
   } else {
     throw new Error('Failed to fetch recommended articles')
   }
