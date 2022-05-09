@@ -1,15 +1,11 @@
 import { scroll, calculateScrollOffset } from './scroll'
 import { ScrollOptions } from './types'
 
-export function scrollToElementWithHash({
-  hash,
-  allowedHash,
-  options,
-}: {
-  hash: string
-  allowedHash: string[]
-  options: ScrollOptions
-}) {
+export function scrollToElementWithHash(
+  hash: string,
+  allowedHash: string[],
+  options: ScrollOptions,
+) {
   if (hash && allowedHash.includes(hash)) {
     setTimeout(() => {
       const element = document.getElementById(hash.replace('#', ''))
