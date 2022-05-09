@@ -14,27 +14,27 @@ const ExternalLinkEntry = styled(List.Item)`
   cursor: pointer;
 `
 
-export interface ExternalLink {
-  url: string
+export interface ExternalLink<Data> {
+  data: Data
   title?: string
   summary?: string
   meta?: string
   imageUrl?: string
 }
 
-export type ExternalLinksProps = {
+export type ExternalLinksProps<Data> = {
   title: string
-  externalLinks: ExternalLink[]
-  onItemClick?: (e: MouseEvent<HTMLLIElement>, item: ExternalLink) => void
+  externalLinks: ExternalLink<Data>[]
+  onItemClick?: (e: MouseEvent<HTMLLIElement>, item: ExternalLink<Data>) => void
 } & Parameters<typeof Section>['0']
 
-function ExternalLinkItem({
+function ExternalLinkItem<Data>({
   externalLink,
   externalLink: { title, summary, meta, imageUrl },
   onItemClick,
 }: {
-  externalLink: ExternalLink
-  onItemClick?: (e: MouseEvent<HTMLLIElement>, item: ExternalLink) => void
+  externalLink: ExternalLink<Data>
+  onItemClick?: (e: MouseEvent<HTMLLIElement>, item: ExternalLink<Data>) => void
 }) {
   const textMargin = summary && meta ? 5 : 8
 
@@ -69,12 +69,12 @@ function ExternalLinkItem({
   )
 }
 
-export function ExternalLinks({
+export function ExternalLinks<Data>({
   title,
   externalLinks,
   onItemClick,
   ...props
-}: ExternalLinksProps) {
+}: ExternalLinksProps<Data>) {
   if (externalLinks.length <= 0) {
     return null
   }
