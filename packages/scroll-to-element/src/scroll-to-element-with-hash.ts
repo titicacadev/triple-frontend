@@ -14,7 +14,7 @@ export function scrollToElementWithHash({
     setTimeout(() => {
       const element = document.getElementById(hash.replace('#', ''))
 
-      if (element) {
+      if (!element) {
         return
       }
 

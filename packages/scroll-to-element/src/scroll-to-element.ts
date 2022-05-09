@@ -11,7 +11,7 @@ export function scrollToElement({
   setTimeout(() => {
     const element = document.getElementById(elementId)
 
-    if (element) {
+    if (!element) {
       return
     }
 
