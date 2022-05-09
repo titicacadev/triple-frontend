@@ -35,7 +35,7 @@ export default function SocialReviews({
       title={t('common:externalLinks', '소셜 리뷰')}
       externalLinks={socialReviews.map(
         ({ imageUrl, publisher: summary, title, url }) => ({
-          url,
+          data: url,
           title,
           summary,
           imageUrl:
@@ -51,7 +51,7 @@ export default function SocialReviews({
             }`,
         }),
       )}
-      onItemClick={(_, { url, title }) => {
+      onItemClick={(_, { data: url, title }) => {
         trackSimpleEvent({ action: '소셜리뷰선택' })
         navigate(url, { title })
       }}
