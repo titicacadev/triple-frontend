@@ -49,6 +49,7 @@
       "@titicaca/router": ["router/src"],
       "@titicaca/scrap-button": ["scrap-button/src"],
       "@titicaca/scroll-spy": ["scroll-spy/src"],
+      "@titicaca/scroll-to-element": ["scroll-to-element/src"],
       "@titicaca/search": ["search/src"],
       "@titicaca/slider": ["slider/src"],
       "@titicaca/social-reviews": ["social-reviews/src"],
