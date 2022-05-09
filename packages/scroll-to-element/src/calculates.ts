@@ -16,7 +16,7 @@ export function calculateScrollOffset({
   alignment,
 }: {
   element: Element
-  offset: number
+  offset?: number
   alignment?: string
 }): number {
   const html = document.documentElement
