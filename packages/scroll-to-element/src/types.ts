@@ -1,6 +1,6 @@
 export interface ScrollOptions {
   offset: number
-  align?: 'top' | 'middle' | 'bottom' | undefined
-  ease?: string | undefined
-  duration?: number | undefined
+  align?: 'top' | 'middle' | 'bottom'
+  ease?: string
+  duration?: number
 }
