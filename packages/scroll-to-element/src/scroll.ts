@@ -44,7 +44,7 @@ export function calculateScrollOffset({
 }: {
   element: Element
   offset: number
-  alignment: string
+  alignment?: string
 }): number {
   const html = document.documentElement
   const clientHeight = html.clientHeight
@@ -73,7 +73,7 @@ function getDocumentHeight(): number {
   )
 }
 
-function deriveScrollPosition(element: Element, alignment: string): number {
+function deriveScrollPosition(element: Element, alignment?: string): number {
   const elementRect = element.getBoundingClientRect()
   const html = document.documentElement
   const clientHeight = html.clientHeight
