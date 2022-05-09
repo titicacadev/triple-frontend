@@ -1,4 +1,5 @@
-import { scroll, calculateScrollOffset } from './scroll'
+import { scroll } from './scroll'
+import { calculateScrollOffset } from './calculates'
 import { ScrollOptions } from './types'
 
 export function scrollToElementWithHash(
