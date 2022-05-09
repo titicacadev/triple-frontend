@@ -5,7 +5,6 @@
     "rootDir": "src",
     "baseUrl": ".",
     "paths": {
-      "@titicaca/fetcher": ["../fetcher/src"],
       "@titicaca/router": ["../router/src"],
       "@titicaca/view-utilities": ["../view-utilities/src"]
     }
