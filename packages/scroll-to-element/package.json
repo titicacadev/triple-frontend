@@ -2,13 +2,11 @@
   "name": "@titicaca/scroll-to-element",
   "version": "7.5.0",
   "description": "> TODO: description",
-  "author": "finn <finn@triple-corp.com>",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "license": "MIT",
   "main": "lib/index.js",
   "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+    "lib": "lib"
   },
   "files": [
     "lib"
