@@ -6,6 +6,9 @@
       "path": "../router/tsconfig.build.json"
     },
     {
+      "path": "../scroll-to-element/tsconfig.build.json"
+    },
+    {
       "path": "../view-utilities/tsconfig.build.json"
     }
   ]

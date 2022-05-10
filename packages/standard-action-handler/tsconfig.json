@@ -6,6 +6,7 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/router": ["../router/src"],
+      "@titicaca/scroll-to-element": ["../scroll-to-element/src"],
       "@titicaca/view-utilities": ["../view-utilities/src"]
     }
   },
@@ -13,6 +14,9 @@
   "references": [
     {
       "path": "../router"
+    },
+    {
+      "path": "../scroll-to-element"
     },
     {
       "path": "../view-utilities"
