@@ -34,10 +34,10 @@ export default function SocialReviews({
     <ExternalLinks
       title={t('common:externalLinks', '소셜 리뷰')}
       externalLinks={socialReviews.map(
-        ({ imageUrl, publisher: summary, title, url }) => ({
+        ({ imageUrl, publisher: meta, title, url }) => ({
           data: url,
           title,
-          summary,
+          meta,
           imageUrl:
             imageUrl &&
             `/api/images/cast?url=${encodeURIComponent(
