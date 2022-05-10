@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import {
   Section,
-  Container,
   List,
   Text,
   Image,
@@ -42,12 +41,8 @@ function ExternalLinkItem<Data>({
       minHeight={106}
       onClick={onItemClick ? (e) => onItemClick(e, externalLink) : undefined}
     >
-      <FlexBox
-        padding={{ top: 20, bottom: 20 }}
-        flex
-        justifyContent="space-between"
-      >
-        <Container>
+      <FlexBox padding={{ top: 20, bottom: 20 }} flex gap="20px">
+        <FlexBox minWidth={0} flexGrow={1}>
           <H3 maxLines={2}>{title}</H3>
           {summary && (
             <Text size="small" alpha={0.7} margin={{ top: 8 }} ellipsis>
@@ -59,15 +54,15 @@ function ExternalLinkItem<Data>({
               {meta}
             </Text>
           )}
-        </Container>
+        </FlexBox>
 
-        <Container width={60} margin={{ left: 20 }}>
+        <FlexBox width={60} flexShrink={0}>
           <Image borderRadius={4}>
             <Image.FixedRatioFrame frame="big">
               <Image.Img src={imageUrl} alt={`${title} 썸네일`} />
             </Image.FixedRatioFrame>
           </Image>
-        </Container>
+        </FlexBox>
       </FlexBox>
     </ExternalLinkEntry>
   )
