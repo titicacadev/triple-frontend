@@ -1,1 +1,1 @@
-export * from './scroll-to-element'
+export { default as scrollToElement } from './scroll-to-element'
