@@ -2,7 +2,10 @@ import { scroll } from './scroll'
 import { calculateScrollOffset } from './calculates'
 import { ScrollOptions } from './types'
 
-export function scrollToElement(element: Element, options: ScrollOptions) {
+export default function scrollToElement(
+  element: Element,
+  options: ScrollOptions,
+) {
   if (!element) {
     return
   }
