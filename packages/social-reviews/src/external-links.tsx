@@ -56,12 +56,16 @@ function ExternalLinkItem<Data>({
 
       <Container padding={{ top: 20, bottom: 20 }}>
         <H3 maxLines={2}>{title}</H3>
-        <Text size="small" alpha={0.7} margin={{ top: 8 }} ellipsis>
-          {summary}
-        </Text>
-        <Text size="tiny" alpha={0.4} margin={{ top: 8 }} ellipsis>
-          {meta}
-        </Text>
+        {summary && (
+          <Text size="small" alpha={0.7} margin={{ top: 8 }} ellipsis>
+            {summary}
+          </Text>
+        )}
+        {meta && (
+          <Text size="tiny" alpha={0.4} margin={{ top: 8 }} ellipsis>
+            {meta}
+          </Text>
+        )}
       </Container>
     </ExternalLinkEntry>
   )
