@@ -36,8 +36,6 @@ function ExternalLinkItem<Data>({
   externalLink: ExternalLink<Data>
   onItemClick?: (e: MouseEvent<HTMLLIElement>, item: ExternalLink<Data>) => void
 }) {
-  const textMargin = summary && meta ? 5 : 8
-
   return (
     <ExternalLinkEntry
       minHeight={106}
@@ -56,12 +54,12 @@ function ExternalLinkItem<Data>({
         </Image>
       </Container>
 
-      <Container padding={{ top: 20 }}>
+      <Container padding={{ top: 20, bottom: 20 }}>
         <H3 maxLines={2}>{title}</H3>
-        <Text size="small" alpha={0.7} margin={{ top: textMargin }} ellipsis>
+        <Text size="small" alpha={0.7} margin={{ top: 8 }} ellipsis>
           {summary}
         </Text>
-        <Text size="tiny" alpha={0.4} margin={{ top: textMargin }} ellipsis>
+        <Text size="tiny" alpha={0.4} margin={{ top: 8 }} ellipsis>
           {meta}
         </Text>
       </Container>
