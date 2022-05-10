@@ -23,5 +23,13 @@ export function scroll({
     .onUpdate((option) => window.scrollTo(option.left || 0, option.top || 0))
     .start()
 
+  animate()
+
   return tween
+}
+
+function animate() {
+  requestAnimationFrame(animate)
+
+  TWEEN.update()
 }
