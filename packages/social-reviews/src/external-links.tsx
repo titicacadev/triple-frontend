@@ -7,6 +7,7 @@ import {
   Image,
   H1,
   H3,
+  FlexBox,
 } from '@titicaca/core-elements'
 import { MouseEvent } from 'react'
 
@@ -41,32 +42,33 @@ function ExternalLinkItem<Data>({
       minHeight={106}
       onClick={onItemClick ? (e) => onItemClick(e, externalLink) : undefined}
     >
-      <Container
-        floated="right"
-        width={60}
-        margin={{ left: 20 }}
+      <FlexBox
         padding={{ top: 20, bottom: 20 }}
+        flex
+        justifyContent="space-between"
       >
-        <Image borderRadius={4}>
-          <Image.FixedRatioFrame frame="big">
-            <Image.Img src={imageUrl} alt={`${title} 썸네일`} />
-          </Image.FixedRatioFrame>
-        </Image>
-      </Container>
+        <Container>
+          <H3 maxLines={2}>{title}</H3>
+          {summary && (
+            <Text size="small" alpha={0.7} margin={{ top: 8 }} ellipsis>
+              {summary}
+            </Text>
+          )}
+          {meta && (
+            <Text size="tiny" alpha={0.4} margin={{ top: 8 }} ellipsis>
+              {meta}
+            </Text>
+          )}
+        </Container>
 
-      <Container padding={{ top: 20, bottom: 20 }}>
-        <H3 maxLines={2}>{title}</H3>
-        {summary && (
-          <Text size="small" alpha={0.7} margin={{ top: 8 }} ellipsis>
-            {summary}
-          </Text>
-        )}
-        {meta && (
-          <Text size="tiny" alpha={0.4} margin={{ top: 8 }} ellipsis>
-            {meta}
-          </Text>
-        )}
-      </Container>
+        <Container width={60} margin={{ left: 20 }}>
+          <Image borderRadius={4}>
+            <Image.FixedRatioFrame frame="big">
+              <Image.Img src={imageUrl} alt={`${title} 썸네일`} />
+            </Image.FixedRatioFrame>
+          </Image>
+        </Container>
+      </FlexBox>
     </ExternalLinkEntry>
   )
 }
