@@ -7,6 +7,7 @@ import share from './share'
 import copyToClipboard from './copy-to-clipboard'
 import newWindow from './new-window'
 import imageDownload from './image-download'
+import scrollToElement from './scroll-to-element'
 import { ContextOptions } from './types'
 
 export function initialize(options: ContextOptions) {
@@ -20,6 +21,7 @@ export function initialize(options: ContextOptions) {
       copyToClipboard,
       newWindow,
       imageDownload,
+      scrollToElement,
     ],
     options,
   })
