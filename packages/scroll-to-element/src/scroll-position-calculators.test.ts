@@ -1,4 +1,7 @@
-import { initialScrollPosition, calculateScrollOffset } from './calculates'
+import {
+  initialScrollPosition,
+  calculateScrollOffset,
+} from './scroll-position-calculators'
 
 jest
   .spyOn(document.documentElement, 'scrollTop', 'get')
