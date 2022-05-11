@@ -1,5 +1,5 @@
 import { scroll } from './scroll'
-import { calculateScrollOffset } from './calculates'
+import { calculateScrollOffset } from './scroll-position-calculators'
 import { ScrollOptions } from './types'
 
 export default function scrollToElement(

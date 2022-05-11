@@ -1,7 +1,7 @@
 import TWEEN from '@tweenjs/tween.js'
 
 import { ScrollOptions } from './types'
-import { initialScrollPosition } from './calculates'
+import { initialScrollPosition } from './scroll-position-calculators'
 
 export function scroll({
   x,
