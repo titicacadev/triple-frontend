@@ -1,7 +1,7 @@
 {
   "name": "@titicaca/scroll-to-element",
   "version": "7.5.0",
-  "description": "> TODO: description",
+  "description": "Scroll Functions for Triple service applications",
   "homepage": "https://github.com/titicacadev/triple-frontend#readme",
   "license": "MIT",
   "main": "lib/index.js",
