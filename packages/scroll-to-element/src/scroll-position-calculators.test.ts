@@ -19,14 +19,14 @@ jest
   .spyOn(document.documentElement, 'clientHeight', 'get')
   .mockImplementation(() => 300)
 
-test('현재 스크롤의 위치 정보를 반환합니다.', () => {
+test('initialScrollPosition()은 현재 스크롤의 위치 정보를 반환합니다.', () => {
   const { top, left } = initialScrollPosition()
 
   expect(top).toEqual(100)
   expect(left).toEqual(10)
 })
 
-test('스크롤 오프셋을 반환합니다.', () => {
+test('calculateScrollOffset()은 스크롤 오프셋을 반환합니다.', () => {
   const element = document.createElement('div')
 
   element.getBoundingClientRect = jest.fn(() => ({
