@@ -24,9 +24,13 @@ scrollToElement()
 
 element : Element
 
-> 스크롤을 위치시키고 싶은 element를 의미합니다.
+- 스크롤을 위치시키고 싶은 element를 의미합니다.
 
 options : ScrollOptions
+
+- offset : 최종 위치에 오프셋을 추가합니다.
+- align : Element의 정렬을 의미합니다.
+- duration : 애니메이션 시간을 의미합니다.
 
 ```ts
 interface ScrollOptions {
@@ -35,12 +39,6 @@ interface ScrollOptions {
   duration?: number
 }
 ```
-
-> offset : 최종 위치에 오프셋을 추가합니다.
->
-> align : Element의 정렬을 의미합니다.
->
-> duration : 애니메이션 시간을 의미합니다.
 
 ## Refererence
 
