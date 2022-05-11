@@ -11,9 +11,9 @@ export default async function scrollToElement({ path, query }: UrlElements) {
     if (hash) {
       const element = document.getElementById(hash)
       element && scrollTo(element, { offset: -52 })
-
-      return true
     }
+
+    return true
   }
 
   return false
