@@ -5,7 +5,7 @@ import { App } from '@titicaca/react-triple-client-interfaces'
 
 export default async function scrollToElement(
   { path, query }: UrlElements,
-  app: App,
+  { app }: { app?: App | null },
 ) {
   if (path === '/web-action/scroll-to-element' && query) {
     const { hash } = qs.parse(query) as {
