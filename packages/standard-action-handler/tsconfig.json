@@ -5,6 +5,9 @@
     "rootDir": "src",
     "baseUrl": ".",
     "paths": {
+      "@titicaca/react-triple-client-interfaces": [
+        "../react-triple-client-interfaces/src"
+      ],
       "@titicaca/router": ["../router/src"],
       "@titicaca/scroll-to-element": ["../scroll-to-element/src"],
       "@titicaca/view-utilities": ["../view-utilities/src"]
@@ -12,6 +15,9 @@
   },
   "include": ["./src"],
   "references": [
+    {
+      "path": "../react-triple-client-interfaces"
+    },
     {
       "path": "../router"
     },

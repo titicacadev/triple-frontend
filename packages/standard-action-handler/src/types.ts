@@ -1,4 +1,5 @@
 import { UrlElements } from '@titicaca/view-utilities'
+import { App } from '@titicaca/react-triple-client-interfaces'
 
 export interface NavigateOptions {
   target?: 'browser'
@@ -21,6 +22,7 @@ export interface ContextOptions {
     href: string
     target: TargetType
   }) => void
+  app?: App | null
 }
 
 export type WebAction = (
