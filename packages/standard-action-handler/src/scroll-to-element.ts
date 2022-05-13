@@ -1,8 +1,12 @@
 import qs from 'qs'
 import { UrlElements } from '@titicaca/view-utilities'
 import { scrollToElement as scrollTo } from '@titicaca/scroll-to-element'
+import { App } from '@titicaca/react-triple-client-interfaces'
 
-export default async function scrollToElement({ path, query }: UrlElements) {
+export default async function scrollToElement(
+  { path, query }: UrlElements,
+  app: App,
+) {
   if (path === '/web-action/scroll-to-element' && query) {
     const { hash } = qs.parse(query) as {
       hash?: string
@@ -10,7 +14,7 @@ export default async function scrollToElement({ path, query }: UrlElements) {
 
     if (hash) {
       const element = document.getElementById(hash)
-      element && scrollTo(element, { offset: -52 })
+      element && scrollTo(element, { offset: app ? -102 : -110 })
     }
 
     return true
