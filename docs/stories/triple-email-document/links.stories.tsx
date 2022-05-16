@@ -1,24 +1,25 @@
-import { ComponentMeta } from '@storybook/react'
+import { Meta } from '@storybook/react'
 import { ELEMENTS } from '@titicaca/triple-email-document'
 
-const { link: Link } = ELEMENTS
+const { links: Links } = ELEMENTS
 
 export default {
   title: 'Document / triple-email-document / elements / 링크',
-  component: Link,
+  component: Links,
   argTypes: {
     value: {
-      id: {
-        type: 'string',
-        require: true,
-      },
-      label: {
-        type: 'string',
-        require,
-      },
-      href: {
-        type: 'string',
-        require: true,
+      links: {
+        id: {
+          type: 'string',
+          require: true,
+        },
+        label: {
+          type: 'string',
+        },
+        href: {
+          type: 'string',
+          require: true,
+        },
       },
       display: {
         type: 'string',
@@ -26,7 +27,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Link>
+} as Meta
 
 export const StyledButtonLinkElement = {
   storyName: '버튼',
@@ -61,9 +62,13 @@ type LinkDisplay = 'button' | 'block' | 'largeButton' | 'largeCompactButton'
 function generateSampleData(type: LinkDisplay) {
   return {
     value: {
-      id: 'Link_ID',
-      label: `${type} 디자인 형식`,
-      href: '',
+      links: [
+        {
+          id: 'Link_ID',
+          label: `${type} 디자인 형식`,
+          href: '',
+        },
+      ],
       display: type,
     },
   }

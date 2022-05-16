@@ -25,7 +25,7 @@ import {
   Divider6View,
 } from './dividers'
 import TextView, { TextDocument } from './text'
-import LinkView, { LinkDocument } from './link'
+import LinksView, { LinksDocument } from './links'
 import NoteView, { NoteDocument } from './note'
 import ImagesView, { ImageDocument } from './images'
 import EmbeddedView, { EmbeddedDocument } from './embedded'
@@ -42,7 +42,7 @@ export type TripleEmailElementData =
   | Divider5Document
   | Divider6Document
   | TextDocument
-  | LinkDocument
+  | LinksDocument
   | NoteDocument
   | ImageDocument
   | EmbeddedDocument
@@ -71,7 +71,7 @@ const ELEMENTS: {
   hr5: Divider5View,
   hr6: Divider6View,
   text: TextView,
-  link: LinkView,
+  links: LinksView,
   note: NoteView,
   images: ImagesView,
   embedded: EmbeddedView,
