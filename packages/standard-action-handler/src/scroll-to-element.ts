@@ -1,7 +1,7 @@
 import qs from 'qs'
 import { UrlElements } from '@titicaca/view-utilities'
 import { scrollToElement as scrollTo } from '@titicaca/scroll-to-element'
-import { App } from '@titicaca/react-triple-client-interfaces'
+import type { App } from '@titicaca/react-triple-client-interfaces'
 
 export default async function scrollToElement(
   { path, query }: UrlElements,

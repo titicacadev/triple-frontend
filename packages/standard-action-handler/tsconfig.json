@@ -16,9 +16,6 @@
   "include": ["./src"],
   "references": [
     {
-      "path": "../react-triple-client-interfaces"
-    },
-    {
       "path": "../router"
     },
     {
@@ -26,6 +23,9 @@
     },
     {
       "path": "../view-utilities"
+    },
+    {
+      "path": "../react-triple-client-interfaces"
     }
   ]
 }
