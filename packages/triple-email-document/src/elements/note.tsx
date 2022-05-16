@@ -29,7 +29,7 @@ const NoteTextStyled = styled.div`
 
 const TitleStyled = styled(NoteTextStyled)`
   font-weight: 700;
-  color: rgba(58, 58, 58, 1);
+  color: rgba(54, 143, 255, 1);
 `
 
 const BodyStyled = styled(NoteTextStyled)`
