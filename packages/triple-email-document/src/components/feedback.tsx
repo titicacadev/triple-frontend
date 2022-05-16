@@ -11,7 +11,7 @@ const PaddingTd = styled.td`
   padding: 60px 40px;
 `
 
-const Title = styled.h3`
+const Title = styled.div`
   font-size: 18px;
   font-weight: bold;
   line-height: 22px;
@@ -19,7 +19,7 @@ const Title = styled.h3`
   color: rgba(58, 58, 58, 1);
 `
 
-const SubTitle = styled.h4`
+const SubTitle = styled.div`
   font-size: 14px;
   font-weight: bold;
   line-height: 17px;
