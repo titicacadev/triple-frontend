@@ -4,12 +4,17 @@ import styled from 'styled-components'
 
 import { FluidTable, Box as DefaultBox } from '../common'
 
-export interface LinkDocument {
-  type: 'link'
+interface Link {
+  id?: string
+  label?: string
+  href: string
+  target?: string
+}
+
+export interface LinksDocument {
+  type: 'links'
   value: {
-    id: string
-    label: string
-    href: string
+    links: Link[]
     display: 'button' | 'block' | 'largeButton' | 'largeCompactButton'
   }
 }
@@ -86,10 +91,10 @@ const LINK_ELEMENTS = {
   largeCompactButton: LargeCompactLink,
 }
 
-export default function LinkView({
-  value: { label, href: givenHref, id: linkId, display },
+export default function LinksView({
+  value: { display, links },
 }: {
-  value: LinkDocument['value']
+  value: LinksDocument['value']
 }) {
   const Box = LINK_BOXES[display] || ButtonBox
   const Element = LINK_ELEMENTS[display] || ButtonLink
@@ -97,15 +102,17 @@ export default function LinkView({
   return (
     <FluidTable>
       <tbody>
-        <tr>
-          <Box>
-            <Container textAlign="center">
-              <Element href={givenHref} ses:tags={`link:${linkId}`}>
-                {label}
-              </Element>
-            </Container>
-          </Box>
-        </tr>
+        {links.map((link, index) => (
+          <tr key={index}>
+            <Box>
+              <Container textAlign="center">
+                <Element href={link.href} ses:tags={`link:${link.id}`}>
+                  {link.label}
+                </Element>
+              </Container>
+            </Box>
+          </tr>
+        ))}
       </tbody>
     </FluidTable>
   )

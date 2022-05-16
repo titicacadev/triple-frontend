@@ -86,11 +86,15 @@ DefaultEmbeddedElement.args = {
           },
         },
         {
-          type: 'link',
+          type: 'links',
           value: {
-            id: 'Link_ID',
-            label: '박스 디자인 형식',
-            href: '',
+            links: [
+              {
+                id: 'Link_ID',
+                label: '박스 디자인 형식',
+                href: '',
+              },
+            ],
             display: 'block',
           },
         },
@@ -125,11 +129,15 @@ withPaddingImageEmbeddedElement.args = {
           },
         },
         {
-          type: 'link',
+          type: 'links',
           value: {
-            id: 'Link_ID',
-            label: '박스 디자인 형식',
-            href: '',
+            links: [
+              {
+                id: 'Link_ID',
+                label: '박스 디자인 형식',
+                href: '',
+              },
+            ],
             display: 'block',
           },
         },

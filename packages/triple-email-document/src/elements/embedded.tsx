@@ -5,7 +5,7 @@ import { FluidTable, Box } from '../common'
 
 import ImageView, { ImageDocument } from './images'
 import TextView, { TextDocument } from './text'
-import LinkView, { LinkDocument } from './link'
+import LinksView, { LinksDocument } from './links'
 
 interface ElementSet {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -16,7 +16,7 @@ type EntriesElement =
   | EmbeddedHeadingDocument
   | ImageDocument
   | TextDocument
-  | LinkDocument
+  | LinksDocument
 
 export interface EmbeddedHeadingDocument {
   type: 'heading'
@@ -36,7 +36,7 @@ const EMBEDDED_ELEMENTS: ElementSet = {
   heading: EmbeddedHeading,
   images: ImageView,
   text: TextView,
-  links: LinkView,
+  links: LinksView,
 }
 
 export default function EmbeddedView({

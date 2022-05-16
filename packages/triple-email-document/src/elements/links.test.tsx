@@ -5,14 +5,18 @@ import { render } from '@testing-library/react'
 import { ELEMENTS } from '../index'
 
 test('버튼형 링크 Element를 렌더링합니다.', () => {
-  const Link = ELEMENTS.link
+  const Links = ELEMENTS.links
 
   const { getByRole } = render(
-    <Link
+    <Links
       value={{
-        id: '',
-        label: 'Button Styled Link',
-        href: 'Test Href',
+        links: [
+          {
+            id: '',
+            label: 'Button Styled Link',
+            href: 'Test Href',
+          },
+        ],
         display: 'button',
       }}
     />,
@@ -29,14 +33,12 @@ test('버튼형 링크 Element를 렌더링합니다.', () => {
 })
 
 test('블락형 링크 Element를 렌더링합니다.', () => {
-  const Link = ELEMENTS.link
+  const Link = ELEMENTS.links
 
   const { getByRole } = render(
     <Link
       value={{
-        id: '',
-        label: 'Block Styled Link',
-        href: 'Test Href',
+        links: [{ id: '', label: 'Block Styled Link', href: 'Test Href' }],
         display: 'block',
       }}
     />,
@@ -53,14 +55,18 @@ test('블락형 링크 Element를 렌더링합니다.', () => {
 })
 
 test('대형 버튼형 링크 Element를 렌더링합니다.', () => {
-  const Link = ELEMENTS.link
+  const Link = ELEMENTS.links
 
   const { getByRole } = render(
     <Link
       value={{
-        id: '',
-        label: 'Large Button Styled Link',
-        href: 'Test Href',
+        links: [
+          {
+            id: '',
+            label: 'Large Button Styled Link',
+            href: 'Test Href',
+          },
+        ],
         display: 'largeButton',
       }}
     />,
@@ -78,14 +84,18 @@ test('대형 버튼형 링크 Element를 렌더링합니다.', () => {
 })
 
 test('대형 버튼형 링크 Element를 렌더링합니다.', () => {
-  const Link = ELEMENTS.link
+  const Link = ELEMENTS.links
 
   const { getByRole } = render(
     <Link
       value={{
-        id: '',
-        label: 'Large Compact Button Styled Link',
-        href: 'Test Href',
+        links: [
+          {
+            id: '',
+            label: 'Large Compact Button Styled Link',
+            href: 'Test Href',
+          },
+        ],
         display: 'largeCompactButton',
       }}
     />,
