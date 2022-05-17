@@ -6,7 +6,6 @@ import {
   ClientSpecificWorkaround,
 } from './common'
 import { EmailPreview, EmailFooter, PreviewDocument } from './components'
-import EmailIntro from './components/intro'
 import { TripleEmailElementData } from './elements'
 import { TripleEmailDocument } from './triple-email-document'
 
@@ -19,16 +18,10 @@ const RootTable = styled.table`
 `
 
 export default function FullEmailTemplate({
-  image,
-  greeting,
-  introText,
   preview,
   document,
   transitionLink,
 }: {
-  image?: string
-  greeting?: string
-  introText?: string
   preview: PreviewDocument
   document: TripleEmailElementData[]
   transitionLink: string
@@ -42,15 +35,6 @@ export default function FullEmailTemplate({
       <div id="bodyTable">
         <RootTable>
           <tbody>
-            <tr>
-              <td>
-                <EmailIntro
-                  image={image}
-                  greeting={greeting}
-                  introText={introText}
-                />
-              </td>
-            </tr>
             <tr>
               <td>
                 <EmailPreview value={preview.value} />
