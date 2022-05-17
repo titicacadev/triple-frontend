@@ -5,7 +5,7 @@ import {
   CustomReset,
   ClientSpecificWorkaround,
 } from './common'
-import { EmailPreview, EmailFooter, PreviewDocument } from './components'
+import { EmailPreview, PreviewDocument } from './components'
 import { TripleEmailElementData } from './elements'
 import { TripleEmailDocument } from './triple-email-document'
 
@@ -20,11 +20,9 @@ const RootTable = styled.table`
 export default function FullEmailTemplate({
   preview,
   document,
-  transitionLink,
 }: {
   preview: PreviewDocument
   document: TripleEmailElementData[]
-  transitionLink: string
 }) {
   return (
     <>
@@ -43,12 +41,6 @@ export default function FullEmailTemplate({
             <tr>
               <td>
                 <TripleEmailDocument elements={document} />
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <EmailFooter transitionLink={transitionLink} />
               </td>
             </tr>
           </tbody>
