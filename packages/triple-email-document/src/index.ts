@@ -8,6 +8,7 @@ export {
   EmailPreview,
   PreviewDocument,
   EmailFeedback,
+  EmailIntro,
 } from './components'
 
 export { default as FullEmailTemplate } from './full-email-template'
