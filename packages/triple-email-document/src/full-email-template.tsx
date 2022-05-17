@@ -11,6 +11,7 @@ import {
   PreviewDocument,
   EmailFeedback,
 } from './components'
+import EmailIntro from './components/intro'
 import { TripleEmailElementData } from './elements'
 import { TripleEmailDocument } from './triple-email-document'
 
@@ -28,11 +29,17 @@ interface SubscribedUser {
 }
 
 export default function FullEmailTemplate({
+  image,
+  greeting,
+  introText,
   user,
   preview,
   document,
   transitionLink,
 }: {
+  image?: string
+  greeting?: string
+  introText?: string
   user: SubscribedUser
   preview: PreviewDocument
   document: TripleEmailElementData[]
@@ -47,6 +54,15 @@ export default function FullEmailTemplate({
       <div id="bodyTable">
         <RootTable>
           <tbody>
+            <tr>
+              <td>
+                <EmailIntro
+                  image={image}
+                  greeting={greeting}
+                  introText={introText}
+                />
+              </td>
+            </tr>
             <tr>
               <td>
                 <EmailPreview value={preview.value} />
