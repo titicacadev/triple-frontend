@@ -5,12 +5,7 @@ import {
   CustomReset,
   ClientSpecificWorkaround,
 } from './common'
-import {
-  EmailPreview,
-  EmailFooter,
-  PreviewDocument,
-  EmailFeedback,
-} from './components'
+import { EmailPreview, EmailFooter, PreviewDocument } from './components'
 import EmailIntro from './components/intro'
 import { TripleEmailElementData } from './elements'
 import { TripleEmailDocument } from './triple-email-document'
@@ -23,16 +18,10 @@ const RootTable = styled.table`
   margin-right: auto;
 `
 
-interface SubscribedUser {
-  id: string
-  name: string
-}
-
 export default function FullEmailTemplate({
   image,
   greeting,
   introText,
-  user,
   preview,
   document,
   transitionLink,
@@ -40,7 +29,6 @@ export default function FullEmailTemplate({
   image?: string
   greeting?: string
   introText?: string
-  user: SubscribedUser
   preview: PreviewDocument
   document: TripleEmailElementData[]
   transitionLink: string
@@ -73,11 +61,7 @@ export default function FullEmailTemplate({
                 <TripleEmailDocument elements={document} />
               </td>
             </tr>
-            <tr>
-              <td>
-                <EmailFeedback username={user.name} />
-              </td>
-            </tr>
+
             <tr>
               <td>
                 <EmailFooter transitionLink={transitionLink} />
