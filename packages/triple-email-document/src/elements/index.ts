@@ -7,7 +7,6 @@ import {
   Heading4Document,
   Heading1View,
   Heading2View,
-  Heading3View,
   Heading4View,
 } from './heading'
 import {
@@ -62,7 +61,7 @@ const ELEMENTS: {
 } = {
   heading1: Heading1View,
   heading2: Heading2View,
-  heading3: Heading3View,
+  heading3: Heading1View,
   heading4: Heading4View,
   hr1: Divider1View,
   hr2: Divider2View,
