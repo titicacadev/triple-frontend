@@ -74,18 +74,6 @@ function ImagesContextMonitor({ onFetched }: { onFetched?: () => void }) {
 
 const MemeoizedImagesContextMonitor = memo(ImagesContextMonitor)
 
-function fetchImages(
-  { id, type }: { id: string; type: string },
-  { from, size }: { from: number; size: number },
-) {
-  return window.fetch(
-    `/api/content/${type}s/${id}/images?from=${from}&size=${size}`,
-    {
-      credentials: 'same-origin',
-    },
-  )
-}
-
 const SAMPLE_SOURCE: Parameters<typeof ImagesProvider>[0]['source'] = {
   type: 'attraction',
   id: 'a86a3f55-9f89-4540-a124-f8c4db07ab34',
@@ -100,7 +88,7 @@ function RenderingTester() {
         Provider 자식 re-render 하기
       </button>
 
-      <ImagesProvider source={SAMPLE_SOURCE} fetchImages={fetchImages}>
+      <ImagesProvider source={SAMPLE_SOURCE}>
         <div style={{ border: 'dotted black 1px', padding: '5px' }}>
           {count}
 
@@ -113,7 +101,7 @@ function RenderingTester() {
 
 export const Basic = () => {
   return (
-    <ImagesProvider source={SAMPLE_SOURCE} fetchImages={fetchImages}>
+    <ImagesProvider source={SAMPLE_SOURCE}>
       <ImagesContextMonitor />
     </ImagesProvider>
   )
