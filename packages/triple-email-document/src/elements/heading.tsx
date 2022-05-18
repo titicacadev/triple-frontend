@@ -36,6 +36,7 @@ const H1Container = styled.h1`
   font-size: 21px;
   font-weight: bold;
   color: rgba(58, 58, 58, 1);
+  white-space: pre-line;
 `
 
 const HeadlineContainer = styled.p`
@@ -50,6 +51,7 @@ const H2Container = styled.h2`
   font-size: 19px;
   font-weight: 500;
   color: rgba(58, 58, 58, 1);
+  white-space: pre-line;
 `
 
 const H3Container = styled.h3`
@@ -57,6 +59,7 @@ const H3Container = styled.h3`
   font-size: 16px;
   font-weight: bold;
   color: rgba(58, 58, 58, 1);
+  white-space: pre-line;
 `
 
 const H4Container = styled.h4`
