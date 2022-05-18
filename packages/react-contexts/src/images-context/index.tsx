@@ -35,7 +35,7 @@ interface ImagesProviderProps {
   fetchImages?: (
     target: { type: string; id: string },
     query: { from: number; size: number },
-  ) => Promise<{ data: ImageMeta[]; total: number }>
+  ) => Promise<Response>
   source: {
     id: string
     type: 'attraction' | 'restaurant' | 'hotel'
@@ -64,7 +64,7 @@ const TYPE_MAPPING = {
 export function ImagesProvider({
   images: initialImages,
   total: initialTotal,
-  fetchImages = defaultFetchImages,
+  fetchImages,
   source: { id, type },
   children,
 }: PropsWithChildren<ImagesProviderProps>) {
@@ -77,12 +77,26 @@ export function ImagesProvider({
 
   const sendFetchRequest = useCallback(
     async (size = 15) => {
-      const response = await fetchImages(
-        { type: TYPE_MAPPING[type] || type, id },
-        { from: images.length, size },
-      )
+      if (fetchImages) {
+        const response = await fetchImages(
+          { type: TYPE_MAPPING[type] || type, id },
+          { from: images.length, size },
+        )
 
-      return response || {}
+        if (response.ok === true) {
+          const result = await response.json()
+          return result
+        }
+
+        return {}
+      } else {
+        const response = await defaultFetchImages(
+          { type: TYPE_MAPPING[type] || type, id },
+          { from: images.length, size },
+        )
+
+        return response
+      }
     },
     [fetchImages, id, images.length, type],
   )
@@ -95,17 +109,34 @@ export function ImagesProvider({
     dispatch(loadImagesRequest())
 
     try {
-      const { data: fetchedImages, total } = await fetchImages(
-        { type: TYPE_MAPPING[type] || type, id },
-        { from: 0, size: 15 },
-      )
+      if (fetchImages) {
+        const response = await fetchImages(
+          { type: TYPE_MAPPING[type] || type, id },
+          { from: 0, size: 15 },
+        )
 
-      dispatch(
-        reinitializeImages({
-          images: fetchedImages,
-          total,
-        }),
-      )
+        if (response.ok) {
+          const { data: fetchedImages, total } = await response.json()
+          dispatch(
+            reinitializeImages({
+              images: fetchedImages,
+              total,
+            }),
+          )
+        }
+      } else {
+        const { data: fetchedImages, total } = await defaultFetchImages(
+          { type: TYPE_MAPPING[type] || type, id },
+          { from: 0, size: 15 },
+        )
+
+        dispatch(
+          reinitializeImages({
+            images: fetchedImages,
+            total,
+          }),
+        )
+      }
     } catch (error) {
       dispatch(loadImagesFail(error))
     }
