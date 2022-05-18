@@ -35,7 +35,7 @@ interface ImagesProviderProps {
   fetchImages?: (
     target: { type: string; id: string },
     query: { from: number; size: number },
-  ) => Promise<Response>
+  ) => Promise<{ data: ImageMeta[]; total: number }>
   source: {
     id: string
     type: 'attraction' | 'restaurant' | 'hotel'
@@ -82,13 +82,7 @@ export function ImagesProvider({
         { from: images.length, size },
       )
 
-      if (response.ok) {
-        const result = await response.json()
-
-        return result
-      }
-
-      return {}
+      return response || {}
     },
     [fetchImages, id, images.length, type],
   )
@@ -101,20 +95,17 @@ export function ImagesProvider({
     dispatch(loadImagesRequest())
 
     try {
-      const response = await fetchImages(
+      const { data: fetchedImages, total } = await fetchImages(
         { type: TYPE_MAPPING[type] || type, id },
         { from: 0, size: 15 },
       )
 
-      if (response.ok) {
-        const { data: fetchedImages, total } = await response.json()
-        dispatch(
-          reinitializeImages({
-            images: fetchedImages,
-            total,
-          }),
-        )
-      }
+      dispatch(
+        reinitializeImages({
+          images: fetchedImages,
+          total,
+        }),
+      )
     } catch (error) {
       dispatch(loadImagesFail(error))
     }
@@ -187,7 +178,7 @@ export function ImagesProvider({
 async function defaultFetchImages(
   target: { type: string; id: string },
   query: { from: number; size: number },
-): Promise<Response> {
+) {
   const querystring = qs.stringify({
     resourceType: target.type,
     resourceId: target.id,
@@ -195,7 +186,9 @@ async function defaultFetchImages(
     size: query.size,
   })
 
-  const response = await get<Response>(`/api/content/images?${querystring}`)
+  const response = await get<{ data: ImageMeta[]; total: number }>(
+    `/api/content/images?${querystring}`,
+  )
 
   if (response.ok === true) {
     const { parsedBody } = response
