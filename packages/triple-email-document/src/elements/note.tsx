@@ -25,6 +25,7 @@ const SegmentStlyed = styled.div`
 const NoteTextStyled = styled.div`
   font-size: 14px;
   line-height: 1.57;
+  white-space: pre-line;
 `
 
 const TitleStyled = styled(NoteTextStyled)`
