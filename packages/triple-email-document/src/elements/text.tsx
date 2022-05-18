@@ -15,6 +15,7 @@ const textStyle = css`
   line-height: 1.63;
   font-weight: 500;
   color: rgba(58, 58, 58, 0.9);
+  white-space: pre-line;
 `
 
 const HtmlContainer = styled.div`
