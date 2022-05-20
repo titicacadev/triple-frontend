@@ -176,6 +176,7 @@ export default function ReviewElement({
                     fa: {
                       action: '리뷰_리뷰글더보기',
                       item_id: resourceId,
+                      review_id: review.id,
                     },
                   })
                   setUnfolded(true)
