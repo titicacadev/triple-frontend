@@ -49,7 +49,7 @@ export default function ReviewsList({
     useCallback(
       (
         e: SyntheticEvent,
-        { user: { uid, unregister, mileage } }: ReviewData,
+        { user: { uid, unregister, mileage }, id }: ReviewData,
       ) => {
         const { level } = mileage || { level: 0 }
         trackEvent({
@@ -58,6 +58,7 @@ export default function ReviewsList({
             action: '리뷰_프로필',
             item_id: resourceId,
             user_id: uid,
+            review_id: id,
             level,
           },
         })
