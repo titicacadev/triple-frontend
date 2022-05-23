@@ -45,12 +45,12 @@ function ExternalLinkItem<Data>({
         <FlexBox minWidth={0} flexGrow={1}>
           <H3 maxLines={2}>{title}</H3>
           {summary && (
-            <Text size="small" alpha={0.7} margin={{ top: 8 }} ellipsis>
+            <Text size="small" alpha={0.7} margin={{ top: 6 }} ellipsis>
               {summary}
             </Text>
           )}
           {meta && (
-            <Text size="tiny" alpha={0.4} margin={{ top: 8 }} ellipsis>
+            <Text size="tiny" alpha={0.4} margin={{ top: 6 }} ellipsis>
               {meta}
             </Text>
           )}
