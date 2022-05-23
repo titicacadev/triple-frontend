@@ -14,7 +14,7 @@ export function TripleEmailDocument({
   customElements = {},
 }: {
   elements: TripleEmailElementData[]
-  customElements: ElementSet
+  customElements?: ElementSet
 }) {
   return (
     <FluidTable>
