@@ -56,13 +56,15 @@ function ExternalLinkItem<Data>({
           )}
         </FlexBox>
 
-        <FlexBox width={60} flexShrink={0}>
-          <Image borderRadius={4}>
-            <Image.FixedRatioFrame frame="big">
-              <Image.Img src={imageUrl} alt={`${title} 썸네일`} />
-            </Image.FixedRatioFrame>
-          </Image>
-        </FlexBox>
+        {imageUrl && (
+          <FlexBox width={60} flexShrink={0}>
+            <Image borderRadius={4}>
+              <Image.FixedRatioFrame frame="big">
+                <Image.Img src={imageUrl} alt={`${title} 썸네일`} />
+              </Image.FixedRatioFrame>
+            </Image>
+          </FlexBox>
+        )}
       </FlexBox>
     </ExternalLinkEntry>
   )
