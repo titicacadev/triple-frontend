@@ -20,12 +20,12 @@ export function TripleEmailDocument({
     <FluidTable>
       <tbody>
         {elements.map(({ type, value }, index) => {
-          const ReqularElement = ELEMENTS[type] as ComponentType<{
+          const RegularElement = ELEMENTS[type] as ComponentType<{
             value: GetValue<typeof type>
           }>
           const CustomElement = customElements[type]
 
-          const Element = CustomElement || ReqularElement
+          const Element = CustomElement || RegularElement
 
           if (Element === undefined) {
             return null
