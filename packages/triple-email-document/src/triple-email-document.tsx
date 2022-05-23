@@ -3,19 +3,29 @@ import { ComponentType } from 'react'
 import ELEMENTS, { TripleEmailElementData, GetValue } from './elements'
 import { FluidTable } from './common'
 
+interface ElementSet {
+  [key: string]: ComponentType<{
+    value: GetValue<TripleEmailElementData['type']>
+  }>
+}
+
 export function TripleEmailDocument({
   elements,
+  customElements = {},
 }: {
   elements: TripleEmailElementData[]
+  customElements: ElementSet
 }) {
   return (
     <FluidTable>
       <tbody>
         {elements.map(({ type, value }, index) => {
-          const Element = ELEMENTS[type] as ComponentType<{
+          const ReqularElement = ELEMENTS[type] as ComponentType<{
             value: GetValue<typeof type>
           }>
-          // type 단언으로 data가 어떤 타입인지 컴파일 타임에선 알 수 없어서 생기는 불일치 해소
+          const CustomElement = customElements[type]
+
+          const Element = CustomElement || ReqularElement
 
           if (Element === undefined) {
             return null
