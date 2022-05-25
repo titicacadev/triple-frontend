@@ -1,5 +1,35 @@
 # CHANGELOG
 
+## 8.0.0
+
+### common
+
+- update dependency @swc/core to v1.2.192 [#2057](https://github.com/titicacadev/triple-frontend/pull/2057)
+- update dependency @swc/core to v1.2.182 [#2051](https://github.com/titicacadev/triple-frontend/pull/2051)
+- update internal packages [#2049](https://github.com/titicacadev/triple-frontend/pull/2049)
+- 패키지 내 isomorphic-fetch를 제거하고 fetcher로 대체합니다. [#2045](https://github.com/titicacadev/triple-frontend/pull/2045)
+
+### social-reviews
+
+- ExternalLink의 imageUrl이 있을 때만 Image 노출 [#2060](https://github.com/titicacadev/triple-frontend/pull/2060)
+- ExternalLinks 컴포넌트 구현 [#2054](https://github.com/titicacadev/triple-frontend/pull/2054)
+
+### react-contexts
+
+- images-context 내 images를 가져오는 fetch부분을 수정합니다. [#2058](https://github.com/titicacadev/triple-frontend/pull/2058)
+
+### triple-email-document
+
+- element를 수정하고, component를 제거합니다. [#2056](https://github.com/titicacadev/triple-frontend/pull/2056)
+
+### standard-action-handler
+
+- 스크롤 액션을 추가합니다. [#2055](https://github.com/titicacadev/triple-frontend/pull/2055)
+
+### scroll-to-element
+
+- 스크롤 액션을 관리하는 패키지를 추가합니다. [#2053](https://github.com/titicacadev/triple-frontend/pull/2053)
+
 ## 7.5.0
 
 ### common
