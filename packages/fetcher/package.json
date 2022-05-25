@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/fetcher",
-  "version": "7.5.0",
+  "version": "8.0.0",
   "description": "Utilities for Triple view libraries and applications",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/fetcher",
@@ -27,9 +27,9 @@
   "devDependencies": {
     "@sentry/nextjs": "6.19.7",
     "@types/node-fetch": "^2.5.12",
+    "isomorphic-fetch": "^2.2.1",
     "next": "12.1.6",
-    "node-fetch": "^2.6.7",
-    "isomorphic-fetch": "^2.2.1"
+    "node-fetch": "^2.6.7"
   },
   "peerDependencies": {
     "@sentry/nextjs": "*",
