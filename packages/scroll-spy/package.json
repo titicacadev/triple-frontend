@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/scroll-spy",
-  "version": "7.5.0",
+  "version": "8.0.0",
   "description": "Scroll Spy Component",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/scroll-spy",
@@ -21,8 +21,8 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/intersection-observer": "^7.5.0",
-    "@titicaca/react-hooks": "^7.5.0",
+    "@titicaca/intersection-observer": "^8.0.0",
+    "@titicaca/react-hooks": "^8.0.0",
     "react-use": "^17.2.1"
   },
   "peerDependencies": {
