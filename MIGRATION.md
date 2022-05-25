@@ -1,5 +1,13 @@
 # 마이그레이션 가이드
 
+## v7 to v8
+
+### triple-email-document
+
+- `EmailFooter`가 제거되었습니다.
+
+  뉴스레터 / 이메일에서 사용하는 푸터 디자인이 개별로 정의되었기에. 패키지에서 관리하지 않습니다.
+
 ## v6 to v7
 
 ### `@titicaca/react-triple-client-interfaces` 사용
