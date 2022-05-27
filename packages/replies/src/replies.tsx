@@ -1,5 +1,9 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
-import { Container, MarginPadding } from '@titicaca/core-elements'
+import {
+  Container,
+  MarginPadding,
+  safeAreaInsetMixin,
+} from '@titicaca/core-elements'
 import styled from 'styled-components'
 
 import { fetchReplies, fetchChildReplies } from './replies-api-client'
@@ -22,6 +26,8 @@ const FixedBottom = styled(Container).attrs({
   positioning: { left: 0, right: 0, bottom: 0 },
 })`
   z-index: 3;
+
+  ${safeAreaInsetMixin}
 `
 
 export default function Replies({
