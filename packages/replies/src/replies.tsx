@@ -38,7 +38,7 @@ export default function Replies({
   isFormFixed,
   padding,
   size = 10,
-  initialSize = 3,
+  initialSize,
 }: {
   resourceId: string
   resourceType: ResourceType
@@ -133,7 +133,7 @@ export default function Replies({
   )
 
   const fetchInitialReplies = useCallback(async () => {
-    if (initialSize > size) {
+    if (initialSize && initialSize > size) {
       throw new Error('Failed to fetchInitialReplies')
     }
 
