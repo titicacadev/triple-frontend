@@ -37,6 +37,7 @@ export default function Replies({
   isFormFixed,
   padding,
   size = 10,
+  initialSize = 3,
 }: {
   resourceId: string
   resourceType: ResourceType
@@ -44,8 +45,10 @@ export default function Replies({
   isFormFixed?: boolean
   padding?: MarginPadding
   size?: number
+  initialSize?: number
 }) {
   const [replies, setReplies] = useState<Reply[]>([])
+  const [initialFetch, setInitialFetch] = useState(true)
   const [hasNextPage, setHasNextPage] = useState(false)
 
   const handleReplyAdd = (response: Reply): void => {
@@ -99,7 +102,7 @@ export default function Replies({
         : await fetchReplies({
             resourceId,
             resourceType,
-            size,
+            size: initialFetch ? initialSize : size,
             page: pageNumber,
           })
 
@@ -107,11 +110,12 @@ export default function Replies({
         const nextRepliesResponse: Reply[] = await fetchReplies({
           resourceId,
           resourceType,
-          size,
+          size: initialFetch ? initialSize : size,
           page: pageNumber + 1,
         })
 
         setHasNextPage(nextRepliesResponse.length > 0)
+        setInitialFetch(false)
       }
 
       const { children: newReplies } = appendReplyChildren(
@@ -125,7 +129,7 @@ export default function Replies({
 
       setReplies(newReplies)
     },
-    [resourceId, resourceType, size, replies],
+    [resourceId, resourceType, size, initialSize, initialFetch, replies],
   )
 
   useEffect(() => {
