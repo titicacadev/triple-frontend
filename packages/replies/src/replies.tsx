@@ -19,6 +19,7 @@ import {
   deleteReply,
   editReply,
 } from './reply-tree-manipulators'
+import { checkUniqueReply } from './utils'
 
 const FixedBottom = styled(Container).attrs({
   backgroundColor: 'white',
@@ -48,7 +49,7 @@ export default function Replies({
   initialSize?: number
 }) {
   const [replies, setReplies] = useState<Reply[]>([])
-  const [initialFetch, setInitialFetch] = useState(true)
+
   const [hasNextPage, setHasNextPage] = useState(false)
 
   const handleReplyAdd = (response: Reply): void => {
@@ -102,7 +103,7 @@ export default function Replies({
         : await fetchReplies({
             resourceId,
             resourceType,
-            size: initialFetch ? initialSize : size,
+            size,
             page: pageNumber,
           })
 
@@ -110,12 +111,11 @@ export default function Replies({
         const nextRepliesResponse: Reply[] = await fetchReplies({
           resourceId,
           resourceType,
-          size: initialFetch ? initialSize : size,
+          size,
           page: pageNumber + 1,
         })
 
         setHasNextPage(nextRepliesResponse.length > 0)
-        setInitialFetch(false)
       }
 
       const { children: newReplies } = appendReplyChildren(
@@ -129,14 +129,47 @@ export default function Replies({
 
       setReplies(newReplies)
     },
-    [resourceId, resourceType, size, initialSize, initialFetch, replies],
+    [resourceId, resourceType, size, replies],
   )
 
+  const fetchInitialReplies = useCallback(async () => {
+    if (initialSize > size) {
+      throw new Error('Failed to fetchInitialReplies')
+    }
+
+    const pageNumber = Math.floor(Number(replies.length / size))
+
+    const [initialReplies, nextReplies] = await Promise.all([
+      fetchReplies({
+        resourceId,
+        resourceType,
+        size: initialSize,
+        page: pageNumber,
+      }),
+      fetchReplies({
+        resourceId,
+        resourceType,
+        size: initialSize,
+        page: pageNumber + 1,
+      }),
+    ])
+
+    const newReplies = checkUniqueReply(initialReplies)
+
+    setReplies(newReplies)
+    setHasNextPage(nextReplies.length > 0)
+  }, [initialSize, size, replies, resourceId, resourceType])
+
   useEffect(() => {
-    fetchMoreReplies()
-    // fetchMoreReplies deps의 replies가 계속 업데이트되므로 제거했습니다.
+    if (initialSize) {
+      fetchInitialReplies()
+    } else {
+      fetchMoreReplies()
+    }
+
+    // fetchInitialReplies, fetchMoreReplies deps의 replies가 계속 업데이트되므로 제거했습니다.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [resourceId, resourceType, size])
+  }, [initialSize, resourceId, resourceType, size])
 
   const registerRef = useRef<TextAreaHandle>(null)
 
