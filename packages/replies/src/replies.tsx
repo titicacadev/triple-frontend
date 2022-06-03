@@ -132,37 +132,40 @@ export default function Replies({
     [resourceId, resourceType, size, replies],
   )
 
-  const fetchInitialReplies = useCallback(async () => {
-    if (initialSize && initialSize > size) {
-      throw new Error('Failed to fetchInitialReplies')
-    }
+  const fetchInitialReplies = useCallback(
+    async (initialSize: number) => {
+      if (initialSize > size) {
+        throw new Error('Failed to fetchInitialReplies')
+      }
 
-    const pageNumber = Math.floor(Number(replies.length / size))
+      const pageNumber = Math.floor(Number(replies.length / initialSize))
 
-    const [initialReplies, nextReplies] = await Promise.all([
-      fetchReplies({
-        resourceId,
-        resourceType,
-        size: initialSize,
-        page: pageNumber,
-      }),
-      fetchReplies({
-        resourceId,
-        resourceType,
-        size: initialSize,
-        page: pageNumber + 1,
-      }),
-    ])
+      const [initialReplies, nextReplies] = await Promise.all([
+        fetchReplies({
+          resourceId,
+          resourceType,
+          size: initialSize,
+          page: pageNumber,
+        }),
+        fetchReplies({
+          resourceId,
+          resourceType,
+          size: initialSize,
+          page: pageNumber + 1,
+        }),
+      ])
 
-    const newReplies = checkUniqueReply(initialReplies)
+      const newReplies = checkUniqueReply(initialReplies)
 
-    setReplies(newReplies)
-    setHasNextPage(nextReplies.length > 0)
-  }, [initialSize, size, replies, resourceId, resourceType])
+      setReplies(newReplies)
+      setHasNextPage(nextReplies.length > 0)
+    },
+    [resourceId, resourceType, size, replies],
+  )
 
   useEffect(() => {
     if (initialSize) {
-      fetchInitialReplies()
+      fetchInitialReplies(initialSize)
     } else {
       fetchMoreReplies()
     }
