@@ -20,14 +20,22 @@ type MediaDisplayProperty = CSS.Property.Display | 'gapless-block'
 
 export default function Images({
   value: { images, display },
+  onImageClick: overridedOnImageClick,
+  onLinkClick: overridedOnLinkClick,
 }: {
   value: {
     images: ImageMeta[]
     display: MediaDisplayProperty
   }
+  onImageClick?: ReturnType<typeof useImageClickHandler>
+  onLinkClick?: ReturnType<typeof useLinkClickHandler>
 }) {
-  const onImageClick = useImageClickHandler()
-  const onLinkClick = useLinkClickHandler()
+  const defaultOnImageClick = useImageClickHandler()
+  const onImageClick = overridedOnImageClick || defaultOnImageClick
+
+  const defaultOnLinkClick = useLinkClickHandler()
+  const onLinkClick = overridedOnLinkClick || defaultOnLinkClick
+
   const ImageSource = useImageSource()
   const { videoAutoPlay, hideVideoControls, optimized } = useMediaConfig()
 
