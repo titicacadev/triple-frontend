@@ -147,7 +147,8 @@ const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
   ${({ hasTitle }) =>
     hasTitle &&
     css`
-      margin: 9px 0px 0px;
+      line-height: 34px;
+      margin: 0px;
       width: auto;
       white-space: nowrap;
       word-break: break-word;
