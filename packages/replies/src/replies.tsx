@@ -138,20 +138,18 @@ export default function Replies({
         throw new Error('Failed to fetchInitialReplies')
       }
 
-      const pageNumber = Math.floor(Number(replies.length / initialSize))
-
       const [initialReplies, nextReplies] = await Promise.all([
         fetchReplies({
           resourceId,
           resourceType,
           size: initialSize,
-          page: pageNumber,
+          page: 0,
         }),
         fetchReplies({
           resourceId,
           resourceType,
           size: initialSize,
-          page: pageNumber + 1,
+          page: 1,
         }),
       ])
 
@@ -160,7 +158,7 @@ export default function Replies({
       setReplies(newReplies)
       setHasNextPage(nextReplies.length > 0)
     },
-    [resourceId, resourceType, size, replies],
+    [resourceId, resourceType, size],
   )
 
   useEffect(() => {
