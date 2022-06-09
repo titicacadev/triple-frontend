@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/action-sheet",
-  "version": "8.0.0",
+  "version": "8.1.0",
   "description": "Action sheet component",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/action-sheet",
@@ -21,9 +21,9 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/app-installation-cta": "^8.0.0",
-    "@titicaca/core-elements": "^8.0.0",
-    "@titicaca/popup": "^8.0.0",
+    "@titicaca/app-installation-cta": "^8.1.0",
+    "@titicaca/core-elements": "^8.1.0",
+    "@titicaca/popup": "^8.1.0",
     "react-transition-group": "^4.4.2"
   },
   "devDependencies": {
