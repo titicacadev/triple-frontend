@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 8.1.0
+
+### replies
+
+- FixedBottom 컨테이너에 safeAreaInsetMixin을 추가합니다. [#2063](https://github.com/titicacadev/triple-frontend/pull/2063)
+- 노출하는 댓글 갯수를 변경할 수 있도록 props를 추가합니다. [#2066](https://github.com/titicacadev/triple-frontend/pull/2066)
+
+### triple-document
+
+- images 요소의 이벤트 핸들러를 Override할 수 있도록 합니다. [#2065](https://github.com/titicacadev/triple-frontend/pull/2065)
+
+### core-elements
+
+- navbar title을 세로 중앙 정렬하기 위해 line-height를 활용합니다. [#2067](https://github.com/titicacadev/triple-frontend/pull/2067)
+
 ## 8.0.0
 
 ### common
