@@ -28,8 +28,6 @@ const FixedBottom = styled(Container).attrs({
   positioning: { left: 0, right: 0, bottom: 0 },
 })`
   z-index: 3;
-  overflow: hidden;
-  -webkit-overflow-scrolling: touch;
 
   ${safeAreaInsetMixin}
 `
