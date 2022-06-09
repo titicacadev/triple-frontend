@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/search",
-  "version": "8.0.0",
+  "version": "8.1.0",
   "description": "search",
   "keywords": [
     "search"
@@ -24,9 +24,9 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^8.0.0",
-    "@titicaca/react-hooks": "^8.0.0",
-    "@titicaca/view-utilities": "^8.0.0"
+    "@titicaca/core-elements": "^8.1.0",
+    "@titicaca/react-hooks": "^8.1.0",
+    "@titicaca/view-utilities": "^8.1.0"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
