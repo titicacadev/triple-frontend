@@ -5,6 +5,7 @@ import {
   safeAreaInsetMixin,
 } from '@titicaca/core-elements'
 import styled from 'styled-components'
+import { closeKeyboard } from '@titicaca/triple-web-to-native-interfaces'
 
 import { fetchReplies, fetchChildReplies } from './replies-api-client'
 import { Reply, ResourceType, Placeholders } from './types'
@@ -162,6 +163,14 @@ export default function Replies({
     },
     [resourceId, resourceType, size],
   )
+
+  useEffect(() => {
+    window.addEventListener('scroll', closeKeyboard)
+
+    return () => {
+      window.removeEventListener('scroll', closeKeyboard)
+    }
+  }, [])
 
   useEffect(() => {
     if (initialSize) {

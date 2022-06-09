@@ -27,6 +27,7 @@
     "@titicaca/modals": "^8.0.0",
     "@titicaca/react-triple-client-interfaces": "^8.0.0",
     "@titicaca/router": "^8.0.0",
+    "@titicaca/triple-web-to-native-interfaces": "^1.6.0",
     "@titicaca/ui-flow": "^8.0.0",
     "@titicaca/view-utilities": "^8.0.0"
   }
