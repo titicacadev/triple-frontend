@@ -53,18 +53,18 @@ function AutoResizingTextarea(
     const currentRows = Math.floor(
       event.target.scrollHeight / TEXTAREA_LINE_HEIGHT,
     )
+    onChange(event.target.value)
 
-    if (currentRows === rows) {
-      setRows(currentRows)
+    if (currentRows === minRows) {
+      setRows(minRows)
     }
 
     if (currentRows >= maxRows) {
       setRows(maxRows)
       event.target.scrollTop = event.target.scrollHeight
+    } else {
+      setRows(currentRows)
     }
-
-    onChange(event.target.value)
-    setRows(currentRows < maxRows ? currentRows : maxRows)
   }
 
   useImperativeHandle(ref, () => ({
