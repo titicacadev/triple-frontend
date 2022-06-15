@@ -1,6 +1,12 @@
 import { useEffect, useState, useCallback, SyntheticEvent } from 'react'
 import styled from 'styled-components'
-import { Section, Container, Text, Button } from '@titicaca/core-elements'
+import {
+  Section,
+  Container,
+  Text,
+  Button,
+  FlexBox,
+} from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import {
   useEventTrackingContext,
@@ -31,6 +37,7 @@ import SortingOptions, {
 import usePaging from './use-paging'
 import MyReviewActionSheet from './my-review-action-sheet'
 import { useClientActions } from './use-client-actions'
+import RecentCheckBox from './recent-checkbox'
 
 const REVIEWS_SECTION_ID = 'reviews'
 const DEFAULT_REVIEWS_COUNT_PER_PAGE = 20
@@ -113,6 +120,7 @@ function ReviewContainer({
 }) {
   const sessionAvailable = useSessionAvailability()
 
+  const [recentReview, setRecentReview] = useState(false)
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
   const app = useTripleClientMetadata()
   const { trackEvent } = useEventTrackingContext()
@@ -272,6 +280,11 @@ function ReviewContainer({
     setSortingOption(sortingOption)
   }
 
+  const handleRecentReviewChange = useCallback(
+    () => setRecentReview((prevState) => !prevState),
+    [],
+  )
+
   const { reviews, fetchNext } = usePaging({
     sortingOption,
     resourceId,
@@ -316,12 +329,16 @@ function ReviewContainer({
 
       {(reviewsCount || 0) > 0 || myReview ? (
         <>
-          <Container margin={{ top: 23 }} clearing>
+          <FlexBox flex justifyContent="space-between" margin={{ top: 23 }}>
             <SortingOptions
               selected={sortingOption}
               onSelect={handleSortingOptionSelect}
             />
-          </Container>
+            <RecentCheckBox
+              isRecentReview={recentReview}
+              onRecentReviewChange={handleRecentReviewChange}
+            />
+          </FlexBox>
 
           <ReviewsList
             maxLength={shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined}
