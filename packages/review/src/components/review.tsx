@@ -1,12 +1,6 @@
 import { useEffect, useState, useCallback, SyntheticEvent } from 'react'
 import styled from 'styled-components'
-import {
-  Section,
-  Container,
-  Text,
-  Button,
-  FlexBox,
-} from '@titicaca/core-elements'
+import { Section, Container, Text, Button } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import {
   useEventTrackingContext,
@@ -38,7 +32,6 @@ import SortingOptions, {
 import usePaging from './hook/use-paging'
 import MyReviewActionSheet from './my-review-action-sheet'
 import { useClientActions } from './hook/use-client-actions'
-import RecentCheckBox from './recent-checkbox'
 import useQuery from './hook/use-query'
 
 const REVIEWS_SECTION_ID = 'reviews'
@@ -122,7 +115,6 @@ function Review({
 }) {
   const sessionAvailable = useSessionAvailability()
 
-  const [recentReview, setRecentReview] = useState(false)
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
   const app = useTripleClientMetadata()
   const { trackEvent } = useEventTrackingContext()
@@ -293,11 +285,6 @@ function Review({
     setSortingOption(sortingOption)
   }
 
-  const handleRecentReviewChange = useCallback(
-    () => setRecentReview((prevState) => !prevState),
-    [],
-  )
-
   const { reviews, fetchNext } = usePaging({
     sortingOption,
     resourceId,
@@ -342,16 +329,12 @@ function Review({
 
       {(reviewsCount || 0) > 0 || myReview ? (
         <>
-          <FlexBox flex justifyContent="space-between" margin={{ top: 23 }}>
+          <Container margin={{ top: 23 }} clearing>
             <SortingOptions
               selected={sortingOption}
               onSelect={handleSortingOptionSelect}
             />
-            <RecentCheckBox
-              isRecentReview={recentReview}
-              onRecentReviewChange={handleRecentReviewChange}
-            />
-          </FlexBox>
+          </Container>
 
           <ReviewsList
             maxLength={shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined}
