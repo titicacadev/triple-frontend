@@ -17,10 +17,11 @@ import { TransitionType, withLoginCtaModal } from '@titicaca/modals'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 
 import {
-  fetchMyReview,
-  fetchReviewsCount,
-  fetchReviewRateDescription,
-} from './review-api-clients'
+  GET_MY_REVIEW,
+  GET_REVIEWS_COUNT,
+  GET_REVIEW_SPECIFICATION,
+} from '../data/graphql/query'
+
 import ReviewsPlaceholder from './review-placeholder-with-rating'
 import ReviewsList from './reviews-list'
 import {
@@ -34,10 +35,11 @@ import SortingOptions, {
   ORDER_BY_RECENCY,
   SortingOptionsProps,
 } from './sorting-options'
-import usePaging from './use-paging'
+import usePaging from './hook/use-paging'
 import MyReviewActionSheet from './my-review-action-sheet'
-import { useClientActions } from './use-client-actions'
+import { useClientActions } from './hook/use-client-actions'
 import RecentCheckBox from './recent-checkbox'
+import useQuery from './hook/use-query'
 
 const REVIEWS_SECTION_ID = 'reviews'
 const DEFAULT_REVIEWS_COUNT_PER_PAGE = 20
@@ -81,7 +83,7 @@ const BulletRight = styled.img.attrs({
   }
 `
 
-function ReviewContainer({
+function Review({
   reviewsCount: initialReviewsCount,
   resourceType,
   regionId,
@@ -127,12 +129,13 @@ function ReviewContainer({
   const [[myReview, myReviewIds], setMyReviewStatus] = useState<
     [ReviewData | undefined, Set<string>]
   >([undefined, new Set([])])
-  const [reviewsCount, setReviewsCount] = useState(initialReviewsCount)
+  const [reviewsCount, setReviewsCount] = useState<number>(initialReviewsCount)
   const [reviewRateDescriptions, setReviewRateDescriptions] = useState<
     string[]
   >([])
   const { writeReview, editReview, navigateReviewList, navigateMileageIntro } =
     useClientActions()
+  const query = useQuery()
 
   const setMyReview = useCallback(
     (review) =>
@@ -144,16 +147,20 @@ function ReviewContainer({
   )
 
   useEffect(() => {
-    if (resourceType !== 'article') {
-      const fetchReviewDescription = async () => {
-        setReviewRateDescriptions(
-          await fetchReviewRateDescription({ resourceType, resourceId }),
-        )
-      }
+    async function fetchAndSet() {
+      const {
+        getReviewSpecification: {
+          rating: { description },
+        },
+      } = await query({
+        query: GET_REVIEW_SPECIFICATION,
+        variables: { resourceType, resourceId },
+      })
 
-      fetchReviewDescription()
+      setReviewRateDescriptions(description)
     }
-  }, [resourceId, resourceType])
+    void fetchAndSet()
+  }, [])
 
   useEffect(() => {
     const refreshMyReview = async (params?: { id: string }) => {
@@ -164,19 +171,25 @@ function ReviewContainer({
       const { id } = params
 
       if (id && id === resourceId) {
-        const [fetchedReviewsCount, fetchedMyReview] = await Promise.all([
-          fetchReviewsCount({ resourceType, resourceId }),
+        const [{ getReviewsCount }, { getMyReview }] = await Promise.all([
+          query({
+            query: GET_REVIEWS_COUNT,
+            variables: { resourceType, resourceId },
+          }),
           sessionAvailable === true
-            ? fetchMyReview({ resourceType, resourceId })
+            ? query({
+                query: GET_MY_REVIEW,
+                variables: { resourceType, resourceId },
+              })
             : Promise.resolve(null),
         ])
 
-        if (fetchedMyReview) {
-          setMyReview(fetchedMyReview)
+        if (getMyReview) {
+          setMyReview(getMyReview)
         }
 
-        if (fetchedReviewsCount !== null) {
-          setReviewsCount(fetchedReviewsCount)
+        if (getReviewsCount !== null) {
+          setReviewsCount(getReviewsCount)
         }
       }
     }
@@ -429,4 +442,4 @@ function ReviewContainer({
   )
 }
 
-export default withLoginCtaModal(ReviewContainer)
+export default withLoginCtaModal(Review)

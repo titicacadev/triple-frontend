@@ -32,13 +32,12 @@
     "@titicaca/type-definitions": "^8.1.2",
     "@titicaca/ui-flow": "^8.1.2",
     "@titicaca/view-utilities": "^8.1.2",
-    "humps": "^2.0.1",
+    "graphql-request": "^4.3.0",
     "moment": "^2.24.0",
     "qs": "^6.9.0",
     "scroll-to-element": "^2.0.3"
   },
   "devDependencies": {
-    "@types/humps": "^2.0.0",
     "@types/qs": "^6.9.0",
     "csstype": "^3.0.2"
   },
