@@ -11,7 +11,6 @@ import {
   GoogleMapProps,
   useLoadScript,
 } from '@react-google-maps/api'
-import { Spinner } from '@titicaca/core-elements'
 
 import { getGeometry, literalToString } from './utilities'
 
@@ -131,7 +130,5 @@ export function MapView({
     >
       {children}
     </GoogleMap>
-  ) : (
-    <Spinner />
-  )
+  ) : null
 }
