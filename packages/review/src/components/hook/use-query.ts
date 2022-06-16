@@ -1,7 +1,7 @@
 import { RequestDocument, Variables } from 'graphql-request'
 import { useCallback } from 'react'
 
-import { graphqlFetch } from 'src/data/graphql/fetch'
+import { graphqlFetch } from '../../data/graphql/fetch'
 
 interface UseQueryProps {
   query: RequestDocument
