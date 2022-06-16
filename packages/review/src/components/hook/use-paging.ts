@@ -4,7 +4,7 @@ import qs from 'qs'
 import { useFetch } from '@titicaca/react-hooks'
 import { generateUrl } from '@titicaca/view-utilities'
 
-import { ResourceType, ReviewData } from './types'
+import { ResourceType, ReviewData } from '../types'
 
 const OPTIONS = { credentials: 'same-origin' }
 
@@ -15,7 +15,7 @@ export default function usePaging({
   perPage,
 }: {
   sortingOption?: string
-  resourceId: string
+  resourceId?: string
   resourceType: ResourceType
   perPage: number
 }) {

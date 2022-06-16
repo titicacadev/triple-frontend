@@ -15,7 +15,8 @@ import { useSessionCallback } from '@titicaca/ui-flow'
 
 import { useReviewLikesContext } from '../review-likes-context'
 import { ReviewData } from '../types'
-import { unlikeReview, likeReview } from '../review-api-clients'
+import useQuery from '../hook/use-query'
+import { LIKE_REVIEW, UNLIKE_REVIEW } from '../../data/graphql/mutation'
 
 import User from './user'
 import Comment from './comment'
@@ -124,6 +125,7 @@ export default function ReviewElement({
     liked: review.liked,
     likesCount: review.likesCount,
   })
+  const query = useQuery()
 
   const handleLikeButtonClick: MouseEventHandler = useSessionCallback(
     useCallback(async () => {
@@ -138,9 +140,10 @@ export default function ReviewElement({
         },
       })
 
-      const response = await (liked
-        ? unlikeReview({ id: review.id })
-        : likeReview({ id: review.id }))
+      const response = await query({
+        query: liked ? UNLIKE_REVIEW : LIKE_REVIEW,
+        variables: { id: review.id },
+      })
 
       if (response.ok) {
         updateLikedStatus({ [review.id]: !liked }, resourceId)

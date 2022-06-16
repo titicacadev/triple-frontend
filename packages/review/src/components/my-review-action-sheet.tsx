@@ -6,8 +6,10 @@ import {
   useUriHash,
 } from '@titicaca/react-contexts'
 
-import { deleteReview as deleteReviewApi } from './review-api-clients'
+import { DELETE_REVIEW } from '../data/graphql/mutation'
+
 import { ResourceType, ReviewData, ReviewDeleteHandler } from './types'
+import useQuery from './hook/use-query'
 
 interface MyReviewActionSheetProps {
   myReview: ReviewData
@@ -36,6 +38,7 @@ export default function MyReviewActionSheet({
   onReviewEdit,
   onReviewDelete,
 }: MyReviewActionSheetProps) {
+  const query = useQuery()
   const uriHash = useUriHash()
   const { replace, back } = useHistoryFunctions()
   const { deleteMyReview } = useMyReviewsContext()
@@ -47,7 +50,10 @@ export default function MyReviewActionSheet({
   }
 
   const deleteReview = async () => {
-    const response = await deleteReviewApi({ id: myReview.id })
+    const response = await query({
+      query: DELETE_REVIEW,
+      variables: { id: myReview.id },
+    })
 
     if (response.ok) {
       notifyReviewDeleted(resourceId, myReview.id)
