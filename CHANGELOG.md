@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 8.1.1
+
+### map
+
+- 의도되지 않은 spinner를 제거합니다. [#2072](https://github.com/titicacadev/triple-frontend/pull/2072)
+
+### triple-document
+
+- StandardActionHandler 새 창 열기 기능에 필요한 props를 추가합니다. [#2071](https://github.com/titicacadev/triple-frontend/pull/2071)
+
 ## 8.1.0
 
 ### replies
