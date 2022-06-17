@@ -1,5 +1,3 @@
-import qs from 'querystring'
-
 import { get, post } from '@titicaca/fetcher'
 
 import { Banner } from './typing'
@@ -128,7 +126,7 @@ function getSearchQuery(
 
   switch (bannerType) {
     case BannerTypes.ContentDetailsBanner:
-      return qs.stringify({
+      return {
         content_id: contentId,
         content_region_id: regionId,
         content_type: contentType,
@@ -136,12 +134,12 @@ function getSearchQuery(
           userLocation && userLocation.longitude && userLocation.latitude
             ? `${userLocation.longitude},${userLocation.latitude}`
             : undefined,
-      })
+      }
     case BannerTypes.ListTopBanner:
-      return qs.stringify({
+      return {
         content_type: contentType,
         region_id: regionId,
-      })
+      }
   }
 }
 
@@ -159,7 +157,7 @@ function getRequestBody(
 
   switch (bannerType) {
     case BannerTypes.ContentDetailsBanner:
-      return JSON.stringify({
+      return {
         content: {
           id: contentId,
           regionId,
@@ -170,11 +168,11 @@ function getRequestBody(
           userLocation && userLocation.longitude && userLocation.latitude
             ? [userLocation.longitude, userLocation.latitude]
             : undefined,
-      })
+      }
     case BannerTypes.ListTopBanner:
-      return JSON.stringify({
+      return {
         eventType,
         regionId,
-      })
+      }
   }
 }
