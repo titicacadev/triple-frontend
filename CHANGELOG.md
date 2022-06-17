@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 8.1.2
+
+### ad-banners
+
+- 이벤트 수집이 안되는 오류를 해결합니다. [#2075](https://github.com/titicacadev/triple-frontend/pull/2075)
+
 ## 8.1.1
 
 ### map
