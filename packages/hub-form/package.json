@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/hub-form",
-  "version": "8.1.1",
+  "version": "8.1.2",
   "description": "Form for hub-like pages",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/hub-form",
@@ -21,7 +21,7 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^8.1.1",
-    "@titicaca/core-elements": "^8.1.1"
+    "@titicaca/color-palette": "^8.1.2",
+    "@titicaca/core-elements": "^8.1.2"
   }
 }

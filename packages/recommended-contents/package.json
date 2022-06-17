@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/recommended-contents",
-  "version": "8.1.1",
+  "version": "8.1.2",
   "description": "Recommended contents list",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/recommended-contents",
@@ -21,7 +21,7 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^8.1.1",
-    "@titicaca/intersection-observer": "^8.1.1"
+    "@titicaca/core-elements": "^8.1.2",
+    "@titicaca/intersection-observer": "^8.1.2"
   }
 }
