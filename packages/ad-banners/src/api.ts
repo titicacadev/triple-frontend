@@ -1,3 +1,5 @@
+import qs from 'querystring'
+
 import { get, post } from '@titicaca/fetcher'
 
 import { Banner } from './typing'
@@ -126,7 +128,7 @@ function getSearchQuery(
 
   switch (bannerType) {
     case BannerTypes.ContentDetailsBanner:
-      return {
+      return qs.stringify({
         content_id: contentId,
         content_region_id: regionId,
         content_type: contentType,
@@ -134,12 +136,12 @@ function getSearchQuery(
           userLocation && userLocation.longitude && userLocation.latitude
             ? `${userLocation.longitude},${userLocation.latitude}`
             : undefined,
-      }
+      })
     case BannerTypes.ListTopBanner:
-      return {
+      return qs.stringify({
         content_type: contentType,
         region_id: regionId,
-      }
+      })
   }
 }
 
