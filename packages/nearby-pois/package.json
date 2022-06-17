@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/nearby-pois",
-  "version": "8.1.1",
+  "version": "8.1.2",
   "description": "Nearby POIs list",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/nearby-pois",
@@ -21,14 +21,14 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^8.1.1",
-    "@titicaca/fetcher": "^8.1.1",
-    "@titicaca/i18n": "^8.1.1",
-    "@titicaca/intersection-observer": "^8.1.1",
-    "@titicaca/poi-list-elements": "^8.1.1",
-    "@titicaca/router": "^8.1.1",
-    "@titicaca/type-definitions": "^8.1.1",
-    "@titicaca/view-utilities": "^8.1.1"
+    "@titicaca/core-elements": "^8.1.2",
+    "@titicaca/fetcher": "^8.1.2",
+    "@titicaca/i18n": "^8.1.2",
+    "@titicaca/intersection-observer": "^8.1.2",
+    "@titicaca/poi-list-elements": "^8.1.2",
+    "@titicaca/router": "^8.1.2",
+    "@titicaca/type-definitions": "^8.1.2",
+    "@titicaca/view-utilities": "^8.1.2"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*"
