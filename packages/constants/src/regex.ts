@@ -31,7 +31,7 @@ export const ZIP_CODE_REGEX = /^[0-9]{5}$/
 export const ADDRESS_REGEX = /^([a-zA-Z]|[0-9]|[ ]){1,35}$/
 
 export const SLASH_HYPHEN_REGEX = /(\/|-)/g
-export const KOREAN_REGEX = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+/g
+export const KOREAN_REGEX = /[ㄱ-ㅎㅏ-ㅣ가-힣]+/g
 export const PASSPORT_NUMBER_REGEX = /[^A-Z0-9]+/g
 export const ALPHABET_REGEX = /([^a-zA-Z])+/g
 export const PASSPORT_NAME_REGEX = new RegExp(
