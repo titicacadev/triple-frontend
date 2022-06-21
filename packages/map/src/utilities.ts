@@ -18,7 +18,6 @@ export function getGeometry(coordinates: [number, number][]) {
       lat: (north + south) / 2,
       lng: (west + east) / 2,
     } as google.maps.LatLngLiteral,
-    zoom: coordinatesLength === 1 ? 17 : 13,
     bounds:
       coordinatesLength !== 1
         ? ({

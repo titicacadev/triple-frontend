@@ -85,16 +85,18 @@ export function MapView({
   })
 
   const [map, setMap] = useState<google.maps.Map>()
-  const { center, zoom, bounds } = getGeometry(coordinates)
+  const { center, bounds } = getGeometry(coordinates)
+
+  const coordinateLength = coordinates.length
 
   const options = useMemo(() => {
     return {
       ...DEFAULT_MAP_OPTIONS,
       center,
-      zoom,
+      ...(coordinateLength === 1 && { zoom: 17 }),
       ...originOptions,
     }
-  }, [coordinates, originOptions])
+  }, [coordinates, coordinateLength, originOptions])
 
   const mapContainerStyle: CSSProperties = useMemo(
     () => ({
@@ -113,7 +115,7 @@ export function MapView({
   )
 
   useEffect(() => {
-    if (!bounds || coordinates.length === 0) {
+    if (!bounds || coordinateLength === 0) {
       return
     }
     map?.fitBounds(bounds, padding)
