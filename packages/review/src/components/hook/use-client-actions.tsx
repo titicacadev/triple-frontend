@@ -4,6 +4,7 @@ import { useEnv } from '@titicaca/react-contexts'
 import { useNavigate } from '@titicaca/router'
 
 import { ResourceType } from '../types'
+import { writeReview } from '../../data/api'
 
 export function useClientActions() {
   const { appUrlScheme } = useEnv()
@@ -11,28 +12,14 @@ export function useClientActions() {
 
   return useMemo(() => {
     return {
-      writeReview({
-        resourceType,
-        resourceId,
-        regionId,
-        rating,
-        photoFirst,
-      }: {
+      writeReview(params: {
         resourceType: ResourceType
         resourceId: string
         regionId?: string
-        rating: number
+        rating?: number
         photoFirst?: boolean
       }) {
-        const params = qs.stringify({
-          region_id: regionId,
-          resource_type: resourceType,
-          resource_id: resourceId,
-          rating,
-          ...(photoFirst && { photo_first: 'true' }),
-        })
-
-        window.location.href = `${appUrlScheme}:///reviews/new?${params}`
+        writeReview({ appUrlScheme, ...params })
       },
       editReview({
         regionId,
