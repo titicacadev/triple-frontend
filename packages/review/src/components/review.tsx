@@ -33,7 +33,6 @@ import SortingOptions, {
 import usePaging from './hook/use-paging'
 import MyReviewActionSheet from './my-review-action-sheet'
 import { useClientActions } from './hook/use-client-actions'
-import QueryProvider from './query-provider'
 
 const REVIEWS_SECTION_ID = 'reviews'
 const DEFAULT_REVIEWS_COUNT_PER_PAGE = 20
@@ -292,137 +291,133 @@ function Review({
   })
 
   return (
-    <QueryProvider>
-      <Section anchor={REVIEWS_SECTION_ID}>
-        <Container>
-          {shortened ? (
-            <WriteIcon
-              src="https://assets.triple.guide/images/btn-com-write@2x.png"
-              onClick={onReviewWrite || handleWriteButtonClick}
-            />
-          ) : null}
-
-          {shortened ? (
-            <>
-              <Text bold size="huge" color="gray" alpha={1} inline>
-                리뷰
-              </Text>
-              {(reviewsCount || 0) > 0 ? (
-                <Text bold size="huge" color="blue" alpha={1} inline>
-                  {` ${formatNumber(reviewsCount)}`}
-                </Text>
-              ) : null}
-            </>
-          ) : (
-            <>
-              <Text bold size="huge" color="blue" alpha={1} inline>
-                {` ${formatNumber(reviewsCount)}`}
-              </Text>
-              <Text bold size="huge" color="gray" alpha={1} inline>
-                개의 리뷰
-              </Text>
-            </>
-          )}
-        </Container>
-
-        {(reviewsCount || 0) > 0 || myReview ? (
-          <>
-            <Container margin={{ top: 23 }} clearing>
-              <SortingOptions
-                selected={sortingOption}
-                onSelect={handleSortingOptionSelect}
-              />
-            </Container>
-
-            <ReviewsList
-              maxLength={
-                shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined
-              }
-              myReview={myReview}
-              reviews={reviews.filter((review) => !myReviewIds.has(review.id))}
-              regionId={regionId}
-              resourceId={resourceId}
-              showToast={showToast}
-              reviewRateDescriptions={reviewRateDescriptions}
-              fetchNext={!shortened ? fetchNext : undefined}
-            />
-          </>
-        ) : (
-          <ReviewsPlaceholder
-            placeholderText={placeholderText}
-            resourceType={resourceType}
+    <Section anchor={REVIEWS_SECTION_ID}>
+      <Container>
+        {shortened ? (
+          <WriteIcon
+            src="https://assets.triple.guide/images/btn-com-write@2x.png"
             onClick={onReviewWrite || handleWriteButtonClick}
           />
-        )}
-
-        {reviewsCount > SHORTENED_REVIEWS_COUNT_PER_PAGE && shortened ? (
-          <Container margin={{ top: 40 }}>
-            <Button
-              basic
-              fluid
-              compact
-              size="small"
-              onClick={
-                onFullListButtonClick
-                  ? (e) => onFullListButtonClick(e, sortingOption)
-                  : handleFullListButtonClick
-              }
-            >
-              {reviewsCount - SHORTENED_REVIEWS_COUNT_PER_PAGE}개 리뷰 더보기
-            </Button>
-          </Container>
         ) : null}
 
         {shortened ? (
-          <MileageButton
-            onClick={(e) => {
-              trackEvent({
-                ga: ['리뷰_여행자클럽선택'],
-                fa: {
-                  action: '리뷰_여행자클럽선택',
-                  item_id: resourceId,
-                },
-              })
-              e.preventDefault()
-              if (app) {
-                navigateMileageIntro()
-              } else {
-                window.location.href = `/pages/mileage-intro.html`
-              }
-            }}
-          >
-            <Text color="gray" size="small" alpha={0.6} lineHeight={1.7}>
-              리뷰 쓰면 여행자 클럽 최대 3포인트!
+          <>
+            <Text bold size="huge" color="gray" alpha={1} inline>
+              리뷰
             </Text>
-            <Text color="blue" size="small" lineHeight={1.7}>
-              포인트별 혜택 보기
+            {(reviewsCount || 0) > 0 ? (
+              <Text bold size="huge" color="blue" alpha={1} inline>
+                {` ${formatNumber(reviewsCount)}`}
+              </Text>
+            ) : null}
+          </>
+        ) : (
+          <>
+            <Text bold size="huge" color="blue" alpha={1} inline>
+              {` ${formatNumber(reviewsCount)}`}
             </Text>
-            <BulletRight alt="포인트별 혜택 보기" />
-          </MileageButton>
-        ) : null}
+            <Text bold size="huge" color="gray" alpha={1} inline>
+              개의 리뷰
+            </Text>
+          </>
+        )}
+      </Container>
 
-        {myReview ? (
-          <MyReviewActionSheet
+      {(reviewsCount || 0) > 0 || myReview ? (
+        <>
+          <Container margin={{ top: 23 }} clearing>
+            <SortingOptions
+              selected={sortingOption}
+              onSelect={handleSortingOptionSelect}
+            />
+          </Container>
+
+          <ReviewsList
+            maxLength={shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined}
             myReview={myReview}
-            resourceType={resourceType}
+            reviews={reviews.filter((review) => !myReviewIds.has(review.id))}
+            regionId={regionId}
             resourceId={resourceId}
-            notifyReviewDeleted={(resourceId, reviewId) => {
-              reviewId === myReview.id && setMyReview(null)
-              notifyReviewDeleted(resourceId, reviewId)
-            }}
-            onReviewEdit={() => {
-              if (onReviewWrite) {
-                onReviewWrite()
-                return
-              }
-
-              editReview({ regionId, resourceId, resourceType })
-            }}
-            onReviewDelete={onReviewDelete}
+            showToast={showToast}
+            reviewRateDescriptions={reviewRateDescriptions}
+            fetchNext={!shortened ? fetchNext : undefined}
           />
-        ) : null}
-      </Section>
-    </QueryProvider>
+        </>
+      ) : (
+        <ReviewsPlaceholder
+          placeholderText={placeholderText}
+          resourceType={resourceType}
+          onClick={onReviewWrite || handleWriteButtonClick}
+        />
+      )}
+
+      {reviewsCount > SHORTENED_REVIEWS_COUNT_PER_PAGE && shortened ? (
+        <Container margin={{ top: 40 }}>
+          <Button
+            basic
+            fluid
+            compact
+            size="small"
+            onClick={
+              onFullListButtonClick
+                ? (e) => onFullListButtonClick(e, sortingOption)
+                : handleFullListButtonClick
+            }
+          >
+            {reviewsCount - SHORTENED_REVIEWS_COUNT_PER_PAGE}개 리뷰 더보기
+          </Button>
+        </Container>
+      ) : null}
+
+      {shortened ? (
+        <MileageButton
+          onClick={(e) => {
+            trackEvent({
+              ga: ['리뷰_여행자클럽선택'],
+              fa: {
+                action: '리뷰_여행자클럽선택',
+                item_id: resourceId,
+              },
+            })
+            e.preventDefault()
+            if (app) {
+              navigateMileageIntro()
+            } else {
+              window.location.href = `/pages/mileage-intro.html`
+            }
+          }}
+        >
+          <Text color="gray" size="small" alpha={0.6} lineHeight={1.7}>
+            리뷰 쓰면 여행자 클럽 최대 3포인트!
+          </Text>
+          <Text color="blue" size="small" lineHeight={1.7}>
+            포인트별 혜택 보기
+          </Text>
+          <BulletRight alt="포인트별 혜택 보기" />
+        </MileageButton>
+      ) : null}
+
+      {myReview ? (
+        <MyReviewActionSheet
+          myReview={myReview}
+          resourceType={resourceType}
+          resourceId={resourceId}
+          notifyReviewDeleted={(resourceId, reviewId) => {
+            reviewId === myReview.id && setMyReview(null)
+            notifyReviewDeleted(resourceId, reviewId)
+          }}
+          onReviewEdit={() => {
+            if (onReviewWrite) {
+              onReviewWrite()
+              return
+            }
+
+            editReview({ regionId, resourceId, resourceType })
+          }}
+          onReviewDelete={onReviewDelete}
+        />
+      ) : null}
+    </Section>
   )
 }
 
