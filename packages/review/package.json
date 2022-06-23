@@ -41,9 +41,10 @@
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.6.2",
-    "@graphql-codegen/typescript": "2.4.11",
     "@graphql-codegen/typed-document-node": "^2.2.13",
+    "@graphql-codegen/typescript": "2.4.11",
     "@graphql-codegen/typescript-operations": "2.4.0",
+    "@graphql-typed-document-node/core": "^3.1.1",
     "@types/qs": "^6.9.0",
     "csstype": "^3.0.2"
   },
