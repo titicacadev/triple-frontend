@@ -1,0 +1,34 @@
+fragment BaseReviewReaction on ReviewReaction {
+  id
+  type
+  user {
+    email
+    unregister
+    uid
+    photo
+    mileage { level point }
+    name
+  }
+  review {
+    ...BaseReview
+  }
+  updatedAt
+  createdAt
+}
+
+
+mutation LikeReview($reviewId: String!) {
+  likeReview(reviewId: $reviewId) {
+    ...BaseReviewReaction
+  }
+}
+
+mutation UnlikeReview($reviewId: String!) {
+  unlikeReview(reviewId: $reviewId) {
+    ...BaseReviewReaction
+  }
+}
+
+mutation DeleteReview($id: ID!) {
+  deleteReview(id: $id)
+}

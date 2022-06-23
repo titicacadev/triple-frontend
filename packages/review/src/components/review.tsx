@@ -11,10 +11,11 @@ import { TransitionType, withLoginCtaModal } from '@titicaca/modals'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 
 import {
-  GET_MY_REVIEW,
-  GET_REVIEWS_COUNT,
-  GET_REVIEW_SPECIFICATION,
-} from '../data/graphql/query'
+  GetMyReviewDocument,
+  GetReviewsCountDocument,
+  GetReviewSpecificationDocument,
+} from '../data/graphql/graphql'
+import graphqlRequest from '../data/graphql/request'
 
 import ReviewsPlaceholder from './review-placeholder-with-rating'
 import ReviewsList from './reviews-list'
@@ -32,7 +33,7 @@ import SortingOptions, {
 import usePaging from './hook/use-paging'
 import MyReviewActionSheet from './my-review-action-sheet'
 import { useClientActions } from './hook/use-client-actions'
-import useQuery from './hook/use-query'
+import QueryProvider from './query-provider'
 
 const REVIEWS_SECTION_ID = 'reviews'
 const DEFAULT_REVIEWS_COUNT_PER_PAGE = 20
@@ -127,7 +128,6 @@ function Review({
   >([])
   const { writeReview, editReview, navigateReviewList, navigateMileageIntro } =
     useClientActions()
-  const query = useQuery()
 
   const setMyReview = useCallback(
     (review) =>
@@ -138,21 +138,18 @@ function Review({
     [setMyReviewStatus],
   )
 
-  useEffect(() => {
-    async function fetchAndSet() {
-      const {
-        getReviewSpecification: {
-          rating: { description },
-        },
-      } = await query({
-        query: GET_REVIEW_SPECIFICATION,
-        variables: { resourceType, resourceId },
-      })
+  const data = graphqlRequest({
+    query: GetReviewSpecificationDocument,
+    variables: { resourceType, resourceId },
+  })
 
-      setReviewRateDescriptions(description)
+  useEffect(() => {
+    if (data) {
+      setReviewRateDescriptions(
+        data?.getReviewSpecification?.rating?.description,
+      )
     }
-    void fetchAndSet()
-  }, [])
+  }, [data])
 
   useEffect(() => {
     const refreshMyReview = async (params?: { id: string }) => {
@@ -164,13 +161,13 @@ function Review({
 
       if (id && id === resourceId) {
         const [{ getReviewsCount }, { getMyReview }] = await Promise.all([
-          query({
-            query: GET_REVIEWS_COUNT,
+          graphqlRequest({
+            query: GetReviewsCountDocument,
             variables: { resourceType, resourceId },
           }),
           sessionAvailable === true
-            ? query({
-                query: GET_MY_REVIEW,
+            ? graphqlRequest({
+                query: GetMyReviewDocument,
                 variables: { resourceType, resourceId },
               })
             : Promise.resolve(null),
@@ -295,133 +292,137 @@ function Review({
   })
 
   return (
-    <Section anchor={REVIEWS_SECTION_ID}>
-      <Container>
-        {shortened ? (
-          <WriteIcon
-            src="https://assets.triple.guide/images/btn-com-write@2x.png"
-            onClick={onReviewWrite || handleWriteButtonClick}
-          />
-        ) : null}
+    <QueryProvider>
+      <Section anchor={REVIEWS_SECTION_ID}>
+        <Container>
+          {shortened ? (
+            <WriteIcon
+              src="https://assets.triple.guide/images/btn-com-write@2x.png"
+              onClick={onReviewWrite || handleWriteButtonClick}
+            />
+          ) : null}
 
-        {shortened ? (
-          <>
-            <Text bold size="huge" color="gray" alpha={1} inline>
-              리뷰
-            </Text>
-            {(reviewsCount || 0) > 0 ? (
+          {shortened ? (
+            <>
+              <Text bold size="huge" color="gray" alpha={1} inline>
+                리뷰
+              </Text>
+              {(reviewsCount || 0) > 0 ? (
+                <Text bold size="huge" color="blue" alpha={1} inline>
+                  {` ${formatNumber(reviewsCount)}`}
+                </Text>
+              ) : null}
+            </>
+          ) : (
+            <>
               <Text bold size="huge" color="blue" alpha={1} inline>
                 {` ${formatNumber(reviewsCount)}`}
               </Text>
-            ) : null}
+              <Text bold size="huge" color="gray" alpha={1} inline>
+                개의 리뷰
+              </Text>
+            </>
+          )}
+        </Container>
+
+        {(reviewsCount || 0) > 0 || myReview ? (
+          <>
+            <Container margin={{ top: 23 }} clearing>
+              <SortingOptions
+                selected={sortingOption}
+                onSelect={handleSortingOptionSelect}
+              />
+            </Container>
+
+            <ReviewsList
+              maxLength={
+                shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined
+              }
+              myReview={myReview}
+              reviews={reviews.filter((review) => !myReviewIds.has(review.id))}
+              regionId={regionId}
+              resourceId={resourceId}
+              showToast={showToast}
+              reviewRateDescriptions={reviewRateDescriptions}
+              fetchNext={!shortened ? fetchNext : undefined}
+            />
           </>
         ) : (
-          <>
-            <Text bold size="huge" color="blue" alpha={1} inline>
-              {` ${formatNumber(reviewsCount)}`}
-            </Text>
-            <Text bold size="huge" color="gray" alpha={1} inline>
-              개의 리뷰
-            </Text>
-          </>
-        )}
-      </Container>
-
-      {(reviewsCount || 0) > 0 || myReview ? (
-        <>
-          <Container margin={{ top: 23 }} clearing>
-            <SortingOptions
-              selected={sortingOption}
-              onSelect={handleSortingOptionSelect}
-            />
-          </Container>
-
-          <ReviewsList
-            maxLength={shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined}
-            myReview={myReview}
-            reviews={reviews.filter((review) => !myReviewIds.has(review.id))}
-            regionId={regionId}
-            resourceId={resourceId}
-            showToast={showToast}
-            reviewRateDescriptions={reviewRateDescriptions}
-            fetchNext={!shortened ? fetchNext : undefined}
+          <ReviewsPlaceholder
+            placeholderText={placeholderText}
+            resourceType={resourceType}
+            onClick={onReviewWrite || handleWriteButtonClick}
           />
-        </>
-      ) : (
-        <ReviewsPlaceholder
-          placeholderText={placeholderText}
-          resourceType={resourceType}
-          onClick={onReviewWrite || handleWriteButtonClick}
-        />
-      )}
+        )}
 
-      {reviewsCount > SHORTENED_REVIEWS_COUNT_PER_PAGE && shortened ? (
-        <Container margin={{ top: 40 }}>
-          <Button
-            basic
-            fluid
-            compact
-            size="small"
-            onClick={
-              onFullListButtonClick
-                ? (e) => onFullListButtonClick(e, sortingOption)
-                : handleFullListButtonClick
-            }
+        {reviewsCount > SHORTENED_REVIEWS_COUNT_PER_PAGE && shortened ? (
+          <Container margin={{ top: 40 }}>
+            <Button
+              basic
+              fluid
+              compact
+              size="small"
+              onClick={
+                onFullListButtonClick
+                  ? (e) => onFullListButtonClick(e, sortingOption)
+                  : handleFullListButtonClick
+              }
+            >
+              {reviewsCount - SHORTENED_REVIEWS_COUNT_PER_PAGE}개 리뷰 더보기
+            </Button>
+          </Container>
+        ) : null}
+
+        {shortened ? (
+          <MileageButton
+            onClick={(e) => {
+              trackEvent({
+                ga: ['리뷰_여행자클럽선택'],
+                fa: {
+                  action: '리뷰_여행자클럽선택',
+                  item_id: resourceId,
+                },
+              })
+              e.preventDefault()
+              if (app) {
+                navigateMileageIntro()
+              } else {
+                window.location.href = `/pages/mileage-intro.html`
+              }
+            }}
           >
-            {reviewsCount - SHORTENED_REVIEWS_COUNT_PER_PAGE}개 리뷰 더보기
-          </Button>
-        </Container>
-      ) : null}
+            <Text color="gray" size="small" alpha={0.6} lineHeight={1.7}>
+              리뷰 쓰면 여행자 클럽 최대 3포인트!
+            </Text>
+            <Text color="blue" size="small" lineHeight={1.7}>
+              포인트별 혜택 보기
+            </Text>
+            <BulletRight alt="포인트별 혜택 보기" />
+          </MileageButton>
+        ) : null}
 
-      {shortened ? (
-        <MileageButton
-          onClick={(e) => {
-            trackEvent({
-              ga: ['리뷰_여행자클럽선택'],
-              fa: {
-                action: '리뷰_여행자클럽선택',
-                item_id: resourceId,
-              },
-            })
-            e.preventDefault()
-            if (app) {
-              navigateMileageIntro()
-            } else {
-              window.location.href = `/pages/mileage-intro.html`
-            }
-          }}
-        >
-          <Text color="gray" size="small" alpha={0.6} lineHeight={1.7}>
-            리뷰 쓰면 여행자 클럽 최대 3포인트!
-          </Text>
-          <Text color="blue" size="small" lineHeight={1.7}>
-            포인트별 혜택 보기
-          </Text>
-          <BulletRight alt="포인트별 혜택 보기" />
-        </MileageButton>
-      ) : null}
+        {myReview ? (
+          <MyReviewActionSheet
+            myReview={myReview}
+            resourceType={resourceType}
+            resourceId={resourceId}
+            notifyReviewDeleted={(resourceId, reviewId) => {
+              reviewId === myReview.id && setMyReview(null)
+              notifyReviewDeleted(resourceId, reviewId)
+            }}
+            onReviewEdit={() => {
+              if (onReviewWrite) {
+                onReviewWrite()
+                return
+              }
 
-      {myReview ? (
-        <MyReviewActionSheet
-          myReview={myReview}
-          resourceType={resourceType}
-          resourceId={resourceId}
-          notifyReviewDeleted={(resourceId, reviewId) => {
-            reviewId === myReview.id && setMyReview(null)
-            notifyReviewDeleted(resourceId, reviewId)
-          }}
-          onReviewEdit={() => {
-            if (onReviewWrite) {
-              onReviewWrite()
-              return
-            }
-
-            editReview({ regionId, resourceId, resourceType })
-          }}
-          onReviewDelete={onReviewDelete}
-        />
-      ) : null}
-    </Section>
+              editReview({ regionId, resourceId, resourceType })
+            }}
+            onReviewDelete={onReviewDelete}
+          />
+        ) : null}
+      </Section>
+    </QueryProvider>
   )
 }
 
