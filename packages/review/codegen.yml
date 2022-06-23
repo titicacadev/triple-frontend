@@ -1,0 +1,23 @@
+overwrite: true
+schema: 'https://triple-dev.titicaca-corp.com/api/graphql'
+documents: 'src/data/graphql/*.graphql'
+hooks:
+  afterAllFileWrite:
+    - prettier 'src/data/graphql/*.{js,ts,tsx}' --write
+generates:
+  src/data/graphql/graphql.tsx:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typed-document-node
+
+    config:
+      addOperationExport: true
+      avoidOptionals: true
+      enumsAsTypes: true
+      onlyOperationTypes: true
+      nonOptionalTypename: true
+      defaultScalarType: unknown
+      directiveArgumentAndInputFieldMappings: true
+      scalars:
+        DateTime: string
