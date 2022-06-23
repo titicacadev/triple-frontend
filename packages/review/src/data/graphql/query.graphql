@@ -1,0 +1,86 @@
+fragment BaseReview on Review {
+    id
+    resourceId
+    resourceType
+    regionId
+    comment
+    media
+    rating
+    visitDate
+    recentTrip
+    likesCount
+    geotags
+    blinded
+    createdAt
+    updatedAt
+    user {
+        email
+        unregister
+        uid
+        photo
+        mileage { level point }
+        name
+    }
+    replyBoard {
+        id
+        resourceId
+        resourceType
+        rootMessagesCount
+        childMessagesCount
+    }
+    liked
+}
+
+fragment BaseReviewSpecification on ReviewSpecification {
+    rating {
+        required
+        description
+    }
+    comment {
+        required
+        maxLength
+        placeholder
+    }
+    media {
+        required
+        maxCount
+    }
+}
+
+query GetLatestReviews(
+    $resourceType: String!
+    $resourceId: String!
+    $recentTrip: Boolean
+    $from: Int
+    $size: Int
+) {
+    getLatestReviews(
+        resourceType: $resourceType
+        resourceId: $resourceId
+        recentTrip: $recentTrip
+        from: $from
+        size: $size
+    ) {
+        ...BaseReview
+    }
+}
+
+query GetMyReview($resourceType: String!, $resourceId: String!) {
+    getMyReview(resourceType: $resourceType, resourceId: $resourceId) {
+        ...BaseReview
+    }
+}
+
+query GetReviewSpecification($resourceType: String!, $resourceId: String!) {
+    getReviewSpecification(
+        resourceType: $resourceType
+        resourceId: $resourceId
+    ) {
+        ...BaseReviewSpecification
+    }
+}
+
+query GetReviewsCount($resourceType: String!, $resourceId: String!) {
+    getReviewsCount(resourceType: $resourceType, resourceId: $resourceId)
+}
+

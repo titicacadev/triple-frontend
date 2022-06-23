@@ -1,5 +1,5 @@
 import { TransitionModal } from '@titicaca/modals'
-import { Reviews, ReviewLikesProvider } from '@titicaca/review'
+import { Reviews, ReviewLikesProvider, QueryProvider } from '@titicaca/review'
 import {
   UserAgentProvider,
   generateUserAgentValues,
@@ -39,6 +39,11 @@ export default {
       >
         <Story />
       </UserAgentProvider>
+    ),
+    (Story) => (
+      <QueryProvider>
+        <Story />
+      </QueryProvider>
     ),
     historyProviderDecorator,
     sessionContextProviderDecorator,
