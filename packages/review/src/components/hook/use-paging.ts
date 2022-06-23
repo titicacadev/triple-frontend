@@ -15,7 +15,7 @@ export default function usePaging({
   perPage,
 }: {
   sortingOption?: string
-  resourceId?: string
+  resourceId: string
   resourceType: ResourceType
   perPage: number
 }) {
