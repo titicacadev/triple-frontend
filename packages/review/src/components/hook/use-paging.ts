@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useMemo } from 'react'
 import { useQuery } from 'react-query'
 
 import { ResourceType, ReviewData } from '../types'
@@ -31,8 +31,7 @@ export default function usePaging({
       },
     }),
   )
-
-  const loaded = !!(status === 'success')
+  const loaded = useMemo(() => status === 'success', [status])
 
   const fetchNext = useCallback(
     () => !endOfList && loaded && setCurrentPage(currentPage + 1),
