@@ -20,6 +20,14 @@ fragment BaseReview on Review {
         photo
         mileage { level point }
         name
+        userBoard {
+            trips
+            reviews
+            thanks
+            reports
+            reviewsV2
+            itineraries
+        }
     }
     replyBoard {
         id
