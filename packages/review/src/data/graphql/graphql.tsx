@@ -1,5 +1,4 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
-
 export type Maybe<T> = T | null
 export type InputMaybe<T> = Maybe<T>
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -12,7 +11,7 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
   [SubKey in K]: Maybe<T[SubKey]>
 }
 /** All built-in and custom scalars, mapped to their actual values */
-export interface Scalars {
+export type Scalars = {
   ID: string
   String: string
   Boolean: boolean
@@ -35,7 +34,7 @@ export type ScrapType =
   | 'RESTAURANT'
   | 'RESTAURANTS'
 
-export interface BaseReviewReactionFragment {
+export type BaseReviewReactionFragment = {
   __typename: 'ReviewReaction'
   id: string
   type: string
@@ -83,6 +82,15 @@ export interface BaseReviewReactionFragment {
         level: number | null
         point: number | null
       } | null
+      userBoard: {
+        __typename: 'UserBoard'
+        trips: number | null
+        reviews: number | null
+        thanks: number | null
+        reports: number | null
+        reviewsV2: number | null
+        itineraries: number | null
+      } | null
     } | null
     replyBoard: {
       __typename: 'ReplyBoard'
@@ -99,7 +107,7 @@ export type LikeReviewMutationVariables = Exact<{
   reviewId: Scalars['String']
 }>
 
-export interface LikeReviewMutation {
+export type LikeReviewMutation = {
   __typename: 'Mutation'
   likeReview: {
     __typename: 'ReviewReaction'
@@ -149,6 +157,15 @@ export interface LikeReviewMutation {
           level: number | null
           point: number | null
         } | null
+        userBoard: {
+          __typename: 'UserBoard'
+          trips: number | null
+          reviews: number | null
+          thanks: number | null
+          reports: number | null
+          reviewsV2: number | null
+          itineraries: number | null
+        } | null
       } | null
       replyBoard: {
         __typename: 'ReplyBoard'
@@ -166,7 +183,7 @@ export type UnlikeReviewMutationVariables = Exact<{
   reviewId: Scalars['String']
 }>
 
-export interface UnlikeReviewMutation {
+export type UnlikeReviewMutation = {
   __typename: 'Mutation'
   unlikeReview: {
     __typename: 'ReviewReaction'
@@ -216,6 +233,15 @@ export interface UnlikeReviewMutation {
           level: number | null
           point: number | null
         } | null
+        userBoard: {
+          __typename: 'UserBoard'
+          trips: number | null
+          reviews: number | null
+          thanks: number | null
+          reports: number | null
+          reviewsV2: number | null
+          itineraries: number | null
+        } | null
       } | null
       replyBoard: {
         __typename: 'ReplyBoard'
@@ -233,12 +259,12 @@ export type DeleteReviewMutationVariables = Exact<{
   id: Scalars['ID']
 }>
 
-export interface DeleteReviewMutation {
+export type DeleteReviewMutation = {
   __typename: 'Mutation'
   deleteReview: boolean
 }
 
-export interface BaseReviewFragment {
+export type BaseReviewFragment = {
   __typename: 'Review'
   id: string
   resourceId: string
@@ -267,6 +293,15 @@ export interface BaseReviewFragment {
       level: number | null
       point: number | null
     } | null
+    userBoard: {
+      __typename: 'UserBoard'
+      trips: number | null
+      reviews: number | null
+      thanks: number | null
+      reports: number | null
+      reviewsV2: number | null
+      itineraries: number | null
+    } | null
   } | null
   replyBoard: {
     __typename: 'ReplyBoard'
@@ -278,7 +313,7 @@ export interface BaseReviewFragment {
   } | null
 }
 
-export interface BaseReviewSpecificationFragment {
+export type BaseReviewSpecificationFragment = {
   __typename: 'ReviewSpecification'
   rating: {
     __typename: 'ReviewRatingSpecification'
@@ -306,7 +341,7 @@ export type GetLatestReviewsQueryVariables = Exact<{
   size: InputMaybe<Scalars['Int']>
 }>
 
-export interface GetLatestReviewsQuery {
+export type GetLatestReviewsQuery = {
   __typename: 'Query'
   getLatestReviews: Array<{
     __typename: 'Review'
@@ -337,6 +372,15 @@ export interface GetLatestReviewsQuery {
         level: number | null
         point: number | null
       } | null
+      userBoard: {
+        __typename: 'UserBoard'
+        trips: number | null
+        reviews: number | null
+        thanks: number | null
+        reports: number | null
+        reviewsV2: number | null
+        itineraries: number | null
+      } | null
     } | null
     replyBoard: {
       __typename: 'ReplyBoard'
@@ -354,7 +398,7 @@ export type GetMyReviewQueryVariables = Exact<{
   resourceId: Scalars['String']
 }>
 
-export interface GetMyReviewQuery {
+export type GetMyReviewQuery = {
   __typename: 'Query'
   getMyReview: {
     __typename: 'Review'
@@ -385,6 +429,15 @@ export interface GetMyReviewQuery {
         level: number | null
         point: number | null
       } | null
+      userBoard: {
+        __typename: 'UserBoard'
+        trips: number | null
+        reviews: number | null
+        thanks: number | null
+        reports: number | null
+        reviewsV2: number | null
+        itineraries: number | null
+      } | null
     } | null
     replyBoard: {
       __typename: 'ReplyBoard'
@@ -402,7 +455,7 @@ export type GetReviewSpecificationQueryVariables = Exact<{
   resourceId: Scalars['String']
 }>
 
-export interface GetReviewSpecificationQuery {
+export type GetReviewSpecificationQuery = {
   __typename: 'Query'
   getReviewSpecification: {
     __typename: 'ReviewSpecification'
@@ -430,7 +483,7 @@ export type GetReviewsCountQueryVariables = Exact<{
   resourceId: Scalars['String']
 }>
 
-export interface GetReviewsCountQuery {
+export type GetReviewsCountQuery = {
   __typename: 'Query'
   getReviewsCount: number
 }
@@ -494,6 +547,36 @@ export const BaseReviewFragmentDoc = {
                   },
                 },
                 { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'userBoard' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'trips' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'reviews' },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'thanks' },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'reports' },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'reviewsV2' },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'itineraries' },
+                      },
+                    ],
+                  },
+                },
               ],
             },
           },
