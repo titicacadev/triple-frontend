@@ -1,4 +1,4 @@
-export { default as Reviews } from './components/review'
+export { default as Reviews } from './components/review-container'
 export { default as QueryProvider } from './components/query-provider'
 
 export * from './components/review-likes-context'
