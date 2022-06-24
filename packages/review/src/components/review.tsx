@@ -9,6 +9,7 @@ import {
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { TransitionType, withLoginCtaModal } from '@titicaca/modals'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
+import { useQuery, useQueries } from 'react-query'
 
 import {
   GetMyReviewDocument,
@@ -137,18 +138,36 @@ function Review({
     [setMyReviewStatus],
   )
 
-  const data = graphqlRequest({
-    query: GetReviewSpecificationDocument,
-    variables: { resourceType, resourceId },
-  })
+  const { data } = useQuery(
+    'descriptions',
+    graphqlRequest({
+      query: GetReviewSpecificationDocument,
+      variables: { resourceType, resourceId },
+    }),
+  )
 
   useEffect(() => {
     if (data) {
-      setReviewRateDescriptions(
-        data?.getReviewSpecification?.rating?.description,
-      )
+      setReviewRateDescriptions(data.getReviewSpecification.rating.description)
     }
   }, [data])
+
+  const [{ data: res1 }, { data: res2 }] = useQueries([
+    {
+      queryKey: 'reviewCount',
+      queryFn: graphqlRequest({
+        query: GetReviewsCountDocument,
+        variables: { resourceType, resourceId },
+      }),
+    },
+    {
+      queryKey: 'myReview',
+      queryFn: graphqlRequest({
+        query: GetMyReviewDocument,
+        variables: { resourceType, resourceId },
+      }),
+    },
+  ])
 
   useEffect(() => {
     const refreshMyReview = async (params?: { id: string }) => {
@@ -159,25 +178,12 @@ function Review({
       const { id } = params
 
       if (id && id === resourceId) {
-        const [{ getReviewsCount }, { getMyReview }] = await Promise.all([
-          graphqlRequest({
-            query: GetReviewsCountDocument,
-            variables: { resourceType, resourceId },
-          }),
-          sessionAvailable === true
-            ? graphqlRequest({
-                query: GetMyReviewDocument,
-                variables: { resourceType, resourceId },
-              })
-            : Promise.resolve(null),
-        ])
-
-        if (getMyReview) {
-          setMyReview(getMyReview)
+        if (res1 && res1.getReviewsCount !== null) {
+          setReviewsCount(res1.getReviewsCount)
         }
 
-        if (getReviewsCount !== null) {
-          setReviewsCount(getReviewsCount)
+        if (res2) {
+          setMyReview(res2.getMyReview)
         }
       }
     }
@@ -195,6 +201,8 @@ function Review({
     }
   }, [
     app,
+    res1,
+    res2,
     resourceId,
     resourceType,
     sessionAvailable,
