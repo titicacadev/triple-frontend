@@ -1,12 +1,9 @@
 import { useEffect, useState, useCallback } from 'react'
-import humps from 'humps'
-import qs from 'qs'
-import { useFetch } from '@titicaca/react-hooks'
-import { generateUrl } from '@titicaca/view-utilities'
+import { useQuery } from 'react-query'
 
 import { ResourceType, ReviewData } from '../types'
-
-const OPTIONS = { credentials: 'same-origin' }
+import graphqlRequest from '../../data/graphql/request'
+import { GetLatestReviewsDocument } from '../../data/graphql/graphql'
 
 export default function usePaging({
   sortingOption,
@@ -22,21 +19,24 @@ export default function usePaging({
   const [currentPage, setCurrentPage] = useState(1)
   const [endOfList, setEndOfList] = useState(false)
   const [reviews, setReviews] = useState<ReviewData[]>([])
-  const { error, loading, data } = useFetch(
-    generateUrl({
-      path: `/api/reviews/v2${sortingOption ? `/${sortingOption}` : ''}`,
-      query: qs.stringify({
-        resource_id: resourceId,
-        resource_type: resourceType,
+  const { error, status, data } = useQuery(
+    'getLatestReviews',
+    graphqlRequest({
+      query: GetLatestReviewsDocument,
+      variables: {
+        resourceType,
+        resourceId,
         from: (currentPage - 1) * perPage,
         size: perPage,
-      }),
+      },
     }),
-    OPTIONS,
   )
+
+  const loaded = !!(status === 'success')
+
   const fetchNext = useCallback(
-    () => !endOfList && !loading && setCurrentPage(currentPage + 1),
-    [setCurrentPage, endOfList, loading, currentPage],
+    () => !endOfList && loaded && setCurrentPage(currentPage + 1),
+    [setCurrentPage, endOfList, loaded, currentPage],
   )
 
   useEffect(() => {
@@ -45,17 +45,17 @@ export default function usePaging({
   }, [sortingOption, resourceId, perPage])
 
   useEffect(() => {
-    if (!error && !loading && data) {
-      if (data.reviews.length > 0) {
+    if (!error && loaded && data) {
+      if (data.getLatestReviews.length > 0) {
         setReviews((currentReviews) => [
           ...currentReviews,
-          ...(humps.camelizeKeys(data.reviews) as ReviewData[]),
+          ...data.getLatestReviews,
         ])
       } else {
         setEndOfList(true)
       }
     }
-  }, [error, loading, data, setReviews])
+  }, [error, loaded, data, setReviews])
 
-  return { loading, reviews, fetchNext, endOfList }
+  return { loading: loaded, reviews, fetchNext, endOfList }
 }

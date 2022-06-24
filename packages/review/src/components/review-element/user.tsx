@@ -54,8 +54,8 @@ export default function User({
             alpha={0.4}
             onClick={onClick}
           >
-            {level && level > 0 ? `LEVEL${level} / ` : ''}
-            {reviewsV2}개의 리뷰
+            {level && level > 0 ? `LEVEL${level} / ` : null}
+            {reviewsV2 ? `${reviewsV2}개의 리뷰` : null}
           </Text>
         ) : null}
       </div>
