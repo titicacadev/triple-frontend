@@ -5,6 +5,7 @@ import {
   useHistoryFunctions,
   useUriHash,
 } from '@titicaca/react-contexts'
+import { useMutation } from 'react-query'
 
 import { DeleteReviewDocument } from '../data/graphql/graphql'
 import graphqlRequest from '../data/graphql/request'
@@ -42,22 +43,32 @@ export default function MyReviewActionSheet({
   const { replace, back } = useHistoryFunctions()
   const { deleteMyReview } = useMyReviewsContext()
 
+  const { data } = useMutation(
+    'deleteReview',
+    graphqlRequest({
+      query: DeleteReviewDocument,
+      variables: { id: myReview.id },
+    }),
+  )
+
   const handleDeleteMenuClick = () => {
     replace(HASH_DELETION_MODAL)
 
     return true
   }
 
-  const deleteReview = async () => {
-    const response = await graphqlRequest({
-      query: DeleteReviewDocument,
-      variables: { id: myReview.id },
-    })
-
-    if (response.ok) {
-      notifyReviewDeleted(resourceId, myReview.id)
-
-      deleteMyReview({ id: myReview.id, resourceId, resourceType })
+  const handleDeleteReview = ({
+    resourceType,
+    resourceId,
+    reviewId,
+  }: {
+    resourceId: string
+    reviewId: string
+    resourceType: ResourceType
+  }) => {
+    if (data) {
+      notifyReviewDeleted(resourceId, reviewId)
+      deleteMyReview({ id: reviewId, resourceId, resourceType })
     }
 
     back()
@@ -84,7 +95,14 @@ export default function MyReviewActionSheet({
         open={uriHash === HASH_DELETION_MODAL}
         onClose={back}
         onConfirm={
-          onReviewDelete ? (e) => onReviewDelete(e, myReview.id) : deleteReview
+          onReviewDelete
+            ? (e) => onReviewDelete(e, myReview.id)
+            : () =>
+                handleDeleteReview({
+                  resourceType,
+                  resourceId,
+                  reviewId: myReview.id,
+                })
         }
       >
         삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.

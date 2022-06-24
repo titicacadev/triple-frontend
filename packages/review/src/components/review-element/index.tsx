@@ -12,6 +12,7 @@ import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/in
 import { List, Container, Text, Rating } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useSessionCallback } from '@titicaca/ui-flow'
+import { useMutation } from 'react-query'
 
 import { useReviewLikesContext } from '../review-likes-context'
 import { ReviewData } from '../types'
@@ -129,6 +130,14 @@ export default function ReviewElement({
     likesCount: review.likesCount,
   })
 
+  const { data } = useMutation(
+    'likeFlag',
+    graphqlRequest({
+      query: liked ? UnlikeReviewDocument : LikeReviewDocument,
+      variables: { id: review.id },
+    }),
+  )
+
   const handleLikeButtonClick: MouseEventHandler = useSessionCallback(
     useCallback(async () => {
       const actionName = `리뷰_땡쓰${liked ? '취소' : ''}`
@@ -142,12 +151,7 @@ export default function ReviewElement({
         },
       })
 
-      const response = await graphqlRequest({
-        query: liked ? UnlikeReviewDocument : LikeReviewDocument,
-        variables: { id: review.id },
-      })
-
-      if (response.ok) {
+      if (data) {
         updateLikedStatus({ [review.id]: !liked }, resourceId)
       }
     }, [liked, resourceId, review, trackEvent, updateLikedStatus]),
