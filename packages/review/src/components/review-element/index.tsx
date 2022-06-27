@@ -10,7 +10,7 @@ import moment from 'moment'
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
-import { List, Container, Text, Rating } from '@titicaca/core-elements'
+import { FlexBox, List, Container, Text, Rating } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useSessionCallback } from '@titicaca/ui-flow'
 import { useMutation } from 'react-query'
@@ -108,6 +108,8 @@ export default function ReviewElement({
     media,
     replyBoard,
     resourceType,
+    recentTrip,
+    visitDate,
   },
   isMyReview,
   index,
@@ -172,6 +174,9 @@ export default function ReviewElement({
           onClick={onUserClick && ((e) => onUserClick(e, review))}
         />
         {!blindedAt && !!rating ? <Score score={rating} /> : null}
+        {!blindedAt && recentTrip ? (
+          <RecentReviewInfo visitDate={visitDate} />
+        ) : null}
         <Content onClick={(e: SyntheticEvent) => onReviewClick(e, review.id)}>
           {blindedAt ? (
             '신고가 접수되어 블라인드 처리되었습니다.'
@@ -307,4 +312,24 @@ function RateDescription({
   const comment =
     rating && reviewRateDescriptions ? reviewRateDescriptions[rating] : ''
   return <Comment>{comment}</Comment>
+}
+
+function RecentReviewInfo({ visitDate }: { visitDate?: string }) {
+  const [year, month] = visitDate?.split('-') || []
+  return (
+    <FlexBox flex alignItems="center" padding={{ top: 10 }}>
+      <img
+        width={14}
+        height={14}
+        src="https://assets.triple.guide/images/ico_recently_badge@4x.png"
+        alt="recent-trip-icon"
+      />
+      <Text padding={{ left: 5 }} size={14} color="blue" bold>
+        최근 여행
+      </Text>
+      <Text padding={{ left: 8 }} size={13} color="gray700">
+        {`${year}년 ${month}월`}
+      </Text>
+    </FlexBox>
+  )
 }
