@@ -1,9 +1,12 @@
 import { useEffect, useState, useCallback, useMemo } from 'react'
-import { useQuery } from 'react-query'
+import { useQueries } from 'react-query'
 
 import { ResourceType, ReviewData } from '../types'
 import graphqlRequest from '../../data/graphql/request'
-import { GetLatestReviewsDocument } from '../../data/graphql/graphql'
+import {
+  GetLatestReviewsDocument,
+  GetPopularReviewsDocument,
+} from '../../data/graphql/graphql'
 
 export default function usePaging({
   sortingOption,
@@ -16,22 +19,71 @@ export default function usePaging({
   resourceType: ResourceType
   perPage: number
 }) {
+  const latestReview = useMemo(
+    () => sortingOption === 'latest',
+    [sortingOption],
+  )
+
   const [currentPage, setCurrentPage] = useState(1)
   const [endOfList, setEndOfList] = useState(false)
   const [reviews, setReviews] = useState<ReviewData[]>([])
-  const { error, status, data } = useQuery(
-    'getLatestReviews',
-    graphqlRequest({
-      query: GetLatestReviewsDocument,
-      variables: {
-        resourceType,
-        resourceId,
-        from: (currentPage - 1) * perPage,
-        size: perPage,
-      },
-    }),
+
+  const [
+    {
+      error: latestReviewsError,
+      status: latestReviewsStatus,
+      data: latestReviewsData,
+    },
+    {
+      error: popularReviewsError,
+      status: popularReviewsStatus,
+      data: popularReviewsData,
+    },
+  ] = useQueries([
+    {
+      queryKey: 'getLatestReviews',
+      queryFn: graphqlRequest({
+        query: GetLatestReviewsDocument,
+        variables: {
+          resourceType,
+          resourceId,
+          from: (currentPage - 1) * perPage,
+          size: perPage,
+        },
+      }),
+    },
+    {
+      queryKey: 'getPopularReviews',
+      queryFn: graphqlRequest({
+        query: GetPopularReviewsDocument,
+        variables: {
+          resourceType,
+          resourceId,
+          from: (currentPage - 1) * perPage,
+          size: perPage,
+        },
+      }),
+    },
+  ])
+
+  const loaded = useMemo(
+    () =>
+      (latestReview ? latestReviewsStatus : popularReviewsStatus) === 'success',
+    [latestReview],
   )
-  const loaded = useMemo(() => status === 'success', [status])
+
+  const reviewsData = useMemo(
+    () =>
+      (sortingOption === 'latest' && loaded
+        ? latestReviewsData?.getLatestReviews
+        : popularReviewsData?.getPopularReviews) || [],
+    [
+      sortingOption,
+      loaded,
+      latestReviewsData?.getLatestReviews,
+      popularReviewsData?.getPopularReviews,
+    ],
+  )
 
   const fetchNext = useCallback(
     () => !endOfList && loaded && setCurrentPage(currentPage + 1),
@@ -40,21 +92,20 @@ export default function usePaging({
 
   useEffect(() => {
     setCurrentPage(1)
-    setReviews([])
-  }, [sortingOption, resourceId, perPage])
+    setReviews(reviewsData)
+  }, [latestReview, resourceId, perPage, reviewsData])
 
   useEffect(() => {
-    if (!error && loaded && data) {
-      if (data.getLatestReviews.length > 0) {
-        setReviews((currentReviews) => [
-          ...currentReviews,
-          ...data.getLatestReviews,
-        ])
+    const error = latestReview ? latestReviewsError : popularReviewsError
+
+    if (!error && loaded) {
+      if (reviewsData && reviewsData.length > 0) {
+        setReviews((currentReviews) => [...currentReviews, ...reviewsData])
       } else {
         setEndOfList(true)
       }
     }
-  }, [error, loaded, data, setReviews])
+  }, [reviewsData, latestReview, loaded, setReviews])
 
   return { reviews, fetchNext, endOfList }
 }

@@ -55,6 +55,24 @@ fragment BaseReviewSpecification on ReviewSpecification {
     }
 }
 
+query GetPopularReviews(
+    $resourceType: String!
+    $resourceId: String!
+    $recentTrip: Boolean
+    $from: Int
+    $size: Int
+) {
+    getPopularReviews(
+        resourceType: $resourceType
+        resourceId: $resourceId
+        recentTrip: $recentTrip
+        from: $from
+        size: $size
+    ) {
+        ...BaseReview
+    }
+}
+
 query GetLatestReviews(
     $resourceType: String!
     $resourceId: String!
