@@ -1,6 +1,12 @@
 import { useEffect, useState, useCallback, SyntheticEvent } from 'react'
 import styled from 'styled-components'
-import { Section, Container, Text, Button } from '@titicaca/core-elements'
+import {
+  FlexBox,
+  Section,
+  Container,
+  Text,
+  Button,
+} from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import {
   useEventTrackingContext,
@@ -31,6 +37,7 @@ import SortingOptions, {
 } from './sorting-options'
 import { usePaging, useGraphqlQueries, useClientActions } from './hooks'
 import MyReviewActionSheet from './my-review-action-sheet'
+import RecentCheckBox from './recent-checkbox'
 
 const REVIEWS_SECTION_ID = 'reviews'
 const DEFAULT_REVIEWS_COUNT_PER_PAGE = 20
@@ -113,6 +120,7 @@ function ReviewContainer({
 }) {
   const sessionAvailable = useSessionAvailability()
 
+  const [recentTrip, setRecentTrip] = useState(false)
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
   const app = useTripleClientMetadata()
   const { trackEvent } = useEventTrackingContext()
@@ -164,6 +172,10 @@ function ReviewContainer({
       )
     }
   }, [descriptionsData])
+
+  useEffect(() => {
+    setRecentTrip(false)
+  }, [sortingOption])
 
   useEffect(() => {
     const refreshMyReview = async (params?: { id: string }) => {
@@ -285,10 +297,16 @@ function ReviewContainer({
     setSortingOption(sortingOption)
   }
 
+  const handleChangeRecentTrip = useCallback(
+    () => setRecentTrip((prevState) => !prevState),
+    [],
+  )
+
   const { reviews, fetchNext } = usePaging({
     sortingOption,
     resourceId,
     resourceType,
+    recentTrip,
     perPage: shortened
       ? SHORTENED_REVIEWS_COUNT_PER_PAGE + 1
       : DEFAULT_REVIEWS_COUNT_PER_PAGE,
@@ -329,12 +347,16 @@ function ReviewContainer({
 
       {(reviewsCount || 0) > 0 || myReview ? (
         <>
-          <Container margin={{ top: 23 }} clearing>
+          <FlexBox flex justifyContent="space-between" margin={{ top: 23 }}>
             <SortingOptions
               selected={sortingOption}
               onSelect={handleSortingOptionSelect}
             />
-          </Container>
+            <RecentCheckBox
+              isRecentReview={recentTrip}
+              onRecentReviewChange={handleChangeRecentTrip}
+            />
+          </FlexBox>
 
           <ReviewsList
             maxLength={shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined}
