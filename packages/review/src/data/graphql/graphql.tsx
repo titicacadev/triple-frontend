@@ -333,6 +333,66 @@ export type BaseReviewSpecificationFragment = {
   }
 }
 
+export type GetPopularReviewsQueryVariables = Exact<{
+  resourceType: Scalars['String']
+  resourceId: Scalars['String']
+  recentTrip: InputMaybe<Scalars['Boolean']>
+  from: InputMaybe<Scalars['Int']>
+  size: InputMaybe<Scalars['Int']>
+}>
+
+export type GetPopularReviewsQuery = {
+  __typename: 'Query'
+  getPopularReviews: Array<{
+    __typename: 'Review'
+    id: string
+    resourceId: string
+    resourceType: string
+    regionId: string | null
+    comment: string | null
+    media: Array<unknown> | null
+    rating: number | null
+    visitDate: string | null
+    recentTrip: boolean
+    likesCount: number
+    geotags: Array<unknown>
+    blinded: boolean | null
+    createdAt: string
+    updatedAt: string | null
+    liked: boolean
+    user: {
+      __typename: 'User'
+      email: string | null
+      unregister: boolean | null
+      uid: string | null
+      photo: string | null
+      name: string | null
+      mileage: {
+        __typename: 'UserMileage'
+        level: number | null
+        point: number | null
+      } | null
+      userBoard: {
+        __typename: 'UserBoard'
+        trips: number | null
+        reviews: number | null
+        thanks: number | null
+        reports: number | null
+        reviewsV2: number | null
+        itineraries: number | null
+      } | null
+    } | null
+    replyBoard: {
+      __typename: 'ReplyBoard'
+      id: string
+      resourceId: string
+      resourceType: string
+      rootMessagesCount: number
+      childMessagesCount: number
+    } | null
+  }>
+}
+
 export type GetLatestReviewsQueryVariables = Exact<{
   resourceType: Scalars['String']
   resourceId: Scalars['String']
@@ -494,6 +554,7 @@ export declare const UnlikeReview: import('graphql').DocumentNode
 export declare const DeleteReview: import('graphql').DocumentNode
 export declare const BaseReview: import('graphql').DocumentNode
 export declare const BaseReviewSpecification: import('graphql').DocumentNode
+export declare const GetPopularReviews: import('graphql').DocumentNode
 export declare const GetLatestReviews: import('graphql').DocumentNode
 export declare const GetMyReview: import('graphql').DocumentNode
 export declare const GetReviewSpecification: import('graphql').DocumentNode
@@ -876,6 +937,128 @@ export const DeleteReviewDocument = {
 } as unknown as DocumentNode<
   DeleteReviewMutation,
   DeleteReviewMutationVariables
+>
+export const GetPopularReviewsDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetPopularReviews' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'resourceType' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'resourceId' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'recentTrip' },
+          },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'Boolean' } },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'from' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'size' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'getPopularReviews' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'resourceType' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'resourceType' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'resourceId' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'resourceId' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'recentTrip' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'recentTrip' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'from' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'from' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'size' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'size' },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'BaseReview' },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    ...BaseReviewFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<
+  GetPopularReviewsQuery,
+  GetPopularReviewsQueryVariables
 >
 export const GetLatestReviewsDocument = {
   kind: 'Document',
