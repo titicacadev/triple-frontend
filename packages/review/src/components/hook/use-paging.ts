@@ -74,9 +74,9 @@ export default function usePaging({
 
   const reviewsData = useMemo(
     () =>
-      (sortingOption === 'latest' && loaded
+      sortingOption === 'latest' && loaded
         ? latestReviewsData?.getLatestReviews
-        : popularReviewsData?.getPopularReviews) || [],
+        : popularReviewsData?.getPopularReviews,
     [
       sortingOption,
       loaded,
@@ -99,7 +99,7 @@ export default function usePaging({
     const error = latestReview ? latestReviewsError : popularReviewsError
 
     if (!error && loaded) {
-      if (reviewsData && reviewsData.length > 0) {
+      if ((reviewsData || []).length > 0) {
         setReviews((currentReviews) => [...currentReviews, ...reviewsData])
       } else {
         setEndOfList(true)
