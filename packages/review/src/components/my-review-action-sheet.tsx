@@ -43,8 +43,7 @@ export default function MyReviewActionSheet({
   const { replace, back } = useHistoryFunctions()
   const { deleteMyReview } = useMyReviewsContext()
 
-  const { data } = useMutation(
-    'deleteReview',
+  const { mutate } = useMutation(
     graphqlRequest({
       query: DeleteReviewDocument,
       variables: { id: myReview.id },
@@ -66,7 +65,8 @@ export default function MyReviewActionSheet({
     reviewId: string
     resourceType: ResourceType
   }) => {
-    if (data) {
+    if (mutate) {
+      mutate()
       notifyReviewDeleted(resourceId, reviewId)
       deleteMyReview({ id: reviewId, resourceId, resourceType })
     }

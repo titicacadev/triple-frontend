@@ -130,11 +130,10 @@ export default function ReviewElement({
     likesCount: review.likesCount,
   })
 
-  const { data } = useMutation(
-    'likeFlag',
+  const { mutate } = useMutation(
     graphqlRequest({
       query: liked ? UnlikeReviewDocument : LikeReviewDocument,
-      variables: { id: review.id },
+      variables: { reviewId: review.id },
     }),
   )
 
@@ -151,10 +150,11 @@ export default function ReviewElement({
         },
       })
 
-      if (data) {
+      if (mutate) {
+        mutate()
         updateLikedStatus({ [review.id]: !liked }, resourceId)
       }
-    }, [liked, resourceId, review, trackEvent, updateLikedStatus]),
+    }, [mutate, liked, resourceId, review, trackEvent, updateLikedStatus]),
   )
 
   return (
