@@ -31,9 +31,8 @@ import SortingOptions, {
   ORDER_BY_RECENCY,
   SortingOptionsProps,
 } from './sorting-options'
-import usePaging from './hook/use-paging'
+import usePaging, { useClientActions } from './hook'
 import MyReviewActionSheet from './my-review-action-sheet'
-import { useClientActions } from './hook/use-client-actions'
 
 const REVIEWS_SECTION_ID = 'reviews'
 const DEFAULT_REVIEWS_COUNT_PER_PAGE = 20
