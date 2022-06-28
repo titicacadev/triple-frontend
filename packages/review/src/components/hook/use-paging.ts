@@ -74,9 +74,9 @@ export default function usePaging({
 
   const reviewsData = useMemo(
     () =>
-      sortingOption === 'latest' && loaded
+      (sortingOption === 'latest' && loaded
         ? latestReviewsData?.getLatestReviews
-        : popularReviewsData?.getPopularReviews,
+        : popularReviewsData?.getPopularReviews) || [],
     [
       sortingOption,
       loaded,
