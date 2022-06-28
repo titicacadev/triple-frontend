@@ -6,6 +6,7 @@ import {
   useCallback,
   SyntheticEvent,
 } from 'react'
+import moment from 'moment'
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
@@ -102,7 +103,7 @@ export default function ReviewElement({
     user,
     blindedAt,
     comment,
-    createdAt,
+    reviewedAt: originReviewedAt,
     rating,
     media,
     replyBoard,
@@ -156,6 +157,8 @@ export default function ReviewElement({
       }
     }, [mutate, liked, resourceId, review, trackEvent, updateLikedStatus]),
   )
+
+  const reviewedAt = moment(originReviewedAt).format()
 
   return (
     <IntersectionObserver
@@ -238,7 +241,7 @@ export default function ReviewElement({
 
           {!blindedAt || (blindedAt && isMyReview) ? (
             <Date floated="right">
-              {DateFormatter ? <DateFormatter date={createdAt} /> : createdAt}
+              {DateFormatter ? <DateFormatter date={reviewedAt} /> : reviewedAt}
               <MoreIcon
                 src="https://assets.triple.guide/images/btn-review-more@4x.png"
                 onClick={(e) => onMenuClick(e, review)}

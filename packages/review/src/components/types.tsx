@@ -35,7 +35,7 @@ export interface ReviewData {
   resourceType: string
   user: UserData
   comment: string
-  createdAt: string
+  reviewedAt: string
   blindedAt?: string | null
   rating?: number | null
   media?: ImageMeta[] | null
