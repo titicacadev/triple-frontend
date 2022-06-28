@@ -35,14 +35,12 @@ export default function User({
   onClick?: MouseEventHandler
   user: UserData
 }) {
-  const { badges, level } = mileage || {}
+  const { badges = [], level } = mileage || {}
 
   return (
     <Container padding={{ bottom: 2 }} display="flex">
       <UserPhoto src={photo} onClick={onClick} />
-      {badges && badges?.length > 0 ? (
-        <Badge src={badges[0].icon.imageUrl} />
-      ) : null}
+      {badges.length > 0 ? <Badge src={badges[0].icon.imageUrl} /> : null}
       <div>
         <Name onClick={onClick}>{name}</Name>
         {!unregister ? (
