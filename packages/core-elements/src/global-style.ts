@@ -192,8 +192,8 @@ export const GlobalStyle = createGlobalStyle`
   a:any-link {
     text-decoration: none;
   }
-  input, textarea{
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  input, textarea {
+    font-family: inherit;
   }
   @media (prefers-color-scheme: dark) {
     body {
