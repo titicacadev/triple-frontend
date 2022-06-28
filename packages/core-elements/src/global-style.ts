@@ -189,11 +189,12 @@ export const GlobalStyle = createGlobalStyle`
   strong {
     font-weight: bold;
   }
-
   a:any-link {
     text-decoration: none;
   }
-
+  input, textarea{
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  }
   @media (prefers-color-scheme: dark) {
     body {
       background-color: var(--color-white);
