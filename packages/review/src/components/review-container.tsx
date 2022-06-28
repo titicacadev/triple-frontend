@@ -133,12 +133,21 @@ function ReviewContainer({
   >([])
   const { writeReview, editReview, navigateReviewList, navigateMileageIntro } =
     useClientActions()
+  const { reviews, fetchNext } = usePaging({
+    sortingOption,
+    resourceId,
+    resourceType,
+    recentTrip,
+    perPage: shortened
+      ? SHORTENED_REVIEWS_COUNT_PER_PAGE + 1
+      : DEFAULT_REVIEWS_COUNT_PER_PAGE,
+  })
 
   const setMyReview = useCallback(
     (review) =>
       setMyReviewStatus(([, ids]) => [
         review,
-        review ? new Set<string>([String(review.id), ...ids]) : ids,
+        review ? new Set<string>([String(review?.id), ...ids]) : ids,
       ]),
     [setMyReviewStatus],
   )
@@ -186,12 +195,8 @@ function ReviewContainer({
       const { id } = params
 
       if (id && id === resourceId) {
-        if (reviewCountData && reviewCountData.getReviewsCount !== null) {
+        if (reviewCountData) {
           setReviewsCount(reviewCountData.getReviewsCount)
-        }
-
-        if (myReviewData) {
-          setMyReview(myReviewData.getMyReview)
         }
       }
     }
@@ -210,7 +215,6 @@ function ReviewContainer({
   }, [
     app,
     reviewCountData,
-    myReviewData,
     resourceId,
     resourceType,
     sessionAvailable,
@@ -218,6 +222,12 @@ function ReviewContainer({
     subscribeReviewUpdateEvent,
     unsubscribeReviewUpdateEvent,
   ])
+
+  useEffect(() => {
+    if (myReviewData) {
+      setMyReview(myReviewData?.getMyReview || {})
+    }
+  }, [myReviewData])
 
   const handleWriteButtonClick = useAppCallback(
     TransitionType.ReviewWrite,
@@ -301,16 +311,6 @@ function ReviewContainer({
     () => setRecentTrip((prevState) => !prevState),
     [],
   )
-
-  const { reviews, fetchNext } = usePaging({
-    sortingOption,
-    resourceId,
-    resourceType,
-    recentTrip,
-    perPage: shortened
-      ? SHORTENED_REVIEWS_COUNT_PER_PAGE + 1
-      : DEFAULT_REVIEWS_COUNT_PER_PAGE,
-  })
 
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
