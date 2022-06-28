@@ -23,18 +23,13 @@ const Badge = styled.img`
 `
 
 export default function User({
-  user: {
-    photo,
-    name,
-    userBoard: { reviewsV2 },
-    mileage,
-    unregister,
-  },
+  user: { photo, name, userBoard, mileage, unregister },
   onClick,
 }: {
   onClick?: MouseEventHandler
   user: UserData
 }) {
+  const { reviewsV2 } = userBoard || {}
   const { badges = [], level } = mileage || {}
 
   return (
