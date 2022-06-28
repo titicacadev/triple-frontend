@@ -168,7 +168,7 @@ function ReviewContainer({
   useEffect(() => {
     if (descriptionsData) {
       setReviewRateDescriptions(
-        descriptionsData.getReviewSpecification.rating.description,
+        descriptionsData.getReviewSpecification?.rating?.description || [],
       )
     }
   }, [descriptionsData])
