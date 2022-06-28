@@ -198,6 +198,10 @@ function ReviewContainer({
         if (reviewCountData) {
           setReviewsCount(reviewCountData.getReviewsCount)
         }
+
+        if (myReviewData) {
+          setMyReview(myReviewData.getMyReview)
+        }
       }
     }
 
@@ -215,19 +219,13 @@ function ReviewContainer({
   }, [
     app,
     reviewCountData,
+    myReviewData,
     resourceId,
     resourceType,
     sessionAvailable,
-    setMyReview,
     subscribeReviewUpdateEvent,
     unsubscribeReviewUpdateEvent,
   ])
-
-  useEffect(() => {
-    if (myReviewData) {
-      setMyReview(myReviewData.getMyReview)
-    }
-  }, [myReviewData])
 
   const handleWriteButtonClick = useAppCallback(
     TransitionType.ReviewWrite,
