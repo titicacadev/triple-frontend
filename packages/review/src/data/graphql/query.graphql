@@ -11,8 +11,7 @@ fragment BaseReview on Review {
     likesCount
     geotags
     blinded
-    createdAt
-    updatedAt
+    reviewedAt
     user {
         email
         unregister

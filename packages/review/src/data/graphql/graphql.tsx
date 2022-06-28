@@ -38,8 +38,8 @@ export type BaseReviewReactionFragment = {
   __typename: 'ReviewReaction'
   id: string
   type: string
-  updatedAt: string
   createdAt: string
+  updatedAt: string
   user: {
     __typename: 'User'
     email: string | null
@@ -67,8 +67,7 @@ export type BaseReviewReactionFragment = {
     likesCount: number
     geotags: Array<unknown>
     blinded: boolean | null
-    createdAt: string
-    updatedAt: string | null
+    reviewedAt: string
     liked: boolean
     user: {
       __typename: 'User'
@@ -113,8 +112,8 @@ export type LikeReviewMutation = {
     __typename: 'ReviewReaction'
     id: string
     type: string
-    updatedAt: string
     createdAt: string
+    updatedAt: string
     user: {
       __typename: 'User'
       email: string | null
@@ -142,8 +141,7 @@ export type LikeReviewMutation = {
       likesCount: number
       geotags: Array<unknown>
       blinded: boolean | null
-      createdAt: string
-      updatedAt: string | null
+      reviewedAt: string
       liked: boolean
       user: {
         __typename: 'User'
@@ -189,8 +187,8 @@ export type UnlikeReviewMutation = {
     __typename: 'ReviewReaction'
     id: string
     type: string
-    updatedAt: string
     createdAt: string
+    updatedAt: string
     user: {
       __typename: 'User'
       email: string | null
@@ -218,8 +216,7 @@ export type UnlikeReviewMutation = {
       likesCount: number
       geotags: Array<unknown>
       blinded: boolean | null
-      createdAt: string
-      updatedAt: string | null
+      reviewedAt: string
       liked: boolean
       user: {
         __typename: 'User'
@@ -278,8 +275,7 @@ export type BaseReviewFragment = {
   likesCount: number
   geotags: Array<unknown>
   blinded: boolean | null
-  createdAt: string
-  updatedAt: string | null
+  reviewedAt: string
   liked: boolean
   user: {
     __typename: 'User'
@@ -357,8 +353,7 @@ export type GetPopularReviewsQuery = {
     likesCount: number
     geotags: Array<unknown>
     blinded: boolean | null
-    createdAt: string
-    updatedAt: string | null
+    reviewedAt: string
     liked: boolean
     user: {
       __typename: 'User'
@@ -417,8 +412,7 @@ export type GetLatestReviewsQuery = {
     likesCount: number
     geotags: Array<unknown>
     blinded: boolean | null
-    createdAt: string
-    updatedAt: string | null
+    reviewedAt: string
     liked: boolean
     user: {
       __typename: 'User'
@@ -474,8 +468,7 @@ export type GetMyReviewQuery = {
     likesCount: number
     geotags: Array<unknown>
     blinded: boolean | null
-    createdAt: string
-    updatedAt: string | null
+    reviewedAt: string
     liked: boolean
     user: {
       __typename: 'User'
@@ -584,8 +577,7 @@ export const BaseReviewFragmentDoc = {
           { kind: 'Field', name: { kind: 'Name', value: 'likesCount' } },
           { kind: 'Field', name: { kind: 'Name', value: 'geotags' } },
           { kind: 'Field', name: { kind: 'Name', value: 'blinded' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'reviewedAt' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'user' },
@@ -723,8 +715,8 @@ export const BaseReviewReactionFragmentDoc = {
               ],
             },
           },
-          { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
           { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
         ],
       },
     },

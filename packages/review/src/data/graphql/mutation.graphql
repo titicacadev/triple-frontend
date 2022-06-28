@@ -12,8 +12,8 @@ fragment BaseReviewReaction on ReviewReaction {
   review {
     ...BaseReview
   }
-  updatedAt
   createdAt
+  updatedAt
 }
 
 
