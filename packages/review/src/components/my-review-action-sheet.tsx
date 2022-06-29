@@ -8,7 +8,7 @@ import {
 import { useMutation } from 'react-query'
 
 import { DeleteReviewDocument } from '../data/generated/graphql'
-import graphqlRequest from '../data/graphql/request'
+import { graphqlQuery } from '../data/graphql/request'
 
 import { ResourceType, ReviewData, ReviewDeleteHandler } from './types'
 
@@ -44,7 +44,7 @@ export default function MyReviewActionSheet({
   const { deleteMyReview } = useMyReviewsContext()
 
   const { mutate } = useMutation(
-    graphqlRequest({
+    graphqlQuery({
       query: DeleteReviewDocument,
       variables: { id: myReview.id },
     }),

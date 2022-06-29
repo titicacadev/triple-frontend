@@ -17,7 +17,7 @@ import { useMutation } from 'react-query'
 
 import { useReviewLikesContext } from '../review-likes-context'
 import { ReviewData } from '../types'
-import graphqlRequest from '../../data/graphql/request'
+import { graphqlQuery } from '../../data/graphql/request'
 import {
   UnlikeReviewDocument,
   LikeReviewDocument,
@@ -134,7 +134,7 @@ export default function ReviewElement({
   })
 
   const { mutate } = useMutation(
-    graphqlRequest({
+    graphqlQuery({
       query: liked ? UnlikeReviewDocument : LikeReviewDocument,
       variables: { reviewId: review.id },
     }),

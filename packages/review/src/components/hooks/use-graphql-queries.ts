@@ -1,7 +1,7 @@
 import { useQueries } from 'react-query'
 import { RequestDocument, Variables } from 'graphql-request'
 
-import graphqlRequest from '../../data/graphql/request'
+import { graphqlQuery } from '../../data/graphql/request'
 import { ReviewData } from '../types'
 
 interface Query {
@@ -15,7 +15,7 @@ export function useGraphqlQueries(queries: Query[]) {
   const queryArray = queries.map(
     ({ key: queryKey, query, variables, options }) => ({
       queryKey,
-      queryFn: graphqlRequest({
+      queryFn: graphqlQuery({
         query,
         variables,
       }),

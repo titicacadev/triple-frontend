@@ -1,4 +1,10 @@
-import { useEffect, useState, useCallback, SyntheticEvent } from 'react'
+import {
+  useEffect,
+  useState,
+  useCallback,
+  SyntheticEvent,
+  useMemo,
+} from 'react'
 import styled from 'styled-components'
 import {
   FlexBox,
@@ -16,12 +22,6 @@ import { useTripleClientMetadata } from '@titicaca/react-triple-client-interface
 import { TransitionType, withLoginCtaModal } from '@titicaca/modals'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 
-import {
-  GetMyReviewDocument,
-  GetReviewsCountDocument,
-  GetReviewSpecificationDocument,
-} from '../data/generated/graphql'
-
 import ReviewsPlaceholder from './review-placeholder-with-rating'
 import ReviewsList from './reviews-list'
 import {
@@ -35,7 +35,7 @@ import SortingOptions, {
   ORDER_BY_RECENCY,
   SortingOptionsProps,
 } from './sorting-options'
-import { usePaging, useGraphqlQueries, useClientActions } from './hooks'
+import { useClientActions, useReviews } from './hooks'
 import MyReviewActionSheet from './my-review-action-sheet'
 import RecentCheckBox from './recent-checkbox'
 
@@ -120,6 +120,7 @@ function ReviewContainer({
 }) {
   const sessionAvailable = useSessionAvailability()
 
+  const [reviews, setReviews] = useState<ReviewData[]>([])
   const [recentTrip, setRecentTrip] = useState(false)
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
   const app = useTripleClientMetadata()
@@ -133,6 +134,36 @@ function ReviewContainer({
   >([])
   const { writeReview, editReview, navigateReviewList, navigateMileageIntro } =
     useClientActions()
+  const {
+    data: [
+      reviewCountData,
+      myReviewData,
+      descriptionsData,
+      latestReviewsData,
+      popularReviewsData,
+    ],
+    moreFetcher,
+  } = useReviews({
+    resourceId,
+    resourceType,
+    recentTrip,
+    sortingOption,
+    perPage: shortened
+      ? SHORTENED_REVIEWS_COUNT_PER_PAGE + 1
+      : DEFAULT_REVIEWS_COUNT_PER_PAGE,
+  })
+
+  const latestReview = useMemo(
+    () => sortingOption === 'latest',
+    [sortingOption],
+  )
+  const reviewsData = useMemo(
+    () =>
+      (latestReview
+        ? latestReviewsData?.pages[0].getLatestReviews
+        : popularReviewsData?.pages[0].getPopularReviews) || [],
+    [latestReview, latestReviewsData, popularReviewsData],
+  )
 
   const setMyReview = useCallback(
     (review) =>
@@ -142,35 +173,10 @@ function ReviewContainer({
       ]),
     [setMyReviewStatus],
   )
-  const [
-    { data: reviewCountData },
-    { data: myReviewData },
-    { data: descriptionsData },
-  ] = useGraphqlQueries([
-    {
-      key: 'reviewCount',
-      query: GetReviewsCountDocument,
-      variables: { resourceType, resourceId },
-      options: {
-        refetchOnMount: false,
-        refetchOnWindowFocus: false,
-      },
-    },
-    {
-      key: 'myReview',
-      query: GetMyReviewDocument,
-      variables: { resourceType, resourceId },
-    },
-    {
-      key: 'descriptions',
-      query: GetReviewSpecificationDocument,
-      variables: { resourceType, resourceId },
-      options: {
-        refetchOnMount: false,
-        refetchOnWindowFocus: false,
-      },
-    },
-  ])
+
+  useEffect(() => {
+    setReviews(reviewsData)
+  }, [reviewsData])
 
   useEffect(() => {
     if (descriptionsData) {
@@ -304,16 +310,6 @@ function ReviewContainer({
     [],
   )
 
-  const { reviews, fetchNext } = usePaging({
-    sortingOption,
-    resourceId,
-    resourceType,
-    recentTrip,
-    perPage: shortened
-      ? SHORTENED_REVIEWS_COUNT_PER_PAGE + 1
-      : DEFAULT_REVIEWS_COUNT_PER_PAGE,
-  })
-
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
       <Container>
@@ -368,7 +364,7 @@ function ReviewContainer({
             resourceId={resourceId}
             showToast={showToast}
             reviewRateDescriptions={reviewRateDescriptions}
-            fetchNext={!shortened ? fetchNext : undefined}
+            fetchNext={!shortened ? moreFetcher : undefined}
           />
         </>
       ) : (
