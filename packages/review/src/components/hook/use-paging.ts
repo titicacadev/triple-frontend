@@ -5,8 +5,7 @@ import {
   GetLatestReviewsDocument,
   GetPopularReviewsDocument,
 } from '../../data/generated/graphql'
-
-import { useGraphqlQueries } from './use-graphql-query'
+import { useGraphqlQueries } from '../hook'
 
 export function usePaging({
   sortingOption,
