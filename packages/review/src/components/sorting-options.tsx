@@ -16,7 +16,6 @@ const SORTING_OPTIONS = [
 ]
 
 const OptionsContainer = styled(FlexBox)`
-  margin-top: 6px;
   padding: 0;
 
   div:not(:first-child) {
@@ -29,7 +28,7 @@ export default function SortingOptions({
   selected,
 }: SortingOptionsProps) {
   return (
-    <OptionsContainer flex alignItems="center">
+    <OptionsContainer flex alignItems="center" margin={{ top: 6 }}>
       {SORTING_OPTIONS.map(({ key, text }) => (
         <Label key={key} radio selected={selected === key}>
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
