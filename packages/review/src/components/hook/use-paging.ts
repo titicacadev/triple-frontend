@@ -6,7 +6,7 @@ import graphqlRequest from '../../data/graphql/request'
 import {
   GetLatestReviewsDocument,
   GetPopularReviewsDocument,
-} from '../../data/graphql/graphql'
+} from '../../data/generated/graphql'
 
 export default function usePaging({
   sortingOption,

@@ -15,7 +15,7 @@ import {
   GetMyReviewDocument,
   GetReviewsCountDocument,
   GetReviewSpecificationDocument,
-} from '../data/graphql/graphql'
+} from '../data/generated/graphql'
 import graphqlRequest from '../data/graphql/request'
 
 import ReviewsPlaceholder from './review-placeholder-with-rating'

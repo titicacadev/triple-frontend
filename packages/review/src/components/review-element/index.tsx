@@ -21,7 +21,7 @@ import graphqlRequest from '../../data/graphql/request'
 import {
   UnlikeReviewDocument,
   LikeReviewDocument,
-} from '../../data/graphql/graphql'
+} from '../../data/generated/graphql'
 
 import User from './user'
 import Comment from './comment'
