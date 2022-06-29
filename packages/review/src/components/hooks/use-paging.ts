@@ -58,10 +58,6 @@ export function usePaging({
         from: (latestReviewsPage - 1) * perPage,
         size: perPage,
       },
-      options: {
-        refetchOnMount: false,
-        refetchOnWindowFocus: false,
-      },
     },
     {
       key: ['getPopularReviews', recentTrip],
@@ -72,10 +68,6 @@ export function usePaging({
         recentTrip,
         from: (popularReviewsPage - 1) * perPage,
         size: perPage,
-      },
-      options: {
-        refetchOnMount: false,
-        refetchOnWindowFocus: false,
       },
     },
   ])
