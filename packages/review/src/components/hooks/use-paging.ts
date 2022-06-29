@@ -53,7 +53,7 @@ export function usePaging({
     },
   ] = useGraphqlQueries([
     {
-      key: ['getLatestReviews', recentTrip],
+      key: ['getLatestReviews', recentTrip, reviews],
       query: GetLatestReviewsDocument,
       variables: {
         resourceType,
@@ -63,7 +63,7 @@ export function usePaging({
       },
     },
     {
-      key: ['getPopularReviews', recentTrip],
+      key: ['getPopularReviews', recentTrip, reviews],
       query: GetPopularReviewsDocument,
       variables: {
         resourceType,
