@@ -4,4 +4,4 @@ node_modules
 package-lock.json
 packages/*/lib/**
 docs/storybook-static
-packages/*/src/data/graphql/graphql.tsx
+packages/*/src/data/generated/graphql.tsx

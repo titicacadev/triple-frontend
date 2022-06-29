@@ -7,7 +7,7 @@ import {
 } from '@titicaca/react-contexts'
 import { useMutation } from 'react-query'
 
-import { DeleteReviewDocument } from '../data/graphql/graphql'
+import { DeleteReviewDocument } from '../data/generated/graphql'
 import graphqlRequest from '../data/graphql/request'
 
 import { ResourceType, ReviewData, ReviewDeleteHandler } from './types'

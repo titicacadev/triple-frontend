@@ -5,7 +5,7 @@ hooks:
   afterAllFileWrite:
     - prettier 'src/data/graphql/*.{js,ts,tsx}' --write
 generates:
-  src/data/graphql/graphql.tsx:
+  src/data/generated/graphql.tsx:
     plugins:
       - typescript
       - typescript-operations
