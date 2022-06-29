@@ -29,7 +29,7 @@ export default function User({
   onClick?: MouseEventHandler
   user: UserData
 }) {
-  const { reviewsV2 } = userBoard || {}
+  const { reviewsV2: reviewsCount } = userBoard || {}
   const { badges = [], level } = mileage || {}
 
   return (
@@ -47,7 +47,7 @@ export default function User({
             onClick={onClick}
           >
             {level && level > 0 ? `LEVEL${level} / ` : null}
-            {reviewsV2 ? `${reviewsV2}개의 리뷰` : null}
+            {reviewsCount ? `${reviewsCount}개의 리뷰` : null}
           </Text>
         ) : null}
       </div>
