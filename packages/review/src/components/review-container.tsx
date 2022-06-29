@@ -133,15 +133,6 @@ function ReviewContainer({
   >([])
   const { writeReview, editReview, navigateReviewList, navigateMileageIntro } =
     useClientActions()
-  const { reviews, fetchNext } = usePaging({
-    sortingOption,
-    resourceId,
-    resourceType,
-    recentTrip,
-    perPage: shortened
-      ? SHORTENED_REVIEWS_COUNT_PER_PAGE + 1
-      : DEFAULT_REVIEWS_COUNT_PER_PAGE,
-  })
 
   const setMyReview = useCallback(
     (review) =>
@@ -309,6 +300,16 @@ function ReviewContainer({
     () => setRecentTrip((prevState) => !prevState),
     [],
   )
+
+  const { reviews, fetchNext } = usePaging({
+    sortingOption,
+    resourceId,
+    resourceType,
+    recentTrip,
+    perPage: shortened
+      ? SHORTENED_REVIEWS_COUNT_PER_PAGE + 1
+      : DEFAULT_REVIEWS_COUNT_PER_PAGE,
+  })
 
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
