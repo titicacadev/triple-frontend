@@ -26,13 +26,7 @@ export function usePaging({
     [sortingOption],
   )
 
-  const [{ latestReviewsPage, popularReviewsPage }, setPage] = useState<{
-    latestReviewsPage: number
-    popularReviewsPage: number
-  }>({
-    latestReviewsPage: 1,
-    popularReviewsPage: 1,
-  })
+  const [currentPage, setCurrentPage] = useState(1)
   const [endOfList, setEndOfList] = useState(false)
   const [reviews, setReviews] = useState<ReviewData[]>([])
 
@@ -55,7 +49,7 @@ export function usePaging({
         resourceType,
         resourceId,
         recentTrip,
-        from: (latestReviewsPage - 1) * perPage,
+        from: (currentPage - 1) * perPage,
         size: perPage,
       },
     },
@@ -66,7 +60,7 @@ export function usePaging({
         resourceType,
         resourceId,
         recentTrip,
-        from: (popularReviewsPage - 1) * perPage,
+        from: (currentPage - 1) * perPage,
         size: perPage,
       },
     },
@@ -94,40 +88,13 @@ export function usePaging({
   )
 
   const fetchNext = useCallback(
-    () =>
-      !endOfList &&
-      setPage((prevState) => ({
-        ...prevState,
-        ...(latestReview
-          ? {
-              latestReviewsPage: prevState.latestReviewsPage + 1,
-            }
-          : { popularReviewsPage: prevState.popularReviewsPage + 1 }),
-      })),
-    [endOfList, latestReview],
+    () => !endOfList && loaded && setCurrentPage((prevState) => prevState + 1),
+    [setCurrentPage, endOfList, loaded, currentPage],
   )
 
   useEffect(() => {
-    setPage((prevState) => ({
-      ...prevState,
-      ...(latestReview
-        ? {
-            latestReviewsPage: prevState.latestReviewsPage + 1,
-          }
-        : { popularReviewsPage: prevState.popularReviewsPage + 1 }),
-    }))
-  }, [setPage])
-
-  useEffect(() => {
-    setPage((prevState) => ({
-      ...prevState,
-      ...(latestReview
-        ? {
-            latestReviewsPage: 1,
-          }
-        : { popularReviewsPage: 1 }),
-    }))
-  }, [recentTrip])
+    setCurrentPage(1)
+  }, [latestReview, recentTrip])
 
   useEffect(() => {
     setReviews(reviewsData)
@@ -135,7 +102,7 @@ export function usePaging({
 
   useEffect(() => {
     if (!error && loaded) {
-      if ((reviewsData || []).length > 0) {
+      if (reviewsData.length > 0) {
         setReviews((currentReviews) => [...currentReviews, ...reviewsData])
       } else {
         setEndOfList(true)

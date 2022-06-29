@@ -149,7 +149,7 @@ export default function ReviewsList({
         {displayedReviews.map((review, i) => (
           <ReviewElement
             isMyReview={!!(myReview && myReview.id === review.id)}
-            key={review.id}
+            key={i}
             index={i}
             review={review}
             reviewRateDescriptions={reviewRateDescriptions}
