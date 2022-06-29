@@ -174,10 +174,6 @@ function ReviewContainer({
   }, [descriptionsData])
 
   useEffect(() => {
-    setRecentTrip(false)
-  }, [sortingOption])
-
-  useEffect(() => {
     const refreshMyReview = async (params?: { id: string }) => {
       if (!params) {
         return

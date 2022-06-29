@@ -5,6 +5,9 @@ const client = new QueryClient({
   defaultOptions: {
     queries: {
       keepPreviousData: true,
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
     },
   },
 })
