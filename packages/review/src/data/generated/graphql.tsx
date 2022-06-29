@@ -34,147 +34,13 @@ export type ScrapType =
   | 'RESTAURANT'
   | 'RESTAURANTS'
 
-export type BaseReviewReactionFragment = {
-  __typename: 'ReviewReaction'
-  id: string
-  type: string
-  createdAt: string
-  updatedAt: string
-  user: {
-    __typename: 'User'
-    email: string | null
-    unregister: boolean | null
-    uid: string | null
-    photo: string | null
-    name: string | null
-    mileage: {
-      __typename: 'UserMileage'
-      level: number | null
-      point: number | null
-    } | null
-  }
-  review: {
-    __typename: 'Review'
-    id: string
-    resourceId: string
-    resourceType: string
-    regionId: string | null
-    comment: string | null
-    media: Array<unknown> | null
-    rating: number | null
-    visitDate: string | null
-    recentTrip: boolean
-    likesCount: number
-    geotags: Array<unknown>
-    blinded: boolean | null
-    reviewedAt: string
-    liked: boolean
-    user: {
-      __typename: 'User'
-      email: string | null
-      unregister: boolean | null
-      uid: string | null
-      photo: string | null
-      name: string | null
-      mileage: {
-        __typename: 'UserMileage'
-        level: number | null
-        point: number | null
-      } | null
-      userBoard: {
-        __typename: 'UserBoard'
-        trips: number | null
-        reviews: number | null
-        thanks: number | null
-        reports: number | null
-        reviewsV2: number | null
-        itineraries: number | null
-      } | null
-    } | null
-    replyBoard: {
-      __typename: 'ReplyBoard'
-      id: string
-      resourceId: string
-      resourceType: string
-      rootMessagesCount: number
-      childMessagesCount: number
-    } | null
-  }
-}
-
 export type LikeReviewMutationVariables = Exact<{
   reviewId: Scalars['String']
 }>
 
 export type LikeReviewMutation = {
   __typename: 'Mutation'
-  likeReview: {
-    __typename: 'ReviewReaction'
-    id: string
-    type: string
-    createdAt: string
-    updatedAt: string
-    user: {
-      __typename: 'User'
-      email: string | null
-      unregister: boolean | null
-      uid: string | null
-      photo: string | null
-      name: string | null
-      mileage: {
-        __typename: 'UserMileage'
-        level: number | null
-        point: number | null
-      } | null
-    }
-    review: {
-      __typename: 'Review'
-      id: string
-      resourceId: string
-      resourceType: string
-      regionId: string | null
-      comment: string | null
-      media: Array<unknown> | null
-      rating: number | null
-      visitDate: string | null
-      recentTrip: boolean
-      likesCount: number
-      geotags: Array<unknown>
-      blinded: boolean | null
-      reviewedAt: string
-      liked: boolean
-      user: {
-        __typename: 'User'
-        email: string | null
-        unregister: boolean | null
-        uid: string | null
-        photo: string | null
-        name: string | null
-        mileage: {
-          __typename: 'UserMileage'
-          level: number | null
-          point: number | null
-        } | null
-        userBoard: {
-          __typename: 'UserBoard'
-          trips: number | null
-          reviews: number | null
-          thanks: number | null
-          reports: number | null
-          reviewsV2: number | null
-          itineraries: number | null
-        } | null
-      } | null
-      replyBoard: {
-        __typename: 'ReplyBoard'
-        id: string
-        resourceId: string
-        resourceType: string
-        rootMessagesCount: number
-        childMessagesCount: number
-      } | null
-    }
-  } | null
+  likeReview: { __typename: 'ReviewReaction'; id: string } | null
 }
 
 export type UnlikeReviewMutationVariables = Exact<{
@@ -183,73 +49,7 @@ export type UnlikeReviewMutationVariables = Exact<{
 
 export type UnlikeReviewMutation = {
   __typename: 'Mutation'
-  unlikeReview: {
-    __typename: 'ReviewReaction'
-    id: string
-    type: string
-    createdAt: string
-    updatedAt: string
-    user: {
-      __typename: 'User'
-      email: string | null
-      unregister: boolean | null
-      uid: string | null
-      photo: string | null
-      name: string | null
-      mileage: {
-        __typename: 'UserMileage'
-        level: number | null
-        point: number | null
-      } | null
-    }
-    review: {
-      __typename: 'Review'
-      id: string
-      resourceId: string
-      resourceType: string
-      regionId: string | null
-      comment: string | null
-      media: Array<unknown> | null
-      rating: number | null
-      visitDate: string | null
-      recentTrip: boolean
-      likesCount: number
-      geotags: Array<unknown>
-      blinded: boolean | null
-      reviewedAt: string
-      liked: boolean
-      user: {
-        __typename: 'User'
-        email: string | null
-        unregister: boolean | null
-        uid: string | null
-        photo: string | null
-        name: string | null
-        mileage: {
-          __typename: 'UserMileage'
-          level: number | null
-          point: number | null
-        } | null
-        userBoard: {
-          __typename: 'UserBoard'
-          trips: number | null
-          reviews: number | null
-          thanks: number | null
-          reports: number | null
-          reviewsV2: number | null
-          itineraries: number | null
-        } | null
-      } | null
-      replyBoard: {
-        __typename: 'ReplyBoard'
-        id: string
-        resourceId: string
-        resourceType: string
-        rootMessagesCount: number
-        childMessagesCount: number
-      } | null
-    }
-  } | null
+  unlikeReview: { __typename: 'ReviewReaction'; id: string } | null
 }
 
 export type DeleteReviewMutationVariables = Exact<{
@@ -302,8 +102,6 @@ export type BaseReviewFragment = {
   replyBoard: {
     __typename: 'ReplyBoard'
     id: string
-    resourceId: string
-    resourceType: string
     rootMessagesCount: number
     childMessagesCount: number
   } | null
@@ -316,17 +114,6 @@ export type BaseReviewSpecificationFragment = {
     required: boolean | null
     description: Array<string> | null
   } | null
-  comment: {
-    __typename: 'ReviewCommentSpecification'
-    required: boolean | null
-    maxLength: number
-    placeholder: string
-  }
-  media: {
-    __typename: 'ReviewMediaSpecification'
-    required: boolean | null
-    maxCount: number
-  }
 }
 
 export type GetPopularReviewsQueryVariables = Exact<{
@@ -380,8 +167,6 @@ export type GetPopularReviewsQuery = {
     replyBoard: {
       __typename: 'ReplyBoard'
       id: string
-      resourceId: string
-      resourceType: string
       rootMessagesCount: number
       childMessagesCount: number
     } | null
@@ -439,8 +224,6 @@ export type GetLatestReviewsQuery = {
     replyBoard: {
       __typename: 'ReplyBoard'
       id: string
-      resourceId: string
-      resourceType: string
       rootMessagesCount: number
       childMessagesCount: number
     } | null
@@ -495,8 +278,6 @@ export type GetMyReviewQuery = {
     replyBoard: {
       __typename: 'ReplyBoard'
       id: string
-      resourceId: string
-      resourceType: string
       rootMessagesCount: number
       childMessagesCount: number
     } | null
@@ -517,17 +298,6 @@ export type GetReviewSpecificationQuery = {
       required: boolean | null
       description: Array<string> | null
     } | null
-    comment: {
-      __typename: 'ReviewCommentSpecification'
-      required: boolean | null
-      maxLength: number
-      placeholder: string
-    }
-    media: {
-      __typename: 'ReviewMediaSpecification'
-      required: boolean | null
-      maxCount: number
-    }
   } | null
 }
 
@@ -541,7 +311,6 @@ export type GetReviewsCountQuery = {
   getReviewsCount: number
 }
 
-export declare const BaseReviewReaction: import('graphql').DocumentNode
 export declare const LikeReview: import('graphql').DocumentNode
 export declare const UnlikeReview: import('graphql').DocumentNode
 export declare const DeleteReview: import('graphql').DocumentNode
@@ -640,11 +409,6 @@ export const BaseReviewFragmentDoc = {
               kind: 'SelectionSet',
               selections: [
                 { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'resourceId' } },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'resourceType' },
-                },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'rootMessagesCount' },
@@ -662,67 +426,6 @@ export const BaseReviewFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<BaseReviewFragment, unknown>
-export const BaseReviewReactionFragmentDoc = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'BaseReviewReaction' },
-      typeCondition: {
-        kind: 'NamedType',
-        name: { kind: 'Name', value: 'ReviewReaction' },
-      },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'type' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'user' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'email' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'unregister' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'uid' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'photo' } },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'mileage' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'level' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'point' } },
-                    ],
-                  },
-                },
-                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-              ],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'review' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'BaseReview' },
-                },
-              ],
-            },
-          },
-          { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
-        ],
-      },
-    },
-    ...BaseReviewFragmentDoc.definitions,
-  ],
-} as unknown as DocumentNode<BaseReviewReactionFragment, unknown>
 export const BaseReviewSpecificationFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -744,29 +447,6 @@ export const BaseReviewSpecificationFragmentDoc = {
               selections: [
                 { kind: 'Field', name: { kind: 'Name', value: 'required' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'description' } },
-              ],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'comment' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'required' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'maxLength' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'placeholder' } },
-              ],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'media' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'required' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'maxCount' } },
               ],
             },
           },
@@ -817,17 +497,13 @@ export const LikeReviewDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'BaseReviewReaction' },
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
               ],
             },
           },
         ],
       },
     },
-    ...BaseReviewReactionFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<LikeReviewMutation, LikeReviewMutationVariables>
 export const UnlikeReviewDocument = {
@@ -872,17 +548,13 @@ export const UnlikeReviewDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'BaseReviewReaction' },
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
               ],
             },
           },
         ],
       },
     },
-    ...BaseReviewReactionFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<
   UnlikeReviewMutation,
