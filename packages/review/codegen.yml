@@ -3,7 +3,7 @@ schema: 'https://triple-dev.titicaca-corp.com/api/graphql'
 documents: 'src/data/graphql/*.graphql'
 hooks:
   afterAllFileWrite:
-    - prettier 'src/data/graphql/*.{js,ts,tsx}' --write
+    - prettier 'src/data/generated/*.{js,ts,tsx}' --write
 generates:
   src/data/generated/graphql.tsx:
     plugins:
