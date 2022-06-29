@@ -142,7 +142,6 @@ function ReviewContainer({
       ]),
     [setMyReviewStatus],
   )
-
   const [
     { data: reviewCountData },
     { data: myReviewData },
@@ -152,6 +151,10 @@ function ReviewContainer({
       key: 'reviewCount',
       query: GetReviewsCountDocument,
       variables: { resourceType, resourceId },
+      options: {
+        refetchOnMount: false,
+        refetchOnWindowFocus: false,
+      },
     },
     {
       key: 'myReview',
@@ -162,6 +165,10 @@ function ReviewContainer({
       key: 'descriptions',
       query: GetReviewSpecificationDocument,
       variables: { resourceType, resourceId },
+      options: {
+        refetchOnMount: false,
+        refetchOnWindowFocus: false,
+      },
     },
   ])
 
