@@ -30,8 +30,6 @@ fragment BaseReview on Review {
     }
     replyBoard {
         id
-        resourceId
-        resourceType
         rootMessagesCount
         childMessagesCount
     }
@@ -42,15 +40,6 @@ fragment BaseReviewSpecification on ReviewSpecification {
     rating {
         required
         description
-    }
-    comment {
-        required
-        maxLength
-        placeholder
-    }
-    media {
-        required
-        maxCount
     }
 }
 

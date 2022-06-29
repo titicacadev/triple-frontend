@@ -1,31 +1,12 @@
-fragment BaseReviewReaction on ReviewReaction {
-  id
-  type
-  user {
-    email
-    unregister
-    uid
-    photo
-    mileage { level point }
-    name
-  }
-  review {
-    ...BaseReview
-  }
-  createdAt
-  updatedAt
-}
-
-
 mutation LikeReview($reviewId: String!) {
   likeReview(reviewId: $reviewId) {
-    ...BaseReviewReaction
+    id
   }
 }
 
 mutation UnlikeReview($reviewId: String!) {
   unlikeReview(reviewId: $reviewId) {
-    ...BaseReviewReaction
+    id
   }
 }
 
