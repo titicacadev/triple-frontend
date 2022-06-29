@@ -1,5 +1,4 @@
 import { useInfiniteQuery, useQueries } from 'react-query'
-import { useMemo } from 'react'
 
 import { graphqlInfiniteQuery, graphqlQuery } from '../../data/graphql/request'
 import {
@@ -14,7 +13,7 @@ interface UseReviewsProps {
   resourceType: string
   resourceId: string
   recentTrip: boolean
-  sortingOption?: string
+  latestReview: boolean
   perPage: number
 }
 
@@ -22,14 +21,9 @@ export function useReviews({
   resourceType,
   resourceId,
   recentTrip,
-  sortingOption,
+  latestReview,
   perPage,
 }: UseReviewsProps) {
-  const latestReview = useMemo(
-    () => sortingOption === 'latest',
-    [sortingOption],
-  )
-
   const { data: latestReviewsData, fetchNextPage: latestReviewsFetch } =
     useInfiniteQuery(
       ['getLatestReviews', recentTrip],
@@ -125,13 +119,11 @@ export function useReviews({
   ])
 
   return {
-    data: [
-      reviewCountData,
-      myReviewData,
-      descriptionsData,
-      latestReviewsData,
-      popularReviewsData,
-    ],
+    reviewCountData,
+    myReviewData,
+    descriptionsData,
+    latestReviewsData,
+    popularReviewsData,
     moreFetcher: latestReview ? latestReviewsFetch : popularReviewsFetch,
   }
 }

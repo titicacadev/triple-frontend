@@ -134,36 +134,27 @@ function ReviewContainer({
   >([])
   const { writeReview, editReview, navigateReviewList, navigateMileageIntro } =
     useClientActions()
+  const latestReview = useMemo(
+    () => !!(sortingOption === 'latest'),
+    [sortingOption],
+  )
+
   const {
-    data: [
-      reviewCountData,
-      myReviewData,
-      descriptionsData,
-      latestReviewsData,
-      popularReviewsData,
-    ],
+    reviewCountData,
+    myReviewData,
+    descriptionsData,
+    latestReviewsData,
+    popularReviewsData,
     moreFetcher,
   } = useReviews({
     resourceId,
     resourceType,
     recentTrip,
-    sortingOption,
+    latestReview,
     perPage: shortened
       ? SHORTENED_REVIEWS_COUNT_PER_PAGE + 1
       : DEFAULT_REVIEWS_COUNT_PER_PAGE,
   })
-
-  const latestReview = useMemo(
-    () => sortingOption === 'latest',
-    [sortingOption],
-  )
-  const reviewsData = useMemo(
-    () =>
-      (latestReview
-        ? latestReviewsData?.pages[0].getLatestReviews
-        : popularReviewsData?.pages[0].getPopularReviews) || [],
-    [latestReview, latestReviewsData, popularReviewsData],
-  )
 
   const setMyReview = useCallback(
     (review) =>
@@ -175,8 +166,24 @@ function ReviewContainer({
   )
 
   useEffect(() => {
-    setReviews(reviewsData)
-  }, [reviewsData])
+    const data = latestReview
+      ? latestReviewsData?.pages.reduce(
+          (reviews: ReviewData[], { getLatestReviews }) => [
+            ...reviews,
+            ...getLatestReviews,
+          ],
+          [],
+        )
+      : popularReviewsData?.pages.reduce(
+          (reviews: ReviewData[], { getPopularReviews }) => [
+            ...reviews,
+            ...getPopularReviews,
+          ],
+          [],
+        )
+
+    setReviews(data || [])
+  }, [latestReview, latestReviewsData?.pages, popularReviewsData?.pages])
 
   useEffect(() => {
     if (descriptionsData) {
