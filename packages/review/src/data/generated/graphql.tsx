@@ -1,5 +1,4 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
-
 export type Maybe<T> = T | null
 export type InputMaybe<T> = Maybe<T>
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -12,7 +11,7 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
   [SubKey in K]: Maybe<T[SubKey]>
 }
 /** All built-in and custom scalars, mapped to their actual values */
-export interface Scalars {
+export type Scalars = {
   ID: string
   String: string
   Boolean: boolean
@@ -35,7 +34,7 @@ export type ScrapType =
   | 'RESTAURANT'
   | 'RESTAURANTS'
 
-export interface BaseReviewReactionFragment {
+export type BaseReviewReactionFragment = {
   __typename: 'ReviewReaction'
   id: string
   type: string
@@ -107,7 +106,7 @@ export type LikeReviewMutationVariables = Exact<{
   reviewId: Scalars['String']
 }>
 
-export interface LikeReviewMutation {
+export type LikeReviewMutation = {
   __typename: 'Mutation'
   likeReview: {
     __typename: 'ReviewReaction'
@@ -182,7 +181,7 @@ export type UnlikeReviewMutationVariables = Exact<{
   reviewId: Scalars['String']
 }>
 
-export interface UnlikeReviewMutation {
+export type UnlikeReviewMutation = {
   __typename: 'Mutation'
   unlikeReview: {
     __typename: 'ReviewReaction'
@@ -257,12 +256,12 @@ export type DeleteReviewMutationVariables = Exact<{
   id: Scalars['ID']
 }>
 
-export interface DeleteReviewMutation {
+export type DeleteReviewMutation = {
   __typename: 'Mutation'
   deleteReview: boolean
 }
 
-export interface BaseReviewFragment {
+export type BaseReviewFragment = {
   __typename: 'Review'
   id: string
   resourceId: string
@@ -310,7 +309,7 @@ export interface BaseReviewFragment {
   } | null
 }
 
-export interface BaseReviewSpecificationFragment {
+export type BaseReviewSpecificationFragment = {
   __typename: 'ReviewSpecification'
   rating: {
     __typename: 'ReviewRatingSpecification'
@@ -338,7 +337,7 @@ export type GetPopularReviewsQueryVariables = Exact<{
   size: InputMaybe<Scalars['Int']>
 }>
 
-export interface GetPopularReviewsQuery {
+export type GetPopularReviewsQuery = {
   __typename: 'Query'
   getPopularReviews: Array<{
     __typename: 'Review'
@@ -397,7 +396,7 @@ export type GetLatestReviewsQueryVariables = Exact<{
   size: InputMaybe<Scalars['Int']>
 }>
 
-export interface GetLatestReviewsQuery {
+export type GetLatestReviewsQuery = {
   __typename: 'Query'
   getLatestReviews: Array<{
     __typename: 'Review'
@@ -453,7 +452,7 @@ export type GetMyReviewQueryVariables = Exact<{
   resourceId: Scalars['String']
 }>
 
-export interface GetMyReviewQuery {
+export type GetMyReviewQuery = {
   __typename: 'Query'
   getMyReview: {
     __typename: 'Review'
@@ -509,7 +508,7 @@ export type GetReviewSpecificationQueryVariables = Exact<{
   resourceId: Scalars['String']
 }>
 
-export interface GetReviewSpecificationQuery {
+export type GetReviewSpecificationQuery = {
   __typename: 'Query'
   getReviewSpecification: {
     __typename: 'ReviewSpecification'
@@ -537,7 +536,7 @@ export type GetReviewsCountQueryVariables = Exact<{
   resourceId: Scalars['String']
 }>
 
-export interface GetReviewsCountQuery {
+export type GetReviewsCountQuery = {
   __typename: 'Query'
   getReviewsCount: number
 }
