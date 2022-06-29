@@ -29,7 +29,7 @@ import SortingOptions, {
   ORDER_BY_RECENCY,
   SortingOptionsProps,
 } from './sorting-options'
-import { usePaging, useGraphqlQueries, useClientActions } from './hook'
+import { usePaging, useGraphqlQueries, useClientActions } from './hooks'
 import MyReviewActionSheet from './my-review-action-sheet'
 
 const REVIEWS_SECTION_ID = 'reviews'

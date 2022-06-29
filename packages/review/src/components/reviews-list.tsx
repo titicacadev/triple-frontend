@@ -15,7 +15,7 @@ import OthersReviewActionSheet, {
   HASH_REVIEW_ACTION_SHEET,
 } from './others-review-action-sheet'
 import { AppNativeActionProps, ReviewData } from './types'
-import { useClientActions } from './hook'
+import { useClientActions } from './hooks'
 
 export default function ReviewsList({
   myReview,
