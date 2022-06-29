@@ -1,2 +1,3 @@
 export * from './use-client-actions'
-export { default } from './use-paging'
+export * from './use-paging'
+export * from './use-graphql-queries'

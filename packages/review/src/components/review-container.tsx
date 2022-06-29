@@ -9,14 +9,12 @@ import {
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { TransitionType, withLoginCtaModal } from '@titicaca/modals'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
-import { useQueries } from 'react-query'
 
 import {
   GetMyReviewDocument,
   GetReviewsCountDocument,
   GetReviewSpecificationDocument,
 } from '../data/generated/graphql'
-import graphqlRequest from '../data/graphql/request'
 
 import ReviewsPlaceholder from './review-placeholder-with-rating'
 import ReviewsList from './reviews-list'
@@ -31,7 +29,7 @@ import SortingOptions, {
   ORDER_BY_RECENCY,
   SortingOptionsProps,
 } from './sorting-options'
-import usePaging, { useClientActions } from './hook'
+import { usePaging, useGraphqlQueries, useClientActions } from './hook'
 import MyReviewActionSheet from './my-review-action-sheet'
 
 const REVIEWS_SECTION_ID = 'reviews'
@@ -141,27 +139,21 @@ function ReviewContainer({
     { data: reviewCountData },
     { data: myReviewData },
     { data: descriptionsData },
-  ] = useQueries([
+  ] = useGraphqlQueries([
     {
-      queryKey: 'reviewCount',
-      queryFn: graphqlRequest({
-        query: GetReviewsCountDocument,
-        variables: { resourceType, resourceId },
-      }),
+      key: 'reviewCount',
+      query: GetReviewsCountDocument,
+      variables: { resourceType, resourceId },
     },
     {
-      queryKey: 'myReview',
-      queryFn: graphqlRequest({
-        query: GetMyReviewDocument,
-        variables: { resourceType, resourceId },
-      }),
+      key: 'myReview',
+      query: GetMyReviewDocument,
+      variables: { resourceType, resourceId },
     },
     {
-      queryKey: 'descriptions',
-      queryFn: graphqlRequest({
-        query: GetReviewSpecificationDocument,
-        variables: { resourceType, resourceId },
-      }),
+      key: 'descriptions',
+      query: GetReviewSpecificationDocument,
+      variables: { resourceType, resourceId },
     },
   ])
 
