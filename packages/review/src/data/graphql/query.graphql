@@ -2,18 +2,15 @@ fragment BaseReview on Review {
     id
     resourceId
     resourceType
-    regionId
     comment
     media
     rating
     visitDate
     recentTrip
     likesCount
-    geotags
     blinded
     reviewedAt
     user {
-        email
         unregister
         uid
         photo
