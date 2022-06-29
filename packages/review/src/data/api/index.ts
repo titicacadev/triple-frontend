@@ -1,6 +1,6 @@
 import qs from 'qs'
 
-import { ResourceType } from 'src/components/types'
+import { ResourceType } from '../../components/types'
 
 export function writeReview({
   appUrlScheme,
