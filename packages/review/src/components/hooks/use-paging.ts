@@ -36,32 +36,51 @@ export function usePaging({
   const [endOfList, setEndOfList] = useState(false)
   const [reviews, setReviews] = useState<ReviewData[]>([])
 
-  const [{ data: latestReviewsData }, { data: popularReviewsData }] =
-    useGraphqlQueries([
-      {
-        key: ['getLatestReviews', recentTrip],
-        query: GetLatestReviewsDocument,
-        variables: {
-          resourceType,
-          resourceId,
-          recentTrip,
-          from: (latestReviewsPage - 1) * perPage,
-          size: perPage,
-        },
+  const [
+    {
+      error: latestReviewsError,
+      status: latestReviewsStatus,
+      data: latestReviewsData,
+    },
+    {
+      error: popularReviewsError,
+      status: popularReviewsStatus,
+      data: popularReviewsData,
+    },
+  ] = useGraphqlQueries([
+    {
+      key: ['getLatestReviews', recentTrip],
+      query: GetLatestReviewsDocument,
+      variables: {
+        resourceType,
+        resourceId,
+        recentTrip,
+        from: (latestReviewsPage - 1) * perPage,
+        size: perPage,
       },
-      {
-        key: ['getPopularReviews', recentTrip],
-        query: GetPopularReviewsDocument,
-        variables: {
-          resourceType,
-          resourceId,
-          recentTrip,
-          from: (popularReviewsPage - 1) * perPage,
-          size: perPage,
-        },
+    },
+    {
+      key: ['getPopularReviews', recentTrip],
+      query: GetPopularReviewsDocument,
+      variables: {
+        resourceType,
+        resourceId,
+        recentTrip,
+        from: (popularReviewsPage - 1) * perPage,
+        size: perPage,
       },
-    ])
+    },
+  ])
 
+  const loaded = useMemo(
+    () =>
+      (latestReview ? latestReviewsStatus : popularReviewsStatus) === 'success',
+    [latestReview],
+  )
+  const error = useMemo(
+    () => (latestReview ? latestReviewsError : popularReviewsError),
+    [latestReview],
+  )
   const reviewsData = useMemo(
     () =>
       (latestReview
@@ -115,12 +134,14 @@ export function usePaging({
   }, [recentTrip, reviewsData])
 
   useEffect(() => {
-    if (reviewsData.length > 0) {
-      setReviews((currentReviews) => [...currentReviews, ...reviewsData])
-    } else {
-      setEndOfList(true)
+    if (!error && loaded) {
+      if ((reviewsData || []).length > 0) {
+        setReviews((currentReviews) => [...currentReviews, ...reviewsData])
+      } else {
+        setEndOfList(true)
+      }
     }
-  }, [reviews, reviewsData, latestReview])
+  }, [error, reviewsData, latestReview, loaded, setReviews])
 
   return { reviews, fetchNext, endOfList }
 }
