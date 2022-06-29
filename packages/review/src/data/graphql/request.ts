@@ -5,7 +5,7 @@ interface UseQueryProps {
   variables: Variables
 }
 
-export default function graphqlRequest({ query, variables }: UseQueryProps) {
+export function graphqlQuery({ query, variables }: UseQueryProps) {
   return async () => {
     const response = await new GraphQLClient('/api/graphql').request(
       query,
@@ -13,4 +13,15 @@ export default function graphqlRequest({ query, variables }: UseQueryProps) {
     )
     return response
   }
+}
+
+export async function graphqlInfiniteQuery({
+  query,
+  variables,
+}: UseQueryProps) {
+  const response = await new GraphQLClient('/api/graphql').request(
+    query,
+    variables,
+  )
+  return response
 }
