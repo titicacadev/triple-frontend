@@ -35,19 +35,22 @@ const CheckBox = styled.input`
   }
 `
 
-const TooltipInfo = styled(Text)`
+const TooltipContainer = styled(Container)`
   position: absolute;
-  top: 101px;
+  min-height: 100%;
+  top: 105px;
   right: 0;
   bottom: 0;
   z-index: 1;
-  background: var(--color-white);
+`
+
+const TooltipText = styled(Text)`
   min-width: 200px;
-  min-height: 60px;
+  background: var(--color-white);
   border: 1px solid var(--color-brightGray);
-  border-radius: 8px;
   transform: translateY(calc(-100% - 10px));
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
 `
 
 const OpenIcon = styled.img`
@@ -87,20 +90,22 @@ function ToolTip() {
         onClick={() => setIsVisible(true)}
       />
       {isVisible ? (
-        <TooltipInfo
-          size={12}
-          lineHeight="16px"
-          color="gray800"
-          padding={{ top: 15, left: 15, bottom: 15, right: 37 }}
-        >
-          최근 6개월 내에 방문한 여행의 리뷰만 모아 볼 수 있습니다.
-          <CloseIcon
-            width={10}
-            height={10}
-            src="https://assets.triple.guide/images/ico_tooltip_delete.png"
-            onClick={() => setIsVisible(false)}
-          />
-        </TooltipInfo>
+        <TooltipContainer>
+          <TooltipText
+            size={12}
+            lineHeight="16px"
+            color="gray800"
+            padding={{ top: 15, left: 15, bottom: 15, right: 37 }}
+          >
+            최근 6개월 내에 방문한 여행의 리뷰만 모아 볼 수 있습니다.
+            <CloseIcon
+              width={10}
+              height={10}
+              src="https://assets.triple.guide/images/ico_tooltip_delete.png"
+              onClick={() => setIsVisible(false)}
+            />
+          </TooltipText>
+        </TooltipContainer>
       ) : null}
     </Container>
   )

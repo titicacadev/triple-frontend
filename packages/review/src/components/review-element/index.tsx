@@ -317,14 +317,14 @@ function RateDescription({
 function RecentReviewInfo({ visitDate }: { visitDate?: string }) {
   const [year, month] = visitDate?.split('-') || []
   return (
-    <FlexBox flex alignItems="center" padding={{ top: 10 }}>
+    <FlexBox flex alignItems="center" padding={{ top: 8 }}>
       <img
-        width={14}
-        height={14}
+        width={16}
+        height={16}
         src="https://assets.triple.guide/images/ico_recently_badge@4x.png"
         alt="recent-trip-icon"
       />
-      <Text padding={{ left: 5 }} size={14} color="blue" bold>
+      <Text padding={{ left: 4 }} size={14} color="blue" bold>
         최근 여행
       </Text>
       <Text padding={{ left: 8 }} size={13} color="gray700">
