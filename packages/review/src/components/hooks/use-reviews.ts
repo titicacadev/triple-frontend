@@ -1,13 +1,15 @@
-import { useInfiniteQuery, useQueries } from 'react-query'
+import { GraphQLClient } from 'graphql-request'
+import { useInfiniteQuery } from 'react-query'
 
-import { graphqlInfiniteQuery, graphqlQuery } from '../../data/graphql/request'
 import {
   GetLatestReviewsDocument,
-  GetMyReviewDocument,
   GetPopularReviewsDocument,
-  GetReviewsCountDocument,
-  GetReviewSpecificationDocument,
+  useGetMyReviewQuery,
+  useGetReviewsCountQuery,
+  useGetReviewSpecificationQuery,
 } from '../../data/generated/graphql'
+
+export const graphqlClient = new GraphQLClient('/api/graphql')
 
 interface UseReviewsProps {
   resourceType: string
@@ -28,21 +30,20 @@ export function useReviews({
     useInfiniteQuery(
       ['getLatestReviews', recentTrip],
       async ({ pageParam = 1 }) => {
-        const { getLatestReviews } = await graphqlInfiniteQuery({
-          query: GetLatestReviewsDocument,
-          variables: {
-            resourceType,
-            resourceId,
-            recentTrip,
-            from: (pageParam - 1) * perPage,
-            size: perPage,
-          },
+        const { latestReviews } = await new GraphQLClient(
+          '/api/graphql',
+        ).request(GetLatestReviewsDocument, {
+          resourceType,
+          resourceId,
+          recentTrip,
+          from: (pageParam - 1) * perPage,
+          size: perPage,
         })
 
         return {
-          getLatestReviews,
+          latestReviews,
           nextPage: pageParam + 1,
-          isLast: getLatestReviews.length === 0,
+          isLast: latestReviews.length === 0,
         }
       },
       {
@@ -58,21 +59,20 @@ export function useReviews({
     useInfiniteQuery(
       ['getPopularReviews', recentTrip],
       async ({ pageParam = 1 }) => {
-        const { getPopularReviews } = await graphqlInfiniteQuery({
-          query: GetPopularReviewsDocument,
-          variables: {
-            resourceType,
-            resourceId,
-            recentTrip,
-            from: (pageParam - 1) * perPage,
-            size: perPage,
-          },
+        const { popularReviews } = await new GraphQLClient(
+          '/api/graphql',
+        ).request(GetPopularReviewsDocument, {
+          resourceType,
+          resourceId,
+          recentTrip,
+          from: (pageParam - 1) * perPage,
+          size: perPage,
         })
 
         return {
-          getPopularReviews,
+          popularReviews,
           nextPage: pageParam + 1,
-          isLast: getPopularReviews.length === 0,
+          isLast: popularReviews.length === 0,
         }
       },
       {
@@ -84,39 +84,34 @@ export function useReviews({
       },
     )
 
-  const [
-    { data: reviewCountData },
-    { data: myReviewData },
-    { data: descriptionsData },
-  ] = useQueries([
+  const { data: reviewCountData } = useGetReviewsCountQuery(
+    graphqlClient,
     {
-      queryKey: 'reviewCount',
-      queryFn: graphqlQuery({
-        query: GetReviewsCountDocument,
-        variables: { resourceType, resourceId },
-      }),
+      resourceType,
+      resourceId,
+    },
+    {
       refetchOnWindowFocus: false,
       refetchOnMount: false,
       refetchOnReconnect: false,
     },
+  )
+  const { data: descriptionsData } = useGetReviewSpecificationQuery(
+    graphqlClient,
     {
-      queryKey: 'myReview',
-      queryFn: graphqlQuery({
-        query: GetMyReviewDocument,
-        variables: { resourceType, resourceId },
-      }),
+      resourceType,
+      resourceId,
     },
     {
-      queryKey: 'descriptions',
-      queryFn: graphqlQuery({
-        query: GetReviewSpecificationDocument,
-        variables: { resourceType, resourceId },
-      }),
       refetchOnWindowFocus: false,
       refetchOnMount: false,
       refetchOnReconnect: false,
     },
-  ])
+  )
+  const { data: myReviewData } = useGetMyReviewQuery(graphqlClient, {
+    resourceType,
+    resourceId,
+  })
 
   return {
     reviewCountData,

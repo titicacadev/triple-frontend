@@ -168,16 +168,16 @@ function ReviewContainer({
   useEffect(() => {
     const data = latestReview
       ? latestReviewsData?.pages.reduce(
-          (reviews: ReviewData[], { getLatestReviews }) => [
+          (reviews: ReviewData[], { latestReviews }) => [
             ...reviews,
-            ...getLatestReviews,
+            ...latestReviews,
           ],
           [],
         )
       : popularReviewsData?.pages.reduce(
-          (reviews: ReviewData[], { getPopularReviews }) => [
+          (reviews: ReviewData[], { popularReviews }) => [
             ...reviews,
-            ...getPopularReviews,
+            ...popularReviews,
           ],
           [],
         )
@@ -188,7 +188,7 @@ function ReviewContainer({
   useEffect(() => {
     if (descriptionsData) {
       setReviewRateDescriptions(
-        descriptionsData.getReviewSpecification?.rating?.description || [],
+        descriptionsData.reviewsSpecification?.rating?.description || [],
       )
     }
   }, [descriptionsData])
@@ -203,11 +203,11 @@ function ReviewContainer({
 
       if (id && id === resourceId) {
         if (reviewCountData) {
-          setReviewsCount(reviewCountData.getReviewsCount)
+          setReviewsCount(reviewCountData.reviewsCount)
         }
 
         if (myReviewData) {
-          setMyReview(myReviewData.getMyReview)
+          setMyReview(myReviewData.myReview)
         }
       }
     }

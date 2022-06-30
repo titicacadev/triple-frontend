@@ -13,15 +13,14 @@ import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/in
 import { FlexBox, List, Container, Text, Rating } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useSessionCallback } from '@titicaca/ui-flow'
-import { useMutation } from 'react-query'
 
 import { useReviewLikesContext } from '../review-likes-context'
 import { ReviewData } from '../types'
-import { graphqlQuery } from '../../data/graphql/request'
 import {
-  UnlikeReviewDocument,
-  LikeReviewDocument,
+  useLikeReviewMutation,
+  useUnlikeReviewMutation,
 } from '../../data/generated/graphql'
+import { graphqlClient } from '../hooks'
 
 import User from './user'
 import Comment from './comment'
@@ -133,12 +132,8 @@ export default function ReviewElement({
     likesCount: review.likesCount,
   })
 
-  const { mutate } = useMutation(
-    graphqlQuery({
-      query: liked ? UnlikeReviewDocument : LikeReviewDocument,
-      variables: { reviewId: review.id },
-    }),
-  )
+  const { mutate: likeReview } = useLikeReviewMutation(graphqlClient)
+  const { mutate: unlikeReview } = useUnlikeReviewMutation(graphqlClient)
 
   const handleLikeButtonClick: MouseEventHandler = useSessionCallback(
     useCallback(async () => {
@@ -153,11 +148,11 @@ export default function ReviewElement({
         },
       })
 
-      if (mutate) {
-        mutate()
-        updateLikedStatus({ [review.id]: !liked }, resourceId)
-      }
-    }, [mutate, liked, resourceId, review, trackEvent, updateLikedStatus]),
+      liked
+        ? unlikeReview({ reviewId: review.id })
+        : likeReview({ reviewId: review.id })
+      updateLikedStatus({ [review.id]: !liked }, resourceId)
+    }, [liked, resourceId, review, trackEvent, updateLikedStatus]),
   )
 
   const reviewedAt = moment(originReviewedAt).format()
