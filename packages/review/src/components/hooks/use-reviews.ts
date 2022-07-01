@@ -91,30 +91,32 @@ export function useReviews({
     },
   )
 
-  const { data: reviewCountData } = useGetReviewsCountQuery(
-    graphqlClient,
-    {
-      resourceType,
-      resourceId,
-    },
-    {
-      refetchOnWindowFocus: false,
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-    },
-  )
-  const { data: descriptionsData } = useGetReviewSpecificationQuery(
-    graphqlClient,
-    {
-      resourceType,
-      resourceId,
-    },
-    {
-      refetchOnWindowFocus: false,
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-    },
-  )
+  const { data: reviewCountData, isFetching: reviewCountFetching } =
+    useGetReviewsCountQuery(
+      graphqlClient,
+      {
+        resourceType,
+        resourceId,
+      },
+      {
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
+        refetchOnReconnect: false,
+      },
+    )
+  const { data: descriptionsData, isFetching: descriptionFetching } =
+    useGetReviewSpecificationQuery(
+      graphqlClient,
+      {
+        resourceType,
+        resourceId,
+      },
+      {
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
+        refetchOnReconnect: false,
+      },
+    )
   const { data: myReviewData } = useGetMyReviewQuery(graphqlClient, {
     resourceType,
     resourceId,
@@ -126,7 +128,10 @@ export function useReviews({
     descriptionsData,
     latestReviewsData,
     popularReviewsData,
-    isLoading: latestReviewsRefetching && popularReviewsRefetching,
+    isLoading:
+      (latestReviewsRefetching && popularReviewsRefetching) ||
+      reviewCountFetching ||
+      descriptionFetching,
     moreFetcher: latestReview ? latestReviewsFetch : popularReviewsFetch,
   }
 }

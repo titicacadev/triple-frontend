@@ -363,86 +363,88 @@ function ReviewContainer({
         />
       </FlexBox>
 
-      {!isLoading ? (
-        reviews.length > 0 ? (
-          <ReviewsList
-            maxLength={shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined}
-            recentTrip={recentTrip}
-            myReview={myReview}
-            reviews={
-              recentTrip
-                ? reviews
-                : reviews.filter((review) => !myReviewIds.has(review.id))
-            }
-            regionId={regionId}
-            resourceId={resourceId}
-            showToast={showToast}
-            reviewRateDescriptions={reviewRateDescriptions}
-            fetchNext={!shortened ? moreFetcher : undefined}
-          />
-        ) : (
-          <ReviewsPlaceholder
-            recentTrip={recentTrip}
-            placeholderText={placeholderText}
-            resourceType={resourceType}
-            onClick={
-              recentTrip
-                ? handleFullListButtonClick
-                : onReviewWrite || handleWriteButtonClick
-            }
-          />
-        )
-      ) : (
+      {isLoading ? (
         <Spinner />
+      ) : (
+        <>
+          {reviews.length > 0 ? (
+            <ReviewsList
+              maxLength={
+                shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined
+              }
+              recentTrip={recentTrip}
+              myReview={myReview}
+              reviews={
+                recentTrip
+                  ? reviews
+                  : reviews.filter((review) => !myReviewIds.has(review.id))
+              }
+              regionId={regionId}
+              resourceId={resourceId}
+              showToast={showToast}
+              reviewRateDescriptions={reviewRateDescriptions}
+              fetchNext={!shortened ? moreFetcher : undefined}
+            />
+          ) : (
+            <ReviewsPlaceholder
+              recentTrip={recentTrip}
+              placeholderText={placeholderText}
+              resourceType={resourceType}
+              onClick={
+                recentTrip
+                  ? handleFullListButtonClick
+                  : onReviewWrite || handleWriteButtonClick
+              }
+            />
+          )}
+
+          {reviewsCount > SHORTENED_REVIEWS_COUNT_PER_PAGE && shortened ? (
+            <Container margin={{ top: 40 }}>
+              <Button
+                basic
+                fluid
+                compact
+                size="small"
+                onClick={
+                  onFullListButtonClick
+                    ? (e) => onFullListButtonClick(e, sortingOption)
+                    : handleFullListButtonClick
+                }
+              >
+                {` ${formatNumber(reviewsCount)}`}개 리뷰 더보기
+              </Button>
+            </Container>
+          ) : null}
+
+          {shortened ? (
+            <MileageButton
+              onClick={(e) => {
+                trackEvent({
+                  ga: ['리뷰_여행자클럽선택'],
+                  fa: {
+                    action: '리뷰_여행자클럽선택',
+                    item_id: resourceId,
+                  },
+                })
+                e.preventDefault()
+                if (app) {
+                  navigateMileageIntro()
+                } else {
+                  window.location.href = `/pages/mileage-intro.html`
+                }
+              }}
+            >
+              <Text color="gray" size="small" alpha={0.6} lineHeight={1.7}>
+                리뷰 쓰면 여행자 클럽 최대 3포인트!
+              </Text>
+              <Text color="blue" size="small" lineHeight={1.7}>
+                포인트별 혜택 보기
+              </Text>
+              <BulletRight alt="포인트별 혜택 보기" />
+            </MileageButton>
+          ) : null}
+        </>
       )}
-
-      {reviewsCount > SHORTENED_REVIEWS_COUNT_PER_PAGE &&
-      shortened &&
-      !isLoading ? (
-        <Container margin={{ top: 40 }}>
-          <Button
-            basic
-            fluid
-            compact
-            size="small"
-            onClick={
-              onFullListButtonClick
-                ? (e) => onFullListButtonClick(e, sortingOption)
-                : handleFullListButtonClick
-            }
-          >
-            {` ${formatNumber(reviewsCount)}`}개 리뷰 더보기
-          </Button>
-        </Container>
-      ) : null}
-
-      {shortened && !isLoading ? (
-        <MileageButton
-          onClick={(e) => {
-            trackEvent({
-              ga: ['리뷰_여행자클럽선택'],
-              fa: {
-                action: '리뷰_여행자클럽선택',
-                item_id: resourceId,
-              },
-            })
-            e.preventDefault()
-            if (app) {
-              navigateMileageIntro()
-            } else {
-              window.location.href = `/pages/mileage-intro.html`
-            }
-          }}
-        >
-          <Text color="gray" size="small" alpha={0.6} lineHeight={1.7}>
-            리뷰 쓰면 여행자 클럽 최대 3포인트!
-          </Text>
-          <Text color="blue" size="small" lineHeight={1.7}>
-            포인트별 혜택 보기
-          </Text>
-          <BulletRight alt="포인트별 혜택 보기" />
-        </MileageButton>
-      ) : null}
 
       {myReview ? (
         <MyReviewActionSheet
