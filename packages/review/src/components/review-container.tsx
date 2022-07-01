@@ -395,7 +395,9 @@ function ReviewContainer({
         />
       )}
 
-      {reviewsCount > SHORTENED_REVIEWS_COUNT_PER_PAGE && shortened ? (
+      {reviewsCount > SHORTENED_REVIEWS_COUNT_PER_PAGE &&
+      shortened &&
+      !isLoading ? (
         <Container margin={{ top: 40 }}>
           <Button
             basic
@@ -413,7 +415,7 @@ function ReviewContainer({
         </Container>
       ) : null}
 
-      {shortened ? (
+      {shortened && !isLoading ? (
         <MileageButton
           onClick={(e) => {
             trackEvent({
