@@ -102,6 +102,7 @@ export default function ReviewElement({
     user,
     blindedAt,
     comment,
+    recentTrip,
     reviewedAt: originReviewedAt,
     rating,
     media,
@@ -171,6 +172,7 @@ export default function ReviewElement({
         {!blindedAt ? (
           <RecentReviewInfo
             visitDate={visitDate}
+            recentTrip={recentTrip}
             reviewedAt={originReviewedAt}
           />
         ) : null}
@@ -313,9 +315,11 @@ function RateDescription({
 
 function RecentReviewInfo({
   visitDate,
+  recentTrip,
   reviewedAt: originReviewedAt,
 }: {
   visitDate?: string
+  recentTrip: boolean
   reviewedAt: string
 }) {
   const reviewedAt = moment(originReviewedAt).format('YYYY-MM')
@@ -330,7 +334,7 @@ function RecentReviewInfo({
 
   return (
     <FlexBox flex alignItems="center" padding={{ top: 8 }}>
-      {!isOldReview ? (
+      {recentTrip && !isOldReview ? (
         <>
           <img
             width={16}
