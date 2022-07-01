@@ -12,6 +12,7 @@ import {
   Container,
   Text,
   Button,
+  Spinner,
 } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import {
@@ -145,6 +146,7 @@ function ReviewContainer({
     descriptionsData,
     latestReviewsData,
     popularReviewsData,
+    isLoading,
     moreFetcher,
   } = useReviews({
     resourceId,
@@ -363,16 +365,22 @@ function ReviewContainer({
             />
           </FlexBox>
 
-          <ReviewsList
-            maxLength={shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined}
-            myReview={myReview}
-            reviews={reviews.filter((review) => !myReviewIds.has(review.id))}
-            regionId={regionId}
-            resourceId={resourceId}
-            showToast={showToast}
-            reviewRateDescriptions={reviewRateDescriptions}
-            fetchNext={!shortened ? moreFetcher : undefined}
-          />
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            <ReviewsList
+              maxLength={
+                shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined
+              }
+              myReview={myReview}
+              reviews={reviews.filter((review) => !myReviewIds.has(review.id))}
+              regionId={regionId}
+              resourceId={resourceId}
+              showToast={showToast}
+              reviewRateDescriptions={reviewRateDescriptions}
+              fetchNext={!shortened ? moreFetcher : undefined}
+            />
+          )}
         </>
       ) : (
         <ReviewsPlaceholder

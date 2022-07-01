@@ -26,63 +26,70 @@ export function useReviews({
   latestReview,
   perPage,
 }: UseReviewsProps) {
-  const { data: latestReviewsData, fetchNextPage: latestReviewsFetch } =
-    useInfiniteQuery(
-      ['getLatestReviews', recentTrip],
-      async ({ pageParam = 1 }) => {
-        const { latestReviews } = await new GraphQLClient(
-          '/api/graphql',
-        ).request(GetLatestReviewsDocument, {
+  const {
+    data: latestReviewsData,
+    fetchNextPage: latestReviewsFetch,
+    isRefetching: latestReviewsRefetching,
+  } = useInfiniteQuery(
+    ['getLatestReviews', recentTrip],
+    async ({ pageParam = 1 }) => {
+      const { latestReviews } = await new GraphQLClient('/api/graphql').request(
+        GetLatestReviewsDocument,
+        {
           resourceType,
           resourceId,
           recentTrip,
           from: (pageParam - 1) * perPage,
           size: perPage,
-        })
+        },
+      )
 
-        return {
-          latestReviews,
-          nextPage: pageParam + 1,
-          isLast: latestReviews.length === 0,
-        }
-      },
-      {
-        getNextPageParam: ({ isLast, nextPage }) =>
-          !isLast ? nextPage : undefined,
-        refetchOnWindowFocus: false,
-        refetchOnMount: false,
-        refetchOnReconnect: false,
-      },
-    )
+      return {
+        latestReviews,
+        nextPage: pageParam + 1,
+        isLast: latestReviews.length === 0,
+      }
+    },
+    {
+      getNextPageParam: ({ isLast, nextPage }) =>
+        !isLast ? nextPage : undefined,
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+    },
+  )
 
-  const { data: popularReviewsData, fetchNextPage: popularReviewsFetch } =
-    useInfiniteQuery(
-      ['getPopularReviews', recentTrip],
-      async ({ pageParam = 1 }) => {
-        const { popularReviews } = await new GraphQLClient(
-          '/api/graphql',
-        ).request(GetPopularReviewsDocument, {
-          resourceType,
-          resourceId,
-          recentTrip,
-          from: (pageParam - 1) * perPage,
-          size: perPage,
-        })
+  const {
+    data: popularReviewsData,
+    fetchNextPage: popularReviewsFetch,
+    isRefetching: popularReviewsRefetching,
+  } = useInfiniteQuery(
+    ['getPopularReviews', recentTrip],
+    async ({ pageParam = 1 }) => {
+      const { popularReviews } = await new GraphQLClient(
+        '/api/graphql',
+      ).request(GetPopularReviewsDocument, {
+        resourceType,
+        resourceId,
+        recentTrip,
+        from: (pageParam - 1) * perPage,
+        size: perPage,
+      })
 
-        return {
-          popularReviews,
-          nextPage: pageParam + 1,
-          isLast: popularReviews.length === 0,
-        }
-      },
-      {
-        getNextPageParam: ({ isLast, nextPage }) =>
-          !isLast ? nextPage : undefined,
-        refetchOnWindowFocus: false,
-        refetchOnMount: false,
-        refetchOnReconnect: false,
-      },
-    )
+      return {
+        popularReviews,
+        nextPage: pageParam + 1,
+        isLast: popularReviews.length === 0,
+      }
+    },
+    {
+      getNextPageParam: ({ isLast, nextPage }) =>
+        !isLast ? nextPage : undefined,
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+    },
+  )
 
   const { data: reviewCountData } = useGetReviewsCountQuery(
     graphqlClient,
@@ -119,6 +126,7 @@ export function useReviews({
     descriptionsData,
     latestReviewsData,
     popularReviewsData,
+    isLoading: latestReviewsRefetching && popularReviewsRefetching,
     moreFetcher: latestReview ? latestReviewsFetch : popularReviewsFetch,
   }
 }
