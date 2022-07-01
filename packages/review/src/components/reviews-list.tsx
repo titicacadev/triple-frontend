@@ -19,6 +19,7 @@ import { useClientActions } from './hooks'
 
 export default function ReviewsList({
   myReview,
+  recentTrip,
   reviews,
   regionId,
   fetchNext,
@@ -28,6 +29,7 @@ export default function ReviewsList({
   showToast,
 }: {
   myReview?: ReviewData
+  recentTrip: boolean
   reviews: ReviewData[]
   fetchNext?: () => void
   regionId?: string
@@ -138,7 +140,8 @@ export default function ReviewsList({
     ? (index: number) => index > reviews.length - 3 && fetchNext()
     : undefined
 
-  const allReviews = myReview ? [myReview, ...(reviews || [])] : reviews
+  const allReviews =
+    myReview && !recentTrip ? [myReview, ...(reviews || [])] : reviews
   const displayedReviews = maxLength
     ? allReviews.slice(0, maxLength)
     : allReviews

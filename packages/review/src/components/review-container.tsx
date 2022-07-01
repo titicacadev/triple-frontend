@@ -372,6 +372,7 @@ function ReviewContainer({
               maxLength={
                 shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined
               }
+              recentTrip={recentTrip}
               myReview={myReview}
               reviews={reviews.filter((review) => !myReviewIds.has(review.id))}
               regionId={regionId}
