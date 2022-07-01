@@ -168,7 +168,12 @@ export default function ReviewElement({
           onClick={onUserClick && ((e) => onUserClick(e, review))}
         />
         {!blindedAt && !!rating ? <Score score={rating} /> : null}
-        {!blindedAt ? <RecentReviewInfo visitDate={visitDate} /> : null}
+        {!blindedAt ? (
+          <RecentReviewInfo
+            visitDate={visitDate}
+            reviewedAt={originReviewedAt}
+          />
+        ) : null}
         <Content onClick={(e: SyntheticEvent) => onReviewClick(e, review.id)}>
           {blindedAt ? (
             '신고가 접수되어 블라인드 처리되었습니다.'
@@ -306,19 +311,26 @@ function RateDescription({
   return <Comment>{comment}</Comment>
 }
 
-function RecentReviewInfo({ visitDate }: { visitDate?: string }) {
+function RecentReviewInfo({
+  visitDate,
+  reviewedAt: originReviewedAt,
+}: {
+  visitDate?: string
+  reviewedAt: string
+}) {
+  const reviewedAt = moment(originReviewedAt).format('YYYY-MM')
+
   const startDate = moment('2000-01')
   const endDate = moment().subtract(180, 'days').format('YYYY-MM')
-
-  const isRecentReview = !(
+  const isOldReview =
     visitDate && moment(visitDate).isBetween(startDate, endDate)
-  )
 
-  const [year, month] = visitDate?.split('-') || []
+  const [reviewedAtYear, reviewedAtMonth] = reviewedAt.split('-')
+  const [visitYear, visitMonth] = visitDate?.split('-') || []
 
   return (
     <FlexBox flex alignItems="center" padding={{ top: 8 }}>
-      {isRecentReview ? (
+      {!isOldReview ? (
         <>
           <img
             width={16}
@@ -332,7 +344,9 @@ function RecentReviewInfo({ visitDate }: { visitDate?: string }) {
         </>
       ) : null}
       <Text size={13} color="gray700">
-        {`${year}년 ${month}월`}
+        {visitDate
+          ? `${visitYear}년 ${visitMonth}월`
+          : `${reviewedAtYear}년 ${reviewedAtMonth}월`}
       </Text>
     </FlexBox>
   )
