@@ -352,47 +352,48 @@ function ReviewContainer({
         )}
       </Container>
 
-      {(reviewsCount || 0) > 0 || myReview ? (
-        <>
-          <FlexBox flex justifyContent="space-between" margin={{ top: 23 }}>
-            <SortingOptions
-              selected={sortingOption}
-              onSelect={handleSortingOptionSelect}
-            />
-            <RecentCheckBox
-              isRecentReview={recentTrip}
-              onRecentReviewChange={handleChangeRecentTrip}
-            />
-          </FlexBox>
-
-          {isLoading ? (
-            <Spinner />
-          ) : (
-            <ReviewsList
-              maxLength={
-                shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined
-              }
-              recentTrip={recentTrip}
-              myReview={myReview}
-              reviews={
-                recentTrip
-                  ? reviews
-                  : reviews.filter((review) => !myReviewIds.has(review.id))
-              }
-              regionId={regionId}
-              resourceId={resourceId}
-              showToast={showToast}
-              reviewRateDescriptions={reviewRateDescriptions}
-              fetchNext={!shortened ? moreFetcher : undefined}
-            />
-          )}
-        </>
-      ) : (
-        <ReviewsPlaceholder
-          placeholderText={placeholderText}
-          resourceType={resourceType}
-          onClick={onReviewWrite || handleWriteButtonClick}
+      <FlexBox flex justifyContent="space-between" margin={{ top: 23 }}>
+        <SortingOptions
+          selected={sortingOption}
+          onSelect={handleSortingOptionSelect}
         />
+        <RecentCheckBox
+          isRecentReview={recentTrip}
+          onRecentReviewChange={handleChangeRecentTrip}
+        />
+      </FlexBox>
+
+      {!isLoading ? (
+        reviews.length > 0 ? (
+          <ReviewsList
+            maxLength={shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined}
+            recentTrip={recentTrip}
+            myReview={myReview}
+            reviews={
+              recentTrip
+                ? reviews
+                : reviews.filter((review) => !myReviewIds.has(review.id))
+            }
+            regionId={regionId}
+            resourceId={resourceId}
+            showToast={showToast}
+            reviewRateDescriptions={reviewRateDescriptions}
+            fetchNext={!shortened ? moreFetcher : undefined}
+          />
+        ) : (
+          <ReviewsPlaceholder
+            recentTrip={recentTrip}
+            placeholderText={placeholderText}
+            resourceType={resourceType}
+            onClick={
+              recentTrip
+                ? handleFullListButtonClick
+                : onReviewWrite || handleWriteButtonClick
+            }
+          />
+        )
+      ) : (
+        <Spinner />
       )}
 
       {reviewsCount > SHORTENED_REVIEWS_COUNT_PER_PAGE &&
