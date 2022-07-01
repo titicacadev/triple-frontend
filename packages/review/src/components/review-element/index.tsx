@@ -107,7 +107,6 @@ export default function ReviewElement({
     media,
     replyBoard,
     resourceType,
-    recentTrip,
     visitDate,
   },
   isMyReview,
@@ -169,9 +168,7 @@ export default function ReviewElement({
           onClick={onUserClick && ((e) => onUserClick(e, review))}
         />
         {!blindedAt && !!rating ? <Score score={rating} /> : null}
-        {!blindedAt && recentTrip ? (
-          <RecentReviewInfo visitDate={visitDate} />
-        ) : null}
+        {!blindedAt ? <RecentReviewInfo visitDate={visitDate} /> : null}
         <Content onClick={(e: SyntheticEvent) => onReviewClick(e, review.id)}>
           {blindedAt ? (
             '신고가 접수되어 블라인드 처리되었습니다.'
@@ -310,19 +307,31 @@ function RateDescription({
 }
 
 function RecentReviewInfo({ visitDate }: { visitDate?: string }) {
+  const startDate = moment('2000-01')
+  const endDate = moment().subtract(180, 'days').format('YYYY-MM')
+
+  const isRecentReview = !(
+    visitDate && moment(visitDate).isBetween(startDate, endDate)
+  )
+
   const [year, month] = visitDate?.split('-') || []
+
   return (
     <FlexBox flex alignItems="center" padding={{ top: 8 }}>
-      <img
-        width={16}
-        height={16}
-        src="https://assets.triple.guide/images/ico_recently_badge@4x.png"
-        alt="recent-trip-icon"
-      />
-      <Text padding={{ left: 4 }} size={14} color="blue" bold>
-        최근 여행
-      </Text>
-      <Text padding={{ left: 8 }} size={13} color="gray700">
+      {isRecentReview ? (
+        <>
+          <img
+            width={16}
+            height={16}
+            src="https://assets.triple.guide/images/ico_recently_badge@4x.png"
+            alt="recent-trip-icon"
+          />
+          <Text padding={{ left: 4, right: 8 }} size={14} color="blue" bold>
+            최근 여행
+          </Text>
+        </>
+      ) : null}
+      <Text size={13} color="gray700">
         {`${year}년 ${month}월`}
       </Text>
     </FlexBox>
