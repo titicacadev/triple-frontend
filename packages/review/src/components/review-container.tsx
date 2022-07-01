@@ -374,7 +374,11 @@ function ReviewContainer({
               }
               recentTrip={recentTrip}
               myReview={myReview}
-              reviews={reviews.filter((review) => !myReviewIds.has(review.id))}
+              reviews={
+                recentTrip
+                  ? reviews
+                  : reviews.filter((review) => !myReviewIds.has(review.id))
+              }
               regionId={regionId}
               resourceId={resourceId}
               showToast={showToast}
