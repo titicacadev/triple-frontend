@@ -404,7 +404,7 @@ function ReviewContainer({
                 : handleFullListButtonClick
             }
           >
-            {reviewsCount - SHORTENED_REVIEWS_COUNT_PER_PAGE}개 리뷰 더보기
+            {` ${formatNumber(reviewsCount)}`}개 리뷰 더보기
           </Button>
         </Container>
       ) : null}
