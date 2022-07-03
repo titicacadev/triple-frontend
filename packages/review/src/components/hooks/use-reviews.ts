@@ -130,8 +130,7 @@ export function useReviews({
     popularReviewsData,
     isLoading:
       (latestReviewsRefetching && popularReviewsRefetching) ||
-      reviewCountFetching ||
-      descriptionFetching,
+      (reviewCountFetching && descriptionFetching),
     moreFetcher: latestReview ? latestReviewsFetch : popularReviewsFetch,
   }
 }
