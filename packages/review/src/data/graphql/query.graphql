@@ -2,18 +2,15 @@ fragment BaseReview on Review {
     id
     resourceId
     resourceType
-    regionId
     comment
     media
     rating
     visitDate
     recentTrip
     likesCount
-    geotags
     blinded
     reviewedAt
     user {
-        email
         unregister
         uid
         photo
@@ -50,7 +47,7 @@ query GetPopularReviews(
     $from: Int
     $size: Int
 ) {
-    getPopularReviews(
+    popularReviews: getPopularReviews(
         resourceType: $resourceType
         resourceId: $resourceId
         recentTrip: $recentTrip
@@ -68,7 +65,7 @@ query GetLatestReviews(
     $from: Int
     $size: Int
 ) {
-    getLatestReviews(
+    latestReviews: getLatestReviews(
         resourceType: $resourceType
         resourceId: $resourceId
         recentTrip: $recentTrip
@@ -80,13 +77,13 @@ query GetLatestReviews(
 }
 
 query GetMyReview($resourceType: String!, $resourceId: String!) {
-    getMyReview(resourceType: $resourceType, resourceId: $resourceId) {
+    myReview: getMyReview(resourceType: $resourceType, resourceId: $resourceId) {
         ...BaseReview
     }
 }
 
 query GetReviewSpecification($resourceType: String!, $resourceId: String!) {
-    getReviewSpecification(
+    reviewsSpecification: getReviewSpecification(
         resourceType: $resourceType
         resourceId: $resourceId
     ) {
@@ -95,6 +92,6 @@ query GetReviewSpecification($resourceType: String!, $resourceId: String!) {
 }
 
 query GetReviewsCount($resourceType: String!, $resourceId: String!) {
-    getReviewsCount(resourceType: $resourceType, resourceId: $resourceId)
+    reviewsCount: getReviewsCount(resourceType: $resourceType, resourceId: $resourceId)
 }
 
