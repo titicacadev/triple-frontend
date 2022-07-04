@@ -349,8 +349,8 @@ function RecentReviewInfo({
       ) : null}
       <Text size={13} color="gray700">
         {visitDate
-          ? `${visitYear}년 ${visitMonth}월`
-          : `${reviewedAtYear}년 ${reviewedAtMonth}월`}
+          ? `${visitYear}년 ${visitMonth}월 여행`
+          : `${reviewedAtYear}년 ${reviewedAtMonth}월 여행`}
       </Text>
     </FlexBox>
   )
