@@ -29,7 +29,7 @@ export function useReviews({
   const {
     data: latestReviewsData,
     fetchNextPage: latestReviewsFetch,
-    isRefetching: latestReviewsRefetching,
+    isRefetching: isLatestReviewsRefetching,
   } = useInfiniteQuery(
     ['getLatestReviews', recentTrip],
     async ({ pageParam = 1 }) => {
@@ -62,7 +62,7 @@ export function useReviews({
   const {
     data: popularReviewsData,
     fetchNextPage: popularReviewsFetch,
-    isRefetching: popularReviewsRefetching,
+    isRefetching: isPopularReviewsRefetching,
   } = useInfiniteQuery(
     ['getPopularReviews', recentTrip],
     async ({ pageParam = 1 }) => {
@@ -134,7 +134,7 @@ export function useReviews({
     latestReviewsData,
     popularReviewsData,
     isLoaded:
-      !(latestReviewsRefetching && popularReviewsRefetching) ||
+      !(isLatestReviewsRefetching && isPopularReviewsRefetching) ||
       !(isReviewCountAfterMount && isDescriptionAfterMount),
     moreFetcher: latestReview ? latestReviewsFetch : popularReviewsFetch,
   }
