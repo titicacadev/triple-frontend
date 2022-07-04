@@ -100,6 +100,7 @@ function ReviewContainer({
   onReviewWrite,
   onReviewDelete,
   onFullListButtonClick,
+  isMorePage = false,
 }: {
   resourceId: string
   resourceType: ResourceType
@@ -112,6 +113,7 @@ function ReviewContainer({
   placeholderText?: string
   appNativeActions: AppNativeActionProps
   sortingOption?: string
+  isMorePage?: boolean
   /**
    * @deprecated 리뷰 작성 함수를 자체 구현하면
    * 다양한 방어 로직을 중복 구현하게 됩니다.
@@ -396,6 +398,7 @@ function ReviewContainer({
               recentTrip={recentTrip}
               placeholderText={placeholderText}
               resourceType={resourceType}
+              isMorePage={isMorePage}
               onClick={
                 recentTrip
                   ? handleFullListButtonClick
