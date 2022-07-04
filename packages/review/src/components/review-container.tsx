@@ -150,7 +150,7 @@ function ReviewContainer({
     descriptionsData,
     latestReviewsData,
     popularReviewsData,
-    isLoading,
+    isLoaded,
     moreFetcher,
   } = useReviews({
     resourceId,
@@ -371,9 +371,7 @@ function ReviewContainer({
         />
       </FlexBox>
 
-      {isLoading ? (
-        <Spinner />
-      ) : (
+      {isLoaded ? (
         <>
           {reviewsCountByType > 0 ? (
             <ReviewsList
@@ -455,6 +453,8 @@ function ReviewContainer({
             </MileageButton>
           ) : null}
         </>
+      ) : (
+        <Spinner />
       )}
 
       {myReview ? (
