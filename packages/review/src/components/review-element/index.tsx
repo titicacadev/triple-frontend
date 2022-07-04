@@ -339,8 +339,8 @@ function RecentReviewInfo({
         </>
       ) : null}
       {visitDate ? (
-        <Text size={13} color="gray700">
-          `${visitYear}년 ${visitMonth}월 여행`
+        <Text size={14} color="gray700">
+          {visitYear}년 {visitMonth}월 여행
         </Text>
       ) : null}
     </FlexBox>

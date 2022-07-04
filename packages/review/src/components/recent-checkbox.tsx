@@ -84,9 +84,9 @@ function ToolTip() {
   return (
     <Container>
       <OpenIcon
-        width={14}
-        height={14}
-        src="https://assets.triple.guide/images/ico_tooltip_info.png"
+        width={16}
+        height={16}
+        src="https://assets.triple.guide/images/ico_tooltip_info_black@4x.png"
         onClick={() => setIsVisible(true)}
       />
       {isVisible ? (
