@@ -87,7 +87,7 @@ function RecentTripPlaceholder({
       />
       <Text
         size={18}
-        padding={{ top: 20, bottom: 6 }}
+        padding={{ top: 20, bottom: 8 }}
         bold
         lineHeight="21px"
         textAlign="center"
