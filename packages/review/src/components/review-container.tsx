@@ -82,16 +82,6 @@ const BulletRight = styled.img.attrs({
   }
 `
 
-const SpinnerContainer = styled(Container)`
-  .-triple-fallback-action {
-    position: absolute;
-    top: 100px;
-    left: 0;
-    right: 0;
-    background: var(--color-white);
-  }
-`
-
 function ReviewContainer({
   reviewsCount: initialReviewsCount,
   recentTrip: initialRecentTrip = false,
@@ -377,9 +367,7 @@ function ReviewContainer({
       </FlexBox>
 
       {isLoading ? (
-        <SpinnerContainer>
-          <Spinner />
-        </SpinnerContainer>
+        <Spinner />
       ) : (
         <>
           {reviews.length > 0 ? (
