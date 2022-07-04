@@ -398,7 +398,8 @@ function ReviewContainer({
             />
           )}
 
-          {reviewsCount > SHORTENED_REVIEWS_COUNT_PER_PAGE && shortened ? (
+          {(recentTrip ? reviews.length : reviewsCount) >
+            SHORTENED_REVIEWS_COUNT_PER_PAGE && shortened ? (
             <Container margin={{ top: 40 }}>
               <Button
                 basic
@@ -411,7 +412,9 @@ function ReviewContainer({
                     : handleFullListButtonClick
                 }
               >
-                {` ${formatNumber(reviewsCount)}`}개 리뷰 더보기
+                {(recentTrip ? reviews.length : reviewsCount) -
+                  SHORTENED_REVIEWS_COUNT_PER_PAGE}
+                개 리뷰 더보기
               </Button>
             </Container>
           ) : null}
