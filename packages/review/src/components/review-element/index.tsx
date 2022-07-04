@@ -170,11 +170,7 @@ export default function ReviewElement({
         />
         {!blindedAt && !!rating ? <Score score={rating} /> : null}
         {!blindedAt ? (
-          <RecentReviewInfo
-            visitDate={visitDate}
-            recentTrip={recentTrip}
-            reviewedAt={originReviewedAt}
-          />
+          <RecentReviewInfo visitDate={visitDate} recentTrip={recentTrip} />
         ) : null}
         <Content onClick={(e: SyntheticEvent) => onReviewClick(e, review.id)}>
           {blindedAt ? (
@@ -316,20 +312,15 @@ function RateDescription({
 function RecentReviewInfo({
   visitDate,
   recentTrip,
-  reviewedAt: originReviewedAt,
 }: {
   visitDate?: string
   recentTrip: boolean
-  reviewedAt: string
 }) {
-  const reviewedAt = moment(originReviewedAt).format('YYYY-MM')
-
   const startDate = moment('2000-01')
   const endDate = moment().subtract(180, 'days').format('YYYY-MM')
   const isOldReview =
     visitDate && moment(visitDate).isBetween(startDate, endDate)
 
-  const [reviewedAtYear, reviewedAtMonth] = reviewedAt.split('-')
   const [visitYear, visitMonth] = visitDate?.split('-') || []
 
   return (
@@ -347,11 +338,11 @@ function RecentReviewInfo({
           </Text>
         </>
       ) : null}
-      <Text size={13} color="gray700">
-        {visitDate
-          ? `${visitYear}년 ${visitMonth}월 여행`
-          : `${reviewedAtYear}년 ${reviewedAtMonth}월 여행`}
-      </Text>
+      {visitDate ? (
+        <Text size={13} color="gray700">
+          `${visitYear}년 ${visitMonth}월 여행`
+        </Text>
+      ) : null}
     </FlexBox>
   )
 }
