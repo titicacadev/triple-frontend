@@ -10,18 +10,17 @@ import moment from 'moment'
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
-import { List, Container, Text, Rating } from '@titicaca/core-elements'
+import { FlexBox, List, Container, Text, Rating } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useSessionCallback } from '@titicaca/ui-flow'
-import { useMutation } from 'react-query'
 
 import { useReviewLikesContext } from '../review-likes-context'
 import { ReviewData } from '../types'
-import graphqlRequest from '../../data/graphql/request'
 import {
-  UnlikeReviewDocument,
-  LikeReviewDocument,
+  useLikeReviewMutation,
+  useUnlikeReviewMutation,
 } from '../../data/generated/graphql'
+import { graphqlClient } from '../hooks'
 
 import User from './user'
 import Comment from './comment'
@@ -103,11 +102,13 @@ export default function ReviewElement({
     user,
     blindedAt,
     comment,
+    recentTrip,
     reviewedAt: originReviewedAt,
     rating,
     media,
     replyBoard,
     resourceType,
+    visitDate,
   },
   isMyReview,
   index,
@@ -131,12 +132,8 @@ export default function ReviewElement({
     likesCount: review.likesCount,
   })
 
-  const { mutate } = useMutation(
-    graphqlRequest({
-      query: liked ? UnlikeReviewDocument : LikeReviewDocument,
-      variables: { reviewId: review.id },
-    }),
-  )
+  const { mutate: likeReview } = useLikeReviewMutation(graphqlClient)
+  const { mutate: unlikeReview } = useUnlikeReviewMutation(graphqlClient)
 
   const handleLikeButtonClick: MouseEventHandler = useSessionCallback(
     useCallback(async () => {
@@ -151,11 +148,11 @@ export default function ReviewElement({
         },
       })
 
-      if (mutate) {
-        mutate()
-        updateLikedStatus({ [review.id]: !liked }, resourceId)
-      }
-    }, [mutate, liked, resourceId, review, trackEvent, updateLikedStatus]),
+      liked
+        ? unlikeReview({ reviewId: review.id })
+        : likeReview({ reviewId: review.id })
+      updateLikedStatus({ [review.id]: !liked }, resourceId)
+    }, [liked, resourceId, review, trackEvent, updateLikedStatus]),
   )
 
   const reviewedAt = moment(originReviewedAt).format()
@@ -172,6 +169,13 @@ export default function ReviewElement({
           onClick={onUserClick && ((e) => onUserClick(e, review))}
         />
         {!blindedAt && !!rating ? <Score score={rating} /> : null}
+        {!blindedAt ? (
+          <RecentReviewInfo
+            visitDate={visitDate}
+            recentTrip={recentTrip}
+            reviewedAt={originReviewedAt}
+          />
+        ) : null}
         <Content onClick={(e: SyntheticEvent) => onReviewClick(e, review.id)}>
           {blindedAt ? (
             '신고가 접수되어 블라인드 처리되었습니다.'
@@ -307,4 +311,47 @@ function RateDescription({
   const comment =
     rating && reviewRateDescriptions ? reviewRateDescriptions[rating] : ''
   return <Comment>{comment}</Comment>
+}
+
+function RecentReviewInfo({
+  visitDate,
+  recentTrip,
+  reviewedAt: originReviewedAt,
+}: {
+  visitDate?: string
+  recentTrip: boolean
+  reviewedAt: string
+}) {
+  const reviewedAt = moment(originReviewedAt).format('YYYY-MM')
+
+  const startDate = moment('2000-01')
+  const endDate = moment().subtract(180, 'days').format('YYYY-MM')
+  const isOldReview =
+    visitDate && moment(visitDate).isBetween(startDate, endDate)
+
+  const [reviewedAtYear, reviewedAtMonth] = reviewedAt.split('-')
+  const [visitYear, visitMonth] = visitDate?.split('-') || []
+
+  return (
+    <FlexBox flex alignItems="center" padding={{ top: 8 }}>
+      {recentTrip && !isOldReview ? (
+        <>
+          <img
+            width={16}
+            height={16}
+            src="https://assets.triple.guide/images/ico_recently_badge@4x.png"
+            alt="recent-trip-icon"
+          />
+          <Text padding={{ left: 4, right: 8 }} size={14} color="blue" bold>
+            최근 여행
+          </Text>
+        </>
+      ) : null}
+      <Text size={13} color="gray700">
+        {visitDate
+          ? `${visitYear}년 ${visitMonth}월 여행`
+          : `${reviewedAtYear}년 ${reviewedAtMonth}월 여행`}
+      </Text>
+    </FlexBox>
+  )
 }
