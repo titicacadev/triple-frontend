@@ -294,6 +294,7 @@ function ReviewContainer({
           navigateReviewList,
           regionId,
           resourceType,
+          recentTrip,
           sortingOption,
         ],
       ),
