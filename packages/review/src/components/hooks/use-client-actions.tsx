@@ -41,17 +41,20 @@ export function useClientActions() {
         regionId,
         resourceId,
         resourceType,
+        recentTrip,
         sortingOption,
       }: {
         regionId?: string
         resourceId: string
         resourceType: ResourceType
+        recentTrip: boolean
         sortingOption: string
       }) {
         const params = qs.stringify({
           region_id: regionId,
           resource_id: resourceId,
           resource_type: resourceType,
+          recent_trip: recentTrip,
           sorting_option: sortingOption,
         })
 

@@ -22,6 +22,7 @@ const { overrides, ...rest } = createConfig({
     'tna_id',
     'resource_id',
     'resource_type',
+    'recent_trip',
     'item_id',
     'item_name',
     'user_id',
