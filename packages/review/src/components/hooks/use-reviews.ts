@@ -33,7 +33,7 @@ export function useReviews({
   } = useInfiniteQuery(
     ['getLatestReviews', recentTrip],
     async ({ pageParam = 1 }) => {
-      const { latestReviews } = await new GraphQLClient('/api/graphql').request(
+      const { latestReviews } = await graphqlClient.request(
         GetLatestReviewsDocument,
         {
           resourceType,
@@ -66,15 +66,16 @@ export function useReviews({
   } = useInfiniteQuery(
     ['getPopularReviews', recentTrip],
     async ({ pageParam = 1 }) => {
-      const { popularReviews } = await new GraphQLClient(
-        '/api/graphql',
-      ).request(GetPopularReviewsDocument, {
-        resourceType,
-        resourceId,
-        recentTrip,
-        from: (pageParam - 1) * perPage,
-        size: perPage,
-      })
+      const { popularReviews } = await graphqlClient.request(
+        GetPopularReviewsDocument,
+        {
+          resourceType,
+          resourceId,
+          recentTrip,
+          from: (pageParam - 1) * perPage,
+          size: perPage,
+        },
+      )
 
       return {
         popularReviews,
