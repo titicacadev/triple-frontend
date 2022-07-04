@@ -1,6 +1,19 @@
-import { useEffect, useState, useCallback, SyntheticEvent } from 'react'
+import {
+  useEffect,
+  useState,
+  useCallback,
+  SyntheticEvent,
+  useMemo,
+} from 'react'
 import styled from 'styled-components'
-import { Section, Container, Text, Button } from '@titicaca/core-elements'
+import {
+  FlexBox,
+  Section,
+  Container,
+  Text,
+  Button,
+  Spinner,
+} from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import {
   useEventTrackingContext,
@@ -9,12 +22,6 @@ import {
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { TransitionType, withLoginCtaModal } from '@titicaca/modals'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
-
-import {
-  GetMyReviewDocument,
-  GetReviewsCountDocument,
-  GetReviewSpecificationDocument,
-} from '../data/generated/graphql'
 
 import ReviewsPlaceholder from './review-placeholder-with-rating'
 import ReviewsList from './reviews-list'
@@ -29,8 +36,9 @@ import SortingOptions, {
   ORDER_BY_RECENCY,
   SortingOptionsProps,
 } from './sorting-options'
-import { usePaging, useGraphqlQueries, useClientActions } from './hooks'
+import { useClientActions, useReviews } from './hooks'
 import MyReviewActionSheet from './my-review-action-sheet'
+import RecentCheckBox from './recent-checkbox'
 
 const REVIEWS_SECTION_ID = 'reviews'
 const DEFAULT_REVIEWS_COUNT_PER_PAGE = 20
@@ -113,6 +121,8 @@ function ReviewContainer({
 }) {
   const sessionAvailable = useSessionAvailability()
 
+  const [reviews, setReviews] = useState<ReviewData[]>([])
+  const [recentTrip, setRecentTrip] = useState(false)
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
   const app = useTripleClientMetadata()
   const { trackEvent } = useEventTrackingContext()
@@ -125,6 +135,28 @@ function ReviewContainer({
   >([])
   const { writeReview, editReview, navigateReviewList, navigateMileageIntro } =
     useClientActions()
+  const latestReview = useMemo(
+    () => !!(sortingOption === 'latest'),
+    [sortingOption],
+  )
+
+  const {
+    reviewCountData,
+    myReviewData,
+    descriptionsData,
+    latestReviewsData,
+    popularReviewsData,
+    isLoading,
+    moreFetcher,
+  } = useReviews({
+    resourceId,
+    resourceType,
+    recentTrip,
+    latestReview,
+    perPage: shortened
+      ? SHORTENED_REVIEWS_COUNT_PER_PAGE + 1
+      : DEFAULT_REVIEWS_COUNT_PER_PAGE,
+  })
 
   const setMyReview = useCallback(
     (review) =>
@@ -135,32 +167,30 @@ function ReviewContainer({
     [setMyReviewStatus],
   )
 
-  const [
-    { data: reviewCountData },
-    { data: myReviewData },
-    { data: descriptionsData },
-  ] = useGraphqlQueries([
-    {
-      key: 'reviewCount',
-      query: GetReviewsCountDocument,
-      variables: { resourceType, resourceId },
-    },
-    {
-      key: 'myReview',
-      query: GetMyReviewDocument,
-      variables: { resourceType, resourceId },
-    },
-    {
-      key: 'descriptions',
-      query: GetReviewSpecificationDocument,
-      variables: { resourceType, resourceId },
-    },
-  ])
+  useEffect(() => {
+    const data = latestReview
+      ? latestReviewsData?.pages.reduce(
+          (reviews: ReviewData[], { latestReviews }) => [
+            ...reviews,
+            ...latestReviews,
+          ],
+          [],
+        )
+      : popularReviewsData?.pages.reduce(
+          (reviews: ReviewData[], { popularReviews }) => [
+            ...reviews,
+            ...popularReviews,
+          ],
+          [],
+        )
+
+    setReviews(data || [])
+  }, [latestReview, latestReviewsData?.pages, popularReviewsData?.pages])
 
   useEffect(() => {
     if (descriptionsData) {
       setReviewRateDescriptions(
-        descriptionsData.getReviewSpecification?.rating?.description || [],
+        descriptionsData.reviewsSpecification?.rating?.description || [],
       )
     }
   }, [descriptionsData])
@@ -174,12 +204,12 @@ function ReviewContainer({
       const { id } = params
 
       if (id && id === resourceId) {
-        if (reviewCountData && reviewCountData.getReviewsCount !== null) {
-          setReviewsCount(reviewCountData.getReviewsCount)
+        if (reviewCountData) {
+          setReviewsCount(reviewCountData.reviewsCount)
         }
 
         if (myReviewData) {
-          setMyReview(myReviewData.getMyReview)
+          setMyReview(myReviewData.myReview)
         }
       }
     }
@@ -202,7 +232,6 @@ function ReviewContainer({
     resourceId,
     resourceType,
     sessionAvailable,
-    setMyReview,
     subscribeReviewUpdateEvent,
     unsubscribeReviewUpdateEvent,
   ])
@@ -285,14 +314,10 @@ function ReviewContainer({
     setSortingOption(sortingOption)
   }
 
-  const { reviews, fetchNext } = usePaging({
-    sortingOption,
-    resourceId,
-    resourceType,
-    perPage: shortened
-      ? SHORTENED_REVIEWS_COUNT_PER_PAGE + 1
-      : DEFAULT_REVIEWS_COUNT_PER_PAGE,
-  })
+  const handleChangeRecentTrip = useCallback(
+    () => setRecentTrip((prevState) => !prevState),
+    [],
+  )
 
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
@@ -327,79 +352,102 @@ function ReviewContainer({
         )}
       </Container>
 
-      {(reviewsCount || 0) > 0 || myReview ? (
-        <>
-          <Container margin={{ top: 23 }} clearing>
-            <SortingOptions
-              selected={sortingOption}
-              onSelect={handleSortingOptionSelect}
-            />
-          </Container>
-
-          <ReviewsList
-            maxLength={shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined}
-            myReview={myReview}
-            reviews={reviews.filter((review) => !myReviewIds.has(review.id))}
-            regionId={regionId}
-            resourceId={resourceId}
-            showToast={showToast}
-            reviewRateDescriptions={reviewRateDescriptions}
-            fetchNext={!shortened ? fetchNext : undefined}
-          />
-        </>
-      ) : (
-        <ReviewsPlaceholder
-          placeholderText={placeholderText}
-          resourceType={resourceType}
-          onClick={onReviewWrite || handleWriteButtonClick}
+      <FlexBox flex justifyContent="space-between" margin={{ top: 23 }}>
+        <SortingOptions
+          selected={sortingOption}
+          onSelect={handleSortingOptionSelect}
         />
+        <RecentCheckBox
+          isRecentReview={recentTrip}
+          onRecentReviewChange={handleChangeRecentTrip}
+        />
+      </FlexBox>
+
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          {reviews.length > 0 ? (
+            <ReviewsList
+              maxLength={
+                shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined
+              }
+              recentTrip={recentTrip}
+              myReview={myReview}
+              reviews={
+                recentTrip
+                  ? reviews
+                  : reviews.filter((review) => !myReviewIds.has(review.id))
+              }
+              regionId={regionId}
+              resourceId={resourceId}
+              showToast={showToast}
+              reviewRateDescriptions={reviewRateDescriptions}
+              fetchNext={!shortened ? moreFetcher : undefined}
+            />
+          ) : (
+            <ReviewsPlaceholder
+              recentTrip={recentTrip}
+              placeholderText={placeholderText}
+              resourceType={resourceType}
+              onClick={
+                recentTrip
+                  ? handleFullListButtonClick
+                  : onReviewWrite || handleWriteButtonClick
+              }
+            />
+          )}
+
+          {(recentTrip ? reviews.length : reviewsCount) >
+            SHORTENED_REVIEWS_COUNT_PER_PAGE && shortened ? (
+            <Container margin={{ top: 40 }}>
+              <Button
+                basic
+                fluid
+                compact
+                size="small"
+                onClick={
+                  onFullListButtonClick
+                    ? (e) => onFullListButtonClick(e, sortingOption)
+                    : handleFullListButtonClick
+                }
+              >
+                {(recentTrip ? reviews.length : reviewsCount) -
+                  SHORTENED_REVIEWS_COUNT_PER_PAGE}
+                개 리뷰 더보기
+              </Button>
+            </Container>
+          ) : null}
+
+          {shortened ? (
+            <MileageButton
+              onClick={(e) => {
+                trackEvent({
+                  ga: ['리뷰_여행자클럽선택'],
+                  fa: {
+                    action: '리뷰_여행자클럽선택',
+                    item_id: resourceId,
+                  },
+                })
+                e.preventDefault()
+                if (app) {
+                  navigateMileageIntro()
+                } else {
+                  window.location.href = `/pages/mileage-intro.html`
+                }
+              }}
+            >
+              <Text color="gray" size="small" alpha={0.6} lineHeight={1.7}>
+                리뷰 쓰면 여행자 클럽 최대 3포인트!
+              </Text>
+              <Text color="blue" size="small" lineHeight={1.7}>
+                포인트별 혜택 보기
+              </Text>
+              <BulletRight alt="포인트별 혜택 보기" />
+            </MileageButton>
+          ) : null}
+        </>
       )}
-
-      {reviewsCount > SHORTENED_REVIEWS_COUNT_PER_PAGE && shortened ? (
-        <Container margin={{ top: 40 }}>
-          <Button
-            basic
-            fluid
-            compact
-            size="small"
-            onClick={
-              onFullListButtonClick
-                ? (e) => onFullListButtonClick(e, sortingOption)
-                : handleFullListButtonClick
-            }
-          >
-            {reviewsCount - SHORTENED_REVIEWS_COUNT_PER_PAGE}개 리뷰 더보기
-          </Button>
-        </Container>
-      ) : null}
-
-      {shortened ? (
-        <MileageButton
-          onClick={(e) => {
-            trackEvent({
-              ga: ['리뷰_여행자클럽선택'],
-              fa: {
-                action: '리뷰_여행자클럽선택',
-                item_id: resourceId,
-              },
-            })
-            e.preventDefault()
-            if (app) {
-              navigateMileageIntro()
-            } else {
-              window.location.href = `/pages/mileage-intro.html`
-            }
-          }}
-        >
-          <Text color="gray" size="small" alpha={0.6} lineHeight={1.7}>
-            리뷰 쓰면 여행자 클럽 최대 3포인트!
-          </Text>
-          <Text color="blue" size="small" lineHeight={1.7}>
-            포인트별 혜택 보기
-          </Text>
-          <BulletRight alt="포인트별 혜택 보기" />
-        </MileageButton>
-      ) : null}
 
       {myReview ? (
         <MyReviewActionSheet

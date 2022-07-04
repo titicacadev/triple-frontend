@@ -39,6 +39,8 @@ export interface ReviewData {
   blindedAt?: string | null
   rating?: number | null
   media?: ImageMeta[] | null
+  recentTrip: boolean
+  visitDate?: string
   replyBoard?: {
     childMessagesCount: number
     pinnedMessages: []
