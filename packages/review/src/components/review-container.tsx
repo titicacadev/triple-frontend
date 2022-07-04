@@ -84,6 +84,7 @@ const BulletRight = styled.img.attrs({
 
 function ReviewContainer({
   reviewsCount: initialReviewsCount,
+  recentTrip: initialRecentTrip = false,
   resourceType,
   regionId,
   resourceId,
@@ -104,6 +105,7 @@ function ReviewContainer({
   resourceType: ResourceType
   regionId?: string
   reviewsCount: number
+  recentTrip?: boolean
   shortened?: boolean
   reviewed?: boolean
   deepLink?: string
@@ -122,7 +124,7 @@ function ReviewContainer({
   const sessionAvailable = useSessionAvailability()
 
   const [reviews, setReviews] = useState<ReviewData[]>([])
-  const [recentTrip, setRecentTrip] = useState(false)
+  const [recentTrip, setRecentTrip] = useState(initialRecentTrip)
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
   const app = useTripleClientMetadata()
   const { trackEvent } = useEventTrackingContext()
@@ -282,6 +284,7 @@ function ReviewContainer({
             regionId,
             resourceId,
             resourceType,
+            recentTrip,
             sortingOption,
           })
         },
