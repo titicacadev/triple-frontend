@@ -5,19 +5,18 @@ hooks:
   afterAllFileWrite:
     - prettier 'src/data/generated/*.{js,ts,tsx}' --write
 generates:
-  src/data/generated/graphql.tsx:
+  src/data/generated/graphql.ts:
     plugins:
       - typescript
       - typescript-operations
-      - typed-document-node
+      - typescript-react-query
 
     config:
-      addOperationExport: true
       avoidOptionals: true
       enumsAsTypes: true
       onlyOperationTypes: true
       nonOptionalTypename: true
       defaultScalarType: unknown
-      directiveArgumentAndInputFieldMappings: true
       scalars:
         DateTime: string
+      fetcher: graphql-request
