@@ -323,6 +323,8 @@ function ReviewContainer({
     [],
   )
 
+  const reviewsCountByType = recentTrip ? reviews.length : reviewsCount
+
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
       <Container>
@@ -371,7 +373,7 @@ function ReviewContainer({
         <Spinner />
       ) : (
         <>
-          {reviews.length > 0 ? (
+          {reviewsCountByType > 0 ? (
             <ReviewsList
               maxLength={
                 shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined
@@ -402,8 +404,8 @@ function ReviewContainer({
             />
           )}
 
-          {(recentTrip ? reviews.length : reviewsCount) >
-            SHORTENED_REVIEWS_COUNT_PER_PAGE && shortened ? (
+          {reviewsCountByType > SHORTENED_REVIEWS_COUNT_PER_PAGE &&
+          shortened ? (
             <Container margin={{ top: 40 }}>
               <Button
                 basic
@@ -416,9 +418,8 @@ function ReviewContainer({
                     : handleFullListButtonClick
                 }
               >
-                {(recentTrip ? reviews.length : reviewsCount) -
-                  SHORTENED_REVIEWS_COUNT_PER_PAGE}
-                개 리뷰 더보기
+                {reviewsCountByType - SHORTENED_REVIEWS_COUNT_PER_PAGE}개 리뷰
+                더보기
               </Button>
             </Container>
           ) : null}
