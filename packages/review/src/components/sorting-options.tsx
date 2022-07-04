@@ -1,6 +1,6 @@
 import { SyntheticEvent } from 'react'
 import styled from 'styled-components'
-import { Label } from '@titicaca/core-elements'
+import { Label, FlexBox } from '@titicaca/core-elements'
 
 export interface SortingOptionsProps {
   onSelect: (e: SyntheticEvent, key: string) => void
@@ -15,9 +15,7 @@ const SORTING_OPTIONS = [
   { key: ORDER_BY_RECENCY, text: '최신순' },
 ]
 
-const OptionsContainer = styled.div`
-  float: right;
-  margin: 0;
+const OptionsContainer = styled(FlexBox)`
   padding: 0;
 
   div:not(:first-child) {
@@ -30,7 +28,7 @@ export default function SortingOptions({
   selected,
 }: SortingOptionsProps) {
   return (
-    <OptionsContainer>
+    <OptionsContainer flex alignItems="center" margin={{ top: 6 }}>
       {SORTING_OPTIONS.map(({ key, text }) => (
         <Label key={key} radio selected={selected === key}>
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
