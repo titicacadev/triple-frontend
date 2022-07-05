@@ -283,7 +283,7 @@ function ReviewContainer({
           e.stopPropagation()
 
           navigateReviewList(
-            recentTrip === true && isMorePage === false
+            recentTrip === true && isMorePage === false && reviews.length === 0
               ? {
                   resourceId,
                   resourceType,
@@ -300,6 +300,7 @@ function ReviewContainer({
           )
         },
         [
+          reviews,
           trackEvent,
           resourceId,
           navigateReviewList,
