@@ -40,10 +40,12 @@ export default function ReviewsPlaceholder({
       margin={{ top: 20 }}
       onClick={!isMorePage ? onClick : undefined}
     >
-      {resourceType === 'article' ? (
-        <GuideImage />
-      ) : !recentTrip ? (
-        <Rating size="medium" onClick={onClick} />
+      {!recentTrip ? (
+        resourceType === 'article' ? (
+          <GuideImage />
+        ) : (
+          <Rating size="medium" onClick={onClick} />
+        )
       ) : null}
 
       {recentTrip ? (
