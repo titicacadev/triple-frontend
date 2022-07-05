@@ -54,8 +54,8 @@ const TooltipText = styled(Text)`
 `
 
 const OpenIcon = styled.img`
-  margin-top: 3px;
-  margin-left: 6px;
+  margin-top: 2px;
+  margin-left: 4px;
 `
 
 const CloseIcon = styled.img`

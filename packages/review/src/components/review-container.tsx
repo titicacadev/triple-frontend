@@ -282,13 +282,17 @@ function ReviewContainer({
 
           e.stopPropagation()
 
-          navigateReviewList({
-            regionId,
-            resourceId,
-            resourceType,
-            recentTrip,
-            sortingOption,
-          })
+          navigateReviewList(
+            !isMorePage && recentTrip
+              ? { resourceId, resourceType, recentTrip: false, sortingOption }
+              : {
+                  regionId,
+                  resourceId,
+                  resourceType,
+                  recentTrip,
+                  sortingOption,
+                },
+          )
         },
         [
           trackEvent,
