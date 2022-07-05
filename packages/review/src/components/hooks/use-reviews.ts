@@ -29,7 +29,7 @@ export function useReviews({
   const {
     data: latestReviewsData,
     fetchNextPage: latestReviewsFetch,
-    isRefetching: isLatestReviewsRefetching,
+    isFetchedAfterMount: isLatestReviewsAfterMount,
   } = useInfiniteQuery(
     ['getLatestReviews', recentTrip],
     async ({ pageParam = 1 }) => {
@@ -62,7 +62,7 @@ export function useReviews({
   const {
     data: popularReviewsData,
     fetchNextPage: popularReviewsFetch,
-    isRefetching: isPopularReviewsRefetching,
+    isFetchedAfterMount: isPopularReviewsAfterMount,
   } = useInfiniteQuery(
     ['getPopularReviews', recentTrip],
     async ({ pageParam = 1 }) => {
@@ -92,10 +92,7 @@ export function useReviews({
     },
   )
 
-  const {
-    data: reviewCountData,
-    isFetchedAfterMount: isReviewCountAfterMount,
-  } = useGetReviewsCountQuery(
+  const { data: reviewCountData } = useGetReviewsCountQuery(
     graphqlClient,
     {
       resourceType,
@@ -107,10 +104,7 @@ export function useReviews({
       refetchOnReconnect: false,
     },
   )
-  const {
-    data: descriptionsData,
-    isFetchedAfterMount: isDescriptionAfterMount,
-  } = useGetReviewSpecificationQuery(
+  const { data: descriptionsData } = useGetReviewSpecificationQuery(
     graphqlClient,
     {
       resourceType,
@@ -133,9 +127,7 @@ export function useReviews({
     descriptionsData,
     latestReviewsData,
     popularReviewsData,
-    isLoaded:
-      !(isLatestReviewsRefetching && isPopularReviewsRefetching) ||
-      !(isReviewCountAfterMount && isDescriptionAfterMount),
+    isLoaded: isLatestReviewsAfterMount && isPopularReviewsAfterMount,
     moreFetcher: latestReview ? latestReviewsFetch : popularReviewsFetch,
   }
 }
