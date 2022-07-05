@@ -283,8 +283,13 @@ function ReviewContainer({
           e.stopPropagation()
 
           navigateReviewList(
-            !isMorePage && recentTrip
-              ? { resourceId, resourceType, recentTrip: false, sortingOption }
+            recentTrip && !isMorePage
+              ? {
+                  resourceId,
+                  resourceType,
+                  recentTrip: false,
+                  sortingOption: '',
+                }
               : {
                   regionId,
                   resourceId,
@@ -298,10 +303,11 @@ function ReviewContainer({
           trackEvent,
           resourceId,
           navigateReviewList,
-          regionId,
-          resourceType,
+          isMorePage,
           recentTrip,
+          resourceType,
           sortingOption,
+          regionId,
         ],
       ),
     ),
