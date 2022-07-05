@@ -28,7 +28,7 @@ export default function SortingOptions({
   selected,
 }: SortingOptionsProps) {
   return (
-    <OptionsContainer flex alignItems="center" margin={{ top: 6 }}>
+    <OptionsContainer flex alignItems="center">
       {SORTING_OPTIONS.map(({ key, text }) => (
         <Label key={key} radio selected={selected === key}>
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}

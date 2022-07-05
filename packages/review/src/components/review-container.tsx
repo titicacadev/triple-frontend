@@ -370,7 +370,12 @@ function ReviewContainer({
         )}
       </Container>
 
-      <FlexBox flex justifyContent="space-between" margin={{ top: 23 }}>
+      <FlexBox
+        flex
+        justifyContent="space-between"
+        alignItems="center"
+        margin={{ top: 23 }}
+      >
         <SortingOptions
           selected={sortingOption}
           onSelect={handleSortingOptionSelect}
