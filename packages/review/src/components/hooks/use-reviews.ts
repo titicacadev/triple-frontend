@@ -8,6 +8,7 @@ import {
   useGetReviewsCountQuery,
   useGetReviewSpecificationQuery,
 } from '../../data/generated/graphql'
+import { ReviewData } from '../types'
 
 export const graphqlClient = new GraphQLClient('/api/graphql')
 
@@ -31,7 +32,7 @@ export function useReviews({
     fetchNextPage: latestReviewsFetch,
     isFetchedAfterMount: isLatestReviewsAfterMount,
   } = useInfiniteQuery(
-    ['getLatestReviews', recentTrip],
+    ['review/getLatestReviews', recentTrip],
     async ({ pageParam = 1 }) => {
       const { latestReviews } = await graphqlClient.request(
         GetLatestReviewsDocument,
@@ -53,6 +54,16 @@ export function useReviews({
     {
       getNextPageParam: ({ isLast, nextPage }) =>
         !isLast ? nextPage : undefined,
+      select: ({ pages, pageParams }) => ({
+        pages: pages.reduce(
+          (reviews: ReviewData[], { latestReviews }) => [
+            ...reviews,
+            ...latestReviews,
+          ],
+          [],
+        ),
+        pageParams,
+      }),
       refetchOnWindowFocus: false,
       refetchOnMount: false,
       refetchOnReconnect: false,
@@ -64,7 +75,7 @@ export function useReviews({
     fetchNextPage: popularReviewsFetch,
     isFetchedAfterMount: isPopularReviewsAfterMount,
   } = useInfiniteQuery(
-    ['getPopularReviews', recentTrip],
+    ['review/getPopularReviews', recentTrip],
     async ({ pageParam = 1 }) => {
       const { popularReviews } = await graphqlClient.request(
         GetPopularReviewsDocument,
@@ -86,13 +97,36 @@ export function useReviews({
     {
       getNextPageParam: ({ isLast, nextPage }) =>
         !isLast ? nextPage : undefined,
+      select: ({ pages, pageParams }) => ({
+        pages: pages.reduce(
+          (reviews: ReviewData[], { popularReviews }) => [
+            ...reviews,
+            ...popularReviews,
+          ],
+          [],
+        ),
+        pageParams,
+      }),
       refetchOnWindowFocus: false,
       refetchOnMount: false,
       refetchOnReconnect: false,
     },
   )
 
-  const { data: reviewCountData } = useGetReviewsCountQuery(
+  return {
+    reviewsData:
+      (latestReview ? latestReviewsData?.pages : popularReviewsData?.pages) ||
+      [],
+    isLoaded: isLatestReviewsAfterMount && isPopularReviewsAfterMount,
+    moreFetcher: latestReview ? latestReviewsFetch : popularReviewsFetch,
+  }
+}
+
+export function useReviewCount({
+  resourceType,
+  resourceId,
+}: Pick<UseReviewsProps, 'resourceType' | 'resourceId'>) {
+  const { data: reviewsCountData } = useGetReviewsCountQuery(
     graphqlClient,
     {
       resourceType,
@@ -104,6 +138,13 @@ export function useReviews({
       refetchOnReconnect: false,
     },
   )
+  return reviewsCountData
+}
+
+export function useDescriptions({
+  resourceType,
+  resourceId,
+}: Pick<UseReviewsProps, 'resourceType' | 'resourceId'>) {
   const { data: descriptionsData } = useGetReviewSpecificationQuery(
     graphqlClient,
     {
@@ -111,23 +152,25 @@ export function useReviews({
       resourceId,
     },
     {
+      select: ({ reviewsSpecification }) =>
+        reviewsSpecification?.rating?.description || [],
       refetchOnWindowFocus: false,
       refetchOnMount: false,
       refetchOnReconnect: false,
     },
   )
+
+  return descriptionsData
+}
+
+export function useMyReview({
+  resourceType,
+  resourceId,
+}: Pick<UseReviewsProps, 'resourceType' | 'resourceId'>) {
   const { data: myReviewData } = useGetMyReviewQuery(graphqlClient, {
     resourceType,
     resourceId,
   })
 
-  return {
-    reviewCountData,
-    myReviewData,
-    descriptionsData,
-    latestReviewsData,
-    popularReviewsData,
-    isLoaded: isLatestReviewsAfterMount && isPopularReviewsAfterMount,
-    moreFetcher: latestReview ? latestReviewsFetch : popularReviewsFetch,
-  }
+  return myReviewData
 }
