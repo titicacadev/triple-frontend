@@ -24,12 +24,14 @@ const NavigateToReviewsListButton = styled(Button)`
 
 export default function ReviewsPlaceholder({
   isMorePage,
+  hasReviews,
   resourceType,
   recentTrip,
   placeholderText = DEFAULT_PLACEHOLDER_TEXT,
   onClick,
 }: {
   isMorePage: boolean
+  hasReviews: boolean
   resourceType: ResourceType
   recentTrip: boolean
   placeholderText?: string
@@ -49,7 +51,11 @@ export default function ReviewsPlaceholder({
       ) : null}
 
       {recentTrip ? (
-        <RecentTripPlaceholder isMorePage={isMorePage} onClick={onClick} />
+        <RecentTripPlaceholder
+          isMorePage={isMorePage}
+          hasReviews={hasReviews}
+          onClick={onClick}
+        />
       ) : null}
       {placeholderText && !recentTrip ? (
         <DefaultPlaceholder placeholderText={placeholderText} />
@@ -74,9 +80,11 @@ function DefaultPlaceholder({ placeholderText }: { placeholderText: string }) {
 
 function RecentTripPlaceholder({
   isMorePage,
+  hasReviews,
   onClick,
 }: {
   isMorePage: boolean
+  hasReviews: boolean
   onClick?: (e: SyntheticEvent, rating?: number) => void
 }) {
   return isMorePage ? (
@@ -108,15 +116,17 @@ function RecentTripPlaceholder({
       <Text size={14} color="gray500">
         선택한 조건의 리뷰가 없습니다.
       </Text>
-      <NavigateToReviewsListButton
-        inverted
-        margin={{ top: 10 }}
-        onClick={onClick}
-      >
-        <Text size={13} color="white" bold>
-          전체 리뷰 보기
-        </Text>
-      </NavigateToReviewsListButton>
+      {hasReviews ? (
+        <NavigateToReviewsListButton
+          inverted
+          margin={{ top: 10 }}
+          onClick={onClick}
+        >
+          <Text size={13} color="white" bold>
+            전체 리뷰 보기
+          </Text>
+        </NavigateToReviewsListButton>
+      ) : null}
     </Container>
   )
 }
