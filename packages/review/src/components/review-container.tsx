@@ -36,7 +36,13 @@ import SortingOptions, {
   ORDER_BY_RECENCY,
   SortingOptionsProps,
 } from './sorting-options'
-import { useClientActions, useReviews } from './hooks'
+import {
+  useClientActions,
+  useDescriptions,
+  useReviews,
+  useMyReview,
+  useReviewCount,
+} from './hooks'
 import MyReviewActionSheet from './my-review-action-sheet'
 import RecentCheckBox from './recent-checkbox'
 
@@ -125,7 +131,6 @@ function ReviewContainer({
 }) {
   const sessionAvailable = useSessionAvailability()
 
-  const [reviews, setReviews] = useState<ReviewData[]>([])
   const [recentTrip, setRecentTrip] = useState(initialRecentTrip)
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
   const app = useTripleClientMetadata()
@@ -135,9 +140,6 @@ function ReviewContainer({
   >([undefined, new Set([])])
   const [totalReviewsCount, setTotalReviewsCount] =
     useState<number>(initialReviewsCount)
-  const [reviewRateDescriptions, setReviewRateDescriptions] = useState<
-    string[]
-  >([])
   const { writeReview, editReview, navigateReviewList, navigateMileageIntro } =
     useClientActions()
   const latestReview = useMemo(
@@ -145,15 +147,7 @@ function ReviewContainer({
     [sortingOption],
   )
 
-  const {
-    reviewCountData,
-    myReviewData,
-    descriptionsData,
-    latestReviewsData,
-    popularReviewsData,
-    isLoaded,
-    moreFetcher,
-  } = useReviews({
+  const { reviewsData, isLoaded, moreFetcher } = useReviews({
     resourceId,
     resourceType,
     recentTrip,
@@ -162,6 +156,9 @@ function ReviewContainer({
       ? SHORTENED_REVIEWS_COUNT_PER_PAGE + 1
       : DEFAULT_REVIEWS_COUNT_PER_PAGE,
   })
+  const descriptionsData = useDescriptions({ resourceId, resourceType })
+  const myReviewData = useMyReview({ resourceId, resourceType })
+  const reviewsCountData = useReviewCount({ resourceId, resourceType })
 
   const setMyReview = useCallback(
     (review) =>
@@ -173,34 +170,6 @@ function ReviewContainer({
   )
 
   useEffect(() => {
-    const data = latestReview
-      ? latestReviewsData?.pages.reduce(
-          (reviews: ReviewData[], { latestReviews }) => [
-            ...reviews,
-            ...latestReviews,
-          ],
-          [],
-        )
-      : popularReviewsData?.pages.reduce(
-          (reviews: ReviewData[], { popularReviews }) => [
-            ...reviews,
-            ...popularReviews,
-          ],
-          [],
-        )
-
-    setReviews(data || [])
-  }, [latestReview, latestReviewsData?.pages, popularReviewsData?.pages])
-
-  useEffect(() => {
-    if (descriptionsData) {
-      setReviewRateDescriptions(
-        descriptionsData.reviewsSpecification?.rating?.description || [],
-      )
-    }
-  }, [descriptionsData])
-
-  useEffect(() => {
     const refreshMyReview = async (params?: { id: string }) => {
       if (!params) {
         return
@@ -209,8 +178,8 @@ function ReviewContainer({
       const { id } = params
 
       if (id && id === resourceId) {
-        if (reviewCountData) {
-          setTotalReviewsCount(reviewCountData.reviewsCount)
+        if (reviewsCountData) {
+          setTotalReviewsCount(reviewsCountData.reviewsCount)
         }
 
         if (myReviewData) {
@@ -232,7 +201,7 @@ function ReviewContainer({
     }
   }, [
     app,
-    reviewCountData,
+    reviewsCountData,
     myReviewData,
     resourceId,
     resourceType,
@@ -284,7 +253,9 @@ function ReviewContainer({
           e.stopPropagation()
 
           navigateReviewList(
-            recentTrip === true && isMorePage === false && reviews.length === 0
+            recentTrip === true &&
+              isMorePage === false &&
+              reviewsData.length === 0
               ? {
                   resourceId,
                   resourceType,
@@ -301,15 +272,15 @@ function ReviewContainer({
           )
         },
         [
-          reviews,
           trackEvent,
           resourceId,
           navigateReviewList,
-          isMorePage,
           recentTrip,
+          isMorePage,
+          reviewsData,
           resourceType,
-          sortingOption,
           regionId,
+          sortingOption,
         ],
       ),
     ),
@@ -337,7 +308,7 @@ function ReviewContainer({
     [],
   )
 
-  const recentReviewsCount = reviews.length
+  const recentReviewsCount = reviewsData.length
   const reviewsCount = recentTrip ? recentReviewsCount : totalReviewsCount
 
   return (
@@ -400,13 +371,13 @@ function ReviewContainer({
               myReview={myReview}
               reviews={
                 recentTrip
-                  ? reviews
-                  : reviews.filter((review) => !myReviewIds.has(review.id))
+                  ? reviewsData
+                  : reviewsData.filter((review) => !myReviewIds.has(review.id))
               }
               regionId={regionId}
               resourceId={resourceId}
               showToast={showToast}
-              reviewRateDescriptions={reviewRateDescriptions}
+              reviewRateDescriptions={descriptionsData}
               fetchNext={!shortened ? moreFetcher : undefined}
             />
           ) : (
