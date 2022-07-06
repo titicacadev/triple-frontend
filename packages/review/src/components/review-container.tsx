@@ -133,7 +133,8 @@ function ReviewContainer({
   const [[myReview, myReviewIds], setMyReviewStatus] = useState<
     [ReviewData | undefined, Set<string>]
   >([undefined, new Set([])])
-  const [reviewsCount, setReviewsCount] = useState<number>(initialReviewsCount)
+  const [totalReviewsCount, setTotalReviewsCount] =
+    useState<number>(initialReviewsCount)
   const [reviewRateDescriptions, setReviewRateDescriptions] = useState<
     string[]
   >([])
@@ -209,7 +210,7 @@ function ReviewContainer({
 
       if (id && id === resourceId) {
         if (reviewCountData) {
-          setReviewsCount(reviewCountData.reviewsCount)
+          setTotalReviewsCount(reviewCountData.reviewsCount)
         }
 
         if (myReviewData) {
@@ -336,7 +337,8 @@ function ReviewContainer({
     [],
   )
 
-  const reviewsCountByType = recentTrip ? reviews.length : reviewsCount
+  const recentReviewsCount = reviews.length
+  const reviewsCount = recentTrip ? recentReviewsCount : totalReviewsCount
 
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
@@ -353,16 +355,16 @@ function ReviewContainer({
             <Text bold size="huge" color="gray" alpha={1} inline>
               리뷰
             </Text>
-            {(reviewsCount || 0) > 0 ? (
+            {(totalReviewsCount || 0) > 0 ? (
               <Text bold size="huge" color="blue" alpha={1} inline>
-                {` ${formatNumber(reviewsCount)}`}
+                {` ${formatNumber(totalReviewsCount)}`}
               </Text>
             ) : null}
           </>
         ) : (
           <>
             <Text bold size="huge" color="blue" alpha={1} inline>
-              {` ${formatNumber(reviewsCount)}`}
+              {` ${formatNumber(totalReviewsCount)}`}
             </Text>
             <Text bold size="huge" color="gray" alpha={1} inline>
               개의 리뷰
@@ -389,7 +391,7 @@ function ReviewContainer({
 
       {isLoaded ? (
         <>
-          {reviewsCountByType > 0 ? (
+          {reviewsCount > 0 ? (
             <ReviewsList
               maxLength={
                 shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined
@@ -412,6 +414,7 @@ function ReviewContainer({
               recentTrip={recentTrip}
               placeholderText={placeholderText}
               resourceType={resourceType}
+              hasReviews={!!(totalReviewsCount > 0)}
               isMorePage={isMorePage}
               onClick={
                 recentTrip
@@ -421,8 +424,7 @@ function ReviewContainer({
             />
           )}
 
-          {reviewsCountByType > SHORTENED_REVIEWS_COUNT_PER_PAGE &&
-          shortened ? (
+          {reviewsCount > SHORTENED_REVIEWS_COUNT_PER_PAGE && shortened ? (
             <Container margin={{ top: 40 }}>
               <Button
                 basic
@@ -435,8 +437,7 @@ function ReviewContainer({
                     : handleFullListButtonClick
                 }
               >
-                {reviewsCountByType - SHORTENED_REVIEWS_COUNT_PER_PAGE}개 리뷰
-                더보기
+                {reviewsCount - SHORTENED_REVIEWS_COUNT_PER_PAGE}개 리뷰 더보기
               </Button>
             </Container>
           ) : null}
