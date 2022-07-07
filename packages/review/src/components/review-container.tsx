@@ -23,6 +23,14 @@ import { useTripleClientMetadata } from '@titicaca/react-triple-client-interface
 import { TransitionType, withLoginCtaModal } from '@titicaca/modals'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 
+import {
+  useClientActions,
+  useDescriptions,
+  useReviews,
+  useMyReview,
+  useReviewCount,
+} from '../services'
+
 import ReviewsPlaceholder from './review-placeholder-with-rating'
 import ReviewsList from './reviews-list'
 import {
@@ -36,13 +44,6 @@ import SortingOptions, {
   ORDER_BY_RECENCY,
   SortingOptionsProps,
 } from './sorting-options'
-import {
-  useClientActions,
-  useDescriptions,
-  useReviews,
-  useMyReview,
-  useReviewCount,
-} from './hooks'
 import MyReviewActionSheet from './my-review-action-sheet'
 import RecentCheckBox from './recent-checkbox'
 

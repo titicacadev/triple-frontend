@@ -9,13 +9,14 @@ import { TransitionType } from '@titicaca/modals'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { Timestamp } from '@titicaca/view-utilities'
 
+import { useClientActions } from '../services'
+
 import ReviewElement, { ReviewElementProps } from './review-element'
 import { HASH_MY_REVIEW_ACTION_SHEET } from './my-review-action-sheet'
 import OthersReviewActionSheet, {
   HASH_REVIEW_ACTION_SHEET,
 } from './others-review-action-sheet'
 import { AppNativeActionProps, ReviewData } from './types'
-import { useClientActions } from './hooks'
 
 export default function ReviewsList({
   myReview,

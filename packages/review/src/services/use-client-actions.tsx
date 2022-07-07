@@ -3,8 +3,8 @@ import qs from 'qs'
 import { useEnv } from '@titicaca/react-contexts'
 import { useNavigate } from '@titicaca/router'
 
-import { ResourceType } from '../types'
-import { writeReview } from '../../data/api'
+import { ResourceType } from '../components/types'
+import { writeReview } from '../data/api'
 
 export function useClientActions() {
   const { appUrlScheme } = useEnv()

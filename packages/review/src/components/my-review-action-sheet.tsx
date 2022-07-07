@@ -6,9 +6,8 @@ import {
   useUriHash,
 } from '@titicaca/react-contexts'
 
-import { useDeleteReviewMutation } from '../data/generated/graphql'
+import { useDeleteReviewMutation, graphqlClient } from '../services'
 
-import { graphqlClient } from './hooks'
 import { ResourceType, ReviewData, ReviewDeleteHandler } from './types'
 
 interface MyReviewActionSheetProps {
