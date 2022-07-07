@@ -69,6 +69,7 @@ const { overrides, ...rest } = createConfig({
     'webURLBase',
     'iOS',
     '_css',
+    'filter_name',
   ],
 })
 

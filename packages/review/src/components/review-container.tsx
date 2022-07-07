@@ -161,6 +161,8 @@ function ReviewContainer({
   const myReviewData = useMyReview({ resourceId, resourceType })
   const reviewsCountData = useReviewCount({ resourceId, resourceType })
 
+  const eventLabel = sortingOption === ORDER_BY_RECENCY ? '최신순' : '추천순'
+
   const setMyReview = useCallback(
     (review) =>
       setMyReviewStatus(([, ids]) => [
@@ -248,6 +250,7 @@ function ReviewContainer({
             fa: {
               action: '리뷰_전체보기',
               item_id: resourceId,
+              tab_name: eventLabel,
             },
           })
 
@@ -275,10 +278,11 @@ function ReviewContainer({
         [
           trackEvent,
           resourceId,
+          eventLabel,
           navigateReviewList,
           recentTrip,
           isMorePage,
-          reviewsData,
+          reviewsData.length,
           resourceType,
           regionId,
           sortingOption,
@@ -291,23 +295,29 @@ function ReviewContainer({
     _,
     sortingOption,
   ) => {
-    const eventLabel = sortingOption === ORDER_BY_RECENCY ? '최신순' : '추천순'
     trackEvent({
       ga: ['리뷰_리뷰정렬', eventLabel],
       fa: {
         action: '리뷰_리뷰정렬',
         sort_order: eventLabel,
         item_id: resourceId,
+        ...(recentTrip && { filter_name: '최근여행' }),
       },
     })
 
     setSortingOption(sortingOption)
   }
 
-  const handleChangeRecentTrip = useCallback(
-    () => setRecentTrip((prevState) => !prevState),
-    [],
-  )
+  const handleRecentTripChange = useCallback(() => {
+    trackEvent({
+      fa: {
+        action: '최근여행_선택',
+        selected: recentTrip,
+      },
+    })
+
+    setRecentTrip((prevState) => !prevState)
+  }, [recentTrip, trackEvent])
 
   const recentReviewsCount = reviewsData.length
   const reviewsCount = recentTrip ? recentReviewsCount : totalReviewsCount
@@ -357,7 +367,7 @@ function ReviewContainer({
         />
         <RecentCheckBox
           isRecentReview={recentTrip}
-          onRecentReviewChange={handleChangeRecentTrip}
+          onRecentReviewChange={handleRecentTripChange}
         />
       </FlexBox>
 
@@ -379,6 +389,7 @@ function ReviewContainer({
               resourceId={resourceId}
               showToast={showToast}
               reviewRateDescriptions={descriptionsData}
+              isMorePage={isMorePage}
               fetchNext={!shortened ? moreFetcher : undefined}
             />
           ) : (

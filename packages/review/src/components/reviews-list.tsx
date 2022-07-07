@@ -28,6 +28,7 @@ export default function ReviewsList({
   maxLength,
   reviewRateDescriptions,
   showToast,
+  isMorePage,
 }: {
   myReview?: ReviewData
   recentTrip: boolean
@@ -38,6 +39,7 @@ export default function ReviewsList({
   maxLength?: number
   reviewRateDescriptions?: string[]
   showToast: AppNativeActionProps['showToast']
+  isMorePage: boolean
 }) {
   const [selectedReview, setSelectedReview] = useState<ReviewData | undefined>(
     undefined,
@@ -93,7 +95,7 @@ export default function ReviewsList({
   )
 
   const handleReviewClick = useCallback(
-    (e: SyntheticEvent, reviewId: string) => {
+    (e: SyntheticEvent, reviewId: string, recentTrip: boolean) => {
       e.preventDefault()
       e.stopPropagation()
       trackEvent({
@@ -102,6 +104,7 @@ export default function ReviewsList({
           action: '리뷰_리뷰선택',
           item_id: resourceId,
           review_id: reviewId,
+          ...(recentTrip && { recent_trip: '최근여행' }),
         },
       })
       navigateReviewDetail({ reviewId, regionId, resourceId })
@@ -164,6 +167,7 @@ export default function ReviewsList({
             resourceId={resourceId}
             DateFormatter={Timestamp}
             onShow={handleShow}
+            isMorePage={isMorePage}
           />
         ))}
       </List>
