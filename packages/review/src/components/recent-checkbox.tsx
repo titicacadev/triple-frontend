@@ -1,6 +1,7 @@
 import { FlexBox, Text, Container } from '@titicaca/core-elements'
 import styled from 'styled-components'
 import { useState } from 'react'
+import { useEventTrackingContext } from '@titicaca/react-contexts'
 
 export interface RecentCheckboxProps {
   isRecentReview: boolean
@@ -80,16 +81,27 @@ export default function RecentCheckBox({
 }
 
 function ToolTip() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [visible, setVisible] = useState(false)
+
+  const { trackEvent } = useEventTrackingContext()
+
   return (
     <Container>
       <OpenIcon
         width={16}
         height={16}
         src="https://assets.triple.guide/images/ico_tooltip_info_black@4x.png"
-        onClick={() => setIsVisible(true)}
+        onClick={() => {
+          setVisible(true)
+
+          trackEvent({
+            fa: {
+              action: '최근여행_툴팁_선택',
+            },
+          })
+        }}
       />
-      {isVisible ? (
+      {visible ? (
         <TooltipContainer>
           <TooltipText
             size={12}
@@ -102,7 +114,7 @@ function ToolTip() {
               width={10}
               height={10}
               src="https://assets.triple.guide/images/ico_tooltip_delete.png"
-              onClick={() => setIsVisible(false)}
+              onClick={() => setVisible(false)}
             />
           </TooltipText>
         </TooltipContainer>

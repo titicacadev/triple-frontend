@@ -39,7 +39,11 @@ export interface ReviewElementProps {
   onUserClick?: ReviewEventHandler
   onUnfoldButtonClick?: ReviewEventHandler
   onMenuClick: ReviewEventHandler
-  onReviewClick: (e: SyntheticEvent, reviewId: string) => void
+  onReviewClick: (
+    e: SyntheticEvent,
+    reviewId: string,
+    recentTrip: boolean,
+  ) => void
   onMessageCountClick: (
     e: SyntheticEvent,
     reviewId: string,
@@ -49,6 +53,7 @@ export interface ReviewElementProps {
   reviewRateDescriptions?: string[]
   DateFormatter?: ComponentType<{ date: string }>
   resourceId: string
+  isMorePage: boolean
 }
 
 const MetaContainer = styled.div`
@@ -121,6 +126,7 @@ export default function ReviewElement({
   DateFormatter,
   reviewRateDescriptions,
   resourceId,
+  isMorePage,
 }: ReviewElementProps) {
   const [unfolded, setUnfolded] = useState(false)
   const { deriveCurrentStateAndCount, updateLikedStatus } =
@@ -159,9 +165,20 @@ export default function ReviewElement({
 
   return (
     <IntersectionObserver
-      onChange={({ isIntersecting }) =>
-        isIntersecting && onShow && onShow(index)
-      }
+      onChange={({ isIntersecting }) => {
+        if (isIntersecting) {
+          trackEvent({
+            fa: {
+              action: `${isMorePage ? '리뷰_전체보기_노출' : '리뷰_노출'}`,
+              item_id: review.id,
+              poi_id: resourceId,
+              ...(review.recentTrip && { recent_trip: '최근여행' }),
+            },
+          })
+
+          onShow && onShow(index)
+        }
+      }}
     >
       <List.Item style={{ paddingTop: 6 }}>
         <User
@@ -172,7 +189,11 @@ export default function ReviewElement({
         {!blindedAt ? (
           <RecentReviewInfo visitDate={visitDate} recentTrip={recentTrip} />
         ) : null}
-        <Content onClick={(e: SyntheticEvent) => onReviewClick(e, review.id)}>
+        <Content
+          onClick={(e: SyntheticEvent) =>
+            onReviewClick(e, review.id, review.recentTrip)
+          }
+        >
           {blindedAt ? (
             '신고가 접수되어 블라인드 처리되었습니다.'
           ) : comment ? (
