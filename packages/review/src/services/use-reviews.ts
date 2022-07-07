@@ -1,14 +1,15 @@
 import { GraphQLClient } from 'graphql-request'
 import { useInfiniteQuery } from 'react-query'
 
+import { ReviewData } from '../components/types'
+
 import {
   GetLatestReviewsDocument,
   GetPopularReviewsDocument,
   useGetMyReviewQuery,
   useGetReviewsCountQuery,
   useGetReviewSpecificationQuery,
-} from '../../data/generated/graphql'
-import { ReviewData } from '../types'
+} from './generated/query'
 
 export const graphqlClient = new GraphQLClient('/api/graphql')
 

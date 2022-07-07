@@ -19,8 +19,8 @@ import { ReviewData } from '../types'
 import {
   useLikeReviewMutation,
   useUnlikeReviewMutation,
-} from '../../data/generated/graphql'
-import { graphqlClient } from '../hooks'
+  graphqlClient,
+} from '../../services'
 
 import User from './user'
 import Comment from './comment'
