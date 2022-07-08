@@ -314,7 +314,7 @@ function ReviewContainer({
     trackEvent({
       fa: {
         action: '최근여행_선택',
-        selected: recentTrip === false,
+        selected: String(recentTrip === false),
       },
     })
   }, [recentTrip, trackEvent])
