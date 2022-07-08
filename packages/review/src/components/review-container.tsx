@@ -161,8 +161,6 @@ function ReviewContainer({
   const myReviewData = useMyReview({ resourceId, resourceType })
   const reviewsCountData = useReviewCount({ resourceId, resourceType })
 
-  const eventLabel = sortingOption === ORDER_BY_RECENCY ? '최신순' : '추천순'
-
   const setMyReview = useCallback(
     (review) =>
       setMyReviewStatus(([, ids]) => [
@@ -246,11 +244,11 @@ function ReviewContainer({
       useCallback(
         (e: SyntheticEvent) => {
           trackEvent({
-            ga: ['리뷰_전체보기'],
+            ga: ['리뷰_리뷰더보기_선택'],
             fa: {
-              action: '리뷰_전체보기',
+              action: '리뷰_리뷰더보기_선택',
               item_id: resourceId,
-              tab_name: eventLabel,
+              tab_name: latestReview ? '최신순' : '추천순',
             },
           })
 
@@ -278,7 +276,7 @@ function ReviewContainer({
         [
           trackEvent,
           resourceId,
-          eventLabel,
+          latestReview,
           navigateReviewList,
           recentTrip,
           isMorePage,
@@ -295,6 +293,8 @@ function ReviewContainer({
     _,
     sortingOption,
   ) => {
+    const eventLabel = sortingOption === ORDER_BY_RECENCY ? '최신순' : '추천순'
+
     trackEvent({
       ga: ['리뷰_리뷰정렬', eventLabel],
       fa: {
