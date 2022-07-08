@@ -309,14 +309,14 @@ function ReviewContainer({
   }
 
   const handleRecentTripChange = useCallback(() => {
+    setRecentTrip((prevState) => !prevState)
+
     trackEvent({
       fa: {
         action: '최근여행_선택',
-        selected: recentTrip,
+        selected: !!recentTrip,
       },
     })
-
-    setRecentTrip((prevState) => !prevState)
   }, [recentTrip, trackEvent])
 
   const recentReviewsCount = reviewsData.length
