@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/poi-list-elements",
-  "version": "8.1.2",
+  "version": "9.0.0",
   "description": "Triple POI UI Elements",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/poi-list-elements",
@@ -21,11 +21,11 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^8.1.2",
-    "@titicaca/resource-list-element": "^8.1.2",
-    "@titicaca/scrap-button": "^8.1.2",
-    "@titicaca/type-definitions": "^8.1.2",
-    "@titicaca/view-utilities": "^8.1.2"
+    "@titicaca/core-elements": "^9.0.0",
+    "@titicaca/resource-list-element": "^9.0.0",
+    "@titicaca/scrap-button": "^9.0.0",
+    "@titicaca/type-definitions": "^9.0.0",
+    "@titicaca/view-utilities": "^9.0.0"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*"
