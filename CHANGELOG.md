@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 9.0.0
+
+### common
+
+- KOREAN_REGEX에서 "|"를 제거. [#2077](https://github.com/titicacadev/triple-frontend/pull/2077)
+
+### map
+
+- Mapview zoom이 제대로 잡히지 않는 오류를 수정합니다. [#2078](https://github.com/titicacadev/triple-frontend/pull/2078)
+
+### core-elements
+
+- input, textarea에 font 초기화 [#2081](https://github.com/titicacadev/triple-frontend/pull/2081)
+
+### review
+
+- 아키텍쳐 및 graphql 적용합니다. [#2079](https://github.com/titicacadev/triple-frontend/pull/2079)
+- 최근방문한 리뷰를 구분하고 관련 내용을 추가합니다. [#2085](https://github.com/titicacadev/triple-frontend/pull/2085)
+
+###
+
 ## 8.1.2
 
 ### ad-banners
