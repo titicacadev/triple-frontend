@@ -19,8 +19,6 @@
 - 아키텍쳐 및 graphql 적용합니다. [#2079](https://github.com/titicacadev/triple-frontend/pull/2079)
 - 최근방문한 리뷰를 구분하고 관련 내용을 추가합니다. [#2085](https://github.com/titicacadev/triple-frontend/pull/2085)
 
-###
-
 ## 8.1.2
 
 ### ad-banners
