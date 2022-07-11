@@ -1,5 +1,11 @@
 # 마이그레이션 가이드
 
+## v8 to v9
+
+### reviews react-query 및 graphql 적용
+
+- react-query의 적용으로 `QueryProvider` 마운트가 필요하게 됐습니다. (app.tsx에 추가해주세요.)
+
 ## v7 to v8
 
 ### triple-email-document
