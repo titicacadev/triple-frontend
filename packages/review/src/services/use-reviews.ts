@@ -65,7 +65,6 @@ export function useReviews({
         ),
         pageParams,
       }),
-      refetchOnWindowFocus: false,
       refetchOnMount: false,
       refetchOnReconnect: false,
     },
@@ -108,7 +107,6 @@ export function useReviews({
         ),
         pageParams,
       }),
-      refetchOnWindowFocus: false,
       refetchOnMount: false,
       refetchOnReconnect: false,
     },
@@ -134,7 +132,6 @@ export function useReviewCount({
       resourceId,
     },
     {
-      refetchOnWindowFocus: false,
       refetchOnMount: false,
       refetchOnReconnect: false,
     },
@@ -155,7 +152,6 @@ export function useDescriptions({
     {
       select: ({ reviewsSpecification }) =>
         reviewsSpecification?.rating?.description || [],
-      refetchOnWindowFocus: false,
       refetchOnMount: false,
       refetchOnReconnect: false,
     },
