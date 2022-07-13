@@ -1,5 +1,6 @@
 import { TransitionModal } from '@titicaca/modals'
-import { Reviews, ReviewLikesProvider, QueryProvider } from '@titicaca/review'
+import { Reviews, ReviewLikesProvider } from '@titicaca/review'
+import { QueryProvider, QueryClient } from 'react-query'
 import {
   UserAgentProvider,
   generateUserAgentValues,
@@ -11,6 +12,14 @@ import {
   sessionContextProviderDecorator,
   tripleClientMetadataDecorator,
 } from '../../decorators'
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      keepPreviousData: true,
+    },
+  },
+})
 
 export default {
   title: 'Reviews / Reviews',
@@ -41,7 +50,7 @@ export default {
       </UserAgentProvider>
     ),
     (Story) => (
-      <QueryProvider>
+      <QueryProvider client={queryClient}>
         <Story />
       </QueryProvider>
     ),
