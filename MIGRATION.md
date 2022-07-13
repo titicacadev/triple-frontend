@@ -4,7 +4,31 @@
 
 ### review 패키지 react-query 적용
 
-- react-query의 적용으로 `QueryProvider` 마운트가 필요하게 됐습니다. (app.tsx에 추가해주세요)
+- react-query의 적용으로 `QueryProvider` 마운트가 필요하게 됐습니다.
+- review 패키지가 필요할 경우 해당 프로젝트에 'react-query'를 install 해주고 아래와 같이 추가해주세요.
+
+```
+// app.tsx
+
+import { QueryProvider } from 'react-query'
+
+// react-query 옵션 링크
+// https://react-query-v2.tanstack.com/reference/useQuery#_top
+// 아래 defaultOptions을 제외하고는 필요에 따라 option이 달라져 해당 옵션만 추가합니다.
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      keepPreviousData: true,
+    },
+  },
+})
+
+<QueryProvider client={queryClient}>
+  <Component {...pageProps} />
+</QueryProvider>
+
+```
 
 ## v7 to v8
 
