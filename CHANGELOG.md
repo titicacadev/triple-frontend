@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 9.0.1
+
+### review
+
+- use-reviews 내 useQuery options을 수정합니다. [#2087](https://github.com/titicacadev/triple-frontend/pull/2087)
+
 ## 9.0.0
 
 ### common
