@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 9.0.2
+
+### review
+
+- 리뷰 패키지 내 QueryProvider export를 제거합니다. [#2089](https://github.com/titicacadev/triple-frontend/pull/2089)
+- Review 스키마의 badges 쿼리 및 타입을 수정하고 추가 디자인 QA를 적용합니다. [#2090](https://github.com/titicacadev/triple-frontend/pull/2090)
+
 ## 9.0.1
 
 ### review
