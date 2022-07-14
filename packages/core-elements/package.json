@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/core-elements",
-  "version": "9.0.1",
+  "version": "9.0.2",
   "description": "Core elements of Triple Design System",
   "keywords": [
     "triple",
@@ -27,11 +27,11 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^9.0.1",
+    "@titicaca/color-palette": "^9.0.2",
     "@titicaca/content-utilities": "4.20.0",
-    "@titicaca/intersection-observer": "^9.0.1",
-    "@titicaca/triple-fallback-action": "^9.0.1",
-    "@titicaca/view-utilities": "^9.0.1",
+    "@titicaca/intersection-observer": "^9.0.2",
+    "@titicaca/triple-fallback-action": "^9.0.2",
+    "@titicaca/view-utilities": "^9.0.2",
     "react-input-mask": "^2.0.4",
     "react-transition-group": "^4.4.2"
   },
