@@ -22,6 +22,14 @@ const NavigateToReviewsListButton = styled(Button)`
   padding: 10px 20px;
 `
 
+const RecentTripContainer = styled(Container)`
+  padding-top: 180px;
+
+  @media only screen and (max-width: 667px) {
+    padding-top: 120px;
+  }
+`
+
 export default function ReviewsPlaceholder({
   isMorePage,
   hasReviews,
@@ -88,7 +96,7 @@ function RecentTripPlaceholder({
   onClick?: (e: SyntheticEvent, rating?: number) => void
 }) {
   return isMorePage ? (
-    <Container padding={{ top: 180, bottom: 60 }} textAlign="center">
+    <RecentTripContainer padding={{ bottom: 60 }} textAlign="center">
       <img
         width={44}
         height={44}
@@ -110,7 +118,7 @@ function RecentTripPlaceholder({
         <br />
         리뷰를 남겨보세요.
       </Text>
-    </Container>
+    </RecentTripContainer>
   ) : (
     <Container padding={{ top: 60, bottom: 60 }}>
       <Text size={14} color="gray500">
