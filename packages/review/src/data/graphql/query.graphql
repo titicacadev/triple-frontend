@@ -14,7 +14,16 @@ fragment BaseReview on Review {
         unregister
         uid
         photo
-        mileage { level point }
+        mileage {
+            level
+            point
+            badges {
+              label
+              icon {
+                image_url
+              }
+            }
+        }
         name
         userBoard {
             trips

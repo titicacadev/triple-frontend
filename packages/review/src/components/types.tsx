@@ -18,7 +18,7 @@ export interface UserData {
   mileage: {
     badges: {
       icon: {
-        imageUrl: string
+        image_url: string
       }
     }[]
     level: number

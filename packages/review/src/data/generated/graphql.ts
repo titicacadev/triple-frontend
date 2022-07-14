@@ -84,6 +84,11 @@ export type BaseReviewFragment = {
       __typename: 'UserMileage'
       level: number | null
       point: number | null
+      badges: Array<{
+        __typename: 'UserMileageBadge'
+        label: string | null
+        icon: { __typename: 'UserMileageIcon'; image_url: string | null } | null
+      } | null> | null
     } | null
     userBoard: {
       __typename: 'UserBoard'
@@ -146,6 +151,14 @@ export type GetPopularReviewsQuery = {
         __typename: 'UserMileage'
         level: number | null
         point: number | null
+        badges: Array<{
+          __typename: 'UserMileageBadge'
+          label: string | null
+          icon: {
+            __typename: 'UserMileageIcon'
+            image_url: string | null
+          } | null
+        } | null> | null
       } | null
       userBoard: {
         __typename: 'UserBoard'
@@ -200,6 +213,14 @@ export type GetLatestReviewsQuery = {
         __typename: 'UserMileage'
         level: number | null
         point: number | null
+        badges: Array<{
+          __typename: 'UserMileageBadge'
+          label: string | null
+          icon: {
+            __typename: 'UserMileageIcon'
+            image_url: string | null
+          } | null
+        } | null> | null
       } | null
       userBoard: {
         __typename: 'UserBoard'
@@ -251,6 +272,14 @@ export type GetMyReviewQuery = {
         __typename: 'UserMileage'
         level: number | null
         point: number | null
+        badges: Array<{
+          __typename: 'UserMileageBadge'
+          label: string | null
+          icon: {
+            __typename: 'UserMileageIcon'
+            image_url: string | null
+          } | null
+        } | null> | null
       } | null
       userBoard: {
         __typename: 'UserBoard'
