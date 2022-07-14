@@ -70,6 +70,7 @@ const { overrides, ...rest } = createConfig({
     'iOS',
     '_css',
     'filter_name',
+    'image_url',
   ],
 })
 

@@ -35,7 +35,9 @@ export default function User({
   return (
     <Container padding={{ bottom: 2 }} display="flex">
       <UserPhoto src={photo} onClick={onClick} />
-      {badges.length > 0 ? <Badge src={badges[0].icon.imageUrl} /> : null}
+      {badges.length > 0 ? (
+        <Badge src={badges[0].icon.image_url || ''} />
+      ) : null}
       <div>
         <Name onClick={onClick}>{name}</Name>
         {!unregister ? (
