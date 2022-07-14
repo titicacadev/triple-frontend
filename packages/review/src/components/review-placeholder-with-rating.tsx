@@ -22,9 +22,10 @@ const NavigateToReviewsListButton = styled(Button)`
   padding: 10px 20px;
 `
 
-const RecentTripContainer = styled(Container)`
-  padding-top: 180px;
-
+const RecentTripContainer = styled(Container).attrs({
+  padding: { top: 180, bottom: 60 },
+  textAlign: 'center',
+})`
   @media only screen and (max-width: 667px) {
     padding-top: 120px;
   }
@@ -96,7 +97,7 @@ function RecentTripPlaceholder({
   onClick?: (e: SyntheticEvent, rating?: number) => void
 }) {
   return isMorePage ? (
-    <RecentTripContainer padding={{ bottom: 60 }} textAlign="center">
+    <RecentTripContainer textAlign="center">
       <img
         width={44}
         height={44}
