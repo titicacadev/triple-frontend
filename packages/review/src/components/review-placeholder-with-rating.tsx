@@ -97,7 +97,7 @@ function RecentTripPlaceholder({
   onClick?: (e: SyntheticEvent, rating?: number) => void
 }) {
   return isMorePage ? (
-    <RecentTripContainer textAlign="center">
+    <RecentTripContainer>
       <img
         width={44}
         height={44}
