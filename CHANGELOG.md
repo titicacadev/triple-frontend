@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 9.0.3
+
+### review
+
+- graphql mutation을 수정합니다. [#2092](https://github.com/titicacadev/triple-frontend/pull/2092)
+
 ## 9.0.2
 
 ### review
