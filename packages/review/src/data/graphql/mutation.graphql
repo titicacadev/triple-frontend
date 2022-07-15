@@ -5,9 +5,7 @@ mutation LikeReview($reviewId: String!) {
 }
 
 mutation UnlikeReview($reviewId: String!) {
-  unlikeReview(reviewId: $reviewId) {
-    id
-  }
+  unlikeReview(reviewId: $reviewId)
 }
 
 mutation DeleteReview($id: ID!) {

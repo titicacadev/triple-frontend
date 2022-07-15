@@ -150,8 +150,8 @@ export type Mutation = {
   __typename?: 'Mutation'
   deleteRecommendationImage: Poi
   deleteReview: Scalars['Boolean']
-  likeReview?: Maybe<ReviewReaction>
-  unlikeReview?: Maybe<ReviewReaction>
+  likeReview: ReviewReaction
+  unlikeReview: Scalars['Boolean']
   uploadRecommendationImage: Poi
 }
 
@@ -702,7 +702,7 @@ export type LikeReviewMutationVariables = Exact<{
 
 export type LikeReviewMutation = {
   __typename?: 'Mutation'
-  likeReview?: { __typename?: 'ReviewReaction'; id: string } | null
+  likeReview: { __typename?: 'ReviewReaction'; id: string }
 }
 
 export type UnlikeReviewMutationVariables = Exact<{
@@ -711,7 +711,7 @@ export type UnlikeReviewMutationVariables = Exact<{
 
 export type UnlikeReviewMutation = {
   __typename?: 'Mutation'
-  unlikeReview?: { __typename?: 'ReviewReaction'; id: string } | null
+  unlikeReview: boolean
 }
 
 export type DeleteReviewMutationVariables = Exact<{
@@ -1081,9 +1081,7 @@ export const useLikeReviewMutation = <TError = unknown, TContext = unknown>(
   )
 export const UnlikeReviewDocument = `
     mutation UnlikeReview($reviewId: String!) {
-  unlikeReview(reviewId: $reviewId) {
-    id
-  }
+  unlikeReview(reviewId: $reviewId)
 }
     `
 export const useUnlikeReviewMutation = <TError = unknown, TContext = unknown>(
