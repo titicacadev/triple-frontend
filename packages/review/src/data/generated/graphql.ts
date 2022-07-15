@@ -39,7 +39,7 @@ export type LikeReviewMutationVariables = Exact<{
 
 export type LikeReviewMutation = {
   __typename: 'Mutation'
-  likeReview: { __typename: 'ReviewReaction'; id: string } | null
+  likeReview: { __typename: 'ReviewReaction'; id: string }
 }
 
 export type UnlikeReviewMutationVariables = Exact<{
@@ -48,7 +48,7 @@ export type UnlikeReviewMutationVariables = Exact<{
 
 export type UnlikeReviewMutation = {
   __typename: 'Mutation'
-  unlikeReview: { __typename: 'ReviewReaction'; id: string } | null
+  unlikeReview: boolean
 }
 
 export type DeleteReviewMutationVariables = Exact<{
