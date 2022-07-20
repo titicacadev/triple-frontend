@@ -11,7 +11,7 @@ export default {
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof ActionSheet> = {
-  storyName: '기본 액션시트',
+  name: '기본 액션시트',
   args: {
     open: false,
     title: '샘플 액션 시트',
@@ -40,7 +40,7 @@ export const Basic: ComponentStoryObj<typeof ActionSheet> = {
 }
 
 export const WithTextMenu: ComponentStoryObj<typeof ActionSheet> = {
-  storyName: '텍스트 메뉴',
+  name: '텍스트 메뉴',
   args: {
     open: true,
     title: '샘플 액션 시트',
@@ -56,7 +56,7 @@ export const WithTextMenu: ComponentStoryObj<typeof ActionSheet> = {
 }
 
 export const WithIconMenu: ComponentStoryObj<typeof ActionSheet> = {
-  storyName: '아이콘 메뉴',
+  name: '아이콘 메뉴',
   args: {
     open: true,
     title: '샘플 액션 시트',
@@ -70,7 +70,7 @@ export const WithIconMenu: ComponentStoryObj<typeof ActionSheet> = {
 }
 
 export const WithForm: ComponentStoryObj<typeof ActionSheet> = {
-  storyName: '액션시트 방향 조절',
+  name: '액션시트 방향 조절',
   args: {
     open: true,
     title: '샘플 액션 시트',
@@ -110,7 +110,7 @@ const CustomHeader = ({ title, help }: { title: string; help: string }) => (
 )
 
 export const WithCustomHeader: ComponentStoryObj<typeof ActionSheet> = {
-  storyName: '커스텀 헤더',
+  name: '커스텀 헤더',
   args: {
     open: true,
     title: (

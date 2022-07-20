@@ -17,7 +17,7 @@ export default {
 } as ComponentMeta<typeof Text>
 
 export const TextElement = {
-  storyName: '텍스트',
+  name: '텍스트',
   args: {
     value: {
       rawHTML: '텍스트 <a href="/regions/:regionId">Inline link</a>',

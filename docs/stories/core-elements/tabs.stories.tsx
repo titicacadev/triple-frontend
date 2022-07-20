@@ -7,7 +7,7 @@ export default {
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof Tabs> = {
-  storyName: '이 근처 장소',
+  name: '이 근처 장소',
   args: {
     value: 'attractions',
     options: [
@@ -18,7 +18,7 @@ export const Basic: ComponentStoryObj<typeof Tabs> = {
 }
 
 export const Line: ComponentStoryObj<typeof Tabs> = {
-  storyName: '라인 탭',
+  name: '라인 탭',
   args: {
     type: 'pointing',
     options: [
@@ -34,7 +34,7 @@ export const Line: ComponentStoryObj<typeof Tabs> = {
 }
 
 export const LineWithScroll: ComponentStoryObj<typeof Tabs> = {
-  storyName: '라인 탭 스크롤',
+  name: '라인 탭 스크롤',
   args: {
     scroll: true,
     type: 'pointing',

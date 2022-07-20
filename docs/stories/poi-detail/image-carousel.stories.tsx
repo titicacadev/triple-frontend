@@ -15,7 +15,7 @@ export default {
 } as Meta
 
 export const AttractionOrRestaurant: ComponentStoryObj<typeof ImageCarousel> = {
-  storyName: 'Attraction / Restaurant',
+  name: 'Attraction / Restaurant',
   decorators: [
     (Story) => (
       <UserAgentProvider
@@ -37,7 +37,7 @@ export const AttractionOrRestaurant: ComponentStoryObj<typeof ImageCarousel> = {
 }
 
 export const Hotel: ComponentStoryObj<typeof ImageCarousel> = {
-  storyName: 'Hotel',
+  name: 'Hotel',
   decorators: [
     (Story) => (
       <UserAgentProvider

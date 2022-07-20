@@ -7,7 +7,7 @@ export default {
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof RecommendedArticles> = {
-  storyName: '일반',
+  name: '일반',
   args: {
     appInstallationCta: {
       inventoryId: 'app-install-cta-footer-hotel-v1',

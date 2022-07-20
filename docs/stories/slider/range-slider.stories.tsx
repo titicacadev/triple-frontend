@@ -7,7 +7,7 @@ export default {
 } as Meta
 
 export const BaseRangeSlider: StoryObj = {
-  storyName: 'RangeSlider',
+  name: 'RangeSlider',
   args: {
     min: 0,
     max: 500000,
@@ -17,7 +17,7 @@ export const BaseRangeSlider: StoryObj = {
 }
 
 export const AdjustedRangeSlider: StoryObj = {
-  storyName: 'AdjustedRangeSlider',
+  name: 'AdjustedRangeSlider',
   args: {
     min: 1,
     max: 31,

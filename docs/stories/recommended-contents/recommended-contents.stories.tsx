@@ -9,7 +9,7 @@ export default {
 } as Meta
 
 export const Primary: StoryObj = {
-  storyName: '추천 컨텐츠',
+  name: '추천 컨텐츠',
   args: {
     contents,
   },

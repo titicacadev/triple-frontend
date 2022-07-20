@@ -12,7 +12,7 @@ export default {
 } as Meta
 
 export const Basic: StoryObj = {
-  storyName: 'direction-finder',
+  name: 'direction-finder',
   args: {
     primaryName: '도쿄 디즈니 랜드',
     localName: '東京ディズニーランド',

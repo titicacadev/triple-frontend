@@ -38,5 +38,5 @@ export default {
 } as Meta
 
 export const BaseScrollSpy: ComponentStoryObj<typeof ScrollSpy> = {
-  storyName: '기본 스크롤 스파이',
+  name: '기본 스크롤 스파이',
 }

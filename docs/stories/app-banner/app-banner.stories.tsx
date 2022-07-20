@@ -7,7 +7,7 @@ export default {
 } as Meta
 
 export const Basic: StoryObj = {
-  storyName: '공유페이지',
+  name: '공유페이지',
   args: {
     title: '트리플 - 해외여행 가이드',
     description: '가이드북, 일정짜기, 길찾기, 맛집',

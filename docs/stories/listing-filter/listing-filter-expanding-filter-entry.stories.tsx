@@ -9,7 +9,7 @@ export default {
 export const Basic: ComponentStoryObj<
   typeof ListingFilter.ExpandingFilterEntry
 > = {
-  storyName: '기본 Expanding',
+  name: '기본 Expanding',
   args: {
     active: true,
     disabled: false,

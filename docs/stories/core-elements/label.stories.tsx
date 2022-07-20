@@ -7,7 +7,7 @@ export default {
 } as Meta
 
 export const Radio: ComponentStoryObj<typeof Label> = {
-  storyName: '라디오',
+  name: '라디오',
   args: {
     radio: true,
     selected: false,
@@ -16,7 +16,7 @@ export const Radio: ComponentStoryObj<typeof Label> = {
 }
 
 export const Promo: ComponentStoryObj<typeof Label> = {
-  storyName: '최대 24%',
+  name: '최대 24%',
   args: {
     promo: true,
     size: 'medium',

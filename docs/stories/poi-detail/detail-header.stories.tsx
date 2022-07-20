@@ -29,7 +29,7 @@ export default {
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof DetailHeader> = {
-  storyName: '기본',
+  name: '기본',
   args: {
     names: {
       primary: '도쿄 디즈니 랜드',
@@ -45,7 +45,7 @@ export const Basic: ComponentStoryObj<typeof DetailHeader> = {
 }
 
 export const WithBusinessHoursNote: ComponentStoryObj<typeof DetailHeader> = {
-  storyName: '영업시간 추가',
+  name: '영업시간 추가',
   args: {
     names: {
       primary: '도쿄 디즈니 랜드',

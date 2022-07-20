@@ -7,7 +7,7 @@ export default {
 } as Meta
 
 export const BaseSingleSlider: StoryObj = {
-  storyName: 'SingleSlider',
+  name: 'SingleSlider',
   args: {
     min: 0,
     max: 500000,

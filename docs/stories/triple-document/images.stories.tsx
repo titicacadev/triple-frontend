@@ -12,7 +12,7 @@ export default {
 } as Meta
 
 export const OneImage: StoryObj = {
-  storyName: '1개',
+  name: '1개',
   args: {
     value: {
       images: [
@@ -28,7 +28,7 @@ export const OneImage: StoryObj = {
 }
 
 export const OneImageWithFrame: StoryObj = {
-  storyName: '1개, 프레임',
+  name: '1개, 프레임',
   args: {
     value: {
       images: [
@@ -44,7 +44,7 @@ export const OneImageWithFrame: StoryObj = {
 }
 
 export const TwoImages: StoryObj = {
-  storyName: '2개',
+  name: '2개',
   args: {
     value: {
       images: IMAGES.map((value) => ({
@@ -56,7 +56,7 @@ export const TwoImages: StoryObj = {
 }
 
 export const TwoImagesWithCaption: StoryObj = {
-  storyName: '2개, 캡션',
+  name: '2개, 캡션',
   args: {
     value: {
       images: IMAGES,
@@ -65,7 +65,7 @@ export const TwoImagesWithCaption: StoryObj = {
 }
 
 export const TwoBlockImages: StoryObj = {
-  storyName: '2개, 블록',
+  name: '2개, 블록',
   args: {
     value: {
       images: IMAGES.map((value) => ({ ...value, title: '' })),

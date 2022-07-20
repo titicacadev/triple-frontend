@@ -15,7 +15,7 @@ export default {
 
 export const Basic: ComponentStoryObj<typeof ListingFilter.PrimaryFilterEntry> =
   {
-    storyName: '기본 Primary',
+    name: '기본 Primary',
     args: {
       disabled: false,
       children: '5.17-5.20, 3명',

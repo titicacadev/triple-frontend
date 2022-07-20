@@ -13,7 +13,7 @@ export default {
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof RangePickerV2> = {
-  storyName: '날짜 구간 선택 컴포넌트 V2',
+  name: '날짜 구간 선택 컴포넌트 V2',
   args: {
     startDate: new Date().toDateString(),
     endDate: new Date(new Date().getTime() + 86400000 * 5).toDateString(),

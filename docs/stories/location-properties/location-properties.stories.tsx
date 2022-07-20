@@ -13,7 +13,7 @@ export default {
 } as Meta
 
 export const Basic: StoryObj = {
-  storyName: '기본 LocationProperties',
+  name: '기본 LocationProperties',
   args: {
     addresses: {
       primary: null,

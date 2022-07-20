@@ -7,7 +7,7 @@ export default {
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof Actions> = {
-  storyName: '일반',
+  name: '일반',
   args: {
     poiId: 'e889ae22-0336-4cf9-8fbb-742b95fd09d0',
     scraped: false,
@@ -20,7 +20,7 @@ export const Basic: ComponentStoryObj<typeof Actions> = {
 }
 
 export const GlobalHotel: ComponentStoryObj<typeof Actions> = {
-  storyName: '호텔 (Global)',
+  name: '호텔 (Global)',
   args: {
     poiId: 'e889ae22-0336-4cf9-8fbb-742b95fd09d0',
     scraped: false,

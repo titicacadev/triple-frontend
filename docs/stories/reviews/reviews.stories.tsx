@@ -61,7 +61,7 @@ export default {
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof Reviews> = {
-  storyName: '일반',
+  name: '일반',
   args: {
     shortened: false,
     reviewsCount: 120,
