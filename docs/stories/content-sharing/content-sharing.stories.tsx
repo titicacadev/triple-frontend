@@ -7,7 +7,7 @@ export default {
 } as Meta
 
 export const Basic: StoryObj = {
-  storyName: '기본 컨텐츠 공유',
+  name: '기본 컨텐츠 공유',
   args: {
     label: '친구들과 여행 정보를 공유하세요',
   },

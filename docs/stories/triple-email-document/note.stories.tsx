@@ -21,7 +21,7 @@ export default {
 } as ComponentMeta<typeof Note>
 
 export const NoteElement = {
-  storyName: '노트',
+  name: '노트',
   args: {
     value: {
       title: '잠깐! 스탑오버(Stopover)란?',

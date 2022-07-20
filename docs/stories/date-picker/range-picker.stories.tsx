@@ -10,7 +10,7 @@ export default {
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof RangePicker> = {
-  storyName: '날짜 구간 선택 컴포넌트',
+  name: '날짜 구간 선택 컴포넌트',
   args: {
     startDate: null,
     endDate: null,

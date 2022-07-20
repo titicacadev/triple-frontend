@@ -7,7 +7,7 @@ export default {
 } as Meta
 
 export const Basic: StoryObj = {
-  storyName: '기본 버튼',
+  name: '기본 버튼',
   args: {
     active: true,
     children: '선택 완료',

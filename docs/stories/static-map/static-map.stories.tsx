@@ -7,7 +7,7 @@ export default {
 } as Meta
 
 export const Basic: StoryObj = {
-  storyName: '기본',
+  name: '기본',
   args: {
     type: 'attraction',
     lat: 35.6328964,

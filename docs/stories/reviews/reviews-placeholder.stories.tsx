@@ -7,7 +7,7 @@ export default {
 } as Meta
 
 export const Basic: StoryObj = {
-  storyName: '플레이스홀더',
+  name: '플레이스홀더',
   args: {
     resourceType: 'tna',
   },

@@ -20,5 +20,5 @@ export default {
 } as Meta
 
 export const ExampleVerificationRequest: StoryObj = {
-  storyName: '기본',
+  name: '기본',
 }

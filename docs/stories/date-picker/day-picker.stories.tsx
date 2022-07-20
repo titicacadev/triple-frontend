@@ -10,7 +10,7 @@ export default {
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof DayPicker> = {
-  storyName: '단일 날짜 선택 컴포넌트',
+  name: '단일 날짜 선택 컴포넌트',
   args: {
     day: null,
     hideTodayLabel: true,

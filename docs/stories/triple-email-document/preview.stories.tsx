@@ -15,7 +15,7 @@ export default {
 } as ComponentMeta<typeof EmailPreview>
 
 export const DefaultPreview = {
-  storyName: '미리보기',
+  name: '미리보기',
   args: {
     value: {
       phrase: '지금 10만원 받고, 트리플로 새해여행 어때요?',

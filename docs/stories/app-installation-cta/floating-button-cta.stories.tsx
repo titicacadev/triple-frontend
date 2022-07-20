@@ -7,7 +7,7 @@ export default {
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof FloatingButtonCTA> = {
-  storyName: '트리플 앱 설치하기 ',
+  name: '트리플 앱 설치하기 ',
   args: {
     appInstallLink: 'https://triple.onelink.me/aZP6/21d43a81',
     fixed: true,

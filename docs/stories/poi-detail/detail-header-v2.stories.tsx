@@ -29,7 +29,7 @@ export default {
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof DetailHeaderV2> = {
-  storyName: 'V2',
+  name: 'V2',
   args: {
     names: {
       primary: '도쿄 디즈니 랜드',

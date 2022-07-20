@@ -10,5 +10,5 @@ export default {
 } as Meta
 
 export const Basic: StoryObj = {
-  storyName: '기본 푸터',
+  name: '기본 푸터',
 }

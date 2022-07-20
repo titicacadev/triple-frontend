@@ -14,7 +14,7 @@ export default {
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof ListingFilter.FilterEntry> = {
-  storyName: '기본 FilterEntry',
+  name: '기본 FilterEntry',
   args: {
     active: true,
     disabled: false,
@@ -23,7 +23,7 @@ export const Basic: ComponentStoryObj<typeof ListingFilter.FilterEntry> = {
 }
 
 export const Underline: ComponentStoryObj<typeof ListingFilter.FilterEntry> = {
-  storyName: 'Underline FilterEntry',
+  name: 'Underline FilterEntry',
   args: {
     underline: true,
     active: true,
@@ -37,7 +37,7 @@ export const Underline: ComponentStoryObj<typeof ListingFilter.FilterEntry> = {
 export const WithIconImage: ComponentStoryObj<
   typeof ListingFilter.FilterEntry
 > = {
-  storyName: 'FilterEntry (with Icon Image)',
+  name: 'FilterEntry (with Icon Image)',
   args: {
     active: true,
     activeIconImage: '/ico-category-food-on.svg',

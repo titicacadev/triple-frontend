@@ -7,7 +7,7 @@ export default {
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof ImageBanner> = {
-  storyName: '트리플 앱 설치하기 ',
+  name: '트리플 앱 설치하기 ',
   args: {
     imgUrl: '',
     installUrl: 'https://triple-dev.titicaca-corp.com',

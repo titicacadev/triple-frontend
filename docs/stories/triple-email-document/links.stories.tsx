@@ -30,28 +30,28 @@ export default {
 } as Meta
 
 export const StyledButtonLinkElement = {
-  storyName: '버튼',
+  name: '버튼',
   args: generateSampleData('button'),
 }
 
 StyledButtonLinkElement.storyName = '버튼'
 
 export const StyledBlockLinkElement = {
-  storyName: '박스',
+  name: '박스',
   args: generateSampleData('block'),
 }
 
 StyledBlockLinkElement.storyName = '블락'
 
 export const StyledLargeButtonLinkElement = {
-  storyName: '대형 버튼',
+  name: '대형 버튼',
   args: generateSampleData('largeButton'),
 }
 
 StyledLargeButtonLinkElement.storyName = '대형 버튼'
 
 export const StyledCompactLargeButtonLinkElement = {
-  storyName: 'compact한 대형 버튼',
+  name: 'compact한 대형 버튼',
   args: generateSampleData('largeCompactButton'),
 }
 

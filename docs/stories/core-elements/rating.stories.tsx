@@ -7,7 +7,7 @@ export default {
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof Rating> = {
-  storyName: '리뷰점수',
+  name: '리뷰점수',
   args: {
     size: 'tiny',
     score: 5,
