@@ -1,4 +1,4 @@
-import { ComponentMeta } from '@storybook/react'
+import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 import { EmailPreview } from '@titicaca/triple-email-document'
 
 export default {
@@ -14,7 +14,7 @@ export default {
   },
 } as ComponentMeta<typeof EmailPreview>
 
-export const DefaultPreview = {
+export const DefaultPreview: ComponentStoryObj<typeof EmailPreview> = {
   name: '미리보기',
   args: {
     value: {
@@ -22,5 +22,3 @@ export const DefaultPreview = {
     },
   },
 }
-
-DefaultPreview.storyName = '미리보기'

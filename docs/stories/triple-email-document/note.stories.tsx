@@ -1,4 +1,4 @@
-import { ComponentMeta } from '@storybook/react'
+import { ComponentMeta, StoryObj } from '@storybook/react'
 import { ELEMENTS } from '@titicaca/triple-email-document'
 
 const { note: Note } = ELEMENTS
@@ -20,7 +20,7 @@ export default {
   },
 } as ComponentMeta<typeof Note>
 
-export const NoteElement = {
+export const NoteElement: StoryObj = {
   name: '노트',
   args: {
     value: {
@@ -29,5 +29,3 @@ export const NoteElement = {
     },
   },
 }
-
-NoteElement.storyName = '노트'
