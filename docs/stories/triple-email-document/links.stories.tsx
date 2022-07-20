@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { ELEMENTS } from '@titicaca/triple-email-document'
 
 const { links: Links } = ELEMENTS
@@ -29,33 +29,25 @@ export default {
   },
 } as Meta
 
-export const StyledButtonLinkElement = {
+export const StyledButtonLinkElement: StoryObj = {
   name: '버튼',
   args: generateSampleData('button'),
 }
 
-StyledButtonLinkElement.storyName = '버튼'
-
-export const StyledBlockLinkElement = {
-  name: '박스',
+export const StyledBlockLinkElement: StoryObj = {
+  name: '블락',
   args: generateSampleData('block'),
 }
 
-StyledBlockLinkElement.storyName = '블락'
-
-export const StyledLargeButtonLinkElement = {
+export const StyledLargeButtonLinkElement: StoryObj = {
   name: '대형 버튼',
   args: generateSampleData('largeButton'),
 }
 
-StyledLargeButtonLinkElement.storyName = '대형 버튼'
-
-export const StyledCompactLargeButtonLinkElement = {
+export const StyledCompactLargeButtonLinkElement: StoryObj = {
   name: 'compact한 대형 버튼',
   args: generateSampleData('largeCompactButton'),
 }
-
-StyledCompactLargeButtonLinkElement.storyName = 'compact한 대형 버튼'
 
 type LinkDisplay = 'button' | 'block' | 'largeButton' | 'largeCompactButton'
 
