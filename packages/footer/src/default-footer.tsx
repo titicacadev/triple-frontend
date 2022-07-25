@@ -158,7 +158,7 @@ export default function DefaultFooter({
               color="gray500"
               padding={{ top: 20 }}
             >
-              주식회사 트리플 | 대표 김연정, 최휘영 <br />
+              주식회사 인터파크 | 대표 김연정, 최휘영 <br />
               사업자 등록번호 581-87-00266
               <br />
               통신판매업 신고번호 2017-성남분당-0275
@@ -176,7 +176,7 @@ export default function DefaultFooter({
           color="gray500"
           margin={{ top: businessExpanded ? 10 : 25, bottom: 20 }}
         >
-          (주) 트리플은 통신판매중개로서 통신판매의 당사자가 아니며 상품
+          (주) 인터파크는 통신판매중개로서 통신판매의 당사자가 아니며 상품
           거래정보 및 거래등에 대해 책임을 지지 않습니다.
         </Text>
 
