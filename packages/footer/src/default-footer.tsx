@@ -163,7 +163,7 @@ export default function DefaultFooter({
               <br />
               통신판매업 신고번호 2022-서울강남-02179
               <br />
-              서울특별시 강남구 삼성로 512(삼성동) <br />
+              서울특별시 강남구 삼성로 512 삼성동빌딩 10층 <br />
               항공, 숙소 및 투어·티켓 문의 1588-2539 <br />
               help@triple-corp.com
             </Text>
