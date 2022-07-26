@@ -176,7 +176,7 @@ export default function DefaultFooter({
           color="gray500"
           margin={{ top: businessExpanded ? 10 : 25, bottom: 20 }}
         >
-          (주) 인터파크는 통신판매중개로서 통신판매의 당사자가 아니며 상품
+          주식회사 인터파크는 통신판매중개로서 통신판매의 당사자가 아니며 상품
           거래정보 및 거래등에 대해 책임을 지지 않습니다.
         </Text>
 
