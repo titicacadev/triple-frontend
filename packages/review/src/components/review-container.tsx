@@ -89,6 +89,16 @@ const BulletRight = styled.img.attrs({
   }
 `
 
+const SpinnerContainer = styled(Container)`
+  /* stylelint-disable-next-line selector-class-pattern */
+  .-triple-fallback-action {
+    position: absolute;
+    top: 150px;
+    left: 0;
+    right: 0;
+  }
+`
+
 function ReviewContainer({
   reviewsCount: initialReviewsCount,
   recentTrip: initialRecentTrip = false,
@@ -454,7 +464,9 @@ function ReviewContainer({
           ) : null}
         </>
       ) : (
-        <Spinner />
+        <SpinnerContainer>
+          <Spinner />
+        </SpinnerContainer>
       )}
 
       {myReview ? (
