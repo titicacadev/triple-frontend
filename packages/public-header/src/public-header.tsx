@@ -1,4 +1,3 @@
-import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 import { white, brightGray } from '@titicaca/color-palette'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
@@ -97,8 +96,7 @@ export function PublicHeader({
   category,
   deeplinkPath,
   disableAutoHide,
-  children,
-}: PropsWithChildren<PublicHeaderProps>) {
+}: PublicHeaderProps) {
   const app = useTripleClientMetadata()
   const visible = useAutoHide(disableAutoHide)
 
@@ -122,14 +120,10 @@ export function PublicHeader({
           )}
         </Logo>
 
-        {children || (
-          <ExtraActionsContainer>
-            <ExtraActionItem href="/my-bookings">내 예약</ExtraActionItem>
-            {deeplinkPath && (
-              <PublicHeaderDeeplink deeplinkPath={deeplinkPath} />
-            )}
-          </ExtraActionsContainer>
-        )}
+        <ExtraActionsContainer>
+          <ExtraActionItem href="/my-bookings">내 예약</ExtraActionItem>
+          {deeplinkPath && <PublicHeaderDeeplink deeplinkPath={deeplinkPath} />}
+        </ExtraActionsContainer>
       </HeaderFrame>
     </Wrapper>
   )
