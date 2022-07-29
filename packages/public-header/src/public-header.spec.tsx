@@ -19,9 +19,7 @@ it('renders nothing inside triple client', () => {
     appName: 'Triple-iOS',
   })
 
-  const mockFn = jest.fn()
-
-  const { container } = render(<PublicHeader onClick={mockFn} />)
+  const { container } = render(<PublicHeader />)
 
   expect(container.childNodes.length).toBe(0)
 })
@@ -33,9 +31,7 @@ it('renders header outside triple client', () => {
     >
   ).mockReturnValue(null)
 
-  const mockFn = jest.fn()
-
-  const { container } = render(<PublicHeader onClick={mockFn} />)
+  const { container } = render(<PublicHeader />)
 
   expect(container.childNodes.length).toBe(1)
 })
