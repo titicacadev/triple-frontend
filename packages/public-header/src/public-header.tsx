@@ -91,7 +91,7 @@ export interface PublicHeaderProps {
    */
   deeplinkPath?: string
   disableAutoHide?: boolean
-  onClick: () => void
+  onClick?: () => void
   linkLabel?: string
 }
 
