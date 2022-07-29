@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import styled from 'styled-components'
 import { white, brightGray } from '@titicaca/color-palette'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
@@ -90,15 +91,28 @@ export interface PublicHeaderProps {
    */
   deeplinkPath?: string
   disableAutoHide?: boolean
+  onClick: () => void
+  linkLabel?: string
 }
 
 export function PublicHeader({
   category,
   deeplinkPath,
   disableAutoHide,
+  onClick,
+  linkLabel,
 }: PublicHeaderProps) {
   const app = useTripleClientMetadata()
   const visible = useAutoHide(disableAutoHide)
+
+  const handleClick = useCallback(() => {
+    if (onClick) {
+      onClick()
+    } else {
+      document.location.href = '/my-bookings'
+    }
+    return false
+  }, [onClick])
 
   if (app) {
     return null
@@ -121,7 +135,9 @@ export function PublicHeader({
         </Logo>
 
         <ExtraActionsContainer>
-          <ExtraActionItem href="/my-bookings">내 예약</ExtraActionItem>
+          <ExtraActionItem href="#" onClick={handleClick}>
+            {linkLabel || '내 예약'}
+          </ExtraActionItem>
           {deeplinkPath && <PublicHeaderDeeplink deeplinkPath={deeplinkPath} />}
         </ExtraActionsContainer>
       </HeaderFrame>
