@@ -91,6 +91,7 @@ export interface PublicHeaderProps {
   deeplinkPath?: string
   disableAutoHide?: boolean
   onClick?: () => void
+  linkHref?: string
   linkLabel?: string
 }
 
@@ -99,7 +100,8 @@ export function PublicHeader({
   deeplinkPath,
   disableAutoHide,
   onClick,
-  linkLabel,
+  linkHref = '/my-bookings',
+  linkLabel = '내 예약',
 }: PublicHeaderProps) {
   const app = useTripleClientMetadata()
   const visible = useAutoHide(disableAutoHide)
@@ -125,18 +127,8 @@ export function PublicHeader({
         </Logo>
 
         <ExtraActionsContainer>
-          <ExtraActionItem
-            href="#"
-            onClick={() => {
-              if (onClick) {
-                onClick()
-              } else {
-                document.location.href = '/my-bookings'
-              }
-              return false
-            }}
-          >
-            {linkLabel || '내 예약'}
+          <ExtraActionItem href={linkHref} onClick={onClick}>
+            {linkLabel}
           </ExtraActionItem>
           {deeplinkPath && <PublicHeaderDeeplink deeplinkPath={deeplinkPath} />}
         </ExtraActionsContainer>
