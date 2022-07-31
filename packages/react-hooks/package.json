@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/react-hooks",
-  "version": "9.0.3",
+  "version": "9.1.0",
   "description": "triple frontend custom hooks",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/react-hooks",
@@ -21,7 +21,7 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/fetcher": "^9.0.3",
+    "@titicaca/fetcher": "^9.1.0",
     "lottie-web": "^5.7.4",
     "react-fast-compare": "^2.0.4",
     "scroll-to-element": "^2.0.3"

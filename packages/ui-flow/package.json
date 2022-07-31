@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/ui-flow",
-  "version": "9.0.3",
+  "version": "9.1.0",
   "description": "Functions, hooks, and/or components used to construct general UI flow",
   "keywords": [
     "session",
@@ -27,8 +27,8 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/modals": "^9.0.3",
-    "@titicaca/react-triple-client-interfaces": "^9.0.3",
+    "@titicaca/modals": "^9.1.0",
+    "@titicaca/react-triple-client-interfaces": "^9.1.0",
     "qs": "^6.9.0"
   },
   "peerDependencies": {
