@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 9.1.0
+
+### common
+
+- storybook 6.5로 업데이트 [#2094](https://github.com/titicacadev/triple-frontend/pull/2094)
+
+### footer
+
+- [footer] 사명 변경 [#2095](https://github.com/titicacadev/triple-frontend/pull/2095)
+
+### public-header
+
+- public-header props를 추가합니다. [#2097](https://github.com/titicacadev/triple-frontend/pull/2097)
+
 ## 9.0.3
 
 ### review
