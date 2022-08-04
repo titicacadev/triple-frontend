@@ -2,7 +2,7 @@ import { ReviewsPlaceholder } from '@titicaca/review'
 import { Meta, StoryObj } from '@storybook/react'
 
 export default {
-  title: 'Reviews / Review Placeholder',
+  title: 'Review / Review Placeholder',
   component: ReviewsPlaceholder,
 } as Meta
 
