@@ -22,7 +22,7 @@ const queryClient = new QueryClient({
 })
 
 export default {
-  title: 'Reviews / Reviews',
+  title: 'Review / Reviews',
   component: Reviews,
   decorators: [
     (Story) => (
