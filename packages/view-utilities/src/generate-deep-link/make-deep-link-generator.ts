@@ -59,7 +59,7 @@ export function makeDeepLinkGenerator({
     channel,
     partner,
     clickLookBack,
-    isRetargeting,
+    isRetargeting = true,
     reengagementWindow,
     webUrl,
   }) => {
