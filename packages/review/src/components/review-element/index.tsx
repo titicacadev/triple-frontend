@@ -93,12 +93,11 @@ const LikeButton = styled(Container)<{ liked?: boolean }>`
   text-decoration: none;
   background-size: 18px 18px;
   background-repeat: no-repeat;
-  ${({ liked }) => css`
-    color: var(${liked ? '--color-blue' : '--color-gray400'});
-    background-image: url('https://assets.triple.guide/images/btn-lounge-thanks-${liked
-      ? 'on'
-      : 'off'}@3x.png');
-  `};
+  color: ${({ liked }) => (liked ? '--color-blue' : '--color-gray400')};
+  background-image: ${(liked) =>
+    liked
+      ? "url('https://assets.triple.guide/images/btn-lounge-thanks-on')"
+      : "url('https://assets.triple.guide/images/btn-lounge-thanks-off')"};
 `
 
 export default function ReviewElement({
