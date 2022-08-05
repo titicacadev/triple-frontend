@@ -44,6 +44,7 @@ test('it appends proper onelink attribution queries', () => {
       af_ad: 'video',
       af_keywords: 'triple',
       af_channel: 'naver',
+      is_retargeting: true,
     }),
   })
 
@@ -76,6 +77,7 @@ test('it allows pid override', () => {
       af_dp: `${APP_SCHEME}://${APP_PATH}`,
       af_web_dp: WEB_URL_BASE,
       pid: overridenPid,
+      is_retargeting: true,
     }),
   })
 
@@ -107,6 +109,7 @@ test('it provides reengagement window', () => {
       af_web_dp: WEB_URL_BASE,
       pid: PID,
       af_reengagement_window: '7d',
+      is_retargeting: true,
     }),
   })
 
@@ -139,6 +142,7 @@ test('it allows af_web_dp override', () => {
       af_dp: `${APP_SCHEME}://${APP_PATH}`,
       af_web_dp: overridenUrl,
       pid: PID,
+      is_retargeting: true,
     }),
   })
 

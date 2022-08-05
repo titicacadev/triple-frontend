@@ -77,8 +77,8 @@ export function makeDeepLinkGenerator({
       af_channel: channel,
       af_prt: partner,
       af_click_lookback: clickLookBack,
-      is_retargeting: isRetargeting,
       af_reengagement_window: reengagementWindow,
+      is_retargeting: isRetargeting,
     })
 
     return generateUrl({
