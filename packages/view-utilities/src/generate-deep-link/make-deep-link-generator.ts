@@ -30,7 +30,6 @@ interface GeneratorParams {
   channel?: string
   partner?: string
   clickLookBack?: string
-  isRetargeting?: boolean
   reengagementWindow?: string
   webUrl?: string
 }
@@ -59,7 +58,6 @@ export function makeDeepLinkGenerator({
     channel,
     partner,
     clickLookBack,
-    isRetargeting = true,
     reengagementWindow,
     webUrl,
   }) => {
@@ -78,7 +76,7 @@ export function makeDeepLinkGenerator({
       af_prt: partner,
       af_click_lookback: clickLookBack,
       af_reengagement_window: reengagementWindow,
-      is_retargeting: isRetargeting,
+      is_retargeting: true,
     })
 
     return generateUrl({
