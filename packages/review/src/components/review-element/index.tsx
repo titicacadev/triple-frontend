@@ -25,7 +25,7 @@ import {
 import User from './user'
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
-import Images from './images'
+import Media from './media'
 
 type ReviewEventHandler<T = Element, E = Event> = (
   e: SyntheticEvent<T, E>,
@@ -157,7 +157,15 @@ export default function ReviewElement({
         ? unlikeReview({ reviewId: review.id })
         : likeReview({ reviewId: review.id })
       updateLikedStatus({ [review.id]: !liked }, resourceId)
-    }, [liked, resourceId, review, trackEvent, updateLikedStatus]),
+    }, [
+      likeReview,
+      liked,
+      resourceId,
+      review.id,
+      trackEvent,
+      unlikeReview,
+      updateLikedStatus,
+    ]),
   )
 
   const reviewedAt = moment(originReviewedAt).format()
@@ -225,7 +233,7 @@ export default function ReviewElement({
           )}
           {!blindedAt && media && media.length > 0 ? (
             <Container margin={{ top: 10 }}>
-              <Images images={media} />
+              <Media media={media} />
             </Container>
           ) : null}
         </Content>
