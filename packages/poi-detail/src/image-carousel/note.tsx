@@ -27,11 +27,13 @@ const NoteContainer = styled.div<{
       : null}
 `
 
+interface PermanetlyCloseNoteProps {
+  bottomBorderRadius?: number
+}
+
 export function PermanentlyClosedNote({
   bottomBorderRadius = 6,
-}: {
-  bottomBorderRadius?: number
-}) {
+}: PermanetlyCloseNoteProps) {
   return (
     <NoteContainer warning bottomBorderRadius={bottomBorderRadius}>
       <Text bold size="small" color="white">
@@ -41,19 +43,25 @@ export function PermanentlyClosedNote({
   )
 }
 
+interface BusinessHourNoteProps {
+  bottomBorderRadius?: number
+  currentBusinessHours?:
+    | string
+    | {
+        from: number
+        to: number
+        dayOfWeek: number
+      }
+  todayBusinessHours?: string
+  onClick: () => void
+}
+
 export function BusinessHoursNote({
   bottomBorderRadius = 6,
   currentBusinessHours,
   todayBusinessHours,
   onClick,
-}: {
-  bottomBorderRadius?: number
-  currentBusinessHours?:
-    | string
-    | { from: number; to: number; dayOfWeek: number }
-  todayBusinessHours?: string
-  onClick: () => void
-}) {
+}: BusinessHourNoteProps) {
   return (
     <NoteContainer
       onClick={onClick}
