@@ -34,15 +34,17 @@ const ImagePlaceholderContent = styled.div<{ large?: boolean }>`
         `};
 `
 
+interface ImagePlaceholderProps {
+  large?: boolean
+  noContent?: boolean
+  onClick: () => void
+}
+
 function ImagePlaceholder({
   large,
   noContent,
   onClick,
-}: {
-  large?: boolean
-  noContent?: boolean
-  onClick: () => void
-}) {
+}: ImagePlaceholderProps) {
   return (
     <ImagePlaceholderContainer large={large} onClick={onClick}>
       <ImagePlaceholderContent large={large}>
@@ -59,13 +61,15 @@ function ImagePlaceholder({
   )
 }
 
+interface ResponsiveImagePlaceholderProps {
+  onClick: () => void
+  noContent?: boolean
+}
+
 export default function ResponsiveImagePlaceholder({
   onClick,
   noContent,
-}: {
-  onClick: () => void
-  noContent?: boolean
-}) {
+}: ResponsiveImagePlaceholderProps) {
   return (
     <>
       <Responsive maxWidth={706}>
