@@ -1,24 +1,24 @@
 import { useImagesContext } from '@titicaca/react-contexts'
 
-import CarouselSection from './carousel-section'
+import CarouselSection, { CarouselSectionProps } from './carousel-section'
 
-export default function ImageCarousel(
-  props: Pick<
-    Parameters<typeof CarouselSection>['0'],
-    | 'permanentlyClosed'
-    | 'currentBusinessHours'
-    | 'todayBusinessHours'
-    | 'onBusinessHoursClick'
-    | 'onImageClick'
-    | 'onCtaClick'
-    | 'onPlaceholderClick'
-    | 'margin'
-    | 'optimized'
-    | 'padding'
-    | 'borderRadius'
-    | 'height'
-  >,
-) {
+type ImageCarouselProps = Pick<
+  CarouselSectionProps,
+  | 'permanentlyClosed'
+  | 'currentBusinessHours'
+  | 'todayBusinessHours'
+  | 'onBusinessHoursClick'
+  | 'onImageClick'
+  | 'onCtaClick'
+  | 'onPlaceholderClick'
+  | 'margin'
+  | 'optimized'
+  | 'padding'
+  | 'borderRadius'
+  | 'height'
+>
+
+export default function ImageCarousel(props: ImageCarouselProps) {
   const {
     images,
     loading,

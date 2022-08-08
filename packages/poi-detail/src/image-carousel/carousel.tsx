@@ -30,6 +30,17 @@ function FixedRatio({ ratio, children }: PropsWithChildren<{ ratio: number }>) {
   )
 }
 
+export interface CarouselProps {
+  images: CarouselImageMeta[]
+  totalImagesCount: number
+  onImageClick: (image: ImageMeta) => void
+  onCtaClick: () => void
+  onImagesFetch: () => void
+  optimized?: boolean
+  borderRadius?: number
+  height?: number
+}
+
 export default function Carousel({
   images,
   totalImagesCount,
@@ -39,16 +50,7 @@ export default function Carousel({
   optimized,
   borderRadius = 6,
   height,
-}: {
-  images: CarouselImageMeta[]
-  totalImagesCount: number
-  onImageClick: (image: ImageMeta) => void
-  onCtaClick: () => void
-  onImagesFetch: () => void
-  optimized?: boolean
-  borderRadius?: number
-  height?: number
-}) {
+}: CarouselProps) {
   const app = useTripleClientMetadata()
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
   const [currentPage, setCurrentPage] = useState(0)
