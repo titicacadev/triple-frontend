@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/user-verification",
-  "version": "9.1.0",
+  "version": "9.2.0",
   "description": "user verification",
   "keywords": [
     "triple",
@@ -27,12 +27,12 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^9.1.0",
-    "@titicaca/fetcher": "^9.1.0",
-    "@titicaca/modals": "^9.1.0",
-    "@titicaca/react-hooks": "^9.1.0",
-    "@titicaca/react-triple-client-interfaces": "^9.1.0",
-    "@titicaca/router": "^9.1.0"
+    "@titicaca/core-elements": "^9.2.0",
+    "@titicaca/fetcher": "^9.2.0",
+    "@titicaca/modals": "^9.2.0",
+    "@titicaca/react-hooks": "^9.2.0",
+    "@titicaca/react-triple-client-interfaces": "^9.2.0",
+    "@titicaca/router": "^9.2.0"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*"
