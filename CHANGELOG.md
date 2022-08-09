@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 9.2.0
+
+### view-utilities
+
+- AppsFlyer 파라미터 중 is_retargeting 값을 true로 설정합니다. [#2099](https://github.com/titicacadev/triple-frontend/pull/2099)
+
 ## 9.1.0
 
 ### common
