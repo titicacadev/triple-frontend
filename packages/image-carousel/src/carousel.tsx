@@ -1,10 +1,4 @@
-import {
-  ComponentType,
-  PropsWithChildren,
-  PureComponent,
-  ReactNode,
-  RefObject,
-} from 'react'
+import { ReactNode, RefObject, useState } from 'react'
 import styled from 'styled-components'
 import { FlickingEvent, FlickingOptions } from '@egjs/flicking'
 import Flicking, { FlickingProps } from '@egjs/react-flicking'
@@ -32,90 +26,69 @@ const TopRightControl = styled.div`
   z-index: 2;
 `
 
-export default class Carousel extends PureComponent<
-  PropsWithChildren<CarouselProps>,
-  { currentIndex: number }
-> {
-  public static defaultProps: Partial<Carousel['props']> = {
-    zIndex: 1,
-    defaultIndex: 0,
-    autoResize: true,
-    horizontal: true,
-    bounce: [0, 0],
-    duration: 100,
+function Carousel({
+  margin,
+  borderRadius,
+  pageLabelRenderer,
+  children,
+  flickingRef,
+  zIndex = 1,
+  defaultIndex = 0,
+  autoResize = true,
+  horizontal = true,
+  bounce = [0, 0],
+  duration = 100,
+  onMoveStart,
+  onMove,
+  onMoveEnd,
+}: CarouselProps) {
+  const [currentIndex, setCurrentIndex] = useState(defaultIndex)
+
+  const handleMoveStart = (e: FlickingEvent) => {
+    onMoveStart?.(e)
   }
 
-  public state = { currentIndex: 0 }
-
-  public componentDidMount() {
-    this.setState({
-      currentIndex: this.props.defaultIndex || 0,
-    })
+  const handleMove = (e: FlickingEvent) => {
+    onMove?.(e)
   }
 
-  public handleMoveStart = (e: FlickingEvent) => {
-    const { onMoveStart } = this.props
+  const handleMoveEnd = (e: FlickingEvent) => {
+    setCurrentIndex(e.index)
 
-    onMoveStart && onMoveStart(e)
+    onMoveEnd?.(e)
   }
 
-  public handleMove = (e: FlickingEvent) => {
-    const { onMove } = this.props
-
-    onMove && onMove(e)
+  const flickingProps = {
+    zIndex,
+    defaultIndex,
+    autoResize,
+    horizontal,
+    bounce,
+    duration,
+    collectStatistics: false,
   }
 
-  public handleMoveEnd = (e: FlickingEvent) => {
-    const { onMoveEnd } = this.props
+  const PageLabel = pageLabelRenderer({ currentIndex })
 
-    this.setState({
-      currentIndex: e.index,
-    })
-
-    onMoveEnd && onMoveEnd(e)
-  }
-
-  public get flickingProps(): Partial<FlickingProps & FlickingOptions> {
-    const { zIndex, defaultIndex, autoResize, horizontal, bounce, duration } =
-      this.props
-
-    return {
-      zIndex,
-      defaultIndex,
-      autoResize,
-      horizontal,
-      bounce,
-      duration,
-      collectStatistics: false,
-      onMoveStart: this.handleMoveStart,
-      onMove: this.handleMove,
-      onMoveEnd: this.handleMoveEnd,
-    }
-  }
-
-  public render() {
-    const { margin, borderRadius, pageLabelRenderer, children, flickingRef } =
-      this.props
-    const PageLabel: ComponentType<{ currentIndex: number }> = ({
-      currentIndex,
-    }) => {
-      const Label = pageLabelRenderer({ currentIndex })
-
-      return Label ? <TopRightControl>{Label}</TopRightControl> : null
-    }
-
-    return (
-      <CarouselContainer
-        position="relative"
-        margin={margin}
-        borderRadius={borderRadius}
+  return (
+    <CarouselContainer
+      position="relative"
+      margin={margin}
+      borderRadius={borderRadius}
+    >
+      <Flicking
+        ref={flickingRef}
+        onMoveStart={handleMoveStart}
+        onMove={handleMove}
+        onMoveEnd={handleMoveEnd}
+        {...flickingProps}
       >
-        <Flicking ref={flickingRef} {...this.flickingProps}>
-          {children}
-        </Flicking>
+        {children}
+      </Flicking>
 
-        <PageLabel currentIndex={this.state.currentIndex} />
-      </CarouselContainer>
-    )
-  }
+      {PageLabel ? <TopRightControl>{PageLabel}</TopRightControl> : null}
+    </CarouselContainer>
+  )
 }
+
+export default Carousel
