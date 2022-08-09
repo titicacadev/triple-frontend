@@ -3,6 +3,7 @@ import ImageCarousel, { PageLabel } from '@titicaca/image-carousel'
 import { ImageSource } from '@titicaca/core-elements'
 
 import IMAGES from '../__mocks__/image-carousel.sample.json'
+import VIDEOS from '../__mocks__/video-carousel.sample.json'
 
 export default {
   title: 'image-carousel / Image Carousel',
@@ -58,3 +59,28 @@ export const Basic = () => {
   )
 }
 Basic.storyName = '일반'
+
+export const Video = () => {
+  return (
+    <ImageCarousel
+      size="medium"
+      images={VIDEOS}
+      currentPage={0}
+      borderRadius={6}
+      ImageSource={ImageSource}
+      showMoreRenderer={({ currentIndex, totalCount }) => {
+        const result =
+          totalCount > 5 && currentIndex === totalCount - 1 ? (
+            <OverlayContent />
+          ) : null
+        return result
+      }}
+      pageLabelRenderer={({ currentIndex, totalCount }) =>
+        totalCount <= 5 || currentIndex < totalCount - 1 ? (
+          <PageLabel currentIndex={currentIndex} totalCount={totalCount} />
+        ) : null
+      }
+    />
+  )
+}
+Video.storyName = '비디오'
