@@ -1,6 +1,5 @@
 import '@testing-library/jest-dom'
 import 'jest-styled-components'
-import { useRouter } from 'next/router'
 import { fireEvent, render } from '@testing-library/react'
 import { useSessionAvailability } from '@titicaca/react-contexts'
 import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'
@@ -15,11 +14,12 @@ import { useWebUrlBaseAdder } from '../common/add-web-url-base'
 
 import { LocalLink } from './link'
 
-jest.mock('next/router')
 jest.mock('@titicaca/react-contexts')
 jest.mock('@titicaca/modals')
 jest.mock('@titicaca/react-triple-client-interfaces')
 jest.mock('../common/add-web-url-base')
+
+const useRouter = jest.spyOn(require('next/router'), 'useRouter')
 
 test('주어진 href에 basePath를 더해서 anchor에 제공합니다.', () => {
   const { basePath } = prepareTest()
@@ -145,11 +145,7 @@ function prepareTest({
   const showLoginCtaModal = jest.fn()
   const webUrlBase = 'https://triple.guide'
 
-  ;(
-    useRouter as unknown as jest.MockedFunction<
-      () => Pick<ReturnType<typeof useRouter>, 'basePath'>
-    >
-  ).mockImplementation(() => ({ basePath, push: nextPush }))
+  useRouter.mockImplementation(() => ({ basePath, push: nextPush }))
   ;(
     useTripleClientMetadata as unknown as jest.MockedFunction<
       () => ReturnType<typeof useTripleClientMetadata>
