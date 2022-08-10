@@ -15,8 +15,13 @@ export function useScrollToElement() {
         return scrollingTimerRef.current !== null
       },
       scrollToElement: (
-        el: Parameters<typeof scrollToElement>[0] | null,
-        options?: Parameters<typeof scrollToElement>[1],
+        el: string | HTMLElement | Element | null,
+        options?: {
+          offset: number
+          align?: 'top' | 'middle' | 'bottom' | undefined
+          ease?: string | undefined
+          duration?: number | undefined
+        },
       ) => {
         if (!el) {
           return
