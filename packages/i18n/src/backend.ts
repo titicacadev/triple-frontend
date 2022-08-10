@@ -2,7 +2,7 @@
 
 import { get } from '@titicaca/fetcher'
 
-export default class I18nextFetchBackend {
+export default class I18nextTripleWebAssetsBackend {
   public type: 'backend' = 'backend'
 
   public static type: 'backend' = 'backend'
