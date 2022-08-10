@@ -1,3 +1,5 @@
+/* eslint-disable promise/no-callback-in-promise */
+/* eslint-disable promise/prefer-await-to-then */
 /* eslint-disable promise/prefer-await-to-callbacks */
 
 import { get } from '@titicaca/fetcher'
@@ -12,23 +14,28 @@ export default class I18nextTripleWebAssetsBackend {
     namespace: string,
     callback: (error: Error | null, data: unknown) => void,
   ) {
-    return this.loadUrl(
-      `https://assets.triple.guide/locales/${language}/${namespace}.json`,
-      callback,
-    )
+    fetchLocaleAsset({ language, namespace })
+      .then((asset) => callback(null, asset))
+      .catch((error) => {
+        callback(error, null)
+      })
+  }
+}
+
+async function fetchLocaleAsset({
+  language,
+  namespace,
+}: {
+  language: string
+  namespace: string
+}) {
+  const assetUrl = `https://assets.triple.guide/locales/${language}/${namespace}.json`
+  const response = await get(assetUrl)
+
+  if (response.ok === true) {
+    const { parsedBody } = response
+    return parsedBody
   }
 
-  public async loadUrl(
-    url: string,
-    callback: (error: Error | null, data: unknown) => void,
-  ) {
-    const response = await get(url)
-
-    if (response.ok === true) {
-      const { parsedBody } = response
-      callback(null, parsedBody)
-    } else {
-      callback(new Error(`Failed to fetch ${url}`), false)
-    }
-  }
+  throw new Error(`Fail to fetch ${assetUrl}`)
 }
