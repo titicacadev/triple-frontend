@@ -48,7 +48,7 @@ async function fetchLocaleAsset({
     ? DEV_TRIPLE_WEB_ASSETS_URL
     : PRODUCTION_TRIPLE_WEB_ASSETS_URL
   const assetUrl = `${urlBase}/locales/${language}/${namespace}.json`
-  const response = await get(assetUrl)
+  const response = await get<Record<string, string>>(assetUrl)
 
   if (response.ok === true) {
     const { parsedBody } = response
