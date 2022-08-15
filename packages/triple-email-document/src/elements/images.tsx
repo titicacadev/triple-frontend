@@ -2,7 +2,7 @@ import { Children, PropsWithChildren } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
 import styled from 'styled-components'
 
-import { FluidTable, Box } from '../common'
+import { FluidTable, Box, RatioBox } from '../common'
 
 export type ExtendedImageMeta = ImageMeta & {
   link?: ImageMeta['link'] & {
@@ -18,10 +18,20 @@ export interface ImageDocument {
   }
 }
 
-const Img = styled.img<{ borderRadius: number }>`
+const Img = styled.img<{ borderRadius: number; absolute: boolean }>`
   width: 100%;
+  height: 100%;
   display: block;
   border-radius: ${({ borderRadius }) => `${borderRadius}px`};
+
+  ${({ absolute }) =>
+    absolute &&
+    `
+    position: absolute;
+    top: 0;
+  `}
+
+  z-index : 0;
 `
 
 const Tr = styled.tr<{ tdWidth: number }>`
@@ -121,25 +131,36 @@ function Image({
     sizes: {
       full: { url },
     },
+    frame = 'original',
   },
   borderRadius,
 }: {
   image: ExtendedImageMeta
   borderRadius: number
 }) {
+  const originalFrame = frame === 'original'
+
   return (
     <FluidTable>
       <tbody>
         <tr>
-          <Box>
+          <RatioBox frame={frame} overflowHidden={!originalFrame}>
             {link ? (
               <ImageLink href={link.href} ses:tags={`links:${link.id}`}>
-                <Img src={url} borderRadius={borderRadius} />
+                <Img
+                  src={url}
+                  borderRadius={borderRadius}
+                  absolute={!originalFrame}
+                />
               </ImageLink>
             ) : (
-              <Img src={url} borderRadius={borderRadius} />
+              <Img
+                src={url}
+                borderRadius={borderRadius}
+                absolute={!originalFrame}
+              />
             )}
-          </Box>
+          </RatioBox>
         </tr>
 
         {title ? (
