@@ -65,3 +65,13 @@ export interface AppNativeActionProps {
   showToast: (message: string) => void
   notifyReviewDeleted: (resourceId: string, reviewId: string) => void
 }
+
+export interface TranslatedReview {
+  id: string
+  source: string
+  target: string
+  origin: string
+  translated: string
+  translator: string
+  createdAt: string
+}
