@@ -1,7 +1,7 @@
-import { TranslatedReview } from './types'
+import { TranslatedReviewResult } from './types'
 
 export function makeSuccessfullyTranslatedReviews(
-  translatedReviews: TranslatedReview[],
+  translatedReviews: TranslatedReviewResult[],
 ) {
   return new Map<string, string>(
     translatedReviews.map(({ id, translated }) => [id, translated]),

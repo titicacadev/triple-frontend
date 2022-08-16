@@ -1,6 +1,6 @@
 import { post, RequestOptions } from '@titicaca/fetcher'
 
-import { TranslatedReview } from '../components/types'
+import { TranslatedReviewResult } from '../components/types'
 
 export async function translateReviews({
   ids,
@@ -11,7 +11,7 @@ export async function translateReviews({
   targetLang: string
   options?: RequestOptions
 }) {
-  const response = await post<TranslatedReview[]>(
+  const response = await post<TranslatedReviewResult[]>(
     '/api/translator/translate/review',
     {
       ...options,

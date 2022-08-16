@@ -66,7 +66,7 @@ export interface AppNativeActionProps {
   notifyReviewDeleted: (resourceId: string, reviewId: string) => void
 }
 
-export interface TranslatedReview {
+export interface TranslatedReviewResult {
   id: string
   source: string
   target: string
