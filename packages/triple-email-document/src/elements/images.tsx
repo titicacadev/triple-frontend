@@ -16,7 +16,7 @@ export type ExtendedImageMeta = ImageMeta & {
   link?: ImageMeta['link'] & {
     id?: string
   }
-  frame: ImageFrameRatio
+  frame?: ImageFrameRatio
 }
 
 export interface ImageDocument {
