@@ -29,6 +29,7 @@ import {
   useReviews,
   useMyReview,
   useReviewCount,
+  translateReviews,
 } from '../services'
 
 import ReviewsPlaceholder from './review-placeholder-with-rating'
@@ -46,6 +47,10 @@ import SortingOptions, {
 } from './sorting-options'
 import MyReviewActionSheet from './my-review-action-sheet'
 import RecentCheckBox from './recent-checkbox'
+import {
+  makeSuccessfullyTranslatedReviews,
+  convertReviewsToTranslatedReviews,
+} from './utils'
 
 const REVIEWS_SECTION_ID = 'reviews'
 const DEFAULT_REVIEWS_COUNT_PER_PAGE = 20
@@ -160,6 +165,8 @@ function ReviewContainer({
   const descriptionsData = useDescriptions({ resourceId, resourceType })
   const myReviewData = useMyReview({ resourceId, resourceType })
   const reviewsCountData = useReviewCount({ resourceId, resourceType })
+  const [translatedReviewsData, setTranslatedReviewsData] =
+    useState(reviewsData)
 
   const setMyReview = useCallback(
     (review) =>
@@ -322,6 +329,27 @@ function ReviewContainer({
   const recentReviewsCount = reviewsData.length
   const reviewsCount = recentTrip ? recentReviewsCount : totalReviewsCount
 
+  useEffect(() => {
+    async function translateReviewsData() {
+      const translateReviewsResult = await translateReviews({
+        ids: reviewsData.map(({ id }) => id),
+        targetLang: window.navigator.language,
+      })
+
+      const successfullyTranslatedReviews = makeSuccessfullyTranslatedReviews(
+        translateReviewsResult,
+      )
+      const translatedReviews = convertReviewsToTranslatedReviews(
+        reviewsData,
+        successfullyTranslatedReviews,
+      )
+
+      setTranslatedReviewsData(translatedReviews)
+    }
+
+    translateReviewsData()
+  }, [reviewsData])
+
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
       <Container>
@@ -382,8 +410,10 @@ function ReviewContainer({
               myReview={myReview}
               reviews={
                 recentTrip
-                  ? reviewsData
-                  : reviewsData.filter((review) => !myReviewIds.has(review.id))
+                  ? translatedReviewsData
+                  : translatedReviewsData.filter(
+                      (review) => !myReviewIds.has(review.id),
+                    )
               }
               regionId={regionId}
               resourceId={resourceId}
