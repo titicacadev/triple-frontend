@@ -1,11 +1,11 @@
-import { ReviewData, TranslatedReviewResult } from './types'
+import { ReviewData, TranslatedReviewResponse } from './types'
 
 const SIMPLIFIED_CHINESE_LANGUAGE_CODE = 'zh-CN'
 const REGION_CODE_REGEX = /-.*/
 const VALID_CHINESE_REGION_CODE_REGEX = /-[CN|TW]/i
 
 export function makeSuccessfullyTranslatedReviews(
-  translatedReviews: TranslatedReviewResult[],
+  translatedReviews: TranslatedReviewResponse[],
 ) {
   return new Map<string, string>(
     translatedReviews.map(({ id, translated }) => [id, translated]),
