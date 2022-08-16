@@ -47,7 +47,7 @@ const Img = styled.img<{ borderRadius: number; frame: ImageFrameRatio }>`
   ${({ frame }) =>
     frame !== 'original' &&
     css`
-      max-height: ${MEDIA_FRAME_OPTIONS[frame]};
+      height: ${MEDIA_FRAME_OPTIONS[frame]};
     `}
 `
 
