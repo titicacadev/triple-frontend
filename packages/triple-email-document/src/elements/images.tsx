@@ -1,13 +1,22 @@
 import { Children, PropsWithChildren } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-import { FluidTable, Box, RatioBox } from '../common'
+import { FluidTable, Box } from '../common'
+
+type ImageFrameRatio =
+  | 'mini'
+  | 'small'
+  | 'medium'
+  | 'large'
+  | 'big'
+  | 'original'
 
 export type ExtendedImageMeta = ImageMeta & {
   link?: ImageMeta['link'] & {
     id?: string
   }
+  frame: ImageFrameRatio
 }
 
 export interface ImageDocument {
@@ -18,20 +27,28 @@ export interface ImageDocument {
   }
 }
 
-const Img = styled.img<{ borderRadius: number; absolute: boolean }>`
+export const MEDIA_FRAME_OPTIONS: {
+  [key in ImageFrameRatio]: string | undefined
+} = {
+  mini: '80px',
+  small: '200px',
+  medium: '240px',
+  large: '400px',
+  big: '800px',
+  original: undefined,
+}
+
+const Img = styled.img<{ borderRadius: number; frame: ImageFrameRatio }>`
   width: 100%;
   height: 100%;
   display: block;
   border-radius: ${({ borderRadius }) => `${borderRadius}px`};
 
-  ${({ absolute }) =>
-    absolute &&
-    `
-    position: absolute;
-    top: 0;
-  `}
-
-  z-index : 0;
+  ${({ frame }) =>
+    frame !== 'original' &&
+    css`
+      max-height: ${MEDIA_FRAME_OPTIONS[frame]};
+    `}
 `
 
 const Tr = styled.tr<{ tdWidth: number }>`
@@ -138,29 +155,19 @@ function Image({
   image: ExtendedImageMeta
   borderRadius: number
 }) {
-  const originalFrame = frame === 'original'
-
   return (
     <FluidTable>
       <tbody>
         <tr>
-          <RatioBox frame={frame} overflowHidden={!originalFrame}>
+          <Box>
             {link ? (
               <ImageLink href={link.href} ses:tags={`links:${link.id}`}>
-                <Img
-                  src={url}
-                  borderRadius={borderRadius}
-                  absolute={!originalFrame}
-                />
+                <Img src={url} borderRadius={borderRadius} frame={frame} />
               </ImageLink>
             ) : (
-              <Img
-                src={url}
-                borderRadius={borderRadius}
-                absolute={!originalFrame}
-              />
+              <Img src={url} borderRadius={borderRadius} frame={frame} />
             )}
-          </RatioBox>
+          </Box>
         </tr>
 
         {title ? (
