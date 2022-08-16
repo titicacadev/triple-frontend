@@ -50,6 +50,7 @@ import RecentCheckBox from './recent-checkbox'
 import {
   makeSuccessfullyTranslatedReviews,
   convertReviewsToTranslatedReviews,
+  convertToApiCompatibleLanguageCode,
 } from './utils'
 
 const REVIEWS_SECTION_ID = 'reviews'
@@ -333,7 +334,9 @@ function ReviewContainer({
     async function translateReviewsData() {
       const translateReviewsResult = await translateReviews({
         ids: reviewsData.map(({ id }) => id),
-        targetLang: window.navigator.language,
+        targetLang: convertToApiCompatibleLanguageCode(
+          window.navigator.language,
+        ),
       })
 
       const successfullyTranslatedReviews = makeSuccessfullyTranslatedReviews(
