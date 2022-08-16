@@ -48,7 +48,6 @@ import SortingOptions, {
 import MyReviewActionSheet from './my-review-action-sheet'
 import RecentCheckBox from './recent-checkbox'
 import {
-  makeSuccessfullyTranslatedReviews,
   convertReviewsToTranslatedReviews,
   convertToApiCompatibleLanguageCode,
 } from './utils'
@@ -339,12 +338,9 @@ function ReviewContainer({
         ),
       })
 
-      const successfullyTranslatedReviews = makeSuccessfullyTranslatedReviews(
-        translateReviewsResult,
-      )
       const translatedReviews = convertReviewsToTranslatedReviews(
         reviewsData,
-        successfullyTranslatedReviews,
+        translateReviewsResult,
       )
 
       setTranslatedReviewsData(translatedReviews)

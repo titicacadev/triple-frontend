@@ -4,18 +4,14 @@ const SIMPLIFIED_CHINESE_LANGUAGE_CODE = 'zh-CN'
 const REGION_CODE_REGEX = /-.*/
 const VALID_CHINESE_REGION_CODE_REGEX = /-[CN|TW]/i
 
-export function makeSuccessfullyTranslatedReviews(
-  translatedReviews: TranslatedReviewResponse[],
-) {
-  return new Map<string, string>(
-    translatedReviews.map(({ id, translated }) => [id, translated]),
-  )
-}
-
 export function convertReviewsToTranslatedReviews(
   reviews: ReviewData[],
-  successfullyTranslatedReviews: Map<string, string>,
+  translatedReviewsResponse: TranslatedReviewResponse[],
 ) {
+  const successfullyTranslatedReviews = new Map<string, string>(
+    translatedReviewsResponse.map(({ id, translated }) => [id, translated]),
+  )
+
   return reviews.map((review) =>
     successfullyTranslatedReviews.has(review.id)
       ? {
