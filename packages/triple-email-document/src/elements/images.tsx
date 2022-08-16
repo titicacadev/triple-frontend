@@ -1,16 +1,13 @@
 import { Children, PropsWithChildren } from 'react'
-import { ImageMeta } from '@titicaca/type-definitions'
+import { FrameRatioAndSizes, ImageMeta } from '@titicaca/type-definitions'
 import styled, { css } from 'styled-components'
 
 import { FluidTable, Box } from '../common'
 
-type ImageFrameRatio =
-  | 'mini'
-  | 'small'
-  | 'medium'
-  | 'large'
-  | 'big'
-  | 'original'
+type ImageFrameRatio = Extract<
+  FrameRatioAndSizes,
+  'mini' | 'small' | 'medium' | 'large' | 'big' | 'huge' | 'original'
+>
 
 export type ExtendedImageMeta = ImageMeta & {
   link?: ImageMeta['link'] & {
@@ -28,13 +25,14 @@ export interface ImageDocument {
 }
 
 export const MEDIA_FRAME_OPTIONS: {
-  [key in ImageFrameRatio]: string | undefined
-} = {
-  mini: '80px',
-  small: '200px',
-  medium: '240px',
-  large: '400px',
-  big: '800px',
+  [key in Exclude<ImageFrameRatio, 'original'>]: string
+} & { original: undefined } = {
+  mini: '4 / 1',
+  small: '5 / 3',
+  medium: '4 / 3',
+  large: '1 / 1',
+  big: '10 / 11',
+  huge: '5 / 8',
   original: undefined,
 }
 
@@ -47,7 +45,7 @@ const Img = styled.img<{ borderRadius: number; frame: ImageFrameRatio }>`
   ${({ frame }) =>
     frame !== 'original' &&
     css`
-      height: ${MEDIA_FRAME_OPTIONS[frame]};
+      aspect-ratio: ${MEDIA_FRAME_OPTIONS[frame]};
     `}
 `
 
