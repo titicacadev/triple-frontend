@@ -158,7 +158,7 @@ export default function DefaultFooter({
               color="gray500"
               padding={{ top: 20 }}
             >
-              주식회사 인터파크 | 대표 김강세 <br />
+              주식회사 인터파크 | 대표 최휘영 <br />
               사업자 등록번호 824-81-02515
               <br />
               통신판매업 신고번호 2022-서울강남-02179
