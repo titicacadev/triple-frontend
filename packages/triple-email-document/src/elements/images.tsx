@@ -42,6 +42,7 @@ const Img = styled.div<{
   frame: ImageFrameRatio
 }>`
   width: 100%;
+  padding-top: 100%;
 
   ${({ src }) =>
     src &&
