@@ -27,25 +27,41 @@ export interface ImageDocument {
 export const MEDIA_FRAME_OPTIONS: {
   [key in Exclude<ImageFrameRatio, 'original'>]: string
 } & { original: undefined } = {
-  mini: '4 / 1',
-  small: '5 / 3',
-  medium: '4 / 3',
-  large: '1 / 1',
-  big: '10 / 11',
-  huge: '5 / 8',
+  mini: '25%',
+  small: '60%',
+  medium: '75%',
+  large: '100%',
+  big: '100%',
+  huge: '160%',
   original: undefined,
 }
 
-const Img = styled.img<{ borderRadius: number; frame: ImageFrameRatio }>`
+const Img = styled.div<{
+  src: string
+  borderRadius: number
+  frame: ImageFrameRatio
+}>`
   width: 100%;
-  height: 100%;
-  display: block;
-  border-radius: ${({ borderRadius }) => `${borderRadius}px`};
+
+  ${({ src }) =>
+    src &&
+    css`
+      background: url(${src});
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+      background-position: center;
+    `}
+
+  ${({ borderRadius }) =>
+    borderRadius &&
+    css`
+      border-radius: ${borderRadius}px;
+    `};
 
   ${({ frame }) =>
     frame !== 'original' &&
     css`
-      aspect-ratio: ${MEDIA_FRAME_OPTIONS[frame]};
+      padding-top: ${MEDIA_FRAME_OPTIONS[frame]};
     `}
 `
 
