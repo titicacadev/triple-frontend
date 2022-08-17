@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/view-utilities",
-  "version": "9.2.0",
+  "version": "9.3.0",
   "description": "Utilities for Triple view libraries and applications",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/view-utilities",
@@ -21,7 +21,7 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/type-definitions": "^9.2.0",
+    "@titicaca/type-definitions": "^9.3.0",
     "@types/qs": "^6.9.0",
     "haversine": "^1.1.1",
     "humps": "^2.0.1",

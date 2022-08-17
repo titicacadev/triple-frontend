@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/public-header",
-  "version": "9.2.0",
+  "version": "9.3.0",
   "description": "Common Header for Public Pages",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/public-header",
@@ -21,9 +21,9 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^9.2.0",
-    "@titicaca/react-triple-client-interfaces": "^9.2.0",
-    "@titicaca/view-utilities": "^9.2.0"
+    "@titicaca/color-palette": "^9.3.0",
+    "@titicaca/react-triple-client-interfaces": "^9.3.0",
+    "@titicaca/view-utilities": "^9.3.0"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
