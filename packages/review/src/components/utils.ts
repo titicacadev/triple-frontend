@@ -8,15 +8,15 @@ export function convertReviewsToTranslatedReviews(
   reviews: ReviewData[],
   translatedReviewsResponse: TranslatedReviewResponse[],
 ) {
-  const successfullyTranslatedReviews = new Map<string, string>(
+  const translations = new Map<string, string>(
     translatedReviewsResponse.map(({ id, translated }) => [id, translated]),
   )
 
   return reviews.map((review) =>
-    successfullyTranslatedReviews.has(review.id)
+    translations.has(review.id)
       ? {
           ...review,
-          comment: successfullyTranslatedReviews.get(review.id) as string,
+          comment: translations.get(review.id) as string,
         }
       : review,
   )
