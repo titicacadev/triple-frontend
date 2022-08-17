@@ -18,20 +18,10 @@ export function convertReviewsToTranslatedReviews(
   )
 }
 
-export function convertToApiCompatibleLanguageCode(languageCode: string) {
-  const isChinese = languageCode.startsWith('zh')
-  if (isChinese) {
-    return convertToApiCompatibleChinese(languageCode)
+export function convertToApiCompatibleLanguageCode(code: string) {
+  if (code.startsWith('zh')) {
+    return /-[CN|TW]/i.test(code) ? code : 'zh-CN'
   }
 
-  return languageCode.replace(/-.*/, '')
-}
-
-function convertToApiCompatibleChinese(chineseLanguageCode: string) {
-  const isRegionCodeValid = /-[CN|TW]/i.test(chineseLanguageCode)
-  if (isRegionCodeValid) {
-    return chineseLanguageCode
-  }
-
-  return 'zh-CN'
+  return code.replace(/-.*/, '')
 }
