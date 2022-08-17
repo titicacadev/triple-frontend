@@ -333,12 +333,11 @@ function ReviewContainer({
 
   useEffect(() => {
     async function translateReviewsData() {
-      const targetLang =
-        language !== undefined ? language : window.navigator.language
-
       const translateReviewsResult = await translateReviews({
         ids: reviewsData.map(({ id }) => id),
-        targetLang: convertToApiCompatibleLanguageCode(targetLang),
+        targetLang: convertToApiCompatibleLanguageCode(
+          language !== undefined ? language : window.navigator.language,
+        ),
       })
 
       const translatedReviews = convertReviewsToTranslatedReviews(
@@ -350,7 +349,7 @@ function ReviewContainer({
     }
 
     translateReviewsData()
-  }, [reviewsData])
+  }, [language, reviewsData])
 
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
