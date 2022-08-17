@@ -113,6 +113,7 @@ function ReviewContainer({
   onReviewDelete,
   onFullListButtonClick,
   isMorePage = false,
+  language,
 }: {
   resourceId: string
   resourceType: ResourceType
@@ -126,6 +127,7 @@ function ReviewContainer({
   appNativeActions: AppNativeActionProps
   sortingOption?: string
   isMorePage?: boolean
+  language?: string
   /**
    * @deprecated 리뷰 작성 함수를 자체 구현하면
    * 다양한 방어 로직을 중복 구현하게 됩니다.
@@ -331,11 +333,12 @@ function ReviewContainer({
 
   useEffect(() => {
     async function translateReviewsData() {
+      const targetLang =
+        language !== undefined ? language : window.navigator.language
+
       const translateReviewsResult = await translateReviews({
         ids: reviewsData.map(({ id }) => id),
-        targetLang: convertToApiCompatibleLanguageCode(
-          window.navigator.language,
-        ),
+        targetLang: convertToApiCompatibleLanguageCode(targetLang),
       })
 
       const translatedReviews = convertReviewsToTranslatedReviews(
