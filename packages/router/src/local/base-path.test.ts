@@ -1,9 +1,8 @@
 import { renderHook } from '@testing-library/react-hooks'
-import { useRouter } from 'next/router'
 
 import { useBasePathAdder } from './base-path'
 
-jest.mock('next/router')
+const useRouter = jest.spyOn(require('next/router'), 'useRouter')
 
 test('주어진 href에 basePath를 더합니다.', () => {
   const { basePath } = mockNextRouter()
@@ -31,11 +30,7 @@ test('주어진 href가 "/"이면 그냥 basePath를 반환합니다.', () => {
 export function mockNextRouter() {
   const basePath = '/test-env'
 
-  ;(
-    useRouter as unknown as jest.MockedFunction<
-      () => Pick<ReturnType<typeof useRouter>, 'basePath'>
-    >
-  ).mockImplementation(() => ({ basePath }))
+  useRouter.mockImplementation(() => ({ basePath }))
 
   return { basePath }
 }
