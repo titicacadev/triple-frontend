@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 9.3.0
+
+### footer
+
+- [footer] 대표자 변경: 김강세 --> 최휘영 [#2106](https://github.com/titicacadev/triple-frontend/pull/2106)
+
+### i18n
+
+- i18next triple-web-assets backend를 추가합니다. [#2102](https://github.com/titicacadev/triple-frontend/pull/2102)
+
 ## 9.2.0
 
 ### view-utilities
