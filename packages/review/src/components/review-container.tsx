@@ -47,10 +47,6 @@ import SortingOptions, {
 } from './sorting-options'
 import MyReviewActionSheet from './my-review-action-sheet'
 import RecentCheckBox from './recent-checkbox'
-import {
-  convertReviewsToTranslatedReviews,
-  convertToApiCompatibleLanguageCode,
-} from './utils'
 
 const REVIEWS_SECTION_ID = 'reviews'
 const DEFAULT_REVIEWS_COUNT_PER_PAGE = 20
@@ -333,17 +329,11 @@ function ReviewContainer({
 
   useEffect(() => {
     async function translateReviewsData() {
-      const translateReviewsResult = await translateReviews({
-        ids: reviewsData.map(({ id }) => id),
-        targetLang: convertToApiCompatibleLanguageCode(
+      const translatedReviews = await translateReviews({
+        reviews: reviewsData,
+        targetLang:
           language !== undefined ? language : window.navigator.language,
-        ),
       })
-
-      const translatedReviews = convertReviewsToTranslatedReviews(
-        reviewsData,
-        translateReviewsResult,
-      )
 
       setTranslatedReviewsData(translatedReviews)
     }

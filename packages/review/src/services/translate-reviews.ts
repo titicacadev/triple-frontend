@@ -1,32 +1,57 @@
 import { post, RequestOptions } from '@titicaca/fetcher'
 
-import { TranslatedReviewResponse } from '../components/types'
+import { ReviewData, TranslatedReviewResponse } from '../components/types'
 
 export async function translateReviews({
-  ids,
+  reviews,
   targetLang,
   options,
 }: {
-  ids: string[]
+  reviews: ReviewData[]
   targetLang: string
   options?: RequestOptions
-}) {
+}): Promise<ReviewData[]> {
   const response = await post<TranslatedReviewResponse[]>(
     '/api/translator/translate/review',
     {
       ...options,
       body: {
-        ids,
-        target: targetLang,
+        ids: reviews.map(({ id }) => id),
+        target: convertToApiCompatibleLanguageCode(targetLang),
       },
     },
   )
 
   if (!response.ok) {
-    return []
+    return reviews
   }
 
   const { parsedBody } = response
+  const translations = new Map<string, string>(
+    parsedBody.map(({ id, translated }) => [id, translated]),
+  )
 
-  return parsedBody
+  return applyTranslation(reviews, translations)
+}
+
+function convertToApiCompatibleLanguageCode(code: string) {
+  if (code.startsWith('zh')) {
+    return /-[CN|TW]/i.test(code) ? code : 'zh-CN'
+  }
+
+  return code.replace(/-.*/, '')
+}
+
+function applyTranslation(
+  reviews: ReviewData[],
+  translations: Map<string, string>,
+) {
+  return reviews.map((review) =>
+    translations.has(review.id)
+      ? {
+          ...review,
+          comment: translations.get(review.id) as string,
+        }
+      : review,
+  )
 }
