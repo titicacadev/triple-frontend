@@ -23,7 +23,7 @@ export function convertReviewsToTranslatedReviews(
 }
 
 export function convertToApiCompatibleLanguageCode(languageCode: string) {
-  const isChinese = languageCode.includes('zh')
+  const isChinese = languageCode.startsWith('zh')
   if (isChinese) {
     return convertToApiCompatibleChinese(languageCode)
   }
