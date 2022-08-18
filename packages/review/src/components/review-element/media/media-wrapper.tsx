@@ -27,7 +27,7 @@ const DuoMediaWrapper = styled(GridWrapper)`
   }
 
   @media (min-width: 500px) {
-    grid-template-rows: 150px;
+    grid-template-rows: 217px;
   }
 `
 
@@ -51,7 +51,7 @@ const TriMediaWrapper = styled(GridWrapper)`
   }
 
   @media (min-width: 500px) {
-    grid-template-rows: repeat(2, 150px);
+    grid-template-rows: repeat(2, 143px);
   }
 `
 
@@ -80,7 +80,7 @@ const QuadMediaWrapper = styled(GridWrapper)`
   }
 
   @media (min-width: 500px) {
-    grid-template-rows: repeat(3, 112px);
+    grid-template-rows: repeat(3, 105px);
   }
 `
 
