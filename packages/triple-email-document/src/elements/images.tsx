@@ -36,13 +36,12 @@ export const MEDIA_FRAME_OPTIONS: {
   original: undefined,
 }
 
-const Img = styled.div<{
+const FrameImg = styled.div<{
   src: string
   borderRadius: number
   frame: ImageFrameRatio
 }>`
   width: 100%;
-  padding-top: 100%;
 
   ${({ src }) =>
     src &&
@@ -64,6 +63,17 @@ const Img = styled.div<{
     css`
       padding-top: ${MEDIA_FRAME_OPTIONS[frame]};
     `}
+`
+
+const DefaultImg = styled.img<{ borderRadius: number }>`
+  width: 100%;
+  display: block;
+
+  ${({ borderRadius }) =>
+    borderRadius &&
+    css`
+      border-radius: ${borderRadius}px;
+    `};
 `
 
 const Tr = styled.tr<{ tdWidth: number }>`
@@ -177,10 +187,20 @@ function Image({
           <Box>
             {link ? (
               <ImageLink href={link.href} ses:tags={`links:${link.id}`}>
-                <Img src={url} borderRadius={borderRadius} frame={frame} />
+                {frame ? (
+                  <FrameImg
+                    src={url}
+                    borderRadius={borderRadius}
+                    frame={frame}
+                  />
+                ) : (
+                  <DefaultImg src={url} borderRadius={borderRadius} />
+                )}
               </ImageLink>
+            ) : frame ? (
+              <FrameImg src={url} borderRadius={borderRadius} frame={frame} />
             ) : (
-              <Img src={url} borderRadius={borderRadius} frame={frame} />
+              <DefaultImg src={url} borderRadius={borderRadius} />
             )}
           </Box>
         </tr>
