@@ -1,19 +1,13 @@
 import { ImageMeta } from '@titicaca/type-definitions'
 import { Container, Video as TfVideo } from '@titicaca/core-elements'
-import styled from 'styled-components'
 
 interface Props {
   medium: ImageMeta
 }
 
-const Frame = styled(Container)`
-  border-radius: 6px;
-  overflow: hidden;
-`
-
 function Video({ medium }: Props) {
   return (
-    <Frame>
+    <Container borderRadius={6}>
       <TfVideo
         removeFrame
         frame="medium"
@@ -22,7 +16,7 @@ function Video({ medium }: Props) {
         cloudinaryBucket={medium.cloudinaryBucket}
         cloudinaryId={medium.cloudinaryId}
       />
-    </Frame>
+    </Container>
   )
 }
 
