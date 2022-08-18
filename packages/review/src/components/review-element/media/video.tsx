@@ -3,13 +3,15 @@ import { Container, Video as TfVideo } from '@titicaca/core-elements'
 
 interface Props {
   medium: ImageMeta
+  autoPlay?: boolean
 }
 
-function Video({ medium }: Props) {
+function Video({ medium, autoPlay }: Props) {
   return (
     <Container borderRadius={6}>
       <TfVideo
         removeFrame
+        autoPlay={autoPlay}
         frame="medium"
         src={medium.video?.large.url}
         fallbackImageUrl={medium.sizes.large.url}
