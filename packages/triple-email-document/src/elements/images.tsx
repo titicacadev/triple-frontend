@@ -173,7 +173,7 @@ function Image({
     sizes: {
       full: { url },
     },
-    frame = 'original',
+    frame,
   },
   borderRadius,
 }: {
@@ -187,7 +187,7 @@ function Image({
           <Box>
             {link ? (
               <ImageLink href={link.href} ses:tags={`links:${link.id}`}>
-                {frame ? (
+                {frame && frame !== 'original' ? (
                   <FrameImg
                     src={url}
                     borderRadius={borderRadius}
@@ -197,7 +197,7 @@ function Image({
                   <DefaultImg src={url} borderRadius={borderRadius} />
                 )}
               </ImageLink>
-            ) : frame ? (
+            ) : frame && frame !== 'original' ? (
               <FrameImg src={url} borderRadius={borderRadius} frame={frame} />
             ) : (
               <DefaultImg src={url} borderRadius={borderRadius} />
