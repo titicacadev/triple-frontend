@@ -31,7 +31,7 @@ export const MEDIA_FRAME_OPTIONS: {
   small: '60%',
   medium: '75%',
   large: '100%',
-  big: '100%',
+  big: '110%',
   huge: '160%',
   original: undefined,
 }
@@ -48,7 +48,7 @@ const FrameImg = styled.div<{
     css`
       background: url(${src});
       background-repeat: no-repeat;
-      background-size: 100% auto;
+      background-size: 100% 100%;
       background-position: center;
     `}
 
