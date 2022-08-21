@@ -44,10 +44,7 @@ describe('이미지의 여백을 조절합니다.', () => {
 
     expect(wrapperBoxElement).toHaveStyleRule('padding', '0 0 0 0')
     expect(firstImgBoxElement).toHaveStyleRule('padding', '0 0 0 0')
-    expect(imgElement).toHaveAttribute(
-      'src',
-      'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
-    )
+    expect(imgElement).toHaveAttribute('src', SAMPLE_IMAGE)
   })
 
   test('여백있는 이미지 1개를 렌더링합니다.', () => {
@@ -66,10 +63,7 @@ describe('이미지의 여백을 조절합니다.', () => {
 
     expect(wrapperBoxElement).toHaveStyleRule('padding', '40px 0 30px 0')
     expect(firstImgBoxElement).toHaveStyleRule('padding', '0 30px 0 30px')
-    expect(imgElement).toHaveAttribute(
-      'src',
-      'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
-    )
+    expect(imgElement).toHaveAttribute('src', SAMPLE_IMAGE)
   })
 
   test('여백이 있으면서 테두리가 굴곡인 이미지 1개를 렌더링합니다.', () => {
@@ -89,10 +83,7 @@ describe('이미지의 여백을 조절합니다.', () => {
     expect(wrapperBoxElement).toHaveStyleRule('padding', '20px 0 20px 0')
     expect(firstImgBoxElement).toHaveStyleRule('padding', '0 30px 0 30px')
     expect(imgElement).toHaveStyleRule('border-radius', '6px')
-    expect(imgElement).toHaveAttribute(
-      'src',
-      'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
-    )
+    expect(imgElement).toHaveAttribute('src', SAMPLE_IMAGE)
   })
 })
 
@@ -113,10 +104,7 @@ describe('이미지 크기를 비율에 따라 조절합니다.', () => {
     const backgroundImgElement = getAllByRole('cell')[2].firstChild
 
     expect(backgroundImgElement).toHaveStyleRule('padding-top', '25%')
-    expect(backgroundImgElement).toHaveAttribute(
-      'src',
-      'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
-    )
+    expect(backgroundImgElement).toHaveAttribute('src', SAMPLE_IMAGE)
   })
 
   test('5:3 비율로 조절합니다.', () => {
@@ -133,10 +121,7 @@ describe('이미지 크기를 비율에 따라 조절합니다.', () => {
     const backgroundImgElement = getAllByRole('cell')[2].firstChild
 
     expect(backgroundImgElement).toHaveStyleRule('padding-top', '60%')
-    expect(backgroundImgElement).toHaveAttribute(
-      'src',
-      'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
-    )
+    expect(backgroundImgElement).toHaveAttribute('src', SAMPLE_IMAGE)
   })
 
   test('4:3 비율로 조절합니다.', () => {
@@ -153,10 +138,7 @@ describe('이미지 크기를 비율에 따라 조절합니다.', () => {
     const backgroundImgElement = getAllByRole('cell')[2].firstChild
 
     expect(backgroundImgElement).toHaveStyleRule('padding-top', '75%')
-    expect(backgroundImgElement).toHaveAttribute(
-      'src',
-      'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
-    )
+    expect(backgroundImgElement).toHaveAttribute('src', SAMPLE_IMAGE)
   })
 
   test('1:1 비율로 조절합니다.', () => {
@@ -173,10 +155,7 @@ describe('이미지 크기를 비율에 따라 조절합니다.', () => {
     const backgroundImgElement = getAllByRole('cell')[2].firstChild
 
     expect(backgroundImgElement).toHaveStyleRule('padding-top', '100%')
-    expect(backgroundImgElement).toHaveAttribute(
-      'src',
-      'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
-    )
+    expect(backgroundImgElement).toHaveAttribute('src', SAMPLE_IMAGE)
   })
 
   test('10:11 비율로 조절합니다.', () => {
@@ -193,10 +172,7 @@ describe('이미지 크기를 비율에 따라 조절합니다.', () => {
     const backgroundImgElement = getAllByRole('cell')[2].firstChild
 
     expect(backgroundImgElement).toHaveStyleRule('padding-top', '110%')
-    expect(backgroundImgElement).toHaveAttribute(
-      'src',
-      'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
-    )
+    expect(backgroundImgElement).toHaveAttribute('src', SAMPLE_IMAGE)
   })
 
   test('5:8 비율로 조절합니다.', () => {
@@ -213,10 +189,7 @@ describe('이미지 크기를 비율에 따라 조절합니다.', () => {
     const backgroundImgElement = getAllByRole('cell')[2].firstChild
 
     expect(backgroundImgElement).toHaveStyleRule('padding-top', '160%')
-    expect(backgroundImgElement).toHaveAttribute(
-      'src',
-      'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/be33afd8-c14b-4508-b1f9-8b36bfb29f64.jpeg',
-    )
+    expect(backgroundImgElement).toHaveAttribute('src', SAMPLE_IMAGE)
   })
 })
 
