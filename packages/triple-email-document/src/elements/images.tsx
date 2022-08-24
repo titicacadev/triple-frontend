@@ -59,7 +59,7 @@ const FrameImg = styled.div<{
     `};
 
   ${({ frame }) =>
-    frame !== 'original' &&
+    frame &&
     css`
       padding-top: ${MEDIA_FRAME_OPTIONS[frame]};
     `}
@@ -187,20 +187,18 @@ function Image({
           <Box>
             {link ? (
               <ImageLink href={link.href} ses:tags={`links:${link.id}`}>
-                {frame && frame !== 'original' ? (
-                  <FrameImg
-                    src={url}
-                    borderRadius={borderRadius}
-                    frame={frame}
-                  />
-                ) : (
-                  <DefaultImg src={url} borderRadius={borderRadius} />
-                )}
+                <ImageContent
+                  imageUrl={url}
+                  borderRadius={borderRadius}
+                  frame={frame}
+                />
               </ImageLink>
-            ) : frame && frame !== 'original' ? (
-              <FrameImg src={url} borderRadius={borderRadius} frame={frame} />
             ) : (
-              <DefaultImg src={url} borderRadius={borderRadius} />
+              <ImageContent
+                imageUrl={url}
+                borderRadius={borderRadius}
+                frame={frame}
+              />
             )}
           </Box>
         </tr>
@@ -214,5 +212,21 @@ function Image({
         ) : null}
       </tbody>
     </FluidTable>
+  )
+}
+
+function ImageContent({
+  imageUrl,
+  borderRadius,
+  frame,
+}: {
+  imageUrl: string
+  borderRadius: number
+  frame?: ImageFrameRatio
+}) {
+  return frame && frame !== 'original' ? (
+    <FrameImg src={imageUrl} borderRadius={borderRadius} frame={frame} />
+  ) : (
+    <DefaultImg src={imageUrl} borderRadius={borderRadius} />
   )
 }
