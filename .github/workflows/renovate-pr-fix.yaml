@@ -15,26 +15,26 @@ jobs:
   fix-renovate-pr:
     runs-on: ubuntu-latest
 
-  steps:
-    - name: Use Node.js ${{ env.NODE_VERSION }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-        registry-url: ${{ env.NPM_REGISTRY_URL }}
+    steps:
+      - uses: actions/checkout@v2
 
-    - uses: actions/checkout@v2
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.NPM_REGISTRY_URL }}
 
-    - run: npm install
-    - run: npm run sync-deps
+      - run: npm install
+      - run: npm run sync-deps
 
-    - name: Commit files
-      run: |
-        git config --local user.email "${{ env.COMMIT_USER_EMAIL }}"
-        git config --local user.name "${{ env.COMMIT_USER_NAME }}"
-        git commit --no-verify -a -m "fix dependency error"
+      - name: Commit files
+        run: |
+          git config --local user.email "${{ env.COMMIT_USER_EMAIL }}"
+          git config --local user.name "${{ env.COMMIT_USER_NAME }}"
+          git commit --no-verify -a -m "fix dependency error"
 
-    - name: Push
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}
+      - name: Push
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
