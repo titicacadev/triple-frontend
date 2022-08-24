@@ -187,18 +187,10 @@ function Image({
           <Box>
             {link ? (
               <ImageLink href={link.href} ses:tags={`links:${link.id}`}>
-                <ImageContent
-                  imageUrl={url}
-                  borderRadius={borderRadius}
-                  frame={frame}
-                />
+                <Img imageUrl={url} borderRadius={borderRadius} frame={frame} />
               </ImageLink>
             ) : (
-              <ImageContent
-                imageUrl={url}
-                borderRadius={borderRadius}
-                frame={frame}
-              />
+              <Img imageUrl={url} borderRadius={borderRadius} frame={frame} />
             )}
           </Box>
         </tr>
@@ -215,7 +207,7 @@ function Image({
   )
 }
 
-function ImageContent({
+function Img({
   imageUrl,
   borderRadius,
   frame,
