@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 9.4.0
+
+### common
+
+- pin dependency typescript to v4.3.5 [#2114](https://github.com/titicacadev/triple-frontend/pull/2114)
+- update dependency @swc/core to v1.2.241 [#2111](https://github.com/titicacadev/triple-frontend/pull/2111)
+- update dependency @sentry/nextjs to v7.11.1 [#2109](https://github.com/titicacadev/triple-frontend/pull/2109)
+
+### triple-email-document
+
+- 비율에 따라 이미지를 렌더링합니다. [#2104](https://github.com/titicacadev/triple-frontend/pull/2104)
+
 ## 9.3.0
 
 ### footer
