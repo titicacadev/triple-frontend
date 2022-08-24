@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/app-banner",
-  "version": "9.3.0",
+  "version": "9.4.0",
   "description": "Common App Banner for Public Pages",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/app-banner",
@@ -21,6 +21,6 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^9.3.0"
+    "@titicaca/core-elements": "^9.4.0"
   }
 }
