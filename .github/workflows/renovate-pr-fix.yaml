@@ -1,0 +1,42 @@
+name: Renovate PR Fix
+on:
+  pull_request:
+    branches:
+      - renovate/*
+
+env:
+  # Node.js
+  NODE_VERSION: '17.7.0'
+  NPM_REGISTRY_URL: 'https://registry.npmjs.org'
+  COMMIT_USER_EMAIL: developer@triple-corp.com
+  COMMIT_USER_NAME: triple-frontend[bot]
+
+jobs:
+  fix-renovate-pr:
+    runs-on: ubuntu-latest
+
+  steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        registry-url: ${{ env.NPM_REGISTRY_URL }}
+
+    - run: npm install
+    - run: npm run sync-deps
+
+    - name: Commit files
+      run: |
+        git config --local user.email "${{ env.COMMIT_USER_EMAIL }}"
+        git config --local user.name "${{ env.COMMIT_USER_NAME }}"
+        git commit --no-verify -a -m "fix dependency error"
+
+    - name: Push
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
