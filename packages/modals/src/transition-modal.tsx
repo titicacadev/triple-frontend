@@ -69,7 +69,13 @@ const MODAL_CONTENT: {
   },
 }
 
-export function TransitionModal({ deepLink }: { deepLink: string }) {
+export function TransitionModal({
+  deepLink,
+  onClick,
+}: {
+  deepLink: string
+  onClick?: () => void
+}) {
   const uriHash = useUriHash()
   const { back } = useHistoryFunctions()
   const { trackEvent } = useEventTrackingContext()
@@ -105,6 +111,10 @@ export function TransitionModal({ deepLink }: { deepLink: string }) {
           positive={{
             text: '트리플 가기',
             onClick: () => {
+              if (onClick) {
+                onClick()
+              }
+
               trackEvent({
                 ga: [
                   '설치유도팝업',
