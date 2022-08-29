@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/intersection-observer",
-  "version": "9.4.0",
+  "version": "9.5.0",
   "description": "Shared IntersecionObserver component",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/intersection-observer",
