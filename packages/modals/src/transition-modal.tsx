@@ -71,10 +71,10 @@ const MODAL_CONTENT: {
 
 export function TransitionModal({
   deepLink,
-  onClick,
+  onActionClick,
 }: {
   deepLink: string
-  onClick?: () => void
+  onActionClick?: () => void
 }) {
   const uriHash = useUriHash()
   const { back } = useHistoryFunctions()
@@ -111,9 +111,7 @@ export function TransitionModal({
           positive={{
             text: '트리플 가기',
             onClick: () => {
-              if (onClick) {
-                onClick()
-              }
+              onActionClick?.()
 
               trackEvent({
                 ga: [
