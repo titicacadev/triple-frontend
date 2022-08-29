@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 9.5.0
+
+### modals
+
+- TransitionModal props에 action click optional props를 추가합니다. [#2121](https://github.com/titicacadev/triple-frontend/pull/2121)
+
+### common
+
+- update dependency @swc/core to v1.2.244 [#2119](https://github.com/titicacadev/triple-frontend/pull/2119)
+
 ## 9.4.0
 
 ### common
