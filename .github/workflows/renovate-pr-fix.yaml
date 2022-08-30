@@ -29,9 +29,9 @@ jobs:
       - run: npm install
       - run: npm run sync-deps
 
-      - name: Commit files And Push
+      - name: Commit and Push
         run: |
           git config --local user.email "${{ env.COMMIT_USER_EMAIL }}"
           git config --local user.name "${{ env.COMMIT_USER_NAME }}"
-          git commit --no-verify -a -m "fix dependency error"
+          git commit --no-verify -a -m "Resolve dependency error"
           git push
