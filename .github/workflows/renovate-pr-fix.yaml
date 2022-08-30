@@ -2,7 +2,7 @@ name: Renovate PR Fix
 on:
   pull_request:
     branches:
-      - renovate/*
+      - 'renovate/**'
 
 env:
   # Node.js
