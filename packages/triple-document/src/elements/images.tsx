@@ -2,6 +2,7 @@ import * as CSS from 'csstype'
 import {
   ImageCarouselElementContainer,
   ImageBlockElementContainer,
+  ImageGridElementContainer,
   ImageCaption,
   Container,
 } from '@titicaca/core-elements'
@@ -13,6 +14,7 @@ import { useLinkClickHandler } from '../prop-context/link-click-handler'
 import { useImageSource } from '../prop-context/image-source'
 import { useMediaConfig } from '../prop-context/media-config'
 
+import GridContainer from './shared/grid-container'
 import DocumentCarousel from './shared/document-carousel'
 import generateClickHandler from './shared/generate-click-handler'
 
@@ -41,12 +43,17 @@ export default function Images({
 
   const ImagesContainer = ['block', 'gapless-block'].includes(display)
     ? Container
+    : display === 'grid'
+    ? GridContainer
     : DocumentCarousel
+
   const ElementContainer =
     display === 'gapless-block'
       ? Container
       : display === 'block'
       ? ImageBlockElementContainer
+      : display === 'grid'
+      ? ImageGridElementContainer
       : ImageCarouselElementContainer
 
   const handleClick = generateClickHandler(onLinkClick, onImageClick)

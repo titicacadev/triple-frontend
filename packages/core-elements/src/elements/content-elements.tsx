@@ -25,6 +25,8 @@ export const ImageBlockElementContainer = styled.div`
   }
 `
 
+export const ImageGridElementContainer = styled.div``
+
 export const ImageCaption = styled.div`
   margin-top: 8px;
   font-size: 13px;
