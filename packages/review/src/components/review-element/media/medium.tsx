@@ -5,14 +5,13 @@ import Video from './video'
 
 interface Props {
   medium: ImageMeta
-  index: number
 }
 
-function Medium({ medium, index }: Props) {
+function Medium({ medium }: Props) {
   const isVideo = medium.type === 'video'
 
   if (isVideo) {
-    return <Video medium={medium} autoPlay={index === 0} />
+    return <Video medium={medium} />
   }
 
   return <Image medium={medium} />

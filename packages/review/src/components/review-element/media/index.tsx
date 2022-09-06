@@ -30,7 +30,7 @@ function Media({ media }: Props) {
     <MediaWrapper length={length}>
       {sortedMedia.slice(0, limit).map((medium, index) => (
         <MediumWrapper key={medium.id}>
-          <Medium medium={medium} index={index} />
+          <Medium medium={medium} />
           {restLength > 0 && index === limit - 1 ? (
             <Dimmer
               flex
