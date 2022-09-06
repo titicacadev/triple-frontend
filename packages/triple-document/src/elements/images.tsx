@@ -1,24 +1,22 @@
-import * as CSS from 'csstype'
 import {
   ImageCarouselElementContainer,
-  ImageBlockElementContainer,
-  ImageGridElementContainer,
   ImageCaption,
-  Container,
 } from '@titicaca/core-elements'
 import TripleMedia from '@titicaca/triple-media'
 import { ImageMeta } from '@titicaca/type-definitions'
+import { DocumentImageDisplayType } from '@titicaca/content-type-definitions'
 
 import { useImageClickHandler } from '../prop-context/image-click-handler'
 import { useLinkClickHandler } from '../prop-context/link-click-handler'
 import { useImageSource } from '../prop-context/image-source'
 import { useMediaConfig } from '../prop-context/media-config'
 
-import GridContainer from './shared/grid-container'
 import DocumentCarousel from './shared/document-carousel'
 import generateClickHandler from './shared/generate-click-handler'
-
-type MediaDisplayProperty = CSS.Property.Display | 'gapless-block'
+import {
+  elementContainerMap,
+  imagesContainerMap,
+} from './shared/grid-container'
 
 export default function Images({
   value: { images, display },
@@ -27,7 +25,7 @@ export default function Images({
 }: {
   value: {
     images: ImageMeta[]
-    display: MediaDisplayProperty
+    display: DocumentImageDisplayType
   }
   onImageClick?: ReturnType<typeof useImageClickHandler>
   onLinkClick?: ReturnType<typeof useLinkClickHandler>
@@ -41,65 +39,37 @@ export default function Images({
   const ImageSource = useImageSource()
   const { videoAutoPlay, hideVideoControls, optimized } = useMediaConfig()
 
-  const ImagesContainer = ['block', 'gapless-block'].includes(display)
-    ? Container
-    : display === 'grid'
-    ? GridContainer
+  const ImagesContainer = display
+    ? imagesContainerMap[display]
     : DocumentCarousel
 
-  const ElementContainer =
-    display === 'gapless-block'
-      ? Container
-      : display === 'block'
-      ? ImageBlockElementContainer
-      : display === 'grid'
-      ? ImageGridElementContainer
-      : ImageCarouselElementContainer
+  const ElementContainer = display
+    ? elementContainerMap[display]
+    : ImageCarouselElementContainer
 
   const handleClick = generateClickHandler(onLinkClick, onImageClick)
+  const hasNoBorderRadiusAndCaption = ['gapless-block', 'grid'].includes(
+    display,
+  )
 
   return (
-    <ImagesContainer
-      margin={{
-        top: display === 'gapless-block' ? 0 : 40,
-        bottom:
-          display === 'gapless-block'
-            ? 0
-            : images.some(({ title }) => title)
-            ? 10
-            : 30,
-      }}
-    >
+    <ImagesContainer images={images}>
       {images.map((image, i) => {
         return (
           <ElementContainer key={i}>
-            {display === 'gapless-block' ? (
-              <TripleMedia
-                optimized={optimized}
-                borderRadius={0}
-                autoPlay={videoAutoPlay}
-                hideControls={hideVideoControls}
-                showNativeControls
-                media={image}
-                onClick={handleClick}
-                ImageSource={ImageSource}
-              />
-            ) : (
-              <>
-                <TripleMedia
-                  optimized={optimized}
-                  autoPlay={videoAutoPlay}
-                  hideControls={hideVideoControls}
-                  showNativeControls
-                  media={image}
-                  onClick={handleClick}
-                  ImageSource={ImageSource}
-                />
-                {image.title ? (
-                  <ImageCaption>{image.title}</ImageCaption>
-                ) : null}
-              </>
-            )}
+            <TripleMedia
+              optimized={optimized}
+              borderRadius={hasNoBorderRadiusAndCaption ? 0 : undefined}
+              autoPlay={videoAutoPlay}
+              hideControls={hideVideoControls}
+              showNativeControls
+              media={image}
+              onClick={handleClick}
+              ImageSource={ImageSource}
+            />
+            {!hasNoBorderRadiusAndCaption && image.title ? (
+              <ImageCaption>{image.title}</ImageCaption>
+            ) : null}
           </ElementContainer>
         )
       })}
