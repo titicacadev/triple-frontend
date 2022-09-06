@@ -31,7 +31,7 @@ function Video({ medium }: Props) {
     } else {
       ref.current?.pause()
     }
-  }, [isIntersecting, videoAutoplay])
+  }, [isIntersecting, ref, videoAutoplay])
 
   return (
     <Container borderRadius={6}>
