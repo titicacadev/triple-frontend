@@ -1,7 +1,10 @@
 import { Container, Video as CoreVideo } from '@titicaca/core-elements'
 import { FrameRatioAndSizes, GlobalSizes } from '@titicaca/type-definitions'
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 import styled from 'styled-components'
+import { useDeviceContext } from '@titicaca/react-contexts'
+
+import { useIntersection } from '../../intersection-observer/src'
 
 import { CarouselImageMeta } from './types'
 
@@ -39,6 +42,30 @@ function VideoContent({
   globalFrame,
   overlay,
 }: Props) {
+  const { ref, isIntersecting } = useIntersection<HTMLVideoElement>({
+    threshold: 0.5,
+  })
+
+  const {
+    deviceState: { autoplay, networkType },
+  } = useDeviceContext()
+
+  const videoAutoplay =
+    autoplay === 'always' ||
+    (autoplay === 'wifi_only' && networkType === 'wifi')
+
+  useEffect(() => {
+    if (!videoAutoplay) {
+      return
+    }
+
+    if (isIntersecting) {
+      ref.current?.play()
+    } else {
+      ref.current?.pause()
+    }
+  }, [isIntersecting, videoAutoplay])
+
   const { frame: imageFrame, size: imageSize } = medium
   const size = globalSize || imageSize
   const frame = size ? undefined : globalFrame || imageFrame
@@ -52,6 +79,9 @@ function VideoContent({
         fallbackImageUrl={medium.sizes.large.url}
         cloudinaryBucket={medium.cloudinaryBucket}
         cloudinaryId={medium.cloudinaryId}
+        muted
+        initialControlHidden
+        ref={ref}
       />
       {overlay || null}
     </Frame>
