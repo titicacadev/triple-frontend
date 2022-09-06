@@ -4,10 +4,10 @@ import { formatTime } from './utils'
 
 export function useVideoControl({
   videoRef,
-  initialMuted,
+  initialMuted = false,
 }: {
   videoRef: RefObject<HTMLVideoElement>
-  initialMuted: boolean
+  initialMuted?: boolean
 }) {
   const [duration, setDuartion] = useState<number>(0)
   const [progress, setProgress] = useState<number>(0)

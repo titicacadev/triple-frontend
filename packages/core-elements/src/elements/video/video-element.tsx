@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import { forwardRef } from 'react'
+import { mergeRefs } from 'react-merge-refs'
 
 import Sources from './sources'
 import Controls from './controls'
@@ -38,50 +40,69 @@ const Video = styled.video`
   object-fit: cover;
 `
 
-export default function VideoElement({
-  src,
-  srcType,
-  cloudinaryBucket,
-  cloudinaryId,
-  autoPlay,
-  showNativeControls,
-  hideControls,
-}: {
+interface Props {
   src?: string
   srcType?: string
   cloudinaryBucket?: string
   cloudinaryId?: string
   autoPlay?: boolean
+  muted?: boolean
   showNativeControls?: boolean
   hideControls?: boolean
-}) {
-  const { frame, fallbackImageUrl } = useVideoState()
-  const { videoRef, pending } = useVideoRef()
-
-  return (
-    <>
-      <Video
-        loop
-        playsInline
-        preload="metadata"
-        controls={!!showNativeControls}
-        autoPlay={autoPlay}
-        muted={autoPlay}
-        ref={videoRef}
-        poster={fallbackImageUrl}
-      >
-        <Sources
-          src={src}
-          srcType={srcType}
-          cloudinaryBucket={cloudinaryBucket}
-          cloudinaryId={cloudinaryId}
-          frame={frame}
-        />
-      </Video>
-      {pending && <Pending />}
-      {videoRef && !hideControls && (
-        <Controls videoRef={videoRef} autoPlay={!!autoPlay} />
-      )}
-    </>
-  )
+  initialControlHidden?: boolean
 }
+
+const VideoElement = forwardRef<HTMLVideoElement, Props>(
+  (
+    {
+      src,
+      srcType,
+      cloudinaryBucket,
+      cloudinaryId,
+      autoPlay,
+      muted,
+      showNativeControls,
+      hideControls,
+      initialControlHidden,
+    },
+    ref,
+  ) => {
+    const { frame, fallbackImageUrl } = useVideoState()
+    const { videoRef, pending } = useVideoRef()
+
+    return (
+      <>
+        <Video
+          loop
+          playsInline
+          preload="metadata"
+          controls={!!showNativeControls}
+          autoPlay={autoPlay}
+          muted={muted ?? autoPlay}
+          ref={mergeRefs([videoRef, ref])}
+          poster={fallbackImageUrl}
+        >
+          <Sources
+            src={src}
+            srcType={srcType}
+            cloudinaryBucket={cloudinaryBucket}
+            cloudinaryId={cloudinaryId}
+            frame={frame}
+          />
+        </Video>
+        {pending && <Pending />}
+        {videoRef && !hideControls && (
+          <Controls
+            videoRef={videoRef}
+            initialHidden={initialControlHidden ?? autoPlay}
+            initialMuted={muted ?? autoPlay}
+          />
+        )}
+      </>
+    )
+  },
+)
+
+VideoElement.displayName = 'VideoElement'
+
+export default VideoElement
