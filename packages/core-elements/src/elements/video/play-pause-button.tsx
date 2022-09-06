@@ -40,7 +40,7 @@ export default function PlayPauseButton({
   onPlayPause,
 }: {
   forceVisible: boolean
-  initialVisible: boolean
+  initialVisible?: boolean
   playing: boolean
   videoRef: RefObject<HTMLVideoElement>
   onPlayPause: (e?: SyntheticEvent) => void
