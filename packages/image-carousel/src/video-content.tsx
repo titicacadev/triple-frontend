@@ -64,7 +64,7 @@ function VideoContent({
     } else {
       ref.current?.pause()
     }
-  }, [isIntersecting, videoAutoplay])
+  }, [isIntersecting, ref, videoAutoplay])
 
   const { frame: imageFrame, size: imageSize } = medium
   const size = globalSize || imageSize
