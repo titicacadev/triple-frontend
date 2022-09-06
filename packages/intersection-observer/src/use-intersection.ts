@@ -1,14 +1,10 @@
 import 'intersection-observer'
-import { useState, useEffect, useRef, MutableRefObject } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
-export default function useIntersection<T>({
-  threshold,
-  rootMargin,
-}: {
-  threshold?: number
-  rootMargin?: number
-}) {
-  const ref: MutableRefObject<T | null> = useRef(null)
+export default function useIntersection<T extends Element>(
+  options?: IntersectionObserverInit,
+) {
+  const ref = useRef<T>(null)
   const [isIntersecting, setIsIntersecting] = useState(false)
 
   useEffect(() => {
@@ -20,13 +16,12 @@ export default function useIntersection<T>({
       setIsIntersecting(entry.isIntersecting)
     }
 
-    const observer = new IntersectionObserver(handleScroll, {
-      threshold: threshold ?? 0,
-      rootMargin: rootMargin ? `${rootMargin}px` : '0px',
-    })
+    const observer = new IntersectionObserver(handleScroll, options)
 
-    return () => observer && observer.disconnect()
-  }, [ref, threshold, rootMargin])
+    observer.observe(ref.current)
+
+    return () => observer.disconnect()
+  }, [options])
 
   return {
     ref,
