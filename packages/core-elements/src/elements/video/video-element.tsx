@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { forwardRef } from 'react'
-import { mergeRefs } from 'react-merge-refs'
+
+import { mergeRefs } from '../../utils/merge-refs'
 
 import Sources from './sources'
 import Controls from './controls'
