@@ -61,5 +61,6 @@ export interface ImageMeta {
   link?: {
     href: string
     label?: string
+    hash?: string
   }
 }

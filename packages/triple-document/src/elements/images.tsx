@@ -27,6 +27,7 @@ export default function Images({
     images: ImageMeta[]
     display: DocumentImageDisplayType
   }
+
   onImageClick?: ReturnType<typeof useImageClickHandler>
   onLinkClick?: ReturnType<typeof useLinkClickHandler>
 }) {

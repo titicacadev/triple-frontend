@@ -21,7 +21,10 @@
           "title": "",
           "width": 4287,
           "height": 2706,
-          "description": ""
+          "description": "",
+          "link": {
+            "href": "https://www.naver.com/"
+          }
         },
         {
           "id": "bfb5dd63-696c-4f1c-b98c-8e7f86fe069f",
@@ -40,7 +43,10 @@
           "title": "",
           "width": 4287,
           "height": 2706,
-          "description": ""
+          "description": "",
+          "link": {
+            "hash": "click-here"
+          }
         },
         {
           "id": "bfb5dd63-696c-4f1c-b98c-8e7f86fe069f",
@@ -1496,6 +1502,12 @@
   },
   {
     "type": "hr1"
+  },
+  {
+    "type": "anchor",
+    "value": {
+      "href": "click-here"
+    }
   },
   {
     "type": "embedded",
