@@ -9,22 +9,24 @@ import {
 
 import DocumentCarousel from './document-carousel'
 
-const BlockContainer = ({
+function BlockContainer({
   children,
   images,
 }: {
   children: ReactNode
   images: ImageMeta[]
-}) => (
-  <Container
-    margin={{
-      top: 40,
-      bottom: images.some(({ title }) => title) ? 10 : 30,
-    }}
-  >
-    {children}
-  </Container>
-)
+}) {
+  return (
+    <Container
+      margin={{
+        top: 40,
+        bottom: images.some(({ title }) => title) ? 10 : 30,
+      }}
+    >
+      {children}
+    </Container>
+  )
+}
 
 const GridContainer = styled.div`
   display: grid;

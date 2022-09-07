@@ -16,7 +16,7 @@ import generateClickHandler from './shared/generate-click-handler'
 import {
   elementContainerMap,
   imagesContainerMap,
-} from './shared/grid-container'
+} from './shared/display-containers'
 
 export default function Images({
   value: { images, display },
@@ -48,9 +48,7 @@ export default function Images({
     : ImageCarouselElementContainer
 
   const handleClick = generateClickHandler(onLinkClick, onImageClick)
-  const hasNoBorderRadiusAndCaption = ['gapless-block', 'grid'].includes(
-    display,
-  )
+  const isOnlyImage = ['gapless-block', 'grid'].includes(display)
 
   return (
     <ImagesContainer images={images}>
@@ -59,7 +57,7 @@ export default function Images({
           <ElementContainer key={i}>
             <TripleMedia
               optimized={optimized}
-              borderRadius={hasNoBorderRadiusAndCaption ? 0 : undefined}
+              borderRadius={isOnlyImage ? 0 : undefined}
               autoPlay={videoAutoPlay}
               hideControls={hideVideoControls}
               showNativeControls
@@ -67,7 +65,7 @@ export default function Images({
               onClick={handleClick}
               ImageSource={ImageSource}
             />
-            {!hasNoBorderRadiusAndCaption && image.title ? (
+            {!isOnlyImage && image.title ? (
               <ImageCaption>{image.title}</ImageCaption>
             ) : null}
           </ElementContainer>
