@@ -5,15 +5,10 @@ export default function generateClickHandler(
   onImageClick?: ImageEventHandler,
 ): ImageEventHandler {
   return (e, image) => {
-    const { href: prevHref, hash } = location
-    if (image.link && image.link.hash && onLinkClick) {
-      const href = prevHref.replace(hash, '') + `#${image.link.hash}`
-      return onLinkClick(e, {
-        href,
-      })
-    }
-    if (image.link && image.link.href && onLinkClick) {
-      return onLinkClick(e, image.link)
+    if (image.link && onLinkClick) {
+      const { hash, href: prevHref } = image.link
+      const href = hash ? `#${hash}` : prevHref
+      return onLinkClick(e, { href })
     } else if (onImageClick) {
       return onImageClick(e, image)
     }
