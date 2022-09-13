@@ -18,6 +18,7 @@ export default function generateClickHandler(
             duration: 600,
           })
         }
+        return
       }
 
       return onLinkClick(e, { href })
