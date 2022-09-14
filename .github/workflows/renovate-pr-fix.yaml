@@ -2,7 +2,7 @@ name: Renovate PR Fix
 on:
   pull_request:
     branches:
-      - 'renovate/**'
+      - main
 
 env:
   # Node.js
@@ -14,6 +14,7 @@ env:
 jobs:
   fix-renovate-pr:
     runs-on: ubuntu-latest
+    if: ${{ startsWith( github.event.pull_request.base.ref, 'renovate/' )}}
 
     steps:
       - uses: actions/checkout@v2
