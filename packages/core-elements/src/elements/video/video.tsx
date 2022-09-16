@@ -16,7 +16,7 @@ interface Props {
   muted?: boolean
   borderRadius?: number
   hideControls?: boolean
-  initialControlHidden?: boolean
+  initialControlsHidden?: boolean
   showNativeControls?: boolean
   removeFrame?: boolean
 }
@@ -31,7 +31,7 @@ const Video = forwardRef<HTMLVideoElement, Props>(
       autoPlay,
       muted,
       hideControls,
-      initialControlHidden,
+      initialControlsHidden,
       showNativeControls,
       frame,
       fallbackImageUrl,
@@ -54,7 +54,7 @@ const Video = forwardRef<HTMLVideoElement, Props>(
           muted={muted}
           showNativeControls={showNativeControls}
           hideControls={hideControls}
-          initialControlHidden={initialControlHidden}
+          initialControlsHidden={initialControlsHidden}
           ref={ref}
         />
       </VideoFrame>
