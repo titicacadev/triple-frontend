@@ -43,7 +43,8 @@ function Video({ medium }: Props) {
         cloudinaryBucket={medium.cloudinaryBucket}
         cloudinaryId={medium.cloudinaryId}
         muted
-        initialControlHidden
+        hideControls
+        initialControlsHidden
         ref={ref}
       />
     </Container>
