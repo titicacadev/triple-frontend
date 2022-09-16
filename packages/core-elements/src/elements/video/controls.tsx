@@ -83,8 +83,9 @@ export default function Controls({
       videoRef,
       initialMuted,
     })
+  const [oncePlayed, setOncePlayed] = useState(false)
 
-  const [visible, setVisible] = useState(!initialHidden)
+  const [visible, setVisible] = useState(false)
 
   // TODO: useDebouncedState 사용하기
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -127,26 +128,36 @@ export default function Controls({
     }
   }, [handleFadeOut, playing])
 
+  useEffect(() => {
+    if (playing) {
+      setOncePlayed(true)
+    }
+  }, [playing])
+
+  const playPauseVisible = oncePlayed ? visible : !initialHidden
+
   return (
-    <ControlsContainer visible={visible} onClick={handleControls}>
-      {!hideControls && (
-        <>
-          <CurrentTime>{currentTime || '00:00'}</CurrentTime>
-          {duration ? <Duration>{formatTime(duration)}</Duration> : null}
-          {duration ? <Progress max={duration} value={progress} /> : null}
-          <Seeker
-            visible={visible}
-            seek={seek}
-            duration={duration}
-            onClick={handleSeekerClick}
-            onChange={handleSeekerChange}
-          />
-        </>
-      )}
+    <>
+      <ControlsContainer visible={visible} onClick={handleControls}>
+        {!hideControls && (
+          <>
+            <CurrentTime>{currentTime || '00:00'}</CurrentTime>
+            {duration ? <Duration>{formatTime(duration)}</Duration> : null}
+            {duration ? <Progress max={duration} value={progress} /> : null}
+            <Seeker
+              visible={visible}
+              seek={seek}
+              duration={duration}
+              onClick={handleSeekerClick}
+              onChange={handleSeekerChange}
+            />
+          </>
+        )}
+      </ControlsContainer>
       <PlayPauseButton
         videoRef={videoRef}
         playing={playing}
-        visible={visible}
+        visible={playPauseVisible}
         onPlayPause={handleFadeOut}
       />
       <MuteUnmuteButton
@@ -155,6 +166,6 @@ export default function Controls({
         visible={visible}
         onMuteUnmute={handleFadeOut}
       />
-    </ControlsContainer>
+    </>
   )
 }
