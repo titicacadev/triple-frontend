@@ -8,7 +8,7 @@ export interface DeviceState {
 }
 
 export const DEFAULT_DEVICE_STATE: DeviceState = {
-  autoplay: 'never',
+  autoplay: 'always',
   networkType: 'unknown',
 }
 
