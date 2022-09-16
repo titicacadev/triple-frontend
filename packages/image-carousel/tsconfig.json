@@ -6,6 +6,7 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/intersection-observer": ["../intersection-observer/src"],
       "@titicaca/type-definitions": ["../type-definitions/src"]
     }
   },
@@ -13,6 +14,9 @@
   "references": [
     {
       "path": "../core-elements"
+    },
+    {
+      "path": "../intersection-observer"
     },
     {
       "path": "../type-definitions"
