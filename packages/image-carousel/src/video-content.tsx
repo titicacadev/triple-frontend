@@ -3,8 +3,7 @@ import { FrameRatioAndSizes, GlobalSizes } from '@titicaca/type-definitions'
 import { ReactNode, useEffect } from 'react'
 import styled from 'styled-components'
 import { useDeviceContext } from '@titicaca/react-contexts'
-
-import { useIntersection } from '../../intersection-observer/src'
+import { useIntersection } from '@titicaca/intersection-observer'
 
 import { CarouselImageMeta } from './types'
 
@@ -80,7 +79,8 @@ function VideoContent({
         cloudinaryBucket={medium.cloudinaryBucket}
         cloudinaryId={medium.cloudinaryId}
         muted
-        initialControlHidden
+        hideControls
+        initialControlsHidden
         ref={ref}
       />
       {overlay || null}
