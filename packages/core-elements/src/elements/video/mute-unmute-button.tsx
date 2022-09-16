@@ -1,12 +1,5 @@
-import {
-  useState,
-  useCallback,
-  useEffect,
-  RefObject,
-  SyntheticEvent,
-} from 'react'
+import { useCallback, RefObject, SyntheticEvent } from 'react'
 import styled from 'styled-components'
-import { debounce } from '@titicaca/view-utilities'
 
 const MUTE_BUTTON_IMAGE_URL =
   'https://assets.triple.guide/images/btn-video-volume-mute@3x.png'
@@ -39,21 +32,19 @@ const MuteUnmuteButtonBase = styled.button<MuteUnmutButtonBaseProps>`
   transition: opacity 0.3s;
 `
 
+interface Props {
+  muted: boolean
+  visible: boolean
+  videoRef: RefObject<HTMLVideoElement>
+  onMuteUnmute: (e: SyntheticEvent) => void
+}
+
 export default function MuteUnmuteButton({
   muted,
+  visible,
   videoRef,
-  playing,
-  forceVisible,
   onMuteUnmute,
-}: {
-  playing: boolean
-  muted: boolean
-  videoRef: RefObject<HTMLVideoElement>
-  forceVisible: boolean
-  onMuteUnmute: (e: SyntheticEvent) => void
-}) {
-  const [visible, setVisible] = useState(false)
-
+}: Props) {
   const handleMuteUnmute = useCallback(
     (e: SyntheticEvent) => {
       if (videoRef.current) {
@@ -67,23 +58,10 @@ export default function MuteUnmuteButton({
     [muted, videoRef, onMuteUnmute],
   )
 
-  useEffect(() => {
-    if (playing) {
-      setVisible(true)
-    }
-  }, [playing])
-
-  useEffect(() => {
-    const handleFadeOut = debounce(() => setVisible(false), 5000)
-    if (visible) {
-      handleFadeOut()
-    }
-  }, [visible, forceVisible])
-
   return (
     <MuteUnmuteButtonBase
       muted={muted}
-      visible={visible || forceVisible}
+      visible={visible}
       onClick={handleMuteUnmute}
     />
   )

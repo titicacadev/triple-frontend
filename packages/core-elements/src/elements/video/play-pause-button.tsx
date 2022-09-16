@@ -1,16 +1,17 @@
-import { useState, useCallback, RefObject, SyntheticEvent } from 'react'
+import { useCallback, RefObject, SyntheticEvent } from 'react'
 import styled from 'styled-components'
-import { debounce } from '@titicaca/view-utilities'
 
 const PLAY_BUTTON_IMAGE_URL =
   'https://assets.triple.guide/images/btn-video-play@3x.png'
 const PAUSE_BUTTON_IMAGE_URL =
   'https://assets.triple.guide/images/btn-video-stop@3x.png'
 
-const PlayPauseButtonBase = styled.button<{
+interface BaseProps {
   playing: boolean
   visible: boolean
-}>`
+}
+
+const PlayPauseButtonBase = styled.button<BaseProps>`
   position: absolute;
   border: none;
   background: none;
@@ -19,8 +20,10 @@ const PlayPauseButtonBase = styled.button<{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-image: url(${({ playing }) =>
-    playing ? PAUSE_BUTTON_IMAGE_URL : PLAY_BUTTON_IMAGE_URL});
+  background-image: ${({ playing }) =>
+    playing
+      ? `url(${PAUSE_BUTTON_IMAGE_URL})`
+      : `url(${PLAY_BUTTON_IMAGE_URL})`};
   background-size: cover;
 
   &:focus {
@@ -32,42 +35,32 @@ const PlayPauseButtonBase = styled.button<{
   transition: opacity 0.3s;
 `
 
-export default function PlayPauseButton({
-  forceVisible,
-  videoRef,
-  initialVisible,
-  playing,
-  onPlayPause,
-}: {
-  forceVisible: boolean
-  initialVisible?: boolean
+interface Props {
   playing: boolean
+  visible: boolean
   videoRef: RefObject<HTMLVideoElement>
   onPlayPause: (e?: SyntheticEvent) => void
-}) {
-  const [visible, setVisible] = useState(initialVisible)
-  // TODO: useDebouncedState 사용하기
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleFadeOut = useCallback(
-    debounce(() => setVisible(false), 500),
-    [],
-  )
+}
 
+export default function PlayPauseButton({
+  playing,
+  visible,
+  videoRef,
+  onPlayPause,
+}: Props) {
   const handlePlayPause = useCallback(
     (e) => {
-      if (videoRef.current && (visible || forceVisible)) {
+      if (videoRef.current && visible) {
         playing ? videoRef.current.pause() : videoRef.current.play()
         e.stopPropagation()
         onPlayPause()
-        handleFadeOut()
       }
     },
-    [videoRef, playing, forceVisible, visible, onPlayPause, handleFadeOut],
+    [videoRef, playing, visible, onPlayPause],
   )
-
   return (
     <PlayPauseButtonBase
-      visible={visible || forceVisible}
+      visible={visible}
       playing={playing}
       onClick={handlePlayPause}
     />
