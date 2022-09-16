@@ -58,8 +58,7 @@ export function useVideoControl({
     } else {
       throw new Error('Cannot use Vidoe Control State')
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [videoRef])
 
   return {
     duration,

@@ -1,4 +1,4 @@
-import { useState, useCallback, RefObject } from 'react'
+import { useState, useCallback, RefObject, useEffect } from 'react'
 import styled from 'styled-components'
 import { debounce } from '@titicaca/view-utilities'
 import { getColor } from '@titicaca/color-palette'
@@ -66,12 +66,14 @@ const Progress = styled.progress`
 `
 
 interface Props {
+  hideControls?: boolean
   initialHidden?: boolean
   initialMuted?: boolean
   videoRef: RefObject<HTMLVideoElement>
 }
 
 export default function Controls({
+  hideControls,
   initialHidden,
   initialMuted,
   videoRef,
@@ -82,7 +84,7 @@ export default function Controls({
       initialMuted,
     })
 
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(!initialHidden)
 
   // TODO: useDebouncedState 사용하기
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -119,34 +121,40 @@ export default function Controls({
     }
   }, [visible, handleFadeOut])
 
+  useEffect(() => {
+    if (playing) {
+      handleFadeOut()
+    }
+  }, [handleFadeOut, playing])
+
   return (
-    <>
-      <ControlsContainer visible={visible} onClick={handleControls}>
-        <CurrentTime>{currentTime || '00:00'}</CurrentTime>
-        {duration ? <Duration>{formatTime(duration)}</Duration> : null}
-        {duration ? <Progress max={duration} value={progress} /> : null}
-        <Seeker
-          visible={visible}
-          seek={seek}
-          duration={duration}
-          onClick={handleSeekerClick}
-          onChange={handleSeekerChange}
-        />
-      </ControlsContainer>
+    <ControlsContainer visible={visible} onClick={handleControls}>
+      {!hideControls && (
+        <>
+          <CurrentTime>{currentTime || '00:00'}</CurrentTime>
+          {duration ? <Duration>{formatTime(duration)}</Duration> : null}
+          {duration ? <Progress max={duration} value={progress} /> : null}
+          <Seeker
+            visible={visible}
+            seek={seek}
+            duration={duration}
+            onClick={handleSeekerClick}
+            onChange={handleSeekerChange}
+          />
+        </>
+      )}
       <PlayPauseButton
         videoRef={videoRef}
-        initialVisible={!initialHidden}
         playing={playing}
-        forceVisible={visible}
+        visible={visible}
         onPlayPause={handleFadeOut}
       />
       <MuteUnmuteButton
         videoRef={videoRef}
-        forceVisible={visible}
         muted={muted}
-        playing={playing}
+        visible={visible}
         onMuteUnmute={handleFadeOut}
       />
-    </>
+    </ControlsContainer>
   )
 }
