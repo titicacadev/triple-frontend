@@ -1,25 +1,22 @@
 name: Renovate PR Fix
 on:
-  pull_request:
+  push:
     branches:
-      - main
-
+      - 'renovate/**'
 env:
   # Node.js
   NODE_VERSION: '17.7.0'
   NPM_REGISTRY_URL: 'https://registry.npmjs.org'
+  NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
   COMMIT_USER_EMAIL: developer@triple-corp.com
   COMMIT_USER_NAME: triple-frontend[bot]
 
 jobs:
   fix-renovate-pr:
     runs-on: ubuntu-latest
-    if: ${{ startsWith( github.event.pull_request.base.ref, 'renovate/' )}}
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v2
