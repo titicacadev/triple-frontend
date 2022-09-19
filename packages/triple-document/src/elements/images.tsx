@@ -14,8 +14,8 @@ import { useMediaConfig } from '../prop-context/media-config'
 import DocumentCarousel from './shared/document-carousel'
 import generateClickHandler from './shared/generate-click-handler'
 import {
-  elementContainerMap,
-  imagesContainerMap,
+  ELEMENT_CONTAINER_MAP,
+  IMAGES_CONTAINER_MAP,
 } from './shared/display-containers'
 
 export default function Images({
@@ -40,11 +40,11 @@ export default function Images({
   const { videoAutoPlay, hideVideoControls, optimized } = useMediaConfig()
 
   const ImagesContainer = display
-    ? imagesContainerMap[display]
+    ? IMAGES_CONTAINER_MAP[display]
     : DocumentCarousel
 
   const ElementContainer = display
-    ? elementContainerMap[display]
+    ? ELEMENT_CONTAINER_MAP[display]
     : ImageCarouselElementContainer
 
   const handleClick = generateClickHandler(onLinkClick, onImageClick)
