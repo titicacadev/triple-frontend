@@ -43,13 +43,11 @@ export const Basic = () => {
       currentPage={0}
       borderRadius={6}
       ImageSource={ImageSource}
-      showMoreRenderer={({ currentIndex, totalCount }) => {
-        const result =
-          totalCount > 5 && currentIndex === totalCount - 1 ? (
-            <OverlayContent />
-          ) : null
-        return result
-      }}
+      showMoreRenderer={({ currentIndex, totalCount }) =>
+        totalCount > 5 && currentIndex === totalCount - 1 ? (
+          <OverlayContent />
+        ) : null
+      }
       pageLabelRenderer={({ currentIndex, totalCount }) =>
         totalCount <= 5 || currentIndex < totalCount - 1 ? (
           <PageLabel currentIndex={currentIndex} totalCount={totalCount} />
@@ -68,13 +66,11 @@ export const Video = () => {
       currentPage={0}
       borderRadius={6}
       ImageSource={ImageSource}
-      showMoreRenderer={({ currentIndex, totalCount }) => {
-        const result =
-          totalCount > 5 && currentIndex === totalCount - 1 ? (
-            <OverlayContent />
-          ) : null
-        return result
-      }}
+      showMoreRenderer={({ currentIndex, totalCount }) =>
+        totalCount > 5 && currentIndex === totalCount - 1 ? (
+          <OverlayContent />
+        ) : null
+      }
       pageLabelRenderer={({ currentIndex, totalCount }) =>
         totalCount <= 5 || currentIndex < totalCount - 1 ? (
           <PageLabel currentIndex={currentIndex} totalCount={totalCount} />
