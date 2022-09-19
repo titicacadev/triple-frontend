@@ -47,7 +47,7 @@ export const TwoImages: StoryObj = {
   name: '2개',
   args: {
     value: {
-      images: IMAGES.map((value) => ({
+      images: IMAGES.slice(0, 2).map((value) => ({
         ...value,
         title: '',
       })),
@@ -59,7 +59,7 @@ export const TwoImagesWithCaption: StoryObj = {
   name: '2개, 캡션',
   args: {
     value: {
-      images: IMAGES,
+      images: IMAGES.slice(0, 2),
     },
   },
 }
@@ -68,8 +68,28 @@ export const TwoBlockImages: StoryObj = {
   name: '2개, 블록',
   args: {
     value: {
-      images: IMAGES.map((value) => ({ ...value, title: '' })),
+      images: IMAGES.slice(0, 2).map((value) => ({ ...value, title: '' })),
       display: 'block',
+    },
+  },
+}
+
+export const TwoGridImages: StoryObj = {
+  name: '2개, 분할',
+  args: {
+    value: {
+      images: IMAGES.slice(0, 2).map((value) => ({ ...value, title: '' })),
+      display: 'grid',
+    },
+  },
+}
+
+export const FiveGridImages: StoryObj = {
+  name: '5개, 분할',
+  args: {
+    value: {
+      images: IMAGES.map((value) => ({ ...value, title: '' })),
+      display: 'grid',
     },
   },
 }
