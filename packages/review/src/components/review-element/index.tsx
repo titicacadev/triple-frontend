@@ -233,7 +233,7 @@ export default function ReviewElement({
           )}
           {!blindedAt && media && media.length > 0 ? (
             <Container margin={{ top: 10 }}>
-              <Media media={media} />
+              <Media media={media} reviewId={review.id} />
             </Container>
           ) : null}
         </Content>
