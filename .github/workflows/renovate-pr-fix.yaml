@@ -2,7 +2,7 @@ name: Renovate PR Fix
 on:
   push:
     branches:
-      - 'renovate/**'
+      - 'fix/**'
 env:
   # Node.js
   NODE_VERSION: '17.7.0'
@@ -34,5 +34,153 @@ jobs:
           git commit --no-verify -a -m "Resolve dependency error"
           git push
 
-  CI:
-    uses: ./.github/workflows/ci.yaml
+  check-dependencies:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.NPM_REGISTRY_URL }}
+          cache: 'npm'
+
+      - run: npm install
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.NPM_REGISTRY_URL }}
+          cache: 'npm'
+
+      - name: Install @titicaca/eslint-config-triple
+        run: npm i -E @titicaca/eslint-config-triple
+
+      - name: Lint
+        id: lint
+        run: npm run lint
+
+      - name: Notify linting failure
+        if: failure() && steps.lint.outcome == 'failure'
+        env:
+          SLACK_COLOR: fail
+          SLACK_TITLE: ':pleading: Lint FAILURE'
+          SLACK_TOPIC: ''
+        run: npx @titicaca/gha-tools notify
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.NPM_REGISTRY_URL }}
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Turbo Cache
+        id: turbo-cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules/.cache/turbo
+          key: turbo-${{ github.job }}-${{ github.ref_name }}-${{ github.sha }}
+          restore-keys: |
+            turbo-${{ github.job }}-${{ github.ref_name }}-
+
+      - name: Build
+        id: build
+        run: npm run build
+
+      - name: Notify building failure
+        if: failure() && steps.build.outcome == 'failure'
+        env:
+          SLACK_COLOR: fail
+          SLACK_TITLE: ':pleading: Build FAILURE'
+          SLACK_TOPIC: ''
+        run: npx @titicaca/gha-tools notify
+
+      - name: Publish to Chromatic
+        if: github.ref != 'refs/heads/main'
+        id: publish-to-chromatic
+        uses: chromaui/action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          workingDir: docs
+
+      - name: Notify publishing to Chromatic failure
+        if: failure() && steps.publish-to-chromatic.outcome == 'failure'
+        env:
+          SLACK_COLOR: fail
+          SLACK_TITLE: ':pleading: Publish to Chromatic FAILURE'
+          SLACK_TOPIC: ''
+        run: npx @titicaca/gha-tools notify
+
+      - name: Publish to Chromatic and auto accept changes
+        if: github.ref == 'refs/heads/main'
+        uses: chromaui/action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          workingDir: docs
+          autoAcceptChanges: true
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.NPM_REGISTRY_URL }}
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Generate coverage report
+        id: test
+        run: npm run test:coverage
+
+      - name: Notify testing failure
+        if: failure() && steps.test.outcome == 'failure'
+        env:
+          SLACK_COLOR: fail
+          SLACK_TITLE: ':pleading: Test FAILURE'
+          SLACK_TOPIC: ''
+        run: npx @titicaca/gha-tools notify
+
+      - name: Upload coverage to Codecov
+        id: upload-coverage-to-codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./coverage
+
+      - name: Notify uploading coverage failure
+        if: failure() && steps.upload-coverage-to-codecov.outcome == 'failure'
+        env:
+          SLACK_COLOR: fail
+          SLACK_TITLE: ':pleading: Upload coverage FAILURE'
+          SLACK_TOPIC: ''
+        run: npx @titicaca/gha-tools notify
