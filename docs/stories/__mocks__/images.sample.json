@@ -38,5 +38,65 @@
     "height": 1544,
     "description": "",
     "sourceUrl": "https://triple.guide"
+  },
+  {
+    "id": "07f5ed9c-1102-4ec0-b07c-{7b1b098311b2",
+    "frame": "small",
+    "sizes": {
+      "full": {
+        "url": "https://res.cloudinary.com/triple-dev/image/upload/w_2048,h_2048,c_limit/578bbb87-9ed3-443a-8cb3-b0b4a2b3e1ea.jpg"
+      },
+      "large": {
+        "url": "https://res.cloudinary.com/triple-dev/image/upload/w_2048,h_2048,c_limit/578bbb87-9ed3-443a-8cb3-b0b4a2b3e1ea.jpg"
+      },
+      "small_square": {
+        "url": "https://res.cloudinary.com/triple-dev/image/upload/w_2048,h_2048,c_limit/578bbb87-9ed3-443a-8cb3-b0b4a2b3e1ea.jpg"
+      }
+    },
+    "title": "TripleDocument 샘플 3",
+    "width": 1024,
+    "height": 1544,
+    "description": "",
+    "sourceUrl": "https://triple.guide"
+  },
+  {
+    "id": "07f5ed9c-1102-4ec0-b07c-{7b1b098311b2",
+    "frame": "small",
+    "sizes": {
+      "full": {
+        "url": "https://res.cloudinary.com/triple-dev/image/upload/w_2048,h_2048,c_limit/bfb5dd63-696c-4f1c-b98c-8e7f86fe069f.jpg"
+      },
+      "large": {
+        "url": "https://res.cloudinary.com/triple-dev/image/upload/w_2048,h_2048,c_limit/bfb5dd63-696c-4f1c-b98c-8e7f86fe069f.jpg"
+      },
+      "small_square": {
+        "url": "https://res.cloudinary.com/triple-dev/image/upload/w_2048,h_2048,c_limit/bfb5dd63-696c-4f1c-b98c-8e7f86fe069f.jpg"
+      }
+    },
+    "title": "TripleDocument 샘플 4",
+    "width": 1024,
+    "height": 1544,
+    "description": "",
+    "sourceUrl": "https://triple.guide"
+  },
+  {
+    "id": "07f5ed9c-1102-4ec0-b07c-{7b1b098311b2",
+    "frame": "small",
+    "sizes": {
+      "full": {
+        "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/6d795778-6586-4a2e-a841-af3198cb1603.jpeg"
+      },
+      "large": {
+        "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/6d795778-6586-4a2e-a841-af3198cb1603.jpeg"
+      },
+      "small_square": {
+        "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/6d795778-6586-4a2e-a841-af3198cb1603.jpeg"
+      }
+    },
+    "title": "TripleDocument 샘플 5",
+    "width": 1024,
+    "height": 1544,
+    "description": "",
+    "sourceUrl": "https://triple.guide"
   }
 ]
