@@ -41,7 +41,7 @@ export const IMAGES_CONTAINER_MAP = {
   'default-v2': DocumentCarousel,
 }
 
-export const elementContainerMap = {
+export const ELEMENT_CONTAINER_MAP = {
   block: ImageBlockElementContainer,
   'gapless-block': Container,
   grid: Fragment,
