@@ -1,4 +1,4 @@
-import { useState, useCallback, PropsWithChildren } from 'react'
+import { useState, useCallback, PropsWithChildren, MouseEvent } from 'react'
 import styled from 'styled-components'
 import ImageCarousel, {
   PageLabel,
@@ -56,13 +56,29 @@ export default function Carousel({
   const [currentPage, setCurrentPage] = useState(0)
   const visibleImages = app ? images : images.slice(0, SHOW_CTA_FROM_INDEX + 1)
 
-  const handleImageClick = useCallback(() => {
-    if (!app && currentPage === SHOW_CTA_FROM_INDEX) {
-      return onCtaClick()
-    }
+  const handleImageClick = useCallback(
+    (event?: MouseEvent, media?: ImageMeta) => {
+      if (!app && currentPage === SHOW_CTA_FROM_INDEX) {
+        return onCtaClick()
+      }
 
-    onImageClick(images[currentPage])
-  }, [onImageClick, onCtaClick, images, currentPage, app])
+      onImageClick(images[currentPage])
+
+      const action = '대표사진선택'
+      const label = '선택'
+
+      trackEvent({
+        fa: {
+          action,
+          label,
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          media_id: media?.id,
+          type: media?.type === 'video' ? '비디오' : '이미지',
+        },
+      })
+    },
+    [app, currentPage, onImageClick, images, trackEvent, onCtaClick],
+  )
 
   const handlePageChange = useCallback(
     ({ index }) => {
@@ -79,7 +95,7 @@ export default function Carousel({
       const currentImage = images[index]
 
       if (currentImage) {
-        const { attachmentId } = currentImage
+        const { attachmentId, id, type } = currentImage
         const action = '대표사진선택'
         const label = `스와이프${attachmentId ? `_사용자등록` : ''}`
 
@@ -88,6 +104,9 @@ export default function Carousel({
             action,
             label,
             ...(attachmentId ? { attachment_id: attachmentId } : {}),
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            media_id: id,
+            type: type === 'video' ? '비디오' : '이미지',
           },
           ga: ['대표사진_스와이프'],
         })
