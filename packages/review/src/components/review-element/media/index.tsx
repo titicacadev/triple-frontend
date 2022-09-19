@@ -2,6 +2,8 @@ import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { useMemo } from 'react'
 
+import { useClientActions } from '../../../services'
+
 import { compareMedia } from './compare-media'
 import { Dimmer, MediumWrapper } from './elements'
 import MediaWrapper from './media-wrapper'
@@ -14,6 +16,7 @@ interface Props {
 
 function Media({ media, reviewId }: Props) {
   const { trackEvent } = useEventTrackingContext()
+  const { navigateImages } = useClientActions()
 
   const hasVideo = media.some((medium) => medium.type === 'video')
 
@@ -45,6 +48,11 @@ function Media({ media, reviewId }: Props) {
                 review_id: reviewId,
               },
             })
+
+            const originalIndex = media.findIndex(
+              (originalMedium) => originalMedium.id === medium.id,
+            )
+            navigateImages(media, originalIndex)
           }}
         >
           <Medium medium={medium} />
