@@ -129,10 +129,10 @@ export default function Controls({
   }, [handleFadeOut, playing])
 
   useEffect(() => {
-    if (playing) {
+    if (playing && !oncePlayed) {
       setOncePlayed(true)
     }
-  }, [playing])
+  }, [oncePlayed, playing])
 
   const playPauseVisible = oncePlayed ? visible : !initialHidden
 
