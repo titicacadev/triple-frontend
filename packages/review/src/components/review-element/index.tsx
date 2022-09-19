@@ -231,12 +231,12 @@ export default function ReviewElement({
               reviewRateDescriptions={reviewRateDescriptions}
             />
           )}
-          {!blindedAt && media && media.length > 0 ? (
-            <Container margin={{ top: 10 }}>
-              <Media media={media} reviewId={review.id} />
-            </Container>
-          ) : null}
         </Content>
+        {!blindedAt && media && media.length > 0 ? (
+          <Container margin={{ top: 10 }}>
+            <Media media={media} reviewId={review.id} />
+          </Container>
+        ) : null}
         <Meta>
           {!blindedAt ? (
             <LikeButton
