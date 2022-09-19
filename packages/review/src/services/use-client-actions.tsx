@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import qs from 'qs'
 import { useEnv } from '@titicaca/react-contexts'
 import { useNavigate } from '@titicaca/router'
+import { ImageMeta } from '@titicaca/type-definitions'
 
 import { ResourceType } from '../components/types'
 import { writeReview } from '../data/api'
@@ -67,22 +68,7 @@ export function useClientActions() {
       navigateUserDetail(uid: string) {
         navigate(`${appUrlScheme}:///users/${uid}`)
       },
-      navigateImages(
-        images: {
-          id: string
-          title: string
-          description: string
-          width: unknown
-          height: unknown
-          sourceUrl: string
-          sizes: {
-            full: { url: string }
-            large: { url: string }
-            small_square: { url: string }
-          }
-        }[],
-        index: number,
-      ) {
+      navigateImages(images: ImageMeta[], index: number) {
         navigate(
           `${appUrlScheme}:///images?${qs.stringify({
             images: JSON.stringify(images),
