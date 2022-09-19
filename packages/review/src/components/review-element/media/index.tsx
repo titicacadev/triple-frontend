@@ -1,3 +1,4 @@
+import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { useMemo } from 'react'
 
@@ -8,9 +9,12 @@ import Medium from './medium'
 
 interface Props {
   media: ImageMeta[]
+  reviewId: string
 }
 
-function Media({ media }: Props) {
+function Media({ media, reviewId }: Props) {
+  const { trackEvent } = useEventTrackingContext()
+
   const hasVideo = media.some((medium) => medium.type === 'video')
 
   const sortedMedia = useMemo(
@@ -29,7 +33,20 @@ function Media({ media }: Props) {
   return (
     <MediaWrapper length={length}>
       {sortedMedia.slice(0, limit).map((medium, index) => (
-        <MediumWrapper key={medium.id}>
+        <MediumWrapper
+          key={medium.id}
+          onClick={() => {
+            trackEvent({
+              fa: {
+                action: '리뷰썸네일_클릭',
+                // eslint-disable-next-line @typescript-eslint/naming-convention
+                media_id: medium.id,
+                type: medium.type === 'video' ? '비디오' : '사진',
+                review_id: reviewId,
+              },
+            })
+          }}
+        >
           <Medium medium={medium} />
           {restLength > 0 && index === limit - 1 ? (
             <Dimmer
