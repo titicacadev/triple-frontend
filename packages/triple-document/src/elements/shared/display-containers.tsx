@@ -33,7 +33,7 @@ const GridContainer = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(0, auto));
 `
 
-export const imagesContainerMap = {
+export const IMAGES_CONTAINER_MAP = {
   block: BlockContainer,
   'gapless-block': Container,
   grid: GridContainer,
