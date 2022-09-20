@@ -63,7 +63,7 @@ function Media({ media, reviewId }: Props) {
               justifyContent="center"
               backgroundColor="gray500"
             >
-              + {restLength}
+              +{restLength}
             </Dimmer>
           ) : null}
         </MediumWrapper>
