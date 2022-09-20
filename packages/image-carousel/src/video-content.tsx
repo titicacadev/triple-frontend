@@ -13,6 +13,7 @@ interface Props {
   globalSize?: GlobalSizes
   globalFrame?: FrameRatioAndSizes
   overlay?: ReactNode
+  onClick?: () => void
 }
 
 const HEIGHT_OPTIONS: Partial<Record<GlobalSizes, string>> = {
@@ -40,6 +41,7 @@ function VideoContent({
   globalSize,
   globalFrame,
   overlay,
+  onClick,
 }: Props) {
   const { ref, isIntersecting } = useIntersection<HTMLVideoElement>({
     threshold: 0.5,
@@ -70,7 +72,7 @@ function VideoContent({
   const frame = size ? undefined : globalFrame || imageFrame
 
   return (
-    <Frame size={size} height={height} frame={frame}>
+    <Frame size={size} height={height} frame={frame} onClick={onClick}>
       <CoreVideo
         removeFrame
         frame="medium"

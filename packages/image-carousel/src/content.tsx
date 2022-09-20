@@ -41,6 +41,7 @@ function Content({
         globalSize={globalSize}
         globalFrame={globalFrame}
         overlay={overlay}
+        onClick={onClick}
       />
     )
   }
