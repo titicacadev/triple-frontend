@@ -4,10 +4,9 @@ import {
   GlobalSizes,
   ImageMeta,
 } from '@titicaca/type-definitions'
-import { MouseEvent, ReactNode } from 'react'
+import { MouseEventHandler, ReactNode } from 'react'
 
 import ImageContent from './image-content'
-import { CarouselImageMeta } from './types'
 import VideoContent from './video-content'
 
 interface Props {
@@ -18,7 +17,7 @@ interface Props {
   globalFrame?: FrameRatioAndSizes
   overlay?: ReactNode
   ImageSource?: ImageSourceType
-  onClick?: (event?: MouseEvent, media?: CarouselImageMeta) => void
+  onClick?: MouseEventHandler
 }
 
 function Content({
