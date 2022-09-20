@@ -33,4 +33,5 @@ export const Dimmer = styled(FlexBox)`
   height: 100%;
   border-radius: 4px;
   color: var(--color-white900);
+  font-weight: bold;
 `
