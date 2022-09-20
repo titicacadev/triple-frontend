@@ -40,8 +40,6 @@ function Video({ medium }: Props) {
         frame="medium"
         src={medium.video?.large.url}
         fallbackImageUrl={medium.sizes.large.url}
-        cloudinaryBucket={medium.cloudinaryBucket}
-        cloudinaryId={medium.cloudinaryId}
         muted
         hideControls
         initialControlsHidden
