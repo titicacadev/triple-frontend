@@ -80,7 +80,7 @@ function VideoContent({
         cloudinaryId={medium.cloudinaryId}
         muted
         hideControls
-        initialControlsHidden
+        initialControlsHidden={videoAutoplay}
         ref={ref}
       />
       {overlay || null}
