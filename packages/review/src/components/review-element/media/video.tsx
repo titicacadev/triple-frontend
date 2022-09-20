@@ -42,7 +42,7 @@ function Video({ medium }: Props) {
         fallbackImageUrl={medium.sizes.large.url}
         muted
         hideControls
-        initialControlsHidden
+        initialControlsHidden={videoAutoplay}
         ref={ref}
       />
     </Container>
