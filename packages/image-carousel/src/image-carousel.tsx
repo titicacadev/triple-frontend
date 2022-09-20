@@ -79,7 +79,7 @@ function ImageCarousel({
             optimized={optimized}
             overlay={overlay}
             ImageSource={ImageSource}
-            onClick={handleContentClick}
+            onClick={(event) => handleContentClick(event, image)}
           />
         )
       })}
