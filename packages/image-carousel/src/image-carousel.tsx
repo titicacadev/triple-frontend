@@ -47,7 +47,7 @@ function ImageCarousel({
     event?: MouseEvent,
     media?: CarouselImageMeta,
   ) => {
-    flickingRef.current?.isPlaying() && onImageClick?.(event, media)
+    !flickingRef.current?.isPlaying() && onImageClick?.(event, media)
   }
 
   return (
