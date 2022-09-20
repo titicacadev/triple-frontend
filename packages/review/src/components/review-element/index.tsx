@@ -94,7 +94,7 @@ const LikeButton = styled(Container)<{ liked?: boolean }>`
   background-size: 18px 18px;
   background-repeat: no-repeat;
   color: ${({ liked }) => (liked ? '--color-blue' : '--color-gray400')};
-  background-image: ${(liked) =>
+  background-image: ${({ liked }) =>
     liked
       ? "url('https://assets.triple.guide/images/btn-lounge-thanks-on@3x.png')"
       : "url('https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png')"};
