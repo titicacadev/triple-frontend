@@ -1,6 +1,6 @@
 import { Container, Video as CoreVideo } from '@titicaca/core-elements'
 import { FrameRatioAndSizes, GlobalSizes } from '@titicaca/type-definitions'
-import { ReactNode, useEffect } from 'react'
+import { MouseEventHandler, ReactNode, useEffect } from 'react'
 import styled from 'styled-components'
 import { useDeviceContext } from '@titicaca/react-contexts'
 import { useIntersection } from '@titicaca/intersection-observer'
@@ -13,7 +13,7 @@ interface Props {
   globalSize?: GlobalSizes
   globalFrame?: FrameRatioAndSizes
   overlay?: ReactNode
-  onClick?: () => void
+  onClick?: MouseEventHandler
 }
 
 const HEIGHT_OPTIONS: Partial<Record<GlobalSizes, string>> = {
