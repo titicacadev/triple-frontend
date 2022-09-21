@@ -75,7 +75,6 @@ function Video({ medium }: Props) {
         loop
         muted
         playsInline
-        poster={medium.sizes.large.url}
       />
       {!videoAutoplay && <PlayPauseButtonBase disabled />}
     </Container>
