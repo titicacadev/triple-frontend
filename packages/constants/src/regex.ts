@@ -32,7 +32,7 @@ export const ADDRESS_REGEX = /^([a-zA-Z]|[0-9]|[ ]){1,35}$/
 
 export const SLASH_HYPHEN_REGEX = /(\/|-)/g
 export const KOREAN_REGEX = /[ㄱ-ㅎㅏ-ㅣ가-힣]+/g
-export const PASSPORT_NUMBER_REGEX = /[^A-Z0-9]+/g
+export const PASSPORT_NUMBER_REGEX = /[^A-Z0-9]{15}/g
 export const ALPHABET_REGEX = /([^a-zA-Z])+/g
 export const PASSPORT_NAME_REGEX = new RegExp(
   `([^ㄱ-ㅎ가-힣${KOREAN_VOWEL_UNICODES}${KOREAN_MIDDLE_DOT_UNICODES}|a-zA-Z])+`,
