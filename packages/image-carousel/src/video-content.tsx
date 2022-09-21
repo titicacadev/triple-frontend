@@ -1,4 +1,4 @@
-import { Container, Video as CoreVideo } from '@titicaca/core-elements'
+import { Container } from '@titicaca/core-elements'
 import { FrameRatioAndSizes, GlobalSizes } from '@titicaca/type-definitions'
 import { MouseEventHandler, ReactNode, useEffect } from 'react'
 import styled from 'styled-components'
@@ -33,6 +33,38 @@ const Frame = styled(Container)<{
   width: 100%;
   height: ${({ height, size }) =>
     (height && `${height}px`) || (size ? HEIGHT_OPTIONS[size] : '')};
+`
+
+const Video = styled.video`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`
+
+const PLAY_BUTTON_IMAGE_URL =
+  'https://assets.triple.guide/images/btn-video-play@3x.png'
+
+const PlayPauseButtonBase = styled.button`
+  position: absolute;
+  border: none;
+  background: none;
+  width: 60px;
+  height: 60px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url(${PLAY_BUTTON_IMAGE_URL});
+  background-size: cover;
+
+  &:focus {
+    outline: none;
+  }
+  transition: opacity 0.3s;
 `
 
 function VideoContent({
@@ -73,18 +105,16 @@ function VideoContent({
 
   return (
     <Frame size={size} height={height} frame={frame} onClick={onClick}>
-      <CoreVideo
-        removeFrame
-        frame="medium"
-        src={medium.video?.large.url}
-        fallbackImageUrl={medium.sizes.large.url}
-        cloudinaryBucket={medium.cloudinaryBucket}
-        cloudinaryId={medium.cloudinaryId}
-        muted
-        hideControls
-        initialControlsHidden={videoAutoplay}
+      <Video
         ref={ref}
+        src={medium.video?.large.url}
+        controls={false}
+        loop
+        muted
+        playsInline
+        poster={medium.sizes.large.url}
       />
+      {!videoAutoplay && <PlayPauseButtonBase disabled />}
       {overlay || null}
     </Frame>
   )
