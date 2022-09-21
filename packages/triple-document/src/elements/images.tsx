@@ -56,11 +56,11 @@ export default function Images({
         return (
           <ElementContainer key={i}>
             <TripleMedia
+              frame="small"
               optimized={optimized}
               borderRadius={isOnlyImage ? 0 : undefined}
               autoPlay={videoAutoPlay}
               hideControls={hideVideoControls}
-              showNativeControls
               media={image}
               onClick={handleClick}
               ImageSource={ImageSource}
