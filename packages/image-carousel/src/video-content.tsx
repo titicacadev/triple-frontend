@@ -112,7 +112,6 @@ function VideoContent({
         loop
         muted
         playsInline
-        poster={medium.sizes.large.url}
       />
       {!videoAutoplay && <PlayPauseButtonBase disabled />}
       {overlay || null}
