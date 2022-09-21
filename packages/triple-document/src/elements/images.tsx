@@ -68,11 +68,11 @@ export default function Images({
           <ElementContainer key={i}>
             {display === 'gapless-block' ? (
               <TripleMedia
+                frame="small"
                 optimized={optimized}
                 borderRadius={0}
                 autoPlay={videoAutoPlay}
                 hideControls={hideVideoControls}
-                showNativeControls
                 media={image}
                 onClick={handleClick}
                 ImageSource={ImageSource}
@@ -80,10 +80,10 @@ export default function Images({
             ) : (
               <>
                 <TripleMedia
+                  frame="small"
                   optimized={optimized}
                   autoPlay={videoAutoPlay}
                   hideControls={hideVideoControls}
-                  showNativeControls
                   media={image}
                   onClick={handleClick}
                   ImageSource={ImageSource}
