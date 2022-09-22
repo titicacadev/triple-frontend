@@ -1,13 +1,17 @@
+import { css } from 'styled-components'
+
 import Container, { ContainerProps } from './container'
 import { HR2 } from './hr'
 
 export interface SectionProps extends ContainerProps {
   divider?: string
   anchor?: string
+  minWidth?: number | string
+  maxWidth?: number | string
 }
 
 function Section({
-  css,
+  css: _css,
   children,
   divider,
   anchor,
@@ -25,14 +29,20 @@ function Section({
       {divider === 'top' && <HR2 compact />}
       <Container
         id={anchor}
-        css={css}
         centered
         clearing
-        minWidth={minWidth}
-        maxWidth={maxWidth}
         padding={padding}
-        position="relative"
         {...props}
+        css={
+          {
+            minWidth,
+            maxWidth,
+            position: 'relative',
+          } &&
+          css`
+            ${_css}
+          `
+        }
       >
         {children}
       </Container>
