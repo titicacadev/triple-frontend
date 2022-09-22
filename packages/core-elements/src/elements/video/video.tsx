@@ -14,6 +14,7 @@ interface Props {
   frame: FrameRatioAndSizes
   autoPlay?: boolean
   muted?: boolean
+  loop?: boolean
   borderRadius?: number
   hideControls?: boolean
   initialControlsHidden?: boolean
@@ -30,6 +31,7 @@ const Video = forwardRef<HTMLVideoElement, Props>(
       cloudinaryId,
       autoPlay,
       muted,
+      loop = true,
       hideControls,
       initialControlsHidden,
       showNativeControls,
@@ -52,6 +54,7 @@ const Video = forwardRef<HTMLVideoElement, Props>(
           cloudinaryId={cloudinaryId}
           autoPlay={autoPlay}
           muted={muted}
+          loop={loop}
           showNativeControls={showNativeControls}
           hideControls={hideControls}
           initialControlsHidden={initialControlsHidden}
