@@ -14,6 +14,7 @@ export default function Media({
   optimized = false,
   media,
   autoPlay,
+  loop = true,
   hideControls,
   showNativeControls,
   ImageSource,
@@ -26,6 +27,7 @@ export default function Media({
   optimized?: boolean
   media: ImageMeta
   autoPlay?: boolean
+  loop?: boolean
   hideControls?: boolean
   showNativeControls?: boolean
   ImageSource?: ImageSourceType
@@ -57,6 +59,7 @@ export default function Media({
         cloudinaryBucket={cloudinaryBucket}
         cloudinaryId={cloudinaryId}
         autoPlay={autoPlay}
+        loop={loop}
         hideControls={!!hideControls}
         showNativeControls={showNativeControls}
       />

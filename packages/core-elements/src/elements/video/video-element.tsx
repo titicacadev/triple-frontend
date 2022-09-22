@@ -48,6 +48,7 @@ interface Props {
   cloudinaryId?: string
   autoPlay?: boolean
   muted?: boolean
+  loop?: boolean
   showNativeControls?: boolean
   hideControls?: boolean
   initialControlsHidden?: boolean
@@ -62,6 +63,7 @@ const VideoElement = forwardRef<HTMLVideoElement, Props>(
       cloudinaryId,
       autoPlay,
       muted,
+      loop,
       showNativeControls,
       hideControls,
       initialControlsHidden,
@@ -74,7 +76,7 @@ const VideoElement = forwardRef<HTMLVideoElement, Props>(
     return (
       <>
         <Video
-          loop
+          loop={loop}
           playsInline
           preload="metadata"
           controls={!!showNativeControls}
