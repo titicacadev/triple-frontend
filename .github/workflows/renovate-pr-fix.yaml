@@ -28,11 +28,10 @@ jobs:
       - run: npm run sync-deps
 
       - name: Commit and Push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GHA_TOKEN }}
         run: |
           git config --local user.email "${{ env.COMMIT_USER_EMAIL }}"
           git config --local user.name "${{ env.COMMIT_USER_NAME }}"
           git commit --no-verify -a -m "Resolve dependency error"
           git push
-
-  CI:
-    uses: ./.github/workflows/ci.yaml
