@@ -12,17 +12,38 @@ export default {
 
 export function BaseSkeleton() {
   return (
-    <Container width="400px" margin={{ top: 20, left: 20 }}>
+    <Container
+      margin={{ top: 20, left: 20 }}
+      css={{
+        width: '400px',
+      }}
+    >
       <Container margin={{ bottom: 50 }}>
-        <Skeleton height="150px" margin={{ bottom: 15 }} borderRadius={4} />
+        <Skeleton
+          margin={{ bottom: 15 }}
+          borderRadius={4}
+          css={{
+            height: '150px',
+          }}
+        />
         <SkeletonText margin={{ bottom: 10 }} />
-        <SkeletonText width="80%" margin={{ bottom: 10 }} />
+        <SkeletonText
+          margin={{ bottom: 10 }}
+          css={{
+            width: '80%',
+          }}
+        />
         <SkeletonButton />
       </Container>
       <Container>
         <SkeletonCircle margin={{ bottom: 15 }} />
         <SkeletonText margin={{ bottom: 10 }} />
-        <SkeletonText width="80%" margin={{ bottom: 10 }} />
+        <SkeletonText
+          margin={{ bottom: 10 }}
+          css={{
+            width: '80%',
+          }}
+        />
       </Container>
     </Container>
   )
