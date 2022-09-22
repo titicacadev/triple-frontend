@@ -106,9 +106,11 @@ export default class Carousel extends PureComponent<
 
     return (
       <CarouselContainer
-        position="relative"
         margin={margin}
         borderRadius={borderRadius}
+        css={{
+          position: 'relative',
+        }}
       >
         <Flicking ref={flickingRef} {...this.flickingProps}>
           {children}

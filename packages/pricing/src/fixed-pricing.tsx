@@ -130,7 +130,11 @@ export default function FixedPricing({
             {pricingDescription}
           </FloatedPricingContainer>
 
-          <PurchaseButtonContainer position="absolute">
+          <PurchaseButtonContainer
+            css={{
+              position: 'absolute',
+            }}
+          >
             <Button
               as="button"
               fluid
