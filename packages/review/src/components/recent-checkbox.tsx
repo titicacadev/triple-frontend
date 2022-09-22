@@ -70,8 +70,21 @@ export default function RecentCheckBox({
   onRecentReviewChange,
 }: RecentCheckboxProps) {
   return (
-    <FlexBox flex alignItems="center" position="relative" cursor="pointer">
-      <FlexBox flex alignItems="center" onClick={onRecentReviewChange}>
+    <FlexBox
+      flex
+      css={{
+        alignItems: 'center',
+        position: 'relative',
+        cursor: 'pointer',
+      }}
+    >
+      <FlexBox
+        flex
+        onClick={onRecentReviewChange}
+        css={{
+          alignItems: 'center',
+        }}
+      >
         <CheckBox readOnly type="checkbox" checked={isRecentReview} />
         <Text size={14}>최근 여행</Text>
       </FlexBox>

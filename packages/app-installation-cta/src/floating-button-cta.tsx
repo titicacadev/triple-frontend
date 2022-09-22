@@ -153,7 +153,11 @@ export default function FloatingButtonCta({
         zIndex={zIndex}
       >
         <FloatingButton>
-          <Container width="100%">
+          <Container
+            css={{
+              width: '100%',
+            }}
+          >
             <InstallAnchor href={appInstallLink} onClick={handleClick}>
               <Text size={18} lineHeight="21px" bold color="white">
                 <Text floated="left" color="white">
@@ -171,7 +175,12 @@ export default function FloatingButtonCta({
               </Text>
             </InstallAnchor>
           </Container>
-          <Container width={46} onClick={handleDismiss}>
+          <Container
+            onClick={handleDismiss}
+            css={{
+              width: 46,
+            }}
+          >
             <CloseButton src="https://assets.triple.guide/images/btn-closebanner@3x.png" />
           </Container>
         </FloatingButton>
