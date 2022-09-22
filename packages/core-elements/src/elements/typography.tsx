@@ -28,7 +28,13 @@ export function H1({
   ...props
 }: H1Props) {
   return (
-    <Container id={href} margin={margin} textAlign={textAlign}>
+    <Container
+      id={href}
+      margin={margin}
+      css={{
+        textAlign,
+      }}
+    >
       {headline && (
         <Text bold size="tiny" color="blue" margin={{ bottom: 3 }}>
           {headline}

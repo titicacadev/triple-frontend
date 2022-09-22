@@ -357,9 +357,11 @@ function ReviewContainer({
 
       <FlexBox
         flex
-        justifyContent="space-between"
-        alignItems="center"
         margin={{ top: 23 }}
+        css={{
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
       >
         <SortingOptions
           selected={sortingOption}
