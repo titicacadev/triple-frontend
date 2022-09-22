@@ -2,7 +2,7 @@ name: Renovate PR Fix
 on:
   push:
     branches:
-      - 'renovate/**'
+      - 'fix/**'
 env:
   # Node.js
   NODE_VERSION: '17.7.0'
