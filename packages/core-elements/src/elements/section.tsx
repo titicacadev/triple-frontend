@@ -6,8 +6,6 @@ import { HR2 } from './hr'
 export interface SectionProps extends ContainerProps {
   divider?: string
   anchor?: string
-  minWidth?: number | string
-  maxWidth?: number | string
 }
 
 function Section({
@@ -15,8 +13,6 @@ function Section({
   children,
   divider,
   anchor,
-  minWidth = 320,
-  maxWidth = 768,
   padding = { left: 30, right: 30 },
   ...props
 }: SectionProps) {
@@ -33,16 +29,12 @@ function Section({
         clearing
         padding={padding}
         {...props}
-        css={
-          {
-            minWidth,
-            maxWidth,
-            position: 'relative',
-          } &&
-          css`
-            ${_css}
-          `
-        }
+        css={css`
+          position: relative;
+          min-width: 320px;
+          max-width: 768px;
+          ${_css};
+        `}
       >
         {children}
       </Container>
