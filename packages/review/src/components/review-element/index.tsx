@@ -243,27 +243,31 @@ export default function ReviewElement({
         <Meta>
           {!blindedAt ? (
             <LikeButton
-              display="inline-block"
               margin={{ top: 5 }}
               padding={{ top: 2, bottom: 2, right: 10, left: 20 }}
-              height={18}
               liked={liked}
               onClick={handleLikeButtonClick}
+              css={{
+                display: 'inline-block',
+                height: 18,
+              }}
             >
               {likesCount}
             </LikeButton>
           ) : null}
 
           <MessageCount
-            display="inline-block"
-            position="relative"
-            height={18}
             margin={{ top: 5 }}
             padding={{ top: 2, bottom: 2, left: 20, right: 0 }}
             isCommaVisible={!blindedAt}
             onClick={(e: SyntheticEvent) =>
               onMessageCountClick(e, review.id, resourceType)
             }
+            css={{
+              display: 'inline-block',
+              position: 'relative',
+              height: 18,
+            }}
           >
             {replyBoard
               ? replyBoard.rootMessagesCount + replyBoard.childMessagesCount
