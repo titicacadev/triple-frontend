@@ -113,7 +113,12 @@ export default function StaticMap({
     .join(', ')
 
   return (
-    <Container position="relative" onClick={onClick}>
+    <Container
+      onClick={onClick}
+      css={{
+        position: 'relative',
+      }}
+    >
       <StaticMapContainer frame={srcSet ? undefined : frame}>
         <StaticMapPicture>
           {srcSet ? (

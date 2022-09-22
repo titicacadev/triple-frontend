@@ -100,10 +100,12 @@ export default function FixedPricing({
     <Drawer active={active} overflow="visible">
       <FloatedFrame padding={padding}>
         <Container
-          position="relative"
           clearing
-          maxWidth={maxWidth}
           centered={!!maxWidth}
+          css={{
+            position: 'relative',
+            maxWidth,
+          }}
         >
           {active && tooltipLabel && (
             <Tooltip
