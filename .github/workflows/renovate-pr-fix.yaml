@@ -35,3 +35,7 @@ jobs:
           git config --local user.name "${{ env.GITHUB_TOKEN }}"
           git commit --no-verify -a -m "Resolve dependency error"
           git push
+
+  CI:
+    uses: ./.github/workflows/ci.yaml
+    secrets: inherit
