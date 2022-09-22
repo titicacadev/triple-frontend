@@ -72,7 +72,7 @@ export default function Images({
                 optimized={optimized}
                 borderRadius={0}
                 autoPlay={videoAutoPlay}
-                loop={!videoAutoPlay}
+                loop={!!videoAutoPlay}
                 hideControls={hideVideoControls}
                 media={image}
                 onClick={handleClick}
@@ -84,7 +84,7 @@ export default function Images({
                   frame="small"
                   optimized={optimized}
                   autoPlay={videoAutoPlay}
-                  loop={!videoAutoPlay}
+                  loop={!!videoAutoPlay}
                   hideControls={hideVideoControls}
                   media={image}
                   onClick={handleClick}
