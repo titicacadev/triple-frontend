@@ -49,7 +49,7 @@ const Video = styled.video`
 const PLAY_BUTTON_IMAGE_URL =
   'https://assets.triple.guide/images/btn-video-play@3x.png'
 
-const PlayPauseButtonBase = styled.button`
+const PlayPauseButtonBase = styled.span`
   position: absolute;
   border: none;
   background: none;
@@ -114,7 +114,7 @@ function VideoContent({
         playsInline
         poster={medium.sizes.large.url}
       />
-      {!videoAutoplay && <PlayPauseButtonBase disabled />}
+      {!videoAutoplay && <PlayPauseButtonBase />}
       {overlay || null}
     </Frame>
   )
