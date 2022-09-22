@@ -86,9 +86,11 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
     >
       <div>
         <ListSection
-          minWidth={0}
           padding={{ top: padding.top, bottom: padding.bottom }}
           margin={margin}
+          css={{
+            minWidth: 0,
+          }}
         >
           <Flicking
             {...FLICKING_CONFIG}
