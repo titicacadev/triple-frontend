@@ -26,9 +26,11 @@ export default function GuideText() {
         <FlexBox
           flex
           padding={{ top: 10, bottom: 10, left: 20, right: 20 }}
-          alignItems="center"
-          justifyContent="space-between"
           backgroundColor="gray50"
+          css={{
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
         >
           <Text size={12} lineHeight="19px" bold color="gray700">
             {!currentMessageId
