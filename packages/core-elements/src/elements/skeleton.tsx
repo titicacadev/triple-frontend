@@ -27,6 +27,8 @@ const waveAnimation = keyframes`
   }
 `
 
+type SkeletonProps = ContainerProps & { height?: number | string }
+
 export const Skeleton = styled(Container)`
   position: relative;
   overflow: hidden;
@@ -46,24 +48,48 @@ export const Skeleton = styled(Container)`
   }
 `
 
-export function SkeletonText({ height = 16, ...props }: ContainerProps) {
-  return <Skeleton height={height} {...props} />
+export function SkeletonText({ height = 16, ...props }: SkeletonProps) {
+  return (
+    <Skeleton
+      {...props}
+      css={{
+        height,
+      }}
+    />
+  )
 }
 
 export function SkeletonCircle({
   size = 50,
   ...props
 }: { size?: number } & Omit<
-  ContainerProps,
+  SkeletonProps,
   'width' | 'height' | 'borderRadius'
 >) {
-  return <Skeleton width={size} height={size} borderRadius={size} {...props} />
+  return (
+    <Skeleton
+      borderRadius={size}
+      {...props}
+      css={{
+        width: size,
+        height: size,
+      }}
+    />
+  )
 }
 
 export function SkeletonButton({
   height = 45,
   borderRadius = 4,
   ...props
-}: ContainerProps) {
-  return <Skeleton height={height} borderRadius={borderRadius} {...props} />
+}: SkeletonProps) {
+  return (
+    <Skeleton
+      borderRadius={borderRadius}
+      {...props}
+      css={{
+        height,
+      }}
+    />
+  )
 }
