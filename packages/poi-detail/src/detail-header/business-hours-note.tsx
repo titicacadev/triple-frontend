@@ -20,7 +20,12 @@ export default function BusinessHoursNote({
 
   return (
     <Container margin={{ top: 10 }}>
-      <FlexBox flex alignItems="center">
+      <FlexBox
+        flex
+        css={{
+          alignItems: 'center',
+        }}
+      >
         <IconBox>
           <TimeIcon />
         </IconBox>

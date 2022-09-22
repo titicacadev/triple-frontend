@@ -11,7 +11,12 @@ export default function NotExistReplies() {
         color="var(--color-gray50)"
       />
 
-      <Container padding={{ top: 40, bottom: 50 }} textAlign="center">
+      <Container
+        padding={{ top: 40, bottom: 50 }}
+        css={{
+          textAlign: 'center',
+        }}
+      >
         <Text size={14} lineHeight={1.2} color="gray300">
           {t(
             'ajig-daesgeuli-eobseoyo.-gajang-meonjeo-daesgeuleul-jagseonghaeboseyo',

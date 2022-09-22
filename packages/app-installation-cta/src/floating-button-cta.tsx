@@ -192,10 +192,13 @@ export default function FloatingButtonCtaV2({
             />
           </InstallAnchor>
           <Container
-            position="absolute"
-            positioning={{ top: 4, right: 4 }}
-            width={32}
-            height={32}
+            css={{
+              position: 'absolute',
+              top: 4,
+              right: 4,
+              width: 32,
+              height: 32,
+            }}
             onClick={handleDismiss}
           >
             <CloseButton
