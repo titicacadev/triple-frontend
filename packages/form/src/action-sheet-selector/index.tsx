@@ -59,7 +59,11 @@ function ActionSheetSelector({
   const selected = options.find((option) => option.value === value)
 
   return (
-    <Container position="relative">
+    <Container
+      css={{
+        position: 'relative',
+      }}
+    >
       <Container onClick={onOpen}>
         <FieldContainer error={!!error}>
           <Text size="large" alpha={selected ? 1 : 0.5}>
