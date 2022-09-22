@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Fragment, ReactNode } from 'react'
+import { Fragment, PropsWithChildren } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
 import {
   Container,
@@ -12,10 +12,7 @@ import DocumentCarousel from './document-carousel'
 function BlockContainer({
   children,
   images,
-}: {
-  children: ReactNode
-  images: ImageMeta[]
-}) {
+}: PropsWithChildren<{ images: ImageMeta[] }>) {
   return (
     <Container
       margin={{
