@@ -102,7 +102,13 @@ export function CheckboxItem<T>({
   const id = `${key}_${label}_${name}`
 
   return (
-    <Container margin={margin} position="relative" padding={{ right: 29 }}>
+    <Container
+      margin={margin}
+      padding={{ right: 29 }}
+      css={{
+        position: 'relative',
+      }}
+    >
       <Label htmlFor={id} disabled={disabled}>
         {label}
       </Label>

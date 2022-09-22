@@ -31,7 +31,12 @@ export default function SortingOptions({
   ]
 
   return (
-    <OptionsContainer flex alignItems="center">
+    <OptionsContainer
+      flex
+      css={{
+        alignItems: 'center',
+      }}
+    >
       {sortingOptions.map(({ key, text }) => (
         <Label key={key} radio selected={selected === key}>
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
