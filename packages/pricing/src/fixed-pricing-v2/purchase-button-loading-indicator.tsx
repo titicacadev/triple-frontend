@@ -45,7 +45,13 @@ export default function PurchaseButtonLoadingIndicator({
   speedMultiplier = 0.75,
 }: IndicatorProps) {
   return loading ? (
-    <FlexBox flex alignItems="center" justifyContent="center">
+    <FlexBox
+      flex
+      css={{
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
       {[...new Array(indicatorCount)].map((_, index) => {
         return (
           <Indicator
