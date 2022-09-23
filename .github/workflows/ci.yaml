@@ -42,7 +42,7 @@ jobs:
       - run: npm install
 
       - name: If working tree dirty, shutdown job
-        if: ${{ !startsWith( github.event.pull_request.base.ref, 'renovate/' )}}
+        if: ${{ !startsWith(github.event.pull_request.base.ref, 'renovate/')}}
         id: check-working-tree-clean
         run: |
           if [[ $(git diff --stat) != '' ]]; then
@@ -51,7 +51,7 @@ jobs:
           fi
 
       - name: Notify checking dependency failure
-        if: failure() && steps.check-working-tree-clean.outcome == 'failure'
+        if: ${{ !startsWith(github.event.pull_request.base.ref, 'renovate/')}} && failure() && steps.check-working-tree-clean.outcome == 'failure'
         env:
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: Deps check FAILURE'
