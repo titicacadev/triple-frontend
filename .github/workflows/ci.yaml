@@ -58,7 +58,7 @@ jobs:
           fi
 
       - name: Notify checking dependency failure
-        if: ${{ !inputs.skipShutdown }} && failure() && steps.check-working-tree-clean.outcome == 'failure'
+        if: failure() && steps.check-working-tree-clean.outcome == 'failure'
         env:
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: Deps check FAILURE'
