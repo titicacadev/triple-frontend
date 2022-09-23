@@ -10,6 +10,8 @@ on:
   push:
     branches:
       - '**'
+    branches-ignore:
+      - 'renovate/**'
     tags-ignore:
       - '**'
 
