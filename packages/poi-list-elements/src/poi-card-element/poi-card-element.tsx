@@ -48,9 +48,8 @@ const DirectionButtonContainer = styled(Container)`
   transform: translateY(-50%);
 `
 
-const ScrapButtonContainer = styled(Container).attrs({
-  position: 'absolute',
-})`
+const ScrapButtonContainer = styled(Container)`
+  position: absolute;
   top: 0;
   right: 0;
 `
