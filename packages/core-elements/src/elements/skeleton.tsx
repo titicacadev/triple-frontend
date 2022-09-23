@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 import { gray100, gray20 } from '@titicaca/color-palette'
 
 import Container, { ContainerProps } from './container'
@@ -48,19 +48,25 @@ export const Skeleton = styled(Container)`
   }
 `
 
-export function SkeletonText({ height = 16, ...props }: SkeletonProps) {
+export function SkeletonText({
+  height = 16,
+  css: _css,
+  ...props
+}: SkeletonProps) {
   return (
     <Skeleton
+      css={css`
+        height: ${height};
+        ${_css}
+      `}
       {...props}
-      css={{
-        height,
-      }}
     />
   )
 }
 
 export function SkeletonCircle({
   size = 50,
+  css: _css,
   ...props
 }: { size?: number } & Omit<
   SkeletonProps,
@@ -69,11 +75,12 @@ export function SkeletonCircle({
   return (
     <Skeleton
       borderRadius={size}
+      css={css`
+        width: ${size};
+        height: ${size};
+        ${_css}
+      `}
       {...props}
-      css={{
-        width: size,
-        height: size,
-      }}
     />
   )
 }
@@ -81,15 +88,17 @@ export function SkeletonCircle({
 export function SkeletonButton({
   height = 45,
   borderRadius = 4,
+  css: _css,
   ...props
 }: SkeletonProps) {
   return (
     <Skeleton
       borderRadius={borderRadius}
+      css={css`
+        height: ${height};
+        ${_css}
+      `}
       {...props}
-      css={{
-        height,
-      }}
     />
   )
 }
