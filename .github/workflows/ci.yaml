@@ -1,16 +1,8 @@
 name: CI
 on:
-  workflow_call:
-    inputs:
-      skipShutdown:
-        required: false
-        type: boolean
-        default: false
-
   push:
     branches:
       - '**'
-      - '!renovate/**'
     tags-ignore:
       - '**'
 
@@ -49,7 +41,7 @@ jobs:
       - run: npm install
 
       - name: If working tree dirty, shutdown job
-        if: ${{ !inputs.skipShutdown }}
+        if: ${{ !startsWith( github.ref_name, 'renovate/' )}}
         id: check-working-tree-clean
         run: |
           if [[ $(git diff --stat) != '' ]]; then
@@ -200,3 +192,26 @@ jobs:
           SLACK_TITLE: ':pleading: Upload coverage FAILURE'
           SLACK_TOPIC: ''
         run: npx @titicaca/gha-tools notify
+
+  fix-renovate-pr:
+    runs-on: ubuntu-latest
+    if: ${{ startsWith( github.ref_name, 'renovate/' )}}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.NPM_REGISTRY_URL }}
+
+      - run: npm install
+      - run: npm run sync-deps
+
+      - name: Commit and Push
+        run: |
+          git config --local user.email "${{ env.COMMIT_USER_EMAIL }}"
+          git config --local user.name "${{ env.COMMIT_USER_NAME }}"
+          git commit --no-verify -a -m "Resolve dependency error"
+          git push
