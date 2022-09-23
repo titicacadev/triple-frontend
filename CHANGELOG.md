@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 9.6.0
+
+### triple-document
+
+- 어드민 페이지 이미지 분할 기능 [#2134](https://github.com/titicacadev/triple-frontend/pull/2134)
+
+### core-elements, reviews, image-carousel, poi-detail
+
+- 동영상 리뷰 지원 [#2142](https://github.com/titicacadev/triple-frontend/pull/2142)
+
+### constants
+
+- PASSPORT_NUMBER_REGEX를 15개로 고정 [2144](https://github.com/titicacadev/triple-frontend/pull/2144)
+
 ## 9.5.0
 
 ### modals
