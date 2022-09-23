@@ -9,7 +9,12 @@ Card 를 표현할때 사용하는 컴포넌트입니다.
 
 <Preview>
   <Story name="Basic">
-    <Container width={300} margin={{ bottom: 50 }}>
+    <Container
+      margin={{ bottom: 50 }}
+      css={{
+        width: 300,
+      }}
+    >
       <Card>default card</Card>
     </Container>
   </Story>
@@ -18,7 +23,13 @@ Card 를 표현할때 사용하는 컴포넌트입니다.
 <Preview>
   <Story name="Shadow Props">
     {['small', 'medium', 'large'].map((item, i) => (
-      <Container key={item} width={300} margin={{ bottom: 50 }}>
+      <Container
+        key={item}
+        margin={{ bottom: 50 }}
+        css={{
+          width: 300,
+        }}
+      >
         <Card
           shadow={item}
           padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
@@ -47,7 +58,11 @@ Card 를 표현할때 사용하는 컴포넌트입니다.
 
 ## Shadow Size
 
-<Container width={200}>
+<Container
+  css={{
+    width: 200,
+  }}
+>
   <Card
     shadow="small"
     padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
@@ -149,12 +164,12 @@ Card 를 표현할때 사용하는 컴포넌트입니다.
 
 ## Container shadow
 
-<Container shadow="small" width={200}>
+<Container shadow="small" css={{ width: 200 }}>
   Container
 </Container>
 <Container
   shadow="large"
-  width={200}
+  css={{ width: 200 }}
   padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
   margin={{ top: 30, bottom: 30 }}
 >
@@ -162,8 +177,8 @@ Card 를 표현할때 사용하는 컴포넌트입니다.
 </Container>
 
 ```js
-<Container shadow="small" width={200}>Container</Container>
-<Container shadow="large" width={200}
-  padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
-  margin={{ top: 30, bottom: 30 }}>Container</Container>
+<Container shadow="small" css={{width: 200}}>Container</Container>
+<Container shadow="large" css={{width: 200}}
+           padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
+           margin={{ top: 30, bottom: 30 }}>Container</Container>
 ```
