@@ -14,6 +14,8 @@ env:
 jobs:
   CI:
     uses: ./.github/workflows/ci.yaml
+    with:
+      skipShutdown: true
     secrets: inherit
 
   fix-renovate-pr:

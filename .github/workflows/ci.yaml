@@ -1,6 +1,12 @@
 name: CI
 on:
   workflow_call:
+    inputs:
+      skipShutdown:
+        required: false
+        type: boolean
+        default: false
+
   push:
     branches:
       - '**'
@@ -42,7 +48,7 @@ jobs:
       - run: npm install
 
       - name: If working tree dirty, shutdown job
-        if: ${{ !startsWith(github.head_ref, 'renovate/')}}
+        if: ${{ !inputs.skipShutdown }}
         id: check-working-tree-clean
         run: |
           if [[ $(git diff --stat) != '' ]]; then
@@ -51,7 +57,7 @@ jobs:
           fi
 
       - name: Notify checking dependency failure
-        if: ${{ !startsWith(github.head_ref, 'renovate/')}} && failure() && steps.check-working-tree-clean.outcome == 'failure'
+        if: ${{ !inputs.skipShutdown }} && failure() && steps.check-working-tree-clean.outcome == 'failure'
         env:
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: Deps check FAILURE'
