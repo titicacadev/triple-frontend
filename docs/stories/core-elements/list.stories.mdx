@@ -1,0 +1,29 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
+import { List } from '@titicaca/core-elements'
+
+import { ColorBox } from '../color-palette/color-box'
+
+<Meta title="Core-Elements / List" />
+
+# List
+
+<br />
+
+## Divided & VerticalGap
+
+<Preview>
+  <Story name="List">
+    <List
+      verticalGap={20}
+      divided={false}
+      dividerColor="#ff0000"
+      dividerWeight={1}
+    >
+      {[...Array(5).keys()].map((_, idx) => (
+        <List.Item key={idx}>
+          <ColorBox color="blue" />
+        </List.Item>
+      ))}
+    </List>
+  </Story>
+</Preview>

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "baseBranch": "origin/main",
+  "pipeline": {
+    "build": {
+      "outputs": ["lib/**"],
+      "dependsOn": ["^build"]
+    },
+    "build:ci": {
+      "outputs": ["lib/**"],
+      "dependsOn": ["^build:ci"]
+    }
+  }
+}

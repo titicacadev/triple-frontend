@@ -1,0 +1,43 @@
+{
+  "name": "@titicaca/react-contexts",
+  "version": "9.6.0",
+  "description": "React context modules for triple web applications",
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/react-contexts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "npm run build:cjs",
+    "build:cjs": "swc src -d lib --config-file ../../.swcrc",
+    "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
+  },
+  "dependencies": {
+    "@titicaca/constants": "^9.6.0",
+    "@titicaca/fetcher": "^9.6.0",
+    "@titicaca/type-definitions": "^9.6.0",
+    "@titicaca/view-utilities": "^9.6.0",
+    "qs": "^6.9.4",
+    "ua-parser-js": "^0.7.20",
+    "universal-cookie": "^4.0.4"
+  },
+  "devDependencies": {
+    "@types/qs": "^6.9.2",
+    "@types/ua-parser-js": "^0.7.33",
+    "firebase": "^7.24.0"
+  },
+  "peerDependencies": {
+    "@titicaca/triple-web-to-native-interfaces": "*",
+    "firebase": "^7.24.0",
+    "next": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0"
+  },
+  "author": ""
+}

@@ -1,0 +1,21 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/view-utilities": ["../view-utilities/src"]
+    }
+  },
+  "include": ["./src", "src/.tsx"],
+  "references": [
+    {
+      "path": "../core-elements"
+    },
+    {
+      "path": "../view-utilities"
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
+import { Card, Container } from '@titicaca/core-elements'
+
+<Meta title="Core-Elements / Card" component={Card} />
+
+# Card
+
+Card 를 표현할때 사용하는 컴포넌트입니다.
+
+<Preview>
+  <Story name="Basic">
+    <Container width={300} margin={{ bottom: 50 }}>
+      <Card>default card</Card>
+    </Container>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Shadow Props">
+    {['small', 'medium', 'large'].map((item, i) => (
+      <Container key={item} width={300} margin={{ bottom: 50 }}>
+        <Card
+          shadow={item}
+          padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
+          margin={{ top: i * 10 + 10, bottom: i * 10 + 10 }}
+        >
+          {item}/radius(default)
+        </Card>
+        <Card
+          shadow={item}
+          padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
+          margin={{ top: i * 10 + 10, bottom: i * 10 + 10 }}
+        >
+          {item}/radius(default)
+        </Card>
+        <Card
+          shadow={item}
+          padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
+          margin={{ top: i * 10 + 10, bottom: i * 10 + 10 }}
+        >
+          {item}/radius(default)
+        </Card>
+      </Container>
+    ))}
+  </Story>
+</Preview>
+
+## Shadow Size
+
+<Container width={200}>
+  <Card
+    shadow="small"
+    padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
+    margin={{ top: 10, bottom: 10 }}
+  >
+    shadow(small)
+  </Card>
+  <Card
+    shadow="medium"
+    padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
+    margin={{ top: 30, bottom: 30 }}
+  >
+    shadow(medium)
+  </Card>
+  <Card
+    shadow="large"
+    padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
+    margin={{ top: 50, bottom: 50 }}
+  >
+    shadow(large)
+  </Card>
+</Container>
+
+```js
+<Card
+  shadow="small"
+  padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
+  margin={{ top: 10, bottom: 10 }}
+>
+  shadow(small)
+</Card>
+<Card
+  shadow="medium"
+  padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
+  margin={{ top: 30, bottom: 30 }}
+>
+  shadow(medium)
+</Card>
+<Card
+  shadow="large"
+  padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
+  margin={{ top: 50, bottom: 50 }}
+>
+  shadow(large)
+</Card>
+```
+
+## radius
+
+<Card
+  shadow="small"
+  radius={4}
+  padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
+  margin={{ top: 30, bottom: 30 }}
+>
+  shadow(medium), radius(4)
+</Card>
+
+<Card
+  shadow="medium"
+  radius={20}
+  padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
+  margin={{ top: 30, bottom: 30 }}
+>
+  shadow(medium), radius(20)
+</Card>
+
+```js
+<Card
+  shadow="small"
+  radius={4}
+  padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
+  margin={{ top: 30, bottom: 30 }}
+>
+  shadow(medium), radius(6)
+</Card>
+
+<Card
+  shadow="medium"
+  radius={20}
+  padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
+  margin={{ top: 30, bottom: 30 }}
+>
+  shadow(medium), radius(20)
+</Card>
+```
+
+## Events
+
+<Card
+  shadow="small"
+  padding={{ top: 10, left: 10, right: 10, bottom: 10 }}
+  onClick={() => {
+    window.alert('')
+  }}
+>
+  Click
+</Card>
+
+## Container shadow
+
+<Container shadow="small" width={200}>
+  Container
+</Container>
+<Container
+  shadow="large"
+  width={200}
+  padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
+  margin={{ top: 30, bottom: 30 }}
+>
+  Container
+</Container>
+
+```js
+<Container shadow="small" width={200}>Container</Container>
+<Container shadow="large" width={200}
+  padding={{ top: 20, left: 20, right: 20, bottom: 20 }}
+  margin={{ top: 30, bottom: 30 }}>Container</Container>
+```

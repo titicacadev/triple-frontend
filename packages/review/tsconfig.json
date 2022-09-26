@@ -1,0 +1,63 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "@titicaca/action-sheet": ["../action-sheet/src"],
+      "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/fetcher": ["../fetcher/src"],
+      "@titicaca/intersection-observer": ["../intersection-observer/src"],
+      "@titicaca/modals": ["../modals/src"],
+      "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-hooks": ["../react-hooks/src"],
+      "@titicaca/react-triple-client-interfaces": [
+        "../react-triple-client-interfaces/src"
+      ],
+      "@titicaca/router": ["../router/src"],
+      "@titicaca/type-definitions": ["../type-definitions/src"],
+      "@titicaca/ui-flow": ["../ui-flow/src"],
+      "@titicaca/view-utilities": ["../view-utilities/src"]
+    }
+  },
+  "include": ["./src"],
+  "references": [
+    {
+      "path": "../action-sheet"
+    },
+    {
+      "path": "../core-elements"
+    },
+    {
+      "path": "../fetcher"
+    },
+    {
+      "path": "../intersection-observer"
+    },
+    {
+      "path": "../modals"
+    },
+    {
+      "path": "../react-hooks"
+    },
+    {
+      "path": "../react-triple-client-interfaces"
+    },
+    {
+      "path": "../router"
+    },
+    {
+      "path": "../type-definitions"
+    },
+    {
+      "path": "../ui-flow"
+    },
+    {
+      "path": "../view-utilities"
+    },
+    {
+      "path": "../react-contexts"
+    }
+  ]
+}

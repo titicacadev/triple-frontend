@@ -1,0 +1,54 @@
+{
+  "name": "@titicaca/review",
+  "version": "9.6.0",
+  "description": "UI Components for User Reviews from Triple Service",
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/review",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "npm run build:cjs",
+    "build:cjs": "swc src -d lib --config-file ../../.swcrc",
+    "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments",
+    "generate": "graphql-codegen --config codegen.yml"
+  },
+  "dependencies": {
+    "@titicaca/action-sheet": "^9.6.0",
+    "@titicaca/core-elements": "^9.6.0",
+    "@titicaca/fetcher": "^9.6.0",
+    "@titicaca/intersection-observer": "^9.6.0",
+    "@titicaca/modals": "^9.6.0",
+    "@titicaca/react-hooks": "^9.6.0",
+    "@titicaca/react-triple-client-interfaces": "^9.6.0",
+    "@titicaca/router": "^9.6.0",
+    "@titicaca/type-definitions": "^9.6.0",
+    "@titicaca/ui-flow": "^9.6.0",
+    "@titicaca/view-utilities": "^9.6.0",
+    "graphql": "^16.5.0",
+    "graphql-request": "^4.3.0",
+    "moment": "^2.24.0",
+    "qs": "^6.9.0",
+    "react-query": "^3.39.1",
+    "scroll-to-element": "^2.0.3"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "2.6.2",
+    "@graphql-codegen/typescript": "2.4.11",
+    "@graphql-codegen/typescript-operations": "2.4.0",
+    "@graphql-codegen/typescript-react-query": "^3.5.14",
+    "@types/qs": "^6.9.0",
+    "csstype": "^3.0.2"
+  },
+  "peerDependencies": {
+    "@titicaca/react-contexts": "*"
+  }
+}

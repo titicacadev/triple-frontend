@@ -1,0 +1,220 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@titicaca/action-sheet": ["../packages/action-sheet/src"],
+      "@titicaca/ad-banners": ["../packages/ad-banners/src"],
+      "@titicaca/app-banner": ["../packages/app-banner/src"],
+      "@titicaca/app-installation-cta": [
+        "../packages/app-installation-cta/src"
+      ],
+      "@titicaca/author": ["../packages/author/src"],
+      "@titicaca/booking-completion": ["../packages/booking-completion/src"],
+      "@titicaca/color-palette": ["../packages/color-palette/src"],
+      "@titicaca/constants": ["../packages/constants/src"],
+      "@titicaca/content-sharing": ["../packages/content-sharing/src"],
+      "@titicaca/core-elements": ["../packages/core-elements/src"],
+      "@titicaca/date-picker": ["../packages/date-picker/src"],
+      "@titicaca/directions-finder": ["../packages/directions-finder/src"],
+      "@titicaca/drawer-button": ["../packages/drawer-button/src"],
+      "@titicaca/footer": ["../packages/footer/src"],
+      "@titicaca/form": ["../packages/form/src"],
+      "@titicaca/hub-form": ["../packages/hub-form/src"],
+      "@titicaca/i18n": ["../packages/i18n/src"],
+      "@titicaca/icons": ["../packages/icons/src"],
+      "@titicaca/image-carousel": ["../packages/image-carousel/src"],
+      "@titicaca/listing-filter": ["../packages/listing-filter/src"],
+      "@titicaca/location-properties": ["../packages/location-properties/src"],
+      "@titicaca/map": ["../packages/map/src"],
+      "@titicaca/modals": ["../packages/modals/src"],
+      "@titicaca/nearby-pois": ["../packages/nearby-pois/src"],
+      "@titicaca/poi-detail": ["../packages/poi-detail/src"],
+      "@titicaca/poi-list-elements": ["../packages/poi-list-elements/src"],
+      "@titicaca/popup": ["../packages/popup/src"],
+      "@titicaca/pricing": ["../packages/pricing/src"],
+      "@titicaca/public-header": ["../packages/public-header/src"],
+      "@titicaca/react-contexts": ["../packages/react-contexts/src"],
+      "@titicaca/react-hooks": ["../packages/react-hooks/src"],
+      "@titicaca/react-triple-client-interfaces": [
+        "../packages/react-triple-client-interfaces/src"
+      ],
+      "@titicaca/recommended-contents": [
+        "../packages/recommended-contents/src"
+      ],
+      "@titicaca/replies": ["../packages/replies/src"],
+      "@titicaca/resource-list-element": [
+        "../packages/resource-list-element/src"
+      ],
+      "@titicaca/review": ["../packages/review/src"],
+      "@titicaca/router": ["../packages/router/src"],
+      "@titicaca/scrap-button": ["../packages/scrap-button/src"],
+      "@titicaca/scroll-spy": ["../packages/scroll-spy/src"],
+      "@titicaca/search": ["../packages/search/src"],
+      "@titicaca/slider": ["../packages/slider/src"],
+      "@titicaca/social-reviews": ["../packages/social-reviews/src"],
+      "@titicaca/static-map": ["../packages/static-map/src"],
+      "@titicaca/static-page-contents": [
+        "../packages/static-page-contents/src"
+      ],
+      "@titicaca/style-box": ["../packages/style-box/src"],
+      "@titicaca/triple-document": ["../packages/triple-document/src"],
+      "@titicaca/triple-email-document": [
+        "../packages/triple-email-document/src"
+      ],
+      "@titicaca/type-definitions": ["../packages/type-definitions/src"],
+      "@titicaca/user-verification": ["../packages/user-verification/src"]
+    }
+  },
+  "include": ["stories/**/*", "stories/__mocks__/**/*.json", "decorators"],
+  "references": [
+    {
+      "path": "../packages/action-sheet"
+    },
+    {
+      "path": "../packages/ad-banners"
+    },
+    {
+      "path": "../packages/app-banner"
+    },
+    {
+      "path": "../packages/app-installation-cta"
+    },
+    {
+      "path": "../packages/author"
+    },
+    {
+      "path": "../packages/booking-completion"
+    },
+    {
+      "path": "../packages/color-palette"
+    },
+    {
+      "path": "../packages/constants"
+    },
+    {
+      "path": "../packages/content-sharing"
+    },
+    {
+      "path": "../packages/core-elements"
+    },
+    {
+      "path": "../packages/date-picker"
+    },
+    {
+      "path": "../packages/directions-finder"
+    },
+    {
+      "path": "../packages/drawer-button"
+    },
+    {
+      "path": "../packages/footer"
+    },
+    {
+      "path": "../packages/form"
+    },
+    {
+      "path": "../packages/hub-form"
+    },
+    {
+      "path": "../packages/i18n"
+    },
+    {
+      "path": "../packages/icons"
+    },
+    {
+      "path": "../packages/image-carousel"
+    },
+    {
+      "path": "../packages/listing-filter"
+    },
+    {
+      "path": "../packages/location-properties"
+    },
+    {
+      "path": "../packages/map"
+    },
+    {
+      "path": "../packages/modals"
+    },
+    {
+      "path": "../packages/nearby-pois"
+    },
+    {
+      "path": "../packages/poi-detail"
+    },
+    {
+      "path": "../packages/poi-list-elements"
+    },
+    {
+      "path": "../packages/popup"
+    },
+    {
+      "path": "../packages/pricing"
+    },
+    {
+      "path": "../packages/public-header"
+    },
+    {
+      "path": "../packages/react-contexts"
+    },
+    {
+      "path": "../packages/react-hooks"
+    },
+    {
+      "path": "../packages/react-triple-client-interfaces"
+    },
+    {
+      "path": "../packages/recommended-contents"
+    },
+    {
+      "path": "../packages/replies"
+    },
+    {
+      "path": "../packages/resource-list-element"
+    },
+    {
+      "path": "../packages/review"
+    },
+    {
+      "path": "../packages/router"
+    },
+    {
+      "path": "../packages/scrap-button"
+    },
+    {
+      "path": "../packages/scroll-spy"
+    },
+    {
+      "path": "../packages/search"
+    },
+    {
+      "path": "../packages/slider"
+    },
+    {
+      "path": "../packages/social-reviews"
+    },
+    {
+      "path": "../packages/static-map"
+    },
+    {
+      "path": "../packages/static-page-contents"
+    },
+    {
+      "path": "../packages/style-box"
+    },
+    {
+      "path": "../packages/triple-document"
+    },
+    {
+      "path": "../packages/triple-email-document"
+    },
+    {
+      "path": "../packages/type-definitions"
+    },
+    {
+      "path": "../packages/user-verification"
+    }
+  ]
+}

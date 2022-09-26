@@ -1,0 +1,41 @@
+{
+  "name": "@titicaca/app-installation-cta",
+  "version": "9.6.0",
+  "description": "Call to action components for app installation",
+  "keywords": [
+    "cta",
+    "component",
+    "react",
+    "triple",
+    "frontend"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/app-installation-cta",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "npm run build:cjs",
+    "build:cjs": "swc src -d lib --config-file ../../.swcrc",
+    "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
+  },
+  "dependencies": {
+    "@titicaca/color-palette": "^9.6.0",
+    "@titicaca/core-elements": "^9.6.0",
+    "react-transition-group": "^4.4.2"
+  },
+  "devDependencies": {
+    "@types/react-transition-group": "^4.4.4"
+  },
+  "peerDependencies": {
+    "@titicaca/web-storage": "*"
+  }
+}

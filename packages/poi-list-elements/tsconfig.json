@@ -1,0 +1,37 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/resource-list-element": ["../resource-list-element/src"],
+      "@titicaca/scrap-button": ["../scrap-button/src"],
+      "@titicaca/type-definitions": ["../type-definitions/src"],
+      "@titicaca/view-utilities": ["../view-utilities/src"]
+    }
+  },
+  "include": ["./src"],
+  "references": [
+    {
+      "path": "../core-elements"
+    },
+    {
+      "path": "../resource-list-element"
+    },
+    {
+      "path": "../scrap-button"
+    },
+    {
+      "path": "../type-definitions"
+    },
+    {
+      "path": "../view-utilities"
+    },
+    {
+      "path": "../react-contexts"
+    }
+  ]
+}

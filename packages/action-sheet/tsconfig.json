@@ -1,0 +1,25 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "@titicaca/app-installation-cta": ["../app-installation-cta/src"],
+      "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/popup": ["../popup/src"]
+    }
+  },
+  "include": ["./src"],
+  "references": [
+    {
+      "path": "../app-installation-cta"
+    },
+    {
+      "path": "../core-elements"
+    },
+    {
+      "path": "../popup"
+    }
+  ]
+}

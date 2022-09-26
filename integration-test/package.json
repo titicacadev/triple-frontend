@@ -1,0 +1,24 @@
+{
+  "name": "@titicaca/frontend-integration-test",
+  "version": "9.6.0",
+  "private": true,
+  "description": "Integration tests for Triple frontend packages",
+  "keywords": [
+    "integration-test"
+  ],
+  "homepage": "https://github.com/titicacadev/triple-frontend",
+  "license": "UNLICENSED",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "dependencies": {
+    "@titicaca/modals": "^9.6.0",
+    "@titicaca/react-contexts": "^9.6.0",
+    "@titicaca/router": "^9.6.0"
+  }
+}

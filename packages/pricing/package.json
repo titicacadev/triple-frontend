@@ -1,0 +1,28 @@
+{
+  "name": "@titicaca/pricing",
+  "version": "9.6.0",
+  "description": "Triple - pricing",
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/pricing",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "npm run build:cjs",
+    "build:cjs": "swc src -d lib --config-file ../../.swcrc",
+    "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
+  },
+  "dependencies": {
+    "@titicaca/core-elements": "^9.6.0",
+    "@titicaca/type-definitions": "^9.6.0",
+    "@titicaca/view-utilities": "^9.6.0"
+  }
+}

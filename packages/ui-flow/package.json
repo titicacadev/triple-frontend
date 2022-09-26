@@ -1,0 +1,39 @@
+{
+  "name": "@titicaca/ui-flow",
+  "version": "9.6.0",
+  "description": "Functions, hooks, and/or components used to construct general UI flow",
+  "keywords": [
+    "session",
+    "installation",
+    "react",
+    "hooks"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/ui-flow",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "npm run build:cjs",
+    "build:cjs": "swc src -d lib --config-file ../../.swcrc",
+    "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
+  },
+  "dependencies": {
+    "@titicaca/modals": "^9.6.0",
+    "@titicaca/react-triple-client-interfaces": "^9.6.0",
+    "qs": "^6.9.0"
+  },
+  "peerDependencies": {
+    "@titicaca/fetcher": "*",
+    "@titicaca/react-contexts": "*",
+    "next": "^9.3.0 || ^10.0.0 || ^11.0.0 || ^12.0.0"
+  }
+}

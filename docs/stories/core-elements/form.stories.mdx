@@ -1,0 +1,196 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
+import {
+  Input,
+  ConfirmSelector,
+  Textarea,
+  Select,
+  GenderSelector,
+  Text,
+} from '@titicaca/core-elements'
+
+import RadioWrapper from './radio-wrapper'
+
+<Meta title="Core-Elements / Form" />
+
+# Form
+
+<br />
+
+## Input
+
+기본 Input 입니다.
+
+```js
+id?: string
+type?: string
+value?: string
+error?: string
+placeholder?: string
+mask?: string
+maskChar?: string | null
+onChange?: (e: SyntheticEvent, value: string) => any
+onBlur?: (e: FocusEvent<any>) => any
+```
+
+<Preview>
+  <Story name="Input">
+    <Input
+      error={false}
+      label="이름"
+      placeholder="이름을 입력해주세요"
+      help="고객님의 요청사항은 해당 호텔에 전달됩니다만 호텔 사정에 따라 필요하신 내용이 이루어지지 않을 수 있으니 많은 양해 바랍니다."
+    />
+  </Story>
+</Preview>
+
+### Input - Status
+
+Focus 와 Error 두 가지의 상태 값을 가지고 있습니다.
+focused, error props 를 이용하여 상태를 다룰 수 있습니다.
+
+<Input
+  placeholder="이름을 입력해주세요"
+  help="고객님의 요청사항은 해당 호텔에 전달됩니다만 호텔 사정에 따라 필요하신 내용이 이루어지지 않을 수 있으니 많은 양해 바랍니다."
+  error
+/>
+
+### Input - Mask
+
+mask props 를 이용하여 mask 를 추가 할 수 있습니다.
+
+<Preview>
+  <Story name="Input - Mask">
+    <Input mask="99/99" maskChar={null} value={1230} />
+  </Story>
+</Preview>
+
+## Select
+
+option 을 선택 할 수 있는 SelectBox 입니다.
+
+```js
+id?: string
+name?: string
+value?: any
+placeholder?: string
+options?: SelectOption[]
+focused?: string
+error?: string
+onBlur?: (e: React.FocusEvent<any>) => any
+onChange?: (e?: React.SyntheticEvent, value?: any) => any
+```
+
+<Preview>
+  <Story name="Select">
+    <Select
+      error={false}
+      label="투어티켓 시간"
+      help="고객님의 요청사항은 해당 호텔에 전달됩니다만 호텔 사정에 따라 필요하신 내용이 이루어지지 않을 수 있으니 많은 양해 바랍니다."
+      placeholder="시간을 선택해주세요"
+      value="12:00"
+      options={[
+        {
+          label: '12:00',
+          value: '12:00',
+        },
+        {
+          label: '12:10',
+          value: '12:10',
+        },
+        {
+          label: '12:20',
+          value: '12:20',
+        },
+      ]}
+      disabled={false}
+    />
+  </Story>
+</Preview>
+
+## Confirm Selector
+
+```js
+name?: string
+value: any
+placeholder: string
+onChange?: (e?: React.SyntheticEvent, value?: any) => any
+textAlign?: CSS.TextAlignProperty
+borderless?: boolean
+fillType?: FillType ('full' | 'border' | 'text')
+children?: React.ReactNode
+padding?: MarginPadding
+error?: string
+```
+
+<Preview>
+  <Story name="Confirm Selector">
+    <ConfirmSelector
+      value={false}
+      borderless={false}
+      textAlign="left"
+      fillType="full"
+      padding={{ top: 16, right: 50, left: 16, bottom: 16 }}
+    >
+      <Text>예약자 정보를 업데이트 합니다.</Text>
+    </ConfirmSelector>
+  </Story>
+</Preview>
+
+## Radio
+
+```js
+option: {
+  text: string
+  value: string
+}
+
+name?: string
+value?: string
+onChange?: (e: React.SyntheticEvent, arg1: string) => any
+options: option[]
+```
+
+<Preview>
+  <Story name="Radio">
+    <RadioWrapper />
+  </Story>
+</Preview>
+
+## Gender Selector
+
+남/녀 를 선택 할 수 있는 Selector 를 제공합니다.
+
+```js
+name?: string
+value?: string
+onChange?: (e: React.SyntheticEvent, arg1: string) => any
+```
+
+<Preview>
+  <Story name="Gender Selector">
+    <GenderSelector value="MALE" />
+  </Story>
+</Preview>
+
+## Textarea
+
+```js
+id?: string
+value?: string
+error?: string
+placeholder?: string
+focused?: string
+onChange?: (e: React.SyntheticEvent, value: string) => any
+onBlur?: (e: React.FocusEvent<any>) => any
+```
+
+<Preview>
+  <Story name="Textarea">
+    <Textarea
+      error={false}
+      label="요청사항"
+      placeholder="요청사항을 입력해주세요"
+      help="고객님의 요청사항은 해당 호텔에 전달됩니다만 호텔 사정에 따라 필요하신 내용이 이루어지지 않을 수 있으니 많은 양해 바랍니다."
+    />
+  </Story>
+</Preview>

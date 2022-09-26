@@ -1,0 +1,32 @@
+{
+  "module": {
+    "type": "commonjs"
+  },
+  "sourceMaps": true,
+  "jsc": {
+    "target": "es2016",
+    "parser": {
+      "syntax": "typescript",
+      "tsx": true,
+      "decorators": false,
+      "dynamicImport": false
+    },
+    "transform": {
+      "react": {
+        "runtime": "automatic",
+        "pragma": "React.createElement",
+        "pragmaFrag": "React.Fragment",
+        "throwIfNamespace": false,
+        "development": false,
+        "useBuiltins": false
+      }
+    }
+  },
+  "env": {
+    "targets": {
+      "ie": "11",
+      "ios": "10"
+    }
+  },
+  "exclude": [".*\\.(test|spec)\\.(js|ts)x?$"]
+}

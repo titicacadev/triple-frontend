@@ -1,0 +1,33 @@
+{
+  "name": "@titicaca/public-header",
+  "version": "9.6.0",
+  "description": "Common Header for Public Pages",
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/public-header",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "npm run build:cjs",
+    "build:cjs": "swc src -d lib --config-file ../../.swcrc",
+    "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
+  },
+  "dependencies": {
+    "@titicaca/color-palette": "^9.6.0",
+    "@titicaca/react-triple-client-interfaces": "^9.6.0",
+    "@titicaca/view-utilities": "^9.6.0"
+  },
+  "peerDependencies": {
+    "@titicaca/react-contexts": "*",
+    "react": "*",
+    "styled-components": ">=4.4.1 < 6"
+  }
+}

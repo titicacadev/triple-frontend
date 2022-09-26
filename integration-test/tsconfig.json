@@ -1,0 +1,22 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@titicaca/modals": ["../packages/modals/src"],
+      "@titicaca/react-contexts": ["../packages/react-contexts/src"],
+      "@titicaca/router": ["../packages/router/src"]
+    }
+  },
+  "references": [
+    {
+      "path": "../packages/modals"
+    },
+    {
+      "path": "../packages/react-contexts"
+    },
+    {
+      "path": "../packages/router"
+    }
+  ]
+}

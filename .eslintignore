@@ -1,0 +1,7 @@
+.vscode
+.next
+node_modules
+package-lock.json
+packages/*/lib/**
+docs/storybook-static
+packages/*/src/*/generated

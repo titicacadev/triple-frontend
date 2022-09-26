@@ -1,0 +1,67 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "@titicaca/action-sheet": ["../action-sheet/src"],
+      "@titicaca/app-installation-cta": ["../app-installation-cta/src"],
+      "@titicaca/carousel": ["../carousel/src"],
+      "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/fetcher": ["../fetcher/src"],
+      "@titicaca/i18n": ["../i18n/src"],
+      "@titicaca/image-carousel": ["../image-carousel/src"],
+      "@titicaca/intersection-observer": ["../intersection-observer/src"],
+      "@titicaca/modals": ["../modals/src"],
+      "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-triple-client-interfaces": [
+        "../react-triple-client-interfaces/src"
+      ],
+      "@titicaca/type-definitions": ["../type-definitions/src"],
+      "@titicaca/view-utilities": ["../view-utilities/src"]
+    }
+  },
+  "include": ["./src"],
+  "references": [
+    {
+      "path": "../action-sheet"
+    },
+    {
+      "path": "../app-installation-cta"
+    },
+    {
+      "path": "../carousel"
+    },
+    {
+      "path": "../core-elements"
+    },
+    {
+      "path": "../fetcher"
+    },
+    {
+      "path": "../i18n"
+    },
+    {
+      "path": "../image-carousel"
+    },
+    {
+      "path": "../intersection-observer"
+    },
+    {
+      "path": "../modals"
+    },
+    {
+      "path": "../react-triple-client-interfaces"
+    },
+    {
+      "path": "../type-definitions"
+    },
+    {
+      "path": "../view-utilities"
+    },
+    {
+      "path": "../react-contexts"
+    }
+  ]
+}

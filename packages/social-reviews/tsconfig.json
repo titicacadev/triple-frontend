@@ -1,0 +1,29 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/i18n": ["../i18n/src"],
+      "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/router": ["../router/src"]
+    }
+  },
+  "include": ["./src"],
+  "references": [
+    {
+      "path": "../core-elements"
+    },
+    {
+      "path": "../i18n"
+    },
+    {
+      "path": "../router"
+    },
+    {
+      "path": "../react-contexts"
+    }
+  ]
+}
