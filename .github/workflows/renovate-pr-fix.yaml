@@ -2,7 +2,7 @@ name: Renovate PR Fix
 on:
   push:
     branches:
-      - 'renovate/**'
+      - 'fix/**'
 env:
   # Node.js
   NODE_VERSION: '17.7.0'
@@ -12,11 +12,13 @@ env:
   COMMIT_USER_NAME: triple-frontend[bot]
 
 jobs:
-  check-dependencies:
+  renovate-pr-fix:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.RENOVATE_TOKEN }}
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v2
@@ -28,25 +30,10 @@ jobs:
       - run: npm run sync-deps
 
       - name: Commit and Push
+        env:
+          GITHUB_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
         run: |
           git config --local user.email "${{ env.COMMIT_USER_EMAIL }}"
           git config --local user.name "${{ env.COMMIT_USER_NAME }}"
           git commit --no-verify -a -m "Resolve dependency error"
           git push
-
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - run: 'echo "No lint required" '
-
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - run: 'echo "No build required" '
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - run: 'echo "No test required" '
