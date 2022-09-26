@@ -43,6 +43,7 @@ jobs:
       - run: npm install
 
       - name: If working tree dirty, shutdown job
+        if: ${{ !startsWith( github.ref_name, 'renovate/' )}}
         id: check-working-tree-clean
         run: |
           if [[ $(git diff --stat) != '' ]]; then
