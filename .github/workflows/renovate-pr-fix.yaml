@@ -1,11 +1,8 @@
-name: CI
+name: Renovate PR Fix
 on:
   push:
     branches:
-      - '**'
-    tags-ignore:
-      - '**'
-
+      - 'renovate/**'
 env:
   # Node.js
   NODE_VERSION: '17.7.0'
@@ -38,25 +35,16 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.NPM_REGISTRY_URL }}
-          cache: 'npm'
 
       - run: npm install
+      - run: npm run sync-deps
 
-      - name: If working tree dirty, shutdown job
-        id: check-working-tree-clean
+      - name: Commit and Push
         run: |
-          if [[ $(git diff --stat) != '' ]]; then
-            git diff --stat
-            exit 1
-          fi
-
-      - name: Notify checking dependency failure
-        if: failure() && steps.check-working-tree-clean.outcome == 'failure'
-        env:
-          SLACK_COLOR: fail
-          SLACK_TITLE: ':pleading: Deps check FAILURE'
-          SLACK_TOPIC: '의존성 변경이 있습니다. `npm run sync-deps`로 변경을 반영해주세요.'
-        run: npx @titicaca/gha-tools notify
+          git config --local user.email "${{ env.COMMIT_USER_EMAIL }}"
+          git config --local user.name "${{ env.COMMIT_USER_NAME }}"
+          git commit --no-verify -a -m "Resolve dependency error"
+          git push
 
   lint:
     runs-on: ubuntu-latest
