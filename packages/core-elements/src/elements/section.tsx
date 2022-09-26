@@ -9,7 +9,7 @@ export interface SectionProps extends ContainerProps {
 }
 
 function Section({
-  css: _css,
+  css: cssProp,
   children,
   divider,
   anchor,
@@ -33,7 +33,7 @@ function Section({
           position: relative;
           min-width: 320px;
           max-width: 768px;
-          ${_css};
+          ${cssProp};
         `}
       >
         {children}

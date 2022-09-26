@@ -50,14 +50,14 @@ export const Skeleton = styled(Container)`
 
 export function SkeletonText({
   height = '16px',
-  css: _css,
+  css: cssProp,
   ...props
 }: SkeletonProps) {
   return (
     <Skeleton
       css={css`
         height: ${height};
-        ${_css}
+        ${cssProp}
       `}
       {...props}
     />
@@ -66,7 +66,7 @@ export function SkeletonText({
 
 export function SkeletonCircle({
   size = 50,
-  css: _css,
+  css: cssProp,
   ...props
 }: { size?: number } & Omit<
   SkeletonProps,
@@ -78,7 +78,7 @@ export function SkeletonCircle({
       css={css`
         width: ${size}px;
         height: ${size}px;
-        ${_css}
+        ${cssProp}
       `}
       {...props}
     />
@@ -88,7 +88,7 @@ export function SkeletonCircle({
 export function SkeletonButton({
   height = '45px',
   borderRadius = 4,
-  css: _css,
+  css: cssProp,
   ...props
 }: SkeletonProps) {
   return (
@@ -96,7 +96,7 @@ export function SkeletonButton({
       borderRadius={borderRadius}
       css={css`
         height: ${height};
-        ${_css}
+        ${cssProp}
       `}
       {...props}
     />
