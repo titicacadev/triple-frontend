@@ -1,5 +1,43 @@
 [
   {
+    "type": "images",
+    "value": {
+      "images": [
+        {
+          "id": "aedabd71-174b-40e2-95e0-b47d2d9f5132",
+          "frame": "small",
+          "sizes": {
+            "full": {
+              "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/c9ae4d27-b1b6-4842-9359-f4fd040da65f.jpeg"
+            },
+            "large": {
+              "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/c9ae4d27-b1b6-4842-9359-f4fd040da65f.jpeg"
+            },
+            "smallSquare": {
+              "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/c9ae4d27-b1b6-4842-9359-f4fd040da65f.jpeg"
+            }
+          },
+          "title": "",
+          "width": 3072,
+          "height": 2048,
+          "description": ""
+        }
+      ]
+    }
+  },
+  {
+    "type": "heading3",
+    "value": {
+      "text": "상단 이미지는 가로 배열 테스트 이미지입니다."
+    }
+  },
+  {
+    "type": "text",
+    "value": {
+      "text": "상단 이미지는 가로 배열 테스트 이미지입니다. 상단 이미지는 가로 배열 테스트 이미지입니다. 상단 이미지는 가로 배열 테스트 이미지입니다. 상단 이미지는 가로 배열 테스트 이미지입니다."
+    }
+  },
+  {
     "type": "embedded",
     "value": {
       "entries": [
