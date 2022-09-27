@@ -116,12 +116,10 @@ export default function PoiCardElement({
       padding={{ top: 18, right: 18, bottom: 18, left: 18 }}
     >
       <PoiCardBody
+        position="relative"
+        display="block"
+        textAlign="left"
         onClick={onClick}
-        css={{
-          position: 'relative',
-          display: 'block',
-          textAlign: 'left',
-        }}
       >
         <ImageContainer clearing>
           <Image>
