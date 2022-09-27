@@ -105,20 +105,16 @@ export default function DefaultFooter({
   return (
     <FooterFrame>
       <Container
+        minWidth={280}
+        maxWidth={768}
         centered
         padding={{ top: 30, left: 30, right: 30, bottom: 40 }}
-        css={{
-          minWidth: 280,
-          maxWidth: 768,
-        }}
       >
         <Accordion>
           <AccordionHeader
             flex
-            css={{
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
+            alignItems="center"
+            justifyContent="space-between"
           >
             <Title
               active={businessExpanded}
