@@ -100,12 +100,7 @@ export default function Drawer({
         zTier={zTier}
         zIndex={zIndex}
       >
-        <Container
-          centered
-          css={{
-            maxWidth: 768,
-          }}
-        >
+        <Container maxWidth={768} centered>
           {children}
         </Container>
       </DrawerContainer>

@@ -92,12 +92,7 @@ export default function PoiCarouselElement<T extends PoiListElementType>({
       </Text>
 
       {actionButtonElement || (
-        <Container
-          positioning={{ top: 3, right: 3 }}
-          css={{
-            position: 'absolute',
-          }}
-        >
+        <Container position="absolute" positioning={{ top: 3, right: 3 }}>
           <OverlayScrapButton resource={poi} size={36} />
         </Container>
       )}

@@ -73,21 +73,8 @@ export default function RecentCheckBox({
   const { t } = useTranslation('common-web')
 
   return (
-    <FlexBox
-      flex
-      css={{
-        alignItems: 'center',
-        position: 'relative',
-        cursor: 'pointer',
-      }}
-    >
-      <FlexBox
-        flex
-        onClick={onRecentReviewChange}
-        css={{
-          alignItems: 'center',
-        }}
-      >
+    <FlexBox flex alignItems="center" position="relative" cursor="pointer">
+      <FlexBox flex alignItems="center" onClick={onRecentReviewChange}>
         <CheckBox readOnly type="checkbox" checked={isRecentReview} />
         <Text size={14}>{t('coegeun-yeohaeng')}</Text>
       </FlexBox>

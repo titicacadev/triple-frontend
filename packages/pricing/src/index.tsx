@@ -140,11 +140,7 @@ function RichPricing({
     typeof basePrice === 'number' && basePrice > 0 && basePrice > salePrice
 
   return (
-    <Container
-      css={{
-        textAlign: 'right',
-      }}
-    >
+    <Container textAlign="right">
       <PricingContainer>
         {label ? <Label> {label} </Label> : null}
 
