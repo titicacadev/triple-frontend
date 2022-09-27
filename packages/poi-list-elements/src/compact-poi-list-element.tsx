@@ -89,12 +89,7 @@ export function CompactPoiListElement<T extends PoiListElementType>({
       {actionButtonElement ? (
         <div ref={actionButtonRef}>{actionButtonElement}</div>
       ) : (
-        <Container
-          positioning={{ top: 0, right: 0 }}
-          css={{
-            position: 'absolute',
-          }}
-        >
+        <Container position="absolute" positioning={{ top: 0, right: 0 }}>
           <OutlineScrapButton resource={poi} size={34} />
         </Container>
       )}

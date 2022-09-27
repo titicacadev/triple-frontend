@@ -127,12 +127,7 @@ export function TnaProductWithPrice({
           </Image.FixedDimensionsFrame>
         </Image>
         {isPublic ? (
-          <Container
-            positioning={{ top: 3, left: 51 }}
-            css={{
-              position: 'absolute',
-            }}
-          >
+          <Container position="absolute" positioning={{ top: 3, left: 51 }}>
             <OverlayScrapButton
               resource={{ id, scraped, type: 'tna' }}
               size={36}
