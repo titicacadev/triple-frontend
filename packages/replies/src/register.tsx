@@ -82,19 +82,15 @@ function Register(
 
   return (
     <Container
+      cursor="pointer"
       onClick={!sessionAvailable ? () => showLoginCta() : undefined}
-      css={{
-        cursor: 'pointer',
-      }}
     >
       <HR1 margin={{ top: 0 }} />
 
       <FlexBox
         flex
         padding={{ top: 20, bottom: 20, left: 20, right: 20 }}
-        css={{
-          justifyContent: 'space-between',
-        }}
+        justifyContent="space-between"
       >
         <AutoResizingTextarea
           placeholder={placeholder}

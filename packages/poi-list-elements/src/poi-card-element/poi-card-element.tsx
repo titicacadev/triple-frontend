@@ -147,12 +147,10 @@ export default function PoiCardElement({
         </ImageContainer>
 
         <Container
+          maxWidth={190}
           margin={{
             left: IMAGE_WIDTH + 14,
             right: DIRECTION_BUTTON_WIDTH + 13,
-          }}
-          css={{
-            maxWidth: 190,
           }}
         >
           <Text size="large" bold ellipsis>
