@@ -94,12 +94,7 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
 
   return (
     <ResourceListItem onClick={onClick} {...props}>
-      <FlexBox
-        flex
-        css={{
-          justifyContent: 'space-between',
-        }}
-      >
+      <FlexBox flex justifyContent="space-between">
         <ContentContainer>
           <Text bold maxLines={2} size="large">
             {name}
@@ -157,11 +152,7 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
           ) : null}
         </ContentContainer>
 
-        <Container
-          css={{
-            position: 'relative',
-          }}
-        >
+        <Container position="relative">
           <Container clearing>
             <Image>
               <Image.FixedDimensionsFrame size="small" width={90}>
@@ -190,12 +181,7 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
             </Image>
 
             {!hideScrapButton && id && type ? (
-              <Container
-                positioning={{ top: 3, right: 3 }}
-                css={{
-                  position: 'absolute',
-                }}
-              >
+              <Container position="absolute" positioning={{ top: 3, right: 3 }}>
                 <OverlayScrapButton
                   resource={{ id, type, scraped }}
                   size={36}
