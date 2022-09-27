@@ -11,9 +11,9 @@ import { useLinkClickHandler } from '../prop-context/link-click-handler'
 import { useImageSource } from '../prop-context/image-source'
 import { useMediaConfig } from '../prop-context/media-config'
 
-import DocumentCarousel from './shared/document-carousel'
 import generateClickHandler from './shared/generate-click-handler'
 import {
+  DocumentCarouselContainer,
   ELEMENT_CONTAINER_MAP,
   IMAGES_CONTAINER_MAP,
 } from './shared/display-containers'
@@ -41,7 +41,7 @@ export default function Images({
 
   const ImagesContainer = display
     ? IMAGES_CONTAINER_MAP[display]
-    : DocumentCarousel
+    : DocumentCarouselContainer
 
   const ElementContainer = display
     ? ELEMENT_CONTAINER_MAP[display]
