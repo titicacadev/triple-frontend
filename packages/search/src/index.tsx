@@ -156,12 +156,7 @@ export default function FullScreenSearchView({
         inputRef={inputRef}
         {...rest}
       />
-      <ContentsContainer
-        isIos={isIos}
-        css={{
-          userSelect: 'none',
-        }}
-      >
+      <ContentsContainer isIos={isIos} userSelect="none">
         <div ref={contentsDivRef}>{children}</div>
       </ContentsContainer>
     </>

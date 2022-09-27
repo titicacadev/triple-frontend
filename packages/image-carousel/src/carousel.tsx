@@ -72,9 +72,7 @@ function Carousel({
 
   return (
     <CarouselContainer
-      css={{
-        position: 'relative',
-      }}
+      position="relative"
       margin={margin}
       borderRadius={borderRadius}
     >
