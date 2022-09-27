@@ -44,11 +44,9 @@ export default function PropertyItem({
     <List.Item>
       <LongClickableItemContainer
         flex
+        alignItems="flex-start"
         onLongClick={app ? handleLongClick : undefined}
         onClick={onClick}
-        css={{
-          alignItems: 'flex-start',
-        }}
       >
         <Text bold size="small" css={{ flexShrink: 1, lineHeight: 1.43 }}>
           {title}

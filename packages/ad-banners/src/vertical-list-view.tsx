@@ -40,13 +40,7 @@ const VerticalListView: FC<VerticalListViewProps> = ({
   }
 
   return (
-    <ListSection
-      padding={padding}
-      margin={margin}
-      css={{
-        minWidth: 0,
-      }}
-    >
+    <ListSection minWidth={0} padding={padding} margin={margin}>
       {banners.map((banner, index) => (
         <VerticalEntity
           key={banner.id}
