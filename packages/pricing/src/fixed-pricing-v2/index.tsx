@@ -175,11 +175,7 @@ export default function FixedPricingV2({
                 )}
               </FloatedPricingContainer>
 
-              <PurchaseButtonContainer
-                css={{
-                  position: 'absolute',
-                }}
-              >
+              <PurchaseButtonContainer position="absolute">
                 <PurchaseButton
                   loading={loading}
                   disabled={buttonDisabled}
