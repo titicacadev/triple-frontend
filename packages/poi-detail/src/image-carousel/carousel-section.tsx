@@ -37,11 +37,7 @@ export default function CarouselSection({
 }: CarouselSectionProps) {
   return (
     <Section minWidth={320} maxWidth={768} padding={padding} margin={margin}>
-      <Container
-        css={{
-          position: 'relative',
-        }}
-      >
+      <Container position="relative">
         {images.length > 0 ? (
           <Carousel images={images} borderRadius={borderRadius} {...props} />
         ) : (

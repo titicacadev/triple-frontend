@@ -357,13 +357,7 @@ function RecentReviewInfo({
   const [visitYear, visitMonth] = visitDate?.split('-') || []
 
   return (
-    <FlexBox
-      flex
-      padding={{ top: 8 }}
-      css={{
-        alignItems: 'center',
-      }}
-    >
+    <FlexBox flex alignItems="center" padding={{ top: 8 }}>
       {recentTrip && !isOldReview ? (
         <>
           <img

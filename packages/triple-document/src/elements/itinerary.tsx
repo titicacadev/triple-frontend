@@ -145,21 +145,17 @@ export default function ItineraryElement({ value }: Props) {
                 <Timeline flex>
                   <FlexBox
                     flex
-                    css={{
-                      flexGrow: 1,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      flexDirection: 'column',
-                    }}
+                    flexGrow={1}
+                    justifyContent="center"
+                    alignItems="center"
+                    flexDirection="column"
                   >
                     <FlexBox
                       flex
+                      flexGrow={1}
+                      alignItems="center"
+                      flexDirection="column"
                       padding={{ top: 20 }}
-                      css={{
-                        flexGrow: 1,
-                        alignItems: 'center',
-                        flexDirection: 'column',
-                      }}
                     >
                       <CircleBadge>{index + 1}</CircleBadge>
                       {schedule ? (
@@ -185,11 +181,9 @@ export default function ItineraryElement({ value }: Props) {
                   </FlexBox>
                 </Timeline>
                 <CardWrapper
+                  flexGrow={1}
                   as="a"
                   onClick={generatePoiClickHandler(regionId, type, id)}
-                  css={{
-                    flexGrow: 1,
-                  }}
                 >
                   <PoiCard
                     shadow="medium"

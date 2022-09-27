@@ -230,19 +230,8 @@ export default function Reply({
       />
 
       <Container padding={{ left: 50, bottom: 3 }} margin={{ bottom: 20 }}>
-        <FlexBox
-          flex
-          css={{
-            justifyContent: 'space-between',
-            alignItems: 'start',
-          }}
-        >
-          <Container
-            css={{
-              minWidth: 80,
-              maxWidth: 135,
-            }}
-          >
+        <FlexBox flex justifyContent="space-between" alignItems="start">
+          <Container minWidth={80} maxWidth={135}>
             <Text
               size={15}
               bold
@@ -253,13 +242,7 @@ export default function Reply({
             </Text>
           </Container>
 
-          <FlexBox
-            padding={{ top: 3, left: 5 }}
-            flex
-            css={{
-              alignItems: 'start',
-            }}
-          >
+          <FlexBox padding={{ top: 3, left: 5 }} flex alignItems="start">
             <Text size={12} padding={{ right: 5 }} bold color="gray300">
               {formatTimestamp(createdAt)}
             </Text>
@@ -281,10 +264,8 @@ export default function Reply({
           <ReactionBox
             padding={{ top: 7 }}
             flex
-            css={{
-              alignItems: 'center',
-              cursor: 'pointer',
-            }}
+            alignItems="center"
+            cursor="pointer"
           >
             {likeReaction?.haveMine ? (
               <ThanksButton

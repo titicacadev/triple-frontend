@@ -215,12 +215,7 @@ export default function ActionSheet({
 
   const actionSheetTitle = title ? (
     typeof title === 'string' ? (
-      <Container
-        margin={{ bottom: 10, left: 27 }}
-        css={{
-          height: '16px',
-        }}
-      >
+      <Container height="16px" margin={{ bottom: 10, left: 27 }}>
         <Text size="tiny" bold color="gray700">
           {title}
         </Text>
@@ -287,12 +282,10 @@ export default function ActionSheet({
             {actionSheetTitle}
 
             <ContentContainer
+              maxHeight={maxContentHeight}
               padding={{
                 left: paddingValue.left,
                 right: paddingValue.right,
-              }}
-              css={{
-                maxHeight: maxContentHeight,
               }}
             >
               {children}
