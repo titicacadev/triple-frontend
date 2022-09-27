@@ -14,16 +14,14 @@ it('should accept style shortcut props', () => {
   const tree = renderer
     .create(
       <Container
+        position="absolute"
+        textAlign="center"
+        whiteSpace="pre"
+        userSelect="none"
+        display="inline-block"
+        cursor="pointer"
         floated="none"
         backgroundColor="white"
-        css={{
-          position: 'absolute',
-          textAlign: 'center',
-          whiteSpace: 'pre',
-          userSelect: 'none',
-          display: 'inline-block',
-          cursor: 'pointer',
-        }}
       />,
     )
     .toJSON()
@@ -56,14 +54,12 @@ it('should accept sizing props', () => {
   const tree = renderer
     .create(
       <Container
-        css={{
-          width: 10,
-          height: 20,
-          minWidth: 30,
-          minHeight: 40,
-          maxWidth: 50,
-          maxHeight: 60,
-        }}
+        width={10}
+        height={20}
+        minWidth={30}
+        minHeight={40}
+        maxWidth={50}
+        maxHeight={60}
       />,
     )
     .toJSON()
@@ -113,13 +109,7 @@ it('should accept shadow mixin', () => {
 
 it('should override style with css prop', () => {
   const tree = renderer
-    .create(
-      <Container
-        css={{
-          position: 'fixed',
-        }}
-      />,
-    )
+    .create(<Container position="absolute" css={{ position: 'fixed' }} />)
     .toJSON()
 
   expect(tree).toHaveStyleRule('position', 'fixed')

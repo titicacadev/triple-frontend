@@ -118,13 +118,7 @@ function Carousel({
   }, [carouselRef])
 
   return !isMobile && scrollable ? (
-    <Container
-      margin={margin}
-      padding={containerPadding}
-      css={{
-        position: 'relative',
-      }}
-    >
+    <Container position="relative" margin={margin} padding={containerPadding}>
       <FlickingScrollButton
         containerPadding={containerPadding}
         direction="left"

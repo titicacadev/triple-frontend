@@ -57,12 +57,7 @@ export default function withField<T>(WrappedComponent: ComponentType<T>) {
           {...(props as T)}
         />
         {hasError ? (
-          <Container
-            padding={{ top: 6 }}
-            css={{
-              position: 'relative',
-            }}
-          >
+          <Container position="relative" padding={{ top: 6 }}>
             <Label absolute={!help} error>
               {error}
             </Label>
@@ -70,12 +65,7 @@ export default function withField<T>(WrappedComponent: ComponentType<T>) {
         ) : null}
 
         {!hasError && help ? (
-          <Container
-            padding={{ top: 6 }}
-            css={{
-              position: 'relative',
-            }}
-          >
+          <Container position="relative" padding={{ top: 6 }}>
             <Label alpha={0.5}>{help}</Label>
           </Container>
         ) : null}
