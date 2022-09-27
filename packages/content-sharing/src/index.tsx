@@ -21,12 +21,7 @@ export default function ContentSharing({
   label: string
 }) {
   return (
-    <Container
-      margin={{ top: 50, bottom: 50 }}
-      css={{
-        textAlign: 'center',
-      }}
-    >
+    <Container textAlign="center" margin={{ top: 50, bottom: 50 }}>
       <ShareIcon
         src="https://assets.triple.guide/images/btn-end-invite-kakao@3x.png"
         onClick={() => onShareClick({ method: Method.Kakao })}

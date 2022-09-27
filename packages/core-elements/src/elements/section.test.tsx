@@ -40,7 +40,11 @@ it('should show bottom divider', () => {
 
 it('should override style with css prop', () => {
   const tree = renderer
-    .create(<Section css={{ position: 'fixed' }}>Section</Section>)
+    .create(
+      <Section position="absolute" css={{ position: 'fixed' }}>
+        Section
+      </Section>,
+    )
     .toJSON()
 
   expect(tree).toHaveStyleRule('position', 'fixed')

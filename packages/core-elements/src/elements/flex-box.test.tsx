@@ -9,19 +9,17 @@ it('should accept style shortcut props', () => {
     .create(
       <FlexBox
         flex
-        css={{
-          flexGrow: 1,
-          flexShrink: 1,
-          flexBasis: 'auto',
-          flexDirection: 'column',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          alignItems: 'center',
-          alignContent: 'center',
-          alignSelf: 'center',
-          order: 1,
-          gap: '10px',
-        }}
+        flexGrow={1}
+        flexShrink={1}
+        flexBasis="auto"
+        flexDirection="column"
+        flexWrap="wrap"
+        justifyContent="center"
+        alignItems="center"
+        alignContent="center"
+        alignSelf="center"
+        order={1}
+        gap="10px"
       />,
     )
     .toJSON()
@@ -42,7 +40,9 @@ it('should accept style shortcut props', () => {
 
 it('should override style with css prop', () => {
   const tree = renderer
-    .create(<FlexBox css={{ justifyContent: 'flex-end' }} />)
+    .create(
+      <FlexBox justifyContent="center" css={{ justifyContent: 'flex-end' }} />,
+    )
     .toJSON()
 
   expect(tree).toHaveStyleRule('justify-content', 'flex-end')
