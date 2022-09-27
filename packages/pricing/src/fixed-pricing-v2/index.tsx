@@ -56,34 +56,13 @@ function LoadingSkeleton() {
   return (
     <>
       <Container clearing>
-        <Skeleton
-          borderRadius={2}
-          floated="left"
-          css={{
-            width: '40%',
-            height: 20,
-          }}
-        />
+        <Skeleton borderRadius={2} floated="left" width="40%" height={20} />
       </Container>
       <Container clearing margin={{ top: 5 }}>
-        <Skeleton
-          borderRadius={2}
-          floated="left"
-          css={{
-            width: '60%',
-            height: 22,
-          }}
-        />
+        <Skeleton borderRadius={2} floated="left" width="60%" height={22} />
       </Container>
       <Container clearing margin={{ top: 5 }}>
-        <Skeleton
-          borderRadius={2}
-          floated="left"
-          css={{
-            width: '100%',
-            height: 15,
-          }}
-        />
+        <Skeleton borderRadius={2} floated="left" width="100%" height={15} />
       </Container>
     </>
   )
@@ -132,12 +111,10 @@ export default function FixedPricingV2({
     <Drawer active={active} overflow="visible">
       <FloatedFrame padding={padding}>
         <Container
+          position="relative"
           clearing
+          maxWidth={maxWidth}
           centered={!!maxWidth}
-          css={{
-            position: 'relative',
-            maxWidth,
-          }}
         >
           {emptyOverride || (
             <>
