@@ -1,10 +1,11 @@
 import { useCallback, SyntheticEvent } from 'react'
+import styled, { FlattenSimpleInterpolation } from 'styled-components'
 import { Text, Paragraph } from '@titicaca/core-elements'
-import styled from 'styled-components'
+import { Color } from '@titicaca/color-palette'
 
 import { useLinkClickHandler } from '../../prop-context/link-click-handler'
 
-const TextHtml = styled(Text)`
+const TextHtml = styled(Text)<{ inlineCodeCss?: FlattenSimpleInterpolation }>`
   line-height: 1.63;
   white-space: ${({ whiteSpace }) => whiteSpace || 'normal'};
 
@@ -29,15 +30,22 @@ const TextHtml = styled(Text)`
       text-decoration: underline;
     }
   }
+
+  code {
+    ${({ inlineCodeCss }) => inlineCodeCss}
+  }
 `
 
 export default function TextElement({
   value: { text, rawHTML },
   compact,
+  inlineCodeCss,
   ...props
 }: {
   value: { text: string; rawHTML: string }
   compact: boolean
+  color?: Color
+  inlineCodeCss?: FlattenSimpleInterpolation
 }) {
   const onLinkClick = useLinkClickHandler()
 
@@ -70,6 +78,7 @@ export default function TextElement({
         alpha={0.9}
         dangerouslySetInnerHTML={{ __html: rawHTML }}
         onClick={handleClick}
+        inlineCodeCss={inlineCodeCss}
         {...props}
       />
     )
