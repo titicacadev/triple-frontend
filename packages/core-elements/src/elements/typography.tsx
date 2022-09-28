@@ -1,4 +1,5 @@
 import * as CSS from 'csstype'
+import { Color } from '@titicaca/color-palette'
 
 import { MarginPadding } from '../commons'
 
@@ -11,6 +12,7 @@ export type H1Props = TextProps & {
   emphasize?: boolean
   margin?: MarginPadding
   textAlign?: CSS.Property.TextAlign
+  color?: Color
 }
 
 export type H2Props = TextProps
