@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Container } from '@titicaca/core-elements'
+import { Color } from '@titicaca/color-palette'
 
 import { TripleElementData, Link } from '../types'
 
@@ -46,12 +47,14 @@ type LinksElementData = TripleElementData<'links', { links: Link[] }>
 
 export default function List({
   value: { bulletType, items },
+  textColor,
   ...props
 }: {
   value: {
     bulletType?: string
     items: (TextElementData | LinksElementData)[]
   }
+  textColor?: Color
 }) {
   return (
     <Container margin={{ top: 10, left: 30, right: 30 }} {...props}>
@@ -59,7 +62,7 @@ export default function List({
         {items.map((item, index) => (
           <ListItemContainer bulletType={bulletType} key={index}>
             {item.type === 'text' ? (
-              <ListTextElement value={item.value} compact />
+              <ListTextElement value={item.value} compact color={textColor} />
             ) : null}
             {item.type === 'links' ? (
               <Links value={{ display: 'list', links: item.value.links }} />
