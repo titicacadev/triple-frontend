@@ -25,12 +25,12 @@ export const ImageBlockElementContainer = styled.div`
   }
 `
 
-export const ImageCaption = styled.div`
+export const ImageCaption = styled.div<{ color?: string }>`
   margin-top: 8px;
   font-size: 13px;
   font-weight: 500;
   text-align: center;
-  color: rgba(58, 58, 58, 0.7);
+  color: ${({ color }) => color || 'rgba(58, 58, 58, 0.7)'};
   white-space: pre-wrap;
 `
 

@@ -5,6 +5,7 @@ import {
 import TripleMedia from '@titicaca/triple-media'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { DocumentImageDisplayType } from '@titicaca/content-type-definitions'
+import { Color } from '@titicaca/color-palette'
 
 import { useImageClickHandler } from '../prop-context/image-click-handler'
 import { useLinkClickHandler } from '../prop-context/link-click-handler'
@@ -22,6 +23,7 @@ export default function Images({
   value: { images, display },
   onImageClick: overridedOnImageClick,
   onLinkClick: overridedOnLinkClick,
+  captionColor,
 }: {
   value: {
     images: ImageMeta[]
@@ -29,6 +31,7 @@ export default function Images({
   }
   onImageClick?: ReturnType<typeof useImageClickHandler>
   onLinkClick?: ReturnType<typeof useLinkClickHandler>
+  captionColor?: Color
 }) {
   const defaultOnImageClick = useImageClickHandler()
   const onImageClick = overridedOnImageClick || defaultOnImageClick
@@ -66,7 +69,7 @@ export default function Images({
               ImageSource={ImageSource}
             />
             {!isOnlyImage && image.title ? (
-              <ImageCaption>{image.title}</ImageCaption>
+              <ImageCaption color={captionColor}>{image.title}</ImageCaption>
             ) : null}
           </ElementContainer>
         )
