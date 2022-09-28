@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 9.6.1
+
+### common
+
+- renovate-pr-fix GHA에서 TRIPLE_BOT_GITHUB_TOKEN를 사용하여 트리거합니다. [#2178](https://github.com/titicacadev/triple-frontend/pull/2178)
+
+### triple-document
+
+- 아티클 어드민에 사용되는 이미지 가로배열(default) margin props 누락 수정 [#2184](https://github.com/titicacadev/triple-frontend/pull/2184)
+
 ## 9.6.0
 
 ### triple-document
