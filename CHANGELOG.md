@@ -5,11 +5,6 @@
 ### common
 
 - renovate-pr-fix GHA에서 TRIPLE_BOT_GITHUB_TOKEN를 사용하여 트리거합니다. [#2178](https://github.com/titicacadev/triple-frontend/pull/2178)
-- renovate pr fix GHA를 분리하고 branch protection rule를 우회합니다. [#2169](https://github.com/titicacadev/triple-frontend/pull/2169)
-- CI GHA동작에 누락된 ENV 변수 를 추가합니다. [#2166](https://github.com/titicacadev/triple-frontend/pull/2166)
-- CI GHA 내 fix-renovate-pr 액션을 추가합니다. [#2163](https://github.com/titicacadev/triple-frontend/pull/2163)
-- CI GHA에서 check-working-tree-clean 액션이 skip 되는 경우 의존성 실패 메세지가 전송되지 않도록 합니다. [#2158](https://github.com/titicacadev/triple-frontend/pull/2158)
-- renovate PR에서 CI를 한 번만 동작하도록 변경합니다. [#2156](https://github.com/titicacadev/triple-frontend/pull/2156)
 
 ### triple-document
 
