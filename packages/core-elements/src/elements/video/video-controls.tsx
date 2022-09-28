@@ -3,11 +3,10 @@ import styled from 'styled-components'
 import { debounce } from '@titicaca/view-utilities'
 import { getColor } from '@titicaca/color-palette'
 
-import Seeker from './seeker'
-import PlayPauseButton from './play-pause-button'
-import MuteUnmuteButton from './mute-unmute-button'
 import { formatTime } from './utils'
-import { useVideoControl } from './use-video-control'
+import Seeker from './seeker'
+import MuteUnmuteButton from './mute-unmute-button'
+import PlayPauseButton from './play-pause-button'
 
 const ControlsContainer = styled.div<{ visible: boolean }>`
   position: absolute;
@@ -15,9 +14,8 @@ const ControlsContainer = styled.div<{ visible: boolean }>`
   bottom: 0;
   left: 0;
   right: 0;
-  opacity: ${({ visible }) => (visible ? '1' : '0')};
   background-color: rgba(0, 0, 0, 0.4);
-
+  opacity: ${({ visible }) => (visible ? '1' : '0')};
   transition: opacity 0.3s;
 `
 
@@ -66,25 +64,26 @@ const Progress = styled.progress`
 `
 
 interface Props {
-  hideControls?: boolean
-  initialHidden?: boolean
-  initialMuted?: boolean
+  currentTime: string
+  duration: number
+  muted: boolean
+  playing: boolean
+  progress: number
+  seek: string
+  hideControls: boolean
   videoRef: RefObject<HTMLVideoElement>
 }
 
 export default function Controls({
+  currentTime,
+  duration,
+  muted,
+  playing,
+  progress,
+  seek,
   hideControls,
-  initialHidden,
-  initialMuted,
   videoRef,
 }: Props) {
-  const { duration, currentTime, progress, seek, playing, muted } =
-    useVideoControl({
-      videoRef,
-      initialMuted,
-    })
-  const [oncePlayed, setOncePlayed] = useState(false)
-
   const [visible, setVisible] = useState(false)
 
   // TODO: useDebouncedState 사용하기
@@ -105,18 +104,8 @@ export default function Controls({
     [videoRef, handleFadeOut],
   )
 
-  const handleSeekerClick = useCallback(
-    (e) => {
-      e.stopPropagation()
-      handleFadeOut()
-    },
-    [handleFadeOut],
-  )
-
   const handleControls = useCallback(() => {
-    if (visible) {
-      setVisible(false)
-    } else {
+    if (!visible) {
       setVisible(true)
       handleFadeOut()
     }
@@ -128,44 +117,37 @@ export default function Controls({
     }
   }, [handleFadeOut, playing])
 
-  useEffect(() => {
-    if (playing && !oncePlayed) {
-      setOncePlayed(true)
-    }
-  }, [oncePlayed, playing])
-
-  const playPauseVisible = oncePlayed ? visible : !initialHidden
-
   return (
-    <>
-      <ControlsContainer visible={visible} onClick={handleControls}>
-        {!hideControls && (
-          <>
-            <CurrentTime>{currentTime || '00:00'}</CurrentTime>
-            {duration ? <Duration>{formatTime(duration)}</Duration> : null}
-            {duration ? <Progress max={duration} value={progress} /> : null}
-            <Seeker
-              visible={visible}
-              seek={seek}
-              duration={duration}
-              onClick={handleSeekerClick}
-              onChange={handleSeekerChange}
-            />
-          </>
-        )}
-      </ControlsContainer>
+    <ControlsContainer visible={visible} onClick={handleControls}>
+      {!hideControls && (
+        <>
+          <CurrentTime>{currentTime || '00:00'}</CurrentTime>
+          {duration ? <Duration>{formatTime(duration)}</Duration> : null}
+          {duration ? <Progress max={duration} value={progress} /> : null}
+          <Seeker
+            seek={seek}
+            visible={visible}
+            duration={duration}
+            onChange={handleSeekerChange}
+          />
+        </>
+      )}
       <PlayPauseButton
-        videoRef={videoRef}
         playing={playing}
-        visible={playPauseVisible}
-        onPlayPause={handleFadeOut}
+        visible={visible}
+        onClick={() => {
+          playing ? videoRef.current?.pause() : videoRef.current?.play()
+        }}
       />
       <MuteUnmuteButton
-        videoRef={videoRef}
         muted={muted}
         visible={visible}
-        onMuteUnmute={handleFadeOut}
+        onClick={() => {
+          if (videoRef.current) {
+            videoRef.current.muted = !muted
+          }
+        }}
       />
-    </>
+    </ControlsContainer>
   )
 }

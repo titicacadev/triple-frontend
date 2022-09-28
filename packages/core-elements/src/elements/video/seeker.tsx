@@ -1,9 +1,8 @@
-import { useState, useCallback, SyntheticEvent } from 'react'
 import styled from 'styled-components'
-import { debounce } from '@titicaca/view-utilities'
 import { getColor } from '@titicaca/color-palette'
+import { ChangeEventHandler } from 'react'
 
-const SeekerBase = styled.input<{ handleVisible: boolean }>`
+const SeekerBase = styled.input<{ visible: boolean }>`
   appearance: none;
   background: transparent;
   border-color: transparent;
@@ -14,6 +13,8 @@ const SeekerBase = styled.input<{ handleVisible: boolean }>`
   width: calc(100% - 90px);
   bottom: 10px;
   margin: 0;
+
+  pointer-events: ${({ visible }) => (visible ? 'auto' : 'none')};
 
   &:focus {
     outline: none;
@@ -26,7 +27,6 @@ const SeekerBase = styled.input<{ handleVisible: boolean }>`
     border-radius: 10px;
     background-color: rgba(${getColor('blue')});
     cursor: pointer;
-    opacity: ${({ handleVisible }) => (handleVisible ? '1' : '0')};
     transition: opacity 0.3s;
   }
 
@@ -36,7 +36,6 @@ const SeekerBase = styled.input<{ handleVisible: boolean }>`
     border-radius: 10px;
     background-color: rgba(${getColor('blue')});
     cursor: pointer;
-    opacity: ${({ handleVisible }) => (handleVisible ? '1' : '0')};
     transition: opacity 0.3s;
   }
 
@@ -46,7 +45,6 @@ const SeekerBase = styled.input<{ handleVisible: boolean }>`
     border-radius: 10px;
     background-color: rgba(${getColor('blue')});
     cursor: pointer;
-    opacity: ${({ handleVisible }) => (handleVisible ? '1' : '0')};
     transition: opacity 0.3s;
   }
 
@@ -57,48 +55,23 @@ const SeekerBase = styled.input<{ handleVisible: boolean }>`
   }
 `
 
-export default function Seeker({
-  seek,
-  duration,
-  visible,
-  onClick,
-  onChange,
-}: {
+interface Props {
   seek: string
-  duration: number
   visible: boolean
-  onClick: (e: SyntheticEvent) => void
-  onChange: (e: SyntheticEvent) => void
-}) {
-  const [handleVisible, setHandleVisible] = useState(false)
-  // TODO: useDebouncedState 사용하기
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleHandleFadeOut = useCallback(
-    debounce(() => setHandleVisible(false), 500),
-    [setHandleVisible],
-  )
+  duration: number
+  onChange: ChangeEventHandler<HTMLInputElement>
+}
 
-  const handleChange = useCallback(
-    (e: SyntheticEvent) => {
-      if (visible) {
-        setHandleVisible(true)
-        onChange(e)
-        handleHandleFadeOut()
-      }
-    },
-    [visible, onChange, setHandleVisible, handleHandleFadeOut],
-  )
-
+export default function Seeker({ seek, visible, duration, onChange }: Props) {
   return (
     <SeekerBase
-      handleVisible={handleVisible}
       value={seek}
       type="range"
       max={duration}
       min={0}
       step={0.01}
-      onClick={visible ? onClick : undefined}
-      onChange={handleChange}
+      visible={visible}
+      onChange={onChange}
     />
   )
 }

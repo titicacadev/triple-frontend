@@ -1,4 +1,3 @@
-import { useCallback, RefObject, SyntheticEvent } from 'react'
 import styled from 'styled-components'
 
 const MUTE_BUTTON_IMAGE_URL =
@@ -6,63 +5,36 @@ const MUTE_BUTTON_IMAGE_URL =
 const UNMUTE_BUTTON_IMAGE_URL =
   'https://assets.triple.guide/images/btn-video-volume-up@3x.png'
 
-interface MuteUnmutButtonBaseProps {
-  muted: boolean
-  visible: boolean
-}
-
-const backgroundImage = ({ muted }: MuteUnmutButtonBaseProps) =>
-  muted ? MUTE_BUTTON_IMAGE_URL : UNMUTE_BUTTON_IMAGE_URL
-const MuteUnmuteButtonBase = styled.button<MuteUnmutButtonBaseProps>`
+const MuteUnmuteButtonBase = styled.button<{ visible: boolean }>`
   position: absolute;
-  border: none;
-  background: none;
-  width: 40px;
-  height: 36px;
-  top: 3px;
   right: 3px;
-  background-image: url(${backgroundImage});
-  background-size: cover;
-
-  &:focus {
-    outline: none;
-  }
-
-  opacity: ${({ visible }) => (visible ? '1' : '0')};
-  transition: opacity 0.3s;
+  top: 3px;
+  padding: 0;
+  background: none;
+  border: none;
+  outline: none;
+  pointer-events: ${({ visible }) => (visible ? 'auto' : 'none')};
 `
 
 interface Props {
   muted: boolean
   visible: boolean
-  videoRef: RefObject<HTMLVideoElement>
-  onMuteUnmute: (e: SyntheticEvent) => void
+  onClick: () => void
 }
 
-export default function MuteUnmuteButton({
-  muted,
-  visible,
-  videoRef,
-  onMuteUnmute,
-}: Props) {
-  const handleMuteUnmute = useCallback(
-    (e: SyntheticEvent) => {
-      if (videoRef.current) {
-        videoRef.current.muted = !muted
-        onMuteUnmute(e)
-        return
-      }
-
-      return true
-    },
-    [muted, videoRef, onMuteUnmute],
-  )
-
+export default function MuteUnmuteButton({ muted, visible, onClick }: Props) {
   return (
     <MuteUnmuteButtonBase
-      muted={muted}
+      aria-label={muted ? '음소거 해제' : '음소거'}
       visible={visible}
-      onClick={handleMuteUnmute}
-    />
+      onClick={onClick}
+    >
+      <img
+        alt=""
+        src={muted ? MUTE_BUTTON_IMAGE_URL : UNMUTE_BUTTON_IMAGE_URL}
+        width={40}
+        height={36}
+      />
+    </MuteUnmuteButtonBase>
   )
 }

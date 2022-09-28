@@ -1,4 +1,4 @@
-import { useCallback, RefObject, SyntheticEvent } from 'react'
+import { SyntheticEvent } from 'react'
 import styled from 'styled-components'
 
 const PLAY_BUTTON_IMAGE_URL =
@@ -13,56 +13,35 @@ interface BaseProps {
 
 const PlayPauseButtonBase = styled.button<BaseProps>`
   position: absolute;
-  border: none;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  padding: 0;
+  border: 0;
+  outline: none;
   background: none;
-  width: 60px;
-  height: 60px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-image: ${({ playing }) =>
-    playing
-      ? `url(${PAUSE_BUTTON_IMAGE_URL})`
-      : `url(${PLAY_BUTTON_IMAGE_URL})`};
-  background-size: cover;
-
-  &:focus {
-    outline: none;
-  }
-
-  opacity: ${({ visible }) => (visible ? '1' : '0')};
   pointer-events: ${({ visible }) => (visible ? 'auto' : 'none')};
-  transition: opacity 0.3s;
 `
 
 interface Props {
   playing: boolean
   visible: boolean
-  videoRef: RefObject<HTMLVideoElement>
-  onPlayPause: (e?: SyntheticEvent) => void
+  onClick: (e?: SyntheticEvent) => void
 }
 
-export default function PlayPauseButton({
-  playing,
-  visible,
-  videoRef,
-  onPlayPause,
-}: Props) {
-  const handlePlayPause = useCallback(
-    (e) => {
-      if (videoRef.current && visible) {
-        playing ? videoRef.current.pause() : videoRef.current.play()
-        e.stopPropagation()
-        onPlayPause()
-      }
-    },
-    [videoRef, playing, visible, onPlayPause],
-  )
+export default function PlayPauseButton({ playing, visible, onClick }: Props) {
   return (
     <PlayPauseButtonBase
       visible={visible}
       playing={playing}
-      onClick={handlePlayPause}
-    />
+      aria-label={playing ? '일시정지' : '재생'}
+      onClick={onClick}
+    >
+      <img
+        alt=""
+        src={playing ? PAUSE_BUTTON_IMAGE_URL : PLAY_BUTTON_IMAGE_URL}
+        width={60}
+        height={60}
+      />
+    </PlayPauseButtonBase>
   )
 }

@@ -1,14 +1,17 @@
-import { useState, useEffect, RefObject } from 'react'
+import { useState, useEffect, RefObject, useMemo } from 'react'
 
 import { formatTime } from './utils'
 
-export function useVideoControl({
-  videoRef,
-  initialMuted = false,
-}: {
+interface Params {
   videoRef: RefObject<HTMLVideoElement>
-  initialMuted?: boolean
-}) {
+  autoPlay: boolean
+  initialMuted: boolean
+}
+
+export function useVideoControl({ videoRef, autoPlay, initialMuted }: Params) {
+  const [mounted, setMounted] = useState(false)
+  const [oncePlayed, setOncePlayed] = useState(autoPlay)
+  const [pending, setPending] = useState(false)
   const [duration, setDuartion] = useState<number>(0)
   const [progress, setProgress] = useState<number>(0)
   const [currentTime, setCurrentTime] = useState<string>('')
@@ -16,56 +19,78 @@ export function useVideoControl({
   const [playing, setPlaying] = useState(false)
   const [muted, setMuted] = useState(initialMuted)
 
+  const handlers = useMemo(
+    () => ({
+      onCanPlay: () => {
+        setPending(false)
+      },
+      onWaiting: () => {
+        setPending(true)
+      },
+      onDurationChange: () => {
+        if (videoRef.current) {
+          const duration = videoRef.current.duration
+          !isNaN(duration) && setDuartion(Math.floor(duration))
+        }
+      },
+      onProgress: () => {
+        if (videoRef.current) {
+          const currentTime = formatTime(
+            Math.floor(videoRef.current.currentTime),
+          )
+
+          setCurrentTime(currentTime)
+          setProgress(videoRef.current.currentTime)
+          setSeek(String(videoRef.current.currentTime))
+        }
+      },
+      onTimeUpdate: () => {
+        if (videoRef.current) {
+          const currentTime = formatTime(
+            Math.floor(videoRef.current.currentTime),
+          )
+
+          setCurrentTime(currentTime)
+          setProgress(videoRef.current.currentTime)
+          setSeek(String(videoRef.current.currentTime))
+        }
+      },
+      onPlay: () => {
+        videoRef.current?.play()
+        setPlaying(true)
+        setOncePlayed(true)
+      },
+      onPause: () => {
+        videoRef.current?.pause()
+        setPlaying(false)
+      },
+      onVolumeChange: () => {
+        if (videoRef.current) {
+          setMuted(videoRef.current.muted)
+        }
+      },
+    }),
+    [videoRef],
+  )
+
+  /**
+   * iOS 사파리에서 비디오를 처음 재생할 때 아주 짧은 시간 레이아웃이 깨지는 버그가 있습니다.
+   * 이 문제를 우회하기 위해 video source를 lazy하게 불러옵니다.
+   */
   useEffect(() => {
-    const currentRef = videoRef.current
-
-    const handlePlay = () => setPlaying(true)
-    const handlePause = () => setPlaying(false)
-
-    if (currentRef) {
-      const handleDuartionChange = () => {
-        const duration = currentRef.duration
-        !isNaN(duration) && setDuartion(Math.floor(duration))
-      }
-
-      const handleTimeUpdate = () => {
-        const currentTime = formatTime(Math.floor(currentRef.currentTime))
-
-        setCurrentTime(currentTime)
-        setProgress(currentRef.currentTime)
-        setSeek(String(currentRef.currentTime))
-      }
-
-      const handleSync = () => {
-        setMuted(currentRef.muted)
-      }
-
-      currentRef.addEventListener('durationchange', handleDuartionChange)
-      currentRef.addEventListener('progress', handleDuartionChange)
-      currentRef.addEventListener('timeupdate', handleTimeUpdate)
-      currentRef.addEventListener('play', handlePlay)
-      currentRef.addEventListener('pause', handlePause)
-      currentRef.addEventListener('volumechange', handleSync)
-
-      return () => {
-        currentRef.removeEventListener('durationchange', handleDuartionChange)
-        currentRef.removeEventListener('progress', handleDuartionChange)
-        currentRef.removeEventListener('timeupdate', handleTimeUpdate)
-        currentRef.removeEventListener('play', handlePlay)
-        currentRef.removeEventListener('pause', handlePause)
-        currentRef.removeEventListener('volumechange', handleSync)
-      }
-    } else {
-      throw new Error('Cannot use Vidoe Control State')
-    }
-  }, [videoRef])
+    setMounted(true)
+  }, [])
 
   return {
+    mounted,
+    oncePlayed,
+    pending,
     duration,
     currentTime,
     progress,
     seek,
     playing,
     muted,
+    handlers,
   }
 }
