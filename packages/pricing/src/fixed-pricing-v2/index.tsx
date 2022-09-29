@@ -9,9 +9,9 @@ import {
   MarginPadding,
   Skeleton,
   safeAreaInsetMixin,
+  CSSProps,
 } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
-import { CSSProps } from '@titicaca/core-elements/lib/css'
 
 import PurchaseButton from './purchase-button'
 

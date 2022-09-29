@@ -1,7 +1,10 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
-import { Container, safeAreaInsetMixin } from '@titicaca/core-elements'
+import {
+  Container,
+  safeAreaInsetMixin,
+  CSSProps,
+} from '@titicaca/core-elements'
 import styled from 'styled-components'
-import { CSSProps } from '@titicaca/core-elements/lib/css'
 
 import { fetchReplies, fetchChildReplies } from './replies-api-client'
 import { Reply, ResourceType, Placeholders } from './types'
