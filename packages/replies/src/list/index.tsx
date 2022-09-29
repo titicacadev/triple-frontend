@@ -1,9 +1,8 @@
-import { Container, HR1, List, Text } from '@titicaca/core-elements'
+import { Container, HR1, List, Text, CSSProps } from '@titicaca/core-elements'
 import { Confirm } from '@titicaca/modals'
 import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { css } from 'styled-components'
-import { CSSProps } from '@titicaca/core-elements/lib/css'
 
 import { Reply as ReplyType } from '../types'
 import { useRepliesContext } from '../context'
