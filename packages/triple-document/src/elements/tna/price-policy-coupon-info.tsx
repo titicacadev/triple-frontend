@@ -1,6 +1,5 @@
 import { useTranslation } from '@titicaca/next-i18next'
-import { Container, Text } from '@titicaca/core-elements'
-import { CSSProps } from '@titicaca/core-elements/lib/css'
+import { Container, Text, CSSProps } from '@titicaca/core-elements'
 import { css } from 'styled-components'
 
 export function PricePolicyCouponInfo({
