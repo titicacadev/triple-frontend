@@ -1,5 +1,6 @@
 import { FC } from 'react'
-import { MarginPadding } from '@titicaca/core-elements'
+import { css } from 'styled-components'
+import { formatMarginPadding, MarginPadding } from '@titicaca/core-elements'
 
 import VerticalEntity from './vertical-entity'
 import { Banner } from './typing'
@@ -40,7 +41,15 @@ const VerticalListView: FC<VerticalListViewProps> = ({
   }
 
   return (
-    <ListSection minWidth={0} padding={padding} margin={margin}>
+    <ListSection
+      css={css(
+        {
+          minWidth: 0,
+        },
+        formatMarginPadding(margin, 'margin'),
+        formatMarginPadding(padding, 'padding'),
+      )}
+    >
       {banners.map((banner, index) => (
         <VerticalEntity
           key={banner.id}

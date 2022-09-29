@@ -25,7 +25,9 @@ export const PriceInfoDrawer: ComponentStory<typeof Drawer> = (args) => {
     <Drawer {...args}>
       <Container
         clearing
-        padding={{ top: 10, right: 25, bottom: 10, left: 30 }}
+        css={{
+          padding: '10px 25px 10px 30px',
+        }}
       >
         <Container floated="left">
           <Text color="blue" size="mini" margin={{ top: 7, bottom: 4 }}>
