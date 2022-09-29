@@ -13,7 +13,6 @@ function Section({
   children,
   divider,
   anchor,
-  padding = { left: 30, right: 30 },
   ...props
 }: SectionProps) {
   if (!children) {
@@ -27,12 +26,13 @@ function Section({
         id={anchor}
         centered
         clearing
-        padding={padding}
         {...props}
         css={css`
           position: relative;
           min-width: 320px;
           max-width: 768px;
+          padding-left: 30px;
+          padding-right: 30px;
           ${cssProp};
         `}
       >

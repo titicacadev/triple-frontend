@@ -84,13 +84,21 @@ export function withField<T>(WrappedComponent: ComponentType<T>) {
           {...(props as T)}
         />
         {typeof error === 'string' && hasError ? (
-          <MessageContainer padding={{ top: 6 }}>
+          <MessageContainer
+            css={{
+              padding: '6px 0 0 0',
+            }}
+          >
             <Label absolute={!help} error>
               {error}
             </Label>
           </MessageContainer>
         ) : help ? (
-          <MessageContainer padding={{ top: 6 }}>
+          <MessageContainer
+            css={{
+              padding: '6px 0 0 0',
+            }}
+          >
             <Label alpha={0.5}>{help}</Label>
           </MessageContainer>
         ) : null}

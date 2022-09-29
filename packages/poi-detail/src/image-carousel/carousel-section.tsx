@@ -1,4 +1,6 @@
-import { Section, Container, MarginPadding } from '@titicaca/core-elements'
+import { Section, Container } from '@titicaca/core-elements'
+import { CSSProps } from '@titicaca/core-elements/lib/css'
+import { css } from 'styled-components'
 
 import Carousel, { CarouselProps } from './carousel'
 import Placeholder from './placeholder'
@@ -17,8 +19,6 @@ export interface CarouselSectionProps extends CarouselProps {
   permanentlyClosed?: boolean
   onBusinessHoursClick?: () => void
   onPlaceholderClick: () => void
-  margin?: MarginPadding
-  padding?: MarginPadding
   height?: number
 }
 
@@ -30,13 +30,22 @@ export default function CarouselSection({
   permanentlyClosed,
   onPlaceholderClick,
   onBusinessHoursClick,
-  margin,
-  padding = { left: 20, right: 20 },
   borderRadius,
+  css: cssProp,
   ...props
-}: CarouselSectionProps) {
+}: CarouselSectionProps & CSSProps) {
   return (
-    <Section minWidth={320} maxWidth={768} padding={padding} margin={margin}>
+    <Section
+      css={css(
+        {
+          minWidth: 320,
+          maxWidth: 768,
+          paddingLeft: 20,
+          paddingRight: 20,
+        },
+        cssProp,
+      )}
+    >
       <Container position="relative">
         {images.length > 0 ? (
           <Carousel images={images} borderRadius={borderRadius} {...props} />

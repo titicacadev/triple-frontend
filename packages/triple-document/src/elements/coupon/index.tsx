@@ -48,7 +48,11 @@ export default function Coupon({
   }
 
   return (
-    <Container margin={{ top: 44, right: 30, left: 30, bottom: 42 }}>
+    <Container
+      css={{
+        margin: '44px 30px 42px 30px',
+      }}
+    >
       {couponType === 'single' ? (
         <CouponDownloadButton
           verificationType={verificationType}

@@ -40,7 +40,13 @@ export default function ItineraryMap({ onClickMarker, items }: Props) {
   )
 
   return (
-    <Container width="100%" height={180} className="chromatic-ignore">
+    <Container
+      className="chromatic-ignore"
+      css={{
+        width: '100%',
+        height: 180,
+      }}
+    >
       {googleMapsApiKey ? (
         <MapView
           coordinates={coordinates}
