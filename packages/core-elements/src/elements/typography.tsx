@@ -1,6 +1,5 @@
 import * as CSS from 'csstype'
-
-import { MarginPadding } from '../commons'
+import { css } from 'styled-components'
 
 import Text, { TextProps } from './text'
 import Container from './container'
@@ -9,7 +8,6 @@ export type H1Props = TextProps & {
   href?: string
   headline?: string
   emphasize?: boolean
-  margin?: MarginPadding
   textAlign?: CSS.Property.TextAlign
 }
 
@@ -22,13 +20,21 @@ export function H1({
   href,
   headline,
   emphasize,
-  margin,
   textAlign,
   children,
+  css: cssProp,
   ...props
 }: H1Props) {
   return (
-    <Container id={href} margin={margin} textAlign={textAlign}>
+    <Container
+      id={href}
+      css={css(
+        {
+          textAlign,
+        },
+        cssProp,
+      )}
+    >
       {headline && (
         <Text bold size="tiny" color="blue" margin={{ bottom: 3 }}>
           {headline}

@@ -8,7 +8,12 @@ export default function NotExistReplies() {
         color="var(--color-gray50)"
       />
 
-      <Container padding={{ top: 40, bottom: 50 }} textAlign="center">
+      <Container
+        css={{
+          padding: '40px 0 50px 0',
+          textAlign: 'center',
+        }}
+      >
         <Text size={14} lineHeight={1.2} color="gray300">
           아직 댓글이 없어요. <br />
           가장 먼저 댓글을 작성해보세요!

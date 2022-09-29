@@ -125,7 +125,12 @@ export default function RecommendedContents<T extends ContentElementProps>({
   return (
     <RecommendedContentsContainer margin={margin}>
       <Responsive maxWidth={767}>
-        <Container as="ul" padding={{ right: 15 }}>
+        <Container
+          as="ul"
+          css={{
+            padding: '0 15px 0 0',
+          }}
+        >
           {contents.map((content, index) => (
             <IntersectionObserver
               key={index}

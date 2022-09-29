@@ -2,7 +2,12 @@ import styled, { css } from 'styled-components'
 import { PropsWithChildren, useRef, useEffect, useState } from 'react'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 import { ArrowIcon } from '@titicaca/icons'
-import { Container, MarginPadding, marginMixin } from '@titicaca/core-elements'
+import {
+  Container,
+  MarginPadding,
+  marginMixin,
+  formatMarginPadding,
+} from '@titicaca/core-elements'
 import { FlickingOptions } from '@egjs/flicking'
 import Flicking from '@egjs/react-flicking'
 
@@ -118,7 +123,13 @@ function Carousel({
   }, [carouselRef])
 
   return !isMobile && scrollable ? (
-    <Container position="relative" margin={margin} padding={containerPadding}>
+    <Container
+      position="relative"
+      css={css`
+        ${formatMarginPadding(margin, 'margin')}
+        ${formatMarginPadding(containerPadding, 'padding')}
+      `}
+    >
       <FlickingScrollButton
         containerPadding={containerPadding}
         direction="left"
