@@ -4,8 +4,8 @@ import {
   Container,
   GetGlobalColor,
   MarginPadding,
+  CSSProps,
 } from '@titicaca/core-elements'
-import { CSSProps } from '@titicaca/core-elements/lib/css'
 
 const Label = styled.label<{ disabled?: boolean }>`
   color: rgb(${GetGlobalColor('gray')});

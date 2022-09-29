@@ -1,6 +1,5 @@
-import { Container, Text, Image } from '@titicaca/core-elements'
+import { Container, Text, Image, CSSProps } from '@titicaca/core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
-import { CSSProps } from '@titicaca/core-elements/lib/css'
 
 import AuthorIntro from './author-intro'
 
