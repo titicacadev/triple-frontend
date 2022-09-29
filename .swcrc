@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/swcrc",
   "module": {
     "type": "commonjs"
   },
@@ -7,25 +8,13 @@
     "target": "es2016",
     "parser": {
       "syntax": "typescript",
-      "tsx": true,
-      "decorators": false,
-      "dynamicImport": false
+      "tsx": true
     },
     "transform": {
       "react": {
         "runtime": "automatic",
-        "pragma": "React.createElement",
-        "pragmaFrag": "React.Fragment",
-        "throwIfNamespace": false,
-        "development": false,
-        "useBuiltins": false
+        "throwIfNamespace": true
       }
-    }
-  },
-  "env": {
-    "targets": {
-      "ie": "11",
-      "ios": "10"
     }
   },
   "exclude": [".*\\.(test|spec)\\.(js|ts)x?$"]
