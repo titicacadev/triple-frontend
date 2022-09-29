@@ -68,10 +68,18 @@ export function Slot({
 
   return (
     <Container
-      margin={{ top: 30, left: 30, right: 30 }}
       id={`tna-slot-${slotId}`}
+      css={{
+        margin: '30px 30px 0 30px',
+      }}
     >
-      <H1 margin={{ bottom: 20 }}>{slotTitle}</H1>
+      <H1
+        css={{
+          margin: '0 0 20px 0',
+        }}
+      >
+        {slotTitle}
+      </H1>
 
       <List clearing verticalGap={40} divided dividerColor={gray50}>
         {(showMore ? products : products.slice(0, 3)).map((product, i) => (

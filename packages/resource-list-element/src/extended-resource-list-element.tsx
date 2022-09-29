@@ -120,7 +120,11 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
           />
 
           {formattedNames ? (
-            <Container margin={{ top: 5 }}>
+            <Container
+              css={{
+                margin: '5px 0 0 0',
+              }}
+            >
               <Text inlineBlock size="tiny" color="gray" alpha={0.5}>
                 {formattedNames}
               </Text>
@@ -128,7 +132,11 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
           ) : null}
 
           {distance || distance === 0 || note || isAdvertisement ? (
-            <Container margin={{ top: 3 }}>
+            <Container
+              css={{
+                margin: '3px 0 0 0',
+              }}
+            >
               {isAdvertisement ? (
                 <Label
                   emphasized
@@ -184,7 +192,13 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
             </Image>
 
             {!hideScrapButton && id && type ? (
-              <Container position="absolute" positioning={{ top: 3, right: 3 }}>
+              <Container
+                position="absolute"
+                css={{
+                  top: '3px',
+                  right: '3px',
+                }}
+              >
                 <OverlayScrapButton
                   resource={{ id, type, scraped }}
                   size={36}

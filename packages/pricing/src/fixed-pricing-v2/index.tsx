@@ -1,6 +1,6 @@
 import { ReactNode, SyntheticEvent } from 'react'
+import styled, { css } from 'styled-components'
 import { useTranslation } from '@titicaca/next-i18next'
-import styled from 'styled-components'
 import {
   Container,
   Drawer,
@@ -11,6 +11,7 @@ import {
   safeAreaInsetMixin,
 } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
+import { CSSProps } from '@titicaca/core-elements/lib/css'
 
 import PurchaseButton from './purchase-button'
 
@@ -57,13 +58,44 @@ function LoadingSkeleton() {
   return (
     <>
       <Container clearing>
-        <Skeleton borderRadius={2} floated="left" width="40%" height={20} />
+        <Skeleton
+          borderRadius={2}
+          floated="left"
+          css={{
+            width: '40%',
+            height: 20,
+          }}
+        />
       </Container>
-      <Container clearing margin={{ top: 5 }}>
-        <Skeleton borderRadius={2} floated="left" width="60%" height={22} />
+      <Container
+        clearing
+        css={{
+          margin: '5px 0 0 0',
+        }}
+      >
+        <Skeleton
+          borderRadius={2}
+          floated="left"
+          css={{
+            width: '60%',
+            height: 22,
+          }}
+        />
       </Container>
-      <Container clearing margin={{ top: 5 }}>
-        <Skeleton borderRadius={2} floated="left" width="100%" height={15} />
+      <Container
+        clearing
+        css={{
+          margin: '5px 0 0 0',
+        }}
+      >
+        <Skeleton
+          borderRadius={2}
+          floated="left"
+          css={{
+            width: '100%',
+            height: 15,
+          }}
+        />
       </Container>
     </>
   )
@@ -86,8 +118,8 @@ export default function FixedPricingV2({
   onTooltipClick,
   isSoldOut = false,
   maxWidth,
-  padding = { top: 14, right: 20, bottom: 14, left: 20 },
-}: FixedPricingV2Props) {
+  css: cssProp,
+}: FixedPricingV2Props & CSSProps) {
   const { t } = useTranslation('common-web')
 
   const formattedSalePrice = formatNumber(salePrice)
@@ -113,12 +145,14 @@ export default function FixedPricingV2({
 
   return (
     <Drawer active={active} overflow="visible">
-      <FloatedFrame padding={padding}>
+      <FloatedFrame css={css({ padding: '14px 20px 14px 20px' }, cssProp)}>
         <Container
           position="relative"
           clearing
-          maxWidth={maxWidth}
           centered={!!maxWidth}
+          css={{
+            maxWidth,
+          }}
         >
           {emptyOverride || (
             <>

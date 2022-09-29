@@ -362,7 +362,9 @@ function ReviewContainer({
         flex
         justifyContent="space-between"
         alignItems="center"
-        margin={{ top: 23 }}
+        css={{
+          margin: '23px 0 0 0',
+        }}
       >
         <SortingOptions
           selected={sortingOption}
@@ -411,7 +413,11 @@ function ReviewContainer({
           )}
 
           {reviewsCount > SHORTENED_REVIEWS_COUNT_PER_PAGE && shortened ? (
-            <Container margin={{ top: 40 }}>
+            <Container
+              css={{
+                margin: '40px 0 0 0',
+              }}
+            >
               <Button
                 basic
                 fluid

@@ -118,8 +118,10 @@ export default function PoiCardElement({
       <PoiCardBody
         position="relative"
         display="block"
-        textAlign="left"
         onClick={onClick}
+        css={{
+          textAlign: 'left',
+        }}
       >
         <ImageContainer clearing>
           <Image>
@@ -151,10 +153,10 @@ export default function PoiCardElement({
         </ImageContainer>
 
         <Container
-          maxWidth={190}
-          margin={{
-            left: IMAGE_WIDTH + 14,
-            right: DIRECTION_BUTTON_WIDTH + 13,
+          css={{
+            maxWidth: 190,
+            marginLeft: IMAGE_WIDTH + 14,
+            marginRight: DIRECTION_BUTTON_WIDTH + 13,
           }}
         >
           <Text size="large" bold ellipsis>
@@ -184,7 +186,11 @@ export default function PoiCardElement({
           {distance ||
           nightlyPrice !== undefined ||
           priceLabelOverride !== undefined ? (
-            <Container margin={{ top: 6 }}>
+            <Container
+              css={{
+                margin: '6px 0 0 0',
+              }}
+            >
               {distance ? (
                 <Text
                   inlineBlock

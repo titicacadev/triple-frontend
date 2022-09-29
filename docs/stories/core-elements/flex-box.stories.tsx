@@ -71,7 +71,12 @@ export const FlexShrink = () => {
         컨테이너에 속한 아이템 크기가 컨테이너 보다 클 때 flexShrink 를 이용하면
         값에 따라 컨테이너에 맞게 축소됩니다.
       </Summary>
-      <FlexBox flex width={300}>
+      <FlexBox
+        flex
+        css={{
+          width: 300,
+        }}
+      >
         <Item flexBasis="500px" flexShrink={1}>
           Item1
         </Item>
@@ -105,10 +110,34 @@ export const FlexWrap = () => {
         영역 내에서 벗어나지 않고 여러행으로 나누어 표현 할 것인지 결정하는
         속성입니다.
       </Summary>
-      <FlexBox flex width={200} flexWrap="wrap">
-        <Item width={100}>Item1</Item>
-        <Item width={100}>Item2</Item>
-        <Item width={100}>Item3</Item>
+      <FlexBox
+        flex
+        flexWrap="wrap"
+        css={{
+          width: 200,
+        }}
+      >
+        <Item
+          css={{
+            width: 100,
+          }}
+        >
+          Item1
+        </Item>
+        <Item
+          css={{
+            width: 100,
+          }}
+        >
+          Item2
+        </Item>
+        <Item
+          css={{
+            width: 100,
+          }}
+        >
+          Item3
+        </Item>
       </FlexBox>
     </Section>
   )

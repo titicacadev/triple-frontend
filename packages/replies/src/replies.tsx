@@ -1,10 +1,7 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
-import {
-  Container,
-  MarginPadding,
-  safeAreaInsetMixin,
-} from '@titicaca/core-elements'
+import { Container, safeAreaInsetMixin } from '@titicaca/core-elements'
 import styled from 'styled-components'
+import { CSSProps } from '@titicaca/core-elements/lib/css'
 
 import { fetchReplies, fetchChildReplies } from './replies-api-client'
 import { Reply, ResourceType, Placeholders } from './types'
@@ -36,18 +33,17 @@ export default function Replies({
   resourceType,
   placeholders,
   isFormFixed,
-  padding,
   size = 10,
   initialSize,
+  css,
 }: {
   resourceId: string
   resourceType: ResourceType
   placeholders?: Placeholders
   isFormFixed?: boolean
-  padding?: MarginPadding
   size?: number
   initialSize?: number
-}) {
+} & CSSProps) {
   const [replies, setReplies] = useState<Reply[]>([])
 
   const [hasNextPage, setHasNextPage] = useState(false)
@@ -185,11 +181,11 @@ export default function Replies({
       <ReplyList
         replies={replies}
         isMoreButtonActive={hasNextPage}
-        padding={padding}
         fetchMoreReplies={fetchMoreReplies}
         focusInput={focusInput}
         onReplyDelete={handleReplyDelete}
         onReplyEdit={handleReplyEdit}
+        css={css}
       />
 
       <InputContainer>
