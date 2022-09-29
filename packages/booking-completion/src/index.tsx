@@ -69,7 +69,11 @@ function BookingCompletion({
 
   return (
     <>
-      <Container margin={{ bottom: 12 }}>
+      <Container
+        css={{
+          margin: '0 0 12px 0',
+        }}
+      >
         <Text size={28} bold>
           {title || `예약이 \n 접수되었습니다.`}
         </Text>
@@ -102,7 +106,11 @@ function BookingCompletion({
         </Button>
       ) : (
         <>
-          <Container margin={{ top: 30 }}>
+          <Container
+            css={{
+              margin: '30px 0 0 0',
+            }}
+          >
             <Button.Group horizontalGap={7}>
               <Button
                 basic

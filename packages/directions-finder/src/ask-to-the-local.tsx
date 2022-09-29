@@ -62,7 +62,11 @@ export default function AskToTheLocal({
 
   return (
     <Popup open={open} onClose={onClose} borderless>
-      <Section margin={{ top: 20 }}>
+      <Section
+        css={{
+          margin: '20px 0 0 0',
+        }}
+      >
         <Text maxLines={2} textStyle="M4" color="blue">
           {localName}
         </Text>
@@ -76,8 +80,10 @@ export default function AskToTheLocal({
         {phoneNumber ? (
           <Drawer active>
             <DrawerContentContainer
-              margin={{ left: 30, right: 30 }}
-              padding={{ bottom: 10 }}
+              css={{
+                margin: '0 30px 0 30px',
+                padding: '0 0 10px 0',
+              }}
             >
               <CallButton fluid borderRadius={4} onClick={handleCall}>
                 <IconContainer>

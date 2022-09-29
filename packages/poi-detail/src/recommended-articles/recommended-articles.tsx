@@ -1,5 +1,11 @@
 import { useState, useEffect, useCallback, SyntheticEvent } from 'react'
-import { Section, Responsive, Container, H1 } from '@titicaca/core-elements'
+import {
+  Section,
+  Responsive,
+  Container,
+  H1,
+  formatMarginPadding,
+} from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'
 import {
@@ -101,12 +107,20 @@ export default function RecommendedArticles({
 
   return (
     <Section
-      margin={{ top: 50, bottom: 50 }}
       divider="top"
-      padding={{ left: 0, right: 0 }}
+      css={{
+        margin: '50px 0 50px 0',
+        padding: '0 0 0 0',
+      }}
     >
       <Responsive minWidth={768}>
-        <H1 textAlign="center">놓치기 아까운 이 지역 꿀 정보 </H1>
+        <H1
+          css={{
+            textAlign: 'center',
+          }}
+        >
+          놓치기 아까운 이 지역 꿀 정보{' '}
+        </H1>
 
         <Carousel
           margin={{ top: 20 }}
@@ -132,14 +146,23 @@ export default function RecommendedArticles({
           ))}
         </Carousel>
 
-        <Container padding={deskTopPadding || { left: 110, right: 110 }}>
+        <Container
+          css={formatMarginPadding(
+            deskTopPadding || { left: 110, right: 110 },
+            'padding',
+          )}
+        >
           <MoreButton basic compact onClick={handleShowMoreClick}>
             여행 정보 더보기
           </MoreButton>
         </Container>
       </Responsive>
       <Responsive maxWidth={767}>
-        <H1 margin={{ left: 30 }}>{`놓치기 아까운\n이 지역 꿀 정보 `}</H1>
+        <H1
+          css={{
+            margin: '0 0 0 30px',
+          }}
+        >{`놓치기 아까운\n이 지역 꿀 정보 `}</H1>
 
         <Carousel
           margin={{ top: 20 }}
@@ -165,7 +188,12 @@ export default function RecommendedArticles({
           ))}
         </Carousel>
 
-        <Container padding={mobilePadding || { left: 30, right: 30 }}>
+        <Container
+          css={formatMarginPadding(
+            mobilePadding || { left: 30, right: 30 },
+            'padding',
+          )}
+        >
           <MoreButton basic compact onClick={handleShowMoreClick}>
             여행 정보 더보기
           </MoreButton>

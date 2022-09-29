@@ -157,7 +157,11 @@ export default function Carousel({
         </FixedRatio>
       </Responsive>
       <Responsive minWidth={707}>
-        <Container minHeight={400}>
+        <Container
+          css={{
+            minHeight: 400,
+          }}
+        >
           <ImageCarousel
             images={visibleImages}
             currentPage={currentPage}

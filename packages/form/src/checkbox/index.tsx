@@ -5,6 +5,7 @@ import {
   GetGlobalColor,
   MarginPadding,
 } from '@titicaca/core-elements'
+import { CSSProps } from '@titicaca/core-elements/lib/css'
 
 const Label = styled.label<{ disabled?: boolean }>`
   color: rgb(${GetGlobalColor('gray')});
@@ -92,17 +93,26 @@ export interface CheckboxWrapperProps<T> {
 }
 
 export function CheckboxItem<T>({
-  margin = { bottom: 20 },
   disabled,
   checked,
   onChange = () => {},
   name,
   option: { key, label },
-}: CheckboxItemProps<T>) {
+  css: cssProp,
+}: CheckboxItemProps<T> & CSSProps) {
   const id = `${key}_${label}_${name}`
 
   return (
-    <Container margin={margin} position="relative" padding={{ right: 29 }}>
+    <Container
+      position="relative"
+      css={css(
+        {
+          marginBottom: 20,
+          padding: '0 29px 0 0',
+        },
+        cssProp,
+      )}
+    >
       <Label htmlFor={id} disabled={disabled}>
         {label}
       </Label>
@@ -153,7 +163,7 @@ export default function Checkbox<T>({
         const { disabled, key } = option
         const isChecked = checkedKeyList.includes(key)
         const isLast = index + 1 === options.length
-        const checkboxMargin = { bottom: isLast ? 0 : 20 }
+        const checkboxMargin = { marginBottom: isLast ? 0 : 20 }
 
         return (
           <CheckboxItem
@@ -161,7 +171,7 @@ export default function Checkbox<T>({
             option={option}
             name={name}
             checked={isChecked}
-            margin={checkboxMargin}
+            css={checkboxMargin}
             disabled={disabled}
             onChange={(e) => onCheckboxChange(e.target.value)}
           />

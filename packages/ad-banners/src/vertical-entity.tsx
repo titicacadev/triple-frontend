@@ -32,7 +32,12 @@ const VerticalEntity: FC<VerticalEntityProps> = ({
 
   return (
     <IntersectionObserver threshold={0.5} onChange={handleIntersectionChange}>
-      <Container margin={{ top: 10 }} borderRadius={6}>
+      <Container
+        borderRadius={6}
+        css={{
+          margin: '10px 0 0 0',
+        }}
+      >
         <BannerImage src={banner.image} onClick={handleBannerClick} />
       </Container>
     </IntersectionObserver>

@@ -28,7 +28,7 @@ export interface FixedPricingProps {
   padding?: MarginPadding
 }
 
-const FloatedFrame = styled(Container)`
+const FloatedFrame = styled(Container)<{ padding: MarginPadding }>`
   border-top: 1px solid #efefef;
   background: #fff;
 
@@ -102,8 +102,10 @@ export default function FixedPricing({
         <Container
           position="relative"
           clearing
-          maxWidth={maxWidth}
           centered={!!maxWidth}
+          css={{
+            maxWidth,
+          }}
         >
           {active && tooltipLabel && (
             <Tooltip
