@@ -136,12 +136,20 @@ function RichPricing({
     typeof basePrice === 'number' && basePrice > 0 && basePrice > salePrice
 
   return (
-    <Container textAlign="right">
+    <Container
+      css={{
+        textAlign: 'right',
+      }}
+    >
       <PricingContainer>
         {label ? <Label> {label} </Label> : null}
 
         {(pricingNote || hasBasePrice) && (
-          <Container margin={{ bottom: 3 }}>
+          <Container
+            css={{
+              margin: '0 0 3px 0',
+            }}
+          >
             {pricingNote && (
               <Text alpha={0.3} size="mini" inlineBlock margin={{ right: 3 }}>
                 {pricingNote}

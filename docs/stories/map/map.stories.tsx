@@ -31,7 +31,12 @@ export default {
 
 export const Basic: ComponentStory<typeof MapView> = (args) => {
   return (
-    <Container width="100vw" height="100vh">
+    <Container
+      css={{
+        width: '100vw',
+        height: '100vh',
+      }}
+    >
       <MapView {...args} />
     </Container>
   )
@@ -52,7 +57,12 @@ Basic.parameters = {
 
 export const WithProps: ComponentStory<typeof MapView> = (args) => {
   return (
-    <Container width="50%" height={200}>
+    <Container
+      css={{
+        width: '50%',
+        height: 200,
+      }}
+    >
       <MapView {...args} />
     </Container>
   )
@@ -79,7 +89,12 @@ WithProps.parameters = {
 
 export const WithPolyline: ComponentStory<typeof MapView> = (args) => {
   return (
-    <Container width="100vw" height={200}>
+    <Container
+      css={{
+        width: '100vw',
+        height: 200,
+      }}
+    >
       <MapView {...args}>
         <Polyline path={polylinePaths} strokeColor="#000000" />
       </MapView>
@@ -101,7 +116,12 @@ WithPolyline.parameters = {
 
 export const WithMarker: ComponentStory<typeof MapView> = (args) => {
   return (
-    <Container width="100vw" height={200}>
+    <Container
+      css={{
+        width: '100vw',
+        height: 200,
+      }}
+    >
       <MapView {...args}>
         {polylinePaths.map((path, i) => (
           <HotelCircleMarker
@@ -136,7 +156,12 @@ WithMarker.parameters = {
 
 export const WithCircleMarker: ComponentStory<typeof MapView> = (args) => {
   return (
-    <Container width="50%" height={300}>
+    <Container
+      css={{
+        width: '50%',
+        height: 300,
+      }}
+    >
       <MapView {...args}>
         <Polygon paths={polygonPaths} strokeColor="#000000" />
       </MapView>
@@ -159,7 +184,11 @@ WithCircleMarker.parameters = {
 
 export const WithWithPolyline: ComponentStory<typeof MapView> = (args) => {
   return (
-    <Container height={300}>
+    <Container
+      css={{
+        height: 300,
+      }}
+    >
       <MapView {...args}>
         <DotPolyline path={polygonLinePath} strokeColor="#000000" />
         <Polygon paths={polygonPaths} fillColor="#000000" fillOpacity={0.2} />
@@ -182,7 +211,11 @@ WithWithPolyline.parameters = {
 
 export const WithPolylineAndMarker: ComponentStory<typeof MapView> = (args) => {
   return (
-    <Container height={300}>
+    <Container
+      css={{
+        height: 300,
+      }}
+    >
       <MapView {...args}>
         {polygonPaths.map((path, i) => (
           <HotelCircleMarker

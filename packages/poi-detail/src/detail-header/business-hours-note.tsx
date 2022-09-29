@@ -16,7 +16,11 @@ export default function BusinessHoursNote({
   onClick: () => void
 }) {
   return (
-    <Container margin={{ top: 10 }}>
+    <Container
+      css={{
+        margin: '10px 0 0 0',
+      }}
+    >
       <FlexBox flex alignItems="center">
         <IconBox>
           <TimeIcon />

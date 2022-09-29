@@ -10,7 +10,12 @@ interface HeadingProps {
 
 export const MH1 = tripleDocumentHeading(
   ({ children, ...props }: HeadingProps) => (
-    <H1 margin={{ top: 25, bottom: 20, left: 30, right: 30 }} {...props}>
+    <H1
+      {...props}
+      css={{
+        margin: '25px 30px 20px 30px',
+      }}
+    >
       {children}
     </H1>
   ),

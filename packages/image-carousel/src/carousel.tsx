@@ -2,7 +2,11 @@ import { ReactNode, RefObject, useState } from 'react'
 import styled from 'styled-components'
 import { FlickingEvent, FlickingOptions } from '@egjs/flicking'
 import Flicking, { FlickingProps } from '@egjs/react-flicking'
-import { Container, MarginPadding } from '@titicaca/core-elements'
+import {
+  Container,
+  formatMarginPadding,
+  MarginPadding,
+} from '@titicaca/core-elements'
 
 export interface CarouselProps
   extends Partial<FlickingProps & FlickingOptions> {
@@ -73,8 +77,8 @@ function Carousel({
   return (
     <CarouselContainer
       position="relative"
-      margin={margin}
       borderRadius={borderRadius}
+      css={formatMarginPadding(margin, 'margin')}
     >
       <Flicking
         ref={flickingRef}
