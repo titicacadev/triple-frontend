@@ -15,13 +15,15 @@ it('should accept style shortcut props', () => {
     .create(
       <Container
         position="absolute"
-        textAlign="center"
-        whiteSpace="pre"
-        userSelect="none"
         display="inline-block"
-        cursor="pointer"
         floated="none"
         backgroundColor="white"
+        css={{
+          textAlign: 'center',
+          whiteSpace: 'pre',
+          userSelect: 'none',
+          cursor: 'pointer',
+        }}
       />,
     )
     .toJSON()
@@ -40,8 +42,10 @@ it('should accept spacing props', () => {
   const tree = renderer
     .create(
       <Container
-        margin={{ top: 10, right: 20, bottom: 30, left: 40 }}
-        padding={{ top: 50, right: 60, bottom: 70, left: 80 }}
+        css={{
+          margin: '10px 20px 30px 40px',
+          padding: '50px 60px 70px 80px',
+        }}
       />,
     )
     .toJSON()
@@ -54,12 +58,14 @@ it('should accept sizing props', () => {
   const tree = renderer
     .create(
       <Container
-        width={10}
-        height={20}
-        minWidth={30}
-        minHeight={40}
-        maxWidth={50}
-        maxHeight={60}
+        css={{
+          width: 10,
+          height: 20,
+          minWidth: 30,
+          minHeight: 40,
+          maxWidth: 50,
+          maxHeight: 60,
+        }}
       />,
     )
     .toJSON()

@@ -1,13 +1,9 @@
-import {
-  Container,
-  HR1,
-  List,
-  Text,
-  MarginPadding,
-} from '@titicaca/core-elements'
+import { Container, HR1, List, Text } from '@titicaca/core-elements'
 import { Confirm } from '@titicaca/modals'
 import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
+import { css } from 'styled-components'
+import { CSSProps } from '@titicaca/core-elements/lib/css'
 
 import { Reply as ReplyType } from '../types'
 import { useRepliesContext } from '../context'
@@ -21,20 +17,19 @@ const HASH_EDIT_CLOSE_MODAL = 'reply.edit-close-modal'
 export default function ReplyList({
   replies,
   isMoreButtonActive,
-  padding = { left: 30, right: 30, bottom: 30 },
   fetchMoreReplies,
   focusInput,
   onReplyDelete,
   onReplyEdit,
+  css: cssProp,
 }: {
   replies: ReplyType[]
   isMoreButtonActive: boolean
-  padding?: MarginPadding
   fetchMoreReplies: (reply?: ReplyType) => void
   focusInput: () => void
   onReplyDelete: (response: ReplyType) => void
   onReplyEdit: (response: ReplyType) => void
-}) {
+} & CSSProps) {
   const {
     currentMessageId,
     content: { mentioningUserName },
@@ -72,7 +67,16 @@ export default function ReplyList({
       {replies.length <= 0 ? (
         <NotExistReplies />
       ) : (
-        <Container padding={padding}>
+        <Container
+          css={css(
+            {
+              marginLeft: 30,
+              marginRight: 30,
+              marginBottom: 30,
+            },
+            cssProp,
+          )}
+        >
           {isMoreButtonActive ? (
             <Text
               padding={{ top: 20 }}

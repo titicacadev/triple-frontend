@@ -105,10 +105,12 @@ export default function DefaultFooter({
   return (
     <FooterFrame>
       <Container
-        minWidth={280}
-        maxWidth={768}
         centered
-        padding={{ top: 30, left: 30, right: 30, bottom: 40 }}
+        css={{
+          minWidth: 280,
+          maxWidth: 768,
+          padding: '30px 30px 40px 30px',
+        }}
       >
         <Accordion>
           <AccordionHeader

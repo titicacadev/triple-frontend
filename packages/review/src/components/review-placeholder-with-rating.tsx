@@ -48,8 +48,10 @@ export default function ReviewsPlaceholder({
 }) {
   return (
     <PlaceholderContainer
-      margin={{ top: 20 }}
       onClick={!isMorePage ? onClick : undefined}
+      css={{
+        margin: '20px 0 0 0',
+      }}
     >
       {!recentTrip ? (
         resourceType === 'article' ? (
@@ -121,7 +123,11 @@ function RecentTripPlaceholder({
       </Text>
     </RecentTripContainer>
   ) : (
-    <Container padding={{ top: 60, bottom: 60 }}>
+    <Container
+      css={{
+        padding: '60px 0 60px 0',
+      }}
+    >
       <Text size={14} color="gray500">
         선택한 조건의 리뷰가 없습니다.
       </Text>

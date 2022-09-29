@@ -18,7 +18,11 @@ export const Basic: ComponentStoryObj<typeof ExtendedResourceListElement> = {
     partnerName: '브이패스',
     areaName: '서울특별시',
     children: (
-      <Container margin={{ top: 18 }}>
+      <Container
+        css={{
+          margin: '18px 0 0 0',
+        }}
+      >
         <Pricing basePrice={30000} basePriceUnit="원" salePrice={25000} rich />
       </Container>
     ),
