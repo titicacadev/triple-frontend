@@ -4,22 +4,18 @@ import { Property } from 'csstype'
 import { Color, getColor } from '@titicaca/color-palette'
 
 import { CSSProps } from '../css'
-import { BaseSizes, MarginPadding } from '../commons'
+import { BaseSizes } from '../commons'
 import {
   borderRadiusMixin,
-  positioningMixin,
   shadowMixin,
-  marginMixin,
-  paddingMixin,
   centeredMixin,
   clearingMixin,
   horizontalScrollMixin,
 } from '../mixins'
 
 export type ContainerProps = PropsWithChildren<{
-  margin?: MarginPadding
-  padding?: MarginPadding
-  positioning?: MarginPadding
+  position?: Property.Position
+  display?: Property.Display
 
   centered?: boolean
   borderRadius?: number
@@ -34,18 +30,17 @@ export type ContainerProps = PropsWithChildren<{
 const Container = styled.div<ContainerProps>(
   (props) => ({
     boxSizing: 'border-box',
+    position: props.position,
+    display: props.display,
     float: props.floated ?? 'none',
     backgroundColor: props.backgroundColor
       ? `rgba(${getColor(props.backgroundColor)})`
       : undefined,
   }),
-  marginMixin,
-  paddingMixin,
   centeredMixin,
   clearingMixin,
   horizontalScrollMixin,
   shadowMixin,
-  positioningMixin,
   borderRadiusMixin,
   (props) => props.css,
 )
