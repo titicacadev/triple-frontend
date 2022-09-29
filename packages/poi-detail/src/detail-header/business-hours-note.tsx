@@ -19,7 +19,11 @@ export default function BusinessHoursNote({
   const { t } = useTranslation('common-web')
 
   return (
-    <Container margin={{ top: 10 }}>
+    <Container
+      css={{
+        margin: '10px 0 0 0',
+      }}
+    >
       <FlexBox flex alignItems="center">
         <IconBox>
           <TimeIcon />

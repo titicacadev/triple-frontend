@@ -105,7 +105,11 @@ export default function LinksView({
         {links.map((link, index) => (
           <tr key={index}>
             <Box>
-              <Container textAlign="center">
+              <Container
+                css={{
+                  textAlign: 'center',
+                }}
+              >
                 <Element href={link.href} ses:tags={`link:${link.id}`}>
                   {link.label}
                 </Element>

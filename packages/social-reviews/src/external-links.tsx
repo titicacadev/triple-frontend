@@ -44,8 +44,19 @@ function ExternalLinkItem<Data>({
       minHeight={106}
       onClick={onItemClick ? (e) => onItemClick(e, externalLink) : undefined}
     >
-      <FlexBox padding={{ top: 20, bottom: 20 }} flex gap="20px">
-        <FlexBox minWidth={0} flexGrow={1}>
+      <FlexBox
+        flex
+        gap="20px"
+        css={{
+          padding: '20px 0 20px 0',
+        }}
+      >
+        <FlexBox
+          flexGrow={1}
+          css={{
+            minWidth: 0,
+          }}
+        >
           <H3 maxLines={2}>{title}</H3>
           {summary && (
             <Text size="small" alpha={0.7} margin={{ top: 6 }} ellipsis>
@@ -60,7 +71,12 @@ function ExternalLinkItem<Data>({
         </FlexBox>
 
         {imageUrl && (
-          <FlexBox width={60} flexShrink={0}>
+          <FlexBox
+            flexShrink={0}
+            css={{
+              width: 60,
+            }}
+          >
             <Image borderRadius={4}>
               <Image.FixedRatioFrame frame="big">
                 <Image.Img

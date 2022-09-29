@@ -1,8 +1,9 @@
 import { FC, useRef, useEffect, useState } from 'react'
-import { MarginPadding } from '@titicaca/core-elements'
+import { formatMarginPadding, MarginPadding } from '@titicaca/core-elements'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { FlickingOptions } from '@egjs/flicking'
 import Flicking from '@egjs/react-flicking'
+import { css } from 'styled-components'
 
 import { Banner } from './typing'
 import HorizontalEntity from './horizontal-entity'
@@ -86,9 +87,14 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
     >
       <div>
         <ListSection
-          minWidth={0}
-          padding={{ top: padding.top, bottom: padding.bottom }}
-          margin={margin}
+          css={css(
+            {
+              minWidth: 0,
+              paddingTop: padding.top,
+              paddingBottom: padding.bottom,
+            },
+            formatMarginPadding(margin, 'margin'),
+          )}
         >
           <Flicking
             {...FLICKING_CONFIG}

@@ -119,9 +119,17 @@ export default function ItineraryElement({ value }: Props) {
   }, [poiIds, addPoisToTrip])
 
   return (
-    <Container margin={{ top: 10, bottom: 10 }}>
+    <Container
+      css={{
+        margin: '10px 0 10px 0',
+      }}
+    >
       <ItineraryMap {...value.itinerary} onClickMarker={handleMarkerClick} />
-      <Container margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+      <Container
+        css={{
+          margin: '20px 20px 20px 20px',
+        }}
+      >
         <Stack>
           {courses.map((course, index) => {
             const {
@@ -155,7 +163,9 @@ export default function ItineraryElement({ value }: Props) {
                       flexGrow={1}
                       alignItems="center"
                       flexDirection="column"
-                      padding={{ top: 20 }}
+                      css={{
+                        padding: '20px 0 0 0',
+                      }}
                     >
                       <CircleBadge>{index + 1}</CircleBadge>
                       {schedule ? (

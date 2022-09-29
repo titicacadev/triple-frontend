@@ -30,9 +30,17 @@ function Pricing({
     : null
 
   return (
-    <Container margin={{ top: 10 }}>
+    <Container
+      css={{
+        margin: '10px 0 0 0',
+      }}
+    >
       {rate ? (
-        <Container margin={{ bottom: 2 }}>
+        <Container
+          css={{
+            margin: '0 0 2px 0',
+          }}
+        >
           <Text color="red" bold>
             {rate}%
           </Text>
@@ -140,7 +148,13 @@ export function TnaProductWithPrice({
           </Image.FixedDimensionsFrame>
         </Image>
         {isPublic ? (
-          <Container position="absolute" positioning={{ top: 3, left: 51 }}>
+          <Container
+            position="absolute"
+            css={{
+              top: '3px',
+              left: '51px',
+            }}
+          >
             <OverlayScrapButton
               resource={{ id, scraped, type: 'tna' }}
               size={36}
@@ -148,7 +162,11 @@ export function TnaProductWithPrice({
           </Container>
         ) : null}
 
-        <Container margin={{ left: 104 }}>
+        <Container
+          css={{
+            margin: '0 0 0 104px',
+          }}
+        >
           <Text bold size="large" color="gray" ellipsis>
             {title}
           </Text>
@@ -160,7 +178,11 @@ export function TnaProductWithPrice({
           )}
 
           {tags && tags.length > 0 && (
-            <Container margin={{ top: 3 }}>
+            <Container
+              css={{
+                margin: '3px 0 0 0',
+              }}
+            >
               {tags.map(({ text, type, style }, i) => (
                 <Tag
                   key={i}
@@ -175,7 +197,11 @@ export function TnaProductWithPrice({
           )}
 
           {reviewsCount ? (
-            <Container margin={{ top: 4 }}>
+            <Container
+              css={{
+                margin: '4px 0 0 0',
+              }}
+            >
               <Rating size="tiny" score={reviewRating} />
               <Text
                 inlineBlock

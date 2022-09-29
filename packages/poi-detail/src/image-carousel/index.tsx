@@ -11,9 +11,7 @@ type ImageCarouselProps = Pick<
   | 'onImageClick'
   | 'onCtaClick'
   | 'onPlaceholderClick'
-  | 'margin'
   | 'optimized'
-  | 'padding'
   | 'borderRadius'
   | 'height'
 >

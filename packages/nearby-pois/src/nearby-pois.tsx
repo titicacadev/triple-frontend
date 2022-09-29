@@ -150,7 +150,13 @@ export default function NearbyPois({
         minHeight: 404,
       }}
     >
-      <H1 margin={{ bottom: 20 }}>{t('geunceoyi-cuceon-jangso')}</H1>
+      <H1
+        css={{
+          margin: '0 0 20px 0',
+        }}
+      >
+        {t('geunceoyi-cuceon-jangso')}
+      </H1>
 
       <Tabs
         type="basic"
