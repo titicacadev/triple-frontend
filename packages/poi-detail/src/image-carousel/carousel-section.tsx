@@ -1,5 +1,4 @@
-import { Section, Container } from '@titicaca/core-elements'
-import { CSSProps } from '@titicaca/core-elements/lib/css'
+import { Section, Container, CSSProps } from '@titicaca/core-elements'
 import { css } from 'styled-components'
 
 import Carousel, { CarouselProps } from './carousel'
