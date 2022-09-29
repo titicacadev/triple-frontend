@@ -230,9 +230,19 @@ export default function Reply({
         onClick={() => handleUserClick(writeHref)}
       />
 
-      <Container padding={{ left: 50, bottom: 3 }} margin={{ bottom: 20 }}>
+      <Container
+        css={{
+          padding: '0 0 3px 50px',
+          margin: '0 0 20px 0',
+        }}
+      >
         <FlexBox flex justifyContent="space-between" alignItems="start">
-          <Container minWidth={80} maxWidth={135}>
+          <Container
+            css={{
+              minWidth: 80,
+              maxWidth: 135,
+            }}
+          >
             <Text
               size={15}
               bold
@@ -243,7 +253,13 @@ export default function Reply({
             </Text>
           </Container>
 
-          <FlexBox padding={{ top: 3, left: 5 }} flex alignItems="start">
+          <FlexBox
+            flex
+            alignItems="start"
+            css={{
+              padding: '3px 0 0 5px',
+            }}
+          >
             <Text size={12} padding={{ right: 5 }} bold color="gray300">
               {formatTimestamp(createdAt)}
             </Text>
@@ -263,10 +279,12 @@ export default function Reply({
 
         {!deleted && !blinded ? (
           <ReactionBox
-            padding={{ top: 7 }}
             flex
             alignItems="center"
-            cursor="pointer"
+            css={{
+              padding: '7px 0 0 0',
+              cursor: 'pointer',
+            }}
           >
             {likeReaction?.haveMine ? (
               <ThanksButton
@@ -401,7 +419,11 @@ function Content({
   )
 
   return (
-    <Container padding={{ top: 3 }}>
+    <Container
+      css={{
+        padding: '3px 0 0 0',
+      }}
+    >
       <Text inline padding={{ top: 3, bottom: 5 }} size={15}>
         {!unfolded && foldedPosition ? (
           text.slice(0, foldedPosition)

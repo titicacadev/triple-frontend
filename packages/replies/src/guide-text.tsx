@@ -25,10 +25,12 @@ export default function GuideText() {
       {parentMessageId ? (
         <FlexBox
           flex
-          padding={{ top: 10, bottom: 10, left: 20, right: 20 }}
           alignItems="center"
           justifyContent="space-between"
           backgroundColor="gray50"
+          css={{
+            padding: '10px 20px 10px 20px',
+          }}
         >
           <Text size={12} lineHeight="19px" bold color="gray700">
             {!currentMessageId

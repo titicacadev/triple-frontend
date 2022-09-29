@@ -99,7 +99,11 @@ export default function DetailHeaderV2({
           {names.local || names.en}
         </Text>
         {(reviewsRating || scrapsCount > 0) && (
-          <Container margin={{ top: 14 }}>
+          <Container
+            css={{
+              margin: '14px 0 0 0',
+            }}
+          >
             {scrapsCount > 0 ? (
               <Text inline bold size="mini" alpha={1} margin={{ right: 10 }}>
                 <Icon name="save" size="tiny" />

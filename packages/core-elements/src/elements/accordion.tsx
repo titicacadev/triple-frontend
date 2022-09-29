@@ -34,11 +34,27 @@ const Title = styled(Container)<{ active?: boolean }>`
 `
 
 function Content({ active, children }: PropsWithChildren<{ active: boolean }>) {
-  return active ? <Container margin={{ top: 5 }}>{children}</Container> : null
+  return active ? (
+    <Container
+      css={{
+        margin: '5px 0 0 0',
+      }}
+    >
+      {children}
+    </Container>
+  ) : null
 }
 
 function Folded({ active, children }: PropsWithChildren<{ active: boolean }>) {
-  return !active ? <Container margin={{ top: 5 }}>{children}</Container> : null
+  return !active ? (
+    <Container
+      css={{
+        margin: '5px 0 0 0',
+      }}
+    >
+      {children}
+    </Container>
+  ) : null
 }
 
 export default class Accordion extends PureComponent<

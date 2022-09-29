@@ -12,7 +12,12 @@ export default function Table({
   value: { table: TableProps }
 } & ContainerProps) {
   return (
-    <Container margin={{ top: 20, bottom: 20, left: 30, right: 30 }} {...props}>
+    <Container
+      {...props}
+      css={{
+        margin: '20px 30px 20px 30px',
+      }}
+    >
       <TableView {...table} />
     </Container>
   )

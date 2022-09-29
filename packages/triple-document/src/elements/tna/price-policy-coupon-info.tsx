@@ -1,20 +1,28 @@
-import { Container, Text, MarginPadding } from '@titicaca/core-elements'
+import { Container, Text } from '@titicaca/core-elements'
+import { CSSProps } from '@titicaca/core-elements/lib/css'
+import { css } from 'styled-components'
 
 export function PricePolicyCouponInfo({
   emphasisColor = 'mint',
   hasOnlyExpectedApplicableCoupon,
   hasAmountAfterUsingCouponPrice,
   displayPricePolicy,
-  margin,
+  css: cssProp,
 }: {
   emphasisColor?: Parameters<typeof Text>[0]['color']
   hasOnlyExpectedApplicableCoupon?: boolean
   hasAmountAfterUsingCouponPrice?: boolean | 0
   displayPricePolicy?: string
-  margin?: MarginPadding
-}) {
+} & CSSProps) {
   return (
-    <Container margin={margin || { top: 4 }}>
+    <Container
+      css={css(
+        {
+          marginTop: 4,
+        },
+        cssProp,
+      )}
+    >
       {hasOnlyExpectedApplicableCoupon ? (
         <>
           <Text bold inlineBlock size="tiny" color={emphasisColor}>

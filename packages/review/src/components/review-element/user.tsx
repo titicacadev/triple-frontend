@@ -33,7 +33,12 @@ export default function User({
   const { badges = [], level } = mileage || {}
 
   return (
-    <Container padding={{ bottom: 2 }} display="flex">
+    <Container
+      display="flex"
+      css={{
+        padding: '0 0 2px 0',
+      }}
+    >
       <UserPhoto src={photo} onClick={onClick} />
       {badges.length > 0 ? <Badge src={badges[0].icon.image_url} /> : null}
       <div>

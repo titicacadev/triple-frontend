@@ -1,5 +1,6 @@
-import { Container, Text, MarginPadding, Image } from '@titicaca/core-elements'
+import { Container, Text, Image } from '@titicaca/core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
+import { CSSProps } from '@titicaca/core-elements/lib/css'
 
 import AuthorIntro from './author-intro'
 
@@ -7,7 +8,7 @@ export default function Author({
   source: { name, bio, image, intro },
   bioOverride,
   introOverride,
-  margin,
+  css,
 }: {
   source: {
     name: string
@@ -17,13 +18,12 @@ export default function Author({
   }
   bioOverride?: string
   introOverride?: { text?: string; rawHTML?: string }
-  margin?: MarginPadding
-}) {
+} & CSSProps) {
   const displayedBio = (bioOverride || bio || '').replace('\n', '')
   const displayedIntro = introOverride || intro
 
   return (
-    <Container margin={margin}>
+    <Container css={css}>
       {image && (
         <Image.Circular
           floated="right"
