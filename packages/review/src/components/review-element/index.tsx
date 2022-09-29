@@ -233,7 +233,11 @@ export default function ReviewElement({
           )}
         </Content>
         {!blindedAt && media && media.length > 0 ? (
-          <Container margin={{ top: 10 }}>
+          <Container
+            css={{
+              margin: '10px 0 0 0',
+            }}
+          >
             <Media media={media} reviewId={review.id} />
           </Container>
         ) : null}
@@ -241,11 +245,13 @@ export default function ReviewElement({
           {!blindedAt ? (
             <LikeButton
               display="inline-block"
-              margin={{ top: 5 }}
-              padding={{ top: 2, bottom: 2, right: 10, left: 20 }}
-              height={18}
               liked={liked}
               onClick={handleLikeButtonClick}
+              css={{
+                margin: '5px 0 0 0',
+                padding: '2px 10px 2px 20px',
+                height: 18,
+              }}
             >
               {likesCount}
             </LikeButton>
@@ -254,13 +260,15 @@ export default function ReviewElement({
           <MessageCount
             display="inline-block"
             position="relative"
-            height={18}
-            margin={{ top: 5 }}
-            padding={{ top: 2, bottom: 2, left: 20, right: 0 }}
             isCommaVisible={!blindedAt}
             onClick={(e: SyntheticEvent) =>
               onMessageCountClick(e, review.id, resourceType)
             }
+            css={{
+              height: 18,
+              margin: '5px 0 0 0',
+              padding: '2px 0 2px 20px',
+            }}
           >
             {replyBoard
               ? replyBoard.rootMessagesCount + replyBoard.childMessagesCount
@@ -284,7 +292,11 @@ export default function ReviewElement({
 
 function Score({ score }: { score?: number }) {
   return (
-    <Container margin={{ top: 18 }}>
+    <Container
+      css={{
+        margin: '18px 0 0 0',
+      }}
+    >
       <Rating size="tiny" score={score} />
     </Container>
   )
@@ -295,7 +307,12 @@ function Content({
   children,
 }: PropsWithChildren<{ onClick?: (e: SyntheticEvent) => void }>) {
   return (
-    <Container margin={{ top: 6 }} clearing>
+    <Container
+      clearing
+      css={{
+        margin: '6px 0 0 0',
+      }}
+    >
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
       <a onClick={onClick}>
         <Comment>{children}</Comment>
@@ -319,7 +336,12 @@ function Date({
   children,
 }: PropsWithChildren<{ floated?: CSS.Property.Float }>) {
   return (
-    <Container floated={floated} margin={{ top: 2 }}>
+    <Container
+      floated={floated}
+      css={{
+        margin: '2px 0 0 0',
+      }}
+    >
       {children}
     </Container>
   )
@@ -352,7 +374,13 @@ function RecentReviewInfo({
   const [visitYear, visitMonth] = visitDate?.split('-') || []
 
   return (
-    <FlexBox flex alignItems="center" padding={{ top: 8 }}>
+    <FlexBox
+      flex
+      alignItems="center"
+      css={{
+        padding: '8px 0 0 0',
+      }}
+    >
       {recentTrip && !isOldReview ? (
         <>
           <img

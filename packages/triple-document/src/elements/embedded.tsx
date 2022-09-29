@@ -39,7 +39,12 @@ function EmbeddedImage({
     const handleClick = generateClickHandler(onLinkClick, onImageClick)
 
     return (
-      <Container margin={{ top: 10 }} {...props}>
+      <Container
+        {...props}
+        css={{
+          margin: '10px 0 0 0',
+        }}
+      >
         <TripleMedia
           optimized={optimized}
           media={image}

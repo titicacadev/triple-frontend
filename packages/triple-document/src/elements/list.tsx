@@ -54,7 +54,12 @@ export default function List({
   }
 }) {
   return (
-    <Container margin={{ top: 10, left: 30, right: 30 }} {...props}>
+    <Container
+      {...props}
+      css={{
+        margin: '10px 30px 0 30px',
+      }}
+    >
       <ul>
         {items.map((item, index) => (
           <ListItemContainer bulletType={bulletType} key={index}>

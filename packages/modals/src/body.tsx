@@ -9,7 +9,11 @@ export default function ModalBody({
   description?: ReactNode
 }) {
   return (
-    <Container padding={{ top: 40, bottom: 40, left: 30, right: 30 }}>
+    <Container
+      css={{
+        padding: '40px 30px 40px 30px',
+      }}
+    >
       {title ? (
         <Text bold center size="big" color="gray" margin={{ bottom: 10 }}>
           {title}
