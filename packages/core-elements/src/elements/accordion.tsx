@@ -57,7 +57,7 @@ function Folded({ active, children }: PropsWithChildren<{ active: boolean }>) {
   ) : null
 }
 
-export default class Accordion extends PureComponent<
+class Accordion extends PureComponent<
   PropsWithChildren<
     StyledComponentProps<
       'div',
@@ -83,3 +83,5 @@ export default class Accordion extends PureComponent<
     return <AccordionBase {...props}>{children}</AccordionBase>
   }
 }
+
+export default Accordion
