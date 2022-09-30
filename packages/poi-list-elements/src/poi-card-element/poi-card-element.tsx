@@ -176,7 +176,7 @@ export default function PoiCardElement({
             reviewsCount={reviewsCount}
             scrapsCount={scrapsCount}
             reviewsRating={reviewsRating}
-            margin={{ top: 4 }}
+            css={{ marginTop: 4 }}
           />
 
           {distance ||
