@@ -116,7 +116,7 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
             reviewsCount={reviewsCount}
             scrapsCount={scrapsCount}
             reviewsRating={reviewsRating}
-            margin={{ top: 5 }}
+            css={{ marginTop: 5 }}
           />
 
           {formattedNames ? (
