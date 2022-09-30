@@ -15,9 +15,9 @@ function BlockContainer({
 }: PropsWithChildren<{ images: ImageMeta[] }>) {
   return (
     <Container
-      margin={{
-        top: 40,
-        bottom: images.some(({ title }) => title) ? 10 : 30,
+      css={{
+        marginTop: 40,
+        marginBottom: images.some(({ title }) => title) ? 10 : 30,
       }}
     >
       {children}
