@@ -1,5 +1,6 @@
-import StaticMap from '@titicaca/static-map'
 import { Meta, StoryObj } from '@storybook/react'
+
+import StaticMap from '.'
 
 export default {
   title: 'static-map / StaticMap',

@@ -1,9 +1,10 @@
 import styled from 'styled-components'
-import ActionSheet from '@titicaca/action-sheet'
 import { RangePicker } from '@titicaca/date-picker'
 import { ComponentStory, ComponentStoryObj, Meta } from '@storybook/react'
 
 import { newDateMockingDecorator } from '../../decorators'
+
+import ActionSheet from './index'
 
 export default {
   title: 'action-sheet / action-sheet',

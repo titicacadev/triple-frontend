@@ -1,7 +1,8 @@
-import { PublicHeader, PublicHeaderProps } from '@titicaca/public-header'
 import { Meta, Story } from '@storybook/react'
 import { EnvProvider } from '@titicaca/react-contexts'
 import { TripleClientMetadataProvider } from '@titicaca/react-triple-client-interfaces'
+
+import { PublicHeader, PublicHeaderProps } from './public-header'
 
 export default {
   title: 'public-header / PublicHeader',
