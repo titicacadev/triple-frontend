@@ -1,0 +1,84 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs'
+
+import { getColor } from './get-color'
+
+<Meta title="color-palette / Color Palette" />
+
+# Color
+
+## Base Color
+
+<ColorPalette>
+  <ColorItem
+    title="gray"
+    colors={{
+      white: `rgba(${getColor('white')})`,
+      gray20: `rgba(${getColor('gray20')})`,
+      gray50: `rgba(${getColor('gray50')})`,
+      gray100: `rgba(${getColor('gray100')})`,
+      gray200: `rgba(${getColor('gray200')})`,
+      gray300: `rgba(${getColor('gray300')})`,
+      gray400: `rgba(${getColor('gray400')})`,
+      gray500: `rgba(${getColor('gray500')})`,
+      gray600: `rgba(${getColor('gray600')})`,
+      gray700: `rgba(${getColor('gray700')})`,
+      gray800: `rgba(${getColor('gray800')})`,
+      gray900: `rgba(${getColor('gray900')})`,
+      gray: `rgba(${getColor('gray')})`,
+    }}
+  />
+  <ColorItem
+    title="blue"
+    colors={{
+      blue: `rgba(${getColor('blue')})`,
+      blue60: `rgba(${getColor('blue60')})`,
+      blue100: `rgba(${getColor('blue100')})`,
+    }}
+  />
+  <ColorItem
+    title="mint"
+    colors={{
+      mint: `rgba(${getColor('mint')})`,
+      mint100: `rgba(${getColor('mint100')})`,
+    }}
+  />
+</ColorPalette>
+
+## Sub Color
+
+<ColorPalette>
+  <ColorItem
+    title="sub color"
+    colors={{
+      orange: `rgba(${getColor('orange')})`,
+      red: `rgba(${getColor('red')})`,
+      deepOrange: `rgba(${getColor('deepOrange')})`,
+      mediumRed: `rgba(${getColor('mediumRed')})`,
+      deepRed: `rgba(${getColor('deepRed')})`,
+      purple: `rgba(${getColor('purple')})`,
+      emerald: `rgba(${getColor('emerald')})`,
+    }}
+  />
+</ColorPalette>
+
+## Service Specific
+
+- 2020.04.17 체크리스트 color sets
+
+<ColorPalette>
+  <ColorItem
+    title="azule"
+    colors={{
+      azul500: `rgba(${getColor('azul500')})`,
+      azul: `rgba(${getColor('azul')})`,
+    }}
+  />
+  <ColorItem
+    title="azule"
+    colors={{
+      teal100: `rgba(${getColor('teal100')})`,
+      teal900: `rgba(${getColor('teal900')})`,
+      teal: `rgba(${getColor('teal')})`,
+    }}
+  />
+</ColorPalette>
