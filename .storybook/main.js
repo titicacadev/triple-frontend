@@ -1,13 +1,24 @@
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+
 module.exports = {
   stories: [
-    '../stories/**/*.stories.mdx',
-    '../stories/**/*.stories.@(js|jsx|ts|tsx)',
+    '../packages/**/*.stories.mdx',
+    '../packages/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     'storybook-addon-next-router',
-    'storybook-addon-swc',
+    {
+      name: 'storybook-addon-swc',
+      options: {
+        swcLoaderOptions: {
+          module: {
+            type: 'es6',
+          },
+        },
+      },
+    },
   ],
   typescript: {
     check: true,
@@ -25,5 +36,9 @@ module.exports = {
   features: {
     postcss: false,
     storyStoreV7: true,
+  },
+  webpackFinal: async (config) => {
+    config.resolve.plugins = [new TsconfigPathsPlugin()]
+    return config
   },
 }
