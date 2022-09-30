@@ -5,7 +5,7 @@ import {
   envProviderDecorator,
   sessionContextProviderDecorator,
   tripleClientMetadataDecorator,
-} from '../../decorators'
+} from '../../../docs/decorators'
 
 export default {
   title: 'Social-Reviews / SocialReviews',
