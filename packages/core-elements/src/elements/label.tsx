@@ -204,10 +204,7 @@ const LabelGroup = styled(Container)<{ horizontalGap?: number }>`
     `};
   }
 `
-export default class Label extends PureComponent<
-  LabelProps,
-  HTMLAttributes<HTMLElement>
-> {
+class Label extends PureComponent<LabelProps, HTMLAttributes<HTMLElement>> {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   public static Group = LabelGroup
 
@@ -249,3 +246,5 @@ export default class Label extends PureComponent<
     }
   }
 }
+
+export default Label

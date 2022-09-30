@@ -6,7 +6,7 @@ import {
   sessionContextProviderDecorator,
   userAgentProviderDecorator,
   tripleClientMetadataDecorator,
-} from '../../decorators'
+} from '../../../docs/decorators'
 
 export default {
   title: 'user-verification / VerificationRequest',
