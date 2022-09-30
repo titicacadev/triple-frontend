@@ -1,5 +1,6 @@
-import Author from '@titicaca/author'
 import { Meta, StoryObj } from '@storybook/react'
+
+import Author from './index'
 
 export default {
   title: 'author / Author',
