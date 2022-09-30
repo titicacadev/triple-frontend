@@ -40,10 +40,10 @@ function EmbeddedImage({
 
     return (
       <Container
-        {...props}
         css={{
           margin: '10px 0 0 0',
         }}
+        {...props}
       >
         <TripleMedia
           optimized={optimized}
@@ -85,7 +85,7 @@ export default function Embedded({
                 <Element
                   key={j}
                   value={value}
-                  {...(j === 0 ? { margin: { top: 0 } } : {})}
+                  {...(j === 0 ? { css: { marginTop: 0 } } : {})}
                 />
               )
             )
