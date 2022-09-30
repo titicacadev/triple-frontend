@@ -1,5 +1,6 @@
-import ContentSharing from '@titicaca/content-sharing'
 import { Meta, StoryObj } from '@storybook/react'
+
+import ContentSharing from '.'
 
 export default {
   title: 'content-sharing / ContentSharing',

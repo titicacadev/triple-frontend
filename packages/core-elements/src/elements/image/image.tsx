@@ -11,7 +11,7 @@ import ImageCircular from './circular'
 import ImagePlaceholder from './placeholder'
 import ImageOptimizedImg from './optimized-img'
 
-export default function Image({
+function Image({
   borderRadius,
   children,
 }: PropsWithChildren<{
@@ -36,3 +36,5 @@ Image.Overlay = ImageOverlay
 Image.LinkIndicator = ImageLinkIndicator
 
 Image.Circular = ImageCircular
+
+export default Image
