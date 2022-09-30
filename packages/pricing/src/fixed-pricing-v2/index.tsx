@@ -1,5 +1,5 @@
 import { ReactNode, SyntheticEvent } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import {
   Container,
   Drawer,
@@ -8,7 +8,7 @@ import {
   MarginPadding,
   Skeleton,
   safeAreaInsetMixin,
-  CSSProps,
+  paddingMixin,
 } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 
@@ -38,6 +38,7 @@ const FloatedFrame = styled(Container)`
   border-top: 1px solid #efefef;
   background: #fff;
 
+  ${paddingMixin}
   ${safeAreaInsetMixin}
 `
 
@@ -117,8 +118,8 @@ export default function FixedPricingV2({
   onTooltipClick,
   isSoldOut = false,
   maxWidth,
-  css: cssProp,
-}: FixedPricingV2Props & CSSProps) {
+  padding = { top: 14, right: 20, bottom: 14, left: 20 },
+}: FixedPricingV2Props) {
   const pricingLabel = label ? (
     typeof label === 'string' ? (
       <Text color="gray" alpha={0.5} size="mini">
@@ -141,7 +142,7 @@ export default function FixedPricingV2({
 
   return (
     <Drawer active={active} overflow="visible">
-      <FloatedFrame css={css({ padding: '14px 20px 14px 20px' }, cssProp)}>
+      <FloatedFrame padding={padding}>
         <Container
           position="relative"
           clearing
