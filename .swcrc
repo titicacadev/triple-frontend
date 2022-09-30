@@ -5,7 +5,7 @@
   },
   "sourceMaps": true,
   "jsc": {
-    "target": "es2016",
+    "target": "es5",
     "parser": {
       "syntax": "typescript",
       "tsx": true
