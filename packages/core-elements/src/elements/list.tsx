@@ -103,7 +103,7 @@ const ListItem = styled.li<ListItemProps>`
     `}
 `
 
-export default class List extends PureComponent<
+class List extends PureComponent<
   PropsWithChildren<ListItemProps & ListBaseProp & DividerOptions>
 > {
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -117,3 +117,5 @@ export default class List extends PureComponent<
     return <ListBase {...props}>{children}</ListBase>
   }
 }
+
+export default List
