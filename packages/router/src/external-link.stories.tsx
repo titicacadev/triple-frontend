@@ -6,7 +6,7 @@ import {
   globalStyleDecorator,
   sessionContextProviderDecorator,
   tripleClientMetadataDecorator,
-} from '../../decorators'
+} from '../../../docs/decorators'
 
 export default {
   component: (args) => (

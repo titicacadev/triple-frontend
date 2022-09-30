@@ -1,11 +1,12 @@
-import BookingCompletion from '@titicaca/booking-completion'
 import { ComponentStoryObj, Meta } from '@storybook/react'
 
 import {
   envProviderDecorator,
   sessionContextProviderDecorator,
   tripleClientMetadataDecorator,
-} from '../../decorators'
+} from '../../../docs/decorators'
+
+import BookingCompletion from '@titicaca/booking-completion'
 
 export default {
   title: 'booking-completion / Booking Complete',
