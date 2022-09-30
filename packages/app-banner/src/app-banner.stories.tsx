@@ -1,5 +1,6 @@
-import AppBanner from '@titicaca/app-banner'
 import { Meta, StoryObj } from '@storybook/react'
+
+import AppBanner from '@titicaca/app-banner'
 
 export default {
   title: 'app-banner / AppBanner',

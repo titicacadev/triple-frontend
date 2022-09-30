@@ -3,7 +3,7 @@ import { ImageMeta } from '@titicaca/type-definitions'
 
 import AuthorIntro from './author-intro'
 
-export default function Author({
+function Author({
   source: { name, bio, image, intro },
   bioOverride,
   introOverride,
@@ -13,7 +13,10 @@ export default function Author({
     name: string
     bio?: string
     image?: ImageMeta
-    intro?: { text?: string; rawHTML?: string }
+    intro?: {
+      text?: string
+      rawHTML?: string
+    }
   }
   bioOverride?: string
   introOverride?: { text?: string; rawHTML?: string }
@@ -49,3 +52,5 @@ export default function Author({
     </Container>
   )
 }
+
+export default Author
