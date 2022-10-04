@@ -35,7 +35,11 @@ export function AlertModalBody({
 }: ModalBodyProps) {
   return (
     <>
-      <Container padding={{ top: 40, bottom: 40, left: 30, right: 30 }}>
+      <Container
+        css={{
+          padding: '40px 30px 40px 30px',
+        }}
+      >
         {title ? <AlertModalTitle>{title}</AlertModalTitle> : null}
         {description ? (
           <AlertModalDescription>{description}</AlertModalDescription>
