@@ -5,7 +5,7 @@ import {
 } from '@titicaca/react-contexts'
 import { ComponentStoryObj, Meta } from '@storybook/react'
 
-import { ImageCarousel } from '@titicaca/poi-detail'
+import ImageCarousel from './image-carousel'
 
 export default {
   title: 'poi-detail / ImageCarousel',

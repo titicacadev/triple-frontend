@@ -44,7 +44,7 @@ export const Hotel: ComponentStoryObj<typeof PoiCardElement> = {
   },
 }
 
-export const Poi: ComponentStoryObj<typeof poiCardElement> = {
+export const Poi: ComponentStoryObj<typeof PoiCardElement> = {
   args: {
     id: 'f72d2f50-2efb-4469-a903-47ad6b0c0740',
     type: 'attraction',
