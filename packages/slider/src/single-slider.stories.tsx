@@ -1,5 +1,6 @@
-import { SingleSlider } from '@titicaca/slider'
 import { Meta, StoryObj } from '@storybook/react'
+
+import SingleSlider from './single-slider'
 
 export default {
   title: 'slider / SingleSlider',

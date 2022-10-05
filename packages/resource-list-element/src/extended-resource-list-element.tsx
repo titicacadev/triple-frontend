@@ -64,7 +64,7 @@ const LabelContainer = styled.div`
   bottom: 20px;
 `
 
-export default function ExtendedResourceListElement<R extends ResourceMeta>({
+function ExtendedResourceListElement<R extends ResourceMeta>({
   resource,
   scrapResource,
   hideScrapButton,
@@ -221,3 +221,5 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
     </ResourceListItem>
   )
 }
+
+export default ExtendedResourceListElement

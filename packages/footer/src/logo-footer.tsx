@@ -16,10 +16,12 @@ const TripleLogo = styled.div`
   background-repeat: no-repeat;
 `
 
-export default function LogoFooter() {
+function LogoFooter() {
   return (
     <FooterContainer>
       <TripleLogo />
     </FooterContainer>
   )
 }
+
+export default LogoFooter

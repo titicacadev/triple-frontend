@@ -1,5 +1,6 @@
-import { TextBanner } from '@titicaca/app-installation-cta'
 import { ComponentStoryObj, Meta } from '@storybook/react'
+
+import TextBanner from './text-banner'
 
 export default {
   title: 'app-installation-cta / TextBanner',

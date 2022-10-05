@@ -1,10 +1,6 @@
-import DirectionsFinder from '@titicaca/directions-finder'
 import { Meta, StoryObj } from '@storybook/react'
 
-import {
-  historyProviderDecorator,
-  tripleClientMetadataDecorator,
-} from '../../decorators'
+import DirectionsFinder from '.'
 
 export default {
   title: 'directions-finder / DirectionsFinder',
@@ -20,5 +16,4 @@ export const Basic: StoryObj = {
     phoneNumber: '+81453305211',
     isDomestic: 'isDomestic',
   },
-  decorators: [historyProviderDecorator, tripleClientMetadataDecorator],
 }

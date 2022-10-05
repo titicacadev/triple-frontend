@@ -1,11 +1,4 @@
 import { Container } from '@titicaca/core-elements'
-import {
-  MapView,
-  Polyline,
-  DotPolyline,
-  Polygon,
-  HotelCircleMarker,
-} from '@titicaca/map'
 import { ComponentStory, Meta } from '@storybook/react'
 
 import {
@@ -14,6 +7,8 @@ import {
   polygonPaths,
   coordinates,
 } from './mock'
+import { MapView } from './map-view'
+import { DotPolyline, HotelCircleMarker, Polygon, Polyline } from './overlay'
 
 /**
  * 구글 맵 SDK API 키 설정은 아래에서 진행할 수 있습니다.

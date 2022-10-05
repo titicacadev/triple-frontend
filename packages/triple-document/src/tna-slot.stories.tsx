@@ -1,23 +1,14 @@
 import { Meta } from '@storybook/react'
-import { ELEMENTS, Slot } from '@titicaca/triple-document'
 
-import SLOTS from '../__mocks__/slots.sample.json'
-import {
-  envProviderDecorator,
-  sessionContextProviderDecorator,
-  tripleClientMetadataDecorator,
-} from '../../decorators'
+import SLOTS from './mocks/slots.sample.json'
+import ELEMENTS from './elements'
+import { Slot } from './elements/tna/slot'
 
 const { tnaProducts: TnaProducts } = ELEMENTS
 
 export default {
   title: 'triple-document / T&A Slot',
   component: TnaProducts,
-  decorators: [
-    envProviderDecorator,
-    sessionContextProviderDecorator,
-    tripleClientMetadataDecorator,
-  ],
 } as Meta
 
 export function InTripleDocument() {
