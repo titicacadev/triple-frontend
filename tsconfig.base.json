@@ -12,7 +12,9 @@
     "types": ["react", "node", "jest"],
     "composite": true,
     "skipLibCheck": true,
-    "declarationMap": true
+    "declarationMap": true,
+    "resolveJsonModule": true
   },
+  "include": ["packages/**/*/src", "packages/**/*/src/mocks/**/*.json"],
   "exclude": ["node_modules", "lib"]
 }
