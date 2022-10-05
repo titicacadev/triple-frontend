@@ -3,6 +3,8 @@ import { ComponentStoryObj, Meta } from '@storybook/react'
 
 import { OverlayScrapButton } from './scrap-button'
 
+import { OverlayScrapButton } from './scrap-button'
+
 export default {
   title: 'ScrapButton / OverlayScrapButton',
   component: OverlayScrapButton,
