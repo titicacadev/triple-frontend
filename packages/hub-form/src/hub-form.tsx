@@ -16,7 +16,7 @@ const HubFormFrame = styled(CardFrame)`
   }
 `
 
-export default function HubForm({
+function HubForm({
   children,
   shadow,
   ...props
@@ -33,3 +33,5 @@ export default function HubForm({
     </HubFormFrame>
   )
 }
+
+export default HubForm

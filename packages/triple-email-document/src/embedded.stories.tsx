@@ -1,7 +1,8 @@
 import { ComponentProps } from 'react'
 import styled from 'styled-components'
 import { ComponentMeta } from '@storybook/react'
-import { ELEMENTS } from '@titicaca/triple-email-document'
+
+import ELEMENTS from './elements'
 
 const { embedded: EmbeddedView } = ELEMENTS
 

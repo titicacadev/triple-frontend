@@ -1,5 +1,6 @@
-import { PoiCardElement } from '@titicaca/poi-list-elements'
 import { ComponentStoryObj, Meta } from '@storybook/react'
+
+import PoiCardElement from './poi-card-element'
 
 export default {
   title: 'poi-list-elements / PoiCardElement',
@@ -43,7 +44,7 @@ export const Hotel: ComponentStoryObj<typeof PoiCardElement> = {
   },
 }
 
-export const Poi: ComponentStoryObj<typeof PoiCardElement> = {
+export const Poi: ComponentStoryObj<typeof poiCardElement> = {
   args: {
     id: 'f72d2f50-2efb-4469-a903-47ad6b0c0740',
     type: 'attraction',

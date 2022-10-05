@@ -1,5 +1,6 @@
 import { Meta } from '@storybook/react'
-import { ELEMENTS } from '@titicaca/triple-document'
+
+import ELEMENTS from './elements'
 
 const MOCK_IMAGE_LINKS_VALUE = {
   links: [

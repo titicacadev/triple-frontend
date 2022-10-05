@@ -10,7 +10,7 @@
       "@titicaca/type-definitions": ["../type-definitions/src"]
     }
   },
-  "include": ["./src"],
+  "include": ["./src", "./src/mocks/**/*.json"],
   "references": [
     {
       "path": "../core-elements"

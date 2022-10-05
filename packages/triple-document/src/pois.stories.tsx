@@ -1,8 +1,8 @@
 import { Meta } from '@storybook/react'
-import { ELEMENTS } from '@titicaca/triple-document'
 
-import POIS from '../__mocks__/pois.sample.json'
-import HOTEL from '../__mocks__/hotel.sample.json'
+import POIS from './mocks/pois.sample.json'
+import HOTEL from './mocks/hotel.sample.json'
+import ELEMENTS from './elements'
 
 const { pois: Pois } = ELEMENTS
 

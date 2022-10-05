@@ -1,5 +1,6 @@
-import { ReviewScrapStat } from '@titicaca/resource-list-element'
 import { ComponentStoryObj, Meta } from '@storybook/react'
+
+import ReviewScrapStat from './review-scrap-stat'
 
 export default {
   title: 'resource-list-element / review-scrap-stat',

@@ -2,8 +2,6 @@ import styled from 'styled-components'
 import { RangePicker } from '@titicaca/date-picker'
 import { ComponentStory, ComponentStoryObj, Meta } from '@storybook/react'
 
-import { newDateMockingDecorator } from '../../decorators'
-
 import ActionSheet from './index'
 
 export default {
@@ -144,4 +142,3 @@ WithExtendStyle.args = {
   open: true,
   title: '샘플 액션 시트',
 }
-WithExtendStyle.decorators = [newDateMockingDecorator]

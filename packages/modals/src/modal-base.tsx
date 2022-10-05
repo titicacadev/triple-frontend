@@ -77,7 +77,7 @@ const Action = styled.a<{ color?: GlobalColors }>`
   cursor: pointer;
 `
 
-export default function ModalBase({
+function ModalBase({
   open,
   onClose,
   children,
@@ -114,3 +114,5 @@ export function silenceEvent(e?: SyntheticEvent) {
 
 ModalBase.Actions = Actions
 ModalBase.Action = Action
+
+export default ModalBase

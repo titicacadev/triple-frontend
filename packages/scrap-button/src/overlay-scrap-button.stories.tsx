@@ -1,6 +1,7 @@
-import { OverlayScrapButton } from '@titicaca/scrap-button'
 import { ScrapsProvider } from '@titicaca/react-contexts'
 import { Meta, StoryObj } from '@storybook/react'
+
+import { OverlayScrapButton } from './scrap-button'
 
 export default {
   title: 'ScrapButton / OverlayScrapButton',
