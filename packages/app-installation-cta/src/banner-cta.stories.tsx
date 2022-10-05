@@ -1,6 +1,6 @@
 import { ComponentStoryObj, Meta } from '@storybook/react'
 
-import { BannerCTA } from '@titicaca/app-installation-cta'
+import BannerCTA from './banner-cta'
 
 export default {
   title: 'app-installation-cta / BannerCTA',

@@ -80,7 +80,7 @@ const PopupContainer = styled.div<LayeringMixinProps>`
   ${layeringMixin(2)}
 `
 
-export default function Popup({
+function Popup({
   open = false,
   borderless = false,
   onClose,
@@ -135,3 +135,5 @@ export default function Popup({
     </CSSTransition>
   )
 }
+
+export default Popup

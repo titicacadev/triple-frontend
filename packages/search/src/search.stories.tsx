@@ -1,5 +1,6 @@
-import Search from '@titicaca/search'
 import { ComponentStoryObj, Meta } from '@storybook/react'
+
+import Search from '.'
 
 export default {
   title: 'search / Search',

@@ -1,5 +1,8 @@
-import { HubForm, Cell, Cta } from '@titicaca/hub-form'
 import { Meta } from '@storybook/react'
+
+import Cell from './cell'
+import Cta from './cta'
+import HubForm from './hub-form'
 
 export default {
   title: 'hub-form / HubForm',

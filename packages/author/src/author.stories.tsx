@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import Author from './index'
+import Author from '.'
 
 export default {
   title: 'author / Author',

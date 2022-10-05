@@ -1,7 +1,7 @@
 import { PropsWithChildren, SyntheticEvent } from 'react'
 import { Button } from '@titicaca/core-elements'
 
-export default function Cta({
+function Cta({
   available,
   onSubmit,
   children,
@@ -22,3 +22,5 @@ export default function Cta({
     </Button>
   )
 }
+
+export default Cta

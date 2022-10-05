@@ -4,7 +4,7 @@ import { Text } from '@titicaca/core-elements'
 
 import { useUserVerification } from './use-user-verification'
 
-export default function VerificationRequest({
+function VerificationRequest({
   forceVerification,
   verificationContext,
   onCancel,
@@ -85,3 +85,5 @@ function Icon() {
     </SvgWithPositioning>
   )
 }
+
+export default VerificationRequest

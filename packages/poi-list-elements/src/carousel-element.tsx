@@ -16,7 +16,7 @@ import {
   PoiListElementType,
 } from './types'
 
-export default function PoiCarouselElement<T extends PoiListElementType>({
+function PoiCarouselElement<T extends PoiListElementType>({
   poi,
   poi: {
     type,
@@ -106,3 +106,5 @@ export default function PoiCarouselElement<T extends PoiListElementType>({
     </Carousel.Item>
   )
 }
+
+export default PoiCarouselElement

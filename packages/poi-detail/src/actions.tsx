@@ -7,7 +7,7 @@ const ActionButton = styled(Button)`
   padding-right: 0;
 `
 
-export default function Actions({
+function Actions({
   scraped,
   reviewed,
   onScheduleAdd,
@@ -71,3 +71,5 @@ export default function Actions({
     </Section>
   )
 }
+
+export default Actions
