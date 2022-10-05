@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { RangePicker } from '@titicaca/date-picker'
 import { ComponentStory, ComponentStoryObj, Meta } from '@storybook/react'
 
 import ActionSheet from './index'
@@ -133,7 +132,7 @@ const NewStyledActionSheet = styled(ActionSheet)`
 export const WithExtendStyle: ComponentStory<typeof ActionSheet> = (args) => {
   return (
     <NewStyledActionSheet {...args}>
-      <RangePicker startDate={null} endDate={null} onDatesChange={() => {}} />
+      {/* <RangePicker startDate={null} endDate={null} onDatesChange={() => {}} /> */}
     </NewStyledActionSheet>
   )
 }
