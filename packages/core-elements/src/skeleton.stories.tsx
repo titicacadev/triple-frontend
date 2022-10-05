@@ -1,10 +1,10 @@
+import Container from './elements/container'
 import {
   Skeleton,
-  SkeletonText,
-  SkeletonCircle,
   SkeletonButton,
-  Container,
-} from '@titicaca/core-elements'
+  SkeletonCircle,
+  SkeletonText,
+} from './elements/skeleton'
 
 export default {
   title: 'core-elements / Skeleton',

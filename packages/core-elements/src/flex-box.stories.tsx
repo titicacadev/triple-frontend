@@ -1,5 +1,8 @@
 import styled from 'styled-components'
-import { FlexBox, Container, Text } from '@titicaca/core-elements'
+
+import Container from './elements/container'
+import FlexBox from './elements/flex-box'
+import Text from './elements/text'
 
 export default {
   title: 'Core-Elements / FlexBox',

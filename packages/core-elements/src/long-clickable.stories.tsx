@@ -1,4 +1,6 @@
-import { Container, HR1, longClickable } from '@titicaca/core-elements'
+import Container from './elements/container'
+import { HR1 } from './elements/hr'
+import { longClickable } from './hocs'
 
 export default {
   title: 'Core-Elements / longClickable',
