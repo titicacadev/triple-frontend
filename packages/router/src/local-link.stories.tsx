@@ -1,12 +1,6 @@
 import { Meta } from '@storybook/react'
-import { LocalLink } from '@titicaca/router'
 
-import {
-  envProviderDecorator,
-  globalStyleDecorator,
-  sessionContextProviderDecorator,
-  tripleClientMetadataDecorator,
-} from '../../decorators'
+import { LocalLink } from './local/link'
 
 export default {
   component: (args) => (
@@ -14,12 +8,6 @@ export default {
       테스트링크
     </LocalLink>
   ),
-  decorators: [
-    globalStyleDecorator,
-    envProviderDecorator,
-    sessionContextProviderDecorator,
-    tripleClientMetadataDecorator,
-  ],
 } as Meta
 
 export const Primary = {}

@@ -1,19 +1,14 @@
 import { useEffect } from 'react'
 import { Meta } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
-import TripleDocument, { ELEMENTS } from '@titicaca/triple-document'
 import { useScrollToAnchor } from '@titicaca/react-hooks'
 import { TripleElementData } from '@titicaca/triple-document/src/types'
 
-import SAMPLE from '../__mocks__/triple-document.sample.json'
-import MOCK_REGIONS from '../__mocks__/triple-document.regions.json'
-import MOCK_EMBEDDED from '../__mocks__/triple-document.embedded.json'
-import MOCK_ITINERARY from '../__mocks__/triple-document.itinerary.json'
-import {
-  envProviderDecorator,
-  sessionContextProviderDecorator,
-  tripleClientMetadataDecorator,
-} from '../../decorators'
+import MOCK_REGIONS from './mocks/triple-document.regions.json'
+import MOCK_EMBEDDED from './mocks/triple-document.embedded.json'
+import MOCK_ITINERARY from './mocks/triple-document.itinerary.json'
+import SAMPLE from './mocks/triple-document.sample.json'
+import ELEMENTS from './elements'
+import { TripleDocument } from './triple-document'
 
 const {
   text: Text,
@@ -28,11 +23,6 @@ const {
 
 export default {
   title: 'triple-document',
-  decorators: [
-    envProviderDecorator,
-    sessionContextProviderDecorator,
-    tripleClientMetadataDecorator,
-  ],
 } as Meta
 
 export function Sample() {
@@ -52,7 +42,6 @@ export function TextExample() {
         value={{
           rawHTML: '텍스트 <a href="/regions/:regionId">Inline link</a>',
         }}
-        onLinkClick={action('onLinkClick')}
       />
       <Text bold value={{ text: '강조 텍스트: bold 16 100%' }} alpha={1} />
     </>
@@ -138,13 +127,7 @@ export function AnchorExample() {
 AnchorExample.storyName = 'Anchor'
 
 export function DocumentItinerary() {
-  return (
-    <Itinerary
-      value={MOCK_ITINERARY.article.source.body[1].value}
-      onClickSaveToItinerary={action('onClickSaveToItinerary')}
-    />
-  )
+  return <Itinerary value={MOCK_ITINERARY.article.source.body[1].value} />
 }
 
 DocumentItinerary.storyName = '추천코스 기본'
-DocumentItinerary.decorators = [sessionContextProviderDecorator]

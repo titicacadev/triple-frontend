@@ -54,7 +54,7 @@ const ScrapButtonContainer = styled(Container)`
   right: 0;
 `
 
-export default function PoiCardElement({
+function PoiCardElement({
   id,
   type,
   names: { ko, en, local },
@@ -216,3 +216,5 @@ export default function PoiCardElement({
     </Card>
   )
 }
+
+export default PoiCardElement

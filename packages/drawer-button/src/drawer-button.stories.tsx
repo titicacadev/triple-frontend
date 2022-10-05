@@ -1,5 +1,6 @@
-import DrawerButton from '@titicaca/drawer-button'
 import { Meta, StoryObj } from '@storybook/react'
+
+import DrawerButton from '.'
 
 export default {
   title: 'drawer-button / DrawerButton',

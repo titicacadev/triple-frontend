@@ -1,12 +1,10 @@
-import NearbyPois from '@titicaca/nearby-pois'
 import { ComponentStoryObj, Meta } from '@storybook/react'
 
-import { historyProviderDecorator } from '../../decorators'
+import NearbyPois from './nearby-pois'
 
 export default {
   title: 'Nearby-Pois / NearbyPois',
   component: NearbyPois,
-  decorators: [historyProviderDecorator],
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof NearbyPois> = {
