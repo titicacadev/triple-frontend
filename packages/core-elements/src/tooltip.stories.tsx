@@ -1,6 +1,8 @@
-import { Tooltip, Navbar } from '@titicaca/core-elements'
 import styled from 'styled-components'
 import { Meta } from '@storybook/react'
+
+import Tooltip from './elements/tooltip'
+import Navbar from './elements/navbar'
 
 export default {
   title: 'Core-Elements / Tooltip',

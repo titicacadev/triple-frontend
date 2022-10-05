@@ -1,5 +1,6 @@
-import { StickyHeader } from '@titicaca/core-elements'
 import { Meta, Story } from '@storybook/react'
+
+import StickyHeader from './elements/sticky-header'
 
 export default {
   title: 'Core-Elements / StickyHeader',

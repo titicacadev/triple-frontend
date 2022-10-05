@@ -1,5 +1,9 @@
-import { Button, Container, Drawer, Text } from '@titicaca/core-elements'
 import { ComponentStory, Meta } from '@storybook/react'
+
+import Button from './elements/button'
+import Container from './elements/container'
+import Drawer from './elements/drawer'
+import Text from './elements/text'
 
 export default {
   title: 'Core-Elements / Drawer',
