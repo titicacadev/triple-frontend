@@ -51,7 +51,7 @@ function ExternalLinkItem<Data>({
           padding: '20px 0 20px 0',
         }}
       >
-        <FlexBox
+        <FlexBox.Item
           flexGrow={1}
           css={{
             minWidth: 0,
@@ -68,10 +68,10 @@ function ExternalLinkItem<Data>({
               {meta}
             </Text>
           )}
-        </FlexBox>
+        </FlexBox.Item>
 
         {imageUrl && (
-          <FlexBox
+          <FlexBox.Item
             flexShrink={0}
             css={{
               width: 60,
@@ -85,7 +85,7 @@ function ExternalLinkItem<Data>({
                 />
               </Image.FixedRatioFrame>
             </Image>
-          </FlexBox>
+          </FlexBox.Item>
         )}
       </FlexBox>
     </ExternalLinkEntry>
