@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import ActionSheet from '@titicaca/action-sheet'
 
 import Popup from '.'
 
@@ -35,10 +34,10 @@ export const AfterActionSheet = () => {
         <EmptyScroll>Scroll........</EmptyScroll>
       </Popup>
 
-      <ActionSheet open={false} title="샘플 액션시트">
+      {/* <ActionSheet open={false} title="샘플 액션시트">
         <ActionSheet.Item>메뉴 1</ActionSheet.Item>
         <ActionSheet.Item>메뉴 2</ActionSheet.Item>
-      </ActionSheet>
+      </ActionSheet> */}
     </>
   )
 }
@@ -48,10 +47,10 @@ export const WithInActionSheet = () => {
   return (
     <Popup title="팝업입니다" open onClose={() => {}}>
       <EmptyScroll>Scroll........</EmptyScroll>
-      <ActionSheet open={false} title="샘플 액션시트">
+      {/* <ActionSheet open={false} title="샘플 액션시트">
         <ActionSheet.Item>메뉴 1</ActionSheet.Item>
         <ActionSheet.Item>메뉴 2</ActionSheet.Item>
-      </ActionSheet>
+      </ActionSheet> */}
     </Popup>
   )
 }
