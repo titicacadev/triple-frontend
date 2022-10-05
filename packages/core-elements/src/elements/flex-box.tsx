@@ -3,7 +3,7 @@ import { Property } from 'csstype'
 
 import Container, { ContainerProps } from './container'
 
-export interface FlexBoxProps extends FlexItemProps {
+export interface FlexBoxProps extends Omit<FlexItemProps, 'flex'> {
   flex?: boolean
   flexDirection?: Property.FlexDirection
   flexWrap?: Property.FlexWrap
@@ -16,12 +16,25 @@ export interface FlexBoxProps extends FlexItemProps {
 }
 
 export interface FlexItemProps extends ContainerProps {
+  flex?: Property.Flex
   flexGrow?: Property.FlexGrow
   flexShrink?: Property.FlexShrink
   flexBasis?: Property.FlexBasis
   alignSelf?: Property.AlignSelf
   order?: Property.Order
 }
+
+const FlexItem = styled(Container)<FlexItemProps>(
+  (props) => ({
+    flex: props.flex,
+    flexGrow: props.flexGrow,
+    flexShrink: props.flexShrink,
+    flexBasis: props.flexBasis,
+    alignSelf: props.alignSelf,
+    order: props.order,
+  }),
+  (props) => props.css,
+)
 
 export const StyledFlexBox = styled(Container)<FlexBoxProps>(
   (props) => ({
@@ -44,21 +57,9 @@ export const StyledFlexBox = styled(Container)<FlexBoxProps>(
   }),
   (props) => props.css,
 )
-
 const FlexBox = (props: FlexBoxProps) => {
   return <StyledFlexBox {...props} />
 }
-
-const FlexItem = styled.div<FlexItemProps>(
-  (props) => ({
-    flexGrow: props.flexGrow,
-    flexShrink: props.flexShrink,
-    flexBasis: props.flexBasis,
-    alignSelf: props.alignSelf,
-    order: props.order,
-  }),
-  (props) => props.css,
-)
 
 FlexBox.Item = FlexItem
 
