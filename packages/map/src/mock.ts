@@ -1,7 +1,6 @@
 import HOTELS from './mocks/hotel-recommandations.json'
 import { RecommendationHotelResourceType } from './types'
-
-import { getGeometry } from '@titicaca/map'
+import { getGeometry } from './utilities'
 
 export const coordinates: [number, number][] = (
   HOTELS as unknown as RecommendationHotelResourceType[]
