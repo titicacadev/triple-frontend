@@ -3,7 +3,7 @@ import { Property } from 'csstype'
 
 import Container, { ContainerProps } from './container'
 
-export interface FlexBoxProps extends ContainerProps {
+export interface FlexBoxProps extends FlexItemProps {
   flex?: boolean
   flexDirection?: Property.FlexDirection
   flexWrap?: Property.FlexWrap
@@ -13,8 +13,9 @@ export interface FlexBoxProps extends ContainerProps {
   gap?: Property.Gap
   columnGap?: Property.ColumnGap
   rowGap?: Property.RowGap
+}
 
-  // deprecated
+export interface FlexItemProps extends ContainerProps {
   flexGrow?: Property.FlexGrow
   flexShrink?: Property.FlexShrink
   flexBasis?: Property.FlexBasis
@@ -22,7 +23,7 @@ export interface FlexBoxProps extends ContainerProps {
   order?: Property.Order
 }
 
-const FlexBox = styled(Container)<FlexBoxProps>(
+export const StyledFlexBox = styled(Container)<FlexBoxProps>(
   (props) => ({
     display: props.flex ? 'flex' : undefined,
     flexDirection: props.flexDirection,
@@ -34,7 +35,7 @@ const FlexBox = styled(Container)<FlexBoxProps>(
     columnGap: props.columnGap,
     rowGap: props.rowGap,
 
-    // deprecated
+    // 중첩된 flex 사용할 경우에만 사용할 것
     flexGrow: props.flexGrow,
     flexShrink: props.flexShrink,
     flexBasis: props.flexBasis,
@@ -43,5 +44,22 @@ const FlexBox = styled(Container)<FlexBoxProps>(
   }),
   (props) => props.css,
 )
+
+const FlexBox = (props: FlexBoxProps) => {
+  return <StyledFlexBox {...props} />
+}
+
+const FlexItem = styled.div<FlexItemProps>(
+  (props) => ({
+    flexGrow: props.flexGrow,
+    flexShrink: props.flexShrink,
+    flexBasis: props.flexBasis,
+    alignSelf: props.alignSelf,
+    order: props.order,
+  }),
+  (props) => props.css,
+)
+
+FlexBox.Item = FlexItem
 
 export default FlexBox
