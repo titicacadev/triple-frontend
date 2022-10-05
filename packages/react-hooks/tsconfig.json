@@ -8,7 +8,7 @@
       "@titicaca/fetcher": ["../fetcher/src"]
     }
   },
-  "include": ["./src"],
+  "include": ["./src", "./src/mocks/**/*.json"],
   "references": [
     {
       "path": "../fetcher"

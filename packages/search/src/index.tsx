@@ -37,7 +37,7 @@ const hideKeyboard = () => closeKeyboard()
 
 const KEY_CODE_ENTER = 13
 
-export default function FullScreenSearchView({
+function FullScreenSearchView({
   children,
   onDelete = () => {},
   onAutoComplete = () => {},
@@ -162,3 +162,5 @@ export default function FullScreenSearchView({
     </>
   )
 }
+
+export default FullScreenSearchView

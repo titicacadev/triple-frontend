@@ -1,5 +1,6 @@
-import { ReviewsPlaceholder } from '@titicaca/review'
 import { Meta, StoryObj } from '@storybook/react'
+
+import ReviewsPlaceholder from './components/review-placeholder-with-rating'
 
 export default {
   title: 'Review / Review Placeholder',

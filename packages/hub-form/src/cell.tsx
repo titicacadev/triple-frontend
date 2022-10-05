@@ -49,7 +49,7 @@ const CellContainer = styled.div<{ type: StyleType }>`
   }
 `
 
-export default function Cell({
+function Cell({
   type,
   placeholder,
   value,
@@ -86,3 +86,5 @@ function Placeholder({ children }: PropsWithChildren<unknown>) {
     </Text>
   )
 }
+
+export default Cell

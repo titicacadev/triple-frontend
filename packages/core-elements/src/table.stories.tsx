@@ -1,6 +1,5 @@
-import { Table, TableProps } from '@titicaca/core-elements'
-
-import SAMPLE from '../__mocks__/table.sample.json'
+import SAMPLE from './mocks/table.sample.json'
+import Table, { TableProps } from './elements/table'
 
 export default {
   title: 'Core-Elements / Table',

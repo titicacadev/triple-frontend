@@ -15,7 +15,7 @@ interface ExtraProperty {
   value: string
 }
 
-export default function LocationProperties({
+function LocationProperties({
   addresses,
   onAddressesClick,
   phoneNumber,
@@ -129,3 +129,5 @@ export default function LocationProperties({
     </>
   )
 }
+
+export default LocationProperties

@@ -1,7 +1,8 @@
-import ExtendedResourceListElement from '@titicaca/resource-list-element'
 import Pricing from '@titicaca/pricing'
 import { Container } from '@titicaca/core-elements'
 import { ComponentStoryObj, Meta } from '@storybook/react'
+
+import ExtendedResourceListElement from './extended-resource-list-element'
 
 export default {
   title: 'resource-list-element / extended-resource-list-element',

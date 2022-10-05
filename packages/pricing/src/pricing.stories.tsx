@@ -1,5 +1,6 @@
-import Pricing from '@titicaca/pricing'
 import { ComponentStoryObj, Meta } from '@storybook/react'
+
+import Pricing from '.'
 
 export default {
   title: 'pricing / Pricing',

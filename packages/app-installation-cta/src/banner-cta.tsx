@@ -22,7 +22,7 @@ interface BannerCtaProps extends CtaProps {
  * @param inventoryId 표시할 이미지의 인벤토리 ID
  * @param installUrl 앱 설치 URL
  */
-export default function BannerCta({
+function BannerCta({
   inventoryId,
   installUrl,
   onShow,
@@ -94,3 +94,5 @@ export default function BannerCta({
     ) : null
   ) : null
 }
+
+export default BannerCta
