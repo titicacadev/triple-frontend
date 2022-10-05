@@ -55,7 +55,7 @@ const PoiCard = styled(Card)`
   flex: 1;
 `
 
-const CardWrapper = styled(FlexBox)`
+const CardWrapper = styled(FlexBox.Item)`
   min-width: 200px;
 
   > ${PoiCard} {
