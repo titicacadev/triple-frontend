@@ -1,8 +1,12 @@
-import { FlexBox, Text, Container } from '@titicaca/core-elements'
+import {
+  FlexBox,
+  Text,
+  Container,
+  StyledFlexBox,
+} from '@titicaca/core-elements'
 import styled from 'styled-components'
 import { useState } from 'react'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
-import { StyledFlexBox } from '@titicaca/core-elements/lib/elements/flex-box'
 
 export interface RecentCheckboxProps {
   isRecentReview: boolean
