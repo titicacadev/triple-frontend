@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import { NumericSpinner } from '@titicaca/core-elements'
+
+import NumericSpinner from './elements/numeric-spinner'
 
 export default {
   title: 'Core-Elements / NumericSpinner',
