@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStoryFn } from '@storybook/react'
-import { UnsafeModal } from '@titicaca/core-elements'
+
+import { UnsafeModal } from './elements/unsafe-modal'
 
 export default {
   title: 'core-elements / UnsafeModal',
