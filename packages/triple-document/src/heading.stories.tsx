@@ -1,5 +1,6 @@
 import { Meta, Story } from '@storybook/react'
-import { ELEMENTS } from '@titicaca/triple-document'
+
+import ELEMENTS from './elements'
 
 const {
   heading1: Heading1,

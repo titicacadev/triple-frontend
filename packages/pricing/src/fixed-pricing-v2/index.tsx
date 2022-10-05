@@ -101,7 +101,7 @@ function LoadingSkeleton() {
   )
 }
 
-export default function FixedPricingV2({
+function FixedPricingV2({
   emptyOverride,
   loading,
   active,
@@ -197,3 +197,5 @@ export default function FixedPricingV2({
     </Drawer>
   )
 }
+
+export default FixedPricingV2

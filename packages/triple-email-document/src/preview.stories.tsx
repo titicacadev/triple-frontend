@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
-import { EmailPreview } from '@titicaca/triple-email-document'
+
+import { EmailPreview } from './components'
 
 export default {
   title: 'Document / triple-email-document / components',

@@ -1,6 +1,7 @@
 import { useState, memo } from 'react'
 import styled from 'styled-components'
-import { ImagesProvider, useImagesContext } from '@titicaca/react-contexts'
+
+import { ImagesProvider, useImagesContext } from '.'
 
 export default {
   title: 'react-contexts / ImagesContext',

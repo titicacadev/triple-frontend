@@ -18,9 +18,10 @@ const ActionButton = styled(Button)`
 
 const ReviewTooltip = styled(Tooltip)`
   width: max-content;
-  padding: 9px 15px 8px 15px;
+  padding: 9px 15px 8px;
   transform: translateX(-50%);
   left: 50%;
+
   &::after {
     transform: translateX(-50%);
     left: 50%;
@@ -29,7 +30,7 @@ const ReviewTooltip = styled(Tooltip)`
 
 const REVIEW_TOOLTIP_EXPOSED = 'REVIEW_TOOLTIP_EXPOSED'
 
-export default function Actions({
+function Actions({
   scraped,
   reviewed,
   onScheduleAdd,
@@ -118,3 +119,5 @@ export default function Actions({
     </Section>
   )
 }
+
+export default Actions

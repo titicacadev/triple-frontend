@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import { Container, Text } from '@titicaca/core-elements'
 
-export default function ModalBody({
+function ModalBody({
   title,
   description,
 }: {
@@ -25,3 +25,5 @@ export default function ModalBody({
     </Container>
   )
 }
+
+export default ModalBody

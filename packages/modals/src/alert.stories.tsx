@@ -1,6 +1,8 @@
 import { Text } from '@titicaca/core-elements'
-import { Modal, Confirm, Alert } from '@titicaca/modals'
 import { Meta } from '@storybook/react'
+
+import Modal from './modal-base'
+import { Alert, Confirm } from './modals'
 
 export default {
   title: 'modals / Modal',

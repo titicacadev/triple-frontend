@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { ELEMENTS } from '@titicaca/triple-document'
 
-import IMAGES from '../__mocks__/images.sample.json'
-import IMAGES_FRAME from '../__mocks__/images-frame.sample.json'
+import IMAGES from './mocks/images.sample.json'
+import IMAGES_FRAME from './mocks/images-frame.sample.json'
+import ELEMENTS from './elements'
 
 const { images: Images } = ELEMENTS
 

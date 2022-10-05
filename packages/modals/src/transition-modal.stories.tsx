@@ -1,16 +1,14 @@
+import { ComponentStory, Meta } from '@storybook/react'
+
 import {
   TransitionModal,
   TransitionType,
   useTransitionModal,
-} from '@titicaca/modals'
-import { ComponentStory, Meta } from '@storybook/react'
-
-import { historyProviderDecorator } from '../../decorators'
+} from './transition-modal'
 
 export default {
   title: 'modals / TransitionModal',
   component: TransitionModal,
-  decorators: [historyProviderDecorator],
 } as Meta
 
 function UriHashHistoryManipulator({ uriHash }: { uriHash: string }) {

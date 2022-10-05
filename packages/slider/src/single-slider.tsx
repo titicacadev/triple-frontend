@@ -14,7 +14,7 @@ interface SingleSliderProps
   onChange: (value: number) => void
 }
 
-export default function SingleSlider({
+function SingleSlider({
   initialValue,
   labelComponent: LabelComponent,
   onChange,
@@ -55,3 +55,5 @@ export default function SingleSlider({
     </SliderBase>
   )
 }
+
+export default SingleSlider

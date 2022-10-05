@@ -94,9 +94,7 @@ interface DefaultFooterProps {
   hideAppDownloadButton?: boolean
 }
 
-export default function DefaultFooter({
-  hideAppDownloadButton,
-}: DefaultFooterProps) {
+function DefaultFooter({ hideAppDownloadButton }: DefaultFooterProps) {
   const sessionAvailable = useSessionAvailability()
   const { login, logout } = useSessionControllers()
 
@@ -203,3 +201,5 @@ export default function DefaultFooter({
     </FooterFrame>
   )
 }
+
+export default DefaultFooter

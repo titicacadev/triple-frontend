@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { ELEMENTS } from '@titicaca/triple-email-document'
+
+import ELEMENTS from './elements'
 
 const { links: Links } = ELEMENTS
 

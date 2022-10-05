@@ -1,5 +1,6 @@
 import { Meta } from '@storybook/react'
-import { ELEMENTS } from '@titicaca/triple-document'
+
+import ELEMENTS from './elements'
 
 const DOT_LIST_MOCK_VALUE = {
   bulletType: 'oval',

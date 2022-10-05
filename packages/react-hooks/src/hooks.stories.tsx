@@ -1,15 +1,13 @@
 import { useEffect } from 'react'
 import styled from 'styled-components'
-import {
-  useScrollToElement,
-  useScrollToAnchor,
-  useVisibilityChange,
-  useLottie,
-} from '@titicaca/react-hooks'
 import isChromatic from 'chromatic/isChromatic'
 import { Story } from '@storybook/react'
 
-import logos from '../__mocks__/lottie.sample.json'
+import logos from './mocks/lottie.sample.json'
+import { useScrollToElement } from './use-scroll-to-element'
+import { useScrollToAnchor } from './use-scroll-to-anchor'
+import { useVisibilityChange } from './use-visibility-change'
+import { useLottie } from './use-lottie'
 
 export default {
   title: 'react-hooks / hooks',
