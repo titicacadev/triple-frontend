@@ -8,7 +8,7 @@ const IconWrapper = styled.div`
   }
 `
 
-export default function DirectionButton({ onClick }: { onClick: () => void }) {
+function DirectionButton({ onClick }: { onClick: () => void }) {
   return (
     <IconWrapper
       onClick={(e) => {
@@ -56,3 +56,5 @@ export default function DirectionButton({ onClick }: { onClick: () => void }) {
     </IconWrapper>
   )
 }
+
+export default DirectionButton

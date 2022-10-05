@@ -13,7 +13,7 @@ export enum Method {
   Other = 'other',
 }
 
-export default function ContentSharing({
+function ContentSharing({
   onShareClick,
   label,
 }: {
@@ -45,3 +45,5 @@ export default function ContentSharing({
     </Container>
   )
 }
+
+export default ContentSharing

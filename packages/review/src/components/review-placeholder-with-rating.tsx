@@ -31,7 +31,7 @@ const RecentTripContainer = styled(Container).attrs({
   }
 `
 
-export default function ReviewsPlaceholder({
+function ReviewsPlaceholder({
   isMorePage,
   hasReviews,
   resourceType,
@@ -150,3 +150,5 @@ function RecentTripPlaceholder({
     </Container>
   )
 }
+
+export default ReviewsPlaceholder

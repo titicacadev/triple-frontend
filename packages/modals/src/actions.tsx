@@ -2,7 +2,7 @@ import { SyntheticEvent } from 'react'
 
 import Modal, { silenceEvent } from './modal-base'
 
-export default function ModalActions({
+function ModalActions({
   negative: { text: negativeText, onClick: onNegativeClick },
   positive: { text: positiveText, onClick: onPositiveClick },
 }: {
@@ -38,3 +38,5 @@ export default function ModalActions({
     </Modal.Actions>
   )
 }
+
+export default ModalActions

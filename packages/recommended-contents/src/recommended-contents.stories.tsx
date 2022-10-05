@@ -1,7 +1,8 @@
-import RecommendedContents from '@titicaca/recommended-contents'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { contents } from '../__mocks__/recommended-contents.sample.json'
+import { contents } from './mocks/recommended-contents.sample.json'
+
+import RecommendedContents from '.'
 
 export default {
   title: 'recommended-contents / RecommendedContents',

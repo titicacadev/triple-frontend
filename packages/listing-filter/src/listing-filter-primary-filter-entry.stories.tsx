@@ -1,5 +1,6 @@
-import ListingFilter from '@titicaca/listing-filter'
 import { ComponentStoryObj, Meta } from '@storybook/react'
+
+import ListingFilter from '.'
 
 export default {
   title: 'listing-filter / ListingFilter.PrimaryFilterEntry',

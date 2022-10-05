@@ -1,12 +1,6 @@
 import { Meta } from '@storybook/react'
-import { ExternalLink } from '@titicaca/router'
 
-import {
-  envProviderDecorator,
-  globalStyleDecorator,
-  sessionContextProviderDecorator,
-  tripleClientMetadataDecorator,
-} from '../../../docs/decorators'
+import { ExternalLink } from './external/link'
 
 export default {
   component: (args) => (
@@ -14,12 +8,6 @@ export default {
       테스트링크
     </ExternalLink>
   ),
-  decorators: [
-    globalStyleDecorator,
-    envProviderDecorator,
-    sessionContextProviderDecorator,
-    tripleClientMetadataDecorator,
-  ],
 } as Meta
 
 export const Primary = {}

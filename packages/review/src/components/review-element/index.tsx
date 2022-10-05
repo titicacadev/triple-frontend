@@ -101,7 +101,7 @@ const LikeButton = styled(Container)<{ liked?: boolean }>`
       : "url('https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png')"};
 `
 
-export default function ReviewElement({
+function ReviewElement({
   review,
   review: {
     user,
@@ -410,3 +410,5 @@ function RecentReviewInfo({
     </FlexBox>
   )
 }
+
+export default ReviewElement

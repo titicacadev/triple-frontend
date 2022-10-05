@@ -1,15 +1,10 @@
-import {
-  RangePickerV2,
-  PickerFrameV2 as PickFrame,
-} from '@titicaca/date-picker'
 import { ComponentStoryObj, Meta } from '@storybook/react'
 
-import { newDateMockingDecorator } from '../../decorators'
+import { RangePickerV2, PickerFrame } from './range-picker-v2'
 
 export default {
   title: 'date-picker / RangePickerV2',
   component: RangePickerV2,
-  decorators: [newDateMockingDecorator],
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof RangePickerV2> = {
@@ -29,13 +24,13 @@ export const Basic: ComponentStoryObj<typeof RangePickerV2> = {
 
 Basic.decorators = [
   (Story) => (
-    <PickFrame
+    <PickerFrame
       height="300px"
       sideSpacing={10}
       monthPadding="30px"
       hideTodayLabel={false}
     >
       <Story />
-    </PickFrame>
+    </PickerFrame>
   ),
 ]

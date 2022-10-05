@@ -11,7 +11,7 @@ import { Button } from '@titicaca/core-elements'
 import AskToTheLocal from './ask-to-the-local'
 import { HASH_ASK_TO_LOCALS_POPUP } from './constants'
 
-export default function DirectionButtons({
+function DirectionButtons({
   onDirectionsClick,
   primaryName,
   localName,
@@ -77,3 +77,5 @@ export default function DirectionButtons({
     </>
   )
 }
+
+export default DirectionButtons

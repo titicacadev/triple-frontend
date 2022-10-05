@@ -1,5 +1,6 @@
-import { RangeSlider } from '@titicaca/slider'
 import { Meta, StoryObj } from '@storybook/react'
+
+import RangeSlider from './range-slider'
 
 export default {
   title: 'slider / RangeSlider',

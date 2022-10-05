@@ -1,9 +1,10 @@
 import styled from 'styled-components'
-import ImageCarousel, { PageLabel } from '@titicaca/image-carousel'
 import { ImageSource } from '@titicaca/core-elements'
 
-import IMAGES from '../__mocks__/image-carousel.sample.json'
-import VIDEOS from '../__mocks__/video-carousel.sample.json'
+import IMAGES from './mocks/image-carousel.sample.json'
+import VIDEOS from './mocks/video-carousel.sample.json'
+import ImageCarousel from './image-carousel'
+import { PageLabel } from './page-label'
 
 export default {
   title: 'image-carousel / Image Carousel',

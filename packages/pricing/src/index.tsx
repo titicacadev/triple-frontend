@@ -216,7 +216,7 @@ const RegularPricing = ({
   )
 }
 
-export default function Pricing(props: PricingProps) {
+function Pricing(props: PricingProps) {
   const { salePrice, priceLabelOverride } = props
 
   if (props.rich) {
@@ -292,3 +292,5 @@ export default function Pricing(props: PricingProps) {
     )
   }
 }
+
+export default Pricing

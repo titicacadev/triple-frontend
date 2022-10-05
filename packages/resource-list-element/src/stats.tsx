@@ -1,6 +1,6 @@
 import { Text } from '@titicaca/core-elements'
 
-export default function ResourceListElementStats({
+function ResourceListElementStats({
   stats,
   ...textProps
 }: {
@@ -12,3 +12,5 @@ export default function ResourceListElementStats({
 
   return <Text {...textProps}>{stats.filter((stat) => stat).join(' · ')}</Text>
 }
+
+export default ResourceListElementStats

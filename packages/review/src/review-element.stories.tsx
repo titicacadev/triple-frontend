@@ -1,23 +1,19 @@
 import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
-import { ReviewElement, ReviewLikesProvider } from '@titicaca/review'
 import { ComponentProps } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
-import {
-  historyProviderDecorator,
-  sessionContextProviderDecorator,
-  tripleClientMetadataDecorator,
-} from '../../decorators'
-import monoImageData from '../__mocks__/review/review-element.mono-image.json'
-import duoImagesData from '../__mocks__/review/review-element.duo-images.json'
-import triImagesData from '../__mocks__/review/review-element.tri-images.json'
-import quadImagesData from '../__mocks__/review/review-element.quad-images.json'
-import pentaImagesData from '../__mocks__/review/review-element.penta-images.json'
-import moreImagesData from '../__mocks__/review/review-element.more-images.json'
-import monoVideoData from '../__mocks__/review/review-element.mono-video.json'
-import duoVideosData from '../__mocks__/review/review-element.duo-videos.json'
-import triVideosData from '../__mocks__/review/review-element.tri-videos.json'
-import moreVideosData from '../__mocks__/review/review-element.more-vidoes.json'
+import monoImageData from './mocks/review-element.mono-image.json'
+import duoImagesData from './mocks/review-element.duo-images.json'
+import triImagesData from './mocks/review-element.tri-images.json'
+import quadImagesData from './mocks/review-element.quad-images.json'
+import pentaImagesData from './mocks/review-element.penta-images.json'
+import moreImagesData from './mocks/review-element.more-images.json'
+import monoVideoData from './mocks/review-element.mono-video.json'
+import duoVideosData from './mocks/review-element.duo-videos.json'
+import triVideosData from './mocks/review-element.tri-videos.json'
+import moreVideosData from './mocks/review-element.more-vidoes.json'
+import ReviewElement from './components/review-element'
+import { ReviewLikesProvider } from './components/review-likes-context'
 
 const queryClient = new QueryClient()
 
@@ -38,9 +34,6 @@ export default {
         <Story />
       </QueryClientProvider>
     ),
-    historyProviderDecorator,
-    sessionContextProviderDecorator,
-    tripleClientMetadataDecorator,
   ],
 } as ComponentMeta<typeof ReviewElement>
 

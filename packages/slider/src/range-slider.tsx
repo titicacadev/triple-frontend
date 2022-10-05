@@ -12,7 +12,7 @@ interface RangeSliderProps extends Omit<SliderBaseProps, 'labelComponent'> {
   }>
 }
 
-export default function RangeSlider({
+function RangeSlider({
   labelComponent: LabelComponent,
   ...restProps
 }: RangeSliderProps) {
@@ -51,3 +51,5 @@ export default function RangeSlider({
     </SliderBase>
   )
 }
+
+export default RangeSlider

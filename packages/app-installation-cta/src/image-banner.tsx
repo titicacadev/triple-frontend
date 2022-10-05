@@ -17,7 +17,7 @@ interface ImageBannerProps extends CtaProps {
   dismissText?: string
 }
 
-export default function ImageBanner({
+function ImageBanner({
   imgUrl,
   installUrl,
   installText,
@@ -76,3 +76,5 @@ export default function ImageBanner({
     </ImageBannerWrapper>
   )
 }
+
+export default ImageBanner

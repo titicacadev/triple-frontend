@@ -49,7 +49,7 @@ interface FloatingButtonCtaProps extends CtaProps {
  * @param trackEventParams GA/FA 수집 파라미터
  * @param unmountOnExit 버튼이 표시되지 않을 때 컴포넌트 마운트 해제 여부
  */
-export default function FloatingButtonCtaV2({
+function FloatingButtonCta({
   exitStrategy = BannerExitStrategy.NONE,
   fixed,
   appInstallLink,
@@ -213,3 +213,5 @@ export default function FloatingButtonCtaV2({
     </CSSTransition>
   )
 }
+
+export default FloatingButtonCta
