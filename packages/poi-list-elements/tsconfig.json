@@ -14,7 +14,7 @@
       "@titicaca/view-utilities": ["../view-utilities/src"]
     }
   },
-  "include": ["./src"],
+  "include": ["./src", "./src/mocks/**/*.json"],
   "references": [
     {
       "path": "../core-elements"

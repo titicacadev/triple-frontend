@@ -1,6 +1,7 @@
 import styled from 'styled-components'
-import Popup from '@titicaca/popup'
 import ActionSheet from '@titicaca/action-sheet'
+
+import Popup from '.'
 
 export default {
   title: 'popup / Popup',

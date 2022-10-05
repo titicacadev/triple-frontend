@@ -1,13 +1,7 @@
-import { LocalLink } from '@titicaca/router'
 import styled from 'styled-components'
 import { Meta } from '@storybook/react'
 
-import {
-  globalStyleDecorator,
-  envProviderDecorator,
-  sessionContextProviderDecorator,
-  tripleClientMetadataDecorator,
-} from '../../decorators'
+import { LocalLink } from './local'
 
 const StyledLocalLink = styled(LocalLink)`
   width: 100%;
@@ -25,12 +19,6 @@ export default {
       테스트링크
     </StyledLocalLink>
   ),
-  decorators: [
-    globalStyleDecorator,
-    envProviderDecorator,
-    sessionContextProviderDecorator,
-    tripleClientMetadataDecorator,
-  ],
 } as Meta
 
 export const Primary = {}

@@ -31,7 +31,7 @@ const FixedBottom = styled(Container).attrs({
   ${safeAreaInsetMixin}
 `
 
-export default function Replies({
+function Replies({
   resourceId,
   resourceType,
   placeholders,
@@ -206,3 +206,5 @@ export default function Replies({
     </RepliesProvider>
   )
 }
+
+export default Replies

@@ -29,7 +29,7 @@ interface Area {
   name: string
 }
 
-export default function DetailHeader({
+function DetailHeader({
   names,
   areaName,
   areas = [],
@@ -131,3 +131,5 @@ export default function DetailHeader({
     </>
   )
 }
+
+export default DetailHeader

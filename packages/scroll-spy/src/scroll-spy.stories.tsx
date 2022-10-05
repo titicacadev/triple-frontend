@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { ComponentStoryObj, Meta } from '@storybook/react'
-import { ScrollSpyContainer, ScrollSpyEntity } from '@titicaca/scroll-spy'
 import { PoiListElement } from '@titicaca/poi-list-elements'
 import { ListingPoi } from '@titicaca/type-definitions'
 
-import POIS from '../__mocks__/pois.sample.json'
+import POIS from './mocks/pois.sample.json'
+
+import { ScrollSpyContainer, ScrollSpyEntity } from '.'
 
 function ScrollSpy() {
   const [activeId, setActiveId] = useState<string | null>(null)

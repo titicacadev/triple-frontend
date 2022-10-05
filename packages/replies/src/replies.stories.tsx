@@ -1,15 +1,10 @@
-import Replies from '@titicaca/replies'
 import { ComponentStoryObj, Meta } from '@storybook/react'
 
-import {
-  historyProviderDecorator,
-  tripleClientMetadataDecorator,
-} from '../../decorators'
+import Replies from './replies'
 
 export default {
   title: 'Replies',
   component: Replies,
-  decorators: [historyProviderDecorator, tripleClientMetadataDecorator],
   argTypes: {
     resourceId: {
       type: 'string',

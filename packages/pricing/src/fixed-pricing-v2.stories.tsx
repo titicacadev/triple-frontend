@@ -1,5 +1,6 @@
-import { FixedPricingV2 } from '@titicaca/pricing'
 import { ComponentStoryObj } from '@storybook/react'
+
+import FixedPricingV2 from './fixed-pricing-v2'
 
 export default {
   title: 'pricing / FixedPricingV2',

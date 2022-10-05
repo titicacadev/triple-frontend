@@ -71,7 +71,7 @@ const CallToAction = styled.a`
   cursor: pointer;
 `
 
-export default function AppBanner({
+function AppBanner({
   title,
   description,
   cta,
@@ -112,3 +112,5 @@ export default function AppBanner({
     </AppBannerFrame>
   )
 }
+
+export default AppBanner

@@ -9,7 +9,7 @@
       "@titicaca/intersection-observer": ["../intersection-observer/src"]
     }
   },
-  "include": ["./src"],
+  "include": ["./src", "./src/mocks/**/*.json"],
   "references": [
     {
       "path": "../core-elements"

@@ -1,5 +1,6 @@
-import { ImageBanner } from '@titicaca/app-installation-cta'
 import { ComponentStoryObj, Meta } from '@storybook/react'
+
+import ImageBanner from './image-banner'
 
 export default {
   title: 'app-installation-cta / AppInstallationCTA',
