@@ -1,5 +1,6 @@
-import { Container } from '@titicaca/core-elements'
 import { Meta, Story } from '@storybook/react'
+
+import Container from './elements/container'
 
 export default {
   title: 'Core-Elements / Container',

@@ -1,5 +1,6 @@
-import { Section, SectionProps } from '@titicaca/core-elements'
 import { Meta, StoryObj } from '@storybook/react'
+
+import Section, { SectionProps } from './elements/section'
 
 export default {
   title: 'Core-Elements / Section',

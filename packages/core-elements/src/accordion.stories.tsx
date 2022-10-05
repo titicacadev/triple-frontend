@@ -1,5 +1,7 @@
-import { Text, Accordion } from '@titicaca/core-elements'
 import { Meta, Story } from '@storybook/react'
+
+import Accordion from './elements/accordion'
+import Text from './elements/text'
 
 export default {
   title: 'Core-Elements / Accordion',
