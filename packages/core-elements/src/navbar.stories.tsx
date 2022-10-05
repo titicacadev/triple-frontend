@@ -1,11 +1,8 @@
-import {
-  Navbar,
-  Text,
-  SearchNavbar,
-  NavbarWrapper,
-} from '@titicaca/core-elements'
-import ListingFilter from '@titicaca/listing-filter'
 import styled from 'styled-components'
+
+import Navbar, { NavbarWrapper } from './elements/navbar'
+import SearchNavbar from './elements/search-navbar'
+import Text from './elements/text'
 
 const Toc = styled.div`
   position: absolute;
@@ -70,9 +67,9 @@ export function secondaryNavbar() {
         <Navbar.Item floated="right" icon="more" />
       </Navbar>
       <Navbar.Secondary>
-        <ListingFilter>
+        {/* <ListingFilter>
           <ListingFilter.FilterEntry active>전 지역</ListingFilter.FilterEntry>
-        </ListingFilter>
+        </ListingFilter> */}
       </Navbar.Secondary>
     </>
   )
@@ -87,9 +84,9 @@ export function wrappedNavbar() {
         <Navbar.Item floated="right" icon="more" />
       </Navbar>
       <Navbar.Secondary>
-        <ListingFilter>
+        {/* <ListingFilter>
           <ListingFilter.FilterEntry active>전 지역</ListingFilter.FilterEntry>
-        </ListingFilter>
+        </ListingFilter> */}
       </Navbar.Secondary>
     </NavbarWrapper>
   )
