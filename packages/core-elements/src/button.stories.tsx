@@ -1,6 +1,8 @@
-import { Button, ButtonProps, GlobalSizes } from '@titicaca/core-elements'
 import { Meta, Story } from '@storybook/react'
 import { Property } from 'csstype'
+
+import { GlobalSizes } from './commons'
+import Button, { ButtonProps } from './elements/button'
 
 export default {
   title: 'Core-Elements / Button',

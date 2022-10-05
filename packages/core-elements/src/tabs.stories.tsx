@@ -1,5 +1,6 @@
-import { Tabs } from '@titicaca/core-elements'
 import { ComponentStoryObj, Meta } from '@storybook/react'
+
+import Tabs from './elements/tabs'
 
 export default {
   title: 'Core-Elements / Tabs',
