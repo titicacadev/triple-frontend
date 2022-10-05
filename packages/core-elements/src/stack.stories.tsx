@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import { Stack } from '@titicaca/core-elements'
+
+import Stack from './elements/stack'
 
 export default {
   title: 'Core-Elements / Stack',

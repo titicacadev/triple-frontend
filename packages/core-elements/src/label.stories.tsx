@@ -1,5 +1,6 @@
-import { Label } from '@titicaca/core-elements'
 import { ComponentStoryObj, Meta } from '@storybook/react'
+
+import Label from './elements/label'
 
 export default {
   title: 'Core-Elements / Label',

@@ -1,4 +1,5 @@
-import { Spinner, RollingSpinner } from '@titicaca/core-elements'
+import RollingSpinner from './elements/spinner/rolling-spinner'
+import Spinner from './elements/spinner/spinner'
 
 export default {
   title: 'Core-Elements / Spinner',

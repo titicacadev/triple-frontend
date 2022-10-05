@@ -1,5 +1,6 @@
-import { Rating } from '@titicaca/core-elements'
 import { ComponentStoryObj, Meta } from '@storybook/react'
+
+import Rating from './elements/rating'
 
 export default {
   title: 'Core-Elements / Rating',
