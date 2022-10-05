@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Radio } from '@titicaca/core-elements'
+
+import Radio from './elements/radio'
 
 export default function RadioWrapper() {
   const [value, setValue] = useState<string | null | undefined>(undefined)
