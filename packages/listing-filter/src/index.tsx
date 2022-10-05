@@ -200,7 +200,7 @@ const ListingFilterBase = styled.div<{ padding?: MarginPadding }>`
   ${paddingMixin}
 `
 
-export default class ListingFilter extends PureComponent<{
+class ListingFilter extends PureComponent<{
   padding?: MarginPadding
 }> {
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -223,3 +223,5 @@ export default class ListingFilter extends PureComponent<{
     return <ListingFilterBase padding={padding}>{children}</ListingFilterBase>
   }
 }
+
+export default ListingFilter

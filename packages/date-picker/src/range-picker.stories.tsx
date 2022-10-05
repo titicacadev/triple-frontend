@@ -1,12 +1,10 @@
-import { RangePicker } from '@titicaca/date-picker'
 import { ComponentStoryObj, Meta } from '@storybook/react'
 
-import { newDateMockingDecorator } from '../../decorators'
+import RangePicker from './range-picker'
 
 export default {
   title: 'date-picker / RangePicker',
   component: RangePicker,
-  decorators: [newDateMockingDecorator],
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof RangePicker> = {

@@ -1,0 +1,96 @@
+{
+  "id": "a3784ffc-79d2-4b09-b02b-e0f964b5b70d",
+  "resourceType": "attraction",
+  "media": [
+    {
+      "cloudinaryId": "86dc0526-2752-4382-bcf3-a462af6d1f3a",
+      "id": "b6374985-7cca-4b78-bf43-cc6f9d04ecc1",
+      "type": "image",
+      "sizes": {
+        "full": {
+          "url": "https://media.triple.guide/triple-dev/c_limit,f_auto,h_2048,w_2048/86dc0526-2752-4382-bcf3-a462af6d1f3a.jpeg"
+        },
+        "large": {
+          "url": "https://media.triple.guide/triple-dev/c_limit,f_auto,h_1024,w_1024/86dc0526-2752-4382-bcf3-a462af6d1f3a.jpeg"
+        },
+        "small_square": {
+          "url": "https://media.triple.guide/triple-dev/c_fill,f_auto,h_256,w_256/86dc0526-2752-4382-bcf3-a462af6d1f3a.jpeg"
+        }
+      },
+      "width": 1078,
+      "height": 1440,
+      "cloudinaryBucket": "triple-dev"
+    },
+    {
+      "cloudinaryId": "91d9c1d0-300d-4fea-9146-31e339262344",
+      "id": "3f66edb6-b97d-420c-bfd4-54e3deb64e0d",
+      "type": "image",
+      "sizes": {
+        "full": {
+          "url": "https://media.triple.guide/triple-dev/c_limit,f_auto,h_2048,w_2048/91d9c1d0-300d-4fea-9146-31e339262344.jpeg"
+        },
+        "large": {
+          "url": "https://media.triple.guide/triple-dev/c_limit,f_auto,h_1024,w_1024/91d9c1d0-300d-4fea-9146-31e339262344.jpeg"
+        },
+        "small_square": {
+          "url": "https://media.triple.guide/triple-dev/c_fill,f_auto,h_256,w_256/91d9c1d0-300d-4fea-9146-31e339262344.jpeg"
+        }
+      },
+      "width": 1080,
+      "height": 1440,
+      "cloudinaryBucket": "triple-dev"
+    },
+    {
+      "cloudinaryId": "b1a6446b-cfb4-4fa9-9b08-d4ceeea6252f",
+      "id": "7c6205d7-de16-4451-9057-083001e4bb9d",
+      "type": "image",
+      "sizes": {
+        "full": {
+          "url": "https://media.triple.guide/triple-dev/c_limit,f_auto,h_2048,w_2048/b1a6446b-cfb4-4fa9-9b08-d4ceeea6252f.jpeg"
+        },
+        "large": {
+          "url": "https://media.triple.guide/triple-dev/c_limit,f_auto,h_1024,w_1024/b1a6446b-cfb4-4fa9-9b08-d4ceeea6252f.jpeg"
+        },
+        "small_square": {
+          "url": "https://media.triple.guide/triple-dev/c_fill,f_auto,h_256,w_256/b1a6446b-cfb4-4fa9-9b08-d4ceeea6252f.jpeg"
+        }
+      },
+      "width": 1080,
+      "height": 1440,
+      "cloudinaryBucket": "triple-dev"
+    }
+  ],
+  "rating": 4,
+  "visitDate": "2022-04",
+  "likesCount": 3,
+  "reviewedAt": "2022-05-30T05:09:41.416Z",
+  "user": {
+    "unregister": false,
+    "uid": "LKfR6Z3QGLb3rgKHXuJhpdgvfeS2",
+    "photo": "https://media.triple.guide/titicaca-imgs/image/upload/v1490937645/defaul_profile05_imckmy.png",
+    "name": "hjazz",
+    "mileage": {
+      "level": 3,
+      "point": 201,
+      "badges": [
+        {
+          "icon": {
+            "image_url": "https://assets.triple.guide/images/img_badge_level3.png"
+          }
+        }
+      ]
+    },
+    "userBoard": {
+      "trips": 17,
+      "reviews": 0,
+      "thanks": 5,
+      "reports": 1,
+      "reviewsV2": 16,
+      "itineraries": 4,
+      "scraps": 0
+    }
+  },
+  "comment": "미디어 3개",
+  "liked": false,
+  "recentTrip": false
+}

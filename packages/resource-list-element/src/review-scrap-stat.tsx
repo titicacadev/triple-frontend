@@ -3,7 +3,7 @@ import { formatNumber } from '@titicaca/view-utilities'
 
 import ResourceListElementStats from './stats'
 
-export default function ReviewScrapStat({
+function ReviewScrapStat({
   reviewsCount,
   scrapsCount,
   reviewsRating,
@@ -35,3 +35,5 @@ export default function ReviewScrapStat({
     </Container>
   )
 }
+
+export default ReviewScrapStat

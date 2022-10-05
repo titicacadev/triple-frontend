@@ -1,5 +1,6 @@
-import { Actions } from '@titicaca/poi-detail'
 import { ComponentStoryObj, Meta } from '@storybook/react'
+
+import Actions from './actions'
 
 export default {
   title: 'poi-detail / Actions',

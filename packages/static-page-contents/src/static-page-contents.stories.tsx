@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import { StaticPageContents } from '@titicaca/static-page-contents'
+
+import { StaticPageContents } from '.'
 
 export default {
   title: 'Static Page Contents',

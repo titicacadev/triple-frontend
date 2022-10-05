@@ -1,5 +1,6 @@
-import { FloatingButtonCTA } from '@titicaca/app-installation-cta'
 import { ComponentStoryObj, Meta } from '@storybook/react'
+
+import FloatingButtonCTA from './floating-button-cta'
 
 export default {
   title: 'app-installation-cta / FloatingButtonCTA',

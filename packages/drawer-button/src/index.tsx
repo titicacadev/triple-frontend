@@ -15,7 +15,7 @@ const ButtonWithSafeAreaInset = styled(Button)`
   ${safeAreaInsetMixin}
 `
 
-export default function DrawerButton({
+function DrawerButton({
   active,
   zTier = 2,
   zIndex = 1,
@@ -38,3 +38,5 @@ export default function DrawerButton({
     </Drawer>
   )
 }
+
+export default DrawerButton

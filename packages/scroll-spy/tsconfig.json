@@ -9,7 +9,7 @@
       "@titicaca/react-hooks": ["../react-hooks/src"]
     }
   },
-  "include": ["./src"],
+  "include": ["./src", "./src/mocks/**/*.json"],
   "references": [
     {
       "path": "../intersection-observer"

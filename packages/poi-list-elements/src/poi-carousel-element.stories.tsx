@@ -1,7 +1,7 @@
-import { PoiCarouselElement } from '@titicaca/poi-list-elements'
 import { ComponentStoryObj, Meta } from '@storybook/react'
 
-import POIS from '../__mocks__/pois.sample.json'
+import POIS from './mocks/pois.sample.json'
+import PoiCarouselElement from './carousel-element'
 
 export default {
   title: 'poi-list-elements / PoiCarouselElement',

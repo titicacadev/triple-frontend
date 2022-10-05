@@ -1,5 +1,6 @@
-import { ResourceListElementStats } from '@titicaca/resource-list-element'
 import { Meta, StoryObj } from '@storybook/react'
+
+import ResourceListElementStats from './stats'
 
 export default {
   title: 'resource-list-element / resource-list-element-stats',

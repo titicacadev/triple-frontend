@@ -1,4 +1,3 @@
-import { ImageCarousel } from '@titicaca/poi-detail'
 import {
   ImagesProvider,
   UserAgentProvider,
@@ -6,12 +5,11 @@ import {
 } from '@titicaca/react-contexts'
 import { ComponentStoryObj, Meta } from '@storybook/react'
 
-import { tripleClientMetadataDecorator } from '../../decorators'
+import { ImageCarousel } from '@titicaca/poi-detail'
 
 export default {
   title: 'poi-detail / ImageCarousel',
   component: ImageCarousel,
-  decorators: [tripleClientMetadataDecorator],
 } as Meta
 
 export const AttractionOrRestaurant: ComponentStoryObj<typeof ImageCarousel> = {

@@ -20,7 +20,7 @@ function ActionItem(
   )
 }
 
-export default function ActionSheet({
+function ActionSheet({
   onClose,
   ...restProps
 }: ActionSheetContextValue & Parameters<typeof ActionSheetUI>[0]) {
@@ -32,3 +32,5 @@ export default function ActionSheet({
 }
 
 ActionSheet.Item = ActionItem
+
+export default ActionSheet

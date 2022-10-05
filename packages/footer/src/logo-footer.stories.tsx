@@ -1,12 +1,10 @@
-import { LogoFooter } from '@titicaca/footer'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { sessionContextProviderDecorator } from '../../decorators'
+import LogoFooter from './logo-footer'
 
 export default {
   title: 'footer / LogoFooter',
   component: LogoFooter,
-  decorators: [sessionContextProviderDecorator],
 } as Meta
 
 export const Basic: StoryObj = {
