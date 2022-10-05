@@ -131,7 +131,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          workingDir: docs
 
       - name: Notify publishing to Chromatic failure
         if: failure() && steps.publish-to-chromatic.outcome == 'failure'
@@ -147,7 +146,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          workingDir: docs
           autoAcceptChanges: true
 
   test:
