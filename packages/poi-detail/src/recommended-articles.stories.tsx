@@ -1,5 +1,6 @@
-import { RecommendedArticles } from '@titicaca/poi-detail'
 import { ComponentStoryObj, Meta } from '@storybook/react'
+
+import RecommendedArticles from './recommended-articles/recommended-articles'
 
 export default {
   title: 'poi-detail / RecommendedArticles',
