@@ -1,9 +1,4 @@
-import {
-  FlexBox,
-  Text,
-  Container,
-  StyledFlexBox,
-} from '@titicaca/core-elements'
+import { FlexBox, Text, Container } from '@titicaca/core-elements'
 import styled from 'styled-components'
 import { useState } from 'react'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
@@ -83,10 +78,10 @@ export default function RecentCheckBox({
         cursor: 'pointer',
       }}
     >
-      <StyledFlexBox flex alignItems="center" onClick={onRecentReviewChange}>
+      <FlexBox flex alignItems="center" onClick={onRecentReviewChange}>
         <CheckBox readOnly type="checkbox" checked={isRecentReview} />
         <Text size={14}>최근 여행</Text>
-      </StyledFlexBox>
+      </FlexBox>
       <ToolTip />
     </FlexBox>
   )
