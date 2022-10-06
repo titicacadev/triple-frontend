@@ -42,11 +42,7 @@ export {
 } from './elements/sticky-header'
 export { default as Stack, StackProps } from './elements/stack'
 export * from './elements/video'
-export {
-  default as FlexBox,
-  FlexBoxProps,
-  StyledFlexBox,
-} from './elements/flex-box'
+export { default as FlexBox, FlexBoxProps } from './elements/flex-box'
 export * from './elements/skeleton'
 export * from './global-style'
 export * from './utils/form-field'
