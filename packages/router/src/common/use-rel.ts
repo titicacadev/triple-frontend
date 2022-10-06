@@ -26,5 +26,5 @@ export interface RelListProps {
 }
 
 export function useRel(relList: LinkType[] = []): string {
-  return [...new Set(['noopener', 'noreferer', ...relList])].join(' ')
+  return Array.from(new Set(['noopener', 'noreferer', ...relList])).join(' ')
 }
