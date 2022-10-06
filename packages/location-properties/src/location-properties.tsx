@@ -109,7 +109,7 @@ function LocationProperties({
     <>
       <Segment {...props}>
         <List verticalGap={15}>
-          {[...properties.entries()].map(([key, props]) => (
+          {Array.from(properties.entries()).map(([key, props]) => (
             <PropertyItem key={key} identifier={key} {...props} />
           ))}
         </List>
