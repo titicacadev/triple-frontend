@@ -16,6 +16,5 @@
         "throwIfNamespace": false
       }
     }
-  },
-  "exclude": [".*\\.(test|spec|stories)\\.(js|ts)x?$"]
+  }
 }
