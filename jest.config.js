@@ -1,6 +1,6 @@
 const { pathsToModuleNameMapper } = require('ts-jest')
 
-const { compilerOptions } = require('./tsconfig.test')
+const { compilerOptions } = require('./tsconfig.json')
 
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
@@ -8,13 +8,8 @@ module.exports = {
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['lib', 'node_modules'],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
-    prefix: '<rootDir>/packages',
+    prefix: '<rootDir>',
   }),
-  globals: {
-    'ts-jest': {
-      tsconfig: 'tsconfig.test.json',
-    },
-  },
   collectCoverageFrom: [
     '<rootDir>/packages/**/*.{js,jsx,ts,tsx}',
     '!**/lib/**',
