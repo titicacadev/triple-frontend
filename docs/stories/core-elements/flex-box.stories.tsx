@@ -15,7 +15,7 @@ const Summary = styled(Text)`
   margin-bottom: 30px;
 `
 
-const Item = styled(FlexBox)`
+const Item = styled(FlexBox.Item)`
   border: 2px solid #e91e63;
   padding: 10px;
   border-radius: 10px;
@@ -25,12 +25,47 @@ export const Flex = () => {
   return (
     <Section>
       <Summary>
-        {`flex 속성을 추가하면 display: flex 가 적용됩니다. \n FlexBox 는 Container 를 상속받아 구성되어있기 때문에 Container 의 Prop 을 그대로 이용 할 수 있습니다.`}
+        flex 속성을 추가하면 display: flex 가 적용됩니다. <br />
+        FlexBox 는 Container 를 상속받아 구성되어있기 때문에 Container 의 Prop
+        을 그대로 이용 할 수 있습니다.
+        <br />
+        flex children 요소가 사용 가능한 flex, flexGrow, flexShrink, flexBasis,
+        alignSelf, order는 중첩된 구조의 flex 사용 시에만 사용 권장합니다.
       </Summary>
       <FlexBox flex>
         <Item>Item1</Item>
         <Item>Item2</Item>
         <Item>Item3</Item>
+      </FlexBox>
+    </Section>
+  )
+}
+
+export const FlexItem = () => {
+  return (
+    <Section>
+      <Summary>
+        FlexBox 내부에 Item이 있을 경우 FlexBox가 아닌 FlexBox.Item으로 사용할
+        수 있습니다.
+        <br />
+        flex children 요소가 사용 가능한 flex, flexGrow, flexShrink, flexBasis,
+        alignSelf, order가 사용 가능합니다.
+        <br />
+        이외의 스타일은 css prop으로 사용합니다.
+      </Summary>
+      <FlexBox flex>
+        <FlexBox.Item
+          order={3}
+          css={`
+            border: 2px solid #e91e63;
+            padding: 10px;
+            border-radius: 10px;
+          `}
+        >
+          Item1 (order=3)
+        </FlexBox.Item>
+        <FlexBox.Item>Item2</FlexBox.Item>
+        <FlexBox.Item>Item3</FlexBox.Item>
       </FlexBox>
     </Section>
   )
