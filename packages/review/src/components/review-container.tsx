@@ -165,7 +165,7 @@ function ReviewContainer({
     (review) =>
       setMyReviewStatus(([, ids]) => [
         review,
-        review ? new Set<string>([String(review.id), ...ids]) : ids,
+        review ? new Set<string>([String(review.id), ...Array.from(ids)]) : ids,
       ]),
     [setMyReviewStatus],
   )
