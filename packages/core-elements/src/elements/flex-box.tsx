@@ -37,7 +37,7 @@ const FlexItem = styled(Container)<FlexItemProps>(
   (props) => props.css,
 )
 
-export const StyledFlexBox = styled(Container)<FlexBoxProps>(
+const StyledFlexBox = styled(Container)<FlexBoxProps>(
   (props) => ({
     display: props.flex ? 'flex' : undefined,
     flexDirection: props.flexDirection,
