@@ -4,7 +4,14 @@
     "outDir": "./lib",
     "rootDir": "src",
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@titicaca/react-contexts": ["../react-contexts/src"]
+    }
   },
-  "include": ["./src"]
+  "include": ["./src"],
+  "references": [
+    {
+      "path": "../react-contexts"
+    }
+  ]
 }
