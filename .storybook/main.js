@@ -16,7 +16,6 @@ module.exports = {
           module: {
             type: 'es6',
           },
-          exclude: [],
         },
       },
     },
