@@ -1,1 +1,5 @@
+[production]
+iOS >= 13.4, last 3 Safari versions, > 0.5% in KR, not dead
+
+[development]
 last 1 chrome version
