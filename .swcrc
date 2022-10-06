@@ -17,5 +17,5 @@
       }
     }
   },
-  "exclude": [".*/.(test|spec|stories)/.(js|ts)x?$"]
+  "exclude": [".*\\.(test|spec|stories)\\.(js|ts)x?$"]
 }
