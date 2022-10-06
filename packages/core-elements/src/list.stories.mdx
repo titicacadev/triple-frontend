@@ -1,8 +1,6 @@
 import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
 import { List } from '@titicaca/core-elements'
 
-import { ColorBox } from '../color-palette/color-box'
-
 <Meta title="Core-Elements / List" />
 
 # List
@@ -20,9 +18,7 @@ import { ColorBox } from '../color-palette/color-box'
       dividerWeight={1}
     >
       {[...Array(5).keys()].map((_, idx) => (
-        <List.Item key={idx}>
-          <ColorBox color="blue" />
-        </List.Item>
+        <List.Item key={idx}>{/* <ColorBox color="blue" /> */}</List.Item>
       ))}
     </List>
   </Story>
