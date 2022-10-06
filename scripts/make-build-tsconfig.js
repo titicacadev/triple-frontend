@@ -3,15 +3,54 @@ const fs = require('fs')
 
 const prettier = require('prettier')
 
-const EXCLUDED_FOR_BUILD = ['node_modules', 'lib', '**/*.test.*', '**/*.spec.*']
+const INCLUDED_FOR_BUILD = ['src/**/*', 'src/**/*.json']
+const EXCLUDED_FOR_BUILD = [
+  'lib',
+  '**/*.test.*',
+  '**/*.spec.*',
+  '**/*.stories.*',
+]
+
+function dependenciesToReferences(deps) {
+  if (!deps) {
+    return []
+  }
+  return Object.keys(deps)
+    .filter((packageName) => packageName.startsWith('@titicaca/'))
+    .map((packageName) =>
+      path.relative(
+        process.cwd(),
+        path.join(
+          process.env.LERNA_ROOT_PATH,
+          './packages',
+          packageName.replace('@titicaca/', ''),
+        ),
+      ),
+    )
+    .filter((packagePath) => fs.existsSync(packagePath))
+    .map((path) => ({ path }))
+}
+
+const {
+  dependencies,
+  devDependencies,
+  peerDependencies,
+} = require(path.resolve(process.cwd(), './package.json'))
+
+const references = [
+  ...dependenciesToReferences(dependencies),
+  ...dependenciesToReferences(devDependencies),
+  ...dependenciesToReferences(peerDependencies),
+].sort()
 
 async function main() {
-  const tsconfig = await fs.promises.readFile(
-    path.resolve(process.cwd(), './tsconfig.json'),
-  )
-  const { references } = JSON.parse(tsconfig)
   const buildTsconfig = {
-    extends: './tsconfig.json',
+    extends: '../../tsconfig.json',
+    compilerOptions: {
+      outDir: './lib',
+      rootDir: 'src',
+    },
+    include: INCLUDED_FOR_BUILD,
     exclude: EXCLUDED_FOR_BUILD,
     references: references
       ? references.map(({ path }) => ({
