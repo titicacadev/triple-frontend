@@ -35,8 +35,8 @@
     "lint:style:fix": "stylelint '**/*.{js,ts,tsx}' --fix",
     "lint": "npm run lint:es && npm run lint:etc && npm run lint:style",
     "lint:fix": "npm run lint:es:fix && npm run lint:etc:fix && npm run lint:style:fix",
-    "storybook": "start-storybook --quiet -p 6006 -s ./public",
-    "build-storybook": "build-storybook --quiet -s ./public",
+    "storybook": "start-storybook --quiet -p 6006",
+    "build-storybook": "build-storybook --quiet",
     "chromatic": "chromatic --project-token=CHROMATIC_PROJECT_TOKEN"
   },
   "devDependencies": {
