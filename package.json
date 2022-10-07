@@ -6,7 +6,7 @@
   },
   "packageManager": "npm@8.5.5",
   "scripts": {
-    "dev": "npm run build && concurrently --names watch:resources,watch:declarations,docs --kill-others 'npm:watch:resources' 'npm:watch:declarations' 'npm:dev-docs'",
+    "dev": "npm run storybook",
     "watch:resources": "node scripts/build-watch",
     "watch:declarations": "npm run build-declarations -- --watch",
     "build": "FORCE_COLOR=1 turbo run build && npm run build-declarations",
