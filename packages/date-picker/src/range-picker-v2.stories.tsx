@@ -1,10 +1,17 @@
 import { ComponentStoryObj, Meta } from '@storybook/react'
+import MockDate from 'mockdate'
 
 import { RangePickerV2, PickerFrame } from './range-picker-v2'
 
 export default {
   title: 'date-picker / RangePickerV2',
   component: RangePickerV2,
+  decorators: [
+    (Story) => {
+      MockDate.set('1/1/2022')
+      return <Story />
+    },
+  ],
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof RangePickerV2> = {
