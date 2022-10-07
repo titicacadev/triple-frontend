@@ -51,3 +51,21 @@ export const LineWithScroll: ComponentStoryObj<typeof Tabs> = {
     value: '투어티켓',
   },
 }
+export const RoundedTabWithScroll: ComponentStoryObj<typeof Tabs> = {
+  name: '둥근 탭 스크롤',
+  args: {
+    scroll: true,
+    type: 'rounded',
+    options: [
+      { label: '김포 - 제주', value: '김포 - 제주' },
+      { label: '김포 - 여수', value: '김포 - 여수' },
+      { label: '김포 - 동탄', value: '김포 - 동탄' },
+      { label: '김포 - 부평', value: '김포 - 부평' },
+      { label: '김포 - 부산', value: '김포 - 부산' },
+      { label: '김포 - 트리플', value: '김포 - 트리플' },
+      { label: '김포 - 백현동', value: '김포 - 백현동' },
+      { label: '김포 - 김파이브', value: '김포 - 김파이브' },
+    ],
+    value: '김포 - 제주',
+  },
+}
