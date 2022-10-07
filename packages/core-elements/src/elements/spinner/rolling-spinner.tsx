@@ -134,7 +134,7 @@ export default function RollingSpinner({
 >) {
   const images = useMemo(
     () =>
-      new Array(5).map((_, idx) => {
+      Array.from({ length: 5 }).map((_, idx) => {
         return (
           <ImageContainer key={idx} duration={duration} offset={idx}>
             {imageUrls.map((url: string, index: number) => (
