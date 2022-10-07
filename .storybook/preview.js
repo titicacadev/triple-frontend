@@ -18,12 +18,12 @@ export const parameters = {
 
 export const decorators = [
   globalStyleDecorator,
-  envProviderDecorator,
-  sessionContextProviderDecorator,
-  historyProviderDecorator,
-  userAgentProviderDecorator,
-  tripleClientMetadataDecorator,
   newDateMockingDecorator,
+  tripleClientMetadataDecorator,
+  userAgentProviderDecorator,
+  historyProviderDecorator,
+  sessionContextProviderDecorator,
+  envProviderDecorator,
 ]
 
 export function globalStyleDecorator(Story) {
