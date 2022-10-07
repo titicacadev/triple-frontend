@@ -7,7 +7,6 @@ import {
 } from '@titicaca/react-contexts'
 import { TripleClientMetadataProvider } from '@titicaca/react-triple-client-interfaces'
 import { GlobalStyle } from '@titicaca/core-elements'
-import MockDate from 'mockdate'
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -18,7 +17,6 @@ export const parameters = {
 
 export const decorators = [
   globalStyleDecorator,
-  newDateMockingDecorator,
   tripleClientMetadataDecorator,
   userAgentProviderDecorator,
   historyProviderDecorator,
@@ -101,9 +99,4 @@ export function tripleClientMetadataDecorator(Story) {
       <Story />
     </TripleClientMetadataProvider>
   )
-}
-
-export function newDateMockingDecorator(Story) {
-  MockDate.set('1/1/2022')
-  return <Story />
 }
