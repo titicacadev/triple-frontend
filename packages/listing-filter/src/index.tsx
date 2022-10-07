@@ -168,6 +168,7 @@ interface FilterEntryProps extends HTMLAttributes<HTMLElement> {
 }
 
 function FilterEntry({
+  className,
   active,
   activeIconImage,
   inactiveIconImage,
@@ -175,10 +176,17 @@ function FilterEntry({
   ...props
 }: FilterEntryProps) {
   if (underline) {
-    return <UnderlineRegularFilterEntry active={active} {...props} />
+    return (
+      <UnderlineRegularFilterEntry
+        className={className}
+        active={active}
+        {...props}
+      />
+    )
   }
   return (
     <RegularFilterEntry
+      className={className}
       active={active}
       iconImage={active ? activeIconImage : inactiveIconImage}
       withIcon={!!(activeIconImage && inactiveIconImage)}
