@@ -19,10 +19,8 @@ export const parameters = {
 export const decorators = [
   globalStyleDecorator,
   envProviderDecorator,
-  historyProviderDecorator,
   sessionContextProviderDecorator,
   historyProviderDecorator,
-  sessionContextProviderDecorator,
   userAgentProviderDecorator,
   tripleClientMetadataDecorator,
   newDateMockingDecorator,
@@ -58,61 +56,27 @@ export function envProviderDecorator(Story) {
 
 export function historyProviderDecorator(Story) {
   return (
-    <EnvProvider
-      appUrlScheme="dev-soto"
-      webUrlBase="https://triple-dev.titicaca-corp.com"
-      authBasePath="MOCK_AUTH_BASE_PATH"
-      facebookAppId=""
-      defaultPageTitle=""
-      defaultPageDescription=""
-      googleMapsApiKey="AIzaSyDuSWU_yBwuQzeyRFcTqhyifqNX_8oaXI4"
-      afOnelinkId=""
-      afOnelinkPid=""
-      afOnelinkSubdomain=""
+    <HistoryProvider
+      isPublic={false}
+      isAndroid={false}
+      transitionModalHash="transition.general"
     >
-      <SessionContextProvider
-        type="browser"
-        props={{
-          initialUser: undefined,
-          initialSessionAvailability: false,
-        }}
-      >
-        <HistoryProvider
-          isPublic={false}
-          isAndroid={false}
-          transitionModalHash="transition.general"
-        >
-          <Story />
-        </HistoryProvider>
-      </SessionContextProvider>
-    </EnvProvider>
+      <Story />
+    </HistoryProvider>
   )
 }
 
 export function sessionContextProviderDecorator(Story) {
   return (
-    <EnvProvider
-      appUrlScheme="dev-soto"
-      webUrlBase="https://triple-dev.titicaca-corp.com"
-      authBasePath="MOCK_AUTH_BASE_PATH"
-      facebookAppId=""
-      defaultPageTitle=""
-      defaultPageDescription=""
-      googleMapsApiKey="AIzaSyDuSWU_yBwuQzeyRFcTqhyifqNX_8oaXI4"
-      afOnelinkId=""
-      afOnelinkPid=""
-      afOnelinkSubdomain=""
+    <SessionContextProvider
+      type="browser"
+      props={{
+        initialUser: undefined,
+        initialSessionAvailability: false,
+      }}
     >
-      <SessionContextProvider
-        type="browser"
-        props={{
-          initialUser: undefined,
-          initialSessionAvailability: false,
-        }}
-      >
-        <Story />
-      </SessionContextProvider>
-    </EnvProvider>
+      <Story />
+    </SessionContextProvider>
   )
 }
 
