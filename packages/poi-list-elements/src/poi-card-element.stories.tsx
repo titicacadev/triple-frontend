@@ -1,11 +1,11 @@
-import { ComponentStoryObj, Meta } from '@storybook/react'
+import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 
 import PoiCardElement from './poi-card-element'
 
 export default {
   title: 'poi-list-elements / PoiCardElement',
   component: PoiCardElement,
-} as Meta
+} as ComponentMeta<typeof PoiCardElement>
 
 export const Hotel: ComponentStoryObj<typeof PoiCardElement> = {
   args: {

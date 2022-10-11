@@ -1,14 +1,13 @@
-import { Meta, StoryObj } from '@storybook/react'
+import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 
 import RangeSlider from './range-slider'
 
 export default {
   title: 'slider / RangeSlider',
   component: RangeSlider,
-} as Meta
+} as ComponentMeta<typeof RangeSlider>
 
-export const BaseRangeSlider: StoryObj = {
-  name: 'RangeSlider',
+export const Basic: ComponentStoryObj<typeof RangeSlider> = {
   args: {
     min: 0,
     max: 500000,
@@ -17,8 +16,7 @@ export const BaseRangeSlider: StoryObj = {
   },
 }
 
-export const AdjustedRangeSlider: StoryObj = {
-  name: 'AdjustedRangeSlider',
+export const Adjusted: ComponentStoryObj<typeof RangeSlider> = {
   args: {
     min: 1,
     max: 31,
