@@ -1,27 +1,28 @@
 import styled from 'styled-components'
-import { ComponentStory, ComponentStoryObj, Meta } from '@storybook/react'
+import {
+  ComponentMeta,
+  ComponentStory,
+  ComponentStoryObj,
+} from '@storybook/react'
 
 import ActionSheet from './index'
 
 export default {
   title: 'action-sheet / action-sheet',
   component: ActionSheet,
-} as Meta
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  subcomponents: { Item: ActionSheet.Item },
+  parameters: {
+    docs: {
+      inlineStories: false,
+      iframeHeight: 500,
+    },
+  },
+} as ComponentMeta<typeof ActionSheet>
 
 export const Basic: ComponentStoryObj<typeof ActionSheet> = {
-  name: '기본 액션시트',
   args: {
-    open: false,
-    title: '샘플 액션 시트',
-    borderRadius: 12,
-    from: 'bottom',
-    maxContentHeight: 100,
-    padding: {
-      top: 20,
-      left: 25,
-      bottom: 30,
-      right: 25,
-    },
+    open: true,
     children: (
       <>
         <ActionSheet.Item>메뉴 1</ActionSheet.Item>
