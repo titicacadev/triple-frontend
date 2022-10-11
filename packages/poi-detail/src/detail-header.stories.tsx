@@ -55,7 +55,6 @@ export const WithBusinessHoursNote: ComponentStoryObj<typeof DetailHeader> = {
     reviewsCount: 13859,
     reviewsRating: 4.45,
     todayBusinessHours: '11:00 - 18:00',
-    onBusinessHoursClick: undefined,
     permanentlyClosed: false,
   },
 }

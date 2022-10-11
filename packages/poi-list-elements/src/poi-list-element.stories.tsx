@@ -1,4 +1,4 @@
-import { ComponentStoryObj, Meta } from '@storybook/react'
+import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 
 import POIS from './mocks/pois.sample.json'
 import HOTELS from './mocks/hotels.sample.json'
@@ -7,7 +7,7 @@ import { PoiListElement } from './poi-list-element'
 export default {
   title: 'poi-list-elements / PoiList',
   component: PoiListElement,
-} as Meta
+} as ComponentMeta<typeof PoiListElement>
 
 const [POI] = POIS
 const [HOTEL] = HOTELS

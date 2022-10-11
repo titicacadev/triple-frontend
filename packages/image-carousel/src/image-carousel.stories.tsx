@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { ImageSource } from '@titicaca/core-elements'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import IMAGES from './mocks/image-carousel.sample.json'
 import VIDEOS from './mocks/video-carousel.sample.json'
@@ -9,7 +10,7 @@ import { PageLabel } from './page-label'
 export default {
   title: 'image-carousel / Image Carousel',
   component: ImageCarousel,
-}
+} as ComponentMeta<typeof ImageCarousel>
 
 const MoreImageOverlayLink = styled.a`
   width: 100%;
@@ -36,7 +37,7 @@ const OverlayContent = () => {
   )
 }
 
-export const Basic = () => {
+export const Basic: ComponentStory<typeof ImageCarousel> = () => {
   return (
     <ImageCarousel
       size="medium"
@@ -57,9 +58,8 @@ export const Basic = () => {
     />
   )
 }
-Basic.storyName = '일반'
 
-export const Video = () => {
+export const Video: ComponentStory<typeof ImageCarousel> = () => {
   return (
     <ImageCarousel
       size="medium"
@@ -80,4 +80,3 @@ export const Video = () => {
     />
   )
 }
-Video.storyName = '비디오'
