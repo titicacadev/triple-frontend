@@ -1,8 +1,6 @@
-import { Meta, Story } from '@storybook/react'
-import { EnvProvider } from '@titicaca/react-contexts'
-import { TripleClientMetadataProvider } from '@titicaca/react-triple-client-interfaces'
+import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 
-import { PublicHeader, PublicHeaderProps } from './public-header'
+import { PublicHeader } from './public-header'
 
 export default {
   title: 'public-header / PublicHeader',
@@ -13,37 +11,34 @@ export default {
       options: ['air', 'hotels', 'tna'],
     },
   },
-} as Meta
+} as ComponentMeta<typeof PublicHeader>
 
-const Template: Story<PublicHeaderProps> = (args) => {
-  return (
-    <EnvProvider
-      afOnelinkId=""
-      afOnelinkPid=""
-      afOnelinkSubdomain=""
-      appUrlScheme=""
-      defaultPageDescription=""
-      defaultPageTitle=""
-      facebookAppId=""
-      webUrlBase=""
-    >
-      <TripleClientMetadataProvider
-        {...TripleClientMetadataProvider.getInitialProps({})}
-      >
-        <PublicHeader {...args} />
-      </TripleClientMetadataProvider>
-    </EnvProvider>
-  )
+export const Basic: ComponentStoryObj<typeof PublicHeader> = {
+  args: {
+    deeplinkPath: 'https://triple.guide',
+    disableAutoHide: true,
+  },
 }
 
-export const Basic = Template.bind({})
-Basic.args = {
-  deeplinkPath: 'https://triple.guide',
-  category: undefined,
+export const Air: ComponentStoryObj<typeof PublicHeader> = {
+  args: {
+    deeplinkPath: 'https://triple.guide',
+    disableAutoHide: true,
+    category: 'air',
+  },
+}
+export const Hotels: ComponentStoryObj<typeof PublicHeader> = {
+  args: {
+    deeplinkPath: 'https://triple.guide',
+    disableAutoHide: true,
+    category: 'hotels',
+  },
 }
 
-export const DisableAutoHide = Template.bind({})
-DisableAutoHide.args = {
-  ...Basic.args,
-  disableAutoHide: true,
+export const Tna: ComponentStoryObj<typeof PublicHeader> = {
+  args: {
+    deeplinkPath: 'https://triple.guide',
+    disableAutoHide: true,
+    category: 'tna',
+  },
 }
