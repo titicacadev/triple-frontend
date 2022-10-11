@@ -1,4 +1,4 @@
-import { ComponentStoryObj, Meta } from '@storybook/react'
+import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 
 import POIS from './mocks/pois.sample.json'
 import PoiCarouselElement from './carousel-element'
@@ -6,7 +6,7 @@ import PoiCarouselElement from './carousel-element'
 export default {
   title: 'poi-list-elements / PoiCarouselElement',
   component: PoiCarouselElement,
-} as Meta
+} as ComponentMeta<typeof PoiCarouselElement>
 
 const [POI] = POIS
 

@@ -18,6 +18,7 @@ import { ReviewLikesProvider } from './components/review-likes-context'
 const queryClient = new QueryClient()
 
 export default {
+  title: 'Review / Review Element',
   component: ReviewElement,
   decorators: [
     (Story) => (
