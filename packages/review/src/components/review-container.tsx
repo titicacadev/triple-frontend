@@ -361,7 +361,7 @@ function ReviewContainer({
         justifyContent="space-between"
         alignItems="center"
         css={{
-          margin: '23px 0 0 0',
+          margin: '23px 0 0',
         }}
       >
         <SortingOptions
@@ -413,7 +413,7 @@ function ReviewContainer({
           {reviewsCount > SHORTENED_REVIEWS_COUNT_PER_PAGE && shortened ? (
             <Container
               css={{
-                margin: '40px 0 0 0',
+                margin: '40px 0 0',
               }}
             >
               <Button
