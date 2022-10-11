@@ -21,7 +21,7 @@ import { ArticleListingData } from './types'
 import ArticleEntry from './article-entry'
 import MoreButton from './more-button'
 
-export default function RecommendedArticles({
+function RecommendedArticles({
   regionId,
   zoneId,
   mobilePadding,
@@ -34,10 +34,13 @@ export default function RecommendedArticles({
   zoneId?: string
   /**
    * mobilePadding, deskTopPadding
+   *
    * 예시 1 (호텔)
-   * https://triple-dev.titicaca-corp.com/hotels/375458d2-09fb-408b-b2dd-53932ed6ce89?regionId=759174cc-0814-4400-a420-5668a0517edd&cityId=KM1861798255&_triple_no_navbar=true&from=public-list
+   * - https://triple-dev.titicaca-corp.com/hotels/375458d2-09fb-408b-b2dd-53932ed6ce89?regionId=759174cc-0814-4400-a420-5668a0517edd&cityId=KM1861798255&_triple_no_navbar=true&from=public-list
+   *
    * 예시 2 (공유 일정)
-   * https://triple-staging.titicaca-corp.com/trips/lounge/itineraries/797d148d-4769-4bf1-8f36-839ef2801979
+   * - https://triple-staging.titicaca-corp.com/trips/lounge/itineraries/797d148d-4769-4bf1-8f36-839ef2801979
+   *
    * 위의 예시 링크들의 하단을 보면 디자인이 달라 mobile, desktop 각각 내부 padding을 커스텀할 때 사용하는 props
    */
   mobilePadding?: { left: number; right: number }
@@ -112,8 +115,8 @@ export default function RecommendedArticles({
     <Section
       divider="top"
       css={{
-        margin: '50px 0 50px 0',
-        padding: '0 0 0 0',
+        margin: '50px 0',
+        padding: '0',
       }}
     >
       <Responsive minWidth={768}>
@@ -207,3 +210,5 @@ export default function RecommendedArticles({
     </Section>
   )
 }
+
+export default RecommendedArticles
