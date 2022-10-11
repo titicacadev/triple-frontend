@@ -1,12 +1,12 @@
-import { Meta, StoryObj } from '@storybook/react'
+import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 
 import VerificationRequest from './verification-request'
 
 export default {
   title: 'user-verification / VerificationRequest',
   component: VerificationRequest,
-} as Meta
+} as ComponentMeta<typeof VerificationRequest>
 
-export const ExampleVerificationRequest: StoryObj = {
-  name: '기본',
-}
+export const ExampleVerificationRequest: ComponentStoryObj<
+  typeof VerificationRequest
+> = {}

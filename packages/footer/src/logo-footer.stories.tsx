@@ -1,12 +1,10 @@
-import { Meta, StoryObj } from '@storybook/react'
+import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 
 import LogoFooter from './logo-footer'
 
 export default {
   title: 'footer / LogoFooter',
   component: LogoFooter,
-} as Meta
+} as ComponentMeta<typeof LogoFooter>
 
-export const Basic: StoryObj = {
-  name: '로고 푸터',
-}
+export const Basic: ComponentStoryObj<typeof LogoFooter> = {}
