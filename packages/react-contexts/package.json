@@ -32,11 +32,11 @@
   "devDependencies": {
     "@types/qs": "^6.9.2",
     "@types/ua-parser-js": "^0.7.33",
-    "firebase": "^7.24.0"
+    "firebase": "^9.11.0"
   },
   "peerDependencies": {
     "@titicaca/triple-web-to-native-interfaces": "*",
-    "firebase": "^7.24.0",
+    "firebase": "^9.11.0",
     "next": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0"
   },
   "author": ""
