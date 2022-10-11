@@ -1,5 +1,5 @@
 import { ScrapsProvider } from '@titicaca/react-contexts'
-import { Meta, StoryObj } from '@storybook/react'
+import { ComponentStoryObj, Meta } from '@storybook/react'
 
 import { OverlayScrapButton } from './scrap-button'
 
@@ -15,7 +15,7 @@ export default {
   ],
 } as Meta
 
-export const Basic: StoryObj = {
+export const Basic: ComponentStoryObj<typeof OverlayScrapButton> = {
   args: {
     resource: {
       id: 'scrapable_id',

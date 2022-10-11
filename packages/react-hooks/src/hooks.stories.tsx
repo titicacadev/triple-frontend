@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import styled from 'styled-components'
 import isChromatic from 'chromatic/isChromatic'
-import { Story } from '@storybook/react'
+import { Meta, Story } from '@storybook/react'
 
 import logos from './mocks/lottie.sample.json'
 import { useScrollToElement } from './use-scroll-to-element'
@@ -11,7 +11,13 @@ import { useLottie } from './use-lottie'
 
 export default {
   title: 'react-hooks / hooks',
-}
+  parameters: {
+    docs: {
+      inlineStories: false,
+      iframeHeight: 500,
+    },
+  },
+} as Meta
 
 const LottieContainer = styled.div`
   width: 57px;
