@@ -16,7 +16,7 @@ const ButtonWithSafeAreaInset = styled(Button)`
 `
 
 function DrawerButton({
-  active,
+  active = false,
   zTier = 2,
   zIndex = 1,
   children,
