@@ -92,7 +92,7 @@ interface DefaultFooterProps {
   hideAppDownloadButton?: boolean
 }
 
-function DefaultFooter({ hideAppDownloadButton }: DefaultFooterProps) {
+function DefaultFooter({ hideAppDownloadButton = false }: DefaultFooterProps) {
   const sessionAvailable = useSessionAvailability()
   const { login, logout } = useSessionControllers()
 
@@ -105,7 +105,7 @@ function DefaultFooter({ hideAppDownloadButton }: DefaultFooterProps) {
         css={{
           minWidth: 280,
           maxWidth: 768,
-          padding: '30px 30px 40px 30px',
+          padding: '30px 30px 40px',
         }}
       >
         <Accordion>
