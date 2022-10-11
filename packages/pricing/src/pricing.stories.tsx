@@ -1,11 +1,11 @@
-import { ComponentStoryObj, Meta } from '@storybook/react'
+import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 
 import Pricing from '.'
 
 export default {
   title: 'pricing / Pricing',
   component: Pricing,
-} as Meta
+} as ComponentMeta<typeof Pricing>
 
 export const Basic: ComponentStoryObj<typeof Pricing> = {
   args: {

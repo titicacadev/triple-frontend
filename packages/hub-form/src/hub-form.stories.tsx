@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react'
+import { ComponentMeta, ComponentStory, Meta } from '@storybook/react'
 
 import Cell from './cell'
 import Cta from './cta'
@@ -7,9 +7,9 @@ import HubForm from './hub-form'
 export default {
   title: 'hub-form / HubForm',
   component: HubForm,
-} as Meta
+} as ComponentMeta<typeof HubForm>
 
-export function HotelHubForm() {
+export const Hotel: ComponentStory<typeof HubForm> = () => {
   return (
     <>
       <HubForm shadow="">
@@ -24,7 +24,7 @@ export function HotelHubForm() {
   )
 }
 
-export function AirHubForm() {
+export const Air: ComponentStory<typeof HubForm> = () => {
   return (
     <>
       <HubForm shadow="">

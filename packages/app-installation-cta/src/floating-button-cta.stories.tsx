@@ -1,18 +1,14 @@
-import { ComponentStoryObj, Meta } from '@storybook/react'
+import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 
 import FloatingButtonCTA from './floating-button-cta'
 
 export default {
   title: 'app-installation-cta / FloatingButtonCTA',
   component: FloatingButtonCTA,
-} as Meta
+} as ComponentMeta<typeof FloatingButtonCTA>
 
 export const Basic: ComponentStoryObj<typeof FloatingButtonCTA> = {
-  name: '트리플 앱 설치하기 ',
   args: {
     appInstallLink: 'https://triple.onelink.me/aZP6/21d43a81',
-    fixed: true,
-    title: '제목을 입력하세요.',
-    description: '설명 텍스트가 들어갑니다.',
   },
 }
