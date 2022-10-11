@@ -1,11 +1,11 @@
-import { Meta, StoryObj } from '@storybook/react'
+import { ComponentStoryObj, StoryObj } from '@storybook/react'
 
 import Author from '.'
 
 export default {
   title: 'author / Author',
   component: Author,
-} as Meta
+} as ComponentStoryObj<typeof Author>
 
 export const Basic: StoryObj = {
   args: {
@@ -33,6 +33,5 @@ export const Basic: StoryObj = {
           '<p>자주 여행을 꿈꾸고, 이따금씩 순간을 톺아보려 합니다.<br><a href="https://www.naver.com">www.instagram.com/romi1403</a></p>',
       },
     },
-    bioOverride: '',
   },
 }

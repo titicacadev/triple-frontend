@@ -1,13 +1,13 @@
 import Pricing from '@titicaca/pricing'
 import { Container } from '@titicaca/core-elements'
-import { ComponentStoryObj, Meta } from '@storybook/react'
+import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 
 import ExtendedResourceListElement from './extended-resource-list-element'
 
 export default {
   title: 'resource-list-element / extended-resource-list-element',
   component: ExtendedResourceListElement,
-} as Meta
+} as ComponentMeta<typeof ExtendedResourceListElement>
 
 export const Basic: ComponentStoryObj<typeof ExtendedResourceListElement> = {
   args: {
@@ -21,7 +21,7 @@ export const Basic: ComponentStoryObj<typeof ExtendedResourceListElement> = {
     children: (
       <Container
         css={{
-          margin: '18px 0 0 0',
+          margin: '18px 0 0',
         }}
       >
         <Pricing basePrice={30000} basePriceUnit="원" salePrice={25000} rich />
