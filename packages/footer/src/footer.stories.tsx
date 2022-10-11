@@ -1,12 +1,16 @@
-import { Meta, StoryObj } from '@storybook/react'
+import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 
 import Footer from './default-footer'
 
 export default {
   title: 'footer / Footer',
   component: Footer,
-} as Meta
+} as ComponentMeta<typeof Footer>
 
-export const Basic: StoryObj = {
-  name: '기본 푸터',
+export const Basic: ComponentStoryObj<typeof Footer> = {}
+
+export const NoButtons: ComponentStoryObj<typeof Footer> = {
+  args: {
+    hideAppDownloadButton: true,
+  },
 }
