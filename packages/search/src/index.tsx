@@ -39,10 +39,10 @@ const KEY_CODE_ENTER = 13
 
 function FullScreenSearchView({
   children,
-  onDelete = () => {},
-  onAutoComplete = () => {},
-  onEnter = () => {},
-  onInputChange = () => {},
+  onDelete,
+  onAutoComplete,
+  onEnter,
+  onInputChange,
   onBackClick = () => {},
   onInputClick,
   placeholder,
@@ -92,7 +92,7 @@ function FullScreenSearchView({
 
   useEffect(
     () => {
-      onAutoComplete(debouncedKeyword)
+      onAutoComplete?.(debouncedKeyword)
     },
     // HACK: 부모에서 콜백 안 쓰고 있으면
     // 렌더링 할 때마다 fetch가 다시 일어나므로 onAutoComplete 의존성 제거.
@@ -112,7 +112,7 @@ function FullScreenSearchView({
         inputRef.current.blur()
       }
 
-      onEnter(keyword)
+      onEnter?.(keyword)
       clearDebounce()
     }
   }
@@ -131,13 +131,13 @@ function FullScreenSearchView({
   const handleChange = useCallback(
     (e: SyntheticEvent, value: string) => {
       setKeyword(value)
-      onInputChange(value)
+      onInputChange?.(value)
     },
     [onInputChange],
   )
 
   const handleDelete = () => {
-    onDelete(keyword)
+    onDelete?.(keyword)
     setKeyword('')
     handleInputFocus()
   }
@@ -152,7 +152,7 @@ function FullScreenSearchView({
         onInputChange={handleChange}
         onInputClick={onInputClick}
         onKeyUp={(e: KeyboardEvent) => handleKeyUp(e.keyCode)}
-        onSearch={() => keyword && onEnter(keyword)}
+        onSearch={() => keyword && onEnter?.(keyword)}
         inputRef={inputRef}
         {...rest}
       />
