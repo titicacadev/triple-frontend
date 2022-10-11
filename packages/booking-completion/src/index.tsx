@@ -50,10 +50,10 @@ const GrayButton = styled(Button)`
 function BookingCompletion({
   title,
   myBookingButtonTitle,
-  compact,
+  compact = false,
   onMoveToBookingDetail,
-  onMoveToMain = () => {},
-  onMoveToRegion = () => {},
+  onMoveToMain,
+  onMoveToRegion,
   onAddToSchedule,
   descriptions,
   region,
@@ -66,7 +66,7 @@ function BookingCompletion({
   const handleMoveToRegion = useAppCallback(
     TransitionType.General,
     useCallback(() => {
-      onMoveToRegion()
+      onMoveToRegion?.()
       navigate(`/regions/${region?.id}`)
     }, [navigate, onMoveToRegion, region?.id]),
   )
@@ -75,7 +75,7 @@ function BookingCompletion({
     <>
       <Container
         css={{
-          margin: '0 0 12px 0',
+          margin: '0 0 12px',
         }}
       >
         <Text size={28} bold>
@@ -112,7 +112,7 @@ function BookingCompletion({
         <>
           <Container
             css={{
-              margin: '30px 0 0 0',
+              margin: '30px 0 0',
             }}
           >
             <Button.Group horizontalGap={7}>
@@ -131,7 +131,7 @@ function BookingCompletion({
                 color="gray"
                 size="small"
                 onClick={() => {
-                  onMoveToMain()
+                  onMoveToMain?.()
                   navigate('/main')
                 }}
               >
