@@ -15,8 +15,12 @@ import {
   trackEvent as nativeTrackEvent,
   viewItem as nativeViewItem,
 } from '@titicaca/triple-web-to-native-interfaces'
-import * as firebase from 'firebase/app'
-import 'firebase/analytics'
+import { getApps as getFirebaseApps } from 'firebase/app'
+import {
+  getAnalytics as getFirebaseAnalytics,
+  logEvent as logFirebaseEvent,
+  setUserId,
+} from 'firebase/analytics'
 import { useRouter } from 'next/router'
 
 import { useUser } from '../session-context'
@@ -103,11 +107,11 @@ function getFirebaseAnalyticsWebInstance() {
   if (
     typeof navigator !== 'undefined' &&
     !hasAccessibleTripleNativeClients() &&
-    firebase.apps.length > 0
+    getFirebaseApps().length > 0
   ) {
     disableFirebaseAutoPageView()
 
-    return firebase.analytics()
+    return getFirebaseAnalytics()
   }
 
   return null
@@ -186,7 +190,7 @@ export function EventTrackingProvider({
         const firebaseAnalyticsWebInstance = getFirebaseAnalyticsWebInstance()
 
         if (firebaseAnalyticsWebInstance) {
-          firebaseAnalyticsWebInstance.logEvent('page_view', {
+          logFirebaseEvent(firebaseAnalyticsWebInstance, 'page_view', {
             page_path: path,
             category: label,
           })
@@ -194,7 +198,7 @@ export function EventTrackingProvider({
 
         nativeTrackScreen(path, label, additionalMetadata)
       } catch (error) {
-        onErrorRef.current?.(error)
+        onErrorRef.current?.(error as Error)
       }
     },
     [],
@@ -217,7 +221,7 @@ export function EventTrackingProvider({
         const firebaseAnalyticsWebInstance = getFirebaseAnalyticsWebInstance()
 
         if (firebaseAnalyticsWebInstance && fa) {
-          firebaseAnalyticsWebInstance.logEvent(WEB_FA_EVENT_NAME, {
+          logFirebaseEvent(firebaseAnalyticsWebInstance, WEB_FA_EVENT_NAME, {
             category: pageLabel,
             ...fa,
           })
@@ -232,7 +236,7 @@ export function EventTrackingProvider({
           },
         })
       } catch (error) {
-        onErrorRef.current?.(error)
+        onErrorRef.current?.(error as Error)
       }
     },
     [pageLabel],
@@ -254,7 +258,11 @@ export function EventTrackingProvider({
 
   const setFirebaseUserId: EventTrackingContextValue['setFirebaseUserId'] =
     useCallback((userId) => {
-      getFirebaseAnalyticsWebInstance()?.setUserId(userId || '')
+      const firebaseAnalyticsWebInstance = getFirebaseAnalyticsWebInstance()
+
+      if (firebaseAnalyticsWebInstance) {
+        setUserId(firebaseAnalyticsWebInstance, userId || '')
+      }
     }, [])
 
   const value = useMemo<EventTrackingContextValue>(
