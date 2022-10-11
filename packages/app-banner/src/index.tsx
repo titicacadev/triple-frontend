@@ -9,7 +9,7 @@ import {
 const AppBannerFrame = styled.header<
   { fixed?: boolean; maxWidth?: number } & LayeringMixinProps
 >`
-  background-color: #ffffff;
+  background-color: #fff;
   border-bottom: 1px solid #efefef;
   height: 60px;
   position: sticky;
@@ -55,32 +55,34 @@ const CallToAction = styled.a`
   right: 20px;
   top: 50%;
   margin-top: -15px;
-  padding: 9px 15px 8px 15px;
+  padding: 9px 15px 8px;
   height: 30px;
   border-radius: 15px;
   line-height: 13px;
   font-size: 11px;
   font-weight: bold;
-  color: #ffffff;
+  color: #fff;
   background-color: #0bd0af;
 `
 
-function AppBanner({
-  title,
-  description,
-  cta,
-  href,
-  onCtaClick,
-  zTier,
-  zIndex = 1,
-  ...props
-}: {
+type Props = {
   title?: string
   description?: string
   cta?: string
   href?: string
   onCtaClick?: (e?: SyntheticEvent) => void
-} & LayeringMixinProps) {
+} & LayeringMixinProps
+
+function AppBanner({
+  title,
+  description,
+  cta = '앱에서 보기',
+  href,
+  onCtaClick,
+  zTier,
+  zIndex = 1,
+  ...props
+}: Props) {
   return (
     <AppBannerFrame {...props} zTier={zTier} zIndex={zIndex}>
       <Logo />
@@ -99,7 +101,7 @@ function AppBanner({
         </Text>
       </ContentContainer>
       <CallToAction href={href} onClick={onCtaClick}>
-        {cta || '앱에서 보기'}
+        {cta}
       </CallToAction>
     </AppBannerFrame>
   )
