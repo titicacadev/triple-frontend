@@ -47,12 +47,12 @@ const GrayButton = styled(Button)`
 `
 
 function BookingCompletion({
-  title,
-  myBookingButtonTitle,
-  compact,
+  title = '예약이 \n 접수되었습니다.',
+  myBookingButtonTitle = '내 예약에서 확인',
+  compact = false,
   onMoveToBookingDetail,
-  onMoveToMain = () => {},
-  onMoveToRegion = () => {},
+  onMoveToMain,
+  onMoveToRegion,
   onAddToSchedule,
   descriptions,
   region,
@@ -62,7 +62,7 @@ function BookingCompletion({
   const handleMoveToRegion = useAppCallback(
     TransitionType.General,
     useCallback(() => {
-      onMoveToRegion()
+      onMoveToRegion?.()
       navigate(`/regions/${region?.id}`)
     }, [navigate, onMoveToRegion, region?.id]),
   )
@@ -71,11 +71,11 @@ function BookingCompletion({
     <>
       <Container
         css={{
-          margin: '0 0 12px 0',
+          margin: '0 0 12px',
         }}
       >
         <Text size={28} bold>
-          {title || `예약이 \n 접수되었습니다.`}
+          {title}
         </Text>
       </Container>
       {(descriptions || []).map((description, idx) => (
@@ -102,13 +102,13 @@ function BookingCompletion({
           onClick={onMoveToBookingDetail}
           fluid
         >
-          {myBookingButtonTitle || '내 예약에서 확인'}
+          {myBookingButtonTitle}
         </Button>
       ) : (
         <>
           <Container
             css={{
-              margin: '30px 0 0 0',
+              margin: '30px 0 0',
             }}
           >
             <Button.Group horizontalGap={7}>
@@ -119,7 +119,7 @@ function BookingCompletion({
                 size="small"
                 onClick={onMoveToBookingDetail}
               >
-                {myBookingButtonTitle || '내 예약에서 확인'}
+                {myBookingButtonTitle}
               </Button>
               <Button
                 basic
@@ -127,7 +127,7 @@ function BookingCompletion({
                 color="gray"
                 size="small"
                 onClick={() => {
-                  onMoveToMain()
+                  onMoveToMain?.()
                   navigate('/main')
                 }}
               >
