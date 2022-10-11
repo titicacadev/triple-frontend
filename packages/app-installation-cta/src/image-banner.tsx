@@ -19,8 +19,8 @@ interface ImageBannerProps extends CtaProps {
 function ImageBanner({
   imgUrl,
   installUrl,
-  installText,
-  dismissText,
+  installText = '편하게 앱에서 보기',
+  dismissText = '아깝지만 나중에 받을게요',
   onShow,
   onClick,
   onDismiss,
@@ -64,12 +64,10 @@ function ImageBanner({
         <span role="img" aria-label="eyes">
           👀
         </span>
-        <span>&nbsp;&nbsp;{installText || '편하게 앱에서 보기'}</span>
+        <span>&nbsp;&nbsp;{installText}</span>
       </InstallLink>
 
-      <DismissButton onClick={handleDismiss}>
-        {dismissText || '아깝지만 나중에 받을게요'}
-      </DismissButton>
+      <DismissButton onClick={handleDismiss}>{dismissText}</DismissButton>
     </ImageBannerWrapper>
   )
 }
