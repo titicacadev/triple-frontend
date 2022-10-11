@@ -1,5 +1,5 @@
 import { Text } from '@titicaca/core-elements'
-import { Meta } from '@storybook/react'
+import { ComponentMeta } from '@storybook/react'
 
 import Modal from './modal-base'
 import { Alert, Confirm } from './modals'
@@ -7,9 +7,15 @@ import { Alert, Confirm } from './modals'
 export default {
   title: 'modals / Modal',
   component: Modal,
-} as Meta
+  parameters: {
+    docs: {
+      inlineStories: false,
+      iframeHeight: 500,
+    },
+  },
+} as ComponentMeta<typeof Modal>
 
-export function BaseModal() {
+export const BaseModal = () => {
   return (
     <Modal open>
       <Text
@@ -25,9 +31,7 @@ export function BaseModal() {
   )
 }
 
-BaseModal.storyName = 'Modal'
-
-export function BaseConfirm() {
+export const BaseConfirm = () => {
   return (
     <Confirm open>
       삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.
@@ -35,9 +39,7 @@ export function BaseConfirm() {
   )
 }
 
-BaseConfirm.storyName = 'Confirm'
-
-export function BaseAlert() {
+export const BaseAlert = () => {
   return (
     <Alert
       title="장애공지
@@ -48,5 +50,3 @@ export function BaseAlert() {
     </Alert>
   )
 }
-
-BaseAlert.storyName = 'Alert'
