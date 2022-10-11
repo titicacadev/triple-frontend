@@ -8,7 +8,13 @@ import { CtaProps } from './interfaces'
 import { fetchInventoryItems } from './service'
 
 interface BannerCtaProps extends CtaProps {
+  /**
+   * 표시할 이미지의 인벤토리 ID
+   */
   inventoryId: string
+  /**
+   * 앱 설치 URL
+   */
   installUrl: string
   installText?: string
   dismissText?: string
@@ -17,9 +23,6 @@ interface BannerCtaProps extends CtaProps {
 
 /**
  * 이미지가 포함된 배너를 띄우고 dismiss 시에는 텍스트 배너로 바뀌는 CTA 컴포넌트
- *
- * @param inventoryId 표시할 이미지의 인벤토리 ID
- * @param installUrl 앱 설치 URL
  */
 function BannerCta({
   inventoryId,
