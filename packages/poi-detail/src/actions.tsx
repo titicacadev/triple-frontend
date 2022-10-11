@@ -14,7 +14,7 @@ function Actions({
   onScrapedChange,
   onContentShare,
   onReviewEdit,
-  noDivider,
+  noDivider = false,
   ...props
 }: {
   poiId: string
