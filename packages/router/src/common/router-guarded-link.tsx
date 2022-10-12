@@ -8,7 +8,7 @@ import {
 
 import { RelListProps, useRel } from './use-rel'
 
-const Alink = styled.a`
+const A = styled.a`
   line-height: normal;
   color: -webkit-link;
 `
@@ -41,8 +41,8 @@ export function RouterGuardedLink({
   }
 
   return (
-    <Alink className={className} rel={rel} {...restProps}>
+    <A className={className} rel={rel} {...restProps}>
       {children}
-    </Alink>
+    </A>
   )
 }
