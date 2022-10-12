@@ -1,4 +1,5 @@
 import { AnchorHTMLAttributes, PropsWithChildren } from 'react'
+import styled from 'styled-components'
 
 import {
   AllowSourceProps,
@@ -6,6 +7,11 @@ import {
 } from '../common/disabled-link-notifier'
 
 import { RelListProps, useRel } from './use-rel'
+
+const Alink = styled.a`
+  line-height: normal;
+  color: -webkit-link;
+`
 
 /**
  * 조건부 라우팅 검사 로직을 자식 a 엘리먼트에 주입하는 컴포넌트
@@ -35,8 +41,8 @@ export function RouterGuardedLink({
   }
 
   return (
-    <a className={className} rel={rel} {...restProps}>
+    <Alink className={className} rel={rel} {...restProps}>
       {children}
-    </a>
+    </Alink>
   )
 }
