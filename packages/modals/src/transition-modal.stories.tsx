@@ -1,4 +1,5 @@
 import { ComponentStory, Meta } from '@storybook/react'
+import { Button } from '@titicaca/core-elements'
 
 import {
   TransitionModal,
@@ -15,9 +16,9 @@ function UriHashHistoryManipulator({ uriHash }: { uriHash: string }) {
   const { show } = useTransitionModal()
 
   return (
-    <button onClick={() => uriHash && show(uriHash as TransitionType)}>
+    <Button onClick={() => uriHash && show(uriHash as TransitionType)}>
       Show [{uriHash}] type
-    </button>
+    </Button>
   )
 }
 
