@@ -26,7 +26,7 @@ export function FocusTracker({
     }
 
     map.panTo({ lat, lng })
-  }, [focusGeolocation, map])
+  }, [activeAutoZoom, focusGeolocation, map])
 
   return null
 }
