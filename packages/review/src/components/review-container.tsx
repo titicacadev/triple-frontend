@@ -209,6 +209,7 @@ function ReviewContainer({
     sessionAvailable,
     subscribeReviewUpdateEvent,
     unsubscribeReviewUpdateEvent,
+    setMyReview,
   ])
 
   const handleWriteButtonClick = useAppCallback(
