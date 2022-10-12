@@ -11,10 +11,9 @@ export interface RecentCheckboxProps {
 
 const CheckBox = styled.input`
   appearance: none;
-  box-sizing: border-box;
   width: 22px;
   height: 22px;
-  margin-right: 8px;
+  margin: 3px 8px 3px 4px;
   border: 1px solid var(--color-gray200);
   border-radius: 5px;
   cursor: pointer;
@@ -58,6 +57,7 @@ const TooltipText = styled(Text)`
 const OpenIcon = styled.img`
   margin-top: 2px;
   margin-left: 4px;
+  vertical-align: baseline;
 `
 
 const CloseIcon = styled.img`
