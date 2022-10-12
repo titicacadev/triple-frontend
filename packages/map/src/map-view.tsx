@@ -12,7 +12,7 @@ import {
   useLoadScript,
 } from '@react-google-maps/api'
 
-import { getGeometry } from './utilities'
+import { getGeometry, literalToString } from './utilities'
 
 const MAX_LAT = (Math.atan(Math.sinh(Math.PI)) * 180) / Math.PI
 
@@ -119,7 +119,8 @@ export function MapView({
       return
     }
     map?.fitBounds(bounds, padding)
-  }, [map, padding, coordinateLength, bounds])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [map, literalToString(bounds), padding, coordinateLength])
 
   return loadError ? (
     <div>Map cannot be loaded right now, sorry.</div>
