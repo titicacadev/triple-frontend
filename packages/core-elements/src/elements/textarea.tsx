@@ -39,6 +39,7 @@ const BaseTextarea = styled.textarea<BaseTextareaProps>`
   width: 100%;
   resize: none;
   min-height: 100px;
+  line-height: normal;
 
   ::placeholder {
     color: rgba(${COLORS.gray}, 0.3);
