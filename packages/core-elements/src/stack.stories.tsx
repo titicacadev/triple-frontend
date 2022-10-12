@@ -11,6 +11,7 @@ const VerticalContainer = styled.div`
 `
 
 const HorizontalContainer = styled.div`
+  box-sizing: content-box;
   border: 1px solid black;
   width: 200px;
   overflow-y: auto;
@@ -18,6 +19,7 @@ const HorizontalContainer = styled.div`
 `
 
 const Box = styled.div`
+  box-sizing: content-box;
   border: 1px solid red;
   width: 100px;
   height: 50px;

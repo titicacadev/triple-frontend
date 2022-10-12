@@ -19,6 +19,7 @@ const ImagePlaceholderContainer = styled.div<{ large?: boolean }>`
 const PlaceholderIcon = styled.img`
   width: 60px;
   height: 60px;
+  vertical-align: baseline;
 `
 
 const ImagePlaceholderContent = styled.div<{ large?: boolean }>`

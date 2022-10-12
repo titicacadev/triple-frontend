@@ -9,7 +9,6 @@ const MessageContainer = styled(Container)`
   position: relative;
 `
 
-// eslint-disable-next-line no-unexpected-multiline
 const Label = styled(Text)<{
   focused?: boolean
   error?: boolean
