@@ -166,6 +166,12 @@ const PickerFrame = styled.div<PickerFrameProps>`
               color: var(--color-gray500);
             }
           }
+          td:first-child {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            vertical-align: baseline;
+          }
         }
       }
     }
