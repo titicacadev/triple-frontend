@@ -1,9 +1,9 @@
-import { ComponentStoryObj, Meta } from '@storybook/react'
+import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 
 import Replies from './replies'
 
 export default {
-  title: 'Replies',
+  title: 'replies / Replies',
   component: Replies,
   argTypes: {
     resourceId: {
@@ -37,9 +37,9 @@ export default {
       required: false,
     },
   },
-} as Meta
+} as ComponentMeta<typeof Replies>
 
-export const BaseReplies: ComponentStoryObj<typeof Replies> = {
+export const Basic: ComponentStoryObj<typeof Replies> = {
   args: {
     resourceId: 'c31a0e75-0053-4ef2-9407-d2bdc7f116e3',
     resourceType: 'article',
@@ -49,5 +49,3 @@ export const BaseReplies: ComponentStoryObj<typeof Replies> = {
     },
   },
 }
-
-BaseReplies.storyName = '기본'

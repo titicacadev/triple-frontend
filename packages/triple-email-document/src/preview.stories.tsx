@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 import { EmailPreview } from './components'
 
 export default {
-  title: 'Document / triple-email-document / components',
+  title: 'triple-email-document / Preview',
   component: EmailPreview,
   argTypes: {
     value: {

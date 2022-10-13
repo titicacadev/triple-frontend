@@ -32,7 +32,7 @@ function ScrollSpy() {
 }
 
 export default {
-  title: 'Scroll Spy',
+  title: 'scroll-spy / Scroll Spy',
   component: ScrollSpy,
 } as Meta
 
