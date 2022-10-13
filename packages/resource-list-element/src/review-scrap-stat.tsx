@@ -2,7 +2,7 @@ import { useTranslation } from '@titicaca/next-i18next'
 import { Container, Rating } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 
-import ResourceListElementStats from './stats'
+import ResourceListElementStats from './resource-list-element-stats'
 
 function ReviewScrapStat({
   reviewsCount,
