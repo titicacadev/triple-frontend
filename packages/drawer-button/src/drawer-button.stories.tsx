@@ -19,3 +19,10 @@ export const Basic: ComponentStoryObj<typeof DrawerButton> = {
     children: '선택 완료',
   },
 }
+
+export const Disabled: ComponentStoryObj<typeof DrawerButton> = {
+  args: {
+    ...Basic.args,
+    disabled: true,
+  },
+}

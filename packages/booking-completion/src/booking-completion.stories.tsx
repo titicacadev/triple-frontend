@@ -8,16 +8,6 @@ export default {
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof BookingCompletion> = {
-  args: {},
-}
-
-export const Compact: ComponentStoryObj<typeof BookingCompletion> = {
-  args: {
-    compact: true,
-  },
-}
-
-export const WithDescriptions: ComponentStoryObj<typeof BookingCompletion> = {
   args: {
     descriptions: [
       '공급사 확인 후 예약이 확정됩니다.',
@@ -26,8 +16,16 @@ export const WithDescriptions: ComponentStoryObj<typeof BookingCompletion> = {
   },
 }
 
+export const Compact: ComponentStoryObj<typeof BookingCompletion> = {
+  args: {
+    ...Basic.args,
+    compact: true,
+  },
+}
+
 export const WithRegion: ComponentStoryObj<typeof BookingCompletion> = {
   args: {
+    ...Basic.args,
     region: {
       id: '',
       names: { ko: '바르셀로나', en: 'Barcelona', local: null },

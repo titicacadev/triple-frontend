@@ -5,7 +5,7 @@ import ELEMENTS from './elements'
 const { hr1: HR1, hr2: HR2, hr3: HR3, hr4: HR4, hr5: HR5, hr6: HR6 } = ELEMENTS
 
 export default {
-  title: 'Document / triple-email-document / elements / hr',
+  title: 'triple-email-document / HR',
 } as Meta
 
 export function Hr1Example() {
