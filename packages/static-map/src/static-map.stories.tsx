@@ -12,6 +12,5 @@ export const Basic: ComponentStoryObj<typeof StaticMap> = {
     type: 'attraction',
     lat: 35.6328964,
     lon: 139.8803943,
-    markerImage: 'Custom marker image',
   },
 }

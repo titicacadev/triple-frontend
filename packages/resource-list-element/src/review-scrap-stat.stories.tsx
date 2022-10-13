@@ -9,8 +9,8 @@ export default {
 
 export const Basic: ComponentStoryObj<typeof ReviewScrapStat> = {
   args: {
-    reviewsCount: 2,
-    scrapsCount: 0,
+    reviewsCount: 23,
+    scrapsCount: 7,
     reviewsRating: 3.7,
   },
 }

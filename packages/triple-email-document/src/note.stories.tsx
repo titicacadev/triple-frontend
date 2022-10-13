@@ -5,7 +5,7 @@ import ELEMENTS from './elements'
 const { note: Note } = ELEMENTS
 
 export default {
-  title: 'Document / triple-email-document / elements',
+  title: 'triple-email-document / Note',
   component: Note,
   argTypes: {
     value: {

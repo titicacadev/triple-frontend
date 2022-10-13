@@ -5,7 +5,7 @@ import ELEMENTS from './elements'
 const { links: Links } = ELEMENTS
 
 export default {
-  title: 'Document / triple-email-document / elements / 링크',
+  title: 'triple-email-document / Links',
   component: Links,
   argTypes: {
     value: {

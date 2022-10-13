@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory, Meta } from '@storybook/react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import Cell from './cell'
 import Cta from './cta'
