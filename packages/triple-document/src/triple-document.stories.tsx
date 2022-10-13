@@ -22,7 +22,7 @@ const {
 } = ELEMENTS
 
 export default {
-  title: 'triple-document',
+  title: 'triple-document / TripleDocument',
 } as Meta
 
 export function Sample() {
