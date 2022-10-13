@@ -9,7 +9,7 @@ const {
   heading4: Heading4,
 } = ELEMENTS
 
-export default { title: 'triple-document/heading' } as Meta
+export default { title: 'triple-document / heading' } as Meta
 
 const Heading1Template: Story<{
   // FIXME: HeadingProps

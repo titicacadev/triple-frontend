@@ -1,11 +1,17 @@
-import { ComponentStory, Meta } from '@storybook/react'
+/* eslint-disable @typescript-eslint/naming-convention */
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import ListingFilter from '.'
 
 export default {
   title: 'listing-filter / ListingFilter',
   component: ListingFilter,
-} as Meta
+  subcomponents: {
+    FilterEntry: ListingFilter.FilterEntry,
+    ExpandingFilterEntry: ListingFilter.ExpandingFilterEntry,
+    PrimaryFilterEntry: ListingFilter.PrimaryFilterEntry,
+  },
+} as ComponentMeta<typeof ListingFilter>
 
 export const Basic: ComponentStory<typeof ListingFilter> = (args) => {
   return (
@@ -27,4 +33,3 @@ export const Basic: ComponentStory<typeof ListingFilter> = (args) => {
     </ListingFilter>
   )
 }
-Basic.storyName = '전체 필터 타입'

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { StaticPageContents } from '.'
 
 export default {
-  title: 'Static Page Contents',
+  title: 'static-page-contents / Static Page Contents',
   component: StaticPageContents,
 }
 

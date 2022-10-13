@@ -7,7 +7,7 @@ import ELEMENTS from './elements'
 const { images: Images } = ELEMENTS
 
 export default {
-  title: 'Document / triple-email-document / elements / 이미지',
+  title: 'triple-email-document / Images',
   component: Images,
 } as ComponentMeta<typeof Images>
 
