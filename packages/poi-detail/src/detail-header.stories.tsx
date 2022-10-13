@@ -41,19 +41,7 @@ export const Basic: ComponentStoryObj<typeof DetailHeader> = {
 export const WithBusinessHoursNote: ComponentStoryObj<typeof DetailHeader> = {
   name: '영업시간 추가',
   args: {
-    names: {
-      primary: '도쿄 디즈니 랜드',
-      ko: '도쿄 디즈니 랜드',
-      en: 'Tokyo Disney land',
-      local: '東京ディズニーランド',
-    },
-    areas: [
-      { id: 1, name: '도쿄' },
-      { id: 2, name: '오사카' },
-    ],
-    scrapsCount: 682,
-    reviewsCount: 13859,
-    reviewsRating: 4.45,
+    ...Basic.args,
     todayBusinessHours: '11:00 - 18:00',
     permanentlyClosed: false,
   },

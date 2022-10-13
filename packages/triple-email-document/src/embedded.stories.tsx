@@ -23,7 +23,7 @@ const Border = styled.div`
 `
 
 export default {
-  title: 'Document / triple-email-document / elements / 임베디드',
+  title: 'triple-email-document / Embedded',
   component: EmbeddedView,
 } as ComponentMeta<typeof EmbeddedView>
 
