@@ -1,4 +1,8 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import {
+  ComponentMeta,
+  ComponentStory,
+  ComponentStoryObj,
+} from '@storybook/react'
 
 import { PublicHeader } from './public-header'
 
@@ -15,30 +19,23 @@ export default {
 
 export const Basic: ComponentStoryObj<typeof PublicHeader> = {
   args: {
-    deeplinkPath: 'https://triple.guide',
     disableAutoHide: true,
   },
 }
 
-export const Air: ComponentStoryObj<typeof PublicHeader> = {
+export const DeeplinkPath: ComponentStoryObj<typeof PublicHeader> = {
   args: {
+    ...Basic.args,
     deeplinkPath: 'https://triple.guide',
-    disableAutoHide: true,
-    category: 'air',
-  },
-}
-export const Hotels: ComponentStoryObj<typeof PublicHeader> = {
-  args: {
-    deeplinkPath: 'https://triple.guide',
-    disableAutoHide: true,
-    category: 'hotels',
   },
 }
 
-export const Tna: ComponentStoryObj<typeof PublicHeader> = {
-  args: {
-    deeplinkPath: 'https://triple.guide',
-    disableAutoHide: true,
-    category: 'tna',
-  },
+export const Categories: ComponentStory<typeof PublicHeader> = () => {
+  return (
+    <>
+      <PublicHeader disableAutoHide category="air" />
+      <PublicHeader disableAutoHide category="hotels" />
+      <PublicHeader disableAutoHide category="tna" />
+    </>
+  )
 }

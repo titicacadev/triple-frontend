@@ -26,6 +26,13 @@ export const Basic: ComponentStoryObj<typeof FixedPricingV2> = {
   },
 }
 
+export const Loading: ComponentStoryObj<typeof FixedPricingV2> = {
+  args: {
+    ...Basic.args,
+    loading: true,
+  },
+}
+
 export const Soldout: ComponentStoryObj<typeof FixedPricingV2> = {
   args: {
     loading: false,

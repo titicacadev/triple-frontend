@@ -7,6 +7,7 @@ export default {
   component: VerificationRequest,
 } as ComponentMeta<typeof VerificationRequest>
 
+// TODO: 서버에 데이터가 없어서 mocking 해야 할 듯
 export const ExampleVerificationRequest: ComponentStoryObj<
   typeof VerificationRequest
 > = {}

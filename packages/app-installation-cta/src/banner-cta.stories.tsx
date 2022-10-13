@@ -7,6 +7,7 @@ export default {
   component: BannerCTA,
 } as ComponentMeta<typeof BannerCTA>
 
+// TODO: 서버에 데이터가 없어서 mocking 해야 할 듯
 export const Basic: ComponentStoryObj<typeof BannerCTA> = {
   args: {
     inventoryId: 'app-install-cta-tna-v1',

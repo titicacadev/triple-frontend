@@ -17,18 +17,14 @@ export const Basic: ComponentStoryObj<typeof Actions> = {
 
 export const NoDivider: ComponentStoryObj<typeof Actions> = {
   args: {
-    poiId: 'e889ae22-0336-4cf9-8fbb-742b95fd09d0',
-    scraped: false,
-    reviewed: false,
+    ...Basic.args,
     noDivider: true,
   },
 }
 
 export const GlobalHotel: ComponentStoryObj<typeof Actions> = {
   args: {
-    poiId: 'e889ae22-0336-4cf9-8fbb-742b95fd09d0',
-    scraped: false,
-    reviewed: false,
+    ...Basic.args,
     onScheduleAdd: undefined,
     onScrapedChange: undefined,
   },
