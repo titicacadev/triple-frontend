@@ -16,14 +16,29 @@ import { ValueTransformer, SliderValue } from './types'
 
 export interface SliderBaseProps {
   initialValues?: SliderValue
+  /**
+   * 증감량의 단위 정확하게 작동하지 않으니 상대적인 값으로 생각해주세요.
+   */
   step?: number
+  /**
+   * 범위의 최소값.
+   */
   min?: number
+  /**
+   * 범위의 최대값.
+   */
   max?: number
   labelComponent?: ComponentType<{
     values: SliderValue
   }>
   onChange: (values: SliderValue) => void
+  /**
+   * 비선형적으로 증감하게 만듧니다.
+   */
   nonLinear?: boolean
+  /**
+   * onChange 함수에 걸리는 debounce 시간 (ms).
+   */
   debounceTime?: number
   adjustInitValues?: boolean
 }
