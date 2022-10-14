@@ -13,6 +13,9 @@ export enum Method {
   Other = 'other',
 }
 
+/**
+ * 콘텐츠 하단에 들어가는 공유 영역입니다. 카카오톡 공유, 클립보드 복사, 기타 공유 버튼을 표시하고 있습니다.
+ */
 function ContentSharing({
   onShareClick,
   label,
@@ -24,7 +27,7 @@ function ContentSharing({
     <Container
       css={{
         textAlign: 'center',
-        margin: '50px 0 50px 0',
+        margin: '50px 0',
       }}
     >
       <ShareIcon
