@@ -31,6 +31,9 @@ const FixedBottom = styled(Container).attrs({
   ${safeAreaInsetMixin}
 `
 
+/**
+ * 댓글 컴포넌트
+ */
 function Replies({
   resourceId,
   resourceType,
@@ -40,10 +43,24 @@ function Replies({
   initialSize,
   css,
 }: {
+  /**
+   * resourceId, resourceType: 아래 스웨거를 참고해주세요.
+   *
+   * https://reply.proxy.triple-dev.titicaca-corp.com/webjars/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config
+   */
   resourceId: string
   resourceType: ResourceType
+  /**
+   * Register 컴포넌트 내부의 문구를 커스터마이징.
+   */
   placeholders?: Placeholders
+  /**
+   * 화면 최하단에 댓글/답글 입력창을 고정할 지 선택.
+   */
   isFormFixed?: boolean
+  /**
+   * api 호출 시 댓글을 가져오는 크기.
+   */
   size?: number
   initialSize?: number
 } & CSSProps) {
