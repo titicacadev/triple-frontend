@@ -6,8 +6,17 @@ import { useVerifiedMessageListener, VerifiedMessage } from './verified-message'
 import { confirmVerification } from './confirmation-services'
 
 interface VerificationState {
+  /**
+   * 인증된 전화번호 (있을 경우)
+   */
   phoneNumber?: string
+  /**
+   * 인증 상태
+   */
   verified?: boolean
+  /**
+   * 에러 (있을 경우)
+   */
   error?: string
   payload?: unknown
 }
@@ -18,7 +27,13 @@ export function useUserVerification({
   forceVerification,
 }: {
   verificationType?: string
+  /**
+   * 사용자 인증이 이루어지는 맥락을 명시합니다.
+   */
   verificationContext?: 'purchase' | 'cash'
+  /**
+   * 컴포넌트 Mount와 동시에 인증 플로우로 유도할지 결정합니다.
+   */
   forceVerification: boolean
 }) {
   const routeExternally = useExternalRouter()
@@ -30,6 +45,9 @@ export function useUserVerification({
     },
   )
 
+  /**
+   * 필요한 경우 호출하여 인증 플로우를 시작합니다. 트리플 앱의 브라우저 기준으로 인증 페이지를 렌더링하는 새 창을 생성합니다.
+   */
   const initiateVerification = useCallback(() => {
     const href = getVerificationPagePath({
       verificationType,
