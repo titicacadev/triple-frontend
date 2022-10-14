@@ -48,13 +48,24 @@ const DEFAULT_MAP_CONTAINER_STYLE: CSSProperties = {
 }
 
 export interface WithGoogleMapProps extends GoogleMapProps {
+  /**
+   * 중앙좌표 값과 bounds를 계산하기 위한 좌표값
+   */
   coordinates?: [number, number][]
+  /**
+   * Google Map SDK 로드를 위해 필요한 configuration
+   *
+   * 여러 옵션이 있지만 googleMapApiKey 정도만 설정하면 되고 기본값을 갖습니다.
+   */
   googleMapLoadOptions: {
     /** goole map api key */
     googleMapsApiKey: string
     /** region default: kr - https://developers.google.com/maps/faq#languagesupport */
     region?: string
   }
+  /**
+   * Map SDK loaded 콜백 핸들러
+   */
   padding?:
     | number
     | {
@@ -63,11 +74,19 @@ export interface WithGoogleMapProps extends GoogleMapProps {
         bottom?: number
         left?: number
       }
+  /**
+   * Map SDK loaded 콜백 핸들러
+   */
   onLoad?: (map: google.maps.Map) => void
 }
 
 const GOOGLE_MAP_LIBRARIES = ['geometry' as const]
 
+/**
+ * 기본 Map 컴포넌트입니다.
+ *
+ * - 참고: https://tomchentw.github.io/react-google-maps/#googlemap
+ */
 export function MapView({
   coordinates = [],
   options: originOptions,
