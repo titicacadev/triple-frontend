@@ -20,7 +20,9 @@ type TabsProps<Value> =
   | ({ type?: 'pointing' } & TabPropsBase<Value> & {
         labelPadding?: MarginPadding
       })
-  | ({ type?: 'rounded' } & TabPropsBase<Value>)
+  | ({ type?: 'rounded' } & TabPropsBase<Value> & {
+        containerPadding?: MarginPadding
+      })
   | ({ type?: never } & TabPropsBase<Value> & {
         labelPadding?: MarginPadding
       })
