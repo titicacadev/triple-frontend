@@ -1,19 +1,21 @@
 import styled, { css } from 'styled-components'
 
 import { MarginPadding } from '../../commons'
+import { paddingMixin } from '../../mixins'
 
 import TabContainer from './tab-container'
 import TabLabel from './tab-label'
 import { TabProps } from './types'
 
-const RoundedContainer = styled(TabContainer)`
+const RoundedContainer = styled(TabContainer)<{ padding?: MarginPadding }>`
   display: flex;
-  gap: 6px;
-  padding: 14px 30px;
+  gap: 5px;
+  padding: 10px 30px;
+  ${paddingMixin}
 `
 
 const RoundedLabel = styled(TabLabel)`
-  padding: 9px 16px;
+  padding: 8px 14px;
   border: 1px solid var(--color-gray100);
   border-radius: 100px;
   background: var(--color-white);
@@ -42,11 +44,12 @@ export default function RoundedTab<Value>({
   value: currentValue,
   onChange,
   scroll,
+  containerPadding,
 }: TabProps<Value> & {
-  labelPadding?: MarginPadding
+  containerPadding?: MarginPadding
 }) {
   return (
-    <RoundedContainer scroll={scroll}>
+    <RoundedContainer scroll={scroll} padding={containerPadding}>
       {options.map(({ label, value }, idx) => (
         <RoundedLabel
           scroll={scroll}
