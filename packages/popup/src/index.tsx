@@ -39,12 +39,14 @@ const PopupContainer = styled.div<LayeringMixinProps>`
   @supports (padding: env(safe-area-inset-bottom)) {
     padding-bottom: env(safe-area-inset-bottom);
   }
+
   &::-webkit-scrollbar {
     display: none;
   }
 
   &:not([class*='popup-slide-']) {
     ${inactivePopupContainerStyle}
+
     display: none;
   }
 
@@ -74,12 +76,16 @@ const PopupContainer = styled.div<LayeringMixinProps>`
 
   &.popup-slide-exit-done {
     ${inactivePopupContainerStyle}
+
     display: none;
   }
 
   ${layeringMixin(2)}
 `
 
+/**
+ * 밑에서 올라오는 팝업입니다.
+ */
 function Popup({
   open = false,
   borderless = false,
@@ -94,11 +100,24 @@ function Popup({
   ...restProps
 }: PropsWithChildren<
   {
+    /**
+     * 팝업을 열지 결정합니다.
+     */
     open: boolean
+    /**
+     * 닫기 버튼을 눌렀을 때의 이벤트 입니다.
+     */
     onClose: (e: SyntheticEvent) => void
+    /**
+     * Navbar의 border를 그릴지 결정합니다.
+     */
     borderless?: boolean
+    /** Navbar의 제목입니다. */
     title?: string
     icon?: NavbarIcon
+    /**
+     * Navbar의 렌더링을 생략할 수 있도록 합니다.
+     */
     noNavbar?: boolean
     unmountOnExit?: boolean
   } & LayeringMixinProps &
