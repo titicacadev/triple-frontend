@@ -9,7 +9,13 @@ interface SingleSliderProps
     SliderBaseProps,
     'initialValues' | 'labelComponent' | 'onChange'
   > {
+  /**
+   * 초기값.
+   */
   initialValue?: number
+  /**
+   * 슬라이더 상단 라벨 영역을 표시하는 컴포넌트.
+   */
   labelComponent?: ComponentType<{ value: number }>
   onChange: (value: number) => void
 }
