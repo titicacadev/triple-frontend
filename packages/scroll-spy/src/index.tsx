@@ -25,9 +25,21 @@ export function ScrollSpyContainer({
   children,
   onChange,
 }: PropsWithChildren<{
+  /**
+   * ScrollSpyEntity의 사용되는 값으로 ScrollSpyContainer의 children에 대한 각각의 id 값
+   */
   activeId: string | null
+  /**
+   * 해당 child의 위치를 기준으로 제외해야 할 값 (부모 컴포넌트의 padding, margin 등)
+   */
   scrollOffset?: number
+  /**
+   * true일 때 스크롤을 방지하는 값
+   */
   preventInitialScroll?: boolean
+  /**
+   * activeId를 변경하는 핸들러
+   */
   onChange: (id: string) => void
 }>) {
   const { isScrolling, scrollToElement } = useScrollToElement()
@@ -72,6 +84,9 @@ export function ScrollSpyEntity({
   id,
   children,
 }: PropsWithChildren<{
+  /**
+   * ScrollSpyContainer의 activeId의 사용되는 id 값
+   */
   id: string
 }>) {
   const { height } = useWindowSize()

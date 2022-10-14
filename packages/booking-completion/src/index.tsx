@@ -13,14 +13,28 @@ interface Region {
 }
 
 interface BookingCompletionProps {
+  /**
+   * 최상단에 보여지는 제목입니다.
+   */
   title?: string
   myBookingButtonTitle?: string
   compact?: boolean
+  /**
+   * `내 예약에서 확인` 버튼을 눌렀을 때 발생하는 이벤트입니다.
+   */
   onMoveToBookingDetail: () => void
   onMoveToMain?: () => void
   onMoveToRegion?: () => void
   onAddToSchedule?: () => void
+  /**
+   * 해당 예약에 대한 설명 문구입니다. 없을 경우 표시되지 않습니다.
+   */
   descriptions?: string[]
+  /**
+   * 해당 예약에 대한 region 정보 있습니다. region 정보가 존재할 경우, 추가로 버튼이 표시되며, 해당 버튼을 클릭시 도시메인으로 이동합니다.
+   *
+   * `names.ko를` 우선으로 표시하며, 없을 경우 `names.en` 정보를 노출합니다.
+   */
   region?: Region
 }
 
@@ -47,6 +61,9 @@ const GrayButton = styled(Button)`
   line-height: normal;
 `
 
+/**
+ * 항공/호텔/TNA에서 예약이 최종적으로 완료 되었을 때 보여주는 페이지입니다.
+ */
 function BookingCompletion({
   title,
   myBookingButtonTitle,
