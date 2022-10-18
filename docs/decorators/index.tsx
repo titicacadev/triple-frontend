@@ -6,6 +6,7 @@ import {
   UserAgentProvider,
   EventMetadataProvider,
   EventTrackingProvider,
+  DeviceProvider,
 } from '@titicaca/react-contexts'
 import { TripleClientMetadataProvider } from '@titicaca/react-triple-client-interfaces'
 import { GlobalStyle } from '@titicaca/core-elements'
@@ -140,5 +141,15 @@ export function eventTrackingProviderDecorator(Story: StoryFn) {
     <EventTrackingProvider page={{ label: 'test', path: '/' }}>
       <Story />
     </EventTrackingProvider>
+  )
+}
+
+export function deviceProviderDecorator(Story: StoryFn) {
+  return (
+    <DeviceProvider
+      value={{ inRegion: false, latitude: null, longitude: null }}
+    >
+      <Story />
+    </DeviceProvider>
   )
 }
