@@ -2,19 +2,17 @@ import { VerificationRequest } from '@titicaca/user-verification'
 import { Meta, StoryObj } from '@storybook/react'
 
 import {
-  envProviderDecorator,
-  sessionContextProviderDecorator,
   userAgentProviderDecorator,
   tripleClientMetadataDecorator,
+  historyProviderDecorator,
 } from '../../decorators'
 
 export default {
   title: 'user-verification / VerificationRequest',
   component: VerificationRequest,
   decorators: [
+    historyProviderDecorator,
     userAgentProviderDecorator,
-    envProviderDecorator,
-    sessionContextProviderDecorator,
     tripleClientMetadataDecorator,
   ],
 } as Meta

@@ -2,8 +2,8 @@ import { ComponentStoryObj, ComponentMeta } from '@storybook/react'
 import SocialReviews from '@titicaca/social-reviews'
 
 import {
-  envProviderDecorator,
-  sessionContextProviderDecorator,
+  eventTrackingProviderDecorator,
+  historyProviderDecorator,
   tripleClientMetadataDecorator,
 } from '../../decorators'
 
@@ -11,9 +11,9 @@ export default {
   title: 'Social-Reviews / SocialReviews',
   component: SocialReviews,
   decorators: [
-    envProviderDecorator,
-    sessionContextProviderDecorator,
+    historyProviderDecorator,
     tripleClientMetadataDecorator,
+    eventTrackingProviderDecorator,
   ],
 } as ComponentMeta<typeof SocialReviews>
 

@@ -4,9 +4,8 @@ import { Meta } from '@storybook/react'
 
 import {
   globalStyleDecorator,
-  envProviderDecorator,
-  sessionContextProviderDecorator,
   tripleClientMetadataDecorator,
+  historyProviderDecorator,
 } from '../../decorators'
 
 const StyledLocalLink = styled(LocalLink)`
@@ -27,8 +26,7 @@ export default {
   ),
   decorators: [
     globalStyleDecorator,
-    envProviderDecorator,
-    sessionContextProviderDecorator,
+    historyProviderDecorator,
     tripleClientMetadataDecorator,
   ],
 } as Meta

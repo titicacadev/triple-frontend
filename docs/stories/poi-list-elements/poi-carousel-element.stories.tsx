@@ -2,12 +2,15 @@ import { PoiCarouselElement } from '@titicaca/poi-list-elements'
 import { ComponentStoryObj, Meta } from '@storybook/react'
 
 import POIS from '../__mocks__/pois.sample.json'
-import { eventMetadataDecorator } from '../../decorators'
+import {
+  eventMetadataDecorator,
+  eventTrackingProviderDecorator,
+} from '../../decorators'
 
 export default {
   title: 'poi-list-elements / PoiCarouselElement',
   component: PoiCarouselElement,
-  decorators: [eventMetadataDecorator],
+  decorators: [eventMetadataDecorator, eventTrackingProviderDecorator],
 } as Meta
 
 const [POI] = POIS

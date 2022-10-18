@@ -2,7 +2,10 @@ import { OutlineScrapButton } from '@titicaca/scrap-button'
 import { ScrapsProvider } from '@titicaca/react-contexts'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { eventMetadataDecorator } from '../../decorators'
+import {
+  eventMetadataDecorator,
+  eventTrackingProviderDecorator,
+} from '../../decorators'
 
 export default {
   title: 'ScrapButton / OutlineScrapButton',
@@ -14,6 +17,7 @@ export default {
       </ScrapsProvider>
     ),
     eventMetadataDecorator,
+    eventTrackingProviderDecorator,
   ],
 } as Meta
 

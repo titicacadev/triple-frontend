@@ -4,6 +4,8 @@ import { ComponentProps } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 import {
+  deviceProviderDecorator,
+  eventTrackingProviderDecorator,
   historyProviderDecorator,
   sessionContextProviderDecorator,
   tripleClientMetadataDecorator,
@@ -41,6 +43,8 @@ export default {
     historyProviderDecorator,
     sessionContextProviderDecorator,
     tripleClientMetadataDecorator,
+    deviceProviderDecorator,
+    eventTrackingProviderDecorator,
   ],
 } as ComponentMeta<typeof ReviewElement>
 

@@ -2,9 +2,8 @@ import { Meta } from '@storybook/react'
 import { LocalLink } from '@titicaca/router'
 
 import {
-  envProviderDecorator,
   globalStyleDecorator,
-  sessionContextProviderDecorator,
+  historyProviderDecorator,
   tripleClientMetadataDecorator,
 } from '../../decorators'
 
@@ -16,8 +15,7 @@ export default {
   ),
   decorators: [
     globalStyleDecorator,
-    envProviderDecorator,
-    sessionContextProviderDecorator,
+    historyProviderDecorator,
     tripleClientMetadataDecorator,
   ],
 } as Meta

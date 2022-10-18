@@ -5,12 +5,15 @@ import {
 } from '@titicaca/modals'
 import { ComponentStory, Meta } from '@storybook/react'
 
-import { historyProviderDecorator } from '../../decorators'
+import {
+  eventTrackingProviderDecorator,
+  historyProviderDecorator,
+} from '../../decorators'
 
 export default {
   title: 'modals / TransitionModal',
   component: TransitionModal,
-  decorators: [historyProviderDecorator],
+  decorators: [historyProviderDecorator, eventTrackingProviderDecorator],
 } as Meta
 
 function UriHashHistoryManipulator({ uriHash }: { uriHash: string }) {

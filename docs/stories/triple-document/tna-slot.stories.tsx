@@ -3,9 +3,11 @@ import { ELEMENTS, Slot } from '@titicaca/triple-document'
 
 import SLOTS from '../__mocks__/slots.sample.json'
 import {
-  envProviderDecorator,
-  sessionContextProviderDecorator,
+  eventMetadataDecorator,
+  eventTrackingProviderDecorator,
+  historyProviderDecorator,
   tripleClientMetadataDecorator,
+  userAgentProviderDecorator,
 } from '../../decorators'
 
 const { tnaProducts: TnaProducts } = ELEMENTS
@@ -14,9 +16,11 @@ export default {
   title: 'triple-document / T&A Slot',
   component: TnaProducts,
   decorators: [
-    envProviderDecorator,
-    sessionContextProviderDecorator,
+    historyProviderDecorator,
     tripleClientMetadataDecorator,
+    userAgentProviderDecorator,
+    eventMetadataDecorator,
+    eventTrackingProviderDecorator,
   ],
 } as Meta
 

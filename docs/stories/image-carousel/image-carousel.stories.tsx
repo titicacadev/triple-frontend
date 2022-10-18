@@ -4,10 +4,12 @@ import { ImageSource } from '@titicaca/core-elements'
 
 import IMAGES from '../__mocks__/image-carousel.sample.json'
 import VIDEOS from '../__mocks__/video-carousel.sample.json'
+import { deviceProviderDecorator } from '../../decorators'
 
 export default {
   title: 'image-carousel / Image Carousel',
   component: ImageCarousel,
+  decorators: [deviceProviderDecorator],
 }
 
 const MoreImageOverlayLink = styled.a`

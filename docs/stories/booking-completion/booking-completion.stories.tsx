@@ -2,19 +2,14 @@ import BookingCompletion from '@titicaca/booking-completion'
 import { ComponentStoryObj, Meta } from '@storybook/react'
 
 import {
-  envProviderDecorator,
-  sessionContextProviderDecorator,
+  historyProviderDecorator,
   tripleClientMetadataDecorator,
 } from '../../decorators'
 
 export default {
   title: 'booking-completion / Booking Complete',
   component: BookingCompletion,
-  decorators: [
-    envProviderDecorator,
-    sessionContextProviderDecorator,
-    tripleClientMetadataDecorator,
-  ],
+  decorators: [historyProviderDecorator, tripleClientMetadataDecorator],
 } as Meta
 
 export const Basic: ComponentStoryObj<typeof BookingCompletion> = {

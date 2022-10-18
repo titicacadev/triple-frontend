@@ -3,6 +3,7 @@ import { UserAgentProvider } from '@titicaca/react-contexts'
 import { ComponentStoryObj, Meta } from '@storybook/react'
 
 import {
+  eventTrackingProviderDecorator,
   historyProviderDecorator,
   tripleClientMetadataDecorator,
 } from '../../decorators'
@@ -13,6 +14,7 @@ export default {
   decorators: [
     historyProviderDecorator,
     tripleClientMetadataDecorator,
+    eventTrackingProviderDecorator,
     (Story) => (
       <UserAgentProvider
         value={{

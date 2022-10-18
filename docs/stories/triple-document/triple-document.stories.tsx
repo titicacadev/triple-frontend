@@ -10,9 +10,9 @@ import MOCK_REGIONS from '../__mocks__/triple-document.regions.json'
 import MOCK_EMBEDDED from '../__mocks__/triple-document.embedded.json'
 import MOCK_ITINERARY from '../__mocks__/triple-document.itinerary.json'
 import {
-  envProviderDecorator,
   eventMetadataDecorator,
-  sessionContextProviderDecorator,
+  eventTrackingProviderDecorator,
+  historyProviderDecorator,
   tripleClientMetadataDecorator,
 } from '../../decorators'
 
@@ -30,10 +30,10 @@ const {
 export default {
   title: 'triple-document',
   decorators: [
-    envProviderDecorator,
-    sessionContextProviderDecorator,
+    historyProviderDecorator,
     tripleClientMetadataDecorator,
     eventMetadataDecorator,
+    eventTrackingProviderDecorator,
   ],
 } as Meta
 
@@ -149,4 +149,3 @@ export function DocumentItinerary() {
 }
 
 DocumentItinerary.storyName = '추천코스 기본'
-DocumentItinerary.decorators = [sessionContextProviderDecorator]

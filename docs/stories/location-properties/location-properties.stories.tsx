@@ -2,6 +2,7 @@ import LocationProperties from '@titicaca/location-properties'
 import { Meta, StoryObj } from '@storybook/react'
 
 import {
+  eventTrackingProviderDecorator,
   historyProviderDecorator,
   tripleClientMetadataDecorator,
 } from '../../decorators'
@@ -9,7 +10,11 @@ import {
 export default {
   title: 'Location-Properties / LocationProperties',
   component: LocationProperties,
-  decorators: [historyProviderDecorator, tripleClientMetadataDecorator],
+  decorators: [
+    historyProviderDecorator,
+    tripleClientMetadataDecorator,
+    eventTrackingProviderDecorator,
+  ],
 } as Meta
 
 export const Basic: StoryObj = {
