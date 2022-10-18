@@ -2,7 +2,11 @@ import { PropsWithChildren } from 'react'
 import '@testing-library/jest-dom'
 import 'jest-styled-components'
 import { fireEvent, render } from '@testing-library/react'
-import { EnvProvider, SessionContextProvider } from '@titicaca/react-contexts'
+import {
+  EnvProvider,
+  HistoryProvider,
+  SessionContextProvider,
+} from '@titicaca/react-contexts'
 
 import { RepliesProvider } from './context'
 import Register from './register'
@@ -75,7 +79,9 @@ function ReplyWithLoginWrapper({ children }: PropsWithChildren<unknown>) {
           initialSessionAvailability: true,
         }}
       >
-        <RepliesProvider>{children}</RepliesProvider>
+        <HistoryProvider>
+          <RepliesProvider>{children}</RepliesProvider>
+        </HistoryProvider>
       </SessionContextProvider>
     </EnvProvider>
   )

@@ -1,7 +1,11 @@
 import { PropsWithChildren } from 'react'
 import '@testing-library/jest-dom'
 import { fireEvent, render, waitFor } from '@testing-library/react'
-import { EnvProvider } from '@titicaca/react-contexts'
+import {
+  EnvProvider,
+  HistoryProvider,
+  SessionContextProvider,
+} from '@titicaca/react-contexts'
 import { useNavigate } from '@titicaca/router'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 
@@ -241,7 +245,17 @@ function ReplyWithLoginWrapper({ children }: PropsWithChildren<unknown>) {
       afOnelinkPid=""
       afOnelinkSubdomain=""
     >
-      <RepliesProvider>{children}</RepliesProvider>
+      <SessionContextProvider
+        type="browser"
+        props={{
+          initialUser: undefined,
+          initialSessionAvailability: false,
+        }}
+      >
+        <HistoryProvider>
+          <RepliesProvider>{children}</RepliesProvider>
+        </HistoryProvider>
+      </SessionContextProvider>
     </EnvProvider>
   )
 }

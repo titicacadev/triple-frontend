@@ -3,6 +3,7 @@ import { fireEvent, render } from '@testing-library/react'
 import { LoginCtaModalProvider, TransitionModal } from '@titicaca/modals'
 import {
   EnvProvider,
+  EventTrackingProvider,
   HistoryProvider,
   SessionContextProvider,
 } from '@titicaca/react-contexts'
@@ -37,9 +38,13 @@ test('브라우저를 허용하지 않는 링크라면 브라우저 환경에서
           <TripleClientMetadataProvider>
             <SessionProvider>
               <HistoryProvider>
-                {children}
+                <EventTrackingProvider
+                  page={{ label: '기본 label', path: '/' }}
+                >
+                  {children}
 
-                <TransitionModal deepLink="MOCK_DEEP_LINK" />
+                  <TransitionModal deepLink="MOCK_DEEP_LINK" />
+                </EventTrackingProvider>
               </HistoryProvider>
             </SessionProvider>
           </TripleClientMetadataProvider>
@@ -79,7 +84,13 @@ test('로그인한 앱에서만 열리는 링크라면 로그인하지 않은 �
           <TripleClientMetadataProvider>
             <SessionProvider>
               <HistoryProvider>
-                <LoginCtaModalProvider>{children}</LoginCtaModalProvider>
+                <LoginCtaModalProvider>
+                  <EventTrackingProvider
+                    page={{ label: '기본 label', path: '/' }}
+                  >
+                    {children}
+                  </EventTrackingProvider>
+                </LoginCtaModalProvider>
               </HistoryProvider>
             </SessionProvider>
           </TripleClientMetadataProvider>

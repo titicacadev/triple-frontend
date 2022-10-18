@@ -1,5 +1,9 @@
 import { render, screen } from '@testing-library/react'
-import { ScrapsProvider, EventMetadataProvider } from '@titicaca/react-contexts'
+import {
+  ScrapsProvider,
+  EventMetadataProvider,
+  EventTrackingProvider,
+} from '@titicaca/react-contexts'
 
 import { OutlineScrapButton, OverlayScrapButton } from './scrap-button'
 
@@ -16,7 +20,13 @@ describe('ScrapButton', () => {
           size={36}
         />
       </ScrapsProvider>,
-      { wrapper: EventMetadataProvider },
+      {
+        wrapper: ({ children }) => (
+          <EventTrackingProvider page={{ label: '기본 label', path: '/' }}>
+            <EventMetadataProvider>{children}</EventMetadataProvider>
+          </EventTrackingProvider>
+        ),
+      },
     )
 
     expect(screen.getByRole('button')).not.toBeFalsy()
@@ -34,7 +44,13 @@ describe('ScrapButton', () => {
           size={36}
         />
       </ScrapsProvider>,
-      { wrapper: EventMetadataProvider },
+      {
+        wrapper: ({ children }) => (
+          <EventTrackingProvider page={{ label: '기본 label', path: '/' }}>
+            <EventMetadataProvider>{children}</EventMetadataProvider>
+          </EventTrackingProvider>
+        ),
+      },
     )
     expect(screen.getByRole('button')).not.toBeFalsy()
   })
