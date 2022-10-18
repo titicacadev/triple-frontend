@@ -91,19 +91,15 @@ test('로그인한 앱에서만 열리는 링크라면 로그인하지 않은 �
     {
       wrapper: ({ children }) => (
         <EnvProviderWrapper>
-          <TripleClientMetadataProvider>
-            <SessionProvider>
-              <HistoryProvider>
-                <LoginCtaModalProvider>
-                  <EventTrackingProvider
-                    page={{ label: '기본 label', path: '/' }}
-                  >
-                    {children}
-                  </EventTrackingProvider>
-                </LoginCtaModalProvider>
-              </HistoryProvider>
-            </SessionProvider>
-          </TripleClientMetadataProvider>
+          <EventTrackingProvider page={{ label: '기본 label', path: '/' }}>
+            <TripleClientMetadataProvider>
+              <SessionProvider>
+                <HistoryProvider>
+                  <LoginCtaModalProvider>{children}</LoginCtaModalProvider>
+                </HistoryProvider>
+              </SessionProvider>
+            </TripleClientMetadataProvider>
+          </EventTrackingProvider>
         </EnvProviderWrapper>
       ),
     },
