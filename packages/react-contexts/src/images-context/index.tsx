@@ -40,16 +40,7 @@ interface ImagesProviderProps {
   total?: number
 }
 
-const ImagesContext = createContext<ImagesContextValue>({
-  images: [],
-  total: 0,
-  loading: false,
-  actions: {
-    fetch: () => Promise.resolve(),
-    reFetch: () => Promise.resolve(),
-    indexOf: () => Promise.resolve(-1),
-  },
-})
+const ImagesContext = createContext<ImagesContextValue | undefined>(undefined)
 
 const TYPE_MAPPING = {
   attraction: 'poi',
@@ -219,14 +210,12 @@ export function withImages<P extends DeepPartial<WithImagesBaseProps>>(
   ) {
     return (
       <ImagesContext.Consumer>
-        {({ images, total, actions }) => {
+        {(contextProps) => {
           return (
             <Component
               {...({
                 ...props,
-                images,
-                totalImagesCount: total,
-                imagesActions: actions,
+                ...contextProps,
               } as P)}
             />
           )
