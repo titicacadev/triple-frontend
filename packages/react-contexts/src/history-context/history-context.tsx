@@ -53,8 +53,6 @@ interface HistoryContextValue {
   showTransitionModal: () => void
 }
 
-const NOOP = () => {}
-
 function addHashToCurrentUrl({
   hash,
   basePathCompatible,
@@ -71,17 +69,10 @@ function addHashToCurrentUrl({
   )
 }
 
-const UriHashContext = createContext<UriHash>('')
+const UriHashContext = createContext<UriHash | undefined>(undefined)
 const HistoryFunctionsContext = createContext<
-  Omit<HistoryContextValue, 'uriHash'>
->({
-  push: NOOP,
-  replace: NOOP,
-  back: NOOP,
-  navigate: NOOP,
-  openWindow: NOOP,
-  showTransitionModal: NOOP,
-})
+  Omit<HistoryContextValue, 'uriHash'> | undefined
+>(undefined)
 
 interface HashHistory {
   hash?: string
@@ -367,18 +358,12 @@ export function withHistory<P extends DeepPartial<WithHistoryBaseProps>>(
       <UriHashContext.Consumer>
         {(uriHash) => (
           <HistoryFunctionsContext.Consumer>
-            {({ push, replace, back, navigate, showTransitionModal }) => (
+            {(histoyFunctionContextProps) => (
               <Component
                 {...({
                   ...props,
                   uriHash,
-                  historyActions: {
-                    push,
-                    replace,
-                    back,
-                    navigate,
-                    showTransitionModal,
-                  },
+                  historyActions: histoyFunctionContextProps,
                 } as P)}
               />
             )}
