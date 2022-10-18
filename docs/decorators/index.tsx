@@ -5,6 +5,7 @@ import {
   EnvProvider,
   UserAgentProvider,
   EventMetadataProvider,
+  EventTrackingProvider,
 } from '@titicaca/react-contexts'
 import { TripleClientMetadataProvider } from '@titicaca/react-triple-client-interfaces'
 import { GlobalStyle } from '@titicaca/core-elements'
@@ -131,5 +132,13 @@ export function eventMetadataDecorator(Story: StoryFn) {
     <EventMetadataProvider>
       <Story />
     </EventMetadataProvider>
+  )
+}
+
+export function eventTrackingProviderDecorator(Story: StoryFn) {
+  return (
+    <EventTrackingProvider page={{ label: 'test', path: '/' }}>
+      <Story />
+    </EventTrackingProvider>
   )
 }
