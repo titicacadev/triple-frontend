@@ -60,11 +60,7 @@ export function extractUtmContextFromQuery({
   }
 }
 
-const UtmContext = createContext<UtmContextValue>({
-  source: '',
-  medium: '',
-  campaign: '',
-})
+const UtmContext = createContext<UtmContextValue | undefined>(undefined)
 
 export const UtmProvider = UtmContext.Provider
 
