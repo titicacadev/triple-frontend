@@ -1,9 +1,19 @@
 import { render } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import { ScrapsProvider, EventMetadataProvider } from '@titicaca/react-contexts'
+import {
+  ScrapsProvider,
+  EventMetadataProvider,
+  EventTrackingProvider,
+} from '@titicaca/react-contexts'
 
 import { OverlayScrapButton, OutlineScrapButton } from './scrap-button'
 import { ScrapButtonMask } from './scrap-button-mask'
+
+jest.mock('next/router', () => ({
+  useRouter: () => ({
+    query: { myProp: '' },
+  }),
+}))
 
 describe('ScrapButtonMask 컴포넌트', () => {
   it('should not render child scrap button.', () => {
@@ -28,7 +38,13 @@ describe('ScrapButtonMask 컴포넌트', () => {
           />
         </ScrapButtonMask>
       </ScrapsProvider>,
-      { wrapper: EventMetadataProvider },
+      {
+        wrapper: ({ children }) => (
+          <EventTrackingProvider page={{ label: '기본 label', path: '/' }}>
+            <EventMetadataProvider>{children}</EventMetadataProvider>
+          </EventTrackingProvider>
+        ),
+      },
     )
 
     expect(container).toBeEmptyDOMElement()
@@ -58,7 +74,13 @@ describe('ScrapButtonMask 컴포넌트', () => {
           />
         </ScrapButtonMask>
       </ScrapsProvider>,
-      { wrapper: EventMetadataProvider },
+      {
+        wrapper: ({ children }) => (
+          <EventTrackingProvider page={{ label: '기본 label', path: '/' }}>
+            <EventMetadataProvider>{children}</EventMetadataProvider>
+          </EventTrackingProvider>
+        ),
+      },
     )
 
     expect(getAllByRole('button')).toHaveLength(2)
