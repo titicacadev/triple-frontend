@@ -7,6 +7,12 @@ import {
 
 import { OutlineScrapButton, OverlayScrapButton } from './scrap-button'
 
+jest.mock('next/router', () => ({
+  useRouter: () => ({
+    query: { myProp: '' },
+  }),
+}))
+
 describe('ScrapButton', () => {
   it('should render successfully.', () => {
     const { unmount } = render(
