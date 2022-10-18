@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 9.7.0
+
+### core-element
+
+- tabs에 rounded-tab 추가합니다. [#2200](https://github.com/titicacadev/triple-frontend/pull/2200)
+
 ## 9.6.1
 
 ### common
