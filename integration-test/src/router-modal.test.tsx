@@ -13,6 +13,16 @@ import { PropsWithChildren } from 'react'
 
 import { mockLocation } from './utils/location'
 
+jest.mock('next/router', () => ({
+  useRouter: () => ({
+    query: { myProp: '' },
+  }),
+  events: {
+    on: jest.fn(),
+    off: jest.fn(),
+  },
+}))
+
 afterEach(() => {
   mockLocation.afterEach()
 })
