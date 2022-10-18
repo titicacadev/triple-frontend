@@ -27,8 +27,6 @@ import {
   PixelParams,
 } from './types'
 
-const NOOP = () => {}
-
 export interface EventTrackingContextValue {
   trackScreen: (
     screenPath: string,
@@ -64,13 +62,9 @@ export interface EventTrackingContextValue {
   setFirebaseUserId: (userId: string | null) => void
 }
 
-const EventTrackingContext = createContext<EventTrackingContextValue>({
-  trackScreen: NOOP,
-  trackEvent: NOOP,
-  trackSimpleEvent: NOOP,
-  viewItem: NOOP,
-  setFirebaseUserId: NOOP,
-})
+const EventTrackingContext = createContext<
+  EventTrackingContextValue | undefined
+>(undefined)
 
 const DEFAULT_EVENT_NAME = 'user_interaction'
 const WEB_FA_EVENT_NAME = 'web_user_interaction'
@@ -336,14 +330,11 @@ export function withEventTracking<
   ) {
     return (
       <EventTrackingContext.Consumer>
-        {({ trackScreen, trackEvent, trackSimpleEvent, viewItem }) => (
+        {(contextProps) => (
           <Component
             {...({
               ...props,
-              trackScreen,
-              trackEvent,
-              trackSimpleEvent,
-              viewItem,
+              ...contextProps,
             } as P)}
           />
         )}
