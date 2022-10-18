@@ -17,12 +17,6 @@ export interface MyReviewsContextProps {
   }) => void
 }
 
-export const Context = createContext<MyReviewsContextProps>({
-  myReviews: {},
-  deriveCurrentStateAndCount: () => ({
-    reviewed: false,
-    reviewsCount: 0,
-    reviewsRating: 0,
-  }),
-  deleteMyReview: () => undefined,
-})
+export const Context = createContext<MyReviewsContextProps | undefined>(
+  undefined,
+)
