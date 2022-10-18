@@ -7,6 +7,7 @@ import {
   EventMetadataProvider,
   EventTrackingProvider,
   DeviceProvider,
+  UtmProvider,
 } from '@titicaca/react-contexts'
 import { TripleClientMetadataProvider } from '@titicaca/react-triple-client-interfaces'
 import { GlobalStyle } from '@titicaca/core-elements'
@@ -151,5 +152,13 @@ export function deviceProviderDecorator(Story: StoryFn) {
     >
       <Story />
     </DeviceProvider>
+  )
+}
+
+export function utmProviderDecorator(Story: StoryFn) {
+  return (
+    <UtmProvider value={{ source: '', medium: '', campaign: '' }}>
+      <Story />
+    </UtmProvider>
   )
 }
