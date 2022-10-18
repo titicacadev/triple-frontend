@@ -3,12 +3,7 @@ import { DeepPartial } from 'utility-types'
 
 import { UserAgentValue } from './utils'
 
-const UserAgentContext = createContext<UserAgentValue>({
-  isPublic: false,
-  isMobile: false,
-  os: { name: '', version: '' },
-  app: null,
-})
+const UserAgentContext = createContext<UserAgentValue | undefined>(undefined)
 
 export const UserAgentProvider = UserAgentContext.Provider
 
