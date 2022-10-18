@@ -16,12 +16,7 @@ interface DeviceContextValue {
   deviceState: DeviceState
 }
 
-const DeviceContext = createContext<DeviceContextValue>({
-  inRegion: false,
-  latitude: null,
-  longitude: null,
-  deviceState: DEFAULT_DEVICE_STATE,
-})
+const DeviceContext = createContext<DeviceContextValue | undefined>(undefined)
 
 export function DeviceProvider({
   value: initialValue,
