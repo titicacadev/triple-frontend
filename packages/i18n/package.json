@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/i18n",
-  "version": "9.6.1",
+  "version": "9.7.0",
   "description": "Triple-frontend Internalization",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/i18n",
@@ -21,7 +21,7 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/fetcher": "^9.6.1",
+    "@titicaca/fetcher": "^9.7.0",
     "i18next": "^19.3.3",
     "react-i18next": "^11.3.3"
   }
