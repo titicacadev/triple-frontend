@@ -77,7 +77,7 @@ export default function ImageOptimizedImg({
   const absolute = useContentAbsolute()
 
   const handleLazyLoad = useCallback(
-    (event, unobserve) => {
+    (event: IntersectionObserverEntry, unobserve: () => void) => {
       if (event.isIntersecting) {
         unobserve()
 

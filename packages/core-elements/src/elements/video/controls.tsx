@@ -1,4 +1,11 @@
-import { useState, useCallback, RefObject, useEffect } from 'react'
+import {
+  useState,
+  useCallback,
+  RefObject,
+  useEffect,
+  ChangeEventHandler,
+  MouseEventHandler,
+} from 'react'
 import styled from 'styled-components'
 import { debounce } from '@titicaca/view-utilities'
 import { getColor } from '@titicaca/color-palette'
@@ -23,19 +30,19 @@ const ControlsContainer = styled.div<{ visible: boolean }>`
 
 const CurrentTime = styled.div`
   position: absolute;
-  color: #ffffff;
+  color: #fff;
   font-size: 10px;
   left: 0;
   bottom: 12px;
   width: 45px;
-  text-align: center;
+  text-align: nter;
 `
 
 const Duration = styled.div`
   position: absolute;
   font-size: 10px;
-  color: #ffffff;
-  right: 0px;
+  color: #fff;
+  right: 0;
   bottom: 12px;
   width: 45px;
   text-align: center;
@@ -92,7 +99,7 @@ export default function Controls({
     [],
   )
 
-  const handleSeekerChange = useCallback(
+  const handleSeekerChange: ChangeEventHandler<HTMLInputElement> = useCallback(
     (e) => {
       if (videoRef.current) {
         videoRef.current.currentTime = parseFloat(e.target.value)
@@ -103,7 +110,7 @@ export default function Controls({
     [videoRef, handleFadeOut],
   )
 
-  const handleSeekerClick = useCallback(
+  const handleSeekerClick: MouseEventHandler<HTMLInputElement> = useCallback(
     (e) => {
       e.stopPropagation()
       handleFadeOut()

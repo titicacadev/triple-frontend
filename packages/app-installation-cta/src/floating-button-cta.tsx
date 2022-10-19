@@ -89,7 +89,7 @@ function FloatingButtonCta({
   const floatingButtonContainerRef = useRef<HTMLDivElement>(null)
 
   const sendTrackEventRequest = useCallback(
-    (param) => {
+    (param: any) => {
       trackEvent && param && trackEvent(param)
     },
     [trackEvent],

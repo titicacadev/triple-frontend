@@ -1,10 +1,11 @@
-import { Component } from 'react'
+import { Component, ReactNode } from 'react'
 import { withTranslation, WithTranslation } from '@titicaca/next-i18next'
 import { Alert } from '@titicaca/modals'
 
 import { WebStorageError } from './error'
 
 interface WebStorageErrorBoundaryProps {
+  children: ReactNode
   onConfirm: () => void
 }
 

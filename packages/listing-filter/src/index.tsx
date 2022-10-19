@@ -32,8 +32,8 @@ const ExpandingFilterEntryFrame = styled(FilterEntryBase)<{
   padding: 9px 24px 9px 11px;
   background-image: ${({ active }) =>
     active
-      ? `url(${ACTIVE_EXPANDER_ICON_URL})`
-      : `url(${INACTIVE_EXPANDER_ICON_URL})`};
+      ? `url(${ACTIVE_EXPANDER_ICON_URL}) `
+      : `url(${INACTIVE_EXPANDER_ICON_URL}) `};
   background-size: 10px 24px;
   background-position: top 4px right 10px;
 `
@@ -131,7 +131,8 @@ const UnderlineRegularFilterEntry = styled(FilterEntryBase)<{
     active &&
     css`
       color: ${gray};
-      &:before {
+
+      &::before {
         content: '';
         position: absolute;
         bottom: 0;
@@ -198,6 +199,7 @@ const ListingFilterBase = styled.div<{ padding?: MarginPadding }>`
 `
 
 class ListingFilter extends PureComponent<{
+  children?: ReactNode
   padding?: MarginPadding
 }> {
   // eslint-disable-next-line @typescript-eslint/naming-convention
