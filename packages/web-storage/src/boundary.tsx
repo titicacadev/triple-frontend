@@ -1,9 +1,10 @@
-import { Component } from 'react'
+import { Component, ReactNode } from 'react'
 import { Alert } from '@titicaca/modals'
 
 import { WebStorageError } from './error'
 
 interface WebStorageErrorBoundaryProps {
+  children: ReactNode
   onConfirm: () => void
 }
 
