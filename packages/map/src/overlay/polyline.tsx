@@ -15,6 +15,8 @@ const defaultPolylineStyle: google.maps.PolylineOptions = {
 export function PolylineBase({ path, ...rest }: google.maps.PolylineOptions) {
   const options = useMemo(() => ({ ...defaultPolylineStyle, ...rest }), [rest])
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   return <GoogleMapPolyline path={path} options={options} />
 }
 
