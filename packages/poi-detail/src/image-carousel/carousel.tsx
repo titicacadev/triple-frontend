@@ -81,7 +81,7 @@ export default function Carousel({
   )
 
   const handlePageChange = useCallback(
-    ({ index }) => {
+    ({ index }: { index: number }) => {
       if (index === currentPage) {
         return
       }

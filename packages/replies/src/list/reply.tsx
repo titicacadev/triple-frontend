@@ -95,7 +95,7 @@ export default function Reply({
   const navigate = useNavigate()
 
   const handleMoreClick = useCallback(
-    (id) => {
+    (id: string) => {
       push(`${HASH_MORE_ACTION_SHEET}.${id}`, { useRouter: true })
     },
     [push],
@@ -206,7 +206,7 @@ export default function Reply({
     TransitionType.General,
     useSessionCallback(
       useCallback(
-        (href) => {
+        (href: string) => {
           navigate(href)
         },
         [navigate],
@@ -228,7 +228,7 @@ export default function Reply({
       <Container
         css={{
           padding: '0 0 3px 50px',
-          margin: '0 0 20px 0',
+          margin: '0 0 20px',
         }}
       >
         <FlexBox flex justifyContent="space-between" alignItems="start">
@@ -277,7 +277,7 @@ export default function Reply({
             flex
             alignItems="center"
             css={{
-              padding: '7px 0 0 0',
+              padding: '7px 0 0',
               cursor: 'pointer',
             }}
           >
@@ -406,7 +406,7 @@ function Content({
   const handleMentiondUserNameClick = useAppCallback(
     TransitionType.General,
     useCallback(
-      (href) => {
+      (href: string) => {
         navigate(href)
       },
       [navigate],
@@ -416,7 +416,7 @@ function Content({
   return (
     <Container
       css={{
-        padding: '3px 0 0 0',
+        padding: '3px 0 0',
       }}
     >
       <Text inline padding={{ top: 3, bottom: 5 }} size={15}>

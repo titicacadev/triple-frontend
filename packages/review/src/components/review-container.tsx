@@ -160,7 +160,7 @@ function ReviewContainer({
   const reviewsCountData = useReviewCount({ resourceId, resourceType })
 
   const setMyReview = useCallback(
-    (review) =>
+    (review: ReviewData | undefined) =>
       setMyReviewStatus(([, ids]) => [
         review,
         review ? new Set<string>([String(review.id), ...Array.from(ids)]) : ids,
@@ -182,7 +182,7 @@ function ReviewContainer({
         }
 
         if (myReviewData) {
-          setMyReview(myReviewData.myReview)
+          setMyReview(myReviewData.myReview as unknown as ReviewData) // TODO
         }
       }
     }
@@ -359,7 +359,7 @@ function ReviewContainer({
         justifyContent="space-between"
         alignItems="center"
         css={{
-          margin: '23px 0 0 0',
+          margin: '23px 0 0',
         }}
       >
         <SortingOptions
@@ -411,7 +411,7 @@ function ReviewContainer({
           {reviewsCount > SHORTENED_REVIEWS_COUNT_PER_PAGE && shortened ? (
             <Container
               css={{
-                margin: '40px 0 0 0',
+                margin: '40px 0 0',
               }}
             >
               <Button
@@ -468,7 +468,7 @@ function ReviewContainer({
           resourceType={resourceType}
           resourceId={resourceId}
           notifyReviewDeleted={(resourceId, reviewId) => {
-            reviewId === myReview.id && setMyReview(null)
+            reviewId === myReview.id && setMyReview(undefined)
             notifyReviewDeleted(resourceId, reviewId)
           }}
           onReviewEdit={() => {
