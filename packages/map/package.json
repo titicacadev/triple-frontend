@@ -21,7 +21,7 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@react-google-maps/api": "~2.2.0",
+    "@react-google-maps/api": "^2.13.1",
     "@titicaca/core-elements": "^10.3.0",
     "@titicaca/router": "^10.3.0"
   },
