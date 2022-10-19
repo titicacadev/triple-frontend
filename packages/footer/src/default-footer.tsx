@@ -108,16 +108,16 @@ function DefaultFooter({ hideAppDownloadButton = false }: DefaultFooterProps) {
           padding: '30px 30px 40px',
         }}
       >
-        <Accordion>
+        <Accordion
+          active={businessExpanded}
+          onActiveChange={() => setBusinessExpanded(!businessExpanded)}
+        >
           <AccordionHeader
             flex
             alignItems="center"
             justifyContent="space-between"
           >
-            <Title
-              active={businessExpanded}
-              onClick={() => setBusinessExpanded(!businessExpanded)}
-            >
+            <Title>
               트리플 사업자 정보
               <AccordionArrow
                 src={`https://assets.triple.guide/images/${
@@ -149,7 +149,7 @@ function DefaultFooter({ hideAppDownloadButton = false }: DefaultFooterProps) {
             ) : null}
           </AccordionHeader>
 
-          <Accordion.Content active={businessExpanded}>
+          <Accordion.Content>
             <Text
               size={11}
               lineHeight="17px"
