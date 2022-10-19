@@ -96,7 +96,7 @@ function DetailHeader({
         {(reviewsCount > 0 || scrapsCount > 0) && (
           <Container
             css={{
-              margin: '10px 0 0 0',
+              margin: '10px 0 0',
             }}
           >
             {reviewsCount > 0 && (

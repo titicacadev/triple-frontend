@@ -1,4 +1,9 @@
-import { useState, useCallback, SyntheticEvent } from 'react'
+import {
+  useState,
+  useCallback,
+  ChangeEventHandler,
+  MouseEventHandler,
+} from 'react'
 import styled from 'styled-components'
 import { debounce } from '@titicaca/view-utilities'
 import { getColor } from '@titicaca/color-palette'
@@ -64,8 +69,8 @@ export default function Seeker({
   seek: string
   duration: number
   visible: boolean
-  onClick: (e: SyntheticEvent) => void
-  onChange: (e: SyntheticEvent) => void
+  onClick: MouseEventHandler<HTMLInputElement>
+  onChange: ChangeEventHandler<HTMLInputElement>
 }) {
   const [handleVisible, setHandleVisible] = useState(false)
   // TODO: useDebouncedState 사용하기
@@ -75,8 +80,8 @@ export default function Seeker({
     [setHandleVisible],
   )
 
-  const handleChange = useCallback(
-    (e: SyntheticEvent) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
+    (e) => {
       if (visible) {
         setHandleVisible(true)
         onChange(e)
