@@ -1,11 +1,11 @@
 import type { PropsWithChildren } from 'react'
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook } from '@testing-library/react'
 
 import { TripleClientMetadataProvider } from './triple-client-metadata-context'
 import { useTripleClientActions } from './use-triple-client-actions'
 
 it('should return the function as-is if version requirement is not listed', () => {
-  const wrapper = ({ children }: PropsWithChildren<Record<string, never>>) => (
+  const wrapper = ({ children }: PropsWithChildren) => (
     <TripleClientMetadataProvider appName="Triple-iOS" appVersion="5.11.0">
       {children}
     </TripleClientMetadataProvider>
@@ -17,7 +17,7 @@ it('should return the function as-is if version requirement is not listed', () =
 })
 
 it('should not return the function if it does not match version requirement', () => {
-  const wrapper = ({ children }: PropsWithChildren<Record<string, never>>) => (
+  const wrapper = ({ children }: PropsWithChildren) => (
     <TripleClientMetadataProvider appName="Triple-iOS" appVersion="5.10.0">
       {children}
     </TripleClientMetadataProvider>
@@ -29,7 +29,7 @@ it('should not return the function if it does not match version requirement', ()
 })
 
 it('should return the function if it matches version requirement', () => {
-  const wrapper = ({ children }: PropsWithChildren<Record<string, never>>) => (
+  const wrapper = ({ children }: PropsWithChildren) => (
     <TripleClientMetadataProvider appName="Triple-iOS" appVersion="5.12.0">
       {children}
     </TripleClientMetadataProvider>
@@ -41,7 +41,7 @@ it('should return the function if it matches version requirement', () => {
 })
 
 it('should not return the function if the page is not on triple client', () => {
-  const wrapper = ({ children }: PropsWithChildren<Record<string, never>>) => (
+  const wrapper = ({ children }: PropsWithChildren) => (
     <TripleClientMetadataProvider>{children}</TripleClientMetadataProvider>
   )
 
