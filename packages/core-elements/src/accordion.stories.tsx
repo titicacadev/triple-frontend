@@ -1,26 +1,24 @@
-import { Meta, Story } from '@storybook/react'
+/* eslint-disable @typescript-eslint/naming-convention */
+import { ComponentMeta, ComponentStoryFn } from '@storybook/react'
 
 import { Accordion } from './elements/accordion'
 import Text from './elements/text'
 
 export default {
   title: 'Core-Elements / Accordion',
-  components: Accordion,
-} as Meta
+  component: Accordion,
+  subcomponents: {
+    'Accordion.Title': Accordion.Title,
+    'Accordion.Folded': Accordion.Folded,
+    'Accordion.Content': Accordion.Content,
+  },
+} as ComponentMeta<typeof Accordion>
 
-interface BusinessHoursCustomArgs {
-  active: boolean
-  title: string
-}
-
-export const BusinessHours: Story<BusinessHoursCustomArgs> = ({
-  active,
-  title,
-}) => {
+export const BusinessHours: ComponentStoryFn<typeof Accordion> = (args) => {
   return (
-    <Accordion active={active}>
+    <Accordion {...args}>
       <Accordion.Title>
-        <Text bold>{title}</Text>
+        <Text bold>이용가능시간, 휴무일</Text>
       </Accordion.Title>
       <Accordion.Folded>
         <Text bold color="blue">
@@ -36,7 +34,3 @@ export const BusinessHours: Story<BusinessHoursCustomArgs> = ({
   )
 }
 BusinessHours.storyName = '영업시간'
-BusinessHours.args = {
-  active: false,
-  title: '이용가능시간, 휴무일',
-}
