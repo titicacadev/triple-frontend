@@ -58,10 +58,12 @@ export function getShiftLatLng(
     return latLng
   }
 
-  const zoom = map.getZoom()
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const zoom = map.getZoom()!
   const scale = Math.pow(2, zoom)
   const { x, y } = offset
-  const centerPoint = projection.fromLatLngToPoint(latLng)
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const centerPoint = projection.fromLatLngToPoint(latLng)!
   const offsetPoint = new google.maps.Point(x / scale || 0, y / scale || 0)
 
   centerPoint.x += offsetPoint.x
