@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 10.0.0
+
+### common
+
+- nothing-to-commit 에러를 무시합니다. [#2216](https://github.com/titicacadev/triple-frontend/pull/2216)
+
+### react-context
+
+- firebase v9 업그레이드 [#2202](https://github.com/titicacadev/triple-frontend/pull/2202)
+
 ## 9.7.0
 
 ### core-element
