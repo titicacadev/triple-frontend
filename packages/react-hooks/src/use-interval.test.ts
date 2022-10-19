@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook } from '@testing-library/react'
 
 import { useInterval } from './use-interval'
 
@@ -59,7 +59,7 @@ describe('useInterval hook test', () => {
     const intervalSpy = jest.spyOn(window, 'setInterval')
     const clearIntervalSpy = jest.spyOn(window, 'clearInterval')
     const initialProps = { callbackFn, delay }
-    const { rerender } = renderHook<typeof initialProps, void>(
+    const { rerender } = renderHook(
       (props) => useInterval(props.callbackFn, props.delay),
       { initialProps },
     )

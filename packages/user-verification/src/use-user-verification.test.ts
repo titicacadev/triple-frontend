@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook } from '@testing-library/react'
 import { useExternalRouter } from '@titicaca/router'
 
 import { useUserVerification } from './use-user-verification'
@@ -28,7 +28,6 @@ describe('인증 시작함수를 호출하면 인증 페이지를 엽니다.', (
       result: {
         current: { initiateVerification },
       },
-      waitForNextUpdate,
     } = renderHook(useUserVerification, {
       initialProps: {
         forceVerification,
@@ -36,8 +35,6 @@ describe('인증 시작함수를 호출하면 인증 페이지를 엽니다.', (
         verificationContext,
       },
     })
-
-    await waitForNextUpdate()
 
     initiateVerification()
 

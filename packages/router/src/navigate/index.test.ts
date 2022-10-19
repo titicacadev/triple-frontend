@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook } from '@testing-library/react'
 import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'
 import { useSessionAvailability, useEnv } from '@titicaca/react-contexts'
 import { checkIfRoutable } from '@titicaca/view-utilities'
