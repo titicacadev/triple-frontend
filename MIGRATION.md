@@ -1,5 +1,12 @@
 # 마이그레이션 가이드
 
+## v9 to v10
+
+### react-contexts
+
+- firebase를 v9로 업그레이드하여 dependency 및 일부 로직의 수정이 필요합니다.
+- [firebase v9 업그레이드 문서](https://titicaca.atlassian.net/wiki/spaces/dev/pages/3202777132/TF+firebase+v9)를 참고해주시기 바랍니다.
+
 ## v8 to v9
 
 ### review 패키지 react-query 적용
