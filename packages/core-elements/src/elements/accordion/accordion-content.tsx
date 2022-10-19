@@ -6,7 +6,10 @@ import { useAccordion } from './context'
 
 type AccordionContentProps = PropsWithChildren
 
-export const AccordionContent = ({ children }: AccordionContentProps) => {
+export const AccordionContent = ({
+  children,
+  ...props
+}: AccordionContentProps) => {
   const { active, contentId } = useAccordion()
 
   if (!active) {
@@ -19,6 +22,7 @@ export const AccordionContent = ({ children }: AccordionContentProps) => {
       css={{
         margin: '5px 0 0',
       }}
+      {...props}
     >
       {children}
     </Container>

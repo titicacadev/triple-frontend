@@ -32,7 +32,7 @@ const Title = styled.button<{ active: boolean }>`
 
 export type AccordionTitleProps = PropsWithChildren
 
-export const AccordionTitle = ({ children }: AccordionTitleProps) => {
+export const AccordionTitle = ({ children, ...props }: AccordionTitleProps) => {
   const { active, contentId, foldedId, onActiveChange } = useAccordion()
 
   return (
@@ -41,6 +41,7 @@ export const AccordionTitle = ({ children }: AccordionTitleProps) => {
       aria-controls={`${contentId} ${foldedId}`}
       aria-expanded={active}
       onClick={onActiveChange}
+      {...props}
     >
       {children}
     </Title>
