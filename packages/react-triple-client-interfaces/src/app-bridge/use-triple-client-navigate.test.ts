@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook } from '@testing-library/react'
 import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
 
 import { useTripleClientNavigate } from './use-triple-client-navigate'
