@@ -1,11 +1,11 @@
 import type { PropsWithChildren } from 'react'
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook } from '@testing-library/react'
 
 import { TripleClientMetadataProvider } from './triple-client-metadata-context'
 import { useTripleClientFeatureFlag } from './use-triple-client-feature-flag'
 
 it('returns true if app version meets the version operator requirements', () => {
-  const wrapper = ({ children }: PropsWithChildren<Record<string, never>>) => (
+  const wrapper = ({ children }: PropsWithChildren) => (
     <TripleClientMetadataProvider appName="Triple-iOS" appVersion="5.11.0">
       {children}
     </TripleClientMetadataProvider>
@@ -25,7 +25,7 @@ it('returns true if app version meets the version operator requirements', () => 
 })
 
 it('returns false if app version does not meet the version operator requirements', () => {
-  const wrapper = ({ children }: PropsWithChildren<Record<string, never>>) => (
+  const wrapper = ({ children }: PropsWithChildren) => (
     <TripleClientMetadataProvider appName="Triple-iOS" appVersion="5.11.0">
       {children}
     </TripleClientMetadataProvider>
@@ -45,7 +45,7 @@ it('returns false if app version does not meet the version operator requirements
 })
 
 it('returns false if app name does not meet the requirements', () => {
-  const wrapper = ({ children }: PropsWithChildren<Record<string, never>>) => (
+  const wrapper = ({ children }: PropsWithChildren) => (
     <TripleClientMetadataProvider appName="Triple-iOS" appVersion="5.11.0">
       {children}
     </TripleClientMetadataProvider>
@@ -66,7 +66,7 @@ it('returns false if app name does not meet the requirements', () => {
 })
 
 it('returns false if app does not exist and is not avilable on public', () => {
-  const wrapper = ({ children }: PropsWithChildren<Record<string, never>>) => (
+  const wrapper = ({ children }: PropsWithChildren) => (
     <TripleClientMetadataProvider>{children}</TripleClientMetadataProvider>
   )
 
@@ -85,7 +85,7 @@ it('returns false if app does not exist and is not avilable on public', () => {
 })
 
 it('returns true if app does not exist and is avilable on public', () => {
-  const wrapper = ({ children }: PropsWithChildren<Record<string, never>>) => (
+  const wrapper = ({ children }: PropsWithChildren) => (
     <TripleClientMetadataProvider>{children}</TripleClientMetadataProvider>
   )
 

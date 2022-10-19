@@ -1,6 +1,5 @@
 import '@testing-library/jest-dom'
-import { render } from '@testing-library/react'
-import { renderHook, act } from '@testing-library/react-hooks'
+import { render, renderHook, act } from '@testing-library/react'
 import {
   useEventTrackingContext,
   useHistoryFunctions,
