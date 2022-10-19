@@ -1,4 +1,9 @@
-import { useCallback, RefObject, SyntheticEvent } from 'react'
+import {
+  useCallback,
+  RefObject,
+  SyntheticEvent,
+  MouseEventHandler,
+} from 'react'
 import styled from 'styled-components'
 
 const PLAY_BUTTON_IMAGE_URL =
@@ -21,8 +26,8 @@ const PlayPauseButtonBase = styled.button<BaseProps>`
   transform: translate(-50%, -50%);
   background-image: ${({ playing }) =>
     playing
-      ? `url(${PAUSE_BUTTON_IMAGE_URL})`
-      : `url(${PLAY_BUTTON_IMAGE_URL})`};
+      ? `url(${PAUSE_BUTTON_IMAGE_URL}) `
+      : `url(${PLAY_BUTTON_IMAGE_URL}) `};
   background-size: cover;
 
   &:focus {
@@ -47,7 +52,7 @@ export default function PlayPauseButton({
   videoRef,
   onPlayPause,
 }: Props) {
-  const handlePlayPause = useCallback(
+  const handlePlayPause: MouseEventHandler = useCallback(
     (e) => {
       if (videoRef.current && visible) {
         playing ? videoRef.current.pause() : videoRef.current.play()

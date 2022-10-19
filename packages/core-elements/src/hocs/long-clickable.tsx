@@ -3,9 +3,12 @@ import {
   TouchEventHandler,
   ComponentType,
   useCallback,
+  MouseEvent,
+  ReactNode,
 } from 'react'
 
 interface LongClickableComponentProps<T = Element> {
+  children?: ReactNode
   onTouchStart?: TouchEventHandler<T> | null
   onTouchMove?: TouchEventHandler<T> | null
   onTouchEnd?: TouchEventHandler<T> | null
@@ -20,7 +23,7 @@ export default function longClickable<T extends LongClickableComponentProps>(
   let isScrolled = false
 
   return function LongClickComponent({ onLongClick, onClick, ...props }) {
-    const onTouchStart = useCallback(() => {
+    const onTouchStart: TouchEventHandler = useCallback(() => {
       if (onLongClick) {
         isScrolled = false
         timeoutId = setTimeout(() => {
@@ -30,18 +33,18 @@ export default function longClickable<T extends LongClickableComponentProps>(
       }
     }, [onLongClick])
 
-    const onTouchMove = useCallback(() => {
+    const onTouchMove: TouchEventHandler = useCallback(() => {
       if (onLongClick) {
         isScrolled = true
       }
     }, [onLongClick])
 
-    const onTouchEnd = useCallback(
+    const onTouchEnd: TouchEventHandler = useCallback(
       (e) => {
         if (onLongClick) {
           if (timeoutId && !isScrolled) {
             clearTimeout(timeoutId)
-            onClick && onClick(e)
+            onClick && onClick(e as unknown as MouseEvent) // TODO
           }
         }
       },
