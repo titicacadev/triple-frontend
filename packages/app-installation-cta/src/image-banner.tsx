@@ -47,7 +47,7 @@ function ImageBanner({
   )
 
   const handleDismiss = useCallback(
-    (e) => {
+    (e: SyntheticEvent) => {
       e.stopPropagation()
       onDismiss && onDismiss(inventoryItem)
     },
