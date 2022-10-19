@@ -101,6 +101,8 @@ jobs:
           registry-url: ${{ env.NPM_REGISTRY_URL }}
           cache: 'npm'
 
+      - run: npm i -D turbo
+
       - run: npm ci
 
       - name: Turbo Cache
@@ -162,6 +164,8 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.NPM_REGISTRY_URL }}
           cache: 'npm'
+
+      - run: npm i -D turbo
 
       - run: npm ci
 

@@ -100,6 +100,8 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-npm-cache-
 
+      - run: npm i -D turbo
+
       - name: Install dependencies
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
@@ -236,6 +238,8 @@ jobs:
           key: ${{ runner.OS }}-npm-cache-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-npm-cache-
+
+      - run: npm i -D turbo
 
       - name: Install dependencies
         env:
