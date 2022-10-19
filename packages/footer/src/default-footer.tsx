@@ -47,6 +47,7 @@ const Title = styled(Accordion.Title)`
   color: var(--color-gray500) !important;
   font-size: 12px !important;
   font-weight: 700;
+  width: auto;
 
   ::after {
     display: none;
