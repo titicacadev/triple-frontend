@@ -171,6 +171,7 @@ export default function Reply({
         haveMine: true,
       }))
     },
+    false,
   )
 
   const handleUnlikeReplyClick = useSessionCallback(
@@ -182,6 +183,7 @@ export default function Reply({
         haveMine: false,
       }))
     },
+    false,
   )
 
   const handleReportReplyClick = useAppCallback(
