@@ -33,10 +33,6 @@ export function EventMetadataProvider({
 function useEventMetadataContext() {
   const context = useContext(EventMetadataContext)
 
-  if (context === undefined) {
-    throw new Error('EventMetadataProvider is not mounted')
-  }
-
   return context
 }
 

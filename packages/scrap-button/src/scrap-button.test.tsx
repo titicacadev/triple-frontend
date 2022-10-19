@@ -1,9 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import {
-  ScrapsProvider,
-  EventMetadataProvider,
-  EventTrackingProvider,
-} from '@titicaca/react-contexts'
+import { ScrapsProvider, EventTrackingProvider } from '@titicaca/react-contexts'
 
 import { OutlineScrapButton, OverlayScrapButton } from './scrap-button'
 
@@ -16,20 +12,18 @@ jest.mock('next/router', () => ({
 describe('ScrapButton', () => {
   it('should render successfully.', () => {
     const { unmount } = render(
-      <ScrapsProvider>
-        <OverlayScrapButton
-          resource={{
-            id: 'MOCK_RESOURCE_ID',
-            type: 'MOCK_TYPE',
-            scraped: false,
-          }}
-          size={36}
-        />
-      </ScrapsProvider>,
+      <OverlayScrapButton
+        resource={{
+          id: 'MOCK_RESOURCE_ID',
+          type: 'MOCK_TYPE',
+          scraped: false,
+        }}
+        size={36}
+      />,
       {
         wrapper: ({ children }) => (
           <EventTrackingProvider page={{ label: '기본 label', path: '/' }}>
-            <EventMetadataProvider>{children}</EventMetadataProvider>
+            <ScrapsProvider>{children}</ScrapsProvider>
           </EventTrackingProvider>
         ),
       },
@@ -40,20 +34,18 @@ describe('ScrapButton', () => {
     unmount()
 
     render(
-      <ScrapsProvider>
-        <OutlineScrapButton
-          resource={{
-            id: 'MOCK_RESOURCE_ID',
-            type: 'MOCK_TYPE',
-            scraped: false,
-          }}
-          size={36}
-        />
-      </ScrapsProvider>,
+      <OutlineScrapButton
+        resource={{
+          id: 'MOCK_RESOURCE_ID',
+          type: 'MOCK_TYPE',
+          scraped: false,
+        }}
+        size={36}
+      />,
       {
         wrapper: ({ children }) => (
           <EventTrackingProvider page={{ label: '기본 label', path: '/' }}>
-            <EventMetadataProvider>{children}</EventMetadataProvider>
+            <ScrapsProvider>{children}</ScrapsProvider>
           </EventTrackingProvider>
         ),
       },
