@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react'
 
-import Accordion from './elements/accordion'
+import { Accordion } from './elements/accordion'
 import Text from './elements/text'
 
 export default {
@@ -18,16 +18,16 @@ export const BusinessHours: Story<BusinessHoursCustomArgs> = ({
   title,
 }) => {
   return (
-    <Accordion>
-      <Accordion.Title active={active}>
+    <Accordion active={active}>
+      <Accordion.Title>
         <Text bold>{title}</Text>
       </Accordion.Title>
-      <Accordion.Folded active={active}>
+      <Accordion.Folded>
         <Text bold color="blue">
           오늘 09:00 - 18:00
         </Text>
       </Accordion.Folded>
-      <Accordion.Content active={active}>
+      <Accordion.Content>
         <Text>
           월<br />화<br />수<br />목<br />금<br />토<br />일
         </Text>
