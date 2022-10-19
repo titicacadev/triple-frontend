@@ -36,5 +36,4 @@ jobs:
         run: |
           git config --local user.email "${{ env.COMMIT_USER_EMAIL }}"
           git config --local user.name "${{ env.COMMIT_USER_NAME }}"
-          git commit --no-verify -a -m "Resolve dependency error"
-          git push
+          git commit --no-verify -a -m "Resolve dependency error" && git push || true
