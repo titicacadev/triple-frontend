@@ -47,18 +47,21 @@ export function LoginCtaModalProvider({
         onClose={back}
         onCancel={back}
         onConfirm={() => {
-          trackEvent({
-            ga: ['로그인유도팝업_선택'],
-            fa: {
-              action: '로그인유도팝업_선택',
-            },
-          })
-
-          navigate(
-            `/login?returnUrl=${encodeURIComponent(
-              returnUrl || document.location.href,
-            )}`,
-          )
+          try {
+            trackEvent({
+              ga: ['로그인유도팝업_선택'],
+              fa: {
+                action: '로그인유도팝업_선택',
+              },
+            })
+          } catch (e) {
+          } finally {
+            navigate(
+              `/login?returnUrl=${encodeURIComponent(
+                returnUrl || document.location.href,
+              )}`,
+            )
+          }
 
           return true
         }}
