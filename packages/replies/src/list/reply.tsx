@@ -163,25 +163,24 @@ export default function Reply({
   )
 
   const handleLikeReplyClick = useSessionCallback(
-    async ({ messageId }: { messageId: string }) => {
-      await likeReply({ messageId })
-
+    ({ messageId }: { messageId: string }) => {
       setLikeReactions((prev) => ({
         count: (prev?.count || 0) + 1,
         haveMine: true,
       }))
+      likeReply({ messageId })
     },
     false,
   )
 
   const handleUnlikeReplyClick = useSessionCallback(
-    async ({ messageId }: { messageId: string }) => {
-      await unlikeReply({ messageId })
-
+    ({ messageId }: { messageId: string }) => {
       setLikeReactions((prev) => ({
         count: Math.max(0, (prev?.count || 0) - 1),
         haveMine: false,
       }))
+
+      unlikeReply({ messageId })
     },
     false,
   )
