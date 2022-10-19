@@ -58,7 +58,10 @@ export function ReviewLikesProvider({
   }, [setLikes, subscribeLikedChangeEvent])
 
   const updateLikedStatus = useCallback(
-    (newLikes, resourceId) => {
+    (
+      newLikes: { [reviewId: string]: boolean },
+      resourceId: string | undefined,
+    ) => {
       setLikes((currentLikes) => ({ ...currentLikes, ...newLikes }))
 
       resourceId &&
