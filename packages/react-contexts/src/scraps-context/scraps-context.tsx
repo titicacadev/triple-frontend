@@ -137,7 +137,7 @@ export function ScrapsProvider({
     )
 
   const scrape = useCallback(
-    async ({ id, type }) => {
+    async ({ id, type }: Target) => {
       if (typeof updating[id] !== 'undefined') {
         return
       }
@@ -167,7 +167,7 @@ export function ScrapsProvider({
   )
 
   const unscrape = useCallback(
-    async ({ id, type }) => {
+    async ({ id, type }: Target) => {
       if (typeof updating[id] !== 'undefined') {
         return
       }
