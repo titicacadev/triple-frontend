@@ -25,14 +25,18 @@ const saveSessionIdToCookie = createSessionIdSaver()
 export interface InAppSessionContextProviderProps {
   initialSessionId: string | undefined
   initialUser: User | undefined
+  preventSessionFixation: boolean | undefined
 }
 
 export function InAppSessionContextProvider({
   initialSessionId,
   initialUser,
+  preventSessionFixation,
   children,
 }: PropsWithChildren<InAppSessionContextProviderProps>) {
-  saveSessionIdToCookie(initialSessionId)
+  if (!preventSessionFixation) {
+    saveSessionIdToCookie(initialSessionId)
+  }
 
   const { appUrlScheme } = useEnv()
   const { user, clear: clearUserState } = useUserState(initialUser)
