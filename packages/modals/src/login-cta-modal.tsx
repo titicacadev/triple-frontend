@@ -6,11 +6,7 @@ import {
   useMemo,
   useState,
 } from 'react'
-import {
-  useEventTrackingContext,
-  useHistoryFunctions,
-  useUriHash,
-} from '@titicaca/react-contexts'
+import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
 
 import { Confirm } from './modals'
 
@@ -27,7 +23,6 @@ export function LoginCtaModalProvider({
   children,
 }: PropsWithChildren<unknown>) {
   const uriHash = useUriHash()
-  const { trackEvent } = useEventTrackingContext()
   const { back, navigate } = useHistoryFunctions()
   const hasParentModal = useContext(LoginCtaContext)
   const open = uriHash === LOGIN_CTA_MODAL_HASH
@@ -47,21 +42,11 @@ export function LoginCtaModalProvider({
         onClose={back}
         onCancel={back}
         onConfirm={() => {
-          try {
-            trackEvent({
-              ga: ['로그인유도팝업_선택'],
-              fa: {
-                action: '로그인유도팝업_선택',
-              },
-            })
-          } catch (e) {
-          } finally {
-            navigate(
-              `/login?returnUrl=${encodeURIComponent(
-                returnUrl || document.location.href,
-              )}`,
-            )
-          }
+          navigate(
+            `/login?returnUrl=${encodeURIComponent(
+              returnUrl || document.location.href,
+            )}`,
+          )
 
           return true
         }}
