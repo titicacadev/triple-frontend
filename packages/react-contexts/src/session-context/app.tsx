@@ -68,20 +68,15 @@ export function InAppSessionContextProvider({
 
 InAppSessionContextProvider.getInitialProps = async function ({
   req,
-}: NextPageContext): Promise<InAppSessionContextProviderProps> {
+}: NextPageContext): Promise<
+  Omit<InAppSessionContextProviderProps, 'preventSessionFixation'>
+> {
   const initialSessionId = getSessionIdFromRequest(req)
-  const userAgent = req?.headers.userAgent
-
-  const preventSessionFixation =
-    userAgent && typeof userAgent === 'string'
-      ? !!userAgent.match(/Triple-iOS/)
-      : false
 
   if (!initialSessionId) {
     return {
       initialSessionId,
       initialUser: undefined,
-      preventSessionFixation,
     }
   }
 
@@ -105,12 +100,12 @@ InAppSessionContextProvider.getInitialProps = async function ({
   }
 
   if (response.ok === false) {
-    return { initialSessionId, initialUser: undefined, preventSessionFixation }
+    return { initialSessionId, initialUser: undefined }
   }
 
   const { parsedBody: initialUser } = response
 
-  return { initialSessionId, initialUser, preventSessionFixation }
+  return { initialSessionId, initialUser }
 }
 
 function createSessionIdSaver() {
