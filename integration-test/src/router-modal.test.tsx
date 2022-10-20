@@ -132,6 +132,7 @@ function createSessionContextProvider({
         props: {
           initialSessionId: sessionAvailable ? 'FAKE_SESSION_ID' : undefined,
           initialUser,
+          preventSessionFixation: false,
         },
       }
     }
