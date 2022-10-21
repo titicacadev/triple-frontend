@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/app-installation-cta",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "description": "Call to action components for app installation",
   "keywords": [
     "cta",
@@ -28,8 +28,8 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^10.0.0",
-    "@titicaca/core-elements": "^10.0.0",
+    "@titicaca/color-palette": "^10.0.1",
+    "@titicaca/core-elements": "^10.0.1",
     "react-transition-group": "^4.4.2"
   },
   "devDependencies": {
