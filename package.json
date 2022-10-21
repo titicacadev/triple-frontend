@@ -17,7 +17,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --ci --coverage",
     "clean:deps": "rimraf node_modules packages/**/node_modules",
-    "clean:build": "rimraf packages/**/lib packages/**/*.tsbuildinfo",
+    "clean:build": "rimraf packages/**/lib packages/**/*.tsbuildinfo packages/**/.turbo",
     "clean": "npm run clean:build && npm run clean:deps",
     "make-tsconfig": "node scripts/make-tsconfig",
     "make-build-tsconfig": "lerna exec --ignore @titicaca/triple-frontend-docs --ignore=@titicaca/frontend-integration-test --parallel -- node \\$LERNA_ROOT_PATH/scripts/make-build-tsconfig.js",
