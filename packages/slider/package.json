@@ -23,6 +23,6 @@
   "dependencies": {
     "@titicaca/core-elements": "^10.0.0",
     "@titicaca/view-utilities": "^10.0.0",
-    "react-compound-slider": "^3.3.1"
+    "react-compound-slider": "^3.4.0"
   }
 }
