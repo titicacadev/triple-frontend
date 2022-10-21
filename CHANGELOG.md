@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 10.0.1
+
+### triple-document
+
+- 디폴트 이미지 컨테이너 설정 [#2224](https://github.com/titicacadev/triple-frontend/pull/2224)
+
 ## 10.0.0
 
 ### common
