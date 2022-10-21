@@ -39,13 +39,11 @@ export default function Images({
   const ImageSource = useImageSource()
   const { videoAutoPlay, hideVideoControls, optimized } = useMediaConfig()
 
-  const ImagesContainer = display
-    ? IMAGES_CONTAINER_MAP[display]
-    : DocumentCarouselContainer
+  const ImagesContainer =
+    IMAGES_CONTAINER_MAP[display] || DocumentCarouselContainer
 
-  const ElementContainer = display
-    ? ELEMENT_CONTAINER_MAP[display]
-    : ImageCarouselElementContainer
+  const ElementContainer =
+    ELEMENT_CONTAINER_MAP[display] || ImageCarouselElementContainer
 
   const handleClick = generateClickHandler(onLinkClick, onImageClick)
   const isOnlyImage = ['gapless-block', 'grid'].includes(display)
