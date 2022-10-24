@@ -1,14 +1,15 @@
 import { createContext, useContext } from 'react'
 
-interface ContextValue {
+export interface AccordionContextValue {
   contentId: string
   foldedId: string
   active: boolean
   onActiveChange: () => void
 }
 
-export const AccordionContext =
-  createContext<ContextValue | undefined>(undefined)
+export const AccordionContext = createContext<
+  AccordionContextValue | undefined
+>(undefined)
 
 export function useAccordion() {
   const context = useContext(AccordionContext)
