@@ -10,8 +10,7 @@ import {
 import { DeepPartial } from 'utility-types'
 import { I18nCommonWebKeys } from '@titicaca/i18n'
 
-import Actions from './actions'
-import Modal from './modal-base'
+import { Modal } from './modal'
 
 type ShowTransitionModal = (type: TransitionType) => void
 
@@ -19,7 +18,7 @@ const IconImage = styled.img`
   display: block;
   width: 66px;
   height: 66px;
-  margin: 40px auto 10px auto;
+  margin: 0 auto 10px;
 `
 
 export enum TransitionType {
@@ -95,26 +94,21 @@ export function TransitionModal({
 
     return (
       <Modal open onClose={back}>
-        <IconImage src={icon} />
-        {description ? (
-          <Text
-            center
-            alpha={0.7}
-            size="small"
-            margin={{ bottom: 30, left: 30, right: 30 }}
-          >
-            {t(description)}
-          </Text>
-        ) : null}
-
-        <Actions
-          negative={{
-            text: t('cwiso'),
-            onClick: back,
-          }}
-          positive={{
-            text: t('teuripeul-gagi'),
-            onClick: () => {
+        <Modal.Body>
+          <IconImage src={icon} />
+          {description ? (
+            <Text center alpha={0.7} size="small">
+              {t(description)}
+            </Text>
+          ) : null}
+        </Modal.Body>
+        <Modal.Actions>
+          <Modal.Action color="gray" onClick={back}>
+            {t('cwiso')}
+          </Modal.Action>
+          <Modal.Action
+            color="blue"
+            onClick={() => {
               onActionClick?.()
 
               trackEvent({
@@ -125,9 +119,11 @@ export function TransitionModal({
               })
 
               window.location.href = deepLink
-            },
-          }}
-        />
+            }}
+          >
+            {t('teuripeul-gagi')}
+          </Modal.Action>
+        </Modal.Actions>
       </Modal>
     )
   }
