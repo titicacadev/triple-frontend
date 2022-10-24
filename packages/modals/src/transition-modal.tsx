@@ -8,8 +8,7 @@ import {
 } from '@titicaca/react-contexts'
 import { DeepPartial } from 'utility-types'
 
-import Actions from './actions'
-import Modal from './modal-base'
+import { Modal } from './modal'
 
 type ShowTransitionModal = (type: TransitionType) => void
 
@@ -17,7 +16,7 @@ const IconImage = styled.img`
   display: block;
   width: 66px;
   height: 66px;
-  margin: 40px auto 10px auto;
+  margin: 0 auto 10px;
 `
 
 export enum TransitionType {
@@ -91,26 +90,21 @@ export function TransitionModal({
 
     return (
       <Modal open onClose={back}>
-        <IconImage src={icon} />
-        {description ? (
-          <Text
-            center
-            alpha={0.7}
-            size="small"
-            margin={{ bottom: 30, left: 30, right: 30 }}
-          >
-            {description}
-          </Text>
-        ) : null}
-
-        <Actions
-          negative={{
-            text: '취소',
-            onClick: back,
-          }}
-          positive={{
-            text: '트리플 가기',
-            onClick: () => {
+        <Modal.Body>
+          <IconImage src={icon} />
+          {description ? (
+            <Text center alpha={0.7} size="small">
+              {description}
+            </Text>
+          ) : null}
+        </Modal.Body>
+        <Modal.Actions>
+          <Modal.Action color="gray" onClick={back}>
+            취소
+          </Modal.Action>
+          <Modal.Action
+            color="blue"
+            onClick={() => {
               onActionClick?.()
 
               trackEvent({
@@ -121,9 +115,11 @@ export function TransitionModal({
               })
 
               window.location.href = deepLink
-            },
-          }}
-        />
+            }}
+          >
+            트리플 가기
+          </Modal.Action>
+        </Modal.Actions>
       </Modal>
     )
   }
