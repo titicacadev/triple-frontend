@@ -5,7 +5,7 @@ import {
   ComponentStoryObj,
 } from '@storybook/react'
 
-import ActionSheet from './index'
+import { ActionSheet } from './action-sheet'
 
 export default {
   title: 'action-sheet / action-sheet',
@@ -76,12 +76,6 @@ export const WithForm: ComponentStoryObj<typeof ActionSheet> = {
     borderRadius: 0,
     from: 'top',
     maxContentHeight: 100,
-    padding: {
-      top: 20,
-      left: 25,
-      bottom: 30,
-      right: 25,
-    },
     children: (
       <>
         <ActionSheet.Item icon="save">샘플 메뉴</ActionSheet.Item>
