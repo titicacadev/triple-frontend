@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
-import { useAccordion } from './context'
+import { useAccordion } from './accordion-context'
 
 const folded =
   'https://assets.triple.guide/images/ico-accordion-expand-fold@4x.png'

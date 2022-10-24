@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react'
 
 import Container from '../container'
 
-import { useAccordion } from './context'
+import { useAccordion } from './accordion-context'
 
 export type AccordionFoldedProps = PropsWithChildren
 
