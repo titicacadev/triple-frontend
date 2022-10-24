@@ -73,7 +73,6 @@ export default function MyReviewActionSheet({
       <ActionSheet
         open={uriHash === HASH_MY_REVIEW_ACTION_SHEET}
         onClose={back}
-        zTier={3}
       >
         {!myReview.blindedAt ? (
           <ActionSheet.Item icon="review" onClick={onReviewEdit}>
