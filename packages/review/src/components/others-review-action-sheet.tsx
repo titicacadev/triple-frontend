@@ -31,7 +31,6 @@ export default function OthersReviewActionSheet({
     <ActionSheet
       open={uriHash === HASH_REVIEW_ACTION_SHEET && !!selectedReview}
       onClose={back}
-      zTier={3}
     >
       <ActionSheet.Item icon="report" onClick={handleReportClick}>
         {t('singohagi')}
