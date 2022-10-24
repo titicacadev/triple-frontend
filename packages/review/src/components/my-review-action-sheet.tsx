@@ -87,7 +87,7 @@ export default function MyReviewActionSheet({
         onClose={back}
         onConfirm={
           onReviewDelete
-            ? (e) => onReviewDelete(e, myReview.id)
+            ? () => onReviewDelete(myReview.id)
             : () =>
                 handleDeleteReview({
                   resourceType,
