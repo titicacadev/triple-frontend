@@ -21,6 +21,8 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
+    "@react-aria/focus": "^3.9.0",
+    "@react-aria/overlays": "^3.11.0",
     "@titicaca/core-elements": "^10.0.0"
   },
   "peerDependencies": {
