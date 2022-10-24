@@ -8,7 +8,7 @@ export interface ActionSheetProps extends PropsWithChildren {
   open?: boolean
   title?: ReactNode
   borderRadius?: number
-  bottomSpaicng?: number
+  bottomSpacing?: number
   from?: 'top' | 'bottom'
   maxContentHeight?: string | number
   onClose?: () => void
@@ -19,7 +19,7 @@ export const ActionSheet = ({
   open = false,
   title,
   borderRadius = 12,
-  bottomSpaicng = 13,
+  bottomSpacing = 13,
   from = 'bottom',
   maxContentHeight = 'calc(100vh - 256px)',
   onClose,
@@ -30,7 +30,7 @@ export const ActionSheet = ({
     <ActionSheetContext.Provider value={{ open, titleId, onClose }}>
       <ActionSheetBase
         borderRadius={borderRadius}
-        bottomSpacing={bottomSpaicng}
+        bottomSpacing={bottomSpacing}
         maxContentHeight={maxContentHeight}
         from={from}
         title={title}
