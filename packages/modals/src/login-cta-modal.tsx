@@ -13,16 +13,17 @@ import {
   useUriHash,
 } from '@titicaca/react-contexts'
 
-import { Confirm } from './modals'
+import { Confirm } from './confirm'
 
 export const LOGIN_CTA_MODAL_HASH = 'login-cta-modal'
 
-const LoginCtaContext = createContext<
-  | {
-      setReturnUrl?: (url: string) => void
-    }
-  | undefined
->(undefined)
+const LoginCtaContext =
+  createContext<
+    | {
+        setReturnUrl?: (url: string) => void
+      }
+    | undefined
+  >(undefined)
 
 export function LoginCtaModalProvider({
   children,
