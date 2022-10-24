@@ -1,6 +1,8 @@
-import { SyntheticEvent, PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 import * as CSS from 'csstype'
+
+import { useActionSheet } from './action-sheet-context'
 
 const ActionItemContainer = styled.div`
   width: 100%;
@@ -76,20 +78,22 @@ const CheckedIcon = styled.div`
   background-repeat: none;
 `
 
-export default function ActionItem({
+export interface ActionSheetItemProps extends PropsWithChildren {
+  buttonLabel?: string
+  icon?: string
+  checked?: boolean
+  onClick?: () => void
+}
+
+export const ActionSheetItem = ({
+  children,
   buttonLabel,
   icon,
   checked,
   onClick,
-  onClose,
-  children,
-}: PropsWithChildren<{
-  buttonLabel?: string
-  icon?: string
-  checked?: boolean
-  onClick?: (e?: SyntheticEvent) => unknown
-  onClose?: () => void
-}>) {
+}: ActionSheetItemProps) => {
+  const { onClose } = useActionSheet()
+
   let textWidth = '100%'
   if (buttonLabel && icon) {
     textWidth = 'calc(100% - 100px)'
@@ -98,29 +102,20 @@ export default function ActionItem({
   } else if (icon) {
     textWidth = 'calc(100% - 40px)'
   }
+
+  const handleClick = () => {
+    onClick?.()
+    onClose?.()
+  }
+
   return (
-    <ActionItemContainer
-      onClick={
-        buttonLabel
-          ? undefined
-          : () =>
-              onClick
-                ? !onClick() && onClose && onClose()
-                : onClose && onClose()
-      }
-    >
+    <ActionItemContainer onClick={buttonLabel ? undefined : handleClick}>
       {icon ? <ItemIcon src={URL_BY_NAMES[icon]} /> : null}
       <ItemText width={textWidth} checked={checked}>
         {children}
       </ItemText>
       {buttonLabel ? (
-        <ItemButton
-          onClick={() =>
-            onClick ? !onClick() && onClose && onClose() : onClose && onClose()
-          }
-        >
-          {buttonLabel}
-        </ItemButton>
+        <ItemButton onClick={handleClick}>{buttonLabel}</ItemButton>
       ) : null}
       {checked ? <CheckedIcon /> : null}
     </ActionItemContainer>
