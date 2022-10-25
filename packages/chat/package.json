@@ -1,0 +1,33 @@
+{
+  "name": "chat",
+  "version": "10.0.0",
+  "description": "via triple-chat-frontend",
+  "homepage": "https://github.com/titicacadev/triple-frontend#readme",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "scripts": {
+    "build": "npm run build:cjs",
+    "build:cjs": "swc src -d lib --config-file ../../.swcrc",
+    "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "devDependencies": {
+    "@types/isomorphic-fetch": "^0.0.36"
+  },
+  "dependencies": {
+    "autolinker": "^4.0.0"
+  }
+}
