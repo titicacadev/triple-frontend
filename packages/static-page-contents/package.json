@@ -22,5 +22,8 @@
   },
   "dependencies": {
     "@titicaca/color-palette": "^10.4.0"
+  },
+  "peerDependencies": {
+    "next-i18next": "*"
   }
 }
