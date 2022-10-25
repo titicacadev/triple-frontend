@@ -1,5 +1,5 @@
 import React, { MouseEventHandler, PropsWithChildren, useState } from 'react'
-import Autolinker from 'autolinker'
+import { Autolinker } from 'autolinker'
 import { Container, GlobalSizes } from '@titicaca/core-elements'
 
 import {
@@ -151,9 +151,9 @@ function BubblePayload({
           backgroundColor={my ? 'blue' : 'gray'}
           margin={my ? { left: 8 } : undefined}
         >
-          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
           <div
             onClick={onTextBubbleClick}
+            aria-hidden
             dangerouslySetInnerHTML={{
               __html: Autolinker.link(payload.message, {
                 newWindow: true,
