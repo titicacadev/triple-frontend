@@ -12,9 +12,6 @@ import styled, { css } from 'styled-components'
 import { useActionSheet } from './action-sheet-context'
 import { ActionSheetTitle } from './action-sheet-title'
 
-const unit = (value: number | string, suffix = 'px') =>
-  typeof value === 'string' ? value : value !== 0 ? `${value}${suffix}` : value
-
 const inactiveSheetSlideStyle = css<{ from: 'top' | 'bottom' }>`
   ${({ from }) => {
     switch (from) {
@@ -56,6 +53,7 @@ const Sheet = styled.div<SheetProps>`
 
   &:not([class*='action-sheet-slide-']) {
     ${inactiveSheetSlideStyle}
+
     display: none;
   }
 
@@ -85,6 +83,7 @@ const Sheet = styled.div<SheetProps>`
 
   &.action-sheet-slide-exit-done {
     ${inactiveSheetSlideStyle}
+
     display: none;
   }
 
@@ -93,12 +92,12 @@ const Sheet = styled.div<SheetProps>`
       case 'top':
         return css`
           top: 0;
-          border-radius: 0 0 ${unit(borderRadius)} ${unit(borderRadius)};
+          border-radius: 0 0 ${borderRadius}px ${borderRadius}px;
         `
       case 'bottom':
         return css`
           bottom: 0;
-          border-radius: ${unit(borderRadius)} ${unit(borderRadius)} 0 0;
+          border-radius: ${borderRadius}px ${borderRadius}px 0 0;
 
           ${safeAreaInsetMixin};
         `
