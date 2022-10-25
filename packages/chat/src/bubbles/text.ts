@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { GetGlobalColor, Text } from '@titicaca/core-elements'
+import { Text } from '@titicaca/core-elements'
 
 const BACKGROUND_COLORS: { [key: string]: string } = {
   blue: '#d7e9ff',
@@ -8,14 +8,14 @@ const BACKGROUND_COLORS: { [key: string]: string } = {
 
 const TAIL_POSITION_STYLE_MAP: { [key: string]: ReturnType<typeof css> } = {
   left: css`
-    &:before {
+    &::before {
       left: -10px;
     }
   `,
   right: css`
     right: 10px;
 
-    &:before {
+    &::before {
       right: -10px;
     }
   `,
@@ -42,28 +42,26 @@ export const TextBubble = styled(Text).attrs({
     white-space: pre-wrap;
 
     > a {
-      /* TODO: color-palette로 수정 */
-      color: rgb(${GetGlobalColor('blue')}) !important;
+      color: var(--color-blue) !important;
       text-decoration: none !important;
     }
   }
 
-  &:before {
+  &::before {
     width: 10px;
     height: 17px;
     content: '';
     position: absolute;
     top: 5px;
     background-size: 10px 17px;
+    ${({ backgroundColor }) => css`
+      background-image: url('https://assets.triple.guide/images/img-speechbubble-${backgroundColor}@3x.png');
+    `}
   }
 
   ${({ maxWidthOffset }) => `max-width: calc(100% - ${maxWidthOffset}px);`}
   ${({ backgroundColor }) => css`
     background-color: ${BACKGROUND_COLORS[backgroundColor]};
-
-    &:before {
-      background-image: url('https://assets.triple.guide/images/img-speechbubble-${backgroundColor}@3x.png');
-    }
   `}
   ${({ tailPosition }) => TAIL_POSITION_STYLE_MAP[tailPosition]}
 `
