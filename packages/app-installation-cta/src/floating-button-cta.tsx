@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useCallback, useEffect, useRef } from 'react'
+import { useTranslation } from 'next-i18next'
 import {
   Text,
   MarginPadding,
@@ -64,6 +65,8 @@ export default function FloatingButtonCtaV2({
   zIndex,
   unmountOnExit,
 }: FloatingButtonCtaProps & LayeringMixinProps) {
+  const { t } = useTranslation('common-web')
+
   const [buttonVisibility, setButtonVisibility] = useState(false)
   const [available, setAvailable] = useState(true)
   const floatingButtonContainerRef = useRef<HTMLDivElement>(null)
@@ -79,7 +82,7 @@ export default function FloatingButtonCtaV2({
     let visitedPages = false
 
     try {
-      const storage = getWebStorage('sessionStorage')
+      const storage = getWebStorage({ type: 'sessionStorage', t })
       visitedPages = !!storage.getItem(FLOATING_BUTTON_CLOSED_STORAGE_KEY)
     } catch (error) {
       // 사용자가 이전에 CTA를 닫았었는지 확인합니다.
@@ -89,7 +92,7 @@ export default function FloatingButtonCtaV2({
     if (!visitedPages && !buttonVisibility) {
       setButtonVisibility(true)
     }
-  }, [buttonVisibility])
+  }, [buttonVisibility, t])
 
   useEffect(() => {
     if (buttonVisibility) {
@@ -111,13 +114,13 @@ export default function FloatingButtonCtaV2({
     onDismiss && onDismiss()
 
     try {
-      const storage = getWebStorage('sessionStorage')
+      const storage = getWebStorage({ type: 'sessionStorage', t })
       storage.setItem(FLOATING_BUTTON_CLOSED_STORAGE_KEY, 'true')
     } catch (error) {
       // 사용자가 CTA를 닫았다는 것을 기록합니다.
       // 필수적인 기능이 아니므로 에러를 조용히 넘깁니다.
     }
-  }, [onDismiss, sendTrackEventRequest, trackEventParams])
+  }, [onDismiss, sendTrackEventRequest, trackEventParams, t])
 
   useEffect(() => {
     if (exitStrategy === BannerExitStrategy.CHATBOT_READY) {

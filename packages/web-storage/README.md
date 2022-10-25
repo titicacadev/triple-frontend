@@ -26,7 +26,11 @@ Web Storage API와 거의 동일한 인터페이스를 제공합니다.
 단, 기존 storage와 달리 Index signature로 값에 접근하는 방식은 제공하지 않습니다.
 
 ```ts
-const storage = getWebStorage()
+const { t } = useTranslation('...')
+
+// ...
+
+const storage = getWebStorage({ t })
 
 const awesomeValue = storage.getItem('my-awesome-key') // O
 storage.setItem('my-awesome-key', '42') // O
