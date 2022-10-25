@@ -5,6 +5,7 @@ import qs from 'qs'
 import Cookies from 'universal-cookie'
 import { generateUrl } from '@titicaca/view-utilities'
 
+/* eslint-disable */
 export enum SuppressErrorType {
   ALL,
   STATUS_4XX,
@@ -40,14 +41,14 @@ export interface FetchResult {
 }
 
 const suppressError = (suppress: SuppressErrorType, status: number) => {
-  const status4XX = status >= 400 && status < 500
+  const status4xx = status >= 400 && status < 500
 
   switch (suppress) {
     case SuppressErrorType.ALL: {
       return true
     }
     case SuppressErrorType.STATUS_4XX: {
-      return status4XX
+      return status4xx
     }
     case SuppressErrorType.OFF: {
       return false
