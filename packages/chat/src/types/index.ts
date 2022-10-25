@@ -1,4 +1,3 @@
-/* eslint-disable */
 export enum UserType {
   TRIPLE_USER = 'TRIPLE_USER',
   TRIPLE_OPERATOR = 'TRIPLE_OPERATOR',
