@@ -144,7 +144,8 @@ export const ActionSheetBody = forwardRef<HTMLDivElement, ActionSheetBodyProps>(
         mountOnEnter
         unmountOnExit
       >
-        <FocusScope>
+        {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
+        <FocusScope contain restoreFocus autoFocus>
           <Sheet
             {...props}
             ref={ref}
