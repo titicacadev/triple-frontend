@@ -31,11 +31,12 @@ export const ActionSheetBase = ({
 
   const { overlayProps, underlayProps } = useOverlay(
     {
-      isDismissable: true,
       isOpen: open,
+      isDismissable: true,
+      shouldCloseOnBlur: true,
       onClose,
     },
-    overlayRef,
+    sheetRef,
   )
 
   usePreventScroll({ isDisabled: !open })
