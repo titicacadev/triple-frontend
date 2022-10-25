@@ -28,6 +28,7 @@
     "@types/isomorphic-fetch": "^0.0.36"
   },
   "dependencies": {
+    "@titicaca/core-elements": "^10.0.0",
     "autolinker": "^4.0.0"
   }
 }
