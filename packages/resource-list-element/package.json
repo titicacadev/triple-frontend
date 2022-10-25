@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/resource-list-element",
-  "version": "10.0.1",
+  "version": "10.1.0",
   "description": "Triple - resource-list-element",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/resource-list-element",
@@ -21,10 +21,10 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^10.0.1",
-    "@titicaca/pricing": "^10.0.1",
-    "@titicaca/scrap-button": "^10.0.1",
-    "@titicaca/type-definitions": "^10.0.1",
-    "@titicaca/view-utilities": "^10.0.1"
+    "@titicaca/core-elements": "^10.1.0",
+    "@titicaca/pricing": "^10.1.0",
+    "@titicaca/scrap-button": "^10.1.0",
+    "@titicaca/type-definitions": "^10.1.0",
+    "@titicaca/view-utilities": "^10.1.0"
   }
 }
