@@ -1,6 +1,10 @@
 import { FocusScope } from '@react-aria/focus'
 import { white } from '@titicaca/color-palette'
-import { Container, safeAreaInsetMixin } from '@titicaca/core-elements'
+import {
+  Container,
+  MarginPadding,
+  safeAreaInsetMixin,
+} from '@titicaca/core-elements'
 import { forwardRef, PropsWithChildren, ReactNode } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import styled, { css } from 'styled-components'
@@ -35,6 +39,7 @@ interface SheetProps {
   bottomSpacing: number
   duration: number
   from: 'top' | 'bottom'
+  padding: MarginPadding
 }
 
 const Sheet = styled.div<SheetProps>`
@@ -95,7 +100,7 @@ const Sheet = styled.div<SheetProps>`
           bottom: 0;
           border-radius: ${unit(borderRadius)} ${unit(borderRadius)} 0 0;
 
-          ${safeAreaInsetMixin}
+          ${safeAreaInsetMixin};
         `
     }
   }}
@@ -153,6 +158,7 @@ export const ActionSheetBody = forwardRef<HTMLDivElement, ActionSheetBodyProps>(
             bottomSpacing={bottomSpacing}
             duration={duration}
             from={from}
+            padding={{ bottom: bottomSpacing }}
             role="dialog"
             aria-labelledby={titleId}
             aria-modal
