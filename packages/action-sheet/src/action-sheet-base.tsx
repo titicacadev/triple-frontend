@@ -4,7 +4,7 @@ import { PropsWithChildren, ReactNode, useRef } from 'react'
 
 import { useActionSheet } from './action-sheet-context'
 import { ActionSheetOverlay } from './action-sheet-overlay'
-import { ActionSheetBody } from './action-shset-body'
+import { ActionSheetBody } from './action-sheet-body'
 
 const TRANSITION_DURATION = 120
 
