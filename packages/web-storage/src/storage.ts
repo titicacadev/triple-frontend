@@ -1,4 +1,5 @@
 import Cookies from 'universal-cookie'
+import { TFunction } from 'next-i18next'
 
 import {
   storageAvailable,
