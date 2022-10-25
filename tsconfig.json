@@ -24,6 +24,7 @@
       "@titicaca/author": ["./packages/author/src"],
       "@titicaca/booking-completion": ["./packages/booking-completion/src"],
       "@titicaca/carousel": ["./packages/carousel/src"],
+      "@titicaca/chat": ["./packages/chat/src"],
       "@titicaca/color-palette": ["./packages/color-palette/src"],
       "@titicaca/constants": ["./packages/constants/src"],
       "@titicaca/content-sharing": ["./packages/content-sharing/src"],
