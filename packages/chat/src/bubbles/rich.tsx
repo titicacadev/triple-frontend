@@ -18,13 +18,13 @@ const Button = styled.a`
   display: block;
   width: 100%;
   padding: 11px 10px 11px 12px;
-  margin: 14px 0 16px 0;
+  margin: 14px 0 16px;
   border-radius: 4px;
-  background-color: #ffffff;
+  background-color: #fff;
   color: inherit;
   text-decoration: none;
 
-  &:after {
+  &::after {
     display: block;
     float: right;
     width: 16px;
