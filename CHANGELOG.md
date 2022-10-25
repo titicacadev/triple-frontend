@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 10.1.0
+
+### common
+
+- Update dependency @swc/core to v1.3.10 [#2225](https://github.com/titicacadev/triple-frontend/pull/2225)
+- v9 to v10 마이그레이션 문서 추가 [#2221](https://github.com/titicacadev/triple-frontend/pull/2221)
+- Update dependency @sentry/nextjs to v7.16.0 [#2219](https://github.com/titicacadev/triple-frontend/pull/2219)
+
+### react-contexts
+
+- 세션 고정 방지 기능 추가 [#2223](https://github.com/titicacadev/triple-frontend/pull/2223)
+
 ## 10.0.1
 
 ### triple-document
