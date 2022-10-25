@@ -26,5 +26,8 @@
     "@titicaca/scrap-button": "^10.4.0",
     "@titicaca/type-definitions": "^10.4.0",
     "@titicaca/view-utilities": "^10.4.0"
+  },
+  "peerDependencies": {
+    "next-i18next": "*"
   }
 }
