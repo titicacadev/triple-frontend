@@ -31,8 +31,8 @@
     "postversion": "npm install && git commit --amend -a -C HEAD",
     "lint:es": "eslint '**/*.{js,ts,tsx,mdx}'",
     "lint:es:fix": "eslint '**/*.{js,ts,tsx,mdx}' --fix",
-    "lint:etc": "prettier '**/*.{json,yaml,md}' --check",
-    "lint:etc:fix": "prettier '**/*.{json,yaml,md}' --write",
+    "lint:etc": "prettier '**/*.{json,yaml,md,js,ts,tsx}' --check",
+    "lint:etc:fix": "prettier '**/*.{json,yaml,md,js,ts,tsx}' --write",
     "lint:style": "stylelint '**/*.{js,ts,tsx}'",
     "lint:style:fix": "stylelint '**/*.{js,ts,tsx}' --fix",
     "lint": "npm run lint:es && npm run lint:etc && npm run lint:style",
@@ -91,7 +91,8 @@
   ],
   "lint-staged": {
     "**/*.{js,ts,tsx}": [
-      "eslint"
+      "eslint",
+      "prettier --check"
     ],
     "**/*.{json,yaml,md}": [
       "prettier --check"
