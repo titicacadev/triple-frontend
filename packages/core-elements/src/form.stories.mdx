@@ -8,8 +8,6 @@ import {
   Text,
 } from '@titicaca/core-elements'
 
-import RadioWrapper from './radio-wrapper'
-
 <Meta title="Core-Elements / Form" />
 
 # Form
@@ -133,26 +131,6 @@ error?: string
     >
       <Text>예약자 정보를 업데이트 합니다.</Text>
     </ConfirmSelector>
-  </Story>
-</Preview>
-
-## Radio
-
-```js
-option: {
-  text: string
-  value: string
-}
-
-name?: string
-value?: string
-onChange?: (e: React.SyntheticEvent, arg1: string) => any
-options: option[]
-```
-
-<Preview>
-  <Story name="Radio">
-    <RadioWrapper />
   </Story>
 </Preview>
 
