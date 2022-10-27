@@ -8,7 +8,6 @@ export {
   default as ImageSource,
   ImageSourceType,
 } from './elements/image-source'
-export { default as Radio } from './elements/radio'
 export { default as GenderSelector } from './elements/gender-selector'
 export { default as Section, SectionProps } from './elements/section'
 export { default as Text, TextProps } from './elements/text'
@@ -50,4 +49,5 @@ export { default as formatSourceURL } from './utils/format-source-url'
 export * from './mixins'
 export * from './hocs'
 export * from './css'
+export * from './elements/radio'
 export * from './elements/portal'
