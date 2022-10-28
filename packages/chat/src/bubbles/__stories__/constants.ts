@@ -1,4 +1,4 @@
-import {MetaDataInterface} from "../../types";
+import { MetaDataInterface } from '../../types'
 
 export const SAMPLE_IMAGES: MetaDataInterface[] = [
   {
@@ -13,12 +13,12 @@ export const SAMPLE_IMAGES: MetaDataInterface[] = [
         url: '',
       },
       large: {
-        url: ''
+        url: '',
       },
       smallSquare: {
-        url: ''
-      }
-    }
+        url: '',
+      },
+    },
   },
 ]
 

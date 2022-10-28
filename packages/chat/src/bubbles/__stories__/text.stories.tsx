@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from "@storybook/react";
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import { TextBubble } from '../text'
 
@@ -30,7 +30,7 @@ export default {
     backgroundColor: 'gray',
     tailPosition: 'left',
   },
-}as ComponentMeta<typeof TextBubble>
+} as ComponentMeta<typeof TextBubble>
 
 export const Primary: ComponentStory<typeof TextBubble> = (args) => {
   return <TextBubble {...args}>Content....</TextBubble>
