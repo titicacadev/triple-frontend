@@ -1,7 +1,7 @@
 import moment from 'moment'
 import React from 'react'
 import styled from 'styled-components'
-import {Container, CSSProps, Text} from '@titicaca/core-elements'
+import { Container, CSSProps, Text } from '@titicaca/core-elements'
 
 const BubbleInfoContainer = styled(Container)`
   vertical-align: bottom;
@@ -26,11 +26,7 @@ export function BubbleInfo({
   const showYear = !moment().isSame(date, 'year')
 
   return (
-    <BubbleInfoContainer
-      position="relative"
-      display="inline-block"
-      css={css}
-    >
+    <BubbleInfoContainer position="relative" display="inline-block" css={css}>
       {unreadCount ? (
         <UnreadMessageCountText>{unreadCount}</UnreadMessageCountText>
       ) : null}
