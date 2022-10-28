@@ -1,9 +1,9 @@
 import React from 'react'
-import {Story} from "@storybook/react";
+import { Story } from '@storybook/react'
 
 import { MessageType } from './types'
 import { MEDIA_ARGS, SAMPLE_IMAGES } from './bubbles/__stories__/constants'
-import {ChatBubbleUI, ChatBubbleUIProps} from './chat-bubble-ui'
+import { ChatBubbleUI, ChatBubbleUIProps } from './chat-bubble-ui'
 
 export default {
   title: 'chat-bubble / ChatBubbleUI',
@@ -27,9 +27,7 @@ export default {
   },
 }
 
-const Template: Story<ChatBubbleUIProps> = (args) => (
-  <ChatBubbleUI {...args} />
-)
+const Template: Story<ChatBubbleUIProps> = (args) => <ChatBubbleUI {...args} />
 
 export const Text = Template.bind({})
 
