@@ -39,7 +39,7 @@ function SentChatContainer({
   const [show, setShow] = useState<boolean>(true)
 
   return show ? (
-    <ChatContainer css={{textAlign: "right", ...CHAT_CONTAINER_STYLES}}>
+    <ChatContainer css={{ textAlign: 'right', ...CHAT_CONTAINER_STYLES }}>
       {!createdAt ? (
         <SendingFailureHandlerContainer>
           <RetryButton
@@ -57,7 +57,7 @@ function SentChatContainer({
         <BubbleInfo
           unreadCount={unreadCount}
           date={createdAt}
-          css={{marginRight: 8, textAlign: "right"}}
+          css={{ marginRight: 8, textAlign: 'right' }}
         />
       )}
 
@@ -80,7 +80,7 @@ function ReceivedChatContainer({
   children: React.ReactNode
 }) {
   return (
-    <ChatContainer css={{...CHAT_CONTAINER_STYLES}}>
+    <ChatContainer css={{ ...CHAT_CONTAINER_STYLES }}>
       <ProfileImage src={profileImageUrl} />
       <Container css={{ marginLeft: 50 }}>
         <ProfileName size="mini" alpha={0.8} margin={{ bottom: 5 }}>
@@ -93,7 +93,7 @@ function ReceivedChatContainer({
           <BubbleInfo
             unreadCount={unreadCount}
             date={createdAt}
-            css={{marginLeft: 8, textAlign: 'left'}}
+            css={{ marginLeft: 8, textAlign: 'left' }}
           />
         ) : null}
       </Container>

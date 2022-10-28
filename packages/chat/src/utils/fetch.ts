@@ -62,9 +62,9 @@ export default class FetchHttp {
   private apiUriBase: string
 
   constructor({
-                sessionKey,
-                apiUriBase,
-              }: {
+    sessionKey,
+    apiUriBase,
+  }: {
     sessionKey: string
     apiUriBase: string
   }) {
@@ -148,13 +148,13 @@ export default class FetchHttp {
     } catch (e) {
       const err = !ok
         ? new Error(
-          `[${status}] Failed to fetch ${method} request of '${apiPath}' with response.json() parsing error: ${e}`,
-        )
+            `[${status}] Failed to fetch ${method} request of '${apiPath}' with response.json() parsing error: ${e}`,
+          )
         : null
 
       if (silently) {
         err &&
-        (isCaptureSuppressed || (captureException && captureException(err)))
+          (isCaptureSuppressed || (captureException && captureException(err)))
         isCaptureSuppressed || (captureException && captureException(e as any))
 
         return fetchResult
