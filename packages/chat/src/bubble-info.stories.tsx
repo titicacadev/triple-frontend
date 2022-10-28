@@ -1,4 +1,5 @@
 import React from 'react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import { BubbleInfo } from './bubble-info'
 
@@ -12,9 +13,9 @@ export default {
       },
     },
   },
-}
+} as ComponentMeta<typeof BubbleInfo>
 
-export function Primary(args: Parameters<typeof BubbleInfo>[0]) {
+export const Primary: ComponentStory<typeof BubbleInfo> = (args) => {
   return <BubbleInfo {...args} />
 }
 

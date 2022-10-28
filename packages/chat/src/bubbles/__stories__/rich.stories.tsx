@@ -1,4 +1,5 @@
 import React from 'react'
+import {ComponentMeta, ComponentStory} from "@storybook/react";
 
 import { MessageType } from '../../types'
 import { RichBubble } from '../rich'
@@ -16,9 +17,9 @@ export default {
       },
     },
   },
-}
+}as ComponentMeta<typeof RichBubble>
 
-export function Primary(args: Parameters<typeof RichBubble>[0]) {
+export const Primary: ComponentStory<typeof RichBubble> = (args) => {
   return <RichBubble {...args} />
 }
 

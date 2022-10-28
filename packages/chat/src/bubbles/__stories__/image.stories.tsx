@@ -1,4 +1,5 @@
 import React from 'react'
+import {ComponentMeta, ComponentStory} from "@storybook/react";
 
 import { ImageBubble } from '../image'
 
@@ -9,9 +10,9 @@ export default {
   argTypes: {
     onClick: { action: 'clicked' },
   },
-}
+} as ComponentMeta<typeof ImageBubble>
 
-export function Primary(args: Parameters<typeof ImageBubble>[0]) {
+export const Primary: ComponentStory<typeof ImageBubble> = (args) => {
   return <ImageBubble {...args} />
 }
 
