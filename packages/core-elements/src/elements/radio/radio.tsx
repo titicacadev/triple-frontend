@@ -1,12 +1,12 @@
 import { blue, gray200 } from '@titicaca/color-palette'
-import { ChangeEventHandler, PropsWithChildren, useId, useRef } from 'react'
+import { ChangeEventHandler, PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
 import Text from '../text'
 
 import { useRadioGroup } from './radio-group-context'
 
-const RadioFrame = styled.div`
+const RadioLabel = styled.label`
   display: flex;
   align-items: center;
   margin-bottom: 20px;
@@ -16,15 +16,11 @@ const RadioFrame = styled.div`
   }
 `
 
-const RadioLabel = styled(Text).attrs({ as: 'label' })`
+const RadioText = styled(Text)`
   flex: 1;
 `
 
-interface RadioInputProps {
-  checked?: boolean
-}
-
-const RadioInput = styled.input.attrs({ type: 'radio' })<RadioInputProps>`
+const RadioInput = styled.input`
   appearance: none;
   position: relative;
   width: 26px;
@@ -63,12 +59,9 @@ export const Radio = ({
   children,
   name,
   checked,
-  tabIndex,
   value,
   onChange,
 }: RadioProps) => {
-  const ref = useRef<HTMLInputElement>(null)
-  const id = useId()
   const group = useRadioGroup()
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -77,19 +70,15 @@ export const Radio = ({
   }
 
   return (
-    <RadioFrame>
-      <RadioLabel htmlFor={id} size="large">
-        {children}
-      </RadioLabel>
+    <RadioLabel>
+      <RadioText size="large">{children}</RadioText>
       <RadioInput
-        ref={ref}
-        id={id}
+        type="radio"
         name={name ?? group?.name}
         checked={checked ?? group?.value === value}
-        tabIndex={tabIndex}
         value={value}
         onChange={handleChange}
       />
-    </RadioFrame>
+    </RadioLabel>
   )
 }
