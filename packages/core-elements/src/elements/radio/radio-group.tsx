@@ -1,8 +1,6 @@
 import { PropsWithChildren } from 'react'
-import { FocusScope } from '@react-aria/focus'
 
 import { RadioGroupContext } from './radio-group-context'
-import { RadioGroupBase } from './radio-group-base'
 
 export interface RadioGroupProps extends PropsWithChildren {
   name?: string
@@ -27,9 +25,7 @@ export const RadioGroup = ({
         onChange,
       }}
     >
-      <FocusScope>
-        <RadioGroupBase>{children}</RadioGroupBase>
-      </FocusScope>
+      <div role="radiogroup">{children}</div>
     </RadioGroupContext.Provider>
   )
 }
