@@ -39,6 +39,10 @@ export async function fetchPois({
     },
   })
 
+  if (response.status === 204) {
+    return []
+  }
+
   if (response.ok === true) {
     const { parsedBody: pois } = response
     return pois.map((poi) => ({
