@@ -19,7 +19,8 @@
         "../react-triple-client-interfaces/src"
       ],
       "@titicaca/type-definitions": ["../type-definitions/src"],
-      "@titicaca/view-utilities": ["../view-utilities/src"]
+      "@titicaca/view-utilities": ["../view-utilities/src"],
+      "@titicaca/web-storage": ["../web-storage/src"]
     }
   },
   "include": ["./src"],
@@ -59,6 +60,9 @@
     },
     {
       "path": "../view-utilities"
+    },
+    {
+      "path": "../web-storage"
     },
     {
       "path": "../react-contexts"

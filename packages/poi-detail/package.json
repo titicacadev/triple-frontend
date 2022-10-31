@@ -33,6 +33,7 @@
     "@titicaca/react-triple-client-interfaces": "^10.1.0",
     "@titicaca/type-definitions": "^10.1.0",
     "@titicaca/view-utilities": "^10.1.0",
+    "@titicaca/web-storage": "^10.1.0",
     "qs": "^6.10.1"
   },
   "peerDependencies": {
