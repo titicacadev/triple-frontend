@@ -39,6 +39,9 @@
       "path": "../view-utilities/tsconfig.build.json"
     },
     {
+      "path": "../web-storage/tsconfig.build.json"
+    },
+    {
       "path": "../react-contexts/tsconfig.build.json"
     }
   ]

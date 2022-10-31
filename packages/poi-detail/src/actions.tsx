@@ -1,11 +1,33 @@
 import styled from 'styled-components'
-import { Section, HR1, Button, MarginPadding } from '@titicaca/core-elements'
+import {
+  Section,
+  HR1,
+  Button,
+  MarginPadding,
+  Tooltip,
+} from '@titicaca/core-elements'
 import { useI18n } from '@titicaca/i18n'
+import { useEffect, useState } from 'react'
+import { getWebStorage } from '@titicaca/web-storage'
 
 const ActionButton = styled(Button)`
+  position: relative;
   padding-left: 0;
   padding-right: 0;
 `
+
+const ReviewTooltip = styled(Tooltip)`
+  width: max-content;
+  padding: 9px 15px 8px 15px;
+  transform: translateX(-50%);
+  left: 50%;
+  &::after {
+    transform: translateX(-50%);
+    left: 50%;
+  }
+`
+
+const REVIEW_TOLLTIP_EXPOSED = 'REVIEW_TOLLTIP_EXPOSED'
 
 export default function Actions({
   scraped,
@@ -29,6 +51,19 @@ export default function Actions({
   noDivider?: boolean
 }) {
   const { t } = useI18n()
+
+  const [isReviewTooltipExposed, setIsReviewTooltipExposed] = useState(true)
+
+  useEffect(() => {
+    const webStorage = getWebStorage()
+    webStorage.getItem(REVIEW_TOLLTIP_EXPOSED)
+    setIsReviewTooltipExposed(
+      JSON.parse(
+        webStorage.getItem(REVIEW_TOLLTIP_EXPOSED) || 'false',
+      ) as boolean,
+    )
+    webStorage.setItem(REVIEW_TOLLTIP_EXPOSED, 'true')
+  }, [])
 
   return (
     <Section {...props}>
@@ -59,6 +94,19 @@ export default function Actions({
           icon={reviewed ? 'starFilled' : 'starEmpty'}
           onClick={onReviewEdit}
         >
+          {!isReviewTooltipExposed ? (
+            <ReviewTooltip
+              label="이제 영상도 올릴 수 있어요!"
+              pointing={{
+                vertical: 'bottom',
+                horizontal: 'right',
+              }}
+              nowrap={false}
+              borderRadius="16.17"
+              backgroundColor="var(--color-blue)"
+              positioning={{ top: -26 }}
+            />
+          ) : null}
           {reviewed
             ? t('common:modReview', '리뷰수정')
             : t('common:addReview', '리뷰쓰기')}
