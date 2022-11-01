@@ -1,14 +1,8 @@
-import React, { MouseEventHandler, PropsWithChildren, useState } from 'react'
+import React, { PropsWithChildren, useState } from 'react'
 import { Autolinker } from 'autolinker'
-import { Container, GlobalSizes } from '@titicaca/core-elements'
+import { Container } from '@titicaca/core-elements'
 
-import {
-  TextPayload,
-  ImagePayload,
-  RichPayload,
-  MetaDataInterface,
-  MessageType,
-} from '../types'
+import { TextPayload, ImagePayload, RichPayload, MessageType } from '../types'
 import { ImageBubble, TextBubble, RichBubble } from '../bubbles'
 
 import { BubbleInfo } from './bubble-info'
@@ -20,6 +14,8 @@ import {
   ProfileImage,
   ProfileName,
 } from './elements'
+
+import { useChat } from '@titicaca/chat'
 
 const CHAT_CONTAINER_STYLES = {
   marginTop: 20,
@@ -105,34 +101,19 @@ function ReceivedChatContainer({
 interface BubblePayloadProps {
   payload: TextPayload | ImagePayload | RichPayload
   my: boolean
-  textBubbleFontSize: GlobalSizes | number
-  textBubbleMaxWidthOffset: number
-  mediaUrlBase: string
-  cloudinaryName: string
-  /**
-   * message payload가 RICH 타입이고,
-   * BUTTON 타입의 rich item을 눌렀을 때,
-   * 라우팅 하기 전 작동하는 콜백 함수
-   */
-  onRichBubbleButtonBeforeRouting?: () => void
-  onImageBubbleClick: (imageInfos: MetaDataInterface[]) => void
-  /**
-   * 텍스트 버블의 자식의 클릭 이벤트를 delegation 하는 함수
-   */
-  onTextBubbleClick?: MouseEventHandler
 }
 
-function BubblePayload({
-  payload,
-  my,
-  textBubbleFontSize,
-  textBubbleMaxWidthOffset,
-  mediaUrlBase,
-  cloudinaryName,
-  onRichBubbleButtonBeforeRouting,
-  onImageBubbleClick,
-  onTextBubbleClick,
-}: BubblePayloadProps) {
+function BubblePayload({ payload, my }: BubblePayloadProps) {
+  const {
+    textBubbleFontSize,
+    textBubbleMaxWidthOffset,
+    mediaUrlBase,
+    cloudinaryName,
+    onRichBubbleButtonBeforeRouting,
+    onImageBubbleClick,
+    onTextBubbleClick,
+  } = useChat()
+
   switch (payload.type) {
     case MessageType.IMAGES:
       return (
@@ -183,17 +164,7 @@ function BubblePayload({
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export interface ChatBubbleUIProps
-  extends Pick<
-    BubblePayloadProps,
-    | 'textBubbleFontSize'
-    | 'textBubbleMaxWidthOffset'
-    | 'mediaUrlBase'
-    | 'cloudinaryName'
-    | 'onRichBubbleButtonBeforeRouting'
-    | 'onImageBubbleClick'
-    | 'onTextBubbleClick'
-  > {
+export interface ChatBubbleUIProps {
   type: 'sent' | 'received'
   payload: TextPayload | ImagePayload | RichPayload
   profileImageUrl?: string
@@ -207,13 +178,6 @@ export interface ChatBubbleUIProps
 export function ChatBubbleUI({
   type,
   payload,
-  mediaUrlBase,
-  cloudinaryName,
-  textBubbleFontSize,
-  textBubbleMaxWidthOffset,
-  onRichBubbleButtonBeforeRouting,
-  onImageBubbleClick,
-  onTextBubbleClick,
   unreadCount,
   createdAt,
   profileImageUrl,
@@ -228,17 +192,7 @@ export function ChatBubbleUI({
           unreadCount={unreadCount}
           onRetry={onRetry}
         >
-          <BubblePayload
-            payload={payload}
-            my
-            textBubbleFontSize={textBubbleFontSize}
-            textBubbleMaxWidthOffset={textBubbleMaxWidthOffset}
-            mediaUrlBase={mediaUrlBase}
-            cloudinaryName={cloudinaryName}
-            onRichBubbleButtonBeforeRouting={onRichBubbleButtonBeforeRouting}
-            onImageBubbleClick={onImageBubbleClick}
-            onTextBubbleClick={onTextBubbleClick}
-          />
+          <BubblePayload payload={payload} my />
         </SentChatContainer>
       )
     case 'received':
@@ -249,17 +203,7 @@ export function ChatBubbleUI({
           profileImageUrl={profileImageUrl}
           profileName={profileName}
         >
-          <BubblePayload
-            payload={payload}
-            my={false}
-            textBubbleFontSize={textBubbleFontSize}
-            textBubbleMaxWidthOffset={textBubbleMaxWidthOffset}
-            mediaUrlBase={mediaUrlBase}
-            cloudinaryName={cloudinaryName}
-            onRichBubbleButtonBeforeRouting={onRichBubbleButtonBeforeRouting}
-            onImageBubbleClick={onImageBubbleClick}
-            onTextBubbleClick={onTextBubbleClick}
-          />
+          <BubblePayload payload={payload} my={false} />
         </ReceivedChatContainer>
       )
     default:
