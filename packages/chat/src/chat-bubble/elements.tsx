@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components'
 import { Container, Text } from '@titicaca/core-elements'
 
+export const HiddenElement = styled.div`
+  height: 1px;
+`
+
 export const ChatContainer = styled(Container)`
   width: 100%;
 `
@@ -39,14 +43,14 @@ const sendingFailureHandlerStyle = css`
 `
 
 export const RetryButton = styled.button`
-  ${sendingFailureHandlerStyle}
+  ${sendingFailureHandlerStyle};
 
   width: 23.5px;
   background-image: url('https://assets.triple.guide/images/btn-message-resend@3x.png');
 `
 
 export const DeleteButton = styled.button`
-  ${sendingFailureHandlerStyle}
+  ${sendingFailureHandlerStyle};
 
   width: 24.5px;
   border-left: 1px solid rgba(255, 255, 255, 0.3);
