@@ -5,7 +5,7 @@ import { MEDIA_ARGS, SAMPLE_IMAGES } from '../bubbles/__stories__/constants'
 
 import { ChatBubbleUI, ChatBubbleUIProps } from './chat-bubble-ui'
 
-import { MessageType } from '@titicaca/chat'
+import { ChatContext, MessageType } from '@titicaca/chat'
 
 export default {
   title: 'chat-bubble / ChatBubbleUI',
@@ -29,15 +29,16 @@ export default {
   },
 }
 
-const Template: Story<ChatBubbleUIProps> = (args) => <ChatBubbleUI {...args} />
+const Template: Story<ChatBubbleUIProps> = (args) => (
+  <ChatContext.Provider value={{ ...MEDIA_ARGS }}>
+    <ChatBubbleUI {...args} />
+  </ChatContext.Provider>
+)
 
 export const Text = Template.bind({})
 
 Text.storyName = '텍스트'
 Text.args = {
-  ...MEDIA_ARGS,
-  textBubbleFontSize: 'medium',
-  textBubbleMaxWidthOffset: 100,
   type: 'sent',
   payload: {
     type: MessageType.TEXT,
@@ -52,9 +53,6 @@ export const Image = Template.bind({})
 
 Image.storyName = '이미지'
 Image.args = {
-  ...MEDIA_ARGS,
-  textBubbleFontSize: 'medium',
-  textBubbleMaxWidthOffset: 100,
   type: 'received',
   payload: { type: MessageType.IMAGES, images: SAMPLE_IMAGES },
   unreadCount: 1,
@@ -66,9 +64,6 @@ export const Rich = Template.bind({})
 
 Rich.storyName = '리치'
 Rich.args = {
-  ...MEDIA_ARGS,
-  textBubbleFontSize: 'medium',
-  textBubbleMaxWidthOffset: 100,
   type: 'received',
   payload: {
     type: MessageType.RICH,
@@ -94,9 +89,6 @@ export const FailedSentMessage = Template.bind({})
 
 FailedSentMessage.storyName = '실패한 메시지'
 FailedSentMessage.args = {
-  ...MEDIA_ARGS,
-  textBubbleFontSize: 'medium',
-  textBubbleMaxWidthOffset: 100,
   type: 'sent',
   payload: {
     type: MessageType.RICH,
