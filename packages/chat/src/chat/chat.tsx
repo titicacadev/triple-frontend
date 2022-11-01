@@ -13,6 +13,7 @@ import {
   HasUnreadOfRoomInterface,
   MessageInterface,
   MetaDataInterface,
+  RoomInterface,
   UserInfoInterface,
   UserType,
 } from '../types'
@@ -41,7 +42,7 @@ interface ChatProps extends ChatContextValue {
     roomId: string
     lastSeenMessageId: number
   }) => Promise<HasUnreadOfRoomInterface>
-  roomId: string
+  room: RoomInterface
 }
 
 const defaultOnImageBubbleClick = (imageInfos: MetaDataInterface[]) => {
@@ -55,7 +56,7 @@ const Chat = ({
   postMessage,
   getMessages,
   getUnreadRoom,
-  roomId,
+  room,
 
   textBubbleFontSize,
   textBubbleMaxWidthOffset,
@@ -73,6 +74,25 @@ const Chat = ({
   ] = useReducer(ChatReducer, initialChatState)
 
   const fetchJob = useMemo(() => new Polling(FETCH_INTERVAL_SECS * 1000), [])
+
+  const updateUnread = useCallback(async () => {
+    if (!lastMessageId) {
+      return
+    }
+
+    const unreadRoomResult = await getUnreadRoom?.({
+      roomId: room.id,
+      lastSeenMessageId: lastMessageId,
+    })
+    const { hasUnread = false, others = [] } = unreadRoomResult || {}
+
+    dispatch({
+      action: ChatActions.UPDATE,
+      otherUnreadInfo: others,
+    })
+
+    return hasUnread
+  }, [room.id, lastMessageId])
 
   const scrollDown = useCallback(() => {
     if (chatRoomRef.current && chatRoomRef.current.parentElement) {
@@ -110,10 +130,33 @@ const Chat = ({
     }, 0)
   }, [messages, lastMessageId, scrollDown]) // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    ;(async function () {
+      const result = await getMessages({
+        roomId: room.id,
+        backward: true,
+        lastMessageId: Number(room.lastMessageId) + 1,
+      })
+
+      result &&
+        dispatch({
+          action: ChatActions.INIT,
+          messages: result,
+          lastMessageId: Number(room.lastMessageId),
+        })
+
+      await updateUnread()
+
+      window.setTimeout(() => {
+        scrollDown()
+      }, 0)
+    })()
+  }, [room.id]) // eslint-disable-line react-hooks/exhaustive-deps
+
   async function fetchNewMessages(): Promise<MessageInterface[]> {
-    if (lastMessageId !== null && roomId) {
+    if (lastMessageId !== null && room.id) {
       return getMessages({
-        roomId,
+        roomId: room.id,
         lastMessageId,
       })
     } else {
@@ -122,9 +165,9 @@ const Chat = ({
   }
 
   async function pollingFetchJob() {
-    if (lastMessageId !== null && roomId && getUnreadRoom) {
+    if (lastMessageId !== null && room.id && getUnreadRoom) {
       const { hasUnread, others } = await getUnreadRoom({
-        roomId,
+        roomId: room.id,
         lastSeenMessageId: lastMessageId,
       })
 
