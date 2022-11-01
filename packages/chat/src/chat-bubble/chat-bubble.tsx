@@ -8,19 +8,9 @@ import {
 } from '../types'
 import { getProfileImageUrl } from '../utils/image'
 
-import { ChatBubbleUI, ChatBubbleUIProps } from './chat-bubble-ui'
+import { ChatBubbleUI } from './chat-bubble-ui'
 
-interface Props
-  extends Pick<
-    ChatBubbleUIProps,
-    | 'textBubbleFontSize'
-    | 'textBubbleMaxWidthOffset'
-    | 'mediaUrlBase'
-    | 'cloudinaryName'
-    | 'onRichBubbleButtonBeforeRouting'
-    | 'onImageBubbleClick'
-    | 'onTextBubbleClick'
-  > {
+interface ChatBubbleProps {
   userInfo: UserInfoInterface
   message: MessageInterface
   otherReadInfo?: OtherUnreadInterface[]
@@ -28,21 +18,14 @@ interface Props
   postMessage?: () => Promise<boolean>
 }
 
-const ChatBubble = memo(function ChatBubble({
+const ChatBubble = ({
   message,
   message: { senderId, createdAt },
   userInfo: { others },
   otherReadInfo,
-  textBubbleFontSize,
-  textBubbleMaxWidthOffset,
   displayTarget: componentDisplayTarget,
   postMessage,
-  mediaUrlBase,
-  cloudinaryName,
-  onRichBubbleButtonBeforeRouting,
-  onImageBubbleClick,
-  onTextBubbleClick,
-}: Props) {
+}: ChatBubbleProps) => {
   const otherUserInfo = useMemo(
     () => others.find((other) => other.id === senderId),
     [senderId, others],
@@ -85,15 +68,8 @@ const ChatBubble = memo(function ChatBubble({
       createdAt={createdAt}
       payload={payload}
       onRetry={postMessage}
-      textBubbleFontSize={textBubbleFontSize}
-      textBubbleMaxWidthOffset={textBubbleMaxWidthOffset}
-      mediaUrlBase={mediaUrlBase}
-      cloudinaryName={cloudinaryName}
-      onRichBubbleButtonBeforeRouting={onRichBubbleButtonBeforeRouting}
-      onImageBubbleClick={onImageBubbleClick}
-      onTextBubbleClick={onTextBubbleClick}
     />
   )
-})
+}
 
-export default ChatBubble
+export default memo(ChatBubble)
