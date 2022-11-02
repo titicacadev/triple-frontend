@@ -56,7 +56,6 @@ export default function Actions({
 
   useEffect(() => {
     const webStorage = getWebStorage()
-    webStorage.getItem(REVIEW_TOOLTIP_EXPOSED)
     setIsReviewTooltipExposed(
       JSON.parse(
         webStorage.getItem(REVIEW_TOOLTIP_EXPOSED) || 'false',
