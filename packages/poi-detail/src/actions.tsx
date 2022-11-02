@@ -27,7 +27,7 @@ const ReviewTooltip = styled(Tooltip)`
   }
 `
 
-const REVIEW_TOLLTIP_EXPOSED = 'REVIEW_TOLLTIP_EXPOSED'
+const REVIEW_TOOLTIP_EXPOSED = 'REVIEW_TOOLTIP_EXPOSED'
 
 export default function Actions({
   scraped,
@@ -56,13 +56,13 @@ export default function Actions({
 
   useEffect(() => {
     const webStorage = getWebStorage()
-    webStorage.getItem(REVIEW_TOLLTIP_EXPOSED)
+    webStorage.getItem(REVIEW_TOOLTIP_EXPOSED)
     setIsReviewTooltipExposed(
       JSON.parse(
-        webStorage.getItem(REVIEW_TOLLTIP_EXPOSED) || 'false',
+        webStorage.getItem(REVIEW_TOOLTIP_EXPOSED) || 'false',
       ) as boolean,
     )
-    webStorage.setItem(REVIEW_TOLLTIP_EXPOSED, 'true')
+    webStorage.setItem(REVIEW_TOOLTIP_EXPOSED, 'true')
   }, [])
 
   return (
