@@ -31,7 +31,7 @@ import { ChatContext, ChatContextValue } from './chat-context'
 const FETCH_INTERVAL_SECS = 5
 const MINIMUM_INTERSECTING_TIME = 3000
 
-interface ChatProps extends ChatContextValue {
+export interface ChatProps extends ChatContextValue {
   displayTarget: UserType
   userInfo: UserInfoInterface
   postMessage?: (

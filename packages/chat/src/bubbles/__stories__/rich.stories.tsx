@@ -7,7 +7,7 @@ import { RichBubble } from '../rich'
 import { MEDIA_ARGS, SAMPLE_IMAGES } from './constants'
 
 export default {
-  title: 'chat-bubble / RichBubble',
+  title: 'chat / RichBubble',
   component: RichBubble,
   argTypes: {
     textBubbleFontSize: {
