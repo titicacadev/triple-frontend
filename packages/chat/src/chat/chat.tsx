@@ -8,12 +8,17 @@ import React, {
   useRef,
 } from 'react'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
+import { useUserAgentContext } from '@titicaca/react-contexts'
+import { closeKeyboard } from '@titicaca/triple-web-to-native-interfaces'
+import { toast } from 'react-toastify'
 
 import {
   HasUnreadOfRoomInterface,
+  ImagePayload,
   MessageInterface,
   MetaDataInterface,
   RoomInterface,
+  TextPayload,
   UserInfoInterface,
   UserType,
 } from '../types'
@@ -28,14 +33,15 @@ const FETCH_INTERVAL_SECS = 5
 const MINIMUM_INTERSECTING_TIME = 3000
 
 interface ChatProps extends ChatContextValue {
-  fetchPastMessages: (firstMessageId?: number) => Promise<MessageInterface[]>
   displayTarget: UserType
   userInfo: UserInfoInterface
-  postMessage?: () => Promise<boolean>
+  postMessage?: (
+    payload: TextPayload | ImagePayload,
+  ) => Promise<{ success: boolean; newMessages: MessageInterface[] }>
   getMessages: (option: {
     roomId: string
     backward?: boolean
-    lastMessageId: number | string
+    lastMessageId: number | string | null
     req?: IncomingMessage
   }) => Promise<MessageInterface[]>
   getUnreadRoom?: (option: {
@@ -50,7 +56,6 @@ const defaultOnImageBubbleClick = (imageInfos: MetaDataInterface[]) => {
 }
 
 const Chat = ({
-  fetchPastMessages,
   displayTarget,
   userInfo,
   postMessage,
@@ -69,11 +74,20 @@ const Chat = ({
   const chatRoomRef = useRef<HTMLDivElement>(null)
 
   const [
-    { messages, hasPrevMessage, scrollY, otherUnreadInfo, lastMessageId },
+    {
+      messages,
+      hasPrevMessage,
+      scrollY,
+      otherUnreadInfo,
+      lastMessageId,
+      firstMessageId,
+    },
     dispatch,
   ] = useReducer(ChatReducer, initialChatState)
 
   const fetchJob = useMemo(() => new Polling(FETCH_INTERVAL_SECS * 1000), [])
+  const { os } = useUserAgentContext()
+  const isIos = useMemo(() => os.name === 'iOS', [os.name])
 
   const updateUnread = useCallback(async () => {
     if (!lastMessageId) {
@@ -119,6 +133,16 @@ const Chat = ({
   }, [lastMessageId]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
+    const chatListDiv = chatRoomRef.current
+    if (chatListDiv && isIos) {
+      chatListDiv.addEventListener('touchmove', () => closeKeyboard())
+      return () => {
+        chatListDiv.removeEventListener('touchmove', () => closeKeyboard())
+      }
+    }
+  }, [isIos])
+
+  useEffect(() => {
     dispatch({
       action: ChatActions.INIT,
       messages,
@@ -128,7 +152,7 @@ const Chat = ({
     window.setTimeout(() => {
       scrollDown()
     }, 0)
-  }, [messages, lastMessageId, scrollDown]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [messages, lastMessageId, scrollDown])
 
   useEffect(() => {
     ;(async function () {
@@ -164,6 +188,18 @@ const Chat = ({
     }
   }
 
+  async function fetchPastMessages(): Promise<MessageInterface[]> {
+    if (messages.length) {
+      return getMessages({
+        roomId: room.id,
+        lastMessageId: firstMessageId,
+        backward: true,
+      })
+    } else {
+      return []
+    }
+  }
+
   async function pollingFetchJob() {
     if (lastMessageId !== null && room.id && getUnreadRoom) {
       const { hasUnread, others } = await getUnreadRoom({
@@ -187,6 +223,68 @@ const Chat = ({
     }
   }
 
+  const postMessageAction = async (
+    payload: TextPayload | ImagePayload,
+    retry = false,
+  ): Promise<boolean> => {
+    fetchJob?.pause()
+    const result = await postMessage?.(payload)
+    const { success, newMessages } = result || {
+      success: false,
+      newMessages: [],
+    }
+
+    if (success) {
+      dispatch({
+        action: ChatActions.POST,
+        messages: newMessages,
+        payload,
+      })
+      // const lastMessage = newMessages[newMessages.length - 1]
+      // notifyNewMessage?.({ ...lastMessage })
+    } else {
+      if (!retry) {
+        dispatch({
+          action: ChatActions.FAILED_TO_POST,
+          message: {
+            id: NaN,
+            roomId: room.id,
+            senderId: userInfo.me.id,
+            payload,
+            displayTarget: 'all',
+          },
+        })
+      }
+
+      toast('메시지 발송에 실패했습니다.')
+    }
+
+    scrollDown()
+
+    await fetchJob?.resume()
+
+    return success
+  }
+
+  const onChangeScroll = async ({
+    isIntersecting,
+    time,
+  }: IntersectionObserverEntry) => {
+    if (isIntersecting && time >= MINIMUM_INTERSECTING_TIME && hasPrevMessage) {
+      const pastMessages = await fetchPastMessages()
+
+      const prevScrollY = chatRoomRef.current
+        ? chatRoomRef.current.getBoundingClientRect().height
+        : 0
+
+      await dispatch({
+        action: ChatActions.PAST,
+        messages: pastMessages,
+        scrollY: prevScrollY,
+      })
+    }
+  }
+
   return (
     <ChatContext.Provider
       value={{
@@ -199,27 +297,7 @@ const Chat = ({
         onTextBubbleClick,
       }}
     >
-      <IntersectionObserver
-        onChange={async ({ isIntersecting, time }) => {
-          if (
-            isIntersecting &&
-            time >= MINIMUM_INTERSECTING_TIME &&
-            hasPrevMessage
-          ) {
-            const pastMessages = await fetchPastMessages(messages[0].id)
-
-            const prevScrollY = chatRoomRef.current
-              ? chatRoomRef.current.getBoundingClientRect().height
-              : 0
-
-            await dispatch({
-              action: ChatActions.PAST,
-              messages: pastMessages,
-              scrollY: prevScrollY,
-            })
-          }
-        }}
-      >
+      <IntersectionObserver onChange={onChangeScroll}>
         <HiddenElement />
       </IntersectionObserver>
       <div ref={chatRoomRef}>
@@ -231,7 +309,7 @@ const Chat = ({
                   displayTarget={displayTarget}
                   message={message}
                   userInfo={userInfo}
-                  postMessage={postMessage}
+                  postMessage={postMessage ? postMessageAction : undefined}
                   otherReadInfo={otherUnreadInfo}
                 />
               ) : null}
