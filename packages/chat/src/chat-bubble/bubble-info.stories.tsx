@@ -4,7 +4,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { BubbleInfo } from './bubble-info'
 
 export default {
-  title: 'chat-bubble / BubbleInfo',
+  title: 'chat / BubbleInfo',
   component: BubbleInfo,
   argTypes: {
     date: {
