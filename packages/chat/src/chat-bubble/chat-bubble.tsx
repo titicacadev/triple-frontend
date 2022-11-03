@@ -1,12 +1,15 @@
 import React, { memo, useMemo } from 'react'
 
 import {
+  ImagePayload,
   MessageInterface,
-  UserInfoInterface,
+  MessageType,
   OtherUnreadInterface,
+  TextPayload,
+  UserInfoInterface,
   UserType,
 } from '../types'
-import { getProfileImageUrl } from '../utils/image'
+import { getProfileImageUrl } from '../utils'
 
 import { ChatBubbleUI } from './chat-bubble-ui'
 
@@ -15,7 +18,10 @@ interface ChatBubbleProps {
   message: MessageInterface
   otherReadInfo?: OtherUnreadInterface[]
   displayTarget: UserType
-  postMessage?: () => Promise<boolean>
+  postMessage?: (
+    payload: TextPayload | ImagePayload,
+    retry?: boolean,
+  ) => Promise<boolean> | undefined
 }
 
 const ChatBubble = ({
@@ -57,6 +63,13 @@ const ChatBubble = ({
     message.payload,
   ])
 
+  const onRetry =
+    !message.createdAt &&
+    message.payload.type !== MessageType.RICH &&
+    postMessage
+      ? () => postMessage(message.payload as TextPayload | ImagePayload, true)
+      : undefined
+
   return (
     <ChatBubbleUI
       type={otherUserInfo ? 'received' : 'sent'}
@@ -67,7 +80,7 @@ const ChatBubble = ({
       unreadCount={unreadCount}
       createdAt={createdAt}
       payload={payload}
-      onRetry={postMessage}
+      onRetry={onRetry}
     />
   )
 }
