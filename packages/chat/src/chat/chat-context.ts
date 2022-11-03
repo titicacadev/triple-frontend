@@ -14,7 +14,7 @@ export interface ChatContextValue {
    * 라우팅 하기 전 작동하는 콜백 함수
    */
   onRichBubbleButtonBeforeRouting?: () => void
-  onImageBubbleClick: (imageInfos: MetaDataInterface[]) => void
+  onImageBubbleClick?: (imageInfos: MetaDataInterface[]) => void
   /**
    * 텍스트 버블의 자식의 클릭 이벤트를 delegation 하는 함수
    */
