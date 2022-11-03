@@ -4,7 +4,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { TextBubble } from '../text'
 
 export default {
-  title: 'chat-bubble / TextBubble',
+  title: 'chat / TextBubble',
   component: TextBubble,
   argTypes: {
     maxWidthOffset: {
