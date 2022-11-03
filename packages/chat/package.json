@@ -32,7 +32,6 @@
     "@titicaca/intersection-observer": "^10.1.0",
     "@titicaca/react-contexts": "^10.1.0",
     "@titicaca/triple-web-to-native-interfaces": "^1.7.0",
-    "autolinker": "^4.0.0",
-    "react-toastify": "9.1.0"
+    "autolinker": "^4.0.0"
   }
 }
