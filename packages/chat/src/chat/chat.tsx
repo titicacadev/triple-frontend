@@ -10,7 +10,6 @@ import React, {
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 import { closeKeyboard } from '@titicaca/triple-web-to-native-interfaces'
-import { toast } from 'react-toastify'
 
 import {
   HasUnreadOfRoomInterface,
@@ -256,7 +255,7 @@ const Chat = ({
         })
       }
 
-      toast('메시지 발송에 실패했습니다.')
+      // toast('메시지 발송에 실패했습니다.')
     }
 
     scrollDown()
