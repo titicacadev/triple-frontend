@@ -20,7 +20,7 @@
     "clean:build": "rimraf packages/**/lib packages/**/*.tsbuildinfo packages/**/.turbo",
     "clean": "npm run clean:build && npm run clean:deps",
     "make-tsconfig": "node scripts/make-tsconfig",
-    "make-build-tsconfig": "lerna exec --ignore @titicaca/triple-frontend-docs --ignore=@titicaca/frontend-integration-test --parallel -- node \\$LERNA_ROOT_PATH/scripts/make-build-tsconfig.js",
+    "make-build-tsconfig": "lerna exec --ignore=@titicaca/frontend-integration-test --parallel -- node \\$LERNA_ROOT_PATH/scripts/make-build-tsconfig.js",
     "sync-deps": "npm run make-tsconfig && npm run make-build-tsconfig",
     "prepare": "[ $PREPARE_HUSKY_DISABLED ] || husky install",
     "postinstall": "npm run sync-deps",
