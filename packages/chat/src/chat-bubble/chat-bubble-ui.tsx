@@ -31,7 +31,7 @@ function SentChatContainer({
 }: PropsWithChildren<{
   createdAt?: string
   unreadCount: number | null
-  onRetry?: () => Promise<boolean>
+  onRetry?: () => Promise<boolean> | undefined
 }>) {
   const [show, setShow] = useState<boolean>(true)
 
@@ -41,10 +41,8 @@ function SentChatContainer({
         <SendingFailureHandlerContainer>
           <RetryButton
             onClick={async () => {
-              if (onRetry) {
-                if (await onRetry()) {
-                  setShow(false)
-                }
+              if (await onRetry?.()) {
+                setShow(false)
               }
             }}
           />
@@ -171,7 +169,7 @@ export interface ChatBubbleUIProps {
   profileName?: string
   unreadCount: number | null
   createdAt?: string
-  onRetry?: () => Promise<boolean>
+  onRetry?: () => Promise<boolean> | undefined
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
