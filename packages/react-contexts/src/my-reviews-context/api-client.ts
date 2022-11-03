@@ -13,6 +13,6 @@ export async function checkIfReviewed({ resourceId }: { resourceId: string }) {
     } = response
     return ids.includes(resourceId)
   } else {
-    throw new Error('Failed to fetch reviewed check')
+    throw new Error(`Failed to fetch reviewed check: ${resourceId}`)
   }
 }
