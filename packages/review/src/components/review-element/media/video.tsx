@@ -55,15 +55,24 @@ function Video({ medium }: Props) {
     (autoplay === 'wifi_only' && networkType === 'wifi')
 
   useEffect(() => {
-    if (!videoAutoplay) {
-      return
+    async function togglePlay() {
+      if (!videoAutoplay || !ref.current) {
+        return
+      }
+
+      ref.current.playsInline = true
+      ref.current.muted = true
+
+      try {
+        if (isIntersecting) {
+          ref.current.play()
+        } else {
+          ref.current.pause()
+        }
+      } catch {}
     }
 
-    if (isIntersecting) {
-      ref.current?.play()
-    } else {
-      ref.current?.pause()
-    }
+    togglePlay()
   }, [isIntersecting, ref, videoAutoplay])
 
   return (

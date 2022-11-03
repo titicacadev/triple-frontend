@@ -49,12 +49,14 @@ export default function PlayPauseButton({
   onPlayPause,
 }: Props) {
   const handlePlayPause = useCallback(
-    (e) => {
-      if (videoRef.current && visible) {
-        playing ? videoRef.current.pause() : videoRef.current.play()
-        e.stopPropagation()
-        onPlayPause()
-      }
+    (e: SyntheticEvent) => {
+      try {
+        if (videoRef.current && visible) {
+          playing ? videoRef.current.pause() : videoRef.current.play()
+          e.stopPropagation()
+          onPlayPause()
+        }
+      } catch {}
     },
     [videoRef, playing, visible, onPlayPause],
   )
