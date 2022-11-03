@@ -1,13 +1,25 @@
 import { ImageMeta } from '@titicaca/type-definitions'
 import { Container } from '@titicaca/core-elements'
 import { useIntersection } from '@titicaca/intersection-observer'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDeviceContext } from '@titicaca/react-contexts'
 import styled from 'styled-components'
 
 interface Props {
   medium: ImageMeta
 }
+
+const StyledPoster = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+`
 
 const StyledVideo = styled.video`
   position: absolute;
@@ -18,6 +30,7 @@ const StyledVideo = styled.video`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: opacity 0.3s;
 `
 
 const PLAY_BUTTON_IMAGE_URL =
@@ -42,6 +55,7 @@ const PlayPauseButtonBase = styled.span`
 `
 
 function Video({ medium }: Props) {
+  const [isOncePlayed, setIsOncePlayed] = useState(false)
   const { ref, isIntersecting } = useIntersection<HTMLVideoElement>({
     threshold: 0.5,
   })
@@ -77,6 +91,9 @@ function Video({ medium }: Props) {
 
   return (
     <Container borderRadius={6}>
+      <StyledPoster
+        style={{ backgroundImage: `url("${medium.sizes.large.url}")` }}
+      />
       <StyledVideo
         ref={ref}
         src={medium.video?.large.url}
@@ -84,7 +101,8 @@ function Video({ medium }: Props) {
         loop
         muted
         playsInline
-        poster={medium.sizes.large.url}
+        style={{ opacity: isOncePlayed ? 1 : 0 }}
+        onTimeUpdate={isOncePlayed ? undefined : () => setIsOncePlayed(true)}
       />
       {!videoAutoplay && <PlayPauseButtonBase />}
     </Container>
