@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 
 import { MetaDataInterface } from '../types'
-import { generatePreviewImage } from '../utils/image'
+import { generatePreviewImage } from '../utils'
 
 const PreviewImage = styled.img<{ isRichBubble: boolean }>`
   ${({ isRichBubble }) =>
@@ -27,7 +27,7 @@ export function ImageBubble({
   isRichBubble?: boolean
   cloudinaryName: string
   mediaUrlBase: string
-  onClick: (imageInfos: MetaDataInterface[]) => void
+  onClick?: (imageInfos: MetaDataInterface[]) => void
 }) {
   if (imageInfos.length === 0) {
     return null
@@ -44,7 +44,7 @@ export function ImageBubble({
       src={imageUrl}
       isRichBubble={isRichBubble}
       onClick={() => {
-        onClick(imageInfos)
+        onClick?.(imageInfos)
       }}
     />
   )

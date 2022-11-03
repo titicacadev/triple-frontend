@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { GlobalSizes } from '@titicaca/core-elements'
+import { GlobalSizes } from '@titicaca/type-definitions'
 
 import {
   MetaDataInterface,
@@ -52,7 +52,7 @@ export function RichBubble({
   onButtonBeforeRouting?: () => void
   cloudinaryName: string
   mediaUrlBase: string
-  onImageBubbleClick: (imageInfos: MetaDataInterface[]) => void
+  onImageBubbleClick?: (imageInfos: MetaDataInterface[]) => void
 }) {
   return (
     <TextBubble
