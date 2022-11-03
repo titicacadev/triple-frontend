@@ -8,7 +8,7 @@ import { ChatBubbleUI, ChatBubbleUIProps } from './chat-bubble-ui'
 import { ChatContext, MessageType } from '@titicaca/chat'
 
 export default {
-  title: 'chat-bubble / ChatBubbleUI',
+  title: 'chat / ChatBubbleUI',
   component: ChatBubbleUI,
   argTypes: {
     type: {

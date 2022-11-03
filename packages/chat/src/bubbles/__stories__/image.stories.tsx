@@ -6,7 +6,7 @@ import { ImageBubble } from '../image'
 import { MEDIA_ARGS, SAMPLE_IMAGES } from './constants'
 
 export default {
-  title: 'chat-bubble / ImageBubble',
+  title: 'chat / ImageBubble',
   argTypes: {
     onClick: { action: 'clicked' },
   },
