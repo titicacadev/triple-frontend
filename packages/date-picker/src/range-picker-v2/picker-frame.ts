@@ -8,6 +8,7 @@ export function generateSelectedStyle({
   selectedAll: boolean
 }) {
   return css`
+    /* stylelint-disable selector-class-pattern */
     .DayPicker-Day--from,
     .DayPicker-Day--to {
       z-index: 0;

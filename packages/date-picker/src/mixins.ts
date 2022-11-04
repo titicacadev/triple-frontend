@@ -10,6 +10,7 @@ export function todayMixin({
   fontWeight?: number
 }) {
   return css`
+    /* stylelint-disable selector-class-pattern */
     .DayPicker-Day--today:not(.DayPicker-Day--selected):not(.DayPicker-Day--outside) {
       color: var(--color-blue);
 

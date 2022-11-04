@@ -4,6 +4,7 @@ import { createGlobalStyle } from 'styled-components'
  *  Mailchimp에서 권장하는 reset 스타일
  */
 export const RecommendedReset = createGlobalStyle`
+  /* stylelint-disable selector-class-pattern */
   body {
     margin: 0;
     padding: 0;
@@ -72,17 +73,17 @@ export const ClientSpecificWorkaround = createGlobalStyle`
   }
 
   table {
-    mso-table-lspace: 0pt;
-    mso-table-rspace: 0pt;
+    mso-table-lspace: 0;
+    mso-table-rspace: 0;
   }
 
   /* stylelint-disable no-descending-specificity */
   img {
-    -ms-interpolation-mode: bicubic;
+    interpolation-mode: bicubic;
   }
 
   body {
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 `
