@@ -1,6 +1,5 @@
 import { MetaDataInterface } from '../../types'
-
-import { ChatContextValue } from '@titicaca/chat'
+import { ChatContextValue } from '../../chat'
 
 export const SAMPLE_IMAGES: MetaDataInterface[] = [
   {
