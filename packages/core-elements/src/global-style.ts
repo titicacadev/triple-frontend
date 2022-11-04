@@ -229,7 +229,7 @@ export const GlobalStyle = createGlobalStyle`
   [type='button'],
   [type='reset'],
   [type='submit'] {
-    -webkit-appearance: button; /* 1 */
+    appearance: button; /* 1 */
     background-color: transparent; /* 2 */
     background-image: none; /* 2 */
   }
@@ -273,7 +273,7 @@ export const GlobalStyle = createGlobalStyle`
   */
 
   [type='search'] {
-    -webkit-appearance: textfield; /* 1 */
+    appearance: textfield; /* 1 */
     outline-offset: -2px; /* 2 */
   }
 
@@ -282,7 +282,7 @@ export const GlobalStyle = createGlobalStyle`
   */
 
   ::-webkit-search-decoration {
-    -webkit-appearance: none;
+    appearance: none;
   }
 
   /*
@@ -291,7 +291,7 @@ export const GlobalStyle = createGlobalStyle`
   */
 
   ::-webkit-file-upload-button {
-    -webkit-appearance: button; /* 1 */
+    appearance: button; /* 1 */
     font: inherit; /* 2 */
   }
 

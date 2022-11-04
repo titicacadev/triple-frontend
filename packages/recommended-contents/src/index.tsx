@@ -28,7 +28,7 @@ const RecommendedContentWithDesktopResolution = styled.li<{
   vertical-align: top;
   width: calc(50% - 7.5px);
   height: 150px;
-  padding: 20px 15px 0 15px;
+  padding: 20px 15px 0;
   margin-bottom: 15px;
   border-radius: 6px;
 
@@ -43,7 +43,7 @@ const RecommendedContentWithDesktopResolution = styled.li<{
 
   cursor: pointer;
 
-  &:before {
+  &::before {
     content: '';
     width: 20px;
     height: 20px;

@@ -14,8 +14,9 @@ const BannerItem = styled.a<{ widthOffset: number }>`
   position: absolute;
   left: -10000px;
   display: block;
-  width: ${({ widthOffset }) => `calc(100% - ${widthOffset}px)`};
+  width: ${({ widthOffset }) => `calc(100% - ${widthOffset}px) `};
   border-radius: 4px;
+
   > img {
     width: 100%;
     height: 100%;

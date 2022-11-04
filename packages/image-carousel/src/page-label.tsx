@@ -10,7 +10,7 @@ const PageLabelText = styled.div`
 const PageLabelContainer = styled.div`
   margin: 10px;
   padding: 5px 7px;
-  color: #ffffff;
+  color: #fff;
   border-radius: 12px;
   background-color: rgba(0, 0, 0, 0.2);
 `

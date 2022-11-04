@@ -147,7 +147,7 @@ function RichPricing({
         {(pricingNote || hasBasePrice) && (
           <Container
             css={{
-              margin: '0 0 3px 0',
+              margin: '0 0 3px',
             }}
           >
             {pricingNote && (

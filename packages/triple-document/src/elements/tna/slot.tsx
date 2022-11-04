@@ -67,12 +67,12 @@ export function Slot({
     <Container
       id={`tna-slot-${slotId}`}
       css={{
-        margin: '30px 30px 0 30px',
+        margin: '30px 30px 0',
       }}
     >
       <H1
         css={{
-          margin: '0 0 20px 0',
+          margin: '0 0 20px',
         }}
       >
         {slotTitle}
