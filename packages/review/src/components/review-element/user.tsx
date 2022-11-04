@@ -36,7 +36,7 @@ export default function User({
     <Container
       display="flex"
       css={{
-        padding: '0 0 2px 0',
+        padding: '0 0 2px',
       }}
     >
       <UserPhoto src={photo} onClick={onClick} />

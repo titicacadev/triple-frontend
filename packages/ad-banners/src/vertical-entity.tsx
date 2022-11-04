@@ -35,7 +35,7 @@ const VerticalEntity: FC<VerticalEntityProps> = ({
       <Container
         borderRadius={6}
         css={{
-          margin: '10px 0 0 0',
+          margin: '10px 0 0',
         }}
       >
         <BannerImage src={banner.image} onClick={handleBannerClick} />

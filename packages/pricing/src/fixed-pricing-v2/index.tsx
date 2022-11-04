@@ -70,7 +70,7 @@ function LoadingSkeleton() {
       <Container
         clearing
         css={{
-          margin: '5px 0 0 0',
+          margin: '5px 0 0',
         }}
       >
         <Skeleton
@@ -85,7 +85,7 @@ function LoadingSkeleton() {
       <Container
         clearing
         css={{
-          margin: '5px 0 0 0',
+          margin: '5px 0 0',
         }}
       >
         <Skeleton
