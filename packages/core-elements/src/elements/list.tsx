@@ -75,26 +75,23 @@ const ListItem = styled.li<ListItemProps>`
       min-height: ${minHeight}px;
     `};
 
-  ${({ noDivider = false }) =>
+  ${({
+    noDivider = false,
+    margin: { top: marginTop = 0, bottom: marginBottom = 0 } = {},
+  }) =>
     noDivider &&
     css`
       &:not(:last-child)::after {
         border-bottom: 0 none !important;
-      }
-    `}
-
-  ${({ margin: { top: marginTop = 0, bottom: marginBottom = 0 } = {} }) =>
-    css`
-      &:not(:last-child)::after {
         ${marginTop
           ? `
-            margin-top: ${marginTop}px !important;
-          `
+        margin-top: ${marginTop}px !important;
+      `
           : ''}
         ${marginBottom
           ? `
-            margin-bottom: ${marginBottom}px !important;
-          `
+        margin-bottom: ${marginBottom}px !important;
+      `
           : ''}
       }
     `}
