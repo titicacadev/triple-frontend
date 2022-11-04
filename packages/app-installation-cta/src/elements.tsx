@@ -28,7 +28,7 @@ const CONTENT_MAX_WIDTH = 768
 export const ImageBannerWrapper = styled.div`
   min-width: ${CONTENT_MIN_WIDTH}px;
   height: 230px;
-  padding: 0 20px 20px 20px;
+  padding: 0 20px 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.07);
   background-color: #0179ff;
 `
@@ -50,12 +50,12 @@ export const BannerImage = styled.img`
 
 export const InstallLink = styled.a`
   display: block;
-  margin: 5px auto 16px auto;
+  margin: 5px auto 16px;
   max-width: ${CONTENT_MAX_WIDTH}px;
   height: 44px;
   line-height: 23px;
   border-radius: 25px;
-  padding: 10px 0 11px 0;
+  padding: 10px 0 11px;
   background-color: white;
   color: black;
   text-align: center;
@@ -80,7 +80,7 @@ export const TextBannerWrapper = styled.a`
   width: 100%;
   height: 54px;
   line-height: 17px;
-  padding: 19px 0 18px 0;
+  padding: 19px 0 18px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
   background-color: #0179ff;
   color: white;
@@ -203,6 +203,7 @@ export const FloatingButtonContainer = styled.div<
 
   &.floating-button-slide-exit-done {
     ${inactiveFloatingButtonStyle}
+
     display: none;
   }
 `
@@ -234,7 +235,7 @@ export const ChatBalloon = styled.div`
   position: relative;
   z-index: 1;
   background-color: rgba(255, 255, 255, 0.98);
-  border-radius: 26px 26px 0 26px;
+  border-radius: 26px 26px 0;
   padding: 30px;
   margin-right: 50px;
   min-height: 132px;
@@ -329,6 +330,7 @@ export const ChatbotContainer = styled.div<
 
   &:not([class*='chatbot-slide-']) {
     ${inactiveChatbotContainerStyle}
+
     display: none;
   }
 
@@ -358,6 +360,7 @@ export const ChatbotContainer = styled.div<
 
   &.chatbot-slide-exit-done {
     ${inactiveChatbotContainerStyle}
+
     display: none;
   }
 `

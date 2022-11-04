@@ -64,7 +64,7 @@ export default function AskToTheLocal({
     <Popup open={open} onClose={onClose} borderless>
       <Section
         css={{
-          margin: '20px 0 0 0',
+          margin: '20px 0 0',
         }}
       >
         <Text maxLines={2} textStyle="M4" color="blue">
@@ -81,8 +81,8 @@ export default function AskToTheLocal({
           <Drawer active>
             <DrawerContentContainer
               css={{
-                margin: '0 30px 0 30px',
-                padding: '0 0 10px 0',
+                margin: '0 30px',
+                padding: '0 0 10px',
               }}
             >
               <CallButton fluid borderRadius={4} onClick={handleCall}>

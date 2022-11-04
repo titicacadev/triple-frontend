@@ -12,7 +12,8 @@ const PointingContainer = styled(TabContainer)<{
   left?: number
 }>`
   border-bottom: 1px solid var(--color-gray50);
-  &:after {
+
+  &::after {
     content: '';
     display: inline-block;
     position: absolute;
@@ -34,7 +35,7 @@ const PointingLabel = styled(TabLabel)`
 
   ${({ active }) => css`
     font-size: 15px;
-    color: ${active ? `var(--color-gray)` : `var(--color-gray300)`};
+    color: ${active ? `var(--color-gray) ` : `var(--color-gray300) `};
   `}
 
   ${({ scroll }) =>

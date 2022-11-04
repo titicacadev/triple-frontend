@@ -21,7 +21,7 @@ const Code = styled.code`
   display: block;
   max-height: 300px;
   padding: 20px;
-  background-color: #eeeeee;
+  background-color: #eee;
   font-family: monospace;
   white-space: pre;
   overflow: auto;
