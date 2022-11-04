@@ -48,7 +48,7 @@ export const HR4 = styled.div`
   height: 37px;
   background-repeat: no-repeat;
   background-size: 130px 37px;
-  background-image: url(https://assets.triple.guide/images/img-line1@2x.png);
+  background-image: url('https://assets.triple.guide/images/img-line1@2x.png');
 `
 
 export const HR5 = styled.div`
@@ -57,7 +57,7 @@ export const HR5 = styled.div`
   height: 37px;
   background-repeat: no-repeat;
   background-size: 130px 37px;
-  background-image: url(https://assets.triple.guide/images/img-line2@2x.png);
+  background-image: url('https://assets.triple.guide/images/img-line2@2x.png');
 `
 
 export const HR6 = styled.div`
@@ -66,7 +66,7 @@ export const HR6 = styled.div`
   height: 37px;
   background-repeat: no-repeat;
   background-size: 130px 37px;
-  background-image: url(https://assets.triple.guide/images/img-line3@2x.png);
+  background-image: url('https://assets.triple.guide/images/img-line3@2x.png');
 `
 
 export const HR7 = styled.div<HrProps>`
