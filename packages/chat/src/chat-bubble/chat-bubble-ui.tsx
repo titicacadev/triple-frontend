@@ -4,6 +4,7 @@ import { Container } from '@titicaca/core-elements'
 
 import { TextPayload, ImagePayload, RichPayload, MessageType } from '../types'
 import { ImageBubble, TextBubble, RichBubble } from '../bubbles'
+import { useChat } from '../chat'
 
 import { BubbleInfo } from './bubble-info'
 import {
@@ -14,8 +15,6 @@ import {
   ProfileImage,
   ProfileName,
 } from './elements'
-
-import { useChat } from '@titicaca/chat'
 
 const CHAT_CONTAINER_STYLES = {
   marginTop: 20,
