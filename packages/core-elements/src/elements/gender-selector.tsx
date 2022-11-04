@@ -1,6 +1,6 @@
 import { SyntheticEvent } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 
 import { withField } from '../utils/form-field'
@@ -21,26 +21,21 @@ const GenderContainer = styled.div<{
   width: 50%;
   display: inline-block;
   padding: 15px 0;
-  border: 1px solid rgba(${getColor('gray100')});
+  border: ${({ selected }) =>
+    selected
+      ? `1px solid rgb(${getColor('blue')}) `
+      : `1px solid rgba(${getColor('gray100')}) `};
   border-radius: 2px;
   text-align: center;
   font-size: 16px;
-  color: rgba(${getColor('gray300')});
+  color: ${({ selected }) =>
+    selected ? `rgb(${getColor('blue')}) ` : `rgba(${getColor('gray300')}) `};
 
   &:last-child {
     border-left: none;
+    border: ${({ selected }) =>
+      selected && `1px solid rgb(${getColor('blue')}) `};
   }
-
-  ${({ selected }) =>
-    selected &&
-    css`
-      color: rgb(${getColor('blue')});
-      border: 1px solid rgb(${getColor('blue')});
-
-      &:last-child {
-        border: 1px solid rgb(${getColor('blue')});
-      }
-    `};
 `
 
 function GenderSelector({ name, value, onChange }: GenderSelectorProps) {
