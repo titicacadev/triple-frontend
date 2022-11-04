@@ -26,6 +26,7 @@ import { HiddenElement } from '../chat-bubble/elements'
 import { Polling } from '../utils'
 
 import { ChatActions, ChatReducer, initialChatState } from './reducer'
+import { useChat } from './chat-context'
 
 const FETCH_INTERVAL_SECS = 5
 const MINIMUM_INTERSECTING_TIME = 3000
@@ -34,7 +35,6 @@ export interface ChatProps {
   displayTarget: UserType
   userInfo: UserInfoInterface
   postMessage?: PostMessageType
-  setPostMessage?: React.Dispatch<React.SetStateAction<PostMessageType | null>>
   getMessages: (option: {
     roomId: string
     backward?: boolean
@@ -52,13 +52,13 @@ const Chat = ({
   displayTarget,
   userInfo,
   postMessage,
-  setPostMessage,
   getMessages,
   getUnreadRoom,
   room,
 }: ChatProps) => {
   const chatRoomRef = useRef<HTMLDivElement>(null)
 
+  const { setPostMessage } = useChat()
   const [
     {
       messages,

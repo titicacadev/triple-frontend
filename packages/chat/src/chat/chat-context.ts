@@ -1,7 +1,13 @@
-import { createContext, MouseEventHandler, useContext } from 'react'
+import {
+  createContext,
+  Dispatch,
+  MouseEventHandler,
+  SetStateAction,
+  useContext,
+} from 'react'
 import { GlobalSizes } from '@titicaca/type-definitions'
 
-import { MetaDataInterface } from '../types'
+import { MetaDataInterface, PostMessageType } from '../types'
 
 export interface ChatContextValue {
   textBubbleFontSize: GlobalSizes | number
@@ -19,6 +25,7 @@ export interface ChatContextValue {
    * 텍스트 버블의 자식의 클릭 이벤트를 delegation 하는 함수
    */
   onTextBubbleClick?: MouseEventHandler
+  setPostMessage?: Dispatch<SetStateAction<PostMessageType | null>>
 }
 
 export const ChatContext = createContext<ChatContextValue | undefined>(
