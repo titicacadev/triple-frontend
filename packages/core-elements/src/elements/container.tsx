@@ -32,9 +32,9 @@ const Container = styled.div<ContainerProps>(
     boxSizing: 'border-box',
     position: props.position,
     display: props.display,
-    float: props.floated ?? 'none',
+    cssFloat: props.floated ?? 'none',
     backgroundColor: props.backgroundColor
-      ? `rgba(${getColor(props.backgroundColor)})`
+      ? `rgba(${getColor(props.backgroundColor)}) `
       : undefined,
   }),
   centeredMixin,
