@@ -8,7 +8,6 @@ import { useChat } from '../chat'
 
 import { BubbleInfo } from './bubble-info'
 import {
-  ChatContainer,
   SendingFailureHandlerContainer,
   RetryButton,
   DeleteButton,
@@ -20,6 +19,7 @@ const CHAT_CONTAINER_STYLES = {
   marginTop: 20,
   position: 'relative',
   minHeight: 46,
+  width: '100%',
 } as const
 
 function SentChatContainer({
@@ -35,7 +35,7 @@ function SentChatContainer({
   const [show, setShow] = useState<boolean>(true)
 
   return show ? (
-    <ChatContainer css={{ textAlign: 'right', ...CHAT_CONTAINER_STYLES }}>
+    <Container css={{ textAlign: 'right', ...CHAT_CONTAINER_STYLES }}>
       {!createdAt ? (
         <SendingFailureHandlerContainer>
           <RetryButton
@@ -56,7 +56,7 @@ function SentChatContainer({
       )}
 
       {children}
-    </ChatContainer>
+    </Container>
   ) : null
 }
 
@@ -74,7 +74,7 @@ function ReceivedChatContainer({
   children: React.ReactNode
 }) {
   return (
-    <ChatContainer css={{ ...CHAT_CONTAINER_STYLES }}>
+    <Container css={{ ...CHAT_CONTAINER_STYLES }}>
       <ProfileImage src={profileImageUrl} />
       <Container css={{ marginLeft: 50 }}>
         <ProfileName size="mini" alpha={0.8} margin={{ bottom: 5 }}>
@@ -91,7 +91,7 @@ function ReceivedChatContainer({
           />
         ) : null}
       </Container>
-    </ChatContainer>
+    </Container>
   )
 }
 
