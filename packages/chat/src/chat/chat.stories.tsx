@@ -4,6 +4,7 @@ import { Story } from '@storybook/react'
 import { MEDIA_ARGS } from '../bubbles/__stories__/constants'
 import { MessageType, UserType } from '../types'
 
+import { ChatContext } from './chat-context'
 import Chat, { ChatProps } from './chat'
 
 export default {
@@ -29,7 +30,11 @@ export default {
   },
 }
 
-const Template: Story<ChatProps> = (args) => <Chat {...args} />
+const Template: Story<ChatProps> = (args) => (
+  <ChatContext.Provider value={{ ...MEDIA_ARGS }}>
+    <Chat {...args} />
+  </ChatContext.Provider>
+)
 
 export const ChatStory = Template.bind({})
 
@@ -154,5 +159,4 @@ ChatStory.args = {
     },
     unreadCount: 0,
   },
-  ...MEDIA_ARGS,
 }
