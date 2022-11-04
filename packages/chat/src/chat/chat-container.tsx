@@ -1,10 +1,4 @@
-import React, {
-  cloneElement,
-  ElementType,
-  PropsWithChildren,
-  ReactElement,
-  useState,
-} from 'react'
+import React, { ElementType, PropsWithChildren, useState } from 'react'
 
 import {
   ImagePayload,
@@ -18,7 +12,7 @@ import { ChatContext, ChatContextValue } from './chat-context'
 
 interface ChatContainerProps extends PropsWithChildren, ChatContextValue {
   container: ElementType
-  inputElement: ElementType
+  inputElement?: ElementType
   postMessage?: (
     payload: TextPayload | ImagePayload,
   ) => Promise<{ success: boolean; newMessages: MessageInterface[] }>
@@ -53,12 +47,11 @@ const ChatContainer = ({
         onRichBubbleButtonBeforeRouting,
         onImageBubbleClick,
         onTextBubbleClick,
+        setPostMessage,
       }}
     >
-      <Container>
-        {cloneElement(children as ReactElement, { setPostMessage })}
-      </Container>
-      {postMessage && <Input postMessage={postMessage} />}
+      <Container>{children}</Container>
+      {Input && postMessage && <Input postMessage={postMessage} />}
     </ChatContext.Provider>
   )
 }
