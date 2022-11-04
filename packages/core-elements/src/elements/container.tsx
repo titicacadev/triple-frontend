@@ -32,7 +32,7 @@ const Container = styled.div<ContainerProps>(
     boxSizing: 'border-box',
     position: props.position,
     display: props.display,
-    cssFloat: props.floated ?? 'none',
+    float: props.floated ?? 'none',
     backgroundColor: props.backgroundColor
       ? `rgba(${getColor(props.backgroundColor)}) `
       : undefined,

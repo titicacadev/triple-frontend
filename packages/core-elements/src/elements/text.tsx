@@ -56,7 +56,7 @@ const Text = styled.div<TextProps>(
       : props.inline
       ? 'inline'
       : undefined,
-    cssFloat: props.floated ?? 'none',
+    float: props.floated ?? 'none',
     fontWeight: props.bold ? 'bold' : 500,
     textAlign: props.textAlign
       ? props.textAlign
