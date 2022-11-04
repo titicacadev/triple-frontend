@@ -2,10 +2,9 @@ import React from 'react'
 import { Story } from '@storybook/react'
 
 import { MEDIA_ARGS } from '../bubbles/__stories__/constants'
+import { MessageType, UserType } from '../types'
 
 import Chat, { ChatProps } from './chat'
-
-import { MessageType, UserType } from '@titicaca/chat'
 
 export default {
   title: 'chat / Chat',

@@ -2,10 +2,10 @@ import React from 'react'
 import { Story } from '@storybook/react'
 
 import { MEDIA_ARGS, SAMPLE_IMAGES } from '../bubbles/__stories__/constants'
+import { ChatContext } from '../chat'
+import { MessageType } from '../types'
 
 import { ChatBubbleUI, ChatBubbleUIProps } from './chat-bubble-ui'
-
-import { ChatContext, MessageType } from '@titicaca/chat'
 
 export default {
   title: 'chat / ChatBubbleUI',
