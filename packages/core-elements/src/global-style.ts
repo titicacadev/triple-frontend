@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
+  /* stylelint-disable custom-property-pattern */
   :root {
     --color-gray: rgba(58, 58, 58, 1);
     --color-gray20: rgba(58, 58, 58, 0.02);
