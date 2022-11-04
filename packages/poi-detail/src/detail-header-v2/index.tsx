@@ -97,7 +97,7 @@ function DetailHeaderV2({
         {(reviewsRating || scrapsCount > 0) && (
           <Container
             css={{
-              margin: '14px 0 0 0',
+              margin: '14px 0 0',
             }}
           >
             {scrapsCount > 0 ? (

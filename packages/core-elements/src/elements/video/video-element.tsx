@@ -25,6 +25,7 @@ const Pending = styled.div`
     from {
       transform: translate(-50%, -50%) rotate(0deg);
     }
+
     to {
       transform: translate(-50%, -50%) rotate(359deg);
     }

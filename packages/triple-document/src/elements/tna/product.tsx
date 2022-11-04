@@ -26,13 +26,13 @@ function Pricing({
   return (
     <Container
       css={{
-        margin: '10px 0 0 0',
+        margin: '10px 0 0',
       }}
     >
       {rate ? (
         <Container
           css={{
-            margin: '0 0 2px 0',
+            margin: '0 0 2px',
           }}
         >
           <Text color="red" bold>
@@ -167,7 +167,7 @@ export function TnaProductWithPrice({
           {tags && tags.length > 0 && (
             <Container
               css={{
-                margin: '3px 0 0 0',
+                margin: '3px 0 0',
               }}
             >
               {tags.map(({ text, type, style }, i) => (
@@ -186,7 +186,7 @@ export function TnaProductWithPrice({
           {reviewsCount ? (
             <Container
               css={{
-                margin: '4px 0 0 0',
+                margin: '4px 0 0',
               }}
             >
               <Rating size="tiny" score={reviewRating} />

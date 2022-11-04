@@ -3,7 +3,7 @@ import { borderRadiusMixin } from '@titicaca/core-elements'
 
 const VideoContainer = styled.div<{ borderRadius: number }>`
   position: relative;
-  margin: 30px 30px 0 30px;
+  margin: 30px 30px 0;
   height: 0;
   padding-bottom: 56.25%;
   ${borderRadiusMixin}

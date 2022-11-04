@@ -14,12 +14,14 @@ const BULLET_ICON_URLS: { [key: string]: string } = {
 const ListItemContainer = styled.li<{ bulletType?: string }>`
   padding-left: 18px;
   text-indent: -18px;
-  &:before {
+
+  &::before {
     display: inline-block;
     width: 10px;
     height: 10px;
     ${({ bulletType: name }) =>
       `background-image: url(${BULLET_ICON_URLS[name || 'oval']});`}
+
     background-size: 10px 10px;
     background-position: center center;
     background-repeat: no-repeat;
@@ -31,6 +33,7 @@ const ListTextElement = styled(Text)`
   font-size: 16px;
   margin-left: 8px;
   display: inline;
+
   div,
   p,
   pre {
@@ -57,7 +60,7 @@ export default function List({
     <Container
       {...props}
       css={{
-        margin: '10px 30px 0 30px',
+        margin: '10px 30px 0',
       }}
     >
       <ul>

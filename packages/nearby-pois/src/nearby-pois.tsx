@@ -152,7 +152,7 @@ function NearbyPois({
     >
       <H1
         css={{
-          margin: '0 0 20px 0',
+          margin: '0 0 20px',
         }}
       >
         {t('common:nearbyPois', '근처의 추천 장소')}

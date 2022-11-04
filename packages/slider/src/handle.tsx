@@ -22,7 +22,7 @@ const HandlePeg = styled.div`
   height: 18px;
   border-radius: 18px;
   border: solid 3px #368fff;
-  background-color: #ffffff;
+  background-color: #fff;
   transform: translate(-50%, -50%);
   z-index: 1;
 `

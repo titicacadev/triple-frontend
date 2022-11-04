@@ -40,7 +40,7 @@ const ButtonBase = styled.a<ButtonBaseProp>`
   outline: none;
 
   color: ${({ textColor = 'gray', textAlpha = 1 }) =>
-    `rgba(${GetGlobalColor(textColor)}, ${textAlpha})`};
+    `rgba(${GetGlobalColor(textColor)}, ${textAlpha}) `};
 
   float: ${({ floated }) => floated || 'none'};
 

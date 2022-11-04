@@ -60,7 +60,7 @@ const CouponIcon = styled.img`
   display: block;
   width: 60px;
   height: 60px;
-  margin: 40px auto 10px auto;
+  margin: 40px auto 10px;
 `
 
 export function CouponModal({ identifier }: { identifier: string }) {

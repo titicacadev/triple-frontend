@@ -29,6 +29,7 @@ const Item = styled.li<{ size?: CarouselSizes }>`
   vertical-align: top;
   white-space: normal;
   cursor: pointer;
+
   &:not(:first-child) {
     margin-left: ${({ size }) => CAROUSEL_LEFT_SPACING_SIZES[size || 'small']};
   }
