@@ -49,14 +49,14 @@ const Text = styled.div<TextProps>(
     overflowWrap: 'break-word',
     color: props.alpha
       ? rgba({ color: props.color, alpha: props.alpha })
-      : `rgba(${getColor(props.color ?? 'gray')})`,
+      : `rgba(${getColor(props.color ?? 'gray')}) `,
     cursor: props.cursor,
     display: props.inlineBlock
       ? 'inline-block'
       : props.inline
       ? 'inline'
       : undefined,
-    float: props.floated ?? 'none',
+    cssFloat: props.floated ?? 'none',
     fontWeight: props.bold ? 'bold' : 500,
     textAlign: props.textAlign
       ? props.textAlign
