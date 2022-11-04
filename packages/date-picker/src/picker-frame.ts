@@ -89,96 +89,95 @@ const PickerFrame = styled.div<PickerFrameProps>`
     background: #fafafa;
 
     ${({ height }) => `height: ${height};`}
-
-    .DayPicker-wrapper {
-      max-width: 768px;
-      margin: 0 auto;
-    }
-
-    .DayPicker-NavBar {
-      ${({ canChangeMonth }) => canChangeMonth && navStyle}
-    }
-
-    .DayPicker-Month {
-      position: relative;
-      display: table;
-      text-align: center;
-      width: 100%;
-      border-spacing: 0 25px;
-      user-select: none;
-
-      ${({ monthPadding }) => `padding: ${monthPadding};`}
-
-      .DayPicker-Caption {
-        position: absolute;
-        top: 25px;
-        left: 20px;
-        color: #222;
-
-        > div {
-          font-size: 14px;
-          font-weight: 600;
-        }
-      }
-
-      .DayPicker-Weekdays {
-        display: table-row-group;
-
-        .DayPicker-WeekdaysRow {
-          display: table-row;
-
-          .DayPicker-Weekday {
-            display: table-cell;
-            color: #8b9898;
-            text-align: center;
-
-            abbr {
-              text-decoration: none;
-              color: var(--color-gray500);
-              font-size: 12px;
-            }
-          }
-        }
-      }
-
-      .DayPicker-Body {
-        display: table-row-group;
-
-        .DayPicker-Week {
-          display: table-row;
-
-          ${({ hideTodayLabel }) => !hideTodayLabel && todayMixin({})}
-
-          .DayPicker-Day {
-            position: relative;
-            display: table-cell;
-            padding: 9px 0;
-            width: 2%;
-            vertical-align: middle;
-            outline: none;
-
-            &--sunday,
-            &--saturday,
-            &--publicHolidays {
-              color: var(--color-red);
-            }
-
-            &--disabled {
-              color: var(--color-gray500);
-            }
-          }
-
-          td:first-child {
-            margin: 0;
-            padding: 0;
-            border: 0;
-            vertical-align: baseline;
-          }
-        }
-      }
-    }
-
     ${sideSpacingMixin}
+  }
+
+  .DayPicker-wrapper {
+    max-width: 768px;
+    margin: 0 auto;
+  }
+
+  .DayPicker-NavBar {
+    ${({ canChangeMonth }) => canChangeMonth && navStyle}
+  }
+
+  .DayPicker-Month {
+    position: relative;
+    display: table;
+    text-align: center;
+    width: 100%;
+    border-spacing: 0 25px;
+    user-select: none;
+
+    ${({ monthPadding }) => `padding: ${monthPadding};`}
+  }
+
+  .DayPicker-Caption {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    color: #222;
+
+    & > div {
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+
+  .DayPicker-Weekdays {
+    display: table-row-group;
+  }
+
+  .DayPicker-WeekdaysRow {
+    display: table-row;
+  }
+
+  .DayPicker-Weekday {
+    display: table-cell;
+    color: #8b9898;
+    text-align: center;
+
+    abbr {
+      text-decoration: none;
+      color: var(--color-gray500);
+      font-size: 12px;
+    }
+  }
+
+  .DayPicker-Body {
+    display: table-row-group;
+  }
+
+  .DayPicker-Week {
+    display: table-row;
+
+    ${({ hideTodayLabel }) => !hideTodayLabel && todayMixin({})}
+
+    td:first-child {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      vertical-align: baseline;
+    }
+  }
+
+  .DayPicker-Day {
+    position: relative;
+    display: table-cell;
+    padding: 9px 0;
+    width: 2%;
+    vertical-align: middle;
+    outline: none;
+  }
+
+  .DayPicker-Day--sunday,
+  .DayPicker-Day--saturday,
+  .DayPicker-Day--publicHolidays {
+    color: var(--color-red);
+  }
+
+  .DayPicker-Day--disabled {
+    color: var(--color-gray500);
   }
 `
 export default PickerFrame
