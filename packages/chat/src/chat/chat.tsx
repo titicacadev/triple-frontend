@@ -46,15 +46,20 @@ export interface ChatProps {
     lastSeenMessageId: number
   }) => Promise<HasUnreadOfRoomInterface>
   room: RoomInterface
+  notifyNewMessage?: (lastMessage: MessageInterface) => void
+  showFailToast: (message: string) => void
 }
 
 const Chat = ({
   displayTarget,
   userInfo,
+  room,
+
   postMessage,
   getMessages,
   getUnreadRoom,
-  room,
+  notifyNewMessage,
+  showFailToast,
 }: ChatProps) => {
   const chatRoomRef = useRef<HTMLDivElement>(null)
 
@@ -230,8 +235,8 @@ const Chat = ({
         messages: newMessages,
         payload,
       })
-      // const lastMessage = newMessages[newMessages.length - 1]
-      // notifyNewMessage?.({ ...lastMessage })
+      const lastMessage = newMessages[newMessages.length - 1]
+      notifyNewMessage?.({ ...lastMessage })
     } else {
       if (!retry) {
         dispatch({
@@ -246,7 +251,7 @@ const Chat = ({
         })
       }
 
-      // toast('메시지 발송에 실패했습니다.')
+      showFailToast('메시지 발송에 실패했습니다.')
     }
 
     scrollDown()
