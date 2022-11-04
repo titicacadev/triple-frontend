@@ -43,7 +43,7 @@ const DescriptionText = styled(Text)`
     content: '';
     width: 10px;
     height: 10px;
-    background-image: url(https://assets.triple.guide/images/img-bullet-check-b@3x.png);
+    background-image: url('https://assets.triple.guide/images/img-bullet-check-b@3x.png');
     background-size: 10px;
     background-repeat: no-repeat;
     margin-right: 5px;

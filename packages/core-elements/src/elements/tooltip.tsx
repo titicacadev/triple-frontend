@@ -122,7 +122,7 @@ const ArrowRight = styled.span`
   transform: translateY(-50%);
   background-repeat: no-repeat;
   background-size: 9px 13px;
-  background-image: url(https://assets.triple.guide/images/ico-arrow-right-w@3x.png);
+  background-image: url('https://assets.triple.guide/images/ico-arrow-right-w@3x.png');
 `
 
 function Tooltip({ label, onClick, nowrap, ...frameProps }: TooltipProps) {
