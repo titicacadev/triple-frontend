@@ -10,7 +10,7 @@ const TripleLogo = styled.div`
   top: 30px;
   width: 100%;
   height: 20px;
-  background-image: url(https://assets.triple.guide/images/img-listend-logo@3x.png);
+  background-image: url('https://assets.triple.guide/images/img-listend-logo@3x.png');
   background-size: 46px 20px;
   background-position: center;
   background-repeat: no-repeat;
