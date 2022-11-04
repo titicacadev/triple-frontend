@@ -30,7 +30,7 @@ const MoreActionsButton = styled.button`
   margin-top: -3px;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(https://assets.triple.guide/images/btn-review-more@4x.png);
+  background-image: url('https://assets.triple.guide/images/btn-review-more@4x.png');
 `
 
 const ReactionBox = styled(FlexBox)`

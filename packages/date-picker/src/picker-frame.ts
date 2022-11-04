@@ -44,7 +44,7 @@ const navStyle = css`
   .DayPicker-NavButton--prev {
     margin-right: 24px;
     transform: rotate(180deg);
-    background-image: url(https://assets.triple.guide/images/ic-paging-next@3x.png);
+    background-image: url('https://assets.triple.guide/images/ic-paging-next@3x.png');
   }
 
   .DayPicker-NavButton--next {
