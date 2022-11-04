@@ -15,6 +15,10 @@ export enum MessageType {
   RICH = 'rich',
 }
 
+export type PostMessageType = (
+  payload: TextPayload | ImagePayload,
+) => Promise<{ success: boolean; newMessages: MessageInterface[] }>
+
 export interface RoomListResultInterface {
   total: number
   rooms: RoomInterface[]
