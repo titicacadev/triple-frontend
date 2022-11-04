@@ -145,7 +145,7 @@ const Chat = ({
     dispatch({
       action: ChatActions.INIT,
       messages,
-      lastMessageId: lastMessageId as number,
+      lastMessageId: Number(lastMessageId),
     })
 
     window.setTimeout(() => {
