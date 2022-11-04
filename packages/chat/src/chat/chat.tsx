@@ -15,7 +15,7 @@ import {
   HasUnreadOfRoomInterface,
   ImagePayload,
   MessageInterface,
-  MetaDataInterface,
+  PostMessageType,
   RoomInterface,
   TextPayload,
   UserInfoInterface,
@@ -26,17 +26,15 @@ import { HiddenElement } from '../chat-bubble/elements'
 import { Polling } from '../utils'
 
 import { ChatActions, ChatReducer, initialChatState } from './reducer'
-import { ChatContext, ChatContextValue } from './chat-context'
 
 const FETCH_INTERVAL_SECS = 5
 const MINIMUM_INTERSECTING_TIME = 3000
 
-export interface ChatProps extends ChatContextValue {
+export interface ChatProps {
   displayTarget: UserType
   userInfo: UserInfoInterface
-  postMessage?: (
-    payload: TextPayload | ImagePayload,
-  ) => Promise<{ success: boolean; newMessages: MessageInterface[] }>
+  postMessage?: PostMessageType
+  setPostMessage?: React.Dispatch<React.SetStateAction<PostMessageType | null>>
   getMessages: (option: {
     roomId: string
     backward?: boolean
@@ -50,25 +48,14 @@ export interface ChatProps extends ChatContextValue {
   room: RoomInterface
 }
 
-const defaultOnImageBubbleClick = (imageInfos: MetaDataInterface[]) => {
-  window.open(imageInfos[0].originalUrl, '_blank')
-}
-
 const Chat = ({
   displayTarget,
   userInfo,
   postMessage,
+  setPostMessage,
   getMessages,
   getUnreadRoom,
   room,
-
-  textBubbleFontSize,
-  textBubbleMaxWidthOffset,
-  mediaUrlBase,
-  cloudinaryName,
-  onRichBubbleButtonBeforeRouting,
-  onImageBubbleClick = defaultOnImageBubbleClick,
-  onTextBubbleClick,
 }: ChatProps) => {
   const chatRoomRef = useRef<HTMLDivElement>(null)
 
@@ -105,7 +92,7 @@ const Chat = ({
     })
 
     return hasUnread
-  }, [room.id, lastMessageId])
+  }, [lastMessageId, getUnreadRoom, room.id])
 
   const scrollDown = useCallback(() => {
     if (chatRoomRef.current && chatRoomRef.current.parentElement) {
@@ -114,6 +101,10 @@ const Chat = ({
       chatRoomRef.current.parentElement.scrollTo(0, height)
     }
   }, [])
+
+  useEffect(() => {
+    postMessage && setPostMessage?.(postMessage)
+  }, [postMessage, setPostMessage])
 
   useEffect(() => {
     if (scrollY && chatRoomRef.current && chatRoomRef.current.parentElement) {
@@ -285,17 +276,7 @@ const Chat = ({
   }
 
   return (
-    <ChatContext.Provider
-      value={{
-        textBubbleFontSize,
-        textBubbleMaxWidthOffset,
-        mediaUrlBase,
-        cloudinaryName,
-        onRichBubbleButtonBeforeRouting,
-        onImageBubbleClick,
-        onTextBubbleClick,
-      }}
-    >
+    <>
       <IntersectionObserver onChange={onChangeScroll}>
         <HiddenElement />
       </IntersectionObserver>
@@ -316,7 +297,7 @@ const Chat = ({
           ))}
         </ul>
       </div>
-    </ChatContext.Provider>
+    </>
   )
 }
 
