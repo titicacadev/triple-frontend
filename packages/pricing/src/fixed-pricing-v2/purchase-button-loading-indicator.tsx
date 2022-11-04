@@ -11,9 +11,20 @@ interface IndicatorProps {
 }
 
 const pulse = keyframes`
-  0% {transform: translateY(5px);opacity: 1}
-  50% {transform: translateY(-5px);opacity: 0.7}
-  100% {transform: translateY(5px);opacity: 1}
+  0% {
+    transform: translateY(5px);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(-5px);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translateY(5px);
+    opacity: 1;
+  }
 `
 
 const Indicator = styled.span<{
