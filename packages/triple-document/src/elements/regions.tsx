@@ -48,10 +48,7 @@ const Action = styled.div`
   position: absolute;
   top: 7px;
   right: 0;
-  padding-top: 8px;
-  padding-bottom: 7px;
-  padding-left: 17px;
-  padding-right: 17px;
+  padding: 8px 17px 7px;
   text-align: center;
   font-size: 12px;
   font-weight: bold;
