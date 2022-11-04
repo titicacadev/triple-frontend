@@ -4,6 +4,7 @@ import { todayMixin, sideSpacingMixin } from './mixins'
 
 export function generateSelectedCircleStyle(selector: string) {
   return css`
+    /* stylelint-disable selector-class-pattern */
     ${selector} {
       z-index: 0;
       color: var(--color-white) !important;
