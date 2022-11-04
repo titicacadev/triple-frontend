@@ -1,5 +1,5 @@
 import { SyntheticEvent } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 import { Container } from '@titicaca/core-elements'
 
@@ -24,23 +24,18 @@ const GenderContainer = styled.div<{
   border-radius: 2px;
   text-align: center;
   font-size: 16px;
-  border: 1px solid rgba(${getColor('gray100')});
-  color: rgba(${getColor('gray300')});
+  border: ${({ selected }) =>
+    selected
+      ? `1px solid rgb(${getColor('blue')}) `
+      : `1px solid rgba(${getColor('gray100')}) `};
+  color: ${({ selected }) =>
+    selected ? `rgb(${getColor('blue')}) ` : `rgba(${getColor('gray300')}) `};
 
   &:last-child {
     border-left: none;
+    border: ${({ selected }) =>
+      selected && `1px solid rgb(${getColor('blue')}) `};
   }
-
-  ${({ selected }) =>
-    selected &&
-    css`
-      color: rgb(${getColor('blue')});
-      border: 1px solid rgba(${getColor('blue')});
-
-      &:last-child {
-        border: 1px solid rgba(${getColor('blue')});
-      }
-    `};
 `
 
 function GenderRadio({ name, value, onChange }: GenderRadioProps) {
