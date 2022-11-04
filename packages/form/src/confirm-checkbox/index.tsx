@@ -27,6 +27,7 @@ const generateFillStyles = ({
     case 'full':
       return css`
         border-color: rgba(${color});
+
         & > * {
           color: rgba(${color});
           font-weight: bold;

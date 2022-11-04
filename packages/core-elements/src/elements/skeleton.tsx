@@ -7,9 +7,11 @@ const opacityAnimation = keyframes`
   0% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.4;
   }
+
   100% {
     opacity: 1;
   }
@@ -19,9 +21,11 @@ const waveAnimation = keyframes`
   0% {
     transform: translateX(-100%);
   }
+
   50% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(100%);
   }

@@ -50,7 +50,7 @@ export default function Coupon({
   return (
     <Container
       css={{
-        margin: '44px 30px 42px 30px',
+        margin: '44px 30px 42px',
       }}
     >
       {couponType === 'single' ? (

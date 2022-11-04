@@ -184,7 +184,7 @@ function PoiCardElement({
           priceLabelOverride !== undefined ? (
             <Container
               css={{
-                margin: '6px 0 0 0',
+                margin: '6px 0 0',
               }}
             >
               {distance ? (

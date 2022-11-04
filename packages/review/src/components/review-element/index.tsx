@@ -80,6 +80,7 @@ const MessageCount = styled(Container)<{ isCommaVisible?: boolean }>`
     isCommaVisible &&
     css`
       margin-left: 8px;
+
       &::before {
         position: absolute;
         left: -10px;
@@ -235,7 +236,7 @@ function ReviewElement({
         {!blindedAt && media && media.length > 0 ? (
           <Container
             css={{
-              margin: '10px 0 0 0',
+              margin: '10px 0 0',
             }}
           >
             <Media media={media} reviewId={review.id} />
@@ -248,7 +249,7 @@ function ReviewElement({
               liked={liked}
               onClick={handleLikeButtonClick}
               css={{
-                margin: '5px 0 0 0',
+                margin: '5px 0 0',
                 padding: '2px 10px 2px 20px',
                 height: 18,
               }}
@@ -266,7 +267,7 @@ function ReviewElement({
             }
             css={{
               height: 18,
-              margin: '5px 0 0 0',
+              margin: '5px 0 0',
               padding: '2px 0 2px 20px',
             }}
           >
@@ -294,7 +295,7 @@ function Score({ score }: { score?: number }) {
   return (
     <Container
       css={{
-        margin: '18px 0 0 0',
+        margin: '18px 0 0',
       }}
     >
       <Rating size="tiny" score={score} />
@@ -310,7 +311,7 @@ function Content({
     <Container
       clearing
       css={{
-        margin: '6px 0 0 0',
+        margin: '6px 0 0',
       }}
     >
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
@@ -339,7 +340,7 @@ function Date({
     <Container
       floated={floated}
       css={{
-        margin: '2px 0 0 0',
+        margin: '2px 0 0',
       }}
     >
       {children}
@@ -378,7 +379,7 @@ function RecentReviewInfo({
       flex
       alignItems="center"
       css={{
-        padding: '8px 0 0 0',
+        padding: '8px 0 0',
       }}
     >
       {recentTrip && !isOldReview ? (

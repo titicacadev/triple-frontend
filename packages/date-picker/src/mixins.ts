@@ -13,7 +13,7 @@ export function todayMixin({
     .DayPicker-Day--today:not(.DayPicker-Day--selected):not(.DayPicker-Day--outside) {
       color: var(--color-blue);
 
-      &:before {
+      &::before {
         top: ${top};
         left: 0;
         content: '오늘';
@@ -30,7 +30,7 @@ export function todayMixin({
       &.DayPicker-Day--publicHolidays {
         color: var(--color-red);
 
-        &:before {
+        &::before {
           color: var(--color-red);
         }
       }
@@ -38,7 +38,7 @@ export function todayMixin({
       &.DayPicker-Day--disabled {
         color: var(--color-gray500);
 
-        &:before {
+        &::before {
           color: var(--color-gray500);
         }
       }
@@ -99,16 +99,17 @@ export function dateLabelMixin({
 }) {
   return css`
     ${selector} {
-      &:not(.DayPicker-Day--outside):before {
+      &:not(.DayPicker-Day--outside)::before {
         color: ${color};
         position: absolute;
         top: ${top};
-        left: 0px;
+        left: 0;
         display: inline-block;
         font-size: ${fontSize};
         ${fontWeight && `font-weight : ${fontWeight};`}
+
         width: 100%;
-        transform: translateY(0px);
+        transform: translateY(0);
         background-color: transparent;
         height: auto !important;
         content: '${label}';

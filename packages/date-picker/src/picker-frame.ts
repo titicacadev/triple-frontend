@@ -8,18 +8,18 @@ export function generateSelectedCircleStyle(selector: string) {
       z-index: 0;
       color: var(--color-white) !important;
 
-      &:before {
+      &::before {
         top: 35px !important;
       }
 
-      &:after {
+      &::after {
         z-index: -1;
         display: block;
         width: 32px;
         height: 32px;
         position: absolute;
         top: 50%;
-        bottom: 0px;
+        bottom: 0;
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: var(--color-blue);
@@ -28,8 +28,8 @@ export function generateSelectedCircleStyle(selector: string) {
       }
 
       &.DayPicker-Day--outside {
-        &:before,
-        &:after {
+        &::before,
+        &::after {
           content: none;
         }
       }
@@ -166,6 +166,7 @@ const PickerFrame = styled.div<PickerFrameProps>`
               color: var(--color-gray500);
             }
           }
+
           td:first-child {
             margin: 0;
             padding: 0;

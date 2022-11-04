@@ -30,7 +30,7 @@ const ButtonContainer = styled(Container)<{ floated?: CSS.Property.Float }>`
     }
   }
 
-  &:after {
+  &::after {
     content: '';
     display: block;
     clear: both;

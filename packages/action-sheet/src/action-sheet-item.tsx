@@ -8,7 +8,7 @@ const ActionItemContainer = styled.div`
   width: 100%;
   height: 54px;
 
-  &:after {
+  &::after {
     content: '';
     display: block;
     clear: both;

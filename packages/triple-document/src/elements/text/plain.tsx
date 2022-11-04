@@ -9,7 +9,7 @@ const TextHtml = styled(Text)`
   white-space: ${({ whiteSpace }) => whiteSpace || 'normal'};
 
   p {
-    margin: 1.5rem 0 0 0;
+    margin: 1.5rem 0 0;
   }
 
   p:first-of-type {

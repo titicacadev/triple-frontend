@@ -32,6 +32,7 @@ const CarouselBase = styled.ul<CarouselBaseProps>`
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
   overflow-y: hidden;
+
   ::-webkit-scrollbar {
     display: none;
   }
@@ -41,6 +42,7 @@ const CarouselBase = styled.ul<CarouselBaseProps>`
       li:first-child {
         margin-left: ${containerPadding.left || 0}px;
       }
+
       li:last-child {
         margin-right: ${containerPadding.right || 0}px;
       }

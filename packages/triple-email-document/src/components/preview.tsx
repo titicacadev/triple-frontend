@@ -12,8 +12,8 @@ export interface PreviewDocument {
 const PreviewStyled = styled.div`
   font-size: 1px;
   display: none;
-  max-height: 0px;
-  max-width: 0px;
+  max-height: 0;
+  max-width: 0;
   opacity: 0;
   overflow: hidden;
 `

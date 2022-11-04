@@ -39,6 +39,7 @@ const CarouselBase = styled.ul<CarouselBaseProps>`
       li:first-child {
         margin-left: ${containerPadding.left || 0}px;
       }
+
       li:last-child {
         margin-right: ${containerPadding.right || 0}px;
       }
