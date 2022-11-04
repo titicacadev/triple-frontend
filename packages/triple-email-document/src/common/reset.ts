@@ -32,6 +32,7 @@ export const RecommendedReset = createGlobalStyle`
   }
 
   /* for gmail */
+  /* stylelint-disable-next-line selector-id-pattern */
   #bodyTable {
     height: 100% !important;
     margin: 0;
@@ -73,17 +74,21 @@ export const ClientSpecificWorkaround = createGlobalStyle`
   }
 
   table {
+    /* stylelint-disable-next-line property-no-unknown */
     mso-table-lspace: 0;
+    /* stylelint-disable-next-line property-no-unknown */
     mso-table-rspace: 0;
   }
 
-  /* stylelint-disable no-descending-specificity */
   img {
-    interpolation-mode: bicubic;
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -ms-interpolation-mode: bicubic;
   }
 
   body {
-    text-size-adjust: 100%;
-    text-size-adjust: 100%;
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-text-size-adjust: 100%;
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -ms-text-size-adjust: 100%;
   }
 `
