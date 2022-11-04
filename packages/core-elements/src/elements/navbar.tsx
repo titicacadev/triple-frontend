@@ -45,7 +45,7 @@ const WrapperContainer = styled.div<
 
 const NavbarFrame = styled.div<NavbarProps & LayeringMixinProps>`
   background-color: ${({ backgroundColor = 'white' }) =>
-    `rgba(${getColor(backgroundColor)})`};
+    `rgba(${getColor(backgroundColor)}) `};
   position: ${({ position = 'sticky' }) => position};
   top: 0;
   left: 0;
@@ -147,7 +147,7 @@ const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
     hasTitle &&
     css`
       line-height: 34px;
-      margin: 0px;
+      margin: 0;
       width: auto;
       white-space: nowrap;
       word-break: break-word;
@@ -158,7 +158,7 @@ const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
 
 const SecondaryNavbar = styled.div<NavbarProps & LayeringMixinProps>`
   background-color: ${({ backgroundColor = 'white' }) =>
-    `rgba(${getColor(backgroundColor)})`};
+    `rgba(${getColor(backgroundColor)}) `};
 
   ${({ position = 'sticky' }) => `
       position: ${position};

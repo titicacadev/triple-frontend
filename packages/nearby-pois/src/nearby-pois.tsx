@@ -152,7 +152,7 @@ function NearbyPois({
     >
       <H1
         css={{
-          margin: '0 0 20px 0',
+          margin: '0 0 20px',
         }}
       >
         {t('geunceoyi-cuceon-jangso')}

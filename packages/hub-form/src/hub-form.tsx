@@ -4,7 +4,7 @@ import { CardFrame } from '@titicaca/core-elements'
 
 const HubFormFrame = styled(CardFrame)`
   > div:not(:last-child) {
-    &:after {
+    &::after {
       content: '';
       position: absolute;
       bottom: 0;

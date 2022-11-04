@@ -9,7 +9,8 @@ const Contents = styled.div`
   font-size: 16px;
   color: ${gray500};
   line-height: 22px;
-  margin: 20px 0 20px 0;
+  margin: 20px 0;
+
   p {
     margin-bottom: 30px;
   }

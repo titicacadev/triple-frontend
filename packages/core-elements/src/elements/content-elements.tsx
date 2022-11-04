@@ -13,13 +13,15 @@ export const ImageCarouselElementContainer = styled.div`
   &:first-child {
     margin-left: 30px;
   }
+
   &:last-child {
     margin-right: 30px;
   }
 `
 
 export const ImageBlockElementContainer = styled.div`
-  margin: 0 30px 0 30px;
+  margin: 0 30px;
+
   &:not(:first-child) {
     margin-top: 10px;
   }

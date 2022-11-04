@@ -24,6 +24,7 @@ const Label = styled.label<{ disabled?: boolean }>`
     disabled
       ? css`
           color: rgba(34, 34, 34, 0.3);
+
           span {
             font-size: 13px;
             color: rgba(58, 58, 58, 0.5);
@@ -41,12 +42,12 @@ const CheckboxInput = styled.input`
   line-height: 26px;
   border: 1px solid #d8d8d8;
   border-radius: 6px;
-  background-color: #ffffff;
+  background-color: #fff;
   outline: none;
 
   &:checked,
   &:disabled {
-    &:after {
+    &::after {
       content: '';
       display: block;
       width: 100%;

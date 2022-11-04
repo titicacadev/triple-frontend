@@ -21,7 +21,7 @@ export default function BusinessHoursNote({
   return (
     <Container
       css={{
-        margin: '10px 0 0 0',
+        margin: '10px 0 0',
       }}
     >
       <FlexBox flex alignItems="center">

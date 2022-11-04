@@ -9,6 +9,7 @@ const marquee = keyframes`
   0% {
     transform: translateX(0);
  }
+
  100% {
     transform: translateX(-100%);
  }
@@ -40,8 +41,8 @@ const TrackContainer = styled.div`
   position: relative;
   white-space: nowrap;
 
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: '';
     position: absolute;
     top: -3px;
@@ -49,7 +50,8 @@ const TrackContainer = styled.div`
     height: 40px;
     z-index: 1;
   }
-  &:before {
+
+  &::before {
     left: 0;
     background: linear-gradient(
       to right,
@@ -57,7 +59,8 @@ const TrackContainer = styled.div`
       rgba(255, 255, 255, 0) 100%
     );
   }
-  &:after {
+
+  &::after {
     right: 0;
     background: linear-gradient(
       to right,

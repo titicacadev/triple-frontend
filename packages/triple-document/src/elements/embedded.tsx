@@ -41,7 +41,7 @@ function EmbeddedImage({
     return (
       <Container
         css={{
-          margin: '10px 0 0 0',
+          margin: '10px 0 0',
         }}
         {...props}
       >

@@ -45,14 +45,6 @@ const BaseTextarea = styled.textarea<BaseTextareaProps>`
     color: rgba(${COLORS.gray}, 0.3);
   }
 
-  ::-webkit-input-placeholder {
-    color: rgba(${COLORS.gray}, 0.3);
-  }
-
-  :-ms-input-placeholder {
-    color: rgba(${COLORS.gray}, 0.3);
-  }
-
   ${({ focused }) =>
     focused &&
     css`

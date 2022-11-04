@@ -30,7 +30,7 @@ export const TagLabel = styled.div`
     margin-right: 1px;
   }
 
-  :before {
+  &::before {
     border: 1px solid ${gray100};
     border-radius: 5px;
     border-width: 1px 1px 0 0;
@@ -38,7 +38,6 @@ export const TagLabel = styled.div`
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
     top: 50%;
     right: -15px;
-
     position: absolute;
     content: '';
     z-index: -1;

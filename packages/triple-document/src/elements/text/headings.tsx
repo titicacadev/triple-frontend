@@ -13,7 +13,7 @@ export const MH1 = tripleDocumentHeading(
     <H1
       {...props}
       css={{
-        margin: '25px 30px 20px 30px',
+        margin: '25px 30px 20px',
       }}
     >
       {children}
