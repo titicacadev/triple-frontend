@@ -41,7 +41,7 @@ const Timeline = styled(FlexBox)`
   position: relative;
   min-width: 55px;
 
-  :before {
+  &::before {
     content: '';
     position: absolute;
     z-index: -1;
@@ -65,7 +65,7 @@ const CardWrapper = styled(FlexBox.Item)`
 `
 const Stack = styled(Container)`
   div:first-child ${Timeline} {
-    :before {
+    &::before {
       margin-top: 5px;
     }
   }
@@ -121,13 +121,13 @@ export default function ItineraryElement({ value }: Props) {
   return (
     <Container
       css={{
-        margin: '10px 0 10px 0',
+        margin: '10px 0',
       }}
     >
       <ItineraryMap {...value.itinerary} onClickMarker={handleMarkerClick} />
       <Container
         css={{
-          margin: '20px 20px 20px 20px',
+          margin: '20px',
         }}
       >
         <Stack>
@@ -164,7 +164,7 @@ export default function ItineraryElement({ value }: Props) {
                       alignItems="center"
                       flexDirection="column"
                       css={{
-                        padding: '20px 0 0 0',
+                        padding: '20px 0 0',
                       }}
                     >
                       <CircleBadge>{index + 1}</CircleBadge>

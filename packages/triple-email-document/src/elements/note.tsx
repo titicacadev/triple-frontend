@@ -15,7 +15,7 @@ const SegmentStlyed = styled.div`
   border-radius: 6px;
   background-color: #fafafa;
 
-  &:after {
+  &::after {
     content: '';
     display: block;
     clear: both;

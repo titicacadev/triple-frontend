@@ -78,14 +78,14 @@ const ListItem = styled.li<ListItemProps>`
   ${({ noDivider = false }) =>
     noDivider &&
     css`
-      &:not(:last-child):after {
+      &:not(:last-child)::after {
         border-bottom: 0 none !important;
       }
     `}
 
   ${({ margin: { top: marginTop = 0, bottom: marginBottom = 0 } = {} }) =>
     css`
-      &:not(:last-child):after {
+      &:not(:last-child)::after {
         ${marginTop
           ? `
             margin-top: ${marginTop}px !important;

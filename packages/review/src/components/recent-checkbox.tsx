@@ -18,7 +18,7 @@ const CheckBox = styled.input`
   border-radius: 5px;
   cursor: pointer;
 
-  &:after {
+  &::after {
     content: '';
     display: block;
     width: 100%;

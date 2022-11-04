@@ -67,6 +67,7 @@ const BaseSelect = styled.select<{
     css`
       color: rgba(${getColor('red')});
     `};
+
   &:disabled {
     color: rgba(${getColor('gray300')});
   }

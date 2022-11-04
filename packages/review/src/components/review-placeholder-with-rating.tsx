@@ -52,7 +52,7 @@ function ReviewsPlaceholder({
     <PlaceholderContainer
       onClick={!isMorePage ? onClick : undefined}
       css={{
-        margin: '20px 0 0 0',
+        margin: '20px 0 0',
       }}
     >
       {!recentTrip ? (
@@ -130,7 +130,7 @@ function RecentTripPlaceholder({
   ) : (
     <Container
       css={{
-        padding: '60px 0 60px 0',
+        padding: '60px 0',
       }}
     >
       <Text size={14} color="gray500">

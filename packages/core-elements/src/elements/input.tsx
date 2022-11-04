@@ -22,14 +22,6 @@ const BaseInput = styled(InputMask)<{
     color: rgba(${getColor('gray300')});
   }
 
-  ::-webkit-input-placeholder {
-    color: rgba(${getColor('gray300')});
-  }
-
-  :-ms-input-placeholder {
-    color: rgba(${getColor('gray300')});
-  }
-
   ${({ focused }) =>
     focused &&
     css`

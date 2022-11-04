@@ -60,7 +60,7 @@ export default function withField<T>(WrappedComponent: ComponentType<T>) {
           <Container
             position="relative"
             css={{
-              padding: '6px 0 0 0',
+              padding: '6px 0 0',
             }}
           >
             <Label absolute={!help} error>
@@ -73,7 +73,7 @@ export default function withField<T>(WrappedComponent: ComponentType<T>) {
           <Container
             position="relative"
             css={{
-              padding: '6px 0 0 0',
+              padding: '6px 0 0',
             }}
           >
             <Label alpha={0.5}>{help}</Label>

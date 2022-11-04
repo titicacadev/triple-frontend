@@ -20,7 +20,7 @@ export interface LinksDocument {
 }
 
 const ButtonLink = styled.a`
-  padding: 13px 25px 13px 25px;
+  padding: 13px 25px;
   display: inline-block;
   font-size: 13px;
   font-weight: bold;
@@ -36,7 +36,7 @@ const ButtonLink = styled.a`
 `
 
 const BlockLink = styled.a`
-  padding: 7px 12px 8px 12px;
+  padding: 7px 12px 8px;
   display: block;
   font-size: 14px;
   font-weight: bold;
@@ -51,7 +51,7 @@ const BlockLink = styled.a`
 `
 
 const LargeLink = styled.a`
-  padding: 17px 12px 16px 12px;
+  padding: 17px 12px 16px;
   display: block;
   font-size: 14px;
   font-weight: bold;

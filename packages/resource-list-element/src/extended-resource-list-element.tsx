@@ -121,7 +121,7 @@ function ExtendedResourceListElement<R extends ResourceMeta>({
           {formattedNames ? (
             <Container
               css={{
-                margin: '5px 0 0 0',
+                margin: '5px 0 0',
               }}
             >
               <Text inlineBlock size="tiny" color="gray" alpha={0.5}>
@@ -133,7 +133,7 @@ function ExtendedResourceListElement<R extends ResourceMeta>({
           {distance || distance === 0 || note || isAdvertisement ? (
             <Container
               css={{
-                margin: '3px 0 0 0',
+                margin: '3px 0 0',
               }}
             >
               {isAdvertisement ? (

@@ -93,7 +93,7 @@ function Register(
         flex
         justifyContent="space-between"
         css={{
-          padding: '20px 20px 20px 20px',
+          padding: '20px',
         }}
       >
         <AutoResizingTextarea

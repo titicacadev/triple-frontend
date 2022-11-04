@@ -17,7 +17,7 @@ export const Segment = styled.div<{
 
   ${paddingMixin}
 
-  &:after {
+  &::after {
     content: '';
     display: block;
     clear: both;

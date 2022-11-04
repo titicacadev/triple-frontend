@@ -20,7 +20,7 @@ const textStyle = css`
 
 const HtmlContainer = styled.div`
   p {
-    margin: 24px 0 0 0;
+    margin: 24px 0 0;
     ${textStyle}
 
     &:first-of-type {
@@ -30,6 +30,7 @@ const HtmlContainer = styled.div`
 
   strong {
     ${textStyle}
+
     font-weight: bold;
     color: rgba(58, 58, 58, 1);
   }
@@ -37,6 +38,7 @@ const HtmlContainer = styled.div`
   && {
     a {
       ${textStyle}
+
       font-weight: bold;
       color: #2987f0;
       text-decoration: underline;

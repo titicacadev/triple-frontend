@@ -24,6 +24,7 @@ const bounce = keyframes`
   from {
     transform: scale(0.01);
   }
+
   to {
     transform: scale(1);
   }

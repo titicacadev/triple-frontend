@@ -13,28 +13,29 @@ export function generateSelectedStyle({
       z-index: 0;
       color: var(--color-white) !important;
 
-      &:before {
+      &::before {
         top: 28px !important;
       }
 
-      &:after {
+      &::after {
         z-index: -1;
         display: block;
         width: calc(100% - 1px);
         height: 45px;
         position: absolute;
         top: 50%;
-        bottom: 0px;
+        bottom: 0;
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: var(--color-blue);
         ${!selectedAll && `border-radius: 4px;`}
+
         content: '';
       }
 
       &.DayPicker-Day--outside {
-        &:before,
-        &:after {
+        &::before,
+        &::after {
           content: none;
         }
       }
@@ -42,12 +43,12 @@ export function generateSelectedStyle({
 
     ${selectedAll &&
     css`
-      .DayPicker-Day--from:after {
+      .DayPicker-Day--from::after {
         border-top-left-radius: 4px;
         border-bottom-left-radius: 4px;
       }
 
-      .DayPicker-Day--to:after {
+      .DayPicker-Day--to::after {
         border-top-right-radius: 4px;
         border-bottom-right-radius: 4px;
       }
@@ -140,7 +141,6 @@ const PickerFrame = styled.div<PickerFrameProps>`
           .DayPicker-Day {
             position: relative;
             display: table-cell;
-
             width: 2%;
             padding: 6px 0 4px;
             outline: none;

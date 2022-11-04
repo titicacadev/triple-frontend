@@ -48,7 +48,7 @@ function ExternalLinkItem<Data>({
         flex
         gap="20px"
         css={{
-          padding: '20px 0 20px 0',
+          padding: '20px 0',
         }}
       >
         <FlexBox.Item

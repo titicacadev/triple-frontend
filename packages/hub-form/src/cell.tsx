@@ -35,7 +35,8 @@ const CellContainer = styled.div<{ type: StyleType }>`
   padding: 20px 0 20px 35px;
   font-size: 15px;
   font-weight: bold;
-  &:before {
+
+  &::before {
     content: '';
     width: 20px;
     height: 20px;
@@ -44,6 +45,7 @@ const CellContainer = styled.div<{ type: StyleType }>`
     top: 50%;
     margin-top: -10px;
     ${({ type }) => STYLE_BY_TYPES[type]};
+
     background-size: 20px 20px;
   }
 `

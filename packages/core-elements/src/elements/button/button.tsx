@@ -31,11 +31,12 @@ const ICON_PADDINGS: Partial<Record<GlobalSizes, MarginPadding>> = {
 }
 
 const IconButton = styled(ButtonBase)<{ name?: string }>`
-  &:before {
+  &::before {
     display: block;
     height: 30px;
     ${({ name }) =>
       name ? `background-image: url(${ICON_BUTTON_URLS[name]});` : ''}
+
     background-size: 30px 30px;
     background-position: center center;
     background-repeat: no-repeat;
@@ -76,10 +77,10 @@ const BasicButton = styled(ButtonBase)<BasicButtonProp>`
   ${({ compact }) =>
     compact
       ? css`
-          padding: 7px 12px 7px 12px;
+          padding: 7px 12px;
         `
       : css`
-          padding: 14px 12px 14px 12px;
+          padding: 14px 12px;
         `};
 
   ${({ inverted, color }) => {
@@ -118,9 +119,9 @@ const NormalButton = styled(ButtonBase)<{
   ${({ borderRadius }) => css`
     border-radius: ${borderRadius}px;
   `};
-  color: #ffffff;
+  color: #fff;
 
-  background-color: ${({ color = 'blue' }) => `rgba(${getColor(color)})`};
+  background-color: ${({ color = 'blue' }) => `rgba(${getColor(color)}) `};
 
   ${({ compact, size = 'tiny' }) => {
     const padding = (compact ? COMPACT_NORMAL_PADDINGS : NORMAL_PADDINGS)[size]
