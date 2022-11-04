@@ -137,7 +137,7 @@ function VideoContent({
         loop
         muted
         playsInline
-        isOncePlayed
+        isOncePlayed={isOncePlayed}
         onTimeUpdate={isOncePlayed ? undefined : () => setIsOncePlayed(true)}
       />
       {!videoAutoplay && <PlayPauseButtonBase />}
