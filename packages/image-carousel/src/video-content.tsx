@@ -47,7 +47,7 @@ const Poster = styled.div`
   background-position: center;
 `
 
-const Video = styled.video`
+const Video = styled.video<{ isOncePlayed: boolean }>`
   position: absolute;
   top: 0;
   left: 0;
@@ -57,6 +57,7 @@ const Video = styled.video`
   height: 100%;
   object-fit: cover;
   transition: opacity 0.3s;
+  opacity: ${({ isOncePlayed }) => (isOncePlayed ? 1 : 0)};
 `
 
 const PLAY_BUTTON_IMAGE_URL =
@@ -136,7 +137,7 @@ function VideoContent({
         loop
         muted
         playsInline
-        style={{ opacity: isOncePlayed ? 1 : 0 }}
+        isOncePlayed
         onTimeUpdate={isOncePlayed ? undefined : () => setIsOncePlayed(true)}
       />
       {!videoAutoplay && <PlayPauseButtonBase />}
