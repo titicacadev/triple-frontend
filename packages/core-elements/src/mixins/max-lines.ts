@@ -1,4 +1,3 @@
-/* stylelint-disable value-no-vendor-prefix, property-no-vendor-prefix */
 import { css } from 'styled-components'
 
 interface Params {
@@ -8,6 +7,7 @@ interface Params {
 export const maxLinesMixin = ({ maxLines }: Params) =>
   maxLines
     ? css`
+        /* stylelint-disable-next-line value-no-vendor-prefix */
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: ${maxLines};
