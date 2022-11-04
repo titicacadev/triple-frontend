@@ -138,6 +138,7 @@ const inactiveFloatingButtonStyle = css<{
   fixed?: 1 | 0
   margin?: MarginPadding
 }>`
+  /* stylelint-disable unit-no-unknown */
   transform: translate3d(
     0,
     calc(
