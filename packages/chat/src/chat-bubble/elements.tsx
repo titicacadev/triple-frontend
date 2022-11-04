@@ -1,12 +1,8 @@
 import styled, { css } from 'styled-components'
-import { Container, Text } from '@titicaca/core-elements'
+import { Text } from '@titicaca/core-elements'
 
 export const HiddenElement = styled.div`
   height: 1px;
-`
-
-export const ChatContainer = styled(Container)`
-  width: 100%;
 `
 
 export const ProfileImage = styled.img`
