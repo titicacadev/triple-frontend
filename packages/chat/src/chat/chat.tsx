@@ -1,7 +1,6 @@
 import { IncomingMessage } from 'http'
 
 import React, {
-  FunctionComponent,
   useCallback,
   useEffect,
   useMemo,
@@ -51,7 +50,7 @@ export interface ChatProps {
   showFailToast?: (message: string) => void
 }
 
-const Chat: FunctionComponent<ChatProps> = ({
+const Chat = ({
   displayTarget,
   userInfo,
   room,
@@ -61,7 +60,7 @@ const Chat: FunctionComponent<ChatProps> = ({
   getUnreadRoom,
   notifyNewMessage,
   showFailToast,
-}) => {
+}: ChatProps) => {
   const chatRoomRef = useRef<HTMLDivElement>(null)
 
   const { setPostMessage } = useChat()
