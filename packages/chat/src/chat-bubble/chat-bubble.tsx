@@ -5,6 +5,7 @@ import {
   MessageInterface,
   MessageType,
   OtherUnreadInterface,
+  PostMessageActionType,
   TextPayload,
   UserInfoInterface,
   UserType,
@@ -18,10 +19,7 @@ interface ChatBubbleProps {
   message: MessageInterface
   otherReadInfo?: OtherUnreadInterface[]
   displayTarget: UserType
-  postMessage?: (
-    payload: TextPayload | ImagePayload,
-    retry?: boolean,
-  ) => Promise<boolean> | undefined
+  postMessageAction?: PostMessageActionType
 }
 
 const ChatBubble = ({
@@ -30,7 +28,7 @@ const ChatBubble = ({
   userInfo: { others },
   otherReadInfo,
   displayTarget: componentDisplayTarget,
-  postMessage,
+  postMessageAction,
 }: ChatBubbleProps) => {
   const otherUserInfo = useMemo(
     () => others.find((other) => other.id === senderId),
@@ -66,8 +64,9 @@ const ChatBubble = ({
   const onRetry =
     !message.createdAt &&
     message.payload.type !== MessageType.RICH &&
-    postMessage
-      ? () => postMessage(message.payload as TextPayload | ImagePayload, true)
+    postMessageAction
+      ? () =>
+          postMessageAction(message.payload as TextPayload | ImagePayload, true)
       : undefined
 
   return (
