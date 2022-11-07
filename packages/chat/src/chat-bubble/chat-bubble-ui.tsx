@@ -1,10 +1,7 @@
 import React, { PropsWithChildren, useState } from 'react'
-import { Autolinker } from 'autolinker'
 import { Container } from '@titicaca/core-elements'
 
-import { TextPayload, ImagePayload, RichPayload, MessageType } from '../types'
-import { ImageBubble, TextBubble, RichBubble } from '../bubbles'
-import { useChat } from '../chat'
+import { TextPayload, ImagePayload, RichPayload } from '../types'
 
 import { BubbleInfo } from './bubble-info'
 import {
@@ -14,6 +11,7 @@ import {
   ProfileImage,
   ProfileName,
 } from './elements'
+import BubblePayload from './bubble-payload'
 
 const CHAT_CONTAINER_STYLES = {
   marginTop: 20,
@@ -93,70 +91,6 @@ function ReceivedChatContainer({
       </Container>
     </Container>
   )
-}
-
-interface BubblePayloadProps {
-  payload: TextPayload | ImagePayload | RichPayload
-  my: boolean
-}
-
-function BubblePayload({ payload, my }: BubblePayloadProps) {
-  const {
-    textBubbleFontSize,
-    textBubbleMaxWidthOffset,
-    mediaUrlBase,
-    cloudinaryName,
-    onRichBubbleButtonBeforeRouting,
-    onImageBubbleClick,
-    onTextBubbleClick,
-  } = useChat()
-
-  switch (payload.type) {
-    case MessageType.IMAGES:
-      return (
-        <ImageBubble
-          imageInfos={payload.images}
-          cloudinaryName={cloudinaryName}
-          mediaUrlBase={mediaUrlBase}
-          onClick={onImageBubbleClick}
-        />
-      )
-    case MessageType.TEXT:
-      return (
-        <TextBubble
-          my={my}
-          size={textBubbleFontSize}
-          maxWidthOffset={textBubbleMaxWidthOffset}
-          margin={my ? { left: 8 } : undefined}
-        >
-          <div
-            onClick={onTextBubbleClick}
-            aria-hidden
-            dangerouslySetInnerHTML={{
-              __html: Autolinker.link(payload.message, {
-                newWindow: true,
-                stripPrefix: false,
-              }),
-            }}
-          />
-        </TextBubble>
-      )
-    case MessageType.RICH:
-      return (
-        <RichBubble
-          my={my}
-          items={payload.items}
-          textBubbleFontSize={textBubbleFontSize}
-          textBubbleMaxWidthOffset={textBubbleMaxWidthOffset}
-          onButtonBeforeRouting={onRichBubbleButtonBeforeRouting}
-          cloudinaryName={cloudinaryName}
-          mediaUrlBase={mediaUrlBase}
-          onImageBubbleClick={onImageBubbleClick}
-        />
-      )
-    default:
-      return null
-  }
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
