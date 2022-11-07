@@ -19,6 +19,11 @@ export type PostMessageType = (
   payload: TextPayload | ImagePayload,
 ) => Promise<{ success: boolean; newMessages: MessageInterface[] }>
 
+export type PostMessageActionType = (
+  payload: TextPayload | ImagePayload,
+  retry?: boolean,
+) => Promise<boolean> | undefined
+
 export interface RoomListResultInterface {
   total: number
   rooms: RoomInterface[]

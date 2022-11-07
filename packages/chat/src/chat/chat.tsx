@@ -109,10 +109,6 @@ const Chat: FunctionComponent<ChatProps> = ({
   }, [])
 
   useEffect(() => {
-    postMessage && setPostMessage?.(postMessage)
-  }, [postMessage, setPostMessage])
-
-  useEffect(() => {
     if (scrollY && chatRoomRef.current && chatRoomRef.current.parentElement) {
       chatRoomRef.current.parentElement.scrollTo(
         0,
@@ -254,6 +250,10 @@ const Chat: FunctionComponent<ChatProps> = ({
     return success
   }
 
+  useEffect(() => {
+    postMessage && setPostMessage?.(postMessageAction)
+  }, [postMessage, postMessageAction, setPostMessage])
+
   const onChangeScroll = async ({
     isIntersecting,
     time,
@@ -287,7 +287,9 @@ const Chat: FunctionComponent<ChatProps> = ({
                   displayTarget={displayTarget}
                   message={message}
                   userInfo={userInfo}
-                  postMessage={postMessage ? postMessageAction : undefined}
+                  postMessageAction={
+                    postMessage ? postMessageAction : undefined
+                  }
                   otherReadInfo={otherUnreadInfo}
                 />
               ) : null}
