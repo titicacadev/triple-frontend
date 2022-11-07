@@ -56,10 +56,9 @@ export function RichBubble({
 }) {
   return (
     <TextBubble
+      my={my}
       size={textBubbleFontSize}
       maxWidthOffset={textBubbleMaxWidthOffset}
-      tailPosition={my ? 'right' : 'left'}
-      backgroundColor={my ? 'blue' : 'gray'}
       margin={my ? { left: 8 } : undefined}
     >
       {items.map((item, index) => {
