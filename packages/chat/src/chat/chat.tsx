@@ -122,13 +122,6 @@ const Chat: FunctionComponent<ChatProps> = ({
   }, [scrollY])
 
   useEffect(() => {
-    fetchJob.run(() => pollingFetchJob())
-    return () => {
-      fetchJob.stop()
-    }
-  }, [lastMessageId]) // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
     const chatListDiv = chatRoomRef.current
     if (chatListDiv && isIos) {
       chatListDiv.addEventListener('touchmove', () => closeKeyboard())
@@ -137,18 +130,6 @@ const Chat: FunctionComponent<ChatProps> = ({
       }
     }
   }, [isIos])
-
-  useEffect(() => {
-    dispatch({
-      action: ChatActions.INIT,
-      messages,
-      lastMessageId: Number(lastMessageId),
-    })
-
-    window.setTimeout(() => {
-      scrollDown()
-    }, 0)
-  }, [messages, lastMessageId, scrollDown])
 
   useEffect(() => {
     ;(async function () {
@@ -202,26 +183,33 @@ const Chat: FunctionComponent<ChatProps> = ({
   }
 
   async function pollingFetchJob() {
-    if (lastMessageId !== null && room.id && getUnreadRoom) {
-      const { hasUnread, others } = await getUnreadRoom({
-        roomId: room.id,
-        lastSeenMessageId: lastMessageId,
-      })
-
-      dispatch({
-        action: ChatActions.UPDATE,
-        otherUnreadInfo: others,
-      })
-
-      if (hasUnread) {
-        const newMessages = await fetchNewMessages()
-        dispatch({
-          action: ChatActions.NEW,
-          messages: newMessages,
-        })
-        scrollDown()
-      }
+    if (lastMessageId === null || !room.id || !getUnreadRoom) {
+      return
     }
+    const { hasUnread, others } = await getUnreadRoom({
+      roomId: room.id,
+      lastSeenMessageId: lastMessageId,
+    })
+
+    dispatch({
+      action: ChatActions.UPDATE,
+      otherUnreadInfo: others,
+    })
+
+    if (!hasUnread) {
+      return
+    }
+    const newMessages = await fetchNewMessages()
+    if (!newMessages?.length) {
+      return
+    }
+
+    dispatch({
+      action: ChatActions.NEW,
+      messages: newMessages,
+    })
+    notifyNewMessage?.({ ...newMessages[notifyNewMessage.length - 1] })
+    scrollDown()
   }
 
   const postMessageAction = async (
@@ -244,19 +232,17 @@ const Chat: FunctionComponent<ChatProps> = ({
 
       const lastMessage = newMessages[newMessages.length - 1]
       notifyNewMessage?.({ ...lastMessage })
-    } else {
-      if (!retry) {
-        dispatch({
-          action: ChatActions.FAILED_TO_POST,
-          message: {
-            id: NaN,
-            roomId: room.id,
-            senderId: userInfo.me.id,
-            payload,
-            displayTarget: 'all',
-          },
-        })
-      }
+    } else if (!retry) {
+      dispatch({
+        action: ChatActions.FAILED_TO_POST,
+        message: {
+          id: NaN,
+          roomId: room.id,
+          senderId: userInfo.me.id,
+          payload,
+          displayTarget: 'all',
+        },
+      })
 
       showFailToast?.('메시지 발송에 실패했습니다.')
     }
