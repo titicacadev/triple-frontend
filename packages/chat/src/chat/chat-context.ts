@@ -35,7 +35,7 @@ export const ChatContext = createContext<ChatContextValue | undefined>(
 export function useChat() {
   const context = useContext(ChatContext)
   if (!context) {
-    throw new Error()
+    throw new Error('chat context 가 존재하지 않습니다.')
   }
   return context
 }
