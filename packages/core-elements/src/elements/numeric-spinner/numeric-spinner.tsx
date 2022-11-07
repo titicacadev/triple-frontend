@@ -1,9 +1,8 @@
 import styled, { css } from 'styled-components'
 
-import { MarginPadding, GlobalSizes } from '../commons'
-import { paddingMixin } from '../mixins'
-
-import Text from './text'
+import { MarginPadding, GlobalSizes } from '../../commons'
+import { paddingMixin } from '../../mixins'
+import Text from '../text'
 
 /**
  * To inject extended style from styled-component

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import NumericSpinner from './elements/numeric-spinner'
+import NumericSpinner from './numeric-spinner'
 
 export default {
   title: 'Core-Elements / NumericSpinner',
