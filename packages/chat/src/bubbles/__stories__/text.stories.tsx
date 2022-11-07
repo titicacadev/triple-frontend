@@ -12,23 +12,16 @@ export default {
         type: 'number',
       },
     },
-    backgroundColor: {
+    my: {
       control: {
         type: 'select',
-        options: ['gray', 'blue'],
-      },
-    },
-    tailPosition: {
-      control: {
-        type: 'select',
-        options: ['left', 'right'],
+        options: [true, false],
       },
     },
   },
   args: {
     maxWidthOffset: 100,
-    backgroundColor: 'gray',
-    tailPosition: 'left',
+    my: false,
   },
 } as ComponentMeta<typeof TextBubble>
 
