@@ -1,41 +1,52 @@
-import styled from 'styled-components'
+import {
+  ComponentMeta,
+  ComponentStory,
+  ComponentStoryObj,
+} from '@storybook/react'
+import { useState } from 'react'
 
-import NumericSpinner from './numeric-spinner'
+import { NumericSpinner } from './numeric-spinner'
 
 export default {
-  title: 'Core-Elements / NumericSpinner',
+  title: 'core-elements / NumericSpinner',
   component: NumericSpinner,
+} as ComponentMeta<typeof NumericSpinner>
+
+export const Default: ComponentStoryObj<typeof NumericSpinner> = {
+  args: {
+    label: '성인',
+    sublabel: '10,000원',
+    strikeLabel: '20,000원',
+  },
 }
 
-export const Basic = () => {
+export const Borderless: ComponentStoryObj<typeof NumericSpinner> = {
+  args: {
+    ...Default.args,
+    borderless: true,
+  },
+}
+
+export const Size: ComponentStory<typeof NumericSpinner> = () => {
+  return (
+    <>
+      <NumericSpinner {...Default.args} size="tiny" />
+      <NumericSpinner {...Default.args} size="medium" />
+      <NumericSpinner {...Default.args} size="big" />
+    </>
+  )
+}
+
+export const Controlled: ComponentStory<typeof NumericSpinner> = () => {
+  const [value, setValue] = useState(1)
+
   return (
     <NumericSpinner
-      size="big"
       label="성인"
-      min={1}
-      max={8}
-      value={2}
-      padding={{ top: 15, right: 125, bottom: 15, left: 16 }}
+      sublabel="10,000원"
+      strikeLabel="20,000원"
+      value={value}
+      onChange={setValue}
     />
   )
 }
-Basic.storyName = '숙박 인원'
-
-export const CustomStyle = () => {
-  const NewStyledNumericSpinner = styled(NumericSpinner)`
-    > div:first-child {
-      color: red;
-    }
-  `
-  return (
-    <NewStyledNumericSpinner
-      size="big"
-      label="성인"
-      min={1}
-      max={8}
-      value={2}
-      padding={{ top: 15, right: 125, bottom: 15, left: 16 }}
-    />
-  )
-}
-CustomStyle.storyName = '스타일 변경'
