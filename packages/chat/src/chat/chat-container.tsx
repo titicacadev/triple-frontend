@@ -10,9 +10,7 @@ import {
 
 import { ChatContext, ChatContextValue } from './chat-context'
 
-export interface ChatContainerProps
-  extends PropsWithChildren,
-    ChatContextValue {
+export interface ChatContainerProps extends ChatContextValue {
   container: ElementType
   inputElement?: ElementType
   postMessage?: (
@@ -36,7 +34,7 @@ const ChatContainer = ({
   onRichBubbleButtonBeforeRouting,
   onImageBubbleClick = defaultOnImageBubbleClick,
   onTextBubbleClick,
-}: ChatContainerProps) => {
+}: PropsWithChildren<ChatContainerProps>) => {
   const [postMessage, setPostMessage] = useState<PostMessageActionType | null>(
     null,
   )
