@@ -4,7 +4,7 @@ import {
   ImagePayload,
   MessageInterface,
   MetaDataInterface,
-  PostMessageType,
+  PostMessageActionType,
   TextPayload,
 } from '../types'
 
@@ -37,7 +37,9 @@ const ChatContainer = ({
   onImageBubbleClick = defaultOnImageBubbleClick,
   onTextBubbleClick,
 }: ChatContainerProps) => {
-  const [postMessage, setPostMessage] = useState<PostMessageType | null>(null)
+  const [postMessage, setPostMessage] = useState<PostMessageActionType | null>(
+    null,
+  )
 
   return (
     <ChatContext.Provider
