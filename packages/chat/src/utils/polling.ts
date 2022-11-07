@@ -1,13 +1,14 @@
 type JobType = (() => Promise<void>) | null
+type JobListType = { id: string; job: JobType }[]
 
 export class Polling {
   public interval: number
 
   private timeoutIds: number[] = []
 
-  private latestJob: JobType = null
+  private latestJobs: JobListType = []
 
-  private job: JobType = null
+  private jobs: JobListType = []
 
   public constructor(interval = 1000) {
     this.interval = interval
@@ -26,22 +27,36 @@ export class Polling {
 
   public pause() {
     this.clear()
-    this.latestJob = this.job
+    this.latestJobs = this.jobs
   }
 
   public stop() {
     this.clear()
-    this.latestJob = null
-    this.job = null
+    this.latestJobs = []
+    this.jobs = []
   }
 
-  public async run(job?: JobType): Promise<void> {
-    if (job) {
-      this.job = job
+  public add(id: string, job: JobType) {
+    const found = this.jobs.find((job) => job.id === id)
+    if (found) {
+      found.job = job
+    } else {
+      this.jobs.push({ id, job })
     }
+  }
 
-    if (this.job) {
-      await this.job()
+  public remove(id: string) {
+    this.jobs = this.jobs.filter((job) => job.id !== id)
+  }
+
+  public async run(): Promise<void> {
+    if (this.jobs.length) {
+      for (const job of this.jobs) {
+        if (job && job.job) {
+          await job.job()
+        }
+      }
+
       this.clear()
     }
 
@@ -55,8 +70,10 @@ export class Polling {
       await this.wait()
     }
 
-    await this.run(this.latestJob)
+    this.jobs = this.latestJobs
 
-    this.latestJob = null
+    await this.run()
+
+    this.latestJobs = []
   }
 }
