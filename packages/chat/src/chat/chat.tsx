@@ -251,8 +251,8 @@ const Chat: FunctionComponent<ChatProps> = ({
   }
 
   useEffect(() => {
-    postMessage && setPostMessage?.(postMessageAction)
-  }, [postMessage, postMessageAction, setPostMessage])
+    postMessage && setPostMessage?.(() => postMessageAction)
+  }, [postMessage, setPostMessage]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const onChangeScroll = async ({
     isIntersecting,
