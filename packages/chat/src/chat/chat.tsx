@@ -173,6 +173,11 @@ const Chat: FunctionComponent<ChatProps> = ({
     })()
   }, [room.id]) // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    fetchJob.add('refreshChatRoom', () => pollingFetchJob())
+    return () => fetchJob.remove('refreshChatRoom')
+  }, [lastMessageId]) // eslint-disable-line react-hooks/exhaustive-deps
+
   async function fetchNewMessages(): Promise<MessageInterface[]> {
     if (lastMessageId !== null && room.id) {
       return getMessages({
@@ -223,7 +228,7 @@ const Chat: FunctionComponent<ChatProps> = ({
     payload: TextPayload | ImagePayload,
     retry = false,
   ): Promise<boolean> => {
-    fetchJob?.pause()
+    fetchJob.pause()
     const result = await postMessage?.(payload)
     const { success, newMessages } = result || {
       success: false,
@@ -258,7 +263,7 @@ const Chat: FunctionComponent<ChatProps> = ({
 
     scrollDown()
 
-    await fetchJob?.resume()
+    await fetchJob.resume()
 
     return success
   }
