@@ -95,13 +95,13 @@ export const NumericSpinner = ({
   }
 
   const toMax = () => {
-    if (typeof max === 'number' && isFinite(max)) {
+    if (isFinite(max)) {
       onChange?.(max)
     }
   }
 
   const toMin = () => {
-    if (typeof min === 'number' && isFinite(min)) {
+    if (isFinite(min)) {
       onChange?.(min)
     }
   }
