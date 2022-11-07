@@ -23,7 +23,6 @@ const TAIL_POSITION_STYLE_MAP: { [key: string]: ReturnType<typeof css> } = {
 
 /**
  * RichBubble의 Container로도 사용중
- * FIXME: 말풍선 모양을 만드는 컴포넌트와 text 내용을 스타일링하는 컴포넌트로 분리하기
  */
 export const TextBubble = styled(Text).attrs({
   padding: { top: 12, right: 14, bottom: 12, left: 14 },
@@ -31,8 +30,7 @@ export const TextBubble = styled(Text).attrs({
   inlineBlock: true,
 })<{
   maxWidthOffset: number
-  backgroundColor: keyof typeof BACKGROUND_COLORS
-  tailPosition: 'left' | 'right'
+  my: boolean
 }>`
   border-radius: 10px;
   position: relative;
@@ -54,14 +52,16 @@ export const TextBubble = styled(Text).attrs({
     position: absolute;
     top: 5px;
     background-size: 10px 17px;
-    ${({ backgroundColor }) => css`
-      background-image: url('https://assets.triple.guide/images/img-speechbubble-${backgroundColor}@3x.png');
+    ${({ my }) => css`
+      background-image: url('https://assets.triple.guide/images/img-speechbubble-${my
+        ? 'blue'
+        : 'gray'}@3x.png');
     `}
   }
 
   ${({ maxWidthOffset }) => `max-width: calc(100% - ${maxWidthOffset}px);`}
-  ${({ backgroundColor }) => css`
-    background-color: ${BACKGROUND_COLORS[backgroundColor]};
+  ${({ my }) => css`
+    background-color: ${BACKGROUND_COLORS[my ? 'blue' : 'gray']};
+    ${TAIL_POSITION_STYLE_MAP[my ? 'right' : 'left']}
   `}
-  ${({ tailPosition }) => TAIL_POSITION_STYLE_MAP[tailPosition]}
 `

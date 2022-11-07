@@ -124,10 +124,9 @@ function BubblePayload({ payload, my }: BubblePayloadProps) {
     case MessageType.TEXT:
       return (
         <TextBubble
+          my={my}
           size={textBubbleFontSize}
           maxWidthOffset={textBubbleMaxWidthOffset}
-          tailPosition={my ? 'right' : 'left'}
-          backgroundColor={my ? 'blue' : 'gray'}
           margin={my ? { left: 8 } : undefined}
         >
           <div
