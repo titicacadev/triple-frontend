@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 10.2.0
+
+### react-contexts
+
+- [react-contexts] checkIfReviewed 에러 로깅에 정보 추가 [#2245](https://github.com/titicacadev/triple-frontend/pull/2245)
+
+### core-elements, image-carousel, review
+
+- 비디오 자동재생 문제 해결 [#2244](https://github.com/titicacadev/triple-frontend/pull/2244)
+
+### poi-detail
+
+- 리뷰 쓰기 영역에 툴팁 추가 [#2240](https://github.com/titicacadev/triple-frontend/pull/2240)
+
+### common
+
+- [Fix] prettier 명령어를 js,ts,tsx도 검사하도록 수정합니다. [#2236](https://github.com/titicacadev/triple-frontend/pull/2236)
+
 ## 10.1.0
 
 ### common
