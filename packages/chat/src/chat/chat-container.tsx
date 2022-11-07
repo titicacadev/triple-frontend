@@ -10,7 +10,9 @@ import {
 
 import { ChatContext, ChatContextValue } from './chat-context'
 
-interface ChatContainerProps extends PropsWithChildren, ChatContextValue {
+export interface ChatContainerProps
+  extends PropsWithChildren,
+    ChatContextValue {
   container: ElementType
   inputElement?: ElementType
   postMessage?: (

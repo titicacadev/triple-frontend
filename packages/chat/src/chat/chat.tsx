@@ -47,7 +47,7 @@ export interface ChatProps {
   }) => Promise<HasUnreadOfRoomInterface>
   room: RoomInterface
   notifyNewMessage?: (lastMessage: MessageInterface) => void
-  showFailToast: (message: string) => void
+  showFailToast?: (message: string) => void
 }
 
 const Chat = ({
@@ -235,6 +235,7 @@ const Chat = ({
         messages: newMessages,
         payload,
       })
+
       const lastMessage = newMessages[newMessages.length - 1]
       notifyNewMessage?.({ ...lastMessage })
     } else {
@@ -251,7 +252,7 @@ const Chat = ({
         })
       }
 
-      showFailToast('메시지 발송에 실패했습니다.')
+      showFailToast?.('메시지 발송에 실패했습니다.')
     }
 
     scrollDown()
