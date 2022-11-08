@@ -10,6 +10,7 @@ import React, {
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 import { closeKeyboard } from '@titicaca/triple-web-to-native-interfaces'
+import { Container, CSSProps } from '@titicaca/core-elements'
 
 import {
   HasUnreadOfRoomInterface,
@@ -60,7 +61,8 @@ const Chat = ({
   getUnreadRoom,
   notifyNewMessage,
   showFailToast,
-}: ChatProps) => {
+  css,
+}: ChatProps & CSSProps) => {
   const chatRoomRef = useRef<HTMLDivElement>(null)
 
   const { setPostMessage } = useChat()
@@ -277,7 +279,7 @@ const Chat = ({
       <IntersectionObserver onChange={onChangeScroll}>
         <HiddenElement />
       </IntersectionObserver>
-      <div ref={chatRoomRef}>
+      <Container css={css} ref={chatRoomRef}>
         <ul>
           {messages.map((message: MessageInterface, index) => (
             <li key={index}>
@@ -295,7 +297,7 @@ const Chat = ({
             </li>
           ))}
         </ul>
-      </div>
+      </Container>
     </>
   )
 }
