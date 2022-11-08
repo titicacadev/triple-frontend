@@ -21,6 +21,12 @@ const TAIL_POSITION_STYLE_MAP: { [key: string]: ReturnType<typeof css> } = {
   `,
 }
 
+const getBackgroundImage = (my: boolean) => {
+  return `https://assets.triple.guide/images/img-speechbubble-${
+    my ? 'blue' : 'gray'
+  }@3x.png`
+}
+
 /**
  * RichBubble의 Container로도 사용중
  */
@@ -52,12 +58,7 @@ export const TextBubble = styled(Text).attrs({
     position: absolute;
     top: 5px;
     background-size: 10px 17px;
-
-    ${({ my }) => css`\
-      background-image: url('https://assets.triple.guide/images/img-speechbubble-${
-        my ? 'blue' : 'gray'
-      }@3x.png');
-    `}
+    background-image: url(${({ my }) => getBackgroundImage(my)});
   }
 
   ${({ maxWidthOffset }) => `max-width: calc(100% - ${maxWidthOffset}px);`}
