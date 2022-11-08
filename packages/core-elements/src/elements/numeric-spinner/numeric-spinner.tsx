@@ -27,24 +27,17 @@ const Counter = styled.div`
 `
 
 const Button = styled.button`
-  padding: 0;
   width: 36px;
   height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `
 
-const Icon = styled.span<{ active?: boolean; backgroundImageSrc?: string }>`
-  display: inline-block;
-  width: 34px;
-  height: 34px;
-  background-size: 34px 34px;
-  background-repeat: no-repeat;
-  background-position: -1px -1px;
-  background-image: url(${({ backgroundImageSrc }) => backgroundImageSrc});
+const Svg = styled.svg<{ active?: boolean }>`
+  color: #222;
   opacity: ${({ active }) => (active ? 1 : 0.2)};
-  cursor: pointer;
 `
 
 export interface NumericSpinnerProps {
@@ -165,10 +158,21 @@ export const NumericSpinner = ({
           tabIndex={-1}
           onClick={decrement}
         >
-          <Icon
+          <Svg
             active={value > 0}
-            backgroundImageSrc="https://assets.triple.guide/images/btn-numeric-minus@4x.png"
-          />
+            width="14"
+            height="3"
+            viewBox="0 0 14 3"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            focusable={false}
+            aria-hidden
+          >
+            <path
+              d="M13 0.5H1C0.447715 0.5 0 0.947715 0 1.5C0 2.05228 0.447715 2.5 1 2.5H13C13.5523 2.5 14 2.05228 14 1.5C14 0.947715 13.5523 0.5 13 0.5Z"
+              fill="currentColor"
+            />
+          </Svg>
         </Button>
         <Text
           aria-valuenow={value}
@@ -186,10 +190,23 @@ export const NumericSpinner = ({
           tabIndex={-1}
           onClick={increment}
         >
-          <Icon
+          <Svg
             active={value < max}
-            backgroundImageSrc="https://assets.triple.guide/images/btn-numeric-plus@4x.png"
-          />
+            width="14"
+            height="15"
+            viewBox="0 0 14 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            focusable={false}
+            aria-hidden
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M7 0.5C7.55228 0.5 8 0.947715 8 1.5V6.5H13C13.5523 6.5 14 6.94772 14 7.5C14 8.05228 13.5523 8.5 13 8.5H8V13.5C8 14.0523 7.55228 14.5 7 14.5C6.44772 14.5 6 14.0523 6 13.5V8.5H1C0.447715 8.5 0 8.05228 0 7.5C0 6.94772 0.447715 6.5 1 6.5H6V1.5C6 0.947715 6.44772 0.5 7 0.5Z"
+              fill="currentColor"
+            />
+          </Svg>
         </Button>
       </Counter>
     </Frame>
