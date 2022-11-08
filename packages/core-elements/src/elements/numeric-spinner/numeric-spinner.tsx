@@ -28,7 +28,6 @@ const Counter = styled.div`
 
 const Button = styled.button`
   padding: 0;
-
   width: 36px;
   height: 36px;
   display: flex;
