@@ -1,9 +1,10 @@
-import { PropsWithChildren } from 'react'
+import { ChangeEventHandler, PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
 import Text from '../text'
 
 import { CheckboxBase, CheckboxBaseProps } from './checkbox-base'
+import { useCheckboxGroup } from './checkbox-group-context'
 
 const CheckboxLabel = styled.label`
   display: flex;
@@ -29,15 +30,28 @@ export const Checkbox = ({
   value,
   onChange,
 }: CheckboxProps) => {
+  const group = useCheckboxGroup()
+
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    if (group) {
+      const nextValue = event.target.checked
+        ? group.value.concat(event.target.value)
+        : group.value.filter((value) => event.target.value !== value)
+      group?.onChange?.(nextValue)
+    } else {
+      onChange?.(event)
+    }
+  }
+
   return (
     <CheckboxLabel>
       <CheckboxText>{children}</CheckboxText>
       <CheckboxBase
         variant={variant}
-        name={name}
-        checked={checked}
+        name={name ?? group?.name}
+        checked={checked ?? (value ? group?.value?.includes(value) : undefined)}
         value={value}
-        onChange={onChange}
+        onChange={handleChange}
       />
     </CheckboxLabel>
   )
