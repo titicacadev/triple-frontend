@@ -53,7 +53,7 @@ const ChatContainer = ({
       }}
     >
       <Container>{children}</Container>
-      {Input && postMessage && <Input postMessage={postMessage} />}
+      {Input && postMessage ? <Input postMessage={postMessage} /> : null}
     </ChatContext.Provider>
   )
 }
