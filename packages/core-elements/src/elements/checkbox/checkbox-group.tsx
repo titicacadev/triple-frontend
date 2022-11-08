@@ -1,6 +1,5 @@
 import { PropsWithChildren } from 'react'
 
-import { CheckboxGroupBase } from './checkbox-group-base'
 import { CheckboxGroupContext } from './checkbox-group-context'
 
 export interface CheckboxGroupProps extends PropsWithChildren {
@@ -21,7 +20,7 @@ export const CheckboxGroup = ({
     <CheckboxGroupContext.Provider
       value={{ name, defaultValue, value, onChange }}
     >
-      <CheckboxGroupBase>{children}</CheckboxGroupBase>
+      <div role="group">{children}</div>
     </CheckboxGroupContext.Provider>
   )
 }
