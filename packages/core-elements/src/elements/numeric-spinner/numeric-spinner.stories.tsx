@@ -40,13 +40,5 @@ export const Size: ComponentStory<typeof NumericSpinner> = () => {
 export const Controlled: ComponentStory<typeof NumericSpinner> = () => {
   const [value, setValue] = useState(1)
 
-  return (
-    <NumericSpinner
-      label="성인"
-      sublabel="10,000원"
-      strikeLabel="20,000원"
-      value={value}
-      onChange={setValue}
-    />
-  )
+  return <NumericSpinner {...Default.args} value={value} onChange={setValue} />
 }
