@@ -102,6 +102,7 @@ jobs:
 
       - name: Export production deployment related environment variables
         env:
+          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
           GITHUB_REF: release-prod
         run: npx @titicaca/gha-tools prepare-deployment
 
@@ -252,6 +253,7 @@ jobs:
 
       - name: Export production deployment related environment variables
         env:
+          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
           GITHUB_REF: release-prod
         run: npx @titicaca/gha-tools prepare-deployment
 
