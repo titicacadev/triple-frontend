@@ -156,6 +156,18 @@ const Chat = ({
     return () => fetchJob.remove('refreshChatRoom')
   }, [lastMessageId]) // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    function pauseFetchJob() {
+      document.hidden ? fetchJob.pause() : fetchJob.resume(true)
+    }
+
+    document.addEventListener('visibilitychange', pauseFetchJob)
+
+    return () => {
+      document.removeEventListener('visibilitychange', pauseFetchJob)
+    }
+  }, [fetchJob])
+
   async function fetchNewMessages(): Promise<MessageInterface[]> {
     if (lastMessageId !== null && room.id) {
       return getMessages({
