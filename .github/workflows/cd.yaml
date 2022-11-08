@@ -100,12 +100,25 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-npm-cache-
 
+      - name: Export production deployment related environment variables
+        env:
+          GITHUB_REF: release-prod
+        run: npx @titicaca/gha-tools prepare-deployment
+
       - name: Install dependencies
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
         run: npm ci
 
       - run: npm run build:ci
+
+      - name: Deploy i18n asset files
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ap-northeast-1
+        run: |
+          aws s3 cp i18n-assets s3://$AWS_S3_BUCKET/locales/${{ env.DEPLOY_VERSION }} --recursive
 
       - name: Release
         env:
@@ -237,12 +250,25 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-npm-cache-
 
+      - name: Export production deployment related environment variables
+        env:
+          GITHUB_REF: release-prod
+        run: npx @titicaca/gha-tools prepare-deployment
+
       - name: Install dependencies
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
         run: npm ci
 
       - run: npm run build:ci
+
+      - name: Deploy i18n asset files
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ap-northeast-1
+        run: |
+          aws s3 cp i18n-assets s3://$AWS_S3_BUCKET/locales/${{ env.DEPLOY_VERSION }} --recursive
 
       - name: Publish as canary
         env:
