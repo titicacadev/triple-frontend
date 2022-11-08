@@ -82,7 +82,7 @@ jobs:
           registry-url: ${{ env.NPM_REGISTRY_URL }}
 
       - name: Get release version
-        run: echo "DEPLOY_VERSION=v$(cat ./lerna.json | jq -r '.version')" >> GITHUB_ENV
+        run: echo "DEPLOY_VERSION=v$(cat ./lerna.json | jq -r '.version')" >> $GITHUB_ENV
 
       - name: Notify deploy start to slack
         env:
