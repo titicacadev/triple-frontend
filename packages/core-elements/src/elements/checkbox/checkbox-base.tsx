@@ -3,8 +3,6 @@ import styled from 'styled-components'
 import { useVisuallyHidden } from '@react-aria/visually-hidden'
 import { blue, gray200 } from '@titicaca/color-palette'
 
-import { useCheckboxGroup } from './checkbox-group-context'
-
 type CheckboxVariant = 'square' | 'round'
 
 const CheckboxBaseWrapper = styled.div`
@@ -54,29 +52,17 @@ export const CheckboxBase = ({
   value,
   onChange,
 }: CheckboxBaseProps) => {
-  const group = useCheckboxGroup()
   const { visuallyHiddenProps } = useVisuallyHidden()
-
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    if (group) {
-      const nextValue = event.target.checked
-        ? group.value.concat(event.target.value)
-        : group.value.filter((value) => event.target.value !== value)
-      group?.onChange?.(nextValue)
-    } else {
-      onChange?.(event)
-    }
-  }
 
   return (
     <CheckboxBaseWrapper>
       <CheckboxBaseInput
         {...visuallyHiddenProps}
         type="checkbox"
-        name={name ?? group?.name}
-        checked={checked ?? (value ? group?.value?.includes(value) : undefined)}
+        name={name}
+        checked={checked}
         value={value}
-        onChange={handleChange}
+        onChange={onChange}
       />
       <CheckboxBaseControl variant={variant}>
         <CheckboxBaseSvg
