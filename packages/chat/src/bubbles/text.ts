@@ -52,6 +52,7 @@ export const TextBubble = styled(Text).attrs({
     position: absolute;
     top: 5px;
     background-size: 10px 17px;
+
     ${({ my }) => css`
       background-image: url('https://assets.triple.guide/images/img-speechbubble-${my
         ? 'blue'
