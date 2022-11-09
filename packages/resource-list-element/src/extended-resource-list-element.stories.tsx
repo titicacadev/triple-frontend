@@ -4,8 +4,6 @@ import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 
 import ExtendedResourceListElement from './extended-resource-list-element'
 
-import ExtendedResourceListElement from './extended-resource-list-element'
-
 export default {
   title: 'resource-list-element / extended-resource-list-element',
   component: ExtendedResourceListElement,
