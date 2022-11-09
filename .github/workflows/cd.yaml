@@ -26,7 +26,6 @@ env:
   SLACK_GITHUB_REF: ${{ github.event.ref }} # 메시지에 ref로 표시되는 값
   SLACK_GITHUB_EVENT_NAME: ${{ github.event_name }} # 메시지에 Event로 표시되는 값
   I18N_ASSET_DIRECTORY: i18n-assets
-  I18N_ASSET_FILE_NAME: common-web.json
 
 jobs:
   wait-for-ci:
@@ -116,7 +115,7 @@ jobs:
 
       - name: Check i18n asset existence
         run: |
-          if [ -f ${{ env.I18N_ASSET_DIRECTORY }}/**/${{ env.I18N_ASSET_FILE_NAME }} ]; then
+          if [ -d ${{ env.I18N_ASSET_DIRECTORY }} ]; then
             echo "I18N_ASSET_EXISTS=true" >> $GITHUB_ENV
           fi
 
@@ -273,7 +272,7 @@ jobs:
 
       - name: Check i18n asset existence
         run: |
-          if [ -f ${{ env.I18N_ASSET_DIRECTORY }}/**/${{ env.I18N_ASSET_FILE_NAME }} ]; then
+          if [ -d ${{ env.I18N_ASSET_DIRECTORY }} ]; then
             echo "I18N_ASSET_EXISTS=true" >> $GITHUB_ENV
           fi
 
