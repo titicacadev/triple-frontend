@@ -102,11 +102,11 @@ const Chat = ({
   }, [lastMessageId, getUnreadRoom, room.id])
 
   const scrollDown = useCallback(() => {
-    if (chatRoomRef.current && chatRoomRef.current.parentElement) {
-      const height = chatRoomRef.current.getBoundingClientRect().height
-
-      chatRoomRef.current.parentElement.scrollTo(0, height)
-    }
+    window.setTimeout(() => {
+      if (chatRoomRef.current && chatRoomRef.current.parentElement) {
+        chatRoomRef.current.lastElementChild?.lastElementChild?.scrollIntoView()
+      }
+    }, 0)
   }, [])
 
   useEffect(() => {
@@ -120,10 +120,11 @@ const Chat = ({
 
   useEffect(() => {
     const chatListDiv = chatRoomRef.current
+    const hideKeyboard = () => closeKeyboard()
     if (chatListDiv && isIos) {
-      chatListDiv.addEventListener('touchmove', () => closeKeyboard())
+      chatListDiv.addEventListener('touchmove', hideKeyboard)
       return () => {
-        chatListDiv.removeEventListener('touchmove', () => closeKeyboard())
+        chatListDiv.removeEventListener('touchmove', hideKeyboard)
       }
     }
   }, [isIos])
