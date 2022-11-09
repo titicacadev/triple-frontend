@@ -21,7 +21,7 @@ export const Controlled = () => {
     <Radio
       value="a"
       checked={value === 'a'}
-      onChange={(value) => setValue(value)}
+      onChange={(event) => setValue(event.target.value)}
     >
       Option A
     </Radio>
