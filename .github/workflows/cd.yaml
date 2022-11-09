@@ -112,7 +112,14 @@ jobs:
 
       - run: npm run build:ci
 
+      - name: Check i18n asset existence
+        run: |
+          if [ -f i18n-assets/**/common-web.json ]; then
+            echo "I18N_ASSET_EXISTS=true" >> $GITHUB_ENV
+          fi
+
       - name: Deploy i18n asset files
+        if: env.I18N_ASSET_EXISTS == 'true'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_ASSETS_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_ASSETS_AWS_SECRET_ACCESS_KEY }}
@@ -262,7 +269,14 @@ jobs:
 
       - run: npm run build:ci
 
+      - name: Check i18n asset existence
+        run: |
+          if [ -f i18n-assets/**/common-web.json ]; then
+            echo "I18N_ASSET_EXISTS=true" >> $GITHUB_ENV
+          fi
+
       - name: Deploy i18n asset files
+        if: env.I18N_ASSET_EXISTS == 'true'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_ASSETS_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_ASSETS_AWS_SECRET_ACCESS_KEY }}
