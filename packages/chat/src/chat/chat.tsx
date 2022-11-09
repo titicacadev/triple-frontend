@@ -32,7 +32,7 @@ import { useChat } from './chat-context'
 const FETCH_INTERVAL_SECS = 5
 const MINIMUM_INTERSECTING_TIME = 3000
 
-export interface ChatProps {
+export interface ChatProps extends CSSProps {
   displayTarget: UserType
   userInfo: UserInfoInterface
   postMessage?: PostMessageType
@@ -62,7 +62,7 @@ const Chat = ({
   notifyNewMessage,
   showFailToast,
   css,
-}: ChatProps & CSSProps) => {
+}: ChatProps) => {
   const chatRoomRef = useRef<HTMLDivElement>(null)
 
   const { setPostMessage } = useChat()
