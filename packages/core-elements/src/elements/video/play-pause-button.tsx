@@ -1,9 +1,4 @@
-import {
-  useCallback,
-  RefObject,
-  SyntheticEvent,
-  MouseEventHandler,
-} from 'react'
+import { useCallback, RefObject, SyntheticEvent } from 'react'
 import styled from 'styled-components'
 
 const PLAY_BUTTON_IMAGE_URL =
