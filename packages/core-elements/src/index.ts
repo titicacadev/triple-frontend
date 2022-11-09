@@ -8,7 +8,6 @@ export {
   default as ImageSource,
   ImageSourceType,
 } from './elements/image-source'
-export { default as GenderSelector } from './elements/gender-selector'
 export { default as Section, SectionProps } from './elements/section'
 export { default as Text, TextProps } from './elements/text'
 export * from './elements/typography'
@@ -51,3 +50,4 @@ export * from './css'
 export * from './elements/radio'
 export * from './elements/portal'
 export * from './elements/numeric-spinner'
+export * from './elements/gender-selector'
