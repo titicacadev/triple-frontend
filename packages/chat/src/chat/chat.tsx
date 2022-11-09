@@ -109,8 +109,6 @@ const Chat = ({
     }, 0)
   }, [])
 
-  // eslint-disable-next-line no-console
-  console.log(css)
   useEffect(() => {
     if (scrollY && chatRoomRef.current && chatRoomRef.current.parentElement) {
       chatRoomRef.current.parentElement.scrollTo(
