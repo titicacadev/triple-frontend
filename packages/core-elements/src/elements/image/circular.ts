@@ -9,7 +9,7 @@ const ROUND_SIZES: Partial<Record<GlobalSizes, number>> = {
   medium: 60,
 }
 
-const ImageCircular = styled.img<{
+export const ImageCircular = styled.img<{
   size?: GlobalSizes
   floated?: CSS.Property.Float
   width?: number
@@ -26,4 +26,3 @@ const ImageCircular = styled.img<{
 
   float: ${({ floated }) => floated || 'none'};
 `
-export default ImageCircular

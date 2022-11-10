@@ -2,8 +2,7 @@ import { useState, ComponentType, FC } from 'react'
 import styled, { css } from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 
-import Container from '../elements/container'
-import Text from '../elements/text'
+import { Container, Text } from '../elements'
 
 const MessageContainer = styled(Container)`
   position: relative;

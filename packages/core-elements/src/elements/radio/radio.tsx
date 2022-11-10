@@ -1,7 +1,7 @@
 import { ChangeEventHandler, PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
-import Text from '../text'
+import { Text } from '../text'
 
 import { RadioBase, RadioBaseProps } from './radio-base'
 import { useRadioGroup } from './radio-group-context'

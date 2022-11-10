@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 
 import { GlobalSizes, MarginPadding } from '../../commons'
 import { paddingMixin } from '../../mixins'
-import Text from '../text'
+import { Text } from '../text'
 
 const Frame = styled.div<{ borderless?: boolean; padding?: MarginPadding }>`
   display: flex;
