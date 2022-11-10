@@ -1,7 +1,7 @@
 import { ChangeEventHandler, PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
-import Text from '../text'
+import { Text } from '../text'
 
 import { CheckboxBase, CheckboxBaseProps } from './checkbox-base'
 import { useCheckboxGroup } from './checkbox-group-context'

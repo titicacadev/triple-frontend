@@ -55,7 +55,7 @@ interface Props {
   initialControlsHidden?: boolean
 }
 
-const VideoElement = forwardRef<HTMLVideoElement, Props>(
+export const VideoElement = forwardRef<HTMLVideoElement, Props>(
   (
     {
       src,
@@ -107,5 +107,3 @@ const VideoElement = forwardRef<HTMLVideoElement, Props>(
 )
 
 VideoElement.displayName = 'VideoElement'
-
-export default VideoElement
