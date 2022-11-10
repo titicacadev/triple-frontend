@@ -113,20 +113,15 @@ jobs:
 
       - run: npm run build:ci
 
-      - name: Check i18n asset existence
-        run: |
-          if [ -d ${{ env.I18N_ASSET_DIRECTORY }} ]; then
-            echo "I18N_ASSET_EXISTS=true" >> $GITHUB_ENV
-          fi
-
       - name: Deploy i18n asset files
-        if: env.I18N_ASSET_EXISTS == 'true'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_ASSETS_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_ASSETS_AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ap-northeast-1
         run: |
-          aws s3 cp ${{ env.I18N_ASSET_DIRECTORY }} s3://$AWS_S3_BUCKET/locales/${{ env.DEPLOY_VERSION }} --recursive
+          if [ -d ${{ env.I18N_ASSET_DIRECTORY }} ]; then
+            aws s3 cp ${{ env.I18N_ASSET_DIRECTORY }} s3://$AWS_S3_BUCKET/locales/${{ env.DEPLOY_VERSION }} --recursive
+          fi
 
       - name: Release
         env:
@@ -270,20 +265,15 @@ jobs:
 
       - run: npm run build:ci
 
-      - name: Check i18n asset existence
-        run: |
-          if [ -d ${{ env.I18N_ASSET_DIRECTORY }} ]; then
-            echo "I18N_ASSET_EXISTS=true" >> $GITHUB_ENV
-          fi
-
       - name: Deploy i18n asset files
-        if: env.I18N_ASSET_EXISTS == 'true'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_ASSETS_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_ASSETS_AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ap-northeast-1
         run: |
-          aws s3 cp ${{ env.I18N_ASSET_DIRECTORY }} s3://$AWS_S3_BUCKET/locales/${{ env.DEPLOY_VERSION }} --recursive
+          if [ -d ${{ env.I18N_ASSET_DIRECTORY }} ]; then
+            aws s3 cp ${{ env.I18N_ASSET_DIRECTORY }} s3://$AWS_S3_BUCKET/locales/${{ env.DEPLOY_VERSION }} --recursive
+          fi
 
       - name: Publish as canary
         env:
