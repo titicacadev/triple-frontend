@@ -22,5 +22,5 @@ export const Primary: ComponentStory<typeof BubbleInfo> = (args) => {
 Primary.storyName = '기본'
 Primary.args = {
   unreadCount: 1,
-  date: new Date().toString(),
+  date: new Date(2022, 10, 1).toString(),
 }
