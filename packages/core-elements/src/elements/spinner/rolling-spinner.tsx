@@ -3,7 +3,7 @@ import { useMemo, PropsWithChildren } from 'react'
 import styled, { keyframes } from 'styled-components'
 
 import { layeringMixin, LayeringMixinProps } from '../../mixins'
-import Container from '../container'
+import { Container } from '../container'
 
 const marquee = keyframes`
   0% {
@@ -119,7 +119,7 @@ const Image = styled.img<{ size: number }>`
   `}
 `
 
-export default function RollingSpinner({
+export function RollingSpinner({
   imageUrls,
   size = 36,
   duration = 50,

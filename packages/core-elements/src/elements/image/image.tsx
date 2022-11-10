@@ -1,17 +1,17 @@
 import { PropsWithChildren } from 'react'
 
 import { ImageStateContextProvider } from './context'
-import ImageImg from './img'
-import ImageSourceUrl from './source-url'
-import ImageOverlay from './overlay'
-import ImageLinkIndicator from './link-indicator'
-import ImageFixedRatioFrame from './fixed-ratio-frame'
-import ImageFixedDimensionsFrame from './fixed-dimensions-frame'
-import ImageCircular from './circular'
-import ImagePlaceholder from './placeholder'
-import ImageOptimizedImg from './optimized-img'
+import { ImageImg } from './img'
+import { ImageSourceUrl } from './source-url'
+import { ImageOverlay } from './overlay'
+import { ImageLinkIndicator } from './link-indicator'
+import { ImageFixedRatioFrame } from './fixed-ratio-frame'
+import { ImageFixedDimensionsFrame } from './fixed-dimensions-frame'
+import { ImageCircular } from './circular'
+import { ImagePlaceholder } from './placeholder'
+import { ImageOptimizedImg } from './optimized-img'
 
-function Image({
+export function Image({
   borderRadius,
   children,
 }: PropsWithChildren<{
@@ -36,5 +36,3 @@ Image.Overlay = ImageOverlay
 Image.LinkIndicator = ImageLinkIndicator
 
 Image.Circular = ImageCircular
-
-export default Image
