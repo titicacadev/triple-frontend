@@ -120,7 +120,7 @@ jobs:
           AWS_REGION: ap-northeast-1
         run: |
           if [ -d ${{ env.I18N_ASSET_DIRECTORY }} ]; then
-            aws s3 cp ${{ env.I18N_ASSET_DIRECTORY }} s3://$AWS_S3_BUCKET/locales/${{ env.DEPLOY_VERSION }} --recursive
+            aws s3 sync ${{ env.I18N_ASSET_DIRECTORY }} s3://$AWS_S3_BUCKET/locales/${{ env.DEPLOY_VERSION }} --delete
           fi
 
       - name: Release
@@ -272,7 +272,7 @@ jobs:
           AWS_REGION: ap-northeast-1
         run: |
           if [ -d ${{ env.I18N_ASSET_DIRECTORY }} ]; then
-            aws s3 cp ${{ env.I18N_ASSET_DIRECTORY }} s3://$AWS_S3_BUCKET/locales/${{ env.DEPLOY_VERSION }} --recursive
+            aws s3 sync ${{ env.I18N_ASSET_DIRECTORY }} s3://$AWS_S3_BUCKET/locales/${{ env.DEPLOY_VERSION }} --delete
           fi
 
       - name: Publish as canary
