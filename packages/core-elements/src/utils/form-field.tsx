@@ -8,7 +8,7 @@ const MessageContainer = styled(Container)`
   position: relative;
 `
 
-const Label = styled(Text)<{
+const Label = styled((props) => <Text {...props} />)<{
   focused?: boolean
   error?: boolean
   absolute?: boolean
