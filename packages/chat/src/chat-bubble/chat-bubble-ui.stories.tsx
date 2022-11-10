@@ -45,7 +45,7 @@ Text.args = {
     message: '안녕하세요\nhttps://www.google.com',
   },
   unreadCount: 1,
-  createdAt: new Date().toISOString(),
+  createdAt: new Date(2022, 10, 1).toISOString(),
   profileName: '테스트계정',
 }
 
@@ -56,7 +56,7 @@ Image.args = {
   type: 'received',
   payload: { type: MessageType.IMAGES, images: SAMPLE_IMAGES },
   unreadCount: 1,
-  createdAt: new Date().toISOString(),
+  createdAt: new Date(2022, 10, 1).toISOString(),
   profileName: '테스트계정',
 }
 
@@ -81,7 +81,7 @@ Rich.args = {
     ],
   },
   unreadCount: 1,
-  createdAt: new Date().toISOString(),
+  createdAt: new Date(2022, 10, 1).toISOString(),
   profileName: '테스트계정',
 }
 
