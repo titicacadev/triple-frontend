@@ -32,7 +32,7 @@ const Img = styled.img<{
   z-index: 0;
 `
 
-export default function ImageImg(
+export function ImageImg(
   props: Omit<
     Parameters<typeof Img>[0],
     'borderRadius' | 'dimmed' | 'fitHeight'

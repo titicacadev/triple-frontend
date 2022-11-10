@@ -28,7 +28,7 @@ const VideoContainer = styled.div<{
     )}
 `
 
-export default function VideoFrame({
+export function VideoFrame({
   borderRadius,
   children,
   frame,

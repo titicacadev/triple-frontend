@@ -41,7 +41,7 @@ const OverlayContainer = styled.div<
   ${layeringMixin(0)}
 `
 
-export default function ImageOverlay({
+export function ImageOverlay({
   overlayType = 'gradient',
   padding,
   zTier,
