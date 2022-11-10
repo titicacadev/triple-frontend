@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import Icon from '../icon'
+import { Icon } from '../icon'
 
 const IconContainer = styled.div`
   position: absolute;
@@ -10,7 +10,7 @@ const IconContainer = styled.div`
   height: 20px;
 `
 
-export default function ImageLinkIndicator() {
+export function ImageLinkIndicator() {
   return (
     <IconContainer>
       <Icon size="medium" name="arrowRight" />

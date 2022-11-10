@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 
-import Container from '../container'
+import { Container } from '../container'
 
 import { useAccordion } from './accordion-context'
 

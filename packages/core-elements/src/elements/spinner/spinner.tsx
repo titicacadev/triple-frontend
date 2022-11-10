@@ -42,7 +42,7 @@ const Icon = styled.div`
   animation: ${loadingAnimation} 1s steps(30) infinite;
 `
 
-export default function Spinner({
+export function Spinner({
   full,
   children,
   zTier,

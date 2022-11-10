@@ -37,7 +37,7 @@ const FixedDimensionsFrameContainer = styled.div<{
   ${borderRadiusMixin}
 `
 
-export default function ImageFixedDimensionsFrame({
+export function ImageFixedDimensionsFrame({
   size,
   width,
   height,

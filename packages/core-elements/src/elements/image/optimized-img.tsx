@@ -40,7 +40,7 @@ const Img = styled.img<{
   z-index: 0;
 `
 
-export default function ImageOptimizedImg({
+export function ImageOptimizedImg({
   mediaUrlBase = 'https://media.triple.guide',
   cloudinaryBucket = 'triple-cms',
   cloudinaryId,

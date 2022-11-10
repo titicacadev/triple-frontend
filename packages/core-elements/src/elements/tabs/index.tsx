@@ -27,10 +27,7 @@ type TabsProps<Value> =
         labelPadding?: MarginPadding
       })
 
-export default function Tabs<Value>({
-  type = 'basic',
-  ...props
-}: TabsProps<Value>) {
+export function Tabs<Value>({ type = 'basic', ...props }: TabsProps<Value>) {
   const Component = TAB_TYPE[type]
 
   return <Component {...props} />

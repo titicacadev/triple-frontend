@@ -2,8 +2,8 @@ import { forwardRef } from 'react'
 
 import { FrameRatioAndSizes } from '../../commons'
 
-import VideoFrame from './video-frame'
-import VideoElement from './video-element'
+import { VideoFrame } from './video-frame'
+import { VideoElement } from './video-element'
 
 interface Props {
   src?: string
@@ -22,7 +22,7 @@ interface Props {
   removeFrame?: boolean
 }
 
-const Video = forwardRef<HTMLVideoElement, Props>(
+export const Video = forwardRef<HTMLVideoElement, Props>(
   (
     {
       src,
@@ -66,5 +66,3 @@ const Video = forwardRef<HTMLVideoElement, Props>(
 )
 
 Video.displayName = 'Video'
-
-export default Video

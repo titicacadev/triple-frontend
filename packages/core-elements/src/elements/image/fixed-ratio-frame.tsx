@@ -47,7 +47,7 @@ const FixedRatioFrameContainer = styled.div<{
   ${marginMixin}
 `
 
-export default function ImageFixedRatioFrame({
+export function ImageFixedRatioFrame({
   frame = 'small',
   floated,
   margin,
