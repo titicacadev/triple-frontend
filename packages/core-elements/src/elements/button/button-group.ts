@@ -1,7 +1,7 @@
 import { Children } from 'react'
 import styled, { css } from 'styled-components'
 
-import Container from '../container'
+import { Container } from '../container'
 
 import ButtonBase from './button-base'
 

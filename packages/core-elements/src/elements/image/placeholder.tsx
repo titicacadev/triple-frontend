@@ -30,7 +30,7 @@ export const Placeholder = styled.div<{
       : ''}
 `
 
-export default function ImagePlaceholder({ src }: { src?: string }) {
+export function ImagePlaceholder({ src }: { src?: string }) {
   const absolute = useContentAbsolute()
 
   return <Placeholder src={src} absolute={absolute} />

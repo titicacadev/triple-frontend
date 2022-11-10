@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
 import { CheckboxBase, CheckboxBaseProps } from '../checkbox'
-import Text from '../text'
+import { Text } from '../text'
 
 const ConfirmSelectorLabel = styled.label`
   display: flex;

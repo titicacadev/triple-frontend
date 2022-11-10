@@ -176,7 +176,7 @@ export interface ButtonProps extends BasicButtonProp, ButtonBaseProp {
   as?: keyof ButtonStyleAnchorProps
 }
 
-class Button extends PureComponent<ButtonProps> {
+export class Button extends PureComponent<ButtonProps> {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   public static Container = ButtonContainer
 
@@ -246,5 +246,3 @@ class Button extends PureComponent<ButtonProps> {
     )
   }
 }
-
-export default Button
