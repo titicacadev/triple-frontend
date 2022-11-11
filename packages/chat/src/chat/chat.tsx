@@ -10,7 +10,8 @@ import React, {
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 import { closeKeyboard } from '@titicaca/triple-web-to-native-interfaces'
-import { Container, CSSProps } from '@titicaca/core-elements'
+import { Container } from '@titicaca/core-elements'
+import { CSSProp } from 'styled-components'
 
 import {
   HasUnreadOfRoomInterface,
@@ -32,7 +33,7 @@ import { useChat } from './chat-context'
 const FETCH_INTERVAL_SECS = 5
 const MINIMUM_INTERSECTING_TIME = 3000
 
-export interface ChatProps extends CSSProps {
+export interface ChatProps {
   displayTarget: UserType
   userInfo: UserInfoInterface
   postMessage?: PostMessageType
@@ -49,6 +50,7 @@ export interface ChatProps extends CSSProps {
   room: RoomInterface
   notifyNewMessage?: (lastMessage: MessageInterface) => void
   showFailToast?: (message: string) => void
+  cssProp?: CSSProp
 }
 
 const Chat = ({
@@ -61,7 +63,7 @@ const Chat = ({
   getUnreadRoom,
   notifyNewMessage,
   showFailToast,
-  css,
+  cssProp,
 }: ChatProps) => {
   const chatRoomRef = useRef<HTMLDivElement>(null)
 
@@ -292,7 +294,7 @@ const Chat = ({
       <IntersectionObserver onChange={onChangeScroll}>
         <HiddenElement />
       </IntersectionObserver>
-      <Container css={css} ref={chatRoomRef}>
+      <Container css={cssProp} ref={chatRoomRef}>
         <ul>
           {messages.map((message: MessageInterface, index) => (
             <li key={index}>
