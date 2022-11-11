@@ -1,12 +1,57 @@
 import { PropsWithChildren } from 'react'
 
-import { RadioGroupContext } from './radio-group-context'
+import {
+  FormField,
+  FormFieldError,
+  FormFieldHelp,
+  FormFieldLabel,
+  useFormField,
+} from '../form-field'
 
-export interface RadioGroupProps extends PropsWithChildren {
-  name?: string
-  defaultValue?: string
-  value?: string
-  onChange?: (value: string) => void
+import {
+  RadioGroupContext,
+  RadioGroupContextValue,
+} from './radio-group-context'
+
+interface RadioGroupBaseProps extends PropsWithChildren {
+  hasLabel: boolean
+  hasHelp: boolean
+  isError: boolean
+  isRequired: boolean
+}
+
+const RadioGroupBase = ({
+  children,
+  hasLabel,
+  hasHelp,
+  isError,
+  isRequired,
+}: RadioGroupBaseProps) => {
+  const formField = useFormField()
+
+  return (
+    <div
+      role="radiogroup"
+      aria-labelledby={hasLabel ? formField?.labelId : undefined}
+      aria-describedby={
+        hasHelp && !isError ? formField?.descriptionId : undefined
+      }
+      aria-errormessage={isError ? formField?.errorId : undefined}
+      aria-invalid={isError}
+      aria-required={isRequired}
+    >
+      {children}
+    </div>
+  )
+}
+
+export interface RadioGroupProps
+  extends PropsWithChildren,
+    RadioGroupContextValue {
+  required?: boolean
+  label?: string
+  error?: string
+  help?: string
 }
 
 export const RadioGroup = ({
@@ -14,6 +59,10 @@ export const RadioGroup = ({
   name,
   defaultValue,
   value,
+  required = false,
+  label,
+  error,
+  help,
   onChange,
 }: RadioGroupProps) => {
   return (
@@ -25,7 +74,22 @@ export const RadioGroup = ({
         onChange,
       }}
     >
-      <div role="radiogroup">{children}</div>
+      <FormField>
+        {label ? <FormFieldLabel>{label}</FormFieldLabel> : null}
+        <RadioGroupBase
+          hasLabel={!!label}
+          hasHelp={!!help}
+          isError={!!error}
+          isRequired={required}
+        >
+          {children}
+        </RadioGroupBase>
+        {error ? (
+          <FormFieldError>{error}</FormFieldError>
+        ) : help ? (
+          <FormFieldHelp>{help}</FormFieldHelp>
+        ) : null}
+      </FormField>
     </RadioGroupContext.Provider>
   )
 }
