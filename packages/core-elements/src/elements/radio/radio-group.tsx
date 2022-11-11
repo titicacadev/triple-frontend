@@ -57,7 +57,6 @@ export interface RadioGroupProps
 export const RadioGroup = ({
   children,
   name,
-  defaultValue,
   value,
   required = false,
   label,
@@ -69,7 +68,6 @@ export const RadioGroup = ({
     <RadioGroupContext.Provider
       value={{
         name,
-        defaultValue,
         value,
         onChange,
       }}

@@ -2,7 +2,6 @@ import { createContext, useContext } from 'react'
 
 export interface RadioGroupContextValue {
   name?: string
-  defaultValue?: string
   value?: string
   onChange?: (value: string) => void
 }
