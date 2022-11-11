@@ -55,7 +55,6 @@ export interface CheckboxGroupProps
 export const CheckboxGroup = ({
   children,
   name,
-  defaultValue = [],
   value = [],
   required,
   label,
@@ -64,9 +63,7 @@ export const CheckboxGroup = ({
   onChange,
 }: CheckboxGroupProps) => {
   return (
-    <CheckboxGroupContext.Provider
-      value={{ name, defaultValue, value, onChange }}
-    >
+    <CheckboxGroupContext.Provider value={{ name, value, onChange }}>
       <FormField>
         {label ? (
           <FormFieldLabel isError={!!error} isRequired={required}>
