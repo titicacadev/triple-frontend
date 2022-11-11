@@ -1,20 +1,51 @@
+import { getColor } from '@titicaca/color-palette'
 import { PropsWithChildren } from 'react'
+import styled, { css } from 'styled-components'
 
 import { Container } from '../container'
 import { Text } from '../text'
 
 import { useFormField } from './form-field-context'
 
-export type Props = PropsWithChildren
+const Label = styled(Text)<{ isError: boolean; isRequired: boolean }>`
+  ${({ isError }) =>
+    isError &&
+    css`
+      color: rgba(${getColor('red')});
+    `}
 
-export const FormFieldLabel = ({ children }: Props) => {
+  ${({ isRequired }) =>
+    isRequired &&
+    css`
+      &::after {
+        content: ${isRequired ? "'*'" : undefined};
+        display: inline;
+        color: rgba(${getColor('mediumRed')});
+        font-weight: normal;
+        margin-left: 4px;
+      }
+    `}
+`
+
+export interface Props extends PropsWithChildren {
+  isError?: boolean
+  isRequired?: boolean
+}
+
+export const FormFieldLabel = ({ children, isError, isRequired }: Props) => {
   const formField = useFormField()
 
   return (
     <Container>
-      <Text as="label" size="tiny" htmlFor={formField?.inputId}>
+      <Label
+        as="label"
+        size="tiny"
+        htmlFor={formField?.inputId}
+        isError={isError}
+        isRequired={isRequired}
+      >
         {children}
-      </Text>
+      </Label>
     </Container>
   )
 }
