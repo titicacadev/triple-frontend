@@ -75,7 +75,11 @@ export const RadioGroup = ({
       }}
     >
       <FormField>
-        {label ? <FormFieldLabel>{label}</FormFieldLabel> : null}
+        {label ? (
+          <FormFieldLabel isError={!!error} isRequired={required}>
+            {label}
+          </FormFieldLabel>
+        ) : null}
         <RadioGroupBase
           hasLabel={!!label}
           hasHelp={!!help}
