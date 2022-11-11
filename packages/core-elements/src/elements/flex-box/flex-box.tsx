@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Property } from 'csstype'
-import { DOMAttributes } from 'react'
+import { DOMAttributes, HTMLAttributes } from 'react'
 
 import { Container, ContainerProps } from '../container'
 
@@ -16,7 +16,10 @@ export interface FlexBoxProps extends Omit<FlexItemProps, 'flex'> {
   rowGap?: Property.RowGap
 }
 
-export interface FlexItemProps extends ContainerProps, DOMAttributes<Element> {
+export interface FlexItemProps
+  extends ContainerProps,
+    DOMAttributes<Element>,
+    HTMLAttributes<Element> {
   flex?: Property.Flex
   flexGrow?: Property.FlexGrow
   flexShrink?: Property.FlexShrink
