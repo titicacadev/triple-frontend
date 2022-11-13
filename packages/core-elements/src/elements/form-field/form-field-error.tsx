@@ -12,7 +12,7 @@ export const FormFieldError = ({ children }: FormFieldErrorProps) => {
 
   return (
     <Container css={{ padding: '6px 0 0' }}>
-      <Text color="red" size="tiny" id={formField?.errorId}>
+      <Text color="red" size="tiny" id={formField.errorId}>
         {children}
       </Text>
     </Container>
