@@ -16,7 +16,6 @@ import {
 interface CheckboxGroupBaseProps extends PropsWithChildren {
   hasLabel: boolean
   hasHelp: boolean
-  isError: boolean
 }
 
 const CheckboxGroupBase = ({
@@ -61,13 +60,9 @@ export const CheckboxGroup = ({
 }: CheckboxGroupProps) => {
   return (
     <CheckboxGroupContext.Provider value={{ name, value, onChange }}>
-      <FormField>
+      <FormField isError={!!error}>
         {label ? <FormFieldLabel>{label}</FormFieldLabel> : null}
-        <CheckboxGroupBase
-          hasLabel={!!label}
-          hasHelp={!!label}
-          isError={!!error}
-        >
+        <CheckboxGroupBase hasLabel={!!label} hasHelp={!!label}>
           {children}
         </CheckboxGroupBase>
         {error ? (
