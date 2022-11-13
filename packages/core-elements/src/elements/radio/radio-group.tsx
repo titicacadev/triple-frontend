@@ -16,16 +16,12 @@ import {
 interface RadioGroupBaseProps extends PropsWithChildren {
   hasLabel: boolean
   hasHelp: boolean
-  isError: boolean
-  isRequired: boolean
 }
 
 const RadioGroupBase = ({
   children,
   hasLabel,
   hasHelp,
-  isError,
-  isRequired,
 }: RadioGroupBaseProps) => {
   const formField = useFormField()
 
@@ -34,11 +30,11 @@ const RadioGroupBase = ({
       role="radiogroup"
       aria-labelledby={hasLabel ? formField?.labelId : undefined}
       aria-describedby={
-        hasHelp && !isError ? formField?.descriptionId : undefined
+        hasHelp && !formField.isError ? formField?.descriptionId : undefined
       }
-      aria-errormessage={isError ? formField?.errorId : undefined}
-      aria-invalid={isError}
-      aria-required={isRequired}
+      aria-errormessage={formField.isError ? formField?.errorId : undefined}
+      aria-invalid={formField.isError}
+      aria-required={formField.isRequired}
     >
       {children}
     </div>
@@ -72,14 +68,9 @@ export const RadioGroup = ({
         onChange,
       }}
     >
-      <FormField>
+      <FormField isError={!!error} isRequired={required}>
         {label ? <FormFieldLabel>{label}</FormFieldLabel> : null}
-        <RadioGroupBase
-          hasLabel={!!label}
-          hasHelp={!!help}
-          isError={!!error}
-          isRequired={required}
-        >
+        <RadioGroupBase hasLabel={!!label} hasHelp={!!help}>
           {children}
         </RadioGroupBase>
         {error ? (
