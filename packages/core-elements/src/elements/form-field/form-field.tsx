@@ -2,9 +2,18 @@ import { PropsWithChildren, useId } from 'react'
 
 import { FormFieldContext } from './form-field-context'
 
-export type FormFieldProps = PropsWithChildren
+export interface FormFieldProps extends PropsWithChildren {
+  isError?: boolean
+  isDisabled?: boolean
+  isRequired?: boolean
+}
 
-export const FormField = ({ children }: FormFieldProps) => {
+export const FormField = ({
+  children,
+  isError = false,
+  isDisabled = false,
+  isRequired = false,
+}: FormFieldProps) => {
   const inputId = useId()
   const labelId = useId()
   const descriptionId = useId()
@@ -17,6 +26,9 @@ export const FormField = ({ children }: FormFieldProps) => {
         labelId,
         descriptionId,
         errorId,
+        isError,
+        isDisabled,
+        isRequired,
       }}
     >
       {children}
