@@ -31,8 +31,8 @@ export const Default = () => {
 
 export const Required = () => {
   return (
-    <FormField>
-      <FormFieldLabel isRequired>Label</FormFieldLabel>
+    <FormField isRequired>
+      <FormFieldLabel>Label</FormFieldLabel>
       <FormFieldContext.Consumer>
         {(formField) => (
           <input
@@ -50,8 +50,8 @@ export const Required = () => {
 
 export const Error = () => {
   return (
-    <FormField>
-      <FormFieldLabel isError>Label</FormFieldLabel>
+    <FormField isError>
+      <FormFieldLabel>Label</FormFieldLabel>
       <FormFieldContext.Consumer>
         {(formField) => (
           <input

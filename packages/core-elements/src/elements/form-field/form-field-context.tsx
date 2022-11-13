@@ -5,6 +5,9 @@ export interface FormFieldContextValue {
   labelId: string
   descriptionId: string
   errorId: string
+  isError: boolean
+  isDisabled: boolean
+  isRequired: boolean
 }
 
 export const FormFieldContext = createContext<
@@ -13,5 +16,8 @@ export const FormFieldContext = createContext<
 
 export function useFormField() {
   const context = useContext(FormFieldContext)
+  if (!context) {
+    throw new Error('FormFieldContext가 없습니다.')
+  }
   return context
 }
