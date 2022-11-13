@@ -16,7 +16,7 @@ export const FormFieldHelp = ({ children }: FormFieldHelpProps) => {
         padding: '6px 0 0',
       }}
     >
-      <Text alpha={0.5} size="tiny" id={formField?.descriptionId}>
+      <Text alpha={0.5} size="tiny" id={formField.descriptionId}>
         {children}
       </Text>
     </Container>
