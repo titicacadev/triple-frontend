@@ -27,12 +27,9 @@ const Label = styled(Text)<{ isError: boolean; isRequired: boolean }>`
     `}
 `
 
-export interface Props extends PropsWithChildren {
-  isError?: boolean
-  isRequired?: boolean
-}
+export type Props = PropsWithChildren
 
-export const FormFieldLabel = ({ children, isError, isRequired }: Props) => {
+export const FormFieldLabel = ({ children }: Props) => {
   const formField = useFormField()
 
   return (
@@ -40,9 +37,9 @@ export const FormFieldLabel = ({ children, isError, isRequired }: Props) => {
       <Label
         as="label"
         size="tiny"
-        htmlFor={formField?.inputId}
-        isError={isError}
-        isRequired={isRequired}
+        htmlFor={formField.inputId}
+        isError={formField.isError}
+        isRequired={formField.isRequired}
       >
         {children}
       </Label>

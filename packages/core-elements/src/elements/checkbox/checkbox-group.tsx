@@ -23,19 +23,18 @@ const CheckboxGroupBase = ({
   children,
   hasLabel,
   hasHelp,
-  isError,
 }: CheckboxGroupBaseProps) => {
   const formField = useFormField()
 
   return (
     <div
       role="group"
-      aria-labelledby={hasLabel ? formField?.labelId : undefined}
+      aria-labelledby={hasLabel ? formField.labelId : undefined}
       aria-describedby={
         hasHelp
-          ? formField?.descriptionId
-          : isError
-          ? formField?.errorId
+          ? formField.descriptionId
+          : formField.isError
+          ? formField.errorId
           : undefined
       }
     >
@@ -46,7 +45,6 @@ const CheckboxGroupBase = ({
 export interface CheckboxGroupProps
   extends PropsWithChildren,
     CheckboxGroupContextValue {
-  required?: boolean
   label?: string
   error?: string
   help?: string
@@ -56,7 +54,6 @@ export const CheckboxGroup = ({
   children,
   name,
   value = [],
-  required,
   label,
   error,
   help,
@@ -65,11 +62,7 @@ export const CheckboxGroup = ({
   return (
     <CheckboxGroupContext.Provider value={{ name, value, onChange }}>
       <FormField>
-        {label ? (
-          <FormFieldLabel isError={!!error} isRequired={required}>
-            {label}
-          </FormFieldLabel>
-        ) : null}
+        {label ? <FormFieldLabel>{label}</FormFieldLabel> : null}
         <CheckboxGroupBase
           hasLabel={!!label}
           hasHelp={!!label}
