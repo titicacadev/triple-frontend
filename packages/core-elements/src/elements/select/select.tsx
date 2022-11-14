@@ -84,7 +84,7 @@ export const Select = <Value extends string | number | readonly string[]>({
       value={{
         ...formFieldState,
         isDisabled: disabled,
-        isError: !!error,
+        isError,
         isRequired: required,
       }}
     >
