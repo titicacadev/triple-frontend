@@ -119,9 +119,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_ASSETS_AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ap-northeast-1
         run: |
-          if [ -d ${{ env.I18N_ASSET_DIRECTORY }} ]; then
-            aws s3 sync ${{ env.I18N_ASSET_DIRECTORY }} s3://$AWS_S3_BUCKET/locales/${{ env.DEPLOY_VERSION }} --delete
-          fi
+          aws s3 sync ${{ env.I18N_ASSET_DIRECTORY }} s3://$AWS_S3_BUCKET/locales/${{ env.DEPLOY_VERSION }} --delete
 
       - name: Release
         env:
@@ -271,9 +269,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_ASSETS_AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ap-northeast-1
         run: |
-          if [ -d ${{ env.I18N_ASSET_DIRECTORY }} ]; then
-            aws s3 sync ${{ env.I18N_ASSET_DIRECTORY }} s3://$AWS_S3_BUCKET/locales/${{ env.DEPLOY_VERSION }} --delete
-          fi
+          aws s3 sync ${{ env.I18N_ASSET_DIRECTORY }} s3://$AWS_S3_BUCKET/locales/${{ env.DEPLOY_VERSION }} --delete
 
       - name: Publish as canary
         env:
