@@ -1,131 +1,146 @@
-import { SelectHTMLAttributes, SyntheticEvent, FocusEvent } from 'react'
-import styled, { css } from 'styled-components'
+import { ChangeEventHandler } from 'react'
+import styled from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 
-import { withField } from '../../utils/form-field'
+import {
+  FormField,
+  FormFieldError,
+  FormFieldHelp,
+  FormFieldLabel,
+  useFormField,
+} from '../form-field'
+import { Container } from '../container'
 
-interface SelectOption<Value extends string | number | readonly string[]> {
+const BaseSelect = styled.select`
+  appearance: none;
+  position: relative;
+  width: 100%;
+  height: 48px;
+  text-indent: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid rgba(${getColor('gray100')});
+  border-radius: 2px;
+  color: rgba(${getColor('gray')});
+
+  &:disabled {
+    background-color: rgba(235, 235, 235, 1);
+    color: rgba(${getColor('gray300')});
+  }
+
+  &[aria-invalid='true'] {
+    border-color: rgba(${getColor('red')});
+    color: rgba(${getColor('red')});
+  }
+`
+
+const Svg = styled.svg`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+`
+
+export interface SelectOption<
+  Value extends string | number | readonly string[],
+> {
   label: string
   value: Value
 }
 
-interface SelectProps<Value extends string | number | readonly string[]>
-  extends SelectHTMLAttributes<HTMLSelectElement> {
-  id?: string
+interface SelectBaseProps<Value extends string | number | readonly string[]> {
+  hasHelp: boolean
+  name?: string
   value?: Value
   placeholder?: string
   options?: SelectOption<Value>[]
-  focused?: string
-  error?: string | boolean
-  onBlur?: (e: FocusEvent<unknown>) => unknown
-  onChange?: (e?: SyntheticEvent, value?: Value) => unknown
+  onChange?: ChangeEventHandler<HTMLSelectElement>
 }
 
-const SelectFrame = styled.div<{
-  focused?: string
-  error?: string | boolean
-  disabled?: boolean
-}>`
-  border: 1px solid rgba(${getColor('gray100')});
-  border-radius: 2px;
-  position: relative;
-  height: 48px;
-
-  ${({ focused }) =>
-    focused &&
-    css`
-      border-color: rgba(${getColor('blue')});
-    `};
-
-  ${({ error }) =>
-    error &&
-    css`
-      border-color: rgba(${getColor('red')});
-    `};
-
-  ${({ disabled }) =>
-    disabled &&
-    css`
-      background-color: rgba(235, 235, 235, 1);
-    `};
-`
-
-const BaseSelect = styled.select<{
-  selected?: boolean
-  error?: string | boolean
-}>`
-  appearance: none;
-  width: 100%;
-  height: 100%;
-  text-indent: 16px;
-  font-size: 16px;
-  color: rgba(${getColor('gray')});
-  font-weight: 500;
-
-  ${({ error }) =>
-    error &&
-    css`
-      color: rgba(${getColor('red')});
-    `};
-
-  &:disabled {
-    color: rgba(${getColor('gray300')});
-  }
-`
-const Icon = styled.span<{ disabled?: boolean }>`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 16px;
-  display: inline-block;
-  width: 10px;
-  height: 100%;
-  background-size: 10px 19px;
-  background-repeat: no-repeat;
-  background-image: url('https://assets.triple.guide/images/ico-category-select-on@3x.png');
-  background-position: center center;
-  ${({ disabled }) =>
-    disabled &&
-    css`
-      opacity: 0.3;
-    `};
-`
-
-function SelectComponent<Value extends string | number | readonly string[]>({
-  id,
+const SelectBase = <Value extends string | number | readonly string[]>({
+  hasHelp,
   name,
   value,
-  onChange,
   placeholder,
   options,
-  focused,
-  error,
-  onBlur,
-  ...props
-}: SelectProps<Value>) {
+  onChange,
+}: SelectBaseProps<Value>) => {
+  const formField = useFormField()
+
   return (
-    <SelectFrame focused={focused} error={error} disabled={props.disabled}>
+    <Container position="relative">
       <BaseSelect
-        id={id}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        onChange={(e) => onChange && onChange(e, e.target.value as any)}
-        onBlur={onBlur}
-        value={value}
-        error={error}
+        id={formField.inputId}
         name={name}
-        selected={value !== null && value !== undefined && value !== ''}
-        {...props}
+        value={value}
+        disabled={formField.isDisabled}
+        required={formField.isRequired}
+        aria-describedby={hasHelp ? formField.descriptionId : undefined}
+        aria-errormessage={formField.isError ? formField.errorId : undefined}
+        aria-invalid={formField.isError}
+        onChange={onChange}
       >
         {placeholder ? <option value="">{placeholder}</option> : null}
-        {(options || []).map(({ label, value }, idx) => (
+        {options?.map(({ label, value }, idx) => (
           <option key={idx} value={value}>
             {label}
           </option>
         ))}
       </BaseSelect>
-      <Icon disabled={props.disabled} />
-    </SelectFrame>
+      <Svg
+        width="10"
+        height="20"
+        viewBox="0 0 10 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9 8.5L5 12.5L1 8.5"
+          stroke="#3A3A3A"
+          strokeOpacity="0.3"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </Container>
   )
 }
 
-export const Select = withField(SelectComponent)
+export interface SelectProps<Value extends string | number | readonly string[]>
+  extends Omit<SelectBaseProps<Value>, 'hasHelp'> {
+  disabled?: boolean
+  required?: boolean
+  label?: string
+  error?: string
+  help?: string
+}
+
+export const Select = <Value extends string | number | readonly string[]>({
+  name,
+  value,
+  placeholder,
+  options,
+  disabled,
+  required,
+  label,
+  error,
+  help,
+  onChange,
+}: SelectProps<Value>) => {
+  return (
+    <FormField isDisabled={disabled} isError={!!error} isRequired={required}>
+      {label ? <FormFieldLabel>{label}</FormFieldLabel> : null}
+      <SelectBase
+        hasHelp={!!help}
+        name={name}
+        value={value}
+        placeholder={placeholder}
+        options={options}
+        onChange={onChange}
+      />
+      {error ? (
+        <FormFieldError>{error}</FormFieldError>
+      ) : help ? (
+        <FormFieldHelp>{help}</FormFieldHelp>
+      ) : null}
+    </FormField>
+  )
+}
