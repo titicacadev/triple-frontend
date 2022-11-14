@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 
 import {
-  FormField,
+  FormFieldContext,
   FormFieldError,
   FormFieldHelp,
   FormFieldLabel,
-  useFormField,
+  useFormFieldState,
 } from '../form-field'
 import { Container } from '../container'
 
@@ -47,70 +47,19 @@ export interface SelectOption<
   value: Value
 }
 
-interface SelectBaseProps<Value extends string | number | readonly string[]> {
-  hasHelp: boolean
+export interface SelectProps<
+  Value extends string | number | readonly string[],
+> {
   name?: string
   value?: Value
-  placeholder?: string
   options?: SelectOption<Value>[]
-  onChange?: ChangeEventHandler<HTMLSelectElement>
-}
-
-const SelectBase = <Value extends string | number | readonly string[]>({
-  hasHelp,
-  name,
-  value,
-  placeholder,
-  options,
-  onChange,
-}: SelectBaseProps<Value>) => {
-  const formField = useFormField()
-
-  return (
-    <Container position="relative">
-      <BaseSelect
-        id={formField.inputId}
-        name={name}
-        value={value}
-        disabled={formField.isDisabled}
-        required={formField.isRequired}
-        aria-describedby={hasHelp ? formField.descriptionId : undefined}
-        aria-errormessage={formField.isError ? formField.errorId : undefined}
-        aria-invalid={formField.isError}
-        onChange={onChange}
-      >
-        {placeholder ? <option value="">{placeholder}</option> : null}
-        {options?.map(({ label, value }, idx) => (
-          <option key={idx} value={value}>
-            {label}
-          </option>
-        ))}
-      </BaseSelect>
-      <Svg
-        width="10"
-        height="20"
-        viewBox="0 0 10 20"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M9 8.5L5 12.5L1 8.5"
-          stroke="#3A3A3A"
-          strokeOpacity="0.3"
-          strokeLinejoin="round"
-        />
-      </Svg>
-    </Container>
-  )
-}
-
-export interface SelectProps<Value extends string | number | readonly string[]>
-  extends Omit<SelectBaseProps<Value>, 'hasHelp'> {
+  placeholder?: string
   disabled?: boolean
   required?: boolean
   label?: string
   error?: string
   help?: string
+  onChange?: ChangeEventHandler<HTMLSelectElement>
 }
 
 export const Select = <Value extends string | number | readonly string[]>({
@@ -118,29 +67,67 @@ export const Select = <Value extends string | number | readonly string[]>({
   value,
   placeholder,
   options,
-  disabled,
-  required,
+  disabled = false,
+  required = false,
   label,
   error,
   help,
   onChange,
 }: SelectProps<Value>) => {
+  const formFieldState = useFormFieldState()
+
+  const hasHelp = !!help
+  const isError = !!error
+
   return (
-    <FormField isDisabled={disabled} isError={!!error} isRequired={required}>
+    <FormFieldContext.Provider
+      value={{
+        ...formFieldState,
+        isDisabled: disabled,
+        isError: !!error,
+        isRequired: required,
+      }}
+    >
       {label ? <FormFieldLabel>{label}</FormFieldLabel> : null}
-      <SelectBase
-        hasHelp={!!help}
-        name={name}
-        value={value}
-        placeholder={placeholder}
-        options={options}
-        onChange={onChange}
-      />
+      <Container position="relative">
+        <BaseSelect
+          id={formFieldState.inputId}
+          name={name}
+          value={value}
+          disabled={disabled}
+          required={required}
+          aria-describedby={hasHelp ? formFieldState.descriptionId : undefined}
+          aria-errormessage={isError ? formFieldState.errorId : undefined}
+          aria-invalid={isError}
+          onChange={onChange}
+        >
+          {placeholder ? <option value="">{placeholder}</option> : null}
+          {options?.map(({ label, value }, idx) => (
+            <option key={idx} value={value}>
+              {label}
+            </option>
+          ))}
+        </BaseSelect>
+        <Svg
+          width="10"
+          height="20"
+          viewBox="0 0 10 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M9 8.5L5 12.5L1 8.5"
+            stroke="#3A3A3A"
+            strokeOpacity="0.3"
+            strokeLinejoin="round"
+          />
+        </Svg>
+      </Container>
       {error ? (
         <FormFieldError>{error}</FormFieldError>
       ) : help ? (
         <FormFieldHelp>{help}</FormFieldHelp>
       ) : null}
-    </FormField>
+    </FormFieldContext.Provider>
   )
 }
