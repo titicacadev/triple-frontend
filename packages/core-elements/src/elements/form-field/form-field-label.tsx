@@ -8,6 +8,8 @@ import { Text } from '../text'
 import { useFormField } from './form-field-context'
 
 const Label = styled(Text)<{ isError: boolean; isRequired: boolean }>`
+  margin-bottom: 6px;
+
   ${({ isError }) =>
     isError &&
     css`
