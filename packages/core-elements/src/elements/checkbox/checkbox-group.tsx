@@ -1,11 +1,11 @@
 import { PropsWithChildren } from 'react'
 
 import {
-  FormField,
+  FormFieldContext,
   FormFieldError,
   FormFieldHelp,
   FormFieldLabel,
-  useFormField,
+  useFormFieldState,
 } from '../form-field'
 
 import {
@@ -13,34 +13,6 @@ import {
   CheckboxGroupContextValue,
 } from './checkbox-group-context'
 
-interface CheckboxGroupBaseProps extends PropsWithChildren {
-  hasLabel: boolean
-  hasHelp: boolean
-}
-
-const CheckboxGroupBase = ({
-  children,
-  hasLabel,
-  hasHelp,
-}: CheckboxGroupBaseProps) => {
-  const formField = useFormField()
-
-  return (
-    <div
-      role="group"
-      aria-labelledby={hasLabel ? formField.labelId : undefined}
-      aria-describedby={
-        hasHelp
-          ? formField.descriptionId
-          : formField.isError
-          ? formField.errorId
-          : undefined
-      }
-    >
-      {children}
-    </div>
-  )
-}
 export interface CheckboxGroupProps
   extends PropsWithChildren,
     CheckboxGroupContextValue {
@@ -58,19 +30,42 @@ export const CheckboxGroup = ({
   help,
   onChange,
 }: CheckboxGroupProps) => {
+  const formFieldState = useFormFieldState()
+
+  const hasLabel = !!label
+  const hasHelp = !!help
+  const isError = !!error
+
   return (
     <CheckboxGroupContext.Provider value={{ name, value, onChange }}>
-      <FormField isError={!!error}>
+      <FormFieldContext.Provider
+        value={{
+          ...formFieldState,
+          isError,
+          isDisabled: false,
+          isRequired: false,
+        }}
+      >
         {label ? <FormFieldLabel>{label}</FormFieldLabel> : null}
-        <CheckboxGroupBase hasLabel={!!label} hasHelp={!!label}>
+        <div
+          role="group"
+          aria-labelledby={hasLabel ? formFieldState.labelId : undefined}
+          aria-describedby={
+            hasHelp
+              ? formFieldState.descriptionId
+              : isError
+              ? formFieldState.errorId
+              : undefined
+          }
+        >
           {children}
-        </CheckboxGroupBase>
+        </div>
         {error ? (
           <FormFieldError>{error}</FormFieldError>
         ) : help ? (
           <FormFieldHelp>{help}</FormFieldHelp>
         ) : null}
-      </FormField>
+      </FormFieldContext.Provider>
     </CheckboxGroupContext.Provider>
   )
 }
