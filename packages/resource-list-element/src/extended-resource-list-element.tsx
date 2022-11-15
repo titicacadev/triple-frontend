@@ -1,4 +1,4 @@
-import { MouseEventHandler, PropsWithChildren } from 'react'
+import { Component, MouseEventHandler, PropsWithChildren } from 'react'
 import styled from 'styled-components'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
 import {
@@ -32,11 +32,13 @@ export type ResourceListElementProps<R extends ResourceMeta> = {
   distance?: number | string
   distanceSuffix?: string
   note?: string
-  tags?: {
-    text?: string
-    color?: LabelColor
-    emphasized?: boolean
-  }[]
+  tags?:
+    | {
+        text?: string
+        color?: LabelColor
+        emphasized?: boolean
+      }[]
+    | Component
   scrapsCount?: number
   reviewsCount?: number
   reviewsRating?: number
@@ -89,7 +91,6 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
   ...props
 }: PropsWithChildren<ResourceListElementProps<R>>) {
   const { id, type, scraped } = scrapResource || resource || {}
-  const labels = tags || []
   const formattedNames = [partnerName, areaName].filter(Boolean).join(' · ')
 
   return (
@@ -191,19 +192,24 @@ export default function ExtendedResourceListElement<R extends ResourceMeta>({
           </Container>
         </Container>
       </FlexBox>
+
       {children}
 
-      {labels.length > 0 ? (
-        <LabelContainer>
-          <Label.Group horizontalGap={5}>
-            {labels.map(({ text, color, emphasized }, index) => (
-              <Label key={index} promo color={color} emphasized={emphasized}>
-                {text}
-              </Label>
-            ))}
-          </Label.Group>
-        </LabelContainer>
-      ) : null}
+      {Array.isArray(tags) ? (
+        tags.length > 0 ? (
+          <LabelContainer>
+            <Label.Group horizontalGap={5}>
+              {tags.map(({ text, color, emphasized }, index) => (
+                <Label key={index} promo color={color} emphasized={emphasized}>
+                  {text}
+                </Label>
+              ))}
+            </Label.Group>
+          </LabelContainer>
+        ) : null
+      ) : (
+        <LabelContainer>{tags}</LabelContainer>
+      )}
     </ResourceListItem>
   )
 }
