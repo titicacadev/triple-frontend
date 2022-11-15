@@ -37,6 +37,6 @@
   },
   "peerDependencies": {
     "@titicaca/web-storage": "*",
-    "next-i18next": "*"
+    "@jaehyeon48/next-i18next": "*"
   }
 }

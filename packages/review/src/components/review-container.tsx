@@ -5,7 +5,7 @@ import {
   SyntheticEvent,
   useMemo,
 } from 'react'
-import { useTranslation, Trans } from 'next-i18next'
+import { useTranslation, Trans } from '@jaehyeon48/next-i18next'
 import styled from 'styled-components'
 import {
   FlexBox,

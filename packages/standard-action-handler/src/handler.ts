@@ -1,4 +1,4 @@
-import { TFunction } from 'next-i18next'
+import { TFunction } from '@jaehyeon48/next-i18next'
 import { parseUrl } from '@titicaca/view-utilities'
 
 import { WebAction, ContextOptions, NavigateOptions } from './types'

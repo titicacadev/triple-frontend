@@ -33,6 +33,6 @@
     "@types/humps": "^2.0.0"
   },
   "peerDependencies": {
-    "next-i18next": "*"
+    "@jaehyeon48/next-i18next": "*"
   }
 }

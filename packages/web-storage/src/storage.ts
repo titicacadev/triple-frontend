@@ -1,5 +1,5 @@
 import Cookies from 'universal-cookie'
-import { TFunction } from 'next-i18next'
+import { TFunction } from '@jaehyeon48/next-i18next'
 
 import {
   storageAvailable,

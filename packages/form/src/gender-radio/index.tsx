@@ -1,5 +1,5 @@
 import { SyntheticEvent } from 'react'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from '@jaehyeon48/next-i18next'
 import styled, { css } from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 import { Container } from '@titicaca/core-elements'

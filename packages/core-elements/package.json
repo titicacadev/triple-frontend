@@ -42,6 +42,6 @@
     "react": "*",
     "react-dom": "*",
     "styled-components": ">=4.4.1 < 6",
-    "next-i18next": "*"
+    "@jaehyeon48/next-i18next": "*"
   }
 }

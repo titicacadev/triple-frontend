@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from '@jaehyeon48/next-i18next'
 import { Container, HR1, Text } from '@titicaca/core-elements'
 
 export default function NotExistReplies() {
