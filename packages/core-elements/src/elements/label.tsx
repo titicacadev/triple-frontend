@@ -17,6 +17,7 @@ export type LabelColor =
   | 'orange'
   | 'skyblue'
   | 'lightpurple'
+  | 'black'
 
 const LABEL_COLORS: {
   [key in LabelColor]: {
@@ -80,6 +81,12 @@ const LABEL_COLORS: {
     color: 'var(--color-white)',
     emphasizedColor: 'var(--color-white)',
     emphasizedBackground: 'var(--color-lightpurple)',
+  },
+  black: {
+    background: 'var(--color-black)',
+    color: 'var(--color-white)',
+    emphasizedColor: 'var(--color-white)',
+    emphasizedBackground: 'var(--color-black)',
   },
 }
 
