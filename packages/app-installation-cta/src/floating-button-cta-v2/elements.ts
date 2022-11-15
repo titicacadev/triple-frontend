@@ -110,6 +110,7 @@ export const InstallAnchor = styled.a`
 export const GoAppButton = styled.img`
   margin-left: 4px;
   vertical-align: middle;
+  opacity: 0.8;
 `
 
 export const CloseButton = styled.img`
