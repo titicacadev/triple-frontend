@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 10.2.1
+
+### core-elements
+
+- 블랙프라이데이 대응을 위한 블랙색상 레이블을 추가합니다. [#2260](https://github.com/titicacadev/triple-frontend/pull/2260)
+
 ## 10.2.0
 
 ### react-contexts
