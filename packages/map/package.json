@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/map",
-  "version": "10.2.0",
+  "version": "10.2.1",
   "description": "Map component",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/map",
@@ -22,8 +22,8 @@
   },
   "dependencies": {
     "@react-google-maps/api": "~2.2.0",
-    "@titicaca/core-elements": "^10.2.0",
-    "@titicaca/router": "^10.2.0"
+    "@titicaca/core-elements": "^10.2.1",
+    "@titicaca/router": "^10.2.1"
   },
   "devDependencies": {
     "@types/googlemaps": "^3.43.3"
