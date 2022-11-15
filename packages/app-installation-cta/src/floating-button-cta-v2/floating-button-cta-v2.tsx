@@ -184,7 +184,7 @@ export default function FloatingButtonCtaV2({
               </Text>
 
               <GoAppButton
-                src="https://assets.triple.guide/images/img_arow_right_12@4x.png"
+                src="https://assets.triple.guide/images/img_arrow_right_12@4x.png"
                 alt="icon-right-arrow"
                 width={6}
                 height={12}
