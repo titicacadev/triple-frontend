@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from '@jaehyeon48/next-i18next'
 import { Container, Rating } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 

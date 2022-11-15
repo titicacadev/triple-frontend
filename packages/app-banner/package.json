@@ -24,6 +24,6 @@
     "@titicaca/core-elements": "^10.4.0"
   },
   "peerDependencies": {
-    "next-i18next": "*"
+    "@jaehyeon48/next-i18next": "*"
   }
 }

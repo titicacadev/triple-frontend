@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from '@jaehyeon48/next-i18next'
 
 const MoreImageOverlayLink = styled.a`
   display: block;

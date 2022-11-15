@@ -32,6 +32,6 @@
   },
   "peerDependencies": {
     "@titicaca/triple-web-to-native-interfaces": "*",
-    "next-i18next": "*"
+    "@jaehyeon48/next-i18next": "*"
   }
 }

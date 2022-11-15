@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { withTranslation, WithTranslation } from 'next-i18next'
+import { withTranslation, WithTranslation } from '@jaehyeon48/next-i18next'
 import { Alert } from '@titicaca/modals'
 
 import { WebStorageError } from './error'

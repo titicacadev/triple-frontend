@@ -1,5 +1,5 @@
 import { ForwardedRef, forwardRef } from 'react'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from '@jaehyeon48/next-i18next'
 import styled from 'styled-components'
 import { Container, FlexBox, HR1 } from '@titicaca/core-elements'
 import { useLoginCtaModal } from '@titicaca/modals'

@@ -15,7 +15,7 @@ module.exports = {
   webpackFinal: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      'next-i18next': 'react-i18next',
+      '@jaehyeon48/next-i18next': 'react-i18next',
     }
 
     return config

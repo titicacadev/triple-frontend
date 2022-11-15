@@ -16,7 +16,7 @@ interface I18nExpressions {
 jest.mock('@titicaca/router')
 jest.mock('@titicaca/ui-flow')
 jest.mock('./replies-api-client')
-jest.mock('next-i18next', () => ({
+jest.mock('@jaehyeon48/next-i18next', () => ({
   useTranslation: () => ({
     t: (key: string, data: I18nExpressions) => {
       if (key === 'johayo-likereactioncount') {

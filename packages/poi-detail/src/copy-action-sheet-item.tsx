@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from '@jaehyeon48/next-i18next'
 import ActionSheet from '@titicaca/action-sheet'
 
 export default function CopyActionSheetItem({

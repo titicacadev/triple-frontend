@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from '@jaehyeon48/next-i18next'
 import styled, { css } from 'styled-components'
 import { Text } from '@titicaca/core-elements'
 

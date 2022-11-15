@@ -25,6 +25,6 @@
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
-    "next-i18next": "*"
+    "@jaehyeon48/next-i18next": "*"
   }
 }

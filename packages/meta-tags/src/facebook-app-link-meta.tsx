@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from '@jaehyeon48/next-i18next'
 import { useEnv } from '@titicaca/react-contexts'
 
 export function FacebookAppLinkMeta({

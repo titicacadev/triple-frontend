@@ -7,7 +7,7 @@ import {
   SyntheticEvent,
 } from 'react'
 import moment from 'moment'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from '@jaehyeon48/next-i18next'
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
