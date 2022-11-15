@@ -177,7 +177,8 @@ export default function FloatingButtonCtaV2({
                 inlineBlock
                 size={13}
                 lineHeight="16px"
-                color="white600"
+                color="white"
+                alpha={0.8}
                 letterSpacing={-0.5}
               >
                 {description}
