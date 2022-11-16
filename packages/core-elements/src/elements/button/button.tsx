@@ -1,7 +1,6 @@
 import { ElementType, forwardRef, ReactElement } from 'react'
 
 import { PolymorphicPropsWithRef, PolymorphicRef } from '../../polymorphic'
-import { mergeRefs } from '../../utils/merge-refs'
 
 import { BasicButton, BasicButtonProps } from './basic-button'
 import { ButtonContainer } from './button-container'
@@ -9,7 +8,6 @@ import { ButtonGroup } from './button-group'
 import { ButtonIcon } from './button-icon'
 import { IconButton, IconButtonProps } from './icon-button'
 import { NormalButton, NormalButtonProps } from './normal-button'
-import { useButtonType } from './use-button-type'
 
 const ButtonDefaultElement = 'button'
 
@@ -47,12 +45,13 @@ const ButtonComponent: ButtonComponentType = forwardRef(function Button<
   ref?: PolymorphicRef<C>,
 ) {
   const Element = as || ButtonDefaultElement
-  const { ref: typeRef, type } = useButtonType()
+
+  const type = Element === 'button' ? 'button' : undefined
 
   if (basic) {
     return (
       <BasicButton
-        ref={mergeRefs([ref, typeRef])}
+        ref={ref}
         as={Element}
         bold
         size={size || 'small'}
