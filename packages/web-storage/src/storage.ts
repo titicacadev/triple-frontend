@@ -5,8 +5,8 @@ import {
   checkQuotaExceededError,
   cookieAvailable,
 } from './utils'
-import { WebStorageError } from './error'
-import { WebStorageType } from './types'
+import { handleError } from './error'
+import { WebStorageType, ErrorType } from './types'
 
 const COOKIE_KEY_PREFIX = 'alter-storage/'
 
@@ -14,9 +14,19 @@ function addCookieKeyPrefix(key: string) {
   return `${COOKIE_KEY_PREFIX}/${key}`
 }
 
-function getCookieStorage({ storageType }: { storageType: WebStorageType }) {
+function getCookieStorage({
+  storageType,
+  onError,
+}: {
+  storageType: WebStorageType
+  onError?: { [key in ErrorType]?: () => unknown }
+}) {
   if (!cookieAvailable()) {
-    throw new WebStorageError({ type: 'unavailable', storageType })
+    handleError({
+      errorType: 'unavailable',
+      storageType,
+      onError,
+    })
   }
 
   const cookie = new Cookies()
@@ -45,9 +55,10 @@ function getCookieStorage({ storageType }: { storageType: WebStorageType }) {
         return cookie.set(addCookieKeyPrefix(key), value)
       } catch (error) {
         if (checkQuotaExceededError(error)) {
-          throw new WebStorageError({
-            type: 'quotaExceeded',
+          handleError({
+            errorType: 'quotaExceeded',
             storageType,
+            onError,
           })
         }
 
@@ -67,13 +78,16 @@ function getCookieStorage({ storageType }: { storageType: WebStorageType }) {
   }
 }
 
-export function getWebStorage(type: WebStorageType = 'localStorage') {
+export function getWebStorage(
+  type: WebStorageType = 'localStorage',
+  onError?: { [key in ErrorType]?: () => unknown },
+) {
   if (typeof window === 'undefined') {
-    throw new WebStorageError({ type: 'notBrowser', storageType: type })
+    handleError({ errorType: 'notBrowser', storageType: type, onError })
   }
 
   if (!storageAvailable(type)) {
-    return getCookieStorage({ storageType: type })
+    return getCookieStorage({ storageType: type, onError })
   }
 
   const storage = window[type]
@@ -96,9 +110,10 @@ export function getWebStorage(type: WebStorageType = 'localStorage') {
         return storage.setItem(key, value)
       } catch (error) {
         if (checkQuotaExceededError(error)) {
-          throw new WebStorageError({
-            type: 'quotaExceeded',
+          handleError({
+            errorType: 'quotaExceeded',
             storageType: type,
+            onError,
           })
         }
 
