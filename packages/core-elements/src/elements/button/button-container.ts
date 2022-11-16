@@ -3,9 +3,13 @@ import * as CSS from 'csstype'
 
 import { Container } from '../container'
 
-import ButtonBase from './button-base'
+import { ButtonBase } from './button-base'
 
-const ButtonContainer = styled(Container)<{ floated?: CSS.Property.Float }>`
+export interface ButtonContainerProps {
+  floated?: CSS.Property.Float
+}
+
+export const ButtonContainer = styled(Container)<ButtonContainerProps>`
   text-align: center;
 
   ${ButtonBase} {
@@ -36,5 +40,3 @@ const ButtonContainer = styled(Container)<{ floated?: CSS.Property.Float }>`
     clear: both;
   }
 `
-
-export default ButtonContainer
