@@ -1,9 +1,11 @@
 import styled, { css } from 'styled-components'
 import {
+  FlexBox,
   Text,
   MarginPadding,
   layeringMixin,
   LayeringMixinProps,
+  safeAreaInsetMixin,
 } from '@titicaca/core-elements'
 import { white, blue980, gray500 } from '@titicaca/color-palette'
 
@@ -126,12 +128,9 @@ export const InstallDescription = styled(Text)`
 `
 
 export const InstallAnchor = styled.a`
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  display: block;
+  display: inline-block;
   text-decoration: none;
-  padding: 23px 0px 22px 32px;
+  margin-top: 4px;
 
   &:visited,
   &:hover,
@@ -141,14 +140,17 @@ export const InstallAnchor = styled.a`
 `
 
 export const GoAppButton = styled.img`
-  width: 20px;
-  height: 20px;
+  margin-left: 4px;
+  vertical-align: middle;
+  opacity: 0.8;
 `
 
 export const CloseButton = styled.img`
-  width: 30px;
-  height: 30px;
-  margin: 27px 16px 27px 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
 `
 
 const inactiveFloatingButtonStyle = css<{
@@ -183,9 +185,10 @@ interface FloatingButtonProps {
 export const FloatingButtonContainer = styled.div<
   FloatingButtonProps & LayeringMixinProps
 >`
-  height: 84px;
+  background-color: rgba(38, 206, 194, 1);
 
   ${layeringMixin(1)}
+  ${safeAreaInsetMixin}
 
   @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
     display: none;
@@ -225,6 +228,17 @@ export const FloatingButtonContainer = styled.div<
     ${inactiveFloatingButtonStyle}
     display: none;
   }
+`
+
+export const ContentContainer = styled(FlexBox).attrs({
+  flex: true,
+  centered: true,
+  maxWidth: 768,
+  padding: { top: 24, bottom: 24, left: 20, right: 20 },
+  gap: 11,
+  position: 'relative',
+})`
+  overflow: hidden;
 `
 
 export const FloatingButton = styled.div`
