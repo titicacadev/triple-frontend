@@ -9,7 +9,7 @@ interface BaseTextareaProps {
   error?: string | boolean
 }
 
-interface TextareaProps
+export interface TextareaProps
   extends Omit<
     StyledComponentProps<
       'textarea',
