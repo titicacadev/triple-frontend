@@ -1,6 +1,7 @@
 import { ElementType, forwardRef, ReactElement } from 'react'
 
 import { PolymorphicPropsWithRef, PolymorphicRef } from '../../polymorphic'
+import { mergeRefs } from '../../utils/merge-refs'
 
 import { BasicButton, BasicButtonProps } from './basic-button'
 import { ButtonContainer } from './button-container'
@@ -8,6 +9,7 @@ import { ButtonGroup } from './button-group'
 import { ButtonIcon } from './button-icon'
 import { IconButton, IconButtonProps } from './icon-button'
 import { NormalButton, NormalButtonProps } from './normal-button'
+import { useButtonType } from './use-button-type'
 
 const ButtonDefaultElement = 'button'
 
@@ -45,16 +47,18 @@ const ButtonComponent: ButtonComponentType = forwardRef(function Button<
   ref?: PolymorphicRef<C>,
 ) {
   const Element = as || ButtonDefaultElement
+  const { ref: typeRef, type } = useButtonType()
 
   if (basic) {
     return (
       <BasicButton
-        ref={ref}
+        ref={mergeRefs([ref, typeRef])}
         as={Element}
         bold
         size={size || 'small'}
         textAlpha={textAlpha || 0.5}
         textColor={textColor || 'gray'}
+        type={type}
         {...props}
       >
         {children}
@@ -71,6 +75,7 @@ const ButtonComponent: ButtonComponentType = forwardRef(function Button<
         size={size || 'tiny'}
         textColor={textColor || 'gray'}
         textAlpha={textAlpha || 0.5}
+        type={type}
         {...props}
       >
         {children}
@@ -83,10 +88,11 @@ const ButtonComponent: ButtonComponentType = forwardRef(function Button<
       ref={ref}
       as={Element}
       bold
+      borderRadius={borderRadius ?? 21}
       size={size || 'tiny'}
       textColor={textColor || 'white'}
       textAlpha={textAlpha}
-      borderRadius={borderRadius ?? 21}
+      type={type}
       {...props}
     >
       {children}
