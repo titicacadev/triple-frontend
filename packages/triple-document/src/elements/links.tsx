@@ -20,7 +20,8 @@ const LinksContainer = styled.div<{ compact?: boolean }>`
   margin-top: ${({ compact }) => (compact ? '10px' : '20px')};
   margin-bottom: ${({ compact }) => (compact ? '-10px' : '-20px')};
 
-  a {
+  a,
+  button {
     display: inline-block;
     margin-bottom: ${({ compact }) => (compact ? '10px' : '20px')};
     margin-right: ${({ compact }) => (compact ? '10px' : '20px')};
@@ -31,16 +32,19 @@ const ButtonContainer = styled.div<{ compact?: boolean }>`
   margin: ${({ compact }) => (compact ? '12px 0 4px 0' : '50px 30px 0 30px')};
   text-align: center;
 
-  a {
+  a,
+  button {
     margin-top: 5px;
   }
 
-  a:not(:first-child) {
+  a:not(:first-child),
+  button:not(:first-child) {
     margin-left: 5px;
   }
 
   @media (max-width: 360px) {
-    a:not(:first-child) {
+    a:not(:first-child),
+    button:not(:first-child) {
       margin-left: 0;
     }
   }
