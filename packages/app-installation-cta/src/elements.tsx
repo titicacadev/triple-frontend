@@ -199,9 +199,8 @@ export const FloatingButtonContainer = styled.div<
     css`
       position: fixed;
       bottom: 0;
-      left: 10px;
-      right: 10px;
-      margin-bottom: 30px;
+      left: 0;
+      right: 0;
     `};
 
   ${({ margin }) =>
