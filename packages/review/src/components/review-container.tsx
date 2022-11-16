@@ -4,6 +4,7 @@ import {
   useCallback,
   SyntheticEvent,
   useMemo,
+  MouseEvent,
 } from 'react'
 import { useTranslation, Trans } from '@titicaca/next-i18next'
 import styled from 'styled-components'
@@ -423,7 +424,8 @@ function ReviewContainer({
                 size="small"
                 onClick={
                   onFullListButtonClick
-                    ? (e) => onFullListButtonClick(e, sortingOption)
+                    ? (e: MouseEvent<HTMLButtonElement>) =>
+                        onFullListButtonClick(e, sortingOption)
                     : handleFullListButtonClick
                 }
               >
