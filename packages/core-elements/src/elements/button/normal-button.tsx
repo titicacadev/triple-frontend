@@ -25,7 +25,7 @@ export interface NormalButtonProps extends ButtonBaseProps {
 export const NormalButton = styled(ButtonBase)<NormalButtonProps>`
   border-radius: ${({ borderRadius }) =>
     borderRadius ? `${borderRadius}px` : undefined};
-  background-color: ${({ color = 'blue' }) => `rgba(${getColor(color)})`};
+  background-color: ${({ color = 'blue' }) => `rgba(${getColor(color)}) `};
   color: #fff;
 
   ${({ compact, size = 'tiny' }) =>
