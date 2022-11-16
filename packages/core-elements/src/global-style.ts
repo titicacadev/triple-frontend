@@ -71,7 +71,7 @@ export const GlobalStyle = createGlobalStyle`
   */
 
   html {
-    line-height: 1; /* 1 */
+    line-height: normal; /* 1 */
     text-size-adjust: none; /* 2 */
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; /* 3 */
     box-sizing: border-box; /* 4 */
