@@ -228,10 +228,7 @@ export const GlobalStyle = createGlobalStyle`
   2. Remove default button styles.
   */
 
-  button,
-  [type='button'],
-  [type='reset'],
-  [type='submit'] {
+  button {
     appearance: button; /* 1 */
     background-color: transparent; /* 2 */
     background-image: none; /* 2 */
