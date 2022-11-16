@@ -4,6 +4,7 @@ import {
   useCallback,
   SyntheticEvent,
   useMemo,
+  MouseEvent,
 } from 'react'
 import styled from 'styled-components'
 import {
@@ -421,7 +422,8 @@ function ReviewContainer({
                 size="small"
                 onClick={
                   onFullListButtonClick
-                    ? (e) => onFullListButtonClick(e, sortingOption)
+                    ? (e: MouseEvent<HTMLButtonElement>) =>
+                        onFullListButtonClick(e, sortingOption)
                     : handleFullListButtonClick
                 }
               >
