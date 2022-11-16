@@ -1,10 +1,6 @@
-import { ElementType, forwardRef } from 'react'
+import { ElementType, forwardRef, ReactElement } from 'react'
 
-import {
-  PolymorphicForwardRefExoticComponent,
-  PolymorphicProps,
-  PolymorphicRef,
-} from '../../polymorphic'
+import { PolymorphicPropsWithRef, PolymorphicRef } from '../../polymorphic'
 
 import { BasicButton, BasicButtonProps } from './basic-button'
 import { ButtonContainer } from './button-container'
@@ -16,7 +12,7 @@ import { NormalButton, NormalButtonProps } from './normal-button'
 const ButtonDefaultElement = 'button'
 
 export type ButtonProps<C extends ElementType = typeof ButtonDefaultElement> =
-  PolymorphicProps<
+  PolymorphicPropsWithRef<
     C,
     BasicButtonProps &
       Omit<IconButtonProps, 'icon'> &
@@ -26,76 +22,77 @@ export type ButtonProps<C extends ElementType = typeof ButtonDefaultElement> =
       }
   >
 
-const ButtonComponent: PolymorphicForwardRefExoticComponent<
-  typeof ButtonDefaultElement,
-  ButtonProps<typeof ButtonDefaultElement>
-> = forwardRef(
-  <C extends ElementType = typeof ButtonDefaultElement>(
-    {
-      children,
-      as,
-      basic,
-      borderRadius,
-      icon,
-      size,
-      textAlpha,
-      textColor,
-      ...props
-    }: ButtonProps<C>,
-    ref: PolymorphicRef<C>,
-  ) => {
-    const Element = as || ButtonDefaultElement
+type ButtonComponentType = <
+  C extends ElementType = typeof ButtonDefaultElement,
+>(
+  props: ButtonProps<C>,
+) => ReactElement | null
 
-    if (basic) {
-      return (
-        <BasicButton
-          ref={ref}
-          as={Element}
-          bold
-          size={size || 'small'}
-          textAlpha={textAlpha || 0.5}
-          textColor={textColor || 'gray'}
-          {...props}
-        >
-          {children}
-        </BasicButton>
-      )
-    }
+const ButtonComponent: ButtonComponentType = forwardRef(function Button<
+  C extends ElementType = typeof ButtonDefaultElement,
+>(
+  {
+    children,
+    as,
+    basic,
+    borderRadius,
+    icon,
+    size,
+    textAlpha,
+    textColor,
+    ...props
+  }: ButtonProps<C>,
+  ref?: PolymorphicRef<C>,
+) {
+  const Element = as || ButtonDefaultElement
 
-    if (icon) {
-      return (
-        <IconButton
-          ref={ref}
-          as={Element}
-          icon={icon}
-          size={size || 'tiny'}
-          textColor={textColor || 'gray'}
-          textAlpha={textAlpha || 0.5}
-          {...props}
-        >
-          {children}
-        </IconButton>
-      )
-    }
-
+  if (basic) {
     return (
-      <NormalButton
+      <BasicButton
         ref={ref}
         as={Element}
         bold
-        size={size || 'tiny'}
-        textColor={textColor || 'white'}
-        textAlpha={textAlpha}
-        borderRadius={borderRadius ?? 21}
+        size={size || 'small'}
+        textAlpha={textAlpha || 0.5}
+        textColor={textColor || 'gray'}
         {...props}
       >
         {children}
-      </NormalButton>
+      </BasicButton>
     )
-  },
-)
+  }
 
-ButtonComponent.displayName = 'Button'
+  if (icon) {
+    return (
+      <IconButton
+        ref={ref}
+        as={Element}
+        icon={icon}
+        size={size || 'tiny'}
+        textColor={textColor || 'gray'}
+        textAlpha={textAlpha || 0.5}
+        {...props}
+      >
+        {children}
+      </IconButton>
+    )
+  }
+
+  return (
+    <NormalButton
+      ref={ref}
+      as={Element}
+      bold
+      size={size || 'tiny'}
+      textColor={textColor || 'white'}
+      textAlpha={textAlpha}
+      borderRadius={borderRadius ?? 21}
+      {...props}
+    >
+      {children}
+    </NormalButton>
+  )
+})
 
 type CompoundedButton = typeof ButtonComponent & {
   Container: typeof ButtonContainer
