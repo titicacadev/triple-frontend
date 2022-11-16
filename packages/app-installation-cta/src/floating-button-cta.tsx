@@ -159,8 +159,7 @@ export default function FloatingButtonCtaV2({
             width={42}
             height={42}
           />
-
-          <Container>
+          <InstallAnchor href={appInstallLink} onClick={handleClick}>
             <Text
               size={16}
               bold
@@ -171,27 +170,24 @@ export default function FloatingButtonCtaV2({
               {title}
             </Text>
 
-            <InstallAnchor href={appInstallLink} onClick={handleClick}>
-              <Text
-                inlineBlock
-                size={13}
-                lineHeight="16px"
-                color="white"
-                alpha={0.8}
-                letterSpacing={-0.5}
-              >
-                {description}
-              </Text>
+            <Text
+              inlineBlock
+              size={13}
+              lineHeight="16px"
+              color="white"
+              alpha={0.8}
+              letterSpacing={-0.5}
+            >
+              {description}
+            </Text>
 
-              <GoAppButton
-                src="https://assets.triple.guide/images/img_arrow_right_12@4x.png"
-                alt="icon-right-arrow"
-                width={6}
-                height={12}
-              />
-            </InstallAnchor>
-          </Container>
-
+            <GoAppButton
+              src="https://assets.triple.guide/images/img_arrow_right_12@4x.png"
+              alt="icon-right-arrow"
+              width={6}
+              height={12}
+            />
+          </InstallAnchor>
           <Container
             position="absolute"
             positioning={{ top: 4, right: 4 }}
