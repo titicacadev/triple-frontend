@@ -1,23 +1,31 @@
 import { Suspense } from 'react'
 import i18n from 'i18next'
 import { I18nextProvider, initReactI18next } from 'react-i18next'
-import { I18nextTripleWebAssetsBackend } from '@titicaca/i18n'
 import { withI18next } from 'storybook-addon-i18next'
 import { GlobalStyle } from '@titicaca/core-elements'
 import { RouterContext } from 'next/dist/shared/lib/router-context' // next 12
+import koI18nAsset from '../../i18n-assets/ko/common-web.json'
+import jaI18nAsset from '../../i18n-assets/ja/common-web.json'
+import zhI18nAsset from '../../i18n-assets/zh-TW/common-web.json'
 
-i18n
-  .use(initReactI18next)
-  .use(I18nextTripleWebAssetsBackend)
-  // init i18next
-  // for all options read: https://www.i18next.com/overview/configuration-options
-  .init({
-    fallbackLng: 'ko',
-    ns: 'common-web',
-    interpolation: {
-      escapeValue: false, // not needed for react as it escapes by default
+i18n.use(initReactI18next).init({
+  fallbackLng: 'ko',
+  ns: 'common-web',
+  interpolation: {
+    escapeValue: false,
+  },
+  resources: {
+    ko: {
+      'common-web': koI18nAsset,
     },
-  })
+    ja: {
+      'common-web': jaI18nAsset,
+    },
+    'zh-TW': {
+      'common-web': zhI18nAsset,
+    },
+  },
+})
 
 export const decorators = [
   withI18next({ i18n }),
