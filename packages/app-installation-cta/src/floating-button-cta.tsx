@@ -20,7 +20,7 @@ import {
   InstallAnchor,
   GoAppButton,
   CloseButton,
-  FloatingButton,
+  ContentContainer,
 } from './elements'
 
 interface FloatingButtonCtaProps extends CtaProps {
@@ -36,7 +36,7 @@ interface FloatingButtonCtaProps extends CtaProps {
 }
 
 /**
- * '트리플 앱 설치하기' 하단 플로팅 버튼 CTA
+ * '트리플 앱 설치하기' 하단 플로팅 버튼 CTA - 리뉴얼 디자인
  *
  * @param exitStrategy 이 버튼 컴포넌트가 사라져야하는 조건 또는 전략 (기본값 NONE)
  * @param fixed 스크롤 위치와 관계없이 fixed position 인지의 여부
@@ -48,12 +48,12 @@ interface FloatingButtonCtaProps extends CtaProps {
  * @param trackEventParams GA/FA 수집 파라미터
  * @param unmountOnExit 버튼이 표시되지 않을 때 컴포넌트 마운트 해제 여부
  */
-export default function FloatingButtonCta({
+export default function FloatingButtonCtaV2({
   exitStrategy = BannerExitStrategy.NONE,
   fixed,
   appInstallLink,
-  title = '트리플 앱 설치하기',
-  description = '가이드북, 일정짜기, 길찾기, 맛집',
+  title = '내 여행 동선, 한눈에 보고 싶다면?',
+  description = '780만이 선택한 트리플에서 일정 짜기',
   margin,
   trackEvent,
   trackEventParams,
@@ -152,29 +152,61 @@ export default function FloatingButtonCta({
         zTier={zTier}
         zIndex={zIndex}
       >
-        <FloatingButton>
-          <Container width="100%">
+        <ContentContainer>
+          <img
+            src="https://assets.triple.guide/images/img_app_icon_white@4x.png"
+            alt="icon-app-download"
+            width={42}
+            height={42}
+          />
+
+          <Container>
+            <Text
+              size={16}
+              bold
+              lineHeight="19px"
+              color="white"
+              letterSpacing={-0.5}
+            >
+              {title}
+            </Text>
+
             <InstallAnchor href={appInstallLink} onClick={handleClick}>
-              <Text size={18} lineHeight="21px" bold color="white">
-                <Text floated="left" color="white">
-                  {title}
-                </Text>
-                <GoAppButton src="https://assets.triple.guide/images/ico-arrow@4x.png" />
-              </Text>
               <Text
-                size={12}
-                lineHeight="15px"
-                color="white600"
-                margin={{ top: 3 }}
+                inlineBlock
+                size={13}
+                lineHeight="16px"
+                color="white"
+                alpha={0.8}
+                letterSpacing={-0.5}
               >
                 {description}
               </Text>
+
+              <GoAppButton
+                src="https://assets.triple.guide/images/img_arrow_right_12@4x.png"
+                alt="icon-right-arrow"
+                width={6}
+                height={12}
+              />
             </InstallAnchor>
           </Container>
-          <Container width={46} onClick={handleDismiss}>
-            <CloseButton src="https://assets.triple.guide/images/btn-closebanner@3x.png" />
+
+          <Container
+            position="absolute"
+            positioning={{ top: 4, right: 4 }}
+            width={32}
+            height={32}
+            onClick={handleDismiss}
+          >
+            <CloseButton
+              src="https://assets.triple.guide/images/img_delete_12@4x.png"
+              alt="icon-close-button"
+              width={12}
+              height={12}
+            />
           </Container>
-        </FloatingButton>
+        </ContentContainer>
       </FloatingButtonContainer>
     </CSSTransition>
   )
