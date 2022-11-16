@@ -7,7 +7,7 @@ import {
   LayeringMixinProps,
   safeAreaInsetMixin,
 } from '@titicaca/core-elements'
-import { white, blue980, gray500 } from '@titicaca/color-palette'
+import { white, blue980 } from '@titicaca/color-palette'
 
 export const Overlay = styled.div<LayeringMixinProps>`
   position: fixed;
@@ -15,8 +15,6 @@ export const Overlay = styled.div<LayeringMixinProps>`
   bottom: 0;
   left: 0;
   right: 0;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
-  background-color: ${gray500};
 
   ${layeringMixin(1)}
 `
