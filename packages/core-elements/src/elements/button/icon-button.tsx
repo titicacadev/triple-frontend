@@ -33,6 +33,6 @@ export const IconButton = styled(ButtonBase)<IconButtonProps>`
     background-size: 30px;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: ${({ icon }) => `url('${ICON_BUTTON_URLS[icon]}')`};
+    background-image: ${({ icon }) => `url('${ICON_BUTTON_URLS[icon]}') `};
   }
 `
