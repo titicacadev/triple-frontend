@@ -1,26 +1,14 @@
-import { SyntheticEvent } from 'react'
-import styled, { css, StyledComponentProps } from 'styled-components'
+import { forwardRef, TextareaHTMLAttributes } from 'react'
+import styled from 'styled-components'
 
-import { withField } from '../../utils/form-field'
 import { GlobalColors } from '../../commons'
-
-interface BaseTextareaProps {
-  focused?: string
-  error?: string | boolean
-}
-
-export interface TextareaProps
-  extends Omit<
-    StyledComponentProps<
-      'textarea',
-      Record<string, unknown>,
-      BaseTextareaProps,
-      never
-    >,
-    'onChange'
-  > {
-  onChange?: (e: SyntheticEvent, value: string) => unknown
-}
+import {
+  FormFieldContext,
+  FormFieldError,
+  FormFieldHelp,
+  FormFieldLabel,
+  useFormFieldState,
+} from '../form-field'
 
 const COLORS: Partial<Record<GlobalColors, string>> = {
   blue: '54, 143, 255',
@@ -28,7 +16,7 @@ const COLORS: Partial<Record<GlobalColors, string>> = {
   gray: '58, 58, 58',
 }
 
-const BaseTextarea = styled.textarea<BaseTextareaProps>`
+const BaseTextarea = styled.textarea`
   overflow: hidden;
   outline: none;
   padding: 14px 16px;
@@ -41,30 +29,61 @@ const BaseTextarea = styled.textarea<BaseTextareaProps>`
   min-height: 100px;
   line-height: normal;
 
-  ::placeholder {
+  &::placeholder {
     color: rgba(${COLORS.gray}, 0.3);
   }
 
-  ${({ focused }) =>
-    focused &&
-    css`
-      border-color: rgb(${COLORS.blue});
-    `};
+  &:focus {
+    border-color: rgb(${COLORS.blue});
+  }
 
-  ${({ error }) =>
-    error &&
-    css`
-      border-color: rgb(${COLORS.red});
-    `};
+  &[aria-invalid='true'] {
+    border-color: rgb(${COLORS.red});
+  }
 `
 
-function TextareaComponent({ onChange, ...props }: TextareaProps) {
-  return (
-    <BaseTextarea
-      {...props}
-      onChange={(e) => onChange && onChange(e, e.target.value)}
-    />
-  )
+interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  required?: boolean
+  label?: string
+  error?: string | boolean
+  help?: string
 }
 
-export const Textarea = withField(TextareaComponent)
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
+  function Textarea({ required = false, label, error, help, ...props }, ref) {
+    const formFieldState = useFormFieldState()
+
+    const hasLabel = !!label
+    const hasHelp = !!help
+    const isError = !!error
+
+    return (
+      <FormFieldContext.Provider
+        value={{
+          ...formFieldState,
+          isError,
+          isDisabled: false,
+          isRequired: required,
+        }}
+      >
+        {label ? <FormFieldLabel>{label}</FormFieldLabel> : null}
+        <BaseTextarea
+          ref={ref}
+          id={hasLabel ? formFieldState.inputId : undefined}
+          aria-describedby={
+            hasHelp && !isError ? formFieldState.descriptionId : undefined
+          }
+          aria-errormessage={isError ? formFieldState.errorId : undefined}
+          aria-invalid={isError}
+          aria-multiline
+          {...props}
+        />
+        {error ? (
+          <FormFieldError>{error}</FormFieldError>
+        ) : help ? (
+          <FormFieldHelp>{help}</FormFieldHelp>
+        ) : null}
+      </FormFieldContext.Provider>
+    )
+  },
+)
