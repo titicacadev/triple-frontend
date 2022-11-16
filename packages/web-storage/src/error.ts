@@ -1,8 +1,6 @@
 import { CustomError } from 'ts-custom-error'
 
-import { WebStorageType } from './types'
-
-type ErrorType = 'notBrowser' | 'unavailable' | 'quotaExceeded'
+import { ErrorType, WebStorageType } from './types'
 
 export class WebStorageError extends CustomError {
   private type: ErrorType
@@ -42,4 +40,27 @@ export class WebStorageError extends CustomError {
         return '알 수 없는 에러가 발생했습니다. 잠시 후 다시 시도해 주세요.'
     }
   }
+
+  public get errorType(): ErrorType {
+    return this.type
+  }
+}
+
+export function handleError({
+  errorType,
+  storageType,
+  onError,
+}: {
+  errorType: ErrorType
+  storageType: WebStorageType
+  onError?: { [key in ErrorType]?: () => unknown }
+}) {
+  if (onError) {
+    const onErrorType = onError[errorType]
+    if (onErrorType) {
+      onErrorType()
+      return
+    }
+  }
+  throw new WebStorageError({ type: errorType, storageType })
 }
