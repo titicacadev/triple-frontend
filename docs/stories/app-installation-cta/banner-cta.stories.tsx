@@ -9,7 +9,7 @@ export default {
 export const Basic: ComponentStoryObj<typeof BannerCTA> = {
   name: '배너 CTA',
   args: {
-    inventoryId: 'app-install-cta-poi-v1',
+    inventoryId: 'app-install-cta-tna-v1',
     installUrl: 'https://triple-dev.titicaca-corp.com',
   },
 }
