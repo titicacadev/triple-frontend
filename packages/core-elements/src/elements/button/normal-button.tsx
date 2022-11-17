@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components'
+import { css } from 'styled-components'
 import { Color, getColor } from '@titicaca/color-palette'
 
-import { ButtonBase, ButtonBaseProps } from './button-base'
+import { buttonBaseMixin, ButtonBaseProps } from './button-base'
 import { ButtonSize } from './types'
 
 const NORMAL_PADDINGS: Partial<Record<ButtonSize, ReturnType<typeof css>>> = {
@@ -22,12 +22,17 @@ export interface NormalButtonProps extends ButtonBaseProps {
   color?: Color
 }
 
-export const NormalButton = styled(ButtonBase)<NormalButtonProps>`
-  border-radius: ${({ borderRadius }) =>
-    borderRadius ? `${borderRadius}px` : undefined};
-  background-color: ${({ color = 'blue' }) => `rgba(${getColor(color)}) `};
+export const normalButtonMixin = ({
+  borderRadius,
+  compact,
+  color = 'blue',
+  size = 'tiny',
+  ...props
+}: NormalButtonProps) => css`
+  ${buttonBaseMixin({ size, ...props })}
+  border-radius: ${borderRadius ? `${borderRadius}px` : undefined};
+  background-color: rgba(${getColor(color)});
   color: #fff;
 
-  ${({ compact, size = 'tiny' }) =>
-    compact ? COMPACT_NORMAL_PADDINGS[size] : NORMAL_PADDINGS[size]}
+  ${compact ? COMPACT_NORMAL_PADDINGS[size] : NORMAL_PADDINGS[size]}
 `
