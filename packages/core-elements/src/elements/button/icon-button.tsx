@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components'
+import { css } from 'styled-components'
 
-import { ButtonBase, ButtonBaseProps } from './button-base'
+import { buttonBaseMixin, ButtonBaseProps } from './button-base'
 import { ButtonSize } from './types'
 
 const ICON_BUTTON_URLS = {
@@ -23,8 +23,13 @@ export interface IconButtonProps extends ButtonBaseProps {
   icon: Icon
 }
 
-export const IconButton = styled(ButtonBase)<IconButtonProps>`
-  ${({ size = 'tiny' }) => ICON_PADDINGS[size]}
+export const iconButtonMixin = ({
+  icon,
+  size = 'tiny',
+  ...props
+}: IconButtonProps) => css`
+  ${buttonBaseMixin({ size, ...props })}
+  ${ICON_PADDINGS[size]}
 
   &::before {
     content: '';
@@ -33,6 +38,6 @@ export const IconButton = styled(ButtonBase)<IconButtonProps>`
     background-size: 30px;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: ${({ icon }) => `url('${ICON_BUTTON_URLS[icon]}') `};
+    background-image: url('${ICON_BUTTON_URLS[icon]}');
   }
 `
