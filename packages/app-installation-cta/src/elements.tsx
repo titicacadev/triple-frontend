@@ -69,7 +69,6 @@ export const DismissButton = styled.button`
   opacity: 0.6;
   font-size: 12px;
   font-weight: 500;
-  line-height: normal;
   color: white;
   text-decoration: underline;
   outline: none;
