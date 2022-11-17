@@ -79,5 +79,6 @@ export const buttonBaseMixin = ({
 `
 
 export const ButtonBase = styled.button.attrs({
+  /* stylelint-disable-next-line property-no-unknown */
   type: 'button' as ButtonHTMLAttributes<HTMLButtonElement>['type'],
 })(buttonBaseMixin)
