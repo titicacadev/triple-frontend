@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react'
+import { ButtonHTMLAttributes, PropsWithChildren } from 'react'
 import styled, { css } from 'styled-components'
 import { Property } from 'csstype'
 import { Color } from '@titicaca/color-palette'
@@ -34,32 +34,41 @@ export interface ButtonBaseProps extends PropsWithChildren {
   textColor?: Color
 }
 
-export const ButtonBase = styled.button<ButtonBaseProps>`
+export const buttonBaseMixin = ({
+  bold,
+  floated = 'none',
+  fluid,
+  size = 'tiny',
+  lineHeight,
+  textAlpha = 1,
+  textColor = 'gray',
+}: ButtonBaseProps) => css`
   display: inline-block;
-  color: ${({ textColor = 'gray', textAlpha = 1 }) =>
-    `rgba(${GetGlobalColor(textColor)}, ${textAlpha}) `};
-  float: ${({ floated }) => floated || 'none'};
-  font-weight: ${({ bold }) => (bold ? 'bold' : 500)};
+  color: rgba(${GetGlobalColor(textColor)}, ${textAlpha});
+  float: ${floated};
+  font-weight: ${bold ? 'bold' : 500};
   text-align: center;
 
-  ${({ lineHeight }) =>
-    lineHeight &&
-    css`
-      line-height: ${unit(lineHeight)};
-    `};
+  ${lineHeight &&
+  css`
+    line-height: ${unit(lineHeight)};
+  `};
 
-  ${({ fluid }) =>
-    fluid &&
-    css`
-      width: 100%;
-      display: block;
-    `};
+  ${fluid &&
+  css`
+    width: 100%;
+    display: block;
+  `};
 
   ${marginMixin}
 
-  ${({ size = 'tiny' }) => SIZES[size]}
+  ${SIZES[size]}
 
   &:disabled {
     opacity: 0.3;
   }
 `
+
+export const ButtonBase = styled.button.attrs({
+  type: 'button' as ButtonHTMLAttributes<HTMLButtonElement>['type'],
+})(buttonBaseMixin)
