@@ -13,7 +13,13 @@ export interface ButtonOwnProps
   extends BasicButtonProps,
     Omit<IconButtonProps, 'icon'>,
     NormalButtonProps {
+  /**
+   * Basic 유형 버튼을 사용합니다.
+   */
   basic?: boolean
+  /**
+   * Block Icon 유형 버튼을 사용합니다.
+   */
   icon?: IconButtonProps['icon']
 }
 

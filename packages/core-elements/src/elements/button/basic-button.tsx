@@ -10,7 +10,13 @@ const BASIC_INVERTED_COLORS: Partial<Record<Color, string>> = {
 
 export interface BasicButtonProps extends ButtonBaseProps {
   color?: Color
+  /**
+   * Compact 버튼을 사용합니다. Normal 및 Basic 버튼에서만 사용할 수 있습니다.
+   */
   compact?: boolean
+  /**
+   * Inverted 버튼을 사용합니다. Basic 버튼에서만 사용할 수 있습니다.
+   */
   inverted?: boolean
 }
 
