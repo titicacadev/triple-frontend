@@ -1,9 +1,10 @@
-import { createContext, useContext } from 'react'
+import { createContext, ElementType, useContext } from 'react'
 
 export interface ActionSheetContextValue {
   open: boolean
   titleId: string
   onClose?: () => void
+  customOverlay?: ElementType
 }
 
 export const ActionSheetContext = createContext<
