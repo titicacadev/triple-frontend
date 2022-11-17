@@ -18,6 +18,9 @@ const COMPACT_NORMAL_PADDINGS: Partial<
 
 export interface NormalButtonProps extends ButtonBaseProps {
   borderRadius?: number
+  /**
+   * Compact 버튼을 사용합니다. Normal 및 Basic 버튼에서만 사용할 수 있습니다.
+   */
   compact?: boolean
   color?: Color
 }
