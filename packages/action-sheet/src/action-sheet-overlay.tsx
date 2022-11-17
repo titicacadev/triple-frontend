@@ -10,6 +10,7 @@ const inactiveOverlayFadeStyle = css`
 
 const activeOverlayFadeStyle = css`
   opacity: 1;
+  z-index: 9999;
 `
 
 const overlayFadeConfig = css<{ duration: number }>`
