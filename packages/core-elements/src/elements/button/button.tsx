@@ -1,103 +1,57 @@
-import { ElementType, forwardRef, ReactElement } from 'react'
+import { ButtonHTMLAttributes } from 'react'
+import styled from 'styled-components'
 
-import { PolymorphicPropsWithRef, PolymorphicRef } from '../../polymorphic'
-
-import { BasicButton, BasicButtonProps } from './basic-button'
+import { basicButtonMixin, BasicButtonProps } from './basic-button'
+import { ButtonBase } from './button-base'
 import { ButtonContainer } from './button-container'
 import { ButtonGroup } from './button-group'
 import { ButtonIcon } from './button-icon'
-import { IconButton, IconButtonProps } from './icon-button'
-import { NormalButton, NormalButtonProps } from './normal-button'
+import { iconButtonMixin, IconButtonProps } from './icon-button'
+import { normalButtonMixin, NormalButtonProps } from './normal-button'
 
-const ButtonDefaultElement = 'button'
+export interface ButtonOwnProps
+  extends BasicButtonProps,
+    Omit<IconButtonProps, 'icon'>,
+    NormalButtonProps {
+  basic?: boolean
+  icon?: IconButtonProps['icon']
+}
 
-export type ButtonProps<C extends ElementType = typeof ButtonDefaultElement> =
-  PolymorphicPropsWithRef<
-    C,
-    BasicButtonProps &
-      Omit<IconButtonProps, 'icon'> &
-      NormalButtonProps & {
-        basic?: boolean
-        icon?: IconButtonProps['icon']
-      }
-  >
+export type ButtonProps = ButtonOwnProps &
+  ButtonHTMLAttributes<HTMLButtonElement>
 
-type ButtonComponentType = <
-  C extends ElementType = typeof ButtonDefaultElement,
->(
-  props: ButtonProps<C>,
-) => ReactElement | null
-
-const ButtonComponent: ButtonComponentType = forwardRef(function Button<
-  C extends ElementType = typeof ButtonDefaultElement,
->(
-  {
-    children,
-    as,
-    basic,
-    borderRadius,
-    icon,
-    size,
-    textAlpha,
-    textColor,
-    ...props
-  }: ButtonProps<C>,
-  ref?: PolymorphicRef<C>,
-) {
-  const Element = as || ButtonDefaultElement
-
-  const type = Element === 'button' ? 'button' : undefined
-
-  if (basic) {
-    return (
-      <BasicButton
-        ref={ref}
-        as={Element}
-        bold
-        size={size || 'small'}
-        textAlpha={textAlpha || 0.5}
-        textColor={textColor || 'gray'}
-        type={type}
-        {...props}
-      >
-        {children}
-      </BasicButton>
-    )
+const ButtonComponent = styled(ButtonBase)<ButtonOwnProps>((props) => {
+  if (props.basic) {
+    return basicButtonMixin({
+      ...props,
+      bold: true,
+      size: props.size || 'small',
+      textAlpha: props.textAlpha || 0.5,
+      textColor: props.textColor || 'gray',
+    })
   }
 
-  if (icon) {
-    return (
-      <IconButton
-        ref={ref}
-        as={Element}
-        icon={icon}
-        size={size || 'tiny'}
-        textColor={textColor || 'gray'}
-        textAlpha={textAlpha || 0.5}
-        type={type}
-        {...props}
-      >
-        {children}
-      </IconButton>
-    )
+  if (props.icon) {
+    return iconButtonMixin({
+      ...props,
+      icon: props.icon,
+      size: props.size || 'tiny',
+      textAlpha: props.textAlpha || 0.5,
+      textColor: props.textColor || 'gray',
+    })
   }
 
-  return (
-    <NormalButton
-      ref={ref}
-      as={Element}
-      bold
-      borderRadius={borderRadius ?? 21}
-      size={size || 'tiny'}
-      textColor={textColor || 'white'}
-      textAlpha={textAlpha}
-      type={type}
-      {...props}
-    >
-      {children}
-    </NormalButton>
-  )
+  return normalButtonMixin({
+    ...props,
+    bold: true,
+    borderRadius: props.borderRadius ?? 21,
+    size: props.size || 'tiny',
+    textAlpha: props.textAlpha,
+    textColor: props.textColor || 'white',
+  })
 })
+
+ButtonComponent.displayName = 'Button'
 
 type CompoundedButton = typeof ButtonComponent & {
   Container: typeof ButtonContainer
