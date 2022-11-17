@@ -24,9 +24,18 @@ const SIZES: Record<ButtonSize, ReturnType<typeof css>> = {
 }
 
 export interface ButtonBaseProps extends PropsWithChildren {
+  /**
+   * Basic 및 Normal 버튼에서는 항상 `true` 입니다.
+   */
   bold?: boolean
   floated?: Property.Float
+  /**
+   * 버튼이 전체 너비 영역을 차지합니다.
+   */
   fluid?: boolean
+  /**
+   * 버튼 사이즈
+   */
   size?: ButtonSize
   margin?: MarginPadding
   lineHeight?: number | string
