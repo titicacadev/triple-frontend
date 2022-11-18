@@ -6,7 +6,7 @@ import {
 } from '@storybook/react'
 
 import { ActionSheet } from './action-sheet'
-import { Overlay } from './action-sheet-overlay'
+import { BaseOverlay } from './action-sheet-overlay'
 
 export default {
   title: 'action-sheet / action-sheet',
@@ -119,7 +119,7 @@ export const WithCustomHeader: ComponentStoryObj<typeof ActionSheet> = {
   },
 }
 
-const CustomOverlay = styled(Overlay)`
+const CustomOverlay = styled(BaseOverlay)`
   background-color: darkblue;
 
   .action-sheet-slide-enter-done {
