@@ -13,7 +13,14 @@ Web Storage API에서 발생할 수 있는 오류를 명확히 정의하고 이�
 ### `getWebStorage` 함수
 
 window의 `localStorage`, `sessionStorage` 대신 사용할 수 있는 객체를 반환하는 함수입니다.
-파라미터로 storage의 종류를 받습니다. 기본값은 `localStorage`입니다.
+파라미터
+
+- storage의 종류
+  - 기본값 : `localStorage`
+- Web Storage API 관련 오류를 처리하는 onError
+  - 기본값 : `undefined`
+  - onError에 함수가 정의 되어있는 `WebStorageError`의 경우 `WebStorageError`을 throw하지 않고 해당 함수를 실행합니다.
+
 Web Storage API와 거의 동일한 인터페이스를 제공합니다.
 `length`, `key`, `getItem`, `setItem`, `removeItem`, `clear` 속성을 제공합니다.
 단, 기존 storage와 달리 Index signature로 값에 접근하는 방식은 제공하지 않습니다.
@@ -31,5 +38,16 @@ storage['my-awesome-key'] = '42' // X
 ### `WebStorageErrorBoundary`
 
 자식 컴포넌트 트리에서 Web Storage API 관련 오류가 발생하면 Alert를 표시하는 컴포넌트입니다. 다른 에러를 만났을 때는 그대로 throw 합니다.
+
+따라서 `onError`에 정의된 함수에서 오류를 throw하면 `WebStorageErrorBoundary`를 거치지 않습니다.
+
+```ts
+const storage = getWebStorage('sessionStorage', {
+  unavailable: () => {
+    throw new Error('레포지토리에서 에러를 처리')
+  },
+})
+// 위의 Error가 발생 시 WebStorageErrorBoundary를 거치지 않음
+```
 
 `onConfirm` prop을 통해 Alert를 확인했을 때 행동을 정의해야 합니다.
