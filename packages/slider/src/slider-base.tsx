@@ -152,6 +152,7 @@ export default function SliderBase({
                     key={i}
                     percent={percent}
                     {...getHandleProps(id)}
+                    tabIndex={0}
                     role="slider"
                     aria-valuemax={i === 0 ? adjustedValues[1] - step : max}
                     aria-valuemin={i === 0 ? min : adjustedValues[0] + step}
