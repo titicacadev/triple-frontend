@@ -11,5 +11,6 @@ export const Basic: ComponentStoryObj<typeof BannerCTA> = {
   args: {
     inventoryId: 'app-install-cta-tna-v1',
     installUrl: 'https://triple-dev.titicaca-corp.com',
+    disableTextBanner: true,
   },
 }
