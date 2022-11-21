@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from 'react'
+import { ChangeEventHandler, SelectHTMLAttributes } from 'react'
 import styled from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 
@@ -40,16 +40,14 @@ const Svg = styled.svg`
   right: 16px;
 `
 
-export interface SelectOption<
-  Value extends string | number | readonly string[],
-> {
+export type OptionValueType = string | number | readonly string[]
+
+export interface SelectOption<Value extends OptionValueType> {
   label: string
   value: Value
 }
 
-export interface SelectProps<
-  Value extends string | number | readonly string[],
-> {
+export interface SelectOwnProps<Value extends OptionValueType> {
   name?: string
   value?: Value
   options?: SelectOption<Value>[]
@@ -62,7 +60,10 @@ export interface SelectProps<
   onChange?: ChangeEventHandler<HTMLSelectElement>
 }
 
-export const Select = <Value extends string | number | readonly string[]>({
+type SelectProps<Value extends OptionValueType> = SelectOwnProps<Value> &
+  SelectHTMLAttributes<HTMLSelectElement>
+
+export const Select = <Value extends OptionValueType>({
   name,
   value,
   placeholder,
@@ -73,6 +74,7 @@ export const Select = <Value extends string | number | readonly string[]>({
   error,
   help,
   onChange,
+  ...props
 }: SelectProps<Value>) => {
   const formFieldState = useFormFieldState()
 
@@ -100,6 +102,7 @@ export const Select = <Value extends string | number | readonly string[]>({
           aria-errormessage={isError ? formFieldState.errorId : undefined}
           aria-invalid={isError}
           onChange={onChange}
+          {...props}
         >
           {placeholder ? <option value="">{placeholder}</option> : null}
           {options?.map(({ label, value }, idx) => (
