@@ -138,6 +138,7 @@ export function Tooltip({
         backgroundColor: frameProps.backgroundColor || DEFAULT_BACKGROUND_COLOR,
         pointing: frameProps.pointing || DEFAULT_POINTING_OPTION,
       }}
+      role="tooltip"
       onClick={onClick}
     >
       <TooltipContainer paddingRight={onClick && 12} nowrap={!!nowrap}>
