@@ -1,14 +1,17 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { useState } from 'react'
 
-import { Tab } from './tab'
-import { TabList } from './tab-list'
-import { TabPanel } from './tab-panel'
 import { Tabs } from './tabs'
 
 export default {
   title: 'core-elements / Tabs',
   component: Tabs,
+  subcomponents: {
+    TabList: Tabs.TabList,
+    Tab: Tabs.Tab,
+    TabPanel: Tabs.TabPanel,
+  },
 } as ComponentMeta<typeof Tabs>
 
 const Template: ComponentStory<typeof Tabs> = (args) => {
@@ -16,14 +19,14 @@ const Template: ComponentStory<typeof Tabs> = (args) => {
 
   return (
     <Tabs {...args} value={value} onChange={setValue}>
-      <TabList>
-        <Tab value="a">A</Tab>
-        <Tab value="b">B</Tab>
-        <Tab value="c">C</Tab>
-      </TabList>
-      <TabPanel value="a">This is panel A</TabPanel>
-      <TabPanel value="b">This is panel B</TabPanel>
-      <TabPanel value="c">This is panel C</TabPanel>
+      <Tabs.TabList>
+        <Tabs.Tab value="a">A</Tabs.Tab>
+        <Tabs.Tab value="b">B</Tabs.Tab>
+        <Tabs.Tab value="c">C</Tabs.Tab>
+      </Tabs.TabList>
+      <Tabs.TabPanel value="a">This is panel A</Tabs.TabPanel>
+      <Tabs.TabPanel value="b">This is panel B</Tabs.TabPanel>
+      <Tabs.TabPanel value="c">This is panel C</Tabs.TabPanel>
     </Tabs>
   )
 }
