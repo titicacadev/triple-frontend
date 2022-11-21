@@ -32,7 +32,7 @@ const sheetSlideConfig = css<{ duration: number }>`
   transition: transform ${({ duration }) => duration}ms ease-in;
 `
 
-interface SheetProps {
+interface SheetProps extends CSSProps {
   borderRadius: number
   bottomSpacing: number
   duration: number
