@@ -1,4 +1,4 @@
-import { useReducer, useCallback, useEffect, SyntheticEvent } from 'react'
+import { useReducer, useCallback, useEffect } from 'react'
 import { useI18n } from '@titicaca/i18n'
 import {
   Section,
@@ -128,16 +128,14 @@ function NearbyPois({
   }, [poiId, regionId, lat, lon, currentTab, pois, dispatch, trackSimpleEvent])
 
   const handleTabChange = useCallback(
-    (e?: SyntheticEvent, newTab?: string) => {
-      if (newTab) {
-        trackSimpleEvent({
-          action: '근처추천장소_탭선택',
-          label: EVENT_LABELS[newTab as NearByPoiType],
-          tab_name: EVENT_LABELS[newTab as NearByPoiType],
-        })
+    (newTab: string) => {
+      trackSimpleEvent({
+        action: '근처추천장소_탭선택',
+        label: EVENT_LABELS[newTab as NearByPoiType],
+        tab_name: EVENT_LABELS[newTab as NearByPoiType],
+      })
 
-        dispatch(setCurrentTab({ type: newTab as NearByPoiType }))
-      }
+      dispatch(setCurrentTab({ type: newTab as NearByPoiType }))
     },
     [trackSimpleEvent, dispatch],
   )
@@ -158,49 +156,51 @@ function NearbyPois({
         {t('common:nearbyPois', '근처의 추천 장소')}
       </H1>
 
-      <Tabs
-        type="basic"
-        value={currentTab}
-        options={[
-          { label: t('common:attraction', '관광'), value: 'attraction' },
-          { label: t('common:restaurant', '맛집'), value: 'restaurant' },
-        ]}
-        onChange={handleTabChange}
-      />
-
-      {pois.length === 0 && hasMore === false ? (
-        <Paragraph center margin={{ top: 70 }}>
-          {t('common:noNearbyPlaces', '장소가 없습니다.')}
-        </Paragraph>
-      ) : (
-        <>
-          <List divided margin={{ top: 10 }}>
-            {pois.map((poi, i) => (
-              <PoiEntry
-                key={poi.id}
-                index={i}
-                poi={poi}
-                eventLabel={EVENT_LABELS[currentTab]}
-                optimized={optimized}
-              />
-            ))}
-          </List>
-          {hasMore && (
-            <Button
-              basic
-              fluid
-              compact
-              color="gray"
-              size="small"
-              margin={{ top: 10 }}
-              disabled={fetching}
-              onClick={handleLoadMore}
-            >
-              {t('common:moreNearbyplaces', '더 많은 장소 보기')}
-            </Button>
+      <Tabs variant="basic" value={currentTab} onChange={handleTabChange}>
+        <Tabs.TabList>
+          <Tabs.Tab value="attraction">
+            {t('common:attraction', '관광')}
+          </Tabs.Tab>
+          <Tabs.Tab value="restaurant">
+            {t('common:restaurant', '맛집')}
+          </Tabs.Tab>
+        </Tabs.TabList>
+        <Tabs.TabPanel value={currentTab}>
+          {pois.length === 0 && hasMore === false ? (
+            <Paragraph center margin={{ top: 70 }}>
+              {t('common:noNearbyPlaces', '장소가 없습니다.')}
+            </Paragraph>
+          ) : (
+            <>
+              <List divided margin={{ top: 10 }}>
+                {pois.map((poi, i) => (
+                  <PoiEntry
+                    key={poi.id}
+                    index={i}
+                    poi={poi}
+                    eventLabel={EVENT_LABELS[currentTab]}
+                    optimized={optimized}
+                  />
+                ))}
+              </List>
+              {hasMore && (
+                <Button
+                  basic
+                  fluid
+                  compact
+                  color="gray"
+                  size="small"
+                  margin={{ top: 10 }}
+                  disabled={fetching}
+                  onClick={handleLoadMore}
+                >
+                  {t('common:moreNearbyplaces', '더 많은 장소 보기')}
+                </Button>
+              )}
+            </>
           )}
-        </>
-      )}
+        </Tabs.TabPanel>
+      </Tabs>
     </Section>
   )
 }
