@@ -1,10 +1,11 @@
 import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 import * as CSS from 'csstype'
+import { CSSProps } from '@titicaca/core-elements'
 
 import { useActionSheet } from './action-sheet-context'
 
-const ActionItemContainer = styled.div`
+export const ActionItemContainer = styled.div<CSSProps>`
   width: 100%;
   height: 54px;
 
@@ -13,6 +14,8 @@ const ActionItemContainer = styled.div`
     display: block;
     clear: both;
   }
+
+  ${({ css }) => css}
 `
 
 const ItemText = styled.div<{
@@ -78,7 +81,7 @@ const CheckedIcon = styled.div`
   background-repeat: none;
 `
 
-export interface ActionSheetItemProps extends PropsWithChildren {
+export interface ActionSheetItemProps extends PropsWithChildren, CSSProps {
   buttonLabel?: string
   icon?: string
   checked?: boolean
@@ -91,6 +94,7 @@ export const ActionSheetItem = ({
   icon,
   checked,
   onClick,
+  css,
 }: ActionSheetItemProps) => {
   const { onClose } = useActionSheet()
 
@@ -109,7 +113,10 @@ export const ActionSheetItem = ({
   }
 
   return (
-    <ActionItemContainer onClick={buttonLabel ? undefined : handleClick}>
+    <ActionItemContainer
+      onClick={buttonLabel ? undefined : handleClick}
+      css={css}
+    >
       {icon ? <ItemIcon src={URL_BY_NAMES[icon]} /> : null}
       <ItemText width={textWidth} checked={checked}>
         {children}
