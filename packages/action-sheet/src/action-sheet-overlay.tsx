@@ -17,7 +17,7 @@ const overlayFadeConfig = css<{ duration: number }>`
   transition: opacity ${({ duration }) => duration}ms ease-in;
 `
 
-export const BaseOverlay = styled.div`
+export const Overlay = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -70,8 +70,7 @@ export const ActionSheetOverlay = forwardRef<
   HTMLDivElement,
   ActionSheetOverlayProps
 >(({ children, duration }, ref) => {
-  const { open, customOverlay } = useActionSheet()
-  const Overlay = customOverlay || BaseOverlay
+  const { open } = useActionSheet()
 
   return (
     <CSSTransition

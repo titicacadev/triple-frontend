@@ -2,6 +2,7 @@ import { FocusScope } from '@react-aria/focus'
 import { white } from '@titicaca/color-palette'
 import {
   Container,
+  CSSProps,
   MarginPadding,
   safeAreaInsetMixin,
 } from '@titicaca/core-elements'
@@ -103,6 +104,8 @@ const Sheet = styled.div<SheetProps>`
         `
     }
   }}
+
+  ${({ css }) => css}
 `
 
 const Content = styled(Container)`
@@ -113,7 +116,7 @@ const Content = styled(Container)`
   }
 `
 
-export interface ActionSheetBodyProps extends PropsWithChildren {
+export interface ActionSheetBodyProps extends PropsWithChildren, CSSProps {
   borderRadius: number
   bottomSpacing: number
   duration: number
