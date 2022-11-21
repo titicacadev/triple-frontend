@@ -3,6 +3,9 @@ import React, { PropsWithChildren } from 'react'
 import { useTabs } from './tabs-context'
 
 export interface TabPanelProps extends PropsWithChildren {
+  /**
+   * 각 탭마다의 유니크한 값
+   */
   value: string
 }
 
