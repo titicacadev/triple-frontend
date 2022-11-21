@@ -4,7 +4,9 @@ import { HTMLAttributes } from 'react'
 
 import { Container, ContainerProps } from '../container'
 
-export interface FlexBoxProps extends Omit<FlexItemProps, 'flex'> {
+export interface FlexBoxProps
+  extends Omit<FlexItemOwnProps, 'flex'>,
+    HTMLAttributes<Element> {
   flex?: boolean
   flexDirection?: Property.FlexDirection
   flexWrap?: Property.FlexWrap
@@ -16,7 +18,7 @@ export interface FlexBoxProps extends Omit<FlexItemProps, 'flex'> {
   rowGap?: Property.RowGap
 }
 
-export interface FlexItemProps extends ContainerProps, HTMLAttributes<Element> {
+export interface FlexItemOwnProps extends ContainerProps {
   flex?: Property.Flex
   flexGrow?: Property.FlexGrow
   flexShrink?: Property.FlexShrink
@@ -36,6 +38,7 @@ const FlexItem = styled(Container)<FlexItemProps>(
   }),
   (props) => props.css,
 )
+export type FlexItemProps = FlexItemOwnProps & HTMLAttributes<Element>
 
 const StyledFlexBox = styled(Container)<FlexBoxProps>(
   (props) => ({
