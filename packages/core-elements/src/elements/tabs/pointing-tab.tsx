@@ -1,105 +1,44 @@
-import { useRef, useState, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 
-import { MarginPadding } from '../../commons'
+import { usePointingTab } from './pointing-tab-context'
+import { TabBase, TabBaseProps } from './tab-base'
+import { useTabs } from './tabs-context'
 
-import TabContainer from './tab-container'
-import TabLabel from './tab-label'
-import { TabProps } from './types'
+interface StyledTabBaseProps {
+  scroll: boolean
+}
 
-const PointingContainer = styled(TabContainer)<{
-  size?: number
-  left?: number
-}>`
-  border-bottom: 1px solid var(--color-gray50);
-
-  &::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    bottom: 0;
-    width: ${({ size }) => `${size}px`};
-    left: ${({ left }) => `${left}px`};
-    height: 2px;
-    background: var(--color-blue);
-    transition: all 0.2s;
-  }
-`
-
-const PointingRow = styled.div`
-  display: table-row;
-`
-
-const PointingLabel = styled(TabLabel)`
+const StyledTabBase = styled(TabBase)<StyledTabBaseProps>`
+  flex: 1;
+  font-size: 15px;
   font-weight: bold;
+  color: var(--color-gray300);
+  padding: 11px 0;
 
-  ${({ active }) => css`
-    font-size: 15px;
-    color: ${active ? `var(--color-gray) ` : `var(--color-gray300) `};
-  `}
+  &[aria-selected='true'] {
+    color: var(--color-gray);
+  }
 
   ${({ scroll }) =>
     scroll &&
     css`
-      display: inline-block;
+      flex: none;
+
       padding: 11px 18px;
-    `};
+    `}
 `
 
-interface RefValuesProps {
-  refSize: number | undefined
-  refLeft: number | undefined
-}
-
-export default function PointingTab<Value>({
-  options,
-  value: currentValue,
-  onChange,
-  scroll,
-  labelPadding,
-}: TabProps<Value> & {
-  labelPadding?: MarginPadding
-}) {
-  const pointingRef = useRef<(HTMLDivElement | null)[]>([])
-
-  const [refValues, setRefValues] = useState<RefValuesProps>({
-    refSize: 0,
-    refLeft: 0,
-  })
-
-  const activeIdx = options.findIndex(({ value }) => value === currentValue)
-
-  useEffect(() => {
-    if (pointingRef.current.length === 0) {
-      return
-    }
-
-    setRefValues({
-      refSize: pointingRef.current[activeIdx]?.clientWidth,
-      refLeft: pointingRef.current[activeIdx]?.offsetLeft,
-    })
-  }, [activeIdx]) // eslint-disable-line react-hooks/exhaustive-deps
-
-  const { refSize, refLeft } = refValues
+export const PointingTab = ({ children, ...props }: TabBaseProps) => {
+  const tabs = useTabs()
+  const { tabsRef } = usePointingTab()
 
   return (
-    <PointingContainer size={refSize} left={refLeft} scroll={scroll}>
-      <PointingRow>
-        {options.map(({ label, value }, idx) => (
-          <PointingLabel
-            scroll={scroll}
-            ref={(ref) => (pointingRef.current[idx] = ref)}
-            key={idx}
-            active={value === currentValue}
-            onClick={(e) => {
-              onChange(e, value)
-            }}
-            padding={labelPadding}
-          >
-            {label}
-          </PointingLabel>
-        ))}
-      </PointingRow>
-    </PointingContainer>
+    <StyledTabBase
+      ref={(node) => (tabsRef.current[props.value] = node)}
+      scroll={tabs.scroll}
+      {...props}
+    >
+      {children}
+    </StyledTabBase>
   )
 }
