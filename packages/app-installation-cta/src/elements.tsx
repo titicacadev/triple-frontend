@@ -7,23 +7,13 @@ import {
 } from '@titicaca/core-elements'
 import { white, blue980 } from '@titicaca/color-palette'
 
-export const Overlay = styled.div<LayeringMixinProps>`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  ${layeringMixin(1)}
-`
-
 export const BottomFixedContainer = styled.div<LayeringMixinProps>`
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
 
-  ${layeringMixin(0)}
+  ${layeringMixin(1)}
 
   > * {
     margin: 0 auto;
