@@ -1,11 +1,6 @@
 import { InputHTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
-import {
-  Container,
-  GetGlobalColor,
-  MarginPadding,
-  CSSProps,
-} from '@titicaca/core-elements'
+import { Container, GetGlobalColor, CSSProps } from '@titicaca/core-elements'
 
 const Label = styled.label<{ disabled?: boolean }>`
   color: rgb(${GetGlobalColor('gray')});
@@ -77,9 +72,9 @@ interface Item<T> {
 }
 
 export interface CheckboxItemProps<T>
-  extends InputHTMLAttributes<HTMLInputElement> {
+  extends InputHTMLAttributes<HTMLInputElement>,
+    CSSProps {
   option: Item<T>
-  margin?: MarginPadding
 }
 
 export interface CheckboxWrapperProps<T> {
@@ -96,7 +91,7 @@ export function CheckboxItem<T>({
   name,
   option: { key, label },
   css: cssProp,
-}: CheckboxItemProps<T> & CSSProps) {
+}: CheckboxItemProps<T>) {
   const id = `${key}_${label}_${name}`
 
   return (
