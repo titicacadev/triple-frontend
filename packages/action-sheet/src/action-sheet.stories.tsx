@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import {
   ComponentMeta,
   ComponentStory,
@@ -6,7 +6,6 @@ import {
 } from '@storybook/react'
 
 import { ActionSheet } from './action-sheet'
-import { BaseOverlay } from './action-sheet-overlay'
 
 export default {
   title: 'action-sheet / action-sheet',
@@ -119,21 +118,20 @@ export const WithCustomHeader: ComponentStoryObj<typeof ActionSheet> = {
   },
 }
 
-const CustomOverlay = styled(BaseOverlay)`
-  background-color: darkblue;
-
-  .action-sheet-slide-enter-done {
-    background-color: aqua;
-
-    > div:last-child {
-      padding: 0 40px;
-    }
-  }
-`
-
 export const WithExtendStyle: ComponentStory<typeof ActionSheet> = (args) => {
   return (
-    <ActionSheet {...args}>
+    <ActionSheet
+      {...args}
+      css={css`
+        background-color: gray;
+
+        &.action-sheet-slide-enter-done {
+          > div:last-child {
+            padding: 0 40px;
+          }
+        }
+      `}
+    >
       {/* <RangePicker startDate={null} endDate={null} onDatesChange={() => {}} /> */}
     </ActionSheet>
   )
@@ -143,17 +141,24 @@ WithExtendStyle.parameters = {
   docs: {
     description: {
       story:
-        '스타일을 확장하여 사용할 때에는 @titicaca/action-sheet의 Overlay를 확장하여 커스텀 스타일을 작성합니다. \n 확장한 styled component를 CustomOverlay prop으로 넘기면 적용됩니다.',
+        '스타일을 확장하여 사용할 때에는 ActionSheet의 css prop이나 ActionSheet.Item의 css prop을 사용합니다. ',
     },
   },
 }
 WithExtendStyle.args = {
   open: true,
   title: '샘플 액션 시트',
-  customOverlay: CustomOverlay,
   children: (
     <>
-      <ActionSheet.Item icon="save">샘플 메뉴</ActionSheet.Item>
+      <ActionSheet.Item
+        icon="save"
+        css={css`
+          padding: 0 40px;
+          background-color: aqua;
+        `}
+      >
+        샘플 메뉴
+      </ActionSheet.Item>
       <ActionSheet.Item buttonLabel="액션">샘플 메뉴</ActionSheet.Item>
     </>
   ),
