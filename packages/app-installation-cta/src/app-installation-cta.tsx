@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { LayeringMixinProps } from '@titicaca/core-elements'
 
-import { Overlay, BottomFixedContainer } from './elements'
+import { BottomFixedContainer } from './elements'
 import ImageBanner from './image-banner'
 import TextBanner from './text-banner'
 
@@ -18,22 +18,18 @@ export default function AppInstallationCta({
   imgUrl,
   installUrl,
   message,
-  zTier,
-  zIndex,
 }: AppInstallationCtaProps & LayeringMixinProps) {
   const [isImageBannerOpen, setIsImageBannerOpen] = useState(true)
 
   if (isImageBannerOpen) {
     return (
-      <Overlay zTier={zTier} zIndex={zIndex}>
-        <BottomFixedContainer>
-          <ImageBanner
-            imgUrl={imgUrl}
-            installUrl={installUrl}
-            onDismiss={() => setIsImageBannerOpen(false)}
-          />
-        </BottomFixedContainer>
-      </Overlay>
+      <BottomFixedContainer>
+        <ImageBanner
+          imgUrl={imgUrl}
+          installUrl={installUrl}
+          onDismiss={() => setIsImageBannerOpen(false)}
+        />
+      </BottomFixedContainer>
     )
   }
 

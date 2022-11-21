@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
-import { LayeringMixinProps } from '@titicaca/core-elements'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
 
-import { Overlay, BottomFixedContainer } from './elements'
+import { BottomFixedContainer } from './elements'
 import ImageBanner from './image-banner'
 import TextBanner from './text-banner'
 import { CtaProps } from './interfaces'
@@ -31,9 +30,7 @@ export default function BannerCta({
   installText,
   dismissText,
   disableTextBanner,
-  zTier,
-  zIndex,
-}: BannerCtaProps & LayeringMixinProps) {
+}: BannerCtaProps) {
   const [inventoryItem, setInventoryItem] = useState<InventoryItemMeta>()
   const [isImageBannerOpen, setIsImageBannerOpen] = useState(true)
   const { image = '', desc = '' } = inventoryItem || {}
@@ -61,22 +58,20 @@ export default function BannerCta({
 
   return inventoryItem ? (
     isImageBannerOpen && image ? (
-      <Overlay zTier={zTier} zIndex={zIndex}>
-        <BottomFixedContainer>
-          <ImageBanner
-            imgUrl={image}
-            installUrl={installUrl}
-            installText={installText}
-            dismissText={dismissText}
-            onShow={onShow}
-            onClick={onClick}
-            onDismiss={() => {
-              setIsImageBannerOpen(false)
-              onDismiss && onDismiss(inventoryItem)
-            }}
-          />
-        </BottomFixedContainer>
-      </Overlay>
+      <BottomFixedContainer>
+        <ImageBanner
+          imgUrl={image}
+          installUrl={installUrl}
+          installText={installText}
+          dismissText={dismissText}
+          onShow={onShow}
+          onClick={onClick}
+          onDismiss={() => {
+            setIsImageBannerOpen(false)
+            onDismiss && onDismiss(inventoryItem)
+          }}
+        />
+      </BottomFixedContainer>
     ) : !disableTextBanner ? (
       <TextBanner
         message={desc}
