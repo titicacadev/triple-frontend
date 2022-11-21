@@ -9,6 +9,9 @@ import {
 import { useTabs } from './tabs-context'
 
 export interface TabBaseProps extends PropsWithChildren {
+  /**
+   * 각 탭마다의 유니크한 값
+   */
   value: string
 }
 
