@@ -13,6 +13,7 @@ export const Basic: ComponentStoryObj<typeof RangeSlider> = {
     max: 500000,
     debounceTime: 800,
     nonLinear: false,
+    initialValues: [0, 500000],
   },
 }
 
@@ -24,5 +25,6 @@ export const Adjusted: ComponentStoryObj<typeof RangeSlider> = {
     adjustInitValues: true,
     debounceTime: 800,
     nonLinear: false,
+    initialValues: [1, 31],
   },
 }
