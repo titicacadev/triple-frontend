@@ -5,10 +5,6 @@
     "build": {
       "outputs": ["lib/**"],
       "dependsOn": ["^build"]
-    },
-    "build:ci": {
-      "outputs": ["lib/**"],
-      "dependsOn": ["^build:ci"]
     }
   }
 }
