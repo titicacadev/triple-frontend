@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/modals",
-  "version": "10.2.1",
+  "version": "10.3.0",
   "description": "Triple modal dialog components",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/modals",
@@ -21,7 +21,7 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^10.2.1"
+    "@titicaca/core-elements": "^10.3.0"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*"
