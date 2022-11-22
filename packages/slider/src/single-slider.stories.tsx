@@ -13,5 +13,6 @@ export const Baisc: ComponentStoryObj<typeof SingleSlider> = {
     max: 500000,
     debounceTime: 800,
     nonLinear: false,
+    initialValue: 0,
   },
 }
