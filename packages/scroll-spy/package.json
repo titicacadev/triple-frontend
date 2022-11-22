@@ -17,8 +17,7 @@
   ],
   "scripts": {
     "build": "npm run build:cjs",
-    "build:cjs": "swc src -d lib --config-file ../../.swcrc",
-    "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
+    "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
     "@titicaca/intersection-observer": "^11.1.0",
