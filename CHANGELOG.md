@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 10.3.0
+
+### app-installation-cta
+
+- 배너 CTA의 Dimmed 영역을 제거합니다. [#2265](https://github.com/titicacadev/triple-frontend/pull/2265)
+- 플로팅 버튼의 디자인을 리뉴얼합니다. [#2262](https://github.com/titicacadev/triple-frontend/pull/2262)
+
 ## 10.2.1
 
 ### core-elements
