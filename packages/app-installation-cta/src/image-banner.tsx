@@ -64,7 +64,7 @@ export default function ImageBanner({
         <span role="img" aria-label="eyes">
           👀
         </span>
-        <span>&nbsp;&nbsp;{installText || '편하게 앱에서 보기'}</span>
+        <span>&nbsp;&nbsp;{installText || '편하게 앱에서 보기'}</span>
       </InstallLink>
 
       <DismissButton onClick={handleDismiss}>
