@@ -40,6 +40,9 @@ export interface SliderBaseProps {
    * onChange 함수에 걸리는 debounce 시간 (ms).
    */
   debounceTime?: number
+  /**
+   * initialValues가 step의 배수가 아닐 경우 가까운 숫자로 조정
+   */
   adjustInitValues?: boolean
 }
 
@@ -113,10 +116,13 @@ export default function SliderBase({
     debounceTime,
   ])
 
-  const adjustedValues = useMemo(
-    () => [Math.max(min, values[0]), Math.min(max, values[1])],
-    [max, min, values],
-  )
+  const adjustedValues = useMemo(() => {
+    if (values.length === 1) {
+      return [Math.max(min, values[0])]
+    } else {
+      return [Math.max(min, values[0]), Math.min(max, values[1])]
+    }
+  }, [max, min, values])
 
   useEffect(() => {
     debouncedChangeHandler(adjustedValues)
@@ -154,7 +160,11 @@ export default function SliderBase({
                     {...getHandleProps(id)}
                     tabIndex={0}
                     role="slider"
-                    aria-valuemax={i === 0 ? adjustedValues[1] - step : max}
+                    aria-valuemax={
+                      i === 0 && adjustedValues.length > 1
+                        ? adjustedValues[1] - step
+                        : max
+                    }
                     aria-valuemin={i === 0 ? min : adjustedValues[0] + step}
                     aria-valuenow={adjustedValues[i]}
                     aria-orientation="horizontal"
