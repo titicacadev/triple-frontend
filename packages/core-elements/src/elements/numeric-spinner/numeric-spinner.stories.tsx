@@ -20,10 +20,10 @@ export const Default: ComponentStoryObj<typeof NumericSpinner> = {
   },
 }
 
-export const Borderless: ComponentStoryObj<typeof NumericSpinner> = {
+export const Disabled: ComponentStoryObj<typeof NumericSpinner> = {
   args: {
     ...Default.args,
-    borderless: true,
+    disabled: true,
   },
 }
 
