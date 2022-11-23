@@ -49,8 +49,11 @@ interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 }
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  function Textarea({ required = false, label, error, help, ...props }, ref) {
-    const formFieldState = useFormFieldState()
+  function Textarea(
+    { required = false, label, error, help, onBlur, onFocus, ...props },
+    ref,
+  ) {
+    const formFieldState = useFormFieldState({ onBlur, onFocus })
 
     const hasLabel = !!label
     const hasHelp = !!help
@@ -75,6 +78,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           aria-errormessage={isError ? formFieldState.errorId : undefined}
           aria-invalid={isError}
           aria-multiline
+          onBlur={formFieldState.handleBlur}
+          onFocus={formFieldState.handleFocus}
           {...props}
         />
         {error ? (
