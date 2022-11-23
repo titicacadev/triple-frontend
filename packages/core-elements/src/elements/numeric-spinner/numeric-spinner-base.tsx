@@ -2,8 +2,7 @@ import { KeyboardEventHandler } from 'react'
 import styled from 'styled-components'
 
 import { Text } from '../text'
-
-import { GlobalSizes } from 'packages/core-elements/lib'
+import { GlobalSizes } from '../../commons'
 
 function clamp(value: number, min: number, max: number) {
   if (Math.min(value, min) === value) {
