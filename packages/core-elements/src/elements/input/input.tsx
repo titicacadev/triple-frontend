@@ -37,17 +37,16 @@ const BaseInput = styled(InputMask)`
 export interface InputProps
   extends InputHTMLAttributes<HTMLInputElement>,
     MaskOptions {
-  required?: boolean
   label?: string
   error?: string | boolean
   help?: string
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-  { required = false, label, error, help, ...props },
+  { label, error, help, onBlur, onFocus, ...props },
   ref,
 ) {
-  const formFieldState = useFormFieldState()
+  const formFieldState = useFormFieldState({ onBlur, onFocus })
 
   const hasHelp = !!help
   const isError = !!error
@@ -58,7 +57,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         ...formFieldState,
         isError,
         isDisabled: !!props.disabled,
-        isRequired: required,
+        isRequired: !!props.required,
       }}
     >
       {label ? <FormFieldLabel>{label}</FormFieldLabel> : null}
@@ -70,6 +69,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         }
         aria-errormessage={isError ? formFieldState.errorId : undefined}
         aria-invalid={isError}
+        onBlur={formFieldState.handleBlur}
+        onFocus={formFieldState.handleFocus}
         {...props}
       />
       {error ? (
