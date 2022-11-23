@@ -13,7 +13,6 @@ import {
 
 const BaseInput = styled(InputMask)`
   padding: 0 16px;
-  outline: none;
   font-size: 16px;
   height: 48px;
   font-weight: 500;
@@ -21,12 +20,13 @@ const BaseInput = styled(InputMask)`
   border-radius: 2px;
   width: 100%;
 
-  &[aria-invalid='true'] {
-    border-color: rgb(${getColor('red')});
+  &:focus {
+    outline: none;
+    border-color: rgb(${getColor('blue')});
   }
 
-  &:focus {
-    border-color: rgb(${getColor('blue')});
+  &[aria-invalid='true'] {
+    border-color: rgb(${getColor('red')});
   }
 
   &::placeholder {
