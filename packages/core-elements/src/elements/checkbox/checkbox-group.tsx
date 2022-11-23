@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react'
+import { HTMLAttributes, PropsWithChildren } from 'react'
 
 import {
   FormFieldContext,
@@ -15,7 +15,8 @@ import {
 
 export interface CheckboxGroupProps
   extends PropsWithChildren,
-    CheckboxGroupContextValue {
+    CheckboxGroupContextValue,
+    Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   label?: string
   error?: string
   help?: string
@@ -28,9 +29,12 @@ export const CheckboxGroup = ({
   label,
   error,
   help,
+  onBlur,
   onChange,
+  onFocus,
+  ...props
 }: CheckboxGroupProps) => {
-  const formFieldState = useFormFieldState()
+  const formFieldState = useFormFieldState({ onBlur, onFocus })
 
   const hasLabel = !!label
   const hasHelp = !!help
@@ -57,6 +61,9 @@ export const CheckboxGroup = ({
               ? formFieldState.errorId
               : undefined
           }
+          onBlur={formFieldState.handleBlur}
+          onFocus={formFieldState.handleFocus}
+          {...props}
         >
           {children}
         </div>
