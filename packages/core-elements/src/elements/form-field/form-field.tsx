@@ -1,9 +1,14 @@
 import { PropsWithChildren } from 'react'
 
 import { FormFieldContext } from './form-field-context'
-import { useFormFieldState } from './use-form-field-state'
+import {
+  useFormFieldState,
+  UseFormFieldStateParams,
+} from './use-form-field-state'
 
-export interface FormFieldProps extends PropsWithChildren {
+export interface FormFieldProps
+  extends UseFormFieldStateParams,
+    PropsWithChildren {
   isError?: boolean
   isDisabled?: boolean
   isRequired?: boolean
@@ -14,8 +19,10 @@ export const FormField = ({
   isError = false,
   isDisabled = false,
   isRequired = false,
+  onBlur,
+  onFocus,
 }: FormFieldProps) => {
-  const state = useFormFieldState()
+  const state = useFormFieldState({ onBlur, onFocus })
 
   return (
     <FormFieldContext.Provider
