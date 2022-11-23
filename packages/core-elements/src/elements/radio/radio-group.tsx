@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react'
+import { HTMLAttributes, PropsWithChildren } from 'react'
 
 import {
   FormFieldContext,
@@ -15,7 +15,8 @@ import {
 
 export interface RadioGroupProps
   extends PropsWithChildren,
-    RadioGroupContextValue {
+    RadioGroupContextValue,
+    Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   required?: boolean
   label?: string
   error?: string
@@ -30,9 +31,12 @@ export const RadioGroup = ({
   label,
   error,
   help,
+  onBlur,
   onChange,
+  onFocus,
+  ...props
 }: RadioGroupProps) => {
-  const formFieldState = useFormFieldState()
+  const formFieldState = useFormFieldState({ onBlur, onFocus })
 
   const hasLabel = !!label
   const hasHelp = !!help
@@ -64,6 +68,9 @@ export const RadioGroup = ({
           aria-errormessage={isError ? formFieldState?.errorId : undefined}
           aria-invalid={isError}
           aria-required={required}
+          onBlur={formFieldState.handleBlur}
+          onFocus={formFieldState.handleFocus}
+          {...props}
         >
           {children}
         </div>
