@@ -1,4 +1,4 @@
-import { ChangeEventHandler, SelectHTMLAttributes } from 'react'
+import { SelectHTMLAttributes } from 'react'
 import styled from 'styled-components'
 import { getColor } from '@titicaca/color-palette'
 
@@ -48,35 +48,29 @@ export interface SelectOption<Value extends OptionValueType> {
 }
 
 export interface SelectOwnProps<Value extends OptionValueType> {
-  name?: string
   value?: Value
   options?: SelectOption<Value>[]
   placeholder?: string
-  disabled?: boolean
-  required?: boolean
   label?: string
-  error?: string
+  error?: string | boolean
   help?: string
-  onChange?: ChangeEventHandler<HTMLSelectElement>
 }
 
-type SelectProps<Value extends OptionValueType> = SelectOwnProps<Value> &
+export type SelectProps<Value extends OptionValueType> = SelectOwnProps<Value> &
   SelectHTMLAttributes<HTMLSelectElement>
 
 export const Select = <Value extends OptionValueType>({
-  name,
   value,
   placeholder,
   options,
-  disabled = false,
-  required = false,
   label,
   error,
   help,
-  onChange,
+  onBlur,
+  onFocus,
   ...props
 }: SelectProps<Value>) => {
-  const formFieldState = useFormFieldState()
+  const formFieldState = useFormFieldState({ onBlur, onFocus })
 
   const hasHelp = !!help
   const isError = !!error
@@ -85,23 +79,19 @@ export const Select = <Value extends OptionValueType>({
     <FormFieldContext.Provider
       value={{
         ...formFieldState,
-        isDisabled: disabled,
+        isDisabled: !!props.disabled,
         isError,
-        isRequired: required,
+        isRequired: !!props.required,
       }}
     >
       {label ? <FormFieldLabel>{label}</FormFieldLabel> : null}
       <Container position="relative">
         <BaseSelect
           id={formFieldState.inputId}
-          name={name}
           value={value}
-          disabled={disabled}
-          required={required}
           aria-describedby={hasHelp ? formFieldState.descriptionId : undefined}
           aria-errormessage={isError ? formFieldState.errorId : undefined}
           aria-invalid={isError}
-          onChange={onChange}
           {...props}
         >
           {placeholder ? <option value="">{placeholder}</option> : null}
