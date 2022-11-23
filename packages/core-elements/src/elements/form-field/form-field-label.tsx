@@ -7,8 +7,21 @@ import { Text } from '../text'
 
 import { useFormField } from './form-field-context'
 
-const Label = styled(Text)<{ isError: boolean; isRequired: boolean }>`
+interface LabelProps {
+  isError: boolean
+  isRequired: boolean
+  isFocused: boolean
+}
+
+const Label = styled(Text)<LabelProps>`
+  display: inline-block;
   margin-bottom: 6px;
+
+  ${({ isFocused }) =>
+    isFocused &&
+    css`
+      color: rgba(${getColor('blue')});
+    `}
 
   ${({ isError }) =>
     isError &&
@@ -29,9 +42,9 @@ const Label = styled(Text)<{ isError: boolean; isRequired: boolean }>`
     `}
 `
 
-export type Props = PropsWithChildren
+export type FormFieldLabelProps = PropsWithChildren
 
-export const FormFieldLabel = ({ children }: Props) => {
+export const FormFieldLabel = ({ children }: FormFieldLabelProps) => {
   const formField = useFormField()
 
   return (
@@ -42,6 +55,7 @@ export const FormFieldLabel = ({ children }: Props) => {
         htmlFor={formField.inputId}
         isError={formField.isError}
         isRequired={formField.isRequired}
+        isFocused={formField.isFocused}
       >
         {children}
       </Label>
