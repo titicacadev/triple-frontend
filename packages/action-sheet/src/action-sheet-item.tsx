@@ -1,29 +1,19 @@
 import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
-import * as CSS from 'csstype'
 import { CSSProps } from '@titicaca/core-elements'
 
 import { useActionSheet } from './action-sheet-context'
 
 export const ActionItemContainer = styled.div<CSSProps>`
-  width: 100%;
+  display: flex;
+  align-items: center;
   height: 54px;
-
-  &::after {
-    content: '';
-    display: block;
-    clear: both;
-  }
 
   ${({ css }) => css}
 `
 
-const ItemText = styled.div<{
-  width?: CSS.Property.Width<string | number>
-  checked?: boolean
-}>`
-  display: inline-block;
-  width: ${({ width }) => width || '100%'};
+const ItemText = styled.div<{ checked?: boolean }>`
+  flex: 1;
   height: 54px;
   line-height: 54px;
   font-size: 16px;
@@ -35,10 +25,9 @@ const ItemText = styled.div<{
 `
 
 const ItemButton = styled.a`
-  float: right;
+  display: block;
   height: 30px;
   line-height: 30px;
-  margin-top: 11px;
   padding: 0 17px;
   border-radius: 15px;
   background-color: #fafafa;
@@ -63,16 +52,13 @@ const URL_BY_NAMES: { [key: string]: string } = {
 const CHECKED_ICON_URL = 'https://assets.triple.guide/images/checkbox-on.svg'
 
 const ItemIcon = styled.img`
-  float: left;
-  margin-top: 12px;
+  display: block;
   width: 30px;
   height: 30px;
   margin-right: 9px;
 `
 
 const CheckedIcon = styled.div`
-  float: right;
-  margin-top: 9px;
   margin-right: -5px;
   width: 36px;
   height: 36px;
@@ -98,15 +84,6 @@ export const ActionSheetItem = ({
 }: ActionSheetItemProps) => {
   const { onClose } = useActionSheet()
 
-  let textWidth = '100%'
-  if (buttonLabel && icon) {
-    textWidth = 'calc(100% - 100px)'
-  } else if (buttonLabel || checked) {
-    textWidth = 'calc(100% - 60px)'
-  } else if (icon) {
-    textWidth = 'calc(100% - 40px)'
-  }
-
   const handleClick = () => {
     onClick?.()
     onClose?.()
@@ -118,9 +95,7 @@ export const ActionSheetItem = ({
       css={css}
     >
       {icon ? <ItemIcon src={URL_BY_NAMES[icon]} /> : null}
-      <ItemText width={textWidth} checked={checked}>
-        {children}
-      </ItemText>
+      <ItemText checked={checked}>{children}</ItemText>
       {buttonLabel ? (
         <ItemButton onClick={handleClick}>{buttonLabel}</ItemButton>
       ) : null}
