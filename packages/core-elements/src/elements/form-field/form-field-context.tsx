@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react'
+import { createContext, FocusEventHandler, useContext } from 'react'
 
 export interface FormFieldContextValue {
   inputId: string
@@ -8,6 +8,9 @@ export interface FormFieldContextValue {
   isError: boolean
   isDisabled: boolean
   isRequired: boolean
+  isFocused: boolean
+  handleBlur: FocusEventHandler
+  handleFocus: FocusEventHandler
 }
 
 export const FormFieldContext = createContext<
