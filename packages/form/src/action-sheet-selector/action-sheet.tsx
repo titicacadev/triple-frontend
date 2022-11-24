@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
+import { ActionSheet } from '@titicaca/action-sheet'
 import { useTranslation } from '@titicaca/next-i18next'
-import ActionSheet from '@titicaca/action-sheet'
 import DrawerButton from '@titicaca/drawer-button'
 
 import { Option } from './types'

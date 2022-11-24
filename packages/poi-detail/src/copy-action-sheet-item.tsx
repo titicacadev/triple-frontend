@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
+import { ActionSheet } from '@titicaca/action-sheet'
 import { useTranslation } from '@titicaca/next-i18next'
-import ActionSheet from '@titicaca/action-sheet'
 
 export default function CopyActionSheetItem({
   value,
