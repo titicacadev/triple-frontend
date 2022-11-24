@@ -5,7 +5,6 @@ import {
   layeringMixin,
   LayeringMixinProps,
 } from '@titicaca/core-elements'
-import { white, blue980, gray500 } from '@titicaca/color-palette'
 
 export const Overlay = styled.div<LayeringMixinProps>`
   position: fixed;
@@ -14,7 +13,7 @@ export const Overlay = styled.div<LayeringMixinProps>`
   left: 0;
   right: 0;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
-  background-color: ${gray500};
+  background-color: var(--color-gray500);
 
   ${layeringMixin(1)}
 `
@@ -111,7 +110,7 @@ export const InstallDescription = styled(Text)`
   height: 21px;
   font-size: 18px;
   font-weight: bold;
-  color: ${white};
+  color: var(--color-white);
 `
 
 export const InstallAnchor = styled.a`
@@ -215,7 +214,7 @@ export const FloatingButton = styled.div`
   display: flex;
   border-radius: 42px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
-  background-color: ${blue980};
+  background-color: var(--color-blue980);
   overflow: hidden;
   margin-left: auto;
   margin-right: auto;
@@ -239,7 +238,7 @@ export const ChatbotAction = styled.a`
   font-weight: bold;
   text-decoration: none;
   line-height: 16px;
-  color: ${blue980};
+  color: var(--color-blue980);
   padding-right: 14px;
   background-size: 14px 14px;
   background-image: url('https://assets.triple.guide/images/ico-right-blue-arrow-s@3x.png');

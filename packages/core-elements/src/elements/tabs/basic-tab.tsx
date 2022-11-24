@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { gray, white } from '@titicaca/color-palette'
 
 import { TabBase, TabBaseProps } from './tab-base'
 
@@ -12,8 +11,8 @@ const StyledTabBase = styled(TabBase)`
   padding: 11px 0;
 
   &[aria-selected='true'] {
-    color: ${gray};
-    background-color: ${white};
+    color: var(--color-gray);
+    background-color: var(--color-white);
   }
 `
 
