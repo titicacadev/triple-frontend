@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { white, brightGray } from '@titicaca/color-palette'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 
 import {
@@ -40,10 +39,10 @@ const Wrapper = styled.div<{ visible: boolean }>`
 `
 
 const HeaderFrame = styled.div`
-  background-color: ${white};
+  background-color: var(--color-white);
   display: flex;
   align-items: center;
-  border-bottom: 1px solid ${brightGray};
+  border-bottom: 1px solid var(--color-brightGray);
   padding: 0 6px;
   height: ${HEADER_MOBILE_HEIGHT}px;
 

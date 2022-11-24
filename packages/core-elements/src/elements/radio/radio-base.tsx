@@ -1,13 +1,12 @@
 import { ChangeEventHandler } from 'react'
 import styled from 'styled-components'
-import { blue, gray200 } from '@titicaca/color-palette'
 
 const RadioInput = styled.input`
   appearance: none;
   position: relative;
   width: 26px;
   height: 26px;
-  border: 1px solid ${gray200};
+  border: 1px solid var(--color-gray200);
   border-radius: 50%;
 
   &::after {
@@ -19,7 +18,7 @@ const RadioInput = styled.input`
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: ${blue};
+    background-color: var(--color-blue);
     opacity: 0;
     transition: opacity 0.3s ease;
   }
