@@ -1,7 +1,6 @@
 import { useTranslation } from '@titicaca/next-i18next'
 import styled, { css } from 'styled-components'
 import { Container, Text, withField } from '@titicaca/core-elements'
-import { getColor } from '@titicaca/color-palette'
 
 import ArrowDown from '../arrow-down'
 
@@ -16,7 +15,7 @@ const FieldContainer = styled.div`
   ${({ error }: { error: boolean }) =>
     error &&
     css`
-      border: 1px solid rgba(${getColor('red')});
+      border: 1px solid var(--color-red);
     `}
 `
 
