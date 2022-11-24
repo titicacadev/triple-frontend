@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react'
 import { Segment, List } from '@titicaca/core-elements'
-import ActionSheet from '@titicaca/action-sheet'
+import { ActionSheet } from '@titicaca/action-sheet'
 import { useI18n } from '@titicaca/i18n'
 import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
 import { TranslatedProperty } from '@titicaca/type-definitions'
