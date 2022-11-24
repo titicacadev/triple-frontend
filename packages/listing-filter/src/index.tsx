@@ -1,14 +1,15 @@
 import styled, { css } from 'styled-components'
 import { MarginPadding, paddingMixin } from '@titicaca/core-elements'
-import { blue, gray, gray200, gray300, white } from '@titicaca/color-palette'
 import { HTMLAttributes, ReactNode, PureComponent } from 'react'
 
 const FilterEntryBase = styled.div<{ active?: boolean; disabled?: boolean }>`
   display: inline-block;
   font-size: 13px;
   line-height: 15px;
-  border: 1px solid ${({ active }) => (active ? blue : gray200)};
-  color: ${({ active }) => (active ? blue : gray200)};
+  border: 1px solid
+    ${({ active }) => (active ? 'var(--color-blue)' : 'var(--color-gray200)')};
+  color: ${({ active }) =>
+    active ? 'var(--color-blue)' : 'var(--color-gray200)'};
   background-repeat: no-repeat;
   border-radius: 2px;
   margin-right: 6px;
@@ -46,8 +47,8 @@ const ExpandingFilterEntryBadge = styled.div`
   height: 18px;
   width: 18px;
   line-height: 18px;
-  background-color: ${blue};
-  color: ${white};
+  background-color: var(--color-blue);
+  color: var(--color-white);
   border-radius: 9px;
   font-size: 12px;
   font-weight: bold;
@@ -107,12 +108,12 @@ const RegularFilterEntry = styled(FilterEntryBase)<{
   ${({ active }) =>
     active
       ? css`
-          color: ${white};
-          background-color: ${blue};
+          color: var(--color-white);
+          background-color: var(--color-blue);
         `
       : css`
-          color: ${gray200};
-          border: solid 1px ${gray200};
+          color: var(--color-gray200);
+          border: solid 1px var(--color-gray200);
         `};
   border-radius: 2px;
 `
@@ -126,11 +127,11 @@ const UnderlineRegularFilterEntry = styled(FilterEntryBase)<{
   padding: 10px;
   font-size: 14px;
   font-weight: bold;
-  color: ${gray300};
+  color: var(--color-gray300);
   ${({ active }) =>
     active &&
     css`
-      color: ${gray};
+      color: var(--color-gray);
 
       &::before {
         content: '';
@@ -139,7 +140,7 @@ const UnderlineRegularFilterEntry = styled(FilterEntryBase)<{
         left: 10px;
         right: 10px;
         height: 2px;
-        background: ${blue};
+        background: var(--color-blue);
       }
     `};
 `
@@ -151,10 +152,10 @@ const PrimaryFilterEntry = styled(FilterEntryBase)`
   background-position: top 5px left 10px;
   border: none;
   border-radius: 2px;
-  background-color: ${blue};
+  background-color: var(--color-blue);
   font-size: 13px;
   font-weight: bold;
-  color: ${white};
+  color: var(--color-white);
 `
 
 interface FilterEntryProps extends HTMLAttributes<HTMLElement> {
