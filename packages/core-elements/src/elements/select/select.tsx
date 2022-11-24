@@ -1,6 +1,5 @@
 import { SelectHTMLAttributes } from 'react'
 import styled from 'styled-components'
-import { getColor } from '@titicaca/color-palette'
 
 import {
   FormFieldContext,
@@ -19,18 +18,18 @@ const BaseSelect = styled.select`
   text-indent: 16px;
   font-size: 16px;
   font-weight: 500;
-  border: 1px solid rgba(${getColor('gray100')});
+  border: 1px solid var(--color-gray100);
   border-radius: 2px;
-  color: rgba(${getColor('gray')});
+  color: var(--color-gray);
 
   &:disabled {
     background-color: rgba(235, 235, 235, 1);
-    color: rgba(${getColor('gray300')});
+    color: var(--color-gray300);
   }
 
   &[aria-invalid='true'] {
-    border-color: rgba(${getColor('red')});
-    color: rgba(${getColor('red')});
+    border-color: var(--color-red);
+    color: var(--color-red);
   }
 `
 

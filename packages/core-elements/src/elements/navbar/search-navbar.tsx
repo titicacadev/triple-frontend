@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { getColor } from '@titicaca/color-palette'
 import {
   forwardRef,
   KeyboardEvent,
@@ -36,7 +35,7 @@ const MainNavbarFrame = styled(Navbar.NavbarFrame)<
   { noBorder?: boolean } & LayeringMixinProps
 >`
   ${({ noBorder }) =>
-    noBorder ? '' : ` border-bottom: 1px solid rgba(${getColor('gray50')});`}
+    noBorder ? '' : ` border-bottom: 1px solid var(--color-gray50);`}
   ${layeringMixin(0)}
 `
 

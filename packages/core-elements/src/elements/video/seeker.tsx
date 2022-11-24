@@ -6,7 +6,6 @@ import {
 } from 'react'
 import styled from 'styled-components'
 import { debounce } from '@titicaca/view-utilities'
-import { getColor } from '@titicaca/color-palette'
 
 const SeekerBase = styled.input<{ handleVisible: boolean }>`
   background: transparent;
@@ -26,7 +25,7 @@ const SeekerBase = styled.input<{ handleVisible: boolean }>`
     width: 13px;
     height: 13px;
     border-radius: 10px;
-    background-color: rgba(${getColor('blue')});
+    background-color: var(--color-blue);
     cursor: pointer;
     opacity: ${({ handleVisible }) => (handleVisible ? '1' : '0')};
     transition: opacity 0.3s;
@@ -36,7 +35,7 @@ const SeekerBase = styled.input<{ handleVisible: boolean }>`
     width: 13px;
     height: 13px;
     border-radius: 10px;
-    background-color: rgba(${getColor('blue')});
+    background-color: var(--color-blue);
     cursor: pointer;
     opacity: ${({ handleVisible }) => (handleVisible ? '1' : '0')};
     transition: opacity 0.3s;
@@ -46,7 +45,7 @@ const SeekerBase = styled.input<{ handleVisible: boolean }>`
     width: 13px;
     height: 13px;
     border-radius: 10px;
-    background-color: rgba(${getColor('blue')});
+    background-color: var(--color-blue);
     cursor: pointer;
     opacity: ${({ handleVisible }) => (handleVisible ? '1' : '0')};
     transition: opacity 0.3s;

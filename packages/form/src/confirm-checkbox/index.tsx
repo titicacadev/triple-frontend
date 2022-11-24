@@ -1,7 +1,6 @@
 import { ReactNode, SyntheticEvent } from 'react'
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
-import { getColor } from '@titicaca/color-palette'
 import { MarginPadding, paddingMixin } from '@titicaca/core-elements'
 
 import withField from '../with-field'
@@ -21,26 +20,26 @@ const generateFillStyles = ({
     return
   }
 
-  const color = getColor(checked ? 'blue' : 'red')
+  const color = checked ? 'var(--color-gray)' : 'var(--color-red)'
 
   switch (fillType) {
     case 'full':
       return css`
-        border-color: rgba(${color});
+        border-color: ${color};
 
         & > * {
-          color: rgba(${color});
+          color: ${color};
           font-weight: bold;
         }
       `
     case 'border':
       return css`
-        border-color: rgba(${color});
+        border-color: ${color};
       `
     case 'text':
       return css`
         & > * {
-          color: rgba(${color});
+          color: ${color};
           font-weight: bold;
         }
       `
@@ -61,7 +60,7 @@ const ConfirmFrame = styled.div.attrs({})<{
   border-radius: 2px;
   position: relative;
   font-weight: bold;
-  color: rgba(${getColor('gray500')});
+  color: var(--color-gray500);
 
   ${({ checked, error, fillType }) =>
     fillType && generateFillStyles({ checked: !!checked, error, fillType })};

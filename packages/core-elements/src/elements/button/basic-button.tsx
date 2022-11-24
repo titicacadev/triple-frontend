@@ -1,5 +1,5 @@
 import { css } from 'styled-components'
-import { Color, getColor } from '@titicaca/color-palette'
+import { Color } from '@titicaca/color-palette'
 
 import { buttonBaseMixin, ButtonBaseProps } from './button-base'
 
@@ -27,7 +27,7 @@ export const basicButtonMixin = ({
   ...props
 }: BasicButtonProps) => css`
   ${buttonBaseMixin(props)}
-  border: 1px solid rgba(${getColor('gray200')});
+  border: 1px solid var(--color-gray200);
   border-radius: 4px;
   background-color: transparent;
   color: #3a3a3a;
