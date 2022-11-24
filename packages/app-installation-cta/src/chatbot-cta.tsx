@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { useTranslation } from '@jaehyeon48/next-i18next'
+import { useTranslation } from '@titicaca/next-i18next'
 import { Text, LayeringMixinProps } from '@titicaca/core-elements'
 import { CSSTransition } from 'react-transition-group'
 import { InventoryItemMeta } from '@titicaca/type-definitions'

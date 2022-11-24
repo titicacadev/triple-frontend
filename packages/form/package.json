@@ -28,6 +28,6 @@
     "react-input-mask": "^2.0.4"
   },
   "peerDependencies": {
-    "@jaehyeon48/next-i18next": "*"
+    "@titicaca/next-i18next": "*"
   }
 }

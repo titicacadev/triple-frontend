@@ -1,4 +1,4 @@
-import { useTranslation } from '@jaehyeon48/next-i18next'
+import { useTranslation } from '@titicaca/next-i18next'
 
 import formatSourceUrl from '../utils/format-source-url'
 

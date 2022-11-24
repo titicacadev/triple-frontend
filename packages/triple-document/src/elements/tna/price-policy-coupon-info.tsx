@@ -1,4 +1,4 @@
-import { useTranslation } from '@jaehyeon48/next-i18next'
+import { useTranslation } from '@titicaca/next-i18next'
 import { Container, Text, MarginPadding } from '@titicaca/core-elements'
 
 export function PricePolicyCouponInfo({

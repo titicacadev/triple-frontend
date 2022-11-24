@@ -29,6 +29,6 @@
     "@titicaca/react-contexts": "*",
     "react": "*",
     "styled-components": ">=4.4.1 < 6",
-    "@jaehyeon48/next-i18next": "*"
+    "@titicaca/next-i18next": "*"
   }
 }

@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useTranslation } from '@jaehyeon48/next-i18next'
+import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import {
   Section,

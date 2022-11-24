@@ -1,5 +1,5 @@
 import { useMemo, useCallback } from 'react'
-import { useTranslation } from '@jaehyeon48/next-i18next'
+import { useTranslation } from '@titicaca/next-i18next'
 import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
 import { initialize } from '@titicaca/standard-action-handler'
 import { useNavigate, useExternalRouter } from '@titicaca/router'

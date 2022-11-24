@@ -1,4 +1,4 @@
-import { useTranslation } from '@jaehyeon48/next-i18next'
+import { useTranslation } from '@titicaca/next-i18next'
 import styled, { css } from 'styled-components'
 import { Container, Text, withField } from '@titicaca/core-elements'
 import { getColor } from '@titicaca/color-palette'
