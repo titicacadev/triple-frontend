@@ -1,7 +1,6 @@
 import { InputHTMLAttributes, forwardRef } from 'react'
 import styled from 'styled-components'
 import InputMask, { MaskOptions } from 'react-input-mask'
-import { getColor } from '@titicaca/color-palette'
 
 import {
   FormFieldContext,
@@ -16,21 +15,21 @@ const BaseInput = styled(InputMask)`
   font-size: 16px;
   height: 48px;
   font-weight: 500;
-  border: 1px solid rgba(${getColor('gray100')});
+  border: 1px solid var(--color-gray100);
   border-radius: 2px;
   width: 100%;
 
   &:focus {
     outline: none;
-    border-color: rgb(${getColor('blue')});
+    border-color: var(--color-blue);
   }
 
   &[aria-invalid='true'] {
-    border-color: rgb(${getColor('red')});
+    border-color: var(--color-red);
   }
 
   &::placeholder {
-    color: rgba(${getColor('gray300')});
+    color: var(--color-gray300);
   }
 `
 

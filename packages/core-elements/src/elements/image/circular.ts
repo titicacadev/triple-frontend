@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { getColor } from '@titicaca/color-palette'
 import * as CSS from 'csstype'
 
 import { GlobalSizes } from '../../commons'
@@ -21,7 +20,7 @@ export const ImageCircular = styled.img<{
   border-radius: ${({ size, width }) =>
     ((size && ROUND_SIZES[size]) || width || (ROUND_SIZES.small as number)) /
     2}px;
-  background-color: rgba(${getColor('brightGray')});
+  background-color: var(--color-brightGray);
   object-fit: cover;
 
   float: ${({ floated }) => floated || 'none'};

@@ -1,6 +1,5 @@
 import { SyntheticEvent } from 'react'
 import styled, { css, StyledComponentProps } from 'styled-components'
-import { getColor } from '@titicaca/color-palette'
 
 import withField from '../with-field'
 
@@ -35,19 +34,19 @@ const BaseTextarea = styled.textarea<BaseTextareaProps>`
   min-height: 100px;
 
   ::placeholder {
-    color: rgba(${getColor('gray300')});
+    color: var(--color-gray300);
   }
 
   ${({ focused }) =>
     focused &&
     css`
-      border-color: rgb(${getColor('blue')});
+      border-color: var(--color-blue);
     `};
 
   ${({ error }) =>
     error &&
     css`
-      border-color: rgb(${getColor('red')});
+      border-color: var(--color-red);
     `};
 `
 

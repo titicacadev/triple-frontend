@@ -1,7 +1,6 @@
 import { InputHTMLAttributes, SyntheticEvent, FocusEvent } from 'react'
 import InputMask, { MaskOptions } from 'react-input-mask'
 import styled, { css } from 'styled-components'
-import { getColor } from '@titicaca/color-palette'
 
 import withField from '../with-field'
 
@@ -10,24 +9,24 @@ const BaseInput = styled(InputMask)<{ focused?: string; error?: string }>`
   padding: 14px 16px;
   font-size: 16px;
   font-weight: 500;
-  border: 1px solid rgba(${getColor('gray100')});
+  border: 1px solid var(--color-gray100);
   border-radius: 2px;
   width: 100%;
 
   ::placeholder {
-    color: rgba(${getColor('gray300')});
+    color: var(--color-gray300);
   }
 
   ${({ focused }) =>
     focused &&
     css`
-      border-color: rgb(${getColor('blue')});
+      border-color: var(--color-blue);
     `};
 
   ${({ error }) =>
     error &&
     css`
-      border-color: rgb(${getColor('red')});
+      border-color: var(--color-red);
     `};
 `
 
