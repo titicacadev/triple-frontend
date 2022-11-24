@@ -1,4 +1,4 @@
-import ActionSheet from '@titicaca/action-sheet'
+import { ActionSheet } from '@titicaca/action-sheet'
 import { useUriHash, useHistoryFunctions } from '@titicaca/react-contexts'
 
 import { ReviewData } from './types'

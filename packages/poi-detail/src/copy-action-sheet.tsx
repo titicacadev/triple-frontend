@@ -1,4 +1,4 @@
-import ActionSheet from '@titicaca/action-sheet'
+import { ActionSheet } from '@titicaca/action-sheet'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 
 import CopyActionSheetItem from './copy-action-sheet-item'
