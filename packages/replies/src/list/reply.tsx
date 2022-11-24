@@ -16,7 +16,7 @@ import {
   useHistoryFunctions,
   useIsomorphicNavigation,
 } from '@titicaca/react-contexts'
-import ActionSheet from '@titicaca/action-sheet'
+import { ActionSheet } from '@titicaca/action-sheet'
 
 import { Reply as ReplyType, Writer } from '../types'
 import { likeReply, unlikeReply } from '../replies-api-client'
