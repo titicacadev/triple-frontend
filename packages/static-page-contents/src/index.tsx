@@ -1,12 +1,11 @@
 import { useState, useCallback, useEffect } from 'react'
 import styled from 'styled-components'
-import { gray500, gray, blue, brightGray } from '@titicaca/color-palette'
 
 const Contents = styled.div`
   padding: 20px;
   overflow-y: scroll;
   font-size: 16px;
-  color: ${gray500};
+  color: var(--color-gray500);
   line-height: 22px;
   margin: 20px 0;
 
@@ -19,11 +18,11 @@ const Contents = styled.div`
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 10px;
-    color: ${gray};
+    color: var(--color-gray);
   }
 
   font {
-    color: ${gray500} !important;
+    color: var(--color-gray500) !important;
   }
 
   table {
@@ -41,8 +40,8 @@ const Contents = styled.div`
 
   th {
     font-size: 14px;
-    color: ${gray};
-    background-color: ${brightGray};
+    color: var(--color-gray);
+    background-color: var(--color-brightGray);
   }
 
   ul {
@@ -54,7 +53,7 @@ const Contents = styled.div`
   }
 
   strong {
-    color: ${blue} !important;
+    color: var(--color-blue) !important;
   }
 `
 
@@ -63,7 +62,7 @@ const NoContent = styled.div`
   justify-content: center;
   align-items: center;
   height: calc(100vh - 70px);
-  color: ${gray500};
+  color: var(--color-gray500);
 `
 
 export function StaticPageContents({

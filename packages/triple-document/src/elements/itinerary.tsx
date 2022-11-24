@@ -1,7 +1,6 @@
 import { useCallback } from 'react'
 import styled from 'styled-components'
 import { Container, Card, Text, FlexBox, Button } from '@titicaca/core-elements'
-import { gray100, white } from '@titicaca/color-palette'
 import type {
   TransportationType,
   Itinerary,
@@ -44,7 +43,7 @@ const Timeline = styled(FlexBox)`
     content: '';
     position: absolute;
     z-index: -1;
-    border-right: 1px solid ${gray100};
+    border-right: 1px solid var(--color-gray100);
     width: 50%;
     height: 100%;
     right: 50%;
@@ -71,7 +70,7 @@ const Stack = styled(Container)`
 `
 
 const Time = styled(Text)`
-  background-color: ${white};
+  background-color: var(--color-white);
 `
 
 const Duration = styled(Container)`

@@ -1,5 +1,4 @@
 import { FocusScope } from '@react-aria/focus'
-import { white } from '@titicaca/color-palette'
 import {
   Container,
   CSSProps,
@@ -46,7 +45,7 @@ const Sheet = styled.div<SheetProps>`
   right: 0;
   margin: 0 auto;
   max-width: 768px;
-  background-color: ${white};
+  background-color: var(--color-white);
 
   padding-bottom: ${({ from, bottomSpacing }) =>
     from === 'top' ? 30 : bottomSpacing}px;

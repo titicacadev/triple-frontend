@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { gray100, gray, white } from '@titicaca/color-palette'
 
 /**
  * TODO: move to TF/core-elements
@@ -13,13 +12,13 @@ export const TagLabel = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  background-color: ${white};
+  background-color: var(--color-white);
   padding: 5px 1px 6px 3px;
-  color: ${gray};
+  color: var(--color-gray);
   text-transform: none;
   font-weight: 700;
   border-radius: 5px;
-  border: 1px solid ${gray100};
+  border: 1px solid var(--color-gray100);
   border-width: 1px 0 1px 1px;
   z-index: 2;
   font-size: 11px;
@@ -31,10 +30,10 @@ export const TagLabel = styled.div`
   }
 
   &::before {
-    border: 1px solid ${gray100};
+    border: 1px solid var(--color-gray100);
     border-radius: 5px;
     border-width: 1px 1px 0 0;
-    background-color: ${white};
+    background-color: var(--color-white);
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
     top: 50%;
     right: -15px;
