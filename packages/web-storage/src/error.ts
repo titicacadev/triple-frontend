@@ -1,4 +1,4 @@
-import { TFunction } from '@jaehyeon48/next-i18next'
+import { TFunction } from '@titicaca/next-i18next'
 import { CustomError } from 'ts-custom-error'
 
 import { ErrorType, WebStorageType } from './types'

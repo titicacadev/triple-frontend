@@ -1,4 +1,4 @@
-import { useTranslation } from '@jaehyeon48/next-i18next'
+import { useTranslation } from '@titicaca/next-i18next'
 import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
 
 import { ExtraActionItem } from './extra-action-item'

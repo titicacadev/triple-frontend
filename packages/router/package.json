@@ -33,6 +33,6 @@
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
     "next": "^9.5.0 || ^10.0.0 || ^11.0.0 || ^12.0.0",
-    "@jaehyeon48/next-i18next": "*"
+    "@titicaca/next-i18next": "*"
   }
 }

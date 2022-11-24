@@ -31,6 +31,6 @@
     "@titicaca/view-utilities": "^10.4.0"
   },
   "peerDependencies": {
-    "@jaehyeon48/next-i18next": "*"
+    "@titicaca/next-i18next": "*"
   }
 }

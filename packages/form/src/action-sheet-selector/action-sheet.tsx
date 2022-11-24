@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useTranslation } from '@jaehyeon48/next-i18next'
+import { useTranslation } from '@titicaca/next-i18next'
 import ActionSheet from '@titicaca/action-sheet'
 import DrawerButton from '@titicaca/drawer-button'
 

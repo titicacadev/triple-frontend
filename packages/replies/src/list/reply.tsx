@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { useTranslation, TFunction } from '@jaehyeon48/next-i18next'
+import { useTranslation, TFunction } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import {
   Container,

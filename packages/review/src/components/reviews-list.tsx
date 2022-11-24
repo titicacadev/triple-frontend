@@ -1,5 +1,5 @@
 import { SyntheticEvent, useCallback, useState } from 'react'
-import { useTranslation } from '@jaehyeon48/next-i18next'
+import { useTranslation } from '@titicaca/next-i18next'
 import { List } from '@titicaca/core-elements'
 import {
   useEventTrackingContext,
