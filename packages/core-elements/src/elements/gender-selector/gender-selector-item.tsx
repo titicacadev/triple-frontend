@@ -1,6 +1,5 @@
 import { ChangeEventHandler, PropsWithChildren } from 'react'
 import styled from 'styled-components'
-import { getColor } from '@titicaca/color-palette'
 import { useVisuallyHidden } from '@react-aria/visually-hidden'
 
 import { useRadioGroup } from '../radio'
@@ -12,18 +11,17 @@ const Label = styled.label<{ checked: boolean }>`
   padding: 15px 0;
   border: ${({ checked }) =>
     checked
-      ? `1px solid rgb(${getColor('blue')}) `
-      : `1px solid rgba(${getColor('gray100')}) `};
+      ? `1px solid var(--color-blue) `
+      : `1px solid var(--color-gray100) `};
   border-radius: 2px;
   text-align: center;
   font-size: 16px;
   color: ${({ checked }) =>
-    checked ? `rgb(${getColor('blue')}) ` : `rgba(${getColor('gray300')}) `};
+    checked ? `var(--color-blue) ` : `var(--color-gray300) `};
 
   &:last-child {
     border-left: none;
-    border: ${({ checked }) =>
-      checked && `1px solid rgb(${getColor('blue')}) `};
+    border: ${({ checked }) => checked && `1px solid var(--color-blue) `};
   }
 `
 

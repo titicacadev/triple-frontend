@@ -1,6 +1,5 @@
 import { SyntheticEvent, FocusEvent, SelectHTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
-import { getColor } from '@titicaca/color-palette'
 
 import withField from '../with-field'
 import ArrowDown from '../arrow-down'
@@ -23,32 +22,33 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 
 const SelectFrame = styled.div<{ focused?: string; error?: boolean }>`
   padding: 14px 16px;
-  border: 1px solid rgba(${getColor('gray100')});
+  border: 1px solid var(--color-gray100);
   border-radius: 2px;
   position: relative;
 
   ${({ focused }) =>
     focused &&
     css`
-      border-color: rgba(${getColor('blue')});
+      border-color: var(--color-blue);
     `};
 
   ${({ error }) =>
     error &&
     css`
-      border-color: rgba(${getColor('red')});
+      border-color: var(--color-red);
     `};
 `
 
 const BaseSelect = styled.select<{ selected?: boolean; error?: boolean }>`
   width: 100%;
   font-size: 16px;
-  color: rgba(${getColor('gray')}, ${({ selected }) => (selected ? 1 : 0.3)});
+  color: css(--color-gray);
+  opacity: ${({ selected }) => (selected ? 1 : 0.3)};
 
   ${({ error }) =>
     error &&
     css`
-      color: rgba(${getColor('red')});
+      color: var(--color-red);
     `};
 `
 

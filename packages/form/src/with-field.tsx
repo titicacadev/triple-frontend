@@ -1,6 +1,5 @@
 import { useState, ComponentType, FC } from 'react'
 import styled, { css } from 'styled-components'
-import { getColor } from '@titicaca/color-palette'
 import { Container, Text } from '@titicaca/core-elements'
 
 const Label = styled(Text)<{
@@ -13,13 +12,13 @@ const Label = styled(Text)<{
   ${({ focused }) =>
     focused &&
     css`
-      color: rgba(${getColor('blue')});
+      color: var(--color-blue);
     `}
 
   ${({ error }) =>
     error &&
     css`
-      color: rgba(${getColor('red')});
+      color: var(--color-red);
     `}
 
   ${({ absolute }) =>

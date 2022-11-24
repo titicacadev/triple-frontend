@@ -1,4 +1,3 @@
-import { getColor } from '@titicaca/color-palette'
 import { PropsWithChildren } from 'react'
 import styled, { css } from 'styled-components'
 
@@ -26,7 +25,7 @@ const Label = styled(Text)<LabelProps>`
   ${({ isError }) =>
     isError &&
     css`
-      color: rgba(${getColor('red')});
+      color: var(--color-red);
     `}
 
   ${({ isRequired }) =>
@@ -35,7 +34,7 @@ const Label = styled(Text)<LabelProps>`
       &::after {
         content: ${isRequired ? "'*'" : undefined};
         display: inline;
-        color: rgba(${getColor('mediumRed')});
+        color: var(--color-mediumRed);
         font-weight: normal;
         margin-left: 4px;
       }

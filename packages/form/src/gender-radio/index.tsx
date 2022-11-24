@@ -1,6 +1,5 @@
 import { SyntheticEvent } from 'react'
 import styled from 'styled-components'
-import { getColor } from '@titicaca/color-palette'
 import { Container } from '@titicaca/core-elements'
 
 import withField from '../with-field'
@@ -26,15 +25,14 @@ const GenderContainer = styled.div<{
   font-size: 16px;
   border: ${({ selected }) =>
     selected
-      ? `1px solid rgb(${getColor('blue')}) `
-      : `1px solid rgba(${getColor('gray100')}) `};
+      ? `1px solid var(--color-blue) `
+      : `1px solid var(--color-gray100) `};
   color: ${({ selected }) =>
-    selected ? `rgb(${getColor('blue')}) ` : `rgba(${getColor('gray300')}) `};
+    selected ? `var(--color-blue) ` : `var(--color-gray300) `};
 
   &:last-child {
     border-left: none;
-    border: ${({ selected }) =>
-      selected && `1px solid rgb(${getColor('blue')}) `};
+    border: ${({ selected }) => selected && `1px solid var(--color-blue) `};
   }
 `
 
