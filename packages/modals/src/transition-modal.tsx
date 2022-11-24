@@ -9,6 +9,7 @@ import {
 } from '@titicaca/react-contexts'
 import { DeepPartial } from 'utility-types'
 
+import { I18nKeys } from './i18n-types'
 import Actions from './actions'
 import Modal from './modal-base'
 
@@ -36,7 +37,7 @@ export enum TransitionType {
 
 const MODAL_CONTENT: {
   [type: string]: {
-    description?: string
+    description?: keyof I18nKeys
     eventLabel?: string
   }
 } = {
