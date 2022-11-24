@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "./lib",
     "rootDir": "src",
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
       "@titicaca/core-elements": ["../core-elements/src"]
