@@ -1,5 +1,4 @@
 import styled, { css, keyframes } from 'styled-components'
-import { gray100, gray20 } from '@titicaca/color-palette'
 
 import { Container, ContainerProps } from '../container'
 
@@ -36,7 +35,7 @@ type SkeletonProps = ContainerProps & { height?: number | string }
 export const Skeleton = styled(Container)`
   position: relative;
   overflow: hidden;
-  background: ${gray100};
+  background: var(--color-gray100);
   animation: ${opacityAnimation} 1.5s ease-in-out 0.5s infinite;
 
   &::after {
@@ -48,7 +47,12 @@ export const Skeleton = styled(Container)`
     position: absolute;
     animation: ${waveAnimation} 1.6s linear 0.5s infinite;
     transform: translateX(-100%);
-    background: linear-gradient(90deg, transparent, ${gray20}, transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-gray20),
+      transparent
+    );
   }
 `
 

@@ -1,6 +1,6 @@
 import * as CSS from 'csstype'
 import styled, { css } from 'styled-components'
-import { Color, getColor, brightGray, white } from '@titicaca/color-palette'
+import { Color, getColor } from '@titicaca/color-palette'
 import {
   PropsWithChildren,
   Children,
@@ -35,7 +35,7 @@ const WrapperContainer = styled.div<
   left: 0;
   right: 0;
   ${layeringMixin(0)}
-  background: ${white};
+  background: var(--color-white);
   ${({ height }) =>
     height &&
     `
@@ -56,7 +56,7 @@ const NavbarFrame = styled.div<NavbarProps & LayeringMixinProps>`
     borderless
       ? ''
       : css`
-          box-shadow: 0 1px 0 0 ${brightGray};
+          box-shadow: 0 1px 0 0 var(--color-brightGray);
         `};
   padding: 9px 12px;
   margin: 0 auto;

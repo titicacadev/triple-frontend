@@ -1,7 +1,6 @@
 import { ChangeEventHandler } from 'react'
 import styled from 'styled-components'
 import { useVisuallyHidden } from '@react-aria/visually-hidden'
-import { blue, gray200 } from '@titicaca/color-palette'
 
 type CheckboxVariant = 'square' | 'round'
 
@@ -16,13 +15,13 @@ const CheckboxBaseControl = styled.div<{ variant: CheckboxVariant }>`
   position: relative;
   width: 26px;
   height: 26px;
-  border: 1px solid ${gray200};
+  border: 1px solid var(--color-gray200);
   border-radius: ${({ variant }) => (variant === 'square' ? '6px' : '36px')};
   background-color: white;
 
   ${CheckboxBaseInput}:checked + & {
-    border-color: ${blue};
-    background-color: ${blue};
+    border-color: var(--color-blue);
+    background-color: var(--color-blue);
   }
 
   ${CheckboxBaseInput}:focus-visible + & {

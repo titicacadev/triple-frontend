@@ -1,11 +1,10 @@
-import { brightGray } from '@titicaca/color-palette'
 import styled from 'styled-components'
 
 import { TabListBase, TabListBaseProps } from './tab-list-base'
 
 const StyledTabListBase = styled(TabListBase)`
   display: flex;
-  background-color: ${brightGray};
+  background-color: var(--color-brightGray);
   border-radius: 4px;
   padding: 2px;
 `
