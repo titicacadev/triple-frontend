@@ -1,6 +1,5 @@
 import { MouseEventHandler } from 'react'
 import styled, { css } from 'styled-components'
-import { getColor } from '@titicaca/color-palette'
 
 interface PointingOptions {
   vertical: 'top' | 'bottom'
@@ -43,7 +42,7 @@ const POINTING_BASE_STYLE = css`
 
 const TooltipFrame = styled.div<TooltipFrameProps>`
   position: relative;
-  color: rgba(${getColor('white')});
+  color: var(--color-white);
   padding: 6px 11px;
 
   ${({ backgroundColor }) => `background-color: ${backgroundColor}`};
