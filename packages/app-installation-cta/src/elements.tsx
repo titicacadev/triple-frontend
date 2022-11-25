@@ -212,7 +212,7 @@ export const ContentContainer = styled(FlexBox).attrs({
   centered: true,
   maxWidth: 768,
   padding: { top: 24, bottom: 24, left: 20, right: 20 },
-  gap: 11,
+  gap: '11px',
   position: 'relative',
 })`
   overflow: hidden;
