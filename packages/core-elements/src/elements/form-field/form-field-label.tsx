@@ -19,7 +19,7 @@ const Label = styled(Text)<LabelProps>`
   ${({ isFocused }) =>
     isFocused &&
     css`
-      color: rgba(${getColor('blue')});
+      color: var(--color-blue);
     `}
 
   ${({ isError }) =>
