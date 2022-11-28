@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@titicaca/core-elements": "^10.3.0",
+    "@titicaca/type-definitions": "^10.3.0",
     "framer-motion": "^7.6.12"
   }
 }
