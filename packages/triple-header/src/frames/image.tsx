@@ -1,4 +1,4 @@
-import { Container } from '@titicaca/core-elements'
+import { Container, Image, ImageSource } from '@titicaca/core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
 import styled from 'styled-components'
 
@@ -10,6 +10,8 @@ interface ImageFrame {
 }
 
 const ImageContainer = styled(Container)`
+  flex-shrink: 0;
+  position: relative;
   width: 100%;
 `
 
@@ -19,7 +21,15 @@ export default function ImageFrame({
 }: ImageFrame) {
   return (
     <ImageContainer onClick={onFrameClick}>
-      <img src={image.sizes.full.url} alt="" width="100%" height="100%" />
+      <Image borderRadius={0}>
+        <Image.FixedRatioFrame frame="large">
+          <Image.Img src={image.sizes.large.url} />
+
+          <Image.SourceUrl>
+            <ImageSource sourceUrl={image.sourceUrl} />
+          </Image.SourceUrl>
+        </Image.FixedRatioFrame>
+      </Image>
     </ImageContainer>
   )
 }
