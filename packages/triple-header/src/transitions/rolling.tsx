@@ -11,7 +11,7 @@ import styled, { css } from 'styled-components'
 
 const Slides = styled(Container)<{ isTransition: boolean }>`
   position: relative;
-  display: -webkit-box;
+  display: flex;
   width: 100%;
   height: 100%;
 

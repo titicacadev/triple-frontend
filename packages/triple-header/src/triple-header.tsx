@@ -13,7 +13,7 @@ const Canvas = styled(Container).attrs({
 })`
   width: 100%;
   height: 0;
-  padding: 100% 0 0 0;
+  padding: 100% 0 0;
   overflow: hidden;
 `
 
