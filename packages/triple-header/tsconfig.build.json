@@ -6,5 +6,12 @@
   },
   "include": ["src/**/*", "src/**/*.json"],
   "exclude": ["lib", "**/*.test.*", "**/*.spec.*", "**/*.stories.*"],
-  "references": []
+  "references": [
+    {
+      "path": "../core-elements/tsconfig.build.json"
+    },
+    {
+      "path": "../type-definitions/tsconfig.build.json"
+    }
+  ]
 }
