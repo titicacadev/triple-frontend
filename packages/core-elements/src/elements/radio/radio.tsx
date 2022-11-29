@@ -28,6 +28,7 @@ export const Radio = ({
   checked,
   value,
   onChange,
+  ...props
 }: RadioProps) => {
   const group = useRadioGroup()
 
@@ -43,8 +44,9 @@ export const Radio = ({
     <RadioLabel>
       <RadioText size="large">{children}</RadioText>
       <RadioBase
+        {...props}
         name={name ?? group?.name}
-        checked={checked ?? group?.value === value}
+        checked={checked ?? (value ? group?.value === value : undefined)}
         value={value}
         onChange={handleChange}
       />
