@@ -27,40 +27,34 @@ export interface FlexItemOwnProps extends ContainerProps {
   order?: Property.Order
 }
 
-const FlexItem = styled(Container)<FlexItemProps>(
-  (props) => ({
-    flex: props.flex,
-    flexGrow: props.flexGrow,
-    flexShrink: props.flexShrink,
-    flexBasis: props.flexBasis,
-    alignSelf: props.alignSelf,
-    order: props.order,
-  }),
-  (props) => props.css,
-)
+const FlexItem = styled(Container)<FlexItemProps>((props) => ({
+  flex: props.flex,
+  flexGrow: props.flexGrow,
+  flexShrink: props.flexShrink,
+  flexBasis: props.flexBasis,
+  alignSelf: props.alignSelf,
+  order: props.order,
+}))
 export type FlexItemProps = FlexItemOwnProps & HTMLAttributes<Element>
 
-const StyledFlexBox = styled(Container)<FlexBoxProps>(
-  (props) => ({
-    display: props.flex ? 'flex' : undefined,
-    flexDirection: props.flexDirection,
-    flexWrap: props.flexWrap,
-    justifyContent: props.justifyContent,
-    alignItems: props.alignItems,
-    alignContent: props.alignContent,
-    gap: props.gap,
-    columnGap: props.columnGap,
-    rowGap: props.rowGap,
+const StyledFlexBox = styled(Container)<FlexBoxProps>((props) => ({
+  display: props.flex ? 'flex' : undefined,
+  flexDirection: props.flexDirection,
+  flexWrap: props.flexWrap,
+  justifyContent: props.justifyContent,
+  alignItems: props.alignItems,
+  alignContent: props.alignContent,
+  gap: props.gap,
+  columnGap: props.columnGap,
+  rowGap: props.rowGap,
 
-    // 중첩된 flex 사용할 경우에만 사용할 것
-    flexGrow: props.flexGrow,
-    flexShrink: props.flexShrink,
-    flexBasis: props.flexBasis,
-    alignSelf: props.alignSelf,
-    order: props.order,
-  }),
-  (props) => props.css,
-)
+  // 중첩된 flex 사용할 경우에만 사용할 것
+  flexGrow: props.flexGrow,
+  flexShrink: props.flexShrink,
+  flexBasis: props.flexBasis,
+  alignSelf: props.alignSelf,
+  order: props.order,
+}))
 
 export const FlexBox = (props: FlexBoxProps) => {
   return <StyledFlexBox {...props} />

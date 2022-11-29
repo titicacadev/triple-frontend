@@ -1,5 +1,4 @@
-import { Section, Container, CSSProps } from '@titicaca/core-elements'
-import { css } from 'styled-components'
+import { Section, Container } from '@titicaca/core-elements'
 
 import Carousel, { CarouselProps } from './carousel'
 import Placeholder from './placeholder'
@@ -30,20 +29,17 @@ export default function CarouselSection({
   onPlaceholderClick,
   onBusinessHoursClick,
   borderRadius,
-  css: cssProp,
   ...props
-}: CarouselSectionProps & CSSProps) {
+}: CarouselSectionProps) {
   return (
     <Section
-      css={css(
-        {
-          minWidth: 320,
-          maxWidth: 768,
-          paddingLeft: 20,
-          paddingRight: 20,
-        },
-        cssProp,
-      )}
+      css={{
+        minWidth: 320,
+        maxWidth: 768,
+        paddingLeft: 20,
+        paddingRight: 20,
+      }}
+      {...props}
     >
       <Container position="relative">
         {images.length > 0 ? (
