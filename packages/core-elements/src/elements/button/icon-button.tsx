@@ -1,6 +1,6 @@
 import { css } from 'styled-components'
 
-import { buttonBaseMixin, ButtonBaseProps } from './button-base'
+import { buttonBaseMixin, ButtonBaseOwnProps } from './button-base'
 import { ButtonSize } from './types'
 
 const ICON_BUTTON_URLS = {
@@ -19,7 +19,7 @@ const ICON_PADDINGS: Partial<Record<ButtonSize, ReturnType<typeof css>>> = {
   tiny: css({ padding: '12px' }),
 }
 
-export interface IconButtonProps extends ButtonBaseProps {
+export interface IconButtonOwnProps extends ButtonBaseOwnProps {
   icon: Icon
 }
 
@@ -27,7 +27,7 @@ export const iconButtonMixin = ({
   icon,
   size = 'tiny',
   ...props
-}: IconButtonProps) => css`
+}: IconButtonOwnProps) => css`
   ${buttonBaseMixin({ size, ...props })}
   ${ICON_PADDINGS[size]}
 
