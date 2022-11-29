@@ -3,7 +3,7 @@ const fs = require('fs')
 
 const prettier = require('prettier')
 
-const INCLUDED_FOR_BUILD = ['src/**/*', 'src/**/*.json']
+const INCLUDED_FOR_BUILD = ['src/**/*', 'src/**/*.json', '../../global.d.ts']
 const EXCLUDED_FOR_BUILD = [
   'lib',
   '**/*.test.*',
