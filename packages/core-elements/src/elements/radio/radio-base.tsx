@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from 'react'
+import { InputHTMLAttributes } from 'react'
 import styled from 'styled-components'
 
 const RadioInput = styled.input`
@@ -28,26 +28,8 @@ const RadioInput = styled.input`
   }
 `
 
-export interface RadioBaseProps {
-  name?: string
-  checked?: boolean
-  value?: string
-  onChange?: ChangeEventHandler<HTMLInputElement>
-}
+export type RadioBaseProps = InputHTMLAttributes<HTMLInputElement>
 
-export const RadioBase = ({
-  name,
-  checked,
-  value,
-  onChange,
-}: RadioBaseProps) => {
-  return (
-    <RadioInput
-      type="radio"
-      name={name}
-      checked={checked}
-      value={value}
-      onChange={onChange}
-    />
-  )
+export const RadioBase = (props: RadioBaseProps) => {
+  return <RadioInput type="radio" {...props} />
 }
