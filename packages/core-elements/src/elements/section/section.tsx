@@ -8,13 +8,7 @@ export interface SectionProps extends ContainerProps {
   anchor?: string
 }
 
-export function Section({
-  css: cssProp,
-  children,
-  divider,
-  anchor,
-  ...props
-}: SectionProps) {
+export function Section({ children, divider, anchor, ...props }: SectionProps) {
   if (!children) {
     return null
   }
@@ -26,15 +20,14 @@ export function Section({
         id={anchor}
         centered
         clearing
-        {...props}
         css={css`
           position: relative;
           min-width: 320px;
           max-width: 768px;
           padding-left: 30px;
           padding-right: 30px;
-          ${cssProp};
         `}
+        {...props}
       >
         {children}
       </Container>

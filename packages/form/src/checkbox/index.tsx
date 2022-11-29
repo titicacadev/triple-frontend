@@ -1,6 +1,6 @@
 import { InputHTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
-import { Container, GetGlobalColor, CSSProps } from '@titicaca/core-elements'
+import { Container, GetGlobalColor } from '@titicaca/core-elements'
 
 const Label = styled.label<{ disabled?: boolean }>`
   color: rgb(${GetGlobalColor('gray')});
@@ -72,8 +72,7 @@ interface Item<T> {
 }
 
 export interface CheckboxItemProps<T>
-  extends InputHTMLAttributes<HTMLInputElement>,
-    CSSProps {
+  extends InputHTMLAttributes<HTMLInputElement> {
   option: Item<T>
 }
 
@@ -90,20 +89,18 @@ export function CheckboxItem<T>({
   onChange = () => {},
   name,
   option: { key, label },
-  css: cssProp,
+  ...props
 }: CheckboxItemProps<T>) {
   const id = `${key}_${label}_${name}`
 
   return (
     <Container
       position="relative"
-      css={css(
-        {
-          marginBottom: 20,
-          padding: '0 29px 0 0',
-        },
-        cssProp,
-      )}
+      css={{
+        marginBottom: 20,
+        padding: '0 29px 0 0',
+      }}
+      {...props}
     >
       <Label htmlFor={id} disabled={disabled}>
         {label}

@@ -1,8 +1,7 @@
-import { Container, HR1, List, Text, CSSProps } from '@titicaca/core-elements'
+import { Container, HR1, List, Text } from '@titicaca/core-elements'
 import { Confirm } from '@titicaca/modals'
 import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
-import { css } from 'styled-components'
 
 import { Reply as ReplyType } from '../types'
 import { useRepliesContext } from '../context'
@@ -20,7 +19,7 @@ export default function ReplyList({
   focusInput,
   onReplyDelete,
   onReplyEdit,
-  css: cssProp,
+  ...props
 }: {
   replies: ReplyType[]
   isMoreButtonActive: boolean
@@ -28,7 +27,7 @@ export default function ReplyList({
   focusInput: () => void
   onReplyDelete: (response: ReplyType) => void
   onReplyEdit: (response: ReplyType) => void
-} & CSSProps) {
+}) {
   const {
     currentMessageId,
     content: { mentioningUserName },
@@ -67,14 +66,12 @@ export default function ReplyList({
         <NotExistReplies />
       ) : (
         <Container
-          css={css(
-            {
-              marginLeft: 30,
-              marginRight: 30,
-              marginBottom: 30,
-            },
-            cssProp,
-          )}
+          css={{
+            marginLeft: 30,
+            marginRight: 30,
+            marginBottom: 30,
+          }}
+          {...props}
         >
           {isMoreButtonActive ? (
             <Text
