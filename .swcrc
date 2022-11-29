@@ -15,6 +15,9 @@
         "runtime": "automatic",
         "throwIfNamespace": false
       }
+    },
+    "experimental": {
+      "plugins": [["@swc/plugin-styled-components", {}]]
     }
   }
 }
