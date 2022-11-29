@@ -4,7 +4,7 @@
     "outDir": "./lib",
     "rootDir": "src"
   },
-  "include": ["src/**/*", "src/**/*.json"],
+  "include": ["src/**/*", "src/**/*.json", "../../global.d.ts"],
   "exclude": ["lib", "**/*.test.*", "**/*.spec.*", "**/*.stories.*"],
   "references": [
     {
