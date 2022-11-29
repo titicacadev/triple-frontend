@@ -41,20 +41,9 @@ export interface StackProps extends ContainerProps {
  * - 가로형
  * <Stack horizontal>...</Stack>
  */
-export function Stack({
-  css: _css,
-  children,
-  horizontal,
-  ...props
-}: StackProps) {
+export function Stack({ children, horizontal, ...props }: StackProps) {
   return (
-    <Container
-      css={css`
-        ${horizontal ? horizontalStyle : veritcalStyle}
-        ${_css}
-      `}
-      {...props}
-    >
+    <Container css={horizontal ? horizontalStyle : veritcalStyle} {...props}>
       {children}
     </Container>
   )

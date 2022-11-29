@@ -1,4 +1,4 @@
-import { Container, Text, Image, CSSProps } from '@titicaca/core-elements'
+import { Container, Text, Image } from '@titicaca/core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
 
 import AuthorIntro from './author-intro'
@@ -7,7 +7,7 @@ function Author({
   source: { name, bio, image, intro },
   bioOverride,
   introOverride,
-  css,
+  ...props
 }: {
   source: {
     name: string
@@ -20,12 +20,12 @@ function Author({
   }
   bioOverride?: string
   introOverride?: { text?: string; rawHTML?: string }
-} & CSSProps) {
+}) {
   const displayedBio = (bioOverride || bio || '').replace('\n', '')
   const displayedIntro = introOverride || intro
 
   return (
-    <Container css={css}>
+    <Container {...props}>
       {image && (
         <Image.Circular
           floated="right"

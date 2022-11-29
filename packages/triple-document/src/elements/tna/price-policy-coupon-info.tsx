@@ -1,27 +1,24 @@
-import { Container, Text, CSSProps } from '@titicaca/core-elements'
-import { css } from 'styled-components'
+import { Container, Text } from '@titicaca/core-elements'
+import styled from 'styled-components'
+
+const StyledContainer = styled(Container)`
+  margin-top: 4px;
+`
 
 export function PricePolicyCouponInfo({
   emphasisColor = 'mint',
   hasOnlyExpectedApplicableCoupon,
   hasAmountAfterUsingCouponPrice,
   displayPricePolicy,
-  css: cssProp,
+  ...props
 }: {
   emphasisColor?: Parameters<typeof Text>[0]['color']
   hasOnlyExpectedApplicableCoupon?: boolean
   hasAmountAfterUsingCouponPrice?: boolean | 0
   displayPricePolicy?: string
-} & CSSProps) {
+}) {
   return (
-    <Container
-      css={css(
-        {
-          marginTop: 4,
-        },
-        cssProp,
-      )}
-    >
+    <StyledContainer {...props}>
       {hasOnlyExpectedApplicableCoupon ? (
         <>
           <Text bold inlineBlock size="tiny" color={emphasisColor}>
@@ -68,6 +65,6 @@ export function PricePolicyCouponInfo({
           </Text>
         </>
       )}
-    </Container>
+    </StyledContainer>
   )
 }
