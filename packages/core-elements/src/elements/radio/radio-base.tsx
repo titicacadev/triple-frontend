@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from 'react'
+import { forwardRef, InputHTMLAttributes } from 'react'
 import styled from 'styled-components'
 
 const RadioInput = styled.input`
@@ -30,6 +30,8 @@ const RadioInput = styled.input`
 
 export type RadioBaseProps = InputHTMLAttributes<HTMLInputElement>
 
-export const RadioBase = (props: RadioBaseProps) => {
-  return <RadioInput type="radio" {...props} />
-}
+export const RadioBase = forwardRef<HTMLInputElement, RadioBaseProps>(
+  function RadioBase(props, ref) {
+    return <RadioInput ref={ref} type="radio" {...props} />
+  },
+)
