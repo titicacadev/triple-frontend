@@ -1,11 +1,10 @@
 import { PropsWithChildren, ReactNode, useId } from 'react'
-import { CSSProps } from '@titicaca/core-elements'
 
 import { ActionSheetBase } from './action-sheet-base'
 import { ActionSheetContext } from './action-sheet-context'
 import { ActionSheetItem } from './action-sheet-item'
 
-export interface ActionSheetProps extends PropsWithChildren, CSSProps {
+export interface ActionSheetProps extends PropsWithChildren {
   open?: boolean
   title?: ReactNode
   borderRadius?: number
@@ -24,7 +23,7 @@ export const ActionSheet = ({
   from = 'bottom',
   maxContentHeight = 'calc(100vh - 256px)',
   onClose,
-  css,
+  ...props
 }: ActionSheetProps) => {
   const titleId = useId()
 
@@ -36,7 +35,7 @@ export const ActionSheet = ({
         maxContentHeight={maxContentHeight}
         from={from}
         title={title}
-        css={css}
+        {...props}
       >
         {children}
       </ActionSheetBase>

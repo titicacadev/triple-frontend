@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Property } from 'csstype'
 import { Color, getColor } from '@titicaca/color-palette'
 
-import { CSSProps } from '../../css'
 import { BaseSizes } from '../../commons'
 import {
   borderRadiusMixin,
@@ -24,8 +23,7 @@ export type ContainerProps = PropsWithChildren<{
   horizontalScroll?: boolean
   shadow?: BaseSizes
   backgroundColor?: Color
-}> &
-  CSSProps
+}>
 
 export const Container = styled.div<ContainerProps>(
   (props) => ({
@@ -42,5 +40,4 @@ export const Container = styled.div<ContainerProps>(
   horizontalScrollMixin,
   shadowMixin,
   borderRadiusMixin,
-  (props) => props.css,
 )

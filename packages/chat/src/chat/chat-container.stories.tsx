@@ -1,4 +1,3 @@
-import React from 'react'
 import { Story } from '@storybook/react'
 import { FlexBox } from '@titicaca/core-elements'
 import styled from 'styled-components'
@@ -52,7 +51,7 @@ const Template: Story<ChatContainerProps> = () => (
     mediaUrlBase="https://media.triple.guide"
     cloudinaryName="triple-cms"
   >
-    <Chat {...CHAT_ARGS} />
+    <Chat {...CHAT_ARGS} css={{ marginBottom: 120 }} />
   </ChatContainer>
 )
 
