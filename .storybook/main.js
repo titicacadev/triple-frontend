@@ -13,6 +13,11 @@ module.exports = {
           module: {
             type: 'es6',
           },
+          jsc: {
+            experimental: {
+              plugins: [['@swc/plugin-styled-components', {}]],
+            },
+          },
         },
       },
     },
