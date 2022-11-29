@@ -1,3 +1,4 @@
+import { GetServerSidePropsContext } from 'next'
 import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 
 import { HttpResponse, RequestOptions } from './types'
@@ -168,4 +169,31 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
 
     return secondTrialResponse
   }) as unknown as ExtendFetcher<Fetcher, typeof NEED_LOGIN_IDENTIFIER>
+}
+
+export function i18nFetcherize(
+  fetcher: <SuccessBody, FailureBody = unknown>(
+    href: string,
+    options: RequestOptions,
+  ) => Promise<HttpResponse<SuccessBody, FailureBody>>,
+) {
+  return <SuccessBody, FailureBody = unknown>(
+    href: string,
+    optionsParams: RequestOptions & { ctx: GetServerSidePropsContext },
+  ) => {
+    const { ctx, headers, ...options } = optionsParams ?? {}
+    const { headers: ctxHeaders } = ctx.req
+    const langHeader = (ctxHeaders['x-triple-user-lang'] ?? 'ko') as string
+    const countryHeader = (ctxHeaders['x-triple-user-country'] ??
+      'kr') as string
+
+    return fetcher<SuccessBody, FailureBody>(href, {
+      ...options,
+      headers: {
+        ...headers,
+        'x-triple-user-lang': langHeader,
+        'x-triple-user-country': countryHeader,
+      },
+    })
+  }
 }
