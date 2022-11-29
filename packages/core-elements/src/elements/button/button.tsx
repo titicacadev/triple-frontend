@@ -1,18 +1,18 @@
-import { ButtonHTMLAttributes } from 'react'
+import { ButtonHTMLAttributes, PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
-import { basicButtonMixin, BasicButtonProps } from './basic-button'
+import { basicButtonMixin, BasicButtonOwnProps } from './basic-button'
 import { ButtonBase } from './button-base'
 import { ButtonContainer } from './button-container'
 import { ButtonGroup } from './button-group'
 import { ButtonIcon } from './button-icon'
-import { iconButtonMixin, IconButtonProps } from './icon-button'
-import { normalButtonMixin, NormalButtonProps } from './normal-button'
+import { iconButtonMixin, IconButtonOwnProps } from './icon-button'
+import { normalButtonMixin, NormalButtonOwnProps } from './normal-button'
 
 export interface ButtonOwnProps
-  extends BasicButtonProps,
-    Omit<IconButtonProps, 'icon'>,
-    NormalButtonProps {
+  extends BasicButtonOwnProps,
+    Omit<IconButtonOwnProps, 'icon'>,
+    NormalButtonOwnProps {
   /**
    * Basic 유형 버튼을 사용합니다.
    */
@@ -20,10 +20,11 @@ export interface ButtonOwnProps
   /**
    * Block Icon 유형 버튼을 사용합니다.
    */
-  icon?: IconButtonProps['icon']
+  icon?: IconButtonOwnProps['icon']
 }
 
 export type ButtonProps = ButtonOwnProps &
+  PropsWithChildren &
   ButtonHTMLAttributes<HTMLButtonElement>
 
 const ButtonComponent = styled(ButtonBase)<ButtonOwnProps>((props) => {
