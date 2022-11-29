@@ -12,7 +12,6 @@ import {
   paddingMixin,
   textStyleMixin,
 } from '../../mixins'
-import { CSSProps } from '../../css'
 
 function rgba({ color, alpha }: { color?: string; alpha?: number }) {
   return `rgba(${GetGlobalColor(color || 'gray')}, ${alpha || 1})`
@@ -40,8 +39,7 @@ export type TextProps = PropsWithChildren<{
   underline?: boolean
   whiteSpace?: Property.WhiteSpace
   wordBreak?: Property.WordBreak
-}> &
-  CSSProps
+}>
 
 const TextComponent = styled.div<TextProps>(
   (props) => ({
@@ -76,10 +74,9 @@ const TextComponent = styled.div<TextProps>(
   textStyleMixin,
   ellipsisMixin,
   maxLinesMixin,
-  (props) => props.css,
 )
 
-interface TextTitleBaseProps extends CSSProps {
+interface TextTitleBaseProps {
   margin?: MarginPadding
 }
 
@@ -89,14 +86,13 @@ const TextTitleBase = styled(TextComponent)<TextTitleBaseProps>`
   font-weight: bold;
   color: #3a3a3a;
   ${marginMixin}
-  ${(props) => props.css}
 `
 
 export type TextTitleProps = PropsWithChildren<TextTitleBaseProps>
 
-function TextTitle({ css, children, margin }: TextTitleProps) {
+function TextTitle({ children, margin, ...props }: TextTitleProps) {
   return (
-    <TextTitleBase as="h1" css={css} margin={margin}>
+    <TextTitleBase as="h1" margin={margin} {...props}>
       {children}
     </TextTitleBase>
   )

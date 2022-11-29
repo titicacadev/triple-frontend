@@ -1,5 +1,4 @@
 import * as CSS from 'csstype'
-import { css } from 'styled-components'
 
 import { Container } from '../container'
 
@@ -23,18 +22,14 @@ export function H1({
   emphasize,
   textAlign,
   children,
-  css: cssProp,
   ...props
 }: H1Props) {
   return (
     <Container
       id={href}
-      css={css(
-        {
-          textAlign,
-        },
-        cssProp,
-      )}
+      css={{
+        textAlign,
+      }}
     >
       {headline && (
         <Text bold size="tiny" color="blue" margin={{ bottom: 3 }}>

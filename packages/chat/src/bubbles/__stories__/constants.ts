@@ -1,5 +1,3 @@
-import { CSSProps } from '@titicaca/core-elements'
-
 import { MessageType, MetaDataInterface, UserType } from '../../types'
 import { ChatContextValue } from '../../chat'
 import { ChatProps } from '../../chat/chat'
@@ -38,8 +36,7 @@ export const MEDIA_ARGS: ChatContextValue = {
   onTextBubbleClick: empty,
 }
 
-export const CHAT_ARGS: ChatProps & CSSProps = {
-  css: { marginBottom: '120px' },
+export const CHAT_ARGS: ChatProps = {
   displayTarget: UserType.TNA_PARTNER,
   userInfo: {
     me: {

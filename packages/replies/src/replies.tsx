@@ -1,9 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
-import {
-  Container,
-  safeAreaInsetMixin,
-  CSSProps,
-} from '@titicaca/core-elements'
+import { Container, safeAreaInsetMixin } from '@titicaca/core-elements'
 import styled from 'styled-components'
 
 import { fetchReplies, fetchChildReplies } from './replies-api-client'
@@ -41,7 +37,7 @@ function Replies({
   isFormFixed,
   size = 10,
   initialSize,
-  css,
+  ...props
 }: {
   /**
    * resourceId, resourceType: 아래 스웨거를 참고해주세요.
@@ -63,7 +59,7 @@ function Replies({
    */
   size?: number
   initialSize?: number
-} & CSSProps) {
+}) {
   const [replies, setReplies] = useState<Reply[]>([])
 
   const [hasNextPage, setHasNextPage] = useState(false)
@@ -205,7 +201,7 @@ function Replies({
         focusInput={focusInput}
         onReplyDelete={handleReplyDelete}
         onReplyEdit={handleReplyEdit}
-        css={css}
+        {...props}
       />
 
       <InputContainer>

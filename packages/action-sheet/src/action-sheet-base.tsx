@@ -1,4 +1,4 @@
-import { CSSProps, Portal } from '@titicaca/core-elements'
+import { Portal } from '@titicaca/core-elements'
 import { useOverlay, usePreventScroll } from '@react-aria/overlays'
 import { PropsWithChildren, ReactNode, useRef } from 'react'
 
@@ -8,7 +8,7 @@ import { ActionSheetBody } from './action-sheet-body'
 
 const TRANSITION_DURATION = 120
 
-export interface ActionSheetBaseProps extends PropsWithChildren, CSSProps {
+export interface ActionSheetBaseProps extends PropsWithChildren {
   borderRadius: number
   bottomSpacing: number
   maxContentHeight: string | number
@@ -23,7 +23,7 @@ export const ActionSheetBase = ({
   maxContentHeight,
   from,
   title,
-  css,
+  ...props
 }: ActionSheetBaseProps) => {
   const overlayRef = useRef<HTMLDivElement>(null)
   const sheetRef = useRef<HTMLDivElement>(null)
@@ -58,7 +58,7 @@ export const ActionSheetBase = ({
           maxContentHeight={maxContentHeight}
           from={from}
           title={title}
-          css={css}
+          {...props}
         >
           {children}
         </ActionSheetBody>

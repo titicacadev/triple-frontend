@@ -1,7 +1,6 @@
 import { FocusScope } from '@react-aria/focus'
 import {
   Container,
-  CSSProps,
   MarginPadding,
   safeAreaInsetMixin,
 } from '@titicaca/core-elements'
@@ -31,7 +30,7 @@ const sheetSlideConfig = css<{ duration: number }>`
   transition: transform ${({ duration }) => duration}ms ease-in;
 `
 
-interface SheetProps extends CSSProps {
+interface SheetProps {
   borderRadius: number
   bottomSpacing: number
   duration: number
@@ -103,8 +102,6 @@ const Sheet = styled.div<SheetProps>`
         `
     }
   }}
-
-  ${({ css }) => css}
 `
 
 const Content = styled(Container)`
@@ -115,7 +112,7 @@ const Content = styled(Container)`
   }
 `
 
-export interface ActionSheetBodyProps extends PropsWithChildren, CSSProps {
+export interface ActionSheetBodyProps extends PropsWithChildren {
   borderRadius: number
   bottomSpacing: number
   duration: number
@@ -153,7 +150,6 @@ export const ActionSheetBody = forwardRef<HTMLDivElement, ActionSheetBodyProps>(
         {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
         <FocusScope contain restoreFocus autoFocus>
           <Sheet
-            {...props}
             ref={ref}
             borderRadius={borderRadius}
             bottomSpacing={bottomSpacing}
@@ -163,6 +159,7 @@ export const ActionSheetBody = forwardRef<HTMLDivElement, ActionSheetBodyProps>(
             role="dialog"
             aria-labelledby={titleId}
             aria-modal
+            {...props}
           >
             {title && <ActionSheetTitle>{title}</ActionSheetTitle>}
             <Content
