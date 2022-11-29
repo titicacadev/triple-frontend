@@ -1,4 +1,4 @@
-import { ChangeEventHandler, PropsWithChildren } from 'react'
+import { ChangeEventHandler, forwardRef, PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
 import { Text } from '../text'
@@ -22,14 +22,10 @@ const RadioText = styled(Text)`
 
 export type RadioProps = RadioBaseProps & PropsWithChildren
 
-export const Radio = ({
-  children,
-  name,
-  checked,
-  value,
-  onChange,
-  ...props
-}: RadioProps) => {
+export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
+  { children, name, checked, value, onChange, ...props },
+  ref,
+) {
   const group = useRadioGroup()
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -45,6 +41,7 @@ export const Radio = ({
       <RadioText size="large">{children}</RadioText>
       <RadioBase
         {...props}
+        ref={ref}
         name={name ?? group?.name}
         checked={checked ?? (value ? group?.value === value : undefined)}
         value={value}
@@ -52,4 +49,4 @@ export const Radio = ({
       />
     </RadioLabel>
   )
-}
+})
