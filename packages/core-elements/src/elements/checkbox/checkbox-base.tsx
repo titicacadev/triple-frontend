@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from 'react'
+import { InputHTMLAttributes } from 'react'
 import styled from 'styled-components'
 import { useVisuallyHidden } from '@react-aria/visually-hidden'
 
@@ -36,33 +36,20 @@ const CheckboxBaseSvg = styled.svg`
   left: 6px;
 `
 
-export interface CheckboxBaseProps {
+export interface CheckboxBaseProps
+  extends InputHTMLAttributes<HTMLInputElement> {
   variant?: CheckboxVariant
-  name?: string
-  checked?: boolean
-  value?: string
-  onChange?: ChangeEventHandler<HTMLInputElement>
 }
 
 export const CheckboxBase = ({
   variant = 'square',
-  name,
-  checked,
-  value,
-  onChange,
+  ...props
 }: CheckboxBaseProps) => {
   const { visuallyHiddenProps } = useVisuallyHidden()
 
   return (
     <CheckboxBaseWrapper>
-      <CheckboxBaseInput
-        {...visuallyHiddenProps}
-        type="checkbox"
-        name={name}
-        checked={checked}
-        value={value}
-        onChange={onChange}
-      />
+      <CheckboxBaseInput type="checkbox" {...visuallyHiddenProps} {...props} />
       <CheckboxBaseControl variant={variant}>
         <CheckboxBaseSvg
           width="14"

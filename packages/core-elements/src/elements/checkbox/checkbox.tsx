@@ -29,6 +29,7 @@ export const Checkbox = ({
   checked,
   value,
   onChange,
+  ...props
 }: CheckboxProps) => {
   const group = useCheckboxGroup()
 
@@ -47,9 +48,13 @@ export const Checkbox = ({
     <CheckboxLabel>
       <CheckboxText>{children}</CheckboxText>
       <CheckboxBase
+        {...props}
         variant={variant}
         name={name ?? group?.name}
-        checked={checked ?? (value ? group?.value?.includes(value) : undefined)}
+        checked={
+          checked ??
+          (value ? group?.value?.includes(value.toString()) : undefined)
+        }
         value={value}
         onChange={handleChange}
       />
