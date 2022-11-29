@@ -24,21 +24,12 @@ export interface ConfirmSelectorProps
 
 export const ConfirmSelector = ({
   children,
-  name,
-  checked,
-  value,
-  onChange,
+  ...props
 }: ConfirmSelectorProps) => {
   return (
     <ConfirmSelectorLabel>
       <ConfirmSelectorText>{children}</ConfirmSelectorText>
-      <CheckboxBase
-        variant="round"
-        name={name}
-        checked={checked}
-        value={value}
-        onChange={onChange}
-      />
+      <CheckboxBase {...props} variant="round" />
     </ConfirmSelectorLabel>
   )
 }
