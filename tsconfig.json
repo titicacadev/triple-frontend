@@ -92,5 +92,5 @@
       "@titicaca/web-storage": ["./packages/web-storage/src"]
     }
   },
-  "include": ["**/*", "**/*.json"]
+  "include": ["global.d.ts", "**/*", "**/*.json"]
 }
