@@ -23,7 +23,7 @@ const SIZES: Record<ButtonSize, ReturnType<typeof css>> = {
   `,
 }
 
-export interface ButtonBaseProps extends PropsWithChildren {
+export interface ButtonBaseOwnProps {
   /**
    * Basic 및 Normal 버튼에서는 항상 `true` 입니다.
    */
@@ -43,6 +43,10 @@ export interface ButtonBaseProps extends PropsWithChildren {
   textColor?: Color
 }
 
+export type ButtonBaseProps = ButtonBaseOwnProps &
+  PropsWithChildren &
+  ButtonHTMLAttributes<HTMLButtonElement>
+
 export const buttonBaseMixin = ({
   bold,
   floated = 'none',
@@ -51,7 +55,7 @@ export const buttonBaseMixin = ({
   lineHeight,
   textAlpha = 1,
   textColor = 'gray',
-}: ButtonBaseProps) => css`
+}: ButtonBaseOwnProps) => css`
   display: inline-block;
   color: rgba(${GetGlobalColor(textColor)}, ${textAlpha});
   float: ${floated};
@@ -78,7 +82,6 @@ export const buttonBaseMixin = ({
   }
 `
 
-export const ButtonBase = styled.button.attrs({
-  /* stylelint-disable-next-line property-no-unknown */
-  type: 'button' as ButtonHTMLAttributes<HTMLButtonElement>['type'],
-})(buttonBaseMixin)
+export const ButtonBase = styled.button.attrs((props) => ({
+  type: props.type ?? 'button',
+}))(buttonBaseMixin)
