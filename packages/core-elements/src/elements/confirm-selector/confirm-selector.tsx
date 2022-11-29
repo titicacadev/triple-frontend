@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react'
+import { forwardRef, PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
 import { CheckboxBase, CheckboxBaseProps } from '../checkbox'
@@ -22,14 +22,14 @@ export interface ConfirmSelectorProps
   extends Omit<CheckboxBaseProps, 'variant'>,
     PropsWithChildren {}
 
-export const ConfirmSelector = ({
-  children,
-  ...props
-}: ConfirmSelectorProps) => {
+export const ConfirmSelector = forwardRef<
+  HTMLInputElement,
+  ConfirmSelectorProps
+>(function ConfirmSelector({ children, ...props }, ref) {
   return (
     <ConfirmSelectorLabel>
       <ConfirmSelectorText>{children}</ConfirmSelectorText>
-      <CheckboxBase {...props} variant="round" />
+      <CheckboxBase {...props} ref={ref} variant="round" />
     </ConfirmSelectorLabel>
   )
-}
+})
