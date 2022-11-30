@@ -18,5 +18,9 @@
   "scripts": {
     "build": "npm run build:cjs",
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
+  },
+  "peerDependencies": {
+    "react": "^18.0",
+    "react-dom": "^18.0"
   }
 }

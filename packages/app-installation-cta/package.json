@@ -35,6 +35,9 @@
     "@types/react-transition-group": "^4.4.4"
   },
   "peerDependencies": {
-    "@titicaca/web-storage": "*"
+    "@titicaca/web-storage": "*",
+    "react": "^18.0",
+    "react-dom": "^18.0",
+    "styled-components": "^5.3.1"
   }
 }
