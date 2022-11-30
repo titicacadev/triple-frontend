@@ -51,7 +51,7 @@ const Template: Story<ChatContainerProps> = () => (
     mediaUrlBase="https://media.triple.guide"
     cloudinaryName="triple-cms"
   >
-    <Chat {...CHAT_ARGS} css={{ marginBottom: 120 }} />
+    <Chat {...CHAT_ARGS} />
   </ChatContainer>
 )
 
