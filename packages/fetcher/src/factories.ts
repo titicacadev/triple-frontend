@@ -171,23 +171,20 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
   }) as unknown as ExtendFetcher<Fetcher, typeof NEED_LOGIN_IDENTIFIER>
 }
 
-export function i18nFetcherize(
-  fetcher: <SuccessBody, FailureBody = unknown>(
-    href: string,
-    options: RequestOptions,
-  ) => Promise<HttpResponse<SuccessBody, FailureBody>>,
-) {
-  return <SuccessBody, FailureBody = unknown>(
-    href: string,
-    optionsParams: RequestOptions & { ctx: GetServerSidePropsContext },
-  ) => {
-    const { ctx, headers, ...options } = optionsParams ?? {}
-    const { headers: ctxHeaders } = ctx.req
-    const langHeader = (ctxHeaders['x-triple-user-lang'] ?? 'ko') as string
-    const countryHeader = (ctxHeaders['x-triple-user-country'] ??
-      'kr') as string
+export function i18nFetcherize<Fetcher extends BaseFetcher>(
+  fetcher: Fetcher,
+  ctx: GetServerSidePropsContext,
+): Fetcher {
+  const {
+    req: { headers },
+  } = ctx
+  const langHeader = (headers['x-triple-user-lang'] ?? 'ko') as string
+  const countryHeader = (headers['x-triple-user-country'] ?? 'kr') as string
 
-    return fetcher<SuccessBody, FailureBody>(href, {
+  return ((href, optionsParams) => {
+    const { headers, ...options } = optionsParams ?? {}
+
+    return fetcher(href, {
       ...options,
       headers: {
         ...headers,
@@ -195,5 +192,5 @@ export function i18nFetcherize(
         'x-triple-user-country': countryHeader,
       },
     })
-  }
+  }) as Fetcher
 }
