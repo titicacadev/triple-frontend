@@ -6,6 +6,7 @@ import {
   ExtendFetcher,
   NEED_LOGIN_IDENTIFIER,
   ssrFetcherize,
+  i18nFetcherize,
 } from './factories'
 import { del, get, post, put } from './methods'
 import { RequestOptions, HttpResponse } from './types'
@@ -62,7 +63,7 @@ export function addFetchersToGssp<Props, CustomContext = Record<string, never>>(
     ) =>
       cookieOverrider(
         authFetcherize(
-          ssrFetcherize(fetcher, ssrFetcherOptions),
+          ssrFetcherize(i18nFetcherize(fetcher, ctx), ssrFetcherOptions),
           authGuardOptions,
         ),
       )
