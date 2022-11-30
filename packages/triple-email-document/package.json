@@ -22,5 +22,10 @@
   "dependencies": {
     "@titicaca/core-elements": "^11.1.0",
     "@titicaca/type-definitions": "^11.1.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0",
+    "react-dom": "^18.0",
+    "styled-components": "^5.3.1"
   }
 }

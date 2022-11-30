@@ -23,5 +23,10 @@
     "@titicaca/core-elements": "^11.1.0",
     "@titicaca/view-utilities": "^11.1.0",
     "react-compound-slider": "^3.4.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0",
+    "react-dom": "^18.0",
+    "styled-components": "^5.3.1"
   }
 }
