@@ -28,5 +28,10 @@
     "@titicaca/router": "^10.3.0",
     "@titicaca/ui-flow": "^10.3.0",
     "@titicaca/view-utilities": "^10.3.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0",
+    "react-dom": "^18.0",
+    "styled-components": "^5.3.1"
   }
 }

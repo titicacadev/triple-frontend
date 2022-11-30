@@ -25,5 +25,10 @@
     "@titicaca/core-elements": "^10.3.0",
     "@titicaca/drawer-button": "^10.3.0",
     "react-input-mask": "^2.0.4"
+  },
+  "peerDependencies": {
+    "react": "^18.0",
+    "react-dom": "^18.0",
+    "styled-components": "^5.3.1"
   }
 }
