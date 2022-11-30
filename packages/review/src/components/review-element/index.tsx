@@ -252,7 +252,7 @@ function ReviewElement({
               liked={liked}
               onClick={handleLikeButtonClick}
               css={{
-                margin: '5px 0 0',
+                marginTop: 5,
                 padding: '2px 10px 2px 20px',
                 height: 18,
               }}
@@ -270,7 +270,7 @@ function ReviewElement({
             }
             css={{
               height: 18,
-              margin: '5px 0 0',
+              marginTop: 5,
               padding: '2px 0 2px 20px',
             }}
           >
