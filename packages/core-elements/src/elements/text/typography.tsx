@@ -30,13 +30,14 @@ export function H1({
       css={{
         textAlign,
       }}
+      {...props}
     >
       {headline && (
         <Text bold size="tiny" color="blue" margin={{ bottom: 3 }}>
           {headline}
         </Text>
       )}
-      <Text bold size="huge" color={emphasize ? 'blue' : 'gray'} {...props}>
+      <Text bold size="huge" color={emphasize ? 'blue' : 'gray'}>
         {children}
       </Text>
     </Container>
