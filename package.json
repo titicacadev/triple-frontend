@@ -97,6 +97,11 @@
     "utility-types": "^3.10.0",
     "webpack": "^5.74.0"
   },
+  "overrides": {
+    "storybook-addon-next-router": {
+      "next": "^13.0"
+    }
+  },
   "workspaces": [
     "packages/*",
     "integration-test"
