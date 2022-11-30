@@ -24,6 +24,9 @@
     "intersection-observer": "^0.7.0"
   },
   "peerDependencies": {
-    "next": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0"
+    "next": "^13.0",
+    "react": "^18.0",
+    "react-dom": "^18.0",
+    "styled-components": "^5.3.1"
   }
 }
