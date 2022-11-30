@@ -25,6 +25,8 @@
     "react-use": "^17.2.1"
   },
   "peerDependencies": {
-    "react": "*"
+    "react": "^18.0",
+    "react-dom": "^18.0",
+    "styled-components": "^5.3.1"
   }
 }

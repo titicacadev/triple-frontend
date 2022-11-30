@@ -27,8 +27,9 @@
   "peerDependencies": {
     "@titicaca/next-i18next": "*",
     "@titicaca/react-contexts": "*",
-    "react": "*",
-    "styled-components": ">=4.4.1 < 6"
+    "react": "^18.0",
+    "react-dom": "^18.0",
+    "styled-components": "^5.3.1"
   },
   "devDependencies": {
     "@titicaca/i18n": "^11.1.0"

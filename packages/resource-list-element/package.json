@@ -27,7 +27,10 @@
     "@titicaca/view-utilities": "^11.1.0"
   },
   "peerDependencies": {
-    "@titicaca/next-i18next": "*"
+    "@titicaca/next-i18next": "*",
+    "react": "^18.0",
+    "react-dom": "^18.0",
+    "styled-components": "^5.3.1"
   },
   "devDependencies": {
     "@titicaca/i18n": "^11.1.0"

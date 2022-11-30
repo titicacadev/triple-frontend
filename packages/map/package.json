@@ -25,6 +25,9 @@
     "@titicaca/router": "^11.1.0"
   },
   "devDependencies": {
-    "@types/googlemaps": "^3.43.3"
+    "@types/googlemaps": "^3.43.3",
+    "react": "^18.0",
+    "react-dom": "^18.0",
+    "styled-components": "^5.3.1"
   }
 }

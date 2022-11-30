@@ -28,6 +28,9 @@
     "@titicaca/router": "^11.1.0"
   },
   "peerDependencies": {
-    "@titicaca/react-contexts": "*"
+    "@titicaca/react-contexts": "*",
+    "react": "^18.0",
+    "react-dom": "^18.0",
+    "styled-components": "^5.3.1"
   }
 }

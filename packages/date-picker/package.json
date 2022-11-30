@@ -24,5 +24,10 @@
     "@titicaca/fetcher": "^11.1.0",
     "moment": "^2.24.0",
     "react-day-picker": "^7.4.10"
+  },
+  "peerDependencies": {
+    "react": "^18.0",
+    "react-dom": "^18.0",
+    "styled-components": "^5.3.1"
   }
 }

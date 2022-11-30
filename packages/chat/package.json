@@ -36,5 +36,10 @@
     "@titicaca/react-contexts": "^11.1.0",
     "@titicaca/triple-web-to-native-interfaces": "^1.7.0",
     "autolinker": "^4.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0",
+    "react-dom": "^18.0",
+    "styled-components": "^5.3.1"
   }
 }

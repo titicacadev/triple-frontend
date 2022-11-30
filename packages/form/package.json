@@ -27,6 +27,9 @@
     "react-input-mask": "^2.0.4"
   },
   "peerDependencies": {
+    "react": "^18.0",
+    "react-dom": "^18.0",
+    "styled-components": "^5.3.1",
     "@titicaca/next-i18next": "*"
   },
   "devDependencies": {
