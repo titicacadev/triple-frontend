@@ -189,10 +189,6 @@ export default function DefaultFooter({
             개인정보 처리방침
           </a>
           |
-          <a href="https://triple-corp.com/" target="_blank" rel="noreferrer">
-            회사 소개
-          </a>
-          |
           <a href="/cs-bridge/entry" target="_blank" rel="noreferrer">
             고객센터
           </a>
