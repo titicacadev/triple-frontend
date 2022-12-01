@@ -105,15 +105,15 @@ const Chat = ({
 
   const scrollDown = useCallback(() => {
     window.setTimeout(() => {
-      if (chatRoomRef.current && chatRoomRef.current.parentElement) {
+      if (chatRoomRef.current) {
         chatRoomRef.current.lastElementChild?.lastElementChild?.scrollIntoView()
       }
     }, 0)
   }, [])
 
   useEffect(() => {
-    if (scrollY && chatRoomRef.current && chatRoomRef.current.parentElement) {
-      chatRoomRef.current.parentElement.scrollTo(
+    if (scrollY && chatRoomRef.current) {
+      window.scrollTo(
         0,
         chatRoomRef.current.getBoundingClientRect().height - scrollY,
       )
