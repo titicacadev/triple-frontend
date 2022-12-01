@@ -1,5 +1,6 @@
 #! /usr/bin/env node
-import { existsSync, mkdirSync, writeFileSync } from 'fs'
+/* eslint-disable no-console */
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 
 import fetch from 'node-fetch'
 import { program } from 'commander'
@@ -10,6 +11,8 @@ const languages = ['ko', 'ja', 'zh-TW']
 
 program
   .action(async () => {
+    const packageJson = readFileSync('package.json')
+    console.log(packageJson)
     for (const language of languages) {
       const filePath = `public/static/locales/${language}`
 
