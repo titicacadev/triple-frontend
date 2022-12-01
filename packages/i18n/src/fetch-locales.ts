@@ -11,7 +11,7 @@ const languages = ['ko', 'ja', 'zh-TW']
 
 program
   .action(async () => {
-    const packageJson = readFileSync('package.json')
+    const packageJson = readFileSync('package.json', { encoding: 'utf-8' })
     console.log(packageJson)
     for (const language of languages) {
       const filePath = `public/static/locales/${language}`
