@@ -27,7 +27,7 @@ export const koCommonWeb = {
     '트리플 앱에서 더욱 다양한 기능을\n편리하게 이용해보세요.',
   'teuripeul-gagi': '트리플 가기',
   jeojangcwiso: '저장취소',
-  jeojanghagi: '저장하기',
+  jeojanghagi: '테스트테스트',
   ribyusujeong: '리뷰수정',
   ribyusseugi: '리뷰쓰기',
   iljeongcuga: '일정추가',

@@ -1,7 +1,9 @@
 /* eslint-disable import/no-absolute-path */
 const path = require('path')
 
-const { koCommonWeb, jaCommonWeb, zhTwCommonWeb } = require('@titicaca/i18n')
+const { koCommonWeb } = require('./assets/ko/common-web')
+const { jaCommonWeb } = require('./assets/ja/common-web')
+const { zhTwCommonWeb } = require('./assets/zh-TW/common-web')
 
 const LOCALE_PATH = './public/static/locales'
 
