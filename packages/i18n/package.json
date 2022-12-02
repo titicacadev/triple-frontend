@@ -12,9 +12,6 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "main": "lib/index.js",
-  "bin": {
-    "fetch-locales": "lib/fetch-locales.js"
-  },
   "files": [
     "lib"
   ],
