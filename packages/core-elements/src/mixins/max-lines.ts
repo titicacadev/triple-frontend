@@ -14,5 +14,6 @@ export const maxLinesMixin = ({ maxLines }: Params) =>
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: pre-line;
+        visibility: visible;
       `
     : undefined
