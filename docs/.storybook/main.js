@@ -4,7 +4,6 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-links',
     'storybook-addon-next-router',
-    'storybook-addon-i18next',
   ],
   typescript: {
     check: true,
@@ -13,10 +12,9 @@ module.exports = {
     builder: 'webpack5',
   },
   webpackFinal: (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@titicaca/next-i18next': 'react-i18next',
-    }
+    config.resolve ||= {}
+    config.resolve.fallback ||= {}
+    config.resolve.fallback.fs = false
 
     return config
   },
