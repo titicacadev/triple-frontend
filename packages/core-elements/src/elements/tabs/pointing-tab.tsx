@@ -28,8 +28,8 @@ const StyledTabBase = styled(TabBase)<StyledTabBaseProps>`
     `}
 `
 
-export const PointingTab = ({ children, ...props }: TabBaseProps) => {
-  const tabs = useTabs()
+export const PointingTab = <Value,>({ children, ...props }: TabBaseProps) => {
+  const tabs = useTabs<Value>()
   const { tabsRef } = usePointingTab()
 
   return (
