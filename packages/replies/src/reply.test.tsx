@@ -26,6 +26,7 @@ jest.mock('@titicaca/next-i18next', () => ({
       return key
     },
   }),
+  getTranslation: () => (key: string) => key,
 }))
 
 beforeEach(() => {
