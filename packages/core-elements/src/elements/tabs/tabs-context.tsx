@@ -2,15 +2,15 @@ import { createContext, useContext } from 'react'
 
 import { TabVariant } from './types'
 
-export interface TabsContextValue {
+export interface TabsContextValue<Value> {
   id: string
-  value: string
+  value: Value
   variant: TabVariant
   scroll: boolean
-  onChange?: (value: string) => void
+  onChange?: (value: Value) => void
 }
 
-export const TabsContext = createContext<TabsContextValue | undefined>(
+export const TabsContext = createContext<TabsContextValue<unknown> | undefined>(
   undefined,
 )
 
