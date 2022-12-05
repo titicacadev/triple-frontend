@@ -9,6 +9,13 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
+jest.mock('@titicaca/next-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+  getTranslation: () => (key: string) => key,
+}))
+
 it('renders nothing inside triple client', () => {
   ;(
     useTripleClientMetadata as jest.MockedFunction<
