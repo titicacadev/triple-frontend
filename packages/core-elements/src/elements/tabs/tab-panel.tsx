@@ -2,15 +2,15 @@ import React, { PropsWithChildren } from 'react'
 
 import { useTabs } from './tabs-context'
 
-export interface TabPanelProps extends PropsWithChildren {
+export interface TabPanelProps<Value> extends PropsWithChildren {
   /**
    * 각 탭마다의 유니크한 값
    */
-  value: string
+  value: Value
 }
 
-export const TabPanel = ({ children, value }: TabPanelProps) => {
-  const tabs = useTabs()
+export const TabPanel = <Value,>({ children, value }: TabPanelProps<Value>) => {
+  const tabs = useTabs<Value>()
 
   return (
     <div

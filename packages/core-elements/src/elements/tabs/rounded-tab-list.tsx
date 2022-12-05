@@ -24,8 +24,11 @@ const StyledTabListBase = styled(TabListBase)<StyledTabListBaseProps>`
     `}
 `
 
-export const RoundedTabList = ({ children, ...props }: TabListBaseProps) => {
-  const tabs = useTabs()
+export const RoundedTabList = <Value,>({
+  children,
+  ...props
+}: TabListBaseProps) => {
+  const tabs = useTabs<Value>()
 
   return (
     <StyledTabListBase {...props} scroll={tabs.scroll}>
