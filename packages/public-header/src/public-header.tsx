@@ -118,14 +118,14 @@ export function PublicHeader({
       <HeaderFrame>
         <Logo
           href={getCategoryHref(category)}
-          title={getCategoryTitle({ category, t })}
+          title={getCategoryTitle(category)}
         >
           <LogoImage
             alt="Triple"
             src="https://assets.triple.guide/images/img_intro_logo_dark.svg"
           />
           {category && (
-            <LogoCategoryImage {...getCategoryImageProps({ category, t })} />
+            <LogoCategoryImage {...getCategoryImageProps(category)} />
           )}
         </Logo>
 

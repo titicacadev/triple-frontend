@@ -1,4 +1,4 @@
-import { useTranslation, TFunction } from '@titicaca/next-i18next'
+import { getTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import {
   PoiListElement,
@@ -43,7 +43,6 @@ export default function Pois<T extends ExtendedPoiListElementData>({
     pois: T[]
   }
 }) {
-  const { t } = useTranslation()
   const onResourceClick = useResourceClickHandler()
 
   const Container = display === 'list' ? ResourceList : DocumentCarousel
@@ -74,7 +73,6 @@ export default function Pois<T extends ExtendedPoiListElementData>({
           actionButtonElement={renderPoiListActionButton({
             display,
             poi,
-            t,
           })}
         />
       ))}
@@ -85,12 +83,11 @@ export default function Pois<T extends ExtendedPoiListElementData>({
 function renderPoiListActionButton({
   display,
   poi,
-  t,
 }: {
   display: PoisDisplay
   poi: ExtendedPoiListElementData
-  t: TFunction
 }) {
+  const t = getTranslation('common-web')
   const {
     source: { pricing },
   } = poi

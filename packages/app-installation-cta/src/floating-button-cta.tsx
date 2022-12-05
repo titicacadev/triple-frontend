@@ -82,7 +82,7 @@ export default function FloatingButtonCtaV2({
     let visitedPages = false
 
     try {
-      const storage = getWebStorage({ type: 'sessionStorage', t })
+      const storage = getWebStorage('sessionStorage')
       visitedPages = !!storage.getItem(FLOATING_BUTTON_CLOSED_STORAGE_KEY)
     } catch (error) {
       // 사용자가 이전에 CTA를 닫았었는지 확인합니다.
@@ -114,13 +114,13 @@ export default function FloatingButtonCtaV2({
     onDismiss && onDismiss()
 
     try {
-      const storage = getWebStorage({ type: 'sessionStorage', t })
+      const storage = getWebStorage('sessionStorage')
       storage.setItem(FLOATING_BUTTON_CLOSED_STORAGE_KEY, 'true')
     } catch (error) {
       // 사용자가 CTA를 닫았다는 것을 기록합니다.
       // 필수적인 기능이 아니므로 에러를 조용히 넘깁니다.
     }
-  }, [onDismiss, sendTrackEventRequest, trackEventParams, t])
+  }, [onDismiss, sendTrackEventRequest, trackEventParams])
 
   useEffect(() => {
     if (exitStrategy === BannerExitStrategy.CHATBOT_READY) {

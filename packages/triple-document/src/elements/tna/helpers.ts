@@ -1,4 +1,4 @@
-import { TFunction } from '@titicaca/next-i18next'
+import { getTranslation } from '@titicaca/next-i18next'
 import { formatNumber } from '@titicaca/view-utilities'
 
 import { TnaCoupon } from './types'
@@ -6,12 +6,12 @@ import { TnaCoupon } from './types'
 export function generateCoupon({
   applicableCoupon,
   expectedApplicableCoupon,
-  t,
 }: {
   applicableCoupon?: TnaCoupon
   expectedApplicableCoupon?: TnaCoupon
-  t: TFunction
 }) {
+  const t = getTranslation('common-web')
+
   const { amountAfterUsingCoupon: applicableAmountAfterUsingCoupon } =
     applicableCoupon || {}
 

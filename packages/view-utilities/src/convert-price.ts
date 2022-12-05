@@ -1,14 +1,10 @@
-import { TFunction } from '@titicaca/next-i18next'
+import { getTranslation } from '@titicaca/next-i18next'
 
 import { formatNumber } from './format-number'
 
-export function convertPriceInThousands({
-  price,
-  t,
-}: {
-  price: number
-  t: TFunction
-}) {
+export function convertPriceInThousands(price: number) {
+  const t = getTranslation('common-web')
+
   const flooredPrice = Math.floor(price / 1000)
   if (flooredPrice === 0) {
     return t('weon')
@@ -21,17 +17,19 @@ export function convertPriceInThousands({
  *  100원 단위가 없을 경우에는 첫자리는 숫자로 처리하고, 단위는 한글로 처리한다. e.g.) 4,000 → 4천원, 110,000 → 11만원
  *  https://titicaca.atlassian.net/wiki/spaces/BUS/pages/2193129588#%2B%EA%B0%80%EA%B2%A9-%ED%91%9C%EC%8B%9C-%EC%A0%95%EB%B3%B4
  * */
-export function convertPrice({ price, t }: { price: number; t: TFunction }) {
+export function convertPrice(price: number) {
+  const t = getTranslation('common-web')
+
   const formattedPrice = formatNumber(price)
   const flooredPrice = Math.floor(price / 10000)
-  const convertedPrice = convertPriceInThousands({ price: price % 10000, t })
+  const convertedPrice = convertPriceInThousands(price % 10000)
 
   switch (true) {
     case price % 1000 !== 0 || price < 1000:
       return t('formattedprice-weon', { formattedPrice })
 
     case price < 10000:
-      return convertPriceInThousands({ price, t })
+      return convertPriceInThousands(price)
 
     case price < 10000000:
       return t('flooredprice-man-convertedprice', {

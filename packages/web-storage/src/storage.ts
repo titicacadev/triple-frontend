@@ -1,5 +1,5 @@
 import Cookies from 'universal-cookie'
-import { TFunction } from '@titicaca/next-i18next'
+import { getTranslation } from '@titicaca/next-i18next'
 
 import {
   storageAvailable,

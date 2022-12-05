@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { useTranslation, TFunction } from '@titicaca/next-i18next'
+import { useTranslation, getTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import {
   Container,
@@ -204,7 +204,6 @@ export default function Reply({
     deleted,
     blinded,
     childrenCount,
-    t,
   })
 
   const handleUserClick = useAppCallback(
@@ -492,14 +491,14 @@ function deriveContent({
   deleted,
   blinded,
   childrenCount,
-  t,
 }: {
   text: string
   deleted: boolean
   blinded: boolean
   childrenCount: number
-  t: TFunction
 }) {
+  const t = getTranslation('common-web')
+
   const contentText = {
     deleted: t('jagseongjaga-sagjehan-daesgeulibnida.'),
     blinded: t('dareun-sayongjayi-singoro-beulraindeu-doeeossseubnida.'),

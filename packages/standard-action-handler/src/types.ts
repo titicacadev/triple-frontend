@@ -1,4 +1,3 @@
-import { TFunction } from '@titicaca/next-i18next'
 import { UrlElements } from '@titicaca/view-utilities'
 import { App } from '@titicaca/react-triple-client-interfaces'
 
@@ -32,7 +31,6 @@ export interface WebActionParams {
   handler?: {
     execute: (url: string, params?: NavigateOptions) => Promise<void>
   }
-  t?: TFunction
 }
 
 export type WebAction = (webActionParams: WebActionParams) => Promise<boolean>
