@@ -105,7 +105,6 @@ export function TnaProductWithPrice({
   } = generateCoupon({
     applicableCoupon,
     expectedApplicableCoupon,
-    t,
   })
   const hasSelfPackageBenefit = !!bestSelfPackageDiscountSpec
 

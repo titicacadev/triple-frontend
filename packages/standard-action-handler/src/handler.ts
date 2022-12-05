@@ -1,4 +1,3 @@
-import { TFunction } from '@titicaca/next-i18next'
 import { parseUrl } from '@titicaca/view-utilities'
 
 import { WebAction, ContextOptions, NavigateOptions } from './types'
@@ -8,20 +7,15 @@ export default class Handler {
 
   private handlers: WebAction[]
 
-  private t: TFunction
-
   public constructor({
     handlers,
     options,
-    t,
   }: {
     handlers: WebAction[]
     options: ContextOptions
-    t: TFunction
   }) {
     this.handlers = handlers
     this.options = options
-    this.t = t
   }
 
   public async execute(url: string, params?: NavigateOptions) {
@@ -33,7 +27,6 @@ export default class Handler {
           url: parsedUrl,
           options: this.options,
           handler: this,
-          t: this.t,
         })
 
         if (result) {

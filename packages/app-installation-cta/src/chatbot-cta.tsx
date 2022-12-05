@@ -56,7 +56,7 @@ export default function ChatbotCta({
     let visited = false
 
     try {
-      visited = !!getWebStorage({ type: 'sessionStorage', t }).getItem(
+      visited = !!getWebStorage('sessionStorage').getItem(
         CHATBOT_CLOSED_STORAGE_KEY,
       )
     } catch (error) {
@@ -109,7 +109,7 @@ export default function ChatbotCta({
     onDismiss && onDismiss(inventoryItem)
 
     try {
-      getWebStorage({ type: 'sessionStorage', t }).setItem(
+      getWebStorage('sessionStorage').setItem(
         CHATBOT_CLOSED_STORAGE_KEY,
         'true',
       )
@@ -117,7 +117,7 @@ export default function ChatbotCta({
       // 사용자가 CTA를 닫았다는 것을 기록합니다.
       // 필수적인 기능이 아니므로 에러를 조용히 넘깁니다.
     }
-  }, [onDismiss, inventoryItem, t])
+  }, [onDismiss, inventoryItem])
 
   return (
     <CSSTransition

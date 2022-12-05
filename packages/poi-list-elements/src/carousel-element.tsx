@@ -1,5 +1,4 @@
 import { ReactNode } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
 import {
   CarouselSizes,
   Carousel,
@@ -45,8 +44,6 @@ export default function PoiCarouselElement<T extends PoiListElementType>({
   onImpress?: () => void
   optimized?: boolean
 }) {
-  const { t } = useTranslation('common-web')
-
   if (!poi) {
     return null
   }
@@ -84,7 +81,7 @@ export default function PoiCarouselElement<T extends PoiListElementType>({
         {name}
       </Text>
       <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
-        {description || getTypeNames({ type, t })}
+        {description || getTypeNames(type)}
       </Text>
       <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
         {regionName

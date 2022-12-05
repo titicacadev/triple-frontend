@@ -1,4 +1,4 @@
-import { TFunction } from '@titicaca/next-i18next'
+import { getTranslation } from '@titicaca/next-i18next'
 import {
   hasAccessibleTripleNativeClients,
   shareLink,
@@ -54,13 +54,8 @@ function copyUrlToClipboard({
   })
 }
 
-function shareNativeInterface({
-  params,
-  t,
-}: {
-  params: SharingParams
-  t: TFunction
-}) {
+function shareNativeInterface({ params }: { params: SharingParams }) {
+  const t = getTranslation('common-web')
   const { title, description, image, webUrl, appUrl } = params
 
   return shareLink({

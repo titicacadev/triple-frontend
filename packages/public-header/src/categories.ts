@@ -1,4 +1,4 @@
-import { TFunction } from '@titicaca/next-i18next'
+import { getTranslation } from '@titicaca/next-i18next'
 
 import type { Category } from './types'
 
@@ -15,13 +15,9 @@ export function getCategoryHref(category?: Category) {
   }
 }
 
-export function getCategoryTitle({
-  category,
-  t,
-}: {
-  category?: Category
-  t: TFunction
-}) {
+export function getCategoryTitle(category?: Category) {
+  const t = getTranslation('common-web')
+
   switch (category) {
     case 'air':
       return t('triple-hanggong-hom')
@@ -34,13 +30,9 @@ export function getCategoryTitle({
   }
 }
 
-export function getCategoryImageProps({
-  category,
-  t,
-}: {
-  category?: Category
-  t: TFunction
-}) {
+export function getCategoryImageProps(category?: Category) {
+  const t = getTranslation('common-web')
+
   switch (category) {
     case 'air':
       return {
