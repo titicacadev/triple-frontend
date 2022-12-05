@@ -43,8 +43,11 @@ const StyledTabListBase = styled(TabListBase)<StyledTabListBaseProps>`
   }
 `
 
-export const PointingTabList = ({ children, ...props }: TabListBaseProps) => {
-  const tabs = useTabs()
+export const PointingTabList = <Value extends string>({
+  children,
+  ...props
+}: TabListBaseProps) => {
+  const tabs = useTabs<Value>()
   const tabsRef = useRef<Record<string, HTMLButtonElement | null>>({})
   const [pointValue, setPointValue] = useState<PointValue>({
     left: 0,
