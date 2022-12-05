@@ -3,7 +3,7 @@ import { PropsWithChildren, useId } from 'react'
 import { Tab } from './tab'
 import { TabList } from './tab-list'
 import { TabPanel } from './tab-panel'
-import { TabsContext } from './tabs-context'
+import { createTabsContext } from './tabs-context'
 import { TabVariant } from './types'
 
 export interface TabsProps<Value> extends PropsWithChildren {
@@ -33,6 +33,7 @@ export const Tabs = <Value,>({
   onChange,
 }: TabsProps<Value>) => {
   const id = useId()
+  const TabsContext = createTabsContext<Value>()
 
   return (
     <TabsContext.Provider value={{ id, value, variant, scroll, onChange }}>
