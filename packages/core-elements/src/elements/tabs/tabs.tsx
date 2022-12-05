@@ -6,11 +6,11 @@ import { TabPanel } from './tab-panel'
 import { TabsContext } from './tabs-context'
 import { TabVariant } from './types'
 
-export interface TabsProps extends PropsWithChildren {
+export interface TabsProps<Value> extends PropsWithChildren {
   /**
    * 현재 탭을 가르키는 값
    */
-  value: string
+  value: Value
   /**
    * 디자인 variant
    */
@@ -22,16 +22,16 @@ export interface TabsProps extends PropsWithChildren {
   /**
    * 탭 변경 이벤트 핸들러
    */
-  onChange?: (value: string) => void
+  onChange?: (value: Value) => void
 }
 
-export const Tabs = ({
+export const Tabs = <Value,>({
   children,
   value,
   variant = 'basic',
   scroll = false,
   onChange,
-}: TabsProps) => {
+}: TabsProps<Value>) => {
   const id = useId()
 
   return (
