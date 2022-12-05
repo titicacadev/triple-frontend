@@ -33,11 +33,13 @@
     "@titicaca/intersection-observer": "^11.1.0",
     "@titicaca/triple-fallback-action": "^11.1.0",
     "@titicaca/view-utilities": "^11.1.0",
+    "lodash.once": "^4.1.1",
     "react-input-mask": "^2.0.4",
     "react-transition-group": "^4.4.2"
   },
   "devDependencies": {
     "@titicaca/i18n": "^11.1.0",
+    "@types/lodash.once": "^4.1.7",
     "@types/react-transition-group": "^4.4.4"
   },
   "peerDependencies": {
