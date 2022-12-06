@@ -1,9 +1,8 @@
 import { createContext, useContext } from 'react'
-import once from 'lodash.once'
 
 import { TabVariant } from './types'
 
-export interface TabsContextValue<Value> {
+export interface TabsContextValue<Value = unknown> {
   id: string
   value: Value
   variant: TabVariant
@@ -11,12 +10,12 @@ export interface TabsContextValue<Value> {
   onChange?: (value: Value) => void
 }
 
-export const createTabsContext = once(<Value,>() =>
-  createContext<TabsContextValue<Value> | undefined>(undefined),
+export const TabsContext = createContext<TabsContextValue | undefined>(
+  undefined,
 )
 
 export function useTabs<Value>() {
-  const context = useContext(createTabsContext<Value>())
+  const context = useContext(TabsContext) as TabsContextValue<Value> | undefined
   if (!context) {
     throw new Error('TabsContextContext가 없습니다.')
   }
