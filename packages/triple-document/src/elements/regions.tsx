@@ -46,7 +46,7 @@ const Name = styled.div`
 
 const Action = styled.div`
   position: absolute;
-  top: 3px;
+  top: 7px;
   right: 0;
   padding-top: 8px;
   padding-bottom: 7px;
