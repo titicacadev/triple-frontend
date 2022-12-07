@@ -9,7 +9,8 @@ import {
 } from '@titicaca/react-contexts'
 import { DeepPartial } from 'utility-types'
 
-import { I18nKeys } from './i18n-types'
+import { I18nKeys } from '../../i18n'
+
 import Actions from './actions'
 import Modal from './modal-base'
 

@@ -1,7 +1,5 @@
 import '@titicaca/next-i18next'
-import commonWebAsset from '../../../i18n-assets/ko/common-web.json'
-
-export type I18nKeys = typeof commonWebAsset
+import { I18nKeys } from '../../i18n'
 
 declare module 'i18next' {
   interface CustomTypeOptions {
