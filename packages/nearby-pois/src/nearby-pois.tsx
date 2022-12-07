@@ -150,8 +150,8 @@ export default function NearbyPois({
         type="basic"
         value={currentTab}
         options={[
-          { label: '관광', value: 'attraction' },
-          { label: '맛집', value: 'restaurant' },
+          { label: t('gwangwang'), value: 'attraction' },
+          { label: t('masjib'), value: 'restaurant' },
         ]}
         onChange={handleTabChange}
       />
