@@ -188,4 +188,6 @@ export const koCommonWeb = {
   'title-yi-sseomneil': '{{title}}의 썸네일',
   'formattedbaseprice-weon': '{{formattedBasePrice}}원',
   'selpeupaekiji-cugahalin-ganeung': '셀프패키지 추가할인 가능',
+  gwangwang: '관광',
+  masjib: '맛집',
 }
