@@ -182,4 +182,6 @@ export const zhCommonWeb = {
   'title-yi-sseomneil': '{{title}}的代表圖片',
   'formattedbaseprice-weon': 'NTW{{formattedBasePrice}}',
   'selpeupaekiji-cugahalin-ganeung': '自助套裝行程有更多追加優惠',
+  gwangwang: '觀光',
+  masjib: '餐廳',
 }

@@ -193,4 +193,6 @@ export const jaCommonWeb = {
   'title-yi-sseomneil': '{{title}}のサムネイル',
   'formattedbaseprice-weon': '{{formattedBasePrice}}円',
   'selpeupaekiji-cugahalin-ganeung': 'セルフパッケージの追加割引可能',
+  gwangwang: '観光',
+  masjib: 'グルメ',
 }
