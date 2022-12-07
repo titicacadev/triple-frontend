@@ -8,6 +8,7 @@
       "@titicaca/action-sheet": ["../action-sheet/src"],
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/fetcher": ["../fetcher/src"],
+      "@titicaca/i18n": ["../i18n/src"],
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
       "@titicaca/modals": ["../modals/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
@@ -55,6 +56,9 @@
     },
     {
       "path": "../view-utilities"
+    },
+    {
+      "path": "../i18n"
     },
     {
       "path": "../react-contexts"

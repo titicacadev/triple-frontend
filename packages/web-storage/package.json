@@ -26,7 +26,10 @@
   },
   "peerDependencies": {
     "@titicaca/modals": "*",
-    "react": "*",
-    "@titicaca/next-i18next": "*"
+    "@titicaca/next-i18next": "*",
+    "react": "*"
+  },
+  "devDependencies": {
+    "@titicaca/i18n": "10.3.0"
   }
 }

@@ -9,6 +9,9 @@
       "path": "../core-elements/tsconfig.build.json"
     },
     {
+      "path": "../i18n/tsconfig.build.json"
+    },
+    {
       "path": "../web-storage/tsconfig.build.json"
     }
   ]

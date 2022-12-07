@@ -5,6 +5,7 @@
     "rootDir": "src",
     "baseUrl": ".",
     "paths": {
+      "@titicaca/i18n": ["../i18n/src"],
       "@titicaca/type-definitions": ["../type-definitions/src"]
     }
   },
@@ -12,6 +13,9 @@
   "references": [
     {
       "path": "../type-definitions"
+    },
+    {
+      "path": "../i18n"
     }
   ]
 }

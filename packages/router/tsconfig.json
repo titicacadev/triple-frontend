@@ -5,6 +5,7 @@
     "rootDir": "src",
     "baseUrl": ".",
     "paths": {
+      "@titicaca/i18n": ["../i18n/src"],
       "@titicaca/modals": ["../modals/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
       "@titicaca/react-triple-client-interfaces": [
@@ -23,6 +24,9 @@
     },
     {
       "path": "../view-utilities"
+    },
+    {
+      "path": "../i18n"
     },
     {
       "path": "../react-contexts"

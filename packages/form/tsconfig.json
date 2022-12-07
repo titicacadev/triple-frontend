@@ -8,7 +8,8 @@
       "@titicaca/action-sheet": ["../action-sheet/src"],
       "@titicaca/color-palette": ["../color-palette/src"],
       "@titicaca/core-elements": ["../core-elements/src"],
-      "@titicaca/drawer-button": ["../drawer-button/src"]
+      "@titicaca/drawer-button": ["../drawer-button/src"],
+      "@titicaca/i18n": ["../i18n/src"]
     }
   },
   "include": ["./src"],
@@ -24,6 +25,9 @@
     },
     {
       "path": "../drawer-button"
+    },
+    {
+      "path": "../i18n"
     }
   ]
 }

@@ -8,6 +8,7 @@
       "@titicaca/color-palette": ["../color-palette/src"],
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/fetcher": ["../fetcher/src"],
+      "@titicaca/i18n": ["../i18n/src"],
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
       "@titicaca/map": ["../map/src"],
       "@titicaca/modals": ["../modals/src"],
@@ -69,6 +70,9 @@
     },
     {
       "path": "../view-utilities"
+    },
+    {
+      "path": "../i18n"
     },
     {
       "path": "../react-contexts"

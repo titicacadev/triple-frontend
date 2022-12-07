@@ -32,5 +32,8 @@
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*"
+  },
+  "devDependencies": {
+    "@titicaca/i18n": "10.3.0"
   }
 }

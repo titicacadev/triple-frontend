@@ -6,6 +6,7 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/color-palette": ["../color-palette/src"],
+      "@titicaca/i18n": ["../i18n/src"],
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
       "@titicaca/triple-fallback-action": ["../triple-fallback-action/src"],
       "@titicaca/view-utilities": ["../view-utilities/src"]
@@ -24,6 +25,9 @@
     },
     {
       "path": "../view-utilities"
+    },
+    {
+      "path": "../i18n"
     }
   ]
 }

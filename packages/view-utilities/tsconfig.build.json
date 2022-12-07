@@ -4,6 +4,9 @@
   "references": [
     {
       "path": "../type-definitions/tsconfig.build.json"
+    },
+    {
+      "path": "../i18n/tsconfig.build.json"
     }
   ]
 }

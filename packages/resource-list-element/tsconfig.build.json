@@ -16,6 +16,9 @@
     },
     {
       "path": "../view-utilities/tsconfig.build.json"
+    },
+    {
+      "path": "../i18n/tsconfig.build.json"
     }
   ]
 }

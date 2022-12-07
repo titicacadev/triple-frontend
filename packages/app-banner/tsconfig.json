@@ -6,13 +6,17 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "@titicaca/core-elements": ["../core-elements/src"]
+      "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/i18n": ["../i18n/src"]
     }
   },
   "include": ["./src"],
   "references": [
     {
       "path": "../core-elements"
+    },
+    {
+      "path": "../i18n"
     }
   ]
 }

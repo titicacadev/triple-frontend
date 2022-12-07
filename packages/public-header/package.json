@@ -26,9 +26,12 @@
     "@titicaca/view-utilities": "^10.4.0"
   },
   "peerDependencies": {
+    "@titicaca/next-i18next": "*",
     "@titicaca/react-contexts": "*",
     "react": "*",
-    "styled-components": ">=4.4.1 < 6",
-    "@titicaca/next-i18next": "*"
+    "styled-components": ">=4.4.1 < 6"
+  },
+  "devDependencies": {
+    "@titicaca/i18n": "10.3.0"
   }
 }

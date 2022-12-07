@@ -20,13 +20,13 @@
       "path": "../core-elements"
     },
     {
-      "path": "../i18n"
-    },
-    {
       "path": "../popup"
     },
     {
       "path": "../react-triple-client-interfaces"
+    },
+    {
+      "path": "../i18n"
     },
     {
       "path": "../react-contexts"

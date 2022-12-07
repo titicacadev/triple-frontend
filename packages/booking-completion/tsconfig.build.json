@@ -15,6 +15,9 @@
       "path": "../ui-flow/tsconfig.build.json"
     },
     {
+      "path": "../i18n/tsconfig.build.json"
+    },
+    {
       "path": "../modals/tsconfig.build.json"
     },
     {

@@ -5,14 +5,7 @@
     "outDir": "./lib",
     "rootDir": "src",
     "baseUrl": ".",
-    "paths": {
-      "@titicaca/fetcher": ["../fetcher/src"]
-    }
+    "paths": {}
   },
-  "include": ["./src"],
-  "references": [
-    {
-      "path": "../fetcher"
-    }
-  ]
+  "include": ["./src"]
 }

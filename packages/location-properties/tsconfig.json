@@ -24,13 +24,13 @@
       "path": "../core-elements"
     },
     {
-      "path": "../i18n"
-    },
-    {
       "path": "../react-triple-client-interfaces"
     },
     {
       "path": "../type-definitions"
+    },
+    {
+      "path": "../i18n"
     },
     {
       "path": "../react-contexts"

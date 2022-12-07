@@ -6,13 +6,13 @@
       "path": "../core-elements/tsconfig.build.json"
     },
     {
-      "path": "../i18n/tsconfig.build.json"
-    },
-    {
       "path": "../popup/tsconfig.build.json"
     },
     {
       "path": "../react-triple-client-interfaces/tsconfig.build.json"
+    },
+    {
+      "path": "../i18n/tsconfig.build.json"
     },
     {
       "path": "../react-contexts/tsconfig.build.json"

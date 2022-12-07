@@ -26,7 +26,6 @@
     "@titicaca/carousel": "^10.4.0",
     "@titicaca/core-elements": "^10.4.0",
     "@titicaca/fetcher": "^10.4.0",
-    "@titicaca/i18n": "^10.4.0",
     "@titicaca/image-carousel": "^10.4.0",
     "@titicaca/intersection-observer": "^10.4.0",
     "@titicaca/modals": "^10.4.0",
@@ -37,7 +36,10 @@
     "qs": "^6.10.1"
   },
   "peerDependencies": {
-    "@titicaca/react-contexts": "*",
-    "@titicaca/next-i18next": "*"
+    "@titicaca/next-i18next": "*",
+    "@titicaca/react-contexts": "*"
+  },
+  "devDependencies": {
+    "@titicaca/i18n": "10.3.0"
   }
 }
