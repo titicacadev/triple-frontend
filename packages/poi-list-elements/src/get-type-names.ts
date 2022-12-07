@@ -1,7 +1,8 @@
 import { getTranslation, i18n } from '@titicaca/next-i18next'
 
+import { I18nKeys } from '../../i18n'
+
 import { PoiListElementType } from './types'
-import { I18nKeys } from './i18n-types'
 
 const TYPE_NAMES: { [key in PoiListElementType['type']]: keyof I18nKeys } = {
   attraction: 'gwangwangmyeongso',
