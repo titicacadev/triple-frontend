@@ -8,7 +8,7 @@ import {
   useUriHash,
 } from '@titicaca/react-contexts'
 import { DeepPartial } from 'utility-types'
-import { I18nKeys } from '@titicaca/i18n'
+import { I18nCommonWebKeys } from '@titicaca/i18n'
 
 import Actions from './actions'
 import Modal from './modal-base'
@@ -37,7 +37,7 @@ export enum TransitionType {
 
 const MODAL_CONTENT: {
   [type: string]: {
-    description?: keyof I18nKeys
+    description?: keyof I18nCommonWebKeys
     eventLabel?: string
   }
 } = {
