@@ -8,6 +8,7 @@
       "@titicaca/action-sheet": ["../action-sheet/src"],
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/fetcher": ["../fetcher/src"],
+      "@titicaca/i18n": ["../i18n/src"],
       "@titicaca/modals": ["../modals/src"],
       "@titicaca/react-triple-client-interfaces": [
         "../react-triple-client-interfaces/src"
@@ -42,6 +43,9 @@
     },
     {
       "path": "../view-utilities"
+    },
+    {
+      "path": "../i18n"
     }
   ]
 }

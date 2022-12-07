@@ -2,7 +2,7 @@
 /* eslint-disable promise/prefer-await-to-then */
 /* eslint-disable promise/prefer-await-to-callbacks */
 
-import { get } from '@titicaca/fetcher'
+import fetch from 'node-fetch'
 
 export default class I18nextTripleWebAssetsBackend {
   public type: 'backend' = 'backend'
@@ -48,11 +48,11 @@ async function fetchLocaleAsset({
     ? DEV_TRIPLE_WEB_ASSETS_URL
     : PRODUCTION_TRIPLE_WEB_ASSETS_URL
   const assetUrl = `${urlBase}/locales/${language}/${namespace}.json`
-  const response = await get<Record<string, string>>(assetUrl)
+  const response = await fetch(assetUrl)
 
   if (response.ok === true) {
-    const { parsedBody } = response
-    return parsedBody
+    const data = await response.json()
+    return data
   }
 
   throw new Error(`Fail to fetch ${assetUrl}`)

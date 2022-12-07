@@ -18,9 +18,6 @@
       "path": "../fetcher/tsconfig.build.json"
     },
     {
-      "path": "../i18n/tsconfig.build.json"
-    },
-    {
       "path": "../image-carousel/tsconfig.build.json"
     },
     {
@@ -40,6 +37,9 @@
     },
     {
       "path": "../web-storage/tsconfig.build.json"
+    },
+    {
+      "path": "../i18n/tsconfig.build.json"
     },
     {
       "path": "../react-contexts/tsconfig.build.json"

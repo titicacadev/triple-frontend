@@ -23,12 +23,14 @@
   "dependencies": {
     "@titicaca/action-sheet": "^10.4.0",
     "@titicaca/core-elements": "^10.4.0",
-    "@titicaca/i18n": "^10.4.0",
     "@titicaca/react-triple-client-interfaces": "^10.4.0",
     "@titicaca/type-definitions": "^10.4.0"
   },
   "peerDependencies": {
-    "@titicaca/react-contexts": "*",
-    "@titicaca/next-i18next": "*"
+    "@titicaca/next-i18next": "*",
+    "@titicaca/react-contexts": "*"
+  },
+  "devDependencies": {
+    "@titicaca/i18n": "10.3.0"
   }
 }

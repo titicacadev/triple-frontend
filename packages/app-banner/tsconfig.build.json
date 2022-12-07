@@ -4,6 +4,9 @@
   "references": [
     {
       "path": "../core-elements/tsconfig.build.json"
+    },
+    {
+      "path": "../i18n/tsconfig.build.json"
     }
   ]
 }

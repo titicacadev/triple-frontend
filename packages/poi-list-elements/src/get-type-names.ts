@@ -1,6 +1,5 @@
 import { getTranslation, i18n } from '@titicaca/next-i18next'
-
-import { I18nKeys } from '../../i18n'
+import { I18nKeys } from '@titicaca/i18n'
 
 import { PoiListElementType } from './types'
 

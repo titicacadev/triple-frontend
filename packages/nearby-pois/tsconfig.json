@@ -25,9 +25,6 @@
       "path": "../fetcher"
     },
     {
-      "path": "../i18n"
-    },
-    {
       "path": "../intersection-observer"
     },
     {
@@ -41,6 +38,9 @@
     },
     {
       "path": "../view-utilities"
+    },
+    {
+      "path": "../i18n"
     },
     {
       "path": "../react-contexts"

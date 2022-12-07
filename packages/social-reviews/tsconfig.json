@@ -17,10 +17,10 @@
       "path": "../core-elements"
     },
     {
-      "path": "../i18n"
+      "path": "../router"
     },
     {
-      "path": "../router"
+      "path": "../i18n"
     },
     {
       "path": "../react-contexts"

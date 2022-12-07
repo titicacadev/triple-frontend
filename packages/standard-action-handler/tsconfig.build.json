@@ -12,6 +12,9 @@
       "path": "../view-utilities/tsconfig.build.json"
     },
     {
+      "path": "../i18n/tsconfig.build.json"
+    },
+    {
       "path": "../react-triple-client-interfaces/tsconfig.build.json"
     }
   ]

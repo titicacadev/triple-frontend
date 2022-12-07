@@ -41,9 +41,6 @@
       "path": "../fetcher"
     },
     {
-      "path": "../i18n"
-    },
-    {
       "path": "../image-carousel"
     },
     {
@@ -63,6 +60,9 @@
     },
     {
       "path": "../web-storage"
+    },
+    {
+      "path": "../i18n"
     },
     {
       "path": "../react-contexts"

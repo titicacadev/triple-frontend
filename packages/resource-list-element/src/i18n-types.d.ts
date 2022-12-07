@@ -1,5 +1,5 @@
 import '@titicaca/next-i18next'
-import { I18nKeys } from '../../i18n'
+import { I18nKeys } from '@titicaca/i18n'
 
 declare module 'i18next' {
   interface CustomTypeOptions {

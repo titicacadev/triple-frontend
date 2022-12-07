@@ -6,6 +6,7 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/i18n": ["../i18n/src"],
       "@titicaca/modals": ["../modals/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
       "@titicaca/router": ["../router/src"],
@@ -26,6 +27,9 @@
     },
     {
       "path": "../ui-flow"
+    },
+    {
+      "path": "../i18n"
     },
     {
       "path": "../modals"

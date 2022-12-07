@@ -7,6 +7,7 @@
     "paths": {
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/fetcher": ["../fetcher/src"],
+      "@titicaca/i18n": ["../i18n/src"],
       "@titicaca/modals": ["../modals/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
       "@titicaca/react-hooks": ["../react-hooks/src"],
@@ -35,6 +36,9 @@
     },
     {
       "path": "../router"
+    },
+    {
+      "path": "../i18n"
     },
     {
       "path": "../react-contexts"

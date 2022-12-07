@@ -28,10 +28,11 @@
   },
   "devDependencies": {
     "@titicaca/react-triple-client-interfaces": "^10.4.0",
+    "@titicaca/i18n": "10.4.0",
     "@types/qs": "^6.9.2"
   },
   "peerDependencies": {
-    "@titicaca/triple-web-to-native-interfaces": "*",
-    "@titicaca/next-i18next": "*"
+    "@titicaca/next-i18next": "*",
+    "@titicaca/triple-web-to-native-interfaces": "*"
   }
 }

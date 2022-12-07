@@ -35,7 +35,10 @@
     "@titicaca/router": "^10.4.0"
   },
   "peerDependencies": {
-    "@titicaca/react-contexts": "*",
-    "@titicaca/next-i18next": "*"
+    "@titicaca/next-i18next": "*",
+    "@titicaca/react-contexts": "*"
+  },
+  "devDependencies": {
+    "@titicaca/i18n": "10.3.0"
   }
 }
