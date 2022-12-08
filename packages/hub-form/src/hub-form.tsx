@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
-import { CardFrame } from '@titicaca/core-elements'
+import { CardFrame, CardProps } from '@titicaca/core-elements'
 
 const HubFormFrame = styled(CardFrame)`
   > div:not(:last-child) {
@@ -16,17 +16,18 @@ const HubFormFrame = styled(CardFrame)`
   }
 `
 
-function HubForm({
-  children,
-  shadow,
-  ...props
-}: PropsWithChildren<Parameters<typeof HubFormFrame>['0']>) {
+function HubForm({ children, shadow, ...props }: PropsWithChildren<CardProps>) {
   return (
     <HubFormFrame
-      margin={{ top: 10, bottom: 10 }}
-      padding={{ top: 4, bottom: 4, right: 18, left: 22 }}
-      borderRadius={6}
       shadow={shadow || 'medium'}
+      css={{
+        marginTop: 10,
+        marginBottom: 10,
+        paddingTop: 4,
+        paddingBottom: 4,
+        paddingRight: 18,
+        paddingLeft: 22,
+      }}
       {...props}
     >
       {children}
