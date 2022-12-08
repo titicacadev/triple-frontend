@@ -19,7 +19,7 @@ interface SharingParams {
 
 export function createShareUrl() {
   if (!hasAccessibleTripleNativeClients()) {
-    return typeof navigator !== 'undefined' && navigator.share
+    return typeof navigator !== 'undefined' && 'share' in navigator
       ? navigatorShare
       : copyUrlToClipboard
   } else {
