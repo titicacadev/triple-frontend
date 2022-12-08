@@ -197,7 +197,7 @@ export default function ItineraryElement({ value }: Props) {
                   <PoiCard
                     shadow="medium"
                     radius={6}
-                    margin={{ top: 5, bottom: 8 }}
+                    css={{ marginTop: 5, marginBottom: 8 }}
                   >
                     <Text size={16} bold ellipsis>
                       {name}
