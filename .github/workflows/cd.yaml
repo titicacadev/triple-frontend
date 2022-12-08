@@ -25,7 +25,6 @@ env:
   SLACK_FOOTER: ${{ github.repository }}
   SLACK_GITHUB_REF: ${{ github.event.ref }} # 메시지에 ref로 표시되는 값
   SLACK_GITHUB_EVENT_NAME: ${{ github.event_name }} # 메시지에 Event로 표시되는 값
-  I18N_ASSET_DIRECTORY: i18n-assets
 
 jobs:
   wait-for-ci:
@@ -101,25 +100,12 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-npm-cache-
 
-      - name: Export production deployment related environment variables
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
-        run: npx @titicaca/gha-tools prepare-deployment
-
       - name: Install dependencies
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
         run: npm ci
 
       - run: npm run build:ci
-
-      - name: Deploy i18n asset files
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_ASSETS_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_ASSETS_AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ap-northeast-1
-        run: |
-          aws s3 sync ${{ env.I18N_ASSET_DIRECTORY }} s3://$AWS_S3_BUCKET/locales/${{ env.DEPLOY_VERSION }} --delete
 
       - name: Release
         env:
@@ -251,25 +237,12 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-npm-cache-
 
-      - name: Export production deployment related environment variables
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
-        run: npx @titicaca/gha-tools prepare-deployment
-
       - name: Install dependencies
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
         run: npm ci
 
       - run: npm run build:ci
-
-      - name: Deploy i18n asset files
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_ASSETS_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_ASSETS_AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ap-northeast-1
-        run: |
-          aws s3 sync ${{ env.I18N_ASSET_DIRECTORY }} s3://$AWS_S3_BUCKET/locales/${{ env.DEPLOY_VERSION }} --delete
 
       - name: Publish as canary
         env:
