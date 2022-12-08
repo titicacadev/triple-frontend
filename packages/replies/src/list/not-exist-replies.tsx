@@ -5,6 +5,7 @@ export default function NotExistReplies() {
     <>
       <HR1
         color="var(--color-gray50)"
+        compact
         css={{ marginTop: 20, marginLeft: 30, marginRight: 30 }}
       />
 
@@ -20,7 +21,7 @@ export default function NotExistReplies() {
         </Text>
       </Container>
 
-      <HR1 color="var(--color-gray50)" css={{ marginTop: 0 }} />
+      <HR1 color="var(--color-gray50)" compact />
     </>
   )
 }
