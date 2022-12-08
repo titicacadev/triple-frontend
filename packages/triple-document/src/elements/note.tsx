@@ -6,7 +6,7 @@ export default function Note({
   value: { title: string; body: string }
 }) {
   return (
-    <Segment margin={{ top: 30, bottom: 30, left: 30, right: 30 }}>
+    <Segment css={{ margin: 30 }}>
       <Text bold size="small" color="gray" lineHeight={1.57}>
         {title}
       </Text>

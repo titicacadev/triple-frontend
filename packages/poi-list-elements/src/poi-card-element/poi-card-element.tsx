@@ -109,7 +109,7 @@ function PoiCardElement({
     <Card
       radius={6}
       shadowValue="0 1px 3px 0 rgba(0, 0, 0, 0.1)"
-      padding={{ top: 18, right: 18, bottom: 18, left: 18 }}
+      css={{ padding: 18 }}
     >
       <PoiCardBody
         position="relative"
