@@ -1,26 +1,12 @@
 import { PropsWithChildren } from 'react'
 import styled, { css, ThemedStyledProps } from 'styled-components'
 
-import { MarginPadding } from '../../commons'
-import {
-  KeyOfShadowSize,
-  marginMixin,
-  paddingMixin,
-  shadowMixin,
-  ShadowMixinProps,
-} from '../../mixins'
+import { KeyOfShadowSize, shadowMixin, ShadowMixinProps } from '../../mixins'
 
-export const Segment = styled.div<{
-  margin?: MarginPadding
-  padding?: MarginPadding
-}>`
+export const Segment = styled.div`
   padding: 20px;
   border-radius: 6px;
   background-color: #fafafa;
-
-  ${marginMixin}
-
-  ${paddingMixin}
 
   &::after {
     content: '';
@@ -31,8 +17,6 @@ export const Segment = styled.div<{
 
 export interface BoxProps {
   radius: number
-  margin: MarginPadding
-  padding: MarginPadding
 }
 
 export type CardProps = Partial<
@@ -52,9 +36,6 @@ const shadowMixinWithDefault = (props: ShadowMixinProps) =>
   shadowMixin({ shadow: 'medium', ...props })
 
 export const CardFrame = styled.div<CardProps>`
-  ${marginMixin}
-  ${paddingMixin}
-
   ${borderRadius}
   ${shadowMixinWithDefault}
 `
@@ -66,8 +47,6 @@ export const CardFrame = styled.div<CardProps>`
  *  - radius: number
  *  - shadow: ShadowType
  *  - shadowValue: string
- *  - margin: MarginPadding
- *  - padding: MarginPadding
  */
 export function Card({
   children,

@@ -84,7 +84,7 @@ function Register(
         cursor: 'pointer',
       }}
     >
-      <HR1 margin={{ top: 0 }} />
+      <HR1 css={{ marginTop: 0 }} />
 
       <FlexBox
         flex
@@ -113,7 +113,7 @@ function Register(
         </RegisterButton>
       </FlexBox>
 
-      <HR1 margin={{ top: 0 }} />
+      <HR1 css={{ marginTop: 0 }} />
     </Container>
   )
 }

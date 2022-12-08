@@ -4,8 +4,8 @@ export default function NotExistReplies() {
   return (
     <>
       <HR1
-        margin={{ top: 20, left: 30, right: 30 }}
         color="var(--color-gray50)"
+        css={{ marginTop: 20, marginLeft: 30, marginRight: 30 }}
       />
 
       <Container
@@ -20,7 +20,7 @@ export default function NotExistReplies() {
         </Text>
       </Container>
 
-      <HR1 margin={{ top: 0 }} color="var(--color-gray50)" />
+      <HR1 color="var(--color-gray50)" css={{ marginTop: 0 }} />
     </>
   )
 }
