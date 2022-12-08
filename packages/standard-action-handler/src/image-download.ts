@@ -26,19 +26,15 @@ export default async function imageDownload({ path, query }: UrlElements) {
     const windowUrl = window.URL || window.webkitURL
     const imageToDomString = windowUrl.createObjectURL(blobImage)
 
-    // ie에서는 Blob 저장이 정상적으로 이루어지지 않으므로 해당 케이스 추가
-    if (window.navigator.msSaveOrOpenBlob) {
-      window.navigator.msSaveOrOpenBlob(imageToDomString, 'image.jpeg')
-    } else {
-      const downloadAnchor = document.createElement('a')
-      downloadAnchor.setAttribute('href', imageToDomString)
-      downloadAnchor.setAttribute('download', 'image.jpeg')
-      downloadAnchor.click()
-      downloadAnchor.remove()
+    const downloadAnchor = document.createElement('a')
+    downloadAnchor.setAttribute('href', imageToDomString)
+    downloadAnchor.setAttribute('download', 'image.jpeg')
+    downloadAnchor.click()
+    downloadAnchor.remove()
 
-      // URL 더이상 사용되지 않아 메모리 누수를 방지
-      windowUrl.revokeObjectURL(imageToDomString)
-    }
+    // URL 더이상 사용되지 않아 메모리 누수를 방지
+    windowUrl.revokeObjectURL(imageToDomString)
+
     return true
   }
 
