@@ -41,7 +41,8 @@ const BaseTextarea = styled.textarea`
   }
 `
 
-interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface TextareaProps
+  extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   required?: boolean
   label?: string
   error?: string | boolean
