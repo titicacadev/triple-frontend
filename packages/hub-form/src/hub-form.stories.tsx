@@ -12,7 +12,7 @@ export default {
 export const Hotel: ComponentStory<typeof HubForm> = () => {
   return (
     <>
-      <HubForm shadow="">
+      <HubForm>
         <Cell type="DESTINATION" placeholder="도시, 또는 호텔" value="" />
         <Cell type="SCHEDULE" placeholder="날짜" value="" />
         <Cell type="PEOPLE" placeholder="" value="인원 2명" />
@@ -27,7 +27,7 @@ export const Hotel: ComponentStory<typeof HubForm> = () => {
 export const Air: ComponentStory<typeof HubForm> = () => {
   return (
     <>
-      <HubForm shadow="">
+      <HubForm>
         <Cell type="ORIGIN" placeholder="출발 도시" value="" />
         <Cell type="DESTINATION" placeholder="도착 도시" value="" />
         <Cell type="SCHEDULE" placeholder="날짜" value="" />
