@@ -111,7 +111,7 @@ function Actions({
           {t('gongyuhagi')}
         </ActionButton>
       </Button.Group>
-      {!noDivider && <HR1 margin={{ top: 8, bottom: 0 }} />}
+      {!noDivider && <HR1 css={{ marginTop: 8, marginBottom: 0 }} />}
     </Section>
   )
 }

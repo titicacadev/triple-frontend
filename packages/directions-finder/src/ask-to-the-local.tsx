@@ -76,7 +76,7 @@ export default function AskToTheLocal({
         <Text textStyle="M" margin={{ top: 10 }}>
           {localAddress}
         </Text>
-        <HR1 compact margin={{ top: 20, bottom: 20 }} />
+        <HR1 compact css={{ marginTop: 20, marginBottom: 20 }} />
         <Text textStyle="M" alpha={0.7}>
           {primaryName}
         </Text>

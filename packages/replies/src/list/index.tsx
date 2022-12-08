@@ -93,7 +93,7 @@ export default function ReplyList({
           <List margin={{ top: 20 }}>
             {replies.map((reply) => (
               <List.Item key={reply.id}>
-                <HR1 margin={{ bottom: 20 }} color="var(--color-gray50)" />
+                <HR1 color="var(--color-gray50)" css={{ marginBottom: 20 }} />
                 <Reply
                   reply={reply}
                   focusInput={focusInput}
