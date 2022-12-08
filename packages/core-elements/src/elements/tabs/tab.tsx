@@ -6,14 +6,14 @@ import { useTabs } from './tabs-context'
 
 export type TabProps = TabBaseProps
 
-export const Tab = (props: TabBaseProps) => {
-  const tabs = useTabs()
+export const Tab = <Value,>(props: TabBaseProps) => {
+  const tabs = useTabs<Value>()
 
   switch (tabs.variant) {
     case 'basic':
       return <BasicTab {...props} />
     case 'pointing':
-      return <PointingTab {...props} />
+      return <PointingTab<Value> {...props} />
     case 'rounded':
       return <RoundedTab {...props} />
   }
