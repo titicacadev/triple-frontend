@@ -19,9 +19,11 @@ import { checkUniqueReply } from './utils'
 
 const FixedBottom = styled(Container).attrs({
   backgroundColor: 'white',
-  positioning: { left: 0, right: 0, bottom: 0 },
 })`
   position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 3;
 
   ${safeAreaInsetMixin}
