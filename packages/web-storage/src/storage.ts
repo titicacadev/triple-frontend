@@ -1,5 +1,4 @@
 import Cookies from 'universal-cookie'
-import { getTranslation } from '@titicaca/next-i18next'
 
 import {
   storageAvailable,
