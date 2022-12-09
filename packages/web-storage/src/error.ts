@@ -1,4 +1,4 @@
-import { TFunction } from '@titicaca/next-i18next'
+import { getTranslation, TFunction } from '@titicaca/next-i18next'
 import { CustomError } from 'ts-custom-error'
 
 import { ErrorType, WebStorageType } from './types'
@@ -65,6 +65,8 @@ export function handleError({
   storageType: WebStorageType
   onError?: { [key in ErrorType]?: () => unknown }
 }) {
+  const t = getTranslation('common-web')
+
   if (onError) {
     const onErrorType = onError[errorType]
     if (onErrorType) {
@@ -72,5 +74,5 @@ export function handleError({
       return
     }
   }
-  throw new WebStorageError({ type: errorType, storageType })
+  throw new WebStorageError({ type: errorType, storageType, t })
 }
