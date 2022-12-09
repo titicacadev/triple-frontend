@@ -22,10 +22,11 @@ const NavigateToReviewsListButton = styled(Button)`
   padding: 10px 20px;
 `
 
-const RecentTripContainer = styled(Container).attrs({
-  padding: { top: 180, bottom: 60 },
-})`
+const RecentTripContainer = styled(Container)`
   text-align: center;
+  padding-top: 180px;
+  padding-bottom: 60px;
+
   @media only screen and (max-width: 667px) {
     padding-top: 120px;
   }

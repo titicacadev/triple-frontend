@@ -210,12 +210,12 @@ export const FloatingButtonContainer = styled.div<
 export const ContentContainer = styled(FlexBox).attrs({
   flex: true,
   centered: true,
-  maxWidth: 768,
-  padding: { top: 24, bottom: 24, left: 20, right: 20 },
   gap: '11px',
-  position: 'relative',
 })`
   overflow: hidden;
+  max-width: 768px;
+  padding: 24px 20px;
+  position: 'relative';
 `
 
 export const FloatingButton = styled.div`
