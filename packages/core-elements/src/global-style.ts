@@ -329,7 +329,10 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 
-  legend {
+  legend,
+  tr,
+  th,
+  td  {
     padding: 0;
   }
 
