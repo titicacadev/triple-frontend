@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "@titicaca/modals": "^10.4.0",
-    "@titicaca/react-triple-client-interfaces": "^10.4.0",
     "@titicaca/view-utilities": "^10.4.0",
     "qs": "^6.9.4"
   },
@@ -31,6 +30,7 @@
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
+    "@titicaca/react-triple-client-interfaces": "*",
     "next": "^13.0",
     "react": "^18.0",
     "react-dom": "^18.0",

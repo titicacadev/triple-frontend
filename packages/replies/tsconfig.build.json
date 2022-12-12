@@ -20,9 +20,6 @@
       "path": "../modals/tsconfig.build.json"
     },
     {
-      "path": "../react-triple-client-interfaces/tsconfig.build.json"
-    },
-    {
       "path": "../router/tsconfig.build.json"
     },
     {
@@ -30,6 +27,9 @@
     },
     {
       "path": "../view-utilities/tsconfig.build.json"
+    },
+    {
+      "path": "../react-triple-client-interfaces/tsconfig.build.json"
     }
   ]
 }
