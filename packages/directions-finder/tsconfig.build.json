@@ -17,10 +17,10 @@
       "path": "../popup/tsconfig.build.json"
     },
     {
-      "path": "../react-triple-client-interfaces/tsconfig.build.json"
+      "path": "../react-contexts/tsconfig.build.json"
     },
     {
-      "path": "../react-contexts/tsconfig.build.json"
+      "path": "../react-triple-client-interfaces/tsconfig.build.json"
     }
   ]
 }
