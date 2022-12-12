@@ -28,7 +28,6 @@
     "@titicaca/image-carousel": "^11.1.0",
     "@titicaca/intersection-observer": "^11.1.0",
     "@titicaca/modals": "^11.1.0",
-    "@titicaca/react-triple-client-interfaces": "^11.1.0",
     "@titicaca/type-definitions": "^11.1.0",
     "@titicaca/view-utilities": "^11.1.0",
     "@titicaca/web-storage": "^11.1.0",
@@ -36,6 +35,7 @@
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
+    "@titicaca/react-triple-client-interfaces": "*",
     "@titicaca/next-i18next": "*",
     "react": "^18.0",
     "react-dom": "^18.0",
