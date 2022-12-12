@@ -35,9 +35,6 @@
       "path": "../modals/tsconfig.build.json"
     },
     {
-      "path": "../react-triple-client-interfaces/tsconfig.build.json"
-    },
-    {
       "path": "../type-definitions/tsconfig.build.json"
     },
     {
@@ -48,6 +45,9 @@
     },
     {
       "path": "../react-contexts/tsconfig.build.json"
+    },
+    {
+      "path": "../react-triple-client-interfaces/tsconfig.build.json"
     }
   ]
 }
