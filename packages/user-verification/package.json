@@ -30,12 +30,12 @@
     "@titicaca/fetcher": "^11.1.0",
     "@titicaca/modals": "^11.1.0",
     "@titicaca/react-hooks": "^11.1.0",
-    "@titicaca/react-triple-client-interfaces": "^11.1.0",
     "@titicaca/router": "^11.1.0"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
     "@titicaca/next-i18next": "*",
+    "@titicaca/react-triple-client-interfaces": "*",
     "react": "^18.0",
     "react-dom": "^18.0",
     "styled-components": "^5.3.1"

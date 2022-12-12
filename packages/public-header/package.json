@@ -21,12 +21,12 @@
   },
   "dependencies": {
     "@titicaca/color-palette": "^11.1.0",
-    "@titicaca/react-triple-client-interfaces": "^11.1.0",
     "@titicaca/view-utilities": "^11.1.0"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",
     "@titicaca/react-contexts": "*",
+    "@titicaca/react-triple-client-interfaces": "*",
     "react": "^18.0",
     "react-dom": "^18.0",
     "styled-components": "^5.3.1"
