@@ -193,6 +193,7 @@ export const GlobalStyle = createGlobalStyle`
     text-indent: 0; /* 1 */
     border-color: inherit; /* 2 */
     border-collapse: collapse; /* 3 */
+    border-spacing: 0; /* 3 */
   }
 
   /*
