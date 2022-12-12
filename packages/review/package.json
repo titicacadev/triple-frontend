@@ -27,7 +27,6 @@
     "@titicaca/intersection-observer": "^11.1.0",
     "@titicaca/modals": "^11.1.0",
     "@titicaca/react-hooks": "^11.1.0",
-    "@titicaca/react-triple-client-interfaces": "^11.1.0",
     "@titicaca/router": "^11.1.0",
     "@titicaca/type-definitions": "^11.1.0",
     "@titicaca/ui-flow": "^11.1.0",
@@ -51,6 +50,7 @@
   "peerDependencies": {
     "@titicaca/next-i18next": "*",
     "@titicaca/react-contexts": "*",
+    "@titicaca/react-triple-client-interfaces": "*",
     "react": "^18.0",
     "react-dom": "^18.0",
     "styled-components": "^5.3.1"
