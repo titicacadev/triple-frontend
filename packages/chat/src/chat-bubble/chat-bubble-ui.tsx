@@ -96,11 +96,19 @@ function ReceivedChatContainer({
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export interface ChatBubbleUIProps {
   type: 'sent' | 'received'
+  /**
+   * `Text`: 텍스트로 이루어진 메시지 타입,
+   * `Image`: 이미지로 이루어진 메시지 타입,
+   * `Rich`: 이미지, 텍스트, 버튼으로 이루어진 메시지 타입
+   */
   payload: TextPayload | ImagePayload | RichPayload
   profileImageUrl?: string
   profileName?: string
   unreadCount: number | null
   createdAt?: string
+  /**
+   * 'sent' 타입일 때, 메시지 전송 실패할 경우 재시도하는 함수
+   */
   onRetry?: () => Promise<boolean> | undefined
 }
 

@@ -34,6 +34,9 @@ const MINIMUM_INTERSECTING_TIME = 3000
 
 export interface ChatProps {
   displayTarget: UserType
+  /**
+   * me(sender), others(receiver)에 대한 기본 정보
+   */
   userInfo: UserInfoInterface
   postMessage?: PostMessageType
   getMessages: (option: {
@@ -51,7 +54,12 @@ export interface ChatProps {
   showFailToast?: (message: string) => void
 }
 
-const Chat = ({
+/**
+ * ChatBubble을 map으로 리스팅하고 있는 컴포넌트
+ *
+ * ChatContainer로 감싸서 함께 사용해야 합니다.
+ */
+export const Chat = ({
   displayTarget,
   userInfo,
   room,
@@ -314,5 +322,3 @@ const Chat = ({
     </>
   )
 }
-
-export default Chat
