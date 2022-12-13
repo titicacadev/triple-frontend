@@ -4,7 +4,7 @@ import { TabListBase, TabListBaseProps } from './tab-list-base'
 import { useTabs } from './tabs-context'
 
 interface StyledTabListBaseProps {
-  scroll: boolean
+  $scroll: boolean
 }
 
 const StyledTabListBase = styled(TabListBase)<StyledTabListBaseProps>`
@@ -12,8 +12,8 @@ const StyledTabListBase = styled(TabListBase)<StyledTabListBaseProps>`
   gap: 5px;
   padding: 10px 30px;
 
-  ${({ scroll }) =>
-    scroll &&
+  ${({ $scroll }) =>
+    $scroll &&
     css`
       overflow-x: scroll;
       -webkit-overflow-scrolling: touch;
@@ -31,7 +31,7 @@ export const RoundedTabList = <Value,>({
   const tabs = useTabs<Value>()
 
   return (
-    <StyledTabListBase {...props} scroll={tabs.scroll}>
+    <StyledTabListBase {...props} $scroll={tabs.scroll}>
       {children}
     </StyledTabListBase>
   )
