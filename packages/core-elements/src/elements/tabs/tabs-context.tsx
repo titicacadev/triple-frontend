@@ -2,7 +2,7 @@ import { createContext, useContext } from 'react'
 
 import { TabVariant } from './types'
 
-export interface TabsContextValue<Value = unknown> {
+export interface TabsContextValue<Value extends number | string | symbol> {
   id: string
   value: Value
   variant: TabVariant
@@ -10,11 +10,11 @@ export interface TabsContextValue<Value = unknown> {
   onChange?: (value: Value) => void
 }
 
-export const TabsContext = createContext<TabsContextValue | undefined>(
+export const TabsContext = createContext<TabsContextValue<string> | undefined>(
   undefined,
 )
 
-export function useTabs<Value>() {
+export function useTabs<Value extends number | string | symbol>() {
   const context = useContext(TabsContext) as TabsContextValue<Value> | undefined
   if (!context) {
     throw new Error('TabsContextContext가 없습니다.')

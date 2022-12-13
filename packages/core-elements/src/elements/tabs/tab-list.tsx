@@ -6,8 +6,10 @@ import { useTabs } from './tabs-context'
 
 export type TabListProps = TabListBaseProps
 
-export const TabList = (props: TabListProps) => {
-  const tabs = useTabs()
+export const TabList = <Value extends number | string | symbol>(
+  props: TabListProps,
+) => {
+  const tabs = useTabs<Value>()
 
   switch (tabs.variant) {
     case 'basic':

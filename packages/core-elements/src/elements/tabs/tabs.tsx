@@ -6,7 +6,8 @@ import { TabPanel } from './tab-panel'
 import { TabsContext, TabsContextValue } from './tabs-context'
 import { TabVariant } from './types'
 
-export interface TabsProps<Value> extends PropsWithChildren {
+export interface TabsProps<Value extends number | string | symbol>
+  extends PropsWithChildren {
   /**
    * 현재 탭을 가르키는 값
    */
@@ -25,7 +26,7 @@ export interface TabsProps<Value> extends PropsWithChildren {
   onChange?: (value: Value) => void
 }
 
-export const Tabs = <Value,>({
+export const Tabs = <Value extends number | string | symbol>({
   children,
   value,
   variant = 'basic',
