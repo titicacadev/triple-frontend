@@ -1,6 +1,6 @@
-import { MessageType, MetaDataInterface, UserType } from '../../types'
-import { ChatContextValue } from '../../chat'
-import { ChatProps } from '../../chat/chat'
+import { MessageType, MetaDataInterface, UserType } from '../types'
+import { ChatContextValue } from '../chat'
+import { ChatProps } from '../chat/chat'
 
 export const SAMPLE_IMAGES: MetaDataInterface[] = [
   {
@@ -163,7 +163,7 @@ export const CHAT_ARGS: ChatProps = {
         {
           id: 490999,
           roomId: '6344c73a53749900140bca43',
-          senderId: '6344be9953749900140bca42',
+          senderId: '61ea67f0de3e37001997a80f',
           createdAt: '2022-11-04T06:44:57.017Z',
           displayTarget: 'all',
           payload,
