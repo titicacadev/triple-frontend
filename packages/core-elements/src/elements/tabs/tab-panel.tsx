@@ -9,7 +9,10 @@ export interface TabPanelProps<Value> extends PropsWithChildren {
   value: Value
 }
 
-export const TabPanel = <Value,>({ children, value }: TabPanelProps<Value>) => {
+export const TabPanel = <Value extends number | string | symbol>({
+  children,
+  value,
+}: TabPanelProps<Value>) => {
   const tabs = useTabs<Value>()
 
   return (

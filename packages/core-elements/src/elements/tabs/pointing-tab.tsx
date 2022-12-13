@@ -28,9 +28,12 @@ const StyledTabBase = styled(TabBase)<StyledTabBaseProps>`
     `}
 `
 
-export const PointingTab = <Value,>({ children, ...props }: TabBaseProps) => {
+export const PointingTab = <Value extends number | string | symbol>({
+  children,
+  ...props
+}: TabBaseProps<Value>) => {
   const tabs = useTabs<Value>()
-  const { tabsRef } = usePointingTab()
+  const { tabsRef } = usePointingTab<Value>()
 
   return (
     <StyledTabBase
