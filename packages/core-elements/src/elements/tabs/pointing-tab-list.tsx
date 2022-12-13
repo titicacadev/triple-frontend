@@ -10,8 +10,10 @@ interface PointValue {
   width: number
 }
 
-interface StyledTabListBaseProps extends PointValue {
-  scroll: boolean
+interface StyledTabListBaseProps {
+  $left: number
+  $width: number
+  $scroll: boolean
 }
 
 const StyledTabListBase = styled(TabListBase)<StyledTabListBaseProps>`
@@ -19,8 +21,8 @@ const StyledTabListBase = styled(TabListBase)<StyledTabListBaseProps>`
   display: flex;
   border-bottom: 1px solid var(--color-gray50);
 
-  ${({ scroll }) =>
-    scroll &&
+  ${({ $scroll }) =>
+    $scroll &&
     css`
       overflow-x: scroll;
       -webkit-overflow-scrolling: touch;
@@ -35,8 +37,8 @@ const StyledTabListBase = styled(TabListBase)<StyledTabListBaseProps>`
     display: inline-block;
     position: absolute;
     bottom: 0;
-    width: ${({ width }) => `${width}px`};
-    left: ${({ left }) => `${left}px`};
+    width: ${({ $width }) => `${$width}px`};
+    left: ${({ $left }) => `${$left}px`};
     height: 2px;
     background: var(--color-blue);
     transition: all 0.2s;
@@ -72,9 +74,9 @@ export const PointingTabList = <Value extends string>({
   return (
     <StyledTabListBase
       {...props}
-      scroll={tabs.scroll}
-      left={pointValue.left}
-      width={pointValue.width}
+      $scroll={tabs.scroll}
+      $left={pointValue.left}
+      $width={pointValue.width}
     >
       <PointingTabContext.Provider
         value={{
