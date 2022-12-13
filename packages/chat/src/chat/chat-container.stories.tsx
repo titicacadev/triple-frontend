@@ -1,12 +1,13 @@
 import { Story } from '@storybook/react'
 import { FlexBox } from '@titicaca/core-elements'
 import styled from 'styled-components'
+import { Button } from '@storybook/components'
 
 import { MessageType, TextPayload } from '../types'
-import { CHAT_ARGS } from '../bubbles/__stories__/constants'
+import { CHAT_ARGS } from '../utils/constants'
 
-import ChatContainer, { ChatContainerProps } from './chat-container'
-import Chat from './chat'
+import { ChatContainerProps, ChatContainer } from './chat-container'
+import { Chat } from './chat'
 
 export default {
   title: 'chat / ChatContainer',
@@ -35,10 +36,26 @@ const Input = ({
   }
 
   return (
-    <>
-      <input />
-      <button onClick={onClick}>보내기</button>
-    </>
+    <FlexBox
+      flex
+      alignItems="center"
+      justifyContent="space-around"
+      css={{
+        width: '100%',
+        marginTop: '30px',
+        border: 'var(--color-gray300) 1px solid',
+      }}
+    >
+      <input
+        style={{
+          width: '80%',
+          padding: '20px',
+          border: 'var(--color-gray300) 1px solid',
+        }}
+        placeholder="보내기 버튼 클릭 시 dummy message 1개만 보내지는 것으로 보이게 설정했습니다."
+      />
+      <Button onClick={onClick}>보내기</Button>
+    </FlexBox>
   )
 }
 
@@ -57,4 +74,4 @@ const Template: Story<ChatContainerProps> = () => (
 
 export const ChatStory = Template.bind({})
 
-ChatStory.storyName = '채팅 리스트'
+ChatStory.storyName = 'Chat Room'
