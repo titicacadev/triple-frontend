@@ -24,7 +24,7 @@ const StyledTabListBase = styled(TabListBase)<StyledTabListBaseProps>`
     `}
 `
 
-export const RoundedTabList = <Value,>({
+export const RoundedTabList = <Value extends number | string | symbol>({
   children,
   ...props
 }: TabListBaseProps) => {
