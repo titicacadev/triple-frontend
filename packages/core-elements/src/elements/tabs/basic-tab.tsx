@@ -16,6 +16,9 @@ const StyledTabBase = styled(TabBase)`
   }
 `
 
-export const BasicTab = ({ children, ...props }: TabBaseProps) => {
+export const BasicTab = <Value extends number | string | symbol>({
+  children,
+  ...props
+}: TabBaseProps<Value>) => {
   return <StyledTabBase {...props}>{children}</StyledTabBase>
 }

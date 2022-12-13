@@ -20,6 +20,9 @@ const StyledTabBase = styled(TabBase)`
   }
 `
 
-export const RoundedTab = ({ children, ...props }: TabBaseProps) => {
+export const RoundedTab = <Value extends number | string | symbol>({
+  children,
+  ...props
+}: TabBaseProps<Value>) => {
   return <StyledTabBase {...props}>{children}</StyledTabBase>
 }
