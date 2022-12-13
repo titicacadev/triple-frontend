@@ -5,7 +5,7 @@ import { TabBase, TabBaseProps } from './tab-base'
 import { useTabs } from './tabs-context'
 
 interface StyledTabBaseProps {
-  scroll: boolean
+  $scroll: boolean
 }
 
 const StyledTabBase = styled(TabBase)<StyledTabBaseProps>`
@@ -19,8 +19,8 @@ const StyledTabBase = styled(TabBase)<StyledTabBaseProps>`
     color: var(--color-gray);
   }
 
-  ${({ scroll }) =>
-    scroll &&
+  ${({ $scroll }) =>
+    $scroll &&
     css`
       flex: none;
 
@@ -35,7 +35,7 @@ export const PointingTab = <Value,>({ children, ...props }: TabBaseProps) => {
   return (
     <StyledTabBase
       ref={(node) => (tabsRef.current[props.value] = node)}
-      scroll={tabs.scroll}
+      $scroll={tabs.scroll}
       {...props}
     >
       {children}
