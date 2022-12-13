@@ -1,7 +1,7 @@
 import React from 'react'
-import { Story } from '@storybook/react'
+import { ComponentMeta, Story } from '@storybook/react'
 
-import { MEDIA_ARGS, SAMPLE_IMAGES } from '../bubbles/__stories__/constants'
+import { MEDIA_ARGS, SAMPLE_IMAGES } from '../utils/constants'
 import { ChatContext } from '../chat'
 import { MessageType } from '../types'
 
@@ -17,17 +17,11 @@ export default {
         options: ['sent', 'received'],
       },
     },
-    textBubbleFontSize: {
-      control: {
-        type: 'select',
-        options: ['medium', 'large'],
-      },
-    },
     createdAt: {
       control: { type: 'date' },
     },
   },
-}
+} as ComponentMeta<typeof ChatBubbleUI>
 
 const Template: Story<ChatBubbleUIProps> = (args) => (
   <ChatContext.Provider value={{ ...MEDIA_ARGS }}>
@@ -37,7 +31,7 @@ const Template: Story<ChatBubbleUIProps> = (args) => (
 
 export const Text = Template.bind({})
 
-Text.storyName = '텍스트'
+Text.storyName = 'Text'
 Text.args = {
   type: 'sent',
   payload: {
@@ -51,7 +45,7 @@ Text.args = {
 
 export const Image = Template.bind({})
 
-Image.storyName = '이미지'
+Image.storyName = 'Image'
 Image.args = {
   type: 'received',
   payload: { type: MessageType.IMAGES, images: SAMPLE_IMAGES },
@@ -62,7 +56,7 @@ Image.args = {
 
 export const Rich = Template.bind({})
 
-Rich.storyName = '리치'
+Rich.storyName = 'Rich'
 Rich.args = {
   type: 'received',
   payload: {
@@ -87,7 +81,7 @@ Rich.args = {
 
 export const FailedSentMessage = Template.bind({})
 
-FailedSentMessage.storyName = '실패한 메시지'
+FailedSentMessage.storyName = 'Fail Info'
 FailedSentMessage.args = {
   type: 'sent',
   payload: {
