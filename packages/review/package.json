@@ -45,7 +45,7 @@
     "@graphql-codegen/typescript": "2.4.11",
     "@graphql-codegen/typescript-operations": "2.4.0",
     "@graphql-codegen/typescript-react-query": "^3.5.14",
-    "@titicaca/i18n": "10.3.0",
+    "@titicaca/i18n": "10.4.0",
     "@types/qs": "^6.9.0",
     "csstype": "^3.0.2"
   },

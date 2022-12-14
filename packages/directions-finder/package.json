@@ -30,6 +30,6 @@
     "@titicaca/react-contexts": "*"
   },
   "devDependencies": {
-    "@titicaca/i18n": "10.3.0"
+    "@titicaca/i18n": "10.4.0"
   }
 }
