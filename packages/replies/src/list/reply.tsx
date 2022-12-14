@@ -17,7 +17,7 @@ import {
   useHistoryFunctions,
   useIsomorphicNavigation,
 } from '@titicaca/react-contexts'
-import { ActionSheet } from '@titicaca/action-sheet'
+import { ActionSheet, ActionSheetItem } from '@titicaca/action-sheet'
 
 import { Reply as ReplyType, Writer } from '../types'
 import { likeReply, unlikeReply } from '../replies-api-client'
@@ -488,17 +488,11 @@ function FeatureActionSheet({
     >
       {isMine ? (
         <>
-          <ActionSheet.Item onClick={onEditClick}>
-            {t('sujeonghagi')}
-          </ActionSheet.Item>
-          <ActionSheet.Item onClick={onDeleteClick}>
-            {t('sagjehagi')}
-          </ActionSheet.Item>
+          <ActionSheetItem onClick={onEditClick}>{t('sujeonghagi')}</ActionSheetItem>
+          <ActionSheetItem onClick={onDeleteClick}>{t('sagjehagi')}</ActionSheetItem>
         </>
       ) : (
-        <ActionSheet.Item onClick={onReportClick}>
-          {t('singohagi')}
-        </ActionSheet.Item>
+        <ActionSheetItem onClick={onReportClick}>{t('singohagi')}</ActionSheetItem>
       )}
     </ActionSheet>
   )

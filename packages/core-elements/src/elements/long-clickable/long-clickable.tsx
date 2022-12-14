@@ -7,7 +7,7 @@ import {
   ReactNode,
 } from 'react'
 
-interface LongClickableComponentProps<T = Element> {
+export interface LongClickableComponentProps<T = Element> {
   children?: ReactNode
   onTouchStart?: TouchEventHandler<T> | null
   onTouchMove?: TouchEventHandler<T> | null

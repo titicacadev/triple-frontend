@@ -6,6 +6,7 @@ import {
   Text,
   Rating,
   Icon,
+  TextTitle,
 } from '@titicaca/core-elements'
 import {
   useEventTrackingContext,
@@ -81,7 +82,7 @@ function DetailHeader({
         onLongClick={app ? handleLongClick : undefined}
         {...props}
       >
-        <Text.Title>{names.primary || names.ko || names.en}</Text.Title>
+        <TextTitle>{names.primary || names.ko || names.en}</TextTitle>
         <Text size="tiny" alpha={0.5}>
           {names.local || names.en}
         </Text>

@@ -8,6 +8,7 @@ import {
   H1,
   H3,
   FlexBox,
+  FlexBoxItem,
 } from '@titicaca/core-elements'
 import { MouseEvent } from 'react'
 
@@ -51,7 +52,7 @@ function ExternalLinkItem<Data>({
           padding: '20px 0',
         }}
       >
-        <FlexBox.Item
+        <FlexBoxItem
           flexGrow={1}
           css={{
             minWidth: 0,
@@ -68,10 +69,10 @@ function ExternalLinkItem<Data>({
               {meta}
             </Text>
           )}
-        </FlexBox.Item>
+        </FlexBoxItem>
 
         {imageUrl && (
-          <FlexBox.Item
+          <FlexBoxItem
             flexShrink={0}
             css={{
               width: 60,
@@ -85,7 +86,7 @@ function ExternalLinkItem<Data>({
                 />
               </Image.FixedRatioFrame>
             </Image>
-          </FlexBox.Item>
+          </FlexBoxItem>
         )}
       </FlexBox>
     </ExternalLinkEntry>

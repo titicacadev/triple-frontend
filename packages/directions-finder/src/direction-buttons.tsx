@@ -6,7 +6,7 @@ import {
   useUriHash,
 } from '@titicaca/react-contexts'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
-import { Button } from '@titicaca/core-elements'
+import { Button, ButtonGroup } from '@titicaca/core-elements'
 
 import AskToTheLocal from './ask-to-the-local'
 import { HASH_ASK_TO_LOCALS_POPUP } from './constants'
@@ -41,7 +41,7 @@ function DirectionButtons({
 
   return (
     <>
-      <Button.Group horizontalGap={10}>
+      <ButtonGroup horizontalGap={10}>
         {localName && localAddress ? (
           <Button
             basic
@@ -61,7 +61,7 @@ function DirectionButtons({
         >
           {t('gilcajgi')}
         </Button>
-      </Button.Group>
+      </ButtonGroup>
 
       {localName && localAddress ? (
         <AskToTheLocal

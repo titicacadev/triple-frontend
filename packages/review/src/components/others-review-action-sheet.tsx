@@ -1,4 +1,4 @@
-import { ActionSheet } from '@titicaca/action-sheet'
+import { ActionSheet, ActionSheetItem } from '@titicaca/action-sheet'
 import { useTranslation } from '@titicaca/next-i18next'
 import { useUriHash, useHistoryFunctions } from '@titicaca/react-contexts'
 
@@ -32,9 +32,9 @@ export default function OthersReviewActionSheet({
       open={uriHash === HASH_REVIEW_ACTION_SHEET && !!selectedReview}
       onClose={back}
     >
-      <ActionSheet.Item icon="report" onClick={handleReportClick}>
+      <ActionSheetItem icon="report" onClick={handleReportClick}>
         {t('singohagi')}
-      </ActionSheet.Item>
+      </ActionSheetItem>
     </ActionSheet>
   )
 }
