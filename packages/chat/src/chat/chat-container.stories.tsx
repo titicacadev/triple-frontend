@@ -1,7 +1,6 @@
 import { Story } from '@storybook/react'
 import { FlexBox } from '@titicaca/core-elements'
 import styled from 'styled-components'
-import { Button } from '@storybook/components'
 
 import { MessageType, TextPayload } from '../types'
 import { CHAT_ARGS } from '../utils/constants'
@@ -54,7 +53,7 @@ const Input = ({
         }}
         placeholder="보내기 버튼 클릭 시 dummy message 1개만 보내지는 것으로 보이게 설정했습니다."
       />
-      <Button onClick={onClick}>보내기</Button>
+      <button onClick={onClick}>보내기</button>
     </FlexBox>
   )
 }
