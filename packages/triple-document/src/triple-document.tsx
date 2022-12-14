@@ -103,27 +103,25 @@ export function TripleDocument({
 
                   const Element = CustomElement || RegularElement
 
-                  return (
-                    Element && (
-                      <Element
-                        key={i}
-                        value={value}
-                        {...(CustomElement
-                          ? {
-                              onResourceClick: resourceClickHandler,
-                              onImageClick,
-                              onLinkClick: linkClickHandler,
-                              // eslint-disable-next-line @typescript-eslint/naming-convention
-                              ImageSource: imageSourceComponent,
-                              deepLink,
-                              videoAutoPlay,
-                              hideVideoControls,
-                              optimized,
-                            }
-                          : {})}
-                      />
-                    )
-                  )
+                  return Element ? (
+                    <Element
+                      key={i}
+                      value={value}
+                      {...(CustomElement
+                        ? {
+                            onResourceClick: resourceClickHandler,
+                            onImageClick,
+                            onLinkClick: linkClickHandler,
+                            // eslint-disable-next-line @typescript-eslint/naming-convention
+                            ImageSource: imageSourceComponent,
+                            deepLink,
+                            videoAutoPlay,
+                            hideVideoControls,
+                            optimized,
+                          }
+                        : {})}
+                    />
+                  ) : null
                 })}
               </MediaConfigProvider>
             </DeepLinkProvider>
