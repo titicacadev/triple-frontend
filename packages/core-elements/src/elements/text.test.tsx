@@ -128,7 +128,6 @@ it('should accept maxLines mixin', () => {
   expect(tree).toHaveStyleRule('display', '-webkit-box')
   expect(tree).toHaveStyleRule('-webkit-box-orient', 'vertical')
   expect(tree).toHaveStyleRule('-webkit-line-clamp', '2')
-  expect(tree).toHaveStyleRule('text-overflow', 'ellipsis')
   expect(tree).toHaveStyleRule('overflow', 'hidden')
 })
 
