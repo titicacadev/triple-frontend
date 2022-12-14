@@ -1,8 +1,5 @@
 import { PropsWithChildren, useId } from 'react'
 
-import { AccordionContent } from './accordion-content'
-import { AccordionFolded } from './accordion-folded'
-import { AccordionTitle } from './accordion-title'
 import { AccordionContext } from './accordion-context'
 
 export interface AccordionProps extends PropsWithChildren {
@@ -40,7 +37,3 @@ export const Accordion = ({
     </AccordionContext.Provider>
   )
 }
-
-Accordion.Content = AccordionContent
-Accordion.Folded = AccordionFolded
-Accordion.Title = AccordionTitle

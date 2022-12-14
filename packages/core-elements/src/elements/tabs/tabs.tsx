@@ -1,8 +1,5 @@
 import { PropsWithChildren, Provider, useId } from 'react'
 
-import { Tab } from './tab'
-import { TabList } from './tab-list'
-import { TabPanel } from './tab-panel'
 import { TabsContext, TabsContextValue } from './tabs-context'
 import { TabVariant } from './types'
 
@@ -44,7 +41,3 @@ export const Tabs = <Value extends number | string | symbol>({
     </TabsContextProvider>
   )
 }
-
-Tabs.TabList = TabList
-Tabs.Tab = Tab
-Tabs.TabPanel = TabPanel

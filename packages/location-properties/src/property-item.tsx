@@ -1,5 +1,12 @@
 import { useCallback } from 'react'
-import { List, Text, longClickable, FlexBox } from '@titicaca/core-elements'
+import {
+  List,
+  Text,
+  longClickable,
+  FlexBox,
+  LongClickableComponentProps,
+  FlexBoxProps,
+} from '@titicaca/core-elements'
 import {
   useEventTrackingContext,
   useHistoryFunctions,
@@ -17,7 +24,11 @@ export interface PropertyItemProps {
   onClick?: () => void
 }
 
-const LongClickableItemContainer = longClickable(FlexBox)
+type LongClickableItemContainerProps = LongClickableComponentProps &
+  FlexBoxProps
+
+const LongClickableItemContainer =
+  longClickable<LongClickableItemContainerProps>(FlexBox)
 
 export default function PropertyItem({
   identifier,

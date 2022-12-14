@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import { Segment, List } from '@titicaca/core-elements'
-import { ActionSheet } from '@titicaca/action-sheet'
+import { ActionSheet, ActionSheetItem } from '@titicaca/action-sheet'
 import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 
@@ -118,9 +118,11 @@ function LocationProperties({
         open={isActionSheetOpen}
         onClose={back}
       >
-        <ActionSheet.Item buttonLabel={t('bogsa')} onClick={handleClick}>
-          {value}
-        </ActionSheet.Item>
+        <ActionSheetItem
+          buttonLabel={t('bogsa')}
+          onClick={handleClick}
+        >
+        </ActionSheetItem>
       </ActionSheet>
     </>
   )

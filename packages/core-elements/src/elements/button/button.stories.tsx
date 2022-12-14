@@ -6,14 +6,17 @@ import {
 } from '@storybook/react'
 
 import { Button } from './button'
+import { ButtonContainer } from './button-container'
+import { ButtonGroup } from './button-group'
+import { ButtonIcon } from './button-icon'
 
 export default {
   title: 'Core-Elements / Button',
   component: Button,
   subcomponents: {
-    'Button.Container': Button.Container,
-    'Button.Group': Button.Group,
-    'Button.Icon': Button.Icon,
+    ButtonContainer,
+    ButtonGroup,
+    ButtonIcon,
   },
 } as ComponentMeta<typeof Button>
 
@@ -77,14 +80,14 @@ export const Icon: ComponentStory<typeof Button> = () => {
   return (
     <>
       <Button>
-        <Button.Icon
+        <ButtonIcon
           src="https://assets.triple-dev.titicaca-corp.com/images/save@4x.png"
           size="tiny"
         />
         Tiny
       </Button>
       <Button basic>
-        <Button.Icon
+        <ButtonIcon
           src="https://triple-dev.titicaca-corp.com/content/static/images/index@4x.png"
           size="small"
         />
@@ -108,51 +111,53 @@ export const BlockIcons: ComponentStory<typeof Button> = () => {
   )
 }
 
-export const ButtonGroup: ComponentStory<typeof Button.Group> = (args) => {
+export const WithButtonGroup: ComponentStory<typeof ButtonGroup> = (args) => {
   return (
-    <Button.Group {...args}>
+    <ButtonGroup {...args}>
       <Button basic color="gray" size="small">
         현지에서 길묻기
       </Button>
       <Button basic inverted color="blue" size="small">
         길찾기
       </Button>
-    </Button.Group>
+    </ButtonGroup>
   )
 }
-ButtonGroup.args = {
+WithButtonGroup.args = {
   horizontalGap: 10,
   buttonCount: 2,
 }
 
-export const IconButtonGroup: ComponentStory<typeof Button.Group> = (args) => {
+export const WithIconButtonGroup: ComponentStory<typeof ButtonGroup> = (
+  args,
+) => {
   return (
-    <Button.Group {...args}>
+    <ButtonGroup {...args}>
       <Button icon="saveEmpty">저장하기</Button>
       <Button icon="schedule">일정추가</Button>
       <Button icon="starEmpty">리뷰쓰기</Button>
       <Button icon="share">공유하기</Button>
-    </Button.Group>
+    </ButtonGroup>
   )
 }
-IconButtonGroup.args = {
+WithIconButtonGroup.args = {
   horizontalGap: 22,
 }
 
-export const ButtonContainer: ComponentStory<typeof Button.Container> = (
+export const WithButtonContainer: ComponentStory<typeof ButtonContainer> = (
   args,
 ) => {
   return (
-    <Button.Container {...args}>
+    <ButtonContainer {...args}>
       <Button basic color="gray" size="small">
         버튼 1
       </Button>
       <Button basic inverted color="blue" size="small">
         버튼 2
       </Button>
-    </Button.Container>
+    </ButtonContainer>
   )
 }
-ButtonContainer.args = {
+WithButtonContainer.args = {
   floated: 'none',
 }

@@ -6,12 +6,13 @@ import {
 } from '@storybook/react'
 
 import { ActionSheet } from './action-sheet'
+import { ActionSheetItem } from './action-sheet-item'
 
 export default {
   title: 'action-sheet / action-sheet',
   component: ActionSheet,
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  subcomponents: { Item: ActionSheet.Item },
+  subcomponents: { Item: ActionSheetItem },
   parameters: {
     docs: {
       inlineStories: false,
@@ -25,14 +26,14 @@ export const Basic: ComponentStoryObj<typeof ActionSheet> = {
     open: true,
     children: (
       <>
-        <ActionSheet.Item>메뉴 1</ActionSheet.Item>
-        <ActionSheet.Item>메뉴 2</ActionSheet.Item>
-        <ActionSheet.Item>메뉴 3</ActionSheet.Item>
-        <ActionSheet.Item>메뉴 4</ActionSheet.Item>
-        <ActionSheet.Item>메뉴 5</ActionSheet.Item>
-        <ActionSheet.Item>메뉴 6</ActionSheet.Item>
-        <ActionSheet.Item>메뉴 7</ActionSheet.Item>
-        <ActionSheet.Item>메뉴 8</ActionSheet.Item>
+        <ActionSheetItem>메뉴 1</ActionSheetItem>
+        <ActionSheetItem>메뉴 2</ActionSheetItem>
+        <ActionSheetItem>메뉴 3</ActionSheetItem>
+        <ActionSheetItem>메뉴 4</ActionSheetItem>
+        <ActionSheetItem>메뉴 5</ActionSheetItem>
+        <ActionSheetItem>메뉴 6</ActionSheetItem>
+        <ActionSheetItem>메뉴 7</ActionSheetItem>
+        <ActionSheetItem>메뉴 8</ActionSheetItem>
       </>
     ),
   },
@@ -45,10 +46,10 @@ export const WithTextMenu: ComponentStoryObj<typeof ActionSheet> = {
     title: '샘플 액션 시트',
     children: (
       <>
-        <ActionSheet.Item checked>메뉴 1</ActionSheet.Item>
-        <ActionSheet.Item checked={false}>메뉴 2</ActionSheet.Item>
-        <ActionSheet.Item icon="save">샘플 메뉴</ActionSheet.Item>
-        <ActionSheet.Item buttonLabel="액션">샘플 메뉴</ActionSheet.Item>
+        <ActionSheetItem checked>메뉴 1</ActionSheetItem>
+        <ActionSheetItem checked={false}>메뉴 2</ActionSheetItem>
+        <ActionSheetItem icon="save">샘플 메뉴</ActionSheetItem>
+        <ActionSheetItem buttonLabel="액션">샘플 메뉴</ActionSheetItem>
       </>
     ),
   },
@@ -61,8 +62,8 @@ export const WithIconMenu: ComponentStoryObj<typeof ActionSheet> = {
     title: '샘플 액션 시트',
     children: (
       <>
-        <ActionSheet.Item icon="save">샘플 메뉴</ActionSheet.Item>
-        <ActionSheet.Item buttonLabel="액션">샘플 메뉴</ActionSheet.Item>
+        <ActionSheetItem icon="save">샘플 메뉴</ActionSheetItem>
+        <ActionSheetItem buttonLabel="액션">샘플 메뉴</ActionSheetItem>
       </>
     ),
   },
@@ -78,8 +79,8 @@ export const WithForm: ComponentStoryObj<typeof ActionSheet> = {
     maxContentHeight: 100,
     children: (
       <>
-        <ActionSheet.Item icon="save">샘플 메뉴</ActionSheet.Item>
-        <ActionSheet.Item buttonLabel="액션">샘플 메뉴</ActionSheet.Item>
+        <ActionSheetItem icon="save">샘플 메뉴</ActionSheetItem>
+        <ActionSheetItem buttonLabel="액션">샘플 메뉴</ActionSheetItem>
       </>
     ),
   },
@@ -111,8 +112,8 @@ export const WithCustomHeader: ComponentStoryObj<typeof ActionSheet> = {
     ),
     children: (
       <>
-        <ActionSheet.Item>메뉴 1</ActionSheet.Item>
-        <ActionSheet.Item>메뉴 2</ActionSheet.Item>
+        <ActionSheetItem>메뉴 1</ActionSheetItem>
+        <ActionSheetItem>메뉴 2</ActionSheetItem>
       </>
     ),
   },
@@ -133,7 +134,7 @@ export const WithExtendStyle: ComponentStory<typeof ActionSheet> = () => {
         }
       `}
     >
-      <ActionSheet.Item
+      <ActionSheetItem
         icon="save"
         css={css`
           padding: 0 40px;
@@ -141,8 +142,8 @@ export const WithExtendStyle: ComponentStory<typeof ActionSheet> = () => {
         `}
       >
         샘플 메뉴
-      </ActionSheet.Item>
-      <ActionSheet.Item buttonLabel="액션">샘플 메뉴</ActionSheet.Item>
+      </ActionSheetItem>
+      <ActionSheetItem buttonLabel="액션">샘플 메뉴</ActionSheetItem>
     </ActionSheet>
   )
 }
@@ -151,7 +152,7 @@ WithExtendStyle.parameters = {
   docs: {
     description: {
       story:
-        '스타일을 확장하여 사용할 때에는 ActionSheet의 css prop이나 ActionSheet.Item의 css prop을 사용합니다. ',
+        '스타일을 확장하여 사용할 때에는 ActionSheet의 css prop이나 ActionSheetItem의 css prop을 사용합니다. ',
     },
   },
 }

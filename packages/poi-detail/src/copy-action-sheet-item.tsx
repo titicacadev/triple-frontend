@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { ActionSheet } from '@titicaca/action-sheet'
+import { ActionSheetItem } from '@titicaca/action-sheet'
 import { useTranslation } from '@titicaca/next-i18next'
 
 export default function CopyActionSheetItem({
@@ -14,8 +14,11 @@ export default function CopyActionSheetItem({
   const handleClick = useCallback(() => value && onCopy(value), [value, onCopy])
 
   return value ? (
-    <ActionSheet.Item onClick={handleClick} buttonLabel={t('bogsa')}>
+    <ActionSheetItem
+      onClick={handleClick}
+      buttonLabel={t('bogsa')}
+    >
       {value}
-    </ActionSheet.Item>
+    </ActionSheetItem>
   ) : null
 }

@@ -5,6 +5,9 @@ import {
   Button,
   List,
   Tabs,
+  TabList,
+  Tab,
+  TabPanel,
   H1,
   Paragraph,
 } from '@titicaca/core-elements'
@@ -157,15 +160,11 @@ function NearbyPois({
       </H1>
 
       <Tabs variant="basic" value={currentTab} onChange={handleTabChange}>
-        <Tabs.TabList>
-          <Tabs.Tab value="attraction">
-            {t('gwangwang')}
-          </Tabs.Tab>
-          <Tabs.Tab value="restaurant">
-            {t('masjib')}
-          </Tabs.Tab>
-        </Tabs.TabList>
-        <Tabs.TabPanel value={currentTab}>
+        <TabList>
+          <Tab value="attraction">{t('gwangwang')}</Tab>
+          <Tab value="restaurant">{t('masjib')}</Tab>
+        </TabList>
+        <TabPanel value={currentTab}>
           {pois.length === 0 && hasMore === false ? (
             <Paragraph center margin={{ top: 70 }}>
               {t('jangsoga-eobsseubnida.')}
@@ -199,7 +198,7 @@ function NearbyPois({
               )}
             </>
           )}
-        </Tabs.TabPanel>
+        </TabPanel>
       </Tabs>
     </Section>
   )

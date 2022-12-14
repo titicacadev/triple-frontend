@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { ActionSheet } from '@titicaca/action-sheet'
+import { ActionSheet, ActionSheetItem } from '@titicaca/action-sheet'
 import { useTranslation } from '@titicaca/next-i18next'
 import DrawerButton from '@titicaca/drawer-button'
 
@@ -55,7 +55,7 @@ export default function ActionSheetWrapper({
         {options.map((option, idx) => {
           const { value, label } = option
           return (
-            <ActionSheet.Item
+            <ActionSheetItem
               key={idx}
               checked={
                 selectedOption !== null
@@ -65,7 +65,7 @@ export default function ActionSheetWrapper({
               onClick={() => handleSelect(option)}
             >
               {label}
-            </ActionSheet.Item>
+            </ActionSheetItem>
           )
         })}
       </ActionSheet>
