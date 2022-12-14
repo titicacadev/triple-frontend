@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { Container, Text, Button } from '@titicaca/core-elements'
+import { Container, Text, Button, ButtonGroup } from '@titicaca/core-elements'
 import styled from 'styled-components'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 import { useAppCallback } from '@titicaca/ui-flow'
@@ -128,7 +128,7 @@ function BookingCompletion({
               margin: '30px 0 0',
             }}
           >
-            <Button.Group horizontalGap={7}>
+            <ButtonGroup horizontalGap={7}>
               <Button
                 basic
                 inverted
@@ -150,7 +150,7 @@ function BookingCompletion({
               >
                 트리플 홈으로 가기
               </Button>
-            </Button.Group>
+            </ButtonGroup>
           </Container>
           {region ? (
             <GrayButton fluid margin={{ top: 6 }} onClick={handleMoveToRegion}>

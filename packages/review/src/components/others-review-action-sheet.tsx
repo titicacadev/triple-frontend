@@ -1,4 +1,4 @@
-import { ActionSheet } from '@titicaca/action-sheet'
+import { ActionSheet, ActionSheetItem } from '@titicaca/action-sheet'
 import { useUriHash, useHistoryFunctions } from '@titicaca/react-contexts'
 
 import { ReviewData } from './types'
@@ -29,9 +29,9 @@ export default function OthersReviewActionSheet({
       open={uriHash === HASH_REVIEW_ACTION_SHEET && !!selectedReview}
       onClose={back}
     >
-      <ActionSheet.Item icon="report" onClick={handleReportClick}>
+      <ActionSheetItem icon="report" onClick={handleReportClick}>
         신고하기
-      </ActionSheet.Item>
+      </ActionSheetItem>
     </ActionSheet>
   )
 }

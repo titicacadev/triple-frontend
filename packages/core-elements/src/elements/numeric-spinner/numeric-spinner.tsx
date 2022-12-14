@@ -1,6 +1,6 @@
 import { useId } from 'react'
 
-import { FlexBox } from '../flex-box'
+import { FlexBox, FlexBoxItem } from '../flex-box'
 import { Text } from '../text'
 
 import {
@@ -31,7 +31,7 @@ export const NumericSpinner = ({
 
   return (
     <FlexBox flex {...props}>
-      <FlexBox.Item flex="1">
+      <FlexBoxItem flex="1">
         <Text id={labelId} size={size || 'small'}>
           {label}
         </Text>
@@ -54,7 +54,7 @@ export const NumericSpinner = ({
             {strikeLabel}
           </Text>
         ) : null}
-      </FlexBox.Item>
+      </FlexBoxItem>
 
       <NumericSpinnerBase
         disabled={disabled}

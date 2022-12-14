@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { ActionSheet } from '@titicaca/action-sheet'
+import { ActionSheetItem } from '@titicaca/action-sheet'
 import { useI18n } from '@titicaca/i18n'
 
 export default function CopyActionSheetItem({
@@ -13,11 +13,11 @@ export default function CopyActionSheetItem({
   const { t } = useI18n()
 
   return value ? (
-    <ActionSheet.Item
+    <ActionSheetItem
       onClick={handleClick}
       buttonLabel={t('common:copy', '복사')}
     >
       {value}
-    </ActionSheet.Item>
+    </ActionSheetItem>
   ) : null
 }
