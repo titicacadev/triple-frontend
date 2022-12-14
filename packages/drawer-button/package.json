@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/drawer-button",
-  "version": "10.3.0",
+  "version": "10.4.0",
   "description": "Button in drawer",
   "keywords": [
     "button",
@@ -25,6 +25,6 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^10.3.0"
+    "@titicaca/core-elements": "^10.4.0"
   }
 }
