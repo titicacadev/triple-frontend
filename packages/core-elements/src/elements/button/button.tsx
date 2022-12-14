@@ -3,9 +3,6 @@ import styled from 'styled-components'
 
 import { basicButtonMixin, BasicButtonOwnProps } from './basic-button'
 import { ButtonBase } from './button-base'
-import { ButtonContainer } from './button-container'
-import { ButtonGroup } from './button-group'
-import { ButtonIcon } from './button-icon'
 import { iconButtonMixin, IconButtonOwnProps } from './icon-button'
 import { normalButtonMixin, NormalButtonOwnProps } from './normal-button'
 
@@ -27,7 +24,7 @@ export type ButtonProps = ButtonOwnProps &
   PropsWithChildren &
   ButtonHTMLAttributes<HTMLButtonElement>
 
-const ButtonComponent = styled(ButtonBase)<ButtonOwnProps>((props) => {
+export const Button = styled(ButtonBase)<ButtonOwnProps>((props) => {
   if (props.basic) {
     return basicButtonMixin({
       ...props,
@@ -57,17 +54,3 @@ const ButtonComponent = styled(ButtonBase)<ButtonOwnProps>((props) => {
     textColor: props.textColor || 'white',
   })
 })
-
-ButtonComponent.displayName = 'Button'
-
-type CompoundedButton = typeof ButtonComponent & {
-  Container: typeof ButtonContainer
-  Group: typeof ButtonGroup
-  Icon: typeof ButtonIcon
-}
-
-export const Button = ButtonComponent as CompoundedButton
-
-Button.Container = ButtonContainer
-Button.Group = ButtonGroup
-Button.Icon = ButtonIcon

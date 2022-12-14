@@ -16,7 +16,7 @@ import {
   useHistoryFunctions,
   useIsomorphicNavigation,
 } from '@titicaca/react-contexts'
-import { ActionSheet } from '@titicaca/action-sheet'
+import { ActionSheet, ActionSheetItem } from '@titicaca/action-sheet'
 
 import { Reply as ReplyType, Writer } from '../types'
 import { likeReply, unlikeReply } from '../replies-api-client'
@@ -485,11 +485,11 @@ function FeatureActionSheet({
     >
       {isMine ? (
         <>
-          <ActionSheet.Item onClick={onEditClick}>수정하기</ActionSheet.Item>
-          <ActionSheet.Item onClick={onDeleteClick}>삭제하기</ActionSheet.Item>
+          <ActionSheetItem onClick={onEditClick}>수정하기</ActionSheetItem>
+          <ActionSheetItem onClick={onDeleteClick}>삭제하기</ActionSheetItem>
         </>
       ) : (
-        <ActionSheet.Item onClick={onReportClick}>신고하기</ActionSheet.Item>
+        <ActionSheetItem onClick={onReportClick}>신고하기</ActionSheetItem>
       )}
     </ActionSheet>
   )

@@ -1,6 +1,13 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { Accordion, Text, Container, FlexBox } from '@titicaca/core-elements'
+import {
+  Accordion,
+  AccordionContent,
+  Text,
+  Container,
+  FlexBox,
+  AccordionTitle,
+} from '@titicaca/core-elements'
 import {
   useSessionAvailability,
   useSessionControllers,
@@ -42,7 +49,7 @@ const Button = styled.a`
   }
 `
 
-const Title = styled(Accordion.Title)`
+const Title = styled(AccordionTitle)`
   display: inline-block;
   color: var(--color-gray500) !important;
   font-size: 12px !important;
@@ -150,7 +157,7 @@ function DefaultFooter({ hideAppDownloadButton = false }: DefaultFooterProps) {
             ) : null}
           </AccordionHeader>
 
-          <Accordion.Content>
+          <AccordionContent>
             <Text
               size={11}
               lineHeight="17px"
@@ -166,7 +173,7 @@ function DefaultFooter({ hideAppDownloadButton = false }: DefaultFooterProps) {
               항공, 숙소 및 투어·티켓 문의 1588-2539 <br />
               help@triple-corp.com
             </Text>
-          </Accordion.Content>
+          </AccordionContent>
         </Accordion>
 
         <Text

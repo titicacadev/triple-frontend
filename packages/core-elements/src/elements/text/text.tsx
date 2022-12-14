@@ -41,7 +41,7 @@ export type TextProps = PropsWithChildren<{
   wordBreak?: Property.WordBreak
 }>
 
-const TextComponent = styled.div<TextProps>(
+export const Text = styled.div<TextProps>(
   (props) => ({
     boxSizing: 'border-box',
     overflowWrap: 'break-word',
@@ -80,7 +80,7 @@ interface TextTitleBaseProps {
   margin?: MarginPadding
 }
 
-const TextTitleBase = styled(TextComponent)<TextTitleBaseProps>`
+const TextTitleBase = styled(Text)<TextTitleBaseProps>`
   line-height: 1.2;
   font-size: 24px;
   font-weight: bold;
@@ -90,17 +90,10 @@ const TextTitleBase = styled(TextComponent)<TextTitleBaseProps>`
 
 export type TextTitleProps = PropsWithChildren<TextTitleBaseProps>
 
-function TextTitle({ children, margin, ...props }: TextTitleProps) {
+export function TextTitle({ children, margin, ...props }: TextTitleProps) {
   return (
     <TextTitleBase as="h1" margin={margin} {...props}>
       {children}
     </TextTitleBase>
   )
 }
-
-type CompoundedText = typeof TextComponent & {
-  Title: typeof TextTitle
-}
-
-export const Text = TextComponent as CompoundedText
-Text.Title = TextTitle

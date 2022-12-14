@@ -2,7 +2,6 @@ import { PropsWithChildren, ReactNode, useId } from 'react'
 
 import { ActionSheetBase } from './action-sheet-base'
 import { ActionSheetContext } from './action-sheet-context'
-import { ActionSheetItem } from './action-sheet-item'
 
 export interface ActionSheetProps extends PropsWithChildren {
   open?: boolean
@@ -42,5 +41,3 @@ export const ActionSheet = ({
     </ActionSheetContext.Provider>
   )
 }
-
-ActionSheet.Item = ActionSheetItem

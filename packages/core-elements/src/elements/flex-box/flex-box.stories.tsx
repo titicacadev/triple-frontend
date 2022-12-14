@@ -1,14 +1,14 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import styled from 'styled-components'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import { FlexBox } from '../flex-box'
+import { FlexBox, FlexBoxItem } from '../flex-box'
 
 export default {
   title: 'Core-Elements / FlexBox',
   components: FlexBox,
   subcomponents: {
-    /* eslint-disable @typescript-eslint/naming-convention */
-    'FlexBox.Item': FlexBox.Item,
+    FlexBoxItem,
   },
   parameters: {
     docs: {
@@ -20,7 +20,7 @@ export default {
   },
 } as ComponentMeta<typeof FlexBox>
 
-const Item = styled(FlexBox.Item)`
+const Item = styled(FlexBoxItem)`
   border: 2px solid #e91e63;
   padding: 10px;
   border-radius: 10px;
@@ -29,16 +29,16 @@ const Item = styled(FlexBox.Item)`
 export const Flex: ComponentStory<typeof FlexBox> = (args) => {
   return (
     <FlexBox {...args}>
-      <FlexBox.Item>
+      <FlexBoxItem>
         <Item>Item1</Item>
         <Item>Item2</Item>
         <Item>Item3</Item>
-      </FlexBox.Item>
-      <FlexBox.Item>
+      </FlexBoxItem>
+      <FlexBoxItem>
         <Item>Item4</Item>
         <Item>Item5</Item>
         <Item>Item6</Item>
-      </FlexBox.Item>
+      </FlexBoxItem>
     </FlexBox>
   )
 }
@@ -58,7 +58,7 @@ Flex.args = {
 export const FlexItem: ComponentStory<typeof FlexBox> = () => {
   return (
     <FlexBox flex>
-      <FlexBox.Item
+      <FlexBoxItem
         order={3}
         css={`
           border: 2px solid #e91e63;
@@ -67,9 +67,9 @@ export const FlexItem: ComponentStory<typeof FlexBox> = () => {
         `}
       >
         Item1 (order=3)
-      </FlexBox.Item>
-      <FlexBox.Item>Item2</FlexBox.Item>
-      <FlexBox.Item>Item3</FlexBox.Item>
+      </FlexBoxItem>
+      <FlexBoxItem>Item2</FlexBoxItem>
+      <FlexBoxItem>Item3</FlexBoxItem>
     </FlexBox>
   )
 }

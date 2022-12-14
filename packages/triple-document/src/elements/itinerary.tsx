@@ -1,6 +1,13 @@
 import { useCallback } from 'react'
 import styled from 'styled-components'
-import { Container, Card, Text, FlexBox, Button } from '@titicaca/core-elements'
+import {
+  Container,
+  Card,
+  Text,
+  FlexBox,
+  FlexBoxItem,
+  Button,
+} from '@titicaca/core-elements'
 import type {
   TransportationType,
   Itinerary,
@@ -54,7 +61,7 @@ const PoiCard = styled(Card)`
   flex: 1;
 `
 
-const CardWrapper = styled(FlexBox.Item)`
+const CardWrapper = styled(FlexBoxItem)`
   min-width: 200px;
 
   > ${PoiCard} {

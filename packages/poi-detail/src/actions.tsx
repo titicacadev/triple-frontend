@@ -5,6 +5,7 @@ import {
   Button,
   MarginPadding,
   Tooltip,
+  ButtonGroup,
 } from '@titicaca/core-elements'
 import { useI18n } from '@titicaca/i18n'
 import { useEffect, useState } from 'react'
@@ -67,7 +68,7 @@ function Actions({
 
   return (
     <Section {...props}>
-      <Button.Group
+      <ButtonGroup
         horizontalGap={22}
         buttonCount={
           [onScheduleAdd, onScrapedChange, onContentShare, onReviewEdit].filter(
@@ -114,7 +115,7 @@ function Actions({
         <ActionButton icon="share" onClick={onContentShare}>
           {t('common:share', '공유하기')}
         </ActionButton>
-      </Button.Group>
+      </ButtonGroup>
       {!noDivider && <HR1 css={{ marginTop: 8, marginBottom: 0 }} />}
     </Section>
   )

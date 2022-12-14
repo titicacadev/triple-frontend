@@ -7,6 +7,7 @@ import {
   Text,
   Icon,
   Rating,
+  TextTitle,
 } from '@titicaca/core-elements'
 import {
   useEventTrackingContext,
@@ -88,9 +89,9 @@ function DetailHeaderV2({
         onLongClick={app ? handleLongClick : undefined}
         {...props}
       >
-        <Text.Title margin={{ bottom: 6 }}>
+        <TextTitle margin={{ bottom: 6 }}>
           {names.primary || names.ko || names.en}
-        </Text.Title>
+        </TextTitle>
         <Text size="tiny" alpha={0.5}>
           {names.local || names.en}
         </Text>

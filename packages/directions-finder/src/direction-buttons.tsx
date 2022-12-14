@@ -5,7 +5,7 @@ import {
   useUriHash,
 } from '@titicaca/react-contexts'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
-import { Button } from '@titicaca/core-elements'
+import { Button, ButtonGroup } from '@titicaca/core-elements'
 import { useI18n } from '@titicaca/i18n'
 
 import AskToTheLocal from './ask-to-the-local'
@@ -40,7 +40,7 @@ function DirectionButtons({
 
   return (
     <>
-      <Button.Group horizontalGap={10}>
+      <ButtonGroup horizontalGap={10}>
         {localName && localAddress ? (
           <Button
             basic
@@ -60,7 +60,7 @@ function DirectionButtons({
         >
           {t('common:showDirections', '길찾기')}
         </Button>
-      </Button.Group>
+      </ButtonGroup>
 
       {localName && localAddress ? (
         <AskToTheLocal

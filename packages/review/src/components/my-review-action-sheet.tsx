@@ -1,4 +1,4 @@
-import { ActionSheet } from '@titicaca/action-sheet'
+import { ActionSheet, ActionSheetItem } from '@titicaca/action-sheet'
 import { Confirm } from '@titicaca/modals'
 import {
   useMyReviewsContext,
@@ -72,13 +72,13 @@ export default function MyReviewActionSheet({
         onClose={back}
       >
         {!myReview.blindedAt ? (
-          <ActionSheet.Item icon="review" onClick={onReviewEdit}>
+          <ActionSheetItem icon="review" onClick={onReviewEdit}>
             수정하기
-          </ActionSheet.Item>
+          </ActionSheetItem>
         ) : null}
-        <ActionSheet.Item icon="delete" onClick={handleDeleteMenuClick}>
+        <ActionSheetItem icon="delete" onClick={handleDeleteMenuClick}>
           삭제하기
-        </ActionSheet.Item>
+        </ActionSheetItem>
       </ActionSheet>
 
       <Confirm
