@@ -32,6 +32,6 @@
     "styled-components": ">=4.4.1 < 6"
   },
   "devDependencies": {
-    "@titicaca/i18n": "10.3.0"
+    "@titicaca/i18n": "10.4.0"
   }
 }

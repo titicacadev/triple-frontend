@@ -33,7 +33,7 @@
     "react-transition-group": "^4.4.2"
   },
   "devDependencies": {
-    "@titicaca/i18n": "10.3.0",
+    "@titicaca/i18n": "10.4.0",
     "@types/react-transition-group": "^4.4.4"
   },
   "peerDependencies": {
