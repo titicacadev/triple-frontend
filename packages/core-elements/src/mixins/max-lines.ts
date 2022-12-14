@@ -11,8 +11,6 @@ export const maxLinesMixin = ({ maxLines }: Params) =>
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: ${maxLines};
-        text-overflow: ellipsis;
         overflow: hidden;
-        white-space: pre-line;
       `
     : undefined
