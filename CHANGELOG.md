@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 10.4.0
+
+### triple-document
+
+- regions element의 바로가기 버튼 위치를 조정합니다. [#2291](https://github.com/titicacadev/triple-frontend/pull/2291)
+
+### footer
+
+- 회사 소개 영역을 제거합니다. [#2285](https://github.com/titicacadev/triple-frontend/pull/2285)
+
+### web-storage, poi-detail
+
+- web-storage 오류 처리 함수 추가 [#2266](https://github.com/titicacadev/triple-frontend/pull/2266)
+
 ## 10.3.0
 
 ### app-installation-cta
