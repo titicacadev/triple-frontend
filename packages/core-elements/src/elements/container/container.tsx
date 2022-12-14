@@ -25,6 +25,11 @@ export type ContainerProps = PropsWithChildren<{
   backgroundColor?: Color
 }>
 
+/**
+ * 레이아웃 구성 시 컴포넌트를 묶고 스타일을 추가할 때 사용합니다.
+ *
+ * - 제공된 prop 외의 스타일은 css prop을 사용합니다.
+ */
 export const Container = styled.div<ContainerProps>(
   (props) => ({
     boxSizing: 'border-box',
