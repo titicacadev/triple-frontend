@@ -31,7 +31,6 @@ const Template: Story<ChatBubbleUIProps> = (args) => (
 
 export const Text = Template.bind({})
 
-Text.storyName = 'Text'
 Text.args = {
   type: 'sent',
   payload: {
@@ -45,7 +44,6 @@ Text.args = {
 
 export const Image = Template.bind({})
 
-Image.storyName = 'Image'
 Image.args = {
   type: 'received',
   payload: { type: MessageType.IMAGES, images: SAMPLE_IMAGES },
@@ -56,7 +54,6 @@ Image.args = {
 
 export const Rich = Template.bind({})
 
-Rich.storyName = 'Rich'
 Rich.args = {
   type: 'received',
   payload: {
@@ -81,7 +78,6 @@ Rich.args = {
 
 export const FailedSentMessage = Template.bind({})
 
-FailedSentMessage.storyName = 'Fail Info'
 FailedSentMessage.args = {
   type: 'sent',
   payload: {
