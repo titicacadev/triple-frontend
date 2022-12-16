@@ -51,16 +51,14 @@ const Timeline = styled(FlexBox)`
 `
 
 const PoiCard = styled(Card)`
+  padding: 16px 15px;
   flex: 1;
 `
 
 const CardWrapper = styled(FlexBox.Item)`
   min-width: 200px;
-
-  > ${PoiCard} {
-    padding: 16px 15px;
-  }
 `
+
 const Stack = styled(Container)`
   div:first-child ${Timeline} {
     &::before {
