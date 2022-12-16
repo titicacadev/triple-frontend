@@ -7,9 +7,8 @@ export interface AccordionContextValue {
   onActiveChange: () => void
 }
 
-export const AccordionContext = createContext<
-  AccordionContextValue | undefined
->(undefined)
+export const AccordionContext =
+  createContext<AccordionContextValue | undefined>(undefined)
 
 export function useAccordion() {
   const context = useContext(AccordionContext)

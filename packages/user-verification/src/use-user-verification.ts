@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { useState, useEffect, useCallback } from 'react'
 import { useVisibilityChange } from '@titicaca/react-hooks'
 import { useExternalRouter } from '@titicaca/router'

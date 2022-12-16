@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Children, PropsWithChildren } from 'react'
 import { FrameRatioAndSizes, ImageMeta } from '@titicaca/type-definitions'
 import styled, { css } from 'styled-components'

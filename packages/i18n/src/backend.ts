@@ -5,10 +5,10 @@
 import fetch from 'node-fetch'
 
 export default class I18nextTripleWebAssetsBackend {
-  public type: 'backend' = 'backend'
+  public type = 'backend' as const
   private dev = false
 
-  public static type: 'backend' = 'backend'
+  public static type = 'backend' as const
 
   public init(_: unknown, backendConfig: unknown) {
     const hasDevFlag = (config: unknown): config is { dev: boolean } =>
