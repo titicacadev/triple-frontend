@@ -109,6 +109,7 @@ export async function postAdBannerEvent({
   return post(`/api/inventories/${bannerType}/items/${itemId}/events`, {
     body,
     headers: {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       'content-type': 'application/json',
     },
     credentials: 'same-origin',

@@ -10,9 +10,8 @@ export interface TabsContextValue<Value extends number | string | symbol> {
   onChange?: (value: Value) => void
 }
 
-export const TabsContext = createContext<TabsContextValue<string> | undefined>(
-  undefined,
-)
+export const TabsContext =
+  createContext<TabsContextValue<string> | undefined>(undefined)
 
 export function useTabs<Value extends number | string | symbol>() {
   const context = useContext(TabsContext) as TabsContextValue<Value> | undefined

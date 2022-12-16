@@ -2,9 +2,8 @@ import { createContext, useContext } from 'react'
 
 import { ImageEventHandler } from '../types'
 
-const ImageClickHandlerContext = createContext<ImageEventHandler | undefined>(
-  undefined,
-)
+const ImageClickHandlerContext =
+  createContext<ImageEventHandler | undefined>(undefined)
 
 export const ImageClickHandlerProvider = ImageClickHandlerContext.Provider
 

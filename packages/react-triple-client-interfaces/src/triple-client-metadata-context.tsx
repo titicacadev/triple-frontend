@@ -7,9 +7,8 @@ import type { App } from './types'
 
 type TripleClientMetadataContextProps = App | null
 
-const TripleClientMetadataContext = createContext<
-  TripleClientMetadataContextProps | undefined
->(undefined)
+const TripleClientMetadataContext =
+  createContext<TripleClientMetadataContextProps | undefined>(undefined)
 
 export function TripleClientMetadataProvider({
   appName,
