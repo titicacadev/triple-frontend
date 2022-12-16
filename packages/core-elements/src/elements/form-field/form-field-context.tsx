@@ -13,9 +13,8 @@ export interface FormFieldContextValue {
   handleFocus: FocusEventHandler
 }
 
-export const FormFieldContext = createContext<
-  FormFieldContextValue | undefined
->(undefined)
+export const FormFieldContext =
+  createContext<FormFieldContextValue | undefined>(undefined)
 
 export function useFormField() {
   const context = useContext(FormFieldContext)

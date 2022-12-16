@@ -41,63 +41,61 @@ function LocationProperties({
   const uriHash = useUriHash()
   const { back } = useHistoryFunctions()
 
-  const properties: Map<
-    string,
-    Omit<PropertyItemProps, 'identifier'>
-  > = useMemo(() => {
-    const allValues = new Map<string, Omit<PropertyItemProps, 'identifier'>>()
-    const addressValue =
-      addresses?.primary || addresses?.ko || addresses?.en || addresses?.local
+  const properties: Map<string, Omit<PropertyItemProps, 'identifier'>> =
+    useMemo(() => {
+      const allValues = new Map<string, Omit<PropertyItemProps, 'identifier'>>()
+      const addressValue =
+        addresses?.primary || addresses?.ko || addresses?.en || addresses?.local
 
-    addressValue &&
-      allValues.set('addresses', {
-        title: t('common:address', '주소'),
-        value: addressValue,
-        onClick: onAddressesClick,
-        eventActionFragment: '기본정보_주소',
-      })
-
-    phoneNumber &&
-      allValues.set('phoneNumber', {
-        title: t('common:contact', '전화'),
-        value: phoneNumber,
-        onClick: onPhoneNumberClick,
-        eventActionFragment: '기본정보_전화번호',
-      })
-
-    officialSiteUrl &&
-      allValues.set('officialSiteUrl', {
-        title: t('common:homepage', '홈페이지'),
-        value: officialSiteUrl,
-        singleLine: true,
-        onClick: onOfficialSiteUrlClick,
-        eventActionFragment: '기본정보_홈페이지',
-      })
-
-    if (extraProperties) {
-      extraProperties.forEach(({ description, value, ...rest }, i) => {
-        allValues.set(`extraProperties.${i}`, {
-          title: description,
-          value,
-          onClick: onExtraPropertyClick
-            ? () => onExtraPropertyClick({ description, value, ...rest })
-            : undefined,
+      addressValue &&
+        allValues.set('addresses', {
+          title: t('common:address', '주소'),
+          value: addressValue,
+          onClick: onAddressesClick,
+          eventActionFragment: '기본정보_주소',
         })
-      })
-    }
 
-    return allValues
-  }, [
-    t,
-    addresses,
-    phoneNumber,
-    officialSiteUrl,
-    extraProperties,
-    onAddressesClick,
-    onPhoneNumberClick,
-    onOfficialSiteUrlClick,
-    onExtraPropertyClick,
-  ])
+      phoneNumber &&
+        allValues.set('phoneNumber', {
+          title: t('common:contact', '전화'),
+          value: phoneNumber,
+          onClick: onPhoneNumberClick,
+          eventActionFragment: '기본정보_전화번호',
+        })
+
+      officialSiteUrl &&
+        allValues.set('officialSiteUrl', {
+          title: t('common:homepage', '홈페이지'),
+          value: officialSiteUrl,
+          singleLine: true,
+          onClick: onOfficialSiteUrlClick,
+          eventActionFragment: '기본정보_홈페이지',
+        })
+
+      if (extraProperties) {
+        extraProperties.forEach(({ description, value, ...rest }, i) => {
+          allValues.set(`extraProperties.${i}`, {
+            title: description,
+            value,
+            onClick: onExtraPropertyClick
+              ? () => onExtraPropertyClick({ description, value, ...rest })
+              : undefined,
+          })
+        })
+      }
+
+      return allValues
+    }, [
+      t,
+      addresses,
+      phoneNumber,
+      officialSiteUrl,
+      extraProperties,
+      onAddressesClick,
+      onPhoneNumberClick,
+      onOfficialSiteUrlClick,
+      onExtraPropertyClick,
+    ])
 
   const isActionSheetOpen = (uriHash || '').startsWith(ACTION_SHEET_PREFIX)
   const value =

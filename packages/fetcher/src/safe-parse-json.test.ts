@@ -5,6 +5,7 @@ import safeParseJson from './safe-parse-json'
 it('JSON 파싱 에러를 조용히 넘깁니다.', async () => {
   const response = new Response('', {
     headers: {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       'content-type': 'application/json',
     },
   })

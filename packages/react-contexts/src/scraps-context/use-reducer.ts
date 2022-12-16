@@ -79,6 +79,5 @@ export function useScrapsReducer({
   return useMemo(() => ({ scraps, updating, dispatch }), [scraps, updating])
 }
 
-export const ScrapsReducerContext = createContext<ReturnType<
-  typeof useScrapsReducer
-> | null>(null)
+export const ScrapsReducerContext =
+  createContext<ReturnType<typeof useScrapsReducer> | null>(null)
