@@ -14,11 +14,18 @@ const MoreImageOverlayLink = styled.a`
   font-size: 16px;
 `
 
+const MoreImageOverlayLinkIcon = styled.img`
+  width: 20px;
+  height: 20px;
+  vertical-align: sub;
+`
+
 export default function CtaOverlay() {
   const { t } = useTranslation('common-web')
 
   return (
     <MoreImageOverlayLink>
+      <MoreImageOverlayLinkIcon src="https://assets.triple.guide/images/ico-arrow@4x.png" />
       {t('teuripeul-aebeseo-deobogi')}
     </MoreImageOverlayLink>
   )
